@@ -1,61 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C40BD610C74
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Oct 2022 10:46:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10EB1610CB6
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Oct 2022 11:05:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6628410E11D;
-	Fri, 28 Oct 2022 08:46:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0F2A10E131;
+	Fri, 28 Oct 2022 09:05:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31B7610E11D
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Oct 2022 08:46:27 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEA3E10E131
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Oct 2022 09:05:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666946787; x=1698482787;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=Y81jowPRVr3yWQ5VWj5Qf+FJEKQNp4a/l87a0tFTpqI=;
- b=ZH0pDdnuQDHNvTFVt63UbsBEcuCZ6m74hpahLcLZxG3gaQRgwEU2MsRQ
- 5alG0QMRdASPVqiTaNVHrZhIKs8WrYWMQ4ih/ZfD0AUZFd0RS+sWYI1Ph
- a+8amVCdkZV1V/LRk2hs33bTGKCw+udTQe/xYvshiDq27LMCrqBfAWP+P
- Y3/4SglEDZUxHGC4VGszVkpbJNNIrZRLeDU5wLm3XG/bYeXIQSPay8Eu5
- IR5M7RlmBAsTTeaOVqEJX89yLh2oUNFrQzMs75b5Q29akx3UpPDjTUaOD
- 8AzZl4I7IckhFepmkL6DzPkZEN1UF9umEFlWDQVuniUPmEgF/7HwVkclz w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10513"; a="308436087"
-X-IronPort-AV: E=Sophos;i="5.95,220,1661842800"; d="scan'208";a="308436087"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2022 01:46:26 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10513"; a="807756305"
-X-IronPort-AV: E=Sophos;i="5.95,220,1661842800"; d="scan'208";a="807756305"
-Received: from pbednar-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.252.28.221])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2022 01:46:23 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>, "Dixit, Ashutosh"
- <ashutosh.dixit@intel.com>, Nick Desaulniers <ndesaulniers@google.com>
-In-Reply-To: <c1c548f8-71a8-0d4d-d591-58a0cd5dac20@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221024210953.1572998-1-gwan-gyeong.mun@intel.com>
- <87mt9kppb6.wl-ashutosh.dixit@intel.com>
- <Y1ercgaqQwfqt42U@ashyti-mobl2.lan>
- <87ilk7pwrw.wl-ashutosh.dixit@intel.com>
- <Y1h8yn4QHI3aBlCe@ashyti-mobl2.lan>
- <CAKwvOdkpQvk31zbipLDPXfsDZ8FpGHs9t-+9JfFQO85Bs4h=wg@mail.gmail.com>
- <877d0lxl6s.wl-ashutosh.dixit@intel.com>
- <CAKwvOdmVJn8HvfF9WTnOAc+HsdJ4c1Tdck8E7Caky7AoCq4ZTA@mail.gmail.com>
- <875yg5xgkp.wl-ashutosh.dixit@intel.com>
- <c1c548f8-71a8-0d4d-d591-58a0cd5dac20@intel.com>
-Date: Fri, 28 Oct 2022 11:46:21 +0300
-Message-ID: <8735b89vz6.fsf@intel.com>
+ t=1666947913; x=1698483913;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=zTRSzwkpkdylH5qX8jaOXjoCJjU1cZRvYAbjXoynUJs=;
+ b=eP3R4wM2xVRpW3jzvPXMTw9OG8Yau3hCYoY7og6NDJPPGAan0lfMLtF3
+ jyD/62wZJ94uWGhGjUNIy1FrgCaRl3JMLEMEQNtyG8YzTSG8WV7LiEuX+
+ LjYQ04+numRjWFOton9v41eBUSDUWvLEADSevkk9UpiUMtWY+Km4EUaM6
+ PVvj1kDPpDVcC2ihEKeca6WSXtHwm/qqAjCl+vDtN61t9cLNtOgl53rDq
+ wL/k/2RpxSdshv/LvkxFdwJ9XWzRIuXkArW3nrE3BgP/9lIponkUw4x7u
+ gWw7wWQM0U8b+Zi9JXbnpAPnThkQXMPiBsFxhhjFfCYHJzi+eBTK+PwLl g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10513"; a="306057667"
+X-IronPort-AV: E=Sophos;i="5.95,220,1661842800"; d="scan'208";a="306057667"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2022 02:05:12 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10513"; a="738036810"
+X-IronPort-AV: E=Sophos;i="5.95,220,1661842800"; d="scan'208";a="738036810"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by fmsmga002.fm.intel.com with SMTP; 28 Oct 2022 02:05:10 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 28 Oct 2022 12:05:09 +0300
+Date: Fri, 28 Oct 2022 12:05:09 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Message-ID: <Y1ubRT9waxFO8wPt@intel.com>
+References: <20221026232257.281240-1-anusha.srivatsa@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/hwmon: Fix a build error used with
- clang compiler
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221026232257.281240-1-anusha.srivatsa@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/display: Do both crawl and
+ squash when changing cdclk
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,355 +61,245 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, llvm@lists.linux.dev,
- linux-kernel@vger.kernel.org
+Cc: intel-gfx@lists.freedesktop.org,
+ Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 28 Oct 2022, Gwan-gyeong Mun <gwan-gyeong.mun@intel.com> wrote:
-> Resend, because some content was accidentally omitted from the previous 
-> reply.
-> Please ignore the previous email.
->
-> Hi all,
->
-> I should have written the original commit message more accurately, but 
-> it seems that it was written inaccurately.
->
-> If the FIELD_PREP macro is expanded, the following macros are used.
->
-> #define FIELD_PREP(_mask, _val)						\
-> 	({								\
-> 		__BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");	\
-> 		((typeof(_mask))(_val) << __bf_shf(_mask)) & (_mask);	\
-> 	})
->
->
-> #define __BF_FIELD_CHECK(_mask, _reg, _val, _pfx)			\
-> 	({								\
-> 		BUILD_BUG_ON_MSG(!__builtin_constant_p(_mask),		\
-> 				 _pfx "mask is not constant");		\
-> 		BUILD_BUG_ON_MSG((_mask) == 0, _pfx "mask is zero");	\
-> 		BUILD_BUG_ON_MSG(__builtin_constant_p(_val) ?		\
-> 				 ~((_mask) >> __bf_shf(_mask)) & (_val) : 0, \
-> 				 _pfx "value too large for the field"); \
-> 		BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >	\
-> 				 __bf_cast_unsigned(_reg, ~0ull),	\
-> 				 _pfx "type of reg too small for mask"); \
-> 		__BUILD_BUG_ON_NOT_POWER_OF_2((_mask) +			\
-> 					      (1ULL << __bf_shf(_mask))); \
-> 	})
->
-> Among them, a build error is generated by the lower part of the 
-> __BF_FIELD_CHECK() macro.
->
-> 		BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >	\
-> 				 __bf_cast_unsigned(_reg, ~0ull),	\
-> 				 _pfx "type of reg too small for mask"); \
->
->
-> Here, if you apply an argument to this macro, it will look like the 
-> following.
->
-> __bf_cast_unsigned(field_msk, field_msk) > __bf_cast_unsigned(0ULL, ~0ull)
->
-> The result is always false because an unsigned int value of type 
-> field_msk is not always greater than the maximum value of unsigned long 
-> long .
-> So, a build error occurs due to the following part of the clang compiler 
-> option.
->
-> [-Werror,-Wtautological-constant-out-of-range-compare]
->
-> You can simply override this warning in Clang by adding the build option 
-> below, but this seems like a bad attempt
->
-> i915/Makefile
-> CFLAGS_i915_hwmon.o += -Wno-tautological-constant-out-of-range-compare
->
-> The easiest way to solve this is to use a constant value, not a 
-> variable, as an argument to FIELD_PREP.
->
-> And since the REG_FIELD_PREP() macro suggested by Jani requires a const 
-> expression as the first argument, it cannot be changed with this macro 
-> alone in the existing code, it must be changed to input a constant value 
-> as shown below.
+On Wed, Oct 26, 2022 at 04:22:56PM -0700, Anusha Srivatsa wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> For MTL, changing cdclk from between certain frequencies has
+> both squash and crawl. Use the current cdclk config and
+> the new(desired) cdclk config to construtc a mid cdclk config.
+> Set the cdclk twice:
+> - Current cdclk -> mid cdclk
+> - mid cdclk -> desired cdclk
+> 
+> v2: Add check in intel_modeset_calc_cdclk() to avoid cdclk
+> change via modeset for platforms that support squash_crawl sequences(Ville)
+> 
+> v3: Add checks for:
+> - scenario where only slow clock is used and
+> cdclk is actually 0 (bringing up display).
+> - PLLs are on before looking up the waveform.
+> - Squash and crawl capability checks.(Ville)
+> 
+> v4: Rebase
+> - Move checks to be more consistent (Ville)
+> - Add comments (Bala)
+> 
+> Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+> Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_cdclk.c | 157 +++++++++++++++++----
+>  1 file changed, 129 insertions(+), 28 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> index eada931cb1c8..6a775367f02a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -1716,37 +1716,74 @@ static void dg2_cdclk_squash_program(struct drm_i915_private *i915,
+>  	intel_de_write(i915, CDCLK_SQUASH_CTL, squash_ctl);
+>  }
+>  
+> -static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+> -			  const struct intel_cdclk_config *cdclk_config,
+> -			  enum pipe pipe)
+> +static int cdclk_squash_divider(u16 waveform)
+> +{
+> +	return hweight16(waveform ?: 0xffff);
+> +}
+> +
+> +static bool cdclk_crawl_and_squash(struct drm_i915_private *i915,
+> +				   const struct intel_cdclk_config *old_cdclk_config,
+> +				   const struct intel_cdclk_config *new_cdclk_config,
+> +				   struct intel_cdclk_config *mid_cdclk_config)
+> +{
+> +	u16 old_waveform, new_waveform, mid_waveform;
+> +	int size = 16;
+> +	int div = 2;
+> +
+> +	/* Return if both Squash and Crawl are not present */
+> +	if (!HAS_CDCLK_CRAWL(i915) || !HAS_CDCLK_SQUASH(i915))
+> +		return false;
+> +
+> +	/* Return if Squash only or Crawl only is the desired action */
+> +	if (old_cdclk_config->vco <= 0 || new_cdclk_config->vco <= 0 ||
+> +	    old_cdclk_config->vco == new_cdclk_config->vco ||
+> +	    old_waveform == new_waveform)
 
-We've added REG_FIELD_PREP() precisely to avoid the problems with the
-types and ranges, as we want it to operate on u32. It also uses
-__is_constexpr() to avoid dependencies on compiler implementation and
-optimizations.
+Those are not yet initialized.
 
-Please use REG_FIELD_PREP() and a constant value. Maybe rethink the
-interface if needed.
-
-BR,
-Jani.
-
-
-
-
->
-> diff --git a/drivers/gpu/drm/i915/i915_hwmon.c 
-> b/drivers/gpu/drm/i915/i915_hwmon.c
-> index 08c921421a5f..abb3a194c548 100644
-> --- a/drivers/gpu/drm/i915/i915_hwmon.c
-> +++ b/drivers/gpu/drm/i915/i915_hwmon.c
-> @@ -101,7 +101,7 @@ hwm_field_read_and_scale(struct hwm_drvdata *ddat, 
-> i915_reg_t rgadr,
->
->   static void
->   hwm_field_scale_and_write(struct hwm_drvdata *ddat, i915_reg_t rgadr,
-> -                         const u32 field_msk, int nshift,
-> +                         int nshift,
->                            unsigned int scale_factor, long lval)
->   {
->          u32 nval;
-> @@ -111,8 +111,8 @@ hwm_field_scale_and_write(struct hwm_drvdata *ddat, 
-> i915_reg_t rgadr,
->          /* Computation in 64-bits to avoid overflow. Round to nearest. */
->          nval = DIV_ROUND_CLOSEST_ULL((u64)lval << nshift, scale_factor);
->
-> -       bits_to_clear = field_msk;
-> -       bits_to_set = REG_FIELD_PREP(field_msk, nval);
-> +       bits_to_clear = PKG_PWR_LIM_1;
-> +       bits_to_set = REG_FIELD_PREP(PKG_PWR_LIM_1, nval);
->
->          hwm_locked_with_pm_intel_uncore_rmw(ddat, rgadr,
->                                              bits_to_clear, bits_to_set);
-> @@ -406,7 +406,6 @@ hwm_power_write(struct hwm_drvdata *ddat, u32 attr, 
-> int chan, long val)
->          case hwmon_power_max:
->                  hwm_field_scale_and_write(ddat,
->                                            hwmon->rg.pkg_rapl_limit,
-> -                                         PKG_PWR_LIM_1,
->                                            hwmon->scl_shift_power,
->                                            SF_POWER, val);
->                  return 0;
->
->
->
-> In addition, if there is no build problem regardless of the size of the 
-> type as the first argument in FIELD_PREP, it is possible through the 
-> following modification.
-> (Since this modification modifies include/linux/bitfield.h , I will send 
-> it as a separate patch.
->    )
->
-> However, it seems that we need to have Jani's confirm whether it is okay 
-> to use FIELD_PREP() instead of REG_FIELD_PREP() which is forced to u32 
-> return type in i915.
->
-> diff --git a/include/linux/bitfield.h b/include/linux/bitfield.h
-> index c9be1657f03d..6e96799b6f38 100644
-> --- a/include/linux/bitfield.h
-> +++ b/include/linux/bitfield.h
-> @@ -9,7 +9,7 @@
->
->   #include <linux/build_bug.h>
->   #include <asm/byteorder.h>
+> +		return false;
+> +
+> +	old_waveform = cdclk_squash_waveform(i915, old_cdclk_config->cdclk);
+> +	new_waveform = cdclk_squash_waveform(i915, new_cdclk_config->cdclk);
+> +
+> +	*mid_cdclk_config = *new_cdclk_config;
+> +
+> +	/* Populate the mid_cdclk_config accordingly.
+> +	 * - If moving to a higher cdclk, the desired action is squashing.
+> +	 * The mid cdclk config should have the new (squash) waveform.
+> +	 * - If moving to a lower cdclk, the desired action is crawling.
+> +	 * The mid cdclk config should have the new vco.
+> +	 */
+> +
+> +	if (cdclk_squash_divider(new_waveform) > cdclk_squash_divider(old_waveform)) {
+> +		mid_cdclk_config->vco = old_cdclk_config->vco;
+> +		mid_waveform = new_waveform;
+> +	} else {
+> +		mid_cdclk_config->vco = new_cdclk_config->vco;
+> +		mid_waveform = old_waveform;
+> +	}
+> +
+> +	mid_cdclk_config->cdclk = DIV_ROUND_CLOSEST(cdclk_squash_divider(mid_waveform) *
+> +						    mid_cdclk_config->vco, size * div);
+> +
+> +	/* make sure the mid clock came out sane */
+> +
+> +	drm_WARN_ON(&i915->drm, mid_cdclk_config->cdclk <
+> +		    min(old_cdclk_config->cdclk, new_cdclk_config->cdclk));
+> +	drm_WARN_ON(&i915->drm, mid_cdclk_config->cdclk >
+> +		    i915->display.cdclk.max_cdclk_freq);
+> +	drm_WARN_ON(&i915->drm, cdclk_squash_waveform(i915, mid_cdclk_config->cdclk) !=
+> +		    mid_waveform);
+> +
+> +	return true;
+> +}
+> +
+> +static void _bxt_set_cdclk(struct drm_i915_private *dev_priv,
+> +			   const struct intel_cdclk_config *cdclk_config,
+> +			   enum pipe pipe)
+>  {
+>  	int cdclk = cdclk_config->cdclk;
+>  	int vco = cdclk_config->vco;
+>  	u32 val;
+>  	u16 waveform;
+>  	int clock;
+> -	int ret;
 > -
-> +#include <linux/overflow.h>
->   /*
->    * Bitfield access macros
->    *
-> @@ -69,7 +69,7 @@
->                                   ~((_mask) >> __bf_shf(_mask)) & (_val) 
-> : 0, \
->                                   _pfx "value too large for the field"); \
->                  BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >     \
-> -                                __bf_cast_unsigned(_reg, ~0ull),       \
-> +                                __bf_cast_unsigned(_reg, 
-> type_max(__unsigned_scalar_typeof(_reg))),    \
->                                   _pfx "type of reg too small for mask"); \
->                  __BUILD_BUG_ON_NOT_POWER_OF_2((_mask) +                 \
->                                                (1ULL << __bf_shf(_mask))); \
-> @@ -84,7 +84,7 @@
->    */
->   #define FIELD_MAX(_mask)                                               \
->          ({                                                              \
-> -               __BF_FIELD_CHECK(_mask, 0ULL, 0ULL, "FIELD_MAX: ");     \
-> +               __BF_FIELD_CHECK(_mask, 
-> type_min(__unsigned_scalar_typeof(_mask)), 
-> type_min(__unsigned_scalar_typeof(_mask)), "FIELD_MAX: ");   \
->                  (typeof(_mask))((_mask) >> __bf_shf(_mask));            \
->          })
->
-> @@ -97,7 +97,7 @@
->    */
->   #define FIELD_FIT(_mask, _val)                                         \
->          ({                                                              \
-> -               __BF_FIELD_CHECK(_mask, 0ULL, 0ULL, "FIELD_FIT: ");     \
-> +               __BF_FIELD_CHECK(_mask, 
-> type_min(__unsigned_scalar_typeof(_mask)), 
-> type_min(__unsigned_scalar_typeof(_val)), "FIELD_FIT: ");    \
->                  !((((typeof(_mask))_val) << __bf_shf(_mask)) & ~(_mask)); \
->          })
->
-> @@ -111,7 +111,7 @@
->    */
->   #define FIELD_PREP(_mask, _val) 
->           \
->          ({                                                              \
-> -               __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");    \
-> +               __BF_FIELD_CHECK(_mask, 
-> type_min(__unsigned_scalar_typeof(_mask)), _val, "FIELD_PREP: ");       \
->                  ((typeof(_mask))(_val) << __bf_shf(_mask)) & (_mask);   \
->          })
->
-> @@ -125,7 +125,7 @@
->    */
->   #define FIELD_GET(_mask, _reg)                                         \
->          ({                                                              \
-> -               __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: ");       \
-> +               __BF_FIELD_CHECK(_mask, _reg, 
-> type_min(__unsigned_scalar_typeof(_reg)), "FIELD_GET: "); \
->                  (typeof(_mask))(((_reg) & (_mask)) >> __bf_shf(_mask)); \
->          })
->
->
-> Br,
->
-> G.G.
->
-> On 10/27/22 9:32 PM, Dixit, Ashutosh wrote:
->> On Thu, 27 Oct 2022 10:16:47 -0700, Nick Desaulniers wrote:
->>>
->> 
->> Hi Nick,
->> 
->>> Thanks, I can repro now.
->>>
->>> I haven't detangled the macro soup, but I noticed:
->>>
->>> 1. FIELD_PREP is defined in include/linux/bitfield.h which has the
->>> following comment:
->>>   18  * Mask must be a compilation time constant.
->> 
->> I had comments about this here:
->> 
->> https://lore.kernel.org/intel-gfx/87ilk7pwrw.wl-ashutosh.dixit@intel.com/
->> 
->> The relevant part being:
->> 
->> ---- {quote} ----
->>>>> ./include/linux/bitfield.h:71:53: note: expanded from macro '__BF_FIELD_CHECK'
->>>>>                  BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >     \
->> 
->> So clang seems to break here at this line in __BF_FIELD_CHECK (note ~0ull
->> also occurs here):
->> 
->> 		BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >	\
->> 				 __bf_cast_unsigned(_reg, ~0ull),	\
->> 				 _pfx "type of reg too small for mask"); \
->> 
->> So it goes through previous checks including the "mask is not constant"
->> check. As Nick Desaulniers mentions "__builtin_constant_p is evaluated
->> after most optimizations have run" so by that time both compilers (gcc and
->> clang) have figured out that even though _mask is coming in as function
->> argument it is really the constant below:
->> 
->> #define   PKG_PWR_LIM_1		REG_GENMASK(14, 0)
->> 
->> But it is not clear why clang chokes on this "type of reg too small for
->> mask" check (and gcc doesn't) since everything is u32.
->> ---- {end quote} ----
->> 
->>>
->>> 2. hwm_field_scale_and_write only has one callsite.
->>>
->>> The following patch works:
->> 
->> If we need to fix it at our end yes we can come up with one of these
->> patches. But we were hoping someone from clang/llvm can comment about the
->> "type of reg too small for mask" stuff. If this is something which needs to
->> be fixed in clang/llvm we probably don't want to hide the issue.
->> 
->>>
->>> ```
->>> diff --git a/drivers/gpu/drm/i915/i915_hwmon.c
->>> b/drivers/gpu/drm/i915/i915_hwmon.c
->>> index 9e9781493025..6ac29d90b92a 100644
->>> --- a/drivers/gpu/drm/i915/i915_hwmon.c
->>> +++ b/drivers/gpu/drm/i915/i915_hwmon.c
->>> @@ -101,7 +101,7 @@ hwm_field_read_and_scale(struct hwm_drvdata *ddat,
->>> i915_reg_t rgadr,
->>>
->>>   static void
->>>   hwm_field_scale_and_write(struct hwm_drvdata *ddat, i915_reg_t rgadr,
->>> -                         u32 field_msk, int nshift,
->>> +                         int nshift,
->>>                            unsigned int scale_factor, long lval)
->>>   {
->>>          u32 nval;
->>> @@ -111,8 +111,8 @@ hwm_field_scale_and_write(struct hwm_drvdata
->>> *ddat, i915_reg_t rgadr,
->>>          /* Computation in 64-bits to avoid overflow. Round to nearest. */
->>>          nval = DIV_ROUND_CLOSEST_ULL((u64)lval << nshift, scale_factor);
->>>
->>> -       bits_to_clear = field_msk;
->>> -       bits_to_set = FIELD_PREP(field_msk, nval);
->>> +       bits_to_clear = PKG_PWR_LIM_1;
->>> +       bits_to_set = FIELD_PREP(PKG_PWR_LIM_1, nval);
->>>
->>>          hwm_locked_with_pm_intel_uncore_rmw(ddat, rgadr,
->>>                                              bits_to_clear, bits_to_set);
->>> @@ -406,7 +406,6 @@ hwm_power_write(struct hwm_drvdata *ddat, u32
->>> attr, int chan, long val)
->>>          case hwmon_power_max:
->>>                  hwm_field_scale_and_write(ddat,
->>>                                            hwmon->rg.pkg_rapl_limit,
->>> -                                         PKG_PWR_LIM_1,
->>>                                            hwmon->scl_shift_power,
->>>                                            SF_POWER, val);
->>>                  return 0;
->>> ```
->>> Though I'm not sure if you're planning to add further callsites of
->>> hwm_field_scale_and_write with different field_masks?
->> 
->> I have reasons for keeping it this way, it's there in the link above if you
->> are interested.
->> 
->>>
->>> Alternatively, (without the above diff),
->>>
->>> ```
->>> diff --git a/include/linux/bitfield.h b/include/linux/bitfield.h
->>> index c9be1657f03d..6f40f12bcf89 100644
->>> --- a/include/linux/bitfield.h
->>> +++ b/include/linux/bitfield.h
->>> @@ -8,6 +8,7 @@
->>>   #define _LINUX_BITFIELD_H
->>>
->>>   #include <linux/build_bug.h>
->>> +#include <linux/const.h>
->>>   #include <asm/byteorder.h>
->>>
->>>   /*
->>> @@ -62,7 +63,7 @@
->>>
->>>   #define __BF_FIELD_CHECK(_mask, _reg, _val, _pfx)                      \
->>>          ({                                                              \
->>> -               BUILD_BUG_ON_MSG(!__builtin_constant_p(_mask),          \
->>> +               BUILD_BUG_ON_MSG(!__is_constexpr(_mask),                \
->>>                                   _pfx "mask is not constant");          \
->>>                  BUILD_BUG_ON_MSG((_mask) == 0, _pfx "mask is zero");    \
->>>                  BUILD_BUG_ON_MSG(__builtin_constant_p(_val) ?           \
->>> ```
->>> will produce:
->>> error: call to __compiletime_assert_407 declared with 'error'
->>> attribute: FIELD_PREP: mask is not constant
->>>
->>> I haven't tested if that change is also feasible (on top of fixing
->>> this specific instance), but I think it might help avoid more of these
->>> subtleties wrt. __builtin_constant_p that depende heavily on compiler,
->>> compiler version, optimization level.
->> 
->> Not disagreeing, can do something here if needed.
->> 
->> Thanks.
->> --
->> Ashutosh
+> -	/* Inform power controller of upcoming frequency change. */
+> -	if (DISPLAY_VER(dev_priv) >= 11)
+> -		ret = skl_pcode_request(&dev_priv->uncore, SKL_PCODE_CDCLK_CONTROL,
+> -					SKL_CDCLK_PREPARE_FOR_CHANGE,
+> -					SKL_CDCLK_READY_FOR_CHANGE,
+> -					SKL_CDCLK_READY_FOR_CHANGE, 3);
+> -	else
+> -		/*
+> -		 * BSpec requires us to wait up to 150usec, but that leads to
+> -		 * timeouts; the 2ms used here is based on experiment.
+> -		 */
+> -		ret = snb_pcode_write_timeout(&dev_priv->uncore,
+> -					      HSW_PCODE_DE_WRITE_FREQ_REQ,
+> -					      0x80000000, 150, 2);
+> -	if (ret) {
+> -		drm_err(&dev_priv->drm,
+> -			"Failed to inform PCU about cdclk change (err %d, freq %d)\n",
+> -			ret, cdclk);
+> -		return;
+> -	}
+>  
+>  	if (HAS_CDCLK_CRAWL(dev_priv) && dev_priv->display.cdclk.hw.vco > 0 && vco > 0) {
+>  		if (dev_priv->display.cdclk.hw.vco != vco)
+> @@ -1781,6 +1818,44 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+>  
+>  	if (pipe != INVALID_PIPE)
+>  		intel_crtc_wait_for_next_vblank(intel_crtc_for_pipe(dev_priv, pipe));
+> +}
+> +
+> +static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+> +			  const struct intel_cdclk_config *cdclk_config,
+> +			  enum pipe pipe)
+> +{
+> +	struct intel_cdclk_config mid_cdclk_config;
+> +	int cdclk = cdclk_config->cdclk;
+> +	int ret;
+> +
+> +	/* Inform power controller of upcoming frequency change. */
+> +	if (DISPLAY_VER(dev_priv) >= 11)
+> +		ret = skl_pcode_request(&dev_priv->uncore, SKL_PCODE_CDCLK_CONTROL,
+> +					SKL_CDCLK_PREPARE_FOR_CHANGE,
+> +					SKL_CDCLK_READY_FOR_CHANGE,
+> +					SKL_CDCLK_READY_FOR_CHANGE, 3);
+> +	else
+> +		/*
+> +		 * BSpec requires us to wait up to 150usec, but that leads to
+> +		 * timeouts; the 2ms used here is based on experiment.
+> +		 */
+> +		ret = snb_pcode_write_timeout(&dev_priv->uncore,
+> +					      HSW_PCODE_DE_WRITE_FREQ_REQ,
+> +					      0x80000000, 150, 2);
+> +	if (ret) {
+> +		drm_err(&dev_priv->drm,
+> +			"Failed to inform PCU about cdclk change (err %d, freq %d)\n",
+> +			ret, cdclk);
+> +		return;
+> +	}
+> +
+> +	if (cdclk_crawl_and_squash(dev_priv, &dev_priv->display.cdclk.hw,
+> +				   cdclk_config, &mid_cdclk_config)) {
+> +		_bxt_set_cdclk(dev_priv, &mid_cdclk_config, pipe);
+> +		_bxt_set_cdclk(dev_priv, cdclk_config, pipe);
+> +	} else {
+> +		_bxt_set_cdclk(dev_priv, cdclk_config, pipe);
+> +	}
+>  
+>  	if (DISPLAY_VER(dev_priv) >= 11) {
+>  		ret = snb_pcode_write(&dev_priv->uncore, SKL_PCODE_CDCLK_CONTROL,
+> @@ -1953,6 +2028,27 @@ void intel_cdclk_uninit_hw(struct drm_i915_private *i915)
+>  		skl_cdclk_uninit_hw(i915);
+>  }
+>  
+> +static bool intel_cdclk_can_crawl_and_squash(struct drm_i915_private *i915,
+> +					     const struct intel_cdclk_config *a,
+> +					     const struct intel_cdclk_config *b)
+> +{
+> +	u16 old_waveform;
+> +	u16 new_waveform;
+> +
+> +	if (a->vco == 0 || b->vco == 0)
+> +		return false;
+> +
+> +	if (HAS_CDCLK_CRAWL(i915) && HAS_CDCLK_SQUASH(i915)) {
+> +		old_waveform = cdclk_squash_waveform(i915, a->cdclk);
+> +		new_waveform = cdclk_squash_waveform(i915, b->cdclk);
+> +	} else {
+> +		return false;
+> +	}
+
+Still weird.
+
+> +
+> +	return a->vco != b->vco &&
+> +	       old_waveform != new_waveform;
+> +}
+> +
+>  static bool intel_cdclk_can_crawl(struct drm_i915_private *dev_priv,
+>  				  const struct intel_cdclk_config *a,
+>  				  const struct intel_cdclk_config *b)
+> @@ -2759,9 +2855,14 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
+>  			pipe = INVALID_PIPE;
+>  	}
+>  
+> -	if (intel_cdclk_can_squash(dev_priv,
+> -				   &old_cdclk_state->actual,
+> -				   &new_cdclk_state->actual)) {
+> +	if (intel_cdclk_can_crawl_and_squash(dev_priv,
+> +					     &old_cdclk_state->actual,
+> +					     &new_cdclk_state->actual)) {
+> +		drm_dbg_kms(&dev_priv->drm,
+> +			    "Can change cdclk via crawling and squashing\n");
+> +	} else if (intel_cdclk_can_squash(dev_priv,
+> +					&old_cdclk_state->actual,
+> +					&new_cdclk_state->actual)) {
+>  		drm_dbg_kms(&dev_priv->drm,
+>  			    "Can change cdclk via squashing\n");
+>  	} else if (intel_cdclk_can_crawl(dev_priv,
+> -- 
+> 2.25.1
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+Ville Syrjälä
+Intel
