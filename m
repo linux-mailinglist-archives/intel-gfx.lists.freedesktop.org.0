@@ -2,53 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C441B610E12
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Oct 2022 12:06:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2DE0610E59
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Oct 2022 12:23:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0F2210E7DF;
-	Fri, 28 Oct 2022 10:06:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B6B510E7E1;
+	Fri, 28 Oct 2022 10:23:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 591CA10E7DF
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Oct 2022 10:06:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5648910E7E1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Oct 2022 10:23:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666951565; x=1698487565;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=B9WQM0A42/18Ul8iui5EcNyi8rbckgqp6sTpXJ5v84o=;
- b=HtO63uMOML9Ez/njjndwptdt6OyT8FRmBNn9YKALkenO/VN8a6haBiFh
- 0xqKWlJGjsC6MljE6PCWK559B9XO/uRhYzMNnWBmwN5wwd+6hXeQRz82D
- Kd3NdS5T78OF/hTrUrYaaEklvSN4pVbnZDF2tC5iepyn2PfcDvccu54zI
- IBX9a2bnQ3nQbLYlTiodF1kIsuJ4v4kQxgA/73fbpTyfIEL27s9ij3h3p
- TMUmJ8xWdu7WUAvISG5FwlDfEWp1RT66PgvWp56lq5XS/qJZMIiGC4B0A
- vKcSEvMe6ct+6smEu8GvFP6bD++CgjsV0fLhDT05r6LEuOd0hD6zlOOS6 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10513"; a="370524562"
-X-IronPort-AV: E=Sophos;i="5.95,220,1661842800"; d="scan'208";a="370524562"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ t=1666952617; x=1698488617;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=VLKLuhlM314QwMvuRQN4b9loFKY3tjFn4/RPpdNXrcQ=;
+ b=TAutZIC82pmRh2bABLzz8kGHdXCDCZMFcGS3QQOA0UIuf1Cl07h740Ct
+ ImC5NbyZNpXQ9WBkkZaHWskTXLYh0qtWskoBL3BGM8Th5+M+3kNEKlaux
+ oPSa+pc7I0WzBjtX4j544lW7B0NvsEuRmGzZICtLY16PRJ5PyZafS8rtw
+ M91b81u4wB5uvt3F7osMY/JmZXfzlMNbZPqku4WAAAZptLyIRX2ZMc33K
+ UN4KjrLGhfjA0Ya/nJ9pDwJBN5wW0jKvbkEuSn0W9IWk784zgxsmSoU8c
+ +qSVMAWcM1W4bAMWtjxbIPTJCaC6/t+SgzS2PtPmf+CP3tsIB9g2snQFI w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10513"; a="370527315"
+X-IronPort-AV: E=Sophos;i="5.95,220,1661842800"; d="scan'208";a="370527315"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2022 03:06:04 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10513"; a="627478915"
-X-IronPort-AV: E=Sophos;i="5.95,220,1661842800"; d="scan'208";a="627478915"
+ 28 Oct 2022 03:23:36 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10513"; a="701689506"
+X-IronPort-AV: E=Sophos;i="5.95,220,1661842800"; d="scan'208";a="701689506"
 Received: from nalinset-mobl1.ger.corp.intel.com (HELO [10.213.204.34])
  ([10.213.204.34])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2022 03:06:02 -0700
-Message-ID: <02761556-5760-de2d-0368-96938e3179e6@linux.intel.com>
-Date: Fri, 28 Oct 2022 11:06:00 +0100
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2022 03:23:35 -0700
+Message-ID: <423a37c6-459e-a7b9-1030-960369b18f9b@linux.intel.com>
+Date: Fri, 28 Oct 2022 11:23:34 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.3
 Content-Language: en-US
-To: Andrzej Hajda <andrzej.hajda@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20221028093425.968648-1-andrzej.hajda@intel.com>
+To: Riana Tauro <riana.tauro@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20221028095058.3624647-1-riana.tauro@intel.com>
+ <20221028095058.3624647-2-riana.tauro@intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <20221028093425.968648-1-andrzej.hajda@intel.com>
+In-Reply-To: <20221028095058.3624647-2-riana.tauro@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/guc: add CAT error handler
+Subject: Re: [Intel-gfx] [PATCH v2 1/1] drm/i915/guc/slpc: Add selftest for
+ slpc tile-tile interaction
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,161 +63,144 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 Hi,
 
-I can't really provide feedback on the GuC interactions so only some 
-superficial comments below.
+I peeked inside from curiosity and was pleasantly surprise to see 
+kthread_work is used! Some comments below.
 
-On 28/10/2022 10:34, Andrzej Hajda wrote:
-> Bad GPU memory accesses can result in catastrophic error notifications
-> being send from the GPU to the KMD via the GuC. Add a handler to process
-> the notification by printing a kernel message and dumping the related
-> engine state (if appropriate).
-> Since the same CAT error can be reported twice, log only 1st one and
-> assume error for the same context reported in less than 100ms after the
-> 1st one is duplicated.
+On 28/10/2022 10:50, Riana Tauro wrote:
+> Run a workload on tiles simultaneously by requesting for RP0 frequency.
+> Pcode can however limit the frequency being granted due to throttling
+> reasons. This test fails if there is any throttling
 > 
-> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+> v2: Fix build error
+> 
+> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 > ---
->   .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |  1 +
->   drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  2 +
->   drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     |  3 ++
->   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 47 +++++++++++++++++++
->   4 files changed, 53 insertions(+)
+>   drivers/gpu/drm/i915/gt/selftest_slpc.c | 63 +++++++++++++++++++++++++
+>   1 file changed, 63 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
-> index f359bef046e0b2..f9a1c5642855e3 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
-> @@ -138,6 +138,7 @@ enum intel_guc_action {
->   	INTEL_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC = 0x4601,
->   	INTEL_GUC_ACTION_CLIENT_SOFT_RESET = 0x5507,
->   	INTEL_GUC_ACTION_SET_ENG_UTIL_BUFF = 0x550A,
-> +	INTEL_GUC_ACTION_NOTIFY_MEMORY_CAT_ERROR = 0x6000,
->   	INTEL_GUC_ACTION_STATE_CAPTURE_NOTIFICATION = 0x8002,
->   	INTEL_GUC_ACTION_NOTIFY_FLUSH_LOG_BUFFER_TO_FILE = 0x8003,
->   	INTEL_GUC_ACTION_NOTIFY_CRASH_DUMP_POSTED = 0x8004,
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> index 804133df1ac9b4..61b412732d095a 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> @@ -445,6 +445,8 @@ int intel_guc_engine_failure_process_msg(struct intel_guc *guc,
->   					 const u32 *msg, u32 len);
->   int intel_guc_error_capture_process_msg(struct intel_guc *guc,
->   					const u32 *msg, u32 len);
-> +int intel_guc_cat_error_process_msg(struct intel_guc *guc,
-> +				    const u32 *msg, u32 len);
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_slpc.c b/drivers/gpu/drm/i915/gt/selftest_slpc.c
+> index 82ec95a299f6..d19486772f5a 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_slpc.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_slpc.c
+> @@ -13,6 +13,14 @@ enum test_type {
+>   	VARY_MAX,
+>   	MAX_GRANTED,
+>   	SLPC_POWER,
+> +	TILE_INTERACTION,
+> +};
+> +
+> +struct slpc_thread {
+> +	struct kthread_worker *worker;
+> +	struct kthread_work work;
+> +	struct intel_gt *gt;
+> +	int result;
+>   };
 >   
->   struct intel_engine_cs *
->   intel_guc_lookup_engine(struct intel_guc *guc, u8 guc_class, u8 instance);
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> index 2b22065e87bf9a..f55f724e264407 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> @@ -1035,6 +1035,9 @@ static int ct_process_request(struct intel_guc_ct *ct, struct ct_incoming_msg *r
->   		CT_ERROR(ct, "Received GuC exception notification!\n");
->   		ret = 0;
->   		break;
-> +	case INTEL_GUC_ACTION_NOTIFY_MEMORY_CAT_ERROR:
-> +		ret = intel_guc_cat_error_process_msg(guc, payload, len);
-> +		break;
->   	default:
->   		ret = -EOPNOTSUPP;
->   		break;
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index 693b07a977893d..f68ae4a0ad864d 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -4659,6 +4659,53 @@ int intel_guc_engine_failure_process_msg(struct intel_guc *guc,
->   	return 0;
+>   static int slpc_set_min_freq(struct intel_guc_slpc *slpc, u32 freq)
+> @@ -310,6 +318,7 @@ static int run_test(struct intel_gt *gt, int test_type)
+>   			break;
+>   
+>   		case MAX_GRANTED:
+> +		case TILE_INTERACTION:
+>   			/* Media engines have a different RP0 */
+>   			if (engine->class == VIDEO_DECODE_CLASS ||
+>   			    engine->class == VIDEO_ENHANCEMENT_CLASS) {
+> @@ -325,6 +334,7 @@ static int run_test(struct intel_gt *gt, int test_type)
+>   		case SLPC_POWER:
+>   			err = slpc_power(gt, engine);
+>   			break;
+> +
+
+Noise.
+
+>   		}
+>   
+>   		if (test_type != SLPC_POWER) {
+> @@ -426,6 +436,58 @@ static int live_slpc_power(void *arg)
+>   	return ret;
 >   }
 >   
-> +int intel_guc_cat_error_process_msg(struct intel_guc *guc,
-> +				    const u32 *msg, u32 len)
+> +static void slpc_spinner_thread(struct kthread_work *work)
 > +{
-> +	static struct {
-> +		u32 ctx_id;
-> +		unsigned long after;
-> +	} ratelimit;
-> +	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
-> +	struct drm_printer p = drm_info_printer(i915->drm.dev);
-> +	struct intel_context *ce;
-> +	unsigned long flags;
-> +	u32 ctx_id;
+> +	struct slpc_thread *thread = container_of(work, typeof(*thread), work);
 > +
-> +	if (unlikely(len != 1)) {
-> +		drm_dbg(&i915->drm, "Invalid length %u\n", len);
-> +		return -EPROTO;
+> +	thread->result = run_test(thread->gt, TILE_INTERACTION);
+> +}
+> +
+> +static int live_slpc_tile_interaction(void *arg)
+> +{
+> +	struct drm_i915_private *i915 = arg;
+> +	struct intel_gt *gt;
+> +	struct slpc_thread *threads;
+> +	int i = 0, ret = 0;
+> +
+> +	threads = kcalloc(I915_MAX_GT, sizeof(*threads), GFP_KERNEL);
+> +	if (!threads)
+> +		return -ENOMEM;
+> +
+> +	for_each_gt(gt, i915, i) {
+> +		pr_info("Running on GT: %d\n", gt->info.id);
+
+Not sure logging these makes sense since test runs on all tiles in 
+parallel anyway.
+
+> +		threads[i].worker = kthread_create_worker(0, "igt/slpc_parallel:%d", gt->info.id);
+> +
+> +		if (IS_ERR(threads[i].worker)) {
+> +			ret = PTR_ERR(threads[i].worker);
+> +			break;
+> +		}
+> +
+> +		threads[i].gt = gt;
+> +		threads[i].result = 0;
+
+No need to zero result due kcalloc and runs do not repeat.
+
+> +		kthread_init_work(&threads[i].work, slpc_spinner_thread);
+> +		kthread_queue_work(threads[i].worker, &threads[i].work);
 > +	}
-> +	ctx_id = msg[0];
 > +
-> +	if (ctx_id == ratelimit.ctx_id && time_is_after_jiffies(ratelimit.after))
-> +		return 0;
-
-This will be suboptimal with multi-gpu and multi-tile. Not sure if 
-ratelimiting is needed, but if it is, then perhaps move the state into 
-struct intel_guc?
-
-Would it be worth counting the rate limited ones and then log how many 
-were not logged when the next one is logged?
-
-Should the condition be inverted - !time_is_after?
-
+> +	for_each_gt(gt, i915, i) {
+> +		int status;
 > +
-> +	ratelimit.ctx_id = ctx_id;
-> +	ratelimit.after = jiffies + msecs_to_jiffies(100);
-> +
-> +	if (unlikely(ctx_id == -1)) {
-> +		drm_err(&i915->drm,
-> +			"GPU reported catastrophic error without providing valid context\n");
-> +		return 0;
-> +	}
-> +
-> +	xa_lock_irqsave(&guc->context_lookup, flags);
+> +		if (!threads[i].worker)
+> +			continue;
 
-The only caller seems to be a worker so just _irq I guess. 
-ct_process_incoming_requests has the same issue but I haven't looked 
-into other handlers called from ct_process_request.
-
-> +	ce = g2h_context_lookup(guc, ctx_id);
-> +	if (ce)
-> +		intel_context_get(ce);
-> +	xa_unlock_irqrestore(&guc->context_lookup, flags);
-> +	if (unlikely(!ce))
-> +		return -EPROTO;
-
-EPROTO seems incorrect - message could have just been delayed and 
-context deregistered I think. Probably you just need to still log the 
-error just say context couldn't be resolved. GuC experts to confirm or deny.
-
-> +
-> +	drm_err(&i915->drm, "GPU reported catastrophic error associated with context %u on %s\n",
-> +		ctx_id, ce->engine->name);
-> +	intel_engine_dump(ce->engine, &p, "%s\n", ce->engine->name);
-
-Same as above, when CT channel is congested this can be delayed and then 
-I wonder what's the point of dumping engine state. In fact, even when CT 
-is not congested the delay could be significant enough for it to be 
-pointless. Another question for GuC experts I guess.
-
-Also, check if intel_engine_dump can handle ce->engine being a virtual 
-engine.
+Could be ERR_PTR by the look of it so it would crash below. Either gate 
+on threads[i].gt or use IS_ERR_OR_NULL.
 
 Regards,
 
 Tvrtko
 
-> +	intel_context_put(ce);
 > +
-> +	return 0;
+> +		kthread_flush_work(&threads[i].work);
+> +		status = READ_ONCE(threads[i].result);
+> +		if (status && !ret) {
+> +			pr_err("%s GT %d failed ", __func__, gt->info.id);
+> +			ret = status;
+> +		}
+> +		kthread_destroy_worker(threads[i].worker);
+> +	}
+> +
+> +	kfree(threads);
+> +	return ret;
 > +}
 > +
->   void intel_guc_find_hung_context(struct intel_engine_cs *engine)
+>   int intel_slpc_live_selftests(struct drm_i915_private *i915)
 >   {
->   	struct intel_guc *guc = &engine->gt->uc.guc;
+>   	static const struct i915_subtest tests[] = {
+> @@ -433,6 +495,7 @@ int intel_slpc_live_selftests(struct drm_i915_private *i915)
+>   		SUBTEST(live_slpc_vary_min),
+>   		SUBTEST(live_slpc_max_granted),
+>   		SUBTEST(live_slpc_power),
+> +		SUBTEST(live_slpc_tile_interaction),
+>   	};
+>   
+>   	struct intel_gt *gt;
