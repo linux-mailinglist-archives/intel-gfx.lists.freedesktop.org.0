@@ -2,33 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 204E2610AB3
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Oct 2022 08:48:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DCE8610B2E
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Oct 2022 09:21:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA17C10E0F2;
-	Fri, 28 Oct 2022 06:48:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6600C10E794;
+	Fri, 28 Oct 2022 07:21:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 347C710E0F2;
- Fri, 28 Oct 2022 06:48:34 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 315AAAA0EA;
- Fri, 28 Oct 2022 06:48:34 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EFF410E794
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Oct 2022 07:21:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1666941688; x=1698477688;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=S8dQzeeROsZWPkVdK1pI+K7A5Er2tL+nCRGLm5Wxe4k=;
+ b=FLD71Jhh8zZL3nuEb+0qxl47gSa/Pcoq9arlBg3NNTwa6d1Cu8oUkdmi
+ yCayCSthG7iYsRz7sME5WfUmwwEWFx/hNl06Y4edNwetiMZa6tz4WiUJM
+ pi9Qp8KyZLu7EadQL4Ut4YfU50UZu357TyXifXiXiOAZOk9bH80V9XXXo
+ l9AZerzab2YmZakrF1jSkoZTy89uGVdBCus9tYCbWBlfaplmZcEaUPKCS
+ 8s6W6Y6l1fnQZoeQsJls5GX8cYpmLZmLiyPrmMnfwwjrBXBW5a7+P9kJ1
+ W2TR3tVRhVvpm+gueMBGTsLrLRjsRJ7k9xSw+9DfzCJNWRCz+a2SjazXW g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10513"; a="309523268"
+X-IronPort-AV: E=Sophos;i="5.95,220,1661842800"; d="scan'208";a="309523268"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2022 00:21:27 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10513"; a="961924461"
+X-IronPort-AV: E=Sophos;i="5.95,220,1661842800"; d="scan'208";a="961924461"
+Received: from rtauro-desk.iind.intel.com ([10.190.239.41])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2022 00:21:25 -0700
+From: Riana Tauro <riana.tauro@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 28 Oct 2022 12:51:19 +0530
+Message-Id: <20221028072120.3594337-1-riana.tauro@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
-Date: Fri, 28 Oct 2022 06:48:34 -0000
-Message-ID: <166693971419.15988.14727974299244281689@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221024210953.1572998-1-gwan-gyeong.mun@intel.com>
-In-Reply-To: <20221024210953.1572998-1-gwan-gyeong.mun@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915/hwmon=3A_Fix_a_build_error_used_with_clang_compiler_=28?=
- =?utf-8?q?rev4=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/1] Add selftest for slpc tile interaction
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,27 +54,18 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+This tests runs a  workload on tiles simultaneously by requesting for RP0 frequency
+and fails if there is a throttling error
 
-Series: drm/i915/hwmon: Fix a build error used with clang compiler (rev4)
-URL   : https://patchwork.freedesktop.org/series/110094/
-State : failure
+Riana Tauro (1):
+  drm/i915/guc/slpc: Add selftest for slpc tile-tile interaction
 
-== Summary ==
+ drivers/gpu/drm/i915/gt/selftest_slpc.c | 63 +++++++++++++++++++++++++
+ 1 file changed, 63 insertions(+)
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/110094/revisions/4/mbox/ not applied
-Applying: drm/i915/hwmon: Fix a build error used with clang compiler
-error: git diff header lacks filename information when removing 1 leading pathname component (line 2)
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 drm/i915/hwmon: Fix a build error used with clang compiler
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-
+-- 
+2.25.1
 
