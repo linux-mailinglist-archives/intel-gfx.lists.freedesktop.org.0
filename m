@@ -1,33 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83C6B61117F
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Oct 2022 14:32:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFDAA6111B8
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Oct 2022 14:41:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FC4810E827;
-	Fri, 28 Oct 2022 12:32:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 235B110E766;
+	Fri, 28 Oct 2022 12:41:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6C30810E81D;
- Fri, 28 Oct 2022 12:32:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 64C36AAA91;
- Fri, 28 Oct 2022 12:32:28 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0459391167405015792=="
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5919D10E766
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Oct 2022 12:41:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1666960874; x=1698496874;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=s1wGeDAYndfLSYNWSeLSLUBZUWHfLgxZAqlgfudT5oY=;
+ b=Rup0Q/yVXxeoo8A0eX/zk53IeGp7du5Iky/7PmJRH28YG6TjqE7IA8FF
+ zYtr71EiZdYjhxnV1k/L5SOA5B7Pd1dQ/apQMQz6GoLCpgaVhfDGOecNX
+ bw0mlxxgYdAMuKExZZdq0txooiaemi/DYLvd7WIKmSUaYfEoA/HebUsgF
+ DQjztGW4AzJ82GHNndgolEbEQxh9gIYc1iBcnC53MrBSHw/s2xK5kNjpZ
+ rDQ1oUUYXoAAGhsuB391h8SLRMj1YWtvQFFrMc2bE+zbDPo9IonBziojz
+ rPoNQfczJtFQyoAhg+4xuDJA98YI46i6VuKhJuK8/ObdrJfDfs1+r4zYt g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10513"; a="309572048"
+X-IronPort-AV: E=Sophos;i="5.95,221,1661842800"; d="scan'208";a="309572048"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2022 05:41:11 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10513"; a="758068208"
+X-IronPort-AV: E=Sophos;i="5.95,221,1661842800"; d="scan'208";a="758068208"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.5.162])
+ ([10.213.5.162])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2022 05:41:09 -0700
+Message-ID: <ead35f03-0f00-685e-de8b-b4e074cd7f30@intel.com>
+Date: Fri, 28 Oct 2022 14:41:07 +0200
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Riana Tauro" <riana.tauro@intel.com>
-Date: Fri, 28 Oct 2022 12:32:28 -0000
-Message-ID: <166696034838.15990.675565190711188850@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221028095058.3624647-1-riana.tauro@intel.com>
-In-Reply-To: <20221028095058.3624647-1-riana.tauro@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQWRk?=
- =?utf-8?q?_selftest_for_slpc_tile_interaction_=28rev2=29?=
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.4.1
+Content-Language: en-US
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20221028093425.968648-1-andrzej.hajda@intel.com>
+ <02761556-5760-de2d-0368-96938e3179e6@linux.intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <02761556-5760-de2d-0368-96938e3179e6@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/guc: add CAT error handler
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,263 +64,215 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0459391167405015792==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 28.10.2022 12:06, Tvrtko Ursulin wrote:
+> 
+> Hi,
+> 
+> I can't really provide feedback on the GuC interactions so only some 
+> superficial comments below.
+> 
+> On 28/10/2022 10:34, Andrzej Hajda wrote:
+>> Bad GPU memory accesses can result in catastrophic error notifications
+>> being send from the GPU to the KMD via the GuC. Add a handler to process
+>> the notification by printing a kernel message and dumping the related
+>> engine state (if appropriate).
+>> Since the same CAT error can be reported twice, log only 1st one and
+>> assume error for the same context reported in less than 100ms after the
+>> 1st one is duplicated.
+>>
+>> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+>> ---
+>>   .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |  1 +
+>>   drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  2 +
+>>   drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     |  3 ++
+>>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 47 +++++++++++++++++++
+>>   4 files changed, 53 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h 
+>> b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
+>> index f359bef046e0b2..f9a1c5642855e3 100644
+>> --- a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
+>> +++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
+>> @@ -138,6 +138,7 @@ enum intel_guc_action {
+>>       INTEL_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC = 0x4601,
+>>       INTEL_GUC_ACTION_CLIENT_SOFT_RESET = 0x5507,
+>>       INTEL_GUC_ACTION_SET_ENG_UTIL_BUFF = 0x550A,
+>> +    INTEL_GUC_ACTION_NOTIFY_MEMORY_CAT_ERROR = 0x6000,
+>>       INTEL_GUC_ACTION_STATE_CAPTURE_NOTIFICATION = 0x8002,
+>>       INTEL_GUC_ACTION_NOTIFY_FLUSH_LOG_BUFFER_TO_FILE = 0x8003,
+>>       INTEL_GUC_ACTION_NOTIFY_CRASH_DUMP_POSTED = 0x8004,
+>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h 
+>> b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+>> index 804133df1ac9b4..61b412732d095a 100644
+>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+>> @@ -445,6 +445,8 @@ int intel_guc_engine_failure_process_msg(struct 
+>> intel_guc *guc,
+>>                        const u32 *msg, u32 len);
+>>   int intel_guc_error_capture_process_msg(struct intel_guc *guc,
+>>                       const u32 *msg, u32 len);
+>> +int intel_guc_cat_error_process_msg(struct intel_guc *guc,
+>> +                    const u32 *msg, u32 len);
+>>   struct intel_engine_cs *
+>>   intel_guc_lookup_engine(struct intel_guc *guc, u8 guc_class, u8 
+>> instance);
+>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c 
+>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+>> index 2b22065e87bf9a..f55f724e264407 100644
+>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+>> @@ -1035,6 +1035,9 @@ static int ct_process_request(struct 
+>> intel_guc_ct *ct, struct ct_incoming_msg *r
+>>           CT_ERROR(ct, "Received GuC exception notification!\n");
+>>           ret = 0;
+>>           break;
+>> +    case INTEL_GUC_ACTION_NOTIFY_MEMORY_CAT_ERROR:
+>> +        ret = intel_guc_cat_error_process_msg(guc, payload, len);
+>> +        break;
+>>       default:
+>>           ret = -EOPNOTSUPP;
+>>           break;
+>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
+>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>> index 693b07a977893d..f68ae4a0ad864d 100644
+>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>> @@ -4659,6 +4659,53 @@ int intel_guc_engine_failure_process_msg(struct 
+>> intel_guc *guc,
+>>       return 0;
+>>   }
+>> +int intel_guc_cat_error_process_msg(struct intel_guc *guc,
+>> +                    const u32 *msg, u32 len)
+>> +{
+>> +    static struct {
+>> +        u32 ctx_id;
+>> +        unsigned long after;
+>> +    } ratelimit;
+>> +    struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
+>> +    struct drm_printer p = drm_info_printer(i915->drm.dev);
+>> +    struct intel_context *ce;
+>> +    unsigned long flags;
+>> +    u32 ctx_id;
+>> +
+>> +    if (unlikely(len != 1)) {
+>> +        drm_dbg(&i915->drm, "Invalid length %u\n", len);
+>> +        return -EPROTO;
+>> +    }
+>> +    ctx_id = msg[0];
+>> +
+>> +    if (ctx_id == ratelimit.ctx_id && 
+>> time_is_after_jiffies(ratelimit.after))
+>> +        return 0;
+> 
+> This will be suboptimal with multi-gpu and multi-tile. Not sure if 
+> ratelimiting is needed,
 
-== Series Details ==
+In many cases they comes in pairs:
+https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12313/bat-adln-1/igt@i915_selftest@live@hugepages.html#dmesg-warnings510
+https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12304/bat-rpls-2/igt@i915_selftest@live@hugepages.html#dmesg-warnings514
+https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12298/bat-rpls-1/igt@i915_selftest@live@hugepages.html#dmesg-warnings553
 
-Series: Add selftest for slpc tile interaction (rev2)
-URL   : https://patchwork.freedesktop.org/series/110248/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_12315 -> Patchwork_110248v2
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110248v2/index.html
-
-Participating hosts (41 -> 39)
-------------------------------
-
-  Missing    (2): fi-ctg-p8600 fi-icl-u2 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_110248v2:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_selftest@live@workarounds:
-    - {bat-adlm-1}:       [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12315/bat-adlm-1/igt@i915_selftest@live@workarounds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110248v2/bat-adlm-1/igt@i915_selftest@live@workarounds.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_110248v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-apl-guc:         [PASS][3] -> [INCOMPLETE][4] ([i915#7073])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12315/fi-apl-guc/igt@core_hotunplug@unbind-rebind.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110248v2/fi-apl-guc/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][5] ([fdo#109271] / [fdo#111827])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110248v2/fi-skl-6600u/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - {bat-rpls-1}:       [DMESG-WARN][6] ([i915#6687]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12315/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110248v2/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@gem_tiled_blits@basic:
-    - fi-pnv-d510:        [SKIP][8] ([fdo#109271]) -> [PASS][9] +1 similar issue
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12315/fi-pnv-d510/igt@gem_tiled_blits@basic.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110248v2/fi-pnv-d510/igt@gem_tiled_blits@basic.html
-
-  * igt@i915_selftest@live@mman:
-    - fi-rkl-guc:         [INCOMPLETE][10] ([i915#6794]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12315/fi-rkl-guc/igt@i915_selftest@live@mman.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110248v2/fi-rkl-guc/igt@i915_selftest@live@mman.html
-
-  * igt@i915_selftest@live@slpc:
-    - {bat-rpls-1}:       [DMESG-FAIL][12] ([i915#6367]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12315/bat-rpls-1/igt@i915_selftest@live@slpc.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110248v2/bat-rpls-1/igt@i915_selftest@live@slpc.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-pnv-d510:        [SKIP][14] ([fdo#109271]) -> [FAIL][15] ([i915#7229])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12315/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110248v2/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6687]: https://gitlab.freedesktop.org/drm/intel/issues/6687
-  [i915#6794]: https://gitlab.freedesktop.org/drm/intel/issues/6794
-  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
-  [i915#7073]: https://gitlab.freedesktop.org/drm/intel/issues/7073
-  [i915#7229]: https://gitlab.freedesktop.org/drm/intel/issues/7229
+And since CAT error usually (always???) means engine hang, they 
+apparently both indicate the same error.
 
 
-Build changes
--------------
+> but if it is, then perhaps move the state into 
+> struct intel_guc?
 
-  * Linux: CI_DRM_12315 -> Patchwork_110248v2
+Or intel_context or intel_engine_cs, then it logs will be avoided till 
+reset of the engine?
+It becomes complicated now, I just wanted only better log message :)
 
-  CI-20190529: 20190529
-  CI_DRM_12315: 98d9a019d4a1155e411923a6683f67005cf60b5f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7029: c32cb1e614017f14274d335ac571383799e6c786 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_110248v2: 98d9a019d4a1155e411923a6683f67005cf60b5f @ git://anongit.freedesktop.org/gfx-ci/linux
+> 
+> Would it be worth counting the rate limited ones and then log how many 
+> were not logged when the next one is logged?
 
+I have no idea why there are two messages, for me it looks like just 
+some redundancy. engine state is exactly the same in both cases.
 
-### Linux commits
+> 
+> Should the condition be inverted - !time_is_after?
 
-92ff8374b5f9 drm/i915/guc/slpc: Add selftest for slpc tile-tile interaction
+time_is_after_jiffies(arg) means that the time pointed by arg did not 
+come yet (arg > jiffies, ie it is after jiffies), so it looks OK, but it 
+is misleading.
 
-== Logs ==
+> 
+>> +
+>> +    ratelimit.ctx_id = ctx_id;
+>> +    ratelimit.after = jiffies + msecs_to_jiffies(100);
+>> +
+>> +    if (unlikely(ctx_id == -1)) {
+>> +        drm_err(&i915->drm,
+>> +            "GPU reported catastrophic error without providing valid 
+>> context\n");
+>> +        return 0;
+>> +    }
+>> +
+>> +    xa_lock_irqsave(&guc->context_lookup, flags);
+> 
+> The only caller seems to be a worker so just _irq I guess. 
+> ct_process_incoming_requests has the same issue but I haven't looked 
+> into other handlers called from ct_process_request.
+> 
+>> +    ce = g2h_context_lookup(guc, ctx_id);
+>> +    if (ce)
+>> +        intel_context_get(ce);
+>> +    xa_unlock_irqrestore(&guc->context_lookup, flags);
+>> +    if (unlikely(!ce))
+>> +        return -EPROTO;
+> 
+> EPROTO seems incorrect - message could have just been delayed and 
+> context deregistered I think. Probably you just need to still log the 
+> error just say context couldn't be resolved. GuC experts to confirm or 
+> deny.
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110248v2/index.html
+Copy/pasted from intel_guc_context_reset_process_msg, but you are right.
+On the other hand hung context should not fly too far away.
 
---===============0459391167405015792==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> 
+>> +
+>> +    drm_err(&i915->drm, "GPU reported catastrophic error associated 
+>> with context %u on %s\n",
+>> +        ctx_id, ce->engine->name);
+>> +    intel_engine_dump(ce->engine, &p, "%s\n", ce->engine->name);
+> 
+> Same as above, when CT channel is congested this can be delayed and then 
+> I wonder what's the point of dumping engine state. In fact, even when CT 
+> is not congested the delay could be significant enough for it to be 
+> pointless. Another question for GuC experts I guess.
+> 
+> Also, check if intel_engine_dump can handle ce->engine being a virtual 
+> engine.
 
+I've added engine_dump to look at which instruction CAT occurred, did 
+not help too much in my case, but maybe in other cases it can be helpful.
+I though also about adding:
+guc_log_context(p, ce)
+guc_log_context_priority(p, ce)
+Or even whole body of the loop in 
+intel_guc_submission_print_context_info, after exporting it to some 
+helper, but atm I have no idea if it can be helpfull.
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+Regards
+Andrzej
 
+> 
+> Regards,
+> 
+> Tvrtko
+> 
+>> +    intel_context_put(ce);
+>> +
+>> +    return 0;
+>> +}
+>> +
+>>   void intel_guc_find_hung_context(struct intel_engine_cs *engine)
+>>   {
+>>       struct intel_guc *guc = &engine->gt->uc.guc;
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add selftest for slpc tile interaction (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/110248/">https://patchwork.freedesktop.org/series/110248/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110248v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110248v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12315 -&gt; Patchwork_110248v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110248v2/index.html</p>
-<h2>Participating hosts (41 -&gt; 39)</h2>
-<p>Missing    (2): fi-ctg-p8600 fi-icl-u2 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_110248v2:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>{bat-adlm-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12315/bat-adlm-1/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110248v2/bat-adlm-1/igt@i915_selftest@live@workarounds.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_110248v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12315/fi-apl-guc/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110248v2/fi-apl-guc/igt@core_hotunplug@unbind-rebind.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7073">i915#7073</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110248v2/fi-skl-6600u/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12315/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6687">i915#6687</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110248v2/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_blits@basic:</p>
-<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12315/fi-pnv-d510/igt@gem_tiled_blits@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110248v2/fi-pnv-d510/igt@gem_tiled_blits@basic.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@mman:</p>
-<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12315/fi-rkl-guc/igt@i915_selftest@live@mman.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6794">i915#6794</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110248v2/fi-rkl-guc/igt@i915_selftest@live@mman.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@slpc:</p>
-<ul>
-<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12315/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110248v2/bat-rpls-1/igt@i915_selftest@live@slpc.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@gem_exec_gttfill@basic:<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12315/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110248v2/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7229">i915#7229</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12315 -&gt; Patchwork_110248v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12315: 98d9a019d4a1155e411923a6683f67005cf60b5f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7029: c32cb1e614017f14274d335ac571383799e6c786 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_110248v2: 98d9a019d4a1155e411923a6683f67005cf60b5f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>92ff8374b5f9 drm/i915/guc/slpc: Add selftest for slpc tile-tile interaction</p>
-
-</body>
-</html>
-
---===============0459391167405015792==--
