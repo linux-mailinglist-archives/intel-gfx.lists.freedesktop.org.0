@@ -1,141 +1,147 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91419610890
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Oct 2022 05:11:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D4D16108B0
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Oct 2022 05:23:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5A1610E09A;
-	Fri, 28 Oct 2022 03:11:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D37F10E0C9;
+	Fri, 28 Oct 2022 03:23:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E87910E029;
- Fri, 28 Oct 2022 03:11:31 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 022E610E0C9
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Oct 2022 03:23:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666926691; x=1698462691;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=aGfL6j57yibqWrnQR3aLext0EGEZp6OMOWZzqEGqKZE=;
- b=hhhIv1rKJpkUsJiywSXB0YT9kN1MtEfsOInvxo6tTcdR+rEOg5cDeQWg
- CohfYVYnqC786yekp24FePgcTwyNAUs+s22ytKxe/GYXTh/qaEjqTDitO
- KB3G6KYZF74mj0Quoi5PdkHjec+QkBO2rk1Kj2E4yE5tFexalrxYIBwIr
- nxfE1CtCr6uirjTwY/v9petWfJgwQyj8hzmL1SIIbCTbzZ1FMQanIVxiO
- Ade62QTC7bZ7QXrE64zduFT40BmdNP5Nuff4YTXbfYYiqcvOapTzUgwQE
- +XNDLYBNXFghRSRA7RLkTO3cqhuYQc/S7xNh7f6MSsAgo73vWqi9RK7hJ g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10513"; a="372612031"
-X-IronPort-AV: E=Sophos;i="5.95,219,1661842800"; d="scan'208";a="372612031"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2022 20:11:30 -0700
+ t=1666927385; x=1698463385;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=eO7Fyfz0r3hSxSrEqVPp3M+fgTTVsrlJSQQ/aLb2BJc=;
+ b=NJiudp0Tc2DBoMYy+5zU0VC+kstzqNZMd8zhmumucjYUwFv0mp+nTBBZ
+ eJUDBORuoSKNEmhZs8aZx5T4zdRtZXsTUBhDT6PwEXTfjRjMNoPerJycV
+ jOpnM9EXtZYdFA8nESxha+PPNFOLoNEWfrdiSt68tVwBsleCMWGlpAKfW
+ TaWL6iBMy3XucI/ne67seDPHEh7+TzRP+Hwyph+4wluF9apAcJPukBlIy
+ MajwqHloXCLdysSmKpXeifiDl4EGUj0RU2nVc3aRJR0LnWHNf91TXSfTP
+ tF/3GvJhEY8u4+TJvQeqDRdo8354kLuJ06BsFZdCVJnqO7Ogd+kk9IJNL A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10513"; a="288795033"
+X-IronPort-AV: E=Sophos;i="5.95,219,1661842800"; d="scan'208";a="288795033"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2022 20:23:05 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10513"; a="807680134"
-X-IronPort-AV: E=Sophos;i="5.95,219,1661842800"; d="scan'208";a="807680134"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga005.jf.intel.com with ESMTP; 27 Oct 2022 20:11:30 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6500,9779,10513"; a="610600426"
+X-IronPort-AV: E=Sophos;i="5.95,219,1661842800"; d="scan'208";a="610600426"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga006.jf.intel.com with ESMTP; 27 Oct 2022 20:23:04 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Thu, 27 Oct 2022 20:11:30 -0700
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.1.2375.31; Thu, 27 Oct 2022 20:23:04 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Thu, 27 Oct 2022 20:11:29 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Thu, 27 Oct 2022 20:11:29 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.49) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2375.31 via Frontend Transport; Thu, 27 Oct 2022 20:23:04 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.175)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Thu, 27 Oct 2022 20:11:29 -0700
+ 15.1.2375.31; Thu, 27 Oct 2022 20:23:04 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TpZTwhX0ufRMCPS4K34rWFzga9OfC7YzE61nfoEZxby7ZQo0mYr/WHytHxoS9X6evm+qy+Gnjh4E0mnJJAHYoJLbjHGrAhRF0zrE2Q2e/+hDzYZDxZVE7JaEwb2OFnMvc51Ahm4N6Du1nJKw6f07pSHkXviBHN9A4PnL4kP8MwBWsVJgNEeTYXrGI05K3gL8tRU2iNu1/fHG/v0kBcFqZvMt78QZ9o8SUB8cSx6pbwBmw3GdRPhId5y6h3gMkM1GYBMiVn9DcG6dtf68DQkoeHLsfGusZboUrj8OWGM1uH+ioaR5gn6SbzT5VhNjWqGroKVbjvU0ruLtRUd9KVp97A==
+ b=ceEOdHs99LjCX6l5xHOpyW/vwdA/uEf3lnDgExXHWRrvMI8ZSXl8hzSXUsAE7ALeS/ZlncJirDXl/oHXBAodCHgayDN+s+3NWFl7wlhLeJ+G7eJQSJEeYWY9muSgAc/MMlmQpJB4WgjU/SSzZRm5n5oDShuBZfZOOq82hRoARH1unu+wglz6nHlpCCu4+p05FCmTMU8hg2xS1S8R0XA2c7PIXOl/oi3acD8+ns1NHwIdNlcNlz87T1x4O0n/SKUXjsYZD5k3BQ4tEJMqqiernx+/V82IuhHo7agaI705c4dT4UZvIT4uZ4WDDDD2oAGOwbld4Qh68VplZt/a+P/Rxg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1WkhpvovE8HZ+HAyDxR9zT3UdhZnE/SUEqt6C54ebFQ=;
- b=NoFXnANcC/M16zCpRZHaRtte/NoQqqBHMhyQ1pw8knIWWjb9dMZ7/BdY6anRFHTGgNf7mQVOieDb1uRer7x9vPVuspwGi9EcaBIPefvGFgJhjURq+fEwb4QWKXmc4nyacqj5VsR73AED96+6y0+pMGp5NfaPj8nHnr6IcJ+mAg2BGV3KUJAHi9QCmZkGRFUgRqCV/CD2rhT2K63WFA0HJ6mfP9i59Y+epUU0C+CQPKWAxWj0wetXTI0+0LVWklSnpIGRnPKP8rVeoBkFEVEFrByJS34UbKLh5H1CIfBcYy1TVxJcqM57kgE+ncCSP0NrS6p0KOuQohYsIBxXyZkcWQ==
+ bh=9WO+Va0yxJbI94AmNguLwn1BrQNQyiChTcweStrao94=;
+ b=D3oOyO+udo/1dqOPCPS2YYslzzhixdhUdyqA6CoaTqp7gkatIXcQzf3fXeEcAF8d5zJsze2I7/uxutn57/rP7brjQ/pYnvmjYY1s1NG2b+4/CSJa54v9tmSzEYeJQRKJoJ9Gyd6V+cRp29xWPWdFVV/GSnFP+/phlNKOqYqLNNg302f32R8US1zZvQwb96sMip7sUECxU8i/zpT1bFo+GoJqDjwJYf0+YHUJvRcdMk3rGUd287ngITVY5bc/RzHxzlabjZZ73IbVb5ILMSewpXU+lVV7w/GVwPrLiuYxS24em0k2i3964aDA9MP4DNf8gp7s7AjB5t/FPoAhV2PVfg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
+Received: from DM6PR11MB3177.namprd11.prod.outlook.com (2603:10b6:5:c::28) by
+ DM4PR11MB5534.namprd11.prod.outlook.com (2603:10b6:5:391::22) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5769.15; Fri, 28 Oct 2022 03:23:02 +0000
+Received: from DM6PR11MB3177.namprd11.prod.outlook.com
+ ([fe80::a1c5:bd1a:6241:1e23]) by DM6PR11MB3177.namprd11.prod.outlook.com
+ ([fe80::a1c5:bd1a:6241:1e23%4]) with mapi id 15.20.5746.028; Fri, 28 Oct 2022
+ 03:23:02 +0000
+From: "Murthy, Arun R" <arun.r.murthy@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCHv3] drm/i915: Support Async Flip on Linear buffers
+Thread-Index: AQHYwaOE/EXAADz+NkeUK0QgUHi7O63WeiyAgAhR7zCAB3v7gIAhL06wgBv+ZsA=
+Date: Fri, 28 Oct 2022 03:23:02 +0000
+Message-ID: <DM6PR11MB3177CFCD0942A580C4E9FE5BBA329@DM6PR11MB3177.namprd11.prod.outlook.com>
+References: <20220426120407.1334318-1-arun.r.murthy@intel.com>
+ <20220906034803.4094252-1-arun.r.murthy@intel.com>
+ <DM6PR11MB31775117B7388776D2E6DFD2BA439@DM6PR11MB3177.namprd11.prod.outlook.com>
+ <DM6PR11MB3177451D1F3A10D00706461ABA469@DM6PR11MB3177.namprd11.prod.outlook.com>
+ <DM6PR11MB31771349661CE3E0C2CB28BABA4D9@DM6PR11MB3177.namprd11.prod.outlook.com>
+ <DM6PR11MB31777D09EBDFB4604D5E6631BA209@DM6PR11MB3177.namprd11.prod.outlook.com>
+In-Reply-To: <DM6PR11MB31777D09EBDFB4604D5E6631BA209@DM6PR11MB3177.namprd11.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.6.500.17
+authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MWHPR11MB1632.namprd11.prod.outlook.com (2603:10b6:301:11::11)
- by MW4PR11MB5936.namprd11.prod.outlook.com (2603:10b6:303:16b::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.29; Fri, 28 Oct
- 2022 03:11:23 +0000
-Received: from MWHPR11MB1632.namprd11.prod.outlook.com
- ([fe80::8007:140:f87b:ce57]) by MWHPR11MB1632.namprd11.prod.outlook.com
- ([fe80::8007:140:f87b:ce57%5]) with mapi id 15.20.5746.028; Fri, 28 Oct 2022
- 03:11:22 +0000
-Date: Thu, 27 Oct 2022 20:11:20 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <Y1tIWPl752tBJm6n@mdroper-desk1.amr.corp.intel.com>
-References: <20221027221554.2638087-1-daniele.ceraolospurio@intel.com>
- <20221027221554.2638087-4-daniele.ceraolospurio@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20221027221554.2638087-4-daniele.ceraolospurio@intel.com>
-X-ClientProxiedBy: BY3PR04CA0024.namprd04.prod.outlook.com
- (2603:10b6:a03:217::29) To MWHPR11MB1632.namprd11.prod.outlook.com
- (2603:10b6:301:11::11)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWHPR11MB1632:EE_|MW4PR11MB5936:EE_
-X-MS-Office365-Filtering-Correlation-Id: f53d8e73-b3d2-4740-15b6-08dab892178c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: xe0QNniPy006FDK3hNjaaTXPnNZxT8/aCdGCYh6n+7GrkGF5Yp90s94GaCpmSjXU8bbHcj1OqtmAaK9S2nlV1++0QgkL7+c97WiH0I4iRgg7l/u+M66erm1QQcVFIXIggNGutgqGWnPn5kQpJHljDw4ckdK4f61UyljjsYL5HRopMN+WHnpR/Pk5a92zcH6n9cSvbeYgnSeUI5crFaRKmM2o/+hKrDzTIoy8OeShnvN01y84A63dDGDHXm6lJ34yZ9tY2CrSDmxt6B6HaYKD4jmEcVdfS7OzlNtPa2Bi3ZHM4zAnW1d6KBlVNCUmpJyB/naBWKCHfx4I9VTKK0gulgN/D8vjVCgvA0mJnjrvb2w0aVEhfRDyXXPEiu4MG/LOaT2JM4dJMtypTTsLXwHWqDhqXljUDDHU66TNr+O2sZ+grulq7ogk8UlOMuVeKZi5uzwSvnX91c/wMc3Aiwf2EJHG++p4e7Bm0OWhCUyyK7G1WOKn8Hg9kA8tb4++igMV/8uVtM4VYROXfdqxS6mYu2XIQ7SvQGoO5teWGvzwKM0Rn9k/bPB6cbIdC1HHAObRJ5ByzPTp8Wct/nWU9i/WyONgPIK9GPYNhXJ93XeqIc4IFYs44wLscGEdOlY7NjPju/BAPXkn9RRsyTHKhvFnlh74+c2UFRbeYsAPaSZC5MHgiQHK5/6GTFvjXf2KhShWGHaK9JvV9/byMzZp2Y66yw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MWHPR11MB1632.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(39860400002)(376002)(346002)(396003)(366004)(136003)(451199015)(4326008)(66556008)(8676002)(6506007)(8936002)(66946007)(6862004)(316002)(26005)(66476007)(6636002)(41300700001)(83380400001)(82960400001)(6512007)(86362001)(38100700002)(5660300002)(6486002)(2906002)(186003)(478600001)(450100002);
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM6PR11MB3177:EE_|DM4PR11MB5534:EE_
+x-ms-office365-filtering-correlation-id: cfb56f30-3c0a-4872-e312-08dab893b8be
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: jtF2rI8CF0xN1Wi766nJupyvOumc40kt5b0DEx7O9va14vo/JyxxlNv46azeUKHDmbPtzeTnKXZ1bjBgg2PB0zSun0o2dgQoUcug16yEOnzi1eB9EZb2pwY+n5s6hIjYwxT7XUC68f2iBIFSd0IsH/fu/41lKofr0NqG08NM76XCJohbJ3dYkU8CdTR3V3VNacUL2eEkLwXXQkx2NqJyD/ujC3zT7Xoo1Vsve85zCzBTxRPORb/RZCkHk20X6xCxzLv+5wVhHGnB/0TfYTi/l89ks/ybyyKJNqv6gzzJpQ4e9UW/3+O5JF4kpo22Tk7pEaWzWjSNcRC0XREenWp7PN0UPRJa7LLqh5aJkyHATqamcSlms2WvanvYUPmiQS2t/8xwtzl/kb3tWLEMJCSsuJCJgv0oEdFbsp3poI6aZ+V6SU2mnE5q1R7Qjh9H374LPnXAx4F2Rq50F4pqZ3HmOuMH3qpTCVhImVkOyOqGwQTHfqE8pPd9W+GscAqGbrPxuApSUBMXur+9bHQGr46IAchi0kwlSf6kervcd1siB+TFttkod+yIJ1UxSF4Mr/jJLtLHVn/J/gTuy0BR+5Bw3Oa1mrsLCC0UPTq130xxuoS3PZtcOGQ1u3sSIvVN060r5tCB1PDwjuesuzm80OWj/JNPHTUjz/9N3u9eeYJZSq1CHIcQoAQyE1nhT3Nld/jwv7AVN/JaI0HG4c3lTWpbPmlK3oArRX3z+apSw1+bUqnrcY2sIkVtXk3tMKjNr4eZbAAhJOZqkDCDqOuEr2FVGQ==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR11MB3177.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(396003)(39860400002)(366004)(376002)(136003)(346002)(451199015)(122000001)(86362001)(316002)(107886003)(41300700001)(5660300002)(8936002)(52536014)(186003)(38070700005)(38100700002)(6916009)(82960400001)(9686003)(2906002)(26005)(83380400001)(76116006)(66476007)(66946007)(66556008)(66446008)(71200400001)(64756008)(4326008)(55236004)(8676002)(53546011)(478600001)(6506007)(7696005)(55016003)(33656002);
  DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Myg2qifUwoJ4924w/ytxMXBEdzs8KOPy5zCLejfnBZqn0finRL1iM32VKNdG?=
- =?us-ascii?Q?SH4XH7Nd61PZa8UcTNoHL8RLjvyL6xzKjqVF9zvX5x3Wd6fPXbjeG0vbH5wB?=
- =?us-ascii?Q?tYQNItnl/DRxdLXuGUst4SE1iZ0L2Wq/Cyz4dJGvaAOn4zFIAiAfqbKzMtS7?=
- =?us-ascii?Q?vpC4xC99aSBIEvFa9mckweAZVk/mKeIRfNDZ21sY+3ppex4thOYj70AlQ4G9?=
- =?us-ascii?Q?KGVqGrSZs2OUA2dYKxUs+wiuIvLi5nGH3stu3dQNFMvYzFPwvvpjJHNaPJgS?=
- =?us-ascii?Q?EOWsE3jRJMghH2D7j+F6v2AxD1qa1X5vszrqRfXcjIyO77xAFb+T6OeREzZ4?=
- =?us-ascii?Q?EUBrkN6Q7hqWpWDhbGTvBkaHsSTJtHUZmb2/Hww7MvnJV3q0OXACzxwsxZYy?=
- =?us-ascii?Q?wEnERa1UzwCYU5mUXXp1Fl6Ao0K50HeJ6UxUm3QshL3RrG2O4yLDPF8Ha0NH?=
- =?us-ascii?Q?VEJ0WmtJZqxuz7Sq/SJAsrlSAFdusXICyv/kqWFskcd2UQa39kydiW7N9Yq+?=
- =?us-ascii?Q?MNo68e4Ljsa6tXOiYgWsFxInLpliP34FUyae/vk3/CtTV97Xu/jBUyTpafza?=
- =?us-ascii?Q?8AucZUucGul1YTwKtIUAgrLls61qe90XkPiNecXs3AndiFsxEb7xNnbhUIi6?=
- =?us-ascii?Q?Cxw3jrm1OkaYPsZn0nHC8QvZYxT/faseaEvtII23uZBwLSlQubbpNQeYTkJX?=
- =?us-ascii?Q?rayX3MUYWWmtvfrNl78fm6JinGw88oggWTEx4FPUJhpcYOD6o8FRzpvHZO+0?=
- =?us-ascii?Q?bnwbDw28CYZkOWqTsfHM+kmeq53h+E0QVkcY7P49O9IpG6cQqKLjLTHhp8cl?=
- =?us-ascii?Q?7P7GvGDPFNX9gXeT43ocdPGuM0AuOH1mjOe6JO9sdH+4rXdqDUNhIAFIIFfB?=
- =?us-ascii?Q?NUsr8JGhxHDrENbAlz/HkF6TjK+RnE3N84lUn7vo87WX7/jEKL35nihOU+uR?=
- =?us-ascii?Q?QdNq0SXDCKo6dd9Vjsl63/7AIZV3D022ZZejJpSj6PCEim++MRbjFEIo8OfM?=
- =?us-ascii?Q?yCDn/cDTtlJw9Ok1etrJM6coSOtA+8ZhaMusA1oolRTKMWnAQzR/Ef/bkdTL?=
- =?us-ascii?Q?z3GrVHhFfqGGFJ7g05HmvTzlYPtdDD9BbXd5ZgihqWnOA4I8Mhb/k6MFFLG8?=
- =?us-ascii?Q?yZAi2VQQ/0OO5Pxqhb4wjGJMNY+K3/gdq5XNbWqYXof/Kd5IbZXB+GuB/NpV?=
- =?us-ascii?Q?A2nKRlOo14UjInb4wEj3WeOS4D4aLFaE/B7SzIH4Fnh7RBi1qdlD7FlRAPqx?=
- =?us-ascii?Q?7Pm/+8bprOGBZijwdRtjzhPBTQEKbTTzgsHLLQyAQ/ufqBOPcBizsxyEZjHx?=
- =?us-ascii?Q?o6tktgjrk9eeE6GsNPOCIx21k7Qfyat2gVFT63cTlnQjEEz5FCOu9SGYUkq0?=
- =?us-ascii?Q?DnUckOimuSMYzTb0kq4itPXRpZE+5hz7+L2q3dhMNoHWM4PC6Kuyi/0mgIVT?=
- =?us-ascii?Q?Gt6aXuC45dnAD7IDXMQDH7tucJwubQxmdobf/ZALMQemt35gRaoONz7YK37w?=
- =?us-ascii?Q?4tuHQwNpCBBKFfbTK+xnjNKKCN3PjzU00PDMwM+rsJ+th13INeG7xBWMjsM5?=
- =?us-ascii?Q?LiiSMSLj9Ju5U9d8Xo22iiTp/Sp3YyydndKFi2z0sXl6voTmsNPqyiLVAMvW?=
- =?us-ascii?Q?lA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: f53d8e73-b3d2-4740-15b6-08dab892178c
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR11MB1632.namprd11.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?p60fDen9QbzHEL7NEGTPL86TL9xtK423EXAc7M06iEOCsrArDV/jRB685NTe?=
+ =?us-ascii?Q?gp5mw8RTFiHXE8e5W1JpGZzvaJXArIsT3jQMkm1Qkmes0n4DG9kFTtbfObr1?=
+ =?us-ascii?Q?H4iKVDb8Gn2tNqm0bXC7ybb/5XBAWucl7OKV6QRyYUifXCuJZ4rqJ402gmDe?=
+ =?us-ascii?Q?3X7WCuy0YXcYlnPi0XMQteLsv2MhS59lJNTceE2jrf5pHL9RTF6Qh6/aazTj?=
+ =?us-ascii?Q?GvouKsqcVkvxDHqiGDr4NomkkWsz+uCiDWCWvQVRPTAtuz+EuzBb++tExOlE?=
+ =?us-ascii?Q?0D9fUmK/Hx8X6WaUbI3n6ex/Mk234V0YtHAUo+jcfFSwKKzzNPVGtLiEte5N?=
+ =?us-ascii?Q?6hJuNQQw6QxxCZZdw3RbyP0jQSJ7CN7NihA5Y2Rn/xEVJfYkotPcdvt6Kmm1?=
+ =?us-ascii?Q?3s8jpKQiEIpW91T3IaMUsQOCYGSuvZyHfC2KG4H0ClQuvpI6Ou0Ch2txYBaw?=
+ =?us-ascii?Q?tAyZfuZxBd32dsUzCGgsQ1TVM0MTnB8ZtW2oVujB6+VS/MyN8r3E/RpYkq77?=
+ =?us-ascii?Q?reXsSKbqL0uvBo5kf0//odIIGLa7cByuHKsiTUfHwfOFuyXT7V3IEE2UL10/?=
+ =?us-ascii?Q?oyQjVB4JEf8TvEnelWDJsMlceHZHf3haUQNE2k8ZJArhV5ooK1HV6P/Tx/fm?=
+ =?us-ascii?Q?MKyceO7kNmd9m8RuF4WyT5BtXqI/tgSxxQB5Qs2oMoKmV0/HoobqqvKkr8/P?=
+ =?us-ascii?Q?lcTZoiABmtxyw8CggY93/i1ylH2Td5oXg0xkT89jeBLyX6F7D8O2PX/Rx/9Y?=
+ =?us-ascii?Q?yni6WzVWV3NTfx5PKXAFmdaaWeVcOmpIVIbW5n/LGgYg99jJYRG7/uqkL2jM?=
+ =?us-ascii?Q?iHHUqCOgpTxWyI7gv5gyTtiuMb1zDZYa+hXtdAy0i0RvuXIkvPFtNFGC6rsZ?=
+ =?us-ascii?Q?pIdd1OOdJM5oLXsMKlDb1gtQcKuS2CMf/X0T2AeulIIzZPX1EPgZR4T19C3e?=
+ =?us-ascii?Q?fXrD9+76H0mHc14eokVepvJPNhYlKBU5atfem/P5vhA8DL7lHPke4g39uj2e?=
+ =?us-ascii?Q?6m0pKKx2CFcg/QzntLEvAI+6t/IbWd/L1jWg3e2kRZHRGkKweA8kdUxu8GVb?=
+ =?us-ascii?Q?cVO/Eyag+9mPTbQymHCxs/E1VhW0EMOgjpvzOljUpBnjUJ+8AUqHrFK5assI?=
+ =?us-ascii?Q?N+bBQ20UK4nDi9yEL2ZYbi7J3klbyCH2Hx4HxLKO/AgFFRJa8JBVjgTjuDna?=
+ =?us-ascii?Q?kBDvxAv/Y21H1P/v3/xiQm7ViDzKxIspceNhMx1X+o2KIm0ey9PrHVsZTfTZ?=
+ =?us-ascii?Q?kl1D2cMcT+yOdBTJECI/wal9ZLajOmmPGxYV0kEUzauPQrLUkmHokm1aYaJH?=
+ =?us-ascii?Q?mbmwBIrZOWkxFIp20ilNCA6hu0KWVNMOfzXZ/gSV3k5nTYDE1o5mgBntp0s8?=
+ =?us-ascii?Q?9RJOVT2JMltIVtrEz7SlOhE48md8cD9Vagknum35p8/0t3NWb+QWN2SYJGSV?=
+ =?us-ascii?Q?wKd+/a//eALb8oGJD8w7DKMZxzkS0T6xC5keJTAdTf6stMekyJHLv64fx7zK?=
+ =?us-ascii?Q?O9Zgo+qwpE9oriy7uyPEEKNXaF0Ef2FQxckkdBfOhgTQ49DVmaH2MTlAKj5g?=
+ =?us-ascii?Q?a6IB2UHbj0m/HKBNYxqk4nau5X8apWTDh0O0vdcg?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2022 03:11:22.8638 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: WVLLDcFp/0VL4nPvCsRLQzodbIxvjrTN0H94hA4cF2RgZF31/oYdPIkDAIkjXQy5XNAVjdP2s+cWFKPjnixvXaLpvLNom04AyljXy6P07nQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB5936
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3177.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cfb56f30-3c0a-4872-e312-08dab893b8be
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Oct 2022 03:23:02.5098 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Dq7TNcVU7zknyQ65E3zpq8w/3zthnE2ri5x3YtMbEwmpPYE23pIzbL28x6IRW2bJgUth6qRK/1/E4PitUUv4HQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5534
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 3/5] drm/i915/mtl: add GSC CS interrupt
- support
+Subject: Re: [Intel-gfx] [PATCHv3] drm/i915: Support Async Flip on Linear
+ buffers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,175 +154,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: "Syrjala, Ville" <ville.syrjala@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 27, 2022 at 03:15:52PM -0700, Daniele Ceraolo Spurio wrote:
-> The GSC CS re-uses the same interrupt bits that the GSC used in older
-> platforms. This means that we can now have an engine interrupt coming
-> out of OTHER_CLASS, so we need to handle that appropriately.
-> 
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
+Gentle Reminder!
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+> -----Original Message-----
+> From: Murthy, Arun R
+> Sent: Monday, October 10, 2022 1:24 PM
+> To: 'intel-gfx@lists.freedesktop.org' <intel-gfx@lists.freedesktop.org>
+> Cc: Syrjala, Ville <ville.syrjala@intel.com>
+> Subject: RE: [PATCHv3] drm/i915: Support Async Flip on Linear buffers
+>=20
+> Ville,
+> 	Gentle reminder!
+>=20
+> Thanks and Regards,
+> Arun R Murthy
+> --------------------
+>=20
+> > -----Original Message-----
+> > From: Murthy, Arun R
+> > Sent: Monday, September 19, 2022 10:38 AM
+> > To: 'intel-gfx@lists.freedesktop.org'
+> > <intel-gfx@lists.freedesktop.org>
+> > Cc: Syrjala, Ville <ville.syrjala@intel.com>
+> > Subject: RE: [PATCHv3] drm/i915: Support Async Flip on Linear buffers
+> >
+> > If no comments, can anyone merge the patch!
+> >
+> > Thanks and Regards,
+> > Arun R Murthy
+> > --------------------
+> >
+> > > -----Original Message-----
+> > > From: Murthy, Arun R
+> > > Sent: Wednesday, September 14, 2022 4:21 PM
+> > > To: Murthy, Arun R <arun.r.murthy@intel.com>; intel-
+> > > gfx@lists.freedesktop.org
+> > > Cc: Syrjala, Ville <ville.syrjala@intel.com>
+> > > Subject: RE: [PATCHv3] drm/i915: Support Async Flip on Linear
+> > > buffers
+> > >
+> > > Gentle Reminder!
+> > > Any comments?
+> > >
+> > > Thanks and Regards,
+> > > Arun R Murthy
+> > > --------------------
+> > >
+> > > > -----Original Message-----
+> > > > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On
+> > > > Behalf Of Murthy, Arun R
+> > > > Sent: Friday, September 9, 2022 9:17 AM
+> > > > To: intel-gfx@lists.freedesktop.org
+> > > > Cc: Syrjala, Ville <ville.syrjala@intel.com>
+> > > > Subject: Re: [Intel-gfx] [PATCHv3] drm/i915: Support Async Flip on
+> > > > Linear buffers
+> > > >
+> > > > Gentle Reminder!
+> > > >
+> > > > > -----Original Message-----
+> > > > > From: Murthy, Arun R <arun.r.murthy@intel.com>
+> > > > > Sent: Tuesday, September 6, 2022 9:18 AM
+> > > > > To: intel-gfx@lists.freedesktop.org
+> > > > > Cc: ville.syrjala@linux.intel.com; Murthy, Arun R
+> > > > > <arun.r.murthy@intel.com>
+> > > > > Subject: [PATCHv3] drm/i915: Support Async Flip on Linear
+> > > > > buffers
+> > > > >
+> > > > > Starting from Gen12 Async Flip is supported on linear buffers.
+> > > > > This patch enables support for async on linear buffer.
+> > > > >
+> > > > > UseCase: In Hybrid graphics, for hardware unsupported pixel
+> > > > > formats it will be converted to linear memory and then composed.
+> > > > >
+> > > > > v2: Added use case
+> > > > > v3: Added FIXME for ICL indicating the restrictions
+> > > > >
+> > > > > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> > > > > ---
+> > > > >  drivers/gpu/drm/i915/display/intel_display.c | 14
+> > > > > ++++++++++++++
+> > > > >  1 file changed, 14 insertions(+)
+> > > > >
+> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > index be7cff722196..1880cfe70a7d 100644
+> > > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > @@ -6610,6 +6610,20 @@ static int
+> > > > > intel_async_flip_check_hw(struct intel_atomic_state *state, struc=
+t in
+> > > > >  		 * this selectively if required.
+> > > > >  		 */
+> > > > >  		switch (new_plane_state->hw.fb->modifier) {
+> > > > > +		case DRM_FORMAT_MOD_LINEAR:
+> > > > > +			/*
+> > > > > +			 * FIXME: Async on Linear buffer is supported
+> on ICL
+> > > > > as
+> > > > > +			 * but with additional alignment and fbc
+> restrictions
+> > > > > +			 * need to be taken care of. These aren't
+> applicable
+> > > > > for
+> > > > > +			 * gen12+.
+> > > > > +			 */
+> > > > > +			if (DISPLAY_VER(i915) < 12) {
+> > > > > +				drm_dbg_kms(&i915->drm,
+> > > > > +					"[PLANE:%d:%s] Modifier
+> does not
+> > > > > support async flips\n",
+> > > > > +					plane->base.base.id, plane-
+> > > > > >base.name);
+> > > > > +				return -EINVAL;
+> > > > > +			}
+> > > > > +
+> > > > >  		case I915_FORMAT_MOD_X_TILED:
+> > > > >  		case I915_FORMAT_MOD_Y_TILED:
+> > > > >  		case I915_FORMAT_MOD_Yf_TILED:
+> > > > > --
+> > > > > 2.25.1
 
-> ---
->  drivers/gpu/drm/i915/gt/intel_gt_irq.c | 78 ++++++++++++++------------
->  1 file changed, 43 insertions(+), 35 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-> index f26882fdc24c..34ff1ee7e931 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-> @@ -81,35 +81,27 @@ gen11_other_irq_handler(struct intel_gt *gt, const u8 instance,
->  		  instance, iir);
->  }
->  
-> -static void
-> -gen11_engine_irq_handler(struct intel_gt *gt, const u8 class,
-> -			 const u8 instance, const u16 iir)
-> +static struct intel_gt *pick_gt(struct intel_gt *gt, u8 class, u8 instance)
->  {
-> -	struct intel_engine_cs *engine;
-> -
-> -	/*
-> -	 * Platforms with standalone media have their media engines in another
-> -	 * GT.
-> -	 */
-> -	if (MEDIA_VER(gt->i915) >= 13 &&
-> -	    (class == VIDEO_DECODE_CLASS || class == VIDEO_ENHANCEMENT_CLASS)) {
-> -		if (!gt->i915->media_gt)
-> -			goto err;
-> +	struct intel_gt *media_gt = gt->i915->media_gt;
->  
-> -		gt = gt->i915->media_gt;
-> +	/* we expect the non-media gt to be passed in */
-> +	GEM_BUG_ON(gt == media_gt);
-> +
-> +	if (!media_gt)
-> +		return gt;
-> +
-> +	switch (class) {
-> +	case VIDEO_DECODE_CLASS:
-> +	case VIDEO_ENHANCEMENT_CLASS:
-> +		return media_gt;
-> +	case OTHER_CLASS:
-> +		if (instance == OTHER_GSC_INSTANCE && HAS_ENGINE(media_gt, GSC0))
-> +			return media_gt;
-> +		fallthrough;
-> +	default:
-> +		return gt;
->  	}
-> -
-> -	if (instance <= MAX_ENGINE_INSTANCE)
-> -		engine = gt->engine_class[class][instance];
-> -	else
-> -		engine = NULL;
-> -
-> -	if (likely(engine))
-> -		return intel_engine_cs_irq(engine, iir);
-> -
-> -err:
-> -	WARN_ONCE(1, "unhandled engine interrupt class=0x%x, instance=0x%x\n",
-> -		  class, instance);
->  }
->  
->  static void
-> @@ -118,12 +110,24 @@ gen11_gt_identity_handler(struct intel_gt *gt, const u32 identity)
->  	const u8 class = GEN11_INTR_ENGINE_CLASS(identity);
->  	const u8 instance = GEN11_INTR_ENGINE_INSTANCE(identity);
->  	const u16 intr = GEN11_INTR_ENGINE_INTR(identity);
-> +	struct intel_engine_cs *engine;
->  
->  	if (unlikely(!intr))
->  		return;
->  
-> -	if (class <= COPY_ENGINE_CLASS || class == COMPUTE_CLASS)
-> -		return gen11_engine_irq_handler(gt, class, instance, intr);
-> +	/*
-> +	 * Platforms with standalone media have the media and GSC engines in
-> +	 * another GT.
-> +	 */
-> +	gt = pick_gt(gt, class, instance);
-> +
-> +	if (class <= MAX_ENGINE_CLASS && instance <= MAX_ENGINE_INSTANCE)
-> +		engine = gt->engine_class[class][instance];
-> +	else
-> +		engine = NULL;
-> +
-> +	if (engine)
-> +		return intel_engine_cs_irq(engine, intr);
->  
->  	if (class == OTHER_CLASS)
->  		return gen11_other_irq_handler(gt, instance, intr);
-> @@ -206,7 +210,7 @@ void gen11_gt_irq_reset(struct intel_gt *gt)
->  	intel_uncore_write(uncore, GEN11_VCS_VECS_INTR_ENABLE,	  0);
->  	if (CCS_MASK(gt))
->  		intel_uncore_write(uncore, GEN12_CCS_RSVD_INTR_ENABLE, 0);
-> -	if (HAS_HECI_GSC(gt->i915))
-> +	if (HAS_HECI_GSC(gt->i915) || HAS_ENGINE(gt, GSC0))
->  		intel_uncore_write(uncore, GEN11_GUNIT_CSME_INTR_ENABLE, 0);
->  
->  	/* Restore masks irqs on RCS, BCS, VCS and VECS engines. */
-> @@ -233,7 +237,7 @@ void gen11_gt_irq_reset(struct intel_gt *gt)
->  		intel_uncore_write(uncore, GEN12_CCS0_CCS1_INTR_MASK, ~0);
->  	if (HAS_ENGINE(gt, CCS2) || HAS_ENGINE(gt, CCS3))
->  		intel_uncore_write(uncore, GEN12_CCS2_CCS3_INTR_MASK, ~0);
-> -	if (HAS_HECI_GSC(gt->i915))
-> +	if (HAS_HECI_GSC(gt->i915) || HAS_ENGINE(gt, GSC0))
->  		intel_uncore_write(uncore, GEN11_GUNIT_CSME_INTR_MASK, ~0);
->  
->  	intel_uncore_write(uncore, GEN11_GPM_WGBOXPERF_INTR_ENABLE, 0);
-> @@ -249,7 +253,7 @@ void gen11_gt_irq_postinstall(struct intel_gt *gt)
->  {
->  	struct intel_uncore *uncore = gt->uncore;
->  	u32 irqs = GT_RENDER_USER_INTERRUPT;
-> -	const u32 gsc_mask = GSC_IRQ_INTF(0) | GSC_IRQ_INTF(1);
-> +	u32 gsc_mask = 0;
->  	u32 dmask;
->  	u32 smask;
->  
-> @@ -261,6 +265,11 @@ void gen11_gt_irq_postinstall(struct intel_gt *gt)
->  	dmask = irqs << 16 | irqs;
->  	smask = irqs << 16;
->  
-> +	if (HAS_ENGINE(gt, GSC0))
-> +		gsc_mask = irqs;
-> +	else if (HAS_HECI_GSC(gt->i915))
-> +		gsc_mask = GSC_IRQ_INTF(0) | GSC_IRQ_INTF(1);
-> +
->  	BUILD_BUG_ON(irqs & 0xffff0000);
->  
->  	/* Enable RCS, BCS, VCS and VECS class interrupts. */
-> @@ -268,9 +277,8 @@ void gen11_gt_irq_postinstall(struct intel_gt *gt)
->  	intel_uncore_write(uncore, GEN11_VCS_VECS_INTR_ENABLE, dmask);
->  	if (CCS_MASK(gt))
->  		intel_uncore_write(uncore, GEN12_CCS_RSVD_INTR_ENABLE, smask);
-> -	if (HAS_HECI_GSC(gt->i915))
-> -		intel_uncore_write(uncore, GEN11_GUNIT_CSME_INTR_ENABLE,
-> -				   gsc_mask);
-> +	if (gsc_mask)
-> +		intel_uncore_write(uncore, GEN11_GUNIT_CSME_INTR_ENABLE, gsc_mask);
->  
->  	/* Unmask irqs on RCS, BCS, VCS and VECS engines. */
->  	intel_uncore_write(uncore, GEN11_RCS0_RSVD_INTR_MASK, ~smask);
-> @@ -296,7 +304,7 @@ void gen11_gt_irq_postinstall(struct intel_gt *gt)
->  		intel_uncore_write(uncore, GEN12_CCS0_CCS1_INTR_MASK, ~dmask);
->  	if (HAS_ENGINE(gt, CCS2) || HAS_ENGINE(gt, CCS3))
->  		intel_uncore_write(uncore, GEN12_CCS2_CCS3_INTR_MASK, ~dmask);
-> -	if (HAS_HECI_GSC(gt->i915))
-> +	if (gsc_mask)
->  		intel_uncore_write(uncore, GEN11_GUNIT_CSME_INTR_MASK, ~gsc_mask);
->  
->  	/*
-> -- 
-> 2.37.3
-> 
-
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
