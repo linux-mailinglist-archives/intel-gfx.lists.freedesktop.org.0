@@ -1,57 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5F8E610C57
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Oct 2022 10:38:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C40BD610C74
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Oct 2022 10:46:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A0F510E1C3;
-	Fri, 28 Oct 2022 08:38:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6628410E11D;
+	Fri, 28 Oct 2022 08:46:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 169A310E1BB;
- Fri, 28 Oct 2022 08:38:12 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31B7610E11D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Oct 2022 08:46:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666946292; x=1698482292;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=V0mOKCCNr4n4zYWEHeESOZyOoMBZlX9qP3JGy2LCotg=;
- b=ILxv1kg8BAjoMPg3ra15ujEjXdfnpQPdYJpcGj7Pruw+fnG4B2N/DzDO
- JXDumypGmiwNzk/Y2NqSQRDZmfFgIDllVxtIQvKUjG1WBpobhJJpJ0V5C
- I3v1FpR6uGlwXbQ94gATJM9WvvdKjHuu0dkYH+BwlNeUDDbAzRScF54Sk
- SuHVWAA2OH/Hd92T19czvuIyAi2S7LMSZxRDZDF6p4mdROf3sfzJz0E5M
- 8goNpRvD9HcjlG9WUqY+dcLV10pHIuHqOaLdMjTe/3dfEy9E84oXUYC8S
- HLNR4Aecfx33p31Pbz1ovGiFo46vwThDJTY2GMPUGFo4cYZgOgM/lQFZq w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10513"; a="288160532"
-X-IronPort-AV: E=Sophos;i="5.95,220,1661842800"; d="scan'208";a="288160532"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2022 01:38:11 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10513"; a="665995214"
-X-IronPort-AV: E=Sophos;i="5.95,220,1661842800"; d="scan'208";a="665995214"
-Received: from nalinset-mobl1.ger.corp.intel.com (HELO [10.213.204.34])
- ([10.213.204.34])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2022 01:38:10 -0700
-Message-ID: <2125e5fd-e8d1-f4c1-7af1-58fb61f38049@linux.intel.com>
-Date: Fri, 28 Oct 2022 09:38:08 +0100
+ t=1666946787; x=1698482787;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=Y81jowPRVr3yWQ5VWj5Qf+FJEKQNp4a/l87a0tFTpqI=;
+ b=ZH0pDdnuQDHNvTFVt63UbsBEcuCZ6m74hpahLcLZxG3gaQRgwEU2MsRQ
+ 5alG0QMRdASPVqiTaNVHrZhIKs8WrYWMQ4ih/ZfD0AUZFd0RS+sWYI1Ph
+ a+8amVCdkZV1V/LRk2hs33bTGKCw+udTQe/xYvshiDq27LMCrqBfAWP+P
+ Y3/4SglEDZUxHGC4VGszVkpbJNNIrZRLeDU5wLm3XG/bYeXIQSPay8Eu5
+ IR5M7RlmBAsTTeaOVqEJX89yLh2oUNFrQzMs75b5Q29akx3UpPDjTUaOD
+ 8AzZl4I7IckhFepmkL6DzPkZEN1UF9umEFlWDQVuniUPmEgF/7HwVkclz w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10513"; a="308436087"
+X-IronPort-AV: E=Sophos;i="5.95,220,1661842800"; d="scan'208";a="308436087"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2022 01:46:26 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10513"; a="807756305"
+X-IronPort-AV: E=Sophos;i="5.95,220,1661842800"; d="scan'208";a="807756305"
+Received: from pbednar-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.28.221])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2022 01:46:23 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>, "Dixit, Ashutosh"
+ <ashutosh.dixit@intel.com>, Nick Desaulniers <ndesaulniers@google.com>
+In-Reply-To: <c1c548f8-71a8-0d4d-d591-58a0cd5dac20@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20221024210953.1572998-1-gwan-gyeong.mun@intel.com>
+ <87mt9kppb6.wl-ashutosh.dixit@intel.com>
+ <Y1ercgaqQwfqt42U@ashyti-mobl2.lan>
+ <87ilk7pwrw.wl-ashutosh.dixit@intel.com>
+ <Y1h8yn4QHI3aBlCe@ashyti-mobl2.lan>
+ <CAKwvOdkpQvk31zbipLDPXfsDZ8FpGHs9t-+9JfFQO85Bs4h=wg@mail.gmail.com>
+ <877d0lxl6s.wl-ashutosh.dixit@intel.com>
+ <CAKwvOdmVJn8HvfF9WTnOAc+HsdJ4c1Tdck8E7Caky7AoCq4ZTA@mail.gmail.com>
+ <875yg5xgkp.wl-ashutosh.dixit@intel.com>
+ <c1c548f8-71a8-0d4d-d591-58a0cd5dac20@intel.com>
+Date: Fri, 28 Oct 2022 11:46:21 +0300
+Message-ID: <8735b89vz6.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Content-Language: en-US
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20221027221554.2638087-1-daniele.ceraolospurio@intel.com>
- <20221027221554.2638087-4-daniele.ceraolospurio@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20221027221554.2638087-4-daniele.ceraolospurio@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 3/5] drm/i915/mtl: add GSC CS interrupt
- support
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/hwmon: Fix a build error used with
+ clang compiler
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,172 +68,355 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, llvm@lists.linux.dev,
+ linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Fri, 28 Oct 2022, Gwan-gyeong Mun <gwan-gyeong.mun@intel.com> wrote:
+> Resend, because some content was accidentally omitted from the previous 
+> reply.
+> Please ignore the previous email.
+>
+> Hi all,
+>
+> I should have written the original commit message more accurately, but 
+> it seems that it was written inaccurately.
+>
+> If the FIELD_PREP macro is expanded, the following macros are used.
+>
+> #define FIELD_PREP(_mask, _val)						\
+> 	({								\
+> 		__BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");	\
+> 		((typeof(_mask))(_val) << __bf_shf(_mask)) & (_mask);	\
+> 	})
+>
+>
+> #define __BF_FIELD_CHECK(_mask, _reg, _val, _pfx)			\
+> 	({								\
+> 		BUILD_BUG_ON_MSG(!__builtin_constant_p(_mask),		\
+> 				 _pfx "mask is not constant");		\
+> 		BUILD_BUG_ON_MSG((_mask) == 0, _pfx "mask is zero");	\
+> 		BUILD_BUG_ON_MSG(__builtin_constant_p(_val) ?		\
+> 				 ~((_mask) >> __bf_shf(_mask)) & (_val) : 0, \
+> 				 _pfx "value too large for the field"); \
+> 		BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >	\
+> 				 __bf_cast_unsigned(_reg, ~0ull),	\
+> 				 _pfx "type of reg too small for mask"); \
+> 		__BUILD_BUG_ON_NOT_POWER_OF_2((_mask) +			\
+> 					      (1ULL << __bf_shf(_mask))); \
+> 	})
+>
+> Among them, a build error is generated by the lower part of the 
+> __BF_FIELD_CHECK() macro.
+>
+> 		BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >	\
+> 				 __bf_cast_unsigned(_reg, ~0ull),	\
+> 				 _pfx "type of reg too small for mask"); \
+>
+>
+> Here, if you apply an argument to this macro, it will look like the 
+> following.
+>
+> __bf_cast_unsigned(field_msk, field_msk) > __bf_cast_unsigned(0ULL, ~0ull)
+>
+> The result is always false because an unsigned int value of type 
+> field_msk is not always greater than the maximum value of unsigned long 
+> long .
+> So, a build error occurs due to the following part of the clang compiler 
+> option.
+>
+> [-Werror,-Wtautological-constant-out-of-range-compare]
+>
+> You can simply override this warning in Clang by adding the build option 
+> below, but this seems like a bad attempt
+>
+> i915/Makefile
+> CFLAGS_i915_hwmon.o += -Wno-tautological-constant-out-of-range-compare
+>
+> The easiest way to solve this is to use a constant value, not a 
+> variable, as an argument to FIELD_PREP.
+>
+> And since the REG_FIELD_PREP() macro suggested by Jani requires a const 
+> expression as the first argument, it cannot be changed with this macro 
+> alone in the existing code, it must be changed to input a constant value 
+> as shown below.
 
-On 27/10/2022 23:15, Daniele Ceraolo Spurio wrote:
-> The GSC CS re-uses the same interrupt bits that the GSC used in older
-> platforms. This means that we can now have an engine interrupt coming
-> out of OTHER_CLASS, so we need to handle that appropriately.
-> 
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/intel_gt_irq.c | 78 ++++++++++++++------------
->   1 file changed, 43 insertions(+), 35 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-> index f26882fdc24c..34ff1ee7e931 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-> @@ -81,35 +81,27 @@ gen11_other_irq_handler(struct intel_gt *gt, const u8 instance,
->   		  instance, iir);
->   }
->   
-> -static void
-> -gen11_engine_irq_handler(struct intel_gt *gt, const u8 class,
-> -			 const u8 instance, const u16 iir)
-> +static struct intel_gt *pick_gt(struct intel_gt *gt, u8 class, u8 instance)
->   {
-> -	struct intel_engine_cs *engine;
-> -
-> -	/*
-> -	 * Platforms with standalone media have their media engines in another
-> -	 * GT.
-> -	 */
-> -	if (MEDIA_VER(gt->i915) >= 13 &&
-> -	    (class == VIDEO_DECODE_CLASS || class == VIDEO_ENHANCEMENT_CLASS)) {
-> -		if (!gt->i915->media_gt)
-> -			goto err;
-> +	struct intel_gt *media_gt = gt->i915->media_gt;
->   
-> -		gt = gt->i915->media_gt;
-> +	/* we expect the non-media gt to be passed in */
-> +	GEM_BUG_ON(gt == media_gt);
-> +
-> +	if (!media_gt)
-> +		return gt;
-> +
-> +	switch (class) {
-> +	case VIDEO_DECODE_CLASS:
-> +	case VIDEO_ENHANCEMENT_CLASS:
-> +		return media_gt;
-> +	case OTHER_CLASS:
-> +		if (instance == OTHER_GSC_INSTANCE && HAS_ENGINE(media_gt, GSC0))
-> +			return media_gt;
-> +		fallthrough;
-> +	default:
-> +		return gt;
->   	}
-> -
-> -	if (instance <= MAX_ENGINE_INSTANCE)
-> -		engine = gt->engine_class[class][instance];
-> -	else
-> -		engine = NULL;
-> -
-> -	if (likely(engine))
-> -		return intel_engine_cs_irq(engine, iir);
-> -
-> -err:
-> -	WARN_ONCE(1, "unhandled engine interrupt class=0x%x, instance=0x%x\n",
-> -		  class, instance);
->   }
->   
+We've added REG_FIELD_PREP() precisely to avoid the problems with the
+types and ranges, as we want it to operate on u32. It also uses
+__is_constexpr() to avoid dependencies on compiler implementation and
+optimizations.
+
+Please use REG_FIELD_PREP() and a constant value. Maybe rethink the
+interface if needed.
+
+BR,
+Jani.
+
+
+
+
+>
+> diff --git a/drivers/gpu/drm/i915/i915_hwmon.c 
+> b/drivers/gpu/drm/i915/i915_hwmon.c
+> index 08c921421a5f..abb3a194c548 100644
+> --- a/drivers/gpu/drm/i915/i915_hwmon.c
+> +++ b/drivers/gpu/drm/i915/i915_hwmon.c
+> @@ -101,7 +101,7 @@ hwm_field_read_and_scale(struct hwm_drvdata *ddat, 
+> i915_reg_t rgadr,
+>
 >   static void
-> @@ -118,12 +110,24 @@ gen11_gt_identity_handler(struct intel_gt *gt, const u32 identity)
->   	const u8 class = GEN11_INTR_ENGINE_CLASS(identity);
->   	const u8 instance = GEN11_INTR_ENGINE_INSTANCE(identity);
->   	const u16 intr = GEN11_INTR_ENGINE_INTR(identity);
-> +	struct intel_engine_cs *engine;
->   
->   	if (unlikely(!intr))
->   		return;
->   
-> -	if (class <= COPY_ENGINE_CLASS || class == COMPUTE_CLASS)
-> -		return gen11_engine_irq_handler(gt, class, instance, intr);
-> +	/*
-> +	 * Platforms with standalone media have the media and GSC engines in
-> +	 * another GT.
-> +	 */
-> +	gt = pick_gt(gt, class, instance);
-> +
-> +	if (class <= MAX_ENGINE_CLASS && instance <= MAX_ENGINE_INSTANCE)
-> +		engine = gt->engine_class[class][instance];
-> +	else
-> +		engine = NULL;
-> +
-> +	if (engine)
-> +		return intel_engine_cs_irq(engine, intr);
-
-Drive by observation - you could fold the above two ifs into one since 
-engine appears unused afterwards.
-
-Regards,
-
-Tvrtko
-
->   
->   	if (class == OTHER_CLASS)
->   		return gen11_other_irq_handler(gt, instance, intr);
-> @@ -206,7 +210,7 @@ void gen11_gt_irq_reset(struct intel_gt *gt)
->   	intel_uncore_write(uncore, GEN11_VCS_VECS_INTR_ENABLE,	  0);
->   	if (CCS_MASK(gt))
->   		intel_uncore_write(uncore, GEN12_CCS_RSVD_INTR_ENABLE, 0);
-> -	if (HAS_HECI_GSC(gt->i915))
-> +	if (HAS_HECI_GSC(gt->i915) || HAS_ENGINE(gt, GSC0))
->   		intel_uncore_write(uncore, GEN11_GUNIT_CSME_INTR_ENABLE, 0);
->   
->   	/* Restore masks irqs on RCS, BCS, VCS and VECS engines. */
-> @@ -233,7 +237,7 @@ void gen11_gt_irq_reset(struct intel_gt *gt)
->   		intel_uncore_write(uncore, GEN12_CCS0_CCS1_INTR_MASK, ~0);
->   	if (HAS_ENGINE(gt, CCS2) || HAS_ENGINE(gt, CCS3))
->   		intel_uncore_write(uncore, GEN12_CCS2_CCS3_INTR_MASK, ~0);
-> -	if (HAS_HECI_GSC(gt->i915))
-> +	if (HAS_HECI_GSC(gt->i915) || HAS_ENGINE(gt, GSC0))
->   		intel_uncore_write(uncore, GEN11_GUNIT_CSME_INTR_MASK, ~0);
->   
->   	intel_uncore_write(uncore, GEN11_GPM_WGBOXPERF_INTR_ENABLE, 0);
-> @@ -249,7 +253,7 @@ void gen11_gt_irq_postinstall(struct intel_gt *gt)
+>   hwm_field_scale_and_write(struct hwm_drvdata *ddat, i915_reg_t rgadr,
+> -                         const u32 field_msk, int nshift,
+> +                         int nshift,
+>                            unsigned int scale_factor, long lval)
 >   {
->   	struct intel_uncore *uncore = gt->uncore;
->   	u32 irqs = GT_RENDER_USER_INTERRUPT;
-> -	const u32 gsc_mask = GSC_IRQ_INTF(0) | GSC_IRQ_INTF(1);
-> +	u32 gsc_mask = 0;
->   	u32 dmask;
->   	u32 smask;
->   
-> @@ -261,6 +265,11 @@ void gen11_gt_irq_postinstall(struct intel_gt *gt)
->   	dmask = irqs << 16 | irqs;
->   	smask = irqs << 16;
->   
-> +	if (HAS_ENGINE(gt, GSC0))
-> +		gsc_mask = irqs;
-> +	else if (HAS_HECI_GSC(gt->i915))
-> +		gsc_mask = GSC_IRQ_INTF(0) | GSC_IRQ_INTF(1);
-> +
->   	BUILD_BUG_ON(irqs & 0xffff0000);
->   
->   	/* Enable RCS, BCS, VCS and VECS class interrupts. */
-> @@ -268,9 +277,8 @@ void gen11_gt_irq_postinstall(struct intel_gt *gt)
->   	intel_uncore_write(uncore, GEN11_VCS_VECS_INTR_ENABLE, dmask);
->   	if (CCS_MASK(gt))
->   		intel_uncore_write(uncore, GEN12_CCS_RSVD_INTR_ENABLE, smask);
-> -	if (HAS_HECI_GSC(gt->i915))
-> -		intel_uncore_write(uncore, GEN11_GUNIT_CSME_INTR_ENABLE,
-> -				   gsc_mask);
-> +	if (gsc_mask)
-> +		intel_uncore_write(uncore, GEN11_GUNIT_CSME_INTR_ENABLE, gsc_mask);
->   
->   	/* Unmask irqs on RCS, BCS, VCS and VECS engines. */
->   	intel_uncore_write(uncore, GEN11_RCS0_RSVD_INTR_MASK, ~smask);
-> @@ -296,7 +304,7 @@ void gen11_gt_irq_postinstall(struct intel_gt *gt)
->   		intel_uncore_write(uncore, GEN12_CCS0_CCS1_INTR_MASK, ~dmask);
->   	if (HAS_ENGINE(gt, CCS2) || HAS_ENGINE(gt, CCS3))
->   		intel_uncore_write(uncore, GEN12_CCS2_CCS3_INTR_MASK, ~dmask);
-> -	if (HAS_HECI_GSC(gt->i915))
-> +	if (gsc_mask)
->   		intel_uncore_write(uncore, GEN11_GUNIT_CSME_INTR_MASK, ~gsc_mask);
->   
->   	/*
+>          u32 nval;
+> @@ -111,8 +111,8 @@ hwm_field_scale_and_write(struct hwm_drvdata *ddat, 
+> i915_reg_t rgadr,
+>          /* Computation in 64-bits to avoid overflow. Round to nearest. */
+>          nval = DIV_ROUND_CLOSEST_ULL((u64)lval << nshift, scale_factor);
+>
+> -       bits_to_clear = field_msk;
+> -       bits_to_set = REG_FIELD_PREP(field_msk, nval);
+> +       bits_to_clear = PKG_PWR_LIM_1;
+> +       bits_to_set = REG_FIELD_PREP(PKG_PWR_LIM_1, nval);
+>
+>          hwm_locked_with_pm_intel_uncore_rmw(ddat, rgadr,
+>                                              bits_to_clear, bits_to_set);
+> @@ -406,7 +406,6 @@ hwm_power_write(struct hwm_drvdata *ddat, u32 attr, 
+> int chan, long val)
+>          case hwmon_power_max:
+>                  hwm_field_scale_and_write(ddat,
+>                                            hwmon->rg.pkg_rapl_limit,
+> -                                         PKG_PWR_LIM_1,
+>                                            hwmon->scl_shift_power,
+>                                            SF_POWER, val);
+>                  return 0;
+>
+>
+>
+> In addition, if there is no build problem regardless of the size of the 
+> type as the first argument in FIELD_PREP, it is possible through the 
+> following modification.
+> (Since this modification modifies include/linux/bitfield.h , I will send 
+> it as a separate patch.
+>    )
+>
+> However, it seems that we need to have Jani's confirm whether it is okay 
+> to use FIELD_PREP() instead of REG_FIELD_PREP() which is forced to u32 
+> return type in i915.
+>
+> diff --git a/include/linux/bitfield.h b/include/linux/bitfield.h
+> index c9be1657f03d..6e96799b6f38 100644
+> --- a/include/linux/bitfield.h
+> +++ b/include/linux/bitfield.h
+> @@ -9,7 +9,7 @@
+>
+>   #include <linux/build_bug.h>
+>   #include <asm/byteorder.h>
+> -
+> +#include <linux/overflow.h>
+>   /*
+>    * Bitfield access macros
+>    *
+> @@ -69,7 +69,7 @@
+>                                   ~((_mask) >> __bf_shf(_mask)) & (_val) 
+> : 0, \
+>                                   _pfx "value too large for the field"); \
+>                  BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >     \
+> -                                __bf_cast_unsigned(_reg, ~0ull),       \
+> +                                __bf_cast_unsigned(_reg, 
+> type_max(__unsigned_scalar_typeof(_reg))),    \
+>                                   _pfx "type of reg too small for mask"); \
+>                  __BUILD_BUG_ON_NOT_POWER_OF_2((_mask) +                 \
+>                                                (1ULL << __bf_shf(_mask))); \
+> @@ -84,7 +84,7 @@
+>    */
+>   #define FIELD_MAX(_mask)                                               \
+>          ({                                                              \
+> -               __BF_FIELD_CHECK(_mask, 0ULL, 0ULL, "FIELD_MAX: ");     \
+> +               __BF_FIELD_CHECK(_mask, 
+> type_min(__unsigned_scalar_typeof(_mask)), 
+> type_min(__unsigned_scalar_typeof(_mask)), "FIELD_MAX: ");   \
+>                  (typeof(_mask))((_mask) >> __bf_shf(_mask));            \
+>          })
+>
+> @@ -97,7 +97,7 @@
+>    */
+>   #define FIELD_FIT(_mask, _val)                                         \
+>          ({                                                              \
+> -               __BF_FIELD_CHECK(_mask, 0ULL, 0ULL, "FIELD_FIT: ");     \
+> +               __BF_FIELD_CHECK(_mask, 
+> type_min(__unsigned_scalar_typeof(_mask)), 
+> type_min(__unsigned_scalar_typeof(_val)), "FIELD_FIT: ");    \
+>                  !((((typeof(_mask))_val) << __bf_shf(_mask)) & ~(_mask)); \
+>          })
+>
+> @@ -111,7 +111,7 @@
+>    */
+>   #define FIELD_PREP(_mask, _val) 
+>           \
+>          ({                                                              \
+> -               __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");    \
+> +               __BF_FIELD_CHECK(_mask, 
+> type_min(__unsigned_scalar_typeof(_mask)), _val, "FIELD_PREP: ");       \
+>                  ((typeof(_mask))(_val) << __bf_shf(_mask)) & (_mask);   \
+>          })
+>
+> @@ -125,7 +125,7 @@
+>    */
+>   #define FIELD_GET(_mask, _reg)                                         \
+>          ({                                                              \
+> -               __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: ");       \
+> +               __BF_FIELD_CHECK(_mask, _reg, 
+> type_min(__unsigned_scalar_typeof(_reg)), "FIELD_GET: "); \
+>                  (typeof(_mask))(((_reg) & (_mask)) >> __bf_shf(_mask)); \
+>          })
+>
+>
+> Br,
+>
+> G.G.
+>
+> On 10/27/22 9:32 PM, Dixit, Ashutosh wrote:
+>> On Thu, 27 Oct 2022 10:16:47 -0700, Nick Desaulniers wrote:
+>>>
+>> 
+>> Hi Nick,
+>> 
+>>> Thanks, I can repro now.
+>>>
+>>> I haven't detangled the macro soup, but I noticed:
+>>>
+>>> 1. FIELD_PREP is defined in include/linux/bitfield.h which has the
+>>> following comment:
+>>>   18  * Mask must be a compilation time constant.
+>> 
+>> I had comments about this here:
+>> 
+>> https://lore.kernel.org/intel-gfx/87ilk7pwrw.wl-ashutosh.dixit@intel.com/
+>> 
+>> The relevant part being:
+>> 
+>> ---- {quote} ----
+>>>>> ./include/linux/bitfield.h:71:53: note: expanded from macro '__BF_FIELD_CHECK'
+>>>>>                  BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >     \
+>> 
+>> So clang seems to break here at this line in __BF_FIELD_CHECK (note ~0ull
+>> also occurs here):
+>> 
+>> 		BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >	\
+>> 				 __bf_cast_unsigned(_reg, ~0ull),	\
+>> 				 _pfx "type of reg too small for mask"); \
+>> 
+>> So it goes through previous checks including the "mask is not constant"
+>> check. As Nick Desaulniers mentions "__builtin_constant_p is evaluated
+>> after most optimizations have run" so by that time both compilers (gcc and
+>> clang) have figured out that even though _mask is coming in as function
+>> argument it is really the constant below:
+>> 
+>> #define   PKG_PWR_LIM_1		REG_GENMASK(14, 0)
+>> 
+>> But it is not clear why clang chokes on this "type of reg too small for
+>> mask" check (and gcc doesn't) since everything is u32.
+>> ---- {end quote} ----
+>> 
+>>>
+>>> 2. hwm_field_scale_and_write only has one callsite.
+>>>
+>>> The following patch works:
+>> 
+>> If we need to fix it at our end yes we can come up with one of these
+>> patches. But we were hoping someone from clang/llvm can comment about the
+>> "type of reg too small for mask" stuff. If this is something which needs to
+>> be fixed in clang/llvm we probably don't want to hide the issue.
+>> 
+>>>
+>>> ```
+>>> diff --git a/drivers/gpu/drm/i915/i915_hwmon.c
+>>> b/drivers/gpu/drm/i915/i915_hwmon.c
+>>> index 9e9781493025..6ac29d90b92a 100644
+>>> --- a/drivers/gpu/drm/i915/i915_hwmon.c
+>>> +++ b/drivers/gpu/drm/i915/i915_hwmon.c
+>>> @@ -101,7 +101,7 @@ hwm_field_read_and_scale(struct hwm_drvdata *ddat,
+>>> i915_reg_t rgadr,
+>>>
+>>>   static void
+>>>   hwm_field_scale_and_write(struct hwm_drvdata *ddat, i915_reg_t rgadr,
+>>> -                         u32 field_msk, int nshift,
+>>> +                         int nshift,
+>>>                            unsigned int scale_factor, long lval)
+>>>   {
+>>>          u32 nval;
+>>> @@ -111,8 +111,8 @@ hwm_field_scale_and_write(struct hwm_drvdata
+>>> *ddat, i915_reg_t rgadr,
+>>>          /* Computation in 64-bits to avoid overflow. Round to nearest. */
+>>>          nval = DIV_ROUND_CLOSEST_ULL((u64)lval << nshift, scale_factor);
+>>>
+>>> -       bits_to_clear = field_msk;
+>>> -       bits_to_set = FIELD_PREP(field_msk, nval);
+>>> +       bits_to_clear = PKG_PWR_LIM_1;
+>>> +       bits_to_set = FIELD_PREP(PKG_PWR_LIM_1, nval);
+>>>
+>>>          hwm_locked_with_pm_intel_uncore_rmw(ddat, rgadr,
+>>>                                              bits_to_clear, bits_to_set);
+>>> @@ -406,7 +406,6 @@ hwm_power_write(struct hwm_drvdata *ddat, u32
+>>> attr, int chan, long val)
+>>>          case hwmon_power_max:
+>>>                  hwm_field_scale_and_write(ddat,
+>>>                                            hwmon->rg.pkg_rapl_limit,
+>>> -                                         PKG_PWR_LIM_1,
+>>>                                            hwmon->scl_shift_power,
+>>>                                            SF_POWER, val);
+>>>                  return 0;
+>>> ```
+>>> Though I'm not sure if you're planning to add further callsites of
+>>> hwm_field_scale_and_write with different field_masks?
+>> 
+>> I have reasons for keeping it this way, it's there in the link above if you
+>> are interested.
+>> 
+>>>
+>>> Alternatively, (without the above diff),
+>>>
+>>> ```
+>>> diff --git a/include/linux/bitfield.h b/include/linux/bitfield.h
+>>> index c9be1657f03d..6f40f12bcf89 100644
+>>> --- a/include/linux/bitfield.h
+>>> +++ b/include/linux/bitfield.h
+>>> @@ -8,6 +8,7 @@
+>>>   #define _LINUX_BITFIELD_H
+>>>
+>>>   #include <linux/build_bug.h>
+>>> +#include <linux/const.h>
+>>>   #include <asm/byteorder.h>
+>>>
+>>>   /*
+>>> @@ -62,7 +63,7 @@
+>>>
+>>>   #define __BF_FIELD_CHECK(_mask, _reg, _val, _pfx)                      \
+>>>          ({                                                              \
+>>> -               BUILD_BUG_ON_MSG(!__builtin_constant_p(_mask),          \
+>>> +               BUILD_BUG_ON_MSG(!__is_constexpr(_mask),                \
+>>>                                   _pfx "mask is not constant");          \
+>>>                  BUILD_BUG_ON_MSG((_mask) == 0, _pfx "mask is zero");    \
+>>>                  BUILD_BUG_ON_MSG(__builtin_constant_p(_val) ?           \
+>>> ```
+>>> will produce:
+>>> error: call to __compiletime_assert_407 declared with 'error'
+>>> attribute: FIELD_PREP: mask is not constant
+>>>
+>>> I haven't tested if that change is also feasible (on top of fixing
+>>> this specific instance), but I think it might help avoid more of these
+>>> subtleties wrt. __builtin_constant_p that depende heavily on compiler,
+>>> compiler version, optimization level.
+>> 
+>> Not disagreeing, can do something here if needed.
+>> 
+>> Thanks.
+>> --
+>> Ashutosh
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
