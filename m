@@ -2,153 +2,153 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C136F610A27
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Oct 2022 08:17:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73E1D610A3D
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Oct 2022 08:20:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C233C10E760;
-	Fri, 28 Oct 2022 06:17:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 576D810E764;
+	Fri, 28 Oct 2022 06:19:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62FD410E760
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Oct 2022 06:17:00 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2580010E764
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Oct 2022 06:19:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666937820; x=1698473820;
+ t=1666937995; x=1698473995;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=7w8YHgNUjnVy9LppNUtqtMWXsRBcj9dANVZQxpr+XZg=;
- b=kwkR8x914Tyz72PsXH2L2UNXiq3kKzitsemklGqXtBLrua2M9skf+YG9
- SQMcNQp93UGg5qYpiM2+rQ9t+EJvHvqWvzxVUCXMFlMJ+ZEFJchXTnWFs
- +oIJwX6S6CCUlAGRELUUDqJsoGYT5mQRuEWcSwjp2uA3bZfq4gAzkLsAn
- 5EpSGe//ZcVUGAjjEKEK33o8GCW2t29u8ecyJ+ysAldUwldOtF4XzUqNO
- XszNDKKI+2EdmM0hF4KRZJkyfvYKT4SkG9n6ruUUWEb5VYO6ciP2umvE6
- mNIO6s4hQl6AYS4p1voQKVDmD6CfzBTrZtZEuo5HsODDE3i81X2A+bB1s w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10513"; a="394733058"
-X-IronPort-AV: E=Sophos;i="5.95,220,1661842800"; d="scan'208";a="394733058"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2022 23:16:59 -0700
+ bh=aLssMT36mMyKebfn36aBSzoG+vDlK58xOTAzsh5kqcQ=;
+ b=GgvV7FF4feBhKD2D65SQp8V7qM7U3eTpz2TeykE8u2HtPJ43vCkAgfxN
+ YrCsyU3mfo50vYSMBnaQ7HJpD1dafEjsJSAnDWnfNsHNHiWuawbOo6Q8G
+ cZ7tb7CKjuk2cGVv9wOxo+8GyiGypn5SvfTLUSJIjQN/2zrbyOfx2SHVN
+ GtgXpIfil+1R4RIACzmM9gykSvLjfblOE6yDDk4YBu9+Zb5lo1If99PQA
+ gaws05hicSKPhSZHBihHR0T/nOnxHhdBOxSsLdro+36VIu36t3n5DLsQu
+ Gg1n0VHkoCbCSGHVS0OsbzZy884CvP9MoIl7LKJhI9QwZzW/M6GDpy73N A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10513"; a="306030652"
+X-IronPort-AV: E=Sophos;i="5.95,220,1661842800"; d="scan'208";a="306030652"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2022 23:19:54 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10513"; a="665959790"
-X-IronPort-AV: E=Sophos;i="5.95,220,1661842800"; d="scan'208";a="665959790"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orsmga001.jf.intel.com with ESMTP; 27 Oct 2022 23:16:59 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Thu, 27 Oct 2022 23:16:59 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10513"; a="696104571"
+X-IronPort-AV: E=Sophos;i="5.95,220,1661842800"; d="scan'208";a="696104571"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmsmga008.fm.intel.com with ESMTP; 27 Oct 2022 23:19:54 -0700
 Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Thu, 27 Oct 2022 23:16:58 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2375.31; Thu, 27 Oct 2022 23:19:53 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Thu, 27 Oct 2022 23:16:58 -0700
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.45) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2375.31; Thu, 27 Oct 2022 23:19:53 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Thu, 27 Oct 2022 23:19:53 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.100)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Thu, 27 Oct 2022 23:16:56 -0700
+ 15.1.2375.31; Thu, 27 Oct 2022 23:19:53 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fU0o0ENSvDMQJidwDIQUWxw9L62I4MGgJ3rGHCOFQ0h5PLdq2jOUZIb+lvDnvfSqDM4L/w+AdlXBgJYFwC0Xse7AOprmPSsNassH7Ju8ultbnEEYFCvH/Cii78be9xFEzRr6wLNPbau77F5U3zWIrmK9VcteVkf2BCkq5ABI9lTvf59A6RqgXDNMtR5cP3fSeCX5AdFY6YeDPa7DZFa5xXPXdUDiTt/UFYwG63I1Wm0c4RQKlXuSTlWmwrAARZtG23BMnCz5x4U+XtL3V3eR4gvVI/Xad5GYhiqK1kpo0Rt+fODVMj75Chbbr4BTmglDC/K2hXHe3hATlx6NsCde5g==
+ b=DCus1UtpIoDb4jTSOOq0ecHlAvCV1DG3cfAUWmBWi7z71FCABW3t7dnqbMrcM1ZzNFH/fYCSt7Hk/9hcIDnJFF6ZQsS4fhZ66h/MYpyrCYBS32DRO9LXtesExOKgHQzzu3npAbiXg5Ajxfb2VsPSWywBEx36mSdQruAt+8kB8OicjQ7QCSsrXGxDMDsWBBwGz+VFvuozrW8BIYa8D/1Ab7TILI+IbRPSIgsibHAQJheWfkGw/CXbHdTDop8IWETx6nEWxRjz7qYS0SKZ9eAwgVATMU0+8G6gmStS0EWoY5PpkY2I2gHKEGlyNU1jA3cr0XvA76W9I0OptZWsBu2uXw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=y5rMnAkkNBqgaY6PYikxhc9NC/OA6dMggo1y8e/6TaA=;
- b=V0K/mwtE00cbhj3y92vqBf4dvjUYGd9TJWrYS8rITUufuiRJ7QSfkEBpI1fzME+ujHcVnMwHZC9NBktO1b17rmFHXNB1lqXqWOscFZvH3fwG0JH20YCNC4BiE9OttAZi4axmLUlRg4id/0zajE6ihLKrIdGzLlm7wZi/SMLntmU5uhoZlbGV9mb5f6Tl4X2H9jLIaCCJNvXpwaaLiDFxQpcrDYa4wdeyXj4xzgnMbptEsuls8v9WSkTGjhhXbbIRN6dOLTAURiK+ycNGck7lvQ1R3VebmDH1FzCLMJGOc+0xB1B6STbbcbnHv4urxPPOeRiozMaakiUfRStyAZhIKg==
+ bh=fDBMl1CjMb8/hjjhnxKhNkPfezG0fsuoT4TDuw+QTkE=;
+ b=IwcVqgsY8DpdrbgWxArkfK450spyQ/Xmcs3XOjkKUDyRP8sJu7IuWDhu+2Irs58IvZve4zDZCShP1j0srywk1qYb+/5025+zucty0qXqzr/QluDQIm1d8joL2z6A3KyYzzH5GiU1ceftBnsyb3/ZCvLTkPYzFszIDAFRmFFRrKltVP6BPNVVyo8uei+xad6UQYE0xSbMbvMkYAnuvxspWXnSBJyQ+YicfGqcs2M0Q7NwNeb7olQyr0KA2fewjx9UB+bAJeTl6oM4R7vNWZDX0sJgxFjPz0wmUqNq8vDrB8VXn8RBoWW4HLTdj3ymvpRpKgfDXE0X2dmpv8zX3R11fw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by SJ0PR11MB4925.namprd11.prod.outlook.com (2603:10b6:a03:2df::13) with
+ by CO1PR11MB4884.namprd11.prod.outlook.com (2603:10b6:303:6c::13) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5769.15; Fri, 28 Oct
- 2022 06:16:55 +0000
+ 2022 06:19:51 +0000
 Received: from DM4PR11MB5341.namprd11.prod.outlook.com
  ([fe80::21a6:81fa:3ed7:a486]) by DM4PR11MB5341.namprd11.prod.outlook.com
  ([fe80::21a6:81fa:3ed7:a486%9]) with mapi id 15.20.5769.015; Fri, 28 Oct 2022
- 06:16:55 +0000
-Message-ID: <cec4a8b5-6634-fe3a-c36c-ca38cd9f51cb@intel.com>
-Date: Fri, 28 Oct 2022 11:46:46 +0530
+ 06:19:51 +0000
+Message-ID: <2c1b9639-f1bb-2020-4843-aad899312c5b@intel.com>
+Date: Fri, 28 Oct 2022 11:49:40 +0530
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Firefox/102.0 Thunderbird/102.3.3
+Content-Language: en-US
 To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
 References: <20221011063447.904649-1-ankit.k.nautiyal@intel.com>
- <20221011063447.904649-4-ankit.k.nautiyal@intel.com>
- <Y1F8nGEjNroIzL4E@intel.com>
-Content-Language: en-US
+ <20221011063447.904649-6-ankit.k.nautiyal@intel.com>
+ <Y1F9PtGbXTqDR867@intel.com>
 From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <Y1F8nGEjNroIzL4E@intel.com>
+In-Reply-To: <Y1F9PtGbXTqDR867@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PN2PR01CA0207.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:e9::18) To DM4PR11MB5341.namprd11.prod.outlook.com
+X-ClientProxiedBy: PN2PR01CA0026.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:25::31) To DM4PR11MB5341.namprd11.prod.outlook.com
  (2603:10b6:5:390::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|SJ0PR11MB4925:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0021f2ee-f63d-4710-678c-08dab8ac02db
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|CO1PR11MB4884:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4fcbfa73-7abd-45bc-09e5-08dab8ac6be4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: gDksco1rL4pXFajsIKxBXqYGzGjIlH0xgNalsBra9Mhy/Ls76cm/XAq0vPEgvjt1M2/93fWeLI+JImQrc/BuLo0SYj1pD/Xr2wIxc1YY2zgbmt4AgyIcFqyRNGSrnGYFJ8S0rOoE5VrjkIfUPngHyF/Rvtk3mqOQHJvmKCx+ysctwJfthZRTzwRIeR5tfGje3hhAh6fQsds3k4hr/UwCuG9t8KXyRRxsnPx/UGiwbbVwFoUbuGs48gLqRjly62HrkI9LEc9tuJshRzGhPyPNDijSjaLAXZdYKIwffVMMPRgwGKyxEfNoHVmmki93n/3Yukb8QUSIh9P6aSESXY6ej05xTPozSmKeuGTjMncl0sWYlxLz2f+FfRvs+wwMzIOjV27GJ19z4RSNJbFFde3e4zEdh8J7HV3n2BawUXfVU/ucHOmZDzxzXoS+7kd08ensPFTasdZ9GFGY5DsyzDC9ec69PILOxDwXL4hbEybuMjfFsKLz7JraGEBmIROiIJ19BVPIQehN3RDGV4Y4O6XCP2f7ZxVL0F9FscrF9K3cl4TUIsfCi1eJYGqyaOrbWW4QY9K1GFi7RAsS2KJ182vk7ErdSeuT7Po6khM/FHFn6LmyV5GqlcvqduMwjPsqRnDy4bxCVSAINMzD8mRbZ4bVrlBMX0pMD1l6Aupb1wKe7MyLg3+kbn6K7X/Y/2zjQXm4LkcIaymzQ4N8rKnFniekZeQmn8Kh2nfkQ2Fo2eq4WIwuwpi3zaLtWcxoqPtsA4v8bRIv7It0EVWCPRwqRbk0c3PsBr8vxcCJYCzltYJXuEw=
+X-Microsoft-Antispam-Message-Info: dSsW5E8OASQ1rpDNpYKL+ePebh7R/b1UapKPSSh3y5CIXDR2aFwb27Y3Y/418AyuJWg/iUt1za70iNMhuUAwDebGJNxKYV/+ub02Spxx5ia41205VWjWvuKB6jwylLQJ/ROeAHOzA0f7ogC3c+wv7nEnayOG/oe6lX3/sEs2xIH76uYZXDfhAqR1638i+g9ukBJcuyaw2T9dHTYBLwGIcy1ri9kW8DB1g5daC6u377RIN8zQEmQRqa/sPAewzi4LBJIHnQGP45XMwRP1i5wxs3dSsrzweUOME8uf1A2BxMYyb/3b/9J5leijxZKuubxWrUvNk7Iuwuii7O5xS6p4Xfs3o7fqnIGe4y2UAU2x4vwlIzlNBU8VC6AYL+k8F0IondmTeILc/cbXZdjks3j2mHiraN7jIZCvE7A7qNHd+89quOot1sDvyGdUQ0tsk4EFWs1qzh804RR38ZXJ2Cx9iWx8gfR/+wjUqpKwVHstITju51gT7Zxa7KwHLHkdEeTyj3v/iRNe7aZMqhFK5nigNYFlHadpXPjm2NnVvutT+mXkOg7thZQTK2odyHHNtTw8HWhTptL3t7y2iXNRRe8YXIdk1E/DR3eh0FcyRVPXp7FcOJIYB/UDrLgiKzyD0oILM+2x2TfHkx55ILDhO8rboKIJm4j1/JcFUYTVbY1yfNCBlkPNq7ieE8i7eAy5Ahrh0YkG00S2gossX2/EYdr1rFl5pnsI/C3gpcIRJMPAeHBOGDJgCol9VLKz7JaIHO0EvQwE9YhSfHABT1vvz7J6jPPVzzMEVcCg1+TYF/ihrpc=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(39860400002)(136003)(376002)(396003)(346002)(366004)(451199015)(2906002)(8936002)(31686004)(41300700001)(8676002)(66946007)(66476007)(66556008)(4326008)(6916009)(316002)(82960400001)(38100700002)(6506007)(6666004)(6486002)(55236004)(36756003)(53546011)(478600001)(86362001)(5660300002)(2616005)(26005)(6512007)(186003)(83380400001)(31696002)(45980500001)(43740500002);
+ SFS:(13230022)(396003)(366004)(376002)(346002)(136003)(39860400002)(451199015)(6916009)(316002)(6506007)(26005)(53546011)(55236004)(478600001)(6486002)(5660300002)(6666004)(8936002)(2906002)(86362001)(31696002)(4326008)(8676002)(66476007)(66556008)(66946007)(41300700001)(186003)(2616005)(82960400001)(83380400001)(38100700002)(6512007)(36756003)(31686004)(45980500001)(43740500002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N3VFaUlXd2t3N2F4U1kzZWtqbUhUcVRJeTVEYmExeUh5M2U0eUtVOXJOK0ov?=
- =?utf-8?B?SHpFUi85RWdHLzZHbk10WkZMcDcwUjZYNzlzOVkvTGdnem1TajVzdkcxV1ln?=
- =?utf-8?B?d2xyVDJoWkwzaDBKRTlRbVpuemNSZ0hEaTFUTzNjNkVPc3RmdlNuVWxWR2ZL?=
- =?utf-8?B?eDVqU0xIVE1LSS90aW4wTEN1alJwNnJxWGFlZG5WTGlWbnJMOURNRytIbElB?=
- =?utf-8?B?WW8vNGRZN096RnE1YXZmM0VLVW9lUnplaTJZNnVGYUlSdkdBYTdVOERBZzA3?=
- =?utf-8?B?em9KYnU3bCswQjhyNmhkellvcTZUSXVZcnUwNE1XME5xNnVDdiszNXNadzdj?=
- =?utf-8?B?K3E3WTMzSnRQVEgzSExyK3c3SEhoNDVGSDQ3WXhjdVc2ME04b1JaWFhEMnh4?=
- =?utf-8?B?QyszVlU4d041VXZhYmJnRWFRdDZrNDNlM0VMQjRxbEJJaEFsTW0rSkYzT29K?=
- =?utf-8?B?Z3YwWkhjK1NiR3BzVHh6azZSRmZXMFJTSm9RaVQ3V0Q5YWlaVWRVWE9SdTFR?=
- =?utf-8?B?K2tOQzBaT3FUQ0JIOExIQWl3WE55WlloVmpYUUpzSUJJRDM4eFRnRHdzU0M5?=
- =?utf-8?B?dFlkTkU4YXV6VVRyY0M0RVZ4SHFyL0ovdXdVTlhrckJtdW9kQXhpSXI3UkJq?=
- =?utf-8?B?SUh4RjZlYUdFd0w3OWFiKzZMY01WSytycms1cFRacHZ2UklreWpEdDZiWDY3?=
- =?utf-8?B?TG96aWZWZlZyRy9La0JVYlpZQXRYTnIrSTJndlZiZ0tnOG50dE5ZYjJrbFRM?=
- =?utf-8?B?RkRnc2phbm1TNlFKeHVwd3BZOGdiMXp0S3NKYWgxMzIvRDNjYUduWWxkemlV?=
- =?utf-8?B?K0NjT3RIRjd6M2lxcS8zL2dZdjZzRGZvRlVRdXJwbENsV3RKelpuZjNsdTMv?=
- =?utf-8?B?VTlqMGg5L0pBRG5HSzhiR04zOHZyaGFtU3E3OXowNWpyS3puMDBhbzIzNG1C?=
- =?utf-8?B?cHBPVjV2K1o5d0IyU0RSWFhBR2F5ZEsvVWdQUkFwVncvY2ZIand3ZWNtakxw?=
- =?utf-8?B?c1ROT0ErRzl3MU5XMnlkZWpCR1lYUFNreFZqd2ZZKzVHMDExczNDR09UTmZK?=
- =?utf-8?B?R1VEYjJ0amVVS3FpVU9hdS82Ym04cDBuVndtWXhPUEpHbVVwc3ZQZ29vWkI5?=
- =?utf-8?B?a3NRNlFEcHlrVTJmRGRBdkdQdXV4cTBrZmd2RFh1eTlKemxTZXJpSEgwODVj?=
- =?utf-8?B?bldyc0V3OTRMNkRadXloNWFFWEMzdzcvQVJOZFIxUUhDMHkxUFMwdk9KM2RU?=
- =?utf-8?B?dkRHa1lCMGU1ZEU4dVJMTjlsTWo1UzdvUUcraVRRL2p4dnhDNnByZFlRMXVZ?=
- =?utf-8?B?bFFEWUYrcWxGZk1tckVib2RqdktpNUVRNDJhdER6VlR6UXFFQU1PSzRhOStD?=
- =?utf-8?B?SEpQelNvSnVCTkdGM0NOZ2tUL1U5M2J3YTBTdWFuZmtaTjRlZm50eWtaTUlj?=
- =?utf-8?B?aXFSK1ZGWnVxTUdZeVRLanJRdGdQblR2azZYTDZpbkxmeklMVWFoU3dqRUJk?=
- =?utf-8?B?cFVDcDgyamJxZ1RWOEZnUG1jRzhtSnh1T3pTV08xYWRhN1gwcEU1UVhNcldF?=
- =?utf-8?B?elZrQlR0ZDM1SmI5a2NyV1BKeXZWTW1BUEZIM0RLR0tWR0tOY2JxVXJ4eHcv?=
- =?utf-8?B?YWNUc09pREhmNkFydWFqRWRlY0tjYlc3V3o5UGVsRS91MDFmK1owdmg1M1k5?=
- =?utf-8?B?Q0lyQWZ4Q2drVmdwMFY3M1BZQTgxNFF2ay8zN25Cck9heE95RjU3cmhTdnZR?=
- =?utf-8?B?NmlXY2NvM05VdmxJTVF5U2luNDl3Z1lRUW1qL0N4T3M1cmE5bUFMR3V3NThF?=
- =?utf-8?B?UGxjcWIwZ0FWeXFra2VjZ0NKVFF3UnY3NXRCcE0xK1hYbExrM1hPUG9nRTNu?=
- =?utf-8?B?a0tuTzJNUTBzd1ZrbDd4K0haL29EenJGbFphOCs1QmQxcktDM2xtVUVqRHpP?=
- =?utf-8?B?YjdnSnBoSTZMcWMrdFhKZ1hVelpyaktpVmV5a01IbzJabjlsVG9tZGVlbnJL?=
- =?utf-8?B?anRFMG1mZHc1bmp6ekhBQ0F2VUNybCsvYkZEVHNkaEp2OFVmQjJSS2VnT1NB?=
- =?utf-8?B?QnBqUEYzSFRYeVBJWlFXSTFNV0IwVjFQeVFJNmFCU1RFMzRRRnpDOFZ2WmRl?=
- =?utf-8?B?ZEsyUDdpN2YzYmY1L3NUNkl0ck5DdDhaMWJvSUxrKzByQmZUY0VSTU9ZN0Zk?=
- =?utf-8?B?SlE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0021f2ee-f63d-4710-678c-08dab8ac02db
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SWNsUExCc3VhSUFHckptLzN3dTE4NEkxMjBZcmZJSGdleVBhUytmS2J5QTJj?=
+ =?utf-8?B?UVFiVmJSRW12b2RuREU0OG56bnBTZWdhaHZEZWNqWHNSRFl5YXp4NzNKQUxa?=
+ =?utf-8?B?YTErc01mcGwvcTU4bnVacXptMTFiTlRiRlluMU8xbkhLL284d3dIN09BQ1BX?=
+ =?utf-8?B?a1BGbzNhZW03LzdnYm1adWpJOStwS0dJTyt0dVE0Q0lxdFRnUlJHZVovdHlr?=
+ =?utf-8?B?UFdFcnZ3RGROZjlwemlYeUVtOWtQYXJXNVBxL1NpdjZoNGprSWNVRjZqMzFr?=
+ =?utf-8?B?RTBwaDMwZkRVbE5mOVBRMldlNk5SbFlGK0M1V045WURwaVBPMHE2TFc1a3c4?=
+ =?utf-8?B?cHlySFoyU3VlWE1qNEJ5eUV2dFpHZHVqODRjMStUdExIenFYdnl3RXdmajlT?=
+ =?utf-8?B?dEUwaHBPZ3IxTnhKeWhOMVlVNzhIWGV6ZU5vMWd3L3drbkdTN3lwNzl0Sm1x?=
+ =?utf-8?B?TUZUSVZNM0RQc1lRUStHNU1KcWVUQWprWGRFZ1VseVRSYlRzR1dFSkQ0eFEx?=
+ =?utf-8?B?NjdHWSs3ZVM3M1JIOWhmM09ydFkwYkJIREVzTU9CT1FwVTNVQzdTZk5uZGVT?=
+ =?utf-8?B?eXgwN3BZS2VPTnNXWEpldUgrV0VXdG9pVWxka2pmdGtCQm52aVZrSXJxNThz?=
+ =?utf-8?B?NXBJNklFMGJPSy9qcGhraWE4c2lTZHZ2SzNhN1pKZGVSR1BtdlNMQ29kc0tv?=
+ =?utf-8?B?N0tlZTNaVFdqMVpSRmxaaFJsVmR3dEg1TXRqdWR6Z29hNmppVlNud2dZbWZM?=
+ =?utf-8?B?c1drOTc4aGNnTVlRNUtlUjlsNEp2L2NPR0dzWW1Nc0JzMFVJaGh0T25DcktP?=
+ =?utf-8?B?N0h5ZjVBdHQ1bDdZN3RmZDNVeHpGUi84S1VtNzA2anQ1MkRlMWh0aHJXakhM?=
+ =?utf-8?B?NTh1eDdmZFdxNkhlY3FoTVkyc1B6ZVRaTnp2ZnFYYW5CK0p4TElsekEzMlJr?=
+ =?utf-8?B?MWR1UTJzTlNqOXVrSGN6TStFTUg0UTFwY25LVk5kVkhPcXd2Y1RaeFI1N3FE?=
+ =?utf-8?B?KzNxbnp0SXJ5by9lL0l2WmNxN0UzRFFZNnhubStFcHBocUkwdDFScHZPZldO?=
+ =?utf-8?B?TUZlUmlFem1VMHIzTkpVWjZiQytSaUFnMGNQbVBWQXA1NXlVSXF2ZUZJQTJO?=
+ =?utf-8?B?TlEzYSs0T09zcHNFeVZFWGE2VjlBd0lobFlSWmU4QzhmcFBOdVNpaHJFS3lC?=
+ =?utf-8?B?eVp6R3EwS1ZBUlBLVGU4M2ZucUFSV3VXczRJMEFRWVJ5bS9BMXNXQjlqYVZt?=
+ =?utf-8?B?cWprSkhCUmo0NmN4ejEzSFh5ZFBkU2RDWU1UNnpvUk1IQzhkTzg3dGpZVmp0?=
+ =?utf-8?B?aG1PV0h6L0UraEZXNTZYRkU0eDNENTlrRnFraFNQY25UZ1IzVzlEejg2Y3Zu?=
+ =?utf-8?B?czY3N3VTdjJyeHdqMDZDQWIwTlVNTlhOTG14V1hGbTU0cDRpOU5VRWFaK1JX?=
+ =?utf-8?B?WWhzZDFrWjZTWmk0M3pzckdsRER0eFpVTXcvTE5PRU1xYmwrTFM3RE1RUzBl?=
+ =?utf-8?B?T2hpMjFXNHdsVmpoU09pcVF4bW1WVnJpdk9EK2R1V2JRWlorampyc1lYdWNn?=
+ =?utf-8?B?RE9xQ3AvcnVPQWJoNVhQaXR1bTJraE1ZcXZtNUFWOExLYWtWMkF4U0Rlbi9Q?=
+ =?utf-8?B?U0ZVMlZ3d2c1Rm9DanlSWndYM0V1Nko5a3ZLYXNpZVI5aEQvL3Z1SlVkanl4?=
+ =?utf-8?B?dVVJZ3JlT2FuVjRKWDltdWplemZ5SmQ2THN5bVE0UkhCb2pqdEZRTE5ScS9x?=
+ =?utf-8?B?Q0VLUjI1RmNYdkJuQ2M2YjYwVWxQdjdiUUZKQklZdTB4ODZTNnNVQnhTeE5P?=
+ =?utf-8?B?bHprVmJFRUJUSHpXaEVYbGJ6OWRvNHlqR0pXUkVDak5MYVFKcjY4dTluWGR1?=
+ =?utf-8?B?RGhOR25KUWEvM3doNHFaeDhsMDZYZTZjYzN2bVV4OVVCejE2aWlXNHBrTDYw?=
+ =?utf-8?B?OGlENitBZVNjV1YxVkJFWWFyU2NOSkRkMHJFMVBUV2lPR2d1M1VYMExaNWtn?=
+ =?utf-8?B?dXl2ZUhPMTczb044RVd5ZTdCWEhXTmMvKzNDKzZ2eHZEcWplbzJGK3lEejFL?=
+ =?utf-8?B?emZwUWErVUtNRlVHbVUrTnZCejd0UE9wcTZ5RHdpS3RWQldxUDZQQ2ErV1ZW?=
+ =?utf-8?B?ZkdRRmJGMDB0UXo1U0RxaXBVQUlNUGw3SHB4bXBWQTV1eFArWUdQell3cU5h?=
+ =?utf-8?B?cXc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4fcbfa73-7abd-45bc-09e5-08dab8ac6be4
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2022 06:16:54.9102 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2022 06:19:51.3775 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LakCRppPvZSV4UcfK2xv6AqdEb9T0CwzHJ66ND35xfrMKoRDBFp91L+UDqOrE4zgCyvw6AaC6a8RofNic5XOY+WHCUoJy7nqk+pVP/gt+8Q=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4925
+X-MS-Exchange-CrossTenant-UserPrincipalName: XHtN3VV3cxSRNlrMpUN3KTxYG0l4voH9dd9fM+jK2LkpxBROazugON6EkZ/68lgQCmtRxYaJ9a9G6RepqRa2JZ9CLQchoUeUaIJbOlJQJ8Y=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4884
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v3 3/8] drm/i915/display: Add new member to
- configure PCON color conversion
+Subject: Re: [Intel-gfx] [PATCH v3 5/8] drm/i915/dp: Use sink_format in
+ dp_is_ycbcr420
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -165,193 +165,76 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Ville,
 
-Thanks for the reviews and suggestions.
-
-I agree with the suggested changes and will be incorporating them in the 
-next version of the series.
-
-I have prepared the changes (without the suggested readout part though) 
-still need to test on a panel with ycbcr420.
-
-Please find my responses inline:
-
-On 10/20/2022 10:21 PM, Ville Syrjälä wrote:
-> On Tue, Oct 11, 2022 at 12:04:42PM +0530, Ankit Nautiyal wrote:
->> The decision to use DFP output format conversion capabilities should be
->> during compute_config phase.
->>
->> This patch adds new member to crtc_state to represent the final
->> output_format to the sink. In case of a DFP this can be different than
->> the output_format, as per the format conversion done via the PCON.
->>
->> This will help to store only the format conversion capabilities of the
->> DP device in intel_dp->dfp, and use crtc_state to compute and store the
->> configuration for color/format conversion for a given mode.
->>
->> v2: modified the new member to crtc_state to represent the final
->> output_format that eaches the sink, after possible conversion by
->> PCON kind of devices. (Ville)
+On 10/20/2022 10:24 PM, Ville Syrjälä wrote:
+> On Tue, Oct 11, 2022 at 12:04:44PM +0530, Ankit Nautiyal wrote:
+>> Use the new crtc_state member sink_format to check if DP DFP will use
+>> YCBCR420.
+>> The earlier intel_dp->dfp members are not required as decision to use
+>> color format conversion by the PCON is computed and stored in
+>> crtc_state. Also drop the intel_dp argument in the helper function.
 >>
 >> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 >> ---
->>   drivers/gpu/drm/i915/display/icl_dsi.c               | 1 +
->>   drivers/gpu/drm/i915/display/intel_crt.c             | 1 +
->>   drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 5 +++--
->>   drivers/gpu/drm/i915/display/intel_display_types.h   | 3 +++
->>   drivers/gpu/drm/i915/display/intel_dp.c              | 7 +++++++
->>   drivers/gpu/drm/i915/display/intel_dp_mst.c          | 1 +
->>   drivers/gpu/drm/i915/display/intel_dvo.c             | 1 +
->>   drivers/gpu/drm/i915/display/intel_hdmi.c            | 3 +++
->>   drivers/gpu/drm/i915/display/intel_lvds.c            | 1 +
->>   drivers/gpu/drm/i915/display/intel_tv.c              | 1 +
->>   drivers/gpu/drm/i915/display/vlv_dsi.c               | 1 +
->>   11 files changed, 23 insertions(+), 2 deletions(-)
+>>   drivers/gpu/drm/i915/display/intel_dp.c | 13 +++++--------
+>>   1 file changed, 5 insertions(+), 8 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
->> index 47f13750f6fa..5defafb6b9df 100644
->> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
->> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
->> @@ -1667,6 +1667,7 @@ static int gen11_dsi_compute_config(struct intel_encoder *encoder,
->>   	int ret;
->>   
->>   	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
->> +	pipe_config->sink_format = pipe_config->output_format;
->>   
->>   	ret = intel_panel_compute_config(intel_connector, adjusted_mode);
->>   	if (ret)
->> diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
->> index 94d0a5e1dd03..a6e7cf21e6e9 100644
->> --- a/drivers/gpu/drm/i915/display/intel_crt.c
->> +++ b/drivers/gpu/drm/i915/display/intel_crt.c
->> @@ -392,6 +392,7 @@ static int intel_crt_compute_config(struct intel_encoder *encoder,
->>   		return -EINVAL;
->>   
->>   	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
->> +	pipe_config->sink_format = pipe_config->output_format;
->>   
->>   	return 0;
->>   }
->> diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
->> index e9212f69c360..ed427b9cbf09 100644
->> --- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
->> +++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
->> @@ -163,10 +163,11 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
->>   
->>   	snprintf_output_types(buf, sizeof(buf), pipe_config->output_types);
->>   	drm_dbg_kms(&i915->drm,
->> -		    "active: %s, output_types: %s (0x%x), output format: %s\n",
->> +		    "active: %s, output_types: %s (0x%x), output format: %s, sink format: %s\n",
->>   		    str_yes_no(pipe_config->hw.active),
->>   		    buf, pipe_config->output_types,
->> -		    output_formats(pipe_config->output_format));
->> +		    output_formats(pipe_config->output_format),
->> +		    output_formats(pipe_config->sink_format));
->>   
->>   	drm_dbg_kms(&i915->drm,
->>   		    "cpu_transcoder: %s, pipe bpp: %i, dithering: %i\n",
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
->> index e2b853e9e51d..69a68a70ac00 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
->> @@ -1312,6 +1312,9 @@ struct intel_crtc_state {
->>   
->>   	/* for loading single buffered registers during vblank */
->>   	struct drm_vblank_work vblank_work;
->> +
->> +	/* Sink output format */
->> +	enum intel_output_format sink_format;
-> Please put this next to the output_format. Probably should try to
-> clarify the comments for each to indicate output_format is what's
-> coming out the end of the pipe, and sink_format what's going into
-> the sink.
-
-Makes sense. Will do as suggested.
-
-
->>   };
->>   
->>   enum intel_pipe_crc_source {
 >> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
->> index 359884617fdc..99d72b345907 100644
+>> index 99d72b345907..d8ef4dccf0c1 100644
 >> --- a/drivers/gpu/drm/i915/display/intel_dp.c
 >> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> @@ -1990,8 +1990,14 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
->>   		drm_dbg_kms(&i915->drm,
->>   			    "YCbCr 4:2:0 mode but YCbCr 4:2:0 output not possible. Falling back to RGB.\n");
->>   		crtc_state->output_format = INTEL_OUTPUT_FORMAT_RGB;
->> +		crtc_state->sink_format = crtc_state->output_format;
->>   	}
+>> @@ -1177,19 +1177,16 @@ static bool intel_dp_supports_dsc(struct intel_dp *intel_dp,
+>>   		drm_dp_sink_supports_dsc(intel_dp->dsc_dpcd);
+>>   }
 >>   
->> +	else if (ycbcr_420_only)
->> +		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
->> +	else
->> +		crtc_state->sink_format = crtc_state->output_format;
-> Hmm. This feels a bit backwards. I think it would make more sense to
-> start with the sink format and then compute the output_format based
-> on that. Could add intel_dp_sink_format() helper, and then pass the
-> result from that into intel_dp_output_format().
-
-Hmm.. well it does seem backwards.
-
-We do want to set the sink format as YCBCR420/RGB first, and then set 
-output_format.
-
-Will do compute sink_format first based on the constraints and then use 
-it to compute output_format.
-
-
->
->> +
->>   	ret = intel_dp_compute_link_config(encoder, crtc_state, conn_state,
->>   					   respect_downstream_limits);
->>   	if (ret) {
->> @@ -2001,6 +2007,7 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
->>   			return ret;
+>> -static bool intel_dp_is_ycbcr420(struct intel_dp *intel_dp,
+>> -				 const struct intel_crtc_state *crtc_state)
+>> +static bool intel_dp_is_ycbcr420(const struct intel_crtc_state *crtc_state)
+>>   {
+>> -	return crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
+>> -		(crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR444 &&
+>> -		 intel_dp->dfp.ycbcr_444_to_420);
+>> +	return crtc_state->sink_format == INTEL_OUTPUT_FORMAT_YCBCR420;
+>>   }
 >>   
->>   		crtc_state->output_format = intel_dp_output_format(connector, true);
->> +		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
->>   		ret = intel_dp_compute_link_config(encoder, crtc_state, conn_state,
->>   						   respect_downstream_limits);
->>   	}
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
->> index cd4e61026d98..cd625c7b8693 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
->> @@ -148,6 +148,7 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
->>   		return -EINVAL;
->>   
->>   	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
->> +	pipe_config->sink_format = pipe_config->output_format;
-> If we compute sink_format first for DP, I'd do the same for all these
-> other cases too. I think just setting both to RGB explicity would be
-> fine.
+>>   static int intel_dp_hdmi_compute_bpc(struct intel_dp *intel_dp,
+>>   				     const struct intel_crtc_state *crtc_state,
+>>   				     int bpc, bool respect_downstream_limits)
+>>   {
+>> -	bool ycbcr420_output = intel_dp_is_ycbcr420(intel_dp, crtc_state);
+>> +	bool ycbcr420_output = intel_dp_is_ycbcr420(crtc_state);
+>>   	int clock = crtc_state->hw.adjusted_mode.crtc_clock;
+> I think I'd take this a notch further and start passing
+> the sink_format to most (maybe even all?) places that
+> currently take a 'bool ycbcr420_output'. That could also
+> serve as a slight step towards 4:2:2 support.
 
-Agreed.
+Makes sense, will modify the functions as suggested.
 
-
->
-> We seem to missing the readout part entirely. While we can't hook it
-> into the state checker (due to reliance on the protocol connverters)
-> it would at least give us slightly more accurate state dump for the
-> initial state readout in case the GOP has chosen to use native
-> YCbCr 4:2:0 output (not sure it ever does that though).
-
-Hmm so do we need to have new callbacks for read out in dig_port like 
-read_sink_format(encoder, crtc_state)
-
-So for intel_dp with branch device we read from PCON color conversion 
-DPCDs. For others we just return crtc_state->output_format?
-
-Or we just during readout we set sink_format as output_format for all 
-encoders,
-
-but for dp we call a function to check what is programmed in PCON color 
-conversion DPCDs?
-
-Thanks & Regards,
+Regards,
 
 Ankit
 
-
+>
+>>   
+>>   	/*
+>> @@ -1986,7 +1983,7 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
+>>   
+>>   	crtc_state->output_format = intel_dp_output_format(connector, ycbcr_420_only);
+>>   
+>> -	if (ycbcr_420_only && !intel_dp_is_ycbcr420(intel_dp, crtc_state)) {
+>> +	if (ycbcr_420_only && !intel_dp_is_ycbcr420(crtc_state)) {
+>>   		drm_dbg_kms(&i915->drm,
+>>   			    "YCbCr 4:2:0 mode but YCbCr 4:2:0 output not possible. Falling back to RGB.\n");
+>>   		crtc_state->output_format = INTEL_OUTPUT_FORMAT_RGB;
+>> @@ -2001,7 +1998,7 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
+>>   	ret = intel_dp_compute_link_config(encoder, crtc_state, conn_state,
+>>   					   respect_downstream_limits);
+>>   	if (ret) {
+>> -		if (intel_dp_is_ycbcr420(intel_dp, crtc_state) ||
+>> +		if (intel_dp_is_ycbcr420(crtc_state) ||
+>>   		    !connector->base.ycbcr_420_allowed ||
+>>   		    !drm_mode_is_420_also(info, adjusted_mode))
+>>   			return ret;
+>> -- 
+>> 2.25.1
