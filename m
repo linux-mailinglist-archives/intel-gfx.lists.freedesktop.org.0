@@ -1,62 +1,69 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F8EA611CBA
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Oct 2022 23:53:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07766611CBE
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Oct 2022 23:56:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8285410E8E9;
-	Fri, 28 Oct 2022 21:53:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD58010E8E8;
+	Fri, 28 Oct 2022 21:55:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com
- [IPv6:2607:f8b0:4864:20::632])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F250A10E8E8
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Oct 2022 21:53:26 +0000 (UTC)
-Received: by mail-pl1-x632.google.com with SMTP id 4so5994711pli.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Oct 2022 14:53:26 -0700 (PDT)
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com
+ [IPv6:2607:f8b0:4864:20::533])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDE5910E8E8
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Oct 2022 21:55:49 +0000 (UTC)
+Received: by mail-pg1-x533.google.com with SMTP id g129so5937061pgc.7
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Oct 2022 14:55:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=uwCxQi/lzbG99sopXdaVgVE2DsVCsrVGzk6dQZZnkc8=;
- b=I2wDE32iuPDJS6Ln4R3C7D+1bXa0yvl0RCT+wy/Vt0bL7g0cgQTolmDJ1THfnJ8khZ
- jDEdnMGi8XvZMvYAHMAkQxMDjybr0ID5erEsw7n6tALBv/ktbg7bhZ4rLNKN82hdrShW
- J9ifmwTQrN86Sp5PxD+oOtzKrNwbXuElrxYMo=
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=6sDFZ943bLECga98ZuUZLfOGWAVrMKDr86ExwVnqK84=;
+ b=btyqyPv7KwpF0fUlvoVZAWj4CwL0CsCTTdtAzG2/N4wgoRckFm82DFaNfCWHb4Z8DV
+ 3NJnxPK3bihWuyfIQNRcEWh9pruP9g6+X1Ga1dqXaDBOGIRE0mg8MTcNYWqCbNOtK8Kw
+ XZD7WGcfU/ORspJA2DV7k+SgVCd6zpaPDZJfE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=uwCxQi/lzbG99sopXdaVgVE2DsVCsrVGzk6dQZZnkc8=;
- b=cXao+dj9AlLynGjqzR9WhBFWrs/Iiofavu8vtgZAQDg/QsLsYLy6fVxjrHxz1Y+TOT
- utT1Rwcnel+zCWQdmXLzfYMYfVC2Jndh1eR8V+2ttlVCMfAlY/+fJg9ar3d9ypwQC5lE
- ETjqh1bJQvplO5az/HvE0M4kY+pz9LC/Pc5EnSrkgXHz3nDHPsLwKOBYm/O773zGKiTW
- aPZD8Oen7eCCjhgtVCiXnxae+gUSmyv58sNoMvTVt1sD6QXOrt7jL9foUGJ/6uTSh2kS
- REC7y91TjJz/CMenajKioJSjHyVlhKYpLakLuG94eXjVzUHOuvCqMo4+v25FDZ+arcAP
- fYeg==
-X-Gm-Message-State: ACrzQf2MCtczcSu413XNbPEZrbn8Jx0ZN8RGdqQVc7I2yrpvg8SxZyjL
- rx71SpiwYYY4LrHdjIQdDT9GWg==
-X-Google-Smtp-Source: AMsMyM7Z7henHLAjyucT+QXQnehtd5Zyu7DPcyrdvjnKBnTvpxyYd8nxtXTnemCxJqDLmGYfSMu6QA==
-X-Received: by 2002:a17:90b:3e81:b0:20d:bbe5:f332 with SMTP id
- rj1-20020a17090b3e8100b0020dbbe5f332mr19029604pjb.112.1666994006140; 
- Fri, 28 Oct 2022 14:53:26 -0700 (PDT)
-Received: from localhost ([2620:15c:9d:2:65f9:c180:249c:190f])
- by smtp.gmail.com with UTF8SMTPSA id
- a4-20020a621a04000000b00545f5046372sm3251964pfa.208.2022.10.28.14.53.24
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 28 Oct 2022 14:53:25 -0700 (PDT)
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=6sDFZ943bLECga98ZuUZLfOGWAVrMKDr86ExwVnqK84=;
+ b=q0ttKfqQldXOVUeUwv/6SHDU13/5upilgONVy4HNzU+EJRnl23xKVk1nU7Cfkk+ano
+ cummXcg2wpeFbiAtBHO17OOiQjSk43FulgxfC6jDMe2KpvesdL/Xs9toOUmM1BYSmq6S
+ 8Gr4DWvYw/tCzfFN/YxKCr8ASVEtkdSDE2dXA8HK0Or7cZwquPIo9wGbiOIdf7stUB7d
+ 19j/8m6/e+orK3lWT3R0s4lYPQd+547BzwQi66KDVn9jun7vUCgR/RL38JLHSAaUGH20
+ xjH/HOYVITNqXjXnAkin2AcD1o7EIA9fhKnrFvpdJs3E9ntEV1r08DCjLUb3o3K5phUF
+ wNWw==
+X-Gm-Message-State: ACrzQf0qm6/2pqq3ZsQO+8qCRzfNfSx4gVHBM/8leIlZmMWQxDmZjVxD
+ QNVOB8IO39BOy0oxaOvor6E/mQ==
+X-Google-Smtp-Source: AMsMyM5P+YLIJxg9tmlPWSt3GSayrEEorqqCWl2pCnqN4fUvo0hwpJ71QT8oB+RJbFsgjq4pQQwNMw==
+X-Received: by 2002:a05:6a00:1707:b0:563:235:769b with SMTP id
+ h7-20020a056a00170700b005630235769bmr1525795pfc.19.1666994149391; 
+ Fri, 28 Oct 2022 14:55:49 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:65f9:c180:249c:190f])
+ by smtp.gmail.com with ESMTPSA id
+ k12-20020a170902c40c00b001822121c45asm3621736plk.28.2022.10.28.14.55.48
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 28 Oct 2022 14:55:48 -0700 (PDT)
+Date: Fri, 28 Oct 2022 14:55:46 -0700
 From: Brian Norris <briannorris@chromium.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Date: Fri, 28 Oct 2022 14:53:22 -0700
-Message-Id: <20221028145319.1.I87b119c576d486ad139faf1b7278d97e158aabe4@changeid>
-X-Mailer: git-send-email 2.38.1.273.g43a17bfeac-goog
+To: Feng Tang <feng.tang@intel.com>
+Message-ID: <Y1xP4pN2P3o4B49b@google.com>
+References: <s5h4lhxokp6.wl-tiwai@suse.de>
+ <20180625153632.GQ2958@phenom.ffwll.local>
+ <20180626022916.3d6wceejx23zd7pl@shbuild888>
+ <20180712012901.lxrzxtvpj3msje3k@shbuild888>
+ <20180712065434.GD3008@phenom.ffwll.local>
+ <20180712075134.ba66pg3ng5of2wmy@shbuild888>
+ <20180814065430.ervd4b6eyvs6u35q@shbuild888>
+ <20180814093407.GK21634@phenom.ffwll.local>
+ <s5hin4d1e3f.wl-tiwai@suse.de>
+ <20180816074038.kx7jhjlyugrxhr6r@shbuild888>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Set PROBE_PREFER_ASYNCHRONOUS
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20180816074038.kx7jhjlyugrxhr6r@shbuild888>
+Subject: Re: [Intel-gfx] [RFC] i915: make the probe asynchronous
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,63 +76,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Feng Tang <feng.tang@intel.com>, Jani Nikula <jani.nikula@intel.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- Brian Norris <briannorris@chromium.org>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
- Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>
+Cc: Takashi Iwai <tiwai@suse.de>, Jani Nikula <jani.nikula@intel.com>,
+ intel-gfx@lists.freedesktop.org, alek.du@intel.com,
+ Daniel Vetter <daniel.vetter@ffwll.ch>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This driver often takes a good 100ms to start, but in some particularly
-bad cases takes more than 1 second.
+Hi,
 
-In surveying risk for this driver, I poked around for cross-device
-shared state, which can be a source of race conditions. GVT support
-(intel_gvt_devices) seems potentially suspect, but it has an appropriate
-mutex, and doesn't seem to care about ordering -- if devices are present
-when the kvmgt module loads, they'll get picked up; and if they probe
-later than kvmgt, they'll attach then.
+On Thu, Aug 16, 2018 at 03:40:38PM +0800, Feng Tang wrote:
+> On Tue, Aug 14, 2018 at 11:39:48AM +0200, Takashi Iwai wrote:
+> > FYI, the upcoming 4.19 will have the completion in audio side binding,
+> > so this problem should be solved there.
+> 
+> Really a great news! thanks for sharing
 
-Additionally, I see past discussions about this patch [1], which
-concluded that there were problems at the time due to the way
-hdac_i915.c called request_module("i915") and expected it to complete
-probing [2]. Work has since been merged [3] to fix that problem.
+For the record: that was merged as:
 
-This driver was pinpointed as part of a survey of drivers that take more
-than 100ms in their initcall (i.e., are built in, and probing
-synchronously) on a lab of ChromeOS systems.
+  f9b54e1961c7 ("ALSA: hda/i915: Allow delayed i915 audio component binding")
 
-[1] [RFC] i915: make the probe asynchronous
-    https://lore.kernel.org/all/20180604053219.2040-1-feng.tang@intel.com/
+I'm also poking here in case somebody still had reason we shouldn't do
+this now. I wrote up my own patch, and the looked for past discussions
+like this one. Feel free to comment here if there's still a problem:
 
-[2] https://lore.kernel.org/all/s5hin4d1e3f.wl-tiwai@suse.de/
+  [PATCH] drm/i915: Set PROBE_PREFER_ASYNCHRONOUS
+  https://lore.kernel.org/lkml/20221028145319.1.I87b119c576d486ad139faf1b7278d97e158aabe4@changeid/
 
-[3] Commit f9b54e1961c7 ("ALSA: hda/i915: Allow delayed i915 audio
-    component binding")
-
-Signed-off-by: Brian Norris <briannorris@chromium.org>
----
-
- drivers/gpu/drm/i915/i915_pci.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index 38460a0bd7cb..1cb1f87aea86 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -1371,7 +1371,10 @@ static struct pci_driver i915_pci_driver = {
- 	.probe = i915_pci_probe,
- 	.remove = i915_pci_remove,
- 	.shutdown = i915_pci_shutdown,
--	.driver.pm = &i915_pm_ops,
-+	.driver = {
-+		.pm = &i915_pm_ops,
-+		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
-+	},
- };
- 
- int i915_pci_register_driver(void)
--- 
-2.38.1.273.g43a17bfeac-goog
-
+Thanks,
+Brian
