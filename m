@@ -1,54 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38CD5612248
-	for <lists+intel-gfx@lfdr.de>; Sat, 29 Oct 2022 13:17:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A89061234E
+	for <lists+intel-gfx@lfdr.de>; Sat, 29 Oct 2022 15:32:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DB4010E273;
-	Sat, 29 Oct 2022 11:17:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C52510E29D;
+	Sat, 29 Oct 2022 13:32:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com
- [IPv6:2a00:1450:4864:20::42b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBC1D10E273;
- Sat, 29 Oct 2022 11:17:08 +0000 (UTC)
-Received: by mail-wr1-x42b.google.com with SMTP id l14so9655700wrw.2;
- Sat, 29 Oct 2022 04:17:08 -0700 (PDT)
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com
+ [IPv6:2a00:1450:4864:20::336])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44DF010E292;
+ Sat, 29 Oct 2022 13:32:13 +0000 (UTC)
+Received: by mail-wm1-x336.google.com with SMTP id
+ bh7-20020a05600c3d0700b003c6fb3b2052so5455314wmb.2; 
+ Sat, 29 Oct 2022 06:32:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=p0tXyLiYHTFHrnfELnhiBy2A0/lH8eJ/gz7nv9Y4WAk=;
- b=qxxZZXAn/0ROZrdlj6fgD9B8BnlwZogfSH6Qzy9kMn3t8WTqscrss4BHDk1ZyaHrui
- 04M0Zu4YZIW2XQ3qqk1sxZasKIz41tFStQiFtXFlmJF9RQHoJFl7rCjZr04Y/+X0PGrj
- acVewaNhmXC8ArCzpydE/qod7eh5PtS7LB6+/a1LujunMi2u6cMSRW1MhxEX956htpPc
- 7Y33Rd0Z8LzodRfWJ4KtoPTzryQsRtrfn8tye4K2/DFqc2Hn7qb9bJQPKue9p5E4d0Fx
- AIfFERvOrCqeY2vcuQdmbuQHb2aHjuxg0Gy6Pq/Np1h6zF+ZsphexiQ8DV4y5BpkhXFA
- npgQ==
+ bh=ovWvPMhMVx3yZGGDynfZo7QLPoF3QUGKpTwhTdrcCss=;
+ b=Jp2a8bDSLdwHYCubw8TYuljyMr02lO/CYSfhvBBKG4VPvozxBOfshWZBb47JxOhL+J
+ IWB9yGjEhEY+RRNWyoIlG40oLfM9oATJKdi3zIOjXIQ0aTmTDgkexlC8SilNZF65KT5l
+ Lh98PPToLFvCXmAajpROMrHT3YV7n5Mz9j+L5S//vTKR9iqo9nFDJn6Pu4wTMpuAesjK
+ 7dfQGyL/G8JUl6k9KWXLAcy1YesuSLqEQiQGCtLO1uTXcqve9eu0BAPjMbLkLCwgMvw8
+ ijg33SW+vBG6wQeI9Bkpggxh4FZTPzmfA+S+LdGEqNpVbQbLkyIvZZpZiduxHHeTC2lW
+ o9VA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=p0tXyLiYHTFHrnfELnhiBy2A0/lH8eJ/gz7nv9Y4WAk=;
- b=cRV0DToxbrmVkrJYsA65vv26NS47ilNpf+II8ke4ktKbIz2jtgXbTSpveV1a2hpjdn
- 3sJRP/F8JUBup9Rx6mEikL4A2tQtbQfU3wIJQCHvd+iKjaVmPIRGCYtwylr234SBDpzk
- HR5s6i3JjqMYTpMjYNEdWKNMA5jLA6anyOSVIQMHcf0+7K5KG0ikCHR1l0v5ub7FYlXK
- RaNS51wGa3Aq3SxA8s1xiSP4SQZvU8rOg+U8LQigrz6VMRxTIQHrRsLOZFnpLIZkipSe
- GRLHhdnTgPIkcL8sCbxyIYNEZ0DffwI8iBxxPwA28wE1XBQKrcpN2Uu1bfgx6NAJOQs/
- DNuw==
-X-Gm-Message-State: ACrzQf17ZEAINmur7YE5GPb7SsScX7qsXaLGDAoBKfo8ZCKw5N7sEZPK
- GK4LtT9volxC29seZJOT0uI=
-X-Google-Smtp-Source: AMsMyM6OFxR8YNWlsapvGAgXKJQWYY3dgSYdiq08z6wpiK2S3QJ21a9bAi7mXamMRWHdvBIiDvt74A==
-X-Received: by 2002:adf:dd91:0:b0:236:a261:6930 with SMTP id
- x17-20020adfdd91000000b00236a2616930mr2086998wrl.551.1667042226974; 
- Sat, 29 Oct 2022 04:17:06 -0700 (PDT)
+ bh=ovWvPMhMVx3yZGGDynfZo7QLPoF3QUGKpTwhTdrcCss=;
+ b=va4UAubMU7UwJ1TncvEqGhKw8cqKBGW+F8/vv3okQm0a9LruBS42mwcZsxj3FGI52P
+ nxZ+DKW6z0WGgKwZEcuqq9vbWLC3cJ+D26F3trz0+DW6ui2mpZTosa5TE+sctC2uLroS
+ pFzOH95YcVe2SOaDhL7yqPX+Zr3e1/6S28YZmK1CbAi0syEUWhZs/6CU2srWkVOKzPx1
+ 1BO8xegP7xqJMTUJ3TklvMgEILwQcapbPG8WxuXWz3zRXvbG+zxxlTwffAOZqA8YSVLg
+ z2uWlOxVKg7cV7sNtvJd19vVMAN0WcWLzZpvXTcFdYm+lidGJ9xEwsG50mIWtEI8vFyt
+ c+vQ==
+X-Gm-Message-State: ACrzQf0I1GRO9sf3kCJD1WyiuNt97P0ijkiTWp4a3kyadUOubggrZx2p
+ d4tZO2LMe9agzeZ4PwgD0nQ=
+X-Google-Smtp-Source: AMsMyM4E3VJ4F630pyTdokSSc05TdRQm/7azTCmFMOo0jDjFZZ2fMI7fVQ1I2TId02KSH6qhHm8oFQ==
+X-Received: by 2002:a05:600c:3849:b0:3cf:4d99:fd1f with SMTP id
+ s9-20020a05600c384900b003cf4d99fd1fmr11613404wmr.128.1667050331652; 
+ Sat, 29 Oct 2022 06:32:11 -0700 (PDT)
 Received: from suse.localnet (host-79-43-11-206.retail.telecomitalia.it.
  [79.43.11.206]) by smtp.gmail.com with ESMTPSA id
- c6-20020a056000104600b0022e344a63c7sm1227924wrx.92.2022.10.29.04.17.03
+ m14-20020a05600c4f4e00b003c83465ccbfsm470567wmq.35.2022.10.29.06.32.08
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 29 Oct 2022 04:17:05 -0700 (PDT)
+ Sat, 29 Oct 2022 06:32:10 -0700 (PDT)
 From: "Fabio M. De Francesco" <fmdefrancesco@gmail.com>
 To: Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
@@ -63,16 +64,16 @@ To: Jani Nikula <jani.nikula@linux.intel.com>,
  Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
  intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, Zhao Liu <zhao1.liu@linux.intel.com>
-Date: Sat, 29 Oct 2022 13:17:03 +0200
-Message-ID: <2541717.Lt9SDvczpP@suse>
-In-Reply-To: <20221017093726.2070674-2-zhao1.liu@linux.intel.com>
+Date: Sat, 29 Oct 2022 15:32:08 +0200
+Message-ID: <13152489.uLZWGnKmhe@suse>
+In-Reply-To: <20221017093726.2070674-3-zhao1.liu@linux.intel.com>
 References: <20221017093726.2070674-1-zhao1.liu@linux.intel.com>
- <20221017093726.2070674-2-zhao1.liu@linux.intel.com>
+ <20221017093726.2070674-3-zhao1.liu@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="iso-8859-1"
-Subject: Re: [Intel-gfx] [PATCH 1/9] drm/i915: Use kmap_local_page() in
- gem/i915_gem_object.c
+Subject: Re: [Intel-gfx] [PATCH 2/9] drm/i915: Use kmap_local_page() in
+ gem/i915_gem_pyhs.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,7 +91,7 @@ Cc: Dave Hansen <dave.hansen@intel.com>, Ira Weiny <ira.weiny@intel.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On luned=EC 17 ottobre 2022 11:37:17 CEST Zhao Liu wrote:
+On luned=EC 17 ottobre 2022 11:37:18 CEST Zhao Liu wrote:
 > From: Zhao Liu <zhao1.liu@intel.com>
 >=20
 > The use of kmap_atomic() is being deprecated in favor of
@@ -98,76 +99,33 @@ On luned=EC 17 ottobre 2022 11:37:17 CEST Zhao Liu wrote:
 >=20
 > The main difference between atomic and local mappings is that local
 > mappings doesn't disable page faults or preemption.
-
-You are right about about page faults which are never disabled by=20
-kmap_local_page(). However kmap_atomic might not disable preemption. It=20
-depends on CONFIG_PREEMPT_RT.
-
-Please refer to how kmap_atomic_prot() works (this function is called by=20
-kmap_atomic() when kernels have HIGHMEM enabled).
-
 >=20
-> There're 2 reasons why i915_gem_object_read_from_page_kmap() doesn't
-> need to disable pagefaults and preemption for mapping:
+> In drm/i915/gem/i915_gem_phys.c, the functions
+> i915_gem_object_get_pages_phys() and i915_gem_object_put_pages_phys()
+> don't need to disable pagefaults and preemption for mapping because of
+> these 2 reasons:
 >=20
 > 1. The flush operation is safe for CPU hotplug when preemption is not
-> disabled.=20
-
-I'm confused here. Why are you talking about CPU hotplug?
-In any case, developers should never rely on implicit calls of=20
-preempt_disable() for the reasons said above. Therefore, flush operations=20
-should be allowed regardless that kmap_atomic() potential side effect.
-
-> In drm/i915/gem/i915_gem_object.c, the function
-> i915_gem_object_read_from_page_kmap() calls drm_clflush_virt_range()
-
-If I recall correctly, drm_clflush_virt_range() can always be called with p=
-age=20
-faults and preemption enabled. If so, this is enough to say that the=20
-conversion is safe.=20
-
-Is this code explicitly related to flushing the cache lines before removing=
- /=20
-adding CPUs? If I recall correctly, there are several other reasons behind =
-the=20
-need to issue cache lines flushes. Am I wrong about this?
-
-Can you please say more about what I'm missing here?
-
-> to
-> use CLFLUSHOPT or WBINVD to flush. Since CLFLUSHOPT is global on x86
-> and WBINVD is called on each cpu in drm_clflush_virt_range(), the flush
-> operation is global and any issue with cpu's being added or removed
-> can be handled safely.
-
-Again your main concern is about CPU hotplug.
-
-Even if I'm missing something, do we really need all these details about th=
-e=20
-inner workings of drm_clflush_virt_range()?=20
-
-I'm not an expert, so may be that I'm wrong about all I wrote above.
-
-Therefore, can you please elaborate a little more for readers with very lit=
-tle=20
-knowledge of these kinds of things (like me and perhaps others)?
-=20
+> disabled. In drm/i915/gem/i915_gem_object.c, the functions
+> i915_gem_object_get_pages_phys() and i915_gem_object_put_pages_phys()
+> calls drm_clflush_virt_range() to use CLFLUSHOPT or WBINVD to flush.
+> Since CLFLUSHOPT is global on x86 and WBINVD is called on each cpu in
+> drm_clflush_virt_range(), the flush operation is global and any issue
+> with cpu's being added or removed can be handled safely.
+>=20
 > 2. Any context switch caused by preemption or sleep (pagefault may
 > cause sleep) doesn't affect the validity of local mapping.
-
-I'd replace "preemption or sleep" with "preemption and page faults" since=20
-yourself then added that page faults lead to tasks being put to sleep. =20
-
-> Therefore, i915_gem_object_read_from_page_kmap() is a function where
-> the use of kmap_local_page() in place of kmap_atomic() is correctly
-> suited.
+>=20
+> Therefore, i915_gem_object_get_pages_phys() and
+> i915_gem_object_put_pages_phys() are two functions where the use of
+> kmap_local_page() in place of kmap_atomic() is correctly suited.
 >=20
 > Convert the calls of kmap_atomic() / kunmap_atomic() to
 > kmap_local_page() / kunmap_local().
 >=20
-> And remove the redundant variable that stores the address of the mapped
-> page since kunmap_local() can accept any pointer within the page.
->=20
+
+I have here the same questions as in 1/9.
+
 > [1]: https://lore.kernel.org/all/20220813220034.806698-1-ira.weiny@intel.=
 com
 >=20
@@ -183,44 +141,64 @@ ut
 >        cache flush.
 >   Fabio: Referred to his boiler plate commit message.
 > ---
->  drivers/gpu/drm/i915/gem/i915_gem_object.c | 8 +++-----
->  1 file changed, 3 insertions(+), 5 deletions(-)
+>  drivers/gpu/drm/i915/gem/i915_gem_phys.c | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
 >=20
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> b/drivers/gpu/drm/i915/gem/i915_gem_object.c index=20
-369006c5317f..a0072abed75e 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> @@ -413,17 +413,15 @@ void __i915_gem_object_invalidate_frontbuffer(struct
-> drm_i915_gem_object *obj, static void
->  i915_gem_object_read_from_page_kmap(struct drm_i915_gem_object *obj, u64=
-=20
-offset, void
-> *dst, int size) {
-> -	void *src_map;
->  	void *src_ptr;
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_phys.c
+> b/drivers/gpu/drm/i915/gem/i915_gem_phys.c index 0d0e46dae559..d602ba19ec=
+b2=20
+100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_phys.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
+> @@ -66,10 +66,10 @@ static int i915_gem_object_get_pages_phys(struct=20
+drm_i915_gem_object
+> *obj) if (IS_ERR(page))
+>  			goto err_st;
 >=20
-> -	src_map =3D kmap_atomic(i915_gem_object_get_page(obj, offset >>=20
-PAGE_SHIFT));
-> -
-> -	src_ptr =3D src_map + offset_in_page(offset);
-> +	src_ptr =3D kmap_local_page(i915_gem_object_get_page(obj, offset >>=20
-PAGE_SHIFT))
-> +	          + offset_in_page(offset);
->  	if (!(obj->cache_coherent & I915_BO_CACHE_COHERENT_FOR_READ))
->  		drm_clflush_virt_range(src_ptr, size);
->  	memcpy(dst, src_ptr, size);
->=20
-> -	kunmap_atomic(src_map);
-> +	kunmap_local(src_ptr);
->  }
->=20
->  static void
+> -		src =3D kmap_atomic(page);
+> +		src =3D kmap_local_page(page);
+>  		memcpy(dst, src, PAGE_SIZE);
+>  		drm_clflush_virt_range(dst, PAGE_SIZE);
+> -		kunmap_atomic(src);
+> +		kunmap_local(src);
 
-The changes look good, but I'd like to better understand the commit message.
+Please use memcpy_from_page() instead of open coding mapping + memcpy() +=20
+unmapping.
+
+>=20
+>  		put_page(page);
+>  		dst +=3D PAGE_SIZE;
+> @@ -114,10 +114,10 @@ i915_gem_object_put_pages_phys(struct=20
+drm_i915_gem_object *obj,
+>  			if (IS_ERR(page))
+>  				continue;
+>=20
+> -			dst =3D kmap_atomic(page);
+> +			dst =3D kmap_local_page(page);
+>  			drm_clflush_virt_range(src, PAGE_SIZE);
+>  			memcpy(dst, src, PAGE_SIZE);
+> -			kunmap_atomic(dst);
+> +			kunmap_local(dst);
+
+=46or the same reasons said above, memcpy_to_page() should be used here and=
+=20
+avoid open coding of three functions.
+
+Using those helpers forces you to move drm_clflush_virt_range() out of the=
+=20
+mapping / un-mapping region. I may be wrong, however I'm pretty sure that t=
+he=20
+relative positions of each of those call sites is something that cannot be=
+=20
+randomly chosen.
 
 Thanks,
 
-=46abio=20
+=46abio
+
+>=20
+>  			set_page_dirty(page);
+>  			if (obj->mm.madv =3D=3D I915_MADV_WILLNEED)
+
 
 
