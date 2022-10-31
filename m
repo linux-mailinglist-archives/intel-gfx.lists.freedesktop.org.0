@@ -2,47 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBC32612F9A
-	for <lists+intel-gfx@lfdr.de>; Mon, 31 Oct 2022 06:11:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 097BB612F9B
+	for <lists+intel-gfx@lfdr.de>; Mon, 31 Oct 2022 06:14:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97A7B10E101;
-	Mon, 31 Oct 2022 05:11:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC4A110E113;
+	Mon, 31 Oct 2022 05:14:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B11F10E0F8;
- Mon, 31 Oct 2022 05:10:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 173BB10E113
+ for <intel-gfx@lists.freedesktop.org>; Mon, 31 Oct 2022 05:14:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667193058; x=1698729058;
+ t=1667193272; x=1698729272;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=J/RX3CIISXh4uRtVCwaoTBXy012CI0jVtOzkItQhTjM=;
- b=Sa3i8w8171WPSTpvs4ThBMmCfeYNN1wWGp3UKz1ftw04WvcJVUmJ3twe
- fCW0dBeMtB9EUnB9bTRO+jzAFzeZXHviCvx/NmlLmMNagtidb8Eao8+Lj
- 0FdOlsfsQeVfyyjI5yR9IXHyvn/Oot+GL7JKFEdEVxaaRy+fSt+Xo/BaB
- VUOXEt7JJCC1inlZ7qSKour50qYyx55JuULPzc6VlHz56y0J+YVFGx9vl
- h65h4C18OMZPKhRhOdmMZVfYu4k8zj32kVMAOoeS/Oj2zkn1APqAqFilA
- 2B/HrKb49Gr2JjJaJlNOMgywGO6Cwb6V+OZA0EWxwfC34PMlLMHmYXWzy A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10516"; a="395134224"
-X-IronPort-AV: E=Sophos;i="5.95,227,1661842800"; d="scan'208";a="395134224"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ bh=vuIrQLcth39UJc4xrI50U+ZH88OJAhV1A/HfRZzyHWs=;
+ b=JevjNPyhMEFwQG19mP67/v+RmTsEenlqU5SoFb6hDIwiCT3Egbj9IK+f
+ dTL/SzIDoiUp+BiZfEkTnysw2ypO/nXe4pwqFLrm+2O3lhtm/IiBMlYRS
+ RCE9KiI9+Zj3vz8+S0nd0Un43xvv/3PPeMvAOTykL2zQxBszrXu0TPH+e
+ F3bIeOiePq0rNPj2gUBxgafURcXgLWzvoJrcNXzuuBHbvz79axgWefUJ/
+ zAa7O/BSWN54veRWu3//HorGeJSVHKNSOO8Y2lACpcULWQCMXiq05o4ya
+ mIuxDm5QFdx68cSlxWWqXS1tisLf9AqQPsjDW8Y1qhqeAFxrDijhPTwQP Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10516"; a="395134523"
+X-IronPort-AV: E=Sophos;i="5.95,227,1661842800"; d="scan'208";a="395134523"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2022 22:10:57 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10516"; a="635922323"
-X-IronPort-AV: E=Sophos;i="5.95,227,1661842800"; d="scan'208";a="635922323"
-Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.jf.intel.com)
- ([10.165.21.138])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2022 22:10:56 -0700
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+ 30 Oct 2022 22:14:31 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10516"; a="878605094"
+X-IronPort-AV: E=Sophos;i="5.95,227,1661842800"; d="scan'208";a="878605094"
+Received: from rtauro-desk.iind.intel.com ([10.190.239.41])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2022 22:14:29 -0700
+From: Riana Tauro <riana.tauro@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Sun, 30 Oct 2022 22:10:51 -0700
-Message-Id: <20221031051051.553812-1-ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.38.0
+Date: Mon, 31 Oct 2022 10:44:10 +0530
+Message-Id: <20221031051411.3739031-1-riana.tauro@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/hwmon: Don't use FIELD_PREP
+Subject: [Intel-gfx] [PATCH v3 0/1] Add selftest for slpc tile interaction
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,50 +54,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andi Shyti <andi.shyti@intel.com>, llvm@lists.linux.dev,
- ndesaulniers@google.com, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-FIELD_PREP and REG_FIELD_PREP have checks requiring a compile time constant
-mask. When the mask comes in as the argument of a function these checks can
-can fail depending on the compiler (gcc vs clang), optimization level,
-etc. Use a simpler local version of FIELD_PREP which skips these
-checks. The checks are not needed because the mask is formed using
-REG_GENMASK (so is actually a compile time constant).
+This test runs a workload on tiles simultaneously by requesting for RP0 frequency
+and fails if there is a throttling error.
 
-Bug: https://gitlab.freedesktop.org/drm/intel/-/issues/7354
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
----
- drivers/gpu/drm/i915/i915_hwmon.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+Rev2 : Fix build error
+Rev3 : Addressed cosmetic review comments
 
-diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
-index 9e97814930254..a3ec9a73a4e49 100644
---- a/drivers/gpu/drm/i915/i915_hwmon.c
-+++ b/drivers/gpu/drm/i915/i915_hwmon.c
-@@ -62,6 +62,12 @@ struct i915_hwmon {
- 	int scl_shift_time;
- };
- 
-+/* FIELD_PREP and REG_FIELD_PREP require a compile time constant mask */
-+static u32 hwm_field_prep(u32 mask, u32 val)
-+{
-+	return (val << __bf_shf(mask)) & mask;
-+}
-+
- static void
- hwm_locked_with_pm_intel_uncore_rmw(struct hwm_drvdata *ddat,
- 				    i915_reg_t reg, u32 clear, u32 set)
-@@ -112,7 +118,7 @@ hwm_field_scale_and_write(struct hwm_drvdata *ddat, i915_reg_t rgadr,
- 	nval = DIV_ROUND_CLOSEST_ULL((u64)lval << nshift, scale_factor);
- 
- 	bits_to_clear = field_msk;
--	bits_to_set = FIELD_PREP(field_msk, nval);
-+	bits_to_set = hwm_field_prep(field_msk, nval);
- 
- 	hwm_locked_with_pm_intel_uncore_rmw(ddat, rgadr,
- 					    bits_to_clear, bits_to_set);
+Riana Tauro (1):
+  drm/i915/guc/slpc: Add selftest for slpc tile-tile interaction
+
+ drivers/gpu/drm/i915/gt/selftest_slpc.c | 60 +++++++++++++++++++++++++
+ 1 file changed, 60 insertions(+)
+
 -- 
-2.38.0
+2.25.1
 
