@@ -2,46 +2,81 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EC3D613799
-	for <lists+intel-gfx@lfdr.de>; Mon, 31 Oct 2022 14:14:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC7066137F7
+	for <lists+intel-gfx@lfdr.de>; Mon, 31 Oct 2022 14:27:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DFA610E2AE;
-	Mon, 31 Oct 2022 13:14:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C198910E2A0;
+	Mon, 31 Oct 2022 13:27:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 419A110E294;
- Mon, 31 Oct 2022 13:14:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667222089; x=1698758089;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=bOYyvu37r93/EG7L+GbiMD7vVm7Z4A8ySPIgr3cIehM=;
- b=iXVTGEwlG/yzF/eSELzzIcpTC1vnwScWE0hLsG5ujvJCiDSNV0VhOaHs
- VhlGb7emuHgibblVYkVhsaPxYz/kjayqxsifIje43Tf6axO3y6p39Bl95
- SdsJ9tteopjWN6wfxHakx1xt0fcB5PX0rj34XtmMIkHMIifvxsvVCUMoj
- dsfKAp2fXSKIQHvrzf/+68cWI8fZdyz2v6brYvHBjIiHCJfQOF5W3C7wk
- S3NkVRS9vHT0Sjmm1QZ1FounntHo1teCuy95TOgfgsbcEatvamxgFcAm8
- flMkEDgDa0+F7VkJBrTaEswoMZrOyJ6XZnmJQUgLhQOmx4Vvj02Mt+bsY g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10516"; a="292186873"
-X-IronPort-AV: E=Sophos;i="5.95,228,1661842800"; d="scan'208";a="292186873"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2022 06:14:48 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10516"; a="808548703"
-X-IronPort-AV: E=Sophos;i="5.95,228,1661842800"; d="scan'208";a="808548703"
-Received: from wboyer-ubuntu01.jf.intel.com ([10.54.75.13])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2022 06:14:48 -0700
-From: Wayne Boyer <wayne.boyer@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 31 Oct 2022 06:15:09 -0700
-Message-Id: <20221031131509.3411195-1-wayne.boyer@intel.com>
-X-Mailer: git-send-email 2.37.3
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B95C10E2A4
+ for <intel-gfx@lists.freedesktop.org>; Mon, 31 Oct 2022 13:27:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1667222838;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=GwqNSS0OJIleR6uoXEXg4AgYpmJqcWP2KGT201SIVMg=;
+ b=W0vqrJETrrXTqQoG3vpBmoqKSRrJS1/Jq7LTpPu+mO9deitZfgbdUDFUfCZ5bixBYlMIUZ
+ GrDC02uosAahqXIn6bqCVSZB6T87vh0yNDdytr1uBX2vmgQpsTb5GxCpQz186gv0yM5s91
+ Ju+RHUdGinbYv4UwP1yzMQLflk8HTSQ=
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
+ [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-608-qsuNRuM0OqaT15S3nh7Q4w-1; Mon, 31 Oct 2022 09:27:17 -0400
+X-MC-Unique: qsuNRuM0OqaT15S3nh7Q4w-1
+Received: by mail-wr1-f72.google.com with SMTP id
+ e21-20020adfa455000000b002365c221b59so3082805wra.22
+ for <intel-gfx@lists.freedesktop.org>; Mon, 31 Oct 2022 06:27:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=GwqNSS0OJIleR6uoXEXg4AgYpmJqcWP2KGT201SIVMg=;
+ b=egIIHwmlTHkXZvKN5LozM+4k3R/86f27guETFu5FT8w6/DS0Sl2F+/eCvYPm7/kJxs
+ W8QKl8/9833e2RE68V7DfnpPX1mia2bE9QACb++MSIGvA2gaQv1hxy6PpKeOh69OEfVp
+ rvvxEeCloKgQYtaBYNz0q6AN1HZXXpShKT4eEi6o5BqmivwZC0gPhTmuOZK0Leu3nKrr
+ 9H716nZZ4uVjeRM+F3MI3tl6E/NCvMFGmNeojNIPMbnQhCMq28mHVs7YoWnM+6/TpsqP
+ o4uFn1HO/wfk6VGahdK0B9CyTpByDqrEHi1P9RZLuXTeM4Aq6I5KAO1MoOyMABFvrtU/
+ JA1w==
+X-Gm-Message-State: ACrzQf0HrwfagwUdweepq4ikgENOi/9UaCh7BOYIhRBgDSlZXR+t4bLF
+ epRSmAzEad9SeasT+V0ALeeF/kkhAjgzST8+ky9jLHZJkBXMnkg5E2jshosdocDSEyiipz3nYU/
+ h/duf9Z4i7lFgEEsaHHEHA7g9gQLV
+X-Received: by 2002:adf:ec8a:0:b0:236:5b80:da83 with SMTP id
+ z10-20020adfec8a000000b002365b80da83mr7858625wrn.509.1667222835981; 
+ Mon, 31 Oct 2022 06:27:15 -0700 (PDT)
+X-Google-Smtp-Source: AMsMyM4XoYVkE5jE7vlhuKQ/BuqMv6qQj/pE66jVA36/qVXv1WZdIDiMFN0/ixJs2zjwBzGxtBPgyA==
+X-Received: by 2002:adf:ec8a:0:b0:236:5b80:da83 with SMTP id
+ z10-20020adfec8a000000b002365b80da83mr7858599wrn.509.1667222835772; 
+ Mon, 31 Oct 2022 06:27:15 -0700 (PDT)
+Received: from [192.168.1.130] (205.pool92-176-231.dynamic.orange.es.
+ [92.176.231.205]) by smtp.gmail.com with ESMTPSA id
+ bg37-20020a05600c3ca500b003b477532e66sm25116881wmb.2.2022.10.31.06.27.14
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 31 Oct 2022 06:27:15 -0700 (PDT)
+Message-ID: <0fe3974c-de66-9eaa-b56a-ed1d07644e4c@redhat.com>
+Date: Mon, 31 Oct 2022 14:27:13 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/dg2: Introduce Wa_18017747507
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
+ airlied@gmail.com, sam@ravnborg.org, mripard@kernel.org,
+ maarten.lankhorst@linux.intel.com
+References: <20221024111953.24307-1-tzimmermann@suse.de>
+ <20221024111953.24307-15-tzimmermann@suse.de>
+From: Javier Martinez Canillas <javierm@redhat.com>
+In-Reply-To: <20221024111953.24307-15-tzimmermann@suse.de>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v2 14/21] drm/fb-helper: Rename
+ drm_fb_helper_unregister_fbi() to use _info postfix
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,48 +89,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: linux-hyperv@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ virtualization@lists.linux-foundation.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-samsung-soc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
+ xen-devel@lists.xenproject.org, linux-sunxi@lists.linux.dev,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ etnaviv@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ spice-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-mips@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ freedreno@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-WA 18017747507 applies to all DG2 skus.
+On 10/24/22 13:19, Thomas Zimmermann wrote:
+> Rename drm_fb_helper_unregister_fbi() to drm_fb_helper_unregister_info()
+> as part of unifying the naming within fbdev helpers. Adapt drivers. No
+> functional changes.
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> ---
 
-BSpec: 56035, 46121, 68173
+Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
 
-Signed-off-by: Wayne Boyer <wayne.boyer@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt_regs.h     | 3 +++
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 3 +++
- 2 files changed, 6 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-index f4624262dc81..27b2641e1a53 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-@@ -501,6 +501,9 @@
- #define VF_PREEMPTION				_MMIO(0x83a4)
- #define   PREEMPTION_VERTEX_COUNT		REG_GENMASK(15, 0)
- 
-+#define VFG_PREEMPTION_CHICKEN			_MMIO(0x83b4)
-+#define  POLYGON_TRIFAN_LINELOOP_DISABLE	REG_BIT(4)
-+
- #define GEN8_RC6_CTX_INFO			_MMIO(0x8504)
- 
- #define XEHP_SQCM				MCR_REG(0x8724)
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 2a35e7e66625..3cdf5c24dbc5 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -2975,6 +2975,9 @@ general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_li
- 		 * Wa_22015475538:dg2
- 		 */
- 		wa_mcr_write_or(wal, LSC_CHICKEN_BIT_0_UDW, DIS_CHAIN_2XSIMD8);
-+
-+		/* Wa_18017747507:dg2 */
-+		wa_masked_en(wal, VFG_PREEMPTION_CHICKEN, POLYGON_TRIFAN_LINELOOP_DISABLE);
- 	}
- }
- 
 -- 
-2.37.3
+Best regards,
+
+Javier Martinez Canillas
+Core Platforms
+Red Hat
 
