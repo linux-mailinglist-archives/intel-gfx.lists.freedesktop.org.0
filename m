@@ -1,79 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08E716140E6
-	for <lists+intel-gfx@lfdr.de>; Mon, 31 Oct 2022 23:53:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E1836140FE
+	for <lists+intel-gfx@lfdr.de>; Mon, 31 Oct 2022 23:56:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEF6C10E1E6;
-	Mon, 31 Oct 2022 22:53:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFB5C10E230;
+	Mon, 31 Oct 2022 22:56:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B2C610E1E6
- for <intel-gfx@lists.freedesktop.org>; Mon, 31 Oct 2022 22:53:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1667256796;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=bHpC1zf1qV1jmlc1wntYS1OKLTiiLa4Edpg3f0kbUyY=;
- b=BN+EvRRauibQvs3QghlcOMA5pe5ImWI5cEWd7QybddMNxesYL4CaSpebsOAmomxq+/mB7/
- 3s2O/DNzba+UPTrsdpDQ5wb+q7FHhFSFz5199z3lEZrtONUodBbfoZRBxqsGkReZ+BDQUp
- LWO6ZFL5YEgD5CzvgLxgVboO1WWxvyE=
-Received: from mail-il1-f200.google.com (mail-il1-f200.google.com
- [209.85.166.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-564-Ob-NsJGAO8C_aR916iWcOQ-1; Mon, 31 Oct 2022 18:53:14 -0400
-X-MC-Unique: Ob-NsJGAO8C_aR916iWcOQ-1
-Received: by mail-il1-f200.google.com with SMTP id
- w13-20020a056e021c8d00b00300ad5b16a0so3275658ill.7
- for <intel-gfx@lists.freedesktop.org>; Mon, 31 Oct 2022 15:53:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=bHpC1zf1qV1jmlc1wntYS1OKLTiiLa4Edpg3f0kbUyY=;
- b=prmb60fnIUr5AqIYaCAZ12M0zdtBB2mVsZtfNn+FWPecrYAkK8Ueqtv7+QyXpWBgxu
- 2IayhYFP/gmHxzvzIJHmScZ86C2nkfawNaSOl8+BIF3wH6sDXQhJe8vRXvnvaNh7OJb2
- BBt3VKPHfZbpTG+me+6xjT0lc73+TYzKhr/Of17CK0+jPY8PtYqTU9kwn4TPCd2ql+Qq
- 6RiMjlCoft1rnDPE7hcHSeYfOqNcnz9KCogT1GfXOKlBmfPT0azy93oz2RNQeMY6Zy5k
- 3zgCRQ/sPA6xU9S++yYyCPoAWRjMNAGSHoGsLNK2d8FvoeztBUPzlQve/4ieUNMxc87G
- sOzQ==
-X-Gm-Message-State: ACrzQf3M8qPajLESMhGb+CnlsY8wfRQiiKolxgZBJ/RtyreCTtN+c9Lt
- ywz86HTGHAULK59g42At74wkwbi1FjMRvdq9uE7gRxdThOTlCv3AQuu1AdlUGVcvspdNOWo40vP
- 4GTKXa4dVe6P8Hh6NeLm/uRJ5xPM1
-X-Received: by 2002:a05:6e02:180c:b0:2fc:4018:9440 with SMTP id
- a12-20020a056e02180c00b002fc40189440mr7991816ilv.225.1667256793694; 
- Mon, 31 Oct 2022 15:53:13 -0700 (PDT)
-X-Google-Smtp-Source: AMsMyM7liCEme2wsc4XzJa+HajVmv1KVpsxVcMQII15KI4qdQbhYdKRKQskOMruD/YfHk1W7Cq0evQ==
-X-Received: by 2002:a05:6e02:180c:b0:2fc:4018:9440 with SMTP id
- a12-20020a056e02180c00b002fc40189440mr7991769ilv.225.1667256793463; 
- Mon, 31 Oct 2022 15:53:13 -0700 (PDT)
-Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
- g15-20020a02850f000000b00372bbd04b75sm3200984jai.87.2022.10.31.15.53.12
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 31 Oct 2022 15:53:12 -0700 (PDT)
-Date: Mon, 31 Oct 2022 16:53:11 -0600
-From: Alex Williamson <alex.williamson@redhat.com>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Message-ID: <20221031165311.0698e1ea.alex.williamson@redhat.com>
-In-Reply-To: <Y1wjFNxwPRm7S6yZ@nvidia.com>
-References: <0-v1-4991695894d8+211-vfio_iommufd_jgg@nvidia.com>
- <10-v1-4991695894d8+211-vfio_iommufd_jgg@nvidia.com>
- <20221026153133.44dc05c8.alex.williamson@redhat.com>
- <Y1wjFNxwPRm7S6yZ@nvidia.com>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-redhat-linux-gnu)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9022410E235
+ for <intel-gfx@lists.freedesktop.org>; Mon, 31 Oct 2022 22:56:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1667257000; x=1698793000;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=8v/u0ihCrWabXh+la3Ye+5kbCPLzp8DJmr7I5UYeR0s=;
+ b=a574hHTKis4YywxWvd2z33l+kV5QTEbch3SKnUJCxrKEWNP0VZZaIQln
+ yrMkPfgep+zvqVe4V3FBsBty/4mBH8vAfKvCIqwDmUzc6OiAzPwICpXy+
+ RyMbj2a6cR+a7nv4VwQQSKkC//wPhKf84SSJHLIPjsJo8dEbRfICjz7bU
+ pawri1dLufDh4avyRZzyr6PgMpAAFG7PUl1KgznooxQTuuUCrClYTcHFp
+ 5cbTUMdeWM/JrYqhdmBXZDi7zmykfzAHjg4iVqeUx/WdcishFgkv9xfX8
+ jEuxyklbdEd2QLzF1Exl+siqp69lAuYeTp5Khl+IAbaVdOiPOj2xRvYEO g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10517"; a="335679205"
+X-IronPort-AV: E=Sophos;i="5.95,229,1661842800"; d="scan'208";a="335679205"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2022 15:56:39 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10517"; a="584819769"
+X-IronPort-AV: E=Sophos;i="5.95,229,1661842800"; d="scan'208";a="584819769"
+Received: from anushasr-mobl7.jf.intel.com ([10.24.14.130])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2022 15:56:37 -0700
+From: Anusha Srivatsa <anusha.srivatsa@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 31 Oct 2022 15:56:47 -0700
+Message-Id: <20221031225648.552363-1-anusha.srivatsa@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 10/10] iommufd: Allow iommufd to supply
- /dev/vfio/vfio
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/display: Do both crawl and squash
+ when changing cdclk
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,63 +56,236 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kvm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Vineeth Vijayan <vneethv@linux.ibm.com>,
- Diana Craciun <diana.craciun@oss.nxp.com>,
- Alexander Gordeev <agordeev@linux.ibm.com>, David Airlie <airlied@gmail.com>,
- Longfang Liu <liulongfang@huawei.com>, linux-s390@vger.kernel.org,
- Yi Liu <yi.l.liu@intel.com>, Matthew Rosato <mjrosato@linux.ibm.com>,
- Will Deacon <will@kernel.org>, Joerg Roedel <joro@8bytes.org>,
- Halil Pasic <pasic@linux.ibm.com>, iommu@lists.linux.dev,
- Nicolin Chen <nicolinc@nvidia.com>,
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- intel-gfx@lists.freedesktop.org, Jason Herne <jjherne@linux.ibm.com>,
- Eric Farman <farman@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>, Eric Auger <eric.auger@redhat.com>,
- Harald Freudenberger <freude@linux.ibm.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gvt-dev@lists.freedesktop.org,
- Tony Krowiak <akrowiak@linux.ibm.com>, Yishai Hadas <yishaih@nvidia.com>,
- Cornelia Huck <cohuck@redhat.com>, Peter Oberparleiter <oberpar@linux.ibm.com>,
- Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
- Sven Schnelle <svens@linux.ibm.com>, Daniel Vetter <daniel@ffwll.ch>,
- Robin Murphy <robin.murphy@arm.com>, Lu Baolu <baolu.lu@linux.intel.com>
+Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 28 Oct 2022 15:44:36 -0300
-Jason Gunthorpe <jgg@nvidia.com> wrote:
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-> On Wed, Oct 26, 2022 at 03:31:33PM -0600, Alex Williamson wrote:
-> > On Tue, 25 Oct 2022 15:50:45 -0300
-> > Jason Gunthorpe <jgg@nvidia.com> wrote:
-> >   
-> > > If the VFIO container is compiled out, give a kconfig option for iommufd
-> > > to provide the miscdev node with the same name and permissions as vfio
-> > > uses.
-> > > 
-> > > The compatibility node supports the same ioctls as VFIO and automatically
-> > > enables the VFIO compatible pinned page accounting mode.  
-> > 
-> > I think I'd like to see some sort of breadcrumb when /dev/vfio/vfio is
-> > provided by something other than the vfio container code.  If we intend
-> > to include this before P2P is resolved, that breadcrumb   
-> 
-> I don't belive I can get P2P done soon enough. I plan to do it after
-> this is merged. Right now these two series are taking all my time.
-> 
-> > (dmesg I'm guessing) might also list any known limitations of the
-> > compatibility to save time with debugging.  Thanks,  
-> 
-> Yes, that makes sense.
-> 
-> Do you want a dmesg at module load time, on every open, or a sysfs
-> something? What seems like it would make it into a bug report?
+For MTL, changing cdclk from between certain frequencies has
+both squash and crawl. Use the current cdclk config and
+the new(desired) cdclk config to construtc a mid cdclk config.
+Set the cdclk twice:
+- Current cdclk -> mid cdclk
+- mid cdclk -> desired cdclk
 
-I think dmesg at module load time should probably be ok, every open
-seems like harassment and sysfs would require updated support in
-various bug reporting tools.  Users are often terrible about reporting
-full dmesg in bugs, but they do often filter it for "IOMMU" or "VFIO",
-so keep that in mind when crafting the log message.  Thanks,
+v2: Add check in intel_modeset_calc_cdclk() to avoid cdclk
+change via modeset for platforms that support squash_crawl sequences(Ville)
 
-Alex
+v3: Add checks for:
+- scenario where only slow clock is used and
+cdclk is actually 0 (bringing up display).
+- PLLs are on before looking up the waveform.
+- Squash and crawl capability checks.(Ville)
+
+v4: Rebase
+- Move checks to be more consistent (Ville)
+- Add comments (Bala)
+v5:
+- Further small changes. Move checks around.
+- Make if-else better looking (Ville)
+
+Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cdclk.c | 156 +++++++++++++++++----
+ 1 file changed, 128 insertions(+), 28 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index eada931cb1c8..d79cf282faa8 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -1716,37 +1716,74 @@ static void dg2_cdclk_squash_program(struct drm_i915_private *i915,
+ 	intel_de_write(i915, CDCLK_SQUASH_CTL, squash_ctl);
+ }
+ 
+-static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+-			  const struct intel_cdclk_config *cdclk_config,
+-			  enum pipe pipe)
++static int cdclk_squash_divider(u16 waveform)
++{
++	return hweight16(waveform ?: 0xffff);
++}
++
++static bool cdclk_crawl_and_squash(struct drm_i915_private *i915,
++				   const struct intel_cdclk_config *old_cdclk_config,
++				   const struct intel_cdclk_config *new_cdclk_config,
++				   struct intel_cdclk_config *mid_cdclk_config)
++{
++	u16 old_waveform, new_waveform, mid_waveform;
++	int size = 16;
++	int div = 2;
++
++	/* Return if both Squash and Crawl are not present */
++	if (!HAS_CDCLK_CRAWL(i915) || !HAS_CDCLK_SQUASH(i915))
++		return false;
++
++	old_waveform = cdclk_squash_waveform(i915, old_cdclk_config->cdclk);
++	new_waveform = cdclk_squash_waveform(i915, new_cdclk_config->cdclk);
++
++	/* Return if Squash only or Crawl only is the desired action */
++	if (old_cdclk_config->vco <= 0 || new_cdclk_config->vco <= 0 ||
++	    old_cdclk_config->vco == new_cdclk_config->vco ||
++	    old_waveform == new_waveform)
++		return false;
++
++	*mid_cdclk_config = *new_cdclk_config;
++
++	/* Populate the mid_cdclk_config accordingly.
++	 * - If moving to a higher cdclk, the desired action is squashing.
++	 * The mid cdclk config should have the new (squash) waveform.
++	 * - If moving to a lower cdclk, the desired action is crawling.
++	 * The mid cdclk config should have the new vco.
++	 */
++
++	if (cdclk_squash_divider(new_waveform) > cdclk_squash_divider(old_waveform)) {
++		mid_cdclk_config->vco = old_cdclk_config->vco;
++		mid_waveform = new_waveform;
++	} else {
++		mid_cdclk_config->vco = new_cdclk_config->vco;
++		mid_waveform = old_waveform;
++	}
++
++	mid_cdclk_config->cdclk = DIV_ROUND_CLOSEST(cdclk_squash_divider(mid_waveform) *
++						    mid_cdclk_config->vco, size * div);
++
++	/* make sure the mid clock came out sane */
++
++	drm_WARN_ON(&i915->drm, mid_cdclk_config->cdclk <
++		    min(old_cdclk_config->cdclk, new_cdclk_config->cdclk));
++	drm_WARN_ON(&i915->drm, mid_cdclk_config->cdclk >
++		    i915->display.cdclk.max_cdclk_freq);
++	drm_WARN_ON(&i915->drm, cdclk_squash_waveform(i915, mid_cdclk_config->cdclk) !=
++		    mid_waveform);
++
++	return true;
++}
++
++static void _bxt_set_cdclk(struct drm_i915_private *dev_priv,
++			   const struct intel_cdclk_config *cdclk_config,
++			   enum pipe pipe)
+ {
+ 	int cdclk = cdclk_config->cdclk;
+ 	int vco = cdclk_config->vco;
+ 	u32 val;
+ 	u16 waveform;
+ 	int clock;
+-	int ret;
+-
+-	/* Inform power controller of upcoming frequency change. */
+-	if (DISPLAY_VER(dev_priv) >= 11)
+-		ret = skl_pcode_request(&dev_priv->uncore, SKL_PCODE_CDCLK_CONTROL,
+-					SKL_CDCLK_PREPARE_FOR_CHANGE,
+-					SKL_CDCLK_READY_FOR_CHANGE,
+-					SKL_CDCLK_READY_FOR_CHANGE, 3);
+-	else
+-		/*
+-		 * BSpec requires us to wait up to 150usec, but that leads to
+-		 * timeouts; the 2ms used here is based on experiment.
+-		 */
+-		ret = snb_pcode_write_timeout(&dev_priv->uncore,
+-					      HSW_PCODE_DE_WRITE_FREQ_REQ,
+-					      0x80000000, 150, 2);
+-	if (ret) {
+-		drm_err(&dev_priv->drm,
+-			"Failed to inform PCU about cdclk change (err %d, freq %d)\n",
+-			ret, cdclk);
+-		return;
+-	}
+ 
+ 	if (HAS_CDCLK_CRAWL(dev_priv) && dev_priv->display.cdclk.hw.vco > 0 && vco > 0) {
+ 		if (dev_priv->display.cdclk.hw.vco != vco)
+@@ -1781,6 +1818,44 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+ 
+ 	if (pipe != INVALID_PIPE)
+ 		intel_crtc_wait_for_next_vblank(intel_crtc_for_pipe(dev_priv, pipe));
++}
++
++static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
++			  const struct intel_cdclk_config *cdclk_config,
++			  enum pipe pipe)
++{
++	struct intel_cdclk_config mid_cdclk_config;
++	int cdclk = cdclk_config->cdclk;
++	int ret;
++
++	/* Inform power controller of upcoming frequency change. */
++	if (DISPLAY_VER(dev_priv) >= 11)
++		ret = skl_pcode_request(&dev_priv->uncore, SKL_PCODE_CDCLK_CONTROL,
++					SKL_CDCLK_PREPARE_FOR_CHANGE,
++					SKL_CDCLK_READY_FOR_CHANGE,
++					SKL_CDCLK_READY_FOR_CHANGE, 3);
++	else
++		/*
++		 * BSpec requires us to wait up to 150usec, but that leads to
++		 * timeouts; the 2ms used here is based on experiment.
++		 */
++		ret = snb_pcode_write_timeout(&dev_priv->uncore,
++					      HSW_PCODE_DE_WRITE_FREQ_REQ,
++					      0x80000000, 150, 2);
++	if (ret) {
++		drm_err(&dev_priv->drm,
++			"Failed to inform PCU about cdclk change (err %d, freq %d)\n",
++			ret, cdclk);
++		return;
++	}
++
++	if (cdclk_crawl_and_squash(dev_priv, &dev_priv->display.cdclk.hw,
++				   cdclk_config, &mid_cdclk_config)) {
++		_bxt_set_cdclk(dev_priv, &mid_cdclk_config, pipe);
++		_bxt_set_cdclk(dev_priv, cdclk_config, pipe);
++	} else {
++		_bxt_set_cdclk(dev_priv, cdclk_config, pipe);
++	}
+ 
+ 	if (DISPLAY_VER(dev_priv) >= 11) {
+ 		ret = snb_pcode_write(&dev_priv->uncore, SKL_PCODE_CDCLK_CONTROL,
+@@ -1953,6 +2028,26 @@ void intel_cdclk_uninit_hw(struct drm_i915_private *i915)
+ 		skl_cdclk_uninit_hw(i915);
+ }
+ 
++static bool intel_cdclk_can_crawl_and_squash(struct drm_i915_private *i915,
++					     const struct intel_cdclk_config *a,
++					     const struct intel_cdclk_config *b)
++{
++	u16 old_waveform;
++	u16 new_waveform;
++
++	if (a->vco == 0 || b->vco == 0)
++		return false;
++
++	if (!HAS_CDCLK_CRAWL(i915) && !HAS_CDCLK_SQUASH(i915))
++		return false;
++
++	old_waveform = cdclk_squash_waveform(i915, a->cdclk);
++	new_waveform = cdclk_squash_waveform(i915, b->cdclk);
++
++	return a->vco != b->vco &&
++	       old_waveform != new_waveform;
++}
++
+ static bool intel_cdclk_can_crawl(struct drm_i915_private *dev_priv,
+ 				  const struct intel_cdclk_config *a,
+ 				  const struct intel_cdclk_config *b)
+@@ -2759,9 +2854,14 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
+ 			pipe = INVALID_PIPE;
+ 	}
+ 
+-	if (intel_cdclk_can_squash(dev_priv,
+-				   &old_cdclk_state->actual,
+-				   &new_cdclk_state->actual)) {
++	if (intel_cdclk_can_crawl_and_squash(dev_priv,
++					     &old_cdclk_state->actual,
++					     &new_cdclk_state->actual)) {
++		drm_dbg_kms(&dev_priv->drm,
++			    "Can change cdclk via crawling and squashing\n");
++	} else if (intel_cdclk_can_squash(dev_priv,
++					&old_cdclk_state->actual,
++					&new_cdclk_state->actual)) {
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "Can change cdclk via squashing\n");
+ 	} else if (intel_cdclk_can_crawl(dev_priv,
+-- 
+2.25.1
 
