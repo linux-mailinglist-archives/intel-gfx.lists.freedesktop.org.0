@@ -2,32 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3219D614601
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Nov 2022 09:49:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C98D61460D
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Nov 2022 09:52:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6ADF810E323;
-	Tue,  1 Nov 2022 08:49:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEF9010E32D;
+	Tue,  1 Nov 2022 08:52:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 191BC10E323;
- Tue,  1 Nov 2022 08:49:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 11C9FA77A5;
- Tue,  1 Nov 2022 08:49:37 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0972001486499969761=="
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73B2A10E323;
+ Tue,  1 Nov 2022 08:52:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1667292752; x=1698828752;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=j0y/gU0N76hksTyR6uOy3Ksq4bC7H9H77jI0W5EJonU=;
+ b=CWZyakall1Y2C935FeUvkWU4FOzlvvGP2QjgG18d91enk7hfnmxCJE0h
+ ZAt0LgeIaTre/TKQ5j+InwkMITlgYHP1oKe0HOT3fineHjSxfvkvvpXsr
+ eX15Y5FcuYs8CDC2dN+Klx2AG9ly0aoEC7frOA7gjaigk+JvV3FZlpU/v
+ isCt8/1AQRtXZo6Hh5GKnwdHr3K5kOBeN2le9eeM3qfhhuiA573NJMgAQ
+ x+ZUeVuKJtNUyBNGZaE1OF9Vqio0+yS7caA6Bs4w1IiJturfSq6LllQiS
+ iXkXtDiKPR+Tyg1Y4+lwmJfWiWOm+CyM08KECTpBJSMKs4ReuzvudbgyB g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10517"; a="307821406"
+X-IronPort-AV: E=Sophos;i="5.95,230,1661842800"; d="scan'208";a="307821406"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2022 01:52:31 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10517"; a="667127094"
+X-IronPort-AV: E=Sophos;i="5.95,230,1661842800"; d="scan'208";a="667127094"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by orsmga001.jf.intel.com with SMTP; 01 Nov 2022 01:52:26 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 01 Nov 2022 10:52:26 +0200
+Date: Tue, 1 Nov 2022 10:52:26 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jason Baron <jbaron@akamai.com>
+Message-ID: <Y2DeSlGI38fvzvED@intel.com>
+References: <87a65pfsbq.fsf@intel.com>
+ <c1807585-f6c8-c05d-bc20-c6a540e59814@akamai.com>
+ <CAJfuBxxWVBxL29sXS3XoE5Es9HTbVyFUi9bQFYNupJAERffAew@mail.gmail.com>
+ <Y1qqurH/lG0u+3ky@intel.com>
+ <CAJfuBxzpG+C1ARLs3c_znXECEU7Ldg8RhruLMUXA67w+DwcrOQ@mail.gmail.com>
+ <Y1rllFeOnT9/PQVA@intel.com>
+ <CAJfuBxw_YFvCtHMwVE0K0fa5GJbrZy4hTOSS9FebeDs6fxUUCA@mail.gmail.com>
+ <Y1/In+ZBzNguVNoy@intel.com>
+ <CAJfuBxxHNXHEWCEPXnPTh64dq4igaddnrU27NT=OHASmnxgudA@mail.gmail.com>
+ <9ff84a99-e500-625e-ba9d-20cd752d7ff4@akamai.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Swati Sharma" <swati2.sharma@intel.com>
-Date: Tue, 01 Nov 2022 08:49:37 -0000
-Message-ID: <166729257706.13545.13948075563264969853@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221101075927.15146-1-swati2.sharma@intel.com>
-In-Reply-To: <20221101075927.15146-1-swati2.sharma@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/dsc=3A_Source_supports_DSC_from_DISPLAY=5FVER_=3E=3D_11?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <9ff84a99-e500-625e-ba9d-20cd752d7ff4@akamai.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v7 0/9] dyndbg: drm.debug adaptation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,159 +69,180 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, jim.cromie@gmail.com,
+ Greg KH <gregkh@linuxfoundation.org>, intel-gfx@lists.freedesktop.org,
+ linux@rasmusvillemoes.dk, linux-kernel@vger.kernel.org, seanpaul@chromium.org,
+ amd-gfx@lists.freedesktop.org, daniel.vetter@ffwll.ch, joe@perches.com,
+ intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0972001486499969761==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Oct 31, 2022 at 08:20:54PM -0400, Jason Baron wrote:
+> 
+> 
+> On 10/31/22 6:11 PM, jim.cromie@gmail.com wrote:
+> > On Mon, Oct 31, 2022 at 7:07 AM Ville Syrjälä
+> > <ville.syrjala@linux.intel.com> wrote:
+> >> On Sun, Oct 30, 2022 at 08:42:52AM -0600, jim.cromie@gmail.com wrote:
+> >>> On Thu, Oct 27, 2022 at 2:10 PM Ville Syrjälä
+> >>> <ville.syrjala@linux.intel.com> wrote:
+> >>>> On Thu, Oct 27, 2022 at 01:55:39PM -0600, jim.cromie@gmail.com wrote:
+> >>>>> On Thu, Oct 27, 2022 at 9:59 AM Ville Syrjälä
+> >>>>> <ville.syrjala@linux.intel.com> wrote:
+> >>>>>> On Thu, Oct 27, 2022 at 09:37:52AM -0600, jim.cromie@gmail.com wrote:
+> >>>>>>> On Thu, Oct 27, 2022 at 9:08 AM Jason Baron <jbaron@akamai.com> wrote:
+> >>>>>>>>
+> >>>>>>>>
+> >>>>>>>> On 10/21/22 05:18, Jani Nikula wrote:
+> >>>>>>>>> On Thu, 20 Oct 2022, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
+> >>>>>>>>>> On Sat, Sep 24, 2022 at 03:02:34PM +0200, Greg KH wrote:
+> >>>>>>>>>>> On Sun, Sep 11, 2022 at 11:28:43PM -0600, Jim Cromie wrote:
+> >>>>>>>>>>>> hi Greg, Dan, Jason, DRM-folk,
+> >>>>>>>>>>>>
+> >>>>>>>>>>>> heres follow-up to V6:
+> >>>>>>>>>>>>    rebased on driver-core/driver-core-next for -v6 applied bits (thanks)
+> >>>>>>>>>>>>    rework drm_debug_enabled{_raw,_instrumented,} per Dan.
+> >>>>>>>>>>>>
+> >>>>>>>>>>>> It excludes:
+> >>>>>>>>>>>>    nouveau parts (immature)
+> >>>>>>>>>>>>    tracefs parts (I missed --to=Steve on v6)
+> >>>>>>>>>>>>    split _ddebug_site and de-duplicate experiment (way unready)
+> >>>>>>>>>>>>
+> >>>>>>>>>>>> IOW, its the remaining commits of V6 on which Dan gave his Reviewed-by.
+> >>>>>>>>>>>>
+> >>>>>>>>>>>> If these are good to apply, I'll rebase and repost the rest separately.
+> >>>>>>>>>>> All now queued up, thanks.
+> >>>>>>>>>> This stuff broke i915 debugs. When I first load i915 no debug prints are
+> >>>>>>>>>> produced. If I then go fiddle around in /sys/module/drm/parameters/debug
+> >>>>>>>>>> the debug prints start to suddenly work.
+> >>>>>>>>> Wait what? I always assumed the default behaviour would stay the same,
+> >>>>>>>>> which is usually how we roll. It's a regression in my books. We've got a
+> >>>>>>>>> CI farm that's not very helpful in terms of dmesg logging right now
+> >>>>>>>>> because of this.
+> >>>>>>>>>
+> >>>>>>>>> BR,
+> >>>>>>>>> Jani.
+> >>>>>>>>>
+> >>>>>>>>>
+> >>>>>>>> That doesn't sound good - so you are saying that prior to this change some
+> >>>>>>>> of the drm debugs were default enabled. But now you have to manually enable
+> >>>>>>>> them?
+> >>>>>>>>
+> >>>>>>>> Thanks,
+> >>>>>>>>
+> >>>>>>>> -Jason
+> >>>>>>>
+> >>>>>>> Im just seeing this now.
+> >>>>>>> Any new details ?
+> >>>>>> No. We just disabled it as BROKEN for now. I was just today thinking
+> >>>>>> about sending that patch out if no solutin is forthcoming soon since
+> >>>>>> we need this working before 6.1 is released.
+> >>>>>>
+> >>>>>> Pretty sure you should see the problem immediately with any driver
+> >>>>>> (at least if it's built as a module, didn't try builtin). Or at least
+> >>>>>> can't think what would make i915 any more special.
+> >>>>>>
+> >>>>> So, I should note -
+> >>>>> 99% of my time & energy on this dyndbg + drm patchset
+> >>>>> has been done using virtme,
+> >>>>> so my world-view (and dev-hack-test env) has been smaller, simpler
+> >>>>> maybe its been fatally simplistic.
+> >>>>>
+> >>>>> ive just rebuilt v6.0  (before the trouble)
+> >>>>> and run it thru my virtual home box,
+> >>>>> I didnt see any unfamiliar drm-debug output
+> >>>>> that I might have inadvertently altered somehow
+> >>>>>
+> >>>>> I have some real HW I can put a reference kernel on,0
+> >>>>> to look for the missing output, but its all gonna take some time,
+> >>>>> esp to tighten up my dev-test-env
+> >>>>>
+> >>>>> in the meantime, there is:
+> >>>>>
+> >>>>> config DRM_USE_DYNAMIC_DEBUG
+> >>>>> bool "use dynamic debug to implement drm.debug"
+> >>>>> default y
+> >>>>> depends on DRM
+> >>>>> depends on DYNAMIC_DEBUG || DYNAMIC_DEBUG_CORE
+> >>>>> depends on JUMP_LABEL
+> >>>>> help
+> >>>>>    Use dynamic-debug to avoid drm_debug_enabled() runtime overheads.
+> >>>>>    Due to callsite counts in DRM drivers (~4k in amdgpu) and 56
+> >>>>>    bytes per callsite, the .data costs can be substantial, and
+> >>>>>    are therefore configurable.
+> >>>>>
+> >>>>> Does changing the default fix things for i915 dmesg ?
+> >>>> I think we want to mark it BROKEN in addition to make sure no one
+> >>> Ok, I get the distinction now.
+> >>> youre spelling that
+> >>>    depends on BROKEN
+> >>>
+> >>> I have a notional explanation, and a conflating commit:
+> >>>
+> >>> can you eliminate
+> >>> git log -p ccc2b496324c13e917ef05f563626f4e7826bef1
+> >>>
+> >>> as the cause ?
+> >> Reverting that doesn't help.
+> >>
+> > thanks for eliminating it.
+> >
+> >>> I do need to clarify, I dont know exactly what debug/logging output
+> >>> is missing such that CI is failing
+> >> CI isn't failing. But any logs it produces are 100% useless,
+> >> as are any user reported logs.
+> >>
+> >> The debugs that are missing are anything not coming directly
+> >> from drm.ko.
+> >>
+> >> The stuff that I see being printed by i915.ko are drm_info()
+> >> and the drm_printer stuff from i915_welcome_messages(). That
+> >> also implies that drm_debug_enabled(DRM_UT_DRIVER) does at
+> >> least still work correctly.
+> >>
+> >> I suspect that the problem is just that the debug calls
+> >> aren't getting patched in when a module loads. And fiddling
+> >> with the modparam after the fact does trigger that somehow.
+> >>
+> > ok, heres the 'tape' of a virtme boot,
+> > then modprobe going wrong.
+> >
+> > [    1.785873] dyndbg:   2 debug prints in module intel_rapl_msr
+> > [    2.040598] virtme-init: udev is done
+> > virtme-init: console is ttyS0
+> >
+> >> load drm driver
+> > bash-5.2# modprobe i915
+> >
+> >> drm module is loaded 1st
+> > [    6.549451] dyndbg: add-module: drm.302 sites
+> > [    6.549991] dyndbg: class[0]: module:drm base:0 len:10 ty:0
+> > [    6.550647] dyndbg:  0: 0 DRM_UT_CORE
+> > [    6.551097] dyndbg:  1: 1 DRM_UT_DRIVER
+> > [    6.551531] dyndbg:  2: 2 DRM_UT_KMS
+> > [    6.551931] dyndbg:  3: 3 DRM_UT_PRIME
+> > [    6.552402] dyndbg:  4: 4 DRM_UT_ATOMIC
+> > [    6.552799] dyndbg:  5: 5 DRM_UT_VBL
+> > [    6.553270] dyndbg:  6: 6 DRM_UT_STATE
+> > [    6.553634] dyndbg:  7: 7 DRM_UT_LEASE
+> > [    6.554043] dyndbg:  8: 8 DRM_UT_DP
+> > [    6.554392] dyndbg:  9: 9 DRM_UT_DRMRES
+> > [    6.554776] dyndbg: module:drm attached 1 classes
+> > [    6.555241] dyndbg: 302 debug prints in module drm
+> >
+> >> here modprobe reads /etc/modprobe.d/drm-test.conf:
+> > options drm dyndbg="class DRM_UT_CORE +p; class DRM_UT_DRIVER +p"
+> > and dyndbg applies it
+> 
+> Hi,
+> 
+> I'm a bit confused with this. My understanding is that there
+> is a 'regression' here from how this used to work. But the
+> 'class' keyword is new - are we sure this is the command-line
+> we are trying to fix?
 
-== Series Details ==
+The thing we need fixed is just the bog standard drm.debug=0xe etc.
 
-Series: drm/i915/dsc: Source supports DSC from DISPLAY_VER >= 11
-URL   : https://patchwork.freedesktop.org/series/110353/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_12325 -> Patchwork_110353v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110353v1/index.html
-
-Participating hosts (40 -> 27)
-------------------------------
-
-  Missing    (13): fi-cml-u2 bat-dg2-8 bat-adlm-1 fi-icl-u2 bat-dg2-9 bat-adlp-6 bat-adlp-4 bat-adln-1 bat-rplp-1 bat-rpls-1 bat-rpls-2 bat-dg2-11 bat-jsl-1 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_110353v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-pnv-d510:        [PASS][1] -> [FAIL][2] ([i915#7229])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12325/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110353v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
-    - fi-bsw-kefka:       [FAIL][3] ([i915#6298]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12325/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110353v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#5153]: https://gitlab.freedesktop.org/drm/intel/issues/5153
-  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
-  [i915#7229]: https://gitlab.freedesktop.org/drm/intel/issues/7229
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12325 -> Patchwork_110353v1
-
-  CI-20190529: 20190529
-  CI_DRM_12325: 1a90222aa5e5bb86ffcbde5ba9611659a23f0df6 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7032: 372c56225e12578a7a4a6bcc5b79eb40b643fcde @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_110353v1: 1a90222aa5e5bb86ffcbde5ba9611659a23f0df6 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-f8de86345655 drm/i915/dsc: Source supports DSC from DISPLAY_VER >= 11
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110353v1/index.html
-
---===============0972001486499969761==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dsc: Source supports DSC from DISPLAY_VER &gt;= 11</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/110353/">https://patchwork.freedesktop.org/series/110353/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110353v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110353v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12325 -&gt; Patchwork_110353v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110353v1/index.html</p>
-<h2>Participating hosts (40 -&gt; 27)</h2>
-<p>Missing    (13): fi-cml-u2 bat-dg2-8 bat-adlm-1 fi-icl-u2 bat-dg2-9 bat-adlp-6 bat-adlp-4 bat-adln-1 bat-rplp-1 bat-rpls-1 bat-rpls-2 bat-dg2-11 bat-jsl-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_110353v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@gem_exec_gttfill@basic:<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12325/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110353v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7229">i915#7229</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12325/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110353v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12325 -&gt; Patchwork_110353v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12325: 1a90222aa5e5bb86ffcbde5ba9611659a23f0df6 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7032: 372c56225e12578a7a4a6bcc5b79eb40b643fcde @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_110353v1: 1a90222aa5e5bb86ffcbde5ba9611659a23f0df6 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>f8de86345655 drm/i915/dsc: Source supports DSC from DISPLAY_VER &gt;= 11</p>
-
-</body>
-</html>
-
---===============0972001486499969761==--
+-- 
+Ville Syrjälä
+Intel
