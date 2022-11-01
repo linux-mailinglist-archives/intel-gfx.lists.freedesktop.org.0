@@ -2,47 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAEA461486A
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Nov 2022 12:21:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A73CE61487A
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Nov 2022 12:27:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1481410E37B;
-	Tue,  1 Nov 2022 11:21:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D209B10E391;
+	Tue,  1 Nov 2022 11:27:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39DA310E37B
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Nov 2022 11:21:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667301696; x=1698837696;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=evrXQeN/+QptoGp4uK8z8Nq0zMmZVxP74NHdUzxsF/E=;
- b=mh4JVs14NaMXWVjBNWjgSfyq+yf/GswtZ/NieD0i7qOaL0Ve334vriqn
- aE8FSSzhANdyTfj4l/FDP2LSGFqTcl5pWrA6ADm+KCv0g1agjEJtokHuu
- tDXeSuA5WLcMBiOWTH2IZbjw0IVM+0ffeavYmhaFi1mdIoQErxx8jASdi
- zIEoWjM8xMtlRizmusCVyQr3VquXrz1Lx/eGBGeEZ/8loIapRPTw2YMZR
- zr3zsg9koOBfeF4x8++CXKH/DbVcixLleJCHcW2WrW5yS5Oh/KdPItaul
- WmStmTYrWiMinxRPWCRpFhNRvpjTvpgVAygwIc713cLUVwO0R27qPy3dd Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10517"; a="288826545"
-X-IronPort-AV: E=Sophos;i="5.95,230,1661842800"; d="scan'208";a="288826545"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2022 04:21:35 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10517"; a="963097559"
-X-IronPort-AV: E=Sophos;i="5.95,230,1661842800"; d="scan'208";a="963097559"
-Received: from vgovind2-mobl3.tm.intel.com ([10.237.50.40])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2022 04:21:34 -0700
-From: Vinod Govindapillai <vinod.govindapillai@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  1 Nov 2022 13:21:20 +0200
-Message-Id: <20221101112120.1138595-1-vinod.govindapillai@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3E5CE10E389;
+ Tue,  1 Nov 2022 11:27:04 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 36ADEA00FD;
+ Tue,  1 Nov 2022 11:27:04 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3630285549624316100=="
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] drm/i915: Enable SDP split for DP2.0
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Tue, 01 Nov 2022 11:27:04 -0000
+Message-ID: <166730202421.13545.8416616651514288474@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221031135703.14670-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20221031135703.14670-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Fix_up_and_test_RING=5FTIMESTAMP_on_gen4-6_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,127 +40,214 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Enable the SDP split configuration for DP2.0.
+--===============3630285549624316100==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2: Move the register handling out of compute config function (JaniN)
+== Series Details ==
 
-v3: Patch styling and register access based on platform support (JaniN)
+Series: drm/i915: Fix up and test RING_TIMESTAMP on gen4-6 (rev3)
+URL   : https://patchwork.freedesktop.org/series/110326/
+State : success
 
-v4: Rebased
+== Summary ==
 
-Bspec: 67768
-Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
----
- drivers/gpu/drm/i915/display/intel_audio.c    | 12 ++++++++++++
- drivers/gpu/drm/i915/display/intel_audio.h    |  2 ++
- drivers/gpu/drm/i915/display/intel_ddi.c      |  3 +++
- .../drm/i915/display/intel_display_types.h    |  2 ++
- drivers/gpu/drm/i915/display/intel_dp.c       | 19 +++++++++++++++++++
- 5 files changed, 38 insertions(+)
+CI Bug Log - changes from CI_DRM_12325 -> Patchwork_110326v3
+====================================================
 
-diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
-index c3176c9c89a6..415ac3960272 100644
---- a/drivers/gpu/drm/i915/display/intel_audio.c
-+++ b/drivers/gpu/drm/i915/display/intel_audio.c
-@@ -798,6 +798,18 @@ static void ilk_audio_codec_enable(struct intel_encoder *encoder,
- 	mutex_unlock(&i915->display.audio.mutex);
- }
- 
-+void intel_audio_sdp_split_update(struct intel_encoder *encoder,
-+				  const struct intel_crtc_state *crtc_state)
-+{
-+	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-+	enum transcoder trans = crtc_state->cpu_transcoder;
-+	u32 clear = crtc_state->sdp_split_enable ? 0 : AUD_ENABLE_SDP_SPLIT;
-+	u32 set = crtc_state->sdp_split_enable ? AUD_ENABLE_SDP_SPLIT : 0;
-+
-+	if (HAS_DP20(i915))
-+		intel_de_rmw(i915, AUD_DP_2DOT0_CTRL(trans), clear, set);
-+}
-+
- /**
-  * intel_audio_codec_enable - Enable the audio codec for HD audio
-  * @encoder: encoder on which to enable audio
-diff --git a/drivers/gpu/drm/i915/display/intel_audio.h b/drivers/gpu/drm/i915/display/intel_audio.h
-index 63b22131dc45..1b87257c6a17 100644
---- a/drivers/gpu/drm/i915/display/intel_audio.h
-+++ b/drivers/gpu/drm/i915/display/intel_audio.h
-@@ -22,5 +22,7 @@ void intel_audio_cdclk_change_pre(struct drm_i915_private *dev_priv);
- void intel_audio_cdclk_change_post(struct drm_i915_private *dev_priv);
- void intel_audio_init(struct drm_i915_private *dev_priv);
- void intel_audio_deinit(struct drm_i915_private *dev_priv);
-+void intel_audio_sdp_split_update(struct intel_encoder *encoder,
-+				  const struct intel_crtc_state *crtc_state);
- 
- #endif /* __INTEL_AUDIO_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index e95bde5cf060..c84b7b0e4c19 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -2917,6 +2917,9 @@ static void intel_enable_ddi(struct intel_atomic_state *state,
- 
- 	intel_vrr_enable(encoder, crtc_state);
- 
-+	/* Enable/Disable DP2.0 SDP split config before transcoder */
-+	intel_audio_sdp_split_update(encoder, crtc_state);
-+
- 	intel_enable_transcoder(crtc_state);
- 
- 	intel_crtc_vblank_on(crtc_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 7f18c052ec16..07eab71d3fc2 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1286,6 +1286,8 @@ struct intel_crtc_state {
- 	/* Forward Error correction State */
- 	bool fec_enable;
- 
-+	bool sdp_split_enable;
-+
- 	/* Pointer to master transcoder in case of tiled displays */
- 	enum transcoder master_transcoder;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 7400d6b4c587..8a1af1294c6a 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2008,6 +2008,23 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
- 	return ret;
- }
- 
-+static void
-+intel_dp_audio_compute_config(struct intel_encoder *encoder,
-+			      struct intel_crtc_state *pipe_config,
-+			      struct drm_connector_state *conn_state)
-+{
-+	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-+	struct drm_connector *connector = conn_state->connector;
-+
-+	pipe_config->sdp_split_enable =
-+		    intel_dp_has_audio(encoder, pipe_config, conn_state) &&
-+		    intel_dp_is_uhbr(pipe_config);
-+
-+	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] SDP split enable: %s\n",
-+		    connector->base.id, connector->name,
-+		    str_yes_no(pipe_config->sdp_split_enable));
-+}
-+
- int
- intel_dp_compute_config(struct intel_encoder *encoder,
- 			struct intel_crtc_state *pipe_config,
-@@ -2091,6 +2108,8 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 		adjusted_mode->crtc_clock /= n;
- 	}
- 
-+	intel_dp_audio_compute_config(encoder, pipe_config, conn_state);
-+
- 	intel_link_compute_m_n(output_bpp,
- 			       pipe_config->lane_count,
- 			       adjusted_mode->crtc_clock,
--- 
-2.34.1
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110326v3/index.html
+
+Participating hosts (40 -> 28)
+------------------------------
+
+  Additional (1): fi-tgl-mst 
+  Missing    (13): fi-cml-u2 bat-dg2-8 bat-adlm-1 bat-dg2-9 bat-adlp-6 bat-adlp-4 fi-hsw-4770 bat-adln-1 bat-rplp-1 bat-rpls-1 bat-rpls-2 bat-dg2-11 bat-jsl-1 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_110326v3:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_pm_rpm@module-reload:
+    - {fi-tgl-mst}:       NOTRUN -> [WARN][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110326v3/fi-tgl-mst/igt@i915_pm_rpm@module-reload.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_110326v3 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
+    - fi-bsw-kefka:       [FAIL][2] ([i915#6298]) -> [PASS][3]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12325/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110326v3/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-2:
+    - fi-icl-u2:          [DMESG-WARN][4] ([i915#2867]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12325/fi-icl-u2/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-2.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110326v3/fi-icl-u2/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-2.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [fdo#110189]: https://bugs.freedesktop.org/show_bug.cgi?id=110189
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3987]: https://gitlab.freedesktop.org/drm/intel/issues/3987
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#5122]: https://gitlab.freedesktop.org/drm/intel/issues/5122
+  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
+  [i915#6434]: https://gitlab.freedesktop.org/drm/intel/issues/6434
+  [i915#6596]: https://gitlab.freedesktop.org/drm/intel/issues/6596
+  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12325 -> Patchwork_110326v3
+
+  CI-20190529: 20190529
+  CI_DRM_12325: 1a90222aa5e5bb86ffcbde5ba9611659a23f0df6 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7032: 372c56225e12578a7a4a6bcc5b79eb40b643fcde @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_110326v3: 1a90222aa5e5bb86ffcbde5ba9611659a23f0df6 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+d0c15ceecb71 drm/i915/selftests: Run the perf MI_BB tests on gen4/5
+51915c6b622a drm/i915/selftests: Test RING_TIMESTAMP on gen4/5
+3b2d1ac48d95 drm/i915/selftests: Run MI_BB perf selftests on SNB
+a82ff38edfda drm/i915: Fix cs timestamp frequency for cl/bw
+2a7e71fe6a2f drm/i915: Stop claiming cs timestamp frquency on gen2/3
+150c3764f31b drm/i915: Fix cs timestamp frequency for ctg/elk/ilk
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110326v3/index.html
+
+--===============3630285549624316100==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Fix up and test RING_TIMESTAMP on gen4-6 (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/110326/">https://patchwork.freedesktop.org/series/110326/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110326v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110326v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12325 -&gt; Patchwork_110326v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110326v3/index.html</p>
+<h2>Participating hosts (40 -&gt; 28)</h2>
+<p>Additional (1): fi-tgl-mst <br />
+  Missing    (13): fi-cml-u2 bat-dg2-8 bat-adlm-1 bat-dg2-9 bat-adlp-6 bat-adlp-4 fi-hsw-4770 bat-adln-1 bat-rplp-1 bat-rpls-1 bat-rpls-2 bat-dg2-11 bat-jsl-1 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_110326v3:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@i915_pm_rpm@module-reload:<ul>
+<li>{fi-tgl-mst}:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110326v3/fi-tgl-mst/igt@i915_pm_rpm@module-reload.html">WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_110326v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12325/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110326v3/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-2:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12325/fi-icl-u2/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-2.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110326v3/fi-icl-u2/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-2.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12325 -&gt; Patchwork_110326v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12325: 1a90222aa5e5bb86ffcbde5ba9611659a23f0df6 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7032: 372c56225e12578a7a4a6bcc5b79eb40b643fcde @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_110326v3: 1a90222aa5e5bb86ffcbde5ba9611659a23f0df6 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>d0c15ceecb71 drm/i915/selftests: Run the perf MI_BB tests on gen4/5<br />
+51915c6b622a drm/i915/selftests: Test RING_TIMESTAMP on gen4/5<br />
+3b2d1ac48d95 drm/i915/selftests: Run MI_BB perf selftests on SNB<br />
+a82ff38edfda drm/i915: Fix cs timestamp frequency for cl/bw<br />
+2a7e71fe6a2f drm/i915: Stop claiming cs timestamp frquency on gen2/3<br />
+150c3764f31b drm/i915: Fix cs timestamp frequency for ctg/elk/ilk</p>
+
+</body>
+</html>
+
+--===============3630285549624316100==--
