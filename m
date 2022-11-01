@@ -1,59 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3955614751
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Nov 2022 10:58:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7148A61477D
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Nov 2022 11:08:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1EC6010E345;
-	Tue,  1 Nov 2022 09:58:13 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E34B510E345;
- Tue,  1 Nov 2022 09:58:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FF6910E36A;
+	Tue,  1 Nov 2022 10:08:39 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1763F10E36A
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Nov 2022 10:08:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667296689; x=1698832689;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=n6QHCydXVUxBSH/s8ywqWP6C2jHOLze0Q/puRrtMZuM=;
- b=S5SWxOFXfW2CDGmp0bxSdAoOPvOaHtKapKl4jm6Hwdfmh9+/2sTdWl8b
- NK1UQmC5SQ/T1XUo/Gf3dfM32Qp8C3wApcYOswhlKZO2lDuB891/F1PD2
- rU2iE0sfmd5Sg/pYAKNcAii0zooLer63GRs5RNwFLfCJ7GqvbnudiJzZs
- XXPgIFv24LhnvM0hgeAZDyZvyYdq1HN7lVxL5kRH6UwktaAeJqVey2XUF
- T77Evia5lZJTMkiMk0vJuWecKVKaOZ0b/ef8yDBGo99Yh8X7c9JDFazm7
- wDVCdafoSWVmv72xqvkEx8DpooITrovhWZ2ce99KSj92y/6Y9YJCm4c5N w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10517"; a="310200512"
-X-IronPort-AV: E=Sophos;i="5.95,230,1661842800"; d="scan'208";a="310200512"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2022 02:58:08 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10517"; a="667141460"
-X-IronPort-AV: E=Sophos;i="5.95,230,1661842800"; d="scan'208";a="667141460"
-Received: from thaughan-mobl1.ger.corp.intel.com (HELO [10.213.224.101])
- ([10.213.224.101])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2022 02:58:07 -0700
-Message-ID: <95404887-f886-078f-c644-635ada7d8bee@linux.intel.com>
-Date: Tue, 1 Nov 2022 09:58:05 +0000
+ t=1667297313; x=1698833313;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=vUU34THWNz9rHf936TTzVnW+ukdXWcCqOWSmyn3b3Ic=;
+ b=hr0QA13h1oCI4y/GbuHMApfqKXOYhV+rd4Tt2kaH3On6NcLdd/uXBHYB
+ AHKYW0Jcbwf2wTr9cdoO5HDv9i/jNhBxqNHymIdjQMvJTbcsiamjsA1Pp
+ rRjkIIVQp9wESVNoh0Xubfd/1rnnGocoztmR3r92Aqih3pPDn/+MZPSll
+ gTx/atNcajXBqHsAzMZyO6lUjI/lZgqCYVnXPjWqSzVUKjZKUygLlxCQC
+ 0NnnQg9v7HwDoez39V/NXAbgolGtr7rQT9/1G+1iqL4dVDaUrUGvbwejU
+ AQiK8oapSJCNsl7R7okjVXiQVRhd9ajYDTdTGFFg1qtkEru4DKm6OhQNu g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10517"; a="371187229"
+X-IronPort-AV: E=Sophos;i="5.95,230,1661842800"; d="scan'208";a="371187229"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2022 03:08:32 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10517"; a="665103508"
+X-IronPort-AV: E=Sophos;i="5.95,230,1661842800"; d="scan'208";a="665103508"
+Received: from rsimofi-mobl.ger.corp.intel.com (HELO localhost) ([10.252.30.2])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2022 03:08:31 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20221031214037.1636-1-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20221031214037.1636-1-ville.syrjala@linux.intel.com>
+Date: Tue, 01 Nov 2022 12:08:28 +0200
+Message-ID: <87o7tr7zs3.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Content-Language: en-US
-To: John Harrison <john.c.harrison@intel.com>, Intel-GFX@Lists.FreeDesktop.Org
-References: <20221028194649.1130223-1-John.C.Harrison@Intel.com>
- <20221028194649.1130223-3-John.C.Harrison@Intel.com>
- <56a6c98a-069c-77b0-d6c5-4575bc324075@linux.intel.com>
- <2e7cf7c4-76cb-5a69-8a61-7d1da3577060@linux.intel.com>
- <3f83f31f-28d4-5b68-3066-5a0b58e20e56@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <3f83f31f-28d4-5b68-3066-5a0b58e20e56@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/guc: Don't deadlock busyness
- stats vs reset
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Use
+ intel_crtc_needs_modeset() more
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,103 +59,168 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, 31 Oct 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Prefer our own intel_crtc_needs_modeset() wrapper to
+> drm_atomic_crtc_needs_modeset() whenever we are dealing
+> with the intel_ types instead of drm_ types. Makes things
+> a bit neater in general.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-On 31/10/2022 18:30, John Harrison wrote:
-> On 10/31/2022 05:51, Tvrtko Ursulin wrote:
->> On 31/10/2022 10:09, Tvrtko Ursulin wrote:
->>> On 28/10/2022 20:46, John.C.Harrison@Intel.com wrote:
->>>> From: John Harrison <John.C.Harrison@Intel.com>
->>>>
->>>> The engine busyness stats has a worker function to do things like
->>>> 64bit extend the 32bit hardware counters. The GuC's reset prepare
->>>> function flushes out this worker function to ensure no corruption
->>>> happens during the reset. Unforunately, the worker function has an
->>>> infinite wait for active resets to finish before doing its work. Thus
->>>> a deadlock would occur if the worker function had actually started
->>>> just as the reset starts.
->>>>
->>>> Update the worker to abort if a reset is in progress rather than
->>>> waiting for it to complete. It will still acquire the reset lock in
->>>> the case where a reset was not already in progress. So the processing
->>>> is still safe from corruption, but the deadlock can no longer occur.
->>>>
->>>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->>>> ---
->>>>   drivers/gpu/drm/i915/gt/intel_reset.c             | 15 
->>>> ++++++++++++++-
->>>>   drivers/gpu/drm/i915/gt/intel_reset.h             |  1 +
->>>>   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c |  6 ++++--
->>>>   3 files changed, 19 insertions(+), 3 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c 
->>>> b/drivers/gpu/drm/i915/gt/intel_reset.c
->>>> index 3159df6cdd492..2f48c6e4420ea 100644
->>>> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
->>>> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
->>>> @@ -1407,7 +1407,7 @@ void intel_gt_handle_error(struct intel_gt *gt,
->>>>       intel_runtime_pm_put(gt->uncore->rpm, wakeref);
->>>>   }
->>>> -int intel_gt_reset_trylock(struct intel_gt *gt, int *srcu)
->>>> +static int _intel_gt_reset_trylock(struct intel_gt *gt, int *srcu, 
->>>> bool retry)
->>>>   {
->>>>       might_lock(&gt->reset.backoff_srcu);
->>>>       might_sleep();
->>>> @@ -1416,6 +1416,9 @@ int intel_gt_reset_trylock(struct intel_gt 
->>>> *gt, int *srcu)
->>>>       while (test_bit(I915_RESET_BACKOFF, &gt->reset.flags)) {
->>>>           rcu_read_unlock();
->>>> +        if (!retry)
->>>> +            return -EBUSY;
->>>> +
->>>>           if (wait_event_interruptible(gt->reset.queue,
->>>>                            !test_bit(I915_RESET_BACKOFF,
->>>>                                  &gt->reset.flags)))
->>>
->>> Would it be more obvious to rename the existing semantics to 
->>> intel_gt_reset_interruptible(), while the flavour you add in this 
->>> patch truly is trylock? I am not sure, since it's all a bit special, 
->>> but trylock sure feels confusing if it can sleep forever...
-> To me, it would seem totally more obvious to have a function called 
-> 'trylock' not wait forever until it can manage to acquire the lock. 
-> However, according to '2caffbf1176256 drm/i915: Revoke mmaps and prevent 
-> access to fence registers across reset', the current behaviour is 
-> exactly how the code was originally written and intended. It hasn't just 
-> mutated into some confused evolution a thousand patches later. So I 
-> figure there is some subtle but important reason why it was named how it 
-> is named and yet does what it does. Therefore it seemed safest to not 
-> change it unnecessarily.
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Yeah I looked at that but honestly I don't see the trylock semantics 
-anywhere. The only failure to lock path comes from 
-wait_event_interruptible. It could have easily been just a naming mishap.
+> ---
+>  drivers/gpu/drm/i915/display/intel_cdclk.c   |  2 +-
+>  drivers/gpu/drm/i915/display/intel_color.c   |  2 +-
+>  drivers/gpu/drm/i915/display/intel_display.c |  2 +-
+>  drivers/gpu/drm/i915/display/intel_fbc.c     |  2 +-
+>  drivers/gpu/drm/i915/display/skl_watermark.c |  2 +-
+>  drivers/gpu/drm/i915/intel_pm.c              | 11 +++++------
+>  6 files changed, 10 insertions(+), 11 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm=
+/i915/display/intel_cdclk.c
+> index eada931cb1c8..8a9031012d74 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -2755,7 +2755,7 @@ int intel_modeset_calc_cdclk(struct intel_atomic_st=
+ate *state)
+>  		if (IS_ERR(crtc_state))
+>  			return PTR_ERR(crtc_state);
+>=20=20
+> -		if (drm_atomic_crtc_needs_modeset(&crtc_state->uapi))
+> +		if (intel_crtc_needs_modeset(crtc_state))
+>  			pipe =3D INVALID_PIPE;
+>  	}
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm=
+/i915/display/intel_color.c
+> index 4bb113c39f4b..1bd074431d89 100644
+> --- a/drivers/gpu/drm/i915/display/intel_color.c
+> +++ b/drivers/gpu/drm/i915/display/intel_color.c
+> @@ -1240,7 +1240,7 @@ intel_color_add_affected_planes(struct intel_crtc_s=
+tate *new_crtc_state)
+>  	struct intel_plane *plane;
+>=20=20
+>  	if (!new_crtc_state->hw.active ||
+> -	    drm_atomic_crtc_needs_modeset(&new_crtc_state->uapi))
+> +	    intel_crtc_needs_modeset(new_crtc_state))
+>  		return 0;
+>=20=20
+>  	if (new_crtc_state->gamma_enable =3D=3D old_crtc_state->gamma_enable &&
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index b9393f9fc764..2d91c59a827d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -5930,7 +5930,7 @@ int intel_modeset_all_pipes(struct intel_atomic_sta=
+te *state,
+>  			return PTR_ERR(crtc_state);
+>=20=20
+>  		if (!crtc_state->hw.active ||
+> -		    drm_atomic_crtc_needs_modeset(&crtc_state->uapi))
+> +		    intel_crtc_needs_modeset(crtc_state))
+>  			continue;
+>=20=20
+>  		drm_dbg_kms(&dev_priv->drm, "[CRTC:%d:%s] Full modeset due to %s\n",
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i=
+915/display/intel_fbc.c
+> index 3f24f326b989..b5ee5ea0d010 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> @@ -1183,7 +1183,7 @@ static bool intel_fbc_can_flip_nuke(struct intel_at=
+omic_state *state,
+>  	const struct drm_framebuffer *old_fb =3D old_plane_state->hw.fb;
+>  	const struct drm_framebuffer *new_fb =3D new_plane_state->hw.fb;
+>=20=20
+> -	if (drm_atomic_crtc_needs_modeset(&new_crtc_state->uapi))
+> +	if (intel_crtc_needs_modeset(new_crtc_state))
+>  		return false;
+>=20=20
+>  	if (!intel_fbc_is_ok(old_plane_state) ||
+> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/d=
+rm/i915/display/skl_watermark.c
+> index d58e667016e4..e0766d1be966 100644
+> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+> @@ -2744,7 +2744,7 @@ static int skl_wm_add_affected_planes(struct intel_=
+atomic_state *state,
+>  		 * power well the hardware state will go out of sync
+>  		 * with the software state.
+>  		 */
+> -		if (!drm_atomic_crtc_needs_modeset(&new_crtc_state->uapi) &&
+> +		if (!intel_crtc_needs_modeset(new_crtc_state) &&
+>  		    skl_plane_selected_wm_equals(plane,
+>  						 &old_crtc_state->wm.skl.optimal,
+>  						 &new_crtc_state->wm.skl.optimal))
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
+_pm.c
+> index ee34e2785636..73c88b1c9545 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -1426,7 +1426,7 @@ static int g4x_compute_intermediate_wm(struct intel=
+_atomic_state *state,
+>  	enum plane_id plane_id;
+>=20=20
+>  	if (!new_crtc_state->hw.active ||
+> -	    drm_atomic_crtc_needs_modeset(&new_crtc_state->uapi)) {
+> +	    intel_crtc_needs_modeset(new_crtc_state)) {
+>  		*intermediate =3D *optimal;
+>=20=20
+>  		intermediate->cxsr =3D false;
+> @@ -1914,7 +1914,6 @@ static int vlv_compute_pipe_wm(struct intel_atomic_=
+state *state,
+>  {
+>  	struct intel_crtc_state *crtc_state =3D
+>  		intel_atomic_get_new_crtc_state(state, crtc);
+> -	bool needs_modeset =3D drm_atomic_crtc_needs_modeset(&crtc_state->uapi);
+>  	const struct intel_plane_state *old_plane_state;
+>  	const struct intel_plane_state *new_plane_state;
+>  	struct intel_plane *plane;
+> @@ -1941,7 +1940,7 @@ static int vlv_compute_pipe_wm(struct intel_atomic_=
+state *state,
+>  	 * FIFO setting we took over from the BIOS even if there
+>  	 * are no active planes on the crtc.
+>  	 */
+> -	if (needs_modeset)
+> +	if (intel_crtc_needs_modeset(crtc_state))
+>  		dirty =3D ~0;
+>=20=20
+>  	if (!dirty)
+> @@ -1961,7 +1960,7 @@ static int vlv_compute_pipe_wm(struct intel_atomic_=
+state *state,
+>  		if (ret)
+>  			return ret;
+>=20=20
+> -		if (needs_modeset ||
+> +		if (intel_crtc_needs_modeset(crtc_state) ||
+>  		    memcmp(old_fifo_state, new_fifo_state,
+>  			   sizeof(*new_fifo_state)) !=3D 0)
+>  			crtc_state->fifo_changed =3D true;
+> @@ -2084,7 +2083,7 @@ static int vlv_compute_intermediate_wm(struct intel=
+_atomic_state *state,
+>  	int level;
+>=20=20
+>  	if (!new_crtc_state->hw.active ||
+> -	    drm_atomic_crtc_needs_modeset(&new_crtc_state->uapi)) {
+> +	    intel_crtc_needs_modeset(new_crtc_state)) {
+>  		*intermediate =3D *optimal;
+>=20=20
+>  		intermediate->cxsr =3D false;
+> @@ -3142,7 +3141,7 @@ static int ilk_compute_intermediate_wm(struct intel=
+_atomic_state *state,
+>  	 */
+>  	*a =3D new_crtc_state->wm.ilk.optimal;
+>  	if (!new_crtc_state->hw.active ||
+> -	    drm_atomic_crtc_needs_modeset(&new_crtc_state->uapi) ||
+> +	    intel_crtc_needs_modeset(new_crtc_state) ||
+>  	    state->skip_intermediate_wm)
+>  		return 0;
 
-And I find adding a retry parameter to something called trylock makes 
-this even more non-intuitive and would personally rather rename it all. 
-Proof in the pudding is that the trylock naming did bite during 
-development and review of the code this patch is now fixing.
-
-I do however understand your point about a degree of uncertainty but my 
-feeling is to rather err on the side of obvious naming. Shall we ask for 
-a third opinion?
-
->> Oh and might_sleep() shouldn't be there with the trylock version - I 
->> mean any flavour of the real trylock.
-> You mean if the code is split into two completely separate functions? Or 
-> do you just mean to wrap the might_sleep() call with 'if(!retry)'?
-> 
-> And just to be totally clear, the unconditional call to rcu_read_lock() 
-> is not something that can sleep? One doesn't need a might_sleep() before 
-> doing that lock?
-
-Corrrect, rcu_read_lock() can not sleep - it just disables preemption. 
-So leaving the unconditional might_sleep() would have opportunity for 
-false positives.
-
-Regards,
-
-Tvrtko
+--=20
+Jani Nikula, Intel Open Source Graphics Center
