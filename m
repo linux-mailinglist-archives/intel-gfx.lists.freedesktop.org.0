@@ -2,60 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 553E2615D7D
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 09:17:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A20A7615E57
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 09:51:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E879310E0CC;
-	Wed,  2 Nov 2022 08:17:38 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50FB110E07E;
- Wed,  2 Nov 2022 08:17:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37E3210E44D;
+	Wed,  2 Nov 2022 08:51:08 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A4A710E44D
+ for <intel-gfx@lists.freedesktop.org>; Wed,  2 Nov 2022 08:51:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667377054; x=1698913054;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=dg1bQMy2r8GKZVY+GmS9dZBf9Mqhoetuv0x9jhOVx6k=;
- b=aPhpA/FePCoJFoiO1o7Vr5t76UOi7D59Dwo9EmUI1Ekt3pDCXGZhIlLy
- +5Luop7CPVVu3O/UMyeRTKqtAqV8bdHL4xWpC7ZnCrz3nNcIoTBptYdMs
- jvtA0D6qKKMoqDefdULFjiTWChoPn91AIK7O1pUbhtvOjM+KK8vn2Ks4l
- TdqU1gyZ0DqP6mLpDsrugMLyZwDXzg6HO74nAV5x/8eXLzGLmijijEfd2
- 6FVzWQS1Gf1or2xNNg3iI15VwYzAWhkl515azh9tzkNZoyJlJXeB1VWYy
- SkXs7c+mBO/67SiQ3NoZbPbTQz/4Xnoydy61iT2PjRTsmQx63PMN2is5I A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10518"; a="336021075"
-X-IronPort-AV: E=Sophos;i="5.95,232,1661842800"; d="scan'208";a="336021075"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2022 01:17:33 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10518"; a="776806034"
-X-IronPort-AV: E=Sophos;i="5.95,232,1661842800"; d="scan'208";a="776806034"
-Received: from dsloan-mobl.ger.corp.intel.com (HELO [10.213.207.205])
- ([10.213.207.205])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2022 01:17:32 -0700
-Message-ID: <8f9cb0df-d2aa-e35a-1e91-845219b315a0@linux.intel.com>
-Date: Wed, 2 Nov 2022 08:17:31 +0000
+ t=1667379065; x=1698915065;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=8oI/hpF1wSDZ4xhfxjr8rZ8cxaeYiGW+7dKQDtws7j0=;
+ b=VFNpIqLwV26EMViekK3N5LPhtHIHeTnNSDkyIF9OtYPvKYjX/sJZdWFn
+ zc0Kr5gUn9+gUN1l4ELrQU/Rh7Xpu5N0iefX58Qu+y162qoPsN99HPFW4
+ 3psXXgZDgSyyJ7+iqphBrwh10OS1Yat4vgKiiahAZ/3vy4ZTXW49HrNsV
+ oVY0Sqa1CrViyu9XiCM5oZvuuQknLpT1k4JSwMJvueV2W5ZXrq/Xd8Q01
+ nvxGi9wzG3J6uWdU3FEgeiWmz7lHrXUdVzI9C00sGnm/DPYTcL9wtUq66
+ ptUYPjvDQP1mlQPvNeIL13Df2SWRhgw1HgazpI57IHtYXO0rw+KBA4ZVd Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10518"; a="296791929"
+X-IronPort-AV: E=Sophos;i="5.95,232,1661842800"; d="scan'208";a="296791929"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2022 01:51:04 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10518"; a="628879057"
+X-IronPort-AV: E=Sophos;i="5.95,232,1661842800"; d="scan'208";a="628879057"
+Received: from cjokeeff-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.15.91])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2022 01:51:02 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>, Gwan-gyeong Mun
+ <gwan-gyeong.mun@intel.com>
+In-Reply-To: <875yfxn82r.wl-ashutosh.dixit@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20221024210953.1572998-1-gwan-gyeong.mun@intel.com>
+ <20221029044230.32128-1-gwan-gyeong.mun@intel.com>
+ <875yfxn82r.wl-ashutosh.dixit@intel.com>
+Date: Wed, 02 Nov 2022 10:50:59 +0200
+Message-ID: <87y1st7n9o.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Content-Language: en-US
-To: John Harrison <john.c.harrison@intel.com>, Intel-GFX@Lists.FreeDesktop.Org
-References: <20221028194649.1130223-1-John.C.Harrison@Intel.com>
- <20221028194649.1130223-3-John.C.Harrison@Intel.com>
- <56a6c98a-069c-77b0-d6c5-4575bc324075@linux.intel.com>
- <2e7cf7c4-76cb-5a69-8a61-7d1da3577060@linux.intel.com>
- <3f83f31f-28d4-5b68-3066-5a0b58e20e56@intel.com>
- <95404887-f886-078f-c644-635ada7d8bee@linux.intel.com>
- <4eae646a-345b-40d7-1ac6-4de027ee1fd4@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <4eae646a-345b-40d7-1ac6-4de027ee1fd4@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/guc: Don't deadlock busyness
- stats vs reset
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/hwmon: Fix a build error used
+ with clang compiler
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,134 +61,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 01/11/2022 16:56, John Harrison wrote:
-> On 11/1/2022 02:58, Tvrtko Ursulin wrote:
->> On 31/10/2022 18:30, John Harrison wrote:
->>> On 10/31/2022 05:51, Tvrtko Ursulin wrote:
->>>> On 31/10/2022 10:09, Tvrtko Ursulin wrote:
->>>>> On 28/10/2022 20:46, John.C.Harrison@Intel.com wrote:
->>>>>> From: John Harrison <John.C.Harrison@Intel.com>
->>>>>>
->>>>>> The engine busyness stats has a worker function to do things like
->>>>>> 64bit extend the 32bit hardware counters. The GuC's reset prepare
->>>>>> function flushes out this worker function to ensure no corruption
->>>>>> happens during the reset. Unforunately, the worker function has an
->>>>>> infinite wait for active resets to finish before doing its work. Thus
->>>>>> a deadlock would occur if the worker function had actually started
->>>>>> just as the reset starts.
->>>>>>
->>>>>> Update the worker to abort if a reset is in progress rather than
->>>>>> waiting for it to complete. It will still acquire the reset lock in
->>>>>> the case where a reset was not already in progress. So the processing
->>>>>> is still safe from corruption, but the deadlock can no longer occur.
->>>>>>
->>>>>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->>>>>> ---
->>>>>>   drivers/gpu/drm/i915/gt/intel_reset.c             | 15 
->>>>>> ++++++++++++++-
->>>>>>   drivers/gpu/drm/i915/gt/intel_reset.h             |  1 +
->>>>>>   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c |  6 ++++--
->>>>>>   3 files changed, 19 insertions(+), 3 deletions(-)
->>>>>>
->>>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c 
->>>>>> b/drivers/gpu/drm/i915/gt/intel_reset.c
->>>>>> index 3159df6cdd492..2f48c6e4420ea 100644
->>>>>> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
->>>>>> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
->>>>>> @@ -1407,7 +1407,7 @@ void intel_gt_handle_error(struct intel_gt *gt,
->>>>>>       intel_runtime_pm_put(gt->uncore->rpm, wakeref);
->>>>>>   }
->>>>>> -int intel_gt_reset_trylock(struct intel_gt *gt, int *srcu)
->>>>>> +static int _intel_gt_reset_trylock(struct intel_gt *gt, int 
->>>>>> *srcu, bool retry)
->>>>>>   {
->>>>>>       might_lock(&gt->reset.backoff_srcu);
->>>>>>       might_sleep();
->>>>>> @@ -1416,6 +1416,9 @@ int intel_gt_reset_trylock(struct intel_gt 
->>>>>> *gt, int *srcu)
->>>>>>       while (test_bit(I915_RESET_BACKOFF, &gt->reset.flags)) {
->>>>>>           rcu_read_unlock();
->>>>>> +        if (!retry)
->>>>>> +            return -EBUSY;
->>>>>> +
->>>>>>           if (wait_event_interruptible(gt->reset.queue,
->>>>>>                            !test_bit(I915_RESET_BACKOFF,
->>>>>> &gt->reset.flags)))
->>>>>
->>>>> Would it be more obvious to rename the existing semantics to 
->>>>> intel_gt_reset_interruptible(), while the flavour you add in this 
->>>>> patch truly is trylock? I am not sure, since it's all a bit 
->>>>> special, but trylock sure feels confusing if it can sleep forever...
->>> To me, it would seem totally more obvious to have a function called 
->>> 'trylock' not wait forever until it can manage to acquire the lock. 
->>> However, according to '2caffbf1176256 drm/i915: Revoke mmaps and 
->>> prevent access to fence registers across reset', the current 
->>> behaviour is exactly how the code was originally written and 
->>> intended. It hasn't just mutated into some confused evolution a 
->>> thousand patches later. So I figure there is some subtle but 
->>> important reason why it was named how it is named and yet does what 
->>> it does. Therefore it seemed safest to not change it unnecessarily.
+On Wed, 02 Nov 2022, "Dixit, Ashutosh" <ashutosh.dixit@intel.com> wrote:
+> On Fri, 28 Oct 2022 21:42:30 -0700, Gwan-gyeong Mun wrote:
 >>
->> Yeah I looked at that but honestly I don't see the trylock semantics 
->> anywhere. The only failure to lock path comes from 
->> wait_event_interruptible. It could have easily been just a naming mishap.
+>> Use REG_FIELD_PREP() and a constant value for hwm_field_scale_and_write()
+>
+> R-b'ing this so that this can get merged since this compile break is
+> blocking drm-intel-gt-next pull request:
+>
+> Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+
+on this one as the stopgap measure.
+
+>
+>> If the first argument of FIELD_PREP() is not a compile-time constant value
+>> or unsigned long long type, this routine of the __BF_FIELD_CHECK() macro
+>> used internally by the FIELD_PREP() macro always returns false.
 >>
->> And I find adding a retry parameter to something called trylock makes 
->> this even more non-intuitive and would personally rather rename it 
->> all. Proof in the pudding is that the trylock naming did bite during 
->> development and review of the code this patch is now fixing.
+>>  BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >      \
+>>                   __bf_cast_unsigned(_reg, ~0ull),        \
+>>                   _pfx "type of reg too small for mask"); \
 >>
->> I do however understand your point about a degree of uncertainty but 
->> my feeling is to rather err on the side of obvious naming. Shall we 
->> ask for a third opinion?
-> Umesh had commented (internally) that the naming seems wrong and would 
-> be good to change it. So we already have a third :).
-> 
-> To be clear, you are thinking to keep the wrappers but rename to 
-> intel_gt_reset_trylock() [retry = false] and 
-> intel_gt_reset_interruptible() [retry = true]? Which will obviously 
-> involve updating all but one existing user to use the interruptible name 
-> as the existing name will change behaviour in a backwards breaking manner.
-
-Yes, intel_gt_reset_lock_interruptible and intel_gt_reset_trylock.
-
-I don't get the behaviour breaking part? Only the name will change.
-
-And amount of churn does not seem a problem:
-
-$ grep intel_gt_reset_trylock -r .
-./gem/i915_gem_mman.c:  ret = intel_gt_reset_trylock(ggtt->vm.gt, &srcu);
-./gt/uc/intel_guc_submission.c: ret = intel_gt_reset_trylock(gt, &srcu);
-./gt/intel_reset.c:int intel_gt_reset_trylock(struct intel_gt *gt, int *srcu)
-./gt/intel_reset.h:int __must_check intel_gt_reset_trylock(struct intel_gt *gt, int *srcu)
-
-Regards,
-
-Tvrtko
-
-> 
-> John.
-> 
+>> And it returns a build error by the option among the clang
+>> compilation options. [-Werror,-Wtautological-constant-out-of-range-compare]
 >>
->>>> Oh and might_sleep() shouldn't be there with the trylock version - I 
->>>> mean any flavour of the real trylock.
->>> You mean if the code is split into two completely separate functions? 
->>> Or do you just mean to wrap the might_sleep() call with 'if(!retry)'?
->>>
->>> And just to be totally clear, the unconditional call to 
->>> rcu_read_lock() is not something that can sleep? One doesn't need a 
->>> might_sleep() before doing that lock?
+>> Reported build error while using clang compiler:
 >>
->> Corrrect, rcu_read_lock() can not sleep - it just disables preemption. 
->> So leaving the unconditional might_sleep() would have opportunity for 
->> false positives.
+>> drivers/gpu/drm/i915/i915_hwmon.c:115:16: error: result of comparison of constant 18446744073709551615 with expression of type 'typeof (_Generic((field_msk), char: (unsigned char)0, unsigned char: (unsigned char)0, signed char: (unsigned char)0, unsigned short: (unsigned short)0, short: (unsigned short)0, unsigned int: (unsigned int)0, int: (unsigned int)0, unsigned long: (unsigned long)0, long: (unsigned long)0, unsigned long long: (unsigned long long)0, long long: (unsigned long long)0, default: (field_msk)))' (aka 'unsigned int') is always false [-Werror,-Wtautological-constant-out-of-range-compare]
+>>         bits_to_set = FIELD_PREP(field_msk, nval);
+>>                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> ./include/linux/bitfield.h:114:3: note: expanded from macro 'FIELD_PREP'
+>>                 __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");    \
+>>                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> ./include/linux/bitfield.h:71:53: note: expanded from macro '__BF_FIELD_CHECK'
+>>                 BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >     \
+>>                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+>> ./include/linux/build_bug.h:39:58: note: expanded from macro 'BUILD_BUG_ON_MSG'
+>>                                     ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+>> ./include/linux/compiler_types.h:357:22: note: expanded from macro 'compiletime_assert'
+>>         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+>>         ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> ./include/linux/compiler_types.h:345:23: note: expanded from macro '_compiletime_assert'
+>>         __compiletime_assert(condition, msg, prefix, suffix)
+>>         ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> ./include/linux/compiler_types.h:337:9: note: expanded from macro '__compiletime_assert'
+>>                 if (!(condition))                                       \
 >>
->> Regards,
+>> v2: Use REG_FIELD_PREP() macro instead of FIELD_PREP() (Jani)
 >>
->> Tvrtko
-> 
+>> Fixes: 99f55efb7911 ("drm/i915/hwmon: Power PL1 limit and TDP setting")
+>> Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+>> Cc: Anshuman Gupta <anshuman.gupta@intel.com>
+>> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+>> Cc: Jani Nikula <jani.nikula@intel.com>
+>> Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/i915_hwmon.c | 12 +++---------
+>>  1 file changed, 3 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
+>> index 9e9781493025..c588a17f97e9 100644
+>> --- a/drivers/gpu/drm/i915/i915_hwmon.c
+>> +++ b/drivers/gpu/drm/i915/i915_hwmon.c
+>> @@ -101,21 +101,16 @@ hwm_field_read_and_scale(struct hwm_drvdata *ddat, i915_reg_t rgadr,
+>>
+>>  static void
+>>  hwm_field_scale_and_write(struct hwm_drvdata *ddat, i915_reg_t rgadr,
+>> -			  u32 field_msk, int nshift,
+>> -			  unsigned int scale_factor, long lval)
+>> +			  int nshift, unsigned int scale_factor, long lval)
+>>  {
+>>	u32 nval;
+>> -	u32 bits_to_clear;
+>> -	u32 bits_to_set;
+>>
+>>	/* Computation in 64-bits to avoid overflow. Round to nearest. */
+>>	nval = DIV_ROUND_CLOSEST_ULL((u64)lval << nshift, scale_factor);
+>>
+>> -	bits_to_clear = field_msk;
+>> -	bits_to_set = FIELD_PREP(field_msk, nval);
+>> -
+>>	hwm_locked_with_pm_intel_uncore_rmw(ddat, rgadr,
+>> -					    bits_to_clear, bits_to_set);
+>> +					    PKG_PWR_LIM_1,
+>> +					    REG_FIELD_PREP(PKG_PWR_LIM_1, nval));
+>>  }
+>>
+>>  /*
+>> @@ -406,7 +401,6 @@ hwm_power_write(struct hwm_drvdata *ddat, u32 attr, int chan, long val)
+>>	case hwmon_power_max:
+>>		hwm_field_scale_and_write(ddat,
+>>					  hwmon->rg.pkg_rapl_limit,
+>> -					  PKG_PWR_LIM_1,
+>>					  hwmon->scl_shift_power,
+>>					  SF_POWER, val);
+>>		return 0;
+>> --
+>> 2.37.1
+>>
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
