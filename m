@@ -2,83 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37BBA616127
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 11:47:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DEE10616146
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 11:54:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DCD2310E47A;
-	Wed,  2 Nov 2022 10:46:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDF8810E46A;
+	Wed,  2 Nov 2022 10:54:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26E5510E47A
- for <intel-gfx@lists.freedesktop.org>; Wed,  2 Nov 2022 10:46:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1667386007;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=iUJvEUx8gtjx3iaw6xY22YZZMkx+Fxj3A7QQSAUB80Y=;
- b=IdsGxcpc/b9eri3/F2vdOUh/cr0GJaUlcfrvfXm5M1ivFv5rIhWx6/D/pKE538YSPP5rTI
- dnD7I+fjmyuhuvWBoCiKKCvwlRz6YgWk+A/vS3qXmahAei/2tst2AFgeuCYRtXXo0TJL7L
- IuJ/qqE+hcToYJ3azmb4wt9N7PXsAw8=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-455-WCSxTaYUOmGK3d15gzGB2g-1; Wed, 02 Nov 2022 06:46:46 -0400
-X-MC-Unique: WCSxTaYUOmGK3d15gzGB2g-1
-Received: by mail-wm1-f71.google.com with SMTP id
- c5-20020a1c3505000000b003c56da8e894so941822wma.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 02 Nov 2022 03:46:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=iUJvEUx8gtjx3iaw6xY22YZZMkx+Fxj3A7QQSAUB80Y=;
- b=MOz3j5L4hhUTvMG2YJeJ5hcUM0+VThK5+AZyb9Vx/u/X7V+HUh6C9Y10MLYgsHpYfg
- kY1GboVuWB8hhlyqDadvbL0EoWF//OGQiPP1r+b0yw8YIlPmLEvNPrFa+lKkTIIV8dZR
- 40K+Oy281rV1xPFsoMGElS5AffNXXj0f+/qLTvSnmeYOETOYO5mAgohSHtM7fnTwtXMX
- r4HFATHNGDjK4zrNKfgL0+2ICbAYvG0bvySZ/NZzJ/n+Q6ZUg3pMx33nc4wkaYjsyNb5
- R/upKT64hD2oi9vmZ1SJe2p7qZaR8KBc9vQ6omfLtSf5mOekAPrkqY6Nn9etwGVvWcT1
- 9kUw==
-X-Gm-Message-State: ACrzQf10YJwiMPNMJeJcKr0AfP5rrk6NWIH/fYft94BQ88mC8+pUc2NN
- mHRJWoJJ30usnt3pvPA+nYwY4QPbiDI76Yn/8wnjG1Eg9dAoppeCjMTFRFizo8PSgodb/JKKYMj
- qskGhxTfaK14fHmDtPDP6QxxYV8F2
-X-Received: by 2002:a05:600c:3556:b0:3ca:771d:701a with SMTP id
- i22-20020a05600c355600b003ca771d701amr14652019wmq.61.1667386004898; 
- Wed, 02 Nov 2022 03:46:44 -0700 (PDT)
-X-Google-Smtp-Source: AMsMyM5jzv0egtLEIAVaxEN/tayyZgqvKvq+1qzahuWoTfzpPIfJE04AyAO6MvJnCllXJsp0I0J18w==
-X-Received: by 2002:a05:600c:3556:b0:3ca:771d:701a with SMTP id
- i22-20020a05600c355600b003ca771d701amr14651998wmq.61.1667386004691; 
- Wed, 02 Nov 2022 03:46:44 -0700 (PDT)
-Received: from [192.168.1.130] (205.pool92-176-231.dynamic.orange.es.
- [92.176.231.205]) by smtp.gmail.com with ESMTPSA id
- c18-20020a05600c0a5200b003b3365b38f9sm1701531wmq.10.2022.11.02.03.46.43
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 02 Nov 2022 03:46:44 -0700 (PDT)
-Message-ID: <5abf94d6-9a48-525e-c562-605529c5793a@redhat.com>
-Date: Wed, 2 Nov 2022 11:46:42 +0100
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7240F8992E;
+ Wed,  2 Nov 2022 10:54:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1667386465; x=1698922465;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=SWpaCvBBTSq8POciJqW+WW9bgkdUqBaUIFlS8n1c94Q=;
+ b=RwCtUDQDJWnB+B+kHD3qzI3T2jqDdukb7Fcs5UHyLYBefbGykfkkiPo3
+ k5OPa2IqnS19wZFGMIJt0OTkYCqyDTDf1W3EaQYMj8tUJAwVjXXsTpHrI
+ 4hRwe5/5uTLC9frNh1KLChhaIKNmxxxAeot4Fau3GfrBcj4K0kE57/B0O
+ Mg7o0njcIxBER+g2vJCDh4rzF9dpwri599A5GBlAtQ1F4o7HRzL4g6oh7
+ 18G2X07gKIL/VifSISh7NXCMbwG1PmuJHqq7v5H2tx4qtsC7xtPOhyY/e
+ TB+U5uEiQI4MFVXHgwFt2Xxdqodu0L7Fvg6YhhOpkvheBeS33lnudE9By Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10518"; a="289089727"
+X-IronPort-AV: E=Sophos;i="5.95,232,1661842800"; d="scan'208";a="289089727"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2022 03:52:12 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10518"; a="776850546"
+X-IronPort-AV: E=Sophos;i="5.95,232,1661842800"; d="scan'208";a="776850546"
+Received: from kieranfl-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.252.30.160])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2022 03:52:11 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Wed,  2 Nov 2022 10:52:04 +0000
+Message-Id: <20221102105204.208634-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
- airlied@gmail.com, sam@ravnborg.org, mripard@kernel.org,
- maarten.lankhorst@linux.intel.com
-References: <20221024111953.24307-1-tzimmermann@suse.de>
- <20221024111953.24307-18-tzimmermann@suse.de>
- <3ab32fc3-f2aa-1b42-fd87-557482ab56d5@redhat.com>
- <0ca70b76-c24a-4fdb-cf0d-2647d37379df@suse.de>
-From: Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <0ca70b76-c24a-4fdb-cf0d-2647d37379df@suse.de>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2 17/21] drm/fb-helper: Perform all fbdev
- I/O with the same implementation
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH i-g-t] tests/i915/gem_create: use cpu_size in
+ always_clear
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,66 +56,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-hyperv@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- virtualization@lists.linux-foundation.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-samsung-soc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- xen-devel@lists.xenproject.org, linux-sunxi@lists.linux.dev,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- spice-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-mips@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- freedreno@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 11/2/22 11:33, Thomas Zimmermann wrote:
+If the we can't fit the buffer in the CPU visible portion of lmem, then
+the kernel will be unable to migrate the pages on fault on small-bar
+systems.  Note that this doesn't restrict where the pages are allocated,
+but should just ensure we don't SIGBUS, if we need to migrate the pages.
 
-[...]
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6967
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
+---
+ tests/i915/gem_create.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
->>
->>> +static ssize_t __drm_fb_helper_write(struct fb_info *info, const char __user *buf, size_t count,
->>> +				     loff_t *ppos, drm_fb_helper_write_screen write_screen)
->>> +{
->>
->> [...]
->>
->>> +	/*
->>> +	 * Copy to framebuffer even if we already logged an error. Emulates
->>> +	 * the behavior of the original fbdev implementation.
->>> +	 */
->>> +	ret = write_screen(info, buf, count, pos);
->>> +	if (ret < 0)
->>> +		return ret; /* return last error, if any */
->>> +	else if (!ret)
->>> +		return err; /* return previous error, if any */
->>> +
->>> +	*ppos += ret;
->>> +
->>
->> Should *ppos be incremented even if the previous error is returned?
-> 
-> Yes. It emulates the original fbdev code at [1]. Further down in that 
-> function, the position is being updated even if an error occured. We 
-> only return the initial error if no bytes got written.
-> 
-> It could happen that some userspace program hits to error, but still 
-> relies on the output and position being updated. IIRC I even added 
-> validation of this behavior to the IGT fbdev tests.  I agree that this 
-> is somewhat bogus behavior, but changing it would change long-standing 
-> userspace semantics.
->
-
-Thanks for the explanation, feel free then to also add to this patch:
-
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
-
+diff --git a/tests/i915/gem_create.c b/tests/i915/gem_create.c
+index 9c695fa4..af530ccc 100644
+--- a/tests/i915/gem_create.c
++++ b/tests/i915/gem_create.c
+@@ -271,7 +271,7 @@ static void always_clear(int i915, const struct gem_memory_region *r, int timeou
+ 	struct thread_clear arg = {
+ 		.i915 = i915,
+ 		.region = r->ci,
+-		.max = r->size / 2 >> 12, /* in pages */
++		.max = r->cpu_size / 2 >> 12, /* in pages */
+ 		.timeout = timeout,
+ 	};
+ 	const int ncpus = sysconf(_SC_NPROCESSORS_ONLN);
 -- 
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+2.38.1
 
