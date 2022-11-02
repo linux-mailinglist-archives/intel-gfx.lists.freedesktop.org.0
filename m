@@ -1,57 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F19AD616640
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 16:34:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD7B7616656
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 16:41:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AB9410E4CB;
-	Wed,  2 Nov 2022 15:33:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6B6E10E49F;
+	Wed,  2 Nov 2022 15:41:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86A7F10E49F
- for <intel-gfx@lists.freedesktop.org>; Wed,  2 Nov 2022 15:33:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1667403227;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=OypQqLWai0VaMJwiQgOKKG3cobC5fKhMwKsuUswxphk=;
- b=U5sd106iKYbX6exfi7qSKweE4yH8smdLtVqFnFGytW3/RmqCnF4IFm4nUP7lW4eNwtNVdG
- fjYtH0wUzl4NzKg7wGQ8BStsp3MB+XahZhonfTS0Q4leJ2bWCbZRuJ1IVaLbyHWtwOOOCK
- RFXD1Yg0cNzGU+1YFWj6gZMf1L5e7oI=
-Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
- [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-210-ywcGUWlbNua3SadPps_K9w-1; Wed, 02 Nov 2022 11:33:42 -0400
-X-MC-Unique: ywcGUWlbNua3SadPps_K9w-1
-Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.rdu2.redhat.com
- [10.11.54.3])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 2C0D91C0A589;
- Wed,  2 Nov 2022 15:33:36 +0000 (UTC)
-Received: from localhost (unknown [10.39.194.37])
- by smtp.corp.redhat.com (Postfix) with ESMTPS id 917E71121339;
- Wed,  2 Nov 2022 15:33:35 +0000 (UTC)
-From: Cornelia Huck <cohuck@redhat.com>
-To: Eric Farman <farman@linux.ibm.com>, Matthew Rosato
- <mjrosato@linux.ibm.com>, Alex Williamson <alex.williamson@redhat.com>,
- Jason Gunthorpe <jgg@nvidia.com>, Kevin Tian <kevin.tian@intel.com>, Yi
- Liu <yi.l.liu@intel.com>
-In-Reply-To: <20221102150152.2521475-8-farman@linux.ibm.com>
-Organization: Red Hat GmbH
-References: <20221102150152.2521475-1-farman@linux.ibm.com>
- <20221102150152.2521475-8-farman@linux.ibm.com>
-User-Agent: Notmuch/0.37 (https://notmuchmail.org)
-Date: Wed, 02 Nov 2022 16:33:34 +0100
-Message-ID: <87pme5s75d.fsf@redhat.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EB8EA10E49F;
+ Wed,  2 Nov 2022 15:41:10 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E543BAADF1;
+ Wed,  2 Nov 2022 15:41:10 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8272647625932821755=="
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Scanned-By: MIMEDefang 3.1 on 10.11.54.3
-Subject: Re: [Intel-gfx] [PATCH v2 7/7] vfio: Remove vfio_free_device
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Wed, 02 Nov 2022 15:41:10 -0000
+Message-ID: <166740367090.23607.7251718940819588103@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1667383630.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1667383630.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_header_cleanups=2C_again?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,49 +40,283 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kvm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Kirti Wankhede <kwankhede@nvidia.com>,
- Vineeth Vijayan <vneethv@linux.ibm.com>,
- Diana Craciun <diana.craciun@oss.nxp.com>,
- Alexander Gordeev <agordeev@linux.ibm.com>, David Airlie <airlied@gmail.com>,
- linux-s390@vger.kernel.org, Halil Pasic <pasic@linux.ibm.com>,
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- intel-gfx@lists.freedesktop.org, Jason Herne <jjherne@linux.ibm.com>,
- Eric Farman <farman@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>, Eric Auger <eric.auger@redhat.com>,
- Harald Freudenberger <freude@linux.ibm.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gvt-dev@lists.freedesktop.org,
- Tony Krowiak <akrowiak@linux.ibm.com>, Yishai Hadas <yishaih@nvidia.com>,
- Peter Oberparleiter <oberpar@linux.ibm.com>,
- Sven Schnelle <svens@linux.ibm.com>, Daniel Vetter <daniel@ffwll.ch>,
- Abhishek Sahu <abhsahu@nvidia.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Nov 02 2022, Eric Farman <farman@linux.ibm.com> wrote:
+--===============8272647625932821755==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> With the "mess" sorted out, we should be able to inline the
-> vfio_free_device call introduced by commit cb9ff3f3b84c
-> ("vfio: Add helpers for unifying vfio_device life cycle")
-> and remove them from driver release callbacks.
->
-> Signed-off-by: Eric Farman <farman@linux.ibm.com>
-> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
-> Reviewed-by: Kevin Tian <kevin.tian@intel.com>
-> ---
->  drivers/gpu/drm/i915/gvt/kvmgt.c      |  1 -
->  drivers/s390/cio/vfio_ccw_ops.c       |  2 --
->  drivers/s390/crypto/vfio_ap_ops.c     |  6 ------
->  drivers/vfio/fsl-mc/vfio_fsl_mc.c     |  1 -
->  drivers/vfio/pci/vfio_pci_core.c      |  1 -
->  drivers/vfio/platform/vfio_amba.c     |  1 -
->  drivers/vfio/platform/vfio_platform.c |  1 -
->  drivers/vfio/vfio_main.c              | 22 ++++------------------
->  include/linux/vfio.h                  |  1 -
->  samples/vfio-mdev/mbochs.c            |  1 -
->  samples/vfio-mdev/mdpy.c              |  1 -
->  samples/vfio-mdev/mtty.c              |  1 -
->  12 files changed, 4 insertions(+), 35 deletions(-)
+== Series Details ==
 
-Reviewed-by: Cornelia Huck <cohuck@redhat.com>
+Series: drm/i915: header cleanups, again
+URL   : https://patchwork.freedesktop.org/series/110404/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_12331 -> Patchwork_110404v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/index.html
+
+Participating hosts (40 -> 30)
+------------------------------
+
+  Additional (2): fi-kbl-soraka fi-pnv-d510 
+  Missing    (12): bat-dg2-8 bat-adlm-1 bat-dg2-9 bat-adlp-6 bat-adlp-4 bat-adln-1 bat-atsm-1 bat-rplp-1 bat-rpls-1 bat-rpls-2 bat-dg2-11 bat-jsl-1 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_110404v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_gttfill@basic:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271]) +8 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-kbl-soraka/igt@gem_exec_gttfill@basic.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#2190])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-kbl-soraka:      NOTRUN -> [INCOMPLETE][4] ([i915#7099])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-kbl-soraka/igt@i915_selftest@live@gem_contexts.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][5] ([i915#5334])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][6] ([i915#1886])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-icl-u2:          NOTRUN -> [SKIP][7] ([fdo#111827])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][8] ([fdo#109271] / [fdo#111827]) +7 similar issues
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-kbl-soraka/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
+    - fi-bsw-kefka:       [PASS][9] -> [FAIL][10] ([i915#6298])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12331/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][11] ([fdo#109271]) +43 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-pnv-d510/igt@kms_psr@primary_page_flip.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-icl-u2:          [INCOMPLETE][12] ([i915#4890]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12331/fi-icl-u2/igt@i915_selftest@live@execlists.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-icl-u2/igt@i915_selftest@live@execlists.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4890]: https://gitlab.freedesktop.org/drm/intel/issues/4890
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
+  [i915#7099]: https://gitlab.freedesktop.org/drm/intel/issues/7099
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12331 -> Patchwork_110404v1
+
+  CI-20190529: 20190529
+  CI_DRM_12331: 279dcd38fe0ed3e23d752f5974648f7715711d7c @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7038: 5389b3f3b9b75df6bd8506e4aa3da357fd0c0ab1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_110404v1: 279dcd38fe0ed3e23d752f5974648f7715711d7c @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+12c0a7856e7c drm/i915/display: move struct intel_link_m_n to intel_display_types.h
+fc112ad5921a drm/i915: stop including i915_irq.h from i915_trace.h
+c7c8eb4abfbc drm/i915: split out intel_display_reg_defs.h
+2c8fe3b0a094 drm/i915/reg: move pick even and pick to reg defs
+2f266ea1da7c drm/i915/reg: move masked field helpers to i915_reg_defs.h
+0f3ef601ce6b drm/i915/irq: make gen2_irq_init()/gen2_irq_reset() static
+75e75fb9e891 drm/i915/display: reduce includes in g4x_dp.h includes
+aca237b24053 drm/i915/display: reduce includes in intel_hdmi.h
+b822be1bdc70 drm/i915/display: reduce the includes in intel_dvo_dev.h
+f04c10d4b01b drm/i915: reduce includes in intel_display_power.h
+38805c70593c drm/i915/dpio: move dpio_channel and dpio_phy enums to intel_dpio_phy.h
+d8e570f4cd90 drm/i915/dpio: un-inline the vlv phy/channel mapping functions
+338fa9c665be drm/i915: un-inline icl_hdr_plane_mask() to simplify includes
+52b9b6527032 drm/i915: reduce includes in intel_fifo_underrun.h
+64fdf4abafb0 drm/i915: reduce includes in intel_connector.h
+4beeb4ba7930 drm/i915/gmbus: move GPIO enum to gmbus
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/index.html
+
+--===============8272647625932821755==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: header cleanups, again</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/110404/">https://patchwork.freedesktop.org/series/110404/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12331 -&gt; Patchwork_110404v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/index.html</p>
+<h2>Participating hosts (40 -&gt; 30)</h2>
+<p>Additional (2): fi-kbl-soraka fi-pnv-d510 <br />
+  Missing    (12): bat-dg2-8 bat-adlm-1 bat-dg2-9 bat-adlp-6 bat-adlp-4 bat-adln-1 bat-atsm-1 bat-rplp-1 bat-rpls-1 bat-rpls-2 bat-dg2-11 bat-jsl-1 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_110404v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_gttfill@basic:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-kbl-soraka/igt@gem_exec_gttfill@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gem_contexts:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-kbl-soraka/igt@i915_selftest@live@gem_contexts.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7099">i915#7099</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-kbl-soraka/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +7 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12331/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_page_flip:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-pnv-d510/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +43 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@execlists:<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12331/fi-icl-u2/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4890">i915#4890</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-icl-u2/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12331 -&gt; Patchwork_110404v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12331: 279dcd38fe0ed3e23d752f5974648f7715711d7c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7038: 5389b3f3b9b75df6bd8506e4aa3da357fd0c0ab1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_110404v1: 279dcd38fe0ed3e23d752f5974648f7715711d7c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>12c0a7856e7c drm/i915/display: move struct intel_link_m_n to intel_display_types.h<br />
+fc112ad5921a drm/i915: stop including i915_irq.h from i915_trace.h<br />
+c7c8eb4abfbc drm/i915: split out intel_display_reg_defs.h<br />
+2c8fe3b0a094 drm/i915/reg: move pick even and pick to reg defs<br />
+2f266ea1da7c drm/i915/reg: move masked field helpers to i915_reg_defs.h<br />
+0f3ef601ce6b drm/i915/irq: make gen2_irq_init()/gen2_irq_reset() static<br />
+75e75fb9e891 drm/i915/display: reduce includes in g4x_dp.h includes<br />
+aca237b24053 drm/i915/display: reduce includes in intel_hdmi.h<br />
+b822be1bdc70 drm/i915/display: reduce the includes in intel_dvo_dev.h<br />
+f04c10d4b01b drm/i915: reduce includes in intel_display_power.h<br />
+38805c70593c drm/i915/dpio: move dpio_channel and dpio_phy enums to intel_dpio_phy.h<br />
+d8e570f4cd90 drm/i915/dpio: un-inline the vlv phy/channel mapping functions<br />
+338fa9c665be drm/i915: un-inline icl_hdr_plane_mask() to simplify includes<br />
+52b9b6527032 drm/i915: reduce includes in intel_fifo_underrun.h<br />
+64fdf4abafb0 drm/i915: reduce includes in intel_connector.h<br />
+4beeb4ba7930 drm/i915/gmbus: move GPIO enum to gmbus</p>
+
+</body>
+</html>
+
+--===============8272647625932821755==--
