@@ -2,64 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9381616055
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 11:01:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0665616060
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 11:02:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7F8C10E46A;
-	Wed,  2 Nov 2022 10:01:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0097A10E469;
+	Wed,  2 Nov 2022 10:02:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DA3510E468
- for <intel-gfx@lists.freedesktop.org>; Wed,  2 Nov 2022 10:01:28 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8347F10E461
+ for <intel-gfx@lists.freedesktop.org>; Wed,  2 Nov 2022 10:02:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1667383287;
+ s=mimecast20190719; t=1667383352;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=QoVTRIE06q1gLaA+FiGPh2NoY5TNtlfidxMdk3t+aTM=;
- b=SpC4X1arPoypm4AhG43iNgIFPIrCdIucx1orjjA1yyqE+ODD1UchFVnrnUwNEcaVvYUNLF
- Bm7xFqQTSy/ZZ+uMw1nwLP4DwyKvG8x2pjqCVg1LimPjNjS5QjzDdAx24mqsdP+eLWjfnC
- FxUOtGU8/XgonQB/foB+GRtDEd9Av7o=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=lYDm2f88uo7N+T5CuGh2kGVIDaWbYMjQLaRZ3nU/m+Y=;
+ b=Q7leAYZqc3S236QbrWd5JH7lcPBXB8R+bp7eqqQlt+z6eCMQ8px+gxzxnMworn2TL77lNM
+ FVdbbhiCE0IYf1RdcQkjXSdr6asP0r/zf+/CmUI6+px2J5NuNgKaDePz9WpBYZwpK3UrJG
+ 5pkA39pvy2xfMh8gPmXyv9Xp1UlJIms=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-363-71-TzUpLNlOVZbw7SqlHrQ-1; Wed, 02 Nov 2022 06:01:25 -0400
-X-MC-Unique: 71-TzUpLNlOVZbw7SqlHrQ-1
-Received: by mail-wm1-f70.google.com with SMTP id
- c130-20020a1c3588000000b003b56be513e1so7771400wma.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 02 Nov 2022 03:01:25 -0700 (PDT)
+ us-mta-322-sJQo8-KMNJO2XPt27oH6ug-1; Wed, 02 Nov 2022 06:02:31 -0400
+X-MC-Unique: sJQo8-KMNJO2XPt27oH6ug-1
+Received: by mail-wm1-f69.google.com with SMTP id
+ bg25-20020a05600c3c9900b003cf3ed7e27bso7752280wmb.4
+ for <intel-gfx@lists.freedesktop.org>; Wed, 02 Nov 2022 03:02:31 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=content-transfer-encoding:in-reply-to:from:references:cc:to
  :content-language:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=QoVTRIE06q1gLaA+FiGPh2NoY5TNtlfidxMdk3t+aTM=;
- b=eV3aNml7hTwiIqvfAJ0o51xgS+tpyPprvQ3eYAiF3F01LEVP6yEohQv+uM2PpsSXBs
- S2KPI8vKGMdKHbUTpW8qnfPLuVh9t7S9hwAnoFZIsEqf/OfYOBPmh1WFLr84JE+b+cOT
- bMBEkY7T1aRw5xk3O6fGZEfSnrU8fTnSeh0p3nACWxpbSeviJRY1lyYqD5P2bYZzXK1A
- BndWRXNph3R+ajpy9rsnljH00k8hjigOUuTin4mwPjH9HC8FGD8qie8EuU635MbFcchu
- 3jjzKqxk5iFEOzYaSWZLsJOFOXPUQrSDc83q0IIESqHnKEELLDK2LhIXWfos60hmj8lL
- g1ow==
-X-Gm-Message-State: ACrzQf219J7gGxSX6DRId83xWtZtiI0SRFQ0SPbHHR++skvBvegX1YpM
- xuzL8FPgo5z74ttvXkVGm2knkqjYyK1Q36DJx5au6bfNRuSiE7TvjhxKIIcNbPgGiaMb+hw7FHw
- mgKlOTpleO9eJIW4KxwWUYJYzE6mA
-X-Received: by 2002:a5d:5505:0:b0:236:582b:7eb0 with SMTP id
- b5-20020a5d5505000000b00236582b7eb0mr14405760wrv.68.1667383284406; 
- Wed, 02 Nov 2022 03:01:24 -0700 (PDT)
-X-Google-Smtp-Source: AMsMyM5ieiweFPtXW5w3c0VZoUXMoQohTPuy1WtQBfT29g+UzlDhvHMzFOjUUUPFpm0LZwMa5DV8ag==
-X-Received: by 2002:a5d:5505:0:b0:236:582b:7eb0 with SMTP id
- b5-20020a5d5505000000b00236582b7eb0mr14405736wrv.68.1667383284200; 
- Wed, 02 Nov 2022 03:01:24 -0700 (PDT)
+ bh=lYDm2f88uo7N+T5CuGh2kGVIDaWbYMjQLaRZ3nU/m+Y=;
+ b=TdkA4+dJeQbirU/PnRGY86RN6xCOX4Rolg1VEtRyU7YKE3KbO3MF8MPjWMQ46az/yu
+ LXV8jUbDanqScHeYexp591u+S6njePnnP1OrDt2YCF+8c50MG6YLnNts4kWqhezRyUgJ
+ 2rHPRdrngfFp6H1pbJC7fsIHERvF7DRFWQ2G056ebKRvrYEmqNaA8r8rCVpGSAQr1QnO
+ 3SPO1E/rrdTuA9CxvIcNy6bDaXIr2JZlspAEdXUYrJi41qpTxoAKLIKDyJu/Jlc6t8Zf
+ TMGczzNFyAIOypVpyxvpKlRXvgST+8pFLj32JGI2msv0nSrO2sw3Znmm3apB2JSkDLrY
+ oFHQ==
+X-Gm-Message-State: ACrzQf2V20a1iRHZ8PsSQ+ZEgJW+LB/vJq69ebcMapIVO390szzNazDy
+ uxA2EiIO57dHDGBwABo22Q5R82RwkxsHMJpztT6JuW2/ItGXdnJrPMc1rKQpwbzqivNtnZDhBsH
+ gccuvw+ifZRm3ZiUiKjI80fkEIfI0
+X-Received: by 2002:adf:f9cf:0:b0:236:6a26:c055 with SMTP id
+ w15-20020adff9cf000000b002366a26c055mr14584860wrr.195.1667383350612; 
+ Wed, 02 Nov 2022 03:02:30 -0700 (PDT)
+X-Google-Smtp-Source: AMsMyM6OHHkFmpcUlQhLx4VZSF/FNGP0hsrmpEExWtKIxFg2Jf6dmbAckk/gQVQTytU8dXpfU2B04w==
+X-Received: by 2002:adf:f9cf:0:b0:236:6a26:c055 with SMTP id
+ w15-20020adff9cf000000b002366a26c055mr14584846wrr.195.1667383350420; 
+ Wed, 02 Nov 2022 03:02:30 -0700 (PDT)
 Received: from [192.168.1.130] (205.pool92-176-231.dynamic.orange.es.
  [92.176.231.205]) by smtp.gmail.com with ESMTPSA id
- b13-20020a5d550d000000b002366b17ca8bsm14230263wrv.108.2022.11.02.03.01.22
+ fn13-20020a05600c688d00b003a3170a7af9sm1564836wmb.4.2022.11.02.03.02.29
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 02 Nov 2022 03:01:23 -0700 (PDT)
-Message-ID: <1d2b9809-857f-48cc-1177-72e6fc67b8e5@redhat.com>
-Date: Wed, 2 Nov 2022 11:01:22 +0100
+ Wed, 02 Nov 2022 03:02:30 -0700 (PDT)
+Message-ID: <68309442-ad39-36da-b1ec-680dd4129a7f@redhat.com>
+Date: Wed, 2 Nov 2022 11:02:28 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.1
@@ -67,16 +67,16 @@ To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
  airlied@gmail.com, sam@ravnborg.org, mripard@kernel.org,
  maarten.lankhorst@linux.intel.com
 References: <20221024111953.24307-1-tzimmermann@suse.de>
- <20221024111953.24307-21-tzimmermann@suse.de>
+ <20221024111953.24307-22-tzimmermann@suse.de>
 From: Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <20221024111953.24307-21-tzimmermann@suse.de>
+In-Reply-To: <20221024111953.24307-22-tzimmermann@suse.de>
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2 20/21] drm/fb-helper: Move generic fbdev
- emulation into separate source file
+Subject: Re: [Intel-gfx] [PATCH v2 21/21] drm/fb-helper: Remove unnecessary
+ include statements
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,12 +105,13 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On 10/24/22 13:19, Thomas Zimmermann wrote:
-> Move the generic fbdev implementation into its own source and header
-> file. Adapt drivers. No functonal changes, but some of the internal
-> helpers have been renamed to fit into the drm_fbdev_ naming scheme.
+> Remove include statements for <drm/drm_fb_helper.h> where it is not
+> required (i.e., most of them). In a few places include other header
+> files that are required by the source code.
 > 
 > Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 > ---
+
 Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
 
 -- 
