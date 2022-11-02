@@ -1,62 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BF5F615C53
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 07:32:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C276615C67
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 07:45:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99D8510E0C0;
-	Wed,  2 Nov 2022 06:32:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99F3C10E0CD;
+	Wed,  2 Nov 2022 06:45:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A31E710E0C0
- for <intel-gfx@lists.freedesktop.org>; Wed,  2 Nov 2022 06:32:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667370734; x=1698906734;
- h=mime-version:content-transfer-encoding:in-reply-to:
- references:cc:to:from:subject:message-id:date;
- bh=JrCkN6j+stIgc9DlQIaeVXYqxXGpLNlrrltNN3dS+AY=;
- b=RVCWQSJzdF7SZGMdy77SsQrPi3dfIBzfQoKDuHEsQLMdR13BqpHkgWEm
- Kiy7hX6l6zNp5+loqDwcmqvBGKZcfRw5qIhuxbMWLUr46151IWS87Mul3
- I0nUp3vq/wYH2EAOxOb1Kjuexj+ukmO55CzilUGHbleEzT1wGk6hdi/ZE
- rTtFRJPyFWfMPHKJZknGmEw5P0NVG4iVDu/RPcG9HH0QWd91F61cW2ugs
- uA1YgX+3iXHQBbZhoTw0OJkKtuHWXTL62TalC7ZeqqvYdChKwtxk4b8Pb
- 2nb6O/AGLlM5aOxdfNEOg6/i4XJP3BV9iFGivwpOb07FV9Vzlmb2GArSO w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10518"; a="289039312"
-X-IronPort-AV: E=Sophos;i="5.95,232,1661842800"; d="scan'208";a="289039312"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2022 23:32:14 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10518"; a="723429687"
-X-IronPort-AV: E=Sophos;i="5.95,232,1661842800"; d="scan'208";a="723429687"
-Received: from ngorb-mobl.ger.corp.intel.com (HELO localhost) ([10.252.14.3])
- by fmsmga003-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Nov 2022 23:32:11 -0700
-Content-Type: text/plain; charset="utf-8"
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0DB7B10E0CD;
+ Wed,  2 Nov 2022 06:45:10 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0509AA8830;
+ Wed,  2 Nov 2022 06:45:10 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4383865711109764604=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <8735b89vz6.fsf@intel.com>
-References: <20221024210953.1572998-1-gwan-gyeong.mun@intel.com>
- <Y1ercgaqQwfqt42U@ashyti-mobl2.lan> <87ilk7pwrw.wl-ashutosh.dixit@intel.com>
- <Y1h8yn4QHI3aBlCe@ashyti-mobl2.lan>
- <CAKwvOdkpQvk31zbipLDPXfsDZ8FpGHs9t-+9JfFQO85Bs4h=wg@mail.gmail.com>
- <877d0lxl6s.wl-ashutosh.dixit@intel.com>
- <CAKwvOdmVJn8HvfF9WTnOAc+HsdJ4c1Tdck8E7Caky7AoCq4ZTA@mail.gmail.com>
- <875yg5xgkp.wl-ashutosh.dixit@intel.com>
- <c1c548f8-71a8-0d4d-d591-58a0cd5dac20@intel.com> <8735b89vz6.fsf@intel.com>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>,
- Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Nick Desaulniers <ndesaulniers@google.com>
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <166737072744.4614.10758297029461955484@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Wed, 02 Nov 2022 08:32:07 +0200
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/hwmon: Fix a build error used with
- clang compiler
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
+Date: Wed, 02 Nov 2022 06:45:09 -0000
+Message-ID: <166737150999.23606.4437223395020978922@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221102051416.27327-1-niranjana.vishwanathapura@intel.com>
+In-Reply-To: <20221102051416.27327-1-niranjana.vishwanathapura@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Do_not_set_cache=5Fdirty_for_DGFX?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,427 +40,347 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, llvm@lists.linux.dev,
- linux-kernel@vger.kernel.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Jani Nikula (2022-10-28 11:46:21)
-> On Fri, 28 Oct 2022, Gwan-gyeong Mun <gwan-gyeong.mun@intel.com> wrote:
-> > Resend, because some content was accidentally omitted from the previous=
-=20
-> > reply.
-> > Please ignore the previous email.
-> >
-> > Hi all,
-> >
-> > I should have written the original commit message more accurately, but =
+--===============4383865711109764604==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> > it seems that it was written inaccurately.
-> >
-> > If the FIELD_PREP macro is expanded, the following macros are used.
-> >
-> > #define FIELD_PREP(_mask, _val)                                        =
-       \
-> >       ({                                                              \
-> >               __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");    \
-> >               ((typeof(_mask))(_val) << __bf_shf(_mask)) & (_mask);   \
-> >       })
-> >
-> >
-> > #define __BF_FIELD_CHECK(_mask, _reg, _val, _pfx)                     \
-> >       ({                                                              \
-> >               BUILD_BUG_ON_MSG(!__builtin_constant_p(_mask),          \
-> >                                _pfx "mask is not constant");          \
-> >               BUILD_BUG_ON_MSG((_mask) =3D=3D 0, _pfx "mask is zero"); =
-   \
-> >               BUILD_BUG_ON_MSG(__builtin_constant_p(_val) ?           \
-> >                                ~((_mask) >> __bf_shf(_mask)) & (_val) :=
- 0, \
-> >                                _pfx "value too large for the field"); \
-> >               BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >     \
-> >                                __bf_cast_unsigned(_reg, ~0ull),       \
-> >                                _pfx "type of reg too small for mask"); \
-> >               __BUILD_BUG_ON_NOT_POWER_OF_2((_mask) +                 \
-> >                                             (1ULL << __bf_shf(_mask)));=
- \
-> >       })
-> >
-> > Among them, a build error is generated by the lower part of the=20
-> > __BF_FIELD_CHECK() macro.
-> >
-> >               BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >     \
-> >                                __bf_cast_unsigned(_reg, ~0ull),       \
-> >                                _pfx "type of reg too small for mask"); \
-> >
-> >
-> > Here, if you apply an argument to this macro, it will look like the=20
-> > following.
-> >
-> > __bf_cast_unsigned(field_msk, field_msk) > __bf_cast_unsigned(0ULL, ~0u=
-ll)
-> >
-> > The result is always false because an unsigned int value of type=20
-> > field_msk is not always greater than the maximum value of unsigned long=
-=20
-> > long .
-> > So, a build error occurs due to the following part of the clang compile=
-r=20
-> > option.
-> >
-> > [-Werror,-Wtautological-constant-out-of-range-compare]
-> >
-> > You can simply override this warning in Clang by adding the build optio=
-n=20
-> > below, but this seems like a bad attempt
-> >
-> > i915/Makefile
-> > CFLAGS_i915_hwmon.o +=3D -Wno-tautological-constant-out-of-range-compare
-> >
-> > The easiest way to solve this is to use a constant value, not a=20
-> > variable, as an argument to FIELD_PREP.
-> >
-> > And since the REG_FIELD_PREP() macro suggested by Jani requires a const=
-=20
-> > expression as the first argument, it cannot be changed with this macro =
+== Series Details ==
 
-> > alone in the existing code, it must be changed to input a constant valu=
-e=20
-> > as shown below.
->=20
-> We've added REG_FIELD_PREP() precisely to avoid the problems with the
-> types and ranges, as we want it to operate on u32. It also uses
-> __is_constexpr() to avoid dependencies on compiler implementation and
-> optimizations.
->=20
-> Please use REG_FIELD_PREP() and a constant value. Maybe rethink the
-> interface if needed.
+Series: drm/i915: Do not set cache_dirty for DGFX
+URL   : https://patchwork.freedesktop.org/series/110399/
+State : failure
 
-Ashutosh and GG, can we get a fix for this merged ASAP. It's currently
-blocking the drm-intel-gt-next pull request.
+== Summary ==
 
-Regards, Joonas
+CI Bug Log - changes from CI_DRM_12330 -> Patchwork_110399v1
+====================================================
 
->=20
-> BR,
-> Jani.
->=20
->=20
->=20
->=20
-> >
-> > diff --git a/drivers/gpu/drm/i915/i915_hwmon.c=20
-> > b/drivers/gpu/drm/i915/i915_hwmon.c
-> > index 08c921421a5f..abb3a194c548 100644
-> > --- a/drivers/gpu/drm/i915/i915_hwmon.c
-> > +++ b/drivers/gpu/drm/i915/i915_hwmon.c
-> > @@ -101,7 +101,7 @@ hwm_field_read_and_scale(struct hwm_drvdata *ddat, =
+Summary
+-------
 
-> > i915_reg_t rgadr,
-> >
-> >   static void
-> >   hwm_field_scale_and_write(struct hwm_drvdata *ddat, i915_reg_t rgadr,
-> > -                         const u32 field_msk, int nshift,
-> > +                         int nshift,
-> >                            unsigned int scale_factor, long lval)
-> >   {
-> >          u32 nval;
-> > @@ -111,8 +111,8 @@ hwm_field_scale_and_write(struct hwm_drvdata *ddat,=
-=20
-> > i915_reg_t rgadr,
-> >          /* Computation in 64-bits to avoid overflow. Round to nearest.=
- */
-> >          nval =3D DIV_ROUND_CLOSEST_ULL((u64)lval << nshift, scale_fact=
-or);
-> >
-> > -       bits_to_clear =3D field_msk;
-> > -       bits_to_set =3D REG_FIELD_PREP(field_msk, nval);
-> > +       bits_to_clear =3D PKG_PWR_LIM_1;
-> > +       bits_to_set =3D REG_FIELD_PREP(PKG_PWR_LIM_1, nval);
-> >
-> >          hwm_locked_with_pm_intel_uncore_rmw(ddat, rgadr,
-> >                                              bits_to_clear, bits_to_set=
-);
-> > @@ -406,7 +406,6 @@ hwm_power_write(struct hwm_drvdata *ddat, u32 attr,=
-=20
-> > int chan, long val)
-> >          case hwmon_power_max:
-> >                  hwm_field_scale_and_write(ddat,
-> >                                            hwmon->rg.pkg_rapl_limit,
-> > -                                         PKG_PWR_LIM_1,
-> >                                            hwmon->scl_shift_power,
-> >                                            SF_POWER, val);
-> >                  return 0;
-> >
-> >
-> >
-> > In addition, if there is no build problem regardless of the size of the=
-=20
-> > type as the first argument in FIELD_PREP, it is possible through the=20
-> > following modification.
-> > (Since this modification modifies include/linux/bitfield.h , I will sen=
-d=20
-> > it as a separate patch.
-> >    )
-> >
-> > However, it seems that we need to have Jani's confirm whether it is oka=
-y=20
-> > to use FIELD_PREP() instead of REG_FIELD_PREP() which is forced to u32 =
+  **FAILURE**
 
-> > return type in i915.
-> >
-> > diff --git a/include/linux/bitfield.h b/include/linux/bitfield.h
-> > index c9be1657f03d..6e96799b6f38 100644
-> > --- a/include/linux/bitfield.h
-> > +++ b/include/linux/bitfield.h
-> > @@ -9,7 +9,7 @@
-> >
-> >   #include <linux/build_bug.h>
-> >   #include <asm/byteorder.h>
-> > -
-> > +#include <linux/overflow.h>
-> >   /*
-> >    * Bitfield access macros
-> >    *
-> > @@ -69,7 +69,7 @@
-> >                                   ~((_mask) >> __bf_shf(_mask)) & (_val=
-)=20
-> > : 0, \
-> >                                   _pfx "value too large for the field")=
-; \
-> >                  BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >   =
-  \
-> > -                                __bf_cast_unsigned(_reg, ~0ull),      =
- \
-> > +                                __bf_cast_unsigned(_reg,=20
-> > type_max(__unsigned_scalar_typeof(_reg))),    \
-> >                                   _pfx "type of reg too small for mask"=
-); \
-> >                  __BUILD_BUG_ON_NOT_POWER_OF_2((_mask) +               =
-  \
-> >                                                (1ULL << __bf_shf(_mask)=
-)); \
-> > @@ -84,7 +84,7 @@
-> >    */
-> >   #define FIELD_MAX(_mask)                                             =
-  \
-> >          ({                                                            =
-  \
-> > -               __BF_FIELD_CHECK(_mask, 0ULL, 0ULL, "FIELD_MAX: ");    =
- \
-> > +               __BF_FIELD_CHECK(_mask,=20
-> > type_min(__unsigned_scalar_typeof(_mask)),=20
-> > type_min(__unsigned_scalar_typeof(_mask)), "FIELD_MAX: ");   \
-> >                  (typeof(_mask))((_mask) >> __bf_shf(_mask));          =
-  \
-> >          })
-> >
-> > @@ -97,7 +97,7 @@
-> >    */
-> >   #define FIELD_FIT(_mask, _val)                                       =
-  \
-> >          ({                                                            =
-  \
-> > -               __BF_FIELD_CHECK(_mask, 0ULL, 0ULL, "FIELD_FIT: ");    =
- \
-> > +               __BF_FIELD_CHECK(_mask,=20
-> > type_min(__unsigned_scalar_typeof(_mask)),=20
-> > type_min(__unsigned_scalar_typeof(_val)), "FIELD_FIT: ");    \
-> >                  !((((typeof(_mask))_val) << __bf_shf(_mask)) & ~(_mask=
-)); \
-> >          })
-> >
-> > @@ -111,7 +111,7 @@
-> >    */
-> >   #define FIELD_PREP(_mask, _val)=20
-> >           \
-> >          ({                                                            =
-  \
-> > -               __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");   =
- \
-> > +               __BF_FIELD_CHECK(_mask,=20
-> > type_min(__unsigned_scalar_typeof(_mask)), _val, "FIELD_PREP: ");      =
- \
-> >                  ((typeof(_mask))(_val) << __bf_shf(_mask)) & (_mask); =
-  \
-> >          })
-> >
-> > @@ -125,7 +125,7 @@
-> >    */
-> >   #define FIELD_GET(_mask, _reg)                                       =
-  \
-> >          ({                                                            =
-  \
-> > -               __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: ");      =
- \
-> > +               __BF_FIELD_CHECK(_mask, _reg,=20
-> > type_min(__unsigned_scalar_typeof(_reg)), "FIELD_GET: "); \
-> >                  (typeof(_mask))(((_reg) & (_mask)) >> __bf_shf(_mask))=
-; \
-> >          })
-> >
-> >
-> > Br,
-> >
-> > G.G.
-> >
-> > On 10/27/22 9:32 PM, Dixit, Ashutosh wrote:
-> >> On Thu, 27 Oct 2022 10:16:47 -0700, Nick Desaulniers wrote:
-> >>>
-> >>=20
-> >> Hi Nick,
-> >>=20
-> >>> Thanks, I can repro now.
-> >>>
-> >>> I haven't detangled the macro soup, but I noticed:
-> >>>
-> >>> 1. FIELD_PREP is defined in include/linux/bitfield.h which has the
-> >>> following comment:
-> >>>   18  * Mask must be a compilation time constant.
-> >>=20
-> >> I had comments about this here:
-> >>=20
-> >> https://lore.kernel.org/intel-gfx/87ilk7pwrw.wl-ashutosh.dixit@intel.c=
-om/
-> >>=20
-> >> The relevant part being:
-> >>=20
-> >> ---- {quote} ----
-> >>>>> ./include/linux/bitfield.h:71:53: note: expanded from macro '__BF_F=
-IELD_CHECK'
-> >>>>>                  BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) =
->     \
-> >>=20
-> >> So clang seems to break here at this line in __BF_FIELD_CHECK (note ~0=
-ull
-> >> also occurs here):
-> >>=20
-> >>              BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >     \
-> >>                               __bf_cast_unsigned(_reg, ~0ull),       \
-> >>                               _pfx "type of reg too small for mask"); \
-> >>=20
-> >> So it goes through previous checks including the "mask is not constant"
-> >> check. As Nick Desaulniers mentions "__builtin_constant_p is evaluated
-> >> after most optimizations have run" so by that time both compilers (gcc=
- and
-> >> clang) have figured out that even though _mask is coming in as function
-> >> argument it is really the constant below:
-> >>=20
-> >> #define   PKG_PWR_LIM_1              REG_GENMASK(14, 0)
-> >>=20
-> >> But it is not clear why clang chokes on this "type of reg too small for
-> >> mask" check (and gcc doesn't) since everything is u32.
-> >> ---- {end quote} ----
-> >>=20
-> >>>
-> >>> 2. hwm_field_scale_and_write only has one callsite.
-> >>>
-> >>> The following patch works:
-> >>=20
-> >> If we need to fix it at our end yes we can come up with one of these
-> >> patches. But we were hoping someone from clang/llvm can comment about =
-the
-> >> "type of reg too small for mask" stuff. If this is something which nee=
-ds to
-> >> be fixed in clang/llvm we probably don't want to hide the issue.
-> >>=20
-> >>>
-> >>> ```
-> >>> diff --git a/drivers/gpu/drm/i915/i915_hwmon.c
-> >>> b/drivers/gpu/drm/i915/i915_hwmon.c
-> >>> index 9e9781493025..6ac29d90b92a 100644
-> >>> --- a/drivers/gpu/drm/i915/i915_hwmon.c
-> >>> +++ b/drivers/gpu/drm/i915/i915_hwmon.c
-> >>> @@ -101,7 +101,7 @@ hwm_field_read_and_scale(struct hwm_drvdata *ddat,
-> >>> i915_reg_t rgadr,
-> >>>
-> >>>   static void
-> >>>   hwm_field_scale_and_write(struct hwm_drvdata *ddat, i915_reg_t rgad=
-r,
-> >>> -                         u32 field_msk, int nshift,
-> >>> +                         int nshift,
-> >>>                            unsigned int scale_factor, long lval)
-> >>>   {
-> >>>          u32 nval;
-> >>> @@ -111,8 +111,8 @@ hwm_field_scale_and_write(struct hwm_drvdata
-> >>> *ddat, i915_reg_t rgadr,
-> >>>          /* Computation in 64-bits to avoid overflow. Round to neares=
-t. */
-> >>>          nval =3D DIV_ROUND_CLOSEST_ULL((u64)lval << nshift, scale_fa=
-ctor);
-> >>>
-> >>> -       bits_to_clear =3D field_msk;
-> >>> -       bits_to_set =3D FIELD_PREP(field_msk, nval);
-> >>> +       bits_to_clear =3D PKG_PWR_LIM_1;
-> >>> +       bits_to_set =3D FIELD_PREP(PKG_PWR_LIM_1, nval);
-> >>>
-> >>>          hwm_locked_with_pm_intel_uncore_rmw(ddat, rgadr,
-> >>>                                              bits_to_clear, bits_to_s=
-et);
-> >>> @@ -406,7 +406,6 @@ hwm_power_write(struct hwm_drvdata *ddat, u32
-> >>> attr, int chan, long val)
-> >>>          case hwmon_power_max:
-> >>>                  hwm_field_scale_and_write(ddat,
-> >>>                                            hwmon->rg.pkg_rapl_limit,
-> >>> -                                         PKG_PWR_LIM_1,
-> >>>                                            hwmon->scl_shift_power,
-> >>>                                            SF_POWER, val);
-> >>>                  return 0;
-> >>> ```
-> >>> Though I'm not sure if you're planning to add further callsites of
-> >>> hwm_field_scale_and_write with different field_masks?
-> >>=20
-> >> I have reasons for keeping it this way, it's there in the link above i=
-f you
-> >> are interested.
-> >>=20
-> >>>
-> >>> Alternatively, (without the above diff),
-> >>>
-> >>> ```
-> >>> diff --git a/include/linux/bitfield.h b/include/linux/bitfield.h
-> >>> index c9be1657f03d..6f40f12bcf89 100644
-> >>> --- a/include/linux/bitfield.h
-> >>> +++ b/include/linux/bitfield.h
-> >>> @@ -8,6 +8,7 @@
-> >>>   #define _LINUX_BITFIELD_H
-> >>>
-> >>>   #include <linux/build_bug.h>
-> >>> +#include <linux/const.h>
-> >>>   #include <asm/byteorder.h>
-> >>>
-> >>>   /*
-> >>> @@ -62,7 +63,7 @@
-> >>>
-> >>>   #define __BF_FIELD_CHECK(_mask, _reg, _val, _pfx)                  =
-    \
-> >>>          ({                                                          =
-    \
-> >>> -               BUILD_BUG_ON_MSG(!__builtin_constant_p(_mask),       =
-   \
-> >>> +               BUILD_BUG_ON_MSG(!__is_constexpr(_mask),             =
-   \
-> >>>                                   _pfx "mask is not constant");      =
-    \
-> >>>                  BUILD_BUG_ON_MSG((_mask) =3D=3D 0, _pfx "mask is zer=
-o");    \
-> >>>                  BUILD_BUG_ON_MSG(__builtin_constant_p(_val) ?       =
-    \
-> >>> ```
-> >>> will produce:
-> >>> error: call to __compiletime_assert_407 declared with 'error'
-> >>> attribute: FIELD_PREP: mask is not constant
-> >>>
-> >>> I haven't tested if that change is also feasible (on top of fixing
-> >>> this specific instance), but I think it might help avoid more of these
-> >>> subtleties wrt. __builtin_constant_p that depende heavily on compiler,
-> >>> compiler version, optimization level.
-> >>=20
-> >> Not disagreeing, can do something here if needed.
-> >>=20
-> >> Thanks.
-> >> --
-> >> Ashutosh
->=20
-> --=20
-> Jani Nikula, Intel Open Source Graphics Center
+  Serious unknown changes coming with Patchwork_110399v1 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_110399v1, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/index.html
+
+Participating hosts (38 -> 29)
+------------------------------
+
+  Additional (3): fi-icl-u2 fi-tgl-dsi fi-pnv-d510 
+  Missing    (12): fi-adl-ddr5 bat-dg2-8 bat-adlm-1 bat-dg2-9 bat-adlp-6 bat-adlp-4 bat-adln-1 bat-rplp-1 bat-rpls-1 bat-rpls-2 bat-dg2-11 bat-jsl-1 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_110399v1:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@dmabuf:
+    - fi-bsw-kefka:       [PASS][1] -> [DMESG-FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12330/fi-bsw-kefka/igt@i915_selftest@live@dmabuf.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-bsw-kefka/igt@i915_selftest@live@dmabuf.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_110399v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-icl-u2:          NOTRUN -> [SKIP][3] ([i915#2190])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-icl-u2/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@random-engines:
+    - fi-icl-u2:          NOTRUN -> [SKIP][4] ([i915#4613]) +3 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-icl-u2/igt@gem_lmem_swapping@random-engines.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-icl-u2:          NOTRUN -> [INCOMPLETE][5] ([i915#4890])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-icl-u2/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-cfl-guc:         [PASS][6] -> [DMESG-FAIL][7] ([i915#5334])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12330/fi-cfl-guc/igt@i915_selftest@live@gt_heartbeat.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-cfl-guc/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - fi-bdw-5557u:       [PASS][8] -> [INCOMPLETE][9] ([i915#146])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12330/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][10] ([fdo#109271] / [fdo#111827])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-hsw-4770/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-icl-u2:          NOTRUN -> [SKIP][11] ([fdo#111827]) +7 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor:
+    - fi-icl-u2:          NOTRUN -> [SKIP][12] ([i915#4103])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-icl-u2:          NOTRUN -> [SKIP][13] ([fdo#109285])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][14] ([fdo#109271]) +43 similar issues
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-pnv-d510/igt@kms_psr@primary_page_flip.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - fi-icl-u2:          NOTRUN -> [SKIP][15] ([i915#3555])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-icl-u2/igt@kms_setmode@basic-clone-single-crtc.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-icl-u2:          NOTRUN -> [SKIP][16] ([fdo#109295] / [i915#3301])
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-icl-u2/igt@prime_vgem@basic-userptr.html
+
+  * igt@runner@aborted:
+    - fi-icl-u2:          NOTRUN -> [FAIL][17] ([i915#4312])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-icl-u2/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_ctx_create@basic-files:
+    - {fi-tgl-mst}:       [DMESG-WARN][18] ([i915#6434]) -> [PASS][19]
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12330/fi-tgl-mst/igt@gem_ctx_create@basic-files.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-tgl-mst/igt@gem_ctx_create@basic-files.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [INCOMPLETE][20] ([i915#4785]) -> [PASS][21]
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12330/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109284]: https://bugs.freedesktop.org/show_bug.cgi?id=109284
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [fdo#110189]: https://bugs.freedesktop.org/show_bug.cgi?id=110189
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#4890]: https://gitlab.freedesktop.org/drm/intel/issues/4890
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#6434]: https://gitlab.freedesktop.org/drm/intel/issues/6434
+  [i915#6856]: https://gitlab.freedesktop.org/drm/intel/issues/6856
+  [i915#7125]: https://gitlab.freedesktop.org/drm/intel/issues/7125
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12330 -> Patchwork_110399v1
+
+  CI-20190529: 20190529
+  CI_DRM_12330: b4169c84bf30172f83c6d365a927dcea0cd7a2ab @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7037: 6a25c53624502fc85cec3cf0a0bf244a2346e30f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_110399v1: b4169c84bf30172f83c6d365a927dcea0cd7a2ab @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+6be90ff6eb2b drm/i915: Do not set cache_dirty for DGFX
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/index.html
+
+--===============4383865711109764604==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Do not set cache_dirty for DGFX</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/110399/">https://patchwork.freedesktop.org/series/110399/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12330 -&gt; Patchwork_110399v1</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_110399v1 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_110399v1, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/index.html</p>
+<h2>Participating hosts (38 -&gt; 29)</h2>
+<p>Additional (3): fi-icl-u2 fi-tgl-dsi fi-pnv-d510 <br />
+  Missing    (12): fi-adl-ddr5 bat-dg2-8 bat-adlm-1 bat-dg2-9 bat-adlp-6 bat-adlp-4 bat-adln-1 bat-rplp-1 bat-rpls-1 bat-rpls-2 bat-dg2-11 bat-jsl-1 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_110399v1:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live@dmabuf:<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12330/fi-bsw-kefka/igt@i915_selftest@live@dmabuf.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-bsw-kefka/igt@i915_selftest@live@dmabuf.html">DMESG-FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_110399v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-icl-u2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@random-engines:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-icl-u2/igt@gem_lmem_swapping@random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-icl-u2/igt@i915_pm_rpm@module-reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4890">i915#4890</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12330/fi-cfl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-cfl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12330/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-hsw-4770/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +7 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_page_flip:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-pnv-d510/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +43 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-icl-u2/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-icl-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-icl-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_ctx_create@basic-files:</p>
+<ul>
+<li>{fi-tgl-mst}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12330/fi-tgl-mst/igt@gem_ctx_create@basic-files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6434">i915#6434</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-tgl-mst/igt@gem_ctx_create@basic-files.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12330/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110399v1/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12330 -&gt; Patchwork_110399v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12330: b4169c84bf30172f83c6d365a927dcea0cd7a2ab @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7037: 6a25c53624502fc85cec3cf0a0bf244a2346e30f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_110399v1: b4169c84bf30172f83c6d365a927dcea0cd7a2ab @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>6be90ff6eb2b drm/i915: Do not set cache_dirty for DGFX</p>
+
+</body>
+</html>
+
+--===============4383865711109764604==--
