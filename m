@@ -1,94 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA591616E2F
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 21:01:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 062E8616E8A
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 21:24:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7678B10E5F3;
-	Wed,  2 Nov 2022 20:01:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D860010E60A;
+	Wed,  2 Nov 2022 20:24:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
- [148.163.158.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85EBF10E5EA;
- Wed,  2 Nov 2022 20:01:20 +0000 (UTC)
-Received: from pps.filterd (m0098421.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2A2IGRv4010825;
- Wed, 2 Nov 2022 20:00:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
- h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=pp1;
- bh=ZEYHGwsVZ9i/ZMrlW5q0nkckbHNYGw87m2YtJ0AKGxQ=;
- b=SXQ6VNpBNqZccLcMEzpdnny3NQLI105hgcR4DrBs/B//53X3no+zl9A0Jm012IoyLGY1
- DS8OdPIG20oiGDEfEVCCzw0JgLjbWQVRdzOo4WynVDVw4LSgpZwCb7j5GAHd7rmybdIB
- gJ2eWJ6nEKpZyw6fZlzCL1OfckGzioarDT/G+QHBAmEpzISRk45wptQbib2lDBXvXtML
- pgOtAtrRdR2MdaSe5xBdrQHLlEGnElo9HmxpjJs+5FjYjn4UtP3vqbhtC5cj3Ww1ouGO
- GAtAgve4864DPAmw/vj9KowwwHBPmiE5Od3nB2zr6rO9699u2mbtE1MvzUI4VxYbbYoX vg== 
-Received: from pps.reinject (localhost [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3kkvbydnfq-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 02 Nov 2022 20:00:51 +0000
-Received: from m0098421.ppops.net (m0098421.ppops.net [127.0.0.1])
- by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 2A2Jeqvv013125;
- Wed, 2 Nov 2022 20:00:50 GMT
-Received: from ppma04dal.us.ibm.com (7a.29.35a9.ip4.static.sl-reverse.com
- [169.53.41.122])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3kkvbydneg-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 02 Nov 2022 20:00:50 +0000
-Received: from pps.filterd (ppma04dal.us.ibm.com [127.0.0.1])
- by ppma04dal.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 2A2JolxS021521;
- Wed, 2 Nov 2022 20:00:49 GMT
-Received: from b01cxnp23032.gho.pok.ibm.com (b01cxnp23032.gho.pok.ibm.com
- [9.57.198.27]) by ppma04dal.us.ibm.com with ESMTP id 3kgutabwbh-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 02 Nov 2022 20:00:49 +0000
-Received: from smtpav03.wdc07v.mail.ibm.com ([9.208.128.112])
- by b01cxnp23032.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 2A2K0lv166650482
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Wed, 2 Nov 2022 20:00:47 GMT
-Received: from smtpav03.wdc07v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id CCF7258054;
- Wed,  2 Nov 2022 20:00:46 +0000 (GMT)
-Received: from smtpav03.wdc07v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 0E5B458070;
- Wed,  2 Nov 2022 20:00:43 +0000 (GMT)
-Received: from [9.160.116.108] (unknown [9.160.116.108])
- by smtpav03.wdc07v.mail.ibm.com (Postfix) with ESMTP;
- Wed,  2 Nov 2022 20:00:42 +0000 (GMT)
-Message-ID: <431304f4-cbe9-6453-cd3a-0843972ca368@linux.ibm.com>
-Date: Wed, 2 Nov 2022 16:00:42 -0400
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CE86110E60A;
+ Wed,  2 Nov 2022 20:24:20 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C3DF1AADD7;
+ Wed,  2 Nov 2022 20:24:20 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8190695106725321234=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Content-Language: en-US
-To: Eric Farman <farman@linux.ibm.com>,
- Alex Williamson <alex.williamson@redhat.com>,
- Cornelia Huck <cohuck@redhat.com>, Jason Gunthorpe <jgg@nvidia.com>,
- Kevin Tian <kevin.tian@intel.com>, Yi Liu <yi.l.liu@intel.com>
-References: <20221102150152.2521475-1-farman@linux.ibm.com>
- <20221102150152.2521475-2-farman@linux.ibm.com>
- <df037cd2e564acaa14c5a3358fd3386df29ad61e.camel@linux.ibm.com>
-From: Matthew Rosato <mjrosato@linux.ibm.com>
-In-Reply-To: <df037cd2e564acaa14c5a3358fd3386df29ad61e.camel@linux.ibm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: 3fpTBz1LZ22r3buesVDvJ_LOREDV8ITb
-X-Proofpoint-ORIG-GUID: 5kUYJ_dzxBTVeb9OuF-AJbfKjVSjRI8Q
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-02_14,2022-11-02_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 mlxlogscore=999
- priorityscore=1501 spamscore=0 malwarescore=0 adultscore=0
- lowpriorityscore=0 suspectscore=0 clxscore=1015 mlxscore=0 impostorscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211020128
-Subject: Re: [Intel-gfx] [PATCH v2 1/7] vfio/ccw: create a parent struct
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>
+Date: Wed, 02 Nov 2022 20:24:20 -0000
+Message-ID: <166742066076.23606.1339385011166578778@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221102174544.2288205-1-jouni.hogander@intel.com>
+In-Reply-To: <20221102174544.2288205-1-jouni.hogander@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRFND?=
+ =?utf-8?q?_slice/PSR2_SU_panel_y_granularity_alignment?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,143 +40,198 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kvm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Kirti Wankhede <kwankhede@nvidia.com>,
- Vineeth Vijayan <vneethv@linux.ibm.com>,
- Diana Craciun <diana.craciun@oss.nxp.com>,
- Alexander Gordeev <agordeev@linux.ibm.com>, David Airlie <airlied@gmail.com>,
- linux-s390@vger.kernel.org, Halil Pasic <pasic@linux.ibm.com>,
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- intel-gfx@lists.freedesktop.org, Jason Herne <jjherne@linux.ibm.com>,
- Vasily Gorbik <gor@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
- Eric Auger <eric.auger@redhat.com>,
- Harald Freudenberger <freude@linux.ibm.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gvt-dev@lists.freedesktop.org,
- Tony Krowiak <akrowiak@linux.ibm.com>, Yishai Hadas <yishaih@nvidia.com>,
- Peter Oberparleiter <oberpar@linux.ibm.com>,
- Sven Schnelle <svens@linux.ibm.com>, Daniel Vetter <daniel@ffwll.ch>,
- Abhishek Sahu <abhsahu@nvidia.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 11/2/22 3:29 PM, Eric Farman wrote:
-> On Wed, 2022-11-02 at 16:01 +0100, Eric Farman wrote:
->> Move the stuff associated with the mdev parent (and thus the
->> subchannel struct) into its own struct, and leave the rest in
->> the existing private structure.
->>
->> The subchannel will point to the parent, and the parent will point
->> to the private, for the areas where one or both are needed. Further
->> separation of these structs will follow.
->>
->> Signed-off-by: Eric Farman <farman@linux.ibm.com>
->> ---
->>  drivers/s390/cio/vfio_ccw_drv.c     | 96 ++++++++++++++++++++++++---
->> --
->>  drivers/s390/cio/vfio_ccw_ops.c     |  8 ++-
->>  drivers/s390/cio/vfio_ccw_private.h | 20 ++++--
->>  3 files changed, 100 insertions(+), 24 deletions(-)
->>
->> diff --git a/drivers/s390/cio/vfio_ccw_drv.c
->> b/drivers/s390/cio/vfio_ccw_drv.c
->> index 7f5402fe857a..06022fb37b9d 100644
->> --- a/drivers/s390/cio/vfio_ccw_drv.c
->> +++ b/drivers/s390/cio/vfio_ccw_drv.c
+--===============8190695106725321234==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-...
+== Series Details ==
 
->>  static int vfio_ccw_sch_probe(struct subchannel *sch)
->>  {
->>         struct pmcw *pmcw = &sch->schib.pmcw;
->>         struct vfio_ccw_private *private;
->> +       struct vfio_ccw_parent *parent;
->>         int ret = -ENOMEM;
->>  
->>         if (pmcw->qf) {
->> @@ -213,41 +246,62 @@ static int vfio_ccw_sch_probe(struct subchannel
->> *sch)
->>                 return -ENODEV;
->>         }
->>  
->> +       parent = kzalloc(sizeof(*parent), GFP_KERNEL);
->> +       if (IS_ERR(parent))
->> +               return PTR_ERR(parent);
->> +
->> +       dev_set_name(&parent->dev, "parent");
->> +       parent->dev.parent = &sch->dev;
->> +       parent->dev.release = &vfio_ccw_free_parent;
->> +       ret = device_register(&parent->dev);
->> +       if (ret)
->> +               goto out_free;
->> +
->>         private = vfio_ccw_alloc_private(sch);
->> -       if (IS_ERR(private))
->> +       if (IS_ERR(private)) {
->> +               put_device(&parent->dev);
-> 
-> This should've been device_unregister. (I could rearrange the code a
-> bit to avoid the mix of returns/gotos around here, but since the whole
-> series is trying to separate these two structs that seems unnecessary.)
-> 
->>                 return PTR_ERR(private);
->> +       }
->>  
->> -       dev_set_drvdata(&sch->dev, private);
->> +       dev_set_drvdata(&sch->dev, parent);
->> +       dev_set_drvdata(&parent->dev, private);
->>  
->> -       private->mdev_type.sysfs_name = "io";
->> -       private->mdev_type.pretty_name = "I/O subchannel (Non-QDIO)";
->> -       private->mdev_types[0] = &private->mdev_type;
->> -       ret = mdev_register_parent(&private->parent, &sch->dev,
->> +       parent->mdev_type.sysfs_name = "io";
->> +       parent->mdev_type.pretty_name = "I/O subchannel (Non-QDIO)";
->> +       parent->mdev_types[0] = &parent->mdev_type;
->> +       ret = mdev_register_parent(&parent->parent, &sch->dev,
->>                                    &vfio_ccw_mdev_driver,
->> -                                  private->mdev_types, 1);
->> +                                  parent->mdev_types, 1);
->>         if (ret)
->> -               goto out_free;
->> +               goto out_unreg;
->>  
->>         VFIO_CCW_MSG_EVENT(4, "bound to subchannel %x.%x.%04x\n",
->>                            sch->schid.cssid, sch->schid.ssid,
->>                            sch->schid.sch_no);
->>         return 0;
->>  
->> +out_unreg:
->> +       device_unregister(&parent->dev);
->>  out_free:
->> +       dev_set_drvdata(&parent->dev, NULL);
->>         dev_set_drvdata(&sch->dev, NULL);
->>         vfio_ccw_free_private(private);
->> +       put_device(&parent->dev);
-> 
-> While this...
-> 
->>         return ret;
->>  }
->>  
->>  static void vfio_ccw_sch_remove(struct subchannel *sch)
->>  {
->> -       struct vfio_ccw_private *private = dev_get_drvdata(&sch-
->>> dev);
->> +       struct vfio_ccw_parent *parent = dev_get_drvdata(&sch->dev);
->> +       struct vfio_ccw_private *private = dev_get_drvdata(&parent-
->>> dev);
->>  
->> -       mdev_unregister_parent(&private->parent);
->> +       mdev_unregister_parent(&parent->parent);
->>  
->> +       device_unregister(&parent->dev);
->>         dev_set_drvdata(&sch->dev, NULL);
->>  
->>         vfio_ccw_free_private(private);
->> +       put_device(&parent->dev);
-> 
-> ...and this shouldn't even be there. Sorry for the brain fog.
-> 
+Series: DSC slice/PSR2 SU panel y granularity alignment
+URL   : https://patchwork.freedesktop.org/series/110434/
+State : success
 
-Thanks, with these changes I no longer see refcount underflows.  I'll continue reviewing with those changes presumed for v3.
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_12332 -> Patchwork_110434v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110434v1/index.html
+
+Participating hosts (40 -> 28)
+------------------------------
+
+  Missing    (12): bat-dg2-8 bat-adlm-1 fi-icl-u2 bat-dg2-9 bat-adlp-6 bat-adlp-4 bat-adln-1 bat-rplp-1 bat-rpls-1 bat-rpls-2 bat-dg2-11 bat-jsl-1 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_110434v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - fi-bdw-5557u:       [PASS][1] -> [INCOMPLETE][2] ([i915#146])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110434v1/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-hsw-g3258:       NOTRUN -> [SKIP][3] ([fdo#109271] / [fdo#111827])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110434v1/fi-hsw-g3258/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-apl-guc:         [DMESG-FAIL][4] ([i915#5334]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110434v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-adl-ddr5:        [DMESG-WARN][6] ([i915#5591]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-adl-ddr5/igt@i915_selftest@live@hangcheck.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110434v1/fi-adl-ddr5/igt@i915_selftest@live@hangcheck.html
+    - fi-hsw-g3258:       [INCOMPLETE][8] ([i915#3303] / [i915#4785]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110434v1/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#3987]: https://gitlab.freedesktop.org/drm/intel/issues/3987
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#5591]: https://gitlab.freedesktop.org/drm/intel/issues/5591
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12332 -> Patchwork_110434v1
+
+  CI-20190529: 20190529
+  CI_DRM_12332: 601b2ef606e4b83d5518aa6a5011bb2b1c5954d9 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7038: 5389b3f3b9b75df6bd8506e4aa3da357fd0c0ab1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_110434v1: 601b2ef606e4b83d5518aa6a5011bb2b1c5954d9 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+45013b2475d5 drm/i915/psr: Remove inappropriate DSC slice alignment warning
+f9774a61bd76 drm/i915/psr: Ensure panel granularity aligns with DSC slice height
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110434v1/index.html
+
+--===============8190695106725321234==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>DSC slice/PSR2 SU panel y granularity alignment</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/110434/">https://patchwork.freedesktop.org/series/110434/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110434v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110434v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12332 -&gt; Patchwork_110434v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110434v1/index.html</p>
+<h2>Participating hosts (40 -&gt; 28)</h2>
+<p>Missing    (12): bat-dg2-8 bat-adlm-1 fi-icl-u2 bat-dg2-9 bat-adlp-6 bat-adlp-4 bat-adln-1 bat-rplp-1 bat-rpls-1 bat-rpls-2 bat-dg2-11 bat-jsl-1 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_110434v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110434v1/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-hsw-g3258:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110434v1/fi-hsw-g3258/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110434v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>
+<p>fi-adl-ddr5:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-adl-ddr5/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5591">i915#5591</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110434v1/fi-adl-ddr5/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
+</li>
+<li>
+<p>fi-hsw-g3258:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110434v1/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12332 -&gt; Patchwork_110434v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12332: 601b2ef606e4b83d5518aa6a5011bb2b1c5954d9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7038: 5389b3f3b9b75df6bd8506e4aa3da357fd0c0ab1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_110434v1: 601b2ef606e4b83d5518aa6a5011bb2b1c5954d9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>45013b2475d5 drm/i915/psr: Remove inappropriate DSC slice alignment warning<br />
+f9774a61bd76 drm/i915/psr: Ensure panel granularity aligns with DSC slice height</p>
+
+</body>
+</html>
+
+--===============8190695106725321234==--
