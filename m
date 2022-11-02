@@ -1,34 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B62D5616D2B
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 19:50:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A34F2616D3C
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 19:57:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0279410E568;
-	Wed,  2 Nov 2022 18:50:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 311A710E570;
+	Wed,  2 Nov 2022 18:57:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 274D310E568;
- Wed,  2 Nov 2022 18:50:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1E1B6A77A5;
- Wed,  2 Nov 2022 18:50:37 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8538042123202460036=="
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC80010E570
+ for <intel-gfx@lists.freedesktop.org>; Wed,  2 Nov 2022 18:57:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1667415445; x=1698951445;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=/m37h5WW/1iCo0jPSeISIO5hZzEFWSNCGe7xKGVuKZs=;
+ b=SvH2Hz72hsIXjTh2mU/0VDX91I0K6ZqW6jd7oZb97SFy3Hk9D8d0s78V
+ Z0UEDsXFl9meAmpdni5NwxdJp7XsjiJvJiwfd0jue1VfRWRhMRQxHzLaC
+ I9pjMDv3PV6a+TkRIrsCvhEhpBldQBrwIMfWIb1se87SZglowdzwetdWq
+ Dj+v12RadjQYrCM6ioQzSxYjFPDQ7niuMY4zMSYkJ3QifH0b+ZSG+n6hR
+ rTLQh2e85199Wnu95cRLX635QOTfdYvWgMTcq4NuMrDhB2gcE4vyQpNbk
+ o/ud3qUIWCUqk9nuF/stgwpJAAMMrAAwGMTCJTNZqkSaMwGwz0b+yhXId g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="296945823"
+X-IronPort-AV: E=Sophos;i="5.95,234,1661842800"; d="scan'208";a="296945823"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2022 11:57:25 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="739875374"
+X-IronPort-AV: E=Sophos;i="5.95,234,1661842800"; d="scan'208";a="739875374"
+Received: from cjokeeff-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.15.91])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2022 11:57:23 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20221102171530.3261282-2-imre.deak@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20221102171530.3261282-1-imre.deak@intel.com>
+ <20221102171530.3261282-2-imre.deak@intel.com>
+Date: Wed, 02 Nov 2022 20:57:21 +0200
+Message-ID: <878rktchgu.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lee, Shawn C" <shawn.c.lee@intel.com>
-Date: Wed, 02 Nov 2022 18:50:37 -0000
-Message-ID: <166741503708.23607.15709390906240388602@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220801151616.12644-1-shawn.c.lee@intel.com>
-In-Reply-To: <20220801151616.12644-1-shawn.c.lee@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/display=3A_clear_plane_color_control_register_when_turn_p?=
- =?utf-8?q?lane_off_=28rev2=29?=
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 1/7] drm/i915: Allocate power domain set
+ wakerefs dynamically
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,362 +58,166 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8538042123202460036==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, 02 Nov 2022, Imre Deak <imre.deak@intel.com> wrote:
+> Since the intel_display_power_domain_set struct, currently its current
+> size close 1kB, can be allocated on the stack, it's better to allocate
+> the per-domain wakeref pointer array - used for debugging - within the
+> struct dynamically, so do this.
+>
+> The memory freeing is guaranteed by the fact that the acquired domain
+> references tracked by struct can't be leaked either.
+>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  .../drm/i915/display/intel_display_power.c    | 61 ++++++++++++++++---
+>  .../drm/i915/display/intel_display_power.h    |  2 +-
+>  2 files changed, 53 insertions(+), 10 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> index 4c1de91e56ff9..e2da91c2a9638 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -830,19 +830,58 @@ void intel_display_power_put_unchecked(struct drm_i915_private *dev_priv,
+>  }
+>  #endif
+>  
+> +#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
+> +static intel_wakeref_t *
+> +get_debug_wakerefs(struct drm_i915_private *i915,
+> +		   struct intel_display_power_domain_set *power_domain_set)
+> +{
+> +	if (power_domain_set->wakerefs)
+> +		return power_domain_set->wakerefs;
+> +
+> +	power_domain_set->wakerefs = kcalloc(POWER_DOMAIN_NUM,
+> +					     sizeof(*power_domain_set->wakerefs),
+> +					     GFP_KERNEL);
+> +
+> +	drm_WARN_ON_ONCE(&i915->drm, !power_domain_set->wakerefs);
 
-== Series Details ==
+The rule of thumb is not to warn or log on allocation failures.
 
-Series: drm/i915/display: clear plane color control register when turn plane off (rev2)
-URL   : https://patchwork.freedesktop.org/series/106883/
-State : failure
+> +
+> +	return power_domain_set->wakerefs;
+> +}
+> +
+> +static void
+> +free_empty_debug_wakerefs(struct intel_display_power_domain_set *power_domain_set)
+> +{
+> +	if (power_domain_set->wakerefs &&
+> +	    bitmap_empty(power_domain_set->mask.bits, POWER_DOMAIN_NUM))
+> +		kfree(fetch_and_zero(&power_domain_set->wakerefs));
 
-== Summary ==
+FWIW, I'm really not happy about fetch_and_zero() or its use anywhere. I
+kind of get the point, but the impression of any kind of atomicity the
+naming gives is totally misleading. And it's our own thing in
+i915_utils.h, and not a global thing like the name suggests.
 
-CI Bug Log - changes from CI_DRM_12332 -> Patchwork_106883v2
-====================================================
+> +}
+> +#else
+> +static intel_wakeref_t *
+> +get_debug_wakerefs(struct drm_i915_private *i915,
+> +		   struct intel_display_power_domain_set *power_domain_set)
+> +{
+> +	return NULL;
+> +}
+> +
+> +static void
+> +free_empty_debug_wakerefs(struct intel_display_power_domain_set *power_domain_set)
+> +{
+> +}
+> +#endif
 
-Summary
--------
+get/free is an odd pairing of names.
 
-  **FAILURE**
+> +
+>  void
+>  intel_display_power_get_in_set(struct drm_i915_private *i915,
+>  			       struct intel_display_power_domain_set *power_domain_set,
+>  			       enum intel_display_power_domain domain)
+>  {
+>  	intel_wakeref_t __maybe_unused wf;
+> +	intel_wakeref_t *debug_wakerefs = get_debug_wakerefs(i915, power_domain_set);
+>  
+>  	drm_WARN_ON(&i915->drm, test_bit(domain, power_domain_set->mask.bits));
+>  
+>  	wf = intel_display_power_get(i915, domain);
+> -#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
+> -	power_domain_set->wakerefs[domain] = wf;
+> -#endif
+> +	if (debug_wakerefs)
+> +		debug_wakerefs[domain] = wf;
+> +
 
-  Serious unknown changes coming with Patchwork_106883v2 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_106883v2, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+If you abstracted setting the debug wakeref for a domain, it could
+handle the allocation internally without any of the local vars etc.
+here. And it would only be a single line in the entire function.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/index.html
+>  	set_bit(domain, power_domain_set->mask.bits);
+>  }
+>  
+> @@ -852,6 +891,7 @@ intel_display_power_get_in_set_if_enabled(struct drm_i915_private *i915,
+>  					  enum intel_display_power_domain domain)
+>  {
+>  	intel_wakeref_t wf;
+> +	intel_wakeref_t *debug_wakerefs = get_debug_wakerefs(i915, power_domain_set);
+>  
+>  	drm_WARN_ON(&i915->drm, test_bit(domain, power_domain_set->mask.bits));
+>  
+> @@ -859,9 +899,9 @@ intel_display_power_get_in_set_if_enabled(struct drm_i915_private *i915,
+>  	if (!wf)
+>  		return false;
+>  
+> -#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
+> -	power_domain_set->wakerefs[domain] = wf;
+> -#endif
+> +	if (debug_wakerefs)
+> +		debug_wakerefs[domain] = wf;
+> +
+>  	set_bit(domain, power_domain_set->mask.bits);
+>  
+>  	return true;
+> @@ -873,6 +913,7 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
+>  				    struct intel_power_domain_mask *mask)
+>  {
+>  	enum intel_display_power_domain domain;
+> +	intel_wakeref_t *debug_wakerefs = get_debug_wakerefs(i915, power_domain_set);
+>  
+>  	drm_WARN_ON(&i915->drm,
+>  		    !bitmap_subset(mask->bits, power_domain_set->mask.bits, POWER_DOMAIN_NUM));
+> @@ -880,12 +921,14 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
+>  	for_each_power_domain(domain, mask) {
+>  		intel_wakeref_t __maybe_unused wf = -1;
+>  
+> -#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
+> -		wf = fetch_and_zero(&power_domain_set->wakerefs[domain]);
+> -#endif
+> +		if (debug_wakerefs)
+> +			wf = fetch_and_zero(&debug_wakerefs[domain]);
+> +
+>  		intel_display_power_put(i915, domain, wf);
+>  		clear_bit(domain, power_domain_set->mask.bits);
+>  	}
+> +
+> +	free_empty_debug_wakerefs(power_domain_set);
+>  }
+>  
+>  static int
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
+> index 7136ea3f233e9..c847aab7b2f88 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
+> @@ -146,7 +146,7 @@ struct i915_power_domains {
+>  struct intel_display_power_domain_set {
+>  	struct intel_power_domain_mask mask;
+>  #ifdef CONFIG_DRM_I915_DEBUG_RUNTIME_PM
+> -	intel_wakeref_t wakerefs[POWER_DOMAIN_NUM];
+> +	intel_wakeref_t *wakerefs;
+>  #endif
+>  };
 
-Participating hosts (40 -> 29)
-------------------------------
-
-  Missing    (11): bat-dg2-8 bat-adlm-1 bat-dg2-9 bat-adlp-6 bat-adlp-4 bat-adln-1 bat-rplp-1 bat-rpls-1 bat-rpls-2 bat-dg2-11 bat-jsl-1 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_106883v2:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions:
-    - fi-adl-ddr5:        [PASS][1] -> [DMESG-WARN][2] +4 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-adl-ddr5/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-adl-ddr5/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size:
-    - fi-rkl-guc:         [PASS][3] -> [DMESG-WARN][4] +3 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-rkl-guc/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-rkl-guc/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size.html
-
-  * igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1:
-    - fi-icl-u2:          [PASS][5] -> [DMESG-FAIL][6] +6 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-icl-u2/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-icl-u2/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size:
-    - {fi-jsl-1}:         [PASS][7] -> [DMESG-WARN][8] +4 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-jsl-1/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-jsl-1/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size.html
-    - {fi-ehl-2}:         [PASS][9] -> [DMESG-WARN][10] +4 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-ehl-2/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-ehl-2/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_106883v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-icl-u2:          NOTRUN -> [DMESG-WARN][11] ([i915#402] / [i915#6020])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@gem_lmem_swapping@random-engines:
-    - fi-icl-u2:          NOTRUN -> [SKIP][12] ([i915#4613]) +3 similar issues
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-icl-u2/igt@gem_lmem_swapping@random-engines.html
-
-  * igt@i915_module_load@reload:
-    - fi-icl-u2:          NOTRUN -> [DMESG-WARN][13] ([i915#402]) +1 similar issue
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-icl-u2/igt@i915_module_load@reload.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - fi-bdw-5557u:       [PASS][14] -> [INCOMPLETE][15] ([i915#146])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-hsw-g3258:       NOTRUN -> [SKIP][16] ([fdo#109271] / [fdo#111827])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-hsw-g3258/igt@kms_chamelium@common-hpd-after-suspend.html
-    - fi-icl-u2:          NOTRUN -> [SKIP][17] ([fdo#111827])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor@toggle:
-    - fi-icl-u2:          [PASS][18] -> [DMESG-WARN][19] ([i915#402]) +36 similar issues
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor@toggle.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor@toggle.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-icl-u2:          NOTRUN -> [SKIP][20] ([fdo#109295] / [i915#3301])
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-icl-u2/igt@prime_vgem@basic-userptr.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [DMESG-FAIL][21] ([i915#5334]) -> [PASS][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-adl-ddr5:        [DMESG-WARN][23] ([i915#5591]) -> [PASS][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-adl-ddr5/igt@i915_selftest@live@hangcheck.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-adl-ddr5/igt@i915_selftest@live@hangcheck.html
-    - fi-hsw-g3258:       [INCOMPLETE][25] ([i915#3303] / [i915#4785]) -> [PASS][26]
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@basic-rte:
-    - fi-icl-u2:          [DMESG-WARN][27] ([i915#4890]) -> [DMESG-WARN][28] ([i915#402])
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-icl-u2/igt@i915_pm_rpm@basic-rte.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-icl-u2/igt@i915_pm_rpm@basic-rte.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
-  [i915#4890]: https://gitlab.freedesktop.org/drm/intel/issues/4890
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#5591]: https://gitlab.freedesktop.org/drm/intel/issues/5591
-  [i915#6020]: https://gitlab.freedesktop.org/drm/intel/issues/6020
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12332 -> Patchwork_106883v2
-
-  CI-20190529: 20190529
-  CI_DRM_12332: 601b2ef606e4b83d5518aa6a5011bb2b1c5954d9 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7038: 5389b3f3b9b75df6bd8506e4aa3da357fd0c0ab1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_106883v2: 601b2ef606e4b83d5518aa6a5011bb2b1c5954d9 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-32a48b44ff04 drm/i915/display: clear plane color control register when turn plane off
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/index.html
-
---===============8538042123202460036==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: clear plane color control register when turn plane off (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/106883/">https://patchwork.freedesktop.org/series/106883/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12332 -&gt; Patchwork_106883v2</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_106883v2 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_106883v2, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/index.html</p>
-<h2>Participating hosts (40 -&gt; 29)</h2>
-<p>Missing    (11): bat-dg2-8 bat-adlm-1 bat-dg2-9 bat-adlp-6 bat-adlp-4 bat-adln-1 bat-rplp-1 bat-rpls-1 bat-rpls-2 bat-dg2-11 bat-jsl-1 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_106883v2:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions:</p>
-<ul>
-<li>fi-adl-ddr5:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-adl-ddr5/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-adl-ddr5/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html">DMESG-WARN</a> +4 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size:</p>
-<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-rkl-guc/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-rkl-guc/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size.html">DMESG-WARN</a> +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-icl-u2/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-icl-u2/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html">DMESG-FAIL</a> +6 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size:</p>
-<ul>
-<li>
-<p>{fi-jsl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-jsl-1/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-jsl-1/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size.html">DMESG-WARN</a> +4 similar issues</p>
-</li>
-<li>
-<p>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-ehl-2/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-ehl-2/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size.html">DMESG-WARN</a> +4 similar issues</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_106883v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6020">i915#6020</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@random-engines:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-icl-u2/igt@gem_lmem_swapping@random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-icl-u2/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>
-<p>fi-hsw-g3258:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-hsw-g3258/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</p>
-</li>
-<li>
-<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-before-cursor@toggle:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor@toggle.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor@toggle.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +36 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-icl-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>
-<p>fi-adl-ddr5:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-adl-ddr5/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5591">i915#5591</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-adl-ddr5/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
-</li>
-<li>
-<p>fi-hsw-g3258:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_pm_rpm@basic-rte:<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-icl-u2/igt@i915_pm_rpm@basic-rte.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4890">i915#4890</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106883v2/fi-icl-u2/igt@i915_pm_rpm@basic-rte.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12332 -&gt; Patchwork_106883v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12332: 601b2ef606e4b83d5518aa6a5011bb2b1c5954d9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7038: 5389b3f3b9b75df6bd8506e4aa3da357fd0c0ab1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_106883v2: 601b2ef606e4b83d5518aa6a5011bb2b1c5954d9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>32a48b44ff04 drm/i915/display: clear plane color control register when turn plane off</p>
-
-</body>
-</html>
-
---===============8538042123202460036==--
+-- 
+Jani Nikula, Intel Open Source Graphics Center
