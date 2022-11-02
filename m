@@ -2,32 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF6FF61628B
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 13:18:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E89A2616297
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 13:20:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 132EE89A5E;
-	Wed,  2 Nov 2022 12:18:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16BBD10E491;
+	Wed,  2 Nov 2022 12:20:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0B65A89A5E;
- Wed,  2 Nov 2022 12:18:45 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 02EF6A47EB;
- Wed,  2 Nov 2022 12:18:44 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4116725892326424920=="
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED86010E486
+ for <intel-gfx@lists.freedesktop.org>; Wed,  2 Nov 2022 12:20:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1667391646; x=1698927646;
+ h=message-id:date:mime-version:cc:subject:to:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=SLZ2iSsXMcu2nemCpm4wg2YGE2ZvCmm+bfrQdo5YmmI=;
+ b=MoAp8lk1OJojuiXYo9dNeIlnxT6e3YG3crxzziobKSQFfFONZDAwe3/R
+ EkCpjAPLdPchad/hElTrdyI1WjlKYhsF8MsEhJQPv0QZI6H9VafVY6gP+
+ So7R75Msk1uYuQO2lrt9mr+bqcBkKgjr7ZprYPXLsSs3oes4anQI+SIcC
+ 9oKXc7MRiAh66k76ZzG9jg6bTu8HAuKSuz8BV/ySfOH3X2ZngOyVH/lVQ
+ S42F7+jlwiG5POgkjaihE66kX45Ug3FA0V/3c3EbiyevEMZvSPsMDr7/S
+ ZUj2gqPFh2Z4ZG0LZko22eQfkU076PmVKIBEThrdKati9O6asb2l1+278 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10518"; a="289104929"
+X-IronPort-AV: E=Sophos;i="5.95,232,1661842800"; d="scan'208";a="289104929"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2022 05:20:46 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10518"; a="585377901"
+X-IronPort-AV: E=Sophos;i="5.95,232,1661842800"; d="scan'208";a="585377901"
+Received: from blu2-mobl3.ccr.corp.intel.com (HELO [10.254.215.165])
+ ([10.254.215.165])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2022 05:20:43 -0700
+Message-ID: <c5dd30ca-f760-aef8-8c29-400f08cf0edd@linux.intel.com>
+Date: Wed, 2 Nov 2022 20:20:41 +0800
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Wed, 02 Nov 2022 12:18:44 -0000
-Message-ID: <166739152497.23605.17503364052515268251@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <cover.1667383630.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1667383630.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_header_cleanups=2C_again?=
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Content-Language: en-US
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+References: <20220922101036.87457-1-janusz.krzysztofik@linux.intel.com>
+ <f38685a7-8411-60e2-71e1-277d0dafac22@linux.intel.com>
+From: Baolu Lu <baolu.lu@linux.intel.com>
+In-Reply-To: <f38685a7-8411-60e2-71e1-277d0dafac22@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [core-for-CI][PATCH] iommu: Remove iova cpu
+ hotplugging flushing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,305 +63,152 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Robin Murphy <robin.murphy@arm.com>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>,
+ iommu@lists.linux.dev, Will Deacon <will@kernel.org>,
+ Joerg Roedel <joro@8bytes.org>, baolu.lu@linux.intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4116725892326424920==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 2022/11/2 19:17, Baolu Lu wrote:
+> On 2022/9/22 18:10, Janusz Krzysztofik wrote:
+>> From: Chris Wilson<chris@chris-wilson.co.uk>
+>>
+>> Manual revert of commit f598a497bc7d ("iova: Add CPU hotplug handler to
+>> flush rcaches").  It is trying to instantiate a cpuhp notifier from 
+>> inside
+>> a cpuhp callback.  That code replaced intel_iommu implementation of
+>> flushing per-IOVA domain CPU rcaches which used a single instance of 
+>> cpuhp
+>> held for the module lifetime.
+>>
+>> <4>[    6.928112] ======================================================
+>> <4>[    6.928621] WARNING: possible circular locking dependency detected
+>> <4>[    6.929225] 6.0.0-rc6-CI_DRM_12164-ga1f63e144e54+ #1 Not tainted
+>> <4>[    6.929818] ------------------------------------------------------
+>> <4>[    6.930415] cpuhp/0/15 is trying to acquire lock:
+>> <4>[    6.931011] ffff888100e02a78 
+>> (&(&priv->bus_notifier)->rwsem){++++}-{3:3}, at: 
+>> blocking_notifier_call_chain+0x20/0x50
+>> <4>[    6.931533]
+>>                    but task is already holding lock:
+>> <4>[    6.931534] ffffffff826490c0 (cpuhp_state-up){+.+.}-{0:0}, at: 
+>> cpuhp_thread_fun+0x48/0x1f0
+>> <4>[    6.933069]
+>>                    which lock already depends on the new lock.
+> 
+> Just FYI.
+> 
+> Hot plugging a PCI device will trigger a similar lockdep warning.
+> 
+> #echo 1 > /sys/bus/pci/devices/.../remove
+> 
+> With this patch applied, the warning disappeared.
 
-== Series Details ==
+The following kernel trace is generated by my experimental code. Please
+ignore it. Sorry for the inconvenience.
 
-Series: drm/i915: header cleanups, again
-URL   : https://patchwork.freedesktop.org/series/110404/
-State : failure
+> [ 2599.612285] BUG: kernel NULL pointer dereference, address: 
+> 0000000000000064
+> [ 2599.622454] #PF: supervisor read access in kernel mode
+> [ 2599.630460] #PF: error_code(0x0000) - not-present page
+> [ 2599.638473] PGD 109f7d067 P4D 0
+> [ 2599.644274] Oops: 0000 [#1] PREEMPT SMP NOPTI
+> [ 2599.651385] CPU: 0 PID: 828 Comm: bash Tainted: G          I 
+> 6.1.0-rc2+ #367
+> [ 2599.677439] RIP: 0010:do_raw_spin_lock+0xa/0xc0
+> [ 2599.684796] Code: 8d 88 80 0b 00 00 48 c7 c7 d8 39 cd 91 e8 c7 c2 06 
+> 01 e9 e8 32 0e 01 66 0f 1f 84 00 00 00 00 00 66 0f 1f 00 0f 1f 44 00 00 
+> 53 <8b> 47 04 48 89 fb 3d ad 4e ad de 75 4a 48 8b 53 10 65 48 8b 04 25
+> [ 2599.711073] RSP: 0018:ff5efa9101b27ca8 EFLAGS: 00010092
+> [ 2599.719254] RAX: 0000000000000000 RBX: 0000000000000206 RCX: 
+> 0000000000000000
+> [ 2599.729869] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 
+> 0000000000000060
+> [ 2599.740427] RBP: 0000000000000060 R08: 0000000000000001 R09: 
+> 0000000000000000
+> [ 2599.750985] R10: 0000000000000000 R11: ffffffff95b0be60 R12: 
+> ff24417986fce000
+> [ 2599.761500] R13: ffffffff959f9bf0 R14: ff244179872d5058 R15: 
+> 0000000000000003
+> [ 2599.772114] FS:  00007f04aa2b1740(0000) GS:ff244180dfc00000(0000) 
+> knlGS:0000000000000000
+> [ 2599.783841] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> [ 2599.792747] CR2: 0000000000000064 CR3: 000000010a6a2004 CR4: 
+> 0000000000771ef0
+> [ 2599.803372] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 
+> 0000000000000000
+> [ 2599.813976] DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 
+> 0000000000000400
+> [ 2599.824572] PKRU: 55555554
+> [ 2599.829655] Call Trace:
+> [ 2599.834444]  <TASK>
+> [ 2599.838833]  _raw_spin_lock_irqsave+0x41/0x60
+> [ 2599.846048]  ? domain_update_iotlb+0x16/0x60
+> [ 2599.853147]  domain_update_iotlb+0x16/0x60
+> [ 2599.859946]  intel_iommu_release_device+0xc5/0xd0
+> [ 2599.867549]  iommu_release_device+0x49/0x80
+> [ 2599.874444]  iommu_bus_notifier+0x24/0x50
+> [ 2599.881139]  notifier_call_chain+0x3a/0xa0
+> [ 2599.887936]  blocking_notifier_call_chain+0x43/0x60
+> [ 2599.895736]  device_del+0x2b4/0x420
+> [ 2599.901829]  pci_remove_bus_device+0x70/0x110
+> [ 2599.909034]  pci_stop_and_remove_bus_device_locked+0x22/0x30
+> [ 2599.917852]  remove_store+0x7d/0x90
+> [ 2599.923949]  kernfs_fop_write_iter+0x12a/0x1d0
+> [ 2599.931253]  vfs_write+0x313/0x4b0
+> [ 2599.937247]  ksys_write+0x60/0xe0
+> [ 2599.943095]  do_syscall_64+0x43/0x90
+> [ 2599.949245]  entry_SYSCALL_64_after_hwframe+0x63/0xcd
+> [ 2599.957135] RIP: 0033:0x7f04a9d18a98
+> [ 2599.963213] Code: 89 02 48 c7 c0 ff ff ff ff eb b3 0f 1f 80 00 00 00 
+> 00 f3 0f 1e fa 48 8d 05 05 26 0f 00 8b 00 85 c0 75 1f b8 01 00 00 00 0f 
+> 05 <0f> 1f 84 00 00 00 00 00 48 3d 00 f0 ff ff 77 58 c3 0f 1f 80 00 00
+> [ 2599.989405] RSP: 002b:00007ffc28cce9e8 EFLAGS: 00000246 ORIG_RAX: 
+> 0000000000000001
+> [ 2600.000537] RAX: ffffffffffffffda RBX: 0000000000000002 RCX: 
+> 00007f04a9d18a98
+> [ 2600.011155] RDX: 0000000000000002 RSI: 000055d272355f60 RDI: 
+> 0000000000000001
+> [ 2600.021748] RBP: 000055d272355f60 R08: 000000000000000a R09: 
+> 0000000000000001
+> [ 2600.032334] R10: 000000000000000a R11: 0000000000000246 R12: 
+> 00007f04a9e06520
+> [ 2600.042923] R13: 0000000000000002 R14: 00007f04a9e07260 R15: 
+> 00007f04a9e06720
+> [ 2600.053527]  </TASK>
+> [ 2600.057993] Modules linked in: fuse x86_pkg_temp_thermal 
+> intel_powerclamp coretemp kvm_intel kvm irqbypass isst_if_mmio 
+> isst_if_common joydev intel_vsec idxd cxl_acpi cxl_core sunrpc 
+> crc32c_intel ixgbe mdio dca bochs drm_vram_helper drm_ttm_helper
+> [ 2600.088403] CR2: 0000000000000064
+> [ 2600.094376] ---[ end trace 0000000000000000 ]---
+> [ 2600.238419] RIP: 0010:do_raw_spin_lock+0xa/0xc0
+> [ 2600.245811] Code: 8d 88 80 0b 00 00 48 c7 c7 d8 39 cd 91 e8 c7 c2 06 
+> 01 e9 e8 32 0e 01 66 0f 1f 84 00 00 00 00 00 66 0f 1f 00 0f 1f 44 00 00 
+> 53 <8b> 47 04 48 89 fb 3d ad 4e ad de 75 4a 48 8b 53 10 65 48 8b 04 25
+> [ 2600.272091] RSP: 0018:ff5efa9101b27ca8 EFLAGS: 00010092
+> [ 2600.280345] RAX: 0000000000000000 RBX: 0000000000000206 RCX: 
+> 0000000000000000
+> [ 2600.290980] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 
+> 0000000000000060
+> [ 2600.301580] RBP: 0000000000000060 R08: 0000000000000001 R09: 
+> 0000000000000000
+> [ 2600.312167] R10: 0000000000000000 R11: ffffffff95b0be60 R12: 
+> ff24417986fce000
+> [ 2600.322762] R13: ffffffff959f9bf0 R14: ff244179872d5058 R15: 
+> 0000000000000003
+> [ 2600.333354] FS:  00007f04aa2b1740(0000) GS:ff244180dfc00000(0000) 
+> knlGS:0000000000000000
+> [ 2600.345062] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> [ 2600.353949] CR2: 0000000000000064 CR3: 000000010a6a2004 CR4: 
+> 0000000000771ef0
+> [ 2600.364571] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 
+> 0000000000000000
+> [ 2600.375178] DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 
+> 0000000000000400
+> [ 2600.385756] PKRU: 55555554
+> [ 2600.390848] note: bash[828] exited with preempt_count 1
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_12331 -> Patchwork_110404v1
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_110404v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_110404v1, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/index.html
-
-Participating hosts (40 -> 30)
-------------------------------
-
-  Additional (2): fi-kbl-soraka fi-pnv-d510 
-  Missing    (12): bat-dg2-8 bat-adlm-1 bat-dg2-9 bat-adlp-6 bat-adlp-4 bat-adln-1 bat-atsm-1 bat-rplp-1 bat-rpls-1 bat-rpls-2 bat-dg2-11 bat-jsl-1 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_110404v1:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-kbl-soraka:      NOTRUN -> [INCOMPLETE][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-kbl-soraka/igt@i915_selftest@live@gem_contexts.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_110404v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][2] ([fdo#109271]) +8 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-kbl-soraka/igt@gem_exec_gttfill@basic.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#2190])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][5] ([i915#5334])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][6] ([i915#1886])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-icl-u2:          NOTRUN -> [SKIP][7] ([fdo#111827])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][8] ([fdo#109271] / [fdo#111827]) +7 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-kbl-soraka/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
-    - fi-bsw-kefka:       [PASS][9] -> [FAIL][10] ([i915#6298])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12331/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-
-  * igt@kms_psr@primary_page_flip:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][11] ([fdo#109271]) +43 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-pnv-d510/igt@kms_psr@primary_page_flip.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-icl-u2:          [INCOMPLETE][12] ([i915#4890]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12331/fi-icl-u2/igt@i915_selftest@live@execlists.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-icl-u2/igt@i915_selftest@live@execlists.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4890]: https://gitlab.freedesktop.org/drm/intel/issues/4890
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12331 -> Patchwork_110404v1
-
-  CI-20190529: 20190529
-  CI_DRM_12331: 279dcd38fe0ed3e23d752f5974648f7715711d7c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7038: 5389b3f3b9b75df6bd8506e4aa3da357fd0c0ab1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_110404v1: 279dcd38fe0ed3e23d752f5974648f7715711d7c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-12c0a7856e7c drm/i915/display: move struct intel_link_m_n to intel_display_types.h
-fc112ad5921a drm/i915: stop including i915_irq.h from i915_trace.h
-c7c8eb4abfbc drm/i915: split out intel_display_reg_defs.h
-2c8fe3b0a094 drm/i915/reg: move pick even and pick to reg defs
-2f266ea1da7c drm/i915/reg: move masked field helpers to i915_reg_defs.h
-0f3ef601ce6b drm/i915/irq: make gen2_irq_init()/gen2_irq_reset() static
-75e75fb9e891 drm/i915/display: reduce includes in g4x_dp.h includes
-aca237b24053 drm/i915/display: reduce includes in intel_hdmi.h
-b822be1bdc70 drm/i915/display: reduce the includes in intel_dvo_dev.h
-f04c10d4b01b drm/i915: reduce includes in intel_display_power.h
-38805c70593c drm/i915/dpio: move dpio_channel and dpio_phy enums to intel_dpio_phy.h
-d8e570f4cd90 drm/i915/dpio: un-inline the vlv phy/channel mapping functions
-338fa9c665be drm/i915: un-inline icl_hdr_plane_mask() to simplify includes
-52b9b6527032 drm/i915: reduce includes in intel_fifo_underrun.h
-64fdf4abafb0 drm/i915: reduce includes in intel_connector.h
-4beeb4ba7930 drm/i915/gmbus: move GPIO enum to gmbus
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/index.html
-
---===============4116725892326424920==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: header cleanups, again</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/110404/">https://patchwork.freedesktop.org/series/110404/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12331 -&gt; Patchwork_110404v1</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_110404v1 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_110404v1, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/index.html</p>
-<h2>Participating hosts (40 -&gt; 30)</h2>
-<p>Additional (2): fi-kbl-soraka fi-pnv-d510 <br />
-  Missing    (12): bat-dg2-8 bat-adlm-1 bat-dg2-9 bat-adlp-6 bat-adlp-4 bat-adln-1 bat-atsm-1 bat-rplp-1 bat-rpls-1 bat-rpls-2 bat-dg2-11 bat-jsl-1 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_110404v1:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live@gem_contexts:<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-kbl-soraka/igt@i915_selftest@live@gem_contexts.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_110404v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-kbl-soraka/igt@gem_exec_gttfill@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-kbl-soraka/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +7 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12331/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-pnv-d510/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +43 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@execlists:<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12331/fi-icl-u2/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4890">i915#4890</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110404v1/fi-icl-u2/igt@i915_selftest@live@execlists.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12331 -&gt; Patchwork_110404v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12331: 279dcd38fe0ed3e23d752f5974648f7715711d7c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7038: 5389b3f3b9b75df6bd8506e4aa3da357fd0c0ab1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_110404v1: 279dcd38fe0ed3e23d752f5974648f7715711d7c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>12c0a7856e7c drm/i915/display: move struct intel_link_m_n to intel_display_types.h<br />
-fc112ad5921a drm/i915: stop including i915_irq.h from i915_trace.h<br />
-c7c8eb4abfbc drm/i915: split out intel_display_reg_defs.h<br />
-2c8fe3b0a094 drm/i915/reg: move pick even and pick to reg defs<br />
-2f266ea1da7c drm/i915/reg: move masked field helpers to i915_reg_defs.h<br />
-0f3ef601ce6b drm/i915/irq: make gen2_irq_init()/gen2_irq_reset() static<br />
-75e75fb9e891 drm/i915/display: reduce includes in g4x_dp.h includes<br />
-aca237b24053 drm/i915/display: reduce includes in intel_hdmi.h<br />
-b822be1bdc70 drm/i915/display: reduce the includes in intel_dvo_dev.h<br />
-f04c10d4b01b drm/i915: reduce includes in intel_display_power.h<br />
-38805c70593c drm/i915/dpio: move dpio_channel and dpio_phy enums to intel_dpio_phy.h<br />
-d8e570f4cd90 drm/i915/dpio: un-inline the vlv phy/channel mapping functions<br />
-338fa9c665be drm/i915: un-inline icl_hdr_plane_mask() to simplify includes<br />
-52b9b6527032 drm/i915: reduce includes in intel_fifo_underrun.h<br />
-64fdf4abafb0 drm/i915: reduce includes in intel_connector.h<br />
-4beeb4ba7930 drm/i915/gmbus: move GPIO enum to gmbus</p>
-
-</body>
-</html>
-
---===============4116725892326424920==--
+Best regards,
+baolu
