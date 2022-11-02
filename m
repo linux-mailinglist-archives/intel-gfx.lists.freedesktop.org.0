@@ -2,51 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB521617023
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 22:59:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FDBE617026
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 23:00:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E54810E69B;
-	Wed,  2 Nov 2022 21:59:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0397710E67B;
+	Wed,  2 Nov 2022 22:00:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD5CC10E688;
- Wed,  2 Nov 2022 21:59:44 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72B1410E67B
+ for <intel-gfx@lists.freedesktop.org>; Wed,  2 Nov 2022 22:00:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667426384; x=1698962384;
- h=message-id:date:mime-version:from:subject:to:cc;
- bh=hsX/6/ttblyeUTQic+9dCjW/NoBivLG1S79shlLyLc8=;
- b=cxikGdPeUP3A/PaesvKy7JidSA/H9OEFI7Cnw+DZYl4r5Tz0A1g8x6+i
- TbRxxVD8+jXNpbVWj92D83oMsmFByhtpGC5IkfJKGAOjpwXCnF6xx41i8
- uGgJqQASSy3Bayjl1PR7Tlr/0sC0a3n6eHZOQh5w0IhPFEWv5dWM6Mafu
- VbUfBRnC7BfUZSPeISBne00rkToeFd5CDMqkUQudsSxROcTFL/H70uSON
- THX2LBFlsvkbtqnqiw7V7PJc5tyOD5cusEnA+vfRvEwUejUMaxlen2WR7
- 5va6rAVmGWMba1itD4VQJXhEjLKfWzAsDGD6NAu8MyZmy3aIa/QFJikZh w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="308246883"
-X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; 
- d="scan'208,217";a="308246883"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2022 14:59:44 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="612406340"
-X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; 
- d="scan'208,217";a="612406340"
-Received: from stamengx-mobl1.ger.corp.intel.com (HELO [10.251.216.17])
- ([10.251.216.17])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2022 14:59:40 -0700
-Content-Type: multipart/alternative;
- boundary="------------Agw07O1NTL10IaXm8mVlVTc9"
-Message-ID: <5476ef52-f91a-c2bc-f4b2-d338216d1e11@linux.intel.com>
-Date: Wed, 2 Nov 2022 22:59:38 +0100
+ t=1667426416; x=1698962416;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=/cPVrhlnb/QVePVtiJLE+sNf/yysNtuiH0xYk49Sn0Q=;
+ b=S6hs+3A6fIz33C/2AG7U+lfm3ZyJuL8+6E2VBcgPaxdoRUQem/8Hk5QU
+ 4wSaxnpubPZnKYY1N5NrIDV54ESoyHY02TiBLre6VMG6RC8VDXMGMxGBU
+ 4n7wflUCdHOQLOlz8LXcc9nGZD6sCeRwhhSqITMWkzXC0KbK5XaGkrCMp
+ d9470tO/osROZBCPCB0CQRNNMtNJeFGd1OieBmiRtEbKVM6iICDnACGHs
+ xX7wngMSCnRyVbgqbz6gT2gXcfwuDexsOXPVZIQ9phGxv0C/4/IufBU9k
+ mMXYNMh4lxyGvkPkh5Q+eRfPSNPQ7xbEGbU0O430huiAcooT+27MK+j7l w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="395836974"
+X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; d="scan'208";a="395836974"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2022 14:59:58 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="629114964"
+X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; d="scan'208";a="629114964"
+Received: from amangalo-mobl4.ger.corp.intel.com (HELO intel.com)
+ ([10.252.47.69])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2022 14:59:56 -0700
+Date: Wed, 2 Nov 2022 22:59:52 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Message-ID: <Y2LoWCJcbF01eN56@ashyti-mobl2.lan>
+References: <20221102051416.27327-1-niranjana.vishwanathapura@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Content-Language: en-US
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221102051416.27327-1-niranjana.vishwanathapura@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Do not set cache_dirty for DGFX
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,153 +57,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---------------Agw07O1NTL10IaXm8mVlVTc9
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Hi Niranjana,
 
-I had a massive disk crash, and my pull request is unsigned this one time.
-However, it is signed with the promise the next tag will be signed again!
------
-drm-misc-fixes-2022-11-02-1:
-drm-misc-fixes for v6.1-rc4:
-- Small fixes to make rockchip work better.
-- Fix imx Kconfig.
-- Small fix to imx' mode_valid.
-The following changes since commit e0ba1a39b8dfe4f005bebdd85daa89e7382e26b7:
+On Tue, Nov 01, 2022 at 10:14:16PM -0700, Niranjana Vishwanathapura wrote:
+> Currently on DG1, which do not have LLC, we hit the below
+> warning while rebinding an userptr invalidated object.
+> 
+> WARNING: CPU: 4 PID: 13008 at drivers/gpu/drm/i915/gem/i915_gem_pages.c:34 __i915_gem_object_set_pages+0x296/0x2d0 [i915]
+> ...
+> RIP: 0010:__i915_gem_object_set_pages+0x296/0x2d0 [i915]
+> ...
+> Call Trace:
+>  <TASK>
+>  i915_gem_userptr_get_pages+0x175/0x1a0 [i915]
+>  ____i915_gem_object_get_pages+0x32/0xb0 [i915]
+>  i915_gem_object_userptr_submit_init+0x286/0x470 [i915]
+>  eb_lookup_vmas+0x2ff/0xcf0 [i915]
+>  ? __intel_wakeref_get_first+0x55/0xb0 [i915]
+>  i915_gem_do_execbuffer+0x785/0x21d0 [i915]
+>  i915_gem_execbuffer2_ioctl+0xe7/0x3d0 [i915]
+> 
+> We shouldn't be setting the obj->cache_dirty for DGFX,
+> fix it.
+> 
+> Suggested-by: Matthew Auld <matthew.auld@intel.com>
+> Reported-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 
-   fbdev/core: Avoid uninitialized read in aperture_remove_conflicting_pci_device() (2022-10-27 09:20:05 +0200)
+The BAT failure doesn't look related to this patch, to me.
 
-are available in the Git repository at:
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-   git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2022-11-02-1
+Thanks,
+Andi
 
-for you to fetch changes up to fc007fb815ab5395c3962c09b79a1630b0fbed9c:
-
-   drm/imx: imx-tve: Fix return type of imx_tve_connector_mode_valid (2022-11-01 14:36:55 +0100)
-
-----------------------------------------------------------------
-drm-misc-fixes for v6.1-rc4:
-- Small fixes to make rockchip work better.
-- Fix imx Kconfig.
-- Small fix to imx' mode_valid.
-
-----------------------------------------------------------------
-Aurelien Jarno (1):
-       drm/rockchip: dw_hdmi: filter regulator -EPROBE_DEFER error messages
-
-Brian Norris (2):
-       drm/rockchip: dsi: Clean up 'usage_mode' when failing to attach
-       drm/rockchip: dsi: Force synchronous probe
-
-Hector Martin (1):
-       drm/format-helper: Only advertise supported formats for conversion
-
-John Keeping (1):
-       drm/rockchip: fix fbdev on non-IOMMU devices
-
-Liu Ying (1):
-       drm/imx: Kconfig: Remove duplicated 'select DRM_KMS_HELPER' line
-
-Michael Tretter (2):
-       drm/rockchip: vop2: fix null pointer in plane_atomic_disable
-       drm/rockchip: vop2: disable planes when disabling the crtc
-
-Nathan Huckleberry (1):
-       drm/imx: imx-tve: Fix return type of imx_tve_connector_mode_valid
-
-Ondrej Jirman (1):
-       drm/rockchip: dsi: Fix VOP selection on SoCs that support it
-
-  drivers/gpu/drm/drm_format_helper.c             | 66 ++++++++++++++++++-------
-  drivers/gpu/drm/imx/Kconfig                     |  1 -
-  drivers/gpu/drm/imx/imx-tve.c                   |  5 +-
-  drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c | 26 +++++++---
-  drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c     |  3 +-
-  drivers/gpu/drm/rockchip/rockchip_drm_gem.c     |  5 +-
-  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c    | 10 +++-
-  7 files changed, 83 insertions(+), 33 deletions(-)
-
---------------Agw07O1NTL10IaXm8mVlVTc9
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <pre>I had a massive disk crash, and my pull request is unsigned this one time.
-However, it is signed with the promise the next tag will be signed again!
------
-drm-misc-fixes-2022-11-02-1:
-drm-misc-fixes for v6.1-rc4:
-- Small fixes to make rockchip work better.
-- Fix imx Kconfig.
-- Small fix to imx' mode_valid.
-The following changes since commit e0ba1a39b8dfe4f005bebdd85daa89e7382e26b7:
-
-  fbdev/core: Avoid uninitialized read in aperture_remove_conflicting_pci_device() (2022-10-27 09:20:05 +0200)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2022-11-02-1
-
-for you to fetch changes up to fc007fb815ab5395c3962c09b79a1630b0fbed9c:
-
-  drm/imx: imx-tve: Fix return type of imx_tve_connector_mode_valid (2022-11-01 14:36:55 +0100)
-
-----------------------------------------------------------------
-drm-misc-fixes for v6.1-rc4:
-- Small fixes to make rockchip work better.
-- Fix imx Kconfig.
-- Small fix to imx' mode_valid.
-
-----------------------------------------------------------------
-Aurelien Jarno (1):
-      drm/rockchip: dw_hdmi: filter regulator -EPROBE_DEFER error messages
-
-Brian Norris (2):
-      drm/rockchip: dsi: Clean up 'usage_mode' when failing to attach
-      drm/rockchip: dsi: Force synchronous probe
-
-Hector Martin (1):
-      drm/format-helper: Only advertise supported formats for conversion
-
-John Keeping (1):
-      drm/rockchip: fix fbdev on non-IOMMU devices
-
-Liu Ying (1):
-      drm/imx: Kconfig: Remove duplicated 'select DRM_KMS_HELPER' line
-
-Michael Tretter (2):
-      drm/rockchip: vop2: fix null pointer in plane_atomic_disable
-      drm/rockchip: vop2: disable planes when disabling the crtc
-
-Nathan Huckleberry (1):
-      drm/imx: imx-tve: Fix return type of imx_tve_connector_mode_valid
-
-Ondrej Jirman (1):
-      drm/rockchip: dsi: Fix VOP selection on SoCs that support it
-
- drivers/gpu/drm/drm_format_helper.c             | 66 ++++++++++++++++++-------
- drivers/gpu/drm/imx/Kconfig                     |  1 -
- drivers/gpu/drm/imx/imx-tve.c                   |  5 +-
- drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c | 26 +++++++---
- drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c     |  3 +-
- drivers/gpu/drm/rockchip/rockchip_drm_gem.c     |  5 +-
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.c    | 10 +++-
- 7 files changed, 83 insertions(+), 33 deletions(-)
-
-</pre>
-  </body>
-</html>
-
---------------Agw07O1NTL10IaXm8mVlVTc9--
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> index 11125c32dd35..2f7804492cd5 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> @@ -369,14 +369,14 @@ __i915_gem_object_release_shmem(struct drm_i915_gem_object *obj,
+>  
+>  	__start_cpu_write(obj);
+>  	/*
+> -	 * On non-LLC platforms, force the flush-on-acquire if this is ever
+> +	 * On non-LLC igfx platforms, force the flush-on-acquire if this is ever
+>  	 * swapped-in. Our async flush path is not trust worthy enough yet(and
+>  	 * happens in the wrong order), and with some tricks it's conceivable
+>  	 * for userspace to change the cache-level to I915_CACHE_NONE after the
+>  	 * pages are swapped-in, and since execbuf binds the object before doing
+>  	 * the async flush, we have a race window.
+>  	 */
+> -	if (!HAS_LLC(i915))
+> +	if (!HAS_LLC(i915) && !IS_DGFX(i915))
+>  		obj->cache_dirty = true;
+>  }
+>  
+> -- 
+> 2.21.0.rc0.32.g243a4c7e27
