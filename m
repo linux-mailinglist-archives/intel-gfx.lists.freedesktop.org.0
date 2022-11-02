@@ -2,50 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EA046166A9
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 16:57:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E271616749
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 17:11:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98CF010E4D6;
-	Wed,  2 Nov 2022 15:57:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A41D810E4F2;
+	Wed,  2 Nov 2022 16:11:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 131F910E4D5
- for <intel-gfx@lists.freedesktop.org>; Wed,  2 Nov 2022 15:57:20 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8880C10E4F6
+ for <intel-gfx@lists.freedesktop.org>; Wed,  2 Nov 2022 16:11:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667404640; x=1698940640;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=5GhEwrAST1dR48LPDBGI5d2xFcFHvm3znHxSr9Vtjxo=;
- b=ctZjLg7EUcCs+64uWGr+SXNAI6QI7q7Bl8xONdMJOBgHdAIVkKqUTWFb
- BdBk1Edbf7qDU11A5JMzkf584+9/nm3RJfoWDsMKoyw9aoSCiKqRsB5IR
- evlMjz2xBNN9BxqeyOk5ytquT2vlDc7Wq0FiWx9rf7tp6UrV8SXIvBmu3
- IC0eynVmZVsmaRb0kSacdW7XP1mbWr/Kqt55RWEs7tFiGrchcMemnLMza
- fLGjTjBwxNQLUgWsOufRTYr0clK4ZY0q5Bjdkzx3pb9TtOJT9dd4prRtw
- 7fk/ZX1Vgj9s7gtYYhWKawQGU4D8K/Lqf5c6XrLm/zlTGx/hE6M8sj7yM Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="395755858"
-X-IronPort-AV: E=Sophos;i="5.95,234,1661842800"; d="scan'208";a="395755858"
+ t=1667405481; x=1698941481;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=M7ApqcQELXz0v2XyCfeiAx+y9QlFpdRp3tRZR8EaI+I=;
+ b=XGSmXHzLgEwg1nQztlSjGnDNQFgBxGI7EWMM7Nxf0HIA62Wz7QxoE5Jf
+ CWpwBiRucN8HCPznBCUAbevBxB0vsX7edI3mn87A+IgNrxo28Gb1RuOZu
+ a81caX04Bc4Svfb5DNmECBdonMx/yXiRfbQ0RV7F3v795rbOYANS99i8M
+ LE3apkVI3g9j3qNoRnih5yz/8mZzNV0DQnuoLWHYz8t4eCaC+5OonSs1G
+ QEt8xftQkcGNvCxXmFA6sYRvvzs8wItpP5B9GBP8goNnLSTF8qfD7IG7Q
+ 3zWUElQslaWvgkOoFm5zaZy3fqCjVTEOGsYlxtW8ol3hosxvPjNgjO0F3 g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="371544991"
+X-IronPort-AV: E=Sophos;i="5.95,234,1661842800"; d="scan'208";a="371544991"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2022 08:57:17 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="879532423"
-X-IronPort-AV: E=Sophos;i="5.95,234,1661842800"; d="scan'208";a="879532423"
-Received: from nirmoyda-desk.igk.intel.com ([10.102.13.19])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2022 09:11:20 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="879537523"
+X-IronPort-AV: E=Sophos;i="5.95,234,1661842800"; d="scan'208";a="879537523"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.249.41.254])
+ ([10.249.41.254])
  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2022 08:57:16 -0700
-From: Nirmoy Das <nirmoy.das@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  2 Nov 2022 16:57:09 +0100
-Message-Id: <20221102155709.31717-1-nirmoy.das@intel.com>
-X-Mailer: git-send-email 2.38.0
+ 02 Nov 2022 09:09:29 -0700
+Message-ID: <160a4d6d-76e1-3dd0-16ba-5e3134409680@linux.intel.com>
+Date: Wed, 2 Nov 2022 17:09:27 +0100
 MIME-Version: 1.0
-Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
- 85579 Neubiberg, Germany,
- Commercial Register: Amtsgericht Muenchen HRB 186928 
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Content-Language: en-US
+To: Matthew Auld <matthew.auld@intel.com>,
+ Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20221102051416.27327-1-niranjana.vishwanathapura@intel.com>
+ <7b832c2b-5a01-3027-c610-f89ae2f48737@linux.intel.com>
+ <033cbf36-cfec-d5e4-ea2b-ee59595f3b89@intel.com>
+From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
+In-Reply-To: <033cbf36-cfec-d5e4-ea2b-ee59595f3b89@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Reduce oversaturation of
- request smoketesting
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Do not set cache_dirty for DGFX
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,52 +64,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Chris Wilson <chris@chris-wilson.co.uk>
 
-The goal in launching the request smoketest is to have sufficient tasks
-running across the system such that we are likely to detect concurrency
-issues. We aim to have 2 tasks using the same engine, gt, device (each
-level of locking around submission and signaling) running at the same
-time. While tasks may not be running all the time as they synchronise
-with the gpu, they will be running most of the time, in which case
-having many more tasks than cores available is wasteful (and
-dramatically increases the workload causing excess runtime). Aim to
-limit the number of tasks such that there is at least 2 running per
-engine, spreading surplus cores around the engines (rather than running
-a task per core per engine.)
+On 11/2/2022 11:36 AM, Matthew Auld wrote:
+> On 02/11/2022 07:39, Das, Nirmoy wrote:
+>>
+>> On 11/2/2022 6:14 AM, Niranjana Vishwanathapura wrote:
+>>> Currently on DG1, which do not have LLC, we hit the below
+>>> warning while rebinding an userptr invalidated object.
+>>>
+>>> WARNING: CPU: 4 PID: 13008 at 
+>>> drivers/gpu/drm/i915/gem/i915_gem_pages.c:34 
+>>> __i915_gem_object_set_pages+0x296/0x2d0 [i915]
+>>> ...
+>>> RIP: 0010:__i915_gem_object_set_pages+0x296/0x2d0 [i915]
+>>> ...
+>>> Call Trace:
+>>>   <TASK>
+>>>   i915_gem_userptr_get_pages+0x175/0x1a0 [i915]
+>>>   ____i915_gem_object_get_pages+0x32/0xb0 [i915]
+>>>   i915_gem_object_userptr_submit_init+0x286/0x470 [i915]
+>>>   eb_lookup_vmas+0x2ff/0xcf0 [i915]
+>>>   ? __intel_wakeref_get_first+0x55/0xb0 [i915]
+>>>   i915_gem_do_execbuffer+0x785/0x21d0 [i915]
+>>>   i915_gem_execbuffer2_ioctl+0xe7/0x3d0 [i915]
+>>>
+>>> We shouldn't be setting the obj->cache_dirty for DGFX,
+>>> fix it.
+>>
+>> With Fixes: |d70af57944 |("drm/i915/shmem: ensure flush during 
+>> swap-in on non-LLC")
+>>
+>> Acked-by: Nirmoy Das <nirmoy.das@intel.com>
+>
+> Any idea why this escaped our testing in CI? Perhaps something to 
+> improve.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/selftests/i915_request.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
-index a46350c37e9d..4380473ceb98 100644
---- a/drivers/gpu/drm/i915/selftests/i915_request.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_request.c
-@@ -1710,7 +1710,8 @@ static int live_breadcrumbs_smoketest(void *arg)
- {
- 	struct drm_i915_private *i915 = arg;
- 	const unsigned int nengines = num_uabi_engines(i915);
--	const unsigned int ncpus = num_online_cpus();
-+	const unsigned int ncpus = /* saturate with nengines * ncpus */
-+		max_t(int, 2, DIV_ROUND_UP(num_online_cpus(), nengines));
- 	unsigned long num_waits, num_fences;
- 	struct intel_engine_cs *engine;
- 	struct smoke_thread *threads;
-@@ -1782,7 +1783,7 @@ static int live_breadcrumbs_smoketest(void *arg)
- 			goto out_flush;
- 		}
- 		/* One ring interleaved between requests from all cpus */
--		smoke[idx].max_batch /= num_online_cpus() + 1;
-+		smoke[idx].max_batch /= ncpus + 1;
- 		pr_debug("Limiting batches to %d requests on %s\n",
- 			 smoke[idx].max_batch, engine->name);
- 
--- 
-2.38.0
+I ran some userptr related igt tests none hit 
+__i915_gem_object_release_shmem . So I think we are missing
 
+coverage here or I/CI isn't running such test.
+
+Niranjana, what test did you ran to hit this case WARN ?
+
+
+Regards,
+
+Nirmoy
+
+
+>
+> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+>
+>>
+>>> Suggested-by: Matthew Auld<matthew.auld@intel.com>
+>>> Reported-by: Niranjana 
+>>> Vishwanathapura<niranjana.vishwanathapura@intel.com>
+>>> Signed-off-by: Niranjana 
+>>> Vishwanathapura<niranjana.vishwanathapura@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 4 ++--
+>>>   1 file changed, 2 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c 
+>>> b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+>>> index 11125c32dd35..2f7804492cd5 100644
+>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+>>> @@ -369,14 +369,14 @@ __i915_gem_object_release_shmem(struct 
+>>> drm_i915_gem_object *obj,
+>>>         __start_cpu_write(obj);
+>>>       /*
+>>> -     * On non-LLC platforms, force the flush-on-acquire if this is 
+>>> ever
+>>> +     * On non-LLC igfx platforms, force the flush-on-acquire if 
+>>> this is ever
+>>>        * swapped-in. Our async flush path is not trust worthy enough 
+>>> yet(and
+>>>        * happens in the wrong order), and with some tricks it's 
+>>> conceivable
+>>>        * for userspace to change the cache-level to I915_CACHE_NONE 
+>>> after the
+>>>        * pages are swapped-in, and since execbuf binds the object 
+>>> before doing
+>>>        * the async flush, we have a race window.
+>>>        */
+>>> -    if (!HAS_LLC(i915))
+>>> +    if (!HAS_LLC(i915) && !IS_DGFX(i915))
+>>>           obj->cache_dirty = true;
+>>>   }
