@@ -2,52 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EE0E6169E1
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 17:59:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 38345616A0B
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 18:08:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 420E710E505;
-	Wed,  2 Nov 2022 16:59:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F411810E535;
+	Wed,  2 Nov 2022 17:08:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59FB610E505
- for <intel-gfx@lists.freedesktop.org>; Wed,  2 Nov 2022 16:59:06 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A03F10E519;
+ Wed,  2 Nov 2022 17:08:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667408346; x=1698944346;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=LglTyWyLZFg3brvULDf1dv8rmaBJ8BzvLYiSpJ97BUk=;
- b=JAtre0cVn47odThTLjHMjanr34lsHrsjM/NN5OmLlWergtAe1dgjyvG1
- 8C0wHJ4AD/xupme9fen3rsDCYhaZu4MLAoCheVhIJHvlLGhHO0Dd9Pe6R
- jvmdnYHMfD0X14SHaD7i/1kqB/QE8Obz783kj+DfYCmGAeOhR0j/BZBJu
- WuA+hBApz6Ux8gg6o8ewllDIc0fok3UW+JRZgTZlPA3zYafh6TkB0VDNt
- P1XLd/ytQAkXxGhyjQivGLDI1VX1gLUQb905kNqzp3IHx3inIho3Vvzwj
- dLzU5PaUGRjdF1HVTqB9aqZqOVtp1mgW+Jlte/kGfMJb70WSIjNPpDFXA A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="307080591"
-X-IronPort-AV: E=Sophos;i="5.95,234,1661842800"; d="scan'208";a="307080591"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2022 09:59:05 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="665627780"
-X-IronPort-AV: E=Sophos;i="5.95,234,1661842800"; d="scan'208";a="665627780"
-Received: from cjokeeff-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.15.91])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2022 09:59:03 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Mika Kahola <mika.kahola@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <87fsf1cn4x.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221014124740.774835-1-mika.kahola@intel.com>
- <20221014124740.774835-4-mika.kahola@intel.com> <87fsf1cn4x.fsf@intel.com>
-Date: Wed, 02 Nov 2022 18:59:01 +0200
-Message-ID: <87bkppcmy2.fsf@intel.com>
+ t=1667408899; x=1698944899;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=g0PsH0A3E7xyhyupViSGOwUDYlY6JVQNphxzGiRfn0I=;
+ b=laQissqfNQ/l3K/2VqhrAmr7kN6tFzJ8/G/3QimkxRiXqGnURneLP35m
+ deNmBQKGfZWz6FNQF3ya0ir1aC+fp1Pkfrh1/+oRXuSdC9sHKpHk/b887
+ cdPp3E4ff+4LUUXf1ySsnwHKieBZ4f8UupUy7SVSkZkOo0uRfQ3cv7HrW
+ j10m56AJp8iEgoAe2V4TTpGkBZ/ni9glBoyR4uQ5/HB4FINcW+WoIHqL9
+ yP8kihdiZhYFMAWpTzSUwuWuIdnN/s5K/0fH8c4Zh79hSnXWwfVHLVCDo
+ A24hOGuayxLdLBonpJhLlCBuhWxSl8UD6B1JMcpibfOUzlRGoUBTPe+1A A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="395777100"
+X-IronPort-AV: E=Sophos;i="5.95,234,1661842800"; d="scan'208";a="395777100"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2022 10:07:58 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="739835277"
+X-IronPort-AV: E=Sophos;i="5.95,234,1661842800"; d="scan'208";a="739835277"
+Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2022 10:07:57 -0700
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  2 Nov 2022 10:10:42 -0700
+Message-Id: <20221102171047.2787951-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 03/20] drm/i915/mtl: Create separate reg
- file for PICA registers
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 0/5] drm/i915: Introduce the GSC CS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,201 +54,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 02 Nov 2022, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> On Fri, 14 Oct 2022, Mika Kahola <mika.kahola@intel.com> wrote:
->> Create a separate file to store registers for PICA chips
->> C10 and C20.
->>
->> Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
->> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
->> ---
->>  .../gpu/drm/i915/display/intel_cx0_reg_defs.h | 136 ++++++++++++++++++
->>  1 file changed, 136 insertions(+)
->>  create mode 100644 drivers/gpu/drm/i915/display/intel_cx0_reg_defs.h
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_reg_defs.h b/drivers=
-/gpu/drm/i915/display/intel_cx0_reg_defs.h
->> new file mode 100644
->> index 000000000000..dfe156141d73
->> --- /dev/null
->> +++ b/drivers/gpu/drm/i915/display/intel_cx0_reg_defs.h
->
-> intel_cx0_regs.h not intel_cx0_reg_defs.h
+Starting on MTL, the GSC microcontroller resides inside the media GT
+and the driver can communicate with it via a new Command Streamer, the
+GSC CS. As a first step in supporting the GSC integration within the
+media GT, this series adds the required defines and basic support for
+this CS. Note that, given that the only user of this CS is i915 itself,
+we don't need to expose it to userspace.
 
-I guess intel_cx0_phy_regs.h since you're adding intel_cx0_phy.c where
-this is used.
+The CS has been purposely not added to the engine mask for MTL yet,
+because it is only used in conjunction with the GSC FW, so there is
+nothing we can do with it until we add support for the FW, which will
+come as a separate next step.
 
-But I'm confused as the next patch adds that. What's the difference
-between the two?! And you're actually adding same stuff to both?
+v2: clean up interrupt code and rename GSC engine
 
->
-> See
->
-> $ find drivers/gpu/drm/i915/ -name "*_regs.h"
->
->> @@ -0,0 +1,136 @@
->> +// SPDX-License-Identifier: MIT
->
-> Wrap it in /* ... */ for .h files.
->
-> It's a bit confusing, but .h and .c have different requirements.
->
->> +/*
->> + * Copyright =C2=A9 2022 Intel Corporation
->> + */
->> +
->> +#ifndef __INTEL_CX0_REG_DEFS_H__
->> +#define __INTEL_CX0_REG_DEFS_H__
->> +
->> +#define _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_A		0x64040
->> +#define _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_B		0x64140
->> +#define _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_USBC1		0x16F240
->> +#define _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_USBC2		0x16F440
->> +#define _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_USBC3		0x16F640
->> +#define _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_USBC4		0x16F840
->> +#define _XELPDP_PORT_M2P_MSGBUS_CTL(port, lane)		(_PICK(port, \
->> +							 [PORT_A] =3D _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_A, \
->> +							 [PORT_B] =3D _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_B, \
->> +							 [PORT_TC1] =3D _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_USBC1, \
->> +							 [PORT_TC2] =3D _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_USBC2, \
->> +							 [PORT_TC3] =3D _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_USBC3, \
->> +							 [PORT_TC4] =3D _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_USBC4) + ((lane)=
- * 4))
->> +
->> +#define XELPDP_PORT_M2P_MSGBUS_CTL(port, lane)		_MMIO(_XELPDP_PORT_M2P_=
-MSGBUS_CTL(port, lane))
->> +#define  XELPDP_PORT_M2P_TRANSACTION_PENDING		REG_BIT(31)
->> +#define  XELPDP_PORT_M2P_COMMAND_TYPE_MASK		REG_GENMASK(30, 27)
->> +#define  XELPDP_PORT_M2P_COMMAND_WRITE_UNCOMMITTED	REG_FIELD_PREP(XELPD=
-P_PORT_M2P_COMMAND_TYPE_MASK, 0x1)
->> +#define  XELPDP_PORT_M2P_COMMAND_WRITE_COMMITTED	REG_FIELD_PREP(XELPDP_=
-PORT_M2P_COMMAND_TYPE_MASK, 0x2)
->> +#define  XELPDP_PORT_M2P_COMMAND_READ			REG_FIELD_PREP(XELPDP_PORT_M2P_=
-COMMAND_TYPE_MASK, 0x3)
->> +#define  XELPDP_PORT_M2P_DATA_MASK			REG_GENMASK(23, 16)
->> +#define  XELPDP_PORT_M2P_DATA(val)			REG_FIELD_PREP(XELPDP_PORT_M2P_DAT=
-A_MASK, val)
->> +#define  XELPDP_PORT_M2P_TRANSACTION_RESET		REG_BIT(15)
->> +#define  XELPDP_PORT_M2P_ADDRESS_MASK			REG_GENMASK(11, 0)
->> +#define  XELPDP_PORT_M2P_ADDRESS(val)			REG_FIELD_PREP(XELPDP_PORT_M2P_=
-ADDRESS_MASK, val)
->> +
->> +#define XELPDP_PORT_P2M_MSGBUS_STATUS(port, lane)	_MMIO(_XELPDP_PORT_M2=
-P_MSGBUS_CTL(port, lane) + 8)
->> +#define  XELPDP_PORT_P2M_RESPONSE_READY			REG_BIT(31)
->> +#define  XELPDP_PORT_P2M_COMMAND_TYPE_MASK		REG_GENMASK(30, 27)
->> +#define  XELPDP_PORT_P2M_COMMAND_READ_ACK		0x4
->> +#define  XELPDP_PORT_P2M_COMMAND_WRITE_ACK		0x5
->> +#define  XELPDP_PORT_P2M_DATA_MASK			REG_GENMASK(23, 16)
->> +#define  XELPDP_PORT_P2M_DATA(val)			REG_FIELD_PREP(XELPDP_PORT_P2M_DAT=
-A_MASK, val)
->> +#define  XELPDP_PORT_P2M_ERROR_SET			REG_BIT(15)
->> +
->> +#define  XELPDP_MSGBUS_TIMEOUT_SLOW			1
->> +#define  XELPDP_MSGBUS_TIMEOUT_FAST_US			2
->> +#define XELPDP_PCLK_PLL_ENABLE_TIMEOUT_US		3200
->> +#define XELPDP_PCLK_PLL_DISABLE_TIMEOUT_US		20
->> +#define XELPDP_PORT_BUF_SOC_READY_TIMEOUT_US		100
->> +#define XELPDP_PORT_RESET_START_TIMEOUT_US		5
->> +#define XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_US		100
->> +#define XELPDP_PORT_RESET_END_TIMEOUT			15
->> +#define XELPDP_REFCLK_ENABLE_TIMEOUT_US			1
->> +
->> +#define _XELPDP_PORT_BUF_CTL1_LN0_A			0x64004
->> +#define _XELPDP_PORT_BUF_CTL1_LN0_B			0x64104
->> +#define _XELPDP_PORT_BUF_CTL1_LN0_USBC1			0x16F200
->> +#define _XELPDP_PORT_BUF_CTL1_LN0_USBC2			0x16F400
->> +#define _XELPDP_PORT_BUF_CTL1_LN0_USBC3			0x16F600
->> +#define _XELPDP_PORT_BUF_CTL1_LN0_USBC4			0x16F800
->> +#define _XELPDP_PORT_BUF_CTL1(port)			(_PICK(port, \
->> +							 [PORT_A] =3D _XELPDP_PORT_BUF_CTL1_LN0_A, \
->> +							 [PORT_B] =3D _XELPDP_PORT_BUF_CTL1_LN0_B, \
->> +							 [PORT_TC1] =3D _XELPDP_PORT_BUF_CTL1_LN0_USBC1, \
->> +							 [PORT_TC2] =3D _XELPDP_PORT_BUF_CTL1_LN0_USBC2, \
->> +							 [PORT_TC3] =3D _XELPDP_PORT_BUF_CTL1_LN0_USBC3, \
->> +							 [PORT_TC4] =3D _XELPDP_PORT_BUF_CTL1_LN0_USBC4))
->> +
->> +#define XELPDP_PORT_BUF_CTL1(port)			_MMIO(_XELPDP_PORT_BUF_CTL1(port))
->> +#define  XELPDP_PORT_BUF_SOC_PHY_READY			REG_BIT(24)
->> +#define  XELPDP_PORT_REVERSAL				REG_BIT(16)
->> +
->> +#define  XELPDP_TC_PHY_OWNERSHIP			REG_BIT(6)
->> +#define  XELPDP_TCSS_POWER_REQUEST			REG_BIT(5)
->> +#define  XELPDP_TCSS_POWER_STATE			REG_BIT(4)
->> +#define  XELPDP_PORT_WIDTH_MASK				REG_GENMASK(3, 1)
->> +#define  XELPDP_PORT_WIDTH(val)				REG_FIELD_PREP(XELPDP_PORT_WIDTH_MAS=
-K, val)
->> +
->> +#define XELPDP_PORT_BUF_CTL2(port)			_MMIO(_XELPDP_PORT_BUF_CTL1(port) =
-+ 4)
->> +#define  XELPDP_LANE0_PIPE_RESET			REG_BIT(31)
->> +#define  XELPDP_LANE1_PIPE_RESET			REG_BIT(30)
->> +#define  XELPDP_LANE0_PHY_CURRENT_STATUS		REG_BIT(29)
->> +#define  XELPDP_LANE1_PHY_CURRENT_STATUS		REG_BIT(28)
->> +#define  XELPDP_LANE0_POWERDOWN_UPDATE			REG_BIT(25)
->> +#define  XELPDP_LANE1_POWERDOWN_UPDATE			REG_BIT(24)
->> +#define  XELPDP_LANE0_POWERDOWN_NEW_STATE_MASK		REG_GENMASK(23, 20)
->> +#define  XELPDP_LANE0_POWERDOWN_NEW_STATE(val)		REG_FIELD_PREP(XELPDP_L=
-ANE0_POWERDOWN_NEW_STATE_MASK, val)
->> +#define  XELPDP_LANE1_POWERDOWN_NEW_STATE_MASK		REG_GENMASK(19, 16)
->> +#define  XELPDP_LANE1_POWERDOWN_NEW_STATE(val)		REG_FIELD_PREP(XELPDP_L=
-ANE1_POWERDOWN_NEW_STATE_MASK, val)
->> +#define  XELPDP_POWER_STATE_READY_MASK			REG_GENMASK(7, 4)
->> +#define  XELPDP_POWER_STATE_READY(val)			REG_FIELD_PREP(XELPDP_POWER_ST=
-ATE_READY_MASK, val)
->> +
->> +#define XELPDP_PORT_BUF_CTL3(port)			_MMIO(_XELPDP_PORT_BUF_CTL1(port) =
-+ 8)
->> +#define  XELPDP_PLL_LANE_STAGGERING_DELAY_MASK		REG_GENMASK(15, 8)
->> +#define  XELPDP_PLL_LANE_STAGGERING_DELAY(val)		REG_FIELD_PREP(XELPDP_P=
-LL_LANE_STAGGERING_DELAY_MASK, val)
->> +#define  XELPDP_POWER_STATE_ACTIVE_MASK			REG_GENMASK(3, 0)
->> +#define  XELPDP_POWER_STATE_ACTIVE(val)			REG_FIELD_PREP(XELPDP_POWER_S=
-TATE_ACTIVE_MASK, val)
->> +
->> +#define _XELPDP_PORT_CLOCK_CTL_A			0x640E0
->> +#define _XELPDP_PORT_CLOCK_CTL_B			0x641E0
->> +#define _XELPDP_PORT_CLOCK_CTL_USBC1			0x16F260
->> +#define _XELPDP_PORT_CLOCK_CTL_USBC2			0x16F460
->> +#define _XELPDP_PORT_CLOCK_CTL_USBC3			0x16F660
->> +#define _XELPDP_PORT_CLOCK_CTL_USBC4			0x16F860
->> +#define XELPDP_PORT_CLOCK_CTL(port)			_MMIO(_PICK(port, \
->> +							[PORT_A] =3D _XELPDP_PORT_CLOCK_CTL_A, \
->> +							[PORT_B] =3D _XELPDP_PORT_CLOCK_CTL_B, \
->> +							[PORT_TC1] =3D _XELPDP_PORT_CLOCK_CTL_USBC1, \
->> +							[PORT_TC2] =3D _XELPDP_PORT_CLOCK_CTL_USBC2, \
->> +							[PORT_TC3] =3D _XELPDP_PORT_CLOCK_CTL_USBC3, \
->> +							[PORT_TC4] =3D _XELPDP_PORT_CLOCK_CTL_USBC4))
->> +
->> +#define XELPDP_LANE0_PCLK_PLL_REQUEST			REG_BIT(31)
->> +#define XELPDP_LANE0_PCLK_PLL_ACK			REG_BIT(30)
->> +#define XELPDP_LANE0_PCLK_REFCLK_REQUEST		REG_BIT(29)
->> +#define XELPDP_LANE0_PCLK_REFCLK_ACK			REG_BIT(28)
->> +#define XELPDP_LANE1_PCLK_PLL_REQUEST			REG_BIT(27)
->> +#define XELPDP_LANE1_PCLK_PLL_ACK			REG_BIT(26)
->> +#define XELPDP_LANE1_PCLK_REFCLK_REQUEST		REG_BIT(25)
->> +#define XELPDP_LANE1_PCLK_REFCLK_ACK			REG_BIT(24)
->> +#define XELPDP_TBT_CLOCK_REQUEST			REG_BIT(19)
->> +#define XELPDP_TBT_CLOCK_ACK				REG_BIT(18)
->> +#define XELPDP_DDI_CLOCK_SELECT_MASK			REG_GENMASK(15, 12)
->> +#define XELPDP_DDI_CLOCK_SELECT(val)			REG_FIELD_PREP(XELPDP_DDI_CLOCK_=
-SELECT_MASK, val)
->> +#define XELPDP_DDI_CLOCK_SELECT_NONE			0x0
->> +#define XELPDP_DDI_CLOCK_SELECT_MAXPCLK			0x8
->> +#define XELPDP_DDI_CLOCK_SELECT_DIV18CLK		0x9
->> +#define XELPDP_DDI_CLOCK_SELECT_TBT_162			0xc
->> +#define XELPDP_DDI_CLOCK_SELECT_TBT_270			0xd
->> +#define XELPDP_DDI_CLOCK_SELECT_TBT_540			0xe
->> +#define XELPDP_DDI_CLOCK_SELECT_TBT_810			0xf
->> +#define XELPDP_FORWARD_CLOCK_UNGATE			REG_BIT(10)
->> +#define XELPDP_LANE1_PHY_CLOCK_SELECT			REG_BIT(8)
->> +#define XELPDP_SSC_ENABLE_PLLA				REG_BIT(1)
->> +#define XELPDP_SSC_ENABLE_PLLB				REG_BIT(0)
->> +
->> +#endif /* __INTEL_CX0_REG_DEFS_H__ */
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+Daniele Ceraolo Spurio (5):
+  drm/i915/mtl: add initial definitions for GSC CS
+  drm/i915/mtl: pass the GSC CS info to the GuC
+  drm/i915/mtl: add GSC CS interrupt support
+  drm/i915/mtl: add GSC CS reset support
+  drm/i915/mtl: don't expose GSC command streamer to the user
+
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c    |  9 +++
+ drivers/gpu/drm/i915/gt/intel_engine_types.h |  1 +
+ drivers/gpu/drm/i915/gt/intel_engine_user.c  | 28 ++++++--
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c       | 75 +++++++++++---------
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h      |  1 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c   | 11 ++-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h  |  7 +-
+ drivers/gpu/drm/i915/i915_reg.h              |  1 +
+ 8 files changed, 84 insertions(+), 49 deletions(-)
+
+-- 
+2.37.3
+
