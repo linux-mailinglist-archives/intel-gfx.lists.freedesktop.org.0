@@ -1,44 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 102F2616559
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 15:55:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7878E61655A
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 15:55:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0593010E48F;
-	Wed,  2 Nov 2022 14:55:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2736B10E494;
+	Wed,  2 Nov 2022 14:55:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A55510E48F
- for <intel-gfx@lists.freedesktop.org>; Wed,  2 Nov 2022 14:55:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FEDF10E494
+ for <intel-gfx@lists.freedesktop.org>; Wed,  2 Nov 2022 14:55:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667400931; x=1698936931;
+ t=1667400945; x=1698936945;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
  bh=zNJbk738oHLK29/0c87lpsCT2jeqUrOs7ny4J3lDNEk=;
- b=RvwQ6h3fX2eC7QzGk41I5CavWxJdCpuwKbTSa/owHjPoJIp60EvAf1TC
- B7SPQZ1//cydJmlQR+0UwDHc1JOzNvFcrLl7iR/OEQkU4cujFZug97R1x
- aytgu2PVuQLSzeRlIpUy4XBee35D6YVrowUHQJfr9a2gAYqwAVh9SicVd
- tgIWGI1KPnJrq83BkItTZ7vdJWcrSQoSGv1Ij8314aQIuRlfycl5f4WRk
- wpQ/KVSjdK75qQs44kdbg1VbvCUb3RrNsWtB73q54E1ql19JHOot6xkXr
- ZekvT1pFZ40nwOsKNybINbhRkarjEHXjh79ihp2zkT4l2X5NQjDDhJWaF g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="311151389"
-X-IronPort-AV: E=Sophos;i="5.95,234,1661842800"; d="scan'208";a="311151389"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ b=O3Rq8bLqvttjQNVXQXueUWscZEtpwhjzD2jmAxUvJnxtRY0LaYHR6+71
+ UD04ulo4UTnYPizEJp7LQC4MMfv3QHdNeeg957M8LoKMiJoI19FDuhYkO
+ +CopFgtCwO4GflyXAzUiw+vYt0n5T+E00EWalmB7O3bepq9BwfBgvTqDZ
+ xlvW7T1HEw79vLD8Hzqy5y8mXMblVNcX7nhrbJ6OFcfgilQsKTGRIHhpv
+ gEGP/zHfJMAwpcguIu1Q82Nd1KnDB1rHJBP7VXqH7rmcUTPNCEhWNKIsV
+ utY0lLkYpfZqN+Y5Cg+nx5l1PGKLT45AKs9LGKoqjh7L0IeJtnRRgmTcg w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="311151485"
+X-IronPort-AV: E=Sophos;i="5.95,234,1661842800"; d="scan'208";a="311151485"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2022 07:54:26 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="636808415"
-X-IronPort-AV: E=Sophos;i="5.95,234,1661842800"; d="scan'208";a="636808415"
+ 02 Nov 2022 07:54:48 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="628982096"
+X-IronPort-AV: E=Sophos;i="5.95,234,1661842800"; d="scan'208";a="628982096"
 Received: from progasze-mobl3.ger.corp.intel.com (HELO
  paris.ger.corp.intel.com) ([10.249.144.23])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2022 07:54:22 -0700
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2022 07:54:40 -0700
 From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  2 Nov 2022 16:53:18 +0200
-Message-Id: <20221102145325.617270-1-gwan-gyeong.mun@intel.com>
+Date: Wed,  2 Nov 2022 16:53:55 +0200
+Message-Id: <20221102145402.617336-1-gwan-gyeong.mun@intel.com>
 X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
