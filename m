@@ -1,52 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95D97616B51
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 18:56:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 895DB616BCF
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 19:15:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE7F510E540;
-	Wed,  2 Nov 2022 17:56:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3604510E543;
+	Wed,  2 Nov 2022 18:15:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D459D10E530
- for <intel-gfx@lists.freedesktop.org>; Wed,  2 Nov 2022 17:56:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667411774; x=1698947774;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=jd3tNzOUX794Ji+WETVsWHsSceCv+3SjhEt0d0clooY=;
- b=g4t387OH8dE+0GMcdEG+3Tp4RzcEEFoWOhiRl6kDq0QpISMd76Nlc6fh
- qlp6Sy91OZYPhCkLXW1hlly1vdTVTF4ddFvy5FaF5q5MqIvgJswNGvhNy
- yxaXw0zIW7Jn477QrGGOtDJRG/RodY1RszD0SC7XwSlulEakLyO9dcHMV
- wZcj0L+pyf8dr7frtYLg8petWgxdUuu8/Qs1+8sEqeFOn2rvV5UXH/UIX
- M4FGy/ZODG3L0TEU1Fky3RQmKgVBsPTF+kg/dyxwxqMC+spQEyq9EVhJ9
- NnNIiRhnh1E4Zbmbyv+OSNeYwJprBKFNwVZzQlAyFqhd/PJ64bn+8YM2c g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="289193572"
-X-IronPort-AV: E=Sophos;i="5.95,234,1661842800"; d="scan'208";a="289193572"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2022 10:56:14 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="636870489"
-X-IronPort-AV: E=Sophos;i="5.95,234,1661842800"; d="scan'208";a="636870489"
-Received: from mdnavare-mobl1.jf.intel.com ([10.165.21.203])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2022 10:56:14 -0700
-Date: Wed, 2 Nov 2022 10:57:53 -0700
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
-Message-ID: <20221102175753.GA2837385@mdnavare-mobl1.jf.intel.com>
-References: <20221102174544.2288205-1-jouni.hogander@intel.com>
- <20221102174544.2288205-2-jouni.hogander@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1928210E51A;
+ Wed,  2 Nov 2022 18:15:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 12D90A010C;
+ Wed,  2 Nov 2022 18:15:33 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1798383407162596261=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221102174544.2288205-2-jouni.hogander@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/psr: Ensure panel granularity
- aligns with DSC slice height
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
+Date: Wed, 02 Nov 2022 18:15:33 -0000
+Message-ID: <166741293304.23607.18422395939518043266@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221102155709.31717-1-nirmoy.das@intel.com>
+In-Reply-To: <20221102155709.31717-1-nirmoy.das@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/selftests=3A_Reduce_oversaturation_of_request_smoketestin?=
+ =?utf-8?q?g?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,52 +41,220 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Nov 02, 2022 at 07:45:43PM +0200, Jouni Högander wrote:
-> Do not enable psr2 if panel ganularity is not aligned with DSC slice
-> height when DSC is enabled
-> 
-> Cc: José Roberto de Souza <jose.souza@intel.com>
-> Cc: Mika Kahola <mika.kahola@intel.com>
-> 
-> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+--===============1798383407162596261==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-This check against DSC makes sense since we have seen issues otherwise
+== Series Details ==
 
-Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
+Series: drm/i915/selftests: Reduce oversaturation of request smoketesting
+URL   : https://patchwork.freedesktop.org/series/110426/
+State : success
 
-Manasi
+== Summary ==
 
-> ---
->  drivers/gpu/drm/i915/display/intel_psr.c | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> index e11b0592055f..57575b5c6d48 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -779,6 +779,7 @@ static bool psr2_granularity_check(struct intel_dp *intel_dp,
->  				   struct intel_crtc_state *crtc_state)
->  {
->  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-> +	const struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
->  	const int crtc_hdisplay = crtc_state->hw.adjusted_mode.crtc_hdisplay;
->  	const int crtc_vdisplay = crtc_state->hw.adjusted_mode.crtc_vdisplay;
->  	u16 y_granularity = 0;
-> @@ -809,6 +810,10 @@ static bool psr2_granularity_check(struct intel_dp *intel_dp,
->  	if (y_granularity == 0 || crtc_vdisplay % y_granularity)
->  		return false;
->  
-> +	if (crtc_state->dsc.compression_enable &&
-> +	    vdsc_cfg->slice_height % y_granularity)
-> +		return false;
-> +
->  	crtc_state->su_y_granularity = y_granularity;
->  	return true;
->  }
-> -- 
-> 2.34.1
-> 
+CI Bug Log - changes from CI_DRM_12332 -> Patchwork_110426v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110426v1/index.html
+
+Participating hosts (40 -> 29)
+------------------------------
+
+  Missing    (11): bat-dg2-8 bat-adlm-1 bat-dg2-9 bat-adlp-6 bat-adlp-4 bat-adln-1 bat-rplp-1 bat-rpls-1 bat-rpls-2 bat-dg2-11 bat-jsl-1 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_110426v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_lmem_swapping@random-engines:
+    - fi-icl-u2:          NOTRUN -> [SKIP][1] ([i915#4613]) +3 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110426v1/fi-icl-u2/igt@gem_lmem_swapping@random-engines.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-hsw-g3258:       NOTRUN -> [SKIP][2] ([fdo#109271] / [fdo#111827])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110426v1/fi-hsw-g3258/igt@kms_chamelium@common-hpd-after-suspend.html
+    - fi-icl-u2:          NOTRUN -> [SKIP][3] ([fdo#111827])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110426v1/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-icl-u2:          NOTRUN -> [SKIP][4] ([fdo#109295] / [i915#3301])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110426v1/fi-icl-u2/igt@prime_vgem@basic-userptr.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@basic-rte:
+    - fi-icl-u2:          [DMESG-WARN][5] ([i915#4890]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-icl-u2/igt@i915_pm_rpm@basic-rte.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110426v1/fi-icl-u2/igt@i915_pm_rpm@basic-rte.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-apl-guc:         [DMESG-FAIL][7] ([i915#5334]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110426v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-adl-ddr5:        [DMESG-WARN][9] ([i915#5591]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-adl-ddr5/igt@i915_selftest@live@hangcheck.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110426v1/fi-adl-ddr5/igt@i915_selftest@live@hangcheck.html
+    - fi-hsw-g3258:       [INCOMPLETE][11] ([i915#3303] / [i915#4785]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110426v1/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#4890]: https://gitlab.freedesktop.org/drm/intel/issues/4890
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#5591]: https://gitlab.freedesktop.org/drm/intel/issues/5591
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12332 -> Patchwork_110426v1
+
+  CI-20190529: 20190529
+  CI_DRM_12332: 601b2ef606e4b83d5518aa6a5011bb2b1c5954d9 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7038: 5389b3f3b9b75df6bd8506e4aa3da357fd0c0ab1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_110426v1: 601b2ef606e4b83d5518aa6a5011bb2b1c5954d9 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+623e3eed61db drm/i915/selftests: Reduce oversaturation of request smoketesting
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110426v1/index.html
+
+--===============1798383407162596261==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/selftests: Reduce oversaturation of request smoketesting</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/110426/">https://patchwork.freedesktop.org/series/110426/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110426v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110426v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12332 -&gt; Patchwork_110426v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110426v1/index.html</p>
+<h2>Participating hosts (40 -&gt; 29)</h2>
+<p>Missing    (11): bat-dg2-8 bat-adlm-1 bat-dg2-9 bat-adlp-6 bat-adlp-4 bat-adln-1 bat-rplp-1 bat-rpls-1 bat-rpls-2 bat-dg2-11 bat-jsl-1 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_110426v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_lmem_swapping@random-engines:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110426v1/fi-icl-u2/igt@gem_lmem_swapping@random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>
+<p>fi-hsw-g3258:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110426v1/fi-hsw-g3258/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</p>
+</li>
+<li>
+<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110426v1/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110426v1/fi-icl-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@basic-rte:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-icl-u2/igt@i915_pm_rpm@basic-rte.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4890">i915#4890</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110426v1/fi-icl-u2/igt@i915_pm_rpm@basic-rte.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110426v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>
+<p>fi-adl-ddr5:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-adl-ddr5/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5591">i915#5591</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110426v1/fi-adl-ddr5/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
+</li>
+<li>
+<p>fi-hsw-g3258:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110426v1/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12332 -&gt; Patchwork_110426v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12332: 601b2ef606e4b83d5518aa6a5011bb2b1c5954d9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7038: 5389b3f3b9b75df6bd8506e4aa3da357fd0c0ab1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_110426v1: 601b2ef606e4b83d5518aa6a5011bb2b1c5954d9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>623e3eed61db drm/i915/selftests: Reduce oversaturation of request smoketesting</p>
+
+</body>
+</html>
+
+--===============1798383407162596261==--
