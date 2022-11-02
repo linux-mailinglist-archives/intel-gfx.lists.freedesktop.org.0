@@ -1,67 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20FA36160E2
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 11:33:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 238616160F7
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 11:36:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D905710E477;
-	Wed,  2 Nov 2022 10:33:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AA1610E461;
+	Wed,  2 Nov 2022 10:36:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B45110E149;
- Wed,  2 Nov 2022 10:33:14 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id F080D336B1;
- Wed,  2 Nov 2022 10:33:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1667385193; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=39AVSkEHI1J+0NxFici1XfnR3bd2AlgAeg7g921bvYs=;
- b=Cx2xiWMC5E11WkmY909rsos2svtnzjxSZkKuTFtXUFgr5/q5Xz2IM5g1+XgGiDXWLl3iN6
- j9vK8FYTQJj8c/fwCAVjGLZsRRl8/etR11oAGlj7oqfq0SZsvlm7Gqn7NqATYTdOX31lSm
- kEohXWWBhiXVhscLaSrUkGEyO7CmrEQ=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1667385193;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=39AVSkEHI1J+0NxFici1XfnR3bd2AlgAeg7g921bvYs=;
- b=VmKtdHzSvWZGkFNSUcLJzJsMZ9sTv9odj9s9+U4GRjt8StJaU5YRqyzyk25taSOPmszLei
- O0R9jIyTleysD+AQ==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 733C813AE0;
- Wed,  2 Nov 2022 10:33:12 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id pwAgG2hHYmPXUwAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Wed, 02 Nov 2022 10:33:12 +0000
-Message-ID: <0ca70b76-c24a-4fdb-cf0d-2647d37379df@suse.de>
-Date: Wed, 2 Nov 2022 11:33:12 +0100
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A66E410E461
+ for <intel-gfx@lists.freedesktop.org>; Wed,  2 Nov 2022 10:36:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1667385409; x=1698921409;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=gFN7znuDF1zu5Jq24VvUfJO4/kpT27ipPCo+0EpVSEA=;
+ b=YrG9/obu8REBjlos/q+jHL5rHpG58ZcdPchvboYNnNXsAiFULiRXqtR6
+ 2jxmrD2UB8iTB+Z1+vUnFrn+jkiAPhdW3ATBIU0QqAlKKeyPq/FixAS1s
+ LdKGNJKF4TQYO1GCUSCeeH9BVKYJr1RkSbnVgpoFMlfpt2ilekgJjgS0J
+ WIFTJU92JCPk11rSJBcjVa0iOsf8qa+miM8YJq4p62ZTAV76A9iyx3+18
+ M4GQkRI2NeLl8nGsr9b0qYVdFtmFj2t18/9IKMcnyZHghqlOz2dNli/iU
+ VBB1MLFdT4DEdAyA53l7hxP7VAmTzvwPxjGmPTQptxI800CffuTfg2pNs A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10518"; a="296813331"
+X-IronPort-AV: E=Sophos;i="5.95,232,1661842800"; d="scan'208";a="296813331"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2022 03:36:48 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10518"; a="776844896"
+X-IronPort-AV: E=Sophos;i="5.95,232,1661842800"; d="scan'208";a="776844896"
+Received: from kieranfl-mobl1.ger.corp.intel.com (HELO [10.252.30.160])
+ ([10.252.30.160])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2022 03:36:47 -0700
+Message-ID: <033cbf36-cfec-d5e4-ea2b-ee59595f3b89@intel.com>
+Date: Wed, 2 Nov 2022 10:36:45 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Content-Language: en-US
-To: Javier Martinez Canillas <javierm@redhat.com>, daniel@ffwll.ch,
- airlied@gmail.com, sam@ravnborg.org, mripard@kernel.org,
- maarten.lankhorst@linux.intel.com
-References: <20221024111953.24307-1-tzimmermann@suse.de>
- <20221024111953.24307-18-tzimmermann@suse.de>
- <3ab32fc3-f2aa-1b42-fd87-557482ab56d5@redhat.com>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-In-Reply-To: <3ab32fc3-f2aa-1b42-fd87-557482ab56d5@redhat.com>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------580Yj573GGcKpjSl0DPBr0oc"
-Subject: Re: [Intel-gfx] [PATCH v2 17/21] drm/fb-helper: Perform all fbdev
- I/O with the same implementation
+ Firefox/102.0 Thunderbird/102.4.0
+Content-Language: en-GB
+To: "Das, Nirmoy" <nirmoy.das@linux.intel.com>,
+ Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20221102051416.27327-1-niranjana.vishwanathapura@intel.com>
+ <7b832c2b-5a01-3027-c610-f89ae2f48737@linux.intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <7b832c2b-5a01-3027-c610-f89ae2f48737@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Do not set cache_dirty for DGFX
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,157 +63,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-hyperv@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- virtualization@lists.linux-foundation.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-samsung-soc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- xen-devel@lists.xenproject.org, linux-sunxi@lists.linux.dev,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- spice-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-mips@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- freedreno@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------580Yj573GGcKpjSl0DPBr0oc
-Content-Type: multipart/mixed; boundary="------------0mHlbG09Ag4oDeheVwguJWiS";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Javier Martinez Canillas <javierm@redhat.com>, daniel@ffwll.ch,
- airlied@gmail.com, sam@ravnborg.org, mripard@kernel.org,
- maarten.lankhorst@linux.intel.com
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-aspeed@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
- etnaviv@lists.freedesktop.org, linux-samsung-soc@vger.kernel.org,
- linux-hyperv@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-mips@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- virtualization@lists.linux-foundation.org,
- spice-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
- linux-rockchip@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev,
- linux-tegra@vger.kernel.org, xen-devel@lists.xenproject.org
-Message-ID: <0ca70b76-c24a-4fdb-cf0d-2647d37379df@suse.de>
-Subject: Re: [PATCH v2 17/21] drm/fb-helper: Perform all fbdev I/O with the
- same implementation
-References: <20221024111953.24307-1-tzimmermann@suse.de>
- <20221024111953.24307-18-tzimmermann@suse.de>
- <3ab32fc3-f2aa-1b42-fd87-557482ab56d5@redhat.com>
-In-Reply-To: <3ab32fc3-f2aa-1b42-fd87-557482ab56d5@redhat.com>
+On 02/11/2022 07:39, Das, Nirmoy wrote:
+> 
+> On 11/2/2022 6:14 AM, Niranjana Vishwanathapura wrote:
+>> Currently on DG1, which do not have LLC, we hit the below
+>> warning while rebinding an userptr invalidated object.
+>>
+>> WARNING: CPU: 4 PID: 13008 at drivers/gpu/drm/i915/gem/i915_gem_pages.c:34 __i915_gem_object_set_pages+0x296/0x2d0 [i915]
+>> ...
+>> RIP: 0010:__i915_gem_object_set_pages+0x296/0x2d0 [i915]
+>> ...
+>> Call Trace:
+>>   <TASK>
+>>   i915_gem_userptr_get_pages+0x175/0x1a0 [i915]
+>>   ____i915_gem_object_get_pages+0x32/0xb0 [i915]
+>>   i915_gem_object_userptr_submit_init+0x286/0x470 [i915]
+>>   eb_lookup_vmas+0x2ff/0xcf0 [i915]
+>>   ? __intel_wakeref_get_first+0x55/0xb0 [i915]
+>>   i915_gem_do_execbuffer+0x785/0x21d0 [i915]
+>>   i915_gem_execbuffer2_ioctl+0xe7/0x3d0 [i915]
+>>
+>> We shouldn't be setting the obj->cache_dirty for DGFX,
+>> fix it.
+> 
+> With Fixes: |d70af57944 |("drm/i915/shmem: ensure flush during swap-in 
+> on non-LLC")
+> 
+> Acked-by: Nirmoy Das <nirmoy.das@intel.com>
 
---------------0mHlbG09Ag4oDeheVwguJWiS
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+Any idea why this escaped our testing in CI? Perhaps something to improve.
 
-SGkNCg0KQW0gMDIuMTEuMjIgdW0gMTA6MzIgc2NocmllYiBKYXZpZXIgTWFydGluZXogQ2Fu
-aWxsYXM6DQo+IE9uIDEwLzI0LzIyIDEzOjE5LCBUaG9tYXMgWmltbWVybWFubiB3cm90ZToN
-Cj4+IEltcGxlbWVudCB0aGUgZmJkZXYncyByZWFkL3dyaXRlIGhlbHBlcnMgd2l0aCB0aGUg
-c2FtZSBmdW5jdGlvbnMuIFVzZQ0KPj4gdGhlIGdlbmVyaWMgZmJkZXYncyBjb2RlIGFzIHRl
-bXBsYXRlLiBDb252ZXJ0IGFsbCBkcml2ZXJzLg0KPj4NCj4+IERSTSdzIGZiIGhlbHBlcnMg
-bXVzdCBpbXBsZW1lbnQgcmVndWxhciBJL08gZnVuY3Rpb25hbGl0eSBpbiBzdHJ1Y3QNCj4+
-IGZiX29wcyBhbmQgcG9zc2libHkgcGVyZm9ybSBhIGRhbWFnZSB1cGRhdGUuIEhhbmRsZSBh
-bGwgdGhpcyBpbiB0aGUNCj4+IHNhbWUgZnVuY3Rpb25zIGFuZCBjb252ZXJ0IGRyaXZlcnMu
-IFRoZSBmdW5jdGlvbmFsaXR5IGhhcyBiZWVuIHVzZWQNCj4+IGFzIHBhcnQgb2YgdGhlIGdl
-bmVyaWMgZmJkZXYgY29kZSBmb3Igc29tZSB0aW1lLiBUaGUgZHJpdmVycyBkb24ndA0KPj4g
-c2V0IHN0cnVjdCBkcm1fZmJfaGVscGVyLmZiX2RpcnR5LCBzbyB0aGV5IHdpbGwgbm90IGJl
-IGFmZmVjdGVkIGJ5DQo+PiBkYW1hZ2UgaGFuZGxpbmcuDQo+Pg0KPj4gRm9yIEkvTyBtZW1v
-cnksIGZiIGhlbHBlcnMgbm93IHByb3ZpZGUgZHJtX2ZiX2hlbHBlcl9jZmJfcmVhZCgpIGFu
-ZA0KPj4gZHJtX2ZiX2hlbHBlcl9jZmJfd3JpdGUoKS4gU2V2ZXJhbCBkcml2ZXJzIHJlcXVp
-cmUgdGhlc2UuIFVudGlsIG5vdw0KPj4gdGVncmEgdXNlZCBJL08gcmVhZCBhbmQgd3JpdGUs
-IGFsdGhvdWdoIHRoZSBtZW1vcnkgYnVmZmVyIGFwcGVhcnMgdG8NCj4+IGJlIGluIHN5c3Rl
-bSBtZW1vcnkuIFNvIHVzZSBfc3lzXyBoZWxwZXJzIG5vdy4NCj4+DQo+PiBTaWduZWQtb2Zm
-LWJ5OiBUaG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5Ac3VzZS5kZT4NCj4+IC0tLQ0K
-PiANCj4gWy4uLl0NCj4gDQo+PiArc3RhdGljIHNzaXplX3QgX19kcm1fZmJfaGVscGVyX3dy
-aXRlKHN0cnVjdCBmYl9pbmZvICppbmZvLCBjb25zdCBjaGFyIF9fdXNlciAqYnVmLCBzaXpl
-X3QgY291bnQsDQo+PiArCQkJCSAgICAgbG9mZl90ICpwcG9zLCBkcm1fZmJfaGVscGVyX3dy
-aXRlX3NjcmVlbiB3cml0ZV9zY3JlZW4pDQo+PiArew0KPiANCj4gWy4uLl0NCj4gDQo+PiAr
-CS8qDQo+PiArCSAqIENvcHkgdG8gZnJhbWVidWZmZXIgZXZlbiBpZiB3ZSBhbHJlYWR5IGxv
-Z2dlZCBhbiBlcnJvci4gRW11bGF0ZXMNCj4+ICsJICogdGhlIGJlaGF2aW9yIG9mIHRoZSBv
-cmlnaW5hbCBmYmRldiBpbXBsZW1lbnRhdGlvbi4NCj4+ICsJICovDQo+PiArCXJldCA9IHdy
-aXRlX3NjcmVlbihpbmZvLCBidWYsIGNvdW50LCBwb3MpOw0KPj4gKwlpZiAocmV0IDwgMCkN
-Cj4+ICsJCXJldHVybiByZXQ7IC8qIHJldHVybiBsYXN0IGVycm9yLCBpZiBhbnkgKi8NCj4+
-ICsJZWxzZSBpZiAoIXJldCkNCj4+ICsJCXJldHVybiBlcnI7IC8qIHJldHVybiBwcmV2aW91
-cyBlcnJvciwgaWYgYW55ICovDQo+PiArDQo+PiArCSpwcG9zICs9IHJldDsNCj4+ICsNCj4g
-DQo+IFNob3VsZCAqcHBvcyBiZSBpbmNyZW1lbnRlZCBldmVuIGlmIHRoZSBwcmV2aW91cyBl
-cnJvciBpcyByZXR1cm5lZD8NCg0KWWVzLiBJdCBlbXVsYXRlcyB0aGUgb3JpZ2luYWwgZmJk
-ZXYgY29kZSBhdCBbMV0uIEZ1cnRoZXIgZG93biBpbiB0aGF0IA0KZnVuY3Rpb24sIHRoZSBw
-b3NpdGlvbiBpcyBiZWluZyB1cGRhdGVkIGV2ZW4gaWYgYW4gZXJyb3Igb2NjdXJlZC4gV2Ug
-DQpvbmx5IHJldHVybiB0aGUgaW5pdGlhbCBlcnJvciBpZiBubyBieXRlcyBnb3Qgd3JpdHRl
-bi4NCg0KSXQgY291bGQgaGFwcGVuIHRoYXQgc29tZSB1c2Vyc3BhY2UgcHJvZ3JhbSBoaXRz
-IHRvIGVycm9yLCBidXQgc3RpbGwgDQpyZWxpZXMgb24gdGhlIG91dHB1dCBhbmQgcG9zaXRp
-b24gYmVpbmcgdXBkYXRlZC4gSUlSQyBJIGV2ZW4gYWRkZWQgDQp2YWxpZGF0aW9uIG9mIHRo
-aXMgYmVoYXZpb3IgdG8gdGhlIElHVCBmYmRldiB0ZXN0cy4gIEkgYWdyZWUgdGhhdCB0aGlz
-IA0KaXMgc29tZXdoYXQgYm9ndXMgYmVoYXZpb3IsIGJ1dCBjaGFuZ2luZyBpdCB3b3VsZCBj
-aGFuZ2UgbG9uZy1zdGFuZGluZyANCnVzZXJzcGFjZSBzZW1hbnRpY3MuDQoNClsxXSANCmh0
-dHBzOi8vZWxpeGlyLmJvb3RsaW4uY29tL2xpbnV4L3Y2LjAuNi9zb3VyY2UvZHJpdmVycy92
-aWRlby9mYmRldi9jb3JlL2ZibWVtLmMjTDgyNQ0KDQo+IA0KPiBUaGUgd3JpdGVfc2NyZWVu
-KCkgc3VjY2VlZGVkIGFueXdheXMsIGV2ZW4gd2hlbiB0aGUgY291bnQgd3JpdHRlbiB3YXMN
-Cj4gc21hbGxlciB0aGFuIHdoYXQgdGhlIGNhbGxlciBhc2tlZCBmb3IuDQo+IA0KPj4gICAv
-KioNCj4+IC0gKiBkcm1fZmJfaGVscGVyX3N5c19yZWFkIC0gd3JhcHBlciBhcm91bmQgZmJf
-c3lzX3JlYWQNCj4+ICsgKiBkcm1fZmJfaGVscGVyX3N5c19yZWFkIC0gSW1wbGVtZW50cyBz
-dHJ1Y3QgJmZiX29wcy5mYl9yZWFkIGZvciBzeXN0ZW0gbWVtb3J5DQo+PiAgICAqIEBpbmZv
-OiBmYl9pbmZvIHN0cnVjdCBwb2ludGVyDQo+PiAgICAqIEBidWY6IHVzZXJzcGFjZSBidWZm
-ZXIgdG8gcmVhZCBmcm9tIGZyYW1lYnVmZmVyIG1lbW9yeQ0KPj4gICAgKiBAY291bnQ6IG51
-bWJlciBvZiBieXRlcyB0byByZWFkIGZyb20gZnJhbWVidWZmZXIgbWVtb3J5DQo+PiAgICAq
-IEBwcG9zOiByZWFkIG9mZnNldCB3aXRoaW4gZnJhbWVidWZmZXIgbWVtb3J5DQo+PiAgICAq
-DQo+PiAtICogQSB3cmFwcGVyIGFyb3VuZCBmYl9zeXNfcmVhZCBpbXBsZW1lbnRlZCBieSBm
-YmRldiBjb3JlDQo+PiArICogUmV0dXJuczoNCj4+ICsgKiBUaGUgbnVtYmVyIG9mIHJlYWQg
-Ynl0ZXMgb24gc3VjY2Vzcywgb3IgYW4gZXJyb3IgY29kZSBvdGhlcndpc2UuDQo+PiAgICAq
-Lw0KPiANCj4gVGhpcyBzZW50ZW5jZSBzb3VuZHMgYSBsaXR0bGUgYml0IG9mZiB0byBtZS4g
-U2hvdWxkbid0IGJlICJudW1iZXIgb2YgYnl0ZXMgcmVhZCINCj4gaW5zdGVhZD8gSSdtIG5v
-dCBhIG5hdGl2ZSBFbmdsaXNoIHNwZWFrZXIgdGhvdWdoLCBzbyBmZWVsIGZyZWUgdG8ganVz
-dCBpZ25vcmUgbWUuDQoNCllvdSdyZSByaWdodC4NCg0KPiANCj4gWy4uLl0NCj4gDQo+PiAg
-IA0KPj4gK3N0YXRpYyBzc2l6ZV90IGZiX3JlYWRfc2NyZWVuX2Jhc2Uoc3RydWN0IGZiX2lu
-Zm8gKmluZm8sIGNoYXIgX191c2VyICpidWYsIHNpemVfdCBjb3VudCwNCj4+ICsJCQkJICAg
-bG9mZl90IHBvcykNCj4+ICt7DQo+PiArCWNvbnN0IGNoYXIgX19pb21lbSAqc3JjID0gaW5m
-by0+c2NyZWVuX2Jhc2UgKyBwb3M7DQo+PiArCXNpemVfdCBhbGxvY19zaXplID0gbWluX3Qo
-c2l6ZV90LCBjb3VudCwgUEFHRV9TSVpFKTsNCj4+ICsJc3NpemVfdCByZXQgPSAwOw0KPj4g
-KwlpbnQgZXJyID0gMDsNCj4gDQo+IERvIHlvdSByZWFsbHkgbmVlZCB0aGVzZSB0d28/IEFG
-QUlLIHNzaXplX3QgaXMgYSBzaWduZWQgdHlwZQ0KDQpJIHRoaW5rIHNvLiBXZSdsbCBnbyB0
-aHJvdWdoIHRoZSB3aGlsZSBsb29wIG11bHRpcGxlIHRpbWVzLiBJZiB3ZSBmYWlsIA0Kb24g
-dGhlIGluaXRpYWwgaXRlcmF0aW9uLCB3ZSByZXR1cm4gdGhlIGVycm9yIGluIGVyci4gSWYg
-d2UgZmFpbCBvbiBhbnkgDQpsYXRlciBpdGVyYXRpb24sIHdlIHJldHVybiB0aGUgbnVtYmVy
-IG9mIHByb2Nlc3NlZCBieXRlcy4gIEhhdmluZyB0aGlzIA0KaW4gdHdvIHZhcmlhYmxlcyBz
-aW1wbGlmaWVzIHRoZSBsb2dpYyBBRkFJQ1QuDQoNCkJlc3QgcmVnYXJkcw0KVGhvbWFzDQoN
-Cj4gc28geW91IGNhbiBqdXN0IHVzZSB0aGUgcmV0IHZhcmlhYmxlIHRvIHN0b3JlIGFuZCBy
-ZXR1cm4gdGhlDQo+IGVycm5vIHZhbHVlLg0KPiANCj4gWy4uLl0NCj4gDQo+PiArc3RhdGlj
-IHNzaXplX3QgZmJfd3JpdGVfc2NyZWVuX2Jhc2Uoc3RydWN0IGZiX2luZm8gKmluZm8sIGNv
-bnN0IGNoYXIgX191c2VyICpidWYsIHNpemVfdCBjb3VudCwNCj4+ICsJCQkJICAgIGxvZmZf
-dCBwb3MpDQo+PiArew0KPj4gKwljaGFyIF9faW9tZW0gKmRzdCA9IGluZm8tPnNjcmVlbl9i
-YXNlICsgcG9zOw0KPj4gKwlzaXplX3QgYWxsb2Nfc2l6ZSA9IG1pbl90KHNpemVfdCwgY291
-bnQsIFBBR0VfU0laRSk7DQo+PiArCXNzaXplX3QgcmV0ID0gMDsNCj4+ICsJaW50IGVyciA9
-IDA7DQo+IA0KPiBTYW1lIGhlcmUuDQo+IA0KDQotLSANClRob21hcyBaaW1tZXJtYW5uDQpH
-cmFwaGljcyBEcml2ZXIgRGV2ZWxvcGVyDQpTVVNFIFNvZnR3YXJlIFNvbHV0aW9ucyBHZXJt
-YW55IEdtYkgNCk1heGZlbGRzdHIuIDUsIDkwNDA5IE7DvHJuYmVyZywgR2VybWFueQ0KKEhS
-QiAzNjgwOSwgQUcgTsO8cm5iZXJnKQ0KR2VzY2jDpGZ0c2bDvGhyZXI6IEl2byBUb3Rldg0K
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
-
---------------0mHlbG09Ag4oDeheVwguJWiS--
-
---------------580Yj573GGcKpjSl0DPBr0oc
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmNiR2gFAwAAAAAACgkQlh/E3EQov+Bj
-MxAAp4wfwx+b/f1M/vv0NPDNSC9u3BJZBg47JuiNuprKGsOIBEeua7fb65cfh+LHqgna0CjJ9xSh
-bxNVEMHqrEWsi84G6EpqeIoHlfMhRK83P5zAE/GXqpxpQVPmOGmRq8RHk3fRXB+NUjW/hp6m2vm1
-4UKKcQr8pm1POl+FqlvBPgIwFcrilo9Xx8FytS+0e1cZhqf1Z3y2sXVzNUQYrdq9Dvz884Jz3wmL
-17m5oRbTVBQke7h08jMRyneJkZgnhF8jBT33C5X+HVNvjgLKSOGQiQbdiMEHhTT/lLa248ypTC2x
-ZtXQfyeTtEb/eGIInJXlE6gizVrOGJpGQb1jg3t1CoxJA0rXFHmHwVFLV+CA9pOtrMOYeE6ud9w+
-iVYQbN/HLph6mIbYkZViGfFABNIr5u32ZJkR90aQWfSeLHgFJtON8p25LxLcUNQEkRe1X/pXaElE
-TLKY2S7E/OKeTTWxhQCk+gF+ZqBcH7uX4oBm6aSfzF/a6wy9XvGRAPPs7vVvD+r7cb0Yj+GLB8Yx
-aWhWFOYh+GZt5xkJ1H3UBQDOhJ237+4NpIzskMoLJPzl5EcSWVE4Nr39CfZTTFFISJsnHmAHt+Za
-bpUEIgHrkfrtP8KsXztM5SXXwSHzICLZHsps/fyvC8MSODtD2hRENA1BtVPpYcGl0MHBtuKjLZWp
-y4I=
-=DprF
------END PGP SIGNATURE-----
-
---------------580Yj573GGcKpjSl0DPBr0oc--
+> 
+>> Suggested-by: Matthew Auld<matthew.auld@intel.com>
+>> Reported-by: Niranjana Vishwanathapura<niranjana.vishwanathapura@intel.com>
+>> Signed-off-by: Niranjana Vishwanathapura<niranjana.vishwanathapura@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 4 ++--
+>>   1 file changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+>> index 11125c32dd35..2f7804492cd5 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+>> @@ -369,14 +369,14 @@ __i915_gem_object_release_shmem(struct drm_i915_gem_object *obj,
+>>   
+>>   	__start_cpu_write(obj);
+>>   	/*
+>> -	 * On non-LLC platforms, force the flush-on-acquire if this is ever
+>> +	 * On non-LLC igfx platforms, force the flush-on-acquire if this is ever
+>>   	 * swapped-in. Our async flush path is not trust worthy enough yet(and
+>>   	 * happens in the wrong order), and with some tricks it's conceivable
+>>   	 * for userspace to change the cache-level to I915_CACHE_NONE after the
+>>   	 * pages are swapped-in, and since execbuf binds the object before doing
+>>   	 * the async flush, we have a race window.
+>>   	 */
+>> -	if (!HAS_LLC(i915))
+>> +	if (!HAS_LLC(i915) && !IS_DGFX(i915))
+>>   		obj->cache_dirty = true;
+>>   }
+>>   
