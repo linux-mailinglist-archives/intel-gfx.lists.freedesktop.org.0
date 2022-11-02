@@ -2,53 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B16B66161DF
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 12:41:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 200F961627B
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 13:12:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FCA910E485;
-	Wed,  2 Nov 2022 11:41:15 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5414510E47F;
- Wed,  2 Nov 2022 11:41:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F48010E054;
+	Wed,  2 Nov 2022 12:12:08 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC84210E054;
+ Wed,  2 Nov 2022 12:12:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667389271; x=1698925271;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=mRY5K+tcJJLPOx0SFJZ8uJDPLVx2b9pMQcZ1iOxHBjE=;
- b=MCLNBNpGfZzHe97kMV5e9+2XVshAfFz1koyhOOH3VXX2hnkS7To/D9S1
- yQ1z4KmVYk3HtdiR/XOgjzXtABmHpy3Xf1e/CBrEPHWRtGmo/JfoYB0Oo
- LNZO88tKUcPY1jw/qLY8qZnDKWtCgXUzQllB5bIm/prvalATyENXpnzmi
- 0H1W+W8a2DdnlLidwnTgXAyzRvosfuFnLFpWRTRXUZkMu9byIBzqcDFLO
- gLQ/yL0Y5st0ntnhX2CwYma0GszJEnswEt95x/4p3Tw1b2edp6xKoOgSt
- 25ADffoEF3H/DhjM0RUZ2nemajinc+HYCvd6s96yfNRBYWUcO1VSwGr+S g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10518"; a="306998771"
-X-IronPort-AV: E=Sophos;i="5.95,232,1661842800"; d="scan'208";a="306998771"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2022 04:41:10 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10518"; a="697777199"
-X-IronPort-AV: E=Sophos;i="5.95,232,1661842800"; d="scan'208";a="697777199"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.249.41.254])
- ([10.249.41.254])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2022 04:41:09 -0700
-Message-ID: <4bd8e049-f80d-d64f-e19c-96cf9506d6e4@linux.intel.com>
-Date: Wed, 2 Nov 2022 12:41:07 +0100
+ t=1667391125; x=1698927125;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=EyztNz/zIwBUqCEO3Tu/DT059sJcI8P31Coi3KUmdxk=;
+ b=HbejfKZhtQfp+rU8c63Okxwhxpf+bEufp0cQG0T9ZTMEZM0QEdispX7l
+ q7msR3wPu2iRPw1kWTAH3s2RA5CV34T5kMSGJBHfGseDndPA+FeTZa1Gn
+ Y1jQG+DAQph0grqzvTIJnyJRPqarInMC+yyzDXSnbusScZKtalLp5keHF
+ 7zKC8rv7liID58URKskpPTcCksF8itIgZAj+7qPtcVwBEq6tLBBa7yt7U
+ 9YhIVD1icrIu9aHeqVUjxDejb8m8s1O52Sntv0cjN+rh+99W+EUL45SOs
+ WJNrpV3tK7NtVs+viX42FmbHcNvQHmkXPKVRbqOGPYiXFj11hTCv6zM/P Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10518"; a="310496331"
+X-IronPort-AV: E=Sophos;i="5.95,232,1661842800"; d="scan'208";a="310496331"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2022 05:12:05 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10518"; a="585375914"
+X-IronPort-AV: E=Sophos;i="5.95,232,1661842800"; d="scan'208";a="585375914"
+Received: from cjokeeff-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.15.91])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2022 05:12:03 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: John.C.Harrison@Intel.com, Intel-GFX@Lists.FreeDesktop.Org
+In-Reply-To: <20221101235053.1650364-1-John.C.Harrison@Intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20221101235053.1650364-1-John.C.Harrison@Intel.com>
+Date: Wed, 02 Nov 2022 14:12:00 +0200
+Message-ID: <87k04d7dyn.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Content-Language: en-US
-To: Matthew Auld <matthew.auld@intel.com>, igt-dev@lists.freedesktop.org
-References: <20221102105204.208634-1-matthew.auld@intel.com>
-From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
-In-Reply-To: <20221102105204.208634-1-matthew.auld@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] tests/i915/gem_create: use
- cpu_size in always_clear
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Don't wait forever in drop_caches
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,39 +57,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 11/2/2022 11:52 AM, Matthew Auld wrote:
-> If the we can't fit the buffer in the CPU visible portion of lmem, then
-
-Need a minor fix of above sentence(unwanted "the")
-
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
-
-> the kernel will be unable to migrate the pages on fault on small-bar
-> systems.  Note that this doesn't restrict where the pages are allocated,
-> but should just ensure we don't SIGBUS, if we need to migrate the pages.
+On Tue, 01 Nov 2022, John.C.Harrison@Intel.com wrote:
+> From: John Harrison <John.C.Harrison@Intel.com>
 >
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6967
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Nirmoy Das <nirmoy.das@intel.com>
+> At the end of each test, IGT does a drop caches call via sysfs with
+
+sysfs?
+
+> special flags set. One of the possible paths waits for idle with an
+> infinite timeout. That causes problems for debugging issues when CI
+> catches a "can't go idle" test failure. Best case, the CI system times
+> out (after 90s), attempts a bunch of state dump actions and then
+> reboots the system to recover it. Worst case, the CI system can't do
+> anything at all and then times out (after 1000s) and simply reboots.
+> Sometimes a serial port log of dmesg might be available, sometimes not.
+>
+> So rather than making life hard for ourselves, change the timeout to
+> be 10s rather than infinite. Also, trigger the standard
+> wedge/reset/recover sequence so that testing can continue with a
+> working system (if possible).
+>
+> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 > ---
->   tests/i915/gem_create.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/i915_debugfs.c | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
 >
-> diff --git a/tests/i915/gem_create.c b/tests/i915/gem_create.c
-> index 9c695fa4..af530ccc 100644
-> --- a/tests/i915/gem_create.c
-> +++ b/tests/i915/gem_create.c
-> @@ -271,7 +271,7 @@ static void always_clear(int i915, const struct gem_memory_region *r, int timeou
->   	struct thread_clear arg = {
->   		.i915 = i915,
->   		.region = r->ci,
-> -		.max = r->size / 2 >> 12, /* in pages */
-> +		.max = r->cpu_size / 2 >> 12, /* in pages */
->   		.timeout = timeout,
->   	};
->   	const int ncpus = sysconf(_SC_NPROCESSORS_ONLN);
+> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+> index ae987e92251dd..9d916fbbfc27c 100644
+> --- a/drivers/gpu/drm/i915/i915_debugfs.c
+> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
+> @@ -641,6 +641,9 @@ DEFINE_SIMPLE_ATTRIBUTE(i915_perf_noa_delay_fops,
+>  		  DROP_RESET_ACTIVE | \
+>  		  DROP_RESET_SEQNO | \
+>  		  DROP_RCU)
+> +
+> +#define DROP_IDLE_TIMEOUT	(HZ * 10)
+
+I915_IDLE_ENGINES_TIMEOUT is defined in i915_drv.h. It's also only used
+here.
+
+I915_GEM_IDLE_TIMEOUT is defined in i915_gem.h. It's only used in
+gt/intel_gt.c.
+
+I915_GT_SUSPEND_IDLE_TIMEOUT is defined and used only in intel_gt_pm.c.
+
+I915_IDLE_ENGINES_TIMEOUT is in ms, the rest are in jiffies.
+
+My head spins.
+
+
+BR,
+Jani.
+
+
+> +
+>  static int
+>  i915_drop_caches_get(void *data, u64 *val)
+>  {
+> @@ -661,7 +664,9 @@ gt_drop_caches(struct intel_gt *gt, u64 val)
+>  		intel_gt_retire_requests(gt);
+>  
+>  	if (val & (DROP_IDLE | DROP_ACTIVE)) {
+> -		ret = intel_gt_wait_for_idle(gt, MAX_SCHEDULE_TIMEOUT);
+> +		ret = intel_gt_wait_for_idle(gt, DROP_IDLE_TIMEOUT);
+> +		if (ret == -ETIME)
+> +			intel_gt_set_wedged(gt);
+>  		if (ret)
+>  			return ret;
+>  	}
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
