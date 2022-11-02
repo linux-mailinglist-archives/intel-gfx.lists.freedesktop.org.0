@@ -1,56 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E89A2616297
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 13:20:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC729616513
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 15:25:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16BBD10E491;
-	Wed,  2 Nov 2022 12:20:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A653C10E192;
+	Wed,  2 Nov 2022 14:25:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED86010E486
- for <intel-gfx@lists.freedesktop.org>; Wed,  2 Nov 2022 12:20:46 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A99F10E192
+ for <intel-gfx@lists.freedesktop.org>; Wed,  2 Nov 2022 14:25:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667391646; x=1698927646;
- h=message-id:date:mime-version:cc:subject:to:references:
- from:in-reply-to:content-transfer-encoding;
- bh=SLZ2iSsXMcu2nemCpm4wg2YGE2ZvCmm+bfrQdo5YmmI=;
- b=MoAp8lk1OJojuiXYo9dNeIlnxT6e3YG3crxzziobKSQFfFONZDAwe3/R
- EkCpjAPLdPchad/hElTrdyI1WjlKYhsF8MsEhJQPv0QZI6H9VafVY6gP+
- So7R75Msk1uYuQO2lrt9mr+bqcBkKgjr7ZprYPXLsSs3oes4anQI+SIcC
- 9oKXc7MRiAh66k76ZzG9jg6bTu8HAuKSuz8BV/ySfOH3X2ZngOyVH/lVQ
- S42F7+jlwiG5POgkjaihE66kX45Ug3FA0V/3c3EbiyevEMZvSPsMDr7/S
- ZUj2gqPFh2Z4ZG0LZko22eQfkU076PmVKIBEThrdKati9O6asb2l1+278 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10518"; a="289104929"
-X-IronPort-AV: E=Sophos;i="5.95,232,1661842800"; d="scan'208";a="289104929"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2022 05:20:46 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10518"; a="585377901"
-X-IronPort-AV: E=Sophos;i="5.95,232,1661842800"; d="scan'208";a="585377901"
-Received: from blu2-mobl3.ccr.corp.intel.com (HELO [10.254.215.165])
- ([10.254.215.165])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2022 05:20:43 -0700
-Message-ID: <c5dd30ca-f760-aef8-8c29-400f08cf0edd@linux.intel.com>
-Date: Wed, 2 Nov 2022 20:20:41 +0800
+ t=1667399144; x=1698935144;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=h4lDr2I5Zl1u2NSAFR9Eav2BTZ534aB2iLgi1cTz25g=;
+ b=aRAfZlIcoJ2rfB9LZAaRpDd6kePggvnrXIEpdkMyk5LI+FdS1j7NQcLu
+ zRjdbTENMV4RWjgLMfqPS5U6ehrOH3RnmtgMnLdUu0MVLVGShbHUe2Hc9
+ psLBxKL1tVj9ogF80tzjUA0Ow7/djbFfc7rXg7pywfo5QPlh9fqWPTO/w
+ tncj5eg6z0/dUIqRbTaLlSjHMwrUQmSFh0fLKwWeAREiVY72RMXN0Wz44
+ Xzy69Mmiv0R/m5qfue7Bgjzz5NHqYatbNRR6bL3jtWvNToLhD2d/MtZmb
+ UQnIvQ+fjxi+Iqzk4Euj+ephqw4+ogc5sx38VJGEQ67Rp3gQ4Y9WrLYtd A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="373644078"
+X-IronPort-AV: E=Sophos;i="5.95,234,1661842800"; d="scan'208";a="373644078"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2022 07:19:03 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="665572778"
+X-IronPort-AV: E=Sophos;i="5.95,234,1661842800"; d="scan'208";a="665572778"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by orsmga008.jf.intel.com with SMTP; 02 Nov 2022 07:19:01 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 02 Nov 2022 16:19:00 +0200
+Date: Wed, 2 Nov 2022 16:19:00 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <Y2J8VKKwymxnfiHU@intel.com>
+References: <cover.1667383630.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Content-Language: en-US
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-References: <20220922101036.87457-1-janusz.krzysztofik@linux.intel.com>
- <f38685a7-8411-60e2-71e1-277d0dafac22@linux.intel.com>
-From: Baolu Lu <baolu.lu@linux.intel.com>
-In-Reply-To: <f38685a7-8411-60e2-71e1-277d0dafac22@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [core-for-CI][PATCH] iommu: Remove iova cpu
- hotplugging flushing
+In-Reply-To: <cover.1667383630.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v1 00/16] drm/i915: header cleanups, again
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,152 +60,140 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Robin Murphy <robin.murphy@arm.com>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>,
- iommu@lists.linux.dev, Will Deacon <will@kernel.org>,
- Joerg Roedel <joro@8bytes.org>, baolu.lu@linux.intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2022/11/2 19:17, Baolu Lu wrote:
-> On 2022/9/22 18:10, Janusz Krzysztofik wrote:
->> From: Chris Wilson<chris@chris-wilson.co.uk>
->>
->> Manual revert of commit f598a497bc7d ("iova: Add CPU hotplug handler to
->> flush rcaches").  It is trying to instantiate a cpuhp notifier from 
->> inside
->> a cpuhp callback.  That code replaced intel_iommu implementation of
->> flushing per-IOVA domain CPU rcaches which used a single instance of 
->> cpuhp
->> held for the module lifetime.
->>
->> <4>[    6.928112] ======================================================
->> <4>[    6.928621] WARNING: possible circular locking dependency detected
->> <4>[    6.929225] 6.0.0-rc6-CI_DRM_12164-ga1f63e144e54+ #1 Not tainted
->> <4>[    6.929818] ------------------------------------------------------
->> <4>[    6.930415] cpuhp/0/15 is trying to acquire lock:
->> <4>[    6.931011] ffff888100e02a78 
->> (&(&priv->bus_notifier)->rwsem){++++}-{3:3}, at: 
->> blocking_notifier_call_chain+0x20/0x50
->> <4>[    6.931533]
->>                    but task is already holding lock:
->> <4>[    6.931534] ffffffff826490c0 (cpuhp_state-up){+.+.}-{0:0}, at: 
->> cpuhp_thread_fun+0x48/0x1f0
->> <4>[    6.933069]
->>                    which lock already depends on the new lock.
+On Wed, Nov 02, 2022 at 12:08:08PM +0200, Jani Nikula wrote:
+> I've had most of this laying around for a while, throttling the firehose
+> of refactors a bit. Maybe it's time?
 > 
-> Just FYI.
+> BR,
+> Jani.
 > 
-> Hot plugging a PCI device will trigger a similar lockdep warning.
-> 
-> #echo 1 > /sys/bus/pci/devices/.../remove
-> 
-> With this patch applied, the warning disappeared.
+> Jani Nikula (16):
+>   drm/i915/gmbus: move GPIO enum to gmbus
+>   drm/i915: reduce includes in intel_connector.h
+>   drm/i915: reduce includes in intel_fifo_underrun.h
+>   drm/i915: un-inline icl_hdr_plane_mask() to simplify includes
+>   drm/i915/dpio: un-inline the vlv phy/channel mapping functions
+>   drm/i915/dpio: move dpio_channel and dpio_phy enums to
+>     intel_dpio_phy.h
+>   drm/i915: reduce includes in intel_display_power.h
+>   drm/i915/display: reduce the includes in intel_dvo_dev.h
+>   drm/i915/display: reduce includes in intel_hdmi.h
+>   drm/i915/display: reduce includes in g4x_dp.h includes
+>   drm/i915/irq: make gen2_irq_init()/gen2_irq_reset() static
+>   drm/i915/reg: move masked field helpers to i915_reg_defs.h
+>   drm/i915/reg: move pick even and pick to reg defs
+>   drm/i915: split out intel_display_reg_defs.h
+>   drm/i915: stop including i915_irq.h from i915_trace.h
+>   drm/i915/display: move struct intel_link_m_n to intel_display_types.h
 
-The following kernel trace is generated by my experimental code. Please
-ignore it. Sorry for the inconvenience.
+Quickled scanned through the series. Nothing stood out as terrible.
 
-> [ 2599.612285] BUG: kernel NULL pointer dereference, address: 
-> 0000000000000064
-> [ 2599.622454] #PF: supervisor read access in kernel mode
-> [ 2599.630460] #PF: error_code(0x0000) - not-present page
-> [ 2599.638473] PGD 109f7d067 P4D 0
-> [ 2599.644274] Oops: 0000 [#1] PREEMPT SMP NOPTI
-> [ 2599.651385] CPU: 0 PID: 828 Comm: bash Tainted: G          I 
-> 6.1.0-rc2+ #367
-> [ 2599.677439] RIP: 0010:do_raw_spin_lock+0xa/0xc0
-> [ 2599.684796] Code: 8d 88 80 0b 00 00 48 c7 c7 d8 39 cd 91 e8 c7 c2 06 
-> 01 e9 e8 32 0e 01 66 0f 1f 84 00 00 00 00 00 66 0f 1f 00 0f 1f 44 00 00 
-> 53 <8b> 47 04 48 89 fb 3d ad 4e ad de 75 4a 48 8b 53 10 65 48 8b 04 25
-> [ 2599.711073] RSP: 0018:ff5efa9101b27ca8 EFLAGS: 00010092
-> [ 2599.719254] RAX: 0000000000000000 RBX: 0000000000000206 RCX: 
-> 0000000000000000
-> [ 2599.729869] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 
-> 0000000000000060
-> [ 2599.740427] RBP: 0000000000000060 R08: 0000000000000001 R09: 
-> 0000000000000000
-> [ 2599.750985] R10: 0000000000000000 R11: ffffffff95b0be60 R12: 
-> ff24417986fce000
-> [ 2599.761500] R13: ffffffff959f9bf0 R14: ff244179872d5058 R15: 
-> 0000000000000003
-> [ 2599.772114] FS:  00007f04aa2b1740(0000) GS:ff244180dfc00000(0000) 
-> knlGS:0000000000000000
-> [ 2599.783841] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> [ 2599.792747] CR2: 0000000000000064 CR3: 000000010a6a2004 CR4: 
-> 0000000000771ef0
-> [ 2599.803372] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 
-> 0000000000000000
-> [ 2599.813976] DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 
-> 0000000000000400
-> [ 2599.824572] PKRU: 55555554
-> [ 2599.829655] Call Trace:
-> [ 2599.834444]  <TASK>
-> [ 2599.838833]  _raw_spin_lock_irqsave+0x41/0x60
-> [ 2599.846048]  ? domain_update_iotlb+0x16/0x60
-> [ 2599.853147]  domain_update_iotlb+0x16/0x60
-> [ 2599.859946]  intel_iommu_release_device+0xc5/0xd0
-> [ 2599.867549]  iommu_release_device+0x49/0x80
-> [ 2599.874444]  iommu_bus_notifier+0x24/0x50
-> [ 2599.881139]  notifier_call_chain+0x3a/0xa0
-> [ 2599.887936]  blocking_notifier_call_chain+0x43/0x60
-> [ 2599.895736]  device_del+0x2b4/0x420
-> [ 2599.901829]  pci_remove_bus_device+0x70/0x110
-> [ 2599.909034]  pci_stop_and_remove_bus_device_locked+0x22/0x30
-> [ 2599.917852]  remove_store+0x7d/0x90
-> [ 2599.923949]  kernfs_fop_write_iter+0x12a/0x1d0
-> [ 2599.931253]  vfs_write+0x313/0x4b0
-> [ 2599.937247]  ksys_write+0x60/0xe0
-> [ 2599.943095]  do_syscall_64+0x43/0x90
-> [ 2599.949245]  entry_SYSCALL_64_after_hwframe+0x63/0xcd
-> [ 2599.957135] RIP: 0033:0x7f04a9d18a98
-> [ 2599.963213] Code: 89 02 48 c7 c0 ff ff ff ff eb b3 0f 1f 80 00 00 00 
-> 00 f3 0f 1e fa 48 8d 05 05 26 0f 00 8b 00 85 c0 75 1f b8 01 00 00 00 0f 
-> 05 <0f> 1f 84 00 00 00 00 00 48 3d 00 f0 ff ff 77 58 c3 0f 1f 80 00 00
-> [ 2599.989405] RSP: 002b:00007ffc28cce9e8 EFLAGS: 00000246 ORIG_RAX: 
-> 0000000000000001
-> [ 2600.000537] RAX: ffffffffffffffda RBX: 0000000000000002 RCX: 
-> 00007f04a9d18a98
-> [ 2600.011155] RDX: 0000000000000002 RSI: 000055d272355f60 RDI: 
-> 0000000000000001
-> [ 2600.021748] RBP: 000055d272355f60 R08: 000000000000000a R09: 
-> 0000000000000001
-> [ 2600.032334] R10: 000000000000000a R11: 0000000000000246 R12: 
-> 00007f04a9e06520
-> [ 2600.042923] R13: 0000000000000002 R14: 00007f04a9e07260 R15: 
-> 00007f04a9e06720
-> [ 2600.053527]  </TASK>
-> [ 2600.057993] Modules linked in: fuse x86_pkg_temp_thermal 
-> intel_powerclamp coretemp kvm_intel kvm irqbypass isst_if_mmio 
-> isst_if_common joydev intel_vsec idxd cxl_acpi cxl_core sunrpc 
-> crc32c_intel ixgbe mdio dca bochs drm_vram_helper drm_ttm_helper
-> [ 2600.088403] CR2: 0000000000000064
-> [ 2600.094376] ---[ end trace 0000000000000000 ]---
-> [ 2600.238419] RIP: 0010:do_raw_spin_lock+0xa/0xc0
-> [ 2600.245811] Code: 8d 88 80 0b 00 00 48 c7 c7 d8 39 cd 91 e8 c7 c2 06 
-> 01 e9 e8 32 0e 01 66 0f 1f 84 00 00 00 00 00 66 0f 1f 00 0f 1f 44 00 00 
-> 53 <8b> 47 04 48 89 fb 3d ad 4e ad de 75 4a 48 8b 53 10 65 48 8b 04 25
-> [ 2600.272091] RSP: 0018:ff5efa9101b27ca8 EFLAGS: 00010092
-> [ 2600.280345] RAX: 0000000000000000 RBX: 0000000000000206 RCX: 
-> 0000000000000000
-> [ 2600.290980] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 
-> 0000000000000060
-> [ 2600.301580] RBP: 0000000000000060 R08: 0000000000000001 R09: 
-> 0000000000000000
-> [ 2600.312167] R10: 0000000000000000 R11: ffffffff95b0be60 R12: 
-> ff24417986fce000
-> [ 2600.322762] R13: ffffffff959f9bf0 R14: ff244179872d5058 R15: 
-> 0000000000000003
-> [ 2600.333354] FS:  00007f04aa2b1740(0000) GS:ff244180dfc00000(0000) 
-> knlGS:0000000000000000
-> [ 2600.345062] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> [ 2600.353949] CR2: 0000000000000064 CR3: 000000010a6a2004 CR4: 
-> 0000000000771ef0
-> [ 2600.364571] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 
-> 0000000000000000
-> [ 2600.375178] DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 
-> 0000000000000400
-> [ 2600.385756] PKRU: 55555554
-> [ 2600.390848] note: bash[828] exited with preempt_count 1
+Reviewed-by: Ville Syrj�l� <ville.syrjala@linux.intel.com>
 
-Best regards,
-baolu
+> 
+>  drivers/gpu/drm/i915/display/g4x_dp.c         |  1 +
+>  drivers/gpu/drm/i915/display/g4x_dp.h         |  2 +-
+>  drivers/gpu/drm/i915/display/g4x_hdmi.c       |  1 +
+>  drivers/gpu/drm/i915/display/i9xx_plane.c     |  4 +-
+>  drivers/gpu/drm/i915/display/icl_dsi.c        |  1 +
+>  drivers/gpu/drm/i915/display/icl_dsi_regs.h   |  2 +-
+>  .../gpu/drm/i915/display/intel_audio_regs.h   |  2 +-
+>  .../gpu/drm/i915/display/intel_backlight.c    |  1 +
+>  .../drm/i915/display/intel_backlight_regs.h   |  2 +-
+>  drivers/gpu/drm/i915/display/intel_cdclk.c    |  1 +
+>  drivers/gpu/drm/i915/display/intel_color.c    |  1 +
+>  .../gpu/drm/i915/display/intel_combo_phy.c    |  1 +
+>  .../gpu/drm/i915/display/intel_connector.h    |  2 +-
+>  drivers/gpu/drm/i915/display/intel_crt.c      |  2 +
+>  drivers/gpu/drm/i915/display/intel_cursor.c   |  3 +-
+>  drivers/gpu/drm/i915/display/intel_ddi.c      |  1 +
+>  drivers/gpu/drm/i915/display/intel_display.c  |  2 +
+>  drivers/gpu/drm/i915/display/intel_display.h  | 39 +----------
+>  .../drm/i915/display/intel_display_debugfs.c  |  2 +
+>  .../drm/i915/display/intel_display_power.h    |  3 +-
+>  .../i915/display/intel_display_power_well.h   |  2 +-
+>  .../drm/i915/display/intel_display_reg_defs.h | 53 ++++++++++++++
+>  .../drm/i915/display/intel_display_types.h    | 54 +++-----------
+>  drivers/gpu/drm/i915/display/intel_dp.c       |  1 +
+>  drivers/gpu/drm/i915/display/intel_dp_aux.c   |  1 +
+>  drivers/gpu/drm/i915/display/intel_dp_hdcp.c  |  1 +
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c   |  1 +
+>  drivers/gpu/drm/i915/display/intel_dpio_phy.c | 43 ++++++++++++
+>  drivers/gpu/drm/i915/display/intel_dpio_phy.h | 19 ++++-
+>  drivers/gpu/drm/i915/display/intel_dpll.c     |  2 +
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  1 +
+>  drivers/gpu/drm/i915/display/intel_drrs.c     |  1 +
+>  drivers/gpu/drm/i915/display/intel_dsb.c      |  1 +
+>  drivers/gpu/drm/i915/display/intel_dvo.c      |  1 +
+>  drivers/gpu/drm/i915/display/intel_dvo_dev.h  |  8 +--
+>  drivers/gpu/drm/i915/display/intel_fdi.c      |  1 +
+>  .../drm/i915/display/intel_fifo_underrun.h    |  3 +-
+>  drivers/gpu/drm/i915/display/intel_gmbus.c    | 22 +++++-
+>  .../gpu/drm/i915/display/intel_hdcp_regs.h    |  2 +-
+>  drivers/gpu/drm/i915/display/intel_hdmi.c     |  1 +
+>  drivers/gpu/drm/i915/display/intel_hdmi.h     |  8 +--
+>  .../gpu/drm/i915/display/intel_lpe_audio.c    |  2 +
+>  drivers/gpu/drm/i915/display/intel_lspcon.c   |  1 +
+>  drivers/gpu/drm/i915/display/intel_lvds.c     |  1 +
+>  .../gpu/drm/i915/display/intel_mg_phy_regs.h  |  2 +-
+>  .../drm/i915/display/intel_modeset_setup.c    |  1 +
+>  drivers/gpu/drm/i915/display/intel_panel.c    |  1 +
+>  .../gpu/drm/i915/display/intel_pch_display.c  |  1 +
+>  .../gpu/drm/i915/display/intel_pch_refclk.c   |  1 +
+>  drivers/gpu/drm/i915/display/intel_pipe_crc.c |  2 +
+>  drivers/gpu/drm/i915/display/intel_pps.c      |  2 +
+>  drivers/gpu/drm/i915/display/intel_psr.c      |  1 +
+>  drivers/gpu/drm/i915/display/intel_sdvo.c     |  1 +
+>  drivers/gpu/drm/i915/display/intel_snps_phy.c |  1 +
+>  .../drm/i915/display/intel_snps_phy_regs.h    |  2 +-
+>  drivers/gpu/drm/i915/display/intel_sprite.c   |  1 +
+>  drivers/gpu/drm/i915/display/intel_sprite.h   |  9 +--
+>  drivers/gpu/drm/i915/display/intel_tv.c       |  2 +
+>  drivers/gpu/drm/i915/display/intel_vdsc.c     |  1 +
+>  drivers/gpu/drm/i915/display/intel_vga.c      |  1 +
+>  drivers/gpu/drm/i915/display/intel_vrr.c      |  1 +
+>  drivers/gpu/drm/i915/display/skl_scaler.c     |  2 +
+>  .../drm/i915/display/skl_universal_plane.c    |  7 ++
+>  .../drm/i915/display/skl_universal_plane.h    |  1 +
+>  drivers/gpu/drm/i915/display/vlv_dsi.c        |  1 +
+>  drivers/gpu/drm/i915/display/vlv_dsi_regs.h   |  2 +-
+>  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  1 +
+>  .../drm/i915/gem/selftests/i915_gem_mman.c    |  1 +
+>  drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  2 +
+>  .../drm/i915/gt/intel_execlists_submission.c  |  1 +
+>  drivers/gpu/drm/i915/gt/intel_gt.c            |  1 +
+>  drivers/gpu/drm/i915/gt/intel_gt_pm.c         |  1 +
+>  drivers/gpu/drm/i915/gt/intel_gt_regs.h       |  1 +
+>  drivers/gpu/drm/i915/gt/intel_gtt.c           |  1 +
+>  .../gpu/drm/i915/gt/intel_ring_submission.c   |  2 +
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c   |  1 +
+>  .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  1 +
+>  drivers/gpu/drm/i915/gvt/cmd_parser.c         |  1 +
+>  drivers/gpu/drm/i915/gvt/display.c            |  2 +
+>  drivers/gpu/drm/i915/gvt/handlers.c           |  1 +
+>  drivers/gpu/drm/i915/gvt/mmio.c               |  1 +
+>  drivers/gpu/drm/i915/gvt/mmio_context.c       |  1 +
+>  drivers/gpu/drm/i915/i915_gpu_error.c         |  1 +
+>  drivers/gpu/drm/i915/i915_irq.c               | 10 +--
+>  drivers/gpu/drm/i915/i915_irq.h               |  9 ---
+>  drivers/gpu/drm/i915/i915_perf.c              |  1 +
+>  drivers/gpu/drm/i915/i915_reg.h               | 70 +------------------
+>  drivers/gpu/drm/i915/i915_reg_defs.h          | 30 +++++++-
+>  drivers/gpu/drm/i915/i915_trace.h             |  1 -
+>  drivers/gpu/drm/i915/intel_device_info.c      |  3 +-
+>  drivers/gpu/drm/i915/intel_gvt_mmio_table.c   |  1 +
+>  drivers/gpu/drm/i915/intel_uncore.c           |  1 +
+>  drivers/gpu/drm/i915/vlv_sideband.c           |  2 +
+>  93 files changed, 290 insertions(+), 204 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_display_reg_defs.h
+> 
+> -- 
+> 2.34.1
+
+-- 
+Ville Syrj�l�
+Intel
