@@ -2,32 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 062E8616E8A
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 21:24:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C076B616F23
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Nov 2022 21:51:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D860010E60A;
-	Wed,  2 Nov 2022 20:24:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8570710E635;
+	Wed,  2 Nov 2022 20:51:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id CE86110E60A;
- Wed,  2 Nov 2022 20:24:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C3DF1AADD7;
- Wed,  2 Nov 2022 20:24:20 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8190695106725321234=="
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55D2210E635
+ for <intel-gfx@lists.freedesktop.org>; Wed,  2 Nov 2022 20:51:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1667422307; x=1698958307;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=8lSLo6unKBIVu/Pe4mXrssODSBsaBtahdn8WEaLm5ks=;
+ b=e56ars5aRj6TUX3sBO2wDszlnXg01HrqZla8+jG35WqF4rHJrzAA6ucw
+ UlSsafb8YeJUG3DrxtaSmKpA3DgqQ9joDuM2+FCIyDSeRHMSc8fTZ3ETB
+ XY9n68rIsdnnGUT4AyX2RpsUFU3Fj4dMdYY5Vz+a1O8hiH1Vo16oXb/fL
+ eN5K5DRNDxIvpPWAyZlunb+xhv76RT9Ju8D3TXoaI+d6OXaKJ/nNZe74V
+ 3jnAu0ZBWP0UPwgLMw5SE31lPMwLTKpZ0HBAkG6CX2lwYtKr79z9oQknF
+ QGFhmnG9A8mO6U+WkZ11ZFawtKeQtE30XT33b2gGztBIIB7fieX/F4McR A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="308235810"
+X-IronPort-AV: E=Sophos;i="5.95,234,1661842800"; d="scan'208";a="308235810"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2022 13:51:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="667721074"
+X-IronPort-AV: E=Sophos;i="5.95,234,1661842800"; d="scan'208";a="667721074"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by orsmga001.jf.intel.com with SMTP; 02 Nov 2022 13:51:41 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 02 Nov 2022 22:51:41 +0200
+Date: Wed, 2 Nov 2022 22:51:40 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Naoya Horiguchi <naoya.horiguchi@linux.dev>
+Message-ID: <Y2LYXItKQyaJTv8j@intel.com>
+References: <20220714042420.1847125-1-naoya.horiguchi@linux.dev>
+ <20220714042420.1847125-3-naoya.horiguchi@linux.dev>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>
-Date: Wed, 02 Nov 2022 20:24:20 -0000
-Message-ID: <166742066076.23606.1339385011166578778@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221102174544.2288205-1-jouni.hogander@intel.com>
-In-Reply-To: <20221102174544.2288205-1-jouni.hogander@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRFND?=
- =?utf-8?q?_slice/PSR2_SU_panel_y_granularity_alignment?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220714042420.1847125-3-naoya.horiguchi@linux.dev>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [mm-unstable PATCH v7 2/8] mm/hugetlb: make
+ pud_huge() and follow_huge_pud() aware of non-present pud entry
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,198 +62,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Miaohe Lin <linmiaohe@huawei.com>, regressions@lists.linux.dev,
+ David Hildenbrand <david@redhat.com>, Yang Shi <shy828301@gmail.com>,
+ Naoya Horiguchi <naoya.horiguchi@nec.com>, linux-kernel@vger.kernel.org,
+ Liu Shixin <liushixin2@huawei.com>, linux-mm@kvack.org,
+ Muchun Song <songmuchun@bytedance.com>,
+ Andrew Morton <akpm@linux-foundation.org>, Oscar Salvador <osalvador@suse.de>,
+ intel-gfx@lists.freedesktop.org, Mike Kravetz <mike.kravetz@oracle.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8190695106725321234==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Jul 14, 2022 at 01:24:14PM +0900, Naoya Horiguchi wrote:
+> +/*
+> + * pud_huge() returns 1 if @pud is hugetlb related entry, that is normal
+> + * hugetlb entry or non-present (migration or hwpoisoned) hugetlb entry.
+> + * Otherwise, returns 0.
+> + */
+>  int pud_huge(pud_t pud)
+>  {
+> -	return !!(pud_val(pud) & _PAGE_PSE);
+> +	return !pud_none(pud) &&
+> +		(pud_val(pud) & (_PAGE_PRESENT|_PAGE_PSE)) != _PAGE_PRESENT;
+>  }
 
-== Series Details ==
+Hi,
 
-Series: DSC slice/PSR2 SU panel y granularity alignment
-URL   : https://patchwork.freedesktop.org/series/110434/
-State : success
+This causes i915 to trip a BUG_ON() on x86-32 when I start X.
 
-== Summary ==
+[  225.777375] kernel BUG at mm/memory.c:2664!
+[  225.777391] invalid opcode: 0000 [#1] PREEMPT SMP
+[  225.777405] CPU: 0 PID: 2402 Comm: Xorg Not tainted 6.1.0-rc3-bdg+ #86
+[  225.777415] Hardware name:  /8I865G775-G, BIOS F1 08/29/2006
+[  225.777421] EIP: __apply_to_page_range+0x24d/0x31c
+[  225.777437] Code: ff ff 8b 55 e8 8b 45 cc e8 0a 11 ec ff 89 d8 83 c4 28 5b 5e 5f 5d c3 81 7d e0 a0 ef 96 c1 74 ad 8b 45 d0 e8 2d 83 49 00 eb a3 <0f> 0b 25 00 f0 ff ff 81 eb 00 00 00 40 01 c3 8b 45 ec 8b 00 e8 76
+[  225.777446] EAX: 00000001 EBX: c53a3b58 ECX: b5c00000 EDX: c258aa00
+[  225.777454] ESI: b5c00000 EDI: b5900000 EBP: c4b0fdb4 ESP: c4b0fd80
+[  225.777462] DS: 007b ES: 007b FS: 00d8 GS: 0033 SS: 0068 EFLAGS: 00010202
+[  225.777470] CR0: 80050033 CR2: b5900000 CR3: 053a3000 CR4: 000006d0
+[  225.777479] Call Trace:
+[  225.777486]  ? i915_memcpy_init_early+0x63/0x63 [i915]
+[  225.777684]  apply_to_page_range+0x21/0x27
+[  225.777694]  ? i915_memcpy_init_early+0x63/0x63 [i915]
+[  225.777870]  remap_io_mapping+0x49/0x75 [i915]
+[  225.778046]  ? i915_memcpy_init_early+0x63/0x63 [i915]
+[  225.778220]  ? mutex_unlock+0xb/0xd
+[  225.778231]  ? i915_vma_pin_fence+0x6d/0xf7 [i915]
+[  225.778420]  vm_fault_gtt+0x2a9/0x8f1 [i915]
+[  225.778644]  ? lock_is_held_type+0x56/0xe7
+[  225.778655]  ? lock_is_held_type+0x7a/0xe7
+[  225.778663]  ? 0xc1000000
+[  225.778670]  __do_fault+0x21/0x6a
+[  225.778679]  handle_mm_fault+0x708/0xb21
+[  225.778686]  ? mt_find+0x21e/0x5ae
+[  225.778696]  exc_page_fault+0x185/0x705
+[  225.778704]  ? doublefault_shim+0x127/0x127
+[  225.778715]  handle_exception+0x130/0x130
+[  225.778723] EIP: 0xb700468a
+[  225.778730] Code: 44 24 40 8b 7c 24 1c 89 47 54 8b 44 24 5c 65 2b 05 14 00 00 00 0f 85 8a 01 00 00 83 c4 6c 5b 5e 5f 5d c3 8b 44 24 1c 8b 40 28 <c7> 00 00 00 00 00 8b 44 24 20 8d 90 20 1b 00 00 8b 02 83 e8 01 89
+[  225.778738] EAX: b5900000 EBX: b7148000 ECX: 00000000 EDX: 00000000
+[  225.778745] ESI: 0103eb60 EDI: b7148000 EBP: b6cf7000 ESP: bfd76650
+[  225.778752] DS: 007b ES: 007b FS: 0000 GS: 0033 SS: 007b EFLAGS: 00010246
+[  225.778761]  ? doublefault_shim+0x127/0x127
+[  225.778769] Modules linked in: i915 prime_numbers i2c_algo_bit iosf_mbi drm_buddy video wmi drm_display_helper drm_kms_helper syscopyarea sysfillrect sysimgblt fb_sys_fops ttm drm drm_panel_orientation_quirks backlight cfg80211 rfkill sch_fq_codel xt_tcpudp xt_multiport xt_state iptable_filter iptable_nat nf_nat nf_conntrack nf_defrag_ipv4 ip_tables x_tables binfmt_misc i2c_dev iTCO_wdt snd_intel8x0 snd_ac97_codec ac97_bus snd_pcm snd_timer psmouse i2c_i801 snd i2c_smbus uhci_hcd i2c_core pcspkr soundcore lpc_ich mfd_core ehci_pci ehci_hcd skge intel_agp intel_gtt usbcore agpgart usb_common rng_core parport_pc parport evdev
+[  225.778899] ---[ end trace 0000000000000000 ]---
+[  225.778906] EIP: __apply_to_page_range+0x24d/0x31c
+[  225.778916] Code: ff ff 8b 55 e8 8b 45 cc e8 0a 11 ec ff 89 d8 83 c4 28 5b 5e 5f 5d c3 81 7d e0 a0 ef 96 c1 74 ad 8b 45 d0 e8 2d 83 49 00 eb a3 <0f> 0b 25 00 f0 ff ff 81 eb 00 00 00 40 01 c3 8b 45 ec 8b 00 e8 76
+[  225.778924] EAX: 00000001 EBX: c53a3b58 ECX: b5c00000 EDX: c258aa00
+[  225.778931] ESI: b5c00000 EDI: b5900000 EBP: c4b0fdb4 ESP: c4b0fd80
+[  225.778938] DS: 007b ES: 007b FS: 00d8 GS: 0033 SS: 0068 EFLAGS: 00010202
+[  225.778946] CR0: 80050033 CR2: b5900000 CR3: 053a3000 CR4: 000006d0
 
-CI Bug Log - changes from CI_DRM_12332 -> Patchwork_110434v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110434v1/index.html
-
-Participating hosts (40 -> 28)
-------------------------------
-
-  Missing    (12): bat-dg2-8 bat-adlm-1 fi-icl-u2 bat-dg2-9 bat-adlp-6 bat-adlp-4 bat-adln-1 bat-rplp-1 bat-rpls-1 bat-rpls-2 bat-dg2-11 bat-jsl-1 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_110434v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - fi-bdw-5557u:       [PASS][1] -> [INCOMPLETE][2] ([i915#146])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110434v1/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-hsw-g3258:       NOTRUN -> [SKIP][3] ([fdo#109271] / [fdo#111827])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110434v1/fi-hsw-g3258/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [DMESG-FAIL][4] ([i915#5334]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110434v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-adl-ddr5:        [DMESG-WARN][6] ([i915#5591]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-adl-ddr5/igt@i915_selftest@live@hangcheck.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110434v1/fi-adl-ddr5/igt@i915_selftest@live@hangcheck.html
-    - fi-hsw-g3258:       [INCOMPLETE][8] ([i915#3303] / [i915#4785]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110434v1/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#3987]: https://gitlab.freedesktop.org/drm/intel/issues/3987
-  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#5591]: https://gitlab.freedesktop.org/drm/intel/issues/5591
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12332 -> Patchwork_110434v1
-
-  CI-20190529: 20190529
-  CI_DRM_12332: 601b2ef606e4b83d5518aa6a5011bb2b1c5954d9 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7038: 5389b3f3b9b75df6bd8506e4aa3da357fd0c0ab1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_110434v1: 601b2ef606e4b83d5518aa6a5011bb2b1c5954d9 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-45013b2475d5 drm/i915/psr: Remove inappropriate DSC slice alignment warning
-f9774a61bd76 drm/i915/psr: Ensure panel granularity aligns with DSC slice height
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110434v1/index.html
-
---===============8190695106725321234==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>DSC slice/PSR2 SU panel y granularity alignment</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/110434/">https://patchwork.freedesktop.org/series/110434/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110434v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110434v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12332 -&gt; Patchwork_110434v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110434v1/index.html</p>
-<h2>Participating hosts (40 -&gt; 28)</h2>
-<p>Missing    (12): bat-dg2-8 bat-adlm-1 fi-icl-u2 bat-dg2-9 bat-adlp-6 bat-adlp-4 bat-adln-1 bat-rplp-1 bat-rpls-1 bat-rpls-2 bat-dg2-11 bat-jsl-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_110434v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110434v1/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-hsw-g3258:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110434v1/fi-hsw-g3258/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110434v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>
-<p>fi-adl-ddr5:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-adl-ddr5/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5591">i915#5591</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110434v1/fi-adl-ddr5/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
-</li>
-<li>
-<p>fi-hsw-g3258:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12332/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110434v1/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12332 -&gt; Patchwork_110434v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12332: 601b2ef606e4b83d5518aa6a5011bb2b1c5954d9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7038: 5389b3f3b9b75df6bd8506e4aa3da357fd0c0ab1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_110434v1: 601b2ef606e4b83d5518aa6a5011bb2b1c5954d9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>45013b2475d5 drm/i915/psr: Remove inappropriate DSC slice alignment warning<br />
-f9774a61bd76 drm/i915/psr: Ensure panel granularity aligns with DSC slice height</p>
-
-</body>
-</html>
-
---===============8190695106725321234==--
+-- 
+Ville Syrjälä
+Intel
