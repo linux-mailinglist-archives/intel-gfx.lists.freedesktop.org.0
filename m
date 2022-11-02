@@ -2,120 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E09261A178
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Nov 2022 20:48:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A6DF61A174
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Nov 2022 20:48:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D82410E7F5;
-	Fri,  4 Nov 2022 19:48:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6D4210E10E;
+	Fri,  4 Nov 2022 19:48:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from EUR02-AM0-obe.outbound.protection.outlook.com
- (mail-am0eur02on2105.outbound.protection.outlook.com [40.107.247.105])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7261610E102;
- Wed,  2 Nov 2022 11:52:39 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZBOD6VHWRfO3UkwdsUgvBggYsuICMRPgajfsl5HgQZwW/NaC735TUqFyF9t9Y1Sp14d/yerW4BWMvGGCK+bPDk/j5bT4mhZHLUsXpXjAMXMMokgBpEj3bBpK4M2C3yaYXb+9XunQfk9QjQdnbwV/apxL4NOdxnBvvWyL8UR8h1e4/mkW3XLJbxDDaWRoKKXg5MZG7+05M/9BDm7hnov7N9ugF7654yeINmZGcQrqR0yPPscdnqzYtqYRsWR9I7BZOLoNzQ0gHM6jTIQZ8nhKwDu96ZedikCL8w4yhxOTy8bVJ8CnKQIzlOS5dadxqrfQEaoBBjib5hRBjOifkbwKCg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uPlMNuvu4V2MXQvMbxjST7BoY7NL6NYYdHxzgmHtqI8=;
- b=NgWPay6bOTzxdpgB4O2QEvI89XwlRT/eVlK75+DYnhF0BCkMs+kyjXMPQxx94MUT0GgmTPhDRbj9cIBxAZIgkKg5wC5H+EbObMB2djSM5KkNBnKJmz1rSHY0WFWstuq2Ba4vlH4HY5ZBIdLt4K2shkNQC+cBjId9mIgZQdMW1nnBOdFWxDd/ltV7hquajAlhw0zu7FJ4qLKfTbREReBu+rcOLkwcSdJPEPoChqM/kzTqZBqDk257Z6rZd2SNgQd1mdC+85vOhTpfDymO00BB01UaJWDDIEBgDt145K8JMX8w0RTfC1X0GLYBssCABmt0TcPB0H8h/5Rdw0b7plp+9w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=prevas.dk; dmarc=pass action=none header.from=prevas.dk;
- dkim=pass header.d=prevas.dk; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prevas.dk; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uPlMNuvu4V2MXQvMbxjST7BoY7NL6NYYdHxzgmHtqI8=;
- b=A1Q5cOdzcGLlXPN6cbpunJcOc4wTF/4yE2aWfRa0IF16w4K/WGVVh4OjGT9zUpIniphKL10TwmJ6CN7Cw+s1wD1fdGn2BgI6d0u7SRA6QDpJKN1VDtH/bXNdefRPAgeTEWFEjeInjPSHldg5VN5UtItwYGNLfGGnLVbH9D78iKE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=prevas.dk;
-Received: from DU0PR10MB5266.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:34a::22)
- by PR3PR10MB4062.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:a2::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5769.21; Wed, 2 Nov
- 2022 11:52:36 +0000
-Received: from DU0PR10MB5266.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::732f:4316:a0be:bdbc]) by DU0PR10MB5266.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::732f:4316:a0be:bdbc%3]) with mapi id 15.20.5769.016; Wed, 2 Nov 2022
- 11:52:36 +0000
-Message-ID: <307b90cb-b80d-6ce3-14ae-4a0b2ee5e447@prevas.dk>
-Date: Wed, 2 Nov 2022 12:52:32 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Content-Language: en-US
-To: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>, keescook@chromium.org
-References: <20220926191109.1803094-1-keescook@chromium.org>
- <20221024201125.1416422-1-gwan-gyeong.mun@intel.com>
-From: Rasmus Villemoes <rasmus.villemoes@prevas.dk>
-In-Reply-To: <20221024201125.1416422-1-gwan-gyeong.mun@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: GV3P280CA0023.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:150:b::24) To DU0PR10MB5266.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:10:34a::22)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC78010E1D2;
+ Wed,  2 Nov 2022 14:24:26 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 53ABE616C6;
+ Wed,  2 Nov 2022 14:24:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC5EBC433D7;
+ Wed,  2 Nov 2022 14:24:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1667399065;
+ bh=uO1Wv+ReevzIk1aXtBRREBtT/tgyabwShw4JBUSnx6k=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=UNWJ/4jpUzZFIB7tPJV/eqMaxCh+PYp4P7Aq2szKTVXCULfLz10BbAhBDKtn7qon7
+ qCNQVVXYd8Rulhr4Qq76/2tUh+peqQ1Xtjhnk/XkaYwbxs2BkZH/jwIpmG++6e1ptc
+ M5Rikc5GMKxE97zUoPxQiafVfiTMYdNSJ1T0XEGhXwkloj+ZKycNRFA5j145qIAGJo
+ 66Q7B7Y+0XQE9nhPCcxajawU42eAMsG2/zleyYIRr3HHJ34gDx5ybrdzuvsWp3Cil1
+ h2xtFFZ0lpbUQSocP8NEWBNCU1QPkCl8/NhbylGIUZH6XfcpA7F9jL9whYWHFuTQNV
+ 83Vz7gBgTpJhw==
+Received: by mail-yw1-f178.google.com with SMTP id
+ 00721157ae682-36a4b86a0abso167768687b3.7; 
+ Wed, 02 Nov 2022 07:24:25 -0700 (PDT)
+X-Gm-Message-State: ACrzQf2E7yipCD2pKAK0T3PzO2S/jEzfwHr3+bsO5M2Sg/BLbhEacysA
+ GnyGtNahoiAhHnMwesnEwm8ozIry51nBz8TdhNk=
+X-Google-Smtp-Source: AMsMyM4ABQsof+4Xlk8ax7jbRQ+7bPAZ4K1/9vveI4fArkhRYZ2W2wwyMUVBNLw66TPXUcGd25zoAo2WgbXtEQJIcyo=
+X-Received: by 2002:a05:690c:825:b0:36a:b160:21b with SMTP id
+ by5-20020a05690c082500b0036ab160021bmr23933191ywb.211.1667399064738; Wed, 02
+ Nov 2022 07:24:24 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU0PR10MB5266:EE_|PR3PR10MB4062:EE_
-X-MS-Office365-Filtering-Correlation-Id: d98265cb-4295-412d-9afd-08dabcc8bc1f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ZtqCAf3UC2Eccoy8hMC4iyObmYrpLDHlUfm9RwU/7f5WbiDltnjF7d71Ve++udH8fYv9PkdcP67kumbVMynZNgYlfrlk5jtQme6oYJnEUsY8MZ0GuMB/dWEoHcUQRu0cbBd6NjwaJJo1wP3ns2z2bWLNazOqJIbw6Xcjplx5yDCrTvbt7kWo8wVAQwV3+C6wrekAcUzkz8Mfir4+qhkuEa9JZ9ExcHB+v/tsufUw8sKM4qzEUBJ1SxIjk2IsMC2WgDgsvqXnIPjy3GEvvPH3p5btAEKtt3WQMUJdZyTUK53b/wkn3/iZ80MNpfH7SNq6ofRFqIoyySzpgj3GAdX9nzbgI+Q+TRI+7yLxFW9+casGZr8JdfGdcSHz/v0qf5WjoHfdcoZYktonJFQAYqkI8tBb3Go6/N0cjKR7LO+XQc83swuLBjyh1KiiSC4QGLxSvx/OCLbNyOTQSkjnVapjtFxjhCxmpEoYjX8ur+k+/cpNC3jDESru76v2UtBUAceltJkS17kP93FEbAZWxEufk/DfdBSEZnTiE3hEJS94OXIYSzz8mD3YJd5FOdNEgRTLa4Og7WxUlSnFWt2o+aRJmb2lRbEiU8FiUVVYawQVeOzrNwXc3wd4JTgfZRJC6sLnD6KLGX9Kn+wLTGB8gGun4vbdnvvEVdlK2Pt7zZ7OJJUScLWg417j2VK5sP677e06QOwu6s8avgvG5A2Pdo0JO2N77N8kEAqRD5Klx28340U7Y95UgfatLny3gxkVfIs4+eaoK+j0G/NReJcKhEHogKt5idQT59v3vnh9HqtjDMfUHqs81/WF93O5fM5yDKuw
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DU0PR10MB5266.EURPRD10.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFS:(13230022)(136003)(346002)(366004)(39850400004)(376002)(396003)(451199015)(66946007)(6512007)(6666004)(26005)(52116002)(7416002)(2906002)(6506007)(36756003)(44832011)(66556008)(4326008)(8676002)(66476007)(38100700002)(316002)(478600001)(8936002)(38350700002)(8976002)(6486002)(31696002)(86362001)(41300700001)(5660300002)(31686004)(2616005)(186003)(45980500001)(43740500002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RjRndGp3M0pQUUl0bWhBZnh1THcySEdSa25ic09IODBoeWs4YlliRDdhVDI5?=
- =?utf-8?B?NEZGdk85THZNTzJDMlhNUWxEdFUyWXc1bHZIcWxncGNlMnY1SWpySmFYUDVK?=
- =?utf-8?B?ODI5Rlk1ajRLWlNrVXAraFFXWFVNYUF5Z05VRVphMnZMbnZZeTNENUNpaE5Y?=
- =?utf-8?B?N1JxSTVHeFFDcnFBYTEwRk1lbEp6QVk2NHEvUkFrMjh4K0cwa0loN2gzdzVK?=
- =?utf-8?B?eHN3Wkp2SDluc3Y3c0d1OWFoOTJ5anZCeTJ1TmFwZG5QL0o0SEJtWTV3ZklZ?=
- =?utf-8?B?OGtQbnlYbGorUEsyTUt2QW8rZk0vZFVhUXhXT09DSVdVMkhJRzNrTWVsc1Fv?=
- =?utf-8?B?Sk1oSnpPNVNmekRZK2VoWmFKakpTZWFzclFLZDV4VnVJTWFXekVsYXFJS1Bn?=
- =?utf-8?B?WXdWSzJITTRpbGxRQ3ZxZjFvQ2pIS1VObnluSWFIUVc0eDhwaVBDQzJpSlcx?=
- =?utf-8?B?dll4cHl1V3ZYNXBldjhUb2RZb1p4RFI4Y2xzcTBUMWtHZXU2VnBCRFREMlZ0?=
- =?utf-8?B?VGM4SThGOFMrS0FPRE1zb1lYQllzck1YdnRhUjFIb2tIakhsRUJvZ2NiM2No?=
- =?utf-8?B?eTBCUFkrVmpibVVodDFDa2NDRE5lem9aOFI0RmkxTnJnVTZ5ZGJTV1V6MjNi?=
- =?utf-8?B?VWV2bExLWFQ0eWtXQTNRbmZna2tmM0hsVGtiUGt3b1pwYlVCZ1gzK3dKdmRm?=
- =?utf-8?B?S25RQUlUVFF1MGd6ZEFKUTJJdEFLOTNYY3NZMFI0cld3cjZzZlJ2bjNXTFBE?=
- =?utf-8?B?cThHR0NHdUw0MU1KNGxOWURIbnJwdnNwbk9NeDBISEg4QlVQNEFvQWlJMEhn?=
- =?utf-8?B?anlZZGE4ZjZYRkl1SWxoYUI2RVFjRmpmRDllR3lNbVhWZlpUMzhsSjhmcXJB?=
- =?utf-8?B?UG9kOXNUL0F5ekJKVkFHc2Q3WW1KRFB5Q0RpRDFRNUN4WDh6RFA4Z0d2YlZi?=
- =?utf-8?B?UGxXcDhDeWV5NE92U2QzRWlYRGpjMHVwUGxFK1doMzRENUVqNXErdVQyQ1N2?=
- =?utf-8?B?NWhHVUY5NjNHY3JkRTdpa05MMTZhSDlMS0RVZHFqUm9UWW9ZZVl0WmtvSE5X?=
- =?utf-8?B?WHpTSFRBbzEyTTZZYWJiWG83L0ZXb1owelRsT2gxREJvaCtzZy9YVFVPRXND?=
- =?utf-8?B?alk4Q0ZuYXpsaHpjVjlON1ZCYWlEcDd1UDd3dFA5QWVDMUFzUnkzUTk0NVNO?=
- =?utf-8?B?U3JJdEpoclQ1VWpURTlZRFFBZ3YvTTdpVGlPclRFWjA1TmxKN2Q1TlQvWnlK?=
- =?utf-8?B?ank1RjZFZUNqak4wdGx6elpEN3JWZGZpUFM2dytscWJXMWhtNlRGUXN3T1N0?=
- =?utf-8?B?T0cvOEl1bDJBT2RtVlZOdVpEU1c1WWZHbFdGYTdvTzJDVXV4N2NqM3dJd3Ey?=
- =?utf-8?B?R3NoRjFuV0RWaTBNYUNxU1BsZnV4eEt0M29waHJVdVhobUVSTUVoTXFNbFp2?=
- =?utf-8?B?cDNqVzFSRFBqaDg5TjJNOC9oUnVySHVGL3ZqVkJuS0pqMC9qZ2hvcis2K09t?=
- =?utf-8?B?dlB3ZHpqVzBQZUxFeW4xMWpBZkU3WHNKYndBUHZEOGw4Y1JCei9oS1o0a09u?=
- =?utf-8?B?OWpYeTIxVFVoaXV1UzRMMEV0RUN1ckQ3T1FTOHBxVlNELzZEa1hXYVNqRkZ1?=
- =?utf-8?B?eTdacFlXU0lxTHZvSlRGekxsSDVGMk84dElERnNZYTB2TkdMeWhKR0ljdDc1?=
- =?utf-8?B?ZDVJY1RTZUxwckNndHAvK3BRenFNRDU2OThueERibStZb1N6YSsrV3JCMjZF?=
- =?utf-8?B?azRaazJ1YmVlNUhsa0o1Qk9jOWVETFNJUHZSYnU2QWtNWVZZV3AzaGpMai9w?=
- =?utf-8?B?Vzg0bTNhZ3pxUVFwa0J3U2hyQkhGNDlyU0loRXYyenFrYk9iSTZiYXpVYXRW?=
- =?utf-8?B?VGt1SVYyem90cGRtbWMveHBaN1FZNDJ4UFE4dEMwQnl1WE9kN0JXbDR3aXhi?=
- =?utf-8?B?K2o4NWxac0dBUjEvQ1JqbGFjU0NUWXlWUEE2M3l3OWRrMUN3aFQ4ZzlMQzFP?=
- =?utf-8?B?YkU0NzhwenFZTHlJTE5DaDFxVFVLSmFKb1dUcmV3QjZpVUxMbTVZY2dBNkFq?=
- =?utf-8?B?b04zdTRhTVpBeU44QlRod0MxZjFQaTVubC9mNURIemk4NXltdWtpay9tSFlC?=
- =?utf-8?B?dTBqYlpycHlPV1NxZDRmU0hLcTVBcFVxZWJYNW9taUxmdFZHVDFUenJ4aGdC?=
- =?utf-8?B?TWc9PQ==?=
-X-OriginatorOrg: prevas.dk
-X-MS-Exchange-CrossTenant-Network-Message-Id: d98265cb-4295-412d-9afd-08dabcc8bc1f
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR10MB5266.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Nov 2022 11:52:36.3733 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: d350cf71-778d-4780-88f5-071a4cb1ed61
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /IA1FbjiF9JIZRXcEy0dkIlTg0K9M+3CmpD8j9Nkf93w95qMQ4idFktuR0/E3yvfbrvduSjTtLg/sb/yJu29dgcLCoUnUBo0XLuQSnMpxGU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR10MB4062
+References: <20220911211443.581481-1-michal.winiarski@intel.com>
+ <20220911211443.581481-2-michal.winiarski@intel.com>
+In-Reply-To: <20220911211443.581481-2-michal.winiarski@intel.com>
+From: Oded Gabbay <ogabbay@kernel.org>
+Date: Wed, 2 Nov 2022 16:23:57 +0200
+X-Gmail-Original-Message-ID: <CAFCwf11=hKGm93oF1A5PLhdvdo2ujYJWyt4qAqK-KQQqe6ngDA@mail.gmail.com>
+Message-ID: <CAFCwf11=hKGm93oF1A5PLhdvdo2ujYJWyt4qAqK-KQQqe6ngDA@mail.gmail.com>
+To: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Fri, 04 Nov 2022 19:48:17 +0000
-Subject: Re: [Intel-gfx] [PATCH v5] overflow: Introduce overflows_type() and
- castable_to_type()
+Subject: Re: [Intel-gfx] [PATCH v5 1/3] drm: Use XArray instead of IDR for
+ minors
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -128,41 +64,193 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, trix@redhat.com, dlatypov@google.com,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org, linux-sparse@vger.kernel.org,
- llvm@lists.linux.dev, arnd@kernel.org, intel-gfx@lists.freedesktop.org,
- nathan@kernel.org, rodrigo.vivi@intel.com, mchehab@kernel.org,
- ndesaulniers@google.com, gustavoars@kernel.org, daniel@ffwll.ch,
- vitor@massaru.org, luc.vanoostenryck@gmail.com
+Cc: Matthew Wilcox <willy@infradead.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
+ Simon Ser <contact@emersion.fr>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Daniel Vetter <daniel@ffwll.ch>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 24/10/2022 22.11, Gwan-gyeong Mun wrote:
-> From: Kees Cook <keescook@chromium.org>
-> 
-> Implement a robust overflows_type() macro to test if a variable or
-> constant value would overflow another variable or type. This can be
-> used as a constant expression for static_assert() (which requires a
-> constant expression[1][2]) when used on constant values. This must be
-> constructed manually, since __builtin_add_overflow() does not produce
-> a constant expression[3].
-> 
-> Additionally adds castable_to_type(), similar to __same_type(), but for
-> checking if a constant value would overflow if cast to a given type.
-> 
-
-> +#define __overflows_type_constexpr(x, T) (			\
-> +	is_unsigned_type(typeof(x)) ?				\
-> +		(x) > type_max(typeof(T)) ? 1 : 0		\
-> +	: is_unsigned_type(typeof(T)) ?				\
-> +		(x) < 0 || (x) > type_max(typeof(T)) ? 1 : 0	\
-> +		: (x) < type_min(typeof(T)) ||			\
-> +		  (x) > type_max(typeof(T)) ? 1 : 0)
+On Mon, Sep 12, 2022 at 12:17 AM Micha=C5=82 Winiarski
+<michal.winiarski@intel.com> wrote:
+>
+> IDR is deprecated, and since XArray manages its own state with internal
+> locking, it simplifies the locking on DRM side.
+> Additionally, don't use the IRQ-safe variant, since operating on drm
+> minor is not done in IRQ context.
+>
+> Signed-off-by: Micha=C5=82 Winiarski <michal.winiarski@intel.com>
+> Suggested-by: Matthew Wilcox <willy@infradead.org>
+> ---
+>  drivers/gpu/drm/drm_drv.c | 51 ++++++++++++++-------------------------
+>  1 file changed, 18 insertions(+), 33 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+> index 8214a0b1ab7f..61d24cdcd0f8 100644
+> --- a/drivers/gpu/drm/drm_drv.c
+> +++ b/drivers/gpu/drm/drm_drv.c
+> @@ -34,6 +34,7 @@
+>  #include <linux/pseudo_fs.h>
+>  #include <linux/slab.h>
+>  #include <linux/srcu.h>
+> +#include <linux/xarray.h>
+>
+>  #include <drm/drm_cache.h>
+>  #include <drm/drm_client.h>
+> @@ -53,8 +54,7 @@ MODULE_AUTHOR("Gareth Hughes, Leif Delgass, Jos=C3=A9 F=
+onseca, Jon Smirl");
+>  MODULE_DESCRIPTION("DRM shared core routines");
+>  MODULE_LICENSE("GPL and additional rights");
+>
+> -static DEFINE_SPINLOCK(drm_minor_lock);
+> -static struct idr drm_minors_idr;
+> +static DEFINE_XARRAY_ALLOC(drm_minors_xa);
+>
+>  /*
+>   * If the drm core fails to init for whatever reason,
+> @@ -98,21 +98,19 @@ static struct drm_minor **drm_minor_get_slot(struct d=
+rm_device *dev,
+>  static void drm_minor_alloc_release(struct drm_device *dev, void *data)
+>  {
+>         struct drm_minor *minor =3D data;
+> -       unsigned long flags;
+>
+>         WARN_ON(dev !=3D minor->dev);
+>
+>         put_device(minor->kdev);
+>
+> -       spin_lock_irqsave(&drm_minor_lock, flags);
+> -       idr_remove(&drm_minors_idr, minor->index);
+> -       spin_unlock_irqrestore(&drm_minor_lock, flags);
+> +       xa_erase(&drm_minors_xa, minor->index);
+>  }
+>
+> +#define DRM_MINOR_LIMIT(t) ({ typeof(t) _t =3D (t); XA_LIMIT(64 * _t, 64=
+ * _t + 63); })
 > +
+>  static int drm_minor_alloc(struct drm_device *dev, unsigned int type)
+>  {
+>         struct drm_minor *minor;
+> -       unsigned long flags;
+>         int r;
+>
+>         minor =3D drmm_kzalloc(dev, sizeof(*minor), GFP_KERNEL);
+> @@ -122,21 +120,10 @@ static int drm_minor_alloc(struct drm_device *dev, =
+unsigned int type)
+>         minor->type =3D type;
+>         minor->dev =3D dev;
+>
+> -       idr_preload(GFP_KERNEL);
+> -       spin_lock_irqsave(&drm_minor_lock, flags);
+> -       r =3D idr_alloc(&drm_minors_idr,
+> -                     NULL,
+> -                     64 * type,
+> -                     64 * (type + 1),
+> -                     GFP_NOWAIT);
+> -       spin_unlock_irqrestore(&drm_minor_lock, flags);
+> -       idr_preload_end();
+> -
+> +       r =3D xa_alloc(&drm_minors_xa, &minor->index, NULL, DRM_MINOR_LIM=
+IT(type), GFP_KERNEL);
+>         if (r < 0)
+>                 return r;
+>
+> -       minor->index =3D r;
+> -
+>         r =3D drmm_add_action_or_reset(dev, drm_minor_alloc_release, mino=
+r);
+>         if (r)
+>                 return r;
+> @@ -152,7 +139,7 @@ static int drm_minor_alloc(struct drm_device *dev, un=
+signed int type)
+>  static int drm_minor_register(struct drm_device *dev, unsigned int type)
+>  {
+>         struct drm_minor *minor;
+> -       unsigned long flags;
+> +       void *entry;
+>         int ret;
+>
+>         DRM_DEBUG("\n");
+> @@ -172,9 +159,12 @@ static int drm_minor_register(struct drm_device *dev=
+, unsigned int type)
+>                 goto err_debugfs;
+>
+>         /* replace NULL with @minor so lookups will succeed from now on *=
+/
+> -       spin_lock_irqsave(&drm_minor_lock, flags);
+> -       idr_replace(&drm_minors_idr, minor, minor->index);
+> -       spin_unlock_irqrestore(&drm_minor_lock, flags);
+> +       entry =3D xa_cmpxchg(&drm_minors_xa, minor->index, NULL, &minor, =
+GFP_KERNEL);
+I believe we should pass in "minor", without the &, as &minor will
+give you the address of the local pointer.
 
-Can't all these instances of "foo ? 1 : 0" be simplified to "foo"? That
-would improve the readability of this thing somewhat IMO.
+Oded
 
-Rasmus
-
+> +       if (xa_is_err(entry)) {
+> +               ret =3D xa_err(entry);
+> +               goto err_debugfs;
+> +       }
+> +       WARN_ON(entry);
+>
+>         DRM_DEBUG("new minor registered %d\n", minor->index);
+>         return 0;
+> @@ -187,16 +177,13 @@ static int drm_minor_register(struct drm_device *de=
+v, unsigned int type)
+>  static void drm_minor_unregister(struct drm_device *dev, unsigned int ty=
+pe)
+>  {
+>         struct drm_minor *minor;
+> -       unsigned long flags;
+>
+>         minor =3D *drm_minor_get_slot(dev, type);
+>         if (!minor || !device_is_registered(minor->kdev))
+>                 return;
+>
+>         /* replace @minor with NULL so lookups will fail from now on */
+> -       spin_lock_irqsave(&drm_minor_lock, flags);
+> -       idr_replace(&drm_minors_idr, NULL, minor->index);
+> -       spin_unlock_irqrestore(&drm_minor_lock, flags);
+> +       xa_store(&drm_minors_xa, minor->index, NULL, GFP_KERNEL);
+>
+>         device_del(minor->kdev);
+>         dev_set_drvdata(minor->kdev, NULL); /* safety belt */
+> @@ -215,13 +202,12 @@ static void drm_minor_unregister(struct drm_device =
+*dev, unsigned int type)
+>  struct drm_minor *drm_minor_acquire(unsigned int minor_id)
+>  {
+>         struct drm_minor *minor;
+> -       unsigned long flags;
+>
+> -       spin_lock_irqsave(&drm_minor_lock, flags);
+> -       minor =3D idr_find(&drm_minors_idr, minor_id);
+> +       xa_lock(&drm_minors_xa);
+> +       minor =3D xa_load(&drm_minors_xa, minor_id);
+>         if (minor)
+>                 drm_dev_get(minor->dev);
+> -       spin_unlock_irqrestore(&drm_minor_lock, flags);
+> +       xa_unlock(&drm_minors_xa);
+>
+>         if (!minor) {
+>                 return ERR_PTR(-ENODEV);
+> @@ -1037,7 +1023,7 @@ static void drm_core_exit(void)
+>         unregister_chrdev(DRM_MAJOR, "drm");
+>         debugfs_remove(drm_debugfs_root);
+>         drm_sysfs_destroy();
+> -       idr_destroy(&drm_minors_idr);
+> +       WARN_ON(!xa_empty(&drm_minors_xa));
+>         drm_connector_ida_destroy();
+>  }
+>
+> @@ -1046,7 +1032,6 @@ static int __init drm_core_init(void)
+>         int ret;
+>
+>         drm_connector_ida_init();
+> -       idr_init(&drm_minors_idr);
+>         drm_memcpy_init_early();
+>
+>         ret =3D drm_sysfs_init();
+> --
+> 2.37.3
+>
