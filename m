@@ -1,57 +1,95 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A6DF61A174
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Nov 2022 20:48:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D9A361A173
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Nov 2022 20:48:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D6D4210E10E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A086D10E10D;
 	Fri,  4 Nov 2022 19:48:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC78010E1D2;
- Wed,  2 Nov 2022 14:24:26 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 53ABE616C6;
- Wed,  2 Nov 2022 14:24:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC5EBC433D7;
- Wed,  2 Nov 2022 14:24:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1667399065;
- bh=uO1Wv+ReevzIk1aXtBRREBtT/tgyabwShw4JBUSnx6k=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=UNWJ/4jpUzZFIB7tPJV/eqMaxCh+PYp4P7Aq2szKTVXCULfLz10BbAhBDKtn7qon7
- qCNQVVXYd8Rulhr4Qq76/2tUh+peqQ1Xtjhnk/XkaYwbxs2BkZH/jwIpmG++6e1ptc
- M5Rikc5GMKxE97zUoPxQiafVfiTMYdNSJ1T0XEGhXwkloj+ZKycNRFA5j145qIAGJo
- 66Q7B7Y+0XQE9nhPCcxajawU42eAMsG2/zleyYIRr3HHJ34gDx5ybrdzuvsWp3Cil1
- h2xtFFZ0lpbUQSocP8NEWBNCU1QPkCl8/NhbylGIUZH6XfcpA7F9jL9whYWHFuTQNV
- 83Vz7gBgTpJhw==
-Received: by mail-yw1-f178.google.com with SMTP id
- 00721157ae682-36a4b86a0abso167768687b3.7; 
- Wed, 02 Nov 2022 07:24:25 -0700 (PDT)
-X-Gm-Message-State: ACrzQf2E7yipCD2pKAK0T3PzO2S/jEzfwHr3+bsO5M2Sg/BLbhEacysA
- GnyGtNahoiAhHnMwesnEwm8ozIry51nBz8TdhNk=
-X-Google-Smtp-Source: AMsMyM4ABQsof+4Xlk8ax7jbRQ+7bPAZ4K1/9vveI4fArkhRYZ2W2wwyMUVBNLw66TPXUcGd25zoAo2WgbXtEQJIcyo=
-X-Received: by 2002:a05:690c:825:b0:36a:b160:21b with SMTP id
- by5-20020a05690c082500b0036ab160021bmr23933191ywb.211.1667399064738; Wed, 02
- Nov 2022 07:24:24 -0700 (PDT)
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
+ [148.163.158.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E99D110E52D;
+ Wed,  2 Nov 2022 17:38:15 +0000 (UTC)
+Received: from pps.filterd (m0098417.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2A2GkWwa016761;
+ Wed, 2 Nov 2022 17:37:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
+ h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=pp1;
+ bh=POyXG4IlPm7jFx0Q3uWwEGhl5QQ7jk6OxguwZ8ZA4tY=;
+ b=s8a8jqhsF3HQPAMYsT7L5qFRWtZxgtttvcU6nISmwAZ5ayhpcZo8hVwaOQNTney41B5Y
+ YyCt1Hgm88yPxMt25ksaZHtuD8BMpsS/vvuNGp6644VD2KOjqWwVdMn4zRl0MbUi2ofz
+ fjh5xcvb4jktiesw/kRO1TYiw85+QQs9vLiy3Q0w7jgx4W9cEEY7BlhJ1SZesNkbK3kA
+ beT4JGJr1vpKuJeM+SpEK6LYDor+goWr8CFIelH45vnE+yiLyxt61788GlUcYfnXHFOa
+ SS67aRGGOLZ+vC66Nj1aVbxoaO/0IRIS7pspv7wa3V8RtOk2lTL9ZjrWBC1nRz7NTJqH 4Q== 
+Received: from pps.reinject (localhost [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3kktn0dwgv-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Wed, 02 Nov 2022 17:37:03 +0000
+Received: from m0098417.ppops.net (m0098417.ppops.net [127.0.0.1])
+ by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 2A2FijWj003373;
+ Wed, 2 Nov 2022 17:37:02 GMT
+Received: from ppma03wdc.us.ibm.com (ba.79.3fa9.ip4.static.sl-reverse.com
+ [169.63.121.186])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3kktn0dwfx-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Wed, 02 Nov 2022 17:37:02 +0000
+Received: from pps.filterd (ppma03wdc.us.ibm.com [127.0.0.1])
+ by ppma03wdc.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 2A2HaOsU023671;
+ Wed, 2 Nov 2022 17:37:00 GMT
+Received: from b01cxnp22033.gho.pok.ibm.com (b01cxnp22033.gho.pok.ibm.com
+ [9.57.198.23]) by ppma03wdc.us.ibm.com with ESMTP id 3kgut9v73u-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Wed, 02 Nov 2022 17:37:00 +0000
+Received: from smtpav06.wdc07v.mail.ibm.com ([9.208.128.115])
+ by b01cxnp22033.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 2A2HaxKn63767026
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Wed, 2 Nov 2022 17:37:00 GMT
+Received: from smtpav06.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 420F95803F;
+ Wed,  2 Nov 2022 17:36:59 +0000 (GMT)
+Received: from smtpav06.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 7CFF858067;
+ Wed,  2 Nov 2022 17:36:55 +0000 (GMT)
+Received: from [9.160.188.120] (unknown [9.160.188.120])
+ by smtpav06.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+ Wed,  2 Nov 2022 17:36:55 +0000 (GMT)
+Message-ID: <4a39ccf9-4201-47eb-fb4a-94a9b8b29312@linux.ibm.com>
+Date: Wed, 2 Nov 2022 13:36:54 -0400
 MIME-Version: 1.0
-References: <20220911211443.581481-1-michal.winiarski@intel.com>
- <20220911211443.581481-2-michal.winiarski@intel.com>
-In-Reply-To: <20220911211443.581481-2-michal.winiarski@intel.com>
-From: Oded Gabbay <ogabbay@kernel.org>
-Date: Wed, 2 Nov 2022 16:23:57 +0200
-X-Gmail-Original-Message-ID: <CAFCwf11=hKGm93oF1A5PLhdvdo2ujYJWyt4qAqK-KQQqe6ngDA@mail.gmail.com>
-Message-ID: <CAFCwf11=hKGm93oF1A5PLhdvdo2ujYJWyt4qAqK-KQQqe6ngDA@mail.gmail.com>
-To: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Content-Language: en-US
+To: Eric Farman <farman@linux.ibm.com>,
+ Matthew Rosato <mjrosato@linux.ibm.com>,
+ Alex Williamson <alex.williamson@redhat.com>,
+ Cornelia Huck <cohuck@redhat.com>, Jason Gunthorpe <jgg@nvidia.com>,
+ Kevin Tian <kevin.tian@intel.com>, Yi Liu <yi.l.liu@intel.com>
+References: <20221102150152.2521475-1-farman@linux.ibm.com>
+ <20221102150152.2521475-8-farman@linux.ibm.com>
+From: Anthony Krowiak <akrowiak@linux.ibm.com>
+In-Reply-To: <20221102150152.2521475-8-farman@linux.ibm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: 5KNPJY1ojqecQcp7Ux1-t0mABaq5DMaH
+X-Proofpoint-ORIG-GUID: hHPReoa9HfHIQdJ1gnG2bgJ3zM36pog3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-02_13,2022-11-02_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 clxscore=1011
+ mlxscore=0 malwarescore=0 adultscore=0 mlxlogscore=999 phishscore=0
+ suspectscore=0 lowpriorityscore=0 priorityscore=1501 spamscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2211020114
 X-Mailman-Approved-At: Fri, 04 Nov 2022 19:48:17 +0000
-Subject: Re: [Intel-gfx] [PATCH v5 1/3] drm: Use XArray instead of IDR for
- minors
+Subject: Re: [Intel-gfx] [PATCH v2 7/7] vfio: Remove vfio_free_device
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,193 +102,232 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Wilcox <willy@infradead.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
- Simon Ser <contact@emersion.fr>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Daniel Vetter <daniel@ffwll.ch>
+Cc: kvm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Kirti Wankhede <kwankhede@nvidia.com>,
+ Vineeth Vijayan <vneethv@linux.ibm.com>,
+ Diana Craciun <diana.craciun@oss.nxp.com>,
+ Alexander Gordeev <agordeev@linux.ibm.com>, David Airlie <airlied@gmail.com>,
+ linux-s390@vger.kernel.org, Halil Pasic <pasic@linux.ibm.com>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ intel-gfx@lists.freedesktop.org, Vasily Gorbik <gor@linux.ibm.com>,
+ Heiko Carstens <hca@linux.ibm.com>, Eric Auger <eric.auger@redhat.com>,
+ Harald Freudenberger <freude@linux.ibm.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gvt-dev@lists.freedesktop.org,
+ Jason Herne <jjherne@linux.ibm.com>, Yishai Hadas <yishaih@nvidia.com>,
+ Peter Oberparleiter <oberpar@linux.ibm.com>,
+ Sven Schnelle <svens@linux.ibm.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Abhishek Sahu <abhsahu@nvidia.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 12, 2022 at 12:17 AM Micha=C5=82 Winiarski
-<michal.winiarski@intel.com> wrote:
+Reviewed-by: Tony Krowiak <akrowiak@linux.ibm.com> : vfio_ap part
+
+On 11/2/22 11:01 AM, Eric Farman wrote:
+> With the "mess" sorted out, we should be able to inline the
+> vfio_free_device call introduced by commit cb9ff3f3b84c
+> ("vfio: Add helpers for unifying vfio_device life cycle")
+> and remove them from driver release callbacks.
 >
-> IDR is deprecated, and since XArray manages its own state with internal
-> locking, it simplifies the locking on DRM side.
-> Additionally, don't use the IRQ-safe variant, since operating on drm
-> minor is not done in IRQ context.
->
-> Signed-off-by: Micha=C5=82 Winiarski <michal.winiarski@intel.com>
-> Suggested-by: Matthew Wilcox <willy@infradead.org>
+> Signed-off-by: Eric Farman <farman@linux.ibm.com>
+> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+> Reviewed-by: Kevin Tian <kevin.tian@intel.com>
 > ---
->  drivers/gpu/drm/drm_drv.c | 51 ++++++++++++++-------------------------
->  1 file changed, 18 insertions(+), 33 deletions(-)
+>   drivers/gpu/drm/i915/gvt/kvmgt.c      |  1 -
+>   drivers/s390/cio/vfio_ccw_ops.c       |  2 --
+>   drivers/s390/crypto/vfio_ap_ops.c     |  6 ------
+>   drivers/vfio/fsl-mc/vfio_fsl_mc.c     |  1 -
+>   drivers/vfio/pci/vfio_pci_core.c      |  1 -
+>   drivers/vfio/platform/vfio_amba.c     |  1 -
+>   drivers/vfio/platform/vfio_platform.c |  1 -
+>   drivers/vfio/vfio_main.c              | 22 ++++------------------
+>   include/linux/vfio.h                  |  1 -
+>   samples/vfio-mdev/mbochs.c            |  1 -
+>   samples/vfio-mdev/mdpy.c              |  1 -
+>   samples/vfio-mdev/mtty.c              |  1 -
+>   12 files changed, 4 insertions(+), 35 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> index 8214a0b1ab7f..61d24cdcd0f8 100644
-> --- a/drivers/gpu/drm/drm_drv.c
-> +++ b/drivers/gpu/drm/drm_drv.c
-> @@ -34,6 +34,7 @@
->  #include <linux/pseudo_fs.h>
->  #include <linux/slab.h>
->  #include <linux/srcu.h>
-> +#include <linux/xarray.h>
->
->  #include <drm/drm_cache.h>
->  #include <drm/drm_client.h>
-> @@ -53,8 +54,7 @@ MODULE_AUTHOR("Gareth Hughes, Leif Delgass, Jos=C3=A9 F=
-onseca, Jon Smirl");
->  MODULE_DESCRIPTION("DRM shared core routines");
->  MODULE_LICENSE("GPL and additional rights");
->
-> -static DEFINE_SPINLOCK(drm_minor_lock);
-> -static struct idr drm_minors_idr;
-> +static DEFINE_XARRAY_ALLOC(drm_minors_xa);
->
->  /*
->   * If the drm core fails to init for whatever reason,
-> @@ -98,21 +98,19 @@ static struct drm_minor **drm_minor_get_slot(struct d=
-rm_device *dev,
->  static void drm_minor_alloc_release(struct drm_device *dev, void *data)
->  {
->         struct drm_minor *minor =3D data;
-> -       unsigned long flags;
->
->         WARN_ON(dev !=3D minor->dev);
->
->         put_device(minor->kdev);
->
-> -       spin_lock_irqsave(&drm_minor_lock, flags);
-> -       idr_remove(&drm_minors_idr, minor->index);
-> -       spin_unlock_irqrestore(&drm_minor_lock, flags);
-> +       xa_erase(&drm_minors_xa, minor->index);
->  }
->
-> +#define DRM_MINOR_LIMIT(t) ({ typeof(t) _t =3D (t); XA_LIMIT(64 * _t, 64=
- * _t + 63); })
+> diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
+> index 7a45e5360caf..eee6805e67de 100644
+> --- a/drivers/gpu/drm/i915/gvt/kvmgt.c
+> +++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
+> @@ -1461,7 +1461,6 @@ static void intel_vgpu_release_dev(struct vfio_device *vfio_dev)
+>   	struct intel_vgpu *vgpu = vfio_dev_to_vgpu(vfio_dev);
+>   
+>   	intel_gvt_destroy_vgpu(vgpu);
+> -	vfio_free_device(vfio_dev);
+>   }
+>   
+>   static const struct vfio_device_ops intel_vgpu_dev_ops = {
+> diff --git a/drivers/s390/cio/vfio_ccw_ops.c b/drivers/s390/cio/vfio_ccw_ops.c
+> index 1155f8bcedd9..598a3814d428 100644
+> --- a/drivers/s390/cio/vfio_ccw_ops.c
+> +++ b/drivers/s390/cio/vfio_ccw_ops.c
+> @@ -143,8 +143,6 @@ static void vfio_ccw_mdev_release_dev(struct vfio_device *vdev)
+>   	kmem_cache_free(vfio_ccw_io_region, private->io_region);
+>   	kfree(private->cp.guest_cp);
+>   	mutex_destroy(&private->io_mutex);
+> -
+> -	vfio_free_device(vdev);
+>   }
+>   
+>   static void vfio_ccw_mdev_remove(struct mdev_device *mdev)
+> diff --git a/drivers/s390/crypto/vfio_ap_ops.c b/drivers/s390/crypto/vfio_ap_ops.c
+> index 0b4cc8c597ae..f108c0f14712 100644
+> --- a/drivers/s390/crypto/vfio_ap_ops.c
+> +++ b/drivers/s390/crypto/vfio_ap_ops.c
+> @@ -765,11 +765,6 @@ static void vfio_ap_mdev_unlink_fr_queues(struct ap_matrix_mdev *matrix_mdev)
+>   	}
+>   }
+>   
+> -static void vfio_ap_mdev_release_dev(struct vfio_device *vdev)
+> -{
+> -	vfio_free_device(vdev);
+> -}
+> -
+>   static void vfio_ap_mdev_remove(struct mdev_device *mdev)
+>   {
+>   	struct ap_matrix_mdev *matrix_mdev = dev_get_drvdata(&mdev->dev);
+> @@ -1784,7 +1779,6 @@ static const struct attribute_group vfio_queue_attr_group = {
+>   
+>   static const struct vfio_device_ops vfio_ap_matrix_dev_ops = {
+>   	.init = vfio_ap_mdev_init_dev,
+> -	.release = vfio_ap_mdev_release_dev,
+>   	.open_device = vfio_ap_mdev_open_device,
+>   	.close_device = vfio_ap_mdev_close_device,
+>   	.ioctl = vfio_ap_mdev_ioctl,
+> diff --git a/drivers/vfio/fsl-mc/vfio_fsl_mc.c b/drivers/vfio/fsl-mc/vfio_fsl_mc.c
+> index b16874e913e4..7b8889f55007 100644
+> --- a/drivers/vfio/fsl-mc/vfio_fsl_mc.c
+> +++ b/drivers/vfio/fsl-mc/vfio_fsl_mc.c
+> @@ -568,7 +568,6 @@ static void vfio_fsl_mc_release_dev(struct vfio_device *core_vdev)
+>   
+>   	vfio_fsl_uninit_device(vdev);
+>   	mutex_destroy(&vdev->igate);
+> -	vfio_free_device(core_vdev);
+>   }
+>   
+>   static int vfio_fsl_mc_remove(struct fsl_mc_device *mc_dev)
+> diff --git a/drivers/vfio/pci/vfio_pci_core.c b/drivers/vfio/pci/vfio_pci_core.c
+> index badc9d828cac..9be2d5be5d95 100644
+> --- a/drivers/vfio/pci/vfio_pci_core.c
+> +++ b/drivers/vfio/pci/vfio_pci_core.c
+> @@ -2109,7 +2109,6 @@ void vfio_pci_core_release_dev(struct vfio_device *core_vdev)
+>   	mutex_destroy(&vdev->vma_lock);
+>   	kfree(vdev->region);
+>   	kfree(vdev->pm_save);
+> -	vfio_free_device(core_vdev);
+>   }
+>   EXPORT_SYMBOL_GPL(vfio_pci_core_release_dev);
+>   
+> diff --git a/drivers/vfio/platform/vfio_amba.c b/drivers/vfio/platform/vfio_amba.c
+> index eaea63e5294c..18faf2678b99 100644
+> --- a/drivers/vfio/platform/vfio_amba.c
+> +++ b/drivers/vfio/platform/vfio_amba.c
+> @@ -95,7 +95,6 @@ static void vfio_amba_release_dev(struct vfio_device *core_vdev)
+>   
+>   	vfio_platform_release_common(vdev);
+>   	kfree(vdev->name);
+> -	vfio_free_device(core_vdev);
+>   }
+>   
+>   static void vfio_amba_remove(struct amba_device *adev)
+> diff --git a/drivers/vfio/platform/vfio_platform.c b/drivers/vfio/platform/vfio_platform.c
+> index 82cedcebfd90..9910451dc341 100644
+> --- a/drivers/vfio/platform/vfio_platform.c
+> +++ b/drivers/vfio/platform/vfio_platform.c
+> @@ -83,7 +83,6 @@ static void vfio_platform_release_dev(struct vfio_device *core_vdev)
+>   		container_of(core_vdev, struct vfio_platform_device, vdev);
+>   
+>   	vfio_platform_release_common(vdev);
+> -	vfio_free_device(core_vdev);
+>   }
+>   
+>   static int vfio_platform_remove(struct platform_device *pdev)
+> diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
+> index 2901b8ad5be9..9835757e2bee 100644
+> --- a/drivers/vfio/vfio_main.c
+> +++ b/drivers/vfio/vfio_main.c
+> @@ -339,13 +339,10 @@ static void vfio_device_release(struct device *dev)
+>   	vfio_release_device_set(device);
+>   	ida_free(&vfio.device_ida, device->index);
+>   
+> -	/*
+> -	 * kvfree() cannot be done here due to a life cycle mess in
+> -	 * vfio-ccw. Before the ccw part is fixed all drivers are
+> -	 * required to support @release and call vfio_free_device()
+> -	 * from there.
+> -	 */
+> -	device->ops->release(device);
+> +	if (device->ops->release)
+> +		device->ops->release(device);
 > +
->  static int drm_minor_alloc(struct drm_device *dev, unsigned int type)
->  {
->         struct drm_minor *minor;
-> -       unsigned long flags;
->         int r;
->
->         minor =3D drmm_kzalloc(dev, sizeof(*minor), GFP_KERNEL);
-> @@ -122,21 +120,10 @@ static int drm_minor_alloc(struct drm_device *dev, =
-unsigned int type)
->         minor->type =3D type;
->         minor->dev =3D dev;
->
-> -       idr_preload(GFP_KERNEL);
-> -       spin_lock_irqsave(&drm_minor_lock, flags);
-> -       r =3D idr_alloc(&drm_minors_idr,
-> -                     NULL,
-> -                     64 * type,
-> -                     64 * (type + 1),
-> -                     GFP_NOWAIT);
-> -       spin_unlock_irqrestore(&drm_minor_lock, flags);
-> -       idr_preload_end();
+> +	kvfree(device);
+>   }
+>   
+>   static int vfio_init_device(struct vfio_device *device, struct device *dev,
+> @@ -424,17 +421,6 @@ static int vfio_init_device(struct vfio_device *device, struct device *dev,
+>   	return ret;
+>   }
+>   
+> -/*
+> - * The helper called by driver @release callback to free the device
+> - * structure. Drivers which don't have private data to clean can
+> - * simply use this helper as its @release.
+> - */
+> -void vfio_free_device(struct vfio_device *device)
+> -{
+> -	kvfree(device);
+> -}
+> -EXPORT_SYMBOL_GPL(vfio_free_device);
 > -
-> +       r =3D xa_alloc(&drm_minors_xa, &minor->index, NULL, DRM_MINOR_LIM=
-IT(type), GFP_KERNEL);
->         if (r < 0)
->                 return r;
->
-> -       minor->index =3D r;
-> -
->         r =3D drmm_add_action_or_reset(dev, drm_minor_alloc_release, mino=
-r);
->         if (r)
->                 return r;
-> @@ -152,7 +139,7 @@ static int drm_minor_alloc(struct drm_device *dev, un=
-signed int type)
->  static int drm_minor_register(struct drm_device *dev, unsigned int type)
->  {
->         struct drm_minor *minor;
-> -       unsigned long flags;
-> +       void *entry;
->         int ret;
->
->         DRM_DEBUG("\n");
-> @@ -172,9 +159,12 @@ static int drm_minor_register(struct drm_device *dev=
-, unsigned int type)
->                 goto err_debugfs;
->
->         /* replace NULL with @minor so lookups will succeed from now on *=
-/
-> -       spin_lock_irqsave(&drm_minor_lock, flags);
-> -       idr_replace(&drm_minors_idr, minor, minor->index);
-> -       spin_unlock_irqrestore(&drm_minor_lock, flags);
-> +       entry =3D xa_cmpxchg(&drm_minors_xa, minor->index, NULL, &minor, =
-GFP_KERNEL);
-I believe we should pass in "minor", without the &, as &minor will
-give you the address of the local pointer.
-
-Oded
-
-> +       if (xa_is_err(entry)) {
-> +               ret =3D xa_err(entry);
-> +               goto err_debugfs;
-> +       }
-> +       WARN_ON(entry);
->
->         DRM_DEBUG("new minor registered %d\n", minor->index);
->         return 0;
-> @@ -187,16 +177,13 @@ static int drm_minor_register(struct drm_device *de=
-v, unsigned int type)
->  static void drm_minor_unregister(struct drm_device *dev, unsigned int ty=
-pe)
->  {
->         struct drm_minor *minor;
-> -       unsigned long flags;
->
->         minor =3D *drm_minor_get_slot(dev, type);
->         if (!minor || !device_is_registered(minor->kdev))
->                 return;
->
->         /* replace @minor with NULL so lookups will fail from now on */
-> -       spin_lock_irqsave(&drm_minor_lock, flags);
-> -       idr_replace(&drm_minors_idr, NULL, minor->index);
-> -       spin_unlock_irqrestore(&drm_minor_lock, flags);
-> +       xa_store(&drm_minors_xa, minor->index, NULL, GFP_KERNEL);
->
->         device_del(minor->kdev);
->         dev_set_drvdata(minor->kdev, NULL); /* safety belt */
-> @@ -215,13 +202,12 @@ static void drm_minor_unregister(struct drm_device =
-*dev, unsigned int type)
->  struct drm_minor *drm_minor_acquire(unsigned int minor_id)
->  {
->         struct drm_minor *minor;
-> -       unsigned long flags;
->
-> -       spin_lock_irqsave(&drm_minor_lock, flags);
-> -       minor =3D idr_find(&drm_minors_idr, minor_id);
-> +       xa_lock(&drm_minors_xa);
-> +       minor =3D xa_load(&drm_minors_xa, minor_id);
->         if (minor)
->                 drm_dev_get(minor->dev);
-> -       spin_unlock_irqrestore(&drm_minor_lock, flags);
-> +       xa_unlock(&drm_minors_xa);
->
->         if (!minor) {
->                 return ERR_PTR(-ENODEV);
-> @@ -1037,7 +1023,7 @@ static void drm_core_exit(void)
->         unregister_chrdev(DRM_MAJOR, "drm");
->         debugfs_remove(drm_debugfs_root);
->         drm_sysfs_destroy();
-> -       idr_destroy(&drm_minors_idr);
-> +       WARN_ON(!xa_empty(&drm_minors_xa));
->         drm_connector_ida_destroy();
->  }
->
-> @@ -1046,7 +1032,6 @@ static int __init drm_core_init(void)
->         int ret;
->
->         drm_connector_ida_init();
-> -       idr_init(&drm_minors_idr);
->         drm_memcpy_init_early();
->
->         ret =3D drm_sysfs_init();
-> --
-> 2.37.3
->
+>   static struct vfio_group *vfio_noiommu_group_alloc(struct device *dev,
+>   		enum vfio_group_type type)
+>   {
+> diff --git a/include/linux/vfio.h b/include/linux/vfio.h
+> index ba809268a48e..e7480154825e 100644
+> --- a/include/linux/vfio.h
+> +++ b/include/linux/vfio.h
+> @@ -176,7 +176,6 @@ struct vfio_device *_vfio_alloc_device(size_t size, struct device *dev,
+>   					dev, ops),				\
+>   		     struct dev_struct, member)
+>   
+> -void vfio_free_device(struct vfio_device *device);
+>   static inline void vfio_put_device(struct vfio_device *device)
+>   {
+>   	put_device(&device->device);
+> diff --git a/samples/vfio-mdev/mbochs.c b/samples/vfio-mdev/mbochs.c
+> index 117a8d799f71..8b5a3a778a25 100644
+> --- a/samples/vfio-mdev/mbochs.c
+> +++ b/samples/vfio-mdev/mbochs.c
+> @@ -594,7 +594,6 @@ static void mbochs_release_dev(struct vfio_device *vdev)
+>   	atomic_add(mdev_state->type->mbytes, &mbochs_avail_mbytes);
+>   	kfree(mdev_state->pages);
+>   	kfree(mdev_state->vconfig);
+> -	vfio_free_device(vdev);
+>   }
+>   
+>   static void mbochs_remove(struct mdev_device *mdev)
+> diff --git a/samples/vfio-mdev/mdpy.c b/samples/vfio-mdev/mdpy.c
+> index 946e8cfde6fd..721fb06c6413 100644
+> --- a/samples/vfio-mdev/mdpy.c
+> +++ b/samples/vfio-mdev/mdpy.c
+> @@ -283,7 +283,6 @@ static void mdpy_release_dev(struct vfio_device *vdev)
+>   
+>   	vfree(mdev_state->memblk);
+>   	kfree(mdev_state->vconfig);
+> -	vfio_free_device(vdev);
+>   }
+>   
+>   static void mdpy_remove(struct mdev_device *mdev)
+> diff --git a/samples/vfio-mdev/mtty.c b/samples/vfio-mdev/mtty.c
+> index e72085fc1376..3c2a421b9b69 100644
+> --- a/samples/vfio-mdev/mtty.c
+> +++ b/samples/vfio-mdev/mtty.c
+> @@ -784,7 +784,6 @@ static void mtty_release_dev(struct vfio_device *vdev)
+>   
+>   	atomic_add(mdev_state->nr_ports, &mdev_avail_ports);
+>   	kfree(mdev_state->vconfig);
+> -	vfio_free_device(vdev);
+>   }
+>   
+>   static void mtty_remove(struct mdev_device *mdev)
