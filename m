@@ -1,52 +1,136 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7E2B618351
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Nov 2022 16:55:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31CAB61853E
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Nov 2022 17:49:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 012F210E2BF;
-	Thu,  3 Nov 2022 15:55:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27BE310E725;
+	Thu,  3 Nov 2022 16:49:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7AEB710E2BF
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Nov 2022 15:55:50 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 162B310E713;
+ Thu,  3 Nov 2022 16:49:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667490950; x=1699026950;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=2GSng2hGG6jHOCi+5AN55mKC5fLajgoO92GOMSvYwTY=;
- b=f/K9I1vKyw5P3sk73IC4naVtIm9QDvn5iDiI9Uu6gh7wZ8xWcJjDQ/ID
- blvg1JkEuDAR2PBho/qVvDR1xDvrR/X+ep387wlg9Hcf2VgUg7yjhF5vw
- 8jpNFDs+9n9hLxK07WuiPThHiQvL6JJYkqatp0voMWFp8Kq7OvfVhebNU
- mHf6wS+AfpGf6dg2DNIrVtjTfOESKmMr22XMRQxBhFeNHZSAKmEhZiIpg
- YYK3j2q4hmyIoFs3uvV5wOgvGMe+/mIrK6m5FKX/YiDJpUxghXR2wwj4N
- beyy1tLgo6FGsA2m4vTvZWkBVitWKpxGKmJbIQoO/7tWXfXdNfkNjilM0 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10520"; a="290111977"
-X-IronPort-AV: E=Sophos;i="5.96,134,1665471600"; d="scan'208";a="290111977"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2022 08:55:49 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10520"; a="629390301"
-X-IronPort-AV: E=Sophos;i="5.96,134,1665471600"; d="scan'208";a="629390301"
-Received: from sannilnx.jer.intel.com ([10.12.26.175])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2022 08:55:46 -0700
-From: Alexander Usyskin <alexander.usyskin@intel.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Date: Thu,  3 Nov 2022 17:55:34 +0200
-Message-Id: <20221103155534.1966589-1-alexander.usyskin@intel.com>
-X-Mailer: git-send-email 2.34.1
+ t=1667494190; x=1699030190;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=Qv32NgkVAiNePnQefXtUxaoQmzpE0UFDRFggTaUovWM=;
+ b=fIXFkb9/v0GXYgVkz0ib31pdfXEIWAGX2DNGmYDNWe/Cl/3bNw3SIGMz
+ 28DRbaP6X0f1LpVhS2CZIx1hfhthGyQc5BNO7pRagEdySbMmjRxYR0aaw
+ hUbMZ15wMbrh7k8AiiNTkdVchvR15mhEJnAkNQDmvBC09k66LxIa6wnc7
+ 4yr3k6Yvhyr6CbjbLPgflOEKVR01DbVeqmP0gatgos3Z22NR9hliOzbQM
+ EiWUcqvLjjgFvgcprcTzUtfHc26ceKegJfb799BM+Pwh+jbadse9lpHeI
+ si/DrvIRL0PhMKg66aZvyk2WQNP9i/GTjrLmxPqkieYhXNcZg81yeBXr1 g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10520"; a="311473412"
+X-IronPort-AV: E=Sophos;i="5.96,134,1665471600"; d="scan'208";a="311473412"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2022 09:49:48 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10520"; a="703743470"
+X-IronPort-AV: E=Sophos;i="5.96,134,1665471600"; d="scan'208";a="703743470"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmsmga004.fm.intel.com with ESMTP; 03 Nov 2022 09:49:47 -0700
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Thu, 3 Nov 2022 09:49:46 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Thu, 3 Nov 2022 09:49:46 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.173)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2375.31; Thu, 3 Nov 2022 09:49:46 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YFGLYYJVmuu8yzMvqwdVr7a3aZEpauqWT8K2tyqSGLmRSb6gVtipFakvJh2/+aGvGiZDgcDUtoWaxkxZOk/y0gjIDKigiJjr9RLGbdSJWKcXOqAMzPwA8CdrQWuM+e7elYb4CxsoNUe1K4zZxwhR/cKdMA4sUhkUkEK9R1LUWYMzYiMvg1YwaEE/GKWgkVdLctLzLVL0DkA0ouGzISe89KSobFFCAkwEB/ehzeUdTgabG6hCFqE3sLWzIYw+WriZDYZOIfEG4VY4s6o9sMRDF5rq10KaMmfcH21c09QDdBcR0v70mctvsNjRoXp2VE7X6nPNkwpO1TMZIg+3eVgtkw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/gKbxe5xTNJxRMOFNks2zT1naw3XAjsOYriC38GZCk0=;
+ b=Ik1SyN6MoXAjdvlwskYNS7lxBEhsejA3oGMOgba+UVoTAyzSD+93IIDWyVZnrosQQljFxIEpQ7AOsEhL8ohyU4y7AH31i9EAtso0HYx08mFo4Sv15vqEZ1c8VY0jEu6k3+GTFuAt6x4SW8i+dQX3Qcmpab+Q0s3eb1HaeLWOsbaYMgwE9np4r4q3wDgO7F+IbxSUkXz3w+8qrfkL0hagZ0zqjsuGSgmxPstd20E1mpCVCR7e/Sfy5y/GhB/VszhKFh0blV41zaDKLflgdUeIkHqlQxFhSu/ro8BXA2JoOTWC8KY7eQ6ZCUhCy0tYJV3LLTCskILjfVYC6rxajtghvw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SA1PR11MB6733.namprd11.prod.outlook.com (2603:10b6:806:25c::17)
+ by MW4PR11MB7150.namprd11.prod.outlook.com (2603:10b6:303:213::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5769.21; Thu, 3 Nov
+ 2022 16:49:44 +0000
+Received: from SA1PR11MB6733.namprd11.prod.outlook.com
+ ([fe80::5236:c530:cc10:68f]) by SA1PR11MB6733.namprd11.prod.outlook.com
+ ([fe80::5236:c530:cc10:68f%4]) with mapi id 15.20.5791.022; Thu, 3 Nov 2022
+ 16:49:44 +0000
+Date: Thu, 3 Nov 2022 09:49:38 -0700
+From: Ira Weiny <ira.weiny@intel.com>
+To: Zhao Liu <zhao1.liu@linux.intel.com>
+Message-ID: <Y2PxImhTMtLijeab@iweiny-desk3>
+References: <20221017093726.2070674-1-zhao1.liu@linux.intel.com>
+ <20221017093726.2070674-4-zhao1.liu@linux.intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20221017093726.2070674-4-zhao1.liu@linux.intel.com>
+X-ClientProxiedBy: BYAPR02CA0049.namprd02.prod.outlook.com
+ (2603:10b6:a03:54::26) To SA1PR11MB6733.namprd11.prod.outlook.com
+ (2603:10b6:806:25c::17)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] mei: add timeout to send
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA1PR11MB6733:EE_|MW4PR11MB7150:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6e30eb40-7fe3-4c8e-72dc-08dabdbb68a8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: B67s2AcNTRpSYcR03mwRu9IDkTi265S/N7rOPNP4BTtqDenYeERd3PrWBGDumJ8gwfLOGSTi/gVr8WYXrXAJPIUMp99UaR+AfpD5zFnWPujXCYDkbaB5SedeY6VlnxfNhXdaDpqzi0NXir+DbmJH8aAPxJLx4MJnkYM/5Is94pUIBoBCGmeiXcoXZThMxURfW+uGb3MHca4ueAKZf+1drlJ0OFTKb0iHkcVDuEetdeLhSXmPuOoByobAV1qBHxFKfHb5Yzx+Q6ncqhxydz0tADu7ywrlGS165mZ+s8ANLCzKbeKyOJH5KmO6vXdVBMf+Um5KWyeqkvKb0ej3HdSUYjaQcGIzZ7TCPwtWi5Q2YtVffyU9KC08yrbr7BuyVOtopeVunjuBnyaDOEVhWCz//GkoWfkpz7XuKzBwxBppKn3ixjAqEDYNyamDfCSZt4Wt8+QrufjNf5GyrM+msLXdjwLNougMKj2eMbNmNr39tVE1EYqPlLyvDhOIZbacI0wnKaElhdSVcpCTAyiXIaUBQuDNZy1o64eYcJx4ym+6Hm3VirJIMFSxOknNavv/1eegty86s6VM5pUuqnmygFvYQ9XTs1xNMf9FtMGbKPc2Bnz8bApd7ii73tBrwXM4NmzZP3BybUVLTAgJ//yjEtcbxBYcMPWjwAcaUy/Q0pcyRGZIk/gk3P0U92W4EVJMweDJphNE1S86VK+EYw4Byp9OvvATBhRANcX9nPvmBr+8ypQ=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SA1PR11MB6733.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(7916004)(346002)(366004)(136003)(376002)(396003)(39860400002)(451199015)(82960400001)(966005)(54906003)(66946007)(38100700002)(66556008)(8676002)(6916009)(4326008)(66476007)(33716001)(186003)(316002)(7416002)(5660300002)(83380400001)(2906002)(41300700001)(26005)(6486002)(478600001)(9686003)(8936002)(86362001)(44832011)(6666004)(6506007)(6512007);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?V8BPV7LFzscsihnWiQnA2YfRDqcKya2rtbpwxyb0ltfuzVFZHI+yC/ewyQHG?=
+ =?us-ascii?Q?j00pV7hI6PjuXGabHuLKUNfeYHJbTJ4tXxkyVMdVDbvtCg+u30/TYvDbhEM7?=
+ =?us-ascii?Q?Ci9FifgH06j0IIwifKbul8BP8RrMhbtM3Uq9+U+tseh3ahHQpxb3web1Yu71?=
+ =?us-ascii?Q?ajvqzqo0QsafIAinhW/sN6/OYwLnYBE5VTz/AhBWA8q7U/cAHeqG8m5ZFG6z?=
+ =?us-ascii?Q?xur1xzn39pUMw+LVbfyvcLdvbR2orsNLeGjl5mSxlX6aANT0Rx8jYz/tNsoJ?=
+ =?us-ascii?Q?qc22e2gK3cnhI4tuAFXgHfTkd0Yd/eGxWBdgkvSB5vmujSScqNU0HWpMrpl+?=
+ =?us-ascii?Q?l2+CcY3Si0jk1clNoRb6mDi7WojAqAjxGWlBRrNLBAoId/RLTD1iDuR/hOui?=
+ =?us-ascii?Q?aVE5CvY0QA8MhBoBc9kCSqOwxRGLE87ZxABjp3wOZ5Pn7poA+8fhNDI6WIcp?=
+ =?us-ascii?Q?14nGISEgW2sR7ZSrhu3h1rHCPXgfKdsgs+IWQLrCppub3UvHCYaSjgXbZv2F?=
+ =?us-ascii?Q?ZN1W3K86Wnobyo0Qlk5NINFqAWZHr3d1P2HH+S10VYgZjWIsztt1qZLZk1nc?=
+ =?us-ascii?Q?xe7wZlMMxGLzJgVH2wq7sz6nPKHTLIYPFF76yeErNk3+1GsAYvv0vqhDiLEk?=
+ =?us-ascii?Q?ubYpr0uFpnG9xSyOyfxZ8iTyFAQ6DXKMyCkBeqJCsDRatMrFVbDdlBfg1f6J?=
+ =?us-ascii?Q?/7zgvORo14mhMkW1eIfezfSyhc5HxhOD9BjDki1cHy26zH8Er1lYg/tWREDF?=
+ =?us-ascii?Q?1RMiMbvPLtUsrYt4R2hStsXnLcjY+zPpWNHtt1VjpYFIK6cE5Y4O5xdhcVan?=
+ =?us-ascii?Q?hJyNXOwinUtyS+5633iJsyxWJcmPrXTbUIqZWxZ3In+QFevyrRh4j2rIs93J?=
+ =?us-ascii?Q?9l4q7FIm9l/jvU7luwtj7OZ1kwixQGKX6nCu8jkZCTo5XSO9B7B5GKKWUeVQ?=
+ =?us-ascii?Q?VMlnXa8udr+b1a584FQFfLElv0X6yriQ8eYvEVDiOK5UMmJXjTd/vf8CZyLC?=
+ =?us-ascii?Q?g0UDQPKcr8fS0H8GVNzq6N9v2byiMFyyZ137VU7sJ5N1nYnATr6lHPR8ahiR?=
+ =?us-ascii?Q?SSU2M7QAZjdoTOZB643Q/tz9nIBGUCu7eOALPDrRuMrciSV3izEVbUVORCF4?=
+ =?us-ascii?Q?UmkVR15woOGI7IWc3A3bnvsc9XYoScWdHZxZA9QVZaET5yOq6SXXujY0Z+Xa?=
+ =?us-ascii?Q?B8egsGCmOlAa0l2yGp7vX2Zf4ov061On9TCapz6FxrTpOJiS8HvMMyv1jr/o?=
+ =?us-ascii?Q?fylqSXRaBkxd7SXPs0xr6LHzazcC0wMKuE7olH5qJPRFb/gWOo/skiFSP9WP?=
+ =?us-ascii?Q?/0xlwDU6IyYbzDoQjHih60aLvjIw6+Wtmo5VXHuatN1wJqXUtdG0D/wjLQ2A?=
+ =?us-ascii?Q?8Qb3nPvzUyf+vh8sWDuRAGzuWp0FcP5nxd8ZUJla5AQzehs3i4+gqOz9zsoJ?=
+ =?us-ascii?Q?DFEhHKNq0VbnkqeDgMd4FXEmzMk1GULpGdI0tMJtcsmbLfSWycXCoq8mPF7d?=
+ =?us-ascii?Q?vVMr01EOh0xF8XrmwAGFso+NoTPxAAr/VUOmKZRrcMVe4jfs1ODudgLHvXgi?=
+ =?us-ascii?Q?W1zEiPIb38e8OdPKaIT0jqWeawWtTv+z15ssufBi?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6e30eb40-7fe3-4c8e-72dc-08dabdbb68a8
+X-MS-Exchange-CrossTenant-AuthSource: SA1PR11MB6733.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Nov 2022 16:49:44.0625 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Az6nSjTcst9otVl99n0BOnqeMMw3zMSjV7sWzS/ygNfbWez1PIlDjg1faJtKhA9Tzplz2CTXevez/I4yid/PfQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB7150
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 3/9] drm/i915: Use kmap_local_page() in
+ gem/i915_gem_shmem.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,226 +143,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-kernel@vger.kernel.org, Tomas Winkler <tomas.winkler@intel.com>,
- Alexander Usyskin <alexander.usyskin@intel.com>,
- Vitaly Lubart <vitaly.lubart@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, Zhenyu Wang <zhenyu.z.wang@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ "Fabio M .
+ De Francesco" <fmdefrancesco@gmail.com>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>,
+ Matthew Auld <matthew.auld@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Zhao Liu <zhao1.liu@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When driver wakes up the firmware from the low power stand,
-it is sending a memory ready message.
-The send is done via synchronous/blocking function to ensure
-that firmware is in ready state. However firmware might be
-in unstable state and send might be block forever.
-To address this issue a timeout is added to blocking write command on
-the internal bus.
+On Mon, Oct 17, 2022 at 05:37:19PM +0800, Zhao Liu wrote:
+> From: Zhao Liu <zhao1.liu@intel.com>
+> 
+> The use of kmap_atomic() is being deprecated in favor of
+> kmap_local_page()[1].
+> 
+> The main difference between atomic and local mappings is that local
+> mappings doesn't disable page faults or preemption.
+> 
+> In drm/i915/gem/i915_gem_shmem.c, the function shmem_pwrite() need to
+> disable pagefault to eliminate the potential recursion fault[2]. But
+> here __copy_from_user_inatomic() doesn't need to disable preemption and
+> local mapping is valid for sched in/out.
+> 
+> So it can use kmap_local_page() / kunmap_local() with
+> pagefault_disable() / pagefault_enable() to replace atomic mapping.
+> 
+> [1]: https://lore.kernel.org/all/20220813220034.806698-1-ira.weiny@intel.com
+> [2]: https://patchwork.freedesktop.org/patch/295840/
+> 
+> Suggested-by: Ira Weiny <ira.weiny@intel.com>
 
-Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
----
- drivers/misc/mei/bus-fixup.c | 19 +++++++++++--------
- drivers/misc/mei/bus.c       |  9 +++++----
- drivers/misc/mei/client.c    | 21 +++++++++++++++++----
- drivers/misc/mei/client.h    |  2 +-
- drivers/misc/mei/main.c      |  2 +-
- drivers/misc/mei/mei_dev.h   |  2 +-
- 6 files changed, 36 insertions(+), 19 deletions(-)
+Reviewed-by: Ira Weiny <ira.weiny@intel.com>
 
-diff --git a/drivers/misc/mei/bus-fixup.c b/drivers/misc/mei/bus-fixup.c
-index 71fbf0bc8453..3174cad8a5cc 100644
---- a/drivers/misc/mei/bus-fixup.c
-+++ b/drivers/misc/mei/bus-fixup.c
-@@ -128,7 +128,7 @@ static int mei_osver(struct mei_cl_device *cldev)
- 	os_ver = (struct mei_os_ver *)fwcaps->data;
- 	os_ver->os_type = OSTYPE_LINUX;
- 
--	return __mei_cl_send(cldev->cl, buf, size, 0, mode);
-+	return __mei_cl_send(cldev->cl, buf, size, 0, mode, 0);
- }
- 
- #define MKHI_FWVER_BUF_LEN (sizeof(struct mkhi_msg_hdr) + \
-@@ -149,7 +149,7 @@ static int mei_fwver(struct mei_cl_device *cldev)
- 	req.hdr.command = MKHI_GEN_GET_FW_VERSION_CMD;
- 
- 	ret = __mei_cl_send(cldev->cl, (u8 *)&req, sizeof(req), 0,
--			    MEI_CL_IO_TX_BLOCKING);
-+			    MEI_CL_IO_TX_BLOCKING, 0);
- 	if (ret < 0) {
- 		dev_err(&cldev->dev, "Could not send ReqFWVersion cmd\n");
- 		return ret;
-@@ -188,17 +188,19 @@ static int mei_fwver(struct mei_cl_device *cldev)
- 	return ret;
- }
- 
-+#define GFX_MEMORY_READY_TIMEOUT 200
-+
- static int mei_gfx_memory_ready(struct mei_cl_device *cldev)
- {
- 	struct mkhi_gfx_mem_ready req = {0};
--	unsigned int mode = MEI_CL_IO_TX_INTERNAL;
-+	unsigned int mode = MEI_CL_IO_TX_INTERNAL | MEI_CL_IO_TX_BLOCKING;
- 
- 	req.hdr.group_id = MKHI_GROUP_ID_GFX;
- 	req.hdr.command = MKHI_GFX_MEMORY_READY_CMD_REQ;
- 	req.flags = MKHI_GFX_MEM_READY_PXP_ALLOWED;
- 
- 	dev_dbg(&cldev->dev, "Sending memory ready command\n");
--	return __mei_cl_send(cldev->cl, (u8 *)&req, sizeof(req), 0, mode);
-+	return __mei_cl_send(cldev->cl, (u8 *)&req, sizeof(req), 0, mode, GFX_MEMORY_READY_TIMEOUT);
- }
- 
- static void mei_mkhi_fix(struct mei_cl_device *cldev)
-@@ -263,12 +265,13 @@ static void mei_gsc_mkhi_fix_ver(struct mei_cl_device *cldev)
- 
- 	if (cldev->bus->pxp_mode == MEI_DEV_PXP_INIT) {
- 		ret = mei_gfx_memory_ready(cldev);
--		if (ret < 0)
-+		if (ret < 0) {
- 			dev_err(&cldev->dev, "memory ready command failed %d\n", ret);
--		else
-+		} else {
- 			dev_dbg(&cldev->dev, "memory ready command sent\n");
-+			cldev->bus->pxp_mode = MEI_DEV_PXP_SETUP;
-+		}
- 		/* we go to reset after that */
--		cldev->bus->pxp_mode = MEI_DEV_PXP_SETUP;
- 		goto out;
- 	}
- 
-@@ -374,7 +377,7 @@ static int mei_nfc_if_version(struct mei_cl *cl,
- 	WARN_ON(mutex_is_locked(&bus->device_lock));
- 
- 	ret = __mei_cl_send(cl, (u8 *)&cmd, sizeof(cmd), 0,
--			    MEI_CL_IO_TX_BLOCKING);
-+			    MEI_CL_IO_TX_BLOCKING, 0);
- 	if (ret < 0) {
- 		dev_err(bus->dev, "Could not send IF version cmd\n");
- 		return ret;
-diff --git a/drivers/misc/mei/bus.c b/drivers/misc/mei/bus.c
-index 1fbe127ff633..136b45192904 100644
---- a/drivers/misc/mei/bus.c
-+++ b/drivers/misc/mei/bus.c
-@@ -29,11 +29,12 @@
-  * @length: buffer length
-  * @vtag: virtual tag
-  * @mode: sending mode
-+ * @timeout: send timeout for blocking writes, 0 for infinite timeout
-  *
-  * Return: written size bytes or < 0 on error
-  */
- ssize_t __mei_cl_send(struct mei_cl *cl, const u8 *buf, size_t length, u8 vtag,
--		      unsigned int mode)
-+		      unsigned int mode, unsigned long timeout)
- {
- 	struct mei_device *bus;
- 	struct mei_cl_cb *cb;
-@@ -108,7 +109,7 @@ ssize_t __mei_cl_send(struct mei_cl *cl, const u8 *buf, size_t length, u8 vtag,
- 		cb->buf.size = 0;
- 	}
- 
--	rets = mei_cl_write(cl, cb);
-+	rets = mei_cl_write(cl, cb, timeout);
- 
- 	if (mode & MEI_CL_IO_SGL && rets == 0)
- 		rets = length;
-@@ -254,7 +255,7 @@ ssize_t mei_cldev_send_vtag(struct mei_cl_device *cldev, const u8 *buf,
- {
- 	struct mei_cl *cl = cldev->cl;
- 
--	return __mei_cl_send(cl, buf, length, vtag, MEI_CL_IO_TX_BLOCKING);
-+	return __mei_cl_send(cl, buf, length, vtag, MEI_CL_IO_TX_BLOCKING, 0);
- }
- EXPORT_SYMBOL_GPL(mei_cldev_send_vtag);
- 
-@@ -924,7 +925,7 @@ ssize_t mei_cldev_send_gsc_command(struct mei_cl_device *cldev,
- 	}
- 
- 	/* send the message to GSC */
--	ret = __mei_cl_send(cl, (u8 *)ext_hdr, buf_sz, 0, MEI_CL_IO_SGL);
-+	ret = __mei_cl_send(cl, (u8 *)ext_hdr, buf_sz, 0, MEI_CL_IO_SGL, 0);
- 	if (ret < 0) {
- 		dev_err(bus->dev, "__mei_cl_send failed, returned %zd\n", ret);
- 		goto end;
-diff --git a/drivers/misc/mei/client.c b/drivers/misc/mei/client.c
-index 6c8b71ae32c8..68f2e23b8ae5 100644
---- a/drivers/misc/mei/client.c
-+++ b/drivers/misc/mei/client.c
-@@ -1954,10 +1954,11 @@ int mei_cl_irq_write(struct mei_cl *cl, struct mei_cl_cb *cb,
-  *
-  * @cl: host client
-  * @cb: write callback with filled data
-+ * @timeout: send timeout for blocking writes, 0 for infinite timeout
-  *
-  * Return: number of bytes sent on success, <0 on failure.
-  */
--ssize_t mei_cl_write(struct mei_cl *cl, struct mei_cl_cb *cb)
-+ssize_t mei_cl_write(struct mei_cl *cl, struct mei_cl_cb *cb, unsigned long timeout)
- {
- 	struct mei_device *dev;
- 	struct mei_msg_data *buf;
-@@ -2081,9 +2082,21 @@ ssize_t mei_cl_write(struct mei_cl *cl, struct mei_cl_cb *cb)
- 	if (blocking && cl->writing_state != MEI_WRITE_COMPLETE) {
- 
- 		mutex_unlock(&dev->device_lock);
--		rets = wait_event_interruptible(cl->tx_wait,
--				cl->writing_state == MEI_WRITE_COMPLETE ||
--				(!mei_cl_is_connected(cl)));
-+		if (timeout) {
-+			rets = wait_event_interruptible_timeout(cl->tx_wait,
-+					cl->writing_state == MEI_WRITE_COMPLETE ||
-+					(!mei_cl_is_connected(cl)),
-+					msecs_to_jiffies(timeout));
-+			if (rets == 0)
-+				rets = -ETIME;
-+			if (rets > 0)
-+				rets = 0;
-+		} else {
-+			rets = wait_event_interruptible(cl->tx_wait,
-+					cl->writing_state == MEI_WRITE_COMPLETE ||
-+					(!mei_cl_is_connected(cl)));
-+		}
-+
- 		mutex_lock(&dev->device_lock);
- 		/* wait_event_interruptible returns -ERESTARTSYS */
- 		if (rets) {
-diff --git a/drivers/misc/mei/client.h b/drivers/misc/mei/client.h
-index 418056fb1489..9052860bcfe0 100644
---- a/drivers/misc/mei/client.h
-+++ b/drivers/misc/mei/client.h
-@@ -246,7 +246,7 @@ int mei_cl_connect(struct mei_cl *cl, struct mei_me_client *me_cl,
- int mei_cl_irq_connect(struct mei_cl *cl, struct mei_cl_cb *cb,
- 		       struct list_head *cmpl_list);
- int mei_cl_read_start(struct mei_cl *cl, size_t length, const struct file *fp);
--ssize_t mei_cl_write(struct mei_cl *cl, struct mei_cl_cb *cb);
-+ssize_t mei_cl_write(struct mei_cl *cl, struct mei_cl_cb *cb, unsigned long timeout);
- int mei_cl_irq_write(struct mei_cl *cl, struct mei_cl_cb *cb,
- 		     struct list_head *cmpl_list);
- 
-diff --git a/drivers/misc/mei/main.c b/drivers/misc/mei/main.c
-index 930887e7e38d..311c6a34aeb8 100644
---- a/drivers/misc/mei/main.c
-+++ b/drivers/misc/mei/main.c
-@@ -383,7 +383,7 @@ static ssize_t mei_write(struct file *file, const char __user *ubuf,
- 		goto out;
- 	}
- 
--	rets = mei_cl_write(cl, cb);
-+	rets = mei_cl_write(cl, cb, 0);
- out:
- 	mutex_unlock(&dev->device_lock);
- 	return rets;
-diff --git a/drivers/misc/mei/mei_dev.h b/drivers/misc/mei/mei_dev.h
-index 8d8018428d9d..799ea95e2bb8 100644
---- a/drivers/misc/mei/mei_dev.h
-+++ b/drivers/misc/mei/mei_dev.h
-@@ -378,7 +378,7 @@ struct mei_hw_ops {
- void mei_cl_bus_rescan_work(struct work_struct *work);
- void mei_cl_bus_dev_fixup(struct mei_cl_device *dev);
- ssize_t __mei_cl_send(struct mei_cl *cl, const u8 *buf, size_t length, u8 vtag,
--		      unsigned int mode);
-+		      unsigned int mode, unsigned long timeout);
- ssize_t __mei_cl_recv(struct mei_cl *cl, u8 *buf, size_t length, u8 *vtag,
- 		      unsigned int mode, unsigned long timeout);
- bool mei_cl_bus_rx_event(struct mei_cl *cl);
--- 
-2.34.1
-
+> Signed-off-by: Zhao Liu <zhao1.liu@intel.com>
+> ---
+> Suggested by credits:
+>   Ira: Referred to his suggestions about keeping pagefault_disable().
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> index f42ca1179f37..e279a3e30c02 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> @@ -472,11 +472,13 @@ shmem_pwrite(struct drm_i915_gem_object *obj,
+>  		if (err < 0)
+>  			return err;
+>  
+> -		vaddr = kmap_atomic(page);
+> +		vaddr = kmap_local_page(page);
+> +		pagefault_disable();
+>  		unwritten = __copy_from_user_inatomic(vaddr + pg,
+>  						      user_data,
+>  						      len);
+> -		kunmap_atomic(vaddr);
+> +		pagefault_enable();
+> +		kunmap_local(vaddr);
+>  
+>  		err = aops->write_end(obj->base.filp, mapping, offset, len,
+>  				      len - unwritten, page, data);
+> -- 
+> 2.34.1
+> 
