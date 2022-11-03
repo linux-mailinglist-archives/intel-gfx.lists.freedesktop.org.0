@@ -2,73 +2,146 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38A746178C2
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Nov 2022 09:34:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 76F9A6178FB
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Nov 2022 09:43:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E37510E24A;
-	Thu,  3 Nov 2022 08:34:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBA7510E267;
+	Thu,  3 Nov 2022 08:43:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wnew3-smtp.messagingengine.com (wnew3-smtp.messagingengine.com
- [64.147.123.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCBB210E1AB;
- Thu,  3 Nov 2022 08:34:45 +0000 (UTC)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
- by mailnew.west.internal (Postfix) with ESMTP id E8C002B06799;
- Thu,  3 Nov 2022 04:34:40 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute1.internal (MEProxy); Thu, 03 Nov 2022 04:34:42 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-type:date:date:from:from:in-reply-to:message-id
- :mime-version:reply-to:sender:subject:subject:to:to; s=fm3; t=
- 1667464480; x=1667471680; bh=pqVTo4hzoQ97GzENpjucz/tkJsen+KtlWOC
- rPQve2Mw=; b=cXIwevvn8gckJaipd87vPAY1X48PCPClrc3cZ49rEX0vGq04ETj
- Qd9W2RQQ4ToJSxEPbiwLQPwsotUEeYvkHlJDgcTPOPBKLYiaeJDZoFBiPpmXQCQB
- 1xXiuvfiP8Pd8TOlqxSsx6b3so8B6w2ZFnklMS8O8kqX5vIvSa+yqkRo9AZkM1yw
- 8l3PEmEu4WgXMgr6/evMH7JlUTfuJE6uWu1oioy4h1Ey8KJoSfJYIGt8X7q9HHes
- 3bUrP7vLzuqk1h1KiInpO3ql5BK7YbNK1FHQAohOvLM/yOpZLdmz5obG7IFOnbgw
- 6PSNjeBwgln7N9YLvZ37glBnAD5lqD+VdyQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
- :feedback-id:from:from:in-reply-to:message-id:mime-version
- :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1667464480; x=
- 1667471680; bh=pqVTo4hzoQ97GzENpjucz/tkJsen+KtlWOCrPQve2Mw=; b=u
- Pczg58a4AGdSdyAxvvzshkgnGflitZ4k9GwWK9bWkkQF9Rt7D0GOy/XqPpzVM0as
- qOQSlENivXw1LwmWXh4QeGmpxmWmz0gLHqRpMhSi3C0NOYlxXfHapTpT5nZ98Qk5
- 3QpCdEQhS6FYuEWF9kLmuxeYqSFeF4eSytF1gM5e7W+1jSAy8Pvt1bH7tvfs56l9
- pb184vIoLi7Kdf1X59KUDuSQa5YmupziHrgnzw+kbQQc1QQVYh7rkq9ThzbXvlCg
- CgBx52rQ5L922q6s3I+wByMF52TkwBV8culOIsllJ/qcgnSn4QUHIyeGp+852ETf
- S4ClIn5l4CK7JAnt4E33w==
-X-ME-Sender: <xms:H31jYyVqJlZ7HQ-74cnFckyBfPsATsXW9AaGy0UXaMTTs2t-XaaY2g>
- <xme:H31jY-mLymllkJT1c_IrI0huisL5kOBcdp8pdn7C8EoP3Gul_sV5Blvua-odjqROh
- lzP0bsI2cPE7jS4qxM>
-X-ME-Received: <xmr:H31jY2ZAHQWtddE_n59D1WQAZwUgNXFOjBv_EGpxAjM9Eopo2SZwi6TKzFE8QT5oeaCBcAyJztiz3Dm9pLU9Io8IZm8-Le5xt8xA0zF95zIOXw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrudekgdduvddtucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvfevuffkgggtugesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
- ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
- gvrhhnpeeuieehjefhieevtdehudfftdetgfdtuedvvdeugeetgfevgeevudegffduveej
- ieenucffohhmrghinhepfhhrvggvuggvshhkthhophdrohhrghenucevlhhushhtvghruf
- hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdr
- thgvtghh
-X-ME-Proxy: <xmx:H31jY5V7O4wE7cwps6YiDOBG9boNHs2UTUxbV7J9gL9W5kI1Al5_vg>
- <xmx:H31jY8lA-4UA3Fr_iqopJ_OYfWG4tFIQ052-5HsHOCc-YuaRZDh97A>
- <xmx:H31jY-fHYVBYOv2Trjvcfh3oi5ARkjybhaNVsReOB67Z3jytXruvWA>
- <xmx:IH1jY-V63GsMrMh23pFxK2NY8MNbTabHlFOG4pqaoRN732BNa7IOeMPh7qs>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 3 Nov 2022 04:34:39 -0400 (EDT)
-Date: Thu, 3 Nov 2022 09:34:37 +0100
-From: Maxime Ripard <maxime@cerno.tech>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20221103083437.ksrh3hcdvxaof62l@houat>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1217410E267
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Nov 2022 08:43:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1667465027; x=1699001027;
+ h=message-id:date:subject:from:to:cc:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=+lsKCfd2nLW5OYyk3BGpksi/nRyCLgYsTDHVxp92qqI=;
+ b=cLZUSVUuUK+09F/mhz7KE5YEu+NpjUQwVY7a0gtFJCMV6CLHTVlQ34Pk
+ /5uNoOtPesxpe1Cl2vMmRtPuGn0aWaptYW4Mf08e60f1IVinASv+e9EoR
+ j/W695b3/Oxrhh9o6AA4eRIydqG+TaSiZnvch3A7QGEE3bVi2xoscxd8w
+ fu1zYWi9poULKwez5m8fHQ5gNSUgK77HduKxh2Fj+Tix0IFM7lvBuqJqa
+ ze3AkXmQ5Ctb63W6OTPVFLPlEsi8LkvNFD2dKTfH5AfkiZeKgON3TQIFm
+ Me2VTiQzvs5RAeU4ucTfs8iPuQb9BrgyDJY5C7TSWbD1SiruJOjgUPNYW A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="310738928"
+X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; d="scan'208";a="310738928"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2022 01:43:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="629265364"
+X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; d="scan'208";a="629265364"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga007.jf.intel.com with ESMTP; 03 Nov 2022 01:43:46 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Thu, 3 Nov 2022 01:43:45 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Thu, 3 Nov 2022 01:43:45 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2375.31; Thu, 3 Nov 2022 01:43:45 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YQjU1i1+nf+C/WcXDzv7Sdt4YTZjRCn7GOHPyXWNkNzbLZzngqYT/EBO5ziuDCcWEoU8v6B1U1lsWqjUj490PRyhJNux8phEHKgJG07ODmXuPdZzYXSIe9/iDLNequCB4swY2++24vp8LAMZ1DOBU5KbiQFO+Zor9G+/BGR6meYneSCTSLbnT4tlJED01DzMGdq1FtdrY0s2+te182HQXEV7aRDgAiIqFn/bTUMA+PQK9RWlkJuUSaOzgEsxP50lQuCaAKL6XOmv7mYQ7ZfptZg097hXy6zrO+zso9s5rYVMlL74HyTDUyndb0joQIxDINGe6by4AWzd0pMvQkiW4A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Vls7dGJZyGxUy+NQWDoYhM9YcElnRLxdF1BkNQkKPIc=;
+ b=PDEwsCHvcq0RVCVxxOCNcwn5h+G/H9oEg4MTSBWAf9IFQSRMseC+rKn6zTjwvI1C+9/kxuQ9euiC1saS6JU+exjm1YiW1ALpu42dRHVvxcQIm4Byk8ct9eSSEF+AEQoUWuzP3pNqCm0dEngDqFynRY9xlyfR33GrcPWc0dfyOprm76rjMXSj1Lzj48j8cbgBfMZ8xAy4Z4dS4N/lCoXIJbXMMjXLOvLX2pxmWLWlmP25ijFZl5uOMR6N6zs8fG6iWWc311foCudtFmfbVWmjRRvp9yR0qtIBa4vO1jJ6TGI7Lpl4Yu3+6cQ8+0JiOGZzVCKCox2oOV/lAQhK86UM4A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BL0PR11MB2961.namprd11.prod.outlook.com (2603:10b6:208:76::23)
+ by SN7PR11MB7042.namprd11.prod.outlook.com (2603:10b6:806:299::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.20; Thu, 3 Nov
+ 2022 08:43:43 +0000
+Received: from BL0PR11MB2961.namprd11.prod.outlook.com
+ ([fe80::fe45:dd69:a763:6bec]) by BL0PR11MB2961.namprd11.prod.outlook.com
+ ([fe80::fe45:dd69:a763:6bec%6]) with mapi id 15.20.5791.022; Thu, 3 Nov 2022
+ 08:43:43 +0000
+Message-ID: <b8abb0ae-563a-1778-e3c6-147065d2955c@intel.com>
+Date: Thu, 3 Nov 2022 09:43:38 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Content-Language: en-US
+From: "Das, Nirmoy" <nirmoy.das@intel.com>
+To: <intel-gfx@lists.freedesktop.org>
+References: <20221102155709.31717-1-nirmoy.das@intel.com>
+In-Reply-To: <20221102155709.31717-1-nirmoy.das@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR3P281CA0137.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:95::11) To BL0PR11MB2961.namprd11.prod.outlook.com
+ (2603:10b6:208:76::23)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="mfjagy64ucdkwdmz"
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-misc-next
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL0PR11MB2961:EE_|SN7PR11MB7042:EE_
+X-MS-Office365-Filtering-Correlation-Id: ebbf5442-28c3-4954-32b4-08dabd77831b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: g+Rm8vTrZgPmsjh7+6qytCvP/IWMDApG8GSnAgh01mGvw/hyiosNqTXeDMIhYoJYGq0KONUBszsdxK1Y95iWrZ3JDFCGxI0FRE1sDRAEJGOpTx0+GkrI64CiVnBSi4DR/FX7wTwfXbUljEH0Qv4n3niQznI085lxUbxrmSr+TvR7K9Mx6n7Mw0SaQlw1xJlXfRO1Dq7d73AGeaumneDZox7XulrE0qZ+G9BePnLxiNkAp/ssEId/ccyIvAbUScyqRQuVGLzoomwIH3HH155sZToUOG94Z2pxz5J/IVZyz7Hmkzx7jMoOKvOC8h/LU9yp1MhJrh7/UyQ1KT46+rx0NzzNOYzgj9UO7sJP3BVfeUxA9QUMoaUyHDJG1++/E2RGhLaiO1N/4HgCKUphZco2GqernlO6qX9S6o/4eR5sTcQlxsbESnZ2j0UR3Rw8hN0L6rehDj878pdwAMPc9GsHslAE52DGdbUN15TQLBZ9/0gAHEnnplt6thnM4siYmZMOee1BAdLdpkjeyxdTuuUce9Csl99fpcCPVy0u35hVwp3+yyACbcKWOPXZ/MbjwBm8kfbbFlO8u1hRBEe8DLvU1eY9kxvMwuKuy37lfHXefk5l8dhXgpVuEZxn7ig+b3hGhdnvSIo/YzSvbdURbBhe0xqhBQlenx2fDNp9mHlQ9thVZb/s/kcRnpYNea8jl9Shzwxfz2l3su2bNJeANF0t6qQ3pNK//2gp1Xo49p2pqXfkE37uTuFaV8Q97jU6/chdMvv6lbVJihE7UAKMOxrkOSeTgqzx+RimT8Y4qLMqZGI=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL0PR11MB2961.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(366004)(396003)(376002)(136003)(39860400002)(346002)(451199015)(36756003)(2906002)(8936002)(86362001)(31696002)(4326008)(8676002)(6512007)(66946007)(66476007)(6506007)(53546011)(66556008)(6916009)(83380400001)(82960400001)(38100700002)(316002)(26005)(6666004)(478600001)(5660300002)(6486002)(31686004)(2616005)(186003)(41300700001)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TzdpdGJMMXY2VC96NDVBbFNnN2xaNktlcUtSeFZUMElXK1dpR1paazgyQ0t6?=
+ =?utf-8?B?L3N6L0x3cVRjYVJId3J6bGEyQy95RjhKbVNDTHl2NTVjSDRPN1U1cC9iZFdO?=
+ =?utf-8?B?NWN3N1ZYejNMZ1MwRW5aUlZmcVNKVURic0w4U3Nmcit2TFRVZUVtVEEwYTZM?=
+ =?utf-8?B?Vm4vSVRSRWh4NWpIbFJOdFJKckFPK2JtOC9KSFIzTUpHOHBMMjVpa09URTlk?=
+ =?utf-8?B?L1FRQTVmZEljSmViemxrbU85K1d6MmMwWFBzOGp2UGtXZEMrN01NSHBUY1Ni?=
+ =?utf-8?B?NHVmMHZwamRIUHQyTHVxbEVGMis5ZXdlajRBdU1HdTUyenVSdVlCc3htNCtm?=
+ =?utf-8?B?VS8wVEx1VzYrVHVYYmlLWW5FVnpIQ0p6YnlCaWdsZ0I2UHJ0UTVKRDYrOVhN?=
+ =?utf-8?B?MnhTZ1FxdlI4Q2FHanA2UG9mVXpiWDVpRnRGU201cnZWZnF4VGUwYmVtd24w?=
+ =?utf-8?B?Y3RCMnJDeVVWOUV1YWNwQm43b1NwRXI4U3o2dENzeW5iK1MvWjJMbFo4YXYw?=
+ =?utf-8?B?V0lzMkFLYlpjWldSa2FPV0pjeUFyZ2o2KzgzeXUxdUUzYzZxek5Yem9rMzF6?=
+ =?utf-8?B?NCtrZ3VXVHA4dVZTdXdUOWgwemgvVXViOWFPSHpTRFp5bkVJN2FUdEtHd1Vs?=
+ =?utf-8?B?OWhZanI4djY3L2NkNFR2SFVySklHWkhzOHU3NW4welc0RTdsRkVsYVd2YzhF?=
+ =?utf-8?B?U1MxaGZFaEszdHNWckpIVFlqY0ROTm5xQnhTb0NaVnIzVWFWcFhSdDNwOW9T?=
+ =?utf-8?B?V29kYklVSjlwVTZWR0JqYkt6MzdqZ2hqOStzcVZFbms0WE1nY1ZDQ3I3b091?=
+ =?utf-8?B?TTVqTjNRaEdOTm4rUS9pQUlUR0ZDRFQ5RThJWlFXS3BmSi9nUndwaHpPa1BX?=
+ =?utf-8?B?aUV1MFFDbHJjYTI0NHRaN1JpZEJkUW4va0JsYzhoTEdkSkJLUXBEVFhXSnZX?=
+ =?utf-8?B?anhlRjJERlRTV0c5TElWY0I0c3Q5UTExT084TFlCRDllZ1ZSdWhmS2ZPalN1?=
+ =?utf-8?B?Y09sdXgzeEFSYWIraG1rU1NIL09GM1BSNm1OeVl2TzJGdEJiV1J1NFRnYWxM?=
+ =?utf-8?B?ZzhwQ0UvOTE1dGFlVEFFbjRqMmdoRmFTYTltOW43c2QwMC9QaW9rMEE0cGlp?=
+ =?utf-8?B?ajN0ZEtRTDA2Uml4eGFLTVQ3VndzVnhFdjhqUmJzQUdILzJlWVZEM1Y4RHZr?=
+ =?utf-8?B?a1VKaEJ6SEd6TUNWY0QreE9FZS80NzhWdGpmS090eFRJUXVqM1RYWllLUDRK?=
+ =?utf-8?B?T0pBRXlCMTlrQjhtWVFZSGE5YU0xSmJ0TUVDQ0tWTFVrOXIvQ2dVSkFTSmdP?=
+ =?utf-8?B?ajN2a1czNmlJZ0RKU0MwOUFycy9LemhuWVBsN2hpTUNCZzgwUkErOWpHSnNl?=
+ =?utf-8?B?SkRGL0xrUUEydGdzM2xJaGVjY1ozYzZOWksyRWd4MUpKS0dNemxibElERHhR?=
+ =?utf-8?B?dUQ3SmNzQkkyRHQvZm0rWGtDSFhFUG5uTkl2U2dudHNiaEhYaUZDaFU0azJ5?=
+ =?utf-8?B?UHBwZXNTMllWS1F2NDRTK3I2dmF5cGh1SmdlMURPRFEyOTBhcXUxTGlCWDNj?=
+ =?utf-8?B?c0E1OSttaFlRdW5DeDN6NWlrc2ZhYkM5MmpBUmNRN3NJdUFTcVlCVk14M2ht?=
+ =?utf-8?B?NW5tdWZyakVGWUFMa1pTd0EreSt0QmVCcDVHQTJUK1JUYTJvMlI0aUhCaWtW?=
+ =?utf-8?B?VlJEa2xFb3RTdDlTYXNTTzB3cmZPcGR0d044NW5iNkI2dlkyOGxRdXpCYUE5?=
+ =?utf-8?B?SVNJZWIzY3RkUGkwYUsrNUs2T2RZam5HMnZQNjlvd3BGZ2dadGM5eWRFM09F?=
+ =?utf-8?B?STNlTEVBaWl3bVRqQ0RNZnVrTnNIc0ZZMEVnT0lTai9vTE5zWi9SekQrWW5Z?=
+ =?utf-8?B?TjlJN3VBd2R5UTQzK3NWV1lBelFMWC9ZVXVQRHMxSUoyL3gvNklrSDl0NlRP?=
+ =?utf-8?B?M2xZa09kNis1YzhESm1zY2ZzdGQ5emp5S0gvQ0xueWZaY0R3Wi9Hd2hNczZM?=
+ =?utf-8?B?b2hicW1PcVhXMjRRcGpaRDY0eitNeU1BREJZamNPZWlnR21Xdlk0c3RxQjZy?=
+ =?utf-8?B?Qm44b0cvd2FQY0s0ckZDMyt6dE5YWmI4R0U5bHNLOEVraXBQbkFrTi95Q3JY?=
+ =?utf-8?Q?Jo7vMK4MRACYeDBQgcEnfO0U3?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: ebbf5442-28c3-4954-32b4-08dabd77831b
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR11MB2961.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Nov 2022 08:43:42.9545 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: F9wE9rjY9OwEiIaORrDL8agYOuG/85zz3H86zYt7jiHPFlOvaVL0ZZTu2CpqB6J4fAWCRort0/0AYTPbPBavcQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7042
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Reduce oversaturation
+ of request smoketesting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,223 +154,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
---mfjagy64ucdkwdmz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On 11/2/2022 4:57 PM, Nirmoy Das wrote:
+> From: Chris Wilson <chris@chris-wilson.co.uk>
+>
+> The goal in launching the request smoketest is to have sufficient tasks
+> running across the system such that we are likely to detect concurrency
+> issues. We aim to have 2 tasks using the same engine, gt, device (each
+> level of locking around submission and signaling) running at the same
+> time. While tasks may not be running all the time as they synchronise
+> with the gpu, they will be running most of the time, in which case
+> having many more tasks than cores available is wasteful (and
+> dramatically increases the workload causing excess runtime). Aim to
+> limit the number of tasks such that there is at least 2 running per
+> engine, spreading surplus cores around the engines (rather than running
+> a task per core per engine.)
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 
-Hi Dave, Daniel,
+Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
 
-Here's this week drm-misc-next PR
+Tested-by: Nirmoy Das <nirmoy.das@intel.com>
 
-Maxime
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 
-drm-misc-next-2022-11-03:
-drm-misc-next for 6.2:
 
-UAPI Changes:
+Nirmoy
 
-Cross-subsystem Changes:
-- dma-buf: locking improvements
-- firmware: New API in the RaspberryPi firmware driver used by vc4
-
-Core Changes:
-- client: Null pointer dereference fix in drm_client_buffer_delete()
-- mm/buddy: Add back random seed log
-- ttm: Convert ttm_resource to use size_t for its size, fix for an
-  undefined behaviour
-
-Driver Changes:
-- bridge:
-  - adv7511: use dev_err_probe
-  - it6505: Fix return value check of pm_runtime_get_sync
-- panel:
-  - sitronix: Fixes and clean-ups
-- lcdif: Increase DMA burst size
-- rockchip: runtime_pm improvements
-- vc4: Fix for a regression preventing the use of 4k @ 60Hz, and
-  further HDMI rate constraints check.
-- vmwgfx: Cursor improvements
-The following changes since commit e1e7bc481d49c3e3ada11029ce0d9b85a0a539d7:
-
-  drm/edid: convert to device specific logging (2022-10-26 11:30:45 +0300)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2022-11-03
-
-for you to fetch changes up to ce28ab1380e823e0afdff06a59a04375ef9d9a29:
-
-  drm/tests: Add back seed value information (2022-11-02 09:22:47 -0300)
-
-----------------------------------------------------------------
-drm-misc-next for 6.2:
-
-UAPI Changes:
-
-Cross-subsystem Changes:
-- dma-buf: locking improvements
-- firmware: New API in the RaspberryPi firmware driver used by vc4
-
-Core Changes:
-- client: Null pointer dereference fix in drm_client_buffer_delete()
-- mm/buddy: Add back random seed log
-- ttm: Convert ttm_resource to use size_t for its size, fix for an
-  undefined behaviour
-
-Driver Changes:
-- bridge:
-  - adv7511: use dev_err_probe
-  - it6505: Fix return value check of pm_runtime_get_sync
-- panel:
-  - sitronix: Fixes and clean-ups
-- lcdif: Increase DMA burst size
-- rockchip: runtime_pm improvements
-- vc4: Fix for a regression preventing the use of 4k @ 60Hz, and
-  further HDMI rate constraints check.
-- vmwgfx: Cursor improvements
-
-----------------------------------------------------------------
-Ahmad Fatoum (1):
-      drm: bridge: adv7511: use dev_err_probe in probe function
-
-Arthur Grillo (1):
-      drm/tests: Add back seed value information
-
-Dmitry Osipenko (2):
-      dma-buf: Make locking consistent in dma_buf_detach()
-      drm/client: Prevent NULL dereference in drm_client_buffer_delete()
-
-Dom Cobley (1):
-      drm/vc4: hdmi: Add more checks for 4k resolutions
-
-Gaosheng Cui (1):
-      drm/ttm: fix undefined behavior in bit shift for TTM_TT_FLAG_PRIV_POPULATED
-
-Jiapeng Chong (1):
-      drm/rockchip: dsi: Remove the unused function dsi_update_bits()
-
-Johan Jonker (1):
-      drm: rockchip: remove rockchip_drm_framebuffer_init() function
-
-Marco Felsch (1):
-      drm: lcdif: change burst size to 256B
-
-Marek Vasut (3):
-      drm/panel/panel-sitronix-st7701: Fix RTNI calculation
-      drm/panel/panel-sitronix-st7701: Clean up CMDnBKx selection
-      drm/panel/panel-sitronix-st7701: Remove panel on DSI attach failure
-
-Maxime Ripard (6):
-      firmware: raspberrypi: Introduce rpi_firmware_find_node()
-      firmware: raspberrypi: Move the clock IDs to the firmware header
-      firmware: raspberrypi: Provide a helper to query a clock max rate
-      drm/vc4: hdmi: Fix hdmi_enable_4kp60 detection
-      drm/vc4: hdmi: Rework hdmi_enable_4kp60 detection code
-      drm/vc4: Make sure we don't end up with a core clock too high
-
-Pin-yen Lin (1):
-      drm/bridge: it6505: Fix return value check for pm_runtime_get_sync
-
-Sascha Hauer (1):
-      drm/rockchip: vop2: Register Esmart0-win0 as primary plane
-
-Somalapuram Amaranath (1):
-      drm/ttm: rework on ttm_resource to use size_t type
-
-Yuan Can (1):
-      drm/rockchip: use pm_runtime_resume_and_get() instead of pm_runtime_get_sync()
-
-Zack Rusin (2):
-      drm/vmwgfx: Validate the box size for the snooped cursor
-      drm/vmwgfx: Cleanup the cursor snooping code
-
-Zhang Qilong (1):
-      drm/rockchip: lvds: fix PM usage counter unbalance in poweron
-
- drivers/clk/bcm/clk-raspberrypi.c               | 19 -------
- drivers/dma-buf/dma-buf.c                       |  4 +-
- drivers/firmware/raspberrypi.c                  | 38 +++++++++++---
- drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c     |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.c      |  3 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h  |  4 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h       |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c         |  6 +--
- drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c    |  8 +--
- drivers/gpu/drm/bridge/adv7511/adv7511_drv.c    |  6 +--
- drivers/gpu/drm/bridge/adv7511/adv7533.c        | 20 +++----
- drivers/gpu/drm/bridge/ite-it6505.c             |  2 +-
- drivers/gpu/drm/drm_client.c                    |  6 +--
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c         |  2 +-
- drivers/gpu/drm/i915/i915_scatterlist.c         |  4 +-
- drivers/gpu/drm/i915/i915_ttm_buddy_manager.c   | 12 ++---
- drivers/gpu/drm/i915/intel_region_ttm.c         |  2 +-
- drivers/gpu/drm/mxsfb/lcdif_kms.c               | 14 ++++-
- drivers/gpu/drm/mxsfb/lcdif_regs.h              |  4 ++
- drivers/gpu/drm/nouveau/nouveau_bo.c            |  4 +-
- drivers/gpu/drm/nouveau/nouveau_bo0039.c        |  4 +-
- drivers/gpu/drm/nouveau/nouveau_bo5039.c        |  2 +-
- drivers/gpu/drm/nouveau/nouveau_bo74c1.c        |  2 +-
- drivers/gpu/drm/nouveau/nouveau_bo85b5.c        |  4 +-
- drivers/gpu/drm/nouveau/nouveau_bo9039.c        |  4 +-
- drivers/gpu/drm/nouveau/nouveau_bo90b5.c        |  4 +-
- drivers/gpu/drm/nouveau/nouveau_boa0b5.c        |  2 +-
- drivers/gpu/drm/nouveau/nouveau_gem.c           |  5 +-
- drivers/gpu/drm/nouveau/nouveau_mem.c           |  4 +-
- drivers/gpu/drm/nouveau/nouveau_ttm.c           |  2 +-
- drivers/gpu/drm/panel/panel-sitronix-st7701.c   | 70 ++++++++++++-------------
- drivers/gpu/drm/radeon/radeon_cs.c              |  7 ++-
- drivers/gpu/drm/radeon/radeon_object.c          |  4 +-
- drivers/gpu/drm/radeon/radeon_trace.h           |  2 +-
- drivers/gpu/drm/radeon/radeon_ttm.c             |  4 +-
- drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c |  8 +--
- drivers/gpu/drm/rockchip/rockchip_drm_fb.c      | 43 ---------------
- drivers/gpu/drm/rockchip/rockchip_drm_fb.h      |  6 ---
- drivers/gpu/drm/rockchip/rockchip_drm_vop.c     |  4 +-
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.c    |  2 +-
- drivers/gpu/drm/rockchip/rockchip_lvds.c        | 10 ++--
- drivers/gpu/drm/rockchip/rockchip_vop2_reg.c    |  2 +-
- drivers/gpu/drm/tests/drm_buddy_test.c          |  6 ++-
- drivers/gpu/drm/tests/drm_mm_test.c             |  8 ++-
- drivers/gpu/drm/ttm/ttm_bo.c                    |  3 --
- drivers/gpu/drm/ttm/ttm_bo_util.c               |  6 +--
- drivers/gpu/drm/ttm/ttm_bo_vm.c                 |  4 +-
- drivers/gpu/drm/ttm/ttm_range_manager.c         |  2 +-
- drivers/gpu/drm/ttm/ttm_resource.c              | 14 +++--
- drivers/gpu/drm/vc4/vc4_drv.h                   | 16 ++++++
- drivers/gpu/drm/vc4/vc4_hdmi.c                  | 25 ++++-----
- drivers/gpu/drm/vc4/vc4_hdmi.h                  |  8 ---
- drivers/gpu/drm/vc4/vc4_hvs.c                   | 26 +++++++++
- drivers/gpu/drm/vc4/vc4_kms.c                   | 13 +++--
- drivers/gpu/drm/vmwgfx/vmwgfx_blit.c            |  4 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_bo.c              |  6 +--
- drivers/gpu/drm/vmwgfx/vmwgfx_cotable.c         |  2 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_drv.h             |  4 ++
- drivers/gpu/drm/vmwgfx/vmwgfx_execbuf.c         |  2 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_gmrid_manager.c   |  6 +--
- drivers/gpu/drm/vmwgfx/vmwgfx_kms.c             | 30 ++++++-----
- drivers/gpu/drm/vmwgfx/vmwgfx_page_dirty.c      |  6 +--
- drivers/gpu/drm/vmwgfx/vmwgfx_surface.c         | 14 +++--
- include/drm/ttm/ttm_resource.h                  |  4 +-
- include/drm/ttm/ttm_tt.h                        |  2 +-
- include/soc/bcm2835/raspberrypi-firmware.h      | 52 ++++++++++++++++++
- 66 files changed, 346 insertions(+), 274 deletions(-)
-
---mfjagy64ucdkwdmz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCY2N9HQAKCRDj7w1vZxhR
-xV7JAQDokAjv/2NlIHCZibU8wjwGr8f7n7/Uz7c4HB4DzT2dpgD5AYPwWGM0yARI
-d1EUnP0JWRnqp1yGIeoVZFc6t0fnEQU=
-=6UX7
------END PGP SIGNATURE-----
-
---mfjagy64ucdkwdmz--
+> ---
+>   drivers/gpu/drm/i915/selftests/i915_request.c | 5 +++--
+>   1 file changed, 3 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
+> index a46350c37e9d..4380473ceb98 100644
+> --- a/drivers/gpu/drm/i915/selftests/i915_request.c
+> +++ b/drivers/gpu/drm/i915/selftests/i915_request.c
+> @@ -1710,7 +1710,8 @@ static int live_breadcrumbs_smoketest(void *arg)
+>   {
+>   	struct drm_i915_private *i915 = arg;
+>   	const unsigned int nengines = num_uabi_engines(i915);
+> -	const unsigned int ncpus = num_online_cpus();
+> +	const unsigned int ncpus = /* saturate with nengines * ncpus */
+> +		max_t(int, 2, DIV_ROUND_UP(num_online_cpus(), nengines));
+>   	unsigned long num_waits, num_fences;
+>   	struct intel_engine_cs *engine;
+>   	struct smoke_thread *threads;
+> @@ -1782,7 +1783,7 @@ static int live_breadcrumbs_smoketest(void *arg)
+>   			goto out_flush;
+>   		}
+>   		/* One ring interleaved between requests from all cpus */
+> -		smoke[idx].max_batch /= num_online_cpus() + 1;
+> +		smoke[idx].max_batch /= ncpus + 1;
+>   		pr_debug("Limiting batches to %d requests on %s\n",
+>   			 smoke[idx].max_batch, engine->name);
+>   
