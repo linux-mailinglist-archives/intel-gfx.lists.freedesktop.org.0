@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC230617BF4
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Nov 2022 12:53:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 096FD617BFD
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Nov 2022 12:54:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08FE510E5D9;
-	Thu,  3 Nov 2022 11:53:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F19210E5D9;
+	Thu,  3 Nov 2022 11:54:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72CF110E5D9
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Nov 2022 11:53:26 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BE3910E5D9
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Nov 2022 11:54:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667476406; x=1699012406;
+ t=1667476468; x=1699012468;
  h=date:from:to:cc:subject:message-id:reply-to:references:
  mime-version:in-reply-to;
- bh=VuMyEMxYUCnAcWP57iHGFUY9cUXDMdv4VfN4tDLpOcE=;
- b=NXHoG+LQVgp1lH5ldDqfpFVPgcahBfIaFo3P1iU42P5mxddmUdiGxoUM
- 4cp/96m3QKa/yHhDGILEO0T+yUqsCc4ZTayuM8SWQz6WVszihpPkMRt0X
- kTtCIfAFxnrghA/tLURfULgDfhPOwfw5N4xh2wgOo2RqPFExoDN8zkLOU
- Nop6+y0I+a2gdXcCGN4DhCSmT+xORvPdJaIOx43afyVcCaYHNhLQno4cd
- e8QMA/co96GJG7819kI3rfumTbquOY+MHjJz89sSLIe69CISVxcTWNOdY
- xmdPZ4RrQu8BbghlQKvget5bvmJVaa2vmAfOPYRbjiKhELdRCAfjNerCZ A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="310776490"
-X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; d="scan'208";a="310776490"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2022 04:53:25 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="634645690"
-X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; d="scan'208";a="634645690"
+ bh=pPIbmNnWcgZ8Of5r3HXa+LG+fg7vKNTXSYoxusdBEU4=;
+ b=KumEoyKnVwKQ/jORyMCO3kt2naKKFrESWr7/BkcpVaObTWpJD0DpmLD0
+ Dq9e+PKhs030AljOhRTgbPgLelkXxaPNpFGC3o1U59zbbKjUle/RIsThp
+ S0Izx0NzCBYjnXQMCf5gxT5HcgNtK5busfwjDgxIJqlYdTzTICVRwRiz2
+ pa1k1iSTtHFSmID7KdSsNU8GE77SZVbltY2p9o16kVLg0J6bUzFfdPehK
+ HvCxM7Q6xd0qPt0xbb3TLwI63WJiB1S81kS0BdG2CD5awnCy4kZH4GjgY
+ a1pKhnHRu5hvdm2FNtl8go30RZ2iJYKqDBpR6gZYD2sRJzadIHvdu+vrH Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="371763056"
+X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; d="scan'208";a="371763056"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2022 04:54:27 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="740162175"
+X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; d="scan'208";a="740162175"
 Received: from ideak-desk.fi.intel.com ([10.237.68.144])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2022 04:53:24 -0700
-Date: Thu, 3 Nov 2022 13:53:20 +0200
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2022 04:54:26 -0700
+Date: Thu, 3 Nov 2022 13:54:22 +0200
 From: Imre Deak <imre.deak@intel.com>
 To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <Y2OrsMuO8FzBo369@ideak-desk.fi.intel.com>
+Message-ID: <Y2Or7h3iqB0iM//I@ideak-desk.fi.intel.com>
 References: <20221102171530.3261282-1-imre.deak@intel.com>
- <20221102171530.3261282-2-imre.deak@intel.com>
- <878rktchgu.fsf@intel.com>
+ <20221102171530.3261282-7-imre.deak@intel.com>
+ <875yfxch7y.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <878rktchgu.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/7] drm/i915: Allocate power domain set
- wakerefs dynamically
+In-Reply-To: <875yfxch7y.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 6/7] drm/i915: Factor out function to
+ get/put AUX_IO power for main link
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,178 +64,157 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Nov 02, 2022 at 08:57:21PM +0200, Jani Nikula wrote:
+On Wed, Nov 02, 2022 at 09:02:41PM +0200, Jani Nikula wrote:
 > On Wed, 02 Nov 2022, Imre Deak <imre.deak@intel.com> wrote:
-> > Since the intel_display_power_domain_set struct, currently its current
-> > size close 1kB, can be allocated on the stack, it's better to allocate
-> > the per-domain wakeref pointer array - used for debugging - within the
-> > struct dynamically, so do this.
+> > Factor out functions to get/put the AUX_IO power domain for the main
+> > link on DDI ports.
 > >
-> > The memory freeing is guaranteed by the fact that the acquired domain
-> > references tracked by struct can't be leaked either.
+> > While at it clarify the corresponding code comment.
+> >
+> > No functional change.
 > >
 > > Signed-off-by: Imre Deak <imre.deak@intel.com>
 > > ---
-> >  .../drm/i915/display/intel_display_power.c    | 61 ++++++++++++++++---
-> >  .../drm/i915/display/intel_display_power.h    |  2 +-
-> >  2 files changed, 53 insertions(+), 10 deletions(-)
+> >  drivers/gpu/drm/i915/display/intel_ddi.c | 84 ++++++++++++++----------
+> >  1 file changed, 51 insertions(+), 33 deletions(-)
 > >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-> > index 4c1de91e56ff9..e2da91c2a9638 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> > @@ -830,19 +830,58 @@ void intel_display_power_put_unchecked(struct drm_i915_private *dev_priv,
+> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > index 00b577a5b9a76..7453772d2073d 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > @@ -846,26 +846,63 @@ bool intel_ddi_get_hw_state(struct intel_encoder *encoder,
 > >  }
-> >  #endif
 > >  
-> > +#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
-> > +static intel_wakeref_t *
-> > +get_debug_wakerefs(struct drm_i915_private *i915,
-> > +		   struct intel_display_power_domain_set *power_domain_set)
-> > +{
-> > +	if (power_domain_set->wakerefs)
-> > +		return power_domain_set->wakerefs;
-> > +
-> > +	power_domain_set->wakerefs = kcalloc(POWER_DOMAIN_NUM,
-> > +					     sizeof(*power_domain_set->wakerefs),
-> > +					     GFP_KERNEL);
-> > +
-> > +	drm_WARN_ON_ONCE(&i915->drm, !power_domain_set->wakerefs);
-> 
-> The rule of thumb is not to warn or log on allocation failures.
-
-Ok, will drop this.
-
-> 
-> > +
-> > +	return power_domain_set->wakerefs;
+> >  static enum intel_display_power_domain
+> > -intel_ddi_main_link_aux_domain(struct intel_digital_port *dig_port)
+> > +intel_ddi_main_link_aux_domain(struct intel_digital_port *dig_port,
+> > +			       const struct intel_crtc_state *crtc_state)
+> >  {
+> >  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> > +	enum phy phy = intel_port_to_phy(i915, dig_port->base.port);
+> >  
+> > -	/* ICL+ HW requires corresponding AUX IOs to be powered up for PSR with
+> > +	/*
+> > +	 * ICL+ HW requires corresponding AUX IOs to be powered up for PSR with
+> >  	 * DC states enabled at the same time, while for driver initiated AUX
+> >  	 * transfers we need the same AUX IOs to be powered but with DC states
+> > -	 * disabled. Accordingly use the AUX power domain here which leaves DC
+> > -	 * states enabled.
+> > -	 * However, for non-A AUX ports the corresponding non-EDP transcoders
+> > -	 * would have already enabled power well 2 and DC_OFF. This means we can
+> > -	 * acquire a wider POWER_DOMAIN_AUX_{B,C,D,F} reference instead of a
+> > -	 * specific AUX_IO reference without powering up any extra wells.
+> > -	 * Note that PSR is enabled only on Port A even though this function
+> > -	 * returns the correct domain for other ports too.
+> > +	 * disabled. Accordingly use the AUX_IO_<port> power domain here which
+> > +	 * leaves DC states enabled.
+> > +	 *
+> > +	 * Before MTL all DP ports and HDMI ports on TypeC PHYs also require
+> > +	 * AUX IO to be enabled, but all these require DC_OFF to be enabled as
+> > +	 * well, so we can acquire a wider AUX_<port> power domain reference
+> > +	 * instead of a specific AUX_IO_<port> reference without powering up any
+> > +	 * extra wells.
+> >  	 */
+> >  	if (intel_dp_is_edp(&dig_port->dp))
+> >  		return intel_display_power_aux_io_domain(i915, dig_port->aux_ch);
+> > -	else
+> > +	else if (intel_crtc_has_dp_encoder(crtc_state) ||
+> > +		 intel_phy_is_tc(i915, phy))
+> >  		return intel_aux_power_domain(dig_port);
+> > +	else
+> > +		return POWER_DOMAIN_INVALID;
 > > +}
 > > +
 > > +static void
-> > +free_empty_debug_wakerefs(struct intel_display_power_domain_set *power_domain_set)
+> > +get_aux_power_for_main_link(struct intel_digital_port *dig_port,
+> > +			    const struct intel_crtc_state *crtc_state)
 > > +{
-> > +	if (power_domain_set->wakerefs &&
-> > +	    bitmap_empty(power_domain_set->mask.bits, POWER_DOMAIN_NUM))
-> > +		kfree(fetch_and_zero(&power_domain_set->wakerefs));
-> 
-> FWIW, I'm really not happy about fetch_and_zero() or its use anywhere. I
-> kind of get the point, but the impression of any kind of atomicity the
-> naming gives is totally misleading. And it's our own thing in
-> i915_utils.h, and not a global thing like the name suggests.
-
-Ok, here zeroing the pointer separately is clearer, will do that. For
-intel_wakeref_t pointers fetch_and_zero() denotes that the ownership of
-the reference is moved, which should never happen with a simple copy to
-another pointer. Imo for that the use of it is justified.
-
-> > +}
-> > +#else
-> > +static intel_wakeref_t *
-> > +get_debug_wakerefs(struct drm_i915_private *i915,
-> > +		   struct intel_display_power_domain_set *power_domain_set)
-> > +{
-> > +	return NULL;
+> > +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> > +	enum intel_display_power_domain domain =
+> > +		intel_ddi_main_link_aux_domain(dig_port, crtc_state);
+> > +
+> > +	drm_WARN_ON(&i915->drm, dig_port->aux_wakeref);
+> > +
+> > +	if (domain == POWER_DOMAIN_INVALID)
+> > +		return;
+> > +
+> > +	dig_port->aux_wakeref = intel_display_power_get(i915, domain);
 > > +}
 > > +
 > > +static void
-> > +free_empty_debug_wakerefs(struct intel_display_power_domain_set *power_domain_set)
+> > +put_aux_power_for_main_link(struct intel_digital_port *dig_port,
+> > +			    const struct intel_crtc_state *crtc_state)
 > > +{
-> > +}
-> > +#endif
-> 
-> get/free is an odd pairing of names.
-> 
+> > +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> > +	intel_wakeref_t wf = fetch_and_zero(&dig_port->aux_wakeref);
+> > +	enum intel_display_power_domain domain =
+> > +		intel_ddi_main_link_aux_domain(dig_port, crtc_state);
 > > +
-> >  void
-> >  intel_display_power_get_in_set(struct drm_i915_private *i915,
-> >  			       struct intel_display_power_domain_set *power_domain_set,
-> >  			       enum intel_display_power_domain domain)
-> >  {
-> >  	intel_wakeref_t __maybe_unused wf;
-> > +	intel_wakeref_t *debug_wakerefs = get_debug_wakerefs(i915, power_domain_set);
-> >  
-> >  	drm_WARN_ON(&i915->drm, test_bit(domain, power_domain_set->mask.bits));
-> >  
-> >  	wf = intel_display_power_get(i915, domain);
-> > -#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
-> > -	power_domain_set->wakerefs[domain] = wf;
-> > -#endif
-> > +	if (debug_wakerefs)
-> > +		debug_wakerefs[domain] = wf;
+> > +	if (!wf)
+> > +		return;
 > > +
-> 
-> If you abstracted setting the debug wakeref for a domain, it could
-> handle the allocation internally without any of the local vars etc.
-> here. And it would only be a single line in the entire function.
-
-Things here could be simplified by abstracting adding both the domain
-and the wakeref to power_domain_set, can do that (calling
-add_domain_to_set() here and remove_domain_from_set() in the *_put()
-functions).
-
-> 
-> >  	set_bit(domain, power_domain_set->mask.bits);
+> > +	intel_display_power_put(i915, domain, wf);
 > >  }
-> >  
-> > @@ -852,6 +891,7 @@ intel_display_power_get_in_set_if_enabled(struct drm_i915_private *i915,
-> >  					  enum intel_display_power_domain domain)
+> 
+> Nitpick, I think foo_get()/foo_put() are much more common in the driver
+> than get_foo()/put_foo().
+
+Ok, can rename these.
+
+> >  static void intel_ddi_get_power_domains(struct intel_encoder *encoder,
+> > @@ -873,7 +910,6 @@ static void intel_ddi_get_power_domains(struct intel_encoder *encoder,
 > >  {
-> >  	intel_wakeref_t wf;
-> > +	intel_wakeref_t *debug_wakerefs = get_debug_wakerefs(i915, power_domain_set);
+> >  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> >  	struct intel_digital_port *dig_port;
+> > -	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
 > >  
-> >  	drm_WARN_ON(&i915->drm, test_bit(domain, power_domain_set->mask.bits));
-> >  
-> > @@ -859,9 +899,9 @@ intel_display_power_get_in_set_if_enabled(struct drm_i915_private *i915,
-> >  	if (!wf)
-> >  		return false;
-> >  
-> > -#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
-> > -	power_domain_set->wakerefs[domain] = wf;
-> > -#endif
-> > +	if (debug_wakerefs)
-> > +		debug_wakerefs[domain] = wf;
-> > +
-> >  	set_bit(domain, power_domain_set->mask.bits);
-> >  
-> >  	return true;
-> > @@ -873,6 +913,7 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
-> >  				    struct intel_power_domain_mask *mask)
-> >  {
-> >  	enum intel_display_power_domain domain;
-> > +	intel_wakeref_t *debug_wakerefs = get_debug_wakerefs(i915, power_domain_set);
-> >  
-> >  	drm_WARN_ON(&i915->drm,
-> >  		    !bitmap_subset(mask->bits, power_domain_set->mask.bits, POWER_DOMAIN_NUM));
-> > @@ -880,12 +921,14 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
-> >  	for_each_power_domain(domain, mask) {
-> >  		intel_wakeref_t __maybe_unused wf = -1;
-> >  
-> > -#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
-> > -		wf = fetch_and_zero(&power_domain_set->wakerefs[domain]);
-> > -#endif
-> > +		if (debug_wakerefs)
-> > +			wf = fetch_and_zero(&debug_wakerefs[domain]);
-> > +
-> >  		intel_display_power_put(i915, domain, wf);
-> >  		clear_bit(domain, power_domain_set->mask.bits);
+> >  	/*
+> >  	 * TODO: Add support for MST encoders. Atm, the following should never
+> > @@ -892,17 +928,7 @@ static void intel_ddi_get_power_domains(struct intel_encoder *encoder,
+> >  								   dig_port->ddi_io_power_domain);
 > >  	}
-> > +
-> > +	free_empty_debug_wakerefs(power_domain_set);
+> >  
+> > -	/*
+> > -	 * AUX power is only needed for (e)DP mode, and for HDMI mode on TC
+> > -	 * ports.
+> > -	 */
+> > -	if (intel_crtc_has_dp_encoder(crtc_state) ||
+> > -	    intel_phy_is_tc(dev_priv, phy)) {
+> > -		drm_WARN_ON(&dev_priv->drm, dig_port->aux_wakeref);
+> > -		dig_port->aux_wakeref =
+> > -			intel_display_power_get(dev_priv,
+> > -						intel_ddi_main_link_aux_domain(dig_port));
+> > -	}
+> > +	get_aux_power_for_main_link(dig_port, crtc_state);
 > >  }
 > >  
-> >  static int
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-> > index 7136ea3f233e9..c847aab7b2f88 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_power.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-> > @@ -146,7 +146,7 @@ struct i915_power_domains {
-> >  struct intel_display_power_domain_set {
-> >  	struct intel_power_domain_mask mask;
-> >  #ifdef CONFIG_DRM_I915_DEBUG_RUNTIME_PM
-> > -	intel_wakeref_t wakerefs[POWER_DOMAIN_NUM];
-> > +	intel_wakeref_t *wakerefs;
-> >  #endif
-> >  };
+> >  void intel_ddi_enable_pipe_clock(struct intel_encoder *encoder,
+> > @@ -2741,10 +2767,7 @@ static void intel_ddi_post_disable(struct intel_atomic_state *state,
+> >  		intel_ddi_post_disable_dp(state, encoder, old_crtc_state,
+> >  					  old_conn_state);
+> >  
+> > -	if (intel_crtc_has_dp_encoder(old_crtc_state) || is_tc_port)
+> > -		intel_display_power_put(dev_priv,
+> > -					intel_ddi_main_link_aux_domain(dig_port),
+> > -					fetch_and_zero(&dig_port->aux_wakeref));
+> > +	put_aux_power_for_main_link(dig_port, old_crtc_state);
+> >  
+> >  	if (is_tc_port)
+> >  		intel_tc_port_put_link(dig_port);
+> > @@ -3065,12 +3088,7 @@ intel_ddi_pre_pll_enable(struct intel_atomic_state *state,
+> >  	if (is_tc_port)
+> >  		intel_tc_port_get_link(dig_port, crtc_state->lane_count);
+> >  
+> > -	if (intel_crtc_has_dp_encoder(crtc_state) || is_tc_port) {
+> > -		drm_WARN_ON(&dev_priv->drm, dig_port->aux_wakeref);
+> > -		dig_port->aux_wakeref =
+> > -			intel_display_power_get(dev_priv,
+> > -						intel_ddi_main_link_aux_domain(dig_port));
+> > -	}
+> > +	get_aux_power_for_main_link(dig_port, crtc_state);
+> >  
+> >  	if (is_tc_port && !intel_tc_port_in_tbt_alt_mode(dig_port))
+> >  		/*
 > 
 > -- 
 > Jani Nikula, Intel Open Source Graphics Center
