@@ -2,77 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15ED6618B56
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Nov 2022 23:23:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35642618B5A
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Nov 2022 23:24:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AC1910E64E;
-	Thu,  3 Nov 2022 22:22:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FDD510E64E;
+	Thu,  3 Nov 2022 22:24:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com
- [IPv6:2a00:1450:4864:20::42a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6646D10E00A;
- Thu,  3 Nov 2022 22:22:43 +0000 (UTC)
-Received: by mail-wr1-x42a.google.com with SMTP id o4so4756858wrq.6;
- Thu, 03 Nov 2022 15:22:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=SWINOlKhJAkssXzcOhXO4HAUW0ow90/yx9bP7G1rGXs=;
- b=dJ7WU5ACz7c1mzpOTo4t5L1yluOsltb+7Wd5qhUUHWIn4jodJjq9DAF4tvOS749WKu
- 24xBZA1Jvw338ujURsGnAsMRAeB9vNyoRo8MqbzAcp3INSQTRAO5SaKOlASS3iSJ4EMU
- PCZZZ8CdAcSKHb88A+ShL7sO7ISCCr3FHQ7Ep9GRu3mUF7sxabZONfbGHNf/m5ARL/6S
- UDj2KNKTpwhZgYCva9/JDlL05CoqqkqJD6A1lhC8kyRZ2GXrpG4If5htz3x9JRGQpECV
- 0nJZCqU9M+KCC79jNTcm3HuRQcRuXRQ3jS9S3SydzkN1tAC7/haBPKMRjBmKgknSHqig
- icTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=SWINOlKhJAkssXzcOhXO4HAUW0ow90/yx9bP7G1rGXs=;
- b=FnEgxJZloHyR0tp+MFHy5ses57FHVwsfex+vD0ShtBQ+92VED6thkWM3TDPZBFWuQh
- 7+CFbx7mfNq9TLOFWAJIXLEauhvUbwIxIy27Iqxx1FPdcgXZqm6Dc3a/L9978YbM9Q8m
- 61soqS6aGPO8Uk1K2WYhv1Xs/lfUJCZ5y2jlbU2r8Xi2HwN3fJ2Kno5AiJd0WoT77MQM
- P2LmTIPrkiph78jgvhccgjRwwicpZFSmEDBfMMRJzO9HvTSdvQfqKD9whp9lR9PdmMjU
- 5YEO/UmUsWid+Va7maqDzHOF+nmHltNGm/epFdLiAFqJyRagbAAA8SsbWatRg1KEVWt0
- FZ4w==
-X-Gm-Message-State: ACrzQf17BMbYby2dsOxZDc/0WGQRwY55123AJFJlBpLzd4SJd8D1rDNZ
- uo+zkj34FSqAAHcvd3Rnc14=
-X-Google-Smtp-Source: AMsMyM60DYhjs7F3Uyj0ZeQmy+UHCwQak/sdeBkfIVbqNJrtBCUsPE2zDmNgaEl4IKUwklj14BHw0g==
-X-Received: by 2002:a5d:4ace:0:b0:236:6054:30f5 with SMTP id
- y14-20020a5d4ace000000b00236605430f5mr20014260wrs.19.1667514161785; 
- Thu, 03 Nov 2022 15:22:41 -0700 (PDT)
-Received: from suse.localnet (host-79-43-11-206.retail.telecomitalia.it.
- [79.43.11.206]) by smtp.gmail.com with ESMTPSA id
- n25-20020a7bc5d9000000b003c6c5a5a651sm1015763wmk.28.2022.11.03.15.22.39
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 03 Nov 2022 15:22:41 -0700 (PDT)
-From: "Fabio M. De Francesco" <fmdefrancesco@gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Matthew Auld <matthew.auld@intel.com>,
- Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Zhao Liu <zhao1.liu@linux.intel.com>
-Date: Thu, 03 Nov 2022 23:22:32 +0100
-Message-ID: <1833466.tdWV9SEqCh@suse>
-In-Reply-To: <20221017093726.2070674-4-zhao1.liu@linux.intel.com>
-References: <20221017093726.2070674-1-zhao1.liu@linux.intel.com>
- <20221017093726.2070674-4-zhao1.liu@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8829B10E64E;
+ Thu,  3 Nov 2022 22:24:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 30FBFA47EB;
+ Thu,  3 Nov 2022 22:24:33 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-Subject: Re: [Intel-gfx] [PATCH 3/9] drm/i915: Use kmap_local_page() in
- gem/i915_gem_shmem.c
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Badal Nilawar" <badal.nilawar@intel.com>
+Date: Thu, 03 Nov 2022 22:24:33 -0000
+Message-ID: <166751427319.9193.16952638516934038455@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221103184559.2306481-1-badal.nilawar@intel.com>
+In-Reply-To: <20221103184559.2306481-1-badal.nilawar@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/mtl=3A_Add_Wa=5F14017073508_for_SAMedia?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,72 +40,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ira Weiny <ira.weiny@intel.com>, Zhao Liu <zhao1.liu@intel.com>,
- Zhenyu Wang <zhenyu.z.wang@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On luned=EC 17 ottobre 2022 11:37:19 CET Zhao Liu wrote:
-> From: Zhao Liu <zhao1.liu@intel.com>
->=20
-> The use of kmap_atomic() is being deprecated in favor of
-> kmap_local_page()[1].
->=20
-> The main difference between atomic and local mappings is that local
-> mappings doesn't disable page faults or preemption.
->=20
-> In drm/i915/gem/i915_gem_shmem.c, the function shmem_pwrite() need to
-> disable pagefault to eliminate the potential recursion fault[2]. But
-> here __copy_from_user_inatomic() doesn't need to disable preemption and
-> local mapping is valid for sched in/out.
-> So it can use kmap_local_page() / kunmap_local() with
-> pagefault_disable() / pagefault_enable() to replace atomic mapping.
->=20
-> [1]: https://lore.kernel.org/all/20220813220034.806698-1-ira.weiny@intel.=
-com
-> [2]: https://patchwork.freedesktop.org/patch/295840/
->=20
-> Suggested-by: Ira Weiny <ira.weiny@intel.com>
-> Signed-off-by: Zhao Liu <zhao1.liu@intel.com>
-> ---
-> Suggested by credits:
->   Ira: Referred to his suggestions about keeping pagefault_disable().
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
+== Series Details ==
 
-The commit message explains clearly and the changes to the code look good. =
-The=20
-necessity to reuse pagefault_disable() / pagefault_enable() from the main=20
-kmap_atomic() side effect is a nice catch.
+Series: drm/i915/mtl: Add Wa_14017073508 for SAMedia
+URL   : https://patchwork.freedesktop.org/series/110502/
+State : warning
 
-Reviewed-by: Fabio M. De Francesco <fmdefrancesco@gmail.com>
+== Summary ==
 
-Thanks!
+Error: dim checkpatch failed
+0a9efdca81c1 drm/i915/mtl: Add Wa_14017073508 for SAMedia
+-:114: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i915' - possible side-effects?
+#114: FILE: drivers/gpu/drm/i915/i915_drv.h:743:
++#define IS_MTL_GRAPHICS_STEP(__i915, variant, since, until) \
++	(IS_SUBPLATFORM(__i915, INTEL_METEORLAKE, INTEL_SUBPLATFORM_##variant) && \
++	 IS_GRAPHICS_STEP(__i915, since, until))
 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c index f42ca1179f37..e279a3e30=
-c02=20
-100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> @@ -472,11 +472,13 @@ shmem_pwrite(struct drm_i915_gem_object *obj,
->  		if (err < 0)
->  			return err;
->=20
-> -		vaddr =3D kmap_atomic(page);
-> +		vaddr =3D kmap_local_page(page);
-> +		pagefault_disable();
->  		unwritten =3D __copy_from_user_inatomic(vaddr + pg,
->  						      user_data,
->  						      len);
-> -		kunmap_atomic(vaddr);
-> +		pagefault_enable();
-> +		kunmap_local(vaddr);
->=20
->  		err =3D aops->write_end(obj->base.filp, mapping, offset,=20
-len,
->  				      len - unwritten, page, data);
-
+total: 0 errors, 0 warnings, 1 checks, 95 lines checked
 
 
