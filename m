@@ -1,56 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA23F617C86
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Nov 2022 13:28:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A4A5617DF5
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Nov 2022 14:32:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E112810E288;
-	Thu,  3 Nov 2022 12:28:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50FE910E297;
+	Thu,  3 Nov 2022 13:32:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EBDA10E288
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Nov 2022 12:28:49 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E26610E297
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Nov 2022 13:32:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667478529; x=1699014529;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=fyN+UGP4p4UBiAyiDTifEISWIxY5MH3ukgAU93BcVZc=;
- b=Dn85e89XEPYU7zYGlesB+UTeSNjv0hcgeZgP2NuU12qllVkLRhJ+c7BS
- 6Iu06yESQqCmeiVZUaowaTZwNkrJ17mTK4t7Qhg99dEQjhtfcl+kcoDUC
- DnPYY9cyyepcr3+dDM+K1v7s1dhTykEoP4FHYI/wXFEL9UGVJGMTUQ0Ok
- petIKCKrbsYr3SdaKeAvizOY3zNyG7SH6+a9B+3R1xDaY4l9b38j/Lh8v
- LDAYVWa/PptQawu3DWX3Y2O+Oc1nvF9NrDTS8IR7EwmHfMEp89yTYAoYT
- yf7T52ce3M1q/Acyig01KwYKuYzK6Mxf+701ouBktbA2WLoGSbUTvHBr+ Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="309662857"
-X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; d="scan'208";a="309662857"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2022 05:28:49 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="723928371"
-X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; d="scan'208";a="723928371"
-Received: from khogan-mobl1.ger.corp.intel.com (HELO [10.213.226.17])
- ([10.213.226.17])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2022 05:28:48 -0700
-Message-ID: <0a0f1b3e-eddf-9b7d-fc09-f6f097592bed@linux.intel.com>
-Date: Thu, 3 Nov 2022 12:28:46 +0000
+ t=1667482349; x=1699018349;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Ih9LYoZayMPUrMHhaqekewZBtENE7tkh7XXlMybYHLw=;
+ b=BRHUkQDmDBUa/EL+bazphstHZRv21fCSgb/4RLuYy07VDKWMKFZ14frz
+ 6AkMgbIVtE68Rn3mo4R4lODoohhpmPSKnpmA2eWCESTDTlwMMyFiaPO0y
+ 4Yn/nkqAnr9zBpw5+b5D7TqAhfY7R0etnOUCFQ00KxfMwGw9u2xPVEcGl
+ BP6UNEkDv9hKkK4uAiSNNcwi3LGzo2Rax+jtgNitmTxYZk+FcO5PTqZWK
+ GZBPdgWdor0Xojd6SYra7lruIqCOIswI0TSmGWGpd+JQ183e+KqtzEgPt
+ meTitbaLuVsZpScC829YrawA0tXxiPlIPnPKQSsWnY7ba0UP6uzpxU4BI Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10520"; a="395986412"
+X-IronPort-AV: E=Sophos;i="5.96,235,1665471600"; d="scan'208";a="395986412"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2022 06:32:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10520"; a="667967839"
+X-IronPort-AV: E=Sophos;i="5.96,235,1665471600"; d="scan'208";a="667967839"
+Received: from sujaritha-z170x-ud5.fm.intel.com ([10.1.27.182])
+ by orsmga001.jf.intel.com with ESMTP; 03 Nov 2022 06:32:28 -0700
+From: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  3 Nov 2022 05:37:23 -0700
+Message-Id: <20221103123723.18063-1-sujaritha.sundaresan@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Content-Language: en-US
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20221103001149.1203285-1-umesh.nerlige.ramappa@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20221103001149.1203285-1-umesh.nerlige.ramappa@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftest: Bump up sample period
- for busy stats selftest
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v1] drm/i915/gt: Add sysfs RAPL PL1 interface
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,51 +57,166 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Adding the rapl_pl1_freq_mhz sysfs attribute.
 
-On 03/11/2022 00:11, Umesh Nerlige Ramappa wrote:
-> Engine busyness samples around a 10ms period is failing with busyness
-> ranging approx. from 87% to 115%. The expected range is +/- 5% of the
-> sample period.
-> 
-> When determining busyness of active engine, the GuC based engine
-> busyness implementation relies on a 64 bit timestamp register read. The
-> latency incurred by this register read causes the failure.
-> 
-> On DG1, when the test fails, the observed latencies range from 900us -
-> 1.5ms.
+Signed-off-by: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c | 20 ++++++++++
+ drivers/gpu/drm/i915/gt/intel_rps.c         | 44 +++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_rps.h         |  3 ++
+ drivers/gpu/drm/i915/i915_reg.h             |  4 ++
+ 4 files changed, 71 insertions(+)
 
-Do I read this right - that the latency of a 64 bit timestamp register 
-read is 0.9 - 1.5ms? That would be the read in guc_update_pm_timestamp?
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
+index 904160952369..e7f00ec252f8 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
+@@ -496,6 +496,17 @@ static DEVICE_ATTR_RO(vlv_rpe_freq_mhz);
+ static const struct attribute * const gen6_rps_attrs[] = GEN6_RPS_ATTR;
+ static const struct attribute * const gen6_gt_attrs[]  = GEN6_GT_ATTR;
+ 
++static ssize_t rapl_pl1_freq_mhz_show(struct device *dev,
++				      struct device_attribute *attr,
++				      char *buff)
++{
++	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
++	u32 rapl_pl1 = intel_rps_read_rapl_pl1_frequency(&gt->rps);
++
++	return sysfs_emit(buff, "%u\n", rapl_pl1);
++}
++
++
+ static ssize_t punit_req_freq_mhz_show(struct device *dev,
+ 				       struct device_attribute *attr,
+ 				       char *buff)
+@@ -534,6 +545,7 @@ struct intel_gt_bool_throttle_attr attr_##sysfs_func__ = { \
+ 	.mask = mask__, \
+ }
+ 
++static DEVICE_ATTR_RO(rapl_pl1_freq_mhz);
+ static DEVICE_ATTR_RO(punit_req_freq_mhz);
+ static INTEL_GT_RPS_BOOL_ATTR_RO(throttle_reason_status, GT0_PERF_LIMIT_REASONS_MASK);
+ static INTEL_GT_RPS_BOOL_ATTR_RO(throttle_reason_pl1, POWER_LIMIT_1_MASK);
+@@ -790,12 +802,20 @@ void intel_gt_sysfs_pm_init(struct intel_gt *gt, struct kobject *kobj)
+ 	if (!is_object_gt(kobj))
+ 		return;
+ 
++	ret = sysfs_create_file(kobj, &dev_attr_rapl_pl1_freq_mhz.attr);
++	if (ret)
++		drm_warn(&gt->i915->drm,
++			"failed to create gt%u rapl_pl1_freq_mhz sysfs(%pe)",
++			gt->info.id, ERR_PTR(ret));
++
++
+ 	ret = sysfs_create_file(kobj, &dev_attr_punit_req_freq_mhz.attr);
+ 	if (ret)
+ 		drm_warn(&gt->i915->drm,
+ 			 "failed to create gt%u punit_req_freq_mhz sysfs (%pe)",
+ 			 gt->info.id, ERR_PTR(ret));
+ 
++
+ 	if (i915_mmio_reg_valid(intel_gt_perf_limit_reasons_reg(gt))) {
+ 		ret = sysfs_create_files(kobj, throttle_reason_attrs);
+ 		if (ret)
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+index 17b40b625e31..0e89b941e3be 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.c
++++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+@@ -9,6 +9,7 @@
+ 
+ #include "i915_drv.h"
+ #include "i915_irq.h"
++#include "i915_reg.h"
+ #include "intel_breadcrumbs.h"
+ #include "intel_gt.h"
+ #include "intel_gt_clock_utils.h"
+@@ -2422,6 +2423,49 @@ bool rps_read_mask_mmio(struct intel_rps *rps,
+ 	return rps_read_mmio(rps, reg32) & mask;
+ }
+ 
++u32 intel_rps_read_rapl_pl1(struct intel_rps *rps)
++{
++	struct drm_i915_private *i915 = rps_to_i915(rps);
++	i915_reg_t rgadr;
++	u32 rapl_pl1;
++
++	if (IS_METEORLAKE(i915)) {
++		rgadr = MTL_RAPL_PL1_FREQ_LIMIT;
++	} else if (IS_XEHPSDV(i915)) {
++		rgadr = XEHPSDV_RAPL_PL1_FREQ_LIMIT;
++	} else {
++		MISSING_CASE(GRAPHICS_VER(i915));
++		rgadr = INVALID_MMIO_REG;
++	}
++
++	if (!i915_mmio_reg_valid(rgadr))
++		rapl_pl1 = 0;
++	else
++		rapl_pl1 = rps_read_mmio(rps, rgadr);
++
++	return rapl_pl1;
++}
++
++u32 intel_rps_get_rapl(struct intel_rps *rps, u32 rapl_pl1)
++{
++	struct drm_i915_private *i915 = rps_to_i915(rps);
++	u32 rapl = 0;
++
++	if (IS_METEORLAKE(i915) || IS_XEHPSDV(i915))
++		rapl = rapl_pl1 & RAPL_PL1_FREQ_LIMIT_MASK;
++	else
++		MISSING_CASE(GRAPHICS_VER(i915));
++
++	return rapl;
++}
++
++u32 intel_rps_read_rapl_pl1_frequency(struct intel_rps *rps)
++{
++	u32 rapl_freq = intel_rps_get_rapl(rps, intel_rps_read_rapl_pl1(rps));
++
++	return (rapl_freq >> 8) * GT_FREQUENCY_MULTIPLIER;
++}
++
+ /* External interface for intel_ips.ko */
+ 
+ static struct drm_i915_private __rcu *ips_mchdev;
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.h b/drivers/gpu/drm/i915/gt/intel_rps.h
+index 4509dfdc52e0..4adc6aaedba0 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.h
++++ b/drivers/gpu/drm/i915/gt/intel_rps.h
+@@ -34,6 +34,7 @@ void intel_rps_mark_interactive(struct intel_rps *rps, bool interactive);
+ int intel_gpu_freq(struct intel_rps *rps, int val);
+ int intel_freq_opcode(struct intel_rps *rps, int val);
+ u32 intel_rps_get_cagf(struct intel_rps *rps, u32 rpstat1);
++u32 intel_rps_get_rapl(struct intel_rps *rps, u32 rapl_pl1);
+ u32 intel_rps_read_actual_frequency(struct intel_rps *rps);
+ u32 intel_rps_get_requested_frequency(struct intel_rps *rps);
+ u32 intel_rps_get_min_frequency(struct intel_rps *rps);
+@@ -47,6 +48,8 @@ u32 intel_rps_get_rp1_frequency(struct intel_rps *rps);
+ u32 intel_rps_get_rpn_frequency(struct intel_rps *rps);
+ u32 intel_rps_read_punit_req(struct intel_rps *rps);
+ u32 intel_rps_read_punit_req_frequency(struct intel_rps *rps);
++u32 intel_rps_read_rapl_pl1(struct intel_rps *rps);
++u32 intel_rps_read_rapl_pl1_frequency(struct intel_rps *rps);
+ void gen6_rps_get_freq_caps(struct intel_rps *rps, struct intel_rps_freq_caps *caps);
+ void intel_rps_raise_unslice(struct intel_rps *rps);
+ void intel_rps_lower_unslice(struct intel_rps *rps);
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 5003a5ffbc6a..68ff98e27b8d 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -1818,6 +1818,10 @@
+ #define   GT0_PERF_LIMIT_REASONS_LOG_MASK REG_GENMASK(31, 16)
+ #define MTL_MEDIA_PERF_LIMIT_REASONS	_MMIO(0x138030)
+ 
++#define XEHPSDV_RAPL_PL1_FREQ_LIMIT	_MMIO(0x250070)
++#define MTL_RAPL_PL1_FREQ_LIMIT	_MMIO(0x281070)
++#define RAPL_PL1_FREQ_LIMIT_MASK	0xffff
++
+ #define CHV_CLK_CTL1			_MMIO(0x101100)
+ #define VLV_CLK_CTL2			_MMIO(0x101104)
+ #define   CLK_CTL2_CZCOUNT_30NS_SHIFT	28
+-- 
+2.34.1
 
-Regards,
-
-Tvrtko
-
-> One solution tried was to reduce the latency between reg read and
-> CPU timestamp capture, but such optimization does not add value to user
-> since the CPU timestamp obtained here is only used for (1) selftest and
-> (2) i915 rps implementation specific to execlist scheduler. Also, this
-> solution only reduces the frequency of failure and does not eliminate
-> it.
-> 
-> In order to make the selftest more robust and account for such
-> latencies, increase the sample period to 100 ms.
-> 
-> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/selftest_engine_pm.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
-> index 0dcb3ed44a73..87c94314cf67 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
-> @@ -317,7 +317,7 @@ static int live_engine_busy_stats(void *arg)
->   		ENGINE_TRACE(engine, "measuring busy time\n");
->   		preempt_disable();
->   		de = intel_engine_get_busy_time(engine, &t[0]);
-> -		mdelay(10);
-> +		mdelay(100);
->   		de = ktime_sub(intel_engine_get_busy_time(engine, &t[1]), de);
->   		preempt_enable();
->   		dt = ktime_sub(t[1], t[0]);
