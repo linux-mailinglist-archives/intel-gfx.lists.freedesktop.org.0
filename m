@@ -1,56 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2656617B87
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Nov 2022 12:31:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC230617BF4
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Nov 2022 12:53:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DFAA10E27B;
-	Thu,  3 Nov 2022 11:31:48 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72D7910E070;
- Thu,  3 Nov 2022 11:31:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08FE510E5D9;
+	Thu,  3 Nov 2022 11:53:31 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72CF110E5D9
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Nov 2022 11:53:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667475104; x=1699011104;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=nHatI9/ooDaneCBvHC1kKb0bsLWYqPIlD2wOFeYwvjc=;
- b=CeDhRDz66PZN0bbHz4xFfknWaY/BEKYhChU5jn/GfhAQXkiVC2Nyb3Yz
- Nukp0BvtUIfHtd9eHwVnV7tUPnDb45gQl5l4aT67Ehn+M9ngx6BYGM+aD
- RLI8HVI3K/w3FSKVkYtygPYvgmqW2j2/nW0CRtIWSvQUH9PNzpoy5HDKu
- sLz3tSxLWVPOkhRrVDly5R2BDW625lDxvk0leVhNKKbADUiJLuox27eeQ
- /wn3QsGHHbnW6pBjwACg6P2OgBAdVZoGs2Ga87uN1hvXoOW0jupJVTAsp
- NDFv2du7KKtBgBc5GC/zwj2Cs+xFhM657cquomZU6x1f2xuTU9FDGvclC w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="395961919"
-X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; d="scan'208";a="395961919"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2022 04:31:24 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="703639036"
-X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; d="scan'208";a="703639036"
-Received: from khogan-mobl1.ger.corp.intel.com (HELO [10.213.226.17])
- ([10.213.226.17])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2022 04:31:23 -0700
-Message-ID: <46b26193-8f46-af55-c152-b43839087ea4@linux.intel.com>
-Date: Thu, 3 Nov 2022 11:31:22 +0000
+ t=1667476406; x=1699012406;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=VuMyEMxYUCnAcWP57iHGFUY9cUXDMdv4VfN4tDLpOcE=;
+ b=NXHoG+LQVgp1lH5ldDqfpFVPgcahBfIaFo3P1iU42P5mxddmUdiGxoUM
+ 4cp/96m3QKa/yHhDGILEO0T+yUqsCc4ZTayuM8SWQz6WVszihpPkMRt0X
+ kTtCIfAFxnrghA/tLURfULgDfhPOwfw5N4xh2wgOo2RqPFExoDN8zkLOU
+ Nop6+y0I+a2gdXcCGN4DhCSmT+xORvPdJaIOx43afyVcCaYHNhLQno4cd
+ e8QMA/co96GJG7819kI3rfumTbquOY+MHjJz89sSLIe69CISVxcTWNOdY
+ xmdPZ4RrQu8BbghlQKvget5bvmJVaa2vmAfOPYRbjiKhELdRCAfjNerCZ A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="310776490"
+X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; d="scan'208";a="310776490"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2022 04:53:25 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="634645690"
+X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; d="scan'208";a="634645690"
+Received: from ideak-desk.fi.intel.com ([10.237.68.144])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2022 04:53:24 -0700
+Date: Thu, 3 Nov 2022 13:53:20 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <Y2OrsMuO8FzBo369@ideak-desk.fi.intel.com>
+References: <20221102171530.3261282-1-imre.deak@intel.com>
+ <20221102171530.3261282-2-imre.deak@intel.com>
+ <878rktchgu.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Content-Language: en-US
-To: John.C.Harrison@Intel.com, Intel-GFX@Lists.FreeDesktop.Org
-References: <20221102192109.2492625-1-John.C.Harrison@Intel.com>
- <20221102192109.2492625-3-John.C.Harrison@Intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20221102192109.2492625-3-John.C.Harrison@Intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915/guc: Don't deadlock
- busyness stats vs reset
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <878rktchgu.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/7] drm/i915: Allocate power domain set
+ wakerefs dynamically
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,131 +59,183 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Wed, Nov 02, 2022 at 08:57:21PM +0200, Jani Nikula wrote:
+> On Wed, 02 Nov 2022, Imre Deak <imre.deak@intel.com> wrote:
+> > Since the intel_display_power_domain_set struct, currently its current
+> > size close 1kB, can be allocated on the stack, it's better to allocate
+> > the per-domain wakeref pointer array - used for debugging - within the
+> > struct dynamically, so do this.
+> >
+> > The memory freeing is guaranteed by the fact that the acquired domain
+> > references tracked by struct can't be leaked either.
+> >
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  .../drm/i915/display/intel_display_power.c    | 61 ++++++++++++++++---
+> >  .../drm/i915/display/intel_display_power.h    |  2 +-
+> >  2 files changed, 53 insertions(+), 10 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > index 4c1de91e56ff9..e2da91c2a9638 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > @@ -830,19 +830,58 @@ void intel_display_power_put_unchecked(struct drm_i915_private *dev_priv,
+> >  }
+> >  #endif
+> >  
+> > +#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
+> > +static intel_wakeref_t *
+> > +get_debug_wakerefs(struct drm_i915_private *i915,
+> > +		   struct intel_display_power_domain_set *power_domain_set)
+> > +{
+> > +	if (power_domain_set->wakerefs)
+> > +		return power_domain_set->wakerefs;
+> > +
+> > +	power_domain_set->wakerefs = kcalloc(POWER_DOMAIN_NUM,
+> > +					     sizeof(*power_domain_set->wakerefs),
+> > +					     GFP_KERNEL);
+> > +
+> > +	drm_WARN_ON_ONCE(&i915->drm, !power_domain_set->wakerefs);
+> 
+> The rule of thumb is not to warn or log on allocation failures.
 
-On 02/11/2022 19:21, John.C.Harrison@Intel.com wrote:
-> From: John Harrison <John.C.Harrison@Intel.com>
-> 
-> The engine busyness stats has a worker function to do things like
-> 64bit extend the 32bit hardware counters. The GuC's reset prepare
-> function flushes out this worker function to ensure no corruption
-> happens during the reset. Unforunately, the worker function has an
-> infinite wait for active resets to finish before doing its work. Thus
-> a deadlock would occur if the worker function had actually started
-> just as the reset starts.
-> 
-> The function being used to lock the reset-in-progress mutex is called
-> intel_gt_reset_trylock(). However, as noted it does not follow
-> standard 'trylock' conventions and exit if already locked. So rename
-> the current _trylock function to intel_gt_reset_lock_interruptible(),
-> which is the behaviour it actually provides. In addition, add a new
-> implementation of _trylock and call that from the busyness stats
-> worker instead.
-> 
-> v2: Rename existing trylock to interruptible rather than trying to
-> preserve the existing (confusing) naming scheme (review comments from
-> Tvrtko).
-> 
-> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_mman.c       |  2 +-
->   drivers/gpu/drm/i915/gt/intel_reset.c          | 18 ++++++++++++++++--
->   drivers/gpu/drm/i915/gt/intel_reset.h          |  1 +
->   .../gpu/drm/i915/gt/uc/intel_guc_submission.c  |  4 +++-
->   4 files changed, 21 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> index e63329bc80659..c29efdef8313a 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> @@ -330,7 +330,7 @@ static vm_fault_t vm_fault_gtt(struct vm_fault *vmf)
->   	if (ret)
->   		goto err_rpm;
->   
-> -	ret = intel_gt_reset_trylock(ggtt->vm.gt, &srcu);
-> +	ret = intel_gt_reset_lock_interruptible(ggtt->vm.gt, &srcu);
->   	if (ret)
->   		goto err_pages;
->   
-> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-> index 3159df6cdd492..24736ebee17c2 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-> @@ -1407,15 +1407,19 @@ void intel_gt_handle_error(struct intel_gt *gt,
->   	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
->   }
->   
-> -int intel_gt_reset_trylock(struct intel_gt *gt, int *srcu)
-> +static int _intel_gt_reset_lock(struct intel_gt *gt, int *srcu, bool retry)
->   {
->   	might_lock(&gt->reset.backoff_srcu);
-> -	might_sleep();
-> +	if (retry)
-> +		might_sleep();
->   
->   	rcu_read_lock();
->   	while (test_bit(I915_RESET_BACKOFF, &gt->reset.flags)) {
->   		rcu_read_unlock();
->   
-> +		if (!retry)
-> +			return -EBUSY;
-> +
->   		if (wait_event_interruptible(gt->reset.queue,
->   					     !test_bit(I915_RESET_BACKOFF,
->   						       &gt->reset.flags)))
-> @@ -1429,6 +1433,16 @@ int intel_gt_reset_trylock(struct intel_gt *gt, int *srcu)
->   	return 0;
->   }
->   
-> +int intel_gt_reset_trylock(struct intel_gt *gt, int *srcu)
-> +{
-> +	return _intel_gt_reset_lock(gt, srcu, false);
-> +}
-> +
-> +int intel_gt_reset_lock_interruptible(struct intel_gt *gt, int *srcu)
-> +{
-> +	return _intel_gt_reset_lock(gt, srcu, true);
-> +}
-> +
->   void intel_gt_reset_unlock(struct intel_gt *gt, int tag)
->   __releases(&gt->reset.backoff_srcu)
->   {
-> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.h b/drivers/gpu/drm/i915/gt/intel_reset.h
-> index adc734e673870..25c975b6e8fc0 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_reset.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_reset.h
-> @@ -39,6 +39,7 @@ int __intel_engine_reset_bh(struct intel_engine_cs *engine,
->   void __i915_request_reset(struct i915_request *rq, bool guilty);
->   
->   int __must_check intel_gt_reset_trylock(struct intel_gt *gt, int *srcu);
-> +int __must_check intel_gt_reset_lock_interruptible(struct intel_gt *gt, int *srcu);
->   void intel_gt_reset_unlock(struct intel_gt *gt, int tag);
->   
->   void intel_gt_set_wedged(struct intel_gt *gt);
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index 941613be3b9dd..92e514061d20b 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -1401,7 +1401,9 @@ static void guc_timestamp_ping(struct work_struct *wrk)
->   
->   	/*
->   	 * Synchronize with gt reset to make sure the worker does not
-> -	 * corrupt the engine/guc stats.
-> +	 * corrupt the engine/guc stats. NB: can't actually block waiting
-> +	 * for a reset to complete as the reset requires flushing out
-> +	 * this worker thread if started. So waiting would deadlock.
->   	 */
->   	ret = intel_gt_reset_trylock(gt, &srcu);
->   	if (ret)
+Ok, will drop this.
 
-LGTM but I don't remember fully how ping worker and reset interact so 
-I'll let Umesh r-b. Like is it okay to skip the ping or we'd need to 
-re-schedule it ASAP due wrap issues? Maybe reset makes that pointless, I 
-don't remember.
+> 
+> > +
+> > +	return power_domain_set->wakerefs;
+> > +}
+> > +
+> > +static void
+> > +free_empty_debug_wakerefs(struct intel_display_power_domain_set *power_domain_set)
+> > +{
+> > +	if (power_domain_set->wakerefs &&
+> > +	    bitmap_empty(power_domain_set->mask.bits, POWER_DOMAIN_NUM))
+> > +		kfree(fetch_and_zero(&power_domain_set->wakerefs));
+> 
+> FWIW, I'm really not happy about fetch_and_zero() or its use anywhere. I
+> kind of get the point, but the impression of any kind of atomicity the
+> naming gives is totally misleading. And it's our own thing in
+> i915_utils.h, and not a global thing like the name suggests.
 
-Regards,
+Ok, here zeroing the pointer separately is clearer, will do that. For
+intel_wakeref_t pointers fetch_and_zero() denotes that the ownership of
+the reference is moved, which should never happen with a simple copy to
+another pointer. Imo for that the use of it is justified.
 
-Tvrtko
+> > +}
+> > +#else
+> > +static intel_wakeref_t *
+> > +get_debug_wakerefs(struct drm_i915_private *i915,
+> > +		   struct intel_display_power_domain_set *power_domain_set)
+> > +{
+> > +	return NULL;
+> > +}
+> > +
+> > +static void
+> > +free_empty_debug_wakerefs(struct intel_display_power_domain_set *power_domain_set)
+> > +{
+> > +}
+> > +#endif
+> 
+> get/free is an odd pairing of names.
+> 
+> > +
+> >  void
+> >  intel_display_power_get_in_set(struct drm_i915_private *i915,
+> >  			       struct intel_display_power_domain_set *power_domain_set,
+> >  			       enum intel_display_power_domain domain)
+> >  {
+> >  	intel_wakeref_t __maybe_unused wf;
+> > +	intel_wakeref_t *debug_wakerefs = get_debug_wakerefs(i915, power_domain_set);
+> >  
+> >  	drm_WARN_ON(&i915->drm, test_bit(domain, power_domain_set->mask.bits));
+> >  
+> >  	wf = intel_display_power_get(i915, domain);
+> > -#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
+> > -	power_domain_set->wakerefs[domain] = wf;
+> > -#endif
+> > +	if (debug_wakerefs)
+> > +		debug_wakerefs[domain] = wf;
+> > +
+> 
+> If you abstracted setting the debug wakeref for a domain, it could
+> handle the allocation internally without any of the local vars etc.
+> here. And it would only be a single line in the entire function.
+
+Things here could be simplified by abstracting adding both the domain
+and the wakeref to power_domain_set, can do that (calling
+add_domain_to_set() here and remove_domain_from_set() in the *_put()
+functions).
+
+> 
+> >  	set_bit(domain, power_domain_set->mask.bits);
+> >  }
+> >  
+> > @@ -852,6 +891,7 @@ intel_display_power_get_in_set_if_enabled(struct drm_i915_private *i915,
+> >  					  enum intel_display_power_domain domain)
+> >  {
+> >  	intel_wakeref_t wf;
+> > +	intel_wakeref_t *debug_wakerefs = get_debug_wakerefs(i915, power_domain_set);
+> >  
+> >  	drm_WARN_ON(&i915->drm, test_bit(domain, power_domain_set->mask.bits));
+> >  
+> > @@ -859,9 +899,9 @@ intel_display_power_get_in_set_if_enabled(struct drm_i915_private *i915,
+> >  	if (!wf)
+> >  		return false;
+> >  
+> > -#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
+> > -	power_domain_set->wakerefs[domain] = wf;
+> > -#endif
+> > +	if (debug_wakerefs)
+> > +		debug_wakerefs[domain] = wf;
+> > +
+> >  	set_bit(domain, power_domain_set->mask.bits);
+> >  
+> >  	return true;
+> > @@ -873,6 +913,7 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
+> >  				    struct intel_power_domain_mask *mask)
+> >  {
+> >  	enum intel_display_power_domain domain;
+> > +	intel_wakeref_t *debug_wakerefs = get_debug_wakerefs(i915, power_domain_set);
+> >  
+> >  	drm_WARN_ON(&i915->drm,
+> >  		    !bitmap_subset(mask->bits, power_domain_set->mask.bits, POWER_DOMAIN_NUM));
+> > @@ -880,12 +921,14 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
+> >  	for_each_power_domain(domain, mask) {
+> >  		intel_wakeref_t __maybe_unused wf = -1;
+> >  
+> > -#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
+> > -		wf = fetch_and_zero(&power_domain_set->wakerefs[domain]);
+> > -#endif
+> > +		if (debug_wakerefs)
+> > +			wf = fetch_and_zero(&debug_wakerefs[domain]);
+> > +
+> >  		intel_display_power_put(i915, domain, wf);
+> >  		clear_bit(domain, power_domain_set->mask.bits);
+> >  	}
+> > +
+> > +	free_empty_debug_wakerefs(power_domain_set);
+> >  }
+> >  
+> >  static int
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
+> > index 7136ea3f233e9..c847aab7b2f88 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_power.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
+> > @@ -146,7 +146,7 @@ struct i915_power_domains {
+> >  struct intel_display_power_domain_set {
+> >  	struct intel_power_domain_mask mask;
+> >  #ifdef CONFIG_DRM_I915_DEBUG_RUNTIME_PM
+> > -	intel_wakeref_t wakerefs[POWER_DOMAIN_NUM];
+> > +	intel_wakeref_t *wakerefs;
+> >  #endif
+> >  };
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
