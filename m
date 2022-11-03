@@ -2,34 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 485E66176D7
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Nov 2022 07:46:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F355061771E
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Nov 2022 08:08:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A047210E5A9;
-	Thu,  3 Nov 2022 06:46:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50BCB10E5AF;
+	Thu,  3 Nov 2022 07:07:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 42A5310E5A9;
- Thu,  3 Nov 2022 06:46:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2A0BA10E5A9;
+ Thu,  3 Nov 2022 07:07:56 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3CC22AADD8;
- Thu,  3 Nov 2022 06:46:06 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by emeril.freedesktop.org (Postfix) with ESMTP id B6464A7E03;
+ Thu,  3 Nov 2022 07:07:55 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4419501861621585486=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
-Date: Thu, 03 Nov 2022 06:46:06 -0000
-Message-ID: <166745796622.9193.6668211032727939146@emeril.freedesktop.org>
+Date: Thu, 03 Nov 2022 07:07:55 -0000
+Message-ID: <166745927571.9191.17792888246415628406@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20221102145402.617336-1-gwan-gyeong.mun@intel.com>
 In-Reply-To: <20221102145402.617336-1-gwan-gyeong.mun@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Fixes_integer_overflow_or_integer_truncation_issues_in_page?=
- =?utf-8?q?_lookups=2C_ttm_place_configuration_and_scatterlist_creation_?=
- =?utf-8?b?KHJldjIp?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgRml4?=
+ =?utf-8?q?es_integer_overflow_or_integer_truncation_issues_in_page_lookup?=
+ =?utf-8?q?s=2C_ttm_place_configuration_and_scatterlist_creation_=28rev2?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,329 +47,294 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============4419501861621585486==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: Fixes integer overflow or integer truncation issues in page lookups, ttm place configuration and scatterlist creation (rev2)
 URL   : https://patchwork.freedesktop.org/series/110413/
-State : warning
+State : failure
 
 == Summary ==
 
-Error: dim checkpatch failed
-dd0ceb452378 overflow: Introduce overflows_type() and castable_to_type()
--:27: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#27: 
-[16:03:33] Elapsed time: 24.022s total, 0.002s configuring, 22.598s building, 0.767s running
+CI Bug Log - changes from CI_DRM_12333 -> Patchwork_110413v2
+====================================================
 
--:99: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'x' - possible side-effects?
-#99: FILE: include/linux/overflow.h:131:
-+#define __overflows_type_constexpr(x, T) (			\
-+	is_unsigned_type(typeof(x)) ?				\
-+		(x) > type_max(typeof(T)) ? 1 : 0		\
-+	: is_unsigned_type(typeof(T)) ?				\
-+		(x) < 0 || (x) > type_max(typeof(T)) ? 1 : 0	\
-+		: (x) < type_min(typeof(T)) ||			\
-+		  (x) > type_max(typeof(T)) ? 1 : 0)
+Summary
+-------
 
--:100: CHECK:SPACING: No space is necessary after a cast
-#100: FILE: include/linux/overflow.h:132:
-+	is_unsigned_type(typeof(x)) ?				\
+  **FAILURE**
 
--:101: CHECK:SPACING: No space is necessary after a cast
-#101: FILE: include/linux/overflow.h:133:
-+		(x) > type_max(typeof(T)) ? 1 : 0		\
+  Serious unknown changes coming with Patchwork_110413v2 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_110413v2, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
--:102: CHECK:SPACING: No space is necessary after a cast
-#102: FILE: include/linux/overflow.h:134:
-+	: is_unsigned_type(typeof(T)) ?				\
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110413v2/index.html
 
--:103: CHECK:SPACING: No space is necessary after a cast
-#103: FILE: include/linux/overflow.h:135:
-+		(x) < 0 || (x) > type_max(typeof(T)) ? 1 : 0	\
+Participating hosts (38 -> 27)
+------------------------------
 
--:104: CHECK:SPACING: No space is necessary after a cast
-#104: FILE: include/linux/overflow.h:136:
-+		: (x) < type_min(typeof(T)) ||			\
+  Missing    (11): fi-tgl-dsi bat-dg2-8 bat-dg2-9 bat-adlp-6 bat-adlp-4 bat-adln-1 bat-rplp-1 bat-rpls-1 bat-rpls-2 bat-dg2-11 bat-jsl-1 
 
--:105: CHECK:SPACING: No space is necessary after a cast
-#105: FILE: include/linux/overflow.h:137:
-+		  (x) > type_max(typeof(T)) ? 1 : 0)
+Possible new issues
+-------------------
 
--:126: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
-#126: FILE: include/linux/overflow.h:158:
-+#define overflows_type(n, T)					\
-+	__builtin_choose_expr(__is_constexpr(n),		\
-+			      __overflows_type_constexpr(n, T),	\
-+			      __overflows_type(n, T))
+  Here are the unknown changes that may have been introduced in Patchwork_110413v2:
 
--:126: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'T' - possible side-effects?
-#126: FILE: include/linux/overflow.h:158:
-+#define overflows_type(n, T)					\
-+	__builtin_choose_expr(__is_constexpr(n),		\
-+			      __overflows_type_constexpr(n, T),	\
-+			      __overflows_type(n, T))
+### IGT changes ###
 
--:142: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
-#142: FILE: include/linux/overflow.h:174:
-+#define castable_to_type(n, T)						\
-+	__builtin_choose_expr(__is_constexpr(n),			\
-+			      !__overflows_type_constexpr(n, T),	\
-+			      __same_type(n, T))
+#### Possible regressions ####
 
--:142: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'T' - possible side-effects?
-#142: FILE: include/linux/overflow.h:174:
-+#define castable_to_type(n, T)						\
-+	__builtin_choose_expr(__is_constexpr(n),			\
-+			      !__overflows_type_constexpr(n, T),	\
-+			      __same_type(n, T))
+  * igt@i915_selftest@live@hangcheck:
+    - fi-rkl-guc:         [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12333/fi-rkl-guc/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110413v2/fi-rkl-guc/igt@i915_selftest@live@hangcheck.html
 
--:175: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'of' - possible side-effects?
-#175: FILE: lib/overflow_kunit.c:744:
-+#define __TEST_OVERFLOWS_TYPE(func, arg1, arg2, of)	do {		\
-+	bool __of = func(arg1, arg2);					\
-+	KUNIT_EXPECT_EQ_MSG(test, __of, of,				\
-+		"expected " #func "(" #arg1 ", " #arg2 " to%s overflow\n",\
-+		of ? "" : " not");					\
-+	count++;							\
-+} while (0)
+  
+Known issues
+------------
 
--:184: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__t2' - possible side-effects?
-#184: FILE: lib/overflow_kunit.c:753:
-+#define TEST_OVERFLOWS_TYPE(__t1, __t2, v, of) do {			\
-+	__t1 t1 = (v);							\
-+	__t2 t2;							\
-+	__TEST_OVERFLOWS_TYPE(__overflows_type, t1, t2, of);		\
-+	__TEST_OVERFLOWS_TYPE(__overflows_type, t1, __t2, of);		\
-+	__TEST_OVERFLOWS_TYPE(__overflows_type_constexpr, t1, t2, of);	\
-+	__TEST_OVERFLOWS_TYPE(__overflows_type_constexpr, t1, __t2, of);\
-+} while (0)
+  Here are the changes found in Patchwork_110413v2 that come from known issues:
 
--:184: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'of' - possible side-effects?
-#184: FILE: lib/overflow_kunit.c:753:
-+#define TEST_OVERFLOWS_TYPE(__t1, __t2, v, of) do {			\
-+	__t1 t1 = (v);							\
-+	__t2 t2;							\
-+	__TEST_OVERFLOWS_TYPE(__overflows_type, t1, t2, of);		\
-+	__TEST_OVERFLOWS_TYPE(__overflows_type, t1, __t2, of);		\
-+	__TEST_OVERFLOWS_TYPE(__overflows_type_constexpr, t1, t2, of);	\
-+	__TEST_OVERFLOWS_TYPE(__overflows_type_constexpr, t1, __t2, of);\
-+} while (0)
+### IGT changes ###
 
--:387: CHECK:MACRO_ARG_REUSE: Macro argument reuse 't1' - possible side-effects?
-#387: FILE: lib/overflow_kunit.c:956:
-+#define TEST_SAME_TYPE(t1, t2, same)			do {	\
-+	typeof(t1) __t1h = type_max(t1);			\
-+	typeof(t1) __t1l = type_min(t1);			\
-+	typeof(t2) __t2h = type_max(t2);			\
-+	typeof(t2) __t2l = type_min(t2);			\
-+	KUNIT_EXPECT_EQ(test, true, __same_type(t1, __t1h));	\
-+	KUNIT_EXPECT_EQ(test, true, __same_type(t1, __t1l));	\
-+	KUNIT_EXPECT_EQ(test, true, __same_type(__t1h, t1));	\
-+	KUNIT_EXPECT_EQ(test, true, __same_type(__t1l, t1));	\
-+	KUNIT_EXPECT_EQ(test, true, __same_type(t2, __t2h));	\
-+	KUNIT_EXPECT_EQ(test, true, __same_type(t2, __t2l));	\
-+	KUNIT_EXPECT_EQ(test, true, __same_type(__t2h, t2));	\
-+	KUNIT_EXPECT_EQ(test, true, __same_type(__t2l, t2));	\
-+	KUNIT_EXPECT_EQ(test, same, __same_type(t1, t2));	\
-+	KUNIT_EXPECT_EQ(test, same, __same_type(t2, __t1h));	\
-+	KUNIT_EXPECT_EQ(test, same, __same_type(t2, __t1l));	\
-+	KUNIT_EXPECT_EQ(test, same, __same_type(__t1h, t2));	\
-+	KUNIT_EXPECT_EQ(test, same, __same_type(__t1l, t2));	\
-+	KUNIT_EXPECT_EQ(test, same, __same_type(t1, __t2h));	\
-+	KUNIT_EXPECT_EQ(test, same, __same_type(t1, __t2l));	\
-+	KUNIT_EXPECT_EQ(test, same, __same_type(__t2h, t1));	\
-+	KUNIT_EXPECT_EQ(test, same, __same_type(__t2l, t1));	\
-+} while (0)
+#### Issues hit ####
 
--:387: CHECK:MACRO_ARG_REUSE: Macro argument reuse 't2' - possible side-effects?
-#387: FILE: lib/overflow_kunit.c:956:
-+#define TEST_SAME_TYPE(t1, t2, same)			do {	\
-+	typeof(t1) __t1h = type_max(t1);			\
-+	typeof(t1) __t1l = type_min(t1);			\
-+	typeof(t2) __t2h = type_max(t2);			\
-+	typeof(t2) __t2l = type_min(t2);			\
-+	KUNIT_EXPECT_EQ(test, true, __same_type(t1, __t1h));	\
-+	KUNIT_EXPECT_EQ(test, true, __same_type(t1, __t1l));	\
-+	KUNIT_EXPECT_EQ(test, true, __same_type(__t1h, t1));	\
-+	KUNIT_EXPECT_EQ(test, true, __same_type(__t1l, t1));	\
-+	KUNIT_EXPECT_EQ(test, true, __same_type(t2, __t2h));	\
-+	KUNIT_EXPECT_EQ(test, true, __same_type(t2, __t2l));	\
-+	KUNIT_EXPECT_EQ(test, true, __same_type(__t2h, t2));	\
-+	KUNIT_EXPECT_EQ(test, true, __same_type(__t2l, t2));	\
-+	KUNIT_EXPECT_EQ(test, same, __same_type(t1, t2));	\
-+	KUNIT_EXPECT_EQ(test, same, __same_type(t2, __t1h));	\
-+	KUNIT_EXPECT_EQ(test, same, __same_type(t2, __t1l));	\
-+	KUNIT_EXPECT_EQ(test, same, __same_type(__t1h, t2));	\
-+	KUNIT_EXPECT_EQ(test, same, __same_type(__t1l, t2));	\
-+	KUNIT_EXPECT_EQ(test, same, __same_type(t1, __t2h));	\
-+	KUNIT_EXPECT_EQ(test, same, __same_type(t1, __t2l));	\
-+	KUNIT_EXPECT_EQ(test, same, __same_type(__t2h, t1));	\
-+	KUNIT_EXPECT_EQ(test, same, __same_type(__t2l, t1));	\
-+} while (0)
+  * igt@gem_lmem_swapping@basic:
+    - fi-apl-guc:         NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110413v2/fi-apl-guc/igt@gem_lmem_swapping@basic.html
 
--:387: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'same' - possible side-effects?
-#387: FILE: lib/overflow_kunit.c:956:
-+#define TEST_SAME_TYPE(t1, t2, same)			do {	\
-+	typeof(t1) __t1h = type_max(t1);			\
-+	typeof(t1) __t1l = type_min(t1);			\
-+	typeof(t2) __t2h = type_max(t2);			\
-+	typeof(t2) __t2l = type_min(t2);			\
-+	KUNIT_EXPECT_EQ(test, true, __same_type(t1, __t1h));	\
-+	KUNIT_EXPECT_EQ(test, true, __same_type(t1, __t1l));	\
-+	KUNIT_EXPECT_EQ(test, true, __same_type(__t1h, t1));	\
-+	KUNIT_EXPECT_EQ(test, true, __same_type(__t1l, t1));	\
-+	KUNIT_EXPECT_EQ(test, true, __same_type(t2, __t2h));	\
-+	KUNIT_EXPECT_EQ(test, true, __same_type(t2, __t2l));	\
-+	KUNIT_EXPECT_EQ(test, true, __same_type(__t2h, t2));	\
-+	KUNIT_EXPECT_EQ(test, true, __same_type(__t2l, t2));	\
-+	KUNIT_EXPECT_EQ(test, same, __same_type(t1, t2));	\
-+	KUNIT_EXPECT_EQ(test, same, __same_type(t2, __t1h));	\
-+	KUNIT_EXPECT_EQ(test, same, __same_type(t2, __t1l));	\
-+	KUNIT_EXPECT_EQ(test, same, __same_type(__t1h, t2));	\
-+	KUNIT_EXPECT_EQ(test, same, __same_type(__t1l, t2));	\
-+	KUNIT_EXPECT_EQ(test, same, __same_type(t1, __t2h));	\
-+	KUNIT_EXPECT_EQ(test, same, __same_type(t1, __t2l));	\
-+	KUNIT_EXPECT_EQ(test, same, __same_type(__t2h, t1));	\
-+	KUNIT_EXPECT_EQ(test, same, __same_type(__t2l, t1));	\
-+} while (0)
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-g3258:       [PASS][4] -> [INCOMPLETE][5] ([i915#3303] / [i915#4785])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12333/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110413v2/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html
 
--:417: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'base' - possible side-effects?
-#417: FILE: lib/overflow_kunit.c:986:
-+#define TEST_TYPE_SETS(base, mu8, mu16, mu32, ms8, ms16, ms32, mu64, ms64) \
-+do {									\
-+	TEST_SAME_TYPE(base,  u8,  mu8);				\
-+	TEST_SAME_TYPE(base, u16, mu16);				\
-+	TEST_SAME_TYPE(base, u32, mu32);				\
-+	TEST_SAME_TYPE(base,  s8,  ms8);				\
-+	TEST_SAME_TYPE(base, s16, ms16);				\
-+	TEST_SAME_TYPE(base, s32, ms32);				\
-+	TEST_SAME_TYPE64(base, u64, mu64);				\
-+	TEST_SAME_TYPE64(base, s64, ms64);				\
-+} while (0)
+  * igt@i915_suspend@basic-s3-without-i915:
+    - fi-bdw-5557u:       [PASS][6] -> [INCOMPLETE][7] ([i915#146])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12333/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110413v2/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html
 
--:461: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pass' - possible side-effects?
-#461: FILE: lib/overflow_kunit.c:1030:
-+#define TEST_CASTABLE_TO_TYPE(arg1, arg2, pass)	do {	\
-+	bool __pass = castable_to_type(arg1, arg2);		\
-+	KUNIT_EXPECT_EQ_MSG(test, __pass, pass,			\
-+		"expected castable_to_type(" #arg1 ", " #arg2 ") to%s pass\n",\
-+		pass ? "" : " not");				\
-+	count++;						\
-+} while (0)
+  * igt@kms_chamelium@hdmi-crc-fast:
+    - fi-apl-guc:         NOTRUN -> [SKIP][8] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110413v2/fi-apl-guc/igt@kms_chamelium@hdmi-crc-fast.html
 
-total: 0 errors, 1 warnings, 19 checks, 479 lines checked
-b105f54348d9 drm/i915/gem: Typecheck page lookups
--:35: WARNING:BAD_SIGN_OFF: Co-developed-by and Signed-off-by: name/email do not match 
-#35: 
-Co-developed-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
--:55: WARNING:DEPRECATED_API: Deprecated use of 'kmap_atomic', prefer 'kmap_local_page' instead
-#55: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.c:434:
-+	src_map = kmap_atomic(i915_gem_object_get_page(obj, idx));
+  * igt@kms_force_connector_basic@force-connector-state:
+    - fi-apl-guc:         NOTRUN -> [SKIP][9] ([fdo#109271]) +11 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110413v2/fi-apl-guc/igt@kms_force_connector_basic@force-connector-state.html
 
--:75: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
-#75: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.c:489:
-+	GEM_BUG_ON(overflows_type(offset >> PAGE_SHIFT, pgoff_t));
+  * igt@runner@aborted:
+    - fi-hsw-g3258:       NOTRUN -> [FAIL][10] ([fdo#109271] / [i915#4312] / [i915#4991])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110413v2/fi-hsw-g3258/igt@runner@aborted.html
 
--:149: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
-#149: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:413:
-+#define i915_gem_object_page_iter_get_sg(obj, it, n, offset) ({	\
-+	static_assert(castable_to_type(n , pgoff_t));		\
-+	__i915_gem_object_page_iter_get_sg(obj, it, n, offset);	\
-+})
+  
+#### Possible fixes ####
 
--:150: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
-#150: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:414:
-+	static_assert(castable_to_type(n , pgoff_t));		\
- 	                                 ^
+  * igt@gem_ctx_create@basic-files:
+    - {fi-tgl-mst}:       [DMESG-WARN][11] ([i915#6434]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12333/fi-tgl-mst/igt@gem_ctx_create@basic-files.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110413v2/fi-tgl-mst/igt@gem_ctx_create@basic-files.html
 
--:198: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
-#198: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:458:
-+#define i915_gem_object_get_sg(obj, n, offset) ({	\
-+	static_assert(castable_to_type(n , pgoff_t));	\
-+	__i915_gem_object_get_sg(obj, n, offset);	\
-+})
+  * igt@gem_exec_gttfill@basic:
+    - fi-pnv-d510:        [FAIL][13] ([i915#7229]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12333/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110413v2/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
 
--:199: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
-#199: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:459:
-+	static_assert(castable_to_type(n , pgoff_t));	\
- 	                                 ^
+  * igt@gem_render_tiled_blits@basic:
+    - fi-apl-guc:         [INCOMPLETE][15] -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12333/fi-apl-guc/igt@gem_render_tiled_blits@basic.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110413v2/fi-apl-guc/igt@gem_render_tiled_blits@basic.html
 
--:247: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
-#247: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:503:
-+#define i915_gem_object_get_sg_dma(obj, n, offset) ({	\
-+	static_assert(castable_to_type(n , pgoff_t));	\
-+	__i915_gem_object_get_sg_dma(obj, n, offset);	\
-+})
+  * igt@gem_tiled_blits@basic:
+    - fi-pnv-d510:        [SKIP][17] ([fdo#109271]) -> [PASS][18] +1 similar issue
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12333/fi-pnv-d510/igt@gem_tiled_blits@basic.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110413v2/fi-pnv-d510/igt@gem_tiled_blits@basic.html
 
--:248: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
-#248: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:504:
-+	static_assert(castable_to_type(n , pgoff_t));	\
- 	                                 ^
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
 
--:285: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
-#285: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:539:
-+#define i915_gem_object_get_page(obj, n) ({		\
-+	static_assert(castable_to_type(n , pgoff_t));	\
-+	__i915_gem_object_get_page(obj, n);		\
-+})
-
--:286: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
-#286: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:540:
-+	static_assert(castable_to_type(n , pgoff_t));	\
- 	                                 ^
-
--:322: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
-#322: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:574:
-+#define i915_gem_object_get_dirty_page(obj, n) ({	\
-+	static_assert(castable_to_type(n , pgoff_t));	\
-+	__i915_gem_object_get_dirty_page(obj, n);	\
-+})
-
--:323: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
-#323: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:575:
-+	static_assert(castable_to_type(n , pgoff_t));	\
- 	                                 ^
-
--:363: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
-#363: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:612:
-+#define i915_gem_object_get_dma_address_len(obj, n, len) ({	\
-+	static_assert(castable_to_type(n , pgoff_t));		\
-+	__i915_gem_object_get_dma_address_len(obj, n, len);	\
-+})
-
--:364: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
-#364: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:613:
-+	static_assert(castable_to_type(n , pgoff_t));		\
- 	                                 ^
-
--:400: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
-#400: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:647:
-+#define i915_gem_object_get_dma_address(obj, n) ({	\
-+	static_assert(castable_to_type(n , pgoff_t));	\
-+	__i915_gem_object_get_dma_address(obj, n);	\
-+})
-
--:401: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
-#401: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:648:
-+	static_assert(castable_to_type(n , pgoff_t));	\
- 	                                 ^
-
-total: 7 errors, 3 warnings, 7 checks, 616 lines checked
-876f3b6a1df1 drm/i915: Check for integer truncation on scatterlist creation
--:39: WARNING:BAD_SIGN_OFF: Co-developed-by and Signed-off-by: name/email do not match 
-#39: 
-Co-developed-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-total: 0 errors, 1 warnings, 0 checks, 205 lines checked
-98f7bcc1df3e drm/i915: Check for integer truncation on the configuration of ttm place
-0445afdda804 drm/i915: Check if the size is too big while creating shmem file
-543f086b5093 drm/i915: Use error code as -E2BIG when the size of gem ttm object is too large
--:11: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#11: 
-to add vma. The direct function that returns -ENOSPC is drm_mm_insert_node_in_range().
-
-total: 0 errors, 1 warnings, 0 checks, 17 lines checked
-3348b03cb2ff drm/i915: Remove truncation warning for large objects
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#4991]: https://gitlab.freedesktop.org/drm/intel/issues/4991
+  [i915#6434]: https://gitlab.freedesktop.org/drm/intel/issues/6434
+  [i915#7229]: https://gitlab.freedesktop.org/drm/intel/issues/7229
 
 
+Build changes
+-------------
+
+  * Linux: CI_DRM_12333 -> Patchwork_110413v2
+
+  CI-20190529: 20190529
+  CI_DRM_12333: e7d1d39c197e7f06cf4d1ee19cfd467d6b68e10e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7038: 5389b3f3b9b75df6bd8506e4aa3da357fd0c0ab1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_110413v2: e7d1d39c197e7f06cf4d1ee19cfd467d6b68e10e @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+c92843681a18 drm/i915: Remove truncation warning for large objects
+ab7b18a9855f drm/i915: Use error code as -E2BIG when the size of gem ttm object is too large
+4389e2689bd6 drm/i915: Check if the size is too big while creating shmem file
+084bc23a10c9 drm/i915: Check for integer truncation on the configuration of ttm place
+fbf0071038b2 drm/i915: Check for integer truncation on scatterlist creation
+fbae424b451f drm/i915/gem: Typecheck page lookups
+86dffbe22669 overflow: Introduce overflows_type() and castable_to_type()
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110413v2/index.html
+
+--===============4419501861621585486==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Fixes integer overflow or integer truncation issues in page lookups, ttm place configuration and scatterlist creation (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/110413/">https://patchwork.freedesktop.org/series/110413/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110413v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110413v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12333 -&gt; Patchwork_110413v2</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_110413v2 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_110413v2, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110413v2/index.html</p>
+<h2>Participating hosts (38 -&gt; 27)</h2>
+<p>Missing    (11): fi-tgl-dsi bat-dg2-8 bat-dg2-9 bat-adlp-6 bat-adlp-4 bat-adln-1 bat-rplp-1 bat-rpls-1 bat-rpls-2 bat-dg2-11 bat-jsl-1 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_110413v2:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12333/fi-rkl-guc/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110413v2/fi-rkl-guc/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_110413v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110413v2/fi-apl-guc/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-hsw-g3258:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12333/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110413v2/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12333/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110413v2/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-crc-fast:</p>
+<ul>
+<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110413v2/fi-apl-guc/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-connector-state:</p>
+<ul>
+<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110413v2/fi-apl-guc/igt@kms_force_connector_basic@force-connector-state.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +11 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-hsw-g3258:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110413v2/fi-hsw-g3258/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4991">i915#4991</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_ctx_create@basic-files:</p>
+<ul>
+<li>{fi-tgl-mst}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12333/fi-tgl-mst/igt@gem_ctx_create@basic-files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6434">i915#6434</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110413v2/fi-tgl-mst/igt@gem_ctx_create@basic-files.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_gttfill@basic:</p>
+<ul>
+<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12333/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7229">i915#7229</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110413v2/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_render_tiled_blits@basic:</p>
+<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12333/fi-apl-guc/igt@gem_render_tiled_blits@basic.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110413v2/fi-apl-guc/igt@gem_render_tiled_blits@basic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_blits@basic:</p>
+<ul>
+<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12333/fi-pnv-d510/igt@gem_tiled_blits@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110413v2/fi-pnv-d510/igt@gem_tiled_blits@basic.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12333 -&gt; Patchwork_110413v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12333: e7d1d39c197e7f06cf4d1ee19cfd467d6b68e10e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7038: 5389b3f3b9b75df6bd8506e4aa3da357fd0c0ab1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_110413v2: e7d1d39c197e7f06cf4d1ee19cfd467d6b68e10e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>c92843681a18 drm/i915: Remove truncation warning for large objects<br />
+ab7b18a9855f drm/i915: Use error code as -E2BIG when the size of gem ttm object is too large<br />
+4389e2689bd6 drm/i915: Check if the size is too big while creating shmem file<br />
+084bc23a10c9 drm/i915: Check for integer truncation on the configuration of ttm place<br />
+fbf0071038b2 drm/i915: Check for integer truncation on scatterlist creation<br />
+fbae424b451f drm/i915/gem: Typecheck page lookups<br />
+86dffbe22669 overflow: Introduce overflows_type() and castable_to_type()</p>
+
+</body>
+</html>
+
+--===============4419501861621585486==--
