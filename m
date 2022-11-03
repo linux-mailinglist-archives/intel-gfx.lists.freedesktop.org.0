@@ -2,57 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D82F6179A9
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Nov 2022 10:18:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56886617A0A
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Nov 2022 10:35:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC19710E5C2;
-	Thu,  3 Nov 2022 09:18:28 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E48210E5BE;
- Thu,  3 Nov 2022 09:18:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F8F010E5C2;
+	Thu,  3 Nov 2022 09:35:07 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85A6E10E5C2
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Nov 2022 09:35:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667467104; x=1699003104;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=/v1BsaeDE/OJxqjjG40A2YeZYU471sbCZX2lFvIzO9I=;
- b=L5c4eaRih0ft8i7yINQr+IYt2m4UGxmU/HYtFyfXk8guJZgubDIKUCvN
- jpj8G9ouSwdJNPdIbsirXxSnD2Pf6TxJaAAQDDBB68HAA4T2COW/KxCRo
- IuO3cOLZhnRM6CfPcjNfU9bKi/kqSobpDq55+0MzI4vBRAq32ni2jDtRy
- wfcEqiuHBzyGR6gErPgUJljP527uRvqwGRcJ1mC1wcPRCA4V3Ic2ih41w
- +j8/3Ztcj9E0EZL/EoaikQH6h8Uo+3ayqk4XmLPYOl+H4VmuDL+7Kb8/L
- d9cYlfq1zcIWO9Cwu+c37DNHXNcwoQPh6pLkmEJpprGtCC0n4vqAOndgj g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="290021189"
-X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; d="scan'208";a="290021189"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2022 02:18:23 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="740111130"
-X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; d="scan'208";a="740111130"
-Received: from khogan-mobl1.ger.corp.intel.com (HELO [10.213.226.17])
- ([10.213.226.17])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2022 02:18:22 -0700
-Message-ID: <1855f0f2-8a1c-7bf4-76c0-76a4354ea8e8@linux.intel.com>
-Date: Thu, 3 Nov 2022 09:18:21 +0000
+ t=1667468104; x=1699004104;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=/g1ZhiIvaDcxnEFkzOVQQhx3dotSSyShu7GBQK2/W8A=;
+ b=j8VPhUpC6vFqoErijIEjglTExKrQALAV8MTrXGg5nh8+BsZPDz651S8W
+ Mc/2FhKsIP/4n75vI52bA1vIzxdaB0AoFXnb2lhxfKxmLG9mDmwiPNQAE
+ 0FG+6XEKW+7+7dgW+edMde026VZrTswFUBJ/JHAMJRVs+BhC87nnn2bdG
+ hKtUDgHyXiDuFidHTe7wb/k6Ajt0pq2mTXCNZvPzPt/0T+6N/zPc2B70s
+ Ypi3LejTA2zl3Xn59cfYkS03YG6AUUT8n4R+g4QQKLfqA9tnpKEM1UuRb
+ FymSJxyEPLHCO5/zKvYwhkfaszdRWcNT1j/MCc5WaCKoZOzg/9poJYaZJ w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="373864531"
+X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; d="scan'208";a="373864531"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2022 02:35:03 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="629280909"
+X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; d="scan'208";a="629280909"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by orsmga007.jf.intel.com with SMTP; 03 Nov 2022 02:34:58 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 03 Nov 2022 11:34:58 +0200
+Date: Thu, 3 Nov 2022 11:34:58 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Message-ID: <Y2OLQj9BaOAmwd0v@intel.com>
+References: <20221026113906.10551-1-ville.syrjala@linux.intel.com>
+ <20221026113906.10551-5-ville.syrjala@linux.intel.com>
+ <8865235e-1eb5-c97d-59ec-39e125e0bcbb@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Content-Language: en-US
-To: John Harrison <john.c.harrison@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, Intel-GFX@Lists.FreeDesktop.Org
-References: <20221101235053.1650364-1-John.C.Harrison@Intel.com>
- <87k04d7dyn.fsf@intel.com>
- <c710a428-50f6-6181-3f93-4d7667a9ac3f@linux.intel.com>
- <5e22de43-d75c-fc21-9ae7-f27d116c5688@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <5e22de43-d75c-fc21-9ae7-f27d116c5688@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Don't wait forever in drop_caches
+In-Reply-To: <8865235e-1eb5-c97d-59ec-39e125e0bcbb@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 04/11] drm/i915:
+ s/icl_load_gcmax/ivb_load_lut_max/
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,161 +63,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 03/11/2022 01:33, John Harrison wrote:
-> On 11/2/2022 07:20, Tvrtko Ursulin wrote:
->> On 02/11/2022 12:12, Jani Nikula wrote:
->>> On Tue, 01 Nov 2022, John.C.Harrison@Intel.com wrote:
->>>> From: John Harrison <John.C.Harrison@Intel.com>
->>>>
->>>> At the end of each test, IGT does a drop caches call via sysfs with
->>>
->>> sysfs?
-> Sorry, that was meant to say debugfs. I've also been working on some 
-> sysfs IGT issues and evidently got my wires crossed!
+On Thu, Nov 03, 2022 at 11:49:20AM +0530, Nautiyal, Ankit K wrote:
+> Seems the offset is same since IVB.
 > 
->>>
->>>> special flags set. One of the possible paths waits for idle with an
->>>> infinite timeout. That causes problems for debugging issues when CI
->>>> catches a "can't go idle" test failure. Best case, the CI system times
->>>> out (after 90s), attempts a bunch of state dump actions and then
->>>> reboots the system to recover it. Worst case, the CI system can't do
->>>> anything at all and then times out (after 1000s) and simply reboots.
->>>> Sometimes a serial port log of dmesg might be available, sometimes not.
->>>>
->>>> So rather than making life hard for ourselves, change the timeout to
->>>> be 10s rather than infinite. Also, trigger the standard
->>>> wedge/reset/recover sequence so that testing can continue with a
->>>> working system (if possible).
->>>>
->>>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->>>> ---
->>>>   drivers/gpu/drm/i915/i915_debugfs.c | 7 ++++++-
->>>>   1 file changed, 6 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c 
->>>> b/drivers/gpu/drm/i915/i915_debugfs.c
->>>> index ae987e92251dd..9d916fbbfc27c 100644
->>>> --- a/drivers/gpu/drm/i915/i915_debugfs.c
->>>> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
->>>> @@ -641,6 +641,9 @@ DEFINE_SIMPLE_ATTRIBUTE(i915_perf_noa_delay_fops,
->>>>             DROP_RESET_ACTIVE | \
->>>>             DROP_RESET_SEQNO | \
->>>>             DROP_RCU)
->>>> +
->>>> +#define DROP_IDLE_TIMEOUT    (HZ * 10)
->>>
->>> I915_IDLE_ENGINES_TIMEOUT is defined in i915_drv.h. It's also only used
->>> here.
->>
->> So move here, dropping i915 prefix, next to the newly proposed one?
-> Sure, can do that.
+> The Gamma correction max seem to be defined since IVB, but this doesnt 
+> seem to be used during ivb_load_luts, but only for multi-segmented gamma.
+
+It would be used for the 12.4 interpolated gamma mode on
+earlier platforms, but we don't expose that currently.
+
 > 
->>
->>> I915_GEM_IDLE_TIMEOUT is defined in i915_gem.h. It's only used in
->>> gt/intel_gt.c.
->>
->> Move there and rename to GT_IDLE_TIMEOUT?
->>
->>> I915_GT_SUSPEND_IDLE_TIMEOUT is defined and used only in intel_gt_pm.c.
->>
->> No action needed, maybe drop i915 prefix if wanted.
->>
-> These two are totally unrelated and in code not being touched by this 
-> change. I would rather not conflate changing random other things with 
-> fixing this specific issue.
+> Is it that the default value of 1.0 is sufficient for other platforms?
+
+Since it's not used in any of the gamma modes we do expose
+it doesn't matter what we leave there atm.
+
 > 
->>> I915_IDLE_ENGINES_TIMEOUT is in ms, the rest are in jiffies.
->>
->> Add _MS suffix if wanted.
->>
->>> My head spins.
->>
->> I follow and raise that the newly proposed DROP_IDLE_TIMEOUT applies 
->> to DROP_ACTIVE and not only DROP_IDLE.
-> My original intention for the name was that is the 'drop caches timeout 
-> for intel_gt_wait_for_idle'. Which is quite the mouthful and hence 
-> abbreviated to DROP_IDLE_TIMEOUT. But yes, I realised later that name 
-> can be conflated with the DROP_IDLE flag. Will rename.
+> Regards,
 > 
+> Ankit
 > 
->>
->> Things get refactored, code moves around, bits get left behind, who 
->> knows. No reason to get too worked up. :) As long as people are taking 
->> a wider view when touching the code base, and are not afraid to send 
->> cleanups, things should be good.
-> On the other hand, if every patch gets blocked in code review because 
-> someone points out some completely unrelated piece of code could be a 
-> bit better then nothing ever gets fixed. If you spot something that you 
-> think should be improved, isn't the general idea that you should post a 
-> patch yourself to improve it?
+> On 10/26/2022 5:08 PM, Ville Syrjala wrote:
+> > From: Ville Syrj�l� <ville.syrjala@linux.intel.com>
+> >
+> > Unify icl_load_gcmax() with the rest of the function
+> > naming scheme by calling it ivb_load_lut_max() instead.
+> >
+> > Signed-off-by: Ville Syrj�l� <ville.syrjala@linux.intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/display/intel_color.c | 6 +++---
+> >   1 file changed, 3 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+> > index 415e0a6839a4..e73e6ea6f82f 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_color.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_color.c
+> > @@ -935,8 +935,8 @@ static u32 ilk_lut_12p4_ldw(const struct drm_color_lut *color)
+> >   }
+> >   
+> >   static void
+> > -icl_load_gcmax(const struct intel_crtc_state *crtc_state,
+> > -	       const struct drm_color_lut *color)
+> > +ivb_load_lut_max(const struct intel_crtc_state *crtc_state,
+> > +		 const struct drm_color_lut *color)
+> >   {
+> >   	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> >   	enum pipe pipe = crtc->pipe;
+> > @@ -1028,7 +1028,7 @@ icl_program_gamma_multi_segment(const struct intel_crtc_state *crtc_state)
+> >   
+> >   	/* The last entry in the LUT is to be programmed in GCMAX */
+> >   	entry = &lut[256 * 8 * 128];
+> > -	icl_load_gcmax(crtc_state, entry);
+> > +	ivb_load_lut_max(crtc_state, entry);
+> >   	ivb_load_lut_ext_max(crtc_state);
+> >   }
+> >   
 
-There's two maintainers per branch and an order of magnitude or two more 
-developers so it'd be nice if cleanups would just be incoming on 
-self-initiative basis. ;)
-
->> For the actual functional change at hand - it would be nice if code 
->> paths in question could handle SIGINT and then we could punt the 
->> decision on how long someone wants to wait purely to userspace. But 
->> it's probably hard and it's only debugfs so whatever.
->>
-> The code paths in question will already abort on a signal won't they? 
-> Both intel_gt_wait_for_idle() and intel_guc_wait_for_pending_msg(), 
-> which is where the uc_wait_for_idle eventually ends up, have an 
-> 'if(signal_pending) return -EINTR;' check. Beyond that, it sounds like 
-> what you are asking for is a change in the IGT libraries and/or CI 
-> framework to start sending signals after some specific timeout. That 
-> seems like a significantly more complex change (in terms of the number 
-> of entities affected and number of groups involved) and unnecessary.
-
-If you say so, I haven't looked at them all. But if the code path in 
-question already aborts on signals then I am not sure what is the patch 
-fixing? I assumed you are trying to avoid the write stuck in D forever, 
-which then prevents driver unload and everything, requiring the test 
-runner to eventually reboot. If you say SIGINT works then you can 
-already recover from userspace, no?
-
->> Whether or not 10s is enough CI will hopefully tell us. I'd probably 
->> err on the side of safety and make it longer, but at most half from 
->> the test runner timeout.
-> This is supposed to be test clean up. This is not about how long a 
-> particular test takes to complete but about how long it takes to declare 
-> the system broken after the test has already finished. I would argue 
-> that even 10s is massively longer than required.
-> 
->>
->> I am not convinced that wedging is correct though. Conceptually could 
->> be just that the timeout is too short. What does wedging really give 
->> us, on top of limiting the wait, when latter AFAIU is the key factor 
->> which would prevent the need to reboot the machine?
->>
-> It gives us a system that knows what state it is in. If we can't idle 
-> the GT then something is very badly wrong. Wedging indicates that. It 
-> also ensure that a full GT reset will be attempted before the next test 
-> is run. Helping to prevent a failure on test X from propagating into 
-> failures of unrelated tests X+1, X+2, ... And if the GT reset does not 
-> work because the system is really that badly broken then future tests 
-> will not run rather than report erroneous failures.
-> 
-> This is not about getting a more stable system for end users by sweeping 
-> issues under the carpet and pretending all is well. End users don't run 
-> IGTs or explicitly call dodgy debugfs entry points. The sole motivation 
-> here is to get more accurate results from CI. That is, correctly 
-> identifying which test has hit a problem, getting valid debug analysis 
-> for that test (logs and such) and allowing further testing to complete 
-> correctly in the case where the system can be recovered.
-
-I don't really oppose shortening of the timeout in principle, just want 
-a clear statement if this is something IGT / test runner could already 
-do or not. It can apply a timeout, it can also send SIGINT, and it could 
-even trigger a reset from outside. Sure it is debugfs hacks so general 
-"kernel should not implement policy" need not be strictly followed, but 
-lets have it clear what are the options.
-
-Regards,
-
-Tvrtko
+-- 
+Ville Syrj�l�
+Intel
