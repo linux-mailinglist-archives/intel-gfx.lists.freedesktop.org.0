@@ -1,49 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 441BF617342
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Nov 2022 01:12:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A05DA617343
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Nov 2022 01:14:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBA7610E550;
-	Thu,  3 Nov 2022 00:11:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D829D10E20D;
+	Thu,  3 Nov 2022 00:14:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93F0610E558
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Nov 2022 00:11:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667434311; x=1698970311;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=D5GftR+oRFpxVIpMnqYD1Zwf4ndcuFt36wQUx0ZgtUI=;
- b=cOhXsF2LHLFou9I5sLtocsia4169Gnos9EeoVQWk/41HhTAxrLdlzjLr
- +BvInnHZqEhQG2zVztwCGD95V7mkp1nXkad+WHv+owzkQVAdcA1mozXXi
- PhmxM7A7U0V8JOwFsA2BMOkjkgNa1avfApDqPj+jF6KGl2rZxXs6gpclP
- RUPrs8rGewmNWrhAqP/4vYCpLBrxBQOXNXWgQXPku0UPJRaJAmJPKuATd
- Mm4JblnIfdUrghHdW9GIPAnbButA21CbA7ayqMJe8riGORq2TknXJPoyt
- qL0h6h566hkz6tOhzokIXSD90gS0vI9/wrPFQ+7YgSpPPfJ2ilVQtEWjs g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="371647760"
-X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; d="scan'208";a="371647760"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2022 17:11:50 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="879678614"
-X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; d="scan'208";a="879678614"
-Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.jf.intel.com)
- ([10.165.21.138])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2022 17:11:50 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  2 Nov 2022 17:11:49 -0700
-Message-Id: <20221103001149.1203285-1-umesh.nerlige.ramappa@intel.com>
-X-Mailer: git-send-email 2.36.1
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com
+ [IPv6:2607:f8b0:4864:20::1030])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7438710E20D
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Nov 2022 00:14:28 +0000 (UTC)
+Received: by mail-pj1-x1030.google.com with SMTP id o7so128170pjj.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 02 Nov 2022 17:14:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=XdTMTa3I55SIl5xGC9jdySfc9VWUSGeCFrVhUObQADA=;
+ b=kZv/B/2BDSBzl3s66ukC436R5dO2cS2TzMNLneJ9syZAHySA/k4fR5mwhPfFzOspOU
+ mX3MgnBF7SG/SDMVIQtThADYW5DJmUGEq/YCA+hCdcYNoK/4afRHN8fxDILDfHq4mFX8
+ wysRUqqeWTpMpDKLM09swnVqPrxvuNAzAi5Ws=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=XdTMTa3I55SIl5xGC9jdySfc9VWUSGeCFrVhUObQADA=;
+ b=gMBOkpsWncrpmRJjBsYDO14NsiDxrBIoV6tb56xv4z9MdAS7Q8K739uZix2KwPTG9B
+ qYg/Ei41VXepYkUJPksHQLV1Uz5vUFUyjBBBw7FXA5TtVWnkmjiuE96Jwpjz+3jipJY5
+ XTD17jKI/nQnKUM8/Q6TuBkWutQlFFTrwUrKPdJdzB010OfIPXtxYweYZMLnm2CILhKH
+ CGigF5q1/kHu0CWnfbveMUnRabtL3YBs6IuDB5LtbOCW43kz1EP7DEzIGD4amouTgEDV
+ S+rFDTrN8HEAaDZzf76B8JpJZ1xyultVpKraNJq9jM5sjKGb/UG4kojkXJ3j0ZrTW3FO
+ 808Q==
+X-Gm-Message-State: ACrzQf3OwvN7zZW213HXcZLlqiwmGM3FRyJm7yK/5/TFhp+6k5sDNCIs
+ VAzqZPNuBzyosnTU81J0CTzJJg==
+X-Google-Smtp-Source: AMsMyM6+cQMX50cYCHMHeiUjqYHxdzOwNVW6gvlPyqFtk5l0zIfucriGpfTnlYfJudxEHKNmudZQUA==
+X-Received: by 2002:a17:903:32cf:b0:187:4b3a:15fd with SMTP id
+ i15-20020a17090332cf00b001874b3a15fdmr4889761plr.99.1667434467927; 
+ Wed, 02 Nov 2022 17:14:27 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:ce3d:95b2:a304:f587])
+ by smtp.gmail.com with ESMTPSA id
+ j4-20020a170903028400b001868981a18esm8908872plr.6.2022.11.02.17.14.26
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 02 Nov 2022 17:14:27 -0700 (PDT)
+Date: Wed, 2 Nov 2022 17:14:25 -0700
+From: Brian Norris <briannorris@chromium.org>
+To: Matthew Auld <matthew.william.auld@gmail.com>
+Message-ID: <Y2MH4QCYqiAmvBQP@google.com>
+References: <20221028145319.1.I87b119c576d486ad139faf1b7278d97e158aabe4@changeid>
+ <166700305133.24147.5489949087173137559@emeril.freedesktop.org>
+ <CA+ASDXO856vFOx7CwQEmgM7pUU_Jdb-wXJPGrkKMPQ3GoNBJeQ@mail.gmail.com>
+ <CAM0jSHM99OxpmS-pqmEiyoK2pa07fnhekTKLRQTMsWqFkHCgJg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/selftest: Bump up sample period for
- busy stats selftest
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAM0jSHM99OxpmS-pqmEiyoK2pa07fnhekTKLRQTMsWqFkHCgJg@mail.gmail.com>
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogIGZhaWx1cmUgZm9yIGRy?=
+ =?utf-8?q?m/i915=3A_Set_PROBE=5FPREFER=5FASYNCHRONOUS?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,48 +72,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Engine busyness samples around a 10ms period is failing with busyness
-ranging approx. from 87% to 115%. The expected range is +/- 5% of the
-sample period.
+On Wed, Nov 02, 2022 at 12:18:37PM +0000, Matthew Auld wrote:
+> On Tue, 1 Nov 2022 at 21:58, Brian Norris <briannorris@chromium.org> wrote:
+> >
+> > On Fri, Oct 28, 2022 at 5:24 PM Patchwork
+> > <patchwork@emeril.freedesktop.org> wrote:
+> > >
+> > > Patch Details
+> > > Series:drm/i915: Set PROBE_PREFER_ASYNCHRONOUS
+> > > URL:https://patchwork.freedesktop.org/series/110277/
+> > > State:failure
+> > > Details:https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110277v1/index.html
+> > >
+> > > CI Bug Log - changes from CI_DRM_12317 -> Patchwork_110277v1
+> > >
+> > > Summary
+> > >
+> > > FAILURE
+> > >
+> > > Serious unknown changes coming with Patchwork_110277v1 absolutely need to be
+> > > verified manually.
+> > >
+> > > If you think the reported changes have nothing to do with the changes
+> > > introduced in Patchwork_110277v1, please notify your bug team to allow them
+> > > to document this new failure mode, which will reduce false positives in CI.
+> > >
+> > > External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110277v1/index.html
+> >
+> > For the record, I have almost zero idea what to do with this. From
+> > what I can tell, most (all?) of these failures are flaky(?) already
+> > and are probably not related to my change.
+> 
+> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110277v1/index.html
+> 
+> According to that link, this change appears to break every platform
+> when running the live selftests (looking at the purple squares).
+> Running the selftests normally involves loading and unloading the
+> module. Looking at the logs there is scary stuff like:
+> 
+[...]
 
-When determining busyness of active engine, the GuC based engine
-busyness implementation relies on a 64 bit timestamp register read. The
-latency incurred by this register read causes the failure.
+Ah, thanks. I'm not sure what made me think the tests were failing the
+same way on drm-tip, but maybe just chalk that up to my unfamiliarity
+with this particular dashboard... (There are a few isolated failure
+and/or flakes on drm-tip, but they don't look like this.)
 
-On DG1, when the test fails, the observed latencies range from 900us -
-1.5ms.
+Anyway, I think I managed to run some of these tests on my own platforms
+[1], and I don't reproduce those failures. I do see other failures
+(crashes) though, like in i915_gem_mman_live_selftests/igt_mmap, where
+igt_mmap_offset() (selftest-only code) -> vm_mmap() assumes we have a
+valid |current->mm|. But that's borrowing the modprobe process's memory
+map, and with async probe, the selftest sequence happens in a kernel
+worker instead (and current->mm is NULL). So that clearly won't work.
 
-One solution tried was to reduce the latency between reg read and
-CPU timestamp capture, but such optimization does not add value to user
-since the CPU timestamp obtained here is only used for (1) selftest and
-(2) i915 rps implementation specific to execlist scheduler. Also, this
-solution only reduces the frequency of failure and does not eliminate
-it.
+I suppose I could disable async probe when built as a module (I believe
+it doesn't really have any value, since the module load task just waits
+for the async task anyway). I'm not familiar enough with MM to know what
+the vm_mmap() alternatives are, but this particular bit of code does
+feel odd.
 
-In order to make the selftest more robust and account for such
-latencies, increase the sample period to 100 ms.
+Additionally, I think this implies that live_selftests will break if
+i915 is built-in (i.e., =y, not =m), as we'll again run in a
+kernel-thread context at boot time. But I would hope nobody is trying to
+run them that way? I guess this gets even hairier, because even if the
+driver is built into the kernel, it's possible to kick them off from a
+process context by tweaking the module parameters later, and then
+re-binding the device... So all in all, this bug leaves an ugly
+situation, with or without my patch.
 
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
----
- drivers/gpu/drm/i915/gt/selftest_engine_pm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I'm still curious about the reported failures, but maybe they require
+some particular sequence of tests? I also don't have the full
+igt-gpu-tools set running, so maybe they do something a little
+differently than my steps in [1]?
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
-index 0dcb3ed44a73..87c94314cf67 100644
---- a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
-@@ -317,7 +317,7 @@ static int live_engine_busy_stats(void *arg)
- 		ENGINE_TRACE(engine, "measuring busy time\n");
- 		preempt_disable();
- 		de = intel_engine_get_busy_time(engine, &t[0]);
--		mdelay(10);
-+		mdelay(100);
- 		de = ktime_sub(intel_engine_get_busy_time(engine, &t[1]), de);
- 		preempt_enable();
- 		dt = ktime_sub(t[1], t[0]);
--- 
-2.36.1
+Brian
 
+[1] I have a GLk system, if it matters. I figured I can run some of
+these with any one of the following:
+
+  modprobe i915 live_selftests=1
+  modprobe i915 live_selftests=1 igt__20__live_workarounds=Y
+  modprobe i915 live_selftests=1 igt__19__live_uncore=Y
+  modprobe i915 live_selftests=1 igt__18__live_sanitycheck=Y
+  ...
