@@ -2,74 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 070C3618AE6
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Nov 2022 22:56:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DCB1618B31
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Nov 2022 23:14:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2ECA10E644;
-	Thu,  3 Nov 2022 21:56:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1ED810E035;
+	Thu,  3 Nov 2022 22:14:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0020A10E647
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Nov 2022 21:56:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1667512577;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=d+gPBLcj3yfcNxg3iZDolr/DLSZRZsYZJ+BZEPDd0k8=;
- b=T2OYqj5b7GtKQzaDjgyqr22782I6FRxXHoa/zNKJuWwNIM0Lv+mP0TWXDTQvX4qRYFgPig
- Dud8bfGMyLHTECXSEQHZUHX6kVWw2NcLc3Im+gwYoMmzi5SOltctbqlzHUL4afAs4CWv83
- ksi7VIjbLQrNbjBY5nabgEX5upxKT9A=
-Received: from mail-il1-f200.google.com (mail-il1-f200.google.com
- [209.85.166.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-99-grFjgM5dMDqN5zpkqKEpiA-1; Thu, 03 Nov 2022 17:56:15 -0400
-X-MC-Unique: grFjgM5dMDqN5zpkqKEpiA-1
-Received: by mail-il1-f200.google.com with SMTP id
- i8-20020a056e021d0800b00300e56849dbso1509558ila.9
- for <intel-gfx@lists.freedesktop.org>; Thu, 03 Nov 2022 14:56:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=d+gPBLcj3yfcNxg3iZDolr/DLSZRZsYZJ+BZEPDd0k8=;
- b=Y5ntYRQv2Ghz47GFHN5u2r6+PCjs3Z6aOeCKqfswiqS680TZTsilh3rcinSlElcxAT
- 2hmA2bU3mHhDKOlsKlNkm6KMwSVPWcyOvxrHGHGqy7rUqmFJkf8E2DIqqFfR3/Ld+b1y
- N72JzpKIg6F5lYmMSYiORWswPvWC0CV8N9ozZZI3w1AGlWXNifiLqhtjdpp/zQ7ABSFY
- pwt+iAGaFoj0oGeoFwfRhVaJ6ILwoZ7KRm2/ZHsYVe77WGrd/c69tmdMh8X2RE1h5TYJ
- ajKbQj1Vs8yNNgu7hq3b/GoHaFVmCIwrm7Bg89nsRvtGGjFqOkFyKr7nQjxjd54iTlWM
- c9ww==
-X-Gm-Message-State: ACrzQf3tmfvuAVBQNJvjCnWaowXdoxWq2hNsGEr8D1bOKsdvZ3ZkFpMI
- fZyWZUyR/dhCVLXvrPJ1gieAZXuSGveX1JNo0oKgsCh1jkLLgsKu/r/3ky9ZS32hH/TRS/99ws0
- 6afMRyrTZTsFJWL2NtQa6ScIsWs+u
-X-Received: by 2002:a05:6602:2c09:b0:694:51c4:8282 with SMTP id
- w9-20020a0566022c0900b0069451c48282mr20182372iov.203.1667512574950; 
- Thu, 03 Nov 2022 14:56:14 -0700 (PDT)
-X-Google-Smtp-Source: AMsMyM6XXTGY/jAs7DgmNTFtcqCXPtF5Oitv5ZjT7vsZBKLSnzosYzEC5JgzfurqOGyquHSILSbftA==
-X-Received: by 2002:a05:6602:2c09:b0:694:51c4:8282 with SMTP id
- w9-20020a0566022c0900b0069451c48282mr20182338iov.203.1667512574697; 
- Thu, 03 Nov 2022 14:56:14 -0700 (PDT)
-Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
- z27-20020a05663822bb00b00371caa7ef7csm598363jas.2.2022.11.03.14.56.13
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 03 Nov 2022 14:56:14 -0700 (PDT)
-Date: Thu, 3 Nov 2022 15:56:11 -0600
-From: Alex Williamson <alex.williamson@redhat.com>
-To: Eric Farman <farman@linux.ibm.com>
-Message-ID: <20221103155611.0008075f.alex.williamson@redhat.com>
-In-Reply-To: <20221102150152.2521475-1-farman@linux.ibm.com>
-References: <20221102150152.2521475-1-farman@linux.ibm.com>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-redhat-linux-gnu)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1D2D010E035;
+ Thu,  3 Nov 2022 22:14:10 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 15FE7AADDB;
+ Thu,  3 Nov 2022 22:14:10 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4515536452273445461=="
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2 0/7] vfio-ccw parent rework
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
+Date: Thu, 03 Nov 2022 22:14:10 -0000
+Message-ID: <166751365006.9193.53317873743152782@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221103180705.1315142-1-umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <20221103180705.1315142-1-umesh.nerlige.ramappa@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgaTkx?=
+ =?utf-8?q?5/pmu=3A_Use_a_faster_read_for_2x32_mmio_reads?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,116 +40,223 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Rosato <mjrosato@linux.ibm.com>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Kirti Wankhede <kwankhede@nvidia.com>,
- Vineeth Vijayan <vneethv@linux.ibm.com>,
- Diana Craciun <diana.craciun@oss.nxp.com>,
- Alexander Gordeev <agordeev@linux.ibm.com>, David Airlie <airlied@gmail.com>,
- linux-s390@vger.kernel.org, Yi Liu <yi.l.liu@intel.com>, kvm@vger.kernel.org,
- Halil Pasic <pasic@linux.ibm.com>, Jason Gunthorpe <jgg@nvidia.com>,
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- intel-gfx@lists.freedesktop.org, Jason Herne <jjherne@linux.ibm.com>,
- Vasily Gorbik <gor@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
- Eric Auger <eric.auger@redhat.com>,
- Harald Freudenberger <freude@linux.ibm.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gvt-dev@lists.freedesktop.org,
- Tony Krowiak <akrowiak@linux.ibm.com>, Yishai Hadas <yishaih@nvidia.com>,
- Cornelia Huck <cohuck@redhat.com>, Peter Oberparleiter <oberpar@linux.ibm.com>,
- Sven Schnelle <svens@linux.ibm.com>, Daniel Vetter <daniel@ffwll.ch>,
- Abhishek Sahu <abhsahu@nvidia.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed,  2 Nov 2022 16:01:45 +0100
-Eric Farman <farman@linux.ibm.com> wrote:
+--===============4515536452273445461==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> Hi all,
-> 
-> Here is an update to the vfio-ccw lifecycle changes that have been discussed
-> in various forms over the past year [1][2] or so, and which I dusted off
-> recently.
-> 
-> Patches 1-5 rework the behavior of the vfio-ccw driver's private struct.
-> In summary, the mdev pieces are split out of vfio_ccw_private and into a
-> new vfio_ccw_parent struct that will continue to follow today's lifecycle.
-> The remainder (bulk) of the private struct moves to follow the mdev
-> probe/remove pair. There's opportunity for further separation of the
-> things in the private struct, which would simplify some of the vfio-ccw
-> code, but it got too hairy as I started that. Once vfio-ccw is no longer
-> considered unique, those cleanups can happen at our leisure. 
-> 
-> Patch 6 removes the trickery where vfio-ccw uses vfio_init_device instead of
-> vfio_alloc_device, and thus removes vfio_init_device from the outside world.
-> 
-> Patch 7 removes vfio_free_device from vfio-ccw and the other drivers (hello,
-> CC list!), letting it be handled by vfio_device_release directly.
+== Series Details ==
 
-Looks like another spin is pending, but the vfio core and collateral
-changes in 6 and 7 look good to me.  Would this go in through the vfio
-or s390 tree?  I'd be happy to merge or provide a branch, depending on
-the route.
+Series: i915/pmu: Use a faster read for 2x32 mmio reads
+URL   : https://patchwork.freedesktop.org/series/110497/
+State : failure
 
-For 6 & 7:
-Acked-by: Alex Williamson <alex.williamson@redhat.com>
+== Summary ==
 
-Thanks,
-Alex
+CI Bug Log - changes from CI_DRM_12339 -> Patchwork_110497v1
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_110497v1 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_110497v1, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110497v1/index.html
+
+Participating hosts (40 -> 28)
+------------------------------
+
+  Missing    (12): fi-hsw-4200u bat-dg2-8 bat-dg2-9 bat-adlp-6 bat-adlp-4 fi-ctg-p8600 bat-adln-1 bat-rplp-1 bat-rpls-1 bat-rpls-2 bat-dg2-11 fi-bdw-samus 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_110497v1:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_module_load@load:
+    - fi-rkl-guc:         [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12339/fi-rkl-guc/igt@i915_module_load@load.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110497v1/fi-rkl-guc/igt@i915_module_load@load.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_110497v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-g3258:       [PASS][3] -> [INCOMPLETE][4] ([i915#3303] / [i915#4785])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12339/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110497v1/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html
+
+  * igt@runner@aborted:
+    - fi-rkl-guc:         NOTRUN -> [FAIL][5] ([i915#4312])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110497v1/fi-rkl-guc/igt@runner@aborted.html
+    - fi-hsw-g3258:       NOTRUN -> [FAIL][6] ([fdo#109271] / [i915#4312] / [i915#4991])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110497v1/fi-hsw-g3258/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_gttfill@basic:
+    - fi-pnv-d510:        [FAIL][7] ([i915#7229]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12339/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110497v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
+    - fi-bsw-kefka:       [FAIL][9] ([i915#6298]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12339/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110497v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#4991]: https://gitlab.freedesktop.org/drm/intel/issues/4991
+  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
+  [i915#7229]: https://gitlab.freedesktop.org/drm/intel/issues/7229
 
 
-> Looking forward to the feedback.
-> 
-> Thanks,
-> Eric
-> 
-> [1] https://lore.kernel.org/kvm/0-v3-57c1502c62fd+2190-ccw_mdev_jgg@nvidia.com/
-> [2] https://lore.kernel.org/kvm/20220602171948.2790690-1-farman@linux.ibm.com/
-> 
-> v1->v2:
->  - Rebase to 6.1-rc3
->  - Patch 1:
->    [EF] s/device_initialize/device_register/ and associated adjustments
->    [MR] Add WARN_ON(!private) in vfio_ccw_sch_quiesce()
->    [MR] Move struct vfio_ccw_parent to _private.h, instead of standalone file
->  - Patch 2:
->    [MR] Added r-b (Thank you!)
->  - Patch 3:
->    [MR] Update commit message to point to introduction of private->release_comp
->    [MR] Replace the remnants of vfio_ccw_alloc_private with a straight kzalloc
->    [MR] Added r-b (Thank you!)
->  - Patch 5:
->    [KT] Added r-b (Thank you!)
->  - Patch 6:
->    [JG] Make vfio_init_device static
->    [KT] Added r-b (Thank you!)
->  - Patch 7:
->    [JG, KT] Added r-b (Thank you!)
-> v1: https://lore.kernel.org/kvm/20221019162135.798901-1-farman@linux.ibm.com/
-> 
-> Eric Farman (7):
->   vfio/ccw: create a parent struct
->   vfio/ccw: remove private->sch
->   vfio/ccw: move private initialization to callback
->   vfio/ccw: move private to mdev lifecycle
->   vfio/ccw: remove release completion
->   vfio/ccw: replace vfio_init_device with _alloc_
->   vfio: Remove vfio_free_device
-> 
->  drivers/gpu/drm/i915/gvt/kvmgt.c      |   1 -
->  drivers/s390/cio/vfio_ccw_chp.c       |   5 +-
->  drivers/s390/cio/vfio_ccw_drv.c       | 174 +++++++++++---------------
->  drivers/s390/cio/vfio_ccw_fsm.c       |  27 ++--
->  drivers/s390/cio/vfio_ccw_ops.c       | 107 +++++++++++-----
->  drivers/s390/cio/vfio_ccw_private.h   |  37 ++++--
->  drivers/s390/crypto/vfio_ap_ops.c     |   6 -
->  drivers/vfio/fsl-mc/vfio_fsl_mc.c     |   1 -
->  drivers/vfio/pci/vfio_pci_core.c      |   1 -
->  drivers/vfio/platform/vfio_amba.c     |   1 -
->  drivers/vfio/platform/vfio_platform.c |   1 -
->  drivers/vfio/vfio_main.c              |  32 ++---
->  include/linux/vfio.h                  |   3 -
->  samples/vfio-mdev/mbochs.c            |   1 -
->  samples/vfio-mdev/mdpy.c              |   1 -
->  samples/vfio-mdev/mtty.c              |   1 -
->  16 files changed, 197 insertions(+), 202 deletions(-)
-> 
+Build changes
+-------------
 
+  * Linux: CI_DRM_12339 -> Patchwork_110497v1
+
+  CI-20190529: 20190529
+  CI_DRM_12339: fafe2d945b3d76b8a7e32102311d8d0495724a3e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7041: 40ea6325f69eb56653171c21b5d4977982a92d0a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_110497v1: fafe2d945b3d76b8a7e32102311d8d0495724a3e @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+06c490fee89b i915/pmu: Use a faster read for 2x32 mmio reads
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110497v1/index.html
+
+--===============4515536452273445461==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>i915/pmu: Use a faster read for 2x32 mmio reads</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/110497/">https://patchwork.freedesktop.org/series/110497/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110497v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110497v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12339 -&gt; Patchwork_110497v1</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_110497v1 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_110497v1, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110497v1/index.html</p>
+<h2>Participating hosts (40 -&gt; 28)</h2>
+<p>Missing    (12): fi-hsw-4200u bat-dg2-8 bat-dg2-9 bat-adlp-6 bat-adlp-4 fi-ctg-p8600 bat-adln-1 bat-rplp-1 bat-rpls-1 bat-rpls-2 bat-dg2-11 fi-bdw-samus </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_110497v1:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_module_load@load:<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12339/fi-rkl-guc/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110497v1/fi-rkl-guc/igt@i915_module_load@load.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_110497v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-hsw-g3258:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12339/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110497v1/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110497v1/fi-rkl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+<li>
+<p>fi-hsw-g3258:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110497v1/fi-hsw-g3258/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4991">i915#4991</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_gttfill@basic:</p>
+<ul>
+<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12339/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7229">i915#7229</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110497v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12339/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110497v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12339 -&gt; Patchwork_110497v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12339: fafe2d945b3d76b8a7e32102311d8d0495724a3e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7041: 40ea6325f69eb56653171c21b5d4977982a92d0a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_110497v1: fafe2d945b3d76b8a7e32102311d8d0495724a3e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>06c490fee89b i915/pmu: Use a faster read for 2x32 mmio reads</p>
+
+</body>
+</html>
+
+--===============4515536452273445461==--
