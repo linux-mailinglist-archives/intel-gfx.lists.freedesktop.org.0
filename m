@@ -1,49 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BE8F617952
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Nov 2022 10:03:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4655617968
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Nov 2022 10:10:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F6D210E254;
-	Thu,  3 Nov 2022 09:03:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22D1510E25F;
+	Thu,  3 Nov 2022 09:10:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 546E010E1C9;
- Thu,  3 Nov 2022 09:03:18 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E74610E254;
+ Thu,  3 Nov 2022 09:10:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667466198; x=1699002198;
- h=date:from:to:cc:subject:message-id:mime-version:
- content-transfer-encoding;
- bh=pQgl7XRVgcd2d9g0XSQe1fLHEAiBS6SXQA65Tms59Ig=;
- b=QbMqCBB0z15echZVaWWteDQ2RQJeqzn+wwDPCh/x2uVUD/CCiNAhxbKH
- FU7cp762Xgus47cdzFYGWIf65IwJTVWX0YsYK77O7mn5ZEbf5CtpEOSZi
- vXTlOgNpS+ceZ3e/CHJrl908PGDj6OhMMM0qgL9+YKfh7uZQe9owhdq7F
- lh3XFo17Iun2pPlXqL2sfSs6cpNGhKcf74mG045aFxXeNDbI11CW3l7j+
- mIgtWQMF7y/2QWNpFeZ59QL/T3NrbjVG5eUIzPRwVttUvaM639m/qrzyd
- 4oBgAaXrILKDK/0yYwFsDbMiZJOjvlucD0szk/+YnsLwj4JmSdtNTt1Ll Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="336319855"
-X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; d="scan'208";a="336319855"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2022 02:03:17 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="723868057"
-X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; d="scan'208";a="723868057"
-Received: from khogan-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.213.226.17])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2022 02:03:15 -0700
-Date: Thu, 3 Nov 2022 09:03:13 +0000
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <Y2ODlCGM4nACmzsJ@tursulin-desk>
+ t=1667466624; x=1699002624;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=6Vw4M88rzzl4mfSTP1YRtAtTUCjlnO9FaYRCtYSsnhM=;
+ b=O7EXtHAn0d/3xXAdR03+rEyz0p550iJqK4tnEssZt/YTp+vgptPwkDnu
+ LfsLkpQOmgNRDc8laZdRHeih6CjykJQukBq9OykcB8UStLADQ7ogNY414
+ 1LpbhuNwJbtUw8k8KaPYsnqUCc5y5M2F9WUkq07o9v3loYLdNx8S5sQIK
+ GnrhkbqsTnFi/UthSzSyV1meUcSM1VJFaK2S72/g2OjQT3UGMb5XYb8oN
+ /MzqH+nIQpwK61a3Dj/fC6in7iYFwL4fXBpJPQnVfw9Q8aI92fbXruS+h
+ XGiKdi2KJWL6u3lyekM5cNnezYeX3LwWHz3697WjHAwhHxwhUR+LV7XqI g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="297086967"
+X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; d="scan'208";a="297086967"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2022 02:10:23 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="585720962"
+X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; d="scan'208";a="585720962"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.249.42.177])
+ ([10.249.42.177])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2022 02:10:22 -0700
+Message-ID: <2d6e7e7b-81dc-7ae3-8dbc-a5adb13c8b2e@linux.intel.com>
+Date: Thu, 3 Nov 2022 10:10:20 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PULL] drm-intel-fixes
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Content-Language: en-US
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20221102214310.2829310-1-daniele.ceraolospurio@intel.com>
+From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
+In-Reply-To: <20221102214310.2829310-1-daniele.ceraolospurio@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: don't hardcode BCS0 in
+ guc_hang selftest
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,80 +62,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Daniel,
+LGTM Acked-by: Nirmoy Das <nirmoy.das@intel.com>
 
-A few fixes for 6.1.
-
-On the display side fixed a race condition in accessing DKL PHY registers
-(TGL+), fixed LVDS EDID fixed mode setup and fixed SDVO invalid mode
-filtering. On the GEM side fix running under Xen and use DMA API directly
-instead of special casing for SWIOTLB only.
-
-drm-intel-fixes-2022-11-03:
-- Add locking around DKL PHY register accesses (Imre Deak)
-- Stop abusing swiotlb_max_segment (Robert Beckett)
-- Filter out invalid outputs more sensibly (Ville Syrjälä)
-- Setup DDC fully before output init (Ville Syrjälä)
-- Simplify intel_panel_add_edid_alt_fixed_modes() (Ville Syrjälä)
-- Grab mode_config.mutex during LVDS init to avoid WARNs (Ville Syrjälä)
-The following changes since commit 30a0b95b1335e12efef89dd78518ed3e4a71a763:
-
-  Linux 6.1-rc3 (2022-10-30 15:19:28 -0700)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2022-11-03
-
-for you to fetch changes up to 12caf46cf4fc92b1c3884cb363ace2e12732fd2f:
-
-  drm/i915/sdvo: Grab mode_config.mutex during LVDS init to avoid WARNs (2022-10-31 14:09:15 +0000)
-
-----------------------------------------------------------------
-- Add locking around DKL PHY register accesses (Imre Deak)
-- Stop abusing swiotlb_max_segment (Robert Beckett)
-- Filter out invalid outputs more sensibly (Ville Syrjälä)
-- Setup DDC fully before output init (Ville Syrjälä)
-- Simplify intel_panel_add_edid_alt_fixed_modes() (Ville Syrjälä)
-- Grab mode_config.mutex during LVDS init to avoid WARNs (Ville Syrjälä)
-
-----------------------------------------------------------------
-Imre Deak (1):
-      drm/i915/tgl+: Add locking around DKL PHY register accesses
-
-Robert Beckett (1):
-      drm/i915: stop abusing swiotlb_max_segment
-
-Ville Syrjälä (4):
-      drm/i915/sdvo: Filter out invalid outputs more sensibly
-      drm/i915/sdvo: Setup DDC fully before output init
-      drm/i915: Simplify intel_panel_add_edid_alt_fixed_modes()
-      drm/i915/sdvo: Grab mode_config.mutex during LVDS init to avoid WARNs
-
- drivers/gpu/drm/i915/Makefile                      |   1 +
- drivers/gpu/drm/i915/display/intel_ddi.c           |  68 ++++++-------
- drivers/gpu/drm/i915/display/intel_display_core.h  |   8 ++
- .../drm/i915/display/intel_display_power_well.c    |   7 +-
- drivers/gpu/drm/i915/display/intel_dkl_phy.c       | 109 +++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dkl_phy.h       |  24 +++++
- drivers/gpu/drm/i915/display/intel_dp.c            |   2 +-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c      |  59 +++++------
- drivers/gpu/drm/i915/display/intel_lvds.c          |   3 +-
- drivers/gpu/drm/i915/display/intel_panel.c         |   4 +-
- drivers/gpu/drm/i915/display/intel_panel.h         |   2 +-
- drivers/gpu/drm/i915/display/intel_sdvo.c          |  64 +++++++-----
- drivers/gpu/drm/i915/gem/i915_gem_internal.c       |  19 +---
- drivers/gpu/drm/i915/gem/i915_gem_shmem.c          |   2 +-
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c            |   4 +-
- drivers/gpu/drm/i915/gem/i915_gem_userptr.c        |   2 +-
- drivers/gpu/drm/i915/i915_driver.c                 |   1 +
- drivers/gpu/drm/i915/i915_reg.h                    |   3 +
- drivers/gpu/drm/i915/i915_scatterlist.h            |  34 ++++---
- 19 files changed, 277 insertions(+), 139 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_dkl_phy.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_dkl_phy.h
+On 11/2/2022 10:43 PM, Daniele Ceraolo Spurio wrote:
+> On MTL there are no BCS engines on the media GT, so we can't always use
+> BCS0 in the test. There is no actual reason to use a BCS engine over an
+> engine of a different class, so switch to using any available engine.
+>
+> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: John Harrison <John.C.Harrison@Intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/uc/selftest_guc_hangcheck.c | 8 +++++---
+>   1 file changed, 5 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/uc/selftest_guc_hangcheck.c b/drivers/gpu/drm/i915/gt/uc/selftest_guc_hangcheck.c
+> index 01f8cd3c3134..d91b58f70403 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/selftest_guc_hangcheck.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/selftest_guc_hangcheck.c
+> @@ -35,11 +35,14 @@ static int intel_hang_guc(void *arg)
+>   	struct i915_request *rq;
+>   	intel_wakeref_t wakeref;
+>   	struct i915_gpu_error *global = &gt->i915->gpu_error;
+> -	struct intel_engine_cs *engine;
+> +	struct intel_engine_cs *engine = intel_selftest_find_any_engine(gt);
+>   	unsigned int reset_count;
+>   	u32 guc_status;
+>   	u32 old_beat;
+>   
+> +	if (!engine)
+> +		return 0;
+> +
+>   	ctx = kernel_context(gt->i915, NULL);
+>   	if (IS_ERR(ctx)) {
+>   		drm_err(&gt->i915->drm, "Failed get kernel context: %ld\n", PTR_ERR(ctx));
+> @@ -48,14 +51,13 @@ static int intel_hang_guc(void *arg)
+>   
+>   	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
+>   
+> -	ce = intel_context_create(gt->engine[BCS0]);
+> +	ce = intel_context_create(engine);
+>   	if (IS_ERR(ce)) {
+>   		ret = PTR_ERR(ce);
+>   		drm_err(&gt->i915->drm, "Failed to create spinner request: %d\n", ret);
+>   		goto err;
+>   	}
+>   
+> -	engine = ce->engine;
+>   	reset_count = i915_reset_count(global);
+>   
+>   	old_beat = engine->props.heartbeat_interval_ms;
