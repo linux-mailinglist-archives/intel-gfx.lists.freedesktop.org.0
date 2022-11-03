@@ -1,33 +1,93 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50D0E618BBD
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Nov 2022 23:43:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C20DF618C97
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Nov 2022 00:11:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1157E10E64E;
-	Thu,  3 Nov 2022 22:43:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DA6910E068;
+	Thu,  3 Nov 2022 23:11:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id ADA8410E64E;
- Thu,  3 Nov 2022 22:43:36 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A5A8FA7E03;
- Thu,  3 Nov 2022 22:43:36 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8174485385392483719=="
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
+ [148.163.156.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D137E10E068;
+ Thu,  3 Nov 2022 23:11:05 +0000 (UTC)
+Received: from pps.filterd (m0187473.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2A3Mg2JB013581;
+ Thu, 3 Nov 2022 23:10:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
+ h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=pp1;
+ bh=xB856Lu7diRKCjl5rnj5/O7cdEYdY6h3ekCJEnbbrrQ=;
+ b=Ynd0eLQJ8RZihEyqfNdw0UF3hAm1BpaX38YsZ6hFhEoQTRmYrc8MKQLuXctEdZhyoJlc
+ +u+zZpb78eoaeCujYsTp/I98zJVOgIjZMCEhqlttE/Ad+c/4GPzr9dcKhybIpwK10D75
+ YcXXg2VXtOORYUjaLMaoftS/DygnXzk/AN4VbgyHnT7Vol25ojZbNJQxyp2HGaP5M1CL
+ gXtG+SXERdN44LquSou1TDYfk3x7IyrxQw5VuMHoczngr/qsBDts/MFT209qwn/oARGK
+ 45jAyZp0RSa5uIQhVO8hT/aR1aPrNGuRVwW3QOcda5ZW9XEuUqrr424Fiah1kwVNmhKm Pg== 
+Received: from pps.reinject (localhost [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3kmphf116x-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 03 Nov 2022 23:10:46 +0000
+Received: from m0187473.ppops.net (m0187473.ppops.net [127.0.0.1])
+ by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 2A3Mg33a013848;
+ Thu, 3 Nov 2022 23:10:45 GMT
+Received: from ppma04dal.us.ibm.com (7a.29.35a9.ip4.static.sl-reverse.com
+ [169.53.41.122])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3kmphf115n-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 03 Nov 2022 23:10:45 +0000
+Received: from pps.filterd (ppma04dal.us.ibm.com [127.0.0.1])
+ by ppma04dal.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 2A3N4pel009486;
+ Thu, 3 Nov 2022 23:10:44 GMT
+Received: from b01cxnp22036.gho.pok.ibm.com (b01cxnp22036.gho.pok.ibm.com
+ [9.57.198.26]) by ppma04dal.us.ibm.com with ESMTP id 3kgutanh4k-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 03 Nov 2022 23:10:44 +0000
+Received: from smtpav03.wdc07v.mail.ibm.com ([9.208.128.112])
+ by b01cxnp22036.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 2A3NAgG314025316
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Thu, 3 Nov 2022 23:10:43 GMT
+Received: from smtpav03.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 6E2285805D;
+ Thu,  3 Nov 2022 23:10:42 +0000 (GMT)
+Received: from smtpav03.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 1BD8358054;
+ Thu,  3 Nov 2022 23:10:35 +0000 (GMT)
+Received: from [9.65.206.126] (unknown [9.65.206.126])
+ by smtpav03.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+ Thu,  3 Nov 2022 23:10:34 +0000 (GMT)
+Message-ID: <b0642bbc-b660-eb08-b965-d454053d59c3@linux.ibm.com>
+Date: Thu, 3 Nov 2022 19:10:33 -0400
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Badal Nilawar" <badal.nilawar@intel.com>
-Date: Thu, 03 Nov 2022 22:43:36 -0000
-Message-ID: <166751541664.9194.16023825206422961918@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221103184559.2306481-1-badal.nilawar@intel.com>
-In-Reply-To: <20221103184559.2306481-1-badal.nilawar@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/mtl=3A_Add_Wa=5F14017073508_for_SAMedia?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Content-Language: en-US
+To: Eric Farman <farman@linux.ibm.com>,
+ Alex Williamson <alex.williamson@redhat.com>,
+ Cornelia Huck <cohuck@redhat.com>, Jason Gunthorpe <jgg@nvidia.com>,
+ Kevin Tian <kevin.tian@intel.com>, Yi Liu <yi.l.liu@intel.com>
+References: <20221102150152.2521475-1-farman@linux.ibm.com>
+ <20221102150152.2521475-2-farman@linux.ibm.com>
+From: Matthew Rosato <mjrosato@linux.ibm.com>
+In-Reply-To: <20221102150152.2521475-2-farman@linux.ibm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: xC6XjxJiLVveCShhM6cFbqayvK08JurO
+X-Proofpoint-ORIG-GUID: xIazrtp8bBIDi6S_XTTPvQJjoqJbZUGp
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-03_04,2022-11-03_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 adultscore=0
+ mlxscore=0 suspectscore=0 lowpriorityscore=0 mlxlogscore=973
+ malwarescore=0 bulkscore=0 impostorscore=0 phishscore=0 priorityscore=1501
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2211030158
+Subject: Re: [Intel-gfx] [PATCH v2 1/7] vfio/ccw: create a parent struct
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,177 +100,197 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: kvm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Kirti Wankhede <kwankhede@nvidia.com>,
+ Vineeth Vijayan <vneethv@linux.ibm.com>,
+ Diana Craciun <diana.craciun@oss.nxp.com>,
+ Alexander Gordeev <agordeev@linux.ibm.com>, David Airlie <airlied@gmail.com>,
+ linux-s390@vger.kernel.org, Halil Pasic <pasic@linux.ibm.com>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ intel-gfx@lists.freedesktop.org, Jason Herne <jjherne@linux.ibm.com>,
+ Vasily Gorbik <gor@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
+ Eric Auger <eric.auger@redhat.com>,
+ Harald Freudenberger <freude@linux.ibm.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gvt-dev@lists.freedesktop.org,
+ Tony Krowiak <akrowiak@linux.ibm.com>, Yishai Hadas <yishaih@nvidia.com>,
+ Peter Oberparleiter <oberpar@linux.ibm.com>,
+ Sven Schnelle <svens@linux.ibm.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Abhishek Sahu <abhsahu@nvidia.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8174485385392483719==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 11/2/22 11:01 AM, Eric Farman wrote:
+> Move the stuff associated with the mdev parent (and thus the
+> subchannel struct) into its own struct, and leave the rest in
+> the existing private structure.
+> 
+> The subchannel will point to the parent, and the parent will point
+> to the private, for the areas where one or both are needed. Further
+> separation of these structs will follow.
+> 
+> Signed-off-by: Eric Farman <farman@linux.ibm.com>
+> ---
+>  drivers/s390/cio/vfio_ccw_drv.c     | 96 ++++++++++++++++++++++++-----
+>  drivers/s390/cio/vfio_ccw_ops.c     |  8 ++-
+>  drivers/s390/cio/vfio_ccw_private.h | 20 ++++--
+>  3 files changed, 100 insertions(+), 24 deletions(-)
+> 
+> diff --git a/drivers/s390/cio/vfio_ccw_drv.c b/drivers/s390/cio/vfio_ccw_drv.c
+> index 7f5402fe857a..06022fb37b9d 100644
+> --- a/drivers/s390/cio/vfio_ccw_drv.c
+> +++ b/drivers/s390/cio/vfio_ccw_drv.c
+> @@ -36,10 +36,19 @@ debug_info_t *vfio_ccw_debug_trace_id;
+>   */
+>  int vfio_ccw_sch_quiesce(struct subchannel *sch)
+>  {
+> -	struct vfio_ccw_private *private = dev_get_drvdata(&sch->dev);
+> +	struct vfio_ccw_parent *parent = dev_get_drvdata(&sch->dev);
+> +	struct vfio_ccw_private *private = dev_get_drvdata(&parent->dev);
+>  	DECLARE_COMPLETION_ONSTACK(completion);
+>  	int iretry, ret = 0;
+>  
+> +	/*
+> +	 * Probably an impossible situation, after being called through
+> +	 * FSM callbacks. But in the event it did, register a warning
+> +	 * and return as if things were fine.
+> +	 */
+> +	if (WARN_ON(!private))
+> +		return 0;
+> +
+>  	iretry = 255;
+>  	do {
+>  
+> @@ -121,7 +130,22 @@ static void vfio_ccw_crw_todo(struct work_struct *work)
+>   */
+>  static void vfio_ccw_sch_irq(struct subchannel *sch)
+>  {
+> -	struct vfio_ccw_private *private = dev_get_drvdata(&sch->dev);
+> +	struct vfio_ccw_parent *parent = dev_get_drvdata(&sch->dev);
+> +	struct vfio_ccw_private *private = dev_get_drvdata(&parent->dev);
+> +
+> +	/*
+> +	 * The subchannel should still be disabled at this point,
+> +	 * so an interrupt would be quite surprising. As with an
+> +	 * interrupt while the FSM is closed, let's attempt to
+> +	 * disable the subchannel again.
+> +	 */
+> +	if (!private) {
+> +		VFIO_CCW_MSG_EVENT(2, "sch %x.%x.%04x: unexpected interrupt\n",
+> +			sch->schid.cssid, sch->schid.ssid, sch->schid.sch_no);
+> +
+> +		cio_disable_subchannel(sch);
+> +		return;
+> +	}
+>  
+>  	inc_irq_stat(IRQIO_CIO);
+>  	vfio_ccw_fsm_event(private, VFIO_CCW_EVENT_INTERRUPT);
+> @@ -201,10 +225,19 @@ static void vfio_ccw_free_private(struct vfio_ccw_private *private)
+>  	mutex_destroy(&private->io_mutex);
+>  	kfree(private);
+>  }
+> +
+> +static void vfio_ccw_free_parent(struct device *dev)
+> +{
+> +	struct vfio_ccw_parent *parent = container_of(dev, struct vfio_ccw_parent, dev);
+> +
+> +	kfree(parent);
+> +}
+> +
+>  static int vfio_ccw_sch_probe(struct subchannel *sch)
+>  {
+>  	struct pmcw *pmcw = &sch->schib.pmcw;
+>  	struct vfio_ccw_private *private;
+> +	struct vfio_ccw_parent *parent;
+>  	int ret = -ENOMEM;
+>  
+>  	if (pmcw->qf) {
+> @@ -213,41 +246,62 @@ static int vfio_ccw_sch_probe(struct subchannel *sch)
+>  		return -ENODEV;
+>  	}
+>  
+> +	parent = kzalloc(sizeof(*parent), GFP_KERNEL);
+> +	if (IS_ERR(parent))
+> +		return PTR_ERR(parent);
+The error here would be a null ptr due to failed alloc, how about:
 
-== Series Details ==
+if (!parent)
+	return -ENOMEM;
 
-Series: drm/i915/mtl: Add Wa_14017073508 for SAMedia
-URL   : https://patchwork.freedesktop.org/series/110502/
-State : success
+> +
+> +	dev_set_name(&parent->dev, "parent");
+> +	parent->dev.parent = &sch->dev;
+> +	parent->dev.release = &vfio_ccw_free_parent;
+> +	ret = device_register(&parent->dev);
+> +	if (ret)
+> +		goto out_free;
+> +
+>  	private = vfio_ccw_alloc_private(sch);
+> -	if (IS_ERR(private))
+> +	if (IS_ERR(private)) {
+> +		put_device(&parent->dev);
 
-== Summary ==
+As you said earlier, unregister_device()
 
-CI Bug Log - changes from CI_DRM_12339 -> Patchwork_110502v1
-====================================================
+>  		return PTR_ERR(private);
+> +	}
+>  
+> -	dev_set_drvdata(&sch->dev, private);
+> +	dev_set_drvdata(&sch->dev, parent);
+> +	dev_set_drvdata(&parent->dev, private);
+>  
+> -	private->mdev_type.sysfs_name = "io";
+> -	private->mdev_type.pretty_name = "I/O subchannel (Non-QDIO)";
+> -	private->mdev_types[0] = &private->mdev_type;
+> -	ret = mdev_register_parent(&private->parent, &sch->dev,
+> +	parent->mdev_type.sysfs_name = "io";
+> +	parent->mdev_type.pretty_name = "I/O subchannel (Non-QDIO)";
+> +	parent->mdev_types[0] = &parent->mdev_type;
+> +	ret = mdev_register_parent(&parent->parent, &sch->dev,
+>  				   &vfio_ccw_mdev_driver,
+> -				   private->mdev_types, 1);
+> +				   parent->mdev_types, 1);
+>  	if (ret)
+> -		goto out_free;
+> +		goto out_unreg;
+>  
+>  	VFIO_CCW_MSG_EVENT(4, "bound to subchannel %x.%x.%04x\n",
+>  			   sch->schid.cssid, sch->schid.ssid,
+>  			   sch->schid.sch_no);
+>  	return 0;
+>  
+> +out_unreg:
+> +	device_unregister(&parent->dev);
+>  out_free:
+> +	dev_set_drvdata(&parent->dev, NULL);
+>  	dev_set_drvdata(&sch->dev, NULL);
+>  	vfio_ccw_free_private(private);
 
-Summary
--------
+if device_register(&parent->dev) failed above, you will goto out_free and call vfio_ccw_free_private before having done vfio_ccw_alloc_private (e.g. private==NULL).  Doesn't look like vfio_ccw_free_private handles that --  Either check !parent here or add a check to vfio_ccw_free_private.
 
-  **SUCCESS**
+> +	put_device(&parent->dev);
 
-  No regressions found.
+As you said in your other reply, this goes away
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110502v1/index.html
+>  	return ret;
+>  }
+>  
+>  static void vfio_ccw_sch_remove(struct subchannel *sch)
+>  {
+> -	struct vfio_ccw_private *private = dev_get_drvdata(&sch->dev);
+> +	struct vfio_ccw_parent *parent = dev_get_drvdata(&sch->dev);
+> +	struct vfio_ccw_private *private = dev_get_drvdata(&parent->dev);
+>  
+> -	mdev_unregister_parent(&private->parent);
+> +	mdev_unregister_parent(&parent->parent);
+>  
+> +	device_unregister(&parent->dev);
+>  	dev_set_drvdata(&sch->dev, NULL);
+>  
+>  	vfio_ccw_free_private(private);
+> +	put_device(&parent->dev);
 
-Participating hosts (40 -> 28)
-------------------------------
+As you said in your other reply, this goes away
 
-  Missing    (12): fi-hsw-4200u bat-dg2-8 bat-dg2-9 bat-adlp-6 bat-adlp-4 fi-ctg-p8600 bat-adln-1 bat-rplp-1 bat-rpls-1 bat-rpls-2 bat-dg2-11 fi-bdw-samus 
+The rest looks fine, with these changes you can have:
 
-Known issues
-------------
-
-  Here are the changes found in Patchwork_110502v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_tiled_blits@basic:
-    - fi-pnv-d510:        [PASS][1] -> [SKIP][2] ([fdo#109271])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12339/fi-pnv-d510/igt@gem_tiled_blits@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110502v1/fi-pnv-d510/igt@gem_tiled_blits@basic.html
-
-  * igt@i915_selftest@live@hugepages:
-    - fi-bsw-nick:        [PASS][3] -> [DMESG-FAIL][4] ([i915#6217])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12339/fi-bsw-nick/igt@i915_selftest@live@hugepages.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110502v1/fi-bsw-nick/igt@i915_selftest@live@hugepages.html
-
-  * igt@runner@aborted:
-    - fi-bsw-nick:        NOTRUN -> [FAIL][5] ([fdo#109271] / [i915#4312])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110502v1/fi-bsw-nick/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
-    - fi-bsw-kefka:       [FAIL][6] ([i915#6298]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12339/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110502v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#6217]: https://gitlab.freedesktop.org/drm/intel/issues/6217
-  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12339 -> Patchwork_110502v1
-
-  CI-20190529: 20190529
-  CI_DRM_12339: fafe2d945b3d76b8a7e32102311d8d0495724a3e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7041: 40ea6325f69eb56653171c21b5d4977982a92d0a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_110502v1: fafe2d945b3d76b8a7e32102311d8d0495724a3e @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-54f3b18ad901 drm/i915/mtl: Add Wa_14017073508 for SAMedia
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110502v1/index.html
-
---===============8174485385392483719==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/mtl: Add Wa_14017073508 for SAMedia</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/110502/">https://patchwork.freedesktop.org/series/110502/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110502v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110502v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12339 -&gt; Patchwork_110502v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110502v1/index.html</p>
-<h2>Participating hosts (40 -&gt; 28)</h2>
-<p>Missing    (12): fi-hsw-4200u bat-dg2-8 bat-dg2-9 bat-adlp-6 bat-adlp-4 fi-ctg-p8600 bat-adln-1 bat-rplp-1 bat-rpls-1 bat-rpls-2 bat-dg2-11 fi-bdw-samus </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_110502v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_tiled_blits@basic:</p>
-<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12339/fi-pnv-d510/igt@gem_tiled_blits@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110502v1/fi-pnv-d510/igt@gem_tiled_blits@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hugepages:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12339/fi-bsw-nick/igt@i915_selftest@live@hugepages.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110502v1/fi-bsw-nick/igt@i915_selftest@live@hugepages.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6217">i915#6217</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110502v1/fi-bsw-nick/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12339/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110502v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12339 -&gt; Patchwork_110502v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12339: fafe2d945b3d76b8a7e32102311d8d0495724a3e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7041: 40ea6325f69eb56653171c21b5d4977982a92d0a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_110502v1: fafe2d945b3d76b8a7e32102311d8d0495724a3e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>54f3b18ad901 drm/i915/mtl: Add Wa_14017073508 for SAMedia</p>
-
-</body>
-</html>
-
---===============8174485385392483719==--
+Reviewed-by: Matthew Rosato <mjrosato@linux.ibm.com>
