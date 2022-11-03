@@ -2,149 +2,153 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9D28617A40
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Nov 2022 10:50:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9ACF3617A88
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Nov 2022 11:04:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99A1B10E5CC;
-	Thu,  3 Nov 2022 09:50:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 296AC10E269;
+	Thu,  3 Nov 2022 10:04:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0818E10E5D7
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Nov 2022 09:50:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12D6710E269
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Nov 2022 10:04:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667469007; x=1699005007;
- h=message-id:date:subject:from:to:cc:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=dJefGsv422v3vqZe3AdlMYYI0Pox1GS4B6mMRuYGyFw=;
- b=Nd6IPUaSTXT22K+ynXfH/HyntTGOKpkxTTNy/Ep6BIp/jWBruFVmN4Mi
- f6G3aO10Oc0OkNh3IOkY/Bl1iwEOryCnnWoCmmvEkTwrmWLxGL9C8KtRK
- TITsYknf3EzCETdR5Wz7n8CyWDaQemaFx2lWH2Euc7L+rKrn9KmD8+mnf
- ARk4PMf980CVQzlcRXdUGaMl2d29NOv9XuwuvhCzrrWlSu+/lApi14Qb9
- HpQHBZcWiMPqHBvTpZsypnDEb9n5La6temDOLwqBs/0EWoxnf0YivEEKA
- lxF+rqP3LugreovCieYxCVIZZrRt0QrrleYGJHC6vuBtUVvjknztgXCDV A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="309633331"
-X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; d="scan'208";a="309633331"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ t=1667469865; x=1699005865;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=m9TeBpFqiVTfDbMan4iW9Pej+NCKFeqN7h4oGO3rgJ4=;
+ b=JsYDQwgrtTiyFIfaBRSwjX9lrE/HbALsOpqqAp0q5VzoqqjvGm7S4nTx
+ DxqPSJom22GjkBYFWzCiB4TBegwSts2kYOVLGwT2OAaRm8OEbQcCpsZb8
+ yX7kZwDgdPRplWZtPRDz9w7sfjmcdpC5xZEu3u0KzfAzdBjxVQ4BxHxkT
+ qDtnq8xQ83znn2rtHYqCJjr6+FbLoXf2efJVD9YQ4oSMOvUoY0UCMeDcW
+ sRymbWjf9leb+1a0EkCZnR/9mjnlahrqDqflY92bR9J6bkgzTR1jGMHoU
+ 5/9ww3K8xK4auwPqLqrQyutK/Q5Dd5CXqwdrCKnkaMEdtBksrstyRR8xN Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="309636171"
+X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; d="scan'208";a="309636171"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2022 02:50:06 -0700
+ 03 Nov 2022 03:04:24 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="612582562"
-X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; d="scan'208";a="612582562"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orsmga006.jf.intel.com with ESMTP; 03 Nov 2022 02:50:06 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="777245073"
+X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; d="scan'208";a="777245073"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga001.fm.intel.com with ESMTP; 03 Nov 2022 03:04:23 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Thu, 3 Nov 2022 02:50:05 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2375.31; Thu, 3 Nov 2022 03:04:23 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Thu, 3 Nov 2022 02:50:05 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2375.31; Thu, 3 Nov 2022 03:04:23 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Thu, 3 Nov 2022 03:04:23 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.49) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Thu, 3 Nov 2022 02:49:47 -0700
+ 15.1.2375.31; Thu, 3 Nov 2022 03:04:22 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=d1TUqmv8Xtn/7dLvKy94DgxAsEBdtmO2Ld0KnxCbGRQOXzWFex+F51z20YWTEkn7n1XlTVEga67BtoHNYuUQzuowD2g++XdJd+6zEIs/x3ZwH0lR4/VCF2N1TshvsaDaIo+9vvPYNUsjti5LfkT25Jcb+7+ZEQAAJH6VuVVSB33krxbFm11Q5mXmAqmGfjPJuu8zypCjyH4y6uNHjMqqLyJ5vkgV6OR1rfn9RMRx7WH4XyGPMfx0m51YOagzDs3xHwcZw0mcNDaB2LGy9H2Y+9nA1x8Lsrlr3CSk7hF7sTaDusedxq/cfF9H5/RxIAs74iABvFF+J9nzGMhcY8rGLw==
+ b=mqFwLVlHqqx0Q2tXBIHOj6nyBvM5YACkdrcXX66soB60nnDbuHwIRwXzaxM78VtdLAsI40g6ipuqthMr8TTrRNYIhqySZrZ9SRsIQNkEtVdIB6UhJny9On3+KrCnXs+lwgUGlOEVjo9To8Hvty2V42ooZk/qvuRUEQr/2zyCglKnaxqwWAiIi68vKO/7l0p60fuWVGIBtFH4us5hOL0ALt4SqcDI/twICweSgFHPXYwin3Vh4HC4jAs+2MBO38uyPS5Idr46QRLsnKYNGl1g2oh0qOA0DfbNcezaF+guhPq6bs7zPqnDiIarWNLjpx1bhZjBqxMcYBNKpjDJEIcXvg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SkN7OK7adM2p4bLZn3kC6BjOpub3kEQtiaFSA0dd7qg=;
- b=jM46erVOnYqlqiK6GZCMxgxOMlpdyRfAV1MkJhYcJF0P/rYoWtR9kVIacTM4D6xzB+J5ZQhEbjvg1FtJC77+qHZi1Ff9M6ntbFxVa2fLob9D3fRr092YIDjj5e7GAElnEw+RvEaLQYzLRl9n1jn4lFOPYQs6hkXjbgDvE4skrQWUdZctqPAScYNsJ9tRB1viTfGAPVqNLdnE23QM7O0PT85U25Ibuo45o0RR9jUZDxLyM+rQBx8e451smuejRUblkotAwBP0jyab0JQyW4wFuTb/cQdOPKtZbKPb67GxwpN58tPb6OXDI8VxYhNtOQskWL2P/5NtWAJ6QS3NM0UybA==
+ bh=5bcXXZCOCTWsdEb6IqvkhGsy3lX0kBgK2iniGjBXi4E=;
+ b=JwHarEjpJZ75SelfFwwpQiiSX/ZuaePdB9MgprmT2pkcobyfY9ydzd0Rc/wscEYDcZtkwtp2vgFgoXI79Qe6uePrbYQKmlpQWRQ/8TGQoOGj1vnggfcwWYGS6qNGAIfrtVk6g0fXxASWsYGLlUVa5TYjz7I1WutM4hjTCIrBNCieDO6mfRptXUmBAc6TGKPlvcPLC0hW+Td6QSWM4THlQRVFLIr0YG9mZV/z106cWqWX0KAH/9of1taStiM9Ja0F4gNH25vXRSXX/FhfQUmt+N6VRp6A2OKSgLndFoKE/zQZfEeRgpluNYBg19LAof9dT8NYWmDb7yXNK+cKk7T4Gw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CH0PR11MB5409.namprd11.prod.outlook.com (2603:10b6:610:d0::7)
- by BL1PR11MB5350.namprd11.prod.outlook.com (2603:10b6:208:31c::24) with
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by SA0PR11MB4542.namprd11.prod.outlook.com (2603:10b6:806:9f::20) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5769.21; Thu, 3 Nov
- 2022 09:49:43 +0000
-Received: from CH0PR11MB5409.namprd11.prod.outlook.com
- ([fe80::be9d:e93e:4ec:166b]) by CH0PR11MB5409.namprd11.prod.outlook.com
- ([fe80::be9d:e93e:4ec:166b%7]) with mapi id 15.20.5791.022; Thu, 3 Nov 2022
- 09:49:43 +0000
-Message-ID: <470dcbb3-b76a-be5f-24c7-fde3c89060fb@intel.com>
-Date: Thu, 3 Nov 2022 11:48:57 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.22; Thu, 3 Nov
+ 2022 10:04:21 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::21a6:81fa:3ed7:a486]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::21a6:81fa:3ed7:a486%9]) with mapi id 15.20.5791.022; Thu, 3 Nov 2022
+ 10:04:21 +0000
+Message-ID: <145d4189-5ade-4913-ed9a-9fccad8b49e5@intel.com>
+Date: Thu, 3 Nov 2022 15:34:12 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.4.1
 Content-Language: en-US
-From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-To: <intel-gfx@lists.freedesktop.org>
-References: <20221102145402.617336-1-gwan-gyeong.mun@intel.com>
- <20221102145402.617336-2-gwan-gyeong.mun@intel.com>
-In-Reply-To: <20221102145402.617336-2-gwan-gyeong.mun@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ <intel-gfx@lists.freedesktop.org>
+References: <20221026113906.10551-1-ville.syrjala@linux.intel.com>
+ <20221026113906.10551-8-ville.syrjala@linux.intel.com>
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <20221026113906.10551-8-ville.syrjala@linux.intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AM5PR0402CA0022.eurprd04.prod.outlook.com
- (2603:10a6:203:90::32) To CH0PR11MB5409.namprd11.prod.outlook.com
- (2603:10b6:610:d0::7)
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PN2PR01CA0042.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:22::17) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH0PR11MB5409:EE_|BL1PR11MB5350:EE_
-X-MS-Office365-Filtering-Correlation-Id: 50fc0e16-b760-4245-0eec-08dabd80bbc9
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|SA0PR11MB4542:EE_
+X-MS-Office365-Filtering-Correlation-Id: ca52f9b1-8479-471d-d9a4-08dabd82c70a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: N84SiSO3v3MiH2g4XmjEpSpKX82E2Iy3eU8OGm+NUoSzzUv5ym074G47xshv0p/rWdCjpE0NR1Zy7qt6wXs/MSC5qCrIhYv2IKXPEcskzzMsIRADaZUVB/rJwmj1K6JJV55UKOecy9grZowlypOg0bN6QCKCqDOUggji3lHyHv2I636wGyrpqLtLcMSXDtEhM/gJYaMpSzSLV57jc5I+9xz6nzzrje7oU0p54CzXlpgADSUMb2N5I1QKhMbKYa5qV6JgTB+MRS7Jro9nYI++WGThuP1wXKZo/JmpFOcz5kEyrqK52HCC5338DU7ccmC3D7upAL661lAIfPfnIwE/gWLgteTealR9jcWH3RJAeI7sDnIgAHjW9OQY42xF+75LCc5FIakU10XdIcyK02nhapaRMKLDKJTd2PRcBiXVbfXVNmI4ks6n9k+9itC6iQZ3pNa/8v8/ygJK9+DOAgwUDd+IzFgCEx9cHzzG3uhEF+NX1A0UG//e5Ptz0sIA332lnGNgivvJhbnLprQrpHiRlisawY4KF7zTvFj0X5ayIZ4Mk+lo6MUUBz3z4uffB9SMJpDwVtM7zv9muLEzD1IcsLwXebXXyy0Qwdemq6sblGysB8zxdYQP7frYNs8oFn1xLDlUFArIaPxgq4gEGY11V+UdM2FhTg3q2+ElUfb/G72L4DcU/fA3Qh1wVYTgF9+hZSKbiFDMyjzB5+pqEFKrVYGJeYuKWdpZSOFkE+qxsbMX1qo63BXLjKqI+8QdGLZx4CHForYz32h5PNjMcsQUQ9NmeZGe+N0tEHcWUVOMEUovWjNBXu3dC/weXaIcdfBza2nN2HuzmpeN8zfq7GBc53DAzNxKO4kNdkywTDWEPYY=
+X-Microsoft-Antispam-Message-Info: 6xR0PxBdU39hR8iSI1E4Halqm4fKOz46iiY8NeRbCDgcBL5t8o901oFapAWrbw+vtPEHOEqEQrbLRj9tUQ3c3w16bLbGxHiM88XSy47MnO4ru9fKqiwAZq6Vy4NuDKSYSY2Q5rGsEqYdoyf5bAm9J078DVSQzXS5sGbPFnn0ZgZ9bs/Bp+mPWuAFq001XOw9Q6URu9cYnhcosD+GfaakFJMTygMEQ4nEhe6vEgXsEAlPCzldSS5Hv8FR9sGkFX1U1zl5iylNTD+BZvSeb5swbuWkf4VJdwVz/Vf0XikG2fKkG7LPuyOKtCur9F6E7920TNso1iNtSEnyX367M1GE/QBEJgbAYzRFaCtN2euhfek5QeOtlr9gYxEm6pojKfF83qjd2YCROaF8x8rxv0Dn7BDcYk8isKveZW80yNA5hskBSGngBg8gSNN3PZ5HQDoADHLCEo7zGlI3JN+TVAeG/W/g1nvRya8T8XL+Q+jTYSnlUWnXBjifGLhb1EKHVpELHBLX9Ma8T0/Avmbt/7eHqZ8UZHb0tM2xymo1D9z+AJBnU+tVK2wYVI928twJUGTTqhGgggPmy153epBFKNPCDZ1RZPtlMDGsdhftUvFRfAwfBztvkMlajsP8ej3yJ5q6zyMcpm6IxL4fHPUU4v+T6MYRt54rYtNEphmfAIGOhz/l+IWjSZNyUCJ40Lzz/8m5wSySdVHo1fFniK/olBb04BlxNkkhADuVuJmqgzwOtetWOIoz/MPn3T27O7YbbiQpnCwKTw/jNglS+Uxk/C5RNu5w4iCaRbhqJF17oDAMaQU=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH0PR11MB5409.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(136003)(39860400002)(376002)(396003)(346002)(366004)(451199015)(4326008)(5660300002)(2906002)(83380400001)(8676002)(66476007)(6916009)(66556008)(41300700001)(30864003)(8936002)(316002)(31686004)(66946007)(966005)(6512007)(6666004)(53546011)(36756003)(478600001)(82960400001)(6506007)(26005)(6486002)(2616005)(86362001)(186003)(31696002)(38100700002)(45980500001)(43740500002);
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(376002)(136003)(396003)(39860400002)(366004)(346002)(451199015)(2906002)(31686004)(86362001)(66946007)(66476007)(66556008)(26005)(6512007)(6506007)(8676002)(31696002)(41300700001)(8936002)(316002)(5660300002)(36756003)(38100700002)(478600001)(6666004)(6486002)(53546011)(66574015)(83380400001)(82960400001)(55236004)(2616005)(186003)(43740500002)(45980500001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bHp5VVBnb3VhdUlGbkdUMENlV1l2UGlscFZaVG8ra3AwNVY4dmZhK3BYRFJK?=
- =?utf-8?B?SVRSVVJkajZBREd0T1RpU1BWNE0vaDZ3anM4NjhRU29VR0l2anpoK2gyM25q?=
- =?utf-8?B?bGtNaW9iWlZOTXlRNUgyRUlheFljU3VUd1NZbUp4aWNLL1ZwaklCR1BDNVZh?=
- =?utf-8?B?enRiS3J0ekNuOHU4TGNncCtwZWFCdDhsT2F6UFBWa0M3L3VwUk5LWXZsdkNC?=
- =?utf-8?B?SjhDWnA5c21HSm9iZ3M5ZUhaaGNKaEllY0NwSXlhNyt0QWhiU1hZTEx2WXVs?=
- =?utf-8?B?Nk5CRDZvcmRuN1pPZ05XcTZyZ01pUFRHR2xYUnVVbXVJL2ozS3BjWWpXdFZ5?=
- =?utf-8?B?Y21zbVJPOGw0Q3dTYXJVRGd2N2R5M2t1cVBJOGFzbU9OL09EbHhDbXBlaW5L?=
- =?utf-8?B?ZHN5dnpkcmp0VXB3eGEzMkNvUW0wYW9zendhakVWTHIyN3FaU2JmR1FnWDE5?=
- =?utf-8?B?ZHJaVktKNERadUswb2l6c2lLbVVSUVRyZkJ2L3o3ZkMvU01iRWZPOEJ4VG5H?=
- =?utf-8?B?dlRWckFIRXovY2VMQytYQ0dmb1BKM3FiZmxmWHFuVlpLL1dESHRuWDl0Y2sx?=
- =?utf-8?B?SElXdFRsaEhTZGNlOVQyWXg0UnlIbEFJcDh5QmJpWFBKOTBaeUFIbjNiS2Jj?=
- =?utf-8?B?SG50QlFNYnAwUUQ2VVNWNmU2MDBmODBXMmZKbmx5NUNDWU1RR281L255dWVs?=
- =?utf-8?B?OWp3d0hMYnMzd2kwWnJQbXVvbmwvVUYvbTJibEFLT0l1WkRuQkdLaEFYVjdm?=
- =?utf-8?B?SVBkWFRVZ3JQMTdsM2kxMm5FVlViRmNqRGVKZlBBMzd4WS9mTkQzODJibnE5?=
- =?utf-8?B?d1ZhVkc0UWZaMmdlYmhaemVZYnVHTUlhejlCbFVtWUplcEdRUzByVXVhdm9w?=
- =?utf-8?B?dERjQTZqSkR1YU9VR25xb1FrQ0xZZlFqZHFoWXh0NklVUDlob3JvczVieFY4?=
- =?utf-8?B?VzRnKzVyRE5GN3dRWmg4UzhKKzl3Tk0vVjZoeXl4RzE2VDBTVWg0VHNyeXJS?=
- =?utf-8?B?T1lxcHo3RHFVYVJhR0JiRG5KdjR3UGNQd3lwUjN6aGd1WEdYc2RnUjE2eHdP?=
- =?utf-8?B?clVqS1p6b3RhK0NRbG9qOTBtZzRxODd3UHlianRUbVpPOE95c0tINnBEVzUw?=
- =?utf-8?B?TStXQzYyRFN1VXdLVFk3ZkpXalFHZ3gzbDF2MDVDeVBTbmlKMitwMDE5cU5j?=
- =?utf-8?B?RWFLZVNSUVBzaktCV2toR2czckR3ZURlVzBTZitTK2FTT29BMmp0YjFtYTFY?=
- =?utf-8?B?Y2dwaStsSWpKWkxqUFN4WTFFZGFVd0cyQUVDSk5uNlp1Y01xdVVacWVDVlU0?=
- =?utf-8?B?aGpVQVAyNXFlM2s0bnJZbEVnb0JWUUxiV0FSR3RuakhySllLRVlEV1hnMGtU?=
- =?utf-8?B?Z2pCTTNkSTJtYjM3WUYyRU5ZNW1lSm9ZNjduOEN5akhEZ1ZwU3VCdjYzSld6?=
- =?utf-8?B?RHJQekorRitmM2NaWURvK0xTVmxreGRGQjY5SHhjQVVzUVoxSE9ZOWhkdW1W?=
- =?utf-8?B?Nm5qdU5tZ3h4UW1nTkRzbUQwY0NmSW1hT1hmWU1wa2NoekVTUWJ2RWI5Smp4?=
- =?utf-8?B?anp2YkR1RXJVcFR0RGF3cDdqRlFsNE5NQ0oxYU9jT2tDcXdqdVhJZzBaYWdL?=
- =?utf-8?B?ZjlwelFkcFdSYkpVaVR3dE5XOVpQOUU5K0U3dTNEUXR4N2FFYUpsYnBjeGZl?=
- =?utf-8?B?cDlabi9uaFExYk5ZanZHUm5MVnlleHQ2ZURBOUpSSXJIalVTNW1ObnBBWGRG?=
- =?utf-8?B?K0FZOURpOS9rSWxOcTlobENScHdqOXh4WEg3bDFTYlllak0rNjVNZU1Ja0py?=
- =?utf-8?B?M21rZTBaNUJ2SXk3Mzl3TGczQWZFZU5WcGtqNDhUcy9IeENEWXdnL0lxckpP?=
- =?utf-8?B?UWJxd2tndjZWQzZ3bEoxUWlkUS9EbStYb2ZVNnhrNHdRQWNUdUxXdmpoTDNt?=
- =?utf-8?B?OWwvaElPdDE0Y2t1TDFKSVZHdWgyM1ZQZFhBU05ZMG5GUWFSbW81enNXbC9M?=
- =?utf-8?B?QXF1YzJMK3o1SExvOE1KNXB0OUdoRU1RSDhjRkRQRUxiSzB4bFp1SXNqdEMw?=
- =?utf-8?B?ZC9rczRwVFRyL2hSdDFjSWQ0SWNHVEZsNUMyd0hBWlRMUUhsN1RWMllJUWxH?=
- =?utf-8?B?bERqYWx1MFRpa1ZLaFRWNVBLaVpORXJHc1JaOXFEdzVFUmZaQ1drdi82L0Ey?=
- =?utf-8?B?OXc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 50fc0e16-b760-4245-0eec-08dabd80bbc9
-X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5409.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WGhWWXZDSDlTVTBPTExSV1ZGbm5RMW9YSDZDSkplcDBvWDlmSEdldG9kZVJh?=
+ =?utf-8?B?Uk9ubGVnQVVFaVNPNnVWck9ObVBLNU04dS9rM3RTNGIxWkd6TmZJajA5a0Zl?=
+ =?utf-8?B?WUpRazE2TFZEWWFTUlRtbVVmZDJCNmZDZlltRXp2ZEpkaFNqNUJSMUJCY29K?=
+ =?utf-8?B?bWE3U0NkNE5rY0x6OUpiNVRZOFIwbkI3eVNIRVZuRHNIcThjNndtb2x0OGRK?=
+ =?utf-8?B?Z2dwdHZVTUFLMTNHN1JHb3ljTGwzOXdmZzlKcTMrMlROZGpGMGV0T2NnbHE5?=
+ =?utf-8?B?ZDZlbEZSTlVFVHNsY1VqTFFEUHlCMUd6bjZoTU9vMFZLQ0hwYjg2NHRPWVdt?=
+ =?utf-8?B?V0NVQzdibElaVStSaU1JbHpoMHpWY2x4VTBlaGd4aEFzazhrU3JUMUJDdE81?=
+ =?utf-8?B?Yk0vZGhrV1BsTGpXSTU1UmxLNnN5YXlFTHU2UVFuYm4rRzl2alhPTzVlS2l6?=
+ =?utf-8?B?MklpQldFWE9YUEo3SHMvdmZlUmdWMkZSRWptWWp4RDBEUHlRSmJ2bjBiWU1O?=
+ =?utf-8?B?Y1R1YzgyZDJtRFhTdVIwbVVRVTdOR1o4eEFuT3ZubnEzcDdnblVLb2tCcTRv?=
+ =?utf-8?B?RFo3Z1lZcEdSajlTbGZiZFlzVm9TZlNrdGpHcy9hbWJQOVkzRHYyazZPRSt3?=
+ =?utf-8?B?RW1LL29LVENKVGczTXlPV0xXQis4Z0VGNHVKd0N2VUVPbU8xT1QwYklrV3Nr?=
+ =?utf-8?B?TWNUVEl1LzIyM0ltaHdpa0tEeXVqcGZYNzAwUlNuQkdJa1A1Y0dTcDVmMStj?=
+ =?utf-8?B?NTljYVhlTGhoWndvUUY1d2N5K2J1U2dpT2hsemMveXZtRVNGdkRIR0NjaEpW?=
+ =?utf-8?B?VDE2UDRDdzVuSWtNNmEwOW1WL2VZdHpzRUlQYVRpVUpOM0RYRmgrVDMySXc4?=
+ =?utf-8?B?ejgvdkh0MXlWaVpneUdEQndPUnBnODNqakhKKzgrdXdtOWxqcmIzMjBnWDVz?=
+ =?utf-8?B?eU1MejQ5dmFYS0hNVWRUTHNYTzF2SEZJWWgzT1FaM0RVa2p6b0hnd1NKb0hp?=
+ =?utf-8?B?cFR6clJqZXg3OFZMbmFiMyttYTQ3ZGxuOWVWeGVVdGc2RDd2bEx5M2M1SmI0?=
+ =?utf-8?B?eGx2NURYbkV4OXdpWDZ3ZVdSRVluK1ovNGVaYnpZSjBaQ0N0OE9MRlBSNm1y?=
+ =?utf-8?B?ZFY1aitnMUkwR2szMmtIdHppWUlBWjFTSElROU9ENUpnNlgrR1RBZ0tJdmwv?=
+ =?utf-8?B?ZzE4S0hzVHNCUEk5VHVKYWlNWFJHUWgwNkFxbmVoVEFjeHJBcUJzZEtqZmRG?=
+ =?utf-8?B?TGFaZFJMRklPeHhhaFJ5d0ppZjd4dkIvd0V2THhmYnhoUkFVRHkrWVhnbDVO?=
+ =?utf-8?B?eGwvVnNGdTVIWHk5cHo2K2VnSzZWUzVkenEyaWZBWU5GMVIwM2M0Z2JvVFY5?=
+ =?utf-8?B?azVEejRsYnVLalQ3T3hyWWtISmQ5SkRzRlI1ZFAyVXFwSzdCV1VNdXA5QktB?=
+ =?utf-8?B?dkR0WkZNbWVOYUdOOVRlUS9VNDdIV1VjTWhKUDVna2YyMjNLQlU5dW1KZXlX?=
+ =?utf-8?B?em5XTC9peUhPWkZ3WCtDVjNMUVloTGkvbVVUWDNQWUN5Z3BBaFRrR0lnOC9V?=
+ =?utf-8?B?RUZnYXdnT2lHZS80UGNkRnNXM2w2eldFL1B6cGRRRkxvVlo4cDFJYU5ablFO?=
+ =?utf-8?B?SWc1TlpLRERoZkI0bzZMOFkyd2lIeDd6R2lrL1pGa3ZPWUVYRzVlSzVBQkRD?=
+ =?utf-8?B?YTJsOXllNDRPcGlVb0d6a0dIMlFYZzhtbG1zY3NHZUd1U29yYnRGWmdEaGlk?=
+ =?utf-8?B?czIyRnRvSkYvUjRLYitqZW5KeU5Zd3VySGhld1NTa0t6T1VvdnVmVVFRd0pV?=
+ =?utf-8?B?VzB2enZpQ21CbG9RbjRLeXpHTGJNLzJMWmhQenRIZSt6dWNROSthdjFFRUtm?=
+ =?utf-8?B?Vko3dFFKUVhrdVcwTm1zcVVQWnVYbVB5alBUclU4V0FSZHRLeHkzWUc2Q0Vq?=
+ =?utf-8?B?TzcxbWZUeUhLNFAybWRPNGdLSHpSd3lwRlZYZFZXSlRaTXphZENLSGdVNy84?=
+ =?utf-8?B?dmd3bnZMcUtLbTJLbkNlMDFuVi9oaDhLWnpFZVo3M3krYitUaHNyeTFBYkIx?=
+ =?utf-8?B?NXAzNUVaNjVCK0RGUHVVcVBXMTdrOGIxSDdiQVNzM3FFQkt1Tk1DeUNMY3Jm?=
+ =?utf-8?B?NjE5WmxXc1JnUEFZWVU1S1ovYlYyMytEYTc2dElnMlpobjZKa0lsdm9oQjNR?=
+ =?utf-8?B?dEE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: ca52f9b1-8479-471d-d9a4-08dabd82c70a
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Nov 2022 09:49:43.3138 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Nov 2022 10:04:21.2558 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lyPCtfm7lvPRGqmbKIkC7duAhEWEaHgn66/PBBVflexTY934HcEeNxT42mFsX6YsvuPh+9DiBo7HGTR4mXcwkr31YZHOOI6x6AZ6lcp0tNs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5350
+X-MS-Exchange-CrossTenant-UserPrincipalName: TrX1opHX3FgKu5+imX/eWIpIGtbGnap4BHOnGruF0bxjmP+9XrfDOWuikXyr5fflQc8ZE4avPDtrrimdax1+1Prr4OjsdIhMq0nth1BZMKg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4542
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v14 1/7] overflow: Introduce
- overflows_type() and castable_to_type()
+Subject: Re: [Intel-gfx] [PATCH 07/11] drm/i915: Pass limited_range
+ explicitly to ilk_csc_convert_ctm()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,577 +161,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: thomas.hellstrom@linux.intel.com, jani.nikula@intel.com,
- chris@chris-wilson.co.uk, matthew.auld@intel.com, andrzej.hajda@intel.com,
- mchehab@kernel.org, nirmoy.das@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patch has merged to linux-next.
+Looks good to me.
 
-On 11/2/22 4:53 PM, Gwan-gyeong Mun wrote:
-> From: Kees Cook <keescook@chromium.org>
-> 
-> Implement a robust overflows_type() macro to test if a variable or
-> constant value would overflow another variable or type. This can be
-> used as a constant expression for static_assert() (which requires a
-> constant expression[1][2]) when used on constant values. This must be
-> constructed manually, since __builtin_add_overflow() does not produce
-> a constant expression[3].
-> 
-> Additionally adds castable_to_type(), similar to __same_type(), but for
-> checking if a constant value would overflow if cast to a given type.
-> 
-> Add unit tests for overflows_type(), __same_type(), and castable_to_type()
-> to the existing KUnit "overflow" test:
-> 
-> [16:03:33] ================== overflow (21 subtests) ==================
-> ...
-> [16:03:33] [PASSED] overflows_type_test
-> [16:03:33] [PASSED] same_type_test
-> [16:03:33] [PASSED] castable_to_type_test
-> [16:03:33] ==================== [PASSED] overflow =====================
-> [16:03:33] ============================================================
-> [16:03:33] Testing complete. Ran 21 tests: passed: 21
-> [16:03:33] Elapsed time: 24.022s total, 0.002s configuring, 22.598s building, 0.767s running
-> 
-> [1] https://en.cppreference.com/w/c/language/_Static_assert
-> [2] C11 standard (ISO/IEC 9899:2011): 6.7.10 Static assertions
-> [3] https://gcc.gnu.org/onlinedocs/gcc/Integer-Overflow-Builtins.html
->      6.56 Built-in Functions to Perform Arithmetic with Overflow Checking
->      Built-in Function: bool __builtin_add_overflow (type1 a, type2 b,
-> 
-> Cc: Luc Van Oostenryck <luc.vanoostenryck@gmail.com>
-> Cc: Nathan Chancellor <nathan@kernel.org>
-> Cc: Nick Desaulniers <ndesaulniers@google.com>
-> Cc: Tom Rix <trix@redhat.com>
-> Cc: Daniel Latypov <dlatypov@google.com>
-> Cc: Vitor Massaru Iha <vitor@massaru.org>
-> Cc: "Gustavo A. R. Silva" <gustavoars@kernel.org>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: linux-hardening@vger.kernel.org
-> Cc: llvm@lists.linux.dev
-> Co-developed-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-> Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-> Signed-off-by: Kees Cook <keescook@chromium.org>
-> Link: https://lore.kernel.org/r/20221024201125.1416422-1-gwan-gyeong.mun@intel.com
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+
+On 10/26/2022 5:09 PM, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>
+> Since pre-icl vs. icl+ handle the limited range
+> output stuff a bit differently it's probably
+> less confusing if we just pass that information
+> explicitly into ilk_csc_convert_ctm().
+>
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > ---
->   drivers/gpu/drm/i915/i915_user_extensions.c |   2 +-
->   drivers/gpu/drm/i915/i915_utils.h           |   4 -
->   include/linux/compiler.h                    |   1 +
->   include/linux/overflow.h                    |  48 +++
->   lib/Makefile                                |   1 +
->   lib/overflow_kunit.c                        | 381 ++++++++++++++++++++
->   6 files changed, 432 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_user_extensions.c b/drivers/gpu/drm/i915/i915_user_extensions.c
-> index c822d0aafd2d..e3f808372c47 100644
-> --- a/drivers/gpu/drm/i915/i915_user_extensions.c
-> +++ b/drivers/gpu/drm/i915/i915_user_extensions.c
-> @@ -51,7 +51,7 @@ int i915_user_extensions(struct i915_user_extension __user *ext,
->   			return err;
->   
->   		if (get_user(next, &ext->next_extension) ||
-> -		    overflows_type(next, ext))
-> +		    overflows_type(next, uintptr_t))
->   			return -EFAULT;
->   
->   		ext = u64_to_user_ptr(next);
-> diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
-> index 6c14d13364bf..67a66d4d5c70 100644
-> --- a/drivers/gpu/drm/i915/i915_utils.h
-> +++ b/drivers/gpu/drm/i915/i915_utils.h
-> @@ -111,10 +111,6 @@ bool i915_error_injected(void);
->   #define range_overflows_end_t(type, start, size, max) \
->   	range_overflows_end((type)(start), (type)(size), (type)(max))
->   
-> -/* Note we don't consider signbits :| */
-> -#define overflows_type(x, T) \
-> -	(sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T))
-> -
->   #define ptr_mask_bits(ptr, n) ({					\
->   	unsigned long __v = (unsigned long)(ptr);			\
->   	(typeof(ptr))(__v & -BIT(n));					\
-> diff --git a/include/linux/compiler.h b/include/linux/compiler.h
-> index 973a1bfd7ef5..947a60b801db 100644
-> --- a/include/linux/compiler.h
-> +++ b/include/linux/compiler.h
-> @@ -236,6 +236,7 @@ static inline void *offset_to_ptr(const int *off)
->    * bool and also pointer types.
->    */
->   #define is_signed_type(type) (((type)(-1)) < (__force type)1)
-> +#define is_unsigned_type(type) (!is_signed_type(type))
->   
->   /*
->    * This is needed in functions which generate the stack canary, see
-> diff --git a/include/linux/overflow.h b/include/linux/overflow.h
-> index 1d3be1a2204c..16ae8d912390 100644
-> --- a/include/linux/overflow.h
-> +++ b/include/linux/overflow.h
-> @@ -128,6 +128,54 @@ static inline bool __must_check __must_check_overflow(bool overflow)
->   	(*_d >> _to_shift) != _a);					\
->   }))
->   
-> +#define __overflows_type_constexpr(x, T) (			\
-> +	is_unsigned_type(typeof(x)) ?				\
-> +		(x) > type_max(typeof(T)) ? 1 : 0		\
-> +	: is_unsigned_type(typeof(T)) ?				\
-> +		(x) < 0 || (x) > type_max(typeof(T)) ? 1 : 0	\
-> +		: (x) < type_min(typeof(T)) ||			\
-> +		  (x) > type_max(typeof(T)) ? 1 : 0)
-> +
-> +#define __overflows_type(x, T)		({	\
-> +	typeof(T) v = 0;			\
-> +	check_add_overflow((x), v, &v);		\
-> +})
-> +
-> +/**
-> + * overflows_type - helper for checking the overflows between value, variables,
-> + *		    or data type
-> + *
-> + * @n: source constant value or variable to be checked
-> + * @T: destination variable or data type proposed to store @x
-> + *
-> + * Compares the @x expression for whether or not it can safely fit in
-> + * the storage of the type in @T. @x and @T can have different types.
-> + * If @x is a constant expression, this will also resolve to a constant
-> + * expression.
-> + *
-> + * Returns: true if overflow can occur, false otherwise.
-> + */
-> +#define overflows_type(n, T)					\
-> +	__builtin_choose_expr(__is_constexpr(n),		\
-> +			      __overflows_type_constexpr(n, T),	\
-> +			      __overflows_type(n, T))
-> +
-> +/**
-> + * castable_to_type - like __same_type(), but also allows for casted literals
-> + *
-> + * @n: variable or constant value
-> + * @T: variable or data type
-> + *
-> + * Unlike the __same_type() macro, this allows a constant value as the
-> + * first argument. If this value would not overflow into an assignment
-> + * of the second argument's type, it returns true. Otherwise, this falls
-> + * back to __same_type().
-> + */
-> +#define castable_to_type(n, T)						\
-> +	__builtin_choose_expr(__is_constexpr(n),			\
-> +			      !__overflows_type_constexpr(n, T),	\
-> +			      __same_type(n, T))
-> +
->   /**
->    * size_mul() - Calculate size_t multiplication with saturation at SIZE_MAX
->    * @factor1: first factor
-> diff --git a/lib/Makefile b/lib/Makefile
-> index 161d6a724ff7..452802d30718 100644
-> --- a/lib/Makefile
-> +++ b/lib/Makefile
-> @@ -376,6 +376,7 @@ obj-$(CONFIG_CMDLINE_KUNIT_TEST) += cmdline_kunit.o
->   obj-$(CONFIG_SLUB_KUNIT_TEST) += slub_kunit.o
->   obj-$(CONFIG_MEMCPY_KUNIT_TEST) += memcpy_kunit.o
->   obj-$(CONFIG_IS_SIGNED_TYPE_KUNIT_TEST) += is_signed_type_kunit.o
-> +CFLAGS_overflow_kunit.o = $(call cc-disable-warning, tautological-constant-out-of-range-compare)
->   obj-$(CONFIG_OVERFLOW_KUNIT_TEST) += overflow_kunit.o
->   CFLAGS_stackinit_kunit.o += $(call cc-disable-warning, switch-unreachable)
->   obj-$(CONFIG_STACKINIT_KUNIT_TEST) += stackinit_kunit.o
-> diff --git a/lib/overflow_kunit.c b/lib/overflow_kunit.c
-> index b8556a2e7bb1..dcd3ba102db6 100644
-> --- a/lib/overflow_kunit.c
-> +++ b/lib/overflow_kunit.c
-> @@ -736,6 +736,384 @@ static void overflow_size_helpers_test(struct kunit *test)
->   #undef check_one_size_helper
+>   drivers/gpu/drm/i915/display/intel_color.c | 8 ++++----
+>   1 file changed, 4 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+> index e881c95ee451..946fb767f3e0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_color.c
+> +++ b/drivers/gpu/drm/i915/display/intel_color.c
+> @@ -259,14 +259,14 @@ static bool ilk_csc_limited_range(const struct intel_crtc_state *crtc_state)
 >   }
 >   
-> +static void overflows_type_test(struct kunit *test)
-> +{
-> +	int count = 0;
-> +	unsigned int var;
-> +
-> +#define __TEST_OVERFLOWS_TYPE(func, arg1, arg2, of)	do {		\
-> +	bool __of = func(arg1, arg2);					\
-> +	KUNIT_EXPECT_EQ_MSG(test, __of, of,				\
-> +		"expected " #func "(" #arg1 ", " #arg2 " to%s overflow\n",\
-> +		of ? "" : " not");					\
-> +	count++;							\
-> +} while (0)
-> +
-> +/* Args are: first type, second type, value, overflow expected */
-> +#define TEST_OVERFLOWS_TYPE(__t1, __t2, v, of) do {			\
-> +	__t1 t1 = (v);							\
-> +	__t2 t2;							\
-> +	__TEST_OVERFLOWS_TYPE(__overflows_type, t1, t2, of);		\
-> +	__TEST_OVERFLOWS_TYPE(__overflows_type, t1, __t2, of);		\
-> +	__TEST_OVERFLOWS_TYPE(__overflows_type_constexpr, t1, t2, of);	\
-> +	__TEST_OVERFLOWS_TYPE(__overflows_type_constexpr, t1, __t2, of);\
-> +} while (0)
-> +
-> +	TEST_OVERFLOWS_TYPE(u8, u8, U8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u8, u16, U8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u8, s8, U8_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u8, s8, S8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u8, s8, (u8)S8_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(u8, s16, U8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s8, u8, S8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s8, u8, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s8, u8, S8_MIN, true);
-> +	TEST_OVERFLOWS_TYPE(s8, u16, S8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s8, u16, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s8, u16, S8_MIN, true);
-> +	TEST_OVERFLOWS_TYPE(s8, u32, S8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s8, u32, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s8, u32, S8_MIN, true);
-> +#if BITS_PER_LONG == 64
-> +	TEST_OVERFLOWS_TYPE(s8, u64, S8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s8, u64, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s8, u64, S8_MIN, true);
-> +#endif
-> +	TEST_OVERFLOWS_TYPE(s8, s8, S8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s8, s8, S8_MIN, false);
-> +	TEST_OVERFLOWS_TYPE(s8, s16, S8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s8, s16, S8_MIN, false);
-> +	TEST_OVERFLOWS_TYPE(u16, u8, U8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u16, u8, (u16)U8_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(u16, u8, U16_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u16, s8, S8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u16, s8, (u16)S8_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(u16, s8, U16_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u16, s16, S16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u16, s16, (u16)S16_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(u16, s16, U16_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u16, u32, U16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u16, s32, U16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s16, u8, U8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s16, u8, (s16)U8_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(s16, u8, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s16, u8, S16_MIN, true);
-> +	TEST_OVERFLOWS_TYPE(s16, u16, S16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s16, u16, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s16, u16, S16_MIN, true);
-> +	TEST_OVERFLOWS_TYPE(s16, u32, S16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s16, u32, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s16, u32, S16_MIN, true);
-> +#if BITS_PER_LONG == 64
-> +	TEST_OVERFLOWS_TYPE(s16, u64, S16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s16, u64, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s16, u64, S16_MIN, true);
-> +#endif
-> +	TEST_OVERFLOWS_TYPE(s16, s8, S8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s16, s8, S8_MIN, false);
-> +	TEST_OVERFLOWS_TYPE(s16, s8, (s16)S8_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(s16, s8, (s16)S8_MIN - 1, true);
-> +	TEST_OVERFLOWS_TYPE(s16, s8, S16_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(s16, s8, S16_MIN, true);
-> +	TEST_OVERFLOWS_TYPE(s16, s16, S16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s16, s16, S16_MIN, false);
-> +	TEST_OVERFLOWS_TYPE(s16, s32, S16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s16, s32, S16_MIN, false);
-> +	TEST_OVERFLOWS_TYPE(u32, u8, U8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u32, u8, (u32)U8_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(u32, u8, U32_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u32, s8, S8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u32, s8, (u32)S8_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(u32, s8, U32_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u32, u16, U16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u32, u16, U16_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(u32, u16, U32_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u32, s16, S16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u32, s16, (u32)S16_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(u32, s16, U32_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u32, u32, U32_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u32, s32, S32_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u32, s32, U32_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u32, s32, (u32)S32_MAX + 1, true);
-> +#if BITS_PER_LONG == 64
-> +	TEST_OVERFLOWS_TYPE(u32, u64, U32_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u32, s64, U32_MAX, false);
-> +#endif
-> +	TEST_OVERFLOWS_TYPE(s32, u8, U8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s32, u8, (s32)U8_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(s32, u16, S32_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(s32, u8, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s32, u8, S32_MIN, true);
-> +	TEST_OVERFLOWS_TYPE(s32, u16, U16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s32, u16, (s32)U16_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(s32, u16, S32_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(s32, u16, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s32, u16, S32_MIN, true);
-> +	TEST_OVERFLOWS_TYPE(s32, u32, S32_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s32, u32, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s32, u32, S32_MIN, true);
-> +#if BITS_PER_LONG == 64
-> +	TEST_OVERFLOWS_TYPE(s32, u64, S32_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s32, u64, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s32, u64, S32_MIN, true);
-> +#endif
-> +	TEST_OVERFLOWS_TYPE(s32, s8, S8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s32, s8, S8_MIN, false);
-> +	TEST_OVERFLOWS_TYPE(s32, s8, (s32)S8_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(s32, s8, (s32)S8_MIN - 1, true);
-> +	TEST_OVERFLOWS_TYPE(s32, s8, S32_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(s32, s8, S32_MIN, true);
-> +	TEST_OVERFLOWS_TYPE(s32, s16, S16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s32, s16, S16_MIN, false);
-> +	TEST_OVERFLOWS_TYPE(s32, s16, (s32)S16_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(s32, s16, (s32)S16_MIN - 1, true);
-> +	TEST_OVERFLOWS_TYPE(s32, s16, S32_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(s32, s16, S32_MIN, true);
-> +	TEST_OVERFLOWS_TYPE(s32, s32, S32_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s32, s32, S32_MIN, false);
-> +#if BITS_PER_LONG == 64
-> +	TEST_OVERFLOWS_TYPE(s32, s64, S32_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s32, s64, S32_MIN, false);
-> +	TEST_OVERFLOWS_TYPE(u64, u8, U64_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u64, u8, U8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u64, u8, (u64)U8_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(u64, u16, U64_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u64, u16, U16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u64, u16, (u64)U16_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(u64, u32, U64_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u64, u32, U32_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u64, u32, (u64)U32_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(u64, u64, U64_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u64, s8, S8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u64, s8, (u64)S8_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(u64, s8, U64_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u64, s16, S16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u64, s16, (u64)S16_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(u64, s16, U64_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u64, s32, S32_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u64, s32, (u64)S32_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(u64, s32, U64_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u64, s64, S64_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u64, s64, U64_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u64, s64, (u64)S64_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(s64, u8, S64_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(s64, u8, S64_MIN, true);
-> +	TEST_OVERFLOWS_TYPE(s64, u8, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s64, u8, U8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s64, u8, (s64)U8_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(s64, u16, S64_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(s64, u16, S64_MIN, true);
-> +	TEST_OVERFLOWS_TYPE(s64, u16, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s64, u16, U16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s64, u16, (s64)U16_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(s64, u32, S64_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(s64, u32, S64_MIN, true);
-> +	TEST_OVERFLOWS_TYPE(s64, u32, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s64, u32, U32_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s64, u32, (s64)U32_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(s64, u64, S64_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s64, u64, S64_MIN, true);
-> +	TEST_OVERFLOWS_TYPE(s64, u64, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s64, s8, S8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s64, s8, S8_MIN, false);
-> +	TEST_OVERFLOWS_TYPE(s64, s8, (s64)S8_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(s64, s8, (s64)S8_MIN - 1, true);
-> +	TEST_OVERFLOWS_TYPE(s64, s8, S64_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(s64, s16, S16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s64, s16, S16_MIN, false);
-> +	TEST_OVERFLOWS_TYPE(s64, s16, (s64)S16_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(s64, s16, (s64)S16_MIN - 1, true);
-> +	TEST_OVERFLOWS_TYPE(s64, s16, S64_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(s64, s32, S32_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s64, s32, S32_MIN, false);
-> +	TEST_OVERFLOWS_TYPE(s64, s32, (s64)S32_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(s64, s32, (s64)S32_MIN - 1, true);
-> +	TEST_OVERFLOWS_TYPE(s64, s32, S64_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(s64, s64, S64_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s64, s64, S64_MIN, false);
-> +#endif
-> +
-> +	/* Check for macro side-effects. */
-> +	var = INT_MAX - 1;
-> +	__TEST_OVERFLOWS_TYPE(__overflows_type, var++, int, false);
-> +	__TEST_OVERFLOWS_TYPE(__overflows_type, var++, int, false);
-> +	__TEST_OVERFLOWS_TYPE(__overflows_type, var++, int, true);
-> +	var = INT_MAX - 1;
-> +	__TEST_OVERFLOWS_TYPE(overflows_type, var++, int, false);
-> +	__TEST_OVERFLOWS_TYPE(overflows_type, var++, int, false);
-> +	__TEST_OVERFLOWS_TYPE(overflows_type, var++, int, true);
-> +
-> +	kunit_info(test, "%d overflows_type() tests finished\n", count);
-> +#undef TEST_OVERFLOWS_TYPE
-> +#undef __TEST_OVERFLOWS_TYPE
-> +}
-> +
-> +static void same_type_test(struct kunit *test)
-> +{
-> +	int count = 0;
-> +	int var;
-> +
-> +#define TEST_SAME_TYPE(t1, t2, same)			do {	\
-> +	typeof(t1) __t1h = type_max(t1);			\
-> +	typeof(t1) __t1l = type_min(t1);			\
-> +	typeof(t2) __t2h = type_max(t2);			\
-> +	typeof(t2) __t2l = type_min(t2);			\
-> +	KUNIT_EXPECT_EQ(test, true, __same_type(t1, __t1h));	\
-> +	KUNIT_EXPECT_EQ(test, true, __same_type(t1, __t1l));	\
-> +	KUNIT_EXPECT_EQ(test, true, __same_type(__t1h, t1));	\
-> +	KUNIT_EXPECT_EQ(test, true, __same_type(__t1l, t1));	\
-> +	KUNIT_EXPECT_EQ(test, true, __same_type(t2, __t2h));	\
-> +	KUNIT_EXPECT_EQ(test, true, __same_type(t2, __t2l));	\
-> +	KUNIT_EXPECT_EQ(test, true, __same_type(__t2h, t2));	\
-> +	KUNIT_EXPECT_EQ(test, true, __same_type(__t2l, t2));	\
-> +	KUNIT_EXPECT_EQ(test, same, __same_type(t1, t2));	\
-> +	KUNIT_EXPECT_EQ(test, same, __same_type(t2, __t1h));	\
-> +	KUNIT_EXPECT_EQ(test, same, __same_type(t2, __t1l));	\
-> +	KUNIT_EXPECT_EQ(test, same, __same_type(__t1h, t2));	\
-> +	KUNIT_EXPECT_EQ(test, same, __same_type(__t1l, t2));	\
-> +	KUNIT_EXPECT_EQ(test, same, __same_type(t1, __t2h));	\
-> +	KUNIT_EXPECT_EQ(test, same, __same_type(t1, __t2l));	\
-> +	KUNIT_EXPECT_EQ(test, same, __same_type(__t2h, t1));	\
-> +	KUNIT_EXPECT_EQ(test, same, __same_type(__t2l, t1));	\
-> +} while (0)
-> +
-> +#if BITS_PER_LONG == 64
-> +# define TEST_SAME_TYPE64(base, t, m)	TEST_SAME_TYPE(base, t, m)
-> +#else
-> +# define TEST_SAME_TYPE64(base, t, m)	do { } while (0)
-> +#endif
-> +
-> +#define TEST_TYPE_SETS(base, mu8, mu16, mu32, ms8, ms16, ms32, mu64, ms64) \
-> +do {									\
-> +	TEST_SAME_TYPE(base,  u8,  mu8);				\
-> +	TEST_SAME_TYPE(base, u16, mu16);				\
-> +	TEST_SAME_TYPE(base, u32, mu32);				\
-> +	TEST_SAME_TYPE(base,  s8,  ms8);				\
-> +	TEST_SAME_TYPE(base, s16, ms16);				\
-> +	TEST_SAME_TYPE(base, s32, ms32);				\
-> +	TEST_SAME_TYPE64(base, u64, mu64);				\
-> +	TEST_SAME_TYPE64(base, s64, ms64);				\
-> +} while (0)
-> +
-> +	TEST_TYPE_SETS(u8,   true, false, false, false, false, false, false, false);
-> +	TEST_TYPE_SETS(u16, false,  true, false, false, false, false, false, false);
-> +	TEST_TYPE_SETS(u32, false, false,  true, false, false, false, false, false);
-> +	TEST_TYPE_SETS(s8,  false, false, false,  true, false, false, false, false);
-> +	TEST_TYPE_SETS(s16, false, false, false, false,  true, false, false, false);
-> +	TEST_TYPE_SETS(s32, false, false, false, false, false,  true, false, false);
-> +#if BITS_PER_LONG == 64
-> +	TEST_TYPE_SETS(u64, false, false, false, false, false, false,  true, false);
-> +	TEST_TYPE_SETS(s64, false, false, false, false, false, false, false,  true);
-> +#endif
-> +
-> +	/* Check for macro side-effects. */
-> +	var = 4;
-> +	KUNIT_EXPECT_EQ(test, var, 4);
-> +	KUNIT_EXPECT_TRUE(test, __same_type(var++, int));
-> +	KUNIT_EXPECT_EQ(test, var, 4);
-> +	KUNIT_EXPECT_TRUE(test, __same_type(int, var++));
-> +	KUNIT_EXPECT_EQ(test, var, 4);
-> +	KUNIT_EXPECT_TRUE(test, __same_type(var++, var++));
-> +	KUNIT_EXPECT_EQ(test, var, 4);
-> +
-> +	kunit_info(test, "%d __same_type() tests finished\n", count);
-> +
-> +#undef TEST_TYPE_SETS
-> +#undef TEST_SAME_TYPE64
-> +#undef TEST_SAME_TYPE
-> +}
-> +
-> +static void castable_to_type_test(struct kunit *test)
-> +{
-> +	int count = 0;
-> +
-> +#define TEST_CASTABLE_TO_TYPE(arg1, arg2, pass)	do {	\
-> +	bool __pass = castable_to_type(arg1, arg2);		\
-> +	KUNIT_EXPECT_EQ_MSG(test, __pass, pass,			\
-> +		"expected castable_to_type(" #arg1 ", " #arg2 ") to%s pass\n",\
-> +		pass ? "" : " not");				\
-> +	count++;						\
-> +} while (0)
-> +
-> +	TEST_CASTABLE_TO_TYPE(16, u8, true);
-> +	TEST_CASTABLE_TO_TYPE(16, u16, true);
-> +	TEST_CASTABLE_TO_TYPE(16, u32, true);
-> +	TEST_CASTABLE_TO_TYPE(16, s8, true);
-> +	TEST_CASTABLE_TO_TYPE(16, s16, true);
-> +	TEST_CASTABLE_TO_TYPE(16, s32, true);
-> +	TEST_CASTABLE_TO_TYPE(-16, s8, true);
-> +	TEST_CASTABLE_TO_TYPE(-16, s16, true);
-> +	TEST_CASTABLE_TO_TYPE(-16, s32, true);
-> +#if BITS_PER_LONG == 64
-> +	TEST_CASTABLE_TO_TYPE(16, u64, true);
-> +	TEST_CASTABLE_TO_TYPE(-16, s64, true);
-> +#endif
-> +
-> +#define TEST_CASTABLE_TO_TYPE_VAR(width)	do {				\
-> +	u ## width u ## width ## var = 0;					\
-> +	s ## width s ## width ## var = 0;					\
-> +										\
-> +	/* Constant expressions that fit types. */				\
-> +	TEST_CASTABLE_TO_TYPE(type_max(u ## width), u ## width, true);		\
-> +	TEST_CASTABLE_TO_TYPE(type_min(u ## width), u ## width, true);		\
-> +	TEST_CASTABLE_TO_TYPE(type_max(u ## width), u ## width ## var, true);	\
-> +	TEST_CASTABLE_TO_TYPE(type_min(u ## width), u ## width ## var, true);	\
-> +	TEST_CASTABLE_TO_TYPE(type_max(s ## width), s ## width, true);		\
-> +	TEST_CASTABLE_TO_TYPE(type_min(s ## width), s ## width, true);		\
-> +	TEST_CASTABLE_TO_TYPE(type_max(s ## width), s ## width ## var, true);	\
-> +	TEST_CASTABLE_TO_TYPE(type_min(u ## width), s ## width ## var, true);	\
-> +	/* Constant expressions that do not fit types. */			\
-> +	TEST_CASTABLE_TO_TYPE(type_max(u ## width), s ## width, false);		\
-> +	TEST_CASTABLE_TO_TYPE(type_max(u ## width), s ## width ## var, false);	\
-> +	TEST_CASTABLE_TO_TYPE(type_min(s ## width), u ## width, false);		\
-> +	TEST_CASTABLE_TO_TYPE(type_min(s ## width), u ## width ## var, false);	\
-> +	/* Non-constant expression with mismatched type. */			\
-> +	TEST_CASTABLE_TO_TYPE(s ## width ## var, u ## width, false);		\
-> +	TEST_CASTABLE_TO_TYPE(u ## width ## var, s ## width, false);		\
-> +} while (0)
-> +
-> +#define TEST_CASTABLE_TO_TYPE_RANGE(width)	do {				\
-> +	unsigned long big = U ## width ## _MAX;					\
-> +	signed long small = S ## width ## _MIN;					\
-> +	u ## width u ## width ## var = 0;					\
-> +	s ## width s ## width ## var = 0;					\
-> +										\
-> +	/* Constant expression in range. */					\
-> +	TEST_CASTABLE_TO_TYPE(U ## width ## _MAX, u ## width, true);		\
-> +	TEST_CASTABLE_TO_TYPE(U ## width ## _MAX, u ## width ## var, true);	\
-> +	TEST_CASTABLE_TO_TYPE(S ## width ## _MIN, s ## width, true);		\
-> +	TEST_CASTABLE_TO_TYPE(S ## width ## _MIN, s ## width ## var, true);	\
-> +	/* Constant expression out of range. */					\
-> +	TEST_CASTABLE_TO_TYPE((unsigned long)U ## width ## _MAX + 1, u ## width, false); \
-> +	TEST_CASTABLE_TO_TYPE((unsigned long)U ## width ## _MAX + 1, u ## width ## var, false); \
-> +	TEST_CASTABLE_TO_TYPE((signed long)S ## width ## _MIN - 1, s ## width, false); \
-> +	TEST_CASTABLE_TO_TYPE((signed long)S ## width ## _MIN - 1, s ## width ## var, false); \
-> +	/* Non-constant expression with mismatched type. */			\
-> +	TEST_CASTABLE_TO_TYPE(big, u ## width, false);				\
-> +	TEST_CASTABLE_TO_TYPE(big, u ## width ## var, false);			\
-> +	TEST_CASTABLE_TO_TYPE(small, s ## width, false);			\
-> +	TEST_CASTABLE_TO_TYPE(small, s ## width ## var, false);			\
-> +} while (0)
-> +
-> +	TEST_CASTABLE_TO_TYPE_VAR(8);
-> +	TEST_CASTABLE_TO_TYPE_VAR(16);
-> +	TEST_CASTABLE_TO_TYPE_VAR(32);
-> +#if BITS_PER_LONG == 64
-> +	TEST_CASTABLE_TO_TYPE_VAR(64);
-> +#endif
-> +
-> +	TEST_CASTABLE_TO_TYPE_RANGE(8);
-> +	TEST_CASTABLE_TO_TYPE_RANGE(16);
-> +#if BITS_PER_LONG == 64
-> +	TEST_CASTABLE_TO_TYPE_RANGE(32);
-> +#endif
-> +	kunit_info(test, "%d castable_to_type() tests finished\n", count);
-> +
-> +#undef TEST_CASTABLE_TO_TYPE_RANGE
-> +#undef TEST_CASTABLE_TO_TYPE_VAR
-> +#undef TEST_CASTABLE_TO_TYPE
-> +}
-> +
->   static struct kunit_case overflow_test_cases[] = {
->   	KUNIT_CASE(u8_u8__u8_overflow_test),
->   	KUNIT_CASE(s8_s8__s8_overflow_test),
-> @@ -755,6 +1133,9 @@ static struct kunit_case overflow_test_cases[] = {
->   	KUNIT_CASE(shift_nonsense_test),
->   	KUNIT_CASE(overflow_allocation_test),
->   	KUNIT_CASE(overflow_size_helpers_test),
-> +	KUNIT_CASE(overflows_type_test),
-> +	KUNIT_CASE(same_type_test),
-> +	KUNIT_CASE(castable_to_type_test),
->   	{}
->   };
+>   static void ilk_csc_convert_ctm(const struct intel_crtc_state *crtc_state,
+> -				u16 coeffs[9])
+> +				u16 coeffs[9], bool limited_color_range)
+>   {
+>   	const struct drm_color_ctm *ctm = crtc_state->hw.ctm->data;
+>   	const u64 *input;
+>   	u64 temp[9];
+>   	int i;
 >   
+> -	if (ilk_csc_limited_range(crtc_state))
+> +	if (limited_color_range)
+>   		input = ctm_mult_by_limited(temp, ctm->matrix);
+>   	else
+>   		input = ctm->matrix;
+> @@ -319,7 +319,7 @@ static void ilk_load_csc_matrix(const struct intel_crtc_state *crtc_state)
+>   	if (crtc_state->hw.ctm) {
+>   		u16 coeff[9];
+>   
+> -		ilk_csc_convert_ctm(crtc_state, coeff);
+> +		ilk_csc_convert_ctm(crtc_state, coeff, limited_color_range);
+>   		ilk_update_pipe_csc(crtc, ilk_csc_off_zero, coeff,
+>   				    limited_color_range ?
+>   				    ilk_csc_postoff_limited_range :
+> @@ -354,7 +354,7 @@ static void icl_load_csc_matrix(const struct intel_crtc_state *crtc_state)
+>   	if (crtc_state->hw.ctm) {
+>   		u16 coeff[9];
+>   
+> -		ilk_csc_convert_ctm(crtc_state, coeff);
+> +		ilk_csc_convert_ctm(crtc_state, coeff, false);
+
+>   		ilk_update_pipe_csc(crtc, ilk_csc_off_zero,
+>   				    coeff, ilk_csc_off_zero);
+>   	}
