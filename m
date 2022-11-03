@@ -2,54 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3395E61785E
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Nov 2022 09:09:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 38A746178C2
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Nov 2022 09:34:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9517710E0E8;
-	Thu,  3 Nov 2022 08:09:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E37510E24A;
+	Thu,  3 Nov 2022 08:34:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C212310E0E8
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Nov 2022 08:09:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667462940; x=1698998940;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=SeJY6fmd5WEgQWlPMI9VOsTR0F/OUuHNkrAylZ9NTS8=;
- b=Frk4MtCfLnF6F72AYTYTQ8yIKCyCJLIUcrLBI2Y03rD0pGzweEjvI8S5
- VoYrGt8wOvCtKKRGFfT73Wzz7q8yKguNsn+EEAILsUy7hrjVjKf9km4kP
- 5DJ+cBE6rEm6Y3wuPT3m7sde4mlrL5qqZQQE7I6NU8KXwG8B9BcG/rIzc
- 0A34sUy15On9N54J/wmx62yAVVcW7rJFZt5ZQ9Hv02B+qSoth+2bqlnmP
- UQNW90eIgzenoCWXCOWTYVhP0HhbJ7Po9py8XbB2T2yIhgjm/qmTLZJMQ
- d6HvWvj0sLFSPfjOg9NtDdVy+1OkjRG/nBPyrFquoG9B3c88LtM/pUG1d A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="311345258"
-X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; d="scan'208";a="311345258"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2022 01:09:00 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10519"; a="777212676"
-X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; d="scan'208";a="777212676"
-Received: from ideak-desk.fi.intel.com ([10.237.68.144])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2022 01:08:58 -0700
-Date: Thu, 3 Nov 2022 10:08:54 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <Y2N3Fj2hQ6DGR7ap@ideak-desk.fi.intel.com>
-References: <20221102171530.3261282-1-imre.deak@intel.com>
- <20221102171530.3261282-4-imre.deak@intel.com>
- <Y2KqVW8G14juW1mN@intel.com>
- <Y2K4SNCDrChjZlzJ@ideak-desk.fi.intel.com>
- <Y2K/53fGXE5tc/8g@intel.com>
+Received: from wnew3-smtp.messagingengine.com (wnew3-smtp.messagingengine.com
+ [64.147.123.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCBB210E1AB;
+ Thu,  3 Nov 2022 08:34:45 +0000 (UTC)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+ by mailnew.west.internal (Postfix) with ESMTP id E8C002B06799;
+ Thu,  3 Nov 2022 04:34:40 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute1.internal (MEProxy); Thu, 03 Nov 2022 04:34:42 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-type:date:date:from:from:in-reply-to:message-id
+ :mime-version:reply-to:sender:subject:subject:to:to; s=fm3; t=
+ 1667464480; x=1667471680; bh=pqVTo4hzoQ97GzENpjucz/tkJsen+KtlWOC
+ rPQve2Mw=; b=cXIwevvn8gckJaipd87vPAY1X48PCPClrc3cZ49rEX0vGq04ETj
+ Qd9W2RQQ4ToJSxEPbiwLQPwsotUEeYvkHlJDgcTPOPBKLYiaeJDZoFBiPpmXQCQB
+ 1xXiuvfiP8Pd8TOlqxSsx6b3so8B6w2ZFnklMS8O8kqX5vIvSa+yqkRo9AZkM1yw
+ 8l3PEmEu4WgXMgr6/evMH7JlUTfuJE6uWu1oioy4h1Ey8KJoSfJYIGt8X7q9HHes
+ 3bUrP7vLzuqk1h1KiInpO3ql5BK7YbNK1FHQAohOvLM/yOpZLdmz5obG7IFOnbgw
+ 6PSNjeBwgln7N9YLvZ37glBnAD5lqD+VdyQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+ :feedback-id:from:from:in-reply-to:message-id:mime-version
+ :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1667464480; x=
+ 1667471680; bh=pqVTo4hzoQ97GzENpjucz/tkJsen+KtlWOCrPQve2Mw=; b=u
+ Pczg58a4AGdSdyAxvvzshkgnGflitZ4k9GwWK9bWkkQF9Rt7D0GOy/XqPpzVM0as
+ qOQSlENivXw1LwmWXh4QeGmpxmWmz0gLHqRpMhSi3C0NOYlxXfHapTpT5nZ98Qk5
+ 3QpCdEQhS6FYuEWF9kLmuxeYqSFeF4eSytF1gM5e7W+1jSAy8Pvt1bH7tvfs56l9
+ pb184vIoLi7Kdf1X59KUDuSQa5YmupziHrgnzw+kbQQc1QQVYh7rkq9ThzbXvlCg
+ CgBx52rQ5L922q6s3I+wByMF52TkwBV8culOIsllJ/qcgnSn4QUHIyeGp+852ETf
+ S4ClIn5l4CK7JAnt4E33w==
+X-ME-Sender: <xms:H31jYyVqJlZ7HQ-74cnFckyBfPsATsXW9AaGy0UXaMTTs2t-XaaY2g>
+ <xme:H31jY-mLymllkJT1c_IrI0huisL5kOBcdp8pdn7C8EoP3Gul_sV5Blvua-odjqROh
+ lzP0bsI2cPE7jS4qxM>
+X-ME-Received: <xmr:H31jY2ZAHQWtddE_n59D1WQAZwUgNXFOjBv_EGpxAjM9Eopo2SZwi6TKzFE8QT5oeaCBcAyJztiz3Dm9pLU9Io8IZm8-Le5xt8xA0zF95zIOXw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrudekgdduvddtucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvfevuffkgggtugesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+ ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+ gvrhhnpeeuieehjefhieevtdehudfftdetgfdtuedvvdeugeetgfevgeevudegffduveej
+ ieenucffohhmrghinhepfhhrvggvuggvshhkthhophdrohhrghenucevlhhushhtvghruf
+ hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdr
+ thgvtghh
+X-ME-Proxy: <xmx:H31jY5V7O4wE7cwps6YiDOBG9boNHs2UTUxbV7J9gL9W5kI1Al5_vg>
+ <xmx:H31jY8lA-4UA3Fr_iqopJ_OYfWG4tFIQ052-5HsHOCc-YuaRZDh97A>
+ <xmx:H31jY-fHYVBYOv2Trjvcfh3oi5ARkjybhaNVsReOB67Z3jytXruvWA>
+ <xmx:IH1jY-V63GsMrMh23pFxK2NY8MNbTabHlFOG4pqaoRN732BNa7IOeMPh7qs>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 3 Nov 2022 04:34:39 -0400 (EDT)
+Date: Thu, 3 Nov 2022 09:34:37 +0100
+From: Maxime Ripard <maxime@cerno.tech>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20221103083437.ksrh3hcdvxaof62l@houat>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="mfjagy64ucdkwdmz"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Y2K/53fGXE5tc/8g@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 3/7] drm/i915/tgl+: Enable display DC power
- states on all eDP ports
+Subject: [Intel-gfx] [PULL] drm-misc-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,444 +81,223 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Nov 02, 2022 at 09:07:19PM +0200, Ville Syrjälä wrote:
-> On Wed, Nov 02, 2022 at 08:34:48PM +0200, Imre Deak wrote:
-> > On Wed, Nov 02, 2022 at 07:35:17PM +0200, Ville Syrjälä wrote:
-> > > On Wed, Nov 02, 2022 at 07:15:26PM +0200, Imre Deak wrote:
-> > > > Starting with TGL eDP is supported on ports B+ (besides port A), so make
-> > > > sure DC states are not blocked on any such ports. For this add an
-> > > > AUX_IO_<port> power domain for each port with eDP support. These domains
-> > > > similarly to AUX_IO_A enable only the AUX_IO_<port> power well for an
-> > > > enabled port, whereas the existing AUX_<port> domains enable both the
-> > > > AUX_IO_<port> and the DC_OFF power wells as required by DP AUX transfers.
-> > > > 
-> > > > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/i915/display/intel_ddi.c      |  8 ++-
-> > > >  .../drm/i915/display/intel_display_power.c    | 30 +++++++++++
-> > > >  .../drm/i915/display/intel_display_power.h    |  7 +++
-> > > >  .../i915/display/intel_display_power_map.c    | 53 +++++++++++++++++--
-> > > >  4 files changed, 91 insertions(+), 7 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > > index e95bde5cf060e..00b577a5b9a76 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > > @@ -848,6 +848,8 @@ bool intel_ddi_get_hw_state(struct intel_encoder *encoder,
-> > > >  static enum intel_display_power_domain
-> > > >  intel_ddi_main_link_aux_domain(struct intel_digital_port *dig_port)
-> > > >  {
-> > > > +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> > > > +
-> > > >  	/* ICL+ HW requires corresponding AUX IOs to be powered up for PSR with
-> > > >  	 * DC states enabled at the same time, while for driver initiated AUX
-> > > >  	 * transfers we need the same AUX IOs to be powered but with DC states
-> > > > @@ -860,8 +862,10 @@ intel_ddi_main_link_aux_domain(struct intel_digital_port *dig_port)
-> > > >  	 * Note that PSR is enabled only on Port A even though this function
-> > > >  	 * returns the correct domain for other ports too.
-> > > >  	 */
-> > > > -	return dig_port->aux_ch == AUX_CH_A ? POWER_DOMAIN_AUX_IO_A :
-> > > > -					      intel_aux_power_domain(dig_port);
-> > > > +	if (intel_dp_is_edp(&dig_port->dp))
-> > > > +		return intel_display_power_aux_io_domain(i915, dig_port->aux_ch);
-> > > > +	else
-> > > > +		return intel_aux_power_domain(dig_port);
-> > > 
-> > > This seems to have two distinct changes in it:
-> > > 1) define more AUX_IO domains
-> > > 2) don't use AUX_IO for external DP and instead use the full AUX domain
-> > 
-> > By 2) you mean on port A full AUX is used for external DP, then yes.
-> > 
-> > > So seems like this needs to be split.
-> > 
-> > Ok, can add a patch with only a
-> > 
-> > 	if (is_edp(port) && port == A)
-> > 		return AUX_IO_A;
-> > 	else
-> > 		return AUX_A;
-> > 
-> > change followed by this one, if that's what you meant.
-> > 
-> > > Also why do we need 2)?
-> > 
-> > The DC5/6 states only make sense with PSR enabled. Even though we enable
-> > these atm for external outputs enabled on port A as well (for instance
-> > DG2), the firmware will not actually enter the DC power states in this
-> > case. Since for TypeC ports the AUX domain/power well also depends on
-> > the TBT vs. non-TBT mode, the easiest way to select between the AUX_IO
-> > vs. AUX domain was eDP vs. non-eDP (see also below).
-> 
-> OK, so you're saying for combo ports we don't actually need it and the
-> current code works fine. So from the pure hw pov the sufficient thing
-> would be more or less just this?
-> 
-> if (is_tc_port)
-> 	return aux_domain;
-> else
-> 	return aux_io_domain;
->
-> is_edp() I consider to be a software defined concept.
-> It doesn't really change how the hardware actually
-> works. Which is why I don't really like using it for
-> anything. I've noticed people have a bad habit of 
-> trying to use it incorrectly in places where eg. a
-> specific port is what we actually want to check.
 
-Yes, atm checking the port alone would be enough, but on MTL+ only eDP
-needs AUX (for PSR) and external outputs don't need it on any port, see
-patch 7.
+--mfjagy64ucdkwdmz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> > > >  }
-> > > >  
-> > > >  static void intel_ddi_get_power_domains(struct intel_encoder *encoder,
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-> > > > index da0047359446e..ca453518e7fd7 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> > > > @@ -131,6 +131,16 @@ intel_display_power_domain_str(enum intel_display_power_domain domain)
-> > > >  		return "AUDIO_PLAYBACK";
-> > > >  	case POWER_DOMAIN_AUX_IO_A:
-> > > >  		return "AUX_IO_A";
-> > > > +	case POWER_DOMAIN_AUX_IO_B:
-> > > > +		return "AUX_IO_B";
-> > > > +	case POWER_DOMAIN_AUX_IO_C:
-> > > > +		return "AUX_IO_C";
-> > > > +	case POWER_DOMAIN_AUX_IO_D:
-> > > > +		return "AUX_IO_D";
-> > > > +	case POWER_DOMAIN_AUX_IO_E:
-> > > > +		return "AUX_IO_E";
-> > > > +	case POWER_DOMAIN_AUX_IO_F:
-> > > > +		return "AUX_IO_F";
-> > > >  	case POWER_DOMAIN_AUX_A:
-> > > >  		return "AUX_A";
-> > > >  	case POWER_DOMAIN_AUX_B:
-> > > > @@ -2332,6 +2342,7 @@ struct intel_ddi_port_domains {
-> > > >  
-> > > >  	enum intel_display_power_domain ddi_lanes;
-> > > >  	enum intel_display_power_domain ddi_io;
-> > > > +	enum intel_display_power_domain aux_io;
-> > > >  	enum intel_display_power_domain aux_legacy_usbc;
-> > > >  	enum intel_display_power_domain aux_tbt;
-> > > >  };
-> > > > @@ -2346,6 +2357,7 @@ i9xx_port_domains[] = {
-> > > >  
-> > > >  		.ddi_lanes = POWER_DOMAIN_PORT_DDI_LANES_A,
-> > > >  		.ddi_io = POWER_DOMAIN_PORT_DDI_IO_A,
-> > > > +		.aux_io = POWER_DOMAIN_AUX_IO_A,
-> > > >  		.aux_legacy_usbc = POWER_DOMAIN_AUX_A,
-> > > >  		.aux_tbt = POWER_DOMAIN_INVALID,
-> > > >  	},
-> > > > @@ -2361,6 +2373,7 @@ d11_port_domains[] = {
-> > > >  
-> > > >  		.ddi_lanes = POWER_DOMAIN_PORT_DDI_LANES_A,
-> > > >  		.ddi_io = POWER_DOMAIN_PORT_DDI_IO_A,
-> > > > +		.aux_io = POWER_DOMAIN_AUX_IO_A,
-> > > >  		.aux_legacy_usbc = POWER_DOMAIN_AUX_A,
-> > > >  		.aux_tbt = POWER_DOMAIN_INVALID,
-> > > >  	}, {
-> > > > @@ -2371,6 +2384,7 @@ d11_port_domains[] = {
-> > > >  
-> > > >  		.ddi_lanes = POWER_DOMAIN_PORT_DDI_LANES_C,
-> > > >  		.ddi_io = POWER_DOMAIN_PORT_DDI_IO_C,
-> > > > +		.aux_io = POWER_DOMAIN_AUX_IO_C,
-> > > >  		.aux_legacy_usbc = POWER_DOMAIN_AUX_C,
-> > > >  		.aux_tbt = POWER_DOMAIN_AUX_TBT1,
-> > > >  	},
-> > > > @@ -2386,6 +2400,7 @@ d12_port_domains[] = {
-> > > >  
-> > > >  		.ddi_lanes = POWER_DOMAIN_PORT_DDI_LANES_A,
-> > > >  		.ddi_io = POWER_DOMAIN_PORT_DDI_IO_A,
-> > > > +		.aux_io = POWER_DOMAIN_AUX_IO_A,
-> > > >  		.aux_legacy_usbc = POWER_DOMAIN_AUX_A,
-> > > >  		.aux_tbt = POWER_DOMAIN_INVALID,
-> > > >  	}, {
-> > > > @@ -2396,6 +2411,7 @@ d12_port_domains[] = {
-> > > >  
-> > > >  		.ddi_lanes = POWER_DOMAIN_PORT_DDI_LANES_TC1,
-> > > >  		.ddi_io = POWER_DOMAIN_PORT_DDI_IO_TC1,
-> > > > +		.aux_io = POWER_DOMAIN_INVALID,
-> > > >  		.aux_legacy_usbc = POWER_DOMAIN_AUX_USBC1,
-> > > >  		.aux_tbt = POWER_DOMAIN_AUX_TBT1,
-> > > >  	},
-> > > > @@ -2411,6 +2427,7 @@ d13_port_domains[] = {
-> > > >  
-> > > >  		.ddi_lanes = POWER_DOMAIN_PORT_DDI_LANES_A,
-> > > >  		.ddi_io = POWER_DOMAIN_PORT_DDI_IO_A,
-> > > > +		.aux_io = POWER_DOMAIN_AUX_IO_A,
-> > > >  		.aux_legacy_usbc = POWER_DOMAIN_AUX_A,
-> > > >  		.aux_tbt = POWER_DOMAIN_INVALID,
-> > > >  	}, {
-> > > > @@ -2421,6 +2438,7 @@ d13_port_domains[] = {
-> > > >  
-> > > >  		.ddi_lanes = POWER_DOMAIN_PORT_DDI_LANES_TC1,
-> > > >  		.ddi_io = POWER_DOMAIN_PORT_DDI_IO_TC1,
-> > > > +		.aux_io = POWER_DOMAIN_INVALID,
-> > > >  		.aux_legacy_usbc = POWER_DOMAIN_AUX_USBC1,
-> > > >  		.aux_tbt = POWER_DOMAIN_AUX_TBT1,
-> > > >  	}, {
-> > > > @@ -2431,6 +2449,7 @@ d13_port_domains[] = {
-> > > >  
-> > > >  		.ddi_lanes = POWER_DOMAIN_PORT_DDI_LANES_D,
-> > > >  		.ddi_io = POWER_DOMAIN_PORT_DDI_IO_D,
-> > > > +		.aux_io = POWER_DOMAIN_AUX_IO_D,
-> > > >  		.aux_legacy_usbc = POWER_DOMAIN_AUX_D,
-> > > >  		.aux_tbt = POWER_DOMAIN_INVALID,
-> > > >  	},
-> > > > @@ -2508,6 +2527,17 @@ intel_port_domains_for_aux_ch(struct drm_i915_private *i915, enum aux_ch aux_ch)
-> > > >  	return NULL;
-> > > >  }
-> > > >  
-> > > > +enum intel_display_power_domain
-> > > > +intel_display_power_aux_io_domain(struct drm_i915_private *i915, enum aux_ch aux_ch)
-> > > > +{
-> > > > +	const struct intel_ddi_port_domains *domains = intel_port_domains_for_aux_ch(i915, aux_ch);
-> > > > +
-> > > > +	if (drm_WARN_ON(&i915->drm, !domains) || domains->aux_io == POWER_DOMAIN_INVALID)
-> > > > +		return POWER_DOMAIN_AUX_IO_A;
-> > > 
-> > > The POWER_DOMAIN_INVALID things is for TC ports I guess? 
-> > 
-> > Yes.
-> > 
-> > > Shouldn't this return the full AUX domain for the specific port for those?
-> > 
-> > At this level it's not well-defined, as that depends on the TBT vs.
-> > non-TBT mode as well and as you point out they shouldn't be used.
-> > 
-> > > Not that you should ever have eDP on them I suppose, so given
-> > > what you had in that earlier function I guess this should never
-> > > happen.
-> > 
-> > Right.
-> > 
-> > I guess we could assume that the AUX_IO domain will be not required in
-> > TBT mode (vs. the full AUX domain) and also define/return from here new
-> > AUX_IO_USBC[1-6] domains which wouldn't explicitly disable DC states.
-> > Right now only non-TC ports support eDP, so these domains wouldn't be
-> > used, hence I opted for not defining them.
-> 
-> If this thing doesn't make sense for the type-c ports then
-> we should probably just not use it for those. So just extending
-> the WARN (assuming we want one) to cover that case is perhaps
-> as well want to do.
-> 
-> > 
-> > > > +
-> > > > +	return domains->aux_io + (int)(aux_ch - domains->aux_ch_start);
-> > > > +}
-> > > > +
-> > > >  enum intel_display_power_domain
-> > > >  intel_display_power_legacy_aux_domain(struct drm_i915_private *i915, enum aux_ch aux_ch)
-> > > >  {
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-> > > > index fd68d43bfe322..54737e0aec21e 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_display_power.h
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-> > > > @@ -78,6 +78,11 @@ enum intel_display_power_domain {
-> > > >  	POWER_DOMAIN_AUDIO_PLAYBACK,
-> > > >  
-> > > >  	POWER_DOMAIN_AUX_IO_A,
-> > > > +	POWER_DOMAIN_AUX_IO_B,
-> > > > +	POWER_DOMAIN_AUX_IO_C,
-> > > > +	POWER_DOMAIN_AUX_IO_D,
-> > > > +	POWER_DOMAIN_AUX_IO_E,
-> > > > +	POWER_DOMAIN_AUX_IO_F,
-> > > >  
-> > > >  	POWER_DOMAIN_AUX_A,
-> > > >  	POWER_DOMAIN_AUX_B,
-> > > > @@ -250,6 +255,8 @@ intel_display_power_ddi_lanes_domain(struct drm_i915_private *i915, enum port po
-> > > >  enum intel_display_power_domain
-> > > >  intel_display_power_ddi_io_domain(struct drm_i915_private *i915, enum port port);
-> > > >  enum intel_display_power_domain
-> > > > +intel_display_power_aux_io_domain(struct drm_i915_private *i915, enum aux_ch aux_ch);
-> > > > +enum intel_display_power_domain
-> > > >  intel_display_power_legacy_aux_domain(struct drm_i915_private *i915, enum aux_ch aux_ch);
-> > > >  enum intel_display_power_domain
-> > > >  intel_display_power_tbt_aux_domain(struct drm_i915_private *i915, enum aux_ch aux_ch);
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-> > > > index 43454022e6a66..b82c0d0a80c5f 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-> > > > @@ -170,6 +170,8 @@ I915_DECL_PW_DOMAINS(vlv_pwdoms_display,
-> > > >  	POWER_DOMAIN_VGA,
-> > > >  	POWER_DOMAIN_AUDIO_MMIO,
-> > > >  	POWER_DOMAIN_AUDIO_PLAYBACK,
-> > > > +	POWER_DOMAIN_AUX_IO_B,
-> > > > +	POWER_DOMAIN_AUX_IO_C,
-> > > >  	POWER_DOMAIN_AUX_B,
-> > > >  	POWER_DOMAIN_AUX_C,
-> > > >  	POWER_DOMAIN_GMBUS,
-> > > > @@ -179,6 +181,8 @@ I915_DECL_PW_DOMAINS(vlv_pwdoms_dpio_cmn_bc,
-> > > >  	POWER_DOMAIN_PORT_DDI_LANES_B,
-> > > >  	POWER_DOMAIN_PORT_DDI_LANES_C,
-> > > >  	POWER_DOMAIN_PORT_CRT,
-> > > > +	POWER_DOMAIN_AUX_IO_B,
-> > > > +	POWER_DOMAIN_AUX_IO_C,
-> > > >  	POWER_DOMAIN_AUX_B,
-> > > >  	POWER_DOMAIN_AUX_C,
-> > > >  	POWER_DOMAIN_INIT);
-> > > > @@ -186,6 +190,8 @@ I915_DECL_PW_DOMAINS(vlv_pwdoms_dpio_cmn_bc,
-> > > >  I915_DECL_PW_DOMAINS(vlv_pwdoms_dpio_tx_bc_lanes,
-> > > >  	POWER_DOMAIN_PORT_DDI_LANES_B,
-> > > >  	POWER_DOMAIN_PORT_DDI_LANES_C,
-> > > > +	POWER_DOMAIN_AUX_IO_B,
-> > > > +	POWER_DOMAIN_AUX_IO_C,
-> > > >  	POWER_DOMAIN_AUX_B,
-> > > >  	POWER_DOMAIN_AUX_C,
-> > > >  	POWER_DOMAIN_INIT);
-> > > > @@ -243,6 +249,9 @@ I915_DECL_PW_DOMAINS(chv_pwdoms_display,
-> > > >  	POWER_DOMAIN_VGA,
-> > > >  	POWER_DOMAIN_AUDIO_MMIO,
-> > > >  	POWER_DOMAIN_AUDIO_PLAYBACK,
-> > > > +	POWER_DOMAIN_AUX_IO_B,
-> > > > +	POWER_DOMAIN_AUX_IO_C,
-> > > > +	POWER_DOMAIN_AUX_IO_D,
-> > > >  	POWER_DOMAIN_AUX_B,
-> > > >  	POWER_DOMAIN_AUX_C,
-> > > >  	POWER_DOMAIN_AUX_D,
-> > > > @@ -252,12 +261,15 @@ I915_DECL_PW_DOMAINS(chv_pwdoms_display,
-> > > >  I915_DECL_PW_DOMAINS(chv_pwdoms_dpio_cmn_bc,
-> > > >  	POWER_DOMAIN_PORT_DDI_LANES_B,
-> > > >  	POWER_DOMAIN_PORT_DDI_LANES_C,
-> > > > +	POWER_DOMAIN_AUX_IO_B,
-> > > > +	POWER_DOMAIN_AUX_IO_C,
-> > > >  	POWER_DOMAIN_AUX_B,
-> > > >  	POWER_DOMAIN_AUX_C,
-> > > >  	POWER_DOMAIN_INIT);
-> > > >  
-> > > >  I915_DECL_PW_DOMAINS(chv_pwdoms_dpio_cmn_d,
-> > > >  	POWER_DOMAIN_PORT_DDI_LANES_D,
-> > > > +	POWER_DOMAIN_AUX_IO_D,
-> > > >  	POWER_DOMAIN_AUX_D,
-> > > >  	POWER_DOMAIN_INIT);
-> > > >  
-> > > > @@ -305,6 +317,9 @@ static const struct i915_power_well_desc_list chv_power_wells[] = {
-> > > >  	POWER_DOMAIN_VGA, \
-> > > >  	POWER_DOMAIN_AUDIO_MMIO, \
-> > > >  	POWER_DOMAIN_AUDIO_PLAYBACK, \
-> > > > +	POWER_DOMAIN_AUX_IO_B, \
-> > > > +	POWER_DOMAIN_AUX_IO_C, \
-> > > > +	POWER_DOMAIN_AUX_IO_D, \
-> > > >  	POWER_DOMAIN_AUX_B, \
-> > > >  	POWER_DOMAIN_AUX_C, \
-> > > >  	POWER_DOMAIN_AUX_D
-> > > > @@ -407,6 +422,8 @@ static const struct i915_power_well_desc_list skl_power_wells[] = {
-> > > >  	POWER_DOMAIN_VGA, \
-> > > >  	POWER_DOMAIN_AUDIO_MMIO, \
-> > > >  	POWER_DOMAIN_AUDIO_PLAYBACK, \
-> > > > +	POWER_DOMAIN_AUX_IO_B, \
-> > > > +	POWER_DOMAIN_AUX_IO_C, \
-> > > >  	POWER_DOMAIN_AUX_B, \
-> > > >  	POWER_DOMAIN_AUX_C
-> > > >  
-> > > > @@ -430,6 +447,8 @@ I915_DECL_PW_DOMAINS(bxt_pwdoms_dpio_cmn_a,
-> > > >  I915_DECL_PW_DOMAINS(bxt_pwdoms_dpio_cmn_bc,
-> > > >  	POWER_DOMAIN_PORT_DDI_LANES_B,
-> > > >  	POWER_DOMAIN_PORT_DDI_LANES_C,
-> > > > +	POWER_DOMAIN_AUX_IO_B,
-> > > > +	POWER_DOMAIN_AUX_IO_C,
-> > > >  	POWER_DOMAIN_AUX_B,
-> > > >  	POWER_DOMAIN_AUX_C,
-> > > >  	POWER_DOMAIN_INIT);
-> > > > @@ -483,6 +502,8 @@ static const struct i915_power_well_desc_list bxt_power_wells[] = {
-> > > >  	POWER_DOMAIN_VGA, \
-> > > >  	POWER_DOMAIN_AUDIO_MMIO, \
-> > > >  	POWER_DOMAIN_AUDIO_PLAYBACK, \
-> > > > +	POWER_DOMAIN_AUX_IO_B, \
-> > > > +	POWER_DOMAIN_AUX_IO_C, \
-> > > >  	POWER_DOMAIN_AUX_B, \
-> > > >  	POWER_DOMAIN_AUX_C
-> > > >  
-> > > > @@ -509,11 +530,13 @@ I915_DECL_PW_DOMAINS(glk_pwdoms_dpio_cmn_a,
-> > > >  
-> > > >  I915_DECL_PW_DOMAINS(glk_pwdoms_dpio_cmn_b,
-> > > >  	POWER_DOMAIN_PORT_DDI_LANES_B,
-> > > > +	POWER_DOMAIN_AUX_IO_B,
-> > > >  	POWER_DOMAIN_AUX_B,
-> > > >  	POWER_DOMAIN_INIT);
-> > > >  
-> > > >  I915_DECL_PW_DOMAINS(glk_pwdoms_dpio_cmn_c,
-> > > >  	POWER_DOMAIN_PORT_DDI_LANES_C,
-> > > > +	POWER_DOMAIN_AUX_IO_C,
-> > > >  	POWER_DOMAIN_AUX_C,
-> > > >  	POWER_DOMAIN_INIT);
-> > > >  
-> > > > @@ -523,10 +546,12 @@ I915_DECL_PW_DOMAINS(glk_pwdoms_aux_a,
-> > > >  	POWER_DOMAIN_INIT);
-> > > >  
-> > > >  I915_DECL_PW_DOMAINS(glk_pwdoms_aux_b,
-> > > > +	POWER_DOMAIN_AUX_IO_B,
-> > > >  	POWER_DOMAIN_AUX_B,
-> > > >  	POWER_DOMAIN_INIT);
-> > > >  
-> > > >  I915_DECL_PW_DOMAINS(glk_pwdoms_aux_c,
-> > > > +	POWER_DOMAIN_AUX_IO_C,
-> > > >  	POWER_DOMAIN_AUX_C,
-> > > >  	POWER_DOMAIN_INIT);
-> > > >  
-> > > > @@ -617,6 +642,11 @@ I915_DECL_PW_DOMAINS(icl_pwdoms_pw_4,
-> > > >  	POWER_DOMAIN_VGA, \
-> > > >  	POWER_DOMAIN_AUDIO_MMIO, \
-> > > >  	POWER_DOMAIN_AUDIO_PLAYBACK, \
-> > > > +	POWER_DOMAIN_AUX_IO_B, \
-> > > > +	POWER_DOMAIN_AUX_IO_C, \
-> > > > +	POWER_DOMAIN_AUX_IO_D, \
-> > > > +	POWER_DOMAIN_AUX_IO_E, \
-> > > > +	POWER_DOMAIN_AUX_IO_F, \
-> > > >  	POWER_DOMAIN_AUX_B, \
-> > > >  	POWER_DOMAIN_AUX_C, \
-> > > >  	POWER_DOMAIN_AUX_D, \
-> > > > @@ -660,11 +690,21 @@ I915_DECL_PW_DOMAINS(icl_pwdoms_ddi_io_f,	POWER_DOMAIN_PORT_DDI_IO_F);
-> > > >  I915_DECL_PW_DOMAINS(icl_pwdoms_aux_a,
-> > > >  	POWER_DOMAIN_AUX_IO_A,
-> > > >  	POWER_DOMAIN_AUX_A);
-> > > > -I915_DECL_PW_DOMAINS(icl_pwdoms_aux_b,		POWER_DOMAIN_AUX_B);
-> > > > -I915_DECL_PW_DOMAINS(icl_pwdoms_aux_c,		POWER_DOMAIN_AUX_C);
-> > > > -I915_DECL_PW_DOMAINS(icl_pwdoms_aux_d,		POWER_DOMAIN_AUX_D);
-> > > > -I915_DECL_PW_DOMAINS(icl_pwdoms_aux_e,		POWER_DOMAIN_AUX_E);
-> > > > -I915_DECL_PW_DOMAINS(icl_pwdoms_aux_f,		POWER_DOMAIN_AUX_F);
-> > > > +I915_DECL_PW_DOMAINS(icl_pwdoms_aux_b,
-> > > > +	POWER_DOMAIN_AUX_IO_B,
-> > > > +	POWER_DOMAIN_AUX_B);
-> > > > +I915_DECL_PW_DOMAINS(icl_pwdoms_aux_c,
-> > > > +	POWER_DOMAIN_AUX_IO_C,
-> > > > +	POWER_DOMAIN_AUX_C);
-> > > > +I915_DECL_PW_DOMAINS(icl_pwdoms_aux_d,
-> > > > +	POWER_DOMAIN_AUX_IO_D,
-> > > > +	POWER_DOMAIN_AUX_D);
-> > > > +I915_DECL_PW_DOMAINS(icl_pwdoms_aux_e,
-> > > > +	POWER_DOMAIN_AUX_IO_E,
-> > > > +	POWER_DOMAIN_AUX_E);
-> > > > +I915_DECL_PW_DOMAINS(icl_pwdoms_aux_f,
-> > > > +	POWER_DOMAIN_AUX_IO_F,
-> > > > +	POWER_DOMAIN_AUX_F);
-> > > >  I915_DECL_PW_DOMAINS(icl_pwdoms_aux_tbt1,	POWER_DOMAIN_AUX_TBT1);
-> > > >  I915_DECL_PW_DOMAINS(icl_pwdoms_aux_tbt2,	POWER_DOMAIN_AUX_TBT2);
-> > > >  I915_DECL_PW_DOMAINS(icl_pwdoms_aux_tbt3,	POWER_DOMAIN_AUX_TBT3);
-> > > > @@ -1215,6 +1255,9 @@ I915_DECL_PW_DOMAINS(xelpd_pwdoms_pw_a,
-> > > >  	POWER_DOMAIN_PORT_DDI_LANES_TC4, \
-> > > >  	POWER_DOMAIN_VGA, \
-> > > >  	POWER_DOMAIN_AUDIO_PLAYBACK, \
-> > > > +	POWER_DOMAIN_AUX_IO_C, \
-> > > > +	POWER_DOMAIN_AUX_IO_D, \
-> > > > +	POWER_DOMAIN_AUX_IO_E, \
-> > > >  	POWER_DOMAIN_AUX_C, \
-> > > >  	POWER_DOMAIN_AUX_D, \
-> > > >  	POWER_DOMAIN_AUX_E, \
-> > > > -- 
-> > > > 2.37.1
-> > > 
-> > > -- 
-> > > Ville Syrjälä
-> > > Intel
-> 
-> -- 
-> Ville Syrjälä
-> Intel
+Hi Dave, Daniel,
+
+Here's this week drm-misc-next PR
+
+Maxime
+
+drm-misc-next-2022-11-03:
+drm-misc-next for 6.2:
+
+UAPI Changes:
+
+Cross-subsystem Changes:
+- dma-buf: locking improvements
+- firmware: New API in the RaspberryPi firmware driver used by vc4
+
+Core Changes:
+- client: Null pointer dereference fix in drm_client_buffer_delete()
+- mm/buddy: Add back random seed log
+- ttm: Convert ttm_resource to use size_t for its size, fix for an
+  undefined behaviour
+
+Driver Changes:
+- bridge:
+  - adv7511: use dev_err_probe
+  - it6505: Fix return value check of pm_runtime_get_sync
+- panel:
+  - sitronix: Fixes and clean-ups
+- lcdif: Increase DMA burst size
+- rockchip: runtime_pm improvements
+- vc4: Fix for a regression preventing the use of 4k @ 60Hz, and
+  further HDMI rate constraints check.
+- vmwgfx: Cursor improvements
+The following changes since commit e1e7bc481d49c3e3ada11029ce0d9b85a0a539d7:
+
+  drm/edid: convert to device specific logging (2022-10-26 11:30:45 +0300)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2022-11-03
+
+for you to fetch changes up to ce28ab1380e823e0afdff06a59a04375ef9d9a29:
+
+  drm/tests: Add back seed value information (2022-11-02 09:22:47 -0300)
+
+----------------------------------------------------------------
+drm-misc-next for 6.2:
+
+UAPI Changes:
+
+Cross-subsystem Changes:
+- dma-buf: locking improvements
+- firmware: New API in the RaspberryPi firmware driver used by vc4
+
+Core Changes:
+- client: Null pointer dereference fix in drm_client_buffer_delete()
+- mm/buddy: Add back random seed log
+- ttm: Convert ttm_resource to use size_t for its size, fix for an
+  undefined behaviour
+
+Driver Changes:
+- bridge:
+  - adv7511: use dev_err_probe
+  - it6505: Fix return value check of pm_runtime_get_sync
+- panel:
+  - sitronix: Fixes and clean-ups
+- lcdif: Increase DMA burst size
+- rockchip: runtime_pm improvements
+- vc4: Fix for a regression preventing the use of 4k @ 60Hz, and
+  further HDMI rate constraints check.
+- vmwgfx: Cursor improvements
+
+----------------------------------------------------------------
+Ahmad Fatoum (1):
+      drm: bridge: adv7511: use dev_err_probe in probe function
+
+Arthur Grillo (1):
+      drm/tests: Add back seed value information
+
+Dmitry Osipenko (2):
+      dma-buf: Make locking consistent in dma_buf_detach()
+      drm/client: Prevent NULL dereference in drm_client_buffer_delete()
+
+Dom Cobley (1):
+      drm/vc4: hdmi: Add more checks for 4k resolutions
+
+Gaosheng Cui (1):
+      drm/ttm: fix undefined behavior in bit shift for TTM_TT_FLAG_PRIV_POPULATED
+
+Jiapeng Chong (1):
+      drm/rockchip: dsi: Remove the unused function dsi_update_bits()
+
+Johan Jonker (1):
+      drm: rockchip: remove rockchip_drm_framebuffer_init() function
+
+Marco Felsch (1):
+      drm: lcdif: change burst size to 256B
+
+Marek Vasut (3):
+      drm/panel/panel-sitronix-st7701: Fix RTNI calculation
+      drm/panel/panel-sitronix-st7701: Clean up CMDnBKx selection
+      drm/panel/panel-sitronix-st7701: Remove panel on DSI attach failure
+
+Maxime Ripard (6):
+      firmware: raspberrypi: Introduce rpi_firmware_find_node()
+      firmware: raspberrypi: Move the clock IDs to the firmware header
+      firmware: raspberrypi: Provide a helper to query a clock max rate
+      drm/vc4: hdmi: Fix hdmi_enable_4kp60 detection
+      drm/vc4: hdmi: Rework hdmi_enable_4kp60 detection code
+      drm/vc4: Make sure we don't end up with a core clock too high
+
+Pin-yen Lin (1):
+      drm/bridge: it6505: Fix return value check for pm_runtime_get_sync
+
+Sascha Hauer (1):
+      drm/rockchip: vop2: Register Esmart0-win0 as primary plane
+
+Somalapuram Amaranath (1):
+      drm/ttm: rework on ttm_resource to use size_t type
+
+Yuan Can (1):
+      drm/rockchip: use pm_runtime_resume_and_get() instead of pm_runtime_get_sync()
+
+Zack Rusin (2):
+      drm/vmwgfx: Validate the box size for the snooped cursor
+      drm/vmwgfx: Cleanup the cursor snooping code
+
+Zhang Qilong (1):
+      drm/rockchip: lvds: fix PM usage counter unbalance in poweron
+
+ drivers/clk/bcm/clk-raspberrypi.c               | 19 -------
+ drivers/dma-buf/dma-buf.c                       |  4 +-
+ drivers/firmware/raspberrypi.c                  | 38 +++++++++++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c     |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.c      |  3 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h  |  4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h       |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c         |  6 +--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c    |  8 +--
+ drivers/gpu/drm/bridge/adv7511/adv7511_drv.c    |  6 +--
+ drivers/gpu/drm/bridge/adv7511/adv7533.c        | 20 +++----
+ drivers/gpu/drm/bridge/ite-it6505.c             |  2 +-
+ drivers/gpu/drm/drm_client.c                    |  6 +--
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c         |  2 +-
+ drivers/gpu/drm/i915/i915_scatterlist.c         |  4 +-
+ drivers/gpu/drm/i915/i915_ttm_buddy_manager.c   | 12 ++---
+ drivers/gpu/drm/i915/intel_region_ttm.c         |  2 +-
+ drivers/gpu/drm/mxsfb/lcdif_kms.c               | 14 ++++-
+ drivers/gpu/drm/mxsfb/lcdif_regs.h              |  4 ++
+ drivers/gpu/drm/nouveau/nouveau_bo.c            |  4 +-
+ drivers/gpu/drm/nouveau/nouveau_bo0039.c        |  4 +-
+ drivers/gpu/drm/nouveau/nouveau_bo5039.c        |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_bo74c1.c        |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_bo85b5.c        |  4 +-
+ drivers/gpu/drm/nouveau/nouveau_bo9039.c        |  4 +-
+ drivers/gpu/drm/nouveau/nouveau_bo90b5.c        |  4 +-
+ drivers/gpu/drm/nouveau/nouveau_boa0b5.c        |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_gem.c           |  5 +-
+ drivers/gpu/drm/nouveau/nouveau_mem.c           |  4 +-
+ drivers/gpu/drm/nouveau/nouveau_ttm.c           |  2 +-
+ drivers/gpu/drm/panel/panel-sitronix-st7701.c   | 70 ++++++++++++-------------
+ drivers/gpu/drm/radeon/radeon_cs.c              |  7 ++-
+ drivers/gpu/drm/radeon/radeon_object.c          |  4 +-
+ drivers/gpu/drm/radeon/radeon_trace.h           |  2 +-
+ drivers/gpu/drm/radeon/radeon_ttm.c             |  4 +-
+ drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c |  8 +--
+ drivers/gpu/drm/rockchip/rockchip_drm_fb.c      | 43 ---------------
+ drivers/gpu/drm/rockchip/rockchip_drm_fb.h      |  6 ---
+ drivers/gpu/drm/rockchip/rockchip_drm_vop.c     |  4 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c    |  2 +-
+ drivers/gpu/drm/rockchip/rockchip_lvds.c        | 10 ++--
+ drivers/gpu/drm/rockchip/rockchip_vop2_reg.c    |  2 +-
+ drivers/gpu/drm/tests/drm_buddy_test.c          |  6 ++-
+ drivers/gpu/drm/tests/drm_mm_test.c             |  8 ++-
+ drivers/gpu/drm/ttm/ttm_bo.c                    |  3 --
+ drivers/gpu/drm/ttm/ttm_bo_util.c               |  6 +--
+ drivers/gpu/drm/ttm/ttm_bo_vm.c                 |  4 +-
+ drivers/gpu/drm/ttm/ttm_range_manager.c         |  2 +-
+ drivers/gpu/drm/ttm/ttm_resource.c              | 14 +++--
+ drivers/gpu/drm/vc4/vc4_drv.h                   | 16 ++++++
+ drivers/gpu/drm/vc4/vc4_hdmi.c                  | 25 ++++-----
+ drivers/gpu/drm/vc4/vc4_hdmi.h                  |  8 ---
+ drivers/gpu/drm/vc4/vc4_hvs.c                   | 26 +++++++++
+ drivers/gpu/drm/vc4/vc4_kms.c                   | 13 +++--
+ drivers/gpu/drm/vmwgfx/vmwgfx_blit.c            |  4 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_bo.c              |  6 +--
+ drivers/gpu/drm/vmwgfx/vmwgfx_cotable.c         |  2 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.h             |  4 ++
+ drivers/gpu/drm/vmwgfx/vmwgfx_execbuf.c         |  2 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_gmrid_manager.c   |  6 +--
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.c             | 30 ++++++-----
+ drivers/gpu/drm/vmwgfx/vmwgfx_page_dirty.c      |  6 +--
+ drivers/gpu/drm/vmwgfx/vmwgfx_surface.c         | 14 +++--
+ include/drm/ttm/ttm_resource.h                  |  4 +-
+ include/drm/ttm/ttm_tt.h                        |  2 +-
+ include/soc/bcm2835/raspberrypi-firmware.h      | 52 ++++++++++++++++++
+ 66 files changed, 346 insertions(+), 274 deletions(-)
+
+--mfjagy64ucdkwdmz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCY2N9HQAKCRDj7w1vZxhR
+xV7JAQDokAjv/2NlIHCZibU8wjwGr8f7n7/Uz7c4HB4DzT2dpgD5AYPwWGM0yARI
+d1EUnP0JWRnqp1yGIeoVZFc6t0fnEQU=
+=6UX7
+-----END PGP SIGNATURE-----
+
+--mfjagy64ucdkwdmz--
