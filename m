@@ -2,92 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3236261996D
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Nov 2022 15:20:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 659B5619A31
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Nov 2022 15:38:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D61A110E80B;
-	Fri,  4 Nov 2022 14:20:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDE6010E820;
+	Fri,  4 Nov 2022 14:38:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0a-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
- [148.163.158.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE29510E802;
- Fri,  4 Nov 2022 14:20:20 +0000 (UTC)
-Received: from pps.filterd (m0098419.ppops.net [127.0.0.1])
- by mx0b-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2A4DFSsD017750;
- Fri, 4 Nov 2022 14:20:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
- h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding; s=pp1;
- bh=LmRGz096UNPo3ISrGsnM0TuSjjXtkDWPbDTkyho83jQ=;
- b=T168rIqvm8uwsXM6IBiOCwqRuOx07mVUYwTWYjEnKlooVWUNQnfjq/ZBp9UwCLlRWBij
- vMQIv5Wuckdvmvi1Ur4gmdezp03G519sK+ItTjsCPHN7kRxZLkGjxu4WX38WsW+Cr5nf
- xrdpFKNsIHPetLphdzeeaH739gLaz4XvF1QFMuK6VFxuow/AJkH4de69/VPqNZ4yiSrC
- Sxn7fTZSx6PoSOVc9xtQq9UVFq1FUPH/9iNXVBpMqG1BHtx/s2cSeX06akRqKD211fyP
- i+NVedHonrqgBZdS8wJnjo5EOsPw0esve27WrIkZjGUVtEiC/xxW3fUn0UColEXNqRYH JA== 
-Received: from pps.reinject (localhost [127.0.0.1])
- by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3kmpt18mg2-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 04 Nov 2022 14:20:16 +0000
-Received: from m0098419.ppops.net (m0098419.ppops.net [127.0.0.1])
- by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 2A4CffBp024673;
- Fri, 4 Nov 2022 14:20:15 GMT
-Received: from ppma03ams.nl.ibm.com (62.31.33a9.ip4.static.sl-reverse.com
- [169.51.49.98])
- by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3kmpt18men-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 04 Nov 2022 14:20:15 +0000
-Received: from pps.filterd (ppma03ams.nl.ibm.com [127.0.0.1])
- by ppma03ams.nl.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 2A4EKDmH001450;
- Fri, 4 Nov 2022 14:20:13 GMT
-Received: from b06cxnps3075.portsmouth.uk.ibm.com
- (d06relay10.portsmouth.uk.ibm.com [9.149.109.195])
- by ppma03ams.nl.ibm.com with ESMTP id 3kgut92h70-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 04 Nov 2022 14:20:12 +0000
-Received: from d06av22.portsmouth.uk.ibm.com (d06av22.portsmouth.uk.ibm.com
- [9.149.105.58])
- by b06cxnps3075.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 2A4EK95N26935554
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Fri, 4 Nov 2022 14:20:09 GMT
-Received: from d06av22.portsmouth.uk.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 958774C04E;
- Fri,  4 Nov 2022 14:20:09 +0000 (GMT)
-Received: from d06av22.portsmouth.uk.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 6EE164C044;
- Fri,  4 Nov 2022 14:20:09 +0000 (GMT)
-Received: from tuxmaker.boeblingen.de.ibm.com (unknown [9.152.85.9])
- by d06av22.portsmouth.uk.ibm.com (Postfix) with ESMTPS;
- Fri,  4 Nov 2022 14:20:09 +0000 (GMT)
-Received: by tuxmaker.boeblingen.de.ibm.com (Postfix, from userid 4958)
- id DCD6EE2125; Fri,  4 Nov 2022 15:20:08 +0100 (CET)
-From: Eric Farman <farman@linux.ibm.com>
-To: Matthew Rosato <mjrosato@linux.ibm.com>,
- Alex Williamson <alex.williamson@redhat.com>,
- Cornelia Huck <cohuck@redhat.com>, Jason Gunthorpe <jgg@nvidia.com>,
- Kevin Tian <kevin.tian@intel.com>, Yi Liu <yi.l.liu@intel.com>
-Date: Fri,  4 Nov 2022 15:20:07 +0100
-Message-Id: <20221104142007.1314999-8-farman@linux.ibm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221104142007.1314999-1-farman@linux.ibm.com>
-References: <20221104142007.1314999-1-farman@linux.ibm.com>
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com
+ [IPv6:2a00:1450:4864:20::22f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7965110E83C
+ for <intel-gfx@lists.freedesktop.org>; Fri,  4 Nov 2022 14:38:33 +0000 (UTC)
+Received: by mail-lj1-x22f.google.com with SMTP id l8so6610617ljh.13
+ for <intel-gfx@lists.freedesktop.org>; Fri, 04 Nov 2022 07:38:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=HIdsa7Muuo6y3/TbcxIHbnC6NwKLwTtYfmv48Mkpvt0=;
+ b=JCs/Q2zs3c5W1BU2IseFilsF/5m3qqIQwaMfQebYIC4KMz3yt/c0lSLpQrSKUkWxwC
+ OC/hS9+CdAcZ+/JF/YiArWwnjYbDOjxhmpr3ADIcyZMrqgGPR24BbKcT0OgU41w0XLqN
+ 8Y0Yrm4lwvLXaBJEuhl9tQXMD5J8Oihs+8ako0vQV5xpBQLh8detR7vqzfRUZzrPBeXy
+ UaMJXpa92x28Cq+CrrRQGXUL6COnKLOTpeNWgQcWU2JIJ8ArVMaw0LFKklhtFsYOROER
+ WxLH1uF0VjCt9eVZMezRmlxlXe/fOUCSqW+AdpQ1xVOF3YwWd9YV86Ulwx//NNOt/lfh
+ elEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=HIdsa7Muuo6y3/TbcxIHbnC6NwKLwTtYfmv48Mkpvt0=;
+ b=4znP095brwOwMC3Xoo6R8vxrsijDdAopbafvRjFYMU8vIysjhOUS9Uklc+b5FfNF9Q
+ A30Q/NkVtnV4HlhvRTiW77B8dneui0CprP9ivNYcaO/vxole7rY8F/IZjp4rMzttk3Al
+ 2kOM5J6M7JLeGfDYQH0xF8+1gjUX64CH3JDRff+BCQVyYlAuyYHoQA2bHa0gX280z25Z
+ L+kxQW+8MfBWlwQGuhSc6z4yen4hhq4h/WNcKfTKJcnQVrpWH41O5o/I+5OMbUfZ/Mpc
+ tFCtVQJUd6H6aHN1HP9ve6ub7sNZKg6DyCMMa44YRVzYNuD6VplpKMx9wvvBHh9mA9RH
+ tN1A==
+X-Gm-Message-State: ACrzQf3qN8jqWkxyS7KSHG4JqlDMRqQsnEANApD8B0sLTOBl4VFcW84B
+ IZF0rlelgv2VFD+7dA2faaQkghIY7FVfW9gEUqM=
+X-Google-Smtp-Source: AMsMyM5QYqXX7WA7V6nUi4yG7Cq9/qj2BMBlkOq/vXsmWyfs/BRB+w///0ai3QQXUSZdPVlosIeEbjWA53qe7WNzS2o=
+X-Received: by 2002:a05:651c:110e:b0:277:4a04:ad9a with SMTP id
+ e14-20020a05651c110e00b002774a04ad9amr12165545ljo.379.1667572711663; Fri, 04
+ Nov 2022 07:38:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: EHxGCwOIDx9yJninbfDdiZLMNtCclDWY
-X-Proofpoint-ORIG-GUID: BdBbPUrQpS6mLJO108ADP0zsTMxyl-hP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-04_09,2022-11-03_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 phishscore=0
- mlxscore=0 suspectscore=0 priorityscore=1501 spamscore=0
- lowpriorityscore=0 clxscore=1015 bulkscore=0 mlxlogscore=999
- malwarescore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2210170000 definitions=main-2211040093
-Subject: [Intel-gfx] [PATCH v3 7/7] vfio: Remove vfio_free_device
+References: <20221028145319.1.I87b119c576d486ad139faf1b7278d97e158aabe4@changeid>
+ <166700305133.24147.5489949087173137559@emeril.freedesktop.org>
+ <CA+ASDXO856vFOx7CwQEmgM7pUU_Jdb-wXJPGrkKMPQ3GoNBJeQ@mail.gmail.com>
+ <CAM0jSHM99OxpmS-pqmEiyoK2pa07fnhekTKLRQTMsWqFkHCgJg@mail.gmail.com>
+ <Y2MH4QCYqiAmvBQP@google.com>
+In-Reply-To: <Y2MH4QCYqiAmvBQP@google.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Fri, 4 Nov 2022 14:38:03 +0000
+Message-ID: <CAM0jSHPe6Ecyh4X4ki=xcnT24REvAPoUqwH5Kkm6rEKYCCr4kQ@mail.gmail.com>
+To: Brian Norris <briannorris@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] 
+	=?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+	=?utf-8?q?/i915=3A_Set_PROBE=5FPREFER=5FASYNCHRONOUS?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,237 +70,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kvm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Kirti Wankhede <kwankhede@nvidia.com>,
- Vineeth Vijayan <vneethv@linux.ibm.com>,
- Diana Craciun <diana.craciun@oss.nxp.com>,
- Alexander Gordeev <agordeev@linux.ibm.com>, David Airlie <airlied@gmail.com>,
- linux-s390@vger.kernel.org, Halil Pasic <pasic@linux.ibm.com>,
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- intel-gfx@lists.freedesktop.org, Jason Herne <jjherne@linux.ibm.com>,
- Eric Farman <farman@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>, Eric Auger <eric.auger@redhat.com>,
- Harald Freudenberger <freude@linux.ibm.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gvt-dev@lists.freedesktop.org,
- Tony Krowiak <akrowiak@linux.ibm.com>, Yishai Hadas <yishaih@nvidia.com>,
- Peter Oberparleiter <oberpar@linux.ibm.com>,
- Sven Schnelle <svens@linux.ibm.com>, Daniel Vetter <daniel@ffwll.ch>,
- Abhishek Sahu <abhsahu@nvidia.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With the "mess" sorted out, we should be able to inline the
-vfio_free_device call introduced by commit cb9ff3f3b84c
-("vfio: Add helpers for unifying vfio_device life cycle")
-and remove them from driver release callbacks.
+On Thu, 3 Nov 2022 at 00:14, Brian Norris <briannorris@chromium.org> wrote:
+>
+> On Wed, Nov 02, 2022 at 12:18:37PM +0000, Matthew Auld wrote:
+> > On Tue, 1 Nov 2022 at 21:58, Brian Norris <briannorris@chromium.org> wrote:
+> > >
+> > > On Fri, Oct 28, 2022 at 5:24 PM Patchwork
+> > > <patchwork@emeril.freedesktop.org> wrote:
+> > > >
+> > > > Patch Details
+> > > > Series:drm/i915: Set PROBE_PREFER_ASYNCHRONOUS
+> > > > URL:https://patchwork.freedesktop.org/series/110277/
+> > > > State:failure
+> > > > Details:https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110277v1/index.html
+> > > >
+> > > > CI Bug Log - changes from CI_DRM_12317 -> Patchwork_110277v1
+> > > >
+> > > > Summary
+> > > >
+> > > > FAILURE
+> > > >
+> > > > Serious unknown changes coming with Patchwork_110277v1 absolutely need to be
+> > > > verified manually.
+> > > >
+> > > > If you think the reported changes have nothing to do with the changes
+> > > > introduced in Patchwork_110277v1, please notify your bug team to allow them
+> > > > to document this new failure mode, which will reduce false positives in CI.
+> > > >
+> > > > External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110277v1/index.html
+> > >
+> > > For the record, I have almost zero idea what to do with this. From
+> > > what I can tell, most (all?) of these failures are flaky(?) already
+> > > and are probably not related to my change.
+> >
+> > https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110277v1/index.html
+> >
+> > According to that link, this change appears to break every platform
+> > when running the live selftests (looking at the purple squares).
+> > Running the selftests normally involves loading and unloading the
+> > module. Looking at the logs there is scary stuff like:
+> >
+> [...]
+>
+> Ah, thanks. I'm not sure what made me think the tests were failing the
+> same way on drm-tip, but maybe just chalk that up to my unfamiliarity
+> with this particular dashboard... (There are a few isolated failure
+> and/or flakes on drm-tip, but they don't look like this.)
+>
+> Anyway, I think I managed to run some of these tests on my own platforms
+> [1], and I don't reproduce those failures. I do see other failures
+> (crashes) though, like in i915_gem_mman_live_selftests/igt_mmap, where
+> igt_mmap_offset() (selftest-only code) -> vm_mmap() assumes we have a
+> valid |current->mm|. But that's borrowing the modprobe process's memory
+> map, and with async probe, the selftest sequence happens in a kernel
+> worker instead (and current->mm is NULL). So that clearly won't work.
+>
+> I suppose I could disable async probe when built as a module (I believe
+> it doesn't really have any value, since the module load task just waits
+> for the async task anyway). I'm not familiar enough with MM to know what
+> the vm_mmap() alternatives are, but this particular bit of code does
+> feel odd.
+>
+> Additionally, I think this implies that live_selftests will break if
+> i915 is built-in (i.e., =y, not =m), as we'll again run in a
+> kernel-thread context at boot time. But I would hope nobody is trying to
+> run them that way? I guess this gets even hairier, because even if the
+> driver is built into the kernel, it's possible to kick them off from a
+> process context by tweaking the module parameters later, and then
+> re-binding the device... So all in all, this bug leaves an ugly
+> situation, with or without my patch.
+>
+> I'm still curious about the reported failures, but maybe they require
+> some particular sequence of tests? I also don't have the full
+> igt-gpu-tools set running, so maybe they do something a little
+> differently than my steps in [1]?
+>
+> Brian
+>
+> [1] I have a GLk system, if it matters. I figured I can run some of
+> these with any one of the following:
+>
+>   modprobe i915 live_selftests=1
+>   modprobe i915 live_selftests=1 igt__20__live_workarounds=Y
+>   modprobe i915 live_selftests=1 igt__19__live_uncore=Y
+>   modprobe i915 live_selftests=1 igt__18__live_sanitycheck=Y
+>   ...
 
-Signed-off-by: Eric Farman <farman@linux.ibm.com>
-Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
-Reviewed-by: Kevin Tian <kevin.tian@intel.com>
-Reviewed-by: Cornelia Huck <cohuck@redhat.com>
-Reviewed-by: Tony Krowiak <akrowiak@linux.ibm.com>	# vfio-ap part
-Acked-by: Alex Williamson <alex.williamson@redhat.com>
-Reviewed-by: Matthew Rosato <mjrosato@linux.ibm.com>
----
- drivers/gpu/drm/i915/gvt/kvmgt.c      |  1 -
- drivers/s390/cio/vfio_ccw_ops.c       |  2 --
- drivers/s390/crypto/vfio_ap_ops.c     |  6 ------
- drivers/vfio/fsl-mc/vfio_fsl_mc.c     |  1 -
- drivers/vfio/pci/vfio_pci_core.c      |  1 -
- drivers/vfio/platform/vfio_amba.c     |  1 -
- drivers/vfio/platform/vfio_platform.c |  1 -
- drivers/vfio/vfio_main.c              | 22 ++++------------------
- include/linux/vfio.h                  |  1 -
- samples/vfio-mdev/mbochs.c            |  1 -
- samples/vfio-mdev/mdpy.c              |  1 -
- samples/vfio-mdev/mtty.c              |  1 -
- 12 files changed, 4 insertions(+), 35 deletions(-)
+CI should be using the IGT wrapper to run them, AFAIK. So something like:
 
-diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
-index 7a45e5360caf..eee6805e67de 100644
---- a/drivers/gpu/drm/i915/gvt/kvmgt.c
-+++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
-@@ -1461,7 +1461,6 @@ static void intel_vgpu_release_dev(struct vfio_device *vfio_dev)
- 	struct intel_vgpu *vgpu = vfio_dev_to_vgpu(vfio_dev);
- 
- 	intel_gvt_destroy_vgpu(vgpu);
--	vfio_free_device(vfio_dev);
- }
- 
- static const struct vfio_device_ops intel_vgpu_dev_ops = {
-diff --git a/drivers/s390/cio/vfio_ccw_ops.c b/drivers/s390/cio/vfio_ccw_ops.c
-index 1155f8bcedd9..598a3814d428 100644
---- a/drivers/s390/cio/vfio_ccw_ops.c
-+++ b/drivers/s390/cio/vfio_ccw_ops.c
-@@ -143,8 +143,6 @@ static void vfio_ccw_mdev_release_dev(struct vfio_device *vdev)
- 	kmem_cache_free(vfio_ccw_io_region, private->io_region);
- 	kfree(private->cp.guest_cp);
- 	mutex_destroy(&private->io_mutex);
--
--	vfio_free_device(vdev);
- }
- 
- static void vfio_ccw_mdev_remove(struct mdev_device *mdev)
-diff --git a/drivers/s390/crypto/vfio_ap_ops.c b/drivers/s390/crypto/vfio_ap_ops.c
-index 0b4cc8c597ae..f108c0f14712 100644
---- a/drivers/s390/crypto/vfio_ap_ops.c
-+++ b/drivers/s390/crypto/vfio_ap_ops.c
-@@ -765,11 +765,6 @@ static void vfio_ap_mdev_unlink_fr_queues(struct ap_matrix_mdev *matrix_mdev)
- 	}
- }
- 
--static void vfio_ap_mdev_release_dev(struct vfio_device *vdev)
--{
--	vfio_free_device(vdev);
--}
--
- static void vfio_ap_mdev_remove(struct mdev_device *mdev)
- {
- 	struct ap_matrix_mdev *matrix_mdev = dev_get_drvdata(&mdev->dev);
-@@ -1784,7 +1779,6 @@ static const struct attribute_group vfio_queue_attr_group = {
- 
- static const struct vfio_device_ops vfio_ap_matrix_dev_ops = {
- 	.init = vfio_ap_mdev_init_dev,
--	.release = vfio_ap_mdev_release_dev,
- 	.open_device = vfio_ap_mdev_open_device,
- 	.close_device = vfio_ap_mdev_close_device,
- 	.ioctl = vfio_ap_mdev_ioctl,
-diff --git a/drivers/vfio/fsl-mc/vfio_fsl_mc.c b/drivers/vfio/fsl-mc/vfio_fsl_mc.c
-index b16874e913e4..7b8889f55007 100644
---- a/drivers/vfio/fsl-mc/vfio_fsl_mc.c
-+++ b/drivers/vfio/fsl-mc/vfio_fsl_mc.c
-@@ -568,7 +568,6 @@ static void vfio_fsl_mc_release_dev(struct vfio_device *core_vdev)
- 
- 	vfio_fsl_uninit_device(vdev);
- 	mutex_destroy(&vdev->igate);
--	vfio_free_device(core_vdev);
- }
- 
- static int vfio_fsl_mc_remove(struct fsl_mc_device *mc_dev)
-diff --git a/drivers/vfio/pci/vfio_pci_core.c b/drivers/vfio/pci/vfio_pci_core.c
-index badc9d828cac..9be2d5be5d95 100644
---- a/drivers/vfio/pci/vfio_pci_core.c
-+++ b/drivers/vfio/pci/vfio_pci_core.c
-@@ -2109,7 +2109,6 @@ void vfio_pci_core_release_dev(struct vfio_device *core_vdev)
- 	mutex_destroy(&vdev->vma_lock);
- 	kfree(vdev->region);
- 	kfree(vdev->pm_save);
--	vfio_free_device(core_vdev);
- }
- EXPORT_SYMBOL_GPL(vfio_pci_core_release_dev);
- 
-diff --git a/drivers/vfio/platform/vfio_amba.c b/drivers/vfio/platform/vfio_amba.c
-index eaea63e5294c..18faf2678b99 100644
---- a/drivers/vfio/platform/vfio_amba.c
-+++ b/drivers/vfio/platform/vfio_amba.c
-@@ -95,7 +95,6 @@ static void vfio_amba_release_dev(struct vfio_device *core_vdev)
- 
- 	vfio_platform_release_common(vdev);
- 	kfree(vdev->name);
--	vfio_free_device(core_vdev);
- }
- 
- static void vfio_amba_remove(struct amba_device *adev)
-diff --git a/drivers/vfio/platform/vfio_platform.c b/drivers/vfio/platform/vfio_platform.c
-index 82cedcebfd90..9910451dc341 100644
---- a/drivers/vfio/platform/vfio_platform.c
-+++ b/drivers/vfio/platform/vfio_platform.c
-@@ -83,7 +83,6 @@ static void vfio_platform_release_dev(struct vfio_device *core_vdev)
- 		container_of(core_vdev, struct vfio_platform_device, vdev);
- 
- 	vfio_platform_release_common(vdev);
--	vfio_free_device(core_vdev);
- }
- 
- static int vfio_platform_remove(struct platform_device *pdev)
-diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
-index 2901b8ad5be9..9835757e2bee 100644
---- a/drivers/vfio/vfio_main.c
-+++ b/drivers/vfio/vfio_main.c
-@@ -339,13 +339,10 @@ static void vfio_device_release(struct device *dev)
- 	vfio_release_device_set(device);
- 	ida_free(&vfio.device_ida, device->index);
- 
--	/*
--	 * kvfree() cannot be done here due to a life cycle mess in
--	 * vfio-ccw. Before the ccw part is fixed all drivers are
--	 * required to support @release and call vfio_free_device()
--	 * from there.
--	 */
--	device->ops->release(device);
-+	if (device->ops->release)
-+		device->ops->release(device);
-+
-+	kvfree(device);
- }
- 
- static int vfio_init_device(struct vfio_device *device, struct device *dev,
-@@ -424,17 +421,6 @@ static int vfio_init_device(struct vfio_device *device, struct device *dev,
- 	return ret;
- }
- 
--/*
-- * The helper called by driver @release callback to free the device
-- * structure. Drivers which don't have private data to clean can
-- * simply use this helper as its @release.
-- */
--void vfio_free_device(struct vfio_device *device)
--{
--	kvfree(device);
--}
--EXPORT_SYMBOL_GPL(vfio_free_device);
--
- static struct vfio_group *vfio_noiommu_group_alloc(struct device *dev,
- 		enum vfio_group_type type)
- {
-diff --git a/include/linux/vfio.h b/include/linux/vfio.h
-index ba809268a48e..e7480154825e 100644
---- a/include/linux/vfio.h
-+++ b/include/linux/vfio.h
-@@ -176,7 +176,6 @@ struct vfio_device *_vfio_alloc_device(size_t size, struct device *dev,
- 					dev, ops),				\
- 		     struct dev_struct, member)
- 
--void vfio_free_device(struct vfio_device *device);
- static inline void vfio_put_device(struct vfio_device *device)
- {
- 	put_device(&device->device);
-diff --git a/samples/vfio-mdev/mbochs.c b/samples/vfio-mdev/mbochs.c
-index 117a8d799f71..8b5a3a778a25 100644
---- a/samples/vfio-mdev/mbochs.c
-+++ b/samples/vfio-mdev/mbochs.c
-@@ -594,7 +594,6 @@ static void mbochs_release_dev(struct vfio_device *vdev)
- 	atomic_add(mdev_state->type->mbytes, &mbochs_avail_mbytes);
- 	kfree(mdev_state->pages);
- 	kfree(mdev_state->vconfig);
--	vfio_free_device(vdev);
- }
- 
- static void mbochs_remove(struct mdev_device *mdev)
-diff --git a/samples/vfio-mdev/mdpy.c b/samples/vfio-mdev/mdpy.c
-index 946e8cfde6fd..721fb06c6413 100644
---- a/samples/vfio-mdev/mdpy.c
-+++ b/samples/vfio-mdev/mdpy.c
-@@ -283,7 +283,6 @@ static void mdpy_release_dev(struct vfio_device *vdev)
- 
- 	vfree(mdev_state->memblk);
- 	kfree(mdev_state->vconfig);
--	vfio_free_device(vdev);
- }
- 
- static void mdpy_remove(struct mdev_device *mdev)
-diff --git a/samples/vfio-mdev/mtty.c b/samples/vfio-mdev/mtty.c
-index e72085fc1376..3c2a421b9b69 100644
---- a/samples/vfio-mdev/mtty.c
-+++ b/samples/vfio-mdev/mtty.c
-@@ -784,7 +784,6 @@ static void mtty_release_dev(struct vfio_device *vdev)
- 
- 	atomic_add(mdev_state->nr_ports, &mdev_avail_ports);
- 	kfree(mdev_state->vconfig);
--	vfio_free_device(vdev);
- }
- 
- static void mtty_remove(struct mdev_device *mdev)
--- 
-2.34.1
+./build/tests/i915_selftest
 
+Or to just run the live, mock or perf:
+
+./build/tests/i915_selftest --run-subtest live
+./build/tests/i915_selftest --run-subtest mock
+./build/tests/i915_selftest --run-subtest perf
+
+Or if you want to run some particular selftest, like live mman tests:
+
+./build/tests/i915_selftest --run-subtest live --dyn mman
