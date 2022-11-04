@@ -2,56 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6753A61967E
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Nov 2022 13:47:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DDEB6196C9
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Nov 2022 14:02:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79C9410E038;
-	Fri,  4 Nov 2022 12:47:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E54810E74A;
+	Fri,  4 Nov 2022 13:02:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA29010E038;
- Fri,  4 Nov 2022 12:47:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667566031; x=1699102031;
- h=date:from:to:cc:subject:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ZPunl4osppyLqR+Xi1y4JyX4umyoRMB/HIeAA3Sly5w=;
- b=eCjExWUioTnJ2Ck5VoDFNhzsMcBETomkItF8enPPJMXQj0QnPlcHpMSy
- 7sXiZE92K2KCm0BzZkFtTMYhhuQoETO64/a4c+XUXTRQKLpF9KUTNTe0y
- qUA0XY5kDKj5Qksrdob1Inbtlg2tR0wCTTLR77ZlpdbyFXHcjz4l2SdZZ
- 1Edqe5L6+bA0jCM5yBGuDVhzBdAUCBF2KmtZ5ylvFyB3rVG8J9b2waKHZ
- p4ccQjyhdfx15XcljtUwv8QTQIdwOclk6ljgz6HQf8Ooua6vhVmC4Jq6w
- tu8RezUn5/IVkZRYnqcY/KRWzA+SQ3rZnHISdK7QuGKT0WX3GlD23G2tm g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10520"; a="311697507"
-X-IronPort-AV: E=Sophos;i="5.96,137,1665471600"; d="scan'208";a="311697507"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2022 05:47:10 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10520"; a="740612274"
-X-IronPort-AV: E=Sophos;i="5.96,137,1665471600"; d="scan'208";a="740612274"
-Received: from linux.intel.com ([10.54.29.200])
- by fmsmga002.fm.intel.com with ESMTP; 04 Nov 2022 05:47:09 -0700
-Received: from maurocar-mobl2 (unknown [10.252.31.62])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by linux.intel.com (Postfix) with ESMTPS id C344F58090D;
- Fri,  4 Nov 2022 05:47:06 -0700 (PDT)
-Date: Fri, 4 Nov 2022 13:47:03 +0100
-From: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
-To: Daniel Latypov <dlatypov@google.com>
-Message-ID: <20221104134703.3770b371@maurocar-mobl2>
-In-Reply-To: <20221104084955.4e6e1093@maurocar-mobl2>
-References: <20221103162302.4ba62d72@maurocar-mobl2>
- <CAGS_qxr1=PLFzM8bGjdowZwdOXMEPiJEnffPUGQvwdhYVJJNvA@mail.gmail.com>
- <20221104084955.4e6e1093@maurocar-mobl2>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5DC8D10E74A;
+ Fri,  4 Nov 2022 13:02:43 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5762BAADE7;
+ Fri,  4 Nov 2022 13:02:43 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4820625580147615055=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] KUnit issues - Was: [igt-dev] [PATCH RFC v2 8/8]
- drm/i915: check if current->mm is not NULL
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Fri, 04 Nov 2022 13:02:43 -0000
+Message-ID: <166756696334.23023.17199772741452381334@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221104120402.5677-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20221104120402.5677-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5BCI=2C1/2=5D_Revert_=22freezer=2C_sched=3A_?=
+ =?utf-8?q?Rewrite_core_freezer_logic_fix=22?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,275 +41,421 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Gow <davidgow@google.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, igt-dev@lists.freedesktop.org,
- Brendan Higgins <brendan.higgins@linux.dev>, linux-kselftest@vger.kernel.org,
- Shuah Khan <skhan@linuxfoundation.org>, kunit-dev@googlegroups.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 4 Nov 2022 08:49:55 +0100
-Mauro Carvalho Chehab <mauro.chehab@linux.intel.com> wrote:
+--===============4820625580147615055==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> On Thu, 3 Nov 2022 15:43:26 -0700
-> Daniel Latypov <dlatypov@google.com> wrote:
-> 
-> > On Thu, Nov 3, 2022 at 8:23 AM Mauro Carvalho Chehab
-> > <mauro.chehab@linux.intel.com> wrote:  
-> > >
-> > > Hi,
-> > >
-> > > I'm facing a couple of issues when testing KUnit with the i915 driver.
-> > >
-> > > The DRM subsystem and the i915 driver has, for a long time, his own
-> > > way to do unit tests, which seems to be added before KUnit.
-> > >
-> > > I'm now checking if it is worth start using KUnit at i915. So, I wrote
-> > > a RFC with some patches adding support for the tests we have to be
-> > > reported using Kernel TAP and KUnit.
-> > >
-> > > There are basically 3 groups of tests there:
-> > >
-> > > - mock tests - check i915 hardware-independent logic;
-> > > - live tests - run some hardware-specific tests;
-> > > - perf tests - check perf support - also hardware-dependent.
-> > >
-> > > As they depend on i915 driver, they run only on x86, with PCI
-> > > stack enabled, but the mock tests run nicely via qemu.
-> > >
-> > > The live and perf tests require a real hardware. As we run them
-> > > together with our CI, which, among other things, test module
-> > > unload/reload and test loading i915 driver with different
-> > > modprobe parameters, the KUnit tests should be able to run as
-> > > a module.
-> > >
-> > > While testing KUnit, I noticed a couple of issues:
-> > >
-> > > 1. kunit.py parser is currently broken when used with modules
-> > >
-> > > the parser expects "TAP version xx" output, but this won't
-> > > happen when loading the kunit test driver.
-> > >
-> > > Are there any plans or patches fixing this issue?    
-> > 
-> > Partially.
-> > Note: we need a header to look for so we can strip prefixes (like timestamps).
-> > 
-> > But there is a patch in the works to add a TAP header for each
-> > subtest, hopefully in time for 6.2.  
-> 
-> Good to know.
-> 
-> > This is to match the KTAP spec:
-> > https://kernel.org/doc/html/latest/dev-tools/ktap.html  
-> 
-> I see.
-> 
-> > That should fix it so you can parse one suite's results at a time.
-> > I'm pretty sure it won't fix the case where there's multiple suites
-> > and/or you're trying to parse all test results at once via
-> > 
-> > $ find /sys/kernel/debug/kunit/ -type f | xargs cat |
-> > ./tools/testing/kunit/kunit.py parse  
-> 
-> Could you point me to the changeset? perhaps I can write a followup
-> patch addressing this case.
-> 
-> > I think that in-kernel code change + some more python changes could
-> > make the above command work, but no one has actively started looking
-> > at that just yet.
-> > Hopefully we can pick this up and also get it done for 6.2 (unless I'm
-> > underestimating how complicated this is).
-> >   
-> > >
-> > > 2. current->mm is not initialized
-> > >
-> > > Some tests do mmap(). They need the mm user context to be initialized,
-> > > but this is not happening right now.
-> > >
-> > > Are there a way to properly initialize it for KUnit?    
-> > 
-> > Right, this is a consequence of how early built-in KUnit tests are run
-> > after boot.
-> > I think for now, the answer is to make the test module-only.
-> > 
-> > I know David had some ideas here, but I can't speak to them.  
-> 
-> This is happening when test-i915 is built as module as well.
-> 
-> I suspect that the function which initializes it is mm_alloc() inside 
-> kernel/fork.c:
-> 
-> 	struct mm_struct *mm_alloc(void)
-> 	{
-> 	        struct mm_struct *mm;
-> 
-> 	        mm = allocate_mm();
-> 	        if (!mm)
-> 	                return NULL;
-> 
-> 	        memset(mm, 0, sizeof(*mm));
-> 	        return mm_init(mm, current, current_user_ns());
-> 	}
-> 
-> As modprobing a test won't fork until all tests run, this never runs.
-> 
-> It seems that the normal usage is at fs/exec.c:
-> 
-> 	fs/exec.c:      bprm->mm = mm = mm_alloc();
-> 
-> but other places also call it:
-> 
-> 	arch/arm/mach-rpc/ecard.c:      struct mm_struct * mm = mm_alloc();
-> 	drivers/dma-buf/dma-resv.c:     struct mm_struct *mm = mm_alloc();
-> 	include/linux/sched/mm.h:extern struct mm_struct *mm_alloc(void);
-> 	mm/debug_vm_pgtable.c:  args->mm = mm_alloc();
-> 
-> Probably the solution would be to call it inside kunit executor code,
-> adding support for modules to use it.
+== Series Details ==
+
+Series: series starting with [CI,1/2] Revert "freezer, sched: Rewrite core freezer logic fix"
+URL   : https://patchwork.freedesktop.org/series/110529/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_12342 -> Patchwork_110529v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/index.html
+
+Participating hosts (27 -> 28)
+------------------------------
+
+  Additional (3): fi-adl-ddr5 fi-rkl-11600 fi-ilk-650 
+  Missing    (2): fi-ctg-p8600 fi-bdw-samus 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_110529v1:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * {igt@debugfs_test@basic-hwmon}:
+    - fi-adl-ddr5:        NOTRUN -> [SKIP][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-adl-ddr5/igt@debugfs_test@basic-hwmon.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - {fi-jsl-1}:         [PASS][2] -> [INCOMPLETE][3]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12342/fi-jsl-1/igt@i915_selftest@live@hangcheck.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-jsl-1/igt@i915_selftest@live@hangcheck.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_110529v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][4] ([i915#2190])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-rkl-11600/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][5] ([i915#4613]) +3 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-rkl-11600/igt@gem_lmem_swapping@parallel-random-engines.html
+    - fi-adl-ddr5:        NOTRUN -> [SKIP][6] ([i915#4613]) +3 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-adl-ddr5/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  * igt@gem_tiled_pread_basic:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][7] ([i915#3282])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-rkl-11600/igt@gem_tiled_pread_basic.html
+    - fi-adl-ddr5:        NOTRUN -> [SKIP][8] ([i915#3282])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-adl-ddr5/igt@gem_tiled_pread_basic.html
+
+  * igt@i915_pm_backlight@basic-brightness:
+    - fi-adl-ddr5:        NOTRUN -> [SKIP][9] ([i915#1155])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-adl-ddr5/igt@i915_pm_backlight@basic-brightness.html
+    - fi-rkl-11600:       NOTRUN -> [SKIP][10] ([i915#3012])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-rkl-11600/igt@i915_pm_backlight@basic-brightness.html
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-ilk-650:         NOTRUN -> [SKIP][11] ([fdo#109271]) +19 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-ilk-650/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  * igt@kms_chamelium@dp-edid-read:
+    - fi-adl-ddr5:        NOTRUN -> [SKIP][12] ([fdo#111827]) +8 similar issues
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-adl-ddr5/igt@kms_chamelium@dp-edid-read.html
+
+  * igt@kms_chamelium@hdmi-edid-read:
+    - fi-ilk-650:         NOTRUN -> [SKIP][13] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-ilk-650/igt@kms_chamelium@hdmi-edid-read.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][14] ([fdo#111827]) +8 similar issues
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-rkl-11600/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][15] ([i915#4103])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-rkl-11600/igt@kms_cursor_legacy@basic-busy-flip-before-cursor.html
+    - fi-adl-ddr5:        NOTRUN -> [SKIP][16] ([i915#4103])
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-adl-ddr5/igt@kms_cursor_legacy@basic-busy-flip-before-cursor.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][17] ([fdo#109285] / [i915#4098])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-rkl-11600/igt@kms_force_connector_basic@force-load-detect.html
+    - fi-adl-ddr5:        NOTRUN -> [SKIP][18] ([fdo#109285])
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-adl-ddr5/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_psr@cursor_plane_move:
+    - fi-adl-ddr5:        NOTRUN -> [SKIP][19] ([i915#1072]) +3 similar issues
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-adl-ddr5/igt@kms_psr@cursor_plane_move.html
+
+  * igt@kms_psr@sprite_plane_onoff:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][20] ([i915#1072]) +3 similar issues
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-rkl-11600/igt@kms_psr@sprite_plane_onoff.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][21] ([i915#3555] / [i915#4098])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-rkl-11600/igt@kms_setmode@basic-clone-single-crtc.html
+    - fi-adl-ddr5:        NOTRUN -> [SKIP][22] ([i915#3555])
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-adl-ddr5/igt@kms_setmode@basic-clone-single-crtc.html
+
+  * igt@prime_vgem@basic-read:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][23] ([fdo#109295] / [i915#3291] / [i915#3708]) +2 similar issues
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-rkl-11600/igt@prime_vgem@basic-read.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-adl-ddr5:        NOTRUN -> [SKIP][24] ([fdo#109295] / [i915#3301])
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-adl-ddr5/igt@prime_vgem@basic-userptr.html
+    - fi-rkl-11600:       NOTRUN -> [SKIP][25] ([fdo#109295] / [i915#3301] / [i915#3708])
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-rkl-11600/igt@prime_vgem@basic-userptr.html
+
+  * igt@prime_vgem@basic-write:
+    - fi-adl-ddr5:        NOTRUN -> [SKIP][26] ([fdo#109295] / [i915#3291]) +2 similar issues
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-adl-ddr5/igt@prime_vgem@basic-write.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
+    - fi-bsw-kefka:       [FAIL][27] ([i915#6298]) -> [PASS][28]
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12342/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#4098]: https://gitlab.freedesktop.org/drm/intel/issues/4098
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#6106]: https://gitlab.freedesktop.org/drm/intel/issues/6106
+  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
+  [i915#7456]: https://gitlab.freedesktop.org/drm/intel/issues/7456
 
 
-Hmm... it is not that simple... I tried the enclosed patch, but it caused
-another issue at the live/mman/mmap test:
+Build changes
+-------------
 
-<snip>
-[  152.815543] test_i915: 0000:00:02.0: it is a i915 device.
-[  152.816456]     # Subtest: i915 live selftests
-[  152.816463]     1..1
-[  152.816835] kunit_try_run_case: allocating user context
-[  152.816978] CPU: 1 PID: 1139 Comm: kunit_try_catch Tainted: G                 N 6.1.0-rc2-drm-110e9bebcbcc+ #20
-[  152.817063] Hardware name: Intel Corporation Tiger Lake Client Platform/TigerLake Y LPDDR4x T4 Crb, BIOS TGLSFWI1.R00.3243.A01.2006102133 06/10/2020
-[  152.817583] i915: Performing live_mman selftests with st_random_seed=0x11aaba4d st_timeout=500
-[  152.817735] test_i915: Setting dangerous option KUnit live_mman - tainting kernel
-[  152.817819] test_i915: Running live_mman on 0000:00:02.0
-[  152.817899] i915: Running i915_gem_mman_live_selftests/igt_partial_tiling
-[  153.346653] check_partial_mappings: timed out after tiling=0 stride=0
-[  153.847696] check_partial_mappings: timed out after tiling=1 stride=262144
-[  154.348615] check_partial_mappings: timed out after tiling=2 stride=262144
-[  154.376677] i915: Running i915_gem_mman_live_selftests/igt_smoke_tiling
-[  154.877686] igt_smoke_tiling: Completed 3465 trials
-[  155.025764] i915: Running i915_gem_mman_live_selftests/igt_mmap_offset_exhaustion
-[  155.050908] i915: Running i915_gem_mman_live_selftests/igt_mmap
-[  155.052056] BUG: kernel NULL pointer dereference, address: 0000000000000000
-[  155.052080] #PF: supervisor instruction fetch in kernel mode
-[  155.052095] #PF: error_code(0x0010) - not-present page
-[  155.052110] PGD 0 P4D 0 
-[  155.052121] Oops: 0010 [#1] PREEMPT SMP NOPTI
-[  155.052135] CPU: 5 PID: 1139 Comm: kunit_try_catch Tainted: G     U           N 6.1.0-rc2-drm-110e9bebcbcc+ #20
-[  155.052162] Hardware name: Intel Corporation Tiger Lake Client Platform/TigerLake Y LPDDR4x T4 Crb, BIOS TGLSFWI1.R00.3243.A01.2006102133 06/10/2020
-[  155.052191] RIP: 0010:0x0
-[  155.052207] Code: Unable to access opcode bytes at 0xffffffffffffffd6.
-[  155.052223] RSP: 0018:ffffc900019ebbe8 EFLAGS: 00010246
-[  155.052238] RAX: 0000000000000000 RBX: 0000000000001000 RCX: 0000000000100000
-[  155.052257] RDX: 0000000000001000 RSI: 0000000000000000 RDI: ffff8881111a6840
-[  155.052275] RBP: 0000000000000001 R08: 0000000000000001 R09: 0000000000000000
-[  155.052292] R10: ffff8881049ad000 R11: 00000000ffffffff R12: 0000000000000002
-[  155.052309] R13: ffff8881111a6840 R14: 0000000000100000 R15: 0000000000000000
-[  155.052327] FS:  0000000000000000(0000) GS:ffff8883a3a80000(0000) knlGS:0000000000000000
-[  155.052347] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[  155.052361] CR2: ffffffffffffffd6 CR3: 000000011118c004 CR4: 0000000000770ee0
-[  155.052379] PKRU: 55555554
-[  155.052387] Call Trace:
-[  155.052396]  <TASK>
-[  155.052403]  get_unmapped_area+0x80/0x130
-[  155.052422]  do_mmap+0xe5/0x530
-[  155.052439]  vm_mmap_pgoff+0xab/0x150
-[  155.052457]  igt_mmap_offset+0x133/0x1e0 [i915]
-[  155.052875]  __igt_mmap+0xfe/0x680 [i915]
-[  155.053233]  ? __i915_gem_object_create_user_ext+0x49c/0x550 [i915]
-[  155.053614]  igt_mmap+0xd8/0x290 [i915]
-[  155.054057]  ? __trace_bprintk+0x8c/0xa0
-[  155.054080]  __i915_subtests.cold+0x53/0xd5 [i915]
-[  155.054648]  ? __i915_nop_teardown+0x20/0x20 [i915]
-[  155.055127]  ? __i915_live_setup+0x60/0x60 [i915]
-[  155.055608]  ? singleton_release+0x40/0x40 [i915]
-[  155.056060]  i915_gem_mman_live_selftests+0x4e/0x60 [i915]
-[  155.056503]  run_pci_test.cold+0x4d/0x163 [test_i915]
-[  155.056535]  ? kunit_try_catch_throw+0x20/0x20
-[  155.056557]  live_mman+0x19/0x26 [test_i915]
-[  155.056581]  kunit_try_run_case+0xf0/0x145
-[  155.056607]  kunit_generic_run_threadfn_adapter+0x13/0x30
-[  155.057715]  kthread+0xf2/0x120
-[  155.058864]  ? kthread_complete_and_exit+0x20/0x20
-[  155.060014]  ret_from_fork+0x1f/0x30
-[  155.061108]  </TASK>
-[  155.062174] Modules linked in: test_i915 x86_pkg_temp_thermal coretemp snd_hda_codec_hdmi mei_hdcp kvm_intel snd_hda_intel snd_intel_dspcfg snd_hda_codec snd_hwdep kvm snd_hda_core mei_me irqbypass wmi_bmof snd_pcm i2c_i801 mei i2c_smbus intel_lpss_pci crct10dif_pclmul crc32_pclmul ghash_clmulni_intel i915 prime_numbers drm_buddy drm_display_helper drm_kms_helper syscopyarea e1000e sysfillrect sysimgblt ptp fb_sys_fops pps_core ttm video wmi fuse
-[  155.064354] CR2: 0000000000000000
-[  155.065413] ---[ end trace 0000000000000000 ]---
-[  155.074555] RIP: 0010:0x0
-[  155.075437] Code: Unable to access opcode bytes at 0xffffffffffffffd6.
-[  155.076313] RSP: 0018:ffffc900019ebbe8 EFLAGS: 00010246
-[  155.077195] RAX: 0000000000000000 RBX: 0000000000001000 RCX: 0000000000100000
-[  155.078124] RDX: 0000000000001000 RSI: 0000000000000000 RDI: ffff8881111a6840
-[  155.079013] RBP: 0000000000000001 R08: 0000000000000001 R09: 0000000000000000
-[  155.079898] R10: ffff8881049ad000 R11: 00000000ffffffff R12: 0000000000000002
-[  155.080785] R13: ffff8881111a6840 R14: 0000000000100000 R15: 0000000000000000
-[  155.081668] FS:  0000000000000000(0000) GS:ffff8883a3a80000(0000) knlGS:0000000000000000
-[  155.082565] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[  155.083451] CR2: ffffffffffffffd6 CR3: 0000000110904006 CR4: 0000000000770ee0
-[  155.084348] PKRU: 55555554
-</snip>
+  * Linux: CI_DRM_12342 -> Patchwork_110529v1
 
-It sounds that something else is needed to properly initialize the user
-context.
+  CI-20190529: 20190529
+  CI_DRM_12342: 44f62f6f335a4bec6854162b502c637e061030f0 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7043: eef0a0c904846509f8185330ccd210a578ba55ec @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_110529v1: 44f62f6f335a4bec6854162b502c637e061030f0 @ git://anongit.freedesktop.org/gfx-ci/linux
 
-Regards,
-Mauro
 
----
+### Linux commits
 
-[PATCH] kunit: allocate user context mm
+5cf3fd8ed9b1 freezer, sched: Rewrite core freezer logic v2
+2d5f731467d7 Revert "freezer, sched: Rewrite core freezer logic fix"
 
-Without that, tests envolving mmap won't work.
+== Logs ==
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/index.html
 
-diff --git a/lib/kunit/test.c b/lib/kunit/test.c
-index 90640a43cf62..809522e110c5 100644
---- a/lib/kunit/test.c
-+++ b/lib/kunit/test.c
-@@ -14,6 +14,7 @@
- #include <linux/moduleparam.h>
- #include <linux/panic.h>
- #include <linux/sched/debug.h>
-+#include <linux/sched/mm.h>
- #include <linux/sched.h>
- 
- #include "debugfs.h"
-@@ -381,9 +382,23 @@ static void kunit_try_run_case(void *data)
- 	struct kunit *test = ctx->test;
- 	struct kunit_suite *suite = ctx->suite;
- 	struct kunit_case *test_case = ctx->test_case;
-+	struct mm_struct *mm = NULL;
- 
- 	current->kunit_test = test;
- 
-+	if (!current->mm) {
-+		pr_info("%s: allocating user context\n", __func__);
-+		mm = mm_alloc();
-+		if (!mm) {
-+			kunit_err(suite, KUNIT_SUBTEST_INDENT
-+				"# failed to allocate mm user context");
-+			return;
-+		}
-+		current->mm = mm;
-+	} else {
-+		pr_info("%s: using already-existing user context\n", __func__);
-+	}
-+
- 	/*
- 	 * kunit_run_case_internal may encounter a fatal error; if it does,
- 	 * abort will be called, this thread will exit, and finally the parent
-@@ -392,6 +407,11 @@ static void kunit_try_run_case(void *data)
- 	kunit_run_case_internal(test, suite, test_case);
- 	/* This line may never be reached. */
- 	kunit_run_case_cleanup(test, suite);
-+
-+	if (mm) {
-+		mmdrop(mm);
-+		current->mm = NULL;
-+	}
- }
- 
- static void kunit_catch_run_case(void *data)
+--===============4820625580147615055==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [CI,1/2] Revert &quot;freezer, sched: Rewrite core freezer logic fix&quot;</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/110529/">https://patchwork.freedesktop.org/series/110529/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12342 -&gt; Patchwork_110529v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/index.html</p>
+<h2>Participating hosts (27 -&gt; 28)</h2>
+<p>Additional (3): fi-adl-ddr5 fi-rkl-11600 fi-ilk-650 <br />
+  Missing    (2): fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_110529v1:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>
+<p>{igt@debugfs_test@basic-hwmon}:</p>
+<ul>
+<li>fi-adl-ddr5:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-adl-ddr5/igt@debugfs_test@basic-hwmon.html">SKIP</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>{fi-jsl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12342/fi-jsl-1/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-jsl-1/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_110529v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-rkl-11600/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>
+<p>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-rkl-11600/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</p>
+</li>
+<li>
+<p>fi-adl-ddr5:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-adl-ddr5/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_pread_basic:</p>
+<ul>
+<li>
+<p>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-rkl-11600/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3282">i915#3282</a>)</p>
+</li>
+<li>
+<p>fi-adl-ddr5:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-adl-ddr5/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3282">i915#3282</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_backlight@basic-brightness:</p>
+<ul>
+<li>
+<p>fi-adl-ddr5:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-adl-ddr5/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1155">i915#1155</a>)</p>
+</li>
+<li>
+<p>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-rkl-11600/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3012">i915#3012</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>fi-ilk-650:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-ilk-650/igt@i915_pm_rpm@basic-pci-d3-state.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +19 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-edid-read:</p>
+<ul>
+<li>fi-adl-ddr5:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-adl-ddr5/igt@kms_chamelium@dp-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-edid-read:</p>
+<ul>
+<li>fi-ilk-650:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-ilk-650/igt@kms_chamelium@hdmi-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-rkl-11600/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor:</p>
+<ul>
+<li>
+<p>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-rkl-11600/igt@kms_cursor_legacy@basic-busy-flip-before-cursor.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>)</p>
+</li>
+<li>
+<p>fi-adl-ddr5:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-adl-ddr5/igt@kms_cursor_legacy@basic-busy-flip-before-cursor.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>
+<p>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-rkl-11600/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4098">i915#4098</a>)</p>
+</li>
+<li>
+<p>fi-adl-ddr5:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-adl-ddr5/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@cursor_plane_move:</p>
+<ul>
+<li>fi-adl-ddr5:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-adl-ddr5/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@sprite_plane_onoff:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-rkl-11600/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>
+<p>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-rkl-11600/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4098">i915#4098</a>)</p>
+</li>
+<li>
+<p>fi-adl-ddr5:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-adl-ddr5/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-read:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-rkl-11600/igt@prime_vgem@basic-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3291">i915#3291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>
+<p>fi-adl-ddr5:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-adl-ddr5/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</p>
+</li>
+<li>
+<p>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-rkl-11600/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-write:</p>
+<ul>
+<li>fi-adl-ddr5:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-adl-ddr5/igt@prime_vgem@basic-write.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3291">i915#3291</a>) +2 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12342/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110529v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12342 -&gt; Patchwork_110529v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12342: 44f62f6f335a4bec6854162b502c637e061030f0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7043: eef0a0c904846509f8185330ccd210a578ba55ec @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_110529v1: 44f62f6f335a4bec6854162b502c637e061030f0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>5cf3fd8ed9b1 freezer, sched: Rewrite core freezer logic v2<br />
+2d5f731467d7 Revert "freezer, sched: Rewrite core freezer logic fix"</p>
+
+</body>
+</html>
+
+--===============4820625580147615055==--
