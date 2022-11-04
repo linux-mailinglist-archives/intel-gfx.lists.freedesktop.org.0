@@ -2,66 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E911661A28A
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Nov 2022 21:43:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 602D761A406
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Nov 2022 23:23:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDEB610E822;
-	Fri,  4 Nov 2022 20:42:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 641E610E031;
+	Fri,  4 Nov 2022 22:23:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com
- [IPv6:2607:f8b0:4864:20::231])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CE6F10E81F;
- Fri,  4 Nov 2022 20:42:54 +0000 (UTC)
-Received: by mail-oi1-x231.google.com with SMTP id n83so6355060oif.11;
- Fri, 04 Nov 2022 13:42:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
- :reply-to; bh=jQ4gXr1turouEQ95+x3UakyDrVi4g3dT0y7NpfH0qPs=;
- b=lSF8e6DLqbKKv+/YhmRhAK/T1efgb2O636TOXNjLfcC0viXP62NhHdxomxLJWtIe7d
- 2JndYje5nsRNFlqIXElcBPkKCNEcFme9PlK3C7Q1VMpYaqUkgV/gQHQcIxtcw2fILMZW
- OKJ4E8wSXhLBL3J9S3NnNPs9rdwe6KKkDhBPqcY/XDJgpqSUigUMcqCvapDa55nrN05q
- GmtiLLrP+Y0lcIHCsefgW4EhiR9DSJnDXwmLBbW8A31Y89yswej4P9L3XtJNKO8bMaw7
- 4czQwKTd2lx34+qzGmcV/Exm8IIRhuHeavJKESaaJd5m9cQQb9K2fLTxromO6yhuwk2D
- Ci4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=jQ4gXr1turouEQ95+x3UakyDrVi4g3dT0y7NpfH0qPs=;
- b=PP1QDRgkdZWKqEZso4Y3ZPiqp1jKjMhorh64SRc+NZp7XA/lEqb++DbyPEhUqLYzfj
- anMdYu9YyUQ+MalHNWc3k7BArRGRstyXNnUkPzc+OHEegwzf5hsqb+q7gJmbvxASUueE
- QJTL4KIy2QAlxGXWE4CrJnvyCOutGoMOwVPgkRx4H0iZ1VxfIUmP+6MvpuwH3FOjztbU
- X0Vd9DPKYPijuFnddEWKnPBV8N1GYUssH/zRXgBDx58tRkZN/89lpqb5Bo4h0FO/h75c
- Ir7aG57LkT4FBeAh5Bq2kSCWXGmi+zHoq62KcdVZZ0uMzZGgrM13+Ks8HF7M9mOcQVWo
- wFfA==
-X-Gm-Message-State: ACrzQf3HsMkNkyWFQSM6DmDb0wnVpqq8mlCwI1tXMiXAVKfhaofe/5vX
- 6hpfr4eMVQ4xO4/qHKwvZyk=
-X-Google-Smtp-Source: AMsMyM6uhfbCXJb2q3AkwRuMO9Mjf9xHTKiSSXkljdTFDkgQ9gIWK1vZZlSecO9utfeB4MFPxnhffw==
-X-Received: by 2002:a54:4587:0:b0:359:c737:b2e8 with SMTP id
- z7-20020a544587000000b00359c737b2e8mr20212921oib.234.1667594573223; 
- Fri, 04 Nov 2022 13:42:53 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
- by smtp.gmail.com with ESMTPSA id
- f1-20020a056830204100b006619483182csm162608otp.18.2022.11.04.13.42.52
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 04 Nov 2022 13:42:52 -0700 (PDT)
-Date: Fri, 4 Nov 2022 13:42:51 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Steven Rostedt <rostedt@goodmis.org>
-Message-ID: <20221104204251.GB506794@roeck-us.net>
-References: <20221104054053.431922658@goodmis.org>
- <20221104192232.GA2520396@roeck-us.net>
- <20221104154209.21b26782@rorschach.local.home>
- <20221104154355.578ab689@rorschach.local.home>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BB3410E031
+ for <intel-gfx@lists.freedesktop.org>; Fri,  4 Nov 2022 22:23:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1667600627; x=1699136627;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=jyyE3UFh52oFOY3mzA8Q7BVvcDMLwn6B9acrscYPruM=;
+ b=e+tS58DV8asIsOxc5lRYTbeG3UTSMSrHth5rCmfAKVhX/7MljS9Vnjlm
+ GQQvkyDi/XBa4iiFzuDQds9XFbp+170YMsSF4FD9CsHz+ohNe+min7+o2
+ zjKzrzFDW2rCUPMFuNcQhalcrV77qri5DySqX3lUsAEzG3tiFIy37cXu9
+ yFRffkmcXCFHJ/2hpKo5469HtSPqZZBnCSleO+3/ZkypvigT3DhKxYjAY
+ bQvVmazzdpEcKTGr+udpZ0W62mLawWWxMMCy61ga2McBv5XgeowLBg2zE
+ fMSOZhbpwztnoxESrmZkXKOU3cyM3Iy276/q7OPqY3LXrIgaqX4TP0WOd g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10521"; a="396387599"
+X-IronPort-AV: E=Sophos;i="5.96,138,1665471600"; d="scan'208";a="396387599"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Nov 2022 15:23:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10521"; a="613223490"
+X-IronPort-AV: E=Sophos;i="5.96,138,1665471600"; d="scan'208";a="613223490"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by orsmga006.jf.intel.com with SMTP; 04 Nov 2022 15:23:41 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Sat, 05 Nov 2022 00:23:40 +0200
+Date: Sat, 5 Nov 2022 00:23:40 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Naoya Horiguchi <naoya.horiguchi@linux.dev>
+Message-ID: <Y2WQ7I4LXh8iUIRd@intel.com>
+References: <Y2LYXItKQyaJTv8j@intel.com>
+ <20221104155930.GA527246@ik1-406-35019.vs.sakura.ne.jp>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20221104154355.578ab689@rorschach.local.home>
-Subject: Re: [Intel-gfx] [RFC][PATCH v3 00/33] timers: Use timer_shutdown*()
- before freeing timers
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221104155930.GA527246@ik1-406-35019.vs.sakura.ne.jp>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [mm-unstable PATCH v7 2/8] mm/hugetlb: make
+ pud_huge() and follow_huge_pud() aware of non-present pud entry
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,47 +62,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alsa-devel@alsa-project.org, linux-staging@lists.linux.dev,
- linux-doc@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org, Thomas Gleixner <tglx@linutronix.de>,
- linux-leds@vger.kernel.org, drbd-dev@lists.linbit.com,
- linux-s390@vger.kernel.org, linux-nilfs@vger.kernel.org,
- linux-scsi@vger.kernel.org, linux-sh@vger.kernel.org,
- linux-atm-general@lists.sourceforge.net, linux-afs@lists.infradead.org,
- lvs-devel@vger.kernel.org, linux-acpi@vger.kernel.org, coreteam@netfilter.org,
- intel-wired-lan@lists.osuosl.org, linux-input@vger.kernel.org,
- tipc-discussion@lists.sourceforge.net, linux-ext4@vger.kernel.org,
- linux-media@vger.kernel.org, bridge@lists.linux-foundation.org,
- linux-pm@vger.kernel.org, intel-gfx@lists.freedesktop.org, rcu@vger.kernel.org,
- cgroups@vger.kernel.org, openipmi-developer@lists.sourceforge.net,
- Anna-Maria Gleixner <anna-maria@linutronix.de>, linux-edac@vger.kernel.org,
- linux-block@vger.kernel.org, linux-nfs@vger.kernel.org,
- linux-parisc@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
- netdev@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-bluetooth@vger.kernel.org, netfilter-devel@vger.kernel.org,
- Andrew Morton <akpm@linux-foundation.org>,
- Linus Torvalds <torvalds@linux-foundation.org>
+Cc: Miaohe Lin <linmiaohe@huawei.com>, regressions@lists.linux.dev,
+ David Hildenbrand <david@redhat.com>, Yang Shi <shy828301@gmail.com>,
+ naoya.horiguchi@nec.com, linux-kernel@vger.kernel.org,
+ Liu Shixin <liushixin2@huawei.com>, linux-mm@kvack.org,
+ Muchun Song <songmuchun@bytedance.com>,
+ Andrew Morton <akpm@linux-foundation.org>, Oscar Salvador <osalvador@suse.de>,
+ intel-gfx@lists.freedesktop.org, Mike Kravetz <mike.kravetz@oracle.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 04, 2022 at 04:38:34PM -0400, Steven Rostedt wrote:
-> On Fri, 4 Nov 2022 15:42:09 -0400
-> Steven Rostedt <rostedt@goodmis.org> wrote:
+On Sat, Nov 05, 2022 at 12:59:30AM +0900, Naoya Horiguchi wrote:
+> On Wed, Nov 02, 2022 at 10:51:40PM +0200, Ville Syrjälä wrote:
+> > On Thu, Jul 14, 2022 at 01:24:14PM +0900, Naoya Horiguchi wrote:
+> > > +/*
+> > > + * pud_huge() returns 1 if @pud is hugetlb related entry, that is normal
+> > > + * hugetlb entry or non-present (migration or hwpoisoned) hugetlb entry.
+> > > + * Otherwise, returns 0.
+> > > + */
+> > >  int pud_huge(pud_t pud)
+> > >  {
+> > > -	return !!(pud_val(pud) & _PAGE_PSE);
+> > > +	return !pud_none(pud) &&
+> > > +		(pud_val(pud) & (_PAGE_PRESENT|_PAGE_PSE)) != _PAGE_PRESENT;
+> > >  }
+> > 
+> > Hi,
+> > 
+> > This causes i915 to trip a BUG_ON() on x86-32 when I start X.
 > 
-[ ... ]
+> Hello,
 > 
-> > drivers/clocksource/timer-fttmr010.c:   fttmr010->timer_shutdown(evt);
-> > drivers/clocksource/timer-fttmr010.c:   fttmr010->timer_shutdown(evt);
-> > drivers/clocksource/timer-fttmr010.c:   fttmr010->timer_shutdown(evt);
-> > drivers/clocksource/timer-fttmr010.c:           fttmr010->timer_shutdown = ast2600_timer_shutdown;
-> > drivers/clocksource/timer-fttmr010.c:           fttmr010->timer_shutdown = fttmr010_timer_shutdown;
-> > drivers/clocksource/timer-fttmr010.c:   fttmr010->clkevt.set_state_shutdown = fttmr010->timer_shutdown;
-> > drivers/clocksource/timer-fttmr010.c:   fttmr010->clkevt.tick_resume = fttmr010->timer_shutdown;
+> Thank you for finding and reporting the issue.
 > 
-> I won't touch structure fields though.
+> x86-32 does not enable CONFIG_ARCH_HAS_GIGANTIC_PAGE, so pud_huge() is
+> supposed to be false on x86-32.  Doing like below looks to me a fix
+> (reverting to the original behavior for x86-32):
+> diff --git a/arch/x86/mm/hugetlbpage.c b/arch/x86/mm/hugetlbpage.c
+> index 6b3033845c6d..bf73f25aaa32 100644
+> --- a/arch/x86/mm/hugetlbpage.c
+> +++ b/arch/x86/mm/hugetlbpage.c
+> @@ -37,8 +37,12 @@ int pmd_huge(pmd_t pmd)
+>   */
+>  int pud_huge(pud_t pud)
+>  {
+> +#ifdef CONFIG_ARCH_HAS_GIGANTIC_PAGE
+>         return !pud_none(pud) &&
+>                 (pud_val(pud) & (_PAGE_PRESENT|_PAGE_PSE)) != _PAGE_PRESENT;
+> +#else
+> +       return !!(pud_val(pud) & _PAGE_PSE);    // or "return 0;" ?
+> +#endif
+>  }
 > 
+>  #ifdef CONFIG_HUGETLB_PAGE
+> 
+> 
+> Let me guess what the PUD entry was there when triggering the issue.
+> Assuming that the original code (before 3a194f3f8ad0) was correct, the PSE
+> bit in pud_val(pud) should be always cleared.  So, when pud_huge() returns
+> true since 3a194f3f8ad0, the PRESENT bit should be clear and some other
+> bits (rather than PRESENT and PSE) are set so that pud_none() is false.
+> I'm not sure what such a non-present PUD entry does mean.
 
-Agreed, same here.
+pud_val()==0 when it blows up, and pud_none() is false because
+pgtable-nopmd.h says so with 2 level paging.
 
-Guenter
+And given that I just tested with PAE / 3 level paging, 
+and sure enough it no longer blows up.
+
+So looks to me like maybe this new code just doesn't understand
+how the levels get folded.
+
+I might also be missing something obvious, but why is it even
+necessary to treat PRESENT==0+PSE==0 as a huge entry?
+
+-- 
+Ville Syrjälä
+Intel
