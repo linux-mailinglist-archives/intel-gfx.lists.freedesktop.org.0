@@ -2,58 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D28361A179
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Nov 2022 20:48:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B03F61A175
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Nov 2022 20:48:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F92010E80B;
-	Fri,  4 Nov 2022 19:48:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66B3510E112;
+	Fri,  4 Nov 2022 19:48:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com
- [IPv6:2a00:1450:4864:20::52c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA91C10E662
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Nov 2022 22:43:39 +0000 (UTC)
-Received: by mail-ed1-x52c.google.com with SMTP id f7so5225415edc.6
- for <intel-gfx@lists.freedesktop.org>; Thu, 03 Nov 2022 15:43:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=Jd+95pRwcxrkU7i1WeLZFk3609cHUQanlEr+O+q7AMU=;
- b=grrkGLHOekYBsmHndxCLb6hE0OliZNO5wAlD8xOsrsP1ncvaankQT1gTaCzYsYikIA
- OA8+Zq35gDDBq/O6YYSSHKScSoi7pg8FZnmVh+A4QlR47spxZU3E8MEWNlxMkGeFvs1i
- zXPUDoRRXv2WSFbKQYvMZk/SZujrw3ec910EczbL9HPeNTgNH4Mhc7wsJXf3GCbr7+Gr
- 0SedSc1JXD/unfbHC//mABUr4U5CMy/4Qu2LtsWuK6aOYtshSA+9S/XR0jX+M6h1XD40
- Isui5KHSnRmzoAeMH0bVtONoB1x5oLEUHBhiK6VF7CX1N0Z4d0WtS86rXan4hlM07ISD
- dAXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=Jd+95pRwcxrkU7i1WeLZFk3609cHUQanlEr+O+q7AMU=;
- b=xHCaOTamb1J4lXeiROWI0b+QNgwoLKRXIiI1InAzm6Xdw/lrxRkHolMk6Ua8Br7S05
- AYw5ceMsd1oCXUASVpdNHwwzP+T+Sp/pTG7UP4iR4hc4fnexILcLwTmDC8PENLBXWK/w
- LYFW9jmGKtOVW1lkjqa1E+MSkJFXAPTvglfmCrNWk6GyQfB4zFPi6tkeXLeWgSpdg9EJ
- wJYgGIhB2IjBEwyHaosTcXF6KvUcr8/FfR3g9REUX7CYexs2+//chtlc60Jr7dP+BAAQ
- Siq8f/Plv/oi8hl839LPAjew6FB3nUaHrQ+ZPZrSDlHn4UjE/zzxyWs0HlO5B6Nbhwhd
- cigg==
-X-Gm-Message-State: ACrzQf3L+BnJVLiV9a9KEq/tuTcjfFcG4sYcWRpK7QAa4YqF9Pixgest
- /KfxXLSoh/yuk5qL6vb1WkAGEOdM62fa/CfK6SxUKQ==
-X-Google-Smtp-Source: AMsMyM4P5EPNGyKAV9BwY25QNww4Tk4zDnHIOI4H3gjcC4OyRqgzOFC6PQLtEE9yS06pIhe1CWXZj9L09CViGexYAWM=
-X-Received: by 2002:aa7:cfda:0:b0:461:9d22:3484 with SMTP id
- r26-20020aa7cfda000000b004619d223484mr33563202edy.142.1667515417834; Thu, 03
- Nov 2022 15:43:37 -0700 (PDT)
+Received: from out0.migadu.com (out0.migadu.com [IPv6:2001:41d0:2:267::])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5564D10E8B8
+ for <intel-gfx@lists.freedesktop.org>; Fri,  4 Nov 2022 15:59:41 +0000 (UTC)
+Date: Sat, 5 Nov 2022 00:59:30 +0900
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+ t=1667577579;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:  in-reply-to:in-reply-to; 
+ bh=hvKqqCFa2Y3MaM+wraMd6xMk0p5uNFUgrkQpd1dibAI=;
+ b=eHtc8PgjHaKlv1TpPFmVGhbRE0mKoY7czsJGPW6D8CVNyBADa6qytE0Tpjlc/1RTKCkkMD
+ gTttOEsjF0bT9kyK91zYPpI0ucEDg00lRn/hBL11UAEOI1yZ7HSMR9qpwaW8QBnJYFEimB
+ p9ENNaY15+GTp9yyy8GBSvNRsbqy6GI=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+From: Naoya Horiguchi <naoya.horiguchi@linux.dev>
+To: ville.syrjala@linux.intel.com
+Message-ID: <20221104155930.GA527246@ik1-406-35019.vs.sakura.ne.jp>
 MIME-Version: 1.0
-References: <20221103162302.4ba62d72@maurocar-mobl2>
-In-Reply-To: <20221103162302.4ba62d72@maurocar-mobl2>
-From: Daniel Latypov <dlatypov@google.com>
-Date: Thu, 3 Nov 2022 15:43:26 -0700
-Message-ID: <CAGS_qxr1=PLFzM8bGjdowZwdOXMEPiJEnffPUGQvwdhYVJJNvA@mail.gmail.com>
-To: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Y2LYXItKQyaJTv8j@intel.com>
+X-Migadu-Flow: FLOW_OUT
 X-Mailman-Approved-At: Fri, 04 Nov 2022 19:48:17 +0000
-Subject: Re: [Intel-gfx] KUnit issues - Was: [igt-dev] [PATCH RFC v2 8/8]
- drm/i915: check if current->mm is not NULL
+Subject: Re: [Intel-gfx] [mm-unstable PATCH v7 2/8] mm/hugetlb: make
+ pud_huge() and follow_huge_pud() aware of non-present pud entry
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,140 +48,116 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Gow <davidgow@google.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, igt-dev@lists.freedesktop.org,
- Brendan Higgins <brendan.higgins@linux.dev>, linux-kselftest@vger.kernel.org,
- Shuah Khan <skhan@linuxfoundation.org>, kunit-dev@googlegroups.com
+Cc: Miaohe Lin <linmiaohe@huawei.com>, regressions@lists.linux.dev,
+ David Hildenbrand <david@redhat.com>, Yang Shi <shy828301@gmail.com>,
+ naoya.horiguchi@nec.com, linux-kernel@vger.kernel.org,
+ Liu Shixin <liushixin2@huawei.com>, linux-mm@kvack.org,
+ Muchun Song <songmuchun@bytedance.com>,
+ Andrew Morton <akpm@linux-foundation.org>, Oscar Salvador <osalvador@suse.de>,
+ intel-gfx@lists.freedesktop.org, Mike Kravetz <mike.kravetz@oracle.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Nov 3, 2022 at 8:23 AM Mauro Carvalho Chehab
-<mauro.chehab@linux.intel.com> wrote:
->
+On Wed, Nov 02, 2022 at 10:51:40PM +0200, Ville Syrjälä wrote:
+> On Thu, Jul 14, 2022 at 01:24:14PM +0900, Naoya Horiguchi wrote:
+> > +/*
+> > + * pud_huge() returns 1 if @pud is hugetlb related entry, that is normal
+> > + * hugetlb entry or non-present (migration or hwpoisoned) hugetlb entry.
+> > + * Otherwise, returns 0.
+> > + */
+> >  int pud_huge(pud_t pud)
+> >  {
+> > -	return !!(pud_val(pud) & _PAGE_PSE);
+> > +	return !pud_none(pud) &&
+> > +		(pud_val(pud) & (_PAGE_PRESENT|_PAGE_PSE)) != _PAGE_PRESENT;
+> >  }
+> 
 > Hi,
->
-> I'm facing a couple of issues when testing KUnit with the i915 driver.
->
-> The DRM subsystem and the i915 driver has, for a long time, his own
-> way to do unit tests, which seems to be added before KUnit.
->
-> I'm now checking if it is worth start using KUnit at i915. So, I wrote
-> a RFC with some patches adding support for the tests we have to be
-> reported using Kernel TAP and KUnit.
->
-> There are basically 3 groups of tests there:
->
-> - mock tests - check i915 hardware-independent logic;
-> - live tests - run some hardware-specific tests;
-> - perf tests - check perf support - also hardware-dependent.
->
-> As they depend on i915 driver, they run only on x86, with PCI
-> stack enabled, but the mock tests run nicely via qemu.
->
-> The live and perf tests require a real hardware. As we run them
-> together with our CI, which, among other things, test module
-> unload/reload and test loading i915 driver with different
-> modprobe parameters, the KUnit tests should be able to run as
-> a module.
->
-> While testing KUnit, I noticed a couple of issues:
->
-> 1. kunit.py parser is currently broken when used with modules
->
-> the parser expects "TAP version xx" output, but this won't
-> happen when loading the kunit test driver.
->
-> Are there any plans or patches fixing this issue?
+> 
+> This causes i915 to trip a BUG_ON() on x86-32 when I start X.
 
-Partially.
-Note: we need a header to look for so we can strip prefixes (like timestamps).
+Hello,
 
-But there is a patch in the works to add a TAP header for each
-subtest, hopefully in time for 6.2.
-This is to match the KTAP spec:
-https://kernel.org/doc/html/latest/dev-tools/ktap.html
+Thank you for finding and reporting the issue.
 
-That should fix it so you can parse one suite's results at a time.
-I'm pretty sure it won't fix the case where there's multiple suites
-and/or you're trying to parse all test results at once via
+x86-32 does not enable CONFIG_ARCH_HAS_GIGANTIC_PAGE, so pud_huge() is
+supposed to be false on x86-32.  Doing like below looks to me a fix
+(reverting to the original behavior for x86-32):
 
-$ find /sys/kernel/debug/kunit/ -type f | xargs cat |
-./tools/testing/kunit/kunit.py parse
 
-I think that in-kernel code change + some more python changes could
-make the above command work, but no one has actively started looking
-at that just yet.
-Hopefully we can pick this up and also get it done for 6.2 (unless I'm
-underestimating how complicated this is).
+diff --git a/arch/x86/mm/hugetlbpage.c b/arch/x86/mm/hugetlbpage.c
+index 6b3033845c6d..bf73f25aaa32 100644
+--- a/arch/x86/mm/hugetlbpage.c
++++ b/arch/x86/mm/hugetlbpage.c
+@@ -37,8 +37,12 @@ int pmd_huge(pmd_t pmd)
+  */
+ int pud_huge(pud_t pud)
+ {
++#ifdef CONFIG_ARCH_HAS_GIGANTIC_PAGE
+        return !pud_none(pud) &&
+                (pud_val(pud) & (_PAGE_PRESENT|_PAGE_PSE)) != _PAGE_PRESENT;
++#else
++       return !!(pud_val(pud) & _PAGE_PSE);    // or "return 0;" ?
++#endif
+ }
 
->
-> 2. current->mm is not initialized
->
-> Some tests do mmap(). They need the mm user context to be initialized,
-> but this is not happening right now.
->
-> Are there a way to properly initialize it for KUnit?
+ #ifdef CONFIG_HUGETLB_PAGE
 
-Right, this is a consequence of how early built-in KUnit tests are run
-after boot.
-I think for now, the answer is to make the test module-only.
 
-I know David had some ideas here, but I can't speak to them.
+Let me guess what the PUD entry was there when triggering the issue.
+Assuming that the original code (before 3a194f3f8ad0) was correct, the PSE
+bit in pud_val(pud) should be always cleared.  So, when pud_huge() returns
+true since 3a194f3f8ad0, the PRESENT bit should be clear and some other
+bits (rather than PRESENT and PSE) are set so that pud_none() is false.
+I'm not sure what such a non-present PUD entry does mean.
 
->
-> 3. there's no test filters for modules
->
-> In order to be able to do proper CI automation, it is needed to
-> be able to control what tests will run or not. That's specially
-> interesting at development time where some tests may not apply
-> or not run properly on new hardware.
->
-> Are there any plans to add support for it at kunit_test_suites()
-> when the driver is built as module? Ideally, the best would be to
-> export a per-module filter_glob parameter on such cases.
+Thanks,
+Naoya Horiguchi
 
-I think this is a good idea and is doable. (I think I said as much on
-the other thread).
-
-The thinking before was that people would make group tests together in modules.
-But if you want to share a single module for many tests, this becomes
-more useful.
-
-This has some potential merge conflicts w/ other pending work.
-I was also prototyping the ability to tell KUnit "run tests #2 - #5",
-so that also touches the filtering code very heavily.
-(The goal there is to have kunit.py able to shard up tests and boot
-multiple kernels concurrently.)
-
->
-> 4. there are actually 3 levels of tests on i915:
->         - Level 1: mock, live, perf
->         - Level 2: test group (mmap, fences, ...)
->         - Level 3: unit tests
->
-> Currently, KUnit seems to have just two levels (test suite and tests).
-> Are there a way to add test groups there?
-
-Parameterized tests are the closest we have to a third-level of tests.
-But other than that, the answer is no.
-
-I'd need to get more familiar with the existing tests, but I'm pretty
-sure parameters won't work for you.
-
-And I don't know if this will get done.
-
-Note: the kunit_parser.py code should be able to handle arbitrary
-levels of tests in the output.
-This restriction is purely in the in-kernel code.
-
-I had brought up the idea of more layers of tests before.
-It would also be useful for
-a) sharing expensive setup between multiple tests
-b) allowing more granular scope for cleanups (kunit_kmalloc and others)
-c) more flexibility in dynamically generating subtests than
-parameterized testing
-
-There's some precedent in other unit testing frameworks, for example:
-https://pkg.go.dev/testing#T.Run
-
-Daniel
+> 
+> [  225.777375] kernel BUG at mm/memory.c:2664!
+> [  225.777391] invalid opcode: 0000 [#1] PREEMPT SMP
+> [  225.777405] CPU: 0 PID: 2402 Comm: Xorg Not tainted 6.1.0-rc3-bdg+ #86
+> [  225.777415] Hardware name:  /8I865G775-G, BIOS F1 08/29/2006
+> [  225.777421] EIP: __apply_to_page_range+0x24d/0x31c
+> [  225.777437] Code: ff ff 8b 55 e8 8b 45 cc e8 0a 11 ec ff 89 d8 83 c4 28 5b 5e 5f 5d c3 81 7d e0 a0 ef 96 c1 74 ad 8b 45 d0 e8 2d 83 49 00 eb a3 <0f> 0b 25 00 f0 ff ff 81 eb 00 00 00 40 01 c3 8b 45 ec 8b 00 e8 76
+> [  225.777446] EAX: 00000001 EBX: c53a3b58 ECX: b5c00000 EDX: c258aa00
+> [  225.777454] ESI: b5c00000 EDI: b5900000 EBP: c4b0fdb4 ESP: c4b0fd80
+> [  225.777462] DS: 007b ES: 007b FS: 00d8 GS: 0033 SS: 0068 EFLAGS: 00010202
+> [  225.777470] CR0: 80050033 CR2: b5900000 CR3: 053a3000 CR4: 000006d0
+> [  225.777479] Call Trace:
+> [  225.777486]  ? i915_memcpy_init_early+0x63/0x63 [i915]
+> [  225.777684]  apply_to_page_range+0x21/0x27
+> [  225.777694]  ? i915_memcpy_init_early+0x63/0x63 [i915]
+> [  225.777870]  remap_io_mapping+0x49/0x75 [i915]
+> [  225.778046]  ? i915_memcpy_init_early+0x63/0x63 [i915]
+> [  225.778220]  ? mutex_unlock+0xb/0xd
+> [  225.778231]  ? i915_vma_pin_fence+0x6d/0xf7 [i915]
+> [  225.778420]  vm_fault_gtt+0x2a9/0x8f1 [i915]
+> [  225.778644]  ? lock_is_held_type+0x56/0xe7
+> [  225.778655]  ? lock_is_held_type+0x7a/0xe7
+> [  225.778663]  ? 0xc1000000
+> [  225.778670]  __do_fault+0x21/0x6a
+> [  225.778679]  handle_mm_fault+0x708/0xb21
+> [  225.778686]  ? mt_find+0x21e/0x5ae
+> [  225.778696]  exc_page_fault+0x185/0x705
+> [  225.778704]  ? doublefault_shim+0x127/0x127
+> [  225.778715]  handle_exception+0x130/0x130
+> [  225.778723] EIP: 0xb700468a
+> [  225.778730] Code: 44 24 40 8b 7c 24 1c 89 47 54 8b 44 24 5c 65 2b 05 14 00 00 00 0f 85 8a 01 00 00 83 c4 6c 5b 5e 5f 5d c3 8b 44 24 1c 8b 40 28 <c7> 00 00 00 00 00 8b 44 24 20 8d 90 20 1b 00 00 8b 02 83 e8 01 89
+> [  225.778738] EAX: b5900000 EBX: b7148000 ECX: 00000000 EDX: 00000000
+> [  225.778745] ESI: 0103eb60 EDI: b7148000 EBP: b6cf7000 ESP: bfd76650
+> [  225.778752] DS: 007b ES: 007b FS: 0000 GS: 0033 SS: 007b EFLAGS: 00010246
+> [  225.778761]  ? doublefault_shim+0x127/0x127
+> [  225.778769] Modules linked in: i915 prime_numbers i2c_algo_bit iosf_mbi drm_buddy video wmi drm_display_helper drm_kms_helper syscopyarea sysfillrect sysimgblt fb_sys_fops ttm drm drm_panel_orientation_quirks backlight cfg80211 rfkill sch_fq_codel xt_tcpudp xt_multiport xt_state iptable_filter iptable_nat nf_nat nf_conntrack nf_defrag_ipv4 ip_tables x_tables binfmt_misc i2c_dev iTCO_wdt snd_intel8x0 snd_ac97_codec ac97_bus snd_pcm snd_timer psmouse i2c_i801 snd i2c_smbus uhci_hcd i2c_core pcspkr soundcore lpc_ich mfd_core ehci_pci ehci_hcd skge intel_agp intel_gtt usbcore agpgart usb_common rng_core parport_pc parport evdev
+> [  225.778899] ---[ end trace 0000000000000000 ]---
+> [  225.778906] EIP: __apply_to_page_range+0x24d/0x31c
+> [  225.778916] Code: ff ff 8b 55 e8 8b 45 cc e8 0a 11 ec ff 89 d8 83 c4 28 5b 5e 5f 5d c3 81 7d e0 a0 ef 96 c1 74 ad 8b 45 d0 e8 2d 83 49 00 eb a3 <0f> 0b 25 00 f0 ff ff 81 eb 00 00 00 40 01 c3 8b 45 ec 8b 00 e8 76
+> [  225.778924] EAX: 00000001 EBX: c53a3b58 ECX: b5c00000 EDX: c258aa00
+> [  225.778931] ESI: b5c00000 EDI: b5900000 EBP: c4b0fdb4 ESP: c4b0fd80
+> [  225.778938] DS: 007b ES: 007b FS: 00d8 GS: 0033 SS: 0068 EFLAGS: 00010202
+> [  225.778946] CR0: 80050033 CR2: b5900000 CR3: 053a3000 CR4: 000006d0
+> 
+> -- 
+> Ville Syrjälä
+> Intel
