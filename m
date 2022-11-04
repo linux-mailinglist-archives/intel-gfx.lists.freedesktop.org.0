@@ -2,52 +2,89 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E529F6195E7
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Nov 2022 13:09:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34A7661962F
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Nov 2022 13:24:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB40110E0B0;
-	Fri,  4 Nov 2022 12:09:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8C4610E0C5;
+	Fri,  4 Nov 2022 12:24:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DACD610E0B0;
- Fri,  4 Nov 2022 12:09:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667563791; x=1699099791;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=D/mskI74i/hI8GgennFirbzxa7Ke/fF8Q8V3PuS4whg=;
- b=C1oNDnw3YB8/fnl+jykP92bsy6Wt9GGDlzKodFLkpyBS4fIYWiCcsM6C
- h5JVfAgvV3uUxJEibf8g0NsbXZPU6kDvVcDlFBv+YLcJb3ETBCc/3Ahoh
- ChIwDLU2TYmfpoZJOWsej8anONOyFtt9Qi7aUS3nc+jLLDq3S2JKgoL5J
- iahu2MwYA9um3ZqOkbsuue3ZjHJtQM2URgtKuAQD+NYhI7EvFv+QvkO4/
- bFplThDp8FU47hjikdzhwoO+2XCCDy8FlA6Pc8RwwBxGLo6TLA69hd3ls
- s7Qy/DK4SQr3EaFgF5B29j+MYw54scL+ncJnYVVpqjh0huP8OR+G40WM9 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10520"; a="309941297"
-X-IronPort-AV: E=Sophos;i="5.96,137,1665471600"; d="scan'208";a="309941297"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2022 05:09:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10520"; a="724331510"
-X-IronPort-AV: E=Sophos;i="5.96,137,1665471600"; d="scan'208";a="724331510"
-Received: from liuzhao-optiplex-7080.sh.intel.com (HELO localhost)
- ([10.239.160.132])
- by FMSMGA003.fm.intel.com with ESMTP; 04 Nov 2022 05:09:49 -0700
-Date: Fri, 4 Nov 2022 20:15:34 +0800
-From: Zhao Liu <zhao1.liu@linux.intel.com>
-To: "Fabio M. De Francesco" <fmdefrancesco@gmail.com>
-Message-ID: <Y2UCZvaTrvjHmJiT@liuzhao-OptiPlex-7080>
-References: <20221017093726.2070674-1-zhao1.liu@linux.intel.com>
- <20221017093726.2070674-3-zhao1.liu@linux.intel.com>
- <13152489.uLZWGnKmhe@suse>
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
+ [148.163.156.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61FFB10E0A9;
+ Fri,  4 Nov 2022 12:23:57 +0000 (UTC)
+Received: from pps.filterd (m0098399.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2A4C61tZ015880;
+ Fri, 4 Nov 2022 12:23:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
+ h=message-id : subject :
+ from : to : cc : date : in-reply-to : references : content-type :
+ content-transfer-encoding : mime-version; s=pp1;
+ bh=PwQ1Q0ZosR1g7PpBBp8cCx7OiB3HdSRlnPe7+yKMtAs=;
+ b=sdek4q0Y6aGebL3YXsqiufuN6mavKD42MTtzjmxo0snDAG/la+P4Qd9Q96pad7eYpS+Z
+ NsSgptzsq5b+kQK/bvAFtckd2g7x0Ck+vQVSSBkiN9tWoDabJMTYQrmTJZyMk+pOTVaj
+ jgrKZ592g5i1prm/n9+Ty3Q9tUVFzU2rOd3cyr/2sCbwBVzMPcbiY6lMQ1WflXScbDLS
+ C5N4oMtElrNvFYunJVXY7Ac8dHVkhlVmRmyuf5K7+LPmSrv0jm/qbdPBQ0Eo/zftfwsC
+ I24DQaYVGqzyOi4mUqG8COP+YUKXm8w6tLy8LM+1ZjDzlMmHE3TNhtJhoVQdQXrFuKWw AA== 
+Received: from pps.reinject (localhost [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3kn24612e8-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 04 Nov 2022 12:23:46 +0000
+Received: from m0098399.ppops.net (m0098399.ppops.net [127.0.0.1])
+ by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 2A4C6DMV017947;
+ Fri, 4 Nov 2022 12:23:45 GMT
+Received: from ppma02dal.us.ibm.com (a.bd.3ea9.ip4.static.sl-reverse.com
+ [169.62.189.10])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3kn24612dd-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 04 Nov 2022 12:23:45 +0000
+Received: from pps.filterd (ppma02dal.us.ibm.com [127.0.0.1])
+ by ppma02dal.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 2A4CKscH014734;
+ Fri, 4 Nov 2022 12:23:44 GMT
+Received: from b01cxnp22036.gho.pok.ibm.com (b01cxnp22036.gho.pok.ibm.com
+ [9.57.198.26]) by ppma02dal.us.ibm.com with ESMTP id 3kgutb20e8-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 04 Nov 2022 12:23:44 +0000
+Received: from smtpav04.wdc07v.mail.ibm.com ([9.208.128.116])
+ by b01cxnp22036.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 2A4CNgsW31326572
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Fri, 4 Nov 2022 12:23:43 GMT
+Received: from smtpav04.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 4AFF658054;
+ Fri,  4 Nov 2022 12:23:42 +0000 (GMT)
+Received: from smtpav04.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 4486C5805E;
+ Fri,  4 Nov 2022 12:23:38 +0000 (GMT)
+Received: from li-479af74c-31f9-11b2-a85c-e4ddee11713b.ibm.com (unknown
+ [9.65.225.56]) by smtpav04.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+ Fri,  4 Nov 2022 12:23:38 +0000 (GMT)
+Message-ID: <611fd3a62596226e78af36909618ae65df615428.camel@linux.ibm.com>
+From: Eric Farman <farman@linux.ibm.com>
+To: Matthew Rosato <mjrosato@linux.ibm.com>, Alex Williamson
+ <alex.williamson@redhat.com>
+Date: Fri, 04 Nov 2022 08:23:37 -0400
+In-Reply-To: <a408e8c7-6bd6-80de-5e59-815cb62fe29c@linux.ibm.com>
+References: <20221102150152.2521475-1-farman@linux.ibm.com>
+ <20221103155611.0008075f.alex.williamson@redhat.com>
+ <a408e8c7-6bd6-80de-5e59-815cb62fe29c@linux.ibm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 (3.44.4-2.fc36) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <13152489.uLZWGnKmhe@suse>
-Subject: Re: [Intel-gfx] [PATCH 2/9] drm/i915: Use kmap_local_page() in
- gem/i915_gem_pyhs.c
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: CxcqPhpEQvuznc5i6jCT3LsyQXd7zf7o
+X-Proofpoint-GUID: uW7VwR3E5qlArM97JsMblIX0nESJX9vh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-04_07,2022-11-03_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0
+ bulkscore=0 spamscore=0 priorityscore=1501 malwarescore=0 mlxlogscore=999
+ clxscore=1015 adultscore=0 impostorscore=0 suspectscore=0 phishscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2211040081
+Subject: Re: [Intel-gfx] [PATCH v2 0/7] vfio-ccw parent rework
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,128 +97,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Zhenyu Wang <zhenyu.z.wang@intel.com>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Dave Hansen <dave.hansen@intel.com>, Zhao Liu <zhao1.liu@intel.com>
+Cc: kvm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Kirti Wankhede <kwankhede@nvidia.com>,
+ Vineeth Vijayan <vneethv@linux.ibm.com>,
+ Diana Craciun <diana.craciun@oss.nxp.com>,
+ Alexander Gordeev <agordeev@linux.ibm.com>, David Airlie <airlied@gmail.com>,
+ linux-s390@vger.kernel.org, Yi Liu <yi.l.liu@intel.com>,
+ Halil Pasic <pasic@linux.ibm.com>, Jason Gunthorpe <jgg@nvidia.com>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ intel-gfx@lists.freedesktop.org, Jason Herne <jjherne@linux.ibm.com>,
+ Vasily Gorbik <gor@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
+ Eric Auger <eric.auger@redhat.com>,
+ Harald Freudenberger <freude@linux.ibm.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gvt-dev@lists.freedesktop.org,
+ Tony Krowiak <akrowiak@linux.ibm.com>, Yishai Hadas <yishaih@nvidia.com>,
+ Cornelia Huck <cohuck@redhat.com>, Peter Oberparleiter <oberpar@linux.ibm.com>,
+ Sven Schnelle <svens@linux.ibm.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Abhishek Sahu <abhsahu@nvidia.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Oct 29, 2022 at 03:32:08PM +0200, Fabio M. De Francesco wrote:
-> Date: Sat, 29 Oct 2022 15:32:08 +0200
-> From: "Fabio M. De Francesco" <fmdefrancesco@gmail.com>
-> Subject: Re: [PATCH 2/9] drm/i915: Use kmap_local_page() in
->  gem/i915_gem_pyhs.c
-> 
-> On luned? 17 ottobre 2022 11:37:18 CEST Zhao Liu wrote:
-> > From: Zhao Liu <zhao1.liu@intel.com>
-> > 
-> > The use of kmap_atomic() is being deprecated in favor of
-> > kmap_local_page()[1].
-> > 
-> > The main difference between atomic and local mappings is that local
-> > mappings doesn't disable page faults or preemption.
-> > 
-> > In drm/i915/gem/i915_gem_phys.c, the functions
-> > i915_gem_object_get_pages_phys() and i915_gem_object_put_pages_phys()
-> > don't need to disable pagefaults and preemption for mapping because of
-> > these 2 reasons:
-> > 
-> > 1. The flush operation is safe for CPU hotplug when preemption is not
-> > disabled. In drm/i915/gem/i915_gem_object.c, the functions
-> > i915_gem_object_get_pages_phys() and i915_gem_object_put_pages_phys()
-> > calls drm_clflush_virt_range() to use CLFLUSHOPT or WBINVD to flush.
-> > Since CLFLUSHOPT is global on x86 and WBINVD is called on each cpu in
-> > drm_clflush_virt_range(), the flush operation is global and any issue
-> > with cpu's being added or removed can be handled safely.
-> > 
-> > 2. Any context switch caused by preemption or sleep (pagefault may
-> > cause sleep) doesn't affect the validity of local mapping.
-> > 
-> > Therefore, i915_gem_object_get_pages_phys() and
-> > i915_gem_object_put_pages_phys() are two functions where the use of
-> > kmap_local_page() in place of kmap_atomic() is correctly suited.
-> > 
-> > Convert the calls of kmap_atomic() / kunmap_atomic() to
-> > kmap_local_page() / kunmap_local().
-> > 
-> 
-> I have here the same questions as in 1/9.
-> 
-> > [1]: https://lore.kernel.org/all/20220813220034.806698-1-ira.weiny@intel.com
-> > 
-> > Suggested-by: Dave Hansen <dave.hansen@intel.com>
-> > Suggested-by: Ira Weiny <ira.weiny@intel.com>
-> > Suggested-by: Fabio M. De Francesco <fmdefrancesco@gmail.com>
-> > Signed-off-by: Zhao Liu <zhao1.liu@intel.com>
-> > ---
-> > Suggested by credits:
-> >   Dave: Referred to his explanation about cache flush.
-> >   Ira: Referred to his task document, review comments and explanation about
-> >        cache flush.
-> >   Fabio: Referred to his boiler plate commit message.
-> > ---
-> >  drivers/gpu/drm/i915/gem/i915_gem_phys.c | 8 ++++----
-> >  1 file changed, 4 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-> > b/drivers/gpu/drm/i915/gem/i915_gem_phys.c index 0d0e46dae559..d602ba19ecb2 
-> 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-> > @@ -66,10 +66,10 @@ static int i915_gem_object_get_pages_phys(struct 
-> drm_i915_gem_object
-> > *obj) if (IS_ERR(page))
-> >  			goto err_st;
-> > 
-> > -		src = kmap_atomic(page);
-> > +		src = kmap_local_page(page);
-> >  		memcpy(dst, src, PAGE_SIZE);
-> >  		drm_clflush_virt_range(dst, PAGE_SIZE);
-> > -		kunmap_atomic(src);
-> > +		kunmap_local(src);
-> 
-> Please use memcpy_from_page() instead of open coding mapping + memcpy() + 
-> unmapping.
+On Thu, 2022-11-03 at 19:43 -0400, Matthew Rosato wrote:
+> On 11/3/22 5:56 PM, Alex Williamson wrote:
+> > On Wed,=C2=A0 2 Nov 2022 16:01:45 +0100
+> > Eric Farman <farman@linux.ibm.com> wrote:
+> >=20
+> > > Hi all,
+> > >=20
+> > > Here is an update to the vfio-ccw lifecycle changes that have
+> > > been discussed
+> > > in various forms over the past year [1][2] or so, and which I
+> > > dusted off
+> > > recently.
+> > >=20
+> > > Patches 1-5 rework the behavior of the vfio-ccw driver's private
+> > > struct.
+> > > In summary, the mdev pieces are split out of vfio_ccw_private and
+> > > into a
+> > > new vfio_ccw_parent struct that will continue to follow today's
+> > > lifecycle.
+> > > The remainder (bulk) of the private struct moves to follow the
+> > > mdev
+> > > probe/remove pair. There's opportunity for further separation of
+> > > the
+> > > things in the private struct, which would simplify some of the
+> > > vfio-ccw
+> > > code, but it got too hairy as I started that. Once vfio-ccw is no
+> > > longer
+> > > considered unique, those cleanups can happen at our leisure.=20
+> > >=20
+> > > Patch 6 removes the trickery where vfio-ccw uses vfio_init_device
+> > > instead of
+> > > vfio_alloc_device, and thus removes vfio_init_device from the
+> > > outside world.
+> > >=20
+> > > Patch 7 removes vfio_free_device from vfio-ccw and the other
+> > > drivers (hello,
+> > > CC list!), letting it be handled by vfio_device_release directly.
+> >=20
+> > Looks like another spin is pending, but the vfio core and
+> > collateral
+> > changes in 6 and 7 look good to me.=C2=A0 Would this go in through the
+> > vfio
+> > or s390 tree?=C2=A0 I'd be happy to merge or provide a branch, dependin=
+g
+> > on
+> > the route.
+> >=20
+> > For 6 & 7:
+> > Acked-by: Alex Williamson <alex.williamson@redhat.com>
+> >=20
+> > Thanks,
+> > Alex
+>=20
+> LGTM with those few comments addressed -- @Eric please send a v3 and
+> I think it's ready.
 
-Ok.
+Will do that now; thanks Matt.
 
-> 
-> > 
-> >  		put_page(page);
-> >  		dst += PAGE_SIZE;
-> > @@ -114,10 +114,10 @@ i915_gem_object_put_pages_phys(struct 
-> drm_i915_gem_object *obj,
-> >  			if (IS_ERR(page))
-> >  				continue;
-> > 
-> > -			dst = kmap_atomic(page);
-> > +			dst = kmap_local_page(page);
-> >  			drm_clflush_virt_range(src, PAGE_SIZE);
-> >  			memcpy(dst, src, PAGE_SIZE);
-> > -			kunmap_atomic(dst);
-> > +			kunmap_local(dst);
-> 
-> For the same reasons said above, memcpy_to_page() should be used here and 
-> avoid open coding of three functions.
-> 
-> Using those helpers forces you to move drm_clflush_virt_range() out of the 
-> mapping / un-mapping region. I may be wrong, however I'm pretty sure that the 
-> relative positions of each of those call sites is something that cannot be 
-> randomly chosen.
+>=20
+> I would suggest vfio tree to reduce the chance of conflicts; this
+> touches various vfio drivers (and main) with the last patches while
+> the s390 hits are at least all contained to the vfio-ccw driver code.
+>=20
 
-I agree. Will use memcpy_to_page().
-
-Thanks,
-Zhao
-
-> 
-> Thanks,
-> 
-> Fabio
-> 
-> > 
-> >  			set_page_dirty(page);
-> >  			if (obj->mm.madv == I915_MADV_WILLNEED)
-> 
-> 
-> 
+Agreed. Thanks to you both.
