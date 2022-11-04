@@ -2,35 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5097861902D
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Nov 2022 06:48:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2776619081
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Nov 2022 06:55:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D4FC10E047;
-	Fri,  4 Nov 2022 05:48:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BB4210E07D;
+	Fri,  4 Nov 2022 05:55:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB83C10E047;
- Fri,  4 Nov 2022 05:48:48 +0000 (UTC)
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 612F810E07B;
+ Fri,  4 Nov 2022 05:55:32 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 275FB620C7;
- Fri,  4 Nov 2022 05:48:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0342BC4347C;
- Fri,  4 Nov 2022 05:48:48 +0000 (UTC)
-Received: from rostedt by gandalf.local.home with local (Exim 4.96)
- (envelope-from <rostedt@goodmis.org>) id 1oqpZq-007154-1Q;
- Fri, 04 Nov 2022 01:49:14 -0400
-Message-ID: <20221104054914.271196777@goodmis.org>
-User-Agent: quilt/0.66
-Date: Fri, 04 Nov 2022 01:41:06 -0400
+ by ams.source.kernel.org (Postfix) with ESMTPS id 74AFCB82BFD;
+ Fri,  4 Nov 2022 05:55:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7A62C433D7;
+ Fri,  4 Nov 2022 05:55:28 +0000 (UTC)
+Date: Fri, 4 Nov 2022 01:55:27 -0400
 From: Steven Rostedt <rostedt@goodmis.org>
 To: linux-kernel@vger.kernel.org
+Message-ID: <20221104015527.7f586d2b@rorschach.local.home>
+In-Reply-To: <20221104054914.271196777@goodmis.org>
 References: <20221104054053.431922658@goodmis.org>
+ <20221104054914.271196777@goodmis.org>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Subject: [Intel-gfx] [RFC][PATCH v3 13/33] timers: drm: Use
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [RFC][PATCH v3 13/33] timers: drm: Use
  timer_shutdown_sync() before freeing timer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -47,7 +47,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Cc: Stephen Boyd <sboyd@kernel.org>,
  Linus Torvalds <torvalds@linux-foundation.org>,
  intel-gfx@lists.freedesktop.org, David Airlie <airlied@gmail.com>,
- =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
+ Noralf =?UTF-8?B?VHLDuG5uZXM=?= <noralf@tronnes.org>,
  dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Gleixner <tglx@linutronix.de>,
  Anna-Maria Gleixner <anna-maria@linutronix.de>,
@@ -55,13 +55,16 @@ Cc: Stephen Boyd <sboyd@kernel.org>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+[ Once again, quilt fails the MIME coding ]
+
 From: "Steven Rostedt (Google)" <rostedt@goodmis.org>
 
 Before a timer is freed, timer_shutdown_sync() must be called.
 
-Link: https://lore.kernel.org/all/20220407161745.7d6754b3@gandalf.local.home/
+Link: https://lore.kernel.org/all/20220407161745.7d6754b3@gandalf.local.hom=
+e/
 
-Cc: "Noralf Trønnes" <noralf@tronnes.org>
+Cc: "Noralf Tr=C3=B8nnes" <noralf@tronnes.org>
 Cc: David Airlie <airlied@gmail.com>
 Cc: Daniel Vetter <daniel@ffwll.ch>
 Cc: Jani Nikula <jani.nikula@linux.intel.com>
@@ -80,27 +83,30 @@ diff --git a/drivers/gpu/drm/gud/gud_pipe.c b/drivers/gpu/drm/gud/gud_pipe.c
 index 7c6dc2bcd14a..08429bdd57cf 100644
 --- a/drivers/gpu/drm/gud/gud_pipe.c
 +++ b/drivers/gpu/drm/gud/gud_pipe.c
-@@ -272,7 +272,7 @@ static int gud_usb_bulk(struct gud_device *gdrm, size_t len)
- 
+@@ -272,7 +272,7 @@ static int gud_usb_bulk(struct gud_device *gdrm, size_t=
+ len)
+=20
  	usb_sg_wait(&ctx.sgr);
- 
+=20
 -	if (!del_timer_sync(&ctx.timer))
 +	if (!timer_shutdown_sync(&ctx.timer))
- 		ret = -ETIMEDOUT;
+ 		ret =3D -ETIMEDOUT;
  	else if (ctx.sgr.status < 0)
- 		ret = ctx.sgr.status;
-diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i915_sw_fence.c
+ 		ret =3D ctx.sgr.status;
+diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i9=
+15_sw_fence.c
 index 6fc0d1b89690..bfaa9a67dc35 100644
 --- a/drivers/gpu/drm/i915/i915_sw_fence.c
 +++ b/drivers/gpu/drm/i915/i915_sw_fence.c
 @@ -465,7 +465,7 @@ static void irq_i915_sw_fence_work(struct irq_work *wrk)
- 	struct i915_sw_dma_fence_cb_timer *cb =
+ 	struct i915_sw_dma_fence_cb_timer *cb =3D
  		container_of(wrk, typeof(*cb), work);
- 
+=20
 -	del_timer_sync(&cb->timer);
 +	timer_shutdown_sync(&cb->timer);
  	dma_fence_put(cb->dma);
- 
+=20
  	kfree_rcu(cb, rcu);
--- 
+--=20
 2.35.1
+
