@@ -1,56 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 707C06192F4
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Nov 2022 09:48:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C1DF6193BD
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Nov 2022 10:42:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D917210E025;
-	Fri,  4 Nov 2022 08:48:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 642C810E724;
+	Fri,  4 Nov 2022 09:42:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBD558972C;
- Fri,  4 Nov 2022 08:48:34 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A655210E724
+ for <intel-gfx@lists.freedesktop.org>; Fri,  4 Nov 2022 09:42:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667551714; x=1699087714;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=SieuJp0yLN7Eko7RfCaC+7W6DcydvNmx8QgS37YH/kU=;
- b=fq2cj16eks+5i8yGy1S9xJ6Jm9c5u1bzo212VX6gOKvfYoHXjEzHsdfI
- d7U4xlCi+kpNY5naVOSRr1ipH001dSTri89UFz+q9o8mjw799n2PKT3py
- YExx0GdFWVhR4jLhLN3P4i/Q5Q9rfKNI8jIB1SqrAwbcJIRR/S7DYccJE
- gwAedc5LA69MwPsSynoY9zX7UkaiWppQNCvu0n14jEFnIgSh2MCzLUhFi
- Ihdgx9XtlrQnLyR+V6kvc+QqCo/kkluPCXwFK5CCXJ1t6mcaD1+/yVZdl
- MD7v14B/ZLa2VN4HC/Pj89G2H90EEGK4xZTj/Jw9LUEKNb0IqJoGpkZeT A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10520"; a="289636202"
-X-IronPort-AV: E=Sophos;i="5.96,136,1665471600"; d="scan'208";a="289636202"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2022 01:48:34 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10520"; a="809992785"
-X-IronPort-AV: E=Sophos;i="5.96,136,1665471600"; d="scan'208";a="809992785"
-Received: from mlmesa-mobl2.ger.corp.intel.com (HELO [10.213.192.110])
- ([10.213.192.110])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2022 01:48:30 -0700
-Message-ID: <ab708fad-9390-2b11-19d8-3e2635254f29@linux.intel.com>
-Date: Fri, 4 Nov 2022 08:48:28 +0000
+ t=1667554974; x=1699090974;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=5DWC1GYwFEd+X1RzZif8wSnE2Lp3F8Mf0AJSFdKtj+M=;
+ b=ZMa1EGErihCHDJi36z4DK3/CjmmZSGYiwFl8fIpsPHAm/NkdyoLr/umM
+ eLBUlQzwjmhhBjxw6aWJRdAVGpr6OAOGi2MDygYzyhrEEV986+rOYT1vU
+ D+hsy6LVhV9ySSJwCwQj1dwj6dDjAOxxtJgWqMOjlnNmfu2Nu76eUoAU2
+ TiveznIargdWT/Icgq4if3MnprQNit+LyUrs5pZypRglFYtbyspUomARn
+ ikgLaeEPFivx+54W6/cGifAW4CriQZblyk+SZZDUeN/26pNVlAKlDr/ot
+ qhjwNtOLyb7nxVPdNGYIBjw/04wQIKIRnU8Un6ZUsRdUsktL+ME7zcPCU A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10520"; a="372034902"
+X-IronPort-AV: E=Sophos;i="5.96,137,1665471600"; d="scan'208";a="372034902"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Nov 2022 02:42:54 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10520"; a="777658571"
+X-IronPort-AV: E=Sophos;i="5.96,137,1665471600"; d="scan'208";a="777658571"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by fmsmga001.fm.intel.com with SMTP; 04 Nov 2022 02:42:51 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 04 Nov 2022 11:42:50 +0200
+Date: Fri, 4 Nov 2022 11:42:50 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Message-ID: <Y2Temsw9pX+KEy2E@intel.com>
+References: <20221026113906.10551-1-ville.syrjala@linux.intel.com>
+ <20221026113906.10551-12-ville.syrjala@linux.intel.com>
+ <ae278ba0-f13a-8218-3b82-76b634deadb0@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Content-Language: en-US
-To: Steven Rostedt <rostedt@goodmis.org>, linux-kernel@vger.kernel.org
-References: <20221104054053.431922658@goodmis.org>
- <20221104054914.271196777@goodmis.org>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20221104054914.271196777@goodmis.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [RFC][PATCH v3 13/33] timers: drm: Use
- timer_shutdown_sync() before freeing timer
+In-Reply-To: <ae278ba0-f13a-8218-3b82-76b634deadb0@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 11/11] drm/i915: Create resized LUTs for
+ ivb+ split gamma mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,80 +63,169 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Stephen Boyd <sboyd@kernel.org>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- intel-gfx@lists.freedesktop.org, David Airlie <airlied@gmail.com>,
- =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Gleixner <tglx@linutronix.de>,
- Anna-Maria Gleixner <anna-maria@linutronix.de>,
- Andrew Morton <akpm@linux-foundation.org>, Guenter Roeck <linux@roeck-us.net>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-Hi,
-
-On 04/11/2022 05:41, Steven Rostedt wrote:
-> From: "Steven Rostedt (Google)" <rostedt@goodmis.org>
+On Fri, Nov 04, 2022 at 10:49:39AM +0530, Nautiyal, Ankit K wrote:
+> Patch looks good to me.
 > 
-> Before a timer is freed, timer_shutdown_sync() must be called.
+> Minor suggestions inline:
 > 
-> Link: https://lore.kernel.org/all/20220407161745.7d6754b3@gandalf.local.home/
+> On 10/26/2022 5:09 PM, Ville Syrjala wrote:
+> > From: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
+> >
+> > Currently when opeating in split gamma mode we do the
+> nitpick: 'operating' typo.
+> > "skip ever other sw LUT entry" trick in the low level
+> > LUT programming/readout functions. That is very annoying
+> > and a big hinderance to revamping the color management
+> > uapi.
+> >
+> > Let's get rid of that problem by making half sized copies
+> > of the software LUTs and plugging those into the internal
+> > {pre,post}_csc_lut attachment points (instead of the sticking
+> > the uapi provide sw LUTs there directly).
+> >
+> > With this the low level stuff will operate purely in terms
+> > the hardware LUT sizes, and all uapi nonsense is contained
+> > to the atomic check phase. The one thing we do lose is
+> > intel_color_assert_luts() since we no longer have a way to
+> > check that the uapi LUTs were correctly used when generating
+> > the internal copies. But that seems like a price worth paying.
+> >
+> > Signed-off-by: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/display/intel_color.c | 81 +++++++++++++++++-----
+> >   1 file changed, 64 insertions(+), 17 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+> > index 33871bfacee7..d48904f90e3a 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_color.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_color.c
+> > @@ -597,6 +597,30 @@ create_linear_lut(struct drm_i915_private *i915, int lut_size)
+> >   	return blob;
+> >   }
+> >   
+> > +static struct drm_property_blob *
+> > +create_resized_lut(struct drm_i915_private *i915,
+> > +		   const struct drm_property_blob *blob_in, int lut_out_size)
+> > +{
+> > +	int i, lut_in_size = drm_color_lut_size(blob_in);
+> > +	struct drm_property_blob *blob_out;
+> > +	const struct drm_color_lut *lut_in;
+> > +	struct drm_color_lut *lut_out;
+> > +
+> > +	blob_out = drm_property_create_blob(&i915->drm,
+> > +					    sizeof(lut_out[0]) * lut_out_size,
+> > +					    NULL);
+> > +	if (IS_ERR(blob_out))
+> > +		return blob_out;
+> > +
+> > +	lut_in = blob_in->data;
+> > +	lut_out = blob_out->data;
+> > +
+> > +	for (i = 0; i < lut_out_size; i++)
+> > +		lut_out[i] = lut_in[i * (lut_in_size - 1) / (lut_out_size - 1)];
+> > +
+> > +	return blob_out;
+> > +}
+> > +
+> >   static void i9xx_load_lut_8(struct intel_crtc *crtc,
+> >   			    const struct drm_property_blob *blob)
+> >   {
+> > @@ -723,19 +747,14 @@ static void ivb_load_lut_10(struct intel_crtc *crtc,
+> >   			    u32 prec_index)
+> >   {
+> >   	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> > -	int hw_lut_size = ivb_lut_10_size(prec_index);
+> >   	const struct drm_color_lut *lut = blob->data;
+> >   	int i, lut_size = drm_color_lut_size(blob);
+> >   	enum pipe pipe = crtc->pipe;
+> >   
+> > -	for (i = 0; i < hw_lut_size; i++) {
+> > -		/* We discard half the user entries in split gamma mode */
+> > -		const struct drm_color_lut *entry =
+> > -			&lut[i * (lut_size - 1) / (hw_lut_size - 1)];
+> > -
+> > +	for (i = 0; i < lut_size; i++) {
+> >   		intel_de_write_fw(i915, PREC_PAL_INDEX(pipe), prec_index++);
+> >   		intel_de_write_fw(i915, PREC_PAL_DATA(pipe),
+> > -				  ilk_lut_10(entry));
+> > +				  ilk_lut_10(&lut[i]));
+> >   	}
+> >   
+> >   	/*
+> > @@ -751,7 +770,6 @@ static void bdw_load_lut_10(struct intel_crtc *crtc,
+> >   			    u32 prec_index)
+> >   {
+> >   	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> > -	int hw_lut_size = ivb_lut_10_size(prec_index);
+> >   	const struct drm_color_lut *lut = blob->data;
+> >   	int i, lut_size = drm_color_lut_size(blob);
+> >   	enum pipe pipe = crtc->pipe;
+> > @@ -759,14 +777,9 @@ static void bdw_load_lut_10(struct intel_crtc *crtc,
+> >   	intel_de_write_fw(i915, PREC_PAL_INDEX(pipe),
+> >   			  prec_index | PAL_PREC_AUTO_INCREMENT);
+> >   
+> > -	for (i = 0; i < hw_lut_size; i++) {
+> > -		/* We discard half the user entries in split gamma mode */
+> > -		const struct drm_color_lut *entry =
+> > -			&lut[i * (lut_size - 1) / (hw_lut_size - 1)];
+> > -
+> > +	for (i = 0; i < lut_size; i++)
+> >   		intel_de_write_fw(i915, PREC_PAL_DATA(pipe),
+> > -				  ilk_lut_10(entry));
+> > -	}
+> > +				  ilk_lut_10(&lut[i]));
+> >   
+> >   	/*
+> >   	 * Reset the index, otherwise it prevents the legacy palette to be
+> > @@ -1343,7 +1356,7 @@ void intel_color_assert_luts(const struct intel_crtc_state *crtc_state)
+> >   			    crtc_state->pre_csc_lut != i915->display.color.glk_linear_degamma_lut);
+> >   		drm_WARN_ON(&i915->drm,
+> >   			    crtc_state->post_csc_lut != crtc_state->hw.gamma_lut);
+> > -	} else {
+> > +	} else if (crtc_state->gamma_mode != GAMMA_MODE_MODE_SPLIT) {
+> >   		drm_WARN_ON(&i915->drm,
+> >   			    crtc_state->pre_csc_lut != crtc_state->hw.degamma_lut &&
+> >   			    crtc_state->pre_csc_lut != crtc_state->hw.gamma_lut);
+> > @@ -1564,6 +1577,38 @@ static u32 ivb_csc_mode(const struct intel_crtc_state *crtc_state)
+> >   	return CSC_POSITION_BEFORE_GAMMA;
+> >   }
+> >   
+> > +static int ivb_assign_luts(struct intel_crtc_state *crtc_state)
+> > +{
+> > +	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
+> > +	struct drm_property_blob *degamma_lut, *gamma_lut;
+> > +
+> > +	if (crtc_state->gamma_mode != GAMMA_MODE_MODE_SPLIT) {
+> > +		ilk_assign_luts(crtc_state);
+> > +		return 0;
+> > +	}
+> > +
+> > +	drm_WARN_ON(&i915->drm, drm_color_lut_size(crtc_state->hw.degamma_lut) != 1024);
+> > +	drm_WARN_ON(&i915->drm, drm_color_lut_size(crtc_state->hw.gamma_lut) != 1024);
 > 
-> Cc: "Noralf Tr√∏nnes" <noralf@tronnes.org>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: intel-gfx@lists.freedesktop.org
-> Signed-off-by: Steven Rostedt (Google) <rostedt@goodmis.org>
-> ---
->   drivers/gpu/drm/gud/gud_pipe.c       | 2 +-
->   drivers/gpu/drm/i915/i915_sw_fence.c | 2 +-
-
-If it stays all DRM drivers in one patch then I guess it needs to go via 
-drm-misc, which for i915 would be okay I think in this case since patch 
-is extremely unlikely to clash with anything. Or split it up per driver 
-and then we can handle it in drm-intel-next once core functionality is in.
-
-We do however have some more calls to del_timer_sync, where freeing is 
-perhaps not immediately next to the site in code, but things definitely 
-get freed like on module unload. Would we need to convert all of them to 
-avoid some, presumably new, warnings?
-
-Regards,
-
-Tvrtko
-
->   2 files changed, 2 insertions(+), 2 deletions(-)
+> Does it make sense to use some macro for LUT size for split gamma case 
+> and regular case?
 > 
-> diff --git a/drivers/gpu/drm/gud/gud_pipe.c b/drivers/gpu/drm/gud/gud_pipe.c
-> index 7c6dc2bcd14a..08429bdd57cf 100644
-> --- a/drivers/gpu/drm/gud/gud_pipe.c
-> +++ b/drivers/gpu/drm/gud/gud_pipe.c
-> @@ -272,7 +272,7 @@ static int gud_usb_bulk(struct gud_device *gdrm, size_t len)
->   
->   	usb_sg_wait(&ctx.sgr);
->   
-> -	if (!del_timer_sync(&ctx.timer))
-> +	if (!timer_shutdown_sync(&ctx.timer))
->   		ret = -ETIMEDOUT;
->   	else if (ctx.sgr.status < 0)
->   		ret = ctx.sgr.status;
-> diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i915_sw_fence.c
-> index 6fc0d1b89690..bfaa9a67dc35 100644
-> --- a/drivers/gpu/drm/i915/i915_sw_fence.c
-> +++ b/drivers/gpu/drm/i915/i915_sw_fence.c
-> @@ -465,7 +465,7 @@ static void irq_i915_sw_fence_work(struct irq_work *wrk)
->   	struct i915_sw_dma_fence_cb_timer *cb =
->   		container_of(wrk, typeof(*cb), work);
->   
-> -	del_timer_sync(&cb->timer);
-> +	timer_shutdown_sync(&cb->timer);
->   	dma_fence_put(cb->dma);
->   
->   	kfree_rcu(cb, rcu);
+> Same thing perhaps can be used in ivb_lut_10_size?
+
+I don't think macros would be really helpful. I guess I 
+could have used ivb_lut_10_size() for the create_resized_lut()
+calls below. And these WARNs I guess could have just used
+device info stuff instead. Or I could just drop them entirely
+since they aren't really checking anything super important, and
+the create_resized_lut() would work with any input LUT size anyway.
+
+Thinking a bit further we could certainly consider extending
+the ivb_lut_10_size()/glk_degamma_lut_size() approach to cover
+all the gamma modes. Though I think it would probably make sense
+to implement that as some kind of struct based approach where we
+describe each LUT format in a struct. Would also be more in line
+with what we've been thinking for the uapi revamp.
+
+-- 
+Ville Syrj‰l‰
+Intel
