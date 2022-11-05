@@ -2,51 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A31F361DBA6
-	for <lists+intel-gfx@lfdr.de>; Sat,  5 Nov 2022 16:28:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E70761DBCE
+	for <lists+intel-gfx@lfdr.de>; Sat,  5 Nov 2022 17:00:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 984E710E002;
-	Sat,  5 Nov 2022 15:28:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D43810E08C;
+	Sat,  5 Nov 2022 16:00:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 614 seconds by postgrey-1.36 at gabe;
- Sat, 05 Nov 2022 15:28:23 UTC
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk
- [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D256C10E002
- for <intel-gfx@lists.freedesktop.org>; Sat,  5 Nov 2022 15:28:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=armlinux.org.uk; s=pandora-2019; h=Sender:Content-Type:MIME-Version:
- Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=wnC5yWyaH7dm/O2Yw8LvI1g9t3ej3aJICJenUgzJq+E=; b=S+5SAAVE7nrByQsWNaEeVqzp99
- KL7jE/eSIoV7QPyb7Bx8aeO7o9z9oDWVIE82dbn63IsWlaF7zh2DIewlzaigHBkfhnKz19f7JXtsd
- WKzkVxg0zqESc2NUUFxKHHRcjBwuqmzC/AIYab1rxjlhs3ebeV/9R9RxdH7a8s1mchZ06DGrkZrNK
- PGr6LuYLFCyZV7hYiorWlDC27kV4NaHcLuX334TPGLRICy7pLLA/IjCZh75ruXs2V2/5rak2PkKp2
- v+NFI8T/MnOhEiifyIz0hfYrtZlwL/8zkZ8oLli5w1yEicoGp8oaPJpz8M+Khm+Y619p4BdTOhIIo
- i1vc0/fA==;
-Received: from shell.armlinux.org.uk
- ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:35124)
- by pandora.armlinux.org.uk with esmtpsa (TLS1.3) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <linux@armlinux.org.uk>)
- id 1orKvE-0000JE-QC; Sat, 05 Nov 2022 15:17:24 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
- (envelope-from <linux@shell.armlinux.org.uk>)
- id 1orKvC-0001xI-TE; Sat, 05 Nov 2022 15:17:22 +0000
-Date: Sat, 5 Nov 2022 15:17:22 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <Y2Z+gi8uhdRji7Co@shell.armlinux.org.uk>
+Received: from mail-qv1-xf2c.google.com (mail-qv1-xf2c.google.com
+ [IPv6:2607:f8b0:4864:20::f2c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C84BF10E0E0
+ for <intel-gfx@lists.freedesktop.org>; Sat,  5 Nov 2022 16:00:08 +0000 (UTC)
+Received: by mail-qv1-xf2c.google.com with SMTP id x13so5381294qvn.6
+ for <intel-gfx@lists.freedesktop.org>; Sat, 05 Nov 2022 09:00:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux-foundation.org; s=google;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=GP8p4dRzNVpyUotOfaypMmYTGE9lsMcq6qB3gjhmc04=;
+ b=iIDJL03zNkH0lS9YORaCB4Nnx18G1RT5PAxkqTBkren7bOYLdVGnhhilx+OlS481lw
+ gQr71gF/2R0QtX/qOni1Pt9vrqOkIr43rj0MZrH/uG69dzQgSBZeGC3nRHzTa1HEb5Zv
+ OhEAlIPPkZmfK8ER3fSUpMd0BmaBeM97bdw94=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=GP8p4dRzNVpyUotOfaypMmYTGE9lsMcq6qB3gjhmc04=;
+ b=BUfsQUF5lk1VijQGm23PwtNAlphNhaZNH6FSOLxoU2LNfbK9GuNHCr9DQ6LaTB4Swg
+ Jkb6hTYP+QHVEiD/Ht+tOKfsM+5Sx571ch/cp6sa4hVkjWysLX90FU8pbftcbe8Ozciz
+ utNJ0XijIkvCf40TxelSFB7m3UXOTgkbe2SjnqybE9jwA6XctCDn1i0DfhkstghcUa/q
+ GOSY0cfa1At5VQ17Jn25QVexAkPCCwtBiURv8cUseorpaJAxM7QGNtNMJ4tRVCgu/VYI
+ yndY1A5cUWyUVUhHRWhVsfeF5w5XIeim3AUfiYCPGQrFD0fLBJlqovj2EOiZNdNC0nEl
+ R3WQ==
+X-Gm-Message-State: ACrzQf3xCAQYo+dO33V6GLAK70PkcJ1xiWh3EfFMSqJBvuslS7qMCldF
+ r0iWAJlH+HxfKEEkkxiXHznQTDBrd23x3Q==
+X-Google-Smtp-Source: AMsMyM7Fyxk8er+Re7USQBG6BjvDv3V2YpZhfwO4Ca6Mk/uZN6iXkNGg/fCZSE4Y7ZX7BCw6TIsI2w==
+X-Received: by 2002:a05:6214:20a6:b0:4bb:6c88:5200 with SMTP id
+ 6-20020a05621420a600b004bb6c885200mr38123241qvd.23.1667664007112; 
+ Sat, 05 Nov 2022 09:00:07 -0700 (PDT)
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com.
+ [209.85.128.178]) by smtp.gmail.com with ESMTPSA id
+ cj25-20020a05622a259900b003a4c3c4d2d4sm2010328qtb.49.2022.11.05.09.00.03
+ for <intel-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sat, 05 Nov 2022 09:00:04 -0700 (PDT)
+Received: by mail-yw1-f178.google.com with SMTP id
+ 00721157ae682-3691e040abaso68667347b3.9
+ for <intel-gfx@lists.freedesktop.org>; Sat, 05 Nov 2022 09:00:03 -0700 (PDT)
+X-Received: by 2002:a81:114e:0:b0:36a:fc80:fa62 with SMTP id
+ 75-20020a81114e000000b0036afc80fa62mr40431421ywr.58.1667663992806; Sat, 05
+ Nov 2022 08:59:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Subject: [Intel-gfx] BUG: i915: flickering/temporary artifacts after resume
+References: <20221105060024.598488967@goodmis.org>
+In-Reply-To: <20221105060024.598488967@goodmis.org>
+From: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Sat, 5 Nov 2022 08:59:36 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wi95dGkg7DiuOZ27gGW+mxJipn9ykB6LHB-HrbbLG6OMQ@mail.gmail.com>
+Message-ID: <CAHk-=wi95dGkg7DiuOZ27gGW+mxJipn9ykB6LHB-HrbbLG6OMQ@mail.gmail.com>
+To: Steven Rostedt <rostedt@goodmis.org>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH v4a 00/38] timers: Use timer_shutdown*()
+ before freeing timers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,93 +76,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: alsa-devel@alsa-project.org, linux-staging@lists.linux.dev,
+ linux-doc@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Thomas Gleixner <tglx@linutronix.de>, linux-leds@vger.kernel.org,
+ drbd-dev@lists.linbit.com, linux-s390@vger.kernel.org,
+ linux-nilfs@vger.kernel.org, linux-scsi@vger.kernel.org,
+ linux-sh@vger.kernel.org, linux-atm-general@lists.sourceforge.net,
+ linux-afs@lists.infradead.org, lvs-devel@vger.kernel.org,
+ linux-acpi@vger.kernel.org, coreteam@netfilter.org,
+ intel-wired-lan@lists.osuosl.org, linux-input@vger.kernel.org,
+ tipc-discussion@lists.sourceforge.net, linux-ext4@vger.kernel.org,
+ Guenter Roeck <linux@roeck-us.net>, linux-media@vger.kernel.org,
+ bridge@lists.linux-foundation.org, linux-pm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, rcu@vger.kernel.org, cgroups@vger.kernel.org,
+ openipmi-developer@lists.sourceforge.net,
+ Anna-Maria Gleixner <anna-maria@linutronix.de>, linux-edac@vger.kernel.org,
+ linux-block@vger.kernel.org, linux-nfs@vger.kernel.org,
+ linux-parisc@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+ netdev@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-bluetooth@vger.kernel.org, netfilter-devel@vger.kernel.org,
+ Andrew Morton <akpm@linux-foundation.org>, linaro-mm-sig@lists.linaro.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+On Fri, Nov 4, 2022 at 11:01 PM Steven Rostedt <rostedt@goodmis.org> wrote:
+>
+> Patch 1 fixes an issue with sunrpc/xprt where it incorrectly uses
+> del_singleshot_timer_sync() for something that is not a oneshot timer. As this
+> will be converted to shutdown, this needs to be fixed first.
 
-I have a HP Pavilion 15" laptop that occasionally misbehaves after a
-resume from suspend mode. The problem is obvious when the screen
-updates e.g. after moving the mouse and the window focus changing, or
-when a terminal scrolls, I get a ficker of random short horizontal
-white lines over the top of the windows that then disappear. These
-appear to be predominantly focused towards the top of the screen,
-although they do also occur lower down but less obviously.
+So this is the kind of thing that I would *not* want to get eartly.
 
-Soemtimes these artifacts don't disappear until the next update - I
-attempted to capture them, but of course that provokes another screen
-update and they disappear.
+I really would want to get just the infrastructure in to let people
+start doing conversions.
 
-When this problem occurs, suspending and resuming again doesn't appear
-to fix the issue - only a reboot does.
+And then the "mindlessly obvious patches that are done by scripting
+and can not possibly matter".
 
-Environment:
+The kinds that do not *need* review, because they are mechanical, and
+that just cause pointless noise for the rest of the patches that *do*
+want review.
 
-00:02.0 VGA compatible controller: Intel Corporation HD Graphics 620 (rev 02) (prog-if 00 [VGA controller])
-        DeviceName: Intel Kabylake HD Graphics ULT GT2
-        Subsystem: Hewlett-Packard Company HD Graphics 620
-        Flags: bus master, fast devsel, latency 0, IRQ 130, IOMMU group 1
-        Memory at a0000000 (64-bit, non-prefetchable) [size=16M]
-        Memory at 90000000 (64-bit, prefetchable) [size=256M]
-        I/O ports at 4000 [size=64]
-        Expansion ROM at 000c0000 [virtual] [disabled] [size=128K]
-        Capabilities: [40] Vendor Specific Information: Len=0c <?>
-        Capabilities: [70] Express Root Complex Integrated Endpoint, MSI 00
-        Capabilities: [ac] MSI: Enable+ Count=1/1 Maskable- 64bit-
-        Capabilities: [d0] Power Management version 2
-        Capabilities: [100] Process Address Space ID (PASID)
-        Capabilities: [200] Address Translation Service (ATS)
-        Capabilities: [300] Page Request Interface (PRI)
-        Kernel driver in use: i915
-        Kernel modules: i915
+Not this kind of thing that is so subtle that you have to explain it.
+That's not a "scripted patch for no semantic change".
 
-Debian Bullseye (stable), Xorg 1.20.11, libdrm 2.4.104, intel xorg
-driver 2.99.917+git20200714.
+So leave the del_singleshot_timer_sync() cases alone, they are
+irrelevant for the new infrastructure and for the "mindless scripted
+conversion" patches.
 
-Kernel messages related to DRM:
+> Patches 2-4 changes existing timer_shutdown() functions used locally in ARM and
+> some drivers to better namespace names.
 
-Linux version 5.10.0-19-amd64 (debian-kernel@lists.debian.org) (gcc-10 (Debian 1
-0.2.1-6) 10.2.1 20210110, GNU ld (GNU Binutils for Debian) 2.35.2) #1 SMP Debian
- 5.10.149-1 (2022-10-17)
-...
-i915 0000:00:02.0: [drm] VT-d active for gfx access
-checking generic (90000000 408000) vs hw (a0000000 1000000)
-checking generic (90000000 408000) vs hw (90000000 10000000)
-fb0: switching to inteldrmfb from EFI VGA
-Console: switching to colour dummy device 80x25
-i915 0000:00:02.0: vgaarb: deactivate vga console
-i915 0000:00:02.0: vgaarb: changed VGA decodes: olddecodes=io+mem,decodes=io+mem:owns=io+mem
-i915 0000:00:02.0: firmware: direct-loading firmware i915/kbl_dmc_ver1_04.bin
-i915 0000:00:02.0: [drm] Finished loading DMC firmware i915/kbl_dmc_ver1_04.bin (v1.4)
-[drm] Initialized i915 1.6.0 20200917 for 0000:00:02.0 on minor 0
-ACPI: Video Device [GFX0] (multi-head: yes  rom: no  post: no)
-input: Video Bus as /devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/LNXVIDEO:00/input/input6
-fbcon: i915drmfb (fb0) is primary device
-Console: switching to colour frame buffer device 170x48
-i915 0000:00:02.0: [drm] fb0: i915drmfb frame buffer device
-mei_hdcp 0000:00:16.0-b638ab7e-94e2-4ea2-a552-d1c54b627f04: bound 0000:00:02.0 (ops i915_hdcp_component_ops [i915])
-snd_hda_intel 0000:00:1f.3: bound 0000:00:02.0 (ops i915_audio_component_bind_ops [i915])
-(NULL device *): firmware: direct-loading firmware i915/kbl_dmc_ver1_04.bin
-mei_hdcp 0000:00:16.0-b638ab7e-94e2-4ea2-a552-d1c54b627f04: bound 0000:00:02.0 (
-ops i915_hdcp_component_ops [i915])
+Ok, these are relevant.
 
-The last two lines repeat each time the system is suspended/resumed.
+> Patch 5 implements the new timer_shutdown() and timer_shutdown_sync() functions
+> that disable re-arming the timer after they are called.
 
-No errors or warnings appear to be logged either from the kernel nor in
-the Xorg log file specific to i915 (there's the usual Xorg whinging
-about the system being too slow... so an i5-7200U 2.5GHz isn't fast
-enough for Xorg!)
+This is obviously what I'd want early so that people can start doign
+this in their trees.
 
-It feels like some setting within the Intel GPU hardware that controls
-memory access timing isn't being properly restored.
+> Patches 6-28 change all the locations where there's a kfree(), kfree_rcu(),
+> kmem_cache_free() and one call_rcu() call where the RCU function frees the
+> timer (the workqueue patch) in the same function as the del_timer{,_sync}() is
+> called on that timer, and there's no extra exit path between the del_timer and
+> freeing of the timer.
 
-Is this a known issue?
+So honestly, I was literally hoping for a "this is the coccinelle
+script" kind of patch.
 
-Thanks.
+Now there seems to be a number of patches here that are actualyl
+really hard to see that they are "obviously correct" and I can't tell
+if they are actually scripted or not.
 
-Russell.
+They don't *look* scripted, but I can't really tell.  I looked at the
+patches with ten lines of context, and I didn't see the immediately
+following kfree() even in that expanded patch context, so it's fairly
+far away.
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+Others in the series were *definitely* not scripted, doing clearly
+manual cleanups:
+
+-    if (dch->timer.function) {
+-        del_timer(&dch->timer);
+-        dch->timer.function = NULL;
+-    }
++    timer_shutdown(&dch->timer);
+
+so no, this does *not* make me feel "ok, this is all trivial".
+
+IOW, I'd really want *just* the infrastructure and *just* the provably
+trivial stuff. If it wasn't some scripted really obvious thing that
+cannot possibly change anything and that wasn't then edited manually
+for some reason, I really don't want it early.
+
+IOW, any early conversions I'd take are literally about removing pure
+mindless noise. Not about doing conversions.
+
+And I wouldn't mind it as a single conversion patch that has the
+coccinelle script as the explanation.
+
+Really just THAT kind of "100% mindless conversion".
+
+               Linus
