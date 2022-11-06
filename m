@@ -2,65 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2642961E2D8
-	for <lists+intel-gfx@lfdr.de>; Sun,  6 Nov 2022 16:03:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4F6E61E372
+	for <lists+intel-gfx@lfdr.de>; Sun,  6 Nov 2022 17:34:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 208A010E191;
-	Sun,  6 Nov 2022 15:03:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D946710E19E;
+	Sun,  6 Nov 2022 16:34:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com
- [IPv6:2a00:1450:4864:20::42a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D09CE10E190;
- Sun,  6 Nov 2022 15:03:08 +0000 (UTC)
-Received: by mail-wr1-x42a.google.com with SMTP id k8so12998308wrh.1;
- Sun, 06 Nov 2022 07:03:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:message-id:cc:to:subject:from
- :date:from:to:cc:subject:date:message-id:reply-to;
- bh=wm7hxLz7zkOClOud0pc0lu34j5j8vm934zPKvsA7X0Y=;
- b=m1N/Evw2STCBq3dChhkwQfApVHdNAQJv/+yzDju7tcYvwGBMNkIq54aJIU2ScGVmBX
- chDpi6V7mEwb2as+Q+T4815I+sqkz1EyG3zyJbtUClPBI/EzoKHPLZKrH78WY0Io1/sk
- lshWyJ/YYR4Je063i8QVdQxaRfazNap4BfJ7QW2oyo2iw0m8+cyKJbEIi1PxNHgdBZHG
- VMe8/snyEpUUkV8b1Crz1wVSGMPIzFCupMOnfyFHSXSmtzgstiTqmzthwgsudb0TVrLv
- lgxfN+13lGWegvlmQdTAMabkZfard/ork/XSsJ9YS5TbCpk79a658wh7QyZvmlsmbZgQ
- dkqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=mime-version:references:in-reply-to:message-id:cc:to:subject:from
- :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=wm7hxLz7zkOClOud0pc0lu34j5j8vm934zPKvsA7X0Y=;
- b=CcUIwAptKHkH2z8tIumWIAg7eysHetSW22bm3gjpWZCAaAaYLwbAgGQBoVaOJx2WVW
- iacGxFenncMYreNrSBf6EBpYhV5HNblLHfhDF6KXGXNEJ8uA7lS5M1iWhqN1iqudsKKU
- /mWsmWDf9AY0adBcMO+Av/rHk65Z0b3jglewZak5eSxTi86zr8RvIIGR3hll9rc1yDec
- VO72f6va95TcRHuMOz6jBreY/yvQcSFLAAJTL0rAPnAesYb5dyunPXVF0IyijeX5E1cB
- mrMHigGhsN+53+QODgkxrDBeZWwMIuFF5IS+6YSje6KLJ6EuWUGMOFrM6BbyyfIuvuBk
- 7xvg==
-X-Gm-Message-State: ACrzQf2vI2+0Boyn8L/7O7EvTkk0HaQQ8LLFy4ubgncJN4o8piHxbAqi
- mStYacQm9y7IEPap5KMjvr4=
-X-Google-Smtp-Source: AMsMyM43WhknTyd6kQLB0cTjqWfzZIA7Svc6Gq7F4l1aUqjnmFgDJzQDSoZyxawttPhFrBXuneagyw==
-X-Received: by 2002:a5d:42c4:0:b0:236:637c:6c71 with SMTP id
- t4-20020a5d42c4000000b00236637c6c71mr28766554wrr.499.1667746987177; 
- Sun, 06 Nov 2022 07:03:07 -0800 (PST)
-Received: from matebook-d-15 ([2a01:e0a:1d2:1f90:be95:f3a2:4d99:a3b3])
- by smtp.gmail.com with ESMTPSA id
- z3-20020adff1c3000000b00236e834f050sm4789807wro.35.2022.11.06.07.03.06
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 06 Nov 2022 07:03:06 -0800 (PST)
-Date: Sun, 06 Nov 2022 16:03:00 +0100
-From: Matthieu CHARETTE <matthieu.charette@gmail.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-Id: <0TLXKR.MU9V2CJGXH05@gmail.com>
-In-Reply-To: <HBHNJR.ME9DMISWT3961@gmail.com>
-References: <20221006222146.2375217-1-jani.nikula@intel.com>
- <GLSKJR.CU4DWLJQSTHT2@gmail.com> <87wn96yggd.fsf@intel.com>
- <CA+FNwmJRZ-5BwuXykp3R6tQagQgunMC9EhfL9CRyi+Ff47TXhA@mail.gmail.com>
- <87v8opwiqw.fsf@intel.com> <HBHNJR.ME9DMISWT3961@gmail.com>
-X-Mailer: geary/43.0
+Received: from smtp.domeneshop.no (smtp.domeneshop.no
+ [IPv6:2a01:5b40:0:3005::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19AD310E0A2;
+ Sun,  6 Nov 2022 16:33:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
+ ; s=ds202112;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=QvIoHrgTbnCEFp2E+kqwZys718brKkUvKx2E8FVdXAU=; b=R0x9zXTEOsbViJfXz+FCNC4vM3
+ uFqtwGLxzOd05dS01ItMXMP1PPK45WYw0O3lAe0JvWH4jhQd5w7yknQd5EMIzdRq4pWLf0sLQXd3n
+ JfW+NRF49EsvmwA1jx8HJELNOcqT2nm9zpgUEpsEaro8rbYSf1gY+OqXYUpLms78UlIC6lFvBuMgh
+ 9Vxf31BusF+P5+REG7+8UaSW79q1f9bhf8pGPyT3npoch3IMrFxnuBTyN0BDmNSjdIRhJCbuUOA6q
+ /qpAcBNRJyyNF7XLQFEQ/iE8RbIs5xs094+4T8TWzq+HX/IXWpVBiVlAZ2oiQOaMQNRubMHGbVgdN
+ ZHDbPCNA==;
+Received: from [2a01:799:95a:cb00:fd97:29ff:d72a:349e] (port=50711)
+ by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+ (Exim 4.92) (envelope-from <noralf@tronnes.org>)
+ id 1oriap-0005uQ-6b; Sun, 06 Nov 2022 17:33:55 +0100
+Message-ID: <842076aa-8d7c-96d6-ba46-d0e66dacd2df@tronnes.org>
+Date: Sun, 6 Nov 2022 17:33:48 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Subject: Re: [Intel-gfx] [PATCH] drm/edid/firmware: stop using throwaway
- platform device
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+To: maxime@cerno.tech, Karol Herbst <kherbst@redhat.com>,
+ Emma Anholt <emma@anholt.net>, Ben Skeggs <bskeggs@redhat.com>,
+ Chen-Yu Tsai <wens@csie.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@linux.ie>,
+ Maxime Ripard <mripard@kernel.org>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Lyude Paul <lyude@redhat.com>
+References: <20220728-rpi-analog-tv-properties-v6-0-e7792734108f@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v6-16-e7792734108f@cerno.tech>
+From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
+In-Reply-To: <20220728-rpi-analog-tv-properties-v6-16-e7792734108f@cerno.tech>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v6 16/23] drm/probe-helper: Provide a TV
+ get_modes helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,87 +67,204 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Dom Cobley <dom@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Phil Elwell <phil@raspberrypi.com>,
+ Hans de Goede <hdegoede@redhat.com>,
+ =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>,
+ Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>, linux-sunxi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
 
-Can you tell me what are we waiting for? Maybe I can help.
 
-Thanks.
-
-Matthieu
-
-On Wed, Oct 12 2022 at 07:16:29 PM +0200, Matthieu CHARETTE 
-<matthieu.charette@gmail.com> wrote:
-> By crash, I mean that an error is returned here: 
-> https://kernel.googlesource.com/pub/scm/linux/kernel/git/torvalds/linux.git/+/refs/heads/master/drivers/gpu/drm/drm_edid_load.c#195
-> I don't really know what happens next, but on my machine the built-in 
-> screen and the external remains dark. Also the kernel seems to 
-> freeze. I suspect a kernel panic, but I'm not sure. Anyway, the error 
-> is definitely not well handled, and a fix would be great.
-> Also, request_firmware() will crash if called for the first time on 
-> the resume path because the file system isn't reachable on the resume 
-> process. And no cache is available for this firmware. So I guess that 
-> in this case, request_firmware() returns an error.
-> Suspend-plug-resume case is not my priority nether as long as it 
-> doesn't make the system crash (Which is currently the case).
+Den 26.10.2022 17.33, skrev maxime@cerno.tech:
+> Most of the TV connectors will need a similar get_modes implementation
+> that will, depending on the drivers' capabilities, register the 480i and
+> 576i modes.
 > 
-> On Wed, Oct 12 2022 at 11:25:59 AM +0300, Jani Nikula 
-> <jani.nikula@intel.com> wrote:
->> On Tue, 11 Oct 2022, Matthieu CHARETTE <matthieu.charette@gmail.com> 
->> wrote:
->>>  Currently the EDID is requested during the resume. But since it's
->>>  requested too early, this means before the filesystem is mounted, 
->>> the
->>>  firmware request fails. This make the DRM driver crash when 
->>> resuming.
->>>  This kind of issue should be prevented by the firmware caching 
->>> process
->>>  which cache every firmware requested for the next resume. But 
->>> since we
->>>  are using a temporary device, the firmware isn't cached on suspend
->>>  since the device doesn't work anymore.
->>>  When using a non temporary device to get the EDID, the firmware 
->>> will
->>>  be cached on suspend for the next resume. So requesting the 
->>> firmware
->>>  during resume will succeed.
->>>  But if the firmware has never been requested since the boot, this
->>>  means that the monitor isn't plugged since the boot. The kernel 
->>> will
->>>  not be caching the EDID. So if we plug the monitor while the 
->>> machine
->>>  is suspended. The resume will fail to load the firmware. And the 
->>> DRM
->>>  driver will crash.
->>>  So basically, your fix should solve the issue except for the case
->>>  where the monitor hasn't been plugged since boot and is plugged 
->>> while
->>>  the machine is suspended.
->>>  I hope I was clear. Tell me if I wasn't. I'm not really good at 
->>> explaining.
->> 
->> That was a pretty good explanation. The only thing I'm missing is 
->> what
->> the failure mode is exactly when you claim the driver will crash. Why
->> would request_firmware() "crash" if called for the first time on the
->> resume path?
->> 
->> I'm not sure I care much about not being able to load the firmware 
->> EDID
->> in the suspend-plug-resume case (as this can be remedied with a
->> subsequent modeset), but obviously any errors need to be handled
->> gracefully, without crashing.
->> 
->> BR,
->> Jani.
->> 
->> 
->> --
->> Jani Nikula, Intel Open Source Graphics Center
+> That implementation will also need to set the preferred flag and order
+> the modes based on the driver and users preferrence.
 > 
+> This is especially important to guarantee that a userspace stack such as
+> Xorg can start and pick up the preferred mode while maintaining a
+> working output.
 > 
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> 
+> ---
+> Changes in v6:
+> - New patch
+> ---
+>  drivers/gpu/drm/drm_probe_helper.c | 97 ++++++++++++++++++++++++++++++++++++++
+>  include/drm/drm_probe_helper.h     |  1 +
+>  2 files changed, 98 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/drm_probe_helper.c b/drivers/gpu/drm/drm_probe_helper.c
+> index 69b0b2b9cc1c..4a60575f5c66 100644
+> --- a/drivers/gpu/drm/drm_probe_helper.c
+> +++ b/drivers/gpu/drm/drm_probe_helper.c
+> @@ -1147,3 +1147,100 @@ int drm_connector_helper_get_modes(struct drm_connector *connector)
+>  	return count;
+>  }
+>  EXPORT_SYMBOL(drm_connector_helper_get_modes);
+> +
+> +static bool tv_mode_supported(struct drm_connector *connector,
+> +			      enum drm_connector_tv_mode mode)
+> +{
+> +	struct drm_device *dev = connector->dev;
+> +	struct drm_property *property = dev->mode_config.tv_mode_property;
+> +
+
+Superfluous linebreak
+
+> +	unsigned int i;
+> +
+> +	for (i = 0; i < property->num_values; i++)
+> +		if (property->values[i] == mode)
+> +			return true;
+> +
+> +	return false;
+> +}
+> +
+> +/**
+> + * drm_connector_helper_tv_get_modes - Fills the modes availables to a TV connector
+
+availables -> available
+
+> + * @connector: The connector
+> + *
+> + * Fills the available modes for a TV connector based on the supported
+> + * TV modes, and the default mode expressed by the kernel command line.
+> + *
+> + * This can be used as the default TV connector helper .get_modes() hook
+> + * if the driver does not need any special processing.
+> + *
+> + * Returns:
+> + * The number of modes added to the connector.
+> + */
+> +int drm_connector_helper_tv_get_modes(struct drm_connector *connector)
+> +{
+> +	struct drm_device *dev = connector->dev;
+> +	struct drm_cmdline_mode *cmdline = &connector->cmdline_mode;
+> +	struct drm_display_mode *tv_modes[2] = {};
+> +	struct drm_display_mode *mode;
+> +	unsigned int first_mode_idx;
+> +	unsigned int count = 0;
+> +	uint64_t default_mode;
+> +	int ret;
+> +
+> +	if (!dev->mode_config.tv_mode_property)
+> +		return 0;
+> +
+> +	if (tv_mode_supported(connector, DRM_MODE_TV_MODE_NTSC) ||
+> +	    tv_mode_supported(connector, DRM_MODE_TV_MODE_NTSC_443) ||
+> +	    tv_mode_supported(connector, DRM_MODE_TV_MODE_NTSC_J) ||
+> +	    tv_mode_supported(connector, DRM_MODE_TV_MODE_PAL_M)) {
+> +		mode = drm_mode_analog_ntsc_480i(connector->dev);
+
+Nit: You can use the dev variable here and below.
+
+> +		if (!mode)
+> +			return 0;
+> +
+> +		tv_modes[count++] = mode;
+> +	}
+> +
+> +	if (tv_mode_supported(connector, DRM_MODE_TV_MODE_PAL) ||
+> +	    tv_mode_supported(connector, DRM_MODE_TV_MODE_PAL_N) ||
+> +	    tv_mode_supported(connector, DRM_MODE_TV_MODE_SECAM)) {
+> +		mode = drm_mode_analog_pal_576i(connector->dev);
+> +		if (!mode)
+> +			return 0;
+
+You leak the ntsc mode when returning (possibly).
+
+> +
+> +		tv_modes[count++] = mode;
+> +	}
+> +
+
+Maybe check for count being zero here?
+
+> +	if (count == 1) {
+> +		mode->type |= DRM_MODE_TYPE_PREFERRED;
+> +		drm_mode_probed_add(connector, mode);
+> +		return count;
+> +	}
+> +
+> +	ret = drm_object_property_get_default_value(&connector->base,
+> +						    dev->mode_config.tv_mode_property,
+> +						    &default_mode);
+> +	if (ret)
+> +		return 0;
+
+You leak both modes when returning here. Maybe move this up before
+allocation to simplify error handling.
+
+> +
+> +	if (cmdline->tv_mode_specified)
+> +		default_mode = cmdline->tv_mode;
+
+I realised that we don't verify tv_mode coming from the command line,
+not here and not in the reset helper. Should we do that? A driver should
+be programmed defensively to handle an illegal/unsupported value, but it
+doesn't feel right to allow an illegal enum value coming through the
+core/helpers.
+
+> +
+> +	if ((default_mode == DRM_MODE_TV_MODE_NTSC) ||
+> +	    (default_mode == DRM_MODE_TV_MODE_NTSC_443) ||
+> +	    (default_mode == DRM_MODE_TV_MODE_NTSC_J) ||
+> +	    (default_mode == DRM_MODE_TV_MODE_PAL_M))
+> +		first_mode_idx = 0;
+> +	else
+> +		first_mode_idx = 1;
+> +
+> +	mode = tv_modes[first_mode_idx];
+> +	mode->type |= DRM_MODE_TYPE_PREFERRED;
+> +	drm_mode_probed_add(connector, mode);
+> +
+> +	mode = first_mode_idx ? tv_modes[0] : tv_modes[1];
+> +	drm_mode_probed_add(connector, mode);
+> +
+> +	return count;
+> +}
+> +EXPORT_SYMBOL(drm_connector_helper_tv_get_modes);
+
+I know this is not expensive, but you're looping over the property
+values 7 times. An alternative solution is to rebuild the supported bitmask:
+
+int drm_connector_helper_tv_get_modes(struct drm_connector *connector)
+{
+...
+	unsigned int ntsc_modes = BIT(DRM_MODE_TV_MODE_NTSC) |
+				  BIT(DRM_MODE_TV_MODE_NTSC_443) |
+				  BIT(DRM_MODE_TV_MODE_NTSC_J) |
+				  BIT(DRM_MODE_TV_MODE_PAL_M);
+	unsigned int pal_modes = BIT(DRM_MODE_TV_MODE_PAL) |
+				 BIT(DRM_MODE_TV_MODE_PAL_N) |
+				 BIT(DRM_MODE_TV_MODE_SECAM);
+	unsigned int supported_tv_modes = 0;
+
+...
+	for (i = 0; i < property->num_values; i++)
+		supported_tv_modes |= BIT(property->values[i]);
+
+	if (supported_tv_modes & ntsc_modes)
+...
+	if (supported_tv_modes & pal_modes)
+...
+
+	if (BIT(default_mode) & ntsc_modes)
+		first_mode_idx = 0;
+	else
+		first_mode_idx = 1;
 
 
+Up to you if you want to do this.
+
+Noralf.
