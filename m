@@ -2,61 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1DA861E393
-	for <lists+intel-gfx@lfdr.de>; Sun,  6 Nov 2022 17:59:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BAD1361E683
+	for <lists+intel-gfx@lfdr.de>; Sun,  6 Nov 2022 22:26:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61F7510E0BF;
-	Sun,  6 Nov 2022 16:59:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0175710E0E2;
+	Sun,  6 Nov 2022 21:26:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp.domeneshop.no (smtp.domeneshop.no
- [IPv6:2a01:5b40:0:3005::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 804D310E076;
- Sun,  6 Nov 2022 16:59:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
- ; s=ds202112;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=1fHQEWgWob7nqgYb7pRzlsH6vNCFNYXfK+/x9/nB01M=; b=Yje8YQHhRml05gW1dej/dWiQQZ
- AqKj2i0OjO2RM1Qumjo7FoNfWRUdBC4/h2uQHli8coC+LKe7l3tUuPyfG7KqA8BEsiA+NVUYZGdcd
- RinbElpcQ3zEo0Ef+uc++uePxxY9puXszvLwKUx+P73tntoXkxilGwxDL1B3Co5nkaf1qLNefEJdU
- TbFTqkc2KcniVpob8iHII19/YNuRBUOwfVsA0XatDekK5sUsjYZNxCxDW65aky/cX6L9UkiWis18f
- 9uK/o/dLYZ0E8dKpnNEyK/urj4eNuLfnJnz0gFxc4QGDZbkz/3loUbjywm6lgaJZ1VZ7l87tNIpzo
- XoageSaA==;
-Received: from [2a01:799:95a:cb00:fd97:29ff:d72a:349e] (port=51993)
- by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
- (Exim 4.92) (envelope-from <noralf@tronnes.org>)
- id 1orizW-0005gi-Tq; Sun, 06 Nov 2022 17:59:26 +0100
-Message-ID: <eb485588-2e7a-8455-7ec4-6a9649d2bef8@tronnes.org>
-Date: Sun, 6 Nov 2022 17:59:23 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-To: Mateusz Kwiatkowski <kfyatek@gmail.com>, maxime@cerno.tech,
- Karol Herbst <kherbst@redhat.com>, Emma Anholt <emma@anholt.net>,
- Ben Skeggs <bskeggs@redhat.com>, Chen-Yu Tsai <wens@csie.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, Daniel Vetter <daniel@ffwll.ch>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Samuel Holland <samuel@sholland.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@linux.ie>,
- Maxime Ripard <mripard@kernel.org>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Lyude Paul <lyude@redhat.com>
-References: <20220728-rpi-analog-tv-properties-v6-0-e7792734108f@cerno.tech>
- <20220728-rpi-analog-tv-properties-v6-16-e7792734108f@cerno.tech>
- <8d0eee22-50f5-5b0a-c1e6-c5f61dd5bbcd@gmail.com>
-From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-In-Reply-To: <8d0eee22-50f5-5b0a-c1e6-c5f61dd5bbcd@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v6 16/23] drm/probe-helper: Provide a TV
- get_modes helper
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 044D010E0E2;
+ Sun,  6 Nov 2022 21:26:32 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 11DF460DBE;
+ Sun,  6 Nov 2022 21:26:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C35DC433C1;
+ Sun,  6 Nov 2022 21:26:31 +0000 (UTC)
+Received: from rostedt by gandalf.local.home with local (Exim 4.96)
+ (envelope-from <rostedt@goodmis.org>) id 1ornAT-008Cga-2Z;
+ Sun, 06 Nov 2022 16:27:01 -0500
+Message-ID: <20221106212427.739928660@goodmis.org>
+User-Agent: quilt/0.66
+Date: Sun, 06 Nov 2022 16:24:27 -0500
+From: Steven Rostedt <rostedt@goodmis.org>
+To: linux-kernel@vger.kernel.org
+Subject: [Intel-gfx] [PATCH v6a 0/5] timers: Use timer_shutdown*() before
+ freeing timers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,104 +41,133 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dom Cobley <dom@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Phil Elwell <phil@raspberrypi.com>,
- Hans de Goede <hdegoede@redhat.com>,
- =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>, linux-sunxi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org
+Cc: alsa-devel@alsa-project.org, linux-staging@lists.linux.dev,
+ linux-sh@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-afs@lists.infradead.org, linux-leds@vger.kernel.org,
+ drbd-dev@lists.linbit.com, linux-nilfs@vger.kernel.org,
+ linux-scsi@vger.kernel.org, linux-atm-general@lists.sourceforge.net,
+ lvs-devel@vger.kernel.org, linux-acpi@vger.kernel.org, coreteam@netfilter.org,
+ intel-wired-lan@lists.osuosl.org, linux-input@vger.kernel.org,
+ tipc-discussion@lists.sourceforge.net, linux-ext4@vger.kernel.org,
+ Guenter Roeck <linux@roeck-us.net>, linux-media@vger.kernel.org,
+ bridge@lists.linux-foundation.org, intel-gfx@lists.freedesktop.org,
+ linux-block@vger.kernel.org, cgroups@vger.kernel.org,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Anna-Maria Gleixner <anna-maria@linutronix.de>, linux-nfs@vger.kernel.org,
+ Stephen Boyd <sboyd@kernel.org>, netdev@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-wireless@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Julia Lawall <Julia.Lawall@inria.fr>,
+ linux-bluetooth@vger.kernel.org, netfilter-devel@vger.kernel.org,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+del_timer_sync() is often called before the object that owns the timer is
+freed. But sometimes there's a race that enables the timer again before it is
+freed and causes a use after free when that timer triggers. This patch set
+adds a new "shutdown" timer state, which is set on the new timer_shutdown()
+API. Once a timer is in this state, it can not be re-armed and if it is, it
+will warn.
 
+The first three patches change existing timer_shutdown() functions used
+locally in ARM and some drivers to better namespace names.
 
-Den 27.10.2022 00.02, skrev Mateusz Kwiatkowski:
-> Hi Maxime,
-> 
-> First of all, nice idea with the helper function that can be reused by different
-> drivers. This is neat!
-> 
-> But looking at this function, it feels a bit overcomplicated. You're creating
-> the two modes, then checking which one is the default, then set the preferred
-> one and possibly reorder them. Maybe it can be simplified somehow?
-> 
-> Although when I tried to refactor it myself, I ended up with something that's
-> not better at all. Maybe it needs to be complicated, after all :(
-> 
+The fourth patch implements the new API.
 
-I also thought that the function was complicated/difficult to read, in
-particular the index stuff at the end, but I also failed in finding a
-"better" solution, just a different one ;)
+The fifth patch is now a treewide patch that uses a coccinelle script to
+convert the trivial locations where a del_timer*() is called on a timer of an
+object that is freed immediately afterward (or at least in the same function).
 
-Noralf.
+Changes since v5a: https://lore.kernel.org/all/20221106054535.709068702@goodmis.org/
 
-My version:
+ - Updated the script to make ptr and slab into expressions instead of
+   using identifiers (Julia Lawall and Linus Torvalds)
 
-int drm_connector_helper_tv_get_modes(struct drm_connector *connector)
-{
-	struct drm_device *dev = connector->dev;
-	struct drm_property *tv_mode_property = dev->mode_config.tv_mode_property;
-	struct drm_cmdline_mode *cmdline = &connector->cmdline_mode;
-	unsigned int ntsc_modes = BIT(DRM_MODE_TV_MODE_NTSC) |
-				  BIT(DRM_MODE_TV_MODE_NTSC_443) |
-				  BIT(DRM_MODE_TV_MODE_NTSC_J) |
-				  BIT(DRM_MODE_TV_MODE_PAL_M);
-	unsigned int pal_modes = BIT(DRM_MODE_TV_MODE_PAL) |
-				 BIT(DRM_MODE_TV_MODE_PAL_N) |
-				 BIT(DRM_MODE_TV_MODE_SECAM);
-	unsigned int tv_modes[2] = { UINT_MAX, UINT_MAX };
-	unsigned int i, supported_tv_modes = 0;
+Steven Rostedt (Google) (5):
+      ARM: spear: Do not use timer namespace for timer_shutdown() function
+      clocksource/drivers/arm_arch_timer: Do not use timer namespace for timer_shutdown() function
+      clocksource/drivers/sp804: Do not use timer namespace for timer_shutdown() function
+      timers: Add timer_shutdown_sync() and timer_shutdown() to be called before freeing timers
+      treewide: Convert del_timer*() to timer_shutdown*()
 
-	if (!tv_mode_property)
-		return 0;
-
-	for (i = 0; i < tv_mode_property->num_values; i++)
-		supported_tv_modes |= BIT(tv_mode_property->values[i]);
-
-	if ((supported_tv_modes & ntsc_modes) && (supported_tv_modes &
-pal_modes)) {
-		uint64_t default_mode;
-
-		if (drm_object_property_get_default_value(&connector->base,
-							  tv_mode_property,
-							  &default_mode))
-			return 0;
-
-		if (cmdline->tv_mode_specified)
-			default_mode = cmdline->tv_mode;
-
-		if (BIT(default_mode) & ntsc_modes) {
-			tv_modes[0] = DRM_MODE_TV_MODE_NTSC;
-			tv_modes[1] = DRM_MODE_TV_MODE_PAL;
-		} else {
-			tv_modes[0] = DRM_MODE_TV_MODE_PAL;
-			tv_modes[1] = DRM_MODE_TV_MODE_NTSC;
-		}
-	} else if (supported_tv_modes & ntsc_modes) {
-		tv_modes[0] = DRM_MODE_TV_MODE_NTSC;
-	} else if (supported_tv_modes & pal_modes) {
-		tv_modes[0] = DRM_MODE_TV_MODE_PAL;
-	} else {
-		return 0;
-	}
-	
-	for (i = 0; i < ARRAY_SIZE(tv_modes); i++) {
-		struct drm_display_mode *mode;
-
-		if (tv_modes[i] == DRM_MODE_TV_MODE_NTSC)
-			mode = drm_mode_analog_ntsc_480i(dev);
-		else if (tv_modes[i] == DRM_MODE_TV_MODE_PAL)
-			mode = drm_mode_analog_pal_576i(dev);
-		else
-			break;
-		if (!mode)
-			return i;
-		if (!i)
-			mode->type |= DRM_MODE_TYPE_PREFERRED;
-		drm_mode_probed_add(connector, mode);
-	}
-
-	return i;
-}
+----
+ .../RCU/Design/Requirements/Requirements.rst       |  2 +-
+ Documentation/core-api/local_ops.rst               |  2 +-
+ Documentation/kernel-hacking/locking.rst           |  5 ++
+ arch/arm/mach-spear/time.c                         |  8 +--
+ arch/sh/drivers/push-switch.c                      |  2 +-
+ block/blk-iocost.c                                 |  2 +-
+ block/blk-iolatency.c                              |  2 +-
+ block/kyber-iosched.c                              |  2 +-
+ drivers/acpi/apei/ghes.c                           |  2 +-
+ drivers/atm/idt77252.c                             |  6 +-
+ drivers/block/drbd/drbd_main.c                     |  2 +-
+ drivers/block/loop.c                               |  2 +-
+ drivers/bluetooth/hci_bcsp.c                       |  2 +-
+ drivers/bluetooth/hci_qca.c                        |  4 +-
+ drivers/clocksource/arm_arch_timer.c               | 12 ++--
+ drivers/clocksource/timer-sp804.c                  |  6 +-
+ drivers/gpu/drm/i915/i915_sw_fence.c               |  2 +-
+ drivers/hid/hid-wiimote-core.c                     |  2 +-
+ drivers/input/keyboard/locomokbd.c                 |  2 +-
+ drivers/input/keyboard/omap-keypad.c               |  2 +-
+ drivers/input/mouse/alps.c                         |  2 +-
+ drivers/isdn/mISDN/l1oip_core.c                    |  4 +-
+ drivers/isdn/mISDN/timerdev.c                      |  4 +-
+ drivers/leds/trigger/ledtrig-activity.c            |  2 +-
+ drivers/leds/trigger/ledtrig-heartbeat.c           |  2 +-
+ drivers/leds/trigger/ledtrig-pattern.c             |  2 +-
+ drivers/leds/trigger/ledtrig-transient.c           |  2 +-
+ drivers/media/pci/ivtv/ivtv-driver.c               |  2 +-
+ drivers/media/usb/pvrusb2/pvrusb2-hdw.c            | 16 +++---
+ drivers/media/usb/s2255/s2255drv.c                 |  4 +-
+ drivers/net/ethernet/intel/i40e/i40e_main.c        |  6 +-
+ drivers/net/ethernet/marvell/sky2.c                |  2 +-
+ drivers/net/ethernet/sun/sunvnet.c                 |  2 +-
+ drivers/net/usb/sierra_net.c                       |  2 +-
+ .../wireless/broadcom/brcm80211/brcmfmac/btcoex.c  |  2 +-
+ drivers/net/wireless/intel/iwlwifi/iwl-dbg-tlv.c   |  2 +-
+ drivers/net/wireless/intel/iwlwifi/mvm/sta.c       |  2 +-
+ drivers/net/wireless/intersil/hostap/hostap_ap.c   |  2 +-
+ drivers/net/wireless/marvell/mwifiex/main.c        |  2 +-
+ drivers/net/wireless/microchip/wilc1000/hif.c      |  6 +-
+ drivers/nfc/pn533/pn533.c                          |  2 +-
+ drivers/nfc/pn533/uart.c                           |  2 +-
+ drivers/pcmcia/bcm63xx_pcmcia.c                    |  2 +-
+ drivers/pcmcia/electra_cf.c                        |  2 +-
+ drivers/pcmcia/omap_cf.c                           |  2 +-
+ drivers/pcmcia/pd6729.c                            |  4 +-
+ drivers/pcmcia/yenta_socket.c                      |  4 +-
+ drivers/scsi/qla2xxx/qla_edif.c                    |  4 +-
+ drivers/staging/media/atomisp/i2c/atomisp-lm3554.c |  2 +-
+ drivers/tty/n_gsm.c                                |  2 +-
+ drivers/tty/sysrq.c                                |  2 +-
+ drivers/usb/gadget/udc/m66592-udc.c                |  2 +-
+ drivers/usb/serial/garmin_gps.c                    |  2 +-
+ drivers/usb/serial/mos7840.c                       |  4 +-
+ fs/ext4/super.c                                    |  2 +-
+ fs/nilfs2/segment.c                                |  2 +-
+ include/linux/timer.h                              | 62 +++++++++++++++++++--
+ kernel/time/timer.c                                | 64 ++++++++++++----------
+ net/802/garp.c                                     |  2 +-
+ net/802/mrp.c                                      |  4 +-
+ net/bridge/br_multicast.c                          |  8 +--
+ net/bridge/br_multicast_eht.c                      |  4 +-
+ net/core/gen_estimator.c                           |  2 +-
+ net/ipv4/ipmr.c                                    |  2 +-
+ net/ipv6/ip6mr.c                                   |  2 +-
+ net/mac80211/mesh_pathtbl.c                        |  2 +-
+ net/netfilter/ipset/ip_set_list_set.c              |  2 +-
+ net/netfilter/ipvs/ip_vs_lblc.c                    |  2 +-
+ net/netfilter/ipvs/ip_vs_lblcr.c                   |  2 +-
+ net/netfilter/xt_IDLETIMER.c                       |  4 +-
+ net/netfilter/xt_LED.c                             |  2 +-
+ net/rxrpc/conn_object.c                            |  2 +-
+ net/sched/cls_flow.c                               |  2 +-
+ net/sunrpc/svc.c                                   |  2 +-
+ net/tipc/discover.c                                |  2 +-
+ net/tipc/monitor.c                                 |  2 +-
+ sound/i2c/other/ak4117.c                           |  2 +-
+ sound/synth/emux/emux.c                            |  2 +-
+ 78 files changed, 207 insertions(+), 148 deletions(-)
