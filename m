@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD76361F00E
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 11:13:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFF7A61F012
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 11:16:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8C4489CFA;
-	Mon,  7 Nov 2022 10:13:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6915389CFA;
+	Mon,  7 Nov 2022 10:16:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2105489CFA
- for <intel-gfx@lists.freedesktop.org>; Mon,  7 Nov 2022 10:13:49 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E7A289CFA
+ for <intel-gfx@lists.freedesktop.org>; Mon,  7 Nov 2022 10:16:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667816029; x=1699352029;
+ t=1667816184; x=1699352184;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=G7uXOfMTFqRWty4tb410EiX89iv0FYLUYwpxBzNGFzU=;
- b=SiWZ+VLocn/+GZK7ZC9N1bz7BC0GqxCWad1J8/yLPtFjJwfuy3ZLqhTG
- xgWXn2aXral/ZxtK99xhd/wt2ND1OWB+YY0JGSyU02kIjhO/oPKIhbxfZ
- xnH11dsTvnqm2/L4rkTbEn2WUhfwt9+U5cPYHIi1avjdMpVINM5xFRVbt
- y/n1+SC2vEDpTrhq/KFaJiuK+u/37yQwTrG9q1eMEhiRGxwrc7QN7V0ow
- EGEu9P/ErxC4RNzhsXwKXCixIHCJ5+ocxNyKIH7dhNbqhdGLcPfFI/S15
- HRqHzvwsSPR60RMpUVIFI78iAQQCR8CZ6bsI9sLNKlgcmkhwvjdbKFM5o g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10523"; a="290100855"
-X-IronPort-AV: E=Sophos;i="5.96,143,1665471600"; d="scan'208";a="290100855"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2022 02:13:48 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10523"; a="881013113"
-X-IronPort-AV: E=Sophos;i="5.96,143,1665471600"; d="scan'208";a="881013113"
+ bh=rtUSuxmnRnecC0YiD0fwFG+R3NNyLBVKSbQYjmQ9/X4=;
+ b=AtptsTsDAHhbT0p3wAyvA1u9nG234AWxsAxLG9dr+54w0CfEFWi8Pw33
+ eDL4RE5tb/MHQoCdtAML5vZ5bzzcPZ8k4zRUwpt4A/HoZfXeUKq3FSAWh
+ 5OpOMBF9bplJ+YsHji/dndHlDzAkAEM4ZUMpOS4yMyQEi0MQp+vD43U5j
+ 0RLbn/ox4WHIVD+CxBM+mFTCP3qUpH6elww+bthDMy2oSoT1G6ju2r/Ji
+ gWYViYY86NDTeK+LJPW8+dErkVhT3RGygaE04clj8XvvUvJmD/8+le7mC
+ eIafBfAxsn7IwaJJwYg1U+Q2xwCTl538B3OLCfelLJ7oKLOQeoElaKZk1 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10523"; a="312141928"
+X-IronPort-AV: E=Sophos;i="5.96,143,1665471600"; d="scan'208";a="312141928"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2022 02:16:23 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10523"; a="630433873"
+X-IronPort-AV: E=Sophos;i="5.96,143,1665471600"; d="scan'208";a="630433873"
 Received: from aalbarra-mobl.ger.corp.intel.com (HELO [10.213.226.227])
  ([10.213.226.227])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2022 02:13:47 -0800
-Message-ID: <a6daeb51-8552-9f26-94c0-425ae1e24077@linux.intel.com>
-Date: Mon, 7 Nov 2022 10:13:46 +0000
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2022 02:16:22 -0800
+Message-ID: <01a58f9d-2c9f-1e7c-344b-989ec429a0df@linux.intel.com>
+Date: Mon, 7 Nov 2022 10:16:20 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.3
@@ -44,14 +44,14 @@ Content-Language: en-US
 To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
  intel-gfx@lists.freedesktop.org
 References: <20221105003235.1717908-1-umesh.nerlige.ramappa@intel.com>
- <20221105003235.1717908-2-umesh.nerlige.ramappa@intel.com>
+ <20221105003235.1717908-3-umesh.nerlige.ramappa@intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <20221105003235.1717908-2-umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <20221105003235.1717908-3-umesh.nerlige.ramappa@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 1/2] i915/uncore: Acquire fw before loop in
- intel_uncore_read64_2x32
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/selftest: Bump up sample
+ period for busy stats selftest
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,93 +69,51 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 On 05/11/2022 00:32, Umesh Nerlige Ramappa wrote:
-> PMU reads the GT timestamp as a 2x32 mmio read and since upper and lower
-> 32 bit registers are read in a loop, there is a latency involved between
-> getting the GT timestamp and the CPU timestamp. As part of the
-> resolution, refactor intel_uncore_read64_2x32 to acquire forcewake and
-> uncore lock prior to reading upper and lower regs.
+> Engine busyness samples around a 10ms period is failing with busyness
+> ranging approx. from 87% to 115%. The expected range is +/- 5% of the
+> sample period.
+> 
+> When determining busyness of active engine, the GuC based engine
+> busyness implementation relies on a 64 bit timestamp register read. The
+> latency incurred by this register read causes the failure.
+> 
+> On DG1, when the test fails, the observed latencies range from 900us -
+> 1.5ms.
+
+Is it at all faster with the locked 2x32 or still the same unexplained 
+display related latencies can happen?
+
+> One solution tried was to reduce the latency between reg read and
+> CPU timestamp capture, but such optimization does not add value to user
+> since the CPU timestamp obtained here is only used for (1) selftest and
+> (2) i915 rps implementation specific to execlist scheduler. Also, this
+> solution only reduces the frequency of failure and does not eliminate
+> it.
+> 
+> In order to make the selftest more robust and account for such
+> latencies, increase the sample period to 100 ms.
 > 
 > Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 > ---
->   drivers/gpu/drm/i915/intel_uncore.h | 44 ++++++++++++++++++++---------
->   1 file changed, 30 insertions(+), 14 deletions(-)
+>   drivers/gpu/drm/i915/gt/selftest_engine_pm.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/intel_uncore.h b/drivers/gpu/drm/i915/intel_uncore.h
-> index 5449146a0624..e9e38490815d 100644
-> --- a/drivers/gpu/drm/i915/intel_uncore.h
-> +++ b/drivers/gpu/drm/i915/intel_uncore.h
-> @@ -382,20 +382,6 @@ __uncore_write(write_notrace, 32, l, false)
->    */
->   __uncore_read(read64, 64, q, true)
->   
-> -static inline u64
-> -intel_uncore_read64_2x32(struct intel_uncore *uncore,
-> -			 i915_reg_t lower_reg, i915_reg_t upper_reg)
-> -{
-> -	u32 upper, lower, old_upper, loop = 0;
-> -	upper = intel_uncore_read(uncore, upper_reg);
-> -	do {
-> -		old_upper = upper;
-> -		lower = intel_uncore_read(uncore, lower_reg);
-> -		upper = intel_uncore_read(uncore, upper_reg);
-> -	} while (upper != old_upper && loop++ < 2);
-> -	return (u64)upper << 32 | lower;
-> -}
-> -
->   #define intel_uncore_posting_read(...) ((void)intel_uncore_read_notrace(__VA_ARGS__))
->   #define intel_uncore_posting_read16(...) ((void)intel_uncore_read16_notrace(__VA_ARGS__))
->   
-> @@ -455,6 +441,36 @@ static inline void intel_uncore_rmw_fw(struct intel_uncore *uncore,
->   		intel_uncore_write_fw(uncore, reg, val);
->   }
->   
-> +static inline u64
-> +intel_uncore_read64_2x32(struct intel_uncore *uncore,
-> +			 i915_reg_t lower_reg, i915_reg_t upper_reg)
-> +{
-> +	u32 upper, lower, old_upper, loop = 0;
-> +	enum forcewake_domains fw_domains;
-> +	unsigned long flags;
-> +
-> +	fw_domains = intel_uncore_forcewake_for_reg(uncore, lower_reg,
-> +						    FW_REG_READ);
-> +
-> +	fw_domains |= intel_uncore_forcewake_for_reg(uncore, upper_reg,
-> +						    FW_REG_READ);
-> +
-> +	spin_lock_irqsave(&uncore->lock, flags);
-> +	intel_uncore_forcewake_get__locked(uncore, fw_domains);
-> +
-> +	upper = intel_uncore_read_fw(uncore, upper_reg);
-> +	do {
-> +		old_upper = upper;
-> +		lower = intel_uncore_read_fw(uncore, lower_reg);
-> +		upper = intel_uncore_read_fw(uncore, upper_reg);
-> +	} while (upper != old_upper && loop++ < 2);
-> +
-> +	intel_uncore_forcewake_put__locked(uncore, fw_domains);
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
+> index 0dcb3ed44a73..87c94314cf67 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
+> @@ -317,7 +317,7 @@ static int live_engine_busy_stats(void *arg)
+>   		ENGINE_TRACE(engine, "measuring busy time\n");
+>   		preempt_disable();
+>   		de = intel_engine_get_busy_time(engine, &t[0]);
+> -		mdelay(10);
+> +		mdelay(100);
+>   		de = ktime_sub(intel_engine_get_busy_time(engine, &t[1]), de);
+>   		preempt_enable();
+>   		dt = ktime_sub(t[1], t[0]);
 
-I mulled over the fact this no longer applies the put hysteresis, but 
-then I saw GuC busyness is essentially the only current caller so 
-thought it doesn't really warrant adding a super long named 
-intel_uncore_forcewake_put_delayed__locked helper.
-
-Perhaps it would make sense to move this out of static inline, in which 
-case it would also be easier to have the hysteresis without needing to 
-export any new helpers, but mostly because it does not feel the static 
-inline is justified. Sounds an attractive option but it is passable as is.
-
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Acked-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
 Regards,
 
 Tvrtko
-
-> +	spin_unlock_irqrestore(&uncore->lock, flags);
-> +
-> +	return (u64)upper << 32 | lower;
-> +}
-> +
->   static inline int intel_uncore_write_and_verify(struct intel_uncore *uncore,
->   						i915_reg_t reg, u32 val,
->   						u32 mask, u32 expected_val)
