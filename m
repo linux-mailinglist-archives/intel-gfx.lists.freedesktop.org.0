@@ -2,49 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 976FE61EC31
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 08:36:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AA1961EC32
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 08:37:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F7A910E1F3;
-	Mon,  7 Nov 2022 07:36:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD40110E1F3;
+	Mon,  7 Nov 2022 07:37:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC9A210E24D
- for <intel-gfx@lists.freedesktop.org>; Mon,  7 Nov 2022 07:36:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667806584; x=1699342584;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=wANV4QkSk1Gz3vjdgvuKdv5NVC6xKRCtxCpiN29Vk9Y=;
- b=j1KE7t2bC/hbByF86qe7JX3p8iWTNPgx8eyvN8LNHPDAkhziyX7E2m7p
- a9C7s8Wf4/Kcr7Cdi6mVZUtvCMApivZeRw3RtCmyklT2UjJ79Rpo/4v9D
- aLJAE6UvqJ+RIN1JkkNENlo0sL2qR2JMxNotuWWHenDaB7Wy1dVWcMkT5
- BB5U1IYLNrtVeDmvCPEAFRTRTu9+lXCKJSIoZUvL+bkrOIpLXdHgXtjhF
- z0X6vsF2QWMTYvHLEcnAw0PsQIUoFfqXC2lo/dhyoWwIW0sK1BZJ9O3XI
- kiJ+jhhjtiXXt7J0yimfshNrRqPcD55zAGDnSxjUXd0/1hu4zQ2Wlzfjk Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10523"; a="396645832"
-X-IronPort-AV: E=Sophos;i="5.96,143,1665471600"; d="scan'208";a="396645832"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2022 23:36:07 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10523"; a="638268752"
-X-IronPort-AV: E=Sophos;i="5.96,143,1665471600"; d="scan'208";a="638268752"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by fmsmga007.fm.intel.com with ESMTP; 06 Nov 2022 23:36:05 -0800
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  7 Nov 2022 13:04:32 +0530
-Message-Id: <20221107073432.1352991-9-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221107073432.1352991-1-suraj.kandpal@intel.com>
-References: <20221014152622.233398-1-suraj.kandpal@intel.com>
- <20221107073432.1352991-1-suraj.kandpal@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 72BA610E1F3;
+ Mon,  7 Nov 2022 07:37:38 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6BAF8AADE4;
+ Mon,  7 Nov 2022 07:37:38 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v5 8/8] drm/i915: Code styling fixes
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Date: Mon, 07 Nov 2022 07:37:38 -0000
+Message-ID: <166780665843.17761.17366849238435714468@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221107071801.1352870-1-suraj.kandpal@intel.com>
+In-Reply-To: <20221107071801.1352870-1-suraj.kandpal@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Enable_YCbCr420_for_VDSC?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,54 +40,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Swati Sharma <swati2.sharma@intel.com>
+== Series Details ==
 
-Removed extra newlines and did few styling fixes.
+Series: Enable YCbCr420 for VDSC
+URL   : https://patchwork.freedesktop.org/series/110576/
+State : warning
 
-Signed-off-by: Swati Sharma <swati2.sharma@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_debugfs.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 2ccaf698cbfb..5e0e8d1ffadc 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -1438,7 +1438,6 @@ static ssize_t wm_latency_write(struct file *file, const char __user *ubuf,
- 	return len;
+Error: dim checkpatch failed
+5dd859f0d749 drm/dp_helper: Add helper to check if the sink supports given format with DSC
+-:20: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#20: FILE: include/drm/display/drm_dp_helper.h:196:
  }
- 
--
- static ssize_t pri_wm_latency_write(struct file *file, const char __user *ubuf,
- 				    size_t len, loff_t *offp)
- {
-@@ -1788,13 +1787,13 @@ static ssize_t i915_dsc_fec_support_write(struct file *file,
- 					  const char __user *ubuf,
- 					  size_t len, loff_t *offp)
- {
--	bool dsc_enable = false;
--	int ret;
- 	struct drm_connector *connector =
- 		((struct seq_file *)file->private_data)->private;
- 	struct intel_encoder *encoder = intel_attached_encoder(to_intel_connector(connector));
- 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
- 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-+	bool dsc_enable = false;
-+	int ret;
- 
- 	if (len == 0)
- 		return 0;
-@@ -1811,6 +1810,7 @@ static ssize_t i915_dsc_fec_support_write(struct file *file,
- 	intel_dp->force_dsc_en = dsc_enable;
- 
- 	*offp += len;
-+
- 	return len;
- }
- 
--- 
-2.25.1
++/* Check if sink supports DSC with given output format */
+
+total: 0 errors, 0 warnings, 1 checks, 12 lines checked
+a548c1fd9212 drm/i915/dp: Check if DSC supports the given output_format
+d50d3aab8710 drm/i915: Adding the new registers for DSC
+8055d2abbceb drm/i915: Enable YCbCr420 for VDSC
+-:189: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_row' - possible side-effects?
+#189: FILE: drivers/gpu/drm/i915/display/intel_qp_tables.c:447:
++#define PARAM_TABLE(_minmax, _bpc, _row, _col, _is_420)  do { \
++	if (bpc == (_bpc)) {	\
++		if (_is_420)	\
++			return rc_range_##_minmax##qp420_##_bpc##bpc[_row][_col]; \
++		else	\
++			return rc_range_##_minmax##qp444_##_bpc##bpc[_row][_col]; \
++	}	\
+ } while (0)
+
+-:189: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_col' - possible side-effects?
+#189: FILE: drivers/gpu/drm/i915/display/intel_qp_tables.c:447:
++#define PARAM_TABLE(_minmax, _bpc, _row, _col, _is_420)  do { \
++	if (bpc == (_bpc)) {	\
++		if (_is_420)	\
++			return rc_range_##_minmax##qp420_##_bpc##bpc[_row][_col]; \
++		else	\
++			return rc_range_##_minmax##qp444_##_bpc##bpc[_row][_col]; \
++	}	\
+ } while (0)
+
+total: 0 errors, 0 warnings, 2 checks, 228 lines checked
+ad6ab6d8ce06 drm/i915: Fill in native_420 field
+b219e92e041b drm/i915/dsc: Add debugfs entry to validate DSC YCbCr420
+a291fd85598f drm/i915/dsc: Allow DSC only with YCbCr420 format when forced from debugfs
+b03c9a123d12 drm/i915: Code styling fixes
+
 
