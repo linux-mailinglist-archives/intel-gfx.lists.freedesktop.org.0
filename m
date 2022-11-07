@@ -1,50 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82DB661ED57
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 09:48:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AF1861ED7B
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 09:52:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0296110E259;
-	Mon,  7 Nov 2022 08:47:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE18C10E271;
+	Mon,  7 Nov 2022 08:52:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DDB910E251
- for <intel-gfx@lists.freedesktop.org>; Mon,  7 Nov 2022 08:47:55 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D5B110E248;
+ Mon,  7 Nov 2022 08:52:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667810875; x=1699346875;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=wANV4QkSk1Gz3vjdgvuKdv5NVC6xKRCtxCpiN29Vk9Y=;
- b=O094xlSDPliWl1g4ls1zfTTZkPDF6n7M5PEVYZCpkI4t8kmaYVWhGEAB
- zXLW6X9GlLfX+EI5mOWdvzv+D2Jke2qLqaUpUrc4LiDsUBDJA6YgOcfyd
- hFSGUvEY4/2XS/+nRpGyDytfjecx8dLIbOnwwlsymeVu9uW72QfrBO2zz
- 2tKdip5gnxtuOl9aPwZ77AO2cij+K9Vm8VtMT9IHtM1XUBHa+sjBL0IN5
- EPIejriJGcHwx4i0U+41n8LLTcbuz/wsjAuw6xDl0zWdnjiZdRTNDW0oG
- jYVvpOt2mMrRjpHZw+mEb3MatW+t53YsUHe3jPgXENPv+Bu2k9//0xOPw A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10523"; a="290085290"
-X-IronPort-AV: E=Sophos;i="5.96,143,1665471600"; d="scan'208";a="290085290"
+ t=1667811145; x=1699347145;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=QWSVxiGjVqDw9v6KtC6VbUwE/c0V4spuSr1gQMAGuBE=;
+ b=Lf/jgBlIOYjXE8p2slZOkH9ZJNY0U7ByyyiTD0foVOfIE+jQedIkyU6t
+ YwTecYVR+SqTIdMFgiOEmhTPYlrXVtccWBIzM421im3bsD++IwCGmriK2
+ hZcYRFNuRL/l0FnDEKTqHGWgoJumOBQwwpEcwrZjNKi81F+qv7Qi/aU77
+ NHnJd7kNdsfbxrx7utE5uhY1PB+38bp7SmvSId5h1/WpPbLd6atqGNGRg
+ FmG0RKDpUmQDPRbcj/BCoL6wdyJiTjBgtcHEJtCAuyNVZ9ezuQXciGzvN
+ 6MXAnABf9IbwGR4IUC2gzhwCcSxcBR3QixeOSGkqXZx3k1PisgxOmzoGk g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10523"; a="312126163"
+X-IronPort-AV: E=Sophos;i="5.96,143,1665471600"; d="scan'208";a="312126163"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2022 00:47:55 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10523"; a="880983663"
-X-IronPort-AV: E=Sophos;i="5.96,143,1665471600"; d="scan'208";a="880983663"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by fmsmga006.fm.intel.com with ESMTP; 07 Nov 2022 00:47:53 -0800
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  7 Nov 2022 14:16:34 +0530
-Message-Id: <20221107084634.1353266-9-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221107084634.1353266-1-suraj.kandpal@intel.com>
-References: <20221014152622.233398-1-suraj.kandpal@intel.com>
- <20221107084634.1353266-1-suraj.kandpal@intel.com>
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2022 00:52:24 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10523"; a="880984605"
+X-IronPort-AV: E=Sophos;i="5.96,143,1665471600"; d="scan'208";a="880984605"
+Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2022 00:52:24 -0800
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Mon,  7 Nov 2022 00:51:50 -0800
+Message-Id: <20221107085210.17221-1-niranjana.vishwanathapura@intel.com>
+X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 8/8] drm/i915: Code styling fixes
+Subject: [Intel-gfx] [PATCH v6 00/20] drm/i915/vm_bind: Add VM_BIND
+ functionality
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,54 +56,105 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: paulo.r.zanoni@intel.com, jani.nikula@intel.com, thomas.hellstrom@intel.com,
+ matthew.auld@intel.com, daniel.vetter@intel.com, christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Swati Sharma <swati2.sharma@intel.com>
+DRM_I915_GEM_VM_BIND/UNBIND ioctls allows UMD to bind/unbind GEM
+buffer objects (BOs) or sections of a BOs at specified GPU virtual
+addresses on a specified address space (VM). Multiple mappings can map
+to the same physical pages of an object (aliasing). These mappings (also
+referred to as persistent mappings) will be persistent across multiple
+GPU submissions (execbuf calls) issued by the UMD, without user having
+to provide a list of all required mappings during each submission (as
+required by older execbuf mode).
 
-Removed extra newlines and did few styling fixes.
+This patch series support VM_BIND version 1, as described by the param
+I915_PARAM_VM_BIND_VERSION.
 
-Signed-off-by: Swati Sharma <swati2.sharma@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_debugfs.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+Add new execbuf3 ioctl (I915_GEM_EXECBUFFER3) which only works in
+vm_bind mode. The vm_bind mode only works with this new execbuf3 ioctl.
+The new execbuf3 ioctl will not have any execlist support and all the
+legacy support like relocations etc., are removed.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 2ccaf698cbfb..5e0e8d1ffadc 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -1438,7 +1438,6 @@ static ssize_t wm_latency_write(struct file *file, const char __user *ubuf,
- 	return len;
- }
- 
--
- static ssize_t pri_wm_latency_write(struct file *file, const char __user *ubuf,
- 				    size_t len, loff_t *offp)
- {
-@@ -1788,13 +1787,13 @@ static ssize_t i915_dsc_fec_support_write(struct file *file,
- 					  const char __user *ubuf,
- 					  size_t len, loff_t *offp)
- {
--	bool dsc_enable = false;
--	int ret;
- 	struct drm_connector *connector =
- 		((struct seq_file *)file->private_data)->private;
- 	struct intel_encoder *encoder = intel_attached_encoder(to_intel_connector(connector));
- 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
- 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-+	bool dsc_enable = false;
-+	int ret;
- 
- 	if (len == 0)
- 		return 0;
-@@ -1811,6 +1810,7 @@ static ssize_t i915_dsc_fec_support_write(struct file *file,
- 	intel_dp->force_dsc_en = dsc_enable;
- 
- 	*offp += len;
-+
- 	return len;
- }
- 
+NOTEs:
+* It is based on below VM_BIND design+uapi rfc.
+  Documentation/gpu/rfc/i915_vm_bind.rst
+
+* The IGT RFC series is posted as,
+  [PATCH i-g-t v5 0/12] vm_bind: Add VM_BIND validation support
+
+v2: Address various review comments
+v3: Address review comments and other fixes
+v4: Remove vm_unbind out fence uapi which is not supported yet,
+    replace vm->vm_bind_mode check with i915_gem_vm_is_vm_bind_mode()
+v5: Render kernel-doc, use PIN_NOEVICT, limit vm_bind support to
+    non-recoverable faults
+v6: Rebased, minor fixes, add reserved fields to drm_i915_gem_vm_bind,
+    add new patch for async vm_unbind support
+
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+
+Niranjana Vishwanathapura (20):
+  drm/i915/vm_bind: Expose vm lookup function
+  drm/i915/vm_bind: Add __i915_sw_fence_await_reservation()
+  drm/i915/vm_bind: Expose i915_gem_object_max_page_size()
+  drm/i915/vm_bind: Add support to create persistent vma
+  drm/i915/vm_bind: Implement bind and unbind of object
+  drm/i915/vm_bind: Support for VM private BOs
+  drm/i915/vm_bind: Add support to handle object evictions
+  drm/i915/vm_bind: Support persistent vma activeness tracking
+  drm/i915/vm_bind: Add out fence support
+  drm/i915/vm_bind: Abstract out common execbuf functions
+  drm/i915/vm_bind: Use common execbuf functions in execbuf path
+  drm/i915/vm_bind: Implement I915_GEM_EXECBUFFER3 ioctl
+  drm/i915/vm_bind: Update i915_vma_verify_bind_complete()
+  drm/i915/vm_bind: Expose i915_request_await_bind()
+  drm/i915/vm_bind: Handle persistent vmas in execbuf3
+  drm/i915/vm_bind: userptr dma-resv changes
+  drm/i915/vm_bind: Limit vm_bind mode to non-recoverable contexts
+  drm/i915/vm_bind: Add uapi for user to enable vm_bind_mode
+  drm/i915/vm_bind: Render VM_BIND documentation
+  drm/i915/vm_bind: Async vm_unbind support
+
+ Documentation/gpu/i915.rst                    |  78 +-
+ drivers/gpu/drm/i915/Makefile                 |   3 +
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   |  43 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context.h   |  17 +
+ drivers/gpu/drm/i915/gem/i915_gem_create.c    |  72 +-
+ drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |   6 +
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 516 +----------
+ .../gpu/drm/i915/gem/i915_gem_execbuffer3.c   | 871 ++++++++++++++++++
+ .../drm/i915/gem/i915_gem_execbuffer_common.c | 666 +++++++++++++
+ .../drm/i915/gem/i915_gem_execbuffer_common.h |  74 ++
+ drivers/gpu/drm/i915/gem/i915_gem_ioctls.h    |   2 +
+ drivers/gpu/drm/i915/gem/i915_gem_object.c    |   3 +
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |   2 +
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |   6 +
+ drivers/gpu/drm/i915/gem/i915_gem_userptr.c   |  19 +
+ drivers/gpu/drm/i915/gem/i915_gem_vm_bind.h   |  30 +
+ .../drm/i915/gem/i915_gem_vm_bind_object.c    | 449 +++++++++
+ drivers/gpu/drm/i915/gt/intel_gtt.c           |  17 +
+ drivers/gpu/drm/i915/gt/intel_gtt.h           |  21 +
+ drivers/gpu/drm/i915/i915_driver.c            |   4 +
+ drivers/gpu/drm/i915/i915_drv.h               |   2 +
+ drivers/gpu/drm/i915/i915_gem_gtt.c           |  39 +
+ drivers/gpu/drm/i915/i915_gem_gtt.h           |   3 +
+ drivers/gpu/drm/i915/i915_getparam.c          |   3 +
+ drivers/gpu/drm/i915/i915_sw_fence.c          |  28 +-
+ drivers/gpu/drm/i915/i915_sw_fence.h          |  23 +-
+ drivers/gpu/drm/i915/i915_vma.c               | 186 +++-
+ drivers/gpu/drm/i915/i915_vma.h               |  68 +-
+ drivers/gpu/drm/i915/i915_vma_types.h         |  39 +
+ include/uapi/drm/i915_drm.h                   | 264 +++++-
+ 30 files changed, 3008 insertions(+), 546 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c
+ create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_execbuffer_common.c
+ create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_execbuffer_common.h
+ create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_vm_bind.h
+ create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c
+
 -- 
-2.25.1
+2.21.0.rc0.32.g243a4c7e27
 
