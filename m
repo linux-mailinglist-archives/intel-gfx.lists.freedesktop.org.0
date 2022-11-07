@@ -1,50 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1428361FB27
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 18:23:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0856161FB26
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 18:23:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52D6110E4F5;
-	Mon,  7 Nov 2022 17:23:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1348F10E4F0;
+	Mon,  7 Nov 2022 17:23:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E36B10E4E5
- for <intel-gfx@lists.freedesktop.org>; Mon,  7 Nov 2022 17:22:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB4C610E4F0
+ for <intel-gfx@lists.freedesktop.org>; Mon,  7 Nov 2022 17:23:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667841776; x=1699377776;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=lD1VOBE+0aeYAxOPnFcGR3ivzctMawzS0Jb6rYdMKB0=;
- b=INSR012HiTPAnWMjlcEHFqDcFIJCj/WBFlvy/sWex1YPEUWPTw+wYBZD
- pAPCiX4N6xHR6vX3I+Bb8TdD9TnX82N8EXhwD4OLIXYR68KeQiu2qrmmo
- 5JXEH3VRSg30vUOYZmo9Oi5HystZCTcXNUtP4goJv3CQxYywC7cZGc/TM
- u3NTbgewQWMfnUsN25ZATwUn5btiWzR4kut6jEwKz32n34xBcXFFfpYv5
- odra2TOXJ+mwdvYvya5aDnCFDK8xheQKfei+g4aBLI3ENDdWZj4SIb6fX
- +jyiKDUSeV8h2vEuw9UtjwnE8SuI8bJSiZx6jdp5nRSt53g9UG+clDhFq w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="312247098"
-X-IronPort-AV: E=Sophos;i="5.96,145,1665471600"; d="scan'208";a="312247098"
+ t=1667841780; x=1699377780;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=hMySilHjRqq+Xk6J3aM53z/tsWj/Bo/haLpug86S2Fc=;
+ b=dQ+fVdH01K3PIv7MjFCCar6LAzVdUY6YvqUoXlJ/YuQwHahuUNC5c473
+ 8VtYK4nx1Qb713hmtsGaXd0rwChPm+T+KQoZFeuu0N2tpEqbxjtMCFAbD
+ EMUYg8QoFfryyO9SeOTrk68Gadcdnq2aGnMqHpFJFZX6Yf9UAINZyGAe7
+ U1GlzV36cbjBDG/Q/yU/ZgvK+A8jvap4PnUGiq0X2C+wmcNdz4936BLV8
+ lzPhOmDXE+xRmM2n5XZy0Q8ZSwOJjIZC5Vm2920vX/hA/2ggTfea20KDa
+ ZuKBETeCKyM9jBwzRk1J6vor972nkZ5fYt5uyiUiEhpiiesgzbWh9ctE8 g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="312247140"
+X-IronPort-AV: E=Sophos;i="5.96,145,1665471600"; d="scan'208";a="312247140"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2022 09:09:24 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="667248444"
-X-IronPort-AV: E=Sophos;i="5.96,145,1665471600"; d="scan'208";a="667248444"
+ 07 Nov 2022 09:09:26 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="667248447"
+X-IronPort-AV: E=Sophos;i="5.96,145,1665471600"; d="scan'208";a="667248447"
 Received: from ideak-desk.fi.intel.com ([10.237.68.144])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2022 09:09:23 -0800
+ 07 Nov 2022 09:09:24 -0800
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  7 Nov 2022 19:09:10 +0200
-Message-Id: <20221107170917.3566758-3-imre.deak@intel.com>
+Date: Mon,  7 Nov 2022 19:09:11 +0200
+Message-Id: <20221107170917.3566758-4-imre.deak@intel.com>
 X-Mailer: git-send-email 2.31.1.189.g2e36527f23
 In-Reply-To: <20221107170917.3566758-1-imre.deak@intel.com>
 References: <20221107170917.3566758-1-imre.deak@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 2/9] drm/i915: Move the POWER_DOMAIN_AUX_IO_A
- definition to its logical place
+Subject: [Intel-gfx] [PATCH v2 3/9] drm/i915: Use the AUX_IO power domain
+ only for eDP/PSR port
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,90 +61,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Move the definition of the AUX_IO_A power domain, requiring only the
-corresponding AUX_IO_A power well to be enabled, before all the
-AUX_<port> power domains, which require both the AUX_IO_<port> and the
-DC_OFF power wells to be enabled.
+Use the AUX_IO_A display power domain only for eDP on port A where PSR
+is also supported. This is the case where DC states need to be enabled
+while the output is enabled - ensured by AUX_IO_A domain not enabling
+the DC_OFF power well. Otherwise port A can be treated the same way as
+other ports with an external DP output: using the AUX_<port> domain
+which disables the unrequired DC states.
 
-No functional change.
+This change prepares for the next patch enabling DC states on all ports
+supporting eDP/PSR besides port A.
 
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_power.c     | 4 ++--
- drivers/gpu/drm/i915/display/intel_display_power.h     | 5 +++--
- drivers/gpu/drm/i915/display/intel_display_power_map.c | 6 +++---
- 3 files changed, 8 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_ddi.c | 18 ++++++++++++------
+ 1 file changed, 12 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index db235b79c9629..75d6c24c1d144 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -129,6 +129,8 @@ intel_display_power_domain_str(enum intel_display_power_domain domain)
- 		return "AUDIO_MMIO";
- 	case POWER_DOMAIN_AUDIO_PLAYBACK:
- 		return "AUDIO_PLAYBACK";
-+	case POWER_DOMAIN_AUX_IO_A:
-+		return "AUX_IO_A";
- 	case POWER_DOMAIN_AUX_A:
- 		return "AUX_A";
- 	case POWER_DOMAIN_AUX_B:
-@@ -153,8 +155,6 @@ intel_display_power_domain_str(enum intel_display_power_domain domain)
- 		return "AUX_USBC5";
- 	case POWER_DOMAIN_AUX_USBC6:
- 		return "AUX_USBC6";
--	case POWER_DOMAIN_AUX_IO_A:
--		return "AUX_IO_A";
- 	case POWER_DOMAIN_AUX_TBT1:
- 		return "AUX_TBT1";
- 	case POWER_DOMAIN_AUX_TBT2:
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-index 662123d260a7a..2169864f3f044 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-@@ -77,6 +77,9 @@ enum intel_display_power_domain {
- 	POWER_DOMAIN_VGA,
- 	POWER_DOMAIN_AUDIO_MMIO,
- 	POWER_DOMAIN_AUDIO_PLAYBACK,
-+
-+	POWER_DOMAIN_AUX_IO_A,
-+
- 	POWER_DOMAIN_AUX_A,
- 	POWER_DOMAIN_AUX_B,
- 	POWER_DOMAIN_AUX_C,
-@@ -91,8 +94,6 @@ enum intel_display_power_domain {
- 	POWER_DOMAIN_AUX_USBC5,
- 	POWER_DOMAIN_AUX_USBC6,
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index e95bde5cf060e..4154f454ab52a 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -846,7 +846,8 @@ bool intel_ddi_get_hw_state(struct intel_encoder *encoder,
+ }
  
--	POWER_DOMAIN_AUX_IO_A,
--
- 	POWER_DOMAIN_AUX_TBT1,
- 	POWER_DOMAIN_AUX_TBT2,
- 	POWER_DOMAIN_AUX_TBT3,
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-index dc04afc6cc8ff..43454022e6a66 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-@@ -518,8 +518,8 @@ I915_DECL_PW_DOMAINS(glk_pwdoms_dpio_cmn_c,
- 	POWER_DOMAIN_INIT);
+ static enum intel_display_power_domain
+-intel_ddi_main_link_aux_domain(struct intel_digital_port *dig_port)
++intel_ddi_main_link_aux_domain(struct intel_digital_port *dig_port,
++			       const struct intel_crtc_state *crtc_state)
+ {
+ 	/* ICL+ HW requires corresponding AUX IOs to be powered up for PSR with
+ 	 * DC states enabled at the same time, while for driver initiated AUX
+@@ -860,8 +861,10 @@ intel_ddi_main_link_aux_domain(struct intel_digital_port *dig_port)
+ 	 * Note that PSR is enabled only on Port A even though this function
+ 	 * returns the correct domain for other ports too.
+ 	 */
+-	return dig_port->aux_ch == AUX_CH_A ? POWER_DOMAIN_AUX_IO_A :
+-					      intel_aux_power_domain(dig_port);
++	if (dig_port->aux_ch == AUX_CH_A && crtc_state->has_psr)
++		return POWER_DOMAIN_AUX_IO_A;
++	else
++		return intel_aux_power_domain(dig_port);
+ }
  
- I915_DECL_PW_DOMAINS(glk_pwdoms_aux_a,
--	POWER_DOMAIN_AUX_A,
- 	POWER_DOMAIN_AUX_IO_A,
-+	POWER_DOMAIN_AUX_A,
- 	POWER_DOMAIN_INIT);
+ static void intel_ddi_get_power_domains(struct intel_encoder *encoder,
+@@ -897,7 +900,8 @@ static void intel_ddi_get_power_domains(struct intel_encoder *encoder,
+ 		drm_WARN_ON(&dev_priv->drm, dig_port->aux_wakeref);
+ 		dig_port->aux_wakeref =
+ 			intel_display_power_get(dev_priv,
+-						intel_ddi_main_link_aux_domain(dig_port));
++						intel_ddi_main_link_aux_domain(dig_port,
++									       crtc_state));
+ 	}
+ }
  
- I915_DECL_PW_DOMAINS(glk_pwdoms_aux_b,
-@@ -658,8 +658,8 @@ I915_DECL_PW_DOMAINS(icl_pwdoms_ddi_io_e,	POWER_DOMAIN_PORT_DDI_IO_E);
- I915_DECL_PW_DOMAINS(icl_pwdoms_ddi_io_f,	POWER_DOMAIN_PORT_DDI_IO_F);
+@@ -2739,7 +2743,8 @@ static void intel_ddi_post_disable(struct intel_atomic_state *state,
  
- I915_DECL_PW_DOMAINS(icl_pwdoms_aux_a,
--	POWER_DOMAIN_AUX_A,
--	POWER_DOMAIN_AUX_IO_A);
-+	POWER_DOMAIN_AUX_IO_A,
-+	POWER_DOMAIN_AUX_A);
- I915_DECL_PW_DOMAINS(icl_pwdoms_aux_b,		POWER_DOMAIN_AUX_B);
- I915_DECL_PW_DOMAINS(icl_pwdoms_aux_c,		POWER_DOMAIN_AUX_C);
- I915_DECL_PW_DOMAINS(icl_pwdoms_aux_d,		POWER_DOMAIN_AUX_D);
+ 	if (intel_crtc_has_dp_encoder(old_crtc_state) || is_tc_port)
+ 		intel_display_power_put(dev_priv,
+-					intel_ddi_main_link_aux_domain(dig_port),
++					intel_ddi_main_link_aux_domain(dig_port,
++								       old_crtc_state),
+ 					fetch_and_zero(&dig_port->aux_wakeref));
+ 
+ 	if (is_tc_port)
+@@ -3065,7 +3070,8 @@ intel_ddi_pre_pll_enable(struct intel_atomic_state *state,
+ 		drm_WARN_ON(&dev_priv->drm, dig_port->aux_wakeref);
+ 		dig_port->aux_wakeref =
+ 			intel_display_power_get(dev_priv,
+-						intel_ddi_main_link_aux_domain(dig_port));
++						intel_ddi_main_link_aux_domain(dig_port,
++									       crtc_state));
+ 	}
+ 
+ 	if (is_tc_port && !intel_tc_port_in_tbt_alt_mode(dig_port))
 -- 
 2.37.1
 
