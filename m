@@ -2,49 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CFC561F136
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 11:55:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 239BD61F1A7
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 12:17:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56BC610E2DA;
-	Mon,  7 Nov 2022 10:54:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C55110E2E6;
+	Mon,  7 Nov 2022 11:17:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 468 seconds by postgrey-1.36 at gabe;
- Mon, 07 Nov 2022 10:54:54 UTC
-Received: from galois.linutronix.de (Galois.linutronix.de
- [IPv6:2a0a:51c0:0:12e:550::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B70310E2E6;
- Mon,  7 Nov 2022 10:54:54 +0000 (UTC)
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1667818024;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=qnhu/C4/dTNGh+9YxTAUPF0AHXOgpdZiA4TofS1TDao=;
- b=m8gFAB2FYV5B4BIkkbSCrPl5kngI1vwmC89wOqBJ/q73+RRLDUvN8153YBd0ancpYaUudU
- +fTzmJoLwRrrXw9ulhVtc41yRIMLNrOmB9kVLUOAn2xwOs861TQYPTmwfVqoXOpGOLsPn5
- hNBacxD9XN6Mi6tXS/NIbwjqzso2C6oqm6/L/mt2cpmfqfHELnCL8o8Pn38Ir7+eD8OVqk
- Lj3kRr5Ls1MIF7+wsJc3Ym/BQIZf8UhWrd8aE7FpoY/qhjIfIvELeoa8/ZXUqY5eKhjinO
- ZF4FT08X0F8jeyihKYji9kBCreFY8X9nEznXEcECfWmIcYVRm4zXH9JmYOmiiQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1667818024;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=qnhu/C4/dTNGh+9YxTAUPF0AHXOgpdZiA4TofS1TDao=;
- b=bzVvnuX1mysTSSrkmkIGsLumN3FZV+biUwiIDeLZdScudMhEXojJ3c4U7ytkUdHNPdLCjD
- NbhAMzPLE4OU4lBA==
-To: Steven Rostedt <rostedt@goodmis.org>, Linus Torvalds
- <torvalds@linux-foundation.org>
-In-Reply-To: <20221106223256.4bbdb018@rorschach.local.home>
-References: <20221106223256.4bbdb018@rorschach.local.home>
-Date: Mon, 07 Nov 2022 11:47:04 +0100
-Message-ID: <87pmdzvy6v.ffs@tglx>
+Received: from smtp.domeneshop.no (smtp.domeneshop.no
+ [IPv6:2a01:5b40:0:3005::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AABFE10E2E7;
+ Mon,  7 Nov 2022 11:17:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
+ ; s=ds202112;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=FFI39mP8UtNKgOqsi2a6dT2sTXn4P75XgEouvE9p5L0=; b=TJlNny8m3SQR1E18mL8S98TVQJ
+ 1oMLGAbLNfa7jW+weTU/RpdeaudZeLqRm6kCaVOsswVSTJsZMlSx94JwUMDbx/pWcLkW0LURu+GtA
+ gTd1n8X4PGBurLIJWx3ORA1yBMkeDAjMX3TjIVnJEd0jOx0eb52UD7NXCpQIf6FVS/x+64KYMWffm
+ Pm6rATU2FGOE2zwcjsh8BNCdbjEeRZJ1pAWhZE5f/MwMJmMIAJ9rhn5bphtAwzBDB4kn2MTJI4shh
+ aBdvTtiL6xN2cOyVs4gfyQ/DFbibjsDqSXt8FdTAcR/3oJimZzlUC04dsdv9CmpIKnSWk1NTNwAYl
+ AdffaDjQ==;
+Received: from [2a01:799:95a:cb00:fd97:29ff:d72a:349e] (port=49701)
+ by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+ (Exim 4.92) (envelope-from <noralf@tronnes.org>)
+ id 1os07v-0005Xf-CP; Mon, 07 Nov 2022 12:17:15 +0100
+Message-ID: <022d5c23-6387-55b5-615e-5c6aaa0dc86c@tronnes.org>
+Date: Mon, 7 Nov 2022 12:17:06 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [GIT PULL] treewide: timers: Use timer_shutdown*()
- before freeing timers
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+To: Maxime Ripard <maxime@cerno.tech>
+References: <20220728-rpi-analog-tv-properties-v6-0-e7792734108f@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v6-16-e7792734108f@cerno.tech>
+ <8d0eee22-50f5-5b0a-c1e6-c5f61dd5bbcd@gmail.com>
+ <eb485588-2e7a-8455-7ec4-6a9649d2bef8@tronnes.org>
+ <20221107100751.neijajfrazxloldp@houat>
+From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
+In-Reply-To: <20221107100751.neijajfrazxloldp@houat>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v6 16/23] drm/probe-helper: Provide a TV
+ get_modes helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,36 +59,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alsa-devel@alsa-project.org, linux-staging@lists.linux.dev,
- linux-sh@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-afs@lists.infradead.org, linux-leds@vger.kernel.org,
- drbd-dev@lists.linbit.com, linux-nilfs@vger.kernel.org,
- linux-scsi@vger.kernel.org, linux-atm-general@lists.sourceforge.net,
- lvs-devel@vger.kernel.org, linux-acpi@vger.kernel.org, coreteam@netfilter.org,
- intel-wired-lan@lists.osuosl.org, linux-input@vger.kernel.org,
- tipc-discussion@lists.sourceforge.net, linux-ext4@vger.kernel.org,
- Guenter Roeck <linux@roeck-us.net>, linux-media@vger.kernel.org,
- bridge@lists.linux-foundation.org, intel-gfx@lists.freedesktop.org,
- linux-block@vger.kernel.org, cgroups@vger.kernel.org,
- Anna-Maria Gleixner <anna-maria@linutronix.de>, linux-nfs@vger.kernel.org,
- Stephen Boyd <sboyd@kernel.org>, netdev@vger.kernel.org,
- linux-usb@vger.kernel.org, linux-wireless@vger.kernel.org,
- linux-kernel@vger.kernel.org, Julia Lawall <Julia.Lawall@inria.fr>,
- linux-bluetooth@vger.kernel.org, netfilter-devel@vger.kernel.org,
- Andrew Morton <akpm@linux-foundation.org>
+Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
+ Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
+ linux-sunxi@lists.linux.dev, Mateusz Kwiatkowski <kfyatek@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ Hans de Goede <hdegoede@redhat.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ linux-arm-kernel@lists.infradead.org, Dom Cobley <dom@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
+ =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Linus,
 
-On Sun, Nov 06 2022 at 22:32, Steven Rostedt wrote:
-> As discussed here:
->
->   https://lore.kernel.org/all/20221106212427.739928660@goodmis.org/
 
-Please hold off. It's only nits, but tip has documented rules and random
-pull requests are not making them go away.
+Den 07.11.2022 11.07, skrev Maxime Ripard:
+> Hi Noralf,
+> 
+> On Sun, Nov 06, 2022 at 05:59:23PM +0100, Noralf Trønnes wrote:
+>>
+>>
+>> Den 27.10.2022 00.02, skrev Mateusz Kwiatkowski:
+>>> Hi Maxime,
+>>>
+>>> First of all, nice idea with the helper function that can be reused by different
+>>> drivers. This is neat!
+>>>
+>>> But looking at this function, it feels a bit overcomplicated. You're creating
+>>> the two modes, then checking which one is the default, then set the preferred
+>>> one and possibly reorder them. Maybe it can be simplified somehow?
+>>>
+>>> Although when I tried to refactor it myself, I ended up with something that's
+>>> not better at all. Maybe it needs to be complicated, after all :(
+>>>
+>>
+>> I also thought that the function was complicated/difficult to read, in
+>> particular the index stuff at the end, but I also failed in finding a
+>> "better" solution, just a different one ;)
+> 
+> I think I like yours better still :)
+> 
+> Can I bring it into my series, with your authorship and SoB?
+> 
 
-Thanks,
+Sure, no problem.
 
-        tglx
+Noralf.
