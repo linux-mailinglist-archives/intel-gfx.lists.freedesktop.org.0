@@ -1,52 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0BEF632722
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Nov 2022 15:58:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7DA26327F2
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Nov 2022 16:26:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26F0410E2E9;
-	Mon, 21 Nov 2022 14:58:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0D9310E2F9;
+	Mon, 21 Nov 2022 15:26:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD41210E2F1;
- Mon, 21 Nov 2022 14:57:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669042676; x=1700578676;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=+sEp8/ZtTB5D2wuDjJYNgKtN8CNBIgF6cAGgVXjPYVY=;
- b=EOPT2gIsse7VgjzCv8UQ7KYqynekg+BvOsCrj+QMT0VcrG2vf9OTPLfy
- A32oqjZUEVattjr3tvv3kaPLzfPyhjkIpuUsVRaL1CDpuLy3kR+wDSeFo
- m1Vh/6MbQbkrco3DLJQFFVXA3hoFKZqMqg1yQRuxHe1/yUd3L31GYVuya
- UKpunkb75e7d6zhHAzk2IrS+uSsbp/k+nhu5cdoAmk6iukhfJzshzNz3G
- 1r9X29GYKVJEurcSEbhFj5vW7rdAFpPDJk5f+QrgVwOyk2zo4wy4MWDZW
- osukCxBQ9mMtumbfQpI1EcNl9AoxMBu/Hxes3ZFFj15kDEHNfOyOXu5ay w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10538"; a="315395325"
-X-IronPort-AV: E=Sophos;i="5.96,181,1665471600"; d="scan'208";a="315395325"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2022 06:57:56 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10538"; a="765985132"
-X-IronPort-AV: E=Sophos;i="5.96,181,1665471600"; d="scan'208";a="765985132"
-Received: from jkrzyszt-mobl1.ger.corp.intel.com (HELO
- jkrzyszt-mobl1.intranet) ([10.213.16.21])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2022 06:57:48 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Date: Mon, 21 Nov 2022 15:56:55 +0100
-Message-Id: <20221121145655.75141-3-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221121145655.75141-1-janusz.krzysztofik@linux.intel.com>
-References: <20221121145655.75141-1-janusz.krzysztofik@linux.intel.com>
+Received: from aposti.net (aposti.net [89.234.176.197])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9FAA10E4A6;
+ Mon,  7 Nov 2022 21:00:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+ s=mail; t=1667854806; h=from:from:sender:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=AInEwYmBubDQ6V6OhoS8/DlKJ2T55utDNAWwTZfVpEs=;
+ b=jBWCwoeyZYRizpyaR+kfAx7UlmgKvWtEqzqgW0CK2RuM7UTF6Uv3LcDseUJt+2VtHoYFpv
+ Kcue/ozBs2v7BF75dXwjLfqT/omGKYDVxxYTKd0MOaF3HDVxK2b1r5njQM+sLu5SPcsVYg
+ AGbmaf1bxY/RQg6jP0MxmEoWmo+ZZvo=
+Date: Mon, 07 Nov 2022 20:59:55 +0000
+From: Paul Cercueil <paul@crapouillou.net>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-Id: <VZWZKR.3K3MGKLWDLB12@crapouillou.net>
+In-Reply-To: <Y2lrNbA4t8RHOwPB@intel.com>
+References: <20221107175106.360578-1-paul@crapouillou.net>
+ <20221107175510.361051-1-paul@crapouillou.net>
+ <20221107175510.361051-3-paul@crapouillou.net> <Y2lrNbA4t8RHOwPB@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 2/2] drm/i915: Never return 0 if not all
- requests retired
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Mon, 21 Nov 2022 15:26:23 +0000
+Subject: Re: [Intel-gfx] [PATCH 26/26] drm/i915/gt: Remove #ifdef guards for
+ PM related functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,47 +48,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- Chris Wilson <chris.p.wilson@intel.com>, dri-devel@lists.freedesktop.org,
- Andrzej Hajda <andrzej.hajda@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Users of intel_gt_retire_requests_timeout() expect 0 return value on
-success.  However, we have no protection from passing back 0 potentially
-returned by a call to dma_fence_wait_timeout() when it succedes right
-after its timeout has expired.
+Hi Rodrigo,
 
-Replace 0 with -ETIME before potentially using the timeout value as return
-code, so -ETIME is returned if there are still some requests not retired
-after timeout, 0 otherwise.
+Le lun. 7 nov. 2022 =E0 15:31:49 -0500, Rodrigo Vivi=20
+<rodrigo.vivi@intel.com> a =E9crit :
+> On Mon, Nov 07, 2022 at 05:55:10PM +0000, Paul Cercueil wrote:
+>>  Instead of defining two versions of intel_sysfs_rc6_init(), one for=20
+>> each
+>>  value of CONFIG_PM, add a check on !IS_ENABLED(CONFIG_PM) early in=20
+>> the
+>>  function. This will allow the compiler to automatically drop the=20
+>> dead
+>>  code when CONFIG_PM is disabled, without having to use #ifdef=20
+>> guards.
+>=20
+> Making the RC6 to depend on the CONFIG_PM is probably an historical
+> mistake and probably the right solution is simply to remove that
+> dependency.
 
-v3: Use conditional expression, more compact but also better reflecting
-    intention standing behind the change.
+I don't know anything about i915, so the best I can do is update the=20
+code without changing the functionality.
 
-v2: Move the added lines down so flush_submission() is not affected.
+Then someone with a better understanding can send a patch to remove the=20
+check on CONFIG_PM.
 
-Fixes: f33a8a51602c ("drm/i915: Merge wait_for_timelines with retire_request")
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-Cc: stable@vger.kernel.org # v5.5+
----
- drivers/gpu/drm/i915/gt/intel_gt_requests.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Cheers,
+-Paul
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_requests.c b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-index edb881d756309..1dfd01668c79c 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-@@ -199,7 +199,7 @@ out_active:	spin_lock(&timelines->lock);
- 	if (remaining_timeout)
- 		*remaining_timeout = timeout;
- 
--	return active_count ? timeout : 0;
-+	return active_count ? timeout ?: -ETIME : 0;
- }
- 
- static void retire_work_handler(struct work_struct *work)
--- 
-2.25.1
+>>=20
+>>  This has the advantage of always compiling these functions in,
+>>  independently of any Kconfig option. Thanks to that, bugs and other
+>>  regressions are subsequently easier to catch.
+>>=20
+>>  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+>>  ---
+>>  Cc: Jani Nikula <jani.nikula@linux.intel.com>
+>>  Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+>>  Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>  Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+>>  Cc: intel-gfx@lists.freedesktop.org
+>>  ---
+>>   drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c | 8 +-------
+>>   1 file changed, 1 insertion(+), 7 deletions(-)
+>>=20
+>>  diff --git a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c=20
+>> b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
+>>  index 2b5f05b31187..decf892a4508 100644
+>>  --- a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
+>>  +++ b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
+>>  @@ -164,7 +164,6 @@ sysfs_gt_attribute_r_func(struct kobject *kobj,=20
+>> struct attribute *attr,
+>>   								 NULL);			\
+>>   	INTEL_GT_ATTR_RO(_name)
+>>=20
+>>  -#ifdef CONFIG_PM
+>>   static u32 get_residency(struct intel_gt *gt, i915_reg_t reg)
+>>   {
+>>   	intel_wakeref_t wakeref;
+>>  @@ -300,7 +299,7 @@ static void intel_sysfs_rc6_init(struct=20
+>> intel_gt *gt, struct kobject *kobj)
+>>   {
+>>   	int ret;
+>>=20
+>>  -	if (!HAS_RC6(gt->i915))
+>>  +	if (!IS_ENABLED(CONFIG_PM) || !HAS_RC6(gt->i915))
+>>   		return;
+>>=20
+>>   	ret =3D __intel_gt_sysfs_create_group(kobj, rc6_attr_group);
+>>  @@ -329,11 +328,6 @@ static void intel_sysfs_rc6_init(struct=20
+>> intel_gt *gt, struct kobject *kobj)
+>>   				 gt->info.id, ERR_PTR(ret));
+>>   	}
+>>   }
+>>  -#else
+>>  -static void intel_sysfs_rc6_init(struct intel_gt *gt, struct=20
+>> kobject *kobj)
+>>  -{
+>>  -}
+>>  -#endif /* CONFIG_PM */
+>>=20
+>>   static u32 __act_freq_mhz_show(struct intel_gt *gt)
+>>   {
+>>  --
+>>  2.35.1
+>>=20
+
 
