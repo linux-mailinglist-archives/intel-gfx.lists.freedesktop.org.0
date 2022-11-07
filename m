@@ -1,111 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A55B461F42C
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 14:19:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7DA161F461
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 14:31:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0731D10E30D;
-	Mon,  7 Nov 2022 13:19:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2B5E10E30E;
+	Mon,  7 Nov 2022 13:30:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24BB810E30C;
- Mon,  7 Nov 2022 13:19:47 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QTfnkAMzELzwVXLsYm9Xz2BYWDu7NCLHu1rhWx/gdytFcH2ny5aCD02ESX6Dfg+hF0qWfovNGYPLHt+I4ASDCJySdxpSCu0Bcw+MAgUda5qGy8DXT6VoYi2s8BA3cVv9pyPlwVmhc5A5/EaqHkq4EsYy1KDPhrL9e0U94m0EKWXGEqn85dzdN8rd8CElAEjNcYW78iabjAn94/ROZqlbkn+r3tISbpzPjYqeAvmFlhl/9EEZ9vixUfkFa4gFMYfiS2CkUJj0gBhAB8ucA1JUjygfiOmbBhzf5rsXQwhwHuzNG3O8rAneBhXmeIY1HB2EHBturZGz9ZlYbs9qp7AbKA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4X5dG8QlSTh4dgjV3bEZBAoi/qJnVqmgFamMmqSL5G8=;
- b=UcUyO1Rp21mamHpsd/Lp8FcRbDyMQ4zc3BVN5b5k2RHmrXM3EKMTqFgETqLPJt5bX40sRYMa/FlW/+H6sFAez8l5dMU/8AkndFRU/2NZNU0QBlE8mtWWVWAxx+Yl+nfDlfLLVjwj3w4MB5OBlqHtkBxRKuAYArNl0+n4H+hs4InVdYwKiZswcvL5Vx2dSMhx7yXdtlfv87iYQA03utchlJs+/1UDuGqDpXryj9wLHrOg8ugH2tNR0rq3+mmiDJZDfVlXgluTslN+BB5YTTgAy/2i5Gd78ErGpAfxdNH74N73EUKPwS1K8RYLkFZdRmasfHQLu/JrcrXlvmHfmTAAeA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4X5dG8QlSTh4dgjV3bEZBAoi/qJnVqmgFamMmqSL5G8=;
- b=uemGWwacjLcTycDfZKyuSAW/nN3SW/HE5qu0tCWlkV8o/bAuAF43JVyeAIZPhbhpxXYdh5lPfZ6lg5m+Qb8lLYwNRN5aJBctrlcvmLJofzVBqJZCo+tU2Awn0LeWAhCNT0a8flRKlAePIxGrlN1MbzEbrLSYEIyahoq4whlEDghyZ5h/nyfoiV/KuMD6N86PoQ+O0pq1Au8/d4jf9eRmWjb3guqKX20CbAylZbmxripKjh880UZJ7/SEKvY521KT7u8D/vKRQNt5ASMeeevHVQDhi34/TISV23XJGIwI1ejCHYMVvq4VWi8sKfy8kCO3zJKma9sZw2i1HuPxioYp9A==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
- by DS7PR12MB5864.namprd12.prod.outlook.com (2603:10b6:8:7b::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.26; Mon, 7 Nov
- 2022 13:19:44 +0000
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::7a81:a4e4:bb9c:d1de]) by LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::7a81:a4e4:bb9c:d1de%6]) with mapi id 15.20.5791.026; Mon, 7 Nov 2022
- 13:19:44 +0000
-Date: Mon, 7 Nov 2022 09:19:43 -0400
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: Alex Williamson <alex.williamson@redhat.com>
-Message-ID: <Y2kF75zVD581UeR2@nvidia.com>
-References: <0-v1-4991695894d8+211-vfio_iommufd_jgg@nvidia.com>
- <4-v1-4991695894d8+211-vfio_iommufd_jgg@nvidia.com>
- <20221026152442.4855c5de.alex.williamson@redhat.com>
- <Y1wiCc33Jh5QY+1f@nvidia.com>
- <20221031164526.0712e456.alex.williamson@redhat.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221031164526.0712e456.alex.williamson@redhat.com>
-X-ClientProxiedBy: BL0PR1501CA0012.namprd15.prod.outlook.com
- (2603:10b6:207:17::25) To LV2PR12MB5869.namprd12.prod.outlook.com
- (2603:10b6:408:176::16)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9EE310E30E
+ for <intel-gfx@lists.freedesktop.org>; Mon,  7 Nov 2022 13:30:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1667827853; x=1699363853;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=vhVmvZQlfyrHOht8urgeQHEEWUYM4omokiwXlQCvLMU=;
+ b=OH0d92e6JetFyFsh/FyAwWHSy5hPUgrfRqDaHth/pjh2u3VPNGVUEK02
+ UiChosZpvscbKB3fPdTIccLAia+xaIsfic+/gqMqyI5HZspu6rb+nQK4e
+ iQqULo2jcgV/+LvpHlcxDg6cAVclRuWNzTLGY/B5Yiq2KE73uN9tWRqqz
+ VBwJszXAhUhXnSPSKXRCLZ30wkUH89RfVuh4uJJcDnaAuPndASP37cLbf
+ iCTZMRKgSNF9AzxIA4ASIqNeX3fVYwHHjaLF3Hpq2nwWIVliP486zSDCj
+ Rzm2O6ia5fE0iXOPej1NYkdqG/sjt7fSGXetfG4ucnuwkI/FO1xwIwUPH g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10523"; a="297900004"
+X-IronPort-AV: E=Sophos;i="5.96,145,1665471600"; d="scan'208";a="297900004"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2022 05:30:52 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10523"; a="704874339"
+X-IronPort-AV: E=Sophos;i="5.96,145,1665471600"; d="scan'208";a="704874339"
+Received: from pmesquit-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.252.15.49])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2022 05:30:50 -0800
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  7 Nov 2022 13:30:27 +0000
+Message-Id: <20221107133027.38740-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|DS7PR12MB5864:EE_
-X-MS-Office365-Filtering-Correlation-Id: 76b3bbaa-d521-4298-a7dd-08dac0c2bc79
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: H6TZ3XjPKagGwPPhvwmWSWUXl6G4xGdbn+N1blCXYpTEOOBJe1u5gXPXwX877Em71HHUAVOwUyChOIMyL4HoxvOouw6XU/wviKYyooISg1u58/0QeGbQKsZnVNMzQ/5AqKBqQsNNODGn2uKo4A1oGOfNRrS1dDZQa4mbFouufD48xYZcgNvTnHaJLPa/Rygn97RcK8mrl39vIgI0O8npeA2VdduTKmgKH9mwFumhm333Ji2DzggemYAE8KYRaZ+bDYN8osQbWpBtwsDWHiOmWyWH+G4scgHvF5x2U6GiJeGb+hQL2TA9aSXOV35ScGWBJhnpgTBeN5jQg0mW7nF5xVCouki9WyhwG/gt7LmerMta5uolXhf5K/X+rOc5dIv2st6rbc8qooadQZiWqqzjbvJAMol2raHdGMAP+bta/f03V19TkpMd3keVz1nN7OmekgU5cGoVi77NA/20IGZnFwgk7O91R+4revLvud5DAAUkU8CqS/yl2RDLJ1W2A3R5gMPJM58gEqs4fPtoTv43ZUgd3wsK3Ys9t6jXMg730Cew7p9WcLoZWZQKECNjeRMFSBOwE+Au7pZH3lGIyrdxtnRY3WN8nyYSTgeNEV9jdoE2/+5uY3u0tddQ0IblQcePM22MhvxMvelUHZvetTeTSoMueHJXhuQVLO6m/b5Y7zN3RKpDc15jv6zZEGvhsoBm6n8S6cmlQ/4y+QS/1GghZA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(4636009)(396003)(346002)(366004)(376002)(136003)(39860400002)(451199015)(478600001)(6486002)(38100700002)(86362001)(54906003)(6916009)(83380400001)(36756003)(8936002)(316002)(6506007)(6512007)(26005)(41300700001)(66946007)(66556008)(8676002)(66476007)(4326008)(186003)(2616005)(2906002)(7416002)(7406005)(5660300002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?3ycE2YlZfTG/oQoQNuNstdHGXUSS2MOxztYYF2Au9GQuT1CZdvQgX0GPg5H4?=
- =?us-ascii?Q?+m73EF2k8+kgNsc76r9LXWETx3XzR0IyWxYFQmkgTqKsK9FpKlv8fWgHbAae?=
- =?us-ascii?Q?qCW958njIzZ4sBDIjQeo36kRwp+IJoWdjyJYoe19g5RZ160DyxyIorcJWd56?=
- =?us-ascii?Q?gYgzOwHCYHrI7EUpwOARfT5s42zbAvYaqzxzIMe5CG4azCij2nSJi9ddCc4D?=
- =?us-ascii?Q?/McXeQkSsPEPK6VqaiycLAJ2b/bD+YhJS6acS3jbYKnkWaqXzsOxLQGE5V4p?=
- =?us-ascii?Q?Hje0KxoKrGLWkJjjlllrQShfWax+VQNxU8lbPIfwgogCxANMTpXqqc97906z?=
- =?us-ascii?Q?rrap+Ldg76EcpkTRL6+Ih1ZIAvEc8VSLDRMYWndJJb1ktNph6pC5/Mj1OOYB?=
- =?us-ascii?Q?p2fi1moCAG1rJD+QPR4DkFzzv+ECQNuTbxlxsWG1tqM3JsIdc0YeacM2WqTA?=
- =?us-ascii?Q?LB401VOkHDj0VWmImhkyCrYOtapuaMJeQvslhP1JG4lO03GgMqskdxC+cSt/?=
- =?us-ascii?Q?AGVd9YunblzfL4buRvn7+KR42rFq69W4JxZtX6qjTKjrFa1EkmTqLdse08IN?=
- =?us-ascii?Q?w3gxGBU7dovADzuvrp4ZofDmDvfI/6XiJzm1uj2hOOBSTcBc/A0tyFr4L07q?=
- =?us-ascii?Q?nHQ8EvEvL2bEvHkxNNhxEiHN34PjOCnhAlFaWtxIhMoAb2Du1rTgUJw0JIMy?=
- =?us-ascii?Q?vvNxNGt0x1bNfFwKAOwZn5XBaE2OUgGaLranlKdKY1YRDoG64Yl1YMEx2or6?=
- =?us-ascii?Q?TuI0lh/xp9wq6e+1YRn28QgJeo24iFlq42zhWPlcWPO09xy8flkeFFCUhW6+?=
- =?us-ascii?Q?0/mXaoIlCqYiKBJLvaIgOVVaHhDA8QDwXrk5tjTYP8H42P9on0XIi4G74uFK?=
- =?us-ascii?Q?3eiSfxDVvbtU3xr8CBjxsttPngrXylFlxup1kdcRDO1cYJcvH63sGh1gWPay?=
- =?us-ascii?Q?ua2D4wlzdPTPaK2gWQ6Nkcw5+sQG7pUV78GEqAOy6JJH+1wl2YxjG1IiVeBo?=
- =?us-ascii?Q?3aLkSe82aVz6TZzq9PXGr4+uWkBv/leHwHB0Vi2wKfKMw6MVbOKCIuTiovEZ?=
- =?us-ascii?Q?49fRzXh982yEX7VkzX5lTidMBoh+cQrk9N9MSfngDZSdjaspt5NNtwFQqmSu?=
- =?us-ascii?Q?ro1nQAzxRD0Rz8+/YP4lY8IHWZAJI+iqIJq+vHd9Bn/fCc4nEKzYqwkTlYio?=
- =?us-ascii?Q?rfxS4enyRHOKFGiBwOkiY5AGXh89wavb6nHtmIcO0wxrow2xROn6AkX0KvUN?=
- =?us-ascii?Q?m7qCosnRtBJ3AwFvRZjmDqUCJ3ZswfAqTPpjuk2nVGXvKVpuXuRQVFiW5ZRb?=
- =?us-ascii?Q?rlmOzg+0BVDN4OhNCp3gs+yFnaoy0B4yFNAZI12IrE2BCbF0YLqwJHTOYboJ?=
- =?us-ascii?Q?bhfmnbA1QZcxE7Rgv4x0i+nWkL+1+4tdwT/mXoZ9DoIaJKiEsnY0o6/8wxal?=
- =?us-ascii?Q?XHPrYFx+2efVGBvW8/RoIynU44pb0Olk++w7iaCbJnH/EpOvUdkDR+rj9S/C?=
- =?us-ascii?Q?rCNu2im1dmsdYW5o2iYBKCWjTll3t+kRu4SeDVvcsN4zxCvNHbIvzkGTYkBW?=
- =?us-ascii?Q?LAtIyrUYQKUCYj9aNAU=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 76b3bbaa-d521-4298-a7dd-08dac0c2bc79
-X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Nov 2022 13:19:44.8998 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: MaisCtaZQ0vNJvx1NRF5hFN4IFlcFxcuV9hWzeWntYolr4QaV4CtsYEGio3yoHUt
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5864
-Subject: Re: [Intel-gfx] [PATCH 04/10] vfio: Move storage of
- allow_unsafe_interrupts to vfio_main.c
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/ttm: never purge busy objects
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -118,72 +55,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kvm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Vineeth Vijayan <vneethv@linux.ibm.com>,
- Diana Craciun <diana.craciun@oss.nxp.com>,
- Alexander Gordeev <agordeev@linux.ibm.com>, David Airlie <airlied@gmail.com>,
- Longfang Liu <liulongfang@huawei.com>, linux-s390@vger.kernel.org,
- Yi Liu <yi.l.liu@intel.com>, Matthew Rosato <mjrosato@linux.ibm.com>,
- Will Deacon <will@kernel.org>, Joerg Roedel <joro@8bytes.org>,
- Halil Pasic <pasic@linux.ibm.com>, iommu@lists.linux.dev,
- Nicolin Chen <nicolinc@nvidia.com>,
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- intel-gfx@lists.freedesktop.org, Jason Herne <jjherne@linux.ibm.com>,
- Eric Farman <farman@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>, Eric Auger <eric.auger@redhat.com>,
- Harald Freudenberger <freude@linux.ibm.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gvt-dev@lists.freedesktop.org,
- Tony Krowiak <akrowiak@linux.ibm.com>, Yishai Hadas <yishaih@nvidia.com>,
- Cornelia Huck <cohuck@redhat.com>, Peter Oberparleiter <oberpar@linux.ibm.com>,
- Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
- Sven Schnelle <svens@linux.ibm.com>, Daniel Vetter <daniel@ffwll.ch>,
- Robin Murphy <robin.murphy@arm.com>, Lu Baolu <baolu.lu@linux.intel.com>
+Cc: stable@vger.kernel.org, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Oct 31, 2022 at 04:45:26PM -0600, Alex Williamson wrote:
+In i915_gem_madvise_ioctl() we immediately purge the object is not
+currently used, like when the mm.pages are NULL.  With shmem the pages
+might still be hanging around or are perhaps swapped out. Similarly with
+ttm we might still have the pages hanging around on the ttm resource,
+like with lmem or shmem, but here we need to be extra careful since
+async unbinds are possible as well as in-progress kernel moves. In
+i915_ttm_purge() we expect the pipeline-gutting to nuke the ttm resource
+for us, however if it's busy the memory is only moved to a ghost object,
+which then leads to broken behaviour when for example clearing the
+i915_tt->filp, since the actual ttm_tt is still alive and populated,
+even though it's been moved to the ghost object.  When we later destroy
+the ghost object we hit the following, since the filp is now NULL:
 
-> > It is one idea, it depends how literal you want to be on "module
-> > parameters are ABI". IMHO it is a weak form of ABI and the need of
-> > this paramter in particular is not that common in modern times, AFAIK.
-> > 
-> > So perhaps we just also expose it through vfio.ko and expect people to
-> > migrate. That would give a window were both options are available.
-> 
-> That might be best.  Ultimately this is an opt-out of a feature that
-> has security implications, so I'd rather error on the side of requiring
-> the user to re-assert that opt-out.  It seems the potential good in
-> eliminating stale or unnecessary options outweighs any weak claims of
-> preserving an ABI for a module that's no longer in service.
+[  +0.006982] #PF: supervisor read access in kernel mode
+[  +0.005149] #PF: error_code(0x0000) - not-present page
+[  +0.005147] PGD 11631d067 P4D 11631d067 PUD 115972067 PMD 0
+[  +0.005676] Oops: 0000 [#1] PREEMPT SMP NOPTI
+[  +0.012962] Workqueue: events ttm_device_delayed_workqueue [ttm]
+[  +0.006022] RIP: 0010:i915_ttm_tt_unpopulate+0x3a/0x70 [i915]
+[  +0.005879] Code: 89 fb 48 85 f6 74 11 8b 55 4c 48 8b 7d 30 45 31 c0 31 c9 e8 18 6a e5 e0 80 7d 60 00 74 20 48 8b 45 68
+8b 55 08 4c 89 e7 5b 5d <48> 8b 40 20 83 e2 01 41 5c 89 d1 48 8b 70
+ 30 e9 42 b2 ff ff 4c 89
+[  +0.018782] RSP: 0000:ffffc9000bf6fd70 EFLAGS: 00010202
+[  +0.005244] RAX: 0000000000000000 RBX: ffff8883e12ae380 RCX: 0000000000000000
+[  +0.007150] RDX: 000000008000000e RSI: ffffffff823559b4 RDI: ffff8883e12ae3c0
+[  +0.007142] RBP: ffff888103b65d48 R08: 0000000000000001 R09: 0000000000000001
+[  +0.007144] R10: 0000000000000001 R11: ffff88829c2c8040 R12: ffff8883e12ae3c0
+[  +0.007148] R13: 0000000000000001 R14: ffff888115184140 R15: ffff888115184248
+[  +0.007154] FS:  0000000000000000(0000) GS:ffff88844db00000(0000) knlGS:0000000000000000
+[  +0.008108] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  +0.005763] CR2: 0000000000000020 CR3: 000000013fdb4004 CR4: 00000000003706e0
+[  +0.007152] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[  +0.007145] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[  +0.007154] Call Trace:
+[  +0.002459]  <TASK>
+[  +0.002126]  ttm_tt_unpopulate.part.0+0x17/0x70 [ttm]
+[  +0.005068]  ttm_bo_tt_destroy+0x1c/0x50 [ttm]
+[  +0.004464]  ttm_bo_cleanup_memtype_use+0x25/0x40 [ttm]
+[  +0.005244]  ttm_bo_cleanup_refs+0x90/0x2c0 [ttm]
+[  +0.004721]  ttm_bo_delayed_delete+0x235/0x250 [ttm]
+[  +0.004981]  ttm_device_delayed_workqueue+0x13/0x40 [ttm]
+[  +0.005422]  process_one_work+0x248/0x560
+[  +0.004028]  worker_thread+0x4b/0x390
+[  +0.003682]  ? process_one_work+0x560/0x560
+[  +0.004199]  kthread+0xeb/0x120
+[  +0.003163]  ? kthread_complete_and_exit+0x20/0x20
+[  +0.004815]  ret_from_fork+0x1f/0x30
 
-Ok, lets do this
+Fixes: 213d50927763 ("drm/i915/ttm: Introduce a TTM i915 gem object backend")
+Reported-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
+Cc: <stable@vger.kernel.org> # v5.15+
+---
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
---- a/drivers/vfio/vfio_main.c
-+++ b/drivers/vfio/vfio_main.c
-@@ -55,6 +55,11 @@ static struct vfio {
- bool vfio_allow_unsafe_interrupts;
- EXPORT_SYMBOL_GPL(vfio_allow_unsafe_interrupts);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+index 25129af70f70..fb452a388b5e 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+@@ -599,10 +599,18 @@ i915_ttm_resource_get_st(struct drm_i915_gem_object *obj,
+ static int i915_ttm_truncate(struct drm_i915_gem_object *obj)
+ {
+ 	struct ttm_buffer_object *bo = i915_gem_to_ttm(obj);
++	struct ttm_operation_ctx ctx = {
++		.interruptible = true,
++		.no_wait_gpu = false,
++	};
+ 	int err;
  
-+module_param_named(allow_unsafe_interrupts,
-+                  vfio_allow_unsafe_interrupts, bool, S_IRUGO | S_IWUSR);
-+MODULE_PARM_DESC(allow_unsafe_interrupts,
-+                "Enable VFIO IOMMU support for on platforms without interrupt remapping support.");
+ 	WARN_ON_ONCE(obj->mm.madv == I915_MADV_WILLNEED);
+ 
++	err = ttm_bo_wait_ctx(bo, &ctx);
++	if (err)
++		return err;
 +
- static DEFINE_XARRAY(vfio_device_set_xa);
- static const struct file_operations vfio_group_fops;
+ 	err = i915_ttm_move_notify(bo);
+ 	if (err)
+ 		return err;
+-- 
+2.38.1
 
-> However, I'd question whether vfio is the right place for that new
-> module option.  As proposed, vfio is only passing it through to
-> iommufd, where an error related to lack of the hardware feature is
-> masked behind an -EPERM by the time it gets back to vfio, making any
-> sort of advisory to the user about the module option convoluted.  It
-> seems like iommufd should own the option to opt-out universally, not
-> just through the vfio use case.  Thanks,
-
-My thinking is this option shouldn't exist at all in other iommufd
-users. eg I don't see value in VDPA supporting it.
-
-So, let's wait and see if a need arises first. I'm reluctant to add
-options to disable kernel security without really good reasons.
-
-Jason
