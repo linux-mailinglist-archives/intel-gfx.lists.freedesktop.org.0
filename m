@@ -2,47 +2,78 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7DA161F461
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 14:31:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ADA0361F46E
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 14:34:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2B5E10E30E;
-	Mon,  7 Nov 2022 13:30:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58DBC10E30E;
+	Mon,  7 Nov 2022 13:34:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9EE310E30E
- for <intel-gfx@lists.freedesktop.org>; Mon,  7 Nov 2022 13:30:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667827853; x=1699363853;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=vhVmvZQlfyrHOht8urgeQHEEWUYM4omokiwXlQCvLMU=;
- b=OH0d92e6JetFyFsh/FyAwWHSy5hPUgrfRqDaHth/pjh2u3VPNGVUEK02
- UiChosZpvscbKB3fPdTIccLAia+xaIsfic+/gqMqyI5HZspu6rb+nQK4e
- iQqULo2jcgV/+LvpHlcxDg6cAVclRuWNzTLGY/B5Yiq2KE73uN9tWRqqz
- VBwJszXAhUhXnSPSKXRCLZ30wkUH89RfVuh4uJJcDnaAuPndASP37cLbf
- iCTZMRKgSNF9AzxIA4ASIqNeX3fVYwHHjaLF3Hpq2nwWIVliP486zSDCj
- Rzm2O6ia5fE0iXOPej1NYkdqG/sjt7fSGXetfG4ucnuwkI/FO1xwIwUPH g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10523"; a="297900004"
-X-IronPort-AV: E=Sophos;i="5.96,145,1665471600"; d="scan'208";a="297900004"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2022 05:30:52 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10523"; a="704874339"
-X-IronPort-AV: E=Sophos;i="5.96,145,1665471600"; d="scan'208";a="704874339"
-Received: from pmesquit-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.15.49])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2022 05:30:50 -0800
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  7 Nov 2022 13:30:27 +0000
-Message-Id: <20221107133027.38740-1-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.38.1
+Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
+ [64.147.123.27])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFA0C10E312;
+ Mon,  7 Nov 2022 13:34:32 +0000 (UTC)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+ by mailnew.west.internal (Postfix) with ESMTP id 2E60E2B06702;
+ Mon,  7 Nov 2022 08:34:27 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute2.internal (MEProxy); Mon, 07 Nov 2022 08:34:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:sender:subject
+ :subject:to:to; s=fm2; t=1667828066; x=1667835266; bh=euMdwanfMk
+ OYDEpc4wB0uixBbNEYF5sJFd9/UJyNdCY=; b=bkw76/u5ZYZbQahAvsPYoo8IQG
+ LcHGuGHIXi8HCjhw4OYcAWT30Ol0Wn+jYP1l44qbVRmgLwmDnhosZ3uA6uNjhQjL
+ ioJEgtTKYzh1M+2NZq1JoCcj1onDGF0TH5WP7U+0cjtS0kzx+hvVlia8GUf72U0x
+ RvMmk31Q77Uivz75wkgFhyZZj7ohYiKbQZ2hREYhZrAck2nWG1zN5Ru1+EVS5g97
+ LxqEj6CfzUGm3f65dYFQx/JwcNnpdTNQpi+AWw7niXI7QyVGf6ZY38U7zb6EHj4G
+ GBx5vTA5xL45elayXVZ1ZMvRHECSvQwahmDrw23tM/fPWMNrMQsB2AzMrs4A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+ :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+ :mime-version:references:reply-to:sender:subject:subject:to:to
+ :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+ fm1; t=1667828066; x=1667835266; bh=euMdwanfMkOYDEpc4wB0uixBbNEY
+ F5sJFd9/UJyNdCY=; b=kid7A/lFEMRYdSlRHUAbP10h3b5B6GqzIFwJ7s6gbB0t
+ WpjUg1oMTN9uu/L46ufdrj+GmDdd9IqH4CvLqUeljmmEBdP+YJhMQVxPUCS2BnpI
+ v4Ru9CamYJCnCPTr3hMquRyY/NJTD+xAHKkQ2W2WFuBatXgmHRCkSTLKmFSd75/2
+ k01ShiWOfm0j3nYPSCuBrawztOfFU2j0A7YozMiucrP1nq/04sJkP45VwqUc5QZW
+ ukdMDjH1cPbLpZpr2mHDntcosTrtF9zvvVRlx/Jj+JmdokRLh6qtGk+yhakRF9C7
+ 8zrz3V0g8NseHrHsKPA6rjSIGYDr71WT7ky/u694rw==
+X-ME-Sender: <xms:YQlpYzqUzcKBEZzDOlDuLDr1DtGvw8gQ6k2wBZQG4mY0RJSCFXjmig>
+ <xme:YQlpY9pUIt5pX-eq0nd61vIYEpSEv-wNJQ9HDG6RxL-38WBzL56eDiEg6sTkGoL8J
+ lrNqgHoGVz4ZpM4DBI>
+X-ME-Received: <xmr:YQlpYwNVMqmNz1TWP4KnWosubFEZ-Wv8n0D8GKRH0ewQ4tv7UFVq1Tuer4U-V06PR9eq0ZCrqJr-1jp6BWsgR42ROjxVwck-2o6zob05dYpVBA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrvdekgdehfecutefuodetggdotefrodftvf
+ curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+ uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+ fjughrpeffhffvvefukfhfgggtuggjsehgtderredttddunecuhfhrohhmpeforgigihhm
+ vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+ htvghrnhepieehffffvefgiedthfeiieeutdfgffekhfehgfehgfeiuddutdfftdekffeh
+ heevnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecuvehluhhsthgvrhfuihiivg
+ eptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggt
+ hh
+X-ME-Proxy: <xmx:YQlpY25QdoDReJ-2Q7rlTZUBzKtioyIRdY2alrAOs5RtHY-uXcXXrQ>
+ <xmx:YQlpYy7XTsQ1rEuGWv1PveGlsKDveYqIBrsoZZ4e7mQOpHFCDDCx0g>
+ <xmx:YQlpY-iOMy6q641PnxcV3EM-5ZPmsncNh2HiEz8AB4cNLJ4aPLcVbQ>
+ <xmx:YglpYxa0h_DI8UuAJa5L-oZODorTkrwsRbenBhcQSAdI8QJ9V2n0aTLaY2g>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 7 Nov 2022 08:34:25 -0500 (EST)
+Date: Mon, 7 Nov 2022 14:34:23 +0100
+From: Maxime Ripard <maxime@cerno.tech>
+To: Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>
+Message-ID: <20221107133423.o344y4cb5zxpyrm4@houat>
+References: <20220728-rpi-analog-tv-properties-v6-0-e7792734108f@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v6-14-e7792734108f@cerno.tech>
+ <0a748a39-a387-5bdb-ffc8-6cc6593b56e7@tronnes.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/ttm: never purge busy objects
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="skctp4fj6rxepcpb"
+Content-Disposition: inline
+In-Reply-To: <0a748a39-a387-5bdb-ffc8-6cc6593b56e7@tronnes.org>
+Subject: Re: [Intel-gfx] [PATCH v6 14/23] drm/modes: Properly generate a
+ drm_display_mode from a named mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,92 +86,173 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org, Andrzej Hajda <andrzej.hajda@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
+ Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
+ linux-sunxi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-arm-kernel@lists.infradead.org,
+ Dom Cobley <dom@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
+ Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In i915_gem_madvise_ioctl() we immediately purge the object is not
-currently used, like when the mm.pages are NULL.  With shmem the pages
-might still be hanging around or are perhaps swapped out. Similarly with
-ttm we might still have the pages hanging around on the ttm resource,
-like with lmem or shmem, but here we need to be extra careful since
-async unbinds are possible as well as in-progress kernel moves. In
-i915_ttm_purge() we expect the pipeline-gutting to nuke the ttm resource
-for us, however if it's busy the memory is only moved to a ghost object,
-which then leads to broken behaviour when for example clearing the
-i915_tt->filp, since the actual ttm_tt is still alive and populated,
-even though it's been moved to the ghost object.  When we later destroy
-the ghost object we hit the following, since the filp is now NULL:
 
-[  +0.006982] #PF: supervisor read access in kernel mode
-[  +0.005149] #PF: error_code(0x0000) - not-present page
-[  +0.005147] PGD 11631d067 P4D 11631d067 PUD 115972067 PMD 0
-[  +0.005676] Oops: 0000 [#1] PREEMPT SMP NOPTI
-[  +0.012962] Workqueue: events ttm_device_delayed_workqueue [ttm]
-[  +0.006022] RIP: 0010:i915_ttm_tt_unpopulate+0x3a/0x70 [i915]
-[  +0.005879] Code: 89 fb 48 85 f6 74 11 8b 55 4c 48 8b 7d 30 45 31 c0 31 c9 e8 18 6a e5 e0 80 7d 60 00 74 20 48 8b 45 68
-8b 55 08 4c 89 e7 5b 5d <48> 8b 40 20 83 e2 01 41 5c 89 d1 48 8b 70
- 30 e9 42 b2 ff ff 4c 89
-[  +0.018782] RSP: 0000:ffffc9000bf6fd70 EFLAGS: 00010202
-[  +0.005244] RAX: 0000000000000000 RBX: ffff8883e12ae380 RCX: 0000000000000000
-[  +0.007150] RDX: 000000008000000e RSI: ffffffff823559b4 RDI: ffff8883e12ae3c0
-[  +0.007142] RBP: ffff888103b65d48 R08: 0000000000000001 R09: 0000000000000001
-[  +0.007144] R10: 0000000000000001 R11: ffff88829c2c8040 R12: ffff8883e12ae3c0
-[  +0.007148] R13: 0000000000000001 R14: ffff888115184140 R15: ffff888115184248
-[  +0.007154] FS:  0000000000000000(0000) GS:ffff88844db00000(0000) knlGS:0000000000000000
-[  +0.008108] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[  +0.005763] CR2: 0000000000000020 CR3: 000000013fdb4004 CR4: 00000000003706e0
-[  +0.007152] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-[  +0.007145] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-[  +0.007154] Call Trace:
-[  +0.002459]  <TASK>
-[  +0.002126]  ttm_tt_unpopulate.part.0+0x17/0x70 [ttm]
-[  +0.005068]  ttm_bo_tt_destroy+0x1c/0x50 [ttm]
-[  +0.004464]  ttm_bo_cleanup_memtype_use+0x25/0x40 [ttm]
-[  +0.005244]  ttm_bo_cleanup_refs+0x90/0x2c0 [ttm]
-[  +0.004721]  ttm_bo_delayed_delete+0x235/0x250 [ttm]
-[  +0.004981]  ttm_device_delayed_workqueue+0x13/0x40 [ttm]
-[  +0.005422]  process_one_work+0x248/0x560
-[  +0.004028]  worker_thread+0x4b/0x390
-[  +0.003682]  ? process_one_work+0x560/0x560
-[  +0.004199]  kthread+0xeb/0x120
-[  +0.003163]  ? kthread_complete_and_exit+0x20/0x20
-[  +0.004815]  ret_from_fork+0x1f/0x30
+--skctp4fj6rxepcpb
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Fixes: 213d50927763 ("drm/i915/ttm: Introduce a TTM i915 gem object backend")
-Reported-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-Cc: Nirmoy Das <nirmoy.das@intel.com>
-Cc: <stable@vger.kernel.org> # v5.15+
----
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+On Sat, Nov 05, 2022 at 06:50:30PM +0100, Noralf Tr=F8nnes wrote:
+> Den 26.10.2022 17.33, skrev maxime@cerno.tech:
+> > The framework will get the drm_display_mode from the drm_cmdline_mode it
+> > got by parsing the video command line argument by calling
+> > drm_connector_pick_cmdline_mode().
+> >=20
+> > The heavy lifting will then be done by the drm_mode_create_from_cmdline=
+_mode()
+> > function.
+> >=20
+> > In the case of the named modes though, there's no real code to make that
+> > translation and we rely on the drivers to guess which actual display mo=
+de
+> > we meant.
+> >=20
+> > Let's modify drm_mode_create_from_cmdline_mode() to properly generate t=
+he
+> > drm_display_mode we mean when passing a named mode.
+> >=20
+> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> >=20
+> > ---
+> > Changes in v6:
+> > - Fix get_modes to return 0 instead of an error code
+> > - Rename the tests to follow the DRM test naming convention
+> >=20
+> > Changes in v5:
+> > - Switched to KUNIT_ASSERT_NOT_NULL
+> > ---
+> >  drivers/gpu/drm/drm_modes.c                     | 34 ++++++++++-
+> >  drivers/gpu/drm/tests/drm_client_modeset_test.c | 77 +++++++++++++++++=
++++++++-
+> >  2 files changed, 109 insertions(+), 2 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/drm_modes.c b/drivers/gpu/drm/drm_modes.c
+> > index dc037f7ceb37..85aa9898c229 100644
+> > --- a/drivers/gpu/drm/drm_modes.c
+> > +++ b/drivers/gpu/drm/drm_modes.c
+> > @@ -2497,6 +2497,36 @@ bool drm_mode_parse_command_line_for_connector(c=
+onst char *mode_option,
+> >  }
+> >  EXPORT_SYMBOL(drm_mode_parse_command_line_for_connector);
+> > =20
+> > +static struct drm_display_mode *drm_named_mode(struct drm_device *dev,
+> > +					       struct drm_cmdline_mode *cmd)
+> > +{
+> > +	struct drm_display_mode *mode;
+> > +	unsigned int i;
+> > +
+> > +	for (i =3D 0; i < ARRAY_SIZE(drm_named_modes); i++) {
+> > +		const struct drm_named_mode *named_mode =3D &drm_named_modes[i];
+> > +
+> > +		if (strcmp(cmd->name, named_mode->name))
+> > +			continue;
+> > +
+> > +		if (!named_mode->tv_mode)
+> > +			continue;
+> > +
+> > +		mode =3D drm_analog_tv_mode(dev,
+> > +					  named_mode->tv_mode,
+> > +					  named_mode->pixel_clock_khz * 1000,
+> > +					  named_mode->xres,
+> > +					  named_mode->yres,
+> > +					  named_mode->flags & DRM_MODE_FLAG_INTERLACE);
+> > +		if (!mode)
+> > +			return NULL;
+> > +
+> > +		return mode;
+> > +	}
+> > +
+> > +	return NULL;
+> > +}
+> > +
+> >  /**
+> >   * drm_mode_create_from_cmdline_mode - convert a command line modeline=
+ into a DRM display mode
+> >   * @dev: DRM device to create the new mode for
+> > @@ -2514,7 +2544,9 @@ drm_mode_create_from_cmdline_mode(struct drm_devi=
+ce *dev,
+> >  	if (cmd->xres =3D=3D 0 || cmd->yres =3D=3D 0)
+> >  		return NULL;
+> > =20
+> > -	if (cmd->cvt)
+> > +	if (strlen(cmd->name))
+> > +		mode =3D drm_named_mode(dev, cmd);
+>=20
+> I'm trying to track how this generated mode fits into to it all and
+> AFAICS if the connector already supports a mode with the same xres/yres
+> as the named mode, the named mode will never be created because of the
+> check at the beginning of drm_helper_probe_add_cmdline_mode(). It will
+> just mark the existing mode with USERDEF and return.
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-index 25129af70f70..fb452a388b5e 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-@@ -599,10 +599,18 @@ i915_ttm_resource_get_st(struct drm_i915_gem_object *obj,
- static int i915_ttm_truncate(struct drm_i915_gem_object *obj)
- {
- 	struct ttm_buffer_object *bo = i915_gem_to_ttm(obj);
-+	struct ttm_operation_ctx ctx = {
-+		.interruptible = true,
-+		.no_wait_gpu = false,
-+	};
- 	int err;
- 
- 	WARN_ON_ONCE(obj->mm.madv == I915_MADV_WILLNEED);
- 
-+	err = ttm_bo_wait_ctx(bo, &ctx);
-+	if (err)
-+		return err;
-+
- 	err = i915_ttm_move_notify(bo);
- 	if (err)
- 		return err;
--- 
-2.38.1
+Yep, you're right
 
+> If the connector doesn't already support a mode with such a resolution
+> it will be created, but should we do that? If the driver supported such
+> a mode it would certainly already have added it to the mode list,
+> wouldn't it? After all it's just 2 variants NTSC and PAL.
+
+I wasn't so sure about this part. I think it's still benefitial because
+some users (Geert at least has expressed that need) might want a smaller
+mode than 480i/576i, whereas the driver is realistically only going to
+register those two.
+
+So creating that mode if it isn't declared seems to have value to some.
+
+> We have this in drm_client_modeset.c:drm_connector_pick_cmdline_mode():
+>=20
+> 	list_for_each_entry(mode, &connector->modes, head) {
+> 		/* Check (optional) mode name first */
+> 		if (!strcmp(mode->name, cmdline_mode->name))
+> 			return mode;
+>=20
+> Here it looks like the named mode thing is a way to choose a mode, not
+> to add one.
+>=20
+> I couldn't find any documentation on how named modes is supposed to
+> work, have you seen any?
+
+Eh, I guess I'm to blame for that :)
+
+Named modes are really only about the command-line name. The way it was
+initially introduced was pretty much to only pass down the name to
+drivers for them to figure it out, like we've been doing in sun4i:
+
+https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/sun4i/sun4i_=
+tv.c#L292
+
+It wasn't really working, especially because the userspace pretty much
+ignores it. One of the point of this series is to create a proper mode
+(and state, really) from the name passed on the command line so that
+drivers don't have to behave any different from usual, and userspace can
+be involved there too.
+
+Maxime
+
+--skctp4fj6rxepcpb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCY2kJXwAKCRDj7w1vZxhR
+xXK+AQDbZjS2J5WC2ceGRjMPlRP+aZSBzWDC5fwiCGIaR3oGigEA5D4seApvXZv1
+QLznHu/XaZfYUQXUOM6K43F6nknfDQI=
+=HyxE
+-----END PGP SIGNATURE-----
+
+--skctp4fj6rxepcpb--
