@@ -1,57 +1,78 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFF7A61F012
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 11:16:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C29FC61F038
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 11:21:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6915389CFA;
-	Mon,  7 Nov 2022 10:16:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59CB310E2B9;
+	Mon,  7 Nov 2022 10:21:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E7A289CFA
- for <intel-gfx@lists.freedesktop.org>; Mon,  7 Nov 2022 10:16:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667816184; x=1699352184;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=rtUSuxmnRnecC0YiD0fwFG+R3NNyLBVKSbQYjmQ9/X4=;
- b=AtptsTsDAHhbT0p3wAyvA1u9nG234AWxsAxLG9dr+54w0CfEFWi8Pw33
- eDL4RE5tb/MHQoCdtAML5vZ5bzzcPZ8k4zRUwpt4A/HoZfXeUKq3FSAWh
- 5OpOMBF9bplJ+YsHji/dndHlDzAkAEM4ZUMpOS4yMyQEi0MQp+vD43U5j
- 0RLbn/ox4WHIVD+CxBM+mFTCP3qUpH6elww+bthDMy2oSoT1G6ju2r/Ji
- gWYViYY86NDTeK+LJPW8+dErkVhT3RGygaE04clj8XvvUvJmD/8+le7mC
- eIafBfAxsn7IwaJJwYg1U+Q2xwCTl538B3OLCfelLJ7oKLOQeoElaKZk1 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10523"; a="312141928"
-X-IronPort-AV: E=Sophos;i="5.96,143,1665471600"; d="scan'208";a="312141928"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2022 02:16:23 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10523"; a="630433873"
-X-IronPort-AV: E=Sophos;i="5.96,143,1665471600"; d="scan'208";a="630433873"
-Received: from aalbarra-mobl.ger.corp.intel.com (HELO [10.213.226.227])
- ([10.213.226.227])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2022 02:16:22 -0800
-Message-ID: <01a58f9d-2c9f-1e7c-344b-989ec429a0df@linux.intel.com>
-Date: Mon, 7 Nov 2022 10:16:20 +0000
+Received: from wnew3-smtp.messagingengine.com (wnew3-smtp.messagingengine.com
+ [64.147.123.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E63AA10E0AA;
+ Mon,  7 Nov 2022 10:21:34 +0000 (UTC)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+ by mailnew.west.internal (Postfix) with ESMTP id 837442B066A3;
+ Mon,  7 Nov 2022 05:21:29 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute2.internal (MEProxy); Mon, 07 Nov 2022 05:21:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:sender:subject
+ :subject:to:to; s=fm2; t=1667816489; x=1667823689; bh=FPdyzqNkno
+ LZUhP2W9zx3qRXwxsEZhxJnbsWmIM7q9s=; b=QVI4ViUBH4YxPOA9lWnWL9ptlQ
+ GzRJxm3akv7pRgn4Lgu2Namq5G2UgGuhr9akyfG1ibYTg/mOYCBey2O27HwtXzvU
+ orXMBjgj/epbf44fS+bnCzEzoezNxNm237lfNVF2mrHPo3p5iZxCeWGZpu6CISNw
+ 0hM/f8jZGGBqq+z2C7wTsjzg6m+9zcOEDVjrZkBiRoExNrEonn4BM5UboOUBDITN
+ 3t2QGTLrLJlhadHKF71aXvYVPLpw6Yc7snW6P0bTuwZ/IfMigaB0GbCD1iVAC2nt
+ 9f3OJS0DpyCeKNxTdQtNTFBhj5x0VG63oNUSiZ+bVNajNeyh4wvO1KJElE9Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+ :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+ :mime-version:references:reply-to:sender:subject:subject:to:to
+ :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+ fm1; t=1667816489; x=1667823689; bh=FPdyzqNknoLZUhP2W9zx3qRXwxsE
+ ZhxJnbsWmIM7q9s=; b=Ycq6u79xpleK9NLFkmSSE+vWJdz187ocPqXnvzaL4lVc
+ hVjDHXA1VlnPmkCp2KrG1j7LWaA+zdKj/0IF6L11OEPNw3ikKa3Z4BOsroFgu/To
+ s2hePi98JUu3mTp6S1DaLIOPStmWZwu/vzIQz1O+UB3WBkFq2PtbKlTjdZUZ6rBh
+ rbnf4vyKD7O26USrGkwlN3aDb60xYab0yha0JWtiXJE8LdoaHqCWJrWDy/D1reM+
+ rRbv0ZLLFbN6l351CyzLIyuNYb/0zwInMSEu+fyxhMUYW+9PEulNyPJVmYiYX5Nf
+ RDcV4Ut9dVpzbC7Nec4nxUHeRG0MXCI77r3AGPRysw==
+X-ME-Sender: <xms:KNxoY-LOL3K8mIhCu1PvK_DUqG3Ox93ebaLYUBL_xhwGxxUwlDVC8g>
+ <xme:KNxoY2I-iI5tTmWS4pywux6iVjFkwgFcLcjyqcHED2pPkD4b3IbYfzBaGalx7WHgC
+ 3V0_QBTkUTFJaG-egs>
+X-ME-Received: <xmr:KNxoY-vzxo3ZS7ES3vZ5uAQkdqLgXnqsysG43KBuNd6WEJEKkeWimf1n9s4Qk4IjP-Y3PU_V-IlqhPHk7Fl-cUARYIJnLTssWYjKDEuSkK5TzQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrvdekgddugecutefuodetggdotefrodftvf
+ curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+ uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+ fjughrpeffhffvvefukfhfgggtuggjsehgtderredttddunecuhfhrohhmpeforgigihhm
+ vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+ htvghrnhepjeevfeehfeekieffgeevleevtefgffefkedtfeeuhfettdegjeehgfegudff
+ ffdunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
+ grgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:KNxoYzZpYghNfsHMr75aKnd1oHUp-emFPZXtErk1JfBJe3AtS_2zqw>
+ <xmx:KNxoY1YUeQqJ3jmeSCjWEiddeq-ZtB-gW-A-9ZqNX3TcF_-KR8Wlxg>
+ <xmx:KNxoY_CIARJZUE2TpmxcTEUNn7HoZzBYZCx7G5wJf0t79CZH6ZXLqw>
+ <xmx:KdxoY77WqKgMcr1Xk39cnQVxWIXUiu3X_6QVZjhd-1gl9P5w6Z0KF1uUmcg>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 7 Nov 2022 05:21:27 -0500 (EST)
+Date: Mon, 7 Nov 2022 11:21:26 +0100
+From: Maxime Ripard <maxime@cerno.tech>
+To: Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>
+Message-ID: <20221107102126.klxrvfe34e6uriyx@houat>
+References: <20220728-rpi-analog-tv-properties-v6-0-e7792734108f@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v6-16-e7792734108f@cerno.tech>
+ <842076aa-8d7c-96d6-ba46-d0e66dacd2df@tronnes.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Content-Language: en-US
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20221105003235.1717908-1-umesh.nerlige.ramappa@intel.com>
- <20221105003235.1717908-3-umesh.nerlige.ramappa@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20221105003235.1717908-3-umesh.nerlige.ramappa@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/selftest: Bump up sample
- period for busy stats selftest
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="t7sshpbvkpms7fjp"
+Content-Disposition: inline
+In-Reply-To: <842076aa-8d7c-96d6-ba46-d0e66dacd2df@tronnes.org>
+Subject: Re: [Intel-gfx] [PATCH v6 16/23] drm/probe-helper: Provide a TV
+ get_modes helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,56 +85,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
+ Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
+ linux-sunxi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-arm-kernel@lists.infradead.org,
+ Dom Cobley <dom@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
+ Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 05/11/2022 00:32, Umesh Nerlige Ramappa wrote:
-> Engine busyness samples around a 10ms period is failing with busyness
-> ranging approx. from 87% to 115%. The expected range is +/- 5% of the
-> sample period.
-> 
-> When determining busyness of active engine, the GuC based engine
-> busyness implementation relies on a 64 bit timestamp register read. The
-> latency incurred by this register read causes the failure.
-> 
-> On DG1, when the test fails, the observed latencies range from 900us -
-> 1.5ms.
+--t7sshpbvkpms7fjp
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Is it at all faster with the locked 2x32 or still the same unexplained 
-display related latencies can happen?
+Hi Noralf,
 
-> One solution tried was to reduce the latency between reg read and
-> CPU timestamp capture, but such optimization does not add value to user
-> since the CPU timestamp obtained here is only used for (1) selftest and
-> (2) i915 rps implementation specific to execlist scheduler. Also, this
-> solution only reduces the frequency of failure and does not eliminate
-> it.
-> 
-> In order to make the selftest more robust and account for such
-> latencies, increase the sample period to 100 ms.
-> 
-> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/selftest_engine_pm.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
-> index 0dcb3ed44a73..87c94314cf67 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
-> @@ -317,7 +317,7 @@ static int live_engine_busy_stats(void *arg)
->   		ENGINE_TRACE(engine, "measuring busy time\n");
->   		preempt_disable();
->   		de = intel_engine_get_busy_time(engine, &t[0]);
-> -		mdelay(10);
-> +		mdelay(100);
->   		de = ktime_sub(intel_engine_get_busy_time(engine, &t[1]), de);
->   		preempt_enable();
->   		dt = ktime_sub(t[1], t[0]);
+I'll leave aside your comments on the code, since we'll use your implementa=
+tion.
 
-Acked-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+On Sun, Nov 06, 2022 at 05:33:48PM +0100, Noralf Tr=F8nnes wrote:
+> Den 26.10.2022 17.33, skrev maxime@cerno.tech:
+> > +
+> > +	if (cmdline->tv_mode_specified)
+> > +		default_mode =3D cmdline->tv_mode;
+>=20
+> I realised that we don't verify tv_mode coming from the command line,
+> not here and not in the reset helper. Should we do that? A driver should
+> be programmed defensively to handle an illegal/unsupported value, but it
+> doesn't feel right to allow an illegal enum value coming through the
+> core/helpers.
 
-Regards,
+I don't think we can end up with an invalid value here if it's been
+specified.
 
-Tvrtko
+We parse the command line through drm_mode_parse_tv_mode() (introduced
+in patch 13 "drm/modes: Introduce the tv_mode property as a command-line
+option") that will pick the tv mode part of the command line, and call
+drm_get_tv_mode_from_name() using it.
+
+drm_get_tv_mode_from_name() will return a EINVAL if it's not a value we
+expect, and mode->tv_mode is only set on success. And AFAIK, there's no
+other path that will set tv_mode.
+
+Maxime
+
+--t7sshpbvkpms7fjp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCY2jcJgAKCRDj7w1vZxhR
+xTwHAQC3meOlTapYDR/63QvLmjaN9u6WScoxy8cWAwXD3hmNkgEAnvQ95bgKGP7Z
+6DzZToq4NJzBkDndagj4GbAu2CUSwAk=
+=3B0s
+-----END PGP SIGNATURE-----
+
+--t7sshpbvkpms7fjp--
