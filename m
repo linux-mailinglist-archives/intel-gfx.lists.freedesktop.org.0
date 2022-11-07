@@ -1,51 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2C0C61F232
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 12:49:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D8FB61F25F
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 13:04:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2FB910E2EE;
-	Mon,  7 Nov 2022 11:49:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6339D10E2F7;
+	Mon,  7 Nov 2022 12:04:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk
- [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E8AB10E2EE
- for <intel-gfx@lists.freedesktop.org>; Mon,  7 Nov 2022 11:49:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
- MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=iOrHuKIoCEocvdRDb3SsdQoHjhsaydl18023Uf4ugU8=; b=whcULJjFaG9nnsrSzEziwUih5W
- qWQVMbTDfOp8a1RTmOsEvwyr7TxOrx3rs1n/MKbfXAA9UStlHeG57qkISHOCL4pkYzUEQKGRcByzD
- njkbwkinenJfhqPX85z46V8ZmyMW5z7CSyKi3YEm8GlN1ykL4ADuOtXtrokOYidhzh7MZ910MDSjN
- Z5yZlTSAdB0wlZQyzET6jwIHmDrbjH6JR+7rpkirKhGpYrh7XSiMLVw4lhCS6TgMlXRbKOWEeDeZX
- Q7iNKrQqGka3ZPvygclVS90sDM7GTeohYN7pn0Ui2eSCpqucGnGpg1R3G4vPnz7lVrR+sB4XUeemV
- 4FOUCz2Q==;
-Received: from shell.armlinux.org.uk
- ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:35150)
- by pandora.armlinux.org.uk with esmtpsa (TLS1.3) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <linux@armlinux.org.uk>)
- id 1os0cQ-0001rO-3H; Mon, 07 Nov 2022 11:48:46 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
- (envelope-from <linux@shell.armlinux.org.uk>)
- id 1os0cO-0003lM-IR; Mon, 07 Nov 2022 11:48:44 +0000
-Date: Mon, 7 Nov 2022 11:48:44 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: "Saarinen, Jani" <jani.saarinen@intel.com>
-Message-ID: <Y2jwnKfG9xFpMTHS@shell.armlinux.org.uk>
-References: <Y2Z+gi8uhdRji7Co@shell.armlinux.org.uk>
- <DM8PR11MB56555D7E8598D31998F5010AE03C9@DM8PR11MB5655.namprd11.prod.outlook.com>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DCB310E2F7;
+ Mon,  7 Nov 2022 12:04:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1667822684; x=1699358684;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=io6NOnhIUq2RlSYg25btAKQzTfxnZdUpofyPSRMBRsU=;
+ b=JmK/bQFWwDV9tv9o7ek7zxyrrAQ+YarlpdiThTBGQVplNOXCi+qyNqjr
+ Ouo1hSQ1WLz9j+dW6tFJgW38oxjBMTfm7V2RaDfE8QshitOeqXm1qK3D6
+ dYtWHOYNQREA+3AdLMyurRGW+Ln9+lOgZngDtUh78tVh8vydj1MUUWlEA
+ B1OEIFnw9JhSklsAJe80DXgXxx3k4aMWmdeH/aNYma1TKWQrJlFDxIzNP
+ eVFnYUKdk+Px/pDwNlh/wL1iFtMC/rPLmyeQtWYV2JobLd+Pr8d6k6Smk
+ pr31nHoUsoN10a1+Kia05aQZFa2mdk8yfOPRIbHgUR3OgmRY0RPFNTGka A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10523"; a="312158795"
+X-IronPort-AV: E=Sophos;i="5.96,143,1665471600"; d="scan'208";a="312158795"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2022 04:04:42 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10523"; a="965127553"
+X-IronPort-AV: E=Sophos;i="5.96,143,1665471600"; d="scan'208";a="965127553"
+Received: from pmesquit-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.252.15.49])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2022 04:04:39 -0800
+From: Matthew Auld <matthew.auld@intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Mon,  7 Nov 2022 12:04:26 +0000
+Message-Id: <20221107120426.22849-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DM8PR11MB56555D7E8598D31998F5010AE03C9@DM8PR11MB5655.namprd11.prod.outlook.com>
-Subject: Re: [Intel-gfx] BUG: i915: flickering/temporary artifacts after
- resume
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH i-g-t] tests/i915/gem_mmap_offset: use cpu_size
+ in always_clear
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,56 +56,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Vivi,
- Rodrigo" <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 07, 2022 at 09:29:33AM +0000, Saarinen, Jani wrote:
-> Hi Russell,
-> Can you make new gitlab: https://gitlab.freedesktop.org/drm/intel/-/wikis/How-to-file-i915-bugs  ? 
+If we can't fit the buffer in the CPU visible portion of lmem, then the
+kernel will be unable to migrate the pages on fault on small-bar
+systems.  Note that this doesn't restrict where the pages are allocated,
+but should just ensure we don't SIGBUS, if we need to migrate the pages.
 
-Hi,
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/7382
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
+---
+ tests/i915/gem_mmap_offset.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Unfortunately, I can't get any more information, and trying to get a
-photo of the problem is utterly impossible, beacuse it's almost always
-a momentary corruption - out of all the cases, I have only seen it
-remain on-screen once.
-
-Also, it can take months of suspend/resume cycles for it to occur,
-which makes it difficult to reproduce using the "latest" kernel -
-beacuse by the time the latest kernel has shown the problem, there's
-a more modern kernel!
-
-Using the intel reg dumper may provide some useful information.
-
-That said, running it from the debian stable repository gives me:
-
-(intel_reg:338236) intel_mmio-CRITICAL: Test assertion failure function
-intel_mmio_use_pci_bar, file ../lib/intel_mmio.c:146:
-(intel_reg:338236) intel_mmio-CRITICAL: Failed assertion: !(error != 0)
-(intel_reg:338236) intel_mmio-CRITICAL: Last errno: 1, Operation not
-permitted
-(intel_reg:338236) intel_mmio-CRITICAL: Couldn't map MMIO region
-Test (null) failed.
-**** DEBUG ****
-(intel_reg:338236) intel_chipset-DEBUG: Test requirement passed: pci_dev
-(intel_reg:338236) intel_mmio-CRITICAL: Test assertion failure function
-intel_mmio_use_pci_bar, file ../lib/intel_mmio.c:146:
-(intel_reg:338236) intel_mmio-CRITICAL: Failed assertion: !(error != 0)
-(intel_reg:338236) intel_mmio-CRITICAL: Last errno: 1, Operation not
-permitted
-(intel_reg:338236) intel_mmio-CRITICAL: Couldn't map MMIO region
-(intel_reg:338236) igt_core-INFO: Stack trace:
-(intel_reg:338236) igt_core-INFO:   #0 [__igt_fail_assert+0x113]
-(intel_reg:338236) igt_core-INFO:   #1 [intel_mmio_use_pci_bar+0xc4]
-(intel_reg:338236) igt_core-INFO:   #2 [intel_register_access_init+0x1b]
-(intel_reg:338236) igt_core-INFO:   #3 [<unknown>+0xec025c3a]
-(intel_reg:338236) igt_core-INFO:   #4 [<unknown>+0xec0246f6]
-(intel_reg:338236) igt_core-INFO:   #5 [__libc_start_main+0xea]
-(intel_reg:338236) igt_core-INFO:   #6 [<unknown>+0xec0247ba]
-****  END  ****
-
+diff --git a/tests/i915/gem_mmap_offset.c b/tests/i915/gem_mmap_offset.c
+index 0adeb0b5..b27920de 100644
+--- a/tests/i915/gem_mmap_offset.c
++++ b/tests/i915/gem_mmap_offset.c
+@@ -750,7 +750,7 @@ static void always_clear(int i915, const struct gem_memory_region *r, int timeou
+ 	struct thread_clear arg = {
+ 		.i915 = i915,
+ 		.region = r->ci,
+-		.max = r->size / 2 >> 12, /* in pages */
++		.max = r->cpu_size / 2 >> 12, /* in pages */
+ 		.timeout = timeout,
+ 	};
+ 	const int ncpus = sysconf(_SC_NPROCESSORS_ONLN);
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+2.38.1
+
