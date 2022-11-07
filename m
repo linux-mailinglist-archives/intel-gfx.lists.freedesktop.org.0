@@ -2,32 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C012961F20D
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 12:41:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 812D961F228
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 12:47:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E4F110E174;
-	Mon,  7 Nov 2022 11:40:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A269110E2EE;
+	Mon,  7 Nov 2022 11:47:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 55DEB10E149;
- Mon,  7 Nov 2022 11:40:53 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4E2DBA7E03;
- Mon,  7 Nov 2022 11:40:53 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6898396081514165672=="
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DFB810E2EE
+ for <intel-gfx@lists.freedesktop.org>; Mon,  7 Nov 2022 11:47:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1667821665; x=1699357665;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=DNck0O7tKxZz4E60oTrC+FSvqpcG6re8AP26uzazs0k=;
+ b=ju5/6LvgWgE9VKYwltme5OezvZBTVr0KPiskeAXmCB0mbAc8MS5ceVgL
+ QBI1GD+eWk83R4+Byksnju2QwVAetrz6gXSUYvZrga+ZhNSWdCxFBjnHS
+ qUGSyMiZukijHsLXxAz8+205uxZYf3ee59YpUgSfW2IUEly5iZdKrIc/e
+ wmKJ8KWWyIgxaVW0E3c8LtvyeA2pOrzSCbqInDCmgQWZ82WzF3IMGlRwX
+ p5YITbW62IwFUAw+X7x3Gl8DXAyUyJRxdJE2v+lT5Jcl2psRNSZLT3Ogw
+ 3ba3NM2YPYi0yt8K+bTmHTnoW4K/VrwTVQlj1VYHnzcBeX3Z5BrQTzjDw A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10523"; a="293737084"
+X-IronPort-AV: E=Sophos;i="5.96,143,1665471600"; d="scan'208";a="293737084"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2022 03:47:29 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10523"; a="778463730"
+X-IronPort-AV: E=Sophos;i="5.96,143,1665471600"; d="scan'208";a="778463730"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by fmsmga001.fm.intel.com with SMTP; 07 Nov 2022 03:47:24 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 07 Nov 2022 13:47:23 +0200
+Date: Mon, 7 Nov 2022 13:47:23 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Peter Zijlstra <peterz@infradead.org>
+Message-ID: <Y2jwSwfRC3Q5x7Rm@intel.com>
+References: <20220822114649.055452969@infradead.org>
+ <Y1LVYaPCCP3BBS4g@intel.com> <Y1drd2gzxUJWdz5F@intel.com>
+ <Y1e/Kd+1UQqeSwzY@hirez.programming.kicks-ass.net>
+ <Y1kMv1GpKwOSIt8f@intel.com>
+ <Y1kdRNNfUeAU+FNl@hirez.programming.kicks-ass.net>
+ <Y1qC7d7QVJB8NCHt@intel.com>
+ <Y1q3gzbPUCvEMHGD@hirez.programming.kicks-ass.net>
+ <Y2Khj7n+tRq3r++O@intel.com>
+ <Y2LsUIfbUiy2Ar0r@hirez.programming.kicks-ass.net>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
-Date: Mon, 07 Nov 2022 11:40:53 -0000
-Message-ID: <166782125328.17761.2415821948803583362@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221107085210.17221-1-niranjana.vishwanathapura@intel.com>
-In-Reply-To: <20221107085210.17221-1-niranjana.vishwanathapura@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/vm=5Fbind=3A_Add_VM=5FBIND_functionality_=28rev9=29?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Y2LsUIfbUiy2Ar0r@hirez.programming.kicks-ass.net>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v3 6/6] freezer,
+ sched: Rewrite core freezer logic
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,226 +69,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ bigeasy@linutronix.de, rjw@rjwysocki.net, oleg@redhat.com, rostedt@goodmis.org,
+ mingo@kernel.org, mgorman@suse.de, intel-gfx@lists.freedesktop.org,
+ tj@kernel.org, Will Deacon <will@kernel.org>, dietmar.eggemann@arm.com,
+ ebiederm@xmission.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6898396081514165672==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, Nov 02, 2022 at 11:16:48PM +0100, Peter Zijlstra wrote:
+> On Wed, Nov 02, 2022 at 06:57:51PM +0200, Ville Syrjälä wrote:
+> > On Thu, Oct 27, 2022 at 06:53:23PM +0200, Peter Zijlstra wrote:
+> > > On Thu, Oct 27, 2022 at 04:09:01PM +0300, Ville Syrjälä wrote:
+> > > > On Wed, Oct 26, 2022 at 01:43:00PM +0200, Peter Zijlstra wrote:
+> > > 
+> > > > > Could you please give the below a spin?
+> > > > 
+> > > > Thanks. I've added this to our CI branch. I'll try to keep and eye
+> > > > on it in the coming days and let you know if anything still trips.
+> > > > And I'll report back maybe ~middle of next week if we haven't caught
+> > > > anything by then.
+> > > 
+> > > Thanks!
+> > 
+> > Looks like we haven't caught anything since I put the patch in.
+> > So the fix seems good.
+> 
+> While writing up the Changelog, it occured to me it might be possible to
+> fix another way, could I bother you to also run the below patch for a
+> bit?
 
-== Series Details ==
+I swapped in the new patch to the CI branch. I'll check back
+after a few days.
 
-Series: drm/i915/vm_bind: Add VM_BIND functionality (rev9)
-URL   : https://patchwork.freedesktop.org/series/105879/
-State : success
+> 
+> ---
+> diff --git a/kernel/sched/core.c b/kernel/sched/core.c
+> index cb2aa2b54c7a..daff72f00385 100644
+> --- a/kernel/sched/core.c
+> +++ b/kernel/sched/core.c
+> @@ -4200,6 +4200,40 @@ try_to_wake_up(struct task_struct *p, unsigned int state, int wake_flags)
+>  	return success;
+>  }
+>  
+> +static bool __task_needs_rq_lock(struct task_struct *p)
+> +{
+> +	unsigned int state = READ_ONCE(p->__state);
+> +
+> +	/*
+> +	 * Since pi->lock blocks try_to_wake_up(), we don't need rq->lock when
+> +	 * the task is blocked. Make sure to check @state since ttwu() can drop
+> +	 * locks at the end, see ttwu_queue_wakelist().
+> +	 */
+> +	if (state == TASK_RUNNING || state == TASK_WAKING)
+> +		return true;
+> +
+> +	/*
+> +	 * Ensure we load p->on_rq after p->__state, otherwise it would be
+> +	 * possible to, falsely, observe p->on_rq == 0.
+> +	 *
+> +	 * See try_to_wake_up() for a longer comment.
+> +	 */
+> +	smp_rmb();
+> +	if (p->on_rq)
+> +		return true;
+> +
+> +#ifdef CONFIG_SMP
+> +	/*
+> +	 * Ensure the task has finished __schedule() and will not be referenced
+> +	 * anymore. Again, see try_to_wake_up() for a longer comment.
+> +	 */
+> +	smp_rmb();
+> +	smp_cond_load_acquire(&p->on_cpu, !VAL);
+> +#endif
+> +
+> +	return false;
+> +}
+> +
+>  /**
+>   * task_call_func - Invoke a function on task in fixed state
+>   * @p: Process for which the function is to be invoked, can be @current.
+> @@ -4217,28 +4251,12 @@ try_to_wake_up(struct task_struct *p, unsigned int state, int wake_flags)
+>  int task_call_func(struct task_struct *p, task_call_f func, void *arg)
+>  {
+>  	struct rq *rq = NULL;
+> -	unsigned int state;
+>  	struct rq_flags rf;
+>  	int ret;
+>  
+>  	raw_spin_lock_irqsave(&p->pi_lock, rf.flags);
+>  
+> -	state = READ_ONCE(p->__state);
+> -
+> -	/*
+> -	 * Ensure we load p->on_rq after p->__state, otherwise it would be
+> -	 * possible to, falsely, observe p->on_rq == 0.
+> -	 *
+> -	 * See try_to_wake_up() for a longer comment.
+> -	 */
+> -	smp_rmb();
+> -
+> -	/*
+> -	 * Since pi->lock blocks try_to_wake_up(), we don't need rq->lock when
+> -	 * the task is blocked. Make sure to check @state since ttwu() can drop
+> -	 * locks at the end, see ttwu_queue_wakelist().
+> -	 */
+> -	if (state == TASK_RUNNING || state == TASK_WAKING || p->on_rq)
+> +	if (__task_needs_rq_lock(p))
+>  		rq = __task_rq_lock(p, &rf);
+>  
+>  	/*
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_12348 -> Patchwork_105879v9
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v9/index.html
-
-Participating hosts (39 -> 27)
-------------------------------
-
-  Missing    (12): fi-rkl-11600 fi-bdw-samus bat-dg2-8 bat-dg2-9 bat-adlp-6 fi-ctg-p8600 bat-adln-1 bat-rplp-1 bat-rpls-1 bat-rpls-2 bat-dg2-11 bat-jsl-1 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_105879v9 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_tiled_blits@basic:
-    - fi-pnv-d510:        [PASS][1] -> [SKIP][2] ([fdo#109271]) +2 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12348/fi-pnv-d510/igt@gem_tiled_blits@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v9/fi-pnv-d510/igt@gem_tiled_blits@basic.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bdw-gvtdvm:      [PASS][3] -> [INCOMPLETE][4] ([i915#2940])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12348/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v9/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][5] ([fdo#109271] / [fdo#111827])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v9/fi-hsw-4770/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@runner@aborted:
-    - fi-bdw-gvtdvm:      NOTRUN -> [FAIL][6] ([i915#4312])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v9/fi-bdw-gvtdvm/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        [INCOMPLETE][7] ([i915#4785]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12348/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v9/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12348 -> Patchwork_105879v9
-
-  CI-20190529: 20190529
-  CI_DRM_12348: 274249f2d91b2b43ee26d9363b0f7426c6445ba2 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7044: dbeb6f92720292f8303182a0e649284cea5b11a6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_105879v9: 274249f2d91b2b43ee26d9363b0f7426c6445ba2 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-3605637f03fd drm/i915/vm_bind: Async vm_unbind support
-a4b64d07b0e3 drm/i915/vm_bind: Render VM_BIND documentation
-0d9260049f18 drm/i915/vm_bind: Add uapi for user to enable vm_bind_mode
-e9aaac78570a drm/i915/vm_bind: Limit vm_bind mode to non-recoverable contexts
-924c73f931e8 drm/i915/vm_bind: userptr dma-resv changes
-3317504ec1d7 drm/i915/vm_bind: Handle persistent vmas in execbuf3
-534980c7c27f drm/i915/vm_bind: Expose i915_request_await_bind()
-bb666016bc49 drm/i915/vm_bind: Update i915_vma_verify_bind_complete()
-2eabb3dd9832 drm/i915/vm_bind: Implement I915_GEM_EXECBUFFER3 ioctl
-ff9a6e7dd60b drm/i915/vm_bind: Use common execbuf functions in execbuf path
-e348075657f5 drm/i915/vm_bind: Abstract out common execbuf functions
-9a9fa330ab38 drm/i915/vm_bind: Add out fence support
-14c5398b589f drm/i915/vm_bind: Support persistent vma activeness tracking
-4b59949c1f82 drm/i915/vm_bind: Add support to handle object evictions
-f3c79a27595c drm/i915/vm_bind: Support for VM private BOs
-c0e9b4a1c59c drm/i915/vm_bind: Implement bind and unbind of object
-4bf53f2ce1a2 drm/i915/vm_bind: Add support to create persistent vma
-9e6f21ed8715 drm/i915/vm_bind: Expose i915_gem_object_max_page_size()
-788e89f09d86 drm/i915/vm_bind: Add __i915_sw_fence_await_reservation()
-7276f31bfd1d drm/i915/vm_bind: Expose vm lookup function
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v9/index.html
-
---===============6898396081514165672==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/vm_bind: Add VM_BIND functionality (rev9)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/105879/">https://patchwork.freedesktop.org/series/105879/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v9/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v9/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12348 -&gt; Patchwork_105879v9</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v9/index.html</p>
-<h2>Participating hosts (39 -&gt; 27)</h2>
-<p>Missing    (12): fi-rkl-11600 fi-bdw-samus bat-dg2-8 bat-dg2-9 bat-adlp-6 fi-ctg-p8600 bat-adln-1 bat-rplp-1 bat-rpls-1 bat-rpls-2 bat-dg2-11 bat-jsl-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_105879v9 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_tiled_blits@basic:</p>
-<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12348/fi-pnv-d510/igt@gem_tiled_blits@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v9/fi-pnv-d510/igt@gem_tiled_blits@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bdw-gvtdvm:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12348/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v9/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v9/fi-hsw-4770/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bdw-gvtdvm:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v9/fi-bdw-gvtdvm/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12348/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v9/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12348 -&gt; Patchwork_105879v9</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12348: 274249f2d91b2b43ee26d9363b0f7426c6445ba2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7044: dbeb6f92720292f8303182a0e649284cea5b11a6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_105879v9: 274249f2d91b2b43ee26d9363b0f7426c6445ba2 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>3605637f03fd drm/i915/vm_bind: Async vm_unbind support<br />
-a4b64d07b0e3 drm/i915/vm_bind: Render VM_BIND documentation<br />
-0d9260049f18 drm/i915/vm_bind: Add uapi for user to enable vm_bind_mode<br />
-e9aaac78570a drm/i915/vm_bind: Limit vm_bind mode to non-recoverable contexts<br />
-924c73f931e8 drm/i915/vm_bind: userptr dma-resv changes<br />
-3317504ec1d7 drm/i915/vm_bind: Handle persistent vmas in execbuf3<br />
-534980c7c27f drm/i915/vm_bind: Expose i915_request_await_bind()<br />
-bb666016bc49 drm/i915/vm_bind: Update i915_vma_verify_bind_complete()<br />
-2eabb3dd9832 drm/i915/vm_bind: Implement I915_GEM_EXECBUFFER3 ioctl<br />
-ff9a6e7dd60b drm/i915/vm_bind: Use common execbuf functions in execbuf path<br />
-e348075657f5 drm/i915/vm_bind: Abstract out common execbuf functions<br />
-9a9fa330ab38 drm/i915/vm_bind: Add out fence support<br />
-14c5398b589f drm/i915/vm_bind: Support persistent vma activeness tracking<br />
-4b59949c1f82 drm/i915/vm_bind: Add support to handle object evictions<br />
-f3c79a27595c drm/i915/vm_bind: Support for VM private BOs<br />
-c0e9b4a1c59c drm/i915/vm_bind: Implement bind and unbind of object<br />
-4bf53f2ce1a2 drm/i915/vm_bind: Add support to create persistent vma<br />
-9e6f21ed8715 drm/i915/vm_bind: Expose i915_gem_object_max_page_size()<br />
-788e89f09d86 drm/i915/vm_bind: Add __i915_sw_fence_await_reservation()<br />
-7276f31bfd1d drm/i915/vm_bind: Expose vm lookup function</p>
-
-</body>
-</html>
-
---===============6898396081514165672==--
+-- 
+Ville Syrjälä
+Intel
