@@ -2,78 +2,110 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADA0361F46E
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 14:34:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05C4961F4B2
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 14:57:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58DBC10E30E;
-	Mon,  7 Nov 2022 13:34:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14FBC10E19F;
+	Mon,  7 Nov 2022 13:57:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
- [64.147.123.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFA0C10E312;
- Mon,  7 Nov 2022 13:34:32 +0000 (UTC)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
- by mailnew.west.internal (Postfix) with ESMTP id 2E60E2B06702;
- Mon,  7 Nov 2022 08:34:27 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute2.internal (MEProxy); Mon, 07 Nov 2022 08:34:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
- :message-id:mime-version:references:reply-to:sender:subject
- :subject:to:to; s=fm2; t=1667828066; x=1667835266; bh=euMdwanfMk
- OYDEpc4wB0uixBbNEYF5sJFd9/UJyNdCY=; b=bkw76/u5ZYZbQahAvsPYoo8IQG
- LcHGuGHIXi8HCjhw4OYcAWT30Ol0Wn+jYP1l44qbVRmgLwmDnhosZ3uA6uNjhQjL
- ioJEgtTKYzh1M+2NZq1JoCcj1onDGF0TH5WP7U+0cjtS0kzx+hvVlia8GUf72U0x
- RvMmk31Q77Uivz75wkgFhyZZj7ohYiKbQZ2hREYhZrAck2nWG1zN5Ru1+EVS5g97
- LxqEj6CfzUGm3f65dYFQx/JwcNnpdTNQpi+AWw7niXI7QyVGf6ZY38U7zb6EHj4G
- GBx5vTA5xL45elayXVZ1ZMvRHECSvQwahmDrw23tM/fPWMNrMQsB2AzMrs4A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
- :feedback-id:from:from:in-reply-to:in-reply-to:message-id
- :mime-version:references:reply-to:sender:subject:subject:to:to
- :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm1; t=1667828066; x=1667835266; bh=euMdwanfMkOYDEpc4wB0uixBbNEY
- F5sJFd9/UJyNdCY=; b=kid7A/lFEMRYdSlRHUAbP10h3b5B6GqzIFwJ7s6gbB0t
- WpjUg1oMTN9uu/L46ufdrj+GmDdd9IqH4CvLqUeljmmEBdP+YJhMQVxPUCS2BnpI
- v4Ru9CamYJCnCPTr3hMquRyY/NJTD+xAHKkQ2W2WFuBatXgmHRCkSTLKmFSd75/2
- k01ShiWOfm0j3nYPSCuBrawztOfFU2j0A7YozMiucrP1nq/04sJkP45VwqUc5QZW
- ukdMDjH1cPbLpZpr2mHDntcosTrtF9zvvVRlx/Jj+JmdokRLh6qtGk+yhakRF9C7
- 8zrz3V0g8NseHrHsKPA6rjSIGYDr71WT7ky/u694rw==
-X-ME-Sender: <xms:YQlpYzqUzcKBEZzDOlDuLDr1DtGvw8gQ6k2wBZQG4mY0RJSCFXjmig>
- <xme:YQlpY9pUIt5pX-eq0nd61vIYEpSEv-wNJQ9HDG6RxL-38WBzL56eDiEg6sTkGoL8J
- lrNqgHoGVz4ZpM4DBI>
-X-ME-Received: <xmr:YQlpYwNVMqmNz1TWP4KnWosubFEZ-Wv8n0D8GKRH0ewQ4tv7UFVq1Tuer4U-V06PR9eq0ZCrqJr-1jp6BWsgR42ROjxVwck-2o6zob05dYpVBA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrvdekgdehfecutefuodetggdotefrodftvf
- curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
- uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
- fjughrpeffhffvvefukfhfgggtuggjsehgtderredttddunecuhfhrohhmpeforgigihhm
- vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
- htvghrnhepieehffffvefgiedthfeiieeutdfgffekhfehgfehgfeiuddutdfftdekffeh
- heevnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecuvehluhhsthgvrhfuihiivg
- eptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggt
- hh
-X-ME-Proxy: <xmx:YQlpY25QdoDReJ-2Q7rlTZUBzKtioyIRdY2alrAOs5RtHY-uXcXXrQ>
- <xmx:YQlpYy7XTsQ1rEuGWv1PveGlsKDveYqIBrsoZZ4e7mQOpHFCDDCx0g>
- <xmx:YQlpY-iOMy6q641PnxcV3EM-5ZPmsncNh2HiEz8AB4cNLJ4aPLcVbQ>
- <xmx:YglpYxa0h_DI8UuAJa5L-oZODorTkrwsRbenBhcQSAdI8QJ9V2n0aTLaY2g>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 7 Nov 2022 08:34:25 -0500 (EST)
-Date: Mon, 7 Nov 2022 14:34:23 +0100
-From: Maxime Ripard <maxime@cerno.tech>
-To: Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>
-Message-ID: <20221107133423.o344y4cb5zxpyrm4@houat>
-References: <20220728-rpi-analog-tv-properties-v6-0-e7792734108f@cerno.tech>
- <20220728-rpi-analog-tv-properties-v6-14-e7792734108f@cerno.tech>
- <0a748a39-a387-5bdb-ffc8-6cc6593b56e7@tronnes.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="skctp4fj6rxepcpb"
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2074.outbound.protection.outlook.com [40.107.94.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9AC310E19F;
+ Mon,  7 Nov 2022 13:57:46 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bTDF75lUZNeTe+uNLtwBt+mDJXP+PcYBe0G4/s/bBwukVoHDvsrpDW0hlJXuHOcxIi4xeR9+9L6u41UiKQa9SvtiDYPHG04SM+3qFQKKh019nRSoOyYfqqjxSgH8PZX8HAQAz2kn1teXT+J4PHnJHGyfQzFTwrqk2Z3DyKyTxWvEwjHLtHCKxSDb55cbxVRaKKKQUN3UZqhR+YTz99GHe9cE2lIGEcuSTTbsS36sCpHKJt14jR5Dnp25sYRbU/ZXhlI+UfsqhnbWj/FQKdfV2J5agmPPIX1m7Gsez2U0VDsPAKGsHseExRD1yOcwr+PSPQ8zMdzd5i4XdjESJkpBUA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=tya8+SvfMvAXd9qxFtkwJC29M3FyM7z3cyGjpEOpxWw=;
+ b=d2UO5ckJCImY3qbEyIPcBlcAywQJfzpcFiFaSdtJI0asZCbmICda+UEnZWCTJgHHob8CT3ww7lr54eWVPYf+xHFTiUlw21vq0jvGBlvO0A3RSS44XuyeDWcNK0yrBA0gb15xDfyt8635q3ICPbJ3DKsFlljKRXXCgiBRSsHn18oHQvGeBLe/dYobQQswGL4LW0kJvOVI2ZkYU0D3x2G4bVV9jWJf2aHANDSONh5EnF+CLZCQcqya99yiNu4zAp3SUIEj62+BcylcWwo2/dbsruaV2kKGfOAsyhvFV4BtGRQk4LBqBQoyu4cOIXp41rPQ5KbDg0vtZMdJpqHgQfiHag==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tya8+SvfMvAXd9qxFtkwJC29M3FyM7z3cyGjpEOpxWw=;
+ b=qukudt3NJIelbLRc1BFw2FpZUq6JkAMep2MXNOtzjWiF8HEjujuScdSmy3JnDaw7ewR9LVw885hk1YZlIbcyHQoFu8w/SdAsPjxAIAdh7/yBBkj2K1wtf0d/zo99RTnRtPkPUXDxw28agXjdt9jaYo9404MuWW+XPbjuN7V5nQtAkfZomNw9XRgBl+ViXGjUhEt661Rt1XqazEog7RVoQNygA4cZ2ADBSznZHWNEE7Cgyno3fArkFiCtSyFFAbhujXBzWXDCI+Yzk+c3UolFv8XBw+5PTPb5kaWZLMNBC19U5ZUh5nhdkEBZ18/cFoPdbcOuZQCwGfYcEWDlXjwNoQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
+ by IA1PR12MB6042.namprd12.prod.outlook.com (2603:10b6:208:3d6::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.26; Mon, 7 Nov
+ 2022 13:57:43 +0000
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::7a81:a4e4:bb9c:d1de]) by LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::7a81:a4e4:bb9c:d1de%6]) with mapi id 15.20.5791.026; Mon, 7 Nov 2022
+ 13:57:43 +0000
+Date: Mon, 7 Nov 2022 09:57:42 -0400
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Alex Williamson <alex.williamson@redhat.com>
+Message-ID: <Y2kO1njmu6sU55S0@nvidia.com>
+References: <0-v1-4991695894d8+211-vfio_iommufd_jgg@nvidia.com>
+ <10-v1-4991695894d8+211-vfio_iommufd_jgg@nvidia.com>
+ <20221026153133.44dc05c8.alex.williamson@redhat.com>
+ <Y1wjFNxwPRm7S6yZ@nvidia.com>
+ <20221031165311.0698e1ea.alex.williamson@redhat.com>
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <0a748a39-a387-5bdb-ffc8-6cc6593b56e7@tronnes.org>
-Subject: Re: [Intel-gfx] [PATCH v6 14/23] drm/modes: Properly generate a
- drm_display_mode from a named mode
+In-Reply-To: <20221031165311.0698e1ea.alex.williamson@redhat.com>
+X-ClientProxiedBy: MN2PR16CA0012.namprd16.prod.outlook.com
+ (2603:10b6:208:134::25) To LV2PR12MB5869.namprd12.prod.outlook.com
+ (2603:10b6:408:176::16)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|IA1PR12MB6042:EE_
+X-MS-Office365-Filtering-Correlation-Id: e4253e08-5b0a-4d12-ff21-08dac0c80aca
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: pLWpK5RTvTKtso2cPOgsl7sL6oNQgOkyo4NA83/AeOZDL/nvyv9GMJdpWU3aIVpyBGLobaB0+ScOWzOwPtW39hVOaQrQFMWrMdOUYpqRXHKZ/ipIj8Gzg6ZokMQ/3ejRlInrfk6TpIdCq+67Q8AA3OmBzBki2JeZ88k7dih2LCNYNNcG+iHhLFAOA3LFJxVV840ay8pJ4ndixIjqxqu5XOPB7AtvxdhFoL85Ulbxx+ZNp3FXx0OD+BWswlKrmRXHrvvF1DvfGid4CZlo4wvh4KNXeDAXCRuSTaNJlIG0OSG7LJbALv6IIgfRHzmjo/G3wPxx5GfAz3cVmw9jfI6LJj7qLSR1Wt2CSuQK3EpxnawtwNQrd1dd5SVQeQqDS2qD2oNMUJ4tnnc99WUEOe7F1D0Kn17iPFlHmtSpiHaJi1dDNk7nSXvj2engjISIS/sXhnFBKxMNDLx3AZkao9xKllXSsCKzAsoX8mQlvxJ2heneHzUWsL/+CWQtfMOwab/FqUHqDWAocliyexChTddKregpqD7PaO/jow+C26i6cmjEXUxfamHRsDsv8Kymf8GTnZHgSmOfTksMjMOAzyFJOSZr1KEAhR/HwAgeV/maV/S8gZpcaxkjaTkq+GUCBtSliNIKA4oyqHa4WfEYQW10Zv7OlVN+pGx0iT9LALgmOT50KJ6Pw0HXWRHYOZRV+tg+X90W0DG3Oqv8be4HzXp6QQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(4636009)(366004)(346002)(396003)(376002)(39860400002)(136003)(451199015)(186003)(6512007)(26005)(6506007)(2616005)(38100700002)(83380400001)(7406005)(5660300002)(7416002)(2906002)(6916009)(6486002)(8936002)(41300700001)(478600001)(4326008)(316002)(66556008)(8676002)(66946007)(66476007)(54906003)(36756003)(86362001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?FhrspaPtonHLLLLfaJBGNlVKgf7AkSUqqyL4XFWI/z1at0LMdLjhQKv2uOFx?=
+ =?us-ascii?Q?FUkoAoXN8BvafY/UzVCTSUnEh6WWlMxnuguFRd04s+OEwJB6chHJGZNAV7bA?=
+ =?us-ascii?Q?vV5McKnnMX+FuSZAuxk6ToIYcaKFjaGyDrQy/ZueYC8YBfW6wWjaCkCdWt/g?=
+ =?us-ascii?Q?8nUZZKVLvYniqwnHnGYTotshtKSgmlAIdXLBIWa298lI0FitrRdZc07sZ0Dv?=
+ =?us-ascii?Q?EgXlVKkAWpD8PYT4bgkRrK5TGvxZ2jBHBgGZ1uvGajqAKbXM9nisFed8ZX3J?=
+ =?us-ascii?Q?ac9/iQ1B8nGRzRMak0ybCg1TKvcK1wM4TpPq7mtz15lHAFLW4yW9GZjYhqjp?=
+ =?us-ascii?Q?Mi+ld6RfqUnTFVGM62Ma+W0lNPDwStSSrxdQ5zbMrswg0et9S1izYAkubrkl?=
+ =?us-ascii?Q?wSxwXDZVUJRIy8I/PCI0rza735+xepnavxD/r8xHqZvsbMPKbrcztCBXOqh4?=
+ =?us-ascii?Q?tQNPj1/Hx1CAjEYQPQ1DlCMLWrWOhJvBSgWDWf0osHeLqGj5+ngn46AbmNMM?=
+ =?us-ascii?Q?o4H6t+8NaZze1mYdqrfzlvCC2IZ6FYaDmNch3qqRvT4LMcXzIXdrYdsrp3uy?=
+ =?us-ascii?Q?K4+CGTokQ3VoLFebstDXEg71HhlrkK7BP5xp7N68z9yCdP4pzmIlFOwtKS8t?=
+ =?us-ascii?Q?etbPYY5o9u4+1f0dPYAAsrhUSLv71gpDxbdj0v52DHHUfwlK1Mqg7BWPQROn?=
+ =?us-ascii?Q?Dmc2gtEs/KSJftNVk5Waa8VCDxXl5rwS5WkFKbAqJsiOpY6+4f57TIprSaw8?=
+ =?us-ascii?Q?/kOe8CkFM4xE0j01AE2vXM3SqrJv/W6WDcsRa/CVn4WBDifyWbQ1+SaYGh/b?=
+ =?us-ascii?Q?fHsBXabk2ERsU0pEB+5WMRq/t1cKpZ2yyWOl/YM6KJZotzTHxtFYOfBTdp59?=
+ =?us-ascii?Q?NA4AwznCdVedHTy/ke2G8v4t0v6YAZBgSyJtLK9aeM1QHDNGuwsqwcJce3BL?=
+ =?us-ascii?Q?fRBneilylG9hlP7atHccQEMKRgXp31/Pl75VQHM7zXy5EdfYfTlLVl4ayAGF?=
+ =?us-ascii?Q?ElPP2zFqufxdzmGZ9s0NanIPrYsP4V1ygxX93JLhFEUZqtTjrWepJmFg2SB2?=
+ =?us-ascii?Q?IWuhk0mnHXVHEkpWoBH27+EHCXwlaTfBVwHdXrk0IXmsu+uhaHme8afOmufb?=
+ =?us-ascii?Q?NcDyJTaTVj5KKkGbrKWyTheJOYH/N0vTyG65nVEE95s1q5BC3ypYtdyORg6N?=
+ =?us-ascii?Q?H22SAn9LTU7v3UYkb6zVITOOlkEcDBWLUHry4n9PdTa9OCbhJjpKu9GFe9ja?=
+ =?us-ascii?Q?wAo9+mPb0Z0axGMzIKhfc9YctmvKPalyQEhYkBOA3PUqn/8OBQ97E58LK54L?=
+ =?us-ascii?Q?7kNZdwMlFBk1DAi1nX6dOcbfO4FjsUi40g6uFZNs9Xwukv6Myy0lvr9Naj/G?=
+ =?us-ascii?Q?NThle6C1MkOehG8dtcP3S766T7ZEcpgR6vuZ7WGeLvzz7tWuLRF2d88vlOxt?=
+ =?us-ascii?Q?WxhKrzNo4xNpMLLxOGcY8fAUq29wx7x0TIPihqM/5ZXSX6zNREfk+4qukX2t?=
+ =?us-ascii?Q?3XZOydj6slv0dyNtTfsiDlgS/3bZWxA6NfsNH0lqCMO62Ocv8AVBLok8KFs1?=
+ =?us-ascii?Q?hovDRp2kGcMau3I+ewg=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e4253e08-5b0a-4d12-ff21-08dac0c80aca
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Nov 2022 13:57:43.6538 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: wxVWrO8NCsDj9oMUJo2GGb3Mz9lEP+fbHvCvwY4l/6dANepnFB1fhfrnVjmBGPK3
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6042
+Subject: Re: [Intel-gfx] [PATCH 10/10] iommufd: Allow iommufd to supply
+ /dev/vfio/vfio
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,173 +118,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
- Samuel Holland <samuel@sholland.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
- linux-sunxi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-arm-kernel@lists.infradead.org,
- Dom Cobley <dom@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
- Thomas Zimmermann <tzimmermann@suse.de>
+Cc: kvm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Vineeth Vijayan <vneethv@linux.ibm.com>,
+ Diana Craciun <diana.craciun@oss.nxp.com>,
+ Alexander Gordeev <agordeev@linux.ibm.com>, David Airlie <airlied@gmail.com>,
+ Longfang Liu <liulongfang@huawei.com>, linux-s390@vger.kernel.org,
+ Yi Liu <yi.l.liu@intel.com>, Matthew Rosato <mjrosato@linux.ibm.com>,
+ Will Deacon <will@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+ Halil Pasic <pasic@linux.ibm.com>, iommu@lists.linux.dev,
+ Nicolin Chen <nicolinc@nvidia.com>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ intel-gfx@lists.freedesktop.org, Jason Herne <jjherne@linux.ibm.com>,
+ Eric Farman <farman@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
+ Heiko Carstens <hca@linux.ibm.com>, Eric Auger <eric.auger@redhat.com>,
+ Harald Freudenberger <freude@linux.ibm.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gvt-dev@lists.freedesktop.org,
+ Tony Krowiak <akrowiak@linux.ibm.com>, Yishai Hadas <yishaih@nvidia.com>,
+ Cornelia Huck <cohuck@redhat.com>, Peter Oberparleiter <oberpar@linux.ibm.com>,
+ Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
+ Sven Schnelle <svens@linux.ibm.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Robin Murphy <robin.murphy@arm.com>, Lu Baolu <baolu.lu@linux.intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, Oct 31, 2022 at 04:53:11PM -0600, Alex Williamson wrote:
+> On Fri, 28 Oct 2022 15:44:36 -0300
+> Jason Gunthorpe <jgg@nvidia.com> wrote:
+> 
+> > On Wed, Oct 26, 2022 at 03:31:33PM -0600, Alex Williamson wrote:
+> > > On Tue, 25 Oct 2022 15:50:45 -0300
+> > > Jason Gunthorpe <jgg@nvidia.com> wrote:
+> > >   
+> > > > If the VFIO container is compiled out, give a kconfig option for iommufd
+> > > > to provide the miscdev node with the same name and permissions as vfio
+> > > > uses.
+> > > > 
+> > > > The compatibility node supports the same ioctls as VFIO and automatically
+> > > > enables the VFIO compatible pinned page accounting mode.  
+> > > 
+> > > I think I'd like to see some sort of breadcrumb when /dev/vfio/vfio is
+> > > provided by something other than the vfio container code.  If we intend
+> > > to include this before P2P is resolved, that breadcrumb   
+> > 
+> > I don't belive I can get P2P done soon enough. I plan to do it after
+> > this is merged. Right now these two series are taking all my time.
+> > 
+> > > (dmesg I'm guessing) might also list any known limitations of the
+> > > compatibility to save time with debugging.  Thanks,  
+> > 
+> > Yes, that makes sense.
+> > 
+> > Do you want a dmesg at module load time, on every open, or a sysfs
+> > something? What seems like it would make it into a bug report?
+> 
+> I think dmesg at module load time should probably be ok, every open
+> seems like harassment and sysfs would require updated support in
+> various bug reporting tools.  Users are often terrible about reporting
+> full dmesg in bugs, but they do often filter it for "IOMMU" or "VFIO",
+> so keep that in mind when crafting the log message.  Thanks,
 
---skctp4fj6rxepcpb
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This seems like the right approach, the message comes out once when it
+might be most useful:
 
-On Sat, Nov 05, 2022 at 06:50:30PM +0100, Noralf Tr=F8nnes wrote:
-> Den 26.10.2022 17.33, skrev maxime@cerno.tech:
-> > The framework will get the drm_display_mode from the drm_cmdline_mode it
-> > got by parsing the video command line argument by calling
-> > drm_connector_pick_cmdline_mode().
-> >=20
-> > The heavy lifting will then be done by the drm_mode_create_from_cmdline=
-_mode()
-> > function.
-> >=20
-> > In the case of the named modes though, there's no real code to make that
-> > translation and we rely on the drivers to guess which actual display mo=
-de
-> > we meant.
-> >=20
-> > Let's modify drm_mode_create_from_cmdline_mode() to properly generate t=
-he
-> > drm_display_mode we mean when passing a named mode.
-> >=20
-> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> >=20
-> > ---
-> > Changes in v6:
-> > - Fix get_modes to return 0 instead of an error code
-> > - Rename the tests to follow the DRM test naming convention
-> >=20
-> > Changes in v5:
-> > - Switched to KUNIT_ASSERT_NOT_NULL
-> > ---
-> >  drivers/gpu/drm/drm_modes.c                     | 34 ++++++++++-
-> >  drivers/gpu/drm/tests/drm_client_modeset_test.c | 77 +++++++++++++++++=
-+++++++-
-> >  2 files changed, 109 insertions(+), 2 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/drm_modes.c b/drivers/gpu/drm/drm_modes.c
-> > index dc037f7ceb37..85aa9898c229 100644
-> > --- a/drivers/gpu/drm/drm_modes.c
-> > +++ b/drivers/gpu/drm/drm_modes.c
-> > @@ -2497,6 +2497,36 @@ bool drm_mode_parse_command_line_for_connector(c=
-onst char *mode_option,
-> >  }
-> >  EXPORT_SYMBOL(drm_mode_parse_command_line_for_connector);
-> > =20
-> > +static struct drm_display_mode *drm_named_mode(struct drm_device *dev,
-> > +					       struct drm_cmdline_mode *cmd)
-> > +{
-> > +	struct drm_display_mode *mode;
-> > +	unsigned int i;
-> > +
-> > +	for (i =3D 0; i < ARRAY_SIZE(drm_named_modes); i++) {
-> > +		const struct drm_named_mode *named_mode =3D &drm_named_modes[i];
-> > +
-> > +		if (strcmp(cmd->name, named_mode->name))
-> > +			continue;
-> > +
-> > +		if (!named_mode->tv_mode)
-> > +			continue;
-> > +
-> > +		mode =3D drm_analog_tv_mode(dev,
-> > +					  named_mode->tv_mode,
-> > +					  named_mode->pixel_clock_khz * 1000,
-> > +					  named_mode->xres,
-> > +					  named_mode->yres,
-> > +					  named_mode->flags & DRM_MODE_FLAG_INTERLACE);
-> > +		if (!mode)
-> > +			return NULL;
-> > +
-> > +		return mode;
-> > +	}
-> > +
-> > +	return NULL;
-> > +}
-> > +
-> >  /**
-> >   * drm_mode_create_from_cmdline_mode - convert a command line modeline=
- into a DRM display mode
-> >   * @dev: DRM device to create the new mode for
-> > @@ -2514,7 +2544,9 @@ drm_mode_create_from_cmdline_mode(struct drm_devi=
-ce *dev,
-> >  	if (cmd->xres =3D=3D 0 || cmd->yres =3D=3D 0)
-> >  		return NULL;
-> > =20
-> > -	if (cmd->cvt)
-> > +	if (strlen(cmd->name))
-> > +		mode =3D drm_named_mode(dev, cmd);
->=20
-> I'm trying to track how this generated mode fits into to it all and
-> AFAICS if the connector already supports a mode with the same xres/yres
-> as the named mode, the named mode will never be created because of the
-> check at the beginning of drm_helper_probe_add_cmdline_mode(). It will
-> just mark the existing mode with USERDEF and return.
+@@ -176,8 +176,11 @@ static int iommufd_fops_open(struct inode *inode, struct file *filp)
+         * For compatibility with VFIO when /dev/vfio/vfio is opened we default
+         * to the same rlimit accounting as vfio uses.
+         */
+-       if (filp->private_data == &vfio_misc_dev)
++       if (IS_ENABLED(CONFIG_IOMMUFD_VFIO_CONTAINER) &&
++           filp->private_data == &vfio_misc_dev) {
+                ictx->account_mode = IOPT_PAGES_ACCOUNT_MM;
++               pr_info_once("IOMMUFD is providing /dev/vfio/vfio, not VFIO.\n");
++       }
+ 
+        xa_init_flags(&ictx->objects, XA_FLAGS_ALLOC1 | XA_FLAGS_ACCOUNT);
+        ictx->file = filp;
 
-Yep, you're right
+Also this is needed:
 
-> If the connector doesn't already support a mode with such a resolution
-> it will be created, but should we do that? If the driver supported such
-> a mode it would certainly already have added it to the mode list,
-> wouldn't it? After all it's just 2 variants NTSC and PAL.
+@@ -446,6 +449,7 @@ module_exit(iommufd_exit);
+ 
+ #if IS_ENABLED(CONFIG_IOMMUFD_VFIO_CONTAINER)
+ MODULE_ALIAS_MISCDEV(VFIO_MINOR);
++MODULE_ALIAS("devname:vfio/vfio");
+ #endif
+ MODULE_DESCRIPTION("I/O Address Space Management for passthrough devices");
+ MODULE_LICENSE("GPL");
 
-I wasn't so sure about this part. I think it's still benefitial because
-some users (Geert at least has expressed that need) might want a smaller
-mode than 480i/576i, whereas the driver is realistically only going to
-register those two.
-
-So creating that mode if it isn't declared seems to have value to some.
-
-> We have this in drm_client_modeset.c:drm_connector_pick_cmdline_mode():
->=20
-> 	list_for_each_entry(mode, &connector->modes, head) {
-> 		/* Check (optional) mode name first */
-> 		if (!strcmp(mode->name, cmdline_mode->name))
-> 			return mode;
->=20
-> Here it looks like the named mode thing is a way to choose a mode, not
-> to add one.
->=20
-> I couldn't find any documentation on how named modes is supposed to
-> work, have you seen any?
-
-Eh, I guess I'm to blame for that :)
-
-Named modes are really only about the command-line name. The way it was
-initially introduced was pretty much to only pass down the name to
-drivers for them to figure it out, like we've been doing in sun4i:
-
-https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/sun4i/sun4i_=
-tv.c#L292
-
-It wasn't really working, especially because the userspace pretty much
-ignores it. One of the point of this series is to create a proper mode
-(and state, really) from the name passed on the command line so that
-drivers don't have to behave any different from usual, and userspace can
-be involved there too.
-
-Maxime
-
---skctp4fj6rxepcpb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCY2kJXwAKCRDj7w1vZxhR
-xXK+AQDbZjS2J5WC2ceGRjMPlRP+aZSBzWDC5fwiCGIaR3oGigEA5D4seApvXZv1
-QLznHu/XaZfYUQXUOM6K43F6nknfDQI=
-=HyxE
------END PGP SIGNATURE-----
-
---skctp4fj6rxepcpb--
+Thanks,
+Jason
