@@ -1,50 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 338A061FB24
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 18:23:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1428361FB27
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 18:23:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86FCF10E4E5;
-	Mon,  7 Nov 2022 17:22:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52D6110E4F5;
+	Mon,  7 Nov 2022 17:23:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16EFD10E4E7
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E36B10E4E5
  for <intel-gfx@lists.freedesktop.org>; Mon,  7 Nov 2022 17:22:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1667841776; x=1699377776;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=UJKkRwxkNyvqERX4reEnIaBmiEVuuPmpPew/qpvFaWE=;
- b=PkZuD33v9UgQ9KwqFUkEQeb34XpfmiYHuK1Ks+M3dFZuiRA1yzPT1uGZ
- zAjSGN8K8+cFSieEiEtkYmJUHbv9sq2kFhWqXoKtV8ZdZmTQMFf60oldx
- ZTsp8+BzatUh8EqDJvvmpbzSAcWMMuGtWzAbPgaLdTep5Vo5kFagLPOeq
- Am28KxQ2OetTHsASlb9mnYVHLQY1Y/KRjXl68ZDHjkw16nuM9ZpEufLJ0
- adHfkVehWj3umdq3UjnFCXj38mIiHG797vdJvO9w695UsW2tKdPiLirXX
- pU3Ka3nelK4LMufuj21SWbqnmu4E+/2jGKXzGnFvmBgyghje0gg3vNSCW w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="312247085"
-X-IronPort-AV: E=Sophos;i="5.96,145,1665471600"; d="scan'208";a="312247085"
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=lD1VOBE+0aeYAxOPnFcGR3ivzctMawzS0Jb6rYdMKB0=;
+ b=INSR012HiTPAnWMjlcEHFqDcFIJCj/WBFlvy/sWex1YPEUWPTw+wYBZD
+ pAPCiX4N6xHR6vX3I+Bb8TdD9TnX82N8EXhwD4OLIXYR68KeQiu2qrmmo
+ 5JXEH3VRSg30vUOYZmo9Oi5HystZCTcXNUtP4goJv3CQxYywC7cZGc/TM
+ u3NTbgewQWMfnUsN25ZATwUn5btiWzR4kut6jEwKz32n34xBcXFFfpYv5
+ odra2TOXJ+mwdvYvya5aDnCFDK8xheQKfei+g4aBLI3ENDdWZj4SIb6fX
+ +jyiKDUSeV8h2vEuw9UtjwnE8SuI8bJSiZx6jdp5nRSt53g9UG+clDhFq w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="312247098"
+X-IronPort-AV: E=Sophos;i="5.96,145,1665471600"; d="scan'208";a="312247098"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2022 09:09:23 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="667248442"
-X-IronPort-AV: E=Sophos;i="5.96,145,1665471600"; d="scan'208";a="667248442"
+ 07 Nov 2022 09:09:24 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="667248444"
+X-IronPort-AV: E=Sophos;i="5.96,145,1665471600"; d="scan'208";a="667248444"
 Received: from ideak-desk.fi.intel.com ([10.237.68.144])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2022 09:09:22 -0800
+ 07 Nov 2022 09:09:23 -0800
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  7 Nov 2022 19:09:09 +0200
-Message-Id: <20221107170917.3566758-2-imre.deak@intel.com>
+Date: Mon,  7 Nov 2022 19:09:10 +0200
+Message-Id: <20221107170917.3566758-3-imre.deak@intel.com>
 X-Mailer: git-send-email 2.31.1.189.g2e36527f23
 In-Reply-To: <20221107170917.3566758-1-imre.deak@intel.com>
 References: <20221107170917.3566758-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 1/9] drm/i915: Allocate power domain set
- wakerefs dynamically
+Subject: [Intel-gfx] [PATCH v2 2/9] drm/i915: Move the POWER_DOMAIN_AUX_IO_A
+ definition to its logical place
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,193 +57,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since the intel_display_power_domain_set struct, currently its current
-size close 1kB, can be allocated on the stack, it's better to allocate
-the per-domain wakeref pointer array - used for debugging - within the
-struct dynamically, so do this.
+Move the definition of the AUX_IO_A power domain, requiring only the
+corresponding AUX_IO_A power well to be enabled, before all the
+AUX_<port> power domains, which require both the AUX_IO_<port> and the
+DC_OFF power wells to be enabled.
 
-The memory freeing is guaranteed by the fact that the acquired domain
-references tracked by struct can't be leaked either.
+No functional change.
 
-v2:
-- Don't use fetch_and_zero() when freeing the wakerefs array. (Jani)
-- Simplify intel_display_power_get/put_in_set(). (Jani)
-- Check in intel_crtc_destroy() that the wakerefs array has been freed.
-
-Cc: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crtc.c     |  4 +
- .../drm/i915/display/intel_display_power.c    | 95 +++++++++++++++----
- .../drm/i915/display/intel_display_power.h    |  2 +-
- 3 files changed, 79 insertions(+), 22 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_power.c     | 4 ++--
+ drivers/gpu/drm/i915/display/intel_display_power.h     | 5 +++--
+ drivers/gpu/drm/i915/display/intel_display_power_map.c | 6 +++---
+ 3 files changed, 8 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index 037fc140b585c..2c8d564e73182 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -205,6 +205,10 @@ static void intel_crtc_destroy(struct drm_crtc *_crtc)
- 	cpu_latency_qos_remove_request(&crtc->vblank_pm_qos);
- 
- 	drm_crtc_cleanup(&crtc->base);
-+
-+#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
-+	drm_WARN_ON(crtc->base.dev, crtc->enabled_power_domains.wakerefs);
-+#endif
- 	kfree(crtc);
- }
- 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 4c1de91e56ff9..db235b79c9629 100644
+index db235b79c9629..75d6c24c1d144 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_power.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -830,20 +830,85 @@ void intel_display_power_put_unchecked(struct drm_i915_private *dev_priv,
- }
- #endif
- 
-+#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
-+static void
-+add_domain_to_set(struct drm_i915_private *i915,
-+		  struct intel_display_power_domain_set *power_domain_set,
-+		  enum intel_display_power_domain domain,
-+		  intel_wakeref_t wf)
-+{
-+	drm_WARN_ON(&i915->drm, test_bit(domain, power_domain_set->mask.bits));
-+
-+	if (!power_domain_set->wakerefs)
-+		power_domain_set->wakerefs = kcalloc(POWER_DOMAIN_NUM,
-+						     sizeof(*power_domain_set->wakerefs),
-+						     GFP_KERNEL);
-+
-+	if (power_domain_set->wakerefs)
-+		power_domain_set->wakerefs[domain] = wf;
-+
-+	set_bit(domain, power_domain_set->mask.bits);
-+}
-+
-+static intel_wakeref_t
-+remove_domain_from_set(struct drm_i915_private *i915,
-+		       struct intel_display_power_domain_set *power_domain_set,
-+		       enum intel_display_power_domain domain)
-+{
-+	intel_wakeref_t wf;
-+
-+	drm_WARN_ON(&i915->drm, !test_bit(domain, power_domain_set->mask.bits));
-+
-+	clear_bit(domain, power_domain_set->mask.bits);
-+
-+	if (!power_domain_set->wakerefs)
-+		return -1;
-+
-+	wf = fetch_and_zero(&power_domain_set->wakerefs[domain]);
-+
-+	if (bitmap_empty(power_domain_set->mask.bits, POWER_DOMAIN_NUM)) {
-+		kfree(power_domain_set->wakerefs);
-+		power_domain_set->wakerefs = NULL;
-+	}
-+
-+	return wf;
-+
-+}
-+#else
-+static void
-+add_domain_to_set(struct drm_i915_private *i915,
-+		  struct intel_display_power_domain_set *power_domain_set,
-+		  enum intel_display_power_domain domain,
-+		  intel_wakeref_t wf)
-+{
-+	drm_WARN_ON(&i915->drm, test_bit(domain, power_domain_set->mask.bits));
-+
-+	set_bit(domain, power_domain_set->mask.bits);
-+}
-+
-+static intel_wakeref_t
-+remove_domain_from_set(struct drm_i915_private *i915,
-+		       struct intel_display_power_domain_set *power_domain_set,
-+		       enum intel_display_power_domain domain)
-+{
-+	drm_WARN_ON(&i915->drm, !test_bit(domain, power_domain_set->mask.bits));
-+
-+	clear_bit(domain, power_domain_set->mask.bits);
-+
-+	return -1;
-+}
-+#endif
-+
- void
- intel_display_power_get_in_set(struct drm_i915_private *i915,
- 			       struct intel_display_power_domain_set *power_domain_set,
- 			       enum intel_display_power_domain domain)
- {
--	intel_wakeref_t __maybe_unused wf;
--
--	drm_WARN_ON(&i915->drm, test_bit(domain, power_domain_set->mask.bits));
-+	intel_wakeref_t wf;
- 
- 	wf = intel_display_power_get(i915, domain);
--#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
--	power_domain_set->wakerefs[domain] = wf;
--#endif
--	set_bit(domain, power_domain_set->mask.bits);
-+
-+	add_domain_to_set(i915, power_domain_set, domain, wf);
- }
- 
- bool
-@@ -853,16 +918,11 @@ intel_display_power_get_in_set_if_enabled(struct drm_i915_private *i915,
- {
- 	intel_wakeref_t wf;
- 
--	drm_WARN_ON(&i915->drm, test_bit(domain, power_domain_set->mask.bits));
--
- 	wf = intel_display_power_get_if_enabled(i915, domain);
- 	if (!wf)
- 		return false;
- 
--#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
--	power_domain_set->wakerefs[domain] = wf;
--#endif
--	set_bit(domain, power_domain_set->mask.bits);
-+	add_domain_to_set(i915, power_domain_set, domain, wf);
- 
- 	return true;
- }
-@@ -874,17 +934,10 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
- {
- 	enum intel_display_power_domain domain;
- 
--	drm_WARN_ON(&i915->drm,
--		    !bitmap_subset(mask->bits, power_domain_set->mask.bits, POWER_DOMAIN_NUM));
--
- 	for_each_power_domain(domain, mask) {
--		intel_wakeref_t __maybe_unused wf = -1;
-+		intel_wakeref_t wf = remove_domain_from_set(i915, power_domain_set, domain);
- 
--#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
--		wf = fetch_and_zero(&power_domain_set->wakerefs[domain]);
--#endif
- 		intel_display_power_put(i915, domain, wf);
--		clear_bit(domain, power_domain_set->mask.bits);
- 	}
- }
- 
+@@ -129,6 +129,8 @@ intel_display_power_domain_str(enum intel_display_power_domain domain)
+ 		return "AUDIO_MMIO";
+ 	case POWER_DOMAIN_AUDIO_PLAYBACK:
+ 		return "AUDIO_PLAYBACK";
++	case POWER_DOMAIN_AUX_IO_A:
++		return "AUX_IO_A";
+ 	case POWER_DOMAIN_AUX_A:
+ 		return "AUX_A";
+ 	case POWER_DOMAIN_AUX_B:
+@@ -153,8 +155,6 @@ intel_display_power_domain_str(enum intel_display_power_domain domain)
+ 		return "AUX_USBC5";
+ 	case POWER_DOMAIN_AUX_USBC6:
+ 		return "AUX_USBC6";
+-	case POWER_DOMAIN_AUX_IO_A:
+-		return "AUX_IO_A";
+ 	case POWER_DOMAIN_AUX_TBT1:
+ 		return "AUX_TBT1";
+ 	case POWER_DOMAIN_AUX_TBT2:
 diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-index 1e77e52c87fec..662123d260a7a 100644
+index 662123d260a7a..2169864f3f044 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_power.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-@@ -147,7 +147,7 @@ struct i915_power_domains {
- struct intel_display_power_domain_set {
- 	struct intel_power_domain_mask mask;
- #ifdef CONFIG_DRM_I915_DEBUG_RUNTIME_PM
--	intel_wakeref_t wakerefs[POWER_DOMAIN_NUM];
-+	intel_wakeref_t *wakerefs;
- #endif
- };
+@@ -77,6 +77,9 @@ enum intel_display_power_domain {
+ 	POWER_DOMAIN_VGA,
+ 	POWER_DOMAIN_AUDIO_MMIO,
+ 	POWER_DOMAIN_AUDIO_PLAYBACK,
++
++	POWER_DOMAIN_AUX_IO_A,
++
+ 	POWER_DOMAIN_AUX_A,
+ 	POWER_DOMAIN_AUX_B,
+ 	POWER_DOMAIN_AUX_C,
+@@ -91,8 +94,6 @@ enum intel_display_power_domain {
+ 	POWER_DOMAIN_AUX_USBC5,
+ 	POWER_DOMAIN_AUX_USBC6,
  
+-	POWER_DOMAIN_AUX_IO_A,
+-
+ 	POWER_DOMAIN_AUX_TBT1,
+ 	POWER_DOMAIN_AUX_TBT2,
+ 	POWER_DOMAIN_AUX_TBT3,
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
+index dc04afc6cc8ff..43454022e6a66 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
+@@ -518,8 +518,8 @@ I915_DECL_PW_DOMAINS(glk_pwdoms_dpio_cmn_c,
+ 	POWER_DOMAIN_INIT);
+ 
+ I915_DECL_PW_DOMAINS(glk_pwdoms_aux_a,
+-	POWER_DOMAIN_AUX_A,
+ 	POWER_DOMAIN_AUX_IO_A,
++	POWER_DOMAIN_AUX_A,
+ 	POWER_DOMAIN_INIT);
+ 
+ I915_DECL_PW_DOMAINS(glk_pwdoms_aux_b,
+@@ -658,8 +658,8 @@ I915_DECL_PW_DOMAINS(icl_pwdoms_ddi_io_e,	POWER_DOMAIN_PORT_DDI_IO_E);
+ I915_DECL_PW_DOMAINS(icl_pwdoms_ddi_io_f,	POWER_DOMAIN_PORT_DDI_IO_F);
+ 
+ I915_DECL_PW_DOMAINS(icl_pwdoms_aux_a,
+-	POWER_DOMAIN_AUX_A,
+-	POWER_DOMAIN_AUX_IO_A);
++	POWER_DOMAIN_AUX_IO_A,
++	POWER_DOMAIN_AUX_A);
+ I915_DECL_PW_DOMAINS(icl_pwdoms_aux_b,		POWER_DOMAIN_AUX_B);
+ I915_DECL_PW_DOMAINS(icl_pwdoms_aux_c,		POWER_DOMAIN_AUX_C);
+ I915_DECL_PW_DOMAINS(icl_pwdoms_aux_d,		POWER_DOMAIN_AUX_D);
 -- 
 2.37.1
 
