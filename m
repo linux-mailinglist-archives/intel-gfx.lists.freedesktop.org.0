@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBE6C61FB2C
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 18:23:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D22861FB2E
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 18:23:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A092C10E4F8;
-	Mon,  7 Nov 2022 17:23:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47DEA10E508;
+	Mon,  7 Nov 2022 17:23:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC2B510E4FB
- for <intel-gfx@lists.freedesktop.org>; Mon,  7 Nov 2022 17:23:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C007510E4F8
+ for <intel-gfx@lists.freedesktop.org>; Mon,  7 Nov 2022 17:23:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667841792; x=1699377792;
+ t=1667841797; x=1699377797;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=I0F58arc9Moznx2+nKFhP8U7S4ViWjUChophuOIi/VA=;
- b=J4zMoQarsW6GpOl36oKTqy7MioaKzLLmz5itA/mi0cXVtmS9hrMAh++K
- eBuw7NLHJ8jatjXSS6qFTCEysGotNoZZqiHcMb5Rj8TOZPdQf2Gg92ihC
- 3LB1V1XSySO0jSmdYBx4TmUCS9YpaywYfV6S7zqC5vk/+ajydE7V+IqeD
- vIJRG0ciTZ7UfMcqXLLV66jLROd/2Akm0/KEjt42VGsDSbpJIpnbhHS2a
- O3Ywki2DPfJHIvWFcLRJS+IuECOq4g9UkgZX+2J8nd8sX6sKCmgYAZ4rD
- A1q85D/eTLXPClrXtadVlizGHGIXqVYKwd2Ms98j0HGTcpek0NF2FPxCV A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="312247259"
-X-IronPort-AV: E=Sophos;i="5.96,145,1665471600"; d="scan'208";a="312247259"
+ bh=kEvIrSsjuvkQO+3iI9WoV0acx1BB7BCehj6vlqB25Oo=;
+ b=jeW5XxsB12vOo2eV9nf3Jm/rS717kHh+J3R6lL99herUKvITweYHeeYF
+ 04Yz4KEea9QYsBxNcyMLILKyQI0VnZJBiOfsEnFG9kW0cnvVllxm1uYc9
+ fA5rlOks4ky71d1h8i+JFhZ6KlKm5KXfboJSMwOubIbnSx2dJ9jh/G5lX
+ eW5mUZp9EsLwJ4MYth1T0ktYYfWSNU1HRHB8UOhVJqrOT3N/FE9ZUGQnJ
+ pkDJyUEKpSzpngXCZsauAqCqHC85kKJzjNEkdiV2QFWS34SXz4PPhBfTo
+ Jh/ICoUMFa/UinpB5gg9qTpukwMaj18a1dD+OZUhlG1TZyk9AahQUFIwn w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="312247291"
+X-IronPort-AV: E=Sophos;i="5.96,145,1665471600"; d="scan'208";a="312247291"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2022 09:09:32 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="667248522"
-X-IronPort-AV: E=Sophos;i="5.96,145,1665471600"; d="scan'208";a="667248522"
+ 07 Nov 2022 09:09:34 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="667248548"
+X-IronPort-AV: E=Sophos;i="5.96,145,1665471600"; d="scan'208";a="667248548"
 Received: from ideak-desk.fi.intel.com ([10.237.68.144])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2022 09:09:31 -0800
+ 07 Nov 2022 09:09:33 -0800
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  7 Nov 2022 19:09:16 +0200
-Message-Id: <20221107170917.3566758-9-imre.deak@intel.com>
+Date: Mon,  7 Nov 2022 19:09:17 +0200
+Message-Id: <20221107170917.3566758-10-imre.deak@intel.com>
 X-Mailer: git-send-email 2.31.1.189.g2e36527f23
 In-Reply-To: <20221107170917.3566758-1-imre.deak@intel.com>
 References: <20221107170917.3566758-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 8/9] drm/i915: Don't enable the AUX_IO power
- for combo-PHY external DP port main links
+Subject: [Intel-gfx] [PATCH v2 9/9] drm/i915/mtl+: Don't enable the AUX_IO
+ power for non-eDP port main links
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,37 +61,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Combo PHY ports require the AUX_IO power only for eDP/PSR, so don't
-enable it otherwise on these ports. So far the external DP and eDP case
-was handled the same way due to unclarity when AUX_IO for the main link
-is needed. However Bspec is clear in which cases it's required:
-
-- eDP/PSR on all ports and platforms (presumably due to HW/FW initiated
-  PSR transactions that won't enable AUX_IO)
-  Bspec: 4301, 49296
-- TypeC PHY ports on platforms before MTL in all TypeC modes (TBT,
-  DP-alt, legacy) and for both HDMI and DP. The next patch will take
-  into account the pre-MTL platform dependency.
-  Bspec: 22243, 53339, 21750, 49190, 49191, 55424, 65448, 65750, 49294,
-         55480, 65380
+MTL+ requires the AUX_IO power for the main link only on eDP, so don't
+enable it in other cases.
 
 Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_ddi.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index b1f9bb45d90a2..b36c34f9adbee 100644
+index b36c34f9adbee..73f06e870323d 100644
 --- a/drivers/gpu/drm/i915/display/intel_ddi.c
 +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -867,8 +867,7 @@ intel_ddi_main_link_aux_domain(struct intel_digital_port *dig_port,
+@@ -867,7 +867,7 @@ intel_ddi_main_link_aux_domain(struct intel_digital_port *dig_port,
  	 */
  	if (crtc_state->has_psr)
  		return intel_display_power_aux_io_domain(i915, dig_port->aux_ch);
--	else if (intel_crtc_has_dp_encoder(crtc_state) ||
--		 intel_phy_is_tc(i915, phy))
-+	else if (intel_phy_is_tc(i915, phy))
+-	else if (intel_phy_is_tc(i915, phy))
++	else if (DISPLAY_VER(i915) < 14 && intel_phy_is_tc(i915, phy))
  		return intel_aux_power_domain(dig_port);
  	else
  		return POWER_DOMAIN_INVALID;
