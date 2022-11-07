@@ -2,48 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D8FB61F25F
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 13:04:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0885F61F39E
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 13:46:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6339D10E2F7;
-	Mon,  7 Nov 2022 12:04:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CE9910E302;
+	Mon,  7 Nov 2022 12:46:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DCB310E2F7;
- Mon,  7 Nov 2022 12:04:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667822684; x=1699358684;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=io6NOnhIUq2RlSYg25btAKQzTfxnZdUpofyPSRMBRsU=;
- b=JmK/bQFWwDV9tv9o7ek7zxyrrAQ+YarlpdiThTBGQVplNOXCi+qyNqjr
- Ouo1hSQ1WLz9j+dW6tFJgW38oxjBMTfm7V2RaDfE8QshitOeqXm1qK3D6
- dYtWHOYNQREA+3AdLMyurRGW+Ln9+lOgZngDtUh78tVh8vydj1MUUWlEA
- B1OEIFnw9JhSklsAJe80DXgXxx3k4aMWmdeH/aNYma1TKWQrJlFDxIzNP
- eVFnYUKdk+Px/pDwNlh/wL1iFtMC/rPLmyeQtWYV2JobLd+Pr8d6k6Smk
- pr31nHoUsoN10a1+Kia05aQZFa2mdk8yfOPRIbHgUR3OgmRY0RPFNTGka A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10523"; a="312158795"
-X-IronPort-AV: E=Sophos;i="5.96,143,1665471600"; d="scan'208";a="312158795"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2022 04:04:42 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10523"; a="965127553"
-X-IronPort-AV: E=Sophos;i="5.96,143,1665471600"; d="scan'208";a="965127553"
-Received: from pmesquit-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.15.49])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2022 04:04:39 -0800
-From: Matthew Auld <matthew.auld@intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Mon,  7 Nov 2022 12:04:26 +0000
-Message-Id: <20221107120426.22849-1-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.38.1
+Received: from wnew3-smtp.messagingengine.com (wnew3-smtp.messagingengine.com
+ [64.147.123.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E48D710E303;
+ Mon,  7 Nov 2022 12:46:05 +0000 (UTC)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+ by mailnew.west.internal (Postfix) with ESMTP id 0478A2B05E55;
+ Mon,  7 Nov 2022 07:45:59 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute2.internal (MEProxy); Mon, 07 Nov 2022 07:46:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:sender:subject
+ :subject:to:to; s=fm2; t=1667825159; x=1667832359; bh=aCBuDDCTfo
+ ZSnelYeWWd5jAjRGm3SKR/gWkf1WzFlvA=; b=fe7Qh9ENKhkuZt9/GPDNxJ2scx
+ spfqCPnmow5kVNVn7V2ZlyYoKqvXQnb5h25X/K6mxkPeTobwsbGdqUauJBjeXsEx
+ rTjZZoxdBoWYC9oG0wnuFbBRgAoo/Y7C243KlPg481Cy+LlCwB78WfBjm6eNFjgg
+ U+Ir/pdrUbm/OxyzaI22gfdkbc4ctncUR5FXTsqDvTZchDF5l5NNGgOjdEZ16YnN
+ tTZao2/Zw8vYM+j3omW0ZUQfaZtI+aoc6CPEFUQFSHdXmSKHAaZrfh4ZhDaU9Poz
+ /Qr4QCnghkjW7G3qtuR9dJwX2RmrQLmW7ntQBQJJThHI5Bmmo5NSrVtxoS4g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+ :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+ :mime-version:references:reply-to:sender:subject:subject:to:to
+ :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+ fm1; t=1667825159; x=1667832359; bh=aCBuDDCTfoZSnelYeWWd5jAjRGm3
+ SKR/gWkf1WzFlvA=; b=WDiQgo7382zLJ7uJNNFLZLHgcRrYTi04F+A1Z1aIm60d
+ IBxa39Lm0Y3HwsMbX45LSO5jr+II3UEjxpEqShWShLZgzAvnixfeJZVq07ZKkJWQ
+ Y23yt/ZUeLIhSdNYJd9d0nlj5yza1LGU6svN6VqOMaJvpGBrLVDXco/u3pmJi7at
+ m6WNMu+lUl6ovua3FyeL45ByNoue/i5/f9BBc9pa4BWxd5VsKhFj4cy80ssvIxin
+ WTnk4Uc6wxGcVcQ4CKnBxc+r/XlgYR2Si8S5xTvAKnwFuHpAtdovqdT/h5fA1U9D
+ 66yluk5/ZPl0/0nNbbAVHJOH8vMAm57K/3cSyCk19A==
+X-ME-Sender: <xms:B_5oYxkTIy0mUMSyflhpl-mdCCNyibVd3eazm0pZBLRP_rPNPov2Vw>
+ <xme:B_5oY82zGUwsWi7FzVvIMVn48Y1y3YBjkNcuzAo2t-nJTH-MdmZFEjn4etMl1wuw4
+ JV0ObuyEa0xCadNnb0>
+X-ME-Received: <xmr:B_5oY3oU2PyTUy9263HAMn28QauzhYHEhwEZOYdG2hkB3_T4762eKBGZFASoTCi0cYMfqOtiSO3l6_IXQnkbbd4u12T_i5uhX14-u3_3al9iug>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrvdekgdegfecutefuodetggdotefrodftvf
+ curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+ uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+ fjughrpeffhffvvefukfhfgggtuggjsehgtderredttddunecuhfhrohhmpeforgigihhm
+ vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+ htvghrnhepjeevfeehfeekieffgeevleevtefgffefkedtfeeuhfettdegjeehgfegudff
+ ffdunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
+ grgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:B_5oYxnAwbs-rpo9JxYvy04EEIaYKD_7caxej8M_yUIO41NUaNyywg>
+ <xmx:B_5oY_0EZQVwlGHQNt4aZsSAPHDFLo9A_TY5aX1zYiwMKX0QEvt5kA>
+ <xmx:B_5oYwsKoY7uH4jol05JvJcq3VW9Jm8-yuMzJEbFUYWimjlAWdp2sA>
+ <xmx:B_5oY_WpqNFwAF1Lpco9OJA9gAHe8906jiN45KaADSPPMNpCq-06s6BhuSc>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 7 Nov 2022 07:45:58 -0500 (EST)
+Date: Mon, 7 Nov 2022 13:45:56 +0100
+From: Maxime Ripard <maxime@cerno.tech>
+To: Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>
+Message-ID: <20221107124556.nu6brodxdolh36w2@houat>
+References: <20220728-rpi-analog-tv-properties-v6-0-e7792734108f@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v6-16-e7792734108f@cerno.tech>
+ <842076aa-8d7c-96d6-ba46-d0e66dacd2df@tronnes.org>
+ <20221107102126.klxrvfe34e6uriyx@houat>
+ <813ebf68-a7f4-441f-d0d6-f63fd923a479@tronnes.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t] tests/i915/gem_mmap_offset: use cpu_size
- in always_clear
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="ottaxywmq5yqznvz"
+Content-Disposition: inline
+In-Reply-To: <813ebf68-a7f4-441f-d0d6-f63fd923a479@tronnes.org>
+Subject: Re: [Intel-gfx] [PATCH v6 16/23] drm/probe-helper: Provide a TV
+ get_modes helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,37 +87,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
+ Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
+ linux-sunxi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-arm-kernel@lists.infradead.org,
+ Dom Cobley <dom@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
+ Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If we can't fit the buffer in the CPU visible portion of lmem, then the
-kernel will be unable to migrate the pages on fault on small-bar
-systems.  Note that this doesn't restrict where the pages are allocated,
-but should just ensure we don't SIGBUS, if we need to migrate the pages.
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/7382
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-Cc: Nirmoy Das <nirmoy.das@intel.com>
----
- tests/i915/gem_mmap_offset.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--ottaxywmq5yqznvz
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/tests/i915/gem_mmap_offset.c b/tests/i915/gem_mmap_offset.c
-index 0adeb0b5..b27920de 100644
---- a/tests/i915/gem_mmap_offset.c
-+++ b/tests/i915/gem_mmap_offset.c
-@@ -750,7 +750,7 @@ static void always_clear(int i915, const struct gem_memory_region *r, int timeou
- 	struct thread_clear arg = {
- 		.i915 = i915,
- 		.region = r->ci,
--		.max = r->size / 2 >> 12, /* in pages */
-+		.max = r->cpu_size / 2 >> 12, /* in pages */
- 		.timeout = timeout,
- 	};
- 	const int ncpus = sysconf(_SC_NPROCESSORS_ONLN);
--- 
-2.38.1
+On Mon, Nov 07, 2022 at 12:29:28PM +0100, Noralf Tr=F8nnes wrote:
+>=20
+>=20
+> Den 07.11.2022 11.21, skrev Maxime Ripard:
+> > Hi Noralf,
+> >=20
+> > I'll leave aside your comments on the code, since we'll use your implem=
+entation.
+> >=20
+> > On Sun, Nov 06, 2022 at 05:33:48PM +0100, Noralf Tr=F8nnes wrote:
+> >> Den 26.10.2022 17.33, skrev maxime@cerno.tech:
+> >>> +
+> >>> +	if (cmdline->tv_mode_specified)
+> >>> +		default_mode =3D cmdline->tv_mode;
+> >>
+> >> I realised that we don't verify tv_mode coming from the command line,
+> >> not here and not in the reset helper. Should we do that? A driver shou=
+ld
+> >> be programmed defensively to handle an illegal/unsupported value, but =
+it
+> >> doesn't feel right to allow an illegal enum value coming through the
+> >> core/helpers.
+> >=20
+> > I don't think we can end up with an invalid value here if it's been
+> > specified.
+> >=20
+> > We parse the command line through drm_mode_parse_tv_mode() (introduced
+> > in patch 13 "drm/modes: Introduce the tv_mode property as a command-line
+> > option") that will pick the tv mode part of the command line, and call
+> > drm_get_tv_mode_from_name() using it.
+> >=20
+> > drm_get_tv_mode_from_name() will return a EINVAL if it's not a value we
+> > expect, and mode->tv_mode is only set on success. And AFAIK, there's no
+> > other path that will set tv_mode.
+> >=20
+>=20
+> I see now that illegal was the wrong word, but if the driver only
+> supports ntsc, the user can still set tv_mode=3DPAL right? And that's an
+> unsupported value that the driver can't fulfill, so it errors out. But
+> then again maybe that's just how it is, we can also set a display mode
+> that the driver can't handle, so this is no different in that respect.
+> Yeah, my argument lost some of its strength here :)
 
+I don't think we can handle this better, really. Falling back to NTSC in
+that case would really be a stretch: it's a different mode, with a
+different TV mode, etc.
+
+It's an even bigger stretch than picking another mode I guess, and like
+you said we're not doing that if the mode isn't supported
+
+Maxime
+
+--ottaxywmq5yqznvz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCY2j+BAAKCRDj7w1vZxhR
+xb/7AQCG07KDDgc9kKjA6n8S2OhuHBoykKN7GTSWoyw+kpRAagEAnEdqeUL2OIq4
+HN0taVCbFlrBNSZhsZTGM0XTfAsy6Qo=
+=S84X
+-----END PGP SIGNATURE-----
+
+--ottaxywmq5yqznvz--
