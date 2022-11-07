@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD2D361FEE0
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 20:46:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 882A261FEDF
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 20:46:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BED9610E3F1;
-	Mon,  7 Nov 2022 19:46:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6002010E3E9;
+	Mon,  7 Nov 2022 19:46:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4638910E3E9
- for <intel-gfx@lists.freedesktop.org>; Mon,  7 Nov 2022 19:46:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8AC610E3E9
+ for <intel-gfx@lists.freedesktop.org>; Mon,  7 Nov 2022 19:46:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667850380; x=1699386380;
+ t=1667850381; x=1699386381;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=pCUuyRgSrtXm372nIHML2EBp/iPiZr+nxBbR5MxviZc=;
- b=RhNyHCbWVbKylRwOGiy5AkVOAXhANvFQ2kiII6btKhdV7P/qtKtEZFMi
- JVW+z1urz82usPBqkpFYE8As+2Kth2SdfGXCKX03u+1XLavgmuMmufyHH
- 28+tKFMWYR0N/KwdtqIgwUfs5KkgOtpLDVpfZgRiAm5a0xheYVsF8j0d3
- 4O8GPhHZ/XXL0OAm7hM7Wog1TQ+9Gn3FLwbmzZpaZZAcV2jMyo09xm4cd
- veGC+0UJR0ZOGPpbpCuiLSamlzd599PAhQl8PXV5BR+3iRsTW3q5b5dhb
- viD5Zy8Nq03/9jZNb3neQYmqPql0DzOtj/vc77c0O2dvL58Z+xzxqpapg Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="337229188"
-X-IronPort-AV: E=Sophos;i="5.96,145,1665471600"; d="scan'208";a="337229188"
+ bh=0CYkICSEQAea4HaM2RFrvgs8MQU1dxd56rh3LJjT/xU=;
+ b=fkk6c3WjHZQrbHDzLfU1KUHzIApMVJ9kfPVGW34wyHbGPuCA34oQoBz6
+ Kh6nkvIb+MNAVV0n9alubsM7Z+beQYvbiB6BCEcq7Hsf66J+RNwSc9FLI
+ cuTggRimSuSGoiPGXdO54DJywVSBLIkEyP3KSSU/575Whf73EOF2hf1ov
+ jTijjkIa7Q41p/z76o+yggr38ifa1g4HGd26VsiI6YphLQs9Agpt5N4A4
+ gu+CrvUcS0220GPRS4HxdqJoEeHnGrjxRaGU2ZlwM1XEJ1YCfpdjIPXw5
+ 4dF6CnYiYqdy9w7kAiGPuT65pyXLWReG+Ps3KLIYU5/s/TGpcXuTxEToH A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="337229201"
+X-IronPort-AV: E=Sophos;i="5.96,145,1665471600"; d="scan'208";a="337229201"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2022 11:46:18 -0800
+ 07 Nov 2022 11:46:21 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="965296810"
-X-IronPort-AV: E=Sophos;i="5.96,145,1665471600"; d="scan'208";a="965296810"
+X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="965296842"
+X-IronPort-AV: E=Sophos;i="5.96,145,1665471600"; d="scan'208";a="965296842"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga005.fm.intel.com with SMTP; 07 Nov 2022 11:46:16 -0800
+ by fmsmga005.fm.intel.com with SMTP; 07 Nov 2022 11:46:19 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 07 Nov 2022 21:46:16 +0200
+ Mon, 07 Nov 2022 21:46:19 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  7 Nov 2022 21:46:03 +0200
-Message-Id: <20221107194604.15227-5-ville.syrjala@linux.intel.com>
+Date: Mon,  7 Nov 2022 21:46:04 +0200
+Message-Id: <20221107194604.15227-6-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.37.4
 In-Reply-To: <20221107194604.15227-1-ville.syrjala@linux.intel.com>
 References: <20221107194604.15227-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/5] drm/i915: Move has_hdmi_sink out from
- intel_hdmi_compute_config()
+Subject: [Intel-gfx] [PATCH 5/5] drm/i915: Pick one HDMI port for
+ infoframe/audio transmission on g4x
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,98 +65,232 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-We'll be wanting to compute has_hdmi_sink a bit differently
-for some platforms. To that end compute it in the encoder
-.compute_config_hook() before we call intel_hdmi_compute_config().
-intel_hdmi_compute_has_hdmi_sink() will do the basic lifting
-beyond any platform specific stuff.
+On g4x the hardware has only one audio/video DIP block. Thus
+only one HDMI port can transmit audio/infoframes at a time.
+Currently we pretend that multiple ports can do it at the same
+time, but that doesn't actually work for two reasons:
+- the state of the single hw block will get clobbered by
+  the multiple ports, leading to state checker failures
+- the hardware will automagically disable audio/infoframe
+  transmission when enabled on multiple ports
+
+To fix this let's allow only one of the ports to transmit
+audio/infoframes at a time. We'll just go over all the HDMI
+ports and pick the first one that is otherwise capable of
+audio/infoframes. Further HDMI ports will be treated as if
+they had a DVI sink connected.
+
+In order to compute this consistently we'll also need to
+always add all HDMI ports to the atomic state.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/g4x_hdmi.c   |  3 +++
- drivers/gpu/drm/i915/display/intel_ddi.c  |  3 +++
- drivers/gpu/drm/i915/display/intel_hdmi.c | 14 ++++++++++----
- drivers/gpu/drm/i915/display/intel_hdmi.h |  3 +++
- 4 files changed, 19 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/g4x_hdmi.c   | 114 +++++++++++++++++++++-
+ drivers/gpu/drm/i915/display/g4x_hdmi.h   |   4 +
+ drivers/gpu/drm/i915/display/intel_hdmi.c |  14 ++-
+ 3 files changed, 129 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.c b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-index 3d09359d7337..fd23aa03cdc4 100644
+index fd23aa03cdc4..28d477d7c7e3 100644
 --- a/drivers/gpu/drm/i915/display/g4x_hdmi.c
 +++ b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-@@ -87,6 +87,9 @@ static int g4x_hdmi_compute_config(struct intel_encoder *encoder,
+@@ -6,6 +6,7 @@
+  */
+ 
+ #include "g4x_hdmi.h"
++#include "intel_atomic.h"
+ #include "intel_audio.h"
+ #include "intel_connector.h"
+ #include "intel_crtc.h"
+@@ -78,17 +79,66 @@ static bool intel_hdmi_get_hw_state(struct intel_encoder *encoder,
+ 	return ret;
+ }
+ 
++static bool connector_is_hdmi(struct drm_connector *connector)
++{
++	struct intel_encoder *encoder =
++		intel_attached_encoder(to_intel_connector(connector));
++
++	return encoder && encoder->type == INTEL_OUTPUT_HDMI;
++}
++
++static bool g4x_compute_has_hdmi_sink(struct intel_atomic_state *state,
++				      struct intel_crtc *this_crtc)
++{
++	const struct drm_connector_state *conn_state;
++	struct drm_connector *connector;
++	int i;
++
++	/*
++	 * On g4x only one HDMI port can transmit infoframes/audio at
++	 * any given time. Select the first suitable port for this duty.
++	 *
++	 * See also g4x_hdmi_connector_atomic_check().
++	 */
++	for_each_new_connector_in_state(&state->base, connector, conn_state, i) {
++		struct intel_encoder *encoder = to_intel_encoder(conn_state->best_encoder);
++		const struct intel_crtc_state *crtc_state;
++		struct intel_crtc *crtc;
++
++		if (!connector_is_hdmi(connector))
++			continue;
++
++		crtc = to_intel_crtc(conn_state->crtc);
++		if (!crtc)
++			continue;
++
++		crtc_state = intel_atomic_get_new_crtc_state(state, crtc);
++
++		if (!intel_hdmi_compute_has_hdmi_sink(encoder, crtc_state, conn_state))
++			continue;
++
++		return crtc == this_crtc;
++	}
++
++	return false;
++}
++
+ static int g4x_hdmi_compute_config(struct intel_encoder *encoder,
+ 				   struct intel_crtc_state *crtc_state,
+ 				   struct drm_connector_state *conn_state)
+ {
++	struct intel_atomic_state *state = to_intel_atomic_state(crtc_state->uapi.state);
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+ 
  	if (HAS_PCH_SPLIT(i915))
  		crtc_state->has_pch_encoder = true;
  
-+	crtc_state->has_hdmi_sink =
-+		intel_hdmi_compute_has_hdmi_sink(encoder, crtc_state, conn_state);
-+
+-	crtc_state->has_hdmi_sink =
+-		intel_hdmi_compute_has_hdmi_sink(encoder, crtc_state, conn_state);
++	if (IS_G4X(i915))
++		crtc_state->has_hdmi_sink = g4x_compute_has_hdmi_sink(state, crtc);
++	else
++		crtc_state->has_hdmi_sink =
++			intel_hdmi_compute_has_hdmi_sink(encoder, crtc_state, conn_state);
+ 
  	return intel_hdmi_compute_config(encoder, crtc_state, conn_state);
  }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index e95bde5cf060..5ebfbe7b81b4 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3638,6 +3638,9 @@ static int intel_ddi_compute_config(struct intel_encoder *encoder,
- 		pipe_config->cpu_transcoder = TRANSCODER_EDP;
- 
- 	if (intel_crtc_has_type(pipe_config, INTEL_OUTPUT_HDMI)) {
-+		pipe_config->has_hdmi_sink =
-+			intel_hdmi_compute_has_hdmi_sink(encoder, pipe_config, conn_state);
-+
- 		ret = intel_hdmi_compute_config(encoder, pipe_config, conn_state);
- 	} else {
- 		ret = intel_dp_compute_config(encoder, pipe_config, conn_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 31927f8238d1..2425a9f59b90 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -2237,11 +2237,20 @@ static bool intel_hdmi_is_cloned(const struct intel_crtc_state *crtc_state)
- 		!is_power_of_2(crtc_state->uapi.encoder_mask);
+@@ -532,6 +582,66 @@ intel_hdmi_hotplug(struct intel_encoder *encoder,
+ 	return state;
  }
  
-+bool intel_hdmi_compute_has_hdmi_sink(struct intel_encoder *encoder,
-+				      const struct intel_crtc_state *crtc_state,
-+				      const struct drm_connector_state *conn_state)
++int g4x_hdmi_connector_atomic_check(struct drm_connector *connector,
++				    struct drm_atomic_state *state)
 +{
-+	struct intel_hdmi *hdmi = enc_to_intel_hdmi(encoder);
++	struct drm_i915_private *i915 = to_i915(state->dev);
++	struct drm_connector_list_iter conn_iter;
++	struct drm_connector *conn;
++	int ret;
 +
-+	return intel_has_hdmi_sink(hdmi, conn_state) &&
-+		!intel_hdmi_is_cloned(crtc_state);
++	ret = intel_digital_connector_atomic_check(connector, state);
++	if (ret)
++		return ret;
++
++	if (!IS_G4X(i915))
++		return 0;
++
++	if (!intel_connector_needs_modeset(to_intel_atomic_state(state), connector))
++		return 0;
++
++	/*
++	 * On g4x only one HDMI port can transmit infoframes/audio
++	 * at any given time. Make sure all enabled HDMI ports are
++	 * included in the state so that it's possible to select
++	 * one of them for this duty.
++	 *
++	 * See also g4x_compute_has_hdmi_sink().
++	 */
++	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
++	drm_for_each_connector_iter(conn, &conn_iter) {
++		struct drm_connector_state *conn_state;
++		struct drm_crtc_state *crtc_state;
++		struct drm_crtc *crtc;
++
++		if (!connector_is_hdmi(conn))
++			continue;
++
++		drm_dbg_kms(&i915->drm, "Adding [CONNECTOR:%d:%s]\n",
++			    conn->base.id, conn->name);
++
++		conn_state = drm_atomic_get_connector_state(state, conn);
++		if (IS_ERR(conn_state)) {
++			ret = PTR_ERR(conn_state);
++			break;
++		}
++
++		crtc = conn_state->crtc;
++		if (!crtc)
++			continue;
++
++		crtc_state = drm_atomic_get_new_crtc_state(state, crtc);
++		crtc_state->mode_changed = true;
++
++		ret = drm_atomic_add_affected_planes(state, crtc);
++		if (ret)
++			break;
++	}
++	drm_connector_list_iter_end(&conn_iter);
++
++	return ret;
 +}
 +
- int intel_hdmi_compute_config(struct intel_encoder *encoder,
- 			      struct intel_crtc_state *pipe_config,
- 			      struct drm_connector_state *conn_state)
+ void g4x_hdmi_init(struct drm_i915_private *dev_priv,
+ 		   i915_reg_t hdmi_reg, enum port port)
  {
--	struct intel_hdmi *intel_hdmi = enc_to_intel_hdmi(encoder);
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
- 	struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
- 	struct drm_connector *connector = conn_state->connector;
-@@ -2252,9 +2261,6 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
- 		return -EINVAL;
+diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.h b/drivers/gpu/drm/i915/display/g4x_hdmi.h
+index db9a93bc9321..1e3ea7f3c846 100644
+--- a/drivers/gpu/drm/i915/display/g4x_hdmi.h
++++ b/drivers/gpu/drm/i915/display/g4x_hdmi.h
+@@ -11,9 +11,13 @@
+ #include "i915_reg_defs.h"
  
- 	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
--	pipe_config->has_hdmi_sink =
--		intel_has_hdmi_sink(intel_hdmi, conn_state) &&
--		!intel_hdmi_is_cloned(pipe_config);
+ enum port;
++struct drm_atomic_state;
++struct drm_connector;
+ struct drm_i915_private;
  
- 	if (pipe_config->has_hdmi_sink)
- 		pipe_config->has_infoframe = true;
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.h b/drivers/gpu/drm/i915/display/intel_hdmi.h
-index 774dda2376ed..dd08b4004c59 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.h
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.h
-@@ -23,6 +23,9 @@ union hdmi_infoframe;
+ void g4x_hdmi_init(struct drm_i915_private *dev_priv,
+ 		   i915_reg_t hdmi_reg, enum port port);
++int g4x_hdmi_connector_atomic_check(struct drm_connector *connector,
++				    struct drm_atomic_state *state);
  
- void intel_hdmi_init_connector(struct intel_digital_port *dig_port,
- 			       struct intel_connector *intel_connector);
-+bool intel_hdmi_compute_has_hdmi_sink(struct intel_encoder *encoder,
-+				      const struct intel_crtc_state *crtc_state,
-+				      const struct drm_connector_state *conn_state);
- int intel_hdmi_compute_config(struct intel_encoder *encoder,
- 			      struct intel_crtc_state *pipe_config,
- 			      struct drm_connector_state *conn_state);
+ #endif
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 2425a9f59b90..d93aab847548 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -40,6 +40,7 @@
+ #include <drm/drm_edid.h>
+ #include <drm/intel_lpe_audio.h>
+ 
++#include "g4x_hdmi.h"
+ #include "i915_debugfs.h"
+ #include "i915_drv.h"
+ #include "intel_atomic.h"
+@@ -2590,10 +2591,21 @@ static const struct drm_connector_funcs intel_hdmi_connector_funcs = {
+ 	.atomic_duplicate_state = intel_digital_connector_duplicate_state,
+ };
+ 
++static int intel_hdmi_connector_atomic_check(struct drm_connector *connector,
++					     struct drm_atomic_state *state)
++{
++	struct drm_i915_private *i915 = to_i915(state->dev);
++
++	if (HAS_DDI(i915))
++		return intel_digital_connector_atomic_check(connector, state);
++	else
++		return g4x_hdmi_connector_atomic_check(connector, state);
++}
++
+ static const struct drm_connector_helper_funcs intel_hdmi_connector_helper_funcs = {
+ 	.get_modes = intel_hdmi_get_modes,
+ 	.mode_valid = intel_hdmi_mode_valid,
+-	.atomic_check = intel_digital_connector_atomic_check,
++	.atomic_check = intel_hdmi_connector_atomic_check,
+ };
+ 
+ static void
 -- 
 2.37.4
 
