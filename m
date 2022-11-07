@@ -2,78 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8700461EFF2
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 11:08:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD76361F00E
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Nov 2022 11:13:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3311210E2B9;
-	Mon,  7 Nov 2022 10:08:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8C4489CFA;
+	Mon,  7 Nov 2022 10:13:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wnew1-smtp.messagingengine.com (wnew1-smtp.messagingengine.com
- [64.147.123.26])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95F7B10E2BD;
- Mon,  7 Nov 2022 10:07:59 +0000 (UTC)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
- by mailnew.west.internal (Postfix) with ESMTP id 49D4E2B060A4;
- Mon,  7 Nov 2022 05:07:54 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute4.internal (MEProxy); Mon, 07 Nov 2022 05:07:59 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
- :message-id:mime-version:references:reply-to:sender:subject
- :subject:to:to; s=fm2; t=1667815673; x=1667822873; bh=H188XHf92e
- tTDREXnb/OEU+uV1P6JQ1CLPf/Yjdde+M=; b=gEu++7F4AOlflnhqJ5+fnbojCK
- nkwxbyG1C9qowPqmGKvGXMfSnZd6Na5Cv9NZc9vFSXozr0ESux2jCMak+G2yFE8v
- MRzjga1u5opjXxwqvSqZfjde5PoujC57ardG3mpdwwQDOxZxwc64AY90SeESm1vN
- 4gE+nXkcGGxEbSLlyJ731jwgbcpXqQuvjgJub0eB8pwqZAiinUtQ8f2iJmdkVCE4
- BIxqpv/330HO8THURUc28ZD79L+iHrB19SHbRInPdsvoaHzVbq1AYHReSZLLVc9M
- KbAB4lzMj2Gmvu/WoqVnAECku015lEjiIwihD8aGuOvH5wanb/d+Ca+VWDtQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
- :feedback-id:from:from:in-reply-to:in-reply-to:message-id
- :mime-version:references:reply-to:sender:subject:subject:to:to
- :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm1; t=1667815673; x=1667822873; bh=H188XHf92etTDREXnb/OEU+uV1P6
- JQ1CLPf/Yjdde+M=; b=GPwBvSEh+VbRha1ATDffxsUxKJoKHXR0U4/4a72EmZ8m
- cvfOAdBBsFYfn1A+CaJfX0/fipVj7UC9aX9mz+sNlvWy8wC1e31MTWnviAeODQGa
- EUeHf0O2qXXPjiczR42LfsVeOc6+g3odf0RnzSFQvyG6nNKS8sJAaK9VMrrN7rg1
- +Gm10gYCJVRLDhFQ9+9nsv1bfInv6kJ0jwf9x44kiYI8V4zI7Rl4fZYTT6LqFhDK
- emDylnIlbdMhmhT7jsKRpb97XHqH/xiaujF1mXFbix4zBDhEveG4Dm2phwDSx5TL
- vVEot2nZ2gCC9DfW3n9JGnhQfOqxTr/8e4RSE7WL5g==
-X-ME-Sender: <xms:-dhoYyARoCxVJrmtEvIS0_FmWfcCThrM8hWD7_kymH-uoy_vWS0xhA>
- <xme:-dhoY8gmAKHH-2SJ6SQcrQN2P971eTRB37opBZnb46FC8CqkapUP0iRX9igmmnE45
- nR529tZDD9KsccHerI>
-X-ME-Received: <xmr:-dhoY1mLqNcrIR-iY8kn8Sr3xavRV6VyoQE8T8hOFtWm9p4ZwNrBovAe4WksBtEk5rK8s0jJIg_kKmqp6DtLKnZ_Az0m44nEenLBfbtGmL-xOA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrvdekgdduudcutefuodetggdotefrodftvf
- curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
- uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
- fjughrpeffhffvvefukfhfgggtuggjsehgtderredttddunecuhfhrohhmpeforgigihhm
- vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
- htvghrnhepjeevfeehfeekieffgeevleevtefgffefkedtfeeuhfettdegjeehgfegudff
- ffdunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
- grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:-dhoYwy35CgOY1mfusEKLuDywIwMdZh4S1RlyqVfAtfVe6RM4Do_Pw>
- <xmx:-dhoY3R8KkmhZLS8NSi4YHFEoTKBj8jDEQBwbtgdE0hbV4S6VmumWg>
- <xmx:-dhoY7bRvSYaXa8ZhULjpaGyHJFHKsxu144f2Aml4Vu43uds7EFUSQ>
- <xmx:-dhoY_yGyPAWT16mttzlT_5aevro2ZdJyAl9T3TVozzrbs9R5OR_wQNfK0g>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 7 Nov 2022 05:07:52 -0500 (EST)
-Date: Mon, 7 Nov 2022 11:07:51 +0100
-From: Maxime Ripard <maxime@cerno.tech>
-To: Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>
-Message-ID: <20221107100751.neijajfrazxloldp@houat>
-References: <20220728-rpi-analog-tv-properties-v6-0-e7792734108f@cerno.tech>
- <20220728-rpi-analog-tv-properties-v6-16-e7792734108f@cerno.tech>
- <8d0eee22-50f5-5b0a-c1e6-c5f61dd5bbcd@gmail.com>
- <eb485588-2e7a-8455-7ec4-6a9649d2bef8@tronnes.org>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2105489CFA
+ for <intel-gfx@lists.freedesktop.org>; Mon,  7 Nov 2022 10:13:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1667816029; x=1699352029;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=G7uXOfMTFqRWty4tb410EiX89iv0FYLUYwpxBzNGFzU=;
+ b=SiWZ+VLocn/+GZK7ZC9N1bz7BC0GqxCWad1J8/yLPtFjJwfuy3ZLqhTG
+ xgWXn2aXral/ZxtK99xhd/wt2ND1OWB+YY0JGSyU02kIjhO/oPKIhbxfZ
+ xnH11dsTvnqm2/L4rkTbEn2WUhfwt9+U5cPYHIi1avjdMpVINM5xFRVbt
+ y/n1+SC2vEDpTrhq/KFaJiuK+u/37yQwTrG9q1eMEhiRGxwrc7QN7V0ow
+ EGEu9P/ErxC4RNzhsXwKXCixIHCJ5+ocxNyKIH7dhNbqhdGLcPfFI/S15
+ HRqHzvwsSPR60RMpUVIFI78iAQQCR8CZ6bsI9sLNKlgcmkhwvjdbKFM5o g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10523"; a="290100855"
+X-IronPort-AV: E=Sophos;i="5.96,143,1665471600"; d="scan'208";a="290100855"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2022 02:13:48 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10523"; a="881013113"
+X-IronPort-AV: E=Sophos;i="5.96,143,1665471600"; d="scan'208";a="881013113"
+Received: from aalbarra-mobl.ger.corp.intel.com (HELO [10.213.226.227])
+ ([10.213.226.227])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2022 02:13:47 -0800
+Message-ID: <a6daeb51-8552-9f26-94c0-425ae1e24077@linux.intel.com>
+Date: Mon, 7 Nov 2022 10:13:46 +0000
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="gnrypjdevshxh5ih"
-Content-Disposition: inline
-In-Reply-To: <eb485588-2e7a-8455-7ec4-6a9649d2bef8@tronnes.org>
-Subject: Re: [Intel-gfx] [PATCH v6 16/23] drm/probe-helper: Provide a TV
- get_modes helper
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Content-Language: en-US
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20221105003235.1717908-1-umesh.nerlige.ramappa@intel.com>
+ <20221105003235.1717908-2-umesh.nerlige.ramappa@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20221105003235.1717908-2-umesh.nerlige.ramappa@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 1/2] i915/uncore: Acquire fw before loop in
+ intel_uncore_read64_2x32
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,69 +64,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
- Samuel Holland <samuel@sholland.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
- linux-sunxi@lists.linux.dev, Mateusz Kwiatkowski <kfyatek@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- Hans de Goede <hdegoede@redhat.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- linux-arm-kernel@lists.infradead.org, Dom Cobley <dom@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
- Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
---gnrypjdevshxh5ih
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 05/11/2022 00:32, Umesh Nerlige Ramappa wrote:
+> PMU reads the GT timestamp as a 2x32 mmio read and since upper and lower
+> 32 bit registers are read in a loop, there is a latency involved between
+> getting the GT timestamp and the CPU timestamp. As part of the
+> resolution, refactor intel_uncore_read64_2x32 to acquire forcewake and
+> uncore lock prior to reading upper and lower regs.
+> 
+> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+> ---
+>   drivers/gpu/drm/i915/intel_uncore.h | 44 ++++++++++++++++++++---------
+>   1 file changed, 30 insertions(+), 14 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/intel_uncore.h b/drivers/gpu/drm/i915/intel_uncore.h
+> index 5449146a0624..e9e38490815d 100644
+> --- a/drivers/gpu/drm/i915/intel_uncore.h
+> +++ b/drivers/gpu/drm/i915/intel_uncore.h
+> @@ -382,20 +382,6 @@ __uncore_write(write_notrace, 32, l, false)
+>    */
+>   __uncore_read(read64, 64, q, true)
+>   
+> -static inline u64
+> -intel_uncore_read64_2x32(struct intel_uncore *uncore,
+> -			 i915_reg_t lower_reg, i915_reg_t upper_reg)
+> -{
+> -	u32 upper, lower, old_upper, loop = 0;
+> -	upper = intel_uncore_read(uncore, upper_reg);
+> -	do {
+> -		old_upper = upper;
+> -		lower = intel_uncore_read(uncore, lower_reg);
+> -		upper = intel_uncore_read(uncore, upper_reg);
+> -	} while (upper != old_upper && loop++ < 2);
+> -	return (u64)upper << 32 | lower;
+> -}
+> -
+>   #define intel_uncore_posting_read(...) ((void)intel_uncore_read_notrace(__VA_ARGS__))
+>   #define intel_uncore_posting_read16(...) ((void)intel_uncore_read16_notrace(__VA_ARGS__))
+>   
+> @@ -455,6 +441,36 @@ static inline void intel_uncore_rmw_fw(struct intel_uncore *uncore,
+>   		intel_uncore_write_fw(uncore, reg, val);
+>   }
+>   
+> +static inline u64
+> +intel_uncore_read64_2x32(struct intel_uncore *uncore,
+> +			 i915_reg_t lower_reg, i915_reg_t upper_reg)
+> +{
+> +	u32 upper, lower, old_upper, loop = 0;
+> +	enum forcewake_domains fw_domains;
+> +	unsigned long flags;
+> +
+> +	fw_domains = intel_uncore_forcewake_for_reg(uncore, lower_reg,
+> +						    FW_REG_READ);
+> +
+> +	fw_domains |= intel_uncore_forcewake_for_reg(uncore, upper_reg,
+> +						    FW_REG_READ);
+> +
+> +	spin_lock_irqsave(&uncore->lock, flags);
+> +	intel_uncore_forcewake_get__locked(uncore, fw_domains);
+> +
+> +	upper = intel_uncore_read_fw(uncore, upper_reg);
+> +	do {
+> +		old_upper = upper;
+> +		lower = intel_uncore_read_fw(uncore, lower_reg);
+> +		upper = intel_uncore_read_fw(uncore, upper_reg);
+> +	} while (upper != old_upper && loop++ < 2);
+> +
+> +	intel_uncore_forcewake_put__locked(uncore, fw_domains);
 
-Hi Noralf,
+I mulled over the fact this no longer applies the put hysteresis, but 
+then I saw GuC busyness is essentially the only current caller so 
+thought it doesn't really warrant adding a super long named 
+intel_uncore_forcewake_put_delayed__locked helper.
 
-On Sun, Nov 06, 2022 at 05:59:23PM +0100, Noralf Tr=F8nnes wrote:
->=20
->=20
-> Den 27.10.2022 00.02, skrev Mateusz Kwiatkowski:
-> > Hi Maxime,
-> >=20
-> > First of all, nice idea with the helper function that can be reused by =
-different
-> > drivers. This is neat!
-> >=20
-> > But looking at this function, it feels a bit overcomplicated. You're cr=
-eating
-> > the two modes, then checking which one is the default, then set the pre=
-ferred
-> > one and possibly reorder them. Maybe it can be simplified somehow?
-> >=20
-> > Although when I tried to refactor it myself, I ended up with something =
-that's
-> > not better at all. Maybe it needs to be complicated, after all :(
-> >=20
->=20
-> I also thought that the function was complicated/difficult to read, in
-> particular the index stuff at the end, but I also failed in finding a
-> "better" solution, just a different one ;)
+Perhaps it would make sense to move this out of static inline, in which 
+case it would also be easier to have the hysteresis without needing to 
+export any new helpers, but mostly because it does not feel the static 
+inline is justified. Sounds an attractive option but it is passable as is.
 
-I think I like yours better still :)
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Can I bring it into my series, with your authorship and SoB?
+Regards,
 
-Maxime
+Tvrtko
 
---gnrypjdevshxh5ih
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCY2jY9wAKCRDj7w1vZxhR
-xQwNAP4m8wqBDbHwkCGeLkJY5dnG5iYXcSUpkoA/Zr4bM1OOTgD/fQIl3YCLdhl3
-wENLHmgU8SYR+x7PQD/yXPYL48w/Cgk=
-=0OBV
------END PGP SIGNATURE-----
-
---gnrypjdevshxh5ih--
+> +	spin_unlock_irqrestore(&uncore->lock, flags);
+> +
+> +	return (u64)upper << 32 | lower;
+> +}
+> +
+>   static inline int intel_uncore_write_and_verify(struct intel_uncore *uncore,
+>   						i915_reg_t reg, u32 val,
+>   						u32 mask, u32 expected_val)
