@@ -1,51 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB964620B93
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Nov 2022 09:54:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D7F8620BAD
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Nov 2022 10:01:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A03D10E24A;
-	Tue,  8 Nov 2022 08:54:29 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CE1E10E25E
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Nov 2022 08:54:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9C5510E253;
+	Tue,  8 Nov 2022 09:01:32 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D5B010E24A;
+ Tue,  8 Nov 2022 09:01:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667897666; x=1699433666;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=3NTwSxaCpMR30+RcS3YjvXuDm+FaGI59944Fogm/Lo8=;
- b=DyiGDh+pH5XjcirqZDbtOVAXBXkbsa/eXmkJ3OEa9XKrLYQAEfDUQ6cm
- rT/YbiUOHDMkMXr+Aa94FCHsbofM+T4qBYJa20JjeVKq3CJKw+yatnjt7
- PQmrtJ+eshXtk3um3TkljnWmQBScn5Am1xonwY0rYC9CZQMhFCx9WUkmn
- dmOR/ll/hz0DacCPkxiWKZQH+Gdur4/65QscvK18CknL6Uiz7Zx+JOhi/
- Gr5gQs20Md+jnZLcflCvxxeVwVz52NL0RFpNAH/wt5kboIgXYtxm1cPly
- 9M49Ax1ASr/iBY4nrtsXZJqgbT2YiKveiv9UUEDWkbwNPTqQH35fTU9E7 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="309353899"
-X-IronPort-AV: E=Sophos;i="5.96,147,1665471600"; d="scan'208";a="309353899"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2022 00:54:25 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="636262778"
-X-IronPort-AV: E=Sophos;i="5.96,147,1665471600"; d="scan'208";a="636262778"
-Received: from smoriord-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.16.110])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2022 00:54:24 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20221107170917.3566758-2-imre.deak@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221107170917.3566758-1-imre.deak@intel.com>
- <20221107170917.3566758-2-imre.deak@intel.com>
-Date: Tue, 08 Nov 2022 10:54:21 +0200
-Message-ID: <87mt91aksi.fsf@intel.com>
+ t=1667898087; x=1699434087;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=LDg4ttmjksXo6Wl3ggZ1pyiHhPQqNPUx28DuE/CZzHo=;
+ b=e8Y5ceM0ULyMFufvX9L8kkm+60C/TpaV4gu9hlvrkeKEZIHKIdNnHAsc
+ QasNNdJHsdoC5Xfi0U9oVeZ3xuLOHSm+dUJKVxDCExr6dPYqiEfDWgdqJ
+ ekz2X4bOi5oA1IObbAM6DfXerhunyO26aUAZGas3Yn0Rqhfv5zBThWeog
+ WglQqQkuI1t3k5jmCwJYR5NEPyqfkDgtCn7RJ1MozyEci6hIY2Q1fLIMk
+ WD74q/vi/3bdSQAd8I8OXvH9o9bQeMMNc2fjK3Da9yCejjZmrJPMxbRaE
+ +lRpZqlYXwdCJajIUZkSkTxax3hCvrN76/aboKGDi+Oa0GEoQ2HRyHkHs A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="312436681"
+X-IronPort-AV: E=Sophos;i="5.96,147,1665471600"; d="scan'208";a="312436681"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Nov 2022 01:01:26 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="638720457"
+X-IronPort-AV: E=Sophos;i="5.96,147,1665471600"; d="scan'208";a="638720457"
+Received: from shylandx-mobl2.ger.corp.intel.com (HELO [10.213.210.50])
+ ([10.213.210.50])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Nov 2022 01:01:24 -0800
+Message-ID: <1ad6bce7-9626-afa6-d73e-6d8f7a9c4d2a@linux.intel.com>
+Date: Tue, 8 Nov 2022 09:01:22 +0000
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v2 1/9] drm/i915: Allocate power domain set
- wakerefs dynamically
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Content-Language: en-US
+To: John Harrison <john.c.harrison@intel.com>,
+ "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>,
+ Intel-GFX@Lists.FreeDesktop.Org
+References: <20221104172525.569913-1-John.C.Harrison@Intel.com>
+ <20221104172525.569913-2-John.C.Harrison@Intel.com>
+ <6a4d1ac0-a1a0-e1d4-7d83-54b43d226371@intel.com>
+ <fabaf9ee-f3fc-c18f-56b3-6d073618da41@linux.intel.com>
+ <82055e8f-9bee-2b03-3dce-dcf66c30c903@linux.intel.com>
+ <2583bccd-82fd-967a-aec9-e6d3837dbbed@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <2583bccd-82fd-967a-aec9-e6d3837dbbed@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/gt: Add GT oriented dmesg
+ output
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,206 +69,203 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: DRI-Devel@Lists.FreeDesktop.Org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 07 Nov 2022, Imre Deak <imre.deak@intel.com> wrote:
-> Since the intel_display_power_domain_set struct, currently its current
-> size close 1kB, can be allocated on the stack, it's better to allocate
-> the per-domain wakeref pointer array - used for debugging - within the
-> struct dynamically, so do this.
->
-> The memory freeing is guaranteed by the fact that the acquired domain
-> references tracked by struct can't be leaked either.
->
-> v2:
-> - Don't use fetch_and_zero() when freeing the wakerefs array. (Jani)
-> - Simplify intel_display_power_get/put_in_set(). (Jani)
-> - Check in intel_crtc_destroy() that the wakerefs array has been freed.
->
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_crtc.c     |  4 +
->  .../drm/i915/display/intel_display_power.c    | 95 +++++++++++++++----
->  .../drm/i915/display/intel_display_power.h    |  2 +-
->  3 files changed, 79 insertions(+), 22 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-> index 037fc140b585c..2c8d564e73182 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-> @@ -205,6 +205,10 @@ static void intel_crtc_destroy(struct drm_crtc *_crtc)
->  	cpu_latency_qos_remove_request(&crtc->vblank_pm_qos);
->  
->  	drm_crtc_cleanup(&crtc->base);
-> +
-> +#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
-> +	drm_WARN_ON(crtc->base.dev, crtc->enabled_power_domains.wakerefs);
-> +#endif
 
-Can we please not add this kind of asserts without abstractions? The
-#ifdef is ugly, looking at crtc->enabled_power_domains.wakerefs directly
-is ugly.
+On 07/11/2022 19:14, John Harrison wrote:
+> On 11/7/2022 08:17, Tvrtko Ursulin wrote:
+>> On 07/11/2022 09:33, Tvrtko Ursulin wrote:
+>>> On 05/11/2022 01:03, Ceraolo Spurio, Daniele wrote:
+>>>> On 11/4/2022 10:25 AM, John.C.Harrison@Intel.com wrote:
+>>>>> From: John Harrison <John.C.Harrison@Intel.com>
+>>>>>
+>>>>> When trying to analyse bug reports from CI, customers, etc. it can be
+>>>>> difficult to work out exactly what is happening on which GT in a
+>>>>> multi-GT system. So add GT oriented debug/error message wrappers. If
+>>>>> used instead of the drm_ equivalents, you get the same output but with
+>>>>> a GT# prefix on it.
+>>>>>
+>>>>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+>>>>
+>>>> The only downside to this is that we'll print "GT0: " even on 
+>>>> single-GT devices. We could introduce a gt->info.name and print 
+>>>> that, so we could have it different per-platform, but IMO it's not 
+>>>> worth the effort.
+>>>>
+>>>> Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>>>>
+>>>> I think it might be worth getting an ack from one of the maintainers 
+>>>> to make sure we're all aligned on transitioning to these new logging 
+>>>> macro for gt code.
+>>>
+>>> Idea is I think a very good one. First I would suggest standardising 
+>>> to lowercase GT in logs because:
+>>>
+>>> $ grep "GT%" i915/ -r
+>>> $ grep "gt%" i915/ -r
+>>> i915/gt/intel_gt_sysfs.c: gt->i915->sysfs_gt, "gt%d", gt->info.id))
+>>> i915/gt/intel_gt_sysfs.c:                "failed to initialize gt%d 
+>>> sysfs root\n", gt->info.id);
+>>> i915/gt/intel_gt_sysfs_pm.c:                     "failed to create 
+>>> gt%u RC6 sysfs files (%pe)\n",
+>>> i915/gt/intel_gt_sysfs_pm.c:                             "failed to 
+>>> create gt%u RC6p sysfs files (%pe)\n",
+>>> i915/gt/intel_gt_sysfs_pm.c:                     "failed to create 
+>>> gt%u RPS sysfs files (%pe)",
+>>> i915/gt/intel_gt_sysfs_pm.c:                     "failed to create 
+>>> gt%u punit_req_freq_mhz sysfs (%pe)",
+>>> i915/gt/intel_gt_sysfs_pm.c:                             "failed to 
+>>> create gt%u throttle sysfs files (%pe)",
+>>> i915/gt/intel_gt_sysfs_pm.c:                             "failed to 
+>>> create gt%u media_perf_power_attrs sysfs (%pe)\n",
+>>> i915/gt/intel_gt_sysfs_pm.c:                     "failed to add gt%u 
+>>> rps defaults (%pe)\n",
+>>> i915/i915_driver.c: drm_err(&gt->i915->drm, "gt%d: intel_pcode_init 
+>>> failed %d\n", id, ret);
+>>> i915/i915_hwmon.c:              snprintf(ddat_gt->name, 
+>>> sizeof(ddat_gt->name), "i915_gt%u", i);
+>>>
+> 
+> Just because there are 11 existing instances of one form doesn't mean 
+> that the 275 instances that are waiting to be converted should be done 
+> incorrectly. GT is an acronym and should be capitalised.
 
-Maybe add an assert_something_or_other(crtc) that does the right thing?
-Similar to the other assert_*() functions we have?
+Okay just make it consistent then.
 
-Does it even need to depend on the config? If it's worth having, maybe
-worth having unconditionally?
+> Besides:
+> grep -r "GT " i915 | grep '"'
+> i915/vlv_suspend.c:             drm_err(&i915->drm, "timeout disabling 
+> GT waking\n");
+> i915/vlv_suspend.c:                     "timeout waiting for GT wells to 
+> go %s\n",
+> i915/vlv_suspend.c:     drm_dbg(&i915->drm, "GT register access while GT 
+> waking disabled\n");
+> i915/i915_gpu_error.c:  err_printf(m, "GT awake: %s\n", 
+> str_yes_no(gt->awake));
+> i915/i915_debugfs.c:    seq_printf(m, "GT awake? %s [%d], %llums\n",
+> i915/selftests/i915_gem_evict.c: pr_err("Failed to idle GT (on %s)", 
+> engine->name);
+> i915/intel_uncore.c:                  "GT thread status wait timed out\n");
+> i915/gt/uc/selftest_guc_multi_lrc.c: drm_err(&gt->i915->drm, "GT failed 
+> to idle: %d\n", ret);
+> i915/gt/uc/selftest_guc.c: drm_err(&gt->i915->drm, "GT failed to idle: 
+> %d\n", ret);
+> i915/gt/uc/selftest_guc.c: drm_err(&gt->i915->drm, "GT failed to idle: 
+> %d\n", ret);
+> i915/gt/intel_gt_mcr.c: * Some GT registers are designed as "multicast" 
+> or "replicated" registers:
+> i915/gt/selftest_rps.c:                 pr_info("%s: rps counted %d C0 
+> cycles [%lldns] in %lldns [%d cycles], using GT clock frequency of 
+> %uKHz\n",
+> i915/gt/selftest_hangcheck.c:                   pr_err("[%s] GT is 
+> wedged!\n", engine->name);
+> i915/gt/selftest_hangcheck.c:           pr_err("GT is wedged!\n");
+> i915/gt/intel_gt_clock_utils.c:                 "GT clock frequency 
+> changed, was %uHz, now %uHz!\n",
+> i915/gt/selftest_engine_pm.c:           pr_err("Unable to flush GT pm 
+> before test\n");
+> i915/gt/selftest_engine_pm.c:                           pr_err("GT 
+> failed to idle\n");
+> i915/i915_sysfs.c:                       "failed to register GT sysfs 
+> directory\n");
+> i915/intel_uncore.h:     * of the basic non-engine GT registers 
+> (referred to as "GSI" on
+> i915/intel_uncore.h:     * newer platforms, or "GT block" on older 
+> platforms)?  If so, we'll
+> 
+> 
+> 
+>>> Then there is a question of naming. Are we okay with GT_XXX or, do we 
+>>> want intel_gt_, or something completely different. I don't have a 
+>>> strong opinion at the moment so I'll add some more folks to Cc.
+>>
+> You mean GT_ERR("msg") vs intel_gt_err("msg")? Personally, I would 
+> prefer just gt_err("msg") to keep it as close to the official drm_* 
+> versions as possible. Print lines tend to be excessively long already. 
+> Taking a 'gt' parameter instead of a '&gt->i915->drm' parameter does 
+> help with that but it seems like calling the wrapper intel_gt_* is 
+> shooting ourselves in the foot on that one. And GT_ERR vs gt_err just 
+> comes down to the fact that it is a macro wrapper and therefore is 
+> required to be in upper case.
+> 
+>> There was a maintainer level mini-discussion on this topic which I 
+>> will try to summarise.
+>>
+>> Main contention point was the maintenance cost and generally an 
+>> undesirable pattern of needing to add many 
+>> subsystem/component/directory specific macros. Which then typically 
+>> need extra flavours and so on. But over verbosity of the 
+> How many versions are you expecting to add? Beyond the tile instance, 
+> what further addressing requirements are there? The card instance is 
+> already printed as part of the PCI address. The only other reason to add 
+> per component wrappers would be to wrap the mechanism for getting from 
+> some random per component object back to the intel_gt structure. But 
+> that is hardware a new issue being added by this wrapper. It is also not 
+> a requirement. Much of the code has a gt pointer already. For the parts 
+> that don't, some of it would be a trivial engine->gt type dereference, 
+> some of it is a more complex container_of type construction. But for 
+> those, the given file will already have multiple instances of that 
+> already (usually as the first or second line of the function - 'intel_gt 
+> *gt = fancy_access_method(my_obj)' so adding one or two more of those as 
+> necessary is not making the code harder to read.
+> 
+>> code is obviously also bad, so one compromise idea was to add a macro 
+>> which builds the GT string and use drm logging helpers directly. This 
+>> would be something like:
+>>
+>>  drm_err(GT_LOG("something went wrong ret=%d\n", gt), ret);
+>>  drm_info(GT_LOG(...same...));
+> Seriously? As above, some of these lines are already way too long, this 
+> version makes them even longer with no obvious benefit. Worse, it makes 
+> it harder to read what is going on. It is much less intuitive to read 
+> than just replacing the drm_err itself. And having two sets of 
+> parenthesis with some parameters inside the first and some only inside 
+> the second is really horrid! Also, putting the 'gt' parameter in the 
+> middle just confuses it with the rest of the printf arguments even 
+> though there is no %d in the string for it. So now a quick glances tells 
+> you that your code is wrong because you have three format specifiers but 
+> four parameters.
+> 
+> Whereas, just replacing drm_err with gt_err (or GT_ERR or intel_gt_err) 
+> keeps everything else consistent. The first parameter changes from 'drm' 
+> to 'gt' but is still the master object parameter and it matches the 
+> function/macro prefix so inherently looks correct. Then you have your 
+> message plus parameters. No confusing orders, no confusing parenthesis, 
+> no excessive macro levels, no confusion at all. Just nice simple, easy 
+> to read, easy to maintain code.
 
-BR,
-Jani.
+I am personally okay with gt_err/GT_ERR some other folks might object 
+though. And I can also understand the argument why it is better to not 
+have to define gt_err, gt_warn, gt_info, gt_notice, gt_debug, 
+gt_err_ratelimited, gt_warn_once.. and instead have only one macro.
 
->  	kfree(crtc);
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-> index 4c1de91e56ff9..db235b79c9629 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -830,20 +830,85 @@ void intel_display_power_put_unchecked(struct drm_i915_private *dev_priv,
->  }
->  #endif
->  
-> +#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
-> +static void
-> +add_domain_to_set(struct drm_i915_private *i915,
-> +		  struct intel_display_power_domain_set *power_domain_set,
-> +		  enum intel_display_power_domain domain,
-> +		  intel_wakeref_t wf)
-> +{
-> +	drm_WARN_ON(&i915->drm, test_bit(domain, power_domain_set->mask.bits));
-> +
-> +	if (!power_domain_set->wakerefs)
-> +		power_domain_set->wakerefs = kcalloc(POWER_DOMAIN_NUM,
-> +						     sizeof(*power_domain_set->wakerefs),
-> +						     GFP_KERNEL);
-> +
-> +	if (power_domain_set->wakerefs)
-> +		power_domain_set->wakerefs[domain] = wf;
-> +
-> +	set_bit(domain, power_domain_set->mask.bits);
-> +}
-> +
-> +static intel_wakeref_t
-> +remove_domain_from_set(struct drm_i915_private *i915,
-> +		       struct intel_display_power_domain_set *power_domain_set,
-> +		       enum intel_display_power_domain domain)
-> +{
-> +	intel_wakeref_t wf;
-> +
-> +	drm_WARN_ON(&i915->drm, !test_bit(domain, power_domain_set->mask.bits));
-> +
-> +	clear_bit(domain, power_domain_set->mask.bits);
-> +
-> +	if (!power_domain_set->wakerefs)
-> +		return -1;
-> +
-> +	wf = fetch_and_zero(&power_domain_set->wakerefs[domain]);
-> +
-> +	if (bitmap_empty(power_domain_set->mask.bits, POWER_DOMAIN_NUM)) {
-> +		kfree(power_domain_set->wakerefs);
-> +		power_domain_set->wakerefs = NULL;
-> +	}
-> +
-> +	return wf;
-> +
-> +}
-> +#else
-> +static void
-> +add_domain_to_set(struct drm_i915_private *i915,
-> +		  struct intel_display_power_domain_set *power_domain_set,
-> +		  enum intel_display_power_domain domain,
-> +		  intel_wakeref_t wf)
-> +{
-> +	drm_WARN_ON(&i915->drm, test_bit(domain, power_domain_set->mask.bits));
-> +
-> +	set_bit(domain, power_domain_set->mask.bits);
-> +}
-> +
-> +static intel_wakeref_t
-> +remove_domain_from_set(struct drm_i915_private *i915,
-> +		       struct intel_display_power_domain_set *power_domain_set,
-> +		       enum intel_display_power_domain domain)
-> +{
-> +	drm_WARN_ON(&i915->drm, !test_bit(domain, power_domain_set->mask.bits));
-> +
-> +	clear_bit(domain, power_domain_set->mask.bits);
-> +
-> +	return -1;
-> +}
-> +#endif
-> +
->  void
->  intel_display_power_get_in_set(struct drm_i915_private *i915,
->  			       struct intel_display_power_domain_set *power_domain_set,
->  			       enum intel_display_power_domain domain)
->  {
-> -	intel_wakeref_t __maybe_unused wf;
-> -
-> -	drm_WARN_ON(&i915->drm, test_bit(domain, power_domain_set->mask.bits));
-> +	intel_wakeref_t wf;
->  
->  	wf = intel_display_power_get(i915, domain);
-> -#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
-> -	power_domain_set->wakerefs[domain] = wf;
-> -#endif
-> -	set_bit(domain, power_domain_set->mask.bits);
-> +
-> +	add_domain_to_set(i915, power_domain_set, domain, wf);
->  }
->  
->  bool
-> @@ -853,16 +918,11 @@ intel_display_power_get_in_set_if_enabled(struct drm_i915_private *i915,
->  {
->  	intel_wakeref_t wf;
->  
-> -	drm_WARN_ON(&i915->drm, test_bit(domain, power_domain_set->mask.bits));
-> -
->  	wf = intel_display_power_get_if_enabled(i915, domain);
->  	if (!wf)
->  		return false;
->  
-> -#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
-> -	power_domain_set->wakerefs[domain] = wf;
-> -#endif
-> -	set_bit(domain, power_domain_set->mask.bits);
-> +	add_domain_to_set(i915, power_domain_set, domain, wf);
->  
->  	return true;
->  }
-> @@ -874,17 +934,10 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
->  {
->  	enum intel_display_power_domain domain;
->  
-> -	drm_WARN_ON(&i915->drm,
-> -		    !bitmap_subset(mask->bits, power_domain_set->mask.bits, POWER_DOMAIN_NUM));
-> -
->  	for_each_power_domain(domain, mask) {
-> -		intel_wakeref_t __maybe_unused wf = -1;
-> +		intel_wakeref_t wf = remove_domain_from_set(i915, power_domain_set, domain);
->  
-> -#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
-> -		wf = fetch_and_zero(&power_domain_set->wakerefs[domain]);
-> -#endif
->  		intel_display_power_put(i915, domain, wf);
-> -		clear_bit(domain, power_domain_set->mask.bits);
->  	}
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-> index 1e77e52c87fec..662123d260a7a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-> @@ -147,7 +147,7 @@ struct i915_power_domains {
->  struct intel_display_power_domain_set {
->  	struct intel_power_domain_mask mask;
->  #ifdef CONFIG_DRM_I915_DEBUG_RUNTIME_PM
-> -	intel_wakeref_t wakerefs[POWER_DOMAIN_NUM];
-> +	intel_wakeref_t *wakerefs;
->  #endif
->  };
+Because of that I was passing on to you the compromise option.
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+It maybe still has net space savings since we wouldn't have to be 
+repeating the gt->i915->drm whatever and gt->info.id on every line.
+
+You are free to try the most compact one and see how hard those 
+objections will be.
+
+>> Whether or not to put the gt as parameter to the helper macro or 
+>> outside wasn't really decided upon. Anyway the macro would be adding 
+>> the magic "gt%u: " prefix, drm device and all.
+>>
+>> Also the name GT_LOG (or case) is just for illustration, that part 
+>> wasn't really discussed.
+>>
+>> If agreeable this pattern could then be used to consolidate some other 
+>> macros that we have. Although apart from CT_DEBUG/ERROR I don't know 
+>> if we have any others.
+> By consolidating as what? I hope you aren't meaning something like 
+> 'drm_err(CT_DEBUG(GT_LOG("msg")))?'
+
+No, consolidate as in use the same pattern of directly calling drm 
+logging helpers with our own formatting macro which changes per 
+subsystem/component/directory/whatever.
+
+Regards,
+
+Tvrtko
