@@ -2,50 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7AD5621814
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Nov 2022 16:23:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15316621815
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Nov 2022 16:23:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01B4510E4A4;
-	Tue,  8 Nov 2022 15:23:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D015910E4AD;
+	Tue,  8 Nov 2022 15:23:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B92E10E483
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Nov 2022 15:23:00 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 824B210E48C
+ for <intel-gfx@lists.freedesktop.org>; Tue,  8 Nov 2022 15:23:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667920980; x=1699456980;
+ t=1667920984; x=1699456984;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=lHI+kP46tGq6G46uov09iENJPFhufpSZ3qfqpv4FSmk=;
- b=Pylw2sWlG66MxYLOU1X9qtk8riPG9wJ+bi3esUKNZBtJLXlRI/Iylsg9
- Cquem3VDn60w36wTUjyaSRHKYJabJexA8fuyFmocUdCmMn39V4RY8PLh3
- XESl8ruDgts0zgxXywzxaJ1yLpJdpSpnJcffw3kBishkMIFmuPQJZPqIQ
- UzGk6QodyIxmiD5V69bH1DYkuQthM6No6HAYlHlbGF24vQzsl3UqKLvSW
- Y2AUqObSKTKGnjO2HPyzZ5v1OxryAoSbNvV0Dk4fJGi9tNe/6wKjm4ebp
- eK23otGIShKfuVxVfcviO8pwR25VgALgY2GH53pZd4Vzm2wGK9011QQ2r A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10525"; a="374992571"
-X-IronPort-AV: E=Sophos;i="5.96,148,1665471600"; d="scan'208";a="374992571"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2022 07:18:37 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10525"; a="669580908"
-X-IronPort-AV: E=Sophos;i="5.96,148,1665471600"; d="scan'208";a="669580908"
-Received: from ideak-desk.fi.intel.com ([10.237.68.144])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2022 07:18:35 -0800
-From: Imre Deak <imre.deak@intel.com>
+ bh=BsEU5DhvIlVDil4j/t/sS4NEqbpBq52Xbt0cObQf7Sg=;
+ b=n7AcwY4vdXWZ+AsPshUCUXCeiDXDuqA2ITqSh8TAPj8Gj8kDsC9lrhB/
+ bfPQ/bGdgJSXN6YVKB/9iSSNP+nV/hshQYw87FHrqyyAeqi3K7vRT8EQQ
+ DFzGNdwkVyGfE9igr0eEsvk3TkBW/G8Vxegi63SfpamxkKb3sUQO/3SEQ
+ DyxS/nVWLxXUCPU2IkTvSlN9srEYD1/5AZ7gCMGj1C0Zj+2t+y3/o8f+Y
+ ID+csKy/CgyCuZ7X3EC+dVvsGNpCdZ9gMY73Gv6I1PRbduJpdKeOFhTIf
+ MBOwEsckMKqarydOH1lhbJmfzN5DOy2dAFzqVLIp9qiwZOigm8zUcsL/y A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10525"; a="310718756"
+X-IronPort-AV: E=Sophos;i="5.96,148,1665471600"; d="scan'208";a="310718756"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Nov 2022 07:18:49 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10525"; a="725590573"
+X-IronPort-AV: E=Sophos;i="5.96,148,1665471600"; d="scan'208";a="725590573"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by FMSMGA003.fm.intel.com with SMTP; 08 Nov 2022 07:18:47 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 08 Nov 2022 17:18:46 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Date: Tue,  8 Nov 2022 17:18:26 +0200
-Message-Id: <20221108151828.3761358-4-imre.deak@intel.com>
-X-Mailer: git-send-email 2.31.1.189.g2e36527f23
-In-Reply-To: <20221107170917.3566758-8-imre.deak@intel.com>
-References: <20221107170917.3566758-8-imre.deak@intel.com>
+Message-Id: <20221108151839.31567-3-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.37.4
+In-Reply-To: <20221108151839.31567-1-ville.syrjala@linux.intel.com>
+References: <20221108151839.31567-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 7/9] drm/i915: Factor out function to get/put
- AUX_IO power for main link
+Subject: [Intel-gfx] [PATCH v2 02/15] drm/i915/audio: Don't program the
+ hardware ELD buffer on hsw+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,164 +60,105 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Takashi Iwai <tiwai@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Factor out functions to get/put the AUX_IO power domain for the main
-link on DDI ports.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-While at it clarify the corresponding code comment.
+Since we use the audio component to transfer the ELD to the audio
+driver on hsw+ platforms there is no point in even programming
+the hardware ELD buffer. Stop doing so.
 
-No functional change.
+The one slight caveat here is that this is not strictly legal
+according to the HDA spec. PD=1;ELD=0 is only documented as
+an intermediate state during modeset. But if there is no hardware
+that depends on that then I guess we're fine. Or we could
+perhaps set ELD=1 without actually programming the buffer?
 
-v2:
-- s/(get/put)_aux_power_for_main_link/main_link_aux_power_domain_(get/put)
-  (Jani)
-- Clarify in the code comment that AUX_IO is needed only by TypeC besides
-  eDP/PSR.
-v3:
-- Rebased on checking intel_encoder_can_psr() instead of crtc->has_psr.
+Note that the bspec sequence of PD=0;ELD=0 -> PD=1;ELD=0 ->
+PD=1;ELD=1 is also not strictly correct according to the HDA
+spec, as the only documented transition from PD=0;ELD=0 is
+straight to PD=1;ELD=1.
 
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Imre Deak <imre.deak@intel.com>
+Additionally on hsw/bdw the hardware buffer is tied in with the
+dedicated display HDA controller's power state, so currently
+we mostly fail at proramming the buffer anyway. When the HDA
+side is not sufficiently powered up the ELD address bits get
+stuck and the ELD data register accesses go nowhere.
+
+Cc: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Cc: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+Cc: Takashi Iwai <tiwai@suse.de>
+References: https://lore.kernel.org/intel-gfx/20221012104936.30911-1-ville.syrjala@linux.intel.com/
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c | 84 ++++++++++++++----------
- 1 file changed, 51 insertions(+), 33 deletions(-)
+ drivers/gpu/drm/i915/display/intel_audio.c | 37 +++-------------------
+ 1 file changed, 4 insertions(+), 33 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index a087609223c60..21f1a68a57598 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -846,26 +846,63 @@ bool intel_ddi_get_hw_state(struct intel_encoder *encoder,
+diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+index dbcb4d9ecde7..0a53731a9272 100644
+--- a/drivers/gpu/drm/i915/display/intel_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_audio.c
+@@ -459,17 +459,6 @@ hsw_audio_config_update(struct intel_encoder *encoder,
+ 		hsw_hdmi_audio_config_update(encoder, crtc_state);
  }
  
- static enum intel_display_power_domain
--intel_ddi_main_link_aux_domain(struct intel_digital_port *dig_port)
-+intel_ddi_main_link_aux_domain(struct intel_digital_port *dig_port,
-+			       const struct intel_crtc_state *crtc_state)
+-/* ELD buffer size in dwords */
+-static int hsw_eld_buffer_size(struct drm_i915_private *i915,
+-			       enum transcoder cpu_transcoder)
+-{
+-	u32 tmp;
+-
+-	tmp = intel_de_read(i915, HSW_AUD_DIP_ELD_CTRL(cpu_transcoder));
+-
+-	return REG_FIELD_GET(IBX_ELD_BUFFER_SIZE_MASK, tmp);
+-}
+-
+ static void hsw_audio_codec_disable(struct intel_encoder *encoder,
+ 				    const struct intel_crtc_state *old_crtc_state,
+ 				    const struct drm_connector_state *old_conn_state)
+@@ -618,10 +607,7 @@ static void hsw_audio_codec_enable(struct intel_encoder *encoder,
  {
- 	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-+	enum phy phy = intel_port_to_phy(i915, dig_port->base.port);
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+-	struct drm_connector *connector = conn_state->connector;
+ 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+-	const u32 *eld = (const u32 *)connector->eld;
+-	int eld_buffer_size, len, i;
  
--	/* ICL+ HW requires corresponding AUX IOs to be powered up for PSR with
+ 	mutex_lock(&i915->display.audio.mutex);
+ 
+@@ -639,25 +625,10 @@ static void hsw_audio_codec_enable(struct intel_encoder *encoder,
+ 	intel_de_rmw(i915, HSW_AUD_PIN_ELD_CP_VLD,
+ 		     AUDIO_ELD_VALID(cpu_transcoder), 0);
+ 
+-	/* Reset ELD address */
+-	intel_de_rmw(i915, HSW_AUD_DIP_ELD_CTRL(cpu_transcoder),
+-		     IBX_ELD_ADDRESS_MASK, 0);
+-
+-	eld_buffer_size = hsw_eld_buffer_size(i915, cpu_transcoder);
+-	len = min(drm_eld_size(connector->eld) / 4, eld_buffer_size);
+-
+-	for (i = 0; i < len; i++)
+-		intel_de_write(i915, HSW_AUD_EDID_DATA(cpu_transcoder), eld[i]);
+-	for (; i < eld_buffer_size; i++)
+-		intel_de_write(i915, HSW_AUD_EDID_DATA(cpu_transcoder), 0);
+-
+-	drm_WARN_ON(&i915->drm,
+-		    (intel_de_read(i915, HSW_AUD_DIP_ELD_CTRL(cpu_transcoder)) &
+-		     IBX_ELD_ADDRESS_MASK) != 0);
+-
+-	/* ELD valid */
+-	intel_de_rmw(i915, HSW_AUD_PIN_ELD_CP_VLD,
+-		     0, AUDIO_ELD_VALID(cpu_transcoder));
 +	/*
-+	 * ICL+ HW requires corresponding AUX IOs to be powered up for PSR with
- 	 * DC states enabled at the same time, while for driver initiated AUX
- 	 * transfers we need the same AUX IOs to be powered but with DC states
--	 * disabled. Accordingly use the AUX power domain here which leaves DC
--	 * states enabled.
--	 * However, for non-A AUX ports the corresponding non-EDP transcoders
--	 * would have already enabled power well 2 and DC_OFF. This means we can
--	 * acquire a wider POWER_DOMAIN_AUX_{B,C,D,F} reference instead of a
--	 * specific AUX_IO reference without powering up any extra wells.
--	 * Note that PSR is enabled only on Port A even though this function
--	 * returns the correct domain for other ports too.
-+	 * disabled. Accordingly use the AUX_IO_<port> power domain here which
-+	 * leaves DC states enabled.
-+	 *
-+	 * Before MTL TypeC PHYs (in all TypeC modes and both DP/HDMI) also require
-+	 * AUX IO to be enabled, but all these require DC_OFF to be enabled as
-+	 * well, so we can acquire a wider AUX_<port> power domain reference
-+	 * instead of a specific AUX_IO_<port> reference without powering up any
-+	 * extra wells.
- 	 */
- 	if (intel_encoder_can_psr(&dig_port->base))
- 		return intel_display_power_aux_io_domain(i915, dig_port->aux_ch);
--	else
-+	else if (intel_crtc_has_dp_encoder(crtc_state) ||
-+		 intel_phy_is_tc(i915, phy))
- 		return intel_aux_power_domain(dig_port);
-+	else
-+		return POWER_DOMAIN_INVALID;
-+}
-+
-+static void
-+main_link_aux_power_domain_get(struct intel_digital_port *dig_port,
-+			       const struct intel_crtc_state *crtc_state)
-+{
-+	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-+	enum intel_display_power_domain domain =
-+		intel_ddi_main_link_aux_domain(dig_port, crtc_state);
-+
-+	drm_WARN_ON(&i915->drm, dig_port->aux_wakeref);
-+
-+	if (domain == POWER_DOMAIN_INVALID)
-+		return;
-+
-+	dig_port->aux_wakeref = intel_display_power_get(i915, domain);
-+}
-+
-+static void
-+main_link_aux_power_domain_put(struct intel_digital_port *dig_port,
-+			       const struct intel_crtc_state *crtc_state)
-+{
-+	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-+	intel_wakeref_t wf = fetch_and_zero(&dig_port->aux_wakeref);
-+	enum intel_display_power_domain domain =
-+		intel_ddi_main_link_aux_domain(dig_port, crtc_state);
-+
-+	if (!wf)
-+		return;
-+
-+	intel_display_power_put(i915, domain, wf);
- }
++	 * The audio componenent is used to convey the ELD
++	 * instead using of the hardware ELD buffer.
++	 */
  
- static void intel_ddi_get_power_domains(struct intel_encoder *encoder,
-@@ -873,7 +910,6 @@ static void intel_ddi_get_power_domains(struct intel_encoder *encoder,
- {
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
- 	struct intel_digital_port *dig_port;
--	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
- 
- 	/*
- 	 * TODO: Add support for MST encoders. Atm, the following should never
-@@ -892,17 +928,7 @@ static void intel_ddi_get_power_domains(struct intel_encoder *encoder,
- 								   dig_port->ddi_io_power_domain);
- 	}
- 
--	/*
--	 * AUX power is only needed for (e)DP mode, and for HDMI mode on TC
--	 * ports.
--	 */
--	if (intel_crtc_has_dp_encoder(crtc_state) ||
--	    intel_phy_is_tc(dev_priv, phy)) {
--		drm_WARN_ON(&dev_priv->drm, dig_port->aux_wakeref);
--		dig_port->aux_wakeref =
--			intel_display_power_get(dev_priv,
--						intel_ddi_main_link_aux_domain(dig_port));
--	}
-+	main_link_aux_power_domain_get(dig_port, crtc_state);
- }
- 
- void intel_ddi_enable_pipe_clock(struct intel_encoder *encoder,
-@@ -2741,10 +2767,7 @@ static void intel_ddi_post_disable(struct intel_atomic_state *state,
- 		intel_ddi_post_disable_dp(state, encoder, old_crtc_state,
- 					  old_conn_state);
- 
--	if (intel_crtc_has_dp_encoder(old_crtc_state) || is_tc_port)
--		intel_display_power_put(dev_priv,
--					intel_ddi_main_link_aux_domain(dig_port),
--					fetch_and_zero(&dig_port->aux_wakeref));
-+	main_link_aux_power_domain_put(dig_port, old_crtc_state);
- 
- 	if (is_tc_port)
- 		intel_tc_port_put_link(dig_port);
-@@ -3065,12 +3088,7 @@ intel_ddi_pre_pll_enable(struct intel_atomic_state *state,
- 	if (is_tc_port)
- 		intel_tc_port_get_link(dig_port, crtc_state->lane_count);
- 
--	if (intel_crtc_has_dp_encoder(crtc_state) || is_tc_port) {
--		drm_WARN_ON(&dev_priv->drm, dig_port->aux_wakeref);
--		dig_port->aux_wakeref =
--			intel_display_power_get(dev_priv,
--						intel_ddi_main_link_aux_domain(dig_port));
--	}
-+	main_link_aux_power_domain_get(dig_port, crtc_state);
- 
- 	if (is_tc_port && !intel_tc_port_in_tbt_alt_mode(dig_port))
- 		/*
+ 	/* Enable timestamps */
+ 	hsw_audio_config_update(encoder, crtc_state);
 -- 
-2.37.1
+2.37.4
 
