@@ -1,51 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35418621800
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Nov 2022 16:23:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A33A8621801
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Nov 2022 16:23:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DF3A10E2B4;
-	Tue,  8 Nov 2022 15:23:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D55DA10E486;
+	Tue,  8 Nov 2022 15:23:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C92E110E483
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Nov 2022 15:22:59 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 366D610E48B
+ for <intel-gfx@lists.freedesktop.org>; Tue,  8 Nov 2022 15:23:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667920979; x=1699456979;
+ t=1667920984; x=1699456984;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=T5GYZW7ARLxagGENS84jNK4nEukY1lOKeFlUOSYA2j8=;
- b=NAerbPBbEHhSBGtfsI36xvg4y/gM72fuF7cDHc9jxTAKa719zkguKgFc
- F/BX47idWtmMtgsKZ8IoOm745+IL9oaiTcJGGYeVolC4FwnQOScZgcJ1u
- e432+zvO36R/Jeh2Q843MkFAPfE/MbAdda5pIVUc0pzZyz6CNmgKkuv06
- 0HswuIN7MMZy8An7f+85YIjcwbYxiiVBJKy/7q+u7SNAsmtgJrD7RVtFW
- xfprOEqtMnKqHzUXto6NU445YQehGE3eNdF88zswvHFJNJdIHyFWQYgjS
- WvhtwhZsBXB2zrMbZ+vrFv7AJJVG2hdUjrKatnDRBX+YzBjpDDbkldH/k A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10525"; a="374992553"
-X-IronPort-AV: E=Sophos;i="5.96,148,1665471600"; d="scan'208";a="374992553"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2022 07:18:34 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10525"; a="669580871"
-X-IronPort-AV: E=Sophos;i="5.96,148,1665471600"; d="scan'208";a="669580871"
-Received: from ideak-desk.fi.intel.com ([10.237.68.144])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2022 07:18:33 -0800
-From: Imre Deak <imre.deak@intel.com>
+ bh=YGL/z1C40S0iu/dABwYnf0a1YwlwwSOwnIfRSJFQR08=;
+ b=NFect+Z/yKg5sPeUV7e9ZRMEUIKeBIDM0cdek6rATGIhHGHxyWyR0ecd
+ FgCexxoXSij9rTmLu1K3mHtop4IB2QnqZ+IlGHkHctsQaJKdYgI6qDaKs
+ VA5qrybC4ofozJ/jAzSQR0zUhGo524g968iAj0tDVjTgnaYuj6pe8vUfi
+ u1FSNFwFwPhO6izFEQnY+JMC/M4JJHNVga989Rt1FQv1N5wThtFq8Qdqg
+ Txa8OpDb3q9ko+ALjMe4WQpHP+k8hIzlWJbKI1yGMT9jxV4TyqtBZ1gVV
+ dWY3A857nFNU6gAqwBQYeGcLHRO/e5b2RGeb40L2qy/A5PyOsMeaFlAin A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10525"; a="310718741"
+X-IronPort-AV: E=Sophos;i="5.96,148,1665471600"; d="scan'208";a="310718741"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Nov 2022 07:18:46 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10525"; a="725590550"
+X-IronPort-AV: E=Sophos;i="5.96,148,1665471600"; d="scan'208";a="725590550"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by FMSMGA003.fm.intel.com with SMTP; 08 Nov 2022 07:18:43 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 08 Nov 2022 17:18:43 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  8 Nov 2022 17:18:24 +0200
-Message-Id: <20221108151828.3761358-2-imre.deak@intel.com>
-X-Mailer: git-send-email 2.31.1.189.g2e36527f23
-In-Reply-To: <20221107170917.3566758-4-imre.deak@intel.com>
-References: <20221107170917.3566758-4-imre.deak@intel.com>
+Date: Tue,  8 Nov 2022 17:18:25 +0200
+Message-Id: <20221108151839.31567-2-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.37.4
+In-Reply-To: <20221108151839.31567-1-ville.syrjala@linux.intel.com>
+References: <20221108151839.31567-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 3/9] drm/i915: Use the AUX_IO power domain
- only for eDP/PSR port
+Subject: [Intel-gfx] [PATCH v2 01/15] drm/i915/audio: Don't program the
+ hardware ELD buffer on ilk+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,46 +60,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Takashi Iwai <tiwai@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use the AUX_IO_A display power domain only for eDP on port A where PSR
-is also supported. This is the case where DC states need to be enabled
-while the output is enabled - ensured by AUX_IO_A domain not enabling
-the DC_OFF power well. Otherwise port A can be treated the same way as
-other ports with an external DP output: using the AUX_<port> domain
-which disables the unrequired DC states.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-This change prepares for the next patch enabling DC states on all ports
-supporting eDP/PSR besides port A.
+Since we use the audio component to transfer the ELD to the audio
+driver on ilk+ platforms there is no point in even programming
+the hardware ELD buffer. Stop doing so.
 
-v2:
-- Check the encoder PSR capability instead of PSR being enabled in the
-  crtc_state, as the latter can be changed with a fastset.
+The one slight caveat here is that this is not strictly legal
+according to the HDA spec. PD=1;ELD=0 is only documented as
+an intermediate state during modeset. But if there is no hardware
+that depends on that then I guess we're fine. Or we could
+perhaps set ELD=1 without actually programming the buffer?
 
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Imre Deak <imre.deak@intel.com>
+Note that the bspec sequence of PD=0;ELD=0 -> PD=1;ELD=0 ->
+PD=1;ELD=1 is also not strictly correct according to the HDA
+spec, as the only documented transition from PD=0;ELD=0 is
+straight to PD=1;ELD=1. But that is not even possible on
+these platforms as the bits live in different registers.
+
+Cc: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Cc: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+Cc: Takashi Iwai <tiwai@suse.de>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_audio.c | 39 +++-------------------
+ 1 file changed, 4 insertions(+), 35 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index e95bde5cf060e..ca236cd7f9b76 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -860,8 +860,10 @@ intel_ddi_main_link_aux_domain(struct intel_digital_port *dig_port)
- 	 * Note that PSR is enabled only on Port A even though this function
- 	 * returns the correct domain for other ports too.
- 	 */
--	return dig_port->aux_ch == AUX_CH_A ? POWER_DOMAIN_AUX_IO_A :
--					      intel_aux_power_domain(dig_port);
-+	if (dig_port->aux_ch == AUX_CH_A && intel_encoder_can_psr(&dig_port->base))
-+		return POWER_DOMAIN_AUX_IO_A;
-+	else
-+		return intel_aux_power_domain(dig_port);
+diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+index c3176c9c89a6..dbcb4d9ecde7 100644
+--- a/drivers/gpu/drm/i915/display/intel_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_audio.c
+@@ -691,20 +691,6 @@ static void ilk_audio_regs_init(struct drm_i915_private *i915,
+ 	}
  }
  
- static void intel_ddi_get_power_domains(struct intel_encoder *encoder,
+-/* ELD buffer size in dwords */
+-static int ilk_eld_buffer_size(struct drm_i915_private *i915,
+-			       enum pipe pipe)
+-{
+-	struct ilk_audio_regs regs;
+-	u32 tmp;
+-
+-	ilk_audio_regs_init(i915, pipe, &regs);
+-
+-	tmp = intel_de_read(i915, regs.aud_cntl_st);
+-
+-	return REG_FIELD_GET(IBX_ELD_BUFFER_SIZE_MASK, tmp);
+-}
+-
+ static void ilk_audio_codec_disable(struct intel_encoder *encoder,
+ 				    const struct intel_crtc_state *old_crtc_state,
+ 				    const struct drm_connector_state *old_conn_state)
+@@ -747,11 +733,8 @@ static void ilk_audio_codec_enable(struct intel_encoder *encoder,
+ {
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+-	struct drm_connector *connector = conn_state->connector;
+-	const u32 *eld = (const u32 *)connector->eld;
+ 	enum port port = encoder->port;
+ 	enum pipe pipe = crtc->pipe;
+-	int eld_buffer_size, len, i;
+ 	struct ilk_audio_regs regs;
+ 
+ 	if (drm_WARN_ON(&i915->drm, port == PORT_A))
+@@ -767,24 +750,10 @@ static void ilk_audio_codec_enable(struct intel_encoder *encoder,
+ 	intel_de_rmw(i915, regs.aud_cntrl_st2,
+ 		     IBX_ELD_VALID(port), 0);
+ 
+-	/* Reset ELD address */
+-	intel_de_rmw(i915, regs.aud_cntl_st,
+-		     IBX_ELD_ADDRESS_MASK, 0);
+-
+-	eld_buffer_size = ilk_eld_buffer_size(i915, pipe);
+-	len = min(drm_eld_size(connector->eld) / 4, eld_buffer_size);
+-
+-	for (i = 0; i < len; i++)
+-		intel_de_write(i915, regs.hdmiw_hdmiedid, eld[i]);
+-	for (; i < eld_buffer_size; i++)
+-		intel_de_write(i915, regs.hdmiw_hdmiedid, 0);
+-
+-	drm_WARN_ON(&i915->drm,
+-		    (intel_de_read(i915, regs.aud_cntl_st) & IBX_ELD_ADDRESS_MASK) != 0);
+-
+-	/* ELD valid */
+-	intel_de_rmw(i915, regs.aud_cntrl_st2,
+-		     0, IBX_ELD_VALID(port));
++	/*
++	 * The audio componenent is used to convey the ELD
++	 * instead using of the hardware ELD buffer.
++	 */
+ 
+ 	/* Enable timestamps */
+ 	intel_de_rmw(i915, regs.aud_config,
 -- 
-2.37.1
+2.37.4
 
