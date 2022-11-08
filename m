@@ -1,56 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5E94620FCF
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Nov 2022 13:05:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C13E620FD0
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Nov 2022 13:06:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29C2A10E412;
-	Tue,  8 Nov 2022 12:05:41 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CA0F10E412;
- Tue,  8 Nov 2022 12:05:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 624CC10E406;
+	Tue,  8 Nov 2022 12:06:37 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFD7B10E406
+ for <intel-gfx@lists.freedesktop.org>; Tue,  8 Nov 2022 12:06:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667909135; x=1699445135;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=QBjtp+8pTKX4iwjttpm7peq0flzZU2J9CE+YtcftRQk=;
- b=mGjwTRKrDjmNXzpnSWv0XVGGsIS1p+1Y871FF24nU8RRaV3Iov8oOFo2
- xpcoOs1j/pIiiGZsjodkk79iw39Fbz3NpLVy2m2Po9nfK4JV1GzbWoDWF
- keorXOjFWQdYlu3uh+aRnj1kdL2apiVvJffUQH/iQ3ASk6t2BnkfUuL5U
- 8JFfG4vWoi7vkf8l71f1tnIymsKH927WUavY65Rs42j1CmBkxFZEL6/4c
- S9Xjy3gckAtuCCoMocpzOvTbJA3UHFlMCfqxVX6aekGOt0wPO35fetqVp
- /MdVuULgGQfSNYuD0d0lalwFPFYYZbXUpRG4UKqZsSuV1yqfdZRtLyDx0 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="290395830"
-X-IronPort-AV: E=Sophos;i="5.96,147,1665471600"; d="scan'208";a="290395830"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2022 04:05:20 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="614258770"
-X-IronPort-AV: E=Sophos;i="5.96,147,1665471600"; d="scan'208";a="614258770"
-Received: from shylandx-mobl2.ger.corp.intel.com (HELO [10.213.210.50])
- ([10.213.210.50])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2022 04:05:18 -0800
-Message-ID: <5a2405ac-253e-18fb-0a1d-1ad7996a52be@linux.intel.com>
-Date: Tue, 8 Nov 2022 12:05:16 +0000
+ t=1667909192; x=1699445192;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=zPROeL6/3B6xu2qnav/tDXOAT0k8zFxffwZWVasOjv8=;
+ b=HD1VQ1cDPIK9pWKv42T7nsNsKWOmc3CznXX5D62OG4Osfp1eKsl2hVNu
+ Gx6BO2uOGuXicuXW1dp4mHAvwIDNjwI8zkwZIA1FmLFA2UKOfmNBXVpT7
+ E+jA/ZEPPMa0ZQlwTMLp8JeESupeo87E5+uCIGuAXwlVWPZZ9zwICokEo
+ 7HQd7ynL+Jb7QSzkRtL6nTCINyctewiZYdZui974HhGwyBUE12/zdHvyt
+ gRh6I/2h/0BNWIiXo7IX8HsbKpBTfLBWS6o+uxIbYVEemyfRCI2fsOhA3
+ GtxM2zW3kLfxoHUizO4FkRliuU6eyfBF5iFmIre6TUBO/bw4lEplWY6vK A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="294047370"
+X-IronPort-AV: E=Sophos;i="5.96,147,1665471600"; d="scan'208";a="294047370"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Nov 2022 04:06:32 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="778902879"
+X-IronPort-AV: E=Sophos;i="5.96,147,1665471600"; d="scan'208";a="778902879"
+Received: from smoriord-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.16.110])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Nov 2022 04:06:29 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20221107194604.15227-5-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20221107194604.15227-1-ville.syrjala@linux.intel.com>
+ <20221107194604.15227-5-ville.syrjala@linux.intel.com>
+Date: Tue, 08 Nov 2022 14:06:27 +0200
+Message-ID: <87o7th8xbw.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Content-Language: en-US
-To: Jani Nikula <jani.nikula@intel.com>, Intel-gfx@lists.freedesktop.org
-References: <20221108114950.2017869-1-tvrtko.ursulin@linux.intel.com>
- <87r0yd8xjr.fsf@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <87r0yd8xjr.fsf@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Partial abandonment of legacy DRM
- logging macros
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 4/5] drm/i915: Move has_hdmi_sink out from
+ intel_hdmi_compute_config()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,93 +61,124 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, 07 Nov 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> We'll be wanting to compute has_hdmi_sink a bit differently
+> for some platforms. To that end compute it in the encoder
+> .compute_config_hook() before we call intel_hdmi_compute_config().
+> intel_hdmi_compute_has_hdmi_sink() will do the basic lifting
+> beyond any platform specific stuff.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-On 08/11/2022 12:01, Jani Nikula wrote:
-> On Tue, 08 Nov 2022, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> Convert some usages of legacy DRM logging macros into versions which tell
->> us on which device have the events occurred.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Cc: Jani Nikula <jani.nikula@intel.com>
->> Cc: John Harrison <John.C.Harrison@Intel.com>
->> ---
->>   drivers/gpu/drm/i915/gem/i915_gem_context.c   |  2 +-
->>   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 23 ++++++----
->>   .../drm/i915/gt/intel_execlists_submission.c  | 13 +++---
->>   drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c  |  4 +-
->>   drivers/gpu/drm/i915/gt/intel_gt.c            |  4 +-
->>   drivers/gpu/drm/i915/gt/intel_gt_irq.c        |  8 ++--
->>   drivers/gpu/drm/i915/gt/intel_rps.c           |  6 ++-
->>   drivers/gpu/drm/i915/gt/intel_workarounds.c   | 43 +++++++++++--------
->>   .../gpu/drm/i915/gt/intel_workarounds_types.h |  4 ++
->>   .../gpu/drm/i915/gt/selftest_workarounds.c    |  4 +-
->>   drivers/gpu/drm/i915/i915_debugfs.c           |  4 +-
->>   drivers/gpu/drm/i915/i915_gem.c               |  2 +-
->>   drivers/gpu/drm/i915/i915_getparam.c          |  2 +-
->>   drivers/gpu/drm/i915/i915_irq.c               | 12 +++---
->>   drivers/gpu/drm/i915/i915_perf.c              | 14 +++---
->>   drivers/gpu/drm/i915/i915_query.c             | 12 +++---
->>   drivers/gpu/drm/i915/i915_sysfs.c             |  3 +-
->>   drivers/gpu/drm/i915/i915_vma.c               | 16 ++++---
->>   drivers/gpu/drm/i915/intel_uncore.c           | 21 +++++----
->>   19 files changed, 116 insertions(+), 81 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
->> index 01402f3c58f6..7f2831efc798 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
->> @@ -546,7 +546,7 @@ set_proto_ctx_engines_bond(struct i915_user_extension __user *base, void *data)
->>   	}
->>   
->>   	if (intel_engine_uses_guc(master)) {
->> -		DRM_DEBUG("bonding extension not supported with GuC submission");
->> +		drm_dbg(&i915->drm, "bonding extension not supported with GuC submission");
->>   		return -ENODEV;
->>   	}
->>   
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->> index 1160723c9d2d..1eb7b66191b2 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->> @@ -2148,7 +2148,8 @@ static int eb_move_to_gpu(struct i915_execbuffer *eb)
->>   	return err;
->>   }
->>   
->> -static int i915_gem_check_execbuffer(struct drm_i915_gem_execbuffer2 *exec)
->> +static int i915_gem_check_execbuffer(struct drm_i915_private *i915,
->> +				     struct drm_i915_gem_execbuffer2 *exec)
->>   {
->>   	if (exec->flags & __I915_EXEC_ILLEGAL_FLAGS)
->>   		return -EINVAL;
->> @@ -2161,7 +2162,7 @@ static int i915_gem_check_execbuffer(struct drm_i915_gem_execbuffer2 *exec)
->>   	}
->>   
->>   	if (exec->DR4 == 0xffffffff) {
->> -		DRM_DEBUG("UXA submitting garbage DR4, fixing up\n");
->> +		drm_dbg(&i915->drm, "UXA submitting garbage DR4, fixing up\n");
->>   		exec->DR4 = 0;
->>   	}
->>   	if (exec->DR1 || exec->DR4)
->> @@ -2744,6 +2745,7 @@ add_timeline_fence_array(struct i915_execbuffer *eb,
->>   			 const struct drm_i915_gem_execbuffer_ext_timeline_fences *timeline_fences)
->>   {
->>   	struct drm_i915_gem_exec_fence __user *user_fences;
->> +	struct drm_device *drm = &eb->i915->drm;
-> 
-> Elsewhere we've been pretty strict about not adding struct drm_device as
-> a local variable, just struct drm_i915_private *i915. We don't want to
-> have both, and in general it's more likely i915 is needed than
-> drm_device, if not now then in the future. Even if it means having to
-> use &i915->drm here.
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Yeah it smelled bad while I was typing it.. will change.
+But, uh, I don't want to dig into patch 5 right now, and this one
+doesn't really make sense without that... in the mean time the first
+three look like could be merged.
 
-Regards,
+BR,
+Jani.
 
-Tvrtko
+
+> ---
+>  drivers/gpu/drm/i915/display/g4x_hdmi.c   |  3 +++
+>  drivers/gpu/drm/i915/display/intel_ddi.c  |  3 +++
+>  drivers/gpu/drm/i915/display/intel_hdmi.c | 14 ++++++++++----
+>  drivers/gpu/drm/i915/display/intel_hdmi.h |  3 +++
+>  4 files changed, 19 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.c b/drivers/gpu/drm/i9=
+15/display/g4x_hdmi.c
+> index 3d09359d7337..fd23aa03cdc4 100644
+> --- a/drivers/gpu/drm/i915/display/g4x_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/g4x_hdmi.c
+> @@ -87,6 +87,9 @@ static int g4x_hdmi_compute_config(struct intel_encoder=
+ *encoder,
+>  	if (HAS_PCH_SPLIT(i915))
+>  		crtc_state->has_pch_encoder =3D true;
+>=20=20
+> +	crtc_state->has_hdmi_sink =3D
+> +		intel_hdmi_compute_has_hdmi_sink(encoder, crtc_state, conn_state);
+> +
+>  	return intel_hdmi_compute_config(encoder, crtc_state, conn_state);
+>  }
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index e95bde5cf060..5ebfbe7b81b4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -3638,6 +3638,9 @@ static int intel_ddi_compute_config(struct intel_en=
+coder *encoder,
+>  		pipe_config->cpu_transcoder =3D TRANSCODER_EDP;
+>=20=20
+>  	if (intel_crtc_has_type(pipe_config, INTEL_OUTPUT_HDMI)) {
+> +		pipe_config->has_hdmi_sink =3D
+> +			intel_hdmi_compute_has_hdmi_sink(encoder, pipe_config, conn_state);
+> +
+>  		ret =3D intel_hdmi_compute_config(encoder, pipe_config, conn_state);
+>  	} else {
+>  		ret =3D intel_dp_compute_config(encoder, pipe_config, conn_state);
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/=
+i915/display/intel_hdmi.c
+> index 31927f8238d1..2425a9f59b90 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -2237,11 +2237,20 @@ static bool intel_hdmi_is_cloned(const struct int=
+el_crtc_state *crtc_state)
+>  		!is_power_of_2(crtc_state->uapi.encoder_mask);
+>  }
+>=20=20
+> +bool intel_hdmi_compute_has_hdmi_sink(struct intel_encoder *encoder,
+> +				      const struct intel_crtc_state *crtc_state,
+> +				      const struct drm_connector_state *conn_state)
+> +{
+> +	struct intel_hdmi *hdmi =3D enc_to_intel_hdmi(encoder);
+> +
+> +	return intel_has_hdmi_sink(hdmi, conn_state) &&
+> +		!intel_hdmi_is_cloned(crtc_state);
+> +}
+> +
+>  int intel_hdmi_compute_config(struct intel_encoder *encoder,
+>  			      struct intel_crtc_state *pipe_config,
+>  			      struct drm_connector_state *conn_state)
+>  {
+> -	struct intel_hdmi *intel_hdmi =3D enc_to_intel_hdmi(encoder);
+>  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+>  	struct drm_display_mode *adjusted_mode =3D &pipe_config->hw.adjusted_mo=
+de;
+>  	struct drm_connector *connector =3D conn_state->connector;
+> @@ -2252,9 +2261,6 @@ int intel_hdmi_compute_config(struct intel_encoder =
+*encoder,
+>  		return -EINVAL;
+>=20=20
+>  	pipe_config->output_format =3D INTEL_OUTPUT_FORMAT_RGB;
+> -	pipe_config->has_hdmi_sink =3D
+> -		intel_has_hdmi_sink(intel_hdmi, conn_state) &&
+> -		!intel_hdmi_is_cloned(pipe_config);
+>=20=20
+>  	if (pipe_config->has_hdmi_sink)
+>  		pipe_config->has_infoframe =3D true;
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.h b/drivers/gpu/drm/=
+i915/display/intel_hdmi.h
+> index 774dda2376ed..dd08b4004c59 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.h
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.h
+> @@ -23,6 +23,9 @@ union hdmi_infoframe;
+>=20=20
+>  void intel_hdmi_init_connector(struct intel_digital_port *dig_port,
+>  			       struct intel_connector *intel_connector);
+> +bool intel_hdmi_compute_has_hdmi_sink(struct intel_encoder *encoder,
+> +				      const struct intel_crtc_state *crtc_state,
+> +				      const struct drm_connector_state *conn_state);
+>  int intel_hdmi_compute_config(struct intel_encoder *encoder,
+>  			      struct intel_crtc_state *pipe_config,
+>  			      struct drm_connector_state *conn_state);
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
