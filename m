@@ -2,61 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D7F8620BAD
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Nov 2022 10:01:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C855E620BC4
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Nov 2022 10:09:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9C5510E253;
-	Tue,  8 Nov 2022 09:01:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2DE310E3A6;
+	Tue,  8 Nov 2022 09:08:59 +0000 (UTC)
 X-Original-To: Intel-GFX@lists.freedesktop.org
 Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D5B010E24A;
- Tue,  8 Nov 2022 09:01:27 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70F9410E272;
+ Tue,  8 Nov 2022 09:08:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667898087; x=1699434087;
+ t=1667898535; x=1699434535;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=LDg4ttmjksXo6Wl3ggZ1pyiHhPQqNPUx28DuE/CZzHo=;
- b=e8Y5ceM0ULyMFufvX9L8kkm+60C/TpaV4gu9hlvrkeKEZIHKIdNnHAsc
- QasNNdJHsdoC5Xfi0U9oVeZ3xuLOHSm+dUJKVxDCExr6dPYqiEfDWgdqJ
- ekz2X4bOi5oA1IObbAM6DfXerhunyO26aUAZGas3Yn0Rqhfv5zBThWeog
- WglQqQkuI1t3k5jmCwJYR5NEPyqfkDgtCn7RJ1MozyEci6hIY2Q1fLIMk
- WD74q/vi/3bdSQAd8I8OXvH9o9bQeMMNc2fjK3Da9yCejjZmrJPMxbRaE
- +lRpZqlYXwdCJajIUZkSkTxax3hCvrN76/aboKGDi+Oa0GEoQ2HRyHkHs A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="312436681"
-X-IronPort-AV: E=Sophos;i="5.96,147,1665471600"; d="scan'208";a="312436681"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2022 01:01:26 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="638720457"
-X-IronPort-AV: E=Sophos;i="5.96,147,1665471600"; d="scan'208";a="638720457"
+ bh=usBkvlgFUc4/V7kgB7szMOX0arMH88vaR5XD1yBApEI=;
+ b=LK74fGcqN6dTXp/CiD+cb42IdtxPjEUnOzvin3ZXNjnod7qBw8Q/4bDk
+ k58dhetCj+SXv6m5cvYxcVQHo9GGzodGFDsgwcUBYZm/Nn66WTOx6fRhi
+ Eo0qjWeJijAkAsPvgg0ThYOo0lgZBv9J1kAvkR6aEtDH7O+MvNjcHkvG0
+ Ld8dy1QNR5lO86a70GdiTPHvem+0TAOGMbhzM3hwCoVsqCWeurTfngl+H
+ rmVyRb6vYe1owLdCYQ60TSn6O/XH7WU5d9023cKUCcZT7UlXstEr5um4x
+ 0F3H3I2N3ACnYRLgjEzmho7m1AuE1O+QcL622wLSRb2cDbLha4O25Tb+B w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="290367103"
+X-IronPort-AV: E=Sophos;i="5.96,147,1665471600"; d="scan'208";a="290367103"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Nov 2022 01:08:54 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="811172577"
+X-IronPort-AV: E=Sophos;i="5.96,147,1665471600"; d="scan'208";a="811172577"
 Received: from shylandx-mobl2.ger.corp.intel.com (HELO [10.213.210.50])
  ([10.213.210.50])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2022 01:01:24 -0800
-Message-ID: <1ad6bce7-9626-afa6-d73e-6d8f7a9c4d2a@linux.intel.com>
-Date: Tue, 8 Nov 2022 09:01:22 +0000
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Nov 2022 01:08:52 -0800
+Message-ID: <28fd2a35-1e20-ffa7-b5d2-5411166e9b21@linux.intel.com>
+Date: Tue, 8 Nov 2022 09:08:50 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.3
 Content-Language: en-US
 To: John Harrison <john.c.harrison@intel.com>,
- "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>,
- Intel-GFX@Lists.FreeDesktop.Org
-References: <20221104172525.569913-1-John.C.Harrison@Intel.com>
- <20221104172525.569913-2-John.C.Harrison@Intel.com>
- <6a4d1ac0-a1a0-e1d4-7d83-54b43d226371@intel.com>
- <fabaf9ee-f3fc-c18f-56b3-6d073618da41@linux.intel.com>
- <82055e8f-9bee-2b03-3dce-dcf66c30c903@linux.intel.com>
- <2583bccd-82fd-967a-aec9-e6d3837dbbed@intel.com>
+ Jani Nikula <jani.nikula@linux.intel.com>, Intel-GFX@Lists.FreeDesktop.Org
+References: <20221101235053.1650364-1-John.C.Harrison@Intel.com>
+ <87k04d7dyn.fsf@intel.com>
+ <c710a428-50f6-6181-3f93-4d7667a9ac3f@linux.intel.com>
+ <5e22de43-d75c-fc21-9ae7-f27d116c5688@intel.com>
+ <1855f0f2-8a1c-7bf4-76c0-76a4354ea8e8@linux.intel.com>
+ <2b2eb780-08f7-c7df-0397-a7f732da272d@linux.intel.com>
+ <5fad1ec1-8fea-9685-4cc9-2e3c2edf799f@intel.com>
+ <448d710a-3af1-932d-c276-7c6fd6c02528@linux.intel.com>
+ <f3de3596-871a-2af3-e72b-f4c66d5e7211@intel.com>
+ <838f1d78-1d7c-c82e-0c70-b8c1fc0cebff@linux.intel.com>
+ <29da7440-7c92-9fba-394e-d92df68b4e73@intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <2583bccd-82fd-967a-aec9-e6d3837dbbed@intel.com>
+In-Reply-To: <29da7440-7c92-9fba-394e-d92df68b4e73@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/gt: Add GT oriented dmesg
- output
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Don't wait forever in drop_caches
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,202 +72,398 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 07/11/2022 19:14, John Harrison wrote:
-> On 11/7/2022 08:17, Tvrtko Ursulin wrote:
->> On 07/11/2022 09:33, Tvrtko Ursulin wrote:
->>> On 05/11/2022 01:03, Ceraolo Spurio, Daniele wrote:
->>>> On 11/4/2022 10:25 AM, John.C.Harrison@Intel.com wrote:
->>>>> From: John Harrison <John.C.Harrison@Intel.com>
+On 07/11/2022 19:45, John Harrison wrote:
+> On 11/7/2022 06:09, Tvrtko Ursulin wrote:
+>> On 04/11/2022 17:45, John Harrison wrote:
+>>> On 11/4/2022 03:01, Tvrtko Ursulin wrote:
+>>>> On 03/11/2022 19:16, John Harrison wrote:
+>>>>> On 11/3/2022 02:38, Tvrtko Ursulin wrote:
+>>>>>> On 03/11/2022 09:18, Tvrtko Ursulin wrote:
+>>>>>>> On 03/11/2022 01:33, John Harrison wrote:
+>>>>>>>> On 11/2/2022 07:20, Tvrtko Ursulin wrote:
+>>>>>>>>> On 02/11/2022 12:12, Jani Nikula wrote:
+>>>>>>>>>> On Tue, 01 Nov 2022, John.C.Harrison@Intel.com wrote:
+>>>>>>>>>>> From: John Harrison <John.C.Harrison@Intel.com>
+>>>>>>>>>>>
+>>>>>>>>>>> At the end of each test, IGT does a drop caches call via 
+>>>>>>>>>>> sysfs with
+>>>>>>>>>>
+>>>>>>>>>> sysfs?
+>>>>>>>> Sorry, that was meant to say debugfs. I've also been working on 
+>>>>>>>> some sysfs IGT issues and evidently got my wires crossed!
+>>>>>>>>
+>>>>>>>>>>
+>>>>>>>>>>> special flags set. One of the possible paths waits for idle 
+>>>>>>>>>>> with an
+>>>>>>>>>>> infinite timeout. That causes problems for debugging issues 
+>>>>>>>>>>> when CI
+>>>>>>>>>>> catches a "can't go idle" test failure. Best case, the CI 
+>>>>>>>>>>> system times
+>>>>>>>>>>> out (after 90s), attempts a bunch of state dump actions and then
+>>>>>>>>>>> reboots the system to recover it. Worst case, the CI system 
+>>>>>>>>>>> can't do
+>>>>>>>>>>> anything at all and then times out (after 1000s) and simply 
+>>>>>>>>>>> reboots.
+>>>>>>>>>>> Sometimes a serial port log of dmesg might be available, 
+>>>>>>>>>>> sometimes not.
+>>>>>>>>>>>
+>>>>>>>>>>> So rather than making life hard for ourselves, change the 
+>>>>>>>>>>> timeout to
+>>>>>>>>>>> be 10s rather than infinite. Also, trigger the standard
+>>>>>>>>>>> wedge/reset/recover sequence so that testing can continue with a
+>>>>>>>>>>> working system (if possible).
+>>>>>>>>>>>
+>>>>>>>>>>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+>>>>>>>>>>> ---
+>>>>>>>>>>>   drivers/gpu/drm/i915/i915_debugfs.c | 7 ++++++-
+>>>>>>>>>>>   1 file changed, 6 insertions(+), 1 deletion(-)
+>>>>>>>>>>>
+>>>>>>>>>>> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c 
+>>>>>>>>>>> b/drivers/gpu/drm/i915/i915_debugfs.c
+>>>>>>>>>>> index ae987e92251dd..9d916fbbfc27c 100644
+>>>>>>>>>>> --- a/drivers/gpu/drm/i915/i915_debugfs.c
+>>>>>>>>>>> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
+>>>>>>>>>>> @@ -641,6 +641,9 @@ 
+>>>>>>>>>>> DEFINE_SIMPLE_ATTRIBUTE(i915_perf_noa_delay_fops,
+>>>>>>>>>>>             DROP_RESET_ACTIVE | \
+>>>>>>>>>>>             DROP_RESET_SEQNO | \
+>>>>>>>>>>>             DROP_RCU)
+>>>>>>>>>>> +
+>>>>>>>>>>> +#define DROP_IDLE_TIMEOUT    (HZ * 10)
+>>>>>>>>>>
+>>>>>>>>>> I915_IDLE_ENGINES_TIMEOUT is defined in i915_drv.h. It's also 
+>>>>>>>>>> only used
+>>>>>>>>>> here.
+>>>>>>>>>
+>>>>>>>>> So move here, dropping i915 prefix, next to the newly proposed 
+>>>>>>>>> one?
+>>>>>>>> Sure, can do that.
+>>>>>>>>
+>>>>>>>>>
+>>>>>>>>>> I915_GEM_IDLE_TIMEOUT is defined in i915_gem.h. It's only used in
+>>>>>>>>>> gt/intel_gt.c.
+>>>>>>>>>
+>>>>>>>>> Move there and rename to GT_IDLE_TIMEOUT?
+>>>>>>>>>
+>>>>>>>>>> I915_GT_SUSPEND_IDLE_TIMEOUT is defined and used only in 
+>>>>>>>>>> intel_gt_pm.c.
+>>>>>>>>>
+>>>>>>>>> No action needed, maybe drop i915 prefix if wanted.
+>>>>>>>>>
+>>>>>>>> These two are totally unrelated and in code not being touched by 
+>>>>>>>> this change. I would rather not conflate changing random other 
+>>>>>>>> things with fixing this specific issue.
+>>>>>>>>
+>>>>>>>>>> I915_IDLE_ENGINES_TIMEOUT is in ms, the rest are in jiffies.
+>>>>>>>>>
+>>>>>>>>> Add _MS suffix if wanted.
+>>>>>>>>>
+>>>>>>>>>> My head spins.
+>>>>>>>>>
+>>>>>>>>> I follow and raise that the newly proposed DROP_IDLE_TIMEOUT 
+>>>>>>>>> applies to DROP_ACTIVE and not only DROP_IDLE.
+>>>>>>>> My original intention for the name was that is the 'drop caches 
+>>>>>>>> timeout for intel_gt_wait_for_idle'. Which is quite the mouthful 
+>>>>>>>> and hence abbreviated to DROP_IDLE_TIMEOUT. But yes, I realised 
+>>>>>>>> later that name can be conflated with the DROP_IDLE flag. Will 
+>>>>>>>> rename.
+>>>>>>>>
+>>>>>>>>
+>>>>>>>>>
+>>>>>>>>> Things get refactored, code moves around, bits get left behind, 
+>>>>>>>>> who knows. No reason to get too worked up. :) As long as people 
+>>>>>>>>> are taking a wider view when touching the code base, and are 
+>>>>>>>>> not afraid to send cleanups, things should be good.
+>>>>>>>> On the other hand, if every patch gets blocked in code review 
+>>>>>>>> because someone points out some completely unrelated piece of 
+>>>>>>>> code could be a bit better then nothing ever gets fixed. If you 
+>>>>>>>> spot something that you think should be improved, isn't the 
+>>>>>>>> general idea that you should post a patch yourself to improve it?
+>>>>>>>
+>>>>>>> There's two maintainers per branch and an order of magnitude or 
+>>>>>>> two more developers so it'd be nice if cleanups would just be 
+>>>>>>> incoming on self-initiative basis. ;)
+>>>>>>>
+>>>>>>>>> For the actual functional change at hand - it would be nice if 
+>>>>>>>>> code paths in question could handle SIGINT and then we could 
+>>>>>>>>> punt the decision on how long someone wants to wait purely to 
+>>>>>>>>> userspace. But it's probably hard and it's only debugfs so 
+>>>>>>>>> whatever.
+>>>>>>>>>
+>>>>>>>> The code paths in question will already abort on a signal won't 
+>>>>>>>> they? Both intel_gt_wait_for_idle() and 
+>>>>>>>> intel_guc_wait_for_pending_msg(), which is where the 
+>>>>>>>> uc_wait_for_idle eventually ends up, have an 'if(signal_pending) 
+>>>>>>>> return -EINTR;' check. Beyond that, it sounds like what you are 
+>>>>>>>> asking for is a change in the IGT libraries and/or CI framework 
+>>>>>>>> to start sending signals after some specific timeout. That seems 
+>>>>>>>> like a significantly more complex change (in terms of the number 
+>>>>>>>> of entities affected and number of groups involved) and 
+>>>>>>>> unnecessary.
+>>>>>>>
+>>>>>>> If you say so, I haven't looked at them all. But if the code path 
+>>>>>>> in question already aborts on signals then I am not sure what is 
+>>>>>>> the patch fixing? I assumed you are trying to avoid the write 
+>>>>>>> stuck in D forever, which then prevents driver unload and 
+>>>>>>> everything, requiring the test runner to eventually reboot. If 
+>>>>>>> you say SIGINT works then you can already recover from userspace, 
+>>>>>>> no?
+>>>>>>>
+>>>>>>>>> Whether or not 10s is enough CI will hopefully tell us. I'd 
+>>>>>>>>> probably err on the side of safety and make it longer, but at 
+>>>>>>>>> most half from the test runner timeout.
+>>>>>>>> This is supposed to be test clean up. This is not about how long 
+>>>>>>>> a particular test takes to complete but about how long it takes 
+>>>>>>>> to declare the system broken after the test has already 
+>>>>>>>> finished. I would argue that even 10s is massively longer than 
+>>>>>>>> required.
+>>>>>>>>
+>>>>>>>>>
+>>>>>>>>> I am not convinced that wedging is correct though. Conceptually 
+>>>>>>>>> could be just that the timeout is too short. What does wedging 
+>>>>>>>>> really give us, on top of limiting the wait, when latter AFAIU 
+>>>>>>>>> is the key factor which would prevent the need to reboot the 
+>>>>>>>>> machine?
+>>>>>>>>>
+>>>>>>>> It gives us a system that knows what state it is in. If we can't 
+>>>>>>>> idle the GT then something is very badly wrong. Wedging 
+>>>>>>>> indicates that. It also ensure that a full GT reset will be 
+>>>>>>>> attempted before the next test is run. Helping to prevent a 
+>>>>>>>> failure on test X from propagating into failures of unrelated 
+>>>>>>>> tests X+1, X+2, ... And if the GT reset does not work because 
+>>>>>>>> the system is really that badly broken then future tests will 
+>>>>>>>> not run rather than report erroneous failures.
+>>>>>>>>
+>>>>>>>> This is not about getting a more stable system for end users by 
+>>>>>>>> sweeping issues under the carpet and pretending all is well. End 
+>>>>>>>> users don't run IGTs or explicitly call dodgy debugfs entry 
+>>>>>>>> points. The sole motivation here is to get more accurate results 
+>>>>>>>> from CI. That is, correctly identifying which test has hit a 
+>>>>>>>> problem, getting valid debug analysis for that test (logs and 
+>>>>>>>> such) and allowing further testing to complete correctly in the 
+>>>>>>>> case where the system can be recovered.
+>>>>>>>
+>>>>>>> I don't really oppose shortening of the timeout in principle, 
+>>>>>>> just want a clear statement if this is something IGT / test 
+>>>>>>> runner could already do or not. It can apply a timeout, it can 
+>>>>>>> also send SIGINT, and it could even trigger a reset from outside. 
+>>>>>>> Sure it is debugfs hacks so general "kernel should not implement 
+>>>>>>> policy" need not be strictly followed, but lets have it clear 
+>>>>>>> what are the options.
+>>>>>>
+>>>>>> One conceptual problem with applying this policy is that the code is:
+>>>>>>
+>>>>>>     if (val & (DROP_IDLE | DROP_ACTIVE)) {
+>>>>>>         ret = intel_gt_wait_for_idle(gt, MAX_SCHEDULE_TIMEOUT);
+>>>>>>         if (ret)
+>>>>>>             return ret;
+>>>>>>     }
+>>>>>>
+>>>>>>     if (val & DROP_IDLE) {
+>>>>>>         ret = intel_gt_pm_wait_for_idle(gt);
+>>>>>>         if (ret)
+>>>>>>             return ret;
+>>>>>>     }
+>>>>>>
+>>>>>> So if someone passes in DROP_IDLE and then why would only the 
+>>>>>> first branch have a short timeout and wedge. Yeah some bug happens 
+>>>>>> to be there at the moment, but put a bug in a different place and 
+>>>>>> you hang on the second branch and then need another patch. Versus 
+>>>>>> perhaps making it all respect SIGINT and handle from outside.
+>>>>>>
+>>>>> The pm_wait_for_idle is can only called after gt_wait_for_idle has 
+>>>>> completed successfully. There is no route to skip the GT idle or to 
+>>>>> do the PM idle even if the GT idle fails. So the chances of the PM 
+>>>>> idle failing are greatly reduced. There would have to be something 
+>>>>> outside of a GT keeping the GPU awake and there isn't a whole lot 
+>>>>> of hardware left at that point!
+>>>>
+>>>> Well "greatly reduced" is beside my point. Point is today bug is 
+>>>> here and we add a timeout, tomorrow bug is there and then the same 
+>>>> dance. It can be just a sw bug which forgets to release the pm ref 
+>>>> in some circumstances, doesn't really matter.
+>>>>
+>>> Huh?
+>>>
+>>> Greatly reduced is the whole point. Today there is a bug and it 
+>>> causes a kernel hang which requires the CI framework to reboot the 
+>>> system in an extremely unfriendly way which makes it very hard to 
+>>> work out what happened. Logs are likely not available. We don't even 
+>>> necessarily know which test was being run at the time. Etc. So we 
+>>> replace the infinite timeout with a meaningful timeout. CI now 
+>>> correctly marks the single test as failing, captures all the correct 
+>>> logs, creates a useful bug report and continues on testing more stuff.
+>>
+>> So what is preventing CI to collect logs if IGT is forever stuck in 
+>> interruptible wait? Surely it can collect the logs at that point if 
+>> the kernel is healthy enough. If it isn't then I don't see how wedging 
+>> the GPU will make the kernel any healthier.
+>>
+>> Is i915 preventing better log collection or could test runner be 
+>> improved?
+>>
+>>> Sure, there is still the chance of hitting an infinite timeout. But 
+>>> that one is significantly more complicated to remove. And the chances 
+>>> of hitting that one are significantly smaller than the chances of 
+>>> hitting the first one.
+>>
+>> This statement relies on intimate knowledge implementation details and 
+>> a bit too much white box testing approach but that's okay, lets move 
+>> past this one.
+>>
+>>> So you are arguing that because I can't fix the last 0.1% of possible 
+>>> failures, I am not allowed to fix the first 99.9% of the failures?
+>>
+>> I am clearly not arguing for that. But we are also not talking about 
+>> "fixing failures" here. Just how to make CI cope better with a class 
+>> of i915 bugs.
+>>
+>>>>> Regarding signals, the PM idle code ends up at 
+>>>>> wait_var_event_killable(). I assume that is interruptible via at 
+>>>>> least a KILL signal if not any signal. Although it's not entirely 
+>>>>> clear trying to follow through the implementation of this code. 
+>>>>> Also, I have no idea if there is a safe way to add a timeout to 
+>>>>> that code (or why it wasn't already written with a timeout 
+>>>>> included). Someone more familiar with the wakeref internals would 
+>>>>> need to comment.
 >>>>>
->>>>> When trying to analyse bug reports from CI, customers, etc. it can be
->>>>> difficult to work out exactly what is happening on which GT in a
->>>>> multi-GT system. So add GT oriented debug/error message wrappers. If
->>>>> used instead of the drm_ equivalents, you get the same output but with
->>>>> a GT# prefix on it.
->>>>>
->>>>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+>>>>> However, I strongly disagree that we should not fix the driver just 
+>>>>> because it is possible to workaround the issue by re-writing the CI 
+>>>>> framework. Feel free to bring a redesign plan to the IGT WG and 
+>>>>> whatever equivalent CI meetings in parallel. But we absolutely 
+>>>>> should not have infinite waits in the kernel if there is a trivial 
+>>>>> way to not have infinite waits.
 >>>>
->>>> The only downside to this is that we'll print "GT0: " even on 
->>>> single-GT devices. We could introduce a gt->info.name and print 
->>>> that, so we could have it different per-platform, but IMO it's not 
->>>> worth the effort.
+>>>> I thought I was clear that I am not really opposed to the timeout.
 >>>>
->>>> Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>>>> The rest of the paragraph I don't really care - point is moot 
+>>>> because it's debugfs so we can do whatever, as long as it is not 
+>>>> burdensome to i915, which this isn't. If either wasn't the case then 
+>>>> we certainly wouldn't be adding any workarounds in the kernel if it 
+>>>> can be achieved in IGT.
 >>>>
->>>> I think it might be worth getting an ack from one of the maintainers 
->>>> to make sure we're all aligned on transitioning to these new logging 
->>>> macro for gt code.
+>>>>> Also, sending a signal does not result in the wedge happening. I 
+>>>>> specifically did not want to change that code path because I was 
+>>>>> assuming there was a valid reason for it. If you have been 
+>>>>> interrupted then you are in the territory of maybe it would have 
+>>>>> succeeded if you just left it for a moment longer. Whereas, hitting 
+>>>>> the timeout says that someone very deliberately said this is too 
+>>>>> long to wait and therefore the system must be broken.
+>>>>
+>>>> I wanted to know specifically about wedging - why can't you 
+>>>> wedge/reset from IGT if DROP_IDLE times out in quiescent or 
+>>>> wherever, if that's what you say is the right thing? 
+>>> Huh?
 >>>
->>> Idea is I think a very good one. First I would suggest standardising 
->>> to lowercase GT in logs because:
+>>> DROP_IDLE has two waits. One that I am trying to change from infinite 
+>>> to finite + wedge. One that would take considerable effort to change 
+>>> and would be quite invasive to a lot more of the driver and which can 
+>>> only be hit if the first timeout actually completed successfully and 
+>>> is therefore of less importance anyway. Both of those time outs 
+>>> appear to respect signal interrupts.
 >>>
->>> $ grep "GT%" i915/ -r
->>> $ grep "gt%" i915/ -r
->>> i915/gt/intel_gt_sysfs.c: gt->i915->sysfs_gt, "gt%d", gt->info.id))
->>> i915/gt/intel_gt_sysfs.c:                "failed to initialize gt%d 
->>> sysfs root\n", gt->info.id);
->>> i915/gt/intel_gt_sysfs_pm.c:                     "failed to create 
->>> gt%u RC6 sysfs files (%pe)\n",
->>> i915/gt/intel_gt_sysfs_pm.c:                             "failed to 
->>> create gt%u RC6p sysfs files (%pe)\n",
->>> i915/gt/intel_gt_sysfs_pm.c:                     "failed to create 
->>> gt%u RPS sysfs files (%pe)",
->>> i915/gt/intel_gt_sysfs_pm.c:                     "failed to create 
->>> gt%u punit_req_freq_mhz sysfs (%pe)",
->>> i915/gt/intel_gt_sysfs_pm.c:                             "failed to 
->>> create gt%u throttle sysfs files (%pe)",
->>> i915/gt/intel_gt_sysfs_pm.c:                             "failed to 
->>> create gt%u media_perf_power_attrs sysfs (%pe)\n",
->>> i915/gt/intel_gt_sysfs_pm.c:                     "failed to add gt%u 
->>> rps defaults (%pe)\n",
->>> i915/i915_driver.c: drm_err(&gt->i915->drm, "gt%d: intel_pcode_init 
->>> failed %d\n", id, ret);
->>> i915/i915_hwmon.c:              snprintf(ddat_gt->name, 
->>> sizeof(ddat_gt->name), "i915_gt%u", i);
+>>>> That's a policy decision so why would i915 wedge if an arbitrary 
+>>>> timeout expired? I915 is not controlling how much work there is 
+>>>> outstanding at the point the IGT decides to call DROP_IDLE.
 >>>
-> 
-> Just because there are 11 existing instances of one form doesn't mean 
-> that the 275 instances that are waiting to be converted should be done 
-> incorrectly. GT is an acronym and should be capitalised.
-
-Okay just make it consistent then.
-
-> Besides:
-> grep -r "GT " i915 | grep '"'
-> i915/vlv_suspend.c:             drm_err(&i915->drm, "timeout disabling 
-> GT waking\n");
-> i915/vlv_suspend.c:                     "timeout waiting for GT wells to 
-> go %s\n",
-> i915/vlv_suspend.c:     drm_dbg(&i915->drm, "GT register access while GT 
-> waking disabled\n");
-> i915/i915_gpu_error.c:  err_printf(m, "GT awake: %s\n", 
-> str_yes_no(gt->awake));
-> i915/i915_debugfs.c:    seq_printf(m, "GT awake? %s [%d], %llums\n",
-> i915/selftests/i915_gem_evict.c: pr_err("Failed to idle GT (on %s)", 
-> engine->name);
-> i915/intel_uncore.c:                  "GT thread status wait timed out\n");
-> i915/gt/uc/selftest_guc_multi_lrc.c: drm_err(&gt->i915->drm, "GT failed 
-> to idle: %d\n", ret);
-> i915/gt/uc/selftest_guc.c: drm_err(&gt->i915->drm, "GT failed to idle: 
-> %d\n", ret);
-> i915/gt/uc/selftest_guc.c: drm_err(&gt->i915->drm, "GT failed to idle: 
-> %d\n", ret);
-> i915/gt/intel_gt_mcr.c: * Some GT registers are designed as "multicast" 
-> or "replicated" registers:
-> i915/gt/selftest_rps.c:                 pr_info("%s: rps counted %d C0 
-> cycles [%lldns] in %lldns [%d cycles], using GT clock frequency of 
-> %uKHz\n",
-> i915/gt/selftest_hangcheck.c:                   pr_err("[%s] GT is 
-> wedged!\n", engine->name);
-> i915/gt/selftest_hangcheck.c:           pr_err("GT is wedged!\n");
-> i915/gt/intel_gt_clock_utils.c:                 "GT clock frequency 
-> changed, was %uHz, now %uHz!\n",
-> i915/gt/selftest_engine_pm.c:           pr_err("Unable to flush GT pm 
-> before test\n");
-> i915/gt/selftest_engine_pm.c:                           pr_err("GT 
-> failed to idle\n");
-> i915/i915_sysfs.c:                       "failed to register GT sysfs 
-> directory\n");
-> i915/intel_uncore.h:     * of the basic non-engine GT registers 
-> (referred to as "GSI" on
-> i915/intel_uncore.h:     * newer platforms, or "GT block" on older 
-> platforms)?  If so, we'll
-> 
-> 
-> 
->>> Then there is a question of naming. Are we okay with GT_XXX or, do we 
->>> want intel_gt_, or something completely different. I don't have a 
->>> strong opinion at the moment so I'll add some more folks to Cc.
+>>> Because this is a debug test interface that is used solely by IGT 
+>>> after it has finished its testing. This is not about wedging the 
+>>> device at some random arbitrary point because an AI compute workload 
+>>> takes three hours to complete. This is about a very specific test 
+>>> framework cleaning up after testing is completed and making sure the 
+>>> test did not fry the system.
+>>>
+>>> And even if an IGT test was calling DROP_IDLE in the middle of a test 
+>>> for some reason, it should not be deliberately pushing 10+ seconds of 
+>>> work through and then calling a debug only interface to flush it out. 
+>>> If a test wants to verify that the system can cope with submitting a 
+>>> minutes worth of rendering and then waiting for it to complete then 
+>>> the test should be using official channels for that wait.
+>>>
+>>>>
+>>>>> Plus, infinite wait is not a valid code path in the first place so 
+>>>>> any change in behaviour is not really a change in behaviour. Code 
+>>>>> can't be relying on a kernel call to never return for its correct 
+>>>>> operation!
+>>>>
+>>>> Why infinite wait wouldn't be valid? Then you better change the 
+>>>> other one as well. ;P
+>>> In what universe is it ever valid to wait forever for a test to 
+>>> complete?
 >>
-> You mean GT_ERR("msg") vs intel_gt_err("msg")? Personally, I would 
-> prefer just gt_err("msg") to keep it as close to the official drm_* 
-> versions as possible. Print lines tend to be excessively long already. 
-> Taking a 'gt' parameter instead of a '&gt->i915->drm' parameter does 
-> help with that but it seems like calling the wrapper intel_gt_* is 
-> shooting ourselves in the foot on that one. And GT_ERR vs gt_err just 
-> comes down to the fact that it is a macro wrapper and therefore is 
-> required to be in upper case.
+>> Well above you claimed both paths respect SIGINT. If that is so then 
+>> the wait is as infinite as the IGT wanted it to be.
+>>
+>>> See above, the PM code would require much more invasive changes. This 
+>>> was low hanging fruit. It was supposed to be a two minute change to a 
+>>> very self contained section of code that would provide significant 
+>>> benefit to debugging a small class of very hard to debug problems.
+>>
+>> Sure, but I'd still like to know why can't you do what you want from 
+>> the IGT framework.
+>>
+>> Have the timeout reduction in i915, again that's fine assuming 10 
+>> seconds it enough to not break something by accident.
+> CI showed no regressions. And if someone does find a valid reason why a 
+> post test drop caches call should legitimately take a stupidly long time 
+> then it is easy to track back where the ETIME error came from and bump 
+> the timeout.
 > 
->> There was a maintainer level mini-discussion on this topic which I 
->> will try to summarise.
 >>
->> Main contention point was the maintenance cost and generally an 
->> undesirable pattern of needing to add many 
->> subsystem/component/directory specific macros. Which then typically 
->> need extra flavours and so on. But over verbosity of the 
-> How many versions are you expecting to add? Beyond the tile instance, 
-> what further addressing requirements are there? The card instance is 
-> already printed as part of the PCI address. The only other reason to add 
-> per component wrappers would be to wrap the mechanism for getting from 
-> some random per component object back to the intel_gt structure. But 
-> that is hardware a new issue being added by this wrapper. It is also not 
-> a requirement. Much of the code has a gt pointer already. For the parts 
-> that don't, some of it would be a trivial engine->gt type dereference, 
-> some of it is a more complex container_of type construction. But for 
-> those, the given file will already have multiple instances of that 
-> already (usually as the first or second line of the function - 'intel_gt 
-> *gt = fancy_access_method(my_obj)' so adding one or two more of those as 
-> necessary is not making the code harder to read.
+>> With that change you already have broken the "infinite wait". It makes 
+>> the debugfs write return -ETIME in time much shorter than the test 
+>> runner timeout(s). What is the thing that you cannot do from IGT at 
+>> that point is my question? You want to wedge then? Send 
+>> DROP_RESET_ACTIVE to do it for you? If that doesn't work add a new 
+>> flag which will wedge explicitly.
+>>
+>> We are again degrading into a huge philosophical discussion and all I 
+>> wanted to start with is to hear how exactly things go bad.
+>>
+> I have no idea what you are wanting. I am trying to have a technical 
+> discussion about improving the stability of the driver during CI 
+> testing. I have no idea if you are arguing that this change is good, 
+> bad, broken, wrong direction or what.
 > 
->> code is obviously also bad, so one compromise idea was to add a macro 
->> which builds the GT string and use drm logging helpers directly. This 
->> would be something like:
->>
->>  drm_err(GT_LOG("something went wrong ret=%d\n", gt), ret);
->>  drm_info(GT_LOG(...same...));
-> Seriously? As above, some of these lines are already way too long, this 
-> version makes them even longer with no obvious benefit. Worse, it makes 
-> it harder to read what is going on. It is much less intuitive to read 
-> than just replacing the drm_err itself. And having two sets of 
-> parenthesis with some parameters inside the first and some only inside 
-> the second is really horrid! Also, putting the 'gt' parameter in the 
-> middle just confuses it with the rest of the printf arguments even 
-> though there is no %d in the string for it. So now a quick glances tells 
-> you that your code is wrong because you have three format specifiers but 
-> four parameters.
+> Things go bad as explained in the commit message. The CI framework does 
+> not use signals. The IGT framework does not use signals. There is no 
+> watchdog that sends a TERM or KILL signal after a specified timeout. All 
+> that happens is the IGT sits there forever waiting for the drop caches 
+> IOCTL to return. The CI framework eventually gives up waiting for the 
+> test to complete and tries to recover. There are many different CI 
+> frameworks in use across Intel. Some timeout quickly, some timeout 
+> slowly. But basically, they all eventually give up and don't bother 
+> trying any kind of remedial action but just hit the reset button 
+> (sometimes by literally power cycling the DUT). As result, background 
+> processes that are saving dmesg, stdout, etc do not necessarily 
+> terminate cleanly. That results in logs that are at best truncated, at 
+> worst missing entirely. It also results in some frameworks aborting 
+> testing at that point. So no results are generated for all the other 
+> tests that have yet to be run. Some frameworks also run tests in 
+> batches. All they log is that something, somewhere in the batch died. So 
+> you don't even know which specific test actually hit the problem.
 > 
-> Whereas, just replacing drm_err with gt_err (or GT_ERR or intel_gt_err) 
-> keeps everything else consistent. The first parameter changes from 'drm' 
-> to 'gt' but is still the master object parameter and it matches the 
-> function/macro prefix so inherently looks correct. Then you have your 
-> message plus parameters. No confusing orders, no confusing parenthesis, 
-> no excessive macro levels, no confusion at all. Just nice simple, easy 
-> to read, easy to maintain code.
+> Can the CI frameworks be improved? Undoubtedly. In very many ways. Is 
+> that something we have the ability to do with a simple patch? No. Would 
+> re-writing the IGT framework to add watchdog mechanisms improve things? 
+> Yes. Can it be done with a simple patch? No. Would a simple patch to 
+> i915 significantly improve the situation? Yes. Will it solve every 
+> possible CI hang? No. Will it fix any actual end user visible bugs? No. 
+> Will it introduce any new bugs? No. Will it help us to debug at least 
+> some CI failures? Yes.
 
-I am personally okay with gt_err/GT_ERR some other folks might object 
-though. And I can also understand the argument why it is better to not 
-have to define gt_err, gt_warn, gt_info, gt_notice, gt_debug, 
-gt_err_ratelimited, gt_warn_once.. and instead have only one macro.
-
-Because of that I was passing on to you the compromise option.
-
-It maybe still has net space savings since we wouldn't have to be 
-repeating the gt->i915->drm whatever and gt->info.id on every line.
-
-You are free to try the most compact one and see how hard those 
-objections will be.
-
->> Whether or not to put the gt as parameter to the helper macro or 
->> outside wasn't really decided upon. Anyway the macro would be adding 
->> the magic "gt%u: " prefix, drm device and all.
->>
->> Also the name GT_LOG (or case) is just for illustration, that part 
->> wasn't really discussed.
->>
->> If agreeable this pattern could then be used to consolidate some other 
->> macros that we have. Although apart from CT_DEBUG/ERROR I don't know 
->> if we have any others.
-> By consolidating as what? I hope you aren't meaning something like 
-> 'drm_err(CT_DEBUG(GT_LOG("msg")))?'
-
-No, consolidate as in use the same pattern of directly calling drm 
-logging helpers with our own formatting macro which changes per 
-subsystem/component/directory/whatever.
+To unblock, I suggest you go with the patch which caps the wait only, 
+and propose a wedging as an IGT patch to gem_quiescent_gpu(). That 
+should involve the CI/IGT folks into discussion on what logs will be, or 
+will not be collected once gem_quiescent_gpu() fails due -ETIME. In fact 
+probably you should copy CI/IGT folks on the v2 of the i915 patch as 
+well since I now think their acks would be good to have - from the point 
+of view of the current test runner behaviour with hanging tests.
 
 Regards,
 
