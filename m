@@ -2,52 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1509621804
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Nov 2022 16:23:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E932862180C
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Nov 2022 16:23:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B38AE10E4B2;
-	Tue,  8 Nov 2022 15:23:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB92210E49A;
+	Tue,  8 Nov 2022 15:23:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF5BC10E48B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BBB610E49A
  for <intel-gfx@lists.freedesktop.org>; Tue,  8 Nov 2022 15:23:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667920985; x=1699456985;
+ t=1667920986; x=1699456986;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/P3f/WG5qMaDRR01CgfcRXPlA6wMCh2WiJamZMEEVPE=;
- b=ixIMVPVJfS5v6YUw8JTGxNTNC4cCkvQ1xN+Gr1PwSlkxoT0UEZURmTO2
- kpds7ggja8dvDjxx1qVcjx83U3JBusztV+u70k5tpMIw/8UwK/qFXUfED
- fSH7QMj3js+t+g3KewJ4vJ2zvKrvbR31C0XKfBwAtbIC6gmKAlB50zlUw
- yb5BM2zYsM5PTtNa+WLwmHP4TQ60Hwwi3rw/qOEfRiOS1FfPh/pmE4vtE
- QU4JmY+qCHSWeqZBtexYrUOxmDUGdFSppf0jpWX3vjz+8DzoD/2S4AFtd
- fzhtdI5I5rY1Q7uGKf9OJNYunzuaO5aMHKA3gG9yt6LPZZZrtAw5+CQED Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10525"; a="310718790"
-X-IronPort-AV: E=Sophos;i="5.96,148,1665471600"; d="scan'208";a="310718790"
+ bh=R6ZDYenThmxvqnLPKbatQylGYLT6aAvkQ0S/6idycps=;
+ b=jZL4RYEC15m2xxzWG3N/7UfChle18LaWFiK265UCI/onajGGzKxMXN5W
+ r/OlVuqS1cXVPbekZRRSPwRIzCglWG0TgcEOvy7rIea0UNFO9+3vPtPoH
+ psKDgO2aM+C4DR1FQPmSZikE3REfPVYVxHcPS5UsDmMec5uKn9XxFiXfh
+ 7pgwHaRjocYlWGseRy8jjEF91Wvv06KxGpIDoxe3z5GsXE5JigTl7PqiX
+ XtpzVS59GwXys6NzjMwWLv57ua53fkb1t9+g+lqy0AY+UVX90fw4X9XfA
+ ZouyyRgzr4ALvBMtwVAjV2Jmqd6BXIAEzaGF6rm/CBJR1t27+vPgHR+bm Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10525"; a="310718798"
+X-IronPort-AV: E=Sophos;i="5.96,148,1665471600"; d="scan'208";a="310718798"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2022 07:19:00 -0800
+ 08 Nov 2022 07:19:03 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10525"; a="725590622"
-X-IronPort-AV: E=Sophos;i="5.96,148,1665471600"; d="scan'208";a="725590622"
+X-IronPort-AV: E=McAfee;i="6500,9779,10525"; a="725590644"
+X-IronPort-AV: E=Sophos;i="5.96,148,1665471600"; d="scan'208";a="725590644"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by FMSMGA003.fm.intel.com with SMTP; 08 Nov 2022 07:18:57 -0800
+ by FMSMGA003.fm.intel.com with SMTP; 08 Nov 2022 07:19:00 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 08 Nov 2022 17:18:56 +0200
+ Tue, 08 Nov 2022 17:19:00 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  8 Nov 2022 17:18:29 +0200
-Message-Id: <20221108151839.31567-6-ville.syrjala@linux.intel.com>
+Date: Tue,  8 Nov 2022 17:18:30 +0200
+Message-Id: <20221108151839.31567-7-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.37.4
 In-Reply-To: <20221108151839.31567-1-ville.syrjala@linux.intel.com>
 References: <20221108151839.31567-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 05/15] drm/i915/audio: Introduce a struct for
- the acomp audio state
+Subject: [Intel-gfx] [PATCH v2 06/15] drm/i915/audio: Precompute the ELD
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,304 +59,236 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Takashi Iwai <tiwai@suse.de>
+Cc: Takashi Iwai <tiwai@suse.de>, Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Currently we're spreading the stashed state for use of the
-audio component hooks all over the place. Start collecting
-it up into a single spot.
+Stash the ELD into the crtc_state and precompute it. This gets
+rid of the ugly ELD mutation during intel_audio_codec_enable(),
+and opens the door for the state checker.
+
+v2: Make another copy for the acomp hooks (Chaitanya)
+    Split out the bogus ELD handling change (Jani)
 
 Cc: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 Cc: Kai Vehmanen <kai.vehmanen@linux.intel.com>
 Cc: Takashi Iwai <tiwai@suse.de>
+Reviewed-by: Jani Nikula <jani.nikula@intel.com> #v1
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_audio.c    | 106 ++++++++++--------
- .../gpu/drm/i915/display/intel_display_core.h |   9 +-
- .../drm/i915/display/intel_display_types.h    |   2 -
- 3 files changed, 65 insertions(+), 52 deletions(-)
+ drivers/gpu/drm/i915/display/intel_audio.c    | 50 ++++++++++++-------
+ drivers/gpu/drm/i915/display/intel_audio.h    |  5 ++
+ .../gpu/drm/i915/display/intel_display_core.h |  2 +-
+ .../drm/i915/display/intel_display_types.h    |  2 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |  4 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |  4 +-
+ 6 files changed, 45 insertions(+), 22 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
-index 6b0c2b0522fd..dba9e25ae69d 100644
+index dba9e25ae69d..1daf3591a824 100644
 --- a/drivers/gpu/drm/i915/display/intel_audio.c
 +++ b/drivers/gpu/drm/i915/display/intel_audio.c
-@@ -754,27 +754,29 @@ void intel_audio_codec_enable(struct intel_encoder *encoder,
+@@ -335,8 +335,7 @@ static void g4x_audio_codec_enable(struct intel_encoder *encoder,
+ {
  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
- 	struct i915_audio_component *acomp = i915->display.audio.component;
  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
 -	struct drm_connector *connector = conn_state->connector;
-+	struct intel_connector *connector = to_intel_connector(conn_state->connector);
- 	const struct drm_display_mode *adjusted_mode =
- 		&crtc_state->hw.adjusted_mode;
-+	struct intel_audio_state *audio_state;
+-	const u32 *eld = (const u32 *)connector->eld;
++	const u32 *eld = (const u32 *)crtc_state->eld;
+ 	int eld_buffer_size, len, i;
+ 
+ 	intel_crtc_wait_for_next_vblank(crtc);
+@@ -345,7 +344,7 @@ static void g4x_audio_codec_enable(struct intel_encoder *encoder,
+ 		     G4X_ELD_VALID | G4X_ELD_ADDRESS_MASK, 0);
+ 
+ 	eld_buffer_size = g4x_eld_buffer_size(i915);
+-	len = min(drm_eld_size(connector->eld) / 4, eld_buffer_size);
++	len = min(drm_eld_size(crtc_state->eld) / 4, eld_buffer_size);
+ 
+ 	for (i = 0; i < len; i++)
+ 		intel_de_write(i915, G4X_HDMIW_HDMIEDID, eld[i]);
+@@ -738,6 +737,28 @@ static void ilk_audio_codec_enable(struct intel_encoder *encoder,
+ 	mutex_unlock(&i915->display.audio.mutex);
+ }
+ 
++bool intel_audio_compute_config(struct intel_encoder *encoder,
++				struct intel_crtc_state *crtc_state,
++				struct drm_connector_state *conn_state)
++{
++	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct drm_connector *connector = conn_state->connector;
++	const struct drm_display_mode *adjusted_mode =
++		&crtc_state->hw.adjusted_mode;
++
++	if (!connector->eld[0])
++		drm_dbg_kms(&i915->drm,
++			    "Bogus ELD on [CONNECTOR:%d:%s]\n",
++			    connector->base.id, connector->name);
++
++	BUILD_BUG_ON(sizeof(crtc_state->eld) != sizeof(connector->eld));
++	memcpy(crtc_state->eld, connector->eld, sizeof(crtc_state->eld));
++
++	crtc_state->eld[6] = drm_av_sync_delay(connector, adjusted_mode) / 2;
++
++	return true;
++}
++
+ /**
+  * intel_audio_codec_enable - Enable the audio codec for HD audio
+  * @encoder: encoder on which to enable audio
+@@ -755,8 +776,6 @@ void intel_audio_codec_enable(struct intel_encoder *encoder,
+ 	struct i915_audio_component *acomp = i915->display.audio.component;
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+-	const struct drm_display_mode *adjusted_mode =
+-		&crtc_state->hw.adjusted_mode;
+ 	struct intel_audio_state *audio_state;
  	enum port port = encoder->port;
  	enum pipe pipe = crtc->pipe;
- 
- 	if (!crtc_state->has_audio)
- 		return;
- 
--	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s][ENCODER:%d:%s] Enable audio codec on pipe %c, %u bytes ELD\n",
--		    connector->base.id, connector->name,
-+	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s][ENCODER:%d:%s] Enable audio codec on [CRTC:%d:%s], %u bytes ELD\n",
-+		    connector->base.base.id, connector->base.name,
+@@ -768,15 +787,7 @@ void intel_audio_codec_enable(struct intel_encoder *encoder,
+ 		    connector->base.base.id, connector->base.name,
  		    encoder->base.base.id, encoder->base.name,
--		    pipe_name(pipe), drm_eld_size(connector->eld));
-+		    crtc->base.base.id, crtc->base.name,
-+		    drm_eld_size(connector->base.eld));
- 
- 	/* FIXME precompute the ELD in .compute_config() */
--	if (!connector->eld[0])
-+	if (!connector->base.eld[0])
- 		drm_dbg_kms(&i915->drm,
- 			    "Bogus ELD on [CONNECTOR:%d:%s]\n",
--			    connector->base.id, connector->name);
-+			    connector->base.base.id, connector->base.name);
- 
--	connector->eld[6] = drm_av_sync_delay(connector, adjusted_mode) / 2;
-+	connector->base.eld[6] = drm_av_sync_delay(&connector->base, adjusted_mode) / 2;
+ 		    crtc->base.base.id, crtc->base.name,
+-		    drm_eld_size(connector->base.eld));
+-
+-	/* FIXME precompute the ELD in .compute_config() */
+-	if (!connector->base.eld[0])
+-		drm_dbg_kms(&i915->drm,
+-			    "Bogus ELD on [CONNECTOR:%d:%s]\n",
+-			    connector->base.base.id, connector->base.name);
+-
+-	connector->base.eld[6] = drm_av_sync_delay(&connector->base, adjusted_mode) / 2;
++		    drm_eld_size(crtc_state->eld));
  
  	if (i915->display.funcs.audio)
  		i915->display.funcs.audio->audio_codec_enable(encoder,
-@@ -782,10 +784,12 @@ void intel_audio_codec_enable(struct intel_encoder *encoder,
- 							      conn_state);
+@@ -788,7 +799,8 @@ void intel_audio_codec_enable(struct intel_encoder *encoder,
+ 	audio_state = &i915->display.audio.state[pipe];
  
- 	mutex_lock(&i915->display.audio.mutex);
--	encoder->audio_connector = connector;
+ 	audio_state->encoder = encoder;
+-	audio_state->connector = connector;
++	BUILD_BUG_ON(sizeof(audio_state->eld) != sizeof(crtc_state->eld));
++	memcpy(audio_state->eld, crtc_state->eld, sizeof(audio_state->eld));
  
--	/* referred in audio callbacks */
--	i915->display.audio.encoder_map[pipe] = encoder;
-+	audio_state = &i915->display.audio.state[pipe];
-+
-+	audio_state->encoder = encoder;
-+	audio_state->connector = connector;
-+
  	mutex_unlock(&i915->display.audio.mutex);
  
- 	if (acomp && acomp->base.audio_ops &&
-@@ -797,7 +801,7 @@ void intel_audio_codec_enable(struct intel_encoder *encoder,
+@@ -801,7 +813,7 @@ void intel_audio_codec_enable(struct intel_encoder *encoder,
  						      (int)port, (int)pipe);
  	}
  
--	intel_lpe_audio_notify(i915, pipe, port, connector->eld,
-+	intel_lpe_audio_notify(i915, pipe, port, connector->base.eld,
+-	intel_lpe_audio_notify(i915, pipe, port, connector->base.eld,
++	intel_lpe_audio_notify(i915, pipe, port, crtc_state->eld,
  			       crtc_state->port_clock,
  			       intel_crtc_has_dp_encoder(crtc_state));
  }
-@@ -818,16 +822,18 @@ void intel_audio_codec_disable(struct intel_encoder *encoder,
- 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
- 	struct i915_audio_component *acomp = i915->display.audio.component;
- 	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
--	struct drm_connector *connector = old_conn_state->connector;
-+	struct intel_connector *connector = to_intel_connector(old_conn_state->connector);
-+	struct intel_audio_state *audio_state;
- 	enum port port = encoder->port;
- 	enum pipe pipe = crtc->pipe;
+@@ -845,7 +857,7 @@ void intel_audio_codec_disable(struct intel_encoder *encoder,
+ 	audio_state = &i915->display.audio.state[pipe];
  
- 	if (!old_crtc_state->has_audio)
- 		return;
+ 	audio_state->encoder = NULL;
+-	audio_state->connector = NULL;
++	memset(audio_state->eld, 0, sizeof(audio_state->eld));
  
--	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s][ENCODER:%d:%s] Disable audio codec on pipe %c\n",
--		    connector->base.id, connector->name,
--		    encoder->base.base.id, encoder->base.name, pipe_name(pipe));
-+	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s][ENCODER:%d:%s] Disable audio codec on [CRTC:%d:%s]\n",
-+		    connector->base.base.id, connector->base.name,
-+		    encoder->base.base.id, encoder->base.name,
-+		    crtc->base.base.id, crtc->base.name);
- 
- 	if (i915->display.funcs.audio)
- 		i915->display.funcs.audio->audio_codec_disable(encoder,
-@@ -835,8 +841,12 @@ void intel_audio_codec_disable(struct intel_encoder *encoder,
- 							       old_conn_state);
- 
- 	mutex_lock(&i915->display.audio.mutex);
--	encoder->audio_connector = NULL;
--	i915->display.audio.encoder_map[pipe] = NULL;
-+
-+	audio_state = &i915->display.audio.state[pipe];
-+
-+	audio_state->encoder = NULL;
-+	audio_state->connector = NULL;
-+
  	mutex_unlock(&i915->display.audio.mutex);
  
- 	if (acomp && acomp->base.audio_ops &&
-@@ -1057,35 +1067,32 @@ static int i915_audio_component_get_cdclk_freq(struct device *kdev)
- }
- 
- /*
-- * get the intel_encoder according to the parameter port and pipe
-- * intel_encoder is saved by the index of pipe
-- * MST & (pipe >= 0): return the audio.encoder_map[pipe],
-+ * get the intel audio state according to the parameter port and pipe
-+ * MST & (pipe >= 0): return the audio.state[pipe].encoder],
-  *   when port is matched
-  * MST & (pipe < 0): this is invalid
-  * Non-MST & (pipe >= 0): only pipe = 0 (the first device entry)
-  *   will get the right intel_encoder with port matched
-  * Non-MST & (pipe < 0): get the right intel_encoder with port matched
-  */
--static struct intel_encoder *get_saved_enc(struct drm_i915_private *i915,
--					   int port, int pipe)
-+static struct intel_audio_state *find_audio_state(struct drm_i915_private *i915,
-+						  int port, int pipe)
- {
- 	/* MST */
- 	if (pipe >= 0) {
-+		struct intel_audio_state *audio_state;
- 		struct intel_encoder *encoder;
- 
- 		if (drm_WARN_ON(&i915->drm,
--				pipe >= ARRAY_SIZE(i915->display.audio.encoder_map)))
-+				pipe >= ARRAY_SIZE(i915->display.audio.state)))
- 			return NULL;
- 
--		encoder = i915->display.audio.encoder_map[pipe];
--		/*
--		 * when bootup, audio driver may not know it is
--		 * MST or not. So it will poll all the port & pipe
--		 * combinations
--		 */
-+		audio_state = &i915->display.audio.state[pipe];
-+		encoder = audio_state->encoder;
-+
- 		if (encoder && encoder->port == port &&
- 		    encoder->type == INTEL_OUTPUT_DP_MST)
--			return encoder;
-+			return audio_state;
+@@ -1172,9 +1184,9 @@ static int i915_audio_component_get_eld(struct device *kdev, int port,
+ 		return -EINVAL;
  	}
  
- 	/* Non-MST */
-@@ -1093,13 +1100,15 @@ static struct intel_encoder *get_saved_enc(struct drm_i915_private *i915,
- 		return NULL;
- 
- 	for_each_pipe(i915, pipe) {
-+		struct intel_audio_state *audio_state;
- 		struct intel_encoder *encoder;
- 
--		encoder = i915->display.audio.encoder_map[pipe];
-+		audio_state = &i915->display.audio.state[pipe];
-+		encoder = audio_state->encoder;
- 
- 		if (encoder && encoder->port == port &&
- 		    encoder->type != INTEL_OUTPUT_DP_MST)
--			return encoder;
-+			return audio_state;
- 	}
- 
- 	return NULL;
-@@ -1110,6 +1119,7 @@ static int i915_audio_component_sync_audio_rate(struct device *kdev, int port,
- {
- 	struct drm_i915_private *i915 = kdev_to_i915(kdev);
- 	struct i915_audio_component *acomp = i915->display.audio.component;
-+	const struct intel_audio_state *audio_state;
- 	struct intel_encoder *encoder;
- 	struct intel_crtc *crtc;
- 	unsigned long cookie;
-@@ -1121,20 +1131,22 @@ static int i915_audio_component_sync_audio_rate(struct device *kdev, int port,
- 	cookie = i915_audio_component_get_power(kdev);
- 	mutex_lock(&i915->display.audio.mutex);
- 
--	/* 1. get the pipe */
--	encoder = get_saved_enc(i915, port, pipe);
--	if (!encoder || !encoder->base.crtc) {
--		drm_dbg_kms(&i915->drm, "Not valid for port %c\n",
--			    port_name(port));
-+	audio_state = find_audio_state(i915, port, pipe);
-+	if (!audio_state) {
-+		drm_dbg_kms(&i915->drm, "Not valid for port %c\n", port_name(port));
- 		err = -ENODEV;
- 		goto unlock;
- 	}
- 
-+	encoder = audio_state->encoder;
-+
-+	/* FIXME stop using the legacy crtc pointer */
- 	crtc = to_intel_crtc(encoder->base.crtc);
- 
- 	/* port must be valid now, otherwise the pipe will be invalid */
- 	acomp->aud_sample_rate[port] = rate;
- 
-+	/* FIXME get rid of the crtc->config stuff */
- 	hsw_audio_config_update(encoder, crtc->config);
- 
-  unlock:
-@@ -1148,24 +1160,22 @@ static int i915_audio_component_get_eld(struct device *kdev, int port,
- 					unsigned char *buf, int max_bytes)
- {
- 	struct drm_i915_private *i915 = kdev_to_i915(kdev);
--	struct intel_encoder *intel_encoder;
--	const u8 *eld;
--	int ret = -EINVAL;
-+	const struct intel_audio_state *audio_state;
-+	int ret = 0;
- 
- 	mutex_lock(&i915->display.audio.mutex);
- 
--	intel_encoder = get_saved_enc(i915, port, pipe);
--	if (!intel_encoder) {
--		drm_dbg_kms(&i915->drm, "Not valid for port %c\n",
--			    port_name(port));
-+	audio_state = find_audio_state(i915, port, pipe);
-+	if (!audio_state) {
-+		drm_dbg_kms(&i915->drm, "Not valid for port %c\n", port_name(port));
- 		mutex_unlock(&i915->display.audio.mutex);
--		return ret;
-+		return -EINVAL;
- 	}
- 
--	ret = 0;
--	*enabled = intel_encoder->audio_connector != NULL;
-+	*enabled = audio_state->connector != NULL;
+-	*enabled = audio_state->connector != NULL;
++	*enabled = audio_state->encoder != NULL;
  	if (*enabled) {
--		eld = intel_encoder->audio_connector->eld;
-+		const u8 *eld = audio_state->connector->base.eld;
-+
+-		const u8 *eld = audio_state->connector->base.eld;
++		const u8 *eld = audio_state->eld;
+ 
  		ret = drm_eld_size(eld);
  		memcpy(buf, eld, min(max_bytes, ret));
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_audio.h b/drivers/gpu/drm/i915/display/intel_audio.h
+index 63b22131dc45..b9070f336bcf 100644
+--- a/drivers/gpu/drm/i915/display/intel_audio.h
++++ b/drivers/gpu/drm/i915/display/intel_audio.h
+@@ -6,12 +6,17 @@
+ #ifndef __INTEL_AUDIO_H__
+ #define __INTEL_AUDIO_H__
+ 
++#include <linux/types.h>
++
+ struct drm_connector_state;
+ struct drm_i915_private;
+ struct intel_crtc_state;
+ struct intel_encoder;
+ 
+ void intel_audio_hooks_init(struct drm_i915_private *dev_priv);
++bool intel_audio_compute_config(struct intel_encoder *encoder,
++				struct intel_crtc_state *crtc_state,
++				struct drm_connector_state *conn_state);
+ void intel_audio_codec_enable(struct intel_encoder *encoder,
+ 			      const struct intel_crtc_state *crtc_state,
+ 			      const struct drm_connector_state *conn_state);
 diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index 337d8e08ba43..a8f4d4d7fccd 100644
+index a8f4d4d7fccd..7dd7c88a07ab 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_core.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -86,6 +86,11 @@ struct intel_wm_funcs {
- 	int (*compute_global_watermarks)(struct intel_atomic_state *state);
+@@ -88,7 +88,7 @@ struct intel_wm_funcs {
+ 
+ struct intel_audio_state {
+ 	struct intel_encoder *encoder;
+-	struct intel_connector *connector;
++	u8 eld[MAX_ELD_BYTES];
  };
  
-+struct intel_audio_state {
-+	struct intel_encoder *encoder;
-+	struct intel_connector *connector;
-+};
-+
  struct intel_audio {
- 	/* hda/i915 audio component */
- 	struct i915_audio_component *component;
-@@ -95,8 +100,8 @@ struct intel_audio {
- 	int power_refcount;
- 	u32 freq_cntrl;
- 
--	/* Used to save the pipe-to-encoder mapping for audio */
--	struct intel_encoder *encoder_map[I915_MAX_PIPES];
-+	/* current audio state for the audio component hooks */
-+	struct intel_audio_state state[I915_MAX_PIPES];
- 
- 	/* necessary resource sharing with HDMI LPE audio driver. */
- 	struct {
 diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index c6abaaa46e17..cf9a5dd0e010 100644
+index cf9a5dd0e010..cd68c3134175 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_types.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -262,8 +262,6 @@ struct intel_encoder {
+@@ -1250,6 +1250,8 @@ struct intel_crtc_state {
+ 		struct drm_dp_vsc_sdp vsc;
+ 	} infoframes;
  
- 	enum hpd_pin hpd_pin;
- 	enum intel_display_power_domain power_domain;
--	/* for communication with audio component; protected by av_mutex */
--	const struct drm_connector *audio_connector;
++	u8 eld[MAX_ELD_BYTES];
++
+ 	/* HDMI scrambling status */
+ 	bool hdmi_scrambling;
  
- 	/* VBT information for this encoder (may be NULL for older platforms) */
- 	const struct intel_bios_encoder_data *devdata;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 7400d6b4c587..830f7728ccd4 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2023,7 +2023,9 @@ intel_dp_compute_config(struct intel_encoder *encoder,
+ 	if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv) && encoder->port != PORT_A)
+ 		pipe_config->has_pch_encoder = true;
+ 
+-	pipe_config->has_audio = intel_dp_has_audio(encoder, pipe_config, conn_state);
++	pipe_config->has_audio =
++		intel_dp_has_audio(encoder, pipe_config, conn_state) &&
++		intel_audio_compute_config(encoder, pipe_config, conn_state);
+ 
+ 	fixed_mode = intel_panel_fixed_mode(connector, adjusted_mode);
+ 	if (intel_dp_is_edp(intel_dp) && fixed_mode) {
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 02f8374ea51f..7e99ede1bfd2 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -43,6 +43,7 @@
+ #include "i915_debugfs.h"
+ #include "i915_drv.h"
+ #include "intel_atomic.h"
++#include "intel_audio.h"
+ #include "intel_connector.h"
+ #include "intel_ddi.h"
+ #include "intel_de.h"
+@@ -2261,7 +2262,8 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
+ 		pipe_config->has_pch_encoder = true;
+ 
+ 	pipe_config->has_audio =
+-		intel_hdmi_has_audio(encoder, pipe_config, conn_state);
++		intel_hdmi_has_audio(encoder, pipe_config, conn_state) &&
++		intel_audio_compute_config(encoder, pipe_config, conn_state);
+ 
+ 	/*
+ 	 * Try to respect downstream TMDS clock limits first, if
 -- 
 2.37.4
 
