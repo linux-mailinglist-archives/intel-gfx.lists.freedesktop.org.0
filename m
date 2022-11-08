@@ -1,60 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0D586327F9
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Nov 2022 16:26:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CDB06327F6
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Nov 2022 16:26:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79E5B10E300;
-	Mon, 21 Nov 2022 15:26:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E92910E2FC;
+	Mon, 21 Nov 2022 15:26:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vs1-xe36.google.com (mail-vs1-xe36.google.com
- [IPv6:2607:f8b0:4864:20::e36])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 000F610E18F
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Nov 2022 04:30:16 +0000 (UTC)
-Received: by mail-vs1-xe36.google.com with SMTP id l190so12576807vsc.10
- for <intel-gfx@lists.freedesktop.org>; Mon, 07 Nov 2022 20:30:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com
+ [IPv6:2607:f8b0:4864:20::231])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9677310E45B;
+ Tue,  8 Nov 2022 13:17:43 +0000 (UTC)
+Received: by mail-oi1-x231.google.com with SMTP id m204so15463205oib.6;
+ Tue, 08 Nov 2022 05:17:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=s1S67zBXqmoumGpv61MX8UPvTPxxW4Sjl9aesuRqyck=;
- b=cHeHu+FTXHZesne16clnJWFEFGPH6FQQNR96RX1ZU9QdTkOtVgvBfi/dy3c/oDzWfM
- e7Ynf1hzPMHMPp/a7BuIAw0KGsWFe8ubLT+fEoB3gTkMOKNoIvXB0v6VnnBfaeFhxx9l
- G7FyHP87GhavZsf1MdZCLBjosjMafPattnf7h9zrC7IOF4jPSFhkPAUqTFsRiQVrf9ai
- w4L3WNfkM3ZOh3oeSic1LkS8/TvqU22vSWFy2vCtfWS7qoD4Sv+lYrGEuAyxqX4tFeps
- iyti0XQRCa1bcE940T+8/m6JXV0Dwzxsn8t26h2rZhDRTsXbLC+Q8W24zlDGCFfQO9NU
- oZtQ==
+ bh=2GgMjWUeDOa0y6Mw7fV1gcKP3Ka2/DN6qC2vXSuajOU=;
+ b=XZ1r4euhMfX4WBZroZC2UWzK6rirDmsgccRGxXVGE1Z8an6ALR3EZjOWCFm2qXydvt
+ oM0TqkBeVUR+Zwml4Jpw+wbDfBwhj9yvpHCu0yM/okrddAS92FNMVwMJvg/ebaJwzSJ8
+ iB+aEm2vJDc1SNCBdYPypuH+C+T4MEcXzpvdpH39EoikL4AuS+G/KRiZdR7HrjFSYp+0
+ LyvmdngabF3SaD3xHxxzFGI8j86pn7jeVqNwrOc2qUE8CtzOYAHNWm97bv8mZtshm9HD
+ yLevvJH7G6/Fl+visV7LV7XnDnYeXFCbXO/g6jam27JfWxTskONYMr/Z9oUj/ILMdXvu
+ lBeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=s1S67zBXqmoumGpv61MX8UPvTPxxW4Sjl9aesuRqyck=;
- b=tHhv6iiBGzUr9EG60ay9Hhqzhw9fukjcjlHULgHbzuFAWTeC3yXT/BwU9hlsOOjlQ0
- nvR/Y9lvNhYwnG45sONf9BUQ2LfrLmXRbrR9KpZBJLwm/ZDznNVr2Z6aB3pKa7KkX/I6
- uu0yQFWF5t5dRzBqzQiYXjzjFuliWAkpLf+Aeprr3Rgx6frKk8J43tUgG9KkJPmukh6l
- 8kuWBLbVCxPq5tEMAZ/1loTbCGxUrnkrAULvmMN5p+R6z8qN31N0eW/iErXats8acJOa
- ULfwN9fdOyUmDHNfVsJ26yRXAqUV43cHt7qrbEM7kjBV3zYvry7LPSxLEDO9to27B89S
- 0LfQ==
-X-Gm-Message-State: ACrzQf1BCj7huusDZ9f+re5BO59qkqGZYMhFd70PdObH4I+dvHMoCamQ
- EIFt0KTTM/60awx/hW03ZW07i/ZXb6N4ll6TTxy8ag==
-X-Google-Smtp-Source: AMsMyM6Zcwdy5g6+MnK649Vl7DV49R/RSyb0+53CmcJyrUzxu1Aj+ztWwRDeZ9mKt5Ce3C9lv0wHQMUM41Pn36RWvLs=
-X-Received: by 2002:a67:f3c5:0:b0:3aa:329e:18b5 with SMTP id
- j5-20020a67f3c5000000b003aa329e18b5mr29936784vsn.18.1667881815601; Mon, 07
- Nov 2022 20:30:15 -0800 (PST)
+ bh=2GgMjWUeDOa0y6Mw7fV1gcKP3Ka2/DN6qC2vXSuajOU=;
+ b=U3/+kTq/36GmThc3EldCsdCo815gKkPES8kOGKMgzTR76Enj5jefm7O6CvA3DYXPnM
+ ihx+Bbys7v17aJV0F8JbmiQ+HCBdIHHKSdjEY1/4FnUZxoiy92KENBa3ipKZ2R1PnkLC
+ DB0rJI0uObX8pkJvDdGNEFUHxFmeil7nwQDCVah6hwk/sTIWG5tqm/7F5FFZ8zEY1w8f
+ quX7L4MG4/yEqW9+uyhHTPwd3rXfMzeR29vwI9HCsJ6fWZyGNklwwZmCXi43T+bTC9nF
+ qsqgoL64llKnooXHFj4xSifG0RJEUHCLPwhr2vwXjlcNpeqLaO5TNji8fm0DJaA8NmV0
+ XklQ==
+X-Gm-Message-State: ACrzQf3S5jApcXW9wR8SfeY1F+PX5ruO05VeYU/Cp/nRB2UWTQx1WCbQ
+ xbhq1GrMu1IeTfr0ahC3ALMDaeSPpTbTw/pvKMo=
+X-Google-Smtp-Source: AMsMyM6RHMy2rRRmUjdQFV9AyI5dai8aG4qIYm7kfkzlhVjHTAos1GFdSvAN74P8Pn2xQp1werVRUK/cry/6d5Xsn3M=
+X-Received: by 2002:a54:4587:0:b0:359:c737:b2e8 with SMTP id
+ z7-20020a544587000000b00359c737b2e8mr29985757oib.234.1667913462796; Tue, 08
+ Nov 2022 05:17:42 -0800 (PST)
 MIME-Version: 1.0
-References: <20221103162302.4ba62d72@maurocar-mobl2>
-In-Reply-To: <20221103162302.4ba62d72@maurocar-mobl2>
-From: David Gow <davidgow@google.com>
-Date: Tue, 8 Nov 2022 12:30:03 +0800
-Message-ID: <CABVgOSnzMrwnORRqq345AqBUd7=tH1G4ayzZyEo_cYrmE49POA@mail.gmail.com>
-To: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature";
- micalg=sha-256; boundary="0000000000002b570105ecedff23"
+References: <20220728-rpi-analog-tv-properties-v7-0-7072a478c6b3@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v7-22-7072a478c6b3@cerno.tech>
+In-Reply-To: <20220728-rpi-analog-tv-properties-v7-22-7072a478c6b3@cerno.tech>
+From: Lukas Satin <luke.satin@gmail.com>
+Date: Tue, 8 Nov 2022 14:17:31 +0100
+Message-ID: <CAEFVmOKn4Won90xyX2Efh2esZ94npoy0BuTQ7n-in+KapfBb=w@mail.gmail.com>
+To: Maxime Ripard <maxime@cerno.tech>
+Content-Type: multipart/alternative; boundary="00000000000077594705ecf55d40"
 X-Mailman-Approved-At: Mon, 21 Nov 2022 15:26:23 +0000
-Subject: Re: [Intel-gfx] KUnit issues - Was: [igt-dev] [PATCH RFC v2 8/8]
- drm/i915: check if current->mm is not NULL
+Subject: Re: [Intel-gfx] [Nouveau] [PATCH v7 22/23] drm/vc4: vec: Add
+ support for more analog TV standards
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,240 +67,749 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- igt-dev@lists.freedesktop.org, Brendan Higgins <brendan.higgins@linux.dev>,
- linux-kselftest@vger.kernel.org, Shuah Khan <skhan@linuxfoundation.org>,
- kunit-dev@googlegroups.com
+Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
+ Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
+ linux-sunxi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
+ Maxime Ripard <mripard@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ linux-arm-kernel@lists.infradead.org, Dom Cobley <dom@raspberrypi.com>,
+ linux-kernel@vger.kernel.org,
+ Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
+ =?UTF-8?Q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---0000000000002b570105ecedff23
+--00000000000077594705ecf55d40
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 3, 2022 at 11:23 PM Mauro Carvalho Chehab
-<mauro.chehab@linux.intel.com> wrote:
+They are important for retrogaming and connecting TV out to CRT TV or using
+emulator.
+
+I have PS1 that is using PAL-60 for example.
+
+Can you add 240p and 288p non-interlaced modes for NTSC and PAL, please?
+
+Lukas
+
+On Mon, Nov 7, 2022 at 3:19 PM Maxime Ripard <maxime@cerno.tech> wrote:
+
+> From: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
 >
-> Hi,
+> Add support for the following composite output modes (all of them are
+> somewhat more obscure than the previously defined ones):
 >
-> I'm facing a couple of issues when testing KUnit with the i915 driver.
+> - NTSC_443 - NTSC-style signal with the chroma subcarrier shifted to
+>   4.43361875 MHz (the PAL subcarrier frequency). Never used for
+>   broadcasting, but sometimes used as a hack to play NTSC content in PAL
+>   regions (e.g. on VCRs).
+> - PAL_N - PAL with alternative chroma subcarrier frequency,
+>   3.58205625 MHz. Used as a broadcast standard in Argentina, Paraguay
+>   and Uruguay to fit 576i50 with colour in 6 MHz channel raster.
+> - PAL60 - 480i60 signal with PAL-style color at normal European PAL
+>   frequency. Another non-standard, non-broadcast mode, used in similar
+>   contexts as NTSC_443. Some displays support one but not the other.
+> - SECAM - French frequency-modulated analog color standard; also have
+>   been broadcast in Eastern Europe and various parts of Africa and Asia.
+>   Uses the same 576i50 timings as PAL.
 >
-> The DRM subsystem and the i915 driver has, for a long time, his own
-> way to do unit tests, which seems to be added before KUnit.
+> Also added some comments explaining color subcarrier frequency
+> registers.
 >
-> I'm now checking if it is worth start using KUnit at i915. So, I wrote
-> a RFC with some patches adding support for the tests we have to be
-> reported using Kernel TAP and KUnit.
-
-Thanks very much for looking into this, and sorry for the delayed
-response (I've been out sick).
-
-I think Daniel has answered most of your questions (thanks, Daniel),
-and I agree with pretty much everything he's said.
-
-In short, I think that it'd be great to have the i915 tests use KUnit
-where appropriate, and even where KUnit isn't the ideal tool, using
-KTAP as a result format would be great.
-I definitely think that there's a whole bunch of areas of i915 for
-which KUnit makes sense: the more hardware independent unit tests
-(things like swizzling/tiling, maybe some command-buffer creation /
-validation, "utility" functions generally) are an obvious option. If
-KUnit isn't working for those sorts of tests, that's clearly a
-deficiency in KUnit that we'll want to rectify (though it might take
-some time to do so).
-
-The more hardware-specific stuff probably isn't as good a fit for
-KUnit, but if using KUnit is the easiest way to do test
-management/assertion macros/KTAP output/etc., then it may be worth
-using whatever parts of it make sense. I'd prefer it if any tests
-which depend strongly on specific hardware were marked as such, and
-maybe lived under a different Kconfig option (which might not be
-auto-enabled by KUNIT_ALL_TESTS). Though as long as the tests are
-skipped if the hardware isn't present (which seems to be the case from
-running them under qemu), it's not a real problem to have them. It's
-not something we plan to "officially support", though, so if the
-requirements of hardware-specific tests and more traditional unit
-tests conflict, KUnit will lean towards supporting the
-non-hardware-specific ones.
-
+> Acked-by: Noralf Tr=C3=B8nnes <noralf@tronnes.org>
+> Signed-off-by: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 >
-> There are basically 3 groups of tests there:
+> ---
+> Changes in v6:
+> - Support PAL60 again
+> ---
+>  drivers/gpu/drm/vc4/vc4_vec.c | 111
+> ++++++++++++++++++++++++++++++++++++++++--
+>  1 file changed, 107 insertions(+), 4 deletions(-)
 >
-> - mock tests - check i915 hardware-independent logic;
-> - live tests - run some hardware-specific tests;
-> - perf tests - check perf support - also hardware-dependent.
+> diff --git a/drivers/gpu/drm/vc4/vc4_vec.c b/drivers/gpu/drm/vc4/vc4_vec.=
+c
+> index a828fc6fb776..d23dbad3cbf6 100644
+> --- a/drivers/gpu/drm/vc4/vc4_vec.c
+> +++ b/drivers/gpu/drm/vc4/vc4_vec.c
+> @@ -46,6 +46,7 @@
+>  #define VEC_CONFIG0_YDEL(x)            ((x) << 26)
+>  #define VEC_CONFIG0_CDEL_MASK          GENMASK(25, 24)
+>  #define VEC_CONFIG0_CDEL(x)            ((x) << 24)
+> +#define VEC_CONFIG0_SECAM_STD          BIT(21)
+>  #define VEC_CONFIG0_PBPR_FIL           BIT(18)
+>  #define VEC_CONFIG0_CHROMA_GAIN_MASK   GENMASK(17, 16)
+>  #define VEC_CONFIG0_CHROMA_GAIN_UNITY  (0 << 16)
+> @@ -76,6 +77,27 @@
+>  #define VEC_SOFT_RESET                 0x10c
+>  #define VEC_CLMP0_START                        0x144
+>  #define VEC_CLMP0_END                  0x148
+> +
+> +/*
+> + * These set the color subcarrier frequency
+> + * if VEC_CONFIG1_CUSTOM_FREQ is enabled.
+> + *
+> + * VEC_FREQ1_0 contains the most significant 16-bit half-word,
+> + * VEC_FREQ3_2 contains the least significant 16-bit half-word.
+> + * 0x80000000 seems to be equivalent to the pixel clock
+> + * (which itself is the VEC clock divided by 8).
+> + *
+> + * Reference values (with the default pixel clock of 13.5 MHz):
+> + *
+> + * NTSC  (3579545.[45] Hz)     - 0x21F07C1F
+> + * PAL   (4433618.75 Hz)       - 0x2A098ACB
+> + * PAL-M (3575611.[888111] Hz) - 0x21E6EFE3
+> + * PAL-N (3582056.25 Hz)       - 0x21F69446
+> + *
+> + * NOTE: For SECAM, it is used as the Dr center frequency,
+> + * regardless of whether VEC_CONFIG1_CUSTOM_FREQ is enabled or not;
+> + * that is specified as 4406250 Hz, which corresponds to 0x29C71C72.
+> + */
+>  #define VEC_FREQ3_2                    0x180
+>  #define VEC_FREQ1_0                    0x184
 >
-> As they depend on i915 driver, they run only on x86, with PCI
-> stack enabled, but the mock tests run nicely via qemu.
+> @@ -118,6 +140,14 @@
 >
-> The live and perf tests require a real hardware. As we run them
-> together with our CI, which, among other things, test module
-> unload/reload and test loading i915 driver with different
-> modprobe parameters, the KUnit tests should be able to run as
-> a module.
+>  #define VEC_INTERRUPT_CONTROL          0x190
+>  #define VEC_INTERRUPT_STATUS           0x194
+> +
+> +/*
+> + * Db center frequency for SECAM; the clock for this is the same as for
+> + * VEC_FREQ3_2/VEC_FREQ1_0, which is used for Dr center frequency.
+> + *
+> + * This is specified as 4250000 Hz, which corresponds to 0x284BDA13.
+> + * That is also the default value, so no need to set it explicitly.
+> + */
+>  #define VEC_FCW_SECAM_B                        0x198
+>  #define VEC_SECAM_GAIN_VAL             0x19c
 >
-> While testing KUnit, I noticed a couple of issues:
+> @@ -197,10 +227,15 @@ enum vc4_vec_tv_mode_id {
+>         VC4_VEC_TV_MODE_NTSC_J,
+>         VC4_VEC_TV_MODE_PAL,
+>         VC4_VEC_TV_MODE_PAL_M,
+> +       VC4_VEC_TV_MODE_NTSC_443,
+> +       VC4_VEC_TV_MODE_PAL_60,
+> +       VC4_VEC_TV_MODE_PAL_N,
+> +       VC4_VEC_TV_MODE_SECAM,
+>  };
 >
-> 1. kunit.py parser is currently broken when used with modules
+>  struct vc4_vec_tv_mode {
+>         unsigned int mode;
+> +       u16 expected_htotal;
+>         u32 config0;
+>         u32 config1;
+>         u32 custom_freq;
+> @@ -236,35 +271,68 @@ static const struct debugfs_reg32 vec_regs[] =3D {
+>  static const struct vc4_vec_tv_mode vc4_vec_tv_modes[] =3D {
+>         {
+>                 .mode =3D DRM_MODE_TV_MODE_NTSC,
+> +               .expected_htotal =3D 858,
+>                 .config0 =3D VEC_CONFIG0_NTSC_STD | VEC_CONFIG0_PDEN,
+>                 .config1 =3D VEC_CONFIG1_C_CVBS_CVBS,
+>         },
+> +       {
+> +               .mode =3D DRM_MODE_TV_MODE_NTSC_443,
+> +               .expected_htotal =3D 858,
+> +               .config0 =3D VEC_CONFIG0_NTSC_STD,
+> +               .config1 =3D VEC_CONFIG1_C_CVBS_CVBS |
+> VEC_CONFIG1_CUSTOM_FREQ,
+> +               .custom_freq =3D 0x2a098acb,
+> +       },
+>         {
+>                 .mode =3D DRM_MODE_TV_MODE_NTSC_J,
+> +               .expected_htotal =3D 858,
+>                 .config0 =3D VEC_CONFIG0_NTSC_STD,
+>                 .config1 =3D VEC_CONFIG1_C_CVBS_CVBS,
+>         },
+>         {
+>                 .mode =3D DRM_MODE_TV_MODE_PAL,
+> +               .expected_htotal =3D 864,
+>                 .config0 =3D VEC_CONFIG0_PAL_BDGHI_STD,
+>                 .config1 =3D VEC_CONFIG1_C_CVBS_CVBS,
+>         },
+> +       {
+> +               /* PAL-60 */
+> +               .mode =3D DRM_MODE_TV_MODE_PAL,
+> +               .expected_htotal =3D 858,
+> +               .config0 =3D VEC_CONFIG0_PAL_M_STD,
+> +               .config1 =3D VEC_CONFIG1_C_CVBS_CVBS |
+> VEC_CONFIG1_CUSTOM_FREQ,
+> +               .custom_freq =3D 0x2a098acb,
+> +       },
+>         {
+>                 .mode =3D DRM_MODE_TV_MODE_PAL_M,
+> +               .expected_htotal =3D 858,
+>                 .config0 =3D VEC_CONFIG0_PAL_M_STD,
+>                 .config1 =3D VEC_CONFIG1_C_CVBS_CVBS,
+>         },
+> +       {
+> +               .mode =3D DRM_MODE_TV_MODE_PAL_N,
+> +               .expected_htotal =3D 864,
+> +               .config0 =3D VEC_CONFIG0_PAL_N_STD,
+> +               .config1 =3D VEC_CONFIG1_C_CVBS_CVBS,
+> +       },
+> +       {
+> +               .mode =3D DRM_MODE_TV_MODE_SECAM,
+> +               .expected_htotal =3D 864,
+> +               .config0 =3D VEC_CONFIG0_SECAM_STD,
+> +               .config1 =3D VEC_CONFIG1_C_CVBS_CVBS,
+> +               .custom_freq =3D 0x29c71c72,
+> +       },
+>  };
 >
-> the parser expects "TAP version xx" output, but this won't
-> happen when loading the kunit test driver.
+>  static inline const struct vc4_vec_tv_mode *
+> -vc4_vec_tv_mode_lookup(unsigned int mode)
+> +vc4_vec_tv_mode_lookup(unsigned int mode, u16 htotal)
+>  {
+>         unsigned int i;
 >
-> Are there any plans or patches fixing this issue?
+>         for (i =3D 0; i < ARRAY_SIZE(vc4_vec_tv_modes); i++) {
+>                 const struct vc4_vec_tv_mode *tv_mode =3D
+> &vc4_vec_tv_modes[i];
 >
-Yeah: this is on our to-do list to fix, hopefully pretty soon.
-
-> 2. current->mm is not initialized
+> -               if (tv_mode->mode =3D=3D mode)
+> +               if (tv_mode->mode =3D=3D mode &&
+> +                   tv_mode->expected_htotal =3D=3D htotal)
+>                         return tv_mode;
+>         }
 >
-> Some tests do mmap(). They need the mm user context to be initialized,
-> but this is not happening right now.
+> @@ -273,9 +341,13 @@ vc4_vec_tv_mode_lookup(unsigned int mode)
 >
-> Are there a way to properly initialize it for KUnit?
+>  static const struct drm_prop_enum_list legacy_tv_mode_names[] =3D {
+>         { VC4_VEC_TV_MODE_NTSC, "NTSC", },
+> +       { VC4_VEC_TV_MODE_NTSC_443, "NTSC-443", },
+>         { VC4_VEC_TV_MODE_NTSC_J, "NTSC-J", },
+>         { VC4_VEC_TV_MODE_PAL, "PAL", },
+> +       { VC4_VEC_TV_MODE_PAL_60, "PAL-60", },
+>         { VC4_VEC_TV_MODE_PAL_M, "PAL-M", },
+> +       { VC4_VEC_TV_MODE_PAL_N, "PAL-N", },
+> +       { VC4_VEC_TV_MODE_SECAM, "SECAM", },
+>  };
 >
-This is something we've hit before and don't have a good solution for
-(as you've found out). I'm not an expert on the mm subsystem, so while
-it's something we want to support, I don't think anyone quite knows
-how yet.
-
-As a totally wild, untested guess, you may have some luck setting
-current->mm = current->active_mm, or current->mm = &init_mm?
-
-It's definitely true that, even when loaded from modules, current->mm
-won't be set as KUnit tests run in their own kthreads. Maybe setting
-mm = active_mm would let us carry that context with us from the module
-loader to the test...
-
-In any case, you're not the only person to hit this issue, so it's
-definitely something we'd like to work out.
-
-> 3. there's no test filters for modules
+>  static enum drm_connector_status
+> @@ -306,11 +378,16 @@ vc4_vec_connector_set_property(struct drm_connector
+> *connector,
+>                 state->tv.mode =3D DRM_MODE_TV_MODE_NTSC;
+>                 break;
 >
-> In order to be able to do proper CI automation, it is needed to
-> be able to control what tests will run or not. That's specially
-> interesting at development time where some tests may not apply
-> or not run properly on new hardware.
+> +       case VC4_VEC_TV_MODE_NTSC_443:
+> +               state->tv.mode =3D DRM_MODE_TV_MODE_NTSC_443;
+> +               break;
+> +
+>         case VC4_VEC_TV_MODE_NTSC_J:
+>                 state->tv.mode =3D DRM_MODE_TV_MODE_NTSC_J;
+>                 break;
 >
-> Are there any plans to add support for it at kunit_test_suites()
-> when the driver is built as module? Ideally, the best would be to
-> export a per-module filter_glob parameter on such cases.
+>         case VC4_VEC_TV_MODE_PAL:
+> +       case VC4_VEC_TV_MODE_PAL_60:
+>                 state->tv.mode =3D DRM_MODE_TV_MODE_PAL;
+>                 break;
+>
+> @@ -318,6 +395,14 @@ vc4_vec_connector_set_property(struct drm_connector
+> *connector,
+>                 state->tv.mode =3D DRM_MODE_TV_MODE_PAL_M;
+>                 break;
+>
+> +       case VC4_VEC_TV_MODE_PAL_N:
+> +               state->tv.mode =3D DRM_MODE_TV_MODE_PAL_N;
+> +               break;
+> +
+> +       case VC4_VEC_TV_MODE_SECAM:
+> +               state->tv.mode =3D DRM_MODE_TV_MODE_SECAM;
+> +               break;
+> +
+>         default:
+>                 return -EINVAL;
+>         }
+> @@ -341,6 +426,10 @@ vc4_vec_connector_get_property(struct drm_connector
+> *connector,
+>                 *val =3D VC4_VEC_TV_MODE_NTSC;
+>                 break;
+>
+> +       case DRM_MODE_TV_MODE_NTSC_443:
+> +               *val =3D VC4_VEC_TV_MODE_NTSC_443;
+> +               break;
+> +
+>         case DRM_MODE_TV_MODE_NTSC_J:
+>                 *val =3D VC4_VEC_TV_MODE_NTSC_J;
+>                 break;
+> @@ -353,6 +442,14 @@ vc4_vec_connector_get_property(struct drm_connector
+> *connector,
+>                 *val =3D VC4_VEC_TV_MODE_PAL_M;
+>                 break;
+>
+> +       case DRM_MODE_TV_MODE_PAL_N:
+> +               *val =3D VC4_VEC_TV_MODE_PAL_N;
+> +               break;
+> +
+> +       case DRM_MODE_TV_MODE_SECAM:
+> +               *val =3D VC4_VEC_TV_MODE_SECAM;
+> +               break;
+> +
+>         default:
+>                 return -EINVAL;
+>         }
+> @@ -448,13 +545,16 @@ static void vc4_vec_encoder_enable(struct
+> drm_encoder *encoder,
+>         struct drm_connector *connector =3D &vec->connector;
+>         struct drm_connector_state *conn_state =3D
+>                 drm_atomic_get_new_connector_state(state, connector);
+> +       struct drm_display_mode *adjusted_mode =3D
+> +               &encoder->crtc->state->adjusted_mode;
+>         const struct vc4_vec_tv_mode *tv_mode;
+>         int idx, ret;
+>
+>         if (!drm_dev_enter(drm, &idx))
+>                 return;
+>
+> -       tv_mode =3D vc4_vec_tv_mode_lookup(conn_state->tv.mode);
+> +       tv_mode =3D vc4_vec_tv_mode_lookup(conn_state->tv.mode,
+> +                                        adjusted_mode->htotal);
+>         if (!tv_mode)
+>                 goto err_dev_exit;
+>
+> @@ -648,9 +748,12 @@ static int vc4_vec_bind(struct device *dev, struct
+> device *master, void *data)
+>
+>         ret =3D drm_mode_create_tv_properties(drm,
+>                                             BIT(DRM_MODE_TV_MODE_NTSC) |
+> +                                           BIT(DRM_MODE_TV_MODE_NTSC_443=
+)
+> |
+>                                             BIT(DRM_MODE_TV_MODE_NTSC_J) =
+|
+>                                             BIT(DRM_MODE_TV_MODE_PAL) |
+> -                                           BIT(DRM_MODE_TV_MODE_PAL_M));
+> +                                           BIT(DRM_MODE_TV_MODE_PAL_M) |
+> +                                           BIT(DRM_MODE_TV_MODE_PAL_N) |
+> +                                           BIT(DRM_MODE_TV_MODE_SECAM));
+>         if (ret)
+>                 return ret;
+>
+>
+> --
+> b4 0.11.0-dev-99e3a
 >
 
-Again, this is on the to-do list. It may be implemented as a global
-property which affects future module loads (and might be able to be
-changed via, e.g., debugfs), rather than a per-module parameter, but
-we haven't designed it yet.
+--00000000000077594705ecf55d40
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Alas, module support has always seen a little less love than the
-built-in UML/qemu-based mode, so it does tend to lag behind a little
-bit with these sort of features, and tends to be tested less well.
-Hopefully we can bring it up to scratch soon.
-
-> 4. there are actually 3 levels of tests on i915:
->         - Level 1: mock, live, perf
->         - Level 2: test group (mmap, fences, ...)
->         - Level 3: unit tests
+<div dir=3D"ltr">They are important for retrogaming and connecting TV out t=
+o CRT TV or using emulator.<div><br></div><div>I have PS1 that is using PAL=
+-60 for example.</div><div><br></div><div>Can you add 240p and 288p non-int=
+erlaced modes for NTSC and PAL, please?</div><div><br></div><div>Lukas</div=
+></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr"=
+>On Mon, Nov 7, 2022 at 3:19 PM Maxime Ripard &lt;maxime@cerno.tech&gt; wro=
+te:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
+0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">From: Mateus=
+z Kwiatkowski &lt;<a href=3D"mailto:kfyatek%2Bpublicgit@gmail.com" target=
+=3D"_blank">kfyatek+publicgit@gmail.com</a>&gt;<br>
+<br>
+Add support for the following composite output modes (all of them are<br>
+somewhat more obscure than the previously defined ones):<br>
+<br>
+- NTSC_443 - NTSC-style signal with the chroma subcarrier shifted to<br>
+=C2=A0 4.43361875 MHz (the PAL subcarrier frequency). Never used for<br>
+=C2=A0 broadcasting, but sometimes used as a hack to play NTSC content in P=
+AL<br>
+=C2=A0 regions (e.g. on VCRs).<br>
+- PAL_N - PAL with alternative chroma subcarrier frequency,<br>
+=C2=A0 3.58205625 MHz. Used as a broadcast standard in Argentina, Paraguay<=
+br>
+=C2=A0 and Uruguay to fit 576i50 with colour in 6 MHz channel raster.<br>
+- PAL60 - 480i60 signal with PAL-style color at normal European PAL<br>
+=C2=A0 frequency. Another non-standard, non-broadcast mode, used in similar=
+<br>
+=C2=A0 contexts as NTSC_443. Some displays support one but not the other.<b=
+r>
+- SECAM - French frequency-modulated analog color standard; also have<br>
+=C2=A0 been broadcast in Eastern Europe and various parts of Africa and Asi=
+a.<br>
+=C2=A0 Uses the same 576i50 timings as PAL.<br>
+<br>
+Also added some comments explaining color subcarrier frequency<br>
+registers.<br>
+<br>
+Acked-by: Noralf Tr=C3=B8nnes &lt;<a href=3D"mailto:noralf@tronnes.org" tar=
+get=3D"_blank">noralf@tronnes.org</a>&gt;<br>
+Signed-off-by: Mateusz Kwiatkowski &lt;<a href=3D"mailto:kfyatek%2Bpublicgi=
+t@gmail.com" target=3D"_blank">kfyatek+publicgit@gmail.com</a>&gt;<br>
+Signed-off-by: Maxime Ripard &lt;maxime@cerno.tech&gt;<br>
+<br>
+---<br>
+Changes in v6:<br>
+- Support PAL60 again<br>
+---<br>
+=C2=A0drivers/gpu/drm/vc4/vc4_vec.c | 111 +++++++++++++++++++++++++++++++++=
++++++++--<br>
+=C2=A01 file changed, 107 insertions(+), 4 deletions(-)<br>
+<br>
+diff --git a/drivers/gpu/drm/vc4/vc4_vec.c b/drivers/gpu/drm/vc4/vc4_vec.c<=
+br>
+index a828fc6fb776..d23dbad3cbf6 100644<br>
+--- a/drivers/gpu/drm/vc4/vc4_vec.c<br>
++++ b/drivers/gpu/drm/vc4/vc4_vec.c<br>
+@@ -46,6 +46,7 @@<br>
+=C2=A0#define VEC_CONFIG0_YDEL(x)=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+((x) &lt;&lt; 26)<br>
+=C2=A0#define VEC_CONFIG0_CDEL_MASK=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 GENMA=
+SK(25, 24)<br>
+=C2=A0#define VEC_CONFIG0_CDEL(x)=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+((x) &lt;&lt; 24)<br>
++#define VEC_CONFIG0_SECAM_STD=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 BIT(21)<br=
 >
-> Currently, KUnit seems to have just two levels (test suite and tests).
-> Are there a way to add test groups there?
+=C2=A0#define VEC_CONFIG0_PBPR_FIL=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+BIT(18)<br>
+=C2=A0#define VEC_CONFIG0_CHROMA_GAIN_MASK=C2=A0 =C2=A0GENMASK(17, 16)<br>
+=C2=A0#define VEC_CONFIG0_CHROMA_GAIN_UNITY=C2=A0 (0 &lt;&lt; 16)<br>
+@@ -76,6 +77,27 @@<br>
+=C2=A0#define VEC_SOFT_RESET=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A00x10c<br>
+=C2=A0#define VEC_CLMP0_START=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 0x144<br>
+=C2=A0#define VEC_CLMP0_END=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 0x148<br>
++<br>
++/*<br>
++ * These set the color subcarrier frequency<br>
++ * if VEC_CONFIG1_CUSTOM_FREQ is enabled.<br>
++ *<br>
++ * VEC_FREQ1_0 contains the most significant 16-bit half-word,<br>
++ * VEC_FREQ3_2 contains the least significant 16-bit half-word.<br>
++ * 0x80000000 seems to be equivalent to the pixel clock<br>
++ * (which itself is the VEC clock divided by 8).<br>
++ *<br>
++ * Reference values (with the default pixel clock of 13.5 MHz):<br>
++ *<br>
++ * NTSC=C2=A0 (3579545.[45] Hz)=C2=A0 =C2=A0 =C2=A0- 0x21F07C1F<br>
++ * PAL=C2=A0 =C2=A0(4433618.75 Hz)=C2=A0 =C2=A0 =C2=A0 =C2=A0- 0x2A098ACB<=
+br>
++ * PAL-M (3575611.[888111] Hz) - 0x21E6EFE3<br>
++ * PAL-N (3582056.25 Hz)=C2=A0 =C2=A0 =C2=A0 =C2=A0- 0x21F69446<br>
++ *<br>
++ * NOTE: For SECAM, it is used as the Dr center frequency,<br>
++ * regardless of whether VEC_CONFIG1_CUSTOM_FREQ is enabled or not;<br>
++ * that is specified as 4406250 Hz, which corresponds to 0x29C71C72.<br>
++ */<br>
+=C2=A0#define VEC_FREQ3_2=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 0x180<br>
+=C2=A0#define VEC_FREQ1_0=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 0x184<br>
+<br>
+@@ -118,6 +140,14 @@<br>
+<br>
+=C2=A0#define VEC_INTERRUPT_CONTROL=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 0x190=
+<br>
+=C2=A0#define VEC_INTERRUPT_STATUS=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+0x194<br>
++<br>
++/*<br>
++ * Db center frequency for SECAM; the clock for this is the same as for<br=
+>
++ * VEC_FREQ3_2/VEC_FREQ1_0, which is used for Dr center frequency.<br>
++ *<br>
++ * This is specified as 4250000 Hz, which corresponds to 0x284BDA13.<br>
++ * That is also the default value, so no need to set it explicitly.<br>
++ */<br>
+=C2=A0#define VEC_FCW_SECAM_B=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 0x198<br>
+=C2=A0#define VEC_SECAM_GAIN_VAL=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A00x19c<br>
+<br>
+@@ -197,10 +227,15 @@ enum vc4_vec_tv_mode_id {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 VC4_VEC_TV_MODE_NTSC_J,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 VC4_VEC_TV_MODE_PAL,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 VC4_VEC_TV_MODE_PAL_M,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0VC4_VEC_TV_MODE_NTSC_443,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0VC4_VEC_TV_MODE_PAL_60,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0VC4_VEC_TV_MODE_PAL_N,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0VC4_VEC_TV_MODE_SECAM,<br>
+=C2=A0};<br>
+<br>
+=C2=A0struct vc4_vec_tv_mode {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 unsigned int mode;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0u16 expected_htotal;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 u32 config0;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 u32 config1;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 u32 custom_freq;<br>
+@@ -236,35 +271,68 @@ static const struct debugfs_reg32 vec_regs[] =3D {<br=
+>
+=C2=A0static const struct vc4_vec_tv_mode vc4_vec_tv_modes[] =3D {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .mode =3D DRM_MODE_=
+TV_MODE_NTSC,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.expected_htotal =
+=3D 858,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .config0 =3D VEC_CO=
+NFIG0_NTSC_STD | VEC_CONFIG0_PDEN,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .config1 =3D VEC_CO=
+NFIG1_C_CVBS_CVBS,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 },<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0{<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.mode =3D DRM_MODE_=
+TV_MODE_NTSC_443,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.expected_htotal =
+=3D 858,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.config0 =3D VEC_CO=
+NFIG0_NTSC_STD,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.config1 =3D VEC_CO=
+NFIG1_C_CVBS_CVBS | VEC_CONFIG1_CUSTOM_FREQ,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.custom_freq =3D 0x=
+2a098acb,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0},<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .mode =3D DRM_MODE_=
+TV_MODE_NTSC_J,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.expected_htotal =
+=3D 858,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .config0 =3D VEC_CO=
+NFIG0_NTSC_STD,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .config1 =3D VEC_CO=
+NFIG1_C_CVBS_CVBS,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 },<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .mode =3D DRM_MODE_=
+TV_MODE_PAL,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.expected_htotal =
+=3D 864,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .config0 =3D VEC_CO=
+NFIG0_PAL_BDGHI_STD,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .config1 =3D VEC_CO=
+NFIG1_C_CVBS_CVBS,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 },<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0{<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/* PAL-60 */<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.mode =3D DRM_MODE_=
+TV_MODE_PAL,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.expected_htotal =
+=3D 858,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.config0 =3D VEC_CO=
+NFIG0_PAL_M_STD,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.config1 =3D VEC_CO=
+NFIG1_C_CVBS_CVBS | VEC_CONFIG1_CUSTOM_FREQ,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.custom_freq =3D 0x=
+2a098acb,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0},<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .mode =3D DRM_MODE_=
+TV_MODE_PAL_M,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.expected_htotal =
+=3D 858,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .config0 =3D VEC_CO=
+NFIG0_PAL_M_STD,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .config1 =3D VEC_CO=
+NFIG1_C_CVBS_CVBS,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 },<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0{<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.mode =3D DRM_MODE_=
+TV_MODE_PAL_N,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.expected_htotal =
+=3D 864,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.config0 =3D VEC_CO=
+NFIG0_PAL_N_STD,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.config1 =3D VEC_CO=
+NFIG1_C_CVBS_CVBS,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0},<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0{<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.mode =3D DRM_MODE_=
+TV_MODE_SECAM,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.expected_htotal =
+=3D 864,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.config0 =3D VEC_CO=
+NFIG0_SECAM_STD,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.config1 =3D VEC_CO=
+NFIG1_C_CVBS_CVBS,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.custom_freq =3D 0x=
+29c71c72,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0},<br>
+=C2=A0};<br>
+<br>
+=C2=A0static inline const struct vc4_vec_tv_mode *<br>
+-vc4_vec_tv_mode_lookup(unsigned int mode)<br>
++vc4_vec_tv_mode_lookup(unsigned int mode, u16 htotal)<br>
+=C2=A0{<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 unsigned int i;<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 for (i =3D 0; i &lt; ARRAY_SIZE(vc4_vec_tv_mode=
+s); i++) {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 const struct vc4_ve=
+c_tv_mode *tv_mode =3D &amp;vc4_vec_tv_modes[i];<br>
+<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (tv_mode-&gt;mod=
+e =3D=3D mode)<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (tv_mode-&gt;mod=
+e =3D=3D mode &amp;&amp;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0tv_mo=
+de-&gt;expected_htotal =3D=3D htotal)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 return tv_mode;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
+<br>
+@@ -273,9 +341,13 @@ vc4_vec_tv_mode_lookup(unsigned int mode)<br>
+<br>
+=C2=A0static const struct drm_prop_enum_list legacy_tv_mode_names[] =3D {<b=
+r>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 { VC4_VEC_TV_MODE_NTSC, &quot;NTSC&quot;, },<br=
+>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0{ VC4_VEC_TV_MODE_NTSC_443, &quot;NTSC-443&quot=
+;, },<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 { VC4_VEC_TV_MODE_NTSC_J, &quot;NTSC-J&quot;, }=
+,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 { VC4_VEC_TV_MODE_PAL, &quot;PAL&quot;, },<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0{ VC4_VEC_TV_MODE_PAL_60, &quot;PAL-60&quot;, }=
+,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 { VC4_VEC_TV_MODE_PAL_M, &quot;PAL-M&quot;, },<=
+br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0{ VC4_VEC_TV_MODE_PAL_N, &quot;PAL-N&quot;, },<=
+br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0{ VC4_VEC_TV_MODE_SECAM, &quot;SECAM&quot;, },<=
+br>
+=C2=A0};<br>
+<br>
+=C2=A0static enum drm_connector_status<br>
+@@ -306,11 +378,16 @@ vc4_vec_connector_set_property(struct drm_connector *=
+connector,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 state-&gt;tv.mode =
+=3D DRM_MODE_TV_MODE_NTSC;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 break;<br>
+<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0case VC4_VEC_TV_MODE_NTSC_443:<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0state-&gt;tv.mode =
+=3D DRM_MODE_TV_MODE_NTSC_443;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0break;<br>
++<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 case VC4_VEC_TV_MODE_NTSC_J:<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 state-&gt;tv.mode =
+=3D DRM_MODE_TV_MODE_NTSC_J;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 break;<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 case VC4_VEC_TV_MODE_PAL:<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0case VC4_VEC_TV_MODE_PAL_60:<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 state-&gt;tv.mode =
+=3D DRM_MODE_TV_MODE_PAL;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 break;<br>
+<br>
+@@ -318,6 +395,14 @@ vc4_vec_connector_set_property(struct drm_connector *c=
+onnector,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 state-&gt;tv.mode =
+=3D DRM_MODE_TV_MODE_PAL_M;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 break;<br>
+<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0case VC4_VEC_TV_MODE_PAL_N:<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0state-&gt;tv.mode =
+=3D DRM_MODE_TV_MODE_PAL_N;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0break;<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0case VC4_VEC_TV_MODE_SECAM:<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0state-&gt;tv.mode =
+=3D DRM_MODE_TV_MODE_SECAM;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0break;<br>
++<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 default:<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 return -EINVAL;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
+@@ -341,6 +426,10 @@ vc4_vec_connector_get_property(struct drm_connector *c=
+onnector,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 *val =3D VC4_VEC_TV=
+_MODE_NTSC;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 break;<br>
+<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0case DRM_MODE_TV_MODE_NTSC_443:<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0*val =3D VC4_VEC_TV=
+_MODE_NTSC_443;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0break;<br>
++<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 case DRM_MODE_TV_MODE_NTSC_J:<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 *val =3D VC4_VEC_TV=
+_MODE_NTSC_J;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 break;<br>
+@@ -353,6 +442,14 @@ vc4_vec_connector_get_property(struct drm_connector *c=
+onnector,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 *val =3D VC4_VEC_TV=
+_MODE_PAL_M;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 break;<br>
+<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0case DRM_MODE_TV_MODE_PAL_N:<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0*val =3D VC4_VEC_TV=
+_MODE_PAL_N;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0break;<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0case DRM_MODE_TV_MODE_SECAM:<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0*val =3D VC4_VEC_TV=
+_MODE_SECAM;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0break;<br>
++<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 default:<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 return -EINVAL;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
+@@ -448,13 +545,16 @@ static void vc4_vec_encoder_enable(struct drm_encoder=
+ *encoder,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 struct drm_connector *connector =3D &amp;vec-&g=
+t;connector;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 struct drm_connector_state *conn_state =3D<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 drm_atomic_get_new_=
+connector_state(state, connector);<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0struct drm_display_mode *adjusted_mode =3D<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&amp;encoder-&gt;cr=
+tc-&gt;state-&gt;adjusted_mode;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 const struct vc4_vec_tv_mode *tv_mode;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 int idx, ret;<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 if (!drm_dev_enter(drm, &amp;idx))<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 return;<br>
+<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0tv_mode =3D vc4_vec_tv_mode_lookup(conn_state-&=
+gt;tv.mode);<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0tv_mode =3D vc4_vec_tv_mode_lookup(conn_state-&=
+gt;tv.mode,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 adjusted=
+_mode-&gt;htotal);<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 if (!tv_mode)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 goto err_dev_exit;<=
+br>
+<br>
+@@ -648,9 +748,12 @@ static int vc4_vec_bind(struct device *dev, struct dev=
+ice *master, void *data)<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 ret =3D drm_mode_create_tv_properties(drm,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 BIT(DRM_MODE_TV_MODE_NTSC) |<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0BIT(DRM_MODE_TV_MODE_NTSC_443) |<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 BIT(DRM_MODE_TV_MODE_NTSC_J) |<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 BIT(DRM_MODE_TV_MODE_PAL) |<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0BIT(DRM_MODE_TV_MODE_PAL_M));<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0BIT(DRM_MODE_TV_MODE_PAL_M) |<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0BIT(DRM_MODE_TV_MODE_PAL_N) |<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0BIT(DRM_MODE_TV_MODE_SECAM));<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 if (ret)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 return ret;<br>
+<br>
+<br>
+-- <br>
+b4 0.11.0-dev-99e3a<br>
+</blockquote></div>
 
-The closest thing we have at the moment is "parameterised tests",
-which are really designed for the case where the same test code is
-being run multiple times with different inputs. It should be possible
-to use this to hack a third level in (have the "parameter" be an array
-of name/function-pointer pairs), and kunit.py will parse the results
-correctly, as KTAP doesn't have this limitation.
-
-The other thing you could do is to treat each "test group" as a KUnit
-suite, and just prefix them with "i915_{mock,life,perf}". This isn't
-ideal, but you could eventually use the test filtering to split them
-up.
-
-Ultimately, supporting more deeply nested tests is something we're not
-opposed to doing in KUnit, we've just not had any need for it thus
-far, so haven't really looked into how we'd design and implement it.
-Now there's a potential user, we can look into it, though it's likely
-to be lower-priority here, given there are workarounds.
-
-
-Thanks again, and I hope that helps a bit!
-
-Cheers,
--- David
-
---0000000000002b570105ecedff23
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-MIIPnwYJKoZIhvcNAQcCoIIPkDCCD4wCAQExDzANBglghkgBZQMEAgEFADALBgkqhkiG9w0BBwGg
-ggz5MIIEtjCCA56gAwIBAgIQeAMYYHb81ngUVR0WyMTzqzANBgkqhkiG9w0BAQsFADBMMSAwHgYD
-VQQLExdHbG9iYWxTaWduIFJvb3QgQ0EgLSBSMzETMBEGA1UEChMKR2xvYmFsU2lnbjETMBEGA1UE
-AxMKR2xvYmFsU2lnbjAeFw0yMDA3MjgwMDAwMDBaFw0yOTAzMTgwMDAwMDBaMFQxCzAJBgNVBAYT
-AkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMSowKAYDVQQDEyFHbG9iYWxTaWduIEF0bGFz
-IFIzIFNNSU1FIENBIDIwMjAwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCvLe9xPU9W
-dpiHLAvX7kFnaFZPuJLey7LYaMO8P/xSngB9IN73mVc7YiLov12Fekdtn5kL8PjmDBEvTYmWsuQS
-6VBo3vdlqqXZ0M9eMkjcKqijrmDRleudEoPDzTumwQ18VB/3I+vbN039HIaRQ5x+NHGiPHVfk6Rx
-c6KAbYceyeqqfuJEcq23vhTdium/Bf5hHqYUhuJwnBQ+dAUcFndUKMJrth6lHeoifkbw2bv81zxJ
-I9cvIy516+oUekqiSFGfzAqByv41OrgLV4fLGCDH3yRh1tj7EtV3l2TngqtrDLUs5R+sWIItPa/4
-AJXB1Q3nGNl2tNjVpcSn0uJ7aFPbAgMBAAGjggGKMIIBhjAOBgNVHQ8BAf8EBAMCAYYwHQYDVR0l
-BBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMEMBIGA1UdEwEB/wQIMAYBAf8CAQAwHQYDVR0OBBYEFHzM
-CmjXouseLHIb0c1dlW+N+/JjMB8GA1UdIwQYMBaAFI/wS3+oLkUkrk1Q+mOai97i3Ru8MHsGCCsG
-AQUFBwEBBG8wbTAuBggrBgEFBQcwAYYiaHR0cDovL29jc3AyLmdsb2JhbHNpZ24uY29tL3Jvb3Ry
-MzA7BggrBgEFBQcwAoYvaHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvcm9vdC1y
-My5jcnQwNgYDVR0fBC8wLTAroCmgJ4YlaHR0cDovL2NybC5nbG9iYWxzaWduLmNvbS9yb290LXIz
-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
-N0A3bgltvER3q1cGraQJMEwGA1UdIARFMEMwQQYJKwYBBAGgMgEoMDQwMgYIKwYBBQUHAgEWJmh0
-dHBzOi8vd3d3Lmdsb2JhbHNpZ24uY29tL3JlcG9zaXRvcnkvMAwGA1UdEwEB/wQCMAAwgZoGCCsG
-AQUFBwEBBIGNMIGKMD4GCCsGAQUFBzABhjJodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9jYS9n
-c2F0bGFzcjNzbWltZWNhMjAyMDBIBggrBgEFBQcwAoY8aHR0cDovL3NlY3VyZS5nbG9iYWxzaWdu
-LmNvbS9jYWNlcnQvZ3NhdGxhc3Izc21pbWVjYTIwMjAuY3J0MB8GA1UdIwQYMBaAFHzMCmjXouse
-LHIb0c1dlW+N+/JjMEYGA1UdHwQ/MD0wO6A5oDeGNWh0dHA6Ly9jcmwuZ2xvYmFsc2lnbi5jb20v
-Y2EvZ3NhdGxhc3Izc21pbWVjYTIwMjAuY3JsMA0GCSqGSIb3DQEBCwUAA4IBAQAxS21FdvRtCQVc
-jgEj+xxSnUr0N9reJlI5J9zRiBCWGxm5yhz965IDka3XVFEbj+beJj/gyHoxbaTGf2AjOufpcMqy
-p4mtqc2l4Csudl8QeiBaOUDx4VKADbgxqpjvwD5zRpSKVj4S9y3BJi9xrRdPOm1Z2ZZYxRUxUz7d
-2MXoxQsFucGJO5a4CwDBaGgJAqvwCXU5Q64rKVIUBk6mtcd3cDwX+PXqx4QrhHFGq6b6oi37YQ8B
-+bhlXqlkLrbPlPFk+4Rh4EaW92iD5g8kvtXCOwvIIvs+15Io0dbpIe2W5UKo2OcyDDFvrOACmUOE
-/GuEkhENcyDVyEs/4/N2u9WYMYICajCCAmYCAQEwaDBUMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQ
-R2xvYmFsU2lnbiBudi1zYTEqMCgGA1UEAxMhR2xvYmFsU2lnbiBBdGxhcyBSMyBTTUlNRSBDQSAy
-MDIwAhABj4peqtakTCOMXLZ2mEqRMA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCB9
-FvuCjMn7rPYCQXKhShrWZd7N0csJ19Jk43uLjrXI9jAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcB
-MBwGCSqGSIb3DQEJBTEPFw0yMjExMDgwNDMwMTVaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUD
-BAEqMAsGCWCGSAFlAwQBFjALBglghkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsG
-CSqGSIb3DQEBBzALBglghkgBZQMEAgEwDQYJKoZIhvcNAQEBBQAEggEAiQjgH6349/zL9NMxcK+g
-4UKVbe7r/gFKX9GghbCdNcwEgxdq+cJpnSMlDDYDtDmLLpU4ZQEL3NWoEMIXZ4YYEq62P5EKC7cq
-JiNosaQpgNwnhuk6550B0CMCwIDLaJE4BsyJlU6xBbGVuc1syRF1pOOTdq0LppwMcyO4J6WAihZy
-GQ4uux1IyWxA3kPkbFCclz4bM2nxw2eHKvp3AdRlYjlIv9sqMcLECvbpIAwYEh5la2q5/FzaEv6z
-v8Mkg38mCHVHe5ARePYFdgWo4m07XqGh2Cn3UK2sLxk5Rg79aP4uUuNFvOQWmIREtvOIAz0VwxF0
-GFJq5v8ZH8tRtfwaGg==
---0000000000002b570105ecedff23--
+--00000000000077594705ecf55d40--
