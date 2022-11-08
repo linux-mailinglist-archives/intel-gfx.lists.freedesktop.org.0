@@ -1,159 +1,151 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C484621D14
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Nov 2022 20:37:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87A56621D4E
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Nov 2022 20:54:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E69010E500;
-	Tue,  8 Nov 2022 19:37:55 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C485A10E4FE;
- Tue,  8 Nov 2022 19:37:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15F9E10E2B0;
+	Tue,  8 Nov 2022 19:53:58 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E5F3D10E01F;
+ Tue,  8 Nov 2022 19:53:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667936271; x=1699472271;
+ t=1667937233; x=1699473233;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=8UYvAHHdFBCNR1+wei5TI1RsUq2cLWd3iVInQx12OwM=;
- b=jJ7x0hgx3ZeCNdMQRkN8VHFQxtK0PXPJ+TRYw+pfW3uJ26noLHLKpnnO
- XzVk0t6/KhAY33E25wWFyEaDo3kNSL13kTw/t2r9tdrnaRLgsw41YfHvX
- pXiAVxnrHIerEdEGdPnqRYcRR9gYGc7f2o+PKZJVbfzJQfEoif7rjocJC
- C4RpaaOE1+qyw3WZA3tJSZ8pLt/7i1Qw4aVe0Q5ffVIz9ZBoqcSPuXYLp
- TRo05GLIKfW8D5m7V47rFIGvB18oPov/DZvAV5Tt6tYHwaHOo8HWu9HaM
- K7YlxyFdpPzNzmcgGlHkmVXBMhl5duIbjUEwVP1/9R5E4ZykkjIeL5/6X g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10525"; a="310788294"
-X-IronPort-AV: E=Sophos;i="5.96,148,1665471600"; d="scan'208";a="310788294"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2022 11:37:46 -0800
+ bh=DbpZWkvXseBmxYnruIiUmr9d4oJhg2+y7x4q53lsjkI=;
+ b=PY4Lk33F+3mT0w5is1MtBOibymLAyXPRWQsUIan1mVbz0hDwZbeif+wt
+ FqDQzEniSkweJi7xmh8Mt2CmN7qRLq4j8mJRQC58MvoslvW2T+yXShh2C
+ QUpiOhsxxxBPZ5P5pK0D//73riL4eobxwJ18hLdnojxCbpvC85rKsBXJW
+ x5LbXoG/Xcu8mRg4hToJQlrmMXdyb1M7Eh1vtV8tNwuK95e/i2eOoDV/S
+ 3tzqZZVi8FPeO1TENB4OIoSSh+pmDLRpbXbs5qY5HD9YraKZYGzkncgP7
+ DSHL6CzPUuXX2kUw7URq5+bmdN3K4OKW5PFQl7bCBxjIHt8Ya1tOG7rts A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10525"; a="312585267"
+X-IronPort-AV: E=Sophos;i="5.96,148,1665471600"; d="scan'208";a="312585267"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Nov 2022 11:53:52 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10525"; a="761612326"
-X-IronPort-AV: E=Sophos;i="5.96,148,1665471600"; d="scan'208";a="761612326"
+X-IronPort-AV: E=McAfee;i="6500,9779,10525"; a="700056291"
+X-IronPort-AV: E=Sophos;i="5.96,148,1665471600"; d="scan'208";a="700056291"
 Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga004.jf.intel.com with ESMTP; 08 Nov 2022 11:37:46 -0800
+ by fmsmga008.fm.intel.com with ESMTP; 08 Nov 2022 11:53:52 -0800
 Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
  fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Tue, 8 Nov 2022 11:37:45 -0800
+ 15.1.2375.31; Tue, 8 Nov 2022 11:53:52 -0800
 Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Tue, 8 Nov 2022 11:37:45 -0800
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.44) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2375.31 via Frontend Transport; Tue, 8 Nov 2022 11:53:52 -0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.177)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Tue, 8 Nov 2022 11:37:45 -0800
+ 15.1.2375.31; Tue, 8 Nov 2022 11:53:51 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TV6oSxO64IuPlQGMfWBkSqQGThHR3MBxpjH9m+abtWOm46Eoie0S+9K/sm6GSoB33FtlW1ff3QCzm66wf6YQbNYr+NtHHqDyekVHhPd1lcbY39CXnghVb9yHdhkFH98d+Tdx3YQfXmEkrt9aSl3Rqbqu1LEVbk9RoIiJYC5gvf5FXf26qwuHWCp5b6QusE3962+dqA32urOO/+KinivNxN2DKQqrXcEpKfT2m+GH7TLSWwGzUDZ9XjtKgcKV7bEdv/vHiKLozKornKY45f2x+jMilVR2VVTz7zYTZ4bybC+XfKmEbXsWVU6Vsd/q6z2H7u+vJsxQXDaXsfhyFZ269g==
+ b=NpedxvleY6a+G61sd+GpytyAvOlDFKpXHY0BkpmQMFQtTmrO1cOFqNqHJ0NfcoF5Msbsxeu8j6MnXP6fxC/5603xLObwodR7vCadhtndxB8VKxzcnKS4MwdTJWzmLnIc2Xdh/l8mzY0D99cPFssTNe/CMWKY9yJwq7ZOoKC8iC+yKj1BJAyU8Z6DZxeZ2wa137V1xVohPqLmsM39wh2v6BrSWqOmd8is9QuBotHxMATHGPP4lm7vTlgsjxZL+kTKeVxXShcPa9zZiMfnAW17E0Y2PTSmY18CQFEsQfZwVX7cEWT/PikC7HfWSe4oVQ9avokSksrA+vEBe2xDp2Uc1w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BdEW42tcmLGflaxIQTVh4TiRKLRzg5H+Q/P42W7Ynb4=;
- b=Jq2r0IhcgxSVIJg3/LAUIJVxVgmnwfpLEP+voZOcuCP6VhEbv7xFRAOAvQyZDf+ggnBJeC/IsyW8WHYlam9y7VZDqPYsfePz89xnRNokAJFx/W2Fo4yaA+wJiiloqQOD7DwERRr51Gyz0c+YPQX4rwQRf+XekBaHtPidFY/w9nDa4093HL9hpGBN9E3Yv7mHc3Bb0vsa5gkaRYwHrt3MvrMAW1pynK/xIKGnf+5EZiGTWPMQC5vBl8pXtXCl3ksxkDtf8can995hDArGcns+bpSk6khV4jOM5za6C0BkBgCsUuDc4avEAYA42jeFi2826+9CGBImbfrq9Qiu8Hljww==
+ bh=ItYqCUUawksmEQUjSjSjZ77Jf1MrgsleweBQFA9T39I=;
+ b=VkOBfuqOY7EztMid4nYSVxhtJ37sBPyeVUFWz8Q9iUmEiKqXLnRO4dIIWL2D0sVhtqgl7Vt83o45F8+asuZPo7FhpKjK0/THqntZ4zlmhRIOrbS8p6WipO3x1CKxLLXSGedsTD9CZuM+g1GOilsjvYZYqgXoyNvo3lDTzLct/d+WB4xALZALyj7t/XDTknbQ0k3QSI7pK0JvPohLw64axInoFeqQuHuUtfCat8YFyRBytnNJCtKUpxny1Ug4QpBw6Aq+0ccG/sezodqDEE/WTwYcJt52SQKopFYMT3M2VW/c2Fc1GrhYP2BN8mfHMIP5XG+QQY5PqMuVQhRJajGnaA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from BY5PR11MB3911.namprd11.prod.outlook.com (2603:10b6:a03:18d::29)
- by DM4PR11MB6167.namprd11.prod.outlook.com (2603:10b6:8:ac::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.25; Tue, 8 Nov
- 2022 19:37:43 +0000
+ by SJ0PR11MB6696.namprd11.prod.outlook.com (2603:10b6:a03:44f::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.24; Tue, 8 Nov
+ 2022 19:53:49 +0000
 Received: from BY5PR11MB3911.namprd11.prod.outlook.com
  ([fe80::87a1:bf2f:7377:3036]) by BY5PR11MB3911.namprd11.prod.outlook.com
  ([fe80::87a1:bf2f:7377:3036%7]) with mapi id 15.20.5791.026; Tue, 8 Nov 2022
- 19:37:43 +0000
-Message-ID: <de9f6d26-d436-e4a8-5ea7-fab9fed91776@intel.com>
-Date: Tue, 8 Nov 2022 11:37:41 -0800
+ 19:53:49 +0000
+Message-ID: <5722a25b-6ed8-2cb2-ee9f-6b57bfc4e9e3@intel.com>
+Date: Tue, 8 Nov 2022 11:53:46 -0800
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Firefox/102.0 Thunderbird/102.4.1
 Content-Language: en-GB
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, Jani Nikula
- <jani.nikula@linux.intel.com>, <Intel-GFX@Lists.FreeDesktop.Org>
-References: <20221101235053.1650364-1-John.C.Harrison@Intel.com>
- <87k04d7dyn.fsf@intel.com>
- <c710a428-50f6-6181-3f93-4d7667a9ac3f@linux.intel.com>
- <5e22de43-d75c-fc21-9ae7-f27d116c5688@intel.com>
- <1855f0f2-8a1c-7bf4-76c0-76a4354ea8e8@linux.intel.com>
- <2b2eb780-08f7-c7df-0397-a7f732da272d@linux.intel.com>
- <5fad1ec1-8fea-9685-4cc9-2e3c2edf799f@intel.com>
- <448d710a-3af1-932d-c276-7c6fd6c02528@linux.intel.com>
- <f3de3596-871a-2af3-e72b-f4c66d5e7211@intel.com>
- <838f1d78-1d7c-c82e-0c70-b8c1fc0cebff@linux.intel.com>
- <29da7440-7c92-9fba-394e-d92df68b4e73@intel.com>
- <28fd2a35-1e20-ffa7-b5d2-5411166e9b21@linux.intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ <Intel-gfx@lists.freedesktop.org>
+References: <20221108114950.2017869-1-tvrtko.ursulin@linux.intel.com>
+ <20221108122608.2196810-1-tvrtko.ursulin@linux.intel.com>
 From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <28fd2a35-1e20-ffa7-b5d2-5411166e9b21@linux.intel.com>
+In-Reply-To: <20221108122608.2196810-1-tvrtko.ursulin@linux.intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BYAPR05CA0085.namprd05.prod.outlook.com
- (2603:10b6:a03:e0::26) To BY5PR11MB3911.namprd11.prod.outlook.com
+X-ClientProxiedBy: BY3PR05CA0017.namprd05.prod.outlook.com
+ (2603:10b6:a03:254::22) To BY5PR11MB3911.namprd11.prod.outlook.com
  (2603:10b6:a03:18d::29)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BY5PR11MB3911:EE_|DM4PR11MB6167:EE_
-X-MS-Office365-Filtering-Correlation-Id: a478587c-3e35-4f8f-8a85-08dac1c0b463
+X-MS-TrafficTypeDiagnostic: BY5PR11MB3911:EE_|SJ0PR11MB6696:EE_
+X-MS-Office365-Filtering-Correlation-Id: 19939363-4523-4c60-b26f-08dac1c2f45c
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: YGI28mnHeFV9Pa4WjXAZ0zr/fkg2b2fLMJxH+mvGD8zw2IxNVpCXIApiXHR2q6fGDGSDxzGwkWFthhAc6Kd4mKBZfpVK1yBgNs6mCU7OYohCms9BKkZzRpMuWGHk6ZF3NaRd6LERjiTC8cQDMHlVF8xYUP4su6nyQkR3rCCCmHWCazY/Ibu2G9m1vaZRkNAsJiE0+qPjom1fkadCvLk+aNBlfboN91r8/mavUrldq60XjKl8JoLPvNVuUtTPdMvqdI5QBgAH/pLXbpuWqBeZMZ+YjnE07nILttVxqJMqdFFFzEw4jF5bM3YPcOPDyI7TG7slzyqEUIVlbarwvmFt6Uj5XaVqxeSambmYk+zXwv3LdO4TJ0vbxvsztCrV3OeRuXjd9tRFd0dRZ6ARSk+AkWK8jqMbrSGmg2bNppFqDUizSbgIcoX57PienlS+D0YgHvm6jpVW4BjrEf/Ug1rVh+7JsJZOhJ+CZDmpy+r4ZBsxfZ2lrG0Xzgd3kCfNmQuXLTJO9+FuLx78+VxNThlMpKtsfHPbmKlTDkEyqEHP9ZBUrGFCfy5tn5JGFI19MS9WSAS8NmfrknSeYvuXGj/7EPLC5ibbmni67DkpFhYijLyIV4AhIZHS1FXgf5m9VfobYGYKcIrrU2xP5d3WJCQ8RmkilYjlbnf9WuTB9+R/uQxts9UEzOwjDwDooDP0a43USkL51LnbUq419wsoM94fzXE+XChakLQnTbwL3GQNIccsK4CPlEAox/pC/x5aK9nvBSOlzygE++TBkEbL3ABPCeApOKk+7EHWdLjTiijJ2WY=
+X-Microsoft-Antispam-Message-Info: ICx5WI7l2KuKhlsJupAW/pCgG4aGAM+FItRDTjKg6ad0feWb+bL2YW1T50yYnbcDXHfKXchu9pLW5LyDjovy1KBSD2wi/j6xTKVVrBJEofygELFrL5gVpopNdm7WPYWdrpekXoeaf+yxp9ahdrX16ZmKdfLjtqyCsNGZ9X750qzSedSI13KKQTsSBdOmBuFBUYmY+8w9egClRzCnIxuri5u9dcnvhRo5ah/5G5v9ODBUHdYwgeQ320DQzOfh8XW5iAQcXAciCsDOgkarap8EooYV5lQnkFKIOJczwOkpuidFEGt4pwsueLvkCjbaBBm01K6FKO2x90mHzEZxhCh0V4NLq3mdCi0ZbEe5NqLIBEehdb86BMHP4ZG6ESSqsDGYR3hj5+gnWD3VbeJHoPW7T6cJ1j/XqgQ62IiKoTb5g0PeLjIGPtvbPs3c++XYA7uGj4w5aAmKwNbslAXdqxJ4sb8l2hNIdb6k3NNayTZ89l2SuxcEwRe6Tt6FhJq2xx/a9sFslCdEYQI8DsQ3uNwBGOB03BtxITPQiUOCo2s/bT+/OSI1mMxZMmsbwKMRwgHrxZ0Zas7I2zdoWMArIVUs4M+6DdIg+8cBunwFsiROYSM9KhKSc6r+Afx9FImix7W8jH9IkmTIe9fY+18RdFC5CH0wT4UKz6lq4dJ25nPaEP9a8rusOJOL6fGnCuwhqrWDhboP8lGvXK4DOoHGgZj/NJeWglzNPohXPYa3pU+w/e76cb3SB4SeRTnUuLpugsvA0P4VagIiLA5Hq5IRoXvWFrWKObj1e/lQHR804mI6O18=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BY5PR11MB3911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(366004)(346002)(396003)(136003)(376002)(39860400002)(451199015)(36756003)(38100700002)(186003)(83380400001)(2616005)(31696002)(30864003)(41300700001)(8936002)(4326008)(2906002)(5660300002)(8676002)(86362001)(478600001)(6512007)(6486002)(31686004)(26005)(316002)(82960400001)(110136005)(6506007)(53546011)(66946007)(66476007)(66556008)(45980500001)(43740500002);
+ SFS:(13230022)(376002)(39860400002)(346002)(396003)(366004)(136003)(451199015)(316002)(31686004)(6486002)(478600001)(38100700002)(31696002)(82960400001)(86362001)(6666004)(5660300002)(54906003)(2616005)(30864003)(6506007)(41300700001)(36756003)(186003)(4326008)(8936002)(2906002)(66574015)(6512007)(66946007)(26005)(53546011)(8676002)(66556008)(66476007)(83380400001)(45980500001)(43740500002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c0VLazIvWGRXZE9PTlFQR2ZidSt3ZW1PZmVpRmZ0QWF2VGtzT2R3czN4MElS?=
- =?utf-8?B?VldsUEt0QzFUbFgrVFBGejVVcVdzdktISldEaDFoRllzRTR1ckw0VmZ4bVhr?=
- =?utf-8?B?TlBwTFh5dVp3ZTd5eWJlY1ZzN3lnN1Nwam5QMGZlOUxabnFnb1lhdnhWZ05U?=
- =?utf-8?B?YnhPZ05zeU1OSHA0RDQrUUdScTVXT3cyYmFkdjNDdkZCWnA5dlpUazhmT0Zj?=
- =?utf-8?B?Q3BBV21lMDlYamJpbkF5RmtYVS9QSFhpVmMvc3ZCSnROS3NSU0hiRFhtME5Q?=
- =?utf-8?B?QXU4Tmk3NVRtU2s0Q1Q5emo0dGU2d1hEL0xWbDNMMFF1djRRbis3blRsaTcv?=
- =?utf-8?B?YXhVVmlwaEJ4UmFTRStTVHpMRUZzSU5Xa1l5SUhsajl2SGhtS2J5NG5kOW9G?=
- =?utf-8?B?Z1Jtdnh1OTc1U0pTejBLck5zajRCbzdRK3RIOGlEaGZ6V3NyOElSTi93elNZ?=
- =?utf-8?B?TFBScTc5WDJBc1c3ZHhJNVVTcFg3WE9TMHpSNXE2aG1teG4zcXgyNWd3K3dF?=
- =?utf-8?B?anFPdnRQZ2poRUI1RWc5VTNrYitMSldpZHBBVW9hUVVMWmttNEVJVHQ4UkZR?=
- =?utf-8?B?a0cwQ3MzNmo1clQwczN0Vy92NzVkWk1qdFdrczlsSFlvdWo4N09vKzJWOHFI?=
- =?utf-8?B?TVJXSHZkVkx1V3RRSmUzWVluSjB6MFg3SFVCQTlpSlZFQXlRRXJ4NDVib0lk?=
- =?utf-8?B?MEN3T3NabS9pWlJtQndLaXNGMVBGTU10enB4c3JuL3QyTStQdm5CQWxGK25r?=
- =?utf-8?B?M0g5bFZPWlZTdjRhc3JGL0paZXpQMHNTUUxiRUpzbDZqNW5Yb0xIV0xSK1Yy?=
- =?utf-8?B?blV5bkl4ZGQxMzZjSjdYR3FOWnA5TWxITVNUNUlNUmxWZTV2YWJjekpXYzhw?=
- =?utf-8?B?L3pwL1E1K1Z3WXpZa0ptMlZZVHZRTnR5aGg3QiszYjUraFd1OEx1K0ZMOXB0?=
- =?utf-8?B?bGFyOVVHcnNSS0g4d1pvS05VUzY1Mkp4empLdHgyc1FpbGVDTWdZRk5ETjVR?=
- =?utf-8?B?VDcxMlo0TXczNkJLOU1hTHJmTWt1b2NHQXdzSEkzZzJCVjZOMzlHWkN2c1lH?=
- =?utf-8?B?bjdjSzdYQUR6SnVscGhLVnRueHVNVjNCL2F1RDZjNzE5RmFkejQ5UnF3bWJW?=
- =?utf-8?B?azlUdjI5U1dTYnBHRU1rUFBvMFYrQUtOY0wweHhtQldoTEx4L1VJa2I0NFNn?=
- =?utf-8?B?RjhCSCtYcDJNSkJSUHl2NG1Bc1UrMElaeExrMFpkcitsYVRRZE5ETHhQTFVS?=
- =?utf-8?B?RWJVQU11R2lqZUc5UWoreHJ6Qm83MFNTS1RSUzRHa290NXUvNExMbWxZOXBU?=
- =?utf-8?B?ZXF1VWtRK041c0dVUm1sV25KZmFucHlGSlV1RUN6aW1TN2JRS0FnbUdmTkRL?=
- =?utf-8?B?d2dER3d6aVNVR0tBRjg4REJCL3g0WlFsWDd4R2dVaTl5Y1ZuV1d5RUFwSjBG?=
- =?utf-8?B?dy9tOUlHL2Q1RUc5cnhwejVOanFRZ1RobmNaWFBta3BtZDlGdmxxSEMxdnpQ?=
- =?utf-8?B?MVVsQUtORmZYU0NSaGE4enNXaFdIWHd1UXBSYmw4SDRtNHFMZXA5c2ZNM21K?=
- =?utf-8?B?eGRBQzA3L2VYcGdHOTA2Ty9PY0pTN0YxN0VteGJ3N2NGczVBYzJwejlDdlBJ?=
- =?utf-8?B?M1VrU2gyWDRpM0xkSmdVdTNqUUFNVFdIcUlKbzlSQS9yK25aQWNoM21vUGRG?=
- =?utf-8?B?SzlvSXI3NFVLYUdScU1CTmxqOGpydHM3cGZOSUt6RTBKY3p4V1FIeFJSSitZ?=
- =?utf-8?B?S2VUR3ZlZDJ3eTBITGRDb3RMUFR5NVh4Kzl5SmVRZHU3S1k3cHYrNFlOQW11?=
- =?utf-8?B?SFNvb1NHTmlZd0hGUk16NjZ2ZWx0UE1OSENpdHAwMGkraUpGNW9Ma2szNjVs?=
- =?utf-8?B?enJUeDhQelpGYldoK0ZrV01HZzgxUWd0bU1vdzA5WUpYK0NTMGtHNTE3UGti?=
- =?utf-8?B?RTRHaTZxbEhvRHBBS3ZLN0lRaWRXcFRBcytYdlZhbVpvYU1WVlFNWHVPVXpK?=
- =?utf-8?B?dTNqNExjMkhJSUJZcTFrSVRDaHRDWU1yV21LUWg1T3I2amp1YmNXY3pCZVdZ?=
- =?utf-8?B?NTBQVnJxc2lnMVZleHpQZ0ovMitVZUhjZVdTWUpUcUVGYUYwanU5VU1nMGU2?=
- =?utf-8?B?N1ZyMEwyMGtLQmphU2h6ck5HS0lxNU02dWFIZGtWbW40MS9saDA1ck9kblJK?=
- =?utf-8?B?Nnc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: a478587c-3e35-4f8f-8a85-08dac1c0b463
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SnlKSjFxaEVqbjc0M0VEdEhTemtQZ09LRUd2R3l3WmVvT1VweXRGWlJqa2hv?=
+ =?utf-8?B?a0VuZWRxbUhIZVdWWjFhWDloT29VTlYxL0ZNV2dIWmNVT1JZc3JSbW13cm5x?=
+ =?utf-8?B?S3JUYTFReGdkUXJDTXp5L1ZFQ2xKMVZvZ2J4ak96d3gwVUpuMk1FZVJHNnJL?=
+ =?utf-8?B?aVp1bEJ1OEp3djNtVjZTY1hEb2QwL3YySzRkcnZvQldsTmMwTkFVb1Q0Y2Jo?=
+ =?utf-8?B?bW1pYkRGS0I2NWc3SzJ6Y1lIQkRkSW1XRDgrdVUxN1JLWEs4bGxJYTVpRy9M?=
+ =?utf-8?B?Wm5ZOHFMUHRSWTRFUE9kRkVzckJyS0NlUW0vRk9KMGt3aFpYRGlKcnJCMVI5?=
+ =?utf-8?B?WUFRYTFHZ2lJbSt2MGhGLzk1eHErcUMrSTMzc0pkMWVINVR0cXRQNFArcEsv?=
+ =?utf-8?B?em5YSFBLSUpGczB3aHN4TXlZVWM5Zys4NFVHbEROVXZjQUxROXBIMXJXU3VS?=
+ =?utf-8?B?cUYwejY2bzNMN0FleVB2TXF0TndSUEZGbHQ5UVVweWJWc0JUNkkvT2ttdXVD?=
+ =?utf-8?B?Q0pnRklKUGpXTkJqS2Q2TGUxMm0ybUE0eG91T0FUNm13a3A4Yk5NZjdmZEN4?=
+ =?utf-8?B?YnBCK2tXaEE3aTZTUkR3VUxYU2JBQkJlamQ0ZExyMFM3M3RLY2lqQTVEUkZ0?=
+ =?utf-8?B?R0h4YmIrbHdGWWRCQzB1WC9zaEhzQklObXZnWDdmTjVDVXNsZHphSmp0eDgy?=
+ =?utf-8?B?cGhWTXlYZFJ5Umg0RDlZUXVGWnhOUERVOFo4d094Z3daMVF4QlltVFZrQS9N?=
+ =?utf-8?B?U25Fc04yTm12VGIwSEZtaWdRTUNTUmN5UW40RVloUk1nQjBIR3oyWWNrNm1r?=
+ =?utf-8?B?SDFYWnh3NEtYVG1Lc3gva3JxUGRSQ2xESmwySmptcEh5d0RpYUFHYnRzbmNw?=
+ =?utf-8?B?YUJQRFlwaFVpOUhpS1l3NE50WWNmbnM3SmZVRkN6NmFXOFpKVWFHaG9kVk1H?=
+ =?utf-8?B?Rmg4WWxKbVB5SkEzQk1qMDV6cTlXNFFXRGlpZk5pMUZlSks3dEg3dC8yQ2dH?=
+ =?utf-8?B?dTRMeHNHUmMwN0owc2p4OS9PVEt4eFRtdjBXbFBxN1lYZzJlazJiNzFscFdl?=
+ =?utf-8?B?bGpzbE5tcHk5cTl3Um5QNlNIYlFzV0RQWWhQTlpnb0JNQnp3REpFb2hjNW9s?=
+ =?utf-8?B?bTllN0Vnclh0MjVGSkJtdjBHYWZHTm1veHh5bXNjUzRERXlWSkUwWEpMaEll?=
+ =?utf-8?B?UjVoUitPN0VXNXhiWng1TTNnU0p6ZG1EempRQVdKOTY2MDBhOWVpU1ZZeWJ1?=
+ =?utf-8?B?dmIrazgwWStWam4rSjBqaVJGMXdZbnhvWTZ5UEhmVVEySFdFTHdySyt2Yy9P?=
+ =?utf-8?B?M3RQT2NUc2d3RDdoWVRUS0g2ckY1dmF4UGYwdGViSTFScGNlQmo3TEVVN3di?=
+ =?utf-8?B?U1llTnpuaU1oZEpoWTRldlNXS1BJWnZwMWsweHl5L3N4WXNqaHRxVGVIY3R2?=
+ =?utf-8?B?dklBNFprbUhhWW8zUDBBaHF1T2VrNEdETnFsNlc4MTNieDl6WnZ0c0JFMElW?=
+ =?utf-8?B?RmVmQTJtYzY2dnRFR3YybWMyc2hTRWl6T0IzMFlYNjJ5VFo5cDNQaGVna1B2?=
+ =?utf-8?B?ZW5IM3lRZUtCUmxGYkJVdERlQ1lySDVqUHcxSXJSTzVvTmJ2ODVZdVppemxD?=
+ =?utf-8?B?TjJ2UGdibjljQm02Ym04TVFPVTZ5U2t0M201RUs2aitRN3NaejRpVVBqc09l?=
+ =?utf-8?B?VzFncjdOVUhrWWJuTEs2eDZyZjRtTFJzUVgvR0lwekZwdFJmeWhpbHBLcytj?=
+ =?utf-8?B?VXpwWTJiT2NxQnU5TjlaZitkZ2I2UWthS3hOZ2RSZHI3MENuSVBCQWZZYjJ5?=
+ =?utf-8?B?NExpRjY1aElXT0gyTHlHT3lvU0E0cEkzUWx1UWNvUjMzWCs3OXB5N1JOdGlh?=
+ =?utf-8?B?UTdJdG5WcmNPejYzalNha1hsWWNZZkJsSnBxNU4rRW54c1JVVDRMUGlLU2dQ?=
+ =?utf-8?B?eTRBY2VOU2o4Vm5oMW5nNm52QWhjaGNVc0JuR09vVm5odi9OaFNYUmpKb2Js?=
+ =?utf-8?B?MktyRERHa1hCVEhpNzZ5Tk1EVzJyNzZ5VEZTNFlXQ2pPUWhCZ1VXRHJKS0Iv?=
+ =?utf-8?B?YTRpbGhKVlJzUkdOb0RjS3dJcUZONlY3K25vYkxMeUxrVFU5YklBTnBlSFBr?=
+ =?utf-8?B?emEwWEJsck9QR29BdmhhZUhVc2lKRHh0cDdiaWFUUnNobXZhQlRQS3JncG12?=
+ =?utf-8?B?dkE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 19939363-4523-4c60-b26f-08dac1c2f45c
 X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3911.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Nov 2022 19:37:43.1744 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Nov 2022 19:53:49.5128 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: o2Hz8Ymcl8PoUflyntRBsdHGxEsvYY2JP3qMTXNS7tztiu1Ns2hpJw6y5xssbT+yBABGT0d9G6e/fqgfnoqYDCWT/692cEO1MO777RQBfzA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6167
+X-MS-Exchange-CrossTenant-UserPrincipalName: NyTwg5+r9RQqUo1Z++7XWoSQR6STqw5VCemIIAAIf2tGGlfIxGz0M1dMYnwZ8gSC/oLWyS5WmrjEIqex84DejDPhvWmeHlwIN61nidCEl6c=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB6696
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Don't wait forever in drop_caches
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Partial abandonment of legacy
+ DRM logging macros
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -166,439 +158,725 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Cc: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 11/8/2022 01:08, Tvrtko Ursulin wrote:
-> On 07/11/2022 19:45, John Harrison wrote:
->> On 11/7/2022 06:09, Tvrtko Ursulin wrote:
->>> On 04/11/2022 17:45, John Harrison wrote:
->>>> On 11/4/2022 03:01, Tvrtko Ursulin wrote:
->>>>> On 03/11/2022 19:16, John Harrison wrote:
->>>>>> On 11/3/2022 02:38, Tvrtko Ursulin wrote:
->>>>>>> On 03/11/2022 09:18, Tvrtko Ursulin wrote:
->>>>>>>> On 03/11/2022 01:33, John Harrison wrote:
->>>>>>>>> On 11/2/2022 07:20, Tvrtko Ursulin wrote:
->>>>>>>>>> On 02/11/2022 12:12, Jani Nikula wrote:
->>>>>>>>>>> On Tue, 01 Nov 2022, John.C.Harrison@Intel.com wrote:
->>>>>>>>>>>> From: John Harrison <John.C.Harrison@Intel.com>
->>>>>>>>>>>>
->>>>>>>>>>>> At the end of each test, IGT does a drop caches call via 
->>>>>>>>>>>> sysfs with
->>>>>>>>>>>
->>>>>>>>>>> sysfs?
->>>>>>>>> Sorry, that was meant to say debugfs. I've also been working 
->>>>>>>>> on some sysfs IGT issues and evidently got my wires crossed!
->>>>>>>>>
->>>>>>>>>>>
->>>>>>>>>>>> special flags set. One of the possible paths waits for idle 
->>>>>>>>>>>> with an
->>>>>>>>>>>> infinite timeout. That causes problems for debugging issues 
->>>>>>>>>>>> when CI
->>>>>>>>>>>> catches a "can't go idle" test failure. Best case, the CI 
->>>>>>>>>>>> system times
->>>>>>>>>>>> out (after 90s), attempts a bunch of state dump actions and 
->>>>>>>>>>>> then
->>>>>>>>>>>> reboots the system to recover it. Worst case, the CI system 
->>>>>>>>>>>> can't do
->>>>>>>>>>>> anything at all and then times out (after 1000s) and simply 
->>>>>>>>>>>> reboots.
->>>>>>>>>>>> Sometimes a serial port log of dmesg might be available, 
->>>>>>>>>>>> sometimes not.
->>>>>>>>>>>>
->>>>>>>>>>>> So rather than making life hard for ourselves, change the 
->>>>>>>>>>>> timeout to
->>>>>>>>>>>> be 10s rather than infinite. Also, trigger the standard
->>>>>>>>>>>> wedge/reset/recover sequence so that testing can continue 
->>>>>>>>>>>> with a
->>>>>>>>>>>> working system (if possible).
->>>>>>>>>>>>
->>>>>>>>>>>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->>>>>>>>>>>> ---
->>>>>>>>>>>>   drivers/gpu/drm/i915/i915_debugfs.c | 7 ++++++-
->>>>>>>>>>>>   1 file changed, 6 insertions(+), 1 deletion(-)
->>>>>>>>>>>>
->>>>>>>>>>>> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c 
->>>>>>>>>>>> b/drivers/gpu/drm/i915/i915_debugfs.c
->>>>>>>>>>>> index ae987e92251dd..9d916fbbfc27c 100644
->>>>>>>>>>>> --- a/drivers/gpu/drm/i915/i915_debugfs.c
->>>>>>>>>>>> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
->>>>>>>>>>>> @@ -641,6 +641,9 @@ 
->>>>>>>>>>>> DEFINE_SIMPLE_ATTRIBUTE(i915_perf_noa_delay_fops,
->>>>>>>>>>>>             DROP_RESET_ACTIVE | \
->>>>>>>>>>>>             DROP_RESET_SEQNO | \
->>>>>>>>>>>>             DROP_RCU)
->>>>>>>>>>>> +
->>>>>>>>>>>> +#define DROP_IDLE_TIMEOUT    (HZ * 10)
->>>>>>>>>>>
->>>>>>>>>>> I915_IDLE_ENGINES_TIMEOUT is defined in i915_drv.h. It's 
->>>>>>>>>>> also only used
->>>>>>>>>>> here.
->>>>>>>>>>
->>>>>>>>>> So move here, dropping i915 prefix, next to the newly 
->>>>>>>>>> proposed one?
->>>>>>>>> Sure, can do that.
->>>>>>>>>
->>>>>>>>>>
->>>>>>>>>>> I915_GEM_IDLE_TIMEOUT is defined in i915_gem.h. It's only 
->>>>>>>>>>> used in
->>>>>>>>>>> gt/intel_gt.c.
->>>>>>>>>>
->>>>>>>>>> Move there and rename to GT_IDLE_TIMEOUT?
->>>>>>>>>>
->>>>>>>>>>> I915_GT_SUSPEND_IDLE_TIMEOUT is defined and used only in 
->>>>>>>>>>> intel_gt_pm.c.
->>>>>>>>>>
->>>>>>>>>> No action needed, maybe drop i915 prefix if wanted.
->>>>>>>>>>
->>>>>>>>> These two are totally unrelated and in code not being touched 
->>>>>>>>> by this change. I would rather not conflate changing random 
->>>>>>>>> other things with fixing this specific issue.
->>>>>>>>>
->>>>>>>>>>> I915_IDLE_ENGINES_TIMEOUT is in ms, the rest are in jiffies.
->>>>>>>>>>
->>>>>>>>>> Add _MS suffix if wanted.
->>>>>>>>>>
->>>>>>>>>>> My head spins.
->>>>>>>>>>
->>>>>>>>>> I follow and raise that the newly proposed DROP_IDLE_TIMEOUT 
->>>>>>>>>> applies to DROP_ACTIVE and not only DROP_IDLE.
->>>>>>>>> My original intention for the name was that is the 'drop 
->>>>>>>>> caches timeout for intel_gt_wait_for_idle'. Which is quite the 
->>>>>>>>> mouthful and hence abbreviated to DROP_IDLE_TIMEOUT. But yes, 
->>>>>>>>> I realised later that name can be conflated with the DROP_IDLE 
->>>>>>>>> flag. Will rename.
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>>
->>>>>>>>>> Things get refactored, code moves around, bits get left 
->>>>>>>>>> behind, who knows. No reason to get too worked up. :) As long 
->>>>>>>>>> as people are taking a wider view when touching the code 
->>>>>>>>>> base, and are not afraid to send cleanups, things should be 
->>>>>>>>>> good.
->>>>>>>>> On the other hand, if every patch gets blocked in code review 
->>>>>>>>> because someone points out some completely unrelated piece of 
->>>>>>>>> code could be a bit better then nothing ever gets fixed. If 
->>>>>>>>> you spot something that you think should be improved, isn't 
->>>>>>>>> the general idea that you should post a patch yourself to 
->>>>>>>>> improve it?
->>>>>>>>
->>>>>>>> There's two maintainers per branch and an order of magnitude or 
->>>>>>>> two more developers so it'd be nice if cleanups would just be 
->>>>>>>> incoming on self-initiative basis. ;)
->>>>>>>>
->>>>>>>>>> For the actual functional change at hand - it would be nice 
->>>>>>>>>> if code paths in question could handle SIGINT and then we 
->>>>>>>>>> could punt the decision on how long someone wants to wait 
->>>>>>>>>> purely to userspace. But it's probably hard and it's only 
->>>>>>>>>> debugfs so whatever.
->>>>>>>>>>
->>>>>>>>> The code paths in question will already abort on a signal 
->>>>>>>>> won't they? Both intel_gt_wait_for_idle() and 
->>>>>>>>> intel_guc_wait_for_pending_msg(), which is where the 
->>>>>>>>> uc_wait_for_idle eventually ends up, have an 
->>>>>>>>> 'if(signal_pending) return -EINTR;' check. Beyond that, it 
->>>>>>>>> sounds like what you are asking for is a change in the IGT 
->>>>>>>>> libraries and/or CI framework to start sending signals after 
->>>>>>>>> some specific timeout. That seems like a significantly more 
->>>>>>>>> complex change (in terms of the number of entities affected 
->>>>>>>>> and number of groups involved) and unnecessary.
->>>>>>>>
->>>>>>>> If you say so, I haven't looked at them all. But if the code 
->>>>>>>> path in question already aborts on signals then I am not sure 
->>>>>>>> what is the patch fixing? I assumed you are trying to avoid the 
->>>>>>>> write stuck in D forever, which then prevents driver unload and 
->>>>>>>> everything, requiring the test runner to eventually reboot. If 
->>>>>>>> you say SIGINT works then you can already recover from 
->>>>>>>> userspace, no?
->>>>>>>>
->>>>>>>>>> Whether or not 10s is enough CI will hopefully tell us. I'd 
->>>>>>>>>> probably err on the side of safety and make it longer, but at 
->>>>>>>>>> most half from the test runner timeout.
->>>>>>>>> This is supposed to be test clean up. This is not about how 
->>>>>>>>> long a particular test takes to complete but about how long it 
->>>>>>>>> takes to declare the system broken after the test has already 
->>>>>>>>> finished. I would argue that even 10s is massively longer than 
->>>>>>>>> required.
->>>>>>>>>
->>>>>>>>>>
->>>>>>>>>> I am not convinced that wedging is correct though. 
->>>>>>>>>> Conceptually could be just that the timeout is too short. 
->>>>>>>>>> What does wedging really give us, on top of limiting the 
->>>>>>>>>> wait, when latter AFAIU is the key factor which would prevent 
->>>>>>>>>> the need to reboot the machine?
->>>>>>>>>>
->>>>>>>>> It gives us a system that knows what state it is in. If we 
->>>>>>>>> can't idle the GT then something is very badly wrong. Wedging 
->>>>>>>>> indicates that. It also ensure that a full GT reset will be 
->>>>>>>>> attempted before the next test is run. Helping to prevent a 
->>>>>>>>> failure on test X from propagating into failures of unrelated 
->>>>>>>>> tests X+1, X+2, ... And if the GT reset does not work because 
->>>>>>>>> the system is really that badly broken then future tests will 
->>>>>>>>> not run rather than report erroneous failures.
->>>>>>>>>
->>>>>>>>> This is not about getting a more stable system for end users 
->>>>>>>>> by sweeping issues under the carpet and pretending all is 
->>>>>>>>> well. End users don't run IGTs or explicitly call dodgy 
->>>>>>>>> debugfs entry points. The sole motivation here is to get more 
->>>>>>>>> accurate results from CI. That is, correctly identifying which 
->>>>>>>>> test has hit a problem, getting valid debug analysis for that 
->>>>>>>>> test (logs and such) and allowing further testing to complete 
->>>>>>>>> correctly in the case where the system can be recovered.
->>>>>>>>
->>>>>>>> I don't really oppose shortening of the timeout in principle, 
->>>>>>>> just want a clear statement if this is something IGT / test 
->>>>>>>> runner could already do or not. It can apply a timeout, it can 
->>>>>>>> also send SIGINT, and it could even trigger a reset from 
->>>>>>>> outside. Sure it is debugfs hacks so general "kernel should not 
->>>>>>>> implement policy" need not be strictly followed, but lets have 
->>>>>>>> it clear what are the options.
->>>>>>>
->>>>>>> One conceptual problem with applying this policy is that the 
->>>>>>> code is:
->>>>>>>
->>>>>>>     if (val & (DROP_IDLE | DROP_ACTIVE)) {
->>>>>>>         ret = intel_gt_wait_for_idle(gt, MAX_SCHEDULE_TIMEOUT);
->>>>>>>         if (ret)
->>>>>>>             return ret;
->>>>>>>     }
->>>>>>>
->>>>>>>     if (val & DROP_IDLE) {
->>>>>>>         ret = intel_gt_pm_wait_for_idle(gt);
->>>>>>>         if (ret)
->>>>>>>             return ret;
->>>>>>>     }
->>>>>>>
->>>>>>> So if someone passes in DROP_IDLE and then why would only the 
->>>>>>> first branch have a short timeout and wedge. Yeah some bug 
->>>>>>> happens to be there at the moment, but put a bug in a different 
->>>>>>> place and you hang on the second branch and then need another 
->>>>>>> patch. Versus perhaps making it all respect SIGINT and handle 
->>>>>>> from outside.
->>>>>>>
->>>>>> The pm_wait_for_idle is can only called after gt_wait_for_idle 
->>>>>> has completed successfully. There is no route to skip the GT idle 
->>>>>> or to do the PM idle even if the GT idle fails. So the chances of 
->>>>>> the PM idle failing are greatly reduced. There would have to be 
->>>>>> something outside of a GT keeping the GPU awake and there isn't a 
->>>>>> whole lot of hardware left at that point!
->>>>>
->>>>> Well "greatly reduced" is beside my point. Point is today bug is 
->>>>> here and we add a timeout, tomorrow bug is there and then the same 
->>>>> dance. It can be just a sw bug which forgets to release the pm ref 
->>>>> in some circumstances, doesn't really matter.
->>>>>
->>>> Huh?
->>>>
->>>> Greatly reduced is the whole point. Today there is a bug and it 
->>>> causes a kernel hang which requires the CI framework to reboot the 
->>>> system in an extremely unfriendly way which makes it very hard to 
->>>> work out what happened. Logs are likely not available. We don't 
->>>> even necessarily know which test was being run at the time. Etc. So 
->>>> we replace the infinite timeout with a meaningful timeout. CI now 
->>>> correctly marks the single test as failing, captures all the 
->>>> correct logs, creates a useful bug report and continues on testing 
->>>> more stuff.
->>>
->>> So what is preventing CI to collect logs if IGT is forever stuck in 
->>> interruptible wait? Surely it can collect the logs at that point if 
->>> the kernel is healthy enough. If it isn't then I don't see how 
->>> wedging the GPU will make the kernel any healthier.
->>>
->>> Is i915 preventing better log collection or could test runner be 
->>> improved?
->>>
->>>> Sure, there is still the chance of hitting an infinite timeout. But 
->>>> that one is significantly more complicated to remove. And the 
->>>> chances of hitting that one are significantly smaller than the 
->>>> chances of hitting the first one.
->>>
->>> This statement relies on intimate knowledge implementation details 
->>> and a bit too much white box testing approach but that's okay, lets 
->>> move past this one.
->>>
->>>> So you are arguing that because I can't fix the last 0.1% of 
->>>> possible failures, I am not allowed to fix the first 99.9% of the 
->>>> failures?
->>>
->>> I am clearly not arguing for that. But we are also not talking about 
->>> "fixing failures" here. Just how to make CI cope better with a class 
->>> of i915 bugs.
->>>
->>>>>> Regarding signals, the PM idle code ends up at 
->>>>>> wait_var_event_killable(). I assume that is interruptible via at 
->>>>>> least a KILL signal if not any signal. Although it's not entirely 
->>>>>> clear trying to follow through the implementation of this code. 
->>>>>> Also, I have no idea if there is a safe way to add a timeout to 
->>>>>> that code (or why it wasn't already written with a timeout 
->>>>>> included). Someone more familiar with the wakeref internals would 
->>>>>> need to comment.
->>>>>>
->>>>>> However, I strongly disagree that we should not fix the driver 
->>>>>> just because it is possible to workaround the issue by re-writing 
->>>>>> the CI framework. Feel free to bring a redesign plan to the IGT 
->>>>>> WG and whatever equivalent CI meetings in parallel. But we 
->>>>>> absolutely should not have infinite waits in the kernel if there 
->>>>>> is a trivial way to not have infinite waits.
->>>>>
->>>>> I thought I was clear that I am not really opposed to the timeout.
->>>>>
->>>>> The rest of the paragraph I don't really care - point is moot 
->>>>> because it's debugfs so we can do whatever, as long as it is not 
->>>>> burdensome to i915, which this isn't. If either wasn't the case 
->>>>> then we certainly wouldn't be adding any workarounds in the kernel 
->>>>> if it can be achieved in IGT.
->>>>>
->>>>>> Also, sending a signal does not result in the wedge happening. I 
->>>>>> specifically did not want to change that code path because I was 
->>>>>> assuming there was a valid reason for it. If you have been 
->>>>>> interrupted then you are in the territory of maybe it would have 
->>>>>> succeeded if you just left it for a moment longer. Whereas, 
->>>>>> hitting the timeout says that someone very deliberately said this 
->>>>>> is too long to wait and therefore the system must be broken.
->>>>>
->>>>> I wanted to know specifically about wedging - why can't you 
->>>>> wedge/reset from IGT if DROP_IDLE times out in quiescent or 
->>>>> wherever, if that's what you say is the right thing? 
->>>> Huh?
->>>>
->>>> DROP_IDLE has two waits. One that I am trying to change from 
->>>> infinite to finite + wedge. One that would take considerable effort 
->>>> to change and would be quite invasive to a lot more of the driver 
->>>> and which can only be hit if the first timeout actually completed 
->>>> successfully and is therefore of less importance anyway. Both of 
->>>> those time outs appear to respect signal interrupts.
->>>>
->>>>> That's a policy decision so why would i915 wedge if an arbitrary 
->>>>> timeout expired? I915 is not controlling how much work there is 
->>>>> outstanding at the point the IGT decides to call DROP_IDLE.
->>>>
->>>> Because this is a debug test interface that is used solely by IGT 
->>>> after it has finished its testing. This is not about wedging the 
->>>> device at some random arbitrary point because an AI compute 
->>>> workload takes three hours to complete. This is about a very 
->>>> specific test framework cleaning up after testing is completed and 
->>>> making sure the test did not fry the system.
->>>>
->>>> And even if an IGT test was calling DROP_IDLE in the middle of a 
->>>> test for some reason, it should not be deliberately pushing 10+ 
->>>> seconds of work through and then calling a debug only interface to 
->>>> flush it out. If a test wants to verify that the system can cope 
->>>> with submitting a minutes worth of rendering and then waiting for 
->>>> it to complete then the test should be using official channels for 
->>>> that wait.
->>>>
->>>>>
->>>>>> Plus, infinite wait is not a valid code path in the first place 
->>>>>> so any change in behaviour is not really a change in behaviour. 
->>>>>> Code can't be relying on a kernel call to never return for its 
->>>>>> correct operation!
->>>>>
->>>>> Why infinite wait wouldn't be valid? Then you better change the 
->>>>> other one as well. ;P
->>>> In what universe is it ever valid to wait forever for a test to 
->>>> complete?
->>>
->>> Well above you claimed both paths respect SIGINT. If that is so then 
->>> the wait is as infinite as the IGT wanted it to be.
->>>
->>>> See above, the PM code would require much more invasive changes. 
->>>> This was low hanging fruit. It was supposed to be a two minute 
->>>> change to a very self contained section of code that would provide 
->>>> significant benefit to debugging a small class of very hard to 
->>>> debug problems.
->>>
->>> Sure, but I'd still like to know why can't you do what you want from 
->>> the IGT framework.
->>>
->>> Have the timeout reduction in i915, again that's fine assuming 10 
->>> seconds it enough to not break something by accident.
->> CI showed no regressions. And if someone does find a valid reason why 
->> a post test drop caches call should legitimately take a stupidly long 
->> time then it is easy to track back where the ETIME error came from 
->> and bump the timeout.
->>
->>>
->>> With that change you already have broken the "infinite wait". It 
->>> makes the debugfs write return -ETIME in time much shorter than the 
->>> test runner timeout(s). What is the thing that you cannot do from 
->>> IGT at that point is my question? You want to wedge then? Send 
->>> DROP_RESET_ACTIVE to do it for you? If that doesn't work add a new 
->>> flag which will wedge explicitly.
->>>
->>> We are again degrading into a huge philosophical discussion and all 
->>> I wanted to start with is to hear how exactly things go bad.
->>>
->> I have no idea what you are wanting. I am trying to have a technical 
->> discussion about improving the stability of the driver during CI 
->> testing. I have no idea if you are arguing that this change is good, 
->> bad, broken, wrong direction or what.
->>
->> Things go bad as explained in the commit message. The CI framework 
->> does not use signals. The IGT framework does not use signals. There 
->> is no watchdog that sends a TERM or KILL signal after a specified 
->> timeout. All that happens is the IGT sits there forever waiting for 
->> the drop caches IOCTL to return. The CI framework eventually gives up 
->> waiting for the test to complete and tries to recover. There are many 
->> different CI frameworks in use across Intel. Some timeout quickly, 
->> some timeout slowly. But basically, they all eventually give up and 
->> don't bother trying any kind of remedial action but just hit the 
->> reset button (sometimes by literally power cycling the DUT). As 
->> result, background processes that are saving dmesg, stdout, etc do 
->> not necessarily terminate cleanly. That results in logs that are at 
->> best truncated, at worst missing entirely. It also results in some 
->> frameworks aborting testing at that point. So no results are 
->> generated for all the other tests that have yet to be run. Some 
->> frameworks also run tests in batches. All they log is that something, 
->> somewhere in the batch died. So you don't even know which specific 
->> test actually hit the problem.
->>
->> Can the CI frameworks be improved? Undoubtedly. In very many ways. Is 
->> that something we have the ability to do with a simple patch? No. 
->> Would re-writing the IGT framework to add watchdog mechanisms improve 
->> things? Yes. Can it be done with a simple patch? No. Would a simple 
->> patch to i915 significantly improve the situation? Yes. Will it solve 
->> every possible CI hang? No. Will it fix any actual end user visible 
->> bugs? No. Will it introduce any new bugs? No. Will it help us to 
->> debug at least some CI failures? Yes.
+On 11/8/2022 04:26, Tvrtko Ursulin wrote:
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 >
-> To unblock, I suggest you go with the patch which caps the wait only, 
-> and propose a wedging as an IGT patch to gem_quiescent_gpu(). That 
-> should involve the CI/IGT folks into discussion on what logs will be, 
-> or will not be collected once gem_quiescent_gpu() fails due -ETIME. In 
-> fact probably you should copy CI/IGT folks on the v2 of the i915 patch 
-> as well since I now think their acks would be good to have - from the 
-> point of view of the current test runner behaviour with hanging tests.
+> Convert some usages of legacy DRM logging macros into versions which tell
+> us on which device have the events occurred.
 >
-Simply returning -ETIME without wedging will actually make the situation 
-worse. At the moment, you get 'all testing stopped due to machine not 
-responding' bugs being logged. Which is a right pain and has very little 
-useful information, but at least is not claiming random tests are broken 
-when they are not. If you return ETIME without wedging then test A will 
-hang and return ETIME. CI will log an ETIME bug against test A. CI will 
-then try test B, which will fail with ETIME because the system is still 
-broken but claiming to be working. So log a new bug against test B. Move 
-on to test C, oh look, ETIME - log another bug and move on to test D... 
-That is far worse, a whole slew of pointless and incorrect bugs have 
-just been logged.
+> v2:
+>   * Don't have struct drm_device as local. (Jani, Ville)
+>
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: John Harrison <John.C.Harrison@Intel.com>
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_context.c   |  2 +-
+>   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 26 +++++++----
+>   .../drm/i915/gt/intel_execlists_submission.c  | 13 +++---
+>   drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c  |  4 +-
+>   drivers/gpu/drm/i915/gt/intel_gt.c            |  4 +-
+>   drivers/gpu/drm/i915/gt/intel_gt_irq.c        |  8 ++--
+>   drivers/gpu/drm/i915/gt/intel_rps.c           |  6 ++-
+>   drivers/gpu/drm/i915/gt/intel_workarounds.c   | 43 +++++++++++--------
+>   .../gpu/drm/i915/gt/intel_workarounds_types.h |  4 ++
+>   .../gpu/drm/i915/gt/selftest_workarounds.c    |  4 +-
+>   drivers/gpu/drm/i915/i915_debugfs.c           |  4 +-
+>   drivers/gpu/drm/i915/i915_gem.c               |  2 +-
+>   drivers/gpu/drm/i915/i915_getparam.c          |  2 +-
+>   drivers/gpu/drm/i915/i915_irq.c               | 12 +++---
+>   drivers/gpu/drm/i915/i915_perf.c              | 14 +++---
+>   drivers/gpu/drm/i915/i915_query.c             | 12 +++---
+>   drivers/gpu/drm/i915/i915_sysfs.c             |  3 +-
+>   drivers/gpu/drm/i915/i915_vma.c               | 16 ++++---
+>   drivers/gpu/drm/i915/intel_uncore.c           | 21 +++++----
+>   19 files changed, 119 insertions(+), 81 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> index 01402f3c58f6..7f2831efc798 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> @@ -546,7 +546,7 @@ set_proto_ctx_engines_bond(struct i915_user_extension __user *base, void *data)
+>   	}
+>   
+>   	if (intel_engine_uses_guc(master)) {
+> -		DRM_DEBUG("bonding extension not supported with GuC submission");
+> +		drm_dbg(&i915->drm, "bonding extension not supported with GuC submission");
+>   		return -ENODEV;
+>   	}
+>   
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> index 1160723c9d2d..f65fd03f7cf2 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -2148,7 +2148,8 @@ static int eb_move_to_gpu(struct i915_execbuffer *eb)
+>   	return err;
+>   }
+>   
+> -static int i915_gem_check_execbuffer(struct drm_i915_gem_execbuffer2 *exec)
+> +static int i915_gem_check_execbuffer(struct drm_i915_private *i915,
+> +				     struct drm_i915_gem_execbuffer2 *exec)
+>   {
+>   	if (exec->flags & __I915_EXEC_ILLEGAL_FLAGS)
+>   		return -EINVAL;
+> @@ -2161,7 +2162,7 @@ static int i915_gem_check_execbuffer(struct drm_i915_gem_execbuffer2 *exec)
+>   	}
+>   
+>   	if (exec->DR4 == 0xffffffff) {
+> -		DRM_DEBUG("UXA submitting garbage DR4, fixing up\n");
+> +		drm_dbg(&i915->drm, "UXA submitting garbage DR4, fixing up\n");
+>   		exec->DR4 = 0;
+>   	}
+>   	if (exec->DR1 || exec->DR4)
+> @@ -2799,7 +2800,8 @@ add_timeline_fence_array(struct i915_execbuffer *eb,
+>   
+>   		syncobj = drm_syncobj_find(eb->file, user_fence.handle);
+>   		if (!syncobj) {
+> -			DRM_DEBUG("Invalid syncobj handle provided\n");
+> +			drm_dbg(&eb->i915->drm,
+> +				"Invalid syncobj handle provided\n");
+>   			return -ENOENT;
+>   		}
+>   
+> @@ -2807,7 +2809,8 @@ add_timeline_fence_array(struct i915_execbuffer *eb,
+>   
+>   		if (!fence && user_fence.flags &&
+>   		    !(user_fence.flags & I915_EXEC_FENCE_SIGNAL)) {
+> -			DRM_DEBUG("Syncobj handle has no fence\n");
+> +			drm_dbg(&eb->i915->drm,
+> +				"Syncobj handle has no fence\n");
+>   			drm_syncobj_put(syncobj);
+>   			return -EINVAL;
+>   		}
+> @@ -2816,7 +2819,9 @@ add_timeline_fence_array(struct i915_execbuffer *eb,
+>   			err = dma_fence_chain_find_seqno(&fence, point);
+>   
+>   		if (err && !(user_fence.flags & I915_EXEC_FENCE_SIGNAL)) {
+> -			DRM_DEBUG("Syncobj handle missing requested point %llu\n", point);
+> +			drm_dbg(&eb->i915->drm,
+> +				"Syncobj handle missing requested point %llu\n",
+> +				point);
+>   			dma_fence_put(fence);
+>   			drm_syncobj_put(syncobj);
+>   			return err;
+> @@ -2842,7 +2847,8 @@ add_timeline_fence_array(struct i915_execbuffer *eb,
+>   			 * 0) would break the timeline.
+>   			 */
+>   			if (user_fence.flags & I915_EXEC_FENCE_WAIT) {
+> -				DRM_DEBUG("Trying to wait & signal the same timeline point.\n");
+> +				drm_dbg(&eb->i915->drm,
+> +					"Trying to wait & signal the same timeline point.\n");
+>   				dma_fence_put(fence);
+>   				drm_syncobj_put(syncobj);
+>   				return -EINVAL;
+> @@ -2913,14 +2919,16 @@ static int add_fence_array(struct i915_execbuffer *eb)
+>   
+>   		syncobj = drm_syncobj_find(eb->file, user_fence.handle);
+>   		if (!syncobj) {
+> -			DRM_DEBUG("Invalid syncobj handle provided\n");
+> +			drm_dbg(&eb->i915->drm,
+> +				"Invalid syncobj handle provided\n");
+>   			return -ENOENT;
+>   		}
+>   
+>   		if (user_fence.flags & I915_EXEC_FENCE_WAIT) {
+>   			fence = drm_syncobj_fence_get(syncobj);
+>   			if (!fence) {
+> -				DRM_DEBUG("Syncobj handle has no fence\n");
+> +				drm_dbg(&eb->i915->drm,
+> +					"Syncobj handle has no fence\n");
+>   				drm_syncobj_put(syncobj);
+>   				return -EINVAL;
+>   			}
+> @@ -3515,7 +3523,7 @@ i915_gem_execbuffer2_ioctl(struct drm_device *dev, void *data,
+>   		return -EINVAL;
+>   	}
+>   
+> -	err = i915_gem_check_execbuffer(args);
+> +	err = i915_gem_check_execbuffer(i915, args);
+>   	if (err)
+>   		return err;
+>   
+> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> index 0187bc72310d..d92512780467 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> @@ -3921,6 +3921,7 @@ static struct intel_context *
+>   execlists_create_virtual(struct intel_engine_cs **siblings, unsigned int count,
+>   			 unsigned long flags)
+>   {
+> +	struct drm_i915_private *i915 = siblings[0]->i915;
+>   	struct virtual_engine *ve;
+>   	unsigned int n;
+>   	int err;
+> @@ -3929,7 +3930,7 @@ execlists_create_virtual(struct intel_engine_cs **siblings, unsigned int count,
+>   	if (!ve)
+>   		return ERR_PTR(-ENOMEM);
+>   
+> -	ve->base.i915 = siblings[0]->i915;
+> +	ve->base.i915 = i915;
+>   	ve->base.gt = siblings[0]->gt;
+>   	ve->base.uncore = siblings[0]->uncore;
+>   	ve->base.id = -1;
+> @@ -3988,8 +3989,9 @@ execlists_create_virtual(struct intel_engine_cs **siblings, unsigned int count,
+>   
+>   		GEM_BUG_ON(!is_power_of_2(sibling->mask));
+>   		if (sibling->mask & ve->base.mask) {
+> -			DRM_DEBUG("duplicate %s entry in load balancer\n",
+> -				  sibling->name);
+> +			drm_dbg(&i915->drm,
+> +				"duplicate %s entry in load balancer\n",
+> +				sibling->name);
+It was already decided to convert these to use a GT specific printer. So 
+this patch is only half implemented.
 
-And how is it possibly considered a backwards breaking or dangerous 
-change to wedge instead of hanging forever? Reboot versus wedge. 
-Absolutely no defined behaviour at all because the system has simply 
-stopped versus marking the system as broken and having a best effort at 
-handling the situation. Yup, that's definitely a very dangerous change 
-that could break all sorts of random user applications.
-
-Re 'IGT folks' - whom? Ashutosh had already agreed to the original patch.
-
-And CI folks are certainly aware of such issues. There are any number of 
-comments in Jiras about 'no logs available, cannot analyse'.
+>   			err = -EINVAL;
+>   			goto err_put;
+>   		}
+> @@ -4023,8 +4025,9 @@ execlists_create_virtual(struct intel_engine_cs **siblings, unsigned int count,
+>   		 */
+>   		if (ve->base.class != OTHER_CLASS) {
+>   			if (ve->base.class != sibling->class) {
+> -				DRM_DEBUG("invalid mixing of engine class, sibling %d, already %d\n",
+> -					  sibling->class, ve->base.class);
+> +				drm_dbg(&i915->drm,
+> +					"invalid mixing of engine class, sibling %d, already %d\n",
+> +					sibling->class, ve->base.class);
+>   				err = -EINVAL;
+>   				goto err_put;
+>   			}
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
+> index ea775e601686..995082d45cb2 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
+> @@ -816,8 +816,8 @@ i915_gem_object_save_bit_17_swizzle(struct drm_i915_gem_object *obj,
+>   	if (obj->bit_17 == NULL) {
+>   		obj->bit_17 = bitmap_zalloc(page_count, GFP_KERNEL);
+>   		if (obj->bit_17 == NULL) {
+> -			DRM_ERROR("Failed to allocate memory for bit 17 "
+> -				  "record\n");
+> +			drm_err(&to_i915(obj->base.dev)->drm,
+> +				"Failed to allocate memory for bit 17 record\n");
+>   			return;
+>   		}
+>   	}
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+> index 8e914c4066ed..0ba7d6f36b28 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> @@ -190,7 +190,7 @@ int intel_gt_init_hw(struct intel_gt *gt)
+>   
+>   	ret = i915_ppgtt_init_hw(gt);
+>   	if (ret) {
+> -		DRM_ERROR("Enabling PPGTT failed (%d)\n", ret);
+> +		drm_err(&i915->drm, "Enabling PPGTT failed (%d)\n", ret);
+>   		goto out;
+>   	}
+>   
+> @@ -262,7 +262,7 @@ intel_gt_clear_error_registers(struct intel_gt *gt,
+>   		 * some errors might have become stuck,
+>   		 * mask them.
+>   		 */
+> -		DRM_DEBUG_DRIVER("EIR stuck: 0x%08x, masking\n", eir);
+> +		drm_dbg(&gt->i915->drm, "EIR stuck: 0x%08x, masking\n", eir);
+>   		rmw_set(uncore, EMR, eir);
+>   		intel_uncore_write(uncore, GEN2_IIR,
+>   				   I915_MASTER_ERROR_INTERRUPT);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+> index b197f0e9794f..4c8ddd074b78 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+> @@ -44,8 +44,9 @@ gen11_gt_engine_identity(struct intel_gt *gt,
+>   		 !time_after32(local_clock() >> 10, timeout_ts));
+>   
+>   	if (unlikely(!(ident & GEN11_INTR_DATA_VALID))) {
+> -		DRM_ERROR("INTR_IDENTITY_REG%u:%u 0x%08x not valid!\n",
+> -			  bank, bit, ident);
+> +		drm_err(&gt->i915->drm,
+> +			"INTR_IDENTITY_REG%u:%u 0x%08x not valid!\n",
+> +			bank, bit, ident);
+>   		return 0;
+>   	}
+>   
+> @@ -364,7 +365,8 @@ void gen6_gt_irq_handler(struct intel_gt *gt, u32 gt_iir)
+>   	if (gt_iir & (GT_BLT_CS_ERROR_INTERRUPT |
+>   		      GT_BSD_CS_ERROR_INTERRUPT |
+>   		      GT_CS_MASTER_ERROR_INTERRUPT))
+> -		DRM_DEBUG("Command parser error, gt_iir 0x%08x\n", gt_iir);
+> +		drm_dbg(&gt->i915->drm, "Command parser error, gt_iir 0x%08x\n",
+> +			gt_iir);
+>   
+>   	if (gt_iir & GT_PARITY_ERROR(gt->i915))
+>   		gen7_parity_error_irq_handler(gt, gt_iir);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+> index 6c34a83c24b3..effe60ac22cd 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_rps.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+> @@ -430,7 +430,8 @@ static int __gen5_rps_set(struct intel_rps *rps, u8 val)
+>   
+>   	rgvswctl = intel_uncore_read16(uncore, MEMSWCTL);
+>   	if (rgvswctl & MEMCTL_CMD_STS) {
+> -		DRM_DEBUG("gpu busy, RCS change rejected\n");
+> +		drm_dbg(&rps_to_i915(rps)->drm,
+> +			"gpu busy, RCS change rejected\n");
+>   		return -EBUSY; /* still busy with another command */
+>   	}
+>   
+> @@ -1953,7 +1954,8 @@ void gen6_rps_irq_handler(struct intel_rps *rps, u32 pm_iir)
+>   		intel_engine_cs_irq(gt->engine[VECS0], pm_iir >> 10);
+>   
+>   	if (pm_iir & PM_VEBOX_CS_ERROR_INTERRUPT)
+> -		DRM_DEBUG("Command parser error, pm_iir 0x%08x\n", pm_iir);
+> +		drm_dbg(&rps_to_i915(rps)->drm,
+> +			"Command parser error, pm_iir 0x%08x\n", pm_iir);
+>   }
+>   
+>   void gen5_rps_irq_handler(struct intel_rps *rps)
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> index 3cdf5c24dbc5..2af97d954fc4 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -55,8 +55,11 @@
+>    * - Public functions to init or apply the given workaround type.
+>    */
+>   
+> -static void wa_init_start(struct i915_wa_list *wal, const char *name, const char *engine_name)
+> +static void wa_init_start(struct i915_wa_list *wal,
+> +			  struct drm_i915_private *i915,
+> +			  const char *name, const char *engine_name)
+>   {
+> +	wal->i915 = i915;
+>   	wal->name = name;
+>   	wal->engine_name = engine_name;
+>   }
+> @@ -80,13 +83,14 @@ static void wa_init_finish(struct i915_wa_list *wal)
+>   	if (!wal->count)
+>   		return;
+>   
+> -	DRM_DEBUG_DRIVER("Initialized %u %s workarounds on %s\n",
+> -			 wal->wa_count, wal->name, wal->engine_name);
+> +	drm_dbg(&wal->i915->drm, "Initialized %u %s workarounds on %s\n",
+> +		wal->wa_count, wal->name, wal->engine_name);
+>   }
+>   
+>   static void _wa_add(struct i915_wa_list *wal, const struct i915_wa *wa)
+>   {
+>   	unsigned int addr = i915_mmio_reg_offset(wa->reg);
+> +	struct drm_i915_private *i915 = wal->i915;
+>   	unsigned int start = 0, end = wal->count;
+>   	const unsigned int grow = WA_LIST_CHUNK;
+>   	struct i915_wa *wa_;
+> @@ -99,7 +103,7 @@ static void _wa_add(struct i915_wa_list *wal, const struct i915_wa *wa)
+>   		list = kmalloc_array(ALIGN(wal->count + 1, grow), sizeof(*wa),
+>   				     GFP_KERNEL);
+>   		if (!list) {
+> -			DRM_ERROR("No space for workaround init!\n");
+> +			drm_err(&i915->drm, "No space for workaround init!\n");
+>   			return;
+>   		}
+>   
+> @@ -122,9 +126,10 @@ static void _wa_add(struct i915_wa_list *wal, const struct i915_wa *wa)
+>   			wa_ = &wal->list[mid];
+>   
+>   			if ((wa->clr | wa_->clr) && !(wa->clr & ~wa_->clr)) {
+> -				DRM_ERROR("Discarding overwritten w/a for reg %04x (clear: %08x, set: %08x)\n",
+> -					  i915_mmio_reg_offset(wa_->reg),
+> -					  wa_->clr, wa_->set);
+> +				drm_err(&i915->drm,
+> +					"Discarding overwritten w/a for reg %04x (clear: %08x, set: %08x)\n",
+> +					i915_mmio_reg_offset(wa_->reg),
+> +					wa_->clr, wa_->set);
+>   
+>   				wa_->set &= ~wa->clr;
+>   			}
+> @@ -826,7 +831,7 @@ __intel_engine_init_ctx_wa(struct intel_engine_cs *engine,
+>   {
+>   	struct drm_i915_private *i915 = engine->i915;
+>   
+> -	wa_init_start(wal, name, engine->name);
+> +	wa_init_start(wal, i915, name, engine->name);
+>   
+>   	/* Applies to all engines */
+>   	/*
+> @@ -1676,7 +1681,7 @@ void intel_gt_init_workarounds(struct intel_gt *gt)
+>   {
+>   	struct i915_wa_list *wal = &gt->wa_list;
+>   
+> -	wa_init_start(wal, "GT", "global");
+> +	wa_init_start(wal, gt->i915, "GT", "global");
+>   	gt_init_workarounds(gt, wal);
+>   	wa_init_finish(wal);
+>   }
+> @@ -1698,12 +1703,14 @@ wal_get_fw_for_rmw(struct intel_uncore *uncore, const struct i915_wa_list *wal)
+>   }
+>   
+>   static bool
+> -wa_verify(const struct i915_wa *wa, u32 cur, const char *name, const char *from)
+> +wa_verify(struct drm_i915_private *i915, const struct i915_wa *wa, u32 cur,
+> +	  const char *name, const char *from)
+>   {
+>   	if ((cur ^ wa->set) & wa->read) {
+> -		DRM_ERROR("%s workaround lost on %s! (reg[%x]=0x%x, relevant bits were 0x%x vs expected 0x%x)\n",
+> -			  name, from, i915_mmio_reg_offset(wa->reg),
+> -			  cur, cur & wa->read, wa->set & wa->read);
+> +		drm_err(&i915->drm,
+> +			"%s workaround lost on %s! (reg[%x]=0x%x, relevant bits were 0x%x vs expected 0x%x)\n",
+> +			name, from, i915_mmio_reg_offset(wa->reg),
+> +			cur, cur & wa->read, wa->set & wa->read);
+>   
+>   		return false;
+>   	}
+> @@ -1749,7 +1756,7 @@ wa_list_apply(struct intel_gt *gt, const struct i915_wa_list *wal)
+>   				intel_gt_mcr_read_any_fw(gt, wa->mcr_reg) :
+>   				intel_uncore_read_fw(uncore, wa->reg);
+>   
+> -			wa_verify(wa, val, wal->name, "application");
+> +			wa_verify(wal->i915, wa, val, wal->name, "application");
+>   		}
+>   	}
+>   
+> @@ -1779,7 +1786,7 @@ static bool wa_list_verify(struct intel_gt *gt,
+>   	intel_uncore_forcewake_get__locked(uncore, fw);
+>   
+>   	for (i = 0, wa = wal->list; i < wal->count; i++, wa++)
+> -		ok &= wa_verify(wa, wa->is_mcr ?
+> +		ok &= wa_verify(wal->i915, wa, wa->is_mcr ?
+>   				intel_gt_mcr_read_any_fw(gt, wa->mcr_reg) :
+>   				intel_uncore_read_fw(uncore, wa->reg),
+>   				wal->name, from);
+> @@ -2127,7 +2134,7 @@ void intel_engine_init_whitelist(struct intel_engine_cs *engine)
+>   	struct drm_i915_private *i915 = engine->i915;
+>   	struct i915_wa_list *w = &engine->whitelist;
+>   
+> -	wa_init_start(w, "whitelist", engine->name);
+> +	wa_init_start(w, i915, "whitelist", engine->name);
+>   
+>   	if (IS_PONTEVECCHIO(i915))
+>   		pvc_whitelist_build(engine);
+> @@ -3012,7 +3019,7 @@ void intel_engine_init_workarounds(struct intel_engine_cs *engine)
+>   	if (GRAPHICS_VER(engine->i915) < 4)
+>   		return;
+>   
+> -	wa_init_start(wal, "engine", engine->name);
+> +	wa_init_start(wal, engine->i915, "engine", engine->name);
+>   	engine_init_workarounds(engine, wal);
+>   	wa_init_finish(wal);
+>   }
+> @@ -3193,7 +3200,7 @@ static int engine_wa_list_verify(struct intel_context *ce,
+>   		if (mcr_range(rq->engine->i915, i915_mmio_reg_offset(wa->reg)))
+>   			continue;
+>   
+> -		if (!wa_verify(wa, results[i], wal->name, from))
+> +		if (!wa_verify(wal->i915, wa, results[i], wal->name, from))
+>   			err = -ENXIO;
+>   	}
+>   
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds_types.h b/drivers/gpu/drm/i915/gt/intel_workarounds_types.h
+> index 7c8b01d00043..7e51e0219a5d 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds_types.h
+> @@ -10,6 +10,8 @@
+>   
+>   #include "i915_reg_defs.h"
+>   
+> +struct drm_i915_private;
+> +
+>   struct i915_wa {
+>   	union {
+>   		i915_reg_t	reg;
+> @@ -24,6 +26,8 @@ struct i915_wa {
+>   };
+>   
+>   struct i915_wa_list {
+> +	struct drm_i915_private *i915;
+> +
+Adding an i915 is wrong given that these are all supposed to be being 
+converted to GT specific prints. wa_init_start is always called with 
+access to a GT. So that is what should be saved for future message 
+output usage.
 
 John.
 
 
-> Regards,
->
-> Tvrtko
+>   	const char	*name;
+>   	const char	*engine_name;
+>   	struct i915_wa	*list;
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_workarounds.c b/drivers/gpu/drm/i915/gt/selftest_workarounds.c
+> index 21b1edc052f8..3dd761a690d7 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_workarounds.c
+> @@ -66,14 +66,14 @@ reference_lists_init(struct intel_gt *gt, struct wa_lists *lists)
+>   
+>   	memset(lists, 0, sizeof(*lists));
+>   
+> -	wa_init_start(&lists->gt_wa_list, "GT_REF", "global");
+> +	wa_init_start(&lists->gt_wa_list, gt->i915, "GT_REF", "global");
+>   	gt_init_workarounds(gt, &lists->gt_wa_list);
+>   	wa_init_finish(&lists->gt_wa_list);
+>   
+>   	for_each_engine(engine, gt, id) {
+>   		struct i915_wa_list *wal = &lists->engine[id].wa_list;
+>   
+> -		wa_init_start(wal, "REF", engine->name);
+> +		wa_init_start(wal, gt->i915, "REF", engine->name);
+>   		engine_init_workarounds(engine, wal);
+>   		wa_init_finish(wal);
+>   
+> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+> index ae987e92251d..6c7ac73b69a5 100644
+> --- a/drivers/gpu/drm/i915/i915_debugfs.c
+> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
+> @@ -688,8 +688,8 @@ i915_drop_caches_set(void *data, u64 val)
+>   	unsigned int flags;
+>   	int ret;
+>   
+> -	DRM_DEBUG("Dropping caches: 0x%08llx [0x%08llx]\n",
+> -		  val, val & DROP_ALL);
+> +	drm_dbg(&i915->drm, "Dropping caches: 0x%08llx [0x%08llx]\n",
+> +		val, val & DROP_ALL);
+>   
+>   	ret = gt_drop_caches(to_gt(i915), val);
+>   	if (ret)
+> diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+> index 299f94a9fb87..8132743ca87e 100644
+> --- a/drivers/gpu/drm/i915/i915_gem.c
+> +++ b/drivers/gpu/drm/i915/i915_gem.c
+> @@ -1286,7 +1286,7 @@ int i915_gem_open(struct drm_i915_private *i915, struct drm_file *file)
+>   	struct i915_drm_client *client;
+>   	int ret = -ENOMEM;
+>   
+> -	DRM_DEBUG("\n");
+> +	drm_dbg(&i915->drm, "\n");
+>   
+>   	file_priv = kzalloc(sizeof(*file_priv), GFP_KERNEL);
+>   	if (!file_priv)
+> diff --git a/drivers/gpu/drm/i915/i915_getparam.c b/drivers/gpu/drm/i915/i915_getparam.c
+> index 3047e80e1163..61ef2d9cfa62 100644
+> --- a/drivers/gpu/drm/i915/i915_getparam.c
+> +++ b/drivers/gpu/drm/i915/i915_getparam.c
+> @@ -179,7 +179,7 @@ int i915_getparam_ioctl(struct drm_device *dev, void *data,
+>   		value = i915_perf_oa_timestamp_frequency(i915);
+>   		break;
+>   	default:
+> -		DRM_DEBUG("Unknown parameter %d\n", param->param);
+> +		drm_dbg(&i915->drm, "Unknown parameter %d\n", param->param);
+>   		return -EINVAL;
+>   	}
+>   
+> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+> index b0180ea38de0..6c20817f8967 100644
+> --- a/drivers/gpu/drm/i915/i915_irq.c
+> +++ b/drivers/gpu/drm/i915/i915_irq.c
+> @@ -1086,8 +1086,9 @@ static void ivb_parity_work(struct work_struct *work)
+>   		kobject_uevent_env(&dev_priv->drm.primary->kdev->kobj,
+>   				   KOBJ_CHANGE, parity_event);
+>   
+> -		DRM_DEBUG("Parity error: Slice = %d, Row = %d, Bank = %d, Sub bank = %d.\n",
+> -			  slice, row, bank, subbank);
+> +		drm_dbg(&dev_priv->drm,
+> +			"Parity error: Slice = %d, Row = %d, Bank = %d, Sub bank = %d.\n",
+> +			slice, row, bank, subbank);
+>   
+>   		kfree(parity_event[4]);
+>   		kfree(parity_event[3]);
+> @@ -2774,7 +2775,8 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
+>   		master_ctl = raw_reg_read(regs, GEN11_GFX_MSTR_IRQ);
+>   		raw_reg_write(regs, GEN11_GFX_MSTR_IRQ, master_ctl);
+>   	} else {
+> -		DRM_ERROR("Tile not supported: 0x%08x\n", master_tile_ctl);
+> +		drm_err(&i915->drm, "Tile not supported: 0x%08x\n",
+> +			master_tile_ctl);
+>   		dg1_master_intr_enable(regs);
+>   		return IRQ_NONE;
+>   	}
+> @@ -3940,7 +3942,7 @@ static void i8xx_error_irq_ack(struct drm_i915_private *i915,
+>   static void i8xx_error_irq_handler(struct drm_i915_private *dev_priv,
+>   				   u16 eir, u16 eir_stuck)
+>   {
+> -	DRM_DEBUG("Master Error: EIR 0x%04x\n", eir);
+> +	drm_dbg(&dev_priv->drm, "Master Error: EIR 0x%04x\n", eir);
+>   
+>   	if (eir_stuck)
+>   		drm_dbg(&dev_priv->drm, "EIR stuck: 0x%04x, masked\n",
+> @@ -3975,7 +3977,7 @@ static void i9xx_error_irq_ack(struct drm_i915_private *dev_priv,
+>   static void i9xx_error_irq_handler(struct drm_i915_private *dev_priv,
+>   				   u32 eir, u32 eir_stuck)
+>   {
+> -	DRM_DEBUG("Master Error, EIR 0x%08x\n", eir);
+> +	drm_dbg(&dev_priv->drm, "Master Error, EIR 0x%08x\n", eir);
+>   
+>   	if (eir_stuck)
+>   		drm_dbg(&dev_priv->drm, "EIR stuck: 0x%08x, masked\n",
+> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+> index 0dd597a7a11f..9e6f060592d8 100644
+> --- a/drivers/gpu/drm/i915/i915_perf.c
+> +++ b/drivers/gpu/drm/i915/i915_perf.c
+> @@ -530,9 +530,9 @@ static bool oa_buffer_check_unlocked(struct i915_perf_stream *stream)
+>   
+>   		if (OA_TAKEN(hw_tail, tail) > report_size &&
+>   		    __ratelimit(&stream->perf->tail_pointer_race))
+> -			DRM_NOTE("unlanded report(s) head=0x%x "
+> -				 "tail=0x%x hw_tail=0x%x\n",
+> -				 head, tail, hw_tail);
+> +			drm_notice(&stream->uncore->i915->drm,
+> +				   "unlanded report(s) head=0x%x tail=0x%x hw_tail=0x%x\n",
+> +				   head, tail, hw_tail);
+>   
+>   		stream->oa_buffer.tail = gtt_offset + tail;
+>   		stream->oa_buffer.aging_tail = gtt_offset + hw_tail;
+> @@ -1015,7 +1015,8 @@ static int gen7_append_oa_reports(struct i915_perf_stream *stream,
+>   		 */
+>   		if (report32[0] == 0) {
+>   			if (__ratelimit(&stream->perf->spurious_report_rs))
+> -				DRM_NOTE("Skipping spurious, invalid OA report\n");
+> +				drm_notice(&uncore->i915->drm,
+> +					   "Skipping spurious, invalid OA report\n");
+>   			continue;
+>   		}
+>   
+> @@ -1602,8 +1603,9 @@ static void i915_oa_stream_destroy(struct i915_perf_stream *stream)
+>   	free_noa_wait(stream);
+>   
+>   	if (perf->spurious_report_rs.missed) {
+> -		DRM_NOTE("%d spurious OA report notices suppressed due to ratelimiting\n",
+> -			 perf->spurious_report_rs.missed);
+> +		drm_notice(&gt->i915->drm,
+> +			   "%d spurious OA report notices suppressed due to ratelimiting\n",
+> +			   perf->spurious_report_rs.missed);
+>   	}
+>   }
+>   
+> diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
+> index 6ec9c9fb7b0d..00871ef99792 100644
+> --- a/drivers/gpu/drm/i915/i915_query.c
+> +++ b/drivers/gpu/drm/i915/i915_query.c
+> @@ -250,8 +250,9 @@ static int query_perf_config_data(struct drm_i915_private *i915,
+>   		return total_size;
+>   
+>   	if (query_item->length < total_size) {
+> -		DRM_DEBUG("Invalid query config data item size=%u expected=%u\n",
+> -			  query_item->length, total_size);
+> +		drm_dbg(&i915->drm,
+> +			"Invalid query config data item size=%u expected=%u\n",
+> +			query_item->length, total_size);
+>   		return -EINVAL;
+>   	}
+>   
+> @@ -418,9 +419,10 @@ static int query_perf_config_list(struct drm_i915_private *i915,
+>   	} while (n_configs > alloc);
+>   
+>   	if (query_item->length < sizeof_perf_config_list(n_configs)) {
+> -		DRM_DEBUG("Invalid query config list item size=%u expected=%zu\n",
+> -			  query_item->length,
+> -			  sizeof_perf_config_list(n_configs));
+> +		drm_dbg(&i915->drm,
+> +			"Invalid query config list item size=%u expected=%zu\n",
+> +			query_item->length,
+> +			sizeof_perf_config_list(n_configs));
+>   		kfree(oa_config_ids);
+>   		return -EINVAL;
+>   	}
+> diff --git a/drivers/gpu/drm/i915/i915_sysfs.c b/drivers/gpu/drm/i915/i915_sysfs.c
+> index 1e2750210831..595e8b574990 100644
+> --- a/drivers/gpu/drm/i915/i915_sysfs.c
+> +++ b/drivers/gpu/drm/i915/i915_sysfs.c
+> @@ -218,7 +218,8 @@ static const struct bin_attribute error_state_attr = {
+>   static void i915_setup_error_capture(struct device *kdev)
+>   {
+>   	if (sysfs_create_bin_file(&kdev->kobj, &error_state_attr))
+> -		DRM_ERROR("error_state sysfs setup failed\n");
+> +		drm_err(&kdev_minor_to_i915(kdev)->drm,
+> +			"error_state sysfs setup failed\n");
+>   }
+>   
+>   static void i915_teardown_error_capture(struct device *kdev)
+> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+> index c39488eb9eeb..3b969d679c1e 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.c
+> +++ b/drivers/gpu/drm/i915/i915_vma.c
+> @@ -73,14 +73,16 @@ static void vma_print_allocator(struct i915_vma *vma, const char *reason)
+>   	char buf[512];
+>   
+>   	if (!vma->node.stack) {
+> -		DRM_DEBUG_DRIVER("vma.node [%08llx + %08llx] %s: unknown owner\n",
+> -				 vma->node.start, vma->node.size, reason);
+> +		drm_dbg(&to_i915(vma->obj->base.dev)->drm
+> +			"vma.node [%08llx + %08llx] %s: unknown owner\n",
+> +			vma->node.start, vma->node.size, reason);
+>   		return;
+>   	}
+>   
+>   	stack_depot_snprint(vma->node.stack, buf, sizeof(buf), 0);
+> -	DRM_DEBUG_DRIVER("vma.node [%08llx + %08llx] %s: inserted at %s\n",
+> -			 vma->node.start, vma->node.size, reason, buf);
+> +	drm_dbg(&to_i915(vma->obj->base.dev)->drm,
+> +		"vma.node [%08llx + %08llx] %s: inserted at %s\n",
+> +		vma->node.start, vma->node.size, reason, buf);
+>   }
+>   
+>   #else
+> @@ -782,9 +784,9 @@ i915_vma_insert(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
+>   	 * attempt to find space.
+>   	 */
+>   	if (size > end) {
+> -		DRM_DEBUG("Attempting to bind an object larger than the aperture: request=%llu > %s aperture=%llu\n",
+> -			  size, flags & PIN_MAPPABLE ? "mappable" : "total",
+> -			  end);
+> +		drm_dbg(&to_i915(vma->obj->base.dev)->drm,
+> +			"Attempting to bind an object larger than the aperture: request=%llu > %s aperture=%llu\n",
+> +			size, flags & PIN_MAPPABLE ? "mappable" : "total", end);
+>   		return -ENOSPC;
+>   	}
+>   
+> diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
+> index 2a3e2869fe71..6c25c9e7090a 100644
+> --- a/drivers/gpu/drm/i915/intel_uncore.c
+> +++ b/drivers/gpu/drm/i915/intel_uncore.c
+> @@ -178,8 +178,9 @@ static inline void
+>   fw_domain_wait_ack_clear(const struct intel_uncore_forcewake_domain *d)
+>   {
+>   	if (wait_ack_clear(d, FORCEWAKE_KERNEL)) {
+> -		DRM_ERROR("%s: timed out waiting for forcewake ack to clear.\n",
+> -			  intel_uncore_forcewake_domain_to_str(d->id));
+> +		drm_err(&d->uncore->i915->drm,
+> +			"%s: timed out waiting for forcewake ack to clear.\n",
+> +			intel_uncore_forcewake_domain_to_str(d->id));
+>   		add_taint_for_CI(d->uncore->i915, TAINT_WARN); /* CI now unreliable */
+>   	}
+>   }
+> @@ -226,11 +227,12 @@ fw_domain_wait_ack_with_fallback(const struct intel_uncore_forcewake_domain *d,
+>   		fw_clear(d, FORCEWAKE_KERNEL_FALLBACK);
+>   	} while (!ack_detected && pass++ < 10);
+>   
+> -	DRM_DEBUG_DRIVER("%s had to use fallback to %s ack, 0x%x (passes %u)\n",
+> -			 intel_uncore_forcewake_domain_to_str(d->id),
+> -			 type == ACK_SET ? "set" : "clear",
+> -			 fw_ack(d),
+> -			 pass);
+> +	drm_dbg(&d->uncore->i915->drm,
+> +		"%s had to use fallback to %s ack, 0x%x (passes %u)\n",
+> +		intel_uncore_forcewake_domain_to_str(d->id),
+> +		type == ACK_SET ? "set" : "clear",
+> +		fw_ack(d),
+> +		pass);
+>   
+>   	return ack_detected ? 0 : -ETIMEDOUT;
+>   }
+> @@ -255,8 +257,9 @@ static inline void
+>   fw_domain_wait_ack_set(const struct intel_uncore_forcewake_domain *d)
+>   {
+>   	if (wait_ack_set(d, FORCEWAKE_KERNEL)) {
+> -		DRM_ERROR("%s: timed out waiting for forcewake ack request.\n",
+> -			  intel_uncore_forcewake_domain_to_str(d->id));
+> +		drm_err(&d->uncore->i915->drm,
+> +			"%s: timed out waiting for forcewake ack request.\n",
+> +			intel_uncore_forcewake_domain_to_str(d->id));
+>   		add_taint_for_CI(d->uncore->i915, TAINT_WARN); /* CI now unreliable */
+>   	}
+>   }
 
