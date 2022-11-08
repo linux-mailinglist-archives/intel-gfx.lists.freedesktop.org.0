@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8917C620F85
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Nov 2022 12:51:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47B08620F8C
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Nov 2022 12:52:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E113710E3F6;
-	Tue,  8 Nov 2022 11:51:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 053EC10E3F6;
+	Tue,  8 Nov 2022 11:52:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A906510E3F6
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Nov 2022 11:51:02 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95CB210E3F6
+ for <intel-gfx@lists.freedesktop.org>; Tue,  8 Nov 2022 11:51:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667908262; x=1699444262;
+ t=1667908319; x=1699444319;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=pqUs75VPjhpKkVif3pJixXeLqjBiia7EXbeZm+i2nEU=;
- b=fp8vNsRLyqg1qeQMj6yg9sgwKmhxTydZU51VvBw2M4JpgzwzbWM4PCLr
- 1xiN/QPE/y2U7iEpIwRUtjLPmOIo1TEarEV5sO2JnZkn3aLF+AET6TkL3
- C5AdPft0mwUhjZ3kdd2eYhko2x9niBsZtxweZfcmXXBxTEM8F38qNvAwy
- M8AWqk2MqdSRgvS4HOkPOJGExcdCRLBF0V5tRrlehac0hj/CMldfgXbuW
- XuSsTBjryuftWVxLRG0kMeN9IqRfqETpLrWjZiv9JRvitKbzHzHxatgCJ
- wBwyPhwEtXAx4KtTIeqMd22dIIlYKnSGsUO5Be72hJZ6RNGu2GK0SHAum Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="372817356"
-X-IronPort-AV: E=Sophos;i="5.96,147,1665471600"; d="scan'208";a="372817356"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2022 03:51:02 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="965562688"
-X-IronPort-AV: E=Sophos;i="5.96,147,1665471600"; d="scan'208";a="965562688"
+ bh=We4CiLONHAiJfP3Yz1fNSWICpLgTAQsw413uGr8uchE=;
+ b=BGm1p9h1/a3H6JaXRH1kGMvibE7p+RtUiqJtdCz/WKcNjOn/Hu7hL+Rs
+ V/vRZZBhXq1SNIYFC/MKOm8tdbOqYoY/AIKWZDmvioM4fBBag4BOXBH2p
+ YrumnHcj0B/5EVFnpn7MVdKmFmPv0ep+5kv1xFihiASRwA21ePY69+Lm1
+ YUjSfgAkp5TDAu0oLijBgwCffIxj9N9FluMEcrbP6f7N2trxfui5nBxlx
+ DZ7AcxFL/mk7GMg/gpIseE9jQObQ4Ize1b73/HVTxwdXhPipQL1OKrxsd
+ pKXc15ixC5WJUFr6t2VH1ZhHAgJrHygnmC3Hi6zBKOUWU63dwLoUD4gJy A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="291061459"
+X-IronPort-AV: E=Sophos;i="5.96,147,1665471600"; d="scan'208";a="291061459"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Nov 2022 03:51:58 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="778898243"
+X-IronPort-AV: E=Sophos;i="5.96,147,1665471600"; d="scan'208";a="778898243"
 Received: from smoriord-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.16.110])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2022 03:51:00 -0800
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Nov 2022 03:51:57 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20221107194604.15227-3-ville.syrjala@linux.intel.com>
+In-Reply-To: <20221107194604.15227-4-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20221107194604.15227-1-ville.syrjala@linux.intel.com>
- <20221107194604.15227-3-ville.syrjala@linux.intel.com>
-Date: Tue, 08 Nov 2022 13:50:58 +0200
-Message-ID: <87y1sl8y1p.fsf@intel.com>
+ <20221107194604.15227-4-ville.syrjala@linux.intel.com>
+Date: Tue, 08 Nov 2022 13:51:54 +0200
+Message-ID: <87v8np8y05.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 2/5] drm/i915: Force RGB output for DVI sink
+Subject: Re: [Intel-gfx] [PATCH 3/5] drm/i915: Treat HDMI as DVI when cloning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,66 +66,83 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Mon, 07 Nov 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> YCbCr output requires infoframes and whatnot, so don't allow
-> it when dealing with a DVI sink (or a HDMI sink we wishc to
-> treat as DVI).
+> When doing HDMI+non-HDMI cloing the other sink can't get
 
-*wish
+*cloning
+
+> the inframes/etc. so stuff like limited range output is
+
+*infoframes
+
+> not a good idea.
+>
+> Similarly when doing HDMI+HDMI cloning on g4x (only platform
+> where we allow it) only one of the ports can receive infoframes
+> and so again using any fancy stuff is a bad idea. We also don't
+> track the inforames/audio state per-port so we'd end up with
+> some kind of random mismash state when multipled encoders try
+> to compute the same stuff. And the hardware will in fact
+> automagically disable audio/infoframe transmission if you try
+> to enable it for multiple HDMI ports at the same time.
+>
+> Thus disable all HDMI specific features when cloning.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_hdmi.c | 11 ++++++++---
->  1 file changed, 8 insertions(+), 3 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_hdmi.c | 18 +++++++++---------
+>  1 file changed, 9 insertions(+), 9 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/=
 i915/display/intel_hdmi.c
-> index f2a4431a7fbf..d3692c9a1d80 100644
+> index d3692c9a1d80..31927f8238d1 100644
 > --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
 > +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> @@ -2190,9 +2190,13 @@ static bool intel_hdmi_has_audio(struct intel_enco=
-der *encoder,
+> @@ -2057,13 +2057,6 @@ static bool hdmi_bpc_possible(const struct intel_c=
+rtc_state *crtc_state, int bpc
+>  	if (!intel_hdmi_source_bpc_possible(dev_priv, bpc))
+>  		return false;
+>=20=20
+> -	/*
+> -	 * HDMI deep color affects the clocks, so it's only possible
+> -	 * when not cloning with other encoder types.
+> -	 */
+> -	if (bpc > 8 && crtc_state->output_types !=3D BIT(INTEL_OUTPUT_HDMI))
+> -		return false;
+> -
+>  	/* Display Wa_1405510057:icl,ehl */
+>  	if (intel_hdmi_is_ycbcr420(crtc_state) &&
+>  	    bpc =3D=3D 10 && DISPLAY_VER(dev_priv) =3D=3D 11 &&
+> @@ -2238,6 +2231,12 @@ static int intel_hdmi_compute_output_format(struct=
+ intel_encoder *encoder,
+>  	return ret;
 >  }
 >=20=20
->  static enum intel_output_format
-> -intel_hdmi_output_format(struct intel_connector *connector,
-> +intel_hdmi_output_format(const struct intel_crtc_state *crtc_state,
-> +			 struct intel_connector *connector,
->  			 bool ycbcr_420_output)
->  {
-> +	if (!crtc_state->has_hdmi_sink)
-> +		return INTEL_OUTPUT_FORMAT_RGB;
+> +static bool intel_hdmi_is_cloned(const struct intel_crtc_state *crtc_sta=
+te)
+> +{
+> +	return crtc_state->uapi.encoder_mask &&
+> +		!is_power_of_2(crtc_state->uapi.encoder_mask);
+> +}
 > +
->  	if (connector->base.ycbcr_420_allowed && ycbcr_420_output)
->  		return INTEL_OUTPUT_FORMAT_YCBCR420;
->  	else
-> @@ -2211,7 +2215,8 @@ static int intel_hdmi_compute_output_format(struct =
-intel_encoder *encoder,
->  	bool ycbcr_420_only =3D drm_mode_is_420_only(info, adjusted_mode);
->  	int ret;
+>  int intel_hdmi_compute_config(struct intel_encoder *encoder,
+>  			      struct intel_crtc_state *pipe_config,
+>  			      struct drm_connector_state *conn_state)
+> @@ -2253,8 +2252,9 @@ int intel_hdmi_compute_config(struct intel_encoder =
+*encoder,
+>  		return -EINVAL;
 >=20=20
-> -	crtc_state->output_format =3D intel_hdmi_output_format(connector, ycbcr=
-_420_only);
-> +	crtc_state->output_format =3D
-> +		intel_hdmi_output_format(crtc_state, connector, ycbcr_420_only);
+>  	pipe_config->output_format =3D INTEL_OUTPUT_FORMAT_RGB;
+> -	pipe_config->has_hdmi_sink =3D intel_has_hdmi_sink(intel_hdmi,
+> -							 conn_state);
+> +	pipe_config->has_hdmi_sink =3D
+> +		intel_has_hdmi_sink(intel_hdmi, conn_state) &&
+> +		!intel_hdmi_is_cloned(pipe_config);
 >=20=20
->  	if (ycbcr_420_only && !intel_hdmi_is_ycbcr420(crtc_state)) {
->  		drm_dbg_kms(&i915->drm,
-> @@ -2226,7 +2231,7 @@ static int intel_hdmi_compute_output_format(struct =
-intel_encoder *encoder,
->  		    !drm_mode_is_420_also(info, adjusted_mode))
->  			return ret;
->=20=20
-> -		crtc_state->output_format =3D intel_hdmi_output_format(connector, true=
-);
-> +		crtc_state->output_format =3D intel_hdmi_output_format(crtc_state, con=
-nector, true);
->  		ret =3D intel_hdmi_compute_clock(encoder, crtc_state, respect_downstre=
-am_limits);
->  	}
+>  	if (pipe_config->has_hdmi_sink)
+>  		pipe_config->has_infoframe =3D true;
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
