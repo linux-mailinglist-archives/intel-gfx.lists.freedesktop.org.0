@@ -2,51 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 591546212FF
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Nov 2022 14:45:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6B79621355
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Nov 2022 14:49:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E727610E289;
-	Tue,  8 Nov 2022 13:45:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3A8210E467;
+	Tue,  8 Nov 2022 13:49:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 235F910E289
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Nov 2022 13:45:09 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A92310E467
+ for <intel-gfx@lists.freedesktop.org>; Tue,  8 Nov 2022 13:49:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667915109; x=1699451109;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=3NaTQsLvR+HBygaFgtLJoM0noNyYhzLG+k7UjMjpxNM=;
- b=brGqZFzcGcKsgv5e+PUEgvtmH5JnJDNH0se66O/kns5POsQ2BWPVBs0P
- Bt8eZjiEd8vcC4GjBBqoa4yppCSRpIiu3lmEkfNHCj4BL/p6wZLSRXd+g
- Q+qavGfzt5DGz1yRr6tDenvaq0NVp0mUpkHgdKSti6jIwuAPu5tGUFv5W
- de8U08+GW8Q54dtJghAjEmVb7+1EjUHciFKnD/GAIexLzwl9vyjJag+de
- z/wTp+GoeMddsLuH+2yVdAQxKJ7/1X0vf5ikB33Aiwsb3Zy/Vo5ND/87+
- Axkepx2p2+qWcfM/CXYiqA3TrRJRQMPQWqe+RVC0cXaPBmmvnrgDISDId A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="308315007"
-X-IronPort-AV: E=Sophos;i="5.96,147,1665471600"; d="scan'208";a="308315007"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2022 05:45:08 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="811244115"
-X-IronPort-AV: E=Sophos;i="5.96,147,1665471600"; d="scan'208";a="811244115"
-Received: from ideak-desk.fi.intel.com ([10.237.68.144])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2022 05:45:07 -0800
-Date: Tue, 8 Nov 2022 15:45:02 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <Y2pdXsSLrGibOmnY@ideak-desk.fi.intel.com>
-References: <20221107170917.3566758-1-imre.deak@intel.com>
- <20221107170917.3566758-2-imre.deak@intel.com>
- <87mt91aksi.fsf@intel.com>
+ t=1667915358; x=1699451358;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=UMiLpxN8bKSvC0n2pPDHvhpx5WsaMmKXB5D+w90SpCM=;
+ b=VJJusIpf5uLq3IPG/FrVoKW7nWnl/s4PQPnkCBwQfUahsYBHJKnCDM8x
+ DB1h96HdL+hbpffilL24vIDs2DEO1FM68ORKq8xGM7Fi6YPCC/nBJuv/T
+ pu3Q5G51CUwElPDPv/7vFOXwu2eUhfDF3UW5lZbTr8k+JkeoIzNoFbzjU
+ PKcx+EPtDdY8D8PWZJv761hrp1edrLRc5ygcbsnz0ii2MfGZy9zKGJQgz
+ 8T3Ug6h17aStmrRroh5T938kOVZdsltC99lAh2KT85adbai2WkbPJ1QlX
+ v5NJDaKiCnlLCwYmYTbrwr1hFoIIeXWjlSTec5TapdjroDsYZosZQmmfH Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="374967380"
+X-IronPort-AV: E=Sophos;i="5.96,147,1665471600"; d="scan'208";a="374967380"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Nov 2022 05:49:17 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="965592619"
+X-IronPort-AV: E=Sophos;i="5.96,147,1665471600"; d="scan'208";a="965592619"
+Received: from tprzyluc-mobl.ger.corp.intel.com (HELO [10.252.16.225])
+ ([10.252.16.225])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Nov 2022 05:49:16 -0800
+Message-ID: <52efcdf9-6840-22f1-fa5f-794774938c10@intel.com>
+Date: Tue, 8 Nov 2022 13:49:14 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87mt91aksi.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 1/9] drm/i915: Allocate power domain set
- wakerefs dynamically
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.4.1
+Content-Language: en-GB
+To: intel-gfx@lists.freedesktop.org,
+ "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>
+References: <20221107133027.38740-1-matthew.auld@intel.com>
+ <166784385564.17762.4661798767320362988@emeril.freedesktop.org>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <166784385564.17762.4661798767320362988@emeril.freedesktop.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/ttm=3A_never_purge_busy_objects?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,214 +64,233 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 08, 2022 at 10:54:21AM +0200, Jani Nikula wrote:
-> On Mon, 07 Nov 2022, Imre Deak <imre.deak@intel.com> wrote:
-> > Since the intel_display_power_domain_set struct, currently its current
-> > size close 1kB, can be allocated on the stack, it's better to allocate
-> > the per-domain wakeref pointer array - used for debugging - within the
-> > struct dynamically, so do this.
-> >
-> > The memory freeing is guaranteed by the fact that the acquired domain
-> > references tracked by struct can't be leaked either.
-> >
-> > v2:
-> > - Don't use fetch_and_zero() when freeing the wakerefs array. (Jani)
-> > - Simplify intel_display_power_get/put_in_set(). (Jani)
-> > - Check in intel_crtc_destroy() that the wakerefs array has been freed.
-> >
-> > Cc: Jani Nikula <jani.nikula@intel.com>
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_crtc.c     |  4 +
-> >  .../drm/i915/display/intel_display_power.c    | 95 +++++++++++++++----
-> >  .../drm/i915/display/intel_display_power.h    |  2 +-
-> >  3 files changed, 79 insertions(+), 22 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-> > index 037fc140b585c..2c8d564e73182 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_crtc.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-> > @@ -205,6 +205,10 @@ static void intel_crtc_destroy(struct drm_crtc *_crtc)
-> >  	cpu_latency_qos_remove_request(&crtc->vblank_pm_qos);
-> >  
-> >  	drm_crtc_cleanup(&crtc->base);
-> > +
-> > +#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
-> > +	drm_WARN_ON(crtc->base.dev, crtc->enabled_power_domains.wakerefs);
-> > +#endif
+On 07/11/2022 17:57, Patchwork wrote:
+> *Patch Details*
+> *Series:*	drm/i915/ttm: never purge busy objects
+> *URL:*	https://patchwork.freedesktop.org/series/110601/ 
+> <https://patchwork.freedesktop.org/series/110601/>
+> *State:*	failure
+> *Details:* 
+> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110601v1/index.html 
+> <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110601v1/index.html>
 > 
-> Can we please not add this kind of asserts without abstractions? The
-> #ifdef is ugly, looking at crtc->enabled_power_domains.wakerefs directly
-> is ugly.
->
-> Maybe add an assert_something_or_other(crtc) that does the right thing?
-> Similar to the other assert_*() functions we have?
-
-Yes, can add assert_power_domains_disabled(crtc) to this file.
-
-> Does it even need to depend on the config? If it's worth having, maybe
-> worth having unconditionally?
-
-The wakerefs array exists only when the config is enabled, but the
-non-debug crtc->enabled_power_domains.mask should be checked as well.
-
-> BR,
-> Jani.
 > 
-> >  	kfree(crtc);
-> >  }
-> >  
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-> > index 4c1de91e56ff9..db235b79c9629 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> > @@ -830,20 +830,85 @@ void intel_display_power_put_unchecked(struct drm_i915_private *dev_priv,
-> >  }
-> >  #endif
-> >  
-> > +#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
-> > +static void
-> > +add_domain_to_set(struct drm_i915_private *i915,
-> > +		  struct intel_display_power_domain_set *power_domain_set,
-> > +		  enum intel_display_power_domain domain,
-> > +		  intel_wakeref_t wf)
-> > +{
-> > +	drm_WARN_ON(&i915->drm, test_bit(domain, power_domain_set->mask.bits));
-> > +
-> > +	if (!power_domain_set->wakerefs)
-> > +		power_domain_set->wakerefs = kcalloc(POWER_DOMAIN_NUM,
-> > +						     sizeof(*power_domain_set->wakerefs),
-> > +						     GFP_KERNEL);
-> > +
-> > +	if (power_domain_set->wakerefs)
-> > +		power_domain_set->wakerefs[domain] = wf;
-> > +
-> > +	set_bit(domain, power_domain_set->mask.bits);
-> > +}
-> > +
-> > +static intel_wakeref_t
-> > +remove_domain_from_set(struct drm_i915_private *i915,
-> > +		       struct intel_display_power_domain_set *power_domain_set,
-> > +		       enum intel_display_power_domain domain)
-> > +{
-> > +	intel_wakeref_t wf;
-> > +
-> > +	drm_WARN_ON(&i915->drm, !test_bit(domain, power_domain_set->mask.bits));
-> > +
-> > +	clear_bit(domain, power_domain_set->mask.bits);
-> > +
-> > +	if (!power_domain_set->wakerefs)
-> > +		return -1;
-> > +
-> > +	wf = fetch_and_zero(&power_domain_set->wakerefs[domain]);
-> > +
-> > +	if (bitmap_empty(power_domain_set->mask.bits, POWER_DOMAIN_NUM)) {
-> > +		kfree(power_domain_set->wakerefs);
-> > +		power_domain_set->wakerefs = NULL;
-> > +	}
-> > +
-> > +	return wf;
-> > +
-> > +}
-> > +#else
-> > +static void
-> > +add_domain_to_set(struct drm_i915_private *i915,
-> > +		  struct intel_display_power_domain_set *power_domain_set,
-> > +		  enum intel_display_power_domain domain,
-> > +		  intel_wakeref_t wf)
-> > +{
-> > +	drm_WARN_ON(&i915->drm, test_bit(domain, power_domain_set->mask.bits));
-> > +
-> > +	set_bit(domain, power_domain_set->mask.bits);
-> > +}
-> > +
-> > +static intel_wakeref_t
-> > +remove_domain_from_set(struct drm_i915_private *i915,
-> > +		       struct intel_display_power_domain_set *power_domain_set,
-> > +		       enum intel_display_power_domain domain)
-> > +{
-> > +	drm_WARN_ON(&i915->drm, !test_bit(domain, power_domain_set->mask.bits));
-> > +
-> > +	clear_bit(domain, power_domain_set->mask.bits);
-> > +
-> > +	return -1;
-> > +}
-> > +#endif
-> > +
-> >  void
-> >  intel_display_power_get_in_set(struct drm_i915_private *i915,
-> >  			       struct intel_display_power_domain_set *power_domain_set,
-> >  			       enum intel_display_power_domain domain)
-> >  {
-> > -	intel_wakeref_t __maybe_unused wf;
-> > -
-> > -	drm_WARN_ON(&i915->drm, test_bit(domain, power_domain_set->mask.bits));
-> > +	intel_wakeref_t wf;
-> >  
-> >  	wf = intel_display_power_get(i915, domain);
-> > -#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
-> > -	power_domain_set->wakerefs[domain] = wf;
-> > -#endif
-> > -	set_bit(domain, power_domain_set->mask.bits);
-> > +
-> > +	add_domain_to_set(i915, power_domain_set, domain, wf);
-> >  }
-> >  
-> >  bool
-> > @@ -853,16 +918,11 @@ intel_display_power_get_in_set_if_enabled(struct drm_i915_private *i915,
-> >  {
-> >  	intel_wakeref_t wf;
-> >  
-> > -	drm_WARN_ON(&i915->drm, test_bit(domain, power_domain_set->mask.bits));
-> > -
-> >  	wf = intel_display_power_get_if_enabled(i915, domain);
-> >  	if (!wf)
-> >  		return false;
-> >  
-> > -#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
-> > -	power_domain_set->wakerefs[domain] = wf;
-> > -#endif
-> > -	set_bit(domain, power_domain_set->mask.bits);
-> > +	add_domain_to_set(i915, power_domain_set, domain, wf);
-> >  
-> >  	return true;
-> >  }
-> > @@ -874,17 +934,10 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
-> >  {
-> >  	enum intel_display_power_domain domain;
-> >  
-> > -	drm_WARN_ON(&i915->drm,
-> > -		    !bitmap_subset(mask->bits, power_domain_set->mask.bits, POWER_DOMAIN_NUM));
-> > -
-> >  	for_each_power_domain(domain, mask) {
-> > -		intel_wakeref_t __maybe_unused wf = -1;
-> > +		intel_wakeref_t wf = remove_domain_from_set(i915, power_domain_set, domain);
-> >  
-> > -#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
-> > -		wf = fetch_and_zero(&power_domain_set->wakerefs[domain]);
-> > -#endif
-> >  		intel_display_power_put(i915, domain, wf);
-> > -		clear_bit(domain, power_domain_set->mask.bits);
-> >  	}
-> >  }
-> >  
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-> > index 1e77e52c87fec..662123d260a7a 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_power.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-> > @@ -147,7 +147,7 @@ struct i915_power_domains {
-> >  struct intel_display_power_domain_set {
-> >  	struct intel_power_domain_mask mask;
-> >  #ifdef CONFIG_DRM_I915_DEBUG_RUNTIME_PM
-> > -	intel_wakeref_t wakerefs[POWER_DOMAIN_NUM];
-> > +	intel_wakeref_t *wakerefs;
-> >  #endif
-> >  };
+>   CI Bug Log - changes from CI_DRM_12351 -> Patchwork_110601v1
 > 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+> 
+>     Summary
+> 
+> *FAILURE*
+> 
+> Serious unknown changes coming with Patchwork_110601v1 absolutely need to be
+> verified manually.
+> 
+> If you think the reported changes have nothing to do with the changes
+> introduced in Patchwork_110601v1, please notify your bug team to allow them
+> to document this new failure mode, which will reduce false positives in CI.
+> 
+> External URL: 
+> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110601v1/index.html
+> 
+> 
+>     Participating hosts (42 -> 30)
+> 
+> Additional (2): fi-kbl-soraka fi-cml-u2
+> Missing (14): fi-ilk-m540 fi-bdw-samus fi-tgl-dsi fi-hsw-4200u bat-dg2-9 
+> bat-adlp-6 bat-adlp-4 fi-ctg-p8600 bat-adln-1 bat-rplp-1 bat-rpls-1 
+> bat-rpls-2 bat-dg2-11 bat-jsl-1
+> 
+> 
+>     Possible new issues
+> 
+> Here are the unknown changes that may have been introduced in 
+> Patchwork_110601v1:
+> 
+> 
+>       IGT changes
+> 
+> 
+>         Possible regressions
+> 
+>   * igt@i915_suspend@basic-s3-without-i915:
+>       o fi-cml-u2: NOTRUN -> INCOMPLETE
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110601v1/fi-cml-u2/igt@i915_suspend@basic-s3-without-i915.html>
+
+Unrelated. Patch only affects discrete platforms.
+
+> 
+> 
+>     Known issues
+> 
+> Here are the changes found in Patchwork_110601v1 that come from known 
+> issues:
+> 
+> 
+>       IGT changes
+> 
+> 
+>         Issues hit
+> 
+>   *
+> 
+>     igt@gem_exec_fence@basic-busy@bcs0:
+> 
+>       o fi-cml-u2: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110601v1/fi-cml-u2/igt@gem_exec_fence@basic-busy@bcs0.html> (i915#1208 <https://gitlab.freedesktop.org/drm/intel/issues/1208>) +1 similar issue
+>   *
+> 
+>     igt@gem_exec_gttfill@basic:
+> 
+>       o
+> 
+>         fi-kbl-soraka: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110601v1/fi-kbl-soraka/igt@gem_exec_gttfill@basic.html> (fdo#109271 <https://bugs.freedesktop.org/show_bug.cgi?id=109271>) +8 similar issues
+> 
+>       o
+> 
+>         fi-pnv-d510: PASS
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12351/fi-pnv-d510/igt@gem_exec_gttfill@basic.html> -> FAIL <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110601v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html> (i915#7229 <https://gitlab.freedesktop.org/drm/intel/issues/7229>)
+> 
+>   *
+> 
+>     igt@gem_huc_copy@huc-copy:
+> 
+>       o
+> 
+>         fi-cml-u2: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110601v1/fi-cml-u2/igt@gem_huc_copy@huc-copy.html> (i915#2190 <https://gitlab.freedesktop.org/drm/intel/issues/2190>)
+> 
+>       o
+> 
+>         fi-kbl-soraka: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110601v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html> (fdo#109271 <https://bugs.freedesktop.org/show_bug.cgi?id=109271> / i915#2190 <https://gitlab.freedesktop.org/drm/intel/issues/2190>)
+> 
+>   *
+> 
+>     igt@gem_lmem_swapping@basic:
+> 
+>       o fi-kbl-soraka: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110601v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html> (fdo#109271 <https://bugs.freedesktop.org/show_bug.cgi?id=109271> / i915#4613 <https://gitlab.freedesktop.org/drm/intel/issues/4613>) +3 similar issues
+>   *
+> 
+>     igt@gem_lmem_swapping@verify-random:
+> 
+>       o fi-cml-u2: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110601v1/fi-cml-u2/igt@gem_lmem_swapping@verify-random.html> (i915#4613 <https://gitlab.freedesktop.org/drm/intel/issues/4613>) +3 similar issues
+>   *
+> 
+>     igt@i915_selftest@live@gem_contexts:
+> 
+>       o fi-kbl-soraka: NOTRUN -> INCOMPLETE
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110601v1/fi-kbl-soraka/igt@i915_selftest@live@gem_contexts.html> (i915#7099 <https://gitlab.freedesktop.org/drm/intel/issues/7099>)
+>   *
+> 
+>     igt@i915_selftest@live@gt_pm:
+> 
+>       o fi-kbl-soraka: NOTRUN -> DMESG-FAIL
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110601v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html> (i915#1886 <https://gitlab.freedesktop.org/drm/intel/issues/1886>)
+>   *
+> 
+>     igt@kms_chamelium@common-hpd-after-suspend:
+> 
+>       o
+> 
+>         fi-ivb-3770: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110601v1/fi-ivb-3770/igt@kms_chamelium@common-hpd-after-suspend.html> (fdo#109271 <https://bugs.freedesktop.org/show_bug.cgi?id=109271> / fdo#111827 <https://bugs.freedesktop.org/show_bug.cgi?id=111827>)
+> 
+>       o
+> 
+>         fi-hsw-4770: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110601v1/fi-hsw-4770/igt@kms_chamelium@common-hpd-after-suspend.html> (fdo#109271 <https://bugs.freedesktop.org/show_bug.cgi?id=109271> / fdo#111827 <https://bugs.freedesktop.org/show_bug.cgi?id=111827>)
+> 
+>   *
+> 
+>     igt@kms_chamelium@hdmi-hpd-fast:
+> 
+>       o fi-kbl-soraka: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110601v1/fi-kbl-soraka/igt@kms_chamelium@hdmi-hpd-fast.html> (fdo#109271 <https://bugs.freedesktop.org/show_bug.cgi?id=109271> / fdo#111827 <https://bugs.freedesktop.org/show_bug.cgi?id=111827>) +7 similar issues
+>   *
+> 
+>     igt@kms_chamelium@vga-hpd-fast:
+> 
+>       o fi-cml-u2: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110601v1/fi-cml-u2/igt@kms_chamelium@vga-hpd-fast.html> (fdo#109284 <https://bugs.freedesktop.org/show_bug.cgi?id=109284> / fdo#111827 <https://bugs.freedesktop.org/show_bug.cgi?id=111827>) +7 similar issues
+>   *
+> 
+>     igt@kms_cursor_legacy@basic-busy-flip-before-cursor:
+> 
+>       o fi-cml-u2: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110601v1/fi-cml-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor.html> (i915#4213 <https://gitlab.freedesktop.org/drm/intel/issues/4213>)
+>   *
+> 
+>     igt@kms_force_connector_basic@force-load-detect:
+> 
+>       o fi-cml-u2: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110601v1/fi-cml-u2/igt@kms_force_connector_basic@force-load-detect.html> (fdo#109285 <https://bugs.freedesktop.org/show_bug.cgi?id=109285>)
+>   *
+> 
+>     igt@kms_frontbuffer_tracking@basic:
+> 
+>       o fi-cml-u2: NOTRUN -> DMESG-WARN
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110601v1/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html> (i915#402 <https://gitlab.freedesktop.org/drm/intel/issues/402>)
+>   *
+> 
+>     igt@kms_setmode@basic-clone-single-crtc:
+> 
+>       o fi-cml-u2: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110601v1/fi-cml-u2/igt@kms_setmode@basic-clone-single-crtc.html> (i915#3555 <https://gitlab.freedesktop.org/drm/intel/issues/3555>)
+>   *
+> 
+>     igt@prime_vgem@basic-userptr:
+> 
+>       o fi-cml-u2: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110601v1/fi-cml-u2/igt@prime_vgem@basic-userptr.html> (fdo#109295 <https://bugs.freedesktop.org/show_bug.cgi?id=109295> / i915#3301 <https://gitlab.freedesktop.org/drm/intel/issues/3301>)
+> 
+> 
+>         Possible fixes
+> 
+>   *
+> 
+>     igt@i915_selftest@live@hangcheck:
+> 
+>       o
+> 
+>         fi-hsw-4770: INCOMPLETE
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12351/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html> (i915#4785 <https://gitlab.freedesktop.org/drm/intel/issues/4785>) -> PASS <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110601v1/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html>
+> 
+>       o
+> 
+>         fi-ivb-3770: INCOMPLETE
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12351/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html> (i915#3303 <https://gitlab.freedesktop.org/drm/intel/issues/3303> / i915#7122 <https://gitlab.freedesktop.org/drm/intel/issues/7122>) -> PASS <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110601v1/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html>
+> 
+>   *
+> 
+>     igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
+> 
+>       o fi-bsw-kefka: FAIL
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12351/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html> (i915#6298 <https://gitlab.freedesktop.org/drm/intel/issues/6298>) -> PASS <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110601v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html>
+> 
+> {name}: This element is suppressed. This means it is ignored when computing
+> the status of the difference (SUCCESS, WARNING, or FAILURE).
+> 
+> 
+>     Build changes
+> 
+>   * Linux: CI_DRM_12351 -> Patchwork_110601v1
+> 
+> CI-20190529: 20190529
+> CI_DRM_12351: 74d8166a994863d1f83e842c1822506a8f6aa806 @ 
+> git://anongit.freedesktop.org/gfx-ci/linux
+> IGT_7046: c58d96d0fe237474b074e3472ce09c57c830d5de @ 
+> https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+> Patchwork_110601v1: 74d8166a994863d1f83e842c1822506a8f6aa806 @ 
+> git://anongit.freedesktop.org/gfx-ci/linux
+> 
+> 
+>       Linux commits
+> 
+> 5e25556f8ee0 drm/i915/ttm: never purge busy objects
+> 
