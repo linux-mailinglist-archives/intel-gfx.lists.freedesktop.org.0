@@ -2,64 +2,98 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C855E620BC4
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Nov 2022 10:09:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56773620BF9
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Nov 2022 10:20:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2DE310E3A6;
-	Tue,  8 Nov 2022 09:08:59 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70F9410E272;
- Tue,  8 Nov 2022 09:08:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667898535; x=1699434535;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=usBkvlgFUc4/V7kgB7szMOX0arMH88vaR5XD1yBApEI=;
- b=LK74fGcqN6dTXp/CiD+cb42IdtxPjEUnOzvin3ZXNjnod7qBw8Q/4bDk
- k58dhetCj+SXv6m5cvYxcVQHo9GGzodGFDsgwcUBYZm/Nn66WTOx6fRhi
- Eo0qjWeJijAkAsPvgg0ThYOo0lgZBv9J1kAvkR6aEtDH7O+MvNjcHkvG0
- Ld8dy1QNR5lO86a70GdiTPHvem+0TAOGMbhzM3hwCoVsqCWeurTfngl+H
- rmVyRb6vYe1owLdCYQ60TSn6O/XH7WU5d9023cKUCcZT7UlXstEr5um4x
- 0F3H3I2N3ACnYRLgjEzmho7m1AuE1O+QcL622wLSRb2cDbLha4O25Tb+B w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="290367103"
-X-IronPort-AV: E=Sophos;i="5.96,147,1665471600"; d="scan'208";a="290367103"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2022 01:08:54 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="811172577"
-X-IronPort-AV: E=Sophos;i="5.96,147,1665471600"; d="scan'208";a="811172577"
-Received: from shylandx-mobl2.ger.corp.intel.com (HELO [10.213.210.50])
- ([10.213.210.50])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2022 01:08:52 -0800
-Message-ID: <28fd2a35-1e20-ffa7-b5d2-5411166e9b21@linux.intel.com>
-Date: Tue, 8 Nov 2022 09:08:50 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3BDC10E3A6;
+	Tue,  8 Nov 2022 09:20:07 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2079.outbound.protection.outlook.com [40.107.220.79])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58B4310E272;
+ Tue,  8 Nov 2022 09:20:00 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gGa7zg0/DGGbm6UeRV9/J08ouG9AuY9Ml8yw+riD0GuNxMkwV48pYmIM/1wR87g+E6xhzCLOXAb1MHmWnHq0b8gkGfik4q60Z2pjoOY7IwtTYXwfsGJlrNtW+y4DBajGcCjl1ulgvaSSxXfzL7lkkKs6dODB/WKMF6aOlv0xRy5LE0ImDQtAjg3TSpg7Xn1jn99vNZhH7m5lFWcjabtISMEJpXe3qPhJu2CckHAyvs7vqH9ZzynOJFjYt3zz3OtLpuAPFzJ/rJADDe/2tR3bLhSr2ayaDW2ci2+wGrDPwwJ8uf4avjyHdrmqITWpf6OeScC303Sj6XxkRrfay4Q0MQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gACs/mcCcJ43oUOSadZwVFXG5Pc6F2WUBxUWZXAC8KI=;
+ b=QEH928VBn9dAScc15ZMFFjlU993q5GPvCv0M/b8li4VQsHsKTmtlFJT+OaYYjswGytw/GPS4cZcd1YdFY59/B9IgScHlBxsZ9Y9Qb+qDqPaHZiwbU7inFJ4G9pzWCCLvJu9G7qc+B7jJBfHux9fqRSReM+T5JerIMq0JFNxLAe/DdRH/F6NKJ5kC2LxVlYIIUSmeby3n7en5iKxVgmraPp6M2s5vIUPvDh9nEFZgYjhs8kyO5LjEbBaaB7K4UT8VJwodwfPTL9lYDYtYCmPUyjYKXnbAXt/2ThqbCiDQb6I0NWi1EWMHdA/palvByJGUqRGJ4ZrYNyEBmOEPhz7NeQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.118.232) smtp.rcpttodomain=intel.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gACs/mcCcJ43oUOSadZwVFXG5Pc6F2WUBxUWZXAC8KI=;
+ b=JUFt2nXErJeoxu0+foZFme4EMG0gslIPxvI5nHLMdNvAaG4MsQS7DY7sX3yDhVViWSZOlQnkS/vF03u/53xk3Xq+KcRpWTfU4d/eCa8/ZJ2fRmPtKqdraNYryhiahI1VS/sNDeE+1ilheXmEu33H0c1tggxm5Og9ULPGqnNOiC9AWKOKir2xy/TMVxk6748E5KYsLUWlMzSEW7mYWbjZCJfAqo9ez6D17Afihir2z2114V0kN4GkBQfxBKpIZRxPdtoZWcsqj4ZGVXGCs5ZcOK2B73rq21PklUAq4+3LtkjxPbYGNrPtRnNoy91MPXQO81UpD/uZkXjDlPymY44eYg==
+Received: from MW4PR03CA0338.namprd03.prod.outlook.com (2603:10b6:303:dc::13)
+ by SJ0PR12MB6944.namprd12.prod.outlook.com (2603:10b6:a03:47b::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.26; Tue, 8 Nov
+ 2022 09:19:58 +0000
+Received: from CO1NAM11FT030.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:dc:cafe::83) by MW4PR03CA0338.outlook.office365.com
+ (2603:10b6:303:dc::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.27 via Frontend
+ Transport; Tue, 8 Nov 2022 09:19:58 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.232)
+ smtp.mailfrom=nvidia.com;
+ dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.118.232) by
+ CO1NAM11FT030.mail.protection.outlook.com (10.13.174.125) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5791.20 via Frontend Transport; Tue, 8 Nov 2022 09:19:57 +0000
+Received: from drhqmail201.nvidia.com (10.126.190.180) by mail.nvidia.com
+ (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.26; Tue, 8 Nov 2022
+ 01:19:52 -0800
+Received: from drhqmail203.nvidia.com (10.126.190.182) by
+ drhqmail201.nvidia.com (10.126.190.180) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.29; Tue, 8 Nov 2022 01:19:51 -0800
+Received: from Asurada-Nvidia (10.127.8.13) by mail.nvidia.com
+ (10.126.190.182) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29 via Frontend
+ Transport; Tue, 8 Nov 2022 01:19:50 -0800
+Date: Tue, 8 Nov 2022 01:19:48 -0800
+From: Nicolin Chen <nicolinc@nvidia.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Message-ID: <Y2ofNKmmAIMGYLFK@Asurada-Nvidia>
+References: <0-v2-65016290f146+33e-vfio_iommufd_jgg@nvidia.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Content-Language: en-US
-To: John Harrison <john.c.harrison@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, Intel-GFX@Lists.FreeDesktop.Org
-References: <20221101235053.1650364-1-John.C.Harrison@Intel.com>
- <87k04d7dyn.fsf@intel.com>
- <c710a428-50f6-6181-3f93-4d7667a9ac3f@linux.intel.com>
- <5e22de43-d75c-fc21-9ae7-f27d116c5688@intel.com>
- <1855f0f2-8a1c-7bf4-76c0-76a4354ea8e8@linux.intel.com>
- <2b2eb780-08f7-c7df-0397-a7f732da272d@linux.intel.com>
- <5fad1ec1-8fea-9685-4cc9-2e3c2edf799f@intel.com>
- <448d710a-3af1-932d-c276-7c6fd6c02528@linux.intel.com>
- <f3de3596-871a-2af3-e72b-f4c66d5e7211@intel.com>
- <838f1d78-1d7c-c82e-0c70-b8c1fc0cebff@linux.intel.com>
- <29da7440-7c92-9fba-394e-d92df68b4e73@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <29da7440-7c92-9fba-394e-d92df68b4e73@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Don't wait forever in drop_caches
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <0-v2-65016290f146+33e-vfio_iommufd_jgg@nvidia.com>
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT030:EE_|SJ0PR12MB6944:EE_
+X-MS-Office365-Filtering-Correlation-Id: d6b1b581-7bb5-4908-52cd-08dac16a67ed
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: jMW6FPbZJBXl/zfNVyXd2mtKnvB+gisbpt6xcvyvFllyIjLVcVhJoQDwqwcvW1iQjXTnDgPTjjV9K34r1FigQTTzjufFqySE21JoKeaddM98NgvR7xiXz97Wx7hXNTQht3/W2ylmPJdCeP50WaFpm0yVlByLYcsnfXYp05iA4rhFU/U27v8olgmrgXMe3oAve+4tJZdtjA+WvZenad5AfnuDCv16IBa2rAdb303m49tg11K2if5fY9ARWsHU2WpW8jr0d5uzal9DJqqmMJupTUNur1uFiTN94KLDIMtgbCfVwL8rWwT7z0mVUaCDE/7ALSYlLBhXzWD1E5nNhPndzV4X9JAbFt0AbemlsiOzOqBhsU7IWzUajnUojirDc0dsA/dI1H8mWYEZRZGED4Libjiw2H/g0sGA1ioaFKXOUZ/GH8op1qC6LQA0BOlvhmz28TfV9DOENt6Pvj86Sq3m7E7LzjBMvIwmz14WuO2hVQXP8uw/fgieFiVvZwNSNgngp8ZDbpl8KB1sACSAtF5rAa8qcdKIY8ZHpK163wY3ox7RJVjt5by0IaniTEwX70baeXKDBwhz30DKqpuHTosjl1rknuZ0Yz0Bz+JXJhvuvjVQL2Cb/dDerDzOJzEYyar698L8uEMkyPoT2BGQrjIta5qoitMN48TT2I1S1VlS7yrvoZQT0sRTyLaW+m4FXDfSilIKcXLp0IAjCz274lq/4EyxvYsmiv0/5qYLHo+Lj17WP6/Pebl3Bs6UHE6Oz+VHUFAeFKJ0ixl8DQLTMIzEhrFi3T+XkASMfS4dCdC6snl3DaMMOc0/c/utMyYLZ8/UKY8/A5ngQvMWBANDfUq/IXII8QThv+KkhTeU7V0V5m0=
+X-Forefront-Antispam-Report: CIP:216.228.118.232; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc7edge1.nvidia.com; CAT:NONE;
+ SFS:(13230022)(4636009)(396003)(376002)(39860400002)(346002)(136003)(451199015)(46966006)(36840700001)(40470700004)(356005)(82740400003)(7636003)(86362001)(83380400001)(40480700001)(40460700003)(4744005)(2906002)(55016003)(336012)(186003)(9686003)(426003)(47076005)(26005)(36860700001)(70206006)(4326008)(8676002)(7406005)(54906003)(6636002)(316002)(33716001)(7416002)(70586007)(82310400005)(8936002)(6862004)(478600001)(966005)(5660300002)(41300700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Nov 2022 09:19:57.9397 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d6b1b581-7bb5-4908-52cd-08dac16a67ed
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.118.232];
+ Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT030.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6944
+Subject: Re: [Intel-gfx] [PATCH v2 00/11] Connect VFIO to IOMMUFD
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,399 +106,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Cc: kvm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Vineeth Vijayan <vneethv@linux.ibm.com>,
+ Diana Craciun <diana.craciun@oss.nxp.com>,
+ Alexander Gordeev <agordeev@linux.ibm.com>, David Airlie <airlied@gmail.com>,
+ Longfang Liu <liulongfang@huawei.com>, linux-s390@vger.kernel.org, "Liu,
+ Yi L" <yi.l.liu@intel.com>, Matthew Rosato <mjrosato@linux.ibm.com>,
+ Will Deacon <will@kernel.org>, Joerg Roedel <joro@8bytes.org>, Halil
+ Pasic <pasic@linux.ibm.com>, iommu@lists.linux.dev,
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ intel-gfx@lists.freedesktop.org, Jason Herne <jjherne@linux.ibm.com>, Eric
+ Farman <farman@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
+ Heiko Carstens <hca@linux.ibm.com>, Eric Auger <eric.auger@redhat.com>,
+ Harald Freudenberger <freude@linux.ibm.com>, Rodrigo
+ Vivi <rodrigo.vivi@intel.com>, intel-gvt-dev@lists.freedesktop.org,
+ Tony Krowiak <akrowiak@linux.ibm.com>, Yishai Hadas <yishaih@nvidia.com>,
+ Cornelia Huck <cohuck@redhat.com>, Peter Oberparleiter <oberpar@linux.ibm.com>,
+ Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
+ Sven Schnelle <svens@linux.ibm.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Robin Murphy <robin.murphy@arm.com>, Lu Baolu <baolu.lu@linux.intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, Nov 07, 2022 at 08:52:44PM -0400, Jason Gunthorpe wrote:
 
-On 07/11/2022 19:45, John Harrison wrote:
-> On 11/7/2022 06:09, Tvrtko Ursulin wrote:
->> On 04/11/2022 17:45, John Harrison wrote:
->>> On 11/4/2022 03:01, Tvrtko Ursulin wrote:
->>>> On 03/11/2022 19:16, John Harrison wrote:
->>>>> On 11/3/2022 02:38, Tvrtko Ursulin wrote:
->>>>>> On 03/11/2022 09:18, Tvrtko Ursulin wrote:
->>>>>>> On 03/11/2022 01:33, John Harrison wrote:
->>>>>>>> On 11/2/2022 07:20, Tvrtko Ursulin wrote:
->>>>>>>>> On 02/11/2022 12:12, Jani Nikula wrote:
->>>>>>>>>> On Tue, 01 Nov 2022, John.C.Harrison@Intel.com wrote:
->>>>>>>>>>> From: John Harrison <John.C.Harrison@Intel.com>
->>>>>>>>>>>
->>>>>>>>>>> At the end of each test, IGT does a drop caches call via 
->>>>>>>>>>> sysfs with
->>>>>>>>>>
->>>>>>>>>> sysfs?
->>>>>>>> Sorry, that was meant to say debugfs. I've also been working on 
->>>>>>>> some sysfs IGT issues and evidently got my wires crossed!
->>>>>>>>
->>>>>>>>>>
->>>>>>>>>>> special flags set. One of the possible paths waits for idle 
->>>>>>>>>>> with an
->>>>>>>>>>> infinite timeout. That causes problems for debugging issues 
->>>>>>>>>>> when CI
->>>>>>>>>>> catches a "can't go idle" test failure. Best case, the CI 
->>>>>>>>>>> system times
->>>>>>>>>>> out (after 90s), attempts a bunch of state dump actions and then
->>>>>>>>>>> reboots the system to recover it. Worst case, the CI system 
->>>>>>>>>>> can't do
->>>>>>>>>>> anything at all and then times out (after 1000s) and simply 
->>>>>>>>>>> reboots.
->>>>>>>>>>> Sometimes a serial port log of dmesg might be available, 
->>>>>>>>>>> sometimes not.
->>>>>>>>>>>
->>>>>>>>>>> So rather than making life hard for ourselves, change the 
->>>>>>>>>>> timeout to
->>>>>>>>>>> be 10s rather than infinite. Also, trigger the standard
->>>>>>>>>>> wedge/reset/recover sequence so that testing can continue with a
->>>>>>>>>>> working system (if possible).
->>>>>>>>>>>
->>>>>>>>>>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->>>>>>>>>>> ---
->>>>>>>>>>>   drivers/gpu/drm/i915/i915_debugfs.c | 7 ++++++-
->>>>>>>>>>>   1 file changed, 6 insertions(+), 1 deletion(-)
->>>>>>>>>>>
->>>>>>>>>>> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c 
->>>>>>>>>>> b/drivers/gpu/drm/i915/i915_debugfs.c
->>>>>>>>>>> index ae987e92251dd..9d916fbbfc27c 100644
->>>>>>>>>>> --- a/drivers/gpu/drm/i915/i915_debugfs.c
->>>>>>>>>>> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
->>>>>>>>>>> @@ -641,6 +641,9 @@ 
->>>>>>>>>>> DEFINE_SIMPLE_ATTRIBUTE(i915_perf_noa_delay_fops,
->>>>>>>>>>>             DROP_RESET_ACTIVE | \
->>>>>>>>>>>             DROP_RESET_SEQNO | \
->>>>>>>>>>>             DROP_RCU)
->>>>>>>>>>> +
->>>>>>>>>>> +#define DROP_IDLE_TIMEOUT    (HZ * 10)
->>>>>>>>>>
->>>>>>>>>> I915_IDLE_ENGINES_TIMEOUT is defined in i915_drv.h. It's also 
->>>>>>>>>> only used
->>>>>>>>>> here.
->>>>>>>>>
->>>>>>>>> So move here, dropping i915 prefix, next to the newly proposed 
->>>>>>>>> one?
->>>>>>>> Sure, can do that.
->>>>>>>>
->>>>>>>>>
->>>>>>>>>> I915_GEM_IDLE_TIMEOUT is defined in i915_gem.h. It's only used in
->>>>>>>>>> gt/intel_gt.c.
->>>>>>>>>
->>>>>>>>> Move there and rename to GT_IDLE_TIMEOUT?
->>>>>>>>>
->>>>>>>>>> I915_GT_SUSPEND_IDLE_TIMEOUT is defined and used only in 
->>>>>>>>>> intel_gt_pm.c.
->>>>>>>>>
->>>>>>>>> No action needed, maybe drop i915 prefix if wanted.
->>>>>>>>>
->>>>>>>> These two are totally unrelated and in code not being touched by 
->>>>>>>> this change. I would rather not conflate changing random other 
->>>>>>>> things with fixing this specific issue.
->>>>>>>>
->>>>>>>>>> I915_IDLE_ENGINES_TIMEOUT is in ms, the rest are in jiffies.
->>>>>>>>>
->>>>>>>>> Add _MS suffix if wanted.
->>>>>>>>>
->>>>>>>>>> My head spins.
->>>>>>>>>
->>>>>>>>> I follow and raise that the newly proposed DROP_IDLE_TIMEOUT 
->>>>>>>>> applies to DROP_ACTIVE and not only DROP_IDLE.
->>>>>>>> My original intention for the name was that is the 'drop caches 
->>>>>>>> timeout for intel_gt_wait_for_idle'. Which is quite the mouthful 
->>>>>>>> and hence abbreviated to DROP_IDLE_TIMEOUT. But yes, I realised 
->>>>>>>> later that name can be conflated with the DROP_IDLE flag. Will 
->>>>>>>> rename.
->>>>>>>>
->>>>>>>>
->>>>>>>>>
->>>>>>>>> Things get refactored, code moves around, bits get left behind, 
->>>>>>>>> who knows. No reason to get too worked up. :) As long as people 
->>>>>>>>> are taking a wider view when touching the code base, and are 
->>>>>>>>> not afraid to send cleanups, things should be good.
->>>>>>>> On the other hand, if every patch gets blocked in code review 
->>>>>>>> because someone points out some completely unrelated piece of 
->>>>>>>> code could be a bit better then nothing ever gets fixed. If you 
->>>>>>>> spot something that you think should be improved, isn't the 
->>>>>>>> general idea that you should post a patch yourself to improve it?
->>>>>>>
->>>>>>> There's two maintainers per branch and an order of magnitude or 
->>>>>>> two more developers so it'd be nice if cleanups would just be 
->>>>>>> incoming on self-initiative basis. ;)
->>>>>>>
->>>>>>>>> For the actual functional change at hand - it would be nice if 
->>>>>>>>> code paths in question could handle SIGINT and then we could 
->>>>>>>>> punt the decision on how long someone wants to wait purely to 
->>>>>>>>> userspace. But it's probably hard and it's only debugfs so 
->>>>>>>>> whatever.
->>>>>>>>>
->>>>>>>> The code paths in question will already abort on a signal won't 
->>>>>>>> they? Both intel_gt_wait_for_idle() and 
->>>>>>>> intel_guc_wait_for_pending_msg(), which is where the 
->>>>>>>> uc_wait_for_idle eventually ends up, have an 'if(signal_pending) 
->>>>>>>> return -EINTR;' check. Beyond that, it sounds like what you are 
->>>>>>>> asking for is a change in the IGT libraries and/or CI framework 
->>>>>>>> to start sending signals after some specific timeout. That seems 
->>>>>>>> like a significantly more complex change (in terms of the number 
->>>>>>>> of entities affected and number of groups involved) and 
->>>>>>>> unnecessary.
->>>>>>>
->>>>>>> If you say so, I haven't looked at them all. But if the code path 
->>>>>>> in question already aborts on signals then I am not sure what is 
->>>>>>> the patch fixing? I assumed you are trying to avoid the write 
->>>>>>> stuck in D forever, which then prevents driver unload and 
->>>>>>> everything, requiring the test runner to eventually reboot. If 
->>>>>>> you say SIGINT works then you can already recover from userspace, 
->>>>>>> no?
->>>>>>>
->>>>>>>>> Whether or not 10s is enough CI will hopefully tell us. I'd 
->>>>>>>>> probably err on the side of safety and make it longer, but at 
->>>>>>>>> most half from the test runner timeout.
->>>>>>>> This is supposed to be test clean up. This is not about how long 
->>>>>>>> a particular test takes to complete but about how long it takes 
->>>>>>>> to declare the system broken after the test has already 
->>>>>>>> finished. I would argue that even 10s is massively longer than 
->>>>>>>> required.
->>>>>>>>
->>>>>>>>>
->>>>>>>>> I am not convinced that wedging is correct though. Conceptually 
->>>>>>>>> could be just that the timeout is too short. What does wedging 
->>>>>>>>> really give us, on top of limiting the wait, when latter AFAIU 
->>>>>>>>> is the key factor which would prevent the need to reboot the 
->>>>>>>>> machine?
->>>>>>>>>
->>>>>>>> It gives us a system that knows what state it is in. If we can't 
->>>>>>>> idle the GT then something is very badly wrong. Wedging 
->>>>>>>> indicates that. It also ensure that a full GT reset will be 
->>>>>>>> attempted before the next test is run. Helping to prevent a 
->>>>>>>> failure on test X from propagating into failures of unrelated 
->>>>>>>> tests X+1, X+2, ... And if the GT reset does not work because 
->>>>>>>> the system is really that badly broken then future tests will 
->>>>>>>> not run rather than report erroneous failures.
->>>>>>>>
->>>>>>>> This is not about getting a more stable system for end users by 
->>>>>>>> sweeping issues under the carpet and pretending all is well. End 
->>>>>>>> users don't run IGTs or explicitly call dodgy debugfs entry 
->>>>>>>> points. The sole motivation here is to get more accurate results 
->>>>>>>> from CI. That is, correctly identifying which test has hit a 
->>>>>>>> problem, getting valid debug analysis for that test (logs and 
->>>>>>>> such) and allowing further testing to complete correctly in the 
->>>>>>>> case where the system can be recovered.
->>>>>>>
->>>>>>> I don't really oppose shortening of the timeout in principle, 
->>>>>>> just want a clear statement if this is something IGT / test 
->>>>>>> runner could already do or not. It can apply a timeout, it can 
->>>>>>> also send SIGINT, and it could even trigger a reset from outside. 
->>>>>>> Sure it is debugfs hacks so general "kernel should not implement 
->>>>>>> policy" need not be strictly followed, but lets have it clear 
->>>>>>> what are the options.
->>>>>>
->>>>>> One conceptual problem with applying this policy is that the code is:
->>>>>>
->>>>>>     if (val & (DROP_IDLE | DROP_ACTIVE)) {
->>>>>>         ret = intel_gt_wait_for_idle(gt, MAX_SCHEDULE_TIMEOUT);
->>>>>>         if (ret)
->>>>>>             return ret;
->>>>>>     }
->>>>>>
->>>>>>     if (val & DROP_IDLE) {
->>>>>>         ret = intel_gt_pm_wait_for_idle(gt);
->>>>>>         if (ret)
->>>>>>             return ret;
->>>>>>     }
->>>>>>
->>>>>> So if someone passes in DROP_IDLE and then why would only the 
->>>>>> first branch have a short timeout and wedge. Yeah some bug happens 
->>>>>> to be there at the moment, but put a bug in a different place and 
->>>>>> you hang on the second branch and then need another patch. Versus 
->>>>>> perhaps making it all respect SIGINT and handle from outside.
->>>>>>
->>>>> The pm_wait_for_idle is can only called after gt_wait_for_idle has 
->>>>> completed successfully. There is no route to skip the GT idle or to 
->>>>> do the PM idle even if the GT idle fails. So the chances of the PM 
->>>>> idle failing are greatly reduced. There would have to be something 
->>>>> outside of a GT keeping the GPU awake and there isn't a whole lot 
->>>>> of hardware left at that point!
->>>>
->>>> Well "greatly reduced" is beside my point. Point is today bug is 
->>>> here and we add a timeout, tomorrow bug is there and then the same 
->>>> dance. It can be just a sw bug which forgets to release the pm ref 
->>>> in some circumstances, doesn't really matter.
->>>>
->>> Huh?
->>>
->>> Greatly reduced is the whole point. Today there is a bug and it 
->>> causes a kernel hang which requires the CI framework to reboot the 
->>> system in an extremely unfriendly way which makes it very hard to 
->>> work out what happened. Logs are likely not available. We don't even 
->>> necessarily know which test was being run at the time. Etc. So we 
->>> replace the infinite timeout with a meaningful timeout. CI now 
->>> correctly marks the single test as failing, captures all the correct 
->>> logs, creates a useful bug report and continues on testing more stuff.
->>
->> So what is preventing CI to collect logs if IGT is forever stuck in 
->> interruptible wait? Surely it can collect the logs at that point if 
->> the kernel is healthy enough. If it isn't then I don't see how wedging 
->> the GPU will make the kernel any healthier.
->>
->> Is i915 preventing better log collection or could test runner be 
->> improved?
->>
->>> Sure, there is still the chance of hitting an infinite timeout. But 
->>> that one is significantly more complicated to remove. And the chances 
->>> of hitting that one are significantly smaller than the chances of 
->>> hitting the first one.
->>
->> This statement relies on intimate knowledge implementation details and 
->> a bit too much white box testing approach but that's okay, lets move 
->> past this one.
->>
->>> So you are arguing that because I can't fix the last 0.1% of possible 
->>> failures, I am not allowed to fix the first 99.9% of the failures?
->>
->> I am clearly not arguing for that. But we are also not talking about 
->> "fixing failures" here. Just how to make CI cope better with a class 
->> of i915 bugs.
->>
->>>>> Regarding signals, the PM idle code ends up at 
->>>>> wait_var_event_killable(). I assume that is interruptible via at 
->>>>> least a KILL signal if not any signal. Although it's not entirely 
->>>>> clear trying to follow through the implementation of this code. 
->>>>> Also, I have no idea if there is a safe way to add a timeout to 
->>>>> that code (or why it wasn't already written with a timeout 
->>>>> included). Someone more familiar with the wakeref internals would 
->>>>> need to comment.
->>>>>
->>>>> However, I strongly disagree that we should not fix the driver just 
->>>>> because it is possible to workaround the issue by re-writing the CI 
->>>>> framework. Feel free to bring a redesign plan to the IGT WG and 
->>>>> whatever equivalent CI meetings in parallel. But we absolutely 
->>>>> should not have infinite waits in the kernel if there is a trivial 
->>>>> way to not have infinite waits.
->>>>
->>>> I thought I was clear that I am not really opposed to the timeout.
->>>>
->>>> The rest of the paragraph I don't really care - point is moot 
->>>> because it's debugfs so we can do whatever, as long as it is not 
->>>> burdensome to i915, which this isn't. If either wasn't the case then 
->>>> we certainly wouldn't be adding any workarounds in the kernel if it 
->>>> can be achieved in IGT.
->>>>
->>>>> Also, sending a signal does not result in the wedge happening. I 
->>>>> specifically did not want to change that code path because I was 
->>>>> assuming there was a valid reason for it. If you have been 
->>>>> interrupted then you are in the territory of maybe it would have 
->>>>> succeeded if you just left it for a moment longer. Whereas, hitting 
->>>>> the timeout says that someone very deliberately said this is too 
->>>>> long to wait and therefore the system must be broken.
->>>>
->>>> I wanted to know specifically about wedging - why can't you 
->>>> wedge/reset from IGT if DROP_IDLE times out in quiescent or 
->>>> wherever, if that's what you say is the right thing? 
->>> Huh?
->>>
->>> DROP_IDLE has two waits. One that I am trying to change from infinite 
->>> to finite + wedge. One that would take considerable effort to change 
->>> and would be quite invasive to a lot more of the driver and which can 
->>> only be hit if the first timeout actually completed successfully and 
->>> is therefore of less importance anyway. Both of those time outs 
->>> appear to respect signal interrupts.
->>>
->>>> That's a policy decision so why would i915 wedge if an arbitrary 
->>>> timeout expired? I915 is not controlling how much work there is 
->>>> outstanding at the point the IGT decides to call DROP_IDLE.
->>>
->>> Because this is a debug test interface that is used solely by IGT 
->>> after it has finished its testing. This is not about wedging the 
->>> device at some random arbitrary point because an AI compute workload 
->>> takes three hours to complete. This is about a very specific test 
->>> framework cleaning up after testing is completed and making sure the 
->>> test did not fry the system.
->>>
->>> And even if an IGT test was calling DROP_IDLE in the middle of a test 
->>> for some reason, it should not be deliberately pushing 10+ seconds of 
->>> work through and then calling a debug only interface to flush it out. 
->>> If a test wants to verify that the system can cope with submitting a 
->>> minutes worth of rendering and then waiting for it to complete then 
->>> the test should be using official channels for that wait.
->>>
->>>>
->>>>> Plus, infinite wait is not a valid code path in the first place so 
->>>>> any change in behaviour is not really a change in behaviour. Code 
->>>>> can't be relying on a kernel call to never return for its correct 
->>>>> operation!
->>>>
->>>> Why infinite wait wouldn't be valid? Then you better change the 
->>>> other one as well. ;P
->>> In what universe is it ever valid to wait forever for a test to 
->>> complete?
->>
->> Well above you claimed both paths respect SIGINT. If that is so then 
->> the wait is as infinite as the IGT wanted it to be.
->>
->>> See above, the PM code would require much more invasive changes. This 
->>> was low hanging fruit. It was supposed to be a two minute change to a 
->>> very self contained section of code that would provide significant 
->>> benefit to debugging a small class of very hard to debug problems.
->>
->> Sure, but I'd still like to know why can't you do what you want from 
->> the IGT framework.
->>
->> Have the timeout reduction in i915, again that's fine assuming 10 
->> seconds it enough to not break something by accident.
-> CI showed no regressions. And if someone does find a valid reason why a 
-> post test drop caches call should legitimately take a stupidly long time 
-> then it is easy to track back where the ETIME error came from and bump 
-> the timeout.
-> 
->>
->> With that change you already have broken the "infinite wait". It makes 
->> the debugfs write return -ETIME in time much shorter than the test 
->> runner timeout(s). What is the thing that you cannot do from IGT at 
->> that point is my question? You want to wedge then? Send 
->> DROP_RESET_ACTIVE to do it for you? If that doesn't work add a new 
->> flag which will wedge explicitly.
->>
->> We are again degrading into a huge philosophical discussion and all I 
->> wanted to start with is to hear how exactly things go bad.
->>
-> I have no idea what you are wanting. I am trying to have a technical 
-> discussion about improving the stability of the driver during CI 
-> testing. I have no idea if you are arguing that this change is good, 
-> bad, broken, wrong direction or what.
-> 
-> Things go bad as explained in the commit message. The CI framework does 
-> not use signals. The IGT framework does not use signals. There is no 
-> watchdog that sends a TERM or KILL signal after a specified timeout. All 
-> that happens is the IGT sits there forever waiting for the drop caches 
-> IOCTL to return. The CI framework eventually gives up waiting for the 
-> test to complete and tries to recover. There are many different CI 
-> frameworks in use across Intel. Some timeout quickly, some timeout 
-> slowly. But basically, they all eventually give up and don't bother 
-> trying any kind of remedial action but just hit the reset button 
-> (sometimes by literally power cycling the DUT). As result, background 
-> processes that are saving dmesg, stdout, etc do not necessarily 
-> terminate cleanly. That results in logs that are at best truncated, at 
-> worst missing entirely. It also results in some frameworks aborting 
-> testing at that point. So no results are generated for all the other 
-> tests that have yet to be run. Some frameworks also run tests in 
-> batches. All they log is that something, somewhere in the batch died. So 
-> you don't even know which specific test actually hit the problem.
-> 
-> Can the CI frameworks be improved? Undoubtedly. In very many ways. Is 
-> that something we have the ability to do with a simple patch? No. Would 
-> re-writing the IGT framework to add watchdog mechanisms improve things? 
-> Yes. Can it be done with a simple patch? No. Would a simple patch to 
-> i915 significantly improve the situation? Yes. Will it solve every 
-> possible CI hang? No. Will it fix any actual end user visible bugs? No. 
-> Will it introduce any new bugs? No. Will it help us to debug at least 
-> some CI failures? Yes.
+> This is on github: https://github.com/jgunthorpe/linux/commits/vfio_iommufd
+[...]
+> v2:
+>  - Rebase to v6.1-rc3, v4 iommufd series
+>  - Fixup comments and commit messages from list remarks
+>  - Fix leaking of the iommufd for mdevs
+>  - New patch to fix vfio modaliases when vfio container is disabled
+>  - Add a dmesg once when the iommufd provided /dev/vfio/vfio is opened
+>    to signal that iommufd is providing this
 
-To unblock, I suggest you go with the patch which caps the wait only, 
-and propose a wedging as an IGT patch to gem_quiescent_gpu(). That 
-should involve the CI/IGT folks into discussion on what logs will be, or 
-will not be collected once gem_quiescent_gpu() fails due -ETIME. In fact 
-probably you should copy CI/IGT folks on the v2 of the i915 patch as 
-well since I now think their acks would be good to have - from the point 
-of view of the current test runner behaviour with hanging tests.
-
-Regards,
-
-Tvrtko
+I've redone my previous sanity tests. Except those reported bugs,
+things look fine. Once we fix those issues, GVT and other modules
+can run some more stressful tests, I think.
