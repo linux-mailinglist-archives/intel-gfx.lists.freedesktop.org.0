@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0B5F622FE2
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Nov 2022 17:12:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A2ED623015
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Nov 2022 17:23:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DBE210E5FD;
-	Wed,  9 Nov 2022 16:12:58 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EF3710E5FD
- for <Intel-gfx@lists.freedesktop.org>; Wed,  9 Nov 2022 16:12:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05FEB10E5F4;
+	Wed,  9 Nov 2022 16:23:14 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46DF210E099;
+ Wed,  9 Nov 2022 16:23:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668010365; x=1699546365;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=x6XVT4VrLhMh4IJBu+3B412tbpXC3M4uZJfhwf8sKQM=;
- b=natJ81G2NaVCBnu9icWN+86xLgvJFJDDMfk1uB/ck7eZaTex0aUl2TZN
- 2FjlkKdmvRcrV6PU6Mp7R7xS/Mpzt2LkidI6HuqQZLZCIk3ooKM/nPkiu
- S6JBUoMWAWN5NbGRDWUpAAdw+5xwZLwbhZK1NvL0QCDVxhF0RM2mDiQIb
- TUetC6TGjLHg2aDJLql0YVP4CpWsrulvFh52fE8pXGZ65s3YFdYcvRcRy
- ktFrFwmW+isM9EtrFAtws66M5oQgiLFzdlqiVg7KjLvOJlLSYOXAnyes2
- LZtCmQZPQPRStnVod08Chn80uuAN4IQiGMV/3uXK9fYtdrluASpk2AkS7 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="373166336"
-X-IronPort-AV: E=Sophos;i="5.96,151,1665471600"; d="scan'208";a="373166336"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2022 08:12:45 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="811684610"
-X-IronPort-AV: E=Sophos;i="5.96,151,1665471600"; d="scan'208";a="811684610"
-Received: from smurnane-mobl.ger.corp.intel.com (HELO localhost.localdomain)
- ([10.213.196.238])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2022 08:12:41 -0800
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Date: Wed,  9 Nov 2022 16:11:41 +0000
-Message-Id: <20221109161141.2987173-14-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221109161141.2987173-1-tvrtko.ursulin@linux.intel.com>
-References: <20221109161141.2987173-1-tvrtko.ursulin@linux.intel.com>
+ t=1668010990; x=1699546990;
+ h=message-id:date:mime-version:from:subject:to:cc:
+ content-transfer-encoding;
+ bh=X981ZmslnejFIUwL7Qp+Ed/27lfz++7smi4Ze9bkD2g=;
+ b=GlmhVbauc/OWkYtqxU0C4eB1eQ/GPrZidX7jVqRa8QROWMou05HwR/Bd
+ CEPKnh3buVdzOfyqbBi41bYUEyZxaVjwaakZjBgme017Q1TwZq8bKI2qt
+ L/cXgDlrAq1aJjX+Wo0MrmIdjc0BDseOUleVIWmWKvuhwuPSl9Mx3Hsic
+ g0Zu+17mFALyM6u8/ZU9+ExUDnqFdzZCaJZ7vABIOv/MI9RcnDKVLTu0o
+ 3zG4dHNGE+NCMJvtQmHsoJcrJU77DDquNnO951TvVIPL+9fjPx6MOJExK
+ aubqZ3LuTJ86SkXXQeZaDIeJxHhAz9lkvKGB0hASDINQJSxERNHE5iymn Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="312822930"
+X-IronPort-AV: E=Sophos;i="5.96,151,1665471600"; d="scan'208";a="312822930"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2022 08:23:09 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="700415754"
+X-IronPort-AV: E=Sophos;i="5.96,151,1665471600"; d="scan'208";a="700415754"
+Received: from abhatiax-mobl.amr.corp.intel.com (HELO [10.252.58.107])
+ ([10.252.58.107])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2022 08:23:06 -0800
+Message-ID: <e02de501-4b85-28a0-3f6e-751ca13f5f9d@linux.intel.com>
+Date: Wed, 9 Nov 2022 17:22:57 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC 13/13] drm/i915: Implement cgroup controller over
- budget throttling
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,255 +58,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>, Kenny.Ho@amd.com,
- Daniel Vetter <daniel.vetter@ffwll.ch>, Johannes Weiner <hannes@cmpxchg.org>,
- linux-kernel@vger.kernel.org,
- =?UTF-8?q?St=C3=A9phane=20Marchesin?= <marcheu@chromium.org>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Zefan Li <lizefan.x@bytedance.com>, Dave Airlie <airlied@redhat.com>,
- Tejun Heo <tj@kernel.org>, cgroups@vger.kernel.org,
- "T . J . Mercier" <tjmercier@google.com>
+Cc: Maxime Ripard <mripard@kernel.org>, dim-tools@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-When notified by the drm core we are over our allotted time budget, i915
-instance will check if any of the GPU engines it is reponsible for is
-fully saturated. If it is, and the client in question is using that
-engine, it will throttle it.
+Hey Daniel & Dave,
 
-For now throttling is done simplistically by lowering the scheduling
-priority while client is throttled.
+Another small pull request. Various small assorted fixes.
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 37 +++++++-
- drivers/gpu/drm/i915/i915_driver.c            |  1 +
- drivers/gpu/drm/i915/i915_drm_client.c        | 93 +++++++++++++++++++
- drivers/gpu/drm/i915/i915_drm_client.h        | 11 +++
- 4 files changed, 141 insertions(+), 1 deletion(-)
+drm-misc-fixes-2022-11-09:
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 1160723c9d2d..280ed90d5001 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -6,6 +6,7 @@
- 
- #include <linux/dma-resv.h>
- #include <linux/highmem.h>
-+#include <linux/prandom.h>
- #include <linux/sync_file.h>
- #include <linux/uaccess.h>
- 
-@@ -3015,6 +3016,40 @@ static void retire_requests(struct intel_timeline *tl, struct i915_request *end)
- 			break;
- }
- 
-+#ifdef CONFIG_CGROUP_DRM
-+static unsigned int
-+__get_class(struct drm_i915_file_private *fpriv, const struct i915_request *rq)
-+{
-+	unsigned int class;
-+
-+	class = rq->context->engine->uabi_class;
-+
-+	if (WARN_ON_ONCE(class >= ARRAY_SIZE(fpriv->client->throttle)))
-+		class = 0;
-+
-+	return class;
-+}
-+
-+static void copy_priority(struct i915_sched_attr *attr,
-+			  const struct i915_execbuffer *eb,
-+			  const struct i915_request *rq)
-+{
-+	struct drm_i915_file_private *file_priv = eb->file->driver_priv;
-+
-+	*attr = eb->gem_context->sched;
-+	if (file_priv->client->throttle[__get_class(file_priv, rq)])
-+		attr->priority -=
-+		    1 + prandom_u32_max(-I915_CONTEXT_MIN_USER_PRIORITY / 2);
-+}
-+#else
-+static void copy_priority(struct i915_sched_attr *attr,
-+			  const struct i915_execbuffer *eb,
-+			  const struct i915_request *rq)
-+{
-+	*attr = eb->gem_context->sched;
-+}
-+#endif
-+
- static int eb_request_add(struct i915_execbuffer *eb, struct i915_request *rq,
- 			  int err, bool last_parallel)
- {
-@@ -3031,7 +3066,7 @@ static int eb_request_add(struct i915_execbuffer *eb, struct i915_request *rq,
- 
- 	/* Check that the context wasn't destroyed before submission */
- 	if (likely(!intel_context_is_closed(eb->context))) {
--		attr = eb->gem_context->sched;
-+		copy_priority(&attr, eb, rq);
- 	} else {
- 		/* Serialise with context_close via the add_to_timeline */
- 		i915_request_set_error_once(rq, -ENOENT);
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 96a7da5258c4..d6c0501af3f4 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -1897,6 +1897,7 @@ static const struct drm_ioctl_desc i915_ioctls[] = {
- #ifdef CONFIG_CGROUP_DRM
- static const struct drm_cgroup_ops i915_drm_cgroup_ops = {
- 	.active_time_us = i915_drm_cgroup_get_active_time_us,
-+	.signal_budget = i915_drm_cgroup_signal_budget,
- };
- #endif
- 
-diff --git a/drivers/gpu/drm/i915/i915_drm_client.c b/drivers/gpu/drm/i915/i915_drm_client.c
-index c9754cb0277f..81144c8e8d05 100644
---- a/drivers/gpu/drm/i915/i915_drm_client.c
-+++ b/drivers/gpu/drm/i915/i915_drm_client.c
-@@ -4,6 +4,7 @@
-  */
- 
- #include <linux/kernel.h>
-+#include <linux/ktime.h>
- #include <linux/slab.h>
- #include <linux/types.h>
- 
-@@ -159,6 +160,98 @@ u64 i915_drm_cgroup_get_active_time_us(struct drm_file *file)
- 
- 	return busy;
- }
-+
-+int i915_drm_cgroup_signal_budget(struct drm_file *file, u64 usage, u64 budget)
-+{
-+	struct drm_i915_file_private *fpriv = file->driver_priv;
-+	u64 class_usage[I915_LAST_UABI_ENGINE_CLASS + 1];
-+	u64 class_last[I915_LAST_UABI_ENGINE_CLASS + 1];
-+	struct drm_i915_private *i915 = fpriv->dev_priv;
-+	struct i915_drm_client *client = fpriv->client;
-+	struct intel_engine_cs *engine;
-+	bool over = usage > budget;
-+	unsigned int i;
-+	ktime_t unused;
-+	int ret = 0;
-+	u64 t;
-+
-+	if (!supports_stats(i915))
-+		return -EINVAL;
-+
-+	if (usage == 0 && budget == 0)
-+		return 0;
-+
-+printk("i915_drm_cgroup_signal_budget client-id=%u over=%u (%llu/%llu) <%u>\n",
-+       client->id, over, usage, budget, client->over_budget);
-+
-+	if (over) {
-+		client->over_budget++;
-+		if (!client->over_budget)
-+			client->over_budget = 2;
-+	} else {
-+		client->over_budget = 0;
-+		memset(client->class_last, 0, sizeof(client->class_last));
-+		memset(client->throttle, 0, sizeof(client->throttle));
-+		return 0;
-+	}
-+
-+	memset(class_usage, 0, sizeof(class_usage));
-+	for_each_uabi_engine(engine, i915)
-+		class_usage[engine->uabi_class] +=
-+			ktime_to_ns(intel_engine_get_busy_time(engine, &unused));
-+
-+	memcpy(class_last, client->class_last, sizeof(class_last));
-+	memcpy(client->class_last, class_usage, sizeof(class_last));
-+
-+	for (i = 0; i < ARRAY_SIZE(uabi_class_names); i++)
-+		class_usage[i] -= class_last[i];
-+
-+	t = client->last;
-+	client->last = ktime_get_raw_ns();
-+	t = client->last - t;
-+
-+	if (client->over_budget == 1)
-+		return 0;
-+
-+	for (i = 0; i < ARRAY_SIZE(uabi_class_names); i++) {
-+		u64 client_class_usage[I915_LAST_UABI_ENGINE_CLASS + 1];
-+		unsigned int capacity;
-+
-+		if (!i915->engine_uabi_class_count[i])
-+			continue;
-+
-+		t = DIV_ROUND_UP_ULL(t, 1000);
-+		class_usage[i] = DIV_ROUND_CLOSEST_ULL(class_usage[i], 1000);
-+		usage = DIV_ROUND_CLOSEST_ULL(class_usage[i] * 100ULL,
-+					      t *
-+					      i915->engine_uabi_class_count[i]);
-+		if (usage <= 95) {
-+			/* class not oversubsribed */
-+			if (client->throttle[i]) {
-+				client->throttle[i] = false;
-+printk("  UN-throttling class%u (phys=%lld%%)\n",
-+       i, usage);
-+			}
-+			continue;
-+		}
-+
-+		client_class_usage[i] =
-+			get_class_active_ns(client, i, &capacity);
-+
-+		if (client_class_usage[i] && !client->throttle[i]) {
-+			ret |= 1;
-+			client->throttle[i] = true;
-+			/*
-+			 * QQQ maybe apply "strength" of throttling based on
-+			 * usage/budget?
-+			 */
-+printk("  THROTTLING class%u (phys=%lld%% client=%lluus)\n",
-+       i, usage, client_class_usage[i] / 1000);
-+		}
-+	}
-+
-+	return ret;
-+}
- #endif
- 
- #ifdef CONFIG_PROC_FS
-diff --git a/drivers/gpu/drm/i915/i915_drm_client.h b/drivers/gpu/drm/i915/i915_drm_client.h
-index c8439eaa89be..1331cab7ad5e 100644
---- a/drivers/gpu/drm/i915/i915_drm_client.h
-+++ b/drivers/gpu/drm/i915/i915_drm_client.h
-@@ -15,6 +15,8 @@
- 
- #define I915_LAST_UABI_ENGINE_CLASS I915_ENGINE_CLASS_COMPUTE
- 
-+struct drm_file;
-+
- struct drm_i915_private;
- 
- struct i915_drm_clients {
-@@ -38,6 +40,13 @@ struct i915_drm_client {
- 	 * @past_runtime: Accumulation of pphwsp runtimes from closed contexts.
- 	 */
- 	atomic64_t past_runtime[I915_LAST_UABI_ENGINE_CLASS + 1];
-+
-+#ifdef CONFIG_CGROUP_DRM
-+	bool throttle[I915_LAST_UABI_ENGINE_CLASS + 1];
-+	unsigned int over_budget;
-+	u64 last;
-+	u64 class_last[I915_LAST_UABI_ENGINE_CLASS + 1];
-+#endif
- };
- 
- void i915_drm_clients_init(struct i915_drm_clients *clients,
-@@ -66,5 +75,7 @@ void i915_drm_client_fdinfo(struct seq_file *m, struct file *f);
- void i915_drm_clients_fini(struct i915_drm_clients *clients);
- 
- u64 i915_drm_cgroup_get_active_time_us(struct drm_file *file);
-+int i915_drm_cgroup_signal_budget(struct drm_file *file,
-+				  u64 usage, u64 budget);
- 
- #endif /* !__I915_DRM_CLIENT_H__ */
--- 
-2.34.1
+drm-misc-fixes for v6.1-rc5:
+- HDMI fixes to vc4.
+- Make panfrost's uapi header compile with C++.
+- Add rotation quirks for 2 panels.
+- Fix s/r in amdgpu_vram_mgr_new
+- Handle 1 gb boundary correctly in panfrost mmu code.
+The following changes since commit fc007fb815ab5395c3962c09b79a1630b0fbed9c:
+
+   drm/imx: imx-tve: Fix return type of imx_tve_connector_mode_valid 
+(2022-11-01 14:36:55 +0100)
+
+are available in the Git repository at:
+
+   git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2022-11-09
+
+for you to fetch changes up to f352262f727215553879705bacbcb208979f3eff:
+
+   drm/panfrost: Split io-pgtable requests properly (2022-11-09 14:17:39 
++0000)
+
+----------------------------------------------------------------
+drm-misc-fixes for v6.1-rc5:
+- HDMI fixes to vc4.
+- Make panfrost's uapi header compile with C++.
+- Add rotation quirks for 2 panels.
+- Fix s/r in amdgpu_vram_mgr_new
+- Handle 1 gb boundary correctly in panfrost mmu code.
+
+----------------------------------------------------------------
+Hans de Goede (2):
+       drm: panel-orientation-quirks: Add quirk for Nanote UMPC-01
+       drm: panel-orientation-quirks: Add quirk for Acer Switch V 10 
+(SW5-017)
+
+Ma Jun (1):
+       drm/amdgpu: Fix the lpfn checking condition in drm buddy
+
+Robin Murphy (1):
+       drm/panfrost: Split io-pgtable requests properly
+
+Steven Price (1):
+       drm/panfrost: Remove type name from internal struct again
+
+Yuan Can (1):
+       drm/vc4: Fix missing platform_unregister_drivers() call in 
+vc4_drm_register()
+
+maxime@cerno.tech (3):
+       drm/vc4: hdmi: Take our lock to reset the link
+       drm/vc4: hdmi: Fix outdated function name in comment
+       drm/vc4: hdmi: Fix HSM clock too low on Pi4
+
+  drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c   |  2 +-
+  drivers/gpu/drm/drm_panel_orientation_quirks.c | 12 +++++++
+  drivers/gpu/drm/panfrost/panfrost_mmu.c        | 11 +++++-
+  drivers/gpu/drm/vc4/vc4_drv.c                  |  7 +++-
+  drivers/gpu/drm/vc4/vc4_hdmi.c                 | 47 
+++++++++++++++++++++------
+  drivers/gpu/drm/vc4/vc4_hdmi.h                 |  1 +
+  include/uapi/drm/panfrost_drm.h                |  2 +-
+  7 files changed, 67 insertions(+), 15 deletions(-)
 
