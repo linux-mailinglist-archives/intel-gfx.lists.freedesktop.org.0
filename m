@@ -1,50 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2132622700
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Nov 2022 10:30:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B12CB6227B0
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Nov 2022 10:55:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38D7A10E035;
-	Wed,  9 Nov 2022 09:30:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9A9510E599;
+	Wed,  9 Nov 2022 09:55:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 539B910E035
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Nov 2022 09:30:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9784A10E541
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Nov 2022 09:55:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667986236; x=1699522236;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=0wEdOM6r+Gz1bhZDoyOFXvYzVCoJdtpGcvtbN1HQgnU=;
- b=Cc4bplWZR0PQHgCTksff31sv4HeClybbsaID94xopdfy5V5wG+OTjpbZ
- BlxnK6YRNGKUZI7mf+KuscwCEZSEppbttG2YX6c2ffX5eb8Rd/vbz3u0K
- M0+mlZJAV6H5qLYmOl95c4Gg6d1H+Getoy4iWnM4/nNXlWHo93xH+eRb3
- RpsZTWphWasv1kypSq7nDds1pYufw4om43nyZgSjKsWkoZslaVsj5w+l1
- wXiGeH3rmR242TSUfueaMnqkEOP9mfY9XZFKDBipio5LQWRXtwInL6nqq
- xI2aEwk4D6HD+rSNP3vddWh1XkrYEzjILdQuBG80dMeSNBsM7kMZuf3W/ w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10525"; a="291322250"
-X-IronPort-AV: E=Sophos;i="5.96,150,1665471600"; d="scan'208";a="291322250"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ t=1667987741; x=1699523741;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=RxGTMBdUDNYFFrgqt+uYsKwgCNx3/dzz4BiwPlKQgHQ=;
+ b=mluYUuVBKrfo5HBas/HQn6ghwNBHg9ayUdJrwE7KdkBc7ZWUjrfnM+xE
+ XBa7nSwhnDyExbWrqlTlAzyjGui5x4isb92pwoFBDGAinHYOuy1xYPUAa
+ nBY/fU9Q6Ukudbc6Rb+PKv7KTgSbMdDmadA0vJ587qGqboLTMqL+kykAA
+ 2uffz0JQHk/jKJZPAjds0EKNVWbagtyxmA+uPvyjd/979SvPw211RaPj0
+ bNVE9d3qmfy81HvXB/Jz15zLVNKOa/jZOFBzBMUZP+f+nEVm8Rnnw05qf
+ jeFwyEdHZsGMyJgDcukwqDT4ybbA/zmsp+Emzy1nnM/o85oa3kH+gMKBQ A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10525"; a="291326675"
+X-IronPort-AV: E=Sophos;i="5.96,150,1665471600"; d="scan'208";a="291326675"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2022 01:30:35 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10525"; a="725914216"
-X-IronPort-AV: E=Sophos;i="5.96,150,1665471600"; d="scan'208";a="725914216"
+ 09 Nov 2022 01:55:40 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10525"; a="631200812"
+X-IronPort-AV: E=Sophos;i="5.96,150,1665471600"; d="scan'208";a="631200812"
 Received: from skorobko-mobl2.ccr.corp.intel.com (HELO localhost)
  ([10.252.15.56])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2022 01:30:34 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ashutosh Dixit <ashutosh.dixit@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20221109022201.3205623-1-ashutosh.dixit@intel.com>
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2022 01:55:38 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Animesh Manna <animesh.manna@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20221108211822.28048-3-animesh.manna@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221109022201.3205623-1-ashutosh.dixit@intel.com>
-Date: Wed, 09 Nov 2022 11:30:32 +0200
-Message-ID: <8735as8og7.fsf@intel.com>
+References: <20221108211822.28048-1-animesh.manna@intel.com>
+ <20221108211822.28048-3-animesh.manna@intel.com>
+Date: Wed, 09 Nov 2022 11:55:36 +0200
+Message-ID: <87zgd078pz.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [CI 0/1] drm/i915/rps: Query min/max freq from FW
- when displaying in sysfs
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/edp: Fix warning as vdd went
+ down without driver knowledge
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,23 +63,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 08 Nov 2022, Ashutosh Dixit <ashutosh.dixit@intel.com> wrote:
-> CI ONLY, PLEASE DON'T REVIEW
+On Wed, 09 Nov 2022, Animesh Manna <animesh.manna@intel.com> wrote:
+> Kernel warning triggered as vdd went down after certain time during
+> aux transfer in connector init sequence. To solve the kernel
+> warning adjust power domain and vdd wakeref count.
+> Currently issue seen on ADL so add the above adjustment part of
+> ADL platform check, if needed will extend for future platform.
 
-This is what intel-gfx-trybot@lists.freedesktop.org is for?
+Do you understand where the original
+drm_WARN_ON(intel_dp->pps.vdd_wakeref) warning comes from and why?
+
+What is this one? What are you doing here? Do you have a backtrace of
+this when running patches 1&2?
 
 BR,
 Jani.
 
+>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Cc: Uma Shankar <uma.shankar@intel.com>
+> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_pps.c | 9 ++++++++-
+>  1 file changed, 8 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i=
+915/display/intel_pps.c
+> index 0975e49f8d03..1857bbcc6fd4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pps.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
+> @@ -587,8 +587,15 @@ bool intel_pps_vdd_on_unlocked(struct intel_dp *inte=
+l_dp)
+>  	cancel_delayed_work(&intel_dp->pps.panel_vdd_work);
+>  	intel_dp->pps.want_panel_vdd =3D true;
+>=20=20
+> -	if (edp_have_panel_vdd(intel_dp))
+> +	if (edp_have_panel_vdd(intel_dp)) {
+>  		return need_to_disable;
+> +	} else {
+> +		if ((IS_ALDERLAKE_S(dev_priv) || IS_ALDERLAKE_P(dev_priv)) &&
+> +		    intel_dp->pps.vdd_wakeref)
+> +			intel_display_power_put(dev_priv,
+> +						intel_aux_power_domain(dig_port),
+> +						fetch_and_zero(&intel_dp->pps.vdd_wakeref));
+> +	}
+>=20=20
+>  	drm_WARN_ON(&dev_priv->drm, intel_dp->pps.vdd_wakeref);
+>  	intel_dp->pps.vdd_wakeref =3D intel_display_power_get(dev_priv,
 
->
-> Test-with: 20221108215457.2494061-1-ashutosh.dixit@intel.com
->
-> Ashutosh Dixit (1):
->   drm/i915/rps: Query min/max freq from FW when displaying in sysfs
->
->  drivers/gpu/drm/i915/gt/intel_rps.c | 22 ++++++++++++++++------
->  1 file changed, 16 insertions(+), 6 deletions(-)
-
--- 
+--=20
 Jani Nikula, Intel Open Source Graphics Center
