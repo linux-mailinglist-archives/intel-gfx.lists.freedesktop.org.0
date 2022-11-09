@@ -1,52 +1,158 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 937A26228E1
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Nov 2022 11:46:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C796622918
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Nov 2022 11:52:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 971B510E077;
-	Wed,  9 Nov 2022 10:46:45 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03E9310E077;
- Wed,  9 Nov 2022 10:46:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 077D410E077;
+	Wed,  9 Nov 2022 10:52:41 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 428C810E548
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Nov 2022 10:52:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667990803; x=1699526803;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=6ZJQDM+Rzb1M/iMs5uxm95nv3R9+Vpd0/VToHbIWP1E=;
- b=hKsyu7Yp9O3a/jdvxBoOPi15EHlCtReawoyoq5AwsfBu2dQq167yz2tm
- 92+d2SvybRKgGsqCmGeW9MW5KSkMbCPsizvlTSjV86UuV8Gu8uHG1HLcy
- rb68NKWVrwuRsNWuIBvCQu9pg+RNO6qfyBV5layCIlKQsjPqezMjjiztS
- 2G9kROP0TweiEuIpmMpxSLhnkzP2U+8uRFvSW8PmdYLPnZzFFqQ2Wo1NB
- dAm69HVXFWHgtASpgmSL8g3UTO/JQqGk3DEbGTS4RMxjtrDtQYcfYM+1E
- Z/D9TN9upDJbq7XYiJ01zpXub3PuCh2zlXr//493mfRfUiNf+7C1VXmVW A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10525"; a="294320675"
-X-IronPort-AV: E=Sophos;i="5.96,150,1665471600"; d="scan'208";a="294320675"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2022 02:46:42 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10525"; a="669909211"
-X-IronPort-AV: E=Sophos;i="5.96,150,1665471600"; d="scan'208";a="669909211"
-Received: from smurnane-mobl.ger.corp.intel.com (HELO localhost.localdomain)
- ([10.213.196.238])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2022 02:46:40 -0800
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Date: Wed,  9 Nov 2022 10:46:33 +0000
-Message-Id: <20221109104633.2579245-1-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221108114950.2017869-1-tvrtko.ursulin@linux.intel.com>
-References: <20221108114950.2017869-1-tvrtko.ursulin@linux.intel.com>
+ t=1667991156; x=1699527156;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=ydWbHQXOYisILI5cw670tz7ZTuvoPDafk9msy0exgvU=;
+ b=lMjocvX7u/PDLaQWlMvzZdbbCBdrEzaroWvIiCEO9QV8KCeTgK36qqpb
+ xhhK1/B8H70oxkmlTB0gyYp8xyt5h+TqgZnRDUhdDgxo6nmKlnC/3rB17
+ paPG/KtgbNNFVvL4S8wQ++LTe0D0sQxNd7ZLlOAjgU3vE5xZ4XbkvsSCE
+ 73XSJGhXA/4FqeL0ReOORZ8ixqZrkyWgzr/jRs/Vviov55lKm2FTuj4wY
+ XM7oAmItaV+WK9pOj0xSN4m8uaMEgqqwcT8nKd5avoDf/EgVjLARX5MSg
+ bG39JUIt2qgaoN4yBAylIKTTvSdGUiQgVyGAZazAgNh1LFOSC3QWKSfd6 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10525"; a="375223832"
+X-IronPort-AV: E=Sophos;i="5.96,150,1665471600"; d="scan'208";a="375223832"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2022 02:52:34 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10525"; a="881887102"
+X-IronPort-AV: E=Sophos;i="5.96,150,1665471600"; d="scan'208";a="881887102"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmsmga006.fm.intel.com with ESMTP; 09 Nov 2022 02:52:34 -0800
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Wed, 9 Nov 2022 02:52:34 -0800
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Wed, 9 Nov 2022 02:52:33 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Wed, 9 Nov 2022 02:52:33 -0800
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.47) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2375.31; Wed, 9 Nov 2022 02:52:33 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CBc7uHOATv8/mdkT+iBU4XwnbfX52WfP1jwteuOul92G23Qi/mAiZaEzmTGDrIWFyPX45v3e2F5/Pkmd23ciaF8wVNYqEPPdENZYbeDEP4tTSjP+BaWDd7BRFWulevEn2snlqWvInDdBVfZRCfKy0rSnEmwIKr5xXy6F5JaNF82dSsrSgexEm2s2GURkZsapEr73nSBQ4K+GCS2UDtQFnvj/WhA4o42gkJAdH9UEOqLvu8jcqRJtDorouQuU7tafuInrG8hfr22dgeMkKMZ17VToHuhrC6WhmR74vaFiaeSWLNWhhn3OGbhdTlgI5p2r4+YpoPnpSnJ4HKY2XjAj1w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ydWbHQXOYisILI5cw670tz7ZTuvoPDafk9msy0exgvU=;
+ b=DNzc+DMTePwLg3M8h1DyYQcRQNERDykd8W7HxfW1ZlGn2T20YrYupkGLVGN74quPWVSrPl4ZGr5Htkl6zFObl0nzWiOI9NAxxtgUa6ZeeqP6HXmuuaKYLO9ITNpkzRNR2n62urbNnzL2XGK2NagOutKJjjr+atTl1/meD+v9NXvlaOhbn+TJamI5cRphzGfLOtmDyTMqwlVrrcSN1MomrcqSAIw1dUoCR6IcM8+jSA1hjR3Hma6U3c2oCoANgj4E/ONDPlVeNW1ZMHor2q41X0nN/ozpV4jkjIvTfaczCzw7Hcsbg1qrGTsU805Qx7awm6ToSIYDqqv+JSmxrpH+bQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from PH7PR11MB5981.namprd11.prod.outlook.com (2603:10b6:510:1e0::15)
+ by SA2PR11MB4844.namprd11.prod.outlook.com (2603:10b6:806:f9::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.12; Wed, 9 Nov
+ 2022 10:52:30 +0000
+Received: from PH7PR11MB5981.namprd11.prod.outlook.com
+ ([fe80::4b94:7187:5dcf:24b3]) by PH7PR11MB5981.namprd11.prod.outlook.com
+ ([fe80::4b94:7187:5dcf:24b3%9]) with mapi id 15.20.5791.027; Wed, 9 Nov 2022
+ 10:52:30 +0000
+From: "Manna, Animesh" <animesh.manna@intel.com>
+To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH 3/3] drm/i915/edp: Fix warning as vdd went down without
+ driver knowledge
+Thread-Index: AQHY87hV9cvlqvUd6kidzJ4HSOGSma42W2MAgAAMUlA=
+Date: Wed, 9 Nov 2022 10:52:30 +0000
+Message-ID: <PH7PR11MB59814A450A6381BB01C3165CF93E9@PH7PR11MB5981.namprd11.prod.outlook.com>
+References: <20221108211822.28048-1-animesh.manna@intel.com>
+ <20221108211822.28048-3-animesh.manna@intel.com> <87zgd078pz.fsf@intel.com>
+In-Reply-To: <87zgd078pz.fsf@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.6.500.17
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH7PR11MB5981:EE_|SA2PR11MB4844:EE_
+x-ms-office365-filtering-correlation-id: bf84f7da-69df-4e9a-dfaf-08dac2408014
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: sHwA7KuCvhZ9CGzf+O+1rGHT/1mfP0/4Jeomx523taOakci/dLkX8vv8lRkIuGyhpnMFTKIi1+78g9eHlUe9sLh+NeS7/Ve3dNZXJkfRSbrPxdIE+xuQvS0DT7f2bAM3t3rgS35MGAS/L+cfp/pEZ7lIP+uUOAJdxONeFAB5KgLwJGHOLx8KgNyJcvFrIgiQgTUqW25HlHMlpojydPo3Nv16t5lN74f58aMpjSq3aK9kjUbAuM/edvy96hxy1wY8eIvZcwhCN4z3n+o68Oks0OIApBVstHE+s+0ML/DhIjtvUTxnPko/V1Cf2dSwv9P/2YvpYLGY6TiM6qpYfZL6cNjNgxVPFRkKhWM+0bji+mRT7oBnxM6aeWZIsmNMXWs8tKPvwuAI9aGmvggJJiqSeSrCsw2wI7aqpT9DHiY15W8rt3Evf99qcdlrygs3Jwm0bV5SXFMNmW/c0vS9KCBv9t67krPasog9ksoRK8y3sajHLyrrMsC5m+DU2ly+rwUy/laul7kUM+JvuiyDV9qbG2kJgJf5tzz0tFlJKQdvrpMvV62z4/KW6ftHJeUtj+2KH+kUnjndVRg+gHU+/W/FX+4ehjyFaG1C13yDHx/fGlRQuzB+PJ+zO/0UKJOAC1XZT2kNycTOhA/csboFk02VoV6NK3s7pNhR01YeDWy7D+R9VV1OA/5NfxFOSJAJHGCa7maxCMqkq9fNkQzcUZ9YrxzMRbmRDO8C+EMHQLhvhGpmIav5bzTDAMhyxXuuGwR5wLPjVlPyoUfIsjI5pDGkv5K2B07TtVjnLouMx1lM1qA=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB5981.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(346002)(376002)(136003)(366004)(396003)(39860400002)(451199015)(966005)(71200400001)(478600001)(110136005)(38070700005)(54906003)(6506007)(316002)(33656002)(7696005)(55236004)(53546011)(82960400001)(66556008)(76116006)(4326008)(66476007)(66446008)(26005)(41300700001)(86362001)(9686003)(8676002)(38100700002)(122000001)(64756008)(52536014)(8936002)(186003)(5660300002)(66946007)(2906002)(66574015)(55016003)(83380400001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?WGRvOEkxcGVlNysvTHFqZ1haRFFsUi81WE5BNkd1eHkzOUpVRmFab0pDbVNY?=
+ =?utf-8?B?cG5lOUw0ZURiQU9qVXdMcTRMTWhDUW55Y2RZS2dGaEg1RFRsUlc2OVdWQ3JW?=
+ =?utf-8?B?V245Skg5L3EzTFRlOHRUOGZKeUpYOE1BN3RwZ0pnYnpzWCtjTkhCYzg4Mnkv?=
+ =?utf-8?B?dzhPQjd6SUprL1UrZGkwM25yQlM2TEY3TFEycXFvQjg5ci9oU1gxdkNObmxE?=
+ =?utf-8?B?S1ZWalR5bVZRVG03Vm9qWndLRXhOS1B6SmtjNjFiQnVwaEh4NUxuOGtOeWg0?=
+ =?utf-8?B?cm85cHU3YngyQjFDYnFKMHZZWEZyQktrTDRRS2xoZUxvcTVxZzQ4bEVlZHlO?=
+ =?utf-8?B?S2VmLzFCR0pHOXlNSFRqTXdNSDd4Ry90dzZEVlp6dGo1dGJQbnJWYTJTd2pk?=
+ =?utf-8?B?bzBxeHU1bitJNXBDRk9Gc2k1bjNZT3UyaldodWlvaG5Vc3JsdERCZHNPNnlS?=
+ =?utf-8?B?ekw3NTlML1g2YlhvcU1xR0k1Uy9QamJtbm82eDlCNWlqa3ZESWozVlNKeERj?=
+ =?utf-8?B?WlpNdnIrMTJpbXhCa1pwUDZIMHF4SzJtM3lIY3N5TjFaK3drR1BaQXgxc1hh?=
+ =?utf-8?B?bmY0R0FOTWRMQWIxK2ZSaXZ6YjFXY1lCN0dwWWl4UWpjMGlwWmdzUWdJNVhO?=
+ =?utf-8?B?LzcrWEtqenhEL2NQckgwc3M2bDdsWGRsNkpyK3BGSmQ2WktJU1FHOEttR1hQ?=
+ =?utf-8?B?UEZ5MEdBWVdUNmZsZEFvYmkxUHgwTFdIMXZzQVZNSExuWmQvZGh1STRhM0wy?=
+ =?utf-8?B?Zys2SFY3bDlhY1ZsaHZpeGxIOFlSaFNCSVNUS1c2R0srR1RCYmswN3VOZ2hw?=
+ =?utf-8?B?Q083SjBBQXA1VVpsQ1RVelVmOGxFaityclA0Y0dWOWJ2SkVsYW83UlV1bFRU?=
+ =?utf-8?B?ajJMS2t2TG5IcEFvZUZTZUlGYWdGNlZjM1JESHB0REVNZ0lLdGdtMjFob2Iv?=
+ =?utf-8?B?YWpnM1I2ZWhWZEdmK0FpT1N2NUh2eVBQaWxaa2VTR2V0SmJUQklVbDB5ZDBh?=
+ =?utf-8?B?eUJUZlNHWExxM2EvdlYxV2Y4WUllR0puYTNpcFhtTEJUQ2g1eUdTeFdGL3pW?=
+ =?utf-8?B?MkJSOTU3YnRlckIyZnViczdCQjdvMlpDTzd6Y2ZIT1J5bFBCbUo5MDlZREVn?=
+ =?utf-8?B?VkZkYVcvZDQ3d3Z2VXNNS3lrZkFrUWJDRzhkMFgzeEZCeEUvb2hkWHd5UGNh?=
+ =?utf-8?B?cHBXaUJtYzBpeXF1SkRJMUJ6RmNYbzVVYzM2ajcrZ2d6M0JqeFRUS2ZFUTU2?=
+ =?utf-8?B?dFl5NGw5aXhGaXZFTmVIUWFpNm9EbkFZbzlIbGlzcll5MHFTK0JtcGt0Nm82?=
+ =?utf-8?B?dmwvNG5PYmtZWi9rUjVERmtBQSt2OExzV205NXF6Y0xXTzgwZE4wd3oyY2Vq?=
+ =?utf-8?B?U2NIS1FkV29MNjdodDM2Y3FEVnJ5aTZvbzJzT1lPWkVhUFpvTVA4emtzVFZP?=
+ =?utf-8?B?WkE2OW9LbHhEQnRnOS8wNGVwbHF2bWttSDYrSEhwNy9uQ29VRXBKOVhqTVVx?=
+ =?utf-8?B?Y3E5bjlDWXl6ZzVlYXdMWmpNNVI0SGZTRVBzc29rblJoSlJSR29QWCtSNDh4?=
+ =?utf-8?B?UEhYS1RaY0dkV3UwRXI3WkRTK0lpWGNCMXQvY2ZCSzNKaVlRQUFlQ1Q4Ujlm?=
+ =?utf-8?B?U0JlRDIvdk16L0lXMkRFMkdCYzdQbm5MMzVlMU9kSUdrMWIxR2VDZG9VcGNu?=
+ =?utf-8?B?a3pGeEZYMlA5RzdKWmpvbWNZZnZnSDFrN3cvVDJYdG5BdEpsOWptaWxSVS9l?=
+ =?utf-8?B?T1dYMVM4Ny9NSlVrNFFjcW9DYllMOTdlOVRuZ0QrbDFJWGd5T1YxTGsyTThm?=
+ =?utf-8?B?RjFBYjdjNmZjMEhEOXk1Z2VHZDBaUmJxaVF4WU5JY1lwOUdLSUREUC9FNlQw?=
+ =?utf-8?B?OHErbjg3QUt0eWliRzc4cHAvVHNVWWd3MjVIRWRIRlNMQkpiZ25Zd21IL1Rm?=
+ =?utf-8?B?S0g2Y0FJSDcxT1BXUDgwSG4xZHBTWGIxWTgvUVM5ME1UZkxHQ2c4cHJiVE1n?=
+ =?utf-8?B?eTFEbG1qdkJnemVjaFlDNU5rTHNZT0JCK1dud1BFNXo4U2RTMW1YZ216UVI4?=
+ =?utf-8?B?d0tFWmFiVi81Qzl0MENWSGV6TEdOaHFkTzRxeUJwbUU3bm9PNTdRNlMyaHZu?=
+ =?utf-8?Q?qHreynQRQLEx1wXnatXN1Hk7g?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3] drm/i915: Partial abandonment of legacy DRM
- logging macros
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB5981.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bf84f7da-69df-4e9a-dfaf-08dac2408014
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Nov 2022 10:52:30.8268 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: X4/q11Ploq0WMmUVSpYsiSLDS2RBuzd67NqileMqcjZQF7+BU9LWODvpcEA5DwhzZlKvHfHx2Bs1yTGKhTfRTw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4844
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/edp: Fix warning as vdd went
+ down without driver knowledge
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,719 +165,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org,
- Andrzej Hajda <andrzej.hajda@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-Convert some usages of legacy DRM logging macros into versions which tell
-us on which device have the events occurred.
-
-v2:
- * Don't have struct drm_device as local. (Jani, Ville)
-
-v3:
- * Store gt, not i915, in workaround list. (John)
-
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com> # v2
-Acked-by: Jani Nikula <jani.nikula@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_context.c   |  2 +-
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 26 ++++++++----
- .../drm/i915/gt/intel_execlists_submission.c  | 13 +++---
- drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c  |  4 +-
- drivers/gpu/drm/i915/gt/intel_gt.c            |  4 +-
- drivers/gpu/drm/i915/gt/intel_gt_irq.c        |  8 ++--
- drivers/gpu/drm/i915/gt/intel_rps.c           |  6 ++-
- drivers/gpu/drm/i915/gt/intel_workarounds.c   | 42 +++++++++++--------
- .../gpu/drm/i915/gt/intel_workarounds_types.h |  3 ++
- .../gpu/drm/i915/gt/selftest_workarounds.c    |  4 +-
- drivers/gpu/drm/i915/i915_debugfs.c           |  4 +-
- drivers/gpu/drm/i915/i915_gem.c               |  2 +-
- drivers/gpu/drm/i915/i915_getparam.c          |  2 +-
- drivers/gpu/drm/i915/i915_irq.c               | 12 +++---
- drivers/gpu/drm/i915/i915_perf.c              | 14 ++++---
- drivers/gpu/drm/i915/i915_query.c             | 12 +++---
- drivers/gpu/drm/i915/i915_sysfs.c             |  3 +-
- drivers/gpu/drm/i915/i915_vma.c               | 16 +++----
- drivers/gpu/drm/i915/intel_uncore.c           | 21 ++++++----
- 19 files changed, 117 insertions(+), 81 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index 01402f3c58f6..7f2831efc798 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -546,7 +546,7 @@ set_proto_ctx_engines_bond(struct i915_user_extension __user *base, void *data)
- 	}
- 
- 	if (intel_engine_uses_guc(master)) {
--		DRM_DEBUG("bonding extension not supported with GuC submission");
-+		drm_dbg(&i915->drm, "bonding extension not supported with GuC submission");
- 		return -ENODEV;
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 280ed90d5001..692b9d03d84b 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -2149,7 +2149,8 @@ static int eb_move_to_gpu(struct i915_execbuffer *eb)
- 	return err;
- }
- 
--static int i915_gem_check_execbuffer(struct drm_i915_gem_execbuffer2 *exec)
-+static int i915_gem_check_execbuffer(struct drm_i915_private *i915,
-+				     struct drm_i915_gem_execbuffer2 *exec)
- {
- 	if (exec->flags & __I915_EXEC_ILLEGAL_FLAGS)
- 		return -EINVAL;
-@@ -2162,7 +2163,7 @@ static int i915_gem_check_execbuffer(struct drm_i915_gem_execbuffer2 *exec)
- 	}
- 
- 	if (exec->DR4 == 0xffffffff) {
--		DRM_DEBUG("UXA submitting garbage DR4, fixing up\n");
-+		drm_dbg(&i915->drm, "UXA submitting garbage DR4, fixing up\n");
- 		exec->DR4 = 0;
- 	}
- 	if (exec->DR1 || exec->DR4)
-@@ -2800,7 +2801,8 @@ add_timeline_fence_array(struct i915_execbuffer *eb,
- 
- 		syncobj = drm_syncobj_find(eb->file, user_fence.handle);
- 		if (!syncobj) {
--			DRM_DEBUG("Invalid syncobj handle provided\n");
-+			drm_dbg(&eb->i915->drm,
-+				"Invalid syncobj handle provided\n");
- 			return -ENOENT;
- 		}
- 
-@@ -2808,7 +2810,8 @@ add_timeline_fence_array(struct i915_execbuffer *eb,
- 
- 		if (!fence && user_fence.flags &&
- 		    !(user_fence.flags & I915_EXEC_FENCE_SIGNAL)) {
--			DRM_DEBUG("Syncobj handle has no fence\n");
-+			drm_dbg(&eb->i915->drm,
-+				"Syncobj handle has no fence\n");
- 			drm_syncobj_put(syncobj);
- 			return -EINVAL;
- 		}
-@@ -2817,7 +2820,9 @@ add_timeline_fence_array(struct i915_execbuffer *eb,
- 			err = dma_fence_chain_find_seqno(&fence, point);
- 
- 		if (err && !(user_fence.flags & I915_EXEC_FENCE_SIGNAL)) {
--			DRM_DEBUG("Syncobj handle missing requested point %llu\n", point);
-+			drm_dbg(&eb->i915->drm,
-+				"Syncobj handle missing requested point %llu\n",
-+				point);
- 			dma_fence_put(fence);
- 			drm_syncobj_put(syncobj);
- 			return err;
-@@ -2843,7 +2848,8 @@ add_timeline_fence_array(struct i915_execbuffer *eb,
- 			 * 0) would break the timeline.
- 			 */
- 			if (user_fence.flags & I915_EXEC_FENCE_WAIT) {
--				DRM_DEBUG("Trying to wait & signal the same timeline point.\n");
-+				drm_dbg(&eb->i915->drm,
-+					"Trying to wait & signal the same timeline point.\n");
- 				dma_fence_put(fence);
- 				drm_syncobj_put(syncobj);
- 				return -EINVAL;
-@@ -2914,14 +2920,16 @@ static int add_fence_array(struct i915_execbuffer *eb)
- 
- 		syncobj = drm_syncobj_find(eb->file, user_fence.handle);
- 		if (!syncobj) {
--			DRM_DEBUG("Invalid syncobj handle provided\n");
-+			drm_dbg(&eb->i915->drm,
-+				"Invalid syncobj handle provided\n");
- 			return -ENOENT;
- 		}
- 
- 		if (user_fence.flags & I915_EXEC_FENCE_WAIT) {
- 			fence = drm_syncobj_fence_get(syncobj);
- 			if (!fence) {
--				DRM_DEBUG("Syncobj handle has no fence\n");
-+				drm_dbg(&eb->i915->drm,
-+					"Syncobj handle has no fence\n");
- 				drm_syncobj_put(syncobj);
- 				return -EINVAL;
- 			}
-@@ -3550,7 +3558,7 @@ i915_gem_execbuffer2_ioctl(struct drm_device *dev, void *data,
- 		return -EINVAL;
- 	}
- 
--	err = i915_gem_check_execbuffer(args);
-+	err = i915_gem_check_execbuffer(i915, args);
- 	if (err)
- 		return err;
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-index 0187bc72310d..d92512780467 100644
---- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-@@ -3921,6 +3921,7 @@ static struct intel_context *
- execlists_create_virtual(struct intel_engine_cs **siblings, unsigned int count,
- 			 unsigned long flags)
- {
-+	struct drm_i915_private *i915 = siblings[0]->i915;
- 	struct virtual_engine *ve;
- 	unsigned int n;
- 	int err;
-@@ -3929,7 +3930,7 @@ execlists_create_virtual(struct intel_engine_cs **siblings, unsigned int count,
- 	if (!ve)
- 		return ERR_PTR(-ENOMEM);
- 
--	ve->base.i915 = siblings[0]->i915;
-+	ve->base.i915 = i915;
- 	ve->base.gt = siblings[0]->gt;
- 	ve->base.uncore = siblings[0]->uncore;
- 	ve->base.id = -1;
-@@ -3988,8 +3989,9 @@ execlists_create_virtual(struct intel_engine_cs **siblings, unsigned int count,
- 
- 		GEM_BUG_ON(!is_power_of_2(sibling->mask));
- 		if (sibling->mask & ve->base.mask) {
--			DRM_DEBUG("duplicate %s entry in load balancer\n",
--				  sibling->name);
-+			drm_dbg(&i915->drm,
-+				"duplicate %s entry in load balancer\n",
-+				sibling->name);
- 			err = -EINVAL;
- 			goto err_put;
- 		}
-@@ -4023,8 +4025,9 @@ execlists_create_virtual(struct intel_engine_cs **siblings, unsigned int count,
- 		 */
- 		if (ve->base.class != OTHER_CLASS) {
- 			if (ve->base.class != sibling->class) {
--				DRM_DEBUG("invalid mixing of engine class, sibling %d, already %d\n",
--					  sibling->class, ve->base.class);
-+				drm_dbg(&i915->drm,
-+					"invalid mixing of engine class, sibling %d, already %d\n",
-+					sibling->class, ve->base.class);
- 				err = -EINVAL;
- 				goto err_put;
- 			}
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
-index ea775e601686..995082d45cb2 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
-@@ -816,8 +816,8 @@ i915_gem_object_save_bit_17_swizzle(struct drm_i915_gem_object *obj,
- 	if (obj->bit_17 == NULL) {
- 		obj->bit_17 = bitmap_zalloc(page_count, GFP_KERNEL);
- 		if (obj->bit_17 == NULL) {
--			DRM_ERROR("Failed to allocate memory for bit 17 "
--				  "record\n");
-+			drm_err(&to_i915(obj->base.dev)->drm,
-+				"Failed to allocate memory for bit 17 record\n");
- 			return;
- 		}
- 	}
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index 8e914c4066ed..0ba7d6f36b28 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -190,7 +190,7 @@ int intel_gt_init_hw(struct intel_gt *gt)
- 
- 	ret = i915_ppgtt_init_hw(gt);
- 	if (ret) {
--		DRM_ERROR("Enabling PPGTT failed (%d)\n", ret);
-+		drm_err(&i915->drm, "Enabling PPGTT failed (%d)\n", ret);
- 		goto out;
- 	}
- 
-@@ -262,7 +262,7 @@ intel_gt_clear_error_registers(struct intel_gt *gt,
- 		 * some errors might have become stuck,
- 		 * mask them.
- 		 */
--		DRM_DEBUG_DRIVER("EIR stuck: 0x%08x, masking\n", eir);
-+		drm_dbg(&gt->i915->drm, "EIR stuck: 0x%08x, masking\n", eir);
- 		rmw_set(uncore, EMR, eir);
- 		intel_uncore_write(uncore, GEN2_IIR,
- 				   I915_MASTER_ERROR_INTERRUPT);
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-index b197f0e9794f..4c8ddd074b78 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-@@ -44,8 +44,9 @@ gen11_gt_engine_identity(struct intel_gt *gt,
- 		 !time_after32(local_clock() >> 10, timeout_ts));
- 
- 	if (unlikely(!(ident & GEN11_INTR_DATA_VALID))) {
--		DRM_ERROR("INTR_IDENTITY_REG%u:%u 0x%08x not valid!\n",
--			  bank, bit, ident);
-+		drm_err(&gt->i915->drm,
-+			"INTR_IDENTITY_REG%u:%u 0x%08x not valid!\n",
-+			bank, bit, ident);
- 		return 0;
- 	}
- 
-@@ -364,7 +365,8 @@ void gen6_gt_irq_handler(struct intel_gt *gt, u32 gt_iir)
- 	if (gt_iir & (GT_BLT_CS_ERROR_INTERRUPT |
- 		      GT_BSD_CS_ERROR_INTERRUPT |
- 		      GT_CS_MASTER_ERROR_INTERRUPT))
--		DRM_DEBUG("Command parser error, gt_iir 0x%08x\n", gt_iir);
-+		drm_dbg(&gt->i915->drm, "Command parser error, gt_iir 0x%08x\n",
-+			gt_iir);
- 
- 	if (gt_iir & GT_PARITY_ERROR(gt->i915))
- 		gen7_parity_error_irq_handler(gt, gt_iir);
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-index 6c34a83c24b3..effe60ac22cd 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -430,7 +430,8 @@ static int __gen5_rps_set(struct intel_rps *rps, u8 val)
- 
- 	rgvswctl = intel_uncore_read16(uncore, MEMSWCTL);
- 	if (rgvswctl & MEMCTL_CMD_STS) {
--		DRM_DEBUG("gpu busy, RCS change rejected\n");
-+		drm_dbg(&rps_to_i915(rps)->drm,
-+			"gpu busy, RCS change rejected\n");
- 		return -EBUSY; /* still busy with another command */
- 	}
- 
-@@ -1953,7 +1954,8 @@ void gen6_rps_irq_handler(struct intel_rps *rps, u32 pm_iir)
- 		intel_engine_cs_irq(gt->engine[VECS0], pm_iir >> 10);
- 
- 	if (pm_iir & PM_VEBOX_CS_ERROR_INTERRUPT)
--		DRM_DEBUG("Command parser error, pm_iir 0x%08x\n", pm_iir);
-+		drm_dbg(&rps_to_i915(rps)->drm,
-+			"Command parser error, pm_iir 0x%08x\n", pm_iir);
- }
- 
- void gen5_rps_irq_handler(struct intel_rps *rps)
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 3cdf5c24dbc5..07bf115029a0 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -55,8 +55,10 @@
-  * - Public functions to init or apply the given workaround type.
-  */
- 
--static void wa_init_start(struct i915_wa_list *wal, const char *name, const char *engine_name)
-+static void wa_init_start(struct i915_wa_list *wal, struct intel_gt *gt,
-+			  const char *name, const char *engine_name)
- {
-+	wal->gt = gt;
- 	wal->name = name;
- 	wal->engine_name = engine_name;
- }
-@@ -80,13 +82,14 @@ static void wa_init_finish(struct i915_wa_list *wal)
- 	if (!wal->count)
- 		return;
- 
--	DRM_DEBUG_DRIVER("Initialized %u %s workarounds on %s\n",
--			 wal->wa_count, wal->name, wal->engine_name);
-+	drm_dbg(&wal->gt->i915->drm, "Initialized %u %s workarounds on %s\n",
-+		wal->wa_count, wal->name, wal->engine_name);
- }
- 
- static void _wa_add(struct i915_wa_list *wal, const struct i915_wa *wa)
- {
- 	unsigned int addr = i915_mmio_reg_offset(wa->reg);
-+	struct drm_i915_private *i915 = wal->gt->i915;
- 	unsigned int start = 0, end = wal->count;
- 	const unsigned int grow = WA_LIST_CHUNK;
- 	struct i915_wa *wa_;
-@@ -99,7 +102,7 @@ static void _wa_add(struct i915_wa_list *wal, const struct i915_wa *wa)
- 		list = kmalloc_array(ALIGN(wal->count + 1, grow), sizeof(*wa),
- 				     GFP_KERNEL);
- 		if (!list) {
--			DRM_ERROR("No space for workaround init!\n");
-+			drm_err(&i915->drm, "No space for workaround init!\n");
- 			return;
- 		}
- 
-@@ -122,9 +125,10 @@ static void _wa_add(struct i915_wa_list *wal, const struct i915_wa *wa)
- 			wa_ = &wal->list[mid];
- 
- 			if ((wa->clr | wa_->clr) && !(wa->clr & ~wa_->clr)) {
--				DRM_ERROR("Discarding overwritten w/a for reg %04x (clear: %08x, set: %08x)\n",
--					  i915_mmio_reg_offset(wa_->reg),
--					  wa_->clr, wa_->set);
-+				drm_err(&i915->drm,
-+					"Discarding overwritten w/a for reg %04x (clear: %08x, set: %08x)\n",
-+					i915_mmio_reg_offset(wa_->reg),
-+					wa_->clr, wa_->set);
- 
- 				wa_->set &= ~wa->clr;
- 			}
-@@ -826,7 +830,7 @@ __intel_engine_init_ctx_wa(struct intel_engine_cs *engine,
- {
- 	struct drm_i915_private *i915 = engine->i915;
- 
--	wa_init_start(wal, name, engine->name);
-+	wa_init_start(wal, engine->gt, name, engine->name);
- 
- 	/* Applies to all engines */
- 	/*
-@@ -1676,7 +1680,7 @@ void intel_gt_init_workarounds(struct intel_gt *gt)
- {
- 	struct i915_wa_list *wal = &gt->wa_list;
- 
--	wa_init_start(wal, "GT", "global");
-+	wa_init_start(wal, gt, "GT", "global");
- 	gt_init_workarounds(gt, wal);
- 	wa_init_finish(wal);
- }
-@@ -1698,12 +1702,14 @@ wal_get_fw_for_rmw(struct intel_uncore *uncore, const struct i915_wa_list *wal)
- }
- 
- static bool
--wa_verify(const struct i915_wa *wa, u32 cur, const char *name, const char *from)
-+wa_verify(struct intel_gt *gt, const struct i915_wa *wa, u32 cur,
-+	  const char *name, const char *from)
- {
- 	if ((cur ^ wa->set) & wa->read) {
--		DRM_ERROR("%s workaround lost on %s! (reg[%x]=0x%x, relevant bits were 0x%x vs expected 0x%x)\n",
--			  name, from, i915_mmio_reg_offset(wa->reg),
--			  cur, cur & wa->read, wa->set & wa->read);
-+		drm_err(&gt->i915->drm,
-+			"%s workaround lost on %s! (reg[%x]=0x%x, relevant bits were 0x%x vs expected 0x%x)\n",
-+			name, from, i915_mmio_reg_offset(wa->reg),
-+			cur, cur & wa->read, wa->set & wa->read);
- 
- 		return false;
- 	}
-@@ -1749,7 +1755,7 @@ wa_list_apply(struct intel_gt *gt, const struct i915_wa_list *wal)
- 				intel_gt_mcr_read_any_fw(gt, wa->mcr_reg) :
- 				intel_uncore_read_fw(uncore, wa->reg);
- 
--			wa_verify(wa, val, wal->name, "application");
-+			wa_verify(wal->gt, wa, val, wal->name, "application");
- 		}
- 	}
- 
-@@ -1779,7 +1785,7 @@ static bool wa_list_verify(struct intel_gt *gt,
- 	intel_uncore_forcewake_get__locked(uncore, fw);
- 
- 	for (i = 0, wa = wal->list; i < wal->count; i++, wa++)
--		ok &= wa_verify(wa, wa->is_mcr ?
-+		ok &= wa_verify(wal->gt, wa, wa->is_mcr ?
- 				intel_gt_mcr_read_any_fw(gt, wa->mcr_reg) :
- 				intel_uncore_read_fw(uncore, wa->reg),
- 				wal->name, from);
-@@ -2127,7 +2133,7 @@ void intel_engine_init_whitelist(struct intel_engine_cs *engine)
- 	struct drm_i915_private *i915 = engine->i915;
- 	struct i915_wa_list *w = &engine->whitelist;
- 
--	wa_init_start(w, "whitelist", engine->name);
-+	wa_init_start(w, engine->gt, "whitelist", engine->name);
- 
- 	if (IS_PONTEVECCHIO(i915))
- 		pvc_whitelist_build(engine);
-@@ -3012,7 +3018,7 @@ void intel_engine_init_workarounds(struct intel_engine_cs *engine)
- 	if (GRAPHICS_VER(engine->i915) < 4)
- 		return;
- 
--	wa_init_start(wal, "engine", engine->name);
-+	wa_init_start(wal, engine->gt, "engine", engine->name);
- 	engine_init_workarounds(engine, wal);
- 	wa_init_finish(wal);
- }
-@@ -3193,7 +3199,7 @@ static int engine_wa_list_verify(struct intel_context *ce,
- 		if (mcr_range(rq->engine->i915, i915_mmio_reg_offset(wa->reg)))
- 			continue;
- 
--		if (!wa_verify(wa, results[i], wal->name, from))
-+		if (!wa_verify(wal->gt, wa, results[i], wal->name, from))
- 			err = -ENXIO;
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds_types.h b/drivers/gpu/drm/i915/gt/intel_workarounds_types.h
-index 7c8b01d00043..e14188120e66 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds_types.h
-@@ -10,6 +10,8 @@
- 
- #include "i915_reg_defs.h"
- 
-+struct intel_gt;
-+
- struct i915_wa {
- 	union {
- 		i915_reg_t	reg;
-@@ -24,6 +26,7 @@ struct i915_wa {
- };
- 
- struct i915_wa_list {
-+	struct intel_gt	*gt;
- 	const char	*name;
- 	const char	*engine_name;
- 	struct i915_wa	*list;
-diff --git a/drivers/gpu/drm/i915/gt/selftest_workarounds.c b/drivers/gpu/drm/i915/gt/selftest_workarounds.c
-index 21b1edc052f8..711014bb53d9 100644
---- a/drivers/gpu/drm/i915/gt/selftest_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_workarounds.c
-@@ -66,14 +66,14 @@ reference_lists_init(struct intel_gt *gt, struct wa_lists *lists)
- 
- 	memset(lists, 0, sizeof(*lists));
- 
--	wa_init_start(&lists->gt_wa_list, "GT_REF", "global");
-+	wa_init_start(&lists->gt_wa_list, gt, "GT_REF", "global");
- 	gt_init_workarounds(gt, &lists->gt_wa_list);
- 	wa_init_finish(&lists->gt_wa_list);
- 
- 	for_each_engine(engine, gt, id) {
- 		struct i915_wa_list *wal = &lists->engine[id].wa_list;
- 
--		wa_init_start(wal, "REF", engine->name);
-+		wa_init_start(wal, gt, "REF", engine->name);
- 		engine_init_workarounds(engine, wal);
- 		wa_init_finish(wal);
- 
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index ae987e92251d..6c7ac73b69a5 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -688,8 +688,8 @@ i915_drop_caches_set(void *data, u64 val)
- 	unsigned int flags;
- 	int ret;
- 
--	DRM_DEBUG("Dropping caches: 0x%08llx [0x%08llx]\n",
--		  val, val & DROP_ALL);
-+	drm_dbg(&i915->drm, "Dropping caches: 0x%08llx [0x%08llx]\n",
-+		val, val & DROP_ALL);
- 
- 	ret = gt_drop_caches(to_gt(i915), val);
- 	if (ret)
-diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-index 299f94a9fb87..8132743ca87e 100644
---- a/drivers/gpu/drm/i915/i915_gem.c
-+++ b/drivers/gpu/drm/i915/i915_gem.c
-@@ -1286,7 +1286,7 @@ int i915_gem_open(struct drm_i915_private *i915, struct drm_file *file)
- 	struct i915_drm_client *client;
- 	int ret = -ENOMEM;
- 
--	DRM_DEBUG("\n");
-+	drm_dbg(&i915->drm, "\n");
- 
- 	file_priv = kzalloc(sizeof(*file_priv), GFP_KERNEL);
- 	if (!file_priv)
-diff --git a/drivers/gpu/drm/i915/i915_getparam.c b/drivers/gpu/drm/i915/i915_getparam.c
-index 3047e80e1163..61ef2d9cfa62 100644
---- a/drivers/gpu/drm/i915/i915_getparam.c
-+++ b/drivers/gpu/drm/i915/i915_getparam.c
-@@ -179,7 +179,7 @@ int i915_getparam_ioctl(struct drm_device *dev, void *data,
- 		value = i915_perf_oa_timestamp_frequency(i915);
- 		break;
- 	default:
--		DRM_DEBUG("Unknown parameter %d\n", param->param);
-+		drm_dbg(&i915->drm, "Unknown parameter %d\n", param->param);
- 		return -EINVAL;
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index b0180ea38de0..6c20817f8967 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -1086,8 +1086,9 @@ static void ivb_parity_work(struct work_struct *work)
- 		kobject_uevent_env(&dev_priv->drm.primary->kdev->kobj,
- 				   KOBJ_CHANGE, parity_event);
- 
--		DRM_DEBUG("Parity error: Slice = %d, Row = %d, Bank = %d, Sub bank = %d.\n",
--			  slice, row, bank, subbank);
-+		drm_dbg(&dev_priv->drm,
-+			"Parity error: Slice = %d, Row = %d, Bank = %d, Sub bank = %d.\n",
-+			slice, row, bank, subbank);
- 
- 		kfree(parity_event[4]);
- 		kfree(parity_event[3]);
-@@ -2774,7 +2775,8 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
- 		master_ctl = raw_reg_read(regs, GEN11_GFX_MSTR_IRQ);
- 		raw_reg_write(regs, GEN11_GFX_MSTR_IRQ, master_ctl);
- 	} else {
--		DRM_ERROR("Tile not supported: 0x%08x\n", master_tile_ctl);
-+		drm_err(&i915->drm, "Tile not supported: 0x%08x\n",
-+			master_tile_ctl);
- 		dg1_master_intr_enable(regs);
- 		return IRQ_NONE;
- 	}
-@@ -3940,7 +3942,7 @@ static void i8xx_error_irq_ack(struct drm_i915_private *i915,
- static void i8xx_error_irq_handler(struct drm_i915_private *dev_priv,
- 				   u16 eir, u16 eir_stuck)
- {
--	DRM_DEBUG("Master Error: EIR 0x%04x\n", eir);
-+	drm_dbg(&dev_priv->drm, "Master Error: EIR 0x%04x\n", eir);
- 
- 	if (eir_stuck)
- 		drm_dbg(&dev_priv->drm, "EIR stuck: 0x%04x, masked\n",
-@@ -3975,7 +3977,7 @@ static void i9xx_error_irq_ack(struct drm_i915_private *dev_priv,
- static void i9xx_error_irq_handler(struct drm_i915_private *dev_priv,
- 				   u32 eir, u32 eir_stuck)
- {
--	DRM_DEBUG("Master Error, EIR 0x%08x\n", eir);
-+	drm_dbg(&dev_priv->drm, "Master Error, EIR 0x%08x\n", eir);
- 
- 	if (eir_stuck)
- 		drm_dbg(&dev_priv->drm, "EIR stuck: 0x%08x, masked\n",
-diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 0dd597a7a11f..9e6f060592d8 100644
---- a/drivers/gpu/drm/i915/i915_perf.c
-+++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -530,9 +530,9 @@ static bool oa_buffer_check_unlocked(struct i915_perf_stream *stream)
- 
- 		if (OA_TAKEN(hw_tail, tail) > report_size &&
- 		    __ratelimit(&stream->perf->tail_pointer_race))
--			DRM_NOTE("unlanded report(s) head=0x%x "
--				 "tail=0x%x hw_tail=0x%x\n",
--				 head, tail, hw_tail);
-+			drm_notice(&stream->uncore->i915->drm,
-+				   "unlanded report(s) head=0x%x tail=0x%x hw_tail=0x%x\n",
-+				   head, tail, hw_tail);
- 
- 		stream->oa_buffer.tail = gtt_offset + tail;
- 		stream->oa_buffer.aging_tail = gtt_offset + hw_tail;
-@@ -1015,7 +1015,8 @@ static int gen7_append_oa_reports(struct i915_perf_stream *stream,
- 		 */
- 		if (report32[0] == 0) {
- 			if (__ratelimit(&stream->perf->spurious_report_rs))
--				DRM_NOTE("Skipping spurious, invalid OA report\n");
-+				drm_notice(&uncore->i915->drm,
-+					   "Skipping spurious, invalid OA report\n");
- 			continue;
- 		}
- 
-@@ -1602,8 +1603,9 @@ static void i915_oa_stream_destroy(struct i915_perf_stream *stream)
- 	free_noa_wait(stream);
- 
- 	if (perf->spurious_report_rs.missed) {
--		DRM_NOTE("%d spurious OA report notices suppressed due to ratelimiting\n",
--			 perf->spurious_report_rs.missed);
-+		drm_notice(&gt->i915->drm,
-+			   "%d spurious OA report notices suppressed due to ratelimiting\n",
-+			   perf->spurious_report_rs.missed);
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
-index 6ec9c9fb7b0d..00871ef99792 100644
---- a/drivers/gpu/drm/i915/i915_query.c
-+++ b/drivers/gpu/drm/i915/i915_query.c
-@@ -250,8 +250,9 @@ static int query_perf_config_data(struct drm_i915_private *i915,
- 		return total_size;
- 
- 	if (query_item->length < total_size) {
--		DRM_DEBUG("Invalid query config data item size=%u expected=%u\n",
--			  query_item->length, total_size);
-+		drm_dbg(&i915->drm,
-+			"Invalid query config data item size=%u expected=%u\n",
-+			query_item->length, total_size);
- 		return -EINVAL;
- 	}
- 
-@@ -418,9 +419,10 @@ static int query_perf_config_list(struct drm_i915_private *i915,
- 	} while (n_configs > alloc);
- 
- 	if (query_item->length < sizeof_perf_config_list(n_configs)) {
--		DRM_DEBUG("Invalid query config list item size=%u expected=%zu\n",
--			  query_item->length,
--			  sizeof_perf_config_list(n_configs));
-+		drm_dbg(&i915->drm,
-+			"Invalid query config list item size=%u expected=%zu\n",
-+			query_item->length,
-+			sizeof_perf_config_list(n_configs));
- 		kfree(oa_config_ids);
- 		return -EINVAL;
- 	}
-diff --git a/drivers/gpu/drm/i915/i915_sysfs.c b/drivers/gpu/drm/i915/i915_sysfs.c
-index 1e2750210831..595e8b574990 100644
---- a/drivers/gpu/drm/i915/i915_sysfs.c
-+++ b/drivers/gpu/drm/i915/i915_sysfs.c
-@@ -218,7 +218,8 @@ static const struct bin_attribute error_state_attr = {
- static void i915_setup_error_capture(struct device *kdev)
- {
- 	if (sysfs_create_bin_file(&kdev->kobj, &error_state_attr))
--		DRM_ERROR("error_state sysfs setup failed\n");
-+		drm_err(&kdev_minor_to_i915(kdev)->drm,
-+			"error_state sysfs setup failed\n");
- }
- 
- static void i915_teardown_error_capture(struct device *kdev)
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index c39488eb9eeb..3b969d679c1e 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -73,14 +73,16 @@ static void vma_print_allocator(struct i915_vma *vma, const char *reason)
- 	char buf[512];
- 
- 	if (!vma->node.stack) {
--		DRM_DEBUG_DRIVER("vma.node [%08llx + %08llx] %s: unknown owner\n",
--				 vma->node.start, vma->node.size, reason);
-+		drm_dbg(&to_i915(vma->obj->base.dev)->drm
-+			"vma.node [%08llx + %08llx] %s: unknown owner\n",
-+			vma->node.start, vma->node.size, reason);
- 		return;
- 	}
- 
- 	stack_depot_snprint(vma->node.stack, buf, sizeof(buf), 0);
--	DRM_DEBUG_DRIVER("vma.node [%08llx + %08llx] %s: inserted at %s\n",
--			 vma->node.start, vma->node.size, reason, buf);
-+	drm_dbg(&to_i915(vma->obj->base.dev)->drm,
-+		"vma.node [%08llx + %08llx] %s: inserted at %s\n",
-+		vma->node.start, vma->node.size, reason, buf);
- }
- 
- #else
-@@ -782,9 +784,9 @@ i915_vma_insert(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
- 	 * attempt to find space.
- 	 */
- 	if (size > end) {
--		DRM_DEBUG("Attempting to bind an object larger than the aperture: request=%llu > %s aperture=%llu\n",
--			  size, flags & PIN_MAPPABLE ? "mappable" : "total",
--			  end);
-+		drm_dbg(&to_i915(vma->obj->base.dev)->drm,
-+			"Attempting to bind an object larger than the aperture: request=%llu > %s aperture=%llu\n",
-+			size, flags & PIN_MAPPABLE ? "mappable" : "total", end);
- 		return -ENOSPC;
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
-index 2a3e2869fe71..6c25c9e7090a 100644
---- a/drivers/gpu/drm/i915/intel_uncore.c
-+++ b/drivers/gpu/drm/i915/intel_uncore.c
-@@ -178,8 +178,9 @@ static inline void
- fw_domain_wait_ack_clear(const struct intel_uncore_forcewake_domain *d)
- {
- 	if (wait_ack_clear(d, FORCEWAKE_KERNEL)) {
--		DRM_ERROR("%s: timed out waiting for forcewake ack to clear.\n",
--			  intel_uncore_forcewake_domain_to_str(d->id));
-+		drm_err(&d->uncore->i915->drm,
-+			"%s: timed out waiting for forcewake ack to clear.\n",
-+			intel_uncore_forcewake_domain_to_str(d->id));
- 		add_taint_for_CI(d->uncore->i915, TAINT_WARN); /* CI now unreliable */
- 	}
- }
-@@ -226,11 +227,12 @@ fw_domain_wait_ack_with_fallback(const struct intel_uncore_forcewake_domain *d,
- 		fw_clear(d, FORCEWAKE_KERNEL_FALLBACK);
- 	} while (!ack_detected && pass++ < 10);
- 
--	DRM_DEBUG_DRIVER("%s had to use fallback to %s ack, 0x%x (passes %u)\n",
--			 intel_uncore_forcewake_domain_to_str(d->id),
--			 type == ACK_SET ? "set" : "clear",
--			 fw_ack(d),
--			 pass);
-+	drm_dbg(&d->uncore->i915->drm,
-+		"%s had to use fallback to %s ack, 0x%x (passes %u)\n",
-+		intel_uncore_forcewake_domain_to_str(d->id),
-+		type == ACK_SET ? "set" : "clear",
-+		fw_ack(d),
-+		pass);
- 
- 	return ack_detected ? 0 : -ETIMEDOUT;
- }
-@@ -255,8 +257,9 @@ static inline void
- fw_domain_wait_ack_set(const struct intel_uncore_forcewake_domain *d)
- {
- 	if (wait_ack_set(d, FORCEWAKE_KERNEL)) {
--		DRM_ERROR("%s: timed out waiting for forcewake ack request.\n",
--			  intel_uncore_forcewake_domain_to_str(d->id));
-+		drm_err(&d->uncore->i915->drm,
-+			"%s: timed out waiting for forcewake ack request.\n",
-+			intel_uncore_forcewake_domain_to_str(d->id));
- 		add_taint_for_CI(d->uncore->i915, TAINT_WARN); /* CI now unreliable */
- 	}
- }
--- 
-2.34.1
-
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogTmlrdWxhLCBKYW5pIDxq
+YW5pLm5pa3VsYUBpbnRlbC5jb20+DQo+IFNlbnQ6IFdlZG5lc2RheSwgTm92ZW1iZXIgOSwgMjAy
+MiAzOjI2IFBNDQo+IFRvOiBNYW5uYSwgQW5pbWVzaCA8YW5pbWVzaC5tYW5uYUBpbnRlbC5jb20+
+OyBpbnRlbC0NCj4gZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBDYzogTWFubmEsIEFuaW1l
+c2ggPGFuaW1lc2gubWFubmFAaW50ZWwuY29tPjsgVmlsbGUgU3lyasOkbMOkDQo+IDx2aWxsZS5z
+eXJqYWxhQGxpbnV4LmludGVsLmNvbT47IFNoYW5rYXIsIFVtYSA8dW1hLnNoYW5rYXJAaW50ZWwu
+Y29tPg0KPiBTdWJqZWN0OiBSZTogW1BBVENIIDMvM10gZHJtL2k5MTUvZWRwOiBGaXggd2Fybmlu
+ZyBhcyB2ZGQgd2VudCBkb3duIHdpdGhvdXQNCj4gZHJpdmVyIGtub3dsZWRnZQ0KPiANCj4gT24g
+V2VkLCAwOSBOb3YgMjAyMiwgQW5pbWVzaCBNYW5uYSA8YW5pbWVzaC5tYW5uYUBpbnRlbC5jb20+
+IHdyb3RlOg0KPiA+IEtlcm5lbCB3YXJuaW5nIHRyaWdnZXJlZCBhcyB2ZGQgd2VudCBkb3duIGFm
+dGVyIGNlcnRhaW4gdGltZSBkdXJpbmcNCj4gPiBhdXggdHJhbnNmZXIgaW4gY29ubmVjdG9yIGlu
+aXQgc2VxdWVuY2UuIFRvIHNvbHZlIHRoZSBrZXJuZWwgd2FybmluZw0KPiA+IGFkanVzdCBwb3dl
+ciBkb21haW4gYW5kIHZkZCB3YWtlcmVmIGNvdW50Lg0KPiA+IEN1cnJlbnRseSBpc3N1ZSBzZWVu
+IG9uIEFETCBzbyBhZGQgdGhlIGFib3ZlIGFkanVzdG1lbnQgcGFydCBvZiBBREwNCj4gPiBwbGF0
+Zm9ybSBjaGVjaywgaWYgbmVlZGVkIHdpbGwgZXh0ZW5kIGZvciBmdXR1cmUgcGxhdGZvcm0uDQo+
+IA0KPiBEbyB5b3UgdW5kZXJzdGFuZCB3aGVyZSB0aGUgb3JpZ2luYWwNCj4gZHJtX1dBUk5fT04o
+aW50ZWxfZHAtPnBwcy52ZGRfd2FrZXJlZikgd2FybmluZyBjb21lcyBmcm9tIGFuZCB3aHk/DQo+
+IA0KPiBXaGF0IGlzIHRoaXMgb25lPyBXaGF0IGFyZSB5b3UgZG9pbmcgaGVyZT8gRG8geW91IGhh
+dmUgYSBiYWNrdHJhY2Ugb2YgdGhpcw0KPiB3aGVuIHJ1bm5pbmcgcGF0Y2hlcyAxJjI/DQoNCldp
+dGggdGhlIHBhdGNoIHNlcmllcyAtIGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9z
+ZXJpZXMvMTA5ODIwLw0KJg0KVGhlIGZvbGxvd2luZyBsb2cgLSBodHRwczovL2ludGVsLWdmeC1j
+aS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xMDk4MjB2Mi9iYXQtYWRscC00L2lndEBp
+OTE1X21vZHVsZV9sb2FkQGxvYWQuaHRtbA0KDQpXZSBjYW4gc2VlIHRoZSBXQVJOX09OKCkgY2Fs
+bGVkIGFmdGVyIA0KDQo8Nz4gWzExNC44NjQ2NjldIGk5MTUgMDAwMDowMDowMi4wOiBbZHJtOmlu
+dGVsX3BhbmVsX2FkZF9lZGlkX2ZpeGVkX21vZGVzIFtpOTE1XV0gW0NPTk5FQ1RPUjoyMzY6ZURQ
+LTFdIHVzaW5nIHByZWZlcnJlZCBFRElEIGZpeGVkIG1vZGU6ICIxOTIweDEwODAiOiA2MCAxMzg1
+MDAgMTkyMCAxOTY4IDIwMDAgMjA4MCAxMDgwIDEwODMgMTA4OCAxMTExIDB4NDggMHhhDQo8Nz4g
+WzExNC44NjQ3ODRdIGk5MTUgMDAwMDowMDowMi4wOiBbZHJtOmludGVsX3BhbmVsX2FkZF9lZGlk
+X2ZpeGVkX21vZGVzIFtpOTE1XV0gW0NPTk5FQ1RPUjoyMzY6ZURQLTFdIHVzaW5nIGFsdGVybmF0
+ZSBFRElEIGZpeGVkIG1vZGU6ICIxOTIweDEwODAiOiAzMCA2OTMyMCAxOTIwIDE5NjggMjAwMCAy
+MDgwIDEwODAgMTA4MyAxMDg4IDExMTEgMHg0MCAweGENCjw0PiBbMTE0Ljg2NDkyM10gLS0tLS0t
+LS0tLS0tWyBjdXQgaGVyZSBdLS0tLS0tLS0tLS0tDQo8ND4gWzExNC44NjQ5MjddIGk5MTUgMDAw
+MDowMDowMi4wOiBkcm1fV0FSTl9PTihpbnRlbF9kcC0+cHBzLnZkZF93YWtlcmVmKQ0KPDQ+IFsx
+MTQuODY0OTUxXSBXQVJOSU5HOiBDUFU6IDQgUElEOiAxMjgxIGF0IGRyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfcHBzLmM6NjAzIGludGVsX3Bwc192ZGRfb25fdW5sb2NrZWQrMHgy
+YjgvMHgyZDAgW2k5MTVdDQoNCk15IGZpeCBhbHNvIGFkZGVkIGluIGludGVsX3Bwc192ZGRfb25f
+dW5sb2NrZWQoKSBvbmx5Lg0KDQpJIGhhdmUgcnVuIHdpdGggdGhlIGZpeCBhbmQgd2FybmluZyBp
+cyBub3Qgc2Vlbi4gDQpDYW4geW91IHBsZWFzZSBsZXQgbWUga25vdyBpZiB0aGlzIGNoYW5nZXMg
+bG9va3Mgb2suDQpQbGVhc2UgbWUga25vdyBmb3IgYW55IGFkZGl0aW9uYWwgaW5mby4NCg0KUmVn
+YXJkcywNCkFuaW1lc2gNCg0KPiANCj4gQlIsDQo+IEphbmkuDQo+IA0KPiA+DQo+ID4gQ2M6IEph
+bmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+DQo+ID4gQ2M6IFZpbGxlIFN5cmrDpGzD
+pCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+DQo+ID4gQ2M6IFVtYSBTaGFua2FyIDx1
+bWEuc2hhbmthckBpbnRlbC5jb20+DQo+ID4gU2lnbmVkLW9mZi1ieTogQW5pbWVzaCBNYW5uYSA8
+YW5pbWVzaC5tYW5uYUBpbnRlbC5jb20+DQo+ID4gLS0tDQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfcHBzLmMgfCA5ICsrKysrKysrLQ0KPiA+ICAxIGZpbGUgY2hhbmdl
+ZCwgOCBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wcHMuYw0KPiA+IGIvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wcHMuYw0KPiA+IGluZGV4IDA5NzVlNDlmOGQwMy4u
+MTg1N2JiY2M2ZmQ0IDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfcHBzLmMNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX3Bwcy5jDQo+ID4gQEAgLTU4Nyw4ICs1ODcsMTUgQEAgYm9vbCBpbnRlbF9wcHNfdmRkX29u
+X3VubG9ja2VkKHN0cnVjdCBpbnRlbF9kcA0KPiAqaW50ZWxfZHApDQo+ID4gIAljYW5jZWxfZGVs
+YXllZF93b3JrKCZpbnRlbF9kcC0+cHBzLnBhbmVsX3ZkZF93b3JrKTsNCj4gPiAgCWludGVsX2Rw
+LT5wcHMud2FudF9wYW5lbF92ZGQgPSB0cnVlOw0KPiA+DQo+ID4gLQlpZiAoZWRwX2hhdmVfcGFu
+ZWxfdmRkKGludGVsX2RwKSkNCj4gPiArCWlmIChlZHBfaGF2ZV9wYW5lbF92ZGQoaW50ZWxfZHAp
+KSB7DQo+ID4gIAkJcmV0dXJuIG5lZWRfdG9fZGlzYWJsZTsNCj4gPiArCX0gZWxzZSB7DQo+ID4g
+KwkJaWYgKChJU19BTERFUkxBS0VfUyhkZXZfcHJpdikgfHwgSVNfQUxERVJMQUtFX1AoZGV2X3By
+aXYpKQ0KPiAmJg0KPiA+ICsJCSAgICBpbnRlbF9kcC0+cHBzLnZkZF93YWtlcmVmKQ0KPiA+ICsJ
+CQlpbnRlbF9kaXNwbGF5X3Bvd2VyX3B1dChkZXZfcHJpdiwNCj4gPiArDQo+IAlpbnRlbF9hdXhf
+cG93ZXJfZG9tYWluKGRpZ19wb3J0KSwNCj4gPiArCQkJCQkJZmV0Y2hfYW5kX3plcm8oJmludGVs
+X2RwLQ0KPiA+cHBzLnZkZF93YWtlcmVmKSk7DQo+ID4gKwl9DQo+ID4NCj4gPiAgCWRybV9XQVJO
+X09OKCZkZXZfcHJpdi0+ZHJtLCBpbnRlbF9kcC0+cHBzLnZkZF93YWtlcmVmKTsNCj4gPiAgCWlu
+dGVsX2RwLT5wcHMudmRkX3dha2VyZWYgPSBpbnRlbF9kaXNwbGF5X3Bvd2VyX2dldChkZXZfcHJp
+diwNCj4gDQo+IC0tDQo+IEphbmkgTmlrdWxhLCBJbnRlbCBPcGVuIFNvdXJjZSBHcmFwaGljcyBD
+ZW50ZXINCg==
