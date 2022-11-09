@@ -2,107 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F11DA6230D2
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Nov 2022 17:57:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F76A6230D8
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Nov 2022 17:59:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37A0010E1CB;
-	Wed,  9 Nov 2022 16:57:14 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2067.outbound.protection.outlook.com [40.107.93.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40E7310E1CB;
- Wed,  9 Nov 2022 16:57:09 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FtadcU5EnhqlSM03YlANsz/PlSLLdB9E9HTy2/1o/Y4O9W3MAyuhyXt4GKaBOYDJbCpzvSFyll+eroF4hjzhFdavSVW2QfT0V6KI4Dtx+lx6CrmVFVC/Ky4BR+yyIsKe8nP5G9Zw6Xfstn3RAmq+2wBMJkWkUzy9BiqMqexcUOsGhC/y8pd7K8I40taMO/+M+sw7H8FCkUjer25XTJrWWGyv85OpS7j7k4M8ptxOxKOdG2i4AIsaY2rCxahSrTLjD0d+WpKb322grDNA1kDB9zn/Nt3XENgX53B2en4tLnc9PGl4aUV5/ORkS3xWoRjt/WiJXcMpZ3lNdunxp31ueg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2NaILbdXEOUsBgsNonZBm14hn+tHEOCDDpQia64xEog=;
- b=KB9Iz1TtL8OrHifxlw4ERF5vdt0mJVFoZ4E4Y4Fgy0m7efSJ9WzF6inKBJJ9c/ZKTiMkM8CDAPsp+HxERz7t+Lqw690Saq4QdvlsqGok0YLE8OtxIrmAkDnFduJNMa/Leq6n0C7ExiN6IOiZpY7W5+CxtuPtPRfy6FWNXU7YdzJDbcxSzRV+GnMaTWPdKaYkjWTz6yb8keEyKjMY1nSQ+HhkJFCSwFN0GYun0KRgbaqh9yL1orrJu1C4jQJvIKdXCpikQHG1Q6W96cjCll6+3uv2iIttEs7rP0eTKqMhbLQiyeGD1g9bDtzkXU6lUgYiIi04uuqhLViBQw3eFDh0rA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2NaILbdXEOUsBgsNonZBm14hn+tHEOCDDpQia64xEog=;
- b=j6ANuyolkuznK/XlaWIISOgqMELbm8UdBBCHUvtrf0CyUah0B5gl2vlVl4iLjwdkS1vjqptRfT6Se97ID+uvwnJK1mV9sXNMD00mLkO05bJNLm7f2r7akSnMP+dPpk6HpIG/2RIjl+BnQ7b4TaagXjZIl6/+rH6uO54J37x27N6RmJ6P+CCj4se6pP04E0uUNOQrnO1cNgxq/QjE20tJ4zky0xQXSd+MFpnpti4XisKZu9zXzLJiVjrEV+Dh74jPYyc4MIIvjdHOa8I8JnGiY3q5YvWo0TPasT35QbW1NY5OPU9EFP0A2YhB2pT1O4JknCA+/hLXmHuCHgYxsKPoTQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
- by MW4PR12MB7143.namprd12.prod.outlook.com (2603:10b6:303:222::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.26; Wed, 9 Nov
- 2022 16:57:07 +0000
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::7a81:a4e4:bb9c:d1de]) by LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::7a81:a4e4:bb9c:d1de%7]) with mapi id 15.20.5791.027; Wed, 9 Nov 2022
- 16:57:07 +0000
-Date: Wed, 9 Nov 2022 12:57:05 -0400
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: Yi Liu <yi.l.liu@intel.com>
-Message-ID: <Y2vb4fuPZdYKR1M1@nvidia.com>
-References: <0-v2-65016290f146+33e-vfio_iommufd_jgg@nvidia.com>
- <Y2ofNKmmAIMGYLFK@Asurada-Nvidia>
- <9b2bb9f2-fc82-dd01-84ff-c2fe45e1a48a@intel.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9b2bb9f2-fc82-dd01-84ff-c2fe45e1a48a@intel.com>
-X-ClientProxiedBy: BLAPR03CA0153.namprd03.prod.outlook.com
- (2603:10b6:208:32f::19) To LV2PR12MB5869.namprd12.prod.outlook.com
- (2603:10b6:408:176::16)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D18EE10E1CB;
+	Wed,  9 Nov 2022 16:59:11 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4A0810E1CB
+ for <Intel-gfx@lists.freedesktop.org>; Wed,  9 Nov 2022 16:59:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1668013148; x=1699549148;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=wMJggPLd/L+ccuE+e7h8X2BxRK2M9kKo7llg0NL7kvU=;
+ b=b7GLDMr1jrJe+sHn6bK9QW/JLgixfaSAkKXu6dWsQUOcB3iYhhnrcc3m
+ 93rfdcubxd3LIH5g+LAm6/FgVIk7z27M/dYX/4SbvUPk1TVEJZd0AGdko
+ R+9nHceh87bR1U9SIQFtklppHP32PFVA0OK+jsPAazX/mc7YkqIs4DuwB
+ CV6JNWmpEU2LTqqBlqok91D3Rf7zgKUamYnI55/QdUrovXwVGxFffZdtA
+ iAMoenv4qLoEvDz+fRWNupUujZIjTf28kXKMLTe0CtCx24LNZk9WyC7tt
+ jkHaXcvVG2IPdnHrL2KdDcZwxaIPXcedCXJgi3jSPjP7PqujqMxYy6CiC w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="311028776"
+X-IronPort-AV: E=Sophos;i="5.96,151,1665471600"; d="scan'208";a="311028776"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2022 08:59:07 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="811699084"
+X-IronPort-AV: E=Sophos;i="5.96,151,1665471600"; d="scan'208";a="811699084"
+Received: from smurnane-mobl.ger.corp.intel.com (HELO [10.213.196.238])
+ ([10.213.196.238])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2022 08:59:04 -0800
+Message-ID: <8aade97f-35f3-a4ec-9e91-e5b739ee8973@linux.intel.com>
+Date: Wed, 9 Nov 2022 16:59:02 +0000
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|MW4PR12MB7143:EE_
-X-MS-Office365-Filtering-Correlation-Id: bbe8dbb5-d659-4a0f-2354-08dac2736f07
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: KgF/iJOs5C2a6kNcwF+9DBygzi70STP4NqzQgxyqrtKqdoSDxl8njbVCNzHG0OB2TKVOs9SZ+RCVqsS3sse8D3JJFwBuYSqZ655xFfKKPoTQubzYw11cJi5rqSr1Vqn8ToseRherARxr4tgc/oWPf/wZU70TGuOhUCJac/tsKmm002T3u9CL8RXXhvgFc/D1FcaJseukddw6peV78AOKwwf9uDXoH+WvboZtXQnqIzHS5etBKQ49UJ6StayYs4YQpvu7rqDaIFZEjikwf86fl36PYGMXtYtwPSB6ri8KljPz4IjT7UxD0OBx5Y5J/Sdx3i3QgA88xzsjVx4MqDzuFt5AVneK0DNzX+B01KHiVtCmg8qFYfuIBX2TrS+z2QDuofNvn2M8KTykmJdBCCV/A3h2rl+uU2wlA6Ka8piDrmLH+novLipkL3mHzmKBwRoP3qH1Ye+ZcjNECtuXJCpsDqFYMo3Zd3tb2y2ik/CTgO+ffQfmspWtdaYRr5o7WPBg/i8mfp2wXCSO1gLiFtuhAfZqCHZLfC1u2b24tWMXK5vfX/QPOOLM1cL7HNgyoASXBN+RrlmbQSQpzOwNN4ahN6RH840AzxOdUS/HXzG2SUPTk9P3nh6FlSJynHPjO78LHIUaDDegCEhoNs+SZwe+G8YwPjF4xlfrw4w0BDUMAlTfvfbgplbcx7Zl4ateC2tdlM5rYfW2oV/zVfF086mQp6LKlz81ypB76jFTrf/y3SDBS8qty6DxjQwoLbqJOLRbUOnd3M5i3EXjRmPDoj2giBeE2TzbgI9gwfSwJLFc6hs=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(4636009)(396003)(346002)(136003)(376002)(366004)(39860400002)(451199015)(966005)(6486002)(478600001)(54906003)(2906002)(6916009)(8676002)(7416002)(53546011)(7406005)(5660300002)(2616005)(6506007)(4326008)(36756003)(66476007)(66946007)(41300700001)(38100700002)(316002)(83380400001)(186003)(66556008)(86362001)(6512007)(26005)(8936002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?EUojz8Xd3pjGCpkinGs14AdtuYzr1axK+4SzlfLnQh1bvrciciH0B/QIRCi1?=
- =?us-ascii?Q?YD+M9UQYKDG8WTnTCfYDGp4E/Xocm5I7I7+YrudwC952jlQK5SMIDH2ReNxc?=
- =?us-ascii?Q?f6ETsyqKEpb8Qe5q0pCQeNjrNJBWBcsCfVZi1XNUj/pugTIEG9/WiN1D9/sf?=
- =?us-ascii?Q?NRsrrtJaTH0Kb5eX3KL8cg7c4FZqIiqYUn6s25bGTCa6am9BwxB4FN24rUkj?=
- =?us-ascii?Q?TAkYNS5JV42lmXDsSZ/ULQSKzcKfMr/pj/5oxTYQKuixoyRZ9Ud6aW3r5b7v?=
- =?us-ascii?Q?3q7f8h4qlAZ9Xqd9sNpRJJ1nnmlv9kg/gk1bfY0lTayz+aTVBPcJGF892I4P?=
- =?us-ascii?Q?D17rOB/b3lLECpHKVnAhZ4qA2qSoOxgXMr9DJKYmxvsmlVc8nt/LYMxHYWu/?=
- =?us-ascii?Q?mH65j0ELvrxtWCIHghgtOmtNb9xOrzN1oSvXe+M6wJDGNiVuwvGDSLuNXZDH?=
- =?us-ascii?Q?m1bCezK+lMkWnxGjad+7XBiZF+IoTkiJpFFdv/y/J4YsB+w4ASeyH7oddcfM?=
- =?us-ascii?Q?zIlJ9z2PmZy9LKG7j31SEDrRh9ErhpnqRXaoFrsqY0Mb2T4mCLKpj9Vm/Mhx?=
- =?us-ascii?Q?kg9JZ8BwGyv6aKaZha9S6R44G+Ruk1gY1hRsKqwMf1O4lRReoJ3r1kBY40b3?=
- =?us-ascii?Q?eTEL9yfKwmDSIlFrHG5O9WYoxVaHgs6NyY/i7mbGiay7K9mE4ji0637IMv4W?=
- =?us-ascii?Q?46lLUlftep7oxfBz0X3hZeI9Ihhdc+wGlNkZULfndcgD85av7YE/9YXpikmD?=
- =?us-ascii?Q?1tdq8G+bgpN3nqhy/6F2njZB/2ujCXJHX4hynxT3IU4oDBwWPCTRYK52LpO7?=
- =?us-ascii?Q?FOMBjkow/aNoyb40q0jR4Iq8dwswrQCjdz+ruBi6iSLiLofZg1N6O5/2PR2Z?=
- =?us-ascii?Q?iaD4TTENRglEliJc3MeCd7JbNo6SQNct5AHquuwO0z53TB26cJF1UGJmJebm?=
- =?us-ascii?Q?OSiqQdXnzrz/yF6TFAVEq4yAsieoRG4T5Wifjul9OK9MPtjKq75gCCofpIS1?=
- =?us-ascii?Q?pqJyVAuZdyrJStJPLSx/LeKQNfLKBbroj8hBKwKYnZtIFHv3CSf9G+SUIUdq?=
- =?us-ascii?Q?0BFc5ugCW/lgYLI2gQCfLyAeWWzm08Ft1ig/rx8J95XKiQuuaDLb0104EygW?=
- =?us-ascii?Q?7aAB7O8/SdQdrCu0FKdsltOUG5Ckq7BmAs04xHGMh7Z5zcT1L6mPjLXzq5W9?=
- =?us-ascii?Q?njq4ooY65s8+25KOYUh7O7OQI34reyn9bSyyElbaKqZTMpM8qouEKkA3dZVc?=
- =?us-ascii?Q?3XBZw7PWMN/xi9XNMLw3rf8yAU/ztLpsG7x8x7R6QiocSctuBa7dy/lRnqa1?=
- =?us-ascii?Q?jI4nRJhDgp4vPMx+Ahs+Au9SWRXZKx027pIFPARv+qS1M/vV/wRaXve+KlS5?=
- =?us-ascii?Q?RVkPUl+sTyRCI0JSaZNJwJLtbUF0uW5SZuRMep/SgVKIh95YE4/Bo0uRuZ4F?=
- =?us-ascii?Q?Pl3X59fRczM2qxymG0c/lr1OaZIv6gUMDFQqn9AKu8p78Nvd7fY06PoNl0HI?=
- =?us-ascii?Q?9wtbeMp+hpdBpIerdoJCuwqmb+Nkap0mhdX1l+3KOnO+39UsZ6hGtEsLlwfE?=
- =?us-ascii?Q?yWBNAVQNDgKVIZZr0aw=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bbe8dbb5-d659-4a0f-2354-08dac2736f07
-X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2022 16:57:06.8456 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Vk5H97gK13RTf2AhDkDIssQzkTPbzkIr9zHSVIeIyvCKteANM7ZqWlyVrswpVBZd
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7143
-Subject: Re: [Intel-gfx] [PATCH v2 00/11] Connect VFIO to IOMMUFD
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Content-Language: en-US
+To: Tejun Heo <tj@kernel.org>
+References: <20221019173254.3361334-1-tvrtko.ursulin@linux.intel.com>
+ <Y1BFziiJdBzsIJWH@slm.duckdns.org>
+ <908129fa-3ddc-0f62-18df-e318dc760955@linux.intel.com>
+ <Y2AuAtSmS8X7a1qC@slm.duckdns.org>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <Y2AuAtSmS8X7a1qC@slm.duckdns.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [RFC 00/17] DRM scheduling cgroup controller
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,51 +64,179 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kvm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Vineeth Vijayan <vneethv@linux.ibm.com>,
- Diana Craciun <diana.craciun@oss.nxp.com>,
- Alexander Gordeev <agordeev@linux.ibm.com>, David Airlie <airlied@gmail.com>,
- Longfang Liu <liulongfang@huawei.com>, linux-s390@vger.kernel.org,
- Matthew Rosato <mjrosato@linux.ibm.com>, Will Deacon <will@kernel.org>,
- Joerg Roedel <joro@8bytes.org>, Halil Pasic <pasic@linux.ibm.com>,
- iommu@lists.linux.dev, Nicolin Chen <nicolinc@nvidia.com>,
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- intel-gfx@lists.freedesktop.org, Jason Herne <jjherne@linux.ibm.com>,
- Eric Farman <farman@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>, Eric Auger <eric.auger@redhat.com>,
- Harald Freudenberger <freude@linux.ibm.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gvt-dev@lists.freedesktop.org,
- Tony Krowiak <akrowiak@linux.ibm.com>, Yishai Hadas <yishaih@nvidia.com>,
- Cornelia Huck <cohuck@redhat.com>, Peter Oberparleiter <oberpar@linux.ibm.com>,
- Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
- Sven Schnelle <svens@linux.ibm.com>, Daniel Vetter <daniel@ffwll.ch>,
- Robin Murphy <robin.murphy@arm.com>, Lu Baolu <baolu.lu@linux.intel.com>
+Cc: Rob Clark <robdclark@chromium.org>, Kenny.Ho@amd.com,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, Intel-gfx@lists.freedesktop.org,
+ Johannes Weiner <hannes@cmpxchg.org>, linux-kernel@vger.kernel.org,
+ =?UTF-8?Q?St=c3=a9phane_Marchesin?= <marcheu@chromium.org>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Zefan Li <lizefan.x@bytedance.com>, Dave Airlie <airlied@redhat.com>,
+ cgroups@vger.kernel.org, "T . J . Mercier" <tjmercier@google.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 08, 2022 at 11:18:03PM +0800, Yi Liu wrote:
-> On 2022/11/8 17:19, Nicolin Chen wrote:
-> > On Mon, Nov 07, 2022 at 08:52:44PM -0400, Jason Gunthorpe wrote:
-> > 
-> > > This is on github: https://github.com/jgunthorpe/linux/commits/vfio_iommufd
-> > [...]
-> > > v2:
-> > >   - Rebase to v6.1-rc3, v4 iommufd series
-> > >   - Fixup comments and commit messages from list remarks
-> > >   - Fix leaking of the iommufd for mdevs
-> > >   - New patch to fix vfio modaliases when vfio container is disabled
-> > >   - Add a dmesg once when the iommufd provided /dev/vfio/vfio is opened
-> > >     to signal that iommufd is providing this
-> > 
-> > I've redone my previous sanity tests. Except those reported bugs,
-> > things look fine. Once we fix those issues, GVT and other modules
-> > can run some more stressful tests, I think.
+
+On 31/10/2022 20:20, Tejun Heo wrote:
+> Hello,
 > 
-> our side is also starting test (gvt, nic passthrough) this version. need to
-> wait a while for the result.
+> On Thu, Oct 27, 2022 at 03:32:00PM +0100, Tvrtko Ursulin wrote:
+>> Looking at what's available in cgroups world now, I have spotted the
+>> blkio.prio.class control. For my current use case (lower GPU scheduling of
+>> background/unfocused windows) that would also work. Even if starting with
+>> just two possible values - 'no-change' and 'idle' (to follow the IO
+>> controller naming).
+> 
+> I wouldn't follow that example. That's only meaningful within the context of
+> bfq and it probabaly shouldn't have been merged in the first place.
+> 
+>> How would you view that as a proposal? It would be a bit tougher "sell" to
+>> the DRM community, perhaps, given that many drivers do have scheduling
+>> priority, but the concept of scheduling class is not really there.
+>> Nevertheless a concept of normal-vs-background could be plausible in my
+>> mind. It could be easily implemented by using the priority controls
+>> available in many drivers.
+> 
+> I don't feel great about that.
+> 
+> * The semantics aren't clearly defined. While not immediately obvious in the
+>    interface, the task nice levels have definite mappings to weight values
+>    and thus clear meanings. I don't think it's a good idea to leave the
+>    interface semantics open to interpretation.
 
-I've updated the branches with the two functional fixes discussed on
-the list plus all the doc updates.
+Agreed it is not clearly defined, but it was the same with nice levels. 
+As in it changed a lot over the years how exactly they behave (with a 
+few scheduler rewrites) and they were constantly at least somewhat 
+useful as a mean of external control.
 
-Thanks,
-Jason
+Nevertheless you will notice I have dropped everything priority based 
+from the v2 of the RFC to simplify the conversation going forward.
+
+> * Maybe GPUs are better but my experience with optional hardware features in
+>    the storage world has been that vendors diverge wildly and unexpectedly to
+>    the point many features are mostly useless. There are fewer GPU vendors
+>    and more software effort behind each, so maybe the situation is better but
+>    I think it'd be helpul to keep some skepticism.
+> 
+> * Even when per-vendor or per-driver features are consistent enough to be
+>    useful, they often aren't thought through enough to be truly useful. e.g.
+>    nvme has priority features but they aren't really that useful because they
+>    can't do much without congestion control on the issuer side and once you
+>    have congestion control on the issuer side which is usually a lot more
+>    complex (e.g. dealing with work-conserving hierarchical weight
+>    distributions, priority inversions and so on), you can achieve most of
+>    what you need in terms of resource control from the issuer side anyway.
+
+GPUs will not be fully uniform either, especially in the terms of how 
+well the controls work, which is why I am spelling out how this is only 
+attempting to do "soft limits", everywhere in the documentation, cover 
+letter and patch commit message.
+
+But at least concept of GPU time feels to me like a very universal one 
+so should be something which we can base the control on.
+
+> So, I'd much prefer to have a fuller solution on the kernel side which
+> integrates per-vendor/driver features where they make sense.
+> 
+>>>>     drm.budget_supported
+>>>> 	One of:
+>>>> 	 1) 'yes' - when all DRM clients in the group support the functionality.
+>>>> 	 2) 'no' - when at least one of the DRM clients does not support the
+>>>> 		   functionality.
+>>>> 	 3) 'n/a' - when there are no DRM clients in the group.
+>>>
+>>> Yeah, I'm not sure about this. This isn't a per-cgroup property to begin
+>>> with and I'm not sure 'no' meaning at least one device not supporting is
+>>> intuitive. The distinction between 'no' and 'n/a' is kinda weird too. Please
+>>> drop this.
+>>
+>> The idea actually is for this to be per-cgroup and potentially change
+>> dynamically. It implements the concept of "observability", how I have,
+>> perhaps clumsily, named it.
+>>
+>> This is because we can have a mix of DRM file descriptors in a cgroup, not
+>> all of which support the proposed functionality. So I wanted to have
+>> something by which the administrator can observe the status of the group.
+>>
+>> For instance seeing some clients do not support the feature could be signal
+>> that things have been misconfigured, or that appeal needs to be made for
+>> driver X to start supporting the feature. Seeing a "no" there in other words
+>> is a signal that budgeting may not really work as expected and needs to be
+>> investigated.
+> 
+> I still don't see how this is per-cgroup given that it's indicating whether
+> the driver supports some feature. Also, the eventual goal would be
+> supporting the same control mechanisms across most (if not all) GPUs, right?
+
+I have dropped this from v2 as well, to focus the feedback on most 
+important points.
+
+But in general the problem it wanted to address is that a single cgroup 
+can contain multiple processes, each with zero to N open DRM file 
+descriptors to any random GPU which happens to be installed in the 
+system. And it can all change dynamically. It may be different vendors 
+or different hardware generations, where some do not support the 
+required functionality to support the cgroup controller.
+
+So I wanted to give the sysadmin some visibility if at any given time 
+the configuration applied to a cgroup has a chance to work fully, or 
+only partially.
+
+For instance with i915 we can have two supported devices in a laptop - 
+integrated and discrete. Integrated can support the controller well, 
+while for discrete is work in progress, maybe comes in the next kernel 
+release. And then we can have this:
+
+1)
+
+cgexec -g drm:gfx/clients glxgears
+
+This runs fully on integrated and budgeting works as expected.
+
+2) DRI_PRIME=1 cgexec -g drm:gfx/clients glxgears
+
+This one runs on the discrete GPU where budgeting does not work yet. 
+While at the same time there can be another client in the same cgroup 
+for which budgeting works. Or in other words:
+
+cgexec -g drm:gfx/clients transcode_me_a_video
+DRI_PRIME=1 cgexec -g drm:gfx/clients run_a_game
+
+In this case game is not taking part in budgeting, even though it is a 
+same driver. Maybe it will in a few kernel releases but not yet. Or in 
+case of super old GPUs maybe support never gets added.
+
+Perhaps I am over complicating things and what it would enough is to log 
+the capability per device during driver probe:
+
+i915 0000:00:02.0: DRM cgroup support: weights
+i915 0000:01:00.0: DRM cgroup support: none
+
+?
+
+>>> Rather than doing it hierarchically on the spot, it's usually a lot cheaper
+>>> and easier to calculate the flattened hierarchical weight per leaf cgroup
+>>> and divide the bandwidth according to the eventual portions. For an example,
+>>> please take a look at block/blk-iocost.c.
+>>
+>> This seems exactly what I had in mind (but haven't implemented it yet). So
+>> in this RFC I have budget splitting per group where each tree level adds up
+>> to "100%" and the thing which I have not implemented is "borrowing" or
+>> yielding (how blk-iocost.c calls it, or donating) unused budgets to
+>> siblings.
+>>
+>> I am very happy to hear my idea is the right one and someone already
+>> implemented it. Thanks for this pointer!
+> 
+> The budget donation thing in iocost is necessary only because it wants to
+> make the hot path local to the cgroup because io control has to support very
+> high decision rate. For time-slicing GPU, it's likely that following the
+> current hierarchical weight on the spot is enough.
+
+I think I completed this part in v2. At least some quick smoke testing 
+showed me that budgets now correctly propagate through the tree.
+
+Not guaranteeing no bugs just yet and there are certainly still things 
+to polish up in v2.
+
+Regards,
+
+Tvrtko
