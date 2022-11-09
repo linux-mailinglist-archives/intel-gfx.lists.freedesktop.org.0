@@ -1,54 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 469B0622829
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Nov 2022 11:12:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA642622868
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Nov 2022 11:26:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EE4F10E03B;
-	Wed,  9 Nov 2022 10:12:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6538510E551;
+	Wed,  9 Nov 2022 10:26:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C96910E03B
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Nov 2022 10:12:28 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EEE410E53F
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Nov 2022 10:26:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667988748; x=1699524748;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=NPEg874w+pEUx5m36nQSTyUYYTh2lT4D9o1FP8mAUOU=;
- b=eXwPVIqOWF+Co6GsioWz5fEu8ndQrtmjNRRcER1ceI2pCaWOT0Vo2+N/
- Mgj2uur13HE5xLdycU2C61Wvf6rv5xwctAA5sLbiAtjhgArMeVvipRqab
- s3uCcctxldoROnRg55Lq4TB6HNuTz9UUBa8jk6aU5gxaxQQU469Zc6qhG
- 0WyN+KltpQvaeo0p6A/3sVzRSGVyexARPgPbuj3nNGNU3T/bPaRLVPEL8
- ANyi9PqGNvjha9FcmQL7stl7CqQyYNOZH/v9C6dTwrd1iVPpqY0fNe/uO
- z+xEZ1Kq0auCCLbYBFaGEHBo6DTBfP8B/M0gGy/ZyK2oTI/Uy0tNEGaYV A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10525"; a="298462405"
-X-IronPort-AV: E=Sophos;i="5.96,150,1665471600"; d="scan'208";a="298462405"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2022 02:12:27 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10525"; a="742341166"
-X-IronPort-AV: E=Sophos;i="5.96,150,1665471600"; d="scan'208";a="742341166"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga002.fm.intel.com with SMTP; 09 Nov 2022 02:12:24 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 09 Nov 2022 12:12:23 +0200
-Date: Wed, 9 Nov 2022 12:12:23 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Animesh Manna <animesh.manna@intel.com>
-Message-ID: <Y2t9Bxcgyy7j3PPd@intel.com>
+ t=1667989564; x=1699525564;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=M7ZLZ0VxjsUB7RxwLmwSSKry8U3oNGGsAPNLlgN9JLw=;
+ b=RRxc5ep7C5L48RUvTYmkF79xA7zmBYok5XhVcLw6fiJKj2QkCvW5wiHs
+ /538v4Z8duK1D2YAJ+Qirg28XmcR3UVss+DoqfDUxCBFibK/YpFzkJyfx
+ lZJw4UVAkCtu6cbCezIB2uCCziWjvV2CjoXcR+00/ktbrgRebddWqsfoW
+ qlZwjgyZIqyw9/fn9TVf78UuYOLS2pVoKLGkBPalSA3YB/QrTplvX7iCS
+ Kw8nCsE3qEPHHkp4dwFHdoh1zcjGlTxEvbeXTzB8fLP+2HfUh/X+RbNZn
+ OTvOPNRWix7OCVmBa2G7YflvDJwX/9Xav9BpgD6q4uLK97AxUodmKASdT A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10525"; a="337675228"
+X-IronPort-AV: E=Sophos;i="5.96,150,1665471600"; d="scan'208";a="337675228"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2022 02:26:03 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10525"; a="725926898"
+X-IronPort-AV: E=Sophos;i="5.96,150,1665471600"; d="scan'208";a="725926898"
+Received: from skorobko-mobl2.ccr.corp.intel.com (HELO localhost)
+ ([10.252.15.56])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2022 02:26:01 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, Animesh
+ Manna <animesh.manna@intel.com>
+In-Reply-To: <Y2t80/UUH/EwhrLa@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20221108211822.28048-1-animesh.manna@intel.com>
+ <20221108211822.28048-2-animesh.manna@intel.com>
+ <Y2t80/UUH/EwhrLa@intel.com>
+Date: Wed, 09 Nov 2022 12:25:59 +0200
+Message-ID: <87wn8477bc.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221108211822.28048-1-animesh.manna@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/pps: Add get_pps_idx() hook as
- part of pps_get_register() cleanup
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/pps: Enable 2nd pps for dual
+ EDP scenario
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,77 +62,131 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Nov 09, 2022 at 02:48:20AM +0530, Animesh Manna wrote:
-> Simplified pps_get_register() which use get_pps_idx() hook to derive the
-> pps instance and get_pps_idx() will be initialized at pps_init().
-> 
-> v1: Initial version. Got r-b from Jani.
-> v2: Corrected unintentional change around memset() call. [Jani]
-> 
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Cc: Uma Shankar <uma.shankar@intel.com>
-> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_types.h |  1 +
->  drivers/gpu/drm/i915/display/intel_pps.c           | 14 +++++++++-----
->  2 files changed, 10 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index c6abaaa46e17..87163ef32983 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1698,6 +1698,7 @@ struct intel_dp {
->  	u8 (*preemph_max)(struct intel_dp *intel_dp);
->  	u8 (*voltage_max)(struct intel_dp *intel_dp,
->  			  const struct intel_crtc_state *crtc_state);
-> +	int (*get_pps_idx)(struct intel_dp *intel_dp);
->  
->  	/* Displayport compliance testing */
->  	struct intel_dp_compliance compliance;
-> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-> index 22f5e08d396b..3949fb449353 100644
-> --- a/drivers/gpu/drm/i915/display/intel_pps.c
-> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
-> @@ -366,11 +366,8 @@ static void intel_pps_get_registers(struct intel_dp *intel_dp,
->  	int pps_idx = 0;
->  
->  	memset(regs, 0, sizeof(*regs));
-> -
-> -	if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
-> -		pps_idx = bxt_power_sequencer_idx(intel_dp);
-> -	else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
-> -		pps_idx = vlv_power_sequencer_pipe(intel_dp);
-> +	if (intel_dp->get_pps_idx)
-> +		pps_idx = intel_dp->get_pps_idx(intel_dp);
+On Wed, 09 Nov 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Wed, Nov 09, 2022 at 02:48:21AM +0530, Animesh Manna wrote:
+>> >From display gen12 onwards to support dual EDP two instances of pps add=
+ed.
+>> Currently backlight controller and pps instance can be mapped together
+>> for a specific panel. Extended support for gen12 for dual EDP usage.
+>>=20
+>> v1: Iniital revision
+>> v2: Called intel_bios_panel_init w/o PNPID before intel_pps_init. [Jani]
+>>=20
+>> Cc: Jani Nikula <jani.nikula@intel.com>
+>> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> Cc: Uma Shankar <uma.shankar@intel.com>
+>> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_bios.c | 7 -------
+>>  drivers/gpu/drm/i915/display/intel_bios.h | 7 +++++++
+>>  drivers/gpu/drm/i915/display/intel_dp.c   | 9 ++++++---
+>>  drivers/gpu/drm/i915/display/intel_pps.c  | 2 +-
+>>  4 files changed, 14 insertions(+), 11 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm=
+/i915/display/intel_bios.c
+>> index c2987f2c2b2e..fca44be9bab8 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+>> @@ -706,13 +706,6 @@ static int fallback_get_panel_type(struct drm_i915_=
+private *i915,
+>>  	return 0;
+>>  }
+>>=20=20
+>> -enum panel_type {
+>> -	PANEL_TYPE_OPREGION,
+>> -	PANEL_TYPE_VBT,
+>> -	PANEL_TYPE_PNPID,
+>> -	PANEL_TYPE_FALLBACK,
+>> -};
+>> -
+>>  static int get_panel_type(struct drm_i915_private *i915,
+>>  			  const struct intel_bios_encoder_data *devdata,
+>>  			  const struct edid *edid)
+>> diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm=
+/i915/display/intel_bios.h
+>> index e375405a7828..da01b13260ae 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_bios.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_bios.h
+>> @@ -231,6 +231,13 @@ struct mipi_pps_data {
+>>  	u16 panel_power_cycle_delay;
+>>  } __packed;
+>>=20=20
+>> +enum panel_type {
+>> +	PANEL_TYPE_OPREGION,
+>> +	PANEL_TYPE_VBT,
+>> +	PANEL_TYPE_PNPID,
+>> +	PANEL_TYPE_FALLBACK,
+>> +};
+>> +
+>>  void intel_bios_init(struct drm_i915_private *dev_priv);
+>>  void intel_bios_init_panel(struct drm_i915_private *dev_priv,
+>>  			   struct intel_panel *panel,
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i=
+915/display/intel_dp.c
+>> index 7400d6b4c587..08ece347f7cb 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>> @@ -5254,6 +5254,9 @@ static bool intel_edp_init_connector(struct intel_=
+dp *intel_dp,
+>>  		return false;
+>>  	}
+>>=20=20
+>> +	intel_bios_init_panel(dev_priv, &intel_connector->panel,
+>> +			      encoder->devdata, NULL);
+>> +
+>>  	intel_pps_init(intel_dp);
+>>=20=20
+>>  	/* Cache DPCD and EDID for edp. */
+>> @@ -5288,9 +5291,9 @@ static bool intel_edp_init_connector(struct intel_=
+dp *intel_dp,
+>>  		edid =3D ERR_PTR(-ENOENT);
+>>  	}
+>>  	intel_connector->edid =3D edid;
+>> -
+>> -	intel_bios_init_panel(dev_priv, &intel_connector->panel,
+>> -			      encoder->devdata, IS_ERR(edid) ? NULL : edid);
+>> +	if (intel_connector->panel.vbt.panel_type =3D=3D PANEL_TYPE_FALLBACK)
+>
+> vbt.panel_type does _not_ contain enum panel_type (a bit of an=20
+> unfortunate name selection by me there I guess).
+>
+>> +		intel_bios_init_panel(dev_priv, &intel_connector->panel,
+>> +				      encoder->devdata, IS_ERR(edid) ? NULL : edid);
+>
+> I suspect just calling this twice might leak all kinds of stuff.
 
-I don't really see the poing of adding a vfunc for this kind of single
-use thing, especially as it's all inside the same file anyway.
+Yeah, what's up with this, this is some old version that was fixed way
+back too. I thought this was good to go:
 
->  
->  	regs->pp_ctrl = PP_CONTROL(pps_idx);
->  	regs->pp_stat = PP_STATUS(pps_idx);
-> @@ -1433,6 +1430,13 @@ void intel_pps_init(struct intel_dp *intel_dp)
->  	intel_dp->pps.initializing = true;
->  	INIT_DELAYED_WORK(&intel_dp->pps.panel_vdd_work, edp_panel_vdd_work);
->  
-> +	if (IS_GEMINILAKE(i915) || IS_BROXTON(i915))
-> +		intel_dp->get_pps_idx = bxt_power_sequencer_idx;
-> +	else if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
-> +		intel_dp->get_pps_idx = vlv_power_sequencer_pipe;
-> +	else
-> +		intel_dp->get_pps_idx = NULL;
-> +
->  	pps_init_timestamps(intel_dp);
->  
->  	with_intel_pps_lock(intel_dp, wakeref) {
-> -- 
-> 2.29.0
+https://lore.kernel.org/r/20221018083921.23239-2-animesh.manna@intel.com
 
--- 
-Ville Syrjälä
-Intel
+>
+>>=20=20
+>>  	intel_panel_add_edid_fixed_modes(intel_connector, true);
+>>=20=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/=
+i915/display/intel_pps.c
+>> index 3949fb449353..0975e49f8d03 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_pps.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
+>> @@ -1430,7 +1430,7 @@ void intel_pps_init(struct intel_dp *intel_dp)
+>>  	intel_dp->pps.initializing =3D true;
+>>  	INIT_DELAYED_WORK(&intel_dp->pps.panel_vdd_work, edp_panel_vdd_work);
+>>=20=20
+>> -	if (IS_GEMINILAKE(i915) || IS_BROXTON(i915))
+>> +	if (IS_GEMINILAKE(i915) || IS_BROXTON(i915) || DISPLAY_VER(i915) >=3D =
+12)
+>>  		intel_dp->get_pps_idx =3D bxt_power_sequencer_idx;
+>>  	else if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
+>>  		intel_dp->get_pps_idx =3D vlv_power_sequencer_pipe;
+>> --=20
+>> 2.29.0
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
