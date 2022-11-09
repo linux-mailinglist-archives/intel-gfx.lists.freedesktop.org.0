@@ -2,49 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAD80622F41
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Nov 2022 16:43:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC6D9622F30
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Nov 2022 16:41:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F85C10E5F0;
-	Wed,  9 Nov 2022 15:42:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3E3210E5EF;
+	Wed,  9 Nov 2022 15:41:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BE0A10E5F1
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Nov 2022 15:42:56 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7A8D10E5EF
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Nov 2022 15:41:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668008576; x=1699544576;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=zwoFH9aReI2j+ppA7qBdthpViU5YUjimNwAXKn1Rie0=;
- b=EGA4PvHet9uWEr0QnxMPnu6n4EyCPnAkfbsBaVa/rfVTQeQRFpp8EMC5
- l+QKNfuoZbyPTLmQsb/R9oJ9zvCHRDDH+SLWGJNvDv5bg7P3QI6el6a4u
- np/5rKEd6a/u5IEsfoaVbJnt1MJNJBwBf7PbknJ78Kd8aCx3OwR3GHNgH
- Co0o29yGANzsoBq14xvSmV4uL4fMrCOoPl9khKSEwSaYd1PNnJk/8HWS9
- UYp8fSn8tMe/OdPJyT0yJ7nU4RHDahgImlztvbBhEQNwJ+iNQ3lDrYSp0
- 8qCpeZP/H3UoUGl+l7eIU6ko/UeifBgsWTD1O0wLrdbbt1uiguJ3davT8 w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="309720963"
-X-IronPort-AV: E=Sophos;i="5.96,151,1665471600"; d="scan'208";a="309720963"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2022 07:35:26 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="779381361"
-X-IronPort-AV: E=Sophos;i="5.96,151,1665471600"; d="scan'208";a="779381361"
+ t=1668008485; x=1699544485;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=pEAOLckm14wgy+koH5RarhjCFrwU1mpGvswy6XDTy60=;
+ b=ZHrxsHqSasc3ukZvy/Y0XSVrKG8xSTnste9XAZ1KZbIO8WskwcWAczBn
+ GwJ9QOVPV5kR65e7lhIP2UDZ+3AMttxiAv1+fOxz4JH2eALqfl5Z77Gac
+ rslTKVmCE7NvbA3Wl/o+CZYv3tqtoljAxVxj/bhdTIxcMDZkCGaym2U5t
+ /vO/LFQETvgIM459zKxK7UYFrrLpCI/xw06P880QREJpo5Nv7AcAeLM7R
+ lssdmfFo9shXKUHfgsazOEMGTR/fMimacp3A2Oe8oZ3W7f3Q0yS6TsWoV
+ JgJV1gdHMyzmHZ445ysZ0Y2NI0KOPIgzsIYnOxshRfPSdZQpYlsSVkRbN g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="375285549"
+X-IronPort-AV: E=Sophos;i="5.96,151,1665471600"; d="scan'208";a="375285549"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2022 07:35:30 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="811668849"
+X-IronPort-AV: E=Sophos;i="5.96,151,1665471600"; d="scan'208";a="811668849"
 Received: from skorobko-mobl2.ccr.corp.intel.com (HELO localhost)
  ([10.252.15.56])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2022 07:35:25 -0800
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2022 07:35:29 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  9 Nov 2022 17:35:18 +0200
-Message-Id: <cover.1668008071.git.jani.nikula@intel.com>
+Date: Wed,  9 Nov 2022 17:35:19 +0200
+Message-Id: <5161a0c6d98df206c6c4c1add3fc3f2f408020b1.1668008071.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <cover.1668008071.git.jani.nikula@intel.com>
+References: <cover.1668008071.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 0/4] drm/i915: header cleanups, cont'd
+Subject: [Intel-gfx] [PATCH v2 1/4] drm/i915/reg: move masked field helpers
+ to i915_reg_defs.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,96 +64,64 @@ Cc: Jani Nikula <jani.nikula@intel.com>, lucas.demarchi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The remaining patches from [1], rebased.
+This is a more logical place for generic helpers.
 
-I also realized this conflicts with what Lucas is doing so I'd like to
-get feedback.
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/i915_reg.h      | 13 -------------
+ drivers/gpu/drm/i915/i915_reg_defs.h | 13 +++++++++++++
+ 2 files changed, 13 insertions(+), 13 deletions(-)
 
-[1] https://patchwork.freedesktop.org/series/110404/
-
-Jani Nikula (4):
-  drm/i915/reg: move masked field helpers to i915_reg_defs.h
-  drm/i915/reg: move pick even and pick to reg defs
-  drm/i915: split out intel_display_reg_defs.h
-  drm/i915: stop including i915_irq.h from i915_trace.h
-
- drivers/gpu/drm/i915/display/g4x_dp.c         |  1 +
- drivers/gpu/drm/i915/display/g4x_hdmi.c       |  1 +
- drivers/gpu/drm/i915/display/i9xx_plane.c     |  4 +-
- drivers/gpu/drm/i915/display/icl_dsi.c        |  1 +
- drivers/gpu/drm/i915/display/icl_dsi_regs.h   |  2 +-
- .../gpu/drm/i915/display/intel_audio_regs.h   |  2 +-
- .../gpu/drm/i915/display/intel_backlight.c    |  1 +
- .../drm/i915/display/intel_backlight_regs.h   |  2 +-
- drivers/gpu/drm/i915/display/intel_cdclk.c    |  1 +
- drivers/gpu/drm/i915/display/intel_color.c    |  1 +
- .../gpu/drm/i915/display/intel_combo_phy.c    |  1 +
- drivers/gpu/drm/i915/display/intel_crt.c      |  2 +
- drivers/gpu/drm/i915/display/intel_cursor.c   |  3 +-
- drivers/gpu/drm/i915/display/intel_ddi.c      |  1 +
- drivers/gpu/drm/i915/display/intel_display.c  |  1 +
- .../drm/i915/display/intel_display_debugfs.c  |  2 +
- .../drm/i915/display/intel_display_reg_defs.h | 53 ++++++++++++++
- drivers/gpu/drm/i915/display/intel_dp.c       |  1 +
- drivers/gpu/drm/i915/display/intel_dp_aux.c   |  1 +
- drivers/gpu/drm/i915/display/intel_dp_hdcp.c  |  1 +
- drivers/gpu/drm/i915/display/intel_dp_mst.c   |  1 +
- drivers/gpu/drm/i915/display/intel_dpio_phy.c |  1 +
- drivers/gpu/drm/i915/display/intel_dpll.c     |  1 +
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  1 +
- drivers/gpu/drm/i915/display/intel_drrs.c     |  1 +
- drivers/gpu/drm/i915/display/intel_dsb.c      |  1 +
- drivers/gpu/drm/i915/display/intel_dvo.c      |  1 +
- drivers/gpu/drm/i915/display/intel_fdi.c      |  1 +
- drivers/gpu/drm/i915/display/intel_gmbus.c    |  2 +
- .../gpu/drm/i915/display/intel_hdcp_regs.h    |  2 +-
- drivers/gpu/drm/i915/display/intel_hdmi.c     |  1 +
- .../gpu/drm/i915/display/intel_lpe_audio.c    |  2 +
- drivers/gpu/drm/i915/display/intel_lspcon.c   |  1 +
- drivers/gpu/drm/i915/display/intel_lvds.c     |  1 +
- .../gpu/drm/i915/display/intel_mg_phy_regs.h  |  2 +-
- .../drm/i915/display/intel_modeset_setup.c    |  1 +
- drivers/gpu/drm/i915/display/intel_panel.c    |  1 +
- .../gpu/drm/i915/display/intel_pch_display.c  |  1 +
- .../gpu/drm/i915/display/intel_pch_refclk.c   |  1 +
- drivers/gpu/drm/i915/display/intel_pipe_crc.c |  2 +
- drivers/gpu/drm/i915/display/intel_pps.c      |  1 +
- drivers/gpu/drm/i915/display/intel_psr.c      |  1 +
- drivers/gpu/drm/i915/display/intel_sdvo.c     |  1 +
- drivers/gpu/drm/i915/display/intel_snps_phy.c |  1 +
- .../drm/i915/display/intel_snps_phy_regs.h    |  2 +-
- drivers/gpu/drm/i915/display/intel_sprite.c   |  1 +
- drivers/gpu/drm/i915/display/intel_tv.c       |  2 +
- drivers/gpu/drm/i915/display/intel_vdsc.c     |  1 +
- drivers/gpu/drm/i915/display/intel_vga.c      |  1 +
- drivers/gpu/drm/i915/display/intel_vrr.c      |  1 +
- drivers/gpu/drm/i915/display/skl_scaler.c     |  2 +
- .../drm/i915/display/skl_universal_plane.c    |  2 +
- drivers/gpu/drm/i915/display/vlv_dsi.c        |  1 +
- drivers/gpu/drm/i915/display/vlv_dsi_regs.h   |  2 +-
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  1 +
- .../drm/i915/gem/selftests/i915_gem_mman.c    |  1 +
- drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  2 +
- .../drm/i915/gt/intel_execlists_submission.c  |  1 +
- drivers/gpu/drm/i915/gt/intel_gt.c            |  1 +
- drivers/gpu/drm/i915/gt/intel_gt_pm.c         |  1 +
- drivers/gpu/drm/i915/gt/intel_gt_regs.h       |  1 +
- drivers/gpu/drm/i915/gt/intel_gtt.c           |  1 +
- .../gpu/drm/i915/gt/intel_ring_submission.c   |  2 +
- drivers/gpu/drm/i915/gt/intel_workarounds.c   |  1 +
- .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  1 +
- drivers/gpu/drm/i915/gvt/cmd_parser.c         |  1 +
- drivers/gpu/drm/i915/gvt/mmio_context.c       |  1 +
- drivers/gpu/drm/i915/i915_gpu_error.c         |  1 +
- drivers/gpu/drm/i915/i915_perf.c              |  1 +
- drivers/gpu/drm/i915/i915_reg.h               | 70 +------------------
- drivers/gpu/drm/i915/i915_reg_defs.h          | 30 +++++++-
- drivers/gpu/drm/i915/i915_trace.h             |  1 -
- drivers/gpu/drm/i915/intel_device_info.c      |  3 +-
- drivers/gpu/drm/i915/intel_uncore.c           |  1 +
- 74 files changed, 166 insertions(+), 82 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_display_reg_defs.h
-
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index a37ed0c61f20..0d54d69c2eb1 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -171,19 +171,6 @@
+ 					      INTEL_INFO(dev_priv)->display.cursor_offsets[PIPE_A] + \
+ 					      DISPLAY_MMIO_BASE(dev_priv) + (reg))
+ 
+-#define __MASKED_FIELD(mask, value) ((mask) << 16 | (value))
+-#define _MASKED_FIELD(mask, value) ({					   \
+-	if (__builtin_constant_p(mask))					   \
+-		BUILD_BUG_ON_MSG(((mask) & 0xffff0000), "Incorrect mask"); \
+-	if (__builtin_constant_p(value))				   \
+-		BUILD_BUG_ON_MSG((value) & 0xffff0000, "Incorrect value"); \
+-	if (__builtin_constant_p(mask) && __builtin_constant_p(value))	   \
+-		BUILD_BUG_ON_MSG((value) & ~(mask),			   \
+-				 "Incorrect value for mask");		   \
+-	__MASKED_FIELD(mask, value); })
+-#define _MASKED_BIT_ENABLE(a)	({ typeof(a) _a = (a); _MASKED_FIELD(_a, _a); })
+-#define _MASKED_BIT_DISABLE(a)	(_MASKED_FIELD((a), 0))
+-
+ #define GU_CNTL				_MMIO(0x101010)
+ #define   LMEM_INIT			REG_BIT(7)
+ 
+diff --git a/drivers/gpu/drm/i915/i915_reg_defs.h b/drivers/gpu/drm/i915/i915_reg_defs.h
+index f1859046a9c4..e94558a336f1 100644
+--- a/drivers/gpu/drm/i915/i915_reg_defs.h
++++ b/drivers/gpu/drm/i915/i915_reg_defs.h
+@@ -98,6 +98,19 @@
+  */
+ #define REG_FIELD_GET64(__mask, __val)	((u64)FIELD_GET(__mask, __val))
+ 
++#define __MASKED_FIELD(mask, value) ((mask) << 16 | (value))
++#define _MASKED_FIELD(mask, value) ({					   \
++	if (__builtin_constant_p(mask))					   \
++		BUILD_BUG_ON_MSG(((mask) & 0xffff0000), "Incorrect mask"); \
++	if (__builtin_constant_p(value))				   \
++		BUILD_BUG_ON_MSG((value) & 0xffff0000, "Incorrect value"); \
++	if (__builtin_constant_p(mask) && __builtin_constant_p(value))	   \
++		BUILD_BUG_ON_MSG((value) & ~(mask),			   \
++				 "Incorrect value for mask");		   \
++	__MASKED_FIELD(mask, value); })
++#define _MASKED_BIT_ENABLE(a)	({ typeof(a) _a = (a); _MASKED_FIELD(_a, _a); })
++#define _MASKED_BIT_DISABLE(a)	(_MASKED_FIELD((a), 0))
++
+ typedef struct {
+ 	u32 reg;
+ } i915_reg_t;
 -- 
 2.34.1
 
