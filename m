@@ -2,79 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01CC6622F33
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Nov 2022 16:41:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D72AC622FCA
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Nov 2022 17:12:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C595010E5F1;
-	Wed,  9 Nov 2022 15:41:49 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
- [64.147.123.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9128E10E5F1;
- Wed,  9 Nov 2022 15:41:44 +0000 (UTC)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
- by mailnew.west.internal (Postfix) with ESMTP id D93F02B05EA7;
- Wed,  9 Nov 2022 10:41:37 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute1.internal (MEProxy); Wed, 09 Nov 2022 10:41:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-transfer-encoding:content-type:date:date:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to; s=fm2; t=1668008497; x=
- 1668015697; bh=RCyshHC41nd39fvXLSqmZArQb870AHZw66GwFRxnroM=; b=m
- 6M99+0EF+2lM4FWiKahRXCTJ/2TRlz60OSCpfjLh0dwLmJt8UZlGysvW6zVlL2pp
- Lr+WltoyoR+IUFtxULmpx9V4PwWXUoTK4lT0XrTSj5OvW/EuKUSq5OP7fCPSv/hS
- wMLhIZFZK8xtnKAD9HRpKE6bFT9+wsAEN69ffr7dSfS1rpaxm7Hu+1woa3Z/o8NN
- 3pMECxBqnO7uCjXhTY1CIEOjl5zs2PPTo+UtduJ3Rp8RuU/G2ycnUdEQw76dETW2
- RAZTS2OHN2xECUNb6NdkAEGXy0l0HrmS51YjeCqALxmBWtJmoeNmXqsRuIUWSADN
- tB1lVQ/av/uRi0fIEh3kw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:date:date:feedback-id:feedback-id:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1668008497; x=
- 1668015697; bh=RCyshHC41nd39fvXLSqmZArQb870AHZw66GwFRxnroM=; b=Q
- 1/HqsQB3psOc+96b6isRXoX5C5ybTom2C7vyqoPLqp6JQbF0UAVFZTxbWo+gL3Z7
- y51qQFpEdFsWqcGqsfn/LvJJEjy0xXvTlIm+jkDjJL7W2PUy0KZtNHaHgAbKSzIo
- EXABW/A3a68xWi6D9zvPbEuQNITYea4uEAs14se9B4WgqQk7704vEkRSEj1hITqn
- SuwL1/x4lWuzJktnqdj0yaghQoItbO/N1nJd5FeM4RK1VJ6E2U1ERYVRZjBPJq/o
- oZgqdBUCMtxCDJJqCd3vUbP8Pj6gYNwNSIoi5BMIwLk53Qg+nZqzgdElZRJPx9/p
- hSuGxkmOWcv95FeDiejzA==
-X-ME-Sender: <xms:MMprY44s5uzkOROU2zHEfWl9aJUVwCgeTFwkoIaoC8uvSdgvD-Thag>
- <xme:MMprY56o5iiiBf61_8abJX__s-HAqE4YCR2hlccU8ReACbG0thX7mIhfHRBpDIZSh
- RKfSUNIqO9Y0bI2vBM>
-X-ME-Received: <xmr:MMprY3cXvBJulNae7ipti96x_ZJvMRoIGjmME7i6lUuPDYyopQlU92K8WrUb829ARuUXjBRc5ketZAEhaS_3g2VgVlsgQnHfFiBzPvuwyPr6bQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrfedvgdejlecutefuodetggdotefrodftvf
- curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
- uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
- fjughrpeffhffvvefukfhfgggtugfgjgesthhqredttddtudenucfhrhhomhepofgrgihi
- mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
- htthgvrhhnpeelleefieelleetteefvdeikeeffeffvefhtdevgfehveduveehjedvvdei
- ledtieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
- hmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:MMprY9JTwg_wzFj8EWHTdbjBtWZJHYPCN4V_xLC-bRoRQgnaKQCqIw>
- <xmx:MMprY8Ig6OqyUH6VsywLi3cQuOIsSc94EBfT82yvHaUlhJfnpliaBA>
- <xmx:MMprY-zaAoIdjYBBMBRxQowmsI7JmMk3IojZrK3a217hu4nC8Pxobg>
- <xmx:McprY2rAchrF3eCgdTb_46WNWdcdn_DFIex5hkcfFEYhCf4ui436F9V3VWs>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 9 Nov 2022 10:41:35 -0500 (EST)
-Date: Wed, 9 Nov 2022 16:41:33 +0100
-From: Maxime Ripard <maxime@cerno.tech>
-To: Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>
-Message-ID: <20221109154133.koqhn6upwz6jd2oe@houat>
-References: <20220728-rpi-analog-tv-properties-v7-0-7072a478c6b3@cerno.tech>
- <20220728-rpi-analog-tv-properties-v7-16-7072a478c6b3@cerno.tech>
- <a9c0380a-f538-1a19-fd27-983eea42b1b2@tronnes.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD1C510E536;
+	Wed,  9 Nov 2022 16:12:02 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B3DF10E536
+ for <Intel-gfx@lists.freedesktop.org>; Wed,  9 Nov 2022 16:12:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1668010320; x=1699546320;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=nJI4ro+jAHzR4PBbYjNzbAwO3BQ6On2uoSrJJcY3Zwg=;
+ b=JV56PBKOwye+RFINirmN5UgnL+MQG6LuOgudO9r1Xk0NUHf10S+91Qlq
+ stCsTge7PApUi8QlAwU53chs/+T6Xn5qvvKGlyi9acbcwnb/oELx4oVH7
+ qcQ3ngFNvapYRWCo2pT34upSy5Kp8EDZKb8Qo4GwrSpEZivr/I/sYFN+e
+ aQ95efRd8Fj9yT2LbyExYdmSayhOPGU1KuR4T73mblMfBWNI49Cr2OrIp
+ kLkngSni9fLZoFNKpCHeghpfBjrkNipWyLiERPE/YzoqlfBDUc955fSao
+ w2cT6mqLn61eDIIHhZgM+kwd35r+oThIXvB8IKhO+gRcTyRk40XUty4i6 g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="373166114"
+X-IronPort-AV: E=Sophos;i="5.96,151,1665471600"; d="scan'208";a="373166114"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2022 08:11:59 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="811684351"
+X-IronPort-AV: E=Sophos;i="5.96,151,1665471600"; d="scan'208";a="811684351"
+Received: from smurnane-mobl.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.213.196.238])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2022 08:11:54 -0800
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Intel-gfx@lists.freedesktop.org
+Date: Wed,  9 Nov 2022 16:11:28 +0000
+Message-Id: <20221109161141.2987173-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <a9c0380a-f538-1a19-fd27-983eea42b1b2@tronnes.org>
-Subject: Re: [Intel-gfx] [PATCH v7 16/23] drm/probe-helper: Provide a TV
- get_modes helper
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [RFC v2 00/13] DRM scheduling cgroup controller
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,92 +56,193 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
- Samuel Holland <samuel@sholland.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
- linux-sunxi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-arm-kernel@lists.infradead.org,
- Dom Cobley <dom@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
- Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Rob Clark <robdclark@chromium.org>, Kenny.Ho@amd.com,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, Johannes Weiner <hannes@cmpxchg.org>,
+ linux-kernel@vger.kernel.org,
+ =?UTF-8?q?St=C3=A9phane=20Marchesin?= <marcheu@chromium.org>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Zefan Li <lizefan.x@bytedance.com>, Dave Airlie <airlied@redhat.com>,
+ Tejun Heo <tj@kernel.org>, cgroups@vger.kernel.org,
+ "T . J . Mercier" <tjmercier@google.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Noralf,
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-On Mon, Nov 07, 2022 at 07:11:27PM +0100, Noralf Tr=F8nnes wrote:
->=20
->=20
-> Den 07.11.2022 15.16, skrev Maxime Ripard:
-> > From: Noralf Tr=F8nnes <noralf@tronnes.org>
-> >=20
-> > Most of the TV connectors will need a similar get_modes implementation
-> > that will, depending on the drivers' capabilities, register the 480i and
-> > 576i modes.
-> >=20
-> > That implementation will also need to set the preferred flag and order
-> > the modes based on the driver and users preferrence.
-> >=20
-> > This is especially important to guarantee that a userspace stack such as
-> > Xorg can start and pick up the preferred mode while maintaining a
-> > working output.
-> >=20
-> > Signed-off-by: Noralf Tr=F8nnes <noralf@tronnes.org>
-> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> >=20
-> > ---
-> > Changes in v7:
-> > - Used Noralf's implementation
-> >=20
-> > Changes in v6:
-> > - New patch
-> > ---
-> >  drivers/gpu/drm/drm_probe_helper.c | 97 ++++++++++++++++++++++++++++++=
-++++++++
-> >  include/drm/drm_probe_helper.h     |  1 +
-> >  2 files changed, 98 insertions(+)
-> >=20
-> > diff --git a/drivers/gpu/drm/drm_probe_helper.c b/drivers/gpu/drm/drm_p=
-robe_helper.c
-> > index 2fc21df709bc..edb2e4c4530a 100644
-> > --- a/drivers/gpu/drm/drm_probe_helper.c
-> > +++ b/drivers/gpu/drm/drm_probe_helper.c
-> > @@ -1147,3 +1147,100 @@ int drm_connector_helper_get_modes(struct drm_c=
-onnector *connector)
-> >  	return count;
-> >  }
-> >  EXPORT_SYMBOL(drm_connector_helper_get_modes);
-> > +
-> > +static bool tv_mode_supported(struct drm_connector *connector,
-> > +			      enum drm_connector_tv_mode mode)
-> > +{
-> > +	struct drm_device *dev =3D connector->dev;
-> > +	struct drm_property *property =3D dev->mode_config.tv_mode_property;
-> > +
-> > +	unsigned int i;
-> > +
-> > +	for (i =3D 0; i < property->num_values; i++)
-> > +		if (property->values[i] =3D=3D mode)
-> > +			return true;
-> > +
-> > +	return false;
-> > +}
->=20
-> This function is not used in the new implementation.
->
-> I hope you have tested this patch since I didn't even compile test my
-> implementation (probably should have said so...)
+This series contains a proposal for a DRM scheduling cgroup controller which
+implements a weight based hierarchical GPU usage budget based controller
+similar in concept to some of the existing controllers.
 
-You nailed it ;)
+Motivation mostly comes from my earlier proposal where I identified that GPU
+scheduling lags significantly behind what is available for CPU and IO. Whereas
+back then I was proposing to somehow tie this with process nice, feedback mostly
+was that people wanted cgroups. So here it is - in the world of heterogenous
+computing pipelines I think it is time to do something about this gap.
 
-I had tested it (but missed the warning), and added unit tests to make
-sure it was behaving properly, and it did. I'll send the unit tests in
-my next version.
+Code is not finished but should survive some light experimenting with. I am
+sharing it early since the topic has been controversial in the past. I hope to
+demonstrate there are gains to be had in real world usage(*), today, and that
+the concepts the proposal relies are well enough established and stable.
 
-Thanks
-Maxime
+*) Specifically under ChromeOS which uses cgroups to control CPU bandwith for
+   VMs based on the window focused status. It can be demonstrated how GPU
+   scheduling control can easily be integrated into that setup.
+
+There should be no conflict with this proposal and any efforts to implement
+memory usage based controller. Skeleton DRM cgroup controller is deliberatly
+purely a skeleton patch where any further functionality can be added with no
+real conflicts. [In fact, perhaps scheduling is even easier to deal with than
+memory accounting.]
+
+Structure of the series is as follows:
+
+  1-3) Improve client ownership tracking in DRM core.
+    4) Adds a skeleton DRM cgroup controller with no functionality.
+ 5-10) Laying down some infrastructure to enable the controller.
+   11) The controller itself.
+12-13) i915 support for the controller.
+
+The proposals defines a delegation of duties between the tree parties: cgroup
+controller, DRM core and individual drivers. Two way communication interfaces
+are then defined to enable the delegation to work.
+
+DRM scheduling soft limits
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Because of the heterogenous hardware and driver DRM capabilities, soft limits
+are implemented as a loose co-operative (bi-directional) interface between the
+controller and DRM core.
+
+The controller configures the GPU time allowed per group and periodically scans
+the belonging tasks to detect the over budget condition, at which point it
+invokes a callback notifying the DRM core of the condition.
+
+DRM core provides an API to query per process GPU utilization and 2nd API to
+receive notification from the cgroup controller when the group enters or exits
+the over budget condition.
+
+Individual DRM drivers which implement the interface are expected to act on this
+in the best-effort manner only. There are no guarantees that the soft limits
+will be respected.
+
+DRM scheduling soft limits interface files
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  drm.weight
+	Standard cgroup weight based control [1, 10000] used to configure the
+	relative distributing of GPU time between the sibling groups.
+
+  drm.period_us (Most probably only a debugging aid during RFC phase.)
+	An integer representing the period with which the controller should look
+	at the GPU usage by the group and potentially send the over/under budget
+	signal.
+	Value of zero (defaul) disables the soft limit checking.
+
+This builds upon the per client GPU utilisation work which landed recently for a
+few drivers. My thinking is that in principle, an intersect of drivers which
+support both that and some sort of scheduling control, like  priorities, could
+also in theory support this controller.
+
+Another really interesting angle for this controller is that it mimics the same
+control menthod used by the CPU scheduler. That is the proportional/weight based
+GPU time budgeting. Which makes it easy to configure and does not need a new
+mental model.
+
+However, as the introduction mentions, GPUs are much more heterogenous and
+therefore the controller uses very "soft" wording as to what it promises. The
+general statement is that it can define budgets, notify clients when they are
+over them, and let individual drivers implement best effort handling of those
+conditions.
+
+Delegation of duties in the implementation goes likes this:
+
+ * DRM cgroup controller implements the control files and the scanning loop.
+ * DRM core is required to track all DRM clients belonging to processes so it
+   can answer when asked how much GPU time is a process using.
+ * DRM core also provides a call back which the controller will call when a
+   certain process is over budget.
+ * Individual drivers need to implement two similar hooks, but which work for
+   a single DRM client. Over budget callback and GPU utilisation query.
+
+What I have demonstrated in practice is that when wired to i915, in a really
+primitive way where the over-budget condition simply lowers the scheduling
+priority, the concept can be almost equally effective as the static priority
+control. I say almost because the design where budget control depends on the
+periodic usage scanning has a fundamental delay, so responsiveness will depend
+on the scanning period, which may or may not be a problem for a particular use
+case.
+
+There are also interesting conversations to be had around mental models for what
+is GPU usage as a single number when faced with GPUs which have different
+execution engines. To an extent this is similar to the multi-core and cgroup
+CPU controller problems, but definitely goes further than that.
+
+I deliberately did not want to include any such complications in the controller
+itself and left the individual drivers to handle it. For instance in the i915
+over-budget callback it will not do anything unless client's GPU usage is on a
+physical engine which is oversubscribed. This enables multiple clients to be
+harmlessly over budget, as long as they are not competing for the same GPU
+resource.
+
+This much for now, hope some good discussion will follow.
+
+P.S.
+A disclaimer of a kind -  I was not familiar with how to implement a cgroup
+controller at all when I started this prototype therefore it is quite possible
+there are many bugs and misunderstandings on how it should be done.
+
+v2:
+ * Prefaced the series with some core DRM work as suggested by Christian.
+ * Dropped the priority based controller for now.
+ * Dropped the introspection cgroup controller file.
+ * Implemented unused budget sharing/propagation.
+ * Some small fixes/tweak as per review feedback and in general.
+
+Tvrtko Ursulin (13):
+  drm: Replace DRM_DEBUG with drm_dbg_core in file and ioctl handling
+  drm: Track clients by tgid and not tid
+  drm: Update file owner during use
+  cgroup: Add the DRM cgroup controller
+  drm/cgroup: Track clients per owning process
+  drm/cgroup: Allow safe external access to file_priv
+  drm/cgroup: Add ability to query drm cgroup GPU time
+  drm/cgroup: Add over budget signalling callback
+  drm/cgroup: Only track clients which are providing drm_cgroup_ops
+  cgroup/drm: Client exit hook
+  cgroup/drm: Introduce weight based drm cgroup control
+  drm/i915: Wire up with drm controller GPU time query
+  drm/i915: Implement cgroup controller over budget throttling
+
+ Documentation/admin-guide/cgroup-v2.rst       |  37 ++
+ drivers/gpu/drm/Kconfig                       |   1 +
+ drivers/gpu/drm/Makefile                      |   1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c       |   6 +-
+ drivers/gpu/drm/drm_auth.c                    |   3 +-
+ drivers/gpu/drm/drm_cgroup.c                  | 192 ++++++
+ drivers/gpu/drm/drm_debugfs.c                 |  12 +-
+ drivers/gpu/drm/drm_file.c                    |  74 ++-
+ drivers/gpu/drm/drm_ioc32.c                   |  13 +-
+ drivers/gpu/drm/drm_ioctl.c                   |  28 +-
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  37 +-
+ drivers/gpu/drm/i915/i915_driver.c            |  11 +
+ drivers/gpu/drm/i915/i915_drm_client.c        | 169 +++++-
+ drivers/gpu/drm/i915/i915_drm_client.h        |  13 +
+ drivers/gpu/drm/nouveau/nouveau_drm.c         |   5 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_gem.c           |   6 +-
+ include/drm/drm_clients.h                     |  47 ++
+ include/drm/drm_drv.h                         |  36 ++
+ include/drm/drm_file.h                        |  17 +-
+ include/linux/cgroup_drm.h                    |  13 +
+ include/linux/cgroup_subsys.h                 |   4 +
+ init/Kconfig                                  |   8 +
+ kernel/cgroup/Makefile                        |   1 +
+ kernel/cgroup/drm.c                           | 572 ++++++++++++++++++
+ 24 files changed, 1249 insertions(+), 57 deletions(-)
+ create mode 100644 drivers/gpu/drm/drm_cgroup.c
+ create mode 100644 include/drm/drm_clients.h
+ create mode 100644 include/linux/cgroup_drm.h
+ create mode 100644 kernel/cgroup/drm.c
+
+-- 
+2.34.1
+
