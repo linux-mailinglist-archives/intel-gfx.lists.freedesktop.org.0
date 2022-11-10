@@ -1,51 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F59A624522
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Nov 2022 16:08:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C3FE62450E
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Nov 2022 16:05:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE21F10E866;
-	Thu, 10 Nov 2022 15:08:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8A3D10E84F;
+	Thu, 10 Nov 2022 15:05:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBAF910E863
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Nov 2022 15:08:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A91A010E854;
+ Thu, 10 Nov 2022 15:05:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668092892; x=1699628892;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=d8nlbFFDcwOWBjiLKBCrZjjyqvi+eLmpp4ZMbSHVaFM=;
- b=e7GoHAbYiSGwSvMeslOt1LlMQkGoVLCOYiZPrH2cmRBb70j/Q66HmzcQ
- dg8uM+ghJ1RLhdypWWIjdcyHwVi13rvPYXq9svYBynIlw3G3TmzR7sKJ3
- HROOT0lz3XjTRE09RxCGD4OgnLmEWo0Grf6uJ11xWtur4AoklIaAKby2F
- xsRGj0bspPZnfb/i8BhrIJzPRnHzfMOJxw4vQfLH46az1kXyexo6ZgWnv
- swzB+aKgvOBCrgaHa6Mqf+rl2Xrh/yCamC6svYR48XzDOnNHKKK1IZAkU
- g+xiVefKqwisyGdywtOYzLOql6yH64dgdqPwfMRfLkMsPJGCjHiR92ovQ g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10527"; a="397624625"
-X-IronPort-AV: E=Sophos;i="5.96,154,1665471600"; d="scan'208";a="397624625"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ t=1668092732; x=1699628732;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=fAcvMa9cUQt6Cm/9SOmRo9GbT8RPyFRZbyKUSbZ5aNg=;
+ b=KlBwqQubw2q5QqcFkOtyNYkE3jOwpD0Ki9gBouIA3g3+IsA6AD9F0zK3
+ hvDN3op3hvf2l840SAGxlmFRqnpUcWq1yWPuzqJxnrb0BT0akRV4elAMX
+ 85dQPaSe0zbqllP3uXxASs8AqDKSQQfFJI7iO/lO9CWegGQ1HS5Q6aIyD
+ jER4cqfcQwqGCdvzv9MyaPjQ1KWv333X0zJoFlVeoY5kc9jYmxY9KF0Ml
+ Fv0kPN+afcX+hTUXlM5GSb33doU+Y+Q664uM+JHGgNS6wE5NeaIvtzsH5
+ wxO7V1u9MuQ3wbJoUfUCOv4QoPrblTtx5vigvpNNDIvNu6QJcS6SRRN5Z w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10527"; a="397623701"
+X-IronPort-AV: E=Sophos;i="5.96,154,1665471600"; d="scan'208";a="397623701"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2022 07:08:12 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10527"; a="668436586"
-X-IronPort-AV: E=Sophos;i="5.96,154,1665471600"; d="scan'208";a="668436586"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by orsmga008.jf.intel.com with ESMTP; 10 Nov 2022 07:08:10 -0800
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 10 Nov 2022 20:33:07 +0530
-Message-Id: <20221110150307.3366-5-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20221110150307.3366-1-animesh.manna@intel.com>
-References: <20221110150307.3366-1-animesh.manna@intel.com>
+ 10 Nov 2022 07:05:16 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10527"; a="588200871"
+X-IronPort-AV: E=Sophos;i="5.96,154,1665471600"; d="scan'208";a="588200871"
+Received: from inovosel-mobl3.ger.corp.intel.com (HELO [10.252.17.163])
+ ([10.252.17.163])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2022 07:05:13 -0800
+Message-ID: <ab3149ab-730b-c3d5-5296-518a9611dd64@intel.com>
+Date: Thu, 10 Nov 2022 15:05:11 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.4.1
+Content-Language: en-GB
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
+ "Zanoni, Paulo R" <paulo.r.zanoni@intel.com>
+References: <20221107085210.17221-1-niranjana.vishwanathapura@intel.com>
+ <7a1c8c8ba83e3e7ba286e636de0074516a099d68.camel@intel.com>
+ <Y2yQ2T7+sILYn3rM@nvishwa1-DESK>
+ <9097e704-841e-673d-4969-73ffc8f9093f@linux.intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <9097e704-841e-673d-4969-73ffc8f9093f@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915/panelreplay: enable/disable panel
- replay
+Subject: Re: [Intel-gfx] [PATCH v6 00/20] drm/i915/vm_bind: Add VM_BIND
+ functionality
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,85 +66,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "Hellstrom, Thomas" <thomas.hellstrom@intel.com>, "Vetter,
+ Daniel" <daniel.vetter@intel.com>,
+ "christian.koenig@amd.com" <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-TRANS_DP2_CTL register is programmed to enable panel replay from source
-and sink is enabled through panel replay dpcd configuration address.
+On 10/11/2022 14:47, Tvrtko Ursulin wrote:
+> 
+> On 10/11/2022 05:49, Niranjana Vishwanathapura wrote:
+>> On Wed, Nov 09, 2022 at 04:16:25PM -0800, Zanoni, Paulo R wrote:
+>>> On Mon, 2022-11-07 at 00:51 -0800, Niranjana Vishwanathapura wrote:
+>>>> DRM_I915_GEM_VM_BIND/UNBIND ioctls allows UMD to bind/unbind GEM
+>>>> buffer objects (BOs) or sections of a BOs at specified GPU virtual
+>>>> addresses on a specified address space (VM). Multiple mappings can map
+>>>> to the same physical pages of an object (aliasing). These mappings 
+>>>> (also
+>>>> referred to as persistent mappings) will be persistent across multiple
+>>>> GPU submissions (execbuf calls) issued by the UMD, without user having
+>>>> to provide a list of all required mappings during each submission (as
+>>>> required by older execbuf mode).
+>>>>
+>>>> This patch series support VM_BIND version 1, as described by the param
+>>>> I915_PARAM_VM_BIND_VERSION.
+>>>>
+>>>> Add new execbuf3 ioctl (I915_GEM_EXECBUFFER3) which only works in
+>>>> vm_bind mode. The vm_bind mode only works with this new execbuf3 ioctl.
+>>>> The new execbuf3 ioctl will not have any execlist support and all the
+>>>> legacy support like relocations etc., are removed.
+>>>>
+>>>> NOTEs:
+>>>> * It is based on below VM_BIND design+uapi rfc.
+>>>>   Documentation/gpu/rfc/i915_vm_bind.rst
+>>>
+>>> Hi
+>>>
+>>> One difference for execbuf3 that I noticed that is not mentioned in the
+>>> RFC document is that we now don't have a way to signal
+>>> EXEC_OBJECT_WRITE. When looking at the Kernel code, some there are some
+>>> pieces that check for this flag:
+>>>
+>>> - there's code that deals with frontbuffer rendering
+>>> - there's code that deals with fences
+>>> - there's code that prevents self-modifying batches
+>>> - another that seems related to waiting for objects
+>>>
+>>> Are there any new rules regarding frontbuffer rendering when we use
+>>> execbuf3? Any other behavior changes related to the other places that
+>>> we should expect when using execbuf3?
+>>>
+>>
+>> Paulo,
+>> Most of the EXEC_OBJECT_WRITE check in execbuf path is related to
+>> implicit dependency tracker which execbuf3 does not support. The
+>> frontbuffer related updated is the only exception and I don't
+>> remember the rationale to not require this on execbuf3.
+>>
+>> Matt, Tvrtko, Daniel, can you please comment here?
+> 
+> Does not ring a bell to me. Looking at the code it certainly looks like 
+> it would be silently failing to handle it properly.
+> 
+> I'll let people with more experience in this area answer, but from my 
+> point of view, if it is decided that it can be left unsupported, then we 
+> probably need a way of failing the ioctl is used against a frontbuffer, 
+> or something, instead of having display corruption.
 
-Note: Currently enabled full-screen live active frame update mode
-of panel replay. Panel replay also can be enabled in selective
-update mode which will be enabled in a incremental approach.
+Maybe it's a coincidence but there is:
+https://patchwork.freedesktop.org/series/110715/
 
-Cc: Jouni Högander <jouni.hogander@intel.com>
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c | 30 ++++++++++++++++++++----
- 1 file changed, 26 insertions(+), 4 deletions(-)
+Which looks relevant. Maarten, any hints here?
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 50394143c798..b6406c334316 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -395,8 +395,14 @@ static void intel_psr_enable_sink(struct intel_dp *intel_dp)
- 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
- 	u8 dpcd_val = DP_PSR_ENABLE;
- 
--	/* Enable ALPM at sink for psr2 */
-+	if (intel_dp->psr.enabled && IS_PANEL_REPLAY(intel_dp)) {
-+		drm_dp_dpcd_writeb(&intel_dp->aux, PANEL_REPLAY_CONFIG,
-+				   DP_PANEL_REPLAY_ENABLE);
-+		return;
-+	}
-+
- 	if (intel_dp->psr.psr2_enabled) {
-+		/* Enable ALPM at sink for psr2 */
- 		drm_dp_dpcd_writeb(&intel_dp->aux, DP_RECEIVER_ALPM_CONFIG,
- 				   DP_ALPM_ENABLE |
- 				   DP_ALPM_LOCK_ERROR_IRQ_HPD_ENABLE);
-@@ -526,6 +532,17 @@ static u32 intel_psr2_get_tp_time(struct intel_dp *intel_dp)
- 	return val;
- }
- 
-+static void dg2_activate_panel_replay(struct intel_dp *intel_dp)
-+{
-+	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-+
-+	intel_de_write(dev_priv, PSR2_MAN_TRK_CTL(intel_dp->psr.transcoder),
-+		       ADLP_PSR2_MAN_TRK_CTL_SF_PARTIAL_FRAME_UPDATE);
-+
-+	intel_de_rmw(dev_priv, TRANS_DP2_CTL(intel_dp->psr.transcoder), 0,
-+		     TRANS_DP2_PANEL_REPLAY_ENABLE);
-+}
-+
- static void hsw_activate_psr2(struct intel_dp *intel_dp)
- {
- 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-@@ -1101,8 +1118,10 @@ static void intel_psr_activate(struct intel_dp *intel_dp)
- 	drm_WARN_ON(&dev_priv->drm, intel_dp->psr.active);
- 	lockdep_assert_held(&intel_dp->psr.lock);
- 
--	/* psr1 and psr2 are mutually exclusive.*/
--	if (intel_dp->psr.psr2_enabled)
-+	/* psr1, psr2 and panel-replay are mutually exclusive.*/
-+	if (intel_dp->psr.enabled && IS_PANEL_REPLAY(intel_dp))
-+		dg2_activate_panel_replay(intel_dp);
-+	else if (intel_dp->psr.psr2_enabled)
- 		hsw_activate_psr2(intel_dp);
- 	else
- 		hsw_activate_psr1(intel_dp);
-@@ -1300,7 +1319,10 @@ static void intel_psr_exit(struct intel_dp *intel_dp)
- 		return;
- 	}
- 
--	if (intel_dp->psr.psr2_enabled) {
-+	if (intel_dp->psr.enabled && !intel_dp_is_edp(intel_dp)) {
-+		intel_de_rmw(dev_priv, TRANS_DP2_CTL(intel_dp->psr.transcoder),
-+			     TRANS_DP2_PANEL_REPLAY_ENABLE, 0);
-+	} else if (intel_dp->psr.psr2_enabled) {
- 		tgl_disallow_dc3co_on_psr2_exit(intel_dp);
- 		val = intel_de_read(dev_priv,
- 				    EDP_PSR2_CTL(intel_dp->psr.transcoder));
--- 
-2.29.0
-
+> 
+> Regards,
+> 
+> Tvrtko
