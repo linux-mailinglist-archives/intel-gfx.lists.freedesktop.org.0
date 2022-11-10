@@ -1,48 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BCBE6248C4
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Nov 2022 18:55:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E52CA62498D
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Nov 2022 19:34:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CCE010E778;
-	Thu, 10 Nov 2022 17:55:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B208310E075;
+	Thu, 10 Nov 2022 18:34:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC17410E76F;
- Thu, 10 Nov 2022 17:55:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668102933; x=1699638933;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=nVpAkIDi1AZjZf4hWWAeqpz/m/6bM3s74RsXyVu1IwM=;
- b=Yn1LFb3E8DRGGfTI3QLFqjEXciKTWRt+VrTW+0t73YWXM7G8GkhifD9f
- c8N7AhAPE7Z3zuX8HlZqPCpxuqYtRwn5X7NSvaVyrH64ylonf/ZcO4+U4
- hQsSdIWgK2s8gKzEX8M6IsFf9tKrVIe/gH4/Vj/b+Qm+YSXNSds4m51st
- eeW9bSBiR6FT0YOQoK1PWQL7za6EHC5j9HGkVe92TR0mOXp04cmEYM2i7
- 54yYe+fbNJuVvLYgenPlejTmBMSYCZei1tAdYkYFcdjEYCNQK9bBjfXsR
- RkSnyxBXQJcDi7GPh4MtlZp/lvOlyYZi7JswKVYpaLcI28HskdCnwNIF/ g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10527"; a="397682158"
-X-IronPort-AV: E=Sophos;i="5.96,154,1665471600"; d="scan'208";a="397682158"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2022 09:55:15 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10527"; a="700897009"
-X-IronPort-AV: E=Sophos;i="5.96,154,1665471600"; d="scan'208";a="700897009"
-Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2022 09:55:15 -0800
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 10 Nov 2022 09:58:23 -0800
-Message-Id: <20221110175823.3867135-1-daniele.ceraolospurio@intel.com>
-X-Mailer: git-send-email 2.37.3
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7E62110E075;
+ Thu, 10 Nov 2022 18:34:36 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 74C02A00E6;
+ Thu, 10 Nov 2022 18:34:36 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/guc: enable GuC GGTT invalidation from
- the start
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Thu, 10 Nov 2022 18:34:36 -0000
+Message-ID: <166810527644.16952.12617629155999968231@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1668008071.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1668008071.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_header_cleanups=2C_cont=27d?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,117 +40,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Invalidating the GuC TLBs while GuC is not loaded does not have negative
-consequences, so if we're starting the driver with GuC enabled we can
-use the GGTT invalidation function from the get-go, iinstead of switching
-to it when we initialize the GuC objects.
+== Series Details ==
 
-In MTL, this fixes and issue where we try to overwrite the invalidation
-function twice (once for each GuC), due to the GGTT being shared between
-the primary and media GTs
+Series: drm/i915: header cleanups, cont'd
+URL   : https://patchwork.freedesktop.org/series/110716/
+State : warning
 
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_ggtt.c   | 28 ++++----------------------
- drivers/gpu/drm/i915/gt/intel_gtt.h    |  2 --
- drivers/gpu/drm/i915/gt/uc/intel_guc.c |  7 -------
- 3 files changed, 4 insertions(+), 33 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index 2518cebbf931..2dbe6ad5c900 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -979,7 +979,10 @@ static int gen8_gmch_probe(struct i915_ggtt *ggtt)
- 			I915_VMA_GLOBAL_BIND | I915_VMA_LOCAL_BIND;
- 	}
- 
--	ggtt->invalidate = gen8_ggtt_invalidate;
-+	if (intel_uc_wants_guc(&ggtt->vm.gt->uc))
-+		ggtt->invalidate = guc_ggtt_invalidate;
-+	else
-+		ggtt->invalidate = gen8_ggtt_invalidate;
- 
- 	ggtt->vm.vma_ops.bind_vma    = intel_ggtt_bind_vma;
- 	ggtt->vm.vma_ops.unbind_vma  = intel_ggtt_unbind_vma;
-@@ -1216,29 +1219,6 @@ int i915_ggtt_enable_hw(struct drm_i915_private *i915)
- 	return 0;
- }
- 
--void i915_ggtt_enable_guc(struct i915_ggtt *ggtt)
--{
--	GEM_BUG_ON(ggtt->invalidate != gen8_ggtt_invalidate);
--
--	ggtt->invalidate = guc_ggtt_invalidate;
--
--	ggtt->invalidate(ggtt);
--}
--
--void i915_ggtt_disable_guc(struct i915_ggtt *ggtt)
--{
--	/* XXX Temporary pardon for error unload */
--	if (ggtt->invalidate == gen8_ggtt_invalidate)
--		return;
--
--	/* We should only be called after i915_ggtt_enable_guc() */
--	GEM_BUG_ON(ggtt->invalidate != guc_ggtt_invalidate);
--
--	ggtt->invalidate = gen8_ggtt_invalidate;
--
--	ggtt->invalidate(ggtt);
--}
--
- /**
-  * i915_ggtt_resume_vm - Restore the memory mappings for a GGTT or DPT VM
-  * @vm: The VM to restore the mappings for
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
-index 4d75ba4bb41d..fcbbfed79f15 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-@@ -579,8 +579,6 @@ void intel_ggtt_unbind_vma(struct i915_address_space *vm,
- int i915_ggtt_probe_hw(struct drm_i915_private *i915);
- int i915_ggtt_init_hw(struct drm_i915_private *i915);
- int i915_ggtt_enable_hw(struct drm_i915_private *i915);
--void i915_ggtt_enable_guc(struct i915_ggtt *ggtt);
--void i915_ggtt_disable_guc(struct i915_ggtt *ggtt);
- int i915_init_ggtt(struct drm_i915_private *i915);
- void i915_ggtt_driver_release(struct drm_i915_private *i915);
- void i915_ggtt_driver_late_release(struct drm_i915_private *i915);
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-index 1bcd61bb50f8..4ec954b6b4e8 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-@@ -421,9 +421,6 @@ int intel_guc_init(struct intel_guc *guc)
- 	/* now that everything is perma-pinned, initialize the parameters */
- 	guc_init_params(guc);
- 
--	/* We need to notify the guc whenever we change the GGTT */
--	i915_ggtt_enable_guc(gt->ggtt);
--
- 	intel_uc_fw_change_status(&guc->fw, INTEL_UC_FIRMWARE_LOADABLE);
- 
- 	return 0;
-@@ -448,13 +445,9 @@ int intel_guc_init(struct intel_guc *guc)
- 
- void intel_guc_fini(struct intel_guc *guc)
- {
--	struct intel_gt *gt = guc_to_gt(guc);
--
- 	if (!intel_uc_fw_is_loadable(&guc->fw))
- 		return;
- 
--	i915_ggtt_disable_guc(gt->ggtt);
--
- 	if (intel_guc_slpc_is_used(guc))
- 		intel_guc_slpc_fini(&guc->slpc);
- 
--- 
-2.37.3
+Error: dim checkpatch failed
+a1c8e7edfaca drm/i915/reg: move masked field helpers to i915_reg_defs.h
+-:48: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'mask' - possible side-effects?
+#48: FILE: drivers/gpu/drm/i915/i915_reg_defs.h:102:
++#define _MASKED_FIELD(mask, value) ({					   \
++	if (__builtin_constant_p(mask))					   \
++		BUILD_BUG_ON_MSG(((mask) & 0xffff0000), "Incorrect mask"); \
++	if (__builtin_constant_p(value))				   \
++		BUILD_BUG_ON_MSG((value) & 0xffff0000, "Incorrect value"); \
++	if (__builtin_constant_p(mask) && __builtin_constant_p(value))	   \
++		BUILD_BUG_ON_MSG((value) & ~(mask),			   \
++				 "Incorrect value for mask");		   \
++	__MASKED_FIELD(mask, value); })
+
+-:48: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'value' - possible side-effects?
+#48: FILE: drivers/gpu/drm/i915/i915_reg_defs.h:102:
++#define _MASKED_FIELD(mask, value) ({					   \
++	if (__builtin_constant_p(mask))					   \
++		BUILD_BUG_ON_MSG(((mask) & 0xffff0000), "Incorrect mask"); \
++	if (__builtin_constant_p(value))				   \
++		BUILD_BUG_ON_MSG((value) & 0xffff0000, "Incorrect value"); \
++	if (__builtin_constant_p(mask) && __builtin_constant_p(value))	   \
++		BUILD_BUG_ON_MSG((value) & ~(mask),			   \
++				 "Incorrect value for mask");		   \
++	__MASKED_FIELD(mask, value); })
+
+total: 0 errors, 0 warnings, 2 checks, 38 lines checked
+a3b636f83d37 drm/i915/reg: move pick even and pick to reg defs
+-:55: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__a' - possible side-effects?
+#55: FILE: drivers/gpu/drm/i915/i915_reg_defs.h:120:
++#define _PICK_EVEN(__index, __a, __b) ((__a) + (__index) * ((__b) - (__a)))
+
+total: 0 errors, 0 warnings, 1 checks, 42 lines checked
+3a98d29dd753 drm/i915: split out intel_display_reg_defs.h
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:57: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#57: 
+new file mode 100644
+
+-:107: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#107: FILE: drivers/gpu/drm/i915/display/intel_display_reg_defs.h:46:
++#define _MMIO_TRANS2(tran, reg)		_MMIO(INTEL_INFO(dev_priv)->display.trans_offsets[(tran)] - \
+
+-:108: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#108: FILE: drivers/gpu/drm/i915/display/intel_display_reg_defs.h:47:
++					      INTEL_INFO(dev_priv)->display.trans_offsets[TRANSCODER_A] + \
+
+-:110: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#110: FILE: drivers/gpu/drm/i915/display/intel_display_reg_defs.h:49:
++#define _MMIO_CURSOR2(pipe, reg)	_MMIO(INTEL_INFO(dev_priv)->display.cursor_offsets[(pipe)] - \
+
+-:111: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#111: FILE: drivers/gpu/drm/i915/display/intel_display_reg_defs.h:50:
++					      INTEL_INFO(dev_priv)->display.cursor_offsets[PIPE_A] + \
+
+total: 0 errors, 5 warnings, 0 checks, 176 lines checked
+b2c1abcfaf49 drm/i915: stop including i915_irq.h from i915_trace.h
+
 
