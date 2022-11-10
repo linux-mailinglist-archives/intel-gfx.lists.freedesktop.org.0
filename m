@@ -2,78 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33AD8624020
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Nov 2022 11:39:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DE4A624035
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Nov 2022 11:44:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B638310E6C7;
-	Thu, 10 Nov 2022 10:39:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3941C10E6C7;
+	Thu, 10 Nov 2022 10:44:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com
- [66.111.4.230])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C97310E6C7;
- Thu, 10 Nov 2022 10:39:17 +0000 (UTC)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
- by mailnew.nyi.internal (Postfix) with ESMTP id DA9A458056F;
- Thu, 10 Nov 2022 05:39:16 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute3.internal (MEProxy); Thu, 10 Nov 2022 05:39:16 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
- :message-id:mime-version:references:reply-to:sender:subject
- :subject:to:to; s=fm2; t=1668076756; x=1668083956; bh=PwYNjQU7tN
- 1yo0q4sJyp8vj8McI2niUCJnvMpuBPHGk=; b=gMEwj1DG8zmPKzu0+yKVKH03Kx
- e61Uw+WzZJFD6Px2CZXRX4G8Zi1p345HVdtHMpL2qSi69lVddsisHKPl24rr+9bg
- lGvcm/6s4418rzGhOVzqyYFIRAfqd78jO6Nquvf7uftvHVkyzs/ZtUUHMAhZC+lY
- 66vuWPK+QNeZS3cUQ+QsqHk1fz7JlL31pg0QxttYN1apTfI5afVpUdiyMT76DI26
- Jz+sxMXE0BWHJR/rncIveXM3JVcyfoRqdhrJh/PwseUOeQL9nj1B6dONJiZTxLho
- mUXnNvpd3chserPvH0/MJ+eV4zBNCHXdQV087G11xOMWGj0+VRhDikiOaMPg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
- :feedback-id:from:from:in-reply-to:in-reply-to:message-id
- :mime-version:references:reply-to:sender:subject:subject:to:to
- :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm1; t=1668076756; x=1668083956; bh=PwYNjQU7tN1yo0q4sJyp8vj8McI2
- niUCJnvMpuBPHGk=; b=Xr8BzRZUhOldcOGwtNOHvI/a7uNK4UnnPClBS8k80w93
- xvmN0OyGFsgiH7IW0Tuj5UkmaBALc35OAZOOcZNJXjiuvH3xR60nmBg4PLwK9m0H
- hbF6oU9ObO0B70aOAlx5O/yR+ms5tfjoYBy9VmhFPZjgKXCloSMn2qnysTWCUd5A
- 17gyfJJb4BD6sgVWQRF3ce+aQblKOswYUyCFH/tqMJLTGFiTldUr67P66ElddHbo
- vUy9W7UEQ9DuMz4b/BG3kjbrszywd1S5t1vghMPIug3cb8uEFCR8Uy3VuGxWzXOO
- /K2NCPzI5EtLZzEchkLyqu8gSeHN0k8GLSlmhpFVWQ==
-X-ME-Sender: <xms:1NRsYwnt67HzpCUxoHKGa8GXVoYc0jqd9m1B9rObiYGWp6nFWOWUaQ>
- <xme:1NRsY_0erFK1brduwteUIU-Hp7-9iRiRnkQAIZcs6tjyrFUqzmUPO6_SwXPNWqDyM
- Sx0yIUgocFOwWfMkAg>
-X-ME-Received: <xmr:1NRsY-rXvMVnrOmS6dMxDm_4zweyzwqx_V9Ql86FtDceeVgALEIxnaVTNEBp8-vDaCwvpCUm87TDgVbJcVCVbwsBv_4fq4C8s7leccFYHx4V7w>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrfeeggddukecutefuodetggdotefrodftvf
- curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
- uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
- fjughrpeffhffvvefukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
- vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
- htvghrnhepteefffefgfektdefgfeludfgtdejfeejvddttdekteeiffejvdfgheehfffh
- vedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
- grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:1NRsY8mW_xcrUMl01tyZqxps9tuooz_MljVOu7FQ0WdmWVhrvWN4Ig>
- <xmx:1NRsY-2N22RsUf6ge37Rj9ckd6OVr8ICkwnPyJy7goyIq8GIGFLJQw>
- <xmx:1NRsYzv4YBD0WjzP5ne_ugM6s3NalNJSVZ1o08jqUUR30dWn2lCMTA>
- <xmx:1NRsY-Xz9Dv9rc9zHRnMZ0u8zaBF9EgKO8EHviC-JajdS5vx-BSq0Q>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 10 Nov 2022 05:39:15 -0500 (EST)
-Date: Thu, 10 Nov 2022 11:39:14 +0100
-From: Maxime Ripard <maxime@cerno.tech>
-To: Lukas Satin <luke.satin@gmail.com>
-Message-ID: <20221110103914.hsft4tacop6zerem@houat>
-References: <20220728-rpi-analog-tv-properties-v7-0-7072a478c6b3@cerno.tech>
- <20220728-rpi-analog-tv-properties-v7-22-7072a478c6b3@cerno.tech>
- <e0779ff5-3227-4a6f-1c0b-de2fbff99425@gmail.com>
- <CAEFVmOJ5A7+hUPwb3yUiVegJfUb_1-DGKu1YUCsF=hFTrjASzA@mail.gmail.com>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3E2610E6C7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Nov 2022 10:44:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1668077084; x=1699613084;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=w2hj5+2gNqwwBYF1TuDJD2NS10qlFrrYA+z6zntOvpU=;
+ b=l++ZSR7EJGOUxzBjQf5hIbdQD7qQ1UZlIjQwvX3fjzufDfq6oNgwPWnZ
+ HYZgueGCMOlWvPkK9GXjLzcnenuAFfJQD/p8eUkIGhXOO3uC6GePBxBV4
+ cLsWxpkQC6TfPg3NX2weRqqNo+48fEXGeNbgyrijviIODW2XG07iBgGXM
+ PYu2DsNPapV8ZV7HMo8uXwAh059kxPe3qAlwubuzliUd/u/jLuBrXmEj5
+ ni59A6RK143JON9EwzZHs1D6lJ9y/z9phm9iDV+7iYEwuvWL36wctyL3B
+ Dt2//PstXMNYSVIViau2c0Qqk4d+X4WudCCJAGiM3mscol6TC9WP4nkGG A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="309992705"
+X-IronPort-AV: E=Sophos;i="5.96,153,1665471600"; d="scan'208";a="309992705"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2022 02:44:44 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="631613113"
+X-IronPort-AV: E=Sophos;i="5.96,153,1665471600"; d="scan'208";a="631613113"
+Received: from psikora-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.17.110])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2022 02:44:42 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, Imre Deak
+ <imre.deak@intel.com>
+In-Reply-To: <Y2zQpjgTsBHW/hNs@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20221107170917.3566758-8-imre.deak@intel.com>
+ <20221108151828.3761358-4-imre.deak@intel.com>
+ <Y2zQpjgTsBHW/hNs@intel.com>
+Date: Thu, 10 Nov 2022 12:44:39 +0200
+Message-ID: <87tu375bs8.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="tnzcub77xclkt633"
-Content-Disposition: inline
-In-Reply-To: <CAEFVmOJ5A7+hUPwb3yUiVegJfUb_1-DGKu1YUCsF=hFTrjASzA@mail.gmail.com>
-Subject: Re: [Intel-gfx] [Nouveau] [PATCH v7 22/23] drm/vc4: vec: Add
- support for more analog TV standards
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v3 7/9] drm/i915: Factor out function to
+ get/put AUX_IO power for main link
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,71 +62,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
- Samuel Holland <samuel@sholland.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
- linux-sunxi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-arm-kernel@lists.infradead.org,
- Dom Cobley <dom@raspberrypi.com>, linux-kernel@vger.kernel.org,
- kfyatek+publicgit@gmail.com,
- Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
- Thomas Zimmermann <tzimmermann@suse.de>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, 10 Nov 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Tue, Nov 08, 2022 at 05:18:26PM +0200, Imre Deak wrote:
+>> +static void
+>> +main_link_aux_power_domain_put(struct intel_digital_port *dig_port,
+>> +			       const struct intel_crtc_state *crtc_state)
+>> +{
+>> +	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
+>> +	intel_wakeref_t wf =3D fetch_and_zero(&dig_port->aux_wakeref);
+>
+> Please don't call functions with side effects in variable
+> declaration blocks. Far too easy to miss them and then you end up
+> scratching your head for a day or two debugging the wrong thing.
 
---tnzcub77xclkt633
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Side note, if I got to decide, I'd probably nuke "fetch_and_zero" out of
+existence.
 
-On Wed, Nov 09, 2022 at 05:55:36PM +0100, Lukas Satin wrote:
-> That's great, I will test it on Ubuntu + Nouveau x86_64 and Batocera-Linu=
-x.
->=20
-> I'm not interested in Raspberry Pi. I see you have some commit in
-> RaspberryPi/Linux. Will this go to some Nouveau driver, so I can test it =
-on
-> x86_64 machine? I have some basic experience compiling Linux kernel (nvid=
-ia
-> driver) from 10 years ago.
+It's not that I don't find the concept useful, it's the naming that
+gives the impression of atomicity that the macro utterly lacks. I find
+that dangerous.
 
-Nouveau is only marginally affected by this patch series. It could
-leverage the work done here, but it's not part of it and I won't plan to
-work on it.
+It's a helper that feels like should be part of a core kernel header
+(and you might mistakenly think it already is!) but I doubt would ever
+pass muster because of the above.
 
-The RaspberryPi is mentioned because it's the platform that will benefit
-the most from it, and the main target of that series.
 
-> Scaling is not the way to go because I do this to not use scaling. I could
-> use 640x480 and scale 320x240 to that mode, right? That is what old
-> retrogaming laptop LCD screens do (you can even enable this in their BIOS=
-).
->=20
-> More appropriate is to preserve pixel ratio and have some border. So you
-> mostly select the closest resolution and live with small border on the
-> edge. Then you can crop it on analog TV using real world dials :-)
->=20
-> I joined Nouveau developer list here. I don't know why we have like 40
-> email recipients here and now we discuss Raspberry.
+BR,
+Jani.
 
-Nouveau is marginally affected by it, so its mailing list is in Cc.
-
-Maxime
-
---tnzcub77xclkt633
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCY2zU0gAKCRDj7w1vZxhR
-xZhQAQD+sOJEZ9yfkJ4NAahLIHPffYnG8gECF9ErZ3fNxaAKmwEA6FT7zmjsIGCG
-R+gFgqEc0dQ/i9Ysz13rPMufYrxEvww=
-=62QM
------END PGP SIGNATURE-----
-
---tnzcub77xclkt633--
+--=20
+Jani Nikula, Intel Open Source Graphics Center
