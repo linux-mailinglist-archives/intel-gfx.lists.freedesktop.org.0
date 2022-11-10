@@ -2,56 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE8D9623F9E
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Nov 2022 11:19:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 056D0623FA9
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Nov 2022 11:21:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF08E10E136;
-	Thu, 10 Nov 2022 10:19:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFDEF10E6BD;
+	Thu, 10 Nov 2022 10:21:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C01B310E136;
- Thu, 10 Nov 2022 10:19:40 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D566010E6BD
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Nov 2022 10:21:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668075580; x=1699611580;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=TTcb86UtadUXJCy3qfD/FllQa6KAbQainzScpfzhNJw=;
- b=XZUS2EHC3wk5oIfjboSbmx7mfzoVJzu1iewFL+daaO1FnbInxTX0POsg
- W7+x4eJ7rzCUJnfdBTnjy3k40LMuLx9iSQswkqtGhZkFnzMjmG2I/5n0m
- stDpSWeIjKtZ3Ges5sC53gOTLBQbcJo6TgXlATajxo5YMjja5zUoQRmZn
- nQlcq662cdIcEW1QaDT9SVsubbqTa1u1mHnzwJxSHF3ivWU4OJcoAvIIc
- YHF3ETIa+rvKtDyaccnUqC4SwHJwqwpdvu+f/zPv7OS1iBtw9DXT6O4Hv
- 8MME+W7spc57rCkP5qKRh0uLVD1pMvYUVDz1N2UubtNv4+0TAxCWk8Wxr w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="312406990"
-X-IronPort-AV: E=Sophos;i="5.96,153,1665471600"; d="scan'208";a="312406990"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2022 02:19:35 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="588125964"
-X-IronPort-AV: E=Sophos;i="5.96,153,1665471600"; d="scan'208";a="588125964"
-Received: from salmasha-mobl.ger.corp.intel.com (HELO [10.213.230.214])
- ([10.213.230.214])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2022 02:19:33 -0800
-Message-ID: <b3795eb7-3d9b-21d8-8b10-fc090097c412@linux.intel.com>
-Date: Thu, 10 Nov 2022 10:19:31 +0000
+ t=1668075690; x=1699611690;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=2j17ttZHDTD7iNA2+RnRjKzsF9TFgT4o9D6tmHcbUpk=;
+ b=EIMTqmhjAnVdvXOURiKutI318fLjaZmJSfgTQUHSFYP2J8GC6+OUDgGM
+ Imghlh1P2uPwXXOWli1tq+Zxl4lf6AGM7bB/4a6Q1kxyuOPhI7IUXwnvd
+ dFiM3li1t/Q0voa5Mou9A7c3ZgPILwfWlojrYiXif70f8IPWEjXm2Kj+e
+ x/91u5/paV8F0DuAGw9LsV8D6quJaMUgyOcvfnGbsVRN//MfTFTAESSqC
+ AYPv6NGDS+JyRNmg2wdhWgdDMJCKyRkgNuIh/nWkIR8zvinvaVjyC/DMS
+ Gs4OtHnkkj2DjXUepbqEfM5H72czgqhslMAnpejgVx+k9Ba2sXG/Y9Pko Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="338027757"
+X-IronPort-AV: E=Sophos;i="5.96,153,1665471600"; d="scan'208";a="338027757"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2022 02:21:30 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="726336911"
+X-IronPort-AV: E=Sophos;i="5.96,153,1665471600"; d="scan'208";a="726336911"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by FMSMGA003.fm.intel.com with SMTP; 10 Nov 2022 02:21:27 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 10 Nov 2022 12:21:26 +0200
+Date: Thu, 10 Nov 2022 12:21:26 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <Y2zQpjgTsBHW/hNs@intel.com>
+References: <20221107170917.3566758-8-imre.deak@intel.com>
+ <20221108151828.3761358-4-imre.deak@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Content-Language: en-US
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20221109174058.912720-1-andi.shyti@linux.intel.com>
- <f1f4123c3705c6883acdff4770e404704d54dc6e.camel@linux.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <f1f4123c3705c6883acdff4770e404704d54dc6e.camel@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 0/3] add guard padding around i915_vma
+In-Reply-To: <20221108151828.3761358-4-imre.deak@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v3 7/9] drm/i915: Factor out function to
+ get/put AUX_IO power for main link
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,105 +62,173 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-Hi,
-
-On 09/11/2022 18:03, Thomas Hellström wrote:
-> Hi, Andi,
+On Tue, Nov 08, 2022 at 05:18:26PM +0200, Imre Deak wrote:
+> Factor out functions to get/put the AUX_IO power domain for the main
+> link on DDI ports.
 > 
-> This has been on the list before (three times I think) and at that
-> point it (the guard pages) was NAK'd by Daniel as yet another
-> complication, and a VT-d
-> scanout workaround was implemented and pushed using a different
-> approach, initially outlined by Daniel.
-
-I can't find this discussion and NAKs on the list - do you have a link?
-
-> Patch is 2ef6efa79fecd. Those suspend/resumes should now be fast.
-
-So the initiator to re-start this series was actually the boot time is 
-failing KPIs by quite a margin. Which means we may need a way forward 
-after all. Especially if the most churny patch 1 was deemed okay, then I 
-don't see why the concept of guard pages should be a problem. But again, 
-I couldn't find the discussion you mention to read what were the 
-objections..
-
-For 2ef6efa79fecd specifically. I only looked at it today - do you think 
-that the heuristic of checking one PTE and deciding all content was 
-preserved is safe? What if someone scribbled at random locations? On a 
-first thought it is making me a bit uncomfortable.
-
-Regards,
-
-Tvrtko
-
-> I then also discussed patch 1 separately with Dave Airlie and Daniel
-> and since both me and Dave liked it, Daniel OK'd it, but it never made
-> it upstream.
+> While at it clarify the corresponding code comment.
 > 
-> Just a short heads up on the history.
+> No functional change.
 > 
-> /Thomas
+> v2:
+> - s/(get/put)_aux_power_for_main_link/main_link_aux_power_domain_(get/put)
+>   (Jani)
+> - Clarify in the code comment that AUX_IO is needed only by TypeC besides
+>   eDP/PSR.
+> v3:
+> - Rebased on checking intel_encoder_can_psr() instead of crtc->has_psr.
 > 
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Ville Syrj�l� <ville.syrjala@linux.intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c | 84 ++++++++++++++----------
+>  1 file changed, 51 insertions(+), 33 deletions(-)
 > 
-> On Wed, 2022-11-09 at 18:40 +0100, Andi Shyti wrote:
->> Hi,
->>
->> This series adds guards around vma's but setting a pages at the
->> beginning and at the end that work as padding.
->>
->> The first user of the vma guard are scanout objects which don't
->> need anymore to add scratch to all the unused ggtt's and speeding
->> up up considerably the boot and resume by several hundreds of
->> milliseconds up to over a full second in slower machines.
->>
->> Andi
->>
->> Chris Wilson (3):
->>    drm/i915: Wrap all access to i915_vma.node.start|size
->>    drm/i915: Introduce guard pages to i915_vma
->>    drm/i915: Refine VT-d scanout workaround
->>
->>   drivers/gpu/drm/i915/display/intel_fbdev.c    |  2 +-
->>   drivers/gpu/drm/i915/gem/i915_gem_domain.c    | 13 ++++
->>   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 33 ++++++-----
->>   drivers/gpu/drm/i915/gem/i915_gem_mman.c      |  2 +-
->>   drivers/gpu/drm/i915/gem/i915_gem_shrinker.c  |  2 +-
->>   drivers/gpu/drm/i915/gem/i915_gem_tiling.c    |  4 +-
->>   .../gpu/drm/i915/gem/selftests/huge_pages.c   |  2 +-
->>   .../i915/gem/selftests/i915_gem_client_blt.c  | 23 ++++----
->>   .../drm/i915/gem/selftests/i915_gem_context.c | 15 +++--
->>   .../drm/i915/gem/selftests/i915_gem_mman.c    |  2 +-
->>   .../drm/i915/gem/selftests/igt_gem_utils.c    |  7 ++-
->>   drivers/gpu/drm/i915/gt/gen7_renderclear.c    |  2 +-
->>   drivers/gpu/drm/i915/gt/intel_ggtt.c          | 39 ++++--------
->>   drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c  |  3 +-
->>   drivers/gpu/drm/i915/gt/intel_renderstate.c   |  2 +-
->>   .../gpu/drm/i915/gt/intel_ring_submission.c   |  2 +-
->>   drivers/gpu/drm/i915/gt/selftest_engine_cs.c  |  8 +--
->>   drivers/gpu/drm/i915/gt/selftest_execlists.c  | 18 +++---
->>   drivers/gpu/drm/i915/gt/selftest_hangcheck.c  | 15 ++---
->>   drivers/gpu/drm/i915/gt/selftest_lrc.c        | 16 ++---
->>   .../drm/i915/gt/selftest_ring_submission.c    |  2 +-
->>   drivers/gpu/drm/i915/gt/selftest_rps.c        | 12 ++--
->>   .../gpu/drm/i915/gt/selftest_workarounds.c    |  8 +--
->>   drivers/gpu/drm/i915/i915_cmd_parser.c        |  4 +-
->>   drivers/gpu/drm/i915/i915_debugfs.c           |  2 +-
->>   drivers/gpu/drm/i915/i915_gem_gtt.h           |  3 +-
->>   drivers/gpu/drm/i915/i915_perf.c              |  2 +-
->>   drivers/gpu/drm/i915/i915_vma.c               | 59 +++++++++++++----
->> --
->>   drivers/gpu/drm/i915/i915_vma.h               | 52 +++++++++++++++-
->>   drivers/gpu/drm/i915/i915_vma_resource.c      |  4 +-
->>   drivers/gpu/drm/i915/i915_vma_resource.h      | 17 ++++--
->>   drivers/gpu/drm/i915/i915_vma_types.h         |  3 +-
->>   drivers/gpu/drm/i915/selftests/i915_request.c | 20 +++----
->>   drivers/gpu/drm/i915/selftests/igt_spinner.c  |  8 +--
->>   34 files changed, 246 insertions(+), 160 deletions(-)
->>
-> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index a087609223c60..21f1a68a57598 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -846,26 +846,63 @@ bool intel_ddi_get_hw_state(struct intel_encoder *encoder,
+>  }
+>  
+>  static enum intel_display_power_domain
+> -intel_ddi_main_link_aux_domain(struct intel_digital_port *dig_port)
+> +intel_ddi_main_link_aux_domain(struct intel_digital_port *dig_port,
+> +			       const struct intel_crtc_state *crtc_state)
+>  {
+>  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> +	enum phy phy = intel_port_to_phy(i915, dig_port->base.port);
+>  
+> -	/* ICL+ HW requires corresponding AUX IOs to be powered up for PSR with
+> +	/*
+> +	 * ICL+ HW requires corresponding AUX IOs to be powered up for PSR with
+>  	 * DC states enabled at the same time, while for driver initiated AUX
+>  	 * transfers we need the same AUX IOs to be powered but with DC states
+> -	 * disabled. Accordingly use the AUX power domain here which leaves DC
+> -	 * states enabled.
+> -	 * However, for non-A AUX ports the corresponding non-EDP transcoders
+> -	 * would have already enabled power well 2 and DC_OFF. This means we can
+> -	 * acquire a wider POWER_DOMAIN_AUX_{B,C,D,F} reference instead of a
+> -	 * specific AUX_IO reference without powering up any extra wells.
+> -	 * Note that PSR is enabled only on Port A even though this function
+> -	 * returns the correct domain for other ports too.
+> +	 * disabled. Accordingly use the AUX_IO_<port> power domain here which
+> +	 * leaves DC states enabled.
+> +	 *
+> +	 * Before MTL TypeC PHYs (in all TypeC modes and both DP/HDMI) also require
+> +	 * AUX IO to be enabled, but all these require DC_OFF to be enabled as
+> +	 * well, so we can acquire a wider AUX_<port> power domain reference
+> +	 * instead of a specific AUX_IO_<port> reference without powering up any
+> +	 * extra wells.
+>  	 */
+>  	if (intel_encoder_can_psr(&dig_port->base))
+>  		return intel_display_power_aux_io_domain(i915, dig_port->aux_ch);
+> -	else
+> +	else if (intel_crtc_has_dp_encoder(crtc_state) ||
+> +		 intel_phy_is_tc(i915, phy))
+>  		return intel_aux_power_domain(dig_port);
+> +	else
+> +		return POWER_DOMAIN_INVALID;
+> +}
+> +
+> +static void
+> +main_link_aux_power_domain_get(struct intel_digital_port *dig_port,
+> +			       const struct intel_crtc_state *crtc_state)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> +	enum intel_display_power_domain domain =
+> +		intel_ddi_main_link_aux_domain(dig_port, crtc_state);
+> +
+> +	drm_WARN_ON(&i915->drm, dig_port->aux_wakeref);
+> +
+> +	if (domain == POWER_DOMAIN_INVALID)
+> +		return;
+> +
+> +	dig_port->aux_wakeref = intel_display_power_get(i915, domain);
+> +}
+> +
+> +static void
+> +main_link_aux_power_domain_put(struct intel_digital_port *dig_port,
+> +			       const struct intel_crtc_state *crtc_state)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> +	intel_wakeref_t wf = fetch_and_zero(&dig_port->aux_wakeref);
+
+Please don't call functions with side effects in variable
+declaration blocks. Far too easy to miss them and then you end up
+scratching your head for a day or two debugging the wrong thing.
+
+> +	enum intel_display_power_domain domain =
+> +		intel_ddi_main_link_aux_domain(dig_port, crtc_state);
+> +
+> +	if (!wf)
+> +		return;
+> +
+> +	intel_display_power_put(i915, domain, wf);
+>  }
+>  
+>  static void intel_ddi_get_power_domains(struct intel_encoder *encoder,
+> @@ -873,7 +910,6 @@ static void intel_ddi_get_power_domains(struct intel_encoder *encoder,
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>  	struct intel_digital_port *dig_port;
+> -	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
+>  
+>  	/*
+>  	 * TODO: Add support for MST encoders. Atm, the following should never
+> @@ -892,17 +928,7 @@ static void intel_ddi_get_power_domains(struct intel_encoder *encoder,
+>  								   dig_port->ddi_io_power_domain);
+>  	}
+>  
+> -	/*
+> -	 * AUX power is only needed for (e)DP mode, and for HDMI mode on TC
+> -	 * ports.
+> -	 */
+> -	if (intel_crtc_has_dp_encoder(crtc_state) ||
+> -	    intel_phy_is_tc(dev_priv, phy)) {
+> -		drm_WARN_ON(&dev_priv->drm, dig_port->aux_wakeref);
+> -		dig_port->aux_wakeref =
+> -			intel_display_power_get(dev_priv,
+> -						intel_ddi_main_link_aux_domain(dig_port));
+> -	}
+> +	main_link_aux_power_domain_get(dig_port, crtc_state);
+>  }
+>  
+>  void intel_ddi_enable_pipe_clock(struct intel_encoder *encoder,
+> @@ -2741,10 +2767,7 @@ static void intel_ddi_post_disable(struct intel_atomic_state *state,
+>  		intel_ddi_post_disable_dp(state, encoder, old_crtc_state,
+>  					  old_conn_state);
+>  
+> -	if (intel_crtc_has_dp_encoder(old_crtc_state) || is_tc_port)
+> -		intel_display_power_put(dev_priv,
+> -					intel_ddi_main_link_aux_domain(dig_port),
+> -					fetch_and_zero(&dig_port->aux_wakeref));
+> +	main_link_aux_power_domain_put(dig_port, old_crtc_state);
+>  
+>  	if (is_tc_port)
+>  		intel_tc_port_put_link(dig_port);
+> @@ -3065,12 +3088,7 @@ intel_ddi_pre_pll_enable(struct intel_atomic_state *state,
+>  	if (is_tc_port)
+>  		intel_tc_port_get_link(dig_port, crtc_state->lane_count);
+>  
+> -	if (intel_crtc_has_dp_encoder(crtc_state) || is_tc_port) {
+> -		drm_WARN_ON(&dev_priv->drm, dig_port->aux_wakeref);
+> -		dig_port->aux_wakeref =
+> -			intel_display_power_get(dev_priv,
+> -						intel_ddi_main_link_aux_domain(dig_port));
+> -	}
+> +	main_link_aux_power_domain_get(dig_port, crtc_state);
+>  
+>  	if (is_tc_port && !intel_tc_port_in_tbt_alt_mode(dig_port))
+>  		/*
+> -- 
+> 2.37.1
+
+-- 
+Ville Syrj�l�
+Intel
