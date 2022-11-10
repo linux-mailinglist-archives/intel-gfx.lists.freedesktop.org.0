@@ -2,49 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54466624153
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Nov 2022 12:24:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9C79624164
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Nov 2022 12:28:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5586E10E6CE;
-	Thu, 10 Nov 2022 11:24:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCCEC10E137;
+	Thu, 10 Nov 2022 11:28:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8A7810E137
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Nov 2022 11:24:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECCBB10E137
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Nov 2022 11:28:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668079457; x=1699615457;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=0sBEVrQUw7/QQWPhrvtGnHkHuMbK5a0tg8bHjhfaioM=;
- b=hxvYx8k1nhmEiUN3WQlRJR0OFhmBxORacFA/Fsw84EqYrGgG/CXBeoT9
- R7L8WFXZLjflV2OdOJuv1qiR+f7rk/o9dAw2Lc1rRGxddxYt0RiDT5u19
- RaVxRZarG/+aYY9x1Xl9Ng5dgoBVVTanThgk8jcBXjqLdA7VQ4sxf4Slv
- ptRQWs8A1+ITwsmgAbJwRCmodDY5c8JyftGJl86J4HGwXSPqStPfnLP1Y
- +Xa93apg2s3EPl/wp/jDTl+QSC8QF/2vUOvDUfigFZ0tpS2uDSha+oWXh
- gqravMyCFHQDb1KkHxYgeaqHmv1gt6gIs7JTReKw5++MLrvzUoZGwhYVD Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="397580209"
-X-IronPort-AV: E=Sophos;i="5.96,153,1665471600"; d="scan'208";a="397580209"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ t=1668079703; x=1699615703;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=QqJwMiMJ+TzMCAosPtEuGD4t94LJbpZKxUCSPsuxlaA=;
+ b=AsfqH5aaLHlx10BiQAhZOCqwjbJ3W95lkFMJzhoQoROLDPSa3U1iELP2
+ 6K9hkVySOzaYfcL8HMo2RcO+Pzc68s3ueVg3IPqanCwC4vBEPq41IiDqc
+ 6XhzKJirW62RODtyjYK/gX0uLetDLLv2ionlt5wVh265/prmsOlAX5uvU
+ NWXcMYzBRt87ZvW21qVK65hcz/X3+ePFC5Vm1y1p2ydLjtvtyKCXq0DEo
+ Ngdu4/q9Kbh6M/sVYluto7qa+O/K8U5yzOI+lssHmgIcWrtiY1FwAt0sl
+ 5nm3/cSbIVwVkUfS2jdSIWa9Hkf3+5l8UmgLW9hZlYtcih3NuFjf/uQmK g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="397581150"
+X-IronPort-AV: E=Sophos;i="5.96,153,1665471600"; d="scan'208";a="397581150"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2022 03:24:13 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="668375318"
-X-IronPort-AV: E=Sophos;i="5.96,153,1665471600"; d="scan'208";a="668375318"
+ 10 Nov 2022 03:28:23 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="812009562"
+X-IronPort-AV: E=Sophos;i="5.96,153,1665471600"; d="scan'208";a="812009562"
 Received: from psikora-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.17.110])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2022 03:24:10 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Swati Sharma <swati2.sharma@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20221110093312.13932-1-swati2.sharma@intel.com>
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2022 03:28:22 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Anusha Srivatsa <anusha.srivatsa@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20221110053724.14701-1-anusha.srivatsa@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221110093312.13932-1-swati2.sharma@intel.com>
-Date: Thu, 10 Nov 2022 13:24:08 +0200
-Message-ID: <87r0yb59yf.fsf@intel.com>
+References: <20221110053724.14701-1-anusha.srivatsa@intel.com>
+Date: Thu, 10 Nov 2022 13:28:19 +0200
+Message-ID: <87o7tf59rg.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsc: Refactor dsc gen checks
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Add missing checks for
+ cdclk crawling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,92 +63,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 10 Nov 2022, Swati Sharma <swati2.sharma@intel.com> wrote:
-> Use HAS_DSC(__i915) wrapper containing runtime info of has_dsc
-> member. Platforms supporting dsc has this flag enabled; no need of
-> DISPLAY_VER() check.
+On Wed, 09 Nov 2022, Anusha Srivatsa <anusha.srivatsa@intel.com> wrote:
+> cdclk_sanitize() function was written assuming vco was a signed integer.
+> vco gets assigned to -1 (essentially ~0) for the case where PLL
+> might be enabled and vco is not a frequency that will ever
+> get used. In such a scenario the right thing to do is disable the
+> PLL and re-enable it again with a valid frequency.
+> However the vco is declared as a unsigned variable.
+> With the above assumption, driver takes crawl path when not needed.
+> Add explicit check to not crawl in the case of an invalid PLL.
 >
-> Also, simplified intel_dsc_source_support() based on above changes.
->
-> Suggested-by: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Swati Sharma <swati2.sharma@intel.com>
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Suggested-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_dp.c   |  6 +++---
->  drivers/gpu/drm/i915/display/intel_vdsc.c | 11 ++++-------
->  drivers/gpu/drm/i915/i915_drv.h           |  1 +
->  3 files changed, 8 insertions(+), 10 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_cdclk.c | 2 ++
+>  drivers/gpu/drm/i915/display/intel_cdclk.h | 1 +
+>  2 files changed, 3 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 7400d6b4c587..f6f9257bd202 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1012,7 +1012,7 @@ intel_dp_mode_valid(struct drm_connector *_connector,
->  	 * Output bpp is stored in 6.4 format so right shift by 4 to get the
->  	 * integer value since we support only integer values of bpp.
->  	 */
-> -	if (DISPLAY_VER(dev_priv) >= 10 &&
-> +	if (HAS_DSC(dev_priv) &&
->  	    drm_dp_sink_supports_dsc(intel_dp->dsc_dpcd)) {
->  		/*
->  		 * TBD pass the connector BPC,
-> @@ -2906,7 +2906,7 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp)
->  	intel_dp_set_max_sink_lane_count(intel_dp);
->  
->  	/* Read the eDP DSC DPCD registers */
-> -	if (DISPLAY_VER(dev_priv) >= 10)
-> +	if (HAS_DSC(dev_priv))
->  		intel_dp_get_dsc_sink_cap(intel_dp);
->  
->  	/*
-> @@ -4691,7 +4691,7 @@ intel_dp_detect(struct drm_connector *connector,
->  	}
->  
->  	/* Read DP Sink DSC Cap DPCD regs for DP v1.4 */
-> -	if (DISPLAY_VER(dev_priv) >= 11)
-> +	if (HAS_DSC(dev_priv))
->  		intel_dp_get_dsc_sink_cap(intel_dp);
->  
->  	intel_dp_configure_mst(intel_dp);
-> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> index 269f9792390d..7b4d300a4dd8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> @@ -344,16 +344,13 @@ bool intel_dsc_source_support(const struct intel_crtc_state *crtc_state)
->  	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
->  	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
->  
-> -	if (!RUNTIME_INFO(i915)->has_dsc)
-> +	if (!HAS_DSC(i915))
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm=
+/i915/display/intel_cdclk.c
+> index 8a9031012d74..91112d266763 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -1962,6 +1962,8 @@ static bool intel_cdclk_can_crawl(struct drm_i915_p=
+rivate *dev_priv,
+>  	if (!HAS_CDCLK_CRAWL(dev_priv))
 >  		return false;
->  
-> -	if (DISPLAY_VER(i915) >= 12)
-> -		return true;
-> -
-> -	if (DISPLAY_VER(i915) >= 11 && cpu_transcoder != TRANSCODER_A)
-> -		return true;
-> +	if (DISPLAY_VER(i915) == 11 && cpu_transcoder == TRANSCODER_A)
+>=20=20
+> +	if (intel_pll_is_unknown(a->vco))
 > +		return false;
->  
-> -	return false;
-> +	return true;
->  }
->  
->  static bool is_pipe_dsc(struct intel_crtc *crtc, enum transcoder cpu_transcoder)
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 05b3300cc4ed..9d1fe5d6a104 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -484,6 +484,7 @@ static inline struct intel_gt *to_gt(struct drm_i915_private *i915)
->  #define INTEL_REVID(dev_priv)	(to_pci_dev((dev_priv)->drm.dev)->revision)
->  
->  #define HAS_DSB(dev_priv)	(INTEL_INFO(dev_priv)->display.has_dsb)
-> +#define HAS_DSC(__i915)		(RUNTIME_INFO(__i915)->has_dsc)
->  
->  #define INTEL_DISPLAY_STEP(__i915) (RUNTIME_INFO(__i915)->step.display_step)
->  #define INTEL_GRAPHICS_STEP(__i915) (RUNTIME_INFO(__i915)->step.graphics_step)
+>  	/*
+>  	 * The vco and cd2x divider will change independently
+>  	 * from each, so we disallow cd2x change when crawling.
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm=
+/i915/display/intel_cdclk.h
+> index c674879a84a5..6eb83d806f11 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.h
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
+> @@ -80,6 +80,7 @@ intel_atomic_get_cdclk_state(struct intel_atomic_state =
+*state);
+>  	to_intel_cdclk_state(intel_atomic_get_old_global_obj_state(state, &to_i=
+915(state->base.dev)->display.cdclk.obj))
+>  #define intel_atomic_get_new_cdclk_state(state) \
+>  	to_intel_cdclk_state(intel_atomic_get_new_global_obj_state(state, &to_i=
+915(state->base.dev)->display.cdclk.obj))
+> +#define intel_pll_is_unknown(vco)	((vco) =3D=3D ~0)
 
--- 
+Why here? What does a pll function do in intel_cdclk.h?
+
+BR,
+Jani.
+
+>=20=20
+>  int intel_cdclk_init(struct drm_i915_private *dev_priv);
+
+--=20
 Jani Nikula, Intel Open Source Graphics Center
