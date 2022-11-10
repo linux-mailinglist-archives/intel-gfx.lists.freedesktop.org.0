@@ -2,46 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5765623EDA
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Nov 2022 10:43:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CBF3623F1C
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Nov 2022 10:55:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D30C10E6AD;
-	Thu, 10 Nov 2022 09:43:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15DD410E12A;
+	Thu, 10 Nov 2022 09:55:13 +0000 (UTC)
 X-Original-To: Intel-GFX@lists.freedesktop.org
 Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13A7510E6AA;
- Thu, 10 Nov 2022 09:43:24 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58BB410E12A;
+ Thu, 10 Nov 2022 09:55:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668073404; x=1699609404;
+ t=1668074111; x=1699610111;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=H1G6UfBYVMaqpRkvDanF2S+0JRkIJKK/pGSPgxuewsM=;
- b=dlhovpynD810o4naHGCWbJA1Gbg+5U6ZrV+Y7tV1S3VziL3E94vzGpCU
- AJVkEy7E+LfPdzaT+01qygVW0LYLcLwpMX23gNfffVkuAQcWDFxbLaelc
- BZYkMNdsBxz1lM6zYijh04xvS3aSNUoNIp5TUTKmyX6/8oqP+HhYwkUXw
- YsHKov2OWnEXJSOCAkWGHIbscQ8eNSxXGMd5ZP2QANDaxBERxdPGqrknu
- W8WyxMRf8wNmTN1k0B92Nbz0dvDCUmMlxcAb2fuLz2oD0CnGQQCE2WWdk
- 8zD3iugivsRwLVh1yrve4pUhVoc0MBCH7+0F8bPOc/DGiSlUChDZ9J1o4 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="375513836"
-X-IronPort-AV: E=Sophos;i="5.96,153,1665471600"; d="scan'208";a="375513836"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2022 01:43:23 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="588114986"
-X-IronPort-AV: E=Sophos;i="5.96,153,1665471600"; d="scan'208";a="588114986"
+ bh=r2ikZK2r8f+DD7YfVaZQ2215g8rtTBRl2xEPkvt/D7g=;
+ b=jjNBgLsgpUbVIymbpYxmhv8BWb4SjMYZYHrX9idaIzokUUqENqBNRYrO
+ HAu8Ka+hPSUXPMwekxTUPRDlVEB7qg+j1FWc24oWk9l8lY5dqq8XQcbP0
+ GKFZtlDbVuh62oyRa+gOLYcGykNPJmYYrQms9cT3A6nnEuT8yxYGCMBFu
+ En3+Sq1pMQxmQH1TcGgpZ0Y1+U1yPmlyG+t6cIJFs9powdpM/BEXCTtLT
+ UYWpwDe2UlY96wg6DB6ehEtsooRHMgIozqvhCvIo8dXfNrS/8J9/iA6AV
+ BMSwjBgw5oZHdSkFT8IqsHC9RZk00NB/aPUEEvLsTpsUS8MhBq7Zcn6m7 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="294617040"
+X-IronPort-AV: E=Sophos;i="5.96,153,1665471600"; d="scan'208";a="294617040"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2022 01:55:04 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="615042249"
+X-IronPort-AV: E=Sophos;i="5.96,153,1665471600"; d="scan'208";a="615042249"
 Received: from salmasha-mobl.ger.corp.intel.com (HELO [10.213.230.214])
  ([10.213.230.214])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2022 01:43:21 -0800
-Message-ID: <76d41194-1a81-b5eb-ee29-601b64fa6a49@linux.intel.com>
-Date: Thu, 10 Nov 2022 09:43:19 +0000
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2022 01:55:02 -0800
+Message-ID: <7f420032-fe96-4d19-886d-b333668e4c5b@linux.intel.com>
+Date: Thu, 10 Nov 2022 09:55:00 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.3
 Content-Language: en-US
-To: John Harrison <john.c.harrison@intel.com>,
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ John Harrison <john.c.harrison@intel.com>,
  "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>,
  Intel-GFX@Lists.FreeDesktop.Org
 References: <20221104172525.569913-1-John.C.Harrison@Intel.com>
@@ -54,11 +55,12 @@ References: <20221104172525.569913-1-John.C.Harrison@Intel.com>
  <c9742b0f-546f-cccc-021a-7bad68410838@intel.com>
  <ad19d7ce-4102-4f8f-903d-7390b004b2e9@linux.intel.com>
  <67d18d17-8a01-32a1-1ff6-099c708ab290@intel.com>
+ <02454937-4213-c558-590f-e1e7c83083e3@intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <67d18d17-8a01-32a1-1ff6-099c708ab290@intel.com>
+In-Reply-To: <02454937-4213-c558-590f-e1e7c83083e3@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/gt: Add GT oriented dmesg
  output
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -78,311 +80,79 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 09/11/2022 17:46, John Harrison wrote:
-> On 11/9/2022 03:05, Tvrtko Ursulin wrote:
->> On 08/11/2022 20:15, John Harrison wrote:
->>> On 11/8/2022 01:01, Tvrtko Ursulin wrote:
->>>> On 07/11/2022 19:14, John Harrison wrote:
->>>>> On 11/7/2022 08:17, Tvrtko Ursulin wrote:
->>>>>> On 07/11/2022 09:33, Tvrtko Ursulin wrote:
->>>>>>> On 05/11/2022 01:03, Ceraolo Spurio, Daniele wrote:
->>>>>>>> On 11/4/2022 10:25 AM, John.C.Harrison@Intel.com wrote:
->>>>>>>>> From: John Harrison <John.C.Harrison@Intel.com>
->>>>>>>>>
->>>>>>>>> When trying to analyse bug reports from CI, customers, etc. it 
->>>>>>>>> can be
->>>>>>>>> difficult to work out exactly what is happening on which GT in a
->>>>>>>>> multi-GT system. So add GT oriented debug/error message 
->>>>>>>>> wrappers. If
->>>>>>>>> used instead of the drm_ equivalents, you get the same output 
->>>>>>>>> but with
->>>>>>>>> a GT# prefix on it.
->>>>>>>>>
->>>>>>>>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->>>>>>>>
->>>>>>>> The only downside to this is that we'll print "GT0: " even on 
->>>>>>>> single-GT devices. We could introduce a gt->info.name and print 
->>>>>>>> that, so we could have it different per-platform, but IMO it's 
->>>>>>>> not worth the effort.
->>>>>>>>
->>>>>>>> Reviewed-by: Daniele Ceraolo Spurio 
->>>>>>>> <daniele.ceraolospurio@intel.com>
->>>>>>>>
->>>>>>>> I think it might be worth getting an ack from one of the 
->>>>>>>> maintainers to make sure we're all aligned on transitioning to 
->>>>>>>> these new logging macro for gt code.
->>>>>>>
->>>>>>> Idea is I think a very good one. First I would suggest 
->>>>>>> standardising to lowercase GT in logs because:
->>>>>>>
->>>>>>> $ grep "GT%" i915/ -r
->>>>>>> $ grep "gt%" i915/ -r
->>>>>>> i915/gt/intel_gt_sysfs.c: gt->i915->sysfs_gt, "gt%d", gt->info.id))
->>>>>>> i915/gt/intel_gt_sysfs.c:                "failed to initialize 
->>>>>>> gt%d sysfs root\n", gt->info.id);
->>>>>>> i915/gt/intel_gt_sysfs_pm.c:                     "failed to 
->>>>>>> create gt%u RC6 sysfs files (%pe)\n",
->>>>>>> i915/gt/intel_gt_sysfs_pm.c: "failed to create gt%u RC6p sysfs 
->>>>>>> files (%pe)\n",
->>>>>>> i915/gt/intel_gt_sysfs_pm.c:                     "failed to 
->>>>>>> create gt%u RPS sysfs files (%pe)",
->>>>>>> i915/gt/intel_gt_sysfs_pm.c:                     "failed to 
->>>>>>> create gt%u punit_req_freq_mhz sysfs (%pe)",
->>>>>>> i915/gt/intel_gt_sysfs_pm.c: "failed to create gt%u throttle 
->>>>>>> sysfs files (%pe)",
->>>>>>> i915/gt/intel_gt_sysfs_pm.c: "failed to create gt%u 
->>>>>>> media_perf_power_attrs sysfs (%pe)\n",
->>>>>>> i915/gt/intel_gt_sysfs_pm.c:                     "failed to add 
->>>>>>> gt%u rps defaults (%pe)\n",
->>>>>>> i915/i915_driver.c: drm_err(&gt->i915->drm, "gt%d: 
->>>>>>> intel_pcode_init failed %d\n", id, ret);
->>>>>>> i915/i915_hwmon.c: snprintf(ddat_gt->name, sizeof(ddat_gt->name), 
->>>>>>> "i915_gt%u", i);
->>>>>>>
->>>>>
->>>>> Just because there are 11 existing instances of one form doesn't 
->>>>> mean that the 275 instances that are waiting to be converted should 
->>>>> be done incorrectly. GT is an acronym and should be capitalised.
->>>>
->>>> Okay just make it consistent then.
->>>>
->>>>> Besides:
->>>>> grep -r "GT " i915 | grep '"'
->>>>> i915/vlv_suspend.c:             drm_err(&i915->drm, "timeout 
->>>>> disabling GT waking\n");
->>>>> i915/vlv_suspend.c:                     "timeout waiting for GT 
->>>>> wells to go %s\n",
->>>>> i915/vlv_suspend.c:     drm_dbg(&i915->drm, "GT register access 
->>>>> while GT waking disabled\n");
->>>>> i915/i915_gpu_error.c:  err_printf(m, "GT awake: %s\n", 
->>>>> str_yes_no(gt->awake));
->>>>> i915/i915_debugfs.c:    seq_printf(m, "GT awake? %s [%d], %llums\n",
->>>>> i915/selftests/i915_gem_evict.c: pr_err("Failed to idle GT (on 
->>>>> %s)", engine->name);
->>>>> i915/intel_uncore.c:                  "GT thread status wait timed 
->>>>> out\n");
->>>>> i915/gt/uc/selftest_guc_multi_lrc.c: drm_err(&gt->i915->drm, "GT 
->>>>> failed to idle: %d\n", ret);
->>>>> i915/gt/uc/selftest_guc.c: drm_err(&gt->i915->drm, "GT failed to 
->>>>> idle: %d\n", ret);
->>>>> i915/gt/uc/selftest_guc.c: drm_err(&gt->i915->drm, "GT failed to 
->>>>> idle: %d\n", ret);
->>>>> i915/gt/intel_gt_mcr.c: * Some GT registers are designed as 
->>>>> "multicast" or "replicated" registers:
->>>>> i915/gt/selftest_rps.c:                 pr_info("%s: rps counted %d 
->>>>> C0 cycles [%lldns] in %lldns [%d cycles], using GT clock frequency 
->>>>> of %uKHz\n",
->>>>> i915/gt/selftest_hangcheck.c:                   pr_err("[%s] GT is 
->>>>> wedged!\n", engine->name);
->>>>> i915/gt/selftest_hangcheck.c:           pr_err("GT is wedged!\n");
->>>>> i915/gt/intel_gt_clock_utils.c:                 "GT clock frequency 
->>>>> changed, was %uHz, now %uHz!\n",
->>>>> i915/gt/selftest_engine_pm.c:           pr_err("Unable to flush GT 
->>>>> pm before test\n");
->>>>> i915/gt/selftest_engine_pm.c: pr_err("GT failed to idle\n");
->>>>> i915/i915_sysfs.c:                       "failed to register GT 
->>>>> sysfs directory\n");
->>>>> i915/intel_uncore.h:     * of the basic non-engine GT registers 
->>>>> (referred to as "GSI" on
->>>>> i915/intel_uncore.h:     * newer platforms, or "GT block" on older 
->>>>> platforms)?  If so, we'll
->>>>>
->>>>>
->>>>>
->>>>>>> Then there is a question of naming. Are we okay with GT_XXX or, 
->>>>>>> do we want intel_gt_, or something completely different. I don't 
->>>>>>> have a strong opinion at the moment so I'll add some more folks 
->>>>>>> to Cc.
->>>>>>
->>>>> You mean GT_ERR("msg") vs intel_gt_err("msg")? Personally, I would 
->>>>> prefer just gt_err("msg") to keep it as close to the official drm_* 
->>>>> versions as possible. Print lines tend to be excessively long 
->>>>> already. Taking a 'gt' parameter instead of a '&gt->i915->drm' 
->>>>> parameter does help with that but it seems like calling the wrapper 
->>>>> intel_gt_* is shooting ourselves in the foot on that one. And 
->>>>> GT_ERR vs gt_err just comes down to the fact that it is a macro 
->>>>> wrapper and therefore is required to be in upper case.
->>>>>
->>>>>> There was a maintainer level mini-discussion on this topic which I 
->>>>>> will try to summarise.
->>>>>>
->>>>>> Main contention point was the maintenance cost and generally an 
->>>>>> undesirable pattern of needing to add many 
->>>>>> subsystem/component/directory specific macros. Which then 
->>>>>> typically need extra flavours and so on. But over verbosity of the 
->>>>> How many versions are you expecting to add? Beyond the tile 
->>>>> instance, what further addressing requirements are there? The card 
->>>>> instance is already printed as part of the PCI address. The only 
->>>>> other reason to add per component wrappers would be to wrap the 
->>>>> mechanism for getting from some random per component object back to 
->>>>> the intel_gt structure. But that is hardware a new issue being 
->>>>> added by this wrapper. It is also not a requirement. Much of the 
->>>>> code has a gt pointer already. For the parts that don't, some of it 
->>>>> would be a trivial engine->gt type dereference, some of it is a 
->>>>> more complex container_of type construction. But for those, the 
->>>>> given file will already have multiple instances of that already 
->>>>> (usually as the first or second line of the function - 'intel_gt 
->>>>> *gt = fancy_access_method(my_obj)' so adding one or two more of 
->>>>> those as necessary is not making the code harder to read.
->>>>>
->>>>>> code is obviously also bad, so one compromise idea was to add a 
->>>>>> macro which builds the GT string and use drm logging helpers 
->>>>>> directly. This would be something like:
->>>>>>
->>>>>>  drm_err(GT_LOG("something went wrong ret=%d\n", gt), ret);
->>>>>>  drm_info(GT_LOG(...same...));
->>>>> Seriously? As above, some of these lines are already way too long, 
->>>>> this version makes them even longer with no obvious benefit. Worse, 
->>>>> it makes it harder to read what is going on. It is much less 
->>>>> intuitive to read than just replacing the drm_err itself. And 
->>>>> having two sets of parenthesis with some parameters inside the 
->>>>> first and some only inside the second is really horrid! Also, 
->>>>> putting the 'gt' parameter in the middle just confuses it with the 
->>>>> rest of the printf arguments even though there is no %d in the 
->>>>> string for it. So now a quick glances tells you that your code is 
->>>>> wrong because you have three format specifiers but four parameters.
->>>>>
->>>>> Whereas, just replacing drm_err with gt_err (or GT_ERR or 
->>>>> intel_gt_err) keeps everything else consistent. The first parameter 
->>>>> changes from 'drm' to 'gt' but is still the master object parameter 
->>>>> and it matches the function/macro prefix so inherently looks 
->>>>> correct. Then you have your message plus parameters. No confusing 
->>>>> orders, no confusing parenthesis, no excessive macro levels, no 
->>>>> confusion at all. Just nice simple, easy to read, easy to maintain 
->>>>> code.
->>>>
->>>> I am personally okay with gt_err/GT_ERR some other folks might 
->>>> object though. And I can also understand the argument why it is 
->>>> better to not have to define gt_err, gt_warn, gt_info, gt_notice, 
->>>> gt_debug, gt_err_ratelimited, gt_warn_once.. and instead have only 
->>>> one macro.
->>> A small set of trivial macro definitions vs a complicated and 
->>> unreadable construct on every single print? Erm, isn't that the very 
->>> definition of abstracting to helpers as generally required by every 
->>> code review ever?
->>>
->>> And what 'other folks might object'? People already CC'd? People 
->>> outside of i915?
->>>
->>>
->>>>
->>>> Because of that I was passing on to you the compromise option.
->>>>
->>>> It maybe still has net space savings since we wouldn't have to be 
->>>> repeating the gt->i915->drm whatever and gt->info.id on every line.
->>>>
->>>> You are free to try the most compact one and see how hard those 
->>>> objections will be.
->>> Um. I already did. This patch. And you are the only person to have 
->>> objected in any manner at all.
->>
->> Where I have objected?
-> Only in everything you have written. Or are you saying that actually I 
+On 09/11/2022 19:57, Michal Wajdeczko wrote:
 
-???
+[snip]
 
-> could have just taken the r-b from Daniele and merged it while 
-> completely ignoring everything you have said because you didn't say 
-> 'NACK' at the top of your email?
-
-No, but because we don't do that while there is an ongoing discussion.
-
->> I was a) asking to convert all gt/ within one kernel release, b) 
->> transferring the maintainer discussion from IRC to this email chain to 
->> outlay one alternative, for which I said I could see the pros and cons 
->> of both, and c) raised the naming question early since that can 
->> usually become a churn point later on when we have large scale code 
->> transformations.
->>
->> As said, FWIW you have my ack for GT_XXX naming and approach, but 
->> please do convert the whole of gt/ so we don't ship with a mish-mash 
->> of log messages.
->>
-> That sounds like a quite a lot of objections to me - don't do it that 
-> way, do it this way; fine do it that way but expect lots of complaints 
-> when you do; oh all right, do it that way but re-write the entire driver 
-> all at once.
-
-No, I'll repeat what I said one last time.
-
-I said it's good idea, raised the topic of naming, since it is good to 
-get consensus before starting a wide renaming exercise. I also chatted 
-with other maintainers and passed on here one alternative proposed, with 
-its pros and cons. Finally I said your initial approach has my ack at 
-least, even though not everyone liked it. And I asked to convert all 
-gt/, since I think it is a good idea, and frankly it's not a very big 
-ask. It is just how it works.
-
-> I really don't get the 'we must not ship with a mish-mash of log 
-> messages' argument. It's hardly like the current total mish-mash of 
-> DRM_DEBUG, DRM_DEBUG_DRIVER, pr_dbg, drm_dbg, ... is even remotely 
-> consistent. It's also not like the patch is massively changing the 
-> format of the output messages. So some prints get a useful extra three 
-> characters in advance of others. Does anyone care? Would anyone except 
-> us even notice?
+>> Is it really a problem to merge this patch now to get the process
+>> started? And other sub-components get updated as and when people get the
+>> time to do them? You could maybe even help rather than posting
+>> completely conflicting patch sets that basically duplicate all the
+>> effort for no actual benefit.
 > 
-> Is it really a problem to merge this patch now to get the process 
-> started? And other sub-components get updated as and when people get the 
-> time to do them? You could maybe even help rather than posting 
+> Instead of merging this patch now, oriented on GT only, I would rather
+> wait until we discuss and plan solution for the all sub-components.
 
-It can be a problem. You opened up a topic which leads to an overall 
-improvement and if we merge churn before we decide on the final 
-direction, then we just get more churn later.
+Yes, agreed.
 
-> completely conflicting patch sets that basically duplicate all the 
-> effort for no actual benefit.
+> Once that's done (with agreement on naming and output) we can start
+> converting exiting messages.
+> 
+> My proposal would be:
+>   - use wrappers per component
 
-Completely conflicting?
+This is passable to me but Jani has raised a concern on IRC that it 
+leads to a lot of macro duplication. Which is I think a valid point, but 
+which does not have a completely nice solution. Best I heard so far was 
+a suggestion from Joonas to add just a single component formatter macro 
+and use the existing drm_xxx helpers.
 
-Yours:
+>   - use lower case names
 
-  drivers/gpu/drm/i915/gt/uc/intel_guc.c        | 25 +++--
-  drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c    |  9 +-
-  .../gpu/drm/i915/gt/uc/intel_guc_capture.c    | 50 ++++------
-  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     |  9 +-
-  drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c     | 17 ++--
-  drivers/gpu/drm/i915/gt/uc/intel_guc_log.c    | 49 +++++-----
-  drivers/gpu/drm/i915/gt/uc/intel_guc_rc.c     |  3 +-
-  drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   |  6 +-
-  .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 56 ++++++------
-  drivers/gpu/drm/i915/gt/uc/intel_huc.c        | 20 ++--
-  drivers/gpu/drm/i915/gt/uc/intel_uc.c         | 84 ++++++++---------
-  drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      | 91 +++++++++----------
-  drivers/gpu/drm/i915/gt/uc/selftest_guc.c     | 36 ++++----
-  .../drm/i915/gt/uc/selftest_guc_hangcheck.c   | 22 ++---
-  .../drm/i915/gt/uc/selftest_guc_multi_lrc.c   | 10 +-
-  15 files changed, 228 insertions(+), 259 deletions(-)
+I prefer this as well. Even though usual argument is for macros to be 
+upper case, I find the improved readability of lower case trumps that.
 
-Mine:
+>   - don't add colon
 
-  drivers/gpu/drm/i915/gem/i915_gem_context.c   |  2 +-
-  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 23 ++++++----
-  .../drm/i915/gt/intel_execlists_submission.c  | 13 +++---
-  drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c  |  4 +-
-  drivers/gpu/drm/i915/gt/intel_gt.c            |  4 +-
-  drivers/gpu/drm/i915/gt/intel_gt_irq.c        |  8 ++--
-  drivers/gpu/drm/i915/gt/intel_rps.c           |  6 ++-
-  drivers/gpu/drm/i915/gt/intel_workarounds.c   | 43 +++++++++++--------
-  .../gpu/drm/i915/gt/intel_workarounds_types.h |  4 ++
-  .../gpu/drm/i915/gt/selftest_workarounds.c    |  4 +-
-  drivers/gpu/drm/i915/i915_debugfs.c           |  4 +-
-  drivers/gpu/drm/i915/i915_gem.c               |  2 +-
-  drivers/gpu/drm/i915/i915_getparam.c          |  2 +-
-  drivers/gpu/drm/i915/i915_irq.c               | 12 +++---
-  drivers/gpu/drm/i915/i915_perf.c              | 14 +++---
-  drivers/gpu/drm/i915/i915_query.c             | 12 +++---
-  drivers/gpu/drm/i915/i915_sysfs.c             |  3 +-
-  drivers/gpu/drm/i915/i915_vma.c               | 16 ++++---
-  drivers/gpu/drm/i915/intel_uncore.c           | 21 +++++----
-  19 files changed, 116 insertions(+), 81 deletions(-)
+Not sure, when I look at it below it looks a bit not structured enough 
+without the colon, but maybe it is just me.
 
-I deliberately did not touch gt/uc so they don't touch a single same file!
+> #define i915_xxx(_i915, _fmt, ...) \
+> 	drm_xxx(&(_i915)->drm, _fmt, ##__VA_ARGS__)
+> 
+> #define gt_xxx(_gt, _fmt, ...) \
+> 	i915_xxx((_gt)->i915, "GT%u " _fmt, (_gt)->info.id, ..
+> 
+> #define guc_xxx(_guc, _fmt, ...) \
+> 	gt_xxx(guc_to_gt(_guc), "GuC " _fmt, ..
+> 
+> #define ct_xxx(_ct, _fmt, ...) \
+> 	guc_xxx(ct_to_guc(_ct), "CTB " _fmt, ..
+> 
+> where
+> 	xxx = { err, warn, notice, info, dbg }
+> 
+> and then for calls like:
+> 
+> 	i915_err(i915, "Foo failed (%pe)\n", ERR_PTR(err));
+> 	  gt_err(gt,   "Foo failed (%pe)\n", ERR_PTR(err));
+> 	 guc_err(guc,  "Foo failed (%pe)\n", ERR_PTR(err));
+> 	  ct_err(ct,   "Foo failed (%pe)\n", ERR_PTR(err));
 
-Unless you are referring to the fact gt logging will need to touch some 
-of the same lines my patch touches. Well yes, some, not all, and I 
-reckoned it will be much quicker since there aren't really any 
-contentious points with DRM_XXX -> drm_xxx. Plus I added struct intel_gt 
-or whatever or it wasn't before so it would make your patch easier/smaller.
+So the macro idea would be like this:
+
+   drm_err(I915_LOG("Foo failed (%pe)\n", i915), ERR_PTR(err));
+   drm_err(GT_LOG("Foo failed (%pe)\n", gt), ERR_PTR(err));
+   drm_err(GUC_LOG("Foo failed (%pe)\n", guc), ERR_PTR(err));
+   drm_err(CT_LOG("Foo failed (%pe)\n", ct), ERR_PTR(err));
+
+Each component would just need to define a single macro and not have to 
+duplicate all the err, info, warn, notice, ratelimited, once, whatever 
+versions. Which is a benefit but it's a quite a bit uglier to read in 
+the code.
+
+Perhaps macro could be called something other than XX_LOG to make it 
+more readable, don't know.
 
 Regards,
 
