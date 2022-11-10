@@ -1,53 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D738F624A79
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Nov 2022 20:19:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10CA5624A80
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Nov 2022 20:19:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B91D810E118;
-	Thu, 10 Nov 2022 19:19:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC1BA10E7E3;
+	Thu, 10 Nov 2022 19:19:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 578BF8933E
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Nov 2022 19:19:12 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93FFC10E7E3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Nov 2022 19:19:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668107952; x=1699643952;
- h=date:from:to:cc:subject:message-id:reply-to:references:
+ t=1668107981; x=1699643981;
+ h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=vPB763eogu5ck62s4m7olxlJAHtMt87/mMhAckhqk0w=;
- b=BmTFGIgUQoOerL8qwW/G3Ldx4mZ8L9+0QhlRzZfUNClxorlHH+xUs2xE
- iOY87GLwh/MxZsMoPqthS51jLJsYnbm1q6ZKJjVU5c1VdIrcvdkoIFMH7
- lxbh/4yqVdrMD3cVMAa/s1R2ICWP5uX4/dA/TTRteZptCoRhJkn0I1W4h
- 8O2/5M1j878SoBDewug0CietriKaxF0bKy2s09rsV9kU2LBl0uZ5LjcTA
- mofNlhd0KxQ1aKgN5k9vpRgZdU8Q3S94sC1FB9vDtbhuW3NjvSGKzI0Ub
- PZpZKbb2NKZgfnWFrM2hBY6MoODLYiz9+GIhf2KmVxGT3xo68Zj48mBKw w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10527"; a="373540966"
-X-IronPort-AV: E=Sophos;i="5.96,154,1665471600"; d="scan'208";a="373540966"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2022 11:10:32 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10527"; a="966535422"
-X-IronPort-AV: E=Sophos;i="5.96,154,1665471600"; d="scan'208";a="966535422"
-Received: from ideak-desk.fi.intel.com ([10.237.68.144])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2022 11:10:29 -0800
-Date: Thu, 10 Nov 2022 21:10:23 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <Y21MnxxZccjk9FP3@ideak-desk.fi.intel.com>
-References: <20221107170917.3566758-5-imre.deak@intel.com>
- <20221108151828.3761358-3-imre.deak@intel.com>
- <Y21IUHqtwgaVx2VX@intel.com> <Y21Jp9QAlgicm7OB@intel.com>
+ bh=iTKjaEKIdX7mPgOoCZ7nKj2agAzn81yhrtkk4oc3PiM=;
+ b=Lp37j+oOe56R/Ei7BQ93mDjtuTQTVdMinT6Nm4yj3iEcayNyPsgJepop
+ XqNgpYS3QWbwqWYs6GqAnvbfZB2BfoGqLPkZ6FEzvrAs5iTwrLBa+u27e
+ /1yfLh2/aYPj7NCYIIoEQXL920FK01lrktWgev0MJnnKgllPJNhZElDvp
+ /8K7DfTJ5A9T194G7dxWGDzI1RxLvnEmvTFaDDWSKQJudCm1tIRfE8f5n
+ nCxWEbBjp/Q2K3LF6AqQsruwTnwIwLODuX97hpu1QKhsWjJr378C1/1L/
+ YBP079Z/VZpY1K8jF3WLusG4D1750e8j89DEjwRvQHwDR5dKiAVGaMM+e g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10527"; a="294769621"
+X-IronPort-AV: E=Sophos;i="5.96,154,1665471600"; d="scan'208";a="294769621"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2022 11:11:24 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10527"; a="637295022"
+X-IronPort-AV: E=Sophos;i="5.96,154,1665471600"; d="scan'208";a="637295022"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by orsmga002.jf.intel.com with SMTP; 10 Nov 2022 11:11:21 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 10 Nov 2022 21:11:20 +0200
+Date: Thu, 10 Nov 2022 21:11:20 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <Y21M2J7lu3KdoMtX@intel.com>
+References: <20221107170917.3566758-2-imre.deak@intel.com>
+ <20221108151828.3761358-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <Y21Jp9QAlgicm7OB@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 4/9] drm/i915/tgl+: Enable display DC
- power states on all eDP ports
+In-Reply-To: <20221108151828.3761358-1-imre.deak@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v3 1/9] drm/i915: Allocate power domain set
+ wakerefs dynamically
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,388 +62,253 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Nov 10, 2022 at 08:57:43PM +0200, Ville Syrjälä wrote:
-> On Thu, Nov 10, 2022 at 08:52:00PM +0200, Ville Syrjälä wrote:
-> > On Tue, Nov 08, 2022 at 05:18:25PM +0200, Imre Deak wrote:
-> > > Starting with TGL eDP is supported on ports B+ (besides port A), so make
-> > > sure DC states are not blocked on any such ports. For this add an
-> > > AUX_IO_<port> power domain for each port with eDP support. These domains
-> > > similarly to AUX_IO_A enable only the AUX_IO_<port> power well for an
-> > > enabled port, whereas the existing AUX_<port> domains enable both the
-> > > AUX_IO_<port> and the DC_OFF power wells as required by DP AUX transfers.
-> > > 
-> > > v2: (Ville)
-> > > - Split the change using AUX vs. AUX_IO on port A to a separate patch.
-> > > - Select AUX_IO vs. AUX based on crtc_state->has_psr instead of
-> > >   is_edp().
-> > > v3:
-> > > - Rebased on checking intel_encoder_can_psr() instead of crtc->has_psr.
-> > > 
-> > > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_ddi.c      |  6 ++-
-> > >  .../drm/i915/display/intel_display_power.c    | 30 +++++++++++
-> > >  .../drm/i915/display/intel_display_power.h    |  7 +++
-> > >  .../i915/display/intel_display_power_map.c    | 53 +++++++++++++++++--
-> > >  4 files changed, 89 insertions(+), 7 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > index ca236cd7f9b76..a087609223c60 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > @@ -848,6 +848,8 @@ bool intel_ddi_get_hw_state(struct intel_encoder *encoder,
-> > >  static enum intel_display_power_domain
-> > >  intel_ddi_main_link_aux_domain(struct intel_digital_port *dig_port)
-> > >  {
-> > > +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> > > +
-> > >  	/* ICL+ HW requires corresponding AUX IOs to be powered up for PSR with
-> > >  	 * DC states enabled at the same time, while for driver initiated AUX
-> > >  	 * transfers we need the same AUX IOs to be powered but with DC states
-> > > @@ -860,8 +862,8 @@ intel_ddi_main_link_aux_domain(struct intel_digital_port *dig_port)
-> > >  	 * Note that PSR is enabled only on Port A even though this function
-> > >  	 * returns the correct domain for other ports too.
-> > >  	 */
-> > > -	if (dig_port->aux_ch == AUX_CH_A && intel_encoder_can_psr(&dig_port->base))
-> > > -		return POWER_DOMAIN_AUX_IO_A;
-> > > +	if (intel_encoder_can_psr(&dig_port->base))
-> > > +		return intel_display_power_aux_io_domain(i915, dig_port->aux_ch);
-> > >  	else
-> > >  		return intel_aux_power_domain(dig_port);
-> > >  }
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-> > > index 78f1749397e1d..61c6a3616db08 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> > > @@ -131,6 +131,16 @@ intel_display_power_domain_str(enum intel_display_power_domain domain)
-> > >  		return "AUDIO_PLAYBACK";
-> > >  	case POWER_DOMAIN_AUX_IO_A:
-> > >  		return "AUX_IO_A";
-> > > +	case POWER_DOMAIN_AUX_IO_B:
-> > > +		return "AUX_IO_B";
-> > > +	case POWER_DOMAIN_AUX_IO_C:
-> > > +		return "AUX_IO_C";
-> > > +	case POWER_DOMAIN_AUX_IO_D:
-> > > +		return "AUX_IO_D";
-> > > +	case POWER_DOMAIN_AUX_IO_E:
-> > > +		return "AUX_IO_E";
-> > > +	case POWER_DOMAIN_AUX_IO_F:
-> > > +		return "AUX_IO_F";
-> > >  	case POWER_DOMAIN_AUX_A:
-> > >  		return "AUX_A";
-> > >  	case POWER_DOMAIN_AUX_B:
-> > > @@ -2356,6 +2366,7 @@ struct intel_ddi_port_domains {
-> > >  
-> > >  	enum intel_display_power_domain ddi_lanes;
-> > >  	enum intel_display_power_domain ddi_io;
-> > > +	enum intel_display_power_domain aux_io;
-> > >  	enum intel_display_power_domain aux_legacy_usbc;
-> > >  	enum intel_display_power_domain aux_tbt;
-> > >  };
-> > > @@ -2370,6 +2381,7 @@ i9xx_port_domains[] = {
-> > >  
-> > >  		.ddi_lanes = POWER_DOMAIN_PORT_DDI_LANES_A,
-> > >  		.ddi_io = POWER_DOMAIN_PORT_DDI_IO_A,
-> > > +		.aux_io = POWER_DOMAIN_AUX_IO_A,
-> > >  		.aux_legacy_usbc = POWER_DOMAIN_AUX_A,
-> > >  		.aux_tbt = POWER_DOMAIN_INVALID,
-> > >  	},
-> > > @@ -2385,6 +2397,7 @@ d11_port_domains[] = {
-> > >  
-> > >  		.ddi_lanes = POWER_DOMAIN_PORT_DDI_LANES_A,
-> > >  		.ddi_io = POWER_DOMAIN_PORT_DDI_IO_A,
-> > > +		.aux_io = POWER_DOMAIN_AUX_IO_A,
-> > >  		.aux_legacy_usbc = POWER_DOMAIN_AUX_A,
-> > >  		.aux_tbt = POWER_DOMAIN_INVALID,
-> > >  	}, {
-> > > @@ -2395,6 +2408,7 @@ d11_port_domains[] = {
-> > >  
-> > >  		.ddi_lanes = POWER_DOMAIN_PORT_DDI_LANES_C,
-> > >  		.ddi_io = POWER_DOMAIN_PORT_DDI_IO_C,
-> > > +		.aux_io = POWER_DOMAIN_AUX_IO_C,
-> > >  		.aux_legacy_usbc = POWER_DOMAIN_AUX_C,
-> > >  		.aux_tbt = POWER_DOMAIN_AUX_TBT1,
-> > >  	},
-> > > @@ -2410,6 +2424,7 @@ d12_port_domains[] = {
-> > >  
-> > >  		.ddi_lanes = POWER_DOMAIN_PORT_DDI_LANES_A,
-> > >  		.ddi_io = POWER_DOMAIN_PORT_DDI_IO_A,
-> > > +		.aux_io = POWER_DOMAIN_AUX_IO_A,
-> > >  		.aux_legacy_usbc = POWER_DOMAIN_AUX_A,
-> > >  		.aux_tbt = POWER_DOMAIN_INVALID,
-> > >  	}, {
-> > > @@ -2420,6 +2435,7 @@ d12_port_domains[] = {
-> > >  
-> > >  		.ddi_lanes = POWER_DOMAIN_PORT_DDI_LANES_TC1,
-> > >  		.ddi_io = POWER_DOMAIN_PORT_DDI_IO_TC1,
-> > > +		.aux_io = POWER_DOMAIN_INVALID,
-> > >  		.aux_legacy_usbc = POWER_DOMAIN_AUX_USBC1,
-> > >  		.aux_tbt = POWER_DOMAIN_AUX_TBT1,
-> > >  	},
-> > > @@ -2435,6 +2451,7 @@ d13_port_domains[] = {
-> > >  
-> > >  		.ddi_lanes = POWER_DOMAIN_PORT_DDI_LANES_A,
-> > >  		.ddi_io = POWER_DOMAIN_PORT_DDI_IO_A,
-> > > +		.aux_io = POWER_DOMAIN_AUX_IO_A,
-> > >  		.aux_legacy_usbc = POWER_DOMAIN_AUX_A,
-> > >  		.aux_tbt = POWER_DOMAIN_INVALID,
-> > >  	}, {
-> > > @@ -2445,6 +2462,7 @@ d13_port_domains[] = {
-> > >  
-> > >  		.ddi_lanes = POWER_DOMAIN_PORT_DDI_LANES_TC1,
-> > >  		.ddi_io = POWER_DOMAIN_PORT_DDI_IO_TC1,
-> > > +		.aux_io = POWER_DOMAIN_INVALID,
-> > >  		.aux_legacy_usbc = POWER_DOMAIN_AUX_USBC1,
-> > >  		.aux_tbt = POWER_DOMAIN_AUX_TBT1,
-> > >  	}, {
-> > > @@ -2455,6 +2473,7 @@ d13_port_domains[] = {
-> > >  
-> > >  		.ddi_lanes = POWER_DOMAIN_PORT_DDI_LANES_D,
-> > >  		.ddi_io = POWER_DOMAIN_PORT_DDI_IO_D,
-> > > +		.aux_io = POWER_DOMAIN_AUX_IO_D,
-> > >  		.aux_legacy_usbc = POWER_DOMAIN_AUX_D,
-> > >  		.aux_tbt = POWER_DOMAIN_INVALID,
-> > >  	},
-> > > @@ -2532,6 +2551,17 @@ intel_port_domains_for_aux_ch(struct drm_i915_private *i915, enum aux_ch aux_ch)
-> > >  	return NULL;
-> > >  }
-> > >  
-> > > +enum intel_display_power_domain
-> > > +intel_display_power_aux_io_domain(struct drm_i915_private *i915, enum aux_ch aux_ch)
-> > > +{
-> > > +	const struct intel_ddi_port_domains *domains = intel_port_domains_for_aux_ch(i915, aux_ch);
-> > > +
-> > > +	if (drm_WARN_ON(&i915->drm, !domains) || domains->aux_io == POWER_DOMAIN_INVALID)
-> > 
-> > Was there some valid use case for the INVALID? If not I'd include
-> > it in the warn as well.
-> > 
-> > > +		return POWER_DOMAIN_AUX_IO_A;
+On Tue, Nov 08, 2022 at 05:18:23PM +0200, Imre Deak wrote:
+> Since the intel_display_power_domain_set struct, currently its current
+> size close to 1kB, can be allocated on the stack, it's better to
+> allocate the per-domain wakeref pointer array - used for debugging -
+> within the struct dynamically, so do this.
 > 
-> Hmm. And should we just return INVALID here? I think you added a check
-> for that in the caller.
-
-These functions should always return a valid domain, so yes, the warn
-condition should be fixed above, will do that.
-
-For TypeC ports a full TBT or USBC AUX domain is used instead, so the
-caller should always get a valid domain.
-
-> > > +
-> > > +	return domains->aux_io + (int)(aux_ch - domains->aux_ch_start);
-> > > +}
-> > > +
-> > >  enum intel_display_power_domain
-> > >  intel_display_power_legacy_aux_domain(struct drm_i915_private *i915, enum aux_ch aux_ch)
-> > >  {
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-> > > index dd0ad99f17056..73c7db969dde6 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display_power.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-> > > @@ -79,6 +79,11 @@ enum intel_display_power_domain {
-> > >  	POWER_DOMAIN_AUDIO_PLAYBACK,
-> > >  
-> > >  	POWER_DOMAIN_AUX_IO_A,
-> > > +	POWER_DOMAIN_AUX_IO_B,
-> > > +	POWER_DOMAIN_AUX_IO_C,
-> > > +	POWER_DOMAIN_AUX_IO_D,
-> > > +	POWER_DOMAIN_AUX_IO_E,
-> > > +	POWER_DOMAIN_AUX_IO_F,
-> > >  
-> > >  	POWER_DOMAIN_AUX_A,
-> > >  	POWER_DOMAIN_AUX_B,
-> > > @@ -255,6 +260,8 @@ intel_display_power_ddi_lanes_domain(struct drm_i915_private *i915, enum port po
-> > >  enum intel_display_power_domain
-> > >  intel_display_power_ddi_io_domain(struct drm_i915_private *i915, enum port port);
-> > >  enum intel_display_power_domain
-> > > +intel_display_power_aux_io_domain(struct drm_i915_private *i915, enum aux_ch aux_ch);
-> > > +enum intel_display_power_domain
-> > >  intel_display_power_legacy_aux_domain(struct drm_i915_private *i915, enum aux_ch aux_ch);
-> > >  enum intel_display_power_domain
-> > >  intel_display_power_tbt_aux_domain(struct drm_i915_private *i915, enum aux_ch aux_ch);
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-> > > index 43454022e6a66..b82c0d0a80c5f 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-> > > @@ -170,6 +170,8 @@ I915_DECL_PW_DOMAINS(vlv_pwdoms_display,
-> > >  	POWER_DOMAIN_VGA,
-> > >  	POWER_DOMAIN_AUDIO_MMIO,
-> > >  	POWER_DOMAIN_AUDIO_PLAYBACK,
-> > > +	POWER_DOMAIN_AUX_IO_B,
-> > > +	POWER_DOMAIN_AUX_IO_C,
-> > >  	POWER_DOMAIN_AUX_B,
-> > >  	POWER_DOMAIN_AUX_C,
-> > >  	POWER_DOMAIN_GMBUS,
-> > > @@ -179,6 +181,8 @@ I915_DECL_PW_DOMAINS(vlv_pwdoms_dpio_cmn_bc,
-> > >  	POWER_DOMAIN_PORT_DDI_LANES_B,
-> > >  	POWER_DOMAIN_PORT_DDI_LANES_C,
-> > >  	POWER_DOMAIN_PORT_CRT,
-> > > +	POWER_DOMAIN_AUX_IO_B,
-> > > +	POWER_DOMAIN_AUX_IO_C,
-> > >  	POWER_DOMAIN_AUX_B,
-> > >  	POWER_DOMAIN_AUX_C,
-> > >  	POWER_DOMAIN_INIT);
-> > > @@ -186,6 +190,8 @@ I915_DECL_PW_DOMAINS(vlv_pwdoms_dpio_cmn_bc,
-> > >  I915_DECL_PW_DOMAINS(vlv_pwdoms_dpio_tx_bc_lanes,
-> > >  	POWER_DOMAIN_PORT_DDI_LANES_B,
-> > >  	POWER_DOMAIN_PORT_DDI_LANES_C,
-> > > +	POWER_DOMAIN_AUX_IO_B,
-> > > +	POWER_DOMAIN_AUX_IO_C,
-> > >  	POWER_DOMAIN_AUX_B,
-> > >  	POWER_DOMAIN_AUX_C,
-> > >  	POWER_DOMAIN_INIT);
-> > > @@ -243,6 +249,9 @@ I915_DECL_PW_DOMAINS(chv_pwdoms_display,
-> > >  	POWER_DOMAIN_VGA,
-> > >  	POWER_DOMAIN_AUDIO_MMIO,
-> > >  	POWER_DOMAIN_AUDIO_PLAYBACK,
-> > > +	POWER_DOMAIN_AUX_IO_B,
-> > > +	POWER_DOMAIN_AUX_IO_C,
-> > > +	POWER_DOMAIN_AUX_IO_D,
-> > >  	POWER_DOMAIN_AUX_B,
-> > >  	POWER_DOMAIN_AUX_C,
-> > >  	POWER_DOMAIN_AUX_D,
-> > > @@ -252,12 +261,15 @@ I915_DECL_PW_DOMAINS(chv_pwdoms_display,
-> > >  I915_DECL_PW_DOMAINS(chv_pwdoms_dpio_cmn_bc,
-> > >  	POWER_DOMAIN_PORT_DDI_LANES_B,
-> > >  	POWER_DOMAIN_PORT_DDI_LANES_C,
-> > > +	POWER_DOMAIN_AUX_IO_B,
-> > > +	POWER_DOMAIN_AUX_IO_C,
-> > >  	POWER_DOMAIN_AUX_B,
-> > >  	POWER_DOMAIN_AUX_C,
-> > >  	POWER_DOMAIN_INIT);
-> > >  
-> > >  I915_DECL_PW_DOMAINS(chv_pwdoms_dpio_cmn_d,
-> > >  	POWER_DOMAIN_PORT_DDI_LANES_D,
-> > > +	POWER_DOMAIN_AUX_IO_D,
-> > >  	POWER_DOMAIN_AUX_D,
-> > >  	POWER_DOMAIN_INIT);
-> > >  
-> > > @@ -305,6 +317,9 @@ static const struct i915_power_well_desc_list chv_power_wells[] = {
-> > >  	POWER_DOMAIN_VGA, \
-> > >  	POWER_DOMAIN_AUDIO_MMIO, \
-> > >  	POWER_DOMAIN_AUDIO_PLAYBACK, \
-> > > +	POWER_DOMAIN_AUX_IO_B, \
-> > > +	POWER_DOMAIN_AUX_IO_C, \
-> > > +	POWER_DOMAIN_AUX_IO_D, \
-> > >  	POWER_DOMAIN_AUX_B, \
-> > >  	POWER_DOMAIN_AUX_C, \
-> > >  	POWER_DOMAIN_AUX_D
-> > > @@ -407,6 +422,8 @@ static const struct i915_power_well_desc_list skl_power_wells[] = {
-> > >  	POWER_DOMAIN_VGA, \
-> > >  	POWER_DOMAIN_AUDIO_MMIO, \
-> > >  	POWER_DOMAIN_AUDIO_PLAYBACK, \
-> > > +	POWER_DOMAIN_AUX_IO_B, \
-> > > +	POWER_DOMAIN_AUX_IO_C, \
-> > >  	POWER_DOMAIN_AUX_B, \
-> > >  	POWER_DOMAIN_AUX_C
-> > >  
-> > > @@ -430,6 +447,8 @@ I915_DECL_PW_DOMAINS(bxt_pwdoms_dpio_cmn_a,
-> > >  I915_DECL_PW_DOMAINS(bxt_pwdoms_dpio_cmn_bc,
-> > >  	POWER_DOMAIN_PORT_DDI_LANES_B,
-> > >  	POWER_DOMAIN_PORT_DDI_LANES_C,
-> > > +	POWER_DOMAIN_AUX_IO_B,
-> > > +	POWER_DOMAIN_AUX_IO_C,
-> > >  	POWER_DOMAIN_AUX_B,
-> > >  	POWER_DOMAIN_AUX_C,
-> > >  	POWER_DOMAIN_INIT);
-> > > @@ -483,6 +502,8 @@ static const struct i915_power_well_desc_list bxt_power_wells[] = {
-> > >  	POWER_DOMAIN_VGA, \
-> > >  	POWER_DOMAIN_AUDIO_MMIO, \
-> > >  	POWER_DOMAIN_AUDIO_PLAYBACK, \
-> > > +	POWER_DOMAIN_AUX_IO_B, \
-> > > +	POWER_DOMAIN_AUX_IO_C, \
-> > >  	POWER_DOMAIN_AUX_B, \
-> > >  	POWER_DOMAIN_AUX_C
-> > >  
-> > > @@ -509,11 +530,13 @@ I915_DECL_PW_DOMAINS(glk_pwdoms_dpio_cmn_a,
-> > >  
-> > >  I915_DECL_PW_DOMAINS(glk_pwdoms_dpio_cmn_b,
-> > >  	POWER_DOMAIN_PORT_DDI_LANES_B,
-> > > +	POWER_DOMAIN_AUX_IO_B,
-> > >  	POWER_DOMAIN_AUX_B,
-> > >  	POWER_DOMAIN_INIT);
-> > >  
-> > >  I915_DECL_PW_DOMAINS(glk_pwdoms_dpio_cmn_c,
-> > >  	POWER_DOMAIN_PORT_DDI_LANES_C,
-> > > +	POWER_DOMAIN_AUX_IO_C,
-> > >  	POWER_DOMAIN_AUX_C,
-> > >  	POWER_DOMAIN_INIT);
-> > >  
-> > > @@ -523,10 +546,12 @@ I915_DECL_PW_DOMAINS(glk_pwdoms_aux_a,
-> > >  	POWER_DOMAIN_INIT);
-> > >  
-> > >  I915_DECL_PW_DOMAINS(glk_pwdoms_aux_b,
-> > > +	POWER_DOMAIN_AUX_IO_B,
-> > >  	POWER_DOMAIN_AUX_B,
-> > >  	POWER_DOMAIN_INIT);
-> > >  
-> > >  I915_DECL_PW_DOMAINS(glk_pwdoms_aux_c,
-> > > +	POWER_DOMAIN_AUX_IO_C,
-> > >  	POWER_DOMAIN_AUX_C,
-> > >  	POWER_DOMAIN_INIT);
-> > >  
-> > > @@ -617,6 +642,11 @@ I915_DECL_PW_DOMAINS(icl_pwdoms_pw_4,
-> > >  	POWER_DOMAIN_VGA, \
-> > >  	POWER_DOMAIN_AUDIO_MMIO, \
-> > >  	POWER_DOMAIN_AUDIO_PLAYBACK, \
-> > > +	POWER_DOMAIN_AUX_IO_B, \
-> > > +	POWER_DOMAIN_AUX_IO_C, \
-> > > +	POWER_DOMAIN_AUX_IO_D, \
-> > > +	POWER_DOMAIN_AUX_IO_E, \
-> > > +	POWER_DOMAIN_AUX_IO_F, \
-> > >  	POWER_DOMAIN_AUX_B, \
-> > >  	POWER_DOMAIN_AUX_C, \
-> > >  	POWER_DOMAIN_AUX_D, \
-> > > @@ -660,11 +690,21 @@ I915_DECL_PW_DOMAINS(icl_pwdoms_ddi_io_f,	POWER_DOMAIN_PORT_DDI_IO_F);
-> > >  I915_DECL_PW_DOMAINS(icl_pwdoms_aux_a,
-> > >  	POWER_DOMAIN_AUX_IO_A,
-> > >  	POWER_DOMAIN_AUX_A);
-> > > -I915_DECL_PW_DOMAINS(icl_pwdoms_aux_b,		POWER_DOMAIN_AUX_B);
-> > > -I915_DECL_PW_DOMAINS(icl_pwdoms_aux_c,		POWER_DOMAIN_AUX_C);
-> > > -I915_DECL_PW_DOMAINS(icl_pwdoms_aux_d,		POWER_DOMAIN_AUX_D);
-> > > -I915_DECL_PW_DOMAINS(icl_pwdoms_aux_e,		POWER_DOMAIN_AUX_E);
-> > > -I915_DECL_PW_DOMAINS(icl_pwdoms_aux_f,		POWER_DOMAIN_AUX_F);
-> > > +I915_DECL_PW_DOMAINS(icl_pwdoms_aux_b,
-> > > +	POWER_DOMAIN_AUX_IO_B,
-> > > +	POWER_DOMAIN_AUX_B);
-> > > +I915_DECL_PW_DOMAINS(icl_pwdoms_aux_c,
-> > > +	POWER_DOMAIN_AUX_IO_C,
-> > > +	POWER_DOMAIN_AUX_C);
-> > > +I915_DECL_PW_DOMAINS(icl_pwdoms_aux_d,
-> > > +	POWER_DOMAIN_AUX_IO_D,
-> > > +	POWER_DOMAIN_AUX_D);
-> > > +I915_DECL_PW_DOMAINS(icl_pwdoms_aux_e,
-> > > +	POWER_DOMAIN_AUX_IO_E,
-> > > +	POWER_DOMAIN_AUX_E);
-> > > +I915_DECL_PW_DOMAINS(icl_pwdoms_aux_f,
-> > > +	POWER_DOMAIN_AUX_IO_F,
-> > > +	POWER_DOMAIN_AUX_F);
-> > >  I915_DECL_PW_DOMAINS(icl_pwdoms_aux_tbt1,	POWER_DOMAIN_AUX_TBT1);
-> > >  I915_DECL_PW_DOMAINS(icl_pwdoms_aux_tbt2,	POWER_DOMAIN_AUX_TBT2);
-> > >  I915_DECL_PW_DOMAINS(icl_pwdoms_aux_tbt3,	POWER_DOMAIN_AUX_TBT3);
-> > > @@ -1215,6 +1255,9 @@ I915_DECL_PW_DOMAINS(xelpd_pwdoms_pw_a,
-> > >  	POWER_DOMAIN_PORT_DDI_LANES_TC4, \
-> > >  	POWER_DOMAIN_VGA, \
-> > >  	POWER_DOMAIN_AUDIO_PLAYBACK, \
-> > > +	POWER_DOMAIN_AUX_IO_C, \
-> > > +	POWER_DOMAIN_AUX_IO_D, \
-> > > +	POWER_DOMAIN_AUX_IO_E, \
-> > >  	POWER_DOMAIN_AUX_C, \
-> > >  	POWER_DOMAIN_AUX_D, \
-> > >  	POWER_DOMAIN_AUX_E, \
-> > > -- 
-> > > 2.37.1
-> > 
-> > -- 
-> > Ville Syrjälä
-> > Intel
+> The memory freeing is guaranteed by the fact that the acquired domain
+> references tracked by the struct can't be leaked either.
 > 
+> v2:
+> - Don't use fetch_and_zero() when freeing the wakerefs array. (Jani)
+> - Simplify intel_display_power_get/put_in_set(). (Jani)
+> - Check in intel_crtc_destroy() that the wakerefs array has been freed.
+> v3:
+> - Add intel_display_power_set_disabled() and a separate assert
+>   function instead of open coding these. (Jani)
+> 
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_crtc.c     |  11 ++
+>  .../drm/i915/display/intel_display_power.c    | 109 ++++++++++++++----
+>  .../drm/i915/display/intel_display_power.h    |   6 +-
+>  3 files changed, 104 insertions(+), 22 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+> index 037fc140b585c..c18d98bfe1a7c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+> @@ -21,6 +21,7 @@
+>  #include "intel_crtc.h"
+>  #include "intel_cursor.h"
+>  #include "intel_display_debugfs.h"
+> +#include "intel_display_power.h"
+>  #include "intel_display_trace.h"
+>  #include "intel_display_types.h"
+>  #include "intel_drrs.h"
+> @@ -37,6 +38,14 @@ static void assert_vblank_disabled(struct drm_crtc *crtc)
+>  		drm_crtc_vblank_put(crtc);
+>  }
+>  
+> +static void assert_power_domains_disabled(struct intel_crtc *crtc)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> +
+> +	drm_WARN_ON(&i915->drm,
+> +		    !intel_display_power_set_disabled(i915, &crtc->enabled_power_domains));
+> +}
+> +
+>  struct intel_crtc *intel_first_crtc(struct drm_i915_private *i915)
+>  {
+>  	return to_intel_crtc(drm_crtc_from_index(&i915->drm, 0));
+> @@ -204,6 +213,8 @@ static void intel_crtc_destroy(struct drm_crtc *_crtc)
+>  
+>  	cpu_latency_qos_remove_request(&crtc->vblank_pm_qos);
+>  
+> +	assert_power_domains_disabled(crtc);
+> +
+>  	drm_crtc_cleanup(&crtc->base);
+>  	kfree(crtc);
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> index 4c1de91e56ff9..ca63b4f1af41b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -830,20 +830,85 @@ void intel_display_power_put_unchecked(struct drm_i915_private *dev_priv,
+>  }
+>  #endif
+>  
+> +#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
+> +static void
+> +add_domain_to_set(struct drm_i915_private *i915,
+> +		  struct intel_display_power_domain_set *power_domain_set,
+> +		  enum intel_display_power_domain domain,
+> +		  intel_wakeref_t wf)
+> +{
+> +	drm_WARN_ON(&i915->drm, test_bit(domain, power_domain_set->mask.bits));
+> +
+> +	if (!power_domain_set->wakerefs)
+> +		power_domain_set->wakerefs = kcalloc(POWER_DOMAIN_NUM,
+> +						     sizeof(*power_domain_set->wakerefs),
+> +						     GFP_KERNEL);
+> +
+> +	if (power_domain_set->wakerefs)
+> +		power_domain_set->wakerefs[domain] = wf;
+
+So if the kcalloc() fails is it going to look like
+we're leaking power wakerefs?
+
+> +
+> +	set_bit(domain, power_domain_set->mask.bits);
+> +}
+> +
+> +static intel_wakeref_t
+> +remove_domain_from_set(struct drm_i915_private *i915,
+> +		       struct intel_display_power_domain_set *power_domain_set,
+> +		       enum intel_display_power_domain domain)
+> +{
+> +	intel_wakeref_t wf;
+> +
+> +	drm_WARN_ON(&i915->drm, !test_bit(domain, power_domain_set->mask.bits));
+> +
+> +	clear_bit(domain, power_domain_set->mask.bits);
+> +
+> +	if (!power_domain_set->wakerefs)
+> +		return -1;
+> +
+> +	wf = fetch_and_zero(&power_domain_set->wakerefs[domain]);
+> +
+> +	if (bitmap_empty(power_domain_set->mask.bits, POWER_DOMAIN_NUM)) {
+> +		kfree(power_domain_set->wakerefs);
+> +		power_domain_set->wakerefs = NULL;
+> +	}
+> +
+> +	return wf;
+> +
+> +}
+> +#else
+> +static void
+> +add_domain_to_set(struct drm_i915_private *i915,
+> +		  struct intel_display_power_domain_set *power_domain_set,
+> +		  enum intel_display_power_domain domain,
+> +		  intel_wakeref_t wf)
+> +{
+> +	drm_WARN_ON(&i915->drm, test_bit(domain, power_domain_set->mask.bits));
+> +
+> +	set_bit(domain, power_domain_set->mask.bits);
+> +}
+> +
+> +static intel_wakeref_t
+> +remove_domain_from_set(struct drm_i915_private *i915,
+> +		       struct intel_display_power_domain_set *power_domain_set,
+> +		       enum intel_display_power_domain domain)
+> +{
+> +	drm_WARN_ON(&i915->drm, !test_bit(domain, power_domain_set->mask.bits));
+> +
+> +	clear_bit(domain, power_domain_set->mask.bits);
+> +
+> +	return -1;
+> +}
+> +#endif
+> +
+>  void
+>  intel_display_power_get_in_set(struct drm_i915_private *i915,
+>  			       struct intel_display_power_domain_set *power_domain_set,
+>  			       enum intel_display_power_domain domain)
+>  {
+> -	intel_wakeref_t __maybe_unused wf;
+> -
+> -	drm_WARN_ON(&i915->drm, test_bit(domain, power_domain_set->mask.bits));
+> +	intel_wakeref_t wf;
+>  
+>  	wf = intel_display_power_get(i915, domain);
+> -#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
+> -	power_domain_set->wakerefs[domain] = wf;
+> -#endif
+> -	set_bit(domain, power_domain_set->mask.bits);
+> +
+> +	add_domain_to_set(i915, power_domain_set, domain, wf);
+>  }
+>  
+>  bool
+> @@ -853,16 +918,11 @@ intel_display_power_get_in_set_if_enabled(struct drm_i915_private *i915,
+>  {
+>  	intel_wakeref_t wf;
+>  
+> -	drm_WARN_ON(&i915->drm, test_bit(domain, power_domain_set->mask.bits));
+> -
+>  	wf = intel_display_power_get_if_enabled(i915, domain);
+>  	if (!wf)
+>  		return false;
+>  
+> -#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
+> -	power_domain_set->wakerefs[domain] = wf;
+> -#endif
+> -	set_bit(domain, power_domain_set->mask.bits);
+> +	add_domain_to_set(i915, power_domain_set, domain, wf);
+>  
+>  	return true;
+>  }
+> @@ -874,20 +934,27 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
+>  {
+>  	enum intel_display_power_domain domain;
+>  
+> -	drm_WARN_ON(&i915->drm,
+> -		    !bitmap_subset(mask->bits, power_domain_set->mask.bits, POWER_DOMAIN_NUM));
+> -
+>  	for_each_power_domain(domain, mask) {
+> -		intel_wakeref_t __maybe_unused wf = -1;
+> +		intel_wakeref_t wf = remove_domain_from_set(i915, power_domain_set, domain);
+>  
+> -#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
+> -		wf = fetch_and_zero(&power_domain_set->wakerefs[domain]);
+> -#endif
+>  		intel_display_power_put(i915, domain, wf);
+> -		clear_bit(domain, power_domain_set->mask.bits);
+>  	}
+>  }
+>  
+> +bool
+> +intel_display_power_set_disabled(struct drm_i915_private *i915,
+> +				 struct intel_display_power_domain_set *power_domain_set)
+> +{
+> +	if (!bitmap_empty(power_domain_set->mask.bits, POWER_DOMAIN_NUM))
+> +		return false;
+> +
+> +#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
+> +	drm_WARN_ON(&i915->drm, power_domain_set->wakerefs);
+> +#endif
+> +
+> +	return true;
+> +}
+> +
+>  static int
+>  sanitize_disable_power_well_option(const struct drm_i915_private *dev_priv,
+>  				   int disable_power_well)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
+> index 1e77e52c87fec..31b0e9ae863c3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
+> @@ -147,7 +147,7 @@ struct i915_power_domains {
+>  struct intel_display_power_domain_set {
+>  	struct intel_power_domain_mask mask;
+>  #ifdef CONFIG_DRM_I915_DEBUG_RUNTIME_PM
+> -	intel_wakeref_t wakerefs[POWER_DOMAIN_NUM];
+> +	intel_wakeref_t *wakerefs;
+>  #endif
+>  };
+>  
+> @@ -243,6 +243,10 @@ intel_display_power_put_all_in_set(struct drm_i915_private *i915,
+>  	intel_display_power_put_mask_in_set(i915, power_domain_set, &power_domain_set->mask);
+>  }
+>  
+> +bool
+> +intel_display_power_set_disabled(struct drm_i915_private *i915,
+> +				 struct intel_display_power_domain_set *power_domain_set);
+> +
+>  void intel_display_power_debug(struct drm_i915_private *i915, struct seq_file *m);
+>  
+>  enum intel_display_power_domain
 > -- 
-> Ville Syrjälä
-> Intel
+> 2.37.1
+
+-- 
+Ville Syrjälä
+Intel
