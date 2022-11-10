@@ -1,57 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 506386241A9
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Nov 2022 12:42:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51EBE62425B
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Nov 2022 13:27:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F33310E6ED;
-	Thu, 10 Nov 2022 11:42:17 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A30010E6E0;
- Thu, 10 Nov 2022 11:42:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0A6610E14C;
+	Thu, 10 Nov 2022 12:27:52 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 596D410E14C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Nov 2022 12:27:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668080533; x=1699616533;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=QktWTyfBQ9BndmPoxnSdD7wIY7U+IxLE1V7ffbWRpSg=;
- b=km1aBR3y7VjWj7iQyGBn+Hco0xCxCy45Pwh+DsC603+w1hhOCMJW5Mlf
- XlytIFClqbIOqBkBeom7wJw17gwgdDnT5hn7o40u8lI9MW4OPzcD9r9UV
- 7vm+uhckUPiE0F/7JmhpxcNBGD75Sq8WKbzrB7McY1nUl1MGwoU/6qS3i
- tOhnOtD/o+rtIVKZ7T9rN8V7Ah/P+PitLWUWNQHV/X5p4CKQZDNhYjH5f
- VYdW9DTCmn2JwDgwOgQF0yymZMD5TgQErFLPknnpppeyLzllcn7cYikti
- gSrcJzLu2omXmgK8tQYl70P/1GpNdMo/PFAQoJGYbTsP0+cyZjf4j+YiD g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="308911145"
-X-IronPort-AV: E=Sophos;i="5.96,153,1665471600"; d="scan'208";a="308911145"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2022 03:42:12 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="882329324"
-X-IronPort-AV: E=Sophos;i="5.96,153,1665471600"; d="scan'208";a="882329324"
-Received: from salmasha-mobl.ger.corp.intel.com (HELO [10.213.230.214])
- ([10.213.230.214])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2022 03:42:11 -0800
-Message-ID: <926320fd-e3f5-92b0-0746-cfd988296d07@linux.intel.com>
-Date: Thu, 10 Nov 2022 11:42:09 +0000
+ t=1668083270; x=1699619270;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=0TJ7+PPit8oHQ+/84LWIMi0SQ1taZOFXBT0bJjccWSE=;
+ b=E9si09LuHcr2s1r3v2+O9yQVM7/6SjINUmcpsP23vRixWz76bt4fdEic
+ qvDbiztt0cbgFqNmsx6AINM7He8JPkJVEzwNetjUZZnrlzSfvEXKhLcz5
+ ncBsgQMrKOBscoSFRX1CDbmVfggxzP2eAttSwI44kQCtHF2Cb1tScLVMu
+ AhNKkmYOC0rvIfo6wEJFkb88rVV8tXlEl3J0j+zo7wpAye8tN0nXiAjXg
+ LMzs5qHqH5EuuIpUBKRBaQmwtBQfggayTmGuAfJNCiLfqWINS+BaTU1Kt
+ d9XxHngFyRNc8+RpHAvwl5dZTkzEIeEDfBcAeQJBqcaVk2buf6hUBvTZy g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="291013761"
+X-IronPort-AV: E=Sophos;i="5.96,153,1665471600"; d="scan'208";a="291013761"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2022 04:27:49 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="670339402"
+X-IronPort-AV: E=Sophos;i="5.96,153,1665471600"; d="scan'208";a="670339402"
+Received: from ideak-desk.fi.intel.com ([10.237.68.144])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2022 04:27:48 -0800
+Date: Thu, 10 Nov 2022 14:27:43 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <Y2zuP64j4sw15HVK@ideak-desk.fi.intel.com>
+References: <20221107170917.3566758-9-imre.deak@intel.com>
+ <20221108151828.3761358-5-imre.deak@intel.com>
+ <Y2zUal4m3hbvGfb8@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Content-Language: en-US
-To: Andrzej Hajda <andrzej.hajda@intel.com>, Intel-gfx@lists.freedesktop.org
-References: <20221108114950.2017869-1-tvrtko.ursulin@linux.intel.com>
- <20221109104633.2579245-1-tvrtko.ursulin@linux.intel.com>
- <6ebca1da-47c4-9ced-c77c-1083ba2e02ed@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <6ebca1da-47c4-9ced-c77c-1083ba2e02ed@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: Partial abandonment of legacy
- DRM logging macros
+In-Reply-To: <Y2zUal4m3hbvGfb8@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 8/9] drm/i915: Don't enable the AUX_IO
+ power for combo-PHY external DP port main links
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,102 +60,135 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 10/11/2022 11:07, Andrzej Hajda wrote:
-> On 09.11.2022 11:46, Tvrtko Ursulin wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> Convert some usages of legacy DRM logging macros into versions which tell
->> us on which device have the events occurred.
->>
->> v2:
->>   * Don't have struct drm_device as local. (Jani, Ville)
->>
->> v3:
->>   * Store gt, not i915, in workaround list. (John)
+On Thu, Nov 10, 2022 at 12:37:30PM +0200, Ville Syrj�l� wrote:
+> On Tue, Nov 08, 2022 at 05:18:27PM +0200, Imre Deak wrote:
+> > Combo PHY ports require the AUX_IO power only for eDP/PSR, so don't
+> > enable it otherwise on these ports. So far the external DP and eDP case
+> > was handled the same way due to unclarity when AUX_IO for the main link
+> > is needed. However Bspec is clear in which cases it's required:
+> > 
+> > - eDP/PSR on all ports and platforms (presumably due to HW/FW initiated
+> >   PSR transactions that won't enable AUX_IO)
+> >   Bspec: 4301, 49296
+> > - TypeC PHY ports on platforms before MTL in all TypeC modes (TBT,
+> >   DP-alt, legacy) and for both HDMI and DP. The next patch will take
+> >   into account the pre-MTL platform dependency.
+> >   Bspec: 22243, 53339, 21750, 49190, 49191, 55424, 65448, 65750, 49294,
+> >          55480, 65380
+> > 
+> > v2:
+> > - Rebased on checking intel_encoder_can_psr() instead of crtc->has_psr.
+> > 
+> > Cc: Ville Syrj�l� <ville.syrjala@linux.intel.com>
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_ddi.c | 22 +++++++++-------------
+> >  1 file changed, 9 insertions(+), 13 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > index 21f1a68a57598..cc4bc529a78a5 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > @@ -846,8 +846,7 @@ bool intel_ddi_get_hw_state(struct intel_encoder *encoder,
+> >  }
+> >  
+> >  static enum intel_display_power_domain
+> > -intel_ddi_main_link_aux_domain(struct intel_digital_port *dig_port,
+> > -			       const struct intel_crtc_state *crtc_state)
+> > +intel_ddi_main_link_aux_domain(struct intel_digital_port *dig_port)
+> >  {
+> >  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> >  	enum phy phy = intel_port_to_phy(i915, dig_port->base.port);
+> > @@ -867,20 +866,18 @@ intel_ddi_main_link_aux_domain(struct intel_digital_port *dig_port,
+> >  	 */
+> >  	if (intel_encoder_can_psr(&dig_port->base))
+> >  		return intel_display_power_aux_io_domain(i915, dig_port->aux_ch);
+> > -	else if (intel_crtc_has_dp_encoder(crtc_state) ||
+> > -		 intel_phy_is_tc(i915, phy))
+> > +	else if (intel_phy_is_tc(i915, phy))
+> >  		return intel_aux_power_domain(dig_port);
 > 
+> I was pondering this a bit more the other day and came to the conclusion
+> that getting rid of the full aux domain is desirable, if for no other
+> reason that perhaps testing the dmc interactions a little bit more when
+> psr isn't supported. I guess nothing much should actually happen on the
+> dmc firware side without psr, but at least we might end up poking
+> the DC_STATE_EN register occasionally?
+
+Yes, that's how things work already now on port A. I think the DMC
+context save handler is either not started when an external output is
+enabled on the port (like HDMI) or the handler will check if PSR is
+enabled and if not it won't do anything. So enabling/disabling DC state
+via the DC_STATE_EN register shouldn't cause actual DC state entry/exit
+transitions.
+
+> >  	else
+> >  		return POWER_DOMAIN_INVALID;
+> >  }
+> >  
+> >  static void
+> > -main_link_aux_power_domain_get(struct intel_digital_port *dig_port,
+> > -			       const struct intel_crtc_state *crtc_state)
+> > +main_link_aux_power_domain_get(struct intel_digital_port *dig_port)
+> >  {
+> >  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> >  	enum intel_display_power_domain domain =
+> > -		intel_ddi_main_link_aux_domain(dig_port, crtc_state);
+> > +		intel_ddi_main_link_aux_domain(dig_port);
+> >  
+> >  	drm_WARN_ON(&i915->drm, dig_port->aux_wakeref);
+> >  
+> > @@ -891,13 +888,12 @@ main_link_aux_power_domain_get(struct intel_digital_port *dig_port,
+> >  }
+> >  
+> >  static void
+> > -main_link_aux_power_domain_put(struct intel_digital_port *dig_port,
+> > -			       const struct intel_crtc_state *crtc_state)
+> > +main_link_aux_power_domain_put(struct intel_digital_port *dig_port)
+> >  {
+> >  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> >  	intel_wakeref_t wf = fetch_and_zero(&dig_port->aux_wakeref);
+> >  	enum intel_display_power_domain domain =
+> > -		intel_ddi_main_link_aux_domain(dig_port, crtc_state);
+> > +		intel_ddi_main_link_aux_domain(dig_port);
+> >  
+> >  	if (!wf)
+> >  		return;
+> > @@ -928,7 +924,7 @@ static void intel_ddi_get_power_domains(struct intel_encoder *encoder,
+> >  								   dig_port->ddi_io_power_domain);
+> >  	}
+> >  
+> > -	main_link_aux_power_domain_get(dig_port, crtc_state);
+> > +	main_link_aux_power_domain_get(dig_port);
+> >  }
+> >  
+> >  void intel_ddi_enable_pipe_clock(struct intel_encoder *encoder,
+> > @@ -2767,7 +2763,7 @@ static void intel_ddi_post_disable(struct intel_atomic_state *state,
+> >  		intel_ddi_post_disable_dp(state, encoder, old_crtc_state,
+> >  					  old_conn_state);
+> >  
+> > -	main_link_aux_power_domain_put(dig_port, old_crtc_state);
+> > +	main_link_aux_power_domain_put(dig_port);
+> >  
+> >  	if (is_tc_port)
+> >  		intel_tc_port_put_link(dig_port);
+> > @@ -3088,7 +3084,7 @@ intel_ddi_pre_pll_enable(struct intel_atomic_state *state,
+> >  	if (is_tc_port)
+> >  		intel_tc_port_get_link(dig_port, crtc_state->lane_count);
+> >  
+> > -	main_link_aux_power_domain_get(dig_port, crtc_state);
+> > +	main_link_aux_power_domain_get(dig_port);
+> >  
+> >  	if (is_tc_port && !intel_tc_port_in_tbt_alt_mode(dig_port))
+> >  		/*
+> > -- 
+> > 2.37.1
 > 
-> Neither gt neither i915 does fit into wa list IMHO.
-> The best solution would be provide context (i915/gt/whatever)
-> as a function parameter, every time it is necessary.
-> On the other side it should not block the patch.
-> More below.
-
-I thought about the very same lines but then concluded that the only _current_ usage of the lists is that they belong to a gt (directly or via engine). So having a back pointer felt passable.
-
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com> # v2
->> Acked-by: Jani Nikula <jani.nikula@intel.com>
->> Cc: Jani Nikula <jani.nikula@intel.com>
->> Cc: John Harrison <John.C.Harrison@Intel.com>
->> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
->> ---
->>   drivers/gpu/drm/i915/gem/i915_gem_context.c   |  2 +-
->>   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 26 ++++++++----
->>   .../drm/i915/gt/intel_execlists_submission.c  | 13 +++---
->>   drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c  |  4 +-
->>   drivers/gpu/drm/i915/gt/intel_gt.c            |  4 +-
->>   drivers/gpu/drm/i915/gt/intel_gt_irq.c        |  8 ++--
->>   drivers/gpu/drm/i915/gt/intel_rps.c           |  6 ++-
->>   drivers/gpu/drm/i915/gt/intel_workarounds.c   | 42 +++++++++++--------
->>   .../gpu/drm/i915/gt/intel_workarounds_types.h |  3 ++
->>   .../gpu/drm/i915/gt/selftest_workarounds.c    |  4 +-
->>   drivers/gpu/drm/i915/i915_debugfs.c           |  4 +-
->>   drivers/gpu/drm/i915/i915_gem.c               |  2 +-
->>   drivers/gpu/drm/i915/i915_getparam.c          |  2 +-
->>   drivers/gpu/drm/i915/i915_irq.c               | 12 +++---
->>   drivers/gpu/drm/i915/i915_perf.c              | 14 ++++---
->>   drivers/gpu/drm/i915/i915_query.c             | 12 +++---
->>   drivers/gpu/drm/i915/i915_sysfs.c             |  3 +-
->>   drivers/gpu/drm/i915/i915_vma.c               | 16 +++----
->>   drivers/gpu/drm/i915/intel_uncore.c           | 21 ++++++----
->>   19 files changed, 117 insertions(+), 81 deletions(-)
->>
-> 
-> (...)
-> 
->> @@ -1749,7 +1755,7 @@ wa_list_apply(struct intel_gt *gt, const struct 
->> i915_wa_list *wal)
->>                   intel_gt_mcr_read_any_fw(gt, wa->mcr_reg) :
->>                   intel_uncore_read_fw(uncore, wa->reg);
->> -            wa_verify(wa, val, wal->name, "application");
->> +            wa_verify(wal->gt, wa, val, wal->name, "application");
-> 
-> This looks confusing at 1st sight, why wa_verify(wal->gt,...) and not 
-> wa_verify(gt,...). Can they differ? and similar questions as in case of 
-> redundant vars.
-
-Would be always the same in current code. But point taken, it is confusing.. hm..
-
-./gt/intel_workarounds.c:       wa_list_apply(gt, &gt->wa_list);
-./gt/intel_workarounds.c:       wa_list_apply(engine->gt, &engine->wa_list);
-
-Could drop the gt argument now that gt is available in the wa list.
-
-> The same apply to wal->engine_name, which is almost unused anyway?
-> Also AFAIK there is always sequence:
-> 1. wa_init_start
-> 2. *init_workarounds*
-> 3. wa_init_finish - btw funny name.
-
-Why funny? :) Because init collides with finish? Start of initialisation, initialisation, end of initialisation. :)
-
-> Why not 1 and 3 embed in 2? Do we need this sequence.
-
-It's just some common code so it doesn't have to be duplicated in the callers.
-  
-> Anyway all these comments are for wa handling, which should be addressed 
-> in other patch. So my r-b still holds, either with wal->i915, either 
-> with wal->gt.
-> 
-> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-
-Thanks, I think I'll go with v3 and follow up with wa_list_apply cleanup, so that my logging changes in gt/ are in before further CI delays and people can freely work on the GT logging macros without conflicts.
-
-Regards,
-
-Tvrtko
+> -- 
+> Ville Syrj�l�
+> Intel
