@@ -2,59 +2,166 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3434B623B46
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Nov 2022 06:31:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 539F3623B4F
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Nov 2022 06:34:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECE8910E660;
-	Thu, 10 Nov 2022 05:31:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF54B10E660;
+	Thu, 10 Nov 2022 05:34:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com
- [IPv6:2607:f8b0:4864:20::102f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAFD710E660
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Nov 2022 05:31:45 +0000 (UTC)
-Received: by mail-pj1-x102f.google.com with SMTP id
- l22-20020a17090a3f1600b00212fbbcfb78so3835934pjc.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 09 Nov 2022 21:31:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=pfQcOXU4f4vE0mNbTEA+z4XPracyYazvwGo3pIVP5Vk=;
- b=jIaXp2PB14E5ECoh4YQq5EviMVNYnMps57LJ7IW5OrtRUwltooROc3T+hY2zZFOAaY
- j1trRv72fGHd+HF5tfzv0aVbdWRIJQYMZ1ksvp1Jju8wFvO3xDGJRW0RRf3ybtP4qzfb
- bVmc+Vm9ZxjfeMy8vaZtjoUYXKwrSlRhoYOJU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=pfQcOXU4f4vE0mNbTEA+z4XPracyYazvwGo3pIVP5Vk=;
- b=efq0tQgMGv5wLhfXC1Kb0oQmXklhPTRCIW0olHZPRk7ErkW3NbuuYZvgIey6bjwu7s
- kEhcbmgffYTT2/Al07gf50eg9fUmHLE6jxCYaz4QK2rDVvrVHYGvySY+O7k52icz4/Aq
- xZDGa/JnKpSVXi7fPkHS3Cf/8bRIjJnycw73o9SGaOq0eTsuRDDOCsdod+vbWS5vDcIQ
- mtUHiwwjQYZeOleIOZxcMJPryKHNvtAxCF0JzUlL8U39/CVzgj13vOxpAf4g7rgZSPJO
- 5oRVLptDTZj20nreNPTBQpIWw1bUND5UF2pds9/wfEBJEzm5apyZcIboOPdiVpegvcme
- lqXQ==
-X-Gm-Message-State: ACrzQf1awuftB2Hu3NDiLjbhtOvPz8xl15PwRhc8LKwZQ12wPxB7zaAf
- xrFbPDF3Lapi69eWUfMcwqEN/A==
-X-Google-Smtp-Source: AMsMyM6zWKiaKsCFLhyjKJcOmm2M5Vsiz3KSnYxoTQexQzJ8F1cTbrYgNklBlqu/AOR24kEkM2wjcQ==
-X-Received: by 2002:a17:903:2452:b0:187:99b:c8fe with SMTP id
- l18-20020a170903245200b00187099bc8femr62092709pls.113.1668058305450; 
- Wed, 09 Nov 2022 21:31:45 -0800 (PST)
-Received: from localhost ([2401:fa00:9:14:ad4e:fb19:81ac:fe89])
- by smtp.gmail.com with UTF8SMTPSA id
- u7-20020a17090a410700b002135e8074b1sm2131410pjf.55.2022.11.09.21.31.39
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 09 Nov 2022 21:31:45 -0800 (PST)
-From: Mani Milani <mani@chromium.org>
-To: LKML <linux-kernel@vger.kernel.org>
-Date: Thu, 10 Nov 2022 16:31:33 +1100
-Message-Id: <20221110053133.2433412-1-mani@chromium.org>
-X-Mailer: git-send-email 2.38.1.431.g37b22c650d-goog
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AE8510E09E;
+ Thu, 10 Nov 2022 05:34:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1668058443; x=1699594443;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=6Ql5lYuvy8Bj27wqlCoeH4CuRDS3+snw7xjE5rp1FDY=;
+ b=AUeRQ/ipUVak5CLC6drsS/99o/hSvkbw1VUgKkIF8DjA1O7O6AtW3ZJj
+ Or38Pu8Wh3sDjE+yDcdQn+cdH17cQHxFYC04n9jMkTOAYlXc4cbQgjXzZ
+ SMS9wTd4SOaBg2VJp4itR4fqVsknieDMQrQAIqNI7rqdCE4GtRS3o1lU/
+ a6cBlRH+uC/JV2/FOMJ2fcdySMpxJFL9ERPjRv4i68kW7jZesPBcTj4/P
+ N1CktQAbrpUb7faXxv5IGc4PRuNNWikKu+b/hyDQ2y6Bl/yYhhxR4ppSB
+ odSt7fvfS8DiyIPCiDA9Myzyauu28/9y3yENOS4u8DkzUvrLjhkSy0O38 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="308840984"
+X-IronPort-AV: E=Sophos;i="5.96,152,1665471600"; d="scan'208";a="308840984"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2022 21:34:02 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="779637047"
+X-IronPort-AV: E=Sophos;i="5.96,152,1665471600"; d="scan'208";a="779637047"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga001.fm.intel.com with ESMTP; 09 Nov 2022 21:34:02 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Wed, 9 Nov 2022 21:34:01 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Wed, 9 Nov 2022 21:34:01 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Wed, 9 Nov 2022 21:34:01 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2375.31; Wed, 9 Nov 2022 21:34:01 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=NZ2hK1s97nFDRT7FsTjK7WJpRC36hpDuqxXx1lxwMWKhZqGia6KLHO3KNqNXnozAmsvcriVk2SaFhGxtgi42ZPvW4b+a/dtBqe5zcT+TO0L02XgYTJ8ncYdeOCNu2Gf34uK8sGL827DbBiR1fnqbX104nX3z2VF+qkifW063dn2E6hwQtXX7OGKDs1Z5RmQ5wXemEXH44hdvzRv2b4HvJ9F/lTbYxQMP+WfEJQftprVvtXoTvIJNfXbZOhnE5W/cm1D1v6DpcMqmlDf6s1JV8e8wYGpo1w1D1I0XiNo6Iy18V/tt3XAY7HOvvxaDvi8oHuYdBIxeB1NUFn5wLq/6Ng==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6Ql5lYuvy8Bj27wqlCoeH4CuRDS3+snw7xjE5rp1FDY=;
+ b=W7ziRUqEIdfle0xqsAou0sJlALTJwsEkJLV4rRt7mKyKTajEKswHdrO3O7jQYBTp8jN1cx+mWnJ0lB2BBrDXoHgapnh+N2oI6qe6wvpg2fn/q8wIjCFY8tT01+kB0Bo9raW1v3y+DpOc0E+jmQD6i0dpQkdpc7OL8DTwBi9rNt62Y2KCeGuZfoqCxC1UAjt1r1Y6Nzosf0q1wLs/TB9eJ+DzarJ2FCgOPNFmm3Q2zXpGWN84bLk1JIEXCYwkNYDbUjrmnPTDJbh5aa3f19Vt5w9XVHdj6j1KTykDmaFl5gpYtgVt0D4huCO1f/EDr7z7yvrFDPFjdVbivPPqKK5qcQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from BN9PR11MB5276.namprd11.prod.outlook.com (2603:10b6:408:135::18)
+ by LV2PR11MB6046.namprd11.prod.outlook.com (2603:10b6:408:17a::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.27; Thu, 10 Nov
+ 2022 05:33:54 +0000
+Received: from BN9PR11MB5276.namprd11.prod.outlook.com
+ ([fe80::737e:211a:bb53:4cd7]) by BN9PR11MB5276.namprd11.prod.outlook.com
+ ([fe80::737e:211a:bb53:4cd7%6]) with mapi id 15.20.5813.012; Thu, 10 Nov 2022
+ 05:33:54 +0000
+From: "Tian, Kevin" <kevin.tian@intel.com>
+To: Jason Gunthorpe <jgg@nvidia.com>, Alexander Gordeev
+ <agordeev@linux.ibm.com>, David Airlie <airlied@gmail.com>, Tony Krowiak
+ <akrowiak@linux.ibm.com>, Alex Williamson <alex.williamson@redhat.com>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>, Cornelia Huck
+ <cohuck@redhat.com>, Daniel Vetter <daniel@ffwll.ch>, Diana Craciun
+ <diana.craciun@oss.nxp.com>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>, Eric Auger <eric.auger@redhat.com>, "Eric
+ Farman" <farman@linux.ibm.com>, Harald Freudenberger <freude@linux.ibm.com>,
+ Vasily Gorbik <gor@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "iommu@lists.linux.dev" <iommu@lists.linux.dev>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Jason Herne <jjherne@linux.ibm.com>, "Joonas
+ Lahtinen" <joonas.lahtinen@linux.intel.com>, Joerg Roedel <joro@8bytes.org>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>, "linux-s390@vger.kernel.org"
+ <linux-s390@vger.kernel.org>, Longfang Liu <liulongfang@huawei.com>, "Matthew
+ Rosato" <mjrosato@linux.ibm.com>, Peter Oberparleiter
+ <oberpar@linux.ibm.com>, Halil Pasic <pasic@linux.ibm.com>, Robin Murphy
+ <robin.murphy@arm.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, "Shameer
+ Kolothum" <shameerali.kolothum.thodi@huawei.com>, Sven Schnelle
+ <svens@linux.ibm.com>, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Vineeth Vijayan <vneethv@linux.ibm.com>, Will Deacon <will@kernel.org>,
+ Yishai Hadas <yishaih@nvidia.com>, Zhenyu Wang <zhenyuw@linux.intel.com>,
+ "Wang, Zhi A" <zhi.a.wang@intel.com>
+Thread-Topic: [PATCH v2 08/11] vfio-iommufd: Support iommufd for emulated VFIO
+ devices
+Thread-Index: AQHY8wx6rIsjRsa7HkeXFSvgQ3pBSa43pYbw
+Date: Thu, 10 Nov 2022 05:33:54 +0000
+Message-ID: <BN9PR11MB5276592240B7916E23E94DDD8C019@BN9PR11MB5276.namprd11.prod.outlook.com>
+References: <0-v2-65016290f146+33e-vfio_iommufd_jgg@nvidia.com>
+ <8-v2-65016290f146+33e-vfio_iommufd_jgg@nvidia.com>
+In-Reply-To: <8-v2-65016290f146+33e-vfio_iommufd_jgg@nvidia.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BN9PR11MB5276:EE_|LV2PR11MB6046:EE_
+x-ms-office365-filtering-correlation-id: 1fd67505-30e9-4c53-e210-08dac2dd2821
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: gD9OgEPrMQ6lLmH6xgkUc6iR1YqqPGx986Er3uEGYbDlDTMFyTs7bbjMH4rWkQbTixMhXCUVvzI0Saqr99XDnJiTadAqcU0YutZTbC79iG8fWEcbdWIY63olIxn60EOEviVKzwnfWb5WmnQEbUq91AqNUzt30p6cRleLU4kjsHXk09dpr5cnSt/PQw9oBHTf7uiaSbzjvbbddSSpXQplvnxUpSjMYDXBge6ZWOfprvOkSSV/i+QAS2rDlnH2PanvspouPnDveZYGvDUxbJpYrYLhUIVdhX2jwgc+DLuW6AKzqfwBMX4lVV/UPjI9HPXL1iWX/sHneHim+iRQy5ZzPxvdNr8UzvwNC2tjt3nlswBx1cnFRxpW0g+F54HJ268lMYbn3X59GuTraYH4GdAoDDjX2sdNhDQHbU62asaLqI8LZezoeNoxUutf6fpO8X8T8k0hdGQchYgo5rJOceYe1LOO7lrTqYVXhQY/Gh8rA1EaTwuUcnjCLGXLu/Eussclk4URhbJEX08+eZYbNJRD3jWuqrPpcwgRQTAOUry2mFNaCqsB65IHVlOJWLfZAUlxPsFgXoJyW8pdspNBcDJ5nnSOzpWMVcyIGNeaz/JHq3TpZe5h1vBQ38GRoAhxVF3CAxDIWqLQCiY0Y2AA1PTJ+KqGBcYSfgIeDOpv9h1BlHbRmjTEFAGD0232DmZQZ3/wS1G1hA+IIxCrCYzgwIjs5+0RZvLv2QtM6eNKHXMr46r13IJj79VsCN+aB1OeFgP3RpIvKzTBZNWkRFjwRhPFKuIzS+h950jNZ0hFDw/my18=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR11MB5276.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(396003)(346002)(136003)(366004)(39860400002)(376002)(451199015)(478600001)(4744005)(8936002)(52536014)(5660300002)(38070700005)(6636002)(41300700001)(83380400001)(38100700002)(86362001)(7406005)(7416002)(55016003)(7696005)(9686003)(26005)(6506007)(82960400001)(71200400001)(122000001)(54906003)(66946007)(64756008)(66446008)(66476007)(921005)(66556008)(186003)(4326008)(76116006)(110136005)(8676002)(316002)(2906002)(33656002);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?4ITizG2B1h6t035FMSXokeo+2LD2ykQ0gCmMc8vaNV/k6h1zkppuGvbeJI7B?=
+ =?us-ascii?Q?BlUHr8Or3Echh+LIAPj2rphS998jsbTlsYJUJcZzmRG2ApgdqlSbzdAUtShU?=
+ =?us-ascii?Q?PPApC5gYxtNFuA12KvcJpP/13WMar46QfZmWCH4OUOuSqQrTQKGr6X4Io7gZ?=
+ =?us-ascii?Q?tKsacMcOAhKvFnYbAEBJIbXhiRLWA2J5ORlOKdaA0YKtbMXUAKg1y9n2aHHW?=
+ =?us-ascii?Q?/e7Q7A9U39sWXxfF37Kc5gKinF2EPaQun1LAAXu3z+57WGyoDFHVWP7zoUiG?=
+ =?us-ascii?Q?rbFXQ5KhO72tSUCnU/Np5CUqJIm6DpvcCkcJXrL6l73bc2L75eiJAQHA/vYz?=
+ =?us-ascii?Q?6aIQH1ma3ps97iq1h+4wfh7EygM7wGOuW+P5QKZr9syOCMl1wmd2mUHqCcrJ?=
+ =?us-ascii?Q?l4LiH2twXqhwegF4lAecml1rPEcIra+tG2aJQNjkr8Lm+BdpWL5+hPc3DrUz?=
+ =?us-ascii?Q?TybUJUD0ACbaglZB44OqBSCYtr+jVmSBLi74m3LM6juwIkqja3u/gwK3JRE/?=
+ =?us-ascii?Q?d5oq2fP5QhxOduRfvS5EJ1zvqwlivnTW/qW0hn7XD7KHxteoseRmwB+YLWnO?=
+ =?us-ascii?Q?+PpCBWrgPnB8j+Pcx5pd4DuYyWQeeIBpozqn4j4+a8pav2r20jdXKUBud3Re?=
+ =?us-ascii?Q?n13bNQWsHLrqkjxVM+MW5JxQFTjWZsxIBYIDA89m09uRmULJPDC0QPJIhq9J?=
+ =?us-ascii?Q?tPyWsxTzx/ZEoLcZ4yZsEjODDWwIXPXSVMJhTvjwZnpfAVVWIK8Z4Tm5Ssn+?=
+ =?us-ascii?Q?sIgk42C/0CkpoZSNKFGm2Utc7SDLt4JuQXM1McuPxPcNfXnSnhXhdoOw/ELZ?=
+ =?us-ascii?Q?iiao9Dl28Xf2higLN+fo2wef0vwmA93pMV4FYZzFekOw5yBqbMVOky066e3+?=
+ =?us-ascii?Q?UtZ4KlyeAm8oUeY6xyP2cNHNYZb1EEYNnqIcB9HhG/pkSWRn0zG++Bq8jdc+?=
+ =?us-ascii?Q?KKZr1GNCIWDSihBiQvGcSQHLn0ZZp358JMsiQHNIteJ780Ym1BabxxkUyv7v?=
+ =?us-ascii?Q?yZtvg9L8h/PrUc5a2ELY7/rnKlFx9xH5tFNqEWMZqB68I9Wzsh+CY+Pmj5hp?=
+ =?us-ascii?Q?U0iMbTtBZ/kdbysX9y9Yn+zRKYt3ObXEXoLNl+/rrip+bjpf1UKaw/KMHTCY?=
+ =?us-ascii?Q?6sro6xvVhRMkvh61fmhokEx2Vbn9sfV/OOxaLtEJSV3gO8O46hrh9doR9ACN?=
+ =?us-ascii?Q?lGughhVjUqsfV33kejpq83BBdcIsFnVJyx/P4xxBG3P9/uPTmHtQBoGih8vU?=
+ =?us-ascii?Q?aFVJ9Ap3YGhzePYjlX7z4JcRVhOg7LiNf/LlEPxHtIKmxtLuUKbqY1Lo6fCr?=
+ =?us-ascii?Q?oOoyaYRoNjDusIRvOwBA4VyAv3zN/jh35ug3MeHz1jOb6kASdlfbDtxI67Js?=
+ =?us-ascii?Q?bIiYmbF5L+btoDH7g50p0YgfgmsQrX5gclh4Chm/4wzi5FdtcTfBoKgVscfZ?=
+ =?us-ascii?Q?npyx4yHbKYQiTyvPpj12JKjlUAvu8JUjPIwI6UJmhw4Mur+74DnyU9QlFG6H?=
+ =?us-ascii?Q?bt7B2l2uj8Mib2iG5DQ9JErAmsE6U2EWQEKVnjXQUWue6UP6h1DxjA71jzDB?=
+ =?us-ascii?Q?MmhQHtMZXDAIxm+51p5dv4v3U8TRtQbpUR4xzmjj?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Fix unhandled deadlock in grab_vma()
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5276.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1fd67505-30e9-4c53-e210-08dac2dd2821
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Nov 2022 05:33:54.2591 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: nCSOacdwrCBEFOIF66qko3ZsOirLMbtk1qGummJYytWDsHnkVhUNIgaZTtUHetM3G3CeoxV/BP85rqQJC8iksQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR11MB6046
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v2 08/11] vfio-iommufd: Support iommufd for
+ emulated VFIO devices
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,231 +174,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Mani Milani <mani@chromium.org>, Chris Wilson <chris@chris-wilson.co.uk>,
- Matthew Auld <matthew.auld@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: "Liu, Yi L" <yi.l.liu@intel.com>, Nicolin Chen <nicolinc@nvidia.com>,
+ Lu Baolu <baolu.lu@linux.intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-At present, the gpu thread crashes at times when grab_vma() attempts to
-acquire a gem object lock when in a deadlock state.
+> From: Jason Gunthorpe <jgg@nvidia.com>
+> Sent: Tuesday, November 8, 2022 8:53 AM
+>=20
+> Emulated VFIO devices are calling vfio_register_emulated_iommu_dev() and
+> consist of all the mdev drivers.
+>=20
+> Like the physical drivers, support for iommufd is provided by the driver
+> supplying the correct standard ops. Provide ops from the core that
+> duplicate what vfio_register_emulated_iommu_dev() does.
+>=20
+> Emulated drivers are where it is more likely to see variation in the
+> iommfd support ops. For instance IDXD will probably need to setup both a
+> iommfd_device context linked to a PASID and an iommufd_access context to
+> support all their mdev operations.
+>=20
+> Tested-by: Nicolin Chen <nicolinc@nvidia.com>
+> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
 
-Problems:
-I identified the following 4 issues in the current code:
-1. Since grab_vma() calls i915_gem_object_trylock(), which consequently
-   calls ww_mutex_trylock(), to acquire lock, it does not perform any
-   -EDEADLK handling; And -EALREADY handling is also unreliable,
-   according to the description of ww_mutex_trylock().
-2. Since the return value of grab_vma() is a boolean showing
-   success/failure, it does not provide any extra information on the
-   failure reason, and therefore does not provide any mechanism to its
-   caller to take any action to fix a potential deadlock.
-3. Current grab_vma() implementation produces inconsistent behaviour
-   depending on the refcount value, without informing the caller. If
-   refcount is already zero, grab_vma() neither acquires lock nor
-   increments the refcount, but still returns 'true' for success! This
-   means that grab_vma() returning true (for success) does not always
-   mean that the gem obj is actually safely accessible.
-4. Currently, calling "i915_gem_object_lock(obj,ww)" is meant to be
-   followed by a consequent "i915_gem_object_unlock(obj)" ONLY if the
-   original 'ww' object pointer was NULL, or otherwise not be called and
-   leave the houskeeping to "i915_gem_ww_ctx_fini(ww)". There are a few
-   issues with this:
-   - This is not documented anywhere in the code (that I could find),
-     but only explained in an older commit message.
-   - This produces an inconsistent usage of the lock/unlock functions,
-     increasing the chance of mistakes and issues.
-   - This is not a clean design as it requires any new code that calls
-     these lock/unlock functions to know their internals, as well as the
-     internals of the functions calling the new code being added.
-
-Fix:
-To fix the issues above, this patch:
-1. Changes grab_vma() to call i915_gem_object_lock() instead of
-   i915_gem_object_trylock(), to handle -EDEADLK and -EALREADY cases.
-   This should not cause any issue since the PIN_NONBLOCK flag is
-   checked beforehand in the 2 cases grab_vma() is called.
-2. Changes grab_vma() to return the actual error code, instead of bool.
-3. Changes grab_vma() to behave consistently when returning success, by
-   both incrementing the refcount and acquiring lock at all times.
-4. Changes i915_gem_object_unlock() to pair with i915_gem_object_lock()
-   nicely in all cases and do the housekeeping without the need for the
-   caller to do anything other than simply calling lock and unlock.
-5. Ensures the gem obj->obj_link is initialized and deleted from the ww
-   list such that it can be tested for emptiness using list_empty().
-
-Signed-off-by: Mani Milani <mani@chromium.org>
----
-
- drivers/gpu/drm/i915/gem/i915_gem_object.c |  2 +
- drivers/gpu/drm/i915/gem/i915_gem_object.h | 10 ++++-
- drivers/gpu/drm/i915/i915_gem_evict.c      | 48 ++++++++++++----------
- drivers/gpu/drm/i915/i915_gem_ww.c         |  8 ++--
- 4 files changed, 41 insertions(+), 27 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-index 369006c5317f..69d013b393fb 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-@@ -78,6 +78,8 @@ void i915_gem_object_init(struct drm_i915_gem_object *obj,
- 
- 	INIT_LIST_HEAD(&obj->mm.link);
- 
-+	INIT_LIST_HEAD(&obj->obj_link);
-+
- 	INIT_LIST_HEAD(&obj->lut_list);
- 	spin_lock_init(&obj->lut_lock);
- 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-index 1723af9b0f6a..7e7a61bdf52c 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-@@ -219,7 +219,7 @@ static inline bool i915_gem_object_trylock(struct drm_i915_gem_object *obj,
- 		return ww_mutex_trylock(&obj->base.resv->lock, &ww->ctx);
- }
- 
--static inline void i915_gem_object_unlock(struct drm_i915_gem_object *obj)
-+static inline void __i915_gem_object_unlock(struct drm_i915_gem_object *obj)
- {
- 	if (obj->ops->adjust_lru)
- 		obj->ops->adjust_lru(obj);
-@@ -227,6 +227,14 @@ static inline void i915_gem_object_unlock(struct drm_i915_gem_object *obj)
- 	dma_resv_unlock(obj->base.resv);
- }
- 
-+static inline void i915_gem_object_unlock(struct drm_i915_gem_object *obj)
-+{
-+	if (list_empty(&obj->obj_link))
-+		__i915_gem_object_unlock(obj);
-+	else
-+		i915_gem_ww_unlock_single(obj);
-+}
-+
- static inline void
- i915_gem_object_set_readonly(struct drm_i915_gem_object *obj)
- {
-diff --git a/drivers/gpu/drm/i915/i915_gem_evict.c b/drivers/gpu/drm/i915/i915_gem_evict.c
-index f025ee4fa526..3eb514b4eddc 100644
---- a/drivers/gpu/drm/i915/i915_gem_evict.c
-+++ b/drivers/gpu/drm/i915/i915_gem_evict.c
-@@ -55,29 +55,33 @@ static int ggtt_flush(struct intel_gt *gt)
- 	return intel_gt_wait_for_idle(gt, MAX_SCHEDULE_TIMEOUT);
- }
- 
--static bool grab_vma(struct i915_vma *vma, struct i915_gem_ww_ctx *ww)
-+static int grab_vma(struct i915_vma *vma, struct i915_gem_ww_ctx *ww)
- {
-+	int err;
-+
-+	/* Dead objects don't need pins */
-+	if (dying_vma(vma))
-+		atomic_and(~I915_VMA_PIN_MASK, &vma->flags);
-+
-+	err = i915_gem_object_lock(vma->obj, ww);
-+
- 	/*
- 	 * We add the extra refcount so the object doesn't drop to zero until
--	 * after ungrab_vma(), this way trylock is always paired with unlock.
-+	 * after ungrab_vma(), this way lock is always paired with unlock.
- 	 */
--	if (i915_gem_object_get_rcu(vma->obj)) {
--		if (!i915_gem_object_trylock(vma->obj, ww)) {
--			i915_gem_object_put(vma->obj);
--			return false;
--		}
--	} else {
--		/* Dead objects don't need pins */
--		atomic_and(~I915_VMA_PIN_MASK, &vma->flags);
--	}
-+	if (!err)
-+		i915_gem_object_get(vma->obj);
- 
--	return true;
-+	return err;
- }
- 
- static void ungrab_vma(struct i915_vma *vma)
- {
--	if (dying_vma(vma))
-+	if (dying_vma(vma)) {
-+		/* Dead objects don't need pins */
-+		atomic_and(~I915_VMA_PIN_MASK, &vma->flags);
- 		return;
-+	}
- 
- 	i915_gem_object_unlock(vma->obj);
- 	i915_gem_object_put(vma->obj);
-@@ -93,10 +97,11 @@ mark_free(struct drm_mm_scan *scan,
- 	if (i915_vma_is_pinned(vma))
- 		return false;
- 
--	if (!grab_vma(vma, ww))
-+	if (grab_vma(vma, ww))
- 		return false;
- 
- 	list_add(&vma->evict_link, unwind);
-+
- 	return drm_mm_scan_add_block(scan, &vma->node);
- }
- 
-@@ -284,10 +289,12 @@ i915_gem_evict_something(struct i915_address_space *vm,
- 		vma = container_of(node, struct i915_vma, node);
- 
- 		/* If we find any non-objects (!vma), we cannot evict them */
--		if (vma->node.color != I915_COLOR_UNEVICTABLE &&
--		    grab_vma(vma, ww)) {
--			ret = __i915_vma_unbind(vma);
--			ungrab_vma(vma);
-+		if (vma->node.color != I915_COLOR_UNEVICTABLE) {
-+			ret = grab_vma(vma, ww);
-+			if (!ret) {
-+				ret = __i915_vma_unbind(vma);
-+				ungrab_vma(vma);
-+			}
- 		} else {
- 			ret = -ENOSPC;
- 		}
-@@ -382,10 +389,9 @@ int i915_gem_evict_for_node(struct i915_address_space *vm,
- 			break;
- 		}
- 
--		if (!grab_vma(vma, ww)) {
--			ret = -ENOSPC;
-+		ret = grab_vma(vma, ww);
-+		if (ret)
- 			break;
--		}
- 
- 		/*
- 		 * Never show fear in the face of dragons!
-diff --git a/drivers/gpu/drm/i915/i915_gem_ww.c b/drivers/gpu/drm/i915/i915_gem_ww.c
-index 3f6ff139478e..937b279f50fc 100644
---- a/drivers/gpu/drm/i915/i915_gem_ww.c
-+++ b/drivers/gpu/drm/i915/i915_gem_ww.c
-@@ -19,16 +19,14 @@ static void i915_gem_ww_ctx_unlock_all(struct i915_gem_ww_ctx *ww)
- 	struct drm_i915_gem_object *obj;
- 
- 	while ((obj = list_first_entry_or_null(&ww->obj_list, struct drm_i915_gem_object, obj_link))) {
--		list_del(&obj->obj_link);
--		i915_gem_object_unlock(obj);
--		i915_gem_object_put(obj);
-+		i915_gem_ww_unlock_single(obj);
- 	}
- }
- 
- void i915_gem_ww_unlock_single(struct drm_i915_gem_object *obj)
- {
--	list_del(&obj->obj_link);
--	i915_gem_object_unlock(obj);
-+	list_del_init(&obj->obj_link);
-+	__i915_gem_object_unlock(obj);
- 	i915_gem_object_put(obj);
- }
- 
--- 
-2.38.1.431.g37b22c650d-goog
-
+this looks good to me overall. but I'll wait for next version to ack
+after the change for s390 is settled down and incorporated.
