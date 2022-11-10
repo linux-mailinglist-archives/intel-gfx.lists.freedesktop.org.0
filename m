@@ -1,55 +1,141 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12A496245C0
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Nov 2022 16:27:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76C62624717
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Nov 2022 17:33:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9010210E703;
-	Thu, 10 Nov 2022 15:27:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8784510E002;
+	Thu, 10 Nov 2022 16:33:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB63D10E6EB;
- Thu, 10 Nov 2022 15:26:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50AB410E002;
+ Thu, 10 Nov 2022 16:33:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668094016; x=1699630016;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=sP/4wknbJouUVJilHov3Ede4aJBAqy/zSpudUii+0vo=;
- b=RBqNDqMGtY6n/HHgzSawk/RMkrNrEkaC1DujkxcH7vMJObfk8BhYqBpN
- 1Q7XTJMWgleThOa9kCvRbXymLH2GlXjgCsmXpL+jABjnvlOIWTfuWV4q9
- qqZSOfhe/5ODhVMr4vY/2q3phv07DzuIbB3qN+RYyMEzwm1p0qjBwqwOm
- PnyCZ11/In5+a7DuXbF0wVRajAWMeKcUHBNw2whlfyki6smtkJ/8StXat
- L/MZm7wnS/wHw38kqqDAYKXTfwZI5Apy0vMBqQfDBEPhyHbqX3f6mOh4b
- tZKm1QTJnkbgIbo68sqKn/0D0K38FAV3C2YiXjOjq+CkfLZlKSDyjKSxZ A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10527"; a="375582980"
-X-IronPort-AV: E=Sophos;i="5.96,154,1665471600"; d="scan'208";a="375582980"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ t=1668097981; x=1699633981;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=q1xZA4dDm5ppcCI8U+sf8dZLHgBvGb4tsbpr+je4OT4=;
+ b=fXac08qbU1Ebsz8HfWsOD8TficIgqjyuhkJWZzYltQXkEAuv4hIFQ/FU
+ MbL7Iz2zKOlxFDSBNLbCBCP+OPTdv/F3M76ck0uLkc24errUVee0Q8Uir
+ HnNsy696mFQx48bAyjahDVeti8aRfbM/dH+1yi2Sl3ukNrnktPHooeZ6J
+ XUviP3ehOVcifWypAsJAW4DwwJIYFc++tYDSDIeHXY/tBgmIfItuyduts
+ Ikey3FrELcvpz22NhLJ49yNemkn2qLXg842Yoq2KsWuM01z7PjPV/YXkB
+ kqZXN3XO5NrtICyZvrCfbzDuUz11ezHd5GqiQDwrsplf16Vh5qYHJEggm g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10527"; a="375606932"
+X-IronPort-AV: E=Sophos;i="5.96,154,1665471600"; d="scan'208";a="375606932"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2022 07:21:21 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10527"; a="637203694"
-X-IronPort-AV: E=Sophos;i="5.96,154,1665471600"; d="scan'208";a="637203694"
-Received: from dcheresi-mobl2.ger.corp.intel.com (HELO [10.249.254.50])
- ([10.249.254.50])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2022 07:21:13 -0800
-Message-ID: <a26db94512198c20457ce40a6dc8692a3f8bf196.camel@linux.intel.com>
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Auld <matthew.auld@intel.com>, Mani Milani <mani@chromium.org>, 
- LKML <linux-kernel@vger.kernel.org>
-Date: Thu, 10 Nov 2022 16:21:12 +0100
-In-Reply-To: <1d066cb4-fb82-bffd-5e89-97ba572be3fa@intel.com>
-References: <20221110053133.2433412-1-mani@chromium.org>
- <1d066cb4-fb82-bffd-5e89-97ba572be3fa@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-User-Agent: Evolution 3.44.4 (3.44.4-2.fc36) 
+ 10 Nov 2022 08:33:00 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10527"; a="631712112"
+X-IronPort-AV: E=Sophos;i="5.96,154,1665471600"; d="scan'208";a="631712112"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orsmga007.jf.intel.com with ESMTP; 10 Nov 2022 08:33:00 -0800
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Thu, 10 Nov 2022 08:32:59 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Thu, 10 Nov 2022 08:32:59 -0800
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.174)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2375.31; Thu, 10 Nov 2022 08:32:59 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XtN7++14nXWiPhJAy54lZoYsDg2wu01s65w7AOQ63Y2cBNBuIT8k4GCQ30+MR49I1tmMPTAGtwmxj4D8d1l0qlHZMsnw8rGqDqRHRCLCuaN4oZiCFpLWwvIpGD1ouguTgsq35o32eGjP0mRnIkHwKqoZt9xt2OKGpXaU46yZqVDYe1lAKeTlO1oD3Z6EvDkc8B7KPIHT6Tqye1bwGMSKJ42Jj70QyzXVXgiwpYPy6LPWeHTRXSiYeajPGC9gKpS0wFPVE/zBXf9Un1sHXx+K3NhAyweWEzAnD35Br2i2hEKaxu3PuztAY9yDRlick9ZA+0ihW1WU8rghDfuLx4zk8A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xvj5DEVrg5u33jVGqWl8rXVkDbebB5yTxY01fACdZfY=;
+ b=DAoxx0FuKTIpJLsD6lB/xw9XdqG5pMtK8LOm8Hlcz6BmXHIzsfoqElzPXUgHhZfB80TdlLlRfgF3FBDSIbwaPD9x47En1ZuZAj4YpDZ8mfGlz9txZ2j9BddDkYXvkQ3Y5QmELEsrL0qyx9gXyeB8sMIZU/OMpwKj/JE2Xj0u983BUBfZ6jS9Y2zRlUTLiec/WLlxe6YJWTA1IunlHbNG9VdLfosg+aypbtz6imTj/BSgMS+YfmSppcwLoJ9nEP8TZt1NtYn+Pi/1MRCKTgzoo0nfhxWLZnC3eUtu8Qg/geM0fi/izbXDsdwaB8+akuikRLBBD+lq/54FMsjkIbq1zQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH8PR11MB6952.namprd11.prod.outlook.com (2603:10b6:510:224::13)
+ by CY8PR11MB7196.namprd11.prod.outlook.com (2603:10b6:930:94::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.13; Thu, 10 Nov
+ 2022 16:32:57 +0000
+Received: from PH8PR11MB6952.namprd11.prod.outlook.com
+ ([fe80::e55e:c08c:4749:1c68]) by PH8PR11MB6952.namprd11.prod.outlook.com
+ ([fe80::e55e:c08c:4749:1c68%3]) with mapi id 15.20.5791.027; Thu, 10 Nov 2022
+ 16:32:57 +0000
+Date: Thu, 10 Nov 2022 08:32:48 -0800
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: "Zanoni, Paulo R" <paulo.r.zanoni@intel.com>
+Message-ID: <Y20nsKZSiOCReGyd@nvishwa1-DESK>
+References: <20221107085210.17221-1-niranjana.vishwanathapura@intel.com>
+ <20221107085210.17221-6-niranjana.vishwanathapura@intel.com>
+ <e3b3919a223f59ac5df18a8f13998ad8944c5041.camel@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <e3b3919a223f59ac5df18a8f13998ad8944c5041.camel@intel.com>
+X-ClientProxiedBy: BYAPR08CA0048.namprd08.prod.outlook.com
+ (2603:10b6:a03:117::25) To PH8PR11MB6952.namprd11.prod.outlook.com
+ (2603:10b6:510:224::13)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix unhandled deadlock in
- grab_vma()
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR11MB6952:EE_|CY8PR11MB7196:EE_
+X-MS-Office365-Filtering-Correlation-Id: 083f7065-9d4f-40b0-1a3d-08dac3393979
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: eHRylnslIhdBcUWISOjbacNKYk1kCEQyiNiOpthfSrU8ELgbKnXR1E83J8dkxvux579cD/UWf1PPMtFSO642ZIF1nX8X9uOuVbvhhr4XhY2wiHCIerq4at1cHPLMvkCZS77Ti33p21HbaiwY37eUoyq0CV1n5Jn1dxtRORgJSx4ilORzT+P0VfZ33riAY2ZmGWExhtnBc45uyv9YyCAXgDvejTa/NPvpUeRfEcBq/EKUz2hkQMbKbGR2eBDt+cXM6qW1usYiDCymmrwilnoU4eDZNCTenF5CA9ci7KwiEfI/q+pKCWkh0pXLWz2j8sTUIivtJr1gTfpcq1+hEB3/YrKBha82KAfwxfsu6vsqs7cvxy+oAW1igH7K8w72TU/l2JIIbE7iZOy/IsQTG8YgZAQ5ubBNkFPrCbPrNs2maral/asTVA5hTYDucY+cakQvF9zZ6JS7x3PjfuMWyzgZVL7NrzoyGwBLpRZl6mye0Z4UfDfvuHoW37zSNTM6lMtIf6/gTYZtBgLGM2ztKCdOqF8qeg6ZCwmOHipid0XiVzoHOIJTGmf00FoSdI3mLzyeysfdzJ1kf0CRMJUC86QZSyePpvXS16J38O9M6iKXx2XOWNFYTMZTXvz7GkFM47Bbt+KYHP5iYo8k/EZvwAyjCEvkk6SKLYUfA3gmO9zCsFG1uxFg3FsVWkToBZRVMQa0hZ3YoaKE5vBSnoK19C4ttw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB6952.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(7916004)(396003)(136003)(366004)(39860400002)(346002)(376002)(451199015)(86362001)(66556008)(6506007)(2906002)(44832011)(5660300002)(30864003)(186003)(9686003)(6512007)(26005)(83380400001)(82960400001)(38100700002)(8676002)(66946007)(66476007)(316002)(33716001)(8936002)(6636002)(6486002)(41300700001)(54906003)(6862004)(4326008)(478600001)(6666004);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?vCtpDLgia6B3MohehdE0TeYBw5Ncozg/rVbvnwJc3+QPI5eR3c0+7mHTun?=
+ =?iso-8859-1?Q?MIrtqrJ2VI1mfaP+lYcjc28hRSFy0PCVs8gTEWWOsp0RVhXmdt71dwJTtd?=
+ =?iso-8859-1?Q?+Cg93vi/qv15/kGrnelrj+msbRb+EJG/vB+W4BkCS1t81ykxuUCk/dJaeV?=
+ =?iso-8859-1?Q?U1JgNbDMYm4UNf2+Oy2X1Mwi/jKVAEdsAKDawSMTozLYeekynIYhaDGFsD?=
+ =?iso-8859-1?Q?VhVgPka8640Dc10F+CR/bZqnuloLrEE3utZzxiMuqcSTqysLRoKCcIBmLi?=
+ =?iso-8859-1?Q?WQJ6+cu/MwEbK1yIMTf4NmsOoY/KCLVmW1Rt+uBYl++imlQexVBJkd7imK?=
+ =?iso-8859-1?Q?Rzn8DYbRFHxpvzPcc1/fjt8hPR1+BstISTcf3HyhWvTn+1IkHkJOi+jw1k?=
+ =?iso-8859-1?Q?MqEEeBmaLVrux0QcxFmhoiMdn2f92tRoOdj5erzo7mJTW95yjaf2735cHZ?=
+ =?iso-8859-1?Q?hNMrs/aXlOgXwcBqbnoKh7vZqJ03GqjedOeX3iIt0qmTJA7LTQIjyGKv1b?=
+ =?iso-8859-1?Q?k03HT5UY85lVhsCcvFdpBgV6Dh1CBWPlV3OMvepMpCKkXskv/w48EgqSKi?=
+ =?iso-8859-1?Q?eBEBluJ2x/rKSGRmVDMG9rn/WvNr3WQGueGHeSlvhzmRAdnwKs+Zb2D1Oi?=
+ =?iso-8859-1?Q?cqwOvVfHbWQyOuXPi/NW3vWbLEgBxI2V8ZF1d/UaMBmRvZhMfZr5TknRyS?=
+ =?iso-8859-1?Q?nJAJYdm5tm66fHWKc/WNWztNQp1Npd9zWaslUlQctCeBK9quXWjgGKr9xf?=
+ =?iso-8859-1?Q?LFP1wCS0/BbcBecK8PewYYtYzBrRPa2WIvOuow4amYNbbxxBEda3BT1lf9?=
+ =?iso-8859-1?Q?Z5E9u4nz2NsTzwJf0amBrngJFcw98jb2SM00wTE3y2etwytw14Yc+dUPDm?=
+ =?iso-8859-1?Q?NeyOyRz9qcyhUOVtcd0+RkrQm6aJuRgcVcoclQQJi3ngnfPTXTCjCL2ABb?=
+ =?iso-8859-1?Q?euXyUP2csYDXp1BwvYfPyO/XqRu1b31+wm4fIrNpCyGUFAqMESga0sUAQf?=
+ =?iso-8859-1?Q?SKw4p9r3zbvrxfa4wqIzTnLkrz+BoHHa+65xegvIfoVAFH2qsC6ak0S8fa?=
+ =?iso-8859-1?Q?cbAXPi/K3WeOAd/om885YyJzJ7Yh5z+3X26WKhwa8vuQs2TBeHTjmGVKV1?=
+ =?iso-8859-1?Q?NwZeuDDzxDGvqmsH26YPbX+/3m7l0zNus2CAnMMG9fG5dVnGdGEk7t6ZJ3?=
+ =?iso-8859-1?Q?AmxsZ3Bf7jR029ajyPHSq8hKmTuFgWiG7i2LhFr4bPgwwh9wxcWUgGbdYX?=
+ =?iso-8859-1?Q?PCRInEsZ/j9rw3oj6nP17cFy7HgNomHLMOusCodsK6CPyroT/eXrAvSo1+?=
+ =?iso-8859-1?Q?YxQ/JIh6RfBaE5yiV4QsblLBSeeoOBhO0916a5+R1QhuiGLf/09JkgaKLg?=
+ =?iso-8859-1?Q?HhdDRz++OU66SjHJd8kzfKdPaKL9IEaq/Gr6mkEgFqqReGMVNUKNJ6zW3C?=
+ =?iso-8859-1?Q?MhpxfDMVWLVaP1UgqPT9UkOmnEYgBQrTHRdDnh4BYM0CTg9ohcsvwoZ1wC?=
+ =?iso-8859-1?Q?o2CjltVxo4AhzrYEFamMHNPYtcd5s87khgktXjy7nFI7yk5HdT961JN1UG?=
+ =?iso-8859-1?Q?+YeGb6O+BAn27lCiOUovQJXX4A/dMKSOTeThNzQVO0rlJ843h5q2dmtJ5m?=
+ =?iso-8859-1?Q?wdwTkG+aDYZ+zK2VnYknyMrDI9yO7L5Znmye5xw+agQE6bGiK+U/74q1MY?=
+ =?iso-8859-1?Q?pGoPz6IFMyAB3LgB8I0=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 083f7065-9d4f-40b0-1a3d-08dac3393979
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB6952.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2022 16:32:57.2398 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4Zqs4dq2BE4mCs4o/iCyUublz5z51tHauD5K6DoxeM2sECtI3vKqxjEWv1oyN/ndedbhO7dSDINiVQBOGCo7pKN1Q2uTATR50JboSN2JyAblQdtg9pgNH7GIsO+CGGuf
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7196
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v6 05/20] drm/i915/vm_bind: Implement bind
+ and unbind of object
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,234 +148,816 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "Hellstrom, Thomas" <thomas.hellstrom@intel.com>, "Auld,
+ Matthew" <matthew.auld@intel.com>, "Vetter, Daniel" <daniel.vetter@intel.com>,
+ "christian.koenig@amd.com" <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAyMDIyLTExLTEwIGF0IDE0OjQ5ICswMDAwLCBNYXR0aGV3IEF1bGQgd3JvdGU6Cj4g
-T24gMTAvMTEvMjAyMiAwNTozMSwgTWFuaSBNaWxhbmkgd3JvdGU6Cj4gPiBBdCBwcmVzZW50LCB0
-aGUgZ3B1IHRocmVhZCBjcmFzaGVzIGF0IHRpbWVzIHdoZW4gZ3JhYl92bWEoKQo+ID4gYXR0ZW1w
-dHMgdG8KPiA+IGFjcXVpcmUgYSBnZW0gb2JqZWN0IGxvY2sgd2hlbiBpbiBhIGRlYWRsb2NrIHN0
-YXRlLgo+ID4gCj4gPiBQcm9ibGVtczoKPiA+IEkgaWRlbnRpZmllZCB0aGUgZm9sbG93aW5nIDQg
-aXNzdWVzIGluIHRoZSBjdXJyZW50IGNvZGU6Cj4gPiAxLiBTaW5jZSBncmFiX3ZtYSgpIGNhbGxz
-IGk5MTVfZ2VtX29iamVjdF90cnlsb2NrKCksIHdoaWNoCj4gPiBjb25zZXF1ZW50bHkKPiA+IMKg
-wqDCoCBjYWxscyB3d19tdXRleF90cnlsb2NrKCksIHRvIGFjcXVpcmUgbG9jaywgaXQgZG9lcyBu
-b3QgcGVyZm9ybQo+ID4gYW55Cj4gPiDCoMKgwqAgLUVERUFETEsgaGFuZGxpbmc7IEFuZCAtRUFM
-UkVBRFkgaGFuZGxpbmcgaXMgYWxzbyB1bnJlbGlhYmxlLAo+ID4gwqDCoMKgIGFjY29yZGluZyB0
-byB0aGUgZGVzY3JpcHRpb24gb2Ygd3dfbXV0ZXhfdHJ5bG9jaygpLgo+ID4gMi4gU2luY2UgdGhl
-IHJldHVybiB2YWx1ZSBvZiBncmFiX3ZtYSgpIGlzIGEgYm9vbGVhbiBzaG93aW5nCj4gPiDCoMKg
-wqAgc3VjY2Vzcy9mYWlsdXJlLCBpdCBkb2VzIG5vdCBwcm92aWRlIGFueSBleHRyYSBpbmZvcm1h
-dGlvbiBvbgo+ID4gdGhlCj4gPiDCoMKgwqAgZmFpbHVyZSByZWFzb24sIGFuZCB0aGVyZWZvcmUg
-ZG9lcyBub3QgcHJvdmlkZSBhbnkgbWVjaGFuaXNtIHRvCj4gPiBpdHMKPiA+IMKgwqDCoCBjYWxs
-ZXIgdG8gdGFrZSBhbnkgYWN0aW9uIHRvIGZpeCBhIHBvdGVudGlhbCBkZWFkbG9jay4KPiA+IDMu
-IEN1cnJlbnQgZ3JhYl92bWEoKSBpbXBsZW1lbnRhdGlvbiBwcm9kdWNlcyBpbmNvbnNpc3RlbnQK
-PiA+IGJlaGF2aW91cgo+ID4gwqDCoMKgIGRlcGVuZGluZyBvbiB0aGUgcmVmY291bnQgdmFsdWUs
-IHdpdGhvdXQgaW5mb3JtaW5nIHRoZSBjYWxsZXIuCj4gPiBJZgo+ID4gwqDCoMKgIHJlZmNvdW50
-IGlzIGFscmVhZHkgemVybywgZ3JhYl92bWEoKSBuZWl0aGVyIGFjcXVpcmVzIGxvY2sgbm9yCj4g
-PiDCoMKgwqAgaW5jcmVtZW50cyB0aGUgcmVmY291bnQsIGJ1dCBzdGlsbCByZXR1cm5zICd0cnVl
-JyBmb3Igc3VjY2VzcyEKPiA+IFRoaXMKPiA+IMKgwqDCoCBtZWFucyB0aGF0IGdyYWJfdm1hKCkg
-cmV0dXJuaW5nIHRydWUgKGZvciBzdWNjZXNzKSBkb2VzIG5vdAo+ID4gYWx3YXlzCj4gPiDCoMKg
-wqAgbWVhbiB0aGF0IHRoZSBnZW0gb2JqIGlzIGFjdHVhbGx5IHNhZmVseSBhY2Nlc3NpYmxlLgo+
-ID4gNC4gQ3VycmVudGx5LCBjYWxsaW5nICJpOTE1X2dlbV9vYmplY3RfbG9jayhvYmosd3cpIiBp
-cyBtZWFudCB0byBiZQo+ID4gwqDCoMKgIGZvbGxvd2VkIGJ5IGEgY29uc2VxdWVudCAiaTkxNV9n
-ZW1fb2JqZWN0X3VubG9jayhvYmopIiBPTkxZIGlmCj4gPiB0aGUKPiA+IMKgwqDCoCBvcmlnaW5h
-bCAnd3cnIG9iamVjdCBwb2ludGVyIHdhcyBOVUxMLCBvciBvdGhlcndpc2Ugbm90IGJlCj4gPiBj
-YWxsZWQgYW5kCj4gPiDCoMKgwqAgbGVhdmUgdGhlIGhvdXNrZWVwaW5nIHRvICJpOTE1X2dlbV93
-d19jdHhfZmluaSh3dykiLiBUaGVyZSBhcmUKPiA+IGEgZmV3Cj4gPiDCoMKgwqAgaXNzdWVzIHdp
-dGggdGhpczoKPiA+IMKgwqDCoCAtIFRoaXMgaXMgbm90IGRvY3VtZW50ZWQgYW55d2hlcmUgaW4g
-dGhlIGNvZGUgKHRoYXQgSSBjb3VsZAo+ID4gZmluZCksCj4gPiDCoMKgwqDCoMKgIGJ1dCBvbmx5
-IGV4cGxhaW5lZCBpbiBhbiBvbGRlciBjb21taXQgbWVzc2FnZS4KPiA+IMKgwqDCoCAtIFRoaXMg
-cHJvZHVjZXMgYW4gaW5jb25zaXN0ZW50IHVzYWdlIG9mIHRoZSBsb2NrL3VubG9jawo+ID4gZnVu
-Y3Rpb25zLAo+ID4gwqDCoMKgwqDCoCBpbmNyZWFzaW5nIHRoZSBjaGFuY2Ugb2YgbWlzdGFrZXMg
-YW5kIGlzc3Vlcy4KPiA+IMKgwqDCoCAtIFRoaXMgaXMgbm90IGEgY2xlYW4gZGVzaWduIGFzIGl0
-IHJlcXVpcmVzIGFueSBuZXcgY29kZSB0aGF0Cj4gPiBjYWxscwo+ID4gwqDCoMKgwqDCoCB0aGVz
-ZSBsb2NrL3VubG9jayBmdW5jdGlvbnMgdG8ga25vdyB0aGVpciBpbnRlcm5hbHMsIGFzIHdlbGwK
-PiA+IGFzIHRoZQo+ID4gwqDCoMKgwqDCoCBpbnRlcm5hbHMgb2YgdGhlIGZ1bmN0aW9ucyBjYWxs
-aW5nIHRoZSBuZXcgY29kZSBiZWluZyBhZGRlZC4KPiA+IAo+ID4gRml4Ogo+ID4gVG8gZml4IHRo
-ZSBpc3N1ZXMgYWJvdmUsIHRoaXMgcGF0Y2g6Cj4gPiAxLiBDaGFuZ2VzIGdyYWJfdm1hKCkgdG8g
-Y2FsbCBpOTE1X2dlbV9vYmplY3RfbG9jaygpIGluc3RlYWQgb2YKPiA+IMKgwqDCoCBpOTE1X2dl
-bV9vYmplY3RfdHJ5bG9jaygpLCB0byBoYW5kbGUgLUVERUFETEsgYW5kIC1FQUxSRUFEWQo+ID4g
-Y2FzZXMuCj4gPiDCoMKgwqAgVGhpcyBzaG91bGQgbm90IGNhdXNlIGFueSBpc3N1ZSBzaW5jZSB0
-aGUgUElOX05PTkJMT0NLIGZsYWcgaXMKPiA+IMKgwqDCoCBjaGVja2VkIGJlZm9yZWhhbmQgaW4g
-dGhlIDIgY2FzZXMgZ3JhYl92bWEoKSBpcyBjYWxsZWQuCj4gPiAyLiBDaGFuZ2VzIGdyYWJfdm1h
-KCkgdG8gcmV0dXJuIHRoZSBhY3R1YWwgZXJyb3IgY29kZSwgaW5zdGVhZCBvZgo+ID4gYm9vbC4K
-PiA+IDMuIENoYW5nZXMgZ3JhYl92bWEoKSB0byBiZWhhdmUgY29uc2lzdGVudGx5IHdoZW4gcmV0
-dXJuaW5nCj4gPiBzdWNjZXNzLCBieQo+ID4gwqDCoMKgIGJvdGggaW5jcmVtZW50aW5nIHRoZSBy
-ZWZjb3VudCBhbmQgYWNxdWlyaW5nIGxvY2sgYXQgYWxsIHRpbWVzLgo+ID4gNC4gQ2hhbmdlcyBp
-OTE1X2dlbV9vYmplY3RfdW5sb2NrKCkgdG8gcGFpciB3aXRoCj4gPiBpOTE1X2dlbV9vYmplY3Rf
-bG9jaygpCj4gPiDCoMKgwqAgbmljZWx5IGluIGFsbCBjYXNlcyBhbmQgZG8gdGhlIGhvdXNla2Vl
-cGluZyB3aXRob3V0IHRoZSBuZWVkCj4gPiBmb3IgdGhlCj4gPiDCoMKgwqAgY2FsbGVyIHRvIGRv
-IGFueXRoaW5nIG90aGVyIHRoYW4gc2ltcGx5IGNhbGxpbmcgbG9jayBhbmQKPiA+IHVubG9jay4K
-PiA+IDUuIEVuc3VyZXMgdGhlIGdlbSBvYmotPm9ial9saW5rIGlzIGluaXRpYWxpemVkIGFuZCBk
-ZWxldGVkIGZyb20KPiA+IHRoZSB3dwo+ID4gwqDCoMKgIGxpc3Qgc3VjaCB0aGF0IGl0IGNhbiBi
-ZSB0ZXN0ZWQgZm9yIGVtcHRpbmVzcyB1c2luZwo+ID4gbGlzdF9lbXB0eSgpLgo+ID4gCj4gPiBT
-aWduZWQtb2ZmLWJ5OiBNYW5pIE1pbGFuaSA8bWFuaUBjaHJvbWl1bS5vcmc+Cj4gPiAtLS0KPiA+
-IAo+ID4gwqAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX29iamVjdC5jIHzCoCAy
-ICsKPiA+IMKgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9vYmplY3QuaCB8IDEw
-ICsrKystCj4gPiDCoCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dlbV9ldmljdC5jwqDCoMKg
-wqDCoCB8IDQ4ICsrKysrKysrKysrKy0tLS0tCj4gPiAtLS0tLQo+ID4gwqAgZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvaTkxNV9nZW1fd3cuY8KgwqDCoMKgwqDCoMKgwqAgfMKgIDggKystLQo+ID4gwqAg
-NCBmaWxlcyBjaGFuZ2VkLCA0MSBpbnNlcnRpb25zKCspLCAyNyBkZWxldGlvbnMoLSkKPiA+IAo+
-ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9vYmplY3Qu
-Ywo+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fb2JqZWN0LmMKPiA+IGlu
-ZGV4IDM2OTAwNmM1MzE3Zi4uNjlkMDEzYjM5M2ZiIDEwMDY0NAo+ID4gLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX29iamVjdC5jCj4gPiArKysgYi9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9nZW0vaTkxNV9nZW1fb2JqZWN0LmMKPiA+IEBAIC03OCw2ICs3OCw4IEBAIHZvaWQg
-aTkxNV9nZW1fb2JqZWN0X2luaXQoc3RydWN0Cj4gPiBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmos
-Cj4gPiDCoCAKPiA+IMKgwqDCoMKgwqDCoMKgwqBJTklUX0xJU1RfSEVBRCgmb2JqLT5tbS5saW5r
-KTsKPiA+IMKgIAo+ID4gK8KgwqDCoMKgwqDCoMKgSU5JVF9MSVNUX0hFQUQoJm9iai0+b2JqX2xp
-bmspOwo+ID4gKwo+ID4gwqDCoMKgwqDCoMKgwqDCoElOSVRfTElTVF9IRUFEKCZvYmotPmx1dF9s
-aXN0KTsKPiA+IMKgwqDCoMKgwqDCoMKgwqBzcGluX2xvY2tfaW5pdCgmb2JqLT5sdXRfbG9jayk7
-Cj4gPiDCoCAKPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9n
-ZW1fb2JqZWN0LmgKPiA+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX29iamVj
-dC5oCj4gPiBpbmRleCAxNzIzYWY5YjBmNmEuLjdlN2E2MWJkZjUyYyAxMDA2NDQKPiA+IC0tLSBh
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9vYmplY3QuaAo+ID4gKysrIGIvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX29iamVjdC5oCj4gPiBAQCAtMjE5LDcgKzIx
-OSw3IEBAIHN0YXRpYyBpbmxpbmUgYm9vbAo+ID4gaTkxNV9nZW1fb2JqZWN0X3RyeWxvY2soc3Ry
-dWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaiwKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgcmV0dXJuIHd3X211dGV4X3RyeWxvY2soJm9iai0+YmFzZS5yZXN2LT5sb2NrLCAm
-d3ctCj4gPiA+Y3R4KTsKPiA+IMKgIH0KPiA+IMKgIAo+ID4gLXN0YXRpYyBpbmxpbmUgdm9pZCBp
-OTE1X2dlbV9vYmplY3RfdW5sb2NrKHN0cnVjdAo+ID4gZHJtX2k5MTVfZ2VtX29iamVjdCAqb2Jq
-KQo+ID4gK3N0YXRpYyBpbmxpbmUgdm9pZCBfX2k5MTVfZ2VtX29iamVjdF91bmxvY2soc3RydWN0
-Cj4gPiBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmopCj4gPiDCoCB7Cj4gPiDCoMKgwqDCoMKgwqDC
-oMKgaWYgKG9iai0+b3BzLT5hZGp1c3RfbHJ1KQo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqBvYmotPm9wcy0+YWRqdXN0X2xydShvYmopOwo+ID4gQEAgLTIyNyw2ICsyMjcsMTQg
-QEAgc3RhdGljIGlubGluZSB2b2lkCj4gPiBpOTE1X2dlbV9vYmplY3RfdW5sb2NrKHN0cnVjdCBk
-cm1faTkxNV9nZW1fb2JqZWN0ICpvYmopCj4gPiDCoMKgwqDCoMKgwqDCoMKgZG1hX3Jlc3ZfdW5s
-b2NrKG9iai0+YmFzZS5yZXN2KTsKPiA+IMKgIH0KPiA+IMKgIAo+ID4gK3N0YXRpYyBpbmxpbmUg
-dm9pZCBpOTE1X2dlbV9vYmplY3RfdW5sb2NrKHN0cnVjdAo+ID4gZHJtX2k5MTVfZ2VtX29iamVj
-dCAqb2JqKQo+ID4gK3sKPiA+ICvCoMKgwqDCoMKgwqDCoGlmIChsaXN0X2VtcHR5KCZvYmotPm9i
-al9saW5rKSkKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBfX2k5MTVfZ2VtX29i
-amVjdF91bmxvY2sob2JqKTsKPiA+ICvCoMKgwqDCoMKgwqDCoGVsc2UKPiA+ICvCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqBpOTE1X2dlbV93d191bmxvY2tfc2luZ2xlKG9iaik7Cj4gPiAr
-fQo+ID4gKwo+ID4gwqAgc3RhdGljIGlubGluZSB2b2lkCj4gPiDCoCBpOTE1X2dlbV9vYmplY3Rf
-c2V0X3JlYWRvbmx5KHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmopCj4gPiDCoCB7Cj4g
-PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZW1fZXZpY3QuYwo+ID4g
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dlbV9ldmljdC5jCj4gPiBpbmRleCBmMDI1ZWU0
-ZmE1MjYuLjNlYjUxNGI0ZWRkYyAxMDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2k5MTVfZ2VtX2V2aWN0LmMKPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2Vt
-X2V2aWN0LmMKPiA+IEBAIC01NSwyOSArNTUsMzMgQEAgc3RhdGljIGludCBnZ3R0X2ZsdXNoKHN0
-cnVjdCBpbnRlbF9ndCAqZ3QpCj4gPiDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIGludGVsX2d0X3dh
-aXRfZm9yX2lkbGUoZ3QsIE1BWF9TQ0hFRFVMRV9USU1FT1VUKTsKPiA+IMKgIH0KPiA+IMKgIAo+
-ID4gLXN0YXRpYyBib29sIGdyYWJfdm1hKHN0cnVjdCBpOTE1X3ZtYSAqdm1hLCBzdHJ1Y3QgaTkx
-NV9nZW1fd3dfY3R4Cj4gPiAqd3cpCj4gPiArc3RhdGljIGludCBncmFiX3ZtYShzdHJ1Y3QgaTkx
-NV92bWEgKnZtYSwgc3RydWN0IGk5MTVfZ2VtX3d3X2N0eAo+ID4gKnd3KQo+ID4gwqAgewo+ID4g
-K8KgwqDCoMKgwqDCoMKgaW50IGVycjsKPiA+ICsKPiA+ICvCoMKgwqDCoMKgwqDCoC8qIERlYWQg
-b2JqZWN0cyBkb24ndCBuZWVkIHBpbnMgKi8KPiA+ICvCoMKgwqDCoMKgwqDCoGlmIChkeWluZ192
-bWEodm1hKSkKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBhdG9taWNfYW5kKH5J
-OTE1X1ZNQV9QSU5fTUFTSywgJnZtYS0+ZmxhZ3MpOwo+ID4gKwo+ID4gK8KgwqDCoMKgwqDCoMKg
-ZXJyID0gaTkxNV9nZW1fb2JqZWN0X2xvY2sodm1hLT5vYmosIHd3KTsKPiAKPiBBRkFJSyB0aGUg
-aXNzdWUgaGVyZSBpcyB0aGF0IHdlIGFyZSBhbHJlYWR5IGhvbGRpbmcgdGhlIHZtLT5tdXRleCwg
-c28KPiB0aGlzIGNhbiBwb3RlbnRpYWxseSBkZWFkbG9jaywgd2hpY2ggSSBndWVzcyBpcyB3aHkg
-dGhpcyB3YXMgdHJ5bG9jay4KPiAKPiBXZSB0eXBpY2FsbHkgZ3JhYiBhIGJ1bmNoIG9mIG9iamVj
-dCBsb2NrcyBkdXJpbmcgZXhlY2J1ZiwgYW5kIHRoZW4KPiBncmFiIAo+IHRoZSB2bS0+bXV0ZXgs
-IGJlZm9yZSBiaW5kaW5nIHRoZSB2bWEgZm9yIGVhY2ggb2JqZWN0LiBTbyB2bS0+bXV0ZXgKPiBp
-cyAKPiBhbHdheXMgb3VyIGlubmVyIGxvY2ssIGFuZCB0aGUgb2JqZWN0IGxvY2sgaXMgdGhlIG91
-dGVyIG9uZS4gVXNpbmcgYSAKPiBmdWxsIGxvY2sgaGVyZSB0aGVuIGludmVydHMgdGhhdCBsb2Nr
-aW5nIEFGQUlDVC4gTGlrZSBzYXkgaWYgb25lCj4gcHJvY2VzcyAKPiBpcyBob2xkaW5nIG9iamVj
-dCBBICsgdm0tPm11dGV4IGFuZCB0aGVuIHRyaWVzIHRvIGdyYWIgb2JqZWN0IEIgaGVyZQo+IGlu
-IAo+IGdyYWJfdm1hKCksIGJ1dCBhbm90aGVyIHByb2Nlc3MgaXMgYWxyZWFkeSBob2xkaW5nIG9i
-amVjdCBCICsgd2FpdGluZwo+IHRvIAo+IGdyYWIgdm0tPm11dGV4PwoKSW5kZWVkLiAKCklJUkMg
-dGhlIGFzc3VtcHRpb24gaGVyZSB3YXMgdGhhdCBhIHd3IG11dGV4IHRyeWxvY2sgd291bGQgYmUg
-c2ltaWxhcgppbiBiZWhhdmlvdXIgdG8gdGhlIHByZXZpb3VzIGNvZGUgd2hpY2ggaW5zdGVhZCBj
-aGVja2VkIGZvciBwaW5uZWQKdm1hcy4KCk9uZSBkaWZmZXJlbmNlLCB0aG91Z2gsIGlzIHRoYXQg
-d2UgbG9jayBtb3N0IG9iamVjdHMgdXBmcm9udCBhbmQgdGhlbgp0cnkgdG8gbWFrZSBzcGFjZSBm
-b3IgVk1BcyBhdm9pZGluZyBldmljdGluZyB2bWFzIHRoYXQgaXMgbmVlZGVkIGFueXdheQpmb3Ig
-dGhlIGJhdGNoLiBUaGUgb2xkIGNvZGUgd291bGQgaW5zdGVhZCBldmljdCBhbmQgcmViaW5kLgoK
-QnV0IHRoZXJlIHNob3VsZCBiZSBhIGNhdGNoLWFsbCBldmljdCBldmVyeXRoaW5nIGFuZCByZWJp
-bmQgaWYgZXZpY3Rpb24KZmFpbHMgc28gaXQgd291bGQgYmUgYmVuZWZpY2lhbCB0byBzZWUgdGhl
-ICJncHUgdGhyZWFkIGNyYXNoIi4gSSB0aGluawp0aGVyZSBpcyBhbiBpc3N1ZSBmaWxlZCBpbiBn
-aXRsYWIgd2hlcmUgZXZlbiAgdGhpcyBjYXRjaC1hbGwgZXZpY3QKZXZlcnl0aGluZyBmYWlscyB0
-aGF0IG1pZ2h0IG5lZWRzIGxvb2tpbmcgYXQuCgovVGhvbWFzCgo+IAo+ID4gKwo+ID4gwqDCoMKg
-wqDCoMKgwqDCoC8qCj4gPiDCoMKgwqDCoMKgwqDCoMKgICogV2UgYWRkIHRoZSBleHRyYSByZWZj
-b3VudCBzbyB0aGUgb2JqZWN0IGRvZXNuJ3QgZHJvcCB0bwo+ID4gemVybyB1bnRpbAo+ID4gLcKg
-wqDCoMKgwqDCoMKgICogYWZ0ZXIgdW5ncmFiX3ZtYSgpLCB0aGlzIHdheSB0cnlsb2NrIGlzIGFs
-d2F5cyBwYWlyZWQKPiA+IHdpdGggdW5sb2NrLgo+ID4gK8KgwqDCoMKgwqDCoMKgICogYWZ0ZXIg
-dW5ncmFiX3ZtYSgpLCB0aGlzIHdheSBsb2NrIGlzIGFsd2F5cyBwYWlyZWQgd2l0aAo+ID4gdW5s
-b2NrLgo+ID4gwqDCoMKgwqDCoMKgwqDCoCAqLwo+ID4gLcKgwqDCoMKgwqDCoMKgaWYgKGk5MTVf
-Z2VtX29iamVjdF9nZXRfcmN1KHZtYS0+b2JqKSkgewo+ID4gLcKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoGlmICghaTkxNV9nZW1fb2JqZWN0X3RyeWxvY2sodm1hLT5vYmosIHd3KSkgewo+
-ID4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBpOTE1X2dl
-bV9vYmplY3RfcHV0KHZtYS0+b2JqKTsKPiA+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIGZhbHNlOwo+ID4gLcKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoH0KPiA+IC3CoMKgwqDCoMKgwqDCoH0gZWxzZSB7Cj4gPiAtwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgLyogRGVhZCBvYmplY3RzIGRvbid0IG5lZWQgcGlucyAqLwo+ID4g
-LcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGF0b21pY19hbmQofkk5MTVfVk1BX1BJTl9N
-QVNLLCAmdm1hLT5mbGFncyk7Cj4gPiAtwqDCoMKgwqDCoMKgwqB9Cj4gPiArwqDCoMKgwqDCoMKg
-wqBpZiAoIWVycikKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBpOTE1X2dlbV9v
-YmplY3RfZ2V0KHZtYS0+b2JqKTsKPiA+IMKgIAo+ID4gLcKgwqDCoMKgwqDCoMKgcmV0dXJuIHRy
-dWU7Cj4gPiArwqDCoMKgwqDCoMKgwqByZXR1cm4gZXJyOwo+ID4gwqAgfQo+ID4gwqAgCj4gPiDC
-oCBzdGF0aWMgdm9pZCB1bmdyYWJfdm1hKHN0cnVjdCBpOTE1X3ZtYSAqdm1hKQo+ID4gwqAgewo+
-ID4gLcKgwqDCoMKgwqDCoMKgaWYgKGR5aW5nX3ZtYSh2bWEpKQo+ID4gK8KgwqDCoMKgwqDCoMKg
-aWYgKGR5aW5nX3ZtYSh2bWEpKSB7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-LyogRGVhZCBvYmplY3RzIGRvbid0IG5lZWQgcGlucyAqLwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoGF0b21pY19hbmQofkk5MTVfVk1BX1BJTl9NQVNLLCAmdm1hLT5mbGFncyk7
-Cj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJldHVybjsKPiA+ICvCoMKgwqDC
-oMKgwqDCoH0KPiA+IMKgIAo+ID4gwqDCoMKgwqDCoMKgwqDCoGk5MTVfZ2VtX29iamVjdF91bmxv
-Y2sodm1hLT5vYmopOwo+ID4gwqDCoMKgwqDCoMKgwqDCoGk5MTVfZ2VtX29iamVjdF9wdXQodm1h
-LT5vYmopOwo+ID4gQEAgLTkzLDEwICs5NywxMSBAQCBtYXJrX2ZyZWUoc3RydWN0IGRybV9tbV9z
-Y2FuICpzY2FuLAo+ID4gwqDCoMKgwqDCoMKgwqDCoGlmIChpOTE1X3ZtYV9pc19waW5uZWQodm1h
-KSkKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIGZhbHNlOwo+ID4g
-wqAgCj4gPiAtwqDCoMKgwqDCoMKgwqBpZiAoIWdyYWJfdm1hKHZtYSwgd3cpKQo+ID4gK8KgwqDC
-oMKgwqDCoMKgaWYgKGdyYWJfdm1hKHZtYSwgd3cpKQo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqByZXR1cm4gZmFsc2U7Cj4gPiDCoCAKPiA+IMKgwqDCoMKgwqDCoMKgwqBsaXN0
-X2FkZCgmdm1hLT5ldmljdF9saW5rLCB1bndpbmQpOwo+ID4gKwo+ID4gwqDCoMKgwqDCoMKgwqDC
-oHJldHVybiBkcm1fbW1fc2Nhbl9hZGRfYmxvY2soc2NhbiwgJnZtYS0+bm9kZSk7Cj4gPiDCoCB9
-Cj4gPiDCoCAKPiA+IEBAIC0yODQsMTAgKzI4OSwxMiBAQCBpOTE1X2dlbV9ldmljdF9zb21ldGhp
-bmcoc3RydWN0Cj4gPiBpOTE1X2FkZHJlc3Nfc3BhY2UgKnZtLAo+ID4gwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqB2bWEgPSBjb250YWluZXJfb2Yobm9kZSwgc3RydWN0IGk5MTVfdm1h
-LCBub2RlKTsKPiA+IMKgIAo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAvKiBJ
-ZiB3ZSBmaW5kIGFueSBub24tb2JqZWN0cyAoIXZtYSksIHdlIGNhbm5vdAo+ID4gZXZpY3QgdGhl
-bSAqLwo+ID4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGlmICh2bWEtPm5vZGUuY29s
-b3IgIT0gSTkxNV9DT0xPUl9VTkVWSUNUQUJMRSAmJgo+ID4gLcKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoCBncmFiX3ZtYSh2bWEsIHd3KSkgewo+ID4gLcKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXQgPSBfX2k5MTVfdm1hX3VuYmluZCh2
-bWEpOwo+ID4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB1
-bmdyYWJfdm1hKHZtYSk7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgaWYgKHZt
-YS0+bm9kZS5jb2xvciAhPSBJOTE1X0NPTE9SX1VORVZJQ1RBQkxFKSB7Cj4gPiArwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJldCA9IGdyYWJfdm1hKHZtYSwg
-d3cpOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBp
-ZiAoIXJldCkgewo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0ID0gX19pOTE1X3ZtYV91bmJpbmQodm1hKTsKPiA+ICvC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoHVuZ3JhYl92bWEodm1hKTsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgfQo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB9IGVs
-c2Ugewo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-cmV0ID0gLUVOT1NQQzsKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgfQo+ID4g
-QEAgLTM4MiwxMCArMzg5LDkgQEAgaW50IGk5MTVfZ2VtX2V2aWN0X2Zvcl9ub2RlKHN0cnVjdAo+
-ID4gaTkxNV9hZGRyZXNzX3NwYWNlICp2bSwKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoGJyZWFrOwo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqB9Cj4gPiDCoCAKPiA+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBpZiAo
-IWdyYWJfdm1hKHZtYSwgd3cpKSB7Cj4gPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoHJldCA9IC1FTk9TUEM7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgcmV0ID0gZ3JhYl92bWEodm1hLCB3dyk7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgaWYgKHJldCkKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoGJyZWFrOwo+ID4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oH0KPiA+IMKgIAo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAvKgo+ID4gwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKiBOZXZlciBzaG93IGZlYXIgaW4gdGhlIGZh
-Y2Ugb2YgZHJhZ29ucyEKPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
-X2dlbV93dy5jCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2VtX3d3LmMKPiA+IGlu
-ZGV4IDNmNmZmMTM5NDc4ZS4uOTM3YjI3OWY1MGZjIDEwMDY0NAo+ID4gLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvaTkxNV9nZW1fd3cuYwo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-aTkxNV9nZW1fd3cuYwo+ID4gQEAgLTE5LDE2ICsxOSwxNCBAQCBzdGF0aWMgdm9pZCBpOTE1X2dl
-bV93d19jdHhfdW5sb2NrX2FsbChzdHJ1Y3QKPiA+IGk5MTVfZ2VtX3d3X2N0eCAqd3cpCj4gPiDC
-oMKgwqDCoMKgwqDCoMKgc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iajsKPiA+IMKgIAo+
-ID4gwqDCoMKgwqDCoMKgwqDCoHdoaWxlICgob2JqID0gbGlzdF9maXJzdF9lbnRyeV9vcl9udWxs
-KCZ3dy0+b2JqX2xpc3QsCj4gPiBzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCwgb2JqX2xpbmsp
-KSkgewo+ID4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGxpc3RfZGVsKCZvYmotPm9i
-al9saW5rKTsKPiA+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBpOTE1X2dlbV9vYmpl
-Y3RfdW5sb2NrKG9iaik7Cj4gPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgaTkxNV9n
-ZW1fb2JqZWN0X3B1dChvYmopOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGk5
-MTVfZ2VtX3d3X3VubG9ja19zaW5nbGUob2JqKTsKPiA+IMKgwqDCoMKgwqDCoMKgwqB9Cj4gPiDC
-oCB9Cj4gPiDCoCAKPiA+IMKgIHZvaWQgaTkxNV9nZW1fd3dfdW5sb2NrX3NpbmdsZShzdHJ1Y3Qg
-ZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqKQo+ID4gwqAgewo+ID4gLcKgwqDCoMKgwqDCoMKgbGlz
-dF9kZWwoJm9iai0+b2JqX2xpbmspOwo+ID4gLcKgwqDCoMKgwqDCoMKgaTkxNV9nZW1fb2JqZWN0
-X3VubG9jayhvYmopOwo+ID4gK8KgwqDCoMKgwqDCoMKgbGlzdF9kZWxfaW5pdCgmb2JqLT5vYmpf
-bGluayk7Cj4gPiArwqDCoMKgwqDCoMKgwqBfX2k5MTVfZ2VtX29iamVjdF91bmxvY2sob2JqKTsK
-PiA+IMKgwqDCoMKgwqDCoMKgwqBpOTE1X2dlbV9vYmplY3RfcHV0KG9iaik7Cj4gPiDCoCB9Cj4g
-PiDCoCAKCg==
+On Wed, Nov 09, 2022 at 05:28:59PM -0800, Zanoni, Paulo R wrote:
+>On Mon, 2022-11-07 at 00:51 -0800, Niranjana Vishwanathapura wrote:
+>> Add uapi and implement support for bind and unbind of an
+>> object at the specified GPU virtual addresses.
+>>
+>> The vm_bind mode is not supported in legacy execbuf2 ioctl.
+>> It will be supported only in the newer execbuf3 ioctl.
+>>
+>> v2: On older platforms ctx->vm is not set, check for it.
+>>     In vm_bind call, add vma to vm_bind_list.
+>>     Add more input validity checks.
+>>     Update some documentation.
+>> v3: In vm_bind call, add vma to vm_bound_list as user can
+>>     request a fence and pass to execbuf3 as input fence.
+>>     Remove short term pinning with PIN_VALIDATE flag.
+>> v4: Replace vm->vm_bind_mode check with i915_gem_vm_is_vm_bind_mode().
+>> v5: Ensure all reserved fields are 0, use PIN_NOEVICT.
+>> v6: Add reserved fields to drm_i915_gem_vm_bind.
+>>
+>> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+>> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+>> Signed-off-by: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
+>> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/Makefile                 |   1 +
+>>  drivers/gpu/drm/i915/gem/i915_gem_context.h   |  15 +
+>>  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |   5 +
+>>  drivers/gpu/drm/i915/gem/i915_gem_vm_bind.h   |  26 ++
+>>  .../drm/i915/gem/i915_gem_vm_bind_object.c    | 324 ++++++++++++++++++
+>>  drivers/gpu/drm/i915/gt/intel_gtt.c           |  10 +
+>>  drivers/gpu/drm/i915/gt/intel_gtt.h           |   9 +
+>>  drivers/gpu/drm/i915/i915_driver.c            |   3 +
+>>  drivers/gpu/drm/i915/i915_vma.c               |   1 +
+>>  drivers/gpu/drm/i915/i915_vma_types.h         |  14 +
+>>  include/uapi/drm/i915_drm.h                   |  99 ++++++
+>>  11 files changed, 507 insertions(+)
+>>  create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_vm_bind.h
+>>  create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c
+>>
+>> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+>> index 51704b54317c..b731f3ac80da 100644
+>> --- a/drivers/gpu/drm/i915/Makefile
+>> +++ b/drivers/gpu/drm/i915/Makefile
+>> @@ -166,6 +166,7 @@ gem-y += \
+>>  	gem/i915_gem_ttm_move.o \
+>>  	gem/i915_gem_ttm_pm.o \
+>>  	gem/i915_gem_userptr.o \
+>> +	gem/i915_gem_vm_bind_object.o \
+>>  	gem/i915_gem_wait.o \
+>>  	gem/i915_gemfs.o
+>>  i915-y += \
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.h b/drivers/gpu/drm/i915/gem/i915_gem_context.h
+>> index 899fa8f1e0fe..e8b41aa8f8c4 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.h
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.h
+>> @@ -139,6 +139,21 @@ int i915_gem_context_setparam_ioctl(struct drm_device *dev, void *data,
+>>  int i915_gem_context_reset_stats_ioctl(struct drm_device *dev, void *data,
+>>  				       struct drm_file *file);
+>>  
+>>
+>>
+>>
+>> +/**
+>> + * i915_gem_vm_is_vm_bind_mode() - Check if address space is in vm_bind mode
+>> + * @vm: the address space
+>> + *
+>> + * Returns:
+>> + * true: @vm is in vm_bind mode; allows only vm_bind method of binding.
+>> + * false: @vm is not in vm_bind mode; allows only legacy execbuff method
+>> + *        of binding.
+>> + */
+>> +static inline bool i915_gem_vm_is_vm_bind_mode(struct i915_address_space *vm)
+>> +{
+>> +	/* No support to enable vm_bind mode yet */
+>> +	return false;
+>> +}
+>> +
+>>  struct i915_address_space *
+>>  i915_gem_vm_lookup(struct drm_i915_file_private *file_priv, u32 id);
+>>  
+>>
+>>
+>>
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+>> index 1160723c9d2d..c5bc9f6e887f 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+>> @@ -781,6 +781,11 @@ static int eb_select_context(struct i915_execbuffer *eb)
+>>  	if (unlikely(IS_ERR(ctx)))
+>>  		return PTR_ERR(ctx);
+>>  
+>>
+>>
+>>
+>> +	if (ctx->vm && i915_gem_vm_is_vm_bind_mode(ctx->vm)) {
+>> +		i915_gem_context_put(ctx);
+>> +		return -EOPNOTSUPP;
+>> +	}
+>> +
+>>  	eb->gem_context = ctx;
+>>  	if (i915_gem_context_has_full_ppgtt(ctx))
+>>  		eb->invalid_flags |= EXEC_OBJECT_NEEDS_GTT;
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_vm_bind.h b/drivers/gpu/drm/i915/gem/i915_gem_vm_bind.h
+>> new file mode 100644
+>> index 000000000000..36262a6357b5
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_vm_bind.h
+>> @@ -0,0 +1,26 @@
+>> +/* SPDX-License-Identifier: MIT */
+>> +/*
+>> + * Copyright © 2022 Intel Corporation
+>> + */
+>> +
+>> +#ifndef __I915_GEM_VM_BIND_H
+>> +#define __I915_GEM_VM_BIND_H
+>> +
+>> +#include <linux/types.h>
+>> +
+>> +struct drm_device;
+>> +struct drm_file;
+>> +struct i915_address_space;
+>> +struct i915_vma;
+>> +
+>> +struct i915_vma *
+>> +i915_gem_vm_bind_lookup_vma(struct i915_address_space *vm, u64 va);
+>> +
+>> +int i915_gem_vm_bind_ioctl(struct drm_device *dev, void *data,
+>> +			   struct drm_file *file);
+>> +int i915_gem_vm_unbind_ioctl(struct drm_device *dev, void *data,
+>> +			     struct drm_file *file);
+>> +
+>> +void i915_gem_vm_unbind_all(struct i915_address_space *vm);
+>> +
+>> +#endif /* __I915_GEM_VM_BIND_H */
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c b/drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c
+>> new file mode 100644
+>> index 000000000000..6f299806bee1
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c
+>> @@ -0,0 +1,324 @@
+>> +// SPDX-License-Identifier: MIT
+>> +/*
+>> + * Copyright © 2022 Intel Corporation
+>> + */
+>> +
+>> +#include <uapi/drm/i915_drm.h>
+>> +
+>> +#include <linux/interval_tree_generic.h>
+>> +
+>> +#include "gem/i915_gem_context.h"
+>> +#include "gem/i915_gem_vm_bind.h"
+>> +
+>> +#include "gt/intel_gpu_commands.h"
+>> +
+>> +#define START(node) ((node)->start)
+>> +#define LAST(node) ((node)->last)
+>> +
+>> +/* Not all defined functions are used, hence use __maybe_unused */
+>> +INTERVAL_TREE_DEFINE(struct i915_vma, rb, u64, __subtree_last,
+>> +		     START, LAST, __maybe_unused static inline, i915_vm_bind_it)
+>> +
+>> +#undef START
+>> +#undef LAST
+>> +
+>> +/**
+>> + * DOC: VM_BIND/UNBIND ioctls
+>> + *
+>> + * DRM_I915_GEM_VM_BIND/UNBIND ioctls allows UMD to bind/unbind GEM buffer
+>> + * objects (BOs) or sections of a BOs at specified GPU virtual addresses on a
+>> + * specified address space (VM). Multiple mappings can map to the same physical
+>> + * pages of an object (aliasing). These mappings (also referred to as persistent
+>> + * mappings) will be persistent across multiple GPU submissions (execbuf calls)
+>> + * issued by the UMD, without user having to provide a list of all required
+>> + * mappings during each submission (as required by older execbuf mode).
+>> + *
+>> + * The VM_BIND/UNBIND calls allow UMDs to request a timeline out fence for
+>> + * signaling the completion of bind/unbind operation.
+>> + *
+>> + * VM_BIND feature is advertised to user via I915_PARAM_VM_BIND_VERSION.
+>> + * User has to opt-in for VM_BIND mode of binding for an address space (VM)
+>> + * during VM creation time via I915_VM_CREATE_FLAGS_USE_VM_BIND extension.
+>> + *
+>> + * VM_BIND/UNBIND ioctl calls executed on different CPU threads concurrently
+>> + * are not ordered. Furthermore, parts of the VM_BIND/UNBIND operations can be
+>> + * done asynchronously, when valid out fence is specified.
+>> + *
+>> + * VM_BIND locking order is as below.
+>> + *
+>> + * 1) vm_bind_lock mutex will protect vm_bind lists. This lock is taken in
+>> + *    vm_bind/vm_unbind ioctl calls, in the execbuf path and while releasing the
+>> + *    mapping.
+>> + *
+>> + *    In future, when GPU page faults are supported, we can potentially use a
+>> + *    rwsem instead, so that multiple page fault handlers can take the read
+>> + *    side lock to lookup the mapping and hence can run in parallel.
+>> + *    The older execbuf mode of binding do not need this lock.
+>> + *
+>> + * 2) The object's dma-resv lock will protect i915_vma state and needs
+>> + *    to be held while binding/unbinding a vma in the async worker and while
+>> + *    updating dma-resv fence list of an object. Note that private BOs of a VM
+>> + *    will all share a dma-resv object.
+>> + *
+>> + * 3) Spinlock/s to protect some of the VM's lists like the list of
+>> + *    invalidated vmas (due to eviction and userptr invalidation) etc.
+>> + */
+>> +
+>> +/**
+>> + * i915_gem_vm_bind_lookup_vma() - lookup for persistent vma mapped at a
+>> + * specified address
+>> + * @vm: virtual address space to look for persistent vma
+>> + * @va: starting address where vma is mapped
+>> + *
+>> + * Retrieves the persistent vma mapped address @va from the @vm's vma tree.
+>> + *
+>> + * Returns vma pointer on success, NULL on failure.
+>> + */
+>> +struct i915_vma *
+>> +i915_gem_vm_bind_lookup_vma(struct i915_address_space *vm, u64 va)
+>> +{
+>> +	lockdep_assert_held(&vm->vm_bind_lock);
+>> +
+>> +	return i915_vm_bind_it_iter_first(&vm->va, va, va);
+>> +}
+>> +
+>> +static void i915_gem_vm_bind_remove(struct i915_vma *vma, bool release_obj)
+>> +{
+>> +	lockdep_assert_held(&vma->vm->vm_bind_lock);
+>> +
+>> +	list_del_init(&vma->vm_bind_link);
+>> +	i915_vm_bind_it_remove(vma, &vma->vm->va);
+>> +
+>> +	/* Release object */
+>> +	if (release_obj)
+>> +		i915_gem_object_put(vma->obj);
+>> +}
+>> +
+>> +static int i915_gem_vm_unbind_vma(struct i915_address_space *vm,
+>> +				  struct drm_i915_gem_vm_unbind *va)
+>> +{
+>> +	struct drm_i915_gem_object *obj;
+>> +	struct i915_vma *vma;
+>> +	int ret;
+>> +
+>> +	ret = mutex_lock_interruptible(&vm->vm_bind_lock);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	va->start = gen8_noncanonical_addr(va->start);
+>> +	vma = i915_gem_vm_bind_lookup_vma(vm, va->start);
+>> +
+>> +	if (!vma)
+>> +		ret = -ENOENT;
+>> +	else if (vma->size != va->length)
+>> +		ret = -EINVAL;
+>> +
+>> +	if (ret) {
+>> +		mutex_unlock(&vm->vm_bind_lock);
+>> +		return ret;
+>> +	}
+>> +
+>> +	i915_gem_vm_bind_remove(vma, false);
+>> +
+>> +	mutex_unlock(&vm->vm_bind_lock);
+>> +
+>> +	/*
+>> +	 * Destroy the vma and then release the object.
+>> +	 * As persistent vma holds object reference, it can only be destroyed
+>> +	 * either by vm_unbind ioctl or when VM is being released. As we are
+>> +	 * holding VM reference here, it is safe accessing the vma here.
+>> +	 */
+>> +	obj = vma->obj;
+>> +	i915_gem_object_lock(obj, NULL);
+>> +	i915_vma_destroy(vma);
+>> +	i915_gem_object_unlock(obj);
+>> +
+>> +	i915_gem_object_put(obj);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +/**
+>> + * i915_gem_vm_unbind_all() - unbind all persistent mappings from an
+>> + * address space
+>> + * @vm: Address spece to remove persistent mappings from
+>> + *
+>> + * Unbind all userspace requested vm_bind mappings from @vm.
+>> + */
+>> +void i915_gem_vm_unbind_all(struct i915_address_space *vm)
+>> +{
+>> +	struct i915_vma *vma, *t;
+>> +
+>> +	mutex_lock(&vm->vm_bind_lock);
+>> +	list_for_each_entry_safe(vma, t, &vm->vm_bind_list, vm_bind_link)
+>> +		i915_gem_vm_bind_remove(vma, true);
+>> +	list_for_each_entry_safe(vma, t, &vm->vm_bound_list, vm_bind_link)
+>> +		i915_gem_vm_bind_remove(vma, true);
+>> +	mutex_unlock(&vm->vm_bind_lock);
+>> +}
+>> +
+>> +static struct i915_vma *vm_bind_get_vma(struct i915_address_space *vm,
+>> +					struct drm_i915_gem_object *obj,
+>> +					struct drm_i915_gem_vm_bind *va)
+>> +{
+>> +	struct i915_gtt_view view;
+>> +	struct i915_vma *vma;
+>> +
+>> +	va->start = gen8_noncanonical_addr(va->start);
+>> +	vma = i915_gem_vm_bind_lookup_vma(vm, va->start);
+>> +	if (vma)
+>> +		return ERR_PTR(-EEXIST);
+>> +
+>> +	view.type = I915_GTT_VIEW_PARTIAL;
+>> +	view.partial.offset = va->offset >> PAGE_SHIFT;
+>> +	view.partial.size = va->length >> PAGE_SHIFT;
+>> +	vma = i915_vma_create_persistent(obj, vm, &view);
+>> +	if (IS_ERR(vma))
+>> +		return vma;
+>> +
+>> +	vma->start = va->start;
+>> +	vma->last = va->start + va->length - 1;
+>> +
+>> +	return vma;
+>> +}
+>> +
+>> +static int i915_gem_vm_bind_obj(struct i915_address_space *vm,
+>> +				struct drm_i915_gem_vm_bind *va,
+>> +				struct drm_file *file)
+>> +{
+>> +	struct drm_i915_gem_object *obj;
+>> +	struct i915_vma *vma = NULL;
+>> +	struct i915_gem_ww_ctx ww;
+>> +	u64 pin_flags;
+>> +	int ret = 0;
+>> +
+>> +	if (!i915_gem_vm_is_vm_bind_mode(vm))
+>> +		return -EOPNOTSUPP;
+>> +
+>> +	/* Ensure start and length fields are valid */
+>> +	if (!va->length || !IS_ALIGNED(va->start, I915_GTT_PAGE_SIZE))
+>> +		ret = -EINVAL;
+>> +
+>> +	obj = i915_gem_object_lookup(file, va->handle);
+>> +	if (!obj)
+>> +		return -ENOENT;
+>> +
+>> +	/* Ensure offset and length are aligned to object's max page size */
+>> +	if (!IS_ALIGNED(va->offset | va->length,
+>> +			i915_gem_object_max_page_size(obj->mm.placements,
+>> +						      obj->mm.n_placements)))
+>> +		ret = -EINVAL;
+>> +
+>> +	/* Check for mapping range overflow */
+>> +	if (range_overflows_t(u64, va->offset, va->length, obj->base.size))
+>> +		ret = -EINVAL;
+>> +
+>> +	if (ret)
+>> +		goto put_obj;
+>> +
+>> +	ret = mutex_lock_interruptible(&vm->vm_bind_lock);
+>> +	if (ret)
+>> +		goto put_obj;
+>> +
+>> +	vma = vm_bind_get_vma(vm, obj, va);
+>> +	if (IS_ERR(vma)) {
+>> +		ret = PTR_ERR(vma);
+>> +		goto unlock_vm;
+>> +	}
+>> +
+>> +	pin_flags = va->start | PIN_OFFSET_FIXED | PIN_USER |
+>> +		    PIN_VALIDATE | PIN_NOEVICT;
+>> +
+>> +	for_i915_gem_ww(&ww, ret, true) {
+>> +		ret = i915_gem_object_lock(vma->obj, &ww);
+>> +		if (ret)
+>> +			continue;
+>> +
+>> +		ret = i915_vma_pin_ww(vma, &ww, 0, 0, pin_flags);
+>> +		if (ret)
+>> +			continue;
+>> +
+>> +		list_add_tail(&vma->vm_bind_link, &vm->vm_bound_list);
+>> +		i915_vm_bind_it_insert(vma, &vm->va);
+>> +
+>> +		/* Hold object reference until vm_unbind */
+>> +		i915_gem_object_get(vma->obj);
+>> +	}
+>> +
+>> +	if (ret)
+>> +		i915_vma_destroy(vma);
+>> +unlock_vm:
+>> +	mutex_unlock(&vm->vm_bind_lock);
+>> +put_obj:
+>> +	i915_gem_object_put(obj);
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +/**
+>> + * i915_gem_vm_bind_ioctl() - ioctl function for binding a section of object
+>> + * at a specified virtual address
+>> + * @dev: drm_device pointer
+>> + * @data: ioctl data structure
+>> + * @file: drm_file pointer
+>> + *
+>> + * Adds the specified persistent mapping (virtual address to a section of an
+>> + * object) and binds it in the device page table.
+>> + *
+>> + * Returns 0 on success, error code on failure.
+>> + */
+>> +int i915_gem_vm_bind_ioctl(struct drm_device *dev, void *data,
+>> +			   struct drm_file *file)
+>> +{
+>> +	struct drm_i915_gem_vm_bind *args = data;
+>> +	struct i915_address_space *vm;
+>> +	int ret;
+>> +
+>> +	/* Reserved fields must be 0 */
+>> +	if (args->rsvd[0] || args->rsvd[1] || args->rsvd[2] || args->extensions)
+>> +		return -EINVAL;
+>> +
+>> +	vm = i915_gem_vm_lookup(file->driver_priv, args->vm_id);
+>> +	if (unlikely(!vm))
+>> +		return -ENOENT;
+>> +
+>> +	ret = i915_gem_vm_bind_obj(vm, args, file);
+>> +
+>> +	i915_vm_put(vm);
+>> +	return ret;
+>> +}
+>> +
+>> +/**
+>> + * i915_gem_vm_unbind_ioctl() - ioctl function for unbinding a mapping at a
+>> + * specified virtual address
+>> + * @dev: drm_device pointer
+>> + * @data: ioctl data structure
+>> + * @file: drm_file pointer
+>> + *
+>> + * Removes the persistent mapping at the specified address and unbinds it
+>> + * from the device page table.
+>> + *
+>> + * Returns 0 on success, error code on failure. -ENOENT is returned if the
+>> + * specified mapping is not found.
+>> + */
+>> +int i915_gem_vm_unbind_ioctl(struct drm_device *dev, void *data,
+>> +			     struct drm_file *file)
+>> +{
+>> +	struct drm_i915_gem_vm_unbind *args = data;
+>> +	struct i915_address_space *vm;
+>> +	int ret;
+>> +
+>> +	/* Reserved fields must be 0 */
+>> +	if (args->rsvd || args->rsvd2[0] || args->rsvd2[1] ||
+>> +	    args->rsvd2[2] || args->extensions)
+>> +		return -EINVAL;
+>> +
+>> +	vm = i915_gem_vm_lookup(file->driver_priv, args->vm_id);
+>> +	if (unlikely(!vm))
+>> +		return -ENOENT;
+>> +
+>> +	ret = i915_gem_vm_unbind_vma(vm, args);
+>> +
+>> +	i915_vm_put(vm);
+>> +	return ret;
+>> +}
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
+>> index e82a9d763e57..412368c67c46 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_gtt.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
+>> @@ -12,6 +12,7 @@
+>>  
+>>
+>>
+>>
+>>  #include "gem/i915_gem_internal.h"
+>>  #include "gem/i915_gem_lmem.h"
+>> +#include "gem/i915_gem_vm_bind.h"
+>>  #include "i915_trace.h"
+>>  #include "i915_utils.h"
+>>  #include "intel_gt.h"
+>> @@ -177,6 +178,8 @@ int i915_vm_lock_objects(struct i915_address_space *vm,
+>>  void i915_address_space_fini(struct i915_address_space *vm)
+>>  {
+>>  	drm_mm_takedown(&vm->mm);
+>> +	GEM_BUG_ON(!RB_EMPTY_ROOT(&vm->va.rb_root));
+>> +	mutex_destroy(&vm->vm_bind_lock);
+>>  }
+>>  
+>>
+>>
+>>
+>>  /**
+>> @@ -203,6 +206,8 @@ static void __i915_vm_release(struct work_struct *work)
+>>  	struct i915_address_space *vm =
+>>  		container_of(work, struct i915_address_space, release_work);
+>>  
+>>
+>>
+>>
+>> +	i915_gem_vm_unbind_all(vm);
+>> +
+>>  	__i915_vm_close(vm);
+>>  
+>>
+>>
+>>
+>>  	/* Synchronize async unbinds. */
+>> @@ -279,6 +284,11 @@ void i915_address_space_init(struct i915_address_space *vm, int subclass)
+>>  
+>>
+>>
+>>
+>>  	INIT_LIST_HEAD(&vm->bound_list);
+>>  	INIT_LIST_HEAD(&vm->unbound_list);
+>> +
+>> +	vm->va = RB_ROOT_CACHED;
+>> +	INIT_LIST_HEAD(&vm->vm_bind_list);
+>> +	INIT_LIST_HEAD(&vm->vm_bound_list);
+>> +	mutex_init(&vm->vm_bind_lock);
+>>  }
+>>  
+>>
+>>
+>>
+>>  void *__px_vaddr(struct drm_i915_gem_object *p)
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
+>> index 4d75ba4bb41d..3a9bee1b9d03 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_gtt.h
+>> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
+>> @@ -260,6 +260,15 @@ struct i915_address_space {
+>>  	 */
+>>  	struct list_head unbound_list;
+>>  
+>>
+>>
+>>
+>> +	/** @vm_bind_lock: Mutex to protect @vm_bind_list and @vm_bound_list */
+>> +	struct mutex vm_bind_lock;
+>> +	/** @vm_bind_list: List of vm_binding in process */
+>> +	struct list_head vm_bind_list;
+>> +	/** @vm_bound_list: List of vm_binding completed */
+>> +	struct list_head vm_bound_list;
+>> +	/** @va: tree of persistent vmas */
+>> +	struct rb_root_cached va;
+>> +
+>>  	/* Global GTT */
+>>  	bool is_ggtt:1;
+>>  
+>>
+>>
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+>> index c3d43f9b1e45..cf41b96ac485 100644
+>> --- a/drivers/gpu/drm/i915/i915_driver.c
+>> +++ b/drivers/gpu/drm/i915/i915_driver.c
+>> @@ -69,6 +69,7 @@
+>>  #include "gem/i915_gem_ioctls.h"
+>>  #include "gem/i915_gem_mman.h"
+>>  #include "gem/i915_gem_pm.h"
+>> +#include "gem/i915_gem_vm_bind.h"
+>>  #include "gt/intel_gt.h"
+>>  #include "gt/intel_gt_pm.h"
+>>  #include "gt/intel_rc6.h"
+>> @@ -1892,6 +1893,8 @@ static const struct drm_ioctl_desc i915_ioctls[] = {
+>>  	DRM_IOCTL_DEF_DRV(I915_QUERY, i915_query_ioctl, DRM_RENDER_ALLOW),
+>>  	DRM_IOCTL_DEF_DRV(I915_GEM_VM_CREATE, i915_gem_vm_create_ioctl, DRM_RENDER_ALLOW),
+>>  	DRM_IOCTL_DEF_DRV(I915_GEM_VM_DESTROY, i915_gem_vm_destroy_ioctl, DRM_RENDER_ALLOW),
+>> +	DRM_IOCTL_DEF_DRV(I915_GEM_VM_BIND, i915_gem_vm_bind_ioctl, DRM_RENDER_ALLOW),
+>> +	DRM_IOCTL_DEF_DRV(I915_GEM_VM_UNBIND, i915_gem_vm_unbind_ioctl, DRM_RENDER_ALLOW),
+>>  };
+>>  
+>>
+>>
+>>
+>>  /*
+>> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+>> index 529d97318f00..6a64a130dbcd 100644
+>> --- a/drivers/gpu/drm/i915/i915_vma.c
+>> +++ b/drivers/gpu/drm/i915/i915_vma.c
+>> @@ -239,6 +239,7 @@ vma_create(struct drm_i915_gem_object *obj,
+>>  	spin_unlock(&obj->vma.lock);
+>>  	mutex_unlock(&vm->mutex);
+>>  
+>>
+>>
+>>
+>> +	INIT_LIST_HEAD(&vma->vm_bind_link);
+>>  	return vma;
+>>  
+>>
+>>
+>>
+>>  err_unlock:
+>> diff --git a/drivers/gpu/drm/i915/i915_vma_types.h b/drivers/gpu/drm/i915/i915_vma_types.h
+>> index 3144d71a0c3e..db786d2d1530 100644
+>> --- a/drivers/gpu/drm/i915/i915_vma_types.h
+>> +++ b/drivers/gpu/drm/i915/i915_vma_types.h
+>> @@ -295,6 +295,20 @@ struct i915_vma {
+>>  	/** This object's place on the active/inactive lists */
+>>  	struct list_head vm_link;
+>>  
+>>
+>>
+>>
+>> +	/** @vm_bind_link: node for the vm_bind related lists of vm */
+>> +	struct list_head vm_bind_link;
+>> +
+>> +	/** Interval tree structures for persistent vma */
+>> +
+>> +	/** @rb: node for the interval tree of vm for persistent vmas */
+>> +	struct rb_node rb;
+>> +	/** @start: start endpoint of the rb node */
+>> +	u64 start;
+>> +	/** @last: Last endpoint of the rb node */
+>> +	u64 last;
+>> +	/** @__subtree_last: last in subtree */
+>> +	u64 __subtree_last;
+>> +
+>>  	struct list_head obj_link; /* Link in the object's VMA list */
+>>  	struct rb_node obj_node;
+>>  	struct hlist_node obj_hash;
+>> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+>> index 8df261c5ab9b..f06a09f1db2d 100644
+>> --- a/include/uapi/drm/i915_drm.h
+>> +++ b/include/uapi/drm/i915_drm.h
+>> @@ -470,6 +470,8 @@ typedef struct _drm_i915_sarea {
+>>  #define DRM_I915_GEM_VM_CREATE		0x3a
+>>  #define DRM_I915_GEM_VM_DESTROY		0x3b
+>>  #define DRM_I915_GEM_CREATE_EXT		0x3c
+>> +#define DRM_I915_GEM_VM_BIND		0x3d
+>> +#define DRM_I915_GEM_VM_UNBIND		0x3e
+>>  /* Must be kept compact -- no holes */
+>>  
+>>
+>>
+>>
+>>  #define DRM_IOCTL_I915_INIT		DRM_IOW( DRM_COMMAND_BASE + DRM_I915_INIT, drm_i915_init_t)
+>> @@ -534,6 +536,8 @@ typedef struct _drm_i915_sarea {
+>>  #define DRM_IOCTL_I915_QUERY			DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_QUERY, struct drm_i915_query)
+>>  #define DRM_IOCTL_I915_GEM_VM_CREATE	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_CREATE, struct drm_i915_gem_vm_control)
+>>  #define DRM_IOCTL_I915_GEM_VM_DESTROY	DRM_IOW (DRM_COMMAND_BASE + DRM_I915_GEM_VM_DESTROY, struct drm_i915_gem_vm_control)
+>> +#define DRM_IOCTL_I915_GEM_VM_BIND	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_BIND, struct drm_i915_gem_vm_bind)
+>> +#define DRM_IOCTL_I915_GEM_VM_UNBIND	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_UNBIND, struct drm_i915_gem_vm_unbind)
+>>  
+>>
+>>
+>>
+>>  /* Allow drivers to submit batchbuffers directly to hardware, relying
+>>   * on the security mechanisms provided by hardware.
+>> @@ -3727,6 +3731,101 @@ struct drm_i915_gem_create_ext_protected_content {
+>>  /* ID of the protected content session managed by i915 when PXP is active */
+>>  #define I915_PROTECTED_CONTENT_DEFAULT_SESSION 0xf
+>>  
+>>
+>>
+>>
+>> +/**
+>> + * struct drm_i915_gem_vm_bind - VA to object mapping to bind.
+>> + *
+>> + * This structure is passed to VM_BIND ioctl and specifies the mapping of GPU
+>> + * virtual address (VA) range to the section of an object that should be bound
+>> + * in the device page table of the specified address space (VM).
+>> + * The VA range specified must be unique (ie., not currently bound) and can
+>> + * be mapped to whole object or a section of the object (partial binding).
+>> + * Multiple VA mappings can be created to the same section of the object
+>> + * (aliasing).
+>> + *
+>> + * The @start, @offset and @length must be 4K page aligned. However the DG2
+>> + * and XEHPSDV has 64K page size for device local memory and has compact page
+>> + * table. On those platforms, for binding device local-memory objects, the
+>> + * @start, @offset and @length must be 64K aligned.
+>> + *
+>> + * Error code -EINVAL will be returned if @start, @offset and @length are not
+>> + * properly aligned. In version 1 (See I915_PARAM_VM_BIND_VERSION), error code
+>> + * -ENOSPC will be returned if the VA range specified can't be reserved.
+>> + *
+>> + * VM_BIND/UNBIND ioctl calls executed on different CPU threads concurrently
+>> + * are not ordered. Furthermore, parts of the VM_BIND operation can be done
+>> + * asynchronously, if valid @fence is specified.
+>> + */
+>> +struct drm_i915_gem_vm_bind {
+>> +	/** @vm_id: VM (address space) id to bind */
+>> +	__u32 vm_id;
+>> +
+>> +	/** @handle: Object handle */
+>> +	__u32 handle;
+>> +
+>> +	/** @start: Virtual Address start to bind */
+>> +	__u64 start;
+>> +
+>> +	/** @offset: Offset in object to bind */
+>> +	__u64 offset;
+>> +
+>> +	/** @length: Length of mapping to bind */
+>> +	__u64 length;
+>> +
+>> +	/** @rsvd: Reserved, MBZ */
+>> +	__u64 rsvd[3];
+>
+>In a brand new ioctl with even extensions support, why do we need this?
+>If we have a plan to add something here in the future, can you please
+>tell us what it may be? Perhaps having that field already but accepting
+>only a default value/flag would be better.
+>
 
+1 quad word is for flags and other 2 are reseved. I had the flag defined
+previously, but changed it to reserved based on review comments.
+Yes, we have extension, but I think it is OK to have some reserved fields
+(I see other examples here). There are some future expansion plans (like
+PAT setting support etc) anyhow. Is that fine?
+
+>I see in previous versions we had 'flags' here. Having 'flags', even if
+>MBZ for the initial version, seems like a nice thing to have for future
+>extensibility. Also, you're going to add back the flag to make the page
+>read-only at some point, right?
+
+Yah, I can separte out the flags here and in vm_unbind. Matt, hope that is
+fine.
+
+>
+>> +
+>> +	/** @rsvd2: Reserved for timeline fence */
+>> +	__u64 rsvd2[2];
+>
+>I see this one gets changed in the middle of the series.
+>
+
+Yah we reserve it for timeline fence here in this patch,
+timeline fence support is added in a later patch in this series.
+
+>> +
+>> +	/**
+>> +	 * @extensions: Zero-terminated chain of extensions.
+>> +	 *
+>> +	 * For future extensions. See struct i915_user_extension.
+>> +	 */
+>> +	__u64 extensions;
+>> +};
+>> +
+>> +/**
+>> + * struct drm_i915_gem_vm_unbind - VA to object mapping to unbind.
+>> + *
+>> + * This structure is passed to VM_UNBIND ioctl and specifies the GPU virtual
+>> + * address (VA) range that should be unbound from the device page table of the
+>> + * specified address space (VM). VM_UNBIND will force unbind the specified
+>> + * range from device page table without waiting for any GPU job to complete.
+>> + * It is UMDs responsibility to ensure the mapping is no longer in use before
+>> + * calling VM_UNBIND.
+>> + *
+>> + * If the specified mapping is not found, the ioctl will simply return without
+>> + * any error.
+>> + *
+>> + * VM_BIND/UNBIND ioctl calls executed on different CPU threads concurrently
+>> + * are not ordered. Furthermore, parts of the VM_UNBIND operation can be done
+>> + * asynchronously, if valid @fence is specified.
+>
+>What @fence? There's no way to specify one.
+>
+
+Yah, will remove "if valid @fence is specified".
+
+>> + */
+>> +struct drm_i915_gem_vm_unbind {
+>> +	/** @vm_id: VM (address space) id to bind */
+>> +	__u32 vm_id;
+>> +
+>> +	/** @rsvd: Reserved, MBZ */
+>> +	__u32 rsvd;
+>
+>Again here, same question. Perhaps we could name it 'pad' or 'pad0' if
+>that's the specific goal of having this?
+>
+
+Yah, pad is appropriate here.
+
+>> +
+>> +	/** @start: Virtual Address start to unbind */
+>> +	__u64 start;
+>> +
+>> +	/** @length: Length of mapping to unbind */
+>> +	__u64 length;
+>> +
+>> +	/** @rsvd2: Reserved, MBZ */
+>> +	__u64 rsvd2[3];
+>
+>And here, but this is definitely not just padding.
+>
+
+It is for 'flags' and 'timeline fence' in case we need them later on.
+
+Niranjana
+
+>> +
+>> +	/**
+>> +	 * @extensions: Zero-terminated chain of extensions.
+>> +	 *
+>> +	 * For future extensions. See struct i915_user_extension.
+>> +	 */
+>> +	__u64 extensions;
+>> +};
+>> +
+>>  #if defined(__cplusplus)
+>>  }
+>>  #endif
+>
