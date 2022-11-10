@@ -2,56 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFE4B624D4C
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Nov 2022 22:49:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35DA8624D57
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Nov 2022 22:55:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F075410E056;
-	Thu, 10 Nov 2022 21:49:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A47D10E77B;
+	Thu, 10 Nov 2022 21:55:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0087110E056
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Nov 2022 21:49:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668116963; x=1699652963;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=hE5OkpuJcWeFOkizvkjQ22Yx7pYQDyZIlFAfj+uAIX0=;
- b=GUnazzskXsUnEsV7GOXdMk0SnDaUb0YUp2jS9xbMrX40WYVeCoudMxuf
- +Ov/33k3sx/V4EXmaKGwaLA1WZazuTI1iFVAmeSNNZ50paGJGgcQRXYNy
- mqoByQP8m5G7NMdiv9fUn3O41M4zDt1v0dDXWvI/1oa5Y20MipUTguaQ4
- AUtDSAnXHQCQRp5ZzKK4aLcafKZodj2UEPOvn+Orv3rkVuDMs1dB1vEIc
- A7AubVshD/t+HrPlH7NuYGv//Amf5bNbYM+EEI4wga70hwL9c62q2O5Aw
- 1l4PIxEISIdo0PRu49cqgQ+LuI7LWv2lt383TZZx8EMRGFPC310H5XDkH w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10527"; a="338215893"
-X-IronPort-AV: E=Sophos;i="5.96,154,1665471600"; d="scan'208";a="338215893"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2022 13:49:23 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10527"; a="812212331"
-X-IronPort-AV: E=Sophos;i="5.96,154,1665471600"; d="scan'208";a="812212331"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by orsmga005.jf.intel.com with SMTP; 10 Nov 2022 13:49:20 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 10 Nov 2022 23:49:19 +0200
-Date: Thu, 10 Nov 2022 23:49:19 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <Y21x38HSQoznvzey@intel.com>
-References: <20221107170917.3566758-2-imre.deak@intel.com>
- <20221108151828.3761358-1-imre.deak@intel.com>
- <Y21M2J7lu3KdoMtX@intel.com>
- <Y21XS09xL2iJxuQ8@ideak-desk.fi.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3B28010E0F2;
+ Thu, 10 Nov 2022 21:55:46 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 33428A7DFC;
+ Thu, 10 Nov 2022 21:55:46 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Y21XS09xL2iJxuQ8@ideak-desk.fi.intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v3 1/9] drm/i915: Allocate power domain set
- wakerefs dynamically
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Thu, 10 Nov 2022 21:55:46 -0000
+Message-ID: <166811734617.16954.15704379924830514437@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221110082144.19666-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20221110082144.19666-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Finish_=28de=29gamma_readout_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,110 +40,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Nov 10, 2022 at 09:55:55PM +0200, Imre Deak wrote:
-> On Thu, Nov 10, 2022 at 09:11:20PM +0200, Ville Syrjälä wrote:
-> > On Tue, Nov 08, 2022 at 05:18:23PM +0200, Imre Deak wrote:
-> > > Since the intel_display_power_domain_set struct, currently its current
-> > > size close to 1kB, can be allocated on the stack, it's better to
-> > > allocate the per-domain wakeref pointer array - used for debugging -
-> > > within the struct dynamically, so do this.
-> > > 
-> > > The memory freeing is guaranteed by the fact that the acquired domain
-> > > references tracked by the struct can't be leaked either.
-> > > 
-> > > v2:
-> > > - Don't use fetch_and_zero() when freeing the wakerefs array. (Jani)
-> > > - Simplify intel_display_power_get/put_in_set(). (Jani)
-> > > - Check in intel_crtc_destroy() that the wakerefs array has been freed.
-> > > v3:
-> > > - Add intel_display_power_set_disabled() and a separate assert
-> > >   function instead of open coding these. (Jani)
-> > > 
-> > > Cc: Jani Nikula <jani.nikula@intel.com>
-> > > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_crtc.c     |  11 ++
-> > >  .../drm/i915/display/intel_display_power.c    | 109 ++++++++++++++----
-> > >  .../drm/i915/display/intel_display_power.h    |   6 +-
-> > >  3 files changed, 104 insertions(+), 22 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-> > > index 037fc140b585c..c18d98bfe1a7c 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_crtc.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-> > > @@ -21,6 +21,7 @@
-> > >  #include "intel_crtc.h"
-> > >  #include "intel_cursor.h"
-> > >  #include "intel_display_debugfs.h"
-> > > +#include "intel_display_power.h"
-> > >  #include "intel_display_trace.h"
-> > >  #include "intel_display_types.h"
-> > >  #include "intel_drrs.h"
-> > > @@ -37,6 +38,14 @@ static void assert_vblank_disabled(struct drm_crtc *crtc)
-> > >  		drm_crtc_vblank_put(crtc);
-> > >  }
-> > >  
-> > > +static void assert_power_domains_disabled(struct intel_crtc *crtc)
-> > > +{
-> > > +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-> > > +
-> > > +	drm_WARN_ON(&i915->drm,
-> > > +		    !intel_display_power_set_disabled(i915, &crtc->enabled_power_domains));
-> > > +}
-> > > +
-> > >  struct intel_crtc *intel_first_crtc(struct drm_i915_private *i915)
-> > >  {
-> > >  	return to_intel_crtc(drm_crtc_from_index(&i915->drm, 0));
-> > > @@ -204,6 +213,8 @@ static void intel_crtc_destroy(struct drm_crtc *_crtc)
-> > >  
-> > >  	cpu_latency_qos_remove_request(&crtc->vblank_pm_qos);
-> > >  
-> > > +	assert_power_domains_disabled(crtc);
-> > > +
-> > >  	drm_crtc_cleanup(&crtc->base);
-> > >  	kfree(crtc);
-> > >  }
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-> > > index 4c1de91e56ff9..ca63b4f1af41b 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> > > @@ -830,20 +830,85 @@ void intel_display_power_put_unchecked(struct drm_i915_private *dev_priv,
-> > >  }
-> > >  #endif
-> > >  
-> > > +#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
-> > > +static void
-> > > +add_domain_to_set(struct drm_i915_private *i915,
-> > > +		  struct intel_display_power_domain_set *power_domain_set,
-> > > +		  enum intel_display_power_domain domain,
-> > > +		  intel_wakeref_t wf)
-> > > +{
-> > > +	drm_WARN_ON(&i915->drm, test_bit(domain, power_domain_set->mask.bits));
-> > > +
-> > > +	if (!power_domain_set->wakerefs)
-> > > +		power_domain_set->wakerefs = kcalloc(POWER_DOMAIN_NUM,
-> > > +						     sizeof(*power_domain_set->wakerefs),
-> > > +						     GFP_KERNEL);
-> > > +
-> > > +	if (power_domain_set->wakerefs)
-> > > +		power_domain_set->wakerefs[domain] = wf;
-> > 
-> > So if the kcalloc() fails is it going to look like
-> > we're leaking power wakerefs?
-> 
-> Yes, along with the alloc failure which is also logged. I assumed this
-> is enough to explain why wakeref tracking doesn't work afterwards, but I
-> suppose the wakeref could be untracked here in this case.
+== Series Details ==
 
-I think a more clear message what is going on would be good.
-And probably preventing the spam from the wakerefs would
-also be good to make sure the whole thing doesn't get
-misdiagnosed as a real power ref leak.
+Series: drm/i915: Finish (de)gamma readout (rev2)
+URL   : https://patchwork.freedesktop.org/series/79614/
+State : warning
 
--- 
-Ville Syrjälä
-Intel
+== Summary ==
+
+Error: dim checkpatch failed
+ad80098b2909 drm/i915: Clean up legacy palette defines
+1be46d64da65 drm/i915: Clean up 10bit precision palette defines
+-:30: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#30: FILE: drivers/gpu/drm/i915/display/intel_color.c:474:
++		REG_FIELD_PREP(PREC_PALETTE_10_GREEN_MASK, drm_color_lut_extract(color->green, 10)) |
+
+total: 0 errors, 1 warnings, 0 checks, 48 lines checked
+ba1c32a01b06 drm/i915: Clean up 12.4bit precision palette defines
+7292f3acfd00 drm/i915: Clean up chv CGM (de)gamma defines
+-:28: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#28: FILE: drivers/gpu/drm/i915/display/intel_color.c:1080:
++	return REG_FIELD_PREP(CGM_PIPE_DEGAMMA_GREEN_LDW_MASK, drm_color_lut_extract(color->green, 14)) |
+
+-:29: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#29: FILE: drivers/gpu/drm/i915/display/intel_color.c:1081:
++		REG_FIELD_PREP(CGM_PIPE_DEGAMMA_BLUE_LDW_MASK, drm_color_lut_extract(color->blue, 14));
+
+-:45: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#45: FILE: drivers/gpu/drm/i915/display/intel_color.c:1107:
++	return REG_FIELD_PREP(CGM_PIPE_GAMMA_GREEN_LDW_MASK, drm_color_lut_extract(color->green, 10)) |
+
+-:46: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#46: FILE: drivers/gpu/drm/i915/display/intel_color.c:1108:
++		REG_FIELD_PREP(CGM_PIPE_GAMMA_BLUE_LDW_MASK, drm_color_lut_extract(color->blue, 10));
+
+total: 0 errors, 4 warnings, 0 checks, 65 lines checked
+babb1b1c06d6 drm/i915: Reorder 12.4 lut udw vs. ldw functions
+29c656a7353c drm/i915: Fix adl+ degamma LUT size
+988d2c1b9f30 drm/i915: Add glk+ degamma readout
+85458e9c275c drm/i915: Read out CHV CGM degamma
+-:27: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#27: FILE: drivers/gpu/drm/i915/display/intel_color.c:1091:
++	entry->green = intel_color_lut_pack(REG_FIELD_GET(CGM_PIPE_DEGAMMA_GREEN_LDW_MASK, ldw), 14);
+
+total: 0 errors, 1 warnings, 0 checks, 54 lines checked
+0a59b7cbc6f6 drm/i915: Add gamma/degamma readout for bdw+
+da3bf65db646 drm/i915: Add gamma/degamma readout for ivb/hsw
+bf28006605c0 drm/i915: Make ilk_read_luts() capable of degamma readout
+17c92a474c6f drm/i915: Make .read_luts() mandatory
+509577df038e drm/i915: Finish the LUT state checker
+-:496: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'lut' - possible side-effects?
+#496: FILE: drivers/gpu/drm/i915/display/intel_display.c:5678:
++#define PIPE_CONF_CHECK_COLOR_LUT(lut, is_pre_csc_lut) do { \
++	if (current_config->gamma_mode == pipe_config->gamma_mode && \
++	    !intel_color_lut_equal(current_config, \
++				   current_config->lut, pipe_config->lut, \
++				   is_pre_csc_lut)) {	\
++		pipe_config_mismatch(fastset, crtc, __stringify(lut), \
++				     "hw_state doesn't match sw_state"); \
++		ret = false; \
+ 	} \
+ } while (0)
+
+-:496: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'lut' may be better as '(lut)' to avoid precedence issues
+#496: FILE: drivers/gpu/drm/i915/display/intel_display.c:5678:
++#define PIPE_CONF_CHECK_COLOR_LUT(lut, is_pre_csc_lut) do { \
++	if (current_config->gamma_mode == pipe_config->gamma_mode && \
++	    !intel_color_lut_equal(current_config, \
++				   current_config->lut, pipe_config->lut, \
++				   is_pre_csc_lut)) {	\
++		pipe_config_mismatch(fastset, crtc, __stringify(lut), \
++				     "hw_state doesn't match sw_state"); \
++		ret = false; \
+ 	} \
+ } while (0)
+
+total: 0 errors, 0 warnings, 2 checks, 463 lines checked
+b855e2fe2818 drm/i915: Rework legacy LUT handling
+c7eea86b5e5d drm/i915: Use hw degamma LUT for sw gamma on glk with YCbCr output
+-:93: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "crtc_state->post_csc_lut"
+#93: FILE: drivers/gpu/drm/i915/display/intel_color.c:1418:
++			    crtc_state->post_csc_lut != NULL &&
+
+total: 0 errors, 0 warnings, 1 checks, 131 lines checked
+691de47062ec drm/i915: Use gamma LUT for RGB limited range compression
+9ad23c06b78d drm/i915: Add 10bit gamma mode for gen2/3
+99b976ce3548 drm/i915: Do state check for color management changes
+
+
