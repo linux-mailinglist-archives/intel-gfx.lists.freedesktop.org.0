@@ -1,55 +1,78 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DE4A624035
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Nov 2022 11:44:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 024D3624080
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Nov 2022 11:57:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3941C10E6C7;
-	Thu, 10 Nov 2022 10:44:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F76910E146;
+	Thu, 10 Nov 2022 10:57:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3E2610E6C7
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Nov 2022 10:44:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668077084; x=1699613084;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=w2hj5+2gNqwwBYF1TuDJD2NS10qlFrrYA+z6zntOvpU=;
- b=l++ZSR7EJGOUxzBjQf5hIbdQD7qQ1UZlIjQwvX3fjzufDfq6oNgwPWnZ
- HYZgueGCMOlWvPkK9GXjLzcnenuAFfJQD/p8eUkIGhXOO3uC6GePBxBV4
- cLsWxpkQC6TfPg3NX2weRqqNo+48fEXGeNbgyrijviIODW2XG07iBgGXM
- PYu2DsNPapV8ZV7HMo8uXwAh059kxPe3qAlwubuzliUd/u/jLuBrXmEj5
- ni59A6RK143JON9EwzZHs1D6lJ9y/z9phm9iDV+7iYEwuvWL36wctyL3B
- Dt2//PstXMNYSVIViau2c0Qqk4d+X4WudCCJAGiM3mscol6TC9WP4nkGG A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="309992705"
-X-IronPort-AV: E=Sophos;i="5.96,153,1665471600"; d="scan'208";a="309992705"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2022 02:44:44 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="631613113"
-X-IronPort-AV: E=Sophos;i="5.96,153,1665471600"; d="scan'208";a="631613113"
-Received: from psikora-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.17.110])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2022 02:44:42 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, Imre Deak
- <imre.deak@intel.com>
-In-Reply-To: <Y2zQpjgTsBHW/hNs@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221107170917.3566758-8-imre.deak@intel.com>
- <20221108151828.3761358-4-imre.deak@intel.com>
- <Y2zQpjgTsBHW/hNs@intel.com>
-Date: Thu, 10 Nov 2022 12:44:39 +0200
-Message-ID: <87tu375bs8.fsf@intel.com>
+Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com
+ [66.111.4.230])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 257F510E135;
+ Thu, 10 Nov 2022 10:57:15 +0000 (UTC)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 178935808C6;
+ Thu, 10 Nov 2022 05:57:15 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute2.internal (MEProxy); Thu, 10 Nov 2022 05:57:15 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:sender:subject
+ :subject:to:to; s=fm2; t=1668077835; x=1668085035; bh=cvSidfTlOF
+ iz9lapBwlfSzymOn7SZniWI1BdG3cziLY=; b=C6ycC4opK9uquS1BOwRpGYYpIq
+ oa5uL1rqcfmQx/208683xtMKHikLJxtKUV1AhDVJauJtAMBKgdhO1blLN+/7c/jx
+ 5M99IasEYvkK/FMe8d0m3OS64ywh+Rp0aTGbkN/X24s+G8oDx+4+DDLTpg4b6nI2
+ FawDZKSObJmh8ZKu20V0Hy9VuuSw1smnS7/yPIwPf9tBXWk5+URpYEYql7it4i1S
+ 91whRNbas6gsKoI2kXQz5aPEHgsRZWGR/A/dyWv7mhDQdviU8i4YSzgJgvNbqzXA
+ d9MYg1lqZDZK/e2rGJNNzIWSjvoYTPUjeZ01kR9fq5V42o+ykxNAEKcvRKNQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+ :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+ :mime-version:references:reply-to:sender:subject:subject:to:to
+ :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+ fm1; t=1668077835; x=1668085035; bh=cvSidfTlOFiz9lapBwlfSzymOn7S
+ ZniWI1BdG3cziLY=; b=LfydtyO3J80va6islVtiBHDxfWQPhnQJyS5NyW4eRi/b
+ ahDFNpQbooDc8neMqOhXh/VNtpGc4iDSbZY8HwwuUmdaC6RAe+n+UHV5xPfzOob2
+ rNaGTJErRJ9Ua8oIyMNZWLknV7jvqtYb2F9WpMJoHyQCYnNJ/QV+jumYLusuiqQd
+ SODkCdbkV6Jvc/rtfofGpmmmseajbikDiaTBUAe0w8k+ArZvdqCVytaBcxP/y1C8
+ zT5MwKvCpPFjhr5Y78JrR+nWlAkUI1DTVNkzH0FcA2fcvXCYSvbxo4K3Yg+P6Rlu
+ o0XoYu4Xs9MGTeVEae4GyfcusMDLPK6NRUbm3aoTTw==
+X-ME-Sender: <xms:CtlsY-6ZAptdxVgF6yUdkGevghiPzpHp7gyXvgdVLaqV9xGipGnRWA>
+ <xme:CtlsY356xemRLsQvQZbQNMjJ66KkvsE0qkyfbX9bJGFU6BGQWi9Kc15cPHsmY6i1C
+ v5qr9fPivP3U9BEjg0>
+X-ME-Received: <xmr:CtlsY9ezqhxGaP-q1vbPIEoruabcmwa09CkVH_RUn7twxS-LpSj9PbhEu2mVPJ0tdCAuq6N9zBbM61iTxyz3T20B3vqydg6EvKGpis5OG0i8GQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrfeeggddvvdcutefuodetggdotefrodftvf
+ curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+ uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+ fjughrpeffhffvvefukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpeforgigihhm
+ vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+ htvghrnhepleehvdegueevffeuffdvheevudelveffteegieetgfeijeeiudevheekvdeg
+ uddunecuffhomhgrihhnpehgihhthhhusghushgvrhgtohhnthgvnhhtrdgtohhmpdhgih
+ hthhhusgdrtghomhenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhl
+ fhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:CtlsY7IoWROIDYrZfguqSRyuAXydH7zRB4ZHI8eGiK-y6vIqS8iXwg>
+ <xmx:CtlsYyIE4nPbggzufN0Qh-YtS-mp6VoAtLp0cSAP8uOUomw1xCeWIQ>
+ <xmx:CtlsY8zqMDPz7gv-SJ1UdBcOPbi9j43rPuqacce2YHIIFDXKAwfN1g>
+ <xmx:C9lsY8qNq8YiG3R7u67advqHP_v-EzK3UqAi97QzZW-wDJUiZG6zog>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 10 Nov 2022 05:57:13 -0500 (EST)
+Date: Thu, 10 Nov 2022 11:57:11 +0100
+From: Maxime Ripard <maxime@cerno.tech>
+To: kfyatek+publicgit@gmail.com
+Message-ID: <20221110105711.pgmzsykts3jiqonz@houat>
+References: <20220728-rpi-analog-tv-properties-v7-0-7072a478c6b3@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v7-22-7072a478c6b3@cerno.tech>
+ <e0779ff5-3227-4a6f-1c0b-de2fbff99425@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v3 7/9] drm/i915: Factor out function to
- get/put AUX_IO power for main link
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e0779ff5-3227-4a6f-1c0b-de2fbff99425@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH v7 22/23] drm/vc4: vec: Add support for more
+ analog TV standards
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,38 +85,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
+ Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
+ linux-sunxi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-arm-kernel@lists.infradead.org,
+ Dom Cobley <dom@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
+ Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 10 Nov 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Tue, Nov 08, 2022 at 05:18:26PM +0200, Imre Deak wrote:
->> +static void
->> +main_link_aux_power_domain_put(struct intel_digital_port *dig_port,
->> +			       const struct intel_crtc_state *crtc_state)
->> +{
->> +	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
->> +	intel_wakeref_t wf =3D fetch_and_zero(&dig_port->aux_wakeref);
->
-> Please don't call functions with side effects in variable
-> declaration blocks. Far too easy to miss them and then you end up
-> scratching your head for a day or two debugging the wrong thing.
+Hi!
 
-Side note, if I got to decide, I'd probably nuke "fetch_and_zero" out of
-existence.
+On Wed, Nov 09, 2022 at 02:15:29AM +0100, Mateusz Kwiatkowski wrote:
+> I ran your v7 patchset on my Pi with Xorg, and the mode switching, as well as
+> the preferred mode handling, all work really well now!
 
-It's not that I don't find the concept useful, it's the naming that
-gives the impression of atomicity that the macro utterly lacks. I find
-that dangerous.
+Thanks again for all your help
 
-It's a helper that feels like should be part of a core kernel header
-(and you might mistakenly think it already is!) but I doubt would ever
-pass muster because of the above.
+> I just noted that the downstream version of the vc4 driver still has inaccurate
+> field delays in vc4_crtc.c, which causes vertical lines to appear jagged (like
+> here: https://user-images.githubusercontent.com/4499762/112738569-385c3280-8f64-11eb-83c4-d671537af209.png).
+> This has been fixed downstream in
+> https://github.com/raspberrypi/linux/pull/4241/commits/bc093f27bf2613ec93524fdc19e922dd7dd3d800,
+> but I guess that should be upstreamed separately...?
 
+I guess I missed it while rebasing, but yeah, it should definitely be
+upstreamed.
 
-BR,
-Jani.
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
+Maxime
