@@ -1,79 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF175623FFC
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Nov 2022 11:36:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B86D623FFF
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Nov 2022 11:37:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48DC210E6C6;
-	Thu, 10 Nov 2022 10:36:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4FDD10E6C7;
+	Thu, 10 Nov 2022 10:37:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com
- [66.111.4.230])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5235610E6C2;
- Thu, 10 Nov 2022 10:36:43 +0000 (UTC)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
- by mailnew.nyi.internal (Postfix) with ESMTP id 825145801D6;
- Thu, 10 Nov 2022 05:36:41 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute4.internal (MEProxy); Thu, 10 Nov 2022 05:36:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
- :message-id:mime-version:references:reply-to:sender:subject
- :subject:to:to; s=fm2; t=1668076601; x=1668083801; bh=nBoJDFkJJq
- zsBQfR1N/+xj7J+//0xyFLrenyQ7PXUlg=; b=oS3gBOWS2Jkxc08ZKEglsrYDk5
- cKoSW3lOwR6hOscSLcWtdwQdkOlP/wOOKMY+spb9ZfuuQxsfXbQ1HhSN79htTXhd
- gS97dwGs07oLsfaMhUFMz7aVgBhFe1+uifQi5lXcJcJPFGnTO5J/JoKOqR87PvLo
- 50emMP6yDTes462ANMJ+jEROiS06NdWYY+3+70hms29SUSidQ+ppw5e8MmI8K7bH
- MyTi3ywT0GYM7EdM5ErS2y5ME132kO3OiU22dmLY6kKpcO2BUxuO0PcnMw8gehxJ
- h3MTY+oFW4kFlpGpP0EIGlJL/o4pUFMmGjTBJElA2g2gdpclJ9IYHyWZZCUQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
- :feedback-id:from:from:in-reply-to:in-reply-to:message-id
- :mime-version:references:reply-to:sender:subject:subject:to:to
- :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm1; t=1668076601; x=1668083801; bh=nBoJDFkJJqzsBQfR1N/+xj7J+//0
- xyFLrenyQ7PXUlg=; b=HApQSeuYUcYuSJ5s8TN27XYvDD3b8GZIL/aFBgp9/frU
- PLhgMsdr02IUSU519noG8jNCnvfSoaM7OMQcFD2X83pKnQtCYz16GdWF1BGCVtow
- JIdleYVFscWIjOad1aPMUUC84Nq0z+lIqehuim76Nz6g6c0xtbDPF5DDVfSpZ9x1
- PZ2751Lz+PxzSln/cqRQjQ40TZAbfqLiwGDKYcYesmDuVX6OTzmtZsqbv3qT6vTt
- NrGTvMQ9cvL3maIfr/HQpL3ArYL2ULFi00QfSr2oIb979KPqXWDTNgTpbDgwPBtL
- 5haKOaiVhWZM2LfUzJ8VvtpjM2Dkdn9AFU6GIh99qw==
-X-ME-Sender: <xms:ONRsY_eJtZFzx-Nz7276dwsiuVyMAlDW7p8a3v1KrTWLazd0m7cVKA>
- <xme:ONRsY1PE6c2FKT89ERYgqpRBuIYe51wPO5rgXq5ko-BrZvnPr0JmIuEeyFHxFyvbx
- vt_mOrpsnSpjBm9_i8>
-X-ME-Received: <xmr:ONRsY4iBz6D4m6IRMrixdAQC397qCye1w9VSqZyfA8iVYVKm7dmImFl1jqqBkIOp5rxf7dAWposWqH1KC8FdaZMapboDg2HMgbi8HWYxHirLKA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrfeeggddujecutefuodetggdotefrodftvf
- curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
- uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
- fjughrpeffhffvvefukfhfgggtuggjsehgtderredttddunecuhfhrohhmpeforgigihhm
- vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
- htvghrnhepjeevfeehfeekieffgeevleevtefgffefkedtfeeuhfettdegjeehgfegudff
- ffdunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
- grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:ONRsYw_D_YTVxteD8Lb3YrJ7VwdVKQ3TFJpbpqxq-NOpe1SQZE4s1g>
- <xmx:ONRsY7tLY61OyW8sGbGg0QtQF4A8ELk41e1KjztvpSV5iGMyj-bl7A>
- <xmx:ONRsY_Hcm4R050ci6hMzwKlvzRkYRYEHr2i4pSLaRxjtVJPxYVIvLQ>
- <xmx:OdRsY9MuQDK0TzCBdeZlntmdJgeqWP-Ddzhb7k8-vZXhPgQSWVVZhw>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 10 Nov 2022 05:36:40 -0500 (EST)
-Date: Thu, 10 Nov 2022 11:36:38 +0100
-From: Maxime Ripard <maxime@cerno.tech>
-To: Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>
-Message-ID: <20221110103638.o3bomslhvb2sj43d@houat>
-References: <20220728-rpi-analog-tv-properties-v7-0-7072a478c6b3@cerno.tech>
- <20220728-rpi-analog-tv-properties-v7-14-7072a478c6b3@cerno.tech>
- <9e9a8a48-89f2-35d4-b26f-afa7cc44f2f6@tronnes.org>
- <85a607b4-2645-68c7-0898-08f7c6d064b9@tronnes.org>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55C0110E6C7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Nov 2022 10:37:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1668076654; x=1699612654;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=Co31+mQQpTrhz6BmX+SQ5czk5TQEef6q3BwJKAM9Dr4=;
+ b=LppRypQhdfUBiujAeQtJ4gXznZknY2xs9cuGL3WJZcY7PVLQ8jaAkv93
+ lq5FD62o1zAZpGNVHxb35y3y2kwANyNoI3gUCRkfxgxXZOqhDhjQDLS2S
+ 2CmtjGHPAGc+KKK0t7igpv1ROWDtcmd4Tf8SgsQ3csYH5bY6aaaPlrDrq
+ rb8IHpaU7gh5Zp9Ble3EMA4qlhD7xBz4ds0LatpCcoGGlwxz0r54GfAEV
+ 8ID5k9fvazEQITWuJvNn1cAXS52/2OWTjutCL13JkR9c0IPE7KIsh2iJK
+ M/L/RdHHupeHWQ1h0JK0ONPR1FempsaYiZn4tmzJPNHNyjPk32oP41iVQ w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="309991474"
+X-IronPort-AV: E=Sophos;i="5.96,153,1665471600"; d="scan'208";a="309991474"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2022 02:37:33 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10526"; a="726341117"
+X-IronPort-AV: E=Sophos;i="5.96,153,1665471600"; d="scan'208";a="726341117"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by FMSMGA003.fm.intel.com with SMTP; 10 Nov 2022 02:37:31 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 10 Nov 2022 12:37:30 +0200
+Date: Thu, 10 Nov 2022 12:37:30 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <Y2zUal4m3hbvGfb8@intel.com>
+References: <20221107170917.3566758-9-imre.deak@intel.com>
+ <20221108151828.3761358-5-imre.deak@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="5srbqddj7e3dz2xw"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <85a607b4-2645-68c7-0898-08f7c6d064b9@tronnes.org>
-Subject: Re: [Intel-gfx] [PATCH v7 14/23] drm/modes: Properly generate a
- drm_display_mode from a named mode
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221108151828.3761358-5-imre.deak@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v3 8/9] drm/i915: Don't enable the AUX_IO
+ power for combo-PHY external DP port main links
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,135 +62,126 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
- Samuel Holland <samuel@sholland.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
- linux-sunxi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-arm-kernel@lists.infradead.org,
- Dom Cobley <dom@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
- Thomas Zimmermann <tzimmermann@suse.de>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, Nov 08, 2022 at 05:18:27PM +0200, Imre Deak wrote:
+> Combo PHY ports require the AUX_IO power only for eDP/PSR, so don't
+> enable it otherwise on these ports. So far the external DP and eDP case
+> was handled the same way due to unclarity when AUX_IO for the main link
+> is needed. However Bspec is clear in which cases it's required:
+> 
+> - eDP/PSR on all ports and platforms (presumably due to HW/FW initiated
+>   PSR transactions that won't enable AUX_IO)
+>   Bspec: 4301, 49296
+> - TypeC PHY ports on platforms before MTL in all TypeC modes (TBT,
+>   DP-alt, legacy) and for both HDMI and DP. The next patch will take
+>   into account the pre-MTL platform dependency.
+>   Bspec: 22243, 53339, 21750, 49190, 49191, 55424, 65448, 65750, 49294,
+>          55480, 65380
+> 
+> v2:
+> - Rebased on checking intel_encoder_can_psr() instead of crtc->has_psr.
+> 
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c | 22 +++++++++-------------
+>  1 file changed, 9 insertions(+), 13 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index 21f1a68a57598..cc4bc529a78a5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -846,8 +846,7 @@ bool intel_ddi_get_hw_state(struct intel_encoder *encoder,
+>  }
+>  
+>  static enum intel_display_power_domain
+> -intel_ddi_main_link_aux_domain(struct intel_digital_port *dig_port,
+> -			       const struct intel_crtc_state *crtc_state)
+> +intel_ddi_main_link_aux_domain(struct intel_digital_port *dig_port)
+>  {
+>  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+>  	enum phy phy = intel_port_to_phy(i915, dig_port->base.port);
+> @@ -867,20 +866,18 @@ intel_ddi_main_link_aux_domain(struct intel_digital_port *dig_port,
+>  	 */
+>  	if (intel_encoder_can_psr(&dig_port->base))
+>  		return intel_display_power_aux_io_domain(i915, dig_port->aux_ch);
+> -	else if (intel_crtc_has_dp_encoder(crtc_state) ||
+> -		 intel_phy_is_tc(i915, phy))
+> +	else if (intel_phy_is_tc(i915, phy))
+>  		return intel_aux_power_domain(dig_port);
 
---5srbqddj7e3dz2xw
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I was pondering this a bit more the other day and came to the conclusion
+that getting rid of the full aux domain is desirable, if for no other
+reason that perhaps testing the dmc interactions a little bit more when
+psr isn't supported. I guess nothing much should actually happen on the
+dmc firware side without psr, but at least we might end up poking
+the DC_STATE_EN register occasionally?
 
-On Tue, Nov 08, 2022 at 10:40:07AM +0100, Noralf Tr=F8nnes wrote:
->=20
->=20
-> Den 07.11.2022 18.49, skrev Noralf Tr=F8nnes:
-> >=20
-> >=20
-> > Den 07.11.2022 15.16, skrev Maxime Ripard:
-> >> The framework will get the drm_display_mode from the drm_cmdline_mode =
-it
-> >> got by parsing the video command line argument by calling
-> >> drm_connector_pick_cmdline_mode().
-> >>
-> >> The heavy lifting will then be done by the drm_mode_create_from_cmdlin=
-e_mode()
-> >> function.
-> >>
-> >> In the case of the named modes though, there's no real code to make th=
-at
-> >> translation and we rely on the drivers to guess which actual display m=
-ode
-> >> we meant.
-> >>
-> >> Let's modify drm_mode_create_from_cmdline_mode() to properly generate =
-the
-> >> drm_display_mode we mean when passing a named mode.
-> >>
-> >> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> >>
-> >> ---
-> >> Changes in v7:
-> >> - Use tv_mode_specified in drm_mode_parse_command_line_for_connector
-> >>
-> >> Changes in v6:
-> >> - Fix get_modes to return 0 instead of an error code
-> >> - Rename the tests to follow the DRM test naming convention
-> >>
-> >> Changes in v5:
-> >> - Switched to KUNIT_ASSERT_NOT_NULL
-> >> ---
-> >>  drivers/gpu/drm/drm_modes.c                     | 34 ++++++++++-
-> >>  drivers/gpu/drm/tests/drm_client_modeset_test.c | 77 ++++++++++++++++=
-++++++++-
-> >>  2 files changed, 109 insertions(+), 2 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/drm_modes.c b/drivers/gpu/drm/drm_modes.c
-> >> index dc037f7ceb37..49441cabdd9d 100644
-> >> --- a/drivers/gpu/drm/drm_modes.c
-> >> +++ b/drivers/gpu/drm/drm_modes.c
-> >> @@ -2497,6 +2497,36 @@ bool drm_mode_parse_command_line_for_connector(=
-const char *mode_option,
-> >>  }
-> >>  EXPORT_SYMBOL(drm_mode_parse_command_line_for_connector);
-> >> =20
-> >> +static struct drm_display_mode *drm_named_mode(struct drm_device *dev,
-> >> +					       struct drm_cmdline_mode *cmd)
-> >> +{
-> >> +	struct drm_display_mode *mode;
-> >> +	unsigned int i;
-> >> +
-> >> +	for (i =3D 0; i < ARRAY_SIZE(drm_named_modes); i++) {
-> >> +		const struct drm_named_mode *named_mode =3D &drm_named_modes[i];
-> >> +
-> >> +		if (strcmp(cmd->name, named_mode->name))
-> >> +			continue;
-> >> +
-> >> +		if (!cmd->tv_mode_specified)
-> >> +			continue;
-> >=20
-> > Only a named mode will set cmd->name, so is this check necessary?
-> >=20
-> >> +
-> >> +		mode =3D drm_analog_tv_mode(dev,
-> >> +					  named_mode->tv_mode,
-> >> +					  named_mode->pixel_clock_khz * 1000,
-> >> +					  named_mode->xres,
-> >> +					  named_mode->yres,
-> >> +					  named_mode->flags & DRM_MODE_FLAG_INTERLACE);
-> >> +		if (!mode)
-> >> +			return NULL;
-> >> +
-> >> +		return mode;
-> >=20
-> > You can just return the result from drm_analog_tv_mode() directly.
-> >=20
-> > With those considered:
-> >=20
-> > Reviewed-by: Noralf Tr=F8nnes <noralf@tronnes.org>
-> >=20
->=20
-> I forgot one thing, shouldn't the named mode test in
-> drm_connector_pick_cmdline_mode() be removed now that we have proper mode=
-s?
+>  	else
+>  		return POWER_DOMAIN_INVALID;
+>  }
+>  
+>  static void
+> -main_link_aux_power_domain_get(struct intel_digital_port *dig_port,
+> -			       const struct intel_crtc_state *crtc_state)
+> +main_link_aux_power_domain_get(struct intel_digital_port *dig_port)
+>  {
+>  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+>  	enum intel_display_power_domain domain =
+> -		intel_ddi_main_link_aux_domain(dig_port, crtc_state);
+> +		intel_ddi_main_link_aux_domain(dig_port);
+>  
+>  	drm_WARN_ON(&i915->drm, dig_port->aux_wakeref);
+>  
+> @@ -891,13 +888,12 @@ main_link_aux_power_domain_get(struct intel_digital_port *dig_port,
+>  }
+>  
+>  static void
+> -main_link_aux_power_domain_put(struct intel_digital_port *dig_port,
+> -			       const struct intel_crtc_state *crtc_state)
+> +main_link_aux_power_domain_put(struct intel_digital_port *dig_port)
+>  {
+>  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+>  	intel_wakeref_t wf = fetch_and_zero(&dig_port->aux_wakeref);
+>  	enum intel_display_power_domain domain =
+> -		intel_ddi_main_link_aux_domain(dig_port, crtc_state);
+> +		intel_ddi_main_link_aux_domain(dig_port);
+>  
+>  	if (!wf)
+>  		return;
+> @@ -928,7 +924,7 @@ static void intel_ddi_get_power_domains(struct intel_encoder *encoder,
+>  								   dig_port->ddi_io_power_domain);
+>  	}
+>  
+> -	main_link_aux_power_domain_get(dig_port, crtc_state);
+> +	main_link_aux_power_domain_get(dig_port);
+>  }
+>  
+>  void intel_ddi_enable_pipe_clock(struct intel_encoder *encoder,
+> @@ -2767,7 +2763,7 @@ static void intel_ddi_post_disable(struct intel_atomic_state *state,
+>  		intel_ddi_post_disable_dp(state, encoder, old_crtc_state,
+>  					  old_conn_state);
+>  
+> -	main_link_aux_power_domain_put(dig_port, old_crtc_state);
+> +	main_link_aux_power_domain_put(dig_port);
+>  
+>  	if (is_tc_port)
+>  		intel_tc_port_put_link(dig_port);
+> @@ -3088,7 +3084,7 @@ intel_ddi_pre_pll_enable(struct intel_atomic_state *state,
+>  	if (is_tc_port)
+>  		intel_tc_port_get_link(dig_port, crtc_state->lane_count);
+>  
+> -	main_link_aux_power_domain_get(dig_port, crtc_state);
+> +	main_link_aux_power_domain_get(dig_port);
+>  
+>  	if (is_tc_port && !intel_tc_port_in_tbt_alt_mode(dig_port))
+>  		/*
+> -- 
+> 2.37.1
 
-Good catch, I've fixed it
-
-Thanks!
-Maxime
-
---5srbqddj7e3dz2xw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCY2zUNgAKCRDj7w1vZxhR
-xc5tAQDufFWQT96Lb6iVY5J8Lt2HGBq1P51c1tAQgPlz+FoRAQD+K3ZwbAaLO5em
-tFADsUq+cdoZA5xWmbM0RCAIK2hDkg4=
-=cS0b
------END PGP SIGNATURE-----
-
---5srbqddj7e3dz2xw--
+-- 
+Ville Syrjälä
+Intel
