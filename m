@@ -1,135 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C0A06260E6
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Nov 2022 19:11:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B9B1626101
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Nov 2022 19:24:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31CB710E19E;
-	Fri, 11 Nov 2022 18:11:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DB4D10E1A0;
+	Fri, 11 Nov 2022 18:24:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A5A210E19E
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Nov 2022 18:11:12 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2506510E1A0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Nov 2022 18:24:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668190272; x=1699726272;
+ t=1668191080; x=1699727080;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=GpqWEj9OOEHZuxJUPA4oerTAtzOhi/xUR9RfzRKmpY8=;
- b=YA+1un447d7dwTn4E/nzZAYwbDfsnQ91TBwWkzH6gsEwyPggMwN6Fqtg
- dFnRXLRO/jeFMWGIQr3BIMhbm9dhPhG4DpQ3Dg7qIf7Z10v2kvU4ff5SW
- 4s+a1UrgAQFPeqYUVLr8oXxwMCAJH70Z1iWdsZNuMWMrrdpVa5m+SL7OY
- LszaRcsJzu2qIpSzH2ECz3Kf1PzJXSmcuhvRLX1JIEnpdZke31X6RPHsQ
- mc+mJB2R12rkHGp/43T5SELJ1MN2VuxRNL1+FXPiwKa6asaJpARD7LV1a
- fwm3UpPQ0tNcw2LRss3s0vp4XrM+cuylFmz+0TXQcdFJBPQ/egFWT9S85 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10528"; a="313444212"
-X-IronPort-AV: E=Sophos;i="5.96,157,1665471600"; d="scan'208";a="313444212"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2022 10:11:11 -0800
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=lJoCvAklVEz/TWCoC1lUNQurZyiG0z7hGnkZQ671Ba0=;
+ b=ZOTwU9b2/trr01HNxe9NpeGWeqrZaGJheMsg7Wy19Mu41mTkCB7N7kgy
+ 63OrT/9gHh2dWUCSPPIv29zhMQy7kam6AygUw1iPr1gJ+B39F7luvWrAV
+ JSwNljofBJyWv7VdUIasEE0E+FeIzC6lxgeBjhwSNGW8rZITCa7eQC+1w
+ H3vwGpQup6CKgTNTZkGkqXLPWyWOhkNjekEnzGaN5ooUQzXIhSyE19LZE
+ PUqPymXyCtMNaQMbBegxlH5XOfrj2PKw9bzzAvQ1Y0DPXN/WkyjnM5eoL
+ A9Mx5dUQAa6FtXDuHqasaNSxqo12S9ZUrI/7w1ReRidI8cvGNL6i2hMFH Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10528"; a="311651055"
+X-IronPort-AV: E=Sophos;i="5.96,157,1665471600"; d="scan'208";a="311651055"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2022 10:24:39 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10528"; a="743360907"
-X-IronPort-AV: E=Sophos;i="5.96,157,1665471600"; d="scan'208";a="743360907"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga002.fm.intel.com with ESMTP; 11 Nov 2022 10:11:11 -0800
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Fri, 11 Nov 2022 10:11:11 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Fri, 11 Nov 2022 10:11:11 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.172)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Fri, 11 Nov 2022 10:11:11 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eLXX4pcMX4uZc/jzeJxGqgvC5DsUzWKo7kMEKL0h1+z4pNC559s73Umg+uDhUbZBkSqxvWMHGBeCY8ZVFEUypqOHcjmuDytpL9RSAbiuycj9ETGkyUB1m6IjyImgfdeP19OjW15pjHOhNkBYtFooZy5IA2jcZSrwAmEOuhNrM7GyIXL17dL0GFMFRJdX5fnD4ViGYBCqyzG2q+/53j0DtN6l8pRKmfbmryZmhLpJ4b1fdSjKNg3VufrH+xiN/G0c+FSszumj2sQJmDXpcp37GLOiPdysS1nOfG2Ga/zjlsxvJbp//5JfLPzFSfq7UXO3UJeDa/4w1Tpw9OXAACcylg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FfKcLJcfuN68eKiYFqD6hyb6iMXlMqr7gIp0fSHTzsQ=;
- b=XOfkagjurzXE/RZQNb/MiErwwSfU6sIYezgsomlMPXauW3kLiv6HpyIJnbRLwJvfzulpCU33QZ3eEsckGA03nPe1QfMMVEKxAA6YmHehlSgrnsp4vrTjodOtQFgzIcDhyTLu/x2yGSIjRcB2k/2plExFaYsBOpUm2V8TrKSO0nE7UN2x/jwrajMBN013B50yk/kjSxzuLCRfheYbFeWHzKPtb1lCrqY7FY791ktpMxfPlWs0/AWAMOcWsQSxB77xjsXukABZPCY/uVncRtnWibMbqDklCiMTN1kAtzAp3diyGftvNrd2RqUcCdQJzip2fl+r7gHcGPmAEJ3Xursp+w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB6952.namprd11.prod.outlook.com (2603:10b6:510:224::13)
- by CY5PR11MB6162.namprd11.prod.outlook.com (2603:10b6:930:29::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.12; Fri, 11 Nov
- 2022 18:11:09 +0000
-Received: from PH8PR11MB6952.namprd11.prod.outlook.com
- ([fe80::d060:bf4d:10ad:3713]) by PH8PR11MB6952.namprd11.prod.outlook.com
- ([fe80::d060:bf4d:10ad:3713%3]) with mapi id 15.20.5813.013; Fri, 11 Nov 2022
- 18:11:08 +0000
-Date: Fri, 11 Nov 2022 10:11:06 -0800
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <Y26QOh1RO0RBK7yt@nvishwa1-DESK>
-References: <20221107133027.38740-1-matthew.auld@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20221107133027.38740-1-matthew.auld@intel.com>
-X-ClientProxiedBy: BYAPR03CA0009.namprd03.prod.outlook.com
- (2603:10b6:a02:a8::22) To PH8PR11MB6952.namprd11.prod.outlook.com
- (2603:10b6:510:224::13)
+X-IronPort-AV: E=McAfee;i="6500,9779,10528"; a="632098710"
+X-IronPort-AV: E=Sophos;i="5.96,157,1665471600"; d="scan'208";a="632098710"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by orsmga007.jf.intel.com with SMTP; 11 Nov 2022 10:24:35 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 11 Nov 2022 20:24:34 +0200
+Date: Fri, 11 Nov 2022 20:24:34 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <Y26TYvK7aNhwFrwp@intel.com>
+References: <20221110082144.19666-1-ville.syrjala@linux.intel.com>
+ <20221110082144.19666-2-ville.syrjala@linux.intel.com>
+ <875yfl5xzi.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB6952:EE_|CY5PR11MB6162:EE_
-X-MS-Office365-Filtering-Correlation-Id: 879657ae-05ae-4a5a-8c02-08dac4101b8d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: fo5wDg2JMF36j5VPMeMOX1zeBXEjPG8XBcrf1dWytr7L8NeJm9HesAWjba+gxoGOZZznq2b7uxrFBejgHjHJ/Nf33Cd0jZRNFn0sEUulhh4nmI/ju/K9wlSXPWC4kpheRQjHLu7+R6OD/KRO+U6TLqOHCkVLhq63R6v35wXXdztF3qCRS0XaMAuiJ/uNxkFFsL8+v+g8syGPVxViyuiQLhn27qLnEsbdHuHY5c54IDz+8GqUWrUfIkTqZWcTrrz1uQl7Bou2MExWoYFJqfMs/4Ws+COt6KE6qjwyNOmLzG2v7P78ABsMdNma66Bt/lUQoxxLmY9g7olE5B/HUj1kTsYxbTyle4VfS1ExGNXhxpTiOb3sPzePkJvIgtsB6LMhSPZa+le7COC2jBQ0/hJwfkU+gSb6n+O5roZJfYPcP7+FAqOh/R5mxVDCOw4Y2MIp2ItfmDI4FLF/xw58f+rXEYD3a1kN7Q8br0cERylehHFGz5kY/S/SHBz70OgiQCNd4Fa6YKr3gYRGDQHvZf0CogRN8n9pL4F8mWpvD66DjI0+sKZVMVwBJP0jtIV9GVnlo35HMfQKO8n1oGm+jZeqtDIM+l4VU8RVYuUnMyEy06qDOtBaV6wAb7+O28yybBtAfDYlO/YiwtyWL0KrWjxPiny7Ip2wQEW76pg8y8EdPxfX8CrpicIlw0bkWB/UB42hPNCNp9aFW7fIzgh3X7YoUw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB6952.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(7916004)(396003)(366004)(136003)(376002)(346002)(39860400002)(451199015)(33716001)(6862004)(6636002)(66946007)(54906003)(66556008)(316002)(41300700001)(66476007)(8676002)(4326008)(86362001)(8936002)(82960400001)(38100700002)(5660300002)(83380400001)(6512007)(478600001)(26005)(6506007)(9686003)(6486002)(44832011)(2906002)(186003);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?3VzvJsuVF4ur+FiAdO7u2m/4YeGHPLdrkhYF8s0Ygr5Ed5VgDAgPXw78xWCk?=
- =?us-ascii?Q?IXPjnfkFxIPiEEvcT/9qOuBI1fNYWpGfBGNC/6IFDO954rwJ9qdyPi3Jqj9L?=
- =?us-ascii?Q?G7V0fASuQTiKZ6s3QDPjXnaI+RzLHEJjsPw8gsBdcpspfXaQtUW58XZYxF0W?=
- =?us-ascii?Q?c77VM3ZVJGuU/KlwoJO1HdR7LFHrq5RDprD/wwyWyOIEme/8uKxxh4voUI8W?=
- =?us-ascii?Q?l6uVd3DkCz51QunGCH16lNRHhbgLKqrDo5vh9gMxUFFZv8p62IR4yttgljEK?=
- =?us-ascii?Q?iHzg9r1KzDaLSfUJtapatr1O8tqPuA44tKxrscCCysZh+bUzUaD4M56nb/lD?=
- =?us-ascii?Q?PVv4f4FAxrKwa5m75xqvVsOeQn2V+8qVsB6aZULuwBUPTeKQJQPMtDT+R8gN?=
- =?us-ascii?Q?WYoQTtZ44VzQ2oP7ZO7ZX7owjNYvCg+BUFOaw4ad3JIGI24y0oQ0zn0knTGF?=
- =?us-ascii?Q?DbeJ3CLCVRp3VxrEcJNGmPp6HrSi/uLnrjsujw1IlUHDfIkqrvCL8g50kK2s?=
- =?us-ascii?Q?dc2h25uWNoGT1j1fmORndHjpveb2IThjrqGDqKul/UPUyu/yl0oHe4NnmaDW?=
- =?us-ascii?Q?pgPjxHNZKrQNnkVyX0TJ86Sv3/L4uw4Es5kUiehlfx3ptHg7G0kzotH0ll+4?=
- =?us-ascii?Q?ali5VKLPZ+M1eba1dXN70u3UZiOPnrBJHsjs85oQqGO1hZRq8Aen96vUYfq/?=
- =?us-ascii?Q?nLfcw1IT2UeNUn0vTRKCaFD8+kc/JGOhCB8QmN/b0CEw7BeZqYpLwA5Z/OyJ?=
- =?us-ascii?Q?RErJmMEQ6Pey1tXV20/ohSr2dz06sAiOirUZgrPQ3XQONN2+L6hVWJiWnFX8?=
- =?us-ascii?Q?XhnEfSYwIlirxR9P56cuYo4oEQe7wIsr9CEdzaSoB7Vi1L3XGtPTCysdOAol?=
- =?us-ascii?Q?lev+UlXQBgOzvB5KDepnr+ZmNZivgK8yvLWEJ4cr4VQGMRVGvyEw+wtxTwQ7?=
- =?us-ascii?Q?Vswj6++6KpMzQXZIABXMRtWTtDP5TkrHnGyI1srqcPGidDlS+qRlFMjGGHDc?=
- =?us-ascii?Q?HH+5qwgFqCPHdfCojn0rA/ftNTXQiYq2vrNrDLQkWP1UejZTvSCxb2WSEw+w?=
- =?us-ascii?Q?ZMSagiZB6q3jFAwLM32/xIJyB/Whv1hlY9ty8pKJyKznU4yk6CXOEKeNEiXD?=
- =?us-ascii?Q?eztIL0K1Nc3sIOzFFZ75e1vVyuJC5QUG8ij+6w+2+ewOVFPQpxYgqnFnnG/A?=
- =?us-ascii?Q?1DwnxhLYGjER4iVxv0cXdfq35dhyBQhs97V3lA3c4klWVh5mP3HmRgJGiNrk?=
- =?us-ascii?Q?+TVlPZB6N0PmFHTla4s/j7OBg9Tiq+JjSJP0LQ2Zh6/Efht8BMfgB+01mdN0?=
- =?us-ascii?Q?++JJHZox6V3jr+U7WQ+q/nRIHz/ImTqj7bpge0Lc6KkZcEMTEVfhRm/dCmdy?=
- =?us-ascii?Q?0OFsm7NzkptIokWOY1rAHuYcSKS2BpZtrO99x1jZcrRwZifZXvJjv9zIPrT+?=
- =?us-ascii?Q?0NmmjFj3UnNA0IM6gyUIwrv3Z0QQiTtlLOoyfh5gza1NRQI1h6XGZrtxvGWF?=
- =?us-ascii?Q?mm6qKdmGkb6STo8eaoYzl7jO79d/OGzDfj4cWZvXSuE4y89ubds9XaU2rAvS?=
- =?us-ascii?Q?Yyaov6L8RzqhjAmFZ2is2JaBBEz0+2A9shw4c03dPWmrGgGGWIvUOCEajSVE?=
- =?us-ascii?Q?43o3fqxyOS1VwPQYEV09ZJE=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 879657ae-05ae-4a5a-8c02-08dac4101b8d
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB6952.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2022 18:11:08.8222 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: tNTXpydMo6sy0BL7aOildDSSDvIDzFjyCJMfADRijePMgOogs7aigGRcDNmZTduPA3lS+ETtdfcN/uqzGHjYV56lK+gCPddTTzI0b84d6vuiH+vkZdsEU0tXLCqYZaDZ
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6162
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/ttm: never purge busy objects
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <875yfl5xzi.fsf@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v2 01/18] drm/i915: Clean up legacy palette
+ defines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,98 +63,125 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org,
- Andrzej Hajda <andrzej.hajda@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 07, 2022 at 01:30:27PM +0000, Matthew Auld wrote:
->In i915_gem_madvise_ioctl() we immediately purge the object is not
->currently used, like when the mm.pages are NULL.  With shmem the pages
->might still be hanging around or are perhaps swapped out. Similarly with
->ttm we might still have the pages hanging around on the ttm resource,
->like with lmem or shmem, but here we need to be extra careful since
->async unbinds are possible as well as in-progress kernel moves. In
->i915_ttm_purge() we expect the pipeline-gutting to nuke the ttm resource
->for us, however if it's busy the memory is only moved to a ghost object,
->which then leads to broken behaviour when for example clearing the
->i915_tt->filp, since the actual ttm_tt is still alive and populated,
->even though it's been moved to the ghost object.  When we later destroy
->the ghost object we hit the following, since the filp is now NULL:
->
->[  +0.006982] #PF: supervisor read access in kernel mode
->[  +0.005149] #PF: error_code(0x0000) - not-present page
->[  +0.005147] PGD 11631d067 P4D 11631d067 PUD 115972067 PMD 0
->[  +0.005676] Oops: 0000 [#1] PREEMPT SMP NOPTI
->[  +0.012962] Workqueue: events ttm_device_delayed_workqueue [ttm]
->[  +0.006022] RIP: 0010:i915_ttm_tt_unpopulate+0x3a/0x70 [i915]
->[  +0.005879] Code: 89 fb 48 85 f6 74 11 8b 55 4c 48 8b 7d 30 45 31 c0 31 c9 e8 18 6a e5 e0 80 7d 60 00 74 20 48 8b 45 68
->8b 55 08 4c 89 e7 5b 5d <48> 8b 40 20 83 e2 01 41 5c 89 d1 48 8b 70
-> 30 e9 42 b2 ff ff 4c 89
->[  +0.018782] RSP: 0000:ffffc9000bf6fd70 EFLAGS: 00010202
->[  +0.005244] RAX: 0000000000000000 RBX: ffff8883e12ae380 RCX: 0000000000000000
->[  +0.007150] RDX: 000000008000000e RSI: ffffffff823559b4 RDI: ffff8883e12ae3c0
->[  +0.007142] RBP: ffff888103b65d48 R08: 0000000000000001 R09: 0000000000000001
->[  +0.007144] R10: 0000000000000001 R11: ffff88829c2c8040 R12: ffff8883e12ae3c0
->[  +0.007148] R13: 0000000000000001 R14: ffff888115184140 R15: ffff888115184248
->[  +0.007154] FS:  0000000000000000(0000) GS:ffff88844db00000(0000) knlGS:0000000000000000
->[  +0.008108] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
->[  +0.005763] CR2: 0000000000000020 CR3: 000000013fdb4004 CR4: 00000000003706e0
->[  +0.007152] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
->[  +0.007145] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
->[  +0.007154] Call Trace:
->[  +0.002459]  <TASK>
->[  +0.002126]  ttm_tt_unpopulate.part.0+0x17/0x70 [ttm]
->[  +0.005068]  ttm_bo_tt_destroy+0x1c/0x50 [ttm]
->[  +0.004464]  ttm_bo_cleanup_memtype_use+0x25/0x40 [ttm]
->[  +0.005244]  ttm_bo_cleanup_refs+0x90/0x2c0 [ttm]
->[  +0.004721]  ttm_bo_delayed_delete+0x235/0x250 [ttm]
->[  +0.004981]  ttm_device_delayed_workqueue+0x13/0x40 [ttm]
->[  +0.005422]  process_one_work+0x248/0x560
->[  +0.004028]  worker_thread+0x4b/0x390
->[  +0.003682]  ? process_one_work+0x560/0x560
->[  +0.004199]  kthread+0xeb/0x120
->[  +0.003163]  ? kthread_complete_and_exit+0x20/0x20
->[  +0.004815]  ret_from_fork+0x1f/0x30
->
->Fixes: 213d50927763 ("drm/i915/ttm: Introduce a TTM i915 gem object backend")
->Reported-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
->Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->Cc: Andrzej Hajda <andrzej.hajda@intel.com>
->Cc: Nirmoy Das <nirmoy.das@intel.com>
->Cc: <stable@vger.kernel.org> # v5.15+
->---
-> drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 8 ++++++++
-> 1 file changed, 8 insertions(+)
->
->diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->index 25129af70f70..fb452a388b5e 100644
->--- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->+++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->@@ -599,10 +599,18 @@ i915_ttm_resource_get_st(struct drm_i915_gem_object *obj,
-> static int i915_ttm_truncate(struct drm_i915_gem_object *obj)
-> {
-> 	struct ttm_buffer_object *bo = i915_gem_to_ttm(obj);
->+	struct ttm_operation_ctx ctx = {
->+		.interruptible = true,
->+		.no_wait_gpu = false,
->+	};
-> 	int err;
->
-> 	WARN_ON_ONCE(obj->mm.madv == I915_MADV_WILLNEED);
->
->+	err = ttm_bo_wait_ctx(bo, &ctx);
->+	if (err)
->+		return err;
->+
+On Fri, Nov 11, 2022 at 05:09:37PM +0200, Jani Nikula wrote:
+> On Thu, 10 Nov 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > Use consistent bit definitions for the legacy gamma LUT. We just
+> > define these alongside the pre-ilk register definitions and point
+> > to those from the ilk+ defines.
+> >
+> > Also use the these appropriately in the LUT entry pack/unpack
+> > functions.
+> >
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_color.c | 24 +++++++++++-----------
+> >  drivers/gpu/drm/i915/i915_reg.h            | 11 +++++-----
+> >  2 files changed, 17 insertions(+), 18 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+> > index 93509cf7bbcc..ff4a5167df57 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_color.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_color.c
+> > @@ -424,32 +424,32 @@ static u32 intel_color_lut_pack(u32 val, int bit_precision)
+> >  
+> >  static u32 i9xx_lut_8(const struct drm_color_lut *color)
+> >  {
+> > -	return drm_color_lut_extract(color->red, 8) << 16 |
+> > -		drm_color_lut_extract(color->green, 8) << 8 |
+> > -		drm_color_lut_extract(color->blue, 8);
+> > +	return REG_FIELD_PREP(PALETTE_RED_MASK, drm_color_lut_extract(color->red, 8)) |
+> > +		REG_FIELD_PREP(PALETTE_GREEN_MASK, drm_color_lut_extract(color->green, 8)) |
+> > +		REG_FIELD_PREP(PALETTE_BLUE_MASK, drm_color_lut_extract(color->blue, 8));
+> >  }
+> >  
+> >  static void i9xx_lut_8_pack(struct drm_color_lut *entry, u32 val)
+> >  {
+> > -	entry->red = intel_color_lut_pack(REG_FIELD_GET(LGC_PALETTE_RED_MASK, val), 8);
+> > -	entry->green = intel_color_lut_pack(REG_FIELD_GET(LGC_PALETTE_GREEN_MASK, val), 8);
+> > -	entry->blue = intel_color_lut_pack(REG_FIELD_GET(LGC_PALETTE_BLUE_MASK, val), 8);
+> > +	entry->red = intel_color_lut_pack(REG_FIELD_GET(PALETTE_RED_MASK, val), 8);
+> > +	entry->green = intel_color_lut_pack(REG_FIELD_GET(PALETTE_GREEN_MASK, val), 8);
+> > +	entry->blue = intel_color_lut_pack(REG_FIELD_GET(PALETTE_BLUE_MASK, val), 8);
+> >  }
+> >  
+> >  /* i965+ "10.6" bit interpolated format "even DW" (low 8 bits) */
+> >  static u32 i965_lut_10p6_ldw(const struct drm_color_lut *color)
+> >  {
+> > -	return (color->red & 0xff) << 16 |
+> > -		(color->green & 0xff) << 8 |
+> > -		(color->blue & 0xff);
+> > +	return REG_FIELD_PREP(PALETTE_RED_MASK, color->red & 0xff) |
+> > +		REG_FIELD_PREP(PALETTE_GREEN_MASK, color->green & 0xff) |
+> > +		REG_FIELD_PREP(PALETTE_BLUE_MASK, color->blue & 0xff);
+> 
+> The & 0xff masking is redundant with REG_FIELD_PREP(), but I understand
+> if you want to leave them in for consistency with the next function.
 
-We probably can call ttm_bo_wait() directly without the ctx?
+It's redundant as long as REG_FIELD_PREP() only checks
+constexpr values. I have occasionally pondered about making
+it do runtime checks for non-constexpr values as well, at
+least for CI runs. Just never managed to write the patch
+for that...
 
-Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+> 
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-> 	err = i915_ttm_move_notify(bo);
-> 	if (err)
-> 		return err;
->-- 
->2.38.1
->
+Thanks.
+
+> 
+> >  }
+> >  
+> >  /* i965+ "10.6" interpolated format "odd DW" (high 8 bits) */
+> >  static u32 i965_lut_10p6_udw(const struct drm_color_lut *color)
+> >  {
+> > -	return (color->red >> 8) << 16 |
+> > -		(color->green >> 8) << 8 |
+> > -		(color->blue >> 8);
+> > +	return REG_FIELD_PREP(PALETTE_RED_MASK, color->red >> 8) |
+> > +		REG_FIELD_PREP(PALETTE_GREEN_MASK, color->green >> 8) |
+> > +		REG_FIELD_PREP(PALETTE_BLUE_MASK, color->blue >> 8);
+> >  }
+> >  
+> >  static void i965_lut_10p6_pack(struct drm_color_lut *entry, u32 ldw, u32 udw)
+> > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> > index a37ed0c61f20..91ee00c347e4 100644
+> > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > @@ -1782,9 +1782,10 @@
+> >  #define _PALETTE_A		0xa000
+> >  #define _PALETTE_B		0xa800
+> >  #define _CHV_PALETTE_C		0xc000
+> > -#define PALETTE_RED_MASK        REG_GENMASK(23, 16)
+> > -#define PALETTE_GREEN_MASK      REG_GENMASK(15, 8)
+> > -#define PALETTE_BLUE_MASK       REG_GENMASK(7, 0)
+> > +/* 8bit mode / i965+ 10.6 interpolated mode ldw/udw */
+> > +#define   PALETTE_RED_MASK		REG_GENMASK(23, 16)
+> > +#define   PALETTE_GREEN_MASK		REG_GENMASK(15, 8)
+> > +#define   PALETTE_BLUE_MASK		REG_GENMASK(7, 0)
+> >  #define PALETTE(pipe, i)	_MMIO(DISPLAY_MMIO_BASE(dev_priv) + \
+> >  				      _PICK((pipe), _PALETTE_A,		\
+> >  					    _PALETTE_B, _CHV_PALETTE_C) + \
+> > @@ -5380,9 +5381,7 @@
+> >  /* legacy palette */
+> >  #define _LGC_PALETTE_A           0x4a000
+> >  #define _LGC_PALETTE_B           0x4a800
+> > -#define LGC_PALETTE_RED_MASK     REG_GENMASK(23, 16)
+> > -#define LGC_PALETTE_GREEN_MASK   REG_GENMASK(15, 8)
+> > -#define LGC_PALETTE_BLUE_MASK    REG_GENMASK(7, 0)
+> > +/* see PALETTE_* for the bits */
+> >  #define LGC_PALETTE(pipe, i) _MMIO(_PIPE(pipe, _LGC_PALETTE_A, _LGC_PALETTE_B) + (i) * 4)
+> >  
+> >  /* ilk/snb precision palette */
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
+
+-- 
+Ville Syrjälä
+Intel
