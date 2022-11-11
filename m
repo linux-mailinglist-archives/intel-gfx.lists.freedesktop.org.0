@@ -1,53 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DF06625E40
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Nov 2022 16:22:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2DD3625E44
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Nov 2022 16:23:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 248BB10E864;
-	Fri, 11 Nov 2022 15:22:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A597610E849;
+	Fri, 11 Nov 2022 15:23:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FFED10E849;
- Fri, 11 Nov 2022 15:22:13 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8751410E849
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Nov 2022 15:23:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668180133; x=1699716133;
+ t=1668180191; x=1699716191;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=Koslal6pIHu5Q7zsw3W/jyP83uKb4HltVt+LTnJ3rPM=;
- b=hdNoZuY/lK1eubDWQaJQ8JhAp/CElSCTPgv1Yszt3CsNxsijuaewrlN7
- eaol17Zh96pq5zX8D6SNdK/9Q9byaaePFlWnxzE/QLHo59eLb1ECR/g1M
- ckhGro8QpRj01djrnzdOtNf5Si6XL86GOj94jVPwIto3NdG2gstIgmbda
- P7q7UZQy0ZizILyOQcpPBOyuJL1vlmTf2+5uhfuIdmhz99u55OGy97wk6
- MzVG7SPRl2vLQc5Oxfei4uwIm0zTEznuDcUWTrQBbqwIyaYCVtOwlIfZC
- QT68zMsq1BRpP1DbL6eoWlg8hFrZ4/S+qqZkuoE/BJ07R6P0UldCWViN4 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10528"; a="291332969"
-X-IronPort-AV: E=Sophos;i="5.96,156,1665471600"; d="scan'208";a="291332969"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2022 07:22:12 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10528"; a="615513461"
-X-IronPort-AV: E=Sophos;i="5.96,156,1665471600"; d="scan'208";a="615513461"
+ bh=6IrafOLFxP9eY2yjzcs3mBPcGPxJF1Um6TTaSjpuGTE=;
+ b=aJ5OvkpWoodgbAPueWa8t+lFtwW3F9mFqpmyYvbaHDPoTRqLJhJIssz1
+ b7re0ngL/GnWziOJnoKZZIgmNJxQi+tgt28jQeBP3fJkxqVqc5WJ4F1Ui
+ kuDO4Y8159onqJmbIHhBEcWs+sLUTlFvKGKnHTID0m/tG5dnrG15Ikvus
+ sEGA0sC4ORY6JrULKY2HNPE+Q+xB+FKBByJqL0nDG+u4CtbHF4Dm1ovS3
+ E8q0er/0BTdSdDLuwZPHy19ZdQuodYRVKjMCSovsIVu8dTHa3Y7D6gFYd
+ YSHaXAFgbl1oiPWSL4F++kSxhu546f/KVZSnw3g/FRHJ06IFh3eLc/x7P A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10528"; a="309238666"
+X-IronPort-AV: E=Sophos;i="5.96,156,1665471600"; d="scan'208";a="309238666"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2022 07:23:11 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10528"; a="706567574"
+X-IronPort-AV: E=Sophos;i="5.96,156,1665471600"; d="scan'208";a="706567574"
 Received: from ldunne-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.15.227])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2022 07:22:10 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2022 07:23:09 -0800
+From: Jani Nikula <jani.nikula@intel.com>
 To: Lucas De Marchi <lucas.demarchi@intel.com>
-In-Reply-To: <20221022064550.llyv4kj4grsxfncw@ldmartin-desk2.lan>
+In-Reply-To: <20221109174928.d73bus3khugxwclp@ldmartin-desk2.lan>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221011-pick-even-ranges-v1-0-1aaea52752ed@intel.com>
- <87mta1whjv.fsf@intel.com>
- <20221012190531.ecmurislebsivjhf@ldmartin-desk2.lan>
- <20221022064550.llyv4kj4grsxfncw@ldmartin-desk2.lan>
-Date: Fri, 11 Nov 2022 17:22:08 +0200
-Message-ID: <87r0y94iu7.fsf@intel.com>
+References: <cover.1668008071.git.jani.nikula@intel.com>
+ <20221109174928.d73bus3khugxwclp@ldmartin-desk2.lan>
+Date: Fri, 11 Nov 2022 17:23:07 +0200
+Message-ID: <87o7td4isk.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 0/3] Add _PICK_EVEN_RANGES
+Subject: Re: [Intel-gfx] [PATCH v2 0/4] drm/i915: header cleanups, cont'd
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,158 +58,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 21 Oct 2022, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> On Wed, Oct 12, 2022 at 12:05:31PM -0700, Lucas De Marchi wrote:
->>On Wed, Oct 12, 2022 at 11:51:48AM +0300, Jani Nikula wrote:
->>>On Tue, 11 Oct 2022, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->>>>Add a new macro, _PICK_EVEN_RANGES, that supports using 2 address
->>>>ranges. This should cover most of our needs for _MMIO_PLL3 and such.
->>>>To show what is achieved with the new macro, convert some PLL-related
->>>>macros to use it instead of _MMIO_PLL3.
->>>
->>>While there's nothing particularly wrong about the solution when looked
->>>at in isolation, I do have pretty strong reservations on the whole.
->>>
->>>We have:
->>>
->>>1) _PICK_EVEN() used in _PIPE() and friends
->>>
->>>2) _PICK() used in _MMIO_PIPE3() and friends
->>>
->>>3) ->pipe_offsets[] etc. adjustment used in _MMIO_PIPE2() and friends
->>>
->>>4) ->ddi_index[] mapping proposed in [1]
->>>
->>>5) _PICK_EVEN_RANGES() proposed here
->>>
->>>Originally we only had the first one, when the hardware was
->>>simpler. Every single addition since then made sense at the time, but if
->>>we add 4 & 5 to the mix, I think it's just too many options.
->>>
->>>I think it's time to take a step back and figure out if there's a more
->>>generic approach that could be used.
+On Wed, 09 Nov 2022, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> On Wed, Nov 09, 2022 at 05:35:18PM +0200, Jani Nikula wrote:
+>>The remaining patches from [1], rebased.
 >>
->>true... I actually see this as replacing most of the uses of _PICK()
->>and giving and extra benefit of removing the worry we are doing
->>out-of-bounds array access. It also allows to more easily move ranges
->>for new platforms, which is my intention here.
+>>I also realized this conflicts with what Lucas is doing so I'd like to
+>>get feedback.
 >
-> Jani, any feedback here or in the possible things to do below? I'd like
-> to get a sketch of whatever solution we think could be the right
-> direction during next week.
+> if you are talking about
+> https://patchwork.freedesktop.org/series/109606/,  then that series
+> pretty much stalled on my request for comments on the suggestions I
+> gave.
+>
+> I do think what we have in that patch series could be viewed as a small
+> improvement and the redesign, if at all, could be done regardless. If we are
+> redesigning it, I will need feedback on possible paths forward.
+>
+> My main motivation for that series, besides the space reduction was to
+> make it easier to cover cases where register addresses moved from the
+> traditional A, B, TC1, TC2, .. to TC1, TC2, A, B. The fact that it saves
+> code and replaces most of the _PICK() uses come as a bonus. That PICK()
+> macro creating an array and accessing it by index is very easy to blow
+> up with out of bounds accesses AFAICS.
+>
+> I don't mind rebasing it on top of this series that is moving the
+> definitions around.
 
-Considering that I basically stalled this but couldn't provide a
-decision on a concrete better path forward either,
+I've pushed this one, and acked the path forward you originally
+presented in the series you reference. Again, sorry for the indecision.
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
-
-on the original approach here. Needs a rebase, but it doesn't block us
-from the other ideas later either.
-
-Thanks, and sorry,
-
+BR,
 Jani.
 
 
 
 >
-> thanks
 > Lucas De Marchi
 >
 >>
->>So I think that we could have something like this if changing it to
->>something else means a bigger refactor. Talking about a big refactor, I
->>still think my series from a few years back would make sense:
+>>[1] https://patchwork.freedesktop.org/series/110404/
 >>
->>drm/i915/display: start description-based ddi initialization
->>(https://lore.kernel.org/all/20191223195850.25997-1-lucas.demarchi@intel.com/)
+>>Jani Nikula (4):
+>>  drm/i915/reg: move masked field helpers to i915_reg_defs.h
+>>  drm/i915/reg: move pick even and pick to reg defs
+>>  drm/i915: split out intel_display_reg_defs.h
+>>  drm/i915: stop including i915_irq.h from i915_trace.h
 >>
->>I think that got stalled due to initialization in the intel_ddi.c trying
->>too much to group together the if/else ladder. But the overall intention
->>of the patch series I believe is still valid today:
+>> drivers/gpu/drm/i915/display/g4x_dp.c         |  1 +
+>> drivers/gpu/drm/i915/display/g4x_hdmi.c       |  1 +
+>> drivers/gpu/drm/i915/display/i9xx_plane.c     |  4 +-
+>> drivers/gpu/drm/i915/display/icl_dsi.c        |  1 +
+>> drivers/gpu/drm/i915/display/icl_dsi_regs.h   |  2 +-
+>> .../gpu/drm/i915/display/intel_audio_regs.h   |  2 +-
+>> .../gpu/drm/i915/display/intel_backlight.c    |  1 +
+>> .../drm/i915/display/intel_backlight_regs.h   |  2 +-
+>> drivers/gpu/drm/i915/display/intel_cdclk.c    |  1 +
+>> drivers/gpu/drm/i915/display/intel_color.c    |  1 +
+>> .../gpu/drm/i915/display/intel_combo_phy.c    |  1 +
+>> drivers/gpu/drm/i915/display/intel_crt.c      |  2 +
+>> drivers/gpu/drm/i915/display/intel_cursor.c   |  3 +-
+>> drivers/gpu/drm/i915/display/intel_ddi.c      |  1 +
+>> drivers/gpu/drm/i915/display/intel_display.c  |  1 +
+>> .../drm/i915/display/intel_display_debugfs.c  |  2 +
+>> .../drm/i915/display/intel_display_reg_defs.h | 53 ++++++++++++++
+>> drivers/gpu/drm/i915/display/intel_dp.c       |  1 +
+>> drivers/gpu/drm/i915/display/intel_dp_aux.c   |  1 +
+>> drivers/gpu/drm/i915/display/intel_dp_hdcp.c  |  1 +
+>> drivers/gpu/drm/i915/display/intel_dp_mst.c   |  1 +
+>> drivers/gpu/drm/i915/display/intel_dpio_phy.c |  1 +
+>> drivers/gpu/drm/i915/display/intel_dpll.c     |  1 +
+>> drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  1 +
+>> drivers/gpu/drm/i915/display/intel_drrs.c     |  1 +
+>> drivers/gpu/drm/i915/display/intel_dsb.c      |  1 +
+>> drivers/gpu/drm/i915/display/intel_dvo.c      |  1 +
+>> drivers/gpu/drm/i915/display/intel_fdi.c      |  1 +
+>> drivers/gpu/drm/i915/display/intel_gmbus.c    |  2 +
+>> .../gpu/drm/i915/display/intel_hdcp_regs.h    |  2 +-
+>> drivers/gpu/drm/i915/display/intel_hdmi.c     |  1 +
+>> .../gpu/drm/i915/display/intel_lpe_audio.c    |  2 +
+>> drivers/gpu/drm/i915/display/intel_lspcon.c   |  1 +
+>> drivers/gpu/drm/i915/display/intel_lvds.c     |  1 +
+>> .../gpu/drm/i915/display/intel_mg_phy_regs.h  |  2 +-
+>> .../drm/i915/display/intel_modeset_setup.c    |  1 +
+>> drivers/gpu/drm/i915/display/intel_panel.c    |  1 +
+>> .../gpu/drm/i915/display/intel_pch_display.c  |  1 +
+>> .../gpu/drm/i915/display/intel_pch_refclk.c   |  1 +
+>> drivers/gpu/drm/i915/display/intel_pipe_crc.c |  2 +
+>> drivers/gpu/drm/i915/display/intel_pps.c      |  1 +
+>> drivers/gpu/drm/i915/display/intel_psr.c      |  1 +
+>> drivers/gpu/drm/i915/display/intel_sdvo.c     |  1 +
+>> drivers/gpu/drm/i915/display/intel_snps_phy.c |  1 +
+>> .../drm/i915/display/intel_snps_phy_regs.h    |  2 +-
+>> drivers/gpu/drm/i915/display/intel_sprite.c   |  1 +
+>> drivers/gpu/drm/i915/display/intel_tv.c       |  2 +
+>> drivers/gpu/drm/i915/display/intel_vdsc.c     |  1 +
+>> drivers/gpu/drm/i915/display/intel_vga.c      |  1 +
+>> drivers/gpu/drm/i915/display/intel_vrr.c      |  1 +
+>> drivers/gpu/drm/i915/display/skl_scaler.c     |  2 +
+>> .../drm/i915/display/skl_universal_plane.c    |  2 +
+>> drivers/gpu/drm/i915/display/vlv_dsi.c        |  1 +
+>> drivers/gpu/drm/i915/display/vlv_dsi_regs.h   |  2 +-
+>> .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  1 +
+>> .../drm/i915/gem/selftests/i915_gem_mman.c    |  1 +
+>> drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  2 +
+>> .../drm/i915/gt/intel_execlists_submission.c  |  1 +
+>> drivers/gpu/drm/i915/gt/intel_gt.c            |  1 +
+>> drivers/gpu/drm/i915/gt/intel_gt_pm.c         |  1 +
+>> drivers/gpu/drm/i915/gt/intel_gt_regs.h       |  1 +
+>> drivers/gpu/drm/i915/gt/intel_gtt.c           |  1 +
+>> .../gpu/drm/i915/gt/intel_ring_submission.c   |  2 +
+>> drivers/gpu/drm/i915/gt/intel_workarounds.c   |  1 +
+>> .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  1 +
+>> drivers/gpu/drm/i915/gvt/cmd_parser.c         |  1 +
+>> drivers/gpu/drm/i915/gvt/mmio_context.c       |  1 +
+>> drivers/gpu/drm/i915/i915_gpu_error.c         |  1 +
+>> drivers/gpu/drm/i915/i915_perf.c              |  1 +
+>> drivers/gpu/drm/i915/i915_reg.h               | 70 +------------------
+>> drivers/gpu/drm/i915/i915_reg_defs.h          | 30 +++++++-
+>> drivers/gpu/drm/i915/i915_trace.h             |  1 -
+>> drivers/gpu/drm/i915/intel_device_info.c      |  3 +-
+>> drivers/gpu/drm/i915/intel_uncore.c           |  1 +
+>> 74 files changed, 166 insertions(+), 82 deletions(-)
+>> create mode 100644 drivers/gpu/drm/i915/display/intel_display_reg_defs.h
 >>
->>	(...) create a table-based initialization approach in
->>	which I keep the useful indexes for each platform: these indexes work
->>	similarly to what we have on the pll part. "enum port" is mostly a
->>	"driver thing" and when all the conversions take place, it would allow
->>	us to stop using the port as indexes to register or register bits. "enum
->>	tc_port", "enum phy", etc are not meaningful numbers from the spec POV
->>	and change with every other platform.
+>>-- 
+>>2.34.1
 >>
->>+Bala who apparently is going to a similar approach in the ddi_index
->>approach.
->>
->>Other possible approaches hat come to mind (just dumping some thoughts,
->>with no actual code/poc):
->>
->>1) Inside display strut we have:
->>
->>	struct {
->>		u8 version;
->>		union {
->>			struct {
->>				i915_reg_t foo;
->>				i915_reg_t bar;
->>				i915_reg_t bla;
->>			} v1;
->>			struct {
->>				i915_reg_t xyz;
->>				i915_reg_t ijk;
->>			} v2;
->>		}
->>	} regs;
->>
->>instead of vesion it could be the "first platform to use it" like we
->>currently have. Those registers would then be initialized during module
->>bind and then we stop doing these conversions to map a platform to a
->>register offset.  It still needs some per-platform change for the
->>bitfields though.
->>
->>idea would be then to enforce using the right struct inside the union by
->>splitting the code in differen compilation units. One platform can
->>evolve from the other with the same compilation unit as long as it is
->>backward-compatible, i.e. we can add more registers, change offsets,
->>etc. But if the HW interface completely changes, it would need to use a
->>different version.
->>
->>2) Looking around what other teams do. In mesa the registers are actually
->>maintained in a xml. Example: gen12.xml
->>
->><register name="HIZ_CHICKEN" length="1" num="0x7018">
->>  <field name="HZ Depth Test LE/GE Optimization Disable" start="13" end="13" type="bool"/>
->>  <field name="HZ Depth Test LE/GE Optimization Disable Mask" start="29" end="29" type="bool"/>
->></register>
->>
->>In code it's used like this:
->>
->>reg.HZDepthTestLEGEOptimizationDisable = true;
->>
->>3) Kind of going in the same direction, but more in the kernel side. Maybe
->>switching to regmap?
->>
->>
->>I think one of the things that block this kind of refactors is having to
->>bring them back to all the previous platforms. Maybe going back only
->>until HAS_DDI() would be a good approach. Or maybe even spliting it on
->>DISPLAY_VER == 12?  That might help more radical changes.
->>
->>
->>Lucas De Marchi
->>
->>>
->>>
->>>BR,
->>>Jani.
->>>
->>>
->>>[1] https://patchwork.freedesktop.org/series/108833/
->>>
->>>-- 
->>>Jani Nikula, Intel Open Source Graphics Center
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
