@@ -1,59 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C6C16261B1
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Nov 2022 19:56:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 813A36261C5
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Nov 2022 20:14:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1913910E0D4;
-	Fri, 11 Nov 2022 18:56:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EA1E10E1AE;
+	Fri, 11 Nov 2022 19:14:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4BF110E0D4
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Nov 2022 18:56:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668192982; x=1699728982;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=AJE7RJuTgs6oCrIvggfiu3rO61UgadTtWYT0lDsMz5k=;
- b=LU9e3obd9uVyVyPMggCST5H2zqmOMok86tqY6nYsAbO72xiryynhPdGS
- y1uCJYUWLbFagyMo+UaXO5MHETyAvLVaOiJUedZWM+YobkWUhRyC94NKn
- Oq5NgBBRumYM4gh+yiSXc71kzHUrC2X10CeZG1joFJv11K/ByfUfFFrir
- 9ZA4xakJ3CRxWeVcQ876FrBDoJU57km4PoZauM1dvHj4Q2DCihZCNjO71
- jPZWQocTFkjhbRfKwP/AT/g1NHBqOr1ymHB/BPGW9sV9jtdOQu6fsNnLs
- ReqHuXimVzJLxK7PXuIjYrxd88qk+JK86psAEyOL+2EihMDEkohGAvnMF w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10528"; a="309275276"
-X-IronPort-AV: E=Sophos;i="5.96,157,1665471600"; d="scan'208";a="309275276"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2022 10:56:22 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10528"; a="780260661"
-X-IronPort-AV: E=Sophos;i="5.96,157,1665471600"; d="scan'208";a="780260661"
-Received: from ideak-desk.fi.intel.com ([10.237.68.144])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2022 10:56:21 -0800
-Date: Fri, 11 Nov 2022 20:56:16 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <Y26a0PIFyA6AMjvf@ideak-desk.fi.intel.com>
-References: <20221107170917.3566758-2-imre.deak@intel.com>
- <20221108151828.3761358-1-imre.deak@intel.com>
- <Y21M2J7lu3KdoMtX@intel.com>
- <Y21XS09xL2iJxuQ8@ideak-desk.fi.intel.com>
- <Y21x38HSQoznvzey@intel.com>
- <Y25B+Vk57kS5F/Br@ideak-desk.fi.intel.com>
- <Y25Rmlqq6k2plwsP@intel.com> <Y25TiP/Lr3xjb5bk@intel.com>
- <Y25ueaWBbV9Njrgr@ideak-desk.fi.intel.com>
- <Y26U0bq9h9KmXeaM@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D158010E1AE;
+ Fri, 11 Nov 2022 19:14:32 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C8AC8A7DFC;
+ Fri, 11 Nov 2022 19:14:32 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5821894285550123014=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Y26U0bq9h9KmXeaM@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 1/9] drm/i915: Allocate power domain set
- wakerefs dynamically
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Fri, 11 Nov 2022 19:14:32 -0000
+Message-ID: <166819407278.870.14696979332663411830@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221111123120.7759-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20221111123120.7759-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Per-device_display_tracepoints_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,149 +40,264 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 11, 2022 at 08:30:41PM +0200, Ville Syrjälä wrote:
-> On Fri, Nov 11, 2022 at 05:47:05PM +0200, Imre Deak wrote:
-> > On Fri, Nov 11, 2022 at 03:52:08PM +0200, Ville Syrjälä wrote:
-> > > On Fri, Nov 11, 2022 at 03:43:54PM +0200, Ville Syrjälä wrote:
-> > > > On Fri, Nov 11, 2022 at 02:37:13PM +0200, Imre Deak wrote:
-> > > > > On Thu, Nov 10, 2022 at 11:49:19PM +0200, Ville Syrjälä wrote:
-> > > > > > On Thu, Nov 10, 2022 at 09:55:55PM +0200, Imre Deak wrote:
-> > > > > > > On Thu, Nov 10, 2022 at 09:11:20PM +0200, Ville Syrjälä wrote:
-> > > > > > > > On Tue, Nov 08, 2022 at 05:18:23PM +0200, Imre Deak wrote:
-> > > > > > > > > Since the intel_display_power_domain_set struct, currently its current
-> > > > > > > > > size close to 1kB, can be allocated on the stack, it's better to
-> > > > > > > > > allocate the per-domain wakeref pointer array - used for debugging -
-> > > > > > > > > within the struct dynamically, so do this.
-> > > > > > > > > 
-> > > > > > > > > The memory freeing is guaranteed by the fact that the acquired domain
-> > > > > > > > > references tracked by the struct can't be leaked either.
-> > > > > > > > > 
-> > > > > > > > > v2:
-> > > > > > > > > - Don't use fetch_and_zero() when freeing the wakerefs array. (Jani)
-> > > > > > > > > - Simplify intel_display_power_get/put_in_set(). (Jani)
-> > > > > > > > > - Check in intel_crtc_destroy() that the wakerefs array has been freed.
-> > > > > > > > > v3:
-> > > > > > > > > - Add intel_display_power_set_disabled() and a separate assert
-> > > > > > > > >   function instead of open coding these. (Jani)
-> > > > > > > > > 
-> > > > > > > > > Cc: Jani Nikula <jani.nikula@intel.com>
-> > > > > > > > > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > > > > > > > > ---
-> > > > > > > > >  drivers/gpu/drm/i915/display/intel_crtc.c     |  11 ++
-> > > > > > > > >  .../drm/i915/display/intel_display_power.c    | 109 ++++++++++++++----
-> > > > > > > > >  .../drm/i915/display/intel_display_power.h    |   6 +-
-> > > > > > > > >  3 files changed, 104 insertions(+), 22 deletions(-)
-> > > > > > > > > 
-> > > > > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-> > > > > > > > > index 037fc140b585c..c18d98bfe1a7c 100644
-> > > > > > > > > --- a/drivers/gpu/drm/i915/display/intel_crtc.c
-> > > > > > > > > +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-> > > > > > > > > @@ -21,6 +21,7 @@
-> > > > > > > > >  #include "intel_crtc.h"
-> > > > > > > > >  #include "intel_cursor.h"
-> > > > > > > > >  #include "intel_display_debugfs.h"
-> > > > > > > > > +#include "intel_display_power.h"
-> > > > > > > > >  #include "intel_display_trace.h"
-> > > > > > > > >  #include "intel_display_types.h"
-> > > > > > > > >  #include "intel_drrs.h"
-> > > > > > > > > @@ -37,6 +38,14 @@ static void assert_vblank_disabled(struct drm_crtc *crtc)
-> > > > > > > > >  		drm_crtc_vblank_put(crtc);
-> > > > > > > > >  }
-> > > > > > > > >  
-> > > > > > > > > +static void assert_power_domains_disabled(struct intel_crtc *crtc)
-> > > > > > > > > +{
-> > > > > > > > > +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-> > > > > > > > > +
-> > > > > > > > > +	drm_WARN_ON(&i915->drm,
-> > > > > > > > > +		    !intel_display_power_set_disabled(i915, &crtc->enabled_power_domains));
-> > > > > > > > > +}
-> > > > > > > > > +
-> > > > > > > > >  struct intel_crtc *intel_first_crtc(struct drm_i915_private *i915)
-> > > > > > > > >  {
-> > > > > > > > >  	return to_intel_crtc(drm_crtc_from_index(&i915->drm, 0));
-> > > > > > > > > @@ -204,6 +213,8 @@ static void intel_crtc_destroy(struct drm_crtc *_crtc)
-> > > > > > > > >  
-> > > > > > > > >  	cpu_latency_qos_remove_request(&crtc->vblank_pm_qos);
-> > > > > > > > >  
-> > > > > > > > > +	assert_power_domains_disabled(crtc);
-> > > > > > > > > +
-> > > > > > > > >  	drm_crtc_cleanup(&crtc->base);
-> > > > > > > > >  	kfree(crtc);
-> > > > > > > > >  }
-> > > > > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-> > > > > > > > > index 4c1de91e56ff9..ca63b4f1af41b 100644
-> > > > > > > > > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> > > > > > > > > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> > > > > > > > > @@ -830,20 +830,85 @@ void intel_display_power_put_unchecked(struct drm_i915_private *dev_priv,
-> > > > > > > > >  }
-> > > > > > > > >  #endif
-> > > > > > > > >  
-> > > > > > > > > +#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
-> > > > > > > > > +static void
-> > > > > > > > > +add_domain_to_set(struct drm_i915_private *i915,
-> > > > > > > > > +		  struct intel_display_power_domain_set *power_domain_set,
-> > > > > > > > > +		  enum intel_display_power_domain domain,
-> > > > > > > > > +		  intel_wakeref_t wf)
-> > > > > > > > > +{
-> > > > > > > > > +	drm_WARN_ON(&i915->drm, test_bit(domain, power_domain_set->mask.bits));
-> > > > > > > > > +
-> > > > > > > > > +	if (!power_domain_set->wakerefs)
-> > > > > > > > > +		power_domain_set->wakerefs = kcalloc(POWER_DOMAIN_NUM,
-> > > > > > > > > +						     sizeof(*power_domain_set->wakerefs),
-> > > > > > > > > +						     GFP_KERNEL);
-> > > > > > > > > +
-> > > > > > > > > +	if (power_domain_set->wakerefs)
-> > > > > > > > > +		power_domain_set->wakerefs[domain] = wf;
-> > > > > > > > 
-> > > > > > > > So if the kcalloc() fails is it going to look like
-> > > > > > > > we're leaking power wakerefs?
-> > > > > > > 
-> > > > > > > Yes, along with the alloc failure which is also logged. I assumed this
-> > > > > > > is enough to explain why wakeref tracking doesn't work afterwards, but I
-> > > > > > > suppose the wakeref could be untracked here in this case.
-> > > > > > 
-> > > > > > I think a more clear message what is going on would be good.
-> > > > > > And probably preventing the spam from the wakerefs would
-> > > > > > also be good to make sure the whole thing doesn't get
-> > > > > > misdiagnosed as a real power ref leak.
-> > > > > 
-> > > > > Ok, I can add a debug print about the failure and untrack the wakeref.
-> > > > 
-> > > > The other idea that came to mind was to just preallocate this
-> > > > somehow. Looks like the only place where this even matters
-> > > > currently is hsw_get_pipe_config(). The other instance of
-> > > > this structure is already embedded in a kmalloced thing
-> > > > (struct intel_crtc).
-> > 
-> > Can't think of a good way to allocate the whole struct, as the domain
-> > mask within it is still needed if the allocation failed. The API is
-> > simpler imo if the allocation happens internally, but yes not a big
-> > change if there is a good way to allocate only the array part.
-> 
-> I mean just allocate eg. during driver init.
+--===============5821894285550123014==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Ok, it'd work for this case if it's per-crtc. We could add a
-'readout_hw_domains' power_domain_set struct to intel_crtc and simply
-use that in hsw_get_pipe_config() instead of this patch, would that be
-ok?
+== Series Details ==
 
-> > > Hmm. I wonder if this wakeref tracking is even really useful
-> > > in the readout path. We just do a put_all_in_set() in the end,
-> > > so can it even leak?
-> > 
-> > If the function would incorrectly do an early return, the domains
-> > wouldn't be put. I think it makes sense to keep wakerefs working for
-> > this case as well.
-> > 
-> > > -- 
-> > > Ville Syrjälä
-> > > Intel
-> 
-> -- 
-> Ville Syrjälä
-> Intel
+Series: drm/i915: Per-device display tracepoints (rev2)
+URL   : https://patchwork.freedesktop.org/series/110807/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_12371 -> Patchwork_110807v2
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110807v2/index.html
+
+Participating hosts (41 -> 40)
+------------------------------
+
+  Missing    (1): fi-ctg-p8600 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_110807v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - bat-adlp-4:         [PASS][1] -> [DMESG-WARN][2] ([i915#7077])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12371/bat-adlp-4/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110807v2/bat-adlp-4/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  * igt@runner@aborted:
+    - bat-adlp-4:         NOTRUN -> [FAIL][3] ([i915#4312])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110807v2/bat-adlp-4/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@fbdev@read:
+    - {bat-rpls-2}:       [SKIP][4] ([i915#2582]) -> [PASS][5] +4 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12371/bat-rpls-2/igt@fbdev@read.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110807v2/bat-rpls-2/igt@fbdev@read.html
+
+  * igt@gem_exec_suspend@basic-s0@smem:
+    - {bat-rplp-1}:       [DMESG-WARN][6] ([i915#2867]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12371/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110807v2/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html
+
+  * igt@i915_module_load@load:
+    - {bat-dg2-8}:        [FAIL][8] ([i915#7328]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12371/bat-dg2-8/igt@i915_module_load@load.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110807v2/bat-dg2-8/igt@i915_module_load@load.html
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - {bat-kbl-2}:        [INCOMPLETE][10] ([i915#4817]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12371/bat-kbl-2/igt@i915_suspend@basic-s3-without-i915.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110807v2/bat-kbl-2/igt@i915_suspend@basic-s3-without-i915.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - {bat-rpls-2}:       [SKIP][12] ([i915#1849]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12371/bat-rpls-2/igt@kms_frontbuffer_tracking@basic.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110807v2/bat-rpls-2/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@prime_vgem@basic-fence-flip:
+    - {bat-rpls-2}:       [SKIP][14] ([fdo#109295] / [i915#1845] / [i915#3708]) -> [PASS][15]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12371/bat-rpls-2/igt@prime_vgem@basic-fence-flip.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110807v2/bat-rpls-2/igt@prime_vgem@basic-fence-flip.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
+  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
+  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
+  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
+  [i915#4817]: https://gitlab.freedesktop.org/drm/intel/issues/4817
+  [i915#4873]: https://gitlab.freedesktop.org/drm/intel/issues/4873
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5153]: https://gitlab.freedesktop.org/drm/intel/issues/5153
+  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
+  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#6471]: https://gitlab.freedesktop.org/drm/intel/issues/6471
+  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
+  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
+  [i915#7077]: https://gitlab.freedesktop.org/drm/intel/issues/7077
+  [i915#7328]: https://gitlab.freedesktop.org/drm/intel/issues/7328
+  [i915#7498]: https://gitlab.freedesktop.org/drm/intel/issues/7498
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12371 -> Patchwork_110807v2
+
+  CI-20190529: 20190529
+  CI_DRM_12371: 3abfcf048c08ca9c7bbaba0c57c699453fd37a2e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7051: 7da9f813cdacb80d4471fc6ddb493bae9c46913d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_110807v2: 3abfcf048c08ca9c7bbaba0c57c699453fd37a2e @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+2b8b87a29aac drm/i915: Add device name to display tracepoints
+44f133335bd9 drm/i915: Pass i915 to frontbuffer tracepoints
+317611d2546e drm/i915: Print plane name in fbc tracepoints
+b01dfa64e271 drm/i915: Pass intel_plane to plane tracepoints
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110807v2/index.html
+
+--===============5821894285550123014==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Per-device display tracepoints (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/110807/">https://patchwork.freedesktop.org/series/110807/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110807v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110807v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12371 -&gt; Patchwork_110807v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110807v2/index.html</p>
+<h2>Participating hosts (41 -&gt; 40)</h2>
+<p>Missing    (1): fi-ctg-p8600 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_110807v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12371/bat-adlp-4/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110807v2/bat-adlp-4/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7077">i915#7077</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110807v2/bat-adlp-4/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@fbdev@read:</p>
+<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12371/bat-rpls-2/igt@fbdev@read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2582">i915#2582</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110807v2/bat-rpls-2/igt@fbdev@read.html">PASS</a> +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s0@smem:</p>
+<ul>
+<li>{bat-rplp-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12371/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110807v2/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@load:</p>
+<ul>
+<li>{bat-dg2-8}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12371/bat-dg2-8/igt@i915_module_load@load.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7328">i915#7328</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110807v2/bat-dg2-8/igt@i915_module_load@load.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<ul>
+<li>{bat-kbl-2}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12371/bat-kbl-2/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4817">i915#4817</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110807v2/bat-kbl-2/igt@i915_suspend@basic-s3-without-i915.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12371/bat-rpls-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110807v2/bat-rpls-2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-flip:</p>
+<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12371/bat-rpls-2/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110807v2/bat-rpls-2/igt@prime_vgem@basic-fence-flip.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12371 -&gt; Patchwork_110807v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12371: 3abfcf048c08ca9c7bbaba0c57c699453fd37a2e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7051: 7da9f813cdacb80d4471fc6ddb493bae9c46913d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_110807v2: 3abfcf048c08ca9c7bbaba0c57c699453fd37a2e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>2b8b87a29aac drm/i915: Add device name to display tracepoints<br />
+44f133335bd9 drm/i915: Pass i915 to frontbuffer tracepoints<br />
+317611d2546e drm/i915: Print plane name in fbc tracepoints<br />
+b01dfa64e271 drm/i915: Pass intel_plane to plane tracepoints</p>
+
+</body>
+</html>
+
+--===============5821894285550123014==--
