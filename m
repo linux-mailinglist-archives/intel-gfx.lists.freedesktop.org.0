@@ -2,47 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8784A624F20
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Nov 2022 01:53:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2AE5624FBD
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Nov 2022 02:40:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6903910E17B;
-	Fri, 11 Nov 2022 00:53:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6452C10E185;
+	Fri, 11 Nov 2022 01:40:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8520D10E17B;
- Fri, 11 Nov 2022 00:53:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668128020; x=1699664020;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=FK7EFJS49KCFYBfMZd0XE7olGXQAy+5jjqzzOWqgDuE=;
- b=O1nEU6BHwIX4Z0b9azBXCk+O0so8XDiAwimfnmpkZ5DOGbFuaQkjUzaf
- aF5uz/GJsugj5+c4AaQVYpSwuWhiUel1i7En8qYWehIi2UqW6so7v+B/e
- o58hL2LtMvfF5lNz24ozqJ2QsBx2k0hEkEWmrKgNYchsVzA5P9jRao1wJ
- aYsii7c2LeNX5WPBXRgPyruQTp8rwnCr3V5X5KOqdClHRirVv2J5Of+Lm
- ZeJ9muK9M8+UJ4ftQItWNTh66UpiNni1ea0b6MQsLWmw+dhEzujU6Z+//
- d1FDmxylpk1EPKvZVhl0mZfWQOOyuk8z3Yg6S0mUirPMFV0ON7AcLDF65 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10527"; a="291890533"
-X-IronPort-AV: E=Sophos;i="5.96,155,1665471600"; d="scan'208";a="291890533"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2022 16:53:39 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10527"; a="670567120"
-X-IronPort-AV: E=Sophos;i="5.96,155,1665471600"; d="scan'208";a="670567120"
-Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2022 16:53:39 -0800
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 10 Nov 2022 16:56:51 -0800
-Message-Id: <20221111005651.4160369-1-daniele.ceraolospurio@intel.com>
-X-Mailer: git-send-email 2.37.3
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id ECA0B10E163;
+ Fri, 11 Nov 2022 01:40:24 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E4E0CA66C9;
+ Fri, 11 Nov 2022 01:40:24 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/huc: fix leak of debug object in huc
- load fence on driver unload
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mateusz Kwiatkowski" <kfyatek@gmail.com>
+Date: Fri, 11 Nov 2022 01:40:24 -0000
+Message-ID: <166813082490.870.11552604103210725587@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220728-rpi-analog-tv-properties-v8-0-09ce1466967c@cerno.tech>
+In-Reply-To: <20220728-rpi-analog-tv-properties-v8-0-09ce1466967c@cerno.tech>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm=3A_Analog_TV_Improvements_=28rev9=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,74 +40,411 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
- Brian Norris <briannorris@chromium.org>, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The fence is always initialized in huc_init_early, but the cleanup in
-huc_fini is only being run if HuC is enabled. This causes a leaking of
-the debug object when HuC is disabled/not supported, which can in turn
-trigger a warning if we try to register a new debug offset at the same
-address on driver reload.
+== Series Details ==
 
-To fix the issue, make sure to always run the cleanup code.
+Series: drm: Analog TV Improvements (rev9)
+URL   : https://patchwork.freedesktop.org/series/107892/
+State : warning
 
-Reported-by: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Reported-by: Brian Norris <briannorris@chromium.org>
-Fixes: 27536e03271d ("drm/i915/huc: track delayed HuC load with a fence")
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: Brian Norris <briannorris@chromium.org>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
-Cc: John Harrison <John.C.Harrison@Intel.com>
----
+== Summary ==
 
-Note: I didn't manage to repro the reported warning, but I did confirm
-that we weren't correctly calling i915_sw_fence_fini and that this patch
-fixes that.
+Error: dim checkpatch failed
+7592c541f416 drm/tests: Add Kunit Helpers
+-:33: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#33: 
+new file mode 100644
 
- drivers/gpu/drm/i915/gt/uc/intel_huc.c | 12 +++++++-----
- drivers/gpu/drm/i915/gt/uc/intel_uc.c  |  1 +
- 2 files changed, 8 insertions(+), 5 deletions(-)
+-:38: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#38: FILE: drivers/gpu/drm/tests/drm_kunit_helpers.c:1:
++#include <drm/drm_drv.h>
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-index fbc8bae14f76..83735a1528fe 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-@@ -300,13 +300,15 @@ int intel_huc_init(struct intel_huc *huc)
- 
- void intel_huc_fini(struct intel_huc *huc)
- {
--	if (!intel_uc_fw_is_loadable(&huc->fw))
--		return;
--
-+	/*
-+	 * the fence is initialized in init_early, so we need to clean it up
-+	 * even if HuC loading is off.
-+	 */
- 	delayed_huc_load_complete(huc);
--
- 	i915_sw_fence_fini(&huc->delayed_load.fence);
--	intel_uc_fw_fini(&huc->fw);
+-:108: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#108: FILE: drivers/gpu/drm/tests/drm_kunit_helpers.h:1:
++#ifndef DRM_KUNIT_HELPERS_H_
+
+total: 0 errors, 3 warnings, 0 checks, 80 lines checked
+c135545c3f03 drm/connector: Rename legacy TV property
+-:111: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#111: FILE: drivers/gpu/drm/i2c/ch7006_drv.c:268:
++	drm_object_attach_property(&connector->base, conf->legacy_tv_mode_property,
+ 				      priv->norm);
+
+total: 0 errors, 0 warnings, 1 checks, 164 lines checked
+28582f6e45ef drm/connector: Only register TV mode property if present
+0bcc81d83aa5 drm/connector: Rename drm_mode_create_tv_properties
+39a0b97efe22 drm/connector: Add TV standard property
+-:79: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#79: FILE: drivers/gpu/drm/drm_connector.c:996:
++};
++DRM_ENUM_NAME_FN(drm_get_tv_mode_name, drm_tv_mode_enum_list)
+
+-:335: WARNING:TYPO_SPELLING: 'Superseeded' may be misspelled - perhaps 'Superseded'?
+#335: FILE: include/drm/drm_mode_config.h:720:
++	 * Superseeded by @tv_mode_property
+ 	   ^^^^^^^^^^^
+
+total: 0 errors, 1 warnings, 1 checks, 291 lines checked
+d4e2d66458bc drm/modes: Add a function to generate analog display modes
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:122: WARNING:LONG_LINE: line length of 119 exceeds 100 columns
+#122: FILE: drivers/gpu/drm/drm_modes.c:212:
++#define TV_MODE_PARAMETER(_mode, _lines, _line_dur, _hact, _hfp, _hslen, _hbp, _hblk, _bt601_hfp, _vfp, _vslen, _vbp) \
+
+-:137: WARNING:STATIC_CONST: Move const after static - use 'static const struct analog_parameters '
+#137: FILE: drivers/gpu/drm/drm_modes.c:227:
++const static struct analog_parameters tv_modes_parameters[] = {
+
+-:330: WARNING:TABSTOP: Statements should start on a tabstop
+#330: FILE: drivers/gpu/drm/drm_modes.c:420:
++		 int porches_rem = porches - hfp_min - hbp_min;
+
+-:377: WARNING:TYPO_SPELLING: 'asymetric' may be misspelled - perhaps 'asymmetric'?
+#377: FILE: drivers/gpu/drm/drm_modes.c:467:
++		 * PAL systems also have asymetric timings between the
+ 		                         ^^^^^^^^^
+
+-:378: WARNING:TYPO_SPELLING: 'symetric' may be misspelled - perhaps 'symmetric'?
+#378: FILE: drivers/gpu/drm/drm_modes.c:468:
++		 * even and odd field, while NTSC is symetric.
+ 		                                     ^^^^^^^^
+
+-:518: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#518: 
+new file mode 100644
+
+-:664: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#664: FILE: drivers/gpu/drm/tests/drm_modes_test.c:142:
++kunit_test_suites(
+
+-:667: WARNING:MODULE_LICENSE: Prefer "GPL" over "GPL v2" - see commit bf7fbeeae6db ("module: Cure the MODULE_LICENSE "GPL" vs. "GPL v2" bogosity")
+#667: FILE: drivers/gpu/drm/tests/drm_modes_test.c:145:
++MODULE_LICENSE("GPL v2");
+
+total: 0 errors, 7 warnings, 1 checks, 654 lines checked
+e2a4d98fd520 drm/client: Add some tests for drm_connector_pick_cmdline_mode()
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:34: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#34: 
+new file mode 100644
+
+-:95: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#95: FILE: drivers/gpu/drm/tests/drm_client_modeset_test.c:57:
 +
-+	if (intel_uc_fw_is_loadable(&huc->fw))
-+		intel_uc_fw_fini(&huc->fw);
- }
- 
- void intel_huc_suspend(struct intel_huc *huc)
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-index dbd048b77e19..41f08b55790e 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-@@ -718,6 +718,7 @@ int intel_uc_runtime_resume(struct intel_uc *uc)
- 
- static const struct intel_uc_ops uc_ops_off = {
- 	.init_hw = __uc_check_hw,
-+	.fini = __uc_fini, /* to clean-up the init_early initialization */
- };
- 
- static const struct intel_uc_ops uc_ops_on = {
--- 
-2.37.3
++}
+
+-:126: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#126: FILE: drivers/gpu/drm/tests/drm_client_modeset_test.c:88:
++
++
+
+total: 0 errors, 1 warnings, 2 checks, 107 lines checked
+2f63c68c62b5 drm/modes: Move named modes parsing to a separate function
+e36f3aa1d427 drm/modes: Switch to named mode descriptors
+2f422334e718 drm/modes: Fill drm_cmdline mode from named modes
+50a19f54f8e0 drm/connector: Add pixel clock to cmdline mode
+32251d266eb8 drm/connector: Add a function to lookup a TV mode by its name
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:68: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#68: 
+new file mode 100644
+
+-:119: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#119: FILE: drivers/gpu/drm/tests/drm_connector_test.c:47:
++}
++KUNIT_ARRAY_PARAM(drm_get_tv_mode_from_name_valid,
+
+-:143: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#143: FILE: drivers/gpu/drm/tests/drm_connector_test.c:71:
++}
++KUNIT_ARRAY_PARAM(drm_get_tv_mode_from_name_invalid,
+
+-:160: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#160: FILE: drivers/gpu/drm/tests/drm_connector_test.c:88:
++kunit_test_suites(
+
+total: 0 errors, 1 warnings, 3 checks, 135 lines checked
+517b9b865c61 drm/modes: Introduce the tv_mode property as a command-line option
+-:190: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#190: FILE: drivers/gpu/drm/tests/drm_cmdline_parser_test.c:1002:
++}
++KUNIT_ARRAY_PARAM(drm_cmdline_tv_option,
+
+total: 0 errors, 0 warnings, 1 checks, 183 lines checked
+2ad4c7094dd5 drm/modes: Properly generate a drm_display_mode from a named mode
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#11: 
+The heavy lifting will then be done by the drm_mode_create_from_cmdline_mode()
+
+total: 0 errors, 1 warnings, 0 checks, 139 lines checked
+25e5243ce095 drm/client: Remove match on mode name
+5a7aa6879fec drm/modes: Introduce more named modes
+020dbf44389b drm/probe-helper: Provide a TV get_modes helper
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:70: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u64' over 'uint64_t'
+#70: FILE: drivers/gpu/drm/drm_probe_helper.c:1187:
++		uint64_t default_mode;
+
+-:125: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#125: 
+new file mode 100644
+
+-:212: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#212: FILE: drivers/gpu/drm/tests/drm_probe_helper_test.c:83:
++#define _TV_MODE_TEST(_name, _supported, _default, _cmdline, _cmdline_mode, ...) 			\
+
+-:212: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#212: FILE: drivers/gpu/drm/tests/drm_probe_helper_test.c:83:
++#define _TV_MODE_TEST(_name, _supported, _default, _cmdline, _cmdline_mode, ...) ^I^I^I\$
+
+-:213: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#213: FILE: drivers/gpu/drm/tests/drm_probe_helper_test.c:84:
++	{												\
+
+-:214: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#214: FILE: drivers/gpu/drm/tests/drm_probe_helper_test.c:85:
++		.name = _name,										\
+
+-:215: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#215: FILE: drivers/gpu/drm/tests/drm_probe_helper_test.c:86:
++		.supported_tv_modes = _supported,							\
+
+-:216: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#216: FILE: drivers/gpu/drm/tests/drm_probe_helper_test.c:87:
++		.default_mode = _default,								\
+
+-:217: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#217: FILE: drivers/gpu/drm/tests/drm_probe_helper_test.c:88:
++		.cmdline = _cmdline,									\
+
+-:218: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#218: FILE: drivers/gpu/drm/tests/drm_probe_helper_test.c:89:
++		.cmdline_mode = _cmdline_mode,								\
+
+-:219: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#219: FILE: drivers/gpu/drm/tests/drm_probe_helper_test.c:90:
++		.expected_modes = (const struct drm_display_mode*[]) { __VA_ARGS__ }, 			\
+
+-:219: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#219: FILE: drivers/gpu/drm/tests/drm_probe_helper_test.c:90:
++^I^I.expected_modes = (const struct drm_display_mode*[]) { __VA_ARGS__ }, ^I^I^I\$
+
+-:220: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#220: FILE: drivers/gpu/drm/tests/drm_probe_helper_test.c:91:
++		.num_expected_modes = sizeof((const struct drm_display_mode*[]) { __VA_ARGS__ }) /	\
+
+-:221: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#221: FILE: drivers/gpu/drm/tests/drm_probe_helper_test.c:92:
++				      (sizeof(const struct drm_display_mode*)),				\
+
+-:221: ERROR:POINTER_LOCATION: "(foo*)" should be "(foo *)"
+#221: FILE: drivers/gpu/drm/tests/drm_probe_helper_test.c:92:
++				      (sizeof(const struct drm_display_mode*)),				\
+
+-:252: ERROR:CODE_INDENT: code indent should use tabs where possible
+#252: FILE: drivers/gpu/drm/tests/drm_probe_helper_test.c:123:
++^I^I ^I^I   params->default_mode);$
+
+-:252: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#252: FILE: drivers/gpu/drm/tests/drm_probe_helper_test.c:123:
++^I^I ^I^I   params->default_mode);$
+
+-:320: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#320: FILE: drivers/gpu/drm/tests/drm_probe_helper_test.c:191:
++}
++KUNIT_ARRAY_PARAM(drm_connector_helper_tv_get_modes,
+
+-:336: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#336: FILE: drivers/gpu/drm/tests/drm_probe_helper_test.c:207:
++kunit_test_suites(
+
+total: 2 errors, 14 warnings, 3 checks, 305 lines checked
+0048a6b1c0df drm/atomic-helper: Add a TV properties reset helper
+-:39: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u64' over 'uint64_t'
+#39: FILE: drivers/gpu/drm/drm_atomic_state_helper.c:496:
++	uint64_t val;
+
+total: 0 errors, 0 warnings, 1 checks, 88 lines checked
+4eb47a5dfd71 drm/atomic-helper: Add an analog TV atomic_check implementation
+-:11: WARNING:REPEATED_WORD: Possible repeated word: 'be'
+#11: 
+TV standard property have created some boilerplate that can be be shared
+
+-:60: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'old_conn_state->tv.margins.left != new_conn_state->tv.margins.left'
+#60: FILE: drivers/gpu/drm/drm_atomic_state_helper.c:591:
++	if ((old_conn_state->tv.margins.left != new_conn_state->tv.margins.left) ||
++	    (old_conn_state->tv.margins.right != new_conn_state->tv.margins.right) ||
++	    (old_conn_state->tv.margins.top != new_conn_state->tv.margins.top) ||
++	    (old_conn_state->tv.margins.bottom != new_conn_state->tv.margins.bottom) ||
++	    (old_conn_state->tv.mode != new_conn_state->tv.mode) ||
++	    (old_conn_state->tv.brightness != new_conn_state->tv.brightness) ||
++	    (old_conn_state->tv.contrast != new_conn_state->tv.contrast) ||
++	    (old_conn_state->tv.flicker_reduction != new_conn_state->tv.flicker_reduction) ||
++	    (old_conn_state->tv.overscan != new_conn_state->tv.overscan) ||
++	    (old_conn_state->tv.saturation != new_conn_state->tv.saturation) ||
++	    (old_conn_state->tv.hue != new_conn_state->tv.hue))
+
+-:60: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'old_conn_state->tv.margins.right != new_conn_state->tv.margins.right'
+#60: FILE: drivers/gpu/drm/drm_atomic_state_helper.c:591:
++	if ((old_conn_state->tv.margins.left != new_conn_state->tv.margins.left) ||
++	    (old_conn_state->tv.margins.right != new_conn_state->tv.margins.right) ||
++	    (old_conn_state->tv.margins.top != new_conn_state->tv.margins.top) ||
++	    (old_conn_state->tv.margins.bottom != new_conn_state->tv.margins.bottom) ||
++	    (old_conn_state->tv.mode != new_conn_state->tv.mode) ||
++	    (old_conn_state->tv.brightness != new_conn_state->tv.brightness) ||
++	    (old_conn_state->tv.contrast != new_conn_state->tv.contrast) ||
++	    (old_conn_state->tv.flicker_reduction != new_conn_state->tv.flicker_reduction) ||
++	    (old_conn_state->tv.overscan != new_conn_state->tv.overscan) ||
++	    (old_conn_state->tv.saturation != new_conn_state->tv.saturation) ||
++	    (old_conn_state->tv.hue != new_conn_state->tv.hue))
+
+-:60: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'old_conn_state->tv.margins.top != new_conn_state->tv.margins.top'
+#60: FILE: drivers/gpu/drm/drm_atomic_state_helper.c:591:
++	if ((old_conn_state->tv.margins.left != new_conn_state->tv.margins.left) ||
++	    (old_conn_state->tv.margins.right != new_conn_state->tv.margins.right) ||
++	    (old_conn_state->tv.margins.top != new_conn_state->tv.margins.top) ||
++	    (old_conn_state->tv.margins.bottom != new_conn_state->tv.margins.bottom) ||
++	    (old_conn_state->tv.mode != new_conn_state->tv.mode) ||
++	    (old_conn_state->tv.brightness != new_conn_state->tv.brightness) ||
++	    (old_conn_state->tv.contrast != new_conn_state->tv.contrast) ||
++	    (old_conn_state->tv.flicker_reduction != new_conn_state->tv.flicker_reduction) ||
++	    (old_conn_state->tv.overscan != new_conn_state->tv.overscan) ||
++	    (old_conn_state->tv.saturation != new_conn_state->tv.saturation) ||
++	    (old_conn_state->tv.hue != new_conn_state->tv.hue))
+
+-:60: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'old_conn_state->tv.margins.bottom != new_conn_state->tv.margins.bottom'
+#60: FILE: drivers/gpu/drm/drm_atomic_state_helper.c:591:
++	if ((old_conn_state->tv.margins.left != new_conn_state->tv.margins.left) ||
++	    (old_conn_state->tv.margins.right != new_conn_state->tv.margins.right) ||
++	    (old_conn_state->tv.margins.top != new_conn_state->tv.margins.top) ||
++	    (old_conn_state->tv.margins.bottom != new_conn_state->tv.margins.bottom) ||
++	    (old_conn_state->tv.mode != new_conn_state->tv.mode) ||
++	    (old_conn_state->tv.brightness != new_conn_state->tv.brightness) ||
++	    (old_conn_state->tv.contrast != new_conn_state->tv.contrast) ||
++	    (old_conn_state->tv.flicker_reduction != new_conn_state->tv.flicker_reduction) ||
++	    (old_conn_state->tv.overscan != new_conn_state->tv.overscan) ||
++	    (old_conn_state->tv.saturation != new_conn_state->tv.saturation) ||
++	    (old_conn_state->tv.hue != new_conn_state->tv.hue))
+
+-:60: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'old_conn_state->tv.mode != new_conn_state->tv.mode'
+#60: FILE: drivers/gpu/drm/drm_atomic_state_helper.c:591:
++	if ((old_conn_state->tv.margins.left != new_conn_state->tv.margins.left) ||
++	    (old_conn_state->tv.margins.right != new_conn_state->tv.margins.right) ||
++	    (old_conn_state->tv.margins.top != new_conn_state->tv.margins.top) ||
++	    (old_conn_state->tv.margins.bottom != new_conn_state->tv.margins.bottom) ||
++	    (old_conn_state->tv.mode != new_conn_state->tv.mode) ||
++	    (old_conn_state->tv.brightness != new_conn_state->tv.brightness) ||
++	    (old_conn_state->tv.contrast != new_conn_state->tv.contrast) ||
++	    (old_conn_state->tv.flicker_reduction != new_conn_state->tv.flicker_reduction) ||
++	    (old_conn_state->tv.overscan != new_conn_state->tv.overscan) ||
++	    (old_conn_state->tv.saturation != new_conn_state->tv.saturation) ||
++	    (old_conn_state->tv.hue != new_conn_state->tv.hue))
+
+-:60: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'old_conn_state->tv.brightness != new_conn_state->tv.brightness'
+#60: FILE: drivers/gpu/drm/drm_atomic_state_helper.c:591:
++	if ((old_conn_state->tv.margins.left != new_conn_state->tv.margins.left) ||
++	    (old_conn_state->tv.margins.right != new_conn_state->tv.margins.right) ||
++	    (old_conn_state->tv.margins.top != new_conn_state->tv.margins.top) ||
++	    (old_conn_state->tv.margins.bottom != new_conn_state->tv.margins.bottom) ||
++	    (old_conn_state->tv.mode != new_conn_state->tv.mode) ||
++	    (old_conn_state->tv.brightness != new_conn_state->tv.brightness) ||
++	    (old_conn_state->tv.contrast != new_conn_state->tv.contrast) ||
++	    (old_conn_state->tv.flicker_reduction != new_conn_state->tv.flicker_reduction) ||
++	    (old_conn_state->tv.overscan != new_conn_state->tv.overscan) ||
++	    (old_conn_state->tv.saturation != new_conn_state->tv.saturation) ||
++	    (old_conn_state->tv.hue != new_conn_state->tv.hue))
+
+-:60: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'old_conn_state->tv.contrast != new_conn_state->tv.contrast'
+#60: FILE: drivers/gpu/drm/drm_atomic_state_helper.c:591:
++	if ((old_conn_state->tv.margins.left != new_conn_state->tv.margins.left) ||
++	    (old_conn_state->tv.margins.right != new_conn_state->tv.margins.right) ||
++	    (old_conn_state->tv.margins.top != new_conn_state->tv.margins.top) ||
++	    (old_conn_state->tv.margins.bottom != new_conn_state->tv.margins.bottom) ||
++	    (old_conn_state->tv.mode != new_conn_state->tv.mode) ||
++	    (old_conn_state->tv.brightness != new_conn_state->tv.brightness) ||
++	    (old_conn_state->tv.contrast != new_conn_state->tv.contrast) ||
++	    (old_conn_state->tv.flicker_reduction != new_conn_state->tv.flicker_reduction) ||
++	    (old_conn_state->tv.overscan != new_conn_state->tv.overscan) ||
++	    (old_conn_state->tv.saturation != new_conn_state->tv.saturation) ||
++	    (old_conn_state->tv.hue != new_conn_state->tv.hue))
+
+-:60: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'old_conn_state->tv.flicker_reduction != new_conn_state->tv.flicker_reduction'
+#60: FILE: drivers/gpu/drm/drm_atomic_state_helper.c:591:
++	if ((old_conn_state->tv.margins.left != new_conn_state->tv.margins.left) ||
++	    (old_conn_state->tv.margins.right != new_conn_state->tv.margins.right) ||
++	    (old_conn_state->tv.margins.top != new_conn_state->tv.margins.top) ||
++	    (old_conn_state->tv.margins.bottom != new_conn_state->tv.margins.bottom) ||
++	    (old_conn_state->tv.mode != new_conn_state->tv.mode) ||
++	    (old_conn_state->tv.brightness != new_conn_state->tv.brightness) ||
++	    (old_conn_state->tv.contrast != new_conn_state->tv.contrast) ||
++	    (old_conn_state->tv.flicker_reduction != new_conn_state->tv.flicker_reduction) ||
++	    (old_conn_state->tv.overscan != new_conn_state->tv.overscan) ||
++	    (old_conn_state->tv.saturation != new_conn_state->tv.saturation) ||
++	    (old_conn_state->tv.hue != new_conn_state->tv.hue))
+
+-:60: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'old_conn_state->tv.overscan != new_conn_state->tv.overscan'
+#60: FILE: drivers/gpu/drm/drm_atomic_state_helper.c:591:
++	if ((old_conn_state->tv.margins.left != new_conn_state->tv.margins.left) ||
++	    (old_conn_state->tv.margins.right != new_conn_state->tv.margins.right) ||
++	    (old_conn_state->tv.margins.top != new_conn_state->tv.margins.top) ||
++	    (old_conn_state->tv.margins.bottom != new_conn_state->tv.margins.bottom) ||
++	    (old_conn_state->tv.mode != new_conn_state->tv.mode) ||
++	    (old_conn_state->tv.brightness != new_conn_state->tv.brightness) ||
++	    (old_conn_state->tv.contrast != new_conn_state->tv.contrast) ||
++	    (old_conn_state->tv.flicker_reduction != new_conn_state->tv.flicker_reduction) ||
++	    (old_conn_state->tv.overscan != new_conn_state->tv.overscan) ||
++	    (old_conn_state->tv.saturation != new_conn_state->tv.saturation) ||
++	    (old_conn_state->tv.hue != new_conn_state->tv.hue))
+
+-:60: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'old_conn_state->tv.saturation != new_conn_state->tv.saturation'
+#60: FILE: drivers/gpu/drm/drm_atomic_state_helper.c:591:
++	if ((old_conn_state->tv.margins.left != new_conn_state->tv.margins.left) ||
++	    (old_conn_state->tv.margins.right != new_conn_state->tv.margins.right) ||
++	    (old_conn_state->tv.margins.top != new_conn_state->tv.margins.top) ||
++	    (old_conn_state->tv.margins.bottom != new_conn_state->tv.margins.bottom) ||
++	    (old_conn_state->tv.mode != new_conn_state->tv.mode) ||
++	    (old_conn_state->tv.brightness != new_conn_state->tv.brightness) ||
++	    (old_conn_state->tv.contrast != new_conn_state->tv.contrast) ||
++	    (old_conn_state->tv.flicker_reduction != new_conn_state->tv.flicker_reduction) ||
++	    (old_conn_state->tv.overscan != new_conn_state->tv.overscan) ||
++	    (old_conn_state->tv.saturation != new_conn_state->tv.saturation) ||
++	    (old_conn_state->tv.hue != new_conn_state->tv.hue))
+
+-:60: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'old_conn_state->tv.hue != new_conn_state->tv.hue'
+#60: FILE: drivers/gpu/drm/drm_atomic_state_helper.c:591:
++	if ((old_conn_state->tv.margins.left != new_conn_state->tv.margins.left) ||
++	    (old_conn_state->tv.margins.right != new_conn_state->tv.margins.right) ||
++	    (old_conn_state->tv.margins.top != new_conn_state->tv.margins.top) ||
++	    (old_conn_state->tv.margins.bottom != new_conn_state->tv.margins.bottom) ||
++	    (old_conn_state->tv.mode != new_conn_state->tv.mode) ||
++	    (old_conn_state->tv.brightness != new_conn_state->tv.brightness) ||
++	    (old_conn_state->tv.contrast != new_conn_state->tv.contrast) ||
++	    (old_conn_state->tv.flicker_reduction != new_conn_state->tv.flicker_reduction) ||
++	    (old_conn_state->tv.overscan != new_conn_state->tv.overscan) ||
++	    (old_conn_state->tv.saturation != new_conn_state->tv.saturation) ||
++	    (old_conn_state->tv.hue != new_conn_state->tv.hue))
+
+total: 0 errors, 1 warnings, 11 checks, 70 lines checked
+ebbde19d611e drm/vc4: vec: Use TV Reset implementation
+869c89a64fc2 drm/vc4: vec: Check for VEC output constraints
+9dbc4d2d0110 drm/vc4: vec: Convert to the new TV mode property
+93113ac865fe drm/vc4: vec: Add support for more analog TV standards
+35cbb07288d6 drm/sun4i: tv: Convert to the new TV mode property
+
 
