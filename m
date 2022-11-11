@@ -1,68 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14A6662646E
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Nov 2022 23:18:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 761E46264C7
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Nov 2022 23:50:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5712D10E1DA;
-	Fri, 11 Nov 2022 22:18:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A080F10E8ED;
+	Fri, 11 Nov 2022 22:50:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com
- [IPv6:2607:f8b0:4864:20::d2e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 317E110E1D8;
- Fri, 11 Nov 2022 22:17:33 +0000 (UTC)
-Received: by mail-io1-xd2e.google.com with SMTP id r81so4554826iod.2;
- Fri, 11 Nov 2022 14:17:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=F1nnNzLyOQaNdQjTSelqCaCQVWgchkSOBQNAWoookCY=;
- b=R/dmMJSnvo3JvYhowpvogSf5QpEl7v8YF8JAaIjOpQTvTDoTOrApegwux3Yoq0y0n+
- 0gS++fqHKvaUSpqewyoQzZpzvaL+eyLTj5qAAGQIp3Z9Kbw+dowLRc43YwpLCD2QljKg
- +ZoWes4dlStEdNF9tZUDLaCmN56saFjWJsFsBdLh0tIaBJue3Q/lvB5ib2nRfXLCrnGr
- dwnd3tMfpkQp0GvWQoeqOvw1WwQAaQww9QNGuJDKXI28EqgJtsArYSTT4MKuQZSN8GYX
- LSDmpzv1cAypRKvlGUtFtpIyFe8/qf2sHahZdyP0A6lqzy+5cwizjBZ2RkCoVYSWRs0G
- /4lQ==
+Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com
+ [IPv6:2607:f8b0:4864:20::731])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FF8F10E8ED
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Nov 2022 22:50:18 +0000 (UTC)
+Received: by mail-qk1-x731.google.com with SMTP id d8so669226qki.13
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Nov 2022 14:50:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=FvAh4jTbCKC82yvtx72szM35nEYutGpl1oOOpA33+TU=;
+ b=TmOUbpVy/fxW25UY3cMbD/EsxtWM77C+rSzjm82BCruAZambUNFr0eIACAe0pDWa8d
+ tCo9ZbaMGBatE6cskGMvOShfFZR5qLEa0jm19jDGl3yhcFQ2WaS/u+nwHRLvEU0RaQfh
+ iWlrEBhj27gJMGcB+OBnuqI4rctihyIxLRm68=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=F1nnNzLyOQaNdQjTSelqCaCQVWgchkSOBQNAWoookCY=;
- b=wCoiG9WEoPdk9J2DWeswyYfYRNQRUg0W9MhwuvO3TUPYJ0ZAV1f+KzjcQKdiL8ERD7
- kGtoKskWb/8BV2drSQoO3xrp/HtO/K02KsJ3F+iRcvXQ+HryxOOqiuEJN6EWV55tKyMH
- gKS02vA4rx3/w8lWzmnIzGZlQwzRY/V1COurMUT+NxUl0wJGG/6sJv2B7ntcO4ZHcFru
- nHULu4puL4z5BmMWzz5xhCgE9M/NJ6ePRG6P6vqJ49+tJGGUTqecJFwVFm09ICIhJbcZ
- IjNuUyX7Tp9MG8h9KwHIfU/ceOkdhmqZ2X1xK/QVCcRwsRBSJu0vv9bYosECJcojY+8C
- NH/Q==
-X-Gm-Message-State: ANoB5pmvv6YjJD9/FHGpDDYgZAVZ5gG9u34YyqGjoujGcx8ZpQ7KNLCd
- yg8aGedN3IElYkJiUfwFlE8=
-X-Google-Smtp-Source: AA0mqf7/uebvjHaXzOuR9KmBtqEyWpoBDGuBq7hNs4k6T6ENKCAlbBhTg518gBmwcglR002h5YjB0g==
-X-Received: by 2002:a05:6638:3e90:b0:370:a45d:f2e4 with SMTP id
- ch16-20020a0566383e9000b00370a45df2e4mr1701464jab.268.1668205052026; 
- Fri, 11 Nov 2022 14:17:32 -0800 (PST)
-Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
- by smtp.googlemail.com with ESMTPSA id
- c5-20020a928e05000000b002f611806ae9sm1113457ild.60.2022.11.11.14.17.31
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=FvAh4jTbCKC82yvtx72szM35nEYutGpl1oOOpA33+TU=;
+ b=QBot0MfVLLfCe3egYBBV2ChQFx+xwVqTneT8f+I4jiaE3fOqKdmThQjNG4WX6HOxU8
+ ASnyaVYyMhUwPZKGt05nj0//783cuP5beWGrzyaHbDS1Y2M2wFgWboYmsEaqoIFQq4jH
+ Cuxotmw5pjmYjg2Mxy4NK21aHPTchkX9DXLCbG9mg2ZYkLttnhLpVdw5a4Ej7P+hIUlE
+ MdYsa3/s+VHQ+xP5VgstYUTsS31T3o2VFjCX0gtxE2lZZDYrOn2A0CCY1HPGF4InPKnh
+ W+I8MZ0wZceIHNYeUGzliTObxShD9zvUdsp7aE/1qcLbpB6+A4Du2maXsOHAKhEXEGrl
+ c6Nw==
+X-Gm-Message-State: ANoB5pl6y9ZtKaqBUA0Ctesfb3GXiRLE/muwIL1J8B6J8hgb+V89xyx3
+ LnZ5klWdy8F/aa8rabtyj/7IS9sgEyNE+Q==
+X-Google-Smtp-Source: AA0mqf6UAxzYKJTocoD3/yschKqp/aeGxFuHf6qcx08Q+CSrK+U4ad4/KEBrNPIw9zLuaakmnnBCMQ==
+X-Received: by 2002:a37:b2c6:0:b0:6fa:3204:330b with SMTP id
+ b189-20020a37b2c6000000b006fa3204330bmr3063558qkf.114.1668207017220; 
+ Fri, 11 Nov 2022 14:50:17 -0800 (PST)
+Received: from wilburliny.c.googlers.com.com
+ (189.216.85.34.bc.googleusercontent.com. [34.85.216.189])
+ by smtp.gmail.com with ESMTPSA id
+ a66-20020ae9e845000000b006ea7f9d8644sm2094297qkg.96.2022.11.11.14.50.16
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 11 Nov 2022 14:17:31 -0800 (PST)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: jbaron@akamai.com, gregkh@linuxfoundation.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Date: Fri, 11 Nov 2022 15:17:15 -0700
-Message-Id: <20221111221715.563020-8-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221111221715.563020-1-jim.cromie@gmail.com>
-References: <20220912052852.1123868-1-jim.cromie@gmail.com>
- <20221111221715.563020-1-jim.cromie@gmail.com>
+ Fri, 11 Nov 2022 14:50:16 -0800 (PST)
+From: "Steven 'Steve' Kendall" <skend@chromium.org>
+X-Google-Original-From: Steven 'Steve' Kendall <skend@google.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 11 Nov 2022 22:49:30 +0000
+Message-Id: <20221111224930.3961511-1-skend@google.com>
+X-Mailer: git-send-email 2.38.1.431.g37b22c650d-goog
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 7/7] dyndbg: replace classmap list with a vector
+Subject: [Intel-gfx] [PATCH] drm/i915: disable DMC idle states for Intel UHD
+ Graphics 620
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,170 +68,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jim Cromie <jim.cromie@gmail.com>, daniel.vetter@ffwll.ch,
- linux@rasmusvillemoes.dk, seanpaul@chromium.org, joe@perches.com
+Cc: daniel@ffwll.ch, rodrigo.vivi@intel.com,
+ Steven 'Steve' Kendall <skend@google.com>, airlied@gmail.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Classmaps are stored/linked in a section/array, but are each added to
-the module's ddebug_table.maps list-head.
+Some machines with Intel UHD Graphics 620 (8086:5917) such as Dell
+Latitude 7490 are unable to wake from sleep. Disable DMC for
+Intel UHD Graphics 620.
 
-This is unnecessary; even when ddebug_attach_classmap() is handling
-the builtin section (with classmaps for multiple builtin modules), its
-contents are ordered, so a module's possibly multiple classmaps will
-be consecutive in the section, and could be treated as a vector/block,
-since both start-addy and subrange length are in the ddebug_info arg.
-
-So this changes:
-
-struct ddebug_table gets: classes for the start-addy, num_classes for
-the length (placed to improve struct packing).
-
-The loading: in ddebug_attach_module_classes(), replace the
-for-the-modname list-add loop, with a forloop that finds the module's
-subrange (start,length) of matching classmaps within the possibly
-builtin classmaps vector, and saves those to the ddebug_table.
-
-The reading/using: change list-foreach loops in ddebug_class_name() &
-ddebug_find_valid_class() to walk the array from start to length.
-
-Also move #define __outvar up, above an added use in a fn-prototype.
-
-Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
+Link: https://gitlab.freedesktop.org/drm/intel/-/issues/7339
+Signed-off-by: Steven 'Steve' Kendall <skend@google.com>
 ---
- lib/dynamic_debug.c | 61 ++++++++++++++++++++++++---------------------
- 1 file changed, 32 insertions(+), 29 deletions(-)
+ drivers/gpu/drm/i915/i915_pci.c | 14 ++++++++++++++
+ include/drm/i915_pciids.h       |  6 +++++-
+ 2 files changed, 19 insertions(+), 1 deletion(-)
 
-diff --git a/lib/dynamic_debug.c b/lib/dynamic_debug.c
-index 48ca1387a409..fd5296dbb40f 100644
---- a/lib/dynamic_debug.c
-+++ b/lib/dynamic_debug.c
-@@ -45,10 +45,11 @@ extern struct ddebug_class_map __start___dyndbg_classes[];
- extern struct ddebug_class_map __stop___dyndbg_classes[];
- 
- struct ddebug_table {
--	struct list_head link, maps;
-+	struct list_head link;
- 	const char *mod_name;
--	unsigned int num_ddebugs;
- 	struct _ddebug *ddebugs;
-+	struct ddebug_class_map *classes;
-+	unsigned int num_ddebugs, num_classes;
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index cd4487a1d3be..ea148be46b14 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -697,6 +697,10 @@ static const struct intel_device_info skl_gt4_info = {
+ 	.gt = 4,
  };
  
- struct ddebug_query {
-@@ -146,13 +147,15 @@ static void vpr_info_dq(const struct ddebug_query *query, const char *msg)
- 		  query->first_lineno, query->last_lineno, query->class_string);
- }
++#define GEN9_DMCLESS_FEATURES \
++	GEN9_FEATURES, \
++	.__runtime.has_dmc = 0
++
+ #define GEN9_LP_FEATURES \
+ 	GEN(9), \
+ 	.is_lp = 1, \
+@@ -753,6 +757,10 @@ static const struct intel_device_info glk_info = {
+ 	GEN9_FEATURES, \
+ 	PLATFORM(INTEL_KABYLAKE)
  
-+#define __outvar /* filled by callee */
- static struct ddebug_class_map *ddebug_find_valid_class(struct ddebug_table const *dt,
--							  const char *class_string, int *class_id)
-+							const char *class_string,
-+							__outvar int *class_id)
- {
- 	struct ddebug_class_map *map;
--	int idx;
-+	int i, idx;
- 
--	list_for_each_entry(map, &dt->maps, link) {
-+	for (map = dt->classes, i = 0; i < dt->num_classes; i++, map++) {
- 		idx = match_string(map->class_names, map->length, class_string);
- 		if (idx >= 0) {
- 			*class_id = idx + map->base;
-@@ -163,7 +166,6 @@ static struct ddebug_class_map *ddebug_find_valid_class(struct ddebug_table cons
- 	return NULL;
- }
- 
--#define __outvar /* filled by callee */
- /*
-  * Search the tables for _ddebug's which match the given `query' and
-  * apply the `flags' and `mask' to them.  Returns number of matching
-@@ -1109,9 +1111,10 @@ static void *ddebug_proc_next(struct seq_file *m, void *p, loff_t *pos)
- 
- static const char *ddebug_class_name(struct ddebug_iter *iter, struct _ddebug *dp)
- {
--	struct ddebug_class_map *map;
-+	struct ddebug_class_map *map = iter->table->classes;
-+	int i, nc = iter->table->num_classes;
- 
--	list_for_each_entry(map, &iter->table->maps, link)
-+	for (i = 0; i < nc; i++, map++)
- 		if (class_in_range(dp->class_id, map))
- 			return map->class_names[dp->class_id - map->base];
- 
-@@ -1195,30 +1198,31 @@ static const struct proc_ops proc_fops = {
- 	.proc_write = ddebug_proc_write
++#define KBL_DMCLESS_PLATFORM \
++	GEN9_DMCLESS_FEATURES, \
++	PLATFORM(INTEL_KABYLAKE)
++
+ static const struct intel_device_info kbl_gt1_info = {
+ 	KBL_PLATFORM,
+ 	.gt = 1,
+@@ -763,6 +771,11 @@ static const struct intel_device_info kbl_gt2_info = {
+ 	.gt = 2,
  };
  
--static void ddebug_attach_module_classes(struct ddebug_table *dt,
--					 struct ddebug_class_map *classes,
--					 int num_classes)
-+static void ddebug_attach_module_classes(struct ddebug_table *dt, struct _ddebug_info *di)
- {
- 	struct ddebug_class_map *cm;
--	int i, j, ct = 0;
-+	int i, nc = 0;
++static const struct intel_device_info dmcless_kbl_gt2_info = {
++	KBL_DMCLESS_PLATFORM,
++	.gt = 2,
++};
++
+ static const struct intel_device_info kbl_gt3_info = {
+ 	KBL_PLATFORM,
+ 	.gt = 3,
+@@ -1202,6 +1215,7 @@ static const struct pci_device_id pciidlist[] = {
+ 	INTEL_GLK_IDS(&glk_info),
+ 	INTEL_KBL_GT1_IDS(&kbl_gt1_info),
+ 	INTEL_KBL_GT2_IDS(&kbl_gt2_info),
++	DMCLESS_INTEL_KBL_GT2_IDS(&dmcless_kbl_gt2_info),
+ 	INTEL_KBL_GT3_IDS(&kbl_gt3_info),
+ 	INTEL_KBL_GT4_IDS(&kbl_gt3_info),
+ 	INTEL_AML_KBL_GT2_IDS(&kbl_gt2_info),
+diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
+index 4a4c190f7698..93bea60772ff 100644
+--- a/include/drm/i915_pciids.h
++++ b/include/drm/i915_pciids.h
+@@ -420,11 +420,15 @@
+ 	INTEL_KBL_ULT_GT2_IDS(info), \
+ 	INTEL_KBL_ULX_GT2_IDS(info), \
+ 	INTEL_VGA_DEVICE(0x5912, info), /* DT  GT2 */ \
+-	INTEL_VGA_DEVICE(0x5917, info), /* Mobile GT2 */ \
+ 	INTEL_VGA_DEVICE(0x591A, info), /* SRV GT2 */ \
+ 	INTEL_VGA_DEVICE(0x591B, info), /* Halo GT2 */ \
+ 	INTEL_VGA_DEVICE(0x591D, info) /* WKS GT2 */
  
--	for (cm = classes, i = 0; i < num_classes; i++, cm++) {
-+	/*
-+	 * Find this module's classmaps in a subrange/wholerange of
-+	 * the builtin/modular classmap vector/section.  Save the start
-+	 * and length of the subrange at its edges.
-+	 */
-+	for (cm = di->classes, i = 0; i < di->num_classes; i++, cm++) {
++#define DMCLESS_INTEL_KBL_GT2_IDS(info) \
++	INTEL_KBL_ULT_GT2_IDS(info), \
++	INTEL_KBL_ULX_GT2_IDS(info), \
++	INTEL_VGA_DEVICE(0x5917, info) /* Mobile GT2 */
++
+ #define INTEL_KBL_ULT_GT3_IDS(info) \
+ 	INTEL_VGA_DEVICE(0x5926, info) /* ULT GT3 */
  
- 		if (!strcmp(cm->mod_name, dt->mod_name)) {
--
--			v2pr_info("class[%d]: module:%s base:%d len:%d ty:%d\n", i,
--				  cm->mod_name, cm->base, cm->length, cm->map_type);
--
--			for (j = 0; j < cm->length; j++)
--				v3pr_info(" %d: %d %s\n", j + cm->base, j,
--					  cm->class_names[j]);
--
--			list_add(&cm->link, &dt->maps);
--			ct++;
-+			if (!nc) {
-+				v2pr_info("start subrange, class[%d]: module:%s base:%d len:%d ty:%d\n",
-+					  i, cm->mod_name, cm->base, cm->length, cm->map_type);
-+				dt->classes = cm;
-+			}
-+			nc++;
- 		}
- 	}
--	if (ct)
--		vpr_info("module:%s attached %d classes\n", dt->mod_name, ct);
-+	if (nc) {
-+		dt->num_classes = nc;
-+		vpr_info("module:%s attached %d classes\n", dt->mod_name, nc);
-+	}
- }
- 
- /*
-@@ -1252,10 +1256,9 @@ static int __ddebug_add_module(struct _ddebug_info *di, unsigned int base,
- 	dt->num_ddebugs = di->num_descs;
- 
- 	INIT_LIST_HEAD(&dt->link);
--	INIT_LIST_HEAD(&dt->maps);
- 
- 	if (di->classes && di->num_classes)
--		ddebug_attach_module_classes(dt, di->classes, di->num_classes);
-+		ddebug_attach_module_classes(dt, di);
- 
- 	mutex_lock(&ddebug_lock);
- 	list_add_tail(&dt->link, &ddebug_tables);
-@@ -1344,8 +1347,8 @@ static void ddebug_remove_all_tables(void)
- 	mutex_lock(&ddebug_lock);
- 	while (!list_empty(&ddebug_tables)) {
- 		struct ddebug_table *dt = list_entry(ddebug_tables.next,
--						      struct ddebug_table,
--						      link);
-+						     struct ddebug_table,
-+						     link);
- 		ddebug_table_free(dt);
- 	}
- 	mutex_unlock(&ddebug_lock);
 -- 
-2.38.1
+2.38.1.431.g37b22c650d-goog
 
