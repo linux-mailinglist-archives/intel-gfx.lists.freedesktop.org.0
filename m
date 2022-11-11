@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1AF9625A7D
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Nov 2022 13:31:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5ED5625A7F
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Nov 2022 13:31:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 372B410E170;
-	Fri, 11 Nov 2022 12:31:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60A9710E18B;
+	Fri, 11 Nov 2022 12:31:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8137210E167
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Nov 2022 12:31:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AE3F10E170
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Nov 2022 12:31:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668169886; x=1699705886;
+ t=1668169889; x=1699705889;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=PJ3QkKoVtC+alfvBwop7Aucl4YB4uyO9mL/h2P67TUc=;
- b=SCnAo5kpQjz/bcFvXE8sNp35m5EVKfNHE0wBhh8glEwxrtJRIabl9AKJ
- e7X3exJ3f0eOVdldEbiwb/z+dXpPItTKjzRzZCnW7vIaZ/BD08dMwqzkb
- gt8poYS23lewZz11crw/4a3p18Hgf4HVspx4zKSQBmHZVoR33pqo98Sjc
- wwNdocyZu6dfbkQpMfVzZi8SSBSzCM2NDgXYVW3N1U6ettkQ+MnpWrRr7
- /FRmCEM++zUar8n7kwIfkxzkWWMWYjKC+Ognvq/Y8MhnO22ylcoLpUhpK
- n2XcBurFzd1BnzbxiFIMf7EaqKFbck7cI2yFlAb0AzPAjwrNd7ay11Wc7 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10527"; a="397883334"
-X-IronPort-AV: E=Sophos;i="5.96,156,1665471600"; d="scan'208";a="397883334"
+ bh=AWBj6SldDNOSJUJuaZX+3uLv5396cAW1IAX3dFfiAso=;
+ b=i7zzBAJCKt/uNG4RPmS4JPQbTNC5uueaTq+OnR7XsnJLZRK6J8ppSUXu
+ rvNGUjfDwVP6p3KAauJUaQSrGruOzsE6TMOP47AS8xTi9LbMx6nzseYpJ
+ khs37e24dE/GAI2z9+69hkbn1lfJ5GUhyV4YOBjOsOtJOfJ1o1ZyTLo1F
+ WMRO5ilOY1dnft3Yv/PHP1Ut2oeBEjmq0uH1eWD5D4tF2LjsEyFO+18fI
+ hKj7Yx0KSWY9eha2wjGQY4YELe4qnsD7dYZLYMbwnEQ15faVKcSUJV5j0
+ HAuRLLvSxnz8DonOWIlJmQ3Q9NNRxP0LSrGqY61eYcIDJWW74xgNRCvwL A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10527"; a="397883346"
+X-IronPort-AV: E=Sophos;i="5.96,156,1665471600"; d="scan'208";a="397883346"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2022 04:31:26 -0800
+ 11 Nov 2022 04:31:29 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10527"; a="632023095"
-X-IronPort-AV: E=Sophos;i="5.96,156,1665471600"; d="scan'208";a="632023095"
+X-IronPort-AV: E=McAfee;i="6500,9779,10527"; a="632023100"
+X-IronPort-AV: E=Sophos;i="5.96,156,1665471600"; d="scan'208";a="632023100"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by orsmga007.jf.intel.com with SMTP; 11 Nov 2022 04:31:24 -0800
+ by orsmga007.jf.intel.com with SMTP; 11 Nov 2022 04:31:27 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 11 Nov 2022 14:31:23 +0200
+ Fri, 11 Nov 2022 14:31:26 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 11 Nov 2022 14:31:17 +0200
-Message-Id: <20221111123120.7759-2-ville.syrjala@linux.intel.com>
+Date: Fri, 11 Nov 2022 14:31:18 +0200
+Message-Id: <20221111123120.7759-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.37.4
 In-Reply-To: <20221111123120.7759-1-ville.syrjala@linux.intel.com>
 References: <20221111123120.7759-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/4] drm/i915: Pass intel_plane to plane
+Subject: [Intel-gfx] [PATCH 2/4] drm/i915: Print plane name in fbc
  tracepoints
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,134 +65,97 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Pass intel_plane rather than drm_plane to the plane tracepoints.
-Matches what we do eg. with the fbc tracepoints. Using the same
-type for everything will help with digging out the device name
-from the plane in the future.
+Print the name of the plane in the fbc tracepoints. As the
+pipe<->plane assignment can vary on old hw it's probably
+more helpful to see both the plane and the pipe names together.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- .../gpu/drm/i915/display/intel_atomic_plane.c |  6 ++---
- .../drm/i915/display/intel_display_trace.h    | 26 +++++++++----------
- 2 files changed, 16 insertions(+), 16 deletions(-)
+ .../drm/i915/display/intel_display_trace.h    | 21 +++++++++++++------
+ 1 file changed, 15 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index bcf0239b9533..10e1fc9d0698 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -757,7 +757,7 @@ void intel_plane_update_noarm(struct intel_plane *plane,
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 
--	trace_intel_plane_update_noarm(&plane->base, crtc);
-+	trace_intel_plane_update_noarm(plane, crtc);
- 
- 	if (plane->update_noarm)
- 		plane->update_noarm(plane, crtc_state, plane_state);
-@@ -769,7 +769,7 @@ void intel_plane_update_arm(struct intel_plane *plane,
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 
--	trace_intel_plane_update_arm(&plane->base, crtc);
-+	trace_intel_plane_update_arm(plane, crtc);
- 
- 	if (crtc_state->do_async_flip && plane->async_flip)
- 		plane->async_flip(plane, crtc_state, plane_state, true);
-@@ -782,7 +782,7 @@ void intel_plane_disable_arm(struct intel_plane *plane,
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 
--	trace_intel_plane_disable_arm(&plane->base, crtc);
-+	trace_intel_plane_disable_arm(plane, crtc);
- 	plane->disable_arm(plane, crtc_state);
- }
- 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_trace.h b/drivers/gpu/drm/i915/display/intel_display_trace.h
-index 2dd5a4b7f5d8..1a3955bcb77f 100644
+index 1a3955bcb77f..096168ae8e2a 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_trace.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_trace.h
-@@ -284,7 +284,7 @@ TRACE_EVENT(vlv_fifo_size,
- );
- 
- TRACE_EVENT(intel_plane_update_noarm,
--	    TP_PROTO(struct drm_plane *plane, struct intel_crtc *crtc),
-+	    TP_PROTO(struct intel_plane *plane, struct intel_crtc *crtc),
- 	    TP_ARGS(plane, crtc),
+@@ -369,6 +369,7 @@ TRACE_EVENT(intel_fbc_activate,
+ 	    TP_ARGS(plane),
  
  	    TP_STRUCT__entry(
-@@ -293,16 +293,16 @@ TRACE_EVENT(intel_plane_update_noarm,
- 			     __field(u32, scanline)
- 			     __array(int, src, 4)
- 			     __array(int, dst, 4)
--			     __string(name, plane->name)
 +			     __string(name, plane->base.name)
- 			     ),
- 
- 	    TP_fast_assign(
--			   __assign_str(name, plane->name);
-+			   __assign_str(name, plane->base.name);
- 			   __entry->pipe = crtc->pipe;
- 			   __entry->frame = intel_crtc_get_vblank_counter(crtc);
- 			   __entry->scanline = intel_get_crtc_scanline(crtc);
--			   memcpy(__entry->src, &plane->state->src, sizeof(__entry->src));
--			   memcpy(__entry->dst, &plane->state->dst, sizeof(__entry->dst));
-+			   memcpy(__entry->src, &plane->base.state->src, sizeof(__entry->src));
-+			   memcpy(__entry->dst, &plane->base.state->dst, sizeof(__entry->dst));
- 			   ),
- 
- 	    TP_printk("pipe %c, plane %s, frame=%u, scanline=%u, " DRM_RECT_FP_FMT " -> " DRM_RECT_FMT,
-@@ -313,7 +313,7 @@ TRACE_EVENT(intel_plane_update_noarm,
- );
- 
- TRACE_EVENT(intel_plane_update_arm,
--	    TP_PROTO(struct drm_plane *plane, struct intel_crtc *crtc),
-+	    TP_PROTO(struct intel_plane *plane, struct intel_crtc *crtc),
- 	    TP_ARGS(plane, crtc),
- 
- 	    TP_STRUCT__entry(
-@@ -322,16 +322,16 @@ TRACE_EVENT(intel_plane_update_arm,
- 			     __field(u32, scanline)
- 			     __array(int, src, 4)
- 			     __array(int, dst, 4)
--			     __string(name, plane->name)
-+			     __string(name, plane->base.name)
- 			     ),
- 
- 	    TP_fast_assign(
--			   __assign_str(name, plane->name);
-+			   __assign_str(name, plane->base.name);
- 			   __entry->pipe = crtc->pipe;
- 			   __entry->frame = intel_crtc_get_vblank_counter(crtc);
- 			   __entry->scanline = intel_get_crtc_scanline(crtc);
--			   memcpy(__entry->src, &plane->state->src, sizeof(__entry->src));
--			   memcpy(__entry->dst, &plane->state->dst, sizeof(__entry->dst));
-+			   memcpy(__entry->src, &plane->base.state->src, sizeof(__entry->src));
-+			   memcpy(__entry->dst, &plane->base.state->dst, sizeof(__entry->dst));
- 			   ),
- 
- 	    TP_printk("pipe %c, plane %s, frame=%u, scanline=%u, " DRM_RECT_FP_FMT " -> " DRM_RECT_FMT,
-@@ -342,18 +342,18 @@ TRACE_EVENT(intel_plane_update_arm,
- );
- 
- TRACE_EVENT(intel_plane_disable_arm,
--	    TP_PROTO(struct drm_plane *plane, struct intel_crtc *crtc),
-+	    TP_PROTO(struct intel_plane *plane, struct intel_crtc *crtc),
- 	    TP_ARGS(plane, crtc),
- 
- 	    TP_STRUCT__entry(
  			     __field(enum pipe, pipe)
  			     __field(u32, frame)
  			     __field(u32, scanline)
--			     __string(name, plane->name)
-+			     __string(name, plane->base.name)
- 			     ),
- 
+@@ -377,13 +378,15 @@ TRACE_EVENT(intel_fbc_activate,
  	    TP_fast_assign(
--			   __assign_str(name, plane->name);
-+			   __assign_str(name, plane->base.name);
+ 			   struct intel_crtc *crtc = intel_crtc_for_pipe(to_i915(plane->base.dev),
+ 									 plane->pipe);
++			   __assign_str(name, plane->base.name)
  			   __entry->pipe = crtc->pipe;
  			   __entry->frame = intel_crtc_get_vblank_counter(crtc);
  			   __entry->scanline = intel_get_crtc_scanline(crtc);
+ 			   ),
+ 
+-	    TP_printk("pipe %c, frame=%u, scanline=%u",
+-		      pipe_name(__entry->pipe), __entry->frame, __entry->scanline)
++	    TP_printk("pipe %c, plane %s, frame=%u, scanline=%u",
++		      pipe_name(__entry->pipe), __get_str(name),
++		      __entry->frame, __entry->scanline)
+ );
+ 
+ TRACE_EVENT(intel_fbc_deactivate,
+@@ -391,6 +394,7 @@ TRACE_EVENT(intel_fbc_deactivate,
+ 	    TP_ARGS(plane),
+ 
+ 	    TP_STRUCT__entry(
++			     __string(name, plane->base.name)
+ 			     __field(enum pipe, pipe)
+ 			     __field(u32, frame)
+ 			     __field(u32, scanline)
+@@ -399,13 +403,15 @@ TRACE_EVENT(intel_fbc_deactivate,
+ 	    TP_fast_assign(
+ 			   struct intel_crtc *crtc = intel_crtc_for_pipe(to_i915(plane->base.dev),
+ 									 plane->pipe);
++			   __assign_str(name, plane->base.name)
+ 			   __entry->pipe = crtc->pipe;
+ 			   __entry->frame = intel_crtc_get_vblank_counter(crtc);
+ 			   __entry->scanline = intel_get_crtc_scanline(crtc);
+ 			   ),
+ 
+-	    TP_printk("pipe %c, frame=%u, scanline=%u",
+-		      pipe_name(__entry->pipe), __entry->frame, __entry->scanline)
++	    TP_printk("pipe %c, plane %s, frame=%u, scanline=%u",
++		      pipe_name(__entry->pipe), __get_str(name),
++		      __entry->frame, __entry->scanline)
+ );
+ 
+ TRACE_EVENT(intel_fbc_nuke,
+@@ -413,6 +419,7 @@ TRACE_EVENT(intel_fbc_nuke,
+ 	    TP_ARGS(plane),
+ 
+ 	    TP_STRUCT__entry(
++			     __string(name, plane->base.name)
+ 			     __field(enum pipe, pipe)
+ 			     __field(u32, frame)
+ 			     __field(u32, scanline)
+@@ -421,13 +428,15 @@ TRACE_EVENT(intel_fbc_nuke,
+ 	    TP_fast_assign(
+ 			   struct intel_crtc *crtc = intel_crtc_for_pipe(to_i915(plane->base.dev),
+ 									 plane->pipe);
++			   __assign_str(name, plane->base.name)
+ 			   __entry->pipe = crtc->pipe;
+ 			   __entry->frame = intel_crtc_get_vblank_counter(crtc);
+ 			   __entry->scanline = intel_get_crtc_scanline(crtc);
+ 			   ),
+ 
+-	    TP_printk("pipe %c, frame=%u, scanline=%u",
+-		      pipe_name(__entry->pipe), __entry->frame, __entry->scanline)
++	    TP_printk("pipe %c, plane %s, frame=%u, scanline=%u",
++		      pipe_name(__entry->pipe), __get_str(name),
++		      __entry->frame, __entry->scanline)
+ );
+ 
+ TRACE_EVENT(intel_crtc_vblank_work_start,
 -- 
 2.37.4
 
