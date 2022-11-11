@@ -1,63 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3C67632801
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Nov 2022 16:27:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D6C3632824
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Nov 2022 16:29:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B34B010E307;
-	Mon, 21 Nov 2022 15:26:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A5A010E301;
+	Mon, 21 Nov 2022 15:29:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x449.google.com (mail-pf1-x449.google.com
- [IPv6:2607:f8b0:4864:20::449])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BDDB10E16B
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Nov 2022 00:22:32 +0000 (UTC)
-Received: by mail-pf1-x449.google.com with SMTP id
- t10-20020aa7946a000000b0057193a6891eso726473pfq.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Nov 2022 16:22:32 -0800 (PST)
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com
+ [IPv6:2607:f8b0:4864:20::1036])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 027BB10E17E
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Nov 2022 17:07:40 +0000 (UTC)
+Received: by mail-pj1-x1036.google.com with SMTP id o7so4940202pjj.1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Nov 2022 09:07:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:reply-to:from:to:cc:subject:date:message-id:reply-to;
- bh=n36J7s+0ilM0Tsn5slAdsXyaRWJfxWCAeT/6FWqeTp8=;
- b=TZiKdFTbv7ULH977/XXkoaKwCBWIUXcZgjj3kk67qk6G/7NTnWl7f9ErIfa3sgs6Iu
- PIE2j9lVQnRevVhSmgy5ghpMaowZSmo/JvV26NB/u5XUxIGVX2T3kGhGEB+GX40/BH+e
- dMm5i34zN0Ep9bgjqiptCmyqKJTPz98+Gc5Erv/2Hk0eC6sx/JrEjrvIb4L//JadZb+D
- yyrZCQmeoRcq14GM/aKC8IJAyy66Zz5B57Ex00OXo4YACUPRLXDVs9TboavE9uxTi60O
- H5HIhz1q4T4MEoC0qbI3gIAqHaqRVBYY+wU9Sv6jmDDDGplg8ezaO+Oydl1V1nV+l4ZE
- GG4Q==
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=LICHPg6UnYkTNsPkbQmwYKBGSoVvJ3ggmuJEwwsBdfE=;
+ b=XZlbgoFLBfg1b1W761+z1PDAgEb20H2QO0ci+u5UoReXW/AglYt37kfLNyiRzXCbun
+ 16a/vNSD6OLG51wXjymdIRV5K9+yHSAOu082YpoTDDKE/vWKWzBoXD0ip80QsNnXeMJr
+ XUiBolJ/U5H4SS51K9h10zFLgGeuRJ3ETLcS/qaSX/VswfZGD0HWGQophC9d+8et+N8D
+ Rcu5KGn6L35gbiXzVxNNzg/1YqsSpk7Imvy500y3L07kqkpPLt+0VZ5sct2ejFIWJ747
+ 3+UH3Cce+XE9LjmMHIqul5KXKnZHUHLmRehpGUfslQ2VrfCosOP4gZwFjBB/ttBcN/Ae
+ 9vMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:reply-to:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=n36J7s+0ilM0Tsn5slAdsXyaRWJfxWCAeT/6FWqeTp8=;
- b=fTJlouNNi9NGJF/5ifqQWEyU6kdav2CPBBsWISTguhIbR4S0epuVgkoHWwfzmSPte/
- iqhVmPhlfJ2KPw+lioXQkPZsLGwf9NFdWVHySkfvSjU7ao2kLmbrtseFG/sXYgqKzwhs
- tG/qcTxDcGRjmmtlT6PhTiEzhWCrvTp7fpJiJkIBD/VoCLjj6TugHdu7HlRbm7vNE65h
- j3oPm60eaOi4jcdd7rOv2Z5e7xgYwLGnPWY6VN1c53BknL/lUT5uhcctOF5ILwC0TiYv
- KlkVS46cqu/4d6u5OYuOeUzCtZGgi6GmsQRDaGnKZ0H1qvbArYcDSQs5CHj82GSvsrdW
- tahA==
-X-Gm-Message-State: ANoB5pmCua0+Epo+pcE2qBqOHm1gAuMVHuwiLj6IopuX4tIZ8hE2PA71
- 80raeDCtP/4ermKxbu3VEw+Ym2G9uE4=
-X-Google-Smtp-Source: AA0mqf59PK1ce8OQvm+mdu5I4wtiwB4LZ1gWqBvwwJnwlP7+YuZxp1WsB+ro/Om0CHqF+A4TMJj0VFzo6aE=
-X-Received: from zagreus.c.googlers.com
- ([fda3:e722:ac3:cc00:7f:e700:c0a8:5c37])
- (user=seanjc job=sendgmr) by 2002:a17:902:dac4:b0:186:5f54:18cf with SMTP id
- q4-20020a170902dac400b001865f5418cfmr4884plx.141.1668126151578; Thu, 10 Nov
- 2022 16:22:31 -0800 (PST)
-Date: Fri, 11 Nov 2022 00:22:25 +0000
-In-Reply-To: <20221111002225.2418386-1-seanjc@google.com>
-Mime-Version: 1.0
-References: <20221111002225.2418386-1-seanjc@google.com>
-X-Mailer: git-send-email 2.38.1.431.g37b22c650d-goog
-Message-ID: <20221111002225.2418386-3-seanjc@google.com>
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=LICHPg6UnYkTNsPkbQmwYKBGSoVvJ3ggmuJEwwsBdfE=;
+ b=uuA91IJFaKyApXioQCGXus0u9pltT/Ii/plAXhOrZoC6gBXPbNg0SSS2PFIALUpg6s
+ +W+iHjuECukK7jCZ0EGFr6dURuvP/Ya4f1hefwOFIITkEqQBSLFwiARLWipjGiqWLtwq
+ QcIlv69nccBS/vBasR/vAYs1AEI0Okl0kUuER2Esef/nwmh141qS+t07dLgqMm48GEm6
+ TUKVTxOk7HBFVFVQzuVVuyEUADn/h5kaOTPgfMPLqL97628WO1dk/+9PfA8+qiEkpo4t
+ YEBsA49/4f/Xj4fagg3LAehv0V+pEncfFXOrX9Ko1dzWXLgHFj9WqBwuocLpQUVC4S27
+ 5jhA==
+X-Gm-Message-State: ANoB5pngj5pmdRCMeV1hbR3gfqRZg8qK6Ev2qWzGdU5+JME40g7spDw8
+ Gg7IQ3ch7yWKXhjE1wUrJnAJEw==
+X-Google-Smtp-Source: AA0mqf5Uo+YykjZZDEd2A/F0GfL+xhYTbei/GO+GSdCfD2x/gs2dZlHf5v1zmNbQnCxh9OBRghbP8A==
+X-Received: by 2002:a17:90b:4b50:b0:213:5c5f:f440 with SMTP id
+ mi16-20020a17090b4b5000b002135c5ff440mr2919822pjb.15.1668186460347; 
+ Fri, 11 Nov 2022 09:07:40 -0800 (PST)
+Received: from google.com (7.104.168.34.bc.googleusercontent.com.
+ [34.168.104.7]) by smtp.gmail.com with ESMTPSA id
+ f18-20020a63e312000000b004582e25a595sm1591902pgh.41.2022.11.11.09.07.39
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 11 Nov 2022 09:07:39 -0800 (PST)
+Date: Fri, 11 Nov 2022 17:07:35 +0000
 From: Sean Christopherson <seanjc@google.com>
-To: Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.a.wang@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Mon, 21 Nov 2022 15:26:23 +0000
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/gvt: Unconditionally put reference
- to KVM when detaching vGPU
+To: Yan Zhao <yan.y.zhao@intel.com>
+Message-ID: <Y26BV9a9q8nBz/+7@google.com>
+References: <20221111103247.22275-1-yan.y.zhao@intel.com>
+ <20221111103436.22381-1-yan.y.zhao@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221111103436.22381-1-yan.y.zhao@intel.com>
+X-Mailman-Approved-At: Mon, 21 Nov 2022 15:26:24 +0000
+Subject: Re: [Intel-gfx] [PATCH v2 2/3] drm/i915/gvt: switch from
+ track_flush_slot to track_remove_slot
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,45 +73,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Sean Christopherson <seanjc@google.com>
-Cc: Sean Christopherson <seanjc@google.com>, intel-gfx@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: kvm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, pbonzini@redhat.com,
+ intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Always put the KVM reference when closing a vCPU device, as
-intel_vgpu_open_device() succeeds if and only if the KVM pointer is
-valid and a reference to KVM is acquired.  And if that doesn't hold true,
-the call to kvm_page_track_unregister_notifier() a few lines earlier is
-doomed.
+On Fri, Nov 11, 2022, Yan Zhao wrote:
+> KVMGT only cares about when a slot is indeed removed.
+> So switch to use track_remove_slot which is called when a slot is removed.
 
-Signed-off-by: Sean Christopherson <seanjc@google.com>
----
- drivers/gpu/drm/i915/gvt/kvmgt.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+This should capture the original motivation, i.e. that the existing
+->track_flush_slot() hook is theoretically flawed.  I think it also makes sense
+to call out that KVMGT undoubtedly does the wrong thing if a memslot is moved,
+but that (a) KVMGT has never supported moving memslots and (b) there's no sane
+use case for moving memslots that might be used by the guest for the GTT.
 
-diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
-index e67d5267fde0..714221f9a131 100644
---- a/drivers/gpu/drm/i915/gvt/kvmgt.c
-+++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
-@@ -714,15 +714,14 @@ static void intel_vgpu_close_device(struct vfio_device *vfio_dev)
- 
- 	kvm_page_track_unregister_notifier(vgpu->vfio_device.kvm,
- 					   &vgpu->track_node);
-+	kvm_put_kvm(vgpu->vfio_device.kvm);
-+
- 	kvmgt_protect_table_destroy(vgpu);
- 	gvt_cache_destroy(vgpu);
- 
- 	intel_vgpu_release_msi_eventfd_ctx(vgpu);
- 
- 	vgpu->attached = false;
--
--	if (vgpu->vfio_device.kvm)
--		kvm_put_kvm(vgpu->vfio_device.kvm);
- }
- 
- static u64 intel_vgpu_get_bar_addr(struct intel_vgpu *vgpu, int bar)
--- 
-2.38.1.431.g37b22c650d-goog
+Bonus points if you can figure out a way to capture the restriction in the docs,
+e.g. somewhere in gpu/i915.rst?
 
+Lastly, provide a link to the original discussion which provides even more context.
+
+Link: https://lore.kernel.org/all/20221108084416.11447-1-yan.y.zhao@intel.com
+
+> Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
+> Suggested-by: Sean Christopherson <seanjc@google.com>
+> Signed-off-by: Yan Zhao <yan.y.zhao@intel.com>
+> ---
