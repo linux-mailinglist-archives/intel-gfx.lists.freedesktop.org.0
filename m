@@ -1,63 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A517A6327E9
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Nov 2022 16:26:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4571E6327F5
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Nov 2022 16:26:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2A8710E2F5;
-	Mon, 21 Nov 2022 15:26:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96AD610E2FA;
+	Mon, 21 Nov 2022 15:26:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com
- [IPv6:2607:f8b0:4864:20::436])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F56010E109
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Nov 2022 18:19:20 +0000 (UTC)
-Received: by mail-pf1-x436.google.com with SMTP id m6so5587219pfb.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Nov 2022 10:19:20 -0800 (PST)
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com
+ [IPv6:2607:f8b0:4864:20::52b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B3FA10E1AF
+ for <intel-gfx@lists.freedesktop.org>; Sat, 12 Nov 2022 00:43:12 +0000 (UTC)
+Received: by mail-pg1-x52b.google.com with SMTP id q1so5597619pgl.11
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Nov 2022 16:43:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=E/joC3rBRu6szzAGRTFTKxdLKepicTRIoPul13yjtyo=;
- b=XeJT6PZtgqR21XiJLI4nL1rULhXugV6G1Aak5971SzkfNU+Yve4TGSaM3c1rXphMJq
- UNq8HXQJ9aI09BO/HX+6xKh6RC8IvrjlK0RuGIaeBkfCvEUYI70a9Ux0Kh8ybQchY2B2
- zA9L3w0F+Kj39RljYeEuJqoaAjnuNXOAv+p9tWkbEa75m3I+k66/Y+sVdF5CWt+bKSI3
- rJFhdjE792ZFpMf5YJjeDzj8zde8jaspzGHNLXGmqKn1lTKSj3TvMrCoZUiB6zC4shd6
- XvTNZVwLvIIlCO2hPdCnYq6WMP+IW85H5uuwStvr2mZRwdrimn1rc1ANrx69zoVug5v+
- K8Uw==
+ bh=W/69SGTblteqzTGqi+tKsPG0LW4tOtiDqnrFyQWptaQ=;
+ b=nkkHJRYG9RSNUubkLNubrJI/d3KOEidZrgmUPThr3GFsr7fra6VsI+pb1qqQQ02WKX
+ zF1WmMPVXJP4zWYv5H2yrK2XmJWXLyIYGleBrctfrNS+0hqbbCZ/iqh9/fdMvnZajEwa
+ S7yTODLsbBcMwXwbemvi9xcCSHrHJ12nb+aTQowsorgnzkj19FB9Krp7KBYJxZyP21EO
+ 7pIoX7pjC6wc+oSETXDUqR/kq2X+LicMr3aKFzkyce/50iVQxoQgCThUjuJ/3KLMl8+B
+ z6LnADkM+0e/zYQoLtoBvelqEGFYq3NJyiIEmKpY5AR6UOQqXPItQJPmeuPg0YF/+hoh
+ Qb/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=E/joC3rBRu6szzAGRTFTKxdLKepicTRIoPul13yjtyo=;
- b=Wh9ra8rRFYTljnJCanY7STyrKPJmy/SNze3QD2h0eCzCPkzfb7Rh4wETURNVabC4O4
- aSX8kKxtvjApL91hfgsURpmcV5ykctexvxNuQsckojHLb7VW4inekNPEi9JMywASbXmM
- ObvcMVYejMkLII/sAY0d5Z2EsW2PkjfAj8Z1/JprbF7hfcEePsk7y18q47DBZKyfc5Cq
- gZOi5mBDkjrXdJ/0SzQE4lSShJUi3/2c/XLGPOp+HNvxLsCmSmKx8lvSSm+Ph/Y/1w2w
- r4H3mLeEVxc0aGL8+PozPRHxPCiWkF1t3XIzsawajEu3oH1qz3JReodIHjQTTsv3+t13
- tlcw==
-X-Gm-Message-State: ANoB5plaUbdDmUT8xZYiRz8uWDBJ242/NMRC/4tpRRn1vVOzbTf5ZQ6R
- pXBROlThI/dhle/o52Blx2/45w==
-X-Google-Smtp-Source: AA0mqf7HFVgDPir8+MW/ttweKldJ4iGrAcZDLN5q/SpYzFAno64kC//kH/RNaqrmyuvit8zaDFItUg==
-X-Received: by 2002:a05:6a00:3022:b0:560:e4d1:8df5 with SMTP id
- ay34-20020a056a00302200b00560e4d18df5mr3945850pfb.39.1668190759766; 
- Fri, 11 Nov 2022 10:19:19 -0800 (PST)
+ bh=W/69SGTblteqzTGqi+tKsPG0LW4tOtiDqnrFyQWptaQ=;
+ b=Z/rtFTRe0HoJ+Kri2OUNvw2jhQArx+oWny1WWGZTTzVd7M8Sdv5tJPF/BcDg/qff2g
+ B/5HRwPMDqAEbtBW6V065vLn6+H9v/2SJX3wkoCQaeoePpjOPKEmp0wi4g5WlJy4End7
+ nIX5IRWSLcH2NnsUtW8NXlLF18HX8dCRVKdGo3BIy5bGiGzmsxRCw3dwwvBSd2J5Cm7o
+ mMgH4EEkAtTWGcpQsjOYdZYU7OauySNT92ew0Yn0YpOdr6ERPCW1g8w50qZA7yD/cnGp
+ FZk9xzdcDMEaaZJOTsjvZ5QwSedzoXOZ9yxBkiTMxrc3msoVHKF7bcCZCysDplB8hUMb
+ AhLQ==
+X-Gm-Message-State: ANoB5pkGiROoxAxaz4xTiw+/ImQcija96/oO06/oqQxJgbeqNqPjEepB
+ bQOPdnGQs/3PQDtlBdNX6pWoIA==
+X-Google-Smtp-Source: AA0mqf4WsOfrQhaQruL4asl5Iu86noh/aH6GkJDdmp/AzA4oKTD7iRzggslPFH8j54SEF3nTst7kQA==
+X-Received: by 2002:a62:838f:0:b0:56c:8b7:f2dc with SMTP id
+ h137-20020a62838f000000b0056c08b7f2dcmr5095877pfe.16.1668213791697; 
+ Fri, 11 Nov 2022 16:43:11 -0800 (PST)
 Received: from google.com (7.104.168.34.bc.googleusercontent.com.
  [34.168.104.7]) by smtp.gmail.com with ESMTPSA id
- q19-20020aa78433000000b0056bcfe015c9sm1865286pfn.204.2022.11.11.10.19.18
+ o127-20020a625a85000000b0056bc9294e1asm2154927pfb.24.2022.11.11.16.43.11
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 11 Nov 2022 10:19:18 -0800 (PST)
-Date: Fri, 11 Nov 2022 18:19:15 +0000
+ Fri, 11 Nov 2022 16:43:11 -0800 (PST)
+Date: Sat, 12 Nov 2022 00:43:07 +0000
 From: Sean Christopherson <seanjc@google.com>
 To: Yan Zhao <yan.y.zhao@intel.com>
-Message-ID: <Y26SI3uh8JV0vvO6@google.com>
+Message-ID: <Y27sG3AqVX8yLUgR@google.com>
 References: <20221111103247.22275-1-yan.y.zhao@intel.com>
  <20221111103350.22326-1-yan.y.zhao@intel.com>
+ <Y26SI3uh8JV0vvO6@google.com>
+ <Y27ivXea5SjR5lat@yzhao56-desk.sh.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221111103350.22326-1-yan.y.zhao@intel.com>
+In-Reply-To: <Y27ivXea5SjR5lat@yzhao56-desk.sh.intel.com>
 X-Mailman-Approved-At: Mon, 21 Nov 2022 15:26:24 +0000
 Subject: Re: [Intel-gfx] [PATCH v2 1/3] KVM: x86: add a new page track hook
  track_remove_slot
@@ -79,66 +81,35 @@ Cc: kvm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-TL;DR: I'm going to try to add more aggressive patches for this into my series to
-clean up the KVM side of things, along with many more patches to clean up the page
-track APIs.
+On Sat, Nov 12, 2022, Yan Zhao wrote:
+> And I'm also not sure if a slots_arch_lock is required for
+> kvm_slot_page_track_add_page() and kvm_slot_page_track_remove_page().
 
-I'll post patches next week if things go well (fingers crossed), and if not I'll
-give an update 
+It's not required.  slots_arch_lock protects interaction between memslot updates
+mmu_first_shadow_root_alloc().  When CONFIG_KVM_EXTERNAL_WRITE_TRACKING=y, then
+the mmu_first_shadow_root_alloc() doesn't touch the memslots because everything
+is pre-allocated:
 
-On Fri, Nov 11, 2022, Yan Zhao wrote:
-> Page track hook track_remove_slot is used to notify users that a slot
-> has been removed and is called when a slot DELETE/MOVE is about to be
-> completed.
+bool kvm_page_track_write_tracking_enabled(struct kvm *kvm)
+{
+	return IS_ENABLED(CONFIG_KVM_EXTERNAL_WRITE_TRACKING) ||
+	       !tdp_enabled || kvm_shadow_root_allocated(kvm);
+}
 
-Phrase this as a command, and explain _why_ the new hook is being added, e.g.
+int kvm_page_track_create_memslot(struct kvm *kvm,
+				  struct kvm_memory_slot *slot,
+				  unsigned long npages)
+{
+	if (!kvm_page_track_write_tracking_enabled(kvm)) <== always true
+		return 0;
 
-  Add a new page track hook, track_remove_slot(), that is called when a
-  memslot DELETE/MOVE operation is about to be committed.  The "remove"
-  hook will be used by KVMGT and will effectively replace the existing
-  track_flush_slot() altogether now that KVM itself doesn't rely on the
-  "flush" hook either.
+	return __kvm_page_track_write_tracking_alloc(slot, npages);
+}
 
-  The "flush" hook is flawed as it's invoked before the memslot operation
-  is guaranteed, i.e. KVM might ultimately keep the existing memslot without
-  notifying external page track users, a.k.a. KVMGT.
+Though now that you point it out, it's tempting to #ifdef out some of those hooks
+so that's basically impossible for mmu_first_shadow_root_alloc() to cause problems.
+Not sure the extra #ideffery would be worth while though.
 
-> Users of this hook can drop write protections in the removed slot.
-
-Hmm, actually, on second thought, after thinking about what KVGT is doing in
-response to the memslot update, I think we should be more aggressive and actively
-prevent MOVE if there are external page trackers, i.e. if KVMGT is attached.
-
-Dropping write protections when a memslot is being deleted is a waste of cycles.
-The memslot and thus gfn_track is literally being deleted immediately after invoking
-the hook, updating gfn_track from KVMGT is completely unecessary.
-
-I.e. if we kill off the MOVE path, then KVMGT just needs to delete its hash table
-entry.
-
-Oooh!  Looking at this code again made me realize that the larger page track cleanup
-that I want to do might actually work.  Long story short, I want to stop forcing
-KVMGT to poke into KVM internals, but I thought there was a lock inversion problem.
-
-But AFAICT, there is no such problem.  And the cleanup I want to do will actually
-fix an existing KVMGT bug: kvmgt_page_track_write() invokes kvmgt_gfn_is_write_protected()
-without holding mmu_lock, and thus could consume garbage when walking the hash
-table.
-
-  static void kvmgt_page_track_write(struct kvm_vcpu *vcpu, gpa_t gpa,
-		const u8 *val, int len,
-		struct kvm_page_track_notifier_node *node)
-  {
-	struct intel_vgpu *info =
-		container_of(node, struct intel_vgpu, track_node);
-
-	if (kvmgt_gfn_is_write_protected(info, gpa_to_gfn(gpa)))
-		intel_vgpu_page_track_handler(info, gpa,
-						     (void *)val, len);
-  }
-
-Acquiring mmu_lock isn't an option as intel_vgpu_page_track_handler() might sleep,
-e.g. when acquiring vgpu_lock.
-
-Let me see if the clean up I have in mind will actually work.  If it does, I think
-the end result will be quite nice for both KVM and KVMGT.
+slots_arch_lock also protects shadow_root_allocated, but that's a KVM-internal
+detail that isn't relevant to the page-tracking machinery when
+CONFIG_KVM_EXTERNAL_WRITE_TRACKING=y.
