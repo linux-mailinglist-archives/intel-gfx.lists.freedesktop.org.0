@@ -1,53 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E82EB626A5B
-	for <lists+intel-gfx@lfdr.de>; Sat, 12 Nov 2022 16:57:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBD70626A91
+	for <lists+intel-gfx@lfdr.de>; Sat, 12 Nov 2022 17:30:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32CB910E12C;
-	Sat, 12 Nov 2022 15:57:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C292C10E19D;
+	Sat, 12 Nov 2022 16:29:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0546A10E12C
- for <intel-gfx@lists.freedesktop.org>; Sat, 12 Nov 2022 15:57:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668268621; x=1699804621;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=4S+/2fPJMa70d/CGB9DOSH99J0QsEWFZXALT9znE4DE=;
- b=Joz8bFoEZg54mNyZ/0Ca3AZ7dQ0P8b0CtxYctPm3iMjeaRHNxgpzZ5uM
- vGy89FvOD5/AkXKmX5zzaqcLH07mmw7lqz+E+I0+xkjKFSKJOcaKwuDY5
- m22Qurfn8droJ1N3yM8M6NriOIiFnziM+53s63q6vKPk19nRAE4FQAywb
- FVQrnP6CKHXkOIcd5gJHE3Xcoky01p1nrDGxM/SUTqt7KXo1qAxTldh3k
- SZOIMtuAa3e6P9RP7TeQGWlutKL6PnKptUk148QTPjQ5NRmxx6zc8J1X+
- Ob9jRu/ubjpviocX0YvY12fZH8HiOqL2YlwFlFpoAcZ9U2CikawjPR99y w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10529"; a="299253728"
-X-IronPort-AV: E=Sophos;i="5.96,159,1665471600"; d="scan'208";a="299253728"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2022 07:57:00 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10529"; a="780445013"
-X-IronPort-AV: E=Sophos;i="5.96,159,1665471600"; d="scan'208";a="780445013"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga001.fm.intel.com with SMTP; 12 Nov 2022 07:56:57 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Sat, 12 Nov 2022 17:56:57 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Sat, 12 Nov 2022 17:56:57 +0200
-Message-Id: <20221112155657.7439-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.37.4
-In-Reply-To: <20221110082144.19666-18-ville.syrjala@linux.intel.com>
-References: <20221110082144.19666-18-ville.syrjala@linux.intel.com>
+Received: from smtp.domeneshop.no (smtp.domeneshop.no
+ [IPv6:2a01:5b40:0:3005::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4824710E192;
+ Sat, 12 Nov 2022 16:29:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
+ ; s=ds202112;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=ItdrEzd/ypbcqe2BCw66feMX7m17nPXFSJOaI27/nkQ=; b=rFsBBXpR5kW0ZTIRro+NqvImhk
+ EhsHq7xGOjgbT5Q0JMV7Rup1oo8niXkDANAAgbHovP46Tc9i2Z0T0+LN9Z0LT7Wf4O0AyERaC7N4I
+ sCC0JKdGDK/DiO/FJfBpqhXQkn3Cg72/KQIBKNoHojAbWzpjvqUNB1Z2Ks94AACK4uc2EI2mDnrLv
+ UAKzvHVCTJwswnGU08vwygQY6vCNXKkQDiHrzyAOVaK52Myy4vxamy7VUC0onDOJmUgsGo/nAgNeV
+ yBGpPCv6RuENflkIaDgPHpx4IAYutqo4ui1Fv38RPkkHgqG/nO2Q3qtS5LJe646/zMqtjDhA2brFp
+ 2x15nfjg==;
+Received: from [2a01:799:95a:cb00:9d29:d4c4:45a0:777e] (port=49700)
+ by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+ (Exim 4.92) (envelope-from <noralf@tronnes.org>)
+ id 1ottO1-0006e5-Er; Sat, 12 Nov 2022 17:29:41 +0100
+Message-ID: <02747a6a-567a-5a70-4ab5-735eda8ac179@tronnes.org>
+Date: Sat, 12 Nov 2022 17:29:32 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+To: Maxime Ripard <maxime@cerno.tech>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <mripard@kernel.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Karol Herbst
+ <kherbst@redhat.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Lyude Paul <lyude@redhat.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Emma Anholt <emma@anholt.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>
+References: <20220728-rpi-analog-tv-properties-v8-0-09ce1466967c@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v8-14-09ce1466967c@cerno.tech>
+From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
+In-Reply-To: <20220728-rpi-analog-tv-properties-v8-14-09ce1466967c@cerno.tech>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 17/18] drm/i915: Add 10bit gamma mode for
- gen2/3
+Subject: Re: [Intel-gfx] [PATCH v8 14/24] drm/modes: Properly generate a
+ drm_display_mode from a named mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,516 +67,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Dom Cobley <dom@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ Phil Elwell <phil@raspberrypi.com>, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,
+ Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
+ Hans de Goede <hdegoede@redhat.com>,
+ =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, linux-sunxi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Some gen2/gen3 parts have a 10bit gamma mode, on some pipes.
-Expose it.
 
-The format is different to the later i965+ style in that we
-store a 10bit value and a 6 bit floating point slope for each
-entry. Ie. the hardware extrapolates the intermediate steps
-from the current LUT entry, instead of interpolating between
-the current and next LUT entries. This also means we don't store
-the last LUT entry in any register as it is defined by the previous
-LUT entry's value+slope.
+Den 10.11.2022 12.07, skrev Maxime Ripard:
+> The framework will get the drm_display_mode from the drm_cmdline_mode it
+> got by parsing the video command line argument by calling
+> drm_connector_pick_cmdline_mode().
+> 
+> The heavy lifting will then be done by the drm_mode_create_from_cmdline_mode()
+> function.
+> 
+> In the case of the named modes though, there's no real code to make that
+> translation and we rely on the drivers to guess which actual display mode
+> we meant.
+> 
+> Let's modify drm_mode_create_from_cmdline_mode() to properly generate the
+> drm_display_mode we mean when passing a named mode.
+> 
+> Tested-by: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> 
+> ---
 
-The slope has limited precision though (2 bit exponent + 4 bit
-mantissa), so we'd have to allow for more error in the state checker
-for the last entry and we have to make sure userspace doesn't
-pass in something where the slope is simply to steep. In theory
-we should perhaps check the slope for every interval, but we don't
-do that for any other interpolated gamma mode and I suspect they
-may also have some internal limit on the slope. I haven't confirmed
-that theory though. Anyways, for ease of implementation we shall
-just ignore the last entry in the state checker. If all the other
-entries match anyway then that seems like a good indication that
-the hardware was programmed as expected.
-
-v2: Redo the state checker logic a bit
-    Rebase due to other changes
-v3: Fix C8 readout
-
-Acked-by: Uma Shankar <uma.shankar@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_color.c | 268 +++++++++++++++++++--
- drivers/gpu/drm/i915/i915_pci.c            |  10 +-
- drivers/gpu/drm/i915/i915_reg.h            |  14 ++
- 3 files changed, 271 insertions(+), 21 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index 4c21a5bbe999..397c0b781ba9 100644
---- a/drivers/gpu/drm/i915/display/intel_color.c
-+++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -466,6 +466,79 @@ static void i9xx_lut_8_pack(struct drm_color_lut *entry, u32 val)
- 	entry->blue = intel_color_lut_pack(REG_FIELD_GET(PALETTE_BLUE_MASK, val), 8);
- }
- 
-+/* i8xx/i9xx+ 10bit slope format "even DW" (low 8 bits) */
-+static u32 _i9xx_lut_10_ldw(u16 a)
-+{
-+	return drm_color_lut_extract(a, 10) & 0xff;
-+}
-+
-+static u32 i9xx_lut_10_ldw(const struct drm_color_lut *color)
-+{
-+	return _i9xx_lut_10_ldw(color[0].red) << 16 |
-+		_i9xx_lut_10_ldw(color[0].green) << 8 |
-+		_i9xx_lut_10_ldw(color[0].blue);
-+}
-+
-+/* i8xx/i9xx+ 10bit slope format "odd DW" (high 2 bits + slope) */
-+static u32 _i9xx_lut_10_udw(u16 a, u16 b)
-+{
-+	unsigned int mantissa, exponent;
-+
-+	a = drm_color_lut_extract(a, 10);
-+	b = drm_color_lut_extract(b, 10);
-+
-+	/* b = a + 8 * m * 2 ^ -e */
-+	mantissa = clamp(b - a, 0, 0x7f);
-+	exponent = 3;
-+	while (mantissa > 0xf) {
-+		mantissa >>= 1;
-+		exponent--;
-+	}
-+
-+	return (exponent << 6) |
-+		(mantissa << 2) |
-+		(a >> 8);
-+}
-+
-+static u32 i9xx_lut_10_udw(const struct drm_color_lut *color)
-+{
-+	return _i9xx_lut_10_udw(color[0].red, color[1].red) << 16 |
-+		_i9xx_lut_10_udw(color[0].green, color[1].green) << 8 |
-+		_i9xx_lut_10_udw(color[0].blue, color[1].blue);
-+}
-+
-+static void i9xx_lut_10_pack(struct drm_color_lut *color,
-+			     u32 ldw, u32 udw)
-+{
-+	u16 red = REG_FIELD_GET(PALETTE_10BIT_RED_LDW_MASK, ldw) |
-+		REG_FIELD_GET(PALETTE_10BIT_RED_UDW_MASK, udw) << 8;
-+	u16 green = REG_FIELD_GET(PALETTE_10BIT_GREEN_LDW_MASK, ldw) |
-+		REG_FIELD_GET(PALETTE_10BIT_GREEN_UDW_MASK, udw) << 8;
-+	u16 blue = REG_FIELD_GET(PALETTE_10BIT_BLUE_LDW_MASK, ldw) |
-+		REG_FIELD_GET(PALETTE_10BIT_BLUE_UDW_MASK, udw) << 8;
-+
-+	color->red = intel_color_lut_pack(red, 10);
-+	color->green = intel_color_lut_pack(green, 10);
-+	color->blue = intel_color_lut_pack(blue, 10);
-+}
-+
-+static void i9xx_lut_10_pack_slope(struct drm_color_lut *color,
-+				   u32 ldw, u32 udw)
-+{
-+	int r_exp = REG_FIELD_GET(PALETTE_10BIT_RED_EXP_MASK, udw);
-+	int r_mant = REG_FIELD_GET(PALETTE_10BIT_RED_MANT_MASK, udw);
-+	int g_exp = REG_FIELD_GET(PALETTE_10BIT_GREEN_EXP_MASK, udw);
-+	int g_mant = REG_FIELD_GET(PALETTE_10BIT_GREEN_MANT_MASK, udw);
-+	int b_exp = REG_FIELD_GET(PALETTE_10BIT_BLUE_EXP_MASK, udw);
-+	int b_mant = REG_FIELD_GET(PALETTE_10BIT_BLUE_MANT_MASK, udw);
-+
-+	i9xx_lut_10_pack(color, ldw, udw);
-+
-+	color->red += r_mant << (3 - r_exp);
-+	color->green += g_mant << (3 - g_exp);
-+	color->blue += b_mant << (3 - b_exp);
-+}
-+
- /* i965+ "10.6" bit interpolated format "even DW" (low 8 bits) */
- static u32 i965_lut_10p6_ldw(const struct drm_color_lut *color)
- {
-@@ -690,12 +763,38 @@ static void i9xx_load_lut_8(struct intel_crtc *crtc,
- 				  i9xx_lut_8(&lut[i]));
- }
- 
-+static void i9xx_load_lut_10(struct intel_crtc *crtc,
-+			     const struct drm_property_blob *blob)
-+{
-+	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	const struct drm_color_lut *lut = blob->data;
-+	int i, lut_size = drm_color_lut_size(blob);
-+	enum pipe pipe = crtc->pipe;
-+
-+	for (i = 0; i < lut_size - 1; i++) {
-+		intel_de_write_fw(dev_priv, PALETTE(pipe, 2 * i + 0),
-+				  i9xx_lut_10_ldw(&lut[i]));
-+		intel_de_write_fw(dev_priv, PALETTE(pipe, 2 * i + 1),
-+				  i9xx_lut_10_udw(&lut[i]));
-+	}
-+}
-+
- static void i9xx_load_luts(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	const struct drm_property_blob *post_csc_lut = crtc_state->post_csc_lut;
- 
--	i9xx_load_lut_8(crtc, post_csc_lut);
-+	switch (crtc_state->gamma_mode) {
-+	case GAMMA_MODE_MODE_8BIT:
-+		i9xx_load_lut_8(crtc, post_csc_lut);
-+		break;
-+	case GAMMA_MODE_MODE_10BIT:
-+		i9xx_load_lut_10(crtc, post_csc_lut);
-+		break;
-+	default:
-+		MISSING_CASE(crtc_state->gamma_mode);
-+		break;
-+	}
- }
- 
- static void i965_load_lut_10p6(struct intel_crtc *crtc,
-@@ -723,10 +822,17 @@ static void i965_load_luts(const struct intel_crtc_state *crtc_state)
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	const struct drm_property_blob *post_csc_lut = crtc_state->post_csc_lut;
- 
--	if (crtc_state->gamma_mode == GAMMA_MODE_MODE_8BIT)
-+	switch (crtc_state->gamma_mode) {
-+	case GAMMA_MODE_MODE_8BIT:
- 		i9xx_load_lut_8(crtc, post_csc_lut);
--	else
-+		break;
-+	case GAMMA_MODE_MODE_10BIT:
- 		i965_load_lut_10p6(crtc, post_csc_lut);
-+		break;
-+	default:
-+		MISSING_CASE(crtc_state->gamma_mode);
-+		break;
-+	}
- }
- 
- static void ilk_load_lut_8(struct intel_crtc *crtc,
-@@ -1442,7 +1548,31 @@ static u32 i9xx_gamma_mode(struct intel_crtc_state *crtc_state)
- 	    lut_is_legacy(crtc_state->hw.gamma_lut))
- 		return GAMMA_MODE_MODE_8BIT;
- 	else
--		return GAMMA_MODE_MODE_10BIT; /* i965+ only */
-+		return GAMMA_MODE_MODE_10BIT;
-+}
-+
-+static int i9xx_lut_10_diff(u16 a, u16 b)
-+{
-+	return drm_color_lut_extract(a, 10) -
-+		drm_color_lut_extract(b, 10);
-+}
-+
-+static int i9xx_check_lut_10(struct drm_i915_private *dev_priv,
-+			     const struct drm_property_blob *blob)
-+{
-+	const struct drm_color_lut *lut = blob->data;
-+	int lut_size = drm_color_lut_size(blob);
-+	const struct drm_color_lut *a = &lut[lut_size - 2];
-+	const struct drm_color_lut *b = &lut[lut_size - 1];
-+
-+	if (i9xx_lut_10_diff(b->red, a->red) > 0x7f ||
-+	    i9xx_lut_10_diff(b->green, a->green) > 0x7f ||
-+	    i9xx_lut_10_diff(b->blue, a->blue) > 0x7f) {
-+		drm_dbg_kms(&dev_priv->drm, "Last gamma LUT entry exceeds max slope\n");
-+		return -EINVAL;
-+	}
-+
-+	return 0;
- }
- 
- void intel_color_assert_luts(const struct intel_crtc_state *crtc_state)
-@@ -1485,6 +1615,7 @@ static void intel_assign_luts(struct intel_crtc_state *crtc_state)
- 
- static int i9xx_color_check(struct intel_crtc_state *crtc_state)
- {
-+	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
- 	int ret;
- 
- 	ret = check_luts(crtc_state);
-@@ -1497,6 +1628,13 @@ static int i9xx_color_check(struct intel_crtc_state *crtc_state)
- 
- 	crtc_state->gamma_mode = i9xx_gamma_mode(crtc_state);
- 
-+	if (DISPLAY_VER(i915) < 4 &&
-+	    crtc_state->gamma_mode == GAMMA_MODE_MODE_10BIT) {
-+		ret = i9xx_check_lut_10(i915, crtc_state->hw.gamma_lut);
-+		if (ret)
-+			return ret;
-+	}
-+
- 	ret = intel_color_add_affected_planes(crtc_state);
- 	if (ret)
- 		return ret;
-@@ -1992,7 +2130,7 @@ static int i9xx_gamma_precision(const struct intel_crtc_state *crtc_state)
- 	case GAMMA_MODE_MODE_8BIT:
- 		return 8;
- 	case GAMMA_MODE_MODE_10BIT:
--		return 16;
-+		return 10;
- 	default:
- 		MISSING_CASE(crtc_state->gamma_mode);
- 		return 0;
-@@ -2004,6 +2142,22 @@ static int i9xx_degamma_precision(const struct intel_crtc_state *crtc_state)
- 	return 0;
- }
- 
-+static int i965_gamma_precision(const struct intel_crtc_state *crtc_state)
-+{
-+	if (!crtc_state->gamma_enable && !crtc_state->c8_planes)
-+		return 0;
-+
-+	switch (crtc_state->gamma_mode) {
-+	case GAMMA_MODE_MODE_8BIT:
-+		return 8;
-+	case GAMMA_MODE_MODE_10BIT:
-+		return 16;
-+	default:
-+		MISSING_CASE(crtc_state->gamma_mode);
-+		return 0;
-+	}
-+}
-+
- static int ilk_gamma_mode_precision(u32 gamma_mode)
- {
- 	switch (gamma_mode) {
-@@ -2062,7 +2216,7 @@ static int chv_gamma_precision(const struct intel_crtc_state *crtc_state)
- 	if (crtc_state->cgm_mode & CGM_PIPE_MODE_GAMMA)
- 		return 10;
- 
--	return i9xx_gamma_precision(crtc_state);
-+	return i965_gamma_precision(crtc_state);
- }
- 
- static int chv_degamma_precision(const struct intel_crtc_state *crtc_state)
-@@ -2161,6 +2315,9 @@ static bool intel_lut_equal(const struct drm_property_blob *blob1,
- 	if (lut_size1 != lut_size2)
- 		return false;
- 
-+	if (check_size > lut_size1)
-+		return false;
-+
- 	lut1 = blob1->data;
- 	lut2 = blob2->data;
- 
-@@ -2176,13 +2333,32 @@ static bool i9xx_lut_equal(const struct intel_crtc_state *crtc_state,
- 			   const struct drm_property_blob *blob1,
- 			   const struct drm_property_blob *blob2,
- 			   bool is_pre_csc_lut)
-+{
-+	int check_size = 0;
-+
-+	if (is_pre_csc_lut)
-+		return intel_lut_equal(blob1, blob2, 0,
-+				       i9xx_degamma_precision(crtc_state));
-+
-+	/* 10bit mode last entry is implicit, just skip it */
-+	if (crtc_state->gamma_mode == GAMMA_MODE_MODE_10BIT)
-+		check_size = 128;
-+
-+	return intel_lut_equal(blob1, blob2, check_size,
-+			       i9xx_gamma_precision(crtc_state));
-+}
-+
-+static bool i965_lut_equal(const struct intel_crtc_state *crtc_state,
-+			   const struct drm_property_blob *blob1,
-+			   const struct drm_property_blob *blob2,
-+			   bool is_pre_csc_lut)
- {
- 	if (is_pre_csc_lut)
- 		return intel_lut_equal(blob1, blob2, 0,
- 				       i9xx_degamma_precision(crtc_state));
- 	else
- 		return intel_lut_equal(blob1, blob2, 0,
--				       i9xx_gamma_precision(crtc_state));
-+				       i965_gamma_precision(crtc_state));
- }
- 
- static bool chv_lut_equal(const struct intel_crtc_state *crtc_state,
-@@ -2282,6 +2458,35 @@ static struct drm_property_blob *i9xx_read_lut_8(struct intel_crtc *crtc)
- 	return blob;
- }
- 
-+static struct drm_property_blob *i9xx_read_lut_10(struct intel_crtc *crtc)
-+{
-+	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	u32 lut_size = INTEL_INFO(dev_priv)->display.color.gamma_lut_size;
-+	enum pipe pipe = crtc->pipe;
-+	struct drm_property_blob *blob;
-+	struct drm_color_lut *lut;
-+	u32 ldw, udw;
-+	int i;
-+
-+	blob = drm_property_create_blob(&dev_priv->drm,
-+					lut_size * sizeof(lut[0]), NULL);
-+	if (IS_ERR(blob))
-+		return NULL;
-+
-+	lut = blob->data;
-+
-+	for (i = 0; i < lut_size - 1; i++) {
-+		ldw = intel_de_read_fw(dev_priv, PALETTE(pipe, 2 * i + 0));
-+		udw = intel_de_read_fw(dev_priv, PALETTE(pipe, 2 * i + 1));
-+
-+		i9xx_lut_10_pack(&lut[i], ldw, udw);
-+	}
-+
-+	i9xx_lut_10_pack_slope(&lut[i], ldw, udw);
-+
-+	return blob;
-+}
-+
- static void i9xx_read_luts(struct intel_crtc_state *crtc_state)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-@@ -2289,7 +2494,17 @@ static void i9xx_read_luts(struct intel_crtc_state *crtc_state)
- 	if (!crtc_state->gamma_enable)
- 		return;
- 
--	crtc_state->post_csc_lut = i9xx_read_lut_8(crtc);
-+	switch (crtc_state->gamma_mode) {
-+	case GAMMA_MODE_MODE_8BIT:
-+		crtc_state->post_csc_lut = i9xx_read_lut_8(crtc);
-+		break;
-+	case GAMMA_MODE_MODE_10BIT:
-+		crtc_state->post_csc_lut = i9xx_read_lut_10(crtc);
-+		break;
-+	default:
-+		MISSING_CASE(crtc_state->gamma_mode);
-+		break;
-+	}
- }
- 
- static struct drm_property_blob *i965_read_lut_10p6(struct intel_crtc *crtc)
-@@ -2329,10 +2544,17 @@ static void i965_read_luts(struct intel_crtc_state *crtc_state)
- 	if (!crtc_state->gamma_enable)
- 		return;
- 
--	if (crtc_state->gamma_mode == GAMMA_MODE_MODE_8BIT)
-+	switch (crtc_state->gamma_mode) {
-+	case GAMMA_MODE_MODE_8BIT:
- 		crtc_state->post_csc_lut = i9xx_read_lut_8(crtc);
--	else
-+		break;
-+	case GAMMA_MODE_MODE_10BIT:
- 		crtc_state->post_csc_lut = i965_read_lut_10p6(crtc);
-+		break;
-+	default:
-+		MISSING_CASE(crtc_state->gamma_mode);
-+		break;
-+	}
- }
- 
- static struct drm_property_blob *chv_read_cgm_degamma(struct intel_crtc *crtc)
-@@ -2742,7 +2964,7 @@ static const struct intel_color_funcs i965_color_funcs = {
- 	.color_commit_arm = i9xx_color_commit_arm,
- 	.load_luts = i965_load_luts,
- 	.read_luts = i965_read_luts,
--	.lut_equal = i9xx_lut_equal,
-+	.lut_equal = i965_lut_equal,
- };
- 
- static const struct intel_color_funcs i9xx_color_funcs = {
-@@ -2819,14 +3041,28 @@ static const struct intel_color_funcs ilk_color_funcs = {
- void intel_color_crtc_init(struct intel_crtc *crtc)
- {
- 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
--	bool has_ctm = INTEL_INFO(i915)->display.color.degamma_lut_size != 0;
-+	int degamma_lut_size, gamma_lut_size;
-+	bool has_ctm;
- 
- 	drm_mode_crtc_set_gamma_size(&crtc->base, 256);
- 
--	drm_crtc_enable_color_mgmt(&crtc->base,
--				   INTEL_INFO(i915)->display.color.degamma_lut_size,
--				   has_ctm,
--				   INTEL_INFO(i915)->display.color.gamma_lut_size);
-+	gamma_lut_size = INTEL_INFO(i915)->display.color.gamma_lut_size;
-+	degamma_lut_size = INTEL_INFO(i915)->display.color.degamma_lut_size;
-+	has_ctm = degamma_lut_size != 0;
-+
-+	/*
-+	 * "DPALETTE_A: NOTE: The 8-bit (non-10-bit) mode is the
-+	 *  only mode supported by Alviso and Grantsdale."
-+	 *
-+	 * Actually looks like this affects all of gen3.
-+	 * Confirmed on alv,cst,pnv. Mobile gen2 parts (alm,mgm)
-+	 * are confirmed not to suffer from this restriction.
-+	 */
-+	if (DISPLAY_VER(i915) == 3 && crtc->pipe == PIPE_A)
-+		gamma_lut_size = 256;
-+
-+	drm_crtc_enable_color_mgmt(&crtc->base, degamma_lut_size,
-+				   has_ctm, gamma_lut_size);
- }
- 
- int intel_color_init(struct drm_i915_private *i915)
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index c50841e36c61..414d58f8fee0 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -132,9 +132,9 @@
- 		[PIPE_D] = TGL_CURSOR_D_OFFSET, \
- 	}
- 
--#define I9XX_COLORS \
-+#define I845_COLORS \
- 	.display.color = { .gamma_lut_size = 256 }
--#define I965_COLORS \
-+#define I9XX_COLORS \
- 	.display.color = { .gamma_lut_size = 129, \
- 		   .gamma_lut_tests = DRM_COLOR_LUT_NON_DECREASING, \
- 	}
-@@ -210,7 +210,7 @@
- 	.dma_mask_size = 32, \
- 	I845_PIPE_OFFSETS, \
- 	I845_CURSOR_OFFSETS, \
--	I9XX_COLORS, \
-+	I845_COLORS, \
- 	GEN_DEFAULT_PAGE_SIZES, \
- 	GEN_DEFAULT_REGIONS
- 
-@@ -341,7 +341,7 @@ static const struct intel_device_info pnv_m_info = {
- 	.dma_mask_size = 36, \
- 	I9XX_PIPE_OFFSETS, \
- 	I9XX_CURSOR_OFFSETS, \
--	I965_COLORS, \
-+	I9XX_COLORS, \
- 	GEN_DEFAULT_PAGE_SIZES, \
- 	GEN_DEFAULT_REGIONS
- 
-@@ -547,7 +547,7 @@ static const struct intel_device_info vlv_info = {
- 	.display.mmio_offset = VLV_DISPLAY_BASE,
- 	I9XX_PIPE_OFFSETS,
- 	I9XX_CURSOR_OFFSETS,
--	I965_COLORS,
-+	I9XX_COLORS,
- 	GEN_DEFAULT_PAGE_SIZES,
- 	GEN_DEFAULT_REGIONS,
- };
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index f4c08509e629..01b37d2037a5 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1786,6 +1786,20 @@
- #define   PALETTE_RED_MASK		REG_GENMASK(23, 16)
- #define   PALETTE_GREEN_MASK		REG_GENMASK(15, 8)
- #define   PALETTE_BLUE_MASK		REG_GENMASK(7, 0)
-+/* pre-i965 10bit interpolated mode ldw */
-+#define   PALETTE_10BIT_RED_LDW_MASK	REG_GENMASK(23, 16)
-+#define   PALETTE_10BIT_GREEN_LDW_MASK	REG_GENMASK(15, 8)
-+#define   PALETTE_10BIT_BLUE_LDW_MASK	REG_GENMASK(7, 0)
-+/* pre-i965 10bit interpolated mode udw */
-+#define   PALETTE_10BIT_RED_EXP_MASK	REG_GENMASK(23, 22)
-+#define   PALETTE_10BIT_RED_MANT_MASK	REG_GENMASK(21, 18)
-+#define   PALETTE_10BIT_RED_UDW_MASK	REG_GENMASK(17, 16)
-+#define   PALETTE_10BIT_GREEN_EXP_MASK	REG_GENMASK(15, 14)
-+#define   PALETTE_10BIT_GREEN_MANT_MASK	REG_GENMASK(13, 10)
-+#define   PALETTE_10BIT_GREEN_UDW_MASK	REG_GENMASK(9, 8)
-+#define   PALETTE_10BIT_BLUE_EXP_MASK	REG_GENMASK(7, 6)
-+#define   PALETTE_10BIT_BLUE_MANT_MASK	REG_GENMASK(5, 2)
-+#define   PALETTE_10BIT_BLUE_UDW_MASK	REG_GENMASK(1, 0)
- #define PALETTE(pipe, i)	_MMIO(DISPLAY_MMIO_BASE(dev_priv) + \
- 				      _PICK((pipe), _PALETTE_A,		\
- 					    _PALETTE_B, _CHV_PALETTE_C) + \
--- 
-2.37.4
-
+Reviewed-by: Noralf Trønnes <noralf@tronnes.org>
