@@ -1,60 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4587D626A9D
-	for <lists+intel-gfx@lfdr.de>; Sat, 12 Nov 2022 17:33:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AADB626A9E
+	for <lists+intel-gfx@lfdr.de>; Sat, 12 Nov 2022 17:37:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D8F810E1C5;
-	Sat, 12 Nov 2022 16:32:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 102C810E1BE;
+	Sat, 12 Nov 2022 16:37:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp.domeneshop.no (smtp.domeneshop.no
- [IPv6:2a01:5b40:0:3005::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBB0D10E19D;
- Sat, 12 Nov 2022 16:32:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
- ; s=ds202112;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Avqxp6PESbm7/9d+CbEdeKwdqsIP7PScVSNxxZXeyI8=; b=ejpfyea66MiWH0xNMTRE8TBgMM
- 4y1L12qyTvpa01pB//rkkCsDMkMffeRtMRnkMlV7wuLGz3MTsJ4xFXqs8v9rsVfnfNex77NDOGwCZ
- cSKR+CperAK+c8ULcFKQ1HC8Lh3BDP3AjuJKaLuhX1jalJ0ooBKQwjo/IBr9fJl7MfpIyuM9sfqSY
- Go18S9vYHcXpJKqXPp1CimA/vJJcrqI7iSg4KKbGn3MoZDqBDum0iKOwJDgiJaBXVpx8xcfIykp96
- 8u5GKFBVWsl/np+ijVUVrti5RmhQAPucKTAGFSh4NykuEEsx+1Vxa8rR9xOq7JRQtQQq/flPGT27U
- qKZODIyQ==;
-Received: from [2a01:799:95a:cb00:9d29:d4c4:45a0:777e] (port=49778)
- by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
- (Exim 4.92) (envelope-from <noralf@tronnes.org>)
- id 1ottQx-00082P-Pb; Sat, 12 Nov 2022 17:32:43 +0100
-Message-ID: <44b545fd-3aa8-7835-7644-f82bcccb7643@tronnes.org>
-Date: Sat, 12 Nov 2022 17:32:40 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8F9BE10E1BE;
+ Sat, 12 Nov 2022 16:37:17 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8882BAADE1;
+ Sat, 12 Nov 2022 16:37:17 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-To: Maxime Ripard <maxime@cerno.tech>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <mripard@kernel.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Karol Herbst
- <kherbst@redhat.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- Daniel Vetter <daniel@ffwll.ch>, Lyude Paul <lyude@redhat.com>,
- Samuel Holland <samuel@sholland.org>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Emma Anholt <emma@anholt.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>
-References: <20220728-rpi-analog-tv-properties-v8-0-09ce1466967c@cerno.tech>
- <20220728-rpi-analog-tv-properties-v8-16-09ce1466967c@cerno.tech>
-From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-In-Reply-To: <20220728-rpi-analog-tv-properties-v8-16-09ce1466967c@cerno.tech>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v8 16/24] drm/modes: Introduce more named
- modes
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Sat, 12 Nov 2022 16:37:17 -0000
+Message-ID: <166827103753.14829.3390382069343908397@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221110082144.19666-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20221110082144.19666-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Finish_=28de=29gamma_readout_=28rev6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,42 +40,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dom Cobley <dom@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Phil Elwell <phil@raspberrypi.com>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
- Hans de Goede <hdegoede@redhat.com>,
- =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>, linux-sunxi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
+
+Series: drm/i915: Finish (de)gamma readout (rev6)
+URL   : https://patchwork.freedesktop.org/series/79614/
+State : warning
+
+== Summary ==
+
+Error: dim checkpatch failed
+050b3fdee02b drm/i915: Clean up legacy palette defines
+48cfd1bd8b47 drm/i915: Clean up 10bit precision palette defines
+-:31: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#31: FILE: drivers/gpu/drm/i915/display/intel_color.c:475:
++		REG_FIELD_PREP(PREC_PALETTE_10_GREEN_MASK, drm_color_lut_extract(color->green, 10)) |
+
+total: 0 errors, 1 warnings, 0 checks, 48 lines checked
+865e3889fa66 drm/i915: Clean up 12.4bit precision palette defines
+6237eba7dad6 drm/i915: Clean up chv CGM (de)gamma defines
+-:29: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#29: FILE: drivers/gpu/drm/i915/display/intel_color.c:1081:
++	return REG_FIELD_PREP(CGM_PIPE_DEGAMMA_GREEN_LDW_MASK, drm_color_lut_extract(color->green, 14)) |
+
+-:30: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#30: FILE: drivers/gpu/drm/i915/display/intel_color.c:1082:
++		REG_FIELD_PREP(CGM_PIPE_DEGAMMA_BLUE_LDW_MASK, drm_color_lut_extract(color->blue, 14));
+
+-:46: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#46: FILE: drivers/gpu/drm/i915/display/intel_color.c:1108:
++	return REG_FIELD_PREP(CGM_PIPE_GAMMA_GREEN_LDW_MASK, drm_color_lut_extract(color->green, 10)) |
+
+-:47: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#47: FILE: drivers/gpu/drm/i915/display/intel_color.c:1109:
++		REG_FIELD_PREP(CGM_PIPE_GAMMA_BLUE_LDW_MASK, drm_color_lut_extract(color->blue, 10));
+
+total: 0 errors, 4 warnings, 0 checks, 65 lines checked
+de1edc42f0bc drm/i915: Reorder 12.4 lut udw vs. ldw functions
+253540f25651 drm/i915: Fix adl+ degamma LUT size
+4729e0a3d521 drm/i915: Add glk+ degamma readout
+409d2cf59467 drm/i915: Read out CHV CGM degamma
+-:27: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#27: FILE: drivers/gpu/drm/i915/display/intel_color.c:1092:
++	entry->green = intel_color_lut_pack(REG_FIELD_GET(CGM_PIPE_DEGAMMA_GREEN_LDW_MASK, ldw), 14);
+
+total: 0 errors, 1 warnings, 0 checks, 54 lines checked
+d1e5a4707798 drm/i915: Add gamma/degamma readout for bdw+
+6b3640d4cb55 drm/i915: Add gamma/degamma readout for ivb/hsw
+89efbdff053a drm/i915: Make ilk_read_luts() capable of degamma readout
+92e6c0fe9d7f drm/i915: Make .read_luts() mandatory
+1e0d6364e43b drm/i915: Finish the LUT state checker
+-:515: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'lut' - possible side-effects?
+#515: FILE: drivers/gpu/drm/i915/display/intel_display.c:5679:
++#define PIPE_CONF_CHECK_COLOR_LUT(lut, is_pre_csc_lut) do { \
++	if (current_config->gamma_mode == pipe_config->gamma_mode && \
++	    !intel_color_lut_equal(current_config, \
++				   current_config->lut, pipe_config->lut, \
++				   is_pre_csc_lut)) {	\
++		pipe_config_mismatch(fastset, crtc, __stringify(lut), \
++				     "hw_state doesn't match sw_state"); \
++		ret = false; \
+ 	} \
+ } while (0)
+
+-:515: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'lut' may be better as '(lut)' to avoid precedence issues
+#515: FILE: drivers/gpu/drm/i915/display/intel_display.c:5679:
++#define PIPE_CONF_CHECK_COLOR_LUT(lut, is_pre_csc_lut) do { \
++	if (current_config->gamma_mode == pipe_config->gamma_mode && \
++	    !intel_color_lut_equal(current_config, \
++				   current_config->lut, pipe_config->lut, \
++				   is_pre_csc_lut)) {	\
++		pipe_config_mismatch(fastset, crtc, __stringify(lut), \
++				     "hw_state doesn't match sw_state"); \
++		ret = false; \
+ 	} \
+ } while (0)
+
+total: 0 errors, 0 warnings, 2 checks, 480 lines checked
+eb8dc7921dc0 drm/i915: Rework legacy LUT handling
+273b8810dc4d drm/i915: Use hw degamma LUT for sw gamma on glk with YCbCr output
+-:93: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "crtc_state->post_csc_lut"
+#93: FILE: drivers/gpu/drm/i915/display/intel_color.c:1419:
++			    crtc_state->post_csc_lut != NULL &&
+
+total: 0 errors, 0 warnings, 1 checks, 131 lines checked
+50bd7750c49b drm/i915: Use gamma LUT for RGB limited range compression
+8d4a58857dd9 drm/i915: Add 10bit gamma mode for gen2/3
+89d268b2c032 drm/i915: Do state check for color management changes
 
 
-Den 10.11.2022 12.07, skrev Maxime Ripard:
-> Now that we can easily extend the named modes list, let's add a few more
-> analog TV modes that were used in the wild, and some unit tests to make
-> sure it works as intended.
-> 
-> Tested-by: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> 
-> ---
-> Changes in v6:
-> - Renamed the tests to follow DRM test naming convention
-> 
-> Changes in v5:
-> - Switched to KUNIT_ASSERT_NOT_NULL
-> ---
->  drivers/gpu/drm/drm_modes.c                     |  2 +
->  drivers/gpu/drm/tests/drm_client_modeset_test.c | 54 +++++++++++++++++++++++++
->  2 files changed, 56 insertions(+)
-> 
-
-This needs an entry in modedb.rst so people know named modes exist, with
-that:
-
-Reviewed-by: Noralf Trønnes <noralf@tronnes.org>
