@@ -2,67 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BC05627238
-	for <lists+intel-gfx@lfdr.de>; Sun, 13 Nov 2022 20:27:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 798BF627373
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Nov 2022 00:23:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4940410E241;
-	Sun, 13 Nov 2022 19:27:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A638C10E24D;
+	Sun, 13 Nov 2022 23:23:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com
- [IPv6:2a00:1450:4864:20::430])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83A7D10E241;
- Sun, 13 Nov 2022 19:27:08 +0000 (UTC)
-Received: by mail-wr1-x430.google.com with SMTP id w14so13801398wru.8;
- Sun, 13 Nov 2022 11:27:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:message-id:cc:to:subject:from
- :date:from:to:cc:subject:date:message-id:reply-to;
- bh=GF5RzMJMs9NPVLVo5QxgAEH2Ji74ZSRxPWbyjtgOf7M=;
- b=fOEXtlRZ2x/xBdza1x78DhYez7gMWhzcUdmyJQztGuqWD/Mj7nUZ0bcVV1nql6n3F/
- SNbENEvfvtGVr85OVKSsJYi14W21S46zk1rUUK0ikrrqzjlFUFaIuNkiB7uCW/bS1Npe
- LoUJg2lJWr0gj1/VviTXqQ2C8WLGbkFsDBDYk+vdu4McyULKHQ5cShetum4Zc8pIsOcf
- TSJYGeqb+py3QuYsW5zK5HLjVtBNNT+SEDcrilwdt13xAdQu9dEqWzoaWMohlkt1FfMe
- U/FQ2rSgtXRw1c3faBq0qfCIWqXSabIuQ8RtQIFa5vP2fMxxyUAFA/X5LinoMks8M2bR
- BNEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=mime-version:references:in-reply-to:message-id:cc:to:subject:from
- :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=GF5RzMJMs9NPVLVo5QxgAEH2Ji74ZSRxPWbyjtgOf7M=;
- b=tGpnuBGL9qhGzdA/Sw7Drc2K5C5+ZeYKuDV3HqcN4E2UongkdSbQHP+pORIL6Bjymk
- 5B7g7GYAx0VF738mBFiOlY1z9BeCxYb2GSui9ZDKAw30SBmK5PXJMzL+zM24493rHmmi
- VeOW9iwFlp5L/6N88n6bb5NeQgZ9Z9Bt0SkuQbPmmgQkhypPYZJfmUCgYPLo9IZPL7Xq
- PN6vmqQle5Zh6dNC22I7/rVF55+Xe4FtJoU2GKH0DhleG2km2EMWrtPhmw4rJMD/uFca
- Ivt1JTxQoOrULCybShade6cmEAyPi15zvtrgZUU9f+j1V62eArL6drmKZFMnms5LBPsT
- xeQA==
-X-Gm-Message-State: ANoB5pnqhPnLNWakpaL0OHVj+yAnqIJf7KCKFABtrfWD1wRxv/H0Cnb3
- bxezQvUlHmRiCGTwGIHhndI=
-X-Google-Smtp-Source: AA0mqf54aRZWi288k13HpNT8O5ikGcCVzLZ3/bY4oXwCcOMGj2HLd7UJD+HSI2YK33kvj5UICnp+LA==
-X-Received: by 2002:a5d:524f:0:b0:236:77f4:6e19 with SMTP id
- k15-20020a5d524f000000b0023677f46e19mr5992395wrc.638.1668367626768; 
- Sun, 13 Nov 2022 11:27:06 -0800 (PST)
-Received: from matebook-d-15 ([2a01:e0a:1d2:1f90:be95:f3a2:4d99:a3b3])
- by smtp.gmail.com with ESMTPSA id
- x3-20020a5d54c3000000b0022efc4322a9sm7637158wrv.10.2022.11.13.11.27.06
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 13 Nov 2022 11:27:06 -0800 (PST)
-Date: Sun, 13 Nov 2022 20:26:59 +0100
-From: Matthieu CHARETTE <matthieu.charette@gmail.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-Id: <ZOWALR.8HILT50E5STE1@gmail.com>
-In-Reply-To: <4WC1LR.VI6JX5V2DJ96@gmail.com>
-References: <20221006222146.2375217-1-jani.nikula@intel.com>
- <GLSKJR.CU4DWLJQSTHT2@gmail.com> <87wn96yggd.fsf@intel.com>
- <CA+FNwmJRZ-5BwuXykp3R6tQagQgunMC9EhfL9CRyi+Ff47TXhA@mail.gmail.com>
- <87v8opwiqw.fsf@intel.com> <HBHNJR.ME9DMISWT3961@gmail.com>
- <0TLXKR.MU9V2CJGXH05@gmail.com> <875yfpadp6.fsf@intel.com>
- <4WC1LR.VI6JX5V2DJ96@gmail.com>
-X-Mailer: geary/43.0
+Received: from gandalf.ozlabs.org (mail.ozlabs.org
+ [IPv6:2404:9400:2221:ea00::3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0370510E24C;
+ Sun, 13 Nov 2022 23:23:35 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4N9T5X6QJRz4x1D;
+ Mon, 14 Nov 2022 10:23:28 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1668381810;
+ bh=65AmNELdQUu+5ZUFxLeHt1YFNVUSiBa9NN7XJDkLfcI=;
+ h=Date:From:To:Cc:Subject:From;
+ b=bCJ6EFhmvwL+L4257L0lSgATVHywjhbm2XWZI0I8HRFQ7QlkQLi+i6xY1iTWgsKsR
+ XcM00TeNiMuhPVqo3db8u8Bgdf9OSMQJ7yICBe+R07reaz67quvS0rKNcFtE1fXny1
+ VE1JVBNp/r5Kc2qvZtenrVBbltEiWlPgwImXR/+pObGp/zBkYkvs1RcVsguk42IM+o
+ jDDZSYkHID1jV0ng02johKCkXsDKXrCHP0zjXBv3EuFRxyluqIjOdkxXyCLPRgv33k
+ Z8tSI3/IRZVWCLO7ncZuT6jktCAIyPXuadwQ4uuatBs0goApetSkzBtiVNTu6LpDMz
+ fUiLIdy9EI5wQ==
+Date: Mon, 14 Nov 2022 10:23:27 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <20221114102327.6d53341e@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Subject: Re: [Intel-gfx] [PATCH] drm/edid/firmware: stop using throwaway
- platform device
+Content-Type: multipart/signed; boundary="Sig_/ZnAXSQtQ1fl=ax+EWztprCE";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+Subject: [Intel-gfx] linux-next: manual merge of the drm-intel tree with
+ Linus' tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,143 +52,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ DRI <dri-devel@lists.freedesktop.org>, Hans de Goede <hdegoede@redhat.com>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+--Sig_/ZnAXSQtQ1fl=ax+EWztprCE
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-I've tested the patch and I can confirm that it fixed the issue.
-Tested on Fedora 36 with kernel 6.0.8.
+Hi all,
 
-Thanks,
-Matthieu
+Today's linux-next merge of the drm-intel tree got a conflict in:
 
-On Tue, Nov 8 2022 at 04:40:52 PM +0100, Matthieu CHARETTE 
-<matthieu.charette@gmail.com> wrote:
-> I didn't test the patch yet. I will do. But even without testing I 
-> can tell you that it will work (It will not crash).
-> Currently when the crash occurs, all screens remain black after 
-> resume. I'm not able to login with ssh neither. And logs end before 
-> the suspend. So the crash seems to be some kind of kernel panic.
-> 
-> Matthieu
-> 
-> On Tue, Nov 8 2022 at 01:27:33 PM +0200, Jani Nikula 
-> <jani.nikula@intel.com> wrote:
->> On Sun, 06 Nov 2022, Matthieu CHARETTE <matthieu.charette@gmail.com> 
->> wrote:
->>>  Hi,
->>> 
->>>  Can you tell me what are we waiting for? Maybe I can help.
->> 
->> Have you tried the patch? Is it an improvement over the status quo?
->> 
->> The "crash" is still ambiguous to me. Do you observe it with the 
->> patch?
->> Do you have logs? Etc.
->> 
->> BR,
->> Jani.
->> 
->> 
->>> 
->>>  Thanks.
->>> 
->>>  Matthieu
->>> 
->>>  On Wed, Oct 12 2022 at 07:16:29 PM +0200, Matthieu CHARETTE
->>>  <matthieu.charette@gmail.com> wrote:
->>>>  By crash, I mean that an error is returned here:
->>>>  
->>>> https://kernel.googlesource.com/pub/scm/linux/kernel/git/torvalds/linux.git/+/refs/heads/master/drivers/gpu/drm/drm_edid_load.c#195
->>>>  I don't really know what happens next, but on my machine the 
->>>> built-in
->>>>  screen and the external remains dark. Also the kernel seems to
->>>>  freeze. I suspect a kernel panic, but I'm not sure. Anyway, the 
->>>> error
->>>>  is definitely not well handled, and a fix would be great.
->>>>  Also, request_firmware() will crash if called for the first time 
->>>> on
->>>>  the resume path because the file system isn't reachable on the 
->>>> resume
->>>>  process. And no cache is available for this firmware. So I guess 
->>>> that
->>>>  in this case, request_firmware() returns an error.
->>>>  Suspend-plug-resume case is not my priority nether as long as it
->>>>  doesn't make the system crash (Which is currently the case).
->>>> 
->>>>  On Wed, Oct 12 2022 at 11:25:59 AM +0300, Jani Nikula
->>>>  <jani.nikula@intel.com> wrote:
->>>>>  On Tue, 11 Oct 2022, Matthieu CHARETTE 
->>>>> <matthieu.charette@gmail.com>
->>>>>  wrote:
->>>>>>   Currently the EDID is requested during the resume. But since 
->>>>>> it's
->>>>>>   requested too early, this means before the filesystem is 
->>>>>> mounted,
->>>>>>  the
->>>>>>   firmware request fails. This make the DRM driver crash when
->>>>>>  resuming.
->>>>>>   This kind of issue should be prevented by the firmware caching
->>>>>>  process
->>>>>>   which cache every firmware requested for the next resume. But
->>>>>>  since we
->>>>>>   are using a temporary device, the firmware isn't cached on 
->>>>>> suspend
->>>>>>   since the device doesn't work anymore.
->>>>>>   When using a non temporary device to get the EDID, the firmware
->>>>>>  will
->>>>>>   be cached on suspend for the next resume. So requesting the
->>>>>>  firmware
->>>>>>   during resume will succeed.
->>>>>>   But if the firmware has never been requested since the boot, 
->>>>>> this
->>>>>>   means that the monitor isn't plugged since the boot. The kernel
->>>>>>  will
->>>>>>   not be caching the EDID. So if we plug the monitor while the
->>>>>>  machine
->>>>>>   is suspended. The resume will fail to load the firmware. And 
->>>>>> the
->>>>>>  DRM
->>>>>>   driver will crash.
->>>>>>   So basically, your fix should solve the issue except for the 
->>>>>> case
->>>>>>   where the monitor hasn't been plugged since boot and is plugged
->>>>>>  while
->>>>>>   the machine is suspended.
->>>>>>   I hope I was clear. Tell me if I wasn't. I'm not really good at
->>>>>>  explaining.
->>>>> 
->>>>>  That was a pretty good explanation. The only thing I'm missing is
->>>>>  what
->>>>>  the failure mode is exactly when you claim the driver will 
->>>>> crash. Why
->>>>>  would request_firmware() "crash" if called for the first time on 
->>>>> the
->>>>>  resume path?
->>>>> 
->>>>>  I'm not sure I care much about not being able to load the 
->>>>> firmware
->>>>>  EDID
->>>>>  in the suspend-plug-resume case (as this can be remedied with a
->>>>>  subsequent modeset), but obviously any errors need to be handled
->>>>>  gracefully, without crashing.
->>>>> 
->>>>>  BR,
->>>>>  Jani.
->>>>> 
->>>>> 
->>>>>  --
->>>>>  Jani Nikula, Intel Open Source Graphics Center
->>>> 
->>>> 
->>> 
->>> 
->> 
->> --
->> Jani Nikula, Intel Open Source Graphics Center
-> 
-> 
+  drivers/gpu/drm/i915/display/intel_backlight.c
 
+between commit:
 
+  b1d36e73cc1c ("drm/i915: Don't register backlight when another backlight =
+should be used (v2)")
+
+from Linus' tree and commit:
+
+  801543b2593b ("drm/i915: stop including i915_irq.h from i915_trace.h")
+
+from the drm-intel tree.
+
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+diff --cc drivers/gpu/drm/i915/display/intel_backlight.c
+index beba39a38c87,0438071f58cf..000000000000
+--- a/drivers/gpu/drm/i915/display/intel_backlight.c
++++ b/drivers/gpu/drm/i915/display/intel_backlight.c
+@@@ -8,8 -8,7 +8,9 @@@
+  #include <linux/pwm.h>
+  #include <linux/string_helpers.h>
+ =20
+ +#include <acpi/video.h>
+ +
++ #include "i915_reg.h"
+  #include "intel_backlight.h"
+  #include "intel_backlight_regs.h"
+  #include "intel_connector.h"
+
+--Sig_/ZnAXSQtQ1fl=ax+EWztprCE
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmNxfG8ACgkQAVBC80lX
+0GxEfwf/ZY8+RcMKTXCLuurxKxq3aiF7cZqDEBXsSX75DF1hJbR4HJgviZevd33o
+Xby2YRrl5W5+lGzBS7B3gbiE7fhvzHONuDFhTYBWEUZ3SozZaruwGjg/C9bzX8B6
+Ch0G1haLNoP/+VfSPh8Efn3eLgnxKv4xWcz2NRXHPzWPOLg9xa9DdDu50X0OJyn3
+vlYIaqC3doE1UyWv9alq0MBTjMu1tbxgAMy4ch47B5jA0zSrKmwQDVsvC1GOvbOJ
+S09Fzemym++0a0NBl/9/VIXpGbtNFyGDgA7a2dQA4T/q7skXJIAwjeLO2YXHiVwT
+SlKy0f/AaXHYTinLpBhpxMMyGURIag==
+=6WTA
+-----END PGP SIGNATURE-----
+
+--Sig_/ZnAXSQtQ1fl=ax+EWztprCE--
