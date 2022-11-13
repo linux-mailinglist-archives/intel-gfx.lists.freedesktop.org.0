@@ -2,50 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50C3C626E46
-	for <lists+intel-gfx@lfdr.de>; Sun, 13 Nov 2022 08:58:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 24C53626E88
+	for <lists+intel-gfx@lfdr.de>; Sun, 13 Nov 2022 09:39:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DBC210E20B;
-	Sun, 13 Nov 2022 07:57:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0389210E0EF;
+	Sun, 13 Nov 2022 08:39:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47FAC10E1FB;
- Sun, 13 Nov 2022 07:57:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668326266; x=1699862266;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=KPwL+Vo3RrRKJgLq8dboiBs5iFBHrcuz0CEqAAUL4SI=;
- b=DLlH5ynQEOUHP6oGIBjQkrUU6vMIeCQhmX97biypfKyjkl0EfhV0nJHS
- gb/6fPRU/Oj9YfcPZuCrZGKd3gKcNnIGBGYygqCWKRLoldMsOEHKf02Vr
- 0NDm0y5vznfwTaHZsg0MjqRZfuitEc5/fTK8yNjzCBzOYdLuCEksWrr3h
- ZlInrGCOYTCzRwf3hWsa8lQoBZoMTIh/dE+CyHR/dgQGLTvIjvkgFBemJ
- a2QhlYZAte5l+cqXYlh+YA9q4leLRFAoubKNWonejoXCFmLq5D7sVXm16
- h0pOi0fkQiVhcizKJ/t4Hci9ZePGS9a8RnRXyLN0eXcwYchMZlgzUP4S0 w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10529"; a="312936350"
-X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; d="scan'208";a="312936350"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2022 23:57:45 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10529"; a="669235752"
-X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; d="scan'208";a="669235752"
-Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2022 23:57:45 -0800
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Sat, 12 Nov 2022 23:57:32 -0800
-Message-Id: <20221113075732.32100-21-niranjana.vishwanathapura@intel.com>
-X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
-In-Reply-To: <20221113075732.32100-1-niranjana.vishwanathapura@intel.com>
-References: <20221113075732.32100-1-niranjana.vishwanathapura@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 264CD10E0EF;
+ Sun, 13 Nov 2022 08:39:46 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1EA56AA0ED;
+ Sun, 13 Nov 2022 08:39:46 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v7 20/20] drm/i915/vm_bind: Async vm_unbind
- support
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
+Date: Sun, 13 Nov 2022 08:39:46 -0000
+Message-ID: <166832878609.21696.5034848075748398475@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221113075732.32100-1-niranjana.vishwanathapura@intel.com>
+In-Reply-To: <20221113075732.32100-1-niranjana.vishwanathapura@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/vm=5Fbind=3A_Add_VM=5FBIND_functionality_=28rev10?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,158 +41,119 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: paulo.r.zanoni@intel.com, jani.nikula@intel.com, thomas.hellstrom@intel.com,
- matthew.auld@intel.com, daniel.vetter@intel.com, christian.koenig@amd.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Asynchronously unbind the vma upon vm_unbind call.
-Fall back to synchronous unbind if backend doesn't support
-async unbind or if async unbind fails.
+== Series Details ==
 
-No need for vm_unbind out fence support as i915 will internally
-handle all sequencing and user need not try to sequence any
-operation with the unbind completion.
+Series: drm/i915/vm_bind: Add VM_BIND functionality (rev10)
+URL   : https://patchwork.freedesktop.org/series/105879/
+State : warning
 
-v2: use i915_vma_destroy_async in vm_unbind ioctl
+== Summary ==
 
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
----
- .../drm/i915/gem/i915_gem_vm_bind_object.c    |  2 +-
- drivers/gpu/drm/i915/i915_vma.c               | 51 +++++++++++++++++--
- drivers/gpu/drm/i915/i915_vma.h               |  1 +
- include/uapi/drm/i915_drm.h                   |  3 +-
- 4 files changed, 51 insertions(+), 6 deletions(-)
+Error: dim checkpatch failed
+4ddbe0656811 drm/i915/vm_bind: Expose vm lookup function
+2b76804a6d1a drm/i915/vm_bind: Add __i915_sw_fence_await_reservation()
+66f162af13b7 drm/i915/vm_bind: Expose i915_gem_object_max_page_size()
+58ecf3a37364 drm/i915/vm_bind: Add support to create persistent vma
+-:61: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#61: FILE: drivers/gpu/drm/i915/i915_vma.c:311:
++	GEM_BUG_ON(!IS_ERR(vma) && i915_vma_compare(vma, vm, view));
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c b/drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c
-index d87d1210365b..36651b447966 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c
-@@ -210,7 +210,7 @@ static int i915_gem_vm_unbind_vma(struct i915_address_space *vm,
- 	 */
- 	obj = vma->obj;
- 	i915_gem_object_lock(obj, NULL);
--	i915_vma_destroy(vma);
-+	i915_vma_destroy_async(vma);
- 	i915_gem_object_unlock(obj);
- 
- 	i915_gem_object_put(obj);
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index 7cf77c67d755..483d25f2425c 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -42,6 +42,8 @@
- #include "i915_vma.h"
- #include "i915_vma_resource.h"
- 
-+static struct dma_fence *__i915_vma_unbind_async(struct i915_vma *vma);
-+
- static inline void assert_vma_held_evict(const struct i915_vma *vma)
- {
- 	/*
-@@ -1713,7 +1715,7 @@ void i915_vma_reopen(struct i915_vma *vma)
- 	spin_unlock_irq(&gt->closed_lock);
- }
- 
--static void force_unbind(struct i915_vma *vma)
-+static void force_unbind(struct i915_vma *vma, bool async)
- {
- 	if (!drm_mm_node_allocated(&vma->node))
- 		return;
-@@ -1727,7 +1729,21 @@ static void force_unbind(struct i915_vma *vma)
- 		i915_vma_set_purged(vma);
- 
- 	atomic_and(~I915_VMA_PIN_MASK, &vma->flags);
--	WARN_ON(__i915_vma_unbind(vma));
-+	if (async) {
-+		struct dma_fence *fence;
-+
-+		fence = __i915_vma_unbind_async(vma);
-+		if (IS_ERR_OR_NULL(fence)) {
-+			async = false;
-+		} else {
-+			dma_resv_add_fence(vma->obj->base.resv, fence,
-+					   DMA_RESV_USAGE_READ);
-+			dma_fence_put(fence);
-+		}
-+	}
-+
-+	if (!async)
-+		WARN_ON(__i915_vma_unbind(vma));
- 	GEM_BUG_ON(drm_mm_node_allocated(&vma->node));
- }
- 
-@@ -1787,7 +1803,7 @@ void i915_vma_destroy_locked(struct i915_vma *vma)
- {
- 	lockdep_assert_held(&vma->vm->mutex);
- 
--	force_unbind(vma);
-+	force_unbind(vma, false);
- 	list_del_init(&vma->vm_link);
- 	release_references(vma, vma->vm->gt, false);
- }
-@@ -1798,7 +1814,34 @@ void i915_vma_destroy(struct i915_vma *vma)
- 	bool vm_ddestroy;
- 
- 	mutex_lock(&vma->vm->mutex);
--	force_unbind(vma);
-+	force_unbind(vma, false);
-+	list_del_init(&vma->vm_link);
-+	vm_ddestroy = vma->vm_ddestroy;
-+	vma->vm_ddestroy = false;
-+
-+	/* vma->vm may be freed when releasing vma->vm->mutex. */
-+	gt = vma->vm->gt;
-+	mutex_unlock(&vma->vm->mutex);
-+	release_references(vma, gt, vm_ddestroy);
-+}
-+
-+void i915_vma_destroy_async(struct i915_vma *vma)
-+{
-+	bool vm_ddestroy, async = vma->obj->mm.rsgt;
-+	struct intel_gt *gt;
-+
-+	if (dma_resv_reserve_fences(vma->obj->base.resv, 1))
-+		async = false;
-+
-+	mutex_lock(&vma->vm->mutex);
-+	/*
-+	 * Ensure any asynchronous binding is complete while using
-+	 * async unbind as we will be releasing the vma here.
-+	 */
-+	if (async && i915_active_wait(&vma->active))
-+		async = false;
-+
-+	force_unbind(vma, async);
- 	list_del_init(&vma->vm_link);
- 	vm_ddestroy = vma->vm_ddestroy;
- 	vma->vm_ddestroy = false;
-diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
-index 737ef310d046..25f15965dab8 100644
---- a/drivers/gpu/drm/i915/i915_vma.h
-+++ b/drivers/gpu/drm/i915/i915_vma.h
-@@ -272,6 +272,7 @@ void i915_vma_reopen(struct i915_vma *vma);
- 
- void i915_vma_destroy_locked(struct i915_vma *vma);
- void i915_vma_destroy(struct i915_vma *vma);
-+void i915_vma_destroy_async(struct i915_vma *vma);
- 
- #define assert_vma_held(vma) dma_resv_assert_held((vma)->obj->base.resv)
- 
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index e5600f358a15..431d40bb1dee 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -3969,7 +3969,8 @@ struct drm_i915_gem_vm_bind {
-  * any error.
-  *
-  * VM_BIND/UNBIND ioctl calls executed on different CPU threads concurrently
-- * are not ordered.
-+ * are not ordered. Furthermore, parts of the VM_UNBIND operation can be done
-+ * asynchronously.
-  */
- struct drm_i915_gem_vm_unbind {
- 	/** @vm_id: VM (address space) id to bind */
--- 
-2.21.0.rc0.32.g243a4c7e27
+-:82: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#82: FILE: drivers/gpu/drm/i915/i915_vma.c:332:
++	GEM_BUG_ON(!kref_read(&vm->ref));
+
+-:127: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#127: FILE: drivers/gpu/drm/i915/i915_vma.h:181:
++	GEM_BUG_ON(view && !(i915_is_ggtt_or_dpt(vm) ||
+
+total: 0 errors, 3 warnings, 0 checks, 107 lines checked
+3d973e6e1ab9 drm/i915/vm_bind: Implement bind and unbind of object
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:83: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#83: 
+new file mode 100644
+
+-:465: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#465: FILE: drivers/gpu/drm/i915/gt/intel_gtt.c:182:
++	GEM_BUG_ON(!RB_EMPTY_ROOT(&vm->va.rb_root));
+
+-:586: WARNING:LONG_LINE: line length of 118 exceeds 100 columns
+#586: FILE: include/uapi/drm/i915_drm.h:539:
++#define DRM_IOCTL_I915_GEM_VM_BIND	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_BIND, struct drm_i915_gem_vm_bind)
+
+-:587: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
+#587: FILE: include/uapi/drm/i915_drm.h:540:
++#define DRM_IOCTL_I915_GEM_VM_UNBIND	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_UNBIND, struct drm_i915_gem_vm_unbind)
+
+total: 0 errors, 4 warnings, 0 checks, 606 lines checked
+641bb5d1cf2a drm/i915/vm_bind: Support for VM private BOs
+1f1055cdf0a0 drm/i915/vm_bind: Add support to handle object evictions
+21800dcc4258 drm/i915/vm_bind: Support persistent vma activeness tracking
+8b8a29cf0d69 drm/i915/vm_bind: Add out fence support
+08b4cf556eb6 drm/i915/vm_bind: Abstract out common execbuf functions
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:30: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#30: 
+new file mode 100644
+
+-:174: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#174: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer_common.c:140:
++		GEM_BUG_ON(err);	/* perma-pinned should incr a counter */
+
+-:249: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#249: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer_common.c:215:
++	GEM_BUG_ON("Context not found");
+
+-:607: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#607: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer_common.c:573:
++	GEM_BUG_ON(!intel_context_is_parent(context));
+
+total: 0 errors, 4 warnings, 0 checks, 754 lines checked
+e7d9ca5f6fbe drm/i915/vm_bind: Use common execbuf functions in execbuf path
+4e41d7934f51 drm/i915/vm_bind: Implement I915_GEM_EXECBUFFER3 ioctl
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:39: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#39: 
+new file mode 100644
+
+-:266: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#266: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c:223:
++	GEM_BUG_ON(eb->args->flags & __EXEC3_ENGINE_PINNED);
+
+-:664: WARNING:LONG_LINE: line length of 126 exceeds 100 columns
+#664: FILE: include/uapi/drm/i915_drm.h:542:
++#define DRM_IOCTL_I915_GEM_EXECBUFFER3	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_EXECBUFFER3, struct drm_i915_gem_execbuffer3)
+
+total: 0 errors, 3 warnings, 0 checks, 680 lines checked
+d3e977af992d drm/i915/vm_bind: Update i915_vma_verify_bind_complete()
+e1c7f5b5eb8b drm/i915/vm_bind: Expose i915_request_await_bind()
+db453b0cbf3c drm/i915/vm_bind: Handle persistent vmas in execbuf3
+65c6faa06419 drm/i915/vm_bind: userptr dma-resv changes
+409428003e73 drm/i915/vm_bind: Limit vm_bind mode to non-recoverable contexts
+a9078e75451e drm/i915/vm_bind: Add uapi for user to enable vm_bind_mode
+954bdbfc3b60 drm/i915/vm_bind: Render VM_BIND documentation
+4a7cf0a82b37 drm/i915/vm_bind: Async vm_unbind support
+
 
