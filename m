@@ -1,51 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAB1B628AE7
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Nov 2022 21:57:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB859628AE6
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Nov 2022 21:57:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 469A210E107;
-	Mon, 14 Nov 2022 20:57:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E3C010E0DB;
+	Mon, 14 Nov 2022 20:57:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1217389DFB
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75D6989DFB
  for <intel-gfx@lists.freedesktop.org>; Mon, 14 Nov 2022 20:56:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1668459417; x=1699995417;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ia3Ryc/VFt3kuuS6iU6lu3snioLFiI77tt9QG2ef3C8=;
- b=dP+3/IGor0vH/t5WQ0eop8GFi6ekwsKqF/z3oo++y28ImztJmpzICluF
- eNqdOF15MpPXRBosusC8bTgxoA/zGt6tE6QlNE/JU5bkrLWVWZBlZz9/w
- vrdBWyJG0UFFW+3976XuSzX7+zHC7o6D+s8ZclL1mr64WkslHsTIrziSn
- EUMadwNqJMpfoDmNMI76cb95csVSnbSU7clLv0L4tsMhbppCEEhjg9lwe
- /4nHGrP2tC+Lh6X7YvoqG7RpuLgNFIhsE7orQU42Y/P3ULvIrYjFoAXSw
- xWjkwtAESmCCuaZBV8vn4w8WfVDzMMRXQE4+MRozYB0YpqhihWeaH4sT+ w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="291793906"
-X-IronPort-AV: E=Sophos;i="5.96,164,1665471600"; d="scan'208";a="291793906"
+ bh=aSPZvBCJ2StJIJ2qSuVmek1/v/nZTlSixLrBc4t+PzI=;
+ b=a09D8fpVb615ANn2Kz3nR68q+7dfeI7WA+bkbYRX//042MgvasYMeMB/
+ kM2mySh4IqEhyT1bBObZLycwkFIIz9f5wJHynVQq3G4To0Y9uJbcCQnXI
+ RgbvI4vO87WQDecawhJ7ZQuFVS4WMvw158ch3Sn095NhVetCijXEAyFMA
+ JSlR1aroCOucRHOOOmDCRra+yb+hhmb3vXDQd/N5aY8uyxzsE3LKOvq/l
+ fAvPuYDy/sIzuO27wlI53dt7KBAB9lrvuTXohqHOWuAOeF3svdiXWTVJ2
+ mTFajTsmGI0DnXopnzvy7YVvcI5vyZuKNzVjNg2aK/DjpnV84zv/qhSbH Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="291793908"
+X-IronPort-AV: E=Sophos;i="5.96,164,1665471600"; d="scan'208";a="291793908"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2022 12:56:56 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="669816963"
-X-IronPort-AV: E=Sophos;i="5.96,164,1665471600"; d="scan'208";a="669816963"
+ 14 Nov 2022 12:56:57 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="669816972"
+X-IronPort-AV: E=Sophos;i="5.96,164,1665471600"; d="scan'208";a="669816972"
 Received: from anushasr-mobl7.jf.intel.com ([10.24.14.23])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2022 12:56:56 -0800
+ 14 Nov 2022 12:56:57 -0800
 From: Anusha Srivatsa <anusha.srivatsa@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 14 Nov 2022 12:57:16 -0800
-Message-Id: <20221114205717.386681-2-anusha.srivatsa@intel.com>
+Date: Mon, 14 Nov 2022 12:57:17 -0800
+Message-Id: <20221114205717.386681-3-anusha.srivatsa@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221114205717.386681-1-anusha.srivatsa@intel.com>
 References: <20221114205717.386681-1-anusha.srivatsa@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/3] drm/i915/display: Do both crawl and squash
- when changing cdclk
+Subject: [Intel-gfx] [PATCH 3/3] drm/i915/display: Add CDCLK Support for MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,260 +59,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+As per bSpec MTL has 38.4 MHz Reference clock.
+Adding the cdclk tables and cdclk_funcs that MTL
+will use.
 
-For MTL, changing cdclk from between certain frequencies has
-both squash and crawl. Use the current cdclk config and
-the new(desired) cdclk config to construtc a mid cdclk config.
-Set the cdclk twice:
-- Current cdclk -> mid cdclk
-- mid cdclk -> desired cdclk
+v2: Revert to using bxt_get_cdclk()
 
-v2: Add check in intel_modeset_calc_cdclk() to avoid cdclk
-change via modeset for platforms that support squash_crawl sequences(Ville)
+BSpec: 65243
 
-v3: Add checks for:
-- scenario where only slow clock is used and
-cdclk is actually 0 (bringing up display).
-- PLLs are on before looking up the waveform.
-- Squash and crawl capability checks.(Ville)
-
-v4: Rebase
-- Move checks to be more consistent (Ville)
-- Add comments (Bala)
-v5:
-- Further small changes. Move checks around.
-- Make if-else better looking (Ville)
-
-v6: MTl should not follow PUnit mailbox communication as the rest of
-gen11+ platforms.(Anusha)
-
-v7: (MattR)
-- s/cdclk_crawl_and_squash/cdclk_compute_crawl_squash_midpoint
-- Cleanup Pcode checks in bxt_set_cdclk()
-- Correct unsigned/signed checks
-
-Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Clint Taylor <Clinton.A.Taylor@intel.com>
 Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Reviewed-by: Clint Taylor <Clinton.A.Taylor@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c | 163 ++++++++++++++++-----
- 1 file changed, 124 insertions(+), 39 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cdclk.c | 22 +++++++++++++++++++++-
+ 1 file changed, 21 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 25d01271dc09..4db7103fe5d6 100644
+index 4db7103fe5d6..a672ce927f04 100644
 --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
 +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -1727,37 +1727,74 @@ static bool cdclk_pll_is_unknown(unsigned int vco)
- 	return vco == ~0;
- }
+@@ -1346,6 +1346,16 @@ static const struct intel_cdclk_vals dg2_cdclk_table[] = {
+ 	{}
+ };
  
--static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
--			  const struct intel_cdclk_config *cdclk_config,
--			  enum pipe pipe)
-+static int cdclk_squash_divider(u16 waveform)
-+{
-+	return hweight16(waveform ?: 0xffff);
-+}
++static const struct intel_cdclk_vals mtl_cdclk_table[] = {
++	{ .refclk = 38400, .cdclk = 172800, .divider = 2, .ratio = 16, .waveform = 0xad5a },
++	{ .refclk = 38400, .cdclk = 192000, .divider = 2, .ratio = 16, .waveform = 0xb6b6 },
++	{ .refclk = 38400, .cdclk = 307200, .divider = 2, .ratio = 16, .waveform = 0x0000 },
++	{ .refclk = 38400, .cdclk = 480000, .divider = 2, .ratio = 25, .waveform = 0x0000 },
++	{ .refclk = 38400, .cdclk = 556800, .divider = 2, .ratio = 29, .waveform = 0x0000 },
++	{ .refclk = 38400, .cdclk = 652800, .divider = 2, .ratio = 34, .waveform = 0x0000 },
++	{}
++};
 +
-+static bool cdclk_compute_crawl_and_squash_midpoint(struct drm_i915_private *i915,
-+						    const struct intel_cdclk_config *old_cdclk_config,
-+						    const struct intel_cdclk_config *new_cdclk_config,
-+						    struct intel_cdclk_config *mid_cdclk_config)
-+{
-+	u16 old_waveform, new_waveform, mid_waveform;
-+	int size = 16;
-+	int div = 2;
-+
-+	/* Return if both Squash and Crawl are not present */
-+	if (!HAS_CDCLK_CRAWL(i915) || !HAS_CDCLK_SQUASH(i915))
-+		return false;
-+
-+	old_waveform = cdclk_squash_waveform(i915, old_cdclk_config->cdclk);
-+	new_waveform = cdclk_squash_waveform(i915, new_cdclk_config->cdclk);
-+
-+	/* Return if Squash only or Crawl only is the desired action */
-+	if (old_cdclk_config->vco == 0 || new_cdclk_config->vco == 0 ||
-+	    old_cdclk_config->vco == new_cdclk_config->vco ||
-+	    old_waveform == new_waveform)
-+		return false;
-+
-+	*mid_cdclk_config = *new_cdclk_config;
-+
-+	/* Populate the mid_cdclk_config accordingly.
-+	 * - If moving to a higher cdclk, the desired action is squashing.
-+	 * The mid cdclk config should have the new (squash) waveform.
-+	 * - If moving to a lower cdclk, the desired action is crawling.
-+	 * The mid cdclk config should have the new vco.
-+	 */
-+
-+	if (cdclk_squash_divider(new_waveform) > cdclk_squash_divider(old_waveform)) {
-+		mid_cdclk_config->vco = old_cdclk_config->vco;
-+		mid_waveform = new_waveform;
-+	} else {
-+		mid_cdclk_config->vco = new_cdclk_config->vco;
-+		mid_waveform = old_waveform;
-+	}
-+
-+	mid_cdclk_config->cdclk = DIV_ROUND_CLOSEST(cdclk_squash_divider(mid_waveform) *
-+						    mid_cdclk_config->vco, size * div);
-+
-+	/* make sure the mid clock came out sane */
-+
-+	drm_WARN_ON(&i915->drm, mid_cdclk_config->cdclk <
-+		    min(old_cdclk_config->cdclk, new_cdclk_config->cdclk));
-+	drm_WARN_ON(&i915->drm, mid_cdclk_config->cdclk >
-+		    i915->display.cdclk.max_cdclk_freq);
-+	drm_WARN_ON(&i915->drm, cdclk_squash_waveform(i915, mid_cdclk_config->cdclk) !=
-+		    mid_waveform);
-+
-+	return true;
-+}
-+
-+static void _bxt_set_cdclk(struct drm_i915_private *dev_priv,
-+			   const struct intel_cdclk_config *cdclk_config,
-+			   enum pipe pipe)
+ static int bxt_calc_cdclk(struct drm_i915_private *dev_priv, int min_cdclk)
  {
- 	int cdclk = cdclk_config->cdclk;
- 	int vco = cdclk_config->vco;
- 	u32 val;
- 	u16 waveform;
- 	int clock;
--	int ret;
--
--	/* Inform power controller of upcoming frequency change. */
--	if (DISPLAY_VER(dev_priv) >= 11)
--		ret = skl_pcode_request(&dev_priv->uncore, SKL_PCODE_CDCLK_CONTROL,
--					SKL_CDCLK_PREPARE_FOR_CHANGE,
--					SKL_CDCLK_READY_FOR_CHANGE,
--					SKL_CDCLK_READY_FOR_CHANGE, 3);
--	else
--		/*
--		 * BSpec requires us to wait up to 150usec, but that leads to
--		 * timeouts; the 2ms used here is based on experiment.
--		 */
--		ret = snb_pcode_write_timeout(&dev_priv->uncore,
--					      HSW_PCODE_DE_WRITE_FREQ_REQ,
--					      0x80000000, 150, 2);
--	if (ret) {
--		drm_err(&dev_priv->drm,
--			"Failed to inform PCU about cdclk change (err %d, freq %d)\n",
--			ret, cdclk);
--		return;
--	}
- 
- 	if (HAS_CDCLK_CRAWL(dev_priv) && dev_priv->display.cdclk.hw.vco > 0 && vco > 0 &&
- 	    !cdclk_pll_is_unknown(dev_priv->display.cdclk.hw.vco)) {
-@@ -1793,30 +1830,53 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
- 
- 	if (pipe != INVALID_PIPE)
- 		intel_crtc_wait_for_next_vblank(intel_crtc_for_pipe(dev_priv, pipe));
-+}
- 
--	if (DISPLAY_VER(dev_priv) >= 11) {
--		ret = snb_pcode_write(&dev_priv->uncore, SKL_PCODE_CDCLK_CONTROL,
--				      cdclk_config->voltage_level);
-+static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
-+			  const struct intel_cdclk_config *cdclk_config,
-+			  enum pipe pipe)
-+{
-+	struct intel_cdclk_config mid_cdclk_config;
-+	int cdclk = cdclk_config->cdclk;
-+	int ret;
-+
-+	/* Inform power controller of upcoming frequency change. */
-+	if (DISPLAY_VER(dev_priv) >= 14) {
-+		/* DISPLAY14+ do not follow the PUnit mailbox communication,
-+		 * skip this step.
-+		 */
-+	} else if (DISPLAY_VER(dev_priv) >= 11) {
-+		ret = skl_pcode_request(&dev_priv->uncore, SKL_PCODE_CDCLK_CONTROL,
-+					SKL_CDCLK_PREPARE_FOR_CHANGE,
-+					SKL_CDCLK_READY_FOR_CHANGE,
-+					SKL_CDCLK_READY_FOR_CHANGE, 3);
- 	} else {
- 		/*
--		 * The timeout isn't specified, the 2ms used here is based on
--		 * experiment.
--		 * FIXME: Waiting for the request completion could be delayed
--		 * until the next PCODE request based on BSpec.
-+		 * BSpec requires us to wait up to 150usec, but that leads to
-+		 * timeouts; the 2ms used here is based on experiment.
- 		 */
- 		ret = snb_pcode_write_timeout(&dev_priv->uncore,
- 					      HSW_PCODE_DE_WRITE_FREQ_REQ,
--					      cdclk_config->voltage_level,
--					      150, 2);
-+					      0x80000000, 150, 2);
- 	}
--
-+	
- 	if (ret) {
- 		drm_err(&dev_priv->drm,
--			"PCode CDCLK freq set failed, (err %d, freq %d)\n",
-+			"Failed to inform PCU about cdclk change (err %d, freq %d)\n",
- 			ret, cdclk);
- 		return;
- 	}
- 
-+	if (cdclk_compute_crawl_and_squash_midpoint(dev_priv,
-+						    &dev_priv->display.cdclk.hw,
-+						    cdclk_config,
-+						    &mid_cdclk_config)) {
-+		_bxt_set_cdclk(dev_priv, &mid_cdclk_config, pipe);
-+		_bxt_set_cdclk(dev_priv, cdclk_config, pipe);
-+	} else {
-+		_bxt_set_cdclk(dev_priv, cdclk_config, pipe);
-+	}
-+
- 	intel_update_cdclk(dev_priv);
- 
- 	if (DISPLAY_VER(dev_priv) >= 11)
-@@ -1965,6 +2025,26 @@ void intel_cdclk_uninit_hw(struct drm_i915_private *i915)
- 		skl_cdclk_uninit_hw(i915);
+ 	const struct intel_cdclk_vals *table = dev_priv->display.cdclk.table;
+@@ -3156,6 +3166,13 @@ u32 intel_read_rawclk(struct drm_i915_private *dev_priv)
+ 	return freq;
  }
  
-+static bool intel_cdclk_can_crawl_and_squash(struct drm_i915_private *i915,
-+					     const struct intel_cdclk_config *a,
-+					     const struct intel_cdclk_config *b)
-+{
-+	u16 old_waveform;
-+	u16 new_waveform;
++static const struct intel_cdclk_funcs mtl_cdclk_funcs = {
++	.get_cdclk = bxt_get_cdclk,
++	.set_cdclk = bxt_set_cdclk,
++	.modeset_calc_cdclk = bxt_modeset_calc_cdclk,
++	.calc_voltage_level = tgl_calc_voltage_level,
++};
 +
-+	if (a->vco == 0 || b->vco == 0)
-+		return false;
-+
-+	if (!HAS_CDCLK_CRAWL(i915) || !HAS_CDCLK_SQUASH(i915))
-+		return false;
-+
-+	old_waveform = cdclk_squash_waveform(i915, a->cdclk);
-+	new_waveform = cdclk_squash_waveform(i915, b->cdclk);
-+
-+	return a->vco != b->vco &&
-+	       old_waveform != new_waveform;
-+}
-+
- static bool intel_cdclk_can_crawl(struct drm_i915_private *dev_priv,
- 				  const struct intel_cdclk_config *a,
- 				  const struct intel_cdclk_config *b)
-@@ -2771,9 +2851,14 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
- 			pipe = INVALID_PIPE;
- 	}
- 
--	if (intel_cdclk_can_squash(dev_priv,
--				   &old_cdclk_state->actual,
--				   &new_cdclk_state->actual)) {
-+	if (intel_cdclk_can_crawl_and_squash(dev_priv,
-+					     &old_cdclk_state->actual,
-+					     &new_cdclk_state->actual)) {
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "Can change cdclk via crawling and squashing\n");
-+	} else if (intel_cdclk_can_squash(dev_priv,
-+					&old_cdclk_state->actual,
-+					&new_cdclk_state->actual)) {
- 		drm_dbg_kms(&dev_priv->drm,
- 			    "Can change cdclk via squashing\n");
- 	} else if (intel_cdclk_can_crawl(dev_priv,
+ static const struct intel_cdclk_funcs tgl_cdclk_funcs = {
+ 	.get_cdclk = bxt_get_cdclk,
+ 	.set_cdclk = bxt_set_cdclk,
+@@ -3291,7 +3308,10 @@ static const struct intel_cdclk_funcs i830_cdclk_funcs = {
+  */
+ void intel_init_cdclk_hooks(struct drm_i915_private *dev_priv)
+ {
+-	if (IS_DG2(dev_priv)) {
++	if (IS_METEORLAKE(dev_priv)) {
++		dev_priv->display.funcs.cdclk = &mtl_cdclk_funcs;
++		dev_priv->display.cdclk.table = mtl_cdclk_table;
++	} else if (IS_DG2(dev_priv)) {
+ 		dev_priv->display.funcs.cdclk = &tgl_cdclk_funcs;
+ 		dev_priv->display.cdclk.table = dg2_cdclk_table;
+ 	} else if (IS_ALDERLAKE_P(dev_priv)) {
 -- 
 2.25.1
 
