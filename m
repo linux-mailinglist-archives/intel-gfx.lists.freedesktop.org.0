@@ -2,55 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CFBC627D94
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Nov 2022 13:21:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A67A627D9F
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Nov 2022 13:23:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 505CD10E095;
-	Mon, 14 Nov 2022 12:20:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFEB410E095;
+	Mon, 14 Nov 2022 12:23:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D79D210E095;
- Mon, 14 Nov 2022 12:20:51 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AC8D10E0A0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Nov 2022 12:23:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668428452; x=1699964452;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=rvPmNzCoa8n8SixsXezw6M9E+Ll3YuySZ4TJDTq+LLk=;
- b=EOKVVRvIhiBJ/bfxnSypH2N5XJVuchVpPD+pRE2t3VM/+fLNXGz+qzeb
- KnVagiHooadFxDghXfYmPGLE60fQPf6DO/3rOb1giWjcb3rT7EVFYx8NT
- VqcwI/g2BvrktaqaSNOwbSuAM8SaGh8sN97SZoaz0P7Jkw5Y92+dcVWXu
- 5B+Z/03GR1rPBX+Q7kqR8kvNxVrq5w5R7nw4qAputiIP9lqZgtICzJMNr
- zK3XqnC3JmgxK6kQbXfPAoVFzFEubKgGy0GXhNJIW5BFktjZm1fKcWFkw
- kAhYbtiYps98wQilrZpF6v+OTVftQdxL+rFvfilajSlmynv0EEg+HrvL4 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10530"; a="313758172"
-X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; d="scan'208";a="313758172"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2022 04:20:50 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10530"; a="616291804"
-X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; d="scan'208";a="616291804"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by orsmga006.jf.intel.com with SMTP; 14 Nov 2022 04:20:46 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 14 Nov 2022 14:20:45 +0200
-Date: Mon, 14 Nov 2022 14:20:45 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jim Cromie <jim.cromie@gmail.com>
-Message-ID: <Y3IynYl3Ejb6NTAd@intel.com>
-References: <20220912052852.1123868-1-jim.cromie@gmail.com>
- <20221111221715.563020-1-jim.cromie@gmail.com>
- <20221111221715.563020-2-jim.cromie@gmail.com>
+ t=1668428593; x=1699964593;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=hWoNOo9UEXyJJNedXDUmJ4gGeeT3ze2FDPf6vCtasZA=;
+ b=k35jxCIm0iLLa3V9js1LpmHbGhxyysAbuDqwer1j5ndV9C4DjPzielGc
+ Y8s4QexdWeI92scN3uCXrYfGD3zrdg0EJS+Q+6Ys8DzivXpo/6BXfO4fM
+ zrVJ3GJkRpRIkHjX6D7djxfz3G00IkiA1pyr4RoOhRFOG9Sw3yrC85uAC
+ gXWT7CkRpnruHN17DHIy5qdpGoIqKTlRW1kXZfXfFYsBlbJS2Q9SJvsE7
+ 6gqi7uLQyMUfEk0NeBr/Qfhy7hq3LvU/uSATVKV3ZieNFa8JD4Ol6CbHf
+ 5bwbqT+FxcN1ZXdOaVovskjEgTcnpJUbd0ycZM97TrnxLCGguxfWVVilE w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10530"; a="310664104"
+X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; d="scan'208";a="310664104"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2022 04:22:55 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10530"; a="671539816"
+X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; d="scan'208";a="671539816"
+Received: from ideak-desk.fi.intel.com ([10.237.68.144])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2022 04:22:54 -0800
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 14 Nov 2022 14:22:42 +0200
+Message-Id: <20221114122251.21327-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.31.1.189.g2e36527f23
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221111221715.563020-2-jim.cromie@gmail.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 1/7] drm: mark drm.debug-on-dyndbg as BROKEN
- for now
+Subject: [Intel-gfx] [PATCH v4 0/9] drm/i915: drm/i915/tgl+: Enable DC power
+ states on all eDP ports
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,63 +56,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: gregkh@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
- linux@rasmusvillemoes.dk, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, jbaron@akamai.com, seanpaul@chromium.org,
- dri-devel@lists.freedesktop.org, daniel.vetter@ffwll.ch, joe@perches.com,
- intel-gvt-dev@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 11, 2022 at 03:17:09PM -0700, Jim Cromie wrote:
-> drm.debug-on-dyndbg has a regression, due to a chicken-egg
-> initialization problem:
-> 
-> 1- modprobe i915
->    i915 needs drm.ko, which is loaded 1st
-> 
-> 2- "modprobe drm drm.debug=0x1ff" (virtual/implied)
->    drm.debug is set post-initialization, from boot-args etc
-> 
-> 3- `modprobe i915` finishes
-> 
-> W/O drm.debug-on-dyndbg that just works, because all drm_dbg*
-> callsites use drm_debug_enabled() to check __drm_debug & DEM_UT_<CAT>
-> before printing.
-> 
-> But the whole point of drm.debug-on-dyndbg is to avoid that runtime
-> test, by enabling (at post-modinit) a static-key at each callsite in
-> the just-loaded module.
-> 
-> And since drm.ko is loaded before all dependent modules, none are
-> "just-loaded", and no drm.debug callsites are present yet, except
-> those in drm.ko itself.
-> 
-> Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
-> ---
->  drivers/gpu/drm/Kconfig | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-> index 34f5a092c99e..0d1e59e6bb7e 100644
-> --- a/drivers/gpu/drm/Kconfig
-> +++ b/drivers/gpu/drm/Kconfig
-> @@ -54,6 +54,7 @@ config DRM_DEBUG_MM
->  config DRM_USE_DYNAMIC_DEBUG
->  	bool "use dynamic debug to implement drm.debug"
->  	default y
+This is v4 of [1] addressing the review comments from Ville:
 
-Could you switch to 'default n' as well? i915 CI actually enables
-BROKEN so that we can test some more experimental stuff which is
-hidden behind BROKEN for normal users.
+- Use preallocated memory for the intel_display_power_get/put_in_set()
+  debug wakerefs array.
+- Drop the
+  "drm/i915: Don't enable the AUX_IO power for combo-PHY external DP port main links"
+  patch, to keep the existing behavior for now on the external DP ports.
 
-> +	depends on BROKEN	# chicken-egg initial enable problem
->  	depends on DRM
->  	depends on DYNAMIC_DEBUG || DYNAMIC_DEBUG_CORE
->  	depends on JUMP_LABEL
-> -- 
-> 2.38.1
+Cc: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+
+[1] https://lore.kernel.org/intel-gfx/20221107170917.3566758-5-imre.deak@intel.com/T/#t
+
+Imre Deak (9):
+  drm/i915: Fix warn in intel_display_power_*_domain() functions
+  drm/i915: Preallocate the debug power domain wakerefs array
+  drm/i915: Move the POWER_DOMAIN_AUX_IO_A definition to its logical
+    place
+  drm/i915: Use the AUX_IO power domain only for eDP/PSR port
+  drm/i915/tgl+: Enable display DC power states on all eDP ports
+  drm/i915: Add missing AUX_IO_A power domain->well mappings
+  drm/i915: Add missing DC_OFF power domain->well mappings
+  drm/i915: Factor out function to get/put AUX_IO power for main link
+  drm/i915/mtl+: Don't enable the AUX_IO power for non-eDP port main
+    links
+
+ drivers/gpu/drm/i915/display/intel_ddi.c      | 92 ++++++++++++-------
+ drivers/gpu/drm/i915/display/intel_display.c  | 11 +--
+ .../drm/i915/display/intel_display_power.c    | 42 +++++++--
+ .../drm/i915/display/intel_display_power.h    | 12 ++-
+ .../i915/display/intel_display_power_map.c    | 69 ++++++++++++--
+ .../drm/i915/display/intel_display_types.h    |  1 +
+ 6 files changed, 171 insertions(+), 56 deletions(-)
 
 -- 
-Ville Syrj‰l‰
-Intel
+2.37.1
+
