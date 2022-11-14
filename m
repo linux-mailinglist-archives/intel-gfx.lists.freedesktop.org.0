@@ -1,56 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83BA3627B7F
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Nov 2022 12:07:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95960627BC2
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Nov 2022 12:11:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8ACF10E03F;
-	Mon, 14 Nov 2022 11:07:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6115310E041;
+	Mon, 14 Nov 2022 11:11:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06D7610E03F;
- Mon, 14 Nov 2022 11:07:18 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DA0710E041
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Nov 2022 11:11:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668424039; x=1699960039;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=EWpK9JXL6HU7EcBwY2Xn+oTdr3ZfYRfM2n+gWl5utX0=;
- b=bSG1FHwrNL/XoWCS8pAn1+HPwmXvVjZT/YOLuloxBZnYDBKhK+crZRlb
- A5iX2yt4NzBsQDQs8TBxwjmfDV3gAtWCk7IHONqwka1ZbZzvvLjtuIL6A
- 2JMCMcfDWiZknPObV3KG1asEFJU1MRyVxIeUu3NUMUtwMoSg4Ogy8lrms
- NgepnRj5Amy16Wenv7wgs/MW0ffv5dktHfOjrJNQLF0DcKx3TC8wyqJGA
- /PVT7IKAesjtmWUPOylNbU45DA9begblXHtOeFRTDWbqgPTWbKtjbYOyj
- VgNeu0I7wlcAXikBqfsms7WBUxzAqfsJEUYXSvuPQmnrx/jZivgI+1z5b g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10530"; a="291658133"
-X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; d="scan'208";a="291658133"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2022 03:07:18 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10530"; a="669606602"
-X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; d="scan'208";a="669606602"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.24.118])
- ([10.213.24.118])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2022 03:07:17 -0800
-Message-ID: <8926f9d4-e88d-fdb0-1b2d-ec51ae4a3c84@intel.com>
-Date: Mon, 14 Nov 2022 12:07:14 +0100
+ t=1668424290; x=1699960290;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=6ClYWSm9ZD4LjjTlpLC3e9YqPTUNcKbBPcEuUU9f6SE=;
+ b=RyO2hEPcgGp9f6aqBLzp4RlFaofOuNd5k+TkDF9MGbjXkTuhhec3lWKR
+ 4zJNVZJYWAz2QFm/uwws8OwVMwcA+frh7lw/Ts4+VK1o3hUtEJRIP6URi
+ GKSn0xwyr1O0BlqqrbcdjTLpGKtnFougxg6y80DDwts6nehz8xP9lNVXf
+ 2Ri15P0gxuSOUFP9GA0MnCHqql2c6ORvP3vOBPp0b5UDxat9KextfopiW
+ pKYIYsidsBOICQSKCVBzAV4C5D40VqXDmq9ze5kRL4REKlPSOXn39MegK
+ 6OqBJHnx3GAaXl6Cl8e+VSy3XWR+jGzFSZRdcabDvsYLPcd1ss2D7Tkd7 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10530"; a="313746428"
+X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; d="scan'208";a="313746428"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2022 03:11:29 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10530"; a="707273858"
+X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; d="scan'208";a="707273858"
+Received: from dsmahang-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.59.240])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2022 03:11:26 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Steven 'Steve' Kendall <skend@chromium.org>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20221111224930.3961511-1-skend@google.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20221111224930.3961511-1-skend@google.com>
+Date: Mon, 14 Nov 2022 13:11:23 +0200
+Message-ID: <875yfh4wpw.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.4.2
-Content-Language: en-US
-To: Matthew Auld <matthew.auld@intel.com>, igt-dev@lists.freedesktop.org
-References: <20221107120426.22849-1-matthew.auld@intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20221107120426.22849-1-matthew.auld@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH i-g-t] tests/i915/gem_mmap_offset: use
- cpu_size in always_clear
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: disable DMC idle states for Intel
+ UHD Graphics 620
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,41 +59,100 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>
+Cc: daniel@ffwll.ch, rodrigo.vivi@intel.com,
+ Steven 'Steve' Kendall <skend@google.com>, airlied@gmail.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 07.11.2022 13:04, Matthew Auld wrote:
-> If we can't fit the buffer in the CPU visible portion of lmem, then the
-> kernel will be unable to migrate the pages on fault on small-bar
-> systems.  Note that this doesn't restrict where the pages are allocated,
-> but should just ensure we don't SIGBUS, if we need to migrate the pages.
-> 
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/7382
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> Cc: Nirmoy Das <nirmoy.das@intel.com>
+On Fri, 11 Nov 2022, "Steven 'Steve' Kendall" <skend@chromium.org> wrote:
+> Some machines with Intel UHD Graphics 620 (8086:5917) such as Dell
+> Latitude 7490 are unable to wake from sleep. Disable DMC for
+> Intel UHD Graphics 620.
 
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+Cc: some more folks
 
-Regards
-Andrzej
+The patch at hand seems like too heavy a hammer. But this needs
+attention.
 
+BR,
+Jani.
+
+
+
+>
+> Link: https://gitlab.freedesktop.org/drm/intel/-/issues/7339
+> Signed-off-by: Steven 'Steve' Kendall <skend@google.com>
 > ---
->   tests/i915/gem_mmap_offset.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/tests/i915/gem_mmap_offset.c b/tests/i915/gem_mmap_offset.c
-> index 0adeb0b5..b27920de 100644
-> --- a/tests/i915/gem_mmap_offset.c
-> +++ b/tests/i915/gem_mmap_offset.c
-> @@ -750,7 +750,7 @@ static void always_clear(int i915, const struct gem_memory_region *r, int timeou
->   	struct thread_clear arg = {
->   		.i915 = i915,
->   		.region = r->ci,
-> -		.max = r->size / 2 >> 12, /* in pages */
-> +		.max = r->cpu_size / 2 >> 12, /* in pages */
->   		.timeout = timeout,
->   	};
->   	const int ncpus = sysconf(_SC_NPROCESSORS_ONLN);
+>  drivers/gpu/drm/i915/i915_pci.c | 14 ++++++++++++++
+>  include/drm/i915_pciids.h       |  6 +++++-
+>  2 files changed, 19 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> index cd4487a1d3be..ea148be46b14 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -697,6 +697,10 @@ static const struct intel_device_info skl_gt4_info = {
+>  	.gt = 4,
+>  };
+>  
+> +#define GEN9_DMCLESS_FEATURES \
+> +	GEN9_FEATURES, \
+> +	.__runtime.has_dmc = 0
+> +
+>  #define GEN9_LP_FEATURES \
+>  	GEN(9), \
+>  	.is_lp = 1, \
+> @@ -753,6 +757,10 @@ static const struct intel_device_info glk_info = {
+>  	GEN9_FEATURES, \
+>  	PLATFORM(INTEL_KABYLAKE)
+>  
+> +#define KBL_DMCLESS_PLATFORM \
+> +	GEN9_DMCLESS_FEATURES, \
+> +	PLATFORM(INTEL_KABYLAKE)
+> +
+>  static const struct intel_device_info kbl_gt1_info = {
+>  	KBL_PLATFORM,
+>  	.gt = 1,
+> @@ -763,6 +771,11 @@ static const struct intel_device_info kbl_gt2_info = {
+>  	.gt = 2,
+>  };
+>  
+> +static const struct intel_device_info dmcless_kbl_gt2_info = {
+> +	KBL_DMCLESS_PLATFORM,
+> +	.gt = 2,
+> +};
+> +
+>  static const struct intel_device_info kbl_gt3_info = {
+>  	KBL_PLATFORM,
+>  	.gt = 3,
+> @@ -1202,6 +1215,7 @@ static const struct pci_device_id pciidlist[] = {
+>  	INTEL_GLK_IDS(&glk_info),
+>  	INTEL_KBL_GT1_IDS(&kbl_gt1_info),
+>  	INTEL_KBL_GT2_IDS(&kbl_gt2_info),
+> +	DMCLESS_INTEL_KBL_GT2_IDS(&dmcless_kbl_gt2_info),
+>  	INTEL_KBL_GT3_IDS(&kbl_gt3_info),
+>  	INTEL_KBL_GT4_IDS(&kbl_gt3_info),
+>  	INTEL_AML_KBL_GT2_IDS(&kbl_gt2_info),
+> diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
+> index 4a4c190f7698..93bea60772ff 100644
+> --- a/include/drm/i915_pciids.h
+> +++ b/include/drm/i915_pciids.h
+> @@ -420,11 +420,15 @@
+>  	INTEL_KBL_ULT_GT2_IDS(info), \
+>  	INTEL_KBL_ULX_GT2_IDS(info), \
+>  	INTEL_VGA_DEVICE(0x5912, info), /* DT  GT2 */ \
+> -	INTEL_VGA_DEVICE(0x5917, info), /* Mobile GT2 */ \
+>  	INTEL_VGA_DEVICE(0x591A, info), /* SRV GT2 */ \
+>  	INTEL_VGA_DEVICE(0x591B, info), /* Halo GT2 */ \
+>  	INTEL_VGA_DEVICE(0x591D, info) /* WKS GT2 */
+>  
+> +#define DMCLESS_INTEL_KBL_GT2_IDS(info) \
+> +	INTEL_KBL_ULT_GT2_IDS(info), \
+> +	INTEL_KBL_ULX_GT2_IDS(info), \
+> +	INTEL_VGA_DEVICE(0x5917, info) /* Mobile GT2 */
+> +
+>  #define INTEL_KBL_ULT_GT3_IDS(info) \
+>  	INTEL_VGA_DEVICE(0x5926, info) /* ULT GT3 */
 
+-- 
+Jani Nikula, Intel Open Source Graphics Center
