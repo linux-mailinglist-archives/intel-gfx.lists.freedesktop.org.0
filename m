@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E42386288A3
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Nov 2022 19:56:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F27386288EC
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Nov 2022 20:10:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8974410E1CB;
-	Mon, 14 Nov 2022 18:56:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5EFC10E10A;
+	Mon, 14 Nov 2022 19:10:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A8A9D10E1CB;
- Mon, 14 Nov 2022 18:56:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8965410E10A;
+ Mon, 14 Nov 2022 19:10:38 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A148EA66C9;
- Mon, 14 Nov 2022 18:56:44 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 80AB1AADD5;
+ Mon, 14 Nov 2022 19:10:38 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============0017070996380912345=="
+ boundary="===============5601661902705826724=="
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Mon, 14 Nov 2022 18:56:44 -0000
-Message-ID: <166845220462.32750.7861723598173337865@emeril.freedesktop.org>
+Date: Mon, 14 Nov 2022 19:10:38 -0000
+Message-ID: <166845303848.32752.15241472445298455979@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20221114111709.434979-1-jani.nikula@intel.com>
 In-Reply-To: <20221114111709.434979-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
  =?utf-8?q?/edid/firmware=3A_stop_using_a_throwaway_platform_device?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -45,7 +45,7 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0017070996380912345==
+--===============5601661902705826724==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -54,7 +54,7 @@ Content-Transfer-Encoding: 7bit
 
 Series: drm/edid/firmware: stop using a throwaway platform device
 URL   : https://patchwork.freedesktop.org/series/110859/
-State : failure
+State : success
 
 == Summary ==
 
@@ -64,14 +64,9 @@ CI Bug Log - changes from CI_DRM_12376 -> Patchwork_110859v1
 Summary
 -------
 
-  **FAILURE**
+  **SUCCESS**
 
-  Serious unknown changes coming with Patchwork_110859v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_110859v1, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+  No regressions found.
 
   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110859v1/index.html
 
@@ -81,20 +76,6 @@ Participating hosts (37 -> 38)
   Additional (3): fi-kbl-soraka bat-kbl-2 fi-bsw-nick 
   Missing    (2): fi-bdw-samus bat-dg1-5 
 
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_110859v1:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@mman:
-    - fi-kbl-soraka:      NOTRUN -> [INCOMPLETE][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110859v1/fi-kbl-soraka/igt@i915_selftest@live@mman.html
-
-  
 Known issues
 ------------
 
@@ -105,36 +86,38 @@ Known issues
 #### Issues hit ####
 
   * igt@gem_exec_gttfill@basic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][2] ([fdo#109271]) +8 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110859v1/fi-kbl-soraka/igt@gem_exec_gttfill@basic.html
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271]) +8 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110859v1/fi-kbl-soraka/igt@gem_exec_gttfill@basic.html
 
   * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#2190])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110859v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#2190])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110859v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
 
   * igt@gem_lmem_swapping@basic:
-    - fi-apl-guc:         NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110859v1/fi-apl-guc/igt@gem_lmem_swapping@basic.html
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][5] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110859v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
+    - fi-apl-guc:         NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110859v1/fi-apl-guc/igt@gem_lmem_swapping@basic.html
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110859v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
 
   * igt@gem_lmem_swapping@parallel-random-engines:
-    - fi-bsw-nick:        NOTRUN -> [SKIP][6] ([fdo#109271]) +38 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110859v1/fi-bsw-nick/igt@gem_lmem_swapping@parallel-random-engines.html
+    - fi-bsw-nick:        NOTRUN -> [SKIP][5] ([fdo#109271]) +38 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110859v1/fi-bsw-nick/igt@gem_lmem_swapping@parallel-random-engines.html
 
   * igt@i915_pm_rpm@basic-pci-d3-state:
-    - bat-adlp-4:         [PASS][7] -> [DMESG-WARN][8] ([i915#7077])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12376/bat-adlp-4/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110859v1/bat-adlp-4/igt@i915_pm_rpm@basic-pci-d3-state.html
+    - bat-adlp-4:         [PASS][6] -> [DMESG-WARN][7] ([i915#7077])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12376/bat-adlp-4/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110859v1/bat-adlp-4/igt@i915_pm_rpm@basic-pci-d3-state.html
 
   * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][9] ([i915#1886])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110859v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][8] ([i915#1886])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110859v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
 
   * igt@i915_selftest@live@mman:
-    - fi-rkl-guc:         [PASS][10] -> [TIMEOUT][11] ([i915#6794])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12376/fi-rkl-guc/igt@i915_selftest@live@mman.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110859v1/fi-rkl-guc/igt@i915_selftest@live@mman.html
+    - fi-rkl-guc:         [PASS][9] -> [TIMEOUT][10] ([i915#6794])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12376/fi-rkl-guc/igt@i915_selftest@live@mman.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110859v1/fi-rkl-guc/igt@i915_selftest@live@mman.html
+    - fi-kbl-soraka:      NOTRUN -> [INCOMPLETE][11] ([i915#7320])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110859v1/fi-kbl-soraka/igt@i915_selftest@live@mman.html
 
   * igt@kms_chamelium@common-hpd-after-suspend:
     - fi-rkl-11600:       NOTRUN -> [SKIP][12] ([fdo#111827])
@@ -195,6 +178,7 @@ Known issues
   [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
   [i915#7056]: https://gitlab.freedesktop.org/drm/intel/issues/7056
   [i915#7077]: https://gitlab.freedesktop.org/drm/intel/issues/7077
+  [i915#7320]: https://gitlab.freedesktop.org/drm/intel/issues/7320
   [i915#7348]: https://gitlab.freedesktop.org/drm/intel/issues/7348
 
 
@@ -217,7 +201,7 @@ Build changes
 
 For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110859v1/index.html
 
---===============0017070996380912345==
+--===============5601661902705826724==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -239,7 +223,7 @@ Content-Transfer-Encoding: 7bit
 <table>
 <tr><td><b>Series:</b></td><td>drm/edid/firmware: stop using a throwaway platform device</td></tr>
 <tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/110859/">https://patchwork.freedesktop.org/series/110859/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
 
     <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110859v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110859v1/index.html</a></td></tr>
 
@@ -248,26 +232,12 @@ Content-Transfer-Encoding: 7bit
 
     <h1>CI Bug Log - changes from CI_DRM_12376 -&gt; Patchwork_110859v1</h1>
 <h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_110859v1 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_110859v1, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
 <p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110859v1/index.html</p>
 <h2>Participating hosts (37 -&gt; 38)</h2>
 <p>Additional (3): fi-kbl-soraka bat-kbl-2 fi-bsw-nick <br />
   Missing    (2): fi-bdw-samus bat-dg1-5 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_110859v1:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live@mman:<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110859v1/fi-kbl-soraka/igt@i915_selftest@live@mman.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
 <h2>Known issues</h2>
 <p>Here are the changes found in Patchwork_110859v1 that come from known issues:</p>
 <h3>IGT changes</h3>
@@ -317,7 +287,12 @@ Content-Transfer-Encoding: 7bit
 <li>
 <p>igt@i915_selftest@live@mman:</p>
 <ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12376/fi-rkl-guc/igt@i915_selftest@live@mman.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110859v1/fi-rkl-guc/igt@i915_selftest@live@mman.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6794">i915#6794</a>)</li>
+<li>
+<p>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12376/fi-rkl-guc/igt@i915_selftest@live@mman.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110859v1/fi-rkl-guc/igt@i915_selftest@live@mman.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6794">i915#6794</a>)</p>
+</li>
+<li>
+<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110859v1/fi-kbl-soraka/igt@i915_selftest@live@mman.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7320">i915#7320</a>)</p>
+</li>
 </ul>
 </li>
 <li>
@@ -393,4 +368,4 @@ Content-Transfer-Encoding: 7bit
 </body>
 </html>
 
---===============0017070996380912345==--
+--===============5601661902705826724==--
