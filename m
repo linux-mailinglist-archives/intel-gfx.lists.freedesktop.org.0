@@ -1,57 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3BF3627B65
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Nov 2022 12:02:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83BA3627B7F
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Nov 2022 12:07:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94D8310E03F;
-	Mon, 14 Nov 2022 11:02:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8ACF10E03F;
+	Mon, 14 Nov 2022 11:07:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A913D10E03F;
- Mon, 14 Nov 2022 11:02:52 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06D7610E03F;
+ Mon, 14 Nov 2022 11:07:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668423772; x=1699959772;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=/FDzgq0LlS6mMw/MubQxFSGMoNYe/6uINUBW5zC8k2A=;
- b=XFUHwklUZHe+5XeBUKMxHwEokcpccI/3wWiPSVnFoZDGJhpoh/UI61mE
- BwJQOSq60yfjHYsXjNyz+TpdGI4D53rznVWrOkRXKq5BqnfKyHXjnT/IE
- 046VfgVGjnncu6fU3MfPAsJ/kD7dpphP7BZ/eU/rd+A4F+PzCYgdfClzf
- 1E3YQyXqq3D4ixyKNs0/jD0Tk+P0hQkW8Fq1AqcDfxrhYCxLNYr7w63/C
- 5kPwi62OpthIYvn+M8Hl8II86ktNq6mravQnrN91UOZWnSqv2G2hd8mHb
- TpfxS/o1ojMMHwCbooE/vX0Y00uxBRtQvMPXOBYBzGLQew+eG49x93xor w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10530"; a="338726597"
-X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; d="scan'208";a="338726597"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2022 03:02:52 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10530"; a="763436230"
-X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; d="scan'208";a="763436230"
-Received: from dsmahang-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.59.240])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2022 03:02:49 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Hans de Goede <hdegoede@redhat.com>, Stephen Rothwell
- <sfr@canb.auug.org.au>, Daniel Vetter <daniel.vetter@ffwll.ch>, Joonas
- Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>
-In-Reply-To: <57f57c29-cf48-67c1-b6b3-0e50e7105031@redhat.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221114102327.6d53341e@canb.auug.org.au>
- <33ef1207-aad7-b7cd-61ac-327e9afb0699@redhat.com>
- <87cz9p4zj6.fsf@intel.com>
- <57f57c29-cf48-67c1-b6b3-0e50e7105031@redhat.com>
-Date: Mon, 14 Nov 2022 13:02:46 +0200
-Message-ID: <878rkd4x49.fsf@intel.com>
+ t=1668424039; x=1699960039;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=EWpK9JXL6HU7EcBwY2Xn+oTdr3ZfYRfM2n+gWl5utX0=;
+ b=bSG1FHwrNL/XoWCS8pAn1+HPwmXvVjZT/YOLuloxBZnYDBKhK+crZRlb
+ A5iX2yt4NzBsQDQs8TBxwjmfDV3gAtWCk7IHONqwka1ZbZzvvLjtuIL6A
+ 2JMCMcfDWiZknPObV3KG1asEFJU1MRyVxIeUu3NUMUtwMoSg4Ogy8lrms
+ NgepnRj5Amy16Wenv7wgs/MW0ffv5dktHfOjrJNQLF0DcKx3TC8wyqJGA
+ /PVT7IKAesjtmWUPOylNbU45DA9begblXHtOeFRTDWbqgPTWbKtjbYOyj
+ VgNeu0I7wlcAXikBqfsms7WBUxzAqfsJEUYXSvuPQmnrx/jZivgI+1z5b g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10530"; a="291658133"
+X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; d="scan'208";a="291658133"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2022 03:07:18 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10530"; a="669606602"
+X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; d="scan'208";a="669606602"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.24.118])
+ ([10.213.24.118])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2022 03:07:17 -0800
+Message-ID: <8926f9d4-e88d-fdb0-1b2d-ec51ae4a3c84@intel.com>
+Date: Mon, 14 Nov 2022 12:07:14 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] linux-next: manual merge of the drm-intel tree with
- Linus' tree
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.4.2
+Content-Language: en-US
+To: Matthew Auld <matthew.auld@intel.com>, igt-dev@lists.freedesktop.org
+References: <20221107120426.22849-1-matthew.auld@intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20221107120426.22849-1-matthew.auld@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH i-g-t] tests/i915/gem_mmap_offset: use
+ cpu_size in always_clear
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,67 +63,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 14 Nov 2022, Hans de Goede <hdegoede@redhat.com> wrote:
-> Hi,
->
-> On 11/14/22 11:10, Jani Nikula wrote:
->> On Mon, 14 Nov 2022, Hans de Goede <hdegoede@redhat.com> wrote:
->>> Hi,
->>>
->>> On 11/14/22 00:23, Stephen Rothwell wrote:
->>>> Hi all,
->>>>
->>>> Today's linux-next merge of the drm-intel tree got a conflict in:
->>>>
->>>>   drivers/gpu/drm/i915/display/intel_backlight.c
->>>>
->>>> between commit:
->>>>
->>>>   b1d36e73cc1c ("drm/i915: Don't register backlight when another backlight should be used (v2)")
->>>>
->>>> from Linus' tree and commit:
->>>>
->>>>   801543b2593b ("drm/i915: stop including i915_irq.h from i915_trace.h")
->>>>
->>>> from the drm-intel tree.
->>>
->>> This is weird, because the:
->>>
->>>    b1d36e73cc1c ("drm/i915: Don't register backlight when another backlight should be used (v2)")
->>>
->>> commit is in 6.1-rc1, so there can only be a conflict it 6.1-rc1 has not
->>> been back-merged into drm-intel yet ?
->> 
->> That's the reason it *is* a conflict, right?
->
-> Right what I was trying to say is that I am surprised that 6.1-rc1 has not
-> been back-merged into drm-intel yet even though it has been released
-> 4 weeks ago.
+On 07.11.2022 13:04, Matthew Auld wrote:
+> If we can't fit the buffer in the CPU visible portion of lmem, then the
+> kernel will be unable to migrate the pages on fault on small-bar
+> systems.  Note that this doesn't restrict where the pages are allocated,
+> but should just ensure we don't SIGBUS, if we need to migrate the pages.
+> 
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/7382
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+> Cc: Nirmoy Das <nirmoy.das@intel.com>
 
-Right, -ENOCOFFEE at my end.
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-> I thought it was more or less standard process to backmerge rc1 soon after
-> it is released ?
+Regards
+Andrzej
 
-The delay may be because v6.1-rc1 brought in more regressions for us
-than any other -rc1 in recent memory. Our CI's been suffering, and our
-folks have been spending a lot of time debugging, bisecting and
-reporting. (And before you ask, yes, we're going to be more proactive in
-reporting issues we find in linux-next.)
+> ---
+>   tests/i915/gem_mmap_offset.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/tests/i915/gem_mmap_offset.c b/tests/i915/gem_mmap_offset.c
+> index 0adeb0b5..b27920de 100644
+> --- a/tests/i915/gem_mmap_offset.c
+> +++ b/tests/i915/gem_mmap_offset.c
+> @@ -750,7 +750,7 @@ static void always_clear(int i915, const struct gem_memory_region *r, int timeou
+>   	struct thread_clear arg = {
+>   		.i915 = i915,
+>   		.region = r->ci,
+> -		.max = r->size / 2 >> 12, /* in pages */
+> +		.max = r->cpu_size / 2 >> 12, /* in pages */
+>   		.timeout = timeout,
+>   	};
+>   	const int ncpus = sysconf(_SC_NPROCESSORS_ONLN);
 
-That said, Rodrigo's been in charge of drm-intel-next this cycle, maybe
-it's time to backmerge drm-next?
-
-
-BR,
-Jani.
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
