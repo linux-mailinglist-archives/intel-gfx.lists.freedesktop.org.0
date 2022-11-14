@@ -1,139 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E057C628BDB
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Nov 2022 23:15:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 502E2628BE2
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Nov 2022 23:16:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFEF110E331;
-	Mon, 14 Nov 2022 22:15:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD43910E331;
+	Mon, 14 Nov 2022 22:16:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F9D910E331
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Nov 2022 22:15:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668464151; x=1700000151;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=gbivyIEt9B/T6ji4YdeZCB8yayzZpFHKNePNz0qEzAU=;
- b=J8hFLhwSsOQG+D0pvW2MPU8X53A11S19YdPh6ZiHr+2+P8m95+6kVviS
- Q/Mv+Zkzy3iLDNMc5unb8G5d3YtOqBpZGXgKIJrb1TGjrxN0mwKnnyX+O
- k8A/KwpIawvUFLEt0hFvBOJEYDVwdgSlr96pJt/1eFsTqfn6ErSU8/Yif
- tHzXwXhHT7005Ob/CwpGdWTOAovV8VD7grlTcfqU3ktpg9nhLa/3kmVxX
- ToNe37ZV9LqyTsIZS+hKBTsVs/34MZ9Rs1+QVGe78MnvuTmVYrAKEMGbS
- Ci6lWrjZUREmTnX8uWdVgsYzu/mv0CIXS8s4b8+Mh6G9b+CW7Gx3vSNKY w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="295458180"
-X-IronPort-AV: E=Sophos;i="5.96,164,1665471600"; d="scan'208";a="295458180"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2022 14:15:50 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="640952574"
-X-IronPort-AV: E=Sophos;i="5.96,164,1665471600"; d="scan'208";a="640952574"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmsmga007.fm.intel.com with ESMTP; 14 Nov 2022 14:15:49 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Mon, 14 Nov 2022 14:15:49 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Mon, 14 Nov 2022 14:15:49 -0800
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.104)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Mon, 14 Nov 2022 14:15:49 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZMtRd+cBBRhL6eA8ldCaisf2wm3NqsPY8m6Vd9tvcN9GuTezUjoYmfjjJOJB19dDOE2+PozmiAYkSKVHXL02r4RJox+hRQs9XcQVilVQCuoAr9r7p/ezvNCowRCctVbdKSdAcTA0Ze9IMIgc7ri+4oqrGUKpc4jFOvXddQJGrOV9/aUsIGHnA7geLWJ8jW+VNye4XzoyvOrMVSBWtbxELGKR7BUjQmXV+kRTIuErJUx/W761p2fpoy6vZjjXcIk+DnSsvdPSxmnWQgaJoFSB8OqzNVxdPP60A4vHZGL+uXjXfDHbgxptA35ad0oUKBlH2u3zatgZqSE/p1P8F6vxZg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=12IxNc4HL3aqSDK/oUy2/JEGG8SA0ksGAS2YtDiDSWI=;
- b=B/DiPTusC5fhSZTKXwFb+dRBD1VrCt0XuWwZvtIMNeR+jUmPs+ZOANa9ZvZDUjHP9FMF+ChhnnlZZsVZvxUoh0OWYAh4XYy53lt8e6cMrYBgsawLIzqh2sTxeVlkFQA8WiVyQbZS9cpKEu8o/0jVbbhIapZDaLRtae9ANuqsX2A5vR73OLRRwbRByvKN8/VxurhsOUv02N1I7TrjyFXVulYZTBdehMvJBp+7awBjjSr0grt8Pq6ni0XtQ8SOtvjeqSEI1Pjo8Nw0krWzvpi8HvHlEmTAMMOegIfNGWPXmuz6K1XVTZHIr5/EPeSVCFIGXTCNcOT61aqI2Pu0ilwg4w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MWHPR11MB1632.namprd11.prod.outlook.com (2603:10b6:301:11::11)
- by MW4PR11MB6787.namprd11.prod.outlook.com (2603:10b6:303:209::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.17; Mon, 14 Nov
- 2022 22:15:47 +0000
-Received: from MWHPR11MB1632.namprd11.prod.outlook.com
- ([fe80::6dfc:c022:bd04:fe3e]) by MWHPR11MB1632.namprd11.prod.outlook.com
- ([fe80::6dfc:c022:bd04:fe3e%7]) with mapi id 15.20.5813.017; Mon, 14 Nov 2022
- 22:15:47 +0000
-Date: Mon, 14 Nov 2022 14:15:45 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Anusha Srivatsa <anusha.srivatsa@intel.com>
-Message-ID: <Y3K+EWdQwpKSLm1L@mdroper-desk1.amr.corp.intel.com>
-References: <20221114205717.386681-1-anusha.srivatsa@intel.com>
- <20221114205717.386681-2-anusha.srivatsa@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221114205717.386681-2-anusha.srivatsa@intel.com>
-X-ClientProxiedBy: SJ0PR13CA0197.namprd13.prod.outlook.com
- (2603:10b6:a03:2c3::22) To MWHPR11MB1632.namprd11.prod.outlook.com
- (2603:10b6:301:11::11)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A8DE410E32E;
+ Mon, 14 Nov 2022 22:16:51 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A028BA7DFC;
+ Mon, 14 Nov 2022 22:16:51 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWHPR11MB1632:EE_|MW4PR11MB6787:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4def49c8-c583-4836-a4ea-08dac68dc80a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ydjPpp5OhuflVUHSj9DNW44VAGyscZd3Kb56RxvadtbwDjKnE4EGK8R4LVpqrSMKiZVZymgset7yHDhOqIB3Z9TO6PN0K3eU7hTr2qJT8FkUUBqdU318lFGYxxnknSSk5WsAKkGXRh8lbdXR6ac044OSIZtlLbolS/nCQ1n55i0zlAfUMzAQM2n1npXhQxlSuDi2sruBSkOTaQ7b3FOj0SAkD+5Q0wmDWi/XD7Y5WC76zBvhTulloo15kNy6N5xacIG0pap3ldWL1zdGNWZ78Rc8j8DYR+HKYb8JCriVhJz5UEL9V1NleK65VelzEhbbclnZalmx2H4N+xzM6g1WyGSFRcikq5drR1HP87L7UJcjLHU2sYlQOR4+HdBaIl9abUkKX8fFokO9ROr+nAd8aW+IQjnMqGkBHlxr9CgGXgce59/8tZ4UfR4fOGc2E8tqIOQcW3rUsXXphDoojoiQaPPUTJ1VjHfkgEtJJeV6DlxLf8nWDODg8I3bt3uIl4drFO1tM5E8DaFZFMEGD17RyFHFlGMX45Prji2gxhgA/fMojeQcu9PWpD3W+Rw8Y5yi6KV45/vxFPqeL+zGAVZ+iQf6PIS/rGzge3Q1YMR/OOJtjznm+AAgjpHVUSDS8Qa+amIaCXG3vcHO/uek53fgR2Sad45+OMhM3nGjVSA8dF3fc7hp/TxHuYY4CeF6mVEbfw3UrDwUivMC2krgMu2HHS+HIVlRXd08z1FOStgRAsWIq+tMcToayJERIzZfLEVeXtPQ6lAYASEGfoEsovaFDg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MWHPR11MB1632.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(366004)(376002)(346002)(136003)(39860400002)(396003)(451199015)(6512007)(86362001)(2906002)(6506007)(478600001)(26005)(5660300002)(41300700001)(6486002)(38100700002)(4326008)(66556008)(8676002)(186003)(66574015)(66476007)(66946007)(83380400001)(8936002)(82960400001)(6862004)(316002)(6636002)(17423001)(67856001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?e32qcQrhkIy8wtQ97qu8XRbSoD27K+0PGuemDDBDa2uWByggVOhWXbY4f3?=
- =?iso-8859-1?Q?hRyQk93kaBO6FtRb1X2Rk2lzWh3XKJhrZRILzMKrifMncJ2X6gXYGwmDiL?=
- =?iso-8859-1?Q?n8LBg+crBUFuPh0C8EcFcPcpbIO65j7bwvT6SC/FbNQZk1Yos4t35lodWn?=
- =?iso-8859-1?Q?/lebgbpecgDStnr1nX9PyiB1ggvzUzlNFjrCUOpEnjxLTwmQPP4cMHiDV2?=
- =?iso-8859-1?Q?uLpMQLuBXJ3DWslMOg/3PHRqViTCKyfpqSqWPRo6kJG28XjFyDrDoMpnGp?=
- =?iso-8859-1?Q?Iy0rEq4F+xmR/XbwPeyLtN14CjwcRQePlW/oyzhG32h+1f0aq/OLh4w9tQ?=
- =?iso-8859-1?Q?eCwTkCjcBwV9sqhBiwo1l/6q4CEU3gj0wQeWtZNCOND+AM/C+qsqc0oi9s?=
- =?iso-8859-1?Q?y5F5Cx6XoiUHH1rSc/f/Tf3kMzLqnF6HorDkGuhEo/J8W5HFqCxMNN+KWE?=
- =?iso-8859-1?Q?nCULPlHpcFIYI2w5hp5HPLhmAkwJ1jRgAk1IQSn+rEE/zBmlGQw+goPyd7?=
- =?iso-8859-1?Q?hjmWC2J1BDS/yGwi5CqczYfFfaFunX+7IY8wlwGQ9ojHrDVH/G+jirhflR?=
- =?iso-8859-1?Q?KSoHKfe4LK4DgY4+ibYDG1XoBluI0+tb4sk7Jf9MfPtB+RnaiOwzraGwBm?=
- =?iso-8859-1?Q?MJIvJmCwEJZgsGLIAEKxcL8xPTDqXXoCml2hQouzXqEzTZFMVfjsWvkVCs?=
- =?iso-8859-1?Q?tIkR+iAlUUNRt9K5sJm98W15Pp8QdgIsDw91JR7o4fGDToBkjYWfuJhEG7?=
- =?iso-8859-1?Q?f5/6pYTbiNc0pNzlhXs3jvxN+ILg5qKz9jXB0wrDUm0ctgUP6gwTIAqRfS?=
- =?iso-8859-1?Q?zeLVw+r/WmQPGhl9U16YHNyKdGIKRqZ8Xne1C2mZbeapYrX4OjNP+WIoM4?=
- =?iso-8859-1?Q?QaTaRtEiC+bk3oABXgqjOzERuqmI7+wUgyAnf3rypLHRRil/RjNxR2o05S?=
- =?iso-8859-1?Q?FpCoy7WR75AnZsFBSW7ehxhhj2tOTkWDT2BAyensjOMBVWlhjQNUSin9n5?=
- =?iso-8859-1?Q?05Kz+pkJchtz5d04V1YmX+NIcQmuAdFEpBEoa5/5N0ufqeu7SqjtaLbtbO?=
- =?iso-8859-1?Q?GLM3CRqwr4LgE2W0Y+hKQYELDH5IhvCG3BXMzkrQ17V3WQ/Wab2mw0f3Fr?=
- =?iso-8859-1?Q?j25sN6il+9fB02tG+PZdFQoxIgBj6v7YThHrD2GAgzEqlrkFduQl3jfA3w?=
- =?iso-8859-1?Q?f6yrj0+WzsFXIVUuTBS+ViZu9XkcdtO3bVJvlVNvERQHzOk/QBEudqdC2e?=
- =?iso-8859-1?Q?9mJOJDwcZPmxHcgIj73yHJ1fTkFuB5WTP+yOlnEh8WgT9M8L0zpcY+R5f2?=
- =?iso-8859-1?Q?yGL10G0JH/cHPIiCUSv0rB1/yORjnglp0NAsk5fLmBZsgHiZetAVRfIa9x?=
- =?iso-8859-1?Q?V/kTa6T9Wj70mXtC+xi5EmGNfl8OmaKWZfXLpFyFMnWFfCNMe6XM2R+pi4?=
- =?iso-8859-1?Q?KzvUAfItI9bahZ1hvrb6ZzImX1MjYDTT3/gQyf4n2/Jd1z/TyT8IuvLeVM?=
- =?iso-8859-1?Q?sbRPd6hK5iHvj5y4/JRFidbzBvgajB8d5Z9OnlcUmWcvXCj9b4SNYANmvX?=
- =?iso-8859-1?Q?u+/kdQlU0TwaD1vzkybuTY42A2CBFEZF16eSRcTYxrmjRqblJ+GDbG5BpR?=
- =?iso-8859-1?Q?AHicN7F5F2sdy4TRFP1hvj6uWnrFy5kGuk2UKAu96bE5VtkmTwoRGQpQ?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4def49c8-c583-4836-a4ea-08dac68dc80a
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR11MB1632.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2022 22:15:47.6581 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CIpi5gApIAaUxZgbhBAFlLyayV5LazFCXK8LzvHdsBf2EecNP3uRGLKrLbQMMnYCOds0JMrEO0xB2cQRzoC6MJovQqSnF+zMWvfXmqzaM1g=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6787
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/display: Do both crawl and
- squash when changing cdclk
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mateusz Kwiatkowski" <kfyatek@gmail.com>
+Date: Mon, 14 Nov 2022 22:16:51 -0000
+Message-ID: <166846421165.32750.1193593124785451784@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220728-rpi-analog-tv-properties-v9-0-24b168e5bcd5@cerno.tech>
+In-Reply-To: <20220728-rpi-analog-tv-properties-v9-0-24b168e5bcd5@cerno.tech>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm=3A_Analog_TV_Improvements_=28rev10=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,304 +40,341 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 14, 2022 at 12:57:16PM -0800, Anusha Srivatsa wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> For MTL, changing cdclk from between certain frequencies has
-> both squash and crawl. Use the current cdclk config and
-> the new(desired) cdclk config to construtc a mid cdclk config.
-> Set the cdclk twice:
-> - Current cdclk -> mid cdclk
-> - mid cdclk -> desired cdclk
-> 
-> v2: Add check in intel_modeset_calc_cdclk() to avoid cdclk
-> change via modeset for platforms that support squash_crawl sequences(Ville)
-> 
-> v3: Add checks for:
-> - scenario where only slow clock is used and
-> cdclk is actually 0 (bringing up display).
-> - PLLs are on before looking up the waveform.
-> - Squash and crawl capability checks.(Ville)
-> 
-> v4: Rebase
-> - Move checks to be more consistent (Ville)
-> - Add comments (Bala)
-> v5:
-> - Further small changes. Move checks around.
-> - Make if-else better looking (Ville)
-> 
-> v6: MTl should not follow PUnit mailbox communication as the rest of
-> gen11+ platforms.(Anusha)
-> 
-> v7: (MattR)
-> - s/cdclk_crawl_and_squash/cdclk_compute_crawl_squash_midpoint
-> - Cleanup Pcode checks in bxt_set_cdclk()
-> - Correct unsigned/signed checks
-> 
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_cdclk.c | 163 ++++++++++++++++-----
->  1 file changed, 124 insertions(+), 39 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> index 25d01271dc09..4db7103fe5d6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -1727,37 +1727,74 @@ static bool cdclk_pll_is_unknown(unsigned int vco)
->  	return vco == ~0;
->  }
->  
-> -static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
-> -			  const struct intel_cdclk_config *cdclk_config,
-> -			  enum pipe pipe)
-> +static int cdclk_squash_divider(u16 waveform)
-> +{
-> +	return hweight16(waveform ?: 0xffff);
-> +}
-> +
-> +static bool cdclk_compute_crawl_and_squash_midpoint(struct drm_i915_private *i915,
-> +						    const struct intel_cdclk_config *old_cdclk_config,
-> +						    const struct intel_cdclk_config *new_cdclk_config,
-> +						    struct intel_cdclk_config *mid_cdclk_config)
-> +{
-> +	u16 old_waveform, new_waveform, mid_waveform;
-> +	int size = 16;
-> +	int div = 2;
-> +
-> +	/* Return if both Squash and Crawl are not present */
-> +	if (!HAS_CDCLK_CRAWL(i915) || !HAS_CDCLK_SQUASH(i915))
-> +		return false;
-> +
-> +	old_waveform = cdclk_squash_waveform(i915, old_cdclk_config->cdclk);
-> +	new_waveform = cdclk_squash_waveform(i915, new_cdclk_config->cdclk);
-> +
-> +	/* Return if Squash only or Crawl only is the desired action */
-> +	if (old_cdclk_config->vco == 0 || new_cdclk_config->vco == 0 ||
-> +	    old_cdclk_config->vco == new_cdclk_config->vco ||
-> +	    old_waveform == new_waveform)
-> +		return false;
-> +
-> +	*mid_cdclk_config = *new_cdclk_config;
-> +
-> +	/* Populate the mid_cdclk_config accordingly.
+== Series Details ==
 
-Nit:  kernel coding style says the "/*" needs to be on its own line.
+Series: drm: Analog TV Improvements (rev10)
+URL   : https://patchwork.freedesktop.org/series/107892/
+State : warning
 
-> +	 * - If moving to a higher cdclk, the desired action is squashing.
-> +	 * The mid cdclk config should have the new (squash) waveform.
-> +	 * - If moving to a lower cdclk, the desired action is crawling.
-> +	 * The mid cdclk config should have the new vco.
-> +	 */
-> +
-> +	if (cdclk_squash_divider(new_waveform) > cdclk_squash_divider(old_waveform)) {
-> +		mid_cdclk_config->vco = old_cdclk_config->vco;
-> +		mid_waveform = new_waveform;
-> +	} else {
-> +		mid_cdclk_config->vco = new_cdclk_config->vco;
-> +		mid_waveform = old_waveform;
-> +	}
-> +
-> +	mid_cdclk_config->cdclk = DIV_ROUND_CLOSEST(cdclk_squash_divider(mid_waveform) *
-> +						    mid_cdclk_config->vco, size * div);
-> +
-> +	/* make sure the mid clock came out sane */
-> +
-> +	drm_WARN_ON(&i915->drm, mid_cdclk_config->cdclk <
-> +		    min(old_cdclk_config->cdclk, new_cdclk_config->cdclk));
-> +	drm_WARN_ON(&i915->drm, mid_cdclk_config->cdclk >
-> +		    i915->display.cdclk.max_cdclk_freq);
-> +	drm_WARN_ON(&i915->drm, cdclk_squash_waveform(i915, mid_cdclk_config->cdclk) !=
-> +		    mid_waveform);
-> +
-> +	return true;
-> +}
-> +
-> +static void _bxt_set_cdclk(struct drm_i915_private *dev_priv,
-> +			   const struct intel_cdclk_config *cdclk_config,
-> +			   enum pipe pipe)
->  {
->  	int cdclk = cdclk_config->cdclk;
->  	int vco = cdclk_config->vco;
->  	u32 val;
->  	u16 waveform;
->  	int clock;
-> -	int ret;
-> -
-> -	/* Inform power controller of upcoming frequency change. */
-> -	if (DISPLAY_VER(dev_priv) >= 11)
-> -		ret = skl_pcode_request(&dev_priv->uncore, SKL_PCODE_CDCLK_CONTROL,
-> -					SKL_CDCLK_PREPARE_FOR_CHANGE,
-> -					SKL_CDCLK_READY_FOR_CHANGE,
-> -					SKL_CDCLK_READY_FOR_CHANGE, 3);
-> -	else
-> -		/*
-> -		 * BSpec requires us to wait up to 150usec, but that leads to
-> -		 * timeouts; the 2ms used here is based on experiment.
-> -		 */
-> -		ret = snb_pcode_write_timeout(&dev_priv->uncore,
-> -					      HSW_PCODE_DE_WRITE_FREQ_REQ,
-> -					      0x80000000, 150, 2);
-> -	if (ret) {
-> -		drm_err(&dev_priv->drm,
-> -			"Failed to inform PCU about cdclk change (err %d, freq %d)\n",
-> -			ret, cdclk);
-> -		return;
-> -	}
->  
->  	if (HAS_CDCLK_CRAWL(dev_priv) && dev_priv->display.cdclk.hw.vco > 0 && vco > 0 &&
->  	    !cdclk_pll_is_unknown(dev_priv->display.cdclk.hw.vco)) {
-> @@ -1793,30 +1830,53 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
->  
->  	if (pipe != INVALID_PIPE)
->  		intel_crtc_wait_for_next_vblank(intel_crtc_for_pipe(dev_priv, pipe));
-> +}
->  
-> -	if (DISPLAY_VER(dev_priv) >= 11) {
-> -		ret = snb_pcode_write(&dev_priv->uncore, SKL_PCODE_CDCLK_CONTROL,
-> -				      cdclk_config->voltage_level);
-> +static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
-> +			  const struct intel_cdclk_config *cdclk_config,
-> +			  enum pipe pipe)
-> +{
-> +	struct intel_cdclk_config mid_cdclk_config;
-> +	int cdclk = cdclk_config->cdclk;
-> +	int ret;
+== Summary ==
 
-You should initialize ret to 0 here since you don't set it in the new
-branch of the if/else ladder below.
+Error: dim checkpatch failed
+33225d7686a2 docs/fb: Document current named modes
+8c65b8e4719a drm/tests: Add Kunit Helpers
+-:33: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#33: 
+new file mode 100644
 
-> +
-> +	/* Inform power controller of upcoming frequency change. */
-> +	if (DISPLAY_VER(dev_priv) >= 14) {
-> +		/* DISPLAY14+ do not follow the PUnit mailbox communication,
+-:38: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#38: FILE: drivers/gpu/drm/tests/drm_kunit_helpers.c:1:
++#include <drm/drm_drv.h>
 
-"Display versions 14 and above" or "Xe_LPD+ and beyond"
+-:108: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#108: FILE: drivers/gpu/drm/tests/drm_kunit_helpers.h:1:
++#ifndef DRM_KUNIT_HELPERS_H_
 
-Also, this is another case where "/*" should be on its own line.
+total: 0 errors, 3 warnings, 0 checks, 80 lines checked
+a3be5ddeda07 drm/connector: Rename legacy TV property
+-:111: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#111: FILE: drivers/gpu/drm/i2c/ch7006_drv.c:268:
++	drm_object_attach_property(&connector->base, conf->legacy_tv_mode_property,
+ 				      priv->norm);
 
-> +		 * skip this step.
-> +		 */
-> +	} else if (DISPLAY_VER(dev_priv) >= 11) {
-> +		ret = skl_pcode_request(&dev_priv->uncore, SKL_PCODE_CDCLK_CONTROL,
-> +					SKL_CDCLK_PREPARE_FOR_CHANGE,
-> +					SKL_CDCLK_READY_FOR_CHANGE,
-> +					SKL_CDCLK_READY_FOR_CHANGE, 3);
->  	} else {
->  		/*
-> -		 * The timeout isn't specified, the 2ms used here is based on
-> -		 * experiment.
-> -		 * FIXME: Waiting for the request completion could be delayed
-> -		 * until the next PCODE request based on BSpec.
-> +		 * BSpec requires us to wait up to 150usec, but that leads to
-> +		 * timeouts; the 2ms used here is based on experiment.
->  		 */
->  		ret = snb_pcode_write_timeout(&dev_priv->uncore,
->  					      HSW_PCODE_DE_WRITE_FREQ_REQ,
-> -					      cdclk_config->voltage_level,
-> -					      150, 2);
-> +					      0x80000000, 150, 2);
+total: 0 errors, 0 warnings, 1 checks, 164 lines checked
+f6e78b240441 drm/connector: Only register TV mode property if present
+d25e87b44429 drm/connector: Rename drm_mode_create_tv_properties
+2d384f3cc11f drm/connector: Add TV standard property
+-:79: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#79: FILE: drivers/gpu/drm/drm_connector.c:996:
++};
++DRM_ENUM_NAME_FN(drm_get_tv_mode_name, drm_tv_mode_enum_list)
 
-The switch from cdclk_config->voltage_level to a magic number
-(0x80000000) on old platforms doesn't seem to be related to the rest of
-this patch.  Ditto for the comment update about 150usec not being
-enough.  Were those intended for a different patch?
+-:335: WARNING:TYPO_SPELLING: 'Superseeded' may be misspelled - perhaps 'Superseded'?
+#335: FILE: include/drm/drm_mode_config.h:720:
++	 * Superseeded by @tv_mode_property
+ 	   ^^^^^^^^^^^
 
->  	}
-> -
-> +	
+total: 0 errors, 1 warnings, 1 checks, 291 lines checked
+854c15ba16a0 drm/modes: Add a function to generate analog display modes
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:122: WARNING:LONG_LINE: line length of 119 exceeds 100 columns
+#122: FILE: drivers/gpu/drm/drm_modes.c:212:
++#define TV_MODE_PARAMETER(_mode, _lines, _line_dur, _hact, _hfp, _hslen, _hbp, _hblk, _bt601_hfp, _vfp, _vslen, _vbp) \
 
-Stray whitespace
+-:137: WARNING:STATIC_CONST: Move const after static - use 'static const struct analog_parameters '
+#137: FILE: drivers/gpu/drm/drm_modes.c:227:
++const static struct analog_parameters tv_modes_parameters[] = {
 
->  	if (ret) {
->  		drm_err(&dev_priv->drm,
-> -			"PCode CDCLK freq set failed, (err %d, freq %d)\n",
-> +			"Failed to inform PCU about cdclk change (err %d, freq %d)\n",
+-:330: WARNING:TABSTOP: Statements should start on a tabstop
+#330: FILE: drivers/gpu/drm/drm_modes.c:420:
++		 int porches_rem = porches - hfp_min - hbp_min;
 
-Error message change seems unrelated to the rest of this patch since
-it's not possible to get here on MTL (at least once you fix the
-uninitialized 'ret' noted above).
+-:377: WARNING:TYPO_SPELLING: 'asymetric' may be misspelled - perhaps 'asymmetric'?
+#377: FILE: drivers/gpu/drm/drm_modes.c:467:
++		 * PAL systems also have asymetric timings between the
+ 		                         ^^^^^^^^^
 
->  			ret, cdclk);
->  		return;
->  	}
->  
-> +	if (cdclk_compute_crawl_and_squash_midpoint(dev_priv,
-> +						    &dev_priv->display.cdclk.hw,
-> +						    cdclk_config,
-> +						    &mid_cdclk_config)) {
-> +		_bxt_set_cdclk(dev_priv, &mid_cdclk_config, pipe);
-> +		_bxt_set_cdclk(dev_priv, cdclk_config, pipe);
-> +	} else {
-> +		_bxt_set_cdclk(dev_priv, cdclk_config, pipe);
-> +	}
-> +
->  	intel_update_cdclk(dev_priv);
->  
->  	if (DISPLAY_VER(dev_priv) >= 11)
-> @@ -1965,6 +2025,26 @@ void intel_cdclk_uninit_hw(struct drm_i915_private *i915)
->  		skl_cdclk_uninit_hw(i915);
->  }
->  
-> +static bool intel_cdclk_can_crawl_and_squash(struct drm_i915_private *i915,
-> +					     const struct intel_cdclk_config *a,
-> +					     const struct intel_cdclk_config *b)
-> +{
-> +	u16 old_waveform;
-> +	u16 new_waveform;
-> +
-> +	if (a->vco == 0 || b->vco == 0)
-> +		return false;
-> +
+-:378: WARNING:TYPO_SPELLING: 'symetric' may be misspelled - perhaps 'symmetric'?
+#378: FILE: drivers/gpu/drm/drm_modes.c:468:
++		 * even and odd field, while NTSC is symetric.
+ 		                                     ^^^^^^^^
 
-Do we also need to return false here if cdclk_pll_is_unknown() for
-either a or b?
+-:518: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#518: 
+new file mode 100644
+
+total: 0 errors, 6 warnings, 0 checks, 651 lines checked
+fc9a4d8ce45b drm/client: Add some tests for drm_connector_pick_cmdline_mode()
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:34: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#34: 
+new file mode 100644
+
+-:95: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#95: FILE: drivers/gpu/drm/tests/drm_client_modeset_test.c:57:
++
++}
+
+-:126: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#126: FILE: drivers/gpu/drm/tests/drm_client_modeset_test.c:88:
++
++
+
+total: 0 errors, 1 warnings, 2 checks, 107 lines checked
+aba284fb3fe8 drm/modes: Move named modes parsing to a separate function
+d0f98f4732dc drm/modes: Switch to named mode descriptors
+201515db7ab8 drm/modes: Fill drm_cmdline mode from named modes
+cd37dfced952 drm/connector: Add pixel clock to cmdline mode
+214ea6d758e3 drm/connector: Add a function to lookup a TV mode by its name
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:68: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#68: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 118 lines checked
+75d731d5d5c0 drm/modes: Introduce the tv_mode property as a command-line option
+-:190: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#190: FILE: drivers/gpu/drm/tests/drm_cmdline_parser_test.c:1002:
++}
++KUNIT_ARRAY_PARAM(drm_cmdline_tv_option,
+
+total: 0 errors, 0 warnings, 1 checks, 183 lines checked
+5af1ddd5a7ba drm/modes: Properly generate a drm_display_mode from a named mode
+-:14: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#14: 
+The heavy lifting will then be done by the drm_mode_create_from_cmdline_mode()
+
+-:123: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct drm_device *' should also have an identifier name
+#123: FILE: drivers/gpu/drm/tests/drm_client_modeset_test.c:112:
++	struct drm_display_mode *(*func)(struct drm_device *);
+
+total: 0 errors, 2 warnings, 0 checks, 145 lines checked
+276a55b9d757 drm/client: Remove match on mode name
+4886256f6b12 drm/modes: Introduce more named modes
+98ea566f07da drm/probe-helper: Provide a TV get_modes helper
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:70: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u64' over 'uint64_t'
+#70: FILE: drivers/gpu/drm/drm_probe_helper.c:1187:
++		uint64_t default_mode;
+
+-:125: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#125: 
+new file mode 100644
+
+-:200: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#200: FILE: drivers/gpu/drm/tests/drm_probe_helper_test.c:71:
++#define _TV_MODE_TEST(_name, _supported, _default, _cmdline, _cmdline_mode, ...) ^I^I\$
+
+-:207: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#207: FILE: drivers/gpu/drm/tests/drm_probe_helper_test.c:78:
++^I^I.expected_modes = (expected_mode_func_t[]) { __VA_ARGS__ }, ^I^I^I\$
+
+-:240: ERROR:CODE_INDENT: code indent should use tabs where possible
+#240: FILE: drivers/gpu/drm/tests/drm_probe_helper_test.c:111:
++^I^I ^I^I   params->default_mode);$
+
+-:240: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#240: FILE: drivers/gpu/drm/tests/drm_probe_helper_test.c:111:
++^I^I ^I^I   params->default_mode);$
+
+total: 1 errors, 4 warnings, 1 checks, 298 lines checked
+7dc3a779f14c drm/atomic-helper: Add a TV properties reset helper
+-:39: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u64' over 'uint64_t'
+#39: FILE: drivers/gpu/drm/drm_atomic_state_helper.c:496:
++	uint64_t val;
+
+total: 0 errors, 0 warnings, 1 checks, 88 lines checked
+4dd71065ac97 drm/atomic-helper: Add an analog TV atomic_check implementation
+-:11: WARNING:REPEATED_WORD: Possible repeated word: 'be'
+#11: 
+TV standard property have created some boilerplate that can be be shared
+
+-:60: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'old_conn_state->tv.margins.left != new_conn_state->tv.margins.left'
+#60: FILE: drivers/gpu/drm/drm_atomic_state_helper.c:591:
++	if ((old_conn_state->tv.margins.left != new_conn_state->tv.margins.left) ||
++	    (old_conn_state->tv.margins.right != new_conn_state->tv.margins.right) ||
++	    (old_conn_state->tv.margins.top != new_conn_state->tv.margins.top) ||
++	    (old_conn_state->tv.margins.bottom != new_conn_state->tv.margins.bottom) ||
++	    (old_conn_state->tv.mode != new_conn_state->tv.mode) ||
++	    (old_conn_state->tv.brightness != new_conn_state->tv.brightness) ||
++	    (old_conn_state->tv.contrast != new_conn_state->tv.contrast) ||
++	    (old_conn_state->tv.flicker_reduction != new_conn_state->tv.flicker_reduction) ||
++	    (old_conn_state->tv.overscan != new_conn_state->tv.overscan) ||
++	    (old_conn_state->tv.saturation != new_conn_state->tv.saturation) ||
++	    (old_conn_state->tv.hue != new_conn_state->tv.hue))
+
+-:60: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'old_conn_state->tv.margins.right != new_conn_state->tv.margins.right'
+#60: FILE: drivers/gpu/drm/drm_atomic_state_helper.c:591:
++	if ((old_conn_state->tv.margins.left != new_conn_state->tv.margins.left) ||
++	    (old_conn_state->tv.margins.right != new_conn_state->tv.margins.right) ||
++	    (old_conn_state->tv.margins.top != new_conn_state->tv.margins.top) ||
++	    (old_conn_state->tv.margins.bottom != new_conn_state->tv.margins.bottom) ||
++	    (old_conn_state->tv.mode != new_conn_state->tv.mode) ||
++	    (old_conn_state->tv.brightness != new_conn_state->tv.brightness) ||
++	    (old_conn_state->tv.contrast != new_conn_state->tv.contrast) ||
++	    (old_conn_state->tv.flicker_reduction != new_conn_state->tv.flicker_reduction) ||
++	    (old_conn_state->tv.overscan != new_conn_state->tv.overscan) ||
++	    (old_conn_state->tv.saturation != new_conn_state->tv.saturation) ||
++	    (old_conn_state->tv.hue != new_conn_state->tv.hue))
+
+-:60: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'old_conn_state->tv.margins.top != new_conn_state->tv.margins.top'
+#60: FILE: drivers/gpu/drm/drm_atomic_state_helper.c:591:
++	if ((old_conn_state->tv.margins.left != new_conn_state->tv.margins.left) ||
++	    (old_conn_state->tv.margins.right != new_conn_state->tv.margins.right) ||
++	    (old_conn_state->tv.margins.top != new_conn_state->tv.margins.top) ||
++	    (old_conn_state->tv.margins.bottom != new_conn_state->tv.margins.bottom) ||
++	    (old_conn_state->tv.mode != new_conn_state->tv.mode) ||
++	    (old_conn_state->tv.brightness != new_conn_state->tv.brightness) ||
++	    (old_conn_state->tv.contrast != new_conn_state->tv.contrast) ||
++	    (old_conn_state->tv.flicker_reduction != new_conn_state->tv.flicker_reduction) ||
++	    (old_conn_state->tv.overscan != new_conn_state->tv.overscan) ||
++	    (old_conn_state->tv.saturation != new_conn_state->tv.saturation) ||
++	    (old_conn_state->tv.hue != new_conn_state->tv.hue))
+
+-:60: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'old_conn_state->tv.margins.bottom != new_conn_state->tv.margins.bottom'
+#60: FILE: drivers/gpu/drm/drm_atomic_state_helper.c:591:
++	if ((old_conn_state->tv.margins.left != new_conn_state->tv.margins.left) ||
++	    (old_conn_state->tv.margins.right != new_conn_state->tv.margins.right) ||
++	    (old_conn_state->tv.margins.top != new_conn_state->tv.margins.top) ||
++	    (old_conn_state->tv.margins.bottom != new_conn_state->tv.margins.bottom) ||
++	    (old_conn_state->tv.mode != new_conn_state->tv.mode) ||
++	    (old_conn_state->tv.brightness != new_conn_state->tv.brightness) ||
++	    (old_conn_state->tv.contrast != new_conn_state->tv.contrast) ||
++	    (old_conn_state->tv.flicker_reduction != new_conn_state->tv.flicker_reduction) ||
++	    (old_conn_state->tv.overscan != new_conn_state->tv.overscan) ||
++	    (old_conn_state->tv.saturation != new_conn_state->tv.saturation) ||
++	    (old_conn_state->tv.hue != new_conn_state->tv.hue))
+
+-:60: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'old_conn_state->tv.mode != new_conn_state->tv.mode'
+#60: FILE: drivers/gpu/drm/drm_atomic_state_helper.c:591:
++	if ((old_conn_state->tv.margins.left != new_conn_state->tv.margins.left) ||
++	    (old_conn_state->tv.margins.right != new_conn_state->tv.margins.right) ||
++	    (old_conn_state->tv.margins.top != new_conn_state->tv.margins.top) ||
++	    (old_conn_state->tv.margins.bottom != new_conn_state->tv.margins.bottom) ||
++	    (old_conn_state->tv.mode != new_conn_state->tv.mode) ||
++	    (old_conn_state->tv.brightness != new_conn_state->tv.brightness) ||
++	    (old_conn_state->tv.contrast != new_conn_state->tv.contrast) ||
++	    (old_conn_state->tv.flicker_reduction != new_conn_state->tv.flicker_reduction) ||
++	    (old_conn_state->tv.overscan != new_conn_state->tv.overscan) ||
++	    (old_conn_state->tv.saturation != new_conn_state->tv.saturation) ||
++	    (old_conn_state->tv.hue != new_conn_state->tv.hue))
+
+-:60: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'old_conn_state->tv.brightness != new_conn_state->tv.brightness'
+#60: FILE: drivers/gpu/drm/drm_atomic_state_helper.c:591:
++	if ((old_conn_state->tv.margins.left != new_conn_state->tv.margins.left) ||
++	    (old_conn_state->tv.margins.right != new_conn_state->tv.margins.right) ||
++	    (old_conn_state->tv.margins.top != new_conn_state->tv.margins.top) ||
++	    (old_conn_state->tv.margins.bottom != new_conn_state->tv.margins.bottom) ||
++	    (old_conn_state->tv.mode != new_conn_state->tv.mode) ||
++	    (old_conn_state->tv.brightness != new_conn_state->tv.brightness) ||
++	    (old_conn_state->tv.contrast != new_conn_state->tv.contrast) ||
++	    (old_conn_state->tv.flicker_reduction != new_conn_state->tv.flicker_reduction) ||
++	    (old_conn_state->tv.overscan != new_conn_state->tv.overscan) ||
++	    (old_conn_state->tv.saturation != new_conn_state->tv.saturation) ||
++	    (old_conn_state->tv.hue != new_conn_state->tv.hue))
+
+-:60: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'old_conn_state->tv.contrast != new_conn_state->tv.contrast'
+#60: FILE: drivers/gpu/drm/drm_atomic_state_helper.c:591:
++	if ((old_conn_state->tv.margins.left != new_conn_state->tv.margins.left) ||
++	    (old_conn_state->tv.margins.right != new_conn_state->tv.margins.right) ||
++	    (old_conn_state->tv.margins.top != new_conn_state->tv.margins.top) ||
++	    (old_conn_state->tv.margins.bottom != new_conn_state->tv.margins.bottom) ||
++	    (old_conn_state->tv.mode != new_conn_state->tv.mode) ||
++	    (old_conn_state->tv.brightness != new_conn_state->tv.brightness) ||
++	    (old_conn_state->tv.contrast != new_conn_state->tv.contrast) ||
++	    (old_conn_state->tv.flicker_reduction != new_conn_state->tv.flicker_reduction) ||
++	    (old_conn_state->tv.overscan != new_conn_state->tv.overscan) ||
++	    (old_conn_state->tv.saturation != new_conn_state->tv.saturation) ||
++	    (old_conn_state->tv.hue != new_conn_state->tv.hue))
+
+-:60: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'old_conn_state->tv.flicker_reduction != new_conn_state->tv.flicker_reduction'
+#60: FILE: drivers/gpu/drm/drm_atomic_state_helper.c:591:
++	if ((old_conn_state->tv.margins.left != new_conn_state->tv.margins.left) ||
++	    (old_conn_state->tv.margins.right != new_conn_state->tv.margins.right) ||
++	    (old_conn_state->tv.margins.top != new_conn_state->tv.margins.top) ||
++	    (old_conn_state->tv.margins.bottom != new_conn_state->tv.margins.bottom) ||
++	    (old_conn_state->tv.mode != new_conn_state->tv.mode) ||
++	    (old_conn_state->tv.brightness != new_conn_state->tv.brightness) ||
++	    (old_conn_state->tv.contrast != new_conn_state->tv.contrast) ||
++	    (old_conn_state->tv.flicker_reduction != new_conn_state->tv.flicker_reduction) ||
++	    (old_conn_state->tv.overscan != new_conn_state->tv.overscan) ||
++	    (old_conn_state->tv.saturation != new_conn_state->tv.saturation) ||
++	    (old_conn_state->tv.hue != new_conn_state->tv.hue))
+
+-:60: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'old_conn_state->tv.overscan != new_conn_state->tv.overscan'
+#60: FILE: drivers/gpu/drm/drm_atomic_state_helper.c:591:
++	if ((old_conn_state->tv.margins.left != new_conn_state->tv.margins.left) ||
++	    (old_conn_state->tv.margins.right != new_conn_state->tv.margins.right) ||
++	    (old_conn_state->tv.margins.top != new_conn_state->tv.margins.top) ||
++	    (old_conn_state->tv.margins.bottom != new_conn_state->tv.margins.bottom) ||
++	    (old_conn_state->tv.mode != new_conn_state->tv.mode) ||
++	    (old_conn_state->tv.brightness != new_conn_state->tv.brightness) ||
++	    (old_conn_state->tv.contrast != new_conn_state->tv.contrast) ||
++	    (old_conn_state->tv.flicker_reduction != new_conn_state->tv.flicker_reduction) ||
++	    (old_conn_state->tv.overscan != new_conn_state->tv.overscan) ||
++	    (old_conn_state->tv.saturation != new_conn_state->tv.saturation) ||
++	    (old_conn_state->tv.hue != new_conn_state->tv.hue))
+
+-:60: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'old_conn_state->tv.saturation != new_conn_state->tv.saturation'
+#60: FILE: drivers/gpu/drm/drm_atomic_state_helper.c:591:
++	if ((old_conn_state->tv.margins.left != new_conn_state->tv.margins.left) ||
++	    (old_conn_state->tv.margins.right != new_conn_state->tv.margins.right) ||
++	    (old_conn_state->tv.margins.top != new_conn_state->tv.margins.top) ||
++	    (old_conn_state->tv.margins.bottom != new_conn_state->tv.margins.bottom) ||
++	    (old_conn_state->tv.mode != new_conn_state->tv.mode) ||
++	    (old_conn_state->tv.brightness != new_conn_state->tv.brightness) ||
++	    (old_conn_state->tv.contrast != new_conn_state->tv.contrast) ||
++	    (old_conn_state->tv.flicker_reduction != new_conn_state->tv.flicker_reduction) ||
++	    (old_conn_state->tv.overscan != new_conn_state->tv.overscan) ||
++	    (old_conn_state->tv.saturation != new_conn_state->tv.saturation) ||
++	    (old_conn_state->tv.hue != new_conn_state->tv.hue))
+
+-:60: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'old_conn_state->tv.hue != new_conn_state->tv.hue'
+#60: FILE: drivers/gpu/drm/drm_atomic_state_helper.c:591:
++	if ((old_conn_state->tv.margins.left != new_conn_state->tv.margins.left) ||
++	    (old_conn_state->tv.margins.right != new_conn_state->tv.margins.right) ||
++	    (old_conn_state->tv.margins.top != new_conn_state->tv.margins.top) ||
++	    (old_conn_state->tv.margins.bottom != new_conn_state->tv.margins.bottom) ||
++	    (old_conn_state->tv.mode != new_conn_state->tv.mode) ||
++	    (old_conn_state->tv.brightness != new_conn_state->tv.brightness) ||
++	    (old_conn_state->tv.contrast != new_conn_state->tv.contrast) ||
++	    (old_conn_state->tv.flicker_reduction != new_conn_state->tv.flicker_reduction) ||
++	    (old_conn_state->tv.overscan != new_conn_state->tv.overscan) ||
++	    (old_conn_state->tv.saturation != new_conn_state->tv.saturation) ||
++	    (old_conn_state->tv.hue != new_conn_state->tv.hue))
+
+total: 0 errors, 1 warnings, 11 checks, 70 lines checked
+93bf8a59d0a4 drm/vc4: vec: Use TV Reset implementation
+d7a50c3601fd drm/vc4: vec: Check for VEC output constraints
+337c7d4641a0 drm/vc4: vec: Convert to the new TV mode property
+3da84187042b drm/vc4: vec: Add support for more analog TV standards
+032c31f8673a drm/sun4i: tv: Convert to the new TV mode property
 
 
-Matt
-
-> +	if (!HAS_CDCLK_CRAWL(i915) || !HAS_CDCLK_SQUASH(i915))
-> +		return false;
-> +
-> +	old_waveform = cdclk_squash_waveform(i915, a->cdclk);
-> +	new_waveform = cdclk_squash_waveform(i915, b->cdclk);
-> +
-> +	return a->vco != b->vco &&
-> +	       old_waveform != new_waveform;
-> +}
-> +
->  static bool intel_cdclk_can_crawl(struct drm_i915_private *dev_priv,
->  				  const struct intel_cdclk_config *a,
->  				  const struct intel_cdclk_config *b)
-> @@ -2771,9 +2851,14 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
->  			pipe = INVALID_PIPE;
->  	}
->  
-> -	if (intel_cdclk_can_squash(dev_priv,
-> -				   &old_cdclk_state->actual,
-> -				   &new_cdclk_state->actual)) {
-> +	if (intel_cdclk_can_crawl_and_squash(dev_priv,
-> +					     &old_cdclk_state->actual,
-> +					     &new_cdclk_state->actual)) {
-> +		drm_dbg_kms(&dev_priv->drm,
-> +			    "Can change cdclk via crawling and squashing\n");
-> +	} else if (intel_cdclk_can_squash(dev_priv,
-> +					&old_cdclk_state->actual,
-> +					&new_cdclk_state->actual)) {
->  		drm_dbg_kms(&dev_priv->drm,
->  			    "Can change cdclk via squashing\n");
->  	} else if (intel_cdclk_can_crawl(dev_priv,
-> -- 
-> 2.25.1
-> 
-
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
