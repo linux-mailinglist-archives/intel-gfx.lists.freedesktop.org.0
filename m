@@ -1,65 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4571E6327F5
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Nov 2022 16:26:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 815D36327E8
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Nov 2022 16:26:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96AD610E2FA;
-	Mon, 21 Nov 2022 15:26:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2155C10E2F7;
+	Mon, 21 Nov 2022 15:26:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com
- [IPv6:2607:f8b0:4864:20::52b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B3FA10E1AF
- for <intel-gfx@lists.freedesktop.org>; Sat, 12 Nov 2022 00:43:12 +0000 (UTC)
-Received: by mail-pg1-x52b.google.com with SMTP id q1so5597619pgl.11
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Nov 2022 16:43:12 -0800 (PST)
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com
+ [IPv6:2607:f8b0:4864:20::42d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 804DF10E2F5
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Nov 2022 16:32:38 +0000 (UTC)
+Received: by mail-pf1-x42d.google.com with SMTP id v28so11472278pfi.12
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Nov 2022 08:32:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=W/69SGTblteqzTGqi+tKsPG0LW4tOtiDqnrFyQWptaQ=;
- b=nkkHJRYG9RSNUubkLNubrJI/d3KOEidZrgmUPThr3GFsr7fra6VsI+pb1qqQQ02WKX
- zF1WmMPVXJP4zWYv5H2yrK2XmJWXLyIYGleBrctfrNS+0hqbbCZ/iqh9/fdMvnZajEwa
- S7yTODLsbBcMwXwbemvi9xcCSHrHJ12nb+aTQowsorgnzkj19FB9Krp7KBYJxZyP21EO
- 7pIoX7pjC6wc+oSETXDUqR/kq2X+LicMr3aKFzkyce/50iVQxoQgCThUjuJ/3KLMl8+B
- z6LnADkM+0e/zYQoLtoBvelqEGFYq3NJyiIEmKpY5AR6UOQqXPItQJPmeuPg0YF/+hoh
- Qb/g==
+ bh=fl4vYZukq8gCsaclrBinKemUC9Y9RD4y/Lg/kykiAyY=;
+ b=XFGuwBJF6z0EaYkVgH7A1bZ2UQoEDGL3sPwz22b5mFQxOIeujyJE2gfJDMdKfrtpHM
+ DuQJSDBoA0+EDkiTUeFS2HSSmU/FgIS/ATGyTSjlTyGL3zxDEldXu0WcH72VAbC8KZAg
+ iJ7+P54da1SxIBlHzXmYIKrsBw2BneA+Ie3X4hjtrIhSRVznVHDTmny6TGuow/kk7MhM
+ T0dlTil8s7AVow4Sp1tYtU0768iGCC7N4qoQUpWEcqbMRxjUjukCdoenIL4GYo5z/gzF
+ jNJP7twdpR9AJiLK01IFbxmWkyHx9fnD3J3K9yhWFxPkxSiIIX7cXG0ohcizBUng9YUQ
+ tOdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=W/69SGTblteqzTGqi+tKsPG0LW4tOtiDqnrFyQWptaQ=;
- b=Z/rtFTRe0HoJ+Kri2OUNvw2jhQArx+oWny1WWGZTTzVd7M8Sdv5tJPF/BcDg/qff2g
- B/5HRwPMDqAEbtBW6V065vLn6+H9v/2SJX3wkoCQaeoePpjOPKEmp0wi4g5WlJy4End7
- nIX5IRWSLcH2NnsUtW8NXlLF18HX8dCRVKdGo3BIy5bGiGzmsxRCw3dwwvBSd2J5Cm7o
- mMgH4EEkAtTWGcpQsjOYdZYU7OauySNT92ew0Yn0YpOdr6ERPCW1g8w50qZA7yD/cnGp
- FZk9xzdcDMEaaZJOTsjvZ5QwSedzoXOZ9yxBkiTMxrc3msoVHKF7bcCZCysDplB8hUMb
- AhLQ==
-X-Gm-Message-State: ANoB5pkGiROoxAxaz4xTiw+/ImQcija96/oO06/oqQxJgbeqNqPjEepB
- bQOPdnGQs/3PQDtlBdNX6pWoIA==
-X-Google-Smtp-Source: AA0mqf4WsOfrQhaQruL4asl5Iu86noh/aH6GkJDdmp/AzA4oKTD7iRzggslPFH8j54SEF3nTst7kQA==
-X-Received: by 2002:a62:838f:0:b0:56c:8b7:f2dc with SMTP id
- h137-20020a62838f000000b0056c08b7f2dcmr5095877pfe.16.1668213791697; 
- Fri, 11 Nov 2022 16:43:11 -0800 (PST)
+ bh=fl4vYZukq8gCsaclrBinKemUC9Y9RD4y/Lg/kykiAyY=;
+ b=oUp01G/R7h4C4KFUdWqS0jQS8DuNNVfmUQdQu1MZSCSTOUhBw7myEWrNgD509/ak27
+ /yUDmWw3BFkXtbotnl0FdveD9YFoqropeVS8eIc662DPlWSs2Rb7IwzO1cNNZJGj8/t5
+ hupfzIwKXsFIJoJvFfpGIsQUOh9mdVY2eAPRkhw4YBFIV+AGdvV5KuHHCTd7mxaqyPzn
+ LZwC1iUghybsM+0g1smw7W143yL7OIP8UuQYT0KjWIVYJGCbuRnRfsPFyjeUO9BEFR6o
+ G3JgZivL+OTT140K2NUBalrBVWkM9W/eLfV4zbBJ7RqykhCmX/7s7b2dsaZ3Cob2mbz4
+ Iybw==
+X-Gm-Message-State: ANoB5pkmSSPS0iMcvDrGjmS6RSKbJCgFnTwU5RYqpdw+1n4lGqGBv3Ez
+ 0sqcuTol6FLswZ7m/NqWd4I1rQ==
+X-Google-Smtp-Source: AA0mqf5F2NsLGqG6wSNJ5DDtUghQHmhby8l34F1Ns+grkLUucvyPskfdoa29mstcGu3oXagS03J/Gw==
+X-Received: by 2002:a62:403:0:b0:572:5be2:505b with SMTP id
+ 3-20020a620403000000b005725be2505bmr1140379pfe.52.1668443557888; 
+ Mon, 14 Nov 2022 08:32:37 -0800 (PST)
 Received: from google.com (7.104.168.34.bc.googleusercontent.com.
  [34.168.104.7]) by smtp.gmail.com with ESMTPSA id
- o127-20020a625a85000000b0056bc9294e1asm2154927pfb.24.2022.11.11.16.43.11
+ l29-20020a63ba5d000000b00438834b14a1sm6064695pgu.80.2022.11.14.08.32.37
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 11 Nov 2022 16:43:11 -0800 (PST)
-Date: Sat, 12 Nov 2022 00:43:07 +0000
+ Mon, 14 Nov 2022 08:32:37 -0800 (PST)
+Date: Mon, 14 Nov 2022 16:32:34 +0000
 From: Sean Christopherson <seanjc@google.com>
 To: Yan Zhao <yan.y.zhao@intel.com>
-Message-ID: <Y27sG3AqVX8yLUgR@google.com>
+Message-ID: <Y3JtonYdDYOhbmfG@google.com>
 References: <20221111103247.22275-1-yan.y.zhao@intel.com>
  <20221111103350.22326-1-yan.y.zhao@intel.com>
  <Y26SI3uh8JV0vvO6@google.com>
  <Y27ivXea5SjR5lat@yzhao56-desk.sh.intel.com>
+ <Y27sG3AqVX8yLUgR@google.com>
+ <Y3GUdqxnPJvc6SPI@yzhao56-desk.sh.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Y27ivXea5SjR5lat@yzhao56-desk.sh.intel.com>
+In-Reply-To: <Y3GUdqxnPJvc6SPI@yzhao56-desk.sh.intel.com>
 X-Mailman-Approved-At: Mon, 21 Nov 2022 15:26:24 +0000
 Subject: Re: [Intel-gfx] [PATCH v2 1/3] KVM: x86: add a new page track hook
  track_remove_slot
@@ -81,35 +83,41 @@ Cc: kvm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Nov 12, 2022, Yan Zhao wrote:
-> And I'm also not sure if a slots_arch_lock is required for
-> kvm_slot_page_track_add_page() and kvm_slot_page_track_remove_page().
+On Mon, Nov 14, 2022, Yan Zhao wrote:
+> On Sat, Nov 12, 2022 at 12:43:07AM +0000, Sean Christopherson wrote:
+> > On Sat, Nov 12, 2022, Yan Zhao wrote:
+> > > And I'm also not sure if a slots_arch_lock is required for
+> > > kvm_slot_page_track_add_page() and kvm_slot_page_track_remove_page().
+> > 
+> > It's not required.  slots_arch_lock protects interaction between memslot updates
+> In kvm_slot_page_track_add_page() and kvm_slot_page_track_remove_page(),
+> slot->arch.gfn_track[mode][index] is updated in update_gfn_track(),
+> do you know which lock is used to protect it?
 
-It's not required.  slots_arch_lock protects interaction between memslot updates
-mmu_first_shadow_root_alloc().  When CONFIG_KVM_EXTERNAL_WRITE_TRACKING=y, then
-the mmu_first_shadow_root_alloc() doesn't touch the memslots because everything
-is pre-allocated:
+mmu_lock protects the count, kvm->srcu protects the slot, and shadow_root_allocated
+protects that validity of gfn_track, i.e. shadow_root_allocated ensures that KVM
+allocates gfn_track for all memslots when shadow paging is activated.
 
-bool kvm_page_track_write_tracking_enabled(struct kvm *kvm)
-{
-	return IS_ENABLED(CONFIG_KVM_EXTERNAL_WRITE_TRACKING) ||
-	       !tdp_enabled || kvm_shadow_root_allocated(kvm);
-}
+The cleanup series I'm prepping adds lockdep assertions for the relevant paths, e.g. 
 
-int kvm_page_track_create_memslot(struct kvm *kvm,
-				  struct kvm_memory_slot *slot,
-				  unsigned long npages)
-{
-	if (!kvm_page_track_write_tracking_enabled(kvm)) <== always true
-		return 0;
+$ git grep -B 8 -E "update_gfn_write_track.*;"
+arch/x86/kvm/mmu/page_track.c-void __kvm_write_track_add_gfn(struct kvm *kvm, struct kvm_memory_slot *slot,
+arch/x86/kvm/mmu/page_track.c-                         gfn_t gfn)
+arch/x86/kvm/mmu/page_track.c-{
+arch/x86/kvm/mmu/page_track.c-  lockdep_assert_held_write(&kvm->mmu_lock);
+arch/x86/kvm/mmu/page_track.c-
+arch/x86/kvm/mmu/page_track.c-  if (KVM_BUG_ON(!kvm_page_track_write_tracking_enabled(kvm), kvm))
+arch/x86/kvm/mmu/page_track.c-          return;
+arch/x86/kvm/mmu/page_track.c-
+arch/x86/kvm/mmu/page_track.c:  update_gfn_write_track(slot, gfn, 1);
+--
+arch/x86/kvm/mmu/page_track.c-void __kvm_write_track_remove_gfn(struct kvm *kvm,
+arch/x86/kvm/mmu/page_track.c-                            struct kvm_memory_slot *slot, gfn_t gfn)
+arch/x86/kvm/mmu/page_track.c-{
+arch/x86/kvm/mmu/page_track.c-  lockdep_assert_held_write(&kvm->mmu_lock);
+arch/x86/kvm/mmu/page_track.c-
+arch/x86/kvm/mmu/page_track.c-  if (KVM_BUG_ON(!kvm_page_track_write_tracking_enabled(kvm), kvm))
+arch/x86/kvm/mmu/page_track.c-          return;
+arch/x86/kvm/mmu/page_track.c-
+arch/x86/kvm/mmu/page_track.c:  update_gfn_write_track(slot, gfn, -1);
 
-	return __kvm_page_track_write_tracking_alloc(slot, npages);
-}
-
-Though now that you point it out, it's tempting to #ifdef out some of those hooks
-so that's basically impossible for mmu_first_shadow_root_alloc() to cause problems.
-Not sure the extra #ideffery would be worth while though.
-
-slots_arch_lock also protects shadow_root_allocated, but that's a KVM-internal
-detail that isn't relevant to the page-tracking machinery when
-CONFIG_KVM_EXTERNAL_WRITE_TRACKING=y.
