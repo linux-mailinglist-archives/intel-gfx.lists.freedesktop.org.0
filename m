@@ -1,49 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A67A627D9F
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Nov 2022 13:23:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9171E627DA1
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Nov 2022 13:23:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFEB410E095;
-	Mon, 14 Nov 2022 12:23:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7967210E0BE;
+	Mon, 14 Nov 2022 12:23:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7AC8D10E0A0
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B56F10E095
  for <intel-gfx@lists.freedesktop.org>; Mon, 14 Nov 2022 12:23:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1668428593; x=1699964593;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=hWoNOo9UEXyJJNedXDUmJ4gGeeT3ze2FDPf6vCtasZA=;
- b=k35jxCIm0iLLa3V9js1LpmHbGhxyysAbuDqwer1j5ndV9C4DjPzielGc
- Y8s4QexdWeI92scN3uCXrYfGD3zrdg0EJS+Q+6Ys8DzivXpo/6BXfO4fM
- zrVJ3GJkRpRIkHjX6D7djxfz3G00IkiA1pyr4RoOhRFOG9Sw3yrC85uAC
- gXWT7CkRpnruHN17DHIy5qdpGoIqKTlRW1kXZfXfFYsBlbJS2Q9SJvsE7
- 6gqi7uLQyMUfEk0NeBr/Qfhy7hq3LvU/uSATVKV3ZieNFa8JD4Ol6CbHf
- 5bwbqT+FxcN1ZXdOaVovskjEgTcnpJUbd0ycZM97TrnxLCGguxfWVVilE w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10530"; a="310664104"
-X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; d="scan'208";a="310664104"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=ix/pARqpISnap3u5+H3dScpGe1CncjjGMnby3zETASA=;
+ b=WUCS7KvN6Xxj3HuuTHnp8TXCktfZssiKQs7LtOde0uiuJLhMHLGFBbD/
+ fPH6z52ikb0JtTuNRdJCjG5x10xmpPpBX0OqN6gXJPOPPQs4OXAXet6UD
+ /uGXiCptDpihGRV3eAPnMYG68llNq/3+YY+oOx80WYkRJxhVl2S5677HF
+ kglao5thweXYtLS1U4YiCKoD31ZBeg8aM0mxytdrgU7fv27YzvozUnuwN
+ dWX8h2rvtntrh5htsVzj3D6nMMiPMt1Tnn/K8P4/YQHyxRdQ59qoJBZbn
+ xw6AbVEi+np/c8zA+X86Bpdq5JI5h05OxVh1ykSLW6jpuOIUIWD8CnzFm g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10530"; a="310664106"
+X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; d="scan'208";a="310664106"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2022 04:22:55 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10530"; a="671539816"
-X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; d="scan'208";a="671539816"
+ 14 Nov 2022 04:22:57 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10530"; a="671539828"
+X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; d="scan'208";a="671539828"
 Received: from ideak-desk.fi.intel.com ([10.237.68.144])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2022 04:22:54 -0800
+ 14 Nov 2022 04:22:55 -0800
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 14 Nov 2022 14:22:42 +0200
-Message-Id: <20221114122251.21327-1-imre.deak@intel.com>
+Date: Mon, 14 Nov 2022 14:22:43 +0200
+Message-Id: <20221114122251.21327-2-imre.deak@intel.com>
 X-Mailer: git-send-email 2.31.1.189.g2e36527f23
+In-Reply-To: <20221114122251.21327-1-imre.deak@intel.com>
+References: <20221114122251.21327-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 0/9] drm/i915: drm/i915/tgl+: Enable DC power
- states on all eDP ports
+Subject: [Intel-gfx] [PATCH v4 1/9] drm/i915: Fix warn in
+ intel_display_power_*_domain() functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,44 +58,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is v4 of [1] addressing the review comments from Ville:
+The intel_display_power_*_domain() functions should always warn if a
+default domain is returned as a fallback, fix this up. Spotted by Ville.
 
-- Use preallocated memory for the intel_display_power_get/put_in_set()
-  debug wakerefs array.
-- Drop the
-  "drm/i915: Don't enable the AUX_IO power for combo-PHY external DP port main links"
-  patch, to keep the existing behavior for now on the external DP ports.
-
+Fixes: 979e1b32e0e2 ("drm/i915: Sanitize the port -> DDI/AUX power domain mapping for each platform")
 Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Jouni Högander <jouni.hogander@intel.com>
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_power.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-[1] https://lore.kernel.org/intel-gfx/20221107170917.3566758-5-imre.deak@intel.com/T/#t
-
-Imre Deak (9):
-  drm/i915: Fix warn in intel_display_power_*_domain() functions
-  drm/i915: Preallocate the debug power domain wakerefs array
-  drm/i915: Move the POWER_DOMAIN_AUX_IO_A definition to its logical
-    place
-  drm/i915: Use the AUX_IO power domain only for eDP/PSR port
-  drm/i915/tgl+: Enable display DC power states on all eDP ports
-  drm/i915: Add missing AUX_IO_A power domain->well mappings
-  drm/i915: Add missing DC_OFF power domain->well mappings
-  drm/i915: Factor out function to get/put AUX_IO power for main link
-  drm/i915/mtl+: Don't enable the AUX_IO power for non-eDP port main
-    links
-
- drivers/gpu/drm/i915/display/intel_ddi.c      | 92 ++++++++++++-------
- drivers/gpu/drm/i915/display/intel_display.c  | 11 +--
- .../drm/i915/display/intel_display_power.c    | 42 +++++++--
- .../drm/i915/display/intel_display_power.h    | 12 ++-
- .../i915/display/intel_display_power_map.c    | 69 ++++++++++++--
- .../drm/i915/display/intel_display_types.h    |  1 +
- 6 files changed, 171 insertions(+), 56 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 4c1de91e56ff9..1874339e59457 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -2433,7 +2433,7 @@ intel_display_power_ddi_io_domain(struct drm_i915_private *i915, enum port port)
+ {
+ 	const struct intel_ddi_port_domains *domains = intel_port_domains_for_port(i915, port);
+ 
+-	if (drm_WARN_ON(&i915->drm, !domains) || domains->ddi_io == POWER_DOMAIN_INVALID)
++	if (drm_WARN_ON(&i915->drm, !domains || domains->ddi_io == POWER_DOMAIN_INVALID))
+ 		return POWER_DOMAIN_PORT_DDI_IO_A;
+ 
+ 	return domains->ddi_io + (int)(port - domains->port_start);
+@@ -2444,7 +2444,7 @@ intel_display_power_ddi_lanes_domain(struct drm_i915_private *i915, enum port po
+ {
+ 	const struct intel_ddi_port_domains *domains = intel_port_domains_for_port(i915, port);
+ 
+-	if (drm_WARN_ON(&i915->drm, !domains) || domains->ddi_lanes == POWER_DOMAIN_INVALID)
++	if (drm_WARN_ON(&i915->drm, !domains || domains->ddi_lanes == POWER_DOMAIN_INVALID))
+ 		return POWER_DOMAIN_PORT_DDI_LANES_A;
+ 
+ 	return domains->ddi_lanes + (int)(port - domains->port_start);
+@@ -2470,7 +2470,7 @@ intel_display_power_legacy_aux_domain(struct drm_i915_private *i915, enum aux_ch
+ {
+ 	const struct intel_ddi_port_domains *domains = intel_port_domains_for_aux_ch(i915, aux_ch);
+ 
+-	if (drm_WARN_ON(&i915->drm, !domains) || domains->aux_legacy_usbc == POWER_DOMAIN_INVALID)
++	if (drm_WARN_ON(&i915->drm, !domains || domains->aux_legacy_usbc == POWER_DOMAIN_INVALID))
+ 		return POWER_DOMAIN_AUX_A;
+ 
+ 	return domains->aux_legacy_usbc + (int)(aux_ch - domains->aux_ch_start);
+@@ -2481,7 +2481,7 @@ intel_display_power_tbt_aux_domain(struct drm_i915_private *i915, enum aux_ch au
+ {
+ 	const struct intel_ddi_port_domains *domains = intel_port_domains_for_aux_ch(i915, aux_ch);
+ 
+-	if (drm_WARN_ON(&i915->drm, !domains) || domains->aux_tbt == POWER_DOMAIN_INVALID)
++	if (drm_WARN_ON(&i915->drm, !domains || domains->aux_tbt == POWER_DOMAIN_INVALID))
+ 		return POWER_DOMAIN_AUX_TBT1;
+ 
+ 	return domains->aux_tbt + (int)(aux_ch - domains->aux_ch_start);
 -- 
 2.37.1
 
