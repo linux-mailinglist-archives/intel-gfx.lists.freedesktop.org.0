@@ -2,51 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7290627BEA
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Nov 2022 12:17:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E0457627C67
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Nov 2022 12:33:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3AF6610E03B;
-	Mon, 14 Nov 2022 11:17:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D2FA10E03B;
+	Mon, 14 Nov 2022 11:33:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61A9E10E03B;
- Mon, 14 Nov 2022 11:17:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668424638; x=1699960638;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=cShosTX6qgQLbMxJswZ+DfJVbc0pAc5BznoSUHJHKgg=;
- b=NjhusvFYTTq8hbgXMWT27Ysvh2Wor9BlBNIXVW5xcfIaa4nOe9csUszf
- gowC1xZHIc65hJurJRh2TfOiToYsu+xHEGR3CeuI7vvV1gYpxFFhjEc93
- Mjwhhvyp5AFKSWvqWbfzFhYcMSux5NQJVU5OFpe4g5via+CtbzQA6NQdh
- Y7WHDuGhE8TwEMGG1l1KNAJJyv8Dozx10D5plyTayhqyLpfbEAYhaxXQS
- slT4Zq7KcTgoq9ob0iMRzclGehVgLaFJcZmPEt2U5P+uIyp+V4azvqvXe
- b/HyBun8t1n59v8XaygbL4bOfWNv09l21IS2w+F/iywL8HKdmmew8fnH7 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10530"; a="291660167"
-X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; d="scan'208";a="291660167"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2022 03:17:17 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10530"; a="589330261"
-X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; d="scan'208";a="589330261"
-Received: from dsmahang-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.59.240])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2022 03:17:15 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Date: Mon, 14 Nov 2022 13:17:09 +0200
-Message-Id: <20221114111709.434979-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 87EC110E03B;
+ Mon, 14 Nov 2022 11:32:57 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7E67FAA0ED;
+ Mon, 14 Nov 2022 11:32:57 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0380369121039867842=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RESEND] drm/edid/firmware: stop using a throwaway
- platform device
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Date: Mon, 14 Nov 2022 11:32:57 -0000
+Message-ID: <166842557748.32752.11443464990553057575@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221114061019.1444353-1-suraj.kandpal@intel.com>
+In-Reply-To: <20221114061019.1444353-1-suraj.kandpal@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRW5h?=
+ =?utf-8?q?ble_Pipewriteback_=28rev10=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,67 +40,307 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, Matthieu CHARETTE <matthieu.charette@gmail.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We've used a temporary platform device for firmware EDID loading since
-it was introduced in commit da0df92b5731 ("drm: allow loading an EDID as
-firmware to override broken monitor"), but there's no explanation why.
+--===============0380369121039867842==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Using a temporary device does not play well with CONFIG_FW_CACHE=y,
-which caches firmware images (e.g. on suspend) so that drivers can
-request firmware when the system is not ready for it, and return the
-images from the cache (e.g. during resume). This works automatically for
-regular devices, but obviously not for a temporarily created device.
+== Series Details ==
 
-Stop using the throwaway platform device, and use the drm device
-instead.
+Series: Enable Pipewriteback (rev10)
+URL   : https://patchwork.freedesktop.org/series/107440/
+State : success
 
-Note that this may still be problematic for cases where the display was
-plugged in during suspend, and the firmware wasn't loaded and therefore
-not cached before suspend.
+== Summary ==
 
-References: https://lore.kernel.org/r/20220727074152.43059-1-matthieu.charette@gmail.com
-Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/2061
-Reported-by: Matthieu CHARETTE <matthieu.charette@gmail.com>
-Tested-by: Matthieu CHARETTE <matthieu.charette@gmail.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+CI Bug Log - changes from CI_DRM_12375 -> Patchwork_107440v10
+====================================================
 
----
+Summary
+-------
 
-Resend with a proper commit message; patch itself is unchanged.
----
- drivers/gpu/drm/drm_edid_load.c | 13 +------------
- 1 file changed, 1 insertion(+), 12 deletions(-)
+  **SUCCESS**
 
-diff --git a/drivers/gpu/drm/drm_edid_load.c b/drivers/gpu/drm/drm_edid_load.c
-index ef4ab59d6935..5d9ef267ebb3 100644
---- a/drivers/gpu/drm/drm_edid_load.c
-+++ b/drivers/gpu/drm/drm_edid_load.c
-@@ -172,20 +172,9 @@ static const struct drm_edid *edid_load(struct drm_connector *connector, const c
- 		fwdata = generic_edid[builtin];
- 		fwsize = sizeof(generic_edid[builtin]);
- 	} else {
--		struct platform_device *pdev;
- 		int err;
- 
--		pdev = platform_device_register_simple(connector->name, -1, NULL, 0);
--		if (IS_ERR(pdev)) {
--			drm_err(connector->dev,
--				"[CONNECTOR:%d:%s] Failed to register EDID firmware platform device for connector \"%s\"\n",
--				connector->base.id, connector->name,
--				connector->name);
--			return ERR_CAST(pdev);
--		}
--
--		err = request_firmware(&fw, name, &pdev->dev);
--		platform_device_unregister(pdev);
-+		err = request_firmware(&fw, name, connector->dev->dev);
- 		if (err) {
- 			drm_err(connector->dev,
- 				"[CONNECTOR:%d:%s] Requesting EDID firmware \"%s\" failed (err=%d)\n",
--- 
-2.34.1
+  No regressions found.
 
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v10/index.html
+
+Participating hosts (39 -> 39)
+------------------------------
+
+  Additional (1): bat-atsm-1 
+  Missing    (1): fi-bdw-samus 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_107440v10:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - {bat-rpls-2}:       [DMESG-WARN][1] ([i915#6687]) -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12375/bat-rpls-2/igt@gem_exec_suspend@basic-s3@smem.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v10/bat-rpls-2/igt@gem_exec_suspend@basic-s3@smem.html
+
+  * igt@i915_selftest@live@migrate:
+    - {bat-atsm-1}:       NOTRUN -> [INCOMPLETE][3]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v10/bat-atsm-1/igt@i915_selftest@live@migrate.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_107440v10 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_gttfill@basic:
+    - fi-pnv-d510:        [PASS][4] -> [FAIL][5] ([i915#7229])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12375/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v10/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+
+  * igt@gem_render_tiled_blits@basic:
+    - fi-apl-guc:         [PASS][6] -> [INCOMPLETE][7] ([i915#7056])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12375/fi-apl-guc/igt@gem_render_tiled_blits@basic.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v10/fi-apl-guc/igt@gem_render_tiled_blits@basic.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][8] ([fdo#111827])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v10/fi-rkl-11600/igt@kms_chamelium@common-hpd-after-suspend.html
+    - bat-adlp-4:         NOTRUN -> [SKIP][9] ([fdo#111827])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v10/bat-adlp-4/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc:
+    - bat-adlp-4:         NOTRUN -> [SKIP][10] ([i915#3546])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v10/bat-adlp-4/igt@kms_pipe_crc_basic@suspend-read-crc.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@migrate:
+    - bat-adlp-4:         [INCOMPLETE][11] ([i915#7308] / [i915#7348]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12375/bat-adlp-4/igt@i915_selftest@live@migrate.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v10/bat-adlp-4/igt@i915_selftest@live@migrate.html
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - fi-rkl-11600:       [INCOMPLETE][13] ([i915#4817]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12375/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v10/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
+    - {bat-rpls-2}:       [DMESG-WARN][15] ([i915#6434]) -> [PASS][16] +1 similar issue
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12375/bat-rpls-2/igt@i915_suspend@basic-s3-without-i915.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v10/bat-rpls-2/igt@i915_suspend@basic-s3-without-i915.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
+    - fi-bsw-kefka:       [FAIL][17] ([i915#6298]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12375/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v10/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1836]: https://gitlab.freedesktop.org/drm/intel/issues/1836
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4817]: https://gitlab.freedesktop.org/drm/intel/issues/4817
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#6077]: https://gitlab.freedesktop.org/drm/intel/issues/6077
+  [i915#6078]: https://gitlab.freedesktop.org/drm/intel/issues/6078
+  [i915#6093]: https://gitlab.freedesktop.org/drm/intel/issues/6093
+  [i915#6094]: https://gitlab.freedesktop.org/drm/intel/issues/6094
+  [i915#6166]: https://gitlab.freedesktop.org/drm/intel/issues/6166
+  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6434]: https://gitlab.freedesktop.org/drm/intel/issues/6434
+  [i915#6559]: https://gitlab.freedesktop.org/drm/intel/issues/6559
+  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
+  [i915#6687]: https://gitlab.freedesktop.org/drm/intel/issues/6687
+  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
+  [i915#7056]: https://gitlab.freedesktop.org/drm/intel/issues/7056
+  [i915#7229]: https://gitlab.freedesktop.org/drm/intel/issues/7229
+  [i915#7308]: https://gitlab.freedesktop.org/drm/intel/issues/7308
+  [i915#7348]: https://gitlab.freedesktop.org/drm/intel/issues/7348
+  [i915#7357]: https://gitlab.freedesktop.org/drm/intel/issues/7357
+  [i915#7358]: https://gitlab.freedesktop.org/drm/intel/issues/7358
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12375 -> Patchwork_107440v10
+
+  CI-20190529: 20190529
+  CI_DRM_12375: 80e6b3384febc6243acf125fd5441732b1bdfe8d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7053: a9e73e6c48ab6632e2adb095cb809118b437fdfd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_107440v10: 80e6b3384febc6243acf125fd5441732b1bdfe8d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+ff11e3c3d647 drm/i915: Enable WD Transcoder
+d828e7d812d7 drm/i915: Change intel_connector iterators
+15ecb2ae3ff2 drm/i915: Define WD trancoder for i915
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v10/index.html
+
+--===============0380369121039867842==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Enable Pipewriteback (rev10)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/107440/">https://patchwork.freedesktop.org/series/107440/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v10/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v10/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12375 -&gt; Patchwork_107440v10</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v10/index.html</p>
+<h2>Participating hosts (39 -&gt; 39)</h2>
+<p>Additional (1): bat-atsm-1 <br />
+  Missing    (1): fi-bdw-samus </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_107440v10:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12375/bat-rpls-2/igt@gem_exec_suspend@basic-s3@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6687">i915#6687</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v10/bat-rpls-2/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@migrate:</p>
+<ul>
+<li>{bat-atsm-1}:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v10/bat-atsm-1/igt@i915_selftest@live@migrate.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_107440v10 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_gttfill@basic:</p>
+<ul>
+<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12375/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v10/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7229">i915#7229</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_render_tiled_blits@basic:</p>
+<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12375/fi-apl-guc/igt@gem_render_tiled_blits@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v10/fi-apl-guc/igt@gem_render_tiled_blits@basic.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7056">i915#7056</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>
+<p>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v10/fi-rkl-11600/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</p>
+</li>
+<li>
+<p>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v10/bat-adlp-4/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@suspend-read-crc:</p>
+<ul>
+<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v10/bat-adlp-4/igt@kms_pipe_crc_basic@suspend-read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3546">i915#3546</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@migrate:</p>
+<ul>
+<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12375/bat-adlp-4/igt@i915_selftest@live@migrate.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7308">i915#7308</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7348">i915#7348</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v10/bat-adlp-4/igt@i915_selftest@live@migrate.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<ul>
+<li>
+<p>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12375/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4817">i915#4817</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v10/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">PASS</a></p>
+</li>
+<li>
+<p>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12375/bat-rpls-2/igt@i915_suspend@basic-s3-without-i915.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6434">i915#6434</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v10/bat-rpls-2/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> +1 similar issue</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12375/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v10/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12375 -&gt; Patchwork_107440v10</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12375: 80e6b3384febc6243acf125fd5441732b1bdfe8d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7053: a9e73e6c48ab6632e2adb095cb809118b437fdfd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_107440v10: 80e6b3384febc6243acf125fd5441732b1bdfe8d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>ff11e3c3d647 drm/i915: Enable WD Transcoder<br />
+d828e7d812d7 drm/i915: Change intel_connector iterators<br />
+15ecb2ae3ff2 drm/i915: Define WD trancoder for i915</p>
+
+</body>
+</html>
+
+--===============0380369121039867842==--
