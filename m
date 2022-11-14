@@ -1,144 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA80B62742C
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Nov 2022 02:29:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 494AF62747A
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Nov 2022 03:16:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3E2710E259;
-	Mon, 14 Nov 2022 01:28:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CABC710E25E;
+	Mon, 14 Nov 2022 02:16:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A2CA10E258;
- Mon, 14 Nov 2022 01:28:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668389333; x=1699925333;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- in-reply-to:mime-version;
- bh=PFP3z3SuD9XYtp1Tgx0R/Fg+Jm7saThFquCva7oqiL0=;
- b=L8EMM2HfA//vq/gSYtuEWpJEUJ9lJ/RaYVqM7DqKNHKIKfNMrASEZk65
- 8mcU0T6eDmIqMoay8QUR2BiMKrmdz9i9HIV9iu9T3WuUz/IOKMcRuQ6Po
- zayK7fQS6iUI4/MMF3XLABonQMY/MeaYfRaxvFj7rnbq8YFIlo35K/8hO
- sCyFGrDx4BczamUv6oVwuMIxbwpFAukH7WebPSBqT+g8PEpYt0SP8Fua9
- VY2BihAwwPFXH/bkpd/F4tdswZRhAWNrie0gZW7au6A7F3ZP1M6RWofU6
- Tfek7ZVZBIBjOna3asWmz6oXyl9P8V/CiYDksVQ7FeJ674DlTMjBKGAg8 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10530"; a="291576202"
-X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; d="scan'208";a="291576202"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2022 17:28:52 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10530"; a="671368748"
-X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; d="scan'208";a="671368748"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga001.jf.intel.com with ESMTP; 13 Nov 2022 17:28:52 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Sun, 13 Nov 2022 17:28:51 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Sun, 13 Nov 2022 17:28:51 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Sun, 13 Nov 2022 17:28:51 -0800
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.48) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Sun, 13 Nov 2022 17:28:50 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XCAPqPV8/iyLSYJZtT3S8WuOIHZy5DWhy2wjH8dI+6PWH5sj1taxVBoxoXjTB0wGeeYdXB4UmGUvVJz2xYXAGXtsWwx0hBzPwkaL5x4PliFo6tMW7JOVBvn5O3MY118CtDx0DDIrsBf5cc+BJ7OYiCW07OYJkbEd+8+xHuPaik/08/bNZPPdIrsRP8t/O5Azmb+eoTbMLA1NzI4YFQrJGC0WOryws6bXGacBVq39z2vublrL393XmgBSDLz20EH0kEVGOF0VEcNCRUPFUdei10rqCzrvN9wtVIbKU+Z8FgzqxxJYnFG0TDs5yhtTZ/NVwbB+L8ZIf3gy/retjC1UfQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iaFoNNVRjYeEDpgxwij8F18vOrA0zPVqaQbEy85relw=;
- b=d8DIpglrWSMtWm5azg/m8yf+sXMZwnYZJnZ2P1MBxdLcd7FHqktkxEf/RCcyonohHG7Do0ntybjx0cdoD52HTBmifaONsMHBotL3P09eOmZhcZDnhZ8dV9mkRWCWjSgWwAOXI7P8ofotjespZdeiW55C1CV4q/weH6Wfe0phJ0P1/5yVPIWPAtLRzvh6SbCaA8FdjWe6V8GOpjBDxnZ/yhLiRuCZVvL24ZrBM+MGkoDWlJeSuJdQs+ZqLRlQ+kpTMPBvlHlNX41Rr274ICHbf1qm0BrnojsRTsAWM19ruYSQefV8qqBWQs3lwsJBNX8VxEGZuonzzUvrIMgviJ1TOg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS7PR11MB5966.namprd11.prod.outlook.com (2603:10b6:8:71::6) by
- IA1PR11MB7341.namprd11.prod.outlook.com (2603:10b6:208:426::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.17; Mon, 14 Nov
- 2022 01:28:49 +0000
-Received: from DS7PR11MB5966.namprd11.prod.outlook.com
- ([fe80::dc06:6d36:dc8a:fe7f]) by DS7PR11MB5966.namprd11.prod.outlook.com
- ([fe80::dc06:6d36:dc8a:fe7f%7]) with mapi id 15.20.5813.017; Mon, 14 Nov 2022
- 01:28:49 +0000
-Date: Mon, 14 Nov 2022 09:05:58 +0800
-From: Yan Zhao <yan.y.zhao@intel.com>
-To: Sean Christopherson <seanjc@google.com>
-Message-ID: <Y3GUdqxnPJvc6SPI@yzhao56-desk.sh.intel.com>
-References: <20221111103247.22275-1-yan.y.zhao@intel.com>
- <20221111103350.22326-1-yan.y.zhao@intel.com>
- <Y26SI3uh8JV0vvO6@google.com>
- <Y27ivXea5SjR5lat@yzhao56-desk.sh.intel.com>
- <Y27sG3AqVX8yLUgR@google.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <Y27sG3AqVX8yLUgR@google.com>
-X-ClientProxiedBy: SG2PR06CA0239.apcprd06.prod.outlook.com
- (2603:1096:4:ac::23) To DS7PR11MB5966.namprd11.prod.outlook.com
- (2603:10b6:8:71::6)
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com
+ [IPv6:2607:f8b0:4864:20::b33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44E7310E25E
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Nov 2022 02:16:17 +0000 (UTC)
+Received: by mail-yb1-xb33.google.com with SMTP id k84so7731895ybk.3
+ for <intel-gfx@lists.freedesktop.org>; Sun, 13 Nov 2022 18:16:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=mXMNh+o2QFc9z98VGhTuKVamuc2Ydk7dfs9/OrsxNnk=;
+ b=CkfYA65nR+B1MrgelVGVC5kbWBuW1hCrBx2MKt4vtQsNEhf9mrXYjoZb/vT6BP1sts
+ zV7gO6Y7J4hyk0rq4fpH3l4JSDJKPkUgsZjRLCzSaqIEb8iI9BeEg6oOxCTa6vsvVkNf
+ eA5yguFS1A3mKqzICOClNuiCj9C4akLV6L/TA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=mXMNh+o2QFc9z98VGhTuKVamuc2Ydk7dfs9/OrsxNnk=;
+ b=JBuL6T46tE88d1ny8DwW7ODQSrQVLnnks6/wBJ2DyS1GQh/2AOajM4EmgjrhuzS8zP
+ t6HrXt/x352ZHorv180T5/kY8DTfh8EzOu6Ig9+gkwXzcY93zsIMPkguSBHyIffx/7Oh
+ xsh2rcNazW3c7X9L/ps3sgcDOedt/qymaqE7w7YD0OLZu2Ng+6o0sJ+9qiwo8Ap0Dnb5
+ dwNV7QodljcjCOsTtH8WVY1drZ+pBQEABh/4XLBZZowUGviQ3Ag5l3sXoLYXyBJHiRQZ
+ ZX4uqEt1AjayTMZxbn44tVJjax6Yu6tSoNL7iFAWpvPJz+30zQtP80AdTmkq4F4HWldM
+ U4JA==
+X-Gm-Message-State: ANoB5pld2pO3Vq/PnP19cNtlUfHFuGH4TVSbueyaBaQAqHKxCtbdrHOD
+ C9OUyNZaH4XXN4PGQwGzoFvSXt4ZCnerEh/HGfk2uA==
+X-Google-Smtp-Source: AA0mqf5ZFjbVashSizQPCRr8UIUZMHbguSPdlCf3VZ7m9vIH1SFnp1S3DhLBRnXgCafr6zydIlEo3TD3yj+eU/dfSAk=
+X-Received: by 2002:a25:ba4c:0:b0:6dc:dc81:aaf4 with SMTP id
+ z12-20020a25ba4c000000b006dcdc81aaf4mr9747217ybj.365.1668392176373; Sun, 13
+ Nov 2022 18:16:16 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB5966:EE_|IA1PR11MB7341:EE_
-X-MS-Office365-Filtering-Correlation-Id: 92622c42-99c4-423f-4678-08dac5df949a
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: YhqBMg+vyXjlZc8dMpExyTD/pcEmJiPuviT1Il0/tbx0OY7G57d50NJg4LFkXCIf6uNhPaxm+/h0QrtMfXzFJx19Fc7xmknGn4lfq6jvpTrS0gfgxTo/923rTn3l3z+rCrGRQI+2ztzPFFlgtU78BsWy2tS7VeJ5X2EMb0PidbIJ3AYd2+gulZAX5H3LFsrp8AgLcT3n3XIXbtjXVtmQeWoNGTMuDpWF+veXSX90P8FPtHgQTH3Uj+/ZeWrjvYWLKFu9L0Y12YxQcx2bDBzy1yJXEyd8GgrFM5dRWOD88FWRP5ClcCvT+jkl1yOaAFXbjxJ+vmlhc4KfuCX+cQRmPebB0YNYySD4lTfqk8JueOXKJEzU2fg/GE7JioD+xzqvwneI72uxo2Bupn8rVIiCgxLd1XtVu1OcepaCVV4Z66kcLs6ma112VaN8lInYa/r36ecI1+WDxdXi0WVU//50Pbs1ct0N1Ov6cx0LFVW9esfd26UN4WwnR2pE5WVL6pLsOQXYC/HMAmhh7G/ySJj2woa6Vh9gowvzW51+1nqgPe8/m1S4s7X8tdY0R6L+aljsLHsZcDUhIDB69XEEBTve+7p5vnZD7URxNTZH1j7AI5K7FQL1BxGrH/AUpw++yGya8BXz79omGkRfr209n8vtWNPZCFbct+uF5Fn7wXx16OHwXYLuC4xnVhyJovOLS7guiQ7Yj62ElFk19M+sff/VEw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR11MB5966.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(346002)(39860400002)(396003)(136003)(366004)(376002)(451199015)(66556008)(66476007)(4326008)(8676002)(66946007)(26005)(6512007)(8936002)(186003)(5660300002)(41300700001)(316002)(38100700002)(82960400001)(86362001)(83380400001)(2906002)(3450700001)(6666004)(6486002)(6916009)(478600001)(6506007);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?YsuJPWFYBO/P3EUabUYIOv99t393Tn4HEe3JIHH25FGyb+zij+h78fbiSneP?=
- =?us-ascii?Q?Rvcc3gf/idWY8xC0y+JvHDFDQxW7238E7mHLAHVsskjdooyV6JvnkVJ3Jn7j?=
- =?us-ascii?Q?YXO/Wq61Dak0ciwIb+g2xm/jXjePZqufo1rFx+ei+r01kZWocfsUU2jWv/r2?=
- =?us-ascii?Q?gPvNbbP3Bu8Px1jh5IVJWwIqfn8HRwlT17mKyf5MEjO6XG55Fm+jgF1UgPFl?=
- =?us-ascii?Q?kzQyveD3o9fJje3PQ+VHqT9HKsKnQmYgchy8LgfwI8EKs92vW1y98hjSBg+v?=
- =?us-ascii?Q?fT+5zqzti/MPdYHzLrFvoYm9VPXZKwus5sV1yK7OnlRbdBaJq3WeWJkH/t6r?=
- =?us-ascii?Q?4l+NoBQl8wS5RRY89TntTyrt8o7qOf3SeteX/llDrgq7MwJ+/85C7yQzL8N6?=
- =?us-ascii?Q?hP++PGaiwpgtZTq9kP8MIkYwayhnwvWppOh8aye2kMVigBvESznB1D+ZBXPY?=
- =?us-ascii?Q?9SaiR2Uf7ve/eXbzmE4KPTauOhNPob1eSLhkGak0pGlLd4zl8Lee97naVgl+?=
- =?us-ascii?Q?wp+yGXxo6EA4CvNlR1V092rZZA34D2+zoAd6T1oa1Ivgn+6zXd74Rl8tkdoB?=
- =?us-ascii?Q?kE0SWWpM6z7cvdLp7osaayaIRv7vSFB2pV80nYe/N2x7qGHUGloa9zVsdTCC?=
- =?us-ascii?Q?LWMzmJR9IIUoB5CR/ddujZlUaRRyiQw8ksGNct/v9XP0QGqMbscGc9ovy57E?=
- =?us-ascii?Q?7nO9T0oKuqEjRV01WvWR6oFwHYskkKZWMcCPrvFhrC6sdo7BLmRO+J/aSWaA?=
- =?us-ascii?Q?5JIzEPK3adDqDzXInOwCtgfRX/1/dQgfssaMebD6bcDUlGiW9pgkGNtJhc6d?=
- =?us-ascii?Q?+yIrl+hAglm3qKoToiBLSCi19CCnCFUWr0gIvcgkAisGmwnUOTMS9S8bu1af?=
- =?us-ascii?Q?KSi90vgmqpBqDzSw36SUCLsOaytKi0U0aEEc+0TAyrUgLm4IsX3767WfNG0D?=
- =?us-ascii?Q?or4lSZQJQFvvD7Jd4FdSKmJpF2AAxASSwHwwzVlzeS9Wn1gi0oMPH/lCngYk?=
- =?us-ascii?Q?m7apJ8iVocrnyloGEo/fYbDEbO5WRSTnKemgiebUPM05l+MIDGAOWKWG52Ux?=
- =?us-ascii?Q?QL351JS/DTpu+p4dAVfAU0jsS+QVtNvh3slZPe+PJFXfA52ojRvhkQV7wg4X?=
- =?us-ascii?Q?/d7on8wHLxlM25wZyL2Rod8HrjyPWCbEB2Ig4E8jkrVI5Sub6mOEr15j2oKS?=
- =?us-ascii?Q?H17jqtiS57aJW4tucfom0lcbhWGdI1COZI8V+YH4wO+0oqk9EzJhBLAkj9PU?=
- =?us-ascii?Q?WsberQt7rnG0uMrcaL9/Q0OeRLXdcMEuende5FsAeujsvLNUTaLIwwSW2b4W?=
- =?us-ascii?Q?BIdAuFLnWIvB1Q7m3PXHZmcKHwQyjat47QpZ79IlMGZ4dfRJqufCRLcF2slC?=
- =?us-ascii?Q?lsMO+QSjI91DjnvD/tqXkwqSQltej6IellvsQUNNNdvHMl9FHJlKwMQ4jWw8?=
- =?us-ascii?Q?xZ2kroZyrTkvyLm81/JH6gE6Xnkge+FayVQHewrSCDJFJvhyKs/nuDVAw9l3?=
- =?us-ascii?Q?ACAl4AOlp6Y47j7XBB5rA9X54IRj9T/NKYTW8xk3T7BTt81z/QLMWRgAeRCg?=
- =?us-ascii?Q?UWQNHCBNiN9XdTGG+x7f6bqWb4br0oBU4Ea3QUFn?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 92622c42-99c4-423f-4678-08dac5df949a
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB5966.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2022 01:28:48.9269 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: bw8nzjuRC80kmL61eVLUO+NWJ/rjG/Guasl8PZ0kk1+Wzbfi7VvsxGxtUIh8mmS9ppsfaI1PYhiJXb2PqMP5CA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7341
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v2 1/3] KVM: x86: add a new page track hook
- track_remove_slot
+References: <20221110053133.2433412-1-mani@chromium.org>
+ <1d066cb4-fb82-bffd-5e89-97ba572be3fa@intel.com>
+ <a26db94512198c20457ce40a6dc8692a3f8bf196.camel@linux.intel.com>
+In-Reply-To: <a26db94512198c20457ce40a6dc8692a3f8bf196.camel@linux.intel.com>
+From: Mani Milani <mani@chromium.org>
+Date: Mon, 14 Nov 2022 13:16:05 +1100
+Message-ID: <CAHzEqDkFAiGkTFF3C--2NKt+ALjtfiNpWYca-Y-p=sekjQXGpw@mail.gmail.com>
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix unhandled deadlock in
+ grab_vma()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,50 +64,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Yan Zhao <yan.y.zhao@intel.com>
-Cc: kvm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, pbonzini@redhat.com,
- intel-gvt-dev@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ LKML <linux-kernel@vger.kernel.org>, Chris Wilson <chris@chris-wilson.co.uk>,
+ Matthew Auld <matthew.auld@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Nov 12, 2022 at 12:43:07AM +0000, Sean Christopherson wrote:
-> On Sat, Nov 12, 2022, Yan Zhao wrote:
-> > And I'm also not sure if a slots_arch_lock is required for
-> > kvm_slot_page_track_add_page() and kvm_slot_page_track_remove_page().
-> 
-> It's not required.  slots_arch_lock protects interaction between memslot updates
-In kvm_slot_page_track_add_page() and kvm_slot_page_track_remove_page(),
-slot->arch.gfn_track[mode][index] is updated in update_gfn_track(),
-do you know which lock is used to protect it?
+Thank you for your comments.
 
-Thanks
-Yan
+To Thomas's point, the crash always seems to happen when the following
+sequence of events occurs:
 
-> mmu_first_shadow_root_alloc().  When CONFIG_KVM_EXTERNAL_WRITE_TRACKING=y, then
-> the mmu_first_shadow_root_alloc() doesn't touch the memslots because everything
-> is pre-allocated:
-> 
-> bool kvm_page_track_write_tracking_enabled(struct kvm *kvm)
-> {
-> 	return IS_ENABLED(CONFIG_KVM_EXTERNAL_WRITE_TRACKING) ||
-> 	       !tdp_enabled || kvm_shadow_root_allocated(kvm);
-> }
-> 
-> int kvm_page_track_create_memslot(struct kvm *kvm,
-> 				  struct kvm_memory_slot *slot,
-> 				  unsigned long npages)
-> {
-> 	if (!kvm_page_track_write_tracking_enabled(kvm)) <== always true
-> 		return 0;
-> 
-> 	return __kvm_page_track_write_tracking_alloc(slot, npages);
-> }
-> 
-> Though now that you point it out, it's tempting to #ifdef out some of those hooks
-> so that's basically impossible for mmu_first_shadow_root_alloc() to cause problems.
-> Not sure the extra #ideffery would be worth while though.
-> 
-> slots_arch_lock also protects shadow_root_allocated, but that's a KVM-internal
-> detail that isn't relevant to the page-tracking machinery when
-> CONFIG_KVM_EXTERNAL_WRITE_TRACKING=y.
+1. When inside "i915_gem_evict_vm()", the call to
+"i915_gem_object_trylock(vma->obj, ww)" fails (due to deadlock), and
+eviction of a vma is skipped as a result. Basically if the code
+reaches here:
+https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/i915/i915_gem_evict.c#L468
+And here is the stack dump for this scenario:
+    Call Trace:
+    <TASK>
+    dump_stack_lvl+0x68/0x95
+    i915_gem_evict_vm+0x1d2/0x369
+    eb_validate_vmas+0x54a/0x6ae
+    eb_relocate_parse+0x4b/0xdb
+    i915_gem_execbuffer2_ioctl+0x6f5/0xab6
+    ? i915_gem_object_prepare_write+0xfb/0xfb
+    drm_ioctl_kernel+0xda/0x14d
+    drm_ioctl+0x27f/0x3b7
+    ? i915_gem_object_prepare_write+0xfb/0xfb
+    __se_sys_ioctl+0x7a/0xbc
+    do_syscall_64+0x56/0xa1
+    ? exit_to_user_mode_prepare+0x3d/0x8c
+    entry_SYSCALL_64_after_hwframe+0x61/0xcb
+    RIP: 0033:0x78302de5fae7
+    Code: c0 0f 89 74 ff ff ff 48 83 c4 08 49 c7 c4 ff ff ff ff 5b 4c
+89 e0 41 5c 41 5d 5d c3 0f 1f 80 00 00 00 00 b8 10 00 00 00 0f 05 <48>
+3d 01 f0 ff ff 73 01 c3 48 8b 0d 51 c3 0c 00 f7 d8 64 89 01 48
+    RSP: 002b:00007ffe64b87f78 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+    RAX: ffffffffffffffda RBX: 000003cc00470000 RCX: 000078302de5fae7
+    RDX: 00007ffe64b87fd0 RSI: 0000000040406469 RDI: 000000000000000d
+    RBP: 00007ffe64b87fa0 R08: 0000000000000013 R09: 000003cc004d0950
+    R10: 0000000000000200 R11: 0000000000000246 R12: 000000000000000d
+    R13: 0000000000000000 R14: 00007ffe64b87fd0 R15: 0000000040406469
+    </TASK>
+It is worth noting that "i915_gem_evict_vm()" still returns success in
+this case.
+
+2. After step 1 occurs, the next call to "grab_vma()" always fails
+(with "i915_gem_object_trylock(vma->obj, ww)" failing also due to
+deadlock), which then results in the crash.
+Here is the stack dump for this scenario:
+    Call Trace:
+    <TASK>
+    dump_stack_lvl+0x68/0x95
+    grab_vma+0x6c/0xd0
+    i915_gem_evict_for_node+0x178/0x23b
+    i915_gem_gtt_reserve+0x5a/0x82
+    i915_vma_insert+0x295/0x29e
+    i915_vma_pin_ww+0x41e/0x5c7
+    eb_validate_vmas+0x5f5/0x6ae
+    eb_relocate_parse+0x4b/0xdb
+    i915_gem_execbuffer2_ioctl+0x6f5/0xab6
+    ? i915_gem_object_prepare_write+0xfb/0xfb
+    drm_ioctl_kernel+0xda/0x14d
+    drm_ioctl+0x27f/0x3b7
+    ? i915_gem_object_prepare_write+0xfb/0xfb
+    __se_sys_ioctl+0x7a/0xbc
+    do_syscall_64+0x56/0xa1
+    ? exit_to_user_mode_prepare+0x3d/0x8c
+    entry_SYSCALL_64_after_hwframe+0x61/0xcb
+    RIP: 0033:0x78302de5fae7
+    Code: c0 0f 89 74 ff ff ff 48 83 c4 08 49 c7 c4 ff ff ff ff 5b 4c
+89 e0 41 5c 41 5d 5d c3 0f 1f 80 00 00 00 00 b8 10 00 00 00 0f 05 <48>
+3d 01 f0 ff ff 73 01 c3 48 8b 0d 51 c3 0c 00 f7 d8 64 89 01 48
+    RSP: 002b:00007ffe64b87f78 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+    RAX: ffffffffffffffda RBX: 000003cc00470000 RCX: 000078302de5fae7
+    RDX: 00007ffe64b87fd0 RSI: 0000000040406469 RDI: 000000000000000d
+    RBP: 00007ffe64b87fa0 R08: 0000000000000013 R09: 000003cc004d0950
+    R10: 0000000000000200 R11: 0000000000000246 R12: 000000000000000d
+    R13: 0000000000000000 R14: 00007ffe64b87fd0 R15: 0000000040406469
+    </TASK>
+
+My Notes:
+- I verified the two "i915_gem_object_trylock()" failures I mentioned
+above are due to deadlock by slightly modifying the code to call
+"i915_gem_object_lock()" only in those exact cases and subsequent to
+the trylock failure, only to look at the return error code.
+- The two cases mentioned above, are the only cases where
+"i915_gem_object_trylock(obj, ww)" is called with the second argument
+not being forced to NULL.
+- When in either of the two cases above (i.e. inside "grab_vma()" or
+"i915_gem_evict_vm") I replace calling "i915_gem_object_trylock" with
+"i915_gem_object_lock", the issue gets resolved (because deadlock is
+detected and resolved).
+
+So if this could matches the design better, another solution could be
+for "grab_vma" to continue to call "i915_gem_object_trylock", but for
+"i915_gem_evict_vm" to call "i915_gem_object_lock" instead.
+
+Further info:
+- Would you like any further info on the crash? If so, could you
+please advise 1) what exactly you need and 2) how I can share with you
+especially if it is big dumps?
+
+Thanks.
