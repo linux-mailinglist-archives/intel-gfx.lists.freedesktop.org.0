@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95960627BC2
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Nov 2022 12:11:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C7290627BEA
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Nov 2022 12:17:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6115310E041;
-	Mon, 14 Nov 2022 11:11:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AF6610E03B;
+	Mon, 14 Nov 2022 11:17:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DA0710E041
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Nov 2022 11:11:30 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61A9E10E03B;
+ Mon, 14 Nov 2022 11:17:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668424290; x=1699960290;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=6ClYWSm9ZD4LjjTlpLC3e9YqPTUNcKbBPcEuUU9f6SE=;
- b=RyO2hEPcgGp9f6aqBLzp4RlFaofOuNd5k+TkDF9MGbjXkTuhhec3lWKR
- 4zJNVZJYWAz2QFm/uwws8OwVMwcA+frh7lw/Ts4+VK1o3hUtEJRIP6URi
- GKSn0xwyr1O0BlqqrbcdjTLpGKtnFougxg6y80DDwts6nehz8xP9lNVXf
- 2Ri15P0gxuSOUFP9GA0MnCHqql2c6ORvP3vOBPp0b5UDxat9KextfopiW
- pKYIYsidsBOICQSKCVBzAV4C5D40VqXDmq9ze5kRL4REKlPSOXn39MegK
- 6OqBJHnx3GAaXl6Cl8e+VSy3XWR+jGzFSZRdcabDvsYLPcd1ss2D7Tkd7 w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10530"; a="313746428"
-X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; d="scan'208";a="313746428"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2022 03:11:29 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10530"; a="707273858"
-X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; d="scan'208";a="707273858"
+ t=1668424638; x=1699960638;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=cShosTX6qgQLbMxJswZ+DfJVbc0pAc5BznoSUHJHKgg=;
+ b=NjhusvFYTTq8hbgXMWT27Ysvh2Wor9BlBNIXVW5xcfIaa4nOe9csUszf
+ gowC1xZHIc65hJurJRh2TfOiToYsu+xHEGR3CeuI7vvV1gYpxFFhjEc93
+ Mjwhhvyp5AFKSWvqWbfzFhYcMSux5NQJVU5OFpe4g5via+CtbzQA6NQdh
+ Y7WHDuGhE8TwEMGG1l1KNAJJyv8Dozx10D5plyTayhqyLpfbEAYhaxXQS
+ slT4Zq7KcTgoq9ob0iMRzclGehVgLaFJcZmPEt2U5P+uIyp+V4azvqvXe
+ b/HyBun8t1n59v8XaygbL4bOfWNv09l21IS2w+F/iywL8HKdmmew8fnH7 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10530"; a="291660167"
+X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; d="scan'208";a="291660167"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2022 03:17:17 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10530"; a="589330261"
+X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; d="scan'208";a="589330261"
 Received: from dsmahang-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.59.240])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2022 03:11:26 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Steven 'Steve' Kendall <skend@chromium.org>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20221111224930.3961511-1-skend@google.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221111224930.3961511-1-skend@google.com>
-Date: Mon, 14 Nov 2022 13:11:23 +0200
-Message-ID: <875yfh4wpw.fsf@intel.com>
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2022 03:17:15 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Date: Mon, 14 Nov 2022 13:17:09 +0200
+Message-Id: <20221114111709.434979-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: disable DMC idle states for Intel
- UHD Graphics 620
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [RESEND] drm/edid/firmware: stop using a throwaway
+ platform device
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,100 +59,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: daniel@ffwll.ch, rodrigo.vivi@intel.com,
- Steven 'Steve' Kendall <skend@google.com>, airlied@gmail.com
+Cc: jani.nikula@intel.com, Matthieu CHARETTE <matthieu.charette@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 11 Nov 2022, "Steven 'Steve' Kendall" <skend@chromium.org> wrote:
-> Some machines with Intel UHD Graphics 620 (8086:5917) such as Dell
-> Latitude 7490 are unable to wake from sleep. Disable DMC for
-> Intel UHD Graphics 620.
+We've used a temporary platform device for firmware EDID loading since
+it was introduced in commit da0df92b5731 ("drm: allow loading an EDID as
+firmware to override broken monitor"), but there's no explanation why.
 
-Cc: some more folks
+Using a temporary device does not play well with CONFIG_FW_CACHE=y,
+which caches firmware images (e.g. on suspend) so that drivers can
+request firmware when the system is not ready for it, and return the
+images from the cache (e.g. during resume). This works automatically for
+regular devices, but obviously not for a temporarily created device.
 
-The patch at hand seems like too heavy a hammer. But this needs
-attention.
+Stop using the throwaway platform device, and use the drm device
+instead.
 
-BR,
-Jani.
+Note that this may still be problematic for cases where the display was
+plugged in during suspend, and the firmware wasn't loaded and therefore
+not cached before suspend.
 
+References: https://lore.kernel.org/r/20220727074152.43059-1-matthieu.charette@gmail.com
+Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/2061
+Reported-by: Matthieu CHARETTE <matthieu.charette@gmail.com>
+Tested-by: Matthieu CHARETTE <matthieu.charette@gmail.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
+---
 
->
-> Link: https://gitlab.freedesktop.org/drm/intel/-/issues/7339
-> Signed-off-by: Steven 'Steve' Kendall <skend@google.com>
-> ---
->  drivers/gpu/drm/i915/i915_pci.c | 14 ++++++++++++++
->  include/drm/i915_pciids.h       |  6 +++++-
->  2 files changed, 19 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-> index cd4487a1d3be..ea148be46b14 100644
-> --- a/drivers/gpu/drm/i915/i915_pci.c
-> +++ b/drivers/gpu/drm/i915/i915_pci.c
-> @@ -697,6 +697,10 @@ static const struct intel_device_info skl_gt4_info = {
->  	.gt = 4,
->  };
->  
-> +#define GEN9_DMCLESS_FEATURES \
-> +	GEN9_FEATURES, \
-> +	.__runtime.has_dmc = 0
-> +
->  #define GEN9_LP_FEATURES \
->  	GEN(9), \
->  	.is_lp = 1, \
-> @@ -753,6 +757,10 @@ static const struct intel_device_info glk_info = {
->  	GEN9_FEATURES, \
->  	PLATFORM(INTEL_KABYLAKE)
->  
-> +#define KBL_DMCLESS_PLATFORM \
-> +	GEN9_DMCLESS_FEATURES, \
-> +	PLATFORM(INTEL_KABYLAKE)
-> +
->  static const struct intel_device_info kbl_gt1_info = {
->  	KBL_PLATFORM,
->  	.gt = 1,
-> @@ -763,6 +771,11 @@ static const struct intel_device_info kbl_gt2_info = {
->  	.gt = 2,
->  };
->  
-> +static const struct intel_device_info dmcless_kbl_gt2_info = {
-> +	KBL_DMCLESS_PLATFORM,
-> +	.gt = 2,
-> +};
-> +
->  static const struct intel_device_info kbl_gt3_info = {
->  	KBL_PLATFORM,
->  	.gt = 3,
-> @@ -1202,6 +1215,7 @@ static const struct pci_device_id pciidlist[] = {
->  	INTEL_GLK_IDS(&glk_info),
->  	INTEL_KBL_GT1_IDS(&kbl_gt1_info),
->  	INTEL_KBL_GT2_IDS(&kbl_gt2_info),
-> +	DMCLESS_INTEL_KBL_GT2_IDS(&dmcless_kbl_gt2_info),
->  	INTEL_KBL_GT3_IDS(&kbl_gt3_info),
->  	INTEL_KBL_GT4_IDS(&kbl_gt3_info),
->  	INTEL_AML_KBL_GT2_IDS(&kbl_gt2_info),
-> diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
-> index 4a4c190f7698..93bea60772ff 100644
-> --- a/include/drm/i915_pciids.h
-> +++ b/include/drm/i915_pciids.h
-> @@ -420,11 +420,15 @@
->  	INTEL_KBL_ULT_GT2_IDS(info), \
->  	INTEL_KBL_ULX_GT2_IDS(info), \
->  	INTEL_VGA_DEVICE(0x5912, info), /* DT  GT2 */ \
-> -	INTEL_VGA_DEVICE(0x5917, info), /* Mobile GT2 */ \
->  	INTEL_VGA_DEVICE(0x591A, info), /* SRV GT2 */ \
->  	INTEL_VGA_DEVICE(0x591B, info), /* Halo GT2 */ \
->  	INTEL_VGA_DEVICE(0x591D, info) /* WKS GT2 */
->  
-> +#define DMCLESS_INTEL_KBL_GT2_IDS(info) \
-> +	INTEL_KBL_ULT_GT2_IDS(info), \
-> +	INTEL_KBL_ULX_GT2_IDS(info), \
-> +	INTEL_VGA_DEVICE(0x5917, info) /* Mobile GT2 */
-> +
->  #define INTEL_KBL_ULT_GT3_IDS(info) \
->  	INTEL_VGA_DEVICE(0x5926, info) /* ULT GT3 */
+Resend with a proper commit message; patch itself is unchanged.
+---
+ drivers/gpu/drm/drm_edid_load.c | 13 +------------
+ 1 file changed, 1 insertion(+), 12 deletions(-)
 
+diff --git a/drivers/gpu/drm/drm_edid_load.c b/drivers/gpu/drm/drm_edid_load.c
+index ef4ab59d6935..5d9ef267ebb3 100644
+--- a/drivers/gpu/drm/drm_edid_load.c
++++ b/drivers/gpu/drm/drm_edid_load.c
+@@ -172,20 +172,9 @@ static const struct drm_edid *edid_load(struct drm_connector *connector, const c
+ 		fwdata = generic_edid[builtin];
+ 		fwsize = sizeof(generic_edid[builtin]);
+ 	} else {
+-		struct platform_device *pdev;
+ 		int err;
+ 
+-		pdev = platform_device_register_simple(connector->name, -1, NULL, 0);
+-		if (IS_ERR(pdev)) {
+-			drm_err(connector->dev,
+-				"[CONNECTOR:%d:%s] Failed to register EDID firmware platform device for connector \"%s\"\n",
+-				connector->base.id, connector->name,
+-				connector->name);
+-			return ERR_CAST(pdev);
+-		}
+-
+-		err = request_firmware(&fw, name, &pdev->dev);
+-		platform_device_unregister(pdev);
++		err = request_firmware(&fw, name, connector->dev->dev);
+ 		if (err) {
+ 			drm_err(connector->dev,
+ 				"[CONNECTOR:%d:%s] Requesting EDID firmware \"%s\" failed (err=%d)\n",
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.34.1
+
