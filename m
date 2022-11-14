@@ -1,50 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89A3A627DEF
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Nov 2022 13:39:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1821627E80
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Nov 2022 13:48:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A49EF10E0EA;
-	Mon, 14 Nov 2022 12:39:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5AFC10E0A0;
+	Mon, 14 Nov 2022 12:48:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A672010E09F
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Nov 2022 12:39:07 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA97410E09F;
+ Mon, 14 Nov 2022 12:48:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668429547; x=1699965547;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=XQGxL2EliopJWxn5TpceLmGMrPaCmGcHx1R1STd3E3M=;
- b=ZzE3m4NNlSf0T9p0WQ+JJNm59c6qBwAPIwLNDLGwcQNswQaGQoh6Icaf
- zdVNLutwGNYmLbhlZ9ac+g+rbnwsPqoJBwZufLZ2XaELL85eZaJYgPWT6
- jbDrrMnupD8cRgNwsHupRqi1Q7nwzRsHkTErFGbXmigNCdMmw2gfAPZNK
- j7pHdLqjh7tupMAk1lWTpRWEEQGxJETKX3vNq0+Y+jhcFsITTNG21QRu3
- X689aGmSTnh2P/R5ki1B2KoXHHDafzNYXCRv8PamXC5BzYp7ZNeCliU87
- HIu+kyjKDau3cXIupcwSfnKtsRvVeUIVCJVybTJiMkn4yjzv+Iad0uIeY A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10530"; a="299476490"
-X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; d="scan'208";a="299476490"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2022 04:39:07 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10530"; a="701990042"
-X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; d="scan'208";a="701990042"
-Received: from anshuma1-desk.iind.intel.com ([10.190.239.112])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2022 04:39:05 -0800
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 14 Nov 2022 18:08:43 +0530
-Message-Id: <20221114123843.880902-4-anshuman.gupta@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221114123843.880902-1-anshuman.gupta@intel.com>
-References: <20221114123843.880902-1-anshuman.gupta@intel.com>
+ t=1668430099; x=1699966099;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=QjWg+CvyxEun+gDyBKTRZt0HnPMmJR2v/osNqjtGL7o=;
+ b=BBfAVfzdLl97fuH2WzEZmSAVfc7VmAAjEhB0oNOQpTXqN2dvajr14XOt
+ /im29JU8XU4bD2YfvMcM12xlYA05OcEcR0sGuhZlN2XKDSJ94AodkK++K
+ iOceg0mgk7xmw2ttV3o1OgG+q1iLosCc3D42DhuWye1JIprSiMizw6ywq
+ GtKmm8yCYUwGqVY46+HFrgAOVU3PcO7mwlQk6t1bkDxh4FxU54300JSsI
+ Tu1qHJm6adQaioO0rSYvOt6XHJES6Ftd+T3JCr44sMGr2BXrBaqxsbkcL
+ dzoG37oqwP8R0J/cwM5NrLROSikq2yhYLx3LUO8S0mgfWz7XIY0rjmhtJ A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10530"; a="292357585"
+X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; d="scan'208";a="292357585"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2022 04:48:19 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10530"; a="638465112"
+X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; d="scan'208";a="638465112"
+Received: from jsarha-mobl1.ger.corp.intel.com (HELO [10.249.254.68])
+ ([10.249.254.68])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2022 04:48:14 -0800
+Message-ID: <9d0b5696-496f-a03a-2b5c-e38f36a02d86@linux.intel.com>
+Date: Mon, 14 Nov 2022 13:48:11 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t v2 3/3] tests/device_reset: Add cold reset
- IGT test
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Content-Language: en-US
+To: Mani Milani <mani@chromium.org>
+References: <20221110053133.2433412-1-mani@chromium.org>
+ <1d066cb4-fb82-bffd-5e89-97ba572be3fa@intel.com>
+ <a26db94512198c20457ce40a6dc8692a3f8bf196.camel@linux.intel.com>
+ <CAHzEqDkFAiGkTFF3C--2NKt+ALjtfiNpWYca-Y-p=sekjQXGpw@mail.gmail.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <CAHzEqDkFAiGkTFF3C--2NKt+ALjtfiNpWYca-Y-p=sekjQXGpw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix unhandled deadlock in
+ grab_vma()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,276 +64,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: rodrigo.vivi@intel.com
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ LKML <linux-kernel@vger.kernel.org>, Chris Wilson <chris@chris-wilson.co.uk>,
+ Matthew Auld <matthew.auld@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add cold-reset IGT subtest, IGT subtest will use
-/sys/bus/pci/slots/$SUN/power sysfs in order to
-initiate a cold reset sequence. $SUN value will be
-retrieved from PCIe device ACPI firmware node.
+Hi, Mani.
 
-v2:
-- %s/igt_require(fd > 0)/igt_assert(errno >0)
+On 11/14/22 03:16, Mani Milani wrote:
+> Thank you for your comments.
+>
+> To Thomas's point, the crash always seems to happen when the following
+> sequence of events occurs:
+>
+> 1. When inside "i915_gem_evict_vm()", the call to
+> "i915_gem_object_trylock(vma->obj, ww)" fails (due to deadlock), and
+> eviction of a vma is skipped as a result. Basically if the code
+> reaches here:
+> https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/i915/i915_gem_evict.c#L468
+> And here is the stack dump for this scenario:
+>      Call Trace:
+>      <TASK>
+>      dump_stack_lvl+0x68/0x95
+>      i915_gem_evict_vm+0x1d2/0x369
+>      eb_validate_vmas+0x54a/0x6ae
+>      eb_relocate_parse+0x4b/0xdb
+>      i915_gem_execbuffer2_ioctl+0x6f5/0xab6
+>      ? i915_gem_object_prepare_write+0xfb/0xfb
+>      drm_ioctl_kernel+0xda/0x14d
+>      drm_ioctl+0x27f/0x3b7
+>      ? i915_gem_object_prepare_write+0xfb/0xfb
+>      __se_sys_ioctl+0x7a/0xbc
+>      do_syscall_64+0x56/0xa1
+>      ? exit_to_user_mode_prepare+0x3d/0x8c
+>      entry_SYSCALL_64_after_hwframe+0x61/0xcb
+>      RIP: 0033:0x78302de5fae7
+>      Code: c0 0f 89 74 ff ff ff 48 83 c4 08 49 c7 c4 ff ff ff ff 5b 4c
+> 89 e0 41 5c 41 5d 5d c3 0f 1f 80 00 00 00 00 b8 10 00 00 00 0f 05 <48>
+> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 51 c3 0c 00 f7 d8 64 89 01 48
+>      RSP: 002b:00007ffe64b87f78 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+>      RAX: ffffffffffffffda RBX: 000003cc00470000 RCX: 000078302de5fae7
+>      RDX: 00007ffe64b87fd0 RSI: 0000000040406469 RDI: 000000000000000d
+>      RBP: 00007ffe64b87fa0 R08: 0000000000000013 R09: 000003cc004d0950
+>      R10: 0000000000000200 R11: 0000000000000246 R12: 000000000000000d
+>      R13: 0000000000000000 R14: 00007ffe64b87fd0 R15: 0000000040406469
+>      </TASK>
+> It is worth noting that "i915_gem_evict_vm()" still returns success in
+> this case.
+>
+> 2. After step 1 occurs, the next call to "grab_vma()" always fails
+> (with "i915_gem_object_trylock(vma->obj, ww)" failing also due to
+> deadlock), which then results in the crash.
+> Here is the stack dump for this scenario:
+>      Call Trace:
+>      <TASK>
+>      dump_stack_lvl+0x68/0x95
+>      grab_vma+0x6c/0xd0
+>      i915_gem_evict_for_node+0x178/0x23b
+>      i915_gem_gtt_reserve+0x5a/0x82
+>      i915_vma_insert+0x295/0x29e
+>      i915_vma_pin_ww+0x41e/0x5c7
+>      eb_validate_vmas+0x5f5/0x6ae
+>      eb_relocate_parse+0x4b/0xdb
+>      i915_gem_execbuffer2_ioctl+0x6f5/0xab6
+>      ? i915_gem_object_prepare_write+0xfb/0xfb
+>      drm_ioctl_kernel+0xda/0x14d
+>      drm_ioctl+0x27f/0x3b7
+>      ? i915_gem_object_prepare_write+0xfb/0xfb
+>      __se_sys_ioctl+0x7a/0xbc
+>      do_syscall_64+0x56/0xa1
+>      ? exit_to_user_mode_prepare+0x3d/0x8c
+>      entry_SYSCALL_64_after_hwframe+0x61/0xcb
+>      RIP: 0033:0x78302de5fae7
+>      Code: c0 0f 89 74 ff ff ff 48 83 c4 08 49 c7 c4 ff ff ff ff 5b 4c
+> 89 e0 41 5c 41 5d 5d c3 0f 1f 80 00 00 00 00 b8 10 00 00 00 0f 05 <48>
+> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 51 c3 0c 00 f7 d8 64 89 01 48
+>      RSP: 002b:00007ffe64b87f78 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+>      RAX: ffffffffffffffda RBX: 000003cc00470000 RCX: 000078302de5fae7
+>      RDX: 00007ffe64b87fd0 RSI: 0000000040406469 RDI: 000000000000000d
+>      RBP: 00007ffe64b87fa0 R08: 0000000000000013 R09: 000003cc004d0950
+>      R10: 0000000000000200 R11: 0000000000000246 R12: 000000000000000d
+>      R13: 0000000000000000 R14: 00007ffe64b87fd0 R15: 0000000040406469
+>      </TASK>
+>
+> My Notes:
+> - I verified the two "i915_gem_object_trylock()" failures I mentioned
+> above are due to deadlock by slightly modifying the code to call
+> "i915_gem_object_lock()" only in those exact cases and subsequent to
+> the trylock failure, only to look at the return error code.
+> - The two cases mentioned above, are the only cases where
+> "i915_gem_object_trylock(obj, ww)" is called with the second argument
+> not being forced to NULL.
+> - When in either of the two cases above (i.e. inside "grab_vma()" or
+> "i915_gem_evict_vm") I replace calling "i915_gem_object_trylock" with
+> "i915_gem_object_lock", the issue gets resolved (because deadlock is
+> detected and resolved).
+>
+> So if this could matches the design better, another solution could be
+> for "grab_vma" to continue to call "i915_gem_object_trylock", but for
+> "i915_gem_evict_vm" to call "i915_gem_object_lock" instead.
 
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
----
- lib/igt_pm.c         |  40 ++++++++++++++
- lib/igt_pm.h         |   1 +
- tests/device_reset.c | 124 +++++++++++++++++++++++++++++++++++++++----
- 3 files changed, 155 insertions(+), 10 deletions(-)
+No, i915_gem_object_lock() is not allowed when the vm mutex is held.
 
-diff --git a/lib/igt_pm.c b/lib/igt_pm.c
-index 4f0cfbdd1..9b7ed4be6 100644
---- a/lib/igt_pm.c
-+++ b/lib/igt_pm.c
-@@ -877,6 +877,46 @@ static int igt_pm_open_pci_firmware_node(struct pci_device *pci_dev)
- 	return dir;
- }
- 
-+/**
-+ * igt_pm_get_pcie_acpihp_slot:
-+ * @pci_dev: pci bridge device.
-+ * Get pci bridge acpi hotplug slot number, if bridge's ACPI firmware_node
-+ * handle supports _SUN method.
-+ *
-+ * Returns:
-+ * PCIe bridge Slot number.
-+ * Returns -ENOENT number in case firmware_node/sun is not supported by the
-+ * bridge.
-+ */
-+int igt_pm_get_pcie_acpihp_slot(struct pci_device *pci_dev)
-+{
-+	int firmware_node_fd, fd, n_read;
-+	char sun[8];
-+
-+	firmware_node_fd = igt_pm_open_pci_firmware_node(pci_dev);
-+
-+	if (firmware_node_fd < 0 && errno == ENOENT)
-+		return -ENOENT;
-+
-+	igt_require(firmware_node_fd > 0);
-+
-+	fd = openat(firmware_node_fd, "sun", O_RDONLY);
-+	if (fd < 0 && errno == ENOENT) {
-+		close(firmware_node_fd);
-+		return -ENOENT;
-+	}
-+
-+	igt_assert(errno > 0);
-+
-+	n_read = read(fd, sun, sizeof(sun));
-+	igt_assert(n_read > 0);
-+
-+	close(firmware_node_fd);
-+	close(fd);
-+
-+	return strtol(sun, NULL, 10);
-+}
-+
- /**
-  * igt_pm_acpi_d3cold_supported:
-  * @pci_dev: root port pci_dev.
-diff --git a/lib/igt_pm.h b/lib/igt_pm.h
-index e81fceb89..f65b960c3 100644
---- a/lib/igt_pm.h
-+++ b/lib/igt_pm.h
-@@ -73,6 +73,7 @@ bool igt_wait_for_pm_status(enum igt_runtime_pm_status status);
- bool igt_pm_dmc_loaded(int debugfs);
- bool igt_pm_pc8_plus_residencies_enabled(int msr_fd);
- bool i915_output_is_lpsp_capable(int drm_fd, igt_output_t *output);
-+int igt_pm_get_pcie_acpihp_slot(struct pci_device *pci_dev);
- bool igt_pm_acpi_d3cold_supported(struct pci_device *pci_dev);
- enum igt_acpi_d_state
- igt_pm_get_acpi_real_d_state(struct pci_device *pci_dev);
-diff --git a/tests/device_reset.c b/tests/device_reset.c
-index 0c477a02c..427ea0b09 100644
---- a/tests/device_reset.c
-+++ b/tests/device_reset.c
-@@ -9,6 +9,7 @@
- 
- #include "i915/gem.h"
- #include "igt.h"
-+#include "igt_device.h"
- #include "igt_device_scan.h"
- #include "igt_sysfs.h"
- #include "igt_kmod.h"
-@@ -33,6 +34,7 @@ struct device_fds {
- 		int dev;
- 		int dev_dir;
- 		int drv_dir;
-+		int slot_dir; /* pci hotplug slots fd */
- 	} fds;
- 	char dev_bus_addr[DEV_BUS_ADDR_LEN];
- 	bool snd_unload;
-@@ -62,6 +64,45 @@ static int open_driver_sysfs_dir(int fd)
- 	return __open_sysfs_dir(fd, "device/driver");
- }
- 
-+static int open_slot_sysfs_dir(int fd)
-+{
-+	struct pci_device *pci_dev = NULL;
-+	int slot_fd = -1, slot;
-+	char slot_fd_path[PATH_MAX];
-+
-+	pci_dev = igt_device_get_pci_device(fd);
-+	igt_require(pci_dev);
-+
-+	while ((pci_dev = pci_device_get_parent_bridge(pci_dev))) {
-+		slot = igt_pm_get_pcie_acpihp_slot(pci_dev);
-+		if (slot == -ENOENT) {
-+			igt_debug("Bridge PCI device %04x:%02x:%02x.%01x does not support acpihp slot\n",
-+				  pci_dev->domain, pci_dev->bus, pci_dev->dev, pci_dev->func);
-+			continue;
-+		}
-+
-+		/*
-+		 * Upon getting the valid acpihp slot number break the loop.
-+		 * It is the desired acpihp slot for gfx card.
-+		 */
-+		if (slot > 0) {
-+			igt_debug("Bridge PCI device %04x:%02x:%02x.%01x associated acpihp slot %d\n",
-+				  pci_dev->domain, pci_dev->bus, pci_dev->dev, pci_dev->func, slot);
-+			break;
-+		}
-+	}
-+
-+	if (!pci_dev)
-+		return slot_fd;
-+
-+	snprintf(slot_fd_path, PATH_MAX, "/sys/bus/pci/slots/%d", slot);
-+	slot_fd = open(slot_fd_path, O_RDONLY);
-+	if (slot_fd < 0)
-+		return -errno;
-+
-+	return slot_fd;
-+}
-+
- /**
-  * device_sysfs_path:
-  * @fd: opened device file descriptor
-@@ -124,6 +165,8 @@ static void init_device_fds(struct device_fds *dev)
- 
- 	dev->fds.drv_dir = open_driver_sysfs_dir(dev->fds.dev);
- 	igt_assert_fd(dev->fds.drv_dir);
-+
-+	dev->fds.slot_dir = open_slot_sysfs_dir(dev->fds.dev);
- }
- 
- static int close_if_opened(int *fd)
-@@ -142,6 +185,7 @@ static void cleanup_device_fds(struct device_fds *dev)
- 	igt_ignore_warn(close_if_opened(&dev->fds.dev));
- 	igt_ignore_warn(close_if_opened(&dev->fds.dev_dir));
- 	igt_ignore_warn(close_if_opened(&dev->fds.drv_dir));
-+	igt_ignore_warn(close_if_opened(&dev->fds.slot_dir));
- }
- 
- /**
-@@ -179,6 +223,34 @@ static bool is_sysfs_reset_supported(int fd)
- 	return true;
- }
- 
-+/**
-+ * is_sysfs_cold_reset_supported:
-+ * @fd: opened device file descriptor
-+ *
-+ * Check if device supports cold reset based on sysfs file presence.
-+ *
-+ * Returns:
-+ * True if device supports reset, false otherwise.
-+ */
-+static bool is_sysfs_cold_reset_supported(int slot_fd)
-+{
-+	struct stat st;
-+	int rc;
-+	int cold_reset_fd = -1;
-+
-+	cold_reset_fd = openat(slot_fd, "power", O_WRONLY);
-+
-+	if (cold_reset_fd < 0)
-+		return false;
-+
-+	rc = fstat(cold_reset_fd, &st);
-+	close(cold_reset_fd);
-+
-+	if (rc || !S_ISREG(st.st_mode))
-+		return false;
-+
-+	return true;
-+}
- /* Unbind the driver from the device */
- static void driver_unbind(struct device_fds *dev)
- {
-@@ -231,8 +303,12 @@ static void initiate_device_reset(struct device_fds *dev, enum reset type)
- {
- 	igt_debug("reset device\n");
- 
--	if (type == FLR_RESET)
-+	if (type == FLR_RESET) {
- 		igt_assert(igt_sysfs_set(dev->fds.dev_dir, "reset", "1"));
-+	} else if (type == COLD_RESET) {
-+		igt_assert(igt_sysfs_set(dev->fds.slot_dir, "power", "0"));
-+		igt_assert(igt_sysfs_set(dev->fds.slot_dir, "power", "1"));
-+	}
- 
- }
- 
-@@ -311,17 +387,45 @@ igt_main
- 		igt_skip_on(!is_sysfs_reset_supported(dev.fds.dev));
- 	}
- 
--	igt_describe("Unbinds driver from device, initiates reset"
--		     " then rebinds driver to device");
--	igt_subtest("unbind-reset-rebind") {
--		unbind_reset_rebind(&dev, FLR_RESET);
--		healthcheck(&dev);
-+	igt_subtest_group {
-+		igt_describe("Unbinds driver from device, initiates reset"
-+			     " then rebinds driver to device");
-+		igt_subtest("unbind-reset-rebind") {
-+			unbind_reset_rebind(&dev, FLR_RESET);
-+			healthcheck(&dev);
-+		}
-+
-+		igt_describe("Resets device with bound driver");
-+		igt_subtest("reset-bound") {
-+			initiate_device_reset(&dev, FLR_RESET);
-+			/*
-+			 * Cold reset will initiate card boot sequence again,
-+			 * therefore let healthcheck() re-epen the dev fd.
-+			 */
-+			dev.fds.dev = -1;
-+			healthcheck(&dev);
-+		}
- 	}
- 
--	igt_describe("Resets device with bound driver");
--	igt_subtest("reset-bound") {
--		initiate_device_reset(&dev, FLR_RESET);
--		healthcheck(&dev);
-+	igt_subtest_group {
-+		igt_fixture {
-+			igt_skip_on_f(dev.fds.slot_dir < 0, "Gfx Card does not support any "
-+				      "pcie slot for cold reset\n");
-+			igt_skip_on(!is_sysfs_cold_reset_supported(dev.fds.slot_dir));
-+		}
-+
-+		igt_describe("Unbinds driver from device, initiates cold reset"
-+			     " then rebinds driver to device");
-+		igt_subtest("unbind-cold-reset-rebind") {
-+			unbind_reset_rebind(&dev, COLD_RESET);
-+			healthcheck(&dev);
-+		}
-+
-+		igt_describe("Cold Resets device with bound driver");
-+		igt_subtest("cold-reset-bound") {
-+			initiate_device_reset(&dev, COLD_RESET);
-+			healthcheck(&dev);
-+		}
- 	}
- 
- 	igt_fixture {
--- 
-2.25.1
 
+>
+> Further info:
+> - Would you like any further info on the crash? If so, could you
+> please advise 1) what exactly you need and 2) how I can share with you
+> especially if it is big dumps?
+
+Yes, I would like to know how the crash manifests itself. Is it a kernel 
+BUG or a kernel WARNING or is it the user-space application that crashes 
+due to receiveing an -ENOSPC?
+
+Thanks,
+
+Thomas
+
+
+
+>
+> Thanks.
