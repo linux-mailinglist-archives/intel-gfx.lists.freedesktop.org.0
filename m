@@ -2,48 +2,136 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2F64629CCC
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Nov 2022 15:59:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10E18629D60
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Nov 2022 16:27:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FD7710E414;
-	Tue, 15 Nov 2022 14:59:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E38210E412;
+	Tue, 15 Nov 2022 15:27:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 458A310E40C;
- Tue, 15 Nov 2022 14:59:15 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E97A10E411;
+ Tue, 15 Nov 2022 15:27:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668524355; x=1700060355;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=bWewb7u5MLuE0ZDrhM9DAlakOmG6o9AJp/TLTVjldqs=;
- b=T6rZ6vK95Zqts85Eb3zMz3xajbD0rxe7kMkvtZ6iJCjINC8yIc2zDkt2
- r7ROsGxthyEgy16bCMdXGK9k44XftBZ8M8QXecvMacEtG7NKtitQycsOS
- v6P9qwdmM0fRSCEfbH0ssh7B38hz1b9NfE3T8YYUR2uwaSElFn56EaPY2
- Q2uXthliATqob2pJxfSYnIXmx/KnkZD0X5eEysIYViVTOypLrE1qIOzFB
- AncTqh0yJ6IYFWisu/29hQSlK18k7Ou6bvKab9wu1AGrkrSHRP/S9Q8Bi
- Ukt2FV2Q2nfUIggneyURF58byr8KlOI+vIYTqCDOhEmQFtZfFWQKNTjGx w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="292665034"
-X-IronPort-AV: E=Sophos;i="5.96,166,1665471600"; d="scan'208";a="292665034"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2022 06:59:14 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="727977447"
-X-IronPort-AV: E=Sophos;i="5.96,166,1665471600"; d="scan'208";a="727977447"
-Received: from aravind-dev.iind.intel.com ([10.145.162.80])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2022 06:59:12 -0800
-From: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Tue, 15 Nov 2022 20:34:54 +0530
-Message-Id: <20221115150454.2509551-1-aravind.iddamsetty@intel.com>
-X-Mailer: git-send-email 2.25.1
+ t=1668526049; x=1700062049;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=6qeofbYDU/XAxZOSOibpwxiUwdrXAqG0HRxNcBHaPFM=;
+ b=ESGx2qwNZs2ikiir881cMPsjjk+3oz+PvnQANYLlRpZbtDIix1H0zJhL
+ fanMI2YVjjfIQovUoko4u7U0o/HPaqH66X9Yy3Rm6AMdT6DbhpSiWUkpw
+ CCaGOjP6aRF0hwlAu/gxXk3mfPCY525FaBLh0DUZAonBbc8d3ptdAsWD7
+ XukKWEwfKf2f79KnbgvsSgxYB9mQ58/AerbN0uMHHC3JQhqBYQOx+E2TH
+ TBrJLtZr9T8OOWezuGNFhDTbEdD9kojwuuF9FW4tY1tePRgHan/+CvYAf
+ +H/xrz98mP1QvG1lX76APlqKcuARCwjkstSkB7SqQdh/5ToZYyXdhKJgb g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="376545193"
+X-IronPort-AV: E=Sophos;i="5.96,166,1665471600"; d="scan'208";a="376545193"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2022 07:27:28 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="638979942"
+X-IronPort-AV: E=Sophos;i="5.96,166,1665471600"; d="scan'208";a="638979942"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga002.jf.intel.com with ESMTP; 15 Nov 2022 07:27:28 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Tue, 15 Nov 2022 07:27:27 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Tue, 15 Nov 2022 07:27:27 -0800
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.107)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2375.31; Tue, 15 Nov 2022 07:27:27 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=N6XIgtlNKgag1m82M9u8+2Voq9gKAAoraF9Xfvu3EDLzYM03E1yYm1CrrY65YG1jvEcmEtff8LjAC+olmJvNxSM/HNt9/g3Ar3+FUm8tf3rwhen6b8UXkue9tk8gvQAZ/m8aoiTheovthyq5Dh9IYh81ISv/FvGHhfrM7FjvSlQlnD1ApGmntNf+gMcpyu8aEezc4HdlF2+ixm8uvASZp19bgbW1mqkNXC76KFYxQPw0DKhA/7uo2Ait0BeLhTFT+xn7TtHq0W4ixGfNlvb67hRHhHlAqWMarMDs2NDDefLJ3taXo+nWz0acbqExZnHvAn4sMzAvkrj7ibcv3LssbQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=IdXL/pBGtoLID1upehhRt7g9//qFKTUbAqxMwQ+ncMw=;
+ b=Mq4OkRvjoSErsSG6wwzNaCew49EZnAphFnUvHX7k/VmciEw+8FzU521yejjdPLQQk2Jw3Dx5Y9nZKy5YbFQuxO47lG7Kh8Nyji+AtW3WtUeVBhWfUr+F/s1xczXswGcajMujJdPDp9dTVoAuVD6lIETUqwXh8IEy6tBDsCC8nH+ZiI3fcqu6f43vkHZOpFBW0iZiOMQxFSpDbAu2HGpgAEl5x/Duw3UXwaPQhXIOJ/nSB5BAcFHYNXSy2wHIe8H4K3c1gGG+cJV5Ss/J5wHs1nV3zAaec+1YDvQdNT9IDf97TcVDqY5rmj3TzBkFMOmyFQvgdQXllmoPYsM8vAAD5A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by MN2PR11MB4661.namprd11.prod.outlook.com (2603:10b6:208:26b::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.17; Tue, 15 Nov
+ 2022 15:27:26 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::f4b9:901c:6882:c286]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::f4b9:901c:6882:c286%4]) with mapi id 15.20.5813.017; Tue, 15 Nov 2022
+ 15:27:26 +0000
+Date: Tue, 15 Nov 2022 10:27:22 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Badal Nilawar <badal.nilawar@intel.com>
+Message-ID: <Y3Ov2jrHAqnIDGUs@intel.com>
+References: <20221115134440.3669021-1-badal.nilawar@intel.com>
+ <20221115134440.3669021-2-badal.nilawar@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20221115134440.3669021-2-badal.nilawar@intel.com>
+X-ClientProxiedBy: BY5PR03CA0021.namprd03.prod.outlook.com
+ (2603:10b6:a03:1e0::31) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3] drm/i915/mtl: Media GT and Render GT share
- common GGTT
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|MN2PR11MB4661:EE_
+X-MS-Office365-Filtering-Correlation-Id: b0ca3b55-e4db-49a7-6bbb-08dac71de659
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: c3FAPs/ax3MTl/KVjn94x54ByVqUDdFNEHJ6olFJpEyeCEV9D1wJDcjw9zbtSjw9i0IGh/2hSqbbC9cITQoM4I1mqHxreiff8vB7pFM1n0TmlRD9zUlgSLPW+IfxAiunwDCdZrDxGUFo/DWB1VaNC2EVEjr6O9Q+RPomkwSDdOuDXi9YuVKYlIo2z27ABsk9JfSj87M3pvjYvNX7AG+ZDD+FttyadR6KOaIatG4PsevWQQzMOxwqc+s1bCPpET+VWjGSnz5DOf6IJKsbF573D4Rx+oKnKC4AWVijq9dpakccGtzPRBlODcQvgLO2DuVXGnSJg/SM0Jm7osXAOlIZAmaQBuJU0LRhpJz7n1r7yXLM92/15K6PTFpqNaF7fuyaXidi1BpkopI4atHxYk1UgW9LIg0Tw8CCQxpV4HJ4QSbI28diPJjleOPat1m6ptMzNg8KcYaJ7yXSdueAEkMTQGh18X2pOS+3MjPQnShQ2mtKdE/XToELzmQSKVlokEeMzgdQlEgTRxtFSiVVuoHVhMkyXT/dNKhGUnj0mH6XZyjg1KHQ4w5aQS34Ao+DFCInHZl8cVCDYiExJw2zkmlvmcpw40nRdc1beMBhDrsIvoT5rekfKZZTju528sSw538Cz3xB9JUhRCS+GIbuUCg7276M5wJbrWJqnpAYyPdAw/qII2fWhpcmPPcxV0LyVHNFe8y2DPt8FdF3yXrzw9E3Vw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(39860400002)(366004)(376002)(396003)(346002)(136003)(451199015)(6486002)(478600001)(36756003)(83380400001)(5660300002)(6862004)(41300700001)(4326008)(6636002)(66946007)(37006003)(6512007)(66476007)(8936002)(66556008)(450100002)(8676002)(316002)(82960400001)(38100700002)(6666004)(2906002)(44832011)(86362001)(2616005)(6506007)(26005)(186003);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?yZq6r0mgZQRFaCWxr4gw+PJXatdaoFk6KKLRKcNVDPOeHimPSt6QrUfScUY1?=
+ =?us-ascii?Q?5ljKnhsBVs5zxUlrWv3aF5G5zf1wsLOyux5A7h/zwckjYuM2DG1LuohuMci2?=
+ =?us-ascii?Q?Cy3BmHyumSGbsR0sthdPo3rSo5V4wkINhksdG5amgWUENDhyBeDGH5Algg2R?=
+ =?us-ascii?Q?ibq9LJRBxJ6DHYq66jd8iNyn78z5CyJAZgZo8E7RepINtXvP1a4p2fKA4Vx8?=
+ =?us-ascii?Q?iWDFThPz6ld7z2LHrcAzt8jy1pInTqkaI9BAoDr5CzSVHj5OlLp5/907/Dbk?=
+ =?us-ascii?Q?aMoKDq+GPl7d2JkNC3MCsxAJQBmPYbfoIC2kD/m052EXA5jlKVUz4Xz3ZC+i?=
+ =?us-ascii?Q?My9bZbJ1CgVdCD6iTW2mYUtgpz94XtWR2/87VHlur5CssMzz1bHl5hxkDg/F?=
+ =?us-ascii?Q?oqbVgzY3Qvq5rC0Psoznpvc7fwVAYb99fDxcPgeh7J4jzgvHjEHwR96bqdWV?=
+ =?us-ascii?Q?ObEzFRGYT0Dazv9BFLjIZrwHfWOKlYiWm1E9zNYKi+EzxDwL1du5nXabt1hp?=
+ =?us-ascii?Q?529mpJtREfwAUI1s/L3gaGqnTDDVvxDaeuqVQJZTKoH0HvnSn+gnyLJndKaA?=
+ =?us-ascii?Q?jpqzhVsM/uHKJhsdI0pujfk/4phNdqgTKiLV94Ws12vfWpvIf+QmPXliGp/a?=
+ =?us-ascii?Q?QQzAtBISus+sLHS3cEXvzAq7Cm5lY0e+MGjsBA+O29YSHv3IGF/I+Oh0We+S?=
+ =?us-ascii?Q?qHyeOZIIIOrbqZ0lcaz0RuGm1Telg6LMh4FsMOlTokmiVM56KgmMI214pfn0?=
+ =?us-ascii?Q?2wzdHu+CA4wfcWCtb+E1kChJsAdMynnJmEZXAYobGSJ9y04CaPIbkfkJTWNv?=
+ =?us-ascii?Q?TIVKjQLW1U6daklwpr4Q7eoBaMDE72mDNf9Ycv7muDO932q6OAVtGUppIPct?=
+ =?us-ascii?Q?+XaKGUB04fcE4TOirnpO3qu+xU7OodibUDAvnrbJxS8YDigfWr/92lzVVTun?=
+ =?us-ascii?Q?qEoQx0azw68EZRIikNmgIM3M7/GHU23WOdQhj9yPcOt1W84w3e99gSOMIm22?=
+ =?us-ascii?Q?5FuRDNuGBkANWB34j/fM5sa3utb7wx8eNan50H3ICGPdais4Maogsrkp92ZA?=
+ =?us-ascii?Q?AYjPDoVKrvxlWTgQS4SZQOZ/3/9LXuLcruN72wWggtjkBFUyNhS3c1XL5cv7?=
+ =?us-ascii?Q?jKRuRYHHuWF9d/BUkMTZKqzbxysiEe8j8WwrJxCyf+AnycJryCMG8iwnC2Yg?=
+ =?us-ascii?Q?W8Kog5g82F1L5G3DT7DkvmXTr7WGV0BYQnFr8GWx8F8p43pAllw/aCcYcNUo?=
+ =?us-ascii?Q?y7Vmu9E46ISplJtpLnpc+fcHdbZLbm9R3P6Yn/Or8r4fomsTNTEZsnM0nekv?=
+ =?us-ascii?Q?ITjWGjIfH69vTJlLL/JwtO7Ne8WGduE0uL3huQONKpwIY+Qsu7X6rc+pbxXl?=
+ =?us-ascii?Q?Swj087EMovFQ/CTfrb3JHdafhXfcuFVUHaotjks2SeHQtPJxDsLyww4chk3Q?=
+ =?us-ascii?Q?VX2m6A/SBwyPO1oTiPXtVBRvDyHXDN/ZBZJnAWA3HuUSzzliL/KEb6uFvz4h?=
+ =?us-ascii?Q?0scK0OZBoh9Jj03FWTryuLXO7y8XGE02zF4CoZFQdhcwUYkjVUagDh5iEIDz?=
+ =?us-ascii?Q?/NmTQ5WaEYBGxc5HXonfPbk+PsOJfLE3qiOmxKSohbdZwAP95UJmAuG69z8g?=
+ =?us-ascii?Q?QA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: b0ca3b55-e4db-49a7-6bbb-08dac71de659
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Nov 2022 15:27:26.1913 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8hSHRKj8bPCKl3sU35bgO/h6vl8ntcd4O7CpQpVaPC/ZPnrWbuGTm5Ehf54SoJ3MrvIJxLneMg6LOGoDYN18jg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4661
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915/mtl: Enable Idle Messaging for
+ GSC CS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,413 +144,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On XE_LPM+ platforms the media engines are carved out into a separate
-GT but have a common GGTMMADR address range which essentially makes
-the GGTT address space to be shared between media and render GT. As a
-result any updates in GGTT shall invalidate TLB of GTs sharing it and
-similarly any operation on GGTT requiring an action on a GT will have to
-involve all GTs sharing it. setup_private_pat was being done on a per
-GGTT based as that doesn't touch any GGTT structures moved it to per GT
-based.
+On Tue, Nov 15, 2022 at 07:14:40PM +0530, Badal Nilawar wrote:
+> From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+> 
+> By defaut idle mesaging is disabled for GSC CS so to unblock RC6
+> entry on media tile idle messaging need to be enabled.
+> 
+> v2:
+>  - Fix review comments (Vinay)
+>  - Set GSC idle hysterisis to 5 us (Badal)
 
-BSPEC: 63834
+btw, no need for the cover letter in single/standalone patches.
+This history here is enough.
 
-v2:
-1. Add details to commit msg
-2. includes fix for failure to add item to ggtt->gt_list, as suggested
-by Lucas
-3. as ggtt_flush() is used only for ggtt drop i915_is_ggtt check within
-it.
-4. setup_private_pat moved out of intel_gt_tiles_init
+> 
+> Bspec: 71496
+> 
+> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_engine_pm.c | 18 ++++++++++++++++++
+>  drivers/gpu/drm/i915/gt/intel_gt_regs.h   |  4 ++++
+>  2 files changed, 22 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> index b0a4a2dbe3ee..5522885b2db0 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> @@ -15,6 +15,22 @@
+>  #include "intel_rc6.h"
+>  #include "intel_ring.h"
+>  #include "shmem_utils.h"
+> +#include "intel_gt_regs.h"
+> +
+> +static void intel_gsc_idle_msg_enable(struct intel_engine_cs *engine)
+> +{
+> +	struct drm_i915_private *i915 = engine->i915;
+> +
+> +	if (IS_METEORLAKE(i915) && engine->id == GSC0) {
+> +		intel_uncore_write(engine->gt->uncore,
+> +				   RC_PSMI_CTRL_GSCCS,
+> +				   _MASKED_BIT_DISABLE(IDLE_MSG_DISABLE));
+> +		/* 5 us hysterisis */
 
-v3:
-1. Move out for_each_gt from i915_driver.c (Jani Nikula)
+typo
 
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_ggtt.c      | 54 +++++++++++++++++------
- drivers/gpu/drm/i915/gt/intel_gt.c        | 13 +++++-
- drivers/gpu/drm/i915/gt/intel_gt_types.h  |  3 ++
- drivers/gpu/drm/i915/gt/intel_gtt.h       |  4 ++
- drivers/gpu/drm/i915/i915_driver.c        | 12 ++---
- drivers/gpu/drm/i915/i915_gem.c           |  2 +
- drivers/gpu/drm/i915/i915_gem_evict.c     | 51 +++++++++++++++------
- drivers/gpu/drm/i915/i915_vma.c           |  5 ++-
- drivers/gpu/drm/i915/selftests/i915_gem.c |  2 +
- 9 files changed, 111 insertions(+), 35 deletions(-)
+> +		intel_uncore_write(engine->gt->uncore,
+> +				   PWRCTX_MAXCNT_GSCCS,
+> +				   0xA);
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index 8145851ad23d..7644738b9cdb 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -8,6 +8,7 @@
- #include <linux/types.h>
- #include <linux/stop_machine.h>
- 
-+#include <drm/drm_managed.h>
- #include <drm/i915_drm.h>
- #include <drm/intel-gtt.h>
- 
-@@ -196,10 +197,13 @@ void i915_ggtt_suspend_vm(struct i915_address_space *vm)
- 
- void i915_ggtt_suspend(struct i915_ggtt *ggtt)
- {
-+	struct intel_gt *gt;
-+
- 	i915_ggtt_suspend_vm(&ggtt->vm);
- 	ggtt->invalidate(ggtt);
- 
--	intel_gt_check_and_clear_faults(ggtt->vm.gt);
-+	list_for_each_entry(gt, &ggtt->gt_list, ggtt_link)
-+		intel_gt_check_and_clear_faults(gt);
- }
- 
- void gen6_ggtt_invalidate(struct i915_ggtt *ggtt)
-@@ -225,16 +229,21 @@ static void gen8_ggtt_invalidate(struct i915_ggtt *ggtt)
- 
- static void guc_ggtt_invalidate(struct i915_ggtt *ggtt)
- {
--	struct intel_uncore *uncore = ggtt->vm.gt->uncore;
- 	struct drm_i915_private *i915 = ggtt->vm.i915;
- 
- 	gen8_ggtt_invalidate(ggtt);
- 
--	if (GRAPHICS_VER(i915) >= 12)
--		intel_uncore_write_fw(uncore, GEN12_GUC_TLB_INV_CR,
--				      GEN12_GUC_TLB_INV_CR_INVALIDATE);
--	else
--		intel_uncore_write_fw(uncore, GEN8_GTCR, GEN8_GTCR_INVALIDATE);
-+	if (GRAPHICS_VER(i915) >= 12) {
-+		struct intel_gt *gt;
-+
-+		list_for_each_entry(gt, &ggtt->gt_list, ggtt_link)
-+			intel_uncore_write_fw(gt->uncore,
-+					      GEN12_GUC_TLB_INV_CR,
-+					      GEN12_GUC_TLB_INV_CR_INVALIDATE);
-+	} else {
-+		intel_uncore_write_fw(ggtt->vm.gt->uncore,
-+				      GEN8_GTCR, GEN8_GTCR_INVALIDATE);
-+	}
- }
- 
- u64 gen8_ggtt_pte_encode(dma_addr_t addr,
-@@ -986,8 +995,6 @@ static int gen8_gmch_probe(struct i915_ggtt *ggtt)
- 
- 	ggtt->vm.pte_encode = gen8_ggtt_pte_encode;
- 
--	setup_private_pat(ggtt->vm.gt);
--
- 	return ggtt_probe_common(ggtt, size);
- }
- 
-@@ -1196,7 +1203,14 @@ static int ggtt_probe_hw(struct i915_ggtt *ggtt, struct intel_gt *gt)
-  */
- int i915_ggtt_probe_hw(struct drm_i915_private *i915)
- {
--	int ret;
-+	struct intel_gt *gt;
-+	int ret, i;
-+
-+	for_each_gt(gt, i915, i) {
-+		ret = intel_gt_assign_ggtt(gt);
-+		if (ret)
-+			return ret;
-+	}
- 
- 	ret = ggtt_probe_hw(to_gt(i915)->ggtt, to_gt(i915));
- 	if (ret)
-@@ -1208,6 +1222,19 @@ int i915_ggtt_probe_hw(struct drm_i915_private *i915)
- 	return 0;
- }
- 
-+struct i915_ggtt *i915_ggtt_create(struct drm_i915_private *i915)
-+{
-+	struct i915_ggtt *ggtt;
-+
-+	ggtt = drmm_kzalloc(&i915->drm, sizeof(*ggtt), GFP_KERNEL);
-+	if (!ggtt)
-+		return ERR_PTR(-ENOMEM);
-+
-+	INIT_LIST_HEAD(&ggtt->gt_list);
-+
-+	return ggtt;
-+}
-+
- int i915_ggtt_enable_hw(struct drm_i915_private *i915)
- {
- 	if (GRAPHICS_VER(i915) < 6)
-@@ -1296,9 +1323,11 @@ bool i915_ggtt_resume_vm(struct i915_address_space *vm)
- 
- void i915_ggtt_resume(struct i915_ggtt *ggtt)
- {
-+	struct intel_gt *gt;
- 	bool flush;
- 
--	intel_gt_check_and_clear_faults(ggtt->vm.gt);
-+	list_for_each_entry(gt, &ggtt->gt_list, ggtt_link)
-+		intel_gt_check_and_clear_faults(gt);
- 
- 	flush = i915_ggtt_resume_vm(&ggtt->vm);
- 
-@@ -1307,9 +1336,6 @@ void i915_ggtt_resume(struct i915_ggtt *ggtt)
- 	if (flush)
- 		wbinvd_on_all_cpus();
- 
--	if (GRAPHICS_VER(ggtt->vm.i915) >= 8)
--		setup_private_pat(ggtt->vm.gt);
--
- 	intel_ggtt_restore_fences(ggtt);
- }
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index 0325f071046c..bd874a4edfc1 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -110,9 +110,18 @@ static int intel_gt_probe_lmem(struct intel_gt *gt)
- 
- int intel_gt_assign_ggtt(struct intel_gt *gt)
- {
--	gt->ggtt = drmm_kzalloc(&gt->i915->drm, sizeof(*gt->ggtt), GFP_KERNEL);
-+	/* Media GT shares primary GT's GGTT */
-+	if (gt->type == GT_MEDIA) {
-+		gt->ggtt = to_gt(gt->i915)->ggtt;
-+	} else {
-+		gt->ggtt = i915_ggtt_create(gt->i915);
-+		if (IS_ERR(gt->ggtt))
-+			return PTR_ERR(gt->ggtt);
-+	}
- 
--	return gt->ggtt ? 0 : -ENOMEM;
-+	list_add_tail(&gt->ggtt_link, &gt->ggtt->gt_list);
-+
-+	return 0;
- }
- 
- int intel_gt_init_mmio(struct intel_gt *gt)
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-index c1d9cd255e06..8d915640914b 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-@@ -277,6 +277,9 @@ struct intel_gt {
- 	struct kobject *sysfs_defaults;
- 
- 	struct i915_perf_gt perf;
-+
-+	/** link: &ggtt.gt_list */
-+	struct list_head ggtt_link;
- };
- 
- struct intel_gt_definition {
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
-index 4d75ba4bb41d..d1900fec6cd1 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-@@ -390,6 +390,9 @@ struct i915_ggtt {
- 	struct mutex error_mutex;
- 	struct drm_mm_node error_capture;
- 	struct drm_mm_node uc_fw;
-+
-+	/** List of GTs mapping this GGTT */
-+	struct list_head gt_list;
- };
- 
- struct i915_ppgtt {
-@@ -584,6 +587,7 @@ void i915_ggtt_disable_guc(struct i915_ggtt *ggtt);
- int i915_init_ggtt(struct drm_i915_private *i915);
- void i915_ggtt_driver_release(struct drm_i915_private *i915);
- void i915_ggtt_driver_late_release(struct drm_i915_private *i915);
-+struct i915_ggtt *i915_ggtt_create(struct drm_i915_private *i915);
- 
- static inline bool i915_ggtt_has_aperture(const struct i915_ggtt *ggtt)
- {
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 69103ae37779..4e1bb3c23c63 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -612,10 +612,6 @@ static int i915_driver_hw_probe(struct drm_i915_private *dev_priv)
- 
- 	i915_perf_init(dev_priv);
- 
--	ret = intel_gt_assign_ggtt(to_gt(dev_priv));
--	if (ret)
--		goto err_perf;
--
- 	ret = i915_ggtt_probe_hw(dev_priv);
- 	if (ret)
- 		goto err_perf;
-@@ -1316,7 +1312,8 @@ int i915_driver_suspend_switcheroo(struct drm_i915_private *i915,
- static int i915_drm_resume(struct drm_device *dev)
- {
- 	struct drm_i915_private *dev_priv = to_i915(dev);
--	int ret;
-+	struct intel_gt *gt;
-+	int ret, i;
- 
- 	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
- 
-@@ -1331,6 +1328,11 @@ static int i915_drm_resume(struct drm_device *dev)
- 		drm_err(&dev_priv->drm, "failed to re-enable GGTT\n");
- 
- 	i915_ggtt_resume(to_gt(dev_priv)->ggtt);
-+
-+	for_each_gt(gt, dev_priv, i)
-+		if (GRAPHICS_VER(gt->i915) >= 8)
-+			setup_private_pat(gt);
-+
- 	/* Must be called after GGTT is resumed. */
- 	intel_dpt_resume(dev_priv);
- 
-diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-index 8468ca9885fd..086c4702e1bf 100644
---- a/drivers/gpu/drm/i915/i915_gem.c
-+++ b/drivers/gpu/drm/i915/i915_gem.c
-@@ -1143,6 +1143,8 @@ int i915_gem_init(struct drm_i915_private *dev_priv)
- 	for_each_gt(gt, dev_priv, i) {
- 		intel_uc_fetch_firmwares(&gt->uc);
- 		intel_wopcm_init(&gt->wopcm);
-+		if (GRAPHICS_VER(dev_priv) >= 8)
-+			setup_private_pat(gt);
- 	}
- 
- 	ret = i915_init_ggtt(dev_priv);
-diff --git a/drivers/gpu/drm/i915/i915_gem_evict.c b/drivers/gpu/drm/i915/i915_gem_evict.c
-index f025ee4fa526..99319ef92f47 100644
---- a/drivers/gpu/drm/i915/i915_gem_evict.c
-+++ b/drivers/gpu/drm/i915/i915_gem_evict.c
-@@ -43,16 +43,25 @@ static bool dying_vma(struct i915_vma *vma)
- 	return !kref_read(&vma->obj->base.refcount);
- }
- 
--static int ggtt_flush(struct intel_gt *gt)
-+static int ggtt_flush(struct i915_address_space *vm)
- {
--	/*
--	 * Not everything in the GGTT is tracked via vma (otherwise we
--	 * could evict as required with minimal stalling) so we are forced
--	 * to idle the GPU and explicitly retire outstanding requests in
--	 * the hopes that we can then remove contexts and the like only
--	 * bound by their active reference.
--	 */
--	return intel_gt_wait_for_idle(gt, MAX_SCHEDULE_TIMEOUT);
-+	struct i915_ggtt *ggtt = i915_vm_to_ggtt(vm);
-+	struct intel_gt *gt;
-+	int ret = 0;
-+
-+	list_for_each_entry(gt, &ggtt->gt_list, ggtt_link) {
-+		/*
-+		 * Not everything in the GGTT is tracked via vma (otherwise we
-+		 * could evict as required with minimal stalling) so we are forced
-+		 * to idle the GPU and explicitly retire outstanding requests in
-+		 * the hopes that we can then remove contexts and the like only
-+		 * bound by their active reference.
-+		 */
-+		ret = intel_gt_wait_for_idle(gt, MAX_SCHEDULE_TIMEOUT);
-+		if (ret)
-+			return ret;
-+	}
-+	return ret;
- }
- 
- static bool grab_vma(struct i915_vma *vma, struct i915_gem_ww_ctx *ww)
-@@ -149,6 +158,7 @@ i915_gem_evict_something(struct i915_address_space *vm,
- 	struct drm_mm_node *node;
- 	enum drm_mm_insert_mode mode;
- 	struct i915_vma *active;
-+	struct intel_gt *gt;
- 	int ret;
- 
- 	lockdep_assert_held(&vm->mutex);
-@@ -174,7 +184,14 @@ i915_gem_evict_something(struct i915_address_space *vm,
- 				    min_size, alignment, color,
- 				    start, end, mode);
- 
--	intel_gt_retire_requests(vm->gt);
-+	if (i915_is_ggtt(vm)) {
-+		struct i915_ggtt *ggtt = i915_vm_to_ggtt(vm);
-+
-+		list_for_each_entry_rcu(gt, &ggtt->gt_list, ggtt_link)
-+			intel_gt_retire_requests(gt);
-+	} else {
-+		intel_gt_retire_requests(vm->gt);
-+	}
- 
- search_again:
- 	active = NULL;
-@@ -246,7 +263,7 @@ i915_gem_evict_something(struct i915_address_space *vm,
- 	if (I915_SELFTEST_ONLY(igt_evict_ctl.fail_if_busy))
- 		return -EBUSY;
- 
--	ret = ggtt_flush(vm->gt);
-+	ret = ggtt_flush(vm);
- 	if (ret)
- 		return ret;
- 
-@@ -332,7 +349,15 @@ int i915_gem_evict_for_node(struct i915_address_space *vm,
- 	 * a stray pin (preventing eviction) that can only be resolved by
- 	 * retiring.
- 	 */
--	intel_gt_retire_requests(vm->gt);
-+	if (i915_is_ggtt(vm)) {
-+		struct i915_ggtt *ggtt = i915_vm_to_ggtt(vm);
-+		struct intel_gt *gt;
-+
-+		list_for_each_entry(gt, &ggtt->gt_list, ggtt_link)
-+			intel_gt_retire_requests(gt);
-+	} else {
-+		intel_gt_retire_requests(vm->gt);
-+	}
- 
- 	if (i915_vm_has_cache_coloring(vm)) {
- 		/* Expand search to cover neighbouring guard pages (or lack!) */
-@@ -438,7 +463,7 @@ int i915_gem_evict_vm(struct i915_address_space *vm, struct i915_gem_ww_ctx *ww)
- 	 * switch otherwise is ineffective.
- 	 */
- 	if (i915_is_ggtt(vm)) {
--		ret = ggtt_flush(vm->gt);
-+		ret = ggtt_flush(vm);
- 		if (ret)
- 			return ret;
- 	}
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index 3b969d679c1e..2b637f27e3b4 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -1544,6 +1544,8 @@ static int __i915_ggtt_pin(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
- 			   u32 align, unsigned int flags)
- {
- 	struct i915_address_space *vm = vma->vm;
-+	struct intel_gt *gt;
-+	struct i915_ggtt *ggtt = i915_vm_to_ggtt(vm);
- 	int err;
- 
- 	do {
-@@ -1559,7 +1561,8 @@ static int __i915_ggtt_pin(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
- 		}
- 
- 		/* Unlike i915_vma_pin, we don't take no for an answer! */
--		flush_idle_contexts(vm->gt);
-+		list_for_each_entry_rcu(gt, &ggtt->gt_list, ggtt_link)
-+			flush_idle_contexts(gt);
- 		if (mutex_lock_interruptible(&vm->mutex) == 0) {
- 			/*
- 			 * We pass NULL ww here, as we don't want to unbind
-diff --git a/drivers/gpu/drm/i915/selftests/i915_gem.c b/drivers/gpu/drm/i915/selftests/i915_gem.c
-index e5dd82e7e480..2535b9684bd1 100644
---- a/drivers/gpu/drm/i915/selftests/i915_gem.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_gem.c
-@@ -127,6 +127,8 @@ static void igt_pm_resume(struct drm_i915_private *i915)
- 	 */
- 	with_intel_runtime_pm(&i915->runtime_pm, wakeref) {
- 		i915_ggtt_resume(to_gt(i915)->ggtt);
-+		if (GRAPHICS_VER(i915) >= 8)
-+			setup_private_pat(to_gt(i915));
- 		i915_gem_resume(i915);
- 	}
- }
--- 
-2.25.1
+you said 5 above, but used 10 here, why?
 
+> +	}
+> +}
+>  
+>  static void dbg_poison_ce(struct intel_context *ce)
+>  {
+> @@ -275,6 +291,8 @@ void intel_engine_init__pm(struct intel_engine_cs *engine)
+>  
+>  	intel_wakeref_init(&engine->wakeref, rpm, &wf_ops);
+>  	intel_engine_init_heartbeat(engine);
+> +
+> +	intel_gsc_idle_msg_enable(engine);
+>  }
+>  
+>  /**
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> index 07031e03f80c..20472eb15364 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> @@ -913,6 +913,10 @@
+>  #define  MSG_IDLE_FW_MASK	REG_GENMASK(13, 9)
+>  #define  MSG_IDLE_FW_SHIFT	9
+>  
+> +#define	RC_PSMI_CTRL_GSCCS	_MMIO(0x11a050)
+> +#define	  IDLE_MSG_DISABLE	BIT(0)
+
+REG_BIT should be preferred.
+
+> +#define PWRCTX_MAXCNT_GSCCS	_MMIO(0x11a054)
+> +
+>  #define FORCEWAKE_MEDIA_GEN9			_MMIO(0xa270)
+>  #define FORCEWAKE_RENDER_GEN9			_MMIO(0xa278)
+>  
+> -- 
+> 2.25.1
+> 
