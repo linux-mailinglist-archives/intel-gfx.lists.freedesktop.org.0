@@ -1,139 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE998629ED7
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Nov 2022 17:20:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9E2A629EDA
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Nov 2022 17:20:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B302F10E14A;
-	Tue, 15 Nov 2022 16:20:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BACF910E420;
+	Tue, 15 Nov 2022 16:20:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED66D10E14A;
- Tue, 15 Nov 2022 16:20:13 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21AF210E15E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Nov 2022 16:20:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668529214; x=1700065214;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=x9ku6dt5rmf89d10DQg/hI8qPaV7cKsf0cyW7CpFQBo=;
- b=N86I+jNgACCXhoeGEMvVcHCaRVSZk2nOAZXIMSJ54s1Pqseh1Fm/7SpA
- xMQKRWp6EN81MxT9QnWaIsvnEL8FGlczULSFHra67Rx8UuGg4zm677IbT
- GfBME319ErHG4DE00+KAYgzec7jHX0t7tXFjLJqpyLoEAdsOiJRQuRVGI
- jMj9jlbpKTmOfAqy/NDAkfdafWHnnLdVqBcaNEueAjHHJho5YbX/aeV27
- F8ZifVGDA3YmaS+pe9qyeVAdbMAak8qb9cXCXGqsQhJsB8NwN91+KJXny
- Afd0h4v3HwmncxmQpwK1FVjXSH+plGjBuUreuo6j0qq7gUEmKri1nnJ/H w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10532"; a="311001672"
-X-IronPort-AV: E=Sophos;i="5.96,166,1665471600"; d="scan'208";a="311001672"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2022 08:20:13 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10532"; a="707791055"
-X-IronPort-AV: E=Sophos;i="5.96,166,1665471600"; d="scan'208";a="707791055"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmsmga004.fm.intel.com with ESMTP; 15 Nov 2022 08:20:13 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Tue, 15 Nov 2022 08:20:12 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Tue, 15 Nov 2022 08:20:12 -0800
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.109)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Tue, 15 Nov 2022 08:20:12 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=j/U96ZfSquj9co+FJB3Clswu8V6D+pio0b062qTfgJS7CjpUiED9nL7bxtIivIkOmvYXJ//qMNCPmSjrvT8dAZyIGr6ZBgMqD+5YJscr/SsB3ao87q/Z3iGLrOCy5kkrvkljpXY1FZi1VkFCx/NUhJeYQTLKRc9aI/Rf94LHTD4hYO578xWzcBwjepfNRbj7ai17g2qckuUU86nrxguZBypl3SGaYnppGB7rmRlJ0OK3XYlxQxQlJHfOC8ZhpLYxjKK6FZfUlUmubfOvk2RO8ecMbmxGM50pXUgiH8yrzEBvGQtfcBv3I4nmVzBmKctqs1rZbvUphTZezF/JbOZx/g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KguwQ/Ow8fu5CvPfWzOKXuOTNCSZwd8/H0030MlzBqs=;
- b=TSd1AAm9nPX0Yy1o/ujRcedzdgoVaC/d42kZqJQf2W8U6ncR0IMHku6/09NgC+vq3J+BUwlXPcI2TQ7Qi2POAO4pbXI2gMJcZQyrg5EOjaPdHfnfBNIk0DFe/pK+AOhuv/c+9My8kwKdibo+qWBOPTyALn5mz5ALt2r5XutiCUvl6h9E3+WSDOICeSI5q2WK7UFMHitySYij6iyAdqEnrFfECm6bQkfPu6nGIaZWPcUEVfi5PZIPLTdOn5pk4CXoSHOf2FgdQ4HYtK1v2T9ZTuMnRnNjVM7ek7Fhw2lAdsLeExMNa485V5Kbt6E9fU81IkFvmU5/Eu1hB266TNXsaA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB6952.namprd11.prod.outlook.com (2603:10b6:510:224::13)
- by CO1PR11MB4946.namprd11.prod.outlook.com (2603:10b6:303:9e::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.18; Tue, 15 Nov
- 2022 16:20:10 +0000
-Received: from PH8PR11MB6952.namprd11.prod.outlook.com
- ([fe80::d060:bf4d:10ad:3713]) by PH8PR11MB6952.namprd11.prod.outlook.com
- ([fe80::d060:bf4d:10ad:3713%3]) with mapi id 15.20.5813.017; Tue, 15 Nov 2022
- 16:20:10 +0000
-Date: Tue, 15 Nov 2022 08:20:04 -0800
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Message-ID: <Y3O8NAyUXEnaNIfR@nvishwa1-DESK>
-References: <20221113075732.32100-1-niranjana.vishwanathapura@intel.com>
- <20221113075732.32100-21-niranjana.vishwanathapura@intel.com>
- <Y3O3Murna92s7iKL@ashyti-mobl2.lan>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <Y3O3Murna92s7iKL@ashyti-mobl2.lan>
-X-ClientProxiedBy: MN2PR19CA0053.namprd19.prod.outlook.com
- (2603:10b6:208:19b::30) To PH8PR11MB6952.namprd11.prod.outlook.com
- (2603:10b6:510:224::13)
+ t=1668529223; x=1700065223;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=eRgk0sN7oA7GCJ+sgE2FtEMjFDU06kVHmLyvnB9gWf4=;
+ b=oAzpRmdiH/si2y+1l6uWiheQvqStuoDfZelbRBZosPP1aPbvAuRek2qG
+ nonxNdm2PLVt7XfI/9uDnAl/XaF8K5w08avuU4bSteSuBrSaK+j8Jebip
+ SIwuiuCKnXtLHdiNByM5c8Bfu5mjkEdlyzRmqsYwLYKDH1iBSwvdplfix
+ l0rXnz8KCsCASo5/BLnB5PnZ1VxAjTZ3iZqJ6t7maVfdQdMVwoXwN5Nh6
+ qsiECVrHZAinzGVV2tIQPufJNyUpFYVEjiS1paUVU5OkrqHd88hmp992l
+ qq5IRXaeYux5VC8pvO5xsPUoOPEoxxFILbQQfryTjf4O1kiw3/cILt8jA w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10532"; a="314105500"
+X-IronPort-AV: E=Sophos;i="5.96,166,1665471600"; d="scan'208";a="314105500"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2022 08:20:22 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10532"; a="968041058"
+X-IronPort-AV: E=Sophos;i="5.96,166,1665471600"; d="scan'208";a="968041058"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.10.166])
+ ([10.213.10.166])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2022 08:20:20 -0800
+Message-ID: <26b8aebe-a5df-54e0-c007-ccdf16e37921@intel.com>
+Date: Tue, 15 Nov 2022 17:20:18 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB6952:EE_|CO1PR11MB4946:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8f5f82dc-8047-487f-d6e0-08dac725443d
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: kyCgdUE2Y+6HnguxKZjI+D3VbzeZUdercSZdgqIDDpZqZlzIRrKit7tqLmjOCzt7DKrTL9xSkWl2qee/r2fTcX/E8oxbis48UBDjKs1FYxtyua3ro0t2EejA/qNac0HxwZAvGyl+YY4cAv5ER2OfVXUMiN9SwisHmlvEwBrh+amXkjFZWf6JutSpGtq/fBuI+spsvmeSJoRqMUe0rVCbzGuxTsscMrS0zRehZPtwjT7XV70jOTx5Kr6NSW+GH0f3t06OXO/83MQdW9gAk5x67KKn25BTjqlHCiJDWXngwPWTfm9QJNnordoFy3Qh7LA09B5AnW2jpBLuWZKPiHie5m7X7vnUGYcBa7LCA7bZSC/Rznxls2b4Prst+V1B7KJD1q27JTR6GapbkkRehPRbo0o59Gvc0pnmQGi9u40EOS6JJnTpnZMhLeoNxPnDdy/lUQf/BSfmx1wTPQo5uqANmCyRDx42HQnZT2yGsnsIrNmYTQHSz6ZXjDvMm3m72OCaSHs6jjh0VxFQ87YPy63N/9yY+/aQAh6FoMJtF84xsMyfzKcd0/6nrX5Am1KlXRkQXZqbCN/p9t1FYBGOhyxPFuXOdtFu1AawLtgaoox/i01HIS+PqPE8yQcunZo2oJ0d/zBjF3+bJxOcjbWv4uCMFEyx/3WebAmcGtyf04Fw9iNqbvEunfKdmqANO8IZl4lecE632ecPh7eb8lLBXruUOQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB6952.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(7916004)(396003)(366004)(39860400002)(136003)(346002)(376002)(451199015)(33716001)(6666004)(8936002)(6486002)(478600001)(83380400001)(5660300002)(6916009)(316002)(6506007)(66476007)(66556008)(4326008)(8676002)(9686003)(6512007)(82960400001)(66946007)(86362001)(38100700002)(2906002)(41300700001)(186003)(26005)(44832011);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?m97kvJ05vczZ7pFlg7sckwc6f0z/cOOCQqbVD8oj5DyEqfMaCOg/VzJs+T2n?=
- =?us-ascii?Q?UKIW7/1uSeqV/L8MzsGHFswcL+U41N7lRt1+z9xKplso0hsSq9Qnxv11IA2A?=
- =?us-ascii?Q?bgSnpjgSIl3gAqqKQEohcX1k/tJuuuP/qNn7u/OgitFT7wGXRXrN/aorRs7E?=
- =?us-ascii?Q?cpK8K2ti1tJDAJr7S8iUowoC846lqUQyNNcUK0Xeufkrfp2F+TUDY0LEyPX/?=
- =?us-ascii?Q?xCViowcsKt4Z1Idg71JvuBHoNssY+NB7jfQJ9iJqo6fidJrU2N2OUQfCRfsW?=
- =?us-ascii?Q?31qAn0ApBDI5XZ8iV0wagkC8ZYz+Djo+us0v4nwQvwtT8Zd4dB8995jLo47n?=
- =?us-ascii?Q?9f7L062eWENdsH3KGrfwpJxYpwwztTNHFAPIexorwLbKxzMugrcsriE0AZJO?=
- =?us-ascii?Q?Y4yjDLJFuRWsaBMTSw3+pXzrsMctmvIvRGecPJL/51XRcpntXOEN6GEptGbp?=
- =?us-ascii?Q?9kBJ/3hkNRir5NfHP2NHGNN6NDHOvsF/qZCUoV6cihELbZom9K0xJ+vtEXDF?=
- =?us-ascii?Q?uhcwYy8xFcR7ui5BCDdkRCLMnYcpb7sj8fsR00y2gmV3HM+3Bx5HhS7wLkZA?=
- =?us-ascii?Q?KsjonkJKTk+ozazX6i/FcUsQebf0EvGheZpPJmfML7GIOY95yGbF0K11wA5X?=
- =?us-ascii?Q?RwVAAmkAMzLjSzwMLo2lXoZV31IYWTbWcSuVWkBRCCRzRlGvCkGm5FiG05of?=
- =?us-ascii?Q?oKPjCcYz4iCXqNAfbXpTC9CVmGCOdmXpebWCBlw/vmSnImnpB6rxk4yeJH7x?=
- =?us-ascii?Q?PqPLrdIrTctzN7JTEY7C8kQkd7paXkbd27ggKtfcOEE24eSR0vdJtqP3I1+O?=
- =?us-ascii?Q?ly0Wl/SmewZ8w06qY8x0opqYE7ZPpKJtZG4r0Btwe6Qw0MoflYWK5DY0mZiy?=
- =?us-ascii?Q?8HOTsT/RLDMWqsqvDIYz2iFiA81O7xbkjDBhD3/qQHatlm79SwGSP74I1KuL?=
- =?us-ascii?Q?2T6syacDsRfhuxpOWeSFikxi0e7uYWUx+Wtk9VzWPVD6z64R63FWJCcFALFI?=
- =?us-ascii?Q?p/oXD+XsJObMheyWCtvmQhQ/loktTJCW5bwq41quTEIwmHoLr/vCNqcwSP8W?=
- =?us-ascii?Q?zVk5p61BWWmRrhYHnUVtwQ9KTgTV2u5xUvm/iwEw21dWlbI01+X5J1jNnxs7?=
- =?us-ascii?Q?iUKfieNvXYdXU/qdgYC1Kf+1t88FQdiPwvVRKs18kD/t6GCZGC5+lW1mh1sN?=
- =?us-ascii?Q?ZrVmIE422uS2+pxYCFzUqKzVl7Xd2PcAwxFzUYXnf1X2jqHoLZwgoPPAoZvO?=
- =?us-ascii?Q?PUmifjO0vFVDB9mEL7ckAerxgTo1kZeAc+wxSQIFeH0d962EL0ZccWvTLSEP?=
- =?us-ascii?Q?i/ShdI/uGzFcWfpnsoONDPmyac8dLP9yyRrYC8dcRvKueXRbJa4p0ueMRFgW?=
- =?us-ascii?Q?HU9OQveZ19grvoyNpTt9tfj/bmhD74PuJb7BzrOKNezYarXJiW4W7DB8a3qL?=
- =?us-ascii?Q?c5Zt/RU/ubW1z2M/T8YkVksuaxcJQZX9JIKFoZd9S+CHnhuN6jfzrlKg7ZWy?=
- =?us-ascii?Q?u4ffKLJzULg+ZnwvlwrjpHQ4UpFDMbsygtIOYoQPSDsBHczRetWTtkZLCth8?=
- =?us-ascii?Q?ullckXZUICTgxQWGxF7xjHyTmvIxBX9guF6EXzS/qnDn76qQ2EwdjshlZQEb?=
- =?us-ascii?Q?3SBkU73Jby8PH/mj/mqDzoA=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8f5f82dc-8047-487f-d6e0-08dac725443d
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB6952.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Nov 2022 16:20:10.0385 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kopoBvwQ5dG0yy065fwzqA9Q4AtWzGytQilBINNwkFb9/Uibfr3ekyjtYWVi1Fx1cFEoH6AqQbxCqtPRNBZP2YhS1pEqIJxL+EfTXZ+NMOLbzmtQYOk3VTEQRO9EOHTp
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4946
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v7 20/20] drm/i915/vm_bind: Async vm_unbind
- support
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.4.2
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20221115104620.120432-1-matthew.auld@intel.com>
+Content-Language: en-US
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20221115104620.120432-1-matthew.auld@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/ttm: never purge busy objects
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,76 +62,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: paulo.r.zanoni@intel.com, jani.nikula@intel.com,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- thomas.hellstrom@intel.com, matthew.auld@intel.com, daniel.vetter@intel.com,
- christian.koenig@amd.com
+Cc: stable@vger.kernel.org, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 15, 2022 at 04:58:42PM +0100, Andi Shyti wrote:
->Hi Niranjana,
->
->On Sat, Nov 12, 2022 at 11:57:32PM -0800, Niranjana Vishwanathapura wrote:
->> Asynchronously unbind the vma upon vm_unbind call.
->> Fall back to synchronous unbind if backend doesn't support
->> async unbind or if async unbind fails.
->>
->> No need for vm_unbind out fence support as i915 will internally
->> handle all sequencing and user need not try to sequence any
->> operation with the unbind completion.
->>
->> v2: use i915_vma_destroy_async in vm_unbind ioctl
->>
->> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
->> ---
->>  .../drm/i915/gem/i915_gem_vm_bind_object.c    |  2 +-
->>  drivers/gpu/drm/i915/i915_vma.c               | 51 +++++++++++++++++--
->>  drivers/gpu/drm/i915/i915_vma.h               |  1 +
->>  include/uapi/drm/i915_drm.h                   |  3 +-
->>  4 files changed, 51 insertions(+), 6 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c b/drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c
->> index d87d1210365b..36651b447966 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c
->> @@ -210,7 +210,7 @@ static int i915_gem_vm_unbind_vma(struct i915_address_space *vm,
->>  	 */
->>  	obj = vma->obj;
->>  	i915_gem_object_lock(obj, NULL);
->> -	i915_vma_destroy(vma);
->> +	i915_vma_destroy_async(vma);
->>  	i915_gem_object_unlock(obj);
->>
->>  	i915_gem_object_put(obj);
->> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
->> index 7cf77c67d755..483d25f2425c 100644
->> --- a/drivers/gpu/drm/i915/i915_vma.c
->> +++ b/drivers/gpu/drm/i915/i915_vma.c
->> @@ -42,6 +42,8 @@
->>  #include "i915_vma.h"
->>  #include "i915_vma_resource.h"
->>
->> +static struct dma_fence *__i915_vma_unbind_async(struct i915_vma *vma);
->> +
->>  static inline void assert_vma_held_evict(const struct i915_vma *vma)
->>  {
->>  	/*
->> @@ -1713,7 +1715,7 @@ void i915_vma_reopen(struct i915_vma *vma)
->>  	spin_unlock_irq(&gt->closed_lock);
->>  }
->>
->> -static void force_unbind(struct i915_vma *vma)
->> +static void force_unbind(struct i915_vma *vma, bool async)
->
->I still like the defines on this, they look cleaner, but it's a
->matter of taste.
->
 
-Ok, will change.
 
-Niranjana
-
->Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+On 15.11.2022 11:46, Matthew Auld wrote:
+> In i915_gem_madvise_ioctl() we immediately purge the object is not
+> currently used, like when the mm.pages are NULL.  With shmem the pages
+> might still be hanging around or are perhaps swapped out. Similarly with
+> ttm we might still have the pages hanging around on the ttm resource,
+> like with lmem or shmem, but here we need to be extra careful since
+> async unbinds are possible as well as in-progress kernel moves. In
+> i915_ttm_purge() we expect the pipeline-gutting to nuke the ttm resource
+> for us, however if it's busy the memory is only moved to a ghost object,
+> which then leads to broken behaviour when for example clearing the
+> i915_tt->filp, since the actual ttm_tt is still alive and populated,
+> even though it's been moved to the ghost object.  When we later destroy
+> the ghost object we hit the following, since the filp is now NULL:
 >
->Andi
+> [  +0.006982] #PF: supervisor read access in kernel mode
+> [  +0.005149] #PF: error_code(0x0000) - not-present page
+> [  +0.005147] PGD 11631d067 P4D 11631d067 PUD 115972067 PMD 0
+> [  +0.005676] Oops: 0000 [#1] PREEMPT SMP NOPTI
+> [  +0.012962] Workqueue: events ttm_device_delayed_workqueue [ttm]
+> [  +0.006022] RIP: 0010:i915_ttm_tt_unpopulate+0x3a/0x70 [i915]
+> [  +0.005879] Code: 89 fb 48 85 f6 74 11 8b 55 4c 48 8b 7d 30 45 31 c0 31 c9 e8 18 6a e5 e0 80 7d 60 00 74 20 48 8b 45 68
+> 8b 55 08 4c 89 e7 5b 5d <48> 8b 40 20 83 e2 01 41 5c 89 d1 48 8b 70
+>   30 e9 42 b2 ff ff 4c 89
+> [  +0.018782] RSP: 0000:ffffc9000bf6fd70 EFLAGS: 00010202
+> [  +0.005244] RAX: 0000000000000000 RBX: ffff8883e12ae380 RCX: 0000000000000000
+> [  +0.007150] RDX: 000000008000000e RSI: ffffffff823559b4 RDI: ffff8883e12ae3c0
+> [  +0.007142] RBP: ffff888103b65d48 R08: 0000000000000001 R09: 0000000000000001
+> [  +0.007144] R10: 0000000000000001 R11: ffff88829c2c8040 R12: ffff8883e12ae3c0
+> [  +0.007148] R13: 0000000000000001 R14: ffff888115184140 R15: ffff888115184248
+> [  +0.007154] FS:  0000000000000000(0000) GS:ffff88844db00000(0000) knlGS:0000000000000000
+> [  +0.008108] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> [  +0.005763] CR2: 0000000000000020 CR3: 000000013fdb4004 CR4: 00000000003706e0
+> [  +0.007152] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+> [  +0.007145] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+> [  +0.007154] Call Trace:
+> [  +0.002459]  <TASK>
+> [  +0.002126]  ttm_tt_unpopulate.part.0+0x17/0x70 [ttm]
+> [  +0.005068]  ttm_bo_tt_destroy+0x1c/0x50 [ttm]
+> [  +0.004464]  ttm_bo_cleanup_memtype_use+0x25/0x40 [ttm]
+> [  +0.005244]  ttm_bo_cleanup_refs+0x90/0x2c0 [ttm]
+> [  +0.004721]  ttm_bo_delayed_delete+0x235/0x250 [ttm]
+> [  +0.004981]  ttm_device_delayed_workqueue+0x13/0x40 [ttm]
+> [  +0.005422]  process_one_work+0x248/0x560
+> [  +0.004028]  worker_thread+0x4b/0x390
+> [  +0.003682]  ? process_one_work+0x560/0x560
+> [  +0.004199]  kthread+0xeb/0x120
+> [  +0.003163]  ? kthread_complete_and_exit+0x20/0x20
+> [  +0.004815]  ret_from_fork+0x1f/0x30
+>
+> v2:
+>   - Just use ttm_bo_wait() directly (Niranjana)
+>   - Add testcase reference
+>
+> Testcase: igt@gem_madvise@dontneed-evict-race
+> Fixes: 213d50927763 ("drm/i915/ttm: Introduce a TTM i915 gem object backend")
+> Reported-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+> Cc: Nirmoy Das <nirmoy.das@intel.com>
+> Cc: <stable@vger.kernel.org> # v5.15+
+> Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+
+Regards
+Andrzej
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 4 ++++
+>   1 file changed, 4 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> index e4e55e3f4e41..34793863ea45 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> @@ -603,6 +603,10 @@ static int i915_ttm_truncate(struct drm_i915_gem_object *obj)
+>   
+>   	WARN_ON_ONCE(obj->mm.madv == I915_MADV_WILLNEED);
+>   
+> +	err = ttm_bo_wait(bo, true, false);
+> +	if (err)
+> +		return err;
+> +
+>   	err = i915_ttm_move_notify(bo);
+>   	if (err)
+>   		return err;
+
