@@ -1,34 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C927629CAE
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Nov 2022 15:54:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1783629CBE
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Nov 2022 15:57:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4AC510E40C;
-	Tue, 15 Nov 2022 14:53:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F088A10E40C;
+	Tue, 15 Nov 2022 14:57:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6A5D410E40C;
- Tue, 15 Nov 2022 14:53:54 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 61FE7A8830;
- Tue, 15 Nov 2022 14:53:54 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AB8F10E40C;
+ Tue, 15 Nov 2022 14:57:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1668524233; x=1700060233;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=wX46BsJ9Egi6UrhAxw83h8RCoqTcYNja7dAYQ5PTw+4=;
+ b=DOW7x7TGzF6GTo/rXGLKutN2SJE5MHbE3i3XHs1uEeSAjwSUao9GgaeL
+ WnLrduqFrvt/DuD5XtKEUOBLW7j4R2YeSlzhhEyB6VsBRxLScABJsFVSR
+ NSJh2A/jaoyKdNlhvv/7NINeGt00hmZmPEVY9oXIfA7MIHg9z3vu7RPHR
+ +IyM6/BHdmCNRdthlQv6m/PCBR2BJjEIoAm9Yyu80oC1pT+cDL9d26917
+ MItLa89UTc85KFqExRfU4/5pO1ttM4vJrkmpkE+zmPUs/0KJ1e2HN94mM
+ UvGurrf0Jdt51VmUZEKqzQBQpsuNPHkdYWDObJggTTCTGKH2EZ2mcfznr w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="376535817"
+X-IronPort-AV: E=Sophos;i="5.96,166,1665471600"; d="scan'208";a="376535817"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2022 06:56:55 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="641232365"
+X-IronPort-AV: E=Sophos;i="5.96,166,1665471600"; d="scan'208";a="641232365"
+Received: from rainikit-mobl1.ger.corp.intel.com (HELO [10.213.198.207])
+ ([10.213.198.207])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2022 06:56:54 -0800
+Message-ID: <cfa1e0fb-f2c0-e2d4-3a6b-4d40d8675a7a@linux.intel.com>
+Date: Tue, 15 Nov 2022 14:56:52 +0000
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Content-Language: en-US
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+References: <20221115143941.32097-1-janusz.krzysztofik@linux.intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20221115143941.32097-1-janusz.krzysztofik@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
-Date: Tue, 15 Nov 2022 14:53:54 -0000
-Message-ID: <166852403437.16896.5863790746030798696@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221115080845.1793650-1-himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20221115080845.1793650-1-himal.prasad.ghimiray@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/1=5D_drm/i915=3A_Export_LMEM_max_?=
- =?utf-8?q?memory_bandwidth_via_sysfs=2E?=
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix build failure with debug and
+ extra logging enabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,33 +62,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: series starting with [1/1] drm/i915: Export LMEM max memory bandwidth via sysfs.
-URL   : https://patchwork.freedesktop.org/series/110902/
-State : warning
+On 15/11/2022 14:39, Janusz Krzysztofik wrote:
+> A comma is missing, fix it.
+> 
+> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> ---
+>   drivers/gpu/drm/i915/i915_vma.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+> index 3b969d679c1e2..947fde68e5f53 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.c
+> +++ b/drivers/gpu/drm/i915/i915_vma.c
+> @@ -73,7 +73,7 @@ static void vma_print_allocator(struct i915_vma *vma, const char *reason)
+>   	char buf[512];
+>   
+>   	if (!vma->node.stack) {
+> -		drm_dbg(&to_i915(vma->obj->base.dev)->drm
+> +		drm_dbg(&to_i915(vma->obj->base.dev)->drm,
+>   			"vma.node [%08llx + %08llx] %s: unknown owner\n",
+>   			vma->node.start, vma->node.size, reason);
+>   		return;
 
-== Summary ==
+Yep, thanks, however already sent this morning: 
+https://patchwork.freedesktop.org/series/110906/. Just waiting for CI to 
+give it a green light, which is a bit pointless, nevertheless it's the 
+process.
 
-Error: dim checkpatch failed
-b196769302e7 drm/i915: Export LMEM max memory bandwidth via sysfs.
--:43: CHECK:CAMELCASE: Avoid CamelCase: <prelim_lmem_max_bw_Mbps_show>
-#43: FILE: drivers/gpu/drm/i915/i915_sysfs.c:238:
-+prelim_lmem_max_bw_Mbps_show(struct device *dev, struct device_attribute *attr, char *buff)
+Regards,
 
--:58: CHECK:CAMELCASE: Avoid CamelCase: <prelim_lmem_max_bw_Mbps>
-#58: FILE: drivers/gpu/drm/i915/i915_sysfs.c:253:
-+static DEVICE_ATTR_RO(prelim_lmem_max_bw_Mbps);
-
--:66: CHECK:CAMELCASE: Avoid CamelCase: <dev_attr_prelim_lmem_max_bw_Mbps>
-#66: FILE: drivers/gpu/drm/i915/i915_sysfs.c:261:
-+		ret = sysfs_create_file(&kdev->kobj, &dev_attr_prelim_lmem_max_bw_Mbps.attr);
-
-total: 0 errors, 0 warnings, 3 checks, 53 lines checked
-
-
+Tvrtko
