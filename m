@@ -2,69 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 523F96295B6
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Nov 2022 11:24:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0A8C6295F2
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Nov 2022 11:34:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23DDE10E388;
-	Tue, 15 Nov 2022 10:23:48 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7075B10E116;
- Tue, 15 Nov 2022 10:23:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A33810E3A2;
+	Tue, 15 Nov 2022 10:34:37 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A7BB10E388;
+ Tue, 15 Nov 2022 10:34:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668507821; x=1700043821;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=ngtWVtVh+bzMg1HyV7QxINh5UemWhaiA53czXV0E96M=;
- b=nzbkltenK1H0dj4FEKC4N6Zzl+Dr7SP2rTZbw4tC49kDl+ugyq3C2rT0
- 5+v4abo9jY7y01nfiZ6DdCVKvP673BF8Ypdn06hNETCJ3laoobNJJUMm7
- qPyppdBsMfYs0vh7FOmjWfTSLAVLgzpT/ogReNbPnxToJnUwVb8exTZo/
- OL2BBQKYcztZosYcB/RwYyHiJiaH4lk9nhG6sQqzuCeB3MegAGaZTOeRo
- 2MaAkysZR0khBb/XWih/TaKA/ICNKTszntjN1yo8yW7oKkXp5EVVW/16p
- 3E0pqv8uqXgNbiq+31GShPOLQ/VQnQgskePrnd5ULSJh90/odLazkZ+zl A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="374351895"
-X-IronPort-AV: E=Sophos;i="5.96,165,1665471600"; d="scan'208";a="374351895"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2022 02:23:35 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="744535702"
-X-IronPort-AV: E=Sophos;i="5.96,165,1665471600"; d="scan'208";a="744535702"
-Received: from rainikit-mobl1.ger.corp.intel.com (HELO [10.213.198.207])
- ([10.213.198.207])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2022 02:23:32 -0800
-Message-ID: <d4b05bf5-e68a-085b-974c-0749eaedda02@linux.intel.com>
-Date: Tue, 15 Nov 2022 10:23:30 +0000
+ t=1668508473; x=1700044473;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=NcUx9J0ExokdUkdzy7PmoTXfw6IwkGGKU9FGgnHNUR4=;
+ b=m3HPCLl1C5MFO8UR6aS7/6HGKOFNbwRnMvGFb8cxRfrgEhUgI4G5HfpE
+ LW86w6lnZ/A29lhC5w24GsHvymsvF/b/iPQeWSl3RzxR6meFOQS2SLFUa
+ x/O3wf8hohF2PwEbdSD2r81JGbTSgukfREDvgPu5CIZVpFBkGosBcc7L/
+ +5dcDXJWFo1ehpvVLhFnhP3y6nZ4QZO2ZZeiUSvTHlKnxwvS2nUmLYlHS
+ 5ZcwGC8vJAGK218YF3wIXf+LX/sie0qulponJ6XjQEqhcH9dFWz+XRrW5
+ T3euCfitsE4WKpkjMlLZJoa6dEF9Zer4MWrntu4daBe8uGRTL+m3MvP9i w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="295584324"
+X-IronPort-AV: E=Sophos;i="5.96,165,1665471600"; d="scan'208";a="295584324"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2022 02:34:32 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="763867478"
+X-IronPort-AV: E=Sophos;i="5.96,165,1665471600"; d="scan'208";a="763867478"
+Received: from nolanjax-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.252.18.104])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2022 02:34:30 -0800
+From: Matthew Auld <matthew.auld@intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Tue, 15 Nov 2022 10:34:24 +0000
+Message-Id: <20221115103424.109524-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Content-Language: en-US
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- John Harrison <john.c.harrison@intel.com>,
- "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>,
- Intel-GFX@Lists.FreeDesktop.Org
-References: <20221104172525.569913-1-John.C.Harrison@Intel.com>
- <20221104172525.569913-2-John.C.Harrison@Intel.com>
- <6a4d1ac0-a1a0-e1d4-7d83-54b43d226371@intel.com>
- <fabaf9ee-f3fc-c18f-56b3-6d073618da41@linux.intel.com>
- <82055e8f-9bee-2b03-3dce-dcf66c30c903@linux.intel.com>
- <2583bccd-82fd-967a-aec9-e6d3837dbbed@intel.com>
- <1ad6bce7-9626-afa6-d73e-6d8f7a9c4d2a@linux.intel.com>
- <c9742b0f-546f-cccc-021a-7bad68410838@intel.com>
- <ad19d7ce-4102-4f8f-903d-7390b004b2e9@linux.intel.com>
- <67d18d17-8a01-32a1-1ff6-099c708ab290@intel.com>
- <02454937-4213-c558-590f-e1e7c83083e3@intel.com>
- <7f420032-fe96-4d19-886d-b333668e4c5b@linux.intel.com>
- <bd8662e8-57d4-40e9-bba1-d689ed31ce08@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <bd8662e8-57d4-40e9-bba1-d689ed31ce08@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/gt: Add GT oriented dmesg
- output
+Subject: [Intel-gfx] [PATCH i-g-t] tests/i915/madvise: verify async eviction
+ with madvise
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,159 +56,177 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Simple regression test for lmem to check if an in-progress async unbind
+and eviction is syncronised with discarding the pages when marking
+the object as DONTNEED.
 
-On 10/11/2022 10:35, Michal Wajdeczko wrote:
-> On 10.11.2022 10:55, Tvrtko Ursulin wrote:
->>
->> On 09/11/2022 19:57, Michal Wajdeczko wrote:
->>
->> [snip]
->>
->>>> Is it really a problem to merge this patch now to get the process
->>>> started? And other sub-components get updated as and when people get the
->>>> time to do them? You could maybe even help rather than posting
->>>> completely conflicting patch sets that basically duplicate all the
->>>> effort for no actual benefit.
->>>
->>> Instead of merging this patch now, oriented on GT only, I would rather
->>> wait until we discuss and plan solution for the all sub-components.
->>
->> Yes, agreed.
->>
->>> Once that's done (with agreement on naming and output) we can start
->>> converting exiting messages.
->>>
->>> My proposal would be:
->>>    - use wrappers per component
->>
->> This is passable to me but Jani has raised a concern on IRC that it
->> leads to a lot of macro duplication. Which is I think a valid point, but
->> which does not have a completely nice solution. Best I heard so far was
->> a suggestion from Joonas to add just a single component formatter macro
->> and use the existing drm_xxx helpers.
->>
->>>    - use lower case names
->>
->> I prefer this as well. Even though usual argument is for macros to be
->> upper case, I find the improved readability of lower case trumps that.
->>
->>>    - don't add colon
->>
->> Not sure, when I look at it below it looks a bit not structured enough
->> without the colon, but maybe it is just me.
->>
->>> #define i915_xxx(_i915, _fmt, ...) \
->>>      drm_xxx(&(_i915)->drm, _fmt, ##__VA_ARGS__)
->>>
->>> #define gt_xxx(_gt, _fmt, ...) \
->>>      i915_xxx((_gt)->i915, "GT%u " _fmt, (_gt)->info.id, ..
->>>
->>> #define guc_xxx(_guc, _fmt, ...) \
->>>      gt_xxx(guc_to_gt(_guc), "GuC " _fmt, ..
->>>
->>> #define ct_xxx(_ct, _fmt, ...) \
->>>      guc_xxx(ct_to_guc(_ct), "CTB " _fmt, ..
->>>
->>> where
->>>      xxx = { err, warn, notice, info, dbg }
->>>
->>> and then for calls like:
->>>
->>>      i915_err(i915, "Foo failed (%pe)\n", ERR_PTR(err));
->>>        gt_err(gt,   "Foo failed (%pe)\n", ERR_PTR(err));
->>>       guc_err(guc,  "Foo failed (%pe)\n", ERR_PTR(err));
->>>        ct_err(ct,   "Foo failed (%pe)\n", ERR_PTR(err));
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
+---
+ tests/i915/gem_madvise.c | 130 ++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 129 insertions(+), 1 deletion(-)
 
-Okay lets go with this then since we have allowed some time for comments 
-and no strict objections have been raised. Probably limit to to 
-GT/GuC/CT space for not, ie. not adding i915_ loggers.
+diff --git a/tests/i915/gem_madvise.c b/tests/i915/gem_madvise.c
+index 2502d84c..d164df3a 100644
+--- a/tests/i915/gem_madvise.c
++++ b/tests/i915/gem_madvise.c
+@@ -36,8 +36,9 @@
+ #include <setjmp.h>
+ #include <signal.h>
+ 
+-#include "drm.h"
++#include "igt_kmod.h"
+ #include "i915/gem_create.h"
++#include "i915/gem.h"
+ 
+ IGT_TEST_DESCRIPTION("Checks that the kernel reports EFAULT when trying to use"
+ 		     " purged bo.");
+@@ -188,6 +189,76 @@ dontneed_before_exec(void)
+ 	close(fd);
+ }
+ 
++#define PAGE_SIZE 4096
++
++static uint32_t batch_create_size(int fd, uint64_t size)
++{
++	const uint32_t bbe = MI_BATCH_BUFFER_END;
++	uint32_t handle;
++
++	handle = gem_create(fd, size);
++	gem_write(fd, handle, 0, &bbe, sizeof(bbe));
++
++	return handle;
++}
++
++static int upload(int fd, uint32_t handle)
++{
++	struct drm_i915_gem_exec_object2 exec[2] = {};
++	struct drm_i915_gem_execbuffer2 execbuf = {
++		.buffers_ptr = to_user_pointer(&exec),
++		.buffer_count = 2,
++	};
++
++	exec[0].handle = handle;
++	exec[0].flags = EXEC_OBJECT_SUPPORTS_48B_ADDRESS;
++	exec[1].handle = batch_create_size(fd, PAGE_SIZE);
++	exec[1].flags = EXEC_OBJECT_SUPPORTS_48B_ADDRESS;
++
++	gem_execbuf(fd, &execbuf);
++	return 0;
++}
++
++static void test_dontneed_evict_race(int fd,
++				     struct gem_memory_region *region)
++{
++	const uint64_t size = region->size >> 1;
++	uint64_t ahnd = get_reloc_ahnd(fd, 0);
++	uint32_t handle1;
++	igt_spin_t *spin;
++
++	handle1 = gem_create_in_memory_region_list(fd, size, 0,
++						   &region->ci, 1);
++	spin = igt_spin_new(fd,
++			    .ahnd = ahnd,
++			    .dependency = handle1);
++
++	igt_fork(child, 1) {
++		uint32_t handle2;
++
++		fd = gem_reopen_driver(fd);
++
++		handle2 = gem_create_in_memory_region_list(fd,
++							   size, 0,
++							   &region->ci, 1);
++		/*
++		 * The actual move when evicting will be pipelined
++		 * behind the spinner, so can't fire until the spinner
++		 * is killed.
++		 */
++		upload(fd, handle2);
++		gem_close(fd, handle2);
++	}
++
++	sleep(2); /* Give eviction time to find handle1 */
++	igt_spin_end(spin);
++	gem_madvise(fd, handle1, I915_MADV_DONTNEED);
++	igt_waitchildren();
++
++	igt_spin_free(fd, spin);
++	gem_close(fd, handle1);
++}
++
+ igt_main
+ {
+ 	igt_describe("Check signal for Segmentation Fault and bus error before"
+@@ -209,4 +280,61 @@ igt_main
+ 		     " purged bo for GPU.");
+ 	igt_subtest("dontneed-before-exec")
+ 		dontneed_before_exec();
++
++	igt_subtest_group {
++		struct drm_i915_query_memory_regions *regions;
++		int i915 = -1;
++
++		igt_fixture {
++			char *tmp;
++
++			if (igt_kmod_is_loaded("i915")) {
++				i915 = __drm_open_driver(DRIVER_INTEL);
++				igt_require_fd(i915);
++				igt_require_gem(i915);
++				igt_require(gem_has_lmem(i915));
++				close(i915);
++			}
++
++			igt_i915_driver_unload();
++			/*
++			 * To avoid running of ring space and stalling during evicting
++			 * (while holding the dma-resv lock), we need to use a smaller
++			 * lmem size, such we can easliy trigger eviction without
++			 * needing to wait for more ring space. The point of the test is
++			 * to mark the object as DONTNEED which has an in-progress
++			 * pipilined unbind/move, which also requires grabbing the
++			 * dma-resv lock.
++			 */
++			igt_assert_eq(igt_i915_driver_load("lmem_size=128"), 0);
++
++			i915 = __drm_open_driver(DRIVER_INTEL);
++			igt_require_fd(i915);
++			igt_require_gem(i915);
++			igt_require(gem_has_lmem(i915));
++
++			tmp = __igt_params_get(i915, "lmem_size");
++			igt_skip_on(!tmp);
++			free(tmp);
++
++			regions = gem_get_query_memory_regions(i915);
++			igt_require(regions);
++		}
++
++		igt_describe("Regression test to verify that madvise will sync against busy dma-resv object for lmem");
++		igt_subtest("dontneed-evict-race") {
++			for_each_memory_region(r, i915) {
++				if (r->ci.memory_class == I915_MEMORY_CLASS_DEVICE) {
++					test_dontneed_evict_race(i915, r);
++					break;
++				}
++			}
++
++		}
++
++		igt_fixture {
++			close(i915);
++			igt_i915_driver_unload();
++		}
++	}
+ }
+-- 
+2.38.1
 
-My preference is just to have a colon in the GT identifier, lowercase or 
-uppercase I don't mind.
-
-Regards,
-
-Tvrtko
-
->>
->> So the macro idea would be like this:
->>
->>    drm_err(I915_LOG("Foo failed (%pe)\n", i915), ERR_PTR(err));
->>    drm_err(GT_LOG("Foo failed (%pe)\n", gt), ERR_PTR(err));
->>    drm_err(GUC_LOG("Foo failed (%pe)\n", guc), ERR_PTR(err));
->>    drm_err(CT_LOG("Foo failed (%pe)\n", ct), ERR_PTR(err));
->>
->> Each component would just need to define a single macro and not have to
->> duplicate all the err, info, warn, notice, ratelimited, once, whatever
->> versions. Which is a benefit but it's a quite a bit uglier to read in
->> the code.
-> 
-> If there is a choice between having ugly code all over the place and few
-> more lines with helpers then without any doubts I would pick the latter.
-> 
-> And this seems to be option already used elsewhere, see:
-> 
-> #define dev_err(dev, fmt, ...) \
-> 	dev_printk_index_wrap ...
-> 
-> #define pci_err(pdev, fmt, arg...) \
-> 	dev_err(&(pdev)->dev, fmt, ##arg)
-> 
-> #define drm_err(drm, fmt, ...) \
-> 	__drm_printk((drm), err,, "*ERROR* " fmt, ##__VA_ARGS__)
-> 
-> #define drbd_err(obj, fmt, args...) \
-> 	drbd_printk(KERN_ERR, obj, fmt, ## args)
-> 
-> #define ch7006_err(client, format, ...) \
-> 	dev_err(&client->dev, format, __VA_ARGS__)
-> 
-> #define mthca_err(mdev, format, arg...) \
-> 	dev_err(&mdev->pdev->dev, format, ## arg)
-> 
-> #define ctx_err(ctx, fmt, arg...) \
-> 	cal_err((ctx)->cal, "ctx%u: " fmt, (ctx)->dma_ctx, ##arg)
-> 
-> #define mlx4_err(mdev, format, ...) \
-> 	dev_err(&(mdev)->persist->pdev->dev, format, ##__VA_ARGS__)
-> 
-> ...
-> 
-> Michal
-> 
-> 
-> [1]
-> https://elixir.bootlin.com/linux/v6.1-rc4/source/include/linux/dev_printk.h#L143
-> 
-> [2]
-> https://elixir.bootlin.com/linux/v6.1-rc4/source/include/linux/pci.h#L2485
-> 
-> [3]
-> https://elixir.bootlin.com/linux/v6.1-rc4/source/include/drm/drm_print.h#L468
-> 
-> [4]
-> https://elixir.bootlin.com/linux/v6.1-rc4/source/drivers/block/drbd/drbd_int.h#L113
-> 
-> [5]
-> https://elixir.bootlin.com/linux/v6.1-rc4/source/drivers/gpu/drm/i2c/ch7006_priv.h#L139
-> 
-> [6]
-> https://elixir.bootlin.com/linux/v6.1-rc4/source/drivers/infiniband/hw/mthca/mthca_dev.h#L377
-> 
-> [7]
-> https://elixir.bootlin.com/linux/v6.1-rc4/source/drivers/media/platform/ti/cal/cal.h#L279
-> 
-> [8]
-> https://elixir.bootlin.com/linux/v6.1-rc4/source/drivers/net/ethernet/mellanox/mlx4/mlx4.h#L225
-> 
->>
->> Perhaps macro could be called something other than XX_LOG to make it
->> more readable, don't know.
->>
->> Regards,
->>
->> Tvrtko
