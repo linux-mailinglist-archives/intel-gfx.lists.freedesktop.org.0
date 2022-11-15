@@ -1,53 +1,139 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97C87629AF5
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Nov 2022 14:45:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCD52629C17
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Nov 2022 15:27:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CF4F10E3F6;
-	Tue, 15 Nov 2022 13:45:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9008810E405;
+	Tue, 15 Nov 2022 14:27:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A367E10E3F6
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Nov 2022 13:45:54 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBA5C8902A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Nov 2022 14:27:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668519954; x=1700055954;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=7ZYpuqFJOu7fP5kCrmegFpovyRkiW87JUB1uEKARN9s=;
- b=cdgEEhsLmH8TFXr41X0ilvcJ1ctKTsaQ26iUMbYdcVxJWE+MRbWEqT6E
- ummfvEZbq2JvrjS3ycZovWJ8QBdJH+sLgqibYwaHg8mM5LLdY+Ys6jpGh
- IAde6cdb8nSaqNdsxTdHJObaAmTqws9oHhKQf+9AcZb0QW2slmhrYZOvD
- m/QQtBkuqKACm+VXcT36PO0noEEn82VQbT4CRfAW7yXUDSZrFZjDcz1z2
- tCif6xDKEWpQ06UuBFi1adyo0PFjwY9nheMG7zAYLCK+fi7EnSx7a2Hxn
- xvDjUjp9RzRwc4dXbTntyrcN0VdNhEpr0BKbpxGKseD3NaZJolr9sedDe g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="291965167"
-X-IronPort-AV: E=Sophos;i="5.96,166,1665471600"; d="scan'208";a="291965167"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2022 05:45:54 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="641210343"
-X-IronPort-AV: E=Sophos;i="5.96,166,1665471600"; d="scan'208";a="641210343"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.251.220.105])
- ([10.251.220.105])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2022 05:45:52 -0800
-Message-ID: <af39e0a9-37e7-0482-7436-234a94d81187@linux.intel.com>
-Date: Tue, 15 Nov 2022 14:45:50 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
+ t=1668522425; x=1700058425;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=v2dw/nt1frj54fCDm/sG+cvibl+O1+E505keZdO1t2k=;
+ b=dKdYu7S5srmUjBeaTzyv6Bx3e0nyXi1JrB7jQGgTwHjPl4KaLwtquwL3
+ vCjRfINWCknjsJF7hNEh9F6WWvH5yHzpqq6+evf0D5hPTycIVAq/hxXMu
+ ugsF3zBi37jDIgT4o21sQNkQrnzo2Hzq9yomENhIHHtbYIYnLKa9OzZ0o
+ yFNzxPdl6R8sFCJ8mRaWUewyMMCRcN6rI6JIaxA6W2h6+ASzXDqFENOJr
+ MQW78FJj2w1fqWHtVnNqXhYhUXYVuM3qbJqAiR1KSp8095nDRw9nFPlWY
+ zcr7jJNz9dPvvKbSKDyeWSQqIIGBQ6ogpPbrbTHJGN74yp35Jc3VAOWrq w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="313411277"
+X-IronPort-AV: E=Sophos;i="5.96,166,1665471600"; d="scan'208";a="313411277"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2022 06:27:05 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="589804289"
+X-IronPort-AV: E=Sophos;i="5.96,166,1665471600"; d="scan'208";a="589804289"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga003.jf.intel.com with ESMTP; 15 Nov 2022 06:27:04 -0800
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Tue, 15 Nov 2022 06:27:04 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Tue, 15 Nov 2022 06:27:04 -0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.175)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2375.31; Tue, 15 Nov 2022 06:27:04 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ERdMaBHzjxQsTZPDtXWyYx8RNsStSAgFdBfBq2nYT8YZWGA0delqHP6anK/Dm89oCGqUcrhuhQr/Elhz9UsO/ZPWK7kDWVnV/5SA63/QsMETXf+/SNqHBgFalyX+WKlC+8Bxfkg5j7Xa3siayitvrvB4vF7LOQ/A92XPT8oVml6Ms6iXRe2BiRZ121U2jDSJCTCAfb6eoKRrv7nOA7eemJA+IqIU+MGJg8aJlBhNckTwq750nfsDfB0fppNag0nWfUkQUl7+C5OK+REgXyI459aIPrRJQZQZ4yJvW7EcgBd41qtlF9RrbCO9Kr5JokNjnhoSgMSar1tCON0eFJO9KQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+F+3ayQEkTfvOsiXGU59c4OJ7O9F2NLSA8tJ8Cf5OU0=;
+ b=FTTlRfPxgpv61rL+p/nPZIPuIO4HlimEzSoBqQkYTrE4CSddq58KfoYk+S6HDs7mAxVniNdeu8iqu7yNAdT/IOhgWCWUdndpuUmLiZ0+Wb3mLcO7eE15SOeH+VYYO4NXYb24cM3T6q7LsO0S8/FXKOnDbSZb+O+j19n6FAgMQcysmRtW3jQD1ytxTlKmo+KM/IMvLuPMU6BW11eSfZK8qk0DT4GlBksAHui3Rg0uCIqw882P39/vrm9fyLc6mKYa5P3/rgDgnTU3Upqe3ma+ODxa7GaD8tqmJTLzuFm92OCKzenDO6ppbWV90dMjWnycEla9jZa+9Sz9kO4D/hCBcQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from CY5PR11MB6366.namprd11.prod.outlook.com (2603:10b6:930:3a::8)
+ by DM4PR11MB7183.namprd11.prod.outlook.com (2603:10b6:8:111::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.18; Tue, 15 Nov
+ 2022 14:27:02 +0000
+Received: from CY5PR11MB6366.namprd11.prod.outlook.com
+ ([fe80::6ea8:4558:aa7c:3814]) by CY5PR11MB6366.namprd11.prod.outlook.com
+ ([fe80::6ea8:4558:aa7c:3814%8]) with mapi id 15.20.5813.017; Tue, 15 Nov 2022
+ 14:27:02 +0000
+From: "Usyskin, Alexander" <alexander.usyskin@intel.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Thread-Topic: [PATCH v2] mei: add timeout to send
+Thread-Index: AQHY+OODfSM6e9Ka6EqHJp2MXQDTC64//0YAgAAERNA=
+Date: Tue, 15 Nov 2022 14:27:02 +0000
+Message-ID: <CY5PR11MB6366ED268D5D4EE194C6469EED049@CY5PR11MB6366.namprd11.prod.outlook.com>
+References: <20221115111438.1639527-1-alexander.usyskin@intel.com>
+ <Y3OX+uQ7PN5thWSU@kroah.com>
+In-Reply-To: <Y3OX+uQ7PN5thWSU@kroah.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20221115104620.120432-1-matthew.auld@intel.com>
-From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
-In-Reply-To: <20221115104620.120432-1-matthew.auld@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/ttm: never purge busy objects
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CY5PR11MB6366:EE_|DM4PR11MB7183:EE_
+x-ms-office365-filtering-correlation-id: c1a9231d-48b7-48bf-23ce-08dac7157697
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 5pRtpQft59cEn5r0lg/nJBIwzVnCBj3Pr524fRiC6XCjHbMaLWJ8gwteP+tQ+OWzTl1q7x/qZ2PDU59mD6o4fqNHzvZzEiqlDDyx8f/8YhwQm3v3AU6k0hlmtnXm8axVNk0dLzu+zhAgvVtTGJ7tmmuxqO5C7OryIurJJm8M8kBwhzTHpL0hamHBjLhjeHu7VGjehRa+RUKXEZbx2EHYk2FV2o/PA2uuNTuXOICw19/qHdMW5MoAIKpB3Jznesx7FJpM0FkNOfgeq9gE57KGLQ6URGKVJkmDgknR7c82wXc0NDKXK5YCJ7tW2QMZzYbrirA27/UvI8q4+mTy6T+RPKlf9fpj3gshwf80pCWvBEtJJfCQ8SF1uPOS+ZDHUIS81YfZI2F0i8/l8PdRtLxO9c2lLCBaBVSl4772WpYiWB28diMj0MEloaOXXpVa3q0i0bOWUyTFTBEMxyaJS9TJsQSLvtNtDFfy/0nurM7WkkpU2d6ESYd3mp1vKnGr65Or2IDZS9cZ3dGtuzD08jIAGvtErzUheuEOKinc7dxm1MwAySRy0n4PeK3zgp7+7AoXPMiH6ctzl72uNeXPVxvEDw2OzFd11OiZLu8jLP2/Iu5JBSG8FBdJ38wcZWO9brChRe7XW+yZZkDfp5QGABmGH6Dp/tJkSEWAjUS79u8ZcFCkE36ujqimVGUp7mf3Y0rMeu5FmR6K+ck5JkwIz+Bs+uzz7YfokimMrrtbkbtB8MxOo0Cr3oisklEzvEsbu1Ecv2oTLuFemdLgUnyJnNwP4w==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6366.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(346002)(396003)(376002)(136003)(39860400002)(366004)(451199015)(26005)(66556008)(66476007)(66946007)(66446008)(9686003)(64756008)(316002)(6916009)(76116006)(8676002)(52536014)(8936002)(5660300002)(186003)(4326008)(41300700001)(7696005)(54906003)(6506007)(83380400001)(2906002)(86362001)(82960400001)(38100700002)(38070700005)(33656002)(55016003)(122000001)(478600001)(71200400001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?as1fFVfzaUxzXRyQF2sPXs/WidrHbQV8ZwaulwcgdLMFiP7cSDfsTCSTnK+C?=
+ =?us-ascii?Q?v4P7vgNsVACAuOOJBUBTlKTQt8pM+L7O9rJCznSh1pHv8Ig4Qvbl7m5e6tmj?=
+ =?us-ascii?Q?KpxdA8/uZ3rwF/vubPjsw4KJ0zcmHa+qRxkbUFoLl/p5BJcxwpVtn6VHBObm?=
+ =?us-ascii?Q?ri/f1yozwUA63q7lc/Jq/+U+rVk8as43/HYqLrkJcykQ6idNjOIdApW39O09?=
+ =?us-ascii?Q?gB5PJusu1zuX6drAiWcxtRMaRWivgI17QW41y2pEcbbrpcueA+MSMVI8lums?=
+ =?us-ascii?Q?5MDRqpuankioClJxepjWA8CuQfN9z/a2ue0vmIDvijMwgJmFZJMFXg46u4aB?=
+ =?us-ascii?Q?wGAxwSrY0bNjy1UHKxn5562Gr44zTIWQQNwPVC/4K2scvXjfmHxdzTwsVufb?=
+ =?us-ascii?Q?zheLXaVstST4W/4/ahLup/LPvPoSv6yPRSKPS4EbOw0czc5HVBQwdMhYglP3?=
+ =?us-ascii?Q?nIbl7Xlw0tt2Sa8UgBbQUJRhfatmUM/C6oDXbquHZUGBqXRfyb98gMobxzpF?=
+ =?us-ascii?Q?zgxjYM02836x2tQb6ib6hHALHWGHdCXgZ9/r0VtAzTFSbKNvOCb6Me4Bagut?=
+ =?us-ascii?Q?7P1pyljS9DItb1YDT55dgVxOp6+sTJu+HFK3cjMpBazKv0KxVHY1LWKwYkN2?=
+ =?us-ascii?Q?CPz1z3eIp2n8ItD7+f55AJdu8wIHb0Sc0SBbXq+Jj9whY7VItJRNoRcKrsYt?=
+ =?us-ascii?Q?23wzhsShdEUvEj2LVLKlYrnu+1b0bW0BANFsSr0kb+prBpRWjw4EkFoAEKf0?=
+ =?us-ascii?Q?amoDQeL02ZL+COcFbauxPu0+/nDr3TPX/xoWxRHqmU6EeoNg1XFIIDIsez/B?=
+ =?us-ascii?Q?bL3pCFtXwRGr+4wmX8+rKQ6r9bKRlWps/xTxpbqcaJUPrzcGNbd8cfdIMOix?=
+ =?us-ascii?Q?WZXhjBvtXgxw0SzrNeEyC5XsTFJ8318T+2FCHlpSajdaDnjHk5UCPaWw6PME?=
+ =?us-ascii?Q?d8pOeBNL2PakhpKtc2CkzDexIBV3WWAld9SEjFVBtHiONn0DnymfeLC1u0EX?=
+ =?us-ascii?Q?B40hdvdr/nLc5yThNcjWkPDfVscqe5+15Xgxv+PtubpKaXjcrnLuzZ3yqcSf?=
+ =?us-ascii?Q?aC5xwzN+1tvkjxjJPup0AwJDOLbHhfGJs1NfoUhw9R4oik/IXagmNMeGCwvy?=
+ =?us-ascii?Q?xMfz/maUN6oFQ+d2yMo0FeaR8RgsyAy0EBXvSjjK50TSBgyBJiNzfclo6Zfy?=
+ =?us-ascii?Q?gYVR+d77AR8gUehVrTZqvH9BowL+ieWzFitYiYxNmnSKJwyOkb0MLzT8JmQB?=
+ =?us-ascii?Q?5ye3QVRzaWi8BrG7HzxVTzeBL4ehRiWeFr+QxrG7hHOXJYL0WYxuCdQTVpzP?=
+ =?us-ascii?Q?dBhf5h2cqrWoYsuz/XRRkcZVQH0Zsx9S9g3/7iAbYQ3KuLkmQEHnA6XlxOJh?=
+ =?us-ascii?Q?0/dt9xnUc83bUQT9lf1yV//QP7d0XGIGD9KMdjxxEPDD+LpQ9mVqdB72aiZg?=
+ =?us-ascii?Q?Uj2HM6bLnhyMwly1qvO11wsAG32EaaX8oo5C7seS0+MMiQr3fJIXQAq/zTPv?=
+ =?us-ascii?Q?EQHCYH6s2ukBrBeh9OCLCiwegEbil3+ToYt+bJT3mCZPG6tDkLPYk5Gk3vWF?=
+ =?us-ascii?Q?Hc/Ag5qidgIxBSLAte2vx1yoALQbL2er96BeHJ07bXyyV/aUYt2EyG0G9sRU?=
+ =?us-ascii?Q?iw=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6366.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c1a9231d-48b7-48bf-23ce-08dac7157697
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Nov 2022 14:27:02.3891 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Li8LeThXqJSvyKxU/Ny0o3zMPGyPcbFYLVZumnY9HpXCRIhhFmD2EJmwErYQCqpQ3pUIoUoPtBwxVRXcstlDklVdspDpP4b0BhJe7Kpcdyc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB7183
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v2] mei: add timeout to send
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,94 +146,288 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, stable@vger.kernel.org,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ Daniel Vetter <daniel@ffwll.ch>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@redhat.com>, "Winkler, Tomas" <tomas.winkler@intel.com>,
+ "Lubart, Vitaly" <vitaly.lubart@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+> > When driver wakes up the firmware from the low power state, it is sendi=
+ng
+> > a memory ready message.
+> > The send is done via synchronous/blocking function to ensure that
+> firmware
+> > is in ready state. However, in case of firmware undergoing reset send
+> > might be block forever.
+> > To address this issue a timeout is added to blocking write command on
+> > the internal bus.
+>=20
+> Odd formatting of the text :(
 
-On 11/15/2022 11:46 AM, Matthew Auld wrote:
-> In i915_gem_madvise_ioctl() we immediately purge the object is not
-> currently used, like when the mm.pages are NULL.  With shmem the pages
-> might still be hanging around or are perhaps swapped out. Similarly with
-> ttm we might still have the pages hanging around on the ttm resource,
-> like with lmem or shmem, but here we need to be extra careful since
-> async unbinds are possible as well as in-progress kernel moves. In
-> i915_ttm_purge() we expect the pipeline-gutting to nuke the ttm resource
-> for us, however if it's busy the memory is only moved to a ghost object,
-> which then leads to broken behaviour when for example clearing the
-> i915_tt->filp, since the actual ttm_tt is still alive and populated,
-> even though it's been moved to the ghost object.  When we later destroy
-> the ghost object we hit the following, since the filp is now NULL:
->
-> [  +0.006982] #PF: supervisor read access in kernel mode
-> [  +0.005149] #PF: error_code(0x0000) - not-present page
-> [  +0.005147] PGD 11631d067 P4D 11631d067 PUD 115972067 PMD 0
-> [  +0.005676] Oops: 0000 [#1] PREEMPT SMP NOPTI
-> [  +0.012962] Workqueue: events ttm_device_delayed_workqueue [ttm]
-> [  +0.006022] RIP: 0010:i915_ttm_tt_unpopulate+0x3a/0x70 [i915]
-> [  +0.005879] Code: 89 fb 48 85 f6 74 11 8b 55 4c 48 8b 7d 30 45 31 c0 31 c9 e8 18 6a e5 e0 80 7d 60 00 74 20 48 8b 45 68
-> 8b 55 08 4c 89 e7 5b 5d <48> 8b 40 20 83 e2 01 41 5c 89 d1 48 8b 70
->   30 e9 42 b2 ff ff 4c 89
-> [  +0.018782] RSP: 0000:ffffc9000bf6fd70 EFLAGS: 00010202
-> [  +0.005244] RAX: 0000000000000000 RBX: ffff8883e12ae380 RCX: 0000000000000000
-> [  +0.007150] RDX: 000000008000000e RSI: ffffffff823559b4 RDI: ffff8883e12ae3c0
-> [  +0.007142] RBP: ffff888103b65d48 R08: 0000000000000001 R09: 0000000000000001
-> [  +0.007144] R10: 0000000000000001 R11: ffff88829c2c8040 R12: ffff8883e12ae3c0
-> [  +0.007148] R13: 0000000000000001 R14: ffff888115184140 R15: ffff888115184248
-> [  +0.007154] FS:  0000000000000000(0000) GS:ffff88844db00000(0000) knlGS:0000000000000000
-> [  +0.008108] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> [  +0.005763] CR2: 0000000000000020 CR3: 000000013fdb4004 CR4: 00000000003706e0
-> [  +0.007152] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-> [  +0.007145] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-> [  +0.007154] Call Trace:
-> [  +0.002459]  <TASK>
-> [  +0.002126]  ttm_tt_unpopulate.part.0+0x17/0x70 [ttm]
-> [  +0.005068]  ttm_bo_tt_destroy+0x1c/0x50 [ttm]
-> [  +0.004464]  ttm_bo_cleanup_memtype_use+0x25/0x40 [ttm]
-> [  +0.005244]  ttm_bo_cleanup_refs+0x90/0x2c0 [ttm]
-> [  +0.004721]  ttm_bo_delayed_delete+0x235/0x250 [ttm]
-> [  +0.004981]  ttm_device_delayed_workqueue+0x13/0x40 [ttm]
-> [  +0.005422]  process_one_work+0x248/0x560
-> [  +0.004028]  worker_thread+0x4b/0x390
-> [  +0.003682]  ? process_one_work+0x560/0x560
-> [  +0.004199]  kthread+0xeb/0x120
-> [  +0.003163]  ? kthread_complete_and_exit+0x20/0x20
-> [  +0.004815]  ret_from_fork+0x1f/0x30
->
-> v2:
->   - Just use ttm_bo_wait() directly (Niranjana)
->   - Add testcase reference
->
-> Testcase: igt@gem_madvise@dontneed-evict-race
-> Fixes: 213d50927763 ("drm/i915/ttm: Introduce a TTM i915 gem object backend")
-> Reported-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> Cc: Nirmoy Das <nirmoy.das@intel.com>
+Odd =3D=3D not balanced? Will try to do better in V3
+>=20
+> >
+> > Introduce the __mei_cl_send_timeout function to use instead of
+> > __mei_cl_send in cases where timeout is required.
+> > The mei_cl_write has only two callers and there is no need to split
+> > it into two functions.
+> >
+> > Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
+> > ---
+> > V2: address review comments:
+> >  - split __mei_cl_send and __mei_cl_send_timeout
+> >  - add units to timeout KDoc
+> >  - use MAX_SCHEDULE_TIMEOUT to squash wait to one macro
+> >
+> >  drivers/misc/mei/bus-fixup.c | 14 +++++++++-----
+> >  drivers/misc/mei/bus.c       | 22 ++++++++++++++++++++--
+> >  drivers/misc/mei/client.c    | 18 ++++++++++++++----
+> >  drivers/misc/mei/client.h    |  2 +-
+> >  drivers/misc/mei/main.c      |  2 +-
+> >  drivers/misc/mei/mei_dev.h   |  2 ++
+> >  6 files changed, 47 insertions(+), 13 deletions(-)
+> >
+> > diff --git a/drivers/misc/mei/bus-fixup.c b/drivers/misc/mei/bus-fixup.=
+c
+> > index 71fbf0bc8453..9959b8e8e91d 100644
+> > --- a/drivers/misc/mei/bus-fixup.c
+> > +++ b/drivers/misc/mei/bus-fixup.c
+> > @@ -188,17 +188,20 @@ static int mei_fwver(struct mei_cl_device *cldev)
+> >  	return ret;
+> >  }
+> >
+> > +#define GFX_MEMORY_READY_TIMEOUT 200
+>=20
+> units?
+
+Will add here too, sure.
+
+>=20
+> > +
+> >  static int mei_gfx_memory_ready(struct mei_cl_device *cldev)
+> >  {
+> >  	struct mkhi_gfx_mem_ready req =3D {0};
+> > -	unsigned int mode =3D MEI_CL_IO_TX_INTERNAL;
+> > +	unsigned int mode =3D MEI_CL_IO_TX_INTERNAL |
+> MEI_CL_IO_TX_BLOCKING;
+> >
+> >  	req.hdr.group_id =3D MKHI_GROUP_ID_GFX;
+> >  	req.hdr.command =3D MKHI_GFX_MEMORY_READY_CMD_REQ;
+> >  	req.flags =3D MKHI_GFX_MEM_READY_PXP_ALLOWED;
+> >
+> >  	dev_dbg(&cldev->dev, "Sending memory ready command\n");
+> > -	return __mei_cl_send(cldev->cl, (u8 *)&req, sizeof(req), 0, mode);
+> > +	return __mei_cl_send_timeout(cldev->cl, (u8 *)&req, sizeof(req), 0,
+> > +				     mode, GFX_MEMORY_READY_TIMEOUT);
+> >  }
+> >
+> >  static void mei_mkhi_fix(struct mei_cl_device *cldev)
+> > @@ -263,12 +266,13 @@ static void mei_gsc_mkhi_fix_ver(struct
+> mei_cl_device *cldev)
+> >
+> >  	if (cldev->bus->pxp_mode =3D=3D MEI_DEV_PXP_INIT) {
+> >  		ret =3D mei_gfx_memory_ready(cldev);
+> > -		if (ret < 0)
+> > +		if (ret < 0) {
+> >  			dev_err(&cldev->dev, "memory ready command
+> failed %d\n", ret);
+> > -		else
+> > +		} else {
+> >  			dev_dbg(&cldev->dev, "memory ready command
+> sent\n");
+> > +			cldev->bus->pxp_mode =3D MEI_DEV_PXP_SETUP;
+>=20
+> What does the mode change have to do with a timeout?
+With timeout the mei_gfx_memory_ready may now fail gracefully
+and we should not move state if message is not sent.
+
+Should I split this fix into another patch or document in this one?
+
+>=20
+> > +		}
+> >  		/* we go to reset after that */
+> > -		cldev->bus->pxp_mode =3D MEI_DEV_PXP_SETUP;
+> >  		goto out;
+> >  	}
+> >
+> > diff --git a/drivers/misc/mei/bus.c b/drivers/misc/mei/bus.c
+> > index 1fbe127ff633..63043e8df980 100644
+> > --- a/drivers/misc/mei/bus.c
+> > +++ b/drivers/misc/mei/bus.c
+> > @@ -32,8 +32,26 @@
+> >   *
+> >   * Return: written size bytes or < 0 on error
+> >   */
+> > -ssize_t __mei_cl_send(struct mei_cl *cl, const u8 *buf, size_t length,=
+ u8
+> vtag,
+> > +inline ssize_t __mei_cl_send(struct mei_cl *cl, const u8 *buf, size_t
+> length, u8 vtag,
+> >  		      unsigned int mode)
+>=20
+> Why inline?  The compiler is smart enough.
+Will drop
+
+>=20
+> > +{
+> > +	return __mei_cl_send_timeout(cl, buf, length, vtag, mode,
+> MAX_SCHEDULE_TIMEOUT);
+>=20
+> So this will block for how long?  Please document this.
+>=20
+> > +}
+> > +
+> > +/**
+> > + * __mei_cl_send_timeout - internal client send (write)
+> > + *
+> > + * @cl: host client
+> > + * @buf: buffer to send
+> > + * @length: buffer length
+> > + * @vtag: virtual tag
+> > + * @mode: sending mode
+> > + * @timeout: send timeout in milliseconds for blocking writes
+>=20
+> What do you mean "for blocking writes"?
+
+The timeout has no effect for non-blocking writes (bit in mode parameter),
+as they are returning immediately and are not waiting at all.
+
+>=20
+> And what do you use here to wait "for forever"?
+
+The MAX_SCHEDULE_TIMEOUT indicates 'forever' - will add it in KDoc
+This is implementation of Rodrigo's suggestion to use only wait with timeou=
+t but with
+maximum one if 'forever' is required.
+
+>=20
+> > + *
+> > + * Return: written size bytes or < 0 on error
+> > + */
+> > +ssize_t __mei_cl_send_timeout(struct mei_cl *cl, const u8 *buf, size_t
+> length, u8 vtag,
+> > +			      unsigned int mode, unsigned long timeout)
+> >  {
+> >  	struct mei_device *bus;
+> >  	struct mei_cl_cb *cb;
+> > @@ -108,7 +126,7 @@ ssize_t __mei_cl_send(struct mei_cl *cl, const u8
+> *buf, size_t length, u8 vtag,
+> >  		cb->buf.size =3D 0;
+> >  	}
+> >
+> > -	rets =3D mei_cl_write(cl, cb);
+> > +	rets =3D mei_cl_write(cl, cb, timeout);
+> >
+> >  	if (mode & MEI_CL_IO_SGL && rets =3D=3D 0)
+> >  		rets =3D length;
+> > diff --git a/drivers/misc/mei/client.c b/drivers/misc/mei/client.c
+> > index 6c8b71ae32c8..02c278202ad7 100644
+> > --- a/drivers/misc/mei/client.c
+> > +++ b/drivers/misc/mei/client.c
+> > @@ -1954,10 +1954,11 @@ int mei_cl_irq_write(struct mei_cl *cl, struct
+> mei_cl_cb *cb,
+> >   *
+> >   * @cl: host client
+> >   * @cb: write callback with filled data
+> > + * @timeout: send timeout in milliseconds for blocking writes
+>=20
+> Again, what is the max, and what do you mean "for blocking writes"?
+>=20
+> >   *
+> >   * Return: number of bytes sent on success, <0 on failure.
+> >   */
+> > -ssize_t mei_cl_write(struct mei_cl *cl, struct mei_cl_cb *cb)
+> > +ssize_t mei_cl_write(struct mei_cl *cl, struct mei_cl_cb *cb, unsigned
+> long timeout)
+>=20
+> Why not have mei_cl_write() and mei_cl_write_timeout() like you do for
+> "send"?
+
+There are only two callers for mei_cl_write now, one with timeout and anoth=
+er without.
+Don't think that we need wrapper that has one caller, and no additions are =
+planned.
+
+The __mei_cl_write_timeout may be called by more than one user.
+This patch converts one caller, but it is open for other callers in future.
+
+>=20
+> >  {
+> >  	struct mei_device *dev;
+> >  	struct mei_msg_data *buf;
+> > @@ -2081,11 +2082,20 @@ ssize_t mei_cl_write(struct mei_cl *cl, struct
+> mei_cl_cb *cb)
+> >  	if (blocking && cl->writing_state !=3D MEI_WRITE_COMPLETE) {
+> >
+> >  		mutex_unlock(&dev->device_lock);
+> > -		rets =3D wait_event_interruptible(cl->tx_wait,
+> > -				cl->writing_state =3D=3D MEI_WRITE_COMPLETE
+> ||
+> > -				(!mei_cl_is_connected(cl)));
+> > +		rets =3D wait_event_interruptible_timeout(cl->tx_wait,
+> > +							cl->writing_state =3D=3D
+> MEI_WRITE_COMPLETE ||
+> > +
+> 	(!mei_cl_is_connected(cl)),
+> > +
+> 	msecs_to_jiffies(timeout));
+> >  		mutex_lock(&dev->device_lock);
+> > +		/* clean all queue on timeout as something fatal happened
+> */
+> > +		if (rets =3D=3D 0) {
+> > +			rets =3D -ETIME;
+> > +			mei_io_tx_list_free_cl(&dev->write_list, cl, NULL);
+> > +			mei_io_tx_list_free_cl(&dev->write_waiting_list, cl,
+> NULL);
+> > +		}
+> >  		/* wait_event_interruptible returns -ERESTARTSYS */
+> > +		if (rets > 0)
+> > +			rets =3D 0;
+> >  		if (rets) {
+> >  			if (signal_pending(current))
+> >  				rets =3D -EINTR;
+> > diff --git a/drivers/misc/mei/client.h b/drivers/misc/mei/client.h
+> > index 418056fb1489..9052860bcfe0 100644
+> > --- a/drivers/misc/mei/client.h
+> > +++ b/drivers/misc/mei/client.h
+> > @@ -246,7 +246,7 @@ int mei_cl_connect(struct mei_cl *cl, struct
+> mei_me_client *me_cl,
+> >  int mei_cl_irq_connect(struct mei_cl *cl, struct mei_cl_cb *cb,
+> >  		       struct list_head *cmpl_list);
+> >  int mei_cl_read_start(struct mei_cl *cl, size_t length, const struct f=
+ile *fp);
+> > -ssize_t mei_cl_write(struct mei_cl *cl, struct mei_cl_cb *cb);
+> > +ssize_t mei_cl_write(struct mei_cl *cl, struct mei_cl_cb *cb, unsigned
+> long timeout);
+> >  int mei_cl_irq_write(struct mei_cl *cl, struct mei_cl_cb *cb,
+> >  		     struct list_head *cmpl_list);
+> >
+> > diff --git a/drivers/misc/mei/main.c b/drivers/misc/mei/main.c
+> > index 930887e7e38d..632d4ae21e46 100644
+> > --- a/drivers/misc/mei/main.c
+> > +++ b/drivers/misc/mei/main.c
+> > @@ -383,7 +383,7 @@ static ssize_t mei_write(struct file *file, const c=
+har
+> __user *ubuf,
+> >  		goto out;
+> >  	}
+> >
+> > -	rets =3D mei_cl_write(cl, cb);
+> > +	rets =3D mei_cl_write(cl, cb, MAX_SCHEDULE_TIMEOUT);
+>=20
+> Why this specific value?
+
+Very big one, rouge equivalent for 'forever'
+
+>=20
+> thanks,
+>=20
+> greg k-h
+
+--=20
+Thanks,
+Sasha
 
 
-Acked-by: Nirmoy Das <Nirmoy.Das@intel.com>
-
-
-> Cc: <stable@vger.kernel.org> # v5.15+
-> Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 4 ++++
->   1 file changed, 4 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> index e4e55e3f4e41..34793863ea45 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> @@ -603,6 +603,10 @@ static int i915_ttm_truncate(struct drm_i915_gem_object *obj)
->   
->   	WARN_ON_ONCE(obj->mm.madv == I915_MADV_WILLNEED);
->   
-> +	err = ttm_bo_wait(bo, true, false);
-> +	if (err)
-> +		return err;
-> +
->   	err = i915_ttm_move_notify(bo);
->   	if (err)
->   		return err;
