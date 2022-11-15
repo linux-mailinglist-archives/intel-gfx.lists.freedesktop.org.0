@@ -1,49 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0A8C6295F2
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Nov 2022 11:34:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E830062962F
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Nov 2022 11:46:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A33810E3A2;
-	Tue, 15 Nov 2022 10:34:37 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A7BB10E388;
- Tue, 15 Nov 2022 10:34:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A74710E388;
+	Tue, 15 Nov 2022 10:46:11 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0343A10E136;
+ Tue, 15 Nov 2022 10:46:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668508473; x=1700044473;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=NcUx9J0ExokdUkdzy7PmoTXfw6IwkGGKU9FGgnHNUR4=;
- b=m3HPCLl1C5MFO8UR6aS7/6HGKOFNbwRnMvGFb8cxRfrgEhUgI4G5HfpE
- LW86w6lnZ/A29lhC5w24GsHvymsvF/b/iPQeWSl3RzxR6meFOQS2SLFUa
- x/O3wf8hohF2PwEbdSD2r81JGbTSgukfREDvgPu5CIZVpFBkGosBcc7L/
- +5dcDXJWFo1ehpvVLhFnhP3y6nZ4QZO2ZZeiUSvTHlKnxwvS2nUmLYlHS
- 5ZcwGC8vJAGK218YF3wIXf+LX/sie0qulponJ6XjQEqhcH9dFWz+XRrW5
- T3euCfitsE4WKpkjMlLZJoa6dEF9Zer4MWrntu4daBe8uGRTL+m3MvP9i w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="295584324"
-X-IronPort-AV: E=Sophos;i="5.96,165,1665471600"; d="scan'208";a="295584324"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2022 02:34:32 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="763867478"
-X-IronPort-AV: E=Sophos;i="5.96,165,1665471600"; d="scan'208";a="763867478"
-Received: from nolanjax-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.18.104])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2022 02:34:30 -0800
-From: Matthew Auld <matthew.auld@intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Tue, 15 Nov 2022 10:34:24 +0000
-Message-Id: <20221115103424.109524-1-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.38.1
+ t=1668509165; x=1700045165;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=GAzeVYNqTVR4g0BVB/ZRiNkns4SFmJ801P/q/wtkW4A=;
+ b=RDtymIc6oOPQvvWVLnQGVtyZnMnsQwOeoykxc2g6jUZ2tITjverW88XF
+ RZGRDL/CPZ8sB3CvVB/vlgXHgauTpbk6puxBjJpUuHs5s0tWZHmU5NBf3
+ aHiPMkVrN++cJd/mOBJMOjdfhxSccbkSm8beVegxSRMxDQV/4RvDHBfXp
+ XW/I+FAZjTLblcRbtE2Bfejl4t6JDfH78YZR5db7tmWfpPr5h4m/ogUg1
+ dITrYzNdHF8c5/KsPWnAjtpk1PC8n7lFZu+HqcUeocr30X96ShlOcktKm
+ CQAYR3st3rO1ehBZN182Zk+BG023Kx8U+MYK8ntpYmkoygFsCHJPKucOG w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="309849916"
+X-IronPort-AV: E=Sophos;i="5.96,165,1665471600"; d="scan'208";a="309849916"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2022 02:46:04 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="744541096"
+X-IronPort-AV: E=Sophos;i="5.96,165,1665471600"; d="scan'208";a="744541096"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.26.97])
+ ([10.213.26.97])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2022 02:46:03 -0800
+Message-ID: <60b1a6aa-f3f4-06c0-01af-409fa378c747@intel.com>
+Date: Tue, 15 Nov 2022 11:46:01 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t] tests/i915/madvise: verify async eviction
- with madvise
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.4.2
+Content-Language: en-US
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20221115101730.394880-1-tvrtko.ursulin@linux.intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20221115101730.394880-1-tvrtko.ursulin@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix vma allocator debug
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,177 +63,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Simple regression test for lmem to check if an in-progress async unbind
-and eviction is syncronised with discarding the pages when marking
-the object as DONTNEED.
+On 15.11.2022 11:17, Tvrtko Ursulin wrote:
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> 
+> Add a missing colon which I accidentally removed in the recent logging
+> changes.
+> 
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Fixes: a10234fda466 ("drm/i915: Partial abandonment of legacy DRM logging macros")
+> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-Cc: Nirmoy Das <nirmoy.das@intel.com>
----
- tests/i915/gem_madvise.c | 130 ++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 129 insertions(+), 1 deletion(-)
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-diff --git a/tests/i915/gem_madvise.c b/tests/i915/gem_madvise.c
-index 2502d84c..d164df3a 100644
---- a/tests/i915/gem_madvise.c
-+++ b/tests/i915/gem_madvise.c
-@@ -36,8 +36,9 @@
- #include <setjmp.h>
- #include <signal.h>
- 
--#include "drm.h"
-+#include "igt_kmod.h"
- #include "i915/gem_create.h"
-+#include "i915/gem.h"
- 
- IGT_TEST_DESCRIPTION("Checks that the kernel reports EFAULT when trying to use"
- 		     " purged bo.");
-@@ -188,6 +189,76 @@ dontneed_before_exec(void)
- 	close(fd);
- }
- 
-+#define PAGE_SIZE 4096
-+
-+static uint32_t batch_create_size(int fd, uint64_t size)
-+{
-+	const uint32_t bbe = MI_BATCH_BUFFER_END;
-+	uint32_t handle;
-+
-+	handle = gem_create(fd, size);
-+	gem_write(fd, handle, 0, &bbe, sizeof(bbe));
-+
-+	return handle;
-+}
-+
-+static int upload(int fd, uint32_t handle)
-+{
-+	struct drm_i915_gem_exec_object2 exec[2] = {};
-+	struct drm_i915_gem_execbuffer2 execbuf = {
-+		.buffers_ptr = to_user_pointer(&exec),
-+		.buffer_count = 2,
-+	};
-+
-+	exec[0].handle = handle;
-+	exec[0].flags = EXEC_OBJECT_SUPPORTS_48B_ADDRESS;
-+	exec[1].handle = batch_create_size(fd, PAGE_SIZE);
-+	exec[1].flags = EXEC_OBJECT_SUPPORTS_48B_ADDRESS;
-+
-+	gem_execbuf(fd, &execbuf);
-+	return 0;
-+}
-+
-+static void test_dontneed_evict_race(int fd,
-+				     struct gem_memory_region *region)
-+{
-+	const uint64_t size = region->size >> 1;
-+	uint64_t ahnd = get_reloc_ahnd(fd, 0);
-+	uint32_t handle1;
-+	igt_spin_t *spin;
-+
-+	handle1 = gem_create_in_memory_region_list(fd, size, 0,
-+						   &region->ci, 1);
-+	spin = igt_spin_new(fd,
-+			    .ahnd = ahnd,
-+			    .dependency = handle1);
-+
-+	igt_fork(child, 1) {
-+		uint32_t handle2;
-+
-+		fd = gem_reopen_driver(fd);
-+
-+		handle2 = gem_create_in_memory_region_list(fd,
-+							   size, 0,
-+							   &region->ci, 1);
-+		/*
-+		 * The actual move when evicting will be pipelined
-+		 * behind the spinner, so can't fire until the spinner
-+		 * is killed.
-+		 */
-+		upload(fd, handle2);
-+		gem_close(fd, handle2);
-+	}
-+
-+	sleep(2); /* Give eviction time to find handle1 */
-+	igt_spin_end(spin);
-+	gem_madvise(fd, handle1, I915_MADV_DONTNEED);
-+	igt_waitchildren();
-+
-+	igt_spin_free(fd, spin);
-+	gem_close(fd, handle1);
-+}
-+
- igt_main
- {
- 	igt_describe("Check signal for Segmentation Fault and bus error before"
-@@ -209,4 +280,61 @@ igt_main
- 		     " purged bo for GPU.");
- 	igt_subtest("dontneed-before-exec")
- 		dontneed_before_exec();
-+
-+	igt_subtest_group {
-+		struct drm_i915_query_memory_regions *regions;
-+		int i915 = -1;
-+
-+		igt_fixture {
-+			char *tmp;
-+
-+			if (igt_kmod_is_loaded("i915")) {
-+				i915 = __drm_open_driver(DRIVER_INTEL);
-+				igt_require_fd(i915);
-+				igt_require_gem(i915);
-+				igt_require(gem_has_lmem(i915));
-+				close(i915);
-+			}
-+
-+			igt_i915_driver_unload();
-+			/*
-+			 * To avoid running of ring space and stalling during evicting
-+			 * (while holding the dma-resv lock), we need to use a smaller
-+			 * lmem size, such we can easliy trigger eviction without
-+			 * needing to wait for more ring space. The point of the test is
-+			 * to mark the object as DONTNEED which has an in-progress
-+			 * pipilined unbind/move, which also requires grabbing the
-+			 * dma-resv lock.
-+			 */
-+			igt_assert_eq(igt_i915_driver_load("lmem_size=128"), 0);
-+
-+			i915 = __drm_open_driver(DRIVER_INTEL);
-+			igt_require_fd(i915);
-+			igt_require_gem(i915);
-+			igt_require(gem_has_lmem(i915));
-+
-+			tmp = __igt_params_get(i915, "lmem_size");
-+			igt_skip_on(!tmp);
-+			free(tmp);
-+
-+			regions = gem_get_query_memory_regions(i915);
-+			igt_require(regions);
-+		}
-+
-+		igt_describe("Regression test to verify that madvise will sync against busy dma-resv object for lmem");
-+		igt_subtest("dontneed-evict-race") {
-+			for_each_memory_region(r, i915) {
-+				if (r->ci.memory_class == I915_MEMORY_CLASS_DEVICE) {
-+					test_dontneed_evict_race(i915, r);
-+					break;
-+				}
-+			}
-+
-+		}
-+
-+		igt_fixture {
-+			close(i915);
-+			igt_i915_driver_unload();
-+		}
-+	}
- }
--- 
-2.38.1
+Regards
+Andrzej
+
+> ---
+>   drivers/gpu/drm/i915/i915_vma.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+> index 3b969d679c1e..947fde68e5f5 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.c
+> +++ b/drivers/gpu/drm/i915/i915_vma.c
+> @@ -73,7 +73,7 @@ static void vma_print_allocator(struct i915_vma *vma, const char *reason)
+>   	char buf[512];
+>   
+>   	if (!vma->node.stack) {
+> -		drm_dbg(&to_i915(vma->obj->base.dev)->drm
+> +		drm_dbg(&to_i915(vma->obj->base.dev)->drm,
+>   			"vma.node [%08llx + %08llx] %s: unknown owner\n",
+>   			vma->node.start, vma->node.size, reason);
+>   		return;
 
