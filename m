@@ -1,48 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AF5C629631
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Nov 2022 11:46:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9390E629692
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Nov 2022 12:00:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55B7D10E3A4;
-	Tue, 15 Nov 2022 10:46:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3AF110E12A;
+	Tue, 15 Nov 2022 11:00:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B843F10E3A4
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Nov 2022 10:46:28 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3540910E12A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Nov 2022 11:00:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668509188; x=1700045188;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=53RQ6oHw7LcfcS4FOKYjoW0J/VSxwPY8x4BuIJM+HHo=;
- b=LcW3RdX6xphcGnpHVUo8+pqeCjmKPgjpMrtTcxnUpUXDpqguUrnQzmxA
- 42utsuj+sOMNm7gVS8YRy2nbB/is/GeAnjn864BbqC4W44E0Z9tlvLBb2
- fDoXi4kp02fOPSUaXisPZcQkkjT2pFTc4P4B1+R4XIJhDU+Zm1t/tfe7X
- myRQqh4j/1/tbjjmAbEy1zx3DoaiTuhM1GHb9veotSHF9dteY7pcw+Qrn
- EA9gK8+SCvx9Qu8PyS2DpmqD9INeCuMo+9brjLk0HZk4j8mAk0ZcD4Jdp
- 7osLe1y7HKzanVjP5zT62I/puecG3syKP03XbBWDa6ICjxuGu9gFJyow2 w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="339018920"
-X-IronPort-AV: E=Sophos;i="5.96,165,1665471600"; d="scan'208";a="339018920"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2022 02:46:28 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="813637498"
-X-IronPort-AV: E=Sophos;i="5.96,165,1665471600"; d="scan'208";a="813637498"
-Received: from nolanjax-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.18.104])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2022 02:46:26 -0800
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 15 Nov 2022 10:46:20 +0000
-Message-Id: <20221115104620.120432-1-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.38.1
+ t=1668510051; x=1700046051;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=P65ZuIj2sdMIpCRlybj5SjBVuOqobLKy4oZ2gl0fcWQ=;
+ b=bgVo45QothTojlOnLnFKXdIu/rTsBYMkpJDDiGCSgtewSZIidUiOHb9E
+ TVg6zjs5UNqCQ7LssPnLHNrI8Y526ulRLIRPvHtXnGmHtbXS6g5EGQq/t
+ t7UOgVuBCrCV4zQCCsVmoAqEMkNjQjIJCJe5ln4pxESH+uGXUMfOpQfHe
+ 7d2OurXoso6Gfw3/rXsShcXFb6rxHVlTRiW8eTVVKui2HHGyv6LMPMhMv
+ CV5Ir6QvZs7xPhSVk/Ztv7IoFD/ZhQi1MaisUPIHyVau2jsSN91jVGVTw
+ NdQp2kEKPuYj39ZO72d8QUDgqw4BAHNZqtYWm6ZMIsdMAK9ueIFvlx7pD g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="313373216"
+X-IronPort-AV: E=Sophos;i="5.96,165,1665471600"; d="scan'208";a="313373216"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2022 03:00:50 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="702394112"
+X-IronPort-AV: E=Sophos;i="5.96,165,1665471600"; d="scan'208";a="702394112"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by fmsmga008.fm.intel.com with SMTP; 15 Nov 2022 03:00:47 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 15 Nov 2022 13:00:46 +0200
+Date: Tue, 15 Nov 2022 13:00:46 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Message-ID: <Y3NxXuHncySq1aok@intel.com>
+References: <20221028094411.3673476-1-ankit.k.nautiyal@intel.com>
+ <20221028094411.3673476-4-ankit.k.nautiyal@intel.com>
+ <Y21nzJlANRVahZ0+@intel.com>
+ <c8d47583-2bd6-7383-14f4-d622b9eefa36@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] drm/i915/ttm: never purge busy objects
+In-Reply-To: <c8d47583-2bd6-7383-14f4-d622b9eefa36@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v5 3/9] drm/i915/dp: Replace intel_dp.dfp
+ members with the new crtc_state sink_format
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,90 +64,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org, Andrzej Hajda <andrzej.hajda@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In i915_gem_madvise_ioctl() we immediately purge the object is not
-currently used, like when the mm.pages are NULL.  With shmem the pages
-might still be hanging around or are perhaps swapped out. Similarly with
-ttm we might still have the pages hanging around on the ttm resource,
-like with lmem or shmem, but here we need to be extra careful since
-async unbinds are possible as well as in-progress kernel moves. In
-i915_ttm_purge() we expect the pipeline-gutting to nuke the ttm resource
-for us, however if it's busy the memory is only moved to a ghost object,
-which then leads to broken behaviour when for example clearing the
-i915_tt->filp, since the actual ttm_tt is still alive and populated,
-even though it's been moved to the ghost object.  When we later destroy
-the ghost object we hit the following, since the filp is now NULL:
+On Tue, Nov 15, 2022 at 12:23:53PM +0530, Nautiyal, Ankit K wrote:
+> 
+> On 11/11/2022 2:36 AM, Ville Syrjälä wrote:
+> > On Fri, Oct 28, 2022 at 03:14:05PM +0530, Ankit Nautiyal wrote:
+> >> The decision to use DFP output format conversion capabilities should be
+> >> during compute_config phase.
+> >>
+> >> This patch uses the members of intel_dp->dfp to only store the
+> >> format conversion capabilities of the DP device and uses the crtc_state
+> >> sink_format member, to program the protocol-converter for
+> >> colorspace/format conversion.
+> >>
+> >> v2: Use sink_format to determine the color conversion config for the
+> >> pcon (Ville).
+> >>
+> >> v3: Fix typo: missing 'break' in switch case (lkp kernel test robot).
+> >>
+> >> v4: Add helper to check if DP supports YCBCR420.
+> >>
+> >> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> >> ---
+> >>   drivers/gpu/drm/i915/display/intel_dp.c | 122 ++++++++++++++++--------
+> >>   1 file changed, 84 insertions(+), 38 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> >> index 0e4f7b467970..95d0c653db7f 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> >> @@ -790,6 +790,7 @@ intel_dp_output_format(struct intel_connector *connector,
+> >>   		       enum intel_output_format sink_format)
+> >>   {
+> >>   	struct intel_dp *intel_dp = intel_attached_dp(connector);
+> >> +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+> >>   
+> >>   	if (!connector->base.ycbcr_420_allowed ||
+> >>   	    sink_format != INTEL_OUTPUT_FORMAT_YCBCR420)
+> >> @@ -799,6 +800,10 @@ intel_dp_output_format(struct intel_connector *connector,
+> >>   	    intel_dp->dfp.ycbcr_444_to_420)
+> >>   		return INTEL_OUTPUT_FORMAT_RGB;
+> >>   
+> >> +	/* Prefer 4:2:0 passthrough over 4:4:4->4:2:0 conversion */
+> >> +	if (DISPLAY_VER(i915) >= 11 && intel_dp->dfp.ycbcr420_passthrough)
+> >> +		return INTEL_OUTPUT_FORMAT_YCBCR420;
+> >> +
+> >>   	if (intel_dp->dfp.ycbcr_444_to_420)
+> >>   		return INTEL_OUTPUT_FORMAT_YCBCR444;
+> >>   	else
+> > The else branch here is also 420, so the whole logic
+> > here doesn't seem to flow entirely sensibly.
+> >
+> > Thinking a bit more abstractly, could we restate
+> > this whole problem as something more like this?
+> >
+> > if (source_can_output(sink_format))
+> > 	return sink_format;
+> >
+> > if (source_can_output(RGB) &&
+> >      dfp_can_convert_from_rgb(sink_format))
+> > 	return RGB;
+> >
+> > if (source_can_output(YCBCR444) &&
+> >      dfp_can_convert_from_ycbcr444(sink_format))
+> > 	return YCBCR444;
+> 
+> This make sense and will also help to add 422 support easier.
+> 
+> I am only seeing one problem: about how to have DSC considerations 
+> during source_can_output( ).
+> 
+> Gen 11+ should support YCBCR420. So for any ycbcr420_only mode we should 
+> have sink_format, and output_format : YCbCr420.
+> 
+> This works well for cases where DSC doesn't get in picture. When higher 
+> modes like 8k60 ycbcr420_only are involved, we need to use DSC.
+> 
+> Currently, our DSC1.1 does not support YCbCr420. The problem is that we 
+> go for, dsc_compute_config at a later time.
+> 
+> This issue might have been masked, due to the messy order of checks in  
+> intel_dp_output_format.
+> 
+> Specifically With HDMI2.1 PCONs supporting color conv, for such a case 
+> we can have output_format as RGB, and sink_format as YCbCr420.
+> 
+> The DSC compression with RGB and then configure PCON to Decompress, 
+> conv. to YCbCr420.
+> 
+> So can we put a check in source_can_output for Gen11+ where DSC might be 
+> required, so that with source_can_output(YCBCR420) returns false in such 
+> case, where DSC is the only way?
 
-[  +0.006982] #PF: supervisor read access in kernel mode
-[  +0.005149] #PF: error_code(0x0000) - not-present page
-[  +0.005147] PGD 11631d067 P4D 11631d067 PUD 115972067 PMD 0
-[  +0.005676] Oops: 0000 [#1] PREEMPT SMP NOPTI
-[  +0.012962] Workqueue: events ttm_device_delayed_workqueue [ttm]
-[  +0.006022] RIP: 0010:i915_ttm_tt_unpopulate+0x3a/0x70 [i915]
-[  +0.005879] Code: 89 fb 48 85 f6 74 11 8b 55 4c 48 8b 7d 30 45 31 c0 31 c9 e8 18 6a e5 e0 80 7d 60 00 74 20 48 8b 45 68
-8b 55 08 4c 89 e7 5b 5d <48> 8b 40 20 83 e2 01 41 5c 89 d1 48 8b 70
- 30 e9 42 b2 ff ff 4c 89
-[  +0.018782] RSP: 0000:ffffc9000bf6fd70 EFLAGS: 00010202
-[  +0.005244] RAX: 0000000000000000 RBX: ffff8883e12ae380 RCX: 0000000000000000
-[  +0.007150] RDX: 000000008000000e RSI: ffffffff823559b4 RDI: ffff8883e12ae3c0
-[  +0.007142] RBP: ffff888103b65d48 R08: 0000000000000001 R09: 0000000000000001
-[  +0.007144] R10: 0000000000000001 R11: ffff88829c2c8040 R12: ffff8883e12ae3c0
-[  +0.007148] R13: 0000000000000001 R14: ffff888115184140 R15: ffff888115184248
-[  +0.007154] FS:  0000000000000000(0000) GS:ffff88844db00000(0000) knlGS:0000000000000000
-[  +0.008108] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[  +0.005763] CR2: 0000000000000020 CR3: 000000013fdb4004 CR4: 00000000003706e0
-[  +0.007152] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-[  +0.007145] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-[  +0.007154] Call Trace:
-[  +0.002459]  <TASK>
-[  +0.002126]  ttm_tt_unpopulate.part.0+0x17/0x70 [ttm]
-[  +0.005068]  ttm_bo_tt_destroy+0x1c/0x50 [ttm]
-[  +0.004464]  ttm_bo_cleanup_memtype_use+0x25/0x40 [ttm]
-[  +0.005244]  ttm_bo_cleanup_refs+0x90/0x2c0 [ttm]
-[  +0.004721]  ttm_bo_delayed_delete+0x235/0x250 [ttm]
-[  +0.004981]  ttm_device_delayed_workqueue+0x13/0x40 [ttm]
-[  +0.005422]  process_one_work+0x248/0x560
-[  +0.004028]  worker_thread+0x4b/0x390
-[  +0.003682]  ? process_one_work+0x560/0x560
-[  +0.004199]  kthread+0xeb/0x120
-[  +0.003163]  ? kthread_complete_and_exit+0x20/0x20
-[  +0.004815]  ret_from_fork+0x1f/0x30
+I'm thinking it should work well enough without any extra checks
+since we'll always try RGB before YCbC4 4:2:0. I guess the only
+case where it could fail is if the sink only supports 4:2:0 for
+that particular mode. Then we'd also try direct YCbC4 4:2:0 output
+on icl+. Dunno if such sinks are still a thing when DSC is in the
+picture.
 
-v2:
- - Just use ttm_bo_wait() directly (Niranjana)
- - Add testcase reference
+Hmm. Do PCONs even support DSC + color conversion/etc. at the
+same time? They'd have to decompress and potentially recompress
+the data in that case.
 
-Testcase: igt@gem_madvise@dontneed-evict-race
-Fixes: 213d50927763 ("drm/i915/ttm: Introduce a TTM i915 gem object backend")
-Reported-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-Cc: Nirmoy Das <nirmoy.das@intel.com>
-Cc: <stable@vger.kernel.org> # v5.15+
-Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 4 ++++
- 1 file changed, 4 insertions(+)
+The problem with adding DSC checks into source_can_output() is
+that we'd need to express those in a way that is also usable in
+.mode_valid() since we'd want to use the same code there I think.
+Looks like we do have some DSC stuff in there already, but it
+doesn't seem to take that into account in the link bandwidth
+check. So to me it looks like the whole DSC support is incomplete
+anyway.
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-index e4e55e3f4e41..34793863ea45 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-@@ -603,6 +603,10 @@ static int i915_ttm_truncate(struct drm_i915_gem_object *obj)
- 
- 	WARN_ON_ONCE(obj->mm.madv == I915_MADV_WILLNEED);
- 
-+	err = ttm_bo_wait(bo, true, false);
-+	if (err)
-+		return err;
-+
- 	err = i915_ttm_move_notify(bo);
- 	if (err)
- 		return err;
 -- 
-2.38.1
-
+Ville Syrjälä
+Intel
