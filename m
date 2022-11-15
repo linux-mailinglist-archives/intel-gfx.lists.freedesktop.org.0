@@ -2,55 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B9D7629F06
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Nov 2022 17:28:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42FD5629F10
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Nov 2022 17:30:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C78A610E41A;
-	Tue, 15 Nov 2022 16:28:08 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CB9E10E41A;
- Tue, 15 Nov 2022 16:28:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668529684; x=1700065684;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=tuUKZEEjG41bajlA9ZREi4bujpfrPB1anew3wUwMhi4=;
- b=Zx+xfx4y9DesgWOOsdYdBpcV4zJi/N6ZmQ/EHx931SQKe1oVumrZpVCo
- mx5FtYKwiRr40RMD0yGnRZfhs/46KV55alVjRvO2DuSoXHJh4pg7en94/
- D/Qo+hqVQg8KrMG4sFIvs3Jxd4coayF1fEF7Mw0pLcq1nqxU6o0Ts9Iv6
- eJcT+WLk6eRK29GMW+RzWahD22clq4elkK/MEineY9wDKGHPvcxICSC70
- ys840MYNEuqbKc7iNt/dv1WcbSfEe+/PYsI0373emcmvpu4nqxOm1kGaL
- /swhKP5CTlSAVq1CeDY92XjDfQHRpBz3/Q+zdFvBLm4daPLddggYPm0PD Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10532"; a="299820025"
-X-IronPort-AV: E=Sophos;i="5.96,166,1665471600"; d="scan'208";a="299820025"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2022 08:28:03 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10532"; a="763970600"
-X-IronPort-AV: E=Sophos;i="5.96,166,1665471600"; d="scan'208";a="763970600"
-Received: from rainikit-mobl1.ger.corp.intel.com (HELO [10.213.198.207])
- ([10.213.198.207])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2022 08:28:02 -0800
-Message-ID: <adb80c4d-f76d-c1c6-d531-2604f82988b5@linux.intel.com>
-Date: Tue, 15 Nov 2022 16:28:00 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 182E610E1C4;
+	Tue, 15 Nov 2022 16:30:14 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2E12410E1C4;
+ Tue, 15 Nov 2022 16:30:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 27B88A9932;
+ Tue, 15 Nov 2022 16:30:08 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Content-Language: en-US
-To: Andrzej Hajda <andrzej.hajda@intel.com>, Intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-References: <20221115101730.394880-1-tvrtko.ursulin@linux.intel.com>
- <60b1a6aa-f3f4-06c0-01af-409fa378c747@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <60b1a6aa-f3f4-06c0-01af-409fa378c747@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix vma allocator debug
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Tue, 15 Nov 2022 16:30:08 -0000
+Message-ID: <166852980813.16900.4086051574249767836@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221115104620.120432-1-matthew.auld@intel.com>
+In-Reply-To: <20221115104620.120432-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/ttm=3A_never_purge_busy_objects_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,49 +40,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 15/11/2022 10:46, Andrzej Hajda wrote:
-> On 15.11.2022 11:17, Tvrtko Ursulin wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> Add a missing colon which I accidentally removed in the recent logging
->> changes.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Fixes: a10234fda466 ("drm/i915: Partial abandonment of legacy DRM 
->> logging macros")
->> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> 
-> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+Series: drm/i915/ttm: never purge busy objects (rev2)
+URL   : https://patchwork.freedesktop.org/series/110601/
+State : warning
 
-Thanks, pushed!
+== Summary ==
 
-Regards,
+Error: dim checkpatch failed
+b44746463714 drm/i915/ttm: never purge busy objects
+-:25: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#25: 
+[  +0.005879] Code: 89 fb 48 85 f6 74 11 8b 55 4c 48 8b 7d 30 45 31 c0 31 c9 e8 18 6a e5 e0 80 7d 60 00 74 20 48 8b 45 68
 
-Tvrtko
+total: 0 errors, 1 warnings, 0 checks, 10 lines checked
 
-> Regards
-> Andrzej
-> 
->> ---
->>   drivers/gpu/drm/i915/i915_vma.c | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/i915/i915_vma.c 
->> b/drivers/gpu/drm/i915/i915_vma.c
->> index 3b969d679c1e..947fde68e5f5 100644
->> --- a/drivers/gpu/drm/i915/i915_vma.c
->> +++ b/drivers/gpu/drm/i915/i915_vma.c
->> @@ -73,7 +73,7 @@ static void vma_print_allocator(struct i915_vma 
->> *vma, const char *reason)
->>       char buf[512];
->>       if (!vma->node.stack) {
->> -        drm_dbg(&to_i915(vma->obj->base.dev)->drm
->> +        drm_dbg(&to_i915(vma->obj->base.dev)->drm,
->>               "vma.node [%08llx + %08llx] %s: unknown owner\n",
->>               vma->node.start, vma->node.size, reason);
->>           return;
-> 
+
