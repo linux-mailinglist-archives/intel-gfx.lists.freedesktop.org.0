@@ -2,49 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D58F6629ACF
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Nov 2022 14:41:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD03D629AF2
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Nov 2022 14:45:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47DF810E3F6;
-	Tue, 15 Nov 2022 13:41:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8D4310E3F4;
+	Tue, 15 Nov 2022 13:45:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A822910E066;
- Tue, 15 Nov 2022 13:41:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668519660; x=1700055660;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=mhVtNGhEmDJ5WPRVER5+cwaw0tm9569XaU4314zyHpU=;
- b=D4Eixzk9Le+lzDx06wppMTeOnNz4598/AUapGVlvuqIwyOcpe38Bv/b4
- o/jDXVyWj9w1a/5aYtiYKpz5BtzNS3cQ7gWO0NWPOIiYBry5rsHlT+IQW
- CoXTmiaplc2jeTam+/LdYwb4OecpXNToiM7yUskF889GaoQlLjM1cGWVD
- pzZuENDRi41NNiM59MsXAgsI3GbBNAkjU6JNHqMRZHzq5lX9snZdwn2M9
- A3WPUzTwuQgfnGmUj8gdmKSqPcPq8/abeJNVHSh+fH6/1kHYiclrSLLJt
- TlNhBFgYF4UGC6EiYLOM6l006ecNpd6qSYnaXBI9tWS8VVDjU3a6LIK0o Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="314062532"
-X-IronPort-AV: E=Sophos;i="5.96,166,1665471600"; d="scan'208";a="314062532"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2022 05:41:00 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="744595380"
-X-IronPort-AV: E=Sophos;i="5.96,166,1665471600"; d="scan'208";a="744595380"
-Received: from bnilawar-desk1.iind.intel.com ([10.145.169.158])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2022 05:40:57 -0800
-From: Badal Nilawar <badal.nilawar@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 15 Nov 2022 19:14:40 +0530
-Message-Id: <20221115134440.3669021-2-badal.nilawar@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221115134440.3669021-1-badal.nilawar@intel.com>
-References: <20221115134440.3669021-1-badal.nilawar@intel.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3ABB410E3F4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Nov 2022 13:45:35 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 443F16178D;
+ Tue, 15 Nov 2022 13:45:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1ED25C433D6;
+ Tue, 15 Nov 2022 13:45:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1668519933;
+ bh=mgiumfKNtR2DsIC3T/tEgr3bQoFDgYgO9NMTO8ZjdOA=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=I8jVf9JiLFt8ibd/ATr8s1TNXEslrh1G0M/tVJm/S3XmBeqohwB5DBXyvZ9Qfhcek
+ DhupHDp6s+wOvS/o+pJLIGUrZv++z4UqqgFLeZcjEh/KRJjoVptyYLjAUfZxHNcthX
+ BNFP+803yENJ2RUuGOdicSaXx42w4HNy6PFKunl8=
+Date: Tue, 15 Nov 2022 14:45:30 +0100
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Alexander Usyskin <alexander.usyskin@intel.com>
+Message-ID: <Y3OX+uQ7PN5thWSU@kroah.com>
+References: <20221115111438.1639527-1-alexander.usyskin@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/1] drm/i915/mtl: Enable Idle Messaging for GSC
- CS
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221115111438.1639527-1-alexander.usyskin@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2] mei: add timeout to send
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,80 +48,221 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, rodrigo.vivi@intel.com
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@redhat.com>, Tomas Winkler <tomas.winkler@intel.com>,
+ Vitaly Lubart <vitaly.lubart@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+On Tue, Nov 15, 2022 at 01:14:38PM +0200, Alexander Usyskin wrote:
+> When driver wakes up the firmware from the low power state, it is sending
+> a memory ready message.
+> The send is done via synchronous/blocking function to ensure that firmware
+> is in ready state. However, in case of firmware undergoing reset send
+> might be block forever.
+> To address this issue a timeout is added to blocking write command on
+> the internal bus.
 
-By defaut idle mesaging is disabled for GSC CS so to unblock RC6
-entry on media tile idle messaging need to be enabled.
+Odd formatting of the text :(
 
-v2:
- - Fix review comments (Vinay)
- - Set GSC idle hysterisis to 5 us (Badal)
+> 
+> Introduce the __mei_cl_send_timeout function to use instead of
+> __mei_cl_send in cases where timeout is required.
+> The mei_cl_write has only two callers and there is no need to split
+> it into two functions.
+> 
+> Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
+> ---
+> V2: address review comments:
+>  - split __mei_cl_send and __mei_cl_send_timeout
+>  - add units to timeout KDoc
+>  - use MAX_SCHEDULE_TIMEOUT to squash wait to one macro
+> 
+>  drivers/misc/mei/bus-fixup.c | 14 +++++++++-----
+>  drivers/misc/mei/bus.c       | 22 ++++++++++++++++++++--
+>  drivers/misc/mei/client.c    | 18 ++++++++++++++----
+>  drivers/misc/mei/client.h    |  2 +-
+>  drivers/misc/mei/main.c      |  2 +-
+>  drivers/misc/mei/mei_dev.h   |  2 ++
+>  6 files changed, 47 insertions(+), 13 deletions(-)
+> 
+> diff --git a/drivers/misc/mei/bus-fixup.c b/drivers/misc/mei/bus-fixup.c
+> index 71fbf0bc8453..9959b8e8e91d 100644
+> --- a/drivers/misc/mei/bus-fixup.c
+> +++ b/drivers/misc/mei/bus-fixup.c
+> @@ -188,17 +188,20 @@ static int mei_fwver(struct mei_cl_device *cldev)
+>  	return ret;
+>  }
+>  
+> +#define GFX_MEMORY_READY_TIMEOUT 200
 
-Bspec: 71496
+units?
 
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_engine_pm.c | 18 ++++++++++++++++++
- drivers/gpu/drm/i915/gt/intel_gt_regs.h   |  4 ++++
- 2 files changed, 22 insertions(+)
+> +
+>  static int mei_gfx_memory_ready(struct mei_cl_device *cldev)
+>  {
+>  	struct mkhi_gfx_mem_ready req = {0};
+> -	unsigned int mode = MEI_CL_IO_TX_INTERNAL;
+> +	unsigned int mode = MEI_CL_IO_TX_INTERNAL | MEI_CL_IO_TX_BLOCKING;
+>  
+>  	req.hdr.group_id = MKHI_GROUP_ID_GFX;
+>  	req.hdr.command = MKHI_GFX_MEMORY_READY_CMD_REQ;
+>  	req.flags = MKHI_GFX_MEM_READY_PXP_ALLOWED;
+>  
+>  	dev_dbg(&cldev->dev, "Sending memory ready command\n");
+> -	return __mei_cl_send(cldev->cl, (u8 *)&req, sizeof(req), 0, mode);
+> +	return __mei_cl_send_timeout(cldev->cl, (u8 *)&req, sizeof(req), 0,
+> +				     mode, GFX_MEMORY_READY_TIMEOUT);
+>  }
+>  
+>  static void mei_mkhi_fix(struct mei_cl_device *cldev)
+> @@ -263,12 +266,13 @@ static void mei_gsc_mkhi_fix_ver(struct mei_cl_device *cldev)
+>  
+>  	if (cldev->bus->pxp_mode == MEI_DEV_PXP_INIT) {
+>  		ret = mei_gfx_memory_ready(cldev);
+> -		if (ret < 0)
+> +		if (ret < 0) {
+>  			dev_err(&cldev->dev, "memory ready command failed %d\n", ret);
+> -		else
+> +		} else {
+>  			dev_dbg(&cldev->dev, "memory ready command sent\n");
+> +			cldev->bus->pxp_mode = MEI_DEV_PXP_SETUP;
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-index b0a4a2dbe3ee..5522885b2db0 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-@@ -15,6 +15,22 @@
- #include "intel_rc6.h"
- #include "intel_ring.h"
- #include "shmem_utils.h"
-+#include "intel_gt_regs.h"
-+
-+static void intel_gsc_idle_msg_enable(struct intel_engine_cs *engine)
-+{
-+	struct drm_i915_private *i915 = engine->i915;
-+
-+	if (IS_METEORLAKE(i915) && engine->id == GSC0) {
-+		intel_uncore_write(engine->gt->uncore,
-+				   RC_PSMI_CTRL_GSCCS,
-+				   _MASKED_BIT_DISABLE(IDLE_MSG_DISABLE));
-+		/* 5 us hysterisis */
-+		intel_uncore_write(engine->gt->uncore,
-+				   PWRCTX_MAXCNT_GSCCS,
-+				   0xA);
-+	}
-+}
- 
- static void dbg_poison_ce(struct intel_context *ce)
- {
-@@ -275,6 +291,8 @@ void intel_engine_init__pm(struct intel_engine_cs *engine)
- 
- 	intel_wakeref_init(&engine->wakeref, rpm, &wf_ops);
- 	intel_engine_init_heartbeat(engine);
-+
-+	intel_gsc_idle_msg_enable(engine);
- }
- 
- /**
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-index 07031e03f80c..20472eb15364 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-@@ -913,6 +913,10 @@
- #define  MSG_IDLE_FW_MASK	REG_GENMASK(13, 9)
- #define  MSG_IDLE_FW_SHIFT	9
- 
-+#define	RC_PSMI_CTRL_GSCCS	_MMIO(0x11a050)
-+#define	  IDLE_MSG_DISABLE	BIT(0)
-+#define PWRCTX_MAXCNT_GSCCS	_MMIO(0x11a054)
-+
- #define FORCEWAKE_MEDIA_GEN9			_MMIO(0xa270)
- #define FORCEWAKE_RENDER_GEN9			_MMIO(0xa278)
- 
--- 
-2.25.1
+What does the mode change have to do with a timeout?
 
+> +		}
+>  		/* we go to reset after that */
+> -		cldev->bus->pxp_mode = MEI_DEV_PXP_SETUP;
+>  		goto out;
+>  	}
+>  
+> diff --git a/drivers/misc/mei/bus.c b/drivers/misc/mei/bus.c
+> index 1fbe127ff633..63043e8df980 100644
+> --- a/drivers/misc/mei/bus.c
+> +++ b/drivers/misc/mei/bus.c
+> @@ -32,8 +32,26 @@
+>   *
+>   * Return: written size bytes or < 0 on error
+>   */
+> -ssize_t __mei_cl_send(struct mei_cl *cl, const u8 *buf, size_t length, u8 vtag,
+> +inline ssize_t __mei_cl_send(struct mei_cl *cl, const u8 *buf, size_t length, u8 vtag,
+>  		      unsigned int mode)
+
+Why inline?  The compiler is smart enough.
+
+> +{
+> +	return __mei_cl_send_timeout(cl, buf, length, vtag, mode, MAX_SCHEDULE_TIMEOUT);
+
+So this will block for how long?  Please document this.
+
+> +}
+> +
+> +/**
+> + * __mei_cl_send_timeout - internal client send (write)
+> + *
+> + * @cl: host client
+> + * @buf: buffer to send
+> + * @length: buffer length
+> + * @vtag: virtual tag
+> + * @mode: sending mode
+> + * @timeout: send timeout in milliseconds for blocking writes
+
+What do you mean "for blocking writes"?
+
+And what do you use here to wait "for forever"?
+
+> + *
+> + * Return: written size bytes or < 0 on error
+> + */
+> +ssize_t __mei_cl_send_timeout(struct mei_cl *cl, const u8 *buf, size_t length, u8 vtag,
+> +			      unsigned int mode, unsigned long timeout)
+>  {
+>  	struct mei_device *bus;
+>  	struct mei_cl_cb *cb;
+> @@ -108,7 +126,7 @@ ssize_t __mei_cl_send(struct mei_cl *cl, const u8 *buf, size_t length, u8 vtag,
+>  		cb->buf.size = 0;
+>  	}
+>  
+> -	rets = mei_cl_write(cl, cb);
+> +	rets = mei_cl_write(cl, cb, timeout);
+>  
+>  	if (mode & MEI_CL_IO_SGL && rets == 0)
+>  		rets = length;
+> diff --git a/drivers/misc/mei/client.c b/drivers/misc/mei/client.c
+> index 6c8b71ae32c8..02c278202ad7 100644
+> --- a/drivers/misc/mei/client.c
+> +++ b/drivers/misc/mei/client.c
+> @@ -1954,10 +1954,11 @@ int mei_cl_irq_write(struct mei_cl *cl, struct mei_cl_cb *cb,
+>   *
+>   * @cl: host client
+>   * @cb: write callback with filled data
+> + * @timeout: send timeout in milliseconds for blocking writes
+
+Again, what is the max, and what do you mean "for blocking writes"?
+
+>   *
+>   * Return: number of bytes sent on success, <0 on failure.
+>   */
+> -ssize_t mei_cl_write(struct mei_cl *cl, struct mei_cl_cb *cb)
+> +ssize_t mei_cl_write(struct mei_cl *cl, struct mei_cl_cb *cb, unsigned long timeout)
+
+Why not have mei_cl_write() and mei_cl_write_timeout() like you do for
+"send"?
+
+>  {
+>  	struct mei_device *dev;
+>  	struct mei_msg_data *buf;
+> @@ -2081,11 +2082,20 @@ ssize_t mei_cl_write(struct mei_cl *cl, struct mei_cl_cb *cb)
+>  	if (blocking && cl->writing_state != MEI_WRITE_COMPLETE) {
+>  
+>  		mutex_unlock(&dev->device_lock);
+> -		rets = wait_event_interruptible(cl->tx_wait,
+> -				cl->writing_state == MEI_WRITE_COMPLETE ||
+> -				(!mei_cl_is_connected(cl)));
+> +		rets = wait_event_interruptible_timeout(cl->tx_wait,
+> +							cl->writing_state == MEI_WRITE_COMPLETE ||
+> +							(!mei_cl_is_connected(cl)),
+> +							msecs_to_jiffies(timeout));
+>  		mutex_lock(&dev->device_lock);
+> +		/* clean all queue on timeout as something fatal happened */
+> +		if (rets == 0) {
+> +			rets = -ETIME;
+> +			mei_io_tx_list_free_cl(&dev->write_list, cl, NULL);
+> +			mei_io_tx_list_free_cl(&dev->write_waiting_list, cl, NULL);
+> +		}
+>  		/* wait_event_interruptible returns -ERESTARTSYS */
+> +		if (rets > 0)
+> +			rets = 0;
+>  		if (rets) {
+>  			if (signal_pending(current))
+>  				rets = -EINTR;
+> diff --git a/drivers/misc/mei/client.h b/drivers/misc/mei/client.h
+> index 418056fb1489..9052860bcfe0 100644
+> --- a/drivers/misc/mei/client.h
+> +++ b/drivers/misc/mei/client.h
+> @@ -246,7 +246,7 @@ int mei_cl_connect(struct mei_cl *cl, struct mei_me_client *me_cl,
+>  int mei_cl_irq_connect(struct mei_cl *cl, struct mei_cl_cb *cb,
+>  		       struct list_head *cmpl_list);
+>  int mei_cl_read_start(struct mei_cl *cl, size_t length, const struct file *fp);
+> -ssize_t mei_cl_write(struct mei_cl *cl, struct mei_cl_cb *cb);
+> +ssize_t mei_cl_write(struct mei_cl *cl, struct mei_cl_cb *cb, unsigned long timeout);
+>  int mei_cl_irq_write(struct mei_cl *cl, struct mei_cl_cb *cb,
+>  		     struct list_head *cmpl_list);
+>  
+> diff --git a/drivers/misc/mei/main.c b/drivers/misc/mei/main.c
+> index 930887e7e38d..632d4ae21e46 100644
+> --- a/drivers/misc/mei/main.c
+> +++ b/drivers/misc/mei/main.c
+> @@ -383,7 +383,7 @@ static ssize_t mei_write(struct file *file, const char __user *ubuf,
+>  		goto out;
+>  	}
+>  
+> -	rets = mei_cl_write(cl, cb);
+> +	rets = mei_cl_write(cl, cb, MAX_SCHEDULE_TIMEOUT);
+
+Why this specific value?
+
+thanks,
+
+greg k-h
