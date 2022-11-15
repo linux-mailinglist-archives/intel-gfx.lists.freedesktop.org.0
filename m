@@ -2,56 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9390E629692
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Nov 2022 12:00:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 895886296BA
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Nov 2022 12:05:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3AF110E12A;
-	Tue, 15 Nov 2022 11:00:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19CF710E3A2;
+	Tue, 15 Nov 2022 11:05:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3540910E12A
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Nov 2022 11:00:51 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4638D10E388;
+ Tue, 15 Nov 2022 11:05:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668510051; x=1700046051;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=P65ZuIj2sdMIpCRlybj5SjBVuOqobLKy4oZ2gl0fcWQ=;
- b=bgVo45QothTojlOnLnFKXdIu/rTsBYMkpJDDiGCSgtewSZIidUiOHb9E
- TVg6zjs5UNqCQ7LssPnLHNrI8Y526ulRLIRPvHtXnGmHtbXS6g5EGQq/t
- t7UOgVuBCrCV4zQCCsVmoAqEMkNjQjIJCJe5ln4pxESH+uGXUMfOpQfHe
- 7d2OurXoso6Gfw3/rXsShcXFb6rxHVlTRiW8eTVVKui2HHGyv6LMPMhMv
- CV5Ir6QvZs7xPhSVk/Ztv7IoFD/ZhQi1MaisUPIHyVau2jsSN91jVGVTw
- NdQp2kEKPuYj39ZO72d8QUDgqw4BAHNZqtYWm6ZMIsdMAK9ueIFvlx7pD g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="313373216"
-X-IronPort-AV: E=Sophos;i="5.96,165,1665471600"; d="scan'208";a="313373216"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2022 03:00:50 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="702394112"
-X-IronPort-AV: E=Sophos;i="5.96,165,1665471600"; d="scan'208";a="702394112"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga008.fm.intel.com with SMTP; 15 Nov 2022 03:00:47 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 15 Nov 2022 13:00:46 +0200
-Date: Tue, 15 Nov 2022 13:00:46 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Message-ID: <Y3NxXuHncySq1aok@intel.com>
-References: <20221028094411.3673476-1-ankit.k.nautiyal@intel.com>
- <20221028094411.3673476-4-ankit.k.nautiyal@intel.com>
- <Y21nzJlANRVahZ0+@intel.com>
- <c8d47583-2bd6-7383-14f4-d622b9eefa36@intel.com>
+ t=1668510327; x=1700046327;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=0Gl1FVhlljgxOdpNR83NFkf+br7ZX9PI8YIWUeojVoM=;
+ b=k65SQV2V3GmAqfi28BkeWosOBlh5DqETdiXwMdyTslEo/VT06NUZO5YL
+ qc+PE2PbhSlamhkxKhRVK4UVmkCe90lkXthSlJ1tjRPx8jeWANys5Fw7s
+ x0tHtmSpEL1iTvCNzPw91wMue3v8vPizqwPGArlrL922lc5/QaNVDF3CL
+ r9OJ81xG7KemSWzMAEiX6oQNSDv4U+pKphC+ybP9OBFKRHoyeHP8tDhuZ
+ FeWX40F2/A0QbYMqpeaVSW7gbh/F4j31RaG5yCGANYyYgi36A6m1VhR6S
+ CB4662Q2FtE3TKNuTSQQiG1vZJ/KZwK2Mkaec1p7QRVZ67Tb1lBYTiK9p A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="374359252"
+X-IronPort-AV: E=Sophos;i="5.96,165,1665471600"; d="scan'208";a="374359252"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2022 03:05:26 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="670047935"
+X-IronPort-AV: E=Sophos;i="5.96,165,1665471600"; d="scan'208";a="670047935"
+Received: from nolanjax-mobl1.ger.corp.intel.com (HELO [10.252.18.104])
+ ([10.252.18.104])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2022 03:05:23 -0800
+Message-ID: <a828c36b-8f89-24b0-b287-dabf62f82085@intel.com>
+Date: Tue, 15 Nov 2022 11:05:21 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <c8d47583-2bd6-7383-14f4-d622b9eefa36@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v5 3/9] drm/i915/dp: Replace intel_dp.dfp
- members with the new crtc_state sink_format
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.4.1
+Content-Language: en-GB
+To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20221113075732.32100-1-niranjana.vishwanathapura@intel.com>
+ <20221113075732.32100-21-niranjana.vishwanathapura@intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20221113075732.32100-21-niranjana.vishwanathapura@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v7 20/20] drm/i915/vm_bind: Async vm_unbind
+ support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,120 +63,161 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: paulo.r.zanoni@intel.com, jani.nikula@intel.com, thomas.hellstrom@intel.com,
+ daniel.vetter@intel.com, christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 15, 2022 at 12:23:53PM +0530, Nautiyal, Ankit K wrote:
+On 13/11/2022 07:57, Niranjana Vishwanathapura wrote:
+> Asynchronously unbind the vma upon vm_unbind call.
+> Fall back to synchronous unbind if backend doesn't support
+> async unbind or if async unbind fails.
 > 
-> On 11/11/2022 2:36 AM, Ville Syrjälä wrote:
-> > On Fri, Oct 28, 2022 at 03:14:05PM +0530, Ankit Nautiyal wrote:
-> >> The decision to use DFP output format conversion capabilities should be
-> >> during compute_config phase.
-> >>
-> >> This patch uses the members of intel_dp->dfp to only store the
-> >> format conversion capabilities of the DP device and uses the crtc_state
-> >> sink_format member, to program the protocol-converter for
-> >> colorspace/format conversion.
-> >>
-> >> v2: Use sink_format to determine the color conversion config for the
-> >> pcon (Ville).
-> >>
-> >> v3: Fix typo: missing 'break' in switch case (lkp kernel test robot).
-> >>
-> >> v4: Add helper to check if DP supports YCBCR420.
-> >>
-> >> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> >> ---
-> >>   drivers/gpu/drm/i915/display/intel_dp.c | 122 ++++++++++++++++--------
-> >>   1 file changed, 84 insertions(+), 38 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> >> index 0e4f7b467970..95d0c653db7f 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> >> @@ -790,6 +790,7 @@ intel_dp_output_format(struct intel_connector *connector,
-> >>   		       enum intel_output_format sink_format)
-> >>   {
-> >>   	struct intel_dp *intel_dp = intel_attached_dp(connector);
-> >> +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> >>   
-> >>   	if (!connector->base.ycbcr_420_allowed ||
-> >>   	    sink_format != INTEL_OUTPUT_FORMAT_YCBCR420)
-> >> @@ -799,6 +800,10 @@ intel_dp_output_format(struct intel_connector *connector,
-> >>   	    intel_dp->dfp.ycbcr_444_to_420)
-> >>   		return INTEL_OUTPUT_FORMAT_RGB;
-> >>   
-> >> +	/* Prefer 4:2:0 passthrough over 4:4:4->4:2:0 conversion */
-> >> +	if (DISPLAY_VER(i915) >= 11 && intel_dp->dfp.ycbcr420_passthrough)
-> >> +		return INTEL_OUTPUT_FORMAT_YCBCR420;
-> >> +
-> >>   	if (intel_dp->dfp.ycbcr_444_to_420)
-> >>   		return INTEL_OUTPUT_FORMAT_YCBCR444;
-> >>   	else
-> > The else branch here is also 420, so the whole logic
-> > here doesn't seem to flow entirely sensibly.
-> >
-> > Thinking a bit more abstractly, could we restate
-> > this whole problem as something more like this?
-> >
-> > if (source_can_output(sink_format))
-> > 	return sink_format;
-> >
-> > if (source_can_output(RGB) &&
-> >      dfp_can_convert_from_rgb(sink_format))
-> > 	return RGB;
-> >
-> > if (source_can_output(YCBCR444) &&
-> >      dfp_can_convert_from_ycbcr444(sink_format))
-> > 	return YCBCR444;
+> No need for vm_unbind out fence support as i915 will internally
+> handle all sequencing and user need not try to sequence any
+> operation with the unbind completion.
 > 
-> This make sense and will also help to add 422 support easier.
+> v2: use i915_vma_destroy_async in vm_unbind ioctl
 > 
-> I am only seeing one problem: about how to have DSC considerations 
-> during source_can_output( ).
-> 
-> Gen 11+ should support YCBCR420. So for any ycbcr420_only mode we should 
-> have sink_format, and output_format : YCbCr420.
-> 
-> This works well for cases where DSC doesn't get in picture. When higher 
-> modes like 8k60 ycbcr420_only are involved, we need to use DSC.
-> 
-> Currently, our DSC1.1 does not support YCbCr420. The problem is that we 
-> go for, dsc_compute_config at a later time.
-> 
-> This issue might have been masked, due to the messy order of checks in  
-> intel_dp_output_format.
-> 
-> Specifically With HDMI2.1 PCONs supporting color conv, for such a case 
-> we can have output_format as RGB, and sink_format as YCbCr420.
-> 
-> The DSC compression with RGB and then configure PCON to Decompress, 
-> conv. to YCbCr420.
-> 
-> So can we put a check in source_can_output for Gen11+ where DSC might be 
-> required, so that with source_can_output(YCBCR420) returns false in such 
-> case, where DSC is the only way?
+> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 
-I'm thinking it should work well enough without any extra checks
-since we'll always try RGB before YCbC4 4:2:0. I guess the only
-case where it could fail is if the sink only supports 4:2:0 for
-that particular mode. Then we'd also try direct YCbC4 4:2:0 output
-on icl+. Dunno if such sinks are still a thing when DSC is in the
-picture.
+This only does it for non-partial vma, right? Or was that changed somewhere?
 
-Hmm. Do PCONs even support DSC + color conversion/etc. at the
-same time? They'd have to decompress and potentially recompress
-the data in that case.
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
-The problem with adding DSC checks into source_can_output() is
-that we'd need to express those in a way that is also usable in
-.mode_valid() since we'd want to use the same code there I think.
-Looks like we do have some DSC stuff in there already, but it
-doesn't seem to take that into account in the link bandwidth
-check. So to me it looks like the whole DSC support is incomplete
-anyway.
-
--- 
-Ville Syrjälä
-Intel
+> ---
+>   .../drm/i915/gem/i915_gem_vm_bind_object.c    |  2 +-
+>   drivers/gpu/drm/i915/i915_vma.c               | 51 +++++++++++++++++--
+>   drivers/gpu/drm/i915/i915_vma.h               |  1 +
+>   include/uapi/drm/i915_drm.h                   |  3 +-
+>   4 files changed, 51 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c b/drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c
+> index d87d1210365b..36651b447966 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c
+> @@ -210,7 +210,7 @@ static int i915_gem_vm_unbind_vma(struct i915_address_space *vm,
+>   	 */
+>   	obj = vma->obj;
+>   	i915_gem_object_lock(obj, NULL);
+> -	i915_vma_destroy(vma);
+> +	i915_vma_destroy_async(vma);
+>   	i915_gem_object_unlock(obj);
+>   
+>   	i915_gem_object_put(obj);
+> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+> index 7cf77c67d755..483d25f2425c 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.c
+> +++ b/drivers/gpu/drm/i915/i915_vma.c
+> @@ -42,6 +42,8 @@
+>   #include "i915_vma.h"
+>   #include "i915_vma_resource.h"
+>   
+> +static struct dma_fence *__i915_vma_unbind_async(struct i915_vma *vma);
+> +
+>   static inline void assert_vma_held_evict(const struct i915_vma *vma)
+>   {
+>   	/*
+> @@ -1713,7 +1715,7 @@ void i915_vma_reopen(struct i915_vma *vma)
+>   	spin_unlock_irq(&gt->closed_lock);
+>   }
+>   
+> -static void force_unbind(struct i915_vma *vma)
+> +static void force_unbind(struct i915_vma *vma, bool async)
+>   {
+>   	if (!drm_mm_node_allocated(&vma->node))
+>   		return;
+> @@ -1727,7 +1729,21 @@ static void force_unbind(struct i915_vma *vma)
+>   		i915_vma_set_purged(vma);
+>   
+>   	atomic_and(~I915_VMA_PIN_MASK, &vma->flags);
+> -	WARN_ON(__i915_vma_unbind(vma));
+> +	if (async) {
+> +		struct dma_fence *fence;
+> +
+> +		fence = __i915_vma_unbind_async(vma);
+> +		if (IS_ERR_OR_NULL(fence)) {
+> +			async = false;
+> +		} else {
+> +			dma_resv_add_fence(vma->obj->base.resv, fence,
+> +					   DMA_RESV_USAGE_READ);
+> +			dma_fence_put(fence);
+> +		}
+> +	}
+> +
+> +	if (!async)
+> +		WARN_ON(__i915_vma_unbind(vma));
+>   	GEM_BUG_ON(drm_mm_node_allocated(&vma->node));
+>   }
+>   
+> @@ -1787,7 +1803,7 @@ void i915_vma_destroy_locked(struct i915_vma *vma)
+>   {
+>   	lockdep_assert_held(&vma->vm->mutex);
+>   
+> -	force_unbind(vma);
+> +	force_unbind(vma, false);
+>   	list_del_init(&vma->vm_link);
+>   	release_references(vma, vma->vm->gt, false);
+>   }
+> @@ -1798,7 +1814,34 @@ void i915_vma_destroy(struct i915_vma *vma)
+>   	bool vm_ddestroy;
+>   
+>   	mutex_lock(&vma->vm->mutex);
+> -	force_unbind(vma);
+> +	force_unbind(vma, false);
+> +	list_del_init(&vma->vm_link);
+> +	vm_ddestroy = vma->vm_ddestroy;
+> +	vma->vm_ddestroy = false;
+> +
+> +	/* vma->vm may be freed when releasing vma->vm->mutex. */
+> +	gt = vma->vm->gt;
+> +	mutex_unlock(&vma->vm->mutex);
+> +	release_references(vma, gt, vm_ddestroy);
+> +}
+> +
+> +void i915_vma_destroy_async(struct i915_vma *vma)
+> +{
+> +	bool vm_ddestroy, async = vma->obj->mm.rsgt;
+> +	struct intel_gt *gt;
+> +
+> +	if (dma_resv_reserve_fences(vma->obj->base.resv, 1))
+> +		async = false;
+> +
+> +	mutex_lock(&vma->vm->mutex);
+> +	/*
+> +	 * Ensure any asynchronous binding is complete while using
+> +	 * async unbind as we will be releasing the vma here.
+> +	 */
+> +	if (async && i915_active_wait(&vma->active))
+> +		async = false;
+> +
+> +	force_unbind(vma, async);
+>   	list_del_init(&vma->vm_link);
+>   	vm_ddestroy = vma->vm_ddestroy;
+>   	vma->vm_ddestroy = false;
+> diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
+> index 737ef310d046..25f15965dab8 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.h
+> +++ b/drivers/gpu/drm/i915/i915_vma.h
+> @@ -272,6 +272,7 @@ void i915_vma_reopen(struct i915_vma *vma);
+>   
+>   void i915_vma_destroy_locked(struct i915_vma *vma);
+>   void i915_vma_destroy(struct i915_vma *vma);
+> +void i915_vma_destroy_async(struct i915_vma *vma);
+>   
+>   #define assert_vma_held(vma) dma_resv_assert_held((vma)->obj->base.resv)
+>   
+> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> index e5600f358a15..431d40bb1dee 100644
+> --- a/include/uapi/drm/i915_drm.h
+> +++ b/include/uapi/drm/i915_drm.h
+> @@ -3969,7 +3969,8 @@ struct drm_i915_gem_vm_bind {
+>    * any error.
+>    *
+>    * VM_BIND/UNBIND ioctl calls executed on different CPU threads concurrently
+> - * are not ordered.
+> + * are not ordered. Furthermore, parts of the VM_UNBIND operation can be done
+> + * asynchronously.
+>    */
+>   struct drm_i915_gem_vm_unbind {
+>   	/** @vm_id: VM (address space) id to bind */
