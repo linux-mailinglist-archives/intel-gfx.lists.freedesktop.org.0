@@ -2,57 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD4B062911D
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Nov 2022 05:11:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 30384629127
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Nov 2022 05:18:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B155F10E012;
-	Tue, 15 Nov 2022 04:11:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DE0510E012;
+	Tue, 15 Nov 2022 04:17:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3461910E012
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Nov 2022 04:11:33 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00D7D10E098
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Nov 2022 04:17:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668485493; x=1700021493;
+ t=1668485875; x=1700021875;
  h=message-id:date:subject:to:references:from:in-reply-to:
  content-transfer-encoding:mime-version;
- bh=IMBN6k+DcpoC6B5iNQyky7HFoFBjsgbUk5SaA0LLVl4=;
- b=KOB54saUqApF9Ts096zTlq7fglZ7Am5UFuvIsclcw+CU9mFLTHPMB0rJ
- 1eJPhbZKb51W0P7briU/79Q2VXxuubbTC38UMs+YYQtibwpWa9uuMSFDi
- 3wHz21f/sUCP6oTX5vdlmngAKSyqY6XeQ4TA+5LivzVRCDL9zMHLd17sD
- u9BUPZlTLsWJ7pyDFrZIPnwLG+oiXCeg5uLnDDybi9kau0mXx9TFatfYF
- Iocp0YxbkPxN9vGBi7EK/biSVPv/f+ypiENNiEkvvONdkCoCWtKWxg6Yb
- IHjDM7l4ZYUPcGrKDeGULxCWxx+zgBTMgwl8h5+4lrJGoMGZZ9zONS4ec g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="374287951"
-X-IronPort-AV: E=Sophos;i="5.96,164,1665471600"; d="scan'208";a="374287951"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2022 20:11:31 -0800
+ bh=ah9uFhUQxhh4gLSMQMBrQY1jDNvqK7xU24AKxdyUyx4=;
+ b=SLiExB8RiEMJFVoR+1uAhRWdyc2VLIcihYA6OdEHkz1+yW8t97V6tjLh
+ +RD07+fjCHTzsXOCZSrgqBoa1lEhXce73Kpx43x+ezmatY6z1uMfvj0YB
+ Sti8v5o1EnYj72fSbalYsbCDEhXrAXlVrS8MDmJbyDEz3Yjmn81PcXGz8
+ y/GU9CNqN5V0/1HKHcOsYJNuTGI1svLyxi2mEvnZPKNcS8QMJAGVauRd4
+ jjV8ix5hFt1HW/Au/n9mqHLHHC3WqoZLIgxI1Y2xGBMLW9kom10MdeAGp
+ Mup7nIgJRf/Z9fuAly8xE21buMVhcbVJvtxKFIib/rH/utA4CGlukLmS8 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="338949981"
+X-IronPort-AV: E=Sophos;i="5.96,164,1665471600"; d="scan'208";a="338949981"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2022 20:17:54 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="727799874"
-X-IronPort-AV: E=Sophos;i="5.96,164,1665471600"; d="scan'208";a="727799874"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by FMSMGA003.fm.intel.com with ESMTP; 14 Nov 2022 20:11:23 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="763771653"
+X-IronPort-AV: E=Sophos;i="5.96,164,1665471600"; d="scan'208";a="763771653"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orsmga004.jf.intel.com with ESMTP; 14 Nov 2022 20:17:54 -0800
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Mon, 14 Nov 2022 20:11:23 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2375.31; Mon, 14 Nov 2022 20:17:53 -0800
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Mon, 14 Nov 2022 20:11:23 -0800
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2375.31; Mon, 14 Nov 2022 20:17:53 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Mon, 14 Nov 2022 20:17:53 -0800
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.109)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Mon, 14 Nov 2022 20:11:22 -0800
+ 15.1.2375.31; Mon, 14 Nov 2022 20:17:53 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Pk4Jp6jIwAqVcm7WXBHpLC14zMEvNklfkTVpubrc4clDHk7nQhlrFjxjHPf6oUKsEr5mpP/Y37nsIMzlsJin3ukYFvGIZzq4qcbAeRfruFsJ+SIyxFQAw30qPPSoLNQLL9TOV7n8vnrUoKGXQFGO2LnOerRsGCAKwwUUMy36uuqSMbfxhHlj67Y5eBhAJwBSQeMe/8u55GG05s2FONB+E0FqgmCi3iWogVImdpEJ+1Dl7U/iKld+lBgpfgS+a4ydMcbWjwO5PJa9NMbVwU1eKjsGNHcheh59MIWfeSbtXtwHOgfFy2ZNlwRzfKLkI0DSMPzdE6k04rvwXu9EG46tFg==
+ b=c/giVhmWAz3//IGrZ+bjBTKaaeDhF1gztQ4vRuMsqaeq3w0P7NFN97c+4kUv6e80rSRanwabpxmip+JXhi8H/Kvn2CZty/XB8tY4+JpJugDCTijZSYTb7D5NI89Aznr8DGiHUB9IxrPML/o2khzo1401obFUjV61pNre6nU+kgEDsaG93rH08AO51Ay20nCiJekNvtPivoApianWsEwxikwf0kVLuKUyWgL/hzPA46NvuCdGOaFJ6gfa5ysscjS9l98QDHH4NdGYrgqibrmle5lQFFwkDLgcZfIXjcAOciPKHbtp1HIB3mvUGEWxUYs7BMWeStcA5VNHZcW3SjSEIg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lvSgHB4hh9uCBLm2ZX0qc9yaauv7aQgQ9FS/ucmvysE=;
- b=Tt+YJC0rCEtDDES1qqUfzIyQdOG6fFiUZwQ/9US3XcuenuhpwJbCFKiNfsfoGvir3/TlgQB9jRuHYSGNpkpKnzajCeHWOfuAaEuVkSRjfgU2y5zZ1RPXu0SSnJxl1yRTjRQ9/TT4VnKq3GLjmWG+WgNdvmtvW5ThSCFg5M6PADgCO2OA+IEjHGG3pnm3f8y/RbFl9KilK66zzpYsx5Cor2QY9Jiws87Ygj24g9ZGHrXkDZwzBl0DG1MrK+GNMGHA59/e2DNmDeYb7AmfJn0sbsrNJF3Mt1DCjR9sJQiBN30yFTuolnR1rb5tmSxHm5t/ZOgM0x0geANxM7PWBKhb6Q==
+ bh=uOoIamZ1js6YBRplekpZrcvFMSC4gU56CRJvoaGvRZA=;
+ b=BPNXND7URWZQE3E667jSn8fAIoQ7z55DA8rE8TfToao3gCQh5YEmxqtUm15ssMa/EomYdizu+d9u2ZEjLC6dO8RxAR6HkM5KD2feq30FMThDsrai/J31fhd9SDalE4AH6nkEA/eKPAym7bRpN7AnWqXcRrEGD96Qo2lvkF1A3xTrv+49xdV8AjqlearARmkmlxr+u9inbkZBsbgUAXRjuqEZD6nw+Dgqw1FzWMeuXZ3ot0gWoMQqYBoXutW1OaPkn5hdQgNwLGhVrHUk52w8I7PPPiEnyInjQUx4J5Tq8TJD3FuBpymDZ07pld/rJnHCRTHpG4bZUGfpQ1zR07FoaA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -62,89 +66,89 @@ Received: from DM4PR11MB5488.namprd11.prod.outlook.com (2603:10b6:5:39d::5) by
  BL1PR11MB5493.namprd11.prod.outlook.com (2603:10b6:208:31f::5) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5813.17; Tue, 15 Nov 2022 04:11:21 +0000
+ 15.20.5813.17; Tue, 15 Nov 2022 04:17:51 +0000
 Received: from DM4PR11MB5488.namprd11.prod.outlook.com
  ([fe80::bff2:8e4f:a657:6095]) by DM4PR11MB5488.namprd11.prod.outlook.com
  ([fe80::bff2:8e4f:a657:6095%5]) with mapi id 15.20.5813.017; Tue, 15 Nov 2022
- 04:11:21 +0000
-Message-ID: <8722056e-3e6f-8ec6-6586-eaa9711d6b49@intel.com>
-Date: Mon, 14 Nov 2022 20:11:18 -0800
+ 04:17:51 +0000
+Message-ID: <52dcfbbc-763f-fec2-8c35-9fdb5df1e8e7@intel.com>
+Date: Mon, 14 Nov 2022 20:17:48 -0800
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
 Content-Language: en-US
 To: Alan Previn <alan.previn.teres.alexis@intel.com>,
  <intel-gfx@lists.freedesktop.org>
 References: <20221021173946.366210-1-alan.previn.teres.alexis@intel.com>
- <20221021173946.366210-3-alan.previn.teres.alexis@intel.com>
+ <20221021173946.366210-4-alan.previn.teres.alexis@intel.com>
 From: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
-In-Reply-To: <20221021173946.366210-3-alan.previn.teres.alexis@intel.com>
+In-Reply-To: <20221021173946.366210-4-alan.previn.teres.alexis@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0PR03CA0297.namprd03.prod.outlook.com
- (2603:10b6:a03:39e::32) To DM4PR11MB5488.namprd11.prod.outlook.com
+X-ClientProxiedBy: SJ0PR03CA0354.namprd03.prod.outlook.com
+ (2603:10b6:a03:39c::29) To DM4PR11MB5488.namprd11.prod.outlook.com
  (2603:10b6:5:39d::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: DM4PR11MB5488:EE_|BL1PR11MB5493:EE_
-X-MS-Office365-Filtering-Correlation-Id: c589452d-41c9-4af8-b6a5-08dac6bf73d7
+X-MS-Office365-Filtering-Correlation-Id: e49dad8b-e909-4b13-0ca3-08dac6c05c20
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ZZ2h0VbLi/NP0fGcW7i2dOcoAQHSfoWcuI7SFGIzCnn/i1/FuKJynd08swRe6zptE/JhpvTMnp+oELUofa0OBs3jt6xgz2bs+wupFCTmDNPgqocDep0MERV3KKhlEnWRTvpOjOrooqFlsNZm0X9zoateSFIiVf6T6XLq6SNxLK8umKch+3G90bSIDwcWUiowfljS+qtY9ld5pq/prqXGo0FqI+Wp8/kVpwXEsVI9MTEqHEpjMToo2rp7ZNWIEumlmbBXl4B4onMrxnkYQLxwnp8OWxdlS3txMNqx5i/CoTdmIor1/QWXeSOeZVqlXRQb5LUwc5eObaBNg9TxNG4YL4L6yevhSZSTV0Xs5W6snUEx+4U2szOjSDc0Dn3o7EvXY7wN6S65Xc3iD74k0xz5niOwDVTyDL+41g4grRSh7XtK3DTX2N/8RyUirgacSON95217zpUiNxJBEjOzXVJfjc1OL1RM5/HmbOX5C3xWuey8Z9qUYIYPDudvAvwvoL2f8j0ejnS1ubryVxHPI5Fx7gzChdTWfi3tqT88C2SzPdx22rzsTWY5tSkVWiBlCEUwCkaPWI8JLYOQUhqWwJO1yA8O9vmte5/tsJPVxSC4H3iYhKBDM7alIU4+HJGvZIcRBm8HwazcuPY7Dj1YiZJcrFStysHHeb1F1HenQseLrooo1xhHaZqyGecQq2DbhQz6BtS/WusvBYfGgnFvKtkgmGUrkIu9fn/ptmKgAgXWbJJ73/9QQg6LoQ5NwYVM1mmehx0/XbAbZeYdnlw+jlTC2cvw+7Ssyyp+hT/x/T6Z+4k=
+X-Microsoft-Antispam-Message-Info: HRqU6+RvE6NdLGbR6l4l9ZzCK5VeOaTr406WXe0ZBvm6dcdxfbVng/XjR+774z2noffXv/eSwg6rZ0SVeZ5Qus023xYx0SeomVDcov3ZFAXVbbxNwiobEhvrBlbweJSOnPNjFwNXa7LKGtQ1PwHovltMCZKqv2GXJezkDI8iHd03MCUIwXgAVQQGrq8xrzHLJdjSjpwkn0tvaMtrszUIaAZS/dXt1OTlaIVyRWJtN1vG2dFOAWbNvpLoW/YJW44e7KhkMvZfbooXE47wR1zvYhQjM6+56mpaiPFvTOU7QMpjI7nbMcexNuBeNvLc9xfRl23A69iPCgpRyuSdAPV+9FWLovDCUDCts3VP7wQ+CUX2JZeZ/81Nkhkrpru3uAEjmvps4mrMGNHwVuUyVdBI4sDpx69PLf3ioSulLwP5iFJ6UZHs/nUmX3//05s7KYdVHSLWoIzpWSFD9BdMQwQn/EWx5XBy1UwyoiBalLReVPe8zqXR7mG981lCRNe0GDnZb+ZvFS3bkQgp84cLXUTu9RgmeoSgtnMJm8s35kBhFg7q5GYcuAIUP8ikqijGUejBHM6L7onNqz4FJibRnVwQlp2VkqIHmqVWua4QbhB01wnAP/GAcA3HtvaQnv3zEc8VZhyTyKwG+pM1cQjSEwSTPHGaUPkQaNLjho/uOBgk7m0lIXrekGXiVQNhhVjQ5+ifVgf4fSBEbYWTouxhiodvCtsELuF1xCKxE7gbrV08ROSg4P8qlxF/ZCuYm4tAX9jNihYu6Q/B+XzQYObvzhE5bjFYPH8g2fQs5+8vsnLfXCQ=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM4PR11MB5488.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230022)(376002)(136003)(346002)(366004)(396003)(39860400002)(451199015)(31686004)(36756003)(86362001)(31696002)(6666004)(6512007)(8936002)(83380400001)(38100700002)(186003)(6506007)(53546011)(2616005)(26005)(6486002)(82960400001)(41300700001)(316002)(66556008)(66946007)(8676002)(66476007)(478600001)(5660300002)(2906002)(43740500002)(45980500001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VjBCRGJyWlVFWXNtMVgxSzc3YVJVYlprMHA2cDk4alFtQmFhd01kZ29JN2xl?=
- =?utf-8?B?VG5HMHp2U1NjbkxnNXZVNllDZWNPMkovbXNLL2RodUl5RjRKRFZOd2JDSEJL?=
- =?utf-8?B?dnlCanl6MTVEMlRSVjFvRndRa0w5NUxRQ0I4OU8vMkt0SEVlZDJWSEdocUU3?=
- =?utf-8?B?Y0VBUE5raDZjcSt0YTdMeURkOHk4OCtLR0FWRFhXdzc4T2YxcFY2TnhaMmh3?=
- =?utf-8?B?cERkbEh1VThtR3hTSzBuZTVYNDFicjI1Nkl6UU1mZ0F5RGhYaGZqM1NONXYw?=
- =?utf-8?B?eXR1ZTB0SXB6Ri9FNzV2UklxTDhiRFJnM3YyMWNWOGxkWEtVNnVubktRN1VQ?=
- =?utf-8?B?L1lOUTNUeGZvQU9Jb0t5Q3hyUzJEL3VzVGx5UThwQ3BmdloyVVRzRW0zSExK?=
- =?utf-8?B?S2NTVS93dWtxMUVOM1VNU3IxL1FGU3U0TFFuUDR1ckFZSEdhNGhUMVFZdmY2?=
- =?utf-8?B?bFk1R21PZFBLU2g1ZzRvZDRXbjVNVW1UZEQ0QitoQ1JTNmcrUFBRWDJVS1Bn?=
- =?utf-8?B?RlhpSUFyWUxSUWlhaElaaUtlL0Nwc0JTeC9MUzNVU3VmWkJkY0tKQXZsN2o5?=
- =?utf-8?B?Nk5WQnF2dkFSNU1QTFBsUzF3RXdjRkRYWlExSEc3L0Z5amNHTWYvQm01Y2g3?=
- =?utf-8?B?ckx5NWlOVExLNXRTd1ZIaFhocUJNRzdjQ1FXWXlhM25VTk5mR2h1QjMvSVJu?=
- =?utf-8?B?SlJhNUZYcmFBUjFwL0FUZUhVcDlBeHl4M09teDFUYk9qNC9YM05ONzNuUlIx?=
- =?utf-8?B?THllMW1LNkpiTmY5bFZESW5zS2hqdURnWlhjWkd5S004TEZiTENieXM2UTNo?=
- =?utf-8?B?MmwwWGJ4SmZjSEdDZ1l6a1BYVVFHQ1VSNENZenl0b3RLUlhIa3E5aXBlUVJv?=
- =?utf-8?B?K1I4QkdjS3F4SE5weHFkbmxsR1p6VEdoa3ozeEQ3TFIwMThnOVVuUWVMazBl?=
- =?utf-8?B?bDhSdS96WnozQS9oNk40RzNPRTlHNmcwN29hMHdTMm1HOEQzaUxoNVFkTXFV?=
- =?utf-8?B?MVRja2h4eDgyR1V5MzJzaWNkL3NzWXJrV2pVb2RNVW16aUIxejV4cWNXcXNM?=
- =?utf-8?B?VVNNMmJlejlXbHM3RDdkeTExWXNzaEYyZzFWUHRiS0NBK3BvbjJiaUpZa2tN?=
- =?utf-8?B?em5UNzZJdjd5UFE0QVVMeVhHdE5za2NwN1pQaEhXTmFmaHJwc0IxV1ZIcTBs?=
- =?utf-8?B?UUtDa2lZeWh2SmUvNXI3aWxKc21YY0Z2NW1NZ3E5ZTBQTlZ5dCtrQTFiVUtr?=
- =?utf-8?B?dUJCbHlVY0lNZzFXdndSemRSYXFuc2ZudDZtc2JYMzJ1WkRIQndvNWl0RlQx?=
- =?utf-8?B?ektHbzl5blM0QWVRRVJ1L3hWSzZ2Y2pNVDdxRUxRSjhPeFY1NUcya25oQlRW?=
- =?utf-8?B?OGxMWm0vQUJDeDZoNXMrQWtFcjJCRjJIdkVaTC9hdytDWlQyaWI3TUxqWFZS?=
- =?utf-8?B?Rk11MUlvaUNSbExLNng5Y2lyU0c5RmtWUjBsR0RWaG9nR3FzZ1pQWU4zRGRz?=
- =?utf-8?B?cDM2dElRM2JXemQrOWRENU82aXIyajd3SmlOQzIwUjFVL0c2dXYxV21nd201?=
- =?utf-8?B?aDFHY0tNWTROdlRiZHJxekZRL3l6K2YzcnF4a21Dc0xzdExlbG16NlgrUjBO?=
- =?utf-8?B?NjBvWFcxN2hZOVdXM1kxSGl6V1FrQnRBREV3ek1zbVRkSHB3QmFoRVBDQU54?=
- =?utf-8?B?YjB0TkVsdFkrUXVtVUdtNGduWk1UMVRnZTVBaGpVU2dxUXFtbjBmandKckRz?=
- =?utf-8?B?YndndnVHTzR6eEZkQUFVS2JyKzZFdmEyclRxcUtUTmZPc2FvSWVtcmNpZTFN?=
- =?utf-8?B?Q3RIMXFFMk1ON1FZOEFYYlBUZGVYOHJjUWYwc1N5N3RkSHdGdUUyZ2l6djdX?=
- =?utf-8?B?TEVZb2h6b2g4TnZEMlhzemcvU1V2dEFQVnhjeHRTQzdrK3hFR2tPT2dhYVFz?=
- =?utf-8?B?VG5WbXFyK3VqN2Jydk9wL2FYT2NVb1FNdWJPUDhGQ0pkWXJMa2FuVlpUSWtE?=
- =?utf-8?B?cm9XVmM3aGowVko1ek5KMHlWZHo0Rlo2cGNuZExxUFlDN1pUWjFycnY5bDVJ?=
- =?utf-8?B?YmUycXNsT0lhR2pUckQwWk53Q2tSVGNKWmZ1N1F3ZlU5VWdKWWV3Znl1UDVL?=
- =?utf-8?B?bXhtR1FtQjdIeWNvd1I1eG5ndS9nMUxXZkFCcjNFWGtwWmxkNHFuN0JRYUEw?=
- =?utf-8?Q?sPHsD8CCM36PtMcN6jcSneY=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: c589452d-41c9-4af8-b6a5-08dac6bf73d7
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SmZzcG1WQzVJeGJYTkZwRlZEZHN2am04OUhNMXBhOTVPcWlFWVd4b2l1VW53?=
+ =?utf-8?B?MUZuaHJDOTBTOUd2Z1RtWWhmenZQeFcySkoxY0F3M1hsZmYya0tBUGVSczJ6?=
+ =?utf-8?B?dmFnMSt6YmhlZFRqZnNoQ3Uzd1RtM2ZpMGtseDZWcEg0YXhnWkJpKzNFOEk5?=
+ =?utf-8?B?OXlCb2hhSTNHNzczUzdIS21WZythR2VhekxXejZScHpveFoycGZFNGRjV1Z1?=
+ =?utf-8?B?YU42L3dnMWJyakJQeEtyOERHbUdtUUxQTW1VZXBZR3dWcTlDdDQ3QVNuMGND?=
+ =?utf-8?B?b2d1VzhrZElQcmxmQkYyWUVyZzQ2R1FKeDU2S05rcWdXYkIydXNSQWdBQUdr?=
+ =?utf-8?B?NVhMWWlqelJwNEZOempBeE1QUGs2Um5uWFFaWUxPNUxiTWZJN1ZwajN3MWZB?=
+ =?utf-8?B?a00vZ3hQZ2VpUWJYQ011a0VyT0VnRHZoSmd5NS9HQllrb1VkU3UzM3dJUWV4?=
+ =?utf-8?B?WVBnaXFLUlk5blRERGNteU12bGZCUE1FSUFNQklLUVRZZ1hWK0piMnY1NE5z?=
+ =?utf-8?B?YVFEcmxtUWZFT2JBd1BPWVFibmV3bVZZcUJydWRiK3NzVEg0QW9ZbHNTTlpN?=
+ =?utf-8?B?d2RFWWVWMUpoYm1sZFRoOVZCa3BnTXplUHhaZ2FTZk1Kb2ZZZGkralpCYS9p?=
+ =?utf-8?B?TVRRbHY3Zzd4NWZDSVhJTzF3MmxSOTd2dkVRUlNxdGE3YUh3aEFkZnVuSHBD?=
+ =?utf-8?B?eWhlMWVaSjEyS3NUcjlPbzZIQkF6UHhmdG1wVFpOdzZjRkZDRkhRTzFqR2Js?=
+ =?utf-8?B?bkRLeWZFQTczUU9KcVV4RnRQN0kvZ25DWURCYkhyN0tSRWJST3JVOFlaMDZH?=
+ =?utf-8?B?TndyYUM5aXIvQWM4Qnl1TXRMNnd1VlBxMjdxc2JtQVdGdmtuWHhDM0NRWURS?=
+ =?utf-8?B?L01acUVpdWE2cTRzSEVMUU5ycklhRzRHOHNJZmFELzZFUlJZWkpaSGZ3VUVx?=
+ =?utf-8?B?TE1GWk5VTlZndEd0QVZOb1YrbHlEWjh2ZEVod0I4eWUwS0FPMmZGS2diUG5a?=
+ =?utf-8?B?L1RoaFRCZ2piZXYrcjFFZFpvcForQnd6dk02VjMxTEhxZjB6SSswKzVxdGlK?=
+ =?utf-8?B?QmhwOUhWQTU2QWVlcWN2QzlBVk42WWppSEdOemVkN3h3Tlg4Z0NTY2ptVTZx?=
+ =?utf-8?B?YXpRK3NxbGFKbXBrN2lQVWkzb1dmOXczTFVLYW9zb0plWHd0V01Bb28zUFVV?=
+ =?utf-8?B?T0kzdnVBYUx5VmdzRzVYNFYxWXdaKzFNMWdYeVp2enJVZXlxcXVUeWVyQk1y?=
+ =?utf-8?B?MVFHYXFHY3orS1BkZGN3Y252UnVQV0VMYWdVbEUwOW5MdTJCRHYvNGpyVGVM?=
+ =?utf-8?B?b1JGMXZycE5jWkk1TTNReUNZWGRqNkNkRHV2WjFENG5DekZKR3dUWHZjMVRq?=
+ =?utf-8?B?aFRHMjBCMjl2aFdHZ0lOcDB1NW9kREVyN0NGMk5aaCtSVllDaDFsb3E1OHRC?=
+ =?utf-8?B?SDA4RHhGR0k5WlBqaStOdjllbVNzUzE3WW5tYXh6MHc5Q2M0cUJYb3hOZ2da?=
+ =?utf-8?B?eit6a2R1T1dGZ04wWkkzbUJaU2xHUU9vc2V4MVBpVnl4SXd0SXYvLzRzNzY2?=
+ =?utf-8?B?Y0tRMXkvbHlqUC8rSDdwTGFlK052Q3BYRk9OaGlkTzRBWURGa29MbFI4L09N?=
+ =?utf-8?B?UWx5WEVONHYrVE9EYVhpKzBoOG5tYlRERzdPaVl6WjMyVENXRzcxMkk5OFVB?=
+ =?utf-8?B?MWFndXhHWWFteVM2N0hhV0VxZWFZV2ozOGdsd1NxM0sxMVJidWU5ZXJWVzBK?=
+ =?utf-8?B?N1JaZFQzZ0tZemFJci9TS29iRjUxNitCQlBHVWNwaHVDcXlFL2RLQ3IvS3p4?=
+ =?utf-8?B?MTR5RXcvcmVQYzlZRHZjY29qZyt0MHdBVUdjVE1LNE9JWHNqelJIV3Z3VUVO?=
+ =?utf-8?B?NkxSaG1KM08vcDh4T0h3elpVNlB3N0JPcU5zZm9veW1rVmVkYU9lVWxVQ0ZS?=
+ =?utf-8?B?Z1JiKzVrREVRWTcvbnlCYzM4ZVd2d1VlTFFjMnJ2S0FLdVhjenl4anJYSGdX?=
+ =?utf-8?B?UGxYSDNNYW94MlloSTErSVFqQUQvRmFEQ0NoeUdHVTFYVkgzbEJYbzhQS0ZN?=
+ =?utf-8?B?S3pqSXhlMC94ZUJVd1hsT0ZvVVdKUzA1OTkzdHlVY28rZXRSYUtRU1FGRzNs?=
+ =?utf-8?B?WnNxZkRQT0NveXpNS2twZkNJVkFudGdIL2ttVjFodURhOEMrOFdtbVJPRXU0?=
+ =?utf-8?Q?XMDVL27wJwlKQFXAUnydGX4=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e49dad8b-e909-4b13-0ca3-08dac6c05c20
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5488.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Nov 2022 04:11:21.2322 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Nov 2022 04:17:51.4532 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: V3Yqo4NuQPwfaMSP3SqKRqdPdW4OuQSMFRRj7eK/U0bQOcnpzgkCNZcQGIkrFMIt87+g+p93s1vE4+ZUbjCiw0JnbUblAJ1etl29WwRwI9o=
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7omvg92aeydTu1pkMRdXH4z3TH/Dr//VxORFx2ET3QeGEgYb2EdhMjOzzc2NPSyEX4oGh/YXtv3b+aE5nRlSW92Nm3/NC8Gm/uhRevVQu9E=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5493
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v3 2/6] drm/i915/pxp: Make
- intel_pxp_is_enabled implicitly sort PXP-owning-GT
+Subject: Re: [Intel-gfx] [PATCH v3 3/6] drm/i915/pxp: Make
+ intel_pxp_is_active implicitly sort PXP-owning-GT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,250 +167,134 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 On 10/21/2022 10:39 AM, Alan Previn wrote:
-> Make intel_pxp_is_enabled a global check and implicitly find the
-> PXP-owning-GT.
+> Make intel_pxp_is_active a global check and implicitly find
+> the PXP-owning-GT.
 >
-> PXP feature support is a device-config flag. In preparation for MTL
-> PXP control-context shall reside on of the two GT's. That said,
-> update intel_pxp_is_enabled to take in i915 as its input and internally
-> find the right gt to check if PXP is enabled so its transparent to
-> callers of this functions.
+> As per prior two patches, callers of this function shall now
+> pass in i915 since PXP is a global GPU feature. Make
+> intel_pxp_is_active implicitly find the right gt so it's transparent
+> for global view callers (like display or gem-exec).
 >
-> However we also need to expose the per-gt variation of this internal
-> pxp files to use (like what intel_pxp_enabled was prior) so also expose
-> a new intel_gtpxp_is_enabled function for replacement.
+> However we also need to expose the per-gt variation of this for internal
+> pxp files to use (like what intel_pxp_is_active was prior) so also expose
+> a new intel_gtpxp_is_active function for replacement.
 >
 > Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
 > ---
 >   drivers/gpu/drm/i915/gem/i915_gem_context.c  |  2 +-
->   drivers/gpu/drm/i915/gem/i915_gem_create.c   |  2 +-
->   drivers/gpu/drm/i915/pxp/intel_pxp.c         | 28 ++++++++++++++++++--
->   drivers/gpu/drm/i915/pxp/intel_pxp.h         |  4 ++-
->   drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c     |  2 +-
->   drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c |  2 +-
+>   drivers/gpu/drm/i915/pxp/intel_pxp.c         | 14 ++++++++++++--
+>   drivers/gpu/drm/i915/pxp/intel_pxp.h         |  3 ++-
+>   drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c |  4 ++--
 >   drivers/gpu/drm/i915/pxp/intel_pxp_irq.c     |  2 +-
->   drivers/gpu/drm/i915/pxp/intel_pxp_pm.c      |  8 +++---
->   drivers/gpu/drm/i915/pxp/intel_pxp_tee.c     |  4 +--
->   9 files changed, 40 insertions(+), 14 deletions(-)
+>   5 files changed, 18 insertions(+), 7 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> index 1e29b1e6d186..72f47ebda75f 100644
+> index 72f47ebda75f..798e77398acc 100644
 > --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
 > +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> @@ -257,7 +257,7 @@ static int proto_context_set_protected(struct drm_i915_private *i915,
+> @@ -271,7 +271,7 @@ static int proto_context_set_protected(struct drm_i915_private *i915,
+>   		 */
+>   		pc->pxp_wakeref = intel_runtime_pm_get(&i915->runtime_pm);
 >   
->   	if (!protected) {
->   		pc->uses_protected_content = false;
-> -	} else if (!intel_pxp_is_enabled(&to_gt(i915)->pxp)) {
-> +	} else if (!intel_pxp_is_enabled(i915)) {
->   		ret = -ENODEV;
->   	} else if ((pc->user_flags & BIT(UCONTEXT_RECOVERABLE)) ||
->   		   !(pc->user_flags & BIT(UCONTEXT_BANNABLE))) {
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c b/drivers/gpu/drm/i915/gem/i915_gem_create.c
-> index 33673fe7ee0a..e44803f9bec4 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
-> @@ -384,7 +384,7 @@ static int ext_set_protected(struct i915_user_extension __user *base, void *data
->   	if (ext.flags)
->   		return -EINVAL;
+> -		if (!intel_pxp_is_active(&to_gt(i915)->pxp))
+> +		if (!intel_pxp_is_active(i915))
+>   			ret = intel_pxp_start(&to_gt(i915)->pxp);
+>   	}
 >   
-> -	if (!intel_pxp_is_enabled(&to_gt(ext_data->i915)->pxp))
-> +	if (!intel_pxp_is_enabled(ext_data->i915))
->   		return -ENODEV;
->   
->   	ext_data->flags |= I915_BO_PROTECTED;
 > diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-> index 545c075bf1aa..f7c909fce97c 100644
+> index f7c909fce97c..15f7983f6da8 100644
 > --- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
 > +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-> @@ -9,6 +9,7 @@
->   #include "intel_pxp_tee.h"
->   #include "gem/i915_gem_context.h"
->   #include "gt/intel_context.h"
-> +#include "gt/intel_gt.h"
->   #include "i915_drv.h"
->   
->   /**
-> @@ -68,11 +69,34 @@ bool intel_gtpxp_is_supported(struct intel_pxp *pxp)
->   	return false;
+> @@ -97,11 +97,21 @@ bool intel_pxp_is_enabled(struct drm_i915_private *i915)
+>   	return intel_gtpxp_is_enabled(&gt->pxp);
 >   }
 >   
-> -bool intel_pxp_is_enabled(const struct intel_pxp *pxp)
-> +bool intel_gtpxp_is_enabled(const struct intel_pxp *pxp)
-
-I'd rename this to intel_pxp_is_initialized, that way we don't have 2 
-almost identically named checkers that mean different things (and also 
-avoid the gtpxp prefix).
-
+> -bool intel_pxp_is_active(const struct intel_pxp *pxp)
+> +bool intel_gtpxp_is_active(const struct intel_pxp *pxp)
 >   {
->   	return pxp->ce;
+>   	return pxp->arb_is_valid;
 >   }
 >   
-> +static struct intel_gt *_i915_to_pxp_gt(struct drm_i915_private *i915)
+> +bool intel_pxp_is_active(struct drm_i915_private *i915)
 
-nit: why the "_" prefix? we usually don't use it for x_to_y functions. 
-Not a blocker.
-
-> +{
-> +	struct intel_gt *gt = NULL;
-> +	int i = 0;
-> +
-> +	for_each_gt(gt, i915, i) {
-> +		/* There can be only one GT that supports PXP */
-
-
-
-> +		if (gt && intel_gtpxp_is_supported(&gt->pxp))
-
-for_each_gt already checks for gt not being NULL, no need to check again.
+again I'd suggest a different name to differentiate the 2 checkers. 
+Considering the only calling of this is from outside the PXP code is to 
+decide whether to start the arb session or not, maybe rename this to 
+intel_pxp_has_started or intel_pxp_is_running and leave the old 
+intel_pxp_is_active as-is?
 
 Daniele
 
-> +			return gt;
-> +	}
-> +	return NULL;
-> +}
-> +
-> +bool intel_pxp_is_enabled(struct drm_i915_private *i915)
 > +{
 > +	struct intel_gt *gt = _i915_to_pxp_gt(i915);
 > +
 > +	if (!gt)
 > +		return false;
 > +
-> +	return intel_gtpxp_is_enabled(&gt->pxp);
+> +	return intel_gtpxp_is_active(&gt->pxp);
 > +}
 > +
->   bool intel_pxp_is_active(const struct intel_pxp *pxp)
+>   /* KCR register definitions */
+>   #define KCR_INIT _MMIO(0x320f0)
+>   /* Setting KCR Init bit is required after system boot */
+> @@ -300,7 +310,7 @@ int intel_pxp_key_check(struct intel_pxp *pxp,
+>   			struct drm_i915_gem_object *obj,
+>   			bool assign)
 >   {
->   	return pxp->arb_is_valid;
-> @@ -229,7 +253,7 @@ int intel_pxp_start(struct intel_pxp *pxp)
->   {
->   	int ret = 0;
->   
-> -	if (!intel_pxp_is_enabled(pxp))
-> +	if (!intel_gtpxp_is_enabled(pxp))
+> -	if (!intel_pxp_is_active(pxp))
+> +	if (!intel_gtpxp_is_active(pxp))
 >   		return -ENODEV;
 >   
->   	if (wait_for(pxp_component_bound(pxp), 250))
+>   	if (!i915_gem_object_is_protected(obj))
 > diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h b/drivers/gpu/drm/i915/pxp/intel_pxp.h
-> index c12e4d419c78..61472018bc45 100644
+> index 61472018bc45..70383394adb4 100644
 > --- a/drivers/gpu/drm/i915/pxp/intel_pxp.h
 > +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
-> @@ -11,11 +11,13 @@
->   
->   struct intel_pxp;
->   struct drm_i915_gem_object;
-> +struct drm_i915_private;
->   
+> @@ -16,9 +16,10 @@ struct drm_i915_private;
 >   struct intel_gt *pxp_to_gt(const struct intel_pxp *pxp);
 >   bool intel_gtpxp_is_supported(struct intel_pxp *pxp);
-> +bool intel_gtpxp_is_enabled(const struct intel_pxp *pxp);
+>   bool intel_gtpxp_is_enabled(const struct intel_pxp *pxp);
+> +bool intel_gtpxp_is_active(const struct intel_pxp *pxp);
 >   
-> -bool intel_pxp_is_enabled(const struct intel_pxp *pxp);
-> +bool intel_pxp_is_enabled(struct drm_i915_private *i915);
->   bool intel_pxp_is_active(const struct intel_pxp *pxp);
+>   bool intel_pxp_is_enabled(struct drm_i915_private *i915);
+> -bool intel_pxp_is_active(const struct intel_pxp *pxp);
+> +bool intel_pxp_is_active(struct drm_i915_private *i915);
 >   
 >   void intel_pxp_init(struct intel_pxp *pxp);
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
-> index f41e45763d0d..0987bb552eaa 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
-> @@ -99,7 +99,7 @@ int intel_pxp_terminate_session(struct intel_pxp *pxp, u32 id)
->   	u32 *cs;
->   	int err = 0;
->   
-> -	if (!intel_pxp_is_enabled(pxp))
-> +	if (!intel_gtpxp_is_enabled(pxp))
->   		return 0;
->   
->   	rq = i915_request_create(ce);
+>   void intel_pxp_fini(struct intel_pxp *pxp);
 > diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c b/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
-> index 124663cf0047..13f517f94bae 100644
+> index 13f517f94bae..7f304b421633 100644
 > --- a/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
 > +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
-> @@ -18,7 +18,7 @@ static int pxp_info_show(struct seq_file *m, void *data)
->   {
->   	struct intel_pxp *pxp = m->private;
->   	struct drm_printer p = drm_seq_file_printer(m);
-> -	bool enabled = intel_pxp_is_enabled(pxp);
-> +	bool enabled = intel_gtpxp_is_enabled(pxp);
+> @@ -25,7 +25,7 @@ static int pxp_info_show(struct seq_file *m, void *data)
+>   		return 0;
+>   	}
 >   
->   	if (!enabled) {
->   		drm_printf(&p, "pxp disabled\n");
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c b/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
-> index c28be430718a..8e8e5645e4fc 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
-> @@ -22,7 +22,7 @@ void intel_pxp_irq_handler(struct intel_pxp *pxp, u16 iir)
->   {
+> -	drm_printf(&p, "active: %s\n", str_yes_no(intel_pxp_is_active(pxp)));
+> +	drm_printf(&p, "active: %s\n", str_yes_no(intel_gtpxp_is_active(pxp)));
+>   	drm_printf(&p, "instance counter: %u\n", pxp->key_instance);
+>   
+>   	return 0;
+> @@ -43,7 +43,7 @@ static int pxp_terminate_set(void *data, u64 val)
+>   	struct intel_pxp *pxp = data;
 >   	struct intel_gt *gt = pxp_to_gt(pxp);
 >   
-> -	if (GEM_WARN_ON(!intel_pxp_is_enabled(pxp)))
-> +	if (GEM_WARN_ON(!intel_gtpxp_is_enabled(pxp)))
->   		return;
+> -	if (!intel_pxp_is_active(pxp))
+> +	if (!intel_gtpxp_is_active(pxp))
+>   		return -ENODEV;
 >   
->   	lockdep_assert_held(gt->irq_lock);
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
-> index 6a7d4e2ee138..c095a9e0a01f 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
-> @@ -11,7 +11,7 @@
+>   	/* simulate a termination interrupt */
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c b/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
+> index 8e8e5645e4fc..cd97f8d8cc10 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
+> @@ -86,7 +86,7 @@ void intel_pxp_irq_disable(struct intel_pxp *pxp)
+>   	 * called in a path were the driver consider the session as valid and
+>   	 * doesn't call a termination on restart.
+>   	 */
+> -	GEM_WARN_ON(intel_pxp_is_active(pxp));
+> +	GEM_WARN_ON(intel_gtpxp_is_active(pxp));
 >   
->   void intel_pxp_suspend_prepare(struct intel_pxp *pxp)
->   {
-> -	if (!intel_pxp_is_enabled(pxp))
-> +	if (!intel_gtpxp_is_enabled(pxp))
->   		return;
->   
->   	pxp->arb_is_valid = false;
-> @@ -23,7 +23,7 @@ void intel_pxp_suspend(struct intel_pxp *pxp)
->   {
->   	intel_wakeref_t wakeref;
->   
-> -	if (!intel_pxp_is_enabled(pxp))
-> +	if (!intel_gtpxp_is_enabled(pxp))
->   		return;
->   
->   	with_intel_runtime_pm(&pxp_to_gt(pxp)->i915->runtime_pm, wakeref) {
-> @@ -34,7 +34,7 @@ void intel_pxp_suspend(struct intel_pxp *pxp)
->   
->   void intel_pxp_resume(struct intel_pxp *pxp)
->   {
-> -	if (!intel_pxp_is_enabled(pxp))
-> +	if (!intel_gtpxp_is_enabled(pxp))
->   		return;
->   
->   	/*
-> @@ -50,7 +50,7 @@ void intel_pxp_resume(struct intel_pxp *pxp)
->   
->   void intel_pxp_runtime_suspend(struct intel_pxp *pxp)
->   {
-> -	if (!intel_pxp_is_enabled(pxp))
-> +	if (!intel_gtpxp_is_enabled(pxp))
->   		return;
->   
->   	pxp->arb_is_valid = false;
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> index 052fd2f9a583..1c6bc56391b7 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> @@ -152,7 +152,7 @@ static int i915_pxp_tee_component_bind(struct device *i915_kdev,
->   		return 0;
->   
->   	/* the component is required to fully start the PXP HW */
-> -	if (intel_pxp_is_enabled(pxp))
-> +	if (intel_gtpxp_is_enabled(pxp))
->   		intel_pxp_init_hw(pxp);
->   
->   	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
-> @@ -167,7 +167,7 @@ static void i915_pxp_tee_component_unbind(struct device *i915_kdev,
->   	struct intel_pxp *pxp = i915_dev_to_pxp(i915_kdev);
->   	intel_wakeref_t wakeref;
->   
-> -	if (intel_pxp_is_enabled(pxp))
-> +	if (intel_gtpxp_is_enabled(pxp))
->   		with_intel_runtime_pm_if_in_use(&i915->runtime_pm, wakeref)
->   			intel_pxp_fini_hw(pxp);
+>   	spin_lock_irq(gt->irq_lock);
 >   
 
