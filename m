@@ -2,53 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA5B462BF89
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Nov 2022 14:32:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 59F7562BFD8
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Nov 2022 14:43:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEE0910E4AA;
-	Wed, 16 Nov 2022 13:32:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 018FB10E4AD;
+	Wed, 16 Nov 2022 13:43:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0362610E4A8;
- Wed, 16 Nov 2022 13:32:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668605527; x=1700141527;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=HPL97wIoTrHzWCa0UIW8QpGefhVDiJRBrp7T53JjT5w=;
- b=inUr8M2ebBpeSv9BxOrrtxXXFxbR4ApoLd5MvBs6cEBIk1W+nt3XkPFC
- PVLbdmmkyNcsN7l7dbIeiVmFJZkjHn5toNtEoz6AYKAs0cz40Ws3aoHqe
- B181O8APOuQc8mddhAzDcCXpQ1Qv5aJbL/KbnV1eNnfWc73HIScIxscoV
- tavSulF3ebAxk7du1gExeiFMoWxmlok4q8JelRSpMciddLfLJV+RVLkPE
- XRKXO17g6mnkUlo6mFkTHffJaVytAL0YRvCkGKh8T1iIqfyPSoIOLd//0
- WXMSCi0gFFiQnqxl/1R6eUIBlr6YrXIvdqcpqLl65ifUsyNVkHcT2yLoJ A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10532"; a="292932405"
-X-IronPort-AV: E=Sophos;i="5.96,167,1665471600"; d="scan'208";a="292932405"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2022 05:32:06 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10532"; a="639358766"
-X-IronPort-AV: E=Sophos;i="5.96,167,1665471600"; d="scan'208";a="639358766"
-Received: from dariofax-mobl.amr.corp.intel.com (HELO localhost)
- ([10.252.59.5])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2022 05:32:04 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-In-Reply-To: <0422ebb6-d4ff-52b0-b773-c643489e8fe9@suse.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221114111709.434979-1-jani.nikula@intel.com>
- <0422ebb6-d4ff-52b0-b773-c643489e8fe9@suse.de>
-Date: Wed, 16 Nov 2022 15:32:01 +0200
-Message-ID: <87wn7v10vi.fsf@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de
+ [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 944C810E4AD
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Nov 2022 13:43:33 +0000 (UTC)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+ by metis.ext.pengutronix.de with esmtps
+ (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
+ (envelope-from <p.zabel@pengutronix.de>)
+ id 1ovIhO-0002B5-IY; Wed, 16 Nov 2022 14:43:30 +0100
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+ by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+ (envelope-from <p.zabel@pengutronix.de>)
+ id 1ovIhM-004fGt-Lm; Wed, 16 Nov 2022 14:43:29 +0100
+Received: from pza by lupine with local (Exim 4.94.2)
+ (envelope-from <p.zabel@pengutronix.de>)
+ id 1ovIhM-0009pm-Td; Wed, 16 Nov 2022 14:43:28 +0100
+Message-ID: <773cf4a1b289ced10f4373b03cb14126c7d32bf7.camel@pengutronix.de>
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, 
+ igt-dev@lists.freedesktop.org, Intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+Date: Wed, 16 Nov 2022 14:43:28 +0100
+In-Reply-To: <20221111155844.3290531-9-tvrtko.ursulin@linux.intel.com>
+References: <20221111155844.3290531-1-tvrtko.ursulin@linux.intel.com>
+ <20221111155844.3290531-9-tvrtko.ursulin@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [RESEND] drm/edid/firmware: stop using a throwaway
- platform device
+User-Agent: Evolution 3.38.3-1 
+MIME-Version: 1.0
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
+ SAEximRunCond expanded to false
+X-PTX-Original-Recipient: intel-gfx@lists.freedesktop.org
+Subject: Re: [Intel-gfx] [PATCH i-g-t 8/8] gputop: Basic vendor agnostic GPU
+ top tool
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,96 +57,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthieu CHARETTE <matthieu.charette@gmail.com>
+Cc: Rob Clark <robdclark@chromium.org>,
+ Christian =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 16 Nov 2022, Thomas Zimmermann <tzimmermann@suse.de> wrote:
-> Hi
->
-> Am 14.11.22 um 12:17 schrieb Jani Nikula:
->> We've used a temporary platform device for firmware EDID loading since
->> it was introduced in commit da0df92b5731 ("drm: allow loading an EDID as
->> firmware to override broken monitor"), but there's no explanation why.
->>=20
->> Using a temporary device does not play well with CONFIG_FW_CACHE=3Dy,
->> which caches firmware images (e.g. on suspend) so that drivers can
->> request firmware when the system is not ready for it, and return the
->> images from the cache (e.g. during resume). This works automatically for
->> regular devices, but obviously not for a temporarily created device.
->>=20
->> Stop using the throwaway platform device, and use the drm device
->> instead.
->>=20
->> Note that this may still be problematic for cases where the display was
->> plugged in during suspend, and the firmware wasn't loaded and therefore
->> not cached before suspend.
->>=20
->> References: https://lore.kernel.org/r/20220727074152.43059-1-matthieu.ch=
-arette@gmail.com
->> Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/2061
->> Reported-by: Matthieu CHARETTE <matthieu.charette@gmail.com>
->> Tested-by: Matthieu CHARETTE <matthieu.charette@gmail.com>
->> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
->
-> I looked through request_firmware() but did not see any signs that it=20
-> somehow depends on a platform device. I assume that this might only=20
-> affect the device name in the error message.
+On Fr, 2022-11-11 at 15:58 +0000, Tvrtko Ursulin wrote:
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>=20
+> Rudimentary vendor agnostic example of how lib_igt_drm_clients can be use=
+d
+> to display a sorted by card and usage list of processes using GPUs.
+>=20
+> Borrows a bit of code from intel_gpu_top but for now omits the fancy
+> features like interactive functionality, card selection, client
+> aggregation, sort modes, JSON output  and pretty engine names. Also no
+> support for global GPU or system metrics.
+>=20
+> On the other hand it shows clients from all DRM cards which
+> intel_gpu_top does not do.
+>=20
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Rob Clark <robdclark@chromium.org>
+> Cc: Christian K=C3=B6nig <ckoenig.leichtzumerken@gmail.com>
+> Acked-by: Christian K=C3=B6nig <christian.koenig@amd.com>
 
-Thanks, pushed to drm-misc-next.
+Tested-by: Philipp Zabel <p.zabel@pengutronix.de>
 
-Matthieu, thanks for you patience and the report as well!
+on etnaviv with [1].
 
-BR,
-Jani.
+[1] https://lore.kernel.org/dri-devel/20220916151205.165687-3-l.stach@pengu=
+tronix.de/
 
-
->
-> Best regards
-> Thomas
->
->>=20
->> ---
->>=20
->> Resend with a proper commit message; patch itself is unchanged.
->> ---
->>   drivers/gpu/drm/drm_edid_load.c | 13 +------------
->>   1 file changed, 1 insertion(+), 12 deletions(-)
->>=20
->> diff --git a/drivers/gpu/drm/drm_edid_load.c b/drivers/gpu/drm/drm_edid_=
-load.c
->> index ef4ab59d6935..5d9ef267ebb3 100644
->> --- a/drivers/gpu/drm/drm_edid_load.c
->> +++ b/drivers/gpu/drm/drm_edid_load.c
->> @@ -172,20 +172,9 @@ static const struct drm_edid *edid_load(struct drm_=
-connector *connector, const c
->>   		fwdata =3D generic_edid[builtin];
->>   		fwsize =3D sizeof(generic_edid[builtin]);
->>   	} else {
->> -		struct platform_device *pdev;
->>   		int err;
->>=20=20=20
->> -		pdev =3D platform_device_register_simple(connector->name, -1, NULL, 0=
-);
->> -		if (IS_ERR(pdev)) {
->> -			drm_err(connector->dev,
->> -				"[CONNECTOR:%d:%s] Failed to register EDID firmware platform device=
- for connector \"%s\"\n",
->> -				connector->base.id, connector->name,
->> -				connector->name);
->> -			return ERR_CAST(pdev);
->> -		}
->> -
->> -		err =3D request_firmware(&fw, name, &pdev->dev);
->> -		platform_device_unregister(pdev);
->> +		err =3D request_firmware(&fw, name, connector->dev->dev);
->>   		if (err) {
->>   			drm_err(connector->dev,
->>   				"[CONNECTOR:%d:%s] Requesting EDID firmware \"%s\" failed (err=3D%=
-d)\n",
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
+regards
+Philipp
