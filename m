@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D736862BBAF
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Nov 2022 12:26:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26C0162BBC2
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Nov 2022 12:26:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E83BC10E47D;
-	Wed, 16 Nov 2022 11:26:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E32A10E487;
+	Wed, 16 Nov 2022 11:26:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 590D510E478;
- Wed, 16 Nov 2022 11:25:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 501C410E47D;
+ Wed, 16 Nov 2022 11:26:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668597959; x=1700133959;
+ t=1668597963; x=1700133963;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9RcXpzp2jK/yGykS8Id+3Adle5bDDZsqw2k/4otRQ+w=;
- b=Aak3nyx/lvitfD+PFJua77MWakygiEvAnBggRrUCAy0V4PAPZS6kY5lC
- ZK5kwCTHUJKJ/n0lrg3Tbf+YW55Vt4nZjoPYqs994CXsT/eoNaypB0sGb
- nIYxSt3Yoym5u1IcX3yNAQtTlkqmv30LlVkgzZp4ccV3zOaXE+93bCEVD
- iJNCEGMFzHvWFMbEYaDqiDQi1IGRLaNCrZU0PlyiZFYnkS2o4BqhjIgXx
- ai+G2pr3w0UUd6VveKtWoE9El0TWZjYClG8nELf/UKg8zouFyaH3BfPNe
- cjjM/wfwwGecNpPYpJqH7ozE9Vxyy8sDnghpTyC28ATOwp//3aT44j2qW g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10532"; a="295885150"
-X-IronPort-AV: E=Sophos;i="5.96,167,1665471600"; d="scan'208";a="295885150"
+ bh=eqH3EStze88zMcUpQM7CyuSzBu94jD0o2LohB7AWFeQ=;
+ b=K5VxSEEg4aF5dXnOGA6EKCrPXaPyOQS8esJcf6pRENJzxZ8mVaiYU2/n
+ YtPdJCTLKrfDskm2PcXCCLXLaruvtShvBQaSks6gbQzQkQqpdpcwkdMLi
+ a5IXZkdYJiY41lYC+CtiqPCzjBzD3qCueAgr2W+y4+aXSNdl6ZRZhSkoR
+ seOwvEVzZEoguwrQF66tKlnX5PoFiGIeamfAfNl8yTqUP5UN7a9IpaRd3
+ cd02JxVHgCsD/NQ+bUJUnbPlwlaW/WZXIR7e7s2r5cSobfRoXdQZRzEEs
+ RTVTS9UjytVuBa9HIKep7G0d1oDxKk0nk3ZBLOfZvMknmk7Dg1IHMVhEE A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10532"; a="295885164"
+X-IronPort-AV: E=Sophos;i="5.96,167,1665471600"; d="scan'208";a="295885164"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2022 03:25:59 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10532"; a="670468932"
-X-IronPort-AV: E=Sophos;i="5.96,167,1665471600"; d="scan'208";a="670468932"
+ 16 Nov 2022 03:26:03 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10532"; a="670468952"
+X-IronPort-AV: E=Sophos;i="5.96,167,1665471600"; d="scan'208";a="670468952"
 Received: from jkrzyszt-mobl1.ger.corp.intel.com ([10.213.12.208])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2022 03:25:56 -0800
+ 16 Nov 2022 03:25:59 -0800
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Date: Wed, 16 Nov 2022 12:25:30 +0100
-Message-Id: <20221116112532.36253-2-janusz.krzysztofik@linux.intel.com>
+Date: Wed, 16 Nov 2022 12:25:31 +0100
+Message-Id: <20221116112532.36253-3-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221116112532.36253-1-janusz.krzysztofik@linux.intel.com>
 References: <20221116112532.36253-1-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/3] drm/i915: Fix negative remaining time after
- retire requests
+Subject: [Intel-gfx] [PATCH 2/3] drm/i915: Never return 0 on timeout when
+ retiring requests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,75 +63,32 @@ Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris.p.wilson@intel.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Commit b97060a99b01 ("drm/i915/guc: Update intel_gt_wait_for_idle to work
-with GuC") extended the API of intel_gt_retire_requests_timeout() with an
-extra argument 'remaining_timeout', intended for passing back unconsumed
-portion of requested timeout when 0 (success) is returned.  However, when
-request retirement happens to succeed despite an error returned by
-dma_fence_wait_timeout(), the error code (a negative value) is passed back
-instead of remaining time.  If a user then passes that negative value
-forward as requested timeout to another wait, an explicit WARN or BUG can
-be triggered.
+Users of intel_gt_retire_requests_timeout() expect 0 return value on
+success.  However, we have no protection from passing back 0 potentially
+returned by dma_fence_wait_timeout() on timeout.
 
-Instead of copying the value of timeout variable to *remaining_timeout
-before return, update the *remaining_timeout after each DMA fence wait.
-Set it to 0 on -ETIME, -EINTR or -ERESTARTSYS, and assume no time has been
-consumed on other errors returned from the wait.
+Replace 0 with -ETIME before using timeout as return value.
 
-Fixes: b97060a99b01 ("drm/i915/guc: Update intel_gt_wait_for_idle to work with GuC")
+Fixes: f33a8a51602c ("drm/i915: Merge wait_for_timelines with retire_request")
 Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Cc: stable@vger.kernel.org # v5.15+
+Cc: stable@vger.kernel.org # v5.5+
 ---
- drivers/gpu/drm/i915/gt/intel_gt_requests.c | 23 ++++++++++++++++++---
- 1 file changed, 20 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_gt_requests.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_gt_requests.c b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-index edb881d756309..ccaf2fd80625b 100644
+index ccaf2fd80625b..ac6b2b1861397 100644
 --- a/drivers/gpu/drm/i915/gt/intel_gt_requests.c
 +++ b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-@@ -138,6 +138,9 @@ long intel_gt_retire_requests_timeout(struct intel_gt *gt, long timeout,
- 	unsigned long active_count = 0;
- 	LIST_HEAD(free);
+@@ -213,6 +213,9 @@ out_active:	spin_lock(&timelines->lock);
+ 	list_for_each_entry_safe(tl, tn, &free, link)
+ 		__intel_timeline_free(&tl->kref);
  
-+	if (remaining_timeout)
-+		*remaining_timeout = timeout;
++	if (!timeout)
++		timeout = -ETIME;
 +
- 	flush_submission(gt, timeout); /* kick the ksoftirqd tasklets */
- 	spin_lock(&timelines->lock);
- 	list_for_each_entry_safe(tl, tn, &timelines->active_list, link) {
-@@ -163,6 +166,23 @@ long intel_gt_retire_requests_timeout(struct intel_gt *gt, long timeout,
- 								 timeout);
- 				dma_fence_put(fence);
- 
-+				if (remaining_timeout) {
-+					/*
-+					 * If we get an error here but request
-+					 * retirement succeeds anyway
-+					 * (!active_count) and we return 0, the
-+					 * caller may want to spend remaining
-+					 * time on waiting for other events.
-+					 */
-+					if (timeout == -ETIME ||
-+					    timeout == -EINTR ||
-+					    timeout == -ERESTARTSYS)
-+						*remaining_timeout = 0;
-+					else if (timeout >= 0)
-+						*remaining_timeout = timeout;
-+					/* else assume no time consumed */
-+				}
-+
- 				/* Retirement is best effort */
- 				if (!mutex_trylock(&tl->mutex)) {
- 					active_count++;
-@@ -196,9 +216,6 @@ out_active:	spin_lock(&timelines->lock);
  	if (flush_submission(gt, timeout)) /* Wait, there's more! */
  		active_count++;
- 
--	if (remaining_timeout)
--		*remaining_timeout = timeout;
--
- 	return active_count ? timeout : 0;
- }
  
 -- 
 2.25.1
