@@ -1,52 +1,74 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F34EE62B73F
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Nov 2022 11:11:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B57BB62B80E
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Nov 2022 11:27:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 412F410E12E;
-	Wed, 16 Nov 2022 10:11:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A95A310E16F;
+	Wed, 16 Nov 2022 10:26:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6FA010E0F3;
- Wed, 16 Nov 2022 10:11:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668593485; x=1700129485;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=GvNypQu57pyaZ739Rd5mWa7coT5VRJmIkuNoPDwdLRU=;
- b=YC+ADzQaxj4CrOwp90x00C2nqGUopVTD0z+2fbN1/4ABYmmBv06VgeCa
- mL7/cur0ya9ANPJ4z1wsWe4RDMGLMQUMGCWTRqTj08WIhfg51RgxeRbjB
- Ei1suxUXtgqtIlJWWnRUe01jhcBMZn8PMcC8/Qm6Ss3SQjH2T19gCbE5k
- ZjaQ56M02u4IPMZvtnyBNYKQ6fGQ/3FFkjhaPOiUngd/QXII5NThokbId
- ylT6lMVUmGYtPMrhKVk0qrFvIjK09b5F9+9w3ZQmYpwVOfJwSntuboI7w
- VxFeAQrmA19JuRuOKL6xpCmpEIAQQbMCszXRngq0XbCrA2wyH2W5aapqT g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10532"; a="398794399"
-X-IronPort-AV: E=Sophos;i="5.96,167,1665471600"; d="scan'208";a="398794399"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2022 02:08:32 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10532"; a="633576261"
-X-IronPort-AV: E=Sophos;i="5.96,167,1665471600"; d="scan'208";a="633576261"
-Received: from dariofax-mobl.amr.corp.intel.com (HELO localhost)
- ([10.252.59.5])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2022 02:08:30 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>, DRI
- <dri-devel@lists.freedesktop.org>, Intel Graphics Development
- <intel-gfx@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>
-In-Reply-To: <e170edc2-e5b9-4c8b-4ed3-7e2d7a2850dc@I-love.SAKURA.ne.jp>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <e170edc2-e5b9-4c8b-4ed3-7e2d7a2850dc@I-love.SAKURA.ne.jp>
-Date: Wed, 16 Nov 2022 12:08:27 +0200
-Message-ID: <877czv2ov8.fsf@intel.com>
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com
+ [IPv6:2a00:1450:4864:20::329])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6FDB10E16F;
+ Wed, 16 Nov 2022 10:26:51 +0000 (UTC)
+Received: by mail-wm1-x329.google.com with SMTP id v7so11574598wmn.0;
+ Wed, 16 Nov 2022 02:26:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=j6Dfl5kP7BvkO3ygiB9OHKZJjUeeBeY6h9AQv7zJ6S8=;
+ b=hylW/wEp2bc4MfSlRqd88QDzBxLxAgTe1ozWtjy8WjEeZPt+BGqZfq4yB+SmLn2Fep
+ Rx7X2BJ5cx82WoNy8cr/zLjdMlzg/tKbNNYPg5AXSg4WWW1d/J6w+B/wTIxBRFqfML9p
+ Y4OammYMvouTP2Ld8gHXsAriAKY8yk9esaJUasi2tPUeEIt8rbmzLd70pXvjBu7a9Au1
+ C3UNMWLxSOKb4vTKYShEWGYbgMpRbKsBce44JwTO6wmKdpr5SDiT6aEz7AE/I95eYIDs
+ EDwm+HeM3bU3Ztff92gv1uOFbz9ALhpxJgaIYtmzPIH9VlRQNFRi3IzpCJJa6C9P0+t3
+ eKUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=j6Dfl5kP7BvkO3ygiB9OHKZJjUeeBeY6h9AQv7zJ6S8=;
+ b=YUEEvP/3jbyFHFNT4m3JYbzNhMpk4xejQT0e+WTLhTrjUHP3wesQE48Mfk13T9/dOh
+ 0AbkEtTwniu5HuvEk2r2MsmiI+HiMm0/uz+SwPg21IaKbUQso7AvQ1DVEyxAbqvzHdAA
+ GlFG+AB6mrafd+tKgMZ90QNkArm2Cm2LTYKxSFFkZvi1lyKbLCvMS9vMPpA/JFqEfmMn
+ mjQRrf2KgIw4rjBMdOxKzXr22oD6p72hwLjps+2EfvhhzezsbBG3yz2dYTP0f+ykI1QY
+ wqALHV8Ppz3IHJFGy3VKOLD2kbM1Kngx1UgAvoSRyBVWEEt8sde/HVOD2XT5yUvZIKX+
+ fDXg==
+X-Gm-Message-State: ANoB5pkoywaXPjO0r2gMrD5Vvf/brxppeRrRkB84bvsXbefNIZQApY0K
+ IZo5JVwsrBpw3Sd+k1Ng1dQKvIs+HFA=
+X-Google-Smtp-Source: AA0mqf5DXnFXR8hymh4SYHtltW3LuP06Cqo1rfgcJIcuMkyuqhLx0BY5cAPG4U4A902i/xR+GOqh1Q==
+X-Received: by 2002:a05:600c:5014:b0:3cf:a18d:39a4 with SMTP id
+ n20-20020a05600c501400b003cfa18d39a4mr1616811wmr.125.1668594409930; 
+ Wed, 16 Nov 2022 02:26:49 -0800 (PST)
+Received: from ?IPV6:2a02:908:1256:79a0:a719:712a:c9e4:718d?
+ ([2a02:908:1256:79a0:a719:712a:c9e4:718d])
+ by smtp.gmail.com with ESMTPSA id
+ bg5-20020a05600c3c8500b003c6b70a4d69sm1820143wmb.42.2022.11.16.02.26.48
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 16 Nov 2022 02:26:49 -0800 (PST)
+Message-ID: <c58140a2-1cac-dfad-fb2e-4369bb384282@gmail.com>
+Date: Wed, 16 Nov 2022 11:26:43 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] How is the progress for removing
- flush_scheduled_work() callers?
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Content-Language: en-US
+To: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+References: <20221116085012.187756-1-Amaranath.Somalapuram@amd.com>
+ <20221116085012.187756-2-Amaranath.Somalapuram@amd.com>
+ <fa9ecb1f-17a9-c7ce-d25a-42c3860f1b8d@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <fa9ecb1f-17a9-c7ce-d25a-42c3860f1b8d@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/gem: Remove BUG_ON in
+ drm_gem_private_object_init
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,30 +81,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: alexander.deucher@amd.com, christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, 06 Nov 2022, Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp> wrote:
-> Like commit c4f135d643823a86 ("workqueue: Wrap flush_workqueue() using a
-> macro") says, flush_scheduled_work() is dangerous and will be forbidden.
-> We are on the way for removing all flush_scheduled_work() callers from
-> the kernel, and there are only 4 callers remaining as of linux-20221104.
+Am 16.11.22 um 10:20 schrieb Arunpravin Paneer Selvam:
+> Hi Amar,
 >
->   drivers/gpu/drm/i915/display/intel_display.c:8997:      flush_scheduled_work();
+> On 11/16/2022 2:20 PM, Somalapuram Amaranath wrote:
+>> ttm_resource allocate size in bytes i.e less than page size.
+>>
+>> Signed-off-by: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+>> ---
+>>   drivers/gpu/drm/drm_gem.c | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+>> index b8db675e7fb5..a346e3b7f9a8 100644
+>> --- a/drivers/gpu/drm/drm_gem.c
+>> +++ b/drivers/gpu/drm/drm_gem.c
+>> @@ -152,7 +152,7 @@ EXPORT_SYMBOL(drm_gem_object_init);
+>>   void drm_gem_private_object_init(struct drm_device *dev,
+>>                    struct drm_gem_object *obj, size_t size)
+>>   {
+>> -    BUG_ON((size & (PAGE_SIZE - 1)) != 0);
+>> +    //BUG_ON((size & (PAGE_SIZE - 1)) != 0);
+> This line is added by mistake?
 
-Thanks for the reminder, I've pinged folks to get someone working on
-this. We do schedule quite a bunch of work, so it's not immediately
-obvious (at least to me) what exactly needs flushing.
+Yeah, comment it out is not a good idea. Instead we should probably move 
+it somewhere else, e.g. the shmem object initializing code path still 
+needs this.
 
-https://gitlab.freedesktop.org/drm/intel/-/issues/7546
+Additional to that please re-order the patches, this here is a 
+prerequisite and should come first.
 
->   drivers/gpu/drm/i915/gt/selftest_execlists.c:88:        flush_scheduled_work();
+Regards,
+Christian.
 
-Removed by commit 7d33fd02dd94 ("drm/i915/selftests: Remove
-flush_scheduled_work() from live_execlists") in drm-next.
+>
+> Regards,
+> Arun
+>>         obj->dev = dev;
+>>       obj->filp = NULL;
+>
 
-BR,
-Jani.
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
