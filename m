@@ -1,55 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BD4162BE95
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Nov 2022 13:48:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AF5962BEFD
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Nov 2022 14:06:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 013CE10E4A5;
-	Wed, 16 Nov 2022 12:48:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83E18895B9;
+	Wed, 16 Nov 2022 13:06:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7FA510E4A4
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Nov 2022 12:48:07 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1EFEB895B9;
+ Wed, 16 Nov 2022 13:06:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668602887; x=1700138887;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ObjukXOqfUoSlSHWt+gB5nKjWOUIqtAmQ5a7qWIzcAg=;
- b=iwvmxCDcKYddcIWyAvquDYuHUFxzuAIULEw8BwjPr0CaDb4tPweDZ7Tc
- GwonQkYtr68tKKvc4nchPSWIQDuzCW92p7FqIY2C0rRCDSgUm9moBpmRm
- srklPeNz5bwtlbchZz+uztrR/jgT4F4QBMlN8nH6m7xWksdnW5a6tnZqo
- xAySyBc5jjqphTq0B1aZRAR38cyX+p3tanJXHoM8WLf9uhFTXTX+rObpB
- phE4uHAEal0FY1+ypxfPX7MZ80k2vMpkTFot1XpmWIa8D45/iHy6igv6F
- wEMCj0UaMKh1RRo+TgY9NkPPZpWex6acnYUJ1pCPeNiH6U/Lsry5Xr5l/ g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10532"; a="311241002"
-X-IronPort-AV: E=Sophos;i="5.96,167,1665471600"; d="scan'208";a="311241002"
+ t=1668603970; x=1700139970;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=InMnGBG9WIu93rX/1BniIAb5g2P3gQSwtf4zO3a6OCk=;
+ b=XISL0dHhL+TwTWYx85T2MQZ/oQ5+QEAJzl/OxS2OsI8kc37NN93dJmMp
+ uyolFDVADtTvUYYbsBJyHcxtFplZCrL7QCHvJMD2FZC3xszVFcPLtBVmI
+ 7PmpU5OhJtNjMbKLaev+zq6y30zHUocenVaQl1kgJFDC3Z15WbB/CNo1T
+ 19GaoaBX2vBOBkCqi0ZSIqsFLe5HiJ8AbV5djzpctUACkhl/toAPFhbE/
+ X3NWMtoOrEO7rikmHkasLY/TV1uKNbn40vHY5IyllRg2MSq3DtPP9VNon
+ 32gwquw6ezfedJgh6AVmeQxOpC9nLgT+nuAvZQT2SGS40s9AfaW7+mYBj A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10532"; a="339351385"
+X-IronPort-AV: E=Sophos;i="5.96,167,1665471600"; d="scan'208";a="339351385"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2022 04:48:07 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10532"; a="633618121"
-X-IronPort-AV: E=Sophos;i="5.96,167,1665471600"; d="scan'208";a="633618121"
-Received: from sannilnx.jer.intel.com ([10.12.26.175])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2022 04:47:52 -0800
-From: Alexander Usyskin <alexander.usyskin@intel.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@redhat.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Date: Wed, 16 Nov 2022 14:47:35 +0200
-Message-Id: <20221116124735.2493847-3-alexander.usyskin@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221116124735.2493847-1-alexander.usyskin@intel.com>
-References: <20221116124735.2493847-1-alexander.usyskin@intel.com>
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2022 05:06:07 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10532"; a="633622290"
+X-IronPort-AV: E=Sophos;i="5.96,167,1665471600"; d="scan'208";a="633622290"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by orsmga007.jf.intel.com with SMTP; 16 Nov 2022 05:06:04 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 16 Nov 2022 15:06:03 +0200
+Date: Wed, 16 Nov 2022 15:06:03 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <Y3TgO7pHo9z9FINO@intel.com>
+References: <e170edc2-e5b9-4c8b-4ed3-7e2d7a2850dc@I-love.SAKURA.ne.jp>
+ <877czv2ov8.fsf@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 2/2] mei: bus-fixup: change pxp mode only if
- message was sent
+In-Reply-To: <877czv2ov8.fsf@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] How is the progress for removing
+ flush_scheduled_work() callers?
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,42 +62,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-kernel@vger.kernel.org, Tomas Winkler <tomas.winkler@intel.com>,
- Alexander Usyskin <alexander.usyskin@intel.com>,
- Vitaly Lubart <vitaly.lubart@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>, DRI <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Move PXP mode state machine to SETUP mode only if
-memory ready message sent successfully to the firmware.
-Leave it in INIT mode otherwise to allow try to send message later.
+On Wed, Nov 16, 2022 at 12:08:27PM +0200, Jani Nikula wrote:
+> On Sun, 06 Nov 2022, Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp> wrote:
+> > Like commit c4f135d643823a86 ("workqueue: Wrap flush_workqueue() using a
+> > macro") says, flush_scheduled_work() is dangerous and will be forbidden.
+> > We are on the way for removing all flush_scheduled_work() callers from
+> > the kernel, and there are only 4 callers remaining as of linux-20221104.
+> >
+> >   drivers/gpu/drm/i915/display/intel_display.c:8997:      flush_scheduled_work();
+> 
+> Thanks for the reminder, I've pinged folks to get someone working on
+> this. We do schedule quite a bunch of work, so it's not immediately
+> obvious (at least to me) what exactly needs flushing.
 
-Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
----
- drivers/misc/mei/bus-fixup.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+Here's my earlier cursory analysis of the subject:
+https://lore.kernel.org/intel-gfx/Yy3byxFrfAfQL9xK@intel.com/
 
-diff --git a/drivers/misc/mei/bus-fixup.c b/drivers/misc/mei/bus-fixup.c
-index 90023c34666e..6df7679d9739 100644
---- a/drivers/misc/mei/bus-fixup.c
-+++ b/drivers/misc/mei/bus-fixup.c
-@@ -266,12 +266,13 @@ static void mei_gsc_mkhi_fix_ver(struct mei_cl_device *cldev)
- 
- 	if (cldev->bus->pxp_mode == MEI_DEV_PXP_INIT) {
- 		ret = mei_gfx_memory_ready(cldev);
--		if (ret < 0)
-+		if (ret < 0) {
- 			dev_err(&cldev->dev, "memory ready command failed %d\n", ret);
--		else
-+		} else {
- 			dev_dbg(&cldev->dev, "memory ready command sent\n");
-+			cldev->bus->pxp_mode = MEI_DEV_PXP_SETUP;
-+		}
- 		/* we go to reset after that */
--		cldev->bus->pxp_mode = MEI_DEV_PXP_SETUP;
- 		goto out;
- 	}
- 
+> 
+> https://gitlab.freedesktop.org/drm/intel/-/issues/7546
+> 
+> >   drivers/gpu/drm/i915/gt/selftest_execlists.c:88:        flush_scheduled_work();
+> 
+> Removed by commit 7d33fd02dd94 ("drm/i915/selftests: Remove
+> flush_scheduled_work() from live_execlists") in drm-next.
+> 
+> BR,
+> Jani.
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
+
 -- 
-2.34.1
-
+Ville Syrjälä
+Intel
