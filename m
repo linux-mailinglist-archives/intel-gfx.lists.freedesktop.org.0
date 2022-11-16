@@ -2,58 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2165362C131
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Nov 2022 15:43:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A67D62C15B
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Nov 2022 15:49:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6F8489233;
-	Wed, 16 Nov 2022 14:42:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F9F910E364;
+	Wed, 16 Nov 2022 14:49:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C387B10E4C4;
- Wed, 16 Nov 2022 14:42:51 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3835710E4BE
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Nov 2022 14:49:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668609772; x=1700145772;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=0VSDb4om6vstcWtYoyJItyrcUu/QsUDzUwXOETPwPU0=;
- b=KWVo5FK1neEM2IOnAtyHAyJsvHVScHF8vFIKdKAmsXNtXknUMSIWiYcG
- sGSS7sKOu4mXYcm0SIu9cN+qY0p5tpRcv44KVZmusS+QYZPqAss9ydGQi
- Bngn9hPQnop8QxvoOEcoPtykTBRdHMshZvmkAc5+ELTfxHt+bMyNyNI4I
- Igc0MUkGlGTyTFMnVIZsgUvbBAeHrv8+FaL19TsnmGg5An7gtIOOYIi+Z
- EBuIoN06pcF5Kmdzdp8XZ5kLQLw6IQrCrl2HSw9gpOKhxVj/Nn7gX6g9Z
- M1SbEEDDbtLY1WX2oErbztp9YCksezOehhx6fTLyVTHxIcUmuRfRoZ2o4 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10532"; a="313708116"
-X-IronPort-AV: E=Sophos;i="5.96,167,1665471600"; d="scan'208";a="313708116"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2022 06:42:51 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10532"; a="745075303"
-X-IronPort-AV: E=Sophos;i="5.96,167,1665471600"; d="scan'208";a="745075303"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.11.238])
- ([10.213.11.238])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2022 06:42:49 -0800
-Message-ID: <cd0c8e1e-743c-f3d7-5e2e-91f7a8144c7d@intel.com>
-Date: Wed, 16 Nov 2022 15:42:46 +0100
+ t=1668610184; x=1700146184;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=6XDzJoefW5QQXpXxIBGugVQ+EpZ9SkVsEKyqurMEvCk=;
+ b=O5wZp1VO+hxbPc7t8Hr4srHyXhWolUyMcD/hlAK9KK9Xtb3JVNs5nQe+
+ Qk0eeDi3k9pkgxkSrtmQT8jpohSR97KPTBTKHT/Axk5jjg2RHhBj4oW94
+ 7YkaE26lZsCA8uGqiE36Eeegab2sM3OjKVRvx9oexNCsqRIoJ0Y5/uPzm
+ MajBXc/D6zk4eC0fQq6SwFnKgp4HSWlDxBZDZfBMMojmBWJ4i4OvLrCjT
+ USYNAhRFJm9GinrjN6S26hSQY9hRDMwQ8gpxQ90PiOZPW6O1d0y60VoXh
+ TV6Gz0gRmfAs8TE6yb99dq4KG0+rRgFTLXAdijZXu18nS13MGz6Z5w9PX A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10532"; a="374693506"
+X-IronPort-AV: E=Sophos;i="5.96,167,1665471600"; d="scan'208";a="374693506"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2022 06:49:43 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10532"; a="814107945"
+X-IronPort-AV: E=Sophos;i="5.96,167,1665471600"; d="scan'208";a="814107945"
+Received: from kpalaniv-mobl2.amr.corp.intel.com (HELO
+ anushasr-mobl7.intel.com) ([10.209.77.201])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2022 06:49:43 -0800
+From: Anusha Srivatsa <anusha.srivatsa@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 16 Nov 2022 06:50:06 -0800
+Message-Id: <20221116145008.556381-1-anusha.srivatsa@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.4.2
-Content-Language: en-US
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-References: <20221116112532.36253-1-janusz.krzysztofik@linux.intel.com>
- <20221116112532.36253-4-janusz.krzysztofik@linux.intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20221116112532.36253-4-janusz.krzysztofik@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: Never return 0 if request
- wait succeeds
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915/display: Add missing checks for
+ cdclk crawling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,60 +57,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Chris Wilson <chris.p.wilson@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 16.11.2022 12:25, Janusz Krzysztofik wrote:
-> According to the docs of i915_request_wait_timeout(), its return value
-> "may be zero if the request is unfinished after the timeout expires."
-> However, 0 is also returned when the request is found finished right
-> after the timeout has expired.
-> 
-> Since the docs also state: "If the timeout is 0, it will return 1 if the
-> fence is signaled.", return 1 also when the fence is found signaled after
-> non-zero timeout has expired.
+cdclk_sanitize() function was written assuming vco was a signed integer.
+vco gets assigned to -1 (essentially ~0) for the case where PLL
+might be enabled and vco is not a frequency that will ever
+get used. In such a scenario the right thing to do is disable the
+PLL and re-enable it again with a valid frequency.
+However the vco is declared as a unsigned variable.
+With the above assumption, driver takes crawl path when not needed.
+Add explicit check to not crawl in the case of an invalid PLL.
 
-As I understand the patch "drm/i915: Fix i915_request fence wait 
-semantics", and the docs "timeout is 0" means the initial value of 
-timeout argument and this is handled already on the beginning of the 
-function.
-In case initial timeout is greater than zero and then it expires, 
-function should return 0 regardless of fence state. This is what I have 
-understood from reading docs and implementation of 
-dma_fence_default_wait [1], which should be the best source of info 
-about "dma_fence wait semantic".
+v2: Move the check from .h to .c (MattR)
+- Move check to bxt_set_cdclk() instead of
+intel_modeset_calc_cdclk() which is directly in
+the path of the sanitize() function (Ville)
 
-As I said already, mixing remaining time and bool in return value of 
-dma_fence_wait* functions is very confusing, but changing it would 
-require major rework of the framework.
+v3: remove unwanted parenthesis(Ville)
 
-[1]: 
-https://elixir.bootlin.com/linux/latest/source/drivers/dma-buf/dma-fence.c#L753
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cdclk.c | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
 
-Regards
-Andrzej
-
-> 
-> Fixes: 7e2e69ed4678 ("drm/i915: Fix i915_request fence wait semantics")
-> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> Cc: stable@vger.kernel.org # v5.17
-> ---
->   drivers/gpu/drm/i915/i915_request.c | 2 ++
->   1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-> index f949a9495758a..406ddfafbed4d 100644
-> --- a/drivers/gpu/drm/i915/i915_request.c
-> +++ b/drivers/gpu/drm/i915/i915_request.c
-> @@ -2079,6 +2079,8 @@ long i915_request_wait_timeout(struct i915_request *rq,
->   
->   		timeout = io_schedule_timeout(timeout);
->   	}
-> +	if (!timeout)	/* expired but signaled, we shouldn't return 0 */
-> +		timeout = 1;
->   	__set_current_state(TASK_RUNNING);
->   
->   	if (READ_ONCE(wait.tsk))
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index b74e36d76013..25d01271dc09 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -1717,6 +1717,16 @@ static void dg2_cdclk_squash_program(struct drm_i915_private *i915,
+ 	intel_de_write(i915, CDCLK_SQUASH_CTL, squash_ctl);
+ }
+ 
++static bool cdclk_pll_is_unknown(unsigned int vco)
++{
++	/*
++	 * Ensure driver does not take the crawl path for the
++	 * case when the vco is set to ~0 in the
++	 * sanitize path.
++	 */
++	return vco == ~0;
++}
++
+ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+ 			  const struct intel_cdclk_config *cdclk_config,
+ 			  enum pipe pipe)
+@@ -1749,7 +1759,8 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+ 		return;
+ 	}
+ 
+-	if (HAS_CDCLK_CRAWL(dev_priv) && dev_priv->display.cdclk.hw.vco > 0 && vco > 0) {
++	if (HAS_CDCLK_CRAWL(dev_priv) && dev_priv->display.cdclk.hw.vco > 0 && vco > 0 &&
++	    !cdclk_pll_is_unknown(dev_priv->display.cdclk.hw.vco)) {
+ 		if (dev_priv->display.cdclk.hw.vco != vco)
+ 			adlp_cdclk_pll_crawl(dev_priv, vco);
+ 	} else if (DISPLAY_VER(dev_priv) >= 11)
+-- 
+2.25.1
 
