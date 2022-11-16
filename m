@@ -1,121 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E664C62B64C
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Nov 2022 10:20:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6A1662B68C
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Nov 2022 10:31:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A0BD10E450;
-	Wed, 16 Nov 2022 09:20:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 428C710E457;
+	Wed, 16 Nov 2022 09:31:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2041.outbound.protection.outlook.com [40.107.244.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6ED710E44A;
- Wed, 16 Nov 2022 09:20:16 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CbnkXRjgG6p9ioCf3uWzFAA+ppZDgZN2U9eWn9jVTFCa/+BF9zgVwveEQGlCniJDdnz5lm8ta+bo2I84hm8C2p+4GWI9T0N5QAJpxmKdml4d2m8FZ5C8n2xu58m/vIYPK2TuNSyICSJi02Z0Xw0z8nK1hcLEUQuyrW80hbT7jTc1e1NB/kOAH35JYlLKoMcBBlHGxO7PncuuyQK1LC9sT/fFLX2QCS5DDqSIZDltLTp4OK66/lGGdY2SCwzy8nTVDMMZbiXMQ3XSCYuv6W76JuTz5I0QpgsAEShNharVaWpf2VH4pJro8vGyPqmR34e3O5XnXiA7FY8ag9BqNza28g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rvS47Dk/EZ9Xtgexi+qmjUydjeAzHAc3P//gh5+Kyws=;
- b=WUxZehujsEdJzxNkIRX7jTaOf4AWY8762eBXJaVFvZQSqetd0Fh8qupenwMwF14GkVfUaYHPYztgdP7GRZz3rFmIR/SAzZ4FTv+VwIT/NCAfHBo7NoC0W+9pcBZIpV9NZ7aAgWC6CScWOuny39Grrz+qq/ywDlSPmJHqs7QYX/prcPo/tPl90X034XF+UhkBIdw7kxsZeyfPgYpF9UCfImyZ++dtvw7KGOKfbE3BvfXvVonOttV+Yc8vV1B67UZTHR4stbWf7Pub8SU8nYJoGFE6PX9r7KVu6pAR7LlDbfLvPR9PVZzj5Te4M+e0XMlaVzJovM9yCBfPS4Ihe2273Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rvS47Dk/EZ9Xtgexi+qmjUydjeAzHAc3P//gh5+Kyws=;
- b=Rz+vvSRXyi9Y/KqIIhpxo7GvPQA7nOBXT0s8hXt8mgVXLLj9yPt4Da/dzuVCXcLoAct3+6YyqsbRq1Q/9v5oX1h/GKcorgDUQql7XBCz4Z934fLz0WU7qxqTGhffnpOD/PuccubfLf1AkTaMOEgC+SYx9JixMyQDKLMXLaNJujQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from MN2PR12MB4342.namprd12.prod.outlook.com (2603:10b6:208:264::7)
- by SA0PR12MB4591.namprd12.prod.outlook.com (2603:10b6:806:9d::23)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.18; Wed, 16 Nov
- 2022 09:20:15 +0000
-Received: from MN2PR12MB4342.namprd12.prod.outlook.com
- ([fe80::6755:9455:2407:ea3e]) by MN2PR12MB4342.namprd12.prod.outlook.com
- ([fe80::6755:9455:2407:ea3e%9]) with mapi id 15.20.5813.017; Wed, 16 Nov 2022
- 09:20:15 +0000
-Message-ID: <fa9ecb1f-17a9-c7ce-d25a-42c3860f1b8d@amd.com>
-Date: Wed, 16 Nov 2022 14:50:04 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Content-Language: en-US
-To: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-References: <20221116085012.187756-1-Amaranath.Somalapuram@amd.com>
- <20221116085012.187756-2-Amaranath.Somalapuram@amd.com>
-From: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
-In-Reply-To: <20221116085012.187756-2-Amaranath.Somalapuram@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN2PR01CA0217.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:ea::15) To MN2PR12MB4342.namprd12.prod.outlook.com
- (2603:10b6:208:264::7)
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com
+ [IPv6:2a00:1450:4864:20::62a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6FBD10E456
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Nov 2022 09:31:08 +0000 (UTC)
+Received: by mail-ej1-x62a.google.com with SMTP id n12so42560306eja.11
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Nov 2022 01:31:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=HjyZCC6mzAlcil/3Af99i3KpLOyclBBNfeVRU7CSIAE=;
+ b=LHtl2Tgd5FPR7Heid0sVtCKUqpgoPCqPEGQgDAgH6wRkyxqcjMk+iUtyQbQ/AyjYCT
+ F370Mz0ANIGP7pKYzSjeIkQXaJh3Yh3+Ay/+qXC0Dk1wc1ZfEdOBWco8YydP/YFO7Ka4
+ QvfVqSmVANbizTK0N/y2puTD56FbZDLqz7pgg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=HjyZCC6mzAlcil/3Af99i3KpLOyclBBNfeVRU7CSIAE=;
+ b=1TH56u+pbF3S3xjF6YBYg4yH9u04qBw9AUxELXpTmrTELuyrftk67KlyKIF55wkWGR
+ 9wEJMCuqpNBHrR1lKNeM9i3Laj7VHmTUQQAaGKUjg5dHIX0WR15+ihur4712xgWK0pDa
+ rG5rwYwVAyYnDVsK9ux0ovE7BVg6luY2ogIFUtUaO8a9a6eU7k9ajv6OXdT3Mel7FE3q
+ x7OaK+phOPDR13jvxpWwJ+tLwVK4JyTmX9SpO2Tmfw7QjfCI3dL+XzRNndduNjNWTsOB
+ hgKCqQos+anWMz5sya3pzNbZgLf0IDc8Dv8y7ovDEaMVoePrL4sD+wnT127dH411N7T6
+ a+Ww==
+X-Gm-Message-State: ANoB5pkAhyK39VaERKGzJUncbVkY9QJvoCHeGCHBl2LX/3CFrVRDujlb
+ j13ELddrX1py+gmXnQ/EeGz/zg==
+X-Google-Smtp-Source: AA0mqf66vYi+w1ziwmJSZJjyt4isaqo8LekZnwcJhozY0nIHZ76J0Qs726qIUArR79L/TgZaIQWkyw==
+X-Received: by 2002:a17:907:c70f:b0:78d:9723:d9c3 with SMTP id
+ ty15-20020a170907c70f00b0078d9723d9c3mr16781755ejc.316.1668591067120; 
+ Wed, 16 Nov 2022 01:31:07 -0800 (PST)
+Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
+ [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
+ 18-20020a170906201200b0078b83968ad4sm6591153ejo.24.2022.11.16.01.31.06
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 16 Nov 2022 01:31:06 -0800 (PST)
+Date: Wed, 16 Nov 2022 10:31:05 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Andrzej Hajda <andrzej.hajda@intel.com>
+Message-ID: <Y3St2VHJ7jEmcNFw@phenom.ffwll.local>
+References: <20210713135922.1384264-1-daniel.vetter@ffwll.ch>
+ <60b5de09-7a3c-3a61-a7a2-a856c8be108e@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4342:EE_|SA0PR12MB4591:EE_
-X-MS-Office365-Filtering-Correlation-Id: 59364dff-8cbc-48de-8803-08dac7b3c472
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: pgDXAP1d67XTrG3vTy8kIP0a1WrVG5N0Vqz1MUTwLcfBAc1uxeDI5CLxvsAzJczlFtXvyjxtt4G8F9BIoeJ4rFVkv8t7/NnLsvjnzG6bEuFCt7d5NI9JvEOeyBkDfP+P5+hWUifNjdCN/FfG/gT8S7YHeEvrWnP19+rQl47cfFkCUjt/+uJ2EDSikcDUNqwjxQYfvWB5hm/OugUmr2Q2WlgptDt9QHgdlZq+PcUgyWA5jAeRlV5kikWvYpWoOjza7hX4AlMzk3qCuilVQKZoSOsPerNtaB0jDQYOORZIRcX9Dz11vmMxAPWPapt6w6zKvq79QhLSGgWEwO0O1gDlXDrQmEEPnVcJOtC7IeZVX7dPmFI5xq6hF/OAJE4X75CU/6YnkRrEUuq6M6TWr5u+wdNT4hId3v+qnE+g3FElWHLOd3nA2f9chQ7tdeA4FArpCP/G4LhiY922/eqO3ZWmmaVotfIbmiZYYitqVWBqTq7DLz60418ofZgEEKoqzpWDgguQnyWlGm6tQQ4u+wdkGusnaSuPKVro61s4nBpLXqNeqptgbvvsYMwFeZB5ZU2aFDP5twGYnBotXJkPcx9buOQT9Q/NdbfpIUOAv4Kd+i7QnA+AUo/VQNfyv1O/b7+e6jnyM0R/enRFJXD5R8+do/Zi2xF5fcOKe17J8+Sje4HqQPw09ntSWFXwAgsJeCFq/uvwE/iWqj/003E7RYCaOefDQI0WShLGpz/IbmIealeuegbjSBYsEeisp6BRp3Z74JrAq15AQXkPhy6ip+JbWHZ6hF9QQBx0LdQG+vIBCFk=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB4342.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(4636009)(136003)(376002)(346002)(396003)(366004)(39860400002)(451199015)(38100700002)(26005)(6512007)(2616005)(186003)(53546011)(6506007)(4744005)(5660300002)(2906002)(83380400001)(66476007)(6666004)(41300700001)(478600001)(316002)(4326008)(8936002)(8676002)(6486002)(66946007)(450100002)(66556008)(86362001)(31696002)(36756003)(31686004)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QWxXblB3MUhBM0hxUTNTVndBbWhRVncvYWYxR055ZFNWYWQ4bmRoYmtWTDBs?=
- =?utf-8?B?VnpkSlROTVpFZVVTV1F6NExpcW1lcUdFUGIrblJIbEh6cHVMdTdjc0oyK2dr?=
- =?utf-8?B?djVvN1BUOW1aRWhzOHY5dEFOSThNMjBSdmltOGZNUDRSZGJYWlNXSTRrR2Jh?=
- =?utf-8?B?VjlJQTA1a2VQVTVqa0ZLaWtGN2lld0VoV2YvWk5hbGRKWHE4OWZuOTlnOVVq?=
- =?utf-8?B?QUt0dk43c1pwTVRNOUFuNEpIVUJBMWFPdkRYT3BHRVZFak9mQVZpbkRjcVp1?=
- =?utf-8?B?OFh4YytGSFRZK1NSc3F6R3VtYlJyanpVcUlNODB1T0J2TGtxK3d5aWtzMmRD?=
- =?utf-8?B?RjQzWll5VDh4QldWSjRRZHJTMFpidEVzUGtRRFlqUTJMay9wMHJvZXNiclJt?=
- =?utf-8?B?N3Z6MFpNWXNzQ1ZGWDZHdjVoenJuYUYvWlMrNGRjNnVvSENLdlQ2ckxPUzNH?=
- =?utf-8?B?VVI4aUZUMXc4TFpkQVhwd1RHWWp1U2lSYzk5eFZwVmF1YVZ2YmZXeEsza0po?=
- =?utf-8?B?L0laZFRPOHNIbWJ5VW9MeC9oZmtFUFUrOFQraVNLNzhhSmJYQ0IxdmVRb0pj?=
- =?utf-8?B?ODdCeVFTUzliQlB4SDFFTFo0NER0Y002RG9CQkZ2Yk5TR0xsVTlGdzhDNTRz?=
- =?utf-8?B?L3VPOGs5L1k4dFI1MmhNSDVVRjhrZGlDaFZpYm5rUE1zbTNxUE9GbFZQMDhj?=
- =?utf-8?B?ZmhVcGhOTUhLa3F0MVNxQVNXcXdXbnF0QXlTVFFrT1lOcHJvQkVTaDdrYjVX?=
- =?utf-8?B?MzhkWm9JbUdIN0pGNi9taEloRW9hUjFBa1ZJdnpoRG1yeUZZek9sN0ZkTGlY?=
- =?utf-8?B?dzMxelc4cjB2Q2RRNnByNjR4QW1paVY5c0h5eW00bXpoUmh4eFJTQ3gwaU1K?=
- =?utf-8?B?WjFsRUROWkNFOWZFUnBZOXJhcXlYVGl1Ukl4a0FOUVp1UXJJSE9DdDNHak15?=
- =?utf-8?B?ODNlNE1Edit5ZFhiZmg0bDB0aGZ5M0Z0TzR5Z1l0NHZYNWkxcVZEakdXQXFw?=
- =?utf-8?B?aWFEcUkrRlNlQ0k0N1NmWVQ1ZUpPMnpNNjhGQnRZUHhDNmcvZVl3SCtSMmJh?=
- =?utf-8?B?bE54K0VaR2gvaUZOakJYdHg5M0JkTTBMMklvNXdaMm1QeTU1ZUxoclZNMlRE?=
- =?utf-8?B?QnVWVzh1eTQrZ2N2dXlMN1Axbkl5OWdHNVlTdnNaSVgvMXBIRXBLYkxrWWlt?=
- =?utf-8?B?aWpXUmNIRFZEQlVCZUdsTUs4TXFoTXRML0liTXlUaU1uRUhlSjFBNmVoVi9C?=
- =?utf-8?B?WU0zbkNZUlFmanZtRkRFYzNPbXJ3cE5WRVhCMEI1a0lCY0JIaC9IYjgvZ040?=
- =?utf-8?B?ZlJSZnJHU0pjQ0JiSUtqcC9XSzBQZlZRQXhhbm9jWnJRTDFtL2FQRUc5bDVG?=
- =?utf-8?B?NGNGVHROZ3d0TXVxQnRlU044R0ltZGhUSjYrTlVZZmZFSVZFOEZsVWJ0cE1X?=
- =?utf-8?B?Vk5VUmJFelJVbDNqWjB1RCt3cUF4TW5HblBYZ2daV2FBVFVZT0RVY0JLOVh1?=
- =?utf-8?B?b0hzUFRqNmFBMmlEc29MLzRZUEFNdkJpb3ZBTzZGRnpLQ25SYWNwajltcXBh?=
- =?utf-8?B?U0ZZVm0rMUQ1Mnd5emFibUZFYVNrWUVBcndBV3VRblZvZDJVMzNkUG4zVlA1?=
- =?utf-8?B?OXRxYlVPSVZrYjE5MnBXaGdoTzBFMkFMTlRyZWVJQXlQWExwZVg4V280NG5j?=
- =?utf-8?B?cUdLYkNEMGNnMXZHRkhVV2NSclM1Ympoa3B4U2U3OVAveVJ3TGlHdWlXaHl4?=
- =?utf-8?B?ZVp4RXBmeG1PVzRmN2MwYmdNdG9OWEJvMWdNWW1XYUJtUVQwTjM2ZGU4SWxY?=
- =?utf-8?B?Wk5UTzFNOGNwY3ZsWFhzcEpPdkpYZ0hsVnRNc3hsNUc5U09hUFY5ZkpVSjVW?=
- =?utf-8?B?enJ4SUY3NmNacmtuTVNmNWVBY25sdnRlKzFreElGS2dna0VvcXp2MCtuVDlS?=
- =?utf-8?B?eTV4Rm9lMlkyVWdKUHRaOUlVU3pYMmlwcGpNdG4yaUJhSjNUWlk5bVJnd3pK?=
- =?utf-8?B?dzVMRVRISEoyeHZIYW5BNXVxZkViWVcrU3BGQ2I2bXJuTVRzdEdMaHFtelh5?=
- =?utf-8?B?Qk1xMlduay9ISEVYN1lvcmpYZ0drMzR4cERyd0FUai9FaVpBQmRwSmhBYTFa?=
- =?utf-8?Q?mumAO67N0npcfcBHalUs131gO?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 59364dff-8cbc-48de-8803-08dac7b3c472
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4342.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2022 09:20:15.0885 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: n8LvZ2UsQicauMCOFfl6nJMqAPzxqM9iLzKjcMw3890DHLV/HnwCE0+NBVjnu1ve28zG0NOYSEWwirBTJyzfuA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4591
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/gem: Remove BUG_ON in
- drm_gem_private_object_init
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <60b5de09-7a3c-3a61-a7a2-a856c8be108e@intel.com>
+X-Operating-System: Linux phenom 5.19.0-2-amd64 
+Subject: Re: [Intel-gfx] [PATCH] drm/fb-helper: Try to protect cleanup
+ against delayed setup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -128,35 +72,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, christian.koenig@amd.com
+Cc: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Maxime Ripard <mripard@kernel.org>, Chris Wilson <chris@chris-wilson.co.uk>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Amar,
+On Tue, Nov 15, 2022 at 10:30:01AM +0100, Andrzej Hajda wrote:
+> On 13.07.2021 15:59, Daniel Vetter wrote:
+> > Some vague evidences suggests this can go wrong. Try to prevent it by
+> > holding the right mutex and clearing ->deferred_setup to make sure we
+> > later on don't accidentally try to re-register the fbdev when the
+> > driver thought it had it all cleaned up already.
+> > 
+> > v2: I realized that this is fundamentally butchered, and CI complained
+> > about lockdep splats. So limit the critical section again and just add
+> > a few notes what the proper fix is.
+> > 
+> > References: https://intel-gfx-ci.01.org/tree/linux-next/next-20201215/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
+> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > Cc: Maxime Ripard <mripard@kernel.org>
+> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> > Cc: David Airlie <airlied@linux.ie>
+> > Cc: Daniel Vetter <daniel@ffwll.ch>
+> 
+> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-On 11/16/2022 2:20 PM, Somalapuram Amaranath wrote:
-> ttm_resource allocate size in bytes i.e less than page size.
->
-> Signed-off-by: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
-> ---
->   drivers/gpu/drm/drm_gem.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
-> index b8db675e7fb5..a346e3b7f9a8 100644
-> --- a/drivers/gpu/drm/drm_gem.c
-> +++ b/drivers/gpu/drm/drm_gem.c
-> @@ -152,7 +152,7 @@ EXPORT_SYMBOL(drm_gem_object_init);
->   void drm_gem_private_object_init(struct drm_device *dev,
->   				 struct drm_gem_object *obj, size_t size)
->   {
-> -	BUG_ON((size & (PAGE_SIZE - 1)) != 0);
-> +	//BUG_ON((size & (PAGE_SIZE - 1)) != 0);
-This line is added by mistake?
+I just dropped this one from my patch pile a while ago, because there were
+conflicts. If you like it, feel free to resurrect&rebase and then merge it
+(but maybe cc intel-gfx so the CI there can test it).
+-Daniel
 
-Regards,
-Arun
->   
->   	obj->dev = dev;
->   	obj->filp = NULL;
+> 
+> Regards
+> Andrzej
+> 
+> > ---
+> >   drivers/gpu/drm/drm_fb_helper.c | 10 ++++++++++
+> >   1 file changed, 10 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_helper.c
+> > index 9d82fda274eb..8f11e5abb222 100644
+> > --- a/drivers/gpu/drm/drm_fb_helper.c
+> > +++ b/drivers/gpu/drm/drm_fb_helper.c
+> > @@ -598,6 +598,9 @@ EXPORT_SYMBOL(drm_fb_helper_alloc_fbi);
+> >    * A wrapper around unregister_framebuffer, to release the fb_info
+> >    * framebuffer device. This must be called before releasing all resources for
+> >    * @fb_helper by calling drm_fb_helper_fini().
+> > + *
+> > + * Note that this is fundamentally racy on hotunload because it doen't handle
+> > + * open fbdev file descriptors at all. Use drm_fbdev_generic_setup() instead.
+> >    */
+> >   void drm_fb_helper_unregister_fbi(struct drm_fb_helper *fb_helper)
+> >   {
+> > @@ -611,6 +614,9 @@ EXPORT_SYMBOL(drm_fb_helper_unregister_fbi);
+> >    * @fb_helper: driver-allocated fbdev helper, can be NULL
+> >    *
+> >    * This cleans up all remaining resources associated with @fb_helper.
+> > + *
+> > + * Note that this is fundamentally racy on hotunload because it doen't handle
+> > + * open fbdev file descriptors at all. Use drm_fbdev_generic_setup() instead.
+> >    */
+> >   void drm_fb_helper_fini(struct drm_fb_helper *fb_helper)
+> >   {
+> > @@ -2382,6 +2388,10 @@ static void drm_fbdev_client_unregister(struct drm_client_dev *client)
+> >   {
+> >   	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
+> > +	mutex_lock(&fb_helper->lock);
+> > +	fb_helper->deferred_setup = false;
+> > +	mutex_unlock(&fb_helper->lock);
+> > +
+> >   	if (fb_helper->fbdev)
+> >   		/* drm_fbdev_fb_destroy() takes care of cleanup */
+> >   		drm_fb_helper_unregister_fbi(fb_helper);
+> 
 
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
