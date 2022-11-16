@@ -2,32 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDA8562CE24
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Nov 2022 23:57:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7924662CEB7
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Nov 2022 00:29:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95E2510E0D4;
-	Wed, 16 Nov 2022 22:57:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4409A10E0D4;
+	Wed, 16 Nov 2022 23:29:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7B41B10E18D;
- Wed, 16 Nov 2022 22:57:47 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 48ADC10E0D4;
+ Wed, 16 Nov 2022 23:29:50 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 73AD4A00E8;
- Wed, 16 Nov 2022 22:57:47 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 40ED9A00E6;
+ Wed, 16 Nov 2022 23:29:50 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@linux.intel.com>
-Date: Wed, 16 Nov 2022 22:57:47 -0000
-Message-ID: <166863946744.29192.11483021049868452074@emeril.freedesktop.org>
+To: "Anusha Srivatsa" <anusha.srivatsa@intel.com>
+Date: Wed, 16 Nov 2022 23:29:50 -0000
+Message-ID: <166864139023.29190.17476773852635473183@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20221114123348.3474216-1-badal.nilawar@intel.com>
-In-Reply-To: <20221114123348.3474216-1-badal.nilawar@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?i915=3A_CAGF_and_RC6_changes_for_MTL_=28rev14=29?=
+References: <20221116215040.713104-1-anusha.srivatsa@intel.com>
+In-Reply-To: <20221116215040.713104-1-anusha.srivatsa@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/3=5D_drm/i915/display=3A_Add_miss?=
+ =?utf-8?q?ing_checks_for_cdclk_crawling?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,14 +48,35 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: i915: CAGF and RC6 changes for MTL (rev14)
-URL   : https://patchwork.freedesktop.org/series/108156/
+Series: series starting with [1/3] drm/i915/display: Add missing checks for cdclk crawling
+URL   : https://patchwork.freedesktop.org/series/110986/
 State : warning
 
 == Summary ==
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+Error: dim checkpatch failed
+aa8ce217526b drm/i915/display: Add missing checks for cdclk crawling
+b688374372d5 drm/i915/display: Do both crawl and squash when changing cdclk
+-:61: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#61: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:1736:
++						    const struct intel_cdclk_config *old_cdclk_config,
+
+-:62: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#62: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:1737:
++						    const struct intel_cdclk_config *new_cdclk_config,
+
+-:172: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 26)
+#172: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:1852:
++	if (DISPLAY_VER(dev_priv) >= 14)
++		/* NOOP */;
+
+-:203: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 19)
+#203: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:1883:
++	if (DISPLAY_VER(dev_priv) >= 14)
+[...]
++		 */;
+
+total: 0 errors, 4 warnings, 0 checks, 216 lines checked
+2ab8faf850e7 drm/i915/display: Add CDCLK Support for MTL
 
 
