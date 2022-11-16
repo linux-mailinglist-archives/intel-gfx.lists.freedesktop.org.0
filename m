@@ -1,50 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A77B862C15D
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Nov 2022 15:49:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3484D62C1CC
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Nov 2022 16:07:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D13310E4BE;
-	Wed, 16 Nov 2022 14:49:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E554C10E4B3;
+	Wed, 16 Nov 2022 15:07:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CAEC10E4BC
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Nov 2022 14:49:46 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9B9810E4B3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Nov 2022 15:07:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668610186; x=1700146186;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=RDYtGO1k2oaAKF2nDVVHNqs69ZY1Jk2dWznNAxVj/wI=;
- b=dcPTNfM8jDJ7L+tU/TirryKGbnAbu8O507en5eM95pKqNkNnD2AtlZ6e
- 0RrMVKve0JNiF9bbfEDmb5YLLDCHnJpSo26j2fx6hWZwp5k3rK0mh4SdF
- Jao+8/qy/HqHxyEnjUySmjLUhyvgJLSNvSwNvn2YL6rSZATJEfyf+bhaF
- fLVD0HGpw3krQfDuj9fEFhgALO9oLS97nnLQTtXay5y+k7LHnJnmdpj/L
- g5zpvRWb4GIAvbaw5L8DR8j+gs4X4VXJkQIu565s0t6aJyRb14RA1AAUq
- U+BdyBRi4Usae9wlX81kMmPfY7bSYJT9/Gbf59/4Xcb80kCzx4IPbfxxA g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10532"; a="374693515"
-X-IronPort-AV: E=Sophos;i="5.96,167,1665471600"; d="scan'208";a="374693515"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2022 06:49:45 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10532"; a="814107960"
-X-IronPort-AV: E=Sophos;i="5.96,167,1665471600"; d="scan'208";a="814107960"
-Received: from kpalaniv-mobl2.amr.corp.intel.com (HELO
- anushasr-mobl7.intel.com) ([10.209.77.201])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2022 06:49:45 -0800
-From: Anusha Srivatsa <anusha.srivatsa@intel.com>
+ t=1668611235; x=1700147235;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=3YhQquSUh+PZjw73J/vgzUdDSN04+O3tyn0J8OxQ0vA=;
+ b=kxEysAL6eBCd36kp+CaIRbNMPp/lX12FvLJu3DjzT1JUSN1RFTQ09KEZ
+ 6sVxRCLmxDXFgTRFGScOWxLC4JOFiVYj8EtjD0L6y432pP64RJzx3SUrP
+ XpmIMT2JiHS560MqebCHeD+35iBgZYkZcMrUv7CUs2bdOmeKoxtnZfc8s
+ mwOyMLa4NinbsUtckEBb4ipHt6Eu48QXsx0End3S5Nw2Tn6bOwDw9munz
+ DwRpJjnDY+GvC+97NzGuNAwBHRufcyVX4BxQZqMvci5vacyuf0XTu8SoY
+ i4DrcyA13ZifOkBz6zfTnxMhnoX0dQMN9jusTc2ccIMLFbK/XF9umGYvi A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10533"; a="311272283"
+X-IronPort-AV: E=Sophos;i="5.96,167,1665471600"; d="scan'208";a="311272283"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2022 07:07:03 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10533"; a="884436256"
+X-IronPort-AV: E=Sophos;i="5.96,167,1665471600"; d="scan'208";a="884436256"
+Received: from dariofax-mobl.amr.corp.intel.com (HELO localhost)
+ ([10.252.59.5])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2022 07:07:01 -0800
+From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 16 Nov 2022 06:50:08 -0800
-Message-Id: <20221116145008.556381-3-anusha.srivatsa@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221116145008.556381-1-anusha.srivatsa@intel.com>
-References: <20221116145008.556381-1-anusha.srivatsa@intel.com>
+Date: Wed, 16 Nov 2022 17:06:57 +0200
+Message-Id: <20221116150657.1347504-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915/display: Add CDCLK Support for MTL
+Subject: [Intel-gfx] [PATCH] drm/i915/edp: wait power off delay at driver
+ remove to optimize probe
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,71 +58,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As per bSpec MTL has 38.4 MHz Reference clock.
-Adding the cdclk tables and cdclk_funcs that MTL
-will use.
+Panel power off delay is the time the panel power needs to remain off
+after being switched off, before it can be switched on again.
 
-v2: Revert to using bxt_get_cdclk()
+For the purpose of respecting panel power off delay at driver probe,
+assuming the panel was last switched off at driver probe is overly
+pessimistic. If the panel was never on, we'd end up waiting for no
+reason.
 
-BSpec: 65243
+We don't know what has happened before kernel boot, but we can make some
+assumptions:
 
-Cc: Clint Taylor <Clinton.A.Taylor@intel.com>
-Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
-Reviewed-by: Clint Taylor <Clinton.A.Taylor@intel.com>
+- The panel may have been switched off right before kernel boot by some
+  pre-os environment.
+
+- After kernel boot, the panel may only be switched off by i915.
+
+- At i915 driver probe, only a previously loaded and removed i915 may
+  have switched the panel power off.
+
+With these assumptions, we can initialize the last power off time to
+kernel boot time, if we also ensure i915 driver remove waits for the
+panel power off delay after switching panel power off.
+
+This shaves off the time it takes from kernel boot to i915 probe from
+the first panel enable, if (and only if) the panel was not already
+enabled at boot.
+
+The encoder destroy hook is pretty much the last place where we can
+wait, right after we've ensured the panel power has been switched off,
+and before the whole encode is destroyed.
+
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/7417
+Cc: Lee Shawn C <shawn.c.lee@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c | 22 +++++++++++++++++++++-
- 1 file changed, 21 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dp.c  | 6 ++++++
+ drivers/gpu/drm/i915/display/intel_pps.c | 8 +++++++-
+ 2 files changed, 13 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 6e122d56428c..6694e83287d9 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -1346,6 +1346,16 @@ static const struct intel_cdclk_vals dg2_cdclk_table[] = {
- 	{}
- };
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 914161d7d122..67089711d9e2 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -4877,6 +4877,12 @@ void intel_dp_encoder_flush_work(struct drm_encoder *encoder)
  
-+static const struct intel_cdclk_vals mtl_cdclk_table[] = {
-+	{ .refclk = 38400, .cdclk = 172800, .divider = 2, .ratio = 16, .waveform = 0xad5a },
-+	{ .refclk = 38400, .cdclk = 192000, .divider = 2, .ratio = 16, .waveform = 0xb6b6 },
-+	{ .refclk = 38400, .cdclk = 307200, .divider = 2, .ratio = 16, .waveform = 0x0000 },
-+	{ .refclk = 38400, .cdclk = 480000, .divider = 2, .ratio = 25, .waveform = 0x0000 },
-+	{ .refclk = 38400, .cdclk = 556800, .divider = 2, .ratio = 29, .waveform = 0x0000 },
-+	{ .refclk = 38400, .cdclk = 652800, .divider = 2, .ratio = 34, .waveform = 0x0000 },
-+	{}
-+};
+ 	intel_pps_vdd_off_sync(intel_dp);
+ 
++	/*
++	 * Ensure power off delay is respected on module remove, so that we can
++	 * reduce delays at driver probe. See pps_init_timestamps().
++	 */
++	intel_pps_wait_power_cycle(intel_dp);
 +
- static int bxt_calc_cdclk(struct drm_i915_private *dev_priv, int min_cdclk)
- {
- 	const struct intel_cdclk_vals *table = dev_priv->display.cdclk.table;
-@@ -3184,6 +3194,13 @@ u32 intel_read_rawclk(struct drm_i915_private *dev_priv)
- 	return freq;
+ 	intel_dp_aux_fini(intel_dp);
  }
  
-+static const struct intel_cdclk_funcs mtl_cdclk_funcs = {
-+	.get_cdclk = bxt_get_cdclk,
-+	.set_cdclk = bxt_set_cdclk,
-+	.modeset_calc_cdclk = bxt_modeset_calc_cdclk,
-+	.calc_voltage_level = tgl_calc_voltage_level,
-+};
-+
- static const struct intel_cdclk_funcs tgl_cdclk_funcs = {
- 	.get_cdclk = bxt_get_cdclk,
- 	.set_cdclk = bxt_set_cdclk,
-@@ -3319,7 +3336,10 @@ static const struct intel_cdclk_funcs i830_cdclk_funcs = {
-  */
- void intel_init_cdclk_hooks(struct drm_i915_private *dev_priv)
+diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+index 81ee7f3aadf6..9bbf41a076f7 100644
+--- a/drivers/gpu/drm/i915/display/intel_pps.c
++++ b/drivers/gpu/drm/i915/display/intel_pps.c
+@@ -1100,7 +1100,13 @@ bool intel_pps_have_panel_power_or_vdd(struct intel_dp *intel_dp)
+ 
+ static void pps_init_timestamps(struct intel_dp *intel_dp)
  {
--	if (IS_DG2(dev_priv)) {
-+	if (IS_METEORLAKE(dev_priv)) {
-+		dev_priv->display.funcs.cdclk = &mtl_cdclk_funcs;
-+		dev_priv->display.cdclk.table = mtl_cdclk_table;
-+	} else if (IS_DG2(dev_priv)) {
- 		dev_priv->display.funcs.cdclk = &tgl_cdclk_funcs;
- 		dev_priv->display.cdclk.table = dg2_cdclk_table;
- 	} else if (IS_ALDERLAKE_P(dev_priv)) {
+-	intel_dp->pps.panel_power_off_time = ktime_get_boottime();
++	/*
++	 * Initialize panel power off time to 0, assuming panel power could have
++	 * been toggled between kernel boot and now only by a previously loaded
++	 * and removed i915, which has already ensured sufficient power off
++	 * delay at module remove.
++	 */
++	intel_dp->pps.panel_power_off_time = 0;
+ 	intel_dp->pps.last_power_on = jiffies;
+ 	intel_dp->pps.last_backlight_off = jiffies;
+ }
 -- 
-2.25.1
+2.34.1
 
