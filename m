@@ -1,57 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6D1762D9B8
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Nov 2022 12:43:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7CBC62D9F5
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Nov 2022 12:55:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6995F10E596;
-	Thu, 17 Nov 2022 11:43:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A3B610E573;
+	Thu, 17 Nov 2022 11:55:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com
- [IPv6:2a00:1450:4864:20::130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85E1810E58C;
- Thu, 17 Nov 2022 11:43:34 +0000 (UTC)
-Received: by mail-lf1-x130.google.com with SMTP id bp15so2321214lfb.13;
- Thu, 17 Nov 2022 03:43:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=Srd+LTqTLL/XxaJ56ZY9MBE7Pidqv2Oc/p1kAIi4H+c=;
- b=KuyqE/oktnvBhn2d6Vx0+5lgpyaZLSDWeqLdlTxxzFwkbVX0f3o7piI0TlOG2XPC5D
- vX4ciLy/22hM2XqsRnDE+m4SLsU6BlYFxZ++B9tlb6wuW72BfYzwYB5M1ZlQNVdkWI6Q
- k0BAR2hNQFKZ1v9HjYBSri28ebwtAIyWJBGOxGfprwb2Mbox0wfkIrD4+N/tQ+BR3JUn
- Kk1KDCJGPJEFqfRdSyQNm0+2MmC0JUvzooZnnsfySa2700GcY8daw2wSs3YZ7MhFaEjn
- PiKeOO66F98MfNLD/TvS7bd6c8owCZE/sC7sjqUYUGtV5XwmyNEaLvWDWVek0nZuRh2F
- M+Tg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=Srd+LTqTLL/XxaJ56ZY9MBE7Pidqv2Oc/p1kAIi4H+c=;
- b=vR13Ax+yJf/HaxNqhUIIuX7yKP6FRvRfTsINizljJ/FzYnGvUoxBKo6gStqaHpVDDI
- +krCgPzpuN8674DALddj0ldNa9iFsnxoaTwOc4oOlZe3y77/H7RwB4oeipluxqjufYhv
- BTEeXEEInLnL+Nn70R68X7dOKNzMYlP/sCWLkeuS4nSViTeemhz761OiScjLwp0r8EhO
- 9S/pz7plQt7AUJ/33QHcZSVHeEuEFa8PI1XJNq/+/rjvM7kJESgIK/dP2lZG9zJrg9b6
- VmtNq88REyrLmeIh1ddL5we6rxeuaWz0GC0huIcU75SbGXVSmDy6LKIp3gJgnh9qbTyR
- Zczg==
-X-Gm-Message-State: ANoB5pnK4xoKkciqvXXImCJdLC4rr36Vue2MW3vLPPlgkIX49QaAmXos
- DrZwSRZM//K2FL7y4Df0DhfmHoYsS3Eld3o3OR4=
-X-Google-Smtp-Source: AA0mqf7p3oLCVwVWQh8RvQHsy4BwjtCYwSLrhE758CTwYX/+Uv2S3I/we02HA5THFPcGzBLRBIoRfxqRaIiEoJ2dG7w=
-X-Received: by 2002:a05:6512:1051:b0:4b0:a51e:2b3 with SMTP id
- c17-20020a056512105100b004b0a51e02b3mr866724lfb.636.1668685412679; Thu, 17
- Nov 2022 03:43:32 -0800 (PST)
+Received: from smtp.domeneshop.no (smtp.domeneshop.no
+ [IPv6:2a01:5b40:0:3005::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3CD6710E0D2;
+ Thu, 17 Nov 2022 11:55:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
+ ; s=ds202112;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=Yd7mdC1LPQekUFWJKkE454RqYpqT+F4Lkf7XxnWlk9c=; b=kQTC/S+6FwkGTvxV6OS46JT1Xc
+ Qvmke6Q7yeIzz7dtSpMLRD8zQkHbc2d57J2K3kn0ktbRUd1lHTFrWY4Zp+ou5UAyLp4750rU8++8N
+ suZRqhMqq8t/9ghE+kfFy3iLYkIck4vxcrirs/9rGrrNRPD6eAU7FBQSipdL0+7paKHPS1iAtcumR
+ yac4pRDZjdV4Tykf/3GZ/Tb7n6plyP0D8Mm87P+bQKnek9RGMW/rCe4CZY8aP+01xpy2+22XiUg35
+ ERjtm2fs/47jtfRiMAjQQqvglxPNChlKz7ioiPiFS4CIbfIqJZQK6oaKPBY5xfJB2cL2rT4hv75pc
+ q9Yj8k5g==;
+Received: from [2a01:799:95e:1700:6395:ccbd:d000:d42b] (port=54193)
+ by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+ (Exim 4.92) (envelope-from <noralf@tronnes.org>)
+ id 1ovdTz-0003nI-Gy; Thu, 17 Nov 2022 12:55:03 +0100
+Message-ID: <92529a83-1c04-27b5-7d3d-35fb4fcd0824@tronnes.org>
+Date: Thu, 17 Nov 2022 12:54:54 +0100
 MIME-Version: 1.0
-References: <20221013084007.19843-1-nirmoy.das@intel.com>
-In-Reply-To: <20221013084007.19843-1-nirmoy.das@intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Thu, 17 Nov 2022 11:43:05 +0000
-Message-ID: <CAM0jSHM_o9nbPmvfqiJxa2xOYfAerHNsfoGspTvMHZX5CtLavw@mail.gmail.com>
-To: Nirmoy Das <nirmoy.das@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/print: Add drm_dbg_ratelimited
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+To: Maxime Ripard <maxime@cerno.tech>, Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Ben Skeggs <bskeggs@redhat.com>,
+ Chen-Yu Tsai <wens@csie.org>, David Airlie <airlied@linux.ie>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Emma Anholt <emma@anholt.net>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel@ffwll.ch>
+References: <20220728-rpi-analog-tv-properties-v10-0-256dad125326@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v10-1-256dad125326@cerno.tech>
+From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
+In-Reply-To: <20220728-rpi-analog-tv-properties-v10-1-256dad125326@cerno.tech>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v10 01/19] drm/tests: client: Mention that
+ we can't use MODULE_ macros
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,42 +67,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>
+Cc: Dom Cobley <dom@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ Phil Elwell <phil@raspberrypi.com>, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,
+ Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
+ Hans de Goede <hdegoede@redhat.com>,
+ =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, linux-sunxi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 13 Oct 2022 at 09:40, Nirmoy Das <nirmoy.das@intel.com> wrote:
->
-> Add a function for ratelimitted debug print.
->
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
+
+Den 17.11.2022 10.28, skrev Maxime Ripard:
+> That file is included directly, so we can't use any MODULE macro. Let's
+> leave a comment to avoid any future mistake.
+> 
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 > ---
->  include/drm/drm_print.h | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
-> index 22fabdeed297..1e2e26378570 100644
-> --- a/include/drm/drm_print.h
-> +++ b/include/drm/drm_print.h
-> @@ -562,6 +562,9 @@ void __drm_err(const char *format, ...);
->                 drm_dev_printk(drm_ ? drm_->dev : NULL, KERN_DEBUG, fmt, ## __VA_ARGS__);       \
->  })
->
-> +#define drm_dbg_ratelimited(drm, fmt, ...) \
-> +       __DRM_DEFINE_DBG_RATELIMITED(DRIVER, drm, fmt, ## __VA_ARGS__)
-> +
->  #define drm_dbg_kms_ratelimited(drm, fmt, ...) \
->         __DRM_DEFINE_DBG_RATELIMITED(KMS, drm, fmt, ## __VA_ARGS__)
->
-> --
-> 2.37.3
->
+
+Reviewed-by: Noralf Trønnes <noralf@tronnes.org>
