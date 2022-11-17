@@ -1,50 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 978FE62E6F2
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Nov 2022 22:31:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A04CF62E724
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Nov 2022 22:41:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4A3410E693;
-	Thu, 17 Nov 2022 21:31:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C393B10E694;
+	Thu, 17 Nov 2022 21:41:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D1B610E68F
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Nov 2022 21:31:07 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B74810E694
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Nov 2022 21:41:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668720667; x=1700256667;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=1B6iV+aS1uAFlD17IWPR9A0NVrwND/KluL/fZIUgUoA=;
- b=Rgxi6U+7RIBWLER47psrVoyuU0v7u2CSixeUsn5D35l+1mW8tGINTIvt
- vEgJhgQj0T2r7J7wLSaeuAGDJDOZli88RMXDyEj6AJ/Q7L+HphKtgorCM
- ORO5vLgHiAaXz5/ijp9Tqs28zpJHtPJLoqHTh1g6e3TwvLHn8GwX0tqdc
- XwPPHTRRunVyFhV1NVZVFJX2xbm3AhgH8xBqjzh77O9DT9tvWXmn3Vcsd
- mOiIqxihqnE7FFyB+Ihx/1TGLVhd+IWzcJj5YScMflDYexdsjCi2c7kfs
- nUiV4PUZxfMItcoismTrXr8VJ7aG5ofTUOY9vwflLtjCW3vmw14SpJM/H Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10534"; a="300514791"
-X-IronPort-AV: E=Sophos;i="5.96,172,1665471600"; d="scan'208";a="300514791"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2022 13:31:04 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10534"; a="782397060"
-X-IronPort-AV: E=Sophos;i="5.96,172,1665471600"; d="scan'208";a="782397060"
-Received: from invictus.jf.intel.com ([10.165.21.134])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2022 13:31:04 -0800
-From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+ t=1668721296; x=1700257296;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=uYqKMYu+Drk4OEVugCB8E6NBwL/9COwcgj0j8h9LKzQ=;
+ b=h1e2UhfxU1sbgW9EZo6At3o60/2v7B/m2mw+/450cXeFZ3mo5hSwuHBY
+ nDMp1eNcdecHMfTz0oKqiEpv9gj520jNgVvgmXQ++3YoahAxzZ5tBz4NW
+ gh0WAhy88Dw+VBx1ZaC3J78QXdGAG8XklJG0p3d8PgjZBQEAuBYwnkMIC
+ M/dhxA4V0gdwUSw8PN+U2udE/GnNWnqxkOrt/h5TvQJlkLgKIiEZgA2ax
+ 4CYLudyuNekqaqPrgJGaOfa26YKhM+AoSYpWMDIUpqbn4lXNq3mM09cJI
+ QuJv32tiPUOKIzXJxXDZ4wu/Ee1WpJlHnV8WBbSufKul/ynJ5ProUAgHd w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10534"; a="377248800"
+X-IronPort-AV: E=Sophos;i="5.96,172,1665471600"; d="scan'208";a="377248800"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2022 13:41:35 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10534"; a="708789776"
+X-IronPort-AV: E=Sophos;i="5.96,172,1665471600"; d="scan'208";a="708789776"
+Received: from pasafier-mobl.amr.corp.intel.com (HELO msatwood-mobl.intel.com)
+ ([10.212.77.208])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2022 13:41:35 -0800
+From: Matt Atwood <matthew.s.atwood@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 17 Nov 2022 13:30:15 -0800
-Message-Id: <20221117213015.584417-2-radhakrishna.sripada@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221117213015.584417-1-radhakrishna.sripada@intel.com>
-References: <20221117213015.584417-1-radhakrishna.sripada@intel.com>
+Date: Thu, 17 Nov 2022 13:41:32 -0800
+Message-Id: <20221117214132.152061-1-matthew.s.atwood@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 2/2] drm/i915/mtl: Skip doubling channel
- numbers for LPDDR4/LPDDDR5
+Subject: [Intel-gfx] [PATCH] drm/i915/rpl-p: Add stepping info
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,33 +58,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-MTL LPDDR5 reported 16b with 8 channels. Previous platforms
-reported 32b with 4 channels and hence needed a multiplication
-by a factor of 2. Skip increasing the channels for MTL.
+Add stepping-substepping info in accordance to bpsec changes.
 
-v2: Use version check instead of platform check(MattR)
+Bspec: 55376
 
-Bspec: 64631
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bw.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/intel_step.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 4ace026b29bd..1c236f02b380 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -439,7 +439,8 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
- 		return ret;
- 	}
+diff --git a/drivers/gpu/drm/i915/intel_step.c b/drivers/gpu/drm/i915/intel_step.c
+index 75d7a86c60c07..84a6fe736a3b5 100644
+--- a/drivers/gpu/drm/i915/intel_step.c
++++ b/drivers/gpu/drm/i915/intel_step.c
+@@ -131,6 +131,10 @@ static const struct intel_step_info adls_rpls_revids[] = {
+ 	[0xC] = { COMMON_GT_MEDIA_STEP(D0), .display_step = STEP_C0 },
+ };
  
--	if (dram_info->type == INTEL_DRAM_LPDDR4 || dram_info->type == INTEL_DRAM_LPDDR5)
-+	if (DISPLAY_VER(dev_priv) < 14 &&
-+	    (dram_info->type == INTEL_DRAM_LPDDR4 || dram_info->type == INTEL_DRAM_LPDDR5))
- 		num_channels *= 2;
- 
- 	qi.deinterleave = qi.deinterleave ? : DIV_ROUND_UP(num_channels, is_y_tile ? 4 : 2);
++static const struct intel_step_info adlp_rplp_revids[] = {
++	[0x4] = { COMMON_GT_MEDIA_STEP(C0), .display_step = STEP_E0 },
++};
++
+ static const struct intel_step_info adlp_n_revids[] = {
+ 	[0x0] = { COMMON_GT_MEDIA_STEP(A0), .display_step = STEP_D0 },
+ };
+@@ -187,6 +191,9 @@ void intel_step_init(struct drm_i915_private *i915)
+ 	} else if (IS_ADLP_N(i915)) {
+ 		revids = adlp_n_revids;
+ 		size = ARRAY_SIZE(adlp_n_revids);
++	} else if (IS_ADLP_RPLP(i915)) {
++		revids = adlp_rplp_revids;
++		size = ARRAY_SIZE(adlp_rplp_revids);
+ 	} else if (IS_ALDERLAKE_P(i915)) {
+ 		revids = adlp_revids;
+ 		size = ARRAY_SIZE(adlp_revids);
 -- 
-2.34.1
+2.38.1
 
