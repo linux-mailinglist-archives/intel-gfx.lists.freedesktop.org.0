@@ -1,49 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B85662D72F
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Nov 2022 10:39:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 361F162D780
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Nov 2022 10:53:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39EA910E086;
-	Thu, 17 Nov 2022 09:39:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A3D510E5D9;
+	Thu, 17 Nov 2022 09:53:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 244C910E58E
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Nov 2022 09:39:44 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1179A10E5D9;
+ Thu, 17 Nov 2022 09:53:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668677985; x=1700213985;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=jykjE5yIiSImOVEr9Fb2YEDG1XghqzW5FUWf7CH9PhA=;
- b=DqsjUF8QISaROBRyOLXKJwOPPtnu9nf8KMFTJ8wyfe/UyJL8J38JCVky
- 9RD+nY+KPDJ1gP+VepYHZnovxPx9qRzfeZWCLak7ZKT3J+rpX0vTIAzud
- 7NXSOB2oOOW2HQqFbEbG/HF1d0vzzIuLbGzgVTlt0mTKiA3PbpUl2i4n0
- 3KSXJigLnlwrNxvx0kcySb8yU1KtWJxIcnMe4USlgDrq2iIcLHL+E/H8g
- cHf0IL4tFThkHwHAbl3s6JRPGgymdDbAq92ziUGP69Zqc2BQiB9XeSVAB
- 5DxlSRzujGWCmMv9pDCYsMwV5e7xccqlCYa7LN5exaduhmmgSk7ScPQ7s w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10533"; a="374940257"
-X-IronPort-AV: E=Sophos;i="5.96,171,1665471600"; d="scan'208";a="374940257"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2022 01:39:42 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10533"; a="639741942"
-X-IronPort-AV: E=Sophos;i="5.96,171,1665471600"; d="scan'208";a="639741942"
-Received: from mtolakan-mobl1.amr.corp.intel.com (HELO mtolakan-mobl1.home)
- ([10.212.14.146])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2022 01:39:41 -0800
-From: Madhumitha Tolakanahalli Pradeep
- <madhumitha.tolakanahalli.pradeep@intel.com>
-To: "intel-gfx @ lists . freedesktop . org" <intel-gfx@lists.freedesktop.org>
-Date: Thu, 17 Nov 2022 01:39:19 -0800
-Message-Id: <20221117093919.117556-1-madhumitha.tolakanahalli.pradeep@intel.com>
-X-Mailer: git-send-email 2.38.1
+ t=1668678827; x=1700214827;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=dtyZO2vH2RNf9du34wjYotBye3xRp6HXQy8bNpMuRFA=;
+ b=gXxP2WBilG6FAfI8WwE9OXRbQKI/rPK6L8Q2YYTGTzeeGckhtcl6dtkF
+ 4cQemKi3jSpdZ531zlMOWYBHVWqaIbno52qsD+gbZ60wlVihH0Sl4A8hZ
+ iWO3x9bjvrGKXVAKCSh9fZpefMF7cTzAPpB8kBusFhEZXfQ0yIVjU3ooX
+ +hJ5qqJNgqI4kzNIQj5tAo+cz4s+1lVZwYiCoTmFC3mY6YTdnSahRXWiS
+ fXCYXy0pReU8hpzaOZH77h9GXP+/wvzDcEBFmrYxxawcBX1fSaieufMt1
+ sS9Io3xx9JIQJ9FdSKBIM+I+6gSCfLjvyYIhgH6rRDuFIJUVkY042LhAP A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10533"; a="377075483"
+X-IronPort-AV: E=Sophos;i="5.96,171,1665471600"; d="scan'208";a="377075483"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2022 01:53:46 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10533"; a="703267998"
+X-IronPort-AV: E=Sophos;i="5.96,171,1665471600"; d="scan'208";a="703267998"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.249.45.163])
+ ([10.249.45.163])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2022 01:53:44 -0800
+Message-ID: <8c0f2a40-38f1-82e3-0d75-0758dfad3563@linux.intel.com>
+Date: Thu, 17 Nov 2022 10:53:42 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Content-Language: en-US
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+References: <20221116112532.36253-1-janusz.krzysztofik@linux.intel.com>
+ <20221116112532.36253-3-janusz.krzysztofik@linux.intel.com>
+From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
+In-Reply-To: <20221116112532.36253-3-janusz.krzysztofik@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/dmc: Add MTL DMC firmware v2.10
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: Never return 0 on timeout
+ when retiring requests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,37 +64,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Chris Wilson <chris.p.wilson@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patch adds DMC firmware v2.10 for Meteorlake.
+Looks very relevant to  our recent hangcheck failures.
 
-Release Notes:
-1.DCstate residency counter
-2.Traphit fix
-3.LM TONEFACT fix
-4.Ramp up timer fix(PFET)
 
-Signed-off-by: Madhumitha Tolakanahalli Pradeep <madhumitha.tolakanahalli.pradeep@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dmc.c | 4 ++++
- 1 file changed, 4 insertions(+)
+Acked-by: Nirmoy Das <nirmoy.das@intel.com>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 081a4d0083b1..bebc80aca44c 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -52,6 +52,10 @@
- 
- #define DISPLAY_VER12_DMC_MAX_FW_SIZE	ICL_DMC_MAX_FW_SIZE
- 
-+#define MTL_DMC_PATH			DMC_PATH(mtl, 2, 10)
-+#define MTL_DMC_VERSION_REQUIRED	DMC_VERSION(2, 10)
-+MODULE_FIRMWARE(MTL_DMC_PATH);
-+
- #define DG2_DMC_PATH			DMC_PATH(dg2, 2, 07)
- #define DG2_DMC_VERSION_REQUIRED	DMC_VERSION(2, 07)
- MODULE_FIRMWARE(DG2_DMC_PATH);
--- 
-2.38.1
-
+On 11/16/2022 12:25 PM, Janusz Krzysztofik wrote:
+> Users of intel_gt_retire_requests_timeout() expect 0 return value on
+> success.  However, we have no protection from passing back 0 potentially
+> returned by dma_fence_wait_timeout() on timeout.
+>
+> Replace 0 with -ETIME before using timeout as return value.
+>
+> Fixes: f33a8a51602c ("drm/i915: Merge wait_for_timelines with retire_request")
+> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> Cc: stable@vger.kernel.org # v5.5+
+> ---
+>   drivers/gpu/drm/i915/gt/intel_gt_requests.c | 3 +++
+>   1 file changed, 3 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_requests.c b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
+> index ccaf2fd80625b..ac6b2b1861397 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_requests.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
+> @@ -213,6 +213,9 @@ out_active:	spin_lock(&timelines->lock);
+>   	list_for_each_entry_safe(tl, tn, &free, link)
+>   		__intel_timeline_free(&tl->kref);
+>   
+> +	if (!timeout)
+> +		timeout = -ETIME;
+> +
+>   	if (flush_submission(gt, timeout)) /* Wait, there's more! */
+>   		active_count++;
+>   
