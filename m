@@ -2,54 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6C0F62D2AA
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Nov 2022 06:29:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 86B8962D356
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Nov 2022 07:15:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CAAF10E535;
-	Thu, 17 Nov 2022 05:29:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CEABC10E08F;
+	Thu, 17 Nov 2022 06:15:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2031610E04C;
- Thu, 17 Nov 2022 05:29:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BC5810E07C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Nov 2022 06:15:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668662972; x=1700198972;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=bhCDKPgpR2yy5+PTv3AaUGBOceteA8AW7Da92hyfQmM=;
- b=GoPEqqx0k4br9mKUFSPokHM+S2QwN4EgCdpsaQ7vGozosDcVOWUhlFp2
- YwuDzLOsr67sXJSzGvofqdeGZxdVo9eoIjNXPWdpqqt87X01jtncR8r/K
- bOAhz1EgVt540ekJ2GugrVdR0UITgBdyQaPt0cLuTph9dPyd4JHB309kF
- Oue9i/jAYP/E3pDoOfyxeYy/Dk7rPRPSNUS1Ode9RUOiSUckZv3Nr5ygB
- x6V2DHJTLwnkU31gi3QnSV7RUT8KmA4ZW2yyPiHMvITz2Bf8IxzhRXVFV
- WhkgeXvpX2GXZV1HF2S9C9J9+2YAZHLwe1aw+PjSuow8piFcXhbUwAcIN w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10533"; a="312775605"
-X-IronPort-AV: E=Sophos;i="5.96,169,1665471600"; 
- d="asc'?scan'208";a="312775605"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ t=1668665721; x=1700201721;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=0xE4WUJPElnh5urcxMf8BnAY4F0J+2fvM0jtVoxPYDM=;
+ b=HabX6xNEObHgkkhiLe3Cwf6/qykoiuxvz41PgQbSCZQQyIizssqQVNMF
+ 0FkVGSGghlbvMf/C+ZRLs0OXvO85+I7kwU7yJ6LnWEG+ZdLlqc41iKCJm
+ cfugYENyO/NP90aOZaJJtjRh8qx/Pq5anyi05ruxwIl3ZnNL66otUrfEm
+ HG/QhLq3d/2PfDhnNlH3Q/0I/+bHzFPGrZun8qvsYL1b9/3YzktTsPq4P
+ f6eRr4e9AN75NUajUmc3hXjuQo9UWxmlqR3BpqnFV/96UrPPutxHSZTKd
+ WiG6xA3NiS8ztFKVSJmSn8jX836jlSIsCt7vrxlI9JlvZt1eZzZRw67Dm A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10533"; a="312782371"
+X-IronPort-AV: E=Sophos;i="5.96,169,1665471600"; d="scan'208";a="312782371"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2022 21:29:31 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10533"; a="670787191"
-X-IronPort-AV: E=Sophos;i="5.96,169,1665471600"; 
- d="asc'?scan'208";a="670787191"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.159.108])
- by orsmga008.jf.intel.com with ESMTP; 16 Nov 2022 21:29:28 -0800
-Date: Thu, 17 Nov 2022 13:28:43 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
-Message-ID: <20221117052843.GS30028@zhen-hp.sh.intel.com>
-References: <20221111085903.GP30028@zhen-hp.sh.intel.com>
- <Y3OyGyJLhL7k8EV+@intel.com>
- <20221117030215.GR30028@zhen-hp.sh.intel.com>
- <6d9f565acb5bd57ee2df79fc5a9cf802724a3333.camel@intel.com>
+ 16 Nov 2022 22:15:18 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10533"; a="708480559"
+X-IronPort-AV: E=Sophos;i="5.96,169,1665471600"; d="scan'208";a="708480559"
+Received: from barkhagu-mobl1.amr.corp.intel.com (HELO
+ kialmah1-mobl1.amr.corp.intel.com) ([10.212.136.249])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2022 22:15:17 -0800
+From: Khaled Almahallawy <khaled.almahallawy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 16 Nov 2022 22:15:06 -0800
+Message-Id: <20221117061506.296392-1-khaled.almahallawy@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
- protocol="application/pgp-signature"; boundary="3FyYKcuUbgqNYeqV"
-Content-Disposition: inline
-In-Reply-To: <6d9f565acb5bd57ee2df79fc5a9cf802724a3333.camel@intel.com>
-Subject: Re: [Intel-gfx] [PULL] gvt-next
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3] drm/i915/display: Don't disable
+ DDI/Transcoder when setting phy test pattern
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,159 +56,112 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Lv,
- Zhiyuan" <zhiyuan.lv@intel.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>
+Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Bspecs has updated recently to remove the restriction to disable
+DDI/Transcoder before setting PHY test pattern. This update is to
+address PHY compliance test failures observed on a port with LTTPR.
+The issue is that when Transc. is disabled, the main link signals fed
+to LTTPR will be dropped invalidating link training, which will affect
+the quality of the phy test pattern when the transcoder is enabled again.
 
---3FyYKcuUbgqNYeqV
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+v2: Update commit message (Clint)
+v3: Add missing Signed-off in v2
 
-On 2022.11.17 03:37:17 +0000, Vivi, Rodrigo wrote:
-> On Thu, 2022-11-17 at 11:02 +0800, Zhenyu Wang wrote:
-> > On 2022.11.15 10:36:59 -0500, Rodrigo Vivi wrote:
-> > > On Fri, Nov 11, 2022 at 04:59:03PM +0800, Zhenyu Wang wrote:
-> > > > Hi,
-> > > >=20
-> > > > Here's current accumulated changes in gvt-next. Sorry that I
-> > > > delayed
-> > > > to refresh them on time for upstream...It contains mostly kernel
-> > > > doc,
-> > > > typo fixes and small code cleanups, as details below.
-> > > >=20
-> > > > btw, one gvt change for next
-> > > > https://patchwork.freedesktop.org/patch/511118/
-> > > > is still pending, I need a backmerge from linus tree e.g with
-> > > > recent vfio/mdev
-> > > > consolidate change with gvt and Jason's fix for destroy device,
-> > > > to apply Zhi's
-> > > > change cleanly. Pls help on that.
-> > > >=20
-> > > > Thanks!
-> > > > ---
-> > > > The following changes since commit
-> > > > a6ebd538364b1e9e6048faaafbc0188172ed50c3:
-> > > >=20
-> > > > ?? drm/i915/sdvo: Fix debug print (2022-10-28 14:46:21 +0300)
-> > > >=20
-> > > > are available in the Git repository at:
-> > > >=20
-> > > > ?? https://github.com/intel/gvt-linux.git??tags/gvt-next-2022-11-11
-> > > >=20
-> > > > for you to fetch changes up to
-> > > > 50468ca2e2e1ce882f060a8c263f678affe112db:
-> > > >=20
-> > > > ?? drm/i915/gvt: Remove the unused function get_pt_type() (2022-
-> > > > 11-08 15:34:06 +0800)
-> > > >=20
-> > > > ----------------------------------------------------------------
-> > > > gvt-next-2022-11-11
-> > > >=20
-> > > > - kernel doc fixes
-> > > > - remove vgpu->released sanity check
-> > > > - small clean up
-> > > >=20
-> > > > ----------------------------------------------------------------
-> > > > Colin Ian King (1):
-> > > > ?????????? drm/i915/reg: Fix spelling mistake "Unsupport" ->
-> > > > "Unsupported"
-> > >=20
-> > > dim: d7e4e9579f01 ("drm/i915/reg: Fix spelling mistake "Unsupport"
-> > > -> "Unsupported""): committer Signed-off-by missing.
-> > >=20
-> > > could you please fix this before we can merge this pr?
-> > >=20
-> >=20
-> > That should still be .mailmap issue for Colin's email...
-> > But could we improve our dim script to grep mailmap in that case? So
-> > if s-o-b mail is valid
-> > in mailmap, we should still allow it, right?
->=20
-> Based on what I could verify the commiter signature is really not
-> there. It looks like you later forced a rebase and while
-> rebasing you forgot to re-sign everything.
->
+Bspec: 50482
+Cc: Imre Deak <imre.deak@intel.com>
+Cc: Clint Taylor <clinton.a.taylor@intel.com>
+CC: Jani Nikula <jani.nikula@intel.com>
+Tested-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
+Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
+Reviewed-by: Clint Taylor <clinton.a.taylor@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 59 -------------------------
+ 1 file changed, 59 deletions(-)
 
-Oops! Sorry for that. I'll redo this.
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 914161d7d122..16cf961b4d1a 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -3679,61 +3679,6 @@ static void intel_dp_phy_pattern_update(struct intel_dp *intel_dp,
+ 	}
+ }
+ 
+-static void
+-intel_dp_autotest_phy_ddi_disable(struct intel_dp *intel_dp,
+-				  const struct intel_crtc_state *crtc_state)
+-{
+-	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+-	struct drm_device *dev = dig_port->base.base.dev;
+-	struct drm_i915_private *dev_priv = to_i915(dev);
+-	struct intel_crtc *crtc = to_intel_crtc(dig_port->base.base.crtc);
+-	enum pipe pipe = crtc->pipe;
+-	u32 trans_ddi_func_ctl_value, trans_conf_value, dp_tp_ctl_value;
+-
+-	trans_ddi_func_ctl_value = intel_de_read(dev_priv,
+-						 TRANS_DDI_FUNC_CTL(pipe));
+-	trans_conf_value = intel_de_read(dev_priv, PIPECONF(pipe));
+-	dp_tp_ctl_value = intel_de_read(dev_priv, TGL_DP_TP_CTL(pipe));
+-
+-	trans_ddi_func_ctl_value &= ~(TRANS_DDI_FUNC_ENABLE |
+-				      TGL_TRANS_DDI_PORT_MASK);
+-	trans_conf_value &= ~PIPECONF_ENABLE;
+-	dp_tp_ctl_value &= ~DP_TP_CTL_ENABLE;
+-
+-	intel_de_write(dev_priv, PIPECONF(pipe), trans_conf_value);
+-	intel_de_write(dev_priv, TRANS_DDI_FUNC_CTL(pipe),
+-		       trans_ddi_func_ctl_value);
+-	intel_de_write(dev_priv, TGL_DP_TP_CTL(pipe), dp_tp_ctl_value);
+-}
+-
+-static void
+-intel_dp_autotest_phy_ddi_enable(struct intel_dp *intel_dp,
+-				 const struct intel_crtc_state *crtc_state)
+-{
+-	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+-	struct drm_device *dev = dig_port->base.base.dev;
+-	struct drm_i915_private *dev_priv = to_i915(dev);
+-	enum port port = dig_port->base.port;
+-	struct intel_crtc *crtc = to_intel_crtc(dig_port->base.base.crtc);
+-	enum pipe pipe = crtc->pipe;
+-	u32 trans_ddi_func_ctl_value, trans_conf_value, dp_tp_ctl_value;
+-
+-	trans_ddi_func_ctl_value = intel_de_read(dev_priv,
+-						 TRANS_DDI_FUNC_CTL(pipe));
+-	trans_conf_value = intel_de_read(dev_priv, PIPECONF(pipe));
+-	dp_tp_ctl_value = intel_de_read(dev_priv, TGL_DP_TP_CTL(pipe));
+-
+-	trans_ddi_func_ctl_value |= TRANS_DDI_FUNC_ENABLE |
+-				    TGL_TRANS_DDI_SELECT_PORT(port);
+-	trans_conf_value |= PIPECONF_ENABLE;
+-	dp_tp_ctl_value |= DP_TP_CTL_ENABLE;
+-
+-	intel_de_write(dev_priv, PIPECONF(pipe), trans_conf_value);
+-	intel_de_write(dev_priv, TGL_DP_TP_CTL(pipe), dp_tp_ctl_value);
+-	intel_de_write(dev_priv, TRANS_DDI_FUNC_CTL(pipe),
+-		       trans_ddi_func_ctl_value);
+-}
+-
+ static void intel_dp_process_phy_request(struct intel_dp *intel_dp,
+ 					 const struct intel_crtc_state *crtc_state)
+ {
+@@ -3752,14 +3697,10 @@ static void intel_dp_process_phy_request(struct intel_dp *intel_dp,
+ 	intel_dp_get_adjust_train(intel_dp, crtc_state, DP_PHY_DPRX,
+ 				  link_status);
+ 
+-	intel_dp_autotest_phy_ddi_disable(intel_dp, crtc_state);
+-
+ 	intel_dp_set_signal_levels(intel_dp, crtc_state, DP_PHY_DPRX);
+ 
+ 	intel_dp_phy_pattern_update(intel_dp, crtc_state);
+ 
+-	intel_dp_autotest_phy_ddi_enable(intel_dp, crtc_state);
+-
+ 	drm_dp_dpcd_write(&intel_dp->aux, DP_TRAINING_LANE0_SET,
+ 			  intel_dp->train_set, crtc_state->lane_count);
+ 
+-- 
+2.25.1
 
-> We need to fix this in your tree to avoid propagating that to other
-> trees later:
->=20
-> From tig view:
-> Commit:     Zhenyu Wang <zhenyuw@linux.intel.com>
-> CommitDate: Tue Nov 8 15:04:53 2022 +0800
->=20
->     drm/i915/reg: Fix spelling mistake "Unsupport" -> "Unsupported"
->=20
->     There is a spelling mistake in a gvt_vgpu_err error message. Fix
-> it.
->=20
->     Fixes: 695fbc08d80f ("drm/i915/gvt: replace the gvt_err with
-> gvt_vgpu_err")
->     Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
->     Signed-off-by: Zhi Wang <zhi.a.wang@intel.com>
->     Link:
-> http://patchwork.freedesktop.org/patch/msgid/20220315202449.2952845-1-col=
-in.i.king@gmail.com
->     Reviewed-by: Zhi Wang <zhi.a.wang@intel.com>
->=20
-> no signature from you.
->=20
-> >=20
-> > > >=20
-> > > > Jiapeng Chong (4):
-> > > > ?????????? drm/i915/gvt: Fix kernel-doc
-> > > > ?????????? drm/i915/gvt: Fix kernel-doc
-> > > > ?????????? drm/i915/gvt: Fix kernel-doc
-> > > > ?????????? drm/i915/gvt: Remove the unused function get_pt_type()
-> > > >=20
-> > > > Julia Lawall (1):
-> > > > ?????????? drm/i915/gvt: fix typo in comment
-> > > >=20
-> > > > Mauro Carvalho Chehab (1):
-> > > > ?????????? drm/i915: gvt: fix kernel-doc trivial warnings
-> > > >=20
-> > > > Paulo Miguel Almeida (1):
-> > > > ?????????? i915/gvt: remove hardcoded value on crc32_start calculat=
-ion
-> > > >=20
-> > > > Zhi Wang (1):
-> > > > ?????????? drm/i915/gvt: remove the vgpu->released and its sanity
-> > > > check
-> > > >=20
-> > > > wangjianli (1):
-> > > > ?????????? drm/i915: fix repeated words in comments
-> > > >=20
-> > > > ??drivers/gpu/drm/i915/gvt/aperture_gm.c?? | 4 ++--
-> > > > ??drivers/gpu/drm/i915/gvt/cfg_space.c?????? | 2 +-
-> > > > ??drivers/gpu/drm/i915/gvt/dmabuf.h???????????? | 2 +-
-> > > > ??drivers/gpu/drm/i915/gvt/firmware.c???????? | 2 +-
-> > > > ??drivers/gpu/drm/i915/gvt/gtt.c?????????????????? | 9 ++-------
-> > > > ??drivers/gpu/drm/i915/gvt/gvt.h?????????????????? | 2 --
-> > > > ??drivers/gpu/drm/i915/gvt/handlers.c???????? | 4 ++--
-> > > > ??drivers/gpu/drm/i915/gvt/kvmgt.c?????????????? | 4 ----
-> > > > ??drivers/gpu/drm/i915/gvt/mmio_context.c | 2 +-
-> > > > ??drivers/gpu/drm/i915/gvt/page_track.c???? | 2 +-
-> > > > ??drivers/gpu/drm/i915/gvt/vgpu.c???????????????? | 6 +++---
-> > > > ??11 files changed, 14 insertions(+), 25 deletions(-)
-> > >=20
-> > >=20
->=20
-
---3FyYKcuUbgqNYeqV
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCY3XGhwAKCRCxBBozTXgY
-J5eMAJ4mODZi2zXN0tDz+4sccTLa6JOy/wCfSuHdvNPUJWLBOG5C/vNBXgTWizc=
-=GofN
------END PGP SIGNATURE-----
-
---3FyYKcuUbgqNYeqV--
