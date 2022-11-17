@@ -1,78 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB2FC62E2A9
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Nov 2022 18:14:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B05AC62E306
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Nov 2022 18:29:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70CCC10E1BE;
-	Thu, 17 Nov 2022 17:14:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D06DB10E1C7;
+	Thu, 17 Nov 2022 17:29:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wnew1-smtp.messagingengine.com (wnew1-smtp.messagingengine.com
- [64.147.123.26])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9208110E1BB;
- Thu, 17 Nov 2022 17:14:10 +0000 (UTC)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
- by mailnew.west.internal (Postfix) with ESMTP id 8DB7F2B06A50;
- Thu, 17 Nov 2022 12:14:04 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute2.internal (MEProxy); Thu, 17 Nov 2022 12:14:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
- :message-id:mime-version:references:reply-to:sender:subject
- :subject:to:to; s=fm2; t=1668705244; x=1668712444; bh=EPKM98yuI0
- FafDSpZ4oH9M/3CpWV+m3u8fcRxTeHRuU=; b=IKSCrjRehJXLLAheMi3x1nBBT6
- xv79+oCuXcYWNZ56lfkM1xLPxqSAtDNNT3XxpSJC6jHP7Vkok/cXYc/Q95YEBpG+
- ezh5FAEU/QFRRHMU7pCIMZWiaEuhO0x26gZVc/BGSuAHy5m4qU6aEWjP9OzWk5Cf
- 7y/V0+6av4McswO2nCTSoODDF+vOIcOUhzF9inIWGgUE2fphLHOeDM01YAIZHVuu
- 6op3/MJ3VV7BmT1MOYTIwx+Fbwwh/wYlU+bcv4kNzWVhRhtS1sqQ7QUSpdXtsDF3
- jygjVycsZPOEbUmO7CCsQXSFduE2nvV6WgRq+ZD9hm+mSroQWO84l6sQNe3A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
- :feedback-id:from:from:in-reply-to:in-reply-to:message-id
- :mime-version:references:reply-to:sender:subject:subject:to:to
- :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm1; t=1668705244; x=1668712444; bh=EPKM98yuI0FafDSpZ4oH9M/3CpWV
- +m3u8fcRxTeHRuU=; b=FJ0o9lSTMDJUUNFAeEUAJvhsA4JEtyf0agBRuNaZs/Ax
- /vKmYa1NT94ktikwdItSLaULxP0rJYkbgBubo/OPC2hiCxDNnIO6FtAxj+/ejJGS
- iKmzcK9bLoYUzLTB6c7XqPKkxdZbPF4H0feWwbfpJ0BWVbdQePGuBroxY9MueMih
- 7FT17Z+ie0MmgR4aTVQmXVHXO6zsdMFbjOYNE6tCp0e8Lbm1N/mKRHD2iGxx8Xcb
- IXPAvjwzB7KOyD9S/fDSePH03flvfPtPB7NrqZXeNUmupz+zQ9RaGmo2KcKRHvbT
- zwZ7vlVYZEzM0Z1UI08AtAbJrk2HLpqzUu9OF5IoOQ==
-X-ME-Sender: <xms:22t2Y7aq50whuiFoQkEUePGTIQQg6ZfqHjYpnO3ZncSCACAWCnOiMg>
- <xme:22t2Y6ZPwV0Q-ALL-9E4JiTTYPis500kQYlEddlLdZGekFPHa-FsXpXfxA25fJ3o2
- gwMU9kLZtOVoGM6TQg>
-X-ME-Received: <xmr:22t2Y99lRvGfydEV4TyGUQvS_xMgz5cYjOuHKny_YDGWhp55onjpyMcwIi6_VHCLq68SvWWLiZglAAmz18UhhoZIzXVeUJL6MkOpgZBxhvpz-Q>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrgeekgdeljecutefuodetggdotefrodftvf
- curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
- uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
- fjughrpeffhffvvefukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
- vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
- htvghrnhepteefffefgfektdefgfeludfgtdejfeejvddttdekteeiffejvdfgheehfffh
- vedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
- grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:22t2Yxom94qDjT-BzKQYtjOcEEJ5G_ZpbqblIPWD4ny5xSpnARo47w>
- <xmx:22t2Y2pZsh_WWZJSX9aXYTEk1HHwKH4A-o6rp_LoVNmwmGmnNPxxGA>
- <xmx:22t2Y3Tq45VHs9_ipPR4WzxHHa3NojkmAl11WzxKDRL27UL_x3KIdg>
- <xmx:3Gt2Y5CoJVgET8RSJmOoRJmYWzwp91a6JyV2_DM6wMLHtCwwG3cyUPBYqxc>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 17 Nov 2022 12:14:02 -0500 (EST)
-Date: Thu, 17 Nov 2022 18:14:01 +0100
-From: Maxime Ripard <maxime@cerno.tech>
-To: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
-Message-ID: <20221117171401.3ogenv6g5nszufmm@houat>
-References: <20220728-rpi-analog-tv-properties-v10-0-256dad125326@cerno.tech>
- <20220728-rpi-analog-tv-properties-v10-18-256dad125326@cerno.tech>
- <20221117164928.200b3a1a@maurocar-mobl2>
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56EA710E654;
+ Thu, 17 Nov 2022 17:29:38 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 00AA2B82160;
+ Thu, 17 Nov 2022 17:29:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 247F7C433D6;
+ Thu, 17 Nov 2022 17:29:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1668706175;
+ bh=eP0obEedNmCU+3WRO5YqBI0IHqVuqsqrydnsSJjg1j4=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=sllfVATZjCa6yOz90J0T7QyfcT6SqYJSFsCZ19V/xKlravDDKowxvZn79EPL90YdM
+ bNf5XqSGsEqCP3WF41gmVNy/L73znrnBQWvdUYj7NWovpegvWr34NeRHIZ+oNlwTSj
+ 2u5gWTO9ZQGWwrsEhbDTID+gHxxuYBAkg7O8WxJAxmCZkq2y9amKRdNxrlp3fwXtT+
+ wpFOnF6eSraUNf37Av9C4ozLet7Qh1nAquOxlAnN5SWgrHucV6gzYinjVrL9XqPiDF
+ +yTqntmyELfK9NZYvrhBoAQs0NmmoUTnU0WWvLz41HWLlI5NSnBEgWybuzu1zol0t7
+ Tth03XKFQ9sMw==
+Date: Thu, 17 Nov 2022 10:29:33 -0700
+From: Nathan Chancellor <nathan@kernel.org>
+To: Stephen Rothwell <sfr@canb.auug.org.au>
+Message-ID: <Y3ZvffZiR+SgtY6h@dev-arch.thelio-3990X>
+References: <20221116105702.746ce3cf@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="cz56iqciiap5nisp"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221117164928.200b3a1a@maurocar-mobl2>
-Subject: Re: [Intel-gfx] [PATCH v10 18/19] drm/vc4: vec: Add support for
- more analog TV standards
+In-Reply-To: <20221116105702.746ce3cf@canb.auug.org.au>
+Subject: Re: [Intel-gfx] linux-next: manual merge of the drm-misc tree with
+ the origin tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,88 +53,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
- Samuel Holland <samuel@sholland.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
- linux-sunxi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-arm-kernel@lists.infradead.org,
- Dom Cobley <dom@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
- Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
- Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>, llvm@lists.linux.dev,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ DRI <dri-devel@lists.freedesktop.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Maxime Ripard <maxime@cerno.tech>,
+ =?iso-8859-1?Q?Jos=E9_Exp=F3sito?= <jose.exposito89@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Stephen,
 
---cz56iqciiap5nisp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Wed, Nov 16, 2022 at 10:57:02AM +1100, Stephen Rothwell wrote:
+> Hi all,
+> 
+> Today's linux-next merge of the drm-misc tree got a conflict in:
+> 
+>   drivers/gpu/drm/vc4/vc4_hdmi.c
+> 
+> between commit:
+> 
+>   682f99b8ae88 ("drm/vc4: hdmi: Take our lock to reset the link")
+> 
+> from the origin tree and commits:
+> 
+>   d218750805a3 ("drm/vc4: hdmi: Pass vc4_hdmi to vc4_hdmi_supports_scrambling()")
+>   0a99962c0dbf ("drm/vc4: hdmi: Fix pointer dereference before check")
+> 
+> from the drm-misc tree.
+> 
+> I fixed it up (see below) and can carry the fix as necessary. This
+> is now fixed as far as linux-next is concerned, but any non trivial
+> conflicts should be mentioned to your upstream maintainer when your tree
+> is submitted for merging.  You may also want to consider cooperating
+> with the maintainer of the conflicting tree to minimise any particularly
+> complex conflicts.
+> 
+> -- 
+> Cheers,
+> Stephen Rothwell
+> 
+> diff --cc drivers/gpu/drm/vc4/vc4_hdmi.c
+> index d7fcc7a4c082,6b223a5fcf6f..000000000000
+> --- a/drivers/gpu/drm/vc4/vc4_hdmi.c
+> +++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
+> @@@ -349,12 -348,9 +348,13 @@@ static int vc4_hdmi_reset_link(struct d
+>   	if (!crtc_state->active)
+>   		return 0;
+>   
+>  +	mutex_lock(&vc4_hdmi->mutex);
+>  +
+> - 	if (!vc4_hdmi_supports_scrambling(encoder)) {
+> + 	vc4_hdmi = connector_to_vc4_hdmi(connector);
+>  -	if (!vc4_hdmi_supports_scrambling(vc4_hdmi))
+> ++	if (!vc4_hdmi_supports_scrambling(vc4_hdmi)) {
+>  +		mutex_unlock(&vc4_hdmi->mutex);
+>   		return 0;
+>  +	}
+>   
+>   	scrambling_needed = vc4_hdmi_mode_needs_scrambling(&vc4_hdmi->saved_adjusted_mode,
+>   							   vc4_hdmi->output_bpc,
 
-On Thu, Nov 17, 2022 at 04:49:28PM +0100, Mauro Carvalho Chehab wrote:
-> On Thu, 17 Nov 2022 10:29:01 +0100
-> Maxime Ripard <maxime@cerno.tech> wrote:
->=20
-> > From: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
-> >=20
-> > Add support for the following composite output modes (all of them are
-> > somewhat more obscure than the previously defined ones):
-> >=20
-> > - NTSC_443 - NTSC-style signal with the chroma subcarrier shifted to
-> >   4.43361875 MHz (the PAL subcarrier frequency). Never used for
-> >   broadcasting, but sometimes used as a hack to play NTSC content in PAL
-> >   regions (e.g. on VCRs).
->=20
-> > - PAL_N - PAL with alternative chroma subcarrier frequency,
-> >   3.58205625 MHz. Used as a broadcast standard in Argentina, Paraguay
-> >   and Uruguay to fit 576i50 with colour in 6 MHz channel raster.
->=20
-> That's not right. Argentina uses a different standard than Paraguay and
-> Uruguai.
->=20
-> See, there are two variants of PAL/N. The original one and PAL/N' - also
-> called PAL/NC or PAL/CN (Combination N). Some of the timings are=20
-> different on /NC variant.
->=20
-> As far as I'm aware, PAL/Nc is used in Argentina, while
-> PAL/N is used in Paraguai and Uruguai, but I may be wrong on that,
-> as it has been a long time since had to touch on this.
->=20
-> > - PAL60 - 480i60 signal with PAL-style color at normal European PAL
-> >   frequency. Another non-standard, non-broadcast mode, used in similar
-> >   contexts as NTSC_443. Some displays support one but not the other.
->=20
-> > - SECAM - French frequency-modulated analog color standard; also have
-> >   been broadcast in Eastern Europe and various parts of Africa and Asia.
-> >   Uses the same 576i50 timings as PAL.
->=20
-> This is also wrong. just like PAL, there are several variants of SECAM,
-> one used in France, and a different one in France overseas and on
-> previous France colonies in Africa and Asia. Eastern Europe also used
-> different variants of SECAM.
+This resolution is not quite right, as pointed out by clang:
 
-And that's fine? Everything I did is supposed to be easy to extend if
-and when needed, so if someone has some interest in providing support
-for more standards, they are very welcome to do so.
+    drivers/gpu/drm/vc4/vc4_hdmi.c:351:14: error: variable 'vc4_hdmi' is uninitialized when used here [-Werror,-Wuninitialized]
+            mutex_lock(&vc4_hdmi->mutex);
+                        ^~~~~~~~
+    ./include/linux/mutex.h:187:44: note: expanded from macro 'mutex_lock'
+    #define mutex_lock(lock) mutex_lock_nested(lock, 0)
+                                               ^~~~
+    drivers/gpu/drm/vc4/vc4_hdmi.c:322:27: note: initialize the variable 'vc4_hdmi' to silence this warning
+            struct vc4_hdmi *vc4_hdmi;
+                                     ^
+                                      = NULL
+    1 error generated.
 
-I won't do it in this series though.
+Obviously, the assignment of vc4_hdmi should be before mutex_lock().
 
-Maxime
-
---cz56iqciiap5nisp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCY3Zr2QAKCRDj7w1vZxhR
-xQY3AQC3ODU/A4r/xCJ5Ms7gOYpWhJaSGlaY+jf/qgMPcMmMhAD/VJCODvzEFvlF
-AuxhxZDFClQh1TusZBNOY31fQyzDIAU=
-=f8ne
------END PGP SIGNATURE-----
-
---cz56iqciiap5nisp--
+Cheers,
+Nathan
