@@ -1,50 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E147862CF90
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Nov 2022 01:28:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A93A262CF93
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Nov 2022 01:28:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA3DD10E4F9;
-	Thu, 17 Nov 2022 00:28:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5195310E509;
+	Thu, 17 Nov 2022 00:28:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8420F10E4F9
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Nov 2022 00:28:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2889F10E4FB
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Nov 2022 00:28:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668644889; x=1700180889;
+ t=1668644890; x=1700180890;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=HJRsAR7ALfFAIfBVGeVVOWZRiVo2HC1pL4yIiJc8RIU=;
- b=ZWsx1KTf5+LE/LEJz6/Q0/TbYcBDfp8Fgl+vmpiyfIZKvufZvg150BR3
- G4JE9vGh4OLxbCPY+o2zA9npDR04ffGErOeO7EYMbcmvWJuQwNi2CO05r
- wu/ubICjjNyPNR1MyENcay1AP/tZCjNeAxKo5rKVruS52c29UHfN3wjII
- Qd7SomJBYXpJl8mBMOgYLS4IukDYsiglxnVAMBdO8TGWkhF211JXI2o9o
- ycKRxq/Zg1jRYp1bjVSI1ZlqyoZ7cuyA0V49Zy77cowZdDQm/omhncsYB
- Rs9At5nWDBJAtcYz+NCycFRmdspTf7u3sSmU26PBpthFQ8ek2ia3le2Mb g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10533"; a="312722092"
-X-IronPort-AV: E=Sophos;i="5.96,169,1665471600"; d="scan'208";a="312722092"
+ bh=hv2kPxo0rkMBJygTSwugqL373JPoegf35ZwqsuO3V7o=;
+ b=JwuKfY65eqL7sf28vPRtHYnsDBeaQ1sbHDkFBOU3HBn9OLNgDTymgD9F
+ EgCu22y7agzvl9YJEehIUCL379ZUTl6/7ZhrSDhEkvBbN7fKyyEUNc4U/
+ d5QSVH3aCV0CClWerOg2JX0fYCj4ebKAf7qitA0/U9jiZEPdrjBhDazBJ
+ yU4iQ0wx6ANn3eVDrU4qajBps4ja7DnRHVh53aIQ4VDaEdMTD8/MNk+pn
+ nwwgNJWlEwA5+ZBoxG5w+X6VOv2jA4eoeKuLLS3sHFVfCKAVFfxm2VP1P
+ KYOPLbVtJPVvXcJ6v9X1tIQmKlb/RiYrex48QgbQS+OlsAa3FXykXmtB/ w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10533"; a="312722093"
+X-IronPort-AV: E=Sophos;i="5.96,169,1665471600"; d="scan'208";a="312722093"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  16 Nov 2022 16:27:48 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10533"; a="781985081"
-X-IronPort-AV: E=Sophos;i="5.96,169,1665471600"; d="scan'208";a="781985081"
+X-IronPort-AV: E=McAfee;i="6500,9779,10533"; a="781985082"
+X-IronPort-AV: E=Sophos;i="5.96,169,1665471600"; d="scan'208";a="781985082"
 Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
  by fmsmga001.fm.intel.com with ESMTP; 16 Nov 2022 16:27:48 -0800
 From: Alan Previn <alan.previn.teres.alexis@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 16 Nov 2022 16:30:13 -0800
-Message-Id: <20221117003018.1433115-2-alan.previn.teres.alexis@intel.com>
+Date: Wed, 16 Nov 2022 16:30:14 -0800
+Message-Id: <20221117003018.1433115-3-alan.previn.teres.alexis@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221117003018.1433115-1-alan.previn.teres.alexis@intel.com>
 References: <20221117003018.1433115-1-alan.previn.teres.alexis@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 1/6] drm/i915/pxp: Make gt and pxp init/fini
- aware of PXP-owning-GT
+Subject: [Intel-gfx] [PATCH v4 2/6] drm/i915/pxp: Make intel_pxp_is_enabled
+ implicitly sort PXP-owning-GT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,115 +60,236 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In preparation for future MTL-PXP feature support, PXP control
-context should only valid on the correct gt tile. Depending on the
-device-info this depends on which tile owns the VEBOX and KCR.
-PXP is still a global feature though (despite its control-context
-located in the owning GT structure). Additionally, we find
-that the HAS_PXP macro is only used within the pxp module,
+Make intel_pxp_is_enabled a global check and implicitly find the
+PXP-owning-GT.
 
-That said, lets drop that HAS_PXP macro altogether and replace it
-with a more fitting named intel_gtpxp_is_supported and helpers
-so that PXP init/fini can use to verify if the referenced gt supports
-PXP or teelink.
+PXP feature support is a device-config flag. In preparation for MTL
+PXP control-context shall reside on of the two GT's. That said,
+update intel_pxp_is_enabled to take in i915 as its input and internally
+find the right gt to check if PXP is enabled so its transparent to
+callers of this functions.
 
-Add TODO for Meteorlake that will come in future series.
+However we also need to expose the per-gt variation of this internal
+pxp files to use (like what intel_pxp_enabled was prior) so also expose
+a new intel_gtpxp_is_enabled function for replacement.
 
 Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
 ---
- drivers/gpu/drm/i915/i915_drv.h              |  4 ----
- drivers/gpu/drm/i915/pxp/intel_pxp.c         | 22 ++++++++++++++------
- drivers/gpu/drm/i915/pxp/intel_pxp.h         |  3 +++
+ drivers/gpu/drm/i915/gem/i915_gem_context.c  |  2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_create.c   |  2 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp.c         | 28 ++++++++++++++++++--
+ drivers/gpu/drm/i915/pxp/intel_pxp.h         |  4 ++-
+ drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c     |  2 +-
  drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c |  2 +-
- 4 files changed, 20 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/pxp/intel_pxp_irq.c     |  2 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp_pm.c      |  8 +++---
+ drivers/gpu/drm/i915/pxp/intel_pxp_tee.c     |  4 +--
+ 9 files changed, 40 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 7e3820d2c404..0616e5f0bd31 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -933,10 +933,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index 7f2831efc798..c123f4847b19 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -257,7 +257,7 @@ static int proto_context_set_protected(struct drm_i915_private *i915,
  
- #define HAS_GLOBAL_MOCS_REGISTERS(dev_priv)	(INTEL_INFO(dev_priv)->has_global_mocs)
+ 	if (!protected) {
+ 		pc->uses_protected_content = false;
+-	} else if (!intel_pxp_is_enabled(&to_gt(i915)->pxp)) {
++	} else if (!intel_pxp_is_enabled(i915)) {
+ 		ret = -ENODEV;
+ 	} else if ((pc->user_flags & BIT(UCONTEXT_RECOVERABLE)) ||
+ 		   !(pc->user_flags & BIT(UCONTEXT_BANNABLE))) {
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c b/drivers/gpu/drm/i915/gem/i915_gem_create.c
+index 33673fe7ee0a..e44803f9bec4 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
+@@ -384,7 +384,7 @@ static int ext_set_protected(struct i915_user_extension __user *base, void *data
+ 	if (ext.flags)
+ 		return -EINVAL;
  
--#define HAS_PXP(dev_priv)  ((IS_ENABLED(CONFIG_DRM_I915_PXP) && \
--			    INTEL_INFO(dev_priv)->has_pxp) && \
--			    VDBOX_MASK(to_gt(dev_priv)))
--
- #define HAS_GMCH(dev_priv) (INTEL_INFO(dev_priv)->display.has_gmch)
+-	if (!intel_pxp_is_enabled(&to_gt(ext_data->i915)->pxp))
++	if (!intel_pxp_is_enabled(ext_data->i915))
+ 		return -ENODEV;
  
- #define HAS_GMD_ID(i915)	(INTEL_INFO(i915)->has_gmd_id)
+ 	ext_data->flags |= I915_BO_PROTECTED;
 diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-index 5efe61f67546..d993e752bd36 100644
+index d993e752bd36..88105101af79 100644
 --- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
 +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-@@ -44,6 +44,20 @@ struct intel_gt *pxp_to_gt(const struct intel_pxp *pxp)
- 	return container_of(pxp, struct intel_gt, pxp);
+@@ -9,6 +9,7 @@
+ #include "intel_pxp_tee.h"
+ #include "gem/i915_gem_context.h"
+ #include "gt/intel_context.h"
++#include "gt/intel_gt.h"
+ #include "i915_drv.h"
+ 
+ /**
+@@ -58,11 +59,34 @@ bool intel_pxp_supported_on_gt(const struct intel_pxp *pxp)
+ 		INTEL_INFO((pxp_to_gt(pxp))->i915)->has_pxp && VDBOX_MASK(pxp_to_gt(pxp)));
  }
  
-+static bool _gt_needs_teelink(struct intel_gt *gt)
-+{
-+	/* TODO: MTL won't rely on CONFIG_INTEL_MEI_PXP but on GSC engine */
-+	return (IS_ENABLED(CONFIG_INTEL_MEI_PXP) && intel_huc_is_loaded_by_gsc(&gt->uc.huc) &&
-+		intel_uc_uses_huc(&gt->uc));
-+}
-+
-+bool intel_pxp_supported_on_gt(const struct intel_pxp *pxp)
-+{
-+	/* TODO: MTL won't rely on CONFIG_INTEL_MEI_PXP but on GSC engine */
-+	return (IS_ENABLED(CONFIG_INTEL_MEI_PXP) && IS_ENABLED(CONFIG_DRM_I915_PXP) &&
-+		INTEL_INFO((pxp_to_gt(pxp))->i915)->has_pxp && VDBOX_MASK(pxp_to_gt(pxp)));
-+}
-+
- bool intel_pxp_is_enabled(const struct intel_pxp *pxp)
+-bool intel_pxp_is_enabled(const struct intel_pxp *pxp)
++bool intel_pxp_is_enabled_on_gt(const struct intel_pxp *pxp)
  {
  	return pxp->ce;
-@@ -142,17 +156,13 @@ void intel_pxp_init(struct intel_pxp *pxp)
+ }
+ 
++static struct intel_gt *i915_to_pxp_gt(struct drm_i915_private *i915)
++{
++	struct intel_gt *gt = NULL;
++	int i = 0;
++
++	for_each_gt(gt, i915, i) {
++		/* There can be only one GT that supports PXP */
++		if (intel_pxp_supported_on_gt(&gt->pxp))
++			return gt;
++	}
++	return NULL;
++}
++
++bool intel_pxp_is_enabled(struct drm_i915_private *i915)
++{
++	struct intel_gt *gt = i915_to_pxp_gt(i915);
++
++	if (!gt)
++		return false;
++
++	return intel_pxp_is_enabled_on_gt(&gt->pxp);
++}
++
+ bool intel_pxp_is_active(const struct intel_pxp *pxp)
+ {
+ 	return pxp->arb_is_valid;
+@@ -216,7 +240,7 @@ int intel_pxp_start(struct intel_pxp *pxp)
+ {
+ 	int ret = 0;
+ 
+-	if (!intel_pxp_is_enabled(pxp))
++	if (!intel_pxp_is_enabled_on_gt(pxp))
+ 		return -ENODEV;
+ 
+ 	if (wait_for(pxp_component_bound(pxp), 250))
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+index efa83f9d5e24..3f71b1653f74 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp.h
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+@@ -11,12 +11,14 @@
+ 
+ struct intel_pxp;
+ struct drm_i915_gem_object;
++struct drm_i915_private;
+ 
+ struct intel_gt *pxp_to_gt(const struct intel_pxp *pxp);
+ 
+ bool intel_pxp_supported_on_gt(const struct intel_pxp *pxp);
+ 
+-bool intel_pxp_is_enabled(const struct intel_pxp *pxp);
++bool intel_pxp_is_enabled_on_gt(const struct intel_pxp *pxp);
++bool intel_pxp_is_enabled(struct drm_i915_private *i915);
+ bool intel_pxp_is_active(const struct intel_pxp *pxp);
+ 
+ void intel_pxp_init(struct intel_pxp *pxp);
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
+index f41e45763d0d..f322a49ebadc 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
+@@ -99,7 +99,7 @@ int intel_pxp_terminate_session(struct intel_pxp *pxp, u32 id)
+ 	u32 *cs;
+ 	int err = 0;
+ 
+-	if (!intel_pxp_is_enabled(pxp))
++	if (!intel_pxp_is_enabled_on_gt(pxp))
+ 		return 0;
+ 
+ 	rq = i915_request_create(ce);
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c b/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
+index f0ad6f34624a..4d257055434b 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
+@@ -18,7 +18,7 @@ static int pxp_info_show(struct seq_file *m, void *data)
+ {
+ 	struct intel_pxp *pxp = m->private;
+ 	struct drm_printer p = drm_seq_file_printer(m);
+-	bool enabled = intel_pxp_is_enabled(pxp);
++	bool enabled = intel_pxp_is_enabled_on_gt(pxp);
+ 
+ 	if (!enabled) {
+ 		drm_printf(&p, "pxp disabled\n");
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c b/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
+index c28be430718a..d3c697bf9aab 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
+@@ -22,7 +22,7 @@ void intel_pxp_irq_handler(struct intel_pxp *pxp, u16 iir)
  {
  	struct intel_gt *gt = pxp_to_gt(pxp);
  
--	/* we rely on the mei PXP module */
--	if (!IS_ENABLED(CONFIG_INTEL_MEI_PXP))
--		return;
--
+-	if (GEM_WARN_ON(!intel_pxp_is_enabled(pxp)))
++	if (GEM_WARN_ON(!intel_pxp_is_enabled_on_gt(pxp)))
+ 		return;
+ 
+ 	lockdep_assert_held(gt->irq_lock);
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
+index 6a7d4e2ee138..19ac8828cbde 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
+@@ -11,7 +11,7 @@
+ 
+ void intel_pxp_suspend_prepare(struct intel_pxp *pxp)
+ {
+-	if (!intel_pxp_is_enabled(pxp))
++	if (!intel_pxp_is_enabled_on_gt(pxp))
+ 		return;
+ 
+ 	pxp->arb_is_valid = false;
+@@ -23,7 +23,7 @@ void intel_pxp_suspend(struct intel_pxp *pxp)
+ {
+ 	intel_wakeref_t wakeref;
+ 
+-	if (!intel_pxp_is_enabled(pxp))
++	if (!intel_pxp_is_enabled_on_gt(pxp))
+ 		return;
+ 
+ 	with_intel_runtime_pm(&pxp_to_gt(pxp)->i915->runtime_pm, wakeref) {
+@@ -34,7 +34,7 @@ void intel_pxp_suspend(struct intel_pxp *pxp)
+ 
+ void intel_pxp_resume(struct intel_pxp *pxp)
+ {
+-	if (!intel_pxp_is_enabled(pxp))
++	if (!intel_pxp_is_enabled_on_gt(pxp))
+ 		return;
+ 
  	/*
- 	 * If HuC is loaded by GSC but PXP is disabled, we can skip the init of
- 	 * the full PXP session/object management and just init the tee channel.
- 	 */
--	if (HAS_PXP(gt->i915))
-+	if (intel_pxp_supported_on_gt(pxp))
- 		pxp_init_full(pxp);
--	else if (intel_huc_is_loaded_by_gsc(&gt->uc.huc) && intel_uc_uses_huc(&gt->uc))
-+	else if (_gt_needs_teelink(gt))
- 		intel_pxp_tee_component_init(pxp);
- }
+@@ -50,7 +50,7 @@ void intel_pxp_resume(struct intel_pxp *pxp)
  
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h b/drivers/gpu/drm/i915/pxp/intel_pxp.h
-index 2da309088c6d..efa83f9d5e24 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp.h
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
-@@ -13,6 +13,9 @@ struct intel_pxp;
- struct drm_i915_gem_object;
- 
- struct intel_gt *pxp_to_gt(const struct intel_pxp *pxp);
-+
-+bool intel_pxp_supported_on_gt(const struct intel_pxp *pxp);
-+
- bool intel_pxp_is_enabled(const struct intel_pxp *pxp);
- bool intel_pxp_is_active(const struct intel_pxp *pxp);
- 
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c b/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
-index 4359e8be4101..f0ad6f34624a 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
-@@ -70,7 +70,7 @@ void intel_pxp_debugfs_register(struct intel_pxp *pxp, struct dentry *gt_root)
- 	if (!gt_root)
+ void intel_pxp_runtime_suspend(struct intel_pxp *pxp)
+ {
+-	if (!intel_pxp_is_enabled(pxp))
++	if (!intel_pxp_is_enabled_on_gt(pxp))
  		return;
  
--	if (!HAS_PXP((pxp_to_gt(pxp)->i915)))
-+	if (!intel_pxp_supported_on_gt(pxp))
- 		return;
+ 	pxp->arb_is_valid = false;
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+index b0c9170b1395..a5c9c692c20d 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+@@ -152,7 +152,7 @@ static int i915_pxp_tee_component_bind(struct device *i915_kdev,
+ 		return 0;
  
- 	root = debugfs_create_dir("pxp", gt_root);
+ 	/* the component is required to fully start the PXP HW */
+-	if (intel_pxp_is_enabled(pxp))
++	if (intel_pxp_is_enabled_on_gt(pxp))
+ 		intel_pxp_init_hw(pxp);
+ 
+ 	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
+@@ -167,7 +167,7 @@ static void i915_pxp_tee_component_unbind(struct device *i915_kdev,
+ 	struct intel_pxp *pxp = i915_dev_to_pxp(i915_kdev);
+ 	intel_wakeref_t wakeref;
+ 
+-	if (intel_pxp_is_enabled(pxp))
++	if (intel_pxp_is_enabled_on_gt(pxp))
+ 		with_intel_runtime_pm_if_in_use(&i915->runtime_pm, wakeref)
+ 			intel_pxp_fini_hw(pxp);
+ 
 -- 
 2.34.1
 
