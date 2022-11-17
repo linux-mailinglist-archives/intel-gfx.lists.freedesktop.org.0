@@ -1,52 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB21262E449
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Nov 2022 19:30:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD7B262E52D
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Nov 2022 20:23:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A55010E66A;
-	Thu, 17 Nov 2022 18:30:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5580010E1D0;
+	Thu, 17 Nov 2022 19:22:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0080C10E669;
- Thu, 17 Nov 2022 18:30:38 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFE7910E1D0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Nov 2022 19:22:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668709839; x=1700245839;
- h=message-id:date:mime-version:from:subject:to:cc;
- bh=tB08k/1miQXzJsaL6NP5r5QUMOwxfR2ggP9BM5NyC6Y=;
- b=lMWUibhxGd3I/JGwZI4yRPfpblUANT91f69XQ8ckV75r62V/hMr8o4hp
- iqhRkJTI/DDl89wPKjdcvEPSJr2uTce0Et6Ebx7iDkheXvC9ofulxRtKY
- 9yV6iy/WzWiX8NUewSPQvrnplQoN7S2/bj49rON5XCU80BVWYqfiTlOC6
- Q7TgmwR1ONf/W45LSwdYIajGWUbYmm6tET1fr1AU/IerFo3sP8Ck+Legn
- NN9b+cbzWO2XiqR9SaEpkHMNwpcTlYbKLOQ5RYGtS/9ctqF0Jp0BK9Rqj
- wOZhd00YcTi1pUjD4fODCWPLmQ4SAi3nbDcQQb7tbmeJHOcqrwl4lseRh Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10534"; a="339771403"
-X-IronPort-AV: E=Sophos;i="5.96,172,1665471600"; 
- d="scan'208,217";a="339771403"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2022 10:30:38 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10534"; a="639914158"
-X-IronPort-AV: E=Sophos;i="5.96,172,1665471600"; 
- d="scan'208,217";a="639914158"
-Received: from pduchene-mobl.ger.corp.intel.com (HELO [192.168.178.111])
- ([10.251.220.186])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2022 10:30:34 -0800
-Content-Type: multipart/alternative;
- boundary="------------mGzW0usBMkLE0XdbPI8HR0k5"
-Message-ID: <c7d02936-c550-199b-6cb7-cbf6cf104e4a@linux.intel.com>
-Date: Thu, 17 Nov 2022 19:30:31 +0100
+ t=1668712974; x=1700248974;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=SEd3bLP1OB5ZKBc33PaQsM2Hpc2v/j87JHrqNrrrATM=;
+ b=dHKN4QgS0/du4rFnbvnxIIOF9+AdtDGlwZ5+Jrr3GBu8w5MKZC6xqNqD
+ livCpra9Wq81+r5ChwzuXlgRLcidkSgF0YNHr0j3fP5r4lFtq9uCdEXoq
+ nrpgE6+0V1l7G9UN1zQU3jg5bjFsvDREfoytK7+8RNVQxMlNWnXRInJ0h
+ fmnxUa7JJZx7pTI1SfBe3kQR766I9yRUand6phMVIqlmF8iUPZGWA4Eom
+ k1RidLJMGQNUs436KrUXNTCBDhxdfvin75bqyjmerR7VHODwigjYofpjZ
+ VUCHRb8g5Edk/uRp1m0eREoyHLCs4kkzMcANW5AQrm81G7fJOLqNnhzJo w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10534"; a="375080301"
+X-IronPort-AV: E=Sophos;i="5.96,172,1665471600"; d="scan'208";a="375080301"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2022 11:22:52 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10534"; a="884999816"
+X-IronPort-AV: E=Sophos;i="5.96,172,1665471600"; d="scan'208";a="884999816"
+Received: from invictus.jf.intel.com ([10.165.21.134])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2022 11:22:52 -0800
+From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 17 Nov 2022 11:22:04 -0800
+Message-Id: <20221117192204.445428-1-radhakrishna.sripada@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Content-Language: en-US
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/mtl: Skip doubling channel numbers for
+ LPDDR4/LPDDDR5
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,178 +55,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime Ripard <mripard@kernel.org>, dim-tools@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---------------mGzW0usBMkLE0XdbPI8HR0k5
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+MTL LPDDR5 reported 16b with 8 channels. Previous platforms
+reported 32b with 4 channels and hence needed a mulitplication
+by a factor of 2. Skip increasing the channels for MTL.
 
-Hi Dave, Daniel,
+While at it fix the logic while reading dram info num channels.
 
-A few fixes for v6.1-rc6.
+Bspec: 64631
+Fixes: 825477e77912 ("drm/i915/mtl: Obtain SAGV values from MMIO instead of GT pcode mailbox")
+Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bw.c | 3 ++-
+ drivers/gpu/drm/i915/intel_dram.c       | 3 +--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-Most important one apears to be reverting a change that breaks DP-MST.
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index 4ace026b29bd..7601e1061bca 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -439,7 +439,8 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+ 		return ret;
+ 	}
+ 
+-	if (dram_info->type == INTEL_DRAM_LPDDR4 || dram_info->type == INTEL_DRAM_LPDDR5)
++	if (!IS_METEORLAKE(dev_priv) &&
++	    (dram_info->type == INTEL_DRAM_LPDDR4 || dram_info->type == INTEL_DRAM_LPDDR5))
+ 		num_channels *= 2;
+ 
+ 	qi.deinterleave = qi.deinterleave ? : DIV_ROUND_UP(num_channels, is_y_tile ? 4 : 2);
+diff --git a/drivers/gpu/drm/i915/intel_dram.c b/drivers/gpu/drm/i915/intel_dram.c
+index 2403ccd52c74..bba8cb6e8ae4 100644
+--- a/drivers/gpu/drm/i915/intel_dram.c
++++ b/drivers/gpu/drm/i915/intel_dram.c
+@@ -471,8 +471,7 @@ static int xelpdp_get_dram_info(struct drm_i915_private *i915)
+ 	u32 val = intel_uncore_read(&i915->uncore, MTL_MEM_SS_INFO_GLOBAL);
+ 	struct dram_info *dram_info = &i915->dram_info;
+ 
+-	val = REG_FIELD_GET(MTL_DDR_TYPE_MASK, val);
+-	switch (val) {
++	switch (REG_FIELD_GET(MTL_DDR_TYPE_MASK, val)) {
+ 	case 0:
+ 		dram_info->type = INTEL_DRAM_DDR4;
+ 		break;
+-- 
+2.34.1
 
-drm-misc-fixes-2022-11-17:
-drm-misc-fixes for v6.1-rc6:
-- Fix error handling in vc4_atomic_commit_tail()
-- Set bpc for logictechno panels.
-- Fix potential memory leak in drm_dev_init()
-- Fix potential null-ptr-deref in drm_vblank_destroy_worker()
-- Set lima's clkname corrrectly when regulator is missing.
-- Small amdgpu fix to gang submission.
-- Revert hiding unregistered connectors from userspace, as it breaks on DP-MST.
-- Add workaround for DP++ dual mode adaptors that don't support
-   i2c subaddressing.
-The following changes since commit f352262f727215553879705bacbcb208979f3eff:
-
-   drm/panfrost: Split io-pgtable requests properly (2022-11-09 14:17:39 +0000)
-
-are available in the Git repository at:
-
-   git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2022-11-17
-
-for you to fetch changes up to 5954acbacbd1946b96ce8ee799d309cb0cd3cb9d:
-
-   drm/display: Don't assume dual mode adaptors support i2c sub-addressing (2022-11-15 23:31:02 +0200)
-
-----------------------------------------------------------------
-drm-misc-fixes for v6.1-rc6:
-- Fix error handling in vc4_atomic_commit_tail()
-- Set bpc for logictechno panels.
-- Fix potential memory leak in drm_dev_init()
-- Fix potential null-ptr-deref in drm_vblank_destroy_worker()
-- Set lima's clkname corrrectly when regulator is missing.
-- Small amdgpu fix to gang submission.
-- Revert hiding unregistered connectors from userspace, as it breaks on DP-MST.
-- Add workaround for DP++ dual mode adaptors that don't support
-   i2c subaddressing.
-
-----------------------------------------------------------------
-Aishwarya Kothari (1):
-       drm/panel: simple: set bpc field for logic technologies displays
-
-Christian König (1):
-       drm/amdgpu: use the last IB as gang leader v2
-
-Erico Nunes (1):
-       drm/lima: Fix opp clkname setting in case of missing regulator
-
-Gaosheng Cui (1):
-       drm/vc4: kms: Fix IS_ERR() vs NULL check for vc4_kms
-
-Shang XiaoJing (2):
-       drm/drv: Fix potential memory leak in drm_dev_init()
-       drm: Fix potential null-ptr-deref in drm_vblank_destroy_worker()
-
-Simon Rettberg (1):
-       drm/display: Don't assume dual mode adaptors support i2c sub-addressing
-
-Simon Ser (1):
-       Revert "drm: hide unregistered connectors from GETCONNECTOR IOCTL"
-
-  drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c            | 23 ++++++----
-  drivers/gpu/drm/amd/amdgpu/amdgpu_cs.h            |  1 +
-  drivers/gpu/drm/display/drm_dp_dual_mode_helper.c | 51 +++++++++++++----------
-  drivers/gpu/drm/drm_drv.c                         |  2 +-
-  drivers/gpu/drm/drm_internal.h                    |  3 +-
-  drivers/gpu/drm/drm_mode_config.c                 |  3 --
-  drivers/gpu/drm/lima/lima_devfreq.c               | 15 ++++---
-  drivers/gpu/drm/panel/panel-simple.c              |  2 +
-  drivers/gpu/drm/vc4/vc4_kms.c                     |  8 ++--
-  9 files changed, 64 insertions(+), 44 deletions(-)
-
---------------mGzW0usBMkLE0XdbPI8HR0k5
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    Hi Dave, Daniel,<br>
-    <p>A few fixes for v6.1-rc6.</p>
-    <p>Most important one apears to be reverting a change that breaks
-      DP-MST.<br>
-    </p>
-    <pre>drm-misc-fixes-2022-11-17:
-drm-misc-fixes for v6.1-rc6:
-- Fix error handling in vc4_atomic_commit_tail()
-- Set bpc for logictechno panels.
-- Fix potential memory leak in drm_dev_init()
-- Fix potential null-ptr-deref in drm_vblank_destroy_worker()
-- Set lima's clkname corrrectly when regulator is missing.
-- Small amdgpu fix to gang submission.
-- Revert hiding unregistered connectors from userspace, as it breaks on DP-MST.
-- Add workaround for DP++ dual mode adaptors that don't support
-  i2c subaddressing.
-The following changes since commit f352262f727215553879705bacbcb208979f3eff:
-
-  drm/panfrost: Split io-pgtable requests properly (2022-11-09 14:17:39 +0000)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2022-11-17
-
-for you to fetch changes up to 5954acbacbd1946b96ce8ee799d309cb0cd3cb9d:
-
-  drm/display: Don't assume dual mode adaptors support i2c sub-addressing (2022-11-15 23:31:02 +0200)
-
-----------------------------------------------------------------
-drm-misc-fixes for v6.1-rc6:
-- Fix error handling in vc4_atomic_commit_tail()
-- Set bpc for logictechno panels.
-- Fix potential memory leak in drm_dev_init()
-- Fix potential null-ptr-deref in drm_vblank_destroy_worker()
-- Set lima's clkname corrrectly when regulator is missing.
-- Small amdgpu fix to gang submission.
-- Revert hiding unregistered connectors from userspace, as it breaks on DP-MST.
-- Add workaround for DP++ dual mode adaptors that don't support
-  i2c subaddressing.
-
-----------------------------------------------------------------
-Aishwarya Kothari (1):
-      drm/panel: simple: set bpc field for logic technologies displays
-
-Christian König (1):
-      drm/amdgpu: use the last IB as gang leader v2
-
-Erico Nunes (1):
-      drm/lima: Fix opp clkname setting in case of missing regulator
-
-Gaosheng Cui (1):
-      drm/vc4: kms: Fix IS_ERR() vs NULL check for vc4_kms
-
-Shang XiaoJing (2):
-      drm/drv: Fix potential memory leak in drm_dev_init()
-      drm: Fix potential null-ptr-deref in drm_vblank_destroy_worker()
-
-Simon Rettberg (1):
-      drm/display: Don't assume dual mode adaptors support i2c sub-addressing
-
-Simon Ser (1):
-      Revert "drm: hide unregistered connectors from GETCONNECTOR IOCTL"
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c            | 23 ++++++----
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.h            |  1 +
- drivers/gpu/drm/display/drm_dp_dual_mode_helper.c | 51 +++++++++++++----------
- drivers/gpu/drm/drm_drv.c                         |  2 +-
- drivers/gpu/drm/drm_internal.h                    |  3 +-
- drivers/gpu/drm/drm_mode_config.c                 |  3 --
- drivers/gpu/drm/lima/lima_devfreq.c               | 15 ++++---
- drivers/gpu/drm/panel/panel-simple.c              |  2 +
- drivers/gpu/drm/vc4/vc4_kms.c                     |  8 ++--
- 9 files changed, 64 insertions(+), 44 deletions(-)
-
-</pre>
-  </body>
-</html>
-
---------------mGzW0usBMkLE0XdbPI8HR0k5--
