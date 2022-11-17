@@ -1,140 +1,78 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87E1962E11B
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Nov 2022 17:08:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB2FC62E2A9
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Nov 2022 18:14:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5E3C10E650;
-	Thu, 17 Nov 2022 16:08:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70CCC10E1BE;
+	Thu, 17 Nov 2022 17:14:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87B9210E651
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Nov 2022 16:08:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668701282; x=1700237282;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=5+WX6xTqkygXc2UJiB6j30aY74g1PhY4AkRzCxM7cno=;
- b=B7ORpo5AL5p0C/sKi0bEpRQwzHhYySAnbCvQR6GR2CQfy7aElzS1Ei+D
- dBNHE38PYVElEGPHVqDdS720RVaGlCqaKiq0v4IX+AvUWUWWO+VxNQ3PK
- yIvnYd8UPRt0dEPBX8cd0+B6sCyimIZZSkJtft37mV+5pGwOzCZbifqCv
- AcWPRluy2RtmwVUdFbBduM9BdWm7M0kV+XHfszu+bWwZaPkjV8sGr91Ay
- liQOI5fRfWKsXQ7Vfz04QLkkSRPtq+xbgZZiqcraloT2KUQRL5oHeaKSK
- GZXuorL1avci0dKd8olm58FehdF3JN1XF5xveLgMk8bHTaRb7w4D1e7Wp Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10534"; a="312905079"
-X-IronPort-AV: E=Sophos;i="5.96,171,1665471600"; d="scan'208";a="312905079"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2022 08:08:01 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10534"; a="639853984"
-X-IronPort-AV: E=Sophos;i="5.96,171,1665471600"; d="scan'208";a="639853984"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga002.jf.intel.com with ESMTP; 17 Nov 2022 08:08:01 -0800
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Thu, 17 Nov 2022 08:08:00 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Thu, 17 Nov 2022 08:08:00 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Thu, 17 Nov 2022 08:08:00 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.171)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Thu, 17 Nov 2022 08:08:00 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hQWhwuSeFdnHkIpLZakjg2cU3mBKw9ChHU2hIsUrtw2AslcX1YpuNX4vZU0hv6GuJBi3nUaXVJQ5rnH2rUCEsct8q4F5wPgy3bbxPyAspjNNhMMs6xV8GtUIvu8BEb4KNXSCw/X3/7G7WYhKuDaMw5hilVrQDWJ875/iKuipqheYyeMxy9BJO8ExWBaEOShQ9LkWwIN73QForbF/6eIWH2L9Fced46rIBGEStT3QidznS3uRq8YflAbnNBEokc1nqYE6jZrrvCIILBZy3c92PjfKZIuPnpacT0y/UpWUoIdolxhokpa3ahP+krnVYTH3F9424HeE/y3Ezm3XvmGcnA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=R4g43W27/ATlOPbx7XHD3KARiHduTe6QqpA7m/dEom4=;
- b=QYwNjyvnMj8hDozdO2SlZMihrmu3o199rBnkJiDETHXGoSSxsh+wii1pjLWI6w4knSl+139nAxlUoCiIQGch5kOI+YK1vf15KIZ67leOY+65h530NFVJhdnl6hbjIBgjan7qw9dtVht5F5AYmotH/vdTlma62lhMuoSUov52OhyqbYcfQweGTMbjbhS5+qyhglEzBnCRWjbe5wYq/hsy+Cj2hJdY3QrEAjEflzVtoZwic2b6I8m1K+BriK7hJZgXlXYf7EW2VPEl5VsF0amMA0o37FAf16+CIKaLELwZhz9LRl6teT4SjhksoZEzBYGzT62I5lRQcPnptjGCcAxRFw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by CH0PR11MB5705.namprd11.prod.outlook.com (2603:10b6:610:ec::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.18; Thu, 17 Nov
- 2022 16:07:58 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::f4b9:901c:6882:c286]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::f4b9:901c:6882:c286%5]) with mapi id 15.20.5813.020; Thu, 17 Nov 2022
- 16:07:58 +0000
-Date: Thu, 17 Nov 2022 11:07:54 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Alan Previn <alan.previn.teres.alexis@intel.com>
-Message-ID: <Y3ZcWpE9tRQIfbzS@intel.com>
-References: <20221117003018.1433115-1-alan.previn.teres.alexis@intel.com>
- <20221117003018.1433115-5-alan.previn.teres.alexis@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20221117003018.1433115-5-alan.previn.teres.alexis@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0001.namprd03.prod.outlook.com
- (2603:10b6:a03:33a::6) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+Received: from wnew1-smtp.messagingengine.com (wnew1-smtp.messagingengine.com
+ [64.147.123.26])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9208110E1BB;
+ Thu, 17 Nov 2022 17:14:10 +0000 (UTC)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+ by mailnew.west.internal (Postfix) with ESMTP id 8DB7F2B06A50;
+ Thu, 17 Nov 2022 12:14:04 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute2.internal (MEProxy); Thu, 17 Nov 2022 12:14:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:sender:subject
+ :subject:to:to; s=fm2; t=1668705244; x=1668712444; bh=EPKM98yuI0
+ FafDSpZ4oH9M/3CpWV+m3u8fcRxTeHRuU=; b=IKSCrjRehJXLLAheMi3x1nBBT6
+ xv79+oCuXcYWNZ56lfkM1xLPxqSAtDNNT3XxpSJC6jHP7Vkok/cXYc/Q95YEBpG+
+ ezh5FAEU/QFRRHMU7pCIMZWiaEuhO0x26gZVc/BGSuAHy5m4qU6aEWjP9OzWk5Cf
+ 7y/V0+6av4McswO2nCTSoODDF+vOIcOUhzF9inIWGgUE2fphLHOeDM01YAIZHVuu
+ 6op3/MJ3VV7BmT1MOYTIwx+Fbwwh/wYlU+bcv4kNzWVhRhtS1sqQ7QUSpdXtsDF3
+ jygjVycsZPOEbUmO7CCsQXSFduE2nvV6WgRq+ZD9hm+mSroQWO84l6sQNe3A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+ :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+ :mime-version:references:reply-to:sender:subject:subject:to:to
+ :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+ fm1; t=1668705244; x=1668712444; bh=EPKM98yuI0FafDSpZ4oH9M/3CpWV
+ +m3u8fcRxTeHRuU=; b=FJ0o9lSTMDJUUNFAeEUAJvhsA4JEtyf0agBRuNaZs/Ax
+ /vKmYa1NT94ktikwdItSLaULxP0rJYkbgBubo/OPC2hiCxDNnIO6FtAxj+/ejJGS
+ iKmzcK9bLoYUzLTB6c7XqPKkxdZbPF4H0feWwbfpJ0BWVbdQePGuBroxY9MueMih
+ 7FT17Z+ie0MmgR4aTVQmXVHXO6zsdMFbjOYNE6tCp0e8Lbm1N/mKRHD2iGxx8Xcb
+ IXPAvjwzB7KOyD9S/fDSePH03flvfPtPB7NrqZXeNUmupz+zQ9RaGmo2KcKRHvbT
+ zwZ7vlVYZEzM0Z1UI08AtAbJrk2HLpqzUu9OF5IoOQ==
+X-ME-Sender: <xms:22t2Y7aq50whuiFoQkEUePGTIQQg6ZfqHjYpnO3ZncSCACAWCnOiMg>
+ <xme:22t2Y6ZPwV0Q-ALL-9E4JiTTYPis500kQYlEddlLdZGekFPHa-FsXpXfxA25fJ3o2
+ gwMU9kLZtOVoGM6TQg>
+X-ME-Received: <xmr:22t2Y99lRvGfydEV4TyGUQvS_xMgz5cYjOuHKny_YDGWhp55onjpyMcwIi6_VHCLq68SvWWLiZglAAmz18UhhoZIzXVeUJL6MkOpgZBxhvpz-Q>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrgeekgdeljecutefuodetggdotefrodftvf
+ curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+ uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+ fjughrpeffhffvvefukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+ vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+ htvghrnhepteefffefgfektdefgfeludfgtdejfeejvddttdekteeiffejvdfgheehfffh
+ vedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
+ grgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:22t2Yxom94qDjT-BzKQYtjOcEEJ5G_ZpbqblIPWD4ny5xSpnARo47w>
+ <xmx:22t2Y2pZsh_WWZJSX9aXYTEk1HHwKH4A-o6rp_LoVNmwmGmnNPxxGA>
+ <xmx:22t2Y3Tq45VHs9_ipPR4WzxHHa3NojkmAl11WzxKDRL27UL_x3KIdg>
+ <xmx:3Gt2Y5CoJVgET8RSJmOoRJmYWzwp91a6JyV2_DM6wMLHtCwwG3cyUPBYqxc>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 17 Nov 2022 12:14:02 -0500 (EST)
+Date: Thu, 17 Nov 2022 18:14:01 +0100
+From: Maxime Ripard <maxime@cerno.tech>
+To: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
+Message-ID: <20221117171401.3ogenv6g5nszufmm@houat>
+References: <20220728-rpi-analog-tv-properties-v10-0-256dad125326@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v10-18-256dad125326@cerno.tech>
+ <20221117164928.200b3a1a@maurocar-mobl2>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|CH0PR11MB5705:EE_
-X-MS-Office365-Filtering-Correlation-Id: dd39a2fb-e60e-4b73-dd90-08dac8b5e4cc
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7kiLEXl1INNrKL0D2uT4gLTeSABJN2vXtjYSUW74hvuEst1EARL4ypCEreZtXNhrJIM59BdTgjcwHPJYlSPKRLwiIP+5FJY1zz5aJl2vRrBJqDzmUwy/CIj/U7ZJ+f7mhAnPWYUDWN4oq32jHa5JMCnmgETCOx4wvAuFq8jczukVBOXR7gJQDaqG+t+dp7AGZ6FIMWT9zv7ZGbGkEtTGMJdHbRac5WOWBGJO07E27zCXVWuOL1PkSDHu4Gky3pcz3lwFRRENijzWq0tf2UUN/u2KBOgkbErsvLy1Gz8b1awyUFFYm6Sj8FzydhMS5t2HIvmERX5fk7IbOUVtaMnOKwUIxS0TLfoCEeOUQ+CMzvWgImPm6Eg4V/YUyfyXhmTsI175uLAbqCMiXg2AZA0ZPwn0OUv7HHB0q/vuJT8mKjyAG/nVCbe2JbntbgqNfkMpCKurwa+gnY/AE7MMKfnlXN05YxHcv2iXDJ6MTq+/17vV4F5XNYqHiq9x8rmuawMNtcP0GVYfI/q1dV3whtABWZ6uK0s1DgpUArwi84GyslC8ZkCPRknh014C9qcFwU8sphLIRBI6dTgROGJhSALb9EmjsC6NZ22NsGfH5hc7jLhMRXjtwBIkmtUkVJwGVGeKHpQGoMMOOCzagQidNIf0FQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(136003)(346002)(376002)(396003)(366004)(39860400002)(451199015)(36756003)(26005)(86362001)(82960400001)(38100700002)(8936002)(2616005)(2906002)(6512007)(83380400001)(44832011)(186003)(5660300002)(6506007)(6486002)(6666004)(6862004)(41300700001)(66946007)(37006003)(6636002)(4326008)(66476007)(8676002)(478600001)(316002)(66556008);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?icUZEzBbzdAA9SvGeqnLrHeRz62c4lLBYe8qRHgaL65eyUYMwNJDge8WIxOx?=
- =?us-ascii?Q?bCjIr8LUfQy3eIHBE8KhbI22FhKjpn/iO/TuhPj9i/HDzFzfo2liDQAUrDtQ?=
- =?us-ascii?Q?vvphf5tiLEixmlv3KsJsLANTGb6M0Sb5ASA84xhnEBCQBb1r9tGwitKjFm28?=
- =?us-ascii?Q?A2CfhUHOxRHvrzInOgaMBRPAfnkIf0rIn21ApKDhvq0JqW7Q5J7lflO5yE80?=
- =?us-ascii?Q?oCmyWmhHOIBgp3bovykoeczg72LXq4hYZVSDx4qxXxb/1qVi6r0PTMISAJQX?=
- =?us-ascii?Q?UOfjKlxkGJvbstWw/TTqdkDPC/jFB+dc+9mSQlOKv4S+xdMxMl7VffSI3U07?=
- =?us-ascii?Q?gP6qed84KkRsvaNNJpDZvMTvXR+YZ3jgKFsgCJwiyMak+1yXARknizijNO77?=
- =?us-ascii?Q?YcErHVqOZpHiv3/yifItLswpS/767FrH/81V0dAtPsKM97kceH3CIvU78aVh?=
- =?us-ascii?Q?w3VilZL0HSGba1Ur880/X2Pw5Ghk26HJyqDwDbcwjbaIBi0lV/1E4zwj5Zol?=
- =?us-ascii?Q?rc3VsA31658c3umSiOfKczeiZ9Gegu+eZRppLQKZRFx2H2rXAyyFdwnQFoxc?=
- =?us-ascii?Q?kisrREoojGpBjnyidA+uRTvzIMwO5bszdo7xi/+C7D7NitCE0XrT9vjxgwPA?=
- =?us-ascii?Q?Gmpxb5FOS4kitsvOZg3hDB66GQzjp2Jn1rJaAX/5AYrcQH1TsjJ+U3eP+06A?=
- =?us-ascii?Q?+hUcUKtpneCuFbxpwAAkQizb51pNnTPWEPjTcu4sYcf8YdR9rA+Qm93WLiI1?=
- =?us-ascii?Q?/sXLqSvm/+gez/wjXyjX/2LLOLKC4nLjtCP9OHoJvDktu44gAputL9SSIztj?=
- =?us-ascii?Q?Lh+3X8YXqprzDhdCa5glxcRmQgcjnD8iljWsR4dlQ/xurhNLmNoLvC6qi46y?=
- =?us-ascii?Q?EaOk/6EgaIvjhiH3n8MMDxU0RcObst/DByNJCd+GY8Ol2gMDly6T3usZpqzx?=
- =?us-ascii?Q?yaJJ/r3Rrh79Iiu+gnkxqex/EQWEhnLrsrgKvKrSX6DnhnVd3FY3XefcnnSH?=
- =?us-ascii?Q?g6eaZd6kjQLEGraqFMYF31J0JMYLEiH9I2MGCf1X2AH9tyaF6te01tho7f5T?=
- =?us-ascii?Q?2ZuFubUc8Zt9CORQgT+UrhUTeAqGkqmqLycDu48FPD2366PLscGuZXqpCE83?=
- =?us-ascii?Q?YZdrXpb0htrDWdSHaUT6keAiAIaQb41WIgeKXohwE0z9lLObAyKmrUmqjHq0?=
- =?us-ascii?Q?Hp+G03hX7AaPtx2Nn0Ad33hl6Bw10OAQ0ZQUDZ4HDz3l9VyUDtoTsBXsIRws?=
- =?us-ascii?Q?yfUEZj8BI78KbXvLK2A0ADF1UbhmciSOYhr/Qu4M7cAKLwKUUU/NzfiY/uz+?=
- =?us-ascii?Q?l7gYMKgkW2E4C304YlS32M3AtugjvO1l6ZvYsBBT2TQi710FmnwHGoMhR/nH?=
- =?us-ascii?Q?/7pV3M1NgcqRH/lyXgEJNat/UGsXrqwYnkFlg57+wE9g3imdjjhz5vwiE7ti?=
- =?us-ascii?Q?NMR3g5nWw/fowW69KbmPmrCOOYxH/W747l2yBIPYMy2qMMUlW0IsbpbcfNC8?=
- =?us-ascii?Q?pLNcz3W1tylRaQ/5TDvsZlNqlmA9g7QpgnjW6Lt1fVcYBdLsuA6ln9/oQEEr?=
- =?us-ascii?Q?Cve1cnNMi+TjRDpLiaOX5Z5SG8gmlbH69CXOegKt?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: dd39a2fb-e60e-4b73-dd90-08dac8b5e4cc
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2022 16:07:58.3537 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: aKeXTFZgbahRX2bg5TrBtU967mQn2YAtPtEiAvTHcfUR7092nI/CryhhIQT7UW9hFqgQoc3GB4i0lsc8Q7Y2JQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5705
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v4 4/6] drm/i915/pxp: Make PXP tee component
- bind/unbind aware of PXP-owning-GT
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="cz56iqciiap5nisp"
+Content-Disposition: inline
+In-Reply-To: <20221117164928.200b3a1a@maurocar-mobl2>
+Subject: Re: [Intel-gfx] [PATCH v10 18/19] drm/vc4: vec: Add support for
+ more analog TV standards
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,113 +85,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
+ Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
+ linux-sunxi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-arm-kernel@lists.infradead.org,
+ Dom Cobley <dom@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
+ Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
+ Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Nov 16, 2022 at 04:30:16PM -0800, Alan Previn wrote:
-> Ensure i915_pxp_tee_component_bind / unbind implicitly sorts out
-> getting the correct per-GT PXP control-context from the PXP-owning-GT
-> when establishing or ending connection. Thus, replace _i915_to_pxp_gt
-> with intel_pxp_get_owning_gt (also takes in i915).
-> 
-> Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
-> Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> ---
->  drivers/gpu/drm/i915/pxp/intel_pxp.c     |  6 +++---
->  drivers/gpu/drm/i915/pxp/intel_pxp.h     |  2 ++
->  drivers/gpu/drm/i915/pxp/intel_pxp_tee.c | 14 ++++++++++++--
->  3 files changed, 17 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-> index 76a924587543..6a78b6ef0235 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-> @@ -64,7 +64,7 @@ bool intel_pxp_is_enabled_on_gt(const struct intel_pxp *pxp)
->  	return pxp->ce;
->  }
->  
-> -static struct intel_gt *i915_to_pxp_gt(struct drm_i915_private *i915)
-> +struct intel_gt *intel_pxp_get_owning_gt(struct drm_i915_private *i915)
->  {
->  	struct intel_gt *gt = NULL;
->  	int i = 0;
-> @@ -79,7 +79,7 @@ static struct intel_gt *i915_to_pxp_gt(struct drm_i915_private *i915)
->  
->  bool intel_pxp_is_enabled(struct drm_i915_private *i915)
->  {
-> -	struct intel_gt *gt = i915_to_pxp_gt(i915);
-> +	struct intel_gt *gt = intel_pxp_get_owning_gt(i915);
->  
->  	if (!gt)
->  		return false;
-> @@ -94,7 +94,7 @@ bool intel_pxp_is_active_on_gt(const struct intel_pxp *pxp)
->  
->  bool intel_pxp_is_active(struct drm_i915_private *i915)
->  {
-> -	struct intel_gt *gt = i915_to_pxp_gt(i915);
-> +	struct intel_gt *gt = intel_pxp_get_owning_gt(i915);
->  
->  	if (!gt)
->  		return false;
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h b/drivers/gpu/drm/i915/pxp/intel_pxp.h
-> index fe981eebf0ec..c798c3bde957 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.h
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
-> @@ -13,6 +13,8 @@ struct intel_pxp;
->  struct drm_i915_gem_object;
->  struct drm_i915_private;
->  
-> +struct intel_gt *intel_pxp_get_owning_gt(struct drm_i915_private *i915);
-> +
->  struct intel_gt *pxp_to_gt(const struct intel_pxp *pxp);
->  
->  bool intel_pxp_supported_on_gt(const struct intel_pxp *pxp);
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> index a5c9c692c20d..b9198e961cb6 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> @@ -20,8 +20,12 @@
->  static inline struct intel_pxp *i915_dev_to_pxp(struct device *i915_kdev)
->  {
->  	struct drm_i915_private *i915 = kdev_to_i915(i915_kdev);
-> +	struct intel_gt *gt = intel_pxp_get_owning_gt(i915);
->  
-> -	return &to_gt(i915)->pxp;
-> +	if (!gt)
-> +		return NULL;
-> +
-> +	return &gt->pxp;
 
-or pxp is part of gt, what it looks like, then we use per gt and avoid on the others...
+--cz56iqciiap5nisp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->  }
->  
->  static int intel_pxp_tee_io_message(struct intel_pxp *pxp,
-> @@ -128,10 +132,16 @@ static int i915_pxp_tee_component_bind(struct device *i915_kdev,
->  {
->  	struct drm_i915_private *i915 = kdev_to_i915(i915_kdev);
->  	struct intel_pxp *pxp = i915_dev_to_pxp(i915_kdev);
-> -	struct intel_uc *uc = &pxp_to_gt(pxp)->uc;
-> +	struct intel_uc *uc;
->  	intel_wakeref_t wakeref;
->  	int ret = 0;
->  
-> +	if (!pxp) {
-> +		drm_warn(&i915->drm, "tee comp binding without a PXP-owner GT\n");
+On Thu, Nov 17, 2022 at 04:49:28PM +0100, Mauro Carvalho Chehab wrote:
+> On Thu, 17 Nov 2022 10:29:01 +0100
+> Maxime Ripard <maxime@cerno.tech> wrote:
+>=20
+> > From: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
+> >=20
+> > Add support for the following composite output modes (all of them are
+> > somewhat more obscure than the previously defined ones):
+> >=20
+> > - NTSC_443 - NTSC-style signal with the chroma subcarrier shifted to
+> >   4.43361875 MHz (the PAL subcarrier frequency). Never used for
+> >   broadcasting, but sometimes used as a hack to play NTSC content in PAL
+> >   regions (e.g. on VCRs).
+>=20
+> > - PAL_N - PAL with alternative chroma subcarrier frequency,
+> >   3.58205625 MHz. Used as a broadcast standard in Argentina, Paraguay
+> >   and Uruguay to fit 576i50 with colour in 6 MHz channel raster.
+>=20
+> That's not right. Argentina uses a different standard than Paraguay and
+> Uruguai.
+>=20
+> See, there are two variants of PAL/N. The original one and PAL/N' - also
+> called PAL/NC or PAL/CN (Combination N). Some of the timings are=20
+> different on /NC variant.
+>=20
+> As far as I'm aware, PAL/Nc is used in Argentina, while
+> PAL/N is used in Paraguai and Uruguai, but I may be wrong on that,
+> as it has been a long time since had to touch on this.
+>=20
+> > - PAL60 - 480i60 signal with PAL-style color at normal European PAL
+> >   frequency. Another non-standard, non-broadcast mode, used in similar
+> >   contexts as NTSC_443. Some displays support one but not the other.
+>=20
+> > - SECAM - French frequency-modulated analog color standard; also have
+> >   been broadcast in Eastern Europe and various parts of Africa and Asia.
+> >   Uses the same 576i50 timings as PAL.
+>=20
+> This is also wrong. just like PAL, there are several variants of SECAM,
+> one used in France, and a different one in France overseas and on
+> previous France colonies in Africa and Asia. Eastern Europe also used
+> different variants of SECAM.
 
-or we have a single pxp component under i915 and we associate with the gt0 only
-and save the gt inside the pxp...
+And that's fine? Everything I did is supposed to be easy to extend if
+and when needed, so if someone has some interest in providing support
+for more standards, they are very welcome to do so.
 
-but this whole owning thing seems so convoluted...
+I won't do it in this series though.
 
-> +		return -ENODEV;
-> +	}
-> +	uc = &pxp_to_gt(pxp)->uc;
-> +
->  	mutex_lock(&pxp->tee_mutex);
->  	pxp->pxp_component = data;
->  	pxp->pxp_component->tee_dev = tee_kdev;
-> -- 
-> 2.34.1
-> 
+Maxime
+
+--cz56iqciiap5nisp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCY3Zr2QAKCRDj7w1vZxhR
+xQY3AQC3ODU/A4r/xCJ5Ms7gOYpWhJaSGlaY+jf/qgMPcMmMhAD/VJCODvzEFvlF
+AuxhxZDFClQh1TusZBNOY31fQyzDIAU=
+=f8ne
+-----END PGP SIGNATURE-----
+
+--cz56iqciiap5nisp--
