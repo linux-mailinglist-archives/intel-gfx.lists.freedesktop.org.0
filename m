@@ -1,52 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCDC062F3E3
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Nov 2022 12:40:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05A7362F3EE
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Nov 2022 12:44:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 591FF10E0E6;
-	Fri, 18 Nov 2022 11:40:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DB9210E1C9;
+	Fri, 18 Nov 2022 11:44:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 361B610E0E6
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Nov 2022 11:40:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1668771603; x=1700307603;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=BmldUoY1HO2gb1seo3lsWVIrALfvE7p+D0PJQG1OMgE=;
- b=hyd5BS8fw5Y2e1NxQKKx66JsmKtFJcAQC2ZJN6gPM6XEc+cDhPF5LgOp
- sxtD4DH2OzHaUcUbFdCFynfhlaTYpy6SpXDKzNRFwIFPwSoWPZ0WB9J8q
- xg97nQOAcNOsYNGJuthQQnJTeI0iTYWecDNyelcovz39WPVbN9JkpZQ78
- PAco9pP08x76/Dtz8GcOvmOmbH2wcb15YufLBSssvhbt076YoMeMdidlv
- muR7XkeQ8Ve8E4vDEO30q+Erb40N2YxacpBzL0mlD1BdYGR7mU1L3gQRT
- lChMj5r8Rv7KLuSImB0GEfl2j0zFMQEy4V1oxIVfBpUNZOjXWQjUY8hKi w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10534"; a="399404925"
-X-IronPort-AV: E=Sophos;i="5.96,174,1665471600"; d="scan'208";a="399404925"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2022 03:40:02 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10534"; a="617990155"
-X-IronPort-AV: E=Sophos;i="5.96,174,1665471600"; d="scan'208";a="617990155"
-Received: from mmilose-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.58.101])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2022 03:40:01 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20221118105525.27254-1-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221118105525.27254-1-ville.syrjala@linux.intel.com>
-Date: Fri, 18 Nov 2022 13:39:58 +0200
-Message-ID: <877czs1ofl.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6DA7410E1C9;
+ Fri, 18 Nov 2022 11:44:12 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6CA27AADE1;
+ Fri, 18 Nov 2022 11:44:12 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 0/9] drm/i915/dvo: DVO init fixes/cleanps
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Fri, 18 Nov 2022 11:44:12 -0000
+Message-ID: <166877185244.25642.11886416345716199367@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221118105525.27254-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20221118105525.27254-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/dvo=3A_DVO_init_fixes/cleanps?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,33 +40,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 18 Nov 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> The DVO encoder init code is meesy. Try to clean it
-> up a bit, and fix a few buglets while at it.
+== Series Details ==
 
-On the series,
+Series: drm/i915/dvo: DVO init fixes/cleanps
+URL   : https://patchwork.freedesktop.org/series/111066/
+State : warning
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+== Summary ==
 
->
-> Ville Syrj=C3=A4l=C3=A4 (9):
->   drm/i915/dvo: Remove unused panel_wants_dither
->   drm/i915/dvo: Don't leak connector state on DVO init failure
->   drm/i915/dvo: Actually initialize the DVO encoder type
->   drm/i915/dvo: Introduce intel_dvo_connector_type()
->   drm/i915/dvo: Eliminate useless 'port' variable
->   drm/i915/dvo: Flatten intel_dvo_init()
->   drm/i915/dvo: s/intel_encoder/encoder/ etc.
->   drm/i915/dvo: s/dev_priv/i915/
->   drm/i915/dvo: Use per device debugs
->
->  drivers/gpu/drm/i915/display/intel_dvo.c | 375 ++++++++++++-----------
->  1 file changed, 201 insertions(+), 174 deletions(-)
+Error: dim checkpatch failed
+31ec571cb014 drm/i915/dvo: Remove unused panel_wants_dither
+c9da1e495ad7 drm/i915/dvo: Don't leak connector state on DVO init failure
+59880e593787 drm/i915/dvo: Actually initialize the DVO encoder type
+0625749326d5 drm/i915/dvo: Introduce intel_dvo_connector_type()
+6c30df4f3b60 drm/i915/dvo: Eliminate useless 'port' variable
+a83da608cc24 drm/i915/dvo: Flatten intel_dvo_init()
+-:185: CHECK:CAMELCASE: Avoid CamelCase: <SubPixelHorizontalRGB>
+#185: FILE: drivers/gpu/drm/i915/display/intel_dvo.c:555:
++	connector->display_info.subpixel_order = SubPixelHorizontalRGB;
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+total: 0 errors, 0 warnings, 1 checks, 247 lines checked
+8af7706c0d42 drm/i915/dvo: s/intel_encoder/encoder/ etc.
+-:182: CHECK:CAMELCASE: Avoid CamelCase: <SubPixelHorizontalRGB>
+#182: FILE: drivers/gpu/drm/i915/display/intel_dvo.c:554:
++	connector->base.display_info.subpixel_order = SubPixelHorizontalRGB;
+
+total: 0 errors, 0 warnings, 1 checks, 177 lines checked
+f2d632893373 drm/i915/dvo: s/dev_priv/i915/
+c103975f29ff drm/i915/dvo: Use per device debugs
+
+
