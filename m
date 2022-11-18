@@ -2,46 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5486D62E9F4
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Nov 2022 01:01:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88D9E62EA5F
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Nov 2022 01:34:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F76410E6BF;
-	Fri, 18 Nov 2022 00:01:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C249010E6D4;
+	Fri, 18 Nov 2022 00:34:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE28B10E1DF;
- Fri, 18 Nov 2022 00:01:11 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 3083B622AF;
- Fri, 18 Nov 2022 00:01:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12EE3C433D6;
- Fri, 18 Nov 2022 00:01:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1668729670;
- bh=ov1dwfKlY10jlyvvrILEMTGZym5hMBZuKYP5HTVbbNw=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=jUV6xj2ZuGt6gS++XzvZWg0g4N5kX3l4CCDn+/3k2C9z8oqImtI0RiS453F7mzV7s
- /i8YeU0Zk/s8iJXQZvkZ6VIwOVUccL/fB18s6uWeB5TNua5NHVLUQcG5c7g3lwD14I
- 8Jqpt6YpzqDz7axweXGMZ0ccO8JOc2xAcPv93xP/E/hb/dTFiKsoQ4w++pKZjAtYEK
- elqG3Gz2r/BxmLl/PYwBnq6HveJstEV2yXkKHe9rQMIiGcSH/mM6UsBKQvXKyw0b+4
- lUDo3Np0l8usOfpNZ6bY7az78OiFW1/7dNoUFwg0kK1zJKH9f5UD7Xjq08EDHn3Vgp
- D4no7ZB6I5rHQ==
-Date: Thu, 17 Nov 2022 17:01:08 -0700
-From: Nathan Chancellor <nathan@kernel.org>
-To: Stephen Rothwell <sfr@canb.auug.org.au>
-Message-ID: <Y3bLRLDCrd7KYqom@dev-arch.thelio-3990X>
-References: <20221116105702.746ce3cf@canb.auug.org.au>
- <Y3ZvffZiR+SgtY6h@dev-arch.thelio-3990X>
- <20221118090636.00bfc293@canb.auug.org.au>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3066F10E6D7
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Nov 2022 00:34:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1668731642; x=1700267642;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=IsxGue0OV5D8GZ2YAgiOK3iS50XLu6E0WUFWDGYj6yc=;
+ b=VDF3GF5wfi05we/9VqoBB+oBJnZgfLcmpNdCWRwXfDrtWfLqOq6LdvV5
+ Dk0yW97MBta+XpkaxW3OSZnNiijAV+wxvdLEc0V5F9BPx+rgbbpBVlxGJ
+ qXe8y6TUwtjcRZt3WE2uY0Rmf+1ZmCFAikI/UnrcD3n7ewrY+pLtCf0dX
+ L/A6ig64C32j8fZtcbLUmeP2es9p0OgYjvLhOAKbNvkqDk3+ZOsNTYHbA
+ UnVcDhR2dgYRCN2vj/+uf3GRSHD/Yjfg3Wb5cvWXIVV6mRFw5Yg3GLdHF
+ V+mfWNqVM6J5JEjdtpKgxxWhKtU3POnwIzTMDdnT4JUmRYuQcsqYVZ6PE g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10534"; a="339848900"
+X-IronPort-AV: E=Sophos;i="5.96,172,1665471600"; d="scan'208";a="339848900"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2022 16:34:01 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10534"; a="969086623"
+X-IronPort-AV: E=Sophos;i="5.96,172,1665471600"; d="scan'208";a="969086623"
+Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
+ by fmsmga005.fm.intel.com with ESMTP; 17 Nov 2022 16:34:01 -0800
+From: Alan Previn <alan.previn.teres.alexis@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 17 Nov 2022 16:36:29 -0800
+Message-Id: <20221118003631.1523764-1-alan.previn.teres.alexis@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221118090636.00bfc293@canb.auug.org.au>
-Subject: Re: [Intel-gfx] linux-next: manual merge of the drm-misc tree with
- the origin tree
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/2] drm/i915/pxp: Add missing cleanup steps for
+ PXP global-teardown
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,41 +55,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>, llvm@lists.linux.dev,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Maxime Ripard <maxime@cerno.tech>,
- =?iso-8859-1?Q?Jos=E9_Exp=F3sito?= <jose.exposito89@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 18, 2022 at 09:06:36AM +1100, Stephen Rothwell wrote:
-> Hi Nathan,
-> 
-> On Thu, 17 Nov 2022 10:29:33 -0700 Nathan Chancellor <nathan@kernel.org> wrote:
-> >
-> > This resolution is not quite right, as pointed out by clang:
-> > 
-> >     drivers/gpu/drm/vc4/vc4_hdmi.c:351:14: error: variable 'vc4_hdmi' is uninitialized when used here [-Werror,-Wuninitialized]
-> >             mutex_lock(&vc4_hdmi->mutex);
-> >                         ^~~~~~~~
-> >     ./include/linux/mutex.h:187:44: note: expanded from macro 'mutex_lock'
-> >     #define mutex_lock(lock) mutex_lock_nested(lock, 0)
-> >                                                ^~~~
-> >     drivers/gpu/drm/vc4/vc4_hdmi.c:322:27: note: initialize the variable 'vc4_hdmi' to silence this warning
-> >             struct vc4_hdmi *vc4_hdmi;
-> >                                      ^
-> >                                       = NULL
-> >     1 error generated.
-> > 
-> > Obviously, the assignment of vc4_hdmi should be before mutex_lock().
-> 
-> Thanks for pointing that out (silly me :-) ).  I have fixed up the
-> resolution for today.
+A customer issue was recently discovered and in the process a
+gap in i915's PXP interaction with HW+FW architecure was also
+realized. This series adds those missing pieces.
+The patches explain the details.
 
-Great, thank you so much! One less warning to worry about :)
+Alan Previn (2):
+  drm/i915/pxp: Invalidate all PXP fw sessions during teardown
+  drm/i915/pxp: Trigger the global teardown for before suspending
 
-Cheers,
-Nathan
+ drivers/gpu/drm/i915/pxp/intel_pxp.c          | 60 ++++++++++++++++---
+ drivers/gpu/drm/i915/pxp/intel_pxp.h          |  3 +
+ .../drm/i915/pxp/intel_pxp_cmd_interface_42.h | 15 +++++
+ .../i915/pxp/intel_pxp_cmd_interface_cmn.h    |  3 +
+ drivers/gpu/drm/i915/pxp/intel_pxp_pm.c       |  2 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp_session.c  | 14 ++++-
+ drivers/gpu/drm/i915/pxp/intel_pxp_tee.c      | 45 ++++++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_types.h    |  2 +
+ 8 files changed, 131 insertions(+), 13 deletions(-)
+
+
+base-commit: 75ed1f4f7835f178647e3f73910ed4af0944d9ec
+-- 
+2.34.1
+
