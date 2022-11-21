@@ -1,61 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F352063216D
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Nov 2022 12:55:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD30E63218A
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Nov 2022 13:04:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2D1F10E2B0;
-	Mon, 21 Nov 2022 11:55:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB2E6897AC;
+	Mon, 21 Nov 2022 12:04:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F46310E2B0
- for <intel-gfx@lists.freedesktop.org>; Mon, 21 Nov 2022 11:55:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669031750; x=1700567750;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=WdoCgvroKp96oVvkj5Bcpp7x5UgsjRvqcFq5CrnPipQ=;
- b=B80bFHa5CNwmnQHpxJ8MsNGDq9ZI5axlybmTEA0w/xQlADpbxMLCxbZ/
- 2WQq5m6rJSt3hkcE5qavfMmWbSCs7GMYwRU1xGhXA1DoMF6V04ZzsT0ib
- ufmCKq2FHVH0yRcmBY1m1Zer/qFaKUY4Fyp9MQFShqK8A5pSRAqon27O8
- bg1xPG2/LSkqvliDaKDTug+CpixbxQApQGSmCRusIWooqGXvLKlHNEj1v
- Vllnj1YOufnvTQwmlPgQfPFv8dHkVKbVXgLwCtYmQxCUsNywELpBJ3lYP
- y4LwwMdGBFsg1Y5so7OU4HtRnZ44ny/WSVqkxE3Rf8BU+RWfg4qbJt1UG A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10537"; a="375685204"
-X-IronPort-AV: E=Sophos;i="5.96,181,1665471600"; d="scan'208";a="375685204"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2022 03:55:49 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10537"; a="673950827"
-X-IronPort-AV: E=Sophos;i="5.96,181,1665471600"; d="scan'208";a="673950827"
-Received: from slarkin-mobl.ger.corp.intel.com (HELO [10.213.201.194])
- ([10.213.201.194])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2022 03:55:47 -0800
-Message-ID: <e33f417d-ae27-95df-d1dd-40e487efc674@linux.intel.com>
-Date: Mon, 21 Nov 2022 11:55:45 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 89429897FD;
+ Mon, 21 Nov 2022 12:04:31 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6CAB6A00E8;
+ Mon, 21 Nov 2022 12:04:31 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0529259823178824206=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Content-Language: en-US
-To: "Winkler, Tomas" <tomas.winkler@intel.com>,
- "Usyskin, Alexander" <alexander.usyskin@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, David Airlie <airlied@redhat.com>,
- Daniel Vetter <daniel@ffwll.ch>
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Alexander Usyskin" <alexander.usyskin@intel.com>
+Date: Mon, 21 Nov 2022 12:04:31 -0000
+Message-ID: <166903227141.22097.12632319949395862618@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
 References: <20221121092449.328674-1-alexander.usyskin@intel.com>
- <MN2PR11MB4093DB849B8945C9618C4E88E50A9@MN2PR11MB4093.namprd11.prod.outlook.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <MN2PR11MB4093DB849B8945C9618C4E88E50A9@MN2PR11MB4093.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gsc: Only initialize GSC in
- tile 0
+In-Reply-To: <20221121092449.328674-1-alexander.usyskin@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gsc=3A_Only_initialize_GSC_in_tile_0_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,69 +40,190 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Lubart, Vitaly" <vitaly.lubart@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============0529259823178824206==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 21/11/2022 09:35, Winkler, Tomas wrote:
->>
->> From: José Roberto de Souza <jose.souza@intel.com>
->>
->> For multi-tile setups the GSC operational only on the tile 0.
->> Skip GSC auxiliary device creation for all other tiles in GSC device init code.
->> Initialize basic GSC fields and use the same path as HECI1 (HECI_PXP) device
->> disable.
->>
->> Cc: Tomas Winkler <tomas.winkler@intel.com>
->> Cc: Vitaly Lubart <vitaly.lubart@intel.com>
->> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
->> Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
-> 
-> Acked-by: Tomas Winkler <tomas.winkler@intel.com>
+== Series Details ==
 
-Feel free to upgrade to r-b so someone can merge it. :)
+Series: drm/i915/gsc: Only initialize GSC in tile 0 (rev2)
+URL   : https://patchwork.freedesktop.org/series/110304/
+State : success
 
->> ---
->> V2: Move decision to skip initialization into GSC device init code.
->>      This initializes basic GSC fields and uses the same path
->>      as HECI1 (HECI_PXP) device disable.
->>      It is simpler and protects interrupt handler too.
->>
->>   drivers/gpu/drm/i915/gt/intel_gsc.c | 8 ++++++++
->>   1 file changed, 8 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/intel_gsc.c
->> b/drivers/gpu/drm/i915/gt/intel_gsc.c
->> index 976fdf27e790..bcc3605158db 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_gsc.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_gsc.c
->> @@ -174,6 +174,14 @@ static void gsc_init_one(struct drm_i915_private
->> *i915, struct intel_gsc *gsc,
->>   	intf->irq = -1;
->>   	intf->id = intf_id;
->>
->> +	/*
->> +	 * On the multi-tile setups the GSC is functional on the first tile only
->> +	 */
->> +	if (gsc_to_gt(gsc)->info.id != 0) {
->> +		drm_dbg(&i915->drm, "Not initializing gsc for remote
->> tiles\n");
+== Summary ==
 
-Is there any value of adding a log message for this? I don't immediately 
-see that it is worth it, but your call.
+CI Bug Log - changes from CI_DRM_12407 -> Patchwork_110304v2
+====================================================
 
-Regards,
+Summary
+-------
 
-Tvrtko
+  **SUCCESS**
 
->> +		return;
->> +	}
->> +
->>   	if (intf_id == 0 && !HAS_HECI_PXP(i915))
->>   		return;
->>
->> --
->> 2.34.1
-> 
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110304v2/index.html
+
+Participating hosts (23 -> 24)
+------------------------------
+
+  Additional (2): fi-hsw-4770 bat-kbl-2 
+  Missing    (1): fi-ilk-m540 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_110304v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_gttfill@basic:
+    - fi-pnv-d510:        [PASS][1] -> [FAIL][2] ([i915#7229])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12407/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110304v2/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - fi-rkl-11600:       [PASS][3] -> [INCOMPLETE][4] ([i915#4817])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12407/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110304v2/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][5] ([fdo#109271]) +11 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110304v2/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110304v2/fi-hsw-4770/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_psr@sprite_plane_onoff:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][7] ([fdo#109271] / [i915#1072]) +3 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110304v2/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#4817]: https://gitlab.freedesktop.org/drm/intel/issues/4817
+  [i915#7229]: https://gitlab.freedesktop.org/drm/intel/issues/7229
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12407 -> Patchwork_110304v2
+
+  CI-20190529: 20190529
+  CI_DRM_12407: acd6b3e8e35f7b7b5ce9d16d85f5cdc1e5a94bdf @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7069: 40a2de5cc6a6b43af7da7905bfe1ede9d9a3200c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_110304v2: acd6b3e8e35f7b7b5ce9d16d85f5cdc1e5a94bdf @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+f6ac47371d7f drm/i915/gsc: Only initialize GSC in tile 0
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110304v2/index.html
+
+--===============0529259823178824206==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gsc: Only initialize GSC in tile 0 (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/110304/">https://patchwork.freedesktop.org/series/110304/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110304v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110304v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12407 -&gt; Patchwork_110304v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110304v2/index.html</p>
+<h2>Participating hosts (23 -&gt; 24)</h2>
+<p>Additional (2): fi-hsw-4770 bat-kbl-2 <br />
+  Missing    (1): fi-ilk-m540 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_110304v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_gttfill@basic:</p>
+<ul>
+<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12407/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110304v2/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7229">i915#7229</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<ul>
+<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12407/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110304v2/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4817">i915#4817</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110304v2/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +11 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110304v2/fi-hsw-4770/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@sprite_plane_onoff:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110304v2/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12407 -&gt; Patchwork_110304v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12407: acd6b3e8e35f7b7b5ce9d16d85f5cdc1e5a94bdf @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7069: 40a2de5cc6a6b43af7da7905bfe1ede9d9a3200c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_110304v2: acd6b3e8e35f7b7b5ce9d16d85f5cdc1e5a94bdf @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>f6ac47371d7f drm/i915/gsc: Only initialize GSC in tile 0</p>
+
+</body>
+</html>
+
+--===============0529259823178824206==--
