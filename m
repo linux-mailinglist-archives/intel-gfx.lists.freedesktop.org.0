@@ -2,32 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD30E63218A
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Nov 2022 13:04:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C866E6321A6
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Nov 2022 13:12:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB2E6897AC;
-	Mon, 21 Nov 2022 12:04:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D264310E2B8;
+	Mon, 21 Nov 2022 12:12:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 89429897FD;
- Mon, 21 Nov 2022 12:04:31 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6CAB6A00E8;
- Mon, 21 Nov 2022 12:04:31 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0529259823178824206=="
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C45710E2B8;
+ Mon, 21 Nov 2022 12:12:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1669032725; x=1700568725;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=9zG2ROG0+huxinjH+Am3KeN9RUY+sGqiZRsvadbZfAs=;
+ b=TGhc9h3nKrEuk5RVMl0ymbB5jTljTz4/ZAD1dZl6oKD/IN1vjooDIECY
+ Ow2N2SVR3yhMvRgd4ByvbAXBFGg65hNNMJFbt6F9SEBNLSxMJSrU/3zQB
+ K3yCR8Vt+cx+ufbtJJAHH0rFY/fxI27rPHfpj4c8UuS0lXWzYXsV2J5DC
+ zhlzUJg49O8CPywJMUMb0OQ43mBXmTInVuAVCoSN3Alda9QFucJJy/ayk
+ QCmwYdlCG4RJOisonrBKuqi9FlvCUKFuhRMV/7kSeScIQQjpv7WwFEcLS
+ 67cuRYodigRHHz9xRahgcrFbMoX5CUqFiIyd+xDG8Nea/nsZXvKzUDC2F Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10537"; a="312245197"
+X-IronPort-AV: E=Sophos;i="5.96,181,1665471600"; d="scan'208";a="312245197"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2022 04:12:04 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10537"; a="709786773"
+X-IronPort-AV: E=Sophos;i="5.96,181,1665471600"; d="scan'208";a="709786773"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.14.16])
+ ([10.213.14.16])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2022 04:12:02 -0800
+Message-ID: <f55479c0-ca32-c8ae-119d-d1c9dbb71ce5@intel.com>
+Date: Mon, 21 Nov 2022 13:12:00 +0100
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Alexander Usyskin" <alexander.usyskin@intel.com>
-Date: Mon, 21 Nov 2022 12:04:31 -0000
-Message-ID: <166903227141.22097.12632319949395862618@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221121092449.328674-1-alexander.usyskin@intel.com>
-In-Reply-To: <20221121092449.328674-1-alexander.usyskin@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gsc=3A_Only_initialize_GSC_in_tile_0_=28rev2=29?=
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.4.2
+Content-Language: en-US
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ "Das, Nirmoy" <nirmoy.das@linux.intel.com>
+References: <20221118104222.57328-1-janusz.krzysztofik@linux.intel.com>
+ <4f75fe15-96b0-ac79-62f3-2ec6f41f5c1e@intel.com>
+ <4758027.GXAFRqVoOG@jkrzyszt-mobl1.ger.corp.intel.com>
+ <2856001.e9J7NaK4W3@jkrzyszt-mobl1.ger.corp.intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <2856001.e9J7NaK4W3@jkrzyszt-mobl1.ger.corp.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915: Never return 0 if not all
+ requests retired
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,190 +69,135 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris.p.wilson@intel.com>,
+ dri-devel@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0529259823178824206==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 21.11.2022 11:59, Janusz Krzysztofik wrote:
+> On Monday, 21 November 2022 11:51:15 CET Janusz Krzysztofik wrote:
+>> Hi Andrzej,
+>>
+>> Thanks for your comment.
+>>
+>> On Monday, 21 November 2022 11:17:42 CET Andrzej Hajda wrote:
+>>>
+>>> On 21.11.2022 09:30, Janusz Krzysztofik wrote:
+>>>> Hi Nimroy,
+>>>>
+>>>> Thanks for looking at this.
+>>>>
+>>>> On Friday, 18 November 2022 20:56:50 CET Das, Nirmoy wrote:
+>>>>> On 11/18/2022 11:42 AM, Janusz Krzysztofik wrote:
+>>>>>> Users of intel_gt_retire_requests_timeout() expect 0 return value on
+>>>>>> success.  However, we have no protection from passing back 0 potentially
+>>>>>> returned by a call to dma_fence_wait_timeout() when it succedes right
+>>>>>> after its timeout has expired.
+>>>>>>
+>>>>>> Replace 0 with -ETIME before potentially using the timeout value as return
+>>>>>> code, so -ETIME is returned if there are still some requests not retired
+>>>>>> after timeout, 0 otherwise.
+>>>>>>
+>>>>>> v2: Move the added lines down so flush_submission() is not affected.
+>>>>>>
+>>>>>> Fixes: f33a8a51602c ("drm/i915: Merge wait_for_timelines with
+>>>> retire_request")
+>>>>>> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+>>>>>> Cc: stable@vger.kernel.org # v5.5+
+>>>>>> ---
+>>>>>>     drivers/gpu/drm/i915/gt/intel_gt_requests.c | 3 +++
+>>>>>>     1 file changed, 3 insertions(+)
+>>>>>>
+>>>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_requests.c b/drivers/gpu/
+>>>> drm/i915/gt/intel_gt_requests.c
+>>>>>> index edb881d756309..3ac4603eeb4ee 100644
+>>>>>> --- a/drivers/gpu/drm/i915/gt/intel_gt_requests.c
+>>>>>> +++ b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
+>>>>>> @@ -199,6 +199,9 @@ out_active:	spin_lock(&timelines->lock);
+>>>>>>     	if (remaining_timeout)
+>>>>>>     		*remaining_timeout = timeout;
+>>>>>>     
+>>>>>> +	if (!timeout)
+>>>>>> +		timeout = -ETIME;
+>>>>> This will return error, -ETIME when 0 timeout is passed,
+>>>>> intel_gt_retire_requests().
+>>>> Yes, but only when active_count is not 0 after we loop through
+>>>> timelines->active_list calling retire_requests() on each and counting up
+>>>> failures in active_count.
+>>>
+>>> Moving this line just after the call to dma_fence_wait_timeout should
+>>> solve the controversy.
+>>
+>> But that would break our need to pass 0, not -ETIME, to flush_submission() in
+>> case the initial value of timeout was 0, as pointed out by Chris during our
+>> discussion on v2.
+>>
+>> Maybe an inline comment above the added lines that explains why we are doing
+>> this could help?
+> 
+> How about not adding those two lines but modifying the return line instead?
+> 
+> -	return active_count ? timeout : 0;
+> +	return active_count ? timeout ?: -ETIME : 0;
 
-== Series Details ==
+Personally I would translate ret value from dma_fence* API ASAP, and 
+call flush_submission conditionally - to limit coexistence of both APIs.
+But this looks correct to me, as well.
 
-Series: drm/i915/gsc: Only initialize GSC in tile 0 (rev2)
-URL   : https://patchwork.freedesktop.org/series/110304/
-State : success
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-== Summary ==
+Regards
+Andrzej
 
-CI Bug Log - changes from CI_DRM_12407 -> Patchwork_110304v2
-====================================================
+> 
+> Would that be self explanatory?
+> 
+> Thanks,
+> Janusz
+> 
+>>
+>> Thanks,
+>> Janusz
+>>
+>>>
+>>> Regards
+>>> Andrzej
+>>>
+>>>>
+>>>>> We don't want that.
+>>>> When 0 timeout is passed to intel_gt_retire_requests(), do we really want it
+>>>> to return 0 unconditionally, or are we rather interested if those calls to
+>>>> retire_requests() succeeded?
+>>>>
+>>>>> I think you can use a separate variable to store
+>>>>> return val from the dma_fence_wait_timeout()
+>>>>>
+>>>>>
+>>>>> Regards,
+>>>>>
+>>>>> Nirmoy
+>>>>>
+>>>>>> +
+>>>>>>     	return active_count ? timeout : 0;
+>>>> If active count is 0, we return 0 regardless of timeout value, and that's OK.
+>>>> However, if active_count is not 0, we shouldn't return 0, I believe, we should
+>>>> return either remaining time if some left, or error (-ETIME) if not.  If you
+>>>> think I'm wrong, please explain why.
+>>>>
+>>>> Thanks,
+>>>> Janusz
+>>>>
+>>>>>>     }
+>>>>>>     
+>>>>
+>>>>
+>>>>
+>>>
+>>>
+>>
+>>
+> 
+> 
+> 
+> 
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110304v2/index.html
-
-Participating hosts (23 -> 24)
-------------------------------
-
-  Additional (2): fi-hsw-4770 bat-kbl-2 
-  Missing    (1): fi-ilk-m540 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_110304v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-pnv-d510:        [PASS][1] -> [FAIL][2] ([i915#7229])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12407/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110304v2/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - fi-rkl-11600:       [PASS][3] -> [INCOMPLETE][4] ([i915#4817])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12407/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110304v2/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][5] ([fdo#109271]) +11 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110304v2/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110304v2/fi-hsw-4770/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@kms_psr@sprite_plane_onoff:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][7] ([fdo#109271] / [i915#1072]) +3 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110304v2/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#4817]: https://gitlab.freedesktop.org/drm/intel/issues/4817
-  [i915#7229]: https://gitlab.freedesktop.org/drm/intel/issues/7229
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12407 -> Patchwork_110304v2
-
-  CI-20190529: 20190529
-  CI_DRM_12407: acd6b3e8e35f7b7b5ce9d16d85f5cdc1e5a94bdf @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7069: 40a2de5cc6a6b43af7da7905bfe1ede9d9a3200c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_110304v2: acd6b3e8e35f7b7b5ce9d16d85f5cdc1e5a94bdf @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-f6ac47371d7f drm/i915/gsc: Only initialize GSC in tile 0
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110304v2/index.html
-
---===============0529259823178824206==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gsc: Only initialize GSC in tile 0 (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/110304/">https://patchwork.freedesktop.org/series/110304/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110304v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110304v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12407 -&gt; Patchwork_110304v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110304v2/index.html</p>
-<h2>Participating hosts (23 -&gt; 24)</h2>
-<p>Additional (2): fi-hsw-4770 bat-kbl-2 <br />
-  Missing    (1): fi-ilk-m540 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_110304v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12407/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110304v2/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7229">i915#7229</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12407/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110304v2/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4817">i915#4817</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110304v2/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +11 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110304v2/fi-hsw-4770/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@sprite_plane_onoff:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110304v2/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12407 -&gt; Patchwork_110304v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12407: acd6b3e8e35f7b7b5ce9d16d85f5cdc1e5a94bdf @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7069: 40a2de5cc6a6b43af7da7905bfe1ede9d9a3200c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_110304v2: acd6b3e8e35f7b7b5ce9d16d85f5cdc1e5a94bdf @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>f6ac47371d7f drm/i915/gsc: Only initialize GSC in tile 0</p>
-
-</body>
-</html>
-
---===============0529259823178824206==--
