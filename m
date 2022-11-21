@@ -2,48 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E16FE632141
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Nov 2022 12:51:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2721632140
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Nov 2022 12:51:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5205810E2B4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2188610E2B0;
 	Mon, 21 Nov 2022 11:50:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFB7A10E2BC
- for <intel-gfx@lists.freedesktop.org>; Mon, 21 Nov 2022 11:50:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26B5F10E2B0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 21 Nov 2022 11:50:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669031455; x=1700567455;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=p8pcRK8HRg7OB07o/DknXOf/fLwym9KiYETcIZVNW4U=;
- b=ElIdlvDZfWMGEGjKm5+q4fEqc4GhUnM0JEGlbwnaAH8OZx2WZqxaJhdC
- PKWIP3GJA5qEE5jPfm5V9B6VlXV/Zczr3RpJPMup7rCgukOalU9OCTnUd
- DiiuO+aR3XrIcVmo4+aGoM4yQlaKU7zdhSdUqmBUV9hRjjkXZPAnJU2ya
- J6cW8z2gFAGCuWtzETp4tD3YKxnrDuM3GrJwwe1NFpwew5AoYnXDitWMD
- IOfTjBlI0853CFFxmBh+J5x7UeoeBlp7N9UTYcRJ2lgil1rkMMZZM0QYd
- TedvymoPMGIu1cjQmpyIWeveCk+NFEICdNbmK9Tox4zAXVUyVsyir7+Pf Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10537"; a="312241096"
-X-IronPort-AV: E=Sophos;i="5.96,181,1665471600"; d="scan'208";a="312241096"
+ t=1669031457; x=1700567457;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=qmZ+++1KritZhheeU5ngstYkxUnJ1tl+52PQhaiZHMo=;
+ b=Xtyvd4ATAzxmEvH1pAj/O0KkyKGDiitCtXppTazUCjCDOOVnhndGUTaK
+ GcaBUV5Wpe8GLVgMx/pUjMeT1QC/uoBwfE4PGFZqUDDgw4VAFAesz0tz4
+ Kt89+uerH8chGoEKikrbFiWoC04VEFr8/ss9rt/N46+RC9wMyvZTB8rvA
+ Z04IYuw4cfyzpiPg1IjHIYfI7nctv2DOakyS812gZXOO7A8oZCg+etw7r
+ AOmPhmfrcwuKI55v3jiH30T0YKKd63ON+xDTiWMjgIJ/HTMfsQlrg2kp1
+ T116DmB+BC7BG1aRXC65bYVUCh3y/2C3v+Cbh+dG5olOhBofMVPfjg0Xe A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10537"; a="312241098"
+X-IronPort-AV: E=Sophos;i="5.96,181,1665471600"; d="scan'208";a="312241098"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2022 03:50:55 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10537"; a="704535519"
-X-IronPort-AV: E=Sophos;i="5.96,181,1665471600"; d="scan'208";a="704535519"
+ 21 Nov 2022 03:50:56 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10537"; a="704535523"
+X-IronPort-AV: E=Sophos;i="5.96,181,1665471600"; d="scan'208";a="704535523"
 Received: from nsnead-mobl1.amr.corp.intel.com (HELO kveik.ger.corp.intel.com)
  ([10.251.208.113])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2022 03:50:53 -0800
+ 21 Nov 2022 03:50:55 -0800
 From: Luca Coelho <luciano.coelho@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 21 Nov 2022 13:50:42 +0200
-Message-Id: <20221121115043.763658-1-luciano.coelho@intel.com>
+Date: Mon, 21 Nov 2022 13:50:43 +0200
+Message-Id: <20221121115043.763658-2-luciano.coelho@intel.com>
 X-Mailer: git-send-email 2.37.2
+In-Reply-To: <20221121115043.763658-1-luciano.coelho@intel.com>
+References: <20221121115043.763658-1-luciano.coelho@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 1/2] drm/i915/mtl: limit second scaler
- vertical scaling in ver >= 14
+Subject: [Intel-gfx] [PATCH v2 2/2] drm/i915/mtl: Limit scaler input to 4k
+ in plane scaling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,304 +63,71 @@ Cc: ville.syrjala@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In newer hardware versions (i.e. display version >= 14), the second
-scaler doesn't support vertical scaling.
+From: Animesh Manna <animesh.manna@intel.com>
 
-The current implementation of the scaling limits is simplified and
-only occurs when the planes are created, so we don't know which scaler
-is being used.
+As part of die area reduction max input source modified to 4096
+for MTL so modified range check logic of scaler.
 
-In order to handle separate scaling limits for horizontal and vertical
-scaling, and different limits per scaler, split the checks in two
-phases.  We first do a simple check during plane creation and use the
-best-case scenario (because we don't know the scaler that may be used
-at a later point) and then do a more specific check when the scalers
-are actually being set up.
-
-Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
 ---
 
-In v2:
-   * fix DRM_PLANE_NO_SCALING renamed macros;
+No changes in v2.
 
+drivers/gpu/drm/i915/display/skl_scaler.c | 31 +++++++++++++++++------
+ 1 file changed, 23 insertions(+), 8 deletions(-)
 
-drivers/gpu/drm/i915/display/i9xx_plane.c     |  4 +-
- drivers/gpu/drm/i915/display/intel_atomic.c   | 47 +++++++++++++++++++
- .../gpu/drm/i915/display/intel_atomic_plane.c | 39 +++++++++++++--
- .../gpu/drm/i915/display/intel_atomic_plane.h |  2 +-
- drivers/gpu/drm/i915/display/intel_cursor.c   |  4 +-
- drivers/gpu/drm/i915/display/intel_sprite.c   | 19 ++------
- .../drm/i915/display/skl_universal_plane.c    | 26 ++--------
- 7 files changed, 91 insertions(+), 50 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
-index ecaeb7dc196b..390e96f0692b 100644
---- a/drivers/gpu/drm/i915/display/i9xx_plane.c
-+++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
-@@ -326,9 +326,7 @@ i9xx_plane_check(struct intel_crtc_state *crtc_state,
- 	if (ret)
- 		return ret;
+diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+index d7390067b7d4..6baa07142b03 100644
+--- a/drivers/gpu/drm/i915/display/skl_scaler.c
++++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+@@ -103,6 +103,8 @@ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 	const struct drm_display_mode *adjusted_mode =
+ 		&crtc_state->hw.adjusted_mode;
++	int min_src_w, min_src_h, min_dst_w, min_dst_h;
++	int max_src_w, max_src_h, max_dst_w, max_dst_h;
  
--	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
--						DRM_PLANE_NO_SCALING,
--						DRM_PLANE_NO_SCALING,
-+	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state, false,
- 						i9xx_plane_has_windowing(plane));
- 	if (ret)
- 		return ret;
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
-index 6621aa245caf..43b1c7a227f8 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic.c
-@@ -38,6 +38,7 @@
- #include "intel_atomic.h"
- #include "intel_cdclk.h"
- #include "intel_display_types.h"
-+#include "intel_fb.h"
- #include "intel_global_state.h"
- #include "intel_hdcp.h"
- #include "intel_psr.h"
-@@ -375,6 +376,52 @@ static void intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_sta
- 		mode = SKL_PS_SCALER_MODE_DYN;
+ 	/*
+ 	 * Src coordinates are already rotated by 270 degrees for
+@@ -157,15 +159,28 @@ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
+ 		return -EINVAL;
  	}
  
-+	if (plane_state && plane_state->hw.fb) {
-+		const struct drm_framebuffer *fb = plane_state->hw.fb;
-+		struct drm_rect *src = &plane_state->uapi.src;
-+		struct drm_rect *dst = &plane_state->uapi.dst;
-+		int hscale, vscale, max_vscale, max_hscale;
++	min_src_w = SKL_MIN_SRC_W;
++	min_src_h = SKL_MIN_SRC_H;
++	min_dst_w = SKL_MIN_DST_W;
++	min_dst_h = SKL_MIN_DST_H;
 +
-+		if (DISPLAY_VER(dev_priv) >= 14) {
-+			/*
-+			 * On versions 14 and up, only the first
-+			 * scaler supports a vertical scaling factor
-+			 * of more than 1.0, while a horizontal
-+			 * scaling factor of 3.0 is supported.
-+			 */
-+			max_hscale = 0x30000 - 1;
-+			if (*scaler_id == 0)
-+				max_vscale = 0x30000 - 1;
-+			else
-+				max_vscale = 0x10000;
-+
-+		} else if (DISPLAY_VER(dev_priv) >= 10 ||
-+			   !intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier)) {
-+			max_hscale = 0x30000 - 1;
-+			max_vscale = 0x30000 - 1;
-+		} else {
-+			max_hscale = 0x20000 - 1;
-+			max_vscale = 0x20000 - 1;
-+		}
-+
-+		/* Check if required scaling is within limits */
-+		hscale = drm_rect_calc_hscale(src, dst, 1, max_hscale);
-+		vscale = drm_rect_calc_vscale(src, dst, 1, max_vscale);
-+
-+		if (hscale < 0 || vscale < 0) {
-+			drm_dbg_kms(&dev_priv->drm,
-+				    "Scaler %d doesn't support required plane scaling\n",
-+				    *scaler_id);
-+			drm_rect_debug_print("src: ", src, true);
-+			drm_rect_debug_print("dst: ", dst, false);
-+
-+			scaler_state->scalers[*scaler_id].in_use = 0;
-+			*scaler_id = -1;
-+
-+			return;
-+		}
-+	}
-+
- 	drm_dbg_kms(&dev_priv->drm, "Attached scaler id %u.%u to %s:%d\n",
- 		    intel_crtc->pipe, *scaler_id, name, idx);
- 	scaler_state->scalers[*scaler_id].mode = mode;
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index 10e1fc9d0698..9100f328df60 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -887,7 +887,7 @@ void intel_crtc_planes_update_arm(struct intel_atomic_state *state,
- 
- int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_state,
- 				      struct intel_crtc_state *crtc_state,
--				      int min_scale, int max_scale,
-+				      bool allow_scaling,
- 				      bool can_position)
- {
- 	struct drm_i915_private *i915 = to_i915(plane_state->uapi.plane->dev);
-@@ -897,19 +897,50 @@ int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_state,
- 	const struct drm_rect *clip = &crtc_state->pipe_src;
- 	unsigned int rotation = plane_state->hw.rotation;
- 	int hscale, vscale;
-+	int max_hscale, min_hscale, max_vscale, min_vscale;
- 
- 	if (!fb) {
- 		plane_state->uapi.visible = false;
- 		return 0;
- 	}
- 
-+	/*
-+	 * At this point we don't really know the HW limitations, so
-+	 * we just sanitize the values against the maximum supported
-+	 * scaling.
-+	 */
-+	if (allow_scaling) {
-+		min_vscale = 1;
-+		min_hscale = 1;
-+
-+		if (DISPLAY_VER(i915) < 10 ||
-+		    intel_format_info_is_yuv_semiplanar(fb->format,
-+							fb->modifier)) {
-+			max_vscale = 0x20000 - 1;
-+			max_hscale = 0x20000 - 1;
-+		} else {
-+			max_vscale = 0x30000 - 1;
-+			max_hscale = 0x30000 - 1;
-+		}
++	if (DISPLAY_VER(dev_priv) >= 11 && DISPLAY_VER(dev_priv) < 14) {
++		max_src_w = ICL_MAX_SRC_W;
++		max_src_h = ICL_MAX_SRC_H;
++		max_dst_w = ICL_MAX_DST_W;
++		max_dst_h = ICL_MAX_DST_H;
 +	} else {
-+		min_hscale = DRM_PLANE_NO_SCALING;
-+		max_hscale = DRM_PLANE_NO_SCALING;
-+		min_vscale = DRM_PLANE_NO_SCALING;
-+		max_vscale = DRM_PLANE_NO_SCALING;
++		max_src_w = SKL_MAX_SRC_W;
++		max_src_h = SKL_MAX_SRC_H;
++		max_dst_w = SKL_MAX_DST_W;
++		max_dst_h = SKL_MAX_DST_H;
 +	}
 +
- 	drm_rect_rotate(src, fb->width << 16, fb->height << 16, rotation);
- 
- 	/* Check scaling */
--	hscale = drm_rect_calc_hscale(src, dst, min_scale, max_scale);
--	vscale = drm_rect_calc_vscale(src, dst, min_scale, max_scale);
-+	hscale = drm_rect_calc_hscale(src, dst, min_hscale, max_hscale);
-+	vscale = drm_rect_calc_vscale(src, dst, min_vscale, max_vscale);
- 	if (hscale < 0 || vscale < 0) {
--		drm_dbg_kms(&i915->drm, "Invalid scaling of plane\n");
-+		drm_dbg_kms(&i915->drm,
-+			    "Invalid scaling of plane: hscale 0x%x vscale 0x%x\n",
-+			    hscale, vscale);
-+		drm_dbg_kms(&i915->drm,
-+			    "min_hscale 0x%0x max_hscale 0x%0x min_vscale 0x%0x max_vscale 0x%0x\n",
-+			    min_hscale, max_hscale, min_vscale, max_vscale);
- 		drm_rect_debug_print("src: ", src, true);
- 		drm_rect_debug_print("dst: ", dst, false);
- 		return -ERANGE;
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-index 74b6d3b169a7..441ef8165212 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-@@ -60,7 +60,7 @@ int intel_plane_calc_min_cdclk(struct intel_atomic_state *state,
- 			       bool *need_cdclk_calc);
- int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_state,
- 				      struct intel_crtc_state *crtc_state,
--				      int min_scale, int max_scale,
-+				      bool check_scaling,
- 				      bool can_position);
- void intel_plane_set_invisible(struct intel_crtc_state *crtc_state,
- 			       struct intel_plane_state *plane_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index d190fa0d393b..741ec74f54f6 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -144,9 +144,7 @@ static int intel_check_cursor(struct intel_crtc_state *crtc_state,
- 	}
- 
- 	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
--						DRM_PLANE_NO_SCALING,
--						DRM_PLANE_NO_SCALING,
--						true);
-+						false, true);
- 	if (ret)
- 		return ret;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-index e6b4d24b9cd0..9ad1173a0551 100644
---- a/drivers/gpu/drm/i915/display/intel_sprite.c
-+++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-@@ -1355,22 +1355,11 @@ g4x_sprite_check(struct intel_crtc_state *crtc_state,
- {
- 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
- 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
--	int min_scale = DRM_PLANE_NO_SCALING;
--	int max_scale = DRM_PLANE_NO_SCALING;
- 	int ret;
- 
--	if (g4x_fb_scalable(plane_state->hw.fb)) {
--		if (DISPLAY_VER(dev_priv) < 7) {
--			min_scale = 1;
--			max_scale = 16 << 16;
--		} else if (IS_IVYBRIDGE(dev_priv)) {
--			min_scale = 1;
--			max_scale = 2 << 16;
--		}
--	}
--
- 	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
--						min_scale, max_scale, true);
-+						g4x_fb_scalable(plane_state->hw.fb),
-+						true);
- 	if (ret)
- 		return ret;
- 
-@@ -1426,9 +1415,7 @@ vlv_sprite_check(struct intel_crtc_state *crtc_state,
- 		return ret;
- 
- 	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
--						DRM_PLANE_NO_SCALING,
--						DRM_PLANE_NO_SCALING,
--						true);
-+						false, true);
- 	if (ret)
- 		return ret;
- 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 76490cc59d8f..e2ae6624378f 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -1463,22 +1463,6 @@ static int skl_plane_check_nv12_rotation(const struct intel_plane_state *plane_s
- 	return 0;
- }
- 
--static int skl_plane_max_scale(struct drm_i915_private *dev_priv,
--			       const struct drm_framebuffer *fb)
--{
--	/*
--	 * We don't yet know the final source width nor
--	 * whether we can use the HQ scaler mode. Assume
--	 * the best case.
--	 * FIXME need to properly check this later.
--	 */
--	if (DISPLAY_VER(dev_priv) >= 10 ||
--	    !intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier))
--		return 0x30000 - 1;
--	else
--		return 0x20000 - 1;
--}
--
- static int intel_plane_min_width(struct intel_plane *plane,
- 				 const struct drm_framebuffer *fb,
- 				 int color_plane,
-@@ -1862,8 +1846,7 @@ static int skl_plane_check(struct intel_crtc_state *crtc_state,
- 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
- 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
- 	const struct drm_framebuffer *fb = plane_state->hw.fb;
--	int min_scale = DRM_PLANE_NO_SCALING;
--	int max_scale = DRM_PLANE_NO_SCALING;
-+	bool allow_scaling;
- 	int ret;
- 
- 	ret = skl_plane_check_fb(crtc_state, plane_state);
-@@ -1871,13 +1854,10 @@ static int skl_plane_check(struct intel_crtc_state *crtc_state,
- 		return ret;
- 
- 	/* use scaler when colorkey is not required */
--	if (!plane_state->ckey.flags && skl_fb_scalable(fb)) {
--		min_scale = 1;
--		max_scale = skl_plane_max_scale(dev_priv, fb);
--	}
-+	allow_scaling = !plane_state->ckey.flags && skl_fb_scalable(fb);
- 
- 	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
--						min_scale, max_scale, true);
-+						allow_scaling, true);
- 	if (ret)
- 		return ret;
- 
+ 	/* range checks */
+-	if (src_w < SKL_MIN_SRC_W || src_h < SKL_MIN_SRC_H ||
+-	    dst_w < SKL_MIN_DST_W || dst_h < SKL_MIN_DST_H ||
+-	    (DISPLAY_VER(dev_priv) >= 11 &&
+-	     (src_w > ICL_MAX_SRC_W || src_h > ICL_MAX_SRC_H ||
+-	      dst_w > ICL_MAX_DST_W || dst_h > ICL_MAX_DST_H)) ||
+-	    (DISPLAY_VER(dev_priv) < 11 &&
+-	     (src_w > SKL_MAX_SRC_W || src_h > SKL_MAX_SRC_H ||
+-	      dst_w > SKL_MAX_DST_W || dst_h > SKL_MAX_DST_H)))	{
++	if (src_w < min_src_w || src_h < min_src_h ||
++	    dst_w < min_dst_w || dst_h < min_dst_h ||
++	    src_w > max_src_w || src_h > max_src_h ||
++	    dst_w > max_dst_w || dst_h > max_dst_h) {
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "scaler_user index %u.%u: src %ux%u dst %ux%u "
+ 			    "size is out of scaler range\n",
 -- 
 2.37.2
 
