@@ -2,149 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A44C2632DC3
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Nov 2022 21:18:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B5ACE632DF8
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Nov 2022 21:30:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C34010E109;
-	Mon, 21 Nov 2022 20:18:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 526F510E1A9;
+	Mon, 21 Nov 2022 20:30:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 580A510E109
- for <intel-gfx@lists.freedesktop.org>; Mon, 21 Nov 2022 20:18:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669061890; x=1700597890;
- h=from:to:cc:subject:date:message-id:content-id:
- content-transfer-encoding:mime-version;
- bh=8SsnMAvZRNtBeJTOkUF9MKx0EOxLES4K+Tyi1o5qiFs=;
- b=MFYsx+4+Kzs0W9KV9+UNJRPH6Bvu8ppBlcQhldMsR0JEDMZGNcu6aWKn
- FEQ+9Fyj9veLvesMKoQwE69CxBznQPuIuw5PaKt4dIPtAl/2G4ND0cgz+
- Yi268aX4dGGE6lpkfincZLdkKwR5hNz99guXWKzc8qU27OL3gPoG1w/Z1
- CEL6nYZo6YugeZ3rGeLYtLJqD2c1+c9v5vhxC4mUHd0UGDrYAc0rly9nj
- Cx5v/RE9A/tY4Q/swpSIbC57p5jKQPRYutMYb33MhIz7vpSEsC3238xe2
- LhcLJV3mTTZPU0rMA+Ot6crnII5AoY2OKrb7EQOrd6yhKBYtg/pVhCLrS w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10538"; a="314803579"
-X-IronPort-AV: E=Sophos;i="5.96,182,1665471600"; d="scan'208";a="314803579"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2022 12:18:09 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10538"; a="591890566"
-X-IronPort-AV: E=Sophos;i="5.96,182,1665471600"; d="scan'208";a="591890566"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga003.jf.intel.com with ESMTP; 21 Nov 2022 12:18:09 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Mon, 21 Nov 2022 12:18:09 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Mon, 21 Nov 2022 12:18:09 -0800
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.43) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Mon, 21 Nov 2022 12:18:09 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SN3aMn6wJg8YgOe6S1AliN/nguetkE3VoChs/Uyu4DDw/FWkIpOqzuvG4485v+o5nzkREPDTXJV6jqJE2FYshSUcdHOXuSskjMlzbcxpvuZzzHlEmj8JMNjW+3MFFCbsze+R1QJd+AkC8iIAr44Bi9P+OUYEnZDbRKbYdL7dpl/s0GhF9GchI+DBWMtvCK8i51B7XCaDecV3SBWI0P1Jy3FSOr6sKKi4ApXXOuKh5Xi7z9953L6f+qBfAojifPvKXlOmdpyOXVwkZ6Rvcr6bLx3lhirPsc3mySqDJc+jlG6sUVQrPdrA41fEhAms7aPtOl3riKiqUchfycR0z78qdw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8SsnMAvZRNtBeJTOkUF9MKx0EOxLES4K+Tyi1o5qiFs=;
- b=e+Nsr2P6H3AnRgU63qcBQ51sSRhHjLr2crMyIqmw4n/eIyaR65sSV/o/IkoCiCiHRe95AeAvQscD9POMnaqtUZvAHlwdnqocI2bD7DkOvoUFnejCyz4ECLaXUdYqqGAv6Tdw0DUiGS7A2vMhpNXXFqCS1ToP5TEC7aH06e/FlxSw2o28VoJcdFS/6sXIDn4gSwsw+IUvAN+t9tmdyJfaqP3jCihvlulvi4KkmEJEe0EZO8paTDvbjkoQoA6JXKOIGzCXQo/LBNR6UwqPYkWs4BRscUoOtg4VI38ZJy1IhJvuOEQLI/gKqpNxRHgkm7IxwBporiIUIpWZvoId4/RqSg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from CO1PR11MB5169.namprd11.prod.outlook.com (2603:10b6:303:95::19)
- by PH7PR11MB7004.namprd11.prod.outlook.com (2603:10b6:510:20b::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5834.15; Mon, 21 Nov
- 2022 20:18:06 +0000
-Received: from CO1PR11MB5169.namprd11.prod.outlook.com
- ([fe80::7b12:fb54:4d52:fa3f]) by CO1PR11MB5169.namprd11.prod.outlook.com
- ([fe80::7b12:fb54:4d52:fa3f%7]) with mapi id 15.20.5834.015; Mon, 21 Nov 2022
- 20:18:06 +0000
-From: "Tolakanahalli Pradeep, Madhumitha"
- <madhumitha.tolakanahalli.pradeep@intel.com>
-To: "linux-firmware@kernel.org" <linux-firmware@kernel.org>
-Thread-Topic: i915 Updates: MTL DMC v2.10
-Thread-Index: AQHY/eZdDes9L+ds90qF+NGFG9+Xuw==
-Date: Mon, 21 Nov 2022 20:18:06 +0000
-Message-ID: <f032c2336ca7c60deb53fbbbaab1c60f896bfe7d.camel@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.46.1 (3.46.1-1.fc37) 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CO1PR11MB5169:EE_|PH7PR11MB7004:EE_
-x-ms-office365-filtering-correlation-id: e8fb9b38-03c9-4216-de2d-08dacbfd803d
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: HUy9JSEenBEPHbdxNeeeOTcYnTrvUSdaVON44G+jlzliTnWtX2m11K83QKYajMm3MZMwQO3aTeUaqm8AOLanvkNFYBNwVnFk8l6OOwtUfje8cFOQofLLfHPeqjx47+D+YThCttYlo3V4lpK3YcqLUiAWtxt9nKcncT0zyhoG62zLFrwCnirnByC0YEuZxd9uQhSIPmF/xPFkDmiqWaI4b/KyLMEF8ufK7JpICS8IdR4945sveet1TML1D4vs+Bw/WC1UcyxOGZWmel6hKkdinmV3Vhypqv+OBycN2E0Srt/YPMfIs/49Y95/wmYsl+Za+d9SCJ+0xVM4F9WTcj1yi0EP4NnTbf+XRbIAj3ssR7B8af9XDmD0yAf/n70cvG/5yTeCfJF7Vq+1oH+LNgJuEA/gmnvK9p/WLUnr372aVfaRxVtaOWx1jfIdHBOPFLFwvmkFYjDTMHYj0GsHxq/gEgrp0h6EU0kpKn8EJ0pWrnFykLBZBp+Bi4D4F5ENrLoSJhKOT+W5OEnjpiC42IyVh6bChnVSs0MoWfKMyZOXhfLdm+PP9PpInDL0iU8zje4pCEvYjI6oP5cFDja06SMi2oY217baaXsAwsI0MAMhUefar9yoz7R08XpXU9ZuZyiKhwGhLIvlxHKM7Vu5pj7RZYNjRvfegv2nVXvRn5V2Eh1VK18J9qauD+TXoqj+iCshN7tzPsrg9BA1yQKvkfMV/w==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO1PR11MB5169.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(39860400002)(366004)(376002)(396003)(346002)(136003)(451199015)(2906002)(38070700005)(2616005)(186003)(26005)(478600001)(76116006)(66556008)(6512007)(66946007)(6506007)(4326008)(5660300002)(316002)(38100700002)(64756008)(8676002)(6916009)(66476007)(66446008)(91956017)(36756003)(15650500001)(8936002)(6486002)(122000001)(83380400001)(82960400001)(86362001)(41300700001)(54906003)(4001150100001)(71200400001)(4744005);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?cS9obmdja1JkSGtzRXNncGJsamMrVzRyWkZ0bS8zNTJjZVN1bnk0VDArUXpl?=
- =?utf-8?B?RW9iK2NuZWk0bitlV21RMjZFSFBWa1VOMHhxakdQSFNjd0dvbGYyZnlKYWlU?=
- =?utf-8?B?ZitqMDlXZjg5Q1VzWXlQaVYwcUNsV1pVZWpLekc5cXRFYWwySENFZXRHYnNR?=
- =?utf-8?B?THFaa1BjcnpwbUQ1eENReEFwS21kTFhxVGNJTWNDcmx3ODh5ejI4MUcvd2NO?=
- =?utf-8?B?V3RDNm5JYmYzY3E3dTFXSnI3YjVZcHBXeUVncnM3MUl3SW5jdlpUcWwwN0RJ?=
- =?utf-8?B?a3dYV3ZHWDNMWUNOcEVpTEkrZmJlS2JWSkM2OTBhdmRlVXNvdENNWDZ3d3F4?=
- =?utf-8?B?a0M5VTl6SlNwSVhwalpKZHNUSFcxcmUxSG5GelhCczlSekgvdCtGWU1MK2h0?=
- =?utf-8?B?OVptVEtrMWhDOFVGdk1GbXVPZ2puTUVOc0x1a2Y4UXZIK0FaOEsyUmRmRUk0?=
- =?utf-8?B?amFpa1lyT3lpUmFJK1lRUWhJWG1iUmwvNThCNmtRU0wzMXQ1UldxcHhsZGFs?=
- =?utf-8?B?NnYwTUNITll1U2xCY20wTzR0THRsdWFkM1dQMUxnU2crTVZ6MVNqc2ZGb2I4?=
- =?utf-8?B?cUR0VEdrL0Q1dWVDcEw0dkZCRHJpTlhhTjVPOWhrVHJwSkpTSHByUm9yWWdT?=
- =?utf-8?B?VDFoaC9aVXJpanQ4Q0NvYk9Ia1hPK3pyTE1Ed1ErcGtTbUo5ZGdPVW1WV215?=
- =?utf-8?B?VHNmKzRBclR5ZHFBRkRYYW13ZTZiRDlTZ1BhcmRwalg4MGxMdVJaSENQM0Vs?=
- =?utf-8?B?dU5MOFBZY1Y1aTMvV01tazcyUi93SVZMRzF4TENIY1JqRDEzWnlEbE9VUm9i?=
- =?utf-8?B?M1lCcGFIaWFpSWtudEhtWSs5V0VIZVhhL3dqUEVnTFZhanU4NzA4YUVUOWhD?=
- =?utf-8?B?Q2l6Y2NjeEVKM0x3empUOUkwczNYUWFiOE5xRkJVL3JuWFY0djA2NWhFUUMy?=
- =?utf-8?B?ZGlTcXkvdkY3TUJqeDh1Z3NlUkFzL0h1eEZvLytLK1JsLzBOYkdGMkVJQzJU?=
- =?utf-8?B?ZlpOdlNQRFNuNFczdnZrUHRRM3NuMEtUelJHMkNuWFRxVGxhN3oyclF1ekg3?=
- =?utf-8?B?eVJxYy9MYm9ETDJqQW9WbTVqZDNTMldQZVp0VC9iTi8yaFZiaHdDYWt0MU85?=
- =?utf-8?B?Z3RHVitUSXBFbTZGWnpTQit0V2ZJR0NqRFRsVjhsclZLMnRsR1N0c1JXTHVa?=
- =?utf-8?B?Rm84ZG5yekRCYWRFYzFlZFBhNXZ2clVscDBvLzZXSXdVN25hRWhzRzJ6WHRI?=
- =?utf-8?B?eVhZYXB3Q3R2Zy9tblJIajF6WjlOVk9ZTDVUV2wwQkpJMUZyaml4QnRRZFpn?=
- =?utf-8?B?SVkydWxTMGkyWVorRUNPNlZ5RWlwbXAxdHk1NGRIRjQxYXZvMURXM0xlVUFU?=
- =?utf-8?B?a3RCdStmeWYrVXQ4Y0lhbExJakVUTlFRYUhWM0lPT1FXWU1UM2s4Z3NEb3gw?=
- =?utf-8?B?aDJ2QlBOUlZkRXE3Qk9ETXZ0dnpGU3hObDV6S3ljL044MmxFNnA1b1lsTXZs?=
- =?utf-8?B?RzdtWUs4ajlOeHpEUVVOWUh0MmdNSFhTWnRsazlIcXBJTjdDQlBxNmpnVWov?=
- =?utf-8?B?OFNObVJXQ0dJc0ZNbWg4a2w5VEdWTnhScXM5ODQ2UFRZWjZzc2JqME45U2hC?=
- =?utf-8?B?UC9JUzRpWHdZOUxjR1JrcXdiVDdGVVFyOVpzSFZ6bEY2cmVjMUUxcUNMUEtj?=
- =?utf-8?B?V0tST2MrdkN0d2Ewc04vNWNVMTU0V0VSKzRGQ1N1VlF1dlU2bzFELzRSWFVp?=
- =?utf-8?B?UHk4RGhSRmRnZTVJRktvMVhGbHVydGVCT25zcFNFRTIrMUtCSjNoVHNMVWNU?=
- =?utf-8?B?NzRCbVVIZ2FKRnZETkVwbWR6cEs0NUVkbFpVandTQTBKZURJbW40N0ZFa21l?=
- =?utf-8?B?VmVlYWJjM29OWDBFa0FGS0dGaFdVc3l6TXpsd3YwOEZuR1p3VDZORkd6VVp1?=
- =?utf-8?B?MmpuTUx3Y295bmFJUWltTm5OUy9PYitvV3lmbGQwS1hGQjNqd2NjbHA0VUpw?=
- =?utf-8?B?MlZhWW03MStjd3NZeG4zR09QbEk5K3pEeXRxSEZKMmpSRGRRanhiZUptU2I5?=
- =?utf-8?B?anFmQzM3QTYySlk0WFh5VXBZM1FLdXMxUSsxSW9VNE15S0FhOU1RelVVMUVD?=
- =?utf-8?B?YmFObmQ1RnFNY0JleEtiN0k1M2c1VkRoNTNyV2Z0NHVnUDVuOFc1cWJraWJH?=
- =?utf-8?B?N0RMM1c3UUlZMzJFaWhoWDNhOXF3cWZQd2Y3MmNoMlBLWXlOSVFyeXZ4cHV2?=
- =?utf-8?B?NEh1SVB2NTd1aWc2dmw5STFLNTRnPT0=?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <B8739807F306424390B27DE735D9C274@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com
+ [IPv6:2a00:1450:4864:20::231])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0736210E1A9;
+ Mon, 21 Nov 2022 20:30:49 +0000 (UTC)
+Received: by mail-lj1-x231.google.com with SMTP id b9so15766023ljr.5;
+ Mon, 21 Nov 2022 12:30:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:references:cc:to
+ :content-language:subject:reply-to:user-agent:mime-version:date
+ :message-id:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=yfpG9eV9KNVg6+qRSV5QIiQhtEjfHqp5OQWIwTqY8sA=;
+ b=Ze5g2f/gPvQ3Tp9Cc8ktS01XE453EfrnyYaf+/a3VDrFFSP4CJO3aUfyiY+dOwYhRf
+ 19y5fnAixQ0LpEiHwAfYBKxS6oixdLF89sVOfNWSGjkqQCIteMAo7nhKr7HwBJX++HYw
+ Y7Ax6q0yOQyRIVBnUrcSnGFj7Wx/KzucaNwjMkgcgFxZByJ5QEPbtQzQSFUVzUl4wkcG
+ Sm8W77Bo1bisA2AXtJ0Bu1wlMNp5TyyOW0nkHK0QCCm92Kclg9rh1IN5SgNX1tApr/F0
+ 2g8ILU8TvDQOyJiywHaHtOIQi2yh6zfiAikOQeQ1u6d9uJBG4peZ7KOrGfpJCU/kBHZJ
+ 7m/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:references:cc:to
+ :content-language:subject:reply-to:user-agent:mime-version:date
+ :message-id:from:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=yfpG9eV9KNVg6+qRSV5QIiQhtEjfHqp5OQWIwTqY8sA=;
+ b=mH68UOfTj/KT82OFGRK/baxM1rDd7laGoeNrvsPg6amgkoYWFKrdy+nPHKM9pdORuF
+ uaaRSykA6XDQ+ZRy5lsZVy6IA1t3akezFR02ft9o7Wf7zBgjEtf3pKaa9Xof/nVykGNA
+ Uwy9EBvOYbKoFSOgQ0APoFdQOS8LYulKeWawW7/rtYY/MLvq/s3k9ekmNb7WdnTGDmzr
+ TVqaFQP/yPB3CNV6UQRHW4PZe/CA2lnHsYuVJkTmNgc8oylZYMU6EvcerDbkOzCYUVH/
+ w5Hs7qzkkbAGygItXeWCBITRHMRonUqJkp7HhX4sDuqgG1rIDuKMx6Bx8AkTxABAV1DB
+ ZtTw==
+X-Gm-Message-State: ANoB5pmvW3J3Os2Bx59uLwJ2JuPfhQl1Gw054acIy/9rWokxyNX2cryL
+ 1HBE+bOickTuiVGzwVcmNRs=
+X-Google-Smtp-Source: AA0mqf4jNu8dHA6JfWXDhB4DyXYt8qsKIcM6lNMaXNk/PE24lBhpjgzvIjCR5uxjAMvvwmnDlhywFQ==
+X-Received: by 2002:a2e:2d01:0:b0:278:ebb5:ddd2 with SMTP id
+ t1-20020a2e2d01000000b00278ebb5ddd2mr6025246ljt.494.1669062647681; 
+ Mon, 21 Nov 2022 12:30:47 -0800 (PST)
+Received: from ?IPV6:2a02:a31a:a240:1700:cd97:47f7:90db:67bf?
+ ([2a02:a31a:a240:1700:cd97:47f7:90db:67bf])
+ by smtp.googlemail.com with ESMTPSA id
+ r17-20020a2e9951000000b00261ccf566e3sm1555644ljj.65.2022.11.21.12.30.45
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 21 Nov 2022 12:30:46 -0800 (PST)
+From: Mateusz Kwiatkowski <kfyatek@gmail.com>
+X-Google-Original-From: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
+Message-ID: <069ff6bb-c49e-e7c9-ce45-35999ff725c5@gmail.com>
+Date: Mon, 21 Nov 2022 21:30:40 +0100
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5169.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e8fb9b38-03c9-4216-de2d-08dacbfd803d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Nov 2022 20:18:06.4892 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: duh5qTu+vSvVL7znFFL0gpBVvfCHad4zwvQDg1bNVntJ2scKw1K/vzrUsWcpfLPAl3uPuPNp32Tlc7afHMGsfiVFpE+tZNlTDIoB2Gfv9aa1WyXAoQYzRil/jI5WFaB1pg5/yFZZCkFuY3kfDlBJJA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7004
-X-OriginatorOrg: intel.com
-Subject: [Intel-gfx] i915 Updates: MTL DMC v2.10
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.5.0
+Content-Language: pl
+To: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>,
+ Maxime Ripard <maxime@cerno.tech>
+References: <20220728-rpi-analog-tv-properties-v10-0-256dad125326@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v10-18-256dad125326@cerno.tech>
+ <20221117164928.200b3a1a@maurocar-mobl2>
+In-Reply-To: <20221117164928.200b3a1a@maurocar-mobl2>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v10 18/19] drm/vc4: vec: Add support for
+ more analog TV standards
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,23 +81,381 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "kyle@mcmartin.ca" <kyle@mcmartin.ca>,
- "jwboyer@kernel.org" <jwboyer@kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Hutchings, Ben" <ben@decadent.org.uk>
+Reply-To: kfyatek+publicgit@gmail.com
+Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
+ Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
+ linux-sunxi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
+ Maxime Ripard <mripard@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ linux-arm-kernel@lists.infradead.org, Dom Cobley <dom@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
+ =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VGhlIGZvbGxvd2luZyBjaGFuZ2VzIHNpbmNlIGNvbW1pdCBkYWZmNDA0OTJiZDBjZDA3MWM3ZjU1
-MjFiMzM5ZTEyZTRkZTcxOGMxOg0KDQogIGxpbnV4LWZpcm13YXJlOiB1cGRhdGUgZmlybXdhcmUg
-Zm9yIE1UNzk4NiAoMjAyMi0xMS0xNiAwODo1MzoyOCAtMDUwMCkNCg0KYXJlIGF2YWlsYWJsZSBp
-biB0aGUgR2l0IHJlcG9zaXRvcnkgYXQ6DQoNCiAgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5v
-cmcvZHJtL2RybS1maXJtd2FyZSBtdGxfZG1jX3YyLjEwDQoNCmZvciB5b3UgdG8gZmV0Y2ggY2hh
-bmdlcyB1cCB0byBkZTg1NGM5NmRmNjZiZTRhMTNmOGJmYmIxZTc4YmQ1ZDBjZWEyZThlOg0KDQog
-IGk5MTU6IEFkZCBETUMgdjIuMTAgZm9yIE1UTCAoMjAyMi0xMS0xNiAxNDoyNjowNiAtMDgwMCkN
-Cg0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLQ0KTWFkaHVtaXRoYSBUb2xha2FuYWhhbGxpIFByYWRlZXAgKDEpOg0KICAgICAg
-aTkxNTogQWRkIERNQyB2Mi4xMCBmb3IgTVRMDQoNCiBXSEVOQ0UgICAgICAgICAgICAgICAgICAg
-fCAgIDMgKysrDQogaTkxNS9tdGxfZG1jX3ZlcjJfMTAuYmluIHwgQmluIDAgLT4gNDgxMTIgYnl0
-ZXMNCiAyIGZpbGVzIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKQ0KIGNyZWF0ZSBtb2RlIDEwMDY0
-NCBpOTE1L210bF9kbWNfdmVyMl8xMC5iaW4NCg0K
+Hi Mauro,
+
+As the author of the original version of this commit, and also a person who
+argued quite a bit on these descriptions and decisions, let me chip in a bit.
+
+W dniu 17.11.2022 o 16:49, Mauro Carvalho Chehab pisze:
+> On Thu, 17 Nov 2022 10:29:01 +0100
+> Maxime Ripard <maxime@cerno.tech> wrote:
+>
+>> From: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
+>>
+>> Add support for the following composite output modes (all of them are
+>> somewhat more obscure than the previously defined ones):
+>>
+>> - NTSC_443 - NTSC-style signal with the chroma subcarrier shifted to
+>>   4.43361875 MHz (the PAL subcarrier frequency). Never used for
+>>   broadcasting, but sometimes used as a hack to play NTSC content in PAL
+>>   regions (e.g. on VCRs).
+>
+>> - PAL_N - PAL with alternative chroma subcarrier frequency,
+>>   3.58205625 MHz. Used as a broadcast standard in Argentina, Paraguay
+>>   and Uruguay to fit 576i50 with colour in 6 MHz channel raster.
+>
+> That's not right. Argentina uses a different standard than Paraguay and
+> Uruguai.
+>
+> See, there are two variants of PAL/N. The original one and PAL/N' - also
+> called PAL/NC or PAL/CN (Combination N). Some of the timings are 
+> different on /NC variant.
+>
+> As far as I'm aware, PAL/Nc is used in Argentina, while
+> PAL/N is used in Paraguai and Uruguai, but I may be wrong on that,
+> as it has been a long time since had to touch on this.
+
+If you say so - maybe that's true. But I tried to find any differences between
+PAL-N and PAL-Nc many times and haven't found anything concrete. The only
+authoritative source where System N and "Combination N/PAL" seem to be mentioned
+as separate entities is BT.1701
+<https://www.itu.int/rec/R-REC-BT.1701-1-200508-I/en>. However:
+
+a) the differences are very subtle (with "combination N/PAL" being just a tad
+   stricter than what's mentioned for System N)
+b) "Combination N/PAL" can be understood as just "System N combined with PAL
+   color", as opposed to "raw", black&white System N. This intepretation is also
+   what the user calling themselves "Alcahemist" suggests here:
+   https://en.wikipedia.org/wiki/Talk:PAL#PAL-N_versus_PAL-Nc
+
+This is of course far from an authoritative source. If you have a definitive
+source for PAL-N and PAL-Nc being different, or concrete information on what is
+different between them specifically, then so be it. But I tried and haven't
+found anything conclusive.
+
+>> - PAL60 - 480i60 signal with PAL-style color at normal European PAL
+>>   frequency. Another non-standard, non-broadcast mode, used in similar
+>>   contexts as NTSC_443. Some displays support one but not the other.
+>
+>> - SECAM - French frequency-modulated analog color standard; also have
+>>   been broadcast in Eastern Europe and various parts of Africa and Asia.
+>>   Uses the same 576i50 timings as PAL.
+>
+> This is also wrong. just like PAL, there are several variants of SECAM,
+> one used in France, and a different one in France overseas and on
+> previous France colonies in Africa and Asia. Eastern Europe also used
+> different variants of SECAM.
+
+This is true. However, those differed only in RF modulation. For example,
+French SECAM-L used positive video modulation and AM sound, while Eastern
+European SECAM-D/K used negative video modulation and FM sound. But the
+baseband composite signals were identical.
+
+There were several other variants of SECAM, like early SECAM/V vs. SECAM/H
+("Field identification" vs. "Line identification") which moved the color
+identification signals from VBI to HBI. But that's a change that all SECAM
+regions, including both France and Eastern Europe did in the 1980s to
+acommodate for teletext. Again, authoritative sources are scarce, but see e.g.
+https://web.archive.org/web/20160303232903/http://www.pembers.freeserve.co.uk/World-TV-Standards/Colour-Standards.html
+(search for "Synchronisation of SECAM colour transmissions" on the page).
+
+There's also MESECAM, but that only applies to encoding on VHS and Betamax
+tapes, not the signals themselves. There was also SECAM-M for 525-line (480i)
+signals, but I haven't found any conclusive evidence that it was ever used for
+broadcast anywhere
+
+So yeah, SECAM can be a bit confusing, but AFAIK there's only one standard if
+we're talking about the composite video layer.
+
+--
+
+Some *really* old (like, 1960s old) versions of CCIR documents also listed more
+substantial differences between various 625-line systems, including the number
+of active lines varying from 571 to 589. But all revisions from 1974 onward list
+the modern value of 575 active lines for all the variants, making them differ
+only in RF modulation details. Which is beyond the scope of what the "TV mode"
+property is supposed to do.
+
+>> Also added some comments explaining color subcarrier frequency
+>> registers.
+>>
+>> Acked-by: Noralf Trønnes <noralf@tronnes.org>
+>> Signed-off-by: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
+>> Tested-by: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
+>> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+>>
+>> ---
+>> Changes in v6:
+>> - Support PAL60 again
+>> ---
+>>  drivers/gpu/drm/vc4/vc4_vec.c | 111 ++++++++++++++++++++++++++++++++++++++++--
+>>  1 file changed, 107 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/vc4/vc4_vec.c b/drivers/gpu/drm/vc4/vc4_vec.c
+>> index a828fc6fb776..d23dbad3cbf6 100644
+>> --- a/drivers/gpu/drm/vc4/vc4_vec.c
+>> +++ b/drivers/gpu/drm/vc4/vc4_vec.c
+>> @@ -46,6 +46,7 @@
+>>  #define VEC_CONFIG0_YDEL(x)		((x) << 26)
+>>  #define VEC_CONFIG0_CDEL_MASK		GENMASK(25, 24)
+>>  #define VEC_CONFIG0_CDEL(x)		((x) << 24)
+>> +#define VEC_CONFIG0_SECAM_STD		BIT(21)
+>>  #define VEC_CONFIG0_PBPR_FIL		BIT(18)
+>>  #define VEC_CONFIG0_CHROMA_GAIN_MASK	GENMASK(17, 16)
+>>  #define VEC_CONFIG0_CHROMA_GAIN_UNITY	(0 << 16)
+>> @@ -76,6 +77,27 @@
+>>  #define VEC_SOFT_RESET			0x10c
+>>  #define VEC_CLMP0_START			0x144
+>>  #define VEC_CLMP0_END			0x148
+>> +
+>> +/*
+>> + * These set the color subcarrier frequency
+>> + * if VEC_CONFIG1_CUSTOM_FREQ is enabled.
+>> + *
+>> + * VEC_FREQ1_0 contains the most significant 16-bit half-word,
+>> + * VEC_FREQ3_2 contains the least significant 16-bit half-word.
+>> + * 0x80000000 seems to be equivalent to the pixel clock
+>> + * (which itself is the VEC clock divided by 8).
+>> + *
+>> + * Reference values (with the default pixel clock of 13.5 MHz):
+>> + *
+>> + * NTSC  (3579545.[45] Hz)     - 0x21F07C1F
+>> + * PAL   (4433618.75 Hz)       - 0x2A098ACB
+>> + * PAL-M (3575611.[888111] Hz) - 0x21E6EFE3
+>> + * PAL-N (3582056.25 Hz)       - 0x21F69446
+>> + *
+>> + * NOTE: For SECAM, it is used as the Dr center frequency,
+>> + * regardless of whether VEC_CONFIG1_CUSTOM_FREQ is enabled or not;
+>> + * that is specified as 4406250 Hz, which corresponds to 0x29C71C72.
+>> + */
+>>  #define VEC_FREQ3_2			0x180
+>>  #define VEC_FREQ1_0			0x184
+>>  
+>> @@ -118,6 +140,14 @@
+>>  
+>>  #define VEC_INTERRUPT_CONTROL		0x190
+>>  #define VEC_INTERRUPT_STATUS		0x194
+>> +
+>> +/*
+>> + * Db center frequency for SECAM; the clock for this is the same as for
+>> + * VEC_FREQ3_2/VEC_FREQ1_0, which is used for Dr center frequency.
+>> + *
+>> + * This is specified as 4250000 Hz, which corresponds to 0x284BDA13.
+>> + * That is also the default value, so no need to set it explicitly.
+>> + */
+>>  #define VEC_FCW_SECAM_B			0x198
+>>  #define VEC_SECAM_GAIN_VAL		0x19c
+>>  
+>> @@ -197,10 +227,15 @@ enum vc4_vec_tv_mode_id {
+>>  	VC4_VEC_TV_MODE_NTSC_J,
+>>  	VC4_VEC_TV_MODE_PAL,
+>>  	VC4_VEC_TV_MODE_PAL_M,
+>> +	VC4_VEC_TV_MODE_NTSC_443,
+>> +	VC4_VEC_TV_MODE_PAL_60,
+>> +	VC4_VEC_TV_MODE_PAL_N,
+>> +	VC4_VEC_TV_MODE_SECAM,
+>>  };
+>>  
+>>  struct vc4_vec_tv_mode {
+>>  	unsigned int mode;
+>> +	u16 expected_htotal;
+>>  	u32 config0;
+>>  	u32 config1;
+>>  	u32 custom_freq;
+>> @@ -236,35 +271,68 @@ static const struct debugfs_reg32 vec_regs[] = {
+>>  static const struct vc4_vec_tv_mode vc4_vec_tv_modes[] = {
+>>  	{
+>>  		.mode = DRM_MODE_TV_MODE_NTSC,
+>> +		.expected_htotal = 858,
+>>  		.config0 = VEC_CONFIG0_NTSC_STD | VEC_CONFIG0_PDEN,
+>>  		.config1 = VEC_CONFIG1_C_CVBS_CVBS,
+>>  	},
+>> +	{
+>> +		.mode = DRM_MODE_TV_MODE_NTSC_443,
+>> +		.expected_htotal = 858,
+>> +		.config0 = VEC_CONFIG0_NTSC_STD,
+>> +		.config1 = VEC_CONFIG1_C_CVBS_CVBS | VEC_CONFIG1_CUSTOM_FREQ,
+>> +		.custom_freq = 0x2a098acb,
+>> +	},
+>>  	{
+>>  		.mode = DRM_MODE_TV_MODE_NTSC_J,
+>> +		.expected_htotal = 858,
+>>  		.config0 = VEC_CONFIG0_NTSC_STD,
+>>  		.config1 = VEC_CONFIG1_C_CVBS_CVBS,
+>>  	},
+>>  	{
+>>  		.mode = DRM_MODE_TV_MODE_PAL,
+>> +		.expected_htotal = 864,
+>>  		.config0 = VEC_CONFIG0_PAL_BDGHI_STD,
+>>  		.config1 = VEC_CONFIG1_C_CVBS_CVBS,
+>>  	},
+>> +	{
+>> +		/* PAL-60 */
+>> +		.mode = DRM_MODE_TV_MODE_PAL,
+>> +		.expected_htotal = 858,
+>> +		.config0 = VEC_CONFIG0_PAL_M_STD,
+>> +		.config1 = VEC_CONFIG1_C_CVBS_CVBS | VEC_CONFIG1_CUSTOM_FREQ,
+>> +		.custom_freq = 0x2a098acb,
+>> +	},
+>>  	{
+>>  		.mode = DRM_MODE_TV_MODE_PAL_M,
+>> +		.expected_htotal = 858,
+>>  		.config0 = VEC_CONFIG0_PAL_M_STD,
+>>  		.config1 = VEC_CONFIG1_C_CVBS_CVBS,
+>>  	},
+>> +	{
+>> +		.mode = DRM_MODE_TV_MODE_PAL_N,
+>> +		.expected_htotal = 864,
+>> +		.config0 = VEC_CONFIG0_PAL_N_STD,
+>> +		.config1 = VEC_CONFIG1_C_CVBS_CVBS,
+>> +	},
+>> +	{
+>> +		.mode = DRM_MODE_TV_MODE_SECAM,
+>> +		.expected_htotal = 864,
+>> +		.config0 = VEC_CONFIG0_SECAM_STD,
+>> +		.config1 = VEC_CONFIG1_C_CVBS_CVBS,
+>> +		.custom_freq = 0x29c71c72,
+>> +	},
+>>  };
+>>  
+>>  static inline const struct vc4_vec_tv_mode *
+>> -vc4_vec_tv_mode_lookup(unsigned int mode)
+>> +vc4_vec_tv_mode_lookup(unsigned int mode, u16 htotal)
+>>  {
+>>  	unsigned int i;
+>>  
+>>  	for (i = 0; i < ARRAY_SIZE(vc4_vec_tv_modes); i++) {
+>>  		const struct vc4_vec_tv_mode *tv_mode = &vc4_vec_tv_modes[i];
+>>  
+>> -		if (tv_mode->mode == mode)
+>> +		if (tv_mode->mode == mode &&
+>> +		    tv_mode->expected_htotal == htotal)
+>>  			return tv_mode;
+>>  	}
+>>  
+>> @@ -273,9 +341,13 @@ vc4_vec_tv_mode_lookup(unsigned int mode)
+>>  
+>>  static const struct drm_prop_enum_list legacy_tv_mode_names[] = {
+>>  	{ VC4_VEC_TV_MODE_NTSC, "NTSC", },
+>> +	{ VC4_VEC_TV_MODE_NTSC_443, "NTSC-443", },
+>>  	{ VC4_VEC_TV_MODE_NTSC_J, "NTSC-J", },
+>>  	{ VC4_VEC_TV_MODE_PAL, "PAL", },
+>> +	{ VC4_VEC_TV_MODE_PAL_60, "PAL-60", },
+>>  	{ VC4_VEC_TV_MODE_PAL_M, "PAL-M", },
+>> +	{ VC4_VEC_TV_MODE_PAL_N, "PAL-N", },
+>> +	{ VC4_VEC_TV_MODE_SECAM, "SECAM", },
+>>  };
+>>  
+>>  static enum drm_connector_status
+>> @@ -306,11 +378,16 @@ vc4_vec_connector_set_property(struct drm_connector *connector,
+>>  		state->tv.mode = DRM_MODE_TV_MODE_NTSC;
+>>  		break;
+>>  
+>> +	case VC4_VEC_TV_MODE_NTSC_443:
+>> +		state->tv.mode = DRM_MODE_TV_MODE_NTSC_443;
+>> +		break;
+>> +
+>>  	case VC4_VEC_TV_MODE_NTSC_J:
+>>  		state->tv.mode = DRM_MODE_TV_MODE_NTSC_J;
+>>  		break;
+>>  
+>>  	case VC4_VEC_TV_MODE_PAL:
+>> +	case VC4_VEC_TV_MODE_PAL_60:
+>>  		state->tv.mode = DRM_MODE_TV_MODE_PAL;
+>>  		break;
+>>  
+>> @@ -318,6 +395,14 @@ vc4_vec_connector_set_property(struct drm_connector *connector,
+>>  		state->tv.mode = DRM_MODE_TV_MODE_PAL_M;
+>>  		break;
+>>  
+>> +	case VC4_VEC_TV_MODE_PAL_N:
+>> +		state->tv.mode = DRM_MODE_TV_MODE_PAL_N;
+>> +		break;
+>> +
+>> +	case VC4_VEC_TV_MODE_SECAM:
+>> +		state->tv.mode = DRM_MODE_TV_MODE_SECAM;
+>> +		break;
+>> +
+>>  	default:
+>>  		return -EINVAL;
+>>  	}
+>> @@ -341,6 +426,10 @@ vc4_vec_connector_get_property(struct drm_connector *connector,
+>>  		*val = VC4_VEC_TV_MODE_NTSC;
+>>  		break;
+>>  
+>> +	case DRM_MODE_TV_MODE_NTSC_443:
+>> +		*val = VC4_VEC_TV_MODE_NTSC_443;
+>> +		break;
+>> +
+>>  	case DRM_MODE_TV_MODE_NTSC_J:
+>>  		*val = VC4_VEC_TV_MODE_NTSC_J;
+>>  		break;
+>> @@ -353,6 +442,14 @@ vc4_vec_connector_get_property(struct drm_connector *connector,
+>>  		*val = VC4_VEC_TV_MODE_PAL_M;
+>>  		break;
+>>  
+>> +	case DRM_MODE_TV_MODE_PAL_N:
+>> +		*val = VC4_VEC_TV_MODE_PAL_N;
+>> +		break;
+>> +
+>> +	case DRM_MODE_TV_MODE_SECAM:
+>> +		*val = VC4_VEC_TV_MODE_SECAM;
+>> +		break;
+>> +
+>>  	default:
+>>  		return -EINVAL;
+>>  	}
+>> @@ -448,13 +545,16 @@ static void vc4_vec_encoder_enable(struct drm_encoder *encoder,
+>>  	struct drm_connector *connector = &vec->connector;
+>>  	struct drm_connector_state *conn_state =
+>>  		drm_atomic_get_new_connector_state(state, connector);
+>> +	struct drm_display_mode *adjusted_mode =
+>> +		&encoder->crtc->state->adjusted_mode;
+>>  	const struct vc4_vec_tv_mode *tv_mode;
+>>  	int idx, ret;
+>>  
+>>  	if (!drm_dev_enter(drm, &idx))
+>>  		return;
+>>  
+>> -	tv_mode = vc4_vec_tv_mode_lookup(conn_state->tv.mode);
+>> +	tv_mode = vc4_vec_tv_mode_lookup(conn_state->tv.mode,
+>> +					 adjusted_mode->htotal);
+>>  	if (!tv_mode)
+>>  		goto err_dev_exit;
+>>  
+>> @@ -648,9 +748,12 @@ static int vc4_vec_bind(struct device *dev, struct device *master, void *data)
+>>  
+>>  	ret = drm_mode_create_tv_properties(drm,
+>>  					    BIT(DRM_MODE_TV_MODE_NTSC) |
+>> +					    BIT(DRM_MODE_TV_MODE_NTSC_443) |
+>>  					    BIT(DRM_MODE_TV_MODE_NTSC_J) |
+>>  					    BIT(DRM_MODE_TV_MODE_PAL) |
+>> -					    BIT(DRM_MODE_TV_MODE_PAL_M));
+>> +					    BIT(DRM_MODE_TV_MODE_PAL_M) |
+>> +					    BIT(DRM_MODE_TV_MODE_PAL_N) |
+>> +					    BIT(DRM_MODE_TV_MODE_SECAM));
+>>  	if (ret)
+>>  		return ret;
+>>  
+>>
+
+Best regards,
+Mateusz Kwiatkowski
+
