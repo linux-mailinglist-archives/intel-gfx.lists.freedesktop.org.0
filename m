@@ -2,143 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01B7D632092
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Nov 2022 12:29:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79B2B6320D9
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Nov 2022 12:39:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F32908903B;
-	Mon, 21 Nov 2022 11:29:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B837A10E2BB;
+	Mon, 21 Nov 2022 11:39:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 909488903B
- for <intel-gfx@lists.freedesktop.org>; Mon, 21 Nov 2022 11:29:11 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0703210E2AD
+ for <intel-gfx@lists.freedesktop.org>; Mon, 21 Nov 2022 11:39:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669030151; x=1700566151;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=BVMsrSPD5I18U3uFoKnq+3YMyIQ991zZmbhGgWHxQgk=;
- b=cgRSo+Z1BGrLIzN7j5YEzTzU2FcG0RNZqkbSO5zxbdslMESTYfuVaI3W
- 7gJ20FsJIqogc9XHh+pjXIXlrcF7o1OgkF3urzfqeIGBNk0ES6UNlMh0h
- 30HKrYu0lN0p4Dh4bs+vLg6pvRKqVlMWbm51oqpvjHFgpYalPHOpjIJNk
- IFtbt8Y1HLY763M/rzFlGKS0m8Iw77AztrtyYKoPyQsKeKJm6l0/W37br
- 4y5UrdEWT/GGZ2Wgb1r/Z6zvqkfBPaWcpMxcafCkKTbmk4IWgMWqGRoB/
- jXGxbKabZiuxQTsgCDefYkjhJiysz0BhO8JQulopcHp0BRu/5uoLsqZaX w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10537"; a="314683104"
-X-IronPort-AV: E=Sophos;i="5.96,181,1665471600"; d="scan'208";a="314683104"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2022 03:29:11 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10537"; a="672064839"
-X-IronPort-AV: E=Sophos;i="5.96,181,1665471600"; d="scan'208";a="672064839"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga008.jf.intel.com with ESMTP; 21 Nov 2022 03:29:10 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Mon, 21 Nov 2022 03:29:09 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Mon, 21 Nov 2022 03:29:09 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Mon, 21 Nov 2022 03:29:09 -0800
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.45) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Mon, 21 Nov 2022 03:29:09 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZJOwmjlsmMFO6guYV/zrhAEmTQJ2rXFPb9f+mcUhNbcqUa8wxUIP/fTY0pbsk2dqJch+y4URaKPpQo2JJVtaJ0dez+feHHC0Yipde2l6j+eyyeekJd8RLb6X/fxLVF+/+VWGJK6JIUNqNHHjILUhA8NAWDa+cBjJ9l49mxzcL/9VGjtcWcQK0tkdJmIUbQwQgBPYYpw4bBueh7YoAGe5xIwnAMA1lPFWN8Fag7/CyygyOru/uRuQTLvUL/KSy06e6NVcD0MKUGW81PlzVTvRAb2RCfAGwo9c8FrXMcP33c5vkHc9uyRxVq9z1FbsnWScDCQPCITb175Rk9jMlJxhhQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Jez6Z1cHQfIM9BkzD/MrGCwOcJ8rVtjcdSuMKxrHhDw=;
- b=cp72O8uDBvaaCw3O0oDNsv/FD+My1cuHy9xSs39Rbh/QqLgJwHrgreiKBHYDyOz9bywwRqIaP8sM2x10G+4JReg2xxs3vAGY7V0lzuz98KszYGMA/mHt50ii87DPEyXx2n11n/RZaQY8AwZYGtHwHDT3/usJtjn85xx728axmgs2IoBOE+VGZU/y5HfIXmFP4IciDvg2qWd0rcR2EBqlLIs95Mp7LzChKOymGW9gWC0yAV/reoPwH7FFNGrvxSZTeO6FP4ce5LOG+F8tGS/1O1TXWr0/2+0GIiKbHW68b8WeYKOhYRlj8HAG/XsTOTF3FN/Rv28Br0VoHkT4We/31A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from CY5PR11MB6211.namprd11.prod.outlook.com (2603:10b6:930:25::6)
- by IA1PR11MB6515.namprd11.prod.outlook.com (2603:10b6:208:3a1::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5834.11; Mon, 21 Nov
- 2022 11:29:07 +0000
-Received: from CY5PR11MB6211.namprd11.prod.outlook.com
- ([fe80::7d38:853:2b5c:92ae]) by CY5PR11MB6211.namprd11.prod.outlook.com
- ([fe80::7d38:853:2b5c:92ae%8]) with mapi id 15.20.5813.013; Mon, 21 Nov 2022
- 11:29:07 +0000
-From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
-To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 1/1] drm/i915: Export LMEM max memory
- bandwidth via sysfs
-Thread-Index: AQHY/ZDX0KIGaRvcB0GjSOKI9tuJTq5JNymw
-Date: Mon, 21 Nov 2022 11:29:06 +0000
-Message-ID: <CY5PR11MB6211B459E20B5EA67B310BD9950A9@CY5PR11MB6211.namprd11.prod.outlook.com>
-References: <20221121100134.2523381-1-himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20221121100134.2523381-1-himal.prasad.ghimiray@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CY5PR11MB6211:EE_|IA1PR11MB6515:EE_
-x-ms-office365-filtering-correlation-id: 9ef59a51-d54f-4b2b-e9cd-08dacbb39a0a
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: WvUhN2yRB4x/T0eIjtZD3cePyiyFfzHzkEGrAUB/MUuJqd3RIqC79vA+2VM6bqMjO9UgdX7/K3AUp2T+JnRheghU0+1i2Imx7Ynh6VvGhw+kS82qXjvCc9CHK5ODLcACVRmFv18VY7p/FMPS6yfR/O57efKK909jTGKNshwr3z45gUYtSxyPDcrrsLADaEsmPkYJni9HagqCq/ar8N5kYY2xisLFU5qHpdROzkX0wBQJuFG548fbzd0gN1OSC9S/sLdMvHQQeostsY6bP7ipbupGE8i8/i+vyjceNDkUgGmc4UNJJUyMFbM0usNRjcfBjJZc4PmqaRuDAxw8FmGhUxzTPjzyoznuu4rSU9yZcxkdrsXkai0X4m8CesF2G2HOmSrJx1ywnMjLDhwomieJSL5OOa6TFn6t+ye8PYV5zIKoPanWYGJmqzaYmOBHHNvL5TycpoBbK2nHKoR+VdI7fHuPDb/iixln7dcIqEeFVwZh/+XglrGTatlC+/Do5k6nABybrEs1BwtzTPKckYmE3QROKYdlSbv1D2MzLZis+lP9aW9DKWn/ByDztsdGfSH66/Np3nYjM+DQaIXhbRjK23tgV7IOg/WoVO+qE9ztj6dd2Tzpc8iXAKFL34DdNcpdond88imoxINgqNTjZR9SPSCu1XbuWjI4/1jmIcJliWgG1YUL7fOEA1MLEqooA50bljaWuBNYxP66S1qFtm7cOA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6211.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(366004)(396003)(376002)(346002)(136003)(39860400002)(451199015)(6506007)(186003)(7696005)(110136005)(26005)(55236004)(9686003)(53546011)(2906002)(478600001)(122000001)(71200400001)(107886003)(38070700005)(86362001)(82960400001)(55016003)(33656002)(83380400001)(38100700002)(8936002)(76116006)(41300700001)(66556008)(66946007)(66446008)(64756008)(66476007)(52536014)(8676002)(4326008)(5660300002)(316002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?OEbtqqZpH3Eelp44xdU7Ey7D7xjWvQhWdyGLXFOfdRVTL73aO84mMdFBbYMQ?=
- =?us-ascii?Q?1kRvV9iycV/fu5w3bcSlfmEtIeaUP8aebOtZ8gruVHnbEkvbN4UpETlSw12k?=
- =?us-ascii?Q?RUPJEpmhGQodDCp4LbFLlW49TUbE/pzfDwCo7O3TxkHafKCnOihKP3o6x+L0?=
- =?us-ascii?Q?BfxOixGbJglFPC2Aslac1T05tDmZHCWs6EdqkwC9PkI37ApEqSslSK+dYR74?=
- =?us-ascii?Q?mEErnHO5OXKRtsYMGM8uxriyxIsOINQ+NB+ZnADXY4OxD2GOvV/sXTFUzme9?=
- =?us-ascii?Q?oE4rX4Koqk/D7qQKMAQ2IFswes2/L2+3AXf4X8XwYpK/x+gaZUuA2xnGM48S?=
- =?us-ascii?Q?ccpWSZVZcPiKwC7VZ5kxduH9xLR540pKKWxmMEs43L/nZ/mbxJctaLksf0C6?=
- =?us-ascii?Q?DOajkWTjNZt1lQrBsMwM2hrClGL+OmTLQrxe5JUZdrHMEmdegz7SApJF60HN?=
- =?us-ascii?Q?XX2v74FV1wbjVY+MBAzj/uV2Uodz0yScXs7P4Yu/Yo0gEZ1vorcKwVGlrOB+?=
- =?us-ascii?Q?/uogOv6Afg+i6ISOsIhn0FdisvjRa5IpIuZZog3DyJ1RJjC2hpmriY02rqqq?=
- =?us-ascii?Q?ErDDIwY9jnYBWjsiuIf1Q7eUwUMR/JewiKLxkXFBSyjh0ilcCqlYLaJR8VKJ?=
- =?us-ascii?Q?H/uX3QM6ItR8RcQ5t4cuA0bIN7GHLKRGotr59kJwPh0c3xJji12Bo296/Oo5?=
- =?us-ascii?Q?hlYy5ryRa5JXUc3SNkDsJv31p0HG9BFXVlJ8J9UgOvE4HAMv7j2vqbxTUInU?=
- =?us-ascii?Q?pZ1I/tS7xx4g8wGuPWZ9RcExV1v6expCt/XwsZWQS6XNA/4OqGsh/urRUJiA?=
- =?us-ascii?Q?zPDaft0HQtH/s/PvJiRFD/o8dgcPrgbS6PByh2IS6t33CtV4oDuX+PBq5aQb?=
- =?us-ascii?Q?GpJHZfEwQv2CTwOUmMy6Ilc3Oxaak7Z7/PnZuYateuT1l02MkOEoKfSfVYv9?=
- =?us-ascii?Q?TToH+WWTcSAZG7W6PDpwitrjs/pa2tlzYq7Qu7a7tf/+xTaB0W9o2ww8sT89?=
- =?us-ascii?Q?PeO/+P4gv/VU0XA6HEqwHmf9TxlmaLVnsU48vvyd1MkQrSLSnkM3YG6cBbXt?=
- =?us-ascii?Q?XhCpVTI2KHtVSzYjxz9QNmOXtnIHmgrnvjUHoGTkjEKHuLETqUhAE+Pc7Eps?=
- =?us-ascii?Q?kj3/PeLf/drWS7BqTxw1Su7D8t5XZFXc/FJUxAVXBTjlc0q7LLamIw7Cct2m?=
- =?us-ascii?Q?KsPBJuIA0kk4exrQQHNiRhDsQZho8syk1pdIxsW3ijFNG87rO7z7U2c9+dJy?=
- =?us-ascii?Q?mdPOH80j3gjAqInTNpRU+l2NIurdxzxr8LuyPSuy8uWsaocCyuLyDskrsnV0?=
- =?us-ascii?Q?mnqzAjze0cUPNpzRDPtTzM2DVxpVkSjY1r+C8/PS73nEBjFBPWtiJEE52RKB?=
- =?us-ascii?Q?/TWrF7/yfI5DJ1TOoHTGN6DSc+q53xrtWcIzM7y7Zd5TcM1UorM+/ynUJXBQ?=
- =?us-ascii?Q?4LEhKCxmpFkI4GyP70G2vsvuSLbDmtVizDSQm+0VYt8QNqN6sd42yfs9N6w1?=
- =?us-ascii?Q?yhuqZsDHMH47zhpxm/gn800v/Xeo2nFRiE/WyBR8wMBKGFYhHYQ3LPhwKd+Y?=
- =?us-ascii?Q?Gpj4d2qztrWPExgP4TQkTtN4opVJd603q0R9t/0G?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ t=1669030788; x=1700566788;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=o9x4FpjP8D+SlCRW7lGLmgmrxSrouSY9urpHjrFSN48=;
+ b=MVdDkeCun+4qgXUJdvQCPVAPXm7kFeMAPvB5sgADQ6NjhmVF6n6fkyw4
+ 1+CvHWuJgB9M3+lLdkRWirvz+uZrdMxPd3qohrVlwZCaEGt0tmDJwDFay
+ 6ii1AUTD34Rtwyxk1vhjwfAGIP4f/CSwcjoKwRvNU1kANsPSGJtE26cxd
+ l5gzo1WER0KlmAK60hAlZke2HnSZ3DMYJMm47fTFzkkK1OccrnlqueoPJ
+ OUYlE2e0IpYV6Y8qD0YtCdHD24LWm72gRiw/yEgOGvS+Z2ETvSU0EnxQQ
+ +8ikmODWS/U4WgrxYGn3zRBzzDFsU2XQbaOnFfZncJVuZvdpsrLXwjip0 g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10537"; a="315358107"
+X-IronPort-AV: E=Sophos;i="5.96,181,1665471600"; d="scan'208";a="315358107"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2022 03:39:47 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10537"; a="765933955"
+X-IronPort-AV: E=Sophos;i="5.96,181,1665471600"; d="scan'208";a="765933955"
+Received: from slarkin-mobl.ger.corp.intel.com (HELO [10.213.201.194])
+ ([10.213.201.194])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2022 03:39:45 -0800
+Message-ID: <6e6219c3-8d9d-6033-5f23-6008c66ac9fa@linux.intel.com>
+Date: Mon, 21 Nov 2022 11:39:43 +0000
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6211.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9ef59a51-d54f-4b2b-e9cd-08dacbb39a0a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Nov 2022 11:29:07.0025 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: LKd8LEPDQIumcmVKTK5yXXFdHZXkXLxI26EDy+H4waQt1GE9hdKki+F6WUNpI69pwSgPbzmvaEM+WH8aOpacohY4O6rJsR2TpjYin7Istu4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6515
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915: Export LMEM max memory
- bandwidth via sysfs
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Content-Language: en-US
+To: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+References: <20221117003018.1433115-1-alan.previn.teres.alexis@intel.com>
+ <20221117003018.1433115-2-alan.previn.teres.alexis@intel.com>
+ <Y3ZbLA2nenwp29u/@intel.com>
+ <0067b884a5787ea4fbf5d6dffc5e7d4219a23585.camel@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <0067b884a5787ea4fbf5d6dffc5e7d4219a23585.camel@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v4 1/6] drm/i915/pxp: Make gt and pxp
+ init/fini aware of PXP-owning-GT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,115 +66,217 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Auld, Matthew" <matthew.auld@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
+On 17/11/2022 22:34, Teres Alexis, Alan Previn wrote:
+> On Thu, 2022-11-17 at 11:02 -0500, Vivi, Rodrigo wrote:
+>> On Wed, Nov 16, 2022 at 04:30:13PM -0800, Alan Previn wrote:
+>>> In preparation for future MTL-PXP feature support, PXP control
+>>> context should only valid on the correct gt tile. Depending on the
+>>> device-info this depends on which tile owns the VEBOX and KCR.
+>>> PXP is still a global feature though (despite its control-context
+>>> located in the owning GT structure). Additionally, we find
+>>> that the HAS_PXP macro is only used within the pxp module,
+>>>
+>>> That said, lets drop that HAS_PXP macro altogether and replace it
+>>> with a more fitting named intel_gtpxp_is_supported and helpers
+>>> so that PXP init/fini can use to verify if the referenced gt supports
+>>> PXP or teelink.
+>>
+>> Yep, I understand you as I'm not fan of these macros, specially
+>> single usage. But we need to consider that we have multiple dependencies
+>> there and other cases like this in the driver... Well, but I'm not
+>> opposing, but probably better to first get rid of the macro,
+>> then change the behavior of the function on the next patch.
+>>
+>>>
+>>> Add TODO for Meteorlake that will come in future series.
+>>
+>> This refactor patch should be standalone, without poputing it with
+>> the changes that didn't came yet to this point.
+>>
+> Sure i can follow this rule, but it would then raise the question of "nothign is really changing anywhere for MTL, why
+> are we doing this" thats why i wanted to add that placeholder. I see "TODO"s are a common thing in the driver for larger
+> features that cant all be enabled at once. Respectfully and humbly, is there some documented rule? Can you show it to
+> me?
 
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
-> Himal Prasad Ghimiray
-> Sent: Monday, November 21, 2022 3:32 PM
-> To: intel-gfx@lists.freedesktop.org
-> Subject: [Intel-gfx] [PATCH 1/1] drm/i915: Export LMEM max memory
-> bandwidth via sysfs
->=20
-> Export lmem maximum memory bandwidth to the userspace via sysfs
->=20
-> (v2)
-> Add TODO comment to have client parts specific condition (Anshuman)
-> Remove prelim prefix from the sysfs node name (Aravind)
->=20
-> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_reg.h   |  2 ++
->  drivers/gpu/drm/i915/i915_sysfs.c | 28 ++++++++++++++++++++++++++++
->  2 files changed, 30 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h
-> b/drivers/gpu/drm/i915/i915_reg.h index 8e1892d147741..1d59b84b86ad2
-> 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -6606,6 +6606,8 @@
->  #define	    POWER_SETUP_I1_WATTS		REG_BIT(31)
->  #define	    POWER_SETUP_I1_SHIFT		6	/* 10.6 fixed
-> point format */
->  #define	    POWER_SETUP_I1_DATA_MASK
-> 	REG_GENMASK(15, 0)
-> +#define	  PCODE_MEMORY_CONFIG			0x70
-Please use DG1_ prefix as this mbox started from DG1 onwards.
- And  please try to follow the ascending order for commands attest for the =
-new command we are adding.
-> +#define
-> MEMORY_CONFIG_SUBCOMMAND_READ_MAX_BANDWIDTH 0x0
-Here as well use DG1_ prefix.
->  #define GEN12_PCODE_READ_SAGV_BLOCK_TIME_US	0x23
->  #define   XEHP_PCODE_FREQUENCY_CONFIG		0x6e	/* xehpsdv,
-> pvc */
->  /* XEHP_PCODE_FREQUENCY_CONFIG sub-commands (param1) */ diff --git
-> a/drivers/gpu/drm/i915/i915_sysfs.c b/drivers/gpu/drm/i915/i915_sysfs.c
-> index 595e8b5749907..69df2012bd10e 100644
-> --- a/drivers/gpu/drm/i915/i915_sysfs.c
-> +++ b/drivers/gpu/drm/i915/i915_sysfs.c
-> @@ -37,7 +37,10 @@
->=20
->  #include "i915_drv.h"
->  #include "i915_sysfs.h"
-> +#include "i915_reg.h"
->  #include "intel_pm.h"
-> +#include "intel_pcode.h"
-> +
->=20
->  struct drm_i915_private *kdev_minor_to_i915(struct device *kdev)  { @@ -
-> 231,11 +234,36 @@ static void i915_setup_error_capture(struct device
-> *kdev) {}  static void i915_teardown_error_capture(struct device *kdev) {=
-}
-> #endif
->=20
-> +static ssize_t
-> +lmem_max_bw_Mbps_show(struct device *dev, struct device_attribute
-> +*attr, char *buff) {
-> +	struct drm_i915_private *i915 =3D kdev_minor_to_i915(dev);
-> +	u32 val;
-> +	int err;
-> +
-> +	err =3D snb_pcode_read_p(&i915->uncore,
-> PCODE_MEMORY_CONFIG,
-> +
-> MEMORY_CONFIG_SUBCOMMAND_READ_MAX_BANDWIDTH,
-> +			       0x0, &val);
-> +	if (err)
-> +		return err;
-> +
-> +	return sysfs_emit(buff, "%u\n", val);
-> +}
-> +
-> +static DEVICE_ATTR_RO(lmem_max_bw_Mbps);
-> +
->  void i915_setup_sysfs(struct drm_i915_private *dev_priv)  {
->  	struct device *kdev =3D dev_priv->drm.primary->kdev;
->  	int ret;
->=20
-> +	/*TODO: Need to add client Parts condition check. */
-Nit use space after '/*'
-/* TODO: Need to add client parts specific conditional check */ would be go=
-od.
-BR,
-Anshuman Gupta.
+Separating refactoring from functional changes is one of the most basic 
+principles we follow (and not just us) and there should never be 
+pushback on the former due lack of functional changes.
 
-> +	if (IS_DG1(dev_priv) || IS_DG2(dev_priv)) {
-> +		ret =3D sysfs_create_file(&kdev->kobj,
-> &dev_attr_lmem_max_bw_Mbps.attr);
-> +		if (ret)
-> +			drm_err(&dev_priv->drm, "Setting up sysfs to read
-> max B/W failed\n");
-> +	}
-> +
->  	if (HAS_L3_DPF(dev_priv)) {
->  		ret =3D device_create_bin_file(kdev, &dpf_attrs);
->  		if (ret)
-> --
-> 2.25.1
+On the basic level following this guideline makes it trivial to review 
+the refactoring patch, and in the vast majority of cases much easier to 
+review the functional change patch as well.
 
+And easy to review means happy reviewers, faster turnaround time (easier 
+to carry a rebase), happier authors, easier reverts when things go bad 
+(only small functional patch needs to be reverted), sometimes even 
+easier backporting if code diverged a lot.
+
+Oh, and it even has potential to decrease internal technical debt. Often 
+you can push refactoring upstream and keep a smaller delta behind the 
+closed doors, when that is required.
+
+>>> Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/i915/i915_drv.h              |  4 ----
+>>>   drivers/gpu/drm/i915/pxp/intel_pxp.c         | 22 ++++++++++++++------
+>>>   drivers/gpu/drm/i915/pxp/intel_pxp.h         |  3 +++
+>>>   drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c |  2 +-
+>>>   4 files changed, 20 insertions(+), 11 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+>>> index 7e3820d2c404..0616e5f0bd31 100644
+>>> --- a/drivers/gpu/drm/i915/i915_drv.h
+>>> +++ b/drivers/gpu/drm/i915/i915_drv.h
+>>> @@ -933,10 +933,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>>>   
+>>>   #define HAS_GLOBAL_MOCS_REGISTERS(dev_priv)	(INTEL_INFO(dev_priv)->has_global_mocs)
+>>>   
+>>> -#define HAS_PXP(dev_priv)  ((IS_ENABLED(CONFIG_DRM_I915_PXP) && \
+>>> -			    INTEL_INFO(dev_priv)->has_pxp) && \
+>>> -			    VDBOX_MASK(to_gt(dev_priv)))
+>>> -
+>>>   #define HAS_GMCH(dev_priv) (INTEL_INFO(dev_priv)->display.has_gmch)
+>>>   
+>>>   #define HAS_GMD_ID(i915)	(INTEL_INFO(i915)->has_gmd_id)
+>>> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+>>> index 5efe61f67546..d993e752bd36 100644
+>>> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
+>>> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+>>> @@ -44,6 +44,20 @@ struct intel_gt *pxp_to_gt(const struct intel_pxp *pxp)
+>>>   	return container_of(pxp, struct intel_gt, pxp);
+>>>   }
+>>>   
+>>> +static bool _gt_needs_teelink(struct intel_gt *gt)
+>>> +{
+>>> +	/* TODO: MTL won't rely on CONFIG_INTEL_MEI_PXP but on GSC engine */
+>>> +	return (IS_ENABLED(CONFIG_INTEL_MEI_PXP) && intel_huc_is_loaded_by_gsc(&gt->uc.huc) &&
+>>> +		intel_uc_uses_huc(&gt->uc));
+>>> +}
+>>> +
+>>> +bool intel_pxp_supported_on_gt(const struct intel_pxp *pxp)
+>>
+>> If we are asking if it is supported on gt, then the argument must be a gt struct.
+>>
+> I agree with you but Daniele said above is more consistent with existing ways that is considered the standard.
+> Respectfully and humbly I would like to request both yourself and Daniele to show me the coding guidelines somewhere.
+> 
+> Honestly, this is one of the first few hunks of the first patch of the first series in a very large complex design to
+> enable PXP on MTL and it only a helper utility function. Respecfully and humbly, I rather we focus our energy for review
+> + redo  on more critical things like the e2e usage and top-to-bottom design or coding logic flows or find actual bugs
+> instead of debating about coding styles for internal only helper functions.
+
+My 2c/p is that the intel_pxp_supported_on_gt the "on_gt" part reads a 
+bit clumsy because it makes it sound like the two are independent 
+objects. Like I could pass one pxp to different GTs and ask if that one 
+works here, or maybe there.
+
+I am though a fan of intel_pxp_ prefix meaning function operates on 
+struct intel_pxp.
+
+In this case I don't know what is the correct relationship. If it is 1:1 
+between intel_pxp:intel_gt then intel_pxp_supported(pxp) sounds fine. 
+Even if a singleton that works for me. If we do have 1:1 but only want 
+to init the first one, but PXP truly lives in the GT block, we could 
+have pointers per GT, with only the gt0 one being initialized, and 
+perhaps a shadow i915->pxp pointer which points to gt[0]->pxp, if that 
+makes for better code organisation?
+
+Regards,
+
+Tvrtko
+
+> 
+> 
+>>> +{
+>>> +	/* TODO: MTL won't rely on CONFIG_INTEL_MEI_PXP but on GSC engine */
+>>> +	return (IS_ENABLED(CONFIG_INTEL_MEI_PXP) && IS_ENABLED(CONFIG_DRM_I915_PXP) &&
+>>> +		INTEL_INFO((pxp_to_gt(pxp))->i915)->has_pxp && VDBOX_MASK(pxp_to_gt(pxp)));
+>>> +}
+>>> +
+>>>   bool intel_pxp_is_enabled(const struct intel_pxp *pxp)
+>>>   {
+>>>   	return pxp->ce;
+>>> @@ -142,17 +156,13 @@ void intel_pxp_init(struct intel_pxp *pxp)
+>>>   {
+>>>   	struct intel_gt *gt = pxp_to_gt(pxp);
+>>>   
+>>> -	/* we rely on the mei PXP module */
+>>> -	if (!IS_ENABLED(CONFIG_INTEL_MEI_PXP))
+>>> -		return;
+>>
+>> I took a time to understand this movement based on the commit description.
+>> I have the feeling that this patch deserves further split in different patches.
+>>
+>> But also, looking a few lines above pxp_to_gt(pxp), I believe we
+>> have further refactor to do sooner. is is one pxp per gt, then we
+>> need to only enable in the gt0?
+>>
+> In our driver, PXP as reflected by the device info is being treated as a global feature.
+> PXP as a HW subsystem is "usable" device-wide from any workload on any engine on any tile (due to the internal mirror
+> component and additional plumbing across the tiles). So in line with that I rather not have the gem-exec-buf, gem-create
+> and gem-context calls be bothered about which GT to access to query of this global hw feature is enabled or active.
+> However the control point for allocating sessions, talking to the gsc firmware and doing global teardowns are only meant
+> to occur on and via the tile that owns the KCR engine which the media tile. This includes things like per-tile uncore
+> power gating controls of the GSC-CS. (although some aspects like IRQ for KCR global). So as u see its not a clean per-GT
+> feature.
+> 
+> I did speak to Daniele many months back when enabling the full feature set (on internal POC work) about whether we
+> should make PXP a global subsystem instead of hanging off gt but we both agreed that because the control engines are
+> only located on one tile, so you might face some its gonna be a trade off one way or the other:
+>       - pxp a global structure, then all of the init / shutdown / suspend-resume flows would then have a different set of
+> convoluted functions that try to get access to gt specific controls from a top level function flow.
+> 
+> 
+> Additionally, humbly and respectfully, perhaps you can read through the internal arch HW specs through which it can be
+> infered that PXP will continue to have a single entity for control events despite the feature being usable / accessible
+> across all tiles.
+> 
+>>> -
+>>>   	/*
+>>>   	 * If HuC is loaded by GSC but PXP is disabled, we can skip the init of
+>>>   	 * the full PXP session/object management and just init the tee channel.
+>>>   	 */
+>>> -	if (HAS_PXP(gt->i915))
+>>> +	if (intel_pxp_supported_on_gt(pxp))
+>>>   		pxp_init_full(pxp);
+>>> -	else if (intel_huc_is_loaded_by_gsc(&gt->uc.huc) && intel_uc_uses_huc(&gt->uc))
+>>> +	else if (_gt_needs_teelink(gt))
+>>>   		intel_pxp_tee_component_init(pxp);
+>>>   }
+>>>   
+>>> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+>>> index 2da309088c6d..efa83f9d5e24 100644
+>>> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.h
+>>> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+>>> @@ -13,6 +13,9 @@ struct intel_pxp;
+>>>   struct drm_i915_gem_object;
+>>>   
+>>>   struct intel_gt *pxp_to_gt(const struct intel_pxp *pxp);
+>>> +
+>>> +bool intel_pxp_supported_on_gt(const struct intel_pxp *pxp);
+>>> +
+>>>   bool intel_pxp_is_enabled(const struct intel_pxp *pxp);
+>>>   bool intel_pxp_is_active(const struct intel_pxp *pxp);
+>>>   
+>>> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c b/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
+>>> index 4359e8be4101..f0ad6f34624a 100644
+>>> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
+>>> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
+>>> @@ -70,7 +70,7 @@ void intel_pxp_debugfs_register(struct intel_pxp *pxp, struct dentry *gt_root)
+>>>   	if (!gt_root)
+>>>   		return;
+>>>   
+>>> -	if (!HAS_PXP((pxp_to_gt(pxp)->i915)))
+>>> +	if (!intel_pxp_supported_on_gt(pxp))
+>>>   		return;
+>>>   
+>>>   	root = debugfs_create_dir("pxp", gt_root);
+>>> -- 
+>>> 2.34.1
+>>>
+> 
