@@ -2,51 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2721632140
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Nov 2022 12:51:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F352063216D
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Nov 2022 12:55:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2188610E2B0;
-	Mon, 21 Nov 2022 11:50:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2D1F10E2B0;
+	Mon, 21 Nov 2022 11:55:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26B5F10E2B0
- for <intel-gfx@lists.freedesktop.org>; Mon, 21 Nov 2022 11:50:57 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F46310E2B0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 21 Nov 2022 11:55:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669031457; x=1700567457;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=qmZ+++1KritZhheeU5ngstYkxUnJ1tl+52PQhaiZHMo=;
- b=Xtyvd4ATAzxmEvH1pAj/O0KkyKGDiitCtXppTazUCjCDOOVnhndGUTaK
- GcaBUV5Wpe8GLVgMx/pUjMeT1QC/uoBwfE4PGFZqUDDgw4VAFAesz0tz4
- Kt89+uerH8chGoEKikrbFiWoC04VEFr8/ss9rt/N46+RC9wMyvZTB8rvA
- Z04IYuw4cfyzpiPg1IjHIYfI7nctv2DOakyS812gZXOO7A8oZCg+etw7r
- AOmPhmfrcwuKI55v3jiH30T0YKKd63ON+xDTiWMjgIJ/HTMfsQlrg2kp1
- T116DmB+BC7BG1aRXC65bYVUCh3y/2C3v+Cbh+dG5olOhBofMVPfjg0Xe A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10537"; a="312241098"
-X-IronPort-AV: E=Sophos;i="5.96,181,1665471600"; d="scan'208";a="312241098"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2022 03:50:56 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10537"; a="704535523"
-X-IronPort-AV: E=Sophos;i="5.96,181,1665471600"; d="scan'208";a="704535523"
-Received: from nsnead-mobl1.amr.corp.intel.com (HELO kveik.ger.corp.intel.com)
- ([10.251.208.113])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2022 03:50:55 -0800
-From: Luca Coelho <luciano.coelho@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 21 Nov 2022 13:50:43 +0200
-Message-Id: <20221121115043.763658-2-luciano.coelho@intel.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20221121115043.763658-1-luciano.coelho@intel.com>
-References: <20221121115043.763658-1-luciano.coelho@intel.com>
+ t=1669031750; x=1700567750;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=WdoCgvroKp96oVvkj5Bcpp7x5UgsjRvqcFq5CrnPipQ=;
+ b=B80bFHa5CNwmnQHpxJ8MsNGDq9ZI5axlybmTEA0w/xQlADpbxMLCxbZ/
+ 2WQq5m6rJSt3hkcE5qavfMmWbSCs7GMYwRU1xGhXA1DoMF6V04ZzsT0ib
+ ufmCKq2FHVH0yRcmBY1m1Zer/qFaKUY4Fyp9MQFShqK8A5pSRAqon27O8
+ bg1xPG2/LSkqvliDaKDTug+CpixbxQApQGSmCRusIWooqGXvLKlHNEj1v
+ Vllnj1YOufnvTQwmlPgQfPFv8dHkVKbVXgLwCtYmQxCUsNywELpBJ3lYP
+ y4LwwMdGBFsg1Y5so7OU4HtRnZ44ny/WSVqkxE3Rf8BU+RWfg4qbJt1UG A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10537"; a="375685204"
+X-IronPort-AV: E=Sophos;i="5.96,181,1665471600"; d="scan'208";a="375685204"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2022 03:55:49 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10537"; a="673950827"
+X-IronPort-AV: E=Sophos;i="5.96,181,1665471600"; d="scan'208";a="673950827"
+Received: from slarkin-mobl.ger.corp.intel.com (HELO [10.213.201.194])
+ ([10.213.201.194])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2022 03:55:47 -0800
+Message-ID: <e33f417d-ae27-95df-d1dd-40e487efc674@linux.intel.com>
+Date: Mon, 21 Nov 2022 11:55:45 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Content-Language: en-US
+To: "Winkler, Tomas" <tomas.winkler@intel.com>,
+ "Usyskin, Alexander" <alexander.usyskin@intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, David Airlie <airlied@redhat.com>,
+ Daniel Vetter <daniel@ffwll.ch>
+References: <20221121092449.328674-1-alexander.usyskin@intel.com>
+ <MN2PR11MB4093DB849B8945C9618C4E88E50A9@MN2PR11MB4093.namprd11.prod.outlook.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <MN2PR11MB4093DB849B8945C9618C4E88E50A9@MN2PR11MB4093.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 2/2] drm/i915/mtl: Limit scaler input to 4k
- in plane scaling
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gsc: Only initialize GSC in
+ tile 0
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,75 +68,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: ville.syrjala@intel.com
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Lubart, Vitaly" <vitaly.lubart@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Animesh Manna <animesh.manna@intel.com>
 
-As part of die area reduction max input source modified to 4096
-for MTL so modified range check logic of scaler.
+On 21/11/2022 09:35, Winkler, Tomas wrote:
+>>
+>> From: José Roberto de Souza <jose.souza@intel.com>
+>>
+>> For multi-tile setups the GSC operational only on the tile 0.
+>> Skip GSC auxiliary device creation for all other tiles in GSC device init code.
+>> Initialize basic GSC fields and use the same path as HECI1 (HECI_PXP) device
+>> disable.
+>>
+>> Cc: Tomas Winkler <tomas.winkler@intel.com>
+>> Cc: Vitaly Lubart <vitaly.lubart@intel.com>
+>> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+>> Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
+> 
+> Acked-by: Tomas Winkler <tomas.winkler@intel.com>
 
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
----
+Feel free to upgrade to r-b so someone can merge it. :)
 
-No changes in v2.
+>> ---
+>> V2: Move decision to skip initialization into GSC device init code.
+>>      This initializes basic GSC fields and uses the same path
+>>      as HECI1 (HECI_PXP) device disable.
+>>      It is simpler and protects interrupt handler too.
+>>
+>>   drivers/gpu/drm/i915/gt/intel_gsc.c | 8 ++++++++
+>>   1 file changed, 8 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_gsc.c
+>> b/drivers/gpu/drm/i915/gt/intel_gsc.c
+>> index 976fdf27e790..bcc3605158db 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_gsc.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_gsc.c
+>> @@ -174,6 +174,14 @@ static void gsc_init_one(struct drm_i915_private
+>> *i915, struct intel_gsc *gsc,
+>>   	intf->irq = -1;
+>>   	intf->id = intf_id;
+>>
+>> +	/*
+>> +	 * On the multi-tile setups the GSC is functional on the first tile only
+>> +	 */
+>> +	if (gsc_to_gt(gsc)->info.id != 0) {
+>> +		drm_dbg(&i915->drm, "Not initializing gsc for remote
+>> tiles\n");
 
-drivers/gpu/drm/i915/display/skl_scaler.c | 31 +++++++++++++++++------
- 1 file changed, 23 insertions(+), 8 deletions(-)
+Is there any value of adding a log message for this? I don't immediately 
+see that it is worth it, but your call.
 
-diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-index d7390067b7d4..6baa07142b03 100644
---- a/drivers/gpu/drm/i915/display/skl_scaler.c
-+++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-@@ -103,6 +103,8 @@ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	const struct drm_display_mode *adjusted_mode =
- 		&crtc_state->hw.adjusted_mode;
-+	int min_src_w, min_src_h, min_dst_w, min_dst_h;
-+	int max_src_w, max_src_h, max_dst_w, max_dst_h;
- 
- 	/*
- 	 * Src coordinates are already rotated by 270 degrees for
-@@ -157,15 +159,28 @@ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
- 		return -EINVAL;
- 	}
- 
-+	min_src_w = SKL_MIN_SRC_W;
-+	min_src_h = SKL_MIN_SRC_H;
-+	min_dst_w = SKL_MIN_DST_W;
-+	min_dst_h = SKL_MIN_DST_H;
-+
-+	if (DISPLAY_VER(dev_priv) >= 11 && DISPLAY_VER(dev_priv) < 14) {
-+		max_src_w = ICL_MAX_SRC_W;
-+		max_src_h = ICL_MAX_SRC_H;
-+		max_dst_w = ICL_MAX_DST_W;
-+		max_dst_h = ICL_MAX_DST_H;
-+	} else {
-+		max_src_w = SKL_MAX_SRC_W;
-+		max_src_h = SKL_MAX_SRC_H;
-+		max_dst_w = SKL_MAX_DST_W;
-+		max_dst_h = SKL_MAX_DST_H;
-+	}
-+
- 	/* range checks */
--	if (src_w < SKL_MIN_SRC_W || src_h < SKL_MIN_SRC_H ||
--	    dst_w < SKL_MIN_DST_W || dst_h < SKL_MIN_DST_H ||
--	    (DISPLAY_VER(dev_priv) >= 11 &&
--	     (src_w > ICL_MAX_SRC_W || src_h > ICL_MAX_SRC_H ||
--	      dst_w > ICL_MAX_DST_W || dst_h > ICL_MAX_DST_H)) ||
--	    (DISPLAY_VER(dev_priv) < 11 &&
--	     (src_w > SKL_MAX_SRC_W || src_h > SKL_MAX_SRC_H ||
--	      dst_w > SKL_MAX_DST_W || dst_h > SKL_MAX_DST_H)))	{
-+	if (src_w < min_src_w || src_h < min_src_h ||
-+	    dst_w < min_dst_w || dst_h < min_dst_h ||
-+	    src_w > max_src_w || src_h > max_src_h ||
-+	    dst_w > max_dst_w || dst_h > max_dst_h) {
- 		drm_dbg_kms(&dev_priv->drm,
- 			    "scaler_user index %u.%u: src %ux%u dst %ux%u "
- 			    "size is out of scaler range\n",
--- 
-2.37.2
+Regards,
 
+Tvrtko
+
+>> +		return;
+>> +	}
+>> +
+>>   	if (intf_id == 0 && !HAS_HECI_PXP(i915))
+>>   		return;
+>>
+>> --
+>> 2.34.1
+> 
