@@ -1,48 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C757631DA9
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Nov 2022 11:05:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90BA4631E10
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Nov 2022 11:17:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D0DC10E013;
-	Mon, 21 Nov 2022 10:05:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBD4C10E298;
+	Mon, 21 Nov 2022 10:17:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02A8B10E013
- for <intel-gfx@lists.freedesktop.org>; Mon, 21 Nov 2022 10:05:18 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1153610E298;
+ Mon, 21 Nov 2022 10:17:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669025119; x=1700561119;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=67FV2JN6YG3OBjeqzQLfTYPzjsseP6025MiGsvIdsiw=;
- b=OfOEr7+Ak0o7eaV/kfE7RJWCH4fv5lgxced1yB4q/7HR/GNJq3RFc4z/
- X4U3UY7LT/TjbT7FqfoblRVWVGMiiDQKq/jrzbp/gEmpoBp5/I57+fv8E
- hFeCD/UmKb+q4FJ8TdQwmxAq/Zx8Qjsp0Ygsxrgiq6h2vvOkvhdOzdMLd
- tgAAwAKIDm64vZc4avjE155bFhTn+kxrWq65BCmPSt35GIBe3eaWbF0gh
- mcpe6j3uuieafXgaz+DiTCCmcbnlphJgmr9kJ4pIMteRHuB5962WzX4tH
- +QYt0/QM+9sxilILF0LGH6MjZdPoI6OLNfrbsiWYlEAD2D2l/DANECuqf g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10537"; a="377781704"
-X-IronPort-AV: E=Sophos;i="5.96,181,1665471600"; d="scan'208";a="377781704"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2022 02:05:18 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10537"; a="886061311"
-X-IronPort-AV: E=Sophos;i="5.96,181,1665471600"; d="scan'208";a="886061311"
-Received: from himal-nuc8i7beh.iind.intel.com ([10.145.169.160])
- by fmsmga006.fm.intel.com with ESMTP; 21 Nov 2022 02:05:17 -0800
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 21 Nov 2022 15:31:34 +0530
-Message-Id: <20221121100134.2523381-1-himal.prasad.ghimiray@intel.com>
-X-Mailer: git-send-email 2.25.1
+ t=1669025869; x=1700561869;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=8qjAp6EzaikmWOVOmXAst82VNpPJVtdHx82hPCwoOO0=;
+ b=L2rKtivt3PYFjvGkL4IHYSXLpOkC1ASoAed4ehWqufwEuqiMVuVVry6x
+ cooFop89b39TZ2034ebr4b9yKWSMnZ229DmrJ8Vx+Qoa7D5JTF6Rb2pij
+ eUsdv52X8FZbqZFnBiwknseGb2wWRaSMIKtXmj8a7I+Zz/jmB9G0yBuMH
+ EhQbcYt1H0APsXkwdkGotQe1JmJ7bUHOLn/RUULGH6i+ZNS9nazrWPUKD
+ HyZA16V01rDkwMXC6jI5PTb1W7QqG3QXiWvDP7tEe3d1oSc+RAIOZl7Sz
+ QcGk6/ucCoal3ER7lk3cbAETetz1Mo4uBbC6C3FoS98DnaGEd6k/TzgH5 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10537"; a="399812397"
+X-IronPort-AV: E=Sophos;i="5.96,181,1665471600"; d="scan'208";a="399812397"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2022 02:17:48 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10537"; a="640971105"
+X-IronPort-AV: E=Sophos;i="5.96,181,1665471600"; d="scan'208";a="640971105"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.14.16])
+ ([10.213.14.16])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2022 02:17:45 -0800
+Message-ID: <4f75fe15-96b0-ac79-62f3-2ec6f41f5c1e@intel.com>
+Date: Mon, 21 Nov 2022 11:17:42 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/1] drm/i915: Export LMEM max memory bandwidth
- via sysfs
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.4.2
+Content-Language: en-US
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ "Das, Nirmoy" <nirmoy.das@linux.intel.com>
+References: <20221118104222.57328-1-janusz.krzysztofik@linux.intel.com>
+ <20221118104222.57328-3-janusz.krzysztofik@linux.intel.com>
+ <b7b01eef-3550-9f9f-11d0-8698fa322f66@linux.intel.com>
+ <3200694.aeNJFYEL58@jkrzyszt-mobl1.ger.corp.intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <3200694.aeNJFYEL58@jkrzyszt-mobl1.ger.corp.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915: Never return 0 if not all
+ requests retired
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,86 +69,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris.p.wilson@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Export lmem maximum memory bandwidth to the userspace via sysfs
 
-(v2)
-Add TODO comment to have client parts specific condition (Anshuman)
-Remove prelim prefix from the sysfs node name (Aravind)
 
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
----
- drivers/gpu/drm/i915/i915_reg.h   |  2 ++
- drivers/gpu/drm/i915/i915_sysfs.c | 28 ++++++++++++++++++++++++++++
- 2 files changed, 30 insertions(+)
+On 21.11.2022 09:30, Janusz Krzysztofik wrote:
+> Hi Nimroy,
+>
+> Thanks for looking at this.
+>
+> On Friday, 18 November 2022 20:56:50 CET Das, Nirmoy wrote:
+>> On 11/18/2022 11:42 AM, Janusz Krzysztofik wrote:
+>>> Users of intel_gt_retire_requests_timeout() expect 0 return value on
+>>> success.  However, we have no protection from passing back 0 potentially
+>>> returned by a call to dma_fence_wait_timeout() when it succedes right
+>>> after its timeout has expired.
+>>>
+>>> Replace 0 with -ETIME before potentially using the timeout value as return
+>>> code, so -ETIME is returned if there are still some requests not retired
+>>> after timeout, 0 otherwise.
+>>>
+>>> v2: Move the added lines down so flush_submission() is not affected.
+>>>
+>>> Fixes: f33a8a51602c ("drm/i915: Merge wait_for_timelines with
+> retire_request")
+>>> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+>>> Cc: stable@vger.kernel.org # v5.5+
+>>> ---
+>>>    drivers/gpu/drm/i915/gt/intel_gt_requests.c | 3 +++
+>>>    1 file changed, 3 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_requests.c b/drivers/gpu/
+> drm/i915/gt/intel_gt_requests.c
+>>> index edb881d756309..3ac4603eeb4ee 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_gt_requests.c
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
+>>> @@ -199,6 +199,9 @@ out_active:	spin_lock(&timelines->lock);
+>>>    	if (remaining_timeout)
+>>>    		*remaining_timeout = timeout;
+>>>    
+>>> +	if (!timeout)
+>>> +		timeout = -ETIME;
+>> This will return error, -ETIME when 0 timeout is passed,
+>> intel_gt_retire_requests().
+> Yes, but only when active_count is not 0 after we loop through
+> timelines->active_list calling retire_requests() on each and counting up
+> failures in active_count.
 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 8e1892d147741..1d59b84b86ad2 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -6606,6 +6606,8 @@
- #define	    POWER_SETUP_I1_WATTS		REG_BIT(31)
- #define	    POWER_SETUP_I1_SHIFT		6	/* 10.6 fixed point format */
- #define	    POWER_SETUP_I1_DATA_MASK		REG_GENMASK(15, 0)
-+#define	  PCODE_MEMORY_CONFIG			0x70
-+#define	    MEMORY_CONFIG_SUBCOMMAND_READ_MAX_BANDWIDTH 0x0
- #define GEN12_PCODE_READ_SAGV_BLOCK_TIME_US	0x23
- #define   XEHP_PCODE_FREQUENCY_CONFIG		0x6e	/* xehpsdv, pvc */
- /* XEHP_PCODE_FREQUENCY_CONFIG sub-commands (param1) */
-diff --git a/drivers/gpu/drm/i915/i915_sysfs.c b/drivers/gpu/drm/i915/i915_sysfs.c
-index 595e8b5749907..69df2012bd10e 100644
---- a/drivers/gpu/drm/i915/i915_sysfs.c
-+++ b/drivers/gpu/drm/i915/i915_sysfs.c
-@@ -37,7 +37,10 @@
- 
- #include "i915_drv.h"
- #include "i915_sysfs.h"
-+#include "i915_reg.h"
- #include "intel_pm.h"
-+#include "intel_pcode.h"
-+
- 
- struct drm_i915_private *kdev_minor_to_i915(struct device *kdev)
- {
-@@ -231,11 +234,36 @@ static void i915_setup_error_capture(struct device *kdev) {}
- static void i915_teardown_error_capture(struct device *kdev) {}
- #endif
- 
-+static ssize_t
-+lmem_max_bw_Mbps_show(struct device *dev, struct device_attribute *attr, char *buff)
-+{
-+	struct drm_i915_private *i915 = kdev_minor_to_i915(dev);
-+	u32 val;
-+	int err;
-+
-+	err = snb_pcode_read_p(&i915->uncore, PCODE_MEMORY_CONFIG,
-+			       MEMORY_CONFIG_SUBCOMMAND_READ_MAX_BANDWIDTH,
-+			       0x0, &val);
-+	if (err)
-+		return err;
-+
-+	return sysfs_emit(buff, "%u\n", val);
-+}
-+
-+static DEVICE_ATTR_RO(lmem_max_bw_Mbps);
-+
- void i915_setup_sysfs(struct drm_i915_private *dev_priv)
- {
- 	struct device *kdev = dev_priv->drm.primary->kdev;
- 	int ret;
- 
-+	/*TODO: Need to add client Parts condition check. */
-+	if (IS_DG1(dev_priv) || IS_DG2(dev_priv)) {
-+		ret = sysfs_create_file(&kdev->kobj, &dev_attr_lmem_max_bw_Mbps.attr);
-+		if (ret)
-+			drm_err(&dev_priv->drm, "Setting up sysfs to read max B/W failed\n");
-+	}
-+
- 	if (HAS_L3_DPF(dev_priv)) {
- 		ret = device_create_bin_file(kdev, &dpf_attrs);
- 		if (ret)
--- 
-2.25.1
+Moving this line just after the call to dma_fence_wait_timeout should 
+solve the controversy.
+
+Regards
+Andrzej
+
+>
+>> We don't want that.
+> When 0 timeout is passed to intel_gt_retire_requests(), do we really want it
+> to return 0 unconditionally, or are we rather interested if those calls to
+> retire_requests() succeeded?
+>
+>> I think you can use a separate variable to store
+>> return val from the dma_fence_wait_timeout()
+>>
+>>
+>> Regards,
+>>
+>> Nirmoy
+>>
+>>> +
+>>>    	return active_count ? timeout : 0;
+> If active count is 0, we return 0 regardless of timeout value, and that's OK.
+> However, if active_count is not 0, we shouldn't return 0, I believe, we should
+> return either remaining time if some left, or error (-ETIME) if not.  If you
+> think I'm wrong, please explain why.
+>
+> Thanks,
+> Janusz
+>
+>>>    }
+>>>    
+>
+>
+>
 
