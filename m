@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF6D46349A2
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Nov 2022 22:52:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA2FE6349A5
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Nov 2022 22:52:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A64B10E0CB;
-	Tue, 22 Nov 2022 21:52:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 123B310E1C8;
+	Tue, 22 Nov 2022 21:52:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 85AEC10E0CB;
- Tue, 22 Nov 2022 21:51:57 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6AE2110E0CB;
+ Tue, 22 Nov 2022 21:52:00 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7DE1AA010C;
- Tue, 22 Nov 2022 21:51:57 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 69821A010C;
+ Tue, 22 Nov 2022 21:52:00 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "John Harrison" <john.c.harrison@intel.com>
-Date: Tue, 22 Nov 2022 21:51:57 -0000
-Message-ID: <166915391748.2187.7411243752965629803@emeril.freedesktop.org>
+Date: Tue, 22 Nov 2022 21:52:00 -0000
+Message-ID: <166915392042.2184.2196126267649822136@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20221122200915.680629-1-John.C.Harrison@Intel.com>
 In-Reply-To: <20221122200915.680629-1-John.C.Harrison@Intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_More_GuC_firmware_version_improvements?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?More_GuC_firmware_version_improvements?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,19 +53,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-f3a008949a16 drm/i915/uc: Rationalise delimiters in filename macros
-460dbd43f21f drm/i915/uc: More refactoring of UC version numbers
--:220: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'ver' - possible side-effects?
-#220: FILE: drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h:118:
-+#define MAKE_UC_VER_STRUCT(ver)		MAKE_UC_VER((ver).major, (ver).minor, (ver).patch)
-
-total: 0 errors, 0 warnings, 1 checks, 190 lines checked
-60bcf6584e54 drm/i915/guc: Use GuC submission API version number
--:40: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'ver' - possible side-effects?
-#40: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc.h:279:
-+#define MAKE_GUC_VER_STRUCT(ver)	MAKE_GUC_VER((ver).major, (ver).minor, (ver).patch)
-
-total: 0 errors, 0 warnings, 1 checks, 221 lines checked
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
