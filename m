@@ -2,64 +2,148 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28A66633131
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Nov 2022 01:14:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 191FE633139
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Nov 2022 01:17:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4983E10E1C1;
-	Tue, 22 Nov 2022 00:14:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5829B10E34F;
+	Tue, 22 Nov 2022 00:17:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com
- [IPv6:2607:f8b0:4864:20::52a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFDDC10E1C1
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Nov 2022 00:14:47 +0000 (UTC)
-Received: by mail-pg1-x52a.google.com with SMTP id 136so12662716pga.1
- for <intel-gfx@lists.freedesktop.org>; Mon, 21 Nov 2022 16:14:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=mime-version:user-agent:content-transfer-encoding:references
- :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
- :message-id:reply-to;
- bh=ORDRszVIQbOEtamlnDAH7BvzZg6LF/xbc4LWS1+0AaI=;
- b=isEvXGvZSNlB+/Ald+NN3hcoSzjSg2DcD/gienVS+dI6HmgL7vnmVZXHbqJRr+SJKN
- CqXZlfd/jEMjwDaKW/xq4jftRIApK/g8Dyzp1QVjWp95BE2ipKosHK6Fq8eDUlHDqvvo
- t8tMXU5ejnHh3uXTLMw5c4YoNjkQbBqMEqvfo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=mime-version:user-agent:content-transfer-encoding:references
- :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=ORDRszVIQbOEtamlnDAH7BvzZg6LF/xbc4LWS1+0AaI=;
- b=LujtmK6sXP16Lrqm45zdNt9EYdMYMm7sLuzh9Sq5bIeszg2TXnwoEnYvxH8SI+zVgS
- /kEvBr9PXfu0omiFW3louoq1kYiZrww0oXKI0vx7OXoG/h2ePM1PVyXRxZHep1Xq/j07
- ms8KOh/ETJeggQqKJp1sJPZHuVRa324p0SJbp58zyLh8gFG0l88vYctelcIMQ26KvGzZ
- D41WI0aDJBcdMxWadP1z7bcbvxhA0s3v3iEyjQoWr49w4HZ7BpfPXz00RUrANAb/IvtS
- XAH+Q9dR8d/EfVs41eo+zk5Gk13t+NYXrC+Fjmrd1OPUwxcvNWl2G6Lffti2981MesbF
- hHTA==
-X-Gm-Message-State: ANoB5pk4JouB5bUQVJAsBTAm56m5FB9ohLGlctTarVYzYcPChf3fOu0G
- bT3A66dcI+LAQ+7StUVN4Earup7IudR6XA==
-X-Google-Smtp-Source: AA0mqf64iadOX4ZWPHDROSYsaPkQq911WMyMA9j9ph65Vk6/b05k7TIMyW5QDoC8kftxz4i31Y6/yg==
-X-Received: by 2002:a05:6a00:4c11:b0:56d:93d8:d81a with SMTP id
- ea17-20020a056a004c1100b0056d93d8d81amr1591142pfb.14.1669076087432; 
- Mon, 21 Nov 2022 16:14:47 -0800 (PST)
-Received: from justonli-glaptop.lan (c-71-237-220-48.hsd1.or.comcast.net.
- [71.237.220.48]) by smtp.gmail.com with ESMTPSA id
- g16-20020a1709029f9000b00186da904da0sm10361086plq.154.2022.11.21.16.14.46
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 21 Nov 2022 16:14:46 -0800 (PST)
-Message-ID: <8927195aa625eb41665d3bfdf49644fa6cde46bf.camel@chromium.org>
-From: Juston Li <justonli@chromium.org>
-To: Alan Previn <alan.previn.teres.alexis@intel.com>, 
- intel-gfx@lists.freedesktop.org
-Date: Mon, 21 Nov 2022 16:14:45 -0800
-In-Reply-To: <20221118003631.1523764-2-alan.previn.teres.alexis@intel.com>
-References: <20221118003631.1523764-1-alan.previn.teres.alexis@intel.com>
- <20221118003631.1523764-2-alan.previn.teres.alexis@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.45.3-2 
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 511EA10E1C1;
+ Tue, 22 Nov 2022 00:17:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1669076257; x=1700612257;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=ruuY2ai78bUFq8jS6lbGP5oArQuXMZ8lH7vu24idyVY=;
+ b=S9yKa4BgKHDlUr7NHIFiE337F2yxNZKH4PbdRkmSPK67uwp5Rp71g4/t
+ Up/66hUfNMwEcxBb8fwaMRMxdyQSlD61v80rJQ1pVZ8G3V5rweYYROZFD
+ Fxx6EhgDQA9qygVVx2ky4avhniH6JbxpIJ9TNLv9nKvVjfl8vRfbZZDhz
+ P55VG0gCP16K9VSCNzBO1q4JDeMmL3JIV4hdztepDCopXe+2MzfOFlUQ8
+ JdrP2gD8WWPEFR1eAjO7ChZNatPprF4bTwjc2NokwykE1sDONAuZb0jka
+ MPUKJw+DG3DTvQb6w6OCrv+f1/D0HIBLGx5dCd0/OyG1UFb+xkxXcX5KT A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10538"; a="340557937"
+X-IronPort-AV: E=Sophos;i="5.96,182,1665471600"; d="scan'208";a="340557937"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2022 16:17:36 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10538"; a="730206173"
+X-IronPort-AV: E=Sophos;i="5.96,182,1665471600"; d="scan'208";a="730206173"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by FMSMGA003.fm.intel.com with ESMTP; 21 Nov 2022 16:17:36 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Mon, 21 Nov 2022 16:17:36 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Mon, 21 Nov 2022 16:17:36 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.106)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2375.31; Mon, 21 Nov 2022 16:17:35 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nGo/fA0uc2MWIbK3EXiMJvYw/N/yHl5iYw4BuvW9PnvEUedPcz4rPuZ53Gnn+m3YKj5FzzZekRKA5qmEQJ7lWzexC9B3mf0d7o9o1ZGIey7pAVyIRyI/f9xu44NDEDou7irL3sYA/DLkJE0TUXDdRY2mnb+hGpR4viCqZQJHfAmwmHlTXf7L/YYSc7V0uvja+C4WZPYcIYRka6QLx7J84LsQKlwtsI3ZgVTyjdAh3nqFbIHvckqzYVDcRHBrm6bQXRiLkOQ+Bf0Ifa029MXBznWbabqhvAzyx0I1QtEePlii5o564XC44aho0SjyOc2A9ED6Uie5WLry9jdstDAz6w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Fox9Mmt1xx2aM8uUn0o/+k77byhTKgyNYl8ns7Q7KbI=;
+ b=VRJ8NsuQ1fHUa0xERFPAfRLukpZqqXNOnW8IP2Lpri8parWdCjZiea0whefWfuvGEDz2+rXqgVxang9VyDQCbDtGPNgbsuL15RFBKazvWQ2FemrW2+sujUQGmGx3wXXau6zvMA6tYpxJtDR8+ucrtxGKLMP48NcoHlLUIaWKjLXDByTJ9lKkP8NFOuDuWn6TAS7vbS0FEQeGNZpAbd78rojSR+9YVML//u/SX4R1MTOwi0ukiVQwM0Bml9rLuWBLxy0CSJufTgIoikiSrws1yd+NsoeQITTyr3ZwyT+kSFBJyP9YrOOjmloa6GNt2UOJ/Xht1d4NsVEuSJhnEqepRg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5488.namprd11.prod.outlook.com (2603:10b6:5:39d::5) by
+ SA2PR11MB4857.namprd11.prod.outlook.com (2603:10b6:806:fa::12) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5834.15; Tue, 22 Nov 2022 00:17:34 +0000
+Received: from DM4PR11MB5488.namprd11.prod.outlook.com
+ ([fe80::f7a8:6d03:2464:2afd]) by DM4PR11MB5488.namprd11.prod.outlook.com
+ ([fe80::f7a8:6d03:2464:2afd%5]) with mapi id 15.20.5834.009; Tue, 22 Nov 2022
+ 00:17:34 +0000
+Message-ID: <1c1331ed-b951-2326-060c-966e908ba609@intel.com>
+Date: Mon, 21 Nov 2022 16:17:31 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Content-Language: en-US
+To: <intel-gfx@lists.freedesktop.org>
+References: <20221121231617.1110329-1-daniele.ceraolospurio@intel.com>
+ <20221121231617.1110329-5-daniele.ceraolospurio@intel.com>
+From: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
+In-Reply-To: <20221121231617.1110329-5-daniele.ceraolospurio@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SJ0PR13CA0133.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c6::18) To DM4PR11MB5488.namprd11.prod.outlook.com
+ (2603:10b6:5:39d::5)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/pxp: Invalidate all PXP fw
- sessions during teardown
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5488:EE_|SA2PR11MB4857:EE_
+X-MS-Office365-Filtering-Correlation-Id: 58e0af2a-986f-4693-546c-08dacc1ef3b2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: LAIlIaRK6bSf7BUW8w3OC8SRXUCOFbkoXqL5Ii29Gj2mJZrQ/TmTyVij05KBt0cRt73ok2QoyoWF5QorOaUB14wFmd7f5ywg4TGDwzX4DGE4tfXVYNXqXm0aC1MrR0hBhZ1DXvx/nEk4i33CcxTOgRXVctCC+kjaV5Plk5URNBoelDu0kk1frHdlUgj3uKK2Od5o+4al1H5jRgsxMNQ8m/lkQLNcs3tuNOQLng2MIA0eSNh35Yv56FxAsKI4p9VgRJ7AbHXq4ZzGcqrUa4zKzGoRjYS27+fQQ/6vBYCZASH285ly9KQPjKtAcvLKYHnIP3IEqYf0eA2WflDy3wRk1O9kUAjyaq/pb1baYA2ImRJ16a5UhuIj1PFXCxB0VF4FAn4/2zNFth4DgO+sa37+0l43DMjyZd5iHkKweycYGMnzVO1gZU0zxIVwI0ZuaCD6A/iSM0djBVTe1Tc4ThI3UI8Jpu+skenzxRPwcDYq8Wu/8gE7rf6HITt+X8BR76EIxXsiXQ7bqQkcrAS+ivCfXztXDhcEsH7LOLh2SOw+169zKZ6bOLgzxUXZvHVXTZSoUTt5BcfmfgPUemZVVEmUKBprWIvT5xh63D9CR+7wL2HZ9niJCsz6zwaE4S2In5lr9Op3qNvVnUs25oJijFZ5Qjvr+fuINBw/NKsVajsYgCvScQFEAqturJTa1Tta5Hww9G3LGZjwpsZiCCQTKGFUNv1SziSLBfdpTftybSnK3fo=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5488.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(136003)(366004)(39860400002)(346002)(376002)(396003)(451199015)(2906002)(31686004)(2616005)(6506007)(66946007)(66556008)(450100002)(41300700001)(36756003)(31696002)(86362001)(66476007)(82960400001)(6916009)(38100700002)(53546011)(4326008)(83380400001)(186003)(8936002)(8676002)(5660300002)(107886003)(6512007)(6666004)(6486002)(316002)(26005)(478600001)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dEVvaVQvOXB0TVNZTVczUWxvYWJnSDhmei9HKy9JTDBQV3czamtmVVIxZlFR?=
+ =?utf-8?B?eENFcEhDbmVUWGtOQWxXOWlpMlp6NUpmeWsxcUEwY3ZVOUtickZtWCsyM0Iz?=
+ =?utf-8?B?cmVvRVlJZDVHM3U0QmhRb1hPZGQzaU9QN1J4UFJPSCtsWHMyQWpRbFFtMjFs?=
+ =?utf-8?B?Z2tLVEJ5Y042QkdEZ1NlZTExNU9Wa1EzRThJSk9WQkgyeGFLWTNuYjNZL2Zh?=
+ =?utf-8?B?M20zQUpmL21qWkUyS2pMWHZ3WXpyaDM2dXhPRndHbmp1bHRUY2wvVFlXNDEx?=
+ =?utf-8?B?RW5XdXB2WGZQWTdqWDhsTGM2VUNLOTlDbXRnOW1yYkRrZFVRVGlFc2JuWTlm?=
+ =?utf-8?B?SzM5b2ZNVTNNY3dUUzdpdXpYanA4bExyOUxlaE9pT1FsZ2k3NkY1bHlIMzJS?=
+ =?utf-8?B?MlBpTFFkVTRuQUVUbWhjRENhbkhVT3ZjbGVtRnJ4OFp1b0MzYThqbkF6c3pu?=
+ =?utf-8?B?d2p2UW0yaWYxMGRXK1kzSHQxM1BtR2RLYlBKNWlTQnBqWEl2YjNOVVBUR3pK?=
+ =?utf-8?B?ZlRCRlU4aDF0ZnFjNjBkN09aK2hDVFdycDdHVGQ5UEtFbW0ycklyUkp4Q0ph?=
+ =?utf-8?B?cDhERzlleFRQRWpyQnNKWHVBa1VDVjlhcHNWVWJMaDhBNVN6Vm43UHFqUnA1?=
+ =?utf-8?B?UFRJWDc0dmI4UFFweDZnVEVhRklQLzY3cUE5cExqdW9uaDY4bzBXbXYzTWhD?=
+ =?utf-8?B?eWZBeDVpQ01NSmlKUHBSaEZlRmhmbER4STA4b3krMXZIZTdBNTVjVnBmZmlR?=
+ =?utf-8?B?OXF3em9COG1wRWRvWkMycG5NRXZabjUyQjlpU0JtVGJ2QWFiM3JhaDlvZENi?=
+ =?utf-8?B?cUVYZ2tOOWJPaUpEK1NTZDFDb3FBdUZHMEtvVmV4SjN6V084aDdiWjh2MzYy?=
+ =?utf-8?B?emNMMEtJRkZ2ZFA0SjRITlJTK3BKZEpMRExad1FqRGZ0aFpsR2FnK0lqTFM2?=
+ =?utf-8?B?ZHlkc3ZydWIvUHV1UXFLSU5Wb3NaMlRabVp3LzI0NjVIWDN3Q2FpYmNQY1U4?=
+ =?utf-8?B?UGdLb0xRRUtKMGtHZ0dkY0luMktpb01xYjIxWmxRUDVOWmNzNnFhMmFmMks4?=
+ =?utf-8?B?TFgyalBQcWZ3Tnp2Q3R6S05qS0xNLy82Y2Z4Tys1NCtTbEtVQjZoMmpXQzVW?=
+ =?utf-8?B?Nm5QZVVKeUJKa2VUM2VNRFB5T0lqZWdReWZqcW9RSDB1SVFYSDNoeGxMc0hB?=
+ =?utf-8?B?YjBOcTZqa29ZL1dMV3hEc2dzbkhQUUlZQXNxOHEvb1M5RHRHZ0JCZjdkc2xF?=
+ =?utf-8?B?QjczN1BUOHBlNUkwTHg4c1R2V0hwZTF1c2Q3bUxFcE5PbFA0UzYxYTRHVU9K?=
+ =?utf-8?B?aExXSEhSbUtGdzhONjB5UW1UWUZWTEZjNnBTZ2UzdklhbHlhN3VET1h4K0NR?=
+ =?utf-8?B?ckdSUi9VUjU5S3l3L3h0bWhVSG5PQTRmV3ljRFcyWEhOZXhSQ3p2eVlNaGVS?=
+ =?utf-8?B?dVdaREtDWVlReGdxcXVtTEUwZ29tM3RIK0lpcVBiYkZ4N2tYbkNkU1A5eCs1?=
+ =?utf-8?B?RVE5L0xuellVakdlbkFwb3FISmN0QVhrUHRaY1g2OXNZeUJiVTZzUGpRdWl0?=
+ =?utf-8?B?ZGF5T0NNSWNhRTFubEFOZ1BMU1dBeTI1RjhZMjhvVWwyOFo0eEdjMzlwZmR4?=
+ =?utf-8?B?SjAwR0ZWK0E0aWJnQW9MZ2M2MjBaM0JPWnV5YXRjMmJGZklpM0ZIR3Bwc1Uv?=
+ =?utf-8?B?TExaTHU3KzJoK284bGdFY3FZNXkrZDNtNVNhcnpBbzYydXBlRWhiYVdiYnlD?=
+ =?utf-8?B?U2NNeUFJVDV2Um9YWU9seTB3RGw4ajFJeTB3cnMvSUZBbjZ1ODFJcXFSNnJZ?=
+ =?utf-8?B?WXBaRDNDa0dscnNhaVNSakcxQW01eGJXR3ZWODh2elFXQkxXa0ZGbTlwYkY5?=
+ =?utf-8?B?K1hmWnI0cU9QeHhVM3ZQOE1JVE4wd2xzcG1DWFlVSkNKVXJjNXVRRWdSUDk3?=
+ =?utf-8?B?S2haeFJ1Ui9zNjNQWFRZeFhuZEhKL2NQMGRGTC8zcGhXaVEwSDEvQzhnK1NU?=
+ =?utf-8?B?Njk5YWNFSVU0OVl3ZytZOGNkR1B3OXloZVJFb2lGVjJBbER1YWp0SlNFcmNI?=
+ =?utf-8?B?dVFGbWRyZCtHazNyaExLZWVUOUhDeWYrOVE4dFFLaVNaOWFJaHloektEM2sy?=
+ =?utf-8?B?Wi8zQUVuUUdGOE5nK3R3M1AxSUdsb1BJOFdjU3ZXNHMzd2c3cUZ5THJtMUtN?=
+ =?utf-8?Q?PuLiKemxTi3jvcVboxk2Bac=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 58e0af2a-986f-4693-546c-08dacc1ef3b2
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5488.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Nov 2022 00:17:34.0372 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: v7giBhuibr2V38HSJLTWNaUc0feYXV+vFQRyKUcdjCMi5flQlAXoFnE1uwAqszXPnU4AArWlP6Iw2L1Jer7mMjkMQA467qrvMAyMEO4CjEY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4857
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 4/6] drm/i915/gsc: Do a driver-FLR on unload
+ if GSC was loaded
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,259 +156,169 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 2022-11-17 at 16:36 -0800, Alan Previn wrote:
-> A gap was recently discovered where if an application did not
-> invalidate all of the stream keys (intentionally or not), and the
-> driver did a full PXP global teardown on the GT subsystem, we
-> find that future session creation would fail on the security
-> firmware's side of the equation. i915 is the entity that needs
-> ensure the sessions' state across both iGT and security firmware
-> are at a known clean point when performing a full global teardown.
->=20
-> That said, the i915 should inspect all active sessions and submit
-> the invalidate-stream-key PXP command to the security firmware for
-> each of them.
->=20
+
+
+On 11/21/2022 3:16 PM, Daniele Ceraolo Spurio wrote:
+> If the GSC was loaded, the only way to stop it during the driver unload
+> flow is to do a driver-FLR.
+> The driver-FLR is not the same as PCI config space FLR in that
+> it doesn't reset the SGUnit and doesn't modify the PCI config
+> space. Thus, it doesn't require a re-enumeration of the PCI BARs.
+> However, the driver-FLR does cause a memory wipe of graphics memory
+> on all discrete GPU platforms or a wipe limited to stolen memory
+> on the integrated GPU platforms.
+>
+> We perform the FLR as the last action before releasing the MMIO bar, so
+> that we don't have to care about the consequences of the reset on the
+> unload flow.
+>
+> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 > Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
 > ---
-> =C2=A0drivers/gpu/drm/i915/pxp/intel_pxp.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 1 +
-> =C2=A0.../drm/i915/pxp/intel_pxp_cmd_interface_42.h | 15 +++++++
-> =C2=A0.../i915/pxp/intel_pxp_cmd_interface_cmn.h=C2=A0=C2=A0=C2=A0 |=C2=
-=A0 3 ++
-> =C2=A0drivers/gpu/drm/i915/pxp/intel_pxp_session.c=C2=A0 |=C2=A0 5 +++
-> =C2=A0drivers/gpu/drm/i915/pxp/intel_pxp_tee.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 | 45
-> +++++++++++++++++++
-> =C2=A0drivers/gpu/drm/i915/pxp/intel_pxp_types.h=C2=A0=C2=A0=C2=A0 |=C2=
-=A0 2 +
-> =C2=A06 files changed, 71 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h
-> b/drivers/gpu/drm/i915/pxp/intel_pxp.h
-> index 2da309088c6d..6ba8fa5bfea0 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.h
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
-> @@ -23,6 +23,7 @@ void intel_pxp_init_hw(struct intel_pxp *pxp);
-> =C2=A0void intel_pxp_fini_hw(struct intel_pxp *pxp);
-> =C2=A0
-> =C2=A0void intel_pxp_mark_termination_in_progress(struct intel_pxp *pxp);
-> +void intel_pxp_tee_end_all_fw_sessions(struct intel_pxp *pxp, u32
-> sessions_mask);
-> =C2=A0
-> =C2=A0int intel_pxp_start(struct intel_pxp *pxp);
-> =C2=A0
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_42.h
-> b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_42.h
-> index 739f9072fa5f..26f7d9f01bf3 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_42.h
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_42.h
-> @@ -12,6 +12,9 @@
-> =C2=A0/* PXP-Opcode for Init Session */
-> =C2=A0#define PXP42_CMDID_INIT_SESSION 0x1e
-> =C2=A0
-> +/* PXP-Opcode for Invalidate Stream Key */
-> +#define PXP42_CMDID_INVALIDATE_STREAM_KEY 0x00000007
+>   drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c |  9 +++++
+>   drivers/gpu/drm/i915/i915_reg.h           |  3 ++
+>   drivers/gpu/drm/i915/intel_uncore.c       | 45 +++++++++++++++++++++++
+>   drivers/gpu/drm/i915/intel_uncore.h       | 13 +++++++
+>   4 files changed, 70 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c
+> index 510fb47193ec..5dad3c19c445 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c
+> @@ -173,6 +173,15 @@ int intel_gsc_fw_upload(struct intel_gsc_uc *gsc)
+>   	if (err)
+>   		goto fail;
+>   
+> +	/*
+> +	 * Once the GSC FW is loaded, the only way to kill it on driver unload
+> +	 * is to do a driver FLR. Given this is a very disruptive action, we
+> +	 * want to do it as the last action before releasing the access to the
+> +	 * MMIO bar, which means we need to do it as part of the primary uncore
+> +	 * cleanup.
+> +	 */
+> +	intel_uncore_set_flr_on_fini(&gt->i915->uncore);
 > +
-> =C2=A0/* PXP-Input-Packet: Init Session (Arb-Session) */
-> =C2=A0struct pxp42_create_arb_in {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct pxp_cmd_header hea=
-der;
-> @@ -25,4 +28,16 @@ struct pxp42_create_arb_out {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct pxp_cmd_header hea=
-der;
-> =C2=A0} __packed;
-> =C2=A0
-> +/* PXP-Input-Packet: Invalidate Stream Key */
-> +struct pxp42_inv_stream_key_in {
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct pxp_cmd_header header;
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u32 rsvd[3];
-> +} __packed;
-> +
-> +/* PXP-Output-Packet: Invalidate Stream Key */
-> +struct pxp42_inv_stream_key_out {
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct pxp_cmd_header header;
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u32 rsvd;
-> +} __packed;
-> +
-> =C2=A0#endif /* __INTEL_PXP_FW_INTERFACE_42_H__ */
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_cmn.h
-> b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_cmn.h
-> index c2f23394f9b8..69e34ec49e78 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_cmn.h
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_cmn.h
-> @@ -27,6 +27,9 @@ struct pxp_cmd_header {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0union {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0u32 status; /* out */
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0u32 stream_id; /* in */
-> +#define PXP_CMDHDR_EXTDATA_SESSION_VALID GENMASK(0, 0)
-> +#define PXP_CMDHDR_EXTDATA_APP_TYPE GENMASK(1, 1)
-> +#define PXP_CMDHDR_EXTDATA_SESSION_ID GENMASK(17, 2)
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Length of the message =
-(excluding the header) */
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u32 buffer_len;
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
-> b/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
-> index 85572360c71a..85e404b5ad0e 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
-> @@ -91,10 +91,13 @@ static int
-> pxp_terminate_arb_session_and_global(struct intel_pxp *pxp)
-> =C2=A0{
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int ret;
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_gt *gt =3D p=
-xp_to_gt(pxp);
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u32 active_sip_slots;
-> =C2=A0
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* must mark termination =
-in progress calling this function */
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0GEM_WARN_ON(pxp->arb_is_v=
-alid);
-> =C2=A0
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0active_sip_slots =3D intel_unc=
-ore_read(gt->uncore,
-> GEN12_KCR_SIP);
-> +
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* terminate the hw sessi=
-ons */
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D intel_pxp_termina=
-te_session(pxp, ARB_SESSION);
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret) {
-> @@ -110,6 +113,8 @@ static int
-> pxp_terminate_arb_session_and_global(struct intel_pxp *pxp)
-> =C2=A0
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_uncore_write(gt->un=
-core, PXP_GLOBAL_TERMINATE, 1);
-> =C2=A0
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_pxp_tee_end_all_fw_sessi=
-ons(pxp, active_sip_slots);
-> +
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return ret;
-> =C2=A0}
-> =C2=A0
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> index b0c9170b1395..9260a7013191 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> @@ -309,3 +309,48 @@ int intel_pxp_tee_cmd_create_arb_session(struct
-> intel_pxp *pxp,
-> =C2=A0
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return ret;
-> =C2=A0}
-> +
-> +static void intel_pxp_tee_end_one_fw_session(struct intel_pxp *pxp,
-> u32 session_id, bool is_alive)
+>   	/* FW is not fully operational until we enable SW proxy */
+>   	intel_uc_fw_change_status(gsc_fw, INTEL_UC_FIRMWARE_TRANSFERRED);
+>   
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 8e1892d14774..60e55245200b 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -118,6 +118,9 @@
+>   
+>   #define GU_CNTL				_MMIO(0x101010)
+>   #define   LMEM_INIT			REG_BIT(7)
+> +#define   DRIVERFLR			REG_BIT(31)
+> +#define GU_DEBUG			_MMIO(0x101018)
+> +#define   DRIVERFLR_STATUS		REG_BIT(31)
+>   
+>   #define GEN6_STOLEN_RESERVED		_MMIO(0x1082C0)
+>   #define GEN6_STOLEN_RESERVED_ADDR_MASK	(0xFFF << 20)
+> diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
+> index 8006a6c61466..c1befa33ff59 100644
+> --- a/drivers/gpu/drm/i915/intel_uncore.c
+> +++ b/drivers/gpu/drm/i915/intel_uncore.c
+> @@ -2703,6 +2703,48 @@ void intel_uncore_prune_engine_fw_domains(struct intel_uncore *uncore,
+>   	}
+>   }
+>   
+> +static void driver_flr(struct intel_uncore *uncore)
 > +{
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct drm_i915_private *i915 =
-=3D pxp_to_gt(pxp)->i915;
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct pxp42_inv_stream_key_in=
- msg_in =3D {0};
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct pxp42_inv_stream_key_ou=
-t msg_out =3D {0};
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int ret, trials =3D 0;
+> +	struct drm_i915_private *i915 = uncore->i915;
+> +	const unsigned int flr_timeout_ms = 3000; /* specs recommend a 3s wait */
+> +	int ret;
 > +
-> +try_again:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0memset(&msg_in, 0, sizeof(msg_=
-in));
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0memset(&msg_out, 0, sizeof(msg=
-_out));
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0msg_in.header.api_version =3D =
-PXP_APIVER(4, 2);
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0msg_in.header.command_id =3D P=
-XP42_CMDID_INVALIDATE_STREAM_KEY;
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0msg_in.header.buffer_len =3D s=
-izeof(msg_in) -
-> sizeof(msg_in.header);
+> +	drm_dbg(&i915->drm, "Triggering Driver-FLR\n");
 > +
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0msg_in.header.stream_id =3D
-> FIELD_PREP(PXP_CMDHDR_EXTDATA_SESSION_VALID, 1);
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0msg_in.header.stream_id |=3D
-> FIELD_PREP(PXP_CMDHDR_EXTDATA_APP_TYPE, 0);
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0msg_in.header.stream_id |=3D
-> FIELD_PREP(PXP_CMDHDR_EXTDATA_SESSION_ID, session_id);
+> +	/*
+> +	 * Make sure any pending FLR requests have cleared by waiting for the
+> +	 * FLR trigger bit to go to zero. Also clear GU_DEBUG's DRIVERFLR_STATUS
+> +	 * to make sure it's not still set from a prior attempt (it's a write to
+> +	 * clear bit).
+> +	 * Note that we should never be in a situation where a previous attempt
+> +	 * is still pending (unless the HW is totally dead), but better to be
+> +	 * safe in case something unexpected happens
+> +	 */
+> +	ret = intel_wait_for_register_fw(uncore, GU_CNTL, DRIVERFLR, 0, flr_timeout_ms);
+> +	if (ret) {
+> +		drm_err(&i915->drm,
+> +			"Failed to wait for Driver-FLR bit to clear! %d\n",
+> +			ret);
+> +		return;
+> +	}
+> +	intel_uncore_write_fw(uncore, GU_DEBUG, DRIVERFLR_STATUS);
 > +
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D intel_pxp_tee_io_messa=
-ge(pxp,
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- &msg_in, sizeof(msg_in),
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- &msg_out, sizeof(msg_out),
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- NULL);
+> +	/* Trigger the actual Driver-FLR */
+> +	intel_uncore_rmw_fw(uncore, GU_CNTL, 0, DRIVERFLR);
 > +
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Cleanup coherency between G=
-T and Firmware is critical, so
-> try again if it fails */
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if ((ret || msg_out.header.sta=
-tus !=3D 0x0) && ++trials < 3)
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0goto try_again;
+> +	ret = intel_wait_for_register_fw(uncore, GU_DEBUG,
+> +					 DRIVERFLR_STATUS, DRIVERFLR_STATUS,
+> +					 flr_timeout_ms);
+> +	if (ret) {
+> +		drm_err(&i915->drm, "wait for Driver-FLR completion failed! %d\n", ret);
+> +		return;
+> +	}
 > +
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret)
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0drm_err(&i915->drm, "Failed to send tee msg for inv-
-> stream-key-%d, ret=3D[%d]\n",
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0session_i=
-d, ret);
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0else if (msg_out.header.status=
- !=3D 0x0 && is_alive)
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0drm_warn(&i915->drm, "PXP firmware failed inv-stream-
-> key-%d with status 0x%08x\n",
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 session_=
-id, msg_out.header.status);
+> +	intel_uncore_write_fw(uncore, GU_DEBUG, DRIVERFLR_STATUS);
+> +
+> +	return;
 > +}
 > +
-> +void intel_pxp_tee_end_all_fw_sessions(struct intel_pxp *pxp, u32
-> sessions_mask)
+>   /* Called via drm-managed action */
+>   void intel_uncore_fini_mmio(struct drm_device *dev, void *data)
+>   {
+> @@ -2716,6 +2758,9 @@ void intel_uncore_fini_mmio(struct drm_device *dev, void *data)
+>   		intel_uncore_fw_domains_fini(uncore);
+>   		iosf_mbi_punit_release();
+>   	}
+> +
+> +	if (intel_uncore_needs_flr_on_fini(uncore))
+> +		driver_flr(uncore);
+>   }
+>   
+>   /**
+> diff --git a/drivers/gpu/drm/i915/intel_uncore.h b/drivers/gpu/drm/i915/intel_uncore.h
+> index 5449146a0624..a9fa0b11e7e4 100644
+> --- a/drivers/gpu/drm/i915/intel_uncore.h
+> +++ b/drivers/gpu/drm/i915/intel_uncore.h
+> @@ -153,6 +153,7 @@ struct intel_uncore {
+>   #define UNCORE_HAS_FPGA_DBG_UNCLAIMED	BIT(1)
+>   #define UNCORE_HAS_DBG_UNCLAIMED	BIT(2)
+>   #define UNCORE_HAS_FIFO			BIT(3)
+> +#define UNCORE_NEEDS_FLR_ON_FINI	BIT(3)
+
+Dumb mistake, this should be 4 (and that's why the series is failing on 
+older gens that don't support the driver FLR). Will wait for comments 
+before re-spinning.
+
+Daniele
+
+>   
+>   	const struct intel_forcewake_range *fw_domains_table;
+>   	unsigned int fw_domains_table_entries;
+> @@ -223,6 +224,18 @@ intel_uncore_has_fifo(const struct intel_uncore *uncore)
+>   	return uncore->flags & UNCORE_HAS_FIFO;
+>   }
+>   
+> +static inline bool
+> +intel_uncore_needs_flr_on_fini(const struct intel_uncore *uncore)
 > +{
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int n;
-> +
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0for (n =3D 0; n < INTEL_PXP_MA=
-X_HWDRM_SESSIONS; ++n) {
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0intel_pxp_tee_end_one_fw_session(pxp, n,
-> (sessions_mask & 0x1) ? true : false);
-
-What's the reason for the is_alive bool here? Instead of only sending
-the invalidate cmd for the alive sessions?
-
-Although... for upstream we really only need to invalidate the ARB
-session right?
-
-Juston
-
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0sessions_mask =3D (sessions_mask >> 1);
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+> +	return uncore->flags & UNCORE_NEEDS_FLR_ON_FINI;
 > +}
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
-> b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
-> index f74b1e11a505..4d75b06ea4a0 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
-> @@ -14,6 +14,8 @@
-> =C2=A0struct intel_context;
-> =C2=A0struct i915_pxp_component;
-> =C2=A0
-> +#define INTEL_PXP_MAX_HWDRM_SESSIONS 16
 > +
-> =C2=A0/**
-> =C2=A0 * struct intel_pxp - pxp state
-> =C2=A0 */
+> +static inline bool
+> +intel_uncore_set_flr_on_fini(struct intel_uncore *uncore)
+> +{
+> +	return uncore->flags |= UNCORE_NEEDS_FLR_ON_FINI;
+> +}
+> +
+>   void intel_uncore_mmio_debug_init_early(struct drm_i915_private *i915);
+>   void intel_uncore_init_early(struct intel_uncore *uncore,
+>   			     struct intel_gt *gt);
 
