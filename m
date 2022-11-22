@@ -1,59 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4822F634235
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Nov 2022 18:08:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E890363426A
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Nov 2022 18:25:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34A7F10E422;
-	Tue, 22 Nov 2022 17:08:10 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com
- [IPv6:2a00:1450:4864:20::42a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA09B10E422
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Nov 2022 17:08:05 +0000 (UTC)
-Received: by mail-wr1-x42a.google.com with SMTP id s5so8502387wru.1
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Nov 2022 09:08:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=Ve9qToTAjko4Xn5/rlkROCfUSo37Rgk78oiOnmwUwAU=;
- b=UTgjIRpLOL/7otFlPM7wX91GWVEbyelUoIOfxeC6ZhL8WuxwL4Nb7rXb4HD1EytWRF
- fM6S4/NXWz/8WrAreoT9cPW/bjXslVl/BKUmEg5pyx6M4Uaclx3FjX7vn4vXq8ig0wzL
- rCBB7/W7XRNLC+tcLw3TAl4no/GdXkQLmuKTA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=Ve9qToTAjko4Xn5/rlkROCfUSo37Rgk78oiOnmwUwAU=;
- b=3odI8OzsksXwXQIoEfx6i0MsLCKOcNEK+evBMyNv9FuKWEbcQVm6jgu5KxuLK91LHF
- VQNStgcGHXa7KiEm8iXUNgG3/6V/0K7YRc5WtIEfVfMXfuF+KCeXX17FCVnpou/14pHo
- wQOqbtxlNcYt0oFFMhS2R+UCYXocyJReBmGGwt0kxLJfHto8Gp+L6wNI+r6ZGynftUyq
- LDaLaVKQYmuZfrkQm000nkFryFyowtDGm3N1ZqW1K3B3bIRss9i96iXsA12ibyi1Q183
- qeV14Rc5wzFO5NjsJvZz7guLGK6ccF/w7MCuTpuKlmIG3N4vDl5+4HVPbrmpgEv0r5zE
- ToYQ==
-X-Gm-Message-State: ANoB5pnLbAMbyhFjVFTUVJJgTeqlTHMHRfir2Z0hCVewm1TTpe3g1JOd
- O45Tt5DbqRdJwLSqqrgUfqUjGQ==
-X-Google-Smtp-Source: AA0mqf74IZLJygrpyRzf5qHhhvP3A1tbMBtTE6ln+kXNQdMnkp0LHZho99MMNt+23oEZ2UGDXNYLyA==
-X-Received: by 2002:a5d:6547:0:b0:241:e4cc:f044 with SMTP id
- z7-20020a5d6547000000b00241e4ccf044mr2164424wrv.457.1669136884287; 
- Tue, 22 Nov 2022 09:08:04 -0800 (PST)
-Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
- [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
- m42-20020a05600c3b2a00b003cf47556f21sm24861760wms.2.2022.11.22.09.08.03
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 22 Nov 2022 09:08:03 -0800 (PST)
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Tue, 22 Nov 2022 18:08:00 +0100
-Message-Id: <20221122170801.842766-1-daniel.vetter@ffwll.ch>
-X-Mailer: git-send-email 2.37.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5154810E427;
+	Tue, 22 Nov 2022 17:25:40 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C46310E20F;
+ Tue, 22 Nov 2022 17:25:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1669137935; x=1700673935;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=ex1Ri5YE43gYyqUh0NJqWutpzBbuebIrbYB7ZJdEoDY=;
+ b=inideWJW91ViUu7bT6BcFibJctsPy3Qc+m4HicLFlWnKbS+XDgE2MylI
+ Rf+162Z5mWrUKZN9kKNdk45QBOivy9fBAHeDrwKIf6C2w2N5AgMCKH6Si
+ JjuoII/r/f4qlSNs6s5s0AQeAlzr10hD+u4dl153JOABQW6hybh/MDrj5
+ VCcoKdkZgMIxA0WgXgNHLqWqbzRGOt/dzF7qMyywJMKKHPFAck/YUz+KT
+ HcAY3sQLLlGyTKw5ij1hY3CSfpmN+pIEzauTvYSn+AbIcX12XzSw0x4yf
+ bXjmv2nW0J6OZ7hznvIosTIgc3n03mT8nlFfWEBCTTpsRPaqutZFmlDSv A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="315685391"
+X-IronPort-AV: E=Sophos;i="5.96,184,1665471600"; d="scan'208";a="315685391"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2022 09:18:01 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="619287384"
+X-IronPort-AV: E=Sophos;i="5.96,184,1665471600"; d="scan'208";a="619287384"
+Received: from irvmail001.ir.intel.com ([10.43.11.63])
+ by orsmga006.jf.intel.com with ESMTP; 22 Nov 2022 09:18:00 -0800
+Received: from [10.249.128.57] (sdompke-mobl1.ger.corp.intel.com
+ [10.249.128.57])
+ by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
+ 2AMHHwZR002319; Tue, 22 Nov 2022 17:17:59 GMT
+Message-ID: <258b2016-3bbc-80ee-b187-bc6d93699359@intel.com>
+Date: Tue, 22 Nov 2022 18:17:58 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.5.0
+Content-Language: en-US
+To: John.C.Harrison@Intel.com, Intel-GFX@Lists.FreeDesktop.Org
+References: <20221118015858.2548106-1-John.C.Harrison@Intel.com>
+ <20221118015858.2548106-3-John.C.Harrison@Intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20221118015858.2548106-3-John.C.Harrison@Intel.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] dma-buf: Require VM_PFNMAP vma for mmap
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v2 2/5] drm/i915/huc: Add HuC specific debug
+ print wrappers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,98 +65,186 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Wilcox <willy@infradead.org>, Sumit Semwal <sumit.semwal@linaro.org>,
- linaro-mm-sig@lists.linaro.org, Jason Gunthorpe <jgg@ziepe.ca>,
- John Stultz <john.stultz@linaro.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Suren Baghdasaryan <surenb@google.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- linux-media@vger.kernel.org
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-tldr; DMA buffers aren't normal memory, expecting that you can use
-them like that (like calling get_user_pages works, or that they're
-accounting like any other normal memory) cannot be guaranteed.
 
-Since some userspace only runs on integrated devices, where all
-buffers are actually all resident system memory, there's a huge
-temptation to assume that a struct page is always present and useable
-like for any more pagecache backed mmap. This has the potential to
-result in a uapi nightmare.
 
-To stop this gap require that DMA buffer mmaps are VM_PFNMAP, which
-blocks get_user_pages and all the other struct page based
-infrastructure for everyone. In spirit this is the uapi counterpart to
-the kernel-internal CONFIG_DMABUF_DEBUG.
+On 18.11.2022 02:58, John.C.Harrison@Intel.com wrote:
+> From: John Harrison <John.C.Harrison@Intel.com>
+> 
+> Create a set of HuC printers and start using them.
+> 
+> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/uc/intel_huc.c | 31 ++++++++++----------------
+>  drivers/gpu/drm/i915/gt/uc/intel_huc.h | 23 +++++++++++++++++++
+>  2 files changed, 35 insertions(+), 19 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+> index be855811d85df..0bbbc7192da63 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+> @@ -107,11 +107,9 @@ static enum hrtimer_restart huc_delayed_load_timer_callback(struct hrtimer *hrti
+>  
+>  	if (!intel_huc_is_authenticated(huc)) {
+>  		if (huc->delayed_load.status == INTEL_HUC_WAITING_ON_GSC)
+> -			drm_notice(&huc_to_gt(huc)->i915->drm,
+> -				   "timed out waiting for MEI GSC init to load HuC\n");
+> +			huc_notice(huc, "Timed out waiting for MEI GSC init to load FW\n");
+>  		else if (huc->delayed_load.status == INTEL_HUC_WAITING_ON_PXP)
+> -			drm_notice(&huc_to_gt(huc)->i915->drm,
+> -				   "timed out waiting for MEI PXP init to load HuC\n");
+> +			huc_notice(huc, "Timed out waiting for MEI PXP init to load FW\n");
+>  		else
+>  			MISSING_CASE(huc->delayed_load.status);
+>  
+> @@ -174,8 +172,7 @@ static int gsc_notifier(struct notifier_block *nb, unsigned long action, void *d
+>  
+>  	case BUS_NOTIFY_DRIVER_NOT_BOUND: /* mei driver fails to be bound */
+>  	case BUS_NOTIFY_UNBIND_DRIVER: /* mei driver about to be unbound */
+> -		drm_info(&huc_to_gt(huc)->i915->drm,
+> -			 "mei driver not bound, disabling HuC load\n");
+> +		huc_info(huc, "- mei driver not bound, disabling HuC load\n");
+>  		gsc_init_error(huc);
+>  		break;
+>  	}
+> @@ -193,8 +190,7 @@ void intel_huc_register_gsc_notifier(struct intel_huc *huc, struct bus_type *bus
+>  	huc->delayed_load.nb.notifier_call = gsc_notifier;
+>  	ret = bus_register_notifier(bus, &huc->delayed_load.nb);
+>  	if (ret) {
+> -		drm_err(&huc_to_gt(huc)->i915->drm,
+> -			"failed to register GSC notifier\n");
+> +		huc_err(huc, "Failed to register GSC notifier\n");
+>  		huc->delayed_load.nb.notifier_call = NULL;
+>  		gsc_init_error(huc);
+>  	}
+> @@ -284,8 +280,7 @@ static int check_huc_loading_mode(struct intel_huc *huc)
+>  			      GSC_LOADS_HUC;
+>  
+>  	if (fw_needs_gsc != hw_uses_gsc) {
+> -		drm_err(&gt->i915->drm,
+> -			"mismatch between HuC FW (%s) and HW (%s) load modes\n",
+> +		huc_err(huc, "Mismatch between FW (%s) and HW (%s) load modes\n",
+>  			HUC_LOAD_MODE_STRING(fw_needs_gsc),
+>  			HUC_LOAD_MODE_STRING(hw_uses_gsc));
+>  		return -ENOEXEC;
+> @@ -294,19 +289,17 @@ static int check_huc_loading_mode(struct intel_huc *huc)
+>  	/* make sure we can access the GSC via the mei driver if we need it */
+>  	if (!(IS_ENABLED(CONFIG_INTEL_MEI_PXP) && IS_ENABLED(CONFIG_INTEL_MEI_GSC)) &&
+>  	    fw_needs_gsc) {
+> -		drm_info(&gt->i915->drm,
+> -			 "Can't load HuC due to missing MEI modules\n");
+> +		huc_info(huc, "Can't load due to missing MEI modules\n");
+>  		return -EIO;
+>  	}
+>  
+> -	drm_dbg(&gt->i915->drm, "GSC loads huc=%s\n", str_yes_no(fw_needs_gsc));
+> +	huc_dbg(huc, "GSC loads huc=%s\n", str_yes_no(fw_needs_gsc));
 
-Motivated by a recent patch which wanted to swich the system dma-buf
-heap to vm_insert_page instead of vm_insert_pfn.
+this will give:
 
-v2:
+	"GT0: HuC GSC loads huc=yes"
 
-Jason brought up that we also want to guarantee that all ptes have the
-pte_special flag set, to catch fast get_user_pages (on architectures
-that support this). Allowing VM_MIXEDMAP (like VM_SPECIAL does) would
-still allow vm_insert_page, but limiting to VM_PFNMAP will catch that.
+but maybe better to change that to get:
 
-From auditing the various functions to insert pfn pte entires
-(vm_insert_pfn_prot, remap_pfn_range and all it's callers like
-dma_mmap_wc) it looks like VM_PFNMAP is already required anyway, so
-this should be the correct flag to check for.
+	"GT0: HuC loaded by GSC=yes"
 
-v3: Change to WARN_ON_ONCE (Thomas Zimmermann)
+so this should be:
 
-References: https://lore.kernel.org/lkml/CAKMK7uHi+mG0z0HUmNt13QCCvutuRVjpcR0NjRL12k-WbWzkRg@mail.gmail.com/
-Acked-by: Christian König <christian.koenig@amd.com>
-Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: Suren Baghdasaryan <surenb@google.com>
-Cc: Matthew Wilcox <willy@infradead.org>
-Cc: John Stultz <john.stultz@linaro.org>
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-Cc: Sumit Semwal <sumit.semwal@linaro.org>
-Cc: "Christian König" <christian.koenig@amd.com>
-Cc: linux-media@vger.kernel.org
-Cc: linaro-mm-sig@lists.linaro.org
---
-Ok I entirely forgot about this patch but stumbled over it and checked
-what's up with it no. I think it's ready now for merging:
-- shmem helper patches to fix up vgem landed
-- ttm has been fixed since a while
-- I don't think we've had any other open issues
+	huc_dbg(huc, "loaded by GSC=%s\n", str_yes_no(fw_needs_gsc));
 
-Time to lock down this uapi contract for real?
--Daniel
----
- drivers/dma-buf/dma-buf.c | 4 ++++
- 1 file changed, 4 insertions(+)
+>  
+>  	return 0;
+>  }
+>  
+>  int intel_huc_init(struct intel_huc *huc)
+>  {
+> -	struct drm_i915_private *i915 = huc_to_gt(huc)->i915;
+>  	int err;
+>  
+>  	err = check_huc_loading_mode(huc);
+> @@ -323,7 +316,7 @@ int intel_huc_init(struct intel_huc *huc)
+>  
+>  out:
+>  	intel_uc_fw_change_status(&huc->fw, INTEL_UC_FIRMWARE_INIT_FAIL);
+> -	drm_info(&i915->drm, "HuC init failed with %d\n", err);
+> +	huc_info(huc, "init failed with %d\n", err);
+>  	return err;
+>  }
+>  
+> @@ -366,13 +359,13 @@ int intel_huc_wait_for_auth_complete(struct intel_huc *huc)
+>  	delayed_huc_load_complete(huc);
+>  
+>  	if (ret) {
+> -		drm_err(&gt->i915->drm, "HuC: Firmware not verified %d\n", ret);
+> +		huc_err(huc, "firmware not verified %d\n", ret);
+>  		intel_uc_fw_change_status(&huc->fw, INTEL_UC_FIRMWARE_LOAD_FAIL);
+>  		return ret;
+>  	}
+>  
+>  	intel_uc_fw_change_status(&huc->fw, INTEL_UC_FIRMWARE_RUNNING);
+> -	drm_info(&gt->i915->drm, "HuC authenticated\n");
+> +	huc_info(huc, "authenticated\n");
+>  	return 0;
+>  }
+>  
+> @@ -407,7 +400,7 @@ int intel_huc_auth(struct intel_huc *huc)
+>  
+>  	ret = intel_guc_auth_huc(guc, intel_guc_ggtt_offset(guc, huc->fw.rsa_data));
+>  	if (ret) {
+> -		DRM_ERROR("HuC: GuC did not ack Auth request %d\n", ret);
+> +		huc_err(huc, "auth request not acked by GuC: %d\n", ret);
+>  		goto fail;
+>  	}
+>  
+> @@ -419,7 +412,7 @@ int intel_huc_auth(struct intel_huc *huc)
+>  	return 0;
+>  
+>  fail:
+> -	i915_probe_error(gt->i915, "HuC: Authentication failed %d\n", ret);
+> +	huc_probe_error(huc, "authentication failed %d\n", ret);
+>  	return ret;
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.h b/drivers/gpu/drm/i915/gt/uc/intel_huc.h
+> index 52db03620c609..f253c1c19f12f 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_huc.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.h
+> @@ -16,6 +16,29 @@
+>  
+>  struct bus_type;
+>  
+> +#define huc_err(_huc, _fmt, ...) \
+> +	gt_err(huc_to_gt(_huc), "HuC " _fmt, ##__VA_ARGS__)
+> +
+> +#define huc_warn(_huc, _fmt, ...) \
+> +	gt_warn(huc_to_gt(_huc), "HuC " _fmt, ##__VA_ARGS__)
+> +
+> +#define huc_notice(_huc, _fmt, ...) \
+> +	gt_notice(huc_to_gt(_huc), "HuC " _fmt, ##__VA_ARGS__)
+> +
+> +#define huc_info(_huc, _fmt, ...) \
+> +	gt_info(huc_to_gt(_huc), "HuC " _fmt, ##__VA_ARGS__)
+> +
+> +#define huc_dbg(_huc, _fmt, ...) \
+> +	gt_dbg(huc_to_gt(_huc), "HuC " _fmt, ##__VA_ARGS__)
+> +
+> +#define huc_probe_error(_huc, _fmt, ...) \
+> +	do { \
+> +		if (i915_error_injected()) \
+> +			huc_dbg(_huc, _fmt, ##__VA_ARGS__); \
+> +		else \
+> +			huc_err(_huc, _fmt, ##__VA_ARGS__); \
+> +	} while (0)
 
-diff --git a/drivers/dma-buf/dma-buf.c b/drivers/dma-buf/dma-buf.c
-index b6c36914e7c6..88718665c3c3 100644
---- a/drivers/dma-buf/dma-buf.c
-+++ b/drivers/dma-buf/dma-buf.c
-@@ -150,6 +150,8 @@ static int dma_buf_mmap_internal(struct file *file, struct vm_area_struct *vma)
- 	ret = dmabuf->ops->mmap(dmabuf, vma);
- 	dma_resv_unlock(dmabuf->resv);
- 
-+	WARN_ON_ONCE(!(vma->vm_flags & VM_PFNMAP));
-+
- 	return ret;
- }
- 
-@@ -1495,6 +1497,8 @@ int dma_buf_mmap(struct dma_buf *dmabuf, struct vm_area_struct *vma,
- 	ret = dmabuf->ops->mmap(dmabuf, vma);
- 	dma_resv_unlock(dmabuf->resv);
- 
-+	WARN_ON_ONCE(!(vma->vm_flags & VM_PFNMAP));
-+
- 	return ret;
- }
- EXPORT_SYMBOL_NS_GPL(dma_buf_mmap, DMA_BUF);
--- 
-2.37.2
+shouldn't we use gt_probe_error() here ?
 
+#define huc_probe_error(_huc, _fmt, ...) \
+	gt_probe_error(huc_to_gt(_huc), "HuC " _fmt, ##__VA_ARGS__)
+
+> +
+>  enum intel_huc_delayed_load_status {
+>  	INTEL_HUC_WAITING_ON_GSC = 0,
+>  	INTEL_HUC_WAITING_ON_PXP,
