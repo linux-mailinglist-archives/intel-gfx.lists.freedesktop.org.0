@@ -2,52 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69A15634386
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Nov 2022 19:22:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4165E6343B1
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Nov 2022 19:33:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB09910E19F;
-	Tue, 22 Nov 2022 18:21:57 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C7EA110E19F;
- Tue, 22 Nov 2022 18:21:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72E9810E439;
+	Tue, 22 Nov 2022 18:33:13 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AF0710E439
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Nov 2022 18:33:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669141312; x=1700677312;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=g+bxEE+yBg48pjoV3+DTGzyrgo9HmOayfng5ERUgGb8=;
- b=K1QhWw5JAdj0W9gw4pae4S0aUtQg1hEmZ+bsgo+R3caiVCvS8hm/aObf
- VkIXMITpRCJNccsZvyPVTQWZMGgI6aivDF49V7G3a7er9ud93OYKJpkf1
- K++OHXYrNk5YPLE27pGjlTeJeRSxMpxPhs+wkMfW69UYYg0/vOnYFxd07
- kSgPqbqtYG+nfbX1B9S1+YyZkVNVsO2YWOIpihI+k/iRTIY27az88Cbux
- Lx0v+qS7hDPTizJTTaLdK7WUvTIrlK0aJk7VG+p0I27kvfA3Ve6sPkwGk
- N3X5osk09tJPpzmjQ9hkPHJ17aqa6cI3ROveuV1yvEA03V8vPfvx60Yi3 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="400173982"
-X-IronPort-AV: E=Sophos;i="5.96,184,1665471600"; d="scan'208";a="400173982"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2022 10:21:52 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="643813704"
-X-IronPort-AV: E=Sophos;i="5.96,184,1665471600"; d="scan'208";a="643813704"
-Received: from sfflynn-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.18.151])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2022 10:21:50 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- John.C.Harrison@Intel.com, Intel-GFX@Lists.FreeDesktop.Org
-In-Reply-To: <3b7ef198-7aba-8948-6332-9a57d8ee0fb6@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221118015858.2548106-1-John.C.Harrison@Intel.com>
- <87a64o1qn5.fsf@intel.com>
- <3b7ef198-7aba-8948-6332-9a57d8ee0fb6@intel.com>
-Date: Tue, 22 Nov 2022 20:21:45 +0200
-Message-ID: <87y1s2x32e.fsf@intel.com>
+ t=1669141989; x=1700677989;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=c8URwPzEK0cxGItvk5mfJ2NxAU8WSiPFfGLVFqWmtSs=;
+ b=eNwgabkukTvljIg15ya8WAqQJ5hfShJaW0qlFpLWwuotEO8CQ75xJ74K
+ OCZ+Uig09mKEhWdy9zDHJHP3TfhnVm5I06FF2gLoc5CdusNNSFQmcUgnj
+ NzpsSxpB9w6CyOpmxL/DOJww0NeHB0Ebf7Tyl6zT/3wNDWRQTnGDZwy3R
+ bxEOoYQriaqX+CHBHfoz75sdvQsnriqLERxZsNpe1D77g8sIkn0bMs1hw
+ dUSiV1BYkKMKOLPAftAOppJA9fzdgScYLlAv4q47Mve/XSZ1cNP7Fr7lg
+ lMJZiJ7GhNmodu9qqIgkhiIzWcpb/MkggsCEADdf2FNX5jTZxb/vqZjUJ w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="378144166"
+X-IronPort-AV: E=Sophos;i="5.96,184,1665471600"; d="scan'208";a="378144166"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2022 10:33:08 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="592236066"
+X-IronPort-AV: E=Sophos;i="5.96,184,1665471600"; d="scan'208";a="592236066"
+Received: from msatwood-mobl.jf.intel.com ([10.24.12.71])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2022 10:33:08 -0800
+From: Matt Atwood <matthew.s.atwood@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 22 Nov 2022 10:33:05 -0800
+Message-Id: <20221122183306.140921-1-matthew.s.atwood@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v2 0/5] Add module oriented dmesg output
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3 1/2] drm/i915/dg2: Introduce Wa_18018764978
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,150 +54,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 22 Nov 2022, Michal Wajdeczko <michal.wajdeczko@intel.com> wrote:
-> On 18.11.2022 11:52, Jani Nikula wrote:
->> On Thu, 17 Nov 2022, John.C.Harrison@Intel.com wrote:
->>> From: John Harrison <John.C.Harrison@Intel.com>
->>>
->>> When trying to analyse bug reports from CI, customers, etc. it can be
->>> difficult to work out exactly what is happening on which GT in a
->>> multi-GT system. So add GT oriented debug/error message wrappers. If
->>> used instead of the drm_ equivalents, you get the same output but with
->>> a GT# prefix on it.
->>>
->>> It was also requested to extend this further to submodules in order to
->>> factor out the repeated structure accessing constructs and common
->>> string prefixes. So, add versions for GuC, HuC and GuC CTB as well.
->>>
->>> This patch set updates all the gt/uc files to use the new helpers as a
->>> first step. The intention would be to convert all output messages that
->>> have access to a GT structure.
->>>
->>> v2: Go back to using lower case names, add more wrapper sets (combined
->>> review feedback). Also, wrap up probe injection and WARN entries.
->>>
->>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->> 
->> For adding the wrappers in general, I'm going to disagree and
->> commit. I'll leave it up to Tvrtko and Joonas.
->> 
->> Regarding the placement of the macros, I insist you add individual
->> header files for the wrappers and include them only where needed.
->
-> do you mean:
->
-> 	intel_gt_print.h
-> 	intel_guc_print.h
-> 	intel_huc_print.h
->
-> with just macros or also with all functions that work with drm_printer?
+Wa_18018764978 applies to specific steppings of DG2 (G10 C0+,
+G11 and G12 A0+). Clean up style in function at the same time.
 
-At least for the macros being added now. If adding others does not
-require you to pull in a bunch of additional header dependencies, you
-can add more. And that can be separate patches.
+Bspec: 66622
 
->
->> 
->> We have a fairly serious problem with everything including everything in
->> i915 that I've been slowly trying to tackle. Touch one thing, rebuild
->> everything. About a third of our headers cause the rebuild of the entire
->> driver when modified. We need to reduce the surface of things that cause
->> rebuilds.
->> 
->> For example, intel_gt.h is included by 97 files, intel_guc.h by 332
->> files, and intel_huc.h by 329 files (counting recursively).
->> 
->> There's absolutely no reason any of the display code, for example, needs
->> to have these logging macros in their build. Long term, the headers
->> should be reorganized to reduce the interdependencies, and this is what
->> I've been doing in i915_drv.h and display/ in general. But the least we
->> can do is not make the problem worse.
->
-> to solve this we should really consider splitting out GuC and HuC
-> definitions to dedicated _types.h files and only include them in
-> i915_drv.h (and print macros are orthogonal for this problem)
-
-It's an orthogonal problem, but IMO with the current headers there's no
-reason to make the problem worse by adding somewhat independent new
-stuff to the headers.
-
+Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
 ---
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h     | 3 +++
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 9 +++++++--
+ 2 files changed, 10 insertions(+), 2 deletions(-)
 
-I've looked at untangling this a bunch of times, but I've always felt
-that it's really not my area of expertise, and it would inevitably
-conflict with someone else's work in progress and someone else's idea of
-how the headers should be refactored.
-
-There are chains like this:
-
-i915_drv.h:47:#include "gt/intel_gt_types.h"
-gt/intel_gt_types.h:19:#include "uc/intel_uc.h"
-gt/uc/intel_uc.h:9:#include "intel_guc.h"
-gt/uc/intel_guc.h:15:#include "intel_guc_fwif.h"
-gt/uc/intel_guc_fwif.h:14:#include "abi/guc_actions_abi.h"
-gt/uc/intel_guc_fwif.h:15:#include "abi/guc_actions_slpc_abi.h"
-gt/uc/intel_guc_fwif.h:16:#include "abi/guc_errors_abi.h"
-gt/uc/intel_guc_fwif.h:17:#include "abi/guc_communication_mmio_abi.h"
-gt/uc/intel_guc_fwif.h:18:#include "abi/guc_communication_ctb_abi.h"
-gt/uc/intel_guc_fwif.h:19:#include "abi/guc_klvs_abi.h"
-gt/uc/intel_guc_fwif.h:20:#include "abi/guc_messages_abi.h"
-
-They need to be broken up at some point. There are a bunch of headers
-where only minimal amount of info is actually needed in other headers,
-and the rest is used in a limited number of .c files only.
-
-It's a lot of tedious work to refactor and nobody's going to notice the
-impact directly, they'll just be less grumpy about the build being slow
-and the organization of the headers being messy. And if they don't build
-the driver a lot (like me) or don't refactor the driver a lot (like me)
-maybe they'll never notice.
-
-
-BR,
-Jani.
-
-
->
-> Michal
->
->> 
->> BR,
->> Jani.
->> 
->>>
->>>
->>> John Harrison (5):
->>>   drm/i915/gt: Start adding module oriented dmesg output
->>>   drm/i915/huc: Add HuC specific debug print wrappers
->>>   drm/i915/guc: Add GuC specific debug print wrappers
->>>   drm/i915/guc: Add GuC CT specific debug print wrappers
->>>   drm/i915/uc: Update the gt/uc code to use gt_err and friends
->>>
->>>  drivers/gpu/drm/i915/gt/intel_gt.c            |  96 ++++----
->>>  drivers/gpu/drm/i915/gt/intel_gt.h            |  35 +++
->>>  drivers/gpu/drm/i915/gt/uc/intel_guc.c        |  32 +--
->>>  drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  35 +++
->>>  drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c    |   8 +-
->>>  .../gpu/drm/i915/gt/uc/intel_guc_capture.c    |  48 ++--
->>>  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     | 222 +++++++++---------
->>>  drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c     |  19 +-
->>>  drivers/gpu/drm/i915/gt/uc/intel_guc_log.c    |  37 ++-
->>>  drivers/gpu/drm/i915/gt/uc/intel_guc_rc.c     |   7 +-
->>>  drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   |  55 ++---
->>>  .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  62 +++--
->>>  drivers/gpu/drm/i915/gt/uc/intel_huc.c        |  31 +--
->>>  drivers/gpu/drm/i915/gt/uc/intel_huc.h        |  23 ++
->>>  drivers/gpu/drm/i915/gt/uc/intel_uc.c         | 108 ++++-----
->>>  drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      |  98 ++++----
->>>  drivers/gpu/drm/i915/gt/uc/selftest_guc.c     |  34 +--
->>>  .../drm/i915/gt/uc/selftest_guc_hangcheck.c   |  22 +-
->>>  .../drm/i915/gt/uc/selftest_guc_multi_lrc.c   |  10 +-
->>>  19 files changed, 507 insertions(+), 475 deletions(-)
->> 
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+index 80a979e6f6bec..74379d3c5a4de 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+@@ -457,6 +457,9 @@
+ #define GEN8_L3CNTLREG				_MMIO(0x7034)
+ #define   GEN8_ERRDETBCTRL			(1 << 9)
+ 
++#define PSS_MODE2				_MMIO(0x703c)
++#define   SCOREBOARD_STALL_FLUSH_CONTROL	REG_BIT(5)
++
+ #define GEN7_SC_INSTDONE			_MMIO(0x7100)
+ #define GEN12_SC_INSTDONE_EXTRA			_MMIO(0x7104)
+ #define GEN12_SC_INSTDONE_EXTRA2		_MMIO(0x7108)
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 2afb4f80a954d..ce2be9470c36c 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -771,8 +771,13 @@ static void dg2_ctx_workarounds_init(struct intel_engine_cs *engine,
+ 
+ 	/* Wa_14014947963:dg2 */
+ 	if (IS_DG2_GRAPHICS_STEP(engine->i915, G10, STEP_B0, STEP_FOREVER) ||
+-		IS_DG2_G11(engine->i915) || IS_DG2_G12(engine->i915))
+-		wa_masked_field_set(wal, VF_PREEMPTION, PREEMPTION_VERTEX_COUNT, 0x4000);
++				 IS_DG2_G11(engine->i915) || IS_DG2_G12(engine->i915))
++				 wa_masked_field_set(wal, VF_PREEMPTION, PREEMPTION_VERTEX_COUNT, 0x4000);
++
++	/* Wa_18018764978:dg2 */
++	if (IS_DG2_GRAPHICS_STEP(engine->i915, G10, STEP_C0, STEP_FOREVER) ||
++				 IS_DG2_G11(engine->i915) || IS_DG2_G12(engine->i915))
++				 wa_masked_en(wal, PSS_MODE2, SCOREBOARD_STALL_FLUSH_CONTROL);
+ 
+ 	/* Wa_15010599737:dg2 */
+ 	wa_masked_en(wal, CHICKEN_RASTER_1, DIS_SF_ROUND_NEAREST_EVEN);
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.38.1
+
