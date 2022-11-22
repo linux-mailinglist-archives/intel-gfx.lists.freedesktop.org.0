@@ -1,64 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A16EE63438F
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Nov 2022 19:23:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4822F634235
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Nov 2022 18:08:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4A6310E192;
-	Tue, 22 Nov 2022 18:23:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34A7F10E422;
+	Tue, 22 Nov 2022 17:08:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 418 seconds by postgrey-1.36 at gabe;
- Tue, 22 Nov 2022 12:15:26 UTC
-Received: from mxct.zte.com.cn (mxct.zte.com.cn [58.251.27.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D72210E3D0;
- Tue, 22 Nov 2022 12:15:26 +0000 (UTC)
-Received: from mxde.zte.com.cn (unknown [10.35.20.121])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mxct.zte.com.cn (FangMail) with ESMTPS id 4NGjhT6Pr7zK8S;
- Tue, 22 Nov 2022 20:08:25 +0800 (CST)
-Received: from mxus.zte.com.cn (unknown [10.207.168.8])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mxde.zte.com.cn (FangMail) with ESMTPS id 4NGjhB49MfzBf6Lr;
- Tue, 22 Nov 2022 20:08:10 +0800 (CST)
-Received: from mxhk.zte.com.cn (unknown [192.168.250.138])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mxus.zte.com.cn (FangMail) with ESMTPS id 4NGjh66CBPzdmJQW;
- Tue, 22 Nov 2022 20:08:06 +0800 (CST)
-Received: from mse-fl2.zte.com.cn (unknown [10.5.228.133])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mxhk.zte.com.cn (FangMail) with ESMTPS id 4NGjh12Qybz5PkGj;
- Tue, 22 Nov 2022 20:08:01 +0800 (CST)
-Received: from szxlzmapp04.zte.com.cn ([10.5.231.166])
- by mse-fl2.zte.com.cn with SMTP id 2AMC7uCC005801;
- Tue, 22 Nov 2022 20:07:56 +0800 (+08)
- (envelope-from yang.yang29@zte.com.cn)
-Received: from mapi (szxlzmapp02[null]) by mapi (Zmail) with MAPI id mid14;
- Tue, 22 Nov 2022 20:07:59 +0800 (CST)
-Date: Tue, 22 Nov 2022 20:07:59 +0800 (CST)
-X-Zmail-TransId: 2b04637cbb9ffffffffffa0dfedf
-X-Mailer: Zmail v1.0
-Message-ID: <202211222007593082125@zte.com.cn>
-Mime-Version: 1.0
-From: <yang.yang29@zte.com.cn>
-To: <zhenyuw@linux.intel.com>
-Content-Type: text/plain;
-	charset="UTF-8"
-X-MAIL: mse-fl2.zte.com.cn 2AMC7uCC005801
-X-Fangmail-Gw-Spam-Type: 0
-X-FangMail-Miltered: at cgslv5.04-192.168.251.14.novalocal with ID
- 637CBBB8.002 by FangMail milter!
-X-FangMail-Envelope: 1669118906/4NGjhT6Pr7zK8S/637CBBB8.002/10.35.20.121/[10.35.20.121]/mxde.zte.com.cn/<yang.yang29@zte.com.cn>
-X-Fangmail-Anti-Spam-Filtered: true
-X-Fangmail-MID-QID: 637CBBB8.002/4NGjhT6Pr7zK8S
-X-Mailman-Approved-At: Tue, 22 Nov 2022 18:23:19 +0000
-Subject: [Intel-gfx] =?utf-8?q?=5BPATCH_linux-next=5D_drm/i915/gvt=3A_use?=
- =?utf-8?q?_sysfs=5Fstreq=28=29_instead_of_strncmp=28=29?=
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com
+ [IPv6:2a00:1450:4864:20::42a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA09B10E422
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Nov 2022 17:08:05 +0000 (UTC)
+Received: by mail-wr1-x42a.google.com with SMTP id s5so8502387wru.1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Nov 2022 09:08:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=Ve9qToTAjko4Xn5/rlkROCfUSo37Rgk78oiOnmwUwAU=;
+ b=UTgjIRpLOL/7otFlPM7wX91GWVEbyelUoIOfxeC6ZhL8WuxwL4Nb7rXb4HD1EytWRF
+ fM6S4/NXWz/8WrAreoT9cPW/bjXslVl/BKUmEg5pyx6M4Uaclx3FjX7vn4vXq8ig0wzL
+ rCBB7/W7XRNLC+tcLw3TAl4no/GdXkQLmuKTA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=Ve9qToTAjko4Xn5/rlkROCfUSo37Rgk78oiOnmwUwAU=;
+ b=3odI8OzsksXwXQIoEfx6i0MsLCKOcNEK+evBMyNv9FuKWEbcQVm6jgu5KxuLK91LHF
+ VQNStgcGHXa7KiEm8iXUNgG3/6V/0K7YRc5WtIEfVfMXfuF+KCeXX17FCVnpou/14pHo
+ wQOqbtxlNcYt0oFFMhS2R+UCYXocyJReBmGGwt0kxLJfHto8Gp+L6wNI+r6ZGynftUyq
+ LDaLaVKQYmuZfrkQm000nkFryFyowtDGm3N1ZqW1K3B3bIRss9i96iXsA12ibyi1Q183
+ qeV14Rc5wzFO5NjsJvZz7guLGK6ccF/w7MCuTpuKlmIG3N4vDl5+4HVPbrmpgEv0r5zE
+ ToYQ==
+X-Gm-Message-State: ANoB5pnLbAMbyhFjVFTUVJJgTeqlTHMHRfir2Z0hCVewm1TTpe3g1JOd
+ O45Tt5DbqRdJwLSqqrgUfqUjGQ==
+X-Google-Smtp-Source: AA0mqf74IZLJygrpyRzf5qHhhvP3A1tbMBtTE6ln+kXNQdMnkp0LHZho99MMNt+23oEZ2UGDXNYLyA==
+X-Received: by 2002:a5d:6547:0:b0:241:e4cc:f044 with SMTP id
+ z7-20020a5d6547000000b00241e4ccf044mr2164424wrv.457.1669136884287; 
+ Tue, 22 Nov 2022 09:08:04 -0800 (PST)
+Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
+ [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
+ m42-20020a05600c3b2a00b003cf47556f21sm24861760wms.2.2022.11.22.09.08.03
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 22 Nov 2022 09:08:03 -0800 (PST)
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Date: Tue, 22 Nov 2022 18:08:00 +0100
+Message-Id: <20221122170801.842766-1-daniel.vetter@ffwll.ch>
+X-Mailer: git-send-email 2.37.2
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] dma-buf: Require VM_PFNMAP vma for mmap
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,72 +66,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: xu.panda@zte.com.cn, intel-gvt-dev@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- yang.yang29@zte.com.cn, dri-devel@lists.freedesktop.org, daniel@ffwll.ch,
- rodrigo.vivi@intel.com, airlied@gmail.com
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Wilcox <willy@infradead.org>, Sumit Semwal <sumit.semwal@linaro.org>,
+ linaro-mm-sig@lists.linaro.org, Jason Gunthorpe <jgg@ziepe.ca>,
+ John Stultz <john.stultz@linaro.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Suren Baghdasaryan <surenb@google.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ linux-media@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Xu Panda <xu.panda@zte.com.cn>
+tldr; DMA buffers aren't normal memory, expecting that you can use
+them like that (like calling get_user_pages works, or that they're
+accounting like any other normal memory) cannot be guaranteed.
 
-Replace the open-code with sysfs_streq().
+Since some userspace only runs on integrated devices, where all
+buffers are actually all resident system memory, there's a huge
+temptation to assume that a struct page is always present and useable
+like for any more pagecache backed mmap. This has the potential to
+result in a uapi nightmare.
 
-Signed-off-by: Xu Panda <xu.panda@zte.com.cn>
-Signed-off-by: Yang Yang <yang.yang29@zte.com>
+To stop this gap require that DMA buffer mmaps are VM_PFNMAP, which
+blocks get_user_pages and all the other struct page based
+infrastructure for everyone. In spirit this is the uapi counterpart to
+the kernel-internal CONFIG_DMABUF_DEBUG.
+
+Motivated by a recent patch which wanted to swich the system dma-buf
+heap to vm_insert_page instead of vm_insert_pfn.
+
+v2:
+
+Jason brought up that we also want to guarantee that all ptes have the
+pte_special flag set, to catch fast get_user_pages (on architectures
+that support this). Allowing VM_MIXEDMAP (like VM_SPECIAL does) would
+still allow vm_insert_page, but limiting to VM_PFNMAP will catch that.
+
+From auditing the various functions to insert pfn pte entires
+(vm_insert_pfn_prot, remap_pfn_range and all it's callers like
+dma_mmap_wc) it looks like VM_PFNMAP is already required anyway, so
+this should be the correct flag to check for.
+
+v3: Change to WARN_ON_ONCE (Thomas Zimmermann)
+
+References: https://lore.kernel.org/lkml/CAKMK7uHi+mG0z0HUmNt13QCCvutuRVjpcR0NjRL12k-WbWzkRg@mail.gmail.com/
+Acked-by: Christian König <christian.koenig@amd.com>
+Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: Suren Baghdasaryan <surenb@google.com>
+Cc: Matthew Wilcox <willy@infradead.org>
+Cc: John Stultz <john.stultz@linaro.org>
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+Cc: Sumit Semwal <sumit.semwal@linaro.org>
+Cc: "Christian König" <christian.koenig@amd.com>
+Cc: linux-media@vger.kernel.org
+Cc: linaro-mm-sig@lists.linaro.org
+--
+Ok I entirely forgot about this patch but stumbled over it and checked
+what's up with it no. I think it's ready now for merging:
+- shmem helper patches to fix up vgem landed
+- ttm has been fixed since a while
+- I don't think we've had any other open issues
+
+Time to lock down this uapi contract for real?
+-Daniel
 ---
- drivers/gpu/drm/i915/gvt/cmd_parser.c | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+ drivers/dma-buf/dma-buf.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gvt/cmd_parser.c b/drivers/gpu/drm/i915/gvt/cmd_parser.c
-index 0ebf5fbf0e39..7b9a5f7f5363 100644
---- a/drivers/gpu/drm/i915/gvt/cmd_parser.c
-+++ b/drivers/gpu/drm/i915/gvt/cmd_parser.c
-@@ -917,8 +917,8 @@ static int cmd_reg_handler(struct parser_exec_state *s,
- 		return -EBADRQC;
- 	}
-
--	if (!strncmp(cmd, "srm", 3) ||
--			!strncmp(cmd, "lrm", 3)) {
-+	if (sysfs_streq(cmd, "srm") ||
-+			sysfs_streq(cmd, "lrm")) {
- 		if (offset == i915_mmio_reg_offset(GEN8_L3SQCREG4) ||
- 		    offset == 0x21f0 ||
- 		    (IS_BROADWELL(gvt->gt->i915) &&
-@@ -931,8 +931,8 @@ static int cmd_reg_handler(struct parser_exec_state *s,
- 		}
- 	}
-
--	if (!strncmp(cmd, "lrr-src", 7) ||
--			!strncmp(cmd, "lrr-dst", 7)) {
-+	if (sysfs_streq(cmd, "lrr-src") ||
-+			sysfs_streq(cmd, "lrr-dst")) {
- 		if (IS_BROADWELL(gvt->gt->i915) && offset == 0x215c)
- 			return 0;
- 		else {
-@@ -941,12 +941,12 @@ static int cmd_reg_handler(struct parser_exec_state *s,
- 		}
- 	}
-
--	if (!strncmp(cmd, "pipe_ctrl", 9)) {
-+	if (sysfs_streq(cmd, "pipe_ctrl")) {
- 		/* TODO: add LRI POST logic here */
- 		return 0;
- 	}
-
--	if (strncmp(cmd, "lri", 3))
-+	if (!sysfs_streq(cmd, "lri"))
- 		return -EPERM;
-
- 	/* below are all lri handlers */
-@@ -1011,7 +1011,7 @@ static int cmd_reg_handler(struct parser_exec_state *s,
- 	 */
- 	if (GRAPHICS_VER(s->engine->i915) == 9 &&
- 	    intel_gvt_mmio_is_sr_in_ctx(gvt, offset) &&
--	    !strncmp(cmd, "lri", 3)) {
-+	    sysfs_streq(cmd, "lri")) {
- 		intel_gvt_read_gpa(s->vgpu,
- 			s->workload->ring_context_gpa + 12, &ctx_sr_ctl, 4);
- 		/* check inhibit context */
+diff --git a/drivers/dma-buf/dma-buf.c b/drivers/dma-buf/dma-buf.c
+index b6c36914e7c6..88718665c3c3 100644
+--- a/drivers/dma-buf/dma-buf.c
++++ b/drivers/dma-buf/dma-buf.c
+@@ -150,6 +150,8 @@ static int dma_buf_mmap_internal(struct file *file, struct vm_area_struct *vma)
+ 	ret = dmabuf->ops->mmap(dmabuf, vma);
+ 	dma_resv_unlock(dmabuf->resv);
+ 
++	WARN_ON_ONCE(!(vma->vm_flags & VM_PFNMAP));
++
+ 	return ret;
+ }
+ 
+@@ -1495,6 +1497,8 @@ int dma_buf_mmap(struct dma_buf *dmabuf, struct vm_area_struct *vma,
+ 	ret = dmabuf->ops->mmap(dmabuf, vma);
+ 	dma_resv_unlock(dmabuf->resv);
+ 
++	WARN_ON_ONCE(!(vma->vm_flags & VM_PFNMAP));
++
+ 	return ret;
+ }
+ EXPORT_SYMBOL_NS_GPL(dma_buf_mmap, DMA_BUF);
 -- 
-2.15.2
+2.37.2
+
