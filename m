@@ -1,33 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7175C634418
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Nov 2022 19:56:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CE8463441C
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Nov 2022 19:58:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14CEE10E43B;
-	Tue, 22 Nov 2022 18:56:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBCA410E441;
+	Tue, 22 Nov 2022 18:57:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 23CB610E442;
- Tue, 22 Nov 2022 18:56:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 22360AADE7;
- Tue, 22 Nov 2022 18:56:20 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7212139278096386185=="
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1515910E43B;
+ Tue, 22 Nov 2022 18:57:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1669143469; x=1700679469;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=nVxdc1EHcgRU+BJnTfJAE7FbDIo04dklBg/Vo24XIb4=;
+ b=HgSgY9PbrVidhkGmflVIqIA68cn5fXpos65D9IkqpFniszDyjK9NbBRr
+ X+a946x8OINb6BC33CiC6sUqN5u/l3EJbbxr6bBdibVvTClEmfsvnLnwV
+ oASMeFFqpANjjspAnWyFlQMwRcDcUCc883zyi/yS0IBMdlBssFhMS5k1m
+ rnUGqnyp9y64NbUkmcHaAbhADppA/n7nB8HuV7sZCieMZG5V/qcTL5ML2
+ nEJ+IRTFdNjJJoyeeHbO5Rzu25QZy3iNvXVOX73D7TxzObW1VD/7qdjQm
+ X8btBHv131Z1HoQgtDkI/gOtC7jDYRcHJgMZnQ98YhBlM4V1hMtlnHUdA A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="293598561"
+X-IronPort-AV: E=Sophos;i="5.96,184,1665471600"; d="scan'208";a="293598561"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2022 10:57:48 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="641517987"
+X-IronPort-AV: E=Sophos;i="5.96,184,1665471600"; d="scan'208";a="641517987"
+Received: from fuhrberg-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.251.209.136])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2022 10:57:44 -0800
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Tue, 22 Nov 2022 19:57:33 +0100
+Message-Id: <20221122185737.96459-1-andi.shyti@linux.intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gustavo Sousa" <gustavo.sousa@intel.com>
-Date: Tue, 22 Nov 2022 18:56:20 -0000
-Message-ID: <166914338013.2187.11475931893706779084@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221122121343.18136-1-gustavo.sousa@intel.com>
-In-Reply-To: <20221122121343.18136-1-gustavo.sousa@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/dmc=3A_Update_DG2_DMC_version_to_v2=2E08_=28rev2=29?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 0/4] Add guard padding around i915_vma
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,174 +57,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>, Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7212139278096386185==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi,
 
-== Series Details ==
+This series adds guards around vma's but setting a pages at the
+beginning and at the end that work as padding.
 
-Series: drm/i915/dmc: Update DG2 DMC version to v2.08 (rev2)
-URL   : https://patchwork.freedesktop.org/series/111164/
-State : success
+The first user of the vma guard are scanout objects which don't
+need anymore to add scratch to all the unused ggtt's and speeding
+up up considerably the boot and resume by several hundreds of
+milliseconds up to over a full second in slower machines.
 
-== Summary ==
+Because of this we don't need anymore 2ef6efa79fec ("drm/i915:
+Improve on suspend / resume time with VT-d enabled") which gets
+reverted.
 
-CI Bug Log - changes from CI_DRM_12418 -> Patchwork_111164v2
-====================================================
+Changelog
+=========
+v1 -> v2:
+ - Revert 2ef6efa79fec ("drm/i915: Improve on suspend / resume
+   time with VT-d enabled") 
 
-Summary
--------
+Andi
 
-  **SUCCESS**
+Andi Shyti (1):
+  Revert "drm/i915: Improve on suspend / resume time with VT-d enabled"
 
-  No regressions found.
+Chris Wilson (3):
+  drm/i915: Wrap all access to i915_vma.node.start|size
+  drm/i915: Introduce guard pages to i915_vma
+  drm/i915: Refine VT-d scanout workaround
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111164v2/index.html
+ drivers/gpu/drm/i915/display/intel_fbdev.c    |   2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_domain.c    |  13 +++
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  33 +++---
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c      |   2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_shrinker.c  |   2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_tiling.c    |   4 +-
+ .../gpu/drm/i915/gem/selftests/huge_pages.c   |   2 +-
+ .../i915/gem/selftests/i915_gem_client_blt.c  |  23 ++--
+ .../drm/i915/gem/selftests/i915_gem_context.c |  15 ++-
+ .../drm/i915/gem/selftests/i915_gem_mman.c    |   2 +-
+ .../drm/i915/gem/selftests/igt_gem_utils.c    |   7 +-
+ drivers/gpu/drm/i915/gt/gen7_renderclear.c    |   2 +-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          | 108 ++++--------------
+ drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c  |   3 +-
+ drivers/gpu/drm/i915/gt/intel_gtt.h           |  24 ----
+ drivers/gpu/drm/i915/gt/intel_renderstate.c   |   2 +-
+ .../gpu/drm/i915/gt/intel_ring_submission.c   |   2 +-
+ drivers/gpu/drm/i915/gt/selftest_engine_cs.c  |   8 +-
+ drivers/gpu/drm/i915/gt/selftest_execlists.c  |  18 +--
+ drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |  15 +--
+ drivers/gpu/drm/i915/gt/selftest_lrc.c        |  16 +--
+ .../drm/i915/gt/selftest_ring_submission.c    |   2 +-
+ drivers/gpu/drm/i915/gt/selftest_rps.c        |  12 +-
+ .../gpu/drm/i915/gt/selftest_workarounds.c    |   8 +-
+ drivers/gpu/drm/i915/i915_cmd_parser.c        |   4 +-
+ drivers/gpu/drm/i915/i915_debugfs.c           |   2 +-
+ drivers/gpu/drm/i915/i915_driver.c            |  16 ---
+ drivers/gpu/drm/i915/i915_gem_gtt.h           |   3 +-
+ drivers/gpu/drm/i915/i915_perf.c              |   2 +-
+ drivers/gpu/drm/i915/i915_vma.c               |  59 +++++++---
+ drivers/gpu/drm/i915/i915_vma.h               |  52 ++++++++-
+ drivers/gpu/drm/i915/i915_vma_resource.c      |   4 +-
+ drivers/gpu/drm/i915/i915_vma_resource.h      |  17 ++-
+ drivers/gpu/drm/i915/i915_vma_types.h         |   3 +-
+ drivers/gpu/drm/i915/selftests/i915_request.c |  20 ++--
+ drivers/gpu/drm/i915/selftests/igt_spinner.c  |   8 +-
+ 36 files changed, 259 insertions(+), 256 deletions(-)
 
-Participating hosts (33 -> 32)
-------------------------------
+-- 
+2.38.1
 
-  Missing    (1): fi-hsw-4770 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_111164v2 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - {bat-rpls-2}:       [DMESG-WARN][1] ([i915#6434]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12418/bat-rpls-2/igt@gem_exec_suspend@basic-s0@smem.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111164v2/bat-rpls-2/igt@gem_exec_suspend@basic-s0@smem.html
-
-  * igt@i915_selftest@live@guc:
-    - {bat-rpls-2}:       [DMESG-WARN][3] ([i915#6471]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12418/bat-rpls-2/igt@i915_selftest@live@guc.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111164v2/bat-rpls-2/igt@i915_selftest@live@guc.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - {bat-adlm-1}:       [INCOMPLETE][5] ([i915#4983]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12418/bat-adlm-1/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111164v2/bat-adlm-1/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5278]: https://gitlab.freedesktop.org/drm/intel/issues/5278
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6434]: https://gitlab.freedesktop.org/drm/intel/issues/6434
-  [i915#6471]: https://gitlab.freedesktop.org/drm/intel/issues/6471
-  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
-  [i915#7346]: https://gitlab.freedesktop.org/drm/intel/issues/7346
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12418 -> Patchwork_111164v2
-
-  CI-20190529: 20190529
-  CI_DRM_12418: 22789b788bcaf35826550836b0ad6872d6e85ca6 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7071: 0801475083ccb938b1d3b358502ff97fdb435585 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_111164v2: 22789b788bcaf35826550836b0ad6872d6e85ca6 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-e2ce3d2a3646 drm/i915/dmc: Update DG2 DMC version to v2.08
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111164v2/index.html
-
---===============7212139278096386185==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dmc: Update DG2 DMC version to v2.08 (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/111164/">https://patchwork.freedesktop.org/series/111164/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111164v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111164v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12418 -&gt; Patchwork_111164v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111164v2/index.html</p>
-<h2>Participating hosts (33 -&gt; 32)</h2>
-<p>Missing    (1): fi-hsw-4770 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_111164v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12418/bat-rpls-2/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6434">i915#6434</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111164v2/bat-rpls-2/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@guc:</p>
-<ul>
-<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12418/bat-rpls-2/igt@i915_selftest@live@guc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6471">i915#6471</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111164v2/bat-rpls-2/igt@i915_selftest@live@guc.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>{bat-adlm-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12418/bat-adlm-1/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111164v2/bat-adlm-1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12418 -&gt; Patchwork_111164v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12418: 22789b788bcaf35826550836b0ad6872d6e85ca6 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7071: 0801475083ccb938b1d3b358502ff97fdb435585 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_111164v2: 22789b788bcaf35826550836b0ad6872d6e85ca6 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>e2ce3d2a3646 drm/i915/dmc: Update DG2 DMC version to v2.08</p>
-
-</body>
-</html>
-
---===============7212139278096386185==--
