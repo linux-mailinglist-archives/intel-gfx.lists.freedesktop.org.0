@@ -2,57 +2,124 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D0126341D2
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Nov 2022 17:47:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB68D634390
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Nov 2022 19:23:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43E7710E41F;
-	Tue, 22 Nov 2022 16:47:10 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8431310E41F;
- Tue, 22 Nov 2022 16:47:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669135627; x=1700671627;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=XxIDPj06HiLIyPsDjsbVtLxOjDl0Zf7g3cq3UjTB0m8=;
- b=grKKZt6C96bUgTaqcb5q0C7vLb2gopAH1R/5ruzClJu5alQdygwQTntB
- Xsu4Rism6VDhu5O6u49n8+5N5CtC3+EI67SP4jL9tmmX47E/CSFbXeu6F
- fYKs2d5wTZ3APriyBOtRcSgM5ASeVotb1rmi2B9M7KbPwFHdrj+fLAhDi
- J8sq25DvB9LV/CR/qQQRndtL5cwXIBerT8mboicS3uFE/WZS8XUgvbrkN
- jV+DfvM/W94KUMgt0KnnN1YzZnaytwz8XuxPnXZjkOxKVE7AoTm9szn9C
- 8fhRazRJsniw1OTfAyWwhADl+XMM7ZPQWqIf1DjxccVm3Y5HwolVT0vLc A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="378118030"
-X-IronPort-AV: E=Sophos;i="5.96,184,1665471600"; d="scan'208";a="378118030"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2022 08:47:06 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="643780402"
-X-IronPort-AV: E=Sophos;i="5.96,184,1665471600"; d="scan'208";a="643780402"
-Received: from irvmail001.ir.intel.com ([10.43.11.63])
- by fmsmga007.fm.intel.com with ESMTP; 22 Nov 2022 08:47:05 -0800
-Received: from [10.249.128.71] (mwajdecz-MOBL.ger.corp.intel.com
- [10.249.128.71])
- by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- 2AMGl4qw030277; Tue, 22 Nov 2022 16:47:04 GMT
-Message-ID: <ba438ba2-4adf-45e0-b79b-6aba3641d09f@intel.com>
-Date: Tue, 22 Nov 2022 17:47:03 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.5.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE8EB10E19F;
+	Tue, 22 Nov 2022 18:23:24 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2060f.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7eaa::60f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1301110E14F;
+ Tue, 22 Nov 2022 05:19:13 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lXKpS6Vi6E3CzTH/f2pUr8kMEwdXSnj+hCJ+yyZaRuzPAgIw50YHpB8Ev0o2NzNph8Y64BS1n+RUSI9zdsvspnAk6QZHV93I5RZmpZCwhxOP2m93R0zzJ6zmf3ZAyLWzZwfFTzNJz+feFHp4ygpT+u//xZmcuUW3cSm/O0XvJHigPOMH1f/KD9tckp31VJOFW9aHWshuGDyeU2TM3yOuBXUiT3hyfcPuVDnWHlju2cr9q/ZS/aQ/HTsnSHpVJE4iIjwopbSPWd8AniefV9G80xwYki+bUf0St+I0jBfY7VK3QRtHW2tLWPgEdD1QecPNteTn0eyKVxv2aobftXY6MA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=va6w38PmyyjazIb8lXGqus+K2nWf5odc8XxeHNmULZk=;
+ b=eL2cAP2uJxC9ICe1NKPks3RqQchDVJ3V5E7juoCQGuJw3HoS1Ppxk6dpsGYH+JMM5uuspww1SwhDkcQI2ZL5OsjndI7juiDJB2FXYADNfLaCd8e1zzHiooqO69Nqn/6EHIvEp4RROW8tb8btFz7bjjIeUZI4n1w18GF7r3sr/ZVI+o4JyyMo8mSVgDr6bVXLHsxHwyUNS4hYlyA1p14BT8yv/v7/robeQ3atQSrOeGyGTF4xjjsSTEN/VD4RTIHAhwCna5Lq44r5etcLneCo6+fflt3i/ZcioZl0IVw7+T51Eqv6BlHVbU/RRRVR4b/TPVYZ8VPAIQdWIxLaMU/UXQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=va6w38PmyyjazIb8lXGqus+K2nWf5odc8XxeHNmULZk=;
+ b=c20rD5VN112zdvqS2yiTwR+hj9eSEhO6HyLfVvnq0StKpBGK9f8VXpv3/GXvn3YfQcpmIskVaBWQq8W2ekKjhrWcqstvNzKqvr/dAQH6hfifhkltUTt2og4J3+ZBVXcFM8d14KNO9ogA6d/L+d+rc1JIYr/rIfAK+QsHLKUvy8A=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BY5PR12MB3892.namprd12.prod.outlook.com (2603:10b6:a03:1a2::11)
+ by IA1PR12MB6281.namprd12.prod.outlook.com (2603:10b6:208:3e7::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5834.11; Tue, 22 Nov
+ 2022 05:19:11 +0000
+Received: from BY5PR12MB3892.namprd12.prod.outlook.com
+ ([fe80::3070:2c51:2a78:ebc1]) by BY5PR12MB3892.namprd12.prod.outlook.com
+ ([fe80::3070:2c51:2a78:ebc1%3]) with mapi id 15.20.5834.015; Tue, 22 Nov 2022
+ 05:19:11 +0000
+Message-ID: <4afc480b-a211-dcc5-1b8f-7c097f2c6a7b@amd.com>
+Date: Tue, 22 Nov 2022 10:48:58 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
 Content-Language: en-US
-To: John.C.Harrison@Intel.com, Intel-GFX@Lists.FreeDesktop.Org
-References: <20221118015858.2548106-1-John.C.Harrison@Intel.com>
- <20221118015858.2548106-2-John.C.Harrison@Intel.com>
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20221118015858.2548106-2-John.C.Harrison@Intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2 1/5] drm/i915/gt: Start adding module
- oriented dmesg output
+To: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+References: <20221116085012.187756-1-Amaranath.Somalapuram@amd.com>
+ <20221116085012.187756-2-Amaranath.Somalapuram@amd.com>
+ <fa9ecb1f-17a9-c7ce-d25a-42c3860f1b8d@amd.com>
+From: "Somalapuram, Amaranath" <asomalap@amd.com>
+In-Reply-To: <fa9ecb1f-17a9-c7ce-d25a-42c3860f1b8d@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PN3PR01CA0082.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:9a::17) To BY5PR12MB3892.namprd12.prod.outlook.com
+ (2603:10b6:a03:1a2::11)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BY5PR12MB3892:EE_|IA1PR12MB6281:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6291acfb-221f-4696-6a72-08dacc4915de
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: rKBqv6eLrD8x5Q6Fj9Suz1OaPJNwcx5UkiUY+mp7w2X4xgwh1rf0m7x6rMgAGcxZhY1tX+Scz8I0s/dVyhw/JEcwpQS0LCVJHptWArWHRNIrDjyXS4vP3Y5apkPO1bgN0oYr9HStzyvBnr7TZEwY3OcnCgWfeMtM+uhTqAGRVM5Zb0NZM7MoNLFIksWsDu1RQ9XTz/t9yVIBbl1UFSSwlMTJDPmimBaTY8QrwJndqvkBoIh7tl1Xx9aduC9A950gwDYzXRP2ngV5xRYniP96shwccbzGUp0SRRMK2WdryzUfPTdLH/IgG7EYSBBPpY90Qd+zGRdiEbfsq7jIbiEz07NhsUt2jqMovDcDx5WzkGVRHzaDFxMi4QIXgMTePWKT0X92pf5Moujblpk9JA6MVdQVz5buebBt3J2a4f8IAjzra0wx/PxDWmEO2q4rO+XBfSZDGg3TkG0iBjlIiXGxzGewZOi2d4aZkBimw40A2WrLt4Pre6vgHQ/ym6tR1niz6wIEsQ3Qaf0cDNUIFTT1nFlkZne/RqzfChZKu0sZO3Crom00IDjOwmb1QXu+fSrV8us1ERoTXVi1B+C/CkH/grdiH2ty6NQJCD9fe5vssngqNVul44Bf0MM0v4y2y5rEpmjf7fuz9ae+L/XlWDS5lX/TteGMYCgDxYUqogaexJMj1bNuRqByHcOBGUy3kj+QtJxKxhw7+KGJ1yGJmH71gaMcO41YwxCGSkyvl0ByAH4=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BY5PR12MB3892.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(4636009)(396003)(346002)(376002)(366004)(39860400002)(136003)(451199015)(450100002)(316002)(31686004)(66476007)(66556008)(110136005)(8676002)(4326008)(66946007)(186003)(26005)(2906002)(5660300002)(8936002)(36756003)(53546011)(6512007)(478600001)(6486002)(4744005)(6506007)(41300700001)(6666004)(31696002)(83380400001)(2616005)(38100700002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?T2plVVVuVUg1UVVhNEpzL083M0FQc0YzcFFNcFUvTmpoQWUvQjhETE9TOGRQ?=
+ =?utf-8?B?QTloYnk3aVFWWlQvZ3N2NzFVL3QxY0VRaG9UWVJLcTNxY1J1aFgrL2pMQ09P?=
+ =?utf-8?B?Zk5qbXlFWkc1eUN3RGJvYzVjR0Y2VHRyaEwrcW5BUHJJZjhXZzJ4TmlIQnE5?=
+ =?utf-8?B?ZHVCbkNQQnlGV1RwbHBYTDVJeWFSVzdjQStOKzJUdmdFZlJMZVZJcjZzODBr?=
+ =?utf-8?B?U3VMbHdNM0RmV1BWR3libGVTczFMZ0t2Z084UldKVGh1bng5eWFoM1JUNTVw?=
+ =?utf-8?B?c0hoZ1hJNFlhb2U0Rm9PUzJJSk5nK3ZWWlBXL1J3Z2IwaVBRUzhKanRYNFpE?=
+ =?utf-8?B?ODFQcERvMDNKemU2UDY3akloUWdXeHJGaGJLM3lxNVkrZzRySFZNc0FLbHkr?=
+ =?utf-8?B?eEVFSjdpUGpES1ZhZWpBMEYwaE9OajliWGpyTWJuSEZRdW9IKzVOcUNuaWJC?=
+ =?utf-8?B?TmxzN3Z2amE5anpPb2l5ZkRHRElkT0JkUTFWZzBuanZDK1VMSEFrMGdHd2po?=
+ =?utf-8?B?UGhxNkprSkNvbUErc3lld1U1dERDVStZQ0N1azd1enljMGhZR1pxS3I1cHRp?=
+ =?utf-8?B?N3ovLzAvcHNXK2lja1Z2Rm1FSlR6elFUMXFrQVZ4dkd1cFQ0VEVNeHphbjVX?=
+ =?utf-8?B?bHRqTVVqQ1JyUEI0cWUwamlTb1U0L2JIYVZNZGx2V3EzRTNESzZtNExUZzRz?=
+ =?utf-8?B?Y1licS9LU1pPbU8zdGpaa1lIY1pxWTlYemJvZlpDSm53TTUrOFVJK1pDdU1t?=
+ =?utf-8?B?ZTdoV25YMFNwQ1g3S3ZSRG5ZYit1TGhWWVlrdGp3bUhJcGdqNmQvNm81NnFW?=
+ =?utf-8?B?dlp6RGVENWdON0NlK1RaRzFuaFdFbDR3TkJ2YTdkcVdXMzN0RDNZS0ZDYTZv?=
+ =?utf-8?B?SHMrcEJqdnhSMStHUG9xMmEzcHdTRHVrZUdiRjdMMjBQQXNkMXhWUk5TUlBn?=
+ =?utf-8?B?UDg0cjRjRmJRRjZwT2tiVWo3UlVLR2tMQXNKSS9oSFBEVFNZRHphb3ZMRjI3?=
+ =?utf-8?B?VHB4QXhNTUJKZURmQUovLzBKRlFIa1l3M0ZZclgyVHR1N0kyc2YzVXFBU0dy?=
+ =?utf-8?B?NzhqYzY5Z1BVVnE2QTNzZ2JDaVFmTWdkM1EvQktwYWk4Sk1Ja2lybEZHN1kx?=
+ =?utf-8?B?MlZOa0xFWmZyTW9TeDhnK21hY2ExdHRyUERIM2ZrWGcrN1AwZS8vVk8wK013?=
+ =?utf-8?B?bmgzTTE3U3RkVDRYZ2h5RVF0d1ZsUnUwOS8wMFBYMXV2VEtyL2lzL05jdlZD?=
+ =?utf-8?B?Y1ZpQUFPQmNCcUpmd0F4SllJZVVJV1NPbThzQzdUcXJ3RStSTkNpMUZWNzhH?=
+ =?utf-8?B?MXVpdEtBYXBuWm80akljMnowd2hZVFFVR2hJZ0ljMVJHUWtBeS9HR3BiemJX?=
+ =?utf-8?B?eTJuRUpsMWhrVVRQMVVISXVBM3Rnc1g4MzRwcDluTHVSR1kxejFWT2ZxTndP?=
+ =?utf-8?B?a0xFcEtNdnN1ZUkzOUhrYnBhaEVGY2t6TjFpL0ZYSENNUzlrUGMra0xUU2dS?=
+ =?utf-8?B?c2srMTdTY2ZKYXIySysrdzF3Y096N1pmMEZ2aytTclppZlhoais4M3ZrQmNX?=
+ =?utf-8?B?ZDFoTGdzWjgvSkRxNTdRa0trcnlSNzQxWktsMXBqZ3BVQ2RwOEZLL3k5QmY0?=
+ =?utf-8?B?ZFZmalA5Mmg5RnNDNjdnd1FvSVhQeW5TenFNaks0ZDMzQjlMdkpiODloVWxO?=
+ =?utf-8?B?c2ZNaHVNWXBoNUU2anpJZ3c1ZkNOUmxEVTNVMldOdVNEcGptQ0N4ZmFrRzRr?=
+ =?utf-8?B?SnA1Nk1uaTFpc2YvQkthTmM0OXR2bXhLVHFVRCtQaWRLSTFINkZsUW9KdzJ4?=
+ =?utf-8?B?K1Q5WTBOZ2h6a0VmVkNNL0tlL3FqUjZNRjVIcDdZczFBY3dFVElCeGpwbkdz?=
+ =?utf-8?B?MCs0N080NDlRZTZDNHdjbGliU2E0QlhSN0xWVm1CK0krSllEeFlTUFBqYnhB?=
+ =?utf-8?B?SlhXRnZ6aHdyRUlNQUIxeTdnTkw5OVJ6cndLampFWUlORFltVVBkU3RlNE4v?=
+ =?utf-8?B?K3N4d1Y0dDNaREVUZFRiMzVLRmFXMVVCbkRxY3FyUzVvQ1VWY2txcC9mcjQ5?=
+ =?utf-8?B?cWVmSXl0WTRkc0p3NklnekZZNjU2aUpQSUpKckFaRFhRM3R3ZTFGeC96N0d3?=
+ =?utf-8?Q?WwV0YHfm54XcFy/AV3yWlgZN3?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6291acfb-221f-4696-6a72-08dacc4915de
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR12MB3892.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Nov 2022 05:19:10.9172 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: tNTwIFTVI0iI9oMJnatHiFKgThC8EoRQSRnOJCpsVUERVLNKyYT+urQh6KKmrXt1/jyjVTpXw3NBnzIZBA9WBg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6281
+X-Mailman-Approved-At: Tue, 22 Nov 2022 18:23:19 +0000
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/gem: Remove BUG_ON in
+ drm_gem_private_object_init
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,289 +132,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Cc: alexander.deucher@amd.com, christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
+On 11/16/2022 2:50 PM, Arunpravin Paneer Selvam wrote:
+> Hi Amar,
+>
+> On 11/16/2022 2:20 PM, Somalapuram Amaranath wrote:
+>> ttm_resource allocate size in bytes i.e less than page size.
+>>
+>> Signed-off-by: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+>> ---
+>>   drivers/gpu/drm/drm_gem.c | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+>> index b8db675e7fb5..a346e3b7f9a8 100644
+>> --- a/drivers/gpu/drm/drm_gem.c
+>> +++ b/drivers/gpu/drm/drm_gem.c
+>> @@ -152,7 +152,7 @@ EXPORT_SYMBOL(drm_gem_object_init);
+>>   void drm_gem_private_object_init(struct drm_device *dev,
+>>                    struct drm_gem_object *obj, size_t size)
+>>   {
+>> -    BUG_ON((size & (PAGE_SIZE - 1)) != 0);
+>> +    //BUG_ON((size & (PAGE_SIZE - 1)) != 0);
+> This line is added by mistake?
 
-On 18.11.2022 02:58, John.C.Harrison@Intel.com wrote:
-> From: John Harrison <John.C.Harrison@Intel.com>
-> 
-> When trying to analyse bug reports from CI, customers, etc. it can be
-> difficult to work out exactly what is happening on which GT in a
-> multi-GT system. So add GT oriented debug/error message wrappers. If
-> used instead of the drm_ equivalents, you get the same output but with
-> a GT# prefix on it.
-> 
-> v2: Go back to using lower case names (combined review feedback).
-> Convert intel_gt.c as a first step.
-> 
-> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_gt.c | 96 ++++++++++++++----------------
->  drivers/gpu/drm/i915/gt/intel_gt.h | 35 +++++++++++
->  2 files changed, 81 insertions(+), 50 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-> index 0325f071046ca..349fcfdd14a6d 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-> @@ -90,9 +90,8 @@ static int intel_gt_probe_lmem(struct intel_gt *gt)
->  		if (err == -ENODEV)
->  			return 0;
->  
-> -		drm_err(&i915->drm,
-> -			"Failed to setup region(%d) type=%d\n",
-> -			err, INTEL_MEMORY_LOCAL);
-> +		gt_err(gt, "Failed to setup region(%d) type=%d\n",
-> +		       err, INTEL_MEMORY_LOCAL);
->  		return err;
->  	}
->  
-> @@ -192,14 +191,14 @@ int intel_gt_init_hw(struct intel_gt *gt)
->  
->  	ret = i915_ppgtt_init_hw(gt);
->  	if (ret) {
-> -		drm_err(&i915->drm, "Enabling PPGTT failed (%d)\n", ret);
-> +		gt_err(gt, "Enabling PPGTT failed (%d)\n", ret);
->  		goto out;
->  	}
->  
->  	/* We can't enable contexts until all firmware is loaded */
->  	ret = intel_uc_init_hw(&gt->uc);
->  	if (ret) {
-> -		i915_probe_error(i915, "Enabling uc failed (%d)\n", ret);
-> +		gt_probe_error(gt, "Enabling uc failed (%d)\n", ret);
->  		goto out;
->  	}
->  
-> @@ -264,7 +263,7 @@ intel_gt_clear_error_registers(struct intel_gt *gt,
->  		 * some errors might have become stuck,
->  		 * mask them.
->  		 */
-> -		drm_dbg(&gt->i915->drm, "EIR stuck: 0x%08x, masking\n", eir);
-> +		gt_dbg(gt, "EIR stuck: 0x%08x, masking\n", eir);
->  		rmw_set(uncore, EMR, eir);
->  		intel_uncore_write(uncore, GEN2_IIR,
->  				   I915_MASTER_ERROR_INTERRUPT);
-> @@ -298,16 +297,16 @@ static void gen6_check_faults(struct intel_gt *gt)
->  	for_each_engine(engine, gt, id) {
->  		fault = GEN6_RING_FAULT_REG_READ(engine);
->  		if (fault & RING_FAULT_VALID) {
-> -			drm_dbg(&engine->i915->drm, "Unexpected fault\n"
-> -				"\tAddr: 0x%08lx\n"
-> -				"\tAddress space: %s\n"
-> -				"\tSource ID: %d\n"
-> -				"\tType: %d\n",
-> -				fault & PAGE_MASK,
-> -				fault & RING_FAULT_GTTSEL_MASK ?
-> -				"GGTT" : "PPGTT",
-> -				RING_FAULT_SRCID(fault),
-> -				RING_FAULT_FAULT_TYPE(fault));
-> +			gt_dbg(gt, "Unexpected fault\n"
-> +			       "\tAddr: 0x%08lx\n"
-> +			       "\tAddress space: %s\n"
-> +			       "\tSource ID: %d\n"
-> +			       "\tType: %d\n",
-> +			       fault & PAGE_MASK,
-> +			       fault & RING_FAULT_GTTSEL_MASK ?
-> +			       "GGTT" : "PPGTT",
-> +			       RING_FAULT_SRCID(fault),
-> +			       RING_FAULT_FAULT_TYPE(fault));
->  		}
->  	}
->  }
-> @@ -334,17 +333,17 @@ static void xehp_check_faults(struct intel_gt *gt)
->  		fault_addr = ((u64)(fault_data1 & FAULT_VA_HIGH_BITS) << 44) |
->  			     ((u64)fault_data0 << 12);
->  
-> -		drm_dbg(&gt->i915->drm, "Unexpected fault\n"
-> -			"\tAddr: 0x%08x_%08x\n"
-> -			"\tAddress space: %s\n"
-> -			"\tEngine ID: %d\n"
-> -			"\tSource ID: %d\n"
-> -			"\tType: %d\n",
-> -			upper_32_bits(fault_addr), lower_32_bits(fault_addr),
-> -			fault_data1 & FAULT_GTT_SEL ? "GGTT" : "PPGTT",
-> -			GEN8_RING_FAULT_ENGINE_ID(fault),
-> -			RING_FAULT_SRCID(fault),
-> -			RING_FAULT_FAULT_TYPE(fault));
-> +		gt_dbg(gt, "Unexpected fault\n"
-> +		       "\tAddr: 0x%08x_%08x\n"
-> +		       "\tAddress space: %s\n"
-> +		       "\tEngine ID: %d\n"
-> +		       "\tSource ID: %d\n"
-> +		       "\tType: %d\n",
-> +		       upper_32_bits(fault_addr), lower_32_bits(fault_addr),
-> +		       fault_data1 & FAULT_GTT_SEL ? "GGTT" : "PPGTT",
-> +		       GEN8_RING_FAULT_ENGINE_ID(fault),
-> +		       RING_FAULT_SRCID(fault),
-> +		       RING_FAULT_FAULT_TYPE(fault));
->  	}
->  }
->  
-> @@ -375,17 +374,17 @@ static void gen8_check_faults(struct intel_gt *gt)
->  		fault_addr = ((u64)(fault_data1 & FAULT_VA_HIGH_BITS) << 44) |
->  			     ((u64)fault_data0 << 12);
->  
-> -		drm_dbg(&uncore->i915->drm, "Unexpected fault\n"
-> -			"\tAddr: 0x%08x_%08x\n"
-> -			"\tAddress space: %s\n"
-> -			"\tEngine ID: %d\n"
-> -			"\tSource ID: %d\n"
-> -			"\tType: %d\n",
-> -			upper_32_bits(fault_addr), lower_32_bits(fault_addr),
-> -			fault_data1 & FAULT_GTT_SEL ? "GGTT" : "PPGTT",
-> -			GEN8_RING_FAULT_ENGINE_ID(fault),
-> -			RING_FAULT_SRCID(fault),
-> -			RING_FAULT_FAULT_TYPE(fault));
-> +		gt_dbg(gt, "Unexpected fault\n"
-> +		       "\tAddr: 0x%08x_%08x\n"
-> +		       "\tAddress space: %s\n"
-> +		       "\tEngine ID: %d\n"
-> +		       "\tSource ID: %d\n"
-> +		       "\tType: %d\n",
-> +		       upper_32_bits(fault_addr), lower_32_bits(fault_addr),
-> +		       fault_data1 & FAULT_GTT_SEL ? "GGTT" : "PPGTT",
-> +		       GEN8_RING_FAULT_ENGINE_ID(fault),
-> +		       RING_FAULT_SRCID(fault),
-> +		       RING_FAULT_FAULT_TYPE(fault));
->  	}
->  }
->  
-> @@ -479,7 +478,7 @@ static int intel_gt_init_scratch(struct intel_gt *gt, unsigned int size)
->  	if (IS_ERR(obj))
->  		obj = i915_gem_object_create_internal(i915, size);
->  	if (IS_ERR(obj)) {
-> -		drm_err(&i915->drm, "Failed to allocate scratch page\n");
-> +		gt_err(gt, "Failed to allocate scratch page\n");
->  		return PTR_ERR(obj);
->  	}
->  
-> @@ -729,8 +728,7 @@ int intel_gt_init(struct intel_gt *gt)
->  
->  	err = intel_gt_init_hwconfig(gt);
->  	if (err)
-> -		drm_err(&gt->i915->drm, "Failed to retrieve hwconfig table: %pe\n",
-> -			ERR_PTR(err));
-> +		gt_err(gt, "Failed to retrieve hwconfig table: %pe\n", ERR_PTR(err));
->  
->  	err = __engines_record_defaults(gt);
->  	if (err)
-> @@ -891,7 +889,7 @@ int intel_gt_probe_all(struct drm_i915_private *i915)
->  	gt->name = "Primary GT";
->  	gt->info.engine_mask = RUNTIME_INFO(i915)->platform_engine_mask;
->  
-> -	drm_dbg(&i915->drm, "Setting up %s\n", gt->name);
-> +	gt_dbg(gt, "Setting up %s\n", gt->name);
->  	ret = intel_gt_tile_setup(gt, phys_addr);
->  	if (ret)
->  		return ret;
-> @@ -916,7 +914,7 @@ int intel_gt_probe_all(struct drm_i915_private *i915)
->  		gt->info.engine_mask = gtdef->engine_mask;
->  		gt->info.id = i;
->  
-> -		drm_dbg(&i915->drm, "Setting up %s\n", gt->name);
-> +		gt_dbg(gt, "Setting up %s\n", gt->name);
->  		if (GEM_WARN_ON(range_overflows_t(resource_size_t,
->  						  gtdef->mapping_base,
->  						  SZ_16M,
-> @@ -951,7 +949,7 @@ int intel_gt_probe_all(struct drm_i915_private *i915)
->  	return 0;
->  
->  err:
-> -	i915_probe_error(i915, "Failed to initialize %s! (%d)\n", gtdef->name, ret);
-> +	gt_probe_error(gt, "Failed to initialize %s! (%d)\n", gtdef->name, ret);
+No this breaks when the size is less than page size.
 
-on -ENOMEM error, this gt will be NULL
-so likely we should stay with i915 variant
+Now we support size in bytes.
 
->  	intel_gt_release_all(i915);
->  
->  	return ret;
-> @@ -1004,8 +1002,7 @@ get_reg_and_bit(const struct intel_engine_cs *engine, const bool gen8,
->  	const unsigned int class = engine->class;
->  	struct reg_and_bit rb = { };
->  
-> -	if (drm_WARN_ON_ONCE(&engine->i915->drm,
-> -			     class >= num || !regs[class].reg))
-> +	if (gt_WARN_ON_ONCE(engine->gt, class >= num || !regs[class].reg))
->  		return rb;
->  
->  	rb.reg = regs[class];
-> @@ -1088,8 +1085,7 @@ static void mmio_invalidate_full(struct intel_gt *gt)
->  		return;
->  	}
->  
-> -	if (drm_WARN_ONCE(&i915->drm, !num,
-> -			  "Platform does not implement TLB invalidation!"))
-> +	if (gt_WARN_ONCE(gt, !num, "Platform does not implement TLB invalidation!"))
->  		return;
->  
->  	intel_uncore_forcewake_get(uncore, FORCEWAKE_ALL);
-> @@ -1142,8 +1138,8 @@ static void mmio_invalidate_full(struct intel_gt *gt)
->  
->  		if (wait_for_invalidate(gt, rb))
->  			drm_err_ratelimited(&gt->i915->drm,
-> -					    "%s TLB invalidation did not complete in %ums!\n",
-> -					    engine->name, TLB_INVAL_TIMEOUT_MS);
-> +					    "GT%d: %s TLB invalidation did not complete in %ums!\n",
-> +					    gt->info.id, engine->name, TLB_INVAL_TIMEOUT_MS);
-
-that's inconsistent, we should use gt_err_ratelimited()
-
->  	}
->  
->  	/*
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
-> index e0365d5562484..5bf2d53f4b4d0 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt.h
-> @@ -13,6 +13,41 @@
->  struct drm_i915_private;
->  struct drm_printer;
->  
-> +#define gt_err(_gt, _fmt, ...) \
-> +	drm_err(&(_gt)->i915->drm, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
-> +
-> +#define gt_warn(_gt, _fmt, ...) \
-> +	drm_warn(&(_gt)->i915->drm, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
-> +
-> +#define gt_notice(_gt, _fmt, ...) \
-> +	drm_notice(&(_gt)->i915->drm, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
-> +
-> +#define gt_info(_gt, _fmt, ...) \
-> +	drm_info(&(_gt)->i915->drm, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
-> +
-> +#define gt_dbg(_gt, _fmt, ...) \
-> +	drm_dbg(&(_gt)->i915->drm, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
-> +
-> +#define gt_probe_error(_gt, _fmt, ...) \
-> +	do { \
-> +		if (i915_error_injected()) \
-> +			gt_dbg(_gt, _fmt, ##__VA_ARGS__); \
-> +		else \
-> +			gt_err(_gt, _fmt, ##__VA_ARGS__); \
-> +	} while (0)
-> +
-> +#define gt_WARN_ON(_gt, _condition) \
-> +	gt_WARN(_gt, _condition, "%s", "gt_WARN_ON(" __stringify(_condition) ")")
-> +
-> +#define gt_WARN_ON_ONCE(_gt, _condition) \
-> +	gt_WARN_ONCE(_gt, _condition, "%s", "gt_WARN_ONCE(" __stringify(_condition) ")")
-> +
-> +#define gt_WARN(_gt, _condition, _fmt, ...) \
-> +	drm_WARN(&(_gt)->i915->drm, _condition, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
-> +
-> +#define gt_WARN_ONCE(_gt, _condition, _fmt, ...) \
-> +	drm_WARN_ONCE(&(_gt)->i915->drm, _condition, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
-> +
->  #define GT_TRACE(gt, fmt, ...) do {					\
->  	const struct intel_gt *gt__ __maybe_unused = (gt);		\
->  	GEM_TRACE("%s " fmt, dev_name(gt__->i915->drm.dev),		\
-
-btw, shouldn't we also update GT_TRACE macros to include GT.id ?
-(naturally not in this series)
-
-Michal
+>
+> Regards,
+> Arun
+>>         obj->dev = dev;
+>>       obj->filp = NULL;
+>
