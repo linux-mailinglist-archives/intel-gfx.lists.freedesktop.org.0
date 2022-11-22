@@ -1,56 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7FF6634046
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Nov 2022 16:35:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CA9663407A
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Nov 2022 16:43:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B94E10E40F;
-	Tue, 22 Nov 2022 15:35:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B556610E416;
+	Tue, 22 Nov 2022 15:43:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC6F310E40F;
- Tue, 22 Nov 2022 15:35:14 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E094E10E416;
+ Tue, 22 Nov 2022 15:43:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669131314; x=1700667314;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=QhFQ1vvgWJPcpF58xWVY2cCZqGcl+FTrvlc1UL7N3w0=;
- b=CHLjHeLyOBf16PzlegSZLhz6GFJmOKXJZ4LiwRtCPHs4TUgdrcUCdCbW
- sFTfBfY/UmANp0V1uyFqlJg5ZMTjwV+/lBWfhqz/ysHM0hrGNd6wyJmF9
- b1mczFUYblZT3HK3+uNDSlFeW+KTjGMHZjuQ4YOb7v4qeVwLp9zJc+5Jm
- MHVXT9DGl+96kXz5X37kW1gMxdhh9uKNzIXfRzQKCyD2X8i1ueHivt5kF
- Ekj4S++f07XaJ9TDLkbnuup8e2b6Kj9GaBd9eqP6lBnXXK6QHMry1Xrhw
- KyQCLR8Nok9SqOHtLUkrj/CG6uPELkocXSQVqvp7SgEZtaLyhhVS08t9C Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="315662393"
-X-IronPort-AV: E=Sophos;i="5.96,184,1665471600"; d="scan'208";a="315662393"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2022 07:35:04 -0800
+ t=1669131810; x=1700667810;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=upTqDhnYPbQQtcnEG3sH1opy5XLziUPK5oFbYqhMYmU=;
+ b=Mav6QeQaKqHkh1lCBDOuK0zyZjWNtCd+fa3uSgC0yXzQUNIZ/5U+RR4C
+ 55ciOYWa+4xnONlOg7EtpSdOCJ1yq/9vBOet2lCvAWKf42nJwlMtreP3p
+ GIQZeHU+1RYbjVygMY4l8OQTabjqGeXZuBSaI2jygGoAI+sbWSW7JCdMD
+ Ezf+hEYKbyESSmIVEFyg+LXIbcyo417PPWZY5rBVMSa3bVlPJxqRxZSlF
+ QIUPabBpdMqGaIyxS1qxOhaznl4kW+9UsfOtK1cpLrREa1oFWOgKGO/dP
+ kOeMzpVz9VhQ/GGSltMgSWJdp5Why8tLEptXtA9buPFaTj8NYkZZ+goy1 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="294235544"
+X-IronPort-AV: E=Sophos;i="5.96,184,1665471600"; d="scan'208";a="294235544"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2022 07:43:30 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="747395669"
-X-IronPort-AV: E=Sophos;i="5.96,184,1665471600"; d="scan'208";a="747395669"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmsmga002.fm.intel.com with ESMTP; 22 Nov 2022 07:35:00 -0800
-Received: by black.fi.intel.com (Postfix, from userid 1003)
- id 6623724A; Tue, 22 Nov 2022 17:35:26 +0200 (EET)
+X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="643762489"
+X-IronPort-AV: E=Sophos;i="5.96,184,1665471600"; d="scan'208";a="643762489"
+Received: from smile.fi.intel.com ([10.237.72.54])
+ by fmsmga007.fm.intel.com with ESMTP; 22 Nov 2022 07:43:25 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1oxVQh-00FtHg-2h; Tue, 22 Nov 2022 17:43:23 +0200
+Date: Tue, 22 Nov 2022 17:43:23 +0200
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Jakob Koschel <jakobkoschel@gmail.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Mathias Nyman <mathias.nyman@linux.intel.com>,
  intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-Date: Tue, 22 Nov 2022 17:35:16 +0200
-Message-Id: <20221122153516.52577-4-andriy.shevchenko@linux.intel.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221122153516.52577-1-andriy.shevchenko@linux.intel.com>
+Message-ID: <Y3zuG9bRePqCzbxz@smile.fi.intel.com>
 References: <20221122153516.52577-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 4/4] xhci: Convert to use list_count()
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221122153516.52577-1-andriy.shevchenko@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: Re: [Intel-gfx] [PATCH v3 1/4] i915: Move list_count() to list.h
+ for broader use
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,47 +66,21 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Kevin Cernekee <cernekee@gmail.com>,
- Mathias Nyman <mathias.nyman@intel.com>, Hans de Goede <hdegoede@redhat.com>,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>
+ Mathias Nyman <mathias.nyman@intel.com>, Jani Nikula <jani.nikula@intel.com>,
+ Hans de Goede <hdegoede@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The list API now provides the list_count() to help with counting
-existing nodes in the list. Utilise it.
+On Tue, Nov 22, 2022 at 05:35:13PM +0200, Andy Shevchenko wrote:
+> Some of the existing users, and definitely will be new ones, want to
+> count existing nodes in the list. Provide a generic API for that by
+> moving code from i915 to list.h.
 
-Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
----
-v3: no change
-v2: no change
- drivers/usb/host/xhci-ring.c | 7 ++-----
- 1 file changed, 2 insertions(+), 5 deletions(-)
+Sorry for the noise, forgot to squash one part, so it get's not compilable.
 
-diff --git a/drivers/usb/host/xhci-ring.c b/drivers/usb/host/xhci-ring.c
-index ad81e9a508b1..817c31e3b0c8 100644
---- a/drivers/usb/host/xhci-ring.c
-+++ b/drivers/usb/host/xhci-ring.c
-@@ -2532,7 +2532,6 @@ static int handle_tx_event(struct xhci_hcd *xhci,
- 	union xhci_trb *ep_trb;
- 	int status = -EINPROGRESS;
- 	struct xhci_ep_ctx *ep_ctx;
--	struct list_head *tmp;
- 	u32 trb_comp_code;
- 	int td_num = 0;
- 	bool handling_skipped_tds = false;
-@@ -2580,10 +2579,8 @@ static int handle_tx_event(struct xhci_hcd *xhci,
- 	}
- 
- 	/* Count current td numbers if ep->skip is set */
--	if (ep->skip) {
--		list_for_each(tmp, &ep_ring->td_list)
--			td_num++;
--	}
-+	if (ep->skip)
-+		td_num += list_count(&ep_ring->td_list);
- 
- 	/* Look for common error cases */
- 	switch (trb_comp_code) {
 -- 
-2.35.1
+With Best Regards,
+Andy Shevchenko
+
 
