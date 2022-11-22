@@ -2,56 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25C806336CB
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Nov 2022 09:14:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B7646336FD
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Nov 2022 09:26:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2CF910E39F;
-	Tue, 22 Nov 2022 08:14:27 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCA0210E399;
- Tue, 22 Nov 2022 08:14:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 375FE10E3A1;
+	Tue, 22 Nov 2022 08:26:17 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6ED0C10E3A1;
+ Tue, 22 Nov 2022 08:26:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669104863; x=1700640863;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=tLwrWSSEOPFJCx10qaxoCob7L/6w7jZnerpvx6l/blU=;
- b=g4yc6xUtiV46Qn4QHr4RZj0HnEJM+T6enFiS8qLWVK8w5wzaY/miCg+E
- ai6n4eHIgUsh627s/vH0l3TNGd2EV2wkyYggW6iwrJMjI6yKlhUZsv9/f
- yWFd1J23Xpr32g2+rhu0RaPxLXVtGMMWakodZpSCAXGcfAmkFyEyjY+wS
- bd3Mq3srmCR+6PBOOGW3GD2O7El27kKQnSGpV+UNV8Y467tAXaNxmgorP
- zu1FldlpcegXiW8G+IBxduRJN8xC6IhdGaeKX/1QVYsLkIg8rQlsQL/KQ
- x5zVP7Tw6fSsaHQWu3hfWMDtciboJmTRCo9HXBNahhDESadnf82rRUu18 w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10538"; a="314910583"
-X-IronPort-AV: E=Sophos;i="5.96,183,1665471600"; d="scan'208";a="314910583"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2022 00:14:23 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10538"; a="635465301"
-X-IronPort-AV: E=Sophos;i="5.96,183,1665471600"; d="scan'208";a="635465301"
-Received: from camorino-mobl.ger.corp.intel.com (HELO [10.213.209.233])
- ([10.213.209.233])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2022 00:14:16 -0800
-Message-ID: <e6fa25aa-d936-5b52-226e-e7dee1cc7844@linux.intel.com>
-Date: Tue, 22 Nov 2022 08:14:14 +0000
+ t=1669105572; x=1700641572;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=qtMm9kNtYKzQmgn7YVJLBcFE8fi/oSyetZSOd9w+nc4=;
+ b=OGXWDsABjTxt1PGRqJbAQJNV6Q9oHE4LIYNNrWv2iSgpyRXpmVMu/QpW
+ MNPS5D5Xrh3GpIi/gZIE/R7MD8m1WitxKCV1uS+h3Er0crqkiy4YRd6Zt
+ Qco/ECK8ZNHAXtKHsgqEujZV7KKbfmp1jEAwnKhw6Nvl725x0c9sgD5Et
+ qbLbIEpTmc5JktpzHTkFZeZJ3G53+TIMBJz2h3FUB7ueh8L6RD7XPqGqJ
+ ITxnq6+0QewRpwF2yoK5+zWtlfIyxzozTmpGcRLyoWtH01dAu+rXi1sE/
+ 8MJ/riqOkVoccLxMDCN/XJoisC2A1LsCV4LxQvXvJu3vMDZbrHW5DIcOV g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10538"; a="340630833"
+X-IronPort-AV: E=Sophos;i="5.96,183,1665471600"; d="scan'208";a="340630833"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2022 00:26:11 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10538"; a="766263811"
+X-IronPort-AV: E=Sophos;i="5.96,183,1665471600"; d="scan'208";a="766263811"
+Received: from mtroka-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.213.0.222])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2022 00:26:09 -0800
+Date: Tue, 22 Nov 2022 09:26:07 +0100
+From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org, igt-dev@lists.freedesktop.org
+Message-ID: <Y3yHnztPiGNNWPuw@kamilkon-desk1>
+Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, igt-dev@lists.freedesktop.org,
+ Matthew Auld <matthew.auld@intel.com>,
+ Chris Wilson <chris.p.wilson@intel.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>
+References: <20221115072834.2115985-1-andrzej.hajda@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Content-Language: en-US
-To: John Harrison <john.c.harrison@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, Intel-GFX@Lists.FreeDesktop.Org,
- Michal Wajdeczko <michal.wajdeczko@intel.com>
-References: <20221118015858.2548106-1-John.C.Harrison@Intel.com>
- <87a64o1qn5.fsf@intel.com> <26c44ed9-4fd8-197a-85cd-038da7096c15@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <26c44ed9-4fd8-197a-85cd-038da7096c15@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v2 0/5] Add module oriented dmesg output
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20221115072834.2115985-1-andrzej.hajda@intel.com>
+Subject: Re: [Intel-gfx] [i-g-t] tests/kms_plane: skip memory demanding
+ modes in test_plane_panning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,100 +63,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, Chris Wilson <chris.p.wilson@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Andrzej,
 
-On 21/11/2022 18:21, John Harrison wrote:
-> On 11/18/2022 02:52, Jani Nikula wrote:
->> On Thu, 17 Nov 2022, John.C.Harrison@Intel.com wrote:
->>> From: John Harrison <John.C.Harrison@Intel.com>
->>>
->>> When trying to analyse bug reports from CI, customers, etc. it can be
->>> difficult to work out exactly what is happening on which GT in a
->>> multi-GT system. So add GT oriented debug/error message wrappers. If
->>> used instead of the drm_ equivalents, you get the same output but with
->>> a GT# prefix on it.
->>>
->>> It was also requested to extend this further to submodules in order to
->>> factor out the repeated structure accessing constructs and common
->>> string prefixes. So, add versions for GuC, HuC and GuC CTB as well.
->>>
->>> This patch set updates all the gt/uc files to use the new helpers as a
->>> first step. The intention would be to convert all output messages that
->>> have access to a GT structure.
->>>
->>> v2: Go back to using lower case names, add more wrapper sets (combined
->>> review feedback). Also, wrap up probe injection and WARN entries.
->>>
->>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->> For adding the wrappers in general, I'm going to disagree and
->> commit. I'll leave it up to Tvrtko and Joonas.
->>
->> Regarding the placement of the macros, I insist you add individual
->> header files for the wrappers and include them only where needed.
->>
->> We have a fairly serious problem with everything including everything in
->> i915 that I've been slowly trying to tackle. Touch one thing, rebuild
->> everything. About a third of our headers cause the rebuild of the entire
->> driver when modified. We need to reduce the surface of things that cause
->> rebuilds.
->>
->> For example, intel_gt.h is included by 97 files, intel_guc.h by 332
->> files, and intel_huc.h by 329 files (counting recursively).
->>
->> There's absolutely no reason any of the display code, for example, needs
->> to have these logging macros in their build. Long term, the headers
->> should be reorganized to reduce the interdependencies, and this is what
->> I've been doing in i915_drv.h and display/ in general. But the least we
->> can do is not make the problem worse.
-> @Tvrtko/@Michal W, any other review comments or feedback? I'd rather not 
-> spend time fixing up the header file issue and reposting only to have 
-> someone point out another issue that could have been resolved at the 
-> same time.
-
-I read through the patches when you posted them and it looked nice and 
-clean to me. I think I spotted one instance of a debug build only 
-message getting upgraded to production build, and one loss of stack 
-trace on a warning, but it wasn't a concern to me AFAIR.
-
-Regards,
-
-Tvrtko
-
+On 2022-11-15 at 08:28:34 +0100, Andrzej Hajda wrote:
+> test_plane_panning requires about 10 times bigger amount of memory than
+> memory required by framebuffer in default display mode. In case of some
+> configurations it can exceed available memory (4k modes on small-bar
+> systems), causing test aborts.
 > 
-> John.
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6824
+> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+> ---
+>  tests/kms_plane.c | 28 +++++++++++++++++++++++++---
+>  1 file changed, 25 insertions(+), 3 deletions(-)
 > 
->> BR,
->> Jani.
->>
->>>
->>> John Harrison (5):
->>>    drm/i915/gt: Start adding module oriented dmesg output
->>>    drm/i915/huc: Add HuC specific debug print wrappers
->>>    drm/i915/guc: Add GuC specific debug print wrappers
->>>    drm/i915/guc: Add GuC CT specific debug print wrappers
->>>    drm/i915/uc: Update the gt/uc code to use gt_err and friends
->>>
->>>   drivers/gpu/drm/i915/gt/intel_gt.c            |  96 ++++----
->>>   drivers/gpu/drm/i915/gt/intel_gt.h            |  35 +++
->>>   drivers/gpu/drm/i915/gt/uc/intel_guc.c        |  32 +--
->>>   drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  35 +++
->>>   drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c    |   8 +-
->>>   .../gpu/drm/i915/gt/uc/intel_guc_capture.c    |  48 ++--
->>>   drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     | 222 +++++++++---------
->>>   drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c     |  19 +-
->>>   drivers/gpu/drm/i915/gt/uc/intel_guc_log.c    |  37 ++-
->>>   drivers/gpu/drm/i915/gt/uc/intel_guc_rc.c     |   7 +-
->>>   drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   |  55 ++---
->>>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  62 +++--
->>>   drivers/gpu/drm/i915/gt/uc/intel_huc.c        |  31 +--
->>>   drivers/gpu/drm/i915/gt/uc/intel_huc.h        |  23 ++
->>>   drivers/gpu/drm/i915/gt/uc/intel_uc.c         | 108 ++++-----
->>>   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      |  98 ++++----
->>>   drivers/gpu/drm/i915/gt/uc/selftest_guc.c     |  34 +--
->>>   .../drm/i915/gt/uc/selftest_guc_hangcheck.c   |  22 +-
->>>   .../drm/i915/gt/uc/selftest_guc_multi_lrc.c   |  10 +-
->>>   19 files changed, 507 insertions(+), 475 deletions(-)
+> diff --git a/tests/kms_plane.c b/tests/kms_plane.c
+> index 8a54ba6645c..fc530d2cfd3 100644
+> --- a/tests/kms_plane.c
+> +++ b/tests/kms_plane.c
+> @@ -342,14 +342,14 @@ test_plane_panning_with_output(data_t *data,
+>  	drmModeModeInfo *mode;
+>  	igt_crc_t crc;
+>  
+> -	igt_info("Testing connector %s using pipe %s\n",
+> -		 igt_output_name(output), kmstest_pipe_name(pipe));
+> -
+>  	igt_output_set_pipe(output, pipe);
+>  
+>  	mode = igt_output_get_mode(output);
+>  	primary = igt_output_get_plane(output, 0);
+>  
+> +	igt_info("Testing connector %s using pipe %s, mode %s\n",
+> +		 igt_output_name(output), kmstest_pipe_name(pipe), mode->name);
+> +
+>  	create_fb_for_mode_panning(data, mode, &primary_fb);
+>  	igt_plane_set_fb(primary, &primary_fb);
+>  
+> @@ -381,6 +381,8 @@ test_plane_panning_with_output(data_t *data,
+>  static void
+>  test_plane_panning(data_t *data, enum pipe pipe)
+>  {
+> +	bool mode_found = false;
+> +	uint64_t mem_size = 0;
+>  	igt_output_t *output;
+>  	igt_crc_t ref_crc;
+>  
+> @@ -389,6 +391,26 @@ test_plane_panning(data_t *data, enum pipe pipe)
+>  
+>  	test_init(data, pipe);
+>  
+> +	for_each_memory_region(r, data->drm_fd)
+> +		if (r->ci.memory_class == I915_MEMORY_CLASS_DEVICE)
+> +			mem_size = r->cpu_size;
+
+imho either max(mem_size, r->cpu_size) or just break after
+assign but maybe I overcomplicate this, so
+
+Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+
+> +
+> +	for_each_connector_mode(output) {
+> +		drmModeModeInfo *m = &output->config.connector->modes[j__];
+> +		uint32_t fb_size = m->hdisplay * m->vdisplay * 4;
+> +
+> +		/* test allocates 2 double-dim fbs, add one more, to be safe */
+> +		if (mem_size && 3 * 4 * fb_size > mem_size) {
+> +			igt_debug("Skipping mode %s due to low memory\n", m->name);
+> +			continue;
+> +		}
+> +
+> +		igt_output_override_mode(output, m);
+> +		mode_found = true;
+> +		break;
+> +	}
+> +	igt_require(mode_found);
+> +
+>  	if (data->flags & TEST_PANNING_TOP_LEFT)
+>  		test_grab_crc(data, output, pipe, &red, data->flags, &ref_crc);
+>  	else
+> -- 
+> 2.34.1
 > 
