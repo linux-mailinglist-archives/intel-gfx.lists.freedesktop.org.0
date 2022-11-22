@@ -1,57 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F595633A8D
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Nov 2022 11:50:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BDE6633A98
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Nov 2022 11:53:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E713410E039;
-	Tue, 22 Nov 2022 10:50:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DC2C10E3BF;
+	Tue, 22 Nov 2022 10:53:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC6C910E039;
- Tue, 22 Nov 2022 10:50:43 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7159510E3BF
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Nov 2022 10:53:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669114243; x=1700650243;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=hTmJOcb2/F7Ns1JLBwhouIBn1IhO1I7OWMGVPOceiuo=;
- b=VXfi/QW28fc+/PX7fGlCqBww5Po7JrSIxucL+LxvxPe0AU2WWXVM+eSH
- iZncjyDpVUuKQCAM0KhAbmtrbTZPGSZNhMpQr60IK/UebrM8IYET4FcGu
- Ztk2cB+09gB2gF0p5706qfSyRtqvsnDXSDBTP1FdnAnR37ta38WvJ/Wom
- jpUxb+ne/BkEvfVcfc97x7ySVjSVdu16kuQPs1X/IPbGQYAahZrXt5WZ9
- YBTc553cw0w6VqujgC+yFrTeVJzn3HgbzjAf/EpdLegjjI5NcWryyUVfm
- mfbw38PWstppjn/pggqDt0n/KVUcW/OUThIIfyQO8bNjMXA+/J0uyESlN w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10538"; a="312489079"
-X-IronPort-AV: E=Sophos;i="5.96,183,1665471600"; d="scan'208";a="312489079"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2022 02:50:43 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10538"; a="970428712"
-X-IronPort-AV: E=Sophos;i="5.96,183,1665471600"; d="scan'208";a="970428712"
-Received: from camorino-mobl.ger.corp.intel.com (HELO [10.213.209.233])
- ([10.213.209.233])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2022 02:50:40 -0800
-Message-ID: <6a465c20-b0a7-4beb-6d1b-4ff66a29975f@linux.intel.com>
-Date: Tue, 22 Nov 2022 10:50:38 +0000
+ t=1669114387; x=1700650387;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=+iiHtP5FK6ROWYg5O3fSut6I0IiF5I9QZSNuHNEKJVc=;
+ b=Xt+e67dmopz/CFAODlFrZNFS9/gJRu6F0WDGgRznEnqk6xh1xfiqeDfn
+ ht2UJIy+xCtt4G37RFOF+L2IRvewY0lD+yOwcLiqwIYZWnf6fOS2zyEzU
+ IZrk3nxpFJw+w7LgPtIcKCeg+8REOIS4siWAP2damJltFpyy88xfMpOg0
+ pM2d77kWqd9d+DUdtoNqADDEWxayK2C7V60uzS141d4sCTrOUrU0SiXYg
+ gpQyEqV7r9eqxLrfs8ZYcsEg3Fs/BdLkaZZok3CuhUCDxc9IgBkVaplon
+ l2gp04+sZ4YEXGdDup2CKR+PPAQo/tooe4woXi7kYbepy5iyKWt9xgX4m A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10538"; a="315607311"
+X-IronPort-AV: E=Sophos;i="5.96,183,1665471600"; d="scan'208";a="315607311"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2022 02:53:06 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10538"; a="747305200"
+X-IronPort-AV: E=Sophos;i="5.96,183,1665471600"; d="scan'208";a="747305200"
+Received: from sfflynn-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.18.151])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2022 02:53:05 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Vinod Govindapillai <vinod.govindapillai@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20221121150718.1117628-1-vinod.govindapillai@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20221121150718.1117628-1-vinod.govindapillai@intel.com>
+Date: Tue, 22 Nov 2022 12:53:03 +0200
+Message-ID: <87a64jz2eo.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Content-Language: en-US
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-References: <20221121145655.75141-1-janusz.krzysztofik@linux.intel.com>
- <20221121145655.75141-3-janusz.krzysztofik@linux.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20221121145655.75141-3-janusz.krzysztofik@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3 2/2] drm/i915: Never return 0 if not all
- requests retired
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: Enable SDP split for DP2.0
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,61 +58,135 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- Chris Wilson <chris.p.wilson@intel.com>, dri-devel@lists.freedesktop.org,
- Andrzej Hajda <andrzej.hajda@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, 21 Nov 2022, Vinod Govindapillai <vinod.govindapillai@intel.com> wrote:
+> Enable the SDP split configuration for DP2.0.
+>
+> v2: Move the register handling out of compute config function (JaniN)
+>
+> v3: Patch styling and register access based on platform support (JaniN)
+>
+> v4: Rebased
+>
+> v5: Use unconditional clear bit in intel_de_rmw (Jani Nikula)
+>
+> Bspec: 67768
+> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-On 21/11/2022 14:56, Janusz Krzysztofik wrote:
-> Users of intel_gt_retire_requests_timeout() expect 0 return value on
-> success.  However, we have no protection from passing back 0 potentially
-> returned by a call to dma_fence_wait_timeout() when it succedes right
-> after its timeout has expired.
+Pushed to drm-intel-next, thanks for the patch.
 
-Is this talking about a potential weakness, or ambiguous kerneldoc, of 
-dma_fence_wait_timeout, dma_fence_default_wait and 
-i915_request_wait_timeout? They appear to say 0 return means timeout, 
-implying unsignaled fence. In other words signaled must return positive 
-remaining timeout. Implementations seems to allow a race which indeed 
-appears that return 0 and signaled fence is possible.
+BR,
+Jani.
 
-If dma_fence_wait can indeed return 0 even when a request is signaled, 
-then how is timeout ?: -ETIME below correct? It isn't a chance for false 
-negative in its' callers?
-
-Regards,
-
-Tvrtko
-
-> Replace 0 with -ETIME before potentially using the timeout value as return
-> code, so -ETIME is returned if there are still some requests not retired
-> after timeout, 0 otherwise.
-> 
-> v3: Use conditional expression, more compact but also better reflecting
->      intention standing behind the change.
-> 
-> v2: Move the added lines down so flush_submission() is not affected.
-> 
-> Fixes: f33a8a51602c ("drm/i915: Merge wait_for_timelines with retire_request")
-> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-> Cc: stable@vger.kernel.org # v5.5+
 > ---
->   drivers/gpu/drm/i915/gt/intel_gt_requests.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_requests.c b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-> index edb881d756309..1dfd01668c79c 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-> @@ -199,7 +199,7 @@ out_active:	spin_lock(&timelines->lock);
->   	if (remaining_timeout)
->   		*remaining_timeout = timeout;
->   
-> -	return active_count ? timeout : 0;
-> +	return active_count ? timeout ?: -ETIME : 0;
->   }
->   
->   static void retire_work_handler(struct work_struct *work)
+>  drivers/gpu/drm/i915/display/intel_audio.c    | 11 +++++++++++
+>  drivers/gpu/drm/i915/display/intel_audio.h    |  2 ++
+>  drivers/gpu/drm/i915/display/intel_ddi.c      |  3 +++
+>  .../drm/i915/display/intel_display_types.h    |  2 ++
+>  drivers/gpu/drm/i915/display/intel_dp.c       | 19 +++++++++++++++++++
+>  5 files changed, 37 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+> index 98c3322b4549..626c47e96a6d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_audio.c
+> +++ b/drivers/gpu/drm/i915/display/intel_audio.c
+> @@ -798,6 +798,17 @@ static void ilk_audio_codec_enable(struct intel_encoder *encoder,
+>  	mutex_unlock(&i915->display.audio.mutex);
+>  }
+>  
+> +void intel_audio_sdp_split_update(struct intel_encoder *encoder,
+> +				  const struct intel_crtc_state *crtc_state)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+> +	enum transcoder trans = crtc_state->cpu_transcoder;
+> +
+> +	if (HAS_DP20(i915))
+> +		intel_de_rmw(i915, AUD_DP_2DOT0_CTRL(trans), AUD_ENABLE_SDP_SPLIT,
+> +			     crtc_state->sdp_split_enable ? AUD_ENABLE_SDP_SPLIT : 0);
+> +}
+> +
+>  /**
+>   * intel_audio_codec_enable - Enable the audio codec for HD audio
+>   * @encoder: encoder on which to enable audio
+> diff --git a/drivers/gpu/drm/i915/display/intel_audio.h b/drivers/gpu/drm/i915/display/intel_audio.h
+> index 63b22131dc45..1b87257c6a17 100644
+> --- a/drivers/gpu/drm/i915/display/intel_audio.h
+> +++ b/drivers/gpu/drm/i915/display/intel_audio.h
+> @@ -22,5 +22,7 @@ void intel_audio_cdclk_change_pre(struct drm_i915_private *dev_priv);
+>  void intel_audio_cdclk_change_post(struct drm_i915_private *dev_priv);
+>  void intel_audio_init(struct drm_i915_private *dev_priv);
+>  void intel_audio_deinit(struct drm_i915_private *dev_priv);
+> +void intel_audio_sdp_split_update(struct intel_encoder *encoder,
+> +				  const struct intel_crtc_state *crtc_state);
+>  
+>  #endif /* __INTEL_AUDIO_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index 0f1ec2a98cc8..5f9a2410fc4c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -2948,6 +2948,9 @@ static void intel_enable_ddi(struct intel_atomic_state *state,
+>  
+>  	intel_vrr_enable(encoder, crtc_state);
+>  
+> +	/* Enable/Disable DP2.0 SDP split config before transcoder */
+> +	intel_audio_sdp_split_update(encoder, crtc_state);
+> +
+>  	intel_enable_transcoder(crtc_state);
+>  
+>  	intel_crtc_vblank_on(crtc_state);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index f07395065a69..ff3ef37d099e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1295,6 +1295,8 @@ struct intel_crtc_state {
+>  	/* Forward Error correction State */
+>  	bool fec_enable;
+>  
+> +	bool sdp_split_enable;
+> +
+>  	/* Pointer to master transcoder in case of tiled displays */
+>  	enum transcoder master_transcoder;
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 67089711d9e2..cf8a2f644bab 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2009,6 +2009,23 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
+>  	return ret;
+>  }
+>  
+> +static void
+> +intel_dp_audio_compute_config(struct intel_encoder *encoder,
+> +			      struct intel_crtc_state *pipe_config,
+> +			      struct drm_connector_state *conn_state)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+> +	struct drm_connector *connector = conn_state->connector;
+> +
+> +	pipe_config->sdp_split_enable =
+> +		intel_dp_has_audio(encoder, pipe_config, conn_state) &&
+> +		intel_dp_is_uhbr(pipe_config);
+> +
+> +	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] SDP split enable: %s\n",
+> +		    connector->base.id, connector->name,
+> +		    str_yes_no(pipe_config->sdp_split_enable));
+> +}
+> +
+>  int
+>  intel_dp_compute_config(struct intel_encoder *encoder,
+>  			struct intel_crtc_state *pipe_config,
+> @@ -2092,6 +2109,8 @@ intel_dp_compute_config(struct intel_encoder *encoder,
+>  		adjusted_mode->crtc_clock /= n;
+>  	}
+>  
+> +	intel_dp_audio_compute_config(encoder, pipe_config, conn_state);
+> +
+>  	intel_link_compute_m_n(output_bpp,
+>  			       pipe_config->lane_count,
+>  			       adjusted_mode->crtc_clock,
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
