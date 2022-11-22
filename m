@@ -1,55 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7991634017
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Nov 2022 16:23:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00FB3634040
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Nov 2022 16:35:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98F4F10E409;
-	Tue, 22 Nov 2022 15:23:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F02210E409;
+	Tue, 22 Nov 2022 15:35:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F157910E409;
- Tue, 22 Nov 2022 15:23:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 348DF10E404;
+ Tue, 22 Nov 2022 15:35:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669130632; x=1700666632;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=rMOdI3P7VdfIy2nfD0+wdUsYo7XnmOvFsyP8v8HsR3g=;
- b=NSCJ4iaADUD9kg16U3d9Tolz9n7sX2VzYInlfHn5wINYIJfoTaCxN2mK
- SrKGYFobjH49e6LNuObd7j2OO7e/5rGKBJvg+dCwoVfoeI5+y1Nh/nKpi
- k8uUfN1kOQxF/6jguVbuV/9IvM91Hmajd4ban33QWrbLyIqSc9I4uTDbB
- 6Z8oC6oJ6R2dbKYXrqnxkurUA/WkqlVEiD5RV76QcdjpT/ayROfGXXnFY
- cAMSveZrngQ7OSH2RJMI0o/mx8GXwECFcsvLr3CQr0KXCaWdbut/fOu/+
- mSvjoPg/wz6puqFSywlv1jmMFMNqpLXH518J5CZTYUkmIs8YpBp1WK4Xh Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="400129238"
-X-IronPort-AV: E=Sophos;i="5.96,184,1665471600"; d="scan'208";a="400129238"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ t=1669131306; x=1700667306;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Lk7Aa8ZXFKY55rSbLTJ7BLbpsyJEXtHLhmH5NxdPyRU=;
+ b=RwXPn4zJ/31wY7HVij9mAK0VJj5b8MqU7RclIZcXrrG8S8jIl7HDg5k7
+ OEXjgKobrnUdvKiRsqERY/quh7Othf9Ovz/CNLDrOOGZ1ZAZbxcukxpm8
+ kYiEV02T1TLSad9eDmmzP+4Xad8gbUQBipA/r0lQogov8v7wPuZAxyHh8
+ kXWKGAA+JtuCduaBK587Bov3JiJbDgDB/1LNv0dcM/Eb1//CyeaJYzax5
+ gmX9Rk8gRwH2sBQzTi9q0coSdtouFUOUouvo3stC5I32Tu3aFBLe/UbA4
+ 34ttLSmEB6agmwt8pldX3bd0HcIf7PEQrPZ1E5VPhzNYflChKILSDntet w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="400132173"
+X-IronPort-AV: E=Sophos;i="5.96,184,1665471600"; d="scan'208";a="400132173"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2022 07:23:51 -0800
+ 22 Nov 2022 07:35:05 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="705004007"
-X-IronPort-AV: E=Sophos;i="5.96,184,1665471600"; d="scan'208";a="705004007"
-Received: from smile.fi.intel.com ([10.237.72.54])
- by fmsmga008.fm.intel.com with ESMTP; 22 Nov 2022 07:23:47 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1oxV7h-00FsxN-2Q; Tue, 22 Nov 2022 17:23:45 +0200
-Date: Tue, 22 Nov 2022 17:23:45 +0200
+X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="730435563"
+X-IronPort-AV: E=Sophos;i="5.96,184,1665471600"; d="scan'208";a="730435563"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by FMSMGA003.fm.intel.com with ESMTP; 22 Nov 2022 07:35:00 -0800
+Received: by black.fi.intel.com (Postfix, from userid 1003)
+ id 4560E128; Tue, 22 Nov 2022 17:35:26 +0200 (EET)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <Y3zpgRd89Dz/LTPk@smile.fi.intel.com>
-References: <20221114162207.62559-1-andriy.shevchenko@linux.intel.com>
- <87leoc2pbf.fsf@intel.com>
+To: Jakob Koschel <jakobkoschel@gmail.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Mathias Nyman <mathias.nyman@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+Date: Tue, 22 Nov 2022 17:35:13 +0200
+Message-Id: <20221122153516.52577-1-andriy.shevchenko@linux.intel.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87leoc2pbf.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: Re: [Intel-gfx] [PATCH v2 1/4] i915: Move list_count() to list.h
- for broader use
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3 1/4] i915: Move list_count() to list.h for
+ broader use
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,37 +62,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mathias Nyman <mathias.nyman@linux.intel.com>,
- Mathias Nyman <mathias.nyman@intel.com>, Kevin Cernekee <cernekee@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- intel-gfx@lists.freedesktop.org, linux-usb@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Jakob Koschel <jakobkoschel@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Andrew Morton <akpm@linux-foundation.org>, David Airlie <airlied@gmail.com>
+Cc: Kevin Cernekee <cernekee@gmail.com>,
+ Mathias Nyman <mathias.nyman@intel.com>, Jani Nikula <jani.nikula@intel.com>,
+ Hans de Goede <hdegoede@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 15, 2022 at 05:46:28PM +0200, Jani Nikula wrote:
-> On Mon, 14 Nov 2022, Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
-> > Some of the existing users, and definitely will be new ones, want to
-> > count existing nodes in the list. Provide a generic API for that by
-> > moving code from i915 to list.h.
-> 
-> I think I'd find list_length() a much more natural name for this.
+Some of the existing users, and definitely will be new ones, want to
+count existing nodes in the list. Provide a generic API for that by
+moving code from i915 to list.h.
 
-i915 suggests my variant :-)
+Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+---
+v3: added tag (Jani), changed to be static inline (Mike)
+v2: dropped the duplicate code in i915 (LKP)
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c | 13 +------------
+ include/linux/list.h                      | 15 +++++++++++++++
+ 2 files changed, 16 insertions(+), 12 deletions(-)
 
-> *shrug*
-> 
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> regardless of what you decide to do with name or static inline etc.
-
-Thanks! I will check which one looks and feels better and update for v3.
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 6ae8b07cfaa1..b5d474be564d 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -2085,17 +2085,6 @@ static void print_request_ring(struct drm_printer *m, struct i915_request *rq)
+ 	}
+ }
+ 
+-static unsigned long list_count(struct list_head *list)
+-{
+-	struct list_head *pos;
+-	unsigned long count = 0;
+-
+-	list_for_each(pos, list)
+-		count++;
+-
+-	return count;
+-}
+-
+ static unsigned long read_ul(void *p, size_t x)
+ {
+ 	return *(unsigned long *)(p + x);
+@@ -2270,7 +2259,7 @@ void intel_engine_dump(struct intel_engine_cs *engine,
+ 	spin_lock_irqsave(&engine->sched_engine->lock, flags);
+ 	engine_dump_active_requests(engine, m);
+ 
+-	drm_printf(m, "\tOn hold?: %lu\n",
++	drm_printf(m, "\tOn hold?: %zu\n",
+ 		   list_count(&engine->sched_engine->hold));
+ 	spin_unlock_irqrestore(&engine->sched_engine->lock, flags);
+ 
+diff --git a/include/linux/list.h b/include/linux/list.h
+index 61762054b4be..65aab596ae33 100644
+--- a/include/linux/list.h
++++ b/include/linux/list.h
+@@ -655,6 +655,21 @@ static inline void list_splice_tail_init(struct list_head *list,
+ 	     !list_is_head(pos, (head)); \
+ 	     pos = n, n = pos->prev)
+ 
++/**
++ * list_count - count nodes in the list
++ * @head:	the head for your list.
++ */
++size_t list_count(struct list_head *head)
++{
++	struct list_head *pos;
++	size_t count = 0;
++
++	list_for_each(pos, head)
++		count++;
++
++	return count;
++}
++
+ /**
+  * list_entry_is_head - test if the entry points to the head of the list
+  * @pos:	the type * to cursor
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.35.1
 
