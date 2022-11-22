@@ -1,50 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E6C6633C22
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Nov 2022 13:10:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A284A633C33
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Nov 2022 13:14:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBFDB10E3D4;
-	Tue, 22 Nov 2022 12:10:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B90210E3D2;
+	Tue, 22 Nov 2022 12:14:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B15E10E3D2
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Nov 2022 12:09:54 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E08110E3D2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Nov 2022 12:14:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669118994; x=1700654994;
+ t=1669119269; x=1700655269;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=azseuI5MY0HKU7INMNBF9qcpEhGEECdOcREmVID8cyg=;
- b=H3qldFUwURohONpNHLVyoWkX1f+9qDcTgHA2RuHPzTN4HvLiAR1Bs/7c
- lY7eYKzwb1G1VpRddzm+WFdxlPDzczEg58blBpf7Mf4d6uUQv2mHUKPLK
- 25BrLUluSy23E7aXvVAVswZ4fqAGd49mATkJedWPlwC846dTT1lZOubWR
- b/qspZSpk8Dx4xoniCaePy5b4RatkDNqm2N4n59GFvcJIH1lzdxoURRN8
- bpPUsyVHllsH5b3gf0KQBbzJQHFybtHX10a22Vc0n5CNOSj022FBNtVOE
- lIdYZAco0hthZwYa1Kl4I5TAeZ2lJFGSwYRsLJchkAG8E4ah/MRg5CD0q g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10538"; a="378057379"
-X-IronPort-AV: E=Sophos;i="5.96,183,1665471600"; d="scan'208";a="378057379"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2022 04:09:53 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10538"; a="592124215"
-X-IronPort-AV: E=Sophos;i="5.96,183,1665471600"; d="scan'208";a="592124215"
-Received: from sfflynn-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.18.151])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2022 04:09:52 -0800
-From: Jani Nikula <jani.nikula@intel.com>
+ bh=QMAGcKdza7wExAKAWRDSKwdW3u1Ys7siC9Wj3gN2PBQ=;
+ b=euUnCiH6HyM8nY2EpHta2SHTYUetLc52LRUW+9tfqQy/+m7aAFgkRPmY
+ dHK/EiMtBzpqlHQHqaeV+uwZY/PBu7k8wQP71cIQQ0+5WUQrljGLTHs+U
+ enOHwxPI1n7w9/tb20BtOVopIz7CVoPeAiZup4sAqQfvR0pvtqj7jEJFI
+ q9fu5hlUDNZ/crXFvNuIRRjGFgS1tKLJe75KaMr85sFBj2zu2qsgApL0e
+ vmrhsR9mMQypZTqI5pqBZfs7VPQmkW1y6C7rzSc7lDwOk8fbnVLN5uV8x
+ O6C26DtQb6V0PWFjajxThFdlTUzxXCH2a9W0aEyPh2/vfLT9efGS7ue7/ g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10538"; a="340669111"
+X-IronPort-AV: E=Sophos;i="5.96,183,1665471600"; d="scan'208";a="340669111"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2022 04:14:06 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10538"; a="783820546"
+X-IronPort-AV: E=Sophos;i="5.96,183,1665471600"; d="scan'208";a="783820546"
+Received: from rwjensen-mobl1.amr.corp.intel.com (HELO
+ gjsousa-mobl2.intel.com) ([10.209.19.69])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2022 04:14:05 -0800
+From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 22 Nov 2022 14:09:48 +0200
-Message-Id: <20221122120948.3436180-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.34.1
+Date: Tue, 22 Nov 2022 09:13:43 -0300
+Message-Id: <20221122121343.18136-1-gustavo.sousa@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/hti: avoid theoretically possible
- negative shift
+Subject: [Intel-gfx] [PATCH v2] drm/i915/dmc: Update DG2 DMC version to v2.08
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,34 +55,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, coverity-bot <keescook@chromium.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If phy is PHY_NONE, the shift to register bits becomes negative. Check
-and warn about this.
+Release notes:
 
-Reported-by: coverity-bot <keescook@chromium.org>
-References: https://lore.kernel.org/r/202211180848.D39006C@keescook
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+1. Fixes for Register noclaims and few restore.
+
+Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hti.c | 3 +++
- 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hti.c b/drivers/gpu/drm/i915/display/intel_hti.c
-index 12a1f4ce1a77..c518efebdf77 100644
---- a/drivers/gpu/drm/i915/display/intel_hti.c
-+++ b/drivers/gpu/drm/i915/display/intel_hti.c
-@@ -21,6 +21,9 @@ void intel_hti_init(struct drm_i915_private *i915)
+v2:
+  - Use correct numbering for the minor version (8 instead of the
+    invalid octal 08).
+
+ drivers/gpu/drm/i915/display/intel_dmc.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index 081a4d0083b1..eff3add70611 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -52,8 +52,8 @@
  
- bool intel_hti_uses_phy(struct drm_i915_private *i915, enum phy phy)
- {
-+	if (drm_WARN_ON(&i915->drm, phy == PHY_NONE))
-+		return false;
-+
- 	return i915->display.hti.state & HDPORT_ENABLED &&
- 		i915->display.hti.state & HDPORT_DDI_USED(phy);
- }
+ #define DISPLAY_VER12_DMC_MAX_FW_SIZE	ICL_DMC_MAX_FW_SIZE
+ 
+-#define DG2_DMC_PATH			DMC_PATH(dg2, 2, 07)
+-#define DG2_DMC_VERSION_REQUIRED	DMC_VERSION(2, 07)
++#define DG2_DMC_PATH			DMC_PATH(dg2, 2, 08)
++#define DG2_DMC_VERSION_REQUIRED	DMC_VERSION(2, 8)
+ MODULE_FIRMWARE(DG2_DMC_PATH);
+ 
+ #define ADLP_DMC_PATH			DMC_PATH(adlp, 2, 16)
 -- 
-2.34.1
+2.38.1
 
