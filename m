@@ -1,153 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2FC06339B8
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Nov 2022 11:19:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38B026339F8
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Nov 2022 11:24:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAD5810E039;
-	Tue, 22 Nov 2022 10:19:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AD5410E039;
+	Tue, 22 Nov 2022 10:24:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 266D810E039
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Nov 2022 10:19:25 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B10010E039
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Nov 2022 10:24:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669112365; x=1700648365;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=pP8QVbJvmWyOwhI9oHlWwD2DESrpiUnulu4cv4+/hwk=;
- b=AeCd+hX4VWWR/VkwcQbHIbD+LILlUHpmhadYBTIxrmShfRaRjfPhs2qM
- TWJOMppbBDR7518g+iEfdFjOxSuaRvhdv6vyrBDo0YdseiNzlYxK2QIm0
- kJvVx9Ulw95yEcVSUg+sX9hkLZRZLQhlPNV4t7Dd8oDUCeMeJ0p3+Xk9w
- zTpEm/+phEtLeFBdZ6ZCub7GmlazyZWrQ+2nCB0lwb0qywYgt2ntQWqn8
- 4fjEpZSwhkJi2SFGxtQlKPESZviNDP6acUUMqIN06paxbgRYYQNc4Sxi4
- 06xju7xzIPeyQ6a3z1ReWXlrkFyHaV8EQvtfVCWL4hdrkT8Y6FWt4h8p/ g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10538"; a="312484543"
-X-IronPort-AV: E=Sophos;i="5.96,183,1665471600"; d="scan'208";a="312484543"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2022 02:19:24 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10538"; a="592095831"
-X-IronPort-AV: E=Sophos;i="5.96,183,1665471600"; d="scan'208";a="592095831"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga003.jf.intel.com with ESMTP; 22 Nov 2022 02:19:24 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Tue, 22 Nov 2022 02:19:23 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Tue, 22 Nov 2022 02:19:23 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.175)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Tue, 22 Nov 2022 02:19:23 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZdgCuf6bVqCHspxLRFO1amV6ZvwaKJes0F6Fi3VpdITHhIZBIFblPtnIVNALVRCswwZGtW7uoTvKJZ/phf3QlZMLZcIXgGCOpY+vhfh4UknalDj7umEO0FqTkK/zTsfTfphvDxOarTLOwSJyCof0brlJyp0QvW5vEPy9BZj6Y3NTncAIMqJTCG3JWZ52E07++kLtwyaOcaDoqMUzsJ2m1qNTNCG10I5usBFA6eSbEfZ+i0Ysny5Z7YUy4OHVtlK+72jrR8KobHMkBAaNdN38cie3jDedg2JEDesQrCZcXc5nHg+//hTLSL3Ok7JpEaJXRfQIyHfCbPXytzzN4WV8CA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pP8QVbJvmWyOwhI9oHlWwD2DESrpiUnulu4cv4+/hwk=;
- b=fd/BNaCVrEs1wjc4Wfb88MwejWWd7QuhazW1P7AxDBiC2Hd4UJ1T3Nnk2gnlCcP2FUEN3feEjc1BUKsGlKmkVMZ1YzdMhZ7QpXGE3/UbJNM0IHhmEFNB2CSKaxgrYqg7dPnETvAXBf+2Vw2bXX6rpzPAthDyxVXPdr7kXzTGLTMWANn/G7Z+tgdAIurzvp5jRF2OA7hxvNKoEVvnqSp6oR5UEtYiUxei5cnkKIh+i6t/m0/17pphiwaZND/5+Lf3BFj51dlTtfPmWFZDawGQdm5a8V3cPx6OO+cnM7aiEp7aPWu1iF4T7/Kr4l72ZIcgGYlMhccwJ5hYE8MqCIa4cQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from BYAPR11MB3207.namprd11.prod.outlook.com (2603:10b6:a03:7c::14)
- by DS7PR11MB7692.namprd11.prod.outlook.com (2603:10b6:8:ef::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5834.15; Tue, 22 Nov
- 2022 10:19:17 +0000
-Received: from BYAPR11MB3207.namprd11.prod.outlook.com
- ([fe80::90bd:c90a:5253:a3f]) by BYAPR11MB3207.namprd11.prod.outlook.com
- ([fe80::90bd:c90a:5253:a3f%5]) with mapi id 15.20.5813.024; Tue, 22 Nov 2022
- 10:19:16 +0000
-From: "Coelho, Luciano" <luciano.coelho@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH v2 2/2] drm/i915/mtl: Limit scaler input to
- 4k in plane scaling
-Thread-Index: AQHY/lvg9xoIcOlCnkKjUycoxydmeQ==
-Date: Tue, 22 Nov 2022 10:19:16 +0000
-Message-ID: <7a263c341d73309e85ffa62a69f10b94bca908c1.camel@intel.com>
-References: <20221121115043.763658-1-luciano.coelho@intel.com>
- <20221121115043.763658-2-luciano.coelho@intel.com>
-In-Reply-To: <20221121115043.763658-2-luciano.coelho@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.46.1-1 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BYAPR11MB3207:EE_|DS7PR11MB7692:EE_
-x-ms-office365-filtering-correlation-id: 3189d37e-1da4-442e-ee2f-08dacc7302d8
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: h5F1NvcSl5PUwoaF9x0tQ8FlqFo6sZG2zHHqSnC2BE5k1yihG0yNZffNGkhPJhR/maRAtAT9DJQx24oyQnsvXycRKl8Z4kgCtPdaMxznbj7/Boq2pFEQLG1wWgeX1gLJ/Wt+GgYyYbuavCCcgQibiHMehoVEG/nuViYojTUcPHzoeebpl6KdIevXFynry+WQRTeiWPI2Onq+hL9ctPQET7LxUuBfwWcCnVzCW1BMWwOaem72Ckx+qADIGbc2ei2jMZUTzpkZ8mDtIRD1d5iHb16kJAy/UxWQ/IlAc7XTZv8Y94Sd64dkQIq+Ntt4O9z4TGCoeCna9DDY5yjedhY037e7fnGmOFXwloaSeNoOqfs1iph9MvC9bk6dywtgC/uecRMzVrrC3Z1WZX0Dgxd5Jh1YRTYHX5j28EYqP0dg35QVmORe3oNKDBN8eiU/T4XPeUQe3dlZssvNPz4ukBSDfaPfcsFSONFfBS7pMzgqTXzlXJhwhmLlO7D1N0rQJxwn3Dsigphvwk3cRSzONc6olO8zDvEdk6pc6GTxsJfkvChbD5I9EIiL9yMZ4psZifQh23WRzaSoqSaN9U5Mgz09Ai+zxunGx5Oc6Ta1D5Ss5VxLCZdrBX1Mg/zdJOmj8cat3ddHbtAabuZtK9A2pGVOXGu6BJhWg4ZVha2j/o/WmnuW49XeUirkWv21f/BT7/gm0JYhjzQTCIMluh+A/y2qPA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR11MB3207.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(396003)(136003)(376002)(39860400002)(346002)(366004)(451199015)(82960400001)(38100700002)(122000001)(4001150100001)(2906002)(41300700001)(66556008)(66476007)(66946007)(91956017)(4326008)(8676002)(316002)(64756008)(6916009)(76116006)(4744005)(66446008)(6486002)(36756003)(478600001)(6512007)(6506007)(86362001)(38070700005)(5660300002)(8936002)(107886003)(186003)(71200400001)(26005)(2616005);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?SWliRzlreWpXUU5CbHg2K0U5Nm5IdUVwUW1iTk1nUzQzNVUzLy8vNUlBZUJm?=
- =?utf-8?B?NFhVcnM3YWpvc2ZTajJZNHFneHBEL2t4amloUDViM3dXZXVqQ2VjT1JKbk1X?=
- =?utf-8?B?WDFCbnBGek9qNERtQ0tIV2U4MHhzbEo0VnAvbmVieVZld0dORDY4NmpaVmxP?=
- =?utf-8?B?L1NXRGt2RkI5NS96aUJJN2M3UlFPbnF1VlM3ZXdod1NaelZKUnV4eFA3aWQ1?=
- =?utf-8?B?czhERkNPQjVSM3hNelYydmV3bVZPT3VlYU96c0doODJXYTRjWUNoY2loVVA2?=
- =?utf-8?B?eHNBRjNMQytra254ZVJHYVU4aERmVk9vekJ1eFVBdklPSnhBL1ZrYUduSC9R?=
- =?utf-8?B?STVXNXNzdGxSZkFoSTNKZlBxOFk1Ly9tMUw4bWIzcUQ2dWJVK3JCN3U2N2NK?=
- =?utf-8?B?M1hQUUdUdmliREU0UmdGMkRKTmlhRWNkcHd1OWRJczBXeDFnSGdLMnJLT014?=
- =?utf-8?B?dWVnWGt2WjFaL1cyaG9IY1BGNDNzKzlyTTR5a1BpRDUzbGdJZ1g2T0dMVFBu?=
- =?utf-8?B?UmVZb3RQUk1TcFd0VE1xRXBHR3hjNGRxWTM0ZjBwMFcrODAwVHRodlpmd1p0?=
- =?utf-8?B?Tk1vVWcwQmd6OE4rZ1kxWVVSN0w0NFVyT0VWN0kvT3RMRjg2S1RObW93MzB6?=
- =?utf-8?B?NnRUWTUwbnEwYWhGNnBTSy9MaHlmelFDdVF5ZEJKRzVleFBPUjFBdlloai9t?=
- =?utf-8?B?dEwwRCtWQTVCNHpLVlNzR0pMVEtqTXRyckJ1SjdmRTdhN05kaTBScks4MUJJ?=
- =?utf-8?B?T3NpcHMwMzZHMVgrNWJRVVJybEY2ajNBbFdhT1VJVGk5dnZBQVIyODRuMnRG?=
- =?utf-8?B?ZnFvNGY2azZhUmhKQ1JLNUgrZ0RxNnY0UzhCUG9KYzVOeTVQc1owL1BHZzJH?=
- =?utf-8?B?a2pvOHc3bDVmd3d3NlJ3d0tyaW05MVBXaldSc2JqSHBkWENxTGxhN0ZtZ2lK?=
- =?utf-8?B?dmNEdzBHZ2t4bU85SWFEbXFxSE9kamRsUDgza2E1ejZoNUdUODRjSFFxS2M5?=
- =?utf-8?B?OEM0L2lobytLVmVXNXFpVTV1RCtvSkFETThxQ09oY0VaYmpzMGw5Mi8zeFZj?=
- =?utf-8?B?WFlpc2YyNVNJZWgyOEpKVCtaR3hrbmc3RmxZdll3cGNHbDNFU3JnTzV6cjJX?=
- =?utf-8?B?RVA3ZmNBWkZndmN4RllEd0gwTUhaYU50eW5RVmNoUVdIajl5OUtybHVqelVz?=
- =?utf-8?B?UFZhQ2R3bFIvTmduVEFHdUFGaENKaHBYSVArR1NqL3NxbURJZ1h5dmRxSy9G?=
- =?utf-8?B?RzYyVXRJNEhIVUgxYXIvWDJDdXZuSnBTaWpKRmxPQUNrWFVUa1N5MXAvYVJK?=
- =?utf-8?B?cTl1K2EydFF3TWp0QTZDVy8ySzBrcVdDMzRDSEl2eVBwOEsrQnNwV2o3ZmJI?=
- =?utf-8?B?bERLMldTT0NXZUZYOXdYUTNNY1VwK3VKNkppYVY4aVo3YThUMlBCcVg0V2Vo?=
- =?utf-8?B?M1ZCMDIyWkQxbWxmcTVyRW9EMm5vMnBVamd3b29uNmNhbEtEQmRsVEZKK0pL?=
- =?utf-8?B?Y3BzMHlvajZnNitCRFJDTWZVM05ZZWFkVTVBWDVaSFArZnVJaGM2ZG9aejVV?=
- =?utf-8?B?M1JQNnVKUm94clMzb1NmQlF4V3dYQU44a0tGMi8yQ1BQZkxxUXk0TWIvdGxz?=
- =?utf-8?B?RHRsYjRHbHBVajdtazB3QXlFcGVIVjVVb08vWWVrWHNzZjQrZURlTGNxS1pu?=
- =?utf-8?B?aXVTek5sYnhMbWdyenRjNmxxcVRGdWVTV1YwLy9zNmY5d0lFYUM0Z0FxZzZB?=
- =?utf-8?B?STJOTWE0UitMeEhrdFFETW1aejY4SU4yUzh2Nmc4anhkc21rZzk0eE1mTy8z?=
- =?utf-8?B?MVF1NjFtajA0a2UxaG1rM01oUzRrSGR6QTdwS3V6RUJaRElyMXZuKy9hZlMv?=
- =?utf-8?B?Y0RraGZKY3JURzNkSlJ6aWd6WTNvdGRoMk1LcUQ0MWx5NHU4eG1iR0R6dHFy?=
- =?utf-8?B?aCtLTG1TZ2s0MlVmUDY4WDUyNFNsZmVlY2VOVW85T0JMWkZ3YXF1NS9nYzQy?=
- =?utf-8?B?eC9GenhqSkNhdGpFN3R4YitmVVZCR1g4QnBSbkRISEVYWGU2bm96QUxEamRL?=
- =?utf-8?B?eUxkajdFb0tscHFvVWlSTnRyalRYMDhxNXFCd1NvWm1RUnJrbUpWejBQNTBN?=
- =?utf-8?B?S3NwM3E0VWtRRy9MNjVSZTNGWER3OVRxcndrZjY4MXloL3ZYdlA3VWZkNEcy?=
- =?utf-8?B?RWc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <3AE6B1321F668E4895D9AB56739F785F@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+ t=1669112645; x=1700648645;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=aHeoOIHGXfL1+oEut88ba8K2MYBYAHwo0N83XoQRIc8=;
+ b=LOEtzqOnbtp/rOGOHdPW0X0K0PnHI8Xb4diYplLQzdqSlpw8eaMMD4WZ
+ nYcdesdewovbvzJo5TArqTRnn+YZpt+2gHBcQ3Z4y8JdIDC0AH603jwS5
+ paCNv7UHZRtlXKl0tnUHlbi+g05am5kQE2S5TVzNKOXRd3xJrivdjVaez
+ nBl2W4rqG2NpM4LledNLJf9bPvw2PE38wmxqAjNmjVhzhNnxliDfADBmG
+ yzueFpSZMGq8QTmQJf6GZxsd8nJh2Gk4IEpEyJ6GWXRO/+iWoFfrHfUKl
+ 5jxjAj944cAyWJ2Of/1qRloSuM+3zETyX8dtob/BoqWNvmmXyekioCBMr g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10538"; a="311412505"
+X-IronPort-AV: E=Sophos;i="5.96,183,1665471600"; d="scan'208";a="311412505"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2022 02:24:04 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10538"; a="619163244"
+X-IronPort-AV: E=Sophos;i="5.96,183,1665471600"; d="scan'208";a="619163244"
+Received: from jiaholee-mobl2.ger.corp.intel.com (HELO
+ kveik.ger.corp.intel.com) ([10.252.48.122])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2022 02:24:03 -0800
+From: Luca Coelho <luciano.coelho@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 22 Nov 2022 12:23:43 +0200
+Message-Id: <20221122102344.30244-1-luciano.coelho@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3207.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3189d37e-1da4-442e-ee2f-08dacc7302d8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Nov 2022 10:19:16.7110 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: bb4u7YbTA1G7VReRPDOPiiUpbrQtNd37ZO3lOYs2lLeCZG4EMY+Xu4VQQaFwoHAJOlR7abi5MwqpAA7bQY40kn9XXY5gaLbgRdO2y1lPZxw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB7692
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915/mtl: Limit scaler input to
- 4k in plane scaling
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3 1/2] drm/i915/mtl: limit second scaler
+ vertical scaling in ver >= 14
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,17 +56,309 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Syrjala, Ville" <ville.syrjala@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAyMDIyLTExLTIxIGF0IDEzOjUwICswMjAwLCBMdWNhIENvZWxobyB3cm90ZToNCj4g
-RnJvbTogQW5pbWVzaCBNYW5uYSA8YW5pbWVzaC5tYW5uYUBpbnRlbC5jb20+DQo+IA0KPiBBcyBw
-YXJ0IG9mIGRpZSBhcmVhIHJlZHVjdGlvbiBtYXggaW5wdXQgc291cmNlIG1vZGlmaWVkIHRvIDQw
-OTYNCj4gZm9yIE1UTCBzbyBtb2RpZmllZCByYW5nZSBjaGVjayBsb2dpYyBvZiBzY2FsZXIuDQo+
-IA0KPiBTaWduZWQtb2ZmLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGlu
-dGVsLmNvbT4NCj4gU2lnbmVkLW9mZi1ieTogQW5pbWVzaCBNYW5uYSA8YW5pbWVzaC5tYW5uYUBp
-bnRlbC5jb20+DQo+IFJldmlld2VkLWJ5OiBNYW5hc2kgTmF2YXJlIDxtYW5hc2kuZC5uYXZhcmVA
-aW50ZWwuY29tPg0KDQpPb3BzLCB0aGlzIGlzIGFuIGludGVybmFsIHJldmlld2VkLWJ5IHRhZyB0
-aGF0IHNob3VsZCBub3QgYmUgaGVyZS4NCg0KSSdsbCBzZW5kIGEgbmV3IHZlcnNpb24uDQoNCi0t
-DQpDaGVlcnMsDQpMdWNhLg0K
+In newer hardware versions (i.e. display version >= 14), the second
+scaler doesn't support vertical scaling.
+
+The current implementation of the scaling limits is simplified and
+only occurs when the planes are created, so we don't know which scaler
+is being used.
+
+In order to handle separate scaling limits for horizontal and vertical
+scaling, and different limits per scaler, split the checks in two
+phases.  We first do a simple check during plane creation and use the
+best-case scenario (because we don't know the scaler that may be used
+at a later point) and then do a more specific check when the scalers
+are actually being set up.
+
+Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+---
+
+In v2:
+   * fix DRM_PLANE_NO_SCALING renamed macros;
+
+In v3:
+   * No changes.
+
+drivers/gpu/drm/i915/display/i9xx_plane.c     |  4 +-
+ drivers/gpu/drm/i915/display/intel_atomic.c   | 47 +++++++++++++++++++
+ .../gpu/drm/i915/display/intel_atomic_plane.c | 39 +++++++++++++--
+ .../gpu/drm/i915/display/intel_atomic_plane.h |  2 +-
+ drivers/gpu/drm/i915/display/intel_cursor.c   |  4 +-
+ drivers/gpu/drm/i915/display/intel_sprite.c   | 19 ++------
+ .../drm/i915/display/skl_universal_plane.c    | 26 ++--------
+ 7 files changed, 91 insertions(+), 50 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
+index ecaeb7dc196b..390e96f0692b 100644
+--- a/drivers/gpu/drm/i915/display/i9xx_plane.c
++++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
+@@ -326,9 +326,7 @@ i9xx_plane_check(struct intel_crtc_state *crtc_state,
+ 	if (ret)
+ 		return ret;
+ 
+-	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
+-						DRM_PLANE_NO_SCALING,
+-						DRM_PLANE_NO_SCALING,
++	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state, false,
+ 						i9xx_plane_has_windowing(plane));
+ 	if (ret)
+ 		return ret;
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
+index 6621aa245caf..43b1c7a227f8 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic.c
+@@ -38,6 +38,7 @@
+ #include "intel_atomic.h"
+ #include "intel_cdclk.h"
+ #include "intel_display_types.h"
++#include "intel_fb.h"
+ #include "intel_global_state.h"
+ #include "intel_hdcp.h"
+ #include "intel_psr.h"
+@@ -375,6 +376,52 @@ static void intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_sta
+ 		mode = SKL_PS_SCALER_MODE_DYN;
+ 	}
+ 
++	if (plane_state && plane_state->hw.fb) {
++		const struct drm_framebuffer *fb = plane_state->hw.fb;
++		struct drm_rect *src = &plane_state->uapi.src;
++		struct drm_rect *dst = &plane_state->uapi.dst;
++		int hscale, vscale, max_vscale, max_hscale;
++
++		if (DISPLAY_VER(dev_priv) >= 14) {
++			/*
++			 * On versions 14 and up, only the first
++			 * scaler supports a vertical scaling factor
++			 * of more than 1.0, while a horizontal
++			 * scaling factor of 3.0 is supported.
++			 */
++			max_hscale = 0x30000 - 1;
++			if (*scaler_id == 0)
++				max_vscale = 0x30000 - 1;
++			else
++				max_vscale = 0x10000;
++
++		} else if (DISPLAY_VER(dev_priv) >= 10 ||
++			   !intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier)) {
++			max_hscale = 0x30000 - 1;
++			max_vscale = 0x30000 - 1;
++		} else {
++			max_hscale = 0x20000 - 1;
++			max_vscale = 0x20000 - 1;
++		}
++
++		/* Check if required scaling is within limits */
++		hscale = drm_rect_calc_hscale(src, dst, 1, max_hscale);
++		vscale = drm_rect_calc_vscale(src, dst, 1, max_vscale);
++
++		if (hscale < 0 || vscale < 0) {
++			drm_dbg_kms(&dev_priv->drm,
++				    "Scaler %d doesn't support required plane scaling\n",
++				    *scaler_id);
++			drm_rect_debug_print("src: ", src, true);
++			drm_rect_debug_print("dst: ", dst, false);
++
++			scaler_state->scalers[*scaler_id].in_use = 0;
++			*scaler_id = -1;
++
++			return;
++		}
++	}
++
+ 	drm_dbg_kms(&dev_priv->drm, "Attached scaler id %u.%u to %s:%d\n",
+ 		    intel_crtc->pipe, *scaler_id, name, idx);
+ 	scaler_state->scalers[*scaler_id].mode = mode;
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+index 10e1fc9d0698..9100f328df60 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+@@ -887,7 +887,7 @@ void intel_crtc_planes_update_arm(struct intel_atomic_state *state,
+ 
+ int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_state,
+ 				      struct intel_crtc_state *crtc_state,
+-				      int min_scale, int max_scale,
++				      bool allow_scaling,
+ 				      bool can_position)
+ {
+ 	struct drm_i915_private *i915 = to_i915(plane_state->uapi.plane->dev);
+@@ -897,19 +897,50 @@ int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_state,
+ 	const struct drm_rect *clip = &crtc_state->pipe_src;
+ 	unsigned int rotation = plane_state->hw.rotation;
+ 	int hscale, vscale;
++	int max_hscale, min_hscale, max_vscale, min_vscale;
+ 
+ 	if (!fb) {
+ 		plane_state->uapi.visible = false;
+ 		return 0;
+ 	}
+ 
++	/*
++	 * At this point we don't really know the HW limitations, so
++	 * we just sanitize the values against the maximum supported
++	 * scaling.
++	 */
++	if (allow_scaling) {
++		min_vscale = 1;
++		min_hscale = 1;
++
++		if (DISPLAY_VER(i915) < 10 ||
++		    intel_format_info_is_yuv_semiplanar(fb->format,
++							fb->modifier)) {
++			max_vscale = 0x20000 - 1;
++			max_hscale = 0x20000 - 1;
++		} else {
++			max_vscale = 0x30000 - 1;
++			max_hscale = 0x30000 - 1;
++		}
++	} else {
++		min_hscale = DRM_PLANE_NO_SCALING;
++		max_hscale = DRM_PLANE_NO_SCALING;
++		min_vscale = DRM_PLANE_NO_SCALING;
++		max_vscale = DRM_PLANE_NO_SCALING;
++	}
++
+ 	drm_rect_rotate(src, fb->width << 16, fb->height << 16, rotation);
+ 
+ 	/* Check scaling */
+-	hscale = drm_rect_calc_hscale(src, dst, min_scale, max_scale);
+-	vscale = drm_rect_calc_vscale(src, dst, min_scale, max_scale);
++	hscale = drm_rect_calc_hscale(src, dst, min_hscale, max_hscale);
++	vscale = drm_rect_calc_vscale(src, dst, min_vscale, max_vscale);
+ 	if (hscale < 0 || vscale < 0) {
+-		drm_dbg_kms(&i915->drm, "Invalid scaling of plane\n");
++		drm_dbg_kms(&i915->drm,
++			    "Invalid scaling of plane: hscale 0x%x vscale 0x%x\n",
++			    hscale, vscale);
++		drm_dbg_kms(&i915->drm,
++			    "min_hscale 0x%0x max_hscale 0x%0x min_vscale 0x%0x max_vscale 0x%0x\n",
++			    min_hscale, max_hscale, min_vscale, max_vscale);
+ 		drm_rect_debug_print("src: ", src, true);
+ 		drm_rect_debug_print("dst: ", dst, false);
+ 		return -ERANGE;
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
+index 74b6d3b169a7..441ef8165212 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
+@@ -60,7 +60,7 @@ int intel_plane_calc_min_cdclk(struct intel_atomic_state *state,
+ 			       bool *need_cdclk_calc);
+ int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_state,
+ 				      struct intel_crtc_state *crtc_state,
+-				      int min_scale, int max_scale,
++				      bool check_scaling,
+ 				      bool can_position);
+ void intel_plane_set_invisible(struct intel_crtc_state *crtc_state,
+ 			       struct intel_plane_state *plane_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+index d190fa0d393b..741ec74f54f6 100644
+--- a/drivers/gpu/drm/i915/display/intel_cursor.c
++++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+@@ -144,9 +144,7 @@ static int intel_check_cursor(struct intel_crtc_state *crtc_state,
+ 	}
+ 
+ 	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
+-						DRM_PLANE_NO_SCALING,
+-						DRM_PLANE_NO_SCALING,
+-						true);
++						false, true);
+ 	if (ret)
+ 		return ret;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
+index e6b4d24b9cd0..9ad1173a0551 100644
+--- a/drivers/gpu/drm/i915/display/intel_sprite.c
++++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+@@ -1355,22 +1355,11 @@ g4x_sprite_check(struct intel_crtc_state *crtc_state,
+ {
+ 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+ 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+-	int min_scale = DRM_PLANE_NO_SCALING;
+-	int max_scale = DRM_PLANE_NO_SCALING;
+ 	int ret;
+ 
+-	if (g4x_fb_scalable(plane_state->hw.fb)) {
+-		if (DISPLAY_VER(dev_priv) < 7) {
+-			min_scale = 1;
+-			max_scale = 16 << 16;
+-		} else if (IS_IVYBRIDGE(dev_priv)) {
+-			min_scale = 1;
+-			max_scale = 2 << 16;
+-		}
+-	}
+-
+ 	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
+-						min_scale, max_scale, true);
++						g4x_fb_scalable(plane_state->hw.fb),
++						true);
+ 	if (ret)
+ 		return ret;
+ 
+@@ -1426,9 +1415,7 @@ vlv_sprite_check(struct intel_crtc_state *crtc_state,
+ 		return ret;
+ 
+ 	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
+-						DRM_PLANE_NO_SCALING,
+-						DRM_PLANE_NO_SCALING,
+-						true);
++						false, true);
+ 	if (ret)
+ 		return ret;
+ 
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 76490cc59d8f..e2ae6624378f 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -1463,22 +1463,6 @@ static int skl_plane_check_nv12_rotation(const struct intel_plane_state *plane_s
+ 	return 0;
+ }
+ 
+-static int skl_plane_max_scale(struct drm_i915_private *dev_priv,
+-			       const struct drm_framebuffer *fb)
+-{
+-	/*
+-	 * We don't yet know the final source width nor
+-	 * whether we can use the HQ scaler mode. Assume
+-	 * the best case.
+-	 * FIXME need to properly check this later.
+-	 */
+-	if (DISPLAY_VER(dev_priv) >= 10 ||
+-	    !intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier))
+-		return 0x30000 - 1;
+-	else
+-		return 0x20000 - 1;
+-}
+-
+ static int intel_plane_min_width(struct intel_plane *plane,
+ 				 const struct drm_framebuffer *fb,
+ 				 int color_plane,
+@@ -1862,8 +1846,7 @@ static int skl_plane_check(struct intel_crtc_state *crtc_state,
+ 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+ 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+ 	const struct drm_framebuffer *fb = plane_state->hw.fb;
+-	int min_scale = DRM_PLANE_NO_SCALING;
+-	int max_scale = DRM_PLANE_NO_SCALING;
++	bool allow_scaling;
+ 	int ret;
+ 
+ 	ret = skl_plane_check_fb(crtc_state, plane_state);
+@@ -1871,13 +1854,10 @@ static int skl_plane_check(struct intel_crtc_state *crtc_state,
+ 		return ret;
+ 
+ 	/* use scaler when colorkey is not required */
+-	if (!plane_state->ckey.flags && skl_fb_scalable(fb)) {
+-		min_scale = 1;
+-		max_scale = skl_plane_max_scale(dev_priv, fb);
+-	}
++	allow_scaling = !plane_state->ckey.flags && skl_fb_scalable(fb);
+ 
+ 	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
+-						min_scale, max_scale, true);
++						allow_scaling, true);
+ 	if (ret)
+ 		return ret;
+ 
+-- 
+2.38.1
+
