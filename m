@@ -1,65 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 848036361EF
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Nov 2022 15:35:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69DA86361FA
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Nov 2022 15:39:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 363EE10E55F;
-	Wed, 23 Nov 2022 14:35:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD1ED10E050;
+	Wed, 23 Nov 2022 14:39:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com
- [IPv6:2a00:1450:4864:20::52c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52D8F10E206
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Nov 2022 14:35:07 +0000 (UTC)
-Received: by mail-ed1-x52c.google.com with SMTP id e13so25099619edj.7
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Nov 2022 06:35:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=GPLrYyNidI//auSaKwI6GvkJsgMtKAF3UqEyle3yeOc=;
- b=LCgYuwgHx1K9mYWM1mR96CB8NCe3P5sA090XVr26hcLHmss5Pn5J/t2cO8h6lx4fxM
- NrVrC9uNEWT85JXwD2PphfxsHBPSLrKCtF+8CDf7CfTVxK+1ZAfjuESMhMdxfgz16nQC
- OhdLPv1zPYaj+Xd3f+P4oBTT3hHdUfKNrSlak=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=GPLrYyNidI//auSaKwI6GvkJsgMtKAF3UqEyle3yeOc=;
- b=ZDQiC0v9875qI9zpNZ/YEtEkmk+86/n/IwtxDlwW7ZKq4btNNW9RkaFxmkbU/N85fm
- 2C91R3YX6HhKd/hjXzSPtaSR/XCuI4ilw1P4eDxn4ilSZiMhr7UmCf24y16RhWmgIFoI
- kkMlVu0DTmCpJJ25MXJ5KZwDBcOtpFu7YLEyfVshEC+yoZbxVmsUvc/GD1MjN8QVeUNG
- K2lKO6SigTFhinc4juEkFxJAwKNOKBs6S0n0oz6eUMQGc8lSsQvNyfpHT2FZoifIJByX
- C5nC1bG+sng3MSrjEPo46hVq0ynDyFNJJnXvga42IjlYMe1YnAdf4gy1hFP18Z2jH9ET
- rOhw==
-X-Gm-Message-State: ANoB5pm8VM7HaBsE3Q1NhuuIXEyHC0d7Runz2ivGggYvQHMFWUcblNUr
- oVAxa/ra9GDHS+qrPVuY5RPmseZieZaTgz5nhhrUqQ==
-X-Google-Smtp-Source: AA0mqf7s0gxKVbGsXYgPrF7eJBIPRffTj7CXpmrJ+fnJeN9pvA50Kh54G/8S5Pm78H/FeFz/JpA02ODuJr2OR5DElm8=
-X-Received: by 2002:a05:6402:d69:b0:46a:392b:2440 with SMTP id
- ec41-20020a0564020d6900b0046a392b2440mr2032045edb.341.1669214105779; Wed, 23
- Nov 2022 06:35:05 -0800 (PST)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id ACE2E10E050;
+ Wed, 23 Nov 2022 14:39:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A6E3EA0169;
+ Wed, 23 Nov 2022 14:39:33 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6233628208145576234=="
 MIME-Version: 1.0
-References: <Y30kK6dsssSLJVgp@ziepe.ca>
- <CAKMK7uFQQkG82PzuSTGQTnN3ZNps5N_4TjR5NRWo0LaJkEaNew@mail.gmail.com>
- <3d8607b4-973d-945d-c184-260157ade7c3@amd.com>
- <CAKMK7uHVGgGHTiXYOfseXXda2Ug992nYvhPsL+4z18ssqeHXHQ@mail.gmail.com>
- <b05e6091-4e07-1e32-773d-f603ac9ac98b@gmail.com>
- <CAKMK7uFjmzewqv3r4hL9hvLADwV536n2n6xbAWaUvmAcStr5KQ@mail.gmail.com>
- <Y34WI9SZdiH/p1tA@ziepe.ca> <f8f844a5-0910-d19a-5aea-df7a1d83b1d3@gmail.com>
- <Y34XvmtHfb4ZwopN@ziepe.ca> <dc2a9d7f-192b-e9d8-b1d1-3b868cb1fd44@gmail.com>
- <Y34gBUl0m+j1JdFk@ziepe.ca>
-In-Reply-To: <Y34gBUl0m+j1JdFk@ziepe.ca>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Wed, 23 Nov 2022 15:34:54 +0100
-Message-ID: <CAKMK7uEzaUjroODbWe4DtxHQ+gmr7_DVK+fUJjAgMsgP61uGSQ@mail.gmail.com>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [Linaro-mm-sig] Re: [PATCH] dma-buf: Require
- VM_PFNMAP vma for mmap
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Wed, 23 Nov 2022 14:39:33 -0000
+Message-ID: <166921437365.15572.11067318473214053771@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221123130932.3863985-1-jani.nikula@intel.com>
+In-Reply-To: <20221123130932.3863985-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/audio=3A_make_drm=5Faudio=5Fcomponent=2Eh_self-contained?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,126 +40,238 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Sumit Semwal <sumit.semwal@linaro.org>, linaro-mm-sig@lists.linaro.org,
- John Stultz <john.stultz@linaro.org>, Matthew Wilcox <willy@infradead.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Suren Baghdasaryan <surenb@google.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- linux-media@vger.kernel.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 23 Nov 2022 at 14:28, Jason Gunthorpe <jgg@ziepe.ca> wrote:
->
-> On Wed, Nov 23, 2022 at 02:12:25PM +0100, Christian K=C3=B6nig wrote:
-> > Am 23.11.22 um 13:53 schrieb Jason Gunthorpe:
-> > > On Wed, Nov 23, 2022 at 01:49:41PM +0100, Christian K=C3=B6nig wrote:
-> > > > Am 23.11.22 um 13:46 schrieb Jason Gunthorpe:
-> > > > > On Wed, Nov 23, 2022 at 11:06:55AM +0100, Daniel Vetter wrote:
-> > > > >
-> > > > > > > Maybe a GFP flag to set the page reference count to zero or s=
-omething
-> > > > > > > like this?
-> > > > > > Hm yeah that might work. I'm not sure what it will all break th=
-ough?
-> > > > > > And we'd need to make sure that underflowing the page refcount =
-dies in
-> > > > > > a backtrace.
-> > > > > Mucking with the refcount like this to protect against crazy out =
-of
-> > > > > tree drives seems horrible..
-> > > > Well not only out of tree drivers. The intree KVM got that horrible
-> > > > wrong as well, those where the latest guys complaining about it.
-> > > kvm was taking refs on special PTEs? That seems really unlikely?
-> >
-> > Well then look at this code here:
-> >
-> > commit add6a0cd1c5ba51b201e1361b05a5df817083618
-> > Author: Paolo Bonzini <pbonzini@redhat.com>
-> > Date:   Tue Jun 7 17:51:18 2016 +0200
-> >
-> >     KVM: MMU: try to fix up page faults before giving up
-> >
-> >     The vGPU folks would like to trap the first access to a BAR by sett=
-ing
-> >     vm_ops on the VMAs produced by mmap-ing a VFIO device.  The fault
-> > handler
-> >     then can use remap_pfn_range to place some non-reserved pages in th=
-e
-> > VMA.
-> >
-> >     This kind of VM_PFNMAP mapping is not handled by KVM, but follow_pf=
-n
-> >     and fixup_user_fault together help supporting it.  The patch also
-> > supports
-> >     VM_MIXEDMAP vmas where the pfns are not reserved and thus subject t=
-o
-> >     reference counting.
-> >
-> >     Cc: Xiao Guangrong <guangrong.xiao@linux.intel.com>
-> >     Cc: Andrea Arcangeli <aarcange@redhat.com>
-> >     Cc: Radim Kr=C4=8Dm=C3=A1=C5=99 <rkrcmar@redhat.com>
-> >     Tested-by: Neo Jia <cjia@nvidia.com>
-> >     Reported-by: Kirti Wankhede <kwankhede@nvidia.com>
-> >     Signed-off-by: Paolo Bonzini <pbonzini@redhat.com>
->
-> This patch is known to be broken in so many ways. It also has a major
-> security hole that it ignores the PTE flags making the page
-> RO. Ignoring the special bit is somehow not surprising :(
->
-> This probably doesn't work, but is the general idea of what KVM needs
-> to do:
->
-> diff --git a/virt/kvm/kvm_main.c b/virt/kvm/kvm_main.c
-> index 1376a47fedeedb..4161241fc3228c 100644
-> --- a/virt/kvm/kvm_main.c
-> +++ b/virt/kvm/kvm_main.c
-> @@ -2598,6 +2598,19 @@ static int hva_to_pfn_remapped(struct vm_area_stru=
-ct *vma,
->                         return r;
->         }
->
-> +       /*
-> +        * Special PTEs are never convertible into a struct page, even if=
- the
-> +        * driver that owns them might have put a PFN with a struct page =
-into
-> +        * the PFNMAP. If the arch doesn't support special then we cannot
-> +        * safely process these pages.
-> +        */
-> +#ifdef CONFIG_ARCH_HAS_PTE_SPECIAL
-> +       if (pte_special(*ptep))
-> +               return -EINVAL;
+--===============6233628208145576234==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On second thought this wont work, because it completely defeats the
-point of why this code here exists. remap_pfn_range() (which is what
-the various dma_mmap functions and the ioremap functions are built on
-top of too) sets VM_PFNMAP too, so this check would even catch the
-static mappings.
+== Series Details ==
 
-Plus these static mappings aren't all that static either, e.g. pci
-access also can revoke bar mappings nowadays.
+Series: drm/audio: make drm_audio_component.h self-contained
+URL   : https://patchwork.freedesktop.org/series/111254/
+State : success
 
-I think nothing except full mmu_notifier will actually fix this.
--Daniel
+== Summary ==
 
-> +#else
-> +       return -EINVAL;
-> +#endif
-> +
->         if (write_fault && !pte_write(*ptep)) {
->                 pfn =3D KVM_PFN_ERR_RO_FAULT;
->                 goto out;
->
-> Jason
+CI Bug Log - changes from CI_DRM_12422 -> Patchwork_111254v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111254v1/index.html
+
+Participating hosts (39 -> 35)
+------------------------------
+
+  Additional (1): fi-pnv-d510 
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-ctg-p8600 fi-bsw-nick fi-bdw-samus 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_111254v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][1] ([fdo#109271] / [fdo#111827])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111254v1/fi-hsw-4770/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][2] ([fdo#109271]) +44 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111254v1/fi-pnv-d510/igt@kms_psr@primary_page_flip.html
+
+  
+#### Possible fixes ####
+
+  * igt@fbdev@read:
+    - {bat-rpls-2}:       [SKIP][3] ([i915#2582]) -> [PASS][4] +4 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12422/bat-rpls-2/igt@fbdev@read.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111254v1/bat-rpls-2/igt@fbdev@read.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [INCOMPLETE][5] ([i915#4785]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12422/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111254v1/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@requests:
+    - {bat-rpls-2}:       [INCOMPLETE][7] ([i915#6257]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12422/bat-rpls-2/igt@i915_selftest@live@requests.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111254v1/bat-rpls-2/igt@i915_selftest@live@requests.html
+
+  * igt@i915_selftest@live@reset:
+    - {bat-rpls-1}:       [DMESG-FAIL][9] ([i915#4983]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12422/bat-rpls-1/igt@i915_selftest@live@reset.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111254v1/bat-rpls-1/igt@i915_selftest@live@reset.html
+
+  * igt@i915_selftest@live@slpc:
+    - {bat-adln-1}:       [DMESG-FAIL][11] ([i915#6997]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12422/bat-adln-1/igt@i915_selftest@live@slpc.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111254v1/bat-adln-1/igt@i915_selftest@live@slpc.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
+    - fi-bsw-kefka:       [FAIL][13] ([i915#6298]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12422/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111254v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#6257]: https://gitlab.freedesktop.org/drm/intel/issues/6257
+  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6434]: https://gitlab.freedesktop.org/drm/intel/issues/6434
+  [i915#6559]: https://gitlab.freedesktop.org/drm/intel/issues/6559
+  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
+  [i915#7346]: https://gitlab.freedesktop.org/drm/intel/issues/7346
 
 
+Build changes
+-------------
 
---=20
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+  * Linux: CI_DRM_12422 -> Patchwork_111254v1
+
+  CI-20190529: 20190529
+  CI_DRM_12422: e9b111630cc3f1b8edfcc64040bb45c404a56be3 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7072: 69ba7163475925cdc69aebbdfa0e87453ae165c7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_111254v1: e9b111630cc3f1b8edfcc64040bb45c404a56be3 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+5c313ffd38f2 drm/audio: make drm_audio_component.h self-contained
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111254v1/index.html
+
+--===============6233628208145576234==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/audio: make drm_audio_component.h self-contained</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/111254/">https://patchwork.freedesktop.org/series/111254/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111254v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111254v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12422 -&gt; Patchwork_111254v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111254v1/index.html</p>
+<h2>Participating hosts (39 -&gt; 35)</h2>
+<p>Additional (1): fi-pnv-d510 <br />
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-ctg-p8600 fi-bsw-nick fi-bdw-samus </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_111254v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111254v1/fi-hsw-4770/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_page_flip:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111254v1/fi-pnv-d510/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +44 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@fbdev@read:</p>
+<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12422/bat-rpls-2/igt@fbdev@read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2582">i915#2582</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111254v1/bat-rpls-2/igt@fbdev@read.html">PASS</a> +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12422/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111254v1/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12422/bat-rpls-2/igt@i915_selftest@live@requests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6257">i915#6257</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111254v1/bat-rpls-2/igt@i915_selftest@live@requests.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@reset:</p>
+<ul>
+<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12422/bat-rpls-1/igt@i915_selftest@live@reset.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111254v1/bat-rpls-1/igt@i915_selftest@live@reset.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@slpc:</p>
+<ul>
+<li>{bat-adln-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12422/bat-adln-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6997">i915#6997</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111254v1/bat-adln-1/igt@i915_selftest@live@slpc.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12422/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111254v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12422 -&gt; Patchwork_111254v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12422: e9b111630cc3f1b8edfcc64040bb45c404a56be3 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7072: 69ba7163475925cdc69aebbdfa0e87453ae165c7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_111254v1: e9b111630cc3f1b8edfcc64040bb45c404a56be3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>5c313ffd38f2 drm/audio: make drm_audio_component.h self-contained</p>
+
+</body>
+</html>
+
+--===============6233628208145576234==--
