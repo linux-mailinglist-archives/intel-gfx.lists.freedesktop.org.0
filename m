@@ -1,52 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFAB1636C42
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Nov 2022 22:20:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A9B8636CBE
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Nov 2022 23:06:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE3CB10E642;
-	Wed, 23 Nov 2022 21:20:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CA1E10E653;
+	Wed, 23 Nov 2022 22:06:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 592A110E24E
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Nov 2022 21:19:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669238361; x=1700774361;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=SZvfjG7EyniAU1Wxkml/xIybtajDFmcZAmjmDNgiWK4=;
- b=DJeWR6mSCvH7lD2ym59JmjP0RZMb/kjLiNXWXMY1DBrsWVIR8paJmt8S
- lLoYcEGAa870rvGGgbaXzLsL1O5+Q11fG0Dy2yPFbeY2koHgNOH9emTAx
- /QUS5lpWqBK0aUgA/NK/PCdmGIaGT7cPaky185Viu3gTWc+2/jQ3wE+rf
- oqMfjkUbfJwl4Sr0Qx+zoDzLluizUepoKpqqMY7nxKf05N5ZBehuBzkXo
- QYprymdrBa854yS14M7cQli/aCDJ4T/asSCgLFDb+1IRKcvo7iiChE3nX
- /ggZ0vDk3de5Q1p73wlGGj5Dre/8RADjxXyHwSgx6sEHTsYydXLPROq6W w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10540"; a="312859721"
-X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; d="scan'208";a="312859721"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2022 13:19:20 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10540"; a="636053097"
-X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; d="scan'208";a="636053097"
-Received: from jgronski-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.16.163])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2022 13:19:19 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 23 Nov 2022 23:18:25 +0200
-Message-Id: <6d9653c249d4a863b4bec71b66ddb5718dd3c8c3.1669238194.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1669238194.git.jani.nikula@intel.com>
-References: <cover.1669238194.git.jani.nikula@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6F12910E246;
+ Wed, 23 Nov 2022 22:05:55 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 67E28A00E8;
+ Wed, 23 Nov 2022 22:05:55 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 12/12] drm/i915/fbc: switch to intel_de_*
- register accessors in display code
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: john.c.harrison@intel.com
+Date: Wed, 23 Nov 2022 22:05:55 -0000
+Message-ID: <166924115539.15573.18070334487039824172@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221123195123.1525100-1-John.C.Harrison@Intel.com>
+In-Reply-To: <20221123195123.1525100-1-John.C.Harrison@Intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Add_module_oriented_dmesg_output_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,47 +40,126 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Avoid direct uncore use in display code. Use the new
-intel_de_rewrite_fw().
+== Series Details ==
 
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_fbc.c | 10 ++--------
- 1 file changed, 2 insertions(+), 8 deletions(-)
+Series: Add module oriented dmesg output (rev2)
+URL   : https://patchwork.freedesktop.org/series/111050/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index b5ee5ea0d010..6066ac412e6f 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -323,10 +323,7 @@ static void i8xx_fbc_nuke(struct intel_fbc *fbc)
- 	enum i9xx_plane_id i9xx_plane = fbc_state->plane->i9xx_plane;
- 	struct drm_i915_private *dev_priv = fbc->i915;
- 
--	spin_lock_irq(&dev_priv->uncore.lock);
--	intel_de_write_fw(dev_priv, DSPADDR(i9xx_plane),
--			  intel_de_read_fw(dev_priv, DSPADDR(i9xx_plane)));
--	spin_unlock_irq(&dev_priv->uncore.lock);
-+	intel_de_rewrite_fw(dev_priv, DSPADDR(i9xx_plane));
- }
- 
- static void i8xx_fbc_program_cfb(struct intel_fbc *fbc)
-@@ -359,10 +356,7 @@ static void i965_fbc_nuke(struct intel_fbc *fbc)
- 	enum i9xx_plane_id i9xx_plane = fbc_state->plane->i9xx_plane;
- 	struct drm_i915_private *dev_priv = fbc->i915;
- 
--	spin_lock_irq(&dev_priv->uncore.lock);
--	intel_de_write_fw(dev_priv, DSPSURF(i9xx_plane),
--			  intel_de_read_fw(dev_priv, DSPSURF(i9xx_plane)));
--	spin_unlock_irq(&dev_priv->uncore.lock);
-+	intel_de_rewrite_fw(dev_priv, DSPSURF(i9xx_plane));
- }
- 
- static const struct intel_fbc_funcs i965_fbc_funcs = {
--- 
-2.34.1
+== Summary ==
+
+Error: dim checkpatch failed
+60fd35ea849f drm/i915/gt: Start adding module oriented dmesg output
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:225: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#225: 
+new file mode 100644
+
+-:242: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_gt' - possible side-effects?
+#242: FILE: drivers/gpu/drm/i915/gt/intel_gt_print.h:13:
++#define gt_err(_gt, _fmt, ...) \
++	drm_err(&(_gt)->i915->drm, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
+
+-:245: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_gt' - possible side-effects?
+#245: FILE: drivers/gpu/drm/i915/gt/intel_gt_print.h:16:
++#define gt_warn(_gt, _fmt, ...) \
++	drm_warn(&(_gt)->i915->drm, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
+
+-:248: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_gt' - possible side-effects?
+#248: FILE: drivers/gpu/drm/i915/gt/intel_gt_print.h:19:
++#define gt_notice(_gt, _fmt, ...) \
++	drm_notice(&(_gt)->i915->drm, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
+
+-:251: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_gt' - possible side-effects?
+#251: FILE: drivers/gpu/drm/i915/gt/intel_gt_print.h:22:
++#define gt_info(_gt, _fmt, ...) \
++	drm_info(&(_gt)->i915->drm, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
+
+-:254: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_gt' - possible side-effects?
+#254: FILE: drivers/gpu/drm/i915/gt/intel_gt_print.h:25:
++#define gt_dbg(_gt, _fmt, ...) \
++	drm_dbg(&(_gt)->i915->drm, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
+
+-:257: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_gt' - possible side-effects?
+#257: FILE: drivers/gpu/drm/i915/gt/intel_gt_print.h:28:
++#define gt_err_ratelimited(_gt, _fmt, ...) \
++	drm_err_ratelimited(&(_gt)->i915->drm, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
+
+-:260: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_gt' - possible side-effects?
+#260: FILE: drivers/gpu/drm/i915/gt/intel_gt_print.h:31:
++#define gt_probe_error(_gt, _fmt, ...) \
++	do { \
++		if (i915_error_injected()) \
++			gt_dbg(_gt, _fmt, ##__VA_ARGS__); \
++		else \
++			gt_err(_gt, _fmt, ##__VA_ARGS__); \
++	} while (0)
+
+-:260: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_fmt' - possible side-effects?
+#260: FILE: drivers/gpu/drm/i915/gt/intel_gt_print.h:31:
++#define gt_probe_error(_gt, _fmt, ...) \
++	do { \
++		if (i915_error_injected()) \
++			gt_dbg(_gt, _fmt, ##__VA_ARGS__); \
++		else \
++			gt_err(_gt, _fmt, ##__VA_ARGS__); \
++	} while (0)
+
+-:274: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_gt' - possible side-effects?
+#274: FILE: drivers/gpu/drm/i915/gt/intel_gt_print.h:45:
++#define gt_WARN(_gt, _condition, _fmt, ...) \
++	drm_WARN(&(_gt)->i915->drm, _condition, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
+
+-:277: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_gt' - possible side-effects?
+#277: FILE: drivers/gpu/drm/i915/gt/intel_gt_print.h:48:
++#define gt_WARN_ONCE(_gt, _condition, _fmt, ...) \
++	drm_WARN_ONCE(&(_gt)->i915->drm, _condition, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
+
+total: 0 errors, 1 warnings, 10 checks, 237 lines checked
+ea27dc23d9fd drm/i915/huc: Add HuC specific debug print wrappers
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:135: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#135: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 137 lines checked
+2dc865e6be6d drm/i915/guc: Add GuC specific debug print wrappers
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:271: WARNING:OOM_MESSAGE: Possible unnecessary 'out of memory' message
+#271: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:622:
+ 	if (!caplist) {
++		guc_dbg(guc, "capture: Failed to alloc cached caplist\n");
+
+-:288: WARNING:OOM_MESSAGE: Possible unnecessary 'out of memory' message
+#288: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:663:
+ 	if (!null_header) {
++		guc_dbg(guc, "capture: Failed to alloc cached null list\n");
+
+-:635: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#635: 
+new file mode 100644
+
+-:1169: WARNING:OOM_MESSAGE: Possible unnecessary 'out of memory' message
+#1169: FILE: drivers/gpu/drm/i915/gt/uc/selftest_guc.c:156:
+ 	if (!ce) {
++		guc_err(guc, "Context array allocation failed\n");
+
+total: 0 errors, 4 warnings, 0 checks, 1232 lines checked
+85aa5097ac2d drm/i915/guc: Add GuC CT specific debug print wrappers
+f41189cd9f80 drm/i915/uc: Update the gt/uc code to use gt_err and friends
+
 
