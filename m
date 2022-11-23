@@ -2,51 +2,145 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA7A6636A1F
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Nov 2022 20:51:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D335636AB8
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Nov 2022 21:18:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0710210E614;
-	Wed, 23 Nov 2022 19:51:36 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9EFC10E244;
- Wed, 23 Nov 2022 19:51:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D859C10E606;
+	Wed, 23 Nov 2022 20:18:07 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 883A210E606
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Nov 2022 20:18:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669233090; x=1700769090;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=p4MNiZehm/0ffJM6pvn+/HcOltc7aqw6d6KNYxMlRmU=;
- b=kp8jB2Hvxcc4ceH3l12VhSobejtPw/cWyJcBQUK3gkgVfABV3a6GPROU
- 6otJ9MPOzq49ml0Rv3p9mWrd0ouE9Gc14dNo9kw255lftUUmKWe3zKxut
- tZTOFeBz1ckU9wDXAdnJrbVRLKmBqZ6ooQmtt1e5ckVC/nr4pYzOy0KtS
- JFl0qFbLgeZ50YiGh3mQ/3QzXdaHJE719hESmrUdtJXhEeRv915VtBfLL
- RPtXY75E6Fl/Es1g+rmH6JnStYGgjylkKIoZZu8OuvjDOJlUUvrKup4kD
- k0Ss7J51AIAj1OLzfsdrliHX/s1qT8tG2p3ggj5zs3UEX0J7d+ZvBoXpD w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10540"; a="301709234"
-X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; d="scan'208";a="301709234"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2022 11:51:30 -0800
+ t=1669234682; x=1700770682;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=OpB1WHiZhUZVZpnUXP+CsZjA6D+DsXWb9bTC8xGs9es=;
+ b=cTOkBdvdITrI5eg81M717c6G+6Euj47+drbuM3aZIeGgBwCIrev6g33M
+ ZMpQhp3Wau44O19spUSVCDxUtlFw+a1co10WTDSxMVESSlvqrFUZZuox1
+ XLXSUUXHduwVTSgIHDQzEQG/s3JnUYhFCLTwNH1AWLlGMnmwkuqvXFeNn
+ SnrY6GNeGbts+PQzRabOxEi0tegeNUQnzHUjp/+pY0udpM7i0rRJIk+Hf
+ PlX6trTMiwSSL+2mWz/LQRdb2AgLc5tfdR4Y7Uit3XGLmzqeOgv1Ef7wT
+ p0red7VFKJH/sFtrJ6cr6kQYRgDRrvlte2HLkpmNR8kVFrYhM/Tav3Ic7 g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10540"; a="314187124"
+X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; d="scan'208";a="314187124"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2022 12:18:01 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10540"; a="816597806"
-X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; d="scan'208";a="816597806"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.144])
- by orsmga005.jf.intel.com with ESMTP; 23 Nov 2022 11:51:29 -0800
-From: John.C.Harrison@Intel.com
-To: Intel-GFX@Lists.FreeDesktop.Org
-Date: Wed, 23 Nov 2022 11:51:23 -0800
-Message-Id: <20221123195123.1525100-6-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20221123195123.1525100-1-John.C.Harrison@Intel.com>
-References: <20221123195123.1525100-1-John.C.Harrison@Intel.com>
+X-IronPort-AV: E=McAfee;i="6500,9779,10540"; a="636039346"
+X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; d="scan'208";a="636039346"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga007.jf.intel.com with ESMTP; 23 Nov 2022 12:18:00 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Wed, 23 Nov 2022 12:18:00 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Wed, 23 Nov 2022 12:18:00 -0800
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.40) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2375.31; Wed, 23 Nov 2022 12:18:00 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=h8/5AHcJcSV1qklw+9/ac1iEH2XymQRgdXo+Jlx+wflJCDJlt8E6KluzGVXBJGTFsPCQnsjmJqKWT/OtwxF2DyKV/vla7M+UZYidLx4xc59x6xRbQh3BkmjIioplHlhcvWfa623ENqwXOewKaa+egIcQFcPha0wt7nx2bRZyj1gCWQJpY4YIUckhsvORPToRszEj1UT6yEVChH/mXITBEA52/Y4e/l42FoALCFauNmw9Lc3YqgLmpwqJuSo+q4GxH8P7joOWJpHVcu73BdADeoady7XwBmd9e8KuRVvG9mvORIPrtyPZ62r6jioll1TUq8s+MUdWJCy6FtMoaWaSrg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=U89wRuH/YkjsY0Bf6g/PGho5SKIyQMuqx4aYIU/LaMs=;
+ b=nYK4M+KFCAfXZicchc3YfSMWY1xF2SKeXvZjUAfrATy0N3MgUf1jHPuYKq1zKzhpoSMeE8fU4quzcIsB+Sbcc2zdEp8alor9rQMmiO/7jVSTxhJgCiJRms8eLnnkQVcF6d28rNydCSIP9zo2ffLXjFdBGS7pVynH8AJ41DLVmTHMnYqqKS+OktRJAxN7zSjm8yclW8jfCGubZnJW+TDfK4LWrMmH5tWwKYt1e574UGpdWbkD8omDh2Xf5C5FQP1xhgoBLhGtPIMXgPQZ46xR7PFCypNRMCD1prDsQynXuY47lldGg+EReMTJEQTUwLdtrkJ+p2iZgF6u3Sc3xN5q0g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM6PR11MB2987.namprd11.prod.outlook.com (2603:10b6:5:65::14) by
+ SA1PR11MB7087.namprd11.prod.outlook.com (2603:10b6:806:2b5::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5857.18; Wed, 23 Nov
+ 2022 20:17:58 +0000
+Received: from DM6PR11MB2987.namprd11.prod.outlook.com
+ ([fe80::78e2:5141:1238:973a]) by DM6PR11MB2987.namprd11.prod.outlook.com
+ ([fe80::78e2:5141:1238:973a%4]) with mapi id 15.20.5834.015; Wed, 23 Nov 2022
+ 20:17:58 +0000
+Date: Wed, 23 Nov 2022 12:17:49 -0800
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+Message-ID: <Y35/7Qc530jik3FH@unerlige-ril>
+References: <20221123020700.603256-1-umesh.nerlige.ramappa@intel.com>
+ <87sfiawdvz.wl-ashutosh.dixit@intel.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <87sfiawdvz.wl-ashutosh.dixit@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0340.namprd03.prod.outlook.com
+ (2603:10b6:a03:39c::15) To DM6PR11MB2987.namprd11.prod.outlook.com
+ (2603:10b6:5:65::14)
 MIME-Version: 1.0
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 5/5] drm/i915/uc: Update the gt/uc code to
- use gt_err and friends
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6PR11MB2987:EE_|SA1PR11MB7087:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2e8f87b7-ed21-4a57-d4ae-08dacd8fd01b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: AS3dGmwGYq44IKWr/gHy7vBh5oustVBPWlLGXZ6ILfLOGTsy8B4inoLody9A+rZ5f+tQy1sNn60EWarvDRnEsW9Kqd3HWrqkzcl0eNw3ybQT51hEeOGMRvGukhPw6c4sR0uu22/T73ivvg2QAsLbta9Z1evzuRsTUfIsVN5CztVMHen2X7BECGim4abogAkQ423CuVYDCoPGaXGuV5mE8gAtJgrNVKl/GcDqRgnMnB/zoFiYb5YrI9Pn+KrNKwMZx0QGaUgPY2yVJUbvjkseZdCBwwVqqWw5wW6rOx7YviRXKNcbDmwVb7m7BscfAqp0hmFVTMx6AE7dcoM8n5iZw5qm1iR86f59PLmMK0Zj1BM8BCSPz6IzCsZU6imRvq0OC3BbWR7KWxeq7nlrxvsukJJY+uP/fLnUOIiXkBuwOmUTXwx5Demh1u28kpMbygc/D0UY2SkyQgyZ9xYXtL1yVULljoaC294+7SGKRybg/c7YBRDz1XnmO6V3/nZegxxzGj5vbokUlt4LndcDAOlA/a8VkgqKPHQV9tgtYbLYmp3oplYIKkvLwEZD/THXt2OoM3S/QrG9xJBlxF5svFvKaQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR11MB2987.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(7916004)(366004)(39860400002)(346002)(136003)(396003)(376002)(451199015)(5660300002)(33716001)(8936002)(6862004)(186003)(26005)(6636002)(4326008)(8676002)(316002)(41300700001)(6512007)(9686003)(66476007)(66946007)(66556008)(86362001)(82960400001)(38100700002)(2906002)(83380400001)(6506007)(478600001)(6666004)(6486002)(966005);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YllsdFBMTEJueU9yY1pnS3l4RjRIZS9pS3hXK0YxZHV4b1JWT2VuM3orTjVB?=
+ =?utf-8?B?RGlDOGN5aGIrNHJZMnA2U25nUmpveitCOWJiYWk4bmtxNVpBb2VLQStURHVY?=
+ =?utf-8?B?RnVqVHhOZWZ4a0FCN2YzSlAxeWppZkM2SGFmdUhIdkd2c05nQThvU0YwVXRj?=
+ =?utf-8?B?azgxK2dLUXZSUlBtSGdyMWtsV2RuQzRMenB2cEd5eEdGY24zOGdZSTFlcXh3?=
+ =?utf-8?B?RzgvRU1RTlFwTVNqdXN2TVVBU0JoSUZ6bmI5R0VpYlNjRm41U2NPK2ZrMERa?=
+ =?utf-8?B?UDcvc1QvM0dlbmZoMUIzMjNOOW1tbktPYUptTlB6RnozSlFyeWxwcG95a1hP?=
+ =?utf-8?B?Uk0rSHFlRDZrcUNwRkl2UGtYZXRZSDl3aHR2dUlXZmRJSWhzdzBFTkdGUGd3?=
+ =?utf-8?B?OWFIMDh0WFV5Z0ZKZkNXcUk2MHVpcWFzMFdGbWs4aEtKbkxPczZQa1E1NVI0?=
+ =?utf-8?B?VkJPRE9KMWgzVERsRFM5SnE2dUFpT1NEd2Z4cm1WbWNyWUtUcmVoaUkyTlJn?=
+ =?utf-8?B?N1BLd1dOYVJzMUdsd2UvMmVMbUF0NTJna3pleHMvVzlEd2JQOVNzOGdmNkhX?=
+ =?utf-8?B?QkF3Ui9kdEhDU3pkdTNwOXNhS3dibXl0ZXhNb0dnZWJKUkM3T2o0aGt2SUxI?=
+ =?utf-8?B?bzdsMmV5dWxGODhYV1VZSXIvUDFvUURmajAzWU1HOEloQnN6RGdKdVd5V3Nq?=
+ =?utf-8?B?eDhYV3pGZkxSaGNJdGM4VjlyMTgwYzR4cWRjcW5lbnJwZWoxazNXcVF4TStF?=
+ =?utf-8?B?N2hWSXhkbFQ4STlWVGNWTnozSlEwNXlaRXFrc3BxUTZ6TkJranVyd1ZHYWJI?=
+ =?utf-8?B?Vko4bDQ4VnM0enB6OFljWnowdW5SSUtFZEhlQThvWjR3cjhvS2xVL3kycCtF?=
+ =?utf-8?B?UCswSFVlM1dNZE5rN2Ywa2Y1Z0pVRGVoNkIxRXJtejZmdkVmQmliaWtNS0p1?=
+ =?utf-8?B?dEtabmxJM0JubFFvb1FMaWl5YkVGMi94Z0lRNS9RT0RFVnczSGZLbWhLV2dn?=
+ =?utf-8?B?NDVBQXFaY2E5T1QyYzF1clBvWG5uejZ5a0p0UzhnR2tCVFVrMlNoRUk2NGJi?=
+ =?utf-8?B?TTk1QjBoTXVEK2hKSlUxejdIV0QvcWVVL0JLNE9PeFJITmdsemczZU1tK0Vz?=
+ =?utf-8?B?T0N5YXFXL0JlbjBZWkRzeE5zMHpNbm45UExBVzFuRkFOcmNpVjB6a0o3TTlo?=
+ =?utf-8?B?SHI1cUUrZnZGS0ZFajVhQkZUV2Y1dE5jYnJ5RFFSZlpKTEJtZnI5dDJwSFVZ?=
+ =?utf-8?B?ZUdQd3h0YkQ0QURZekpISklNa2JDc01TeVRtOXJnOUEvbDcrWXZ5Qmt5YVlF?=
+ =?utf-8?B?bm9iMDR0TjZBcGw5RGRXNzlpTm5idlVXSlVGelJnQ3ErdlNxS0lZMnRLdEt4?=
+ =?utf-8?B?UGw5ME9zSi8wbVMrZTY5VnRTY0E1c2luN0VTREJoR1N3REU0VDM4eDQvOFZG?=
+ =?utf-8?B?endqUGZFOEZPcUoxeFJ6eHhkMUtHYWtBUHZJektNV1NyU1dqV1VqRHRTbDBN?=
+ =?utf-8?B?RmFEK3oyR09hNXNhV2dud2tNaTFVNW1SQ3puWldONU9RMEJ2QmNMa0FjZW0r?=
+ =?utf-8?B?czlVaFhSQndoWFlmMWVZaE5RMWhsUzdvQ0NlYUtHUitVL2FreHVBRyt6TDVK?=
+ =?utf-8?B?Vi9WV0NoVlpoc25HMld0b3JsRWhwOE12TDdOVmkwQ1F4a1ZLYUpxSHlhMDFL?=
+ =?utf-8?B?R1d5S1ZkQlZFT0RMT0dkWi9nSVlkaXc4KzJ4Mi9xOTkrMXpva29zNlIycEdQ?=
+ =?utf-8?B?dWRrNTJnVUovZ0t2aGh4VlJEcmZmQXdsWjM4TDArUFZQMXFWRFVHbkhGMTQ0?=
+ =?utf-8?B?YnhURzBxT2hQZFgySHpjekF4UHBwZzFrWjNjTkZ5bG55WUJLYy8rV3R5Um5j?=
+ =?utf-8?B?ZXZxYmplWHIzanUzYklrcEdIQ3JVWmRVTFNRN2NtdXBsaXJTNXRMeURMMU9p?=
+ =?utf-8?B?VDFWbno2T25HWmlRdmNNckdidHRYOFk5dWxCdzAveDdQZXRZNUppQWd0ck5u?=
+ =?utf-8?B?VGtLRndsaFFGTTNRQXNYcDlaUEZPWXZ2Um5hcnB5N2hxNFViaUFUQk1hM3l2?=
+ =?utf-8?B?dGFqTzRnNWEwQ0hyd3VTaFZ1amxUZVh4YThLVnFmUlA0YlcrcGhDeTZRMGoz?=
+ =?utf-8?B?MDRqSFAwQlhnRG4yNDFGbFVSemFKZ2paQmlEd3ZFZ0NlSE8veU4vQW56WGNR?=
+ =?utf-8?Q?A6mfg4FKMIO+JbKjevTjWD4=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2e8f87b7-ed21-4a57-d4ae-08dacd8fd01b
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB2987.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2022 20:17:58.3098 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +S3DXrlyJUiupAk0p8JEu4p69vKwQC/7D525u+sDQ/1qdW0FEZBi0VWfYvLePbKJl6LRoiBfDrV/Vlcki5rOrFOdFmQnt2LXJdNEx195p7k=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB7087
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/perf: Do not parse context
+ image for HSW
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,488 +153,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+On Tue, Nov 22, 2022 at 07:25:36PM -0800, Dixit, Ashutosh wrote:
+>On Tue, 22 Nov 2022 18:07:00 -0800, Umesh Nerlige Ramappa wrote:
+>>
+>
+>Hi Umesh,
+>
+>> An earlier commit introduced a mechanism to parse the context image to
+>> find the OA context control offset. This resulted in an NPD on haswell
+>> when gem_context was passed into i915_perf_open_ioctl params. Haswell
+>> does not support logical ring contexts, so ensure that the context image
+>> is parsed only for platforms with logical ring contexts and also
+>> validate lrc_reg_state.
+>>
+>> v2: Fix build failure
+>>
+>> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/7432
+>> Fixes: a5c3a3cbf029 ("drm/i915/perf: Determine gen12 oa ctx offset at runtime")
+>> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/i915_perf.c | 6 +++++-
+>>  1 file changed, 5 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+>> index 00e09bb18b13..dbd785974f20 100644
+>> --- a/drivers/gpu/drm/i915/i915_perf.c
+>> +++ b/drivers/gpu/drm/i915/i915_perf.c
+>> @@ -1383,6 +1383,9 @@ static u32 oa_context_image_offset(struct intel_context *ce, u32 reg)
+>>	u32 offset, len = (ce->engine->context_size - PAGE_SIZE) / 4;
+>>	u32 *state = ce->lrc_reg_state;
+>>
+>> +	if (drm_WARN_ON(&ce->engine->i915->drm, state == NULL))
+>> +		return U32_MAX;
+>> +
+>
+>So if we didn't add the HAS_LOGICAL_RING_CONTEXTS check below state would
+>be NULL correct? I couldn't figure out how it is NULL on HSW looking at the
+>code (with the context image pin/unpin).
 
-Use the new module oriented output message helpers where possible.
+Ref: intel_engines_init()
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_uc.c    | 110 +++++++++++------------
- drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c |  99 ++++++++++----------
- 2 files changed, 102 insertions(+), 107 deletions(-)
+Haswell is using ring submission. While it does have a context image or 
+ce->state, there is no lrc state offset here. I think lrc is an execlist 
+concept (used only for execlist and guc submission).
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-index 1d28286e6f066..f56fa0ff0f969 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-@@ -6,9 +6,11 @@
- #include <linux/string_helpers.h>
- 
- #include "gt/intel_gt.h"
-+#include "gt/intel_gt_print.h"
- #include "gt/intel_reset.h"
- #include "intel_guc.h"
- #include "intel_guc_ads.h"
-+#include "intel_guc_print.h"
- #include "intel_guc_submission.h"
- #include "gt/intel_rps.h"
- #include "intel_uc.h"
-@@ -65,29 +67,29 @@ static int __intel_uc_reset_hw(struct intel_uc *uc)
- 
- 	ret = intel_reset_guc(gt);
- 	if (ret) {
--		DRM_ERROR("Failed to reset GuC, ret = %d\n", ret);
-+		gt_err(gt, "Failed to reset GuC, ret = %d\n", ret);
- 		return ret;
- 	}
- 
- 	guc_status = intel_uncore_read(gt->uncore, GUC_STATUS);
--	WARN(!(guc_status & GS_MIA_IN_RESET),
--	     "GuC status: 0x%x, MIA core expected to be in reset\n",
--	     guc_status);
-+	gt_WARN(gt, !(guc_status & GS_MIA_IN_RESET),
-+		"GuC status: 0x%x, MIA core expected to be in reset\n",
-+		guc_status);
- 
- 	return ret;
- }
- 
- static void __confirm_options(struct intel_uc *uc)
- {
--	struct drm_i915_private *i915 = uc_to_gt(uc)->i915;
-+	struct intel_gt *gt = uc_to_gt(uc);
-+	struct drm_i915_private *i915 = gt->i915;
- 
--	drm_dbg(&i915->drm,
--		"enable_guc=%d (guc:%s submission:%s huc:%s slpc:%s)\n",
--		i915->params.enable_guc,
--		str_yes_no(intel_uc_wants_guc(uc)),
--		str_yes_no(intel_uc_wants_guc_submission(uc)),
--		str_yes_no(intel_uc_wants_huc(uc)),
--		str_yes_no(intel_uc_wants_guc_slpc(uc)));
-+	gt_dbg(gt, "enable_guc=%d (guc:%s submission:%s huc:%s slpc:%s)\n",
-+	       i915->params.enable_guc,
-+	       str_yes_no(intel_uc_wants_guc(uc)),
-+	       str_yes_no(intel_uc_wants_guc_submission(uc)),
-+	       str_yes_no(intel_uc_wants_huc(uc)),
-+	       str_yes_no(intel_uc_wants_guc_slpc(uc)));
- 
- 	if (i915->params.enable_guc == 0) {
- 		GEM_BUG_ON(intel_uc_wants_guc(uc));
-@@ -98,26 +100,22 @@ static void __confirm_options(struct intel_uc *uc)
- 	}
- 
- 	if (!intel_uc_supports_guc(uc))
--		drm_info(&i915->drm,
--			 "Incompatible option enable_guc=%d - %s\n",
--			 i915->params.enable_guc, "GuC is not supported!");
-+		gt_info(gt, "Incompatible option enable_guc=%d - %s\n",
-+			i915->params.enable_guc, "GuC is not supported!");
- 
- 	if (i915->params.enable_guc & ENABLE_GUC_LOAD_HUC &&
- 	    !intel_uc_supports_huc(uc))
--		drm_info(&i915->drm,
--			 "Incompatible option enable_guc=%d - %s\n",
--			 i915->params.enable_guc, "HuC is not supported!");
-+		gt_info(gt, "Incompatible option enable_guc=%d - %s\n",
-+			i915->params.enable_guc, "HuC is not supported!");
- 
- 	if (i915->params.enable_guc & ENABLE_GUC_SUBMISSION &&
- 	    !intel_uc_supports_guc_submission(uc))
--		drm_info(&i915->drm,
--			 "Incompatible option enable_guc=%d - %s\n",
--			 i915->params.enable_guc, "GuC submission is N/A");
-+		gt_info(gt, "Incompatible option enable_guc=%d - %s\n",
-+			i915->params.enable_guc, "GuC submission is N/A");
- 
- 	if (i915->params.enable_guc & ~ENABLE_GUC_MASK)
--		drm_info(&i915->drm,
--			 "Incompatible option enable_guc=%d - %s\n",
--			 i915->params.enable_guc, "undocumented flag");
-+		gt_info(gt, "Incompatible option enable_guc=%d - %s\n",
-+			i915->params.enable_guc, "undocumented flag");
- }
- 
- void intel_uc_init_early(struct intel_uc *uc)
-@@ -249,15 +247,13 @@ static int guc_enable_communication(struct intel_guc *guc)
- 	intel_guc_ct_event_handler(&guc->ct);
- 	spin_unlock_irq(gt->irq_lock);
- 
--	drm_dbg(&i915->drm, "GuC communication enabled\n");
-+	guc_dbg(guc, "communication enabled\n");
- 
- 	return 0;
- }
- 
- static void guc_disable_communication(struct intel_guc *guc)
- {
--	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
--
- 	/*
- 	 * Events generated during or after CT disable are logged by guc in
- 	 * via mmio. Make sure the register is clear before disabling CT since
-@@ -277,7 +273,7 @@ static void guc_disable_communication(struct intel_guc *guc)
- 	 */
- 	guc_get_mmio_msg(guc);
- 
--	drm_dbg(&i915->drm, "GuC communication disabled\n");
-+	guc_dbg(guc, "communication disabled\n");
- }
- 
- static void __uc_fetch_firmwares(struct intel_uc *uc)
-@@ -290,8 +286,8 @@ static void __uc_fetch_firmwares(struct intel_uc *uc)
- 	if (err) {
- 		/* Make sure we transition out of transient "SELECTED" state */
- 		if (intel_uc_wants_huc(uc)) {
--			drm_dbg(&uc_to_gt(uc)->i915->drm,
--				"Failed to fetch GuC: %d disabling HuC\n", err);
-+			gt_dbg(uc_to_gt(uc),
-+			       "Failed to fetch GuC: %d disabling HuC\n", err);
- 			intel_uc_fw_change_status(&uc->huc.fw,
- 						  INTEL_UC_FIRMWARE_ERROR);
- 		}
-@@ -364,7 +360,7 @@ static int uc_init_wopcm(struct intel_uc *uc)
- 	int err;
- 
- 	if (unlikely(!base || !size)) {
--		i915_probe_error(gt->i915, "Unsuccessful WOPCM partitioning\n");
-+		gt_probe_error(gt, "Unsuccessful WOPCM partitioning\n");
- 		return -E2BIG;
- 	}
- 
-@@ -395,13 +391,13 @@ static int uc_init_wopcm(struct intel_uc *uc)
- 	return 0;
- 
- err_out:
--	i915_probe_error(gt->i915, "Failed to init uC WOPCM registers!\n");
--	i915_probe_error(gt->i915, "%s(%#x)=%#x\n", "DMA_GUC_WOPCM_OFFSET",
--			 i915_mmio_reg_offset(DMA_GUC_WOPCM_OFFSET),
--			 intel_uncore_read(uncore, DMA_GUC_WOPCM_OFFSET));
--	i915_probe_error(gt->i915, "%s(%#x)=%#x\n", "GUC_WOPCM_SIZE",
--			 i915_mmio_reg_offset(GUC_WOPCM_SIZE),
--			 intel_uncore_read(uncore, GUC_WOPCM_SIZE));
-+	gt_probe_error(gt, "Failed to init uC WOPCM registers!\n");
-+	gt_probe_error(gt, "%s(%#x)=%#x\n", "DMA_GUC_WOPCM_OFFSET",
-+		       i915_mmio_reg_offset(DMA_GUC_WOPCM_OFFSET),
-+		       intel_uncore_read(uncore, DMA_GUC_WOPCM_OFFSET));
-+	gt_probe_error(gt, "%s(%#x)=%#x\n", "GUC_WOPCM_SIZE",
-+		       i915_mmio_reg_offset(GUC_WOPCM_SIZE),
-+		       intel_uncore_read(uncore, GUC_WOPCM_SIZE));
- 
- 	return err;
- }
-@@ -433,18 +429,19 @@ static int __uc_check_hw(struct intel_uc *uc)
- 
- static void print_fw_ver(struct intel_uc *uc, struct intel_uc_fw *fw)
- {
--	struct drm_i915_private *i915 = uc_to_gt(uc)->i915;
-+	struct intel_gt *gt = uc_to_gt(uc);
- 
--	drm_info(&i915->drm, "%s firmware %s version %u.%u.%u\n",
--		 intel_uc_fw_type_repr(fw->type), fw->file_selected.path,
--		 fw->file_selected.major_ver,
--		 fw->file_selected.minor_ver,
--		 fw->file_selected.patch_ver);
-+	gt_info(gt, "%s firmware %s version %u.%u.%u\n",
-+		intel_uc_fw_type_repr(fw->type), fw->file_selected.path,
-+		fw->file_selected.major_ver,
-+		fw->file_selected.minor_ver,
-+		fw->file_selected.patch_ver);
- }
- 
- static int __uc_init_hw(struct intel_uc *uc)
- {
--	struct drm_i915_private *i915 = uc_to_gt(uc)->i915;
-+	struct intel_gt *gt = uc_to_gt(uc);
-+	struct drm_i915_private *i915 = gt->i915;
- 	struct intel_guc *guc = &uc->guc;
- 	struct intel_huc *huc = &uc->huc;
- 	int ret, attempts;
-@@ -496,8 +493,8 @@ static int __uc_init_hw(struct intel_uc *uc)
- 		if (ret == 0)
- 			break;
- 
--		DRM_DEBUG_DRIVER("GuC fw load failed: %d; will reset and "
--				 "retry %d more time(s)\n", ret, attempts);
-+		gt_dbg(gt, "GuC fw load failed: %d; will reset and retry %d more time(s)\n",
-+		       ret, attempts);
- 	}
- 
- 	/* Did we succeded or run out of retries? */
-@@ -531,10 +528,10 @@ static int __uc_init_hw(struct intel_uc *uc)
- 		intel_rps_lower_unslice(&uc_to_gt(uc)->rps);
- 	}
- 
--	drm_info(&i915->drm, "GuC submission %s\n",
--		 str_enabled_disabled(intel_uc_uses_guc_submission(uc)));
--	drm_info(&i915->drm, "GuC SLPC %s\n",
--		 str_enabled_disabled(intel_uc_uses_guc_slpc(uc)));
-+	gt_info(gt, "GuC submission %s\n",
-+		str_enabled_disabled(intel_uc_uses_guc_submission(uc)));
-+	gt_info(gt, "GuC SLPC %s\n",
-+		str_enabled_disabled(intel_uc_uses_guc_slpc(uc)));
- 
- 	return 0;
- 
-@@ -552,12 +549,12 @@ static int __uc_init_hw(struct intel_uc *uc)
- 	__uc_sanitize(uc);
- 
- 	if (!ret) {
--		drm_notice(&i915->drm, "GuC is uninitialized\n");
-+		gt_notice(gt, "GuC is uninitialized\n");
- 		/* We want to run without GuC submission */
- 		return 0;
- 	}
- 
--	i915_probe_error(i915, "GuC initialization failed %d\n", ret);
-+	gt_probe_error(gt, "GuC initialization failed %d\n", ret);
- 
- 	/* We want to keep KMS alive */
- 	return -EIO;
-@@ -656,6 +653,7 @@ void intel_uc_runtime_suspend(struct intel_uc *uc)
- void intel_uc_suspend(struct intel_uc *uc)
- {
- 	struct intel_guc *guc = &uc->guc;
-+	struct intel_gt *gt = uc_to_gt(uc);
- 	intel_wakeref_t wakeref;
- 	int err;
- 
-@@ -664,10 +662,10 @@ void intel_uc_suspend(struct intel_uc *uc)
- 		return;
- 	}
- 
--	with_intel_runtime_pm(&uc_to_gt(uc)->i915->runtime_pm, wakeref) {
-+	with_intel_runtime_pm(&gt->i915->runtime_pm, wakeref) {
- 		err = intel_guc_suspend(guc);
- 		if (err)
--			DRM_DEBUG_DRIVER("Failed to suspend GuC, err=%d", err);
-+			guc_dbg(guc, "failed to suspend, err=%d\n", err);
- 	}
- }
- 
-@@ -695,7 +693,7 @@ static int __uc_resume(struct intel_uc *uc, bool enable_communication)
- 
- 	err = intel_guc_resume(guc);
- 	if (err) {
--		DRM_DEBUG_DRIVER("Failed to resume GuC, err=%d", err);
-+		guc_dbg(guc, "failed to resume, err=%d\n", err);
- 		return err;
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-index 0c80ba51a4bdc..b377481b6a8b9 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-@@ -11,6 +11,8 @@
- #include <drm/drm_print.h>
- 
- #include "gem/i915_gem_lmem.h"
-+#include "gt/intel_gt.h"
-+#include "gt/intel_gt_print.h"
- #include "intel_uc_fw.h"
- #include "intel_uc_fw_abi.h"
- #include "i915_drv.h"
-@@ -37,11 +39,10 @@ void intel_uc_fw_change_status(struct intel_uc_fw *uc_fw,
- 			       enum intel_uc_fw_status status)
- {
- 	uc_fw->__status =  status;
--	drm_dbg(&__uc_fw_to_gt(uc_fw)->i915->drm,
--		"%s firmware -> %s\n",
--		intel_uc_fw_type_repr(uc_fw->type),
--		status == INTEL_UC_FIRMWARE_SELECTED ?
--		uc_fw->file_selected.path : intel_uc_fw_status_repr(status));
-+	gt_dbg(__uc_fw_to_gt(uc_fw), "%s firmware -> %s\n",
-+	       intel_uc_fw_type_repr(uc_fw->type),
-+	       status == INTEL_UC_FIRMWARE_SELECTED ?
-+	       uc_fw->file_selected.path : intel_uc_fw_status_repr(status));
- }
- #endif
- 
-@@ -482,15 +483,14 @@ static int check_ccs_header(struct intel_gt *gt,
- 			    const struct firmware *fw,
- 			    struct intel_uc_fw *uc_fw)
- {
--	struct drm_i915_private *i915 = gt->i915;
- 	struct uc_css_header *css;
- 	size_t size;
- 
- 	/* Check the size of the blob before examining buffer contents */
- 	if (unlikely(fw->size < sizeof(struct uc_css_header))) {
--		drm_warn(&i915->drm, "%s firmware %s: invalid size: %zu < %zu\n",
--			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
--			 fw->size, sizeof(struct uc_css_header));
-+		gt_warn(gt, "%s firmware %s: invalid size: %zu < %zu\n",
-+			intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
-+			fw->size, sizeof(struct uc_css_header));
- 		return -ENODATA;
- 	}
- 
-@@ -500,10 +500,9 @@ static int check_ccs_header(struct intel_gt *gt,
- 	size = (css->header_size_dw - css->key_size_dw - css->modulus_size_dw -
- 		css->exponent_size_dw) * sizeof(u32);
- 	if (unlikely(size != sizeof(struct uc_css_header))) {
--		drm_warn(&i915->drm,
--			 "%s firmware %s: unexpected header size: %zu != %zu\n",
--			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
--			 fw->size, sizeof(struct uc_css_header));
-+		gt_warn(gt, "%s firmware %s: unexpected header size: %zu != %zu\n",
-+			intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
-+			fw->size, sizeof(struct uc_css_header));
- 		return -EPROTO;
- 	}
- 
-@@ -516,18 +515,18 @@ static int check_ccs_header(struct intel_gt *gt,
- 	/* At least, it should have header, uCode and RSA. Size of all three. */
- 	size = sizeof(struct uc_css_header) + uc_fw->ucode_size + uc_fw->rsa_size;
- 	if (unlikely(fw->size < size)) {
--		drm_warn(&i915->drm, "%s firmware %s: invalid size: %zu < %zu\n",
--			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
--			 fw->size, size);
-+		gt_warn(gt, "%s firmware %s: invalid size: %zu < %zu\n",
-+			intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
-+			fw->size, size);
- 		return -ENOEXEC;
- 	}
- 
- 	/* Sanity check whether this fw is not larger than whole WOPCM memory */
- 	size = __intel_uc_fw_get_upload_size(uc_fw);
- 	if (unlikely(size >= gt->wopcm.size)) {
--		drm_warn(&i915->drm, "%s firmware %s: invalid size: %zu > %zu\n",
--			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
--			 size, (size_t)gt->wopcm.size);
-+		gt_warn(gt, "%s firmware %s: invalid size: %zu > %zu\n",
-+			intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
-+			size, (size_t)gt->wopcm.size);
- 		return -E2BIG;
- 	}
- 
-@@ -578,10 +577,9 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
- 	memcpy(&file_ideal, &uc_fw->file_wanted, sizeof(file_ideal));
- 
- 	if (!err && fw->size > INTEL_UC_RSVD_GGTT_PER_FW) {
--		drm_err(&i915->drm,
--			"%s firmware %s: size (%zuKB) exceeds max supported size (%uKB)\n",
--			intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
--			fw->size / SZ_1K, INTEL_UC_RSVD_GGTT_PER_FW / SZ_1K);
-+		gt_err(gt, "%s firmware %s: size (%zuKB) exceeds max supported size (%uKB)\n",
-+		       intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
-+		       fw->size / SZ_1K, INTEL_UC_RSVD_GGTT_PER_FW / SZ_1K);
- 
- 		/* try to find another blob to load */
- 		release_firmware(fw);
-@@ -624,10 +622,10 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
- 	if (uc_fw->file_wanted.major_ver) {
- 		/* Check the file's major version was as it claimed */
- 		if (uc_fw->file_selected.major_ver != uc_fw->file_wanted.major_ver) {
--			drm_notice(&i915->drm, "%s firmware %s: unexpected version: %u.%u != %u.%u\n",
--				   intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
--				   uc_fw->file_selected.major_ver, uc_fw->file_selected.minor_ver,
--				   uc_fw->file_wanted.major_ver, uc_fw->file_wanted.minor_ver);
-+			gt_notice(gt, "%s firmware %s: unexpected version: %u.%u != %u.%u\n",
-+				  intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
-+				  uc_fw->file_selected.major_ver, uc_fw->file_selected.minor_ver,
-+				  uc_fw->file_wanted.major_ver, uc_fw->file_wanted.minor_ver);
- 			if (!intel_uc_fw_is_overridden(uc_fw)) {
- 				err = -ENOEXEC;
- 				goto fail;
-@@ -642,16 +640,14 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
- 		/* Preserve the version that was really wanted */
- 		memcpy(&uc_fw->file_wanted, &file_ideal, sizeof(uc_fw->file_wanted));
- 
--		drm_notice(&i915->drm,
--			   "%s firmware %s (%d.%d) is recommended, but only %s (%d.%d) was found\n",
--			   intel_uc_fw_type_repr(uc_fw->type),
--			   uc_fw->file_wanted.path,
--			   uc_fw->file_wanted.major_ver, uc_fw->file_wanted.minor_ver,
--			   uc_fw->file_selected.path,
--			   uc_fw->file_selected.major_ver, uc_fw->file_selected.minor_ver);
--		drm_info(&i915->drm,
--			 "Consider updating your linux-firmware pkg or downloading from %s\n",
--			 INTEL_UC_FIRMWARE_URL);
-+		gt_notice(gt, "%s firmware %s (%d.%d) is recommended, but only %s (%d.%d) was found\n",
-+			  intel_uc_fw_type_repr(uc_fw->type),
-+			  uc_fw->file_wanted.path,
-+			  uc_fw->file_wanted.major_ver, uc_fw->file_wanted.minor_ver,
-+			  uc_fw->file_selected.path,
-+			  uc_fw->file_selected.major_ver, uc_fw->file_selected.minor_ver);
-+		gt_info(gt, "Consider updating your linux-firmware pkg or downloading from %s\n",
-+			INTEL_UC_FIRMWARE_URL);
- 	}
- 
- 	if (HAS_LMEM(i915)) {
-@@ -679,10 +675,10 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
- 				  INTEL_UC_FIRMWARE_MISSING :
- 				  INTEL_UC_FIRMWARE_ERROR);
- 
--	i915_probe_error(i915, "%s firmware %s: fetch failed with error %d\n",
--			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path, err);
--	drm_info(&i915->drm, "%s firmware(s) can be downloaded from %s\n",
--		 intel_uc_fw_type_repr(uc_fw->type), INTEL_UC_FIRMWARE_URL);
-+	gt_probe_error(gt, "%s firmware %s: fetch failed with error %d\n",
-+		       intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path, err);
-+	gt_info(gt, "%s firmware(s) can be downloaded from %s\n",
-+		intel_uc_fw_type_repr(uc_fw->type), INTEL_UC_FIRMWARE_URL);
- 
- 	release_firmware(fw);		/* OK even if fw is NULL */
- 	return err;
-@@ -788,9 +784,9 @@ static int uc_fw_xfer(struct intel_uc_fw *uc_fw, u32 dst_offset, u32 dma_flags)
- 	/* Wait for DMA to finish */
- 	ret = intel_wait_for_register_fw(uncore, DMA_CTRL, START_DMA, 0, 100);
- 	if (ret)
--		drm_err(&gt->i915->drm, "DMA for %s fw failed, DMA_CTRL=%u\n",
--			intel_uc_fw_type_repr(uc_fw->type),
--			intel_uncore_read_fw(uncore, DMA_CTRL));
-+		gt_err(gt, "DMA for %s fw failed, DMA_CTRL=%u\n",
-+		       intel_uc_fw_type_repr(uc_fw->type),
-+		       intel_uncore_read_fw(uncore, DMA_CTRL));
- 
- 	/* Disable the bits once DMA is over */
- 	intel_uncore_write_fw(uncore, DMA_CTRL, _MASKED_BIT_DISABLE(dma_flags));
-@@ -836,9 +832,9 @@ int intel_uc_fw_upload(struct intel_uc_fw *uc_fw, u32 dst_offset, u32 dma_flags)
- 	return 0;
- 
- fail:
--	i915_probe_error(gt->i915, "Failed to load %s firmware %s (%d)\n",
--			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
--			 err);
-+	gt_probe_error(gt, "Failed to load %s firmware %s (%d)\n",
-+		       intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
-+		       err);
- 	intel_uc_fw_change_status(uc_fw, INTEL_UC_FIRMWARE_LOAD_FAIL);
- 	return err;
- }
-@@ -914,6 +910,7 @@ static void uc_fw_rsa_data_destroy(struct intel_uc_fw *uc_fw)
- 
- int intel_uc_fw_init(struct intel_uc_fw *uc_fw)
- {
-+	struct intel_gt *gt = __uc_fw_to_gt(uc_fw);
- 	int err;
- 
- 	/* this should happen before the load! */
-@@ -924,15 +921,15 @@ int intel_uc_fw_init(struct intel_uc_fw *uc_fw)
- 
- 	err = i915_gem_object_pin_pages_unlocked(uc_fw->obj);
- 	if (err) {
--		DRM_DEBUG_DRIVER("%s fw pin-pages err=%d\n",
--				 intel_uc_fw_type_repr(uc_fw->type), err);
-+		gt_dbg(gt, "%s fw pin-pages err=%d\n",
-+		       intel_uc_fw_type_repr(uc_fw->type), err);
- 		goto out;
- 	}
- 
- 	err = uc_fw_rsa_data_create(uc_fw);
- 	if (err) {
--		DRM_DEBUG_DRIVER("%s fw rsa data creation failed, err=%d\n",
--				 intel_uc_fw_type_repr(uc_fw->type), err);
-+		gt_dbg(gt, "%s fw rsa data creation failed, err=%d\n",
-+		       intel_uc_fw_type_repr(uc_fw->type), err);
- 		goto out_unpin;
- 	}
- 
--- 
-2.37.3
 
+>>			/*
+>> @@ -1447,7 +1450,8 @@ static int oa_get_render_ctx_id(struct i915_perf_stream *stream)
+>>	if (IS_ERR(ce))
+>>		return PTR_ERR(ce);
+>>
+>> -	if (engine_supports_mi_query(stream->engine)) {
+>> +	if (engine_supports_mi_query(stream->engine) &&
+>> +	    HAS_LOGICAL_RING_CONTEXTS(stream->perf->i915)) {
+>
+>This check looks fine since we seem to be looking inside ce->lrc_reg_state
+>for oactxctrl.
+
+The earlier code also does not define perf->ctx_oactxctrl_offset for 
+haswell. Ref: i915_perf_init().
+
+>
+>Overall looks fine so this is:
+>
+>Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+
+Thanks,
+Umesh
+>
+>
+>>		/*
+>>		 * We are enabling perf query here. If we don't find the context
+>>		 * offset here, just return an error.
+>> --
+>> 2.36.1
+>>
