@@ -1,51 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FEF9635B7A
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Nov 2022 12:21:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23C9A635BB3
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Nov 2022 12:29:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42B1A10E216;
-	Wed, 23 Nov 2022 11:21:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6088510E229;
+	Wed, 23 Nov 2022 11:29:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2661F10E216
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Nov 2022 11:21:27 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 525C510E212;
+ Wed, 23 Nov 2022 11:29:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669202487; x=1700738487;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=/hOK/HeajnwTctY/Q3M1MgCdqj0ZaZ0sV87zQWFgjPg=;
- b=JcMP/amIrbGD5MdGqoiAtBIqN4Kc5FA9CJcyTdXT8uy4zhHl7A8V8sXE
- Nuysja3DVEk2C98UZNPZGjLn3Tb9as5nGt+SN5miOHkXyAfjlpdP7QvM3
- y4To3Iv9pKGLo4ok5EkVIC2zvvC35kxbHN6do5/wTfyIRMrqtsxYhHx+n
- +kCrV9HX9lNKg5YfCwRdVIoABlPnfBSniiIk1ZE5Zx8zhu4mVEqum8uHA
- l+EjXfO4mqVjsWEsIy2k23coh91wsOVoTSOyfk88BVmpuAsjXb2PLD8Hl
- 8LN1G5oZ2ph6vPVcKA9seHWajmWH8IqKl0vYo3QSBOCnlbpQUn+7ETiCi w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="311673868"
-X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; d="scan'208";a="311673868"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2022 03:21:26 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="747755208"
-X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; d="scan'208";a="747755208"
-Received: from jgronski-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.16.163])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2022 03:21:25 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Nischal Varide <nischal.varide@intel.com>,
- intel-gfx@lists.freedesktop.org, nischal.varide@intel.com
-In-Reply-To: <20221123074356.7513-1-nischal.varide@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221123074356.7513-1-nischal.varide@intel.com>
-Date: Wed, 23 Nov 2022 13:21:23 +0200
-Message-ID: <87k03lx6fg.fsf@intel.com>
+ t=1669202965; x=1700738965;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=uI76gLHqjg3EbD2fwGA5+x9IXC5dacGf/C8WjloFYsY=;
+ b=ab7H2qLtBM45ezDivJLaF5vyIOK+/kj08tKE7yFdfRtuWz1X6C56AB19
+ PsJhMXsCTxjFGnxs7VKVq49yZQe0GOy64UYpex3l8wQxhoO9rN5vLlvAa
+ zdMShOAL0eySkcM4BtO5Wlfgc/ZwlXRrGK41MAclA3p7lBA+Q4yxy03Wm
+ pIvS/FYqOslfFHY0SueuqRWXNwfQSoa6pfzQf7Ym8SgEMGQ+Ka1/CXyYf
+ XUWHxYqsjXeR4Q63QRlcM+Fdpgc34LmkUcYskLhr5B4zniLKXlKQ3LZHb
+ WRIwF5OopHXMot7zwF859cjSoXQRJ+SpgObps9DnMAm+0aAudjAP0RBp+ Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="293752870"
+X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; d="scan'208";a="293752870"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2022 03:29:24 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="705332837"
+X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; d="scan'208";a="705332837"
+Received: from jkrzyszt-mobl1.ger.corp.intel.com ([10.213.17.125])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2022 03:29:22 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Date: Wed, 23 Nov 2022 12:29:19 +0100
+Message-ID: <1933091.usQuhbGJ8B@jkrzyszt-mobl1.ger.corp.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <d05b3556-19c7-6b50-8f23-0d17428dc741@linux.intel.com>
+References: <20221121145655.75141-1-janusz.krzysztofik@linux.intel.com>
+ <8188363.NyiUUSuA9g@jkrzyszt-mobl1.ger.corp.intel.com>
+ <d05b3556-19c7-6b50-8f23-0d17428dc741@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: A check on mode->clock,
- if it exceeds max_dot_clock
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+Subject: Re: [Intel-gfx] [PATCH v3 1/2] drm/i915: Fix negative value passed
+ as remaining time
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,82 +63,119 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris.p.wilson@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tuesday, 22 November 2022 11:41:29 CET Tvrtko Ursulin wrote:
+> 
+> On 21/11/2022 23:19, Janusz Krzysztofik wrote:
+> > Hi Andrzej,
+> > 
+> > Thanks for providing your R-b.
+> > 
+> > On Monday, 21 November 2022 18:40:51 CET Andrzej Hajda wrote:
+> >> On 21.11.2022 15:56, Janusz Krzysztofik wrote:
+> >>> Commit b97060a99b01 ("drm/i915/guc: Update intel_gt_wait_for_idle to work
+> >>> with GuC") extended the API of intel_gt_retire_requests_timeout() with an
+> >>> extra argument 'remaining_timeout', intended for passing back unconsumed
+> >>> portion of requested timeout when 0 (success) is returned.  However, when
+> >>> request retirement happens to succeed despite an error returned by a call
+> >>> to dma_fence_wait_timeout(), that error code (a negative value) is passed
+> >>> back instead of remaining time.  If we then pass that negative value
+> >>> forward as requested timeout to intel_uc_wait_for_idle(), an explicit BUG
+> >>> will be triggered.
+> 
+> Right, AFAICT a GEM_BUG_ON in debug builds, but in production builds 
+> negative timeout will get passed along all the way to schedule_timeout 
+> where error and call trace will be dumped. So fix appears warranted indeed.
+> 
+> >>> If request retirement succeeds but an error code is passed back via
+> >>> remaininig_timeout, we may have no clue on how much of the initial timeout
+> >>> might have been left for spending it on waiting for GuC to become idle.
+> >>> OTOH, since all pending requests have been successfully retired, that
+> >>> error code has been already ignored by intel_gt_retire_requests_timeout(),
+> >>> then we shouldn't fail.
+> >>>
+> >>> Assume no more time has been left on error and pass 0 timeout value to
+> >>> intel_uc_wait_for_idle() to give it a chance to return success if GuC is
+> >>> already idle.
+> >>>
+> >>> v3: Don't fail on any error passed back via remaining_timeout.
+> >>>
+> >>> v2: Fix the issue on the caller side, not the provider.
+> >>>
+> >>> Fixes: b97060a99b01 ("drm/i915/guc: Update intel_gt_wait_for_idle to work
+> > with GuC")
+> >>> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> >>> Cc: stable@vger.kernel.org # v5.15+
+> >>
+> >> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+> > 
+> > While still open for comments from others, I'm now looking for potential
+> > committer.
+> 
+> Both patches are considered good to go?
 
-Although the change isn't needed as Ville points out, I'll take the
-opportunity to comment on other things here, with hopes it'll improve
-future contributions.
+Yes, I hope so.  The actual diff of 2/2 v3 has received R-b from Andrzej still 
+under discussion of v2, then I decided to add that tag to v3.
 
-On Wed, 23 Nov 2022, Nischal Varide <nischal.varide@intel.com> wrote:
-> Making sure that the  mode-clock is not greater than the
-> max_dot_clock freq.This patch will prevent attempts from
-> userspace to modeset with mode->clock greater than
-> max_dot_clock freq.
+Andrzej, can you please respond to 2/2 v3 and confirm your R-b applies?
 
-Both in the patch subject and commit message, please use the imperative
-mood, e.g. "add", "make sure", "prevent".
+Thanks,
+Janusz
 
-Please don't refer to "this patch". When it's been committed, it's no
-longer a patch. But don't refer to "this commit" either. Just say what
-the patch does, "Prevent ...".
+> 
+> Regards,
+> 
+> Tvrtko
+> 
+> > 
+> > Thanks,
+> > Janusz
+> > 
+> > 
+> >>
+> >> Regards
+> >> Andrzej
+> >>
+> >>> ---
+> >>>    drivers/gpu/drm/i915/gt/intel_gt.c | 9 +++++++--
+> >>>    1 file changed, 7 insertions(+), 2 deletions(-)
+> >>>
+> >>> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/
+> > intel_gt.c
+> >>> index b5ad9caa55372..7ef0edb2e37cd 100644
+> >>> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> >>> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> >>> @@ -677,8 +677,13 @@ int intel_gt_wait_for_idle(struct intel_gt *gt, long
+> > timeout)
+> >>>    			return -EINTR;
+> >>>    	}
+> >>>    
+> >>> -	return timeout ? timeout : intel_uc_wait_for_idle(&gt->uc,
+> >>> -							
+> > remaining_timeout);
+> >>> +	if (timeout)
+> >>> +		return timeout;
+> >>> +
+> >>> +	if (remaining_timeout < 0)
+> >>> +		remaining_timeout = 0;
+> >>> +
+> >>> +	return intel_uc_wait_for_idle(&gt->uc, remaining_timeout);
+> >>>    }
+> >>>    
+> >>>    int intel_gt_init(struct intel_gt *gt)
+> >>
+> >>
+> > 
+> > 
+> > 
+> > 
+> 
 
->
-> Signed-off-by: Nischal Varide <nischal.varide@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c   | 10 ++++++++++
->  drivers/gpu/drm/i915/display/intel_hdmi.c |  3 +++
->  2 files changed, 13 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 7400d6b4c587..e603b7c01d27 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -2045,6 +2045,16 @@ intel_dp_compute_config(struct intel_encoder *encoder,
->  	if (intel_dp_hdisplay_bad(dev_priv, adjusted_mode->crtc_hdisplay))
->  		return -EINVAL;
->  
-> +	if (!intel_dp_can_bigjoiner(intel_dp) &&
-> +			(adjusted_mode->clock > dev_priv->max_dotclk_freq))
-> +		return -EINVAL;
-> +
-> +	if (intel_dp_can_bigjoiner(intel_dp) &&
-> +		(adjusted_mode->clock >  (2 * dev_priv->max_dotclk_freq)))
-> +		return -EINVAL;
-> +
-> +
-> +
-
-The alignment is wrong, there are unnecessary parenthesis and
-superfluous newlines. We care about this stuff, and we would not apply
-the patch without fixing, requiring an extra version.
-
-All this would be caught by checkpatch. Please make it a habit to run
-checkpatch.pl --strict locally on your patches before submitting. (Or
-dim checkpatch.)
-
-BR,
-Jani.
 
 
->  	/*
->  	 * Try to respect downstream TMDS clock limits first, if
->  	 * that fails assume the user might know something we don't.
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> index 02f8374ea51f..50603806a964 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> @@ -2247,6 +2247,9 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
->  	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
->  		return -EINVAL;
->  
-> +	if (adjusted_mode->clock > dev_priv->max_dotclk_freq)
-> +		return -EINVAL;
-> +
->  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
->  	pipe_config->has_hdmi_sink = intel_has_hdmi_sink(intel_hdmi,
->  							 conn_state);
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
