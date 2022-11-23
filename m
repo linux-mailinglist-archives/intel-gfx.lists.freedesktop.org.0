@@ -2,51 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A1D9635544
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Nov 2022 10:18:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FB4263563F
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Nov 2022 10:29:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5443410E52C;
-	Wed, 23 Nov 2022 09:18:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EA0410E535;
+	Wed, 23 Nov 2022 09:29:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6085E10E52C
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Nov 2022 09:18:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C93D10E52F;
+ Wed, 23 Nov 2022 09:29:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669195088; x=1700731088;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=PoxnIa69ijQ4HTiCnANTpZhaMod2xL/9CeAOMVqLOgY=;
- b=YnvUHOFJsTe12/X31E+ptMGmtEAyxRPltH+++mXNYbaXOmlNicAsZTkM
- p7AHC725Gd+fVoKh1W3TYOpfRtNBCN3RNGFLLGYBpoFRXRp3xyuFIUeer
- Ottn5e/YROkgrN0GKrd4VZH1vMIgXYwporophuCW4mdSqB/Zu2URxVSo5
- QCyMcnR8BmEslPya878OvBcp1BOUkSTwbwEMPSlm+YXkOo2+WY9eDyuyf
- 4L7SybrfIuBqYPFnd0qIPA2aRkGsj0epG3oryXobFfNiCKFX/wvevYFAP
- Adj0p5kKPxgKVl8SjNSbVUvnSYqI7T9ZNLVwyjXrJlXUzBcTt7U1RpOly A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="311651837"
-X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; d="scan'208";a="311651837"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ t=1669195741; x=1700731741;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=dGBbXbJkt1BcetZNMsjzvf6JeP4I/PBq3zFLv4Y0Ikg=;
+ b=HeotCluSfylCVoZAchOmYGc+ISaRGBJgzXy9XR7qNBiJ+33r3wqOET2l
+ TF+u7DHGTYAYYdIduPfDYX5aIE+Qy4rf/CDTqDv0NjDpnCQjieXEoNsfF
+ KOaGTb+8DMYwkYvV0KLOCTHuD+Cfh9EJLgImLk7yJ9qONYPw34eN19sxJ
+ 5WEGvsDjPVhZFTX0FbzBRPczkWSDZaqS9KiXg4pJX4bxASX8Uqp0QDpqn
+ CX8gTBmM3ZbcQ4LgExINUavqv3rcl02CPtaT6TaoXjhevYjs6MCn904Yh
+ ia8JmJ8vbhA7WhpFan2v0GJz+Ag3v2v9SsSeipHH/FbRPrRlC0cs13RJ1 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="311653697"
+X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; d="scan'208";a="311653697"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2022 01:18:07 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="619544922"
-X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; d="scan'208";a="619544922"
-Received: from jgronski-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.16.163])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2022 01:18:04 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Kees Cook <keescook@chromium.org>
-In-Reply-To: <202211222116.5B28E9B8B@keescook>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221122120948.3436180-1-jani.nikula@intel.com>
- <202211222116.5B28E9B8B@keescook>
-Date: Wed, 23 Nov 2022 11:18:02 +0200
-Message-ID: <87pmdevxkl.fsf@intel.com>
+ 23 Nov 2022 01:28:45 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="710522453"
+X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; d="scan'208";a="710522453"
+Received: from jkrzyszt-mobl1.ger.corp.intel.com ([10.213.17.125])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2022 01:28:42 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Date: Wed, 23 Nov 2022 10:28:40 +0100
+Message-ID: <9026056.CDJkKcVGEf@jkrzyszt-mobl1.ger.corp.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <6a465c20-b0a7-4beb-6d1b-4ff66a29975f@linux.intel.com>
+References: <20221121145655.75141-1-janusz.krzysztofik@linux.intel.com>
+ <20221121145655.75141-3-janusz.krzysztofik@linux.intel.com>
+ <6a465c20-b0a7-4beb-6d1b-4ff66a29975f@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/hti: avoid theoretically possible
- negative shift
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+Subject: Re: [Intel-gfx] [PATCH v3 2/2] drm/i915: Never return 0 if not all
+ requests retired
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,25 +62,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ Chris Wilson <chris.p.wilson@intel.com>, dri-devel@lists.freedesktop.org,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 22 Nov 2022, Kees Cook <keescook@chromium.org> wrote:
-> On Tue, Nov 22, 2022 at 02:09:48PM +0200, Jani Nikula wrote:
->> If phy is PHY_NONE, the shift to register bits becomes negative. Check
->> and warn about this.
->> 
->> Reported-by: coverity-bot <keescook@chromium.org>
->> References: https://lore.kernel.org/r/202211180848.D39006C@keescook
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Reviewed-by: Kees Cook <keescook@chromium.org>
+Hi Tvrtko,
 
-Thanks for the review, pushed to drm-intel-next.
+Thanks for your comments.
 
-BR,
-Jani.
+On Tuesday, 22 November 2022 11:50:38 CET Tvrtko Ursulin wrote:
+> 
+> On 21/11/2022 14:56, Janusz Krzysztofik wrote:
+> > Users of intel_gt_retire_requests_timeout() expect 0 return value on
+> > success.  However, we have no protection from passing back 0 potentially
+> > returned by a call to dma_fence_wait_timeout() when it succedes right
+> > after its timeout has expired.
+> 
+> Is this talking about a potential weakness, or ambiguous kerneldoc, of 
+> dma_fence_wait_timeout, dma_fence_default_wait and 
+> i915_request_wait_timeout? They appear to say 0 return means timeout, 
+> implying unsignaled fence. In other words signaled must return positive 
+> remaining timeout. Implementations seems to allow a race which indeed 
+> appears that return 0 and signaled fence is possible.
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+While my initial analysis was indeed focused on inconsistent semantics of 0 
+return values from different dma_fence_default_wait() backends, I should have 
+also mentioned in this commit description that users may perfectly 
+call intel_gt_retire_requests_timeout() with 0 timeout, in which case the 
+false positive 0 value can be returned regardless of dma_fence_wait_timeout() 
+potential issues.  Would you like me to reword and resubmit?
+
+> If dma_fence_wait can indeed return 0 even when a request is signaled, 
+> then how is timeout ?: -ETIME below correct? It isn't a chance for false 
+> negative in its' callers?
+
+The goal of intel_gt_retire_requests_timeout() is to retire requests.  When 
+that goal has been reached, i.e., all requests have been retired, active count 
+is 0, and 0 is correctly returned, regardless of timeout value.
+
+The value of timeout is used only when there are still pending requests, which 
+means that the goal hasn't been reached and the function hasn't succeeded.  
+Then, no false negative is possible, unlike the false positive that we now 
+have when we return 0  while some requests are still pending.
+
+Thanks,
+Janusz
+
+> 
+> Regards,
+> 
+> Tvrtko
+> 
+> > Replace 0 with -ETIME before potentially using the timeout value as return
+> > code, so -ETIME is returned if there are still some requests not retired
+> > after timeout, 0 otherwise.
+> > 
+> > v3: Use conditional expression, more compact but also better reflecting
+> >      intention standing behind the change.
+> > 
+> > v2: Move the added lines down so flush_submission() is not affected.
+> > 
+> > Fixes: f33a8a51602c ("drm/i915: Merge wait_for_timelines with retire_request")
+> > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> > Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+> > Cc: stable@vger.kernel.org # v5.5+
+> > ---
+> >   drivers/gpu/drm/i915/gt/intel_gt_requests.c | 2 +-
+> >   1 file changed, 1 insertion(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_gt_requests.c b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
+> > index edb881d756309..1dfd01668c79c 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_gt_requests.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
+> > @@ -199,7 +199,7 @@ out_active:	spin_lock(&timelines->lock);
+> >   	if (remaining_timeout)
+> >   		*remaining_timeout = timeout;
+> >   
+> > -	return active_count ? timeout : 0;
+> > +	return active_count ? timeout ?: -ETIME : 0;
+> >   }
+> >   
+> >   static void retire_work_handler(struct work_struct *work)
+> 
+
+
+
+
