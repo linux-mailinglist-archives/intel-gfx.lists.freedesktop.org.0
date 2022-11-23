@@ -1,66 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EC15635902
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Nov 2022 11:07:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18A3463591D
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Nov 2022 11:07:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 052CB10E1FF;
-	Wed, 23 Nov 2022 10:07:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1429610E539;
+	Wed, 23 Nov 2022 10:07:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com
- [IPv6:2a00:1450:4864:20::631])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6AE9F10E232
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Nov 2022 10:07:08 +0000 (UTC)
-Received: by mail-ej1-x631.google.com with SMTP id n21so41566949ejb.9
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Nov 2022 02:07:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=h+UdvofUGp6+nqq/FR8FcX4hvZmapqrFr41Q2JO7x4c=;
- b=TQ51N5ElxONDKI/zhDJ3pCgpfLjbZshPT3dmaV8oEwygDZ7SUkV43yilCvjo5DTHkM
- 5vinp6v+ldQAo/Z6KGaY5xTUo3Lnhb4v5NMeNcJq5CXQqT+ExG+ICc1x7EqIpc/l8ZI+
- 6kkzXHBS485z5Q3W1BWot8CJKckOO6+wlmPxY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=h+UdvofUGp6+nqq/FR8FcX4hvZmapqrFr41Q2JO7x4c=;
- b=m35mnl93wAAqrmOG6+OL4Hj0hfBB5SjrhF2YZIHXP0JXNWEHr17+57UM8k8Oqwkr/o
- 6PDPPFifeH65NwQLcTtdxMjzZK+xFh5WrEQ6jqf0HaHQ323Z87lF0kLNio/E3MZkoR1x
- IOIBKs8gqkS1UWVtgxhjxve1xm/IjrG1b+A2b0TUsJxzHB8WHCAsSvErgSLykTXSOa3y
- z9GyBhb6gu4aZyYwjyQbmZe6kV1OrXbKFNwmN8bBfxUyTfDgv+6xmMRS4PZ/+dLeHeiw
- nyNzmWIrwUSa/9hJdrfrGnJ5OZZhmw4pzFCTRTJ09hBigjeQ3pez8VS+Mn85Y9+2CWev
- AiIA==
-X-Gm-Message-State: ANoB5pkpyTxo76bIjtdbW7rwbWu3IFu/BWl2Pq5Qmrm8lsqMimHuS9oS
- 8OPu5ZzfkeNrSF4ZfX11PnabgRZrqDgbtuMBS7ldlw==
-X-Google-Smtp-Source: AA0mqf7tcZdPWNPPAaRZELTq9mvgZpMH+k/1GataSXqkuF2ePYeDW4qUMkJISiWe8P9mQTOVdyKvWgBCSqeQKGcAWaA=
-X-Received: by 2002:a17:907:8197:b0:7b8:eae2:716a with SMTP id
- iy23-20020a170907819700b007b8eae2716amr4704467ejc.516.1669198026954; Wed, 23
- Nov 2022 02:07:06 -0800 (PST)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDA7F10E538;
+ Wed, 23 Nov 2022 10:07:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1669198050; x=1700734050;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=0RFGx3xVI/6iPtkNf60B9nBQ95WhyXQhvDXSJEpCqVE=;
+ b=eRW4po7HSds4O88Yr+p+QphUxY0nNqeJwE2k/mo6JNEDUl+KI0Nx/3wH
+ ETKPly6oDbYxwIVVZnGuh8VZ9z3Oz9bPpvSEy2orDQGWL0JzaY8hZrDxd
+ eRCcG4e3LztQA9cP++qnuuxKT5yGoaFRIkt3xkwEfhUO4eIQppBP6Tcsu
+ WJ+J6sh9t3sEqNfurJ045bdLsEiTIDbE17tLKmn3yUjBaxWmu+vFv82tY
+ HQEPMSxvZy5+ac3d7AorKB3KEpJOKnWjrcCCNrO1PNhxEVpiqcJDCU9Pr
+ EknogQsJTNOaCfboe96JBHgRoF9sOykvyqEnP5CbEJx8BvzenIpEMv8NJ w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="315852672"
+X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; d="scan'208";a="315852672"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2022 02:07:21 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="784193626"
+X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; d="scan'208";a="784193626"
+Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
+ ([10.237.72.65])
+ by fmsmga001.fm.intel.com with ESMTP; 23 Nov 2022 02:07:19 -0800
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 23 Nov 2022 12:07:18 +0200
+Message-Id: <20221123100718.29130-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.37.3
+In-Reply-To: <20221103132300.12805-1-stanislav.lisovskiy@intel.com>
+References: <20221103132300.12805-1-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-References: <20221122170801.842766-1-daniel.vetter@ffwll.ch>
- <Y30PDdsvHIJo5YHR@ziepe.ca>
- <CAKMK7uEccwYTNwDYQazmZvTfBFQOikZt5A6BmegweyO-inKYbQ@mail.gmail.com>
- <Y30Z4VxT7Wdoc1Lc@ziepe.ca>
- <CAKMK7uE=8eqyh9BKg_+7B1jjMi6K4wrmPyi9xeLVvVYFxBgF9g@mail.gmail.com>
- <Y30kK6dsssSLJVgp@ziepe.ca>
- <CAKMK7uFQQkG82PzuSTGQTnN3ZNps5N_4TjR5NRWo0LaJkEaNew@mail.gmail.com>
- <3d8607b4-973d-945d-c184-260157ade7c3@amd.com>
- <CAKMK7uHVGgGHTiXYOfseXXda2Ug992nYvhPsL+4z18ssqeHXHQ@mail.gmail.com>
- <b05e6091-4e07-1e32-773d-f603ac9ac98b@gmail.com>
-In-Reply-To: <b05e6091-4e07-1e32-773d-f603ac9ac98b@gmail.com>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Wed, 23 Nov 2022 11:06:55 +0100
-Message-ID: <CAKMK7uFjmzewqv3r4hL9hvLADwV536n2n6xbAWaUvmAcStr5KQ@mail.gmail.com>
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [Linaro-mm-sig] Re: [PATCH] dma-buf: Require
- VM_PFNMAP vma for mmap
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 6/6] drm/i915: Bpp/timeslot calculation fixes
+ for DP MST DSC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,88 +58,306 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Sumit Semwal <sumit.semwal@linaro.org>, linaro-mm-sig@lists.linaro.org,
- Jason Gunthorpe <jgg@ziepe.ca>, John Stultz <john.stultz@linaro.org>,
- Matthew Wilcox <willy@infradead.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Suren Baghdasaryan <surenb@google.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- linux-media@vger.kernel.org
+Cc: jani.nikula@intel.com, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 23 Nov 2022 at 10:39, Christian K=C3=B6nig
-<ckoenig.leichtzumerken@gmail.com> wrote:
->
-> Am 23.11.22 um 10:30 schrieb Daniel Vetter:
-> > On Wed, 23 Nov 2022 at 10:06, Christian K=C3=B6nig <christian.koenig@am=
-d.com> wrote:
-> >> Am 22.11.22 um 20:50 schrieb Daniel Vetter:
-> >>> On Tue, 22 Nov 2022 at 20:34, Jason Gunthorpe <jgg@ziepe.ca> wrote:
-> >>>> On Tue, Nov 22, 2022 at 08:29:05PM +0100, Daniel Vetter wrote:
-> >>>>> You nuke all the ptes. Drivers that move have slightly more than a
-> >>>>> bare struct file, they also have a struct address_space so that
-> >>>>> invalidate_mapping_range() works.
-> >>>> Okay, this is one of the ways that this can be made to work correctl=
-y,
-> >>>> as long as you never allow GUP/GUP_fast to succeed on the PTEs. (thi=
-s
-> >>>> was the DAX mistake)
-> >>> Hence this patch, to enforce that no dma-buf exporter gets this wrong=
-.
-> >>> Which some did, and then blamed bug reporters for the resulting splat=
-s
-> >>> :-) One of the things we've reverted was the ttm huge pte support,
-> >>> since that doesn't have the pmd_special flag (yet) and so would let
-> >>> gup_fast through.
-> >> The problem is not only gup, a lot of people seem to assume that when
-> >> you are able to grab a reference to a page that the ptes pointing to
-> >> that page can't change any more. And that's obviously incorrect.
-> >>
-> >> I witnessed tons of discussions about that already. Some customers eve=
-n
-> >> modified our code assuming that and then wondered why the heck they ra=
-n
-> >> into data corruption.
-> >>
-> >> It's gotten so bad that I've even proposed intentionally mangling the
-> >> page reference count on TTM allocated pages:
-> >> https://patchwork.kernel.org/project/dri-devel/patch/20220927143529.13=
-5689-1-christian.koenig@amd.com/
-> > Yeah maybe something like this could be applied after we land this
-> > patch here.
->
-> I think both should land ASAP. We don't have any other way than to
-> clearly point out incorrect approaches if we want to prevent the
-> resulting data corruption.
->
-> > Well maybe should have the same check in gem mmap code to
-> > make sure no driver
->
-> Reads like the sentence is somehow cut of?
+Fix intel_dp_dsc_compute_config, previously timeslots parameter
+was used in fact not as a timeslots, but more like a ratio
+timeslots/64, which of course didn't have any effect for SST DSC,
+but causes now issues for MST DSC.
+Secondly we need to calculate pipe_bpp using intel_dp_dsc_compute_bpp
+only for SST DSC case, while for MST case it has been calculated
+earlier already with intel_dp_dsc_mst_compute_link_config.
+Third we also were wrongly determining sink min bpp/max bpp, those
+limites should be intersected with our limits to find common
+acceptable bpp's, plus on top of that we should align those with
+VESA bpps and only then calculate required timeslots amount.
+Some MST hubs started to work only after third change was made.
 
-Yeah, just wanted to say that we need to make sure in as many places
-as possible that VM_PFNMAP is set for bo mmaps.
+v2: Make kernel test robot happy(claimed there was unitialzed use,
+    while there is none)
+v3: Rename intel_dp_dsc_nearest_vesa_bpp to intel_dp_dsc_nearest_valid_bpp
+    (Manasi Navare)
 
-> >> I think it would be better that instead of having special flags in the
-> >> ptes and vmas that you can't follow them to a page structure we would
-> >> add something to the page indicating that you can't grab a reference t=
-o
-> >> it. But this might break some use cases as well.
-> > Afaik the problem with that is that there's no free page bits left for
-> > these debug checks. Plus the pte+vma flags are the flags to make this
-> > clear already.
->
-> Maybe a GFP flag to set the page reference count to zero or something
-> like this?
+Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c     | 69 ++++++++++++++-------
+ drivers/gpu/drm/i915/display/intel_dp.h     |  3 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c | 69 +++++++++++++++++----
+ 3 files changed, 106 insertions(+), 35 deletions(-)
 
-Hm yeah that might work. I'm not sure what it will all break though?
-And we'd need to make sure that underflowing the page refcount dies in
-a backtrace.
--Daniel
---=20
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index d78216fba0a2..533ee1d01366 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -717,9 +717,14 @@ u16 intel_dp_dsc_get_output_bpp(struct drm_i915_private *i915,
+ 	 * for SST -> TimeSlotsPerMTP is 1,
+ 	 * for MST -> TimeSlotsPerMTP has to be calculated
+ 	 */
+-	bits_per_pixel = (link_clock * lane_count * 8) * timeslots /
+-			 intel_dp_mode_to_fec_clock(mode_clock);
+-	drm_dbg_kms(&i915->drm, "Max link bpp: %u\n", bits_per_pixel);
++	bits_per_pixel = DIV_ROUND_UP((link_clock * lane_count) * timeslots,
++				      intel_dp_mode_to_fec_clock(mode_clock) * 8);
++
++	drm_dbg_kms(&i915->drm, "Max link bpp is %u for %u timeslots "
++				"total bw %u pixel clock %u\n",
++				bits_per_pixel, timeslots,
++				(link_clock * lane_count * 8),
++				intel_dp_mode_to_fec_clock(mode_clock));
+ 
+ 	/* Small Joiner Check: output bpp <= joiner RAM (bits) / Horiz. width */
+ 	max_bpp_small_joiner_ram = small_joiner_ram_size_bits(i915) /
+@@ -1048,7 +1053,7 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+ 							    target_clock,
+ 							    mode->hdisplay,
+ 							    bigjoiner,
+-							    pipe_bpp, 1) >> 4;
++							    pipe_bpp, 64) >> 4;
+ 			dsc_slice_count =
+ 				intel_dp_dsc_get_slice_count(intel_dp,
+ 							     target_clock,
+@@ -1482,7 +1487,8 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+ 				struct intel_crtc_state *pipe_config,
+ 				struct drm_connector_state *conn_state,
+ 				struct link_config_limits *limits,
+-				int timeslots)
++				int timeslots,
++				bool compute_pipe_bpp)
+ {
+ 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+ 	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
+@@ -1497,7 +1503,10 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+ 	if (!intel_dp_supports_dsc(intel_dp, pipe_config))
+ 		return -EINVAL;
+ 
+-	pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp, conn_state->max_requested_bpc);
++	if (compute_pipe_bpp)
++		pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp, conn_state->max_requested_bpc);
++	else
++		pipe_bpp = pipe_config->pipe_bpp;
+ 
+ 	if (intel_dp->force_dsc_bpc) {
+ 		pipe_bpp = intel_dp->force_dsc_bpc * 3;
+@@ -1528,31 +1537,47 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+ 			drm_dp_dsc_sink_max_slice_count(intel_dp->dsc_dpcd,
+ 							true);
+ 	} else {
+-		u16 dsc_max_output_bpp;
++		u16 dsc_max_output_bpp = 0;
+ 		u8 dsc_dp_slice_count;
+ 
+-		dsc_max_output_bpp =
+-			intel_dp_dsc_get_output_bpp(dev_priv,
+-						    pipe_config->port_clock,
+-						    pipe_config->lane_count,
+-						    adjusted_mode->crtc_clock,
+-						    adjusted_mode->crtc_hdisplay,
+-						    pipe_config->bigjoiner_pipes,
+-						    pipe_bpp,
+-						    timeslots);
++		if (compute_pipe_bpp) {
++			dsc_max_output_bpp =
++				intel_dp_dsc_get_output_bpp(dev_priv,
++							    pipe_config->port_clock,
++							    pipe_config->lane_count,
++							    adjusted_mode->crtc_clock,
++							    adjusted_mode->crtc_hdisplay,
++							    pipe_config->bigjoiner_pipes,
++							    pipe_bpp,
++							    timeslots);
++			if (!dsc_max_output_bpp) {
++				drm_dbg_kms(&dev_priv->drm,
++					    "Compressed BPP not supported\n");
++				return -EINVAL;
++			}
++		}
+ 		dsc_dp_slice_count =
+ 			intel_dp_dsc_get_slice_count(intel_dp,
+ 						     adjusted_mode->crtc_clock,
+ 						     adjusted_mode->crtc_hdisplay,
+ 						     pipe_config->bigjoiner_pipes);
+-		if (!dsc_max_output_bpp || !dsc_dp_slice_count) {
++		if (!dsc_dp_slice_count) {
+ 			drm_dbg_kms(&dev_priv->drm,
+-				    "Compressed BPP/Slice Count not supported\n");
++				    "Compressed Slice Count not supported\n");
+ 			return -EINVAL;
+ 		}
+-		pipe_config->dsc.compressed_bpp = min_t(u16,
+-							dsc_max_output_bpp >> 4,
+-							pipe_config->pipe_bpp);
++
++		/*
++		 * compute pipe bpp is set to false for DP MST DSC case
++		 * and compressed_bpp is calculated same time once
++		 * vpci timeslots are allocated, because overall bpp
++		 * calculation procedure is bit different for MST case.
++		 */
++		if (compute_pipe_bpp) {
++			pipe_config->dsc.compressed_bpp = min_t(u16,
++								dsc_max_output_bpp >> 4,
++								pipe_config->pipe_bpp);
++		}
+ 		pipe_config->dsc.slice_count = dsc_dp_slice_count;
+ 		drm_dbg_kms(&dev_priv->drm, "DSC: compressed bpp %d slice count %d\n",
+ 			    pipe_config->dsc.compressed_bpp,
+@@ -1660,7 +1685,7 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
+ 			    str_yes_no(ret), str_yes_no(joiner_needs_dsc),
+ 			    str_yes_no(intel_dp->force_dsc_en));
+ 		ret = intel_dp_dsc_compute_config(intel_dp, pipe_config,
+-						  conn_state, &limits, 1);
++						  conn_state, &limits, 1, true);
+ 		if (ret < 0)
+ 			return ret;
+ 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+index e4faccf87370..ef39e4f7a329 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.h
++++ b/drivers/gpu/drm/i915/display/intel_dp.h
+@@ -60,7 +60,8 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+ 				struct intel_crtc_state *pipe_config,
+ 				struct drm_connector_state *conn_state,
+ 				struct link_config_limits *limits,
+-				int timeslots);
++				int timeslots,
++				bool recompute_pipe_bpp);
+ bool intel_dp_is_edp(struct intel_dp *intel_dp);
+ bool intel_dp_is_uhbr(const struct intel_crtc_state *crtc_state);
+ bool intel_dp_is_port_edp(struct drm_i915_private *dev_priv, enum port port);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index b4f01c01dc1c..4ca8ae8463d9 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -81,12 +81,12 @@ static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
+ 	}
+ 
+ 	for (bpp = max_bpp; bpp >= min_bpp; bpp -= step) {
+-		crtc_state->pipe_bpp = bpp;
+-
+ 		crtc_state->pbn = drm_dp_calc_pbn_mode(adjusted_mode->crtc_clock,
+-						       dsc ? bpp << 4 : crtc_state->pipe_bpp,
++						       dsc ? bpp << 4 : bpp,
+ 						       dsc);
+ 
++		drm_dbg_kms(&i915->drm, "Trying bpp %d\n", bpp);
++
+ 		slots = drm_dp_atomic_find_time_slots(state, &intel_dp->mst_mgr,
+ 						      connector->port,
+ 						      crtc_state->pbn);
+@@ -108,9 +108,16 @@ static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
+ 	if (ret && slots >= 0)
+ 		slots = ret;
+ 
+-	if (slots < 0)
++	if (slots < 0) {
+ 		drm_dbg_kms(&i915->drm, "failed finding vcpi slots:%d\n",
+ 			    slots);
++	} else {
++		if (!dsc)
++			crtc_state->pipe_bpp = bpp;
++		else
++			crtc_state->dsc.compressed_bpp = bpp;
++		drm_dbg_kms(&i915->drm, "Got %d slots for pipe bpp %d dsc %d\n", slots, bpp, dsc);
++	}
+ 
+ 	return slots;
+ }
+@@ -157,8 +164,10 @@ static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
+ 	int slots = -EINVAL;
+ 	int i, num_bpc;
+ 	u8 dsc_bpc[3] = {0};
+-	int min_bpp, max_bpp;
++	int min_bpp, max_bpp, sink_min_bpp, sink_max_bpp;
+ 	u8 dsc_max_bpc;
++	bool need_timeslot_recalc = false;
++	u32 last_compressed_bpp;
+ 
+ 	/* Max DSC Input BPC for ICL is 10 and for TGL+ is 12 */
+ 	if (DISPLAY_VER(i915) >= 12)
+@@ -171,14 +180,28 @@ static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
+ 
+ 	num_bpc = drm_dp_dsc_sink_supported_input_bpcs(intel_dp->dsc_dpcd,
+ 						       dsc_bpc);
+-	for (i = 0; i < num_bpc; i++) {
+-		if (max_bpp >= dsc_bpc[i] * 3)
+-			if (min_bpp > dsc_bpc[i] * 3)
+-				min_bpp = dsc_bpc[i] * 3;
++
++	drm_dbg_kms(&i915->drm, "DSC Source supported min bpp %d max bpp %d\n",
++		    min_bpp, max_bpp);
++
++	sink_max_bpp = dsc_bpc[0] * 3;
++	sink_min_bpp = sink_max_bpp;
++
++	for (i = 1; i < num_bpc; i++) {
++		if (sink_min_bpp > dsc_bpc[i] * 3)
++			sink_min_bpp = dsc_bpc[i] * 3;
++		if (sink_max_bpp < dsc_bpc[i] * 3)
++			sink_max_bpp = dsc_bpc[i] * 3;
+ 	}
+ 
+ 	drm_dbg_kms(&i915->drm, "DSC Sink supported min bpp %d max bpp %d\n",
+-		    min_bpp, max_bpp);
++		    sink_min_bpp, sink_max_bpp);
++
++	if (min_bpp < sink_min_bpp)
++		min_bpp = sink_min_bpp;
++
++	if (max_bpp > sink_max_bpp)
++		max_bpp = sink_max_bpp;
+ 
+ 	slots = intel_dp_mst_find_vcpi_slots_for_bpp(encoder, crtc_state, max_bpp,
+ 						     min_bpp, limits,
+@@ -187,6 +210,28 @@ static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
+ 	if (slots < 0)
+ 		return slots;
+ 
++	last_compressed_bpp = crtc_state->dsc.compressed_bpp;
++
++	crtc_state->dsc.compressed_bpp = intel_dp_dsc_nearest_valid_bpp(i915,
++								        last_compressed_bpp,
++								        crtc_state->pipe_bpp);
++
++	if (crtc_state->dsc.compressed_bpp != last_compressed_bpp)
++		need_timeslot_recalc = true;
++
++	/*
++	 * Apparently some MST hubs dislike if vcpi slots are not matching precisely
++	 * the actual compressed bpp we use.
++	 */
++	if (need_timeslot_recalc) {
++		slots = intel_dp_mst_find_vcpi_slots_for_bpp(encoder, crtc_state,
++							     crtc_state->dsc.compressed_bpp,
++							     crtc_state->dsc.compressed_bpp,
++							     limits, conn_state, 2 * 3, true);
++		if (slots < 0)
++			return slots;
++	}
++
+ 	intel_link_compute_m_n(crtc_state->pipe_bpp,
+ 			       crtc_state->lane_count,
+ 			       adjusted_mode->crtc_clock,
+@@ -293,7 +338,7 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
+ 
+ 		ret = intel_dp_dsc_compute_config(intel_dp, pipe_config,
+ 						  conn_state, &limits,
+-						  pipe_config->dp_m_n.tu);
++						  pipe_config->dp_m_n.tu, false);
+ 	}
+ 
+ 	if (ret)
+@@ -868,7 +913,7 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
+ 							    target_clock,
+ 							    mode->hdisplay,
+ 							    bigjoiner,
+-							    pipe_bpp, 1) >> 4;
++							    pipe_bpp, 64) >> 4;
+ 			dsc_slice_count =
+ 				intel_dp_dsc_get_slice_count(intel_dp,
+ 							     target_clock,
+-- 
+2.37.3
+
