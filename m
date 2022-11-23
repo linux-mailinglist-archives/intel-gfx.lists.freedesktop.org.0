@@ -1,33 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FAD2635AEB
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Nov 2022 12:05:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95AED635B51
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Nov 2022 12:13:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94F2B10E216;
-	Wed, 23 Nov 2022 11:05:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2ADF310E225;
+	Wed, 23 Nov 2022 11:13:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8A23E10E216;
- Wed, 23 Nov 2022 11:05:13 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6DC3FA0BCB;
- Wed, 23 Nov 2022 11:05:13 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5760458894571097789=="
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C401110E21E;
+ Wed, 23 Nov 2022 11:13:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1669202007; x=1700738007;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=hGHyvTu7e3FmEL4/pm9JSvGIjfBYQlF6caCofb7sF/o=;
+ b=hfrNvVn94wAQA4/ojDZwkQ0D7aMpIt2bT/r8i4ND/vAPpSUgtz3bNwaH
+ IwKbySPgbTKjhkVMe3ucsrSr8MqEulQkHus4rz5gHg7M3vYSzBwFkcUOp
+ +SG+kSG+BSTzNYvTrGS42k9ui9d3Ic+ZB1RZZzdMll5FlOW7pyC9LaqIE
+ s5wrQ6528Mswjec78dFHt/M/zDzPJRHrKnBvr9w99P/aoZK2ikf72MtwB
+ 9puJdwK2Xwo1gPitwt82sNHjoiyJTJQtCjOg2kJpdrWAAKhQceEfWnVSf
+ jkorS3fvAmNr6weKq5dB2ZT/lscId3kdCD1VvfmlkJ6bIZvwGFgy0YdJo Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="301600729"
+X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; d="scan'208";a="301600729"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2022 03:13:27 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="674693233"
+X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; d="scan'208";a="674693233"
+Received: from tpowell-mobl.ger.corp.intel.com (HELO [10.213.224.65])
+ ([10.213.224.65])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2022 03:13:25 -0800
+Message-ID: <a579e9a5-0bd4-d439-3193-64dc52e05997@linux.intel.com>
+Date: Wed, 23 Nov 2022 11:13:23 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Wed, 23 Nov 2022 11:05:13 -0000
-Message-ID: <166920151342.15572.1084068294061085769@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221101094222.22091-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20221101094222.22091-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQWRk?=
- =?utf-8?q?_DP_MST_DSC_support_to_i915_=28rev18=29?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Content-Language: en-US
+To: Andi Shyti <andi.shyti@linux.intel.com>, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+References: <20221122185737.96459-1-andi.shyti@linux.intel.com>
+ <20221122185737.96459-3-andi.shyti@linux.intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20221122185737.96459-3-andi.shyti@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v2 2/4] drm/i915: Introduce guard pages to
+ i915_vma
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,251 +64,318 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5760458894571097789==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 22/11/2022 18:57, Andi Shyti wrote:
+> From: Chris Wilson <chris@chris-wilson.co.uk>
+> 
+> Introduce the concept of padding the i915_vma with guard pages before
+> and after. The major consequence is that all ordinary uses of i915_vma
+> must use i915_vma_offset/i915_vma_size and not i915_vma.node.start/size
+> directly, as the drm_mm_node will include the guard pages that surround
+> our object.
+> 
+> The biggest connundrum is how exactly to mix requesting a fixed address
+> with guard pages, particularly through the existing uABI. The user does
+> not know about guard pages, so such must be transparent to the user, and
+> so the execobj.offset must be that of the object itself excluding the
+> guard. So a PIN_OFFSET_FIXED must then be exclusive of the guard pages.
+> The caveat is that some placements will be impossible with guard pages,
+> as wrap arounds need to be avoided, and the vma itself will require a
+> larger node. We must not report EINVAL but ENOSPC as these are unavailable
+> locations within the GTT rather than conflicting user requirements.
+> 
+> In the next patch, we start using guard pages for scanout objects. While
+> these are limited to GGTT vma, on a few platforms these vma (or at least
+> an alias of the vma) is shared with userspace, so we may leak the
+> existence of such guards if we are not careful to ensure that the
+> execobj.offset is transparent and excludes the guards. (On such platforms
+> like ivb, without full-ppgtt, userspace has to use relocations so the
+> presence of more untouchable regions within its GTT such be of no further
+> issue.)
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/intel_ggtt.c     | 14 ++++++++----
+>   drivers/gpu/drm/i915/i915_gem_gtt.h      |  3 ++-
+>   drivers/gpu/drm/i915/i915_vma.c          | 27 ++++++++++++++++++------
+>   drivers/gpu/drm/i915/i915_vma.h          |  5 +++--
+>   drivers/gpu/drm/i915/i915_vma_resource.c |  4 ++--
+>   drivers/gpu/drm/i915/i915_vma_resource.h |  7 +++++-
+>   drivers/gpu/drm/i915/i915_vma_types.h    |  3 ++-
+>   7 files changed, 46 insertions(+), 17 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> index 8145851ad23d5..133710258eae6 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> @@ -287,8 +287,11 @@ static void gen8_ggtt_insert_entries(struct i915_address_space *vm,
+>   	 */
+>   
+>   	gte = (gen8_pte_t __iomem *)ggtt->gsm;
+> -	gte += vma_res->start / I915_GTT_PAGE_SIZE;
+> -	end = gte + vma_res->node_size / I915_GTT_PAGE_SIZE;
+> +	gte += (vma_res->start - vma_res->guard) / I915_GTT_PAGE_SIZE;
+> +	end = gte + vma_res->guard / I915_GTT_PAGE_SIZE;
+> +	while (gte < end)
+> +		gen8_set_pte(gte++, vm->scratch[0]->encode);
+> +	end += (vma_res->node_size + vma_res->guard) / I915_GTT_PAGE_SIZE;
+>   
+>   	for_each_sgt_daddr(addr, iter, vma_res->bi.pages)
+>   		gen8_set_pte(gte++, pte_encode | addr);
+> @@ -338,9 +341,12 @@ static void gen6_ggtt_insert_entries(struct i915_address_space *vm,
+>   	dma_addr_t addr;
+>   
+>   	gte = (gen6_pte_t __iomem *)ggtt->gsm;
+> -	gte += vma_res->start / I915_GTT_PAGE_SIZE;
+> -	end = gte + vma_res->node_size / I915_GTT_PAGE_SIZE;
+> +	gte += (vma_res->start - vma_res->guard) / I915_GTT_PAGE_SIZE;
+>   
+> +	end = gte + vma_res->guard / I915_GTT_PAGE_SIZE;
+> +	while (gte < end)
+> +		iowrite32(vm->scratch[0]->encode, gte++);
+> +	end += (vma_res->node_size + vma_res->guard) / I915_GTT_PAGE_SIZE;
+>   	for_each_sgt_daddr(addr, iter, vma_res->bi.pages)
+>   		iowrite32(vm->pte_encode(addr, level, flags), gte++);
+>   	GEM_BUG_ON(gte > end);
+> diff --git a/drivers/gpu/drm/i915/i915_gem_gtt.h b/drivers/gpu/drm/i915/i915_gem_gtt.h
+> index 8c2f57eb5ddaa..2434197830523 100644
+> --- a/drivers/gpu/drm/i915/i915_gem_gtt.h
+> +++ b/drivers/gpu/drm/i915/i915_gem_gtt.h
+> @@ -44,7 +44,8 @@ int i915_gem_gtt_insert(struct i915_address_space *vm,
+>   #define PIN_HIGH		BIT_ULL(5)
+>   #define PIN_OFFSET_BIAS		BIT_ULL(6)
+>   #define PIN_OFFSET_FIXED	BIT_ULL(7)
+> -#define PIN_VALIDATE		BIT_ULL(8) /* validate placement only, no need to call unpin() */
+> +#define PIN_OFFSET_GUARD	BIT_ULL(8)
+> +#define PIN_VALIDATE		BIT_ULL(9) /* validate placement only, no need to call unpin() */
+>   
+>   #define PIN_GLOBAL		BIT_ULL(10) /* I915_VMA_GLOBAL_BIND */
+>   #define PIN_USER		BIT_ULL(11) /* I915_VMA_LOCAL_BIND */
+> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+> index 2232118babeb3..457e35e03895f 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.c
+> +++ b/drivers/gpu/drm/i915/i915_vma.c
+> @@ -419,7 +419,7 @@ i915_vma_resource_init_from_vma(struct i915_vma_resource *vma_res,
+>   			       obj->mm.rsgt, i915_gem_object_is_readonly(obj),
+>   			       i915_gem_object_is_lmem(obj), obj->mm.region,
+>   			       vma->ops, vma->private, __i915_vma_offset(vma),
+> -			       __i915_vma_size(vma), vma->size);
+> +			       __i915_vma_size(vma), vma->size, vma->guard);
+>   }
+>   
+>   /**
+> @@ -749,7 +749,7 @@ static int
+>   i915_vma_insert(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
+>   		u64 size, u64 alignment, u64 flags)
+>   {
+> -	unsigned long color;
+> +	unsigned long color, guard;
+>   	u64 start, end;
+>   	int ret;
+>   
+> @@ -757,7 +757,7 @@ i915_vma_insert(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
+>   	GEM_BUG_ON(drm_mm_node_allocated(&vma->node));
+>   
+>   	size = max(size, vma->size);
+> -	alignment = max(alignment, vma->display_alignment);
+> +	alignment = max_t(typeof(alignment), alignment, vma->display_alignment);
+>   	if (flags & PIN_MAPPABLE) {
+>   		size = max_t(typeof(size), size, vma->fence_size);
+>   		alignment = max_t(typeof(alignment),
+> @@ -768,6 +768,9 @@ i915_vma_insert(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
+>   	GEM_BUG_ON(!IS_ALIGNED(alignment, I915_GTT_MIN_ALIGNMENT));
+>   	GEM_BUG_ON(!is_power_of_2(alignment));
+>   
+> +	guard = vma->guard; /* retain guard across rebinds */
+> +	guard = ALIGN(guard, alignment);
 
-Series: Add DP MST DSC support to i915 (rev18)
-URL   : https://patchwork.freedesktop.org/series/101492/
-State : success
+Why does guard area needs the same alignment as the requested mapping? What about the fact on 32-bit builds guard is 32-bit and alignment u64?
 
-== Summary ==
+> +
+>   	start = flags & PIN_OFFSET_BIAS ? flags & PIN_OFFSET_MASK : 0;
+>   	GEM_BUG_ON(!IS_ALIGNED(start, I915_GTT_PAGE_SIZE));
+>   
+> @@ -777,6 +780,7 @@ i915_vma_insert(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
+>   	if (flags & PIN_ZONE_4G)
+>   		end = min_t(u64, end, (1ULL << 32) - I915_GTT_PAGE_SIZE);
+>   	GEM_BUG_ON(!IS_ALIGNED(end, I915_GTT_PAGE_SIZE));
+> +	GEM_BUG_ON(2 * guard > end);
 
-CI Bug Log - changes from CI_DRM_12421 -> Patchwork_101492v18
-====================================================
+End is the size of relevant VA area at this point so what and why is this checking?
 
-Summary
--------
+>   
+>   	alignment = max(alignment, i915_vm_obj_min_alignment(vma->vm, vma->obj));
+>   
+> @@ -784,7 +788,7 @@ i915_vma_insert(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
+>   	 * aperture has, reject it early before evicting everything in a vain
+>   	 * attempt to find space.
+>   	 */
+> -	if (size > end) {
+> +	if (size > end - 2 * guard) {
+>   		drm_dbg(&to_i915(vma->obj->base.dev)->drm,
+>   			"Attempting to bind an object larger than the aperture: request=%llu > %s aperture=%llu\n",
+>   			size, flags & PIN_MAPPABLE ? "mappable" : "total", end);
+> @@ -801,13 +805,23 @@ i915_vma_insert(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
+>   		if (!IS_ALIGNED(offset, alignment) ||
+>   		    range_overflows(offset, size, end))
+>   			return -EINVAL;
+> +		/*
+> +		 * The caller knows not of the guard added by others and
+> +		 * requests for the offset of the start of its buffer
+> +		 * to be fixed, which may not be the same as the position
+> +		 * of the vma->node due to the guard pages.
+> +		 */
+> +		if (offset < guard || offset + size > end - guard)
+> +			return -ENOSPC;
+>   
+>   		ret = i915_gem_gtt_reserve(vma->vm, ww, &vma->node,
+> -					   size, offset, color,
+> -					   flags);
+> +					   size + 2 * guard,
+> +					   offset - guard,
+> +					   color, flags);
+>   		if (ret)
+>   			return ret;
+>   	} else {
+> +		size += 2 * guard;
+>   		/*
+>   		 * We only support huge gtt pages through the 48b PPGTT,
+>   		 * however we also don't want to force any alignment for
+> @@ -855,6 +869,7 @@ i915_vma_insert(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
+>   	GEM_BUG_ON(!i915_gem_valid_gtt_space(vma, color));
+>   
+>   	list_move_tail(&vma->vm_link, &vma->vm->bound_list);
+> +	vma->guard = guard;
 
-  **SUCCESS**
+unsigned long into u32 - what guarantees no truncation?
 
-  No regressions found.
+>   
+>   	return 0;
+>   }
+> diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
+> index 3fd4512b1f65f..ed5c9d682a1b2 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.h
+> +++ b/drivers/gpu/drm/i915/i915_vma.h
+> @@ -128,7 +128,7 @@ static inline bool i915_vma_is_closed(const struct i915_vma *vma)
+>   /* Internal use only. */
+>   static inline u64 __i915_vma_size(const struct i915_vma *vma)
+>   {
+> -	return vma->node.size;
+> +	return vma->node.size - 2 * vma->guard;
+>   }
+>   
+>   /**
+> @@ -150,7 +150,8 @@ static inline u64 i915_vma_size(const struct i915_vma *vma)
+>   /* Internal use only. */
+>   static inline u64 __i915_vma_offset(const struct i915_vma *vma)
+>   {
+> -	return vma->node.start;
+> +	/* The actual start of the vma->pages is after the guard pages. */
+> +	return vma->node.start + vma->guard;
+>   }
+>   
+>   /**
+> diff --git a/drivers/gpu/drm/i915/i915_vma_resource.c b/drivers/gpu/drm/i915/i915_vma_resource.c
+> index de1342dbfa128..6ba7a7feceba1 100644
+> --- a/drivers/gpu/drm/i915/i915_vma_resource.c
+> +++ b/drivers/gpu/drm/i915/i915_vma_resource.c
+> @@ -34,8 +34,8 @@ static struct kmem_cache *slab_vma_resources;
+>    * and removal of fences increases as O(ln(pending_unbinds)) instead of
+>    * O(1) for a single fence without interval tree.
+>    */
+> -#define VMA_RES_START(_node) ((_node)->start)
+> -#define VMA_RES_LAST(_node) ((_node)->start + (_node)->node_size - 1)
+> +#define VMA_RES_START(_node) ((_node)->start - (_node)->guard)
+> +#define VMA_RES_LAST(_node) ((_node)->start + (_node)->node_size + (_node)->guard - 1)
+>   INTERVAL_TREE_DEFINE(struct i915_vma_resource, rb,
+>   		     u64, __subtree_last,
+>   		     VMA_RES_START, VMA_RES_LAST, static, vma_res_itree);
+> diff --git a/drivers/gpu/drm/i915/i915_vma_resource.h b/drivers/gpu/drm/i915/i915_vma_resource.h
+> index 54edf3739ca0b..c1864e3d0b43e 100644
+> --- a/drivers/gpu/drm/i915/i915_vma_resource.h
+> +++ b/drivers/gpu/drm/i915/i915_vma_resource.h
+> @@ -57,6 +57,7 @@ struct i915_page_sizes {
+>    * @node_size: Size of the allocated range manager node with padding
+>    * subtracted.
+>    * @vma_size: Bind size.
+> + * @guard: The size of guard area preceding and trailing the bind.
+>    * @page_sizes_gtt: Resulting page sizes from the bind operation.
+>    * @bound_flags: Flags indicating binding status.
+>    * @allocated: Backend private data. TODO: Should move into @private.
+> @@ -115,6 +116,7 @@ struct i915_vma_resource {
+>   	u64 start;
+>   	u64 node_size;
+>   	u64 vma_size;
+> +	u32 guard;
+>   	u32 page_sizes_gtt;
+>   
+>   	u32 bound_flags;
+> @@ -179,6 +181,7 @@ static inline void i915_vma_resource_put(struct i915_vma_resource *vma_res)
+>    * @start: Offset into the address space of bind range start after padding.
+>    * @node_size: Size of the allocated range manager node minus padding.
+>    * @size: Bind size.
+> + * @guard: The size of the guard area preceding and trailing the bind.
+>    *
+>    * Initializes a vma resource allocated using i915_vma_resource_alloc().
+>    * The reason for having separate allocate and initialize function is that
+> @@ -197,7 +200,8 @@ static inline void i915_vma_resource_init(struct i915_vma_resource *vma_res,
+>   					  void *private,
+>   					  u64 start,
+>   					  u64 node_size,
+> -					  u64 size)
+> +					  u64 size,
+> +					  u32 guard)
+>   {
+>   	__i915_vma_resource_init(vma_res);
+>   	vma_res->vm = vm;
+> @@ -215,6 +219,7 @@ static inline void i915_vma_resource_init(struct i915_vma_resource *vma_res,
+>   	vma_res->start = start;
+>   	vma_res->node_size = node_size;
+>   	vma_res->vma_size = size;
+> +	vma_res->guard = guard;
+>   }
+>   
+>   static inline void i915_vma_resource_fini(struct i915_vma_resource *vma_res)
+> diff --git a/drivers/gpu/drm/i915/i915_vma_types.h b/drivers/gpu/drm/i915/i915_vma_types.h
+> index ec0f6c9f57d02..77fda2244d161 100644
+> --- a/drivers/gpu/drm/i915/i915_vma_types.h
+> +++ b/drivers/gpu/drm/i915/i915_vma_types.h
+> @@ -197,14 +197,15 @@ struct i915_vma {
+>   	struct i915_fence_reg *fence;
+>   
+>   	u64 size;
+> -	u64 display_alignment;
+>   	struct i915_page_sizes page_sizes;
+>   
+>   	/* mmap-offset associated with fencing for this vma */
+>   	struct i915_mmap_offset	*mmo;
+>   
+> +	u32 guard; /* padding allocated around vma->pages within the node */
+>   	u32 fence_size;
+>   	u32 fence_alignment;
+> +	u32 display_alignment;
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v18/index.html
+u64 -> u32 for display_alignment looks unrelated change.
 
-Participating hosts (32 -> 33)
-------------------------------
+./display/intel_fb_pin.c:       vma->display_alignment = max_t(u64, vma->display_alignment, alignment);
+./gem/i915_gem_domain.c:        vma->display_alignment = max_t(u64, vma->display_alignment, alignment);
 
-  Additional (1): bat-adlm-1 
+These two sites need to be changed not to use u64.
 
-Known issues
-------------
+Do this part in a separate patch?
 
-  Here are the changes found in Patchwork_101492v18 that come from known issues:
+>   
+>   	/**
+>   	 * Count of the number of times this vma has been opened by different
 
-### IGT changes ###
+Regards,
 
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - fi-rkl-11600:       NOTRUN -> [FAIL][1] ([fdo#103375])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v18/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-rkl-11600:       NOTRUN -> [SKIP][2] ([fdo#111827])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v18/fi-rkl-11600/igt@kms_chamelium@common-hpd-after-suspend.html
-    - bat-adlp-4:         NOTRUN -> [SKIP][3] ([fdo#111827])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v18/bat-adlp-4/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc:
-    - bat-adlp-4:         NOTRUN -> [SKIP][4] ([i915#3546])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v18/bat-adlp-4/igt@kms_pipe_crc_basic@suspend-read-crc.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-pnv-d510:        [FAIL][5] ([i915#7229]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12421/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v18/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-
-  * igt@i915_selftest@live@migrate:
-    - {bat-adlp-6}:       [INCOMPLETE][7] ([i915#7348]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12421/bat-adlp-6/igt@i915_selftest@live@migrate.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v18/bat-adlp-6/igt@i915_selftest@live@migrate.html
-    - bat-adlp-4:         [INCOMPLETE][9] ([i915#7308] / [i915#7348]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12421/bat-adlp-4/igt@i915_selftest@live@migrate.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v18/bat-adlp-4/igt@i915_selftest@live@migrate.html
-
-  
-#### Warnings ####
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - fi-rkl-11600:       [INCOMPLETE][11] ([i915#4817]) -> [FAIL][12] ([fdo#103375])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12421/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v18/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4817]: https://gitlab.freedesktop.org/drm/intel/issues/4817
-  [i915#6434]: https://gitlab.freedesktop.org/drm/intel/issues/6434
-  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
-  [i915#7229]: https://gitlab.freedesktop.org/drm/intel/issues/7229
-  [i915#7308]: https://gitlab.freedesktop.org/drm/intel/issues/7308
-  [i915#7346]: https://gitlab.freedesktop.org/drm/intel/issues/7346
-  [i915#7348]: https://gitlab.freedesktop.org/drm/intel/issues/7348
-  [i915#7456]: https://gitlab.freedesktop.org/drm/intel/issues/7456
-  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12421 -> Patchwork_101492v18
-
-  CI-20190529: 20190529
-  CI_DRM_12421: 9f905cc6b809d249ae20b4d5e90681867f71b780 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7071: 0801475083ccb938b1d3b358502ff97fdb435585 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_101492v18: 9f905cc6b809d249ae20b4d5e90681867f71b780 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-b5321b6b7250 drm/i915: Bpp/timeslot calculation fixes for DP MST DSC
-82f3f4c960f0 drm/i915: Extract VESA DSC bpp alignment to separate function
-3255b933df9b drm/i915: Add DSC support to MST path
-1d644ad2fe84 drm/i915: Extract drm_dp_atomic_find_vcpi_slots cycle to separate function
-96378308a3fd drm/i915: Fix intel_dp_mst_compute_link_config
-399de2d0baed drm: Add missing DP DSC extended capability definitions.
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v18/index.html
-
---===============5760458894571097789==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add DP MST DSC support to i915 (rev18)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/101492/">https://patchwork.freedesktop.org/series/101492/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v18/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v18/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12421 -&gt; Patchwork_101492v18</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v18/index.html</p>
-<h2>Participating hosts (32 -&gt; 33)</h2>
-<p>Additional (1): bat-adlm-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_101492v18 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v18/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>
-<p>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v18/fi-rkl-11600/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</p>
-</li>
-<li>
-<p>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v18/bat-adlp-4/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc:</p>
-<ul>
-<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v18/bat-adlp-4/igt@kms_pipe_crc_basic@suspend-read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3546">i915#3546</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12421/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7229">i915#7229</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v18/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@migrate:</p>
-<ul>
-<li>
-<p>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12421/bat-adlp-6/igt@i915_selftest@live@migrate.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7348">i915#7348</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v18/bat-adlp-6/igt@i915_selftest@live@migrate.html">PASS</a></p>
-</li>
-<li>
-<p>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12421/bat-adlp-4/igt@i915_selftest@live@migrate.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7308">i915#7308</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7348">i915#7348</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v18/bat-adlp-4/igt@i915_selftest@live@migrate.html">PASS</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_suspend@basic-s3-without-i915:<ul>
-<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12421/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4817">i915#4817</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v18/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12421 -&gt; Patchwork_101492v18</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12421: 9f905cc6b809d249ae20b4d5e90681867f71b780 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7071: 0801475083ccb938b1d3b358502ff97fdb435585 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_101492v18: 9f905cc6b809d249ae20b4d5e90681867f71b780 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>b5321b6b7250 drm/i915: Bpp/timeslot calculation fixes for DP MST DSC<br />
-82f3f4c960f0 drm/i915: Extract VESA DSC bpp alignment to separate function<br />
-3255b933df9b drm/i915: Add DSC support to MST path<br />
-1d644ad2fe84 drm/i915: Extract drm_dp_atomic_find_vcpi_slots cycle to separate function<br />
-96378308a3fd drm/i915: Fix intel_dp_mst_compute_link_config<br />
-399de2d0baed drm: Add missing DP DSC extended capability definitions.</p>
-
-</body>
-</html>
-
---===============5760458894571097789==--
+Tvrtko
