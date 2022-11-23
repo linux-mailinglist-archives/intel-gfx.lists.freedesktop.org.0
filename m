@@ -2,136 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B26F6360FF
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Nov 2022 15:03:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AFB26361BF
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Nov 2022 15:29:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A39C910E206;
-	Wed, 23 Nov 2022 14:03:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4A0710E20A;
+	Wed, 23 Nov 2022 14:28:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCCE310E562
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Nov 2022 14:03:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669212227; x=1700748227;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=N++wxI1sgk1AMLN/S/suCvWViNMVZwKKDC50KdxwglA=;
- b=hEdqFd9XEgv7wp+3eTqQH50xCto/+zuyJd3QNwDKIs8kq6Orf1alCqf+
- ao2tQNlnQFLZHun45mrNesBQDtu1EpWJgXM9SlQtGMDRhyivRK8c3KytG
- HV0oSxpWiEJgxP8N3kpiEJZAXqyBlAnJeXgKRcrL984b/bR1uf3Tgc/vY
- c+EK2RexeIs6iFprRf16uf5g1HB/8GsClnxU5KNHld+/2SwaOm8cFGSIU
- iwuqJhDtimPW0xs4PwsLCcX6G6vbuFrXQ+7BHxsWdyQKJDGIgnNv7qr4X
- kTO8m0iaqSvzp1oFClIHeg63VAGtRQr+FJ73pNFLjgYSD1bwFDbAN6jwc Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10540"; a="315891698"
-X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; d="scan'208";a="315891698"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2022 06:03:47 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10540"; a="705371049"
-X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; d="scan'208";a="705371049"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga008.fm.intel.com with ESMTP; 23 Nov 2022 06:03:46 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Wed, 23 Nov 2022 06:03:46 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Wed, 23 Nov 2022 06:03:46 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Wed, 23 Nov 2022 06:03:46 -0800
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.44) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Wed, 23 Nov 2022 06:03:45 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SNiXK8HkqkK+/Oyhc1LrMBO24+ecsuAe92tv+WdjOLXduyKFC3tVlrwAxASOqZ8H17edx9QX8iK1c94is4XYkyIi+LJLULTVarLfytLAT8Ljh8YbklusDBySGNFiZ2Xb4lb4rY52cXmvMgmkpwwYoEoYN5d31o3pBz3qwUq3953+6L3tvBOpBypiPcH+PIUYB/zMYf3a5xncNEfP4yRXAr0oIVRBepoVcJihxVYdi8wzEjEZhYAUqYXnw3eq5Izq2z7zAy1fUrs4lL4a2BR+sXH6PwWGtCyDWuK/m2naFjpJXYcNhtkpz2dT4eF0T41LWqZSH9GQgExckKX5NHOtgQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4Dyh1kmmMizLnE3i+28DftEbTOIlPmdr+9B97567W0U=;
- b=jzrAI50d4SPTIktlB4ShZnLf4wjl3+N02CkvpzJ45fhHwimVpyM0JG6WiETqfqBHa9XyMaOMvyqfDFSllbgLXVp5k13veaLitT0TL53S772UfgdXx4Y3SA6qRfojabZlY+p3fpIoggm0adIhMBEHUdN0nrVLjcFAXYSeV0m4EDQRveMwKjyOfekW2VD36KUCtFAwYJ0bn98V+YS5nsowV8FTuBGXNI06a9jWdVO9VR2rxPokX2RW5Sg8VEwT/pq7d9TJua8c3yLvvlfkO7W5dtfOGrL7Nca+vDtBzaCVL6+ctSddrGmUaZZKdh12SJY8AvvwW4T8+2RbgNLZVnhbXA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BN8PR11MB3556.namprd11.prod.outlook.com (2603:10b6:408:8d::31)
- by DM4PR11MB7279.namprd11.prod.outlook.com (2603:10b6:8:109::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5857.18; Wed, 23 Nov
- 2022 14:03:42 +0000
-Received: from BN8PR11MB3556.namprd11.prod.outlook.com
- ([fe80::b0bd:6014:14d9:bd01]) by BN8PR11MB3556.namprd11.prod.outlook.com
- ([fe80::b0bd:6014:14d9:bd01%4]) with mapi id 15.20.5857.018; Wed, 23 Nov 2022
- 14:03:42 +0000
-Date: Wed, 23 Nov 2022 11:03:35 -0300
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: <linux-firmware@kernel.org>
-Message-ID: <20221123140335.4xqxepev4bdvybut@gjsousa-mobl2>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-X-ClientProxiedBy: BYAPR04CA0028.namprd04.prod.outlook.com
- (2603:10b6:a03:40::41) To BN8PR11MB3556.namprd11.prod.outlook.com
- (2603:10b6:408:8d::31)
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com
+ [IPv6:2a00:1450:4864:20::631])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 08E4410E1EF
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Nov 2022 14:28:40 +0000 (UTC)
+Received: by mail-ej1-x631.google.com with SMTP id i10so43115785ejg.6
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Nov 2022 06:28:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=ucQTvmzn91rzZAss19wwLVdxDJtfMPnU+ZLD4q4UOr4=;
+ b=WT7aZnirqlfHwqauYBvMMtrVy5bo2pha0DsZfPUcmWaiXhqbaeij/6ndqYkdegeckT
+ THXjqnLDQxeZ28AXp9/umwOtWDLa7NQTMzqXphjm/QmIlNqvR/sbxc45IoMrQwWQHEe6
+ x7BOJapEwYbv+NuKJL+8sIorhR2MAi9iVY21A=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=ucQTvmzn91rzZAss19wwLVdxDJtfMPnU+ZLD4q4UOr4=;
+ b=KdiyWI+XZ3oQ97nidsmXXW3gzmxYaBoSNzys21ObhYHIA+i+kcNxKppDyWiKJXfL4w
+ 4FSisRDxTD11+YqdAkN4j2ItBuRv1rSvHdoNqAi+04ut5UK6cnnm/XnyBpMpLf3bUAma
+ oSiX/bC8JFA3U8FfogAXULPkvHOmwUf+pi7XyWuXwQkWna8uKOgK6xk813jvDUXaS8zs
+ hoY8EkunQTvPkfQzpOEUlneoLique/vRiqoZIdmjw/f8CNAv4ehf9dHcdlTjljXkcaHB
+ vQ4bJt29fHsdT16wuiq/+EOoDqBv/v3c760fO7OklhioTagblIl13TkjgVhvH54CyOIK
+ 6WQQ==
+X-Gm-Message-State: ANoB5pn5F2T9/s09iOIXWF8Nsm/5c+j8r2YL94TTxxKZBBgkQ/2ayGY6
+ p9WrXZ6/MdpL8UOoCv1896YpceKD2a/Su0otjhNKnA==
+X-Google-Smtp-Source: AA0mqf6sZXWpHY0T6gpoVbuWg6Vf1JsDzG60PWxm05j3xQNGNGz1hoLjG6usYDq1yrMl9GvAUb1dUEr3/2FVoMO3p44=
+X-Received: by 2002:a17:907:8197:b0:7b8:eae2:716a with SMTP id
+ iy23-20020a170907819700b007b8eae2716amr5545863ejc.516.1669213718576; Wed, 23
+ Nov 2022 06:28:38 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8PR11MB3556:EE_|DM4PR11MB7279:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0b4705a9-6f1d-48cb-62d8-08dacd5b8752
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: BSQzzelhgE68mo7vqJoCj5i5e+cjGfGXIJvsfQgHHvJRrOWjidevNa1tXyU3GoMpYfPBovjmvJ66GrWflQTAQOWs1tSHe1bFL8A339ZNiaE5y7hPHQcF0KjmFWT7EtNc6PTLrvNo1n6/mLR7y4u5M+J1nx2fnqnHP3Q7czcKjxF2eCx2Kn7MDLgfRuXL17u6ohw+r3JMMet2IaSRFwn+TTgUlS8NU9/eC6v6av8rJeghXTpbKGsl+SMOJvmGx3Qvk3EtY5ujZAf5xp+sAmRdzdVP0HaIpX812qyvGiylBw/dtVw2mFaAaO46mBt/zoHBx4xPaDu8pahFcW2RJt0iAqw3wF836tz3nOzCjSkfzTET0L4EEUOmz/5yAy+QwlC1x8Ilyu9ZH4dvNTp1FNZ7dz2ZokM+H5J0kuP1CbkCICyZ9pCBvXKigTzTPgPQVtzOiyz1zrdgQteka35c47taEBn5+Or1vPq67fKvTyP4QoOFdRPbsdTifEy2cIK1PCf95o90NDgzL6mB9Jw6i2y9XlFBiCZgppfstBjxaeEJhkkyOw3ZUUatFSmiQ+PmRVdZFsXSrTrC0EbsKmBFjMnlvIdqMatek0b4iTgWc38KcQPTml5gYsb0vk5vUFQYVgND2IsPN6QyV2nvrNA9amkwbw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR11MB3556.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(7916004)(366004)(136003)(346002)(39860400002)(376002)(396003)(451199015)(86362001)(38100700002)(82960400001)(66476007)(66556008)(8676002)(4326008)(41300700001)(66946007)(54906003)(6916009)(26005)(6512007)(9686003)(316002)(2906002)(83380400001)(4001150100001)(8936002)(186003)(1076003)(44832011)(4744005)(5660300002)(6666004)(33716001)(6486002)(6506007)(478600001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?mN6hZYCnLUzTkLDm1fAF2brmONNjx4cn6D+2JOpkNSdeTus5FbBKasO39p9V?=
- =?us-ascii?Q?+AvZTkH73NZ3i1DDl/Zf0WVyXmtUCqUBKOIZou3vS245aiB8W0vJ1G3hvnvQ?=
- =?us-ascii?Q?JqMnkLrfZwxtzQ4h7zzOaStBaH4ccJQ0+sa2yD5Nd2YG7dSPoe2aeknnA80Q?=
- =?us-ascii?Q?J8BM30NrtTIgYr/jmKa7ZmxX5HBixtA9P+jCCbqLM7W52n1lrPTBnKc941RH?=
- =?us-ascii?Q?8oJ5jTawrKXs9tOZNYLwKDq5nD2IgIwf842l/zyu7VvD9T1vZHycdWfBiEWl?=
- =?us-ascii?Q?p3YpmP75Q9Fbpgg31V8cVbvoJGAXl5jcgIkaAc8Dj/QmCQg95fgj2utd/Liv?=
- =?us-ascii?Q?L9hlokO9QWR6WIqkfg3S+PO3Y+r3ZX+ZUKgliIc1DrC4nGrzxAh91REWckYc?=
- =?us-ascii?Q?tcg/bsJ0UujPuzTIFtaCFL6cjr3vlHUgzTTpyc8Fw31p1TMhAfc7vbgnr3IL?=
- =?us-ascii?Q?XqYQ5VA2exP2DQ2T8qaB4PU1062BuYDhfX4R1dpmLjj+p3kzio9y81FMMyPn?=
- =?us-ascii?Q?Q+fW3nhD5yLJCuH+u/8gqVKO29r3MnABiHiBV77U5RyHYFHeCwvTQ+cwiqTd?=
- =?us-ascii?Q?DeB18GDTjHHsUXlDii7+ZCou5UNcj9gyb/nx8uEQt6TwFWrxVoQ4bnLd4xnk?=
- =?us-ascii?Q?Oz+9lYa2WzEI5jyNkjG7oPhf2vKPirUBaPsqHosmo+C2HQwzYoIDbaAvvUPy?=
- =?us-ascii?Q?bjLsCKzxH1WmasOUnYVlh0W0EEQz5wEqavy2exWoGVkllP0nn8gdN+2Sexcc?=
- =?us-ascii?Q?dEM69wlutA9CIC49cNZ1U0E17xsiZ9ntUBVhL31GtNoHiyTes4Ke1t1J6JPp?=
- =?us-ascii?Q?CmEsMzf3EzSqDewen/F11jUZ82E+MiO5Ris7UAATc/RvKhv1ERYqG0OhKBpP?=
- =?us-ascii?Q?fRjiNVJBf5Gbe7PKo9ahVQ/qdJKFs7Q7HKEIl013KY/JNP/bZViQm6Ct/O5X?=
- =?us-ascii?Q?Oc1zY1oPrOkFVp19xxNubQRC+KslOkhBj3MYh91Mpy0KI/TF1mD9mauf+LZJ?=
- =?us-ascii?Q?KToPOBy9xooR0OjVfC+QyXMAhFeL0WSEJvHgEF4VZ013qq6kKpwbwNJ2wZV4?=
- =?us-ascii?Q?5cU5a4aItyLeB1GpnFXQk7br2V5Y0G4aFBVg229MTOLTOdAuDsjQGZ+rAkwW?=
- =?us-ascii?Q?YcBUvtDngz5E5IJI3lnckd2m4I+fl4RDT5sx78tl18Nwb89OT3Jhx8BWxEfb?=
- =?us-ascii?Q?FMQzwyLmGNESUkvmdbyPqu3iJBdiPv0UdC1D4Zid/0kJ/N0D33pxiunEKV8v?=
- =?us-ascii?Q?9FhUnQLzFKsdQHF6Cc/GQmRIO/xA0TgTzN61YiMj8JUZD0OdMcQl/ZOGmULm?=
- =?us-ascii?Q?alejYmp2WkLMxZM8utgtINOoNJPwn82YUjthwHOIl6m4uaEFhxLNXxYjZbT3?=
- =?us-ascii?Q?wReRwBENxnv/BT1PanFsJWL6qpvg7btOBuPOatnOK36SUsZN/WMg0vT+bHpW?=
- =?us-ascii?Q?jI1Z4wpHIGkDFX1jaJuXwqCY9tHLkzNiL4Z62w5hdpb+0urCGa9PHlkbhfGV?=
- =?us-ascii?Q?HT7OZCODNwyq/+yCumNcqmFqhuOylowpSM3tC+bqLuW+SI6hE2rG6PtzKh7X?=
- =?us-ascii?Q?7ZpzNsOSwVJz/iBe+Uzs51FkrmZ03neTg9Dnhrf4i94876kq8pb1JYayjBvI?=
- =?us-ascii?Q?5A=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0b4705a9-6f1d-48cb-62d8-08dacd5b8752
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR11MB3556.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2022 14:03:42.4887 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +iyaDVQT3DmwyO4RLKC8UsGwLM2Kjbka8UXQba/dMZo0Vx/B4Xv6k5dch24x28XNPKWmXX/WT57TnawgHYpNHw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB7279
-X-OriginatorOrg: intel.com
-Subject: [Intel-gfx] PR for DG2 DMC v2.08
+References: <Y30kK6dsssSLJVgp@ziepe.ca>
+ <CAKMK7uFQQkG82PzuSTGQTnN3ZNps5N_4TjR5NRWo0LaJkEaNew@mail.gmail.com>
+ <3d8607b4-973d-945d-c184-260157ade7c3@amd.com>
+ <CAKMK7uHVGgGHTiXYOfseXXda2Ug992nYvhPsL+4z18ssqeHXHQ@mail.gmail.com>
+ <b05e6091-4e07-1e32-773d-f603ac9ac98b@gmail.com>
+ <CAKMK7uFjmzewqv3r4hL9hvLADwV536n2n6xbAWaUvmAcStr5KQ@mail.gmail.com>
+ <Y34WI9SZdiH/p1tA@ziepe.ca> <f8f844a5-0910-d19a-5aea-df7a1d83b1d3@gmail.com>
+ <Y34XvmtHfb4ZwopN@ziepe.ca> <dc2a9d7f-192b-e9d8-b1d1-3b868cb1fd44@gmail.com>
+ <Y34gBUl0m+j1JdFk@ziepe.ca>
+In-Reply-To: <Y34gBUl0m+j1JdFk@ziepe.ca>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Wed, 23 Nov 2022 15:28:27 +0100
+Message-ID: <CAKMK7uHWyOcZ77-+GY7hxFUA65uQYFe0fw2rww6Y-rLXvHFAYw@mail.gmail.com>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [Linaro-mm-sig] Re: [PATCH] dma-buf: Require
+ VM_PFNMAP vma for mmap
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,29 +72,132 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "jwboyer@kernel.org" <jwboyer@kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "kyle@mcmartin.ca" <kyle@mcmartin.ca>, "Hutchings, Ben" <ben@decadent.org.uk>
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Sumit Semwal <sumit.semwal@linaro.org>, linaro-mm-sig@lists.linaro.org,
+ John Stultz <john.stultz@linaro.org>, Matthew Wilcox <willy@infradead.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Suren Baghdasaryan <surenb@google.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ linux-media@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The following changes since commit 391fb47caabaae8719fb72ba4891d1fc27ca1923:
+On Wed, 23 Nov 2022 at 14:28, Jason Gunthorpe <jgg@ziepe.ca> wrote:
+>
+> On Wed, Nov 23, 2022 at 02:12:25PM +0100, Christian K=C3=B6nig wrote:
+> > Am 23.11.22 um 13:53 schrieb Jason Gunthorpe:
+> > > On Wed, Nov 23, 2022 at 01:49:41PM +0100, Christian K=C3=B6nig wrote:
+> > > > Am 23.11.22 um 13:46 schrieb Jason Gunthorpe:
+> > > > > On Wed, Nov 23, 2022 at 11:06:55AM +0100, Daniel Vetter wrote:
+> > > > >
+> > > > > > > Maybe a GFP flag to set the page reference count to zero or s=
+omething
+> > > > > > > like this?
+> > > > > > Hm yeah that might work. I'm not sure what it will all break th=
+ough?
+> > > > > > And we'd need to make sure that underflowing the page refcount =
+dies in
+> > > > > > a backtrace.
+> > > > > Mucking with the refcount like this to protect against crazy out =
+of
+> > > > > tree drives seems horrible..
+> > > > Well not only out of tree drivers. The intree KVM got that horrible
+> > > > wrong as well, those where the latest guys complaining about it.
+> > > kvm was taking refs on special PTEs? That seems really unlikely?
+> >
+> > Well then look at this code here:
+> >
+> > commit add6a0cd1c5ba51b201e1361b05a5df817083618
+> > Author: Paolo Bonzini <pbonzini@redhat.com>
+> > Date:   Tue Jun 7 17:51:18 2016 +0200
+> >
+> >     KVM: MMU: try to fix up page faults before giving up
+> >
+> >     The vGPU folks would like to trap the first access to a BAR by sett=
+ing
+> >     vm_ops on the VMAs produced by mmap-ing a VFIO device.  The fault
+> > handler
+> >     then can use remap_pfn_range to place some non-reserved pages in th=
+e
+> > VMA.
+> >
+> >     This kind of VM_PFNMAP mapping is not handled by KVM, but follow_pf=
+n
+> >     and fixup_user_fault together help supporting it.  The patch also
+> > supports
+> >     VM_MIXEDMAP vmas where the pfns are not reserved and thus subject t=
+o
+> >     reference counting.
+> >
+> >     Cc: Xiao Guangrong <guangrong.xiao@linux.intel.com>
+> >     Cc: Andrea Arcangeli <aarcange@redhat.com>
+> >     Cc: Radim Kr=C4=8Dm=C3=A1=C5=99 <rkrcmar@redhat.com>
+> >     Tested-by: Neo Jia <cjia@nvidia.com>
+> >     Reported-by: Kirti Wankhede <kwankhede@nvidia.com>
+> >     Signed-off-by: Paolo Bonzini <pbonzini@redhat.com>
+>
+> This patch is known to be broken in so many ways. It also has a major
+> security hole that it ignores the PTE flags making the page
+> RO. Ignoring the special bit is somehow not surprising :(
+>
+> This probably doesn't work, but is the general idea of what KVM needs
+> to do:
 
-  amdgpu: update green sardine DMCUB firmware (2022-11-17 10:42:59 -0500)
+Oh dear, when I dug around in there I entirely missed that
+kvm_try_get_pfn exists, and it's very broken indeed. kvm really needs
+to grow a proper mmu notifier.
 
-are available in the Git repository at:
+Another thing I'm wondering right now, the follow_pte();
+fixup_user_fault(); follow_pte(); approach does not make any
+guarantees of actually being right. If you're sufficiently unlucky you
+might race against an immediate pte invalidate between the fixup and
+the 2nd follow_pte(). But you can also not loop, because that would
+fail to catch permanent faults.
 
-  git://anongit.freedesktop.org/drm/drm-firmware dg2_dmc_v2.8
+I think the iommu fault drivers have a similar pattern.
 
-for you to fetch changes up to 7f6279b3dd76ff955278fcd9e517eab85a4c97d6:
+What am I missing here? Or is that also just broken. gup works around
+this with the slow path that takes the mmap sem and walking the vma
+tree, follow_pte/fixup_user_fautl users dont. Maybe mmu notifier based
+restarting would help with this too, if done properly.
+-Daniel
 
-  i915: Add DMC v2.08 for DG2 (2022-11-21 16:38:26 -0300)
+> diff --git a/virt/kvm/kvm_main.c b/virt/kvm/kvm_main.c
+> index 1376a47fedeedb..4161241fc3228c 100644
+> --- a/virt/kvm/kvm_main.c
+> +++ b/virt/kvm/kvm_main.c
+> @@ -2598,6 +2598,19 @@ static int hva_to_pfn_remapped(struct vm_area_stru=
+ct *vma,
+>                         return r;
+>         }
+>
+> +       /*
+> +        * Special PTEs are never convertible into a struct page, even if=
+ the
+> +        * driver that owns them might have put a PFN with a struct page =
+into
+> +        * the PFNMAP. If the arch doesn't support special then we cannot
+> +        * safely process these pages.
+> +        */
+> +#ifdef CONFIG_ARCH_HAS_PTE_SPECIAL
+> +       if (pte_special(*ptep))
+> +               return -EINVAL;
+> +#else
+> +       return -EINVAL;
+> +#endif
+> +
+>         if (write_fault && !pte_write(*ptep)) {
+>                 pfn =3D KVM_PFN_ERR_RO_FAULT;
+>                 goto out;
+>
+> Jason
 
-----------------------------------------------------------------
-Gustavo Sousa (1):
-      i915: Add DMC v2.08 for DG2
 
- WHENCE                   |   3 +++
- i915/dg2_dmc_ver2_08.bin | Bin 0 -> 22540 bytes
- 2 files changed, 3 insertions(+)
- create mode 100644 i915/dg2_dmc_ver2_08.bin
+
+--=20
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
