@@ -2,60 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66070634F6C
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Nov 2022 06:16:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B371634F73
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Nov 2022 06:21:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77A2910E4E4;
-	Wed, 23 Nov 2022 05:16:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9A1F10E4E5;
+	Wed, 23 Nov 2022 05:20:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com
- [IPv6:2607:f8b0:4864:20::634])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DED710E4E4
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Nov 2022 05:16:36 +0000 (UTC)
-Received: by mail-pl1-x634.google.com with SMTP id jn7so13807844plb.13
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Nov 2022 21:16:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=3/GFgNuTk5dcM/67XAcLN9c2vPJk4DQa5iW+kpyi2wg=;
- b=DIQ2SWNsMCZIePjdu8YTQZsC0GXXOBZ2hgmqPXivZJaHBZn2ed2iV+7ozDtL5mxb9t
- Cr2ki3hrdFUU9W8/ah9zt4RjV8b1c7VD9iKgWsed9xK/u/f6dMaUZnsw0PMgZUw1HUvU
- ZJKCaiCVhcJzPJ6vxu1PUOEtBCyVJGJsjZmGQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=3/GFgNuTk5dcM/67XAcLN9c2vPJk4DQa5iW+kpyi2wg=;
- b=8LiESQTjXnrDQtIf9MUgB8Fm6k5IE/GDJQNNmfx6xF+RcAmL0Txs9hBx/ILdJqbroS
- V0ny/VYGn5FkhlSLXBDKXZorTFPqLlJo2+1vZLCrIBQ83c1Oar0CxEwI+0wFDyUOKZVN
- Wq8eG4sgiKgDy6oq3IwQ1RzcGrryX0Irt7R9QBsv2VKxSAvewNgzJqBC/8SC9kjfuFAB
- yZiQKVzuqh3AViEtzLVBjFlk0VQJRlsXF2iScYZXc5Qye7doFhnEnd0CZggYXVHhSVpC
- zxIIl3qD9l+mrervnTVPAIJvFaH26hK0yRRhdyjVsA+Apt0RLESPj86UwSjiq4hxkGtx
- KgoA==
-X-Gm-Message-State: ANoB5plzXtxa7YZIUBSS7IQ0G61st7Rg/uoFfW7NADGAMVyRF+KbEwwq
- n54QDhxs+/Cpy/Q6LjoKmT/07ssYqLNYqa9F
-X-Google-Smtp-Source: AA0mqf6kib7z2tkBxkW3pMQe9hbNsC133rNmKH8bLV670iQXIa2kel6KiBJ0HFmF6uhIki6ju1ywXA==
-X-Received: by 2002:a17:902:cf41:b0:189:3e36:28b8 with SMTP id
- e1-20020a170902cf4100b001893e3628b8mr2590115plg.94.1669180595994; 
- Tue, 22 Nov 2022 21:16:35 -0800 (PST)
-Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
- by smtp.gmail.com with ESMTPSA id
- h11-20020a170902f54b00b001869ba04c83sm13107875plf.245.2022.11.22.21.16.35
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 22 Nov 2022 21:16:35 -0800 (PST)
-Date: Tue, 22 Nov 2022 21:16:34 -0800
-From: Kees Cook <keescook@chromium.org>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <202211222116.5B28E9B8B@keescook>
-References: <20221122120948.3436180-1-jani.nikula@intel.com>
+Received: from gandalf.ozlabs.org (mail.ozlabs.org
+ [IPv6:2404:9400:2221:ea00::3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0E5710E4E4;
+ Wed, 23 Nov 2022 05:20:45 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4NH8bW43SMz4wgr;
+ Wed, 23 Nov 2022 16:20:39 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1669180840;
+ bh=P8mENoA61c0gWpjTpO5OaWphgwE90TW4qhvmhkFoqzQ=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=NXx0qjtH4rEpXGVaERoT7BHKYvOo9AsUEvdr9MUj5uvb46tWLdlqc3h6nnUX/bYh1
+ hJcNoCbxQsO8H10LEYcrd+p9RbAhwg3DQFLPwJRGXQtEZoAwIxGkSaxslumv3E9QST
+ TQ63shWdg3s5IaHkyCtias10VJsg8zFS28dMfTemeFksGpAIpTpaKh025Gy4e4nqTn
+ R+iWDgipMTBd+fi9HC3Pf2zHzaHcllEm9rAdDkhZtku/GdBwrtYFuvFMnHZ/JEuR4J
+ A6ojcmOloTOdduCeOX6x6Ad7gNoHhahHcqxCW3PVSGbvzi2TaqRho3EJRq+QVuSjy4
+ HmCZmRL5pc3Hg==
+Date: Wed, 23 Nov 2022 16:20:33 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Dave Airlie <airlied@redhat.com>
+Message-ID: <20221123162033.02910a5a@canb.auug.org.au>
+In-Reply-To: <20221117183214.2473e745@canb.auug.org.au>
+References: <20221117183214.2473e745@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221122120948.3436180-1-jani.nikula@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/hti: avoid theoretically possible
- negative shift
+Content-Type: multipart/signed; boundary="Sig_/QdkUDVBl0GM8MmuvnPiUWNp";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+Subject: Re: [Intel-gfx] linux-next: build failure after merge of the
+ drm-misc tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,19 +52,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ DRI <dri-devel@lists.freedesktop.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 22, 2022 at 02:09:48PM +0200, Jani Nikula wrote:
-> If phy is PHY_NONE, the shift to register bits becomes negative. Check
-> and warn about this.
-> 
-> Reported-by: coverity-bot <keescook@chromium.org>
-> References: https://lore.kernel.org/r/202211180848.D39006C@keescook
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+--Sig_/QdkUDVBl0GM8MmuvnPiUWNp
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Kees Cook <keescook@chromium.org>
+Hi all,
 
--- 
-Kees Cook
+On Thu, 17 Nov 2022 18:32:14 +1100 Stephen Rothwell <sfr@canb.auug.org.au> =
+wrote:
+>
+> After merging the drm-misc tree, today's linux-next build (powerpc
+> ppc44x_defconfig) failed like this:
+>=20
+> ld: drivers/video/fbdev/core/fbmon.o: in function `fb_modesetting_disable=
+d':
+> fbmon.c:(.text+0x1e4): multiple definition of `fb_modesetting_disabled'; =
+drivers/video/fbdev/core/fbmem.o:fbmem.c:(.text+0x1bac): first defined here
+> ld: drivers/video/fbdev/core/fbcmap.o: in function `fb_modesetting_disabl=
+ed':
+> fbcmap.c:(.text+0x478): multiple definition of `fb_modesetting_disabled';=
+ drivers/video/fbdev/core/fbmem.o:fbmem.c:(.text+0x1bac): first defined here
+> ld: drivers/video/fbdev/core/fbsysfs.o: in function `fb_modesetting_disab=
+led':
+> fbsysfs.c:(.text+0xb64): multiple definition of `fb_modesetting_disabled'=
+; drivers/video/fbdev/core/fbmem.o:fbmem.c:(.text+0x1bac): first defined he=
+re
+> ld: drivers/video/fbdev/core/modedb.o: in function `fb_modesetting_disabl=
+ed':
+> modedb.c:(.text+0x129c): multiple definition of `fb_modesetting_disabled'=
+; drivers/video/fbdev/core/fbmem.o:fbmem.c:(.text+0x1bac): first defined he=
+re
+> ld: drivers/video/fbdev/core/fbcvt.o: in function `fb_modesetting_disable=
+d':
+> fbcvt.c:(.text+0x0): multiple definition of `fb_modesetting_disabled'; dr=
+ivers/video/fbdev/core/fbmem.o:fbmem.c:(.text+0x1bac): first defined here
+>=20
+> Caused by commit
+>=20
+>   0ba2fa8cbd29 ("fbdev: Add support for the nomodeset kernel parameter")
+>=20
+> This build does not have CONFIG_VIDEO_NOMODESET set.
+>=20
+> I applied the following patch for today.
+>=20
+> From 63f957a050c62478ed1348c5b204bc65c68df4d7 Mon Sep 17 00:00:00 2001
+> From: Stephen Rothwell <sfr@canb.auug.org.au>
+> Date: Thu, 17 Nov 2022 18:19:22 +1100
+> Subject: [PATCH] fix up for "fbdev: Add support for the nomodeset kernel =
+parameter"
+>=20
+> Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
+> ---
+>  include/linux/fb.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/include/linux/fb.h b/include/linux/fb.h
+> index 3a822e4357b1..ea421724f733 100644
+> --- a/include/linux/fb.h
+> +++ b/include/linux/fb.h
+> @@ -807,7 +807,7 @@ extern int fb_find_mode(struct fb_var_screeninfo *var,
+>  #if defined(CONFIG_VIDEO_NOMODESET)
+>  bool fb_modesetting_disabled(const char *drvname);
+>  #else
+> -bool fb_modesetting_disabled(const char *drvname)
+> +static inline bool fb_modesetting_disabled(const char *drvname)
+>  {
+>  	return false;
+>  }
+> --=20
+> 2.35.1
+
+This commit went away for a couple of linux-next releases, but now has
+reappeared in the drm tree :-(  What went wrong?
+
+I have reapplied the above patch...
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/QdkUDVBl0GM8MmuvnPiUWNp
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmN9raEACgkQAVBC80lX
+0GwzsAf9FsX728ujmxJyRH1r6NH3/BtmZR7MmvHvSTVE2C+UOUjNQ/QPGgna2Wtl
+G2Yt6ZPTSci350K2x6ISaAjVKwsLBACSyhgHddeKWz72ZEwB63MQUjGFC/Ql5L+a
+M+GJASmOeExAd2i06E29dCV2XTBeV+2Iw+QhmotpsBtjjdFxoAmJv5KrJzzNtBpJ
+CSdqCZzCBI6ClGRTK1J2gQ4KVUaCPvMQPHMMmy+/VMKrFiH5AjwATHdFX1VhbIEA
+FfKwCCdarYnbW+L1tvOWogD2XEiasOnuJOvvxCOJqSUgHKTXfVbXRF74Ujo5NWGo
+cGptfJ//Al8NmnLeppXRHtaj23tFRw==
+=+ny7
+-----END PGP SIGNATURE-----
+
+--Sig_/QdkUDVBl0GM8MmuvnPiUWNp--
