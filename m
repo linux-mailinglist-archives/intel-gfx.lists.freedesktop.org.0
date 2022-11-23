@@ -2,33 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4916636B1C
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Nov 2022 21:30:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70984636B78
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Nov 2022 21:45:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70E0910E248;
-	Wed, 23 Nov 2022 20:30:35 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 377A910E248;
- Wed, 23 Nov 2022 20:30:31 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 355CEA010C;
- Wed, 23 Nov 2022 20:30:31 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5494069720238243108=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBC2F10E621;
+	Wed, 23 Nov 2022 20:45:39 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1A7310E611;
+ Wed, 23 Nov 2022 20:45:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1669236333; x=1700772333;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=ArNpUlY5+G3NwF5GxCbZcumicacmICGeOYNEb2h+W3Y=;
+ b=M/pjkBGGt65T5FTUTm1ZuEoyrcjKb+Yco0r0seB1OQCKyHbjxoJwfEqB
+ c3NhVpSJum91qd2+nDraZPvC880n1wVzM8GcoY1KKkF3oblj898e9mH45
+ WeuCiKrC5QZTrKmi9u/NNk17pOOVvpCFd1dHr1HnbpyOK7ldMsUVFgiJP
+ GDgoiOSlS5t8qWg6ioZ4FSUBrtO86DA9cA9lrmVH+VswCfXXLFd2ud4Mn
+ +EpGQdhGV7Sqt6ZUf3x1D/v+YmwzH99Ce92RzZpYJzwydzaCcIQv3ryfu
+ 4kbPQ1TGlXFuLzgaBO3BooBT01+oMmi4/50yyjvN9GbMgJYJgQxCVfn91 g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10540"; a="311791889"
+X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; d="scan'208";a="311791889"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2022 12:45:33 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10540"; a="636045316"
+X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; d="scan'208";a="636045316"
+Received: from irvmail001.ir.intel.com ([10.43.11.63])
+ by orsmga007.jf.intel.com with ESMTP; 23 Nov 2022 12:45:31 -0800
+Received: from [10.249.144.141] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.249.144.141])
+ by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
+ 2ANKjUMX003959; Wed, 23 Nov 2022 20:45:30 GMT
+Message-ID: <4579b7e8-eae7-b760-66aa-b01273d18aab@intel.com>
+Date: Wed, 23 Nov 2022 21:45:30 +0100
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Atwood" <matthew.s.atwood@intel.com>
-Date: Wed, 23 Nov 2022 20:30:31 -0000
-Message-ID: <166923543121.15574.16111264668697321039@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221123183648.407058-1-matthew.s.atwood@intel.com>
-In-Reply-To: <20221123183648.407058-1-matthew.s.atwood@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv4=2C1/2=5D_drm/i915/dg2=3A_Introduce_Wa?=
- =?utf-8?q?=5F18018764978?=
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.5.0
+To: John Harrison <john.c.harrison@intel.com>, Intel-GFX@Lists.FreeDesktop.Org
+References: <20221118015858.2548106-1-John.C.Harrison@Intel.com>
+ <20221118015858.2548106-5-John.C.Harrison@Intel.com>
+ <48f594de-9682-4b60-f934-9420d02b405e@intel.com>
+ <dd9559e8-7d65-d7bb-ea1a-d169a1c7eec3@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <dd9559e8-7d65-d7bb-ea1a-d169a1c7eec3@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v2 4/5] drm/i915/guc: Add GuC CT specific
+ debug print wrappers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,503 +67,623 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5494069720238243108==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
 
-Series: series starting with [v4,1/2] drm/i915/dg2: Introduce Wa_18018764978
-URL   : https://patchwork.freedesktop.org/series/111270/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_12424 -> Patchwork_111270v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/index.html
-
-Participating hosts (37 -> 37)
-------------------------------
-
-  Additional (2): fi-icl-u2 bat-dg1-6 
-  Missing    (2): fi-ctg-p8600 fi-ilk-m540 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_111270v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@debugfs_test@basic-hwmon:
-    - fi-icl-u2:          NOTRUN -> [SKIP][1] ([i915#7456])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/fi-icl-u2/igt@debugfs_test@basic-hwmon.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-icl-u2:          NOTRUN -> [SKIP][2] ([i915#2190])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/fi-icl-u2/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@random-engines:
-    - fi-icl-u2:          NOTRUN -> [SKIP][3] ([i915#4613]) +3 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/fi-icl-u2/igt@gem_lmem_swapping@random-engines.html
-
-  * igt@gem_mmap@basic:
-    - bat-dg1-6:          NOTRUN -> [SKIP][4] ([i915#4083])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-6/igt@gem_mmap@basic.html
-
-  * igt@gem_render_tiled_blits@basic:
-    - bat-dg1-6:          NOTRUN -> [SKIP][5] ([i915#4079]) +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-6/igt@gem_render_tiled_blits@basic.html
-
-  * igt@gem_tiled_fence_blits@basic:
-    - bat-dg1-6:          NOTRUN -> [SKIP][6] ([i915#4077]) +2 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-6/igt@gem_tiled_fence_blits@basic.html
-
-  * igt@i915_pm_backlight@basic-brightness:
-    - bat-dg1-6:          NOTRUN -> [SKIP][7] ([i915#7561])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-6/igt@i915_pm_backlight@basic-brightness.html
-
-  * igt@i915_pm_rps@basic-api:
-    - bat-dg1-6:          NOTRUN -> [SKIP][8] ([i915#6621])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-6/igt@i915_pm_rps@basic-api.html
-
-  * igt@i915_suspend@basic-s2idle-without-i915:
-    - fi-bdw-gvtdvm:      NOTRUN -> [INCOMPLETE][9] ([i915#146])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/fi-bdw-gvtdvm/igt@i915_suspend@basic-s2idle-without-i915.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - fi-rkl-11600:       [PASS][10] -> [INCOMPLETE][11] ([i915#4817])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12424/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_addfb_basic@basic-y-tiled-legacy:
-    - bat-dg1-6:          NOTRUN -> [SKIP][12] ([i915#4215])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-6/igt@kms_addfb_basic@basic-y-tiled-legacy.html
-
-  * igt@kms_addfb_basic@tile-pitch-mismatch:
-    - bat-dg1-6:          NOTRUN -> [SKIP][13] ([i915#4212]) +7 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-6/igt@kms_addfb_basic@tile-pitch-mismatch.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - bat-dg1-5:          NOTRUN -> [SKIP][14] ([fdo#111827])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-5/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - bat-dg1-6:          NOTRUN -> [SKIP][15] ([fdo#111827]) +8 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-6/igt@kms_chamelium@hdmi-crc-fast.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-icl-u2:          NOTRUN -> [SKIP][16] ([fdo#111827]) +8 similar issues
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
-    - fi-bdw-gvtdvm:      NOTRUN -> [SKIP][17] ([fdo#109271] / [fdo#111827]) +7 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/fi-bdw-gvtdvm/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor:
-    - fi-icl-u2:          NOTRUN -> [SKIP][18] ([i915#4103])
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor.html
-    - bat-dg1-6:          NOTRUN -> [SKIP][19] ([i915#4103] / [i915#4213])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-6/igt@kms_cursor_legacy@basic-busy-flip-before-cursor.html
-
-  * igt@kms_flip@basic-plain-flip:
-    - fi-bdw-gvtdvm:      NOTRUN -> [SKIP][20] ([fdo#109271]) +31 similar issues
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/fi-bdw-gvtdvm/igt@kms_flip@basic-plain-flip.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-icl-u2:          NOTRUN -> [SKIP][21] ([fdo#109285])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html
-    - bat-dg1-6:          NOTRUN -> [SKIP][22] ([fdo#109285])
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-6/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_psr@sprite_plane_onoff:
-    - bat-dg1-6:          NOTRUN -> [SKIP][23] ([i915#1072] / [i915#4078]) +3 similar issues
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-6/igt@kms_psr@sprite_plane_onoff.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-dg1-6:          NOTRUN -> [SKIP][24] ([i915#3555])
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-6/igt@kms_setmode@basic-clone-single-crtc.html
-    - fi-icl-u2:          NOTRUN -> [SKIP][25] ([i915#3555])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/fi-icl-u2/igt@kms_setmode@basic-clone-single-crtc.html
-
-  * igt@prime_vgem@basic-gtt:
-    - bat-dg1-6:          NOTRUN -> [SKIP][26] ([i915#3708] / [i915#4077]) +1 similar issue
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-6/igt@prime_vgem@basic-gtt.html
-
-  * igt@prime_vgem@basic-read:
-    - bat-dg1-6:          NOTRUN -> [SKIP][27] ([i915#3708]) +3 similar issues
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-6/igt@prime_vgem@basic-read.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-icl-u2:          NOTRUN -> [SKIP][28] ([fdo#109295] / [i915#3301])
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/fi-icl-u2/igt@prime_vgem@basic-userptr.html
-    - bat-dg1-6:          NOTRUN -> [SKIP][29] ([i915#3708] / [i915#4873])
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-6/igt@prime_vgem@basic-userptr.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_parallel@engines@contexts:
-    - fi-bdw-gvtdvm:      [INCOMPLETE][30] ([i915#7506]) -> [PASS][31]
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12424/fi-bdw-gvtdvm/igt@gem_exec_parallel@engines@contexts.html
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/fi-bdw-gvtdvm/igt@gem_exec_parallel@engines@contexts.html
-
-  * igt@i915_module_load@reload:
-    - {bat-rpls-2}:       [DMESG-WARN][32] ([i915#6434]) -> [PASS][33]
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12424/bat-rpls-2/igt@i915_module_load@reload.html
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-rpls-2/igt@i915_module_load@reload.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [DMESG-FAIL][34] ([i915#5334]) -> [PASS][35]
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12424/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@gt_lrc:
-    - bat-dg1-5:          [INCOMPLETE][36] -> [PASS][37]
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12424/bat-dg1-5/igt@i915_selftest@live@gt_lrc.html
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-5/igt@i915_selftest@live@gt_lrc.html
-    - {bat-rpls-1}:       [INCOMPLETE][38] ([i915#4983]) -> [PASS][39]
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12424/bat-rpls-1/igt@i915_selftest@live@gt_lrc.html
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-rpls-1/igt@i915_selftest@live@gt_lrc.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
-    - fi-bsw-kefka:       [FAIL][40] ([i915#6298]) -> [PASS][41]
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12424/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4078]: https://gitlab.freedesktop.org/drm/intel/issues/4078
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
-  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
-  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4817]: https://gitlab.freedesktop.org/drm/intel/issues/4817
-  [i915#4873]: https://gitlab.freedesktop.org/drm/intel/issues/4873
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5153]: https://gitlab.freedesktop.org/drm/intel/issues/5153
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
-  [i915#6434]: https://gitlab.freedesktop.org/drm/intel/issues/6434
-  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
-  [i915#7346]: https://gitlab.freedesktop.org/drm/intel/issues/7346
-  [i915#7456]: https://gitlab.freedesktop.org/drm/intel/issues/7456
-  [i915#7467]: https://gitlab.freedesktop.org/drm/intel/issues/7467
-  [i915#7506]: https://gitlab.freedesktop.org/drm/intel/issues/7506
-  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12424 -> Patchwork_111270v1
-
-  CI-20190529: 20190529
-  CI_DRM_12424: c8b2ce6e20662ef30130e65f473b1ff5362765e3 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7072: 69ba7163475925cdc69aebbdfa0e87453ae165c7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_111270v1: c8b2ce6e20662ef30130e65f473b1ff5362765e3 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-fe39335e058e drm/i915/dg2: Introduce Wa_18019271663
-d0406972d8db drm/i915/dg2: Introduce Wa_18018764978
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/index.html
-
---===============5494069720238243108==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v4,1/2] drm/i915/dg2: Introduce Wa_18018764978</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/111270/">https://patchwork.freedesktop.org/series/111270/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12424 -&gt; Patchwork_111270v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/index.html</p>
-<h2>Participating hosts (37 -&gt; 37)</h2>
-<p>Additional (2): fi-icl-u2 bat-dg1-6 <br />
-  Missing    (2): fi-ctg-p8600 fi-ilk-m540 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_111270v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@basic-hwmon:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/fi-icl-u2/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7456">i915#7456</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/fi-icl-u2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@random-engines:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/fi-icl-u2/igt@gem_lmem_swapping@random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap@basic:</p>
-<ul>
-<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-6/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_render_tiled_blits@basic:</p>
-<ul>
-<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-6/igt@gem_render_tiled_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_fence_blits@basic:</p>
-<ul>
-<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-6/igt@gem_tiled_fence_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_backlight@basic-brightness:</p>
-<ul>
-<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-6/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7561">i915#7561</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rps@basic-api:</p>
-<ul>
-<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-6/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6621">i915#6621</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s2idle-without-i915:</p>
-<ul>
-<li>fi-bdw-gvtdvm:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/fi-bdw-gvtdvm/igt@i915_suspend@basic-s2idle-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12424/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4817">i915#4817</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@basic-y-tiled-legacy:</p>
-<ul>
-<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-6/igt@kms_addfb_basic@basic-y-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4215">i915#4215</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@tile-pitch-mismatch:</p>
-<ul>
-<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-6/igt@kms_addfb_basic@tile-pitch-mismatch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4212">i915#4212</a>) +7 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-5/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-crc-fast:</p>
-<ul>
-<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-6/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
-<ul>
-<li>
-<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</p>
-</li>
-<li>
-<p>fi-bdw-gvtdvm:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/fi-bdw-gvtdvm/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +7 similar issues</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor:</p>
-<ul>
-<li>
-<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>)</p>
-</li>
-<li>
-<p>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-6/igt@kms_cursor_legacy@basic-busy-flip-before-cursor.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4213">i915#4213</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-plain-flip:</p>
-<ul>
-<li>fi-bdw-gvtdvm:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/fi-bdw-gvtdvm/igt@kms_flip@basic-plain-flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +31 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>
-<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</p>
-</li>
-<li>
-<p>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-6/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@sprite_plane_onoff:</p>
-<ul>
-<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-6/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4078">i915#4078</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>
-<p>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-6/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</p>
-</li>
-<li>
-<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/fi-icl-u2/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-gtt:</p>
-<ul>
-<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-6/igt@prime_vgem@basic-gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-read:</p>
-<ul>
-<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-6/igt@prime_vgem@basic-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>
-<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/fi-icl-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</p>
-</li>
-<li>
-<p>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-6/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4873">i915#4873</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_parallel@engines@contexts:</p>
-<ul>
-<li>fi-bdw-gvtdvm:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12424/fi-bdw-gvtdvm/igt@gem_exec_parallel@engines@contexts.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7506">i915#7506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/fi-bdw-gvtdvm/igt@gem_exec_parallel@engines@contexts.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12424/bat-rpls-2/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6434">i915#6434</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-rpls-2/igt@i915_module_load@reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12424/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>
-<p>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12424/bat-dg1-5/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-dg1-5/igt@i915_selftest@live@gt_lrc.html">PASS</a></p>
-</li>
-<li>
-<p>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12424/bat-rpls-1/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/bat-rpls-1/igt@i915_selftest@live@gt_lrc.html">PASS</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12424/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111270v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12424 -&gt; Patchwork_111270v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12424: c8b2ce6e20662ef30130e65f473b1ff5362765e3 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7072: 69ba7163475925cdc69aebbdfa0e87453ae165c7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_111270v1: c8b2ce6e20662ef30130e65f473b1ff5362765e3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>fe39335e058e drm/i915/dg2: Introduce Wa_18019271663<br />
-d0406972d8db drm/i915/dg2: Introduce Wa_18018764978</p>
-
-</body>
-</html>
-
---===============5494069720238243108==--
+On 23.11.2022 02:25, John Harrison wrote:
+> On 11/22/2022 09:54, Michal Wajdeczko wrote:
+>> On 18.11.2022 02:58, John.C.Harrison@Intel.com wrote:
+>>> From: John Harrison <John.C.Harrison@Intel.com>
+>>>
+>>> Re-work the existing GuC CT printers and extend as required to match
+>>> the new wrapping scheme.
+>>>
+>>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+>>> ---
+>>>   drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 222 +++++++++++-----------
+>>>   1 file changed, 113 insertions(+), 109 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+>>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+>>> index 2b22065e87bf9..9d404fb377637 100644
+>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+>>> @@ -18,31 +18,49 @@ static inline struct intel_guc *ct_to_guc(struct
+>>> intel_guc_ct *ct)
+>>>       return container_of(ct, struct intel_guc, ct);
+>>>   }
+>>>   -static inline struct intel_gt *ct_to_gt(struct intel_guc_ct *ct)
+>>> -{
+>>> -    return guc_to_gt(ct_to_guc(ct));
+>>> -}
+>>> -
+>>>   static inline struct drm_i915_private *ct_to_i915(struct
+>>> intel_guc_ct *ct)
+>>>   {
+>>> -    return ct_to_gt(ct)->i915;
+>>> -}
+>>> +    struct intel_guc *guc = ct_to_guc(ct);
+>>> +    struct intel_gt *gt = guc_to_gt(guc);
+>>>   -static inline struct drm_device *ct_to_drm(struct intel_guc_ct *ct)
+>>> -{
+>>> -    return &ct_to_i915(ct)->drm;
+>>> +    return gt->i915;
+>>>   }
+>>>   -#define CT_ERROR(_ct, _fmt, ...) \
+>>> -    drm_err(ct_to_drm(_ct), "CT: " _fmt, ##__VA_ARGS__)
+>>> +#define ct_err(_ct, _fmt, ...) \
+>>> +    guc_err(ct_to_guc(_ct), "CT " _fmt, ##__VA_ARGS__)
+>>> +
+>>> +#define ct_warn(_ct, _fmt, ...) \
+>>> +    guc_warn(ct_to_guc(_ct), "CT " _fmt, ##__VA_ARGS__)
+>>> +
+>>> +#define ct_notice(_ct, _fmt, ...) \
+>>> +    guc_notice(ct_to_guc(_ct), "CT " _fmt, ##__VA_ARGS__)
+>>> +
+>>> +#define ct_info(_ct, _fmt, ...) \
+>>> +    guc_info(ct_to_guc(_ct), "CT " _fmt, ##__VA_ARGS__)
+>>> +
+>>>   #ifdef CONFIG_DRM_I915_DEBUG_GUC
+>>> -#define CT_DEBUG(_ct, _fmt, ...) \
+>>> -    drm_dbg(ct_to_drm(_ct), "CT: " _fmt, ##__VA_ARGS__)
+>>> +#define ct_dbg(_ct, _fmt, ...) \
+>>> +    guc_dbg(ct_to_guc(_ct), "CT " _fmt, ##__VA_ARGS__)
+>>>   #else
+>>> -#define CT_DEBUG(...)    do { } while (0)
+>>> +#define ct_dbg(...)    do { } while (0)
+>>>   #endif
+>>> -#define CT_PROBE_ERROR(_ct, _fmt, ...) \
+>>> -    i915_probe_error(ct_to_i915(ct), "CT: " _fmt, ##__VA_ARGS__)
+>>> +
+>>> +#define ct_probe_error(_ct, _fmt, ...) \
+>>> +    do { \
+>>> +        if (i915_error_injected()) \
+>>> +            ct_dbg(_ct, _fmt, ##__VA_ARGS__); \
+>>> +        else \
+>>> +            ct_err(_ct, _fmt, ##__VA_ARGS__); \
+>>> +    } while (0)
+>> guc_probe_error ?
+>>
+>>> +
+>>> +#define ct_WARN_ON(_ct, _condition) \
+>>> +    ct_WARN(_ct, _condition, "%s", "ct_WARN_ON("
+>>> __stringify(_condition) ")")
+>>> +
+>>> +#define ct_WARN(_ct, _condition, _fmt, ...) \
+>>> +    guc_WARN(ct_to_guc(_ct), _condition, "CT " _fmt, ##__VA_ARGS__)
+>>> +
+>>> +#define ct_WARN_ONCE(_ct, _condition, _fmt, ...) \
+>>> +    guc_WARN_ONCE(ct_to_guc(_ct), _condition, "CT " _fmt,
+>>> ##__VA_ARGS__)
+>>>     /**
+>>>    * DOC: CTB Blob
+>>> @@ -170,7 +188,7 @@ static int ct_control_enable(struct intel_guc_ct
+>>> *ct, bool enable)
+>>>       err = guc_action_control_ctb(ct_to_guc(ct), enable ?
+>>>                        GUC_CTB_CONTROL_ENABLE :
+>>> GUC_CTB_CONTROL_DISABLE);
+>>>       if (unlikely(err))
+>>> -        CT_PROBE_ERROR(ct, "Failed to control/%s CTB (%pe)\n",
+>>> +        ct_probe_error(ct, "Failed to control/%s CTB (%pe)\n",
+>>>                      str_enable_disable(enable), ERR_PTR(err));
+>> btw, shouldn't we change all messages to start with lowercase ?
+>>
+>> was:
+>>     "CT0: Failed to control/%s CTB (%pe)"
+>> is:
+>>     "GT0: GuC CT Failed to control/%s CTB (%pe)"
+>>
+>> unless we keep colon (as suggested by Tvrtko) as then:
+>>
+>>     "GT0: GuC CT: Failed to control/%s CTB (%pe)"
+> Blanket added the colon makes it messy when a string actually wants to
+> start with the prefix. The rule I've been using is lower case word when
+> the prefix was part of the string, upper case word when the prefix is
+
+Hmm, I'm not sure that we should attempt to have such a flexible rule as
+we shouldn't rely too much on actual format of the prefix as it could be
+changed any time.  All we should know about final log message is that it
+_will_ properly identify the "GT" or "GuC" that this log is related to.
+
+So I would suggest to be just consistent and probably always start with
+upper case, as that seems to be mostly used in kernel error logs, and
+just make sure that any prefix will honor that (by including colon, or
+braces), so this will always work like:
+
+"[drm] *ERROR* GT0: Failed to foo (-EIO)"
+"[drm] *ERROR* GT0: GUC: Failed to foo (-EIO)"
+"[drm] *ERROR* GT0: GUC: CT: Failed to foo (-EIO)"
+
+or
+
+"[drm] *ERROR* GT0: Failed to foo (-EIO)"
+"[drm] *ERROR* GT0: [GUC] Failed to foo (-EIO)"
+"[drm] *ERROR* GT0: [GUC] CT: Failed to foo (-EIO)"
+
+and even for:
+
+"[drm] *ERROR* GT(root) Failed to foo (-EIO)"
+"[drm] *ERROR* GuC(media) Failed to foo (-EIO)"
+"[drm] *ERROR* GT0 [GuC:CT] Failed to foo (-EIO)"
+
+
+> just being added as a prefix. I originally just had the prefix as raw
+> with no trailing space, so the individual print could decide to add a
+> colon, a space, or whatever as appropriate. But that just makes for
+> messy code with some files having every string look like ": Stuff
+> happened" and other files have every string look like " failed to ...".
+> The current version seems to be the most readable from the point of view
+> of writing the code and of reading the dmesg results.
+> 
+> And to be clear, the 'CT0' you have in your 'was' example only exists in
+> the internal tree. It never made it to upstream. It is also just plain
+> wrong. Each GT has two CTs - send and receive. So having 'CT1' meaning
+> some random CT on GT1 (as opposed to the read channel on GT0, for
+> example) was very confusing.
+
+I don't think I was wrong, it might be you confusing CT with CTB.
+
+Note that we only support _single_ CT (Command Transport) and this
+single CT includes _pair_ of CTBs (Command Transport Buffers).
+
+And logs/macros are CT oriented, not CTB.
+
+Regarding those my internal changes that were printing "CT%u": they were
+added exactly for the same reason as your series: to know which GT
+traffic we are tracing.  And were done locally on CT level only as there
+was no helpers that would automatically append "GT%u" prefix - helpers
+that you're defining right now ;)
+
+Michal
+
+> 
+> John.
+> 
+> 
+>>
+>> Michal
+>>
+>>>         return err;
+>>> @@ -201,7 +219,7 @@ static int ct_register_buffer(struct intel_guc_ct
+>>> *ct, bool send,
+>>>                      size);
+>>>       if (unlikely(err))
+>>>   failed:
+>>> -        CT_PROBE_ERROR(ct, "Failed to register %s buffer (%pe)\n",
+>>> +        ct_probe_error(ct, "Failed to register %s buffer (%pe)\n",
+>>>                      send ? "SEND" : "RECV", ERR_PTR(err));
+>>>         return err;
+>>> @@ -235,21 +253,21 @@ int intel_guc_ct_init(struct intel_guc_ct *ct)
+>>>       blob_size = 2 * CTB_DESC_SIZE + CTB_H2G_BUFFER_SIZE +
+>>> CTB_G2H_BUFFER_SIZE;
+>>>       err = intel_guc_allocate_and_map_vma(guc, blob_size, &ct->vma,
+>>> &blob);
+>>>       if (unlikely(err)) {
+>>> -        CT_PROBE_ERROR(ct, "Failed to allocate %u for CTB data
+>>> (%pe)\n",
+>>> +        ct_probe_error(ct, "Failed to allocate %u for CTB data
+>>> (%pe)\n",
+>>>                      blob_size, ERR_PTR(err));
+>>>           return err;
+>>>       }
+>>>   -    CT_DEBUG(ct, "base=%#x size=%u\n", intel_guc_ggtt_offset(guc,
+>>> ct->vma), blob_size);
+>>> +    ct_dbg(ct, "base=%#x size=%u\n", intel_guc_ggtt_offset(guc,
+>>> ct->vma), blob_size);
+>>>         /* store pointers to desc and cmds for send ctb */
+>>>       desc = blob;
+>>>       cmds = blob + 2 * CTB_DESC_SIZE;
+>>>       cmds_size = CTB_H2G_BUFFER_SIZE;
+>>>       resv_space = 0;
+>>> -    CT_DEBUG(ct, "%s desc %#tx cmds %#tx size %u/%u\n", "send",
+>>> -         ptrdiff(desc, blob), ptrdiff(cmds, blob), cmds_size,
+>>> -         resv_space);
+>>> +    ct_dbg(ct, "%s desc %#tx cmds %#tx size %u/%u\n", "send",
+>>> +           ptrdiff(desc, blob), ptrdiff(cmds, blob), cmds_size,
+>>> +           resv_space);
+>>>         guc_ct_buffer_init(&ct->ctbs.send, desc, cmds, cmds_size,
+>>> resv_space);
+>>>   @@ -258,9 +276,9 @@ int intel_guc_ct_init(struct intel_guc_ct *ct)
+>>>       cmds = blob + 2 * CTB_DESC_SIZE + CTB_H2G_BUFFER_SIZE;
+>>>       cmds_size = CTB_G2H_BUFFER_SIZE;
+>>>       resv_space = G2H_ROOM_BUFFER_SIZE;
+>>> -    CT_DEBUG(ct, "%s desc %#tx cmds %#tx size %u/%u\n", "recv",
+>>> -         ptrdiff(desc, blob), ptrdiff(cmds, blob), cmds_size,
+>>> -         resv_space);
+>>> +    ct_dbg(ct, "%s desc %#tx cmds %#tx size %u/%u\n", "recv",
+>>> +           ptrdiff(desc, blob), ptrdiff(cmds, blob), cmds_size,
+>>> +           resv_space);
+>>>         guc_ct_buffer_init(&ct->ctbs.recv, desc, cmds, cmds_size,
+>>> resv_space);
+>>>   @@ -338,7 +356,7 @@ int intel_guc_ct_enable(struct intel_guc_ct *ct)
+>>>       return 0;
+>>>     err_out:
+>>> -    CT_PROBE_ERROR(ct, "Failed to enable CTB (%pe)\n", ERR_PTR(err));
+>>> +    ct_probe_error(ct, "Failed to enable CTB (%pe)\n", ERR_PTR(err));
+>>>       return err;
+>>>   }
+>>>   @@ -387,14 +405,12 @@ static int ct_write(struct intel_guc_ct *ct,
+>>>     #ifdef CONFIG_DRM_I915_DEBUG_GUC
+>>>       if (unlikely(tail != READ_ONCE(desc->tail))) {
+>>> -        CT_ERROR(ct, "Tail was modified %u != %u\n",
+>>> -             desc->tail, tail);
+>>> +        ct_err(ct, "Tail was modified %u != %u\n", desc->tail, tail);
+>>>           desc->status |= GUC_CTB_STATUS_MISMATCH;
+>>>           goto corrupted;
+>>>       }
+>>>       if (unlikely(READ_ONCE(desc->head) >= size)) {
+>>> -        CT_ERROR(ct, "Invalid head offset %u >= %u)\n",
+>>> -             desc->head, size);
+>>> +        ct_err(ct, "Invalid head offset %u >= %u)\n", desc->head,
+>>> size);
+>>>           desc->status |= GUC_CTB_STATUS_OVERFLOW;
+>>>           goto corrupted;
+>>>       }
+>>> @@ -415,8 +431,8 @@ static int ct_write(struct intel_guc_ct *ct,
+>>>           FIELD_PREP(GUC_HXG_EVENT_MSG_0_ACTION |
+>>>                  GUC_HXG_EVENT_MSG_0_DATA0, action[0]);
+>>>   -    CT_DEBUG(ct, "writing (tail %u) %*ph %*ph %*ph\n",
+>>> -         tail, 4, &header, 4, &hxg, 4 * (len - 1), &action[1]);
+>>> +    ct_dbg(ct, "writing (tail %u) %*ph %*ph %*ph\n",
+>>> +           tail, 4, &header, 4, &hxg, 4 * (len - 1), &action[1]);
+>>>         cmds[tail] = header;
+>>>       tail = (tail + 1) % size;
+>>> @@ -447,8 +463,8 @@ static int ct_write(struct intel_guc_ct *ct,
+>>>       return 0;
+>>>     corrupted:
+>>> -    CT_ERROR(ct, "Corrupted descriptor head=%u tail=%u status=%#x\n",
+>>> -         desc->head, desc->tail, desc->status);
+>>> +    ct_err(ct, "Corrupted descriptor on write head=%u tail=%u
+>>> status=%#x\n",
+>>> +           desc->head, desc->tail, desc->status);
+>>>       ctb->broken = true;
+>>>       return -EPIPE;
+>>>   }
+>>> @@ -507,17 +523,14 @@ static inline bool ct_deadlocked(struct
+>>> intel_guc_ct *ct)
+>>>           struct guc_ct_buffer_desc *send = ct->ctbs.send.desc;
+>>>           struct guc_ct_buffer_desc *recv = ct->ctbs.send.desc;
+>>>   -        CT_ERROR(ct, "Communication stalled for %lld ms, desc
+>>> status=%#x,%#x\n",
+>>> -             ktime_ms_delta(ktime_get(), ct->stall_time),
+>>> -             send->status, recv->status);
+>>> -        CT_ERROR(ct, "H2G Space: %u (Bytes)\n",
+>>> -             atomic_read(&ct->ctbs.send.space) * 4);
+>>> -        CT_ERROR(ct, "Head: %u (Dwords)\n", ct->ctbs.send.desc->head);
+>>> -        CT_ERROR(ct, "Tail: %u (Dwords)\n", ct->ctbs.send.desc->tail);
+>>> -        CT_ERROR(ct, "G2H Space: %u (Bytes)\n",
+>>> -             atomic_read(&ct->ctbs.recv.space) * 4);
+>>> -        CT_ERROR(ct, "Head: %u\n (Dwords)", ct->ctbs.recv.desc->head);
+>>> -        CT_ERROR(ct, "Tail: %u\n (Dwords)", ct->ctbs.recv.desc->tail);
+>>> +        ct_err(ct, "Communication stalled for %lld ms, desc
+>>> status=%#x,%#x\n",
+>>> +               ktime_ms_delta(ktime_get(), ct->stall_time),
+>>> send->status, recv->status);
+>>> +        ct_err(ct, "H2G Space: %u (Bytes)\n",
+>>> atomic_read(&ct->ctbs.send.space) * 4);
+>>> +        ct_err(ct, "Head: %u (Dwords)\n", ct->ctbs.send.desc->head);
+>>> +        ct_err(ct, "Tail: %u (Dwords)\n", ct->ctbs.send.desc->tail);
+>>> +        ct_err(ct, "G2H Space: %u (Bytes)\n",
+>>> atomic_read(&ct->ctbs.recv.space) * 4);
+>>> +        ct_err(ct, "Head: %u\n (Dwords)", ct->ctbs.recv.desc->head);
+>>> +        ct_err(ct, "Tail: %u\n (Dwords)", ct->ctbs.recv.desc->tail);
+>>>             ct->ctbs.send.broken = true;
+>>>       }
+>>> @@ -563,8 +576,7 @@ static inline bool h2g_has_room(struct
+>>> intel_guc_ct *ct, u32 len_dw)
+>>>         head = READ_ONCE(desc->head);
+>>>       if (unlikely(head > ctb->size)) {
+>>> -        CT_ERROR(ct, "Invalid head offset %u >= %u)\n",
+>>> -             head, ctb->size);
+>>> +        ct_err(ct, "Invalid head offset %u >= %u)\n", head, ctb->size);
+>>>           desc->status |= GUC_CTB_STATUS_OVERFLOW;
+>>>           ctb->broken = true;
+>>>           return false;
+>>> @@ -715,17 +727,17 @@ static int ct_send(struct intel_guc_ct *ct,
+>>>               /* wait_for_ct_request_update returns -ENODEV on
+>>> reset/suspend in progress.
+>>>                * In this case, output is debug rather than error info
+>>>                */
+>>> -            CT_DEBUG(ct, "Request %#x (fence %u) cancelled as CTB is
+>>> disabled\n",
+>>> -                 action[0], request.fence);
+>>> +            ct_dbg(ct, "Request %#x (fence %u) cancelled as CTB is
+>>> disabled\n",
+>>> +                   action[0], request.fence);
+>>>           else
+>>> -            CT_ERROR(ct, "No response for request %#x (fence %u)\n",
+>>> -                 action[0], request.fence);
+>>> +            ct_err(ct, "No response for request %#x (fence %u)\n",
+>>> +                   action[0], request.fence);
+>>>           goto unlink;
+>>>       }
+>>>         if (FIELD_GET(GUC_HXG_MSG_0_TYPE, *status) ==
+>>> GUC_HXG_TYPE_NO_RESPONSE_RETRY) {
+>>> -        CT_DEBUG(ct, "retrying request %#x (%u)\n", *action,
+>>> -             FIELD_GET(GUC_HXG_RETRY_MSG_0_REASON, *status));
+>>> +        ct_dbg(ct, "retrying request %#x (%u)\n", *action,
+>>> +               FIELD_GET(GUC_HXG_RETRY_MSG_0_REASON, *status));
+>>>           send_again = true;
+>>>           goto unlink;
+>>>       }
+>>> @@ -737,12 +749,12 @@ static int ct_send(struct intel_guc_ct *ct,
+>>>         if (response_buf) {
+>>>           /* There shall be no data in the status */
+>>> -        WARN_ON(FIELD_GET(GUC_HXG_RESPONSE_MSG_0_DATA0,
+>>> request.status));
+>>> +        ct_WARN_ON(ct, FIELD_GET(GUC_HXG_RESPONSE_MSG_0_DATA0,
+>>> request.status));
+>>>           /* Return actual response len */
+>>>           err = request.response_len;
+>>>       } else {
+>>>           /* There shall be no response payload */
+>>> -        WARN_ON(request.response_len);
+>>> +        ct_WARN_ON(ct, request.response_len);
+>>>           /* Return data decoded from the status dword */
+>>>           err = FIELD_GET(GUC_HXG_RESPONSE_MSG_0_DATA0, *status);
+>>>       }
+>>> @@ -771,7 +783,7 @@ int intel_guc_ct_send(struct intel_guc_ct *ct,
+>>> const u32 *action, u32 len,
+>>>           struct intel_guc *guc = ct_to_guc(ct);
+>>>           struct intel_uc *uc = container_of(guc, struct intel_uc, guc);
+>>>   -        WARN(!uc->reset_in_progress, "Unexpected send:
+>>> action=%#x\n", *action);
+>>> +        ct_WARN(ct, !uc->reset_in_progress, "Unexpected send:
+>>> action=%#x\n", *action);
+>>>           return -ENODEV;
+>>>       }
+>>>   @@ -784,11 +796,11 @@ int intel_guc_ct_send(struct intel_guc_ct
+>>> *ct, const u32 *action, u32 len,
+>>>       ret = ct_send(ct, action, len, response_buf, response_buf_size,
+>>> &status);
+>>>       if (unlikely(ret < 0)) {
+>>>           if (ret != -ENODEV)
+>>> -            CT_ERROR(ct, "Sending action %#x failed (%pe)
+>>> status=%#X\n",
+>>> -                 action[0], ERR_PTR(ret), status);
+>>> +            ct_err(ct, "sending action %#x failed (%pe) status=%#X\n",
+>>> +                   action[0], ERR_PTR(ret), status);
+>>>       } else if (unlikely(ret)) {
+>>> -        CT_DEBUG(ct, "send action %#x returned %d (%#x)\n",
+>>> -             action[0], ret, ret);
+>>> +        ct_dbg(ct, "send action %#x returned %d (%#x)\n",
+>>> +               action[0], ret, ret);
+>>>       }
+>>>         return ret;
+>>> @@ -838,7 +850,7 @@ static int ct_read(struct intel_guc_ct *ct,
+>>> struct ct_incoming_msg **msg)
+>>>                * contexts/engines being reset. But should never
+>>> happen as
+>>>                * no contexts should be active when CLIENT_RESET is sent.
+>>>                */
+>>> -            CT_ERROR(ct, "Unexpected G2H after GuC has stopped!\n");
+>>> +            ct_err(ct, "Unexpected G2H after GuC has stopped!\n");
+>>>               status &= ~GUC_CTB_STATUS_UNUSED;
+>>>           }
+>>>   @@ -850,15 +862,13 @@ static int ct_read(struct intel_guc_ct *ct,
+>>> struct ct_incoming_msg **msg)
+>>>     #ifdef CONFIG_DRM_I915_DEBUG_GUC
+>>>       if (unlikely(head != READ_ONCE(desc->head))) {
+>>> -        CT_ERROR(ct, "Head was modified %u != %u\n",
+>>> -             desc->head, head);
+>>> +        ct_err(ct, "Head was modified %u != %u\n", desc->head, head);
+>>>           desc->status |= GUC_CTB_STATUS_MISMATCH;
+>>>           goto corrupted;
+>>>       }
+>>>   #endif
+>>>       if (unlikely(tail >= size)) {
+>>> -        CT_ERROR(ct, "Invalid tail offset %u >= %u)\n",
+>>> -             tail, size);
+>>> +        ct_err(ct, "Invalid tail offset %u >= %u)\n", tail, size);
+>>>           desc->status |= GUC_CTB_STATUS_OVERFLOW;
+>>>           goto corrupted;
+>>>       }
+>>> @@ -873,7 +883,7 @@ static int ct_read(struct intel_guc_ct *ct,
+>>> struct ct_incoming_msg **msg)
+>>>       /* beware of buffer wrap case */
+>>>       if (unlikely(available < 0))
+>>>           available += size;
+>>> -    CT_DEBUG(ct, "available %d (%u:%u:%u)\n", available, head, tail,
+>>> size);
+>>> +    ct_dbg(ct, "read available %d (%u:%u:%u)\n", available, head,
+>>> tail, size);
+>>>       GEM_BUG_ON(available < 0);
+>>>         header = cmds[head];
+>>> @@ -882,24 +892,24 @@ static int ct_read(struct intel_guc_ct *ct,
+>>> struct ct_incoming_msg **msg)
+>>>       /* message len with header */
+>>>       len = FIELD_GET(GUC_CTB_MSG_0_NUM_DWORDS, header) +
+>>> GUC_CTB_MSG_MIN_LEN;
+>>>       if (unlikely(len > (u32)available)) {
+>>> -        CT_ERROR(ct, "Incomplete message %*ph %*ph %*ph\n",
+>>> -             4, &header,
+>>> -             4 * (head + available - 1 > size ?
+>>> -                  size - head : available - 1), &cmds[head],
+>>> -             4 * (head + available - 1 > size ?
+>>> -                  available - 1 - size + head : 0), &cmds[0]);
+>>> +        ct_err(ct, "Incomplete message %*ph %*ph %*ph\n",
+>>> +               4, &header,
+>>> +               4 * (head + available - 1 > size ?
+>>> +                size - head : available - 1), &cmds[head],
+>>> +               4 * (head + available - 1 > size ?
+>>> +                available - 1 - size + head : 0), &cmds[0]);
+>>>           desc->status |= GUC_CTB_STATUS_UNDERFLOW;
+>>>           goto corrupted;
+>>>       }
+>>>         *msg = ct_alloc_msg(len);
+>>>       if (!*msg) {
+>>> -        CT_ERROR(ct, "No memory for message %*ph %*ph %*ph\n",
+>>> -             4, &header,
+>>> -             4 * (head + available - 1 > size ?
+>>> -                  size - head : available - 1), &cmds[head],
+>>> -             4 * (head + available - 1 > size ?
+>>> -                  available - 1 - size + head : 0), &cmds[0]);
+>>> +        ct_err(ct, "No memory for message %*ph %*ph %*ph\n",
+>>> +               4, &header,
+>>> +               4 * (head + available - 1 > size ?
+>>> +                size - head : available - 1), &cmds[head],
+>>> +               4 * (head + available - 1 > size ?
+>>> +                available - 1 - size + head : 0), &cmds[0]);
+>>>           return available;
+>>>       }
+>>>   @@ -909,7 +919,7 @@ static int ct_read(struct intel_guc_ct *ct,
+>>> struct ct_incoming_msg **msg)
+>>>           (*msg)->msg[i] = cmds[head];
+>>>           head = (head + 1) % size;
+>>>       }
+>>> -    CT_DEBUG(ct, "received %*ph\n", 4 * len, (*msg)->msg);
+>>> +    ct_dbg(ct, "received %*ph\n", 4 * len, (*msg)->msg);
+>>>         /* update local copies */
+>>>       ctb->head = head;
+>>> @@ -920,8 +930,8 @@ static int ct_read(struct intel_guc_ct *ct,
+>>> struct ct_incoming_msg **msg)
+>>>       return available - len;
+>>>     corrupted:
+>>> -    CT_ERROR(ct, "Corrupted descriptor head=%u tail=%u status=%#x\n",
+>>> -         desc->head, desc->tail, desc->status);
+>>> +    ct_err(ct, "Corrupted descriptor on read head=%u tail=%u
+>>> status=%#x\n",
+>>> +           desc->head, desc->tail, desc->status);
+>>>       ctb->broken = true;
+>>>       return -EPIPE;
+>>>   }
+>>> @@ -944,18 +954,17 @@ static int ct_handle_response(struct
+>>> intel_guc_ct *ct, struct ct_incoming_msg *r
+>>>              FIELD_GET(GUC_HXG_MSG_0_TYPE, hxg[0]) !=
+>>> GUC_HXG_TYPE_NO_RESPONSE_RETRY &&
+>>>              FIELD_GET(GUC_HXG_MSG_0_TYPE, hxg[0]) !=
+>>> GUC_HXG_TYPE_RESPONSE_FAILURE);
+>>>   -    CT_DEBUG(ct, "response fence %u status %#x\n", fence, hxg[0]);
+>>> +    ct_dbg(ct, "response fence %u status %#x\n", fence, hxg[0]);
+>>>         spin_lock_irqsave(&ct->requests.lock, flags);
+>>>       list_for_each_entry(req, &ct->requests.pending, link) {
+>>>           if (unlikely(fence != req->fence)) {
+>>> -            CT_DEBUG(ct, "request %u awaits response\n",
+>>> -                 req->fence);
+>>> +            ct_dbg(ct, "request %u awaits response\n", req->fence);
+>>>               continue;
+>>>           }
+>>>           if (unlikely(datalen > req->response_len)) {
+>>> -            CT_ERROR(ct, "Response %u too long (datalen %u > %u)\n",
+>>> -                 req->fence, datalen, req->response_len);
+>>> +            ct_err(ct, "response %u too long (datalen %u > %u)\n",
+>>> +                   req->fence, datalen, req->response_len);
+>>>               datalen = min(datalen, req->response_len);
+>>>               err = -EMSGSIZE;
+>>>           }
+>>> @@ -967,12 +976,11 @@ static int ct_handle_response(struct
+>>> intel_guc_ct *ct, struct ct_incoming_msg *r
+>>>           break;
+>>>       }
+>>>       if (!found) {
+>>> -        CT_ERROR(ct, "Unsolicited response (fence %u)\n", fence);
+>>> -        CT_ERROR(ct, "Could not find fence=%u, last_fence=%u\n", fence,
+>>> -             ct->requests.last_fence);
+>>> +        ct_err(ct, "Unsolicited response (fence %u)\n", fence);
+>>> +        ct_err(ct, "Could not find fence=%u, last_fence=%u\n", fence,
+>>> +               ct->requests.last_fence);
+>>>           list_for_each_entry(req, &ct->requests.pending, link)
+>>> -            CT_ERROR(ct, "request %u awaits response\n",
+>>> -                 req->fence);
+>>> +            ct_err(ct, "request %u awaits response\n", req->fence);
+>>>           err = -ENOKEY;
+>>>       }
+>>>       spin_unlock_irqrestore(&ct->requests.lock, flags);
+>>> @@ -998,7 +1006,7 @@ static int ct_process_request(struct
+>>> intel_guc_ct *ct, struct ct_incoming_msg *r
+>>>       action = FIELD_GET(GUC_HXG_EVENT_MSG_0_ACTION, hxg[0]);
+>>>       len = hxg_len - GUC_HXG_MSG_MIN_LEN;
+>>>   -    CT_DEBUG(ct, "request %x %*ph\n", action, 4 * len, payload);
+>>> +    ct_dbg(ct, "request %x %*ph\n", action, 4 * len, payload);
+>>>         switch (action) {
+>>>       case INTEL_GUC_ACTION_DEFAULT:
+>>> @@ -1016,9 +1024,6 @@ static int ct_process_request(struct
+>>> intel_guc_ct *ct, struct ct_incoming_msg *r
+>>>           break;
+>>>       case INTEL_GUC_ACTION_STATE_CAPTURE_NOTIFICATION:
+>>>           ret = intel_guc_error_capture_process_msg(guc, payload, len);
+>>> -        if (unlikely(ret))
+>>> -            CT_ERROR(ct, "error capture notification failed %x %*ph\n",
+>>> -                 action, 4 * len, payload);
+>>>           break;
+>>>       case INTEL_GUC_ACTION_ENGINE_FAILURE_NOTIFICATION:
+>>>           ret = intel_guc_engine_failure_process_msg(guc, payload, len);
+>>> @@ -1028,11 +1033,11 @@ static int ct_process_request(struct
+>>> intel_guc_ct *ct, struct ct_incoming_msg *r
+>>>           ret = 0;
+>>>           break;
+>>>       case INTEL_GUC_ACTION_NOTIFY_CRASH_DUMP_POSTED:
+>>> -        CT_ERROR(ct, "Received GuC crash dump notification!\n");
+>>> +        guc_err(guc, "notification: Crash dump!\n");
+>>>           ret = 0;
+>>>           break;
+>>>       case INTEL_GUC_ACTION_NOTIFY_EXCEPTION:
+>>> -        CT_ERROR(ct, "Received GuC exception notification!\n");
+>>> +        guc_err(guc, "notification: Exception!\n");
+>>>           ret = 0;
+>>>           break;
+>>>       default:
+>>> @@ -1041,8 +1046,7 @@ static int ct_process_request(struct
+>>> intel_guc_ct *ct, struct ct_incoming_msg *r
+>>>       }
+>>>         if (unlikely(ret)) {
+>>> -        CT_ERROR(ct, "Failed to process request %04x (%pe)\n",
+>>> -             action, ERR_PTR(ret));
+>>> +        ct_err(ct, "Failed to process request %04x (%pe)\n", action,
+>>> ERR_PTR(ret));
+>>>           return ret;
+>>>       }
+>>>   @@ -1070,8 +1074,8 @@ static bool
+>>> ct_process_incoming_requests(struct intel_guc_ct *ct)
+>>>         err = ct_process_request(ct, request);
+>>>       if (unlikely(err)) {
+>>> -        CT_ERROR(ct, "Failed to process CT message (%pe) %*ph\n",
+>>> -             ERR_PTR(err), 4 * request->size, request->msg);
+>>> +        ct_err(ct, "Failed to process message (%pe) %*ph\n",
+>>> +               ERR_PTR(err), 4 * request->size, request->msg);
+>>>           ct_free_msg(request);
+>>>       }
+>>>   @@ -1149,8 +1153,8 @@ static int ct_handle_hxg(struct intel_guc_ct
+>>> *ct, struct ct_incoming_msg *msg)
+>>>         if (unlikely(err)) {
+>>>   failed:
+>>> -        CT_ERROR(ct, "Failed to handle HXG message (%pe) %*ph\n",
+>>> -             ERR_PTR(err), 4 * GUC_HXG_MSG_MIN_LEN, hxg);
+>>> +        ct_err(ct, "Failed to handle HXG message (%pe) %*ph\n",
+>>> +               ERR_PTR(err), 4 * GUC_HXG_MSG_MIN_LEN, hxg);
+>>>       }
+>>>       return err;
+>>>   }
+>>> @@ -1166,8 +1170,8 @@ static void ct_handle_msg(struct intel_guc_ct
+>>> *ct, struct ct_incoming_msg *msg)
+>>>           err = -EOPNOTSUPP;
+>>>         if (unlikely(err)) {
+>>> -        CT_ERROR(ct, "Failed to process CT message (%pe) %*ph\n",
+>>> -             ERR_PTR(err), 4 * msg->size, msg->msg);
+>>> +        ct_err(ct, "Failed to handle message (%pe) %*ph\n",
+>>> +               ERR_PTR(err), 4 * msg->size, msg->msg);
+>>>           ct_free_msg(msg);
+>>>       }
+>>>   }
+>>> @@ -1198,7 +1202,7 @@ static void ct_try_receive_message(struct
+>>> intel_guc_ct *ct)
+>>>   {
+>>>       int ret;
+>>>   -    if (GEM_WARN_ON(!ct->enabled))
+>>> +    if (ct_WARN_ON(ct, !ct->enabled))
+>>>           return;
+>>>         ret = ct_receive(ct);
+>>> @@ -1220,7 +1224,7 @@ static void ct_receive_tasklet_func(struct
+>>> tasklet_struct *t)
+>>>   void intel_guc_ct_event_handler(struct intel_guc_ct *ct)
+>>>   {
+>>>       if (unlikely(!ct->enabled)) {
+>>> -        WARN(1, "Unexpected GuC event received while CT disabled!\n");
+>>> +        ct_warn(ct, "Unexpected event received while disabled!\n");
+>>>           return;
+>>>       }
+>>>   
+> 
