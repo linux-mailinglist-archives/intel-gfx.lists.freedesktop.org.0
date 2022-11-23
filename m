@@ -1,54 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74730635021
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Nov 2022 07:13:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB305635072
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Nov 2022 07:23:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A568410E18F;
-	Wed, 23 Nov 2022 06:13:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6304510E1EC;
+	Wed, 23 Nov 2022 06:23:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D778010E18F
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Nov 2022 06:13:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669184000; x=1700720000;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=58jauoIlxPUIeUfe+UMhbz+f+SdQ/HAFxJhWTRf2ff8=;
- b=Eekc4JNNm6vkBflZW3JMShtjnCAkTbmtbROi/w2v3u5Yv/WVIbkXeQRQ
- 92Puif6t6QVRLDXTOjcdiEY6qLZ6URiNXNo79yYE8vC/l3Gw4itpYLbNE
- jHg1eBYI2/8dup3FNX5p44rqVTpPFxrp313S0D/VL6IP3/35DWZCfDdfz
- qmgZJJvvueSx+lQd7LVcdGWSMpck72rRqBNnajbCmfHZVYIcO002rQkd3
- +caz0ConBiShxKu3PudeIM4dd43dF6ph3aTQlYhTW3j4nE8/JSSmjmlVb
- GL19M7N0Gd+Ws3cKSQlsmRX5uh7YXF9Kb7gzdiIq3uQSob2IudlXXupCS g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="400281728"
-X-IronPort-AV: E=Sophos;i="5.96,186,1665471600"; d="scan'208";a="400281728"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2022 22:13:20 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="705237410"
-X-IronPort-AV: E=Sophos;i="5.96,186,1665471600"; d="scan'208";a="705237410"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga008.fm.intel.com with SMTP; 22 Nov 2022 22:13:17 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 23 Nov 2022 08:13:16 +0200
-Date: Wed, 23 Nov 2022 08:13:16 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>
-Message-ID: <Y325/Lv60tzgzShQ@intel.com>
-References: <20221123033308.3717361-1-arun.r.murthy@intel.com>
+Received: from gandalf.ozlabs.org (mail.ozlabs.org
+ [IPv6:2404:9400:2221:ea00::3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54E6910E18F;
+ Wed, 23 Nov 2022 06:22:59 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4NH9zL6L79z4xGW;
+ Wed, 23 Nov 2022 17:22:54 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1669184575;
+ bh=EQ20pup+UOSYnYaiLUfl3RnsWjq+/RodS36tFIhcfGs=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=NliPke1t23bnfQJAAa1os0c3H2ibbVuYTIBW8ZiLF4Z7acOX3l8kmrxZJT8BesejB
+ UH0ExfFNmGEpOland5zohsBckxbYl5zsleZQc3x6OdMvUYFECawpVudnty9XJR2lvc
+ KQoe13e9Wm97Z23WtgSp9kOj2NdI67HLDnCOuSenxlTGBzXg2UzEObVfcfw0YYud5I
+ 99muLLB8nR6ph5CcrJPVoaoYnXjeM4TaTzkZOS73v6muKJxi+QinV29BAPXtogMedH
+ 8wPxYQeAk7GX2HXgxu1VYxl692khoIR/xlMCrhfk4EyvAufjypFxthBnmjYnbcW9Xd
+ Dtf1xPsIghSWw==
+Date: Wed, 23 Nov 2022 17:22:53 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: David Airlie <airlied@redhat.com>
+Message-ID: <20221123172253.05c9b2f8@canb.auug.org.au>
+In-Reply-To: <CAMwc25pz4mBYJUK5_GX01X0_5CCCrzfrGS=HoFTtrVRrqF13kA@mail.gmail.com>
+References: <20221117183214.2473e745@canb.auug.org.au>
+ <20221123162033.02910a5a@canb.auug.org.au>
+ <CAMwc25pz4mBYJUK5_GX01X0_5CCCrzfrGS=HoFTtrVRrqF13kA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221123033308.3717361-1-arun.r.murthy@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCHv3] drm/i915/fbc: Disable FBC when VT-d is
- enabled
+Content-Type: multipart/signed; boundary="Sig_/l7LvT=tFQ83SWzFWhsDvPpv";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+Subject: Re: [Intel-gfx] linux-next: build failure after merge of the
+ drm-misc tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,47 +54,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ DRI <dri-devel@lists.freedesktop.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Nov 23, 2022 at 09:03:08AM +0530, Arun R Murthy wrote:
-> The WaFbcTurnOffFbcWhenHyperVisorIsUsed is applicable for SKL, BXT and
-> KBL.
-> 
-> Bspec: 0852
-> 
-> v2: Updated commit msg and corrected Bspec format(Jani N)
-> v3: Updated the stepping information
-> 
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_fbc.c | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-> index b5ee5ea0d010..7c06ad454a7d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> @@ -1652,9 +1652,10 @@ static int intel_sanitize_fbc_option(struct drm_i915_private *i915)
->  
->  static bool need_fbc_vtd_wa(struct drm_i915_private *i915)
->  {
-> -	/* WaFbcTurnOffFbcWhenHyperVisorIsUsed:skl,bxt */
-> +	/* WaFbcTurnOffFbcWhenHyperVisorIsUsed:skl,bxt,kbl */
->  	if (i915_vtd_active(i915) &&
-> -	    (IS_SKYLAKE(i915) || IS_BROXTON(i915))) {
-> +			(IS_SKYLAKE(i915) || IS_BROXTON(i915) ||
-> +			IS_KBL_DISPLAY_STEP(i915, STEP_A0, STEP_B0))) {
+--Sig_/l7LvT=tFQ83SWzFWhsDvPpv
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-No one careas about pre-production hw once the thing has shipped.
+Hi Dave,
 
->  		drm_info(&i915->drm,
->  			 "Disabling framebuffer compression (FBC) to prevent screen flicker with VT-d enabled\n");
->  		return true;
-> -- 
-> 2.25.1
+On Wed, 23 Nov 2022 15:35:50 +1000 David Airlie <airlied@redhat.com> wrote:
+>
+> Nothing gone wrong as such, just the drm-misc-next pull request was
+> sent on a regular weekly cadence, then I merged it a few days later.
+> The fix for this is still in the drm-misc-next queue for the next PR
+> which I will get this week.
 
--- 
-Ville Syrjälä
-Intel
+There is nothing currently in the drm-misc tree in linux-next (relative
+to the drm tree).  And there was never a fix in there for this problem,
+the commit was just removed when I reported it.
+
+If there was a fix for this in the drm-misc tree, I would not have seen
+the build failure.
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/l7LvT=tFQ83SWzFWhsDvPpv
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmN9vD0ACgkQAVBC80lX
+0GwGXgf/QjhenVIKSMNwPEN7XNJTj8cqU9aDjBtnnjA/rsrdgzPTtJ/OgvPIUj8g
+TE6/aAGVh5IZKlliObO0zlfx5TJcuhPGz8rOotLW36ecvcLF4dHNuxlpcjYq3f+f
+20OtftvBX37Oo9pzmEP5iH+wIUCkbnVQ+s4hiEzaV/TlqGrTt/D2tEjkZ4YNieQk
+bCP/i+XZjMah2B3EoTS9uwuyq9GsM9nGj3EMjiGfIuKIVSW1kAlo0H3JNhY33S2e
+zrp/MSGxPjmcaWVAEZ5/klA6yRcpqtxFE5Nz8519gXFtzyh1RjGBkCRO0xmnJHmy
+9QbQKtB5vwW5MfL8/p3r7LADRZJ3/w==
+=4o2t
+-----END PGP SIGNATURE-----
+
+--Sig_/l7LvT=tFQ83SWzFWhsDvPpv--
