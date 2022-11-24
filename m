@@ -2,57 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6CD963784A
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Nov 2022 13:01:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FBAB63789D
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Nov 2022 13:10:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6A3D10E6EB;
-	Thu, 24 Nov 2022 12:01:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 739E810E6E0;
+	Thu, 24 Nov 2022 12:10:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC17D10E6EB;
- Thu, 24 Nov 2022 12:01:15 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50E7810E6E0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Nov 2022 12:10:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669291275; x=1700827275;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=kTr6HYcTwWUQvPtmQnpS+jHvO7CnzNkycnjetlUV/U0=;
- b=CJqwecre4l4VGO+prGRx2q/yU9NPqmb2PiuXAWLq8X7WB6qTAuxcUTEc
- siVc/NgTRRg03tRvJCCkBZVVvwTLF4jws+kvm+W/H3s+k2jqUrqRdjvJx
- HVYL9odfqTmqCU4n9wIMM3Y3dWgBo6CQPnWbnZ3VRBoyD57x7PpLrVTBi
- WIVDdTBWMor7VZsuZdwjvZt4pDjZNIXTB3OtRjZZ0qQhtqJ8QP2V4pvsx
- 33az8wDgJ84IPZyX3uVm4+RR4vpmawc6gk1LdA9Q5LfrPgJA+kTpGBINH
- QzrtG89uWXtaaSdxMJaceSXHiPSDurdtIdwgyXKvrrhwlckGgbC4kbVTl g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10540"; a="294672199"
-X-IronPort-AV: E=Sophos;i="5.96,190,1665471600"; d="scan'208";a="294672199"
+ t=1669291804; x=1700827804;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=VeGMyYTTMhuWLDGwGgpvKEsDAECcBQ0fUZpyt0ZS84s=;
+ b=Ed7NMTvYkFyhAIgZAn8DkoCZTbI+2u2thZ2v4nC3FUx2ziQqg89hKD3H
+ ztupmefw73NGY1X4+Mnp5sPOtESeoYjEijDTMjQG15CWzHptU7QB3YJss
+ HCugSdG7GqVpQZuFkepPrXNxL68aQhUw/StPtG7dBQFHtSJWtyXsVfGX0
+ nkJcNsKxHrgy4lsN/wgU7+G4buzisqafP0BvdnTNRgYQ+AIE6LbNaYY5b
+ ujFTuyLxtwoCE/3TjgFe14B6hbn6Jv+fBxDKOxuBlMI7Nr2cwTu+5cfG0
+ M5KfNQvat4UaJOBREQ7PLXCIK7YYnrstDxFkNHcxbT7OT6jROA7pTyxwu Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10540"; a="314323198"
+X-IronPort-AV: E=Sophos;i="5.96,190,1665471600"; d="scan'208";a="314323198"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2022 04:01:15 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10540"; a="642325590"
-X-IronPort-AV: E=Sophos;i="5.96,190,1665471600"; d="scan'208";a="642325590"
-Received: from smurr10x-mobl1.amr.corp.intel.com (HELO [10.213.209.98])
- ([10.213.209.98])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2022 04:10:03 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10540"; a="642330155"
+X-IronPort-AV: E=Sophos;i="5.96,190,1665471600"; d="scan'208";a="642330155"
+Received: from gsimsek-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.252.2.4])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2022 04:01:12 -0800
-Message-ID: <d009a434-d348-32c5-07eb-128d1d9fc36b@linux.intel.com>
-Date: Thu, 24 Nov 2022 12:01:10 +0000
+ 24 Nov 2022 04:10:00 -0800
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 24 Nov 2022 12:09:41 +0000
+Message-Id: <20221124120943.241543-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Content-Language: en-US
-To: Andi Shyti <andi.shyti@linux.intel.com>
-References: <20221122185737.96459-1-andi.shyti@linux.intel.com>
- <20221122185737.96459-3-andi.shyti@linux.intel.com>
- <a579e9a5-0bd4-d439-3193-64dc52e05997@linux.intel.com>
- <Y35sXXLiAmwulDRU@ashyti-mobl2.lan>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <Y35sXXLiAmwulDRU@ashyti-mobl2.lan>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2 2/4] drm/i915: Introduce guard pages to
- i915_vma
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v4 1/3] drm/i915/migrate: Account for the
+ reserved_space
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,118 +56,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
- dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: stable@vger.kernel.org, Nirmoy Das <nirmoy.das@intel.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Chris Wilson <chris.p.wilson@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+From: Chris Wilson <chris.p.wilson@intel.com>
 
-On 23/11/2022 18:54, Andi Shyti wrote:
-> Hi Tvrtko,
-> 
-> [...]
-> 
->>> @@ -768,6 +768,9 @@ i915_vma_insert(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
->>>    	GEM_BUG_ON(!IS_ALIGNED(alignment, I915_GTT_MIN_ALIGNMENT));
->>>    	GEM_BUG_ON(!is_power_of_2(alignment));
->>> +	guard = vma->guard; /* retain guard across rebinds */
->>> +	guard = ALIGN(guard, alignment);
->>
->> Why does guard area needs the same alignment as the requested mapping? What about the fact on 32-bit builds guard is 32-bit and alignment u64?
-> 
-> I guess this just to round up/down guard to something, not
-> necessarily to that alignment.
-> 
-> Shall I remove it?
+If the ring is nearly full when calling into emit_pte(), we might
+incorrectly trample the reserved_space when constructing the packet to
+emit the PTEs. This then triggers the GEM_BUG_ON(rq->reserved_space >
+ring->space) when later submitting the request, since the request itself
+doesn't have enough space left in the ring to emit things like
+workarounds, breadcrumbs etc.
 
-Don't know, initially I thought it maybe needs a comment on what's it 
-doing and why. If it is about aligning to "something" then should it be 
-I915_GTT_MIN_ALIGNMENT?
+Testcase: igt@i915_selftests@live_emit_pte_full_ring
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/7535
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6889
+Fixes: cf586021642d ("drm/i915/gt: Pipelined page migration")
+Signed-off-by: Chris Wilson <chris.p.wilson@intel.com>
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
+Cc: <stable@vger.kernel.org> # v5.15+
+Tested-by: Nirmoy Das <nirmoy.das@intel.com>
+Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_migrate.c | 16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
 
->>> @@ -777,6 +780,7 @@ i915_vma_insert(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
->>>    	if (flags & PIN_ZONE_4G)
->>>    		end = min_t(u64, end, (1ULL << 32) - I915_GTT_PAGE_SIZE);
->>>    	GEM_BUG_ON(!IS_ALIGNED(end, I915_GTT_PAGE_SIZE));
->>> +	GEM_BUG_ON(2 * guard > end);
->>
->> End is the size of relevant VA area at this point so what and why is this checking?
-> 
-> I think because we want to make sure the padding is at least not
-> bigger that the size. What is actually wrong with this.
+diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
+index b405a04135ca..48c3b5168558 100644
+--- a/drivers/gpu/drm/i915/gt/intel_migrate.c
++++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
+@@ -342,6 +342,16 @@ static int emit_no_arbitration(struct i915_request *rq)
+ 	return 0;
+ }
+ 
++static int max_pte_pkt_size(struct i915_request *rq, int pkt)
++{
++       struct intel_ring *ring = rq->ring;
++
++       pkt = min_t(int, pkt, (ring->space - rq->reserved_space) / sizeof(u32) + 5);
++       pkt = min_t(int, pkt, (ring->size - ring->emit) / sizeof(u32) + 5);
++
++       return pkt;
++}
++
+ static int emit_pte(struct i915_request *rq,
+ 		    struct sgt_dma *it,
+ 		    enum i915_cache_level cache_level,
+@@ -388,8 +398,7 @@ static int emit_pte(struct i915_request *rq,
+ 		return PTR_ERR(cs);
+ 
+ 	/* Pack as many PTE updates as possible into a single MI command */
+-	pkt = min_t(int, dword_length, ring->space / sizeof(u32) + 5);
+-	pkt = min_t(int, pkt, (ring->size - ring->emit) / sizeof(u32) + 5);
++	pkt = max_pte_pkt_size(rq, dword_length);
+ 
+ 	hdr = cs;
+ 	*cs++ = MI_STORE_DATA_IMM | REG_BIT(21); /* as qword elements */
+@@ -422,8 +431,7 @@ static int emit_pte(struct i915_request *rq,
+ 				}
+ 			}
+ 
+-			pkt = min_t(int, dword_rem, ring->space / sizeof(u32) + 5);
+-			pkt = min_t(int, pkt, (ring->size - ring->emit) / sizeof(u32) + 5);
++			pkt = max_pte_pkt_size(rq, dword_rem);
+ 
+ 			hdr = cs;
+ 			*cs++ = MI_STORE_DATA_IMM | REG_BIT(21);
+-- 
+2.38.1
 
-Same as above - if there is subtle special meaning please add a comment. 
-Otherwise, for the whole object and not just the guards, it is covered by:
-
-+	if (size > end - 2 * guard) {
-
-I don't follow what is the point on only checking the guards.
-
-> 
-> [...]
-> 
->>> @@ -855,6 +869,7 @@ i915_vma_insert(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
->>>    	GEM_BUG_ON(!i915_gem_valid_gtt_space(vma, color));
->>>    	list_move_tail(&vma->vm_link, &vma->vm->bound_list);
->>> +	vma->guard = guard;
->>
->> unsigned long into u32 - what guarantees no truncation?
-> 
-> we are missing here this part above:
-> 
-> 	guard = vma->guard; /* retain guard across rebinds */
-> 	if (flags & PIN_OFFSET_GUARD) {
-> 		GEM_BUG_ON(overflows_type(flags & PIN_OFFSET_MASK, u32));
-> 		guard = max_t(u32, guard, flags & PIN_OFFSET_MASK);
-> 	}
-> 
-> that should make sure that we fit into 32 bits.
-
-Hm okay. I guess the u64 alignment and that "guard = ALIGN(guard, 
-alignment);" is what is bothering me to begin with. In other words with 
-that there is a chance to overflow vma->guard with a small guard and 
-large alignment.
-
-> 
-> [...]
-> 
->>> @@ -197,14 +197,15 @@ struct i915_vma {
->>>    	struct i915_fence_reg *fence;
->>>    	u64 size;
->>> -	u64 display_alignment;
->>>    	struct i915_page_sizes page_sizes;
->>>    	/* mmap-offset associated with fencing for this vma */
->>>    	struct i915_mmap_offset	*mmo;
->>> +	u32 guard; /* padding allocated around vma->pages within the node */
->>>    	u32 fence_size;
->>>    	u32 fence_alignment;
->>> +	u32 display_alignment;
->>
->> u64 -> u32 for display_alignment looks unrelated change.
->>
->> ./display/intel_fb_pin.c:       vma->display_alignment = max_t(u64, vma->display_alignment, alignment);
->> ./gem/i915_gem_domain.c:        vma->display_alignment = max_t(u64, vma->display_alignment, alignment);
->>
->> These two sites need to be changed not to use u64.
->>
->> Do this part in a separate patch?
-> 
-> Right! will remove it.
-
-Okay, to be clear, refactoring of vma->display_alignemnt to be u32 as a 
-separate patch in the series. Thanks!
-
-Regards,
-
-Tvrtko
-
-> 
->>>    	/**
->>>    	 * Count of the number of times this vma has been opened by different
->>
->> Regards,
-> 
-> Thanks,
-> Andi
-> 
->> Tvrtko
