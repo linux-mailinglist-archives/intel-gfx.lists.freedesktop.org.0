@@ -2,33 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 633DF6375CB
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Nov 2022 11:02:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33904637650
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Nov 2022 11:26:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 380D310E062;
-	Thu, 24 Nov 2022 10:01:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5449E10E6DA;
+	Thu, 24 Nov 2022 10:26:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 49EE310E062;
- Thu, 24 Nov 2022 10:01:55 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 463E1AADDB;
- Thu, 24 Nov 2022 10:01:55 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B692D10E6D7;
+ Thu, 24 Nov 2022 10:26:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1669285580; x=1700821580;
+ h=message-id:date:mime-version:from:subject:to:cc;
+ bh=Z5oBq+KbQWfzyj6/35rAlRJZ1RCyHJCD1egnZq61/0w=;
+ b=jHGgpZPOzTC5ok9KEs8SI+FDNStdqEqMQcgr08w/gKy+o888FTNUTa/3
+ ZzvlxNhyd1gae6jPBefnWqnlPvC2893N8Yj60jkpdjSfwZzalpBV18y8g
+ dgDPBm3SjFxuFZE3CEQ5QZdqz3w2ImgOCuC1Xvg6iNmIgVUxYFbGIDjx3
+ 4AOBbF2326o0Q1/zmM19BJDRTUT67CoKryDsGHDZBDEj5XjQoh818w40j
+ KdzvPx+m0BRoI3YUxApB48EtqvQKrc6geUd5jeBWW8IklSZcgBwWzHWgO
+ SKDGQSxCR42IegWUwL5eEwQRY3EQdQLcdjR3c3aBcGgj8yEB4xBux3jhe w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10540"; a="294657358"
+X-IronPort-AV: E=Sophos;i="5.96,190,1665471600"; 
+ d="scan'208,217";a="294657358"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2022 02:26:20 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10540"; a="710918847"
+X-IronPort-AV: E=Sophos;i="5.96,190,1665471600"; 
+ d="scan'208,217";a="710918847"
+Received: from etorregr-mobl3.amr.corp.intel.com (HELO [10.251.210.198])
+ ([10.251.210.198])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2022 02:26:17 -0800
 Content-Type: multipart/alternative;
- boundary="===============2801056994778768515=="
+ boundary="------------1FMFax9m0Gbpsds9jJF5sMFs"
+Message-ID: <a5721505-4823-98ef-7d6f-0ea478221391@linux.intel.com>
+Date: Thu, 24 Nov 2022 11:26:15 +0100
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Taylor, Clinton A" <clinton.a.taylor@intel.com>
-Date: Thu, 24 Nov 2022 10:01:55 -0000
-Message-ID: <166928411526.28649.8390205185682526938@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221123220926.170034-1-khaled.almahallawy@intel.com>
-In-Reply-To: <20221123220926.170034-1-khaled.almahallawy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/display=3A_Don=27t_disable_DDI/Transcoder_when_setting_ph?=
- =?utf-8?q?y_test_pattern_=28rev6=29?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Content-Language: en-US
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,201 +59,131 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Maxime Ripard <mripard@kernel.org>, dim-tools@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2801056994778768515==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This is a multi-part message in MIME format.
+--------------1FMFax9m0Gbpsds9jJF5sMFs
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-== Series Details ==
+Hey Daniel and Dae,
 
-Series: drm/i915/display: Don't disable DDI/Transcoder when setting phy test pattern (rev6)
-URL   : https://patchwork.freedesktop.org/series/108636/
-State : success
+Not much here, a few fixes to dma-fence handling and a fix to amdgpu and logo.
 
-== Summary ==
+Enjoy!
+Maarten Lankhorst
 
-CI Bug Log - changes from CI_DRM_12427 -> Patchwork_108636v6
-====================================================
+drm-misc-fixes-2022-11-24:
+drm-misc-fixes for v6.1-rc7:
+- Another amdgpu gang submit fix.
+- Use dma_fence_unwrap_for_each when importing sync files.
+- Fix race in dma_heap_add().
+- Fix use of uninitialized memory in logo.
+The following changes since commit 5954acbacbd1946b96ce8ee799d309cb0cd3cb9d:
 
-Summary
--------
+   drm/display: Don't assume dual mode adaptors support i2c sub-addressing (2022-11-15 23:31:02 +0200)
 
-  **SUCCESS**
+are available in the Git repository at:
 
-  No regressions found.
+   git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2022-11-24
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108636v6/index.html
+for you to fetch changes up to a6a00d7e8ffd78d1cdb7a43f1278f081038c638f:
 
-Participating hosts (38 -> 36)
-------------------------------
+   fbcon: Use kzalloc() in fbcon_prepare_logo() (2022-11-22 15:48:02 +0100)
 
-  Missing    (2): fi-ctg-p8600 fi-bdw-gvtdvm 
+----------------------------------------------------------------
+drm-misc-fixes for v6.1-rc7:
+- Another amdgpu gang submit fix.
+- Use dma_fence_unwrap_for_each when importing sync files.
+- Fix race in dma_heap_add().
+- Fix use of uninitialized memory in logo.
 
-Known issues
-------------
+----------------------------------------------------------------
+Christian König (1):
+       drm/amdgpu: handle gang submit before VMID
 
-  Here are the changes found in Patchwork_108636v6 that come from known issues:
+Dawei Li (1):
+       dma-buf: fix racing conflict of dma_heap_add()
 
-### IGT changes ###
+Jason Ekstrand (1):
+       dma-buf: Use dma_fence_unwrap_for_each when importing fences
 
-#### Issues hit ####
+Tetsuo Handa (1):
+       fbcon: Use kzalloc() in fbcon_prepare_logo()
 
-  * igt@gem_exec_gttfill@basic:
-    - fi-pnv-d510:        [PASS][1] -> [FAIL][2] ([i915#7229])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12427/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108636v6/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+  drivers/dma-buf/dma-buf.c               | 23 +++++++++++++++++------
+  drivers/dma-buf/dma-heap.c              | 28 +++++++++++++++-------------
+  drivers/gpu/drm/amd/amdgpu/amdgpu_job.c |  6 +++---
+  drivers/video/fbdev/core/fbcon.c        |  2 +-
+  4 files changed, 36 insertions(+), 23 deletions(-)
 
-  
-#### Possible fixes ####
+--------------1FMFax9m0Gbpsds9jJF5sMFs
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-  * igt@i915_pm_rpm@module-reload:
-    - {bat-rpls-2}:       [DMESG-WARN][3] ([i915#6434]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12427/bat-rpls-2/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108636v6/bat-rpls-2/igt@i915_pm_rpm@module-reload.html
+<html>
+  <head>
 
-  * igt@i915_selftest@live@gt_lrc:
-    - {bat-adln-1}:       [INCOMPLETE][5] -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12427/bat-adln-1/igt@i915_selftest@live@gt_lrc.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108636v6/bat-adln-1/igt@i915_selftest@live@gt_lrc.html
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <pre>Hey Daniel and Dae,
 
-  * igt@i915_selftest@live@requests:
-    - {bat-rpls-1}:       [INCOMPLETE][7] ([i915#6257]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12427/bat-rpls-1/igt@i915_selftest@live@requests.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108636v6/bat-rpls-1/igt@i915_selftest@live@requests.html
+Not much here, a few fixes to dma-fence handling and a fix to amdgpu and logo.
 
-  * igt@i915_selftest@live@reset:
-    - {bat-rpls-2}:       [DMESG-FAIL][9] ([i915#4983]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12427/bat-rpls-2/igt@i915_selftest@live@reset.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108636v6/bat-rpls-2/igt@i915_selftest@live@reset.html
+Enjoy!
+Maarten Lankhorst
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+drm-misc-fixes-2022-11-24:
+drm-misc-fixes for v6.1-rc7:
+- Another amdgpu gang submit fix.
+- Use dma_fence_unwrap_for_each when importing sync files.
+- Fix race in dma_heap_add().
+- Fix use of uninitialized memory in logo.
+The following changes since commit 5954acbacbd1946b96ce8ee799d309cb0cd3cb9d:
 
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#6257]: https://gitlab.freedesktop.org/drm/intel/issues/6257
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6434]: https://gitlab.freedesktop.org/drm/intel/issues/6434
-  [i915#6559]: https://gitlab.freedesktop.org/drm/intel/issues/6559
-  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
-  [i915#7229]: https://gitlab.freedesktop.org/drm/intel/issues/7229
-  [i915#7348]: https://gitlab.freedesktop.org/drm/intel/issues/7348
+  drm/display: Don't assume dual mode adaptors support i2c sub-addressing (2022-11-15 23:31:02 +0200)
 
+are available in the Git repository at:
 
-Build changes
--------------
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2022-11-24
 
-  * Linux: CI_DRM_12427 -> Patchwork_108636v6
+for you to fetch changes up to a6a00d7e8ffd78d1cdb7a43f1278f081038c638f:
 
-  CI-20190529: 20190529
-  CI_DRM_12427: 24694cd2b234fb097fda693f13be131116f1a79f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7072: 69ba7163475925cdc69aebbdfa0e87453ae165c7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_108636v6: 24694cd2b234fb097fda693f13be131116f1a79f @ git://anongit.freedesktop.org/gfx-ci/linux
+  fbcon: Use kzalloc() in fbcon_prepare_logo() (2022-11-22 15:48:02 +0100)
 
+----------------------------------------------------------------
+drm-misc-fixes for v6.1-rc7:
+- Another amdgpu gang submit fix.
+- Use dma_fence_unwrap_for_each when importing sync files.
+- Fix race in dma_heap_add().
+- Fix use of uninitialized memory in logo.
 
-### Linux commits
+----------------------------------------------------------------
+Christian König (1):
+      drm/amdgpu: handle gang submit before VMID
 
-7835c7fdf7ce drm/i915/display: Don't disable DDI/Transcoder when setting phy test pattern
+Dawei Li (1):
+      dma-buf: fix racing conflict of dma_heap_add()
 
-== Logs ==
+Jason Ekstrand (1):
+      dma-buf: Use dma_fence_unwrap_for_each when importing fences
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108636v6/index.html
+Tetsuo Handa (1):
+      fbcon: Use kzalloc() in fbcon_prepare_logo()
 
---===============2801056994778768515==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+ drivers/dma-buf/dma-buf.c               | 23 +++++++++++++++++------
+ drivers/dma-buf/dma-heap.c              | 28 +++++++++++++++-------------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c |  6 +++---
+ drivers/video/fbdev/core/fbcon.c        |  2 +-
+ 4 files changed, 36 insertions(+), 23 deletions(-)
 
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Don&#39;t disable DDI/Transcoder when setting phy test pattern (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/108636/">https://patchwork.freedesktop.org/series/108636/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108636v6/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108636v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12427 -&gt; Patchwork_108636v6</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108636v6/index.html</p>
-<h2>Participating hosts (38 -&gt; 36)</h2>
-<p>Missing    (2): fi-ctg-p8600 fi-bdw-gvtdvm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_108636v6 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@gem_exec_gttfill@basic:<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12427/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108636v6/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7229">i915#7229</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12427/bat-rpls-2/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6434">i915#6434</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108636v6/bat-rpls-2/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>{bat-adln-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12427/bat-adln-1/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108636v6/bat-adln-1/igt@i915_selftest@live@gt_lrc.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12427/bat-rpls-1/igt@i915_selftest@live@requests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6257">i915#6257</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108636v6/bat-rpls-1/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@reset:</p>
-<ul>
-<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12427/bat-rpls-2/igt@i915_selftest@live@reset.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108636v6/bat-rpls-2/igt@i915_selftest@live@reset.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12427 -&gt; Patchwork_108636v6</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12427: 24694cd2b234fb097fda693f13be131116f1a79f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7072: 69ba7163475925cdc69aebbdfa0e87453ae165c7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_108636v6: 24694cd2b234fb097fda693f13be131116f1a79f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>7835c7fdf7ce drm/i915/display: Don't disable DDI/Transcoder when setting phy test pattern</p>
-
-</body>
+</pre>
+  </body>
 </html>
 
---===============2801056994778768515==--
+--------------1FMFax9m0Gbpsds9jJF5sMFs--
