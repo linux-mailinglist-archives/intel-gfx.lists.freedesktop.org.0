@@ -1,52 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33904637650
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Nov 2022 11:26:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8BA963769B
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Nov 2022 11:38:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5449E10E6DA;
-	Thu, 24 Nov 2022 10:26:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6138A10E266;
+	Thu, 24 Nov 2022 10:38:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B692D10E6D7;
- Thu, 24 Nov 2022 10:26:20 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E42AF10E266
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Nov 2022 10:38:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669285580; x=1700821580;
- h=message-id:date:mime-version:from:subject:to:cc;
- bh=Z5oBq+KbQWfzyj6/35rAlRJZ1RCyHJCD1egnZq61/0w=;
- b=jHGgpZPOzTC5ok9KEs8SI+FDNStdqEqMQcgr08w/gKy+o888FTNUTa/3
- ZzvlxNhyd1gae6jPBefnWqnlPvC2893N8Yj60jkpdjSfwZzalpBV18y8g
- dgDPBm3SjFxuFZE3CEQ5QZdqz3w2ImgOCuC1Xvg6iNmIgVUxYFbGIDjx3
- 4AOBbF2326o0Q1/zmM19BJDRTUT67CoKryDsGHDZBDEj5XjQoh818w40j
- KdzvPx+m0BRoI3YUxApB48EtqvQKrc6geUd5jeBWW8IklSZcgBwWzHWgO
- SKDGQSxCR42IegWUwL5eEwQRY3EQdQLcdjR3c3aBcGgj8yEB4xBux3jhe w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10540"; a="294657358"
-X-IronPort-AV: E=Sophos;i="5.96,190,1665471600"; 
- d="scan'208,217";a="294657358"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2022 02:26:20 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10540"; a="710918847"
-X-IronPort-AV: E=Sophos;i="5.96,190,1665471600"; 
- d="scan'208,217";a="710918847"
-Received: from etorregr-mobl3.amr.corp.intel.com (HELO [10.251.210.198])
- ([10.251.210.198])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2022 02:26:17 -0800
-Content-Type: multipart/alternative;
- boundary="------------1FMFax9m0Gbpsds9jJF5sMFs"
-Message-ID: <a5721505-4823-98ef-7d6f-0ea478221391@linux.intel.com>
-Date: Thu, 24 Nov 2022 11:26:15 +0100
+ t=1669286290; x=1700822290;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=u9dF9Hik+gFI5RJ1McX/O71OkD3eDrDxlt52mwfG6Js=;
+ b=iqE2lM4O5EtRrZ2hkRqQrTJyOVI7pDH/YDxVZdtQn0PFr6VUuVKLcRe4
+ cFZgHyE4LBvBYMYjf/L0TAZf+mfYgsgqOGbAOppbgjd+g7noUfpafNRhQ
+ hb3muxvURfcozEp5PSexKrVWC4Un4Si3+KWgdHqH8hGe/x19lQsNCsFvg
+ 7O2ChLPkyJ9U+nrNu4twVfiuJ0sTF5C/06jlgjM0xjoGXPbgAxwUzLKgD
+ /V3tfXBTCV+ucDQK69kHD4R0LZ7A82KLjBbUgMiccUxgWorHo1k6zTKSP
+ QBvtBbeBdo0stq+zoaV1JaUqY4+jl2rnhQBLPRgbZ8Z9IHRmhxIa/HpbN w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10540"; a="400566023"
+X-IronPort-AV: E=Sophos;i="5.96,190,1665471600"; d="scan'208";a="400566023"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2022 02:36:26 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10540"; a="675050020"
+X-IronPort-AV: E=Sophos;i="5.96,190,1665471600"; d="scan'208";a="675050020"
+Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
+ ([10.237.72.65])
+ by orsmga001.jf.intel.com with ESMTP; 24 Nov 2022 02:36:24 -0800
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 24 Nov 2022 12:36:22 +0200
+Message-Id: <20221124103623.13974-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Content-Language: en-US
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/1] Implement workaround for PLL enabling for
+ DG2/MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,131 +56,22 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime Ripard <mripard@kernel.org>, dim-tools@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---------------1FMFax9m0Gbpsds9jJF5sMFs
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+It has been noticed by HW team, that there are might be problems
+when PLL is being enabled with CDCLK squashing being turned on,
+which might result in loosing register access and/or FIFO underrun.
+As a workaround it has been proposed to disable CDCLK squashing right
+before PLL is enabled and enable squashing later, if needed.
 
-Hey Daniel and Dae,
+Stanislav Lisovskiy (1):
+  drm/i915: Implement workaround for CDCLK PLL disable/enable
 
-Not much here, a few fixes to dma-fence handling and a fix to amdgpu and logo.
+ drivers/gpu/drm/i915/display/intel_cdclk.c | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
 
-Enjoy!
-Maarten Lankhorst
+-- 
+2.37.3
 
-drm-misc-fixes-2022-11-24:
-drm-misc-fixes for v6.1-rc7:
-- Another amdgpu gang submit fix.
-- Use dma_fence_unwrap_for_each when importing sync files.
-- Fix race in dma_heap_add().
-- Fix use of uninitialized memory in logo.
-The following changes since commit 5954acbacbd1946b96ce8ee799d309cb0cd3cb9d:
-
-   drm/display: Don't assume dual mode adaptors support i2c sub-addressing (2022-11-15 23:31:02 +0200)
-
-are available in the Git repository at:
-
-   git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2022-11-24
-
-for you to fetch changes up to a6a00d7e8ffd78d1cdb7a43f1278f081038c638f:
-
-   fbcon: Use kzalloc() in fbcon_prepare_logo() (2022-11-22 15:48:02 +0100)
-
-----------------------------------------------------------------
-drm-misc-fixes for v6.1-rc7:
-- Another amdgpu gang submit fix.
-- Use dma_fence_unwrap_for_each when importing sync files.
-- Fix race in dma_heap_add().
-- Fix use of uninitialized memory in logo.
-
-----------------------------------------------------------------
-Christian König (1):
-       drm/amdgpu: handle gang submit before VMID
-
-Dawei Li (1):
-       dma-buf: fix racing conflict of dma_heap_add()
-
-Jason Ekstrand (1):
-       dma-buf: Use dma_fence_unwrap_for_each when importing fences
-
-Tetsuo Handa (1):
-       fbcon: Use kzalloc() in fbcon_prepare_logo()
-
-  drivers/dma-buf/dma-buf.c               | 23 +++++++++++++++++------
-  drivers/dma-buf/dma-heap.c              | 28 +++++++++++++++-------------
-  drivers/gpu/drm/amd/amdgpu/amdgpu_job.c |  6 +++---
-  drivers/video/fbdev/core/fbcon.c        |  2 +-
-  4 files changed, 36 insertions(+), 23 deletions(-)
-
---------------1FMFax9m0Gbpsds9jJF5sMFs
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <pre>Hey Daniel and Dae,
-
-Not much here, a few fixes to dma-fence handling and a fix to amdgpu and logo.
-
-Enjoy!
-Maarten Lankhorst
-
-drm-misc-fixes-2022-11-24:
-drm-misc-fixes for v6.1-rc7:
-- Another amdgpu gang submit fix.
-- Use dma_fence_unwrap_for_each when importing sync files.
-- Fix race in dma_heap_add().
-- Fix use of uninitialized memory in logo.
-The following changes since commit 5954acbacbd1946b96ce8ee799d309cb0cd3cb9d:
-
-  drm/display: Don't assume dual mode adaptors support i2c sub-addressing (2022-11-15 23:31:02 +0200)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2022-11-24
-
-for you to fetch changes up to a6a00d7e8ffd78d1cdb7a43f1278f081038c638f:
-
-  fbcon: Use kzalloc() in fbcon_prepare_logo() (2022-11-22 15:48:02 +0100)
-
-----------------------------------------------------------------
-drm-misc-fixes for v6.1-rc7:
-- Another amdgpu gang submit fix.
-- Use dma_fence_unwrap_for_each when importing sync files.
-- Fix race in dma_heap_add().
-- Fix use of uninitialized memory in logo.
-
-----------------------------------------------------------------
-Christian König (1):
-      drm/amdgpu: handle gang submit before VMID
-
-Dawei Li (1):
-      dma-buf: fix racing conflict of dma_heap_add()
-
-Jason Ekstrand (1):
-      dma-buf: Use dma_fence_unwrap_for_each when importing fences
-
-Tetsuo Handa (1):
-      fbcon: Use kzalloc() in fbcon_prepare_logo()
-
- drivers/dma-buf/dma-buf.c               | 23 +++++++++++++++++------
- drivers/dma-buf/dma-heap.c              | 28 +++++++++++++++-------------
- drivers/gpu/drm/amd/amdgpu/amdgpu_job.c |  6 +++---
- drivers/video/fbdev/core/fbcon.c        |  2 +-
- 4 files changed, 36 insertions(+), 23 deletions(-)
-
-</pre>
-  </body>
-</html>
-
---------------1FMFax9m0Gbpsds9jJF5sMFs--
