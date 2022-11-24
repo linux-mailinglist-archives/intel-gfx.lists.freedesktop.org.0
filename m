@@ -1,33 +1,74 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 139FF637300
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Nov 2022 08:45:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2A3D637305
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Nov 2022 08:46:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64D6E10E255;
-	Thu, 24 Nov 2022 07:45:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F96410E69D;
+	Thu, 24 Nov 2022 07:46:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 112DC10E255;
- Thu, 24 Nov 2022 07:45:52 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 09E51AADE1;
- Thu, 24 Nov 2022 07:45:52 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from new1-smtp.messagingengine.com (new1-smtp.messagingengine.com
+ [66.111.4.221])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CA1910E6A2;
+ Thu, 24 Nov 2022 07:46:18 +0000 (UTC)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 902AD580301;
+ Thu, 24 Nov 2022 02:46:17 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute3.internal (MEProxy); Thu, 24 Nov 2022 02:46:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-type:date:date:from:from:in-reply-to:message-id
+ :mime-version:reply-to:sender:subject:subject:to:to; s=fm2; t=
+ 1669275977; x=1669283177; bh=KisEiFDMMhs9iBXJNi8EggNl/VY/12faNug
+ 7qu1eLHk=; b=ICdTw3ExO3MIWfIea3P1BFcLBu7U7nxhInDGo9JL2R/fZKSCNlg
+ 9jMALSpd7TCJj049Uq1iBYZhskvi0X5FAyF7LzKEy3ip+cVKj0rqIE1a5bHsvoae
+ DSKA4+zROfsJCey/qnUt2QXzcTDCruRkUiOD1Qocimh1RPhQmsgpHar/06JAORhc
+ HHyHhOwpGIwKC17pitWDpxbTB0ClHBZg+WgDspKf/QdL9kR3BAB/oqfa5i+Xglzt
+ tJjt9zIqRGUHvK7ebJFHmxH+YAG7CbL5Q5E5aqCmuBsYgInsb2zLKPTTT+DgR/YD
+ BInCP/QUVrp0Rdcwg14+MjDxZrabsQFfZTw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+ :feedback-id:from:from:in-reply-to:message-id:mime-version
+ :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1669275977; x=
+ 1669283177; bh=KisEiFDMMhs9iBXJNi8EggNl/VY/12faNug7qu1eLHk=; b=e
+ yRG6kJF6jmAvOKC7PmNWlUZ6Ga5g421xy4EGMaC4rNsn6HVgs2detjIvHK4NxvV9
+ SKOlb6xUKfQmn+1McojJ843mUl5DnULAvlpuZSSjSkKYGFYOwflY9OS1XKa9A08Y
+ 0KEt2IVAvMJfk5j2g3uzBpO8TolvtLkVYvAEGupTnFiSCrWZidpYEYgPn/l3RQYc
+ ig3DlDEOWi7cXzG1Za46UZ4OCNiwEl9ahdj+wqNpwmZhh4UszWSaJdNIpJekPmWQ
+ PdWKRdTklhhFAToeTECdtEGfNN/qG5hewKj+iLGOnAWBA69f/wM/raUxcmYbw2K3
+ A1vZUm1zCzbY44WRiOteg==
+X-ME-Sender: <xms:SSF_Y3XO24cE_Mp2WhkK21mx0EuRaf782rGSwTuV5VYvBh24wNNjXA>
+ <xme:SSF_Y_kh5mX-C8OFw2PhhF7gbaFU-vdwjgYMwrhokcg0roEIDJrSN_GKoChLoyqiA
+ PQdP_VgfrOol0myicY>
+X-ME-Received: <xmr:SSF_YzaFblyG65o9zu6E7--Rzxat0entnZYYwilYbO_ZaI3Qxhz7FA1rPrpHs7K6bljdLJeJ4x84OYpVPyXKsrce4yLVWMnSe_4G5mIad_ccFw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedriedvgddutdekucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvfevuffkgggtugesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+ ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+ gvrhhnpeeuieehjefhieevtdehudfftdetgfdtuedvvdeugeetgfevgeevudegffduveej
+ ieenucffohhmrghinhepfhhrvggvuggvshhkthhophdrohhrghenucevlhhushhtvghruf
+ hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdr
+ thgvtghh
+X-ME-Proxy: <xmx:SSF_YyWoaI0qxjtu3dnqP0_3l3XYhRJzh3BtAv5KplXvjkNtS9xk3w>
+ <xmx:SSF_YxmaAJHRW-7fEp0myC2PsCcXQdROUX8krOdFUIb0Li6ZHTrfqw>
+ <xmx:SSF_Y_eupoX3BeKP2EA6tn2LE4ELpS3SYn7qN_-82WJhyWqAb8fHBw>
+ <xmx:SSF_YzVHKqIGBnzp4Yr7aX58W_Ef7g1CqV6FbY_LmIDIxdMLaLn5Tg>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 24 Nov 2022 02:46:16 -0500 (EST)
+Date: Thu, 24 Nov 2022 08:46:15 +0100
+From: Maxime Ripard <maxime@cerno.tech>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20221124074615.ahflw5q5ktfdsr7k@houat>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arun R Murthy" <arun.r.murthy@intel.com>
-Date: Thu, 24 Nov 2022 07:45:52 -0000
-Message-ID: <166927595203.28648.6068135772917803870@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221124070925.3834910-1-arun.r.murthy@intel.com>
-In-Reply-To: <20221124070925.3834910-1-arun.r.murthy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
- =?utf-8?q?m/i915/dp=3A_wait_on_timeout_before_retry_include_sw_delay?=
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="h4obmk5bs2yftcsp"
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-misc-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,21 +81,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/i915/dp: wait on timeout before retry include sw delay
-URL   : https://patchwork.freedesktop.org/series/111303/
-State : warning
+--h4obmk5bs2yftcsp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-== Summary ==
+Hi Daniel, Dave,
 
-Error: make htmldocs had i915 warnings
-./drivers/gpu/drm/i915/gt/intel_gt_mcr.c:739: warning: expecting prototype for intel_gt_mcr_wait_for_reg_fw(). Prototype was for intel_gt_mcr_wait_for_reg() instead
-./drivers/gpu/drm/i915/gt/intel_gt_mcr.c:739: warning: expecting prototype for intel_gt_mcr_wait_for_reg_fw(). Prototype was for intel_gt_mcr_wait_for_reg() instead
+We might be fairly late for a drm-misc-next PR by now, but I chose to
+send it anyway because we might have an -rc8, and this is almost
+exclusively fixes that should go in anyway. This will be the last
+drm-misc-next PR for this cycle
 
+Maxime
 
+drm-misc-next-2022-11-24:
+drm-misc-next for 6.2:
+
+UAPI Changes:
+
+Cross-subsystem Changes:
+- fbdev: Make fb_modesetting_disabled() static
+- udmabuf: Add vmap and vunmap methods to udmabuf_ops
+
+Core Changes:
+- doc: make drm-uapi igt-tests more readable
+- fb-helper: Revert of the damage worker removal
+- fourcc: Add missing big-endian XRGB1555 and RGB565 formats
+- gem-shmem: Fix for resource leakage in __drm_gem_shmem_create()
+- scheduler: Fix lockup in drm_sched_entity_kill()
+
+Driver Changes:
+The following changes since commit 35c3a2d02f0dc153a5f2f304ba33e1436b6a8d8f:
+
+  drm/tests: helpers: Add SPDX header (2022-11-17 09:25:38 +0100)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2022-11-24
+
+for you to fetch changes up to 6fb6c979ca628583d4d0c59a0f8ff977e581ecc0:
+
+  drm/fourcc: Add missing big-endian XRGB1555 and RGB565 formats (2022-11-23 20:34:46 +0100)
+
+----------------------------------------------------------------
+drm-misc-next for 6.2:
+
+UAPI Changes:
+
+Cross-subsystem Changes:
+- fbdev: Make fb_modesetting_disabled() static
+- udmabuf: Add vmap and vunmap methods to udmabuf_ops
+
+Core Changes:
+- doc: make drm-uapi igt-tests more readable
+- fb-helper: Revert of the damage worker removal
+- fourcc: Add missing big-endian XRGB1555 and RGB565 formats
+- gem-shmem: Fix for resource leakage in __drm_gem_shmem_create()
+- scheduler: Fix lockup in drm_sched_entity_kill()
+
+Driver Changes:
+
+----------------------------------------------------------------
+ChunyouTang (1):
+      drm/gem-shmem: When drm_gem_object_init failed, should release object
+
+Dmitry Osipenko (1):
+      drm/scheduler: Fix lockup in drm_sched_entity_kill()
+
+Geert Uytterhoeven (1):
+      drm/fourcc: Add missing big-endian XRGB1555 and RGB565 formats
+
+Lukasz Wiecaszek (1):
+      udmabuf: add vmap and vunmap methods to udmabuf_ops
+
+Randy Dunlap (1):
+      drm/doc: make drm-uapi igt-tests more readable
+
+Shang XiaoJing (1):
+      drm: Fix potential null-ptr-deref due to drmm_mode_config_init()
+
+Thomas Zimmermann (4):
+      fbdev: Make fb_modesetting_disabled() static inline
+      Revert "drm/fb-helper: Remove damage worker"
+      Revert "drm/fb-helper: Schedule deferred-I/O worker after writing to framebuffer"
+      Revert "drm/fb-helper: Perform damage handling in deferred-I/O helper"
+
+ Documentation/gpu/drm-uapi.rst           | 12 ++++++------
+ drivers/dma-buf/udmabuf.c                | 28 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/drm_fb_helper.c          | 30 +++++++++++++-----------------
+ drivers/gpu/drm/drm_fourcc.c             |  4 ++++
+ drivers/gpu/drm/drm_gem.c                | 19 ++++++++++++++++---
+ drivers/gpu/drm/drm_gem_shmem_helper.c   |  4 +++-
+ drivers/gpu/drm/drm_mode_config.c        |  8 +++++++-
+ drivers/gpu/drm/scheduler/sched_entity.c |  2 +-
+ drivers/gpu/drm/scheduler/sched_main.c   |  4 ++--
+ drivers/video/fbdev/core/fb_defio.c      | 16 ----------------
+ include/drm/drm_fb_helper.h              |  2 ++
+ include/drm/drm_gem.h                    |  1 +
+ include/linux/fb.h                       |  3 +--
+ 13 files changed, 84 insertions(+), 49 deletions(-)
+
+--h4obmk5bs2yftcsp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCY38hRwAKCRDj7w1vZxhR
+xYMUAQCQ2utE5S+FiuNVJNirReX6RDfFoxmWTKHQEFGtgFSIHgD/Xnq0u+o2Jg5r
+omFcmiGn1l5uDeFxzWB/Nb7FXCfC0gg=
+=OZUH
+-----END PGP SIGNATURE-----
+
+--h4obmk5bs2yftcsp--
