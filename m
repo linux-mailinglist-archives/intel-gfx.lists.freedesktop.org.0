@@ -2,57 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2696463886C
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Nov 2022 12:14:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E8EC638879
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Nov 2022 12:18:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DF5D10E733;
-	Fri, 25 Nov 2022 11:14:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95B9810E730;
+	Fri, 25 Nov 2022 11:17:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E50DD10E72C;
- Fri, 25 Nov 2022 11:14:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669374887; x=1700910887;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=6vQDUUCmN97OeyrTkEtUVUUPMl1l0TNrYP591bjYOJs=;
- b=HEC2rmH0nXZJEiKB69E/ywYwPQ4mjCRd5NygK7PRne6bCn3f7GHCv8cD
- 4kdDj4i0wKtxlc987IG/jK8hm8t9IPXyl3n1cG/7oWkrktKBxRorbE1Ij
- Xgw0NTEvWR0XF9t5p2qQbZ+znwi2vgZxv7FdvQWTnRw+JEeejqZWeQsQg
- RxxzkWqqYTGHYRI1Gs9hb+TcR5ByZhRTn/sGkCuyNy6NMl3iAMKaWVvAH
- FV9Zm5mhFnpgIr71qzF3GMoyvefSwjeH6wswgIzZ5FovIeKzOzRTbalbX
- TNHn5l6RfHvaqwRjfHNgAQkZ6Kl5NINHf6Y3a2Sohlwm0h0VDz6SJuVeH g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10541"; a="376607627"
-X-IronPort-AV: E=Sophos;i="5.96,193,1665471600"; d="scan'208";a="376607627"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2022 03:14:46 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10541"; a="620310984"
-X-IronPort-AV: E=Sophos;i="5.96,193,1665471600"; d="scan'208";a="620310984"
-Received: from jbrophy1-mobl1.amr.corp.intel.com (HELO [10.213.194.13])
- ([10.213.194.13])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2022 03:14:44 -0800
-Message-ID: <d92312af-3c84-8bd9-108b-719fb1ec3a6b@linux.intel.com>
-Date: Fri, 25 Nov 2022 11:14:41 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 795BA10E730;
+ Fri, 25 Nov 2022 11:17:57 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 72792AADD7;
+ Fri, 25 Nov 2022 11:17:57 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Content-Language: en-US
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- Matthew Auld <matthew.auld@intel.com>
-References: <20221125102137.1801-1-christian.koenig@amd.com>
- <20221125102137.1801-7-christian.koenig@amd.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20221125102137.1801-7-christian.koenig@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 7/9] drm/i915: stop using ttm_bo_wait
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+Date: Fri, 25 Nov 2022 11:17:57 -0000
+Message-ID: <166937507746.7726.6153141791175734762@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221125102137.1801-1-christian.koenig@amd.com>
+In-Reply-To: <20221125102137.1801-1-christian.koenig@amd.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/9=5D_drm/amdgpu=3A_generally_allo?=
+ =?utf-8?q?w_over-commit_during_BO_allocation?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,53 +41,125 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-+ Matt
+Series: series starting with [1/9] drm/amdgpu: generally allow over-commit during BO allocation
+URL   : https://patchwork.freedesktop.org/series/111337/
+State : warning
 
-On 25/11/2022 10:21, Christian König wrote:
-> TTM is just wrapping core DMA functionality here, remove the mid-layer.
-> No functional change.
-> 
-> Signed-off-by: Christian König <christian.koenig@amd.com>
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 9 ++++++---
->   1 file changed, 6 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> index 5247d88b3c13..d409a77449a3 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> @@ -599,13 +599,16 @@ i915_ttm_resource_get_st(struct drm_i915_gem_object *obj,
->   static int i915_ttm_truncate(struct drm_i915_gem_object *obj)
->   {
->   	struct ttm_buffer_object *bo = i915_gem_to_ttm(obj);
-> -	int err;
-> +	long err;
->   
->   	WARN_ON_ONCE(obj->mm.madv == I915_MADV_WILLNEED);
->   
-> -	err = ttm_bo_wait(bo, true, false);
-> -	if (err)
-> +	err = dma_resv_wait_timeout(bo->base.resv, DMA_RESV_USAGE_BOOKKEEP,
-> +				    true, 15 * HZ);
+== Summary ==
 
-This 15 second stuck out a bit for me and then on a slightly deeper look 
-it seems this timeout will "leak" into a few of i915 code paths. If we 
-look at the difference between the legacy shmem and ttm backend I am not 
-sure if the legacy one is blocking or not - but if it can block I don't 
-think it would have an arbitrary timeout like this. Matt your thoughts?
+Error: dim checkpatch failed
+e90cbfda09c3 drm/amdgpu: generally allow over-commit during BO allocation
+-:74: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
-Regards,
+total: 0 errors, 1 warnings, 0 checks, 42 lines checked
+709a97d8ed9c drm/ttm: remove ttm_bo_(un)lock_delayed_workqueue
+-:168: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
-Tvrtko
+total: 0 errors, 1 warnings, 0 checks, 119 lines checked
+015bfda0abf6 drm/ttm: use per BO cleanup workers
+-:301: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#301: FILE: include/drm/ttm/ttm_bo_api.h:137:
++	unsigned priority;
 
-> +	if (err < 0)
->   		return err;
-> +	if (err == 0)
-> +		return -EBUSY;
->   
->   	err = i915_ttm_move_notify(bo);
->   	if (err)
+-:302: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#302: FILE: include/drm/ttm/ttm_bo_api.h:138:
++	unsigned pin_count;
+
+-:355: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 3 warnings, 0 checks, 290 lines checked
+e3a743aadfe8 drm/ttm: merge ttm_bo_api.h and ttm_bo_driver.h
+-:11: WARNING:TYPO_SPELLING: 'unecessary' may be misspelled - perhaps 'unnecessary'?
+#11: 
+drop unecessary includes from the header.
+     ^^^^^^^^^^
+
+-:1050: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#1050: 
+rename from include/drm/ttm/ttm_bo_api.h
+
+-:1166: ERROR:CODE_INDENT: code indent should use tabs where possible
+#1166: FILE: include/drm/ttm/ttm_bo.h:135:
++        struct sg_table *sg;$
+
+-:1166: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#1166: FILE: include/drm/ttm/ttm_bo.h:135:
++        struct sg_table *sg;$
+
+-:1225: WARNING:LINE_SPACING: Missing a blank line after declarations
+#1225: FILE: include/drm/ttm/ttm_bo.h:246:
++		bool success;
++		if (WARN_ON(ticket))
+
+-:1389: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#1389: FILE: include/drm/ttm/ttm_bo.h:364:
++			 uint32_t alignment, struct ttm_operation_ctx *ctx,
+
+-:1391: WARNING:SPACING: Unnecessary space before function pointer arguments
+#1391: FILE: include/drm/ttm/ttm_bo.h:366:
++			 void (*destroy) (struct ttm_buffer_object *));
+
+-:1394: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#1394: FILE: include/drm/ttm/ttm_bo.h:369:
++			 uint32_t alignment, bool interruptible,
+
+-:1396: WARNING:SPACING: Unnecessary space before function pointer arguments
+#1396: FILE: include/drm/ttm/ttm_bo.h:371:
++			 void (*destroy) (struct ttm_buffer_object *));
+
+-:1515: ERROR:CODE_INDENT: code indent should use tabs where possible
+#1515: FILE: include/drm/ttm/ttm_bo.h:413:
++                     u32 num_pages,$
+
+-:1515: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#1515: FILE: include/drm/ttm/ttm_bo.h:413:
++                     u32 num_pages,$
+
+-:1516: ERROR:CODE_INDENT: code indent should use tabs where possible
+#1516: FILE: include/drm/ttm/ttm_bo.h:414:
++                     struct ttm_kmap_iter *dst_iter,$
+
+-:1516: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#1516: FILE: include/drm/ttm/ttm_bo.h:414:
++                     struct ttm_kmap_iter *dst_iter,$
+
+-:1517: ERROR:CODE_INDENT: code indent should use tabs where possible
+#1517: FILE: include/drm/ttm/ttm_bo.h:415:
++                     struct ttm_kmap_iter *src_iter);$
+
+-:1517: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#1517: FILE: include/drm/ttm/ttm_bo.h:415:
++                     struct ttm_kmap_iter *src_iter);$
+
+-:1856: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 4 errors, 10 warnings, 2 checks, 1234 lines checked
+7ef9eceb4636 drm/nouveau: stop using ttm_bo_wait
+-:67: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 42 lines checked
+3e3fc83b8053 drm/qxl: stop using ttm_bo_wait
+-:47: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 28 lines checked
+98ec1b67a785 drm/i915: stop using ttm_bo_wait
+-:37: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 19 lines checked
+2b6141fc5caa drm/ttm: use ttm_bo_wait_ctx instead of ttm_bo_wait
+-:34: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 16 lines checked
+5b9d81a993ea drm/ttm: move ttm_bo_wait into VMWGFX
+-:171: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 135 lines checked
+
+
