@@ -2,51 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D11263917E
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Nov 2022 23:31:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE8C363919A
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Nov 2022 23:51:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C53210E7BE;
-	Fri, 25 Nov 2022 22:31:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 294D610E00B;
+	Fri, 25 Nov 2022 22:51:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F67710E7BC;
- Fri, 25 Nov 2022 22:31:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669415474; x=1700951474;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=GvXKeOHV66xn/CaKi+dZL1kW7UcAHgAn6ZGGG4zaliA=;
- b=gGfgDxtyV2hKfTS3AhpAG0YuxV3JMdCHJp7unXDGSEZFypFYoXQmnde7
- XgcsLLtSISlrpPGIVEXByx+mRLssgjFe/bzr7pJMIb/D/sg5Biw+Vy7Zy
- RIKIEJYPaYKgPFKqdz/hSoFeBiSGlGd00R9ZY5FLSY6jyhOl6SokszngB
- VPczFQCvGX6iVfFpcXWZjFMARzc2k7v6JLoJ7Hhe3lRv8FqYkj0eg5/C1
- DgEqM7LiQfPTR7rU/4fsw9gPsisJoxtydiqFTqqbiUe+8P7mhiJ01gIs+
- Mgm5qjUDgYJIqZCpAEmyOSwexhKF0g/EeO7wAik9BMN6m+aYZeot0hduJ g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10542"; a="400836019"
-X-IronPort-AV: E=Sophos;i="5.96,194,1665471600"; d="scan'208";a="400836019"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2022 14:31:13 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10542"; a="887798474"
-X-IronPort-AV: E=Sophos;i="5.96,194,1665471600"; d="scan'208";a="887798474"
-Received: from ncataldi-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.252.50.225])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2022 14:31:11 -0800
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Fri, 25 Nov 2022 23:30:29 +0100
-Message-Id: <20221125223029.323339-6-andi.shyti@linux.intel.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221125223029.323339-1-andi.shyti@linux.intel.com>
-References: <20221125223029.323339-1-andi.shyti@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 63A9210E00B;
+ Fri, 25 Nov 2022 22:51:36 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5D2C6AADD2;
+ Fri, 25 Nov 2022 22:51:36 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 5/5] drm/i915: Limit the display memory
- alignment to 32 bit instead of 64
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andi Shyti" <andi.shyti@linux.intel.com>
+Date: Fri, 25 Nov 2022 22:51:36 -0000
+Message-ID: <166941669635.7726.7031834961837620407@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221125223029.323339-1-andi.shyti@linux.intel.com>
+In-Reply-To: <20221125223029.323339-1-andi.shyti@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_add_guard_padding_around_i915=5Fvma_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,74 +40,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>, Matthew Auld <matthew.auld@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris commit "drm/i915: Introduce guard pages to i915_vma" was
-"cunningly" changing display_alignment to u32 from u64. The
-reason is that the display GGTT is and will be limited o 4GB.
+== Series Details ==
 
-Put it in a separate patch and use "max(...)" instead of
-"max_t(64, ...)" when asigning the value. We can safely use max
-as we know beforehand that the comparison is between two u32
-variables.
+Series: add guard padding around i915_vma (rev3)
+URL   : https://patchwork.freedesktop.org/series/110720/
+State : warning
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_fb_pin.c | 2 +-
- drivers/gpu/drm/i915/gem/i915_gem_domain.c  | 2 +-
- drivers/gpu/drm/i915/i915_vma_types.h       | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-index 6900acbb1381c..1aca7552a85d0 100644
---- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-@@ -91,7 +91,7 @@ intel_pin_fb_obj_dpt(struct drm_framebuffer *fb,
- 		goto err;
- 	}
- 
--	vma->display_alignment = max_t(u64, vma->display_alignment, alignment);
-+	vma->display_alignment = max(vma->display_alignment, alignment);
- 
- 	i915_gem_object_flush_if_display(obj);
- 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_domain.c b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-index 882b91519f92b..9969e687ad857 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-@@ -457,7 +457,7 @@ i915_gem_object_pin_to_display_plane(struct drm_i915_gem_object *obj,
- 	if (IS_ERR(vma))
- 		return vma;
- 
--	vma->display_alignment = max_t(u64, vma->display_alignment, alignment);
-+	vma->display_alignment = max(vma->display_alignment, alignment);
- 	i915_vma_mark_scanout(vma);
- 
- 	i915_gem_object_flush_if_display_locked(obj);
-diff --git a/drivers/gpu/drm/i915/i915_vma_types.h b/drivers/gpu/drm/i915/i915_vma_types.h
-index 46f5ce19d4a0a..77fda2244d161 100644
---- a/drivers/gpu/drm/i915/i915_vma_types.h
-+++ b/drivers/gpu/drm/i915/i915_vma_types.h
-@@ -197,7 +197,6 @@ struct i915_vma {
- 	struct i915_fence_reg *fence;
- 
- 	u64 size;
--	u64 display_alignment;
- 	struct i915_page_sizes page_sizes;
- 
- 	/* mmap-offset associated with fencing for this vma */
-@@ -206,6 +205,7 @@ struct i915_vma {
- 	u32 guard; /* padding allocated around vma->pages within the node */
- 	u32 fence_size;
- 	u32 fence_alignment;
-+	u32 display_alignment;
- 
- 	/**
- 	 * Count of the number of times this vma has been opened by different
--- 
-2.38.1
+Error: dim checkpatch failed
+f7daace394f7 drm/i915: Wrap all access to i915_vma.node.start|size
+-:264: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#264: FILE: drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c:475:
++	GEM_BUG_ON(i915_vma_offset(vma) != addr);
+
+-:356: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#356: FILE: drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c:65:
++	GEM_BUG_ON(offset + (count - 1) * PAGE_SIZE > i915_vma_size(vma));
+
+-:393: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#393: FILE: drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c:223:
++		GEM_BUG_ON(vma->fence_size > i915_vma_size(vma));
+
+-:787: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#787: FILE: drivers/gpu/drm/i915/i915_vma.c:450:
++	GEM_BUG_ON(vma->size > i915_vma_size(vma));
+
+-:870: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#870: FILE: drivers/gpu/drm/i915/i915_vma.h:146:
++	GEM_BUG_ON(!drm_mm_node_allocated(&vma->node));
+
+-:892: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#892: FILE: drivers/gpu/drm/i915/i915_vma.h:168:
++	GEM_BUG_ON(!drm_mm_node_allocated(&vma->node));
+
+-:903: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#903: FILE: drivers/gpu/drm/i915/i915_vma.h:176:
++	GEM_BUG_ON(upper_32_bits(i915_vma_offset(vma)));
+
+-:904: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#904: FILE: drivers/gpu/drm/i915/i915_vma.h:177:
++	GEM_BUG_ON(upper_32_bits(i915_vma_offset(vma) +
+
+total: 0 errors, 8 warnings, 0 checks, 805 lines checked
+36a1d1d017ee drm/i915: Introduce guard pages to i915_vma
+-:118: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#118: FILE: drivers/gpu/drm/i915/i915_vma.c:762:
++	GEM_BUG_ON(hweight64(flags & (PIN_OFFSET_GUARD | PIN_OFFSET_FIXED | PIN_OFFSET_BIAS)) > 1);
+
+-:132: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#132: FILE: drivers/gpu/drm/i915/i915_vma.c:778:
++		GEM_BUG_ON(overflows_type(flags & PIN_OFFSET_MASK, u32));
+
+-:227: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_node' - possible side-effects?
+#227: FILE: drivers/gpu/drm/i915/i915_vma_resource.c:37:
++#define VMA_RES_START(_node) ((_node)->start - (_node)->guard)
+
+-:228: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_node' - possible side-effects?
+#228: FILE: drivers/gpu/drm/i915/i915_vma_resource.c:38:
++#define VMA_RES_LAST(_node) ((_node)->start + (_node)->node_size + (_node)->guard - 1)
+
+total: 0 errors, 2 warnings, 2 checks, 207 lines checked
+2ad1adab85d0 drm/i915: Refine VT-d scanout workaround
+35ea638e279e Revert "drm/i915: Improve on suspend / resume time with VT-d enabled"
+385c05fb3340 drm/i915: Limit the display memory alignment to 32 bit instead of 64
+
 
