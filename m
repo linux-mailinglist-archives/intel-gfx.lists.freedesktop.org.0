@@ -2,72 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 975AC638A88
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Nov 2022 13:46:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1936638B7A
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Nov 2022 14:44:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D76E410E754;
-	Fri, 25 Nov 2022 12:46:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C8A510E7A2;
+	Fri, 25 Nov 2022 13:44:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com
- [IPv6:2a00:1450:4864:20::52b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E016610E74C;
- Fri, 25 Nov 2022 12:46:45 +0000 (UTC)
-Received: by mail-ed1-x52b.google.com with SMTP id z18so6226631edb.9;
- Fri, 25 Nov 2022 04:46:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=+bgi7f3JR0DWZOQubVbmHHeupq5WRhW3huMpC6kFZe0=;
- b=qdFwZ1fV1XfWWgv9yQMtXnLDI0ZwnsxnZ+uzKPHt0t3i424R1cZ9eWPXSUSV1nN3WU
- yV7MhG7w9PWyxQr8MBbHR2rHVbDERRdX/HMilXzD5h80vreonnSaAqvLrt+2in2fnuwU
- 0PSxK87Bpx2DTTr14I6pCMx9Cc2jf4fpuG+egRjRzeGq0t1P5fQ42oLPb9mO1WhL/r8o
- 81aezcDuc2BMteSXbgNu3wCrciXfa73RvJbkaV9wCaV9xThCcF1Xjj/k8yyBhvXrTQe3
- DIlof7mNkZp3y5D7HJsNAU6HJeOzaamf48hN0GpH74Za5tRKVstgy6KmtMNUu8Pd+EBI
- j+bA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=+bgi7f3JR0DWZOQubVbmHHeupq5WRhW3huMpC6kFZe0=;
- b=aAF9fHMVj44DiFMxQd8U3D7CvM41RFNCb7DDpazbteLJrk2ovA+g8f+jvZGOWF9yfC
- vV9OqNFoQH+FsXnbfPG2X+eAsXUA1IQwoL8xuf/jJTuVpdkQFgUSJYbCutZwf8SZmCaJ
- 5a/nTuXQnrz8x7znvOXvm1L1ElJ0DeFlHd6NliVTN4cwzj491dg+wSFIXrScsw6Krn9C
- uBvJdKcwyyncTwsjpgujGRiqsJ90cEwsvSs0LlPmm4rLLEI1fHzJaQC/34EakCbtSq2I
- fHA6IDH/HUxIJ64UcOer2FdsqlvwAmF0cfMV3nQLnctPRTZeVjw0Soq/od3w/x1mIEQK
- HeNw==
-X-Gm-Message-State: ANoB5pltwVxqbCir2sjYF9UHuwXcuRWzAIBUKgvG5oqHKWeFCc251ENm
- +nXKzXBfJfijdXQjNXnpHibFx/SFv1Q=
-X-Google-Smtp-Source: AA0mqf6N5r+og4tlDu/GKMmnVv1qWHz6JYRDymEQfel5ULDVvXHP9Mf8EcfmT3TuG5cNxH7U+0nUrw==
-X-Received: by 2002:a05:6402:1a:b0:467:30ad:c4ca with SMTP id
- d26-20020a056402001a00b0046730adc4camr35211827edu.285.1669380404288; 
- Fri, 25 Nov 2022 04:46:44 -0800 (PST)
-Received: from ?IPV6:2a02:908:1256:79a0:24a6:d989:49bb:611a?
- ([2a02:908:1256:79a0:24a6:d989:49bb:611a])
- by smtp.gmail.com with ESMTPSA id
- ue5-20020a170907c68500b0079dbf06d558sm1520964ejc.184.2022.11.25.04.46.43
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 25 Nov 2022 04:46:43 -0800 (PST)
-Message-ID: <5d1d5a9d-7301-e53c-e051-a24c5629d887@gmail.com>
-Date: Fri, 25 Nov 2022 13:46:42 +0100
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94ADD10E7A7
+ for <intel-gfx@lists.freedesktop.org>; Fri, 25 Nov 2022 13:44:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1669383846; x=1700919846;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+9CYYQ1gZMbXFZ8P/tVJVlAPwlMXDw6J+HOf7R2XABE=;
+ b=I3my1cyowfirS/6TEVrxErP8gPKpwc/fJyFR9wxxZC0dn6HXO07ubrnZ
+ sw+RYpuesmj94v5Mdy1KFdKWr8SUU1bqfs1j7hioyOeUONHY3w/JJieEz
+ gz94cvvJOvHOUN3PNWFnL/ELk2fS+6mksYzrjvItXwyxXLQgG3HGjgJNz
+ Le5l7kjLEGjXX7xP+gGfPseWt4K8TMskrgY9b+LnRT1Vh2joKjLwAGW5P
+ pGb2VAOPlafb9r13kCFVGgMZYD8WoROMDLyOS4GQrnrnu4cKVRRpXiQ6/
+ RM2WfrBIS2D7iCBqCYthpBO/jtbxGgcS3wVGtFjsPBzEtycKYLq6u04CM w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10541"; a="294868333"
+X-IronPort-AV: E=Sophos;i="5.96,193,1665471600"; d="scan'208";a="294868333"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2022 05:44:06 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10541"; a="642708075"
+X-IronPort-AV: E=Sophos;i="5.96,193,1665471600"; d="scan'208";a="642708075"
+Received: from dcordova-mobl.amr.corp.intel.com (HELO
+ jhogande-mobl1.ger.corp.intel.com) ([10.252.49.72])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2022 05:44:02 -0800
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 25 Nov 2022 15:43:36 +0200
+Message-Id: <20221125134336.3999296-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Content-Language: en-US
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- Matthew Auld <matthew.auld@intel.com>
-References: <20221125102137.1801-1-christian.koenig@amd.com>
- <20221125102137.1801-7-christian.koenig@amd.com>
- <d92312af-3c84-8bd9-108b-719fb1ec3a6b@linux.intel.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <d92312af-3c84-8bd9-108b-719fb1ec3a6b@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 7/9] drm/i915: stop using ttm_bo_wait
+Subject: [Intel-gfx] [PATCH] drm/i915/psr: Use continuous full frame update
+ instead of single
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,63 +61,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 25.11.22 um 12:14 schrieb Tvrtko Ursulin:
->
-> + Matt
->
-> On 25/11/2022 10:21, Christian König wrote:
->> TTM is just wrapping core DMA functionality here, remove the mid-layer.
->> No functional change.
->>
->> Signed-off-by: Christian König <christian.koenig@amd.com>
->> ---
->>   drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 9 ++++++---
->>   1 file changed, 6 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c 
->> b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->> index 5247d88b3c13..d409a77449a3 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->> @@ -599,13 +599,16 @@ i915_ttm_resource_get_st(struct 
->> drm_i915_gem_object *obj,
->>   static int i915_ttm_truncate(struct drm_i915_gem_object *obj)
->>   {
->>       struct ttm_buffer_object *bo = i915_gem_to_ttm(obj);
->> -    int err;
->> +    long err;
->>         WARN_ON_ONCE(obj->mm.madv == I915_MADV_WILLNEED);
->>   -    err = ttm_bo_wait(bo, true, false);
->> -    if (err)
->> +    err = dma_resv_wait_timeout(bo->base.resv, DMA_RESV_USAGE_BOOKKEEP,
->> +                    true, 15 * HZ);
->
-> This 15 second stuck out a bit for me and then on a slightly deeper 
-> look it seems this timeout will "leak" into a few of i915 code paths. 
-> If we look at the difference between the legacy shmem and ttm backend 
-> I am not sure if the legacy one is blocking or not - but if it can 
-> block I don't think it would have an arbitrary timeout like this. Matt 
-> your thoughts?
+Currently we are observing occasionally display flickering or complete
+freeze. This is narrowed down to be caused by single full frame update
+(SFF).
 
-That's exactly the reason why I try to remove the ttm_bo_wait() as mid 
-layer here. It hides the fact that we don't wait forever for BOs to 
-become idle.
+SFF bit after it's written gets cleared by HW in subsequent vblank
+i.e. when the update is sent to the panel. SFF bit is required to be
+written together with partial frame update (PFU) bit. After the bit
+gets cleared by the HW psr2 man trk ctl register still contains PFU
+bit. If there is subsequent update for any reason we will end up
+having selective update/fetch configuration where start line is 0 and
+end line is 0. Also selective fetch configuration for the planes is
+not properly performed. This seems to be causing problems with some
+panels.
 
-This is functional identical to the old code. If you want some other 
-behavior feel free to note what's desired and I will implement it.
+Fix this by using continuous full frame update instead and switch to
+partial frame update only when selective update area is properly
+calculated and configured.
 
-Regards,
-Christian.
+This is also workaround for HSD 14014971508
 
->
-> Regards,
->
-> Tvrtko
->
->> +    if (err < 0)
->>           return err;
->> +    if (err == 0)
->> +        return -EBUSY;
->>         err = i915_ttm_move_notify(bo);
->>       if (err)
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: José Roberto de Souza <jose.souza@intel.com>
+Cc: Mika Kahola <mika.kahola@intel.com>
+
+Reported-by: Lee Shawn C <shawn.c.lee@intel.com>
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_psr.c | 21 ++-------------------
+ 1 file changed, 2 insertions(+), 19 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 5b678916e6db..41b0718eb3a1 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -1480,13 +1480,6 @@ static u32 man_trk_ctl_enable_bit_get(struct drm_i915_private *dev_priv)
+ 		PSR2_MAN_TRK_CTL_ENABLE;
+ }
+ 
+-static u32 man_trk_ctl_single_full_frame_bit_get(struct drm_i915_private *dev_priv)
+-{
+-	return IS_ALDERLAKE_P(dev_priv) || DISPLAY_VER(dev_priv) >= 14 ?
+-	       ADLP_PSR2_MAN_TRK_CTL_SF_SINGLE_FULL_FRAME :
+-	       PSR2_MAN_TRK_CTL_SF_SINGLE_FULL_FRAME;
+-}
+-
+ static u32 man_trk_ctl_partial_frame_bit_get(struct drm_i915_private *dev_priv)
+ {
+ 	return IS_ALDERLAKE_P(dev_priv) || DISPLAY_VER(dev_priv) >= 14 ?
+@@ -1510,7 +1503,7 @@ static void psr_force_hw_tracking_exit(struct intel_dp *intel_dp)
+ 			       PSR2_MAN_TRK_CTL(intel_dp->psr.transcoder),
+ 			       man_trk_ctl_enable_bit_get(dev_priv) |
+ 			       man_trk_ctl_partial_frame_bit_get(dev_priv) |
+-			       man_trk_ctl_single_full_frame_bit_get(dev_priv));
++			       man_trk_ctl_continuos_full_frame(dev_priv));
+ 
+ 	/*
+ 	 * Display WA #0884: skl+
+@@ -1624,11 +1617,7 @@ static void psr2_man_trk_ctl_calc(struct intel_crtc_state *crtc_state,
+ 	val |= man_trk_ctl_partial_frame_bit_get(dev_priv);
+ 
+ 	if (full_update) {
+-		/*
+-		 * Not applying Wa_14014971508:adlp as we do not support the
+-		 * feature that requires this workaround.
+-		 */
+-		val |= man_trk_ctl_single_full_frame_bit_get(dev_priv);
++		val |= man_trk_ctl_continuos_full_frame(dev_priv);
+ 		goto exit;
+ 	}
+ 
+@@ -2306,16 +2295,10 @@ static void _psr_flush_handle(struct intel_dp *intel_dp)
+ 		if (intel_dp->psr.psr2_sel_fetch_cff_enabled) {
+ 			/* can we turn CFF off? */
+ 			if (intel_dp->psr.busy_frontbuffer_bits == 0) {
+-				u32 val = man_trk_ctl_enable_bit_get(dev_priv) |
+-					  man_trk_ctl_partial_frame_bit_get(dev_priv) |
+-					  man_trk_ctl_single_full_frame_bit_get(dev_priv);
+-
+ 				/*
+ 				 * turn continuous full frame off and do a single
+ 				 * full frame
+ 				 */
+-				intel_de_write(dev_priv, PSR2_MAN_TRK_CTL(intel_dp->psr.transcoder),
+-					       val);
+ 				intel_de_write(dev_priv, CURSURFLIVE(intel_dp->psr.pipe), 0);
+ 				intel_dp->psr.psr2_sel_fetch_cff_enabled = false;
+ 			}
+-- 
+2.34.1
 
