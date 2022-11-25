@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7434D6383FA
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Nov 2022 07:22:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDB7B638512
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Nov 2022 09:18:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A5D410E704;
-	Fri, 25 Nov 2022 06:22:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6551A10E0E7;
+	Fri, 25 Nov 2022 08:18:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D9D910E6FF;
- Fri, 25 Nov 2022 06:22:46 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF62B10E099;
+ Fri, 25 Nov 2022 08:18:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669357366; x=1700893366;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=3zbPZdfWL5MZZQT9oYk6fSqU6L8kRa1eQ+IO13BEki0=;
- b=bXq0388EIUQBft4nC330peezEtBCxQ7HXSf39VPUzVF0pm+3rJ0dN5Jq
- 6cXc+7aU3csxwUQPnq093m8q3DTXeR9Xky/Ygky4wDwVbRwnMCtcnOH5S
- oYvc5uRFRg3bnbWvX5DFrWcS7M+JPuSaNEuFUj1/x9ATsPc1/lPjzmzLn
- jeIqy+QXZH3VatNxfNHCPrlFBH3VA9ZZsE8Jdb7bSqndh6KVq7VsNFkjS
- /tqfCrcQe1i/BFBtp8TIawT5BLqBZHmL7aqVvNGKstqxY49gIKAelnryD
- 0STqqN/WHSjeCC6tPsX/WttsL87fWk7P8YDZFPbH0FlV+1k8OVW80YaML g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10541"; a="301992035"
-X-IronPort-AV: E=Sophos;i="5.96,192,1665471600"; 
- d="asc'?scan'208";a="301992035"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2022 22:22:38 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10541"; a="705969604"
-X-IronPort-AV: E=Sophos;i="5.96,192,1665471600"; 
- d="asc'?scan'208";a="705969604"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.159.108])
- by fmsmga008.fm.intel.com with ESMTP; 24 Nov 2022 22:22:34 -0800
-Date: Fri, 25 Nov 2022 14:21:31 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Dan Carpenter <error27@gmail.com>
-Message-ID: <20221125062131.GX30028@zhen-hp.sh.intel.com>
-References: <Y3OQ5tgZIVxyQ/WV@kili>
+ t=1669364304; x=1700900304;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=hUfcDdsfSX5YjlGOWR2p6U6J07KOVONjwuqBLYRBav4=;
+ b=bfhEQYGEqzxw3N37XtNJUINOLEs/LRMSwPpxnnjXAIRm7Tiebi7SCUTu
+ YLLopRU2U06aky2ndpg4OX62dMIbCKqX+wWDLEIUh/SNsNqcxDZs8K1z1
+ buF10t1mSEP2vgIR3GXXUala5eFjx5gSZi4JYP13CypbGPn++mSy416ck
+ 9GEQt0EhqndquHtULJczoffzCOT9ZnQcQ/SkdP4oUBLlnYeY4SKfpmHcz
+ BAhlbqCW696y+RuMVay/GQCllxmjSEqTU/UG3igH0o7/DvZjJnJg2L+XK
+ Giin33oJ5cBxcneyvCAyKPOa/g0wEvvJ/gSmx2xq6Kh7TPwLqHZNAvHRV g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10541"; a="297793776"
+X-IronPort-AV: E=Sophos;i="5.96,192,1665471600"; d="scan'208";a="297793776"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2022 00:18:24 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10541"; a="644729418"
+X-IronPort-AV: E=Sophos;i="5.96,192,1665471600"; d="scan'208";a="644729418"
+Received: from dcliffo1-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.17.151])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2022 00:18:20 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Xia Fukun <xiafukun@huawei.com>, airlied@gmail.com, daniel@ffwll.ch,
+ ville.syrjala@linux.intel.com, lucas.demarchi@intel.com,
+ joonas.lahtinen@linux.intel.com
+In-Reply-To: <20221125063428.69486-1-xiafukun@huawei.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20221125063428.69486-1-xiafukun@huawei.com>
+Date: Fri, 25 Nov 2022 10:18:18 +0200
+Message-ID: <875yf35tx1.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
- protocol="application/pgp-signature"; boundary="PY8tzLeNxmyMVNR3"
-Content-Disposition: inline
-In-Reply-To: <Y3OQ5tgZIVxyQ/WV@kili>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: unpin on error in
- intel_vgpu_shadow_mm_pin()
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/bios: fix a memory leak in
+ generate_lfp_data_ptrs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,58 +60,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- kernel-janitors@vger.kernel.org, Colin Xu <colin.xu@intel.com>,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, rodrigo.vivi@intel.com, xiafukun@huawei.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Fri, 25 Nov 2022, Xia Fukun <xiafukun@huawei.com> wrote:
+> When (size != 0 || ptrs->lvds_ entries != 3), the program tries to
+> free() the ptrs. However, the ptrs is not created by calling kzmalloc(),
+> but is obtained by pointer offset operation.
+> This may lead to memory leaks or undefined behavior.
 
---PY8tzLeNxmyMVNR3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Yeah probably worse things will happen than just leak.
 
-On 2022.11.15 16:15:18 +0300, Dan Carpenter wrote:
-> Call intel_vgpu_unpin_mm() on this error path.
->=20
-> Fixes: 418741480809 ("drm/i915/gvt: Adding ppgtt to GVT GEM context after=
- shadow pdps settled.")
-> Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+>
+> Fix this by replacing the arguments of kfree() with ptrs_block.
+>
+> Fixes: a87d0a847607 ("drm/i915/bios: Generate LFP data table pointers if the VBT lacks them")
+> Signed-off-by: Xia Fukun <xiafukun@huawei.com>
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
 > ---
->  drivers/gpu/drm/i915/gvt/scheduler.c | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/drivers/gpu/drm/i915/gvt/scheduler.c b/drivers/gpu/drm/i915/=
-gvt/scheduler.c
-> index d6fe94cd0fdb..8342d95f56cb 100644
-> --- a/drivers/gpu/drm/i915/gvt/scheduler.c
-> +++ b/drivers/gpu/drm/i915/gvt/scheduler.c
-> @@ -696,6 +696,7 @@ intel_vgpu_shadow_mm_pin(struct intel_vgpu_workload *=
-workload)
-> =20
->  	if (workload->shadow_mm->type !=3D INTEL_GVT_MM_PPGTT ||
->  	    !workload->shadow_mm->ppgtt_mm.shadowed) {
-> +		intel_vgpu_unpin_mm(workload->shadow_mm);
->  		gvt_vgpu_err("workload shadow ppgtt isn't ready\n");
->  		return -EINVAL;
+>  drivers/gpu/drm/i915/display/intel_bios.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+> index 28bdb936cd1f..edbdb949b6ce 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -414,7 +414,7 @@ static void *generate_lfp_data_ptrs(struct drm_i915_private *i915,
+>  		ptrs->lvds_entries++;
+>  
+>  	if (size != 0 || ptrs->lvds_entries != 3) {
+> -		kfree(ptrs);
+> +		kfree(ptrs_block);
+>  		return NULL;
 >  	}
-> --=20
 
-Thanks, Dan. Looks fine to me.
-
-Reviewed-by: Zhenyu Wang <zhenyuw@linux.intel.com>
-
---PY8tzLeNxmyMVNR3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCY4Be5gAKCRCxBBozTXgY
-J+KDAJ9OgoK2gPxiD4iC1tHtw062lS/dPQCfW+n2gbnAT/A+7NGPcUEQZQBssB0=
-=bFGR
------END PGP SIGNATURE-----
-
---PY8tzLeNxmyMVNR3--
+-- 
+Jani Nikula, Intel Open Source Graphics Center
