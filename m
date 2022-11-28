@@ -1,50 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C87163A588
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Nov 2022 10:59:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D56D63A5F1
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Nov 2022 11:19:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA01510E1F1;
-	Mon, 28 Nov 2022 09:59:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF53710E2C8;
+	Mon, 28 Nov 2022 10:18:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 195C410E205
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Nov 2022 09:59:29 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DCA010E2C7
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Nov 2022 10:18:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669629569; x=1701165569;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=75ciCwVVtzhiqGkCkxccH7v/77yPau4MCAiJccRRc4g=;
- b=Jq+N8BYnalK3iwvTcpwqM+HSagxPX7vDZnX0yaFxFR6wI4BedesBGRuI
- s7lam5wKweODjcBlkF4ezZd1lpU7W+tbBX2idIN2q4aBIfwLSKHDUwUt2
- OI+X95d/tMSfWqUg4c2AlFbpw3StHNVpA3m9C6UPLG9Y5ncKOAVVmxupK
- Z6/oNs+J50+Vinl+7jCVKVXPaqVlIAh7UPpj9DwSLcyYtUuUQAAhSGiVG
- ErIOQL2cyYlYgYxtpvvXq4SPZ4TeYmAY1Cp5EJ/TuX/05rBZlfvEd6pGY
- uWSBTipG/ys1pb8qtwDg+9pwy26+fsVaErA2oOK/JCa/tK0pkNFu0sVFg A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10544"; a="315950451"
-X-IronPort-AV: E=Sophos;i="5.96,200,1665471600"; d="scan'208";a="315950451"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2022 01:59:18 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10544"; a="674169454"
-X-IronPort-AV: E=Sophos;i="5.96,200,1665471600"; d="scan'208";a="674169454"
-Received: from aravind-dev.iind.intel.com ([10.145.162.80])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2022 01:59:16 -0800
-From: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+ t=1669630719; x=1701166719;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=7yCQT7Qoft5qTt/taqM0HE3eh4ShJdyVCbHLzRjCL8E=;
+ b=Zk+yTBL/yeJRfHA1Q9EFvHoapOruq9FIc/FYhOmpr/MzsPdp/zSD8hVN
+ dV3gldryahyQiwgs9HnrwFL0C0o8SRSkKSOodFsEm++BMAfgfx13zy4Y7
+ RkxM+SCrtWiUC+76IGXctR5muMmF2vop4SoaXzdRTYvSrzj7w1DB8LXEo
+ /Eq88/lHAgY2dR22ZvNEVw8fhr0cMWJN5lRNH3x8mnnlaUzvsiXQth7cz
+ dyLzhyUaaHP+ZovjpfFyXBHadHIYf+b2ZA1WTt1kMpOMaNSyEYdU6gJlf
+ 06pBognYNO3yd9ZITNjRJRA3RB/9YqA2T2bEC2+2RKTOiwQxn0U74TQ+F g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10544"; a="294500106"
+X-IronPort-AV: E=Sophos;i="5.96,200,1665471600"; d="scan'208";a="294500106"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Nov 2022 02:18:27 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10544"; a="749319715"
+X-IronPort-AV: E=Sophos;i="5.96,200,1665471600"; d="scan'208";a="749319715"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Nov 2022 02:18:25 -0800
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 28 Nov 2022 15:43:52 +0530
-Message-Id: <6cb639bfc8e0eddb3fece1b058e8ab6444f98fb2.1669629369.git.aravind.iddamsetty@intel.com>
+Date: Mon, 28 Nov 2022 15:49:11 +0530
+Message-Id: <20221128101922.217217-1-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <3a47d428e1929942374b9eaead5372bfaaefdeed.1669629369.git.aravind.iddamsetty@intel.com>
-References: <3a47d428e1929942374b9eaead5372bfaaefdeed.1669629369.git.aravind.iddamsetty@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915/mtl/UAPI: Disable SET_CACHING
- IOCTL for MTL+
+Subject: [Intel-gfx] [PATCH 00/11] Add DSC fractional bpp support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,39 +54,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Pallavi Mishra <pallavi.mishra@intel.com>
+This patch series adds support for having fractional compressed bpp
+for MTL+. The initial patches that lay groundwork to iterate over valid
+compressed bpps to select the 'best' compressed bpp with optimal link
+configuration are taken from upstream pending series:
+https://patchwork.freedesktop.org/series/105200/
 
-Caching mode for an object shall be selected via upcoming VM_BIND
-interface.
+The later patches, add changes to accommodate compressed bpp with
+fractional part, including changes to QP calculations.
+To get the 'best' compressed bpp, we iterate over the valid compressed
+bpp values, but with fractional step size 1/16, 1/8, 1/4 or 1/2 as per
+sink support.
 
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+The last 2 patches add support to depict DSC sink's fractional support,
+and debugfs to enforce use of fractional bpp, while choosing an
+appropriate compressed bpp.
 
-Signed-off-by: Pallavi Mishra <pallavi.mishra@intel.com>
-Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_domain.c | 3 +++
- 1 file changed, 3 insertions(+)
+Ankit Nautiyal (8):
+  drm/i915/dp: Check if force dsc bpc <= max requested bpc
+  drm/display/dp: Add helper function to get DSC bpp prescision
+  drm/i915/dp: Rename helpers to get DSC max pipe bpp and max output bpp
+  drm/i915/dp: Get optimal link config to have best compressed bpp
+  drm/i915/display: Store compressed bpp in U6.4 format
+  drm/i915/display: Consider fractional vdsc bpp while computing m_n
+    values
+  drm/i915/audio : Consider fractional vdsc bpp while computing tu_data
+  drm/i915/dp: Iterate over output bpp with fractional step size
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_domain.c b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-index d44a152ce680..aebbfe186143 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-@@ -332,6 +332,9 @@ int i915_gem_set_caching_ioctl(struct drm_device *dev, void *data,
- 	if (IS_DGFX(i915))
- 		return -ENODEV;
- 
-+	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70))
-+		return -EOPNOTSUPP;
-+
- 	switch (args->caching) {
- 	case I915_CACHING_NONE:
- 		level = I915_CACHE_NONE;
+Swati Sharma (2):
+  drm/i915/dsc: Add debugfs entry to validate DSC fractional bpp
+  drm/i915/dsc: Allow DSC only with fractional bpp when forced from
+    debugfs
+
+Vandita Kulkarni (1):
+  drm/i915/dsc/mtl: Add support for fractional bpp
+
+ drivers/gpu/drm/display/drm_dp_helper.c       |  27 ++
+ drivers/gpu/drm/i915/display/icl_dsi.c        |  10 +-
+ drivers/gpu/drm/i915/display/intel_audio.c    |  12 +-
+ drivers/gpu/drm/i915/display/intel_bios.c     |   2 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |   6 +-
+ drivers/gpu/drm/i915/display/intel_display.h  |   2 +-
+ .../drm/i915/display/intel_display_debugfs.c  |  84 +++++
+ .../drm/i915/display/intel_display_types.h    |  17 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       | 318 ++++++++++++++----
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |   3 +-
+ drivers/gpu/drm/i915/display/intel_fdi.c      |   2 +-
+ .../gpu/drm/i915/display/intel_qp_tables.c    |   3 -
+ drivers/gpu/drm/i915/display/intel_vdsc.c     |  16 +-
+ include/drm/display/drm_dp_helper.h           |   1 +
+ 14 files changed, 421 insertions(+), 82 deletions(-)
+
 -- 
 2.25.1
 
