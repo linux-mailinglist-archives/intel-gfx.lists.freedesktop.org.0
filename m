@@ -1,50 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38F8763A1D6
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Nov 2022 08:15:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 001CE63A1DC
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Nov 2022 08:16:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E34310E1CA;
-	Mon, 28 Nov 2022 07:15:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4E2610E1CF;
+	Mon, 28 Nov 2022 07:16:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F33810E1C7
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Nov 2022 07:15:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9428E10E1C4
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Nov 2022 07:15:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669619705; x=1701155705;
+ t=1669619707; x=1701155707;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=U7biBTkKZnZ8EtxOOqfCgywcsOgtcEwAbeDoCELWbKg=;
- b=HgVsp3KCxA/rrPmhRS2Jl9yh6PTbTWU/si/lEd1CRqx6Zw9MDP2o28cG
- nPrgABGKMiGznuwnwwNnLWGe57z2ff/e05eM/coJLF1gjl2nV1gQzd5A6
- iZOJssaMzJkPWYoDxvMbxlg4bqOJ+XIIdfEGFWD0UljqgxjKGV/d4RpJq
- IZiGTFJFM1jYZQBu7ykBCDbDENXcfMoR66F+PPgrarUg5ks47BdeLL8UV
- Tuv+og33cGWWdvEwEimhgiIxte2pYCKnriC/5klebb3TA9EMnDg97PDfc
- CKhx9MDXnnFLO7CZEYwCpaKuU8TrSHrrLkdELHegaDxjrk/ooqn3lIB7G A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10544"; a="315919509"
-X-IronPort-AV: E=Sophos;i="5.96,199,1665471600"; d="scan'208";a="315919509"
+ bh=SpAuH77Q/4xEGRdTFlamMsHjsmhxnBuIa27xmhDxSYw=;
+ b=m9xzwLSKG7Myu+215hKYd8n1185iDRcXgaYsgtcMTWMp1qImSq/RZICJ
+ QAm+qpZvx3hTKdEArmhQ0cLIJNZnIrRhoiqonl1j3XX+74iP0sitwgyYA
+ 7y7dY2lvWFUB58+w49eKaufPWpvDvDCwT1f0xiCZ508pHsK6Gp/axDVlN
+ xlXeOguF5Z62MsShCUmp9kTURmgAKZdNkcuVjIu5Kq0QhKyt0ujJMMpdU
+ JrHwSWlPvLuBdGZQzt17z6y2Gk5iwM+WydS62V4lfecrhS51vigPiVlsC
+ uh6iwf+xjUl0zZ4V6p1N0Zk1kkH0JDErYQp4Vxa4KUg7iF4+nvSVAaWCQ Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10544"; a="315919517"
+X-IronPort-AV: E=Sophos;i="5.96,199,1665471600"; d="scan'208";a="315919517"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2022 23:15:05 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10544"; a="785518619"
-X-IronPort-AV: E=Sophos;i="5.96,199,1665471600"; d="scan'208";a="785518619"
+ 27 Nov 2022 23:15:07 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10544"; a="785518629"
+X-IronPort-AV: E=Sophos;i="5.96,199,1665471600"; d="scan'208";a="785518629"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2022 23:15:03 -0800
+ 27 Nov 2022 23:15:05 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 28 Nov 2022 12:45:40 +0530
-Message-Id: <20221128071544.4115881-8-ankit.k.nautiyal@intel.com>
+Date: Mon, 28 Nov 2022 12:45:41 +0530
+Message-Id: <20221128071544.4115881-9-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221128071544.4115881-1-ankit.k.nautiyal@intel.com>
 References: <20221128071544.4115881-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v5 07/11] drm/i915/display: Add helper function
- to check if sink_format is 420
+Subject: [Intel-gfx] [PATCH v5 08/11] drm/i915/dp: Avoid DSC with
+ output_format YCBC420
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,84 +60,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add an inline helper function to check if the sink_format is set to
-YCBCR420 format.
+Currently, DSC with YCBCR420 is not supported.
+Return -EINVAL when trying with DSC with output_format as YCBCR420.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_types.h | 6 ++++++
- drivers/gpu/drm/i915/display/intel_dp.c            | 4 ++--
- drivers/gpu/drm/i915/display/intel_hdmi.c          | 6 +++---
- 3 files changed, 11 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 9e31aa008f22..f28858668339 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -2062,4 +2062,10 @@ to_intel_frontbuffer(struct drm_framebuffer *fb)
- 	return fb ? to_intel_framebuffer(fb)->frontbuffer : NULL;
- }
- 
-+static inline bool
-+intel_crtc_has_420_sink_format(const struct intel_crtc_state *crtc_state)
-+{
-+	return crtc_state->sink_format == INTEL_OUTPUT_FORMAT_YCBCR420;
-+}
-+
- #endif /*  __INTEL_DISPLAY_TYPES_H__ */
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 09246e1d33ef..d97832b8da32 100644
+index d97832b8da32..c40d081358f8 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2096,7 +2096,7 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
- 	ret = intel_dp_compute_link_config(encoder, crtc_state, conn_state,
- 					   respect_downstream_limits, with_dsc);
- 	if (ret) {
--		if (crtc_state->sink_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
-+		if (intel_crtc_has_420_sink_format(crtc_state) ||
- 		    !drm_mode_is_420_also(info, adjusted_mode))
- 			return ret;
+@@ -1570,6 +1570,10 @@ static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+ 	if (!intel_dp_supports_dsc(intel_dp, pipe_config))
+ 		return -EINVAL;
  
-@@ -2789,7 +2789,7 @@ void intel_dp_configure_protocol_converter(struct intel_dp *intel_dp,
- 		drm_dbg_kms(&i915->drm, "Failed to %s protocol converter HDMI mode\n",
- 			    str_enable_disable(intel_dp->has_hdmi_sink));
++	/* Currently DSC with YCBCR420 format is not supported */
++	if (pipe_config->output_format == INTEL_OUTPUT_FORMAT_YCBCR420)
++		return -EINVAL;
++
+ 	pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp, conn_state->max_requested_bpc);
  
--	if (crtc_state->sink_format == INTEL_OUTPUT_FORMAT_YCBCR420) {
-+	if (intel_crtc_has_420_sink_format(crtc_state)) {
- 		switch (crtc_state->output_format) {
- 		case INTEL_OUTPUT_FORMAT_YCBCR420:
- 			/*
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 85453c3f7dc1..aa36dd43c992 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -2062,7 +2062,7 @@ static bool hdmi_bpc_possible(const struct intel_crtc_state *crtc_state, int bpc
- 		return false;
- 
- 	/* Display Wa_1405510057:icl,ehl */
--	if (crtc_state->sink_format == INTEL_OUTPUT_FORMAT_YCBCR420 &&
-+	if (intel_crtc_has_420_sink_format(crtc_state) &&
- 	    bpc == 10 && DISPLAY_VER(dev_priv) == 11 &&
- 	    (adjusted_mode->crtc_hblank_end -
- 	     adjusted_mode->crtc_hblank_start) % 8 == 2)
-@@ -2224,7 +2224,7 @@ static int intel_hdmi_compute_output_format(struct intel_encoder *encoder,
- 	crtc_state->output_format = intel_hdmi_output_format(crtc_state, connector);
- 	ret = intel_hdmi_compute_clock(encoder, crtc_state, respect_downstream_limits);
- 	if (ret) {
--		if (crtc_state->sink_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
-+		if (intel_crtc_has_420_sink_format(crtc_state) ||
- 		    !drm_mode_is_420_also(info, adjusted_mode))
- 			return ret;
- 
-@@ -2284,7 +2284,7 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
- 		return ret;
- 	}
- 
--	if (pipe_config->sink_format == INTEL_OUTPUT_FORMAT_YCBCR420) {
-+	if (intel_crtc_has_420_sink_format(pipe_config)) {
- 		ret = intel_panel_fitting(pipe_config, conn_state);
- 		if (ret)
- 			return ret;
+ 	if (intel_dp->force_dsc_bpc) {
 -- 
 2.25.1
 
