@@ -1,149 +1,143 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32FB063C7FD
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Nov 2022 20:19:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1A0E63C80F
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Nov 2022 20:20:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0577E10E26C;
-	Tue, 29 Nov 2022 19:19:18 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EB4810E22A;
- Tue, 29 Nov 2022 19:19:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E50610E321;
+	Tue, 29 Nov 2022 19:19:54 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3C0210E247
+ for <intel-gfx@lists.freedesktop.org>; Tue, 29 Nov 2022 19:19:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669749547; x=1701285547;
- h=message-id:date:subject:to:cc:references:from:
+ t=1669749584; x=1701285584;
+ h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=IbRDBmSAiu78rDzUGPhp9ZKJQwgvgQGR2Qdc/BMhXRw=;
- b=Xl96ZFlr0OzBvYe7wdEJXfi87VZlhwFBGo+8b08jxdXLUOSt4K/dSamJ
- suYvA6cYBhWS4Tgj8vYBnEG8rKfkfZBMeyUU+bXa1dwQINJufIYQbd7lv
- AgOPO/oIV19BKDdjqTUYXt6OqLAFCJ7XIJjYiA1GIY8m7JblvWEJMnELZ
- ZerkutntesvE/mOFIFu80hF/X808SFiqXveT0l81tAl1vuS8hCSaLHBbK
- UdIG2eW4SW73jxywmokU+XTascRTwDygels44e3niA1FEVmV1z3FNskTF
- kUQgCo40kqcQ3Uylm0zOL2imQrAbMi6woadvVA443IlTKTGxGDDx6iWMu Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10546"; a="379493357"
-X-IronPort-AV: E=Sophos;i="5.96,204,1665471600"; d="scan'208";a="379493357"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2022 11:19:06 -0800
+ bh=zdVrVTfnmmHs44Jf2mfMTtavaDjQIC2unUm8DTFpkQM=;
+ b=VwVfDQgcoMPcoHswggkviddtt/HVp1eoIT69sBRFifYItw3OqOaxil/t
+ swFAaEpCONc1JGmEWyVLUetDV5WefiHLCU1C5ljBj+cIXAgpfz4Nq4VLn
+ OBwp0WQXPfmjDfiDIWPjopO77jkCev5K9J047/baaoBWDB7uks2F09R6C
+ l+i+hdrAecaaFuZ5WdRdzEnBeNJ9HIPuaOg3jC7sMmyDn6wzx1vu0EVdm
+ o4Lj6QM/zdNbcAwrlKFg5JYfq7UzPADXFFyA8XjNifhEo6XhFeXgM2Gph
+ b1cQOfAQ0IZH9SQPBqLobgtn5hTtIs90MumVjUaalhV8mEjmUpimuNvmd Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10546"; a="401495631"
+X-IronPort-AV: E=Sophos;i="5.96,204,1665471600"; d="scan'208";a="401495631"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Nov 2022 11:19:44 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10546"; a="712503714"
-X-IronPort-AV: E=Sophos;i="5.96,204,1665471600"; d="scan'208";a="712503714"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga004.fm.intel.com with ESMTP; 29 Nov 2022 11:19:06 -0800
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6500,9779,10546"; a="786170093"
+X-IronPort-AV: E=Sophos;i="5.96,204,1665471600"; d="scan'208";a="786170093"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmsmga001.fm.intel.com with ESMTP; 29 Nov 2022 11:19:43 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Tue, 29 Nov 2022 11:19:06 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ 15.1.2507.16; Tue, 29 Nov 2022 11:19:43 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Tue, 29 Nov 2022 11:19:06 -0800
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.40) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.16 via Frontend Transport; Tue, 29 Nov 2022 11:19:43 -0800
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.169)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Tue, 29 Nov 2022 11:19:05 -0800
+ 15.1.2507.16; Tue, 29 Nov 2022 11:19:41 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=V2xJgVkX6BSJ5LSjQ7O2vreWeVpv4pvSRKKiT/q5z6pF1hhBXWGyVwJWMZhaDyEciYDYSMBjH+XQHESjP5TMrNqzsCm+q0dIR+VuyXRU7/3lWFb3Nfn09Q1Jxf2yNog5YCphdHGILX0vPhCS8411zTioU1QB4WVFmJSyifmhgQk+KuGMFFY6PUgbx332Gs0PyBgexT2sBVX/LlzuJDla6H9aEudZjysigSRoafzXoa5/N7kdh0UDpKe47ZuOxsXiYoYpTFW8Uc0M7QhJBnhG/y0oXqAcjhwlJjm5FG7MKQbgC3PtOJNv9tAxQiab3IvV0ivu3+U9R2jhktG6QGYdzw==
+ b=bcluSDvagimcKMeBx9Sco+aoKwiAz7NxNgywKFdfX7o8FKBJMqlf9MBahS/xvQG7+ZgmaXeBywulPHqmis/mkVH6f002IodMKYweFfhmTDdLwMoqOQaMVDRo7jMn1wwoGmGusI8uea2XjAtGK6NKudhpCR4IatJ7m0gyj435uKjCTZyD/LrDRqKhCuxOmK7azFFJdxqefKIBVUWXd/PwqRG1pqyxrCIe+3ywwi8UwxH75bUX1uBVTH1atqVywkG8eRUYA15JbhisIdywLKenv/UXOgwxNFAltNjypTiv4kxOVX13Ky81EXP/skdkTN+fZj53uvvHFpQnRkrHEDwQlQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=z1ZD4lxBnmqipFDke1LxyYmBa0C3pchidqN7yimNt+0=;
- b=JGheBg2MHntVgJq9PgCPLJt3KtbvXalTG6fIwEONKege2sVap62YFNeabsl0yn8RHaRYId/IelQggAKjO0tmP5Uqa8E9Geo3uNBxH7eWQO+TzqmnFOqidmT0nHW/VDfnlYDZAJ2Epx9HYD8v7tFQ5OtzxaL3dez9L623YNnxylUmtbGDw9dGzv0ZmjGdbVcOzsHtd26kHrEXaOKHp3PG7kW8edVHS47mVkB2IrfsjiXtcSmOtOJVTmXD4x4SsDYec4cR3UYu39iXP+wM05FhvXcsjCQRgPGcJOSQfSIqbWVfeJVCn/iP17/7eqD+RPlNAIzv9cOFGrrtYMenCiht2g==
+ bh=5SM3DGjsF5PkMoxZ7Z8qLWOBYxWMxGHAAhZTV02GR1k=;
+ b=kuyZKN/QK4uV58hdwhErvF/lp7YvRhEwYy8Ktj0jxlGf72H+utphHhVXpGvOkAgND/H4n1N5tRpapoc0yGsDm6k60DV7rLcoLdKNRq0xrINd/zWFAZk5kx1/fWOTANZWY2wbjYfBknW/nA4Qpiix4F1ILDhkaAtVU0XF91IdGCyiBIobU9edl5/tq9N+ET/j9dxu+xIGbiC4X2pWz2JpSl0D3HmbSAHq9NqkuQENIg1knKtAJMjVBGJ/uyz+MgrX8IH0ZCmw/ahJoRuiQR2fNVU+TGRI7l0kZRKCMJ7Jgiyd07mUgyMO6NAwlSbsGV5ANkjohl6A227UijmeVjtTvw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5488.namprd11.prod.outlook.com (2603:10b6:5:39d::5) by
- DM6PR11MB4593.namprd11.prod.outlook.com (2603:10b6:5:2a3::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5857.23; Tue, 29 Nov 2022 19:19:04 +0000
-Received: from DM4PR11MB5488.namprd11.prod.outlook.com
- ([fe80::f7a8:6d03:2464:2afd]) by DM4PR11MB5488.namprd11.prod.outlook.com
- ([fe80::f7a8:6d03:2464:2afd%6]) with mapi id 15.20.5857.023; Tue, 29 Nov 2022
- 19:19:04 +0000
-Message-ID: <e82e6983-abd0-b5c7-2f65-52a2170698a0@intel.com>
-Date: Tue, 29 Nov 2022 11:19:02 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
+Received: from CY4PR1101MB2166.namprd11.prod.outlook.com
+ (2603:10b6:910:1e::13) by SN7PR11MB7065.namprd11.prod.outlook.com
+ (2603:10b6:806:298::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5857.23; Tue, 29 Nov
+ 2022 19:19:40 +0000
+Received: from CY4PR1101MB2166.namprd11.prod.outlook.com
+ ([fe80::1ee7:a883:fa30:3eb6]) by CY4PR1101MB2166.namprd11.prod.outlook.com
+ ([fe80::1ee7:a883:fa30:3eb6%9]) with mapi id 15.20.5857.023; Tue, 29 Nov 2022
+ 19:19:40 +0000
+From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH 1/1] drm/i915: Implement workaround for CDCLK
+ PLL disable/enable
+Thread-Index: AQHY//D6YOCgrj9gQE2GNYbsadLkEK5WTlGA
+Date: Tue, 29 Nov 2022 19:19:40 +0000
+Message-ID: <CY4PR1101MB2166A66996BCE28F1B6B70C1F8129@CY4PR1101MB2166.namprd11.prod.outlook.com>
+References: <20221124103623.13974-1-stanislav.lisovskiy@intel.com>
+ <20221124103623.13974-2-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20221124103623.13974-2-stanislav.lisovskiy@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: <John.C.Harrison@Intel.com>, <Intel-GFX@Lists.FreeDesktop.Org>
-References: <20221123223108.1696415-1-John.C.Harrison@Intel.com>
- <20221123223108.1696415-4-John.C.Harrison@Intel.com>
-From: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
-In-Reply-To: <20221123223108.1696415-4-John.C.Harrison@Intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BYAPR07CA0081.namprd07.prod.outlook.com
- (2603:10b6:a03:12b::22) To DM4PR11MB5488.namprd11.prod.outlook.com
- (2603:10b6:5:39d::5)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5488:EE_|DM6PR11MB4593:EE_
-X-MS-Office365-Filtering-Correlation-Id: fc72b349-d7ba-49a9-05d5-08dad23e940f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: S2k3e0BUO8TrIhaGWQnO4GIy4AbUspzeE9zS+3Q/xzb77CN3nBC5NokKtF74OmatsK38R9E3vxV2RPg14T/FGiKWyFDF/y95xCu7fScIjqO7rrm3aczwq00hOpSTuyrCZlaSZyIUY9FHFyAXG2XeiZoQM1Gbe3zgwI/ORoLaEPfVkluoT7OCWWCYl0gf57vjiJRxCYRBSxRFBwdN3VeoH5uZ6X4Rg8n7W/mqD9I2+foeuxdCbiyvufHDxBMnV7FI7hOyTdSq3tMnuUhmzvKaPzGZk9YJYac3QbfmT30lmPkXSdeHuyIPmTlm2dE1Ejevvh6zLHKU5uZNxA6nbXuYoCbH6GWnMGgbBGpI0tpZIbndg5cz4tBJX99GaqGBWhDfYo/JlcOJ8GIpZJG3PLxfAtFR2/l7OERZqE9Yf8ZWceFZ5c4ag9wso46EuMPMeMoIynFCEO7Qdgl9JuzBfvEtSXKyUfXzqH27D0Ef1LT0EW4W4ZLMVz15tfJDMipXor1LbO8KPk08pBWkoxx1yGkEmhiqBOe9GiFIXWQtZ3iSziQ8Fot0SIEl3Vnj5Ng9Hp+pJbKdpzKWJ4iVfoEmReSNSSz2Y1jwC6m94pwLUN/1awsStRPXVwZCZPQLFiGt09/2rcPczUeINRHkzuaEHLtEZz6tFcN1fHMua5jrCzbXLD9Y7nEDQMLEZeSLgmGruE5ltez6oXggTZ1mC+M13o8IkA/x7vDFAHzHcgHFyd4/moc=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5488.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(396003)(346002)(376002)(366004)(39860400002)(136003)(451199015)(5660300002)(82960400001)(30864003)(6512007)(26005)(2616005)(41300700001)(66556008)(66946007)(36756003)(8676002)(450100002)(66476007)(4326008)(38100700002)(2906002)(8936002)(186003)(86362001)(31696002)(316002)(6506007)(6486002)(53546011)(83380400001)(31686004)(478600001)(45980500001)(43740500002);
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CY4PR1101MB2166:EE_|SN7PR11MB7065:EE_
+x-ms-office365-filtering-correlation-id: 147ca930-4061-4d9e-8efa-08dad23ea992
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 0VYBnYncxOKzLMQLslk+vMv+5Box3vPPVHO8Y3FbCFVefmTWqixDpKtwKIcaKKRbDfy6ijjc+THIGwfWbmfYiBxc4gGNxm8nKqVngSTbeMDKl/Wr+g96NxEnYOy93Vucce6GmA7BckYnHFDNj3HcJec71yUn6Rc4bONryhYcuZMBeQpaLD9gv4GqvUxSavsnXENbgcDmNxW4ZgVKfCfd2hZmQM73U17aNQOtnOL8WSzVS+df09EHfMV5dGhO7+coYhWYv/jPZe9HIv0SgIJ8sl923Lw1PdKB0Vkr1cz/SQxiAb2nWk2QfROuE/ozSC1iM9bEZs1UjBvBUa46FeBB0wKkRT+vMp2BnPBCNkCShfWHVbAj0q81XHV4facMwWEHFiCxLDlvAZewpguKd4dOsUAazvn22W4KyiNRTeISvcSmLhCWL3+sRN55jetjW3Xb/fe4zJ0oInZHGtoI9QWv1ieEVh4c9oKlbFtGHv1Mg6fbcuxWk6bhEoLXHhRhM3pP/FUCB4Ar6xUkP6fi5Lf6YiXFMnlOomz90r/3afPJSz8BFBbafJyMfFSmOMdJSNXlqCnCGBmbaKSvMsrILbXHc3CfDqVVsXWkNIFxL4w4Yspp55TgsLTQFw3VKyG9NeknXATbBc17GrrpnHDwtNW20VWy+5mG8Q+gRSvjR/XhrMNWcrba6vWNZjXbPNU5R7yatLtcAweac9I1e2DaKyGRZw==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY4PR1101MB2166.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(136003)(396003)(366004)(39860400002)(346002)(376002)(451199015)(66556008)(66476007)(8676002)(64756008)(5660300002)(66446008)(52536014)(41300700001)(76116006)(110136005)(316002)(8936002)(4326008)(66946007)(38100700002)(6506007)(26005)(478600001)(122000001)(9686003)(71200400001)(186003)(107886003)(2906002)(53546011)(83380400001)(7696005)(86362001)(55016003)(33656002)(82960400001)(38070700005);
  DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZlpzVkJnTVVqNzBqR2dOKzAyMkIydkQwMVcyV3lnVlh2WjlROXJleUJweWI3?=
- =?utf-8?B?MXhMRjJodm8xV3lHcElqbXE4Ri9jV3A3cDdkZ1loZEFmZUswclFIa0dSRnMy?=
- =?utf-8?B?NXdYamZ2cTVRZ0pMZkY3dEgyVmtjbjJWNElCSmFnOHgydHUvbC90Mk40U3VY?=
- =?utf-8?B?S3Q4aHVVa2FseDkyazdIaHJOaFVYaVdHRzgxTEg4VEl6SHRUOGNmL1AvMzhy?=
- =?utf-8?B?cmZaTmowMTFvWVJEZjIvaVkxazZ2L1Z6N2xmN3V5OUZIUG1wWlFDbzFzbkVL?=
- =?utf-8?B?WWs0RTBNV2s4OEdaZmllSWp6TUQyc2dtenI2QXllMmJyTmNVakwraFFXNjhC?=
- =?utf-8?B?R29hOVdCS1c2V0VSMU9nRWI4NzNhT1E4R1IyUll1dmtaZGRUYytmSUxzK1Fy?=
- =?utf-8?B?VEVjS1RyVTNZVlFHWU1qY2h5QTZCeUVpU1lsYTZaSS96Qk5SOFVpZ3JTRDNx?=
- =?utf-8?B?bStZZmRTdE9wYzBYYlp5aVllN1VKaDBkaXM1RE9ueVBhSDNiRGZ0blRWZzBz?=
- =?utf-8?B?dTJIWTM4ZlIwVm9ualpVUG11RERwc3FjQm5mUEhtZWxzQlF3dW81YURhdWhM?=
- =?utf-8?B?VjJpUi9LS1l2NTdwN3lOWXVEQ205Z2tNUDRmbFgwdlBLUTFMQmR3bFBtbmJL?=
- =?utf-8?B?Q3R3SnNEV3A3Y0QxSTBDQWpWQmJ3ME5Zdmx5YnpHd0hTbm9UWEF6Y3RaeTNH?=
- =?utf-8?B?KzVuMTJwL0pibGhVM3dBdkhwOHIvRWwrdDFTSW9oNmhDaEtycTQ1Mm8wYXJl?=
- =?utf-8?B?cVBQLzQ5eFFLVlhzamVFU1czdnVEcDVOTENQNGU3dkx6YmdlTXBXR0YvbS9P?=
- =?utf-8?B?RlQzcld6cTVORlJVZ2xuOWtuUE8yZzZBOHhFRlRTUCtCaXUxRE55Q2Q3NWlT?=
- =?utf-8?B?M2prMUNyakVCMzVjYmtkTS9tdnN6dy9wMEFVTlFDbTdZSm1rVVl5YW43WWV6?=
- =?utf-8?B?dk1Remo5Y2Z2NCtFS0VTNGZpcm42emQrNFdPN0tpS1h4Z3k3YnhNbGtPU2ls?=
- =?utf-8?B?VWFDMFZkTCt4ZFhoUElWK2gxNkF3cTNTSDF3bXVEd2VNbmVLNEdTYktmeThL?=
- =?utf-8?B?aWw0NmlYbW92aFArT0JBenlVMmd3aHVSdnk5WWZ3Q0c1bU1qYWZrUEVISitv?=
- =?utf-8?B?NVFneVdMRld5WUJpTWVpaWtSUWFYUVVuSmFKNVBGUkk5bzB0YlROeTJQb3Fp?=
- =?utf-8?B?VGdVemEzeTdsUkdlMEVqWVp3QXl1bnozcUdxL3JmM1JOT245WGRiNXlqYThz?=
- =?utf-8?B?a0MwNzRJbWRjRHA5R2FvU3ZBRXk2cHFFVGVIWFZUaFRVSXVMenJHU0NLYW41?=
- =?utf-8?B?OGFGNVQxZnJETGpNVEtFUnVidEgxVDc2SDVleUZRWnpSWmZqV3U1emxUdG9O?=
- =?utf-8?B?Y2xDUENkQ1I5Sys5T09LM2hpVnFsWVZKUkFBcmVDOVMzTmRqTnJ5bllRYURV?=
- =?utf-8?B?VGRMa3k2MjQvdXVaMmlnWnJVYWg1eDZ5aHVxSTNqOWZ0VUFydDYvWU1SSTVs?=
- =?utf-8?B?UG5LR3F4a2FhMHBEV2p1TnNhT0ROUjdnWHFaNithUnNqN2ZENThnWitSWW5a?=
- =?utf-8?B?L1RRMlB5VFFSQ2w1bjlqaFBqZDMzRzBvUEZMcXJ3dlkyWXRxWWN4b3hrb0tk?=
- =?utf-8?B?SjZjR1lQcERHRExCZCtab2M4Y241eXBEWm4zbzhhWng5TlJmQ2lpQm81YVBJ?=
- =?utf-8?B?bm00a3Y4TnArTk9mWFA4aVh1UG9WTitaRUhoMVFTMDhnN2tFU2EvdmpLcWdL?=
- =?utf-8?B?S0tFdGJKdkFtN3BnOHY5bWpobDV6OFVpQ3B3dmlLVTFTbG1lYlRtMnpBOENo?=
- =?utf-8?B?M3lnb2lrZ1VsMHZudCtlTG1RcURGN0pzR01zcXVYUmtiNWRXRHpZQitqVnNO?=
- =?utf-8?B?MHJ2djBZYTkwc2p1YU5rVHZ2R1czc1FBV09obVBrZEhtSDliZGhqSnZPa0xW?=
- =?utf-8?B?K0lEZjBHSi9kdk43aUhKdEdBdExNdzhwb3VSclBRRjVXdURtUmVDV0NNWmx2?=
- =?utf-8?B?YmkyeVY4Vkl3MHFmZDYxWldFU0E5MllMaUhOQ004T1FTdm9GNnl1WkZpWlVI?=
- =?utf-8?B?WDlvcWtmNDlCeEFETDZrMjhrR3VaSzBnY0lRMjl5alVKQ050eTBwMXhNNzBM?=
- =?utf-8?B?SWRsZXFuR0hpNXJ3OXNvR2JwVHRLWDRNUjJhY3I2RjlkR1dHL24vK0ZwRENG?=
- =?utf-8?B?bVE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: fc72b349-d7ba-49a9-05d5-08dad23e940f
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5488.namprd11.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?lO4+1DwZN8w8gkxpxTjqjw3mt+3RtAkL/3r9I9Fk62dz4F5vTUm0LHeBms8R?=
+ =?us-ascii?Q?oQTBuE8BQqgybX9M8j2N1QsT2Sbmg25MpxRxhGYo70NgKJyWVeFhXuWfbDQU?=
+ =?us-ascii?Q?KHwApvoMNPuTD2O1SQvahDXw6k3eg8b0bO09LCIijCmERqQl3muLtVdqSLgf?=
+ =?us-ascii?Q?bnlzNPC0d5L2iNhw/6RO3i+FkEYVcFd0UUtztHayLi7sCpuldGH7mtqzMA4t?=
+ =?us-ascii?Q?GsmKBmwp9g92XY/N/cad8ehoVh+DSTjbvsxrGgQ4ip9HvQ8+yPnaCjANtUjD?=
+ =?us-ascii?Q?U7697EIt2C5qAAvZf3GeEhX/QfvyAV71ZOd0PhKZKA5WEXjMEBhVkDVFJCCu?=
+ =?us-ascii?Q?Tmr4w2EQlo3xT/fTV5ygr7l5GZbz5/2EgT068P/Zs9MKQIb4UkwC7I1VZV1H?=
+ =?us-ascii?Q?C8E9r2nK0WzU9DHDtd3fkmkN6938IZPMNN7z8ULXpTDkl+1G51+/xbhplo36?=
+ =?us-ascii?Q?OJtjxD7dXsBqCujLpKEF0TVsNm6jXMcieM334A2sk3/lVTFToDF29mccDNvE?=
+ =?us-ascii?Q?3cujGJm7WXsX5tspfIREdzHujQkdewxQ71bsO2cjAyf0mNqNF50qOWBnWOtR?=
+ =?us-ascii?Q?Au+Tb3NVGxBVca3o+QILa7PuSiUwMlYqgFCE/3aZdbbSyZowiLJxcHQuPhKg?=
+ =?us-ascii?Q?Pou7oW/JUNpTywpjns6ANmhVJ1eZHXK6Z/yG+aaxk0jfVRTA9WMrW8bssJux?=
+ =?us-ascii?Q?ODYPa7G4CPn68XVRUfDqNxGgqyzxRN+LqI4xiV9t81hZBue6e1xg5JD7YLtD?=
+ =?us-ascii?Q?He1mRyrpNA6sb0cDRvgvl2CFiNwKsb6l7pdltSWd0EfFb53HdYAJMZI1N77t?=
+ =?us-ascii?Q?bIOGNazUdAcJgqV+kthcO1on0gcJpD1tAsBg4BzgA+o/Qemm7sNvgkA5/VFa?=
+ =?us-ascii?Q?SB8H2SmuF1bMJMDMJ/f3w1ZX5qyJm553cIwpgjl1iLbSv05l9uNiZt4uUGsf?=
+ =?us-ascii?Q?ndl6AXacMqI3+HiiSpkv3Pb9Vtbtu8c7KzmbJvdj6sK3/BHZpWjwCoXyXNtr?=
+ =?us-ascii?Q?tvvOf7m31y3uZc6ZJ2mKZ4sblKDX/0siST/eiLYo3ceETno7nURDRni5ykAy?=
+ =?us-ascii?Q?Hq8bV5cr0V3WqWGxUMX+beDqmNXvaGUeLnAYq/JO28dzMDtcDlL1R9E6BX8G?=
+ =?us-ascii?Q?mMyTw7PVEVvfDLFOwxTHk8sHiedxgVfHsXbqkH0DlkeMLTkBWI5bh5z1orPR?=
+ =?us-ascii?Q?MJ7a+pZyiZsG/Q6aq31LbtzWgEgAaUfL+FsfqrGLlc4coJob14EHObY7sLxF?=
+ =?us-ascii?Q?JU47kkWKa3tu8GoIunGopa/fbrjBAxkayFW7Kr4gT4LBCiPOIJUGTPjXLrGJ?=
+ =?us-ascii?Q?JeuTK725Q/5dz0n429PLFwNkuwAULT0pO5joMlUTBLbcR+PxC4XH7/arOrni?=
+ =?us-ascii?Q?PqIcoTgzy8n/QYsNxU5b3e21aQ3iKOz3/7xpneuIa7Q6IxzToWJ6Daxf/kWv?=
+ =?us-ascii?Q?iINSxhI3HFDY/TMiA9j1yb0rwBhPCR0JJg5nTrw6iFuoLinN7T+k+ZGjDBVc?=
+ =?us-ascii?Q?v/m66d6/8ZAnwWCPRlWfMwJO6GIm+J5uT3hfViZH/LYjrNPw0zssxnFGrg8m?=
+ =?us-ascii?Q?klSOcDnMc18WQP9sh/TJj+61gXnsJ7f8fH/DdacZS3U9aY8GDU4UDkXbcBDC?=
+ =?us-ascii?Q?Gg=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Nov 2022 19:19:04.1883 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: bTXBMRVQ/uCKah0iLgDg2207GUOHhN8ZxIsnev+KxvYCPO7m95aCEfDJXD4x6mCMZ1aKf44mXRkfygOYM0jQ6jqz/R8hM8LjORRvUxtc2IQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4593
+X-MS-Exchange-CrossTenant-AuthSource: CY4PR1101MB2166.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 147ca930-4061-4d9e-8efa-08dad23ea992
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Nov 2022 19:19:40.0481 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: MV4whbSor206UJOIUDbM2s7ICiybiPCocbKh6M2KoahwBFpBtJP4Irf5yNY0F+4K53BDXiOFT6/hKB3xdAchU6sQLD3jcRq2Yq0eS7Wqr74=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7065
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v2 3/3] drm/i915/guc: Use GuC submission API
- version number
+Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915: Implement workaround for
+ CDCLK PLL disable/enable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,346 +150,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Cc: "Nikula, Jani" <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 
-On 11/23/2022 2:31 PM, John.C.Harrison@Intel.com wrote:
-> From: John Harrison <John.C.Harrison@Intel.com>
->
-> The GuC firmware includes an extra version number to specify the
-> submission API level. So use that rather than the main firmware
-> version number for submission related checks.
->
-> Also, while it is guaranteed that GuC version number components are
-> only 8-bits in size, other firmwares do not have that restriction. So
-> stop making assumptions about them generically fitting in a u16
-> individually, or in a u32 as a combined 8.8.8.
->
-> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> -----Original Message-----
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
+> Stanislav Lisovskiy
+> Sent: Thursday, November 24, 2022 2:36 AM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: Nikula, Jani <jani.nikula@intel.com>
+> Subject: [Intel-gfx] [PATCH 1/1] drm/i915: Implement workaround for CDCLK
+> PLL disable/enable
+>=20
+> It was reported that we might get a hung and loss of register access in s=
+ome
+> cases when CDCLK PLL is disabled and then enabled, while squashing is
+> enabled.
+> As a workaround it was proposed by HW team that SW should disable
+> squashing when CDCLK PLL is being reenabled.
+>=20
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 > ---
->   drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  11 ++
->   .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  15 ++-
->   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      | 124 ++++++++++++++++--
->   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h      |  10 +-
->   drivers/gpu/drm/i915/gt/uc/intel_uc_fw_abi.h  |   3 +-
->   5 files changed, 137 insertions(+), 26 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> index 1bb3f98292866..bb4dfe707a7d0 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> @@ -158,6 +158,9 @@ struct intel_guc {
->   	bool submission_selected;
->   	/** @submission_initialized: tracks whether GuC submission has been initialised */
->   	bool submission_initialized;
-> +	/** @submission_version: Submission API version of the currently loaded firmware */
-> +	struct intel_uc_fw_ver submission_version;
-> +
->   	/**
->   	 * @rc_supported: tracks whether we support GuC rc on the current platform
->   	 */
-> @@ -268,6 +271,14 @@ struct intel_guc {
->   #endif
->   };
->   
-> +/*
-> + * GuC version number components are only 8-bit, so converting to a 32bit 8.8.8
-> + * integer works.
-> + */
-> +#define MAKE_GUC_VER(maj, min, pat)	(((maj) << 16) | ((min) << 8) | (pat))
-> +#define MAKE_GUC_VER_STRUCT(ver)	MAKE_GUC_VER((ver).major, (ver).minor, (ver).patch)
-> +#define GUC_SUBMIT_VER(guc)		MAKE_GUC_VER_STRUCT((guc)->submission_version)
-> +
->   static inline struct intel_guc *log_to_guc(struct intel_guc_log *log)
->   {
->   	return container_of(log, struct intel_guc, log);
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index 0a42f1807f52c..53f7f599cde3a 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -1890,7 +1890,7 @@ int intel_guc_submission_init(struct intel_guc *guc)
->   	if (guc->submission_initialized)
->   		return 0;
->   
-> -	if (GET_UC_VER(guc) < MAKE_UC_VER(70, 0, 0)) {
-> +	if (GUC_SUBMIT_VER(guc) < MAKE_GUC_VER(1, 0, 0)) {
->   		ret = guc_lrc_desc_pool_create_v69(guc);
->   		if (ret)
->   			return ret;
-> @@ -2330,7 +2330,7 @@ static int register_context(struct intel_context *ce, bool loop)
->   	GEM_BUG_ON(intel_context_is_child(ce));
->   	trace_intel_context_register(ce);
->   
-> -	if (GET_UC_VER(guc) >= MAKE_UC_VER(70, 0, 0))
-> +	if (GUC_SUBMIT_VER(guc) >= MAKE_GUC_VER(1, 0, 0))
->   		ret = register_context_v70(guc, ce, loop);
->   	else
->   		ret = register_context_v69(guc, ce, loop);
-> @@ -2342,7 +2342,7 @@ static int register_context(struct intel_context *ce, bool loop)
->   		set_context_registered(ce);
->   		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
->   
-> -		if (GET_UC_VER(guc) >= MAKE_UC_VER(70, 0, 0))
-> +		if (GUC_SUBMIT_VER(guc) >= MAKE_GUC_VER(1, 0, 0))
->   			guc_context_policy_init_v70(ce, loop);
->   	}
->   
-> @@ -2956,7 +2956,7 @@ static void __guc_context_set_preemption_timeout(struct intel_guc *guc,
->   						 u16 guc_id,
->   						 u32 preemption_timeout)
->   {
-> -	if (GET_UC_VER(guc) >= MAKE_UC_VER(70, 0, 0)) {
-> +	if (GUC_SUBMIT_VER(guc) >= MAKE_GUC_VER(1, 0, 0)) {
->   		struct context_policy policy;
->   
->   		__guc_context_policy_start_klv(&policy, guc_id);
-> @@ -3283,7 +3283,7 @@ static int guc_context_alloc(struct intel_context *ce)
->   static void __guc_context_set_prio(struct intel_guc *guc,
->   				   struct intel_context *ce)
->   {
-> -	if (GET_UC_VER(guc) >= MAKE_UC_VER(70, 0, 0)) {
-> +	if (GUC_SUBMIT_VER(guc) >= MAKE_GUC_VER(1, 0, 0)) {
->   		struct context_policy policy;
->   
->   		__guc_context_policy_start_klv(&policy, ce->guc_id.id);
-> @@ -4366,7 +4366,7 @@ static int guc_init_global_schedule_policy(struct intel_guc *guc)
->   	intel_wakeref_t wakeref;
->   	int ret = 0;
->   
-> -	if (GET_UC_VER(guc) < MAKE_UC_VER(70, 3, 0))
-> +	if (GUC_SUBMIT_VER(guc) < MAKE_GUC_VER(1, 1, 0))
->   		return 0;
->   
->   	__guc_scheduling_policy_start_klv(&policy);
-> @@ -4905,6 +4905,9 @@ void intel_guc_submission_print_info(struct intel_guc *guc,
->   	if (!sched_engine)
->   		return;
->   
-> +	drm_printf(p, "GuC Submission API Version: %d.%d.%d\n",
-> +		   guc->submission_version.major, guc->submission_version.minor,
-> +		   guc->submission_version.patch);
->   	drm_printf(p, "GuC Number Outstanding Submission G2H: %u\n",
->   		   atomic_read(&guc->outstanding_submission_g2h));
->   	drm_printf(p, "GuC tasklet count: %u\n",
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> index 5e2ee1ac89514..7d2349647b593 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> @@ -478,6 +478,62 @@ static int check_gsc_manifest(const struct firmware *fw,
->   	return 0;
->   }
->   
-> +static void uc_unpack_css_version(struct intel_uc_fw_ver *ver, u32 css_value)
-> +{
-> +	/* Get version numbers from the CSS header */
-> +	ver->major = FIELD_GET(CSS_SW_VERSION_UC_MAJOR, css_value);
-> +	ver->minor = FIELD_GET(CSS_SW_VERSION_UC_MINOR, css_value);
-> +	ver->patch = FIELD_GET(CSS_SW_VERSION_UC_PATCH, css_value);
+>  drivers/gpu/drm/i915/display/intel_cdclk.c | 14 ++++++++++++--
+>  1 file changed, 12 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> index 0c107a38f9d0..e338f288c9ac 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -1801,6 +1801,13 @@ static bool
+> cdclk_compute_crawl_and_squash_midpoint(struct drm_i915_private *i91
+>  	return true;
+>  }
+>=20
+> +static bool pll_enable_wa_needed(struct drm_i915_private *dev_priv) {
+> +	return ((IS_DG2(dev_priv) || IS_METEORLAKE(dev_priv))
+> +		&& dev_priv->display.cdclk.hw.vco > 0
+> +		&& HAS_CDCLK_SQUASH(dev_priv));
+Redundant check. If it is MTL or DG2, then it will have HAS_CDCLK_SQUASH se=
+t to true always. Shouldn't vco be 0 instead of > 0. The commit message say=
+s the hang can be observed when moving from 0 to > 0 vco.=20
+
+Anusha
 > +}
 > +
-> +static void guc_read_css_info(struct intel_uc_fw *uc_fw, struct uc_css_header *css)
-> +{
-> +	struct intel_guc *guc = container_of(uc_fw, struct intel_guc, fw);
+>  static void _bxt_set_cdclk(struct drm_i915_private *dev_priv,
+>  			   const struct intel_cdclk_config *cdclk_config,
+>  			   enum pipe pipe)
+> @@ -1815,9 +1822,12 @@ static void _bxt_set_cdclk(struct
+> drm_i915_private *dev_priv,
+>  	    !cdclk_pll_is_unknown(dev_priv->display.cdclk.hw.vco)) {
+>  		if (dev_priv->display.cdclk.hw.vco !=3D vco)
+>  			adlp_cdclk_pll_crawl(dev_priv, vco);
+> -	} else if (DISPLAY_VER(dev_priv) >=3D 11)
+> +	} else if (DISPLAY_VER(dev_priv) >=3D 11) {
+> +		if (pll_enable_wa_needed(dev_priv))
+> +			dg2_cdclk_squash_program(dev_priv, 0);
 > +
-> +	/*
-> +	 * The GuC firmware includes an extra version number to specify the
-> +	 * submission API level. This allows submission code to work with
-> +	 * multiple GuC versions without having to know the absolute firmware
-> +	 * version number (there are likely to be multiple firmware releases
-> +	 * which all support the same submission API level).
-> +	 *
-> +	 * Note that the spec for the CSS header defines this version number
-> +	 * as 'vf_version' as it was originally intended for virtualisation.
-> +	 * However, it is applicable to native submission as well.
-> +	 *
-> +	 * Unfortunately, due to an oversight, this version number was only
-> +	 * exposed in the CSS header from v70.6.0.
-> +	 */
-> +	if (uc_fw->file_selected.ver.major >= 70) {
-> +		if (uc_fw->file_selected.ver.minor >= 6) {
-> +			/* v70.6.0 adds CSS header support */
-> +			uc_unpack_css_version(&guc->submission_version, css->vf_version);
-> +		} else if (uc_fw->file_selected.ver.minor >= 3) {
-> +			/* v70.3.0 introduced v1.1.0 */
-> +			guc->submission_version.major = 1;
-> +			guc->submission_version.minor = 1;
-> +			guc->submission_version.patch = 0;
-> +		} else {
-> +			/* v70.0.0 introduced v1.0.0 */
-> +			guc->submission_version.major = 1;
-> +			guc->submission_version.minor = 0;
-> +			guc->submission_version.patch = 0;
-> +		}
-> +	} else if (uc_fw->file_selected.ver.major >= 69) {
-> +		/* v69.0.0 introduced v0.10.0 */
-> +		guc->submission_version.major = 0;
-> +		guc->submission_version.minor = 10;
-> +		guc->submission_version.patch = 0;
-> +	} else {
-> +		/* Prior versions were v0.1.0 */
-> +		guc->submission_version.major = 0;
-> +		guc->submission_version.minor = 1;
-> +		guc->submission_version.patch = 0;
-> +	}
-> +
-> +	uc_fw->private_data_size = css->private_data_size;
-> +}
-> +
->   static int check_ccs_header(struct intel_gt *gt,
->   			    const struct firmware *fw,
->   			    struct intel_uc_fw *uc_fw)
-> @@ -531,20 +587,50 @@ static int check_ccs_header(struct intel_gt *gt,
->   		return -E2BIG;
->   	}
->   
-> -	/* Get version numbers from the CSS header */
-> -	uc_fw->file_selected.ver.major = FIELD_GET(CSS_SW_VERSION_UC_MAJOR,
-> -						   css->sw_version);
-> -	uc_fw->file_selected.ver.minor = FIELD_GET(CSS_SW_VERSION_UC_MINOR,
-> -						   css->sw_version);
-> -	uc_fw->file_selected.ver.patch = FIELD_GET(CSS_SW_VERSION_UC_PATCH,
-> -						   css->sw_version);
-> +	uc_unpack_css_version(&uc_fw->file_selected.ver, css->sw_version);
->   
->   	if (uc_fw->type == INTEL_UC_FW_TYPE_GUC)
-> -		uc_fw->private_data_size = css->private_data_size;
-> +		guc_read_css_info(uc_fw, css);
->   
->   	return 0;
->   }
->   
-> +static bool is_ver_8bit(struct intel_uc_fw_ver *ver)
-> +{
-> +	return ver->major < 0xFF && ver->minor < 0xFF && ver->patch < 0xFF;
-> +}
-> +
-> +static bool gyc_check_version_range(struct intel_uc_fw *uc_fw)
-
-typo gyc. With this fixed:
-
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-
-Daniele
-
-> +{
-> +	struct intel_guc *guc = container_of(uc_fw, struct intel_guc, fw);
-> +
-> +	/*
-> +	 * GuC version number components are defined as being 8-bits.
-> +	 * The submission code relies on this to optimise version comparison
-> +	 * tests. So enforce the restriction here.
-> +	 */
-> +
-> +	if (!is_ver_8bit(&uc_fw->file_selected.ver)) {
-> +		drm_warn(&__uc_fw_to_gt(uc_fw)->i915->drm, "%s firmware: invalid file version: 0x%02X:%02X:%02X\n",
-> +			 intel_uc_fw_type_repr(uc_fw->type),
-> +			 uc_fw->file_selected.ver.major,
-> +			 uc_fw->file_selected.ver.minor,
-> +			 uc_fw->file_selected.ver.patch);
-> +		return false;
-> +	}
-> +
-> +	if (!is_ver_8bit(&guc->submission_version)) {
-> +		drm_warn(&__uc_fw_to_gt(uc_fw)->i915->drm, "%s firmware: invalid submit version: 0x%02X:%02X:%02X\n",
-> +			 intel_uc_fw_type_repr(uc_fw->type),
-> +			 guc->submission_version.major,
-> +			 guc->submission_version.minor,
-> +			 guc->submission_version.patch);
-> +		return false;
-> +	}
-> +
-> +	return true;
-> +}
-> +
->   /**
->    * intel_uc_fw_fetch - fetch uC firmware
->    * @uc_fw: uC firmware
-> @@ -621,6 +707,9 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
->   	if (err)
->   		goto fail;
->   
-> +	if (uc_fw->type == INTEL_UC_FW_TYPE_GUC && !gyc_check_version_range(uc_fw))
-> +		goto fail;
-> +
->   	if (uc_fw->file_wanted.ver.major) {
->   		/* Check the file's major version was as it claimed */
->   		if (uc_fw->file_selected.ver.major != uc_fw->file_wanted.ver.major) {
-> @@ -1054,7 +1143,7 @@ size_t intel_uc_fw_copy_rsa(struct intel_uc_fw *uc_fw, void *dst, u32 max_len)
->    */
->   void intel_uc_fw_dump(const struct intel_uc_fw *uc_fw, struct drm_printer *p)
->   {
-> -	u32 ver_sel, ver_want;
-> +	bool got_wanted;
->   
->   	drm_printf(p, "%s firmware: %s\n",
->   		   intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path);
-> @@ -1063,9 +1152,20 @@ void intel_uc_fw_dump(const struct intel_uc_fw *uc_fw, struct drm_printer *p)
->   			   intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_wanted.path);
->   	drm_printf(p, "\tstatus: %s\n",
->   		   intel_uc_fw_status_repr(uc_fw->status));
-> -	ver_sel = MAKE_UC_VER_STRUCT(uc_fw->file_selected.ver);
-> -	ver_want = MAKE_UC_VER_STRUCT(uc_fw->file_wanted.ver);
-> -	if (ver_sel < ver_want)
-> +
-> +	if (uc_fw->file_selected.ver.major < uc_fw->file_wanted.ver.major)
-> +		got_wanted = false;
-> +	else if ((uc_fw->file_selected.ver.major == uc_fw->file_wanted.ver.major) &&
-> +		 (uc_fw->file_selected.ver.minor < uc_fw->file_wanted.ver.minor))
-> +		got_wanted = false;
-> +	else if ((uc_fw->file_selected.ver.major == uc_fw->file_wanted.ver.major) &&
-> +		 (uc_fw->file_selected.ver.minor == uc_fw->file_wanted.ver.minor) &&
-> +		 (uc_fw->file_selected.ver.patch < uc_fw->file_wanted.ver.patch))
-> +		got_wanted = false;
-> +	else
-> +		got_wanted = true;
-> +
-> +	if (!got_wanted)
->   		drm_printf(p, "\tversion: wanted %u.%u.%u, found %u.%u.%u\n",
->   			   uc_fw->file_wanted.ver.major,
->   			   uc_fw->file_wanted.ver.minor,
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-> index 6501d6f1fbdff..3ab87c54a3987 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-> @@ -66,9 +66,9 @@ enum intel_uc_fw_type {
->   #define INTEL_UC_FW_NUM_TYPES 2
->   
->   struct intel_uc_fw_ver {
-> -	u16 major;
-> -	u16 minor;
-> -	u16 patch;
-> +	u32 major;
-> +	u32 minor;
-> +	u32 patch;
->   };
->   
->   /*
-> @@ -114,10 +114,6 @@ struct intel_uc_fw {
->   	bool loaded_via_gsc;
->   };
->   
-> -#define MAKE_UC_VER(maj, min, pat)	((pat) | ((min) << 8) | ((maj) << 16))
-> -#define MAKE_UC_VER_STRUCT(ver)		MAKE_UC_VER((ver).major, (ver).minor, (ver).patch)
-> -#define GET_UC_VER(uc)			(MAKE_UC_VER_STRUCT((uc)->fw.file_selected.ver))
-> -
->   /*
->    * When we load the uC binaries, we pin them in a reserved section at the top of
->    * the GGTT, which is ~18 MBs. On multi-GT systems where the GTs share the GGTT,
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw_abi.h b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw_abi.h
-> index 7a411178bdbf2..646fa8aa6cf19 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw_abi.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw_abi.h
-> @@ -74,7 +74,8 @@ struct uc_css_header {
->   #define CSS_SW_VERSION_UC_MAJOR		(0xFF << 16)
->   #define CSS_SW_VERSION_UC_MINOR		(0xFF << 8)
->   #define CSS_SW_VERSION_UC_PATCH		(0xFF << 0)
-> -	u32 reserved0[13];
-> +	u32 vf_version;
-> +	u32 reserved0[12];
->   	union {
->   		u32 private_data_size; /* only applies to GuC */
->   		u32 reserved1;
+>  		icl_cdclk_pll_update(dev_priv, vco);
+> -	else
+> +	} else
+>  		bxt_cdclk_pll_update(dev_priv, vco);
+>=20
+>  	waveform =3D cdclk_squash_waveform(dev_priv, cdclk);
+> --
+> 2.37.3
 
