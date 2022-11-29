@@ -2,37 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1141263C82F
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Nov 2022 20:21:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3F4F63C975
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Nov 2022 21:38:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0613610E334;
-	Tue, 29 Nov 2022 19:21:28 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from aposti.net (aposti.net [89.234.176.197])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7FF510E336;
- Tue, 29 Nov 2022 19:21:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
- s=mail; t=1669749653; h=from:from:sender:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=LJ8DQbIPu45uJFi2+s89p8C8So0glLs+3UhV12NFAG4=;
- b=1bld4QEX0BAnu3Z14gTXZpmFtmvXP8F67tDurl3HqD8RxcF4B8CIQ8VC5WPwwqd6Ktn/EK
- 1KedmnMleBUB/U3DHVlgwJJIMabuy87w9VHSnZQvPy0xvKXHrNXFEHxq4WnlMT2wPzUTiZ
- a4WsVlCqWMxNe2ZKCZHvbzdWNBpO9Uc=
-From: Paul Cercueil <paul@crapouillou.net>
-To: David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>
-Date: Tue, 29 Nov 2022 19:19:42 +0000
-Message-Id: <20221129191942.138244-13-paul@crapouillou.net>
-In-Reply-To: <20221129191942.138244-1-paul@crapouillou.net>
-References: <20221129191733.137897-1-paul@crapouillou.net>
- <20221129191942.138244-1-paul@crapouillou.net>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1144C10E100;
+	Tue, 29 Nov 2022 20:38:00 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04DE110E100
+ for <Intel-gfx@lists.freedesktop.org>; Tue, 29 Nov 2022 20:37:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1669754276; x=1701290276;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=2DEsDUq/6dzRjX2/jqgnXsRrEtNPK3AvNMe4HsL/2XE=;
+ b=SLSKkKBxI6GlbUoIFPlAdfI9zdotr6aCEI25T2/8yDKAlB0g21fp8tm0
+ HJIsYo6BMTes+EJC2nFsRCDIPSeLuiy5V+WgBHro7Gai11soH0zv56Wxn
+ k4qdv8dyNchYqfqLjrt7JlAihkkLtdzDdqwdRSU7hOqFfVebh7lY8k2at
+ kudSK3+1E+8qPlyFaSh7YEW5aHHQ1WBxyyZwJ+P3r779OK7g7vLJGHw1V
+ hiD7GByAG9KX2F9OdAyJsJ0rFY3Dn0ucfJSuIAo+TQHX+Ldz1QxgWh2bj
+ k52SKOaZJxypRVzu3fZPtxL/lZW+bwPc1MJYcxPmKIy4fhC90r9t3moK/ A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10546"; a="316377406"
+X-IronPort-AV: E=Sophos;i="5.96,204,1665471600"; d="scan'208";a="316377406"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Nov 2022 12:37:55 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10546"; a="707374034"
+X-IronPort-AV: E=Sophos;i="5.96,204,1665471600"; d="scan'208";a="707374034"
+Received: from cataylo2-desk.jf.intel.com ([10.165.21.136])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Nov 2022 12:37:54 -0800
+From: "Taylor, Clinton A" <clinton.a.taylor@intel.com>
+To: Intel-gfx@lists.freedesktop.org
+Date: Tue, 29 Nov 2022 12:33:43 -0800
+Message-Id: <20221129203343.720860-1-clinton.a.taylor@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 26/26] drm/i915/gt: Remove #ifdef guards for
- PM related functions
+Subject: [Intel-gfx] [PATCH v4] drm/i915/hdmi: SPD infoframe update for
+ discrete
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,65 +55,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Paul Cercueil <paul@crapouillou.net>, dri-devel@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Instead of defining two versions of intel_sysfs_rc6_init(), one for each
-value of CONFIG_PM, add a check on !IS_ENABLED(CONFIG_PM) early in the
-function. This will allow the compiler to automatically drop the dead
-code when CONFIG_PM is disabled, without having to use #ifdef guards.
+Replace integrated with discrete for dgfx platforms.
 
-This has the advantage of always compiling these functions in,
-independently of any Kconfig option. Thanks to that, bugs and other
-regressions are subsequently easier to catch.
-
-Signed-off-by: Paul Cercueil <paul@crapouillou.net>
----
+v2: commit title reword (Jani)
+v3: use variable name i915 (Jani)
+v4: commit message reword (MattR)
 Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Taylor, Clinton A <clinton.a.taylor@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c | 8 +-------
- 1 file changed, 1 insertion(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-index cf71305ad586..09b9365ededd 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-@@ -164,7 +164,6 @@ sysfs_gt_attribute_r_func(struct kobject *kobj, struct attribute *attr,
- 								 NULL);			\
- 	INTEL_GT_ATTR_RO(_name)
- 
--#ifdef CONFIG_PM
- static u32 get_residency(struct intel_gt *gt, enum intel_rc6_res_type id)
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index bac85d88054f..e82f8a07e2b0 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -767,6 +767,7 @@ intel_hdmi_compute_spd_infoframe(struct intel_encoder *encoder,
+ 				 struct intel_crtc_state *crtc_state,
+ 				 struct drm_connector_state *conn_state)
  {
- 	intel_wakeref_t wakeref;
-@@ -300,7 +299,7 @@ static void intel_sysfs_rc6_init(struct intel_gt *gt, struct kobject *kobj)
- {
++	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+ 	struct hdmi_spd_infoframe *frame = &crtc_state->infoframes.spd.spd;
  	int ret;
  
--	if (!HAS_RC6(gt->i915))
-+	if (!IS_ENABLED(CONFIG_PM) || !HAS_RC6(gt->i915))
- 		return;
+@@ -776,7 +777,11 @@ intel_hdmi_compute_spd_infoframe(struct intel_encoder *encoder,
+ 	crtc_state->infoframes.enable |=
+ 		intel_hdmi_infoframe_enable(HDMI_INFOFRAME_TYPE_SPD);
  
- 	ret = __intel_gt_sysfs_create_group(kobj, rc6_attr_group);
-@@ -329,11 +328,6 @@ static void intel_sysfs_rc6_init(struct intel_gt *gt, struct kobject *kobj)
- 				 gt->info.id, ERR_PTR(ret));
- 	}
- }
--#else
--static void intel_sysfs_rc6_init(struct intel_gt *gt, struct kobject *kobj)
--{
--}
--#endif /* CONFIG_PM */
+-	ret = hdmi_spd_infoframe_init(frame, "Intel", "Integrated gfx");
++	if (IS_DGFX(i915))
++		ret = hdmi_spd_infoframe_init(frame, "Intel", "Discrete gfx");
++	else
++		ret = hdmi_spd_infoframe_init(frame, "Intel", "Integrated gfx");
++
+ 	if (drm_WARN_ON(encoder->base.dev, ret))
+ 		return false;
  
- static u32 __act_freq_mhz_show(struct intel_gt *gt)
- {
 -- 
-2.35.1
+2.25.1
 
