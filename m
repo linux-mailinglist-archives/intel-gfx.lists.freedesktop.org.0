@@ -1,121 +1,140 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96E2463CA60
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Nov 2022 22:14:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAE9E63CA7B
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Nov 2022 22:28:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 694D310E3F2;
-	Tue, 29 Nov 2022 21:14:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4952810E3E5;
+	Tue, 29 Nov 2022 21:28:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1nam02on2082.outbound.protection.outlook.com [40.107.96.82])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9FFE10E3EB;
- Tue, 29 Nov 2022 21:14:15 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C4F410E3E5
+ for <intel-gfx@lists.freedesktop.org>; Tue, 29 Nov 2022 21:28:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1669757298; x=1701293298;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=Qy0rx6/IX+0NlHS5kHihSdiDJX2FiaK97XKntDttm24=;
+ b=Grqc4lJXVkAnVEvvpIVkw0SHm0Df3h6o9gM1rjHJLvsYswgI224zx1aH
+ TXYJiIbnykciMiAF2JisZKc6kj9IzLwZTgPCMyAM/4jeqp2PCkIvtryOd
+ rI4igLumCGPHHQhqqhrMfJlwwOV7kS5uSkcxB5JZox2+Sz+rsrT81QVaK
+ pcUtmFT0wMaocVGf9LS2LCiAluaI5rKdvqWXna2dwnP7ywWpSb3QZ+gAu
+ IkBWtpDJI+0lM0wSKUpaF8HMCnd+JZFdio21futTKEI5nJoniIC95+olq
+ CBGNhLW2LsBdnSkgCyOobQRuBdnK9dgnDA8sNXN4hU19hIGdrg5DqLUWw w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10546"; a="315263972"
+X-IronPort-AV: E=Sophos;i="5.96,204,1665471600"; d="scan'208";a="315263972"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Nov 2022 13:28:18 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10546"; a="707390459"
+X-IronPort-AV: E=Sophos;i="5.96,204,1665471600"; d="scan'208";a="707390459"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmsmga008.fm.intel.com with ESMTP; 29 Nov 2022 13:28:18 -0800
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Tue, 29 Nov 2022 13:28:18 -0800
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Tue, 29 Nov 2022 13:28:17 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Tue, 29 Nov 2022 13:28:17 -0800
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.48) by
+ edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Tue, 29 Nov 2022 13:28:17 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kyENqZEw75raJwAA8uDQ0iP/xHSRo/HmNQhJeH9Q9erlVWilh/EYQSGhqXBlro2AVgl/BZlGQjdsn4q+/yBveXD4oa24sy7ZCw/a8566dvnfDEpo11310OzBZtowRv4Sf3G25N0rmTqbDy+qjfkE9Pe/MlyagnexMlYrp/AF4ZAwd5adqW/yFMmc49VPOyAwQFi9JbL6oE9NU691fVCudjeUwFIqMdOnbTLOsEE74LfLeTnCBQQFzdRs/dj00y9QSYZUjx49VxSDISnbfNQELG8Sktil7x4rxb9KjqlG+B57VLGvAQP9hIxFqIlXUm6kyjRUgNtf25OeJBKZuiDAbg==
+ b=FpH6q6u8U/VggkmFtAs3JmG646WEC+gujlljrrWbv/t7B8swK/PNVdKYWiw/T0xfLz5BwRfhkzQPzLqTxCt8wQX6mmcBUUQ00dl7ruupsD2xKgHjSAeo+pFS3H1B4P+AxvkKafQGYsOoRUf79oL5ypOqcsRO2vElG0/nymROJ8MD5Tua+a/QjcMC9hin9tXc+7PkULA5rhhKnB125/Gcms2JR9LYK3FGIRhOT1HsQSUUBpgKSg3k+jJxg4QS/HaSub3dD/F0GntkN49dD7moEg9m0m6TFs9GKQuRZ5d+pDUVtyJ6BGQpHWqZwY5HAZ/DkLjX9TzfThQQ7s4ATyyfUg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TopLySu/KPzURiWMX4x5RSPnRlHYO7lEmIxo19hWdHY=;
- b=C7PBKuSOrounPCzaPhkGeOvNjkxvDa3As4pWIssU1NA5XExTb7FLMcpVheh82SvibbB3sW4/Q/xhCs5wbtqQbEfcbjS04G4BV40ynik1/3VIoCiGMJ1s5hhtl/jjE9N0+QMulIExj/GdGRF+aJSpYKEaU9ZnGnVg2EdSBJV/FzmBwrqQPLx0iIlWC4pq8s8yCSS5iSxBJYm/3fMlj3Wd3PRcOejgam38/sWS0YWoZbhv0lkaIOlajec9wsLtFg2/NV6hNm91HPklrKT+oM+hvkOLhQ1AS+++Dn0CSwBWntE5dDeV9hFAdrWbbW8KQYKPHvRlwrt+OcPQBj4/czEzpg==
+ bh=VQj7eA35FWyV1SpWVVm80N9LkyYofSveVlKr+nTC7Hg=;
+ b=CbtgoqDUBMxAYOkqxYbjdaGSM1HlNlPN31UmQkezl1qz47zD/GXmPgrpz4syo7y1PrlkFXWDvMrqSgLZyikwm6lclfllG+tmtYLznHqR6RfJlVzo6vuDzykues5j5+SLwIK1E25uAIiAWqjifIQ9WZ4JwNQy6gf1rlkK4P47fdkMXdxn2GhPRv1NHRJzQD3wOE5MmM6bnCa8SeSyEC31/oOV6r2KztiGdeQIHRbR2unBW9+DSQPHFZHL9dHnf5755VdnawlfkraoamXYCgvVHSdKPWhRugYl5iMfde3biXy/xt5dvIzJQUZ7M+vsQRdljOmvsqHTs9+DGEOLgxYvHA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TopLySu/KPzURiWMX4x5RSPnRlHYO7lEmIxo19hWdHY=;
- b=MjuiSc6NoMEYEO/Yw4n1bgmenJnie77/OFQyXBgg+wMu2uu0xpBu+Dn33lvwzNUpzABzoJWeBzNqk/uxGZiWrXaIxB+oagL7xxZwWoWxDO2qMxQQwuq9Ps7TCTLVFiD/UcWyX1XYEC6HFvZy4vx0sUXPjawC6VaeJw8NNlmQgVk=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com (2603:10b6:408:118::14)
- by IA1PR12MB6065.namprd12.prod.outlook.com (2603:10b6:208:3ef::7)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by LV2PR11MB5973.namprd11.prod.outlook.com (2603:10b6:408:14e::14)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5857.23; Tue, 29 Nov
- 2022 21:14:12 +0000
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::5d8:f3f2:d940:5350]) by BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::5d8:f3f2:d940:5350%3]) with mapi id 15.20.5857.023; Tue, 29 Nov 2022
- 21:14:12 +0000
-Message-ID: <8ff841e3-8eef-9ec2-2ba5-4907f18873c0@amd.com>
-Date: Tue, 29 Nov 2022 16:14:10 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Content-Language: en-US
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-References: <20221125102137.1801-1-christian.koenig@amd.com>
- <20221125102137.1801-3-christian.koenig@amd.com>
-From: Felix Kuehling <felix.kuehling@amd.com>
-Organization: AMD Inc.
-In-Reply-To: <20221125102137.1801-3-christian.koenig@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BL0PR02CA0042.namprd02.prod.outlook.com
- (2603:10b6:207:3d::19) To BN9PR12MB5115.namprd12.prod.outlook.com
- (2603:10b6:408:118::14)
+ 2022 21:28:15 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::f4b9:901c:6882:c286]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::f4b9:901c:6882:c286%4]) with mapi id 15.20.5857.023; Tue, 29 Nov 2022
+ 21:28:15 +0000
+Date: Tue, 29 Nov 2022 16:28:10 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Alan Previn <alan.previn.teres.alexis@intel.com>
+Message-ID: <Y4Z5ajHrt3hllvUZ@intel.com>
+References: <20221129003152.3652072-1-alan.previn.teres.alexis@intel.com>
+ <20221129003152.3652072-2-alan.previn.teres.alexis@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20221129003152.3652072-2-alan.previn.teres.alexis@intel.com>
+X-ClientProxiedBy: BYAPR01CA0061.prod.exchangelabs.com (2603:10b6:a03:94::38)
+ To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN9PR12MB5115:EE_|IA1PR12MB6065:EE_
-X-MS-Office365-Filtering-Correlation-Id: f3a0560c-b8cf-448b-574a-08dad24ea969
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|LV2PR11MB5973:EE_
+X-MS-Office365-Filtering-Correlation-Id: a1f3c96b-6f25-4a73-db74-08dad2509f97
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 2ns8n9jpqwH7ly132p468Tk6Tw2Qo6wDDFgxzDKz3xpKVk0J2HUZaf7bt4k3csNzzHprXqAPXIOYqQ7HFHLKAWiAuDFNZf1ONhJvY1fTEBkFmGkOxTRUiIP7yiBMLlUy60XV1WwBWrQvLLSKwiunbsBkRwgeHHsrxNumZ3/y3QOFKF9WZA9mvzhacLkWGm4ZXoAOhHIsbHxkZ9K1BcPYit2magT1Y9LFMac/iuuYVCBSY4fc9PW52VfnlTWEf/4wdHiTP0Iz6f9028JbHaFrmnjevrbLD3KfmvZQCwTV17nKbyfhCiIksXXCDJI6woZ1LZaX9NWXYiBWhVcRCNE7eD7xVSbrAYGWVXswDoIfKH2m0+BZmid5R22XXvl+B9+vk8eSPl2vosZ4B4abDPgdbhLF+H/lhFqf8OeRFJUf2V4aezUapOtJ6fJWXpjOKM5/9bFNGAL4PusY5Fgn5s9KBQxPlIkwxsoFcf7rhxW9761O9JlqOFaQf58V7R6MZXW8Z1T3DUA/+pc2oTBFnv/A51rszaiNLDDg/M8YRNhuSKKsLyrJATMUA/lS0G+Rv6f85ajnDZqjvKFroe75t9NRSAQkCERG/oIgvoOu1jgPM/YVgF8NY4LXPDrjOf8GQFkw/ScJ0kE0nnXhSwUx/TJ1NpgqjG1+kHi8uI55XETLyo5sFPjMGCWJLQOFfU2rfwiwl6tPz+8HinPGU6b5lG/2FrXhjmA6AwGVodYdw8yczEE=
+X-Microsoft-Antispam-Message-Info: 3NjpiqOb4DKSz64mkKsHPm/vK2R9WLQowclU+igDw/BhdwxSeRjpH0wBi+RIzYSQUHo30mF8vixCjxUOe1CgP6BjecOMfCAXlT84wtYSsMQKjLTDq0BYj6VQhAkD6Bi+e3uDeJXgb6qgKZDVdeu1a0QUucCoFT/bjnWTC49XQqnuZNa5gf5mZ5pc6f2/JmMz2HSWVlMaHQU8VSrH/oug6lQvH4uGTzKxy06ev/rtUXFU6ZIavfDBUO0eUqonjU2O8cEyXoO9JnqPiZDdMBU0+EyUsm0yFPwl8feJE1MZL6H0pqnLurkv0yoy7GmsBl4PT5oKlJF1bKf01B6JBajfYw3pSWWEd8FPipzul5oyEqTjQ0+LmGUBy1TQg8Aew87U+PsGK8fCfaFecnxjpFIv0BG2xpTAqbU1lGe2VQeupGvLRiQuCVf8b9Rn3HcoSlmoKJ+N6BQRFYLOMXHl/TkY7/D1dpBMuJjjwtDgQB3tg0NcKDu6s37c90z/y0JLCrZsUlKQ4bSJUM1a0l7Dvw+3R8c2UxQ9pGlJ/nfujZbFvq8yi0v55N6WxjZ/+7LwUOpo46yd6nOVA24MBrsOLbsToxkpOcKYuK/JHFM2MmsW2gh/s/ot7uSd8CFHSJ3Qzjfi
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR12MB5115.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(4636009)(346002)(136003)(376002)(39860400002)(366004)(396003)(451199015)(31696002)(8676002)(66946007)(6512007)(66556008)(53546011)(41300700001)(26005)(8936002)(6506007)(6486002)(478600001)(36916002)(2616005)(110136005)(316002)(38100700002)(30864003)(44832011)(5660300002)(66574015)(2906002)(4001150100001)(83380400001)(66476007)(31686004)(86362001)(186003)(36756003)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(396003)(366004)(346002)(39860400002)(376002)(136003)(451199015)(6636002)(37006003)(4326008)(8676002)(6862004)(8936002)(5660300002)(66476007)(66556008)(36756003)(316002)(41300700001)(66946007)(86362001)(83380400001)(82960400001)(26005)(478600001)(6666004)(6486002)(2616005)(6512007)(186003)(6506007)(38100700002)(2906002)(30864003)(44832011);
+ DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OFU2UkFGVHIxczNZcVlKZ0xvSHFKVjg3ZWhpK2wrUXQ4Mm5namlUZTBJb3dL?=
- =?utf-8?B?WFM1ZCtCV3cvSmZ5QWFOTEMrM0dVQUJhNktEVXNsdWR1ZUxiLzhTYjNZZUFm?=
- =?utf-8?B?U2V2QnVzZ2cyQzRSNi9YK0hqbEsvRmF2WkxRTHppRmNySFc1UjVyakVKNzVw?=
- =?utf-8?B?cW5nZXRZczdIQTkrbmZhMnZjVUZxUFp1c1FHNk5ZdmdWTmxQbzRrcVdCK0tY?=
- =?utf-8?B?eEErNmZXd1Fna01XSitBRzJCcGJxWERQOHo1bHlacDBic2V6M1dEUWhpcG1m?=
- =?utf-8?B?R0pyUXRHdExmQVdHY25KY2pqQmtwL21GamczUTJPWU9aa0E5bDVZenFwdXJ1?=
- =?utf-8?B?UzB6Lzk2dEx5RERPa253UGtoREtEVk9reVVvTkpFVCtLUFdmNDMyOGEwbCtZ?=
- =?utf-8?B?b3A4RzRPSnRqRmRFT3RzczZFdWkyYlkvQUdTVUhlQzVZVm54T2p3ZlFxY0Zr?=
- =?utf-8?B?NWQ0dDB4Q3QzbDRJcGVoRGQzQmhjVExwazJhUXVYZDhaV044eHBQQm9HcXcx?=
- =?utf-8?B?M3Q5RkhySnNQRE5Ba2N6MWhmRlpWTmZmaFU1WFVxRDhZZUxBMGJlN1RrbnBx?=
- =?utf-8?B?MFFmZTE5cVJvM2dGT1FabnI2RWxCSStnK0xHVTdOYVJzRjNpSTQ4Qi9tKzFG?=
- =?utf-8?B?SEJWV3B5N1NjSms4Y2JhcDJaWjlMdFh1MjFDY2VyeE5PMktGOGVOU2pjUFZ5?=
- =?utf-8?B?aDdJMmdZZ2hyNWdKVlBNYWNLM1BpbWhlcExWN0hXYk5zeDlaK2J1MllYaEVz?=
- =?utf-8?B?WUc1V2F4bGs2MnE1OXVFQWpDSDVsMGw1MGtvbEtMNmsrMmo1di80WStwNzhZ?=
- =?utf-8?B?YzhTYzdRQUlFWHZrYVM3V2N2SGZoektqc2tYMjM5MjBqQ1FlNkNqSDVjVCs2?=
- =?utf-8?B?eFJiRzNRRmR6THViNjhDVXZUT3JmVUFzMklXQ2VLOGVHU1RJd2VENThrTXJx?=
- =?utf-8?B?VmMxcFUzYi9Od3E2a25LWCs5MDhsbTQvNmgvckpKS0lIcG9KNzNjeTFkdS9Z?=
- =?utf-8?B?TXNJaDdrOE1kaVBuY1ZvK0svc21RbHVGajdId2ZPUFppSUwzU2g0M3JQcEkz?=
- =?utf-8?B?R3BVclBkeVJ1VE5na1NZMU5iM1ZPVXdQYlBKbnhSQmYzbDZEdjZPaVd2b3JR?=
- =?utf-8?B?M1EvRnowdVA3MmNxMVB4cm8yZi9qSnNrZlE0UTNWaTNBQWt1VWMzN0JTUmNB?=
- =?utf-8?B?bG5ib2RsNHpDajBsNUVUQnl2cXBPaTFnM2NjWnBOL00wMGdFNnE1UUxjNGgw?=
- =?utf-8?B?NWR6THB5cWpaOU1FSkhHNGRDRUU3YTFYWER3VjV6MURVSHh6Q1ZXREZhVGZ6?=
- =?utf-8?B?SEo5K3VqSzhnZDlzREN1Rzd2MTFnM3kvSUZkMnRINEp6YU5rTnJBUktYVWNW?=
- =?utf-8?B?ekhEVE03MnkyMUJLbXZ6bDBTclpWN1RXYXAzWFJzc21meE5iQVB0bVBzS1F5?=
- =?utf-8?B?QUFYRXlmT1NjeXNNV2kxcFNoNzFaY2JBNjRqMFVtUnZEUElTNzZjNWs2OEJr?=
- =?utf-8?B?bGxGb3RmUm9CYm9DQU5zYmVIUTY5RG9HSkhVV1djUEVhYWdDbXRvYU9jSm9l?=
- =?utf-8?B?eCtqam1PL0lPQ2dSRkhyekRrdTBhRGZscTdCcFFaZzFjSnFZamNIWDBEWUVQ?=
- =?utf-8?B?ZVAvUEJ5VThGUzNyd3N0azFGNFhHZWF0L3I0QThlL0ZHTzlWZ2w1WktWR2dv?=
- =?utf-8?B?QkloanB1LzdNN1ovbGkrQXFOMzJoZU1oQ3ZTTGczZStxMkJEOFA1OU5Sc2xt?=
- =?utf-8?B?TGttaEZGeTJ3bVEvMzVLNmxnTENrYitUYnFwYVdRbVN5S2s1NzdMRzJCVHZX?=
- =?utf-8?B?bUlqMnBvamRyWUZiUmtZSUpyOWQyazZDVnhJKytVclNDMit1ZlJjb0lJeEI5?=
- =?utf-8?B?VnRyRm9vbTZDL28zVmlWZjFjSDdaWDRyV2l0c2dORE5MVklIcGxNRXI0RE55?=
- =?utf-8?B?NEN1MHl6TzVpaUhRaFFjWEdpaVMyb2lhZ1VRZzBHMlg0T09yNCtnV2JOc1Fa?=
- =?utf-8?B?VGF1YlNYc1hJUHFOSk9KMEpuZmFIUXNsQlI3VS83M0MzbzNsY2Rxem55U2c4?=
- =?utf-8?B?NGc4dXBrWnhrNXh3OWtLUUJLK243RlZyczZ1ZG9hdkd2RGkrUWx5SUVZajRl?=
- =?utf-8?Q?cnmgPhyEZy5gV7HuMjofVjH+6?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f3a0560c-b8cf-448b-574a-08dad24ea969
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5115.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?IF2Y9XlzTheqnmIWgsEujD2DS8Pntw817sZX/GfB8n4GqIE2nWDOWvzN6OVo?=
+ =?us-ascii?Q?9sEJMXp1pDTQZnw33mNVO/EXnGWImv78HQTx29vVlj6tl0BNnAJfy+sKxafu?=
+ =?us-ascii?Q?GMdeq2zzk0eqQMKjaxr6jTgfebWYCaRixLyuSjhEK2MqBNkgo5TKh1xq4um7?=
+ =?us-ascii?Q?EG4OC+Amqo03NaUrFqS/0ImFfwMZMtXfLPMFIZKOUEJKivL9FzL5WXNoNHy3?=
+ =?us-ascii?Q?x7mP0cdtsx+IOxFGuQ34XIk2UlYB0wPLvKg89Yj4wad+zSh/BifDbfJOyY5Z?=
+ =?us-ascii?Q?dG5wlFBlyBCOV0jh4B3y7KiQlcWXadRWyXJdQ8Wkqnr7uj5bvIlbaE9ouFzw?=
+ =?us-ascii?Q?l+AKbal8aV5eH9KYp2kMTyhEW6siBfRnBmFnlYQu+iwhH20Yi2wdh7n/8ejF?=
+ =?us-ascii?Q?vg+rJ8V7jqt/ethCmFLSZELeR5+nQgz4kjKf4DiG/FxxB89N2VDZkTNh9I7D?=
+ =?us-ascii?Q?GrcyN2/kVUQ7UJJZ3J1jZSwSjnu1aQWfv0YNwD6+5XacJYLn/m8JDAwko4kC?=
+ =?us-ascii?Q?DaVmR24TyN83BNm768PiF13GBX3uV0UOjz7gvN585eH06QSAq6LaAbJRfbyj?=
+ =?us-ascii?Q?5i5uA6r+C4xnEWdvDwGm5dsV95LC38kKruOh243MXbsmDzTMMD0M0+xriK3t?=
+ =?us-ascii?Q?1MH1rD5yKehs/oPoC4Q8EGKz7uly1+fYV5XabPqwwaNQZa5Zmgy9UwzJ3112?=
+ =?us-ascii?Q?k24PsICvDU+Q/ZLGcmxpVFpxCHP72HF9eIPxEjw2ZzZ0n0nAiVxNeynOTjqR?=
+ =?us-ascii?Q?I9qhA13P414wzgLTlg/ToU4Wk34Ocfrmpi5eaA83gfvPNUy152Z4CQ5I08J+?=
+ =?us-ascii?Q?5M44Xp0/y2Oely+Lngrudi0Mp0PrOQBdLT5D1kwE7tehKPrimXOibEKefBr8?=
+ =?us-ascii?Q?jJOnkJNLL3D3J64B6R+ivPZn6F653oS10B8ky0AIuZrkrF8K/HvAS3LvA24/?=
+ =?us-ascii?Q?wk/c+t3FnAD4ecXP+vqXaI27nwcqJ41xJdMtUbH5/lfFanO6pfwgyFLOSfMd?=
+ =?us-ascii?Q?CWPKnoFPZSuoq8hQPENQcFfbN7IiDeH1cSuEPDvjHtSzmPU4ULDCIo+0f9Gs?=
+ =?us-ascii?Q?PayW093Vk1ftN/JIV5eaiLEUQbzHGvcwtp1HzKy9SOBalTy65QBTTEx4EbBg?=
+ =?us-ascii?Q?DrWVXzY6eEUKTao2U1Ta6yaw/fO6sTgYEpHpkPp8hHAxYrIaJV5NoiywQ7Lv?=
+ =?us-ascii?Q?eDZNAJXxk1W/qH/qAN6LpmHPSCUi0+KsAZyAp5w4bjMfRU5PxybRyovW7lf9?=
+ =?us-ascii?Q?eIdn2lrnMZFHNLLDYU7EtF/H6NVvPLgwQ/LjYf1Foh3aE6zb9TZK2JPx8nfx?=
+ =?us-ascii?Q?S81YRMWV1YA7IdbkrKSLQCJb6BNfMc8Jdhno2LxTP6qm+7uGhX6lYqvytnuK?=
+ =?us-ascii?Q?Ifc+2GdsLgVGIhcQ9NVL49WlpHfz/0mGL+eDiNYbc+po7X8zYgoj895THzhU?=
+ =?us-ascii?Q?ANk0iR1g1Su8FomyvT3dxQ6GxB/1er5dE5m2Z4U2OGKOteZpTd1KP+127UrS?=
+ =?us-ascii?Q?tPdV0mBnCpYINr1Oia/qnO6gQWlMaQW7KMMk5GNsJFZ4Vxaif92z2q02hXFm?=
+ =?us-ascii?Q?VAL3EgCkUG9yMPNUm8nSQxFHpP3CwAmqyS9mh2Jp?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: a1f3c96b-6f25-4a73-db74-08dad2509f97
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Nov 2022 21:14:11.9443 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Nov 2022 21:28:15.0122 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: a6wrn6rPnyND4sQvPCxywd0Bm+A7YzqFF2+ac/MSOlnRSRXjjoUfz7wOm+Lc6ShAmkFd2fjyM22QPZ86FkoDBQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6065
-Subject: Re: [Intel-gfx] [PATCH 3/9] drm/ttm: use per BO cleanup workers
+X-MS-Exchange-CrossTenant-UserPrincipalName: V4p++nehblgAimTbwWNah0jQ0rOXwdHarENEO1cwMYew+9Z1FPhPtSDSpn07ooULUvkFprouwcxXxtbhXB6E0w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR11MB5973
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v5 1/1] drm/i915/pxp: Promote pxp subsystem
+ to top-level of i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -128,383 +147,728 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2022-11-25 05:21, Christian König wrote:
-> Instead of a single worker going over the list of delete BOs in regular
-> intervals use a per BO worker which blocks for the resv object and
-> locking of the BO.
->
-> This not only simplifies the handling massively, but also results in
-> much better response time when cleaning up buffers.
->
-> Signed-off-by: Christian König <christian.koenig@amd.com>
+On Mon, Nov 28, 2022 at 04:31:52PM -0800, Alan Previn wrote:
+> Starting with MTL, there will be two GT-tiles, a render and media
+> tile. PXP as a service for supporting workloads with protected
+> contexts and protected buffers can be subscribed by process
+> workloads on any tile. However, depending on the platform,
+> only one of the tiles is used for control events pertaining to PXP
+> operation (such as creating the arbitration session and session
+> tear-down). In the case of MTL, this is the media-tile.
 
-Just thinking out loud: If I understand it correctly, this can cause a 
-lot of sleeping worker threads when 
-AMDGPU_GEM_CREATE_VRAM_WIPE_ON_RELEASE is used and many BOs are freed at 
-the same time. This happens e.g. when a KFD process terminates or 
-crashes. I guess with a concurrency-managed workqueue this isn't going 
-to be excessive. And since it's on a per device workqueue, it doesn't 
-stall work items on the system work queue or from other devices.
+Imho this patch shows that having the pxp under i915 instead of gt
+is the right way to go.
 
-I'm trying to understand why you set WQ_MEM_RECLAIM. This work queue is 
-not about freeing ttm_resources but about freeing the BOs. But it 
-affects freeing of ghost_objs that are holding the ttm_resources being 
-freed.
+but I have a few comments and doubts below...
 
-If those assumptions all make sense, patches 1-3 are
-
-Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
-
-
+> 
+> Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
 > ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |   2 +-
->   drivers/gpu/drm/i915/i915_gem.c            |   2 +-
->   drivers/gpu/drm/i915/intel_region_ttm.c    |   2 +-
->   drivers/gpu/drm/ttm/ttm_bo.c               | 112 ++++++++-------------
->   drivers/gpu/drm/ttm/ttm_bo_util.c          |   1 -
->   drivers/gpu/drm/ttm/ttm_device.c           |  24 ++---
->   include/drm/ttm/ttm_bo_api.h               |  18 +---
->   include/drm/ttm/ttm_device.h               |   7 +-
->   8 files changed, 57 insertions(+), 111 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> index 2b1db37e25c1..74ccbd566777 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -3984,7 +3984,7 @@ void amdgpu_device_fini_hw(struct amdgpu_device *adev)
->   	amdgpu_fence_driver_hw_fini(adev);
->   
->   	if (adev->mman.initialized)
-> -		flush_delayed_work(&adev->mman.bdev.wq);
-> +		drain_workqueue(adev->mman.bdev.wq);
->   
->   	if (adev->pm_sysfs_en)
->   		amdgpu_pm_sysfs_fini(adev);
-> diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-> index 8468ca9885fd..c38306f156d6 100644
-> --- a/drivers/gpu/drm/i915/i915_gem.c
-> +++ b/drivers/gpu/drm/i915/i915_gem.c
-> @@ -1099,7 +1099,7 @@ void i915_gem_drain_freed_objects(struct drm_i915_private *i915)
->   {
->   	while (atomic_read(&i915->mm.free_count)) {
->   		flush_work(&i915->mm.free_work);
-> -		flush_delayed_work(&i915->bdev.wq);
-> +		drain_workqueue(i915->bdev.wq);
->   		rcu_barrier();
->   	}
->   }
-> diff --git a/drivers/gpu/drm/i915/intel_region_ttm.c b/drivers/gpu/drm/i915/intel_region_ttm.c
-> index cf89d0c2a2d9..657bbc16a48a 100644
-> --- a/drivers/gpu/drm/i915/intel_region_ttm.c
-> +++ b/drivers/gpu/drm/i915/intel_region_ttm.c
-> @@ -132,7 +132,7 @@ int intel_region_ttm_fini(struct intel_memory_region *mem)
->   			break;
->   
->   		msleep(20);
-> -		flush_delayed_work(&mem->i915->bdev.wq);
-> +		drain_workqueue(mem->i915->bdev.wq);
->   	}
->   
->   	/* If we leaked objects, Don't free the region causing use after free */
-> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-> index b77262a623e0..4749b65bedc4 100644
-> --- a/drivers/gpu/drm/ttm/ttm_bo.c
-> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
-> @@ -280,14 +280,13 @@ static int ttm_bo_cleanup_refs(struct ttm_buffer_object *bo,
->   		ret = 0;
->   	}
->   
-> -	if (ret || unlikely(list_empty(&bo->ddestroy))) {
-> +	if (ret) {
->   		if (unlock_resv)
->   			dma_resv_unlock(bo->base.resv);
->   		spin_unlock(&bo->bdev->lru_lock);
->   		return ret;
->   	}
->   
-> -	list_del_init(&bo->ddestroy);
->   	spin_unlock(&bo->bdev->lru_lock);
->   	ttm_bo_cleanup_memtype_use(bo);
->   
-> @@ -300,47 +299,21 @@ static int ttm_bo_cleanup_refs(struct ttm_buffer_object *bo,
->   }
->   
->   /*
-> - * Traverse the delayed list, and call ttm_bo_cleanup_refs on all
-> - * encountered buffers.
-> + * Block for the dma_resv object to become idle, lock the buffer and clean up
-> + * the resource and tt object.
->    */
-> -bool ttm_bo_delayed_delete(struct ttm_device *bdev, bool remove_all)
-> +static void ttm_bo_delayed_delete(struct work_struct *work)
->   {
-> -	struct list_head removed;
-> -	bool empty;
+>  .../drm/i915/display/skl_universal_plane.c    |  2 +-
+>  drivers/gpu/drm/i915/gem/i915_gem_context.c   |  6 +-
+>  drivers/gpu/drm/i915/gem/i915_gem_create.c    |  2 +-
+>  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  2 +-
+>  drivers/gpu/drm/i915/gt/intel_gt.c            |  5 --
+>  drivers/gpu/drm/i915/gt/intel_gt_debugfs.c    |  1 -
+>  drivers/gpu/drm/i915/gt/intel_gt_irq.c        |  2 +-
+>  drivers/gpu/drm/i915/gt/intel_gt_pm.c         |  8 ---
+>  drivers/gpu/drm/i915/gt/intel_gt_types.h      |  3 -
+>  drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c     |  2 +-
+>  drivers/gpu/drm/i915/i915_driver.c            | 20 ++++++
+>  drivers/gpu/drm/i915/i915_drv.h               |  3 +
+>  drivers/gpu/drm/i915/pxp/intel_pxp.c          | 72 ++++++++++++++-----
+>  drivers/gpu/drm/i915/pxp/intel_pxp.h          |  6 +-
+>  drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c      |  8 ++-
+>  drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c  | 41 +++++++----
+>  drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.h  |  4 +-
+>  drivers/gpu/drm/i915/pxp/intel_pxp_irq.c      | 10 ++-
+>  drivers/gpu/drm/i915/pxp/intel_pxp_pm.c       |  4 +-
+>  drivers/gpu/drm/i915/pxp/intel_pxp_tee.c      |  8 ++-
+>  drivers/gpu/drm/i915/pxp/intel_pxp_types.h    | 11 +++
+>  21 files changed, 150 insertions(+), 70 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> index 76490cc59d8f..4b79c2d2d617 100644
+> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> @@ -1848,7 +1848,7 @@ static bool bo_has_valid_encryption(struct drm_i915_gem_object *obj)
+>  {
+>  	struct drm_i915_private *i915 = to_i915(obj->base.dev);
+>  
+> -	return intel_pxp_key_check(&to_gt(i915)->pxp, obj, false) == 0;
+> +	return intel_pxp_key_check(i915->pxp, obj, false) == 0;
+>  }
+>  
+>  static bool pxp_is_borked(struct drm_i915_gem_object *obj)
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> index 7f2831efc798..46e71f62fcec 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> @@ -257,7 +257,7 @@ static int proto_context_set_protected(struct drm_i915_private *i915,
+>  
+>  	if (!protected) {
+>  		pc->uses_protected_content = false;
+> -	} else if (!intel_pxp_is_enabled(&to_gt(i915)->pxp)) {
+> +	} else if (!intel_pxp_is_enabled(i915->pxp)) {
+>  		ret = -ENODEV;
+>  	} else if ((pc->user_flags & BIT(UCONTEXT_RECOVERABLE)) ||
+>  		   !(pc->user_flags & BIT(UCONTEXT_BANNABLE))) {
+> @@ -271,8 +271,8 @@ static int proto_context_set_protected(struct drm_i915_private *i915,
+>  		 */
+>  		pc->pxp_wakeref = intel_runtime_pm_get(&i915->runtime_pm);
+>  
+> -		if (!intel_pxp_is_active(&to_gt(i915)->pxp))
+> -			ret = intel_pxp_start(&to_gt(i915)->pxp);
+> +		if (!intel_pxp_is_active(i915->pxp))
+> +			ret = intel_pxp_start(i915->pxp);
+>  	}
+>  
+>  	return ret;
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c b/drivers/gpu/drm/i915/gem/i915_gem_create.c
+> index 33673fe7ee0a..005a7f842784 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
+> @@ -384,7 +384,7 @@ static int ext_set_protected(struct i915_user_extension __user *base, void *data
+>  	if (ext.flags)
+>  		return -EINVAL;
+>  
+> -	if (!intel_pxp_is_enabled(&to_gt(ext_data->i915)->pxp))
+> +	if (!intel_pxp_is_enabled(ext_data->i915->pxp))
+>  		return -ENODEV;
+>  
+>  	ext_data->flags |= I915_BO_PROTECTED;
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> index 29e9e8d5b6fe..ed74d173a092 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -869,7 +869,7 @@ static struct i915_vma *eb_lookup_vma(struct i915_execbuffer *eb, u32 handle)
+>  		 */
+>  		if (i915_gem_context_uses_protected_content(eb->gem_context) &&
+>  		    i915_gem_object_is_protected(obj)) {
+> -			err = intel_pxp_key_check(&vm->gt->pxp, obj, true);
+> +			err = intel_pxp_key_check(vm->gt->i915->pxp, obj, true);
+>  			if (err) {
+>  				i915_gem_object_put(obj);
+>  				return ERR_PTR(err);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+> index 7ef0edb2e37c..1fd6b34ecda3 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> @@ -8,7 +8,6 @@
+>  
+>  #include "gem/i915_gem_internal.h"
+>  #include "gem/i915_gem_lmem.h"
+> -#include "pxp/intel_pxp.h"
+>  
+>  #include "i915_drv.h"
+>  #include "i915_perf_oa_regs.h"
+> @@ -753,8 +752,6 @@ int intel_gt_init(struct intel_gt *gt)
+>  
+>  	intel_migrate_init(&gt->migrate, gt);
+>  
+> -	intel_pxp_init(&gt->pxp);
 > -
-> -	INIT_LIST_HEAD(&removed);
+>  	goto out_fw;
+>  err_gt:
+>  	__intel_gt_disable(gt);
+> @@ -794,8 +791,6 @@ void intel_gt_driver_unregister(struct intel_gt *gt)
+>  	intel_rps_driver_unregister(&gt->rps);
+>  	intel_gsc_fini(&gt->gsc);
+>  
+> -	intel_pxp_fini(&gt->pxp);
 > -
-> -	spin_lock(&bdev->lru_lock);
-> -	while (!list_empty(&bdev->ddestroy)) {
-> -		struct ttm_buffer_object *bo;
+>  	/*
+>  	 * Upon unregistering the device to prevent any new users, cancel
+>  	 * all in-flight requests so that we can quickly unbind the active
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
+> index dd53641f3637..7876f4c3d0f1 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
+> @@ -99,7 +99,6 @@ void intel_gt_debugfs_register(struct intel_gt *gt)
+>  	intel_sseu_debugfs_register(gt, root);
+>  
+>  	intel_uc_debugfs_register(&gt->uc, root);
+> -	intel_pxp_debugfs_register(&gt->pxp, root);
+>  }
+>  
+>  void intel_gt_debugfs_register_files(struct dentry *root,
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+> index 6f6b9e04d916..8fac2660e16b 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+> @@ -76,7 +76,7 @@ gen11_other_irq_handler(struct intel_gt *gt, const u8 instance,
+>  		return gen11_rps_irq_handler(&media_gt->rps, iir);
+>  
+>  	if (instance == OTHER_KCR_INSTANCE)
+> -		return intel_pxp_irq_handler(&gt->pxp, iir);
+> +		return intel_pxp_irq_handler(gt->i915->pxp, iir);
+>  
+>  	if (instance == OTHER_GSC_INSTANCE)
+>  		return intel_gsc_irq_handler(gt, iir);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+> index 16db85fab0b1..c065950d0bad 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+> @@ -304,8 +304,6 @@ int intel_gt_resume(struct intel_gt *gt)
+>  
+>  	intel_uc_resume(&gt->uc);
+>  
+> -	intel_pxp_resume(&gt->pxp);
 > -
-> -		bo = list_first_entry(&bdev->ddestroy, struct ttm_buffer_object,
-> -				      ddestroy);
-> -		list_move_tail(&bo->ddestroy, &removed);
-> -		if (!ttm_bo_get_unless_zero(bo))
-> -			continue;
+>  	user_forcewake(gt, false);
+>  
+>  out_fw:
+> @@ -339,8 +337,6 @@ void intel_gt_suspend_prepare(struct intel_gt *gt)
+>  {
+>  	user_forcewake(gt, true);
+>  	wait_for_suspend(gt);
 > -
-> -		if (remove_all || bo->base.resv != &bo->base._resv) {
-> -			spin_unlock(&bdev->lru_lock);
-> -			dma_resv_lock(bo->base.resv, NULL);
+> -	intel_pxp_suspend_prepare(&gt->pxp);
+>  }
+>  
+>  static suspend_state_t pm_suspend_target(void)
+> @@ -365,7 +361,6 @@ void intel_gt_suspend_late(struct intel_gt *gt)
+>  	GEM_BUG_ON(gt->awake);
+>  
+>  	intel_uc_suspend(&gt->uc);
+> -	intel_pxp_suspend(&gt->pxp);
+>  
+>  	/*
+>  	 * On disabling the device, we want to turn off HW access to memory
+> @@ -393,7 +388,6 @@ void intel_gt_suspend_late(struct intel_gt *gt)
+>  
+>  void intel_gt_runtime_suspend(struct intel_gt *gt)
+>  {
+> -	intel_pxp_runtime_suspend(&gt->pxp);
+>  	intel_uc_runtime_suspend(&gt->uc);
+>  
+>  	GT_TRACE(gt, "\n");
+> @@ -411,8 +405,6 @@ int intel_gt_runtime_resume(struct intel_gt *gt)
+>  	if (ret)
+>  		return ret;
+>  
+> -	intel_pxp_runtime_resume(&gt->pxp);
 > -
-> -			spin_lock(&bdev->lru_lock);
-> -			ttm_bo_cleanup_refs(bo, false, !remove_all, true);
+>  	return 0;
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> index c1d9cd255e06..07ebeffbc8bd 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> @@ -30,7 +30,6 @@
+>  #include "intel_rps_types.h"
+>  #include "intel_migrate_types.h"
+>  #include "intel_wakeref.h"
+> -#include "pxp/intel_pxp_types.h"
+>  #include "intel_wopcm.h"
+>  
+>  struct drm_i915_private;
+> @@ -267,8 +266,6 @@ struct intel_gt {
+>  		u8 wb_index; /* Only used on HAS_L3_CCS_READ() platforms */
+>  	} mocs;
+>  
+> -	struct intel_pxp pxp;
 > -
-> -		} else if (dma_resv_trylock(bo->base.resv)) {
-> -			ttm_bo_cleanup_refs(bo, false, !remove_all, true);
-> -		} else {
-> -			spin_unlock(&bdev->lru_lock);
-> -		}
-> +	struct ttm_buffer_object *bo;
->   
-> -		ttm_bo_put(bo);
-> -		spin_lock(&bdev->lru_lock);
-> -	}
-> -	list_splice_tail(&removed, &bdev->ddestroy);
-> -	empty = list_empty(&bdev->ddestroy);
-> -	spin_unlock(&bdev->lru_lock);
-> +	bo = container_of(work, typeof(*bo), delayed_delete);
->   
-> -	return empty;
-> +	dma_resv_wait_timeout(bo->base.resv, DMA_RESV_USAGE_BOOKKEEP, false,
-> +			      MAX_SCHEDULE_TIMEOUT);
-> +	dma_resv_lock(bo->base.resv, NULL);
-> +	ttm_bo_cleanup_memtype_use(bo);
-> +	dma_resv_unlock(bo->base.resv);
-> +	ttm_bo_put(bo);
->   }
->   
->   static void ttm_bo_release(struct kref *kref)
-> @@ -369,44 +342,40 @@ static void ttm_bo_release(struct kref *kref)
->   
->   		drm_vma_offset_remove(bdev->vma_manager, &bo->base.vma_node);
->   		ttm_mem_io_free(bdev, bo->resource);
-> -	}
-> -
-> -	if (!dma_resv_test_signaled(bo->base.resv, DMA_RESV_USAGE_BOOKKEEP) ||
-> -	    !dma_resv_trylock(bo->base.resv)) {
-> -		/* The BO is not idle, resurrect it for delayed destroy */
-> -		ttm_bo_flush_all_fences(bo);
-> -		bo->deleted = true;
->   
-> -		spin_lock(&bo->bdev->lru_lock);
-> +		if (!dma_resv_test_signaled(bo->base.resv,
-> +					    DMA_RESV_USAGE_BOOKKEEP) ||
-> +		    !dma_resv_trylock(bo->base.resv)) {
-> +			/* The BO is not idle, resurrect it for delayed destroy */
-> +			ttm_bo_flush_all_fences(bo);
-> +			bo->deleted = true;
->   
-> -		/*
-> -		 * Make pinned bos immediately available to
-> -		 * shrinkers, now that they are queued for
-> -		 * destruction.
-> -		 *
-> -		 * FIXME: QXL is triggering this. Can be removed when the
-> -		 * driver is fixed.
-> -		 */
-> -		if (bo->pin_count) {
-> -			bo->pin_count = 0;
-> -			ttm_resource_move_to_lru_tail(bo->resource);
-> -		}
-> +			spin_lock(&bo->bdev->lru_lock);
->   
-> -		kref_init(&bo->kref);
-> -		list_add_tail(&bo->ddestroy, &bdev->ddestroy);
-> -		spin_unlock(&bo->bdev->lru_lock);
-> +			/*
-> +			 * Make pinned bos immediately available to
-> +			 * shrinkers, now that they are queued for
-> +			 * destruction.
-> +			 *
-> +			 * FIXME: QXL is triggering this. Can be removed when the
-> +			 * driver is fixed.
-> +			 */
-> +			if (bo->pin_count) {
-> +				bo->pin_count = 0;
-> +				ttm_resource_move_to_lru_tail(bo->resource);
-> +			}
->   
-> -		schedule_delayed_work(&bdev->wq,
-> -				      ((HZ / 100) < 1) ? 1 : HZ / 100);
-> -		return;
-> -	}
-> +			kref_init(&bo->kref);
-> +			spin_unlock(&bo->bdev->lru_lock);
->   
-> -	spin_lock(&bo->bdev->lru_lock);
-> -	list_del(&bo->ddestroy);
-> -	spin_unlock(&bo->bdev->lru_lock);
-> +			INIT_WORK(&bo->delayed_delete, ttm_bo_delayed_delete);
-> +			queue_work(bdev->wq, &bo->delayed_delete);
-> +			return;
-> +		}
->   
-> -	ttm_bo_cleanup_memtype_use(bo);
-> -	dma_resv_unlock(bo->base.resv);
-> +		ttm_bo_cleanup_memtype_use(bo);
-> +		dma_resv_unlock(bo->base.resv);
-> +	}
->   
->   	atomic_dec(&ttm_glob.bo_count);
->   	bo->destroy(bo);
-> @@ -946,7 +915,6 @@ int ttm_bo_init_reserved(struct ttm_device *bdev, struct ttm_buffer_object *bo,
->   	int ret;
->   
->   	kref_init(&bo->kref);
-> -	INIT_LIST_HEAD(&bo->ddestroy);
->   	bo->bdev = bdev;
->   	bo->type = type;
->   	bo->page_alignment = alignment;
-> diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
-> index ba3aa0a0fc43..ae4b7922ee1a 100644
-> --- a/drivers/gpu/drm/ttm/ttm_bo_util.c
-> +++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
-> @@ -230,7 +230,6 @@ static int ttm_buffer_object_transfer(struct ttm_buffer_object *bo,
->   	 */
->   
->   	atomic_inc(&ttm_glob.bo_count);
-> -	INIT_LIST_HEAD(&fbo->base.ddestroy);
->   	drm_vma_node_reset(&fbo->base.base.vma_node);
->   
->   	kref_init(&fbo->base.kref);
-> diff --git a/drivers/gpu/drm/ttm/ttm_device.c b/drivers/gpu/drm/ttm/ttm_device.c
-> index e7147e304637..e9bedca4dfdc 100644
-> --- a/drivers/gpu/drm/ttm/ttm_device.c
-> +++ b/drivers/gpu/drm/ttm/ttm_device.c
-> @@ -175,16 +175,6 @@ int ttm_device_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
->   }
->   EXPORT_SYMBOL(ttm_device_swapout);
->   
-> -static void ttm_device_delayed_workqueue(struct work_struct *work)
-> -{
-> -	struct ttm_device *bdev =
-> -		container_of(work, struct ttm_device, wq.work);
-> -
-> -	if (!ttm_bo_delayed_delete(bdev, false))
-> -		schedule_delayed_work(&bdev->wq,
-> -				      ((HZ / 100) < 1) ? 1 : HZ / 100);
-> -}
-> -
->   /**
->    * ttm_device_init
->    *
-> @@ -215,15 +205,19 @@ int ttm_device_init(struct ttm_device *bdev, struct ttm_device_funcs *funcs,
->   	if (ret)
->   		return ret;
->   
-> +	bdev->wq = alloc_workqueue("ttm", WQ_MEM_RECLAIM | WQ_HIGHPRI, 16);
-> +	if (!bdev->wq) {
-> +		ttm_global_release();
-> +		return -ENOMEM;
-> +	}
+>  	/* gt/gtN sysfs */
+>  	struct kobject sysfs_gt;
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c
+> index 4f246416db17..534b0aa43316 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c
+> @@ -32,7 +32,7 @@ int intel_huc_fw_load_and_auth_via_gsc(struct intel_huc *huc)
+>  
+>  	GEM_WARN_ON(intel_uc_fw_is_loaded(&huc->fw));
+>  
+> -	ret = intel_pxp_huc_load_and_auth(&huc_to_gt(huc)->pxp);
+> +	ret = intel_pxp_huc_load_and_auth(huc_to_gt(huc)->i915->pxp);
+>  	if (ret)
+>  		return ret;
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> index 69103ae37779..3be3c53437e9 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -73,6 +73,8 @@
+>  #include "gt/intel_gt_pm.h"
+>  #include "gt/intel_rc6.h"
+>  
+> +#include "pxp/intel_pxp.h"
+> +#include "pxp/intel_pxp_debugfs.h"
+>  #include "pxp/intel_pxp_pm.h"
+>  
+>  #include "i915_file_private.h"
+> @@ -763,6 +765,8 @@ static void i915_driver_register(struct drm_i915_private *dev_priv)
+>  	for_each_gt(gt, dev_priv, i)
+>  		intel_gt_driver_register(gt);
+>  
+> +	intel_pxp_debugfs_register(dev_priv->pxp);
 > +
->   	bdev->funcs = funcs;
->   
->   	ttm_sys_man_init(bdev);
->   	ttm_pool_init(&bdev->pool, dev, use_dma_alloc, use_dma32);
->   
->   	bdev->vma_manager = vma_manager;
-> -	INIT_DELAYED_WORK(&bdev->wq, ttm_device_delayed_workqueue);
->   	spin_lock_init(&bdev->lru_lock);
-> -	INIT_LIST_HEAD(&bdev->ddestroy);
->   	INIT_LIST_HEAD(&bdev->pinned);
->   	bdev->dev_mapping = mapping;
->   	mutex_lock(&ttm_global_mutex);
-> @@ -247,10 +241,8 @@ void ttm_device_fini(struct ttm_device *bdev)
->   	list_del(&bdev->device_list);
->   	mutex_unlock(&ttm_global_mutex);
->   
-> -	cancel_delayed_work_sync(&bdev->wq);
-> -
-> -	if (ttm_bo_delayed_delete(bdev, true))
-> -		pr_debug("Delayed destroy list was clean\n");
-> +	drain_workqueue(bdev->wq);
-> +	destroy_workqueue(bdev->wq);
->   
->   	spin_lock(&bdev->lru_lock);
->   	for (i = 0; i < TTM_MAX_BO_PRIORITY; ++i)
-> diff --git a/include/drm/ttm/ttm_bo_api.h b/include/drm/ttm/ttm_bo_api.h
-> index 7758347c461c..69e62bbb01e3 100644
-> --- a/include/drm/ttm/ttm_bo_api.h
-> +++ b/include/drm/ttm/ttm_bo_api.h
-> @@ -92,7 +92,6 @@ struct ttm_tt;
->    * @ttm: TTM structure holding system pages.
->    * @evicted: Whether the object was evicted without user-space knowing.
->    * @deleted: True if the object is only a zombie and already deleted.
-> - * @ddestroy: List head for the delayed destroy list.
->    * @swap: List head for swap LRU list.
->    * @offset: The current GPU offset, which can have different meanings
->    * depending on the memory type. For SYSTEM type memory, it should be 0.
-> @@ -135,19 +134,14 @@ struct ttm_buffer_object {
->   	struct ttm_tt *ttm;
->   	bool deleted;
->   	struct ttm_lru_bulk_move *bulk_move;
-> +	unsigned priority;
-> +	unsigned pin_count;
->   
->   	/**
-> -	 * Members protected by the bdev::lru_lock.
-> -	 */
-> -
-> -	struct list_head ddestroy;
-> -
-> -	/**
-> -	 * Members protected by a bo reservation.
-> +	 * @delayed_delete: Work item used when we can't delete the BO
-> +	 * immediately
->   	 */
-> -
-> -	unsigned priority;
-> -	unsigned pin_count;
-> +	struct work_struct delayed_delete;
->   
->   	/**
->   	 * Special members that are protected by the reserve lock
-> @@ -448,8 +442,6 @@ void ttm_bo_vm_close(struct vm_area_struct *vma);
->   
->   int ttm_bo_vm_access(struct vm_area_struct *vma, unsigned long addr,
->   		     void *buf, int len, int write);
-> -bool ttm_bo_delayed_delete(struct ttm_device *bdev, bool remove_all);
-> -
->   vm_fault_t ttm_bo_vm_dummy_page(struct vm_fault *vmf, pgprot_t prot);
->   
->   #endif
-> diff --git a/include/drm/ttm/ttm_device.h b/include/drm/ttm/ttm_device.h
-> index 95b3c04b1ab9..4f3e81eac6f3 100644
-> --- a/include/drm/ttm/ttm_device.h
-> +++ b/include/drm/ttm/ttm_device.h
-> @@ -251,11 +251,6 @@ struct ttm_device {
->   	 */
->   	spinlock_t lru_lock;
->   
-> -	/**
-> -	 * @ddestroy: Destroyed but not yet cleaned up buffer objects.
-> -	 */
-> -	struct list_head ddestroy;
-> -
->   	/**
->   	 * @pinned: Buffer objects which are pinned and so not on any LRU list.
->   	 */
-> @@ -270,7 +265,7 @@ struct ttm_device {
->   	/**
->   	 * @wq: Work queue structure for the delayed delete workqueue.
->   	 */
-> -	struct delayed_work wq;
-> +	struct workqueue_struct *wq;
->   };
->   
->   int ttm_global_swapout(struct ttm_operation_ctx *ctx, gfp_t gfp_flags);
+>  	i915_hwmon_register(dev_priv);
+>  
+>  	intel_display_driver_register(dev_priv);
+> @@ -794,6 +798,8 @@ static void i915_driver_unregister(struct drm_i915_private *dev_priv)
+>  
+>  	intel_display_driver_unregister(dev_priv);
+>  
+> +	intel_pxp_fini(&dev_priv->pxp);
+> +
+>  	for_each_gt(gt, dev_priv, i)
+>  		intel_gt_driver_unregister(gt);
+>  
+> @@ -937,6 +943,8 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+>  	if (ret)
+>  		goto out_cleanup_modeset2;
+>  
+> +	intel_pxp_init(&i915->pxp);
+> +
+>  	ret = intel_modeset_init(i915);
+>  	if (ret)
+>  		goto out_cleanup_gem;
+> @@ -996,6 +1004,8 @@ void i915_driver_remove(struct drm_i915_private *i915)
+>  	/* Flush any external code that still may be under the RCU lock */
+>  	synchronize_rcu();
+>  
+> +	intel_pxp_fini(&i915->pxp);
+> +
+>  	i915_gem_suspend(i915);
+>  
+>  	intel_gvt_driver_remove(i915);
+> @@ -1172,6 +1182,8 @@ static int i915_drm_prepare(struct drm_device *dev)
+>  {
+>  	struct drm_i915_private *i915 = to_i915(dev);
+>  
+> +	intel_pxp_suspend_prepare(i915->pxp);
+> +
+>  	/*
+>  	 * NB intel_display_suspend() may issue new requests after we've
+>  	 * ostensibly marked the GPU as ready-to-sleep here. We need to
+> @@ -1252,6 +1264,8 @@ static int i915_drm_suspend_late(struct drm_device *dev, bool hibernation)
+>  
+>  	disable_rpm_wakeref_asserts(rpm);
+>  
+> +	intel_pxp_suspend(dev_priv->pxp);
+> +
+>  	i915_gem_suspend_late(dev_priv);
+>  
+>  	for_each_gt(gt, dev_priv, i)
+> @@ -1358,6 +1372,8 @@ static int i915_drm_resume(struct drm_device *dev)
+>  
+>  	i915_gem_resume(dev_priv);
+>  
+> +	intel_pxp_resume(dev_priv->pxp);
+> +
+>  	intel_modeset_init_hw(dev_priv);
+>  	intel_init_clock_gating(dev_priv);
+>  	intel_hpd_init(dev_priv);
+> @@ -1641,6 +1657,8 @@ static int intel_runtime_suspend(struct device *kdev)
+>  	 */
+>  	i915_gem_runtime_suspend(dev_priv);
+>  
+> +	intel_pxp_runtime_suspend(dev_priv->pxp);
+> +
+>  	for_each_gt(gt, dev_priv, i)
+>  		intel_gt_runtime_suspend(gt);
+>  
+> @@ -1745,6 +1763,8 @@ static int intel_runtime_resume(struct device *kdev)
+>  	for_each_gt(gt, dev_priv, i)
+>  		intel_gt_runtime_resume(gt);
+>  
+> +	intel_pxp_runtime_resume(dev_priv->pxp);
+> +
+>  	/*
+>  	 * On VLV/CHV display interrupts are part of the display
+>  	 * power well, so hpd is reinitialized from there. For
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index a380db36d52c..679fa8a424d5 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -72,6 +72,7 @@ struct intel_encoder;
+>  struct intel_limit;
+>  struct intel_overlay_error_state;
+>  struct vlv_s0ix_state;
+> +struct intel_pxp;
+>  
+>  #define I915_GEM_GPU_DOMAINS \
+>  	(I915_GEM_DOMAIN_RENDER | \
+> @@ -364,6 +365,8 @@ struct drm_i915_private {
+>  		struct file *mmap_singleton;
+>  	} gem;
+>  
+> +	struct intel_pxp *pxp;
+> +
+>  	u8 pch_ssc_use;
+>  
+>  	/* For i915gm/i945gm vblank irq workaround */
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> index 5efe61f67546..fbef1f3be591 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> @@ -3,13 +3,19 @@
+>   * Copyright(c) 2020 Intel Corporation.
+>   */
+>  #include <linux/workqueue.h>
+> +
+> +#include "gem/i915_gem_context.h"
+> +
+> +#include "gt/intel_context.h"
+> +#include "gt/intel_gt.h"
+> +
+> +#include "i915_drv.h"
+> +
+>  #include "intel_pxp.h"
+>  #include "intel_pxp_irq.h"
+>  #include "intel_pxp_session.h"
+>  #include "intel_pxp_tee.h"
+> -#include "gem/i915_gem_context.h"
+> -#include "gt/intel_context.h"
+> -#include "i915_drv.h"
+> +#include "intel_pxp_types.h"
+>  
+>  /**
+>   * DOC: PXP
+> @@ -39,9 +45,9 @@
+>   * performed via the mei_pxp component module.
+>   */
+>  
+> -struct intel_gt *pxp_to_gt(const struct intel_pxp *pxp)
+> +struct intel_gt *pxp_to_gt(struct intel_pxp *pxp)
+>  {
+> -	return container_of(pxp, struct intel_gt, pxp);
+> +	return pxp->ctrl_gt;
+>  }
+>  
+>  bool intel_pxp_is_enabled(const struct intel_pxp *pxp)
+> @@ -138,31 +144,63 @@ static void pxp_init_full(struct intel_pxp *pxp)
+>  	destroy_vcs_context(pxp);
+>  }
+>  
+> -void intel_pxp_init(struct intel_pxp *pxp)
+> +static struct intel_gt *pxp_get_kcr_owner_gt(struct drm_i915_private *i915)
+
+pxp_get_ctrl_gt or pxp_get_serving_gt sounds better in my opinion...
+what's "owner"?
+
+>  {
+> -	struct intel_gt *gt = pxp_to_gt(pxp);
+> +	struct intel_gt *gt = NULL;
+> +	int i = 0;
+> +
+> +	for_each_gt(gt, i915, i) {
+> +		/* There can be only one GT that supports PXP */
+> +		if (HAS_ENGINE(gt, GSC0))
+> +			return gt;
+> +	}
+>  
+>  	/* we rely on the mei PXP module */
+> -	if (!IS_ENABLED(CONFIG_INTEL_MEI_PXP))
+> -		return;
+> +	if (IS_ENABLED(CONFIG_INTEL_MEI_PXP))
+> +		return &i915->gt0;
+> +
+> +	return NULL;
+> +}
+> +
+> +int intel_pxp_init(struct intel_pxp **pxp_store_ptr)
+
+Please let's avoid the ** here and everywhere.
+
+> +{
+> +	struct intel_pxp *newpxp;
+> +
+> +	newpxp = kzalloc(sizeof(*newpxp), GFP_KERNEL);
+> +	if (!newpxp)
+> +		return -ENOMEM;
+> +
+> +	*pxp_store_ptr = newpxp;
+> +
+> +	newpxp->i915 = container_of(pxp_store_ptr, struct drm_i915_private, pxp);
+> +	newpxp->ctrl_gt = pxp_get_kcr_owner_gt(newpxp->i915);
+> +
+> +	if (!newpxp->ctrl_gt)
+> +		return -ENODEV;
+>  
+>  	/*
+>  	 * If HuC is loaded by GSC but PXP is disabled, we can skip the init of
+>  	 * the full PXP session/object management and just init the tee channel.
+>  	 */
+> -	if (HAS_PXP(gt->i915))
+> -		pxp_init_full(pxp);
+> -	else if (intel_huc_is_loaded_by_gsc(&gt->uc.huc) && intel_uc_uses_huc(&gt->uc))
+> -		intel_pxp_tee_component_init(pxp);
+> +	if (HAS_PXP(newpxp->i915))
+> +		pxp_init_full(newpxp);
+> +	else if (intel_huc_is_loaded_by_gsc(&newpxp->ctrl_gt->uc.huc) &&
+> +		 intel_uc_uses_huc(&newpxp->ctrl_gt->uc))
+> +		intel_pxp_tee_component_init(newpxp);
+> +
+> +	return 0;
+>  }
+>  
+> -void intel_pxp_fini(struct intel_pxp *pxp)
+> +void intel_pxp_fini(struct intel_pxp **pxp)
+>  {
+> -	pxp->arb_is_valid = false;
+> +	(*pxp)->arb_is_valid = false;
+>  
+> -	intel_pxp_tee_component_fini(pxp);
+> +	intel_pxp_tee_component_fini(*pxp);
+>  
+> -	destroy_vcs_context(pxp);
+> +	destroy_vcs_context(*pxp);
+> +
+> +	kfree(*pxp);
+> +	pxp = NULL;
+>  }
+>  
+>  void intel_pxp_mark_termination_in_progress(struct intel_pxp *pxp)
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+> index 2da309088c6d..424e52bbd4f9 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.h
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+> @@ -12,12 +12,12 @@
+>  struct intel_pxp;
+>  struct drm_i915_gem_object;
+>  
+> -struct intel_gt *pxp_to_gt(const struct intel_pxp *pxp);
+> +struct intel_gt *pxp_to_gt(struct intel_pxp *pxp);
+>  bool intel_pxp_is_enabled(const struct intel_pxp *pxp);
+>  bool intel_pxp_is_active(const struct intel_pxp *pxp);
+>  
+> -void intel_pxp_init(struct intel_pxp *pxp);
+> -void intel_pxp_fini(struct intel_pxp *pxp);
+> +int intel_pxp_init(struct intel_pxp **pxp);
+> +void intel_pxp_fini(struct intel_pxp **pxp);
+>  
+>  void intel_pxp_init_hw(struct intel_pxp *pxp);
+>  void intel_pxp_fini_hw(struct intel_pxp *pxp);
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
+> index f41e45763d0d..0eee51c4a772 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
+> @@ -3,9 +3,6 @@
+>   * Copyright(c) 2020, Intel Corporation. All rights reserved.
+>   */
+>  
+> -#include "intel_pxp.h"
+> -#include "intel_pxp_cmd.h"
+> -#include "intel_pxp_session.h"
+>  #include "gt/intel_context.h"
+>  #include "gt/intel_engine_pm.h"
+>  #include "gt/intel_gpu_commands.h"
+> @@ -13,6 +10,11 @@
+>  
+>  #include "i915_trace.h"
+>  
+> +#include "intel_pxp.h"
+> +#include "intel_pxp_cmd.h"
+> +#include "intel_pxp_session.h"
+> +#include "intel_pxp_types.h"
+> +
+>  /* stall until prior PXP and MFX/HCP/HUC objects are cmopleted */
+>  #define MFX_WAIT_PXP (MFX_WAIT | \
+>  		      MFX_WAIT_DW0_PXP_SYNC_CONTROL_FLAG | \
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c b/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
+> index 4359e8be4101..652c00aefe3f 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
+> @@ -9,10 +9,13 @@
+>  #include <drm/drm_print.h>
+>  
+>  #include "gt/intel_gt_debugfs.h"
+> +
+>  #include "i915_drv.h"
+> +
+>  #include "intel_pxp.h"
+>  #include "intel_pxp_debugfs.h"
+>  #include "intel_pxp_irq.h"
+> +#include "intel_pxp_types.h"
+>  
+>  static int pxp_info_show(struct seq_file *m, void *data)
+>  {
+> @@ -30,7 +33,19 @@ static int pxp_info_show(struct seq_file *m, void *data)
+>  
+>  	return 0;
+>  }
+> -DEFINE_INTEL_GT_DEBUGFS_ATTRIBUTE(pxp_info);
+> +
+> +static int pxp_info_open(struct inode *inode, struct file *file)
+> +{
+> +	return single_open(file, pxp_info_show, inode->i_private);
+> +}
+> +
+> +static const struct file_operations pxp_info_fops = {
+> +	.owner = THIS_MODULE,
+> +	.open = pxp_info_open,
+> +	.read = seq_read,
+> +	.llseek = seq_lseek,
+> +	.release = single_release,
+> +};
+>  
+>  static int pxp_terminate_get(void *data, u64 *val)
+>  {
+> @@ -59,23 +74,23 @@ static int pxp_terminate_set(void *data, u64 val)
+>  }
+>  
+>  DEFINE_SIMPLE_ATTRIBUTE(pxp_terminate_fops, pxp_terminate_get, pxp_terminate_set, "%llx\n");
+> -void intel_pxp_debugfs_register(struct intel_pxp *pxp, struct dentry *gt_root)
+> +
+> +void intel_pxp_debugfs_register(struct intel_pxp *pxp)
+>  {
+> -	static const struct intel_gt_debugfs_file files[] = {
+> -		{ "info", &pxp_info_fops, NULL },
+> -		{ "terminate_state", &pxp_terminate_fops, NULL },
+> -	};
+> -	struct dentry *root;
+> +	struct drm_minor *minor = pxp->i915->drm.primary;
+> +	struct dentry *pxproot;
+>  
+> -	if (!gt_root)
+> +	if (!HAS_PXP(pxp->i915))
+>  		return;
+>  
+> -	if (!HAS_PXP((pxp_to_gt(pxp)->i915)))
+> +	pxproot = debugfs_create_dir("pxp", minor->debugfs_root);
+> +	if (IS_ERR(pxproot))
+>  		return;
+>  
+> -	root = debugfs_create_dir("pxp", gt_root);
+> -	if (IS_ERR(root))
+> -		return;
+> +	debugfs_create_file("info", 0444, pxproot,
+> +			    pxp, &pxp_info_fops);
+> +
+> +	debugfs_create_file("terminate_state", 0644, pxproot,
+> +			    pxp, &pxp_terminate_fops);
+>  
+> -	intel_gt_debugfs_register_files(root, files, ARRAY_SIZE(files), pxp);
+>  }
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.h b/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.h
+> index 7e0c3d2f5d7e..299382b59e66 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.h
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.h
+> @@ -10,10 +10,10 @@ struct intel_pxp;
+>  struct dentry;
+>  
+>  #ifdef CONFIG_DRM_I915_PXP
+> -void intel_pxp_debugfs_register(struct intel_pxp *pxp, struct dentry *root);
+> +void intel_pxp_debugfs_register(struct intel_pxp *pxp);
+>  #else
+>  static inline void
+> -intel_pxp_debugfs_register(struct intel_pxp *pxp, struct dentry *root)
+> +intel_pxp_debugfs_register(struct intel_pxp *pxp)
+>  {
+>  }
+>  #endif
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c b/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
+> index c28be430718a..fd30befbf784 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
+> @@ -3,14 +3,18 @@
+>   * Copyright(c) 2020 Intel Corporation.
+>   */
+>  #include <linux/workqueue.h>
+> -#include "intel_pxp.h"
+> -#include "intel_pxp_irq.h"
+> -#include "intel_pxp_session.h"
+> +
+>  #include "gt/intel_gt_irq.h"
+>  #include "gt/intel_gt_regs.h"
+>  #include "gt/intel_gt_types.h"
+> +
+>  #include "i915_irq.h"
+>  #include "i915_reg.h"
+> +
+> +#include "intel_pxp.h"
+> +#include "intel_pxp_irq.h"
+> +#include "intel_pxp_session.h"
+> +#include "intel_pxp_types.h"
+>  #include "intel_runtime_pm.h"
+>  
+>  /**
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
+> index 6a7d4e2ee138..37371f44a550 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
+> @@ -3,11 +3,13 @@
+>   * Copyright(c) 2020 Intel Corporation.
+>   */
+>  
+> +#include "i915_drv.h"
+> +
+>  #include "intel_pxp.h"
+>  #include "intel_pxp_irq.h"
+>  #include "intel_pxp_pm.h"
+>  #include "intel_pxp_session.h"
+> -#include "i915_drv.h"
+> +#include "intel_pxp_types.h"
+>  
+>  void intel_pxp_suspend_prepare(struct intel_pxp *pxp)
+>  {
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+> index b0c9170b1395..16782d119bfd 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+> @@ -11,17 +11,19 @@
+>  #include "gem/i915_gem_lmem.h"
+>  
+>  #include "i915_drv.h"
+> +
+>  #include "intel_pxp.h"
+> -#include "intel_pxp_session.h"
+> -#include "intel_pxp_tee.h"
+>  #include "intel_pxp_cmd_interface_42.h"
+>  #include "intel_pxp_huc.h"
+> +#include "intel_pxp_session.h"
+> +#include "intel_pxp_tee.h"
+> +#include "intel_pxp_types.h"
+>  
+>  static inline struct intel_pxp *i915_dev_to_pxp(struct device *i915_kdev)
+>  {
+>  	struct drm_i915_private *i915 = kdev_to_i915(i915_kdev);
+>  
+> -	return &to_gt(i915)->pxp;
+> +	return i915->pxp;
+>  }
+>  
+>  static int intel_pxp_tee_io_message(struct intel_pxp *pxp,
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+> index f74b1e11a505..d550cdba3399 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+> @@ -12,12 +12,23 @@
+>  #include <linux/workqueue.h>
+>  
+>  struct intel_context;
+> +struct intel_gt;
+>  struct i915_pxp_component;
+> +struct drm_i915_private;
+>  
+>  /**
+>   * struct intel_pxp - pxp state
+>   */
+>  struct intel_pxp {
+> +	/** @i915: back poiner to i915*/
+> +	struct drm_i915_private *i915;
+
+do you really need this pointer back here?
+or using a container_of should be enough?
+
+> +
+> +	/**
+> +	 * @ctrl_gt: poiner to the tile that owns the controls for PXP subsystem assets that
+> +	 * the VDBOX, the KCR engine (and GSC CS depending on the platform)
+> +	 */
+> +	struct intel_gt *ctrl_gt;
+> +
+>  	/**
+>  	 * @pxp_component: i915_pxp_component struct of the bound mei_pxp
+>  	 * module. Only set and cleared inside component bind/unbind functions,
+> -- 
+> 2.34.1
+> 
