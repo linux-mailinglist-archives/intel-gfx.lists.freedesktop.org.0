@@ -2,45 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51D8763CD02
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Nov 2022 02:47:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7074A63CD09
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Nov 2022 02:51:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D568F10E405;
-	Wed, 30 Nov 2022 01:47:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4ABA210E406;
+	Wed, 30 Nov 2022 01:51:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C7F510E405
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Nov 2022 01:47:50 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A098110E406
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Nov 2022 01:51:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669772870; x=1701308870;
+ t=1669773098; x=1701309098;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=Jj++Vd+bXXv4jlPKhUCQVrCROY0pef4tBWPjQ2tnP68=;
- b=Q7uGuRRdoi84ckB9JYz7f2njWLrfNBhNDRl/k6CfDEwFasDqpdJW+IRx
- 3POrsMX03aCJijuHyfeUMEF/qYXaieVcAxGcOme2ivO03NgbUet2KKm+0
- PWzFSOtYL51SyfnmyTJtc07IYc0rOlfGZ8vurrshUlgt46hZlEtQdvvtP
- JdqZ3/Unzp26IMesgmtFlF4/cPVlxF2QDlwHvhR4vy5CO4GuHwHZ4lES3
- qYteYN31/LDWPMwyTRec/5Krx7OTim3tsF0WsgoG6aSz1SJimEsE7cPmY
- SfLJLYAwyGA32nFkw6AYUQJPlZHhH3jq2zk6gHwYGtDw7GyVw+7QQ2GQT g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10546"; a="302883572"
-X-IronPort-AV: E=Sophos;i="5.96,204,1665471600"; d="scan'208";a="302883572"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2022 17:47:49 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10546"; a="646140743"
-X-IronPort-AV: E=Sophos;i="5.96,204,1665471600"; d="scan'208";a="646140743"
+ bh=AW93Fiuyrwa4acT5yfAG8uG7JBOZPTJezXd+MRBmhLY=;
+ b=WfLgXhSuTJA5zJdnxA+qIinsGeRO4kI+uIpicsSNuk4KOplpbPo9NU5J
+ RjWe8K/J1kp7lrh5gQzUbay/haVE9v2nIDneLExCMUi+NPi1wv6I+9k3c
+ EU35hByAg92lKH6IyRwmaQDJsSctBc75mF66N8poGeIuguN44BbK1OHqE
+ YMKHc/Y3ApZvBQR9b73UcTYzC11rya50yWCBbMGlWzI+UEv+01UuPhIAo
+ UUp5zYLGgaFz/CFgAAy+9gneMMOz1zU2zT6vUbcQoTjyTphLdVUVEuJI4
+ FZUgxAAULl+JIEdYGZTCi9mTSl5+R1bygISiJaUVqlkg9OZ/36bbPz2Qf Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10546"; a="401561578"
+X-IronPort-AV: E=Sophos;i="5.96,204,1665471600"; d="scan'208";a="401561578"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Nov 2022 17:51:37 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10546"; a="621697055"
+X-IronPort-AV: E=Sophos;i="5.96,204,1665471600"; d="scan'208";a="621697055"
 Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
  ([10.209.22.21])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2022 17:47:49 -0800
-Date: Tue, 29 Nov 2022 17:47:46 -0800
-Message-ID: <875yex43i5.wl-ashutosh.dixit@intel.com>
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Nov 2022 17:51:37 -0800
+Date: Tue, 29 Nov 2022 17:51:13 -0800
+Message-ID: <874juh43ce.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-In-Reply-To: <877czd44x2.wl-ashutosh.dixit@intel.com>
-References: <20221129012146.995006-1-umesh.nerlige.ramappa@intel.com>	<877czd44x2.wl-ashutosh.dixit@intel.com>
+In-Reply-To: <20221129012146.995006-1-umesh.nerlige.ramappa@intel.com>
+References: <20221129012146.995006-1-umesh.nerlige.ramappa@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/28.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -64,38 +64,38 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 29 Nov 2022 17:17:13 -0800, Dixit, Ashutosh wrote:
+On Mon, 28 Nov 2022 17:21:46 -0800, Umesh Nerlige Ramappa wrote:
 >
-> > @@ -4746,6 +4772,7 @@ static void oa_init_supported_formats(struct i915_perf *perf)
-> >		break;
-> >
-> >	case INTEL_DG2:
-> > +	case INTEL_METEORLAKE:
-> >		oa_format_add(perf, I915_OAR_FORMAT_A32u40_A4u32_B8_C8);
-> >		oa_format_add(perf, I915_OA_FORMAT_A24u40_A14u32_B8_C8);
+> +/*
+> + * Ref: 14010536224:
+> + * 0x20cc is repurposed on MTL, so use a separate array for MTL.
+
+Wondering if it was WAIT_FOR_RC6_EXIT (seen in gen12_oa_mux_regs) which
+moved elsewhere and if that needs to be added to the array below too?
+
+> + */
+> +static const struct i915_range mtl_oa_mux_regs[] = {
+> +	{ .start = 0x0d00, .end = 0x0d04 },	/* RPM_CONFIG[0-1] */
+> +	{ .start = 0x0d0c, .end = 0x0d2c },	/* NOA_CONFIG[0-8] */
+> +	{ .start = 0x9840, .end = 0x9840 },	/* GDT_CHICKEN_BITS */
+> +	{ .start = 0x9884, .end = 0x9888 },	/* NOA_WRITE */
+> +};
+> +
+>  static bool gen7_is_valid_b_counter_addr(struct i915_perf *perf, u32 addr)
+>  {
+>	return reg_in_range_table(addr, gen7_oa_b_counters);
+> @@ -4349,7 +4372,10 @@ static bool xehp_is_valid_b_counter_addr(struct i915_perf *perf, u32 addr)
 >
-> Do these formats also need to be added?
+>  static bool gen12_is_valid_mux_addr(struct i915_perf *perf, u32 addr)
+>  {
+> -	return reg_in_range_table(addr, gen12_oa_mux_regs);
+> +	if (IS_METEORLAKE(perf->i915))
+> +		return reg_in_range_table(addr, mtl_oa_mux_regs);
+> +	else
+> +		return reg_in_range_table(addr, gen12_oa_mux_regs);
 
-Sorry!
+But otherwise this is:
 
->		oa_format_add(perf, I915_OAR_FORMAT_A32u40_A4u32_B8_C8);
->		oa_format_add(perf, I915_OA_FORMAT_A24u40_A14u32_B8_C8);
+Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 
-These two are the same as above.
-
->		oa_format_add(perf, I915_OAR_FORMAT_A36u64_B8_C8);
->		oa_format_add(perf, I915_OA_FORMAT_A38u64_R2u64_B8_C8);
-
-And it seems these are not 32 bit (where 32 bit refers to the header
-size).
-
-> Or these are not considered OAG formats?
-
-So it's ok, no changes needed here.
-
->
-> >		break;
-
-> Thanks.
-> --
-> Ashutosh
+If you decide to split the patches, please add my R-b on all the split patches.
