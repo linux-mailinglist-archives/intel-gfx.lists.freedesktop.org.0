@@ -1,56 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6040563D0A5
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Nov 2022 09:30:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE50163D0D7
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Nov 2022 09:38:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D0BD89DFF;
-	Wed, 30 Nov 2022 08:30:24 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64C3589DFF;
- Wed, 30 Nov 2022 08:30:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEC8110E41B;
+	Wed, 30 Nov 2022 08:38:04 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEF1510E41B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Nov 2022 08:38:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669797020; x=1701333020;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=FgwvNs9IxTLjKqRckJCScAIPHNKsebQaEETDyrIIwjA=;
- b=KrPi5ErAFv54hTiEI7j26h62N3ouP3iCuglQCRmIhFYqjbyUDx/9wf5V
- ZL+SJVjcssWe5qmCMBaksP8zr7tQ9QmoJyo0e6fqvpIBj9KLkJMD7EOdX
- Z/eJ084M0geiHNISuRx7/X2hr56oRhccd3+NIzw+TSc/xR1cvIlSZM3r5
- 562GXAXK3AeeDdVzhmeG29a3YbS5tzzVGMEK7UqoKH2A3B4L3oMUTRNwi
- 21yTDOs/7eIP1MzeeUQVWj4gd6UHpotjSmfV8Ctbit0jXJ5EEDbxyOml+
- lc9LaF2WZ2AAUwwxxbhhxUpmkPXwX6SPtRSVMEIS+5E3isM/6r+ku7hOW A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10546"; a="312956455"
-X-IronPort-AV: E=Sophos;i="5.96,205,1665471600"; d="scan'208";a="312956455"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2022 00:30:19 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10546"; a="646244481"
-X-IronPort-AV: E=Sophos;i="5.96,205,1665471600"; d="scan'208";a="646244481"
-Received: from hpvpnmu01.ger.corp.intel.com (HELO [10.213.197.198])
- ([10.213.197.198])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2022 00:30:18 -0800
-Message-ID: <17ba580d-556b-c963-703c-b80e74c050f9@linux.intel.com>
-Date: Wed, 30 Nov 2022 08:30:16 +0000
+ t=1669797480; x=1701333480;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=AcKzoq8nNLFRW5C/BtrKdObFUHezJQBEh8F7NDBwFxA=;
+ b=k8IT3iXkmNV+aNW7kPO5THt3xIV3SwiTU/JRHSk/uYFnREa6kXATpTCB
+ Z7SO1IDwTa3tObEIPjTzoAS850+Ic46AmPuCXp0DcgPeT3gxpSaMMn7sB
+ kEhW0dFTXGC9nzZ3x8332UyXIVbKRpWcBP1AR/qM0nI2V1475p4Hd3lUN
+ D6HVR+a0l6xKSz9ARuannt4EjXLjOq6M1f/jUztS4/06XHlNixx6jHIXy
+ 9bic/SaxHj7gj/tV4pWTBSSCG+u1Px2FXPRoCX8L6BkJpFEdkNN5TGY6T
+ SipjePOhWHdD3aZLrv2vTVwroxCAfflw7QCxWE+5f7PDZm3ypTarnMhHj A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10546"; a="379619408"
+X-IronPort-AV: E=Sophos;i="5.96,205,1665471600"; d="scan'208";a="379619408"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2022 00:38:00 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10546"; a="712727901"
+X-IronPort-AV: E=Sophos;i="5.96,205,1665471600"; d="scan'208";a="712727901"
+Received: from mromao-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.53.224])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2022 00:37:58 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20221130074617.1619099-3-chaitanya.kumar.borah@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20221130074617.1619099-1-chaitanya.kumar.borah@intel.com>
+ <20221130074617.1619099-3-chaitanya.kumar.borah@intel.com>
+Date: Wed, 30 Nov 2022 10:37:55 +0200
+Message-ID: <87o7so3kik.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Content-Language: en-US
-To: John.C.Harrison@Intel.com, Intel-GFX@Lists.FreeDesktop.Org
-References: <20221129211253.3183480-1-John.C.Harrison@Intel.com>
- <20221129211253.3183480-3-John.C.Harrison@Intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20221129211253.3183480-3-John.C.Harrison@Intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/guc: Look for a guilty context
- when an engine reset fails
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [RFC 2/2] drm/i915: Add additional check for 480Mhz
+ step CDCLK
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,67 +60,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Cc: ville.syrjala@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 29/11/2022 21:12, John.C.Harrison@Intel.com wrote:
-> From: John Harrison <John.C.Harrison@Intel.com>
-> 
-> Engine resets are supposed to never happen. But in the case when one
-
-Engine resets or engine reset failures? Hopefully the latter.
-
-> does (due to unknwon reasons that normally come down to a missing
-> w/a), it is useful to get as much information out of the system as
-> possible. Given that the GuC effectively dies on such a situation, it
-> is not possible to get a guilty context notification back. So do a
-> manual search instead. Given that GuC is dead, this is safe because
-> GuC won't be changing the engine state asynchronously.
-> 
-> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+On Wed, 30 Nov 2022, Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com> wrote:
+> There are still RPL-U boards which does not support the 480Mhz step of
+> CDCLK. We can differentiate these board by checking the CPUID Brand
+> String. 480Mhz step is only supported in SKUs which does not contain
+> the string "Genuine Intel" in the Brand string.
+>
+> BSpec: 55409
+>
+> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 > ---
->   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 15 ++++++++++++++-
->   1 file changed, 14 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index 0a42f1807f52c..c82730804a1c4 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -4751,11 +4751,24 @@ static void reset_fail_worker_func(struct work_struct *w)
->   	guc->submission_state.reset_fail_mask = 0;
->   	spin_unlock_irqrestore(&guc->submission_state.lock, flags);
->   
-> -	if (likely(reset_fail_mask))
-> +	if (likely(reset_fail_mask)) {
-> +		struct intel_engine_cs *engine;
-> +		enum intel_engine_id id;
+>  drivers/gpu/drm/i915/display/intel_cdclk.c | 16 +++++++++++++++-
+>  1 file changed, 15 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> index 9bfeb1abba47..1890e5135cfc 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -192,6 +192,19 @@ static bool is_rplu(struct drm_i915_private *dev_priv)
+>  	}
+>  }
+>  
+> +static bool is_480mhz_step_valid(void)
+> +{
+> +	struct cpuinfo_x86 *c;
+> +	unsigned int cpu = smp_processor_id();
 > +
-> +		/*
-> +		 * GuC is toast at this point - it dead loops after sending the failed
-> +		 * reset notification. So need to manually determine the guilty context.
-> +		 * Note that it should be safe/reliable to do this here because the GuC
-> +		 * is toast and will not be scheduling behind the KMD's back.
-> +		 */
-> +		for_each_engine_masked(engine, gt, reset_fail_mask, id)
-> +			intel_guc_find_hung_context(engine);
+> +	c = &cpu_data(cpu);
 > +
->   		intel_gt_handle_error(gt, reset_fail_mask,
->   				      I915_ERROR_CAPTURE,
->   				      "GuC failed to reset engine mask=0x%x\n",
->   				      reset_fail_mask);
+> +	if (c->x86_model_id[0] && !strstr(c->x86_model_id, "Genuine Intel"))
+> +		return true;
 
-If GuC is defined by ABI contract to be dead, should the flow be 
-attempting to do a full GPU reset here, or maybe it happens somewhere 
-else as a consequence anyway? (In which case is the engine reset here 
-even needed?)
+Ugh, this is super ugly.
 
-Regards,
+The usual way to quirk this stuff is in display/intel_quirks.c. There
+are two kinds of quirks, device and dmi. (And I realize that's one place
+where we do have PCI IDs written, but it's for slightly different
+purpose.)
 
-Tvrtko
+If this really can't be done using quirks, and cpuinfo is the only way
+(I doubt it), then we need to add the cpuinfo quirk to intel_quirks.c
+and not sprinkle these around.
 
-> +	}
->   }
->   
->   int intel_guc_engine_failure_process_msg(struct intel_guc *guc,
+BR,
+Jani.
+
+
+> +
+> +	return false;
+> +}
+> +
+>  static void i915gm_get_cdclk(struct drm_i915_private *dev_priv,
+>  			     struct intel_cdclk_config *cdclk_config)
+>  {
+> @@ -3389,8 +3402,9 @@ void intel_init_cdclk_hooks(struct drm_i915_private *dev_priv)
+>  		/*
+>  		 * BSpec: 55409
+>  		 * 480 MHz supported on SKUs that have a RPL-U Device ID
+> +		 * and  CPUID Brand String that does not contain "Genuine Intel".
+>  		 */
+> -		else if (is_rplu(dev_priv))
+> +		else if (is_rplu(dev_priv) && is_480mhz_step_valid())
+>  			dev_priv->cdclk.table = rplu_cdclk_table;
+>  		else
+>  			dev_priv->display.cdclk.table = adlp_cdclk_table;
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
