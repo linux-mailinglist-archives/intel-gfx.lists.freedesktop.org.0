@@ -1,35 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C33B63D9F3
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Nov 2022 16:52:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0853B63DA18
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Nov 2022 16:59:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97FA010E494;
-	Wed, 30 Nov 2022 15:52:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE48D10E494;
+	Wed, 30 Nov 2022 15:59:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 98C9D10E066;
- Wed, 30 Nov 2022 15:52:39 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 93CAFA0078;
- Wed, 30 Nov 2022 15:52:39 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87D4E10E066;
+ Wed, 30 Nov 2022 15:59:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1669823947; x=1701359947;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=dwx9EXHGlNuhNn3eCKfbiHHpPPVDVOPX07LN4uOCP7E=;
+ b=islI5x1gdydl8SDn/hCk42eGAH3J60krSx0isiJ+GO5jtcCX3MRd8Aat
+ mY8Zhegzcg1WN3ypUw0fT/VAb8CtI9nA7T5t2mUuZT26qOx7Crmf5Vara
+ Xeg7v26IcAuDW8lopIx2wgJekrXFUQjn5BIi4HH0rWFs2Xg/xOulvCNdf
+ OuHVMO6sTYSUE6i60tXnAtE3JPb0JSZyKkjd7kdr9Y0hXKW+V2SbsWDZ6
+ wkmeyOKLRjFuOlZ+zF5l2PuB30pdI96U1TgbafOdosSzNbGvwVQe9vrz5
+ 2cLewEnq5uUrVIZBDZXuo06rLqZBT6r2cTPh7GkzKRnyx1NsYvaqWFvf5 g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10547"; a="379710996"
+X-IronPort-AV: E=Sophos;i="5.96,206,1665471600"; d="scan'208";a="379710996"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2022 07:59:06 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10547"; a="594707012"
+X-IronPort-AV: E=Sophos;i="5.96,206,1665471600"; d="scan'208";a="594707012"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2022 07:59:06 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 30 Nov 2022 07:58:52 -0800
+Message-Id: <20221130155852.19601-1-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.38.1
+In-Reply-To: <Y4d76483JRj5d4RL@bala-ubuntu>
+References: <Y4d76483JRj5d4RL@bala-ubuntu>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>
-Date: Wed, 30 Nov 2022 15:52:39 -0000
-Message-ID: <166982355960.2863.3622144047527255772@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221130134838.23805-1-andriy.shevchenko@linux.intel.com>
-In-Reply-To: <20221130134838.23805-1-andriy.shevchenko@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5Bv5=2C1/4=5D_i915=3A_Move_list=5Fcount?=
- =?utf-8?q?=28=29_to_list=2Eh_as_list=5Fcount=5Fnodes=28=29_for_broader_us?=
- =?utf-8?q?e?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3 5/5] drm/i915/mtl: Hold forcewake and MCR
+ lock over PPAT setup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,21 +57,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+PPAT setup involves a series of multicast writes.  This can be optimized
+slightly be acquiring forcewake and the steering lock just once for the
+entire sequence.
 
-Series: series starting with [v5,1/4] i915: Move list_count() to list.h as list_count_nodes() for broader use
-URL   : https://patchwork.freedesktop.org/series/111482/
-State : warning
+v2:
+ - We should use FW_REG_WRITE instead of FW_REG_READ.  (Bala)
 
-== Summary ==
+Suggested-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_gtt.c | 27 +++++++++++++++++++--------
+ 1 file changed, 19 insertions(+), 8 deletions(-)
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
+index 2ba3983984b9..e37164a60d37 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
+@@ -482,14 +482,25 @@ static void tgl_setup_private_ppat(struct intel_uncore *uncore)
+ 
+ static void xehp_setup_private_ppat(struct intel_gt *gt)
+ {
+-	intel_gt_mcr_multicast_write(gt, XEHP_PAT_INDEX(0), GEN8_PPAT_WB);
+-	intel_gt_mcr_multicast_write(gt, XEHP_PAT_INDEX(1), GEN8_PPAT_WC);
+-	intel_gt_mcr_multicast_write(gt, XEHP_PAT_INDEX(2), GEN8_PPAT_WT);
+-	intel_gt_mcr_multicast_write(gt, XEHP_PAT_INDEX(3), GEN8_PPAT_UC);
+-	intel_gt_mcr_multicast_write(gt, XEHP_PAT_INDEX(4), GEN8_PPAT_WB);
+-	intel_gt_mcr_multicast_write(gt, XEHP_PAT_INDEX(5), GEN8_PPAT_WB);
+-	intel_gt_mcr_multicast_write(gt, XEHP_PAT_INDEX(6), GEN8_PPAT_WB);
+-	intel_gt_mcr_multicast_write(gt, XEHP_PAT_INDEX(7), GEN8_PPAT_WB);
++	enum forcewake_domains fw;
++	unsigned long flags;
++
++	fw = intel_uncore_forcewake_for_reg(gt->uncore, _MMIO(XEHP_PAT_INDEX(0).reg),
++					    FW_REG_WRITE);
++	intel_uncore_forcewake_get(gt->uncore, fw);
++
++	intel_gt_mcr_lock(gt, &flags);
++	intel_gt_mcr_multicast_write_fw(gt, XEHP_PAT_INDEX(0), GEN8_PPAT_WB);
++	intel_gt_mcr_multicast_write_fw(gt, XEHP_PAT_INDEX(1), GEN8_PPAT_WC);
++	intel_gt_mcr_multicast_write_fw(gt, XEHP_PAT_INDEX(2), GEN8_PPAT_WT);
++	intel_gt_mcr_multicast_write_fw(gt, XEHP_PAT_INDEX(3), GEN8_PPAT_UC);
++	intel_gt_mcr_multicast_write_fw(gt, XEHP_PAT_INDEX(4), GEN8_PPAT_WB);
++	intel_gt_mcr_multicast_write_fw(gt, XEHP_PAT_INDEX(5), GEN8_PPAT_WB);
++	intel_gt_mcr_multicast_write_fw(gt, XEHP_PAT_INDEX(6), GEN8_PPAT_WB);
++	intel_gt_mcr_multicast_write_fw(gt, XEHP_PAT_INDEX(7), GEN8_PPAT_WB);
++	intel_gt_mcr_unlock(gt, flags);
++
++	intel_uncore_forcewake_put(gt->uncore, fw);
+ }
+ 
+ static void icl_setup_private_ppat(struct intel_uncore *uncore)
+-- 
+2.38.1
 
