@@ -1,53 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 706A663D606
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Nov 2022 13:53:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EEC563D63B
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Nov 2022 14:03:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A04710E096;
-	Wed, 30 Nov 2022 12:53:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CF4810E096;
+	Wed, 30 Nov 2022 13:03:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B47510E096
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Nov 2022 12:53:24 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 566FBB81B34
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Nov 2022 12:53:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21CABC433D7
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Nov 2022 12:53:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1669812801;
- bh=O135k3EjtaR5pVeq5ZX3cd5MKaWtgT0WO/xCt+a4K+A=;
- h=References:In-Reply-To:From:Date:Subject:To:List-Id:Cc:From;
- b=TprDieo+6NSQJM7mxZcDbfJwznJcjKWqsBJYo2GTaHoPArog6uAik1xQA4XM7fSDF
- qZbBmH5GRYMVn13lG+w6gaJ1EjTm4ffQnwVpQ31Aa4xcyfGPNTiIE23B9M1zyJ0BeO
- P4qob4zjSLXOXUrkODrKhy4Mc7226QiUMCaaK3UqH/4lw0OuSK9B/5DUFZt08n0DMA
- tE0DJEr1m2OLG2ngQTxiEBBFwibXR5CxccDdcy2qfQw5nMMlSb/WdOoklc1qCJae4G
- vXmB4l6v2s9jVm4j3u9VXKkfkmewzj9x90iHTWfqR3RHR2ScNu6Fs1YDzrK600Xhvy
- XTjmw5VmNxQEQ==
-Received: by mail-oa1-f41.google.com with SMTP id
- 586e51a60fabf-141ca09c2fbso20826985fac.6
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Nov 2022 04:53:21 -0800 (PST)
-X-Gm-Message-State: ANoB5pn4u9TyvGFWFfHEDAWWF8gwWFznZp+aDW/+LY30tszoX1td7iQ5
- KoVHCMf5T9mhi9bqFSqHlpSpNDkkSi1iVUfrqxk=
-X-Google-Smtp-Source: AA0mqf6Sr2IS6+ys5YTP/Df4NQKDayIfhQtpmu93rN5w+I/XEB+8J8PQnHdS2VNL4gI4BmaVQMh7xYbBaGVBkLGn6WI=
-X-Received: by 2002:a05:6870:fd8d:b0:13b:5fff:181b with SMTP id
- ma13-20020a056870fd8d00b0013b5fff181bmr23339824oab.267.1669812800250; Wed, 30
- Nov 2022 04:53:20 -0800 (PST)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26A5210E072;
+ Wed, 30 Nov 2022 13:03:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1669813384; x=1701349384;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=1cJfFy2EKhAYcPEDPvEla7O2r1PEnKFHEIqMTfCKD5c=;
+ b=d7c/1qQGrPjPXe63oSdILhQ9AL3OW7xxaR/e5S/1vgK3bM5vmjDQW6lg
+ G22Lx+3t/MqT1pc8qm/t0Z/XAAr+foPDpJy1L7MeyqGjN0Fd5cRExjD18
+ WkXj8E6FnHGYFnL6mQNMdckzWd1QvCZXiplqmyJgekf1LmeGT2wCe/sBC
+ cdinZWMB67xKgt+rQgOn4UiMLsQTOCu4WtLYp1MA/JXiYEO2uTvOxbEaL
+ DCHovnvkQ10bgKeuf7rTxEFC43W2Y89jXD+yQUGXoTY/bD/2LD0Q7oxCg
+ ikxgPlNmR/HwEex16Ded/EtdN/mttsFcR9fqqMlXaEiantOAYmLZ1VJBX w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10546"; a="401668806"
+X-IronPort-AV: E=Sophos;i="5.96,206,1665471600"; d="scan'208";a="401668806"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2022 05:03:03 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10546"; a="818621322"
+X-IronPort-AV: E=Sophos;i="5.96,206,1665471600"; d="scan'208";a="818621322"
+Received: from hpvpnmu01.ger.corp.intel.com (HELO [10.213.197.198])
+ ([10.213.197.198])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2022 05:03:01 -0800
+Message-ID: <d03545c9-d0cb-5bdb-24e8-9eadcda51b83@linux.intel.com>
+Date: Wed, 30 Nov 2022 13:02:59 +0000
 MIME-Version: 1.0
-References: <20221123140335.4xqxepev4bdvybut@gjsousa-mobl2>
-In-Reply-To: <20221123140335.4xqxepev4bdvybut@gjsousa-mobl2>
-From: Josh Boyer <jwboyer@kernel.org>
-Date: Wed, 30 Nov 2022 07:53:09 -0500
-X-Gmail-Original-Message-ID: <CA+5PVA6rWdPwgmy7RvTY_GbOcGz8qR-6-08Too47_66+aQCkhg@mail.gmail.com>
-Message-ID: <CA+5PVA6rWdPwgmy7RvTY_GbOcGz8qR-6-08Too47_66+aQCkhg@mail.gmail.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] PR for DG2 DMC v2.08
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Content-Language: en-US
+To: Matthew Auld <matthew.william.auld@gmail.com>
+References: <20221125102137.1801-1-christian.koenig@amd.com>
+ <20221125102137.1801-7-christian.koenig@amd.com>
+ <d92312af-3c84-8bd9-108b-719fb1ec3a6b@linux.intel.com>
+ <CAM0jSHMKBb3orp8Ez4sC8TNcjPZF9y-4e12Jy6SPqbJonhYVhw@mail.gmail.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <CAM0jSHMKBb3orp8Ez4sC8TNcjPZF9y-4e12Jy6SPqbJonhYVhw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 7/9] drm/i915: stop using ttm_bo_wait
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,35 +64,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- linux-firmware@kernel.org, "kyle@mcmartin.ca" <kyle@mcmartin.ca>, "Hutchings,
- Ben" <ben@decadent.org.uk>
+Cc: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Nov 23, 2022 at 9:03 AM Gustavo Sousa <gustavo.sousa@intel.com> wrote:
->
-> The following changes since commit 391fb47caabaae8719fb72ba4891d1fc27ca1923:
->
->   amdgpu: update green sardine DMCUB firmware (2022-11-17 10:42:59 -0500)
->
-> are available in the Git repository at:
->
->   git://anongit.freedesktop.org/drm/drm-firmware dg2_dmc_v2.8
->
-> for you to fetch changes up to 7f6279b3dd76ff955278fcd9e517eab85a4c97d6:
->
->   i915: Add DMC v2.08 for DG2 (2022-11-21 16:38:26 -0300)
 
-Pulled and pushed out.  Minor conflict in WHENCE fixed up.
+On 29/11/2022 18:05, Matthew Auld wrote:
+> On Fri, 25 Nov 2022 at 11:14, Tvrtko Ursulin
+> <tvrtko.ursulin@linux.intel.com> wrote:
+>>
+>>
+>> + Matt
+>>
+>> On 25/11/2022 10:21, Christian König wrote:
+>>> TTM is just wrapping core DMA functionality here, remove the mid-layer.
+>>> No functional change.
+>>>
+>>> Signed-off-by: Christian König <christian.koenig@amd.com>
+>>> ---
+>>>    drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 9 ++++++---
+>>>    1 file changed, 6 insertions(+), 3 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+>>> index 5247d88b3c13..d409a77449a3 100644
+>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+>>> @@ -599,13 +599,16 @@ i915_ttm_resource_get_st(struct drm_i915_gem_object *obj,
+>>>    static int i915_ttm_truncate(struct drm_i915_gem_object *obj)
+>>>    {
+>>>        struct ttm_buffer_object *bo = i915_gem_to_ttm(obj);
+>>> -     int err;
+>>> +     long err;
+>>>
+>>>        WARN_ON_ONCE(obj->mm.madv == I915_MADV_WILLNEED);
+>>>
+>>> -     err = ttm_bo_wait(bo, true, false);
+>>> -     if (err)
+>>> +     err = dma_resv_wait_timeout(bo->base.resv, DMA_RESV_USAGE_BOOKKEEP,
+>>> +                                 true, 15 * HZ);
+>>
+>> This 15 second stuck out a bit for me and then on a slightly deeper look
+>> it seems this timeout will "leak" into a few of i915 code paths. If we
+>> look at the difference between the legacy shmem and ttm backend I am not
+>> sure if the legacy one is blocking or not - but if it can block I don't
+>> think it would have an arbitrary timeout like this. Matt your thoughts?
+> 
+> Not sure what is meant by leak here, but the legacy shmem must also
+> wait/block when unbinding each VMA, before calling truncate. It's the
 
-josh
+By "leak" I meant if 15s timeout propagates into some code paths visible 
+from userspace which with a legacy backend instead have an indefinite 
+wait. If we have that it's probably not very good to have this 
+inconsistency, or to apply an arbitrary timeout to those path to start with.
 
-> ----------------------------------------------------------------
-> Gustavo Sousa (1):
->       i915: Add DMC v2.08 for DG2
->
->  WHENCE                   |   3 +++
->  i915/dg2_dmc_ver2_08.bin | Bin 0 -> 22540 bytes
->  2 files changed, 3 insertions(+)
->  create mode 100644 i915/dg2_dmc_ver2_08.bin
+> same story for the ttm backend, except slightly more complicated in
+> that there might be no currently bound VMA, and yet the GPU could
+> still be accessing the pages due to async unbinds, kernel moves etc,
+> which the wait here (and in i915_ttm_shrink) is meant to protect
+> against. If the wait times out it should just fail gracefully. I guess
+> we could just use MAX_SCHEDULE_TIMEOUT here? Not sure if it really
+> matters though.
+
+Right, depends if it can leak or not to userspace and diverge between 
+backends.
+
+Regards,
+
+Tvrtko
