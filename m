@@ -2,52 +2,153 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B503163E5F0
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Dec 2022 00:58:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B068763E66A
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Dec 2022 01:22:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7261510E502;
-	Wed, 30 Nov 2022 23:58:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D866910E518;
+	Thu,  1 Dec 2022 00:22:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F4FD10E50D;
- Wed, 30 Nov 2022 23:58:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB4C610E518
+ for <intel-gfx@lists.freedesktop.org>; Thu,  1 Dec 2022 00:22:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669852726; x=1701388726;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=G8ajfFrGRUg7/kyhwJcZqymGTynl00itO8S4we69CT0=;
- b=LV3qoc7LI3b1entYZKQYCKTeTEcEYKwhQg3obETFbAoRw0J1XtnRq21l
- 9h1PFk4xLX6GdhQV7qXCKFovzHAlQSLA1Fx6pRgaS5WLgQtdA8Bbrs0gw
- 5v2aHFtxpDT8YAJGVomF69D9S8a4Nb2H5iSCEINoSgZF4sLeIi8+f36T8
- ngfXwAPAbon34ySgaPI8P9tZMLSOhIBbzYkVdOshNipCvCtCWY6qTlJAz
- vdpBa4rHPJ+hR/z17XdhdBSNY+8ynONEXEfL6tFTW+UpTfEB5KmhacZCO
- MV8/B6jBlRWhr/xsP7v2uR/AGs77w/3NaQjWty21RvhNXh6eB2mTqcBr/ g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10547"; a="313168897"
-X-IronPort-AV: E=Sophos;i="5.96,207,1665471600"; d="scan'208";a="313168897"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ t=1669854149; x=1701390149;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=huXfdaLre31IDUoMjc6p2v+uShfe7ojt3lVw3T9AbEg=;
+ b=VHbeirJzTnLxgKCJNkQoM6TBv+o47RE/h8TeJs+YVb2skglSUKdduftR
+ nQ87tYH63wWGRqSqBNlEUcXil7DtCouHkOGYeGxUO05PEqrkzBc8R9Wdd
+ XACEK5YIqKXZrzunLUTPiCsosnIwGy/ReAphKhj5wjyvUpFPZNvr+Cc26
+ nZ0mr+NFRCInfvpNWq7JzHABAX+RQpglxHIq5qGCGccJCby6wobRudJDK
+ 1zRJYdiEq62HGvmfFaCJDkg7PhufCXUqL20eP2rmR9Bz5l3tdEaIVCSpu
+ aZw5jsXGHQ5i+T4ozPfveEsSU2lESI3ax8Ym0PPitIxKa/n0Lc+S6c9hQ Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10547"; a="313173819"
+X-IronPort-AV: E=Sophos;i="5.96,207,1665471600"; d="scan'208";a="313173819"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2022 15:58:45 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10547"; a="750560955"
-X-IronPort-AV: E=Sophos;i="5.96,207,1665471600"; d="scan'208";a="750560955"
-Received: from freibold-ivm1.ger.corp.intel.com (HELO intel.com)
- ([10.252.52.161])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2022 15:58:43 -0800
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Thu,  1 Dec 2022 00:58:05 +0100
-Message-Id: <20221130235805.221010-6-andi.shyti@linux.intel.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221130235805.221010-1-andi.shyti@linux.intel.com>
-References: <20221130235805.221010-1-andi.shyti@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+ 30 Nov 2022 16:22:28 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10547"; a="818831378"
+X-IronPort-AV: E=Sophos;i="5.96,207,1665471600"; d="scan'208";a="818831378"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga005.jf.intel.com with ESMTP; 30 Nov 2022 16:22:28 -0800
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Wed, 30 Nov 2022 16:22:27 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Wed, 30 Nov 2022 16:22:26 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Wed, 30 Nov 2022 16:22:26 -0800
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.109)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Wed, 30 Nov 2022 16:22:26 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=M/VbrCUnpH+uoIuu3zfSILulmIgSvsyTF3hZcbV6d3KY9ajzC+LepUK3a72L+5SOTkoQZibCvaHKlw+dtONLGHMIWSNMonunpMxuJFEzVQSCcpC8guAasfPGsbvjGPSi5zO+5tpGL4h1AiU/+dE8Iwl8MvlYkQ6BBSZjwReH4bJbOINbufEidESchUu0BnIvkYjZqXYAoW8v8AJFOfaarYYbzLgdKl+0GQt8vgcxbr2MGYTkyCd+5d6RUDXmpZ8P3e04zEW4XfYhgDUMxiiw2/hAUEZSJhKnR8tYHCUTwvGxrpUPKeEifhkwg+S5C5g3LwhWbBfCI1MGBv+7HMRTEQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2MolhUO4vl7kORDH/o4Nq8ret+uDhlHCe8INFD2lCYc=;
+ b=ctAdpCppBbGBTSN1jYV2bi1fzb/o9d0KZzqUrgF4ADJSpodvJVk7gwpUSzAplRQ3IpWvacxeIDzC1zWf8T7nixrPEsqEIN8p63Gb05QfIKrYxHDLgU1M3rdXsfcBuxjsBLNz/viFPYJazgFFVEHe55MNoycSnY2437UXJOes0BocBnsnr8Uk7SEZUiBk/IOuh4179kFW+zWrhJsMYQYroZf6fkCiaFvnDcM0/SKbFQnN7Jm5y6s+AbXyAxxHJWwN1UffBMZ7c0I7HWfKuZGPCAIiRJM/Sft9HTslxc/Oinlw5n7pdSYRbE6CnK+Na4RJ1aondlSRtyQhFucjbrYQIQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BY5PR11MB3911.namprd11.prod.outlook.com (2603:10b6:a03:18d::29)
+ by PH8PR11MB6952.namprd11.prod.outlook.com (2603:10b6:510:224::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5857.23; Thu, 1 Dec
+ 2022 00:22:25 +0000
+Received: from BY5PR11MB3911.namprd11.prod.outlook.com
+ ([fe80::aaaa:56aa:988:ba00]) by BY5PR11MB3911.namprd11.prod.outlook.com
+ ([fe80::aaaa:56aa:988:ba00%7]) with mapi id 15.20.5857.023; Thu, 1 Dec 2022
+ 00:22:24 +0000
+Message-ID: <0846a17b-9562-0592-003a-4336fcac8f51@intel.com>
+Date: Wed, 30 Nov 2022 16:22:22 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.5.0
+Content-Language: en-GB
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, Andrzej Hajda
+ <andrzej.hajda@intel.com>, <intel-gfx@lists.freedesktop.org>
+References: <20221128165209.353706-1-andrzej.hajda@intel.com>
+ <36b9d912-84b3-d050-59aa-b95c245551d2@linux.intel.com>
+From: John Harrison <john.c.harrison@intel.com>
+In-Reply-To: <36b9d912-84b3-d050-59aa-b95c245551d2@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 5/5] Revert "drm/i915: Improve on suspend /
- resume time with VT-d enabled"
+X-ClientProxiedBy: BYAPR11CA0102.namprd11.prod.outlook.com
+ (2603:10b6:a03:f4::43) To BY5PR11MB3911.namprd11.prod.outlook.com
+ (2603:10b6:a03:18d::29)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BY5PR11MB3911:EE_|PH8PR11MB6952:EE_
+X-MS-Office365-Filtering-Correlation-Id: aa5d104f-92ed-43ef-6d16-08dad3321ef4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: WRgTDpHjawgdLGwrIt8VqBg3BwJhTepmNgIN27NaafLkXQE7KXAC0O3vg4laCKAmLc0uvJPLP2qgwQLpv4hQWkzuivFzm0S74bV7ySkk6vyriu4QFzPTohsrd5DHg+BjmlPC1UE5EU5CpEtP/J9yOLRmp9zqOPwAN40LbFlMewyrc4J9DQWV8X532PEFQFkK1glUA/6V8q5iMCzXhkJEAz4tFVBobl6qHNuIVkQlSSGDJYhT2GzfmrnvjNYTuwgzW/1UdEH7sNYqzDhQaAjgIA/rNnz2BrFeuOhbKJWrCAi+rJa+VCeni7PHxZLKAaSuJZl/uy2QyJhGFDujKFGm5jBSzvew6fvWjQ5zhPpGvD9eVrKfnKKTEUGygr0X/jzGyh34ZkJA9/6ZMV8WQwOF7Yrcj6YknKWuqzZMuDQHpAPf1mLgzF1b/clFKreglN3xDu6+A6oK3j/Y4qHvoeYOuZGTKVt0Q1z+S7iAp19OGxTVPxR3YSXDgIUssNdJGK3aDTM74s3PZL2LKCITmoHbuhmRUFzQs61jAgJrkQrJBQlICYQuFb6XT3w9b22S8H9yZcTcz0tr0/fqL0d4mMjWVEt98q+bioQCdfNCtzP80ABfxeBQFs2xHsqhr+XH+fzGT+KFq2BgaDR5hwpwziJNfPFX44GNxLqomaAR+RM9I66qfd3bm+wUCBTlKC3OiVak
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BY5PR11MB3911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(346002)(376002)(396003)(366004)(39860400002)(136003)(451199015)(5660300002)(54906003)(41300700001)(2616005)(6512007)(316002)(110136005)(82960400001)(66556008)(8676002)(36756003)(66946007)(66476007)(4326008)(38100700002)(186003)(8936002)(26005)(2906002)(83380400001)(86362001)(6506007)(6486002)(31696002)(966005)(478600001)(53546011)(31686004)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OHZSTDk2N01Kak1ISEI5bW5XNEQ2a0FiUHE0V05xOGtaZHJLRFJrb3BSWkU4?=
+ =?utf-8?B?QlZNQ0l1emNST1h3TFVxOU94UW40NHQvOXlIK09OZ0xEZnRBU2VIZDhoalVv?=
+ =?utf-8?B?SFJIR0Z1VWI5R0pLcTRvY3VUb1Zrb0x5ZWVRNDU0US8xbmZ2aHJpamFHa3kv?=
+ =?utf-8?B?bFkvOHNZMmJzOElCNDFSaTlQNkpvRW9QRk0zdm9LZ21YTTNvMkJFK0FHYlhr?=
+ =?utf-8?B?Y3VJZzRUZVFzdU1CL2pYbDZmMWU2cGl2dG5NaDVhQzR6Sk8xNnB6YUtSQ0ZX?=
+ =?utf-8?B?aGxrcWErN2xldDlmY0d3dk1lbDczYXJlQ3FwTGpqTUxSa0JKK2hTUWltNnlN?=
+ =?utf-8?B?cnhYUWZmUlZkS1N1ZHpybFBjUlhTdGQzNnhSUXZWRXRjbkJFMW1RYnNWRm05?=
+ =?utf-8?B?UFNaUmt2M0pqVnMrZ3B0bmJYaXkvS1VIS09xTTVkY0tQSHh6Y2NlckxOM1dG?=
+ =?utf-8?B?djBjZzh1aXlFYTl5Qmt6aXdXZW9uMkJ3aWx5NGNJdVhJeXBSTXpBY0pzR3Rj?=
+ =?utf-8?B?Q0VtQUFSb0FDdlBVTWNqTVhrbHlBZnpVMHBzZEpKQWZwa3VPYTFzSFcxTmRU?=
+ =?utf-8?B?SEdFMVVGKzZJT255MVc3RHFsNDJHR21HdWdHcCt3QWorZHl2V21KQVlva3JM?=
+ =?utf-8?B?MGxQbzdiYU9WbVg1anZUTXJUM0ZiaGo1emVoNGMyUUJhajRaRzBQMDNhclZ5?=
+ =?utf-8?B?WWVCYnowM1dkb2FORk5GU05pSWVSR1hNdzdYTitlWmxuRFRNckJOb0dQRFRt?=
+ =?utf-8?B?ODlEQUkvNUZhTVJvMlo2RGhxSXVPWG1EcUt0V2hUdUJUSURRbmRqOFA4OHlE?=
+ =?utf-8?B?OE9zbUliL3k2Ykk0ckRXdURTeWpVSFMzYmtuQ1RwUHZBV1phd3RsbWpFY29E?=
+ =?utf-8?B?V21EN2FMcDlRL3E0MUFpdVZqRHF5VEJZYTN0TXhHY1ZIWVBGZUZsenBSQUlS?=
+ =?utf-8?B?bWVQRFpJTU1ZcU5jRERnTmVqNmNQUVF6SVJGMmswb1ViNkNVZjFnakM3NkRQ?=
+ =?utf-8?B?R3JtUUJHenhkVmNlQzN4anNGKzJpditoSnJlOWZNOE9HRTlObWRpWFNkZVQx?=
+ =?utf-8?B?MEthYVRKbGV2cVNlU0dTdjlhZUY1b1hSM1VESWhXY1dTbG8vRWcwQWUyTkI4?=
+ =?utf-8?B?Z3RGM3l1NDFLc2w2Mit6S3R5OFVGL2JJT1JZa3VVSUJqbmorZUpTL3hOZlhZ?=
+ =?utf-8?B?dTFNeUoyNnp0MmZxL0k3SEVHaUdpcnZUTHdoSEhyV0o5c21hS0NsWDVxVko2?=
+ =?utf-8?B?T0J4amVFbkNWN3RnN2FUaXVQVXFGdTdHNXpHVlVtK1hBRFhiZkxEeDVKR2g0?=
+ =?utf-8?B?VThDTDdlTmhwbXhGNm1EZDdEZ3FvQnltbGlKM2VvNm05QnNMbi9FZkd4QXlG?=
+ =?utf-8?B?N3NSZnkrQ2hFYmFBOVJGd3Z2MmwveHdSYmRhMVArcnZBaU1aMktBTWppOFA4?=
+ =?utf-8?B?bWMzSTRLbU5pM1l2MmxrTEVkdHNEcndvS1dmQk1vTUJpQXhkUkFidFdjSWVX?=
+ =?utf-8?B?RkYrbG43eUhhT3JneURqWjVyTHp0K0ErMDk3UVZWaXFhUGpEZW1iYlpubktw?=
+ =?utf-8?B?U1RXSmxpZy9wZzdqMDRHUW9xWU5ZNEc0ZEhOVkdiZ3hSSm1GcHFpODMyM0lx?=
+ =?utf-8?B?dEhBbUtpNFdybWowT2hsSVRxRlF0QkVNSURKNWtram1SNDczNXozNStZR3Nm?=
+ =?utf-8?B?UVFyVVJaa29Cak95dnlnNUVVb3l2c1F5c2lSUXZaZTZCQ3M0QXVST0QxOUtv?=
+ =?utf-8?B?ZzEzM0ZKa0Y0ZFVEMmhpWmI1U2pxUm5BeXdxL25URUNSbkVJc2lmQnpqODBz?=
+ =?utf-8?B?c0pIclpwclRLZjM3MFZrdmZTNGNBK0t5OE90Mm9ONjEvYjRXQmhnMlJWM01x?=
+ =?utf-8?B?K1ZrUDBZUE1NVXVYNlgwT1dhenUybmZ3S09XS2tSK3F3SGZYaklVQXRtQ3N0?=
+ =?utf-8?B?aERPYnBqVG1ZNTlrTzRXRzFMZXZRZit3Q1prWnAwVCs4WWxmYzN2VTl0dFY0?=
+ =?utf-8?B?VmgxL0xOaWZGdHVMR0pFRWpLR0kyUEsxaWVTYm5KMmFTeFkrRWtBWk9Mdnp1?=
+ =?utf-8?B?My9pT0M4azFlajA4bEM5YjlFdUYzc2t5eHhUblNwYVo0V0hXY1dXeEFvUGh4?=
+ =?utf-8?B?L3I1MzgvdXVJNHdWcjBiTFlORU5OM0hTdE9ucW4yc1hZdmY0SUFiTG5RNDcw?=
+ =?utf-8?B?ZXc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: aa5d104f-92ed-43ef-6d16-08dad3321ef4
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3911.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2022 00:22:24.8913 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: OL5x8nNDPPlvpXPSw87zaDXUfWKZwI7EkXL2uC17k9aYvRz9WuiOYvUUo7Ia2Fsb33vl/ybIAKrP8Y9FouVhpKaoB83v3fFlvpbw352p6Fc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6952
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: fix exiting context timeout
+ calculation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,243 +161,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>, Matthew Auld <matthew.auld@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This reverts commit 2ef6efa79fecd5e3457b324155d35524d95f2b6b.
+On 11/29/2022 00:43, Tvrtko Ursulin wrote:
+> On 28/11/2022 16:52, Andrzej Hajda wrote:
+>> In case context is exiting preempt_timeout_ms is used for timeout,
+>> but since introduction of DRM_I915_PREEMPT_TIMEOUT_COMPUTE it increases
+>> to 7.5 seconds. Heartbeat occurs earlier but it is still 2.5s.
+>>
+>> Fixes: d7a8680ec9fb21 ("drm/i915: Improve long running compute w/a 
+>> for GuC submission")
+>> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2410
+>> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+>> ---
+>> Hi all,
+>>
+>> I am not sure what is expected solution here, and if my patch does not
+>> actually reverts intentions of patch d7a8680ec9fb21. Feel free to 
+>> propose
+>> something better.
+>> Other alternative would be to increase t/o in IGT tests, but I am not 
+>> sure
+>> if this is good direction.
+>
+> Is it the hack with the FIXME marker from 47daf84a8bfb ("drm/i915: 
+> Make the heartbeat play nice with long pre-emption timeouts") that 
+> actually breaks things? (If IGT modifies the preempt timeout the 
+> heartbeat extension will not work as intended.)
+>
+> If so, I think we agreed during review that was a weakness which needs 
+> to be addressed, but I would need to re-read the old threads to 
+> remember what was the plan. Regardless what it was it may be time is 
+> now to continue with those improvements.
+>
+What is the actual issue? Just that closing contexts are taking forever 
+to actually close? That would be the whole point of the 
+'context_is_exiting' patch. Which I still totally disagree with.
 
-Checking the presence if the IRST (Intel Rapid Start Technology)
-through the ACPI to decide whether to rebuild or not the GGTT
-puts us at the mercy of the boot firmware and we need to
-unnecessarily rely on third parties.
+If the context is being closed 'gracefully' and it is intended that it 
+should be allowed time to pre-empt without being killed via an engine 
+reset then the 7.5s delay is required. That is the officially agreed 
+upon timeout to allow compute capable contexts to reach a pre-emption 
+point before they should be killed. If an IGT is failing because it 
+enforces a shorter timeout then the IGT needs to be updated to account 
+for the fact that i915 has to support slow compute workloads.
 
-Because now we avoid adding scratch pages to the entire GGTT we
-don't need this hack anymore.
+If the context is being closed 'forcefully' and should be killed 
+immediately then you should be using the 'BANNED_PREEMPT_TIMEOUT' value 
+not the sysfs/config value.
 
-Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_ggtt.c | 69 ++++++----------------------
- drivers/gpu/drm/i915/gt/intel_gtt.h  | 24 ----------
- drivers/gpu/drm/i915/i915_driver.c   | 16 -------
- 3 files changed, 13 insertions(+), 96 deletions(-)
+Regarding heartbeats...
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index fa96d925c2596..5896ac44010b0 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -27,13 +27,6 @@
- #include "intel_gtt.h"
- #include "gen8_ppgtt.h"
- 
--static inline bool suspend_retains_ptes(struct i915_address_space *vm)
--{
--	return GRAPHICS_VER(vm->i915) >= 8 &&
--		!HAS_LMEM(vm->i915) &&
--		vm->is_ggtt;
--}
--
- static void i915_ggtt_color_adjust(const struct drm_mm_node *node,
- 				   unsigned long color,
- 				   u64 *start,
-@@ -105,23 +98,6 @@ int i915_ggtt_init_hw(struct drm_i915_private *i915)
- 	return 0;
- }
- 
--/*
-- * Return the value of the last GGTT pte cast to an u64, if
-- * the system is supposed to retain ptes across resume. 0 otherwise.
-- */
--static u64 read_last_pte(struct i915_address_space *vm)
--{
--	struct i915_ggtt *ggtt = i915_vm_to_ggtt(vm);
--	gen8_pte_t __iomem *ptep;
--
--	if (!suspend_retains_ptes(vm))
--		return 0;
--
--	GEM_BUG_ON(GRAPHICS_VER(vm->i915) < 8);
--	ptep = (typeof(ptep))ggtt->gsm + (ggtt_total_entries(ggtt) - 1);
--	return readq(ptep);
--}
--
- /**
-  * i915_ggtt_suspend_vm - Suspend the memory mappings for a GGTT or DPT VM
-  * @vm: The VM to suspend the mappings for
-@@ -185,10 +161,7 @@ void i915_ggtt_suspend_vm(struct i915_address_space *vm)
- 		i915_gem_object_unlock(obj);
- 	}
- 
--	if (!suspend_retains_ptes(vm))
--		vm->clear_range(vm, 0, vm->total);
--	else
--		i915_vm_to_ggtt(vm)->probed_pte = read_last_pte(vm);
-+	vm->clear_range(vm, 0, vm->total);
- 
- 	vm->skip_pte_rewrite = save_skip_rewrite;
- 
-@@ -545,8 +518,6 @@ static int init_ggtt(struct i915_ggtt *ggtt)
- 	struct drm_mm_node *entry;
- 	int ret;
- 
--	ggtt->pte_lost = true;
--
- 	/*
- 	 * GuC requires all resources that we're sharing with it to be placed in
- 	 * non-WOPCM memory. If GuC is not present or not in use we still need a
-@@ -1263,20 +1234,11 @@ bool i915_ggtt_resume_vm(struct i915_address_space *vm)
- {
- 	struct i915_vma *vma;
- 	bool write_domain_objs = false;
--	bool retained_ptes;
- 
- 	drm_WARN_ON(&vm->i915->drm, !vm->is_ggtt && !vm->is_dpt);
- 
--	/*
--	 * First fill our portion of the GTT with scratch pages if
--	 * they were not retained across suspend.
--	 */
--	retained_ptes = suspend_retains_ptes(vm) &&
--		!i915_vm_to_ggtt(vm)->pte_lost &&
--		!GEM_WARN_ON(i915_vm_to_ggtt(vm)->probed_pte != read_last_pte(vm));
--
--	if (!retained_ptes)
--		vm->clear_range(vm, 0, vm->total);
-+	/* First fill our portion of the GTT with scratch pages */
-+	vm->clear_range(vm, 0, vm->total);
- 
- 	/* clflush objects bound into the GGTT and rebind them. */
- 	list_for_each_entry(vma, &vm->bound_list, vm_link) {
-@@ -1285,16 +1247,16 @@ bool i915_ggtt_resume_vm(struct i915_address_space *vm)
- 			atomic_read(&vma->flags) & I915_VMA_BIND_MASK;
- 
- 		GEM_BUG_ON(!was_bound);
--		if (!retained_ptes) {
--			/*
--			 * Clear the bound flags of the vma resource to allow
--			 * ptes to be repopulated.
--			 */
--			vma->resource->bound_flags = 0;
--			vma->ops->bind_vma(vm, NULL, vma->resource,
--					   obj ? obj->cache_level : 0,
--					   was_bound);
--		}
-+
-+		/*
-+		 * Clear the bound flags of the vma resource to allow
-+		 * ptes to be repopulated.
-+		 */
-+		vma->resource->bound_flags = 0;
-+		vma->ops->bind_vma(vm, NULL, vma->resource,
-+				   obj ? obj->cache_level : 0,
-+				   was_bound);
-+
- 		if (obj) { /* only used during resume => exclusive access */
- 			write_domain_objs |= fetch_and_zero(&obj->write_domain);
- 			obj->read_domains |= I915_GEM_DOMAIN_GTT;
-@@ -1321,8 +1283,3 @@ void i915_ggtt_resume(struct i915_ggtt *ggtt)
- 
- 	intel_ggtt_restore_fences(ggtt);
- }
--
--void i915_ggtt_mark_pte_lost(struct drm_i915_private *i915, bool val)
--{
--	to_gt(i915)->ggtt->pte_lost = val;
--}
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
-index d1900fec6cd1f..a5a9f7640bd15 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-@@ -355,19 +355,6 @@ struct i915_ggtt {
- 
- 	bool do_idle_maps;
- 
--	/**
--	 * @pte_lost: Are ptes lost on resume?
--	 *
--	 * Whether the system was recently restored from hibernate and
--	 * thus may have lost pte content.
--	 */
--	bool pte_lost;
--
--	/**
--	 * @probed_pte: Probed pte value on suspend. Re-checked on resume.
--	 */
--	u64 probed_pte;
--
- 	int mtrr;
- 
- 	/** Bit 6 swizzling required for X tiling */
-@@ -604,17 +591,6 @@ bool i915_ggtt_resume_vm(struct i915_address_space *vm);
- void i915_ggtt_suspend(struct i915_ggtt *gtt);
- void i915_ggtt_resume(struct i915_ggtt *ggtt);
- 
--/**
-- * i915_ggtt_mark_pte_lost - Mark ggtt ptes as lost or clear such a marking
-- * @i915 The device private.
-- * @val whether the ptes should be marked as lost.
-- *
-- * In some cases pte content is retained across suspend, but typically lost
-- * across hibernate. Typically they should be marked as lost on
-- * hibernation restore and such marking cleared on suspend.
-- */
--void i915_ggtt_mark_pte_lost(struct drm_i915_private *i915, bool val);
--
- void
- fill_page_dma(struct drm_i915_gem_object *p, const u64 val, unsigned int count);
- 
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 4e1bb3c23c638..4cc3ced839595 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -102,9 +102,6 @@
- #include "intel_region_ttm.h"
- #include "vlv_suspend.h"
- 
--/* Intel Rapid Start Technology ACPI device name */
--static const char irst_name[] = "INT3392";
--
- static const struct drm_driver i915_drm_driver;
- 
- static void i915_release_bridge_dev(struct drm_device *dev,
-@@ -1496,8 +1493,6 @@ static int i915_pm_suspend(struct device *kdev)
- 		return -ENODEV;
- 	}
- 
--	i915_ggtt_mark_pte_lost(i915, false);
--
- 	if (i915->drm.switch_power_state == DRM_SWITCH_POWER_OFF)
- 		return 0;
- 
-@@ -1550,14 +1545,6 @@ static int i915_pm_resume(struct device *kdev)
- 	if (i915->drm.switch_power_state == DRM_SWITCH_POWER_OFF)
- 		return 0;
- 
--	/*
--	 * If IRST is enabled, or if we can't detect whether it's enabled,
--	 * then we must assume we lost the GGTT page table entries, since
--	 * they are not retained if IRST decided to enter S4.
--	 */
--	if (!IS_ENABLED(CONFIG_ACPI) || acpi_dev_present(irst_name, NULL, -1))
--		i915_ggtt_mark_pte_lost(i915, true);
--
- 	return i915_drm_resume(&i915->drm);
- }
- 
-@@ -1617,9 +1604,6 @@ static int i915_pm_restore_early(struct device *kdev)
- 
- static int i915_pm_restore(struct device *kdev)
- {
--	struct drm_i915_private *i915 = kdev_to_i915(kdev);
--
--	i915_ggtt_mark_pte_lost(i915, true);
- 	return i915_pm_resume(kdev);
- }
- 
--- 
-2.38.1
+The heartbeat period is 2.5s. But there are up to five heartbeat periods 
+between the heartbeat starting and it declaring a hang. The patch you 
+mention also introduced a check on the pre-emption timeout when the last 
+period starts. If the pre-emption timeout is longer than the heartbeat 
+period then the last period is extended to guarantee that a full 
+pre-emption time is granted before declaring the hang.
+
+Are you saying that a heartbeat timeout is occurring and killing the 
+system? Or are you just worried that something doesn't align correctly?
+
+John.
+
+> Regards,
+>
+> Tvrtko
+>
+>>
+>> Regards
+>> Andrzej
+>> ---
+>>   drivers/gpu/drm/i915/gt/intel_execlists_submission.c | 4 ++++
+>>   1 file changed, 4 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c 
+>> b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+>> index 49a8f10d76c77b..bbbbcd9e00f947 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+>> @@ -1248,6 +1248,10 @@ static unsigned long 
+>> active_preempt_timeout(struct intel_engine_cs *engine,
+>>       /* Force a fast reset for terminated contexts (ignoring sysfs!) */
+>>       if (unlikely(intel_context_is_banned(rq->context) || 
+>> bad_request(rq)))
+>>           return INTEL_CONTEXT_BANNED_PREEMPT_TIMEOUT_MS;
+>> +    else if (unlikely(intel_context_is_exiting(rq->context)))
+>> +        return min_t(typeof(unsigned long),
+>> + READ_ONCE(engine->props.preempt_timeout_ms),
+>> +                 CONFIG_DRM_I915_PREEMPT_TIMEOUT);
+>>         return READ_ONCE(engine->props.preempt_timeout_ms);
+>>   }
 
