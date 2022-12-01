@@ -1,155 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D641D63EF80
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Dec 2022 12:31:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 115B163EFFD
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Dec 2022 12:56:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A656A10E5C1;
-	Thu,  1 Dec 2022 11:31:48 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD41010E5C1
- for <intel-gfx@lists.freedesktop.org>; Thu,  1 Dec 2022 11:31:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E76910E5BA;
+	Thu,  1 Dec 2022 11:56:48 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3C0310E5BA;
+ Thu,  1 Dec 2022 11:56:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669894303; x=1701430303;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=a3FqpqjRJZNdaVk+BHRnR83ZeeiSf+FklKEbHXVI3t8=;
- b=AQEgbYmPOhYygx6328WCw9atboc/ddOjy/EClb3ZSFpY+/SSSRdZAs2u
- hvNl2vsB3qRksdSB2dinRtlFE5WnmqJwJCTvq9PzRRZQM9OTwSN5oNvuj
- tsN+ncukPMWelf3Tc4nncBB+sc2XmLuuUaoh254fJXxs87m0+/0xMlD9b
- ral7Hn3CoUCGMktegGRyXpJznHdube4SmeyVb815ls8dVWxkioDilJA+6
- nqtjU757kXUQaMFZK6xYQDlGCR/RvZ+097NOo+4CUU7RF1QG6idghRFqo
- N0XssHjWVqqG0WUqE2Sr7w2jRPKnORp9Kxt5McJtNV16yfoS6fDVoJMoG Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10547"; a="313291017"
-X-IronPort-AV: E=Sophos;i="5.96,209,1665471600"; d="scan'208";a="313291017"
+ t=1669895803; x=1701431803;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=iRczP64AbWI4hitoAC9wENxQQm4xKMuLE9TfL6ur+hY=;
+ b=iC+ndUnpUYqUS+hUZW7x62MKu7vHq+8TRzQAwkyaXtrg4+jkGKS/cQlj
+ uBaNPGq0nxYODjxAkUILlcMoAXZtyjwPO48OgAttRYeztXSEqDH1Vplu4
+ Mc27elGY3N65lAGBYVyxDCbXKewziyQwEtayKC0HimtYGe+maq19EGXf3
+ SPCivd+9Q9AQJxzywY9dlvSyWSnADaejrjmnSBn9yjWEuxS7wn3yAdh97
+ 9WiUTwEFZBIN6V0jV9G+DvNubBv91NKIsEfiy2xXnExXu48b7fVQ1WUEr
+ Yv+VEuSgQXsbZhWEvgvT6zZIgBSOMYPvluN1zAZJS6Atq9gjqeyQ8ztcj g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10547"; a="295359153"
+X-IronPort-AV: E=Sophos;i="5.96,209,1665471600"; d="scan'208";a="295359153"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2022 03:31:43 -0800
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2022 03:56:43 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10547"; a="769202748"
-X-IronPort-AV: E=Sophos;i="5.96,209,1665471600"; d="scan'208";a="769202748"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga004.jf.intel.com with ESMTP; 01 Dec 2022 03:31:42 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Thu, 1 Dec 2022 03:31:42 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Thu, 1 Dec 2022 03:31:42 -0800
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.177)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Thu, 1 Dec 2022 03:31:41 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=k+/Olp7xu0LJhAF7vxI6735X5ZO/grZOzgtpieraV8aV3JvOo7jfy7gca2hSAYW+EhFf0OzX14oIKcetd50xwkrJbUuUlBGu6Pg3UErkaZnUKy8LERGXuqXWIpZZOXJtBvZ3Bv2Len+642Wp0ocU4wsJA0Vc+8iArScfnqFjCxWZ5xNFq/ddz+LYbjmU0CYExr0Oc5oLefS6dzx7CCbWy61mHHA5cc1Be+ozmm+8iZFopnNPMxfT5dB4RUTRDtF2vUGNATv7FEj6Y1QaOOcmTbqEWK2hZO2/DBYXLTnXSPSdA4H/x7492MExetyKyVPaYqOBOmnjAaJF04sJ3ZsVkg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=a3FqpqjRJZNdaVk+BHRnR83ZeeiSf+FklKEbHXVI3t8=;
- b=NcXRGkRmVDvT2iQllDsgTmcqO3DqT7z/aE7zlgS0MrnA/FXf8q4SZfMwZi8Yu/EJZjsgSztQrjJ9gHlHx9hyA0VFwwjvDayDLzzC1mVB0hZzxPMR8xFw2j6fer+gg6beztUnRBMBkgy55qtdh1xT18BErbcAppmcLXT5BrV+iJs+IQu+18K+6pyCCxaBlkzPghacINbaGXgh/6LvqH1gvqZLigVkX+ZoAy7ZFVBk8nxz1FpN7r+l6/558sA+PUYhR+N1tZUbSPXZIfA5EGivALn+3cfpOGyrVnCRId0z6M/C7VEYmV+2nAR2VPOeUhdWqti1sxcn5ffP54Tj0r4cOQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from BYAPR11MB3207.namprd11.prod.outlook.com (2603:10b6:a03:7c::14)
- by DS7PR11MB7807.namprd11.prod.outlook.com (2603:10b6:8:e3::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5857.17; Thu, 1 Dec 2022 11:31:35 +0000
-Received: from BYAPR11MB3207.namprd11.prod.outlook.com
- ([fe80::5546:ea97:1beb:cb5f]) by BYAPR11MB3207.namprd11.prod.outlook.com
- ([fe80::5546:ea97:1beb:cb5f%4]) with mapi id 15.20.5857.023; Thu, 1 Dec 2022
- 11:31:34 +0000
-From: "Coelho, Luciano" <luciano.coelho@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
-Thread-Topic: [PATCH v3 1/2] drm/i915/mtl: limit second scaler vertical
- scaling in ver >= 14
-Thread-Index: AQHY/weJ2LRdW4EGOkCMCsIz1GUrr65MOogAgAALeQCAAAbEgIAMphgA
-Date: Thu, 1 Dec 2022 11:31:34 +0000
-Message-ID: <a4f5f7517a487019d1e04b9363a60bb9d8773606.camel@intel.com>
-References: <20221122102344.30244-1-luciano.coelho@intel.com>
- <Y33CGl3lfE/JxtVf@intel.com>
- <03db57b25685301886bc5a15fc6e6f70edf15272.camel@intel.com>
- <Y33umBIPFL8fSqUm@intel.com>
- <171acc22b77163c2e4f03d22da31fa54ebd8888a.camel@intel.com>
-In-Reply-To: <171acc22b77163c2e4f03d22da31fa54ebd8888a.camel@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.46.1-1 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BYAPR11MB3207:EE_|DS7PR11MB7807:EE_
-x-ms-office365-filtering-correlation-id: e5962be2-77c2-43a5-26af-08dad38f9a4a
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: cemdIQy1QJpsFAAYu9DRovTnxeHkm40bo6PO6HSGYOwzsS1QUjISbNrVG9aHJTAN6GtNH5X1KjMqlre7eHtIOYLusa3X+dFocfhysreculNR6F4XTIrM6spqfRx80SqjPMoGRoRbndphXhCieEUeC3cTkZ5Y7RIeojI77CAfkjjbwUkvhFyjqFduhjdjn3p7I9T4PTWU4dS9KfGYAQM5Xdl3bXXXLuiH33SHNnzDk85f5ooHWtO2RXY9XlkNk+c/XtFojoNzE3El/5bPBwb9VUGQj80msoz8SV7qAfqyVAEP2G5rsPnM9Vt/B3ylz36ZruS+4KqykRjMdbcHYes9gRxj8efdYG8LBL1a0ZN+mEIe9/AtgSfPtJBQvu+unP6DWanOF7g6xFmfIGpmwoTDM+546ZOFOfSj2eQTU2gVM60qYA6kZTKvxOTO8XKUBHt9qIQ46rKxKL8fHsZn84dXgPEsqLm+gCEqDN8Yr4nHpkOunDZotpiWmFWAcuZtZ39cnhvG0e63mAHa04FwWnzN545uWndOj4cHmuzqy1MpCJYY1FIV7Gz5BNV/moiRe//x6Fs4LXzQsJra36q+D4rY2JZOClBePTqm4ZxAyEf4JUpShnXGyp+Oxj7KZ6bJVjuR88xKkrW20t3SGkbtLzIbnltwfCTrA0f4/BHGyAe9AQfgXmi1j67DmNjaDyhU90KhtSlu1Bj/ly/Emo8DyNtJqw==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR11MB3207.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(376002)(136003)(366004)(346002)(39860400002)(396003)(451199015)(66476007)(66446008)(66556008)(4326008)(64756008)(41300700001)(5660300002)(66946007)(76116006)(316002)(4001150100001)(8936002)(8676002)(36756003)(2616005)(66574015)(6486002)(6506007)(186003)(26005)(6512007)(71200400001)(478600001)(91956017)(30864003)(38070700005)(6916009)(83380400001)(38100700002)(122000001)(86362001)(82960400001)(2906002)(66899015);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Yy9LNk5rN01NeW4xaWdiaTRDSVpCNFlkak5hM0d6ZUtvb2VzVFM5T1pib0hr?=
- =?utf-8?B?Sjd4cXB0SFpGcTZPdzF6dFZ3VHQ4YnRoWG5rUjFLTlViT2dTNFAyRkU2QU94?=
- =?utf-8?B?S21jcXMxTFBqQUtzR2NsMEtGdHRNZitYQ25qMnRmQnpsOGdJVnp5NnNzMXEy?=
- =?utf-8?B?VXFubU92Nmo4KzBJSU5UY1NoeWE4M2pXY09nWmx5c2hvV2psZ0RNQUE4c0cy?=
- =?utf-8?B?YThHZ3g5d0tyZWNSUUtKRVVyWlMrRDZUOU13UFdrcllNUTVuSTNsZm5pcStX?=
- =?utf-8?B?elgrMG1OeWJHN09DNFExcFRkTjI0SEZXZVZmUmV2K205KzA0RU9JY3QrSEIw?=
- =?utf-8?B?dHBTQ1RMYUZDSGhTNU1DejVLNUpONzlJbUdKNVkwZ2hJMmtwMThQTVpobXMv?=
- =?utf-8?B?Ung2NTBTcmdTUDdSUjhqbU1lZDBnSCtrMTJ4bWozQk5tNFBHMHhVMUc5TGZV?=
- =?utf-8?B?dVpzUERKY21aNzFpYmttazhCaUx1N3p5b0pSNHQ1dDhLRFlEYVlvZnoySnVo?=
- =?utf-8?B?YjZXT0pVaXo4ZTVWWlNKcGd4eTN5ZHhjdnpUa0lHaHBJOTk3WVd5NUdGNXdN?=
- =?utf-8?B?OTFpMisvZTJoMnJvRUtINFJCSVRLOHI0YUQvRlViTVovRVp5bHZpR3RmU3ZS?=
- =?utf-8?B?cjFNNU1wbm1nNWc2bWM0amp4YmdyODdGRktZTzB2RFZIY3NscnZYZitibmZV?=
- =?utf-8?B?cVNoQVNqc3NUcFFlaFk2a0dDK0wwZm02TkQxOUIvcVpsVWVhTXNEKzVDeEQ2?=
- =?utf-8?B?ajREWVM4cXVqNy9SWXpyZnNlMjhyZDc3QnBaRllnOXdIb0V6V0NwTTAyN2pl?=
- =?utf-8?B?SCtDd0VCaFlOTDEvZ3E3RFVneTBPVjA1ejBIVkVEU1RLN3c0L2lxYktJdFZM?=
- =?utf-8?B?ekNraE90eW9KYzRzVlk5ZmFhbFQxQWtNQklpQ3hTb0xyTzI4dmltay9IY1lB?=
- =?utf-8?B?S3JVVG1jYmZmREw2Q3A0bVhYVW5yS3RnZGpET1kyWklESkViemhmSS9temtY?=
- =?utf-8?B?RG1yZUVMNDE1YkVaQzd4N3lEbG84NmlhM2hzSnM3R1BqWi9UZjFwemJSOERN?=
- =?utf-8?B?ZS9JOURQeFRZMlI3b1E1UWhidXF3S0I5a1JJN2FQT3IrdWFqeXBjR3NsZzRa?=
- =?utf-8?B?Z2tRZWZ6RjE4YldmS3N2M0ZzZ0VHa3V6Q3RORWdBdjdwc3ZlRmZrem9VZUk2?=
- =?utf-8?B?bis0M1EwV1ZraFVHYkMwMGJsQjczVXlweFlka2tud2tSU2ZpdUhIY21LVk56?=
- =?utf-8?B?allBTWpVT0k2TE1mUDN1Z2kzekh4Mm9GMk1jWWZhOVhCT0J6UWk2U0NYS2ZF?=
- =?utf-8?B?Ni9UTUZrRHdjaDM0UXNBNURQZ0JRZG1mNlJuWVdOTXpDT2FDNURyOGRSY1M1?=
- =?utf-8?B?LzlIeDljQWQ1VStKYTNUS2RDdHdxaGFsNVJDMVdwLzRhQWFEL0d3SS9iamUw?=
- =?utf-8?B?bmhCSHpYQ0tvdmNHYnJkOERzVXkwaXljVS9NbFgwVWRMeE1nQzAxakZaRCth?=
- =?utf-8?B?OEFDMXdIZUZXS3ppb0lEYWlJQ3J6SDlxbGtkQk5sZnJkYmsvNWdWNEF4ZzRN?=
- =?utf-8?B?SmptQm1nVUJZVmpLa1ZOMnBBWFFXNGV6QjBVK1dtSjdjQXRpVUREWG96dVh6?=
- =?utf-8?B?QXN6YXMxQ1E1cVZBZkFjTDEvNnZzS21tTU9lZXdMdFBlTFFhVEg2TkduVkJP?=
- =?utf-8?B?dXFmcVZwa3A4YUJSbldwcUZFeXJYT0Z2ZElNSEtITlloK3FFb0oxcjFHY1ho?=
- =?utf-8?B?eTA1S1ZSWm5yQm9oWWVURW9yb3dxUkU4NldrUTRielVPUXVtZ1NNV0dmdTNH?=
- =?utf-8?B?WEtmR0QyZDdlRzl2Y1YrREt0UVI2VnY3TlpwUVhjTVVBUzdnWXdQVU1WL21K?=
- =?utf-8?B?TjQ2KzZqWWRQRGg4Qk1yYkpWa2NubC9HeEV4N0xzN2dyQVhoRncrdWpldGZL?=
- =?utf-8?B?M1ljbmsxZTNndC9TT2p5aSt0WXhUYXZBMlBwR0Y3aXNEa1BwdGFNRXkzSnZQ?=
- =?utf-8?B?MkNGOVVMZzRaK08vd1RCWE5HVGRBU0hwSWxNUC9rRkdRMU1MTWFYVGRvWFp1?=
- =?utf-8?B?UnhHU3A2ZDgxSXBsUko3dzRQRFFOSGpIWEd3cUFhdDJoQWY2MW50SjRiU0tP?=
- =?utf-8?B?blVLV2xHeVI3dWdaSEJyMU5zWjFtOWhBc0dxa2hGZHN4V2hZc09ERi9naU4v?=
- =?utf-8?B?QUE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <F27B5FAEE39B8E4C9C1A47887CDFFED7@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=McAfee;i="6500,9779,10547"; a="769207992"
+X-IronPort-AV: E=Sophos;i="5.96,209,1665471600"; d="scan'208";a="769207992"
+Received: from irvmail001.ir.intel.com ([10.43.11.63])
+ by orsmga004.jf.intel.com with ESMTP; 01 Dec 2022 03:56:41 -0800
+Received: from [10.249.130.135] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.249.130.135])
+ by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
+ 2B1BueLU027720; Thu, 1 Dec 2022 11:56:41 GMT
+Message-ID: <9a5a84be-a5ae-7be2-f522-5e976511e4e1@intel.com>
+Date: Thu, 1 Dec 2022 12:56:40 +0100
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3207.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e5962be2-77c2-43a5-26af-08dad38f9a4a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Dec 2022 11:31:34.8212 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: nmIG3MYKF86+nVxqoO/Iffzf87nx7mKqfMlkP2gVfPLu6QVv+IO/ACYIU2gWzsT66u23vBg05XLff4jULllwn2r/1v4bz6M1j5Ew2um5wns=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB7807
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v3 1/2] drm/i915/mtl: limit second scaler
- vertical scaling in ver >= 14
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.5.0
+Content-Language: en-US
+To: John Harrison <john.c.harrison@intel.com>, Intel-GFX@Lists.FreeDesktop.Org
+References: <20221118015858.2548106-1-John.C.Harrison@Intel.com>
+ <20221118015858.2548106-5-John.C.Harrison@Intel.com>
+ <48f594de-9682-4b60-f934-9420d02b405e@intel.com>
+ <dd9559e8-7d65-d7bb-ea1a-d169a1c7eec3@intel.com>
+ <4579b7e8-eae7-b760-66aa-b01273d18aab@intel.com>
+ <d658f8fa-a063-aa0c-48ff-14f32cb6b339@intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <d658f8fa-a063-aa0c-48ff-14f32cb6b339@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v2 4/5] drm/i915/guc: Add GuC CT specific
+ debug print wrappers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,245 +69,684 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIyLTExLTIzIGF0IDEyOjIxICswMjAwLCBMdWNpYW5vIENvZWxobyB3cm90ZToN
-Cj4gT24gV2VkLCAyMDIyLTExLTIzIGF0IDExOjU3ICswMjAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3Jv
-dGU6DQo+ID4gT24gV2VkLCBOb3YgMjMsIDIwMjIgYXQgMDk6MTY6NDJBTSArMDAwMCwgQ29lbGhv
-LCBMdWNpYW5vIHdyb3RlOg0KPiA+ID4gT24gV2VkLCAyMDIyLTExLTIzIGF0IDA4OjQ3ICswMjAw
-LCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6DQo+ID4gPiA+IE9uIFR1ZSwgTm92IDIyLCAyMDIyIGF0
-IDEyOjIzOjQzUE0gKzAyMDAsIEx1Y2EgQ29lbGhvIHdyb3RlOg0KPiA+ID4gPiA+IEluIG5ld2Vy
-IGhhcmR3YXJlIHZlcnNpb25zIChpLmUuIGRpc3BsYXkgdmVyc2lvbiA+PSAxNCksIHRoZSBzZWNv
-bmQNCj4gPiA+ID4gPiBzY2FsZXIgZG9lc24ndCBzdXBwb3J0IHZlcnRpY2FsIHNjYWxpbmcuDQo+
-ID4gPiA+ID4gDQo+ID4gPiA+ID4gVGhlIGN1cnJlbnQgaW1wbGVtZW50YXRpb24gb2YgdGhlIHNj
-YWxpbmcgbGltaXRzIGlzIHNpbXBsaWZpZWQgYW5kDQo+ID4gPiA+ID4gb25seSBvY2N1cnMgd2hl
-biB0aGUgcGxhbmVzIGFyZSBjcmVhdGVkLCBzbyB3ZSBkb24ndCBrbm93IHdoaWNoIHNjYWxlcg0K
-PiA+ID4gPiA+IGlzIGJlaW5nIHVzZWQuDQo+ID4gPiA+ID4gDQo+ID4gPiA+ID4gSW4gb3JkZXIg
-dG8gaGFuZGxlIHNlcGFyYXRlIHNjYWxpbmcgbGltaXRzIGZvciBob3Jpem9udGFsIGFuZCB2ZXJ0
-aWNhbA0KPiA+ID4gPiA+IHNjYWxpbmcsIGFuZCBkaWZmZXJlbnQgbGltaXRzIHBlciBzY2FsZXIs
-IHNwbGl0IHRoZSBjaGVja3MgaW4gdHdvDQo+ID4gPiA+ID4gcGhhc2VzLiAgV2UgZmlyc3QgZG8g
-YSBzaW1wbGUgY2hlY2sgZHVyaW5nIHBsYW5lIGNyZWF0aW9uIGFuZCB1c2UgdGhlDQo+ID4gPiA+
-ID4gYmVzdC1jYXNlIHNjZW5hcmlvIChiZWNhdXNlIHdlIGRvbid0IGtub3cgdGhlIHNjYWxlciB0
-aGF0IG1heSBiZSB1c2VkDQo+ID4gPiA+ID4gYXQgYSBsYXRlciBwb2ludCkgYW5kIHRoZW4gZG8g
-YSBtb3JlIHNwZWNpZmljIGNoZWNrIHdoZW4gdGhlIHNjYWxlcnMNCj4gPiA+ID4gPiBhcmUgYWN0
-dWFsbHkgYmVpbmcgc2V0IHVwLg0KPiA+ID4gPiA+IA0KPiA+ID4gPiA+IFNpZ25lZC1vZmYtYnk6
-IEx1Y2EgQ29lbGhvIDxsdWNpYW5vLmNvZWxob0BpbnRlbC5jb20+DQo+ID4gPiA+ID4gLS0tDQo+
-ID4gPiANCj4gPiA+IA0KPiA+ID4gWy4uLl0NCj4gPiA+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hdG9taWMuYyBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfYXRvbWljLmMNCj4gPiA+ID4gPiBpbmRleCA2NjIxYWEyNDVjYWYu
-LjQzYjFjN2EyMjdmOCAxMDA2NDQNCj4gPiA+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2F0b21pYy5jDQo+ID4gPiA+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9hdG9taWMuYw0KPiA+ID4gPiA+IEBAIC0zOCw2ICszOCw3IEBA
-DQo+ID4gPiA+ID4gICNpbmNsdWRlICJpbnRlbF9hdG9taWMuaCINCj4gPiA+ID4gPiAgI2luY2x1
-ZGUgImludGVsX2NkY2xrLmgiDQo+ID4gPiA+ID4gICNpbmNsdWRlICJpbnRlbF9kaXNwbGF5X3R5
-cGVzLmgiDQo+ID4gPiA+ID4gKyNpbmNsdWRlICJpbnRlbF9mYi5oIg0KPiA+ID4gPiA+ICAjaW5j
-bHVkZSAiaW50ZWxfZ2xvYmFsX3N0YXRlLmgiDQo+ID4gPiA+ID4gICNpbmNsdWRlICJpbnRlbF9o
-ZGNwLmgiDQo+ID4gPiA+ID4gICNpbmNsdWRlICJpbnRlbF9wc3IuaCINCj4gPiA+ID4gPiBAQCAt
-Mzc1LDYgKzM3Niw1MiBAQCBzdGF0aWMgdm9pZCBpbnRlbF9hdG9taWNfc2V0dXBfc2NhbGVyKHN0
-cnVjdCBpbnRlbF9jcnRjX3NjYWxlcl9zdGF0ZSAqc2NhbGVyX3N0YQ0KPiA+ID4gPiA+ICAJCW1v
-ZGUgPSBTS0xfUFNfU0NBTEVSX01PREVfRFlOOw0KPiA+ID4gPiA+ICAJfQ0KPiA+ID4gPiA+ICAN
-Cj4gPiA+ID4gPiArCWlmIChwbGFuZV9zdGF0ZSAmJiBwbGFuZV9zdGF0ZS0+aHcuZmIpIHsNCj4g
-PiA+ID4gPiArCQljb25zdCBzdHJ1Y3QgZHJtX2ZyYW1lYnVmZmVyICpmYiA9IHBsYW5lX3N0YXRl
-LT5ody5mYjsNCj4gPiA+ID4gPiArCQlzdHJ1Y3QgZHJtX3JlY3QgKnNyYyA9ICZwbGFuZV9zdGF0
-ZS0+dWFwaS5zcmM7DQo+ID4gPiA+ID4gKwkJc3RydWN0IGRybV9yZWN0ICpkc3QgPSAmcGxhbmVf
-c3RhdGUtPnVhcGkuZHN0Ow0KPiA+ID4gPiANCj4gPiA+ID4gV2Ugd2FudCB0aGUgc2NhbGUgZmFj
-dG9yIGNoZWNrcyBmb3IgdGhlIHBmaXQgdXNlIGNhc2UgdG9vLiBTbyB0aGlzDQo+ID4gPiA+IHN0
-dWZmIHNob3VsZG4ndCBiZSBzbyB0aWVkIGludG8gcGxhbmVzLiBJIGd1ZXNzIHdlIGNvdWxkIGdv
-IHdpdGgNCj4gPiA+ID4gYSBGSVhNRSBpbml0aWFsbHkuDQo+ID4gPiANCj4gPiA+IE9rYXksIEkn
-bGwgYWRkIGEgRklYTUUuICBJdCB3YXMgdGllZCB0byB0aGUgcGxhbmUgY2hlY2tzIGJlZm9yZSwN
-Cj4gPiA+IHRob3VnaCwgd2Fzbid0IGl0PyBTbyBub3RoaW5nIHNob3VsZCBoYXZlIGNoYW5nZWQg
-aW4gdGhhdCByZWdhcmQgaGVyZS4NCj4gPiA+IA0KPiA+ID4gDQo+ID4gPiA+ID4gKwkJaW50IGhz
-Y2FsZSwgdnNjYWxlLCBtYXhfdnNjYWxlLCBtYXhfaHNjYWxlOw0KPiA+ID4gPiA+ICsNCj4gPiA+
-ID4gPiArCQlpZiAoRElTUExBWV9WRVIoZGV2X3ByaXYpID49IDE0KSB7DQo+ID4gPiA+ID4gKwkJ
-CS8qDQo+ID4gPiA+ID4gKwkJCSAqIE9uIHZlcnNpb25zIDE0IGFuZCB1cCwgb25seSB0aGUgZmly
-c3QNCj4gPiA+ID4gPiArCQkJICogc2NhbGVyIHN1cHBvcnRzIGEgdmVydGljYWwgc2NhbGluZyBm
-YWN0b3INCj4gPiA+ID4gPiArCQkJICogb2YgbW9yZSB0aGFuIDEuMCwgd2hpbGUgYSBob3Jpem9u
-dGFsDQo+ID4gPiA+ID4gKwkJCSAqIHNjYWxpbmcgZmFjdG9yIG9mIDMuMCBpcyBzdXBwb3J0ZWQu
-DQo+ID4gPiA+ID4gKwkJCSAqLw0KPiA+ID4gPiA+ICsJCQltYXhfaHNjYWxlID0gMHgzMDAwMCAt
-IDE7DQo+ID4gPiA+ID4gKwkJCWlmICgqc2NhbGVyX2lkID09IDApDQo+ID4gPiA+ID4gKwkJCQlt
-YXhfdnNjYWxlID0gMHgzMDAwMCAtIDE7DQo+ID4gPiA+ID4gKwkJCWVsc2UNCj4gPiA+ID4gPiAr
-CQkJCW1heF92c2NhbGUgPSAweDEwMDAwOw0KPiA+ID4gPiANCj4gPiA+ID4gV2Ugc3RpbGwgaGF2
-ZSB0aGUgY2hpY2tlbiB2cy4gZWdnIHByb2JsZW0gaGVyZSB0aGF0IHdlJ2QgbmVlZCB0bw0KPiA+
-ID4gPiBjb25zaWRlciB0aGUgc2NhbGUgZmFjdG9ycyBhbHJlYWR5IHdoZW4gc2VsZWN0aW5nIHRo
-ZSBzY2FsZXIuDQo+ID4gPiA+IEJ1dCB0aGF0IGNvdWxkIGJlIGFub3RoZXIgRklYTUUuDQo+ID4g
-PiANCj4gPiA+IERvIHlvdSBtZWFuIGluIHJlZ2FyZHMgdG8gdGhlIEhRIHZzLiBub24tSFEgbmVl
-ZHM/DQo+ID4gDQo+ID4gSSBtZWFuIHRoZSAibm8gZG93bnNjYWxpbmcgb24gdGhlIHNlY29uZCBz
-Y2FsZXIiIHRoaW5nLiBUaGUNCj4gPiBwcm9ibGVtIGlzIHRoYXQgdGhpcyB0aGluZyB3YWxrcyB0
-aGUgc2NhbGVyIHVzZXJzIGluIG9yZGVyDQo+ID4gYW5kIGFzc2lnbnMgZWFjaCBvbmUgYSBzY2Fs
-ZXIgaW4gdHVybi4gU28gaWYgdGhlIGZpcnN0IHVzZXINCj4gPiBkb2Vzbid0IG5lZWQgZG93bnNj
-YWxpbmcgYnV0IHRoZSBzZWNvbmQgb25lIGRvZXMgdGhlbiB3ZQ0KPiA+IHdpbGwgZmFpbC4gT1RP
-SCBoYWQgd2UganVzdCBhc3NpZ25lZCB0aGUgc2NhbGVycyBpbiB0aGUNCj4gPiByZXZlcnNlIG9y
-ZGVyIHdlIHdvdWxkIGhhdmUgc3VjY2VlZGVkLg0KPiANCj4gQWgsIG5vdyBJIGdldCBpdC4NCj4g
-DQo+IFNvLCBJIGd1ZXNzIHdlIGNhbiBkbyBhIHNpbWlsYXIgdGhpbmcgdG8gd2hhdCB3ZSBhbHJl
-YWR5IGRvIGVhcmxpZXIgaW4NCj4gdGhpcyBmdW5jdGlvbiB0byBzZWxlY3QgdGhlIGZpcnN0IHNj
-YWxlciBpZiBIUSBpcyBuZWVkZWQuICBJZg0KPiBkb3duc2NhbGluZyBpcyBuZWVkZWQgaW4gb25l
-IG9mIHRoZSBzY2FsZXJzIGJ1dCBub3QgaW4gdGhlIG90aGVyLCB3ZQ0KPiBjYW4gc3dhcCB0aGVt
-IHRvIG1ha2Ugc3VyZSB0aGUgb25lIHRoYXQgbmVlZHMgZG93bnNjYWxpbmcgaW4gaW4gdGhlDQo+
-IGZpcnN0IG9uZS4NCj4gDQo+IEJ1dCBJIGFncmVlIHdpdGggeW91IGluIHRoYXQgdGhpcyBjb3Vs
-ZCBiZSBhbiBhZGRlZCBGSVhNRSBpbiB0aGlzIHBhdGNoDQo+IGFuZCB0aGUgYWN0dWFsIGNoYW5n
-ZSBjb3VsZCBiZSBtYWRlIGluIGEgc2VwYXJhdGUgcGF0Y2guDQo+IA0KPiANCj4gPiA+ID4gPiAr
-DQo+ID4gPiA+ID4gKwkJfSBlbHNlIGlmIChESVNQTEFZX1ZFUihkZXZfcHJpdikgPj0gMTAgfHwN
-Cj4gPiA+ID4gPiArCQkJICAgIWludGVsX2Zvcm1hdF9pbmZvX2lzX3l1dl9zZW1pcGxhbmFyKGZi
-LT5mb3JtYXQsIGZiLT5tb2RpZmllcikpIHsNCj4gPiA+ID4gPiArCQkJbWF4X2hzY2FsZSA9IDB4
-MzAwMDAgLSAxOw0KPiA+ID4gPiA+ICsJCQltYXhfdnNjYWxlID0gMHgzMDAwMCAtIDE7DQo+ID4g
-PiA+ID4gKwkJfSBlbHNlIHsNCj4gPiA+ID4gPiArCQkJbWF4X2hzY2FsZSA9IDB4MjAwMDAgLSAx
-Ow0KPiA+ID4gPiA+ICsJCQltYXhfdnNjYWxlID0gMHgyMDAwMCAtIDE7DQo+ID4gPiA+ID4gKwkJ
-fQ0KPiA+ID4gPiANCj4gPiA+ID4gUHJlLWdsayBocSBzY2FsZXIgY2FzZSBub3QgaGFuZGxlZC4N
-Cj4gPiA+IA0KPiA+ID4gSSBkb24ndCByZWNhbGwgc2VlbiB0aGlzIHNwZWNpZmljYWxseSBjaGVj
-a2VkIGJlZm9yZS4gIElzIHRoaXMgdGhlDQo+ID4gPiBzdHVmZiBJIG1pc3NlZCBmcm9tIGc0eF9z
-cHJpdGVfY2hlY2soKSBiZWxvdz8gT3IgYW0gSSBtaXNzaW5nIHNvbWV0aGluZw0KPiA+ID4gZWxz
-ZT8NCj4gPiANCj4gPiBJdCB3YXMgYnJva2VuIGJlZm9yZSBpbiB0aGUgc2Vuc2UgdGhhdCBpdCBh
-bGxvd2VkIHVwIHRvIDMuMCBzY2FsZSBmYWN0b3INCj4gPiB3aGV0aGVyIG9yIG5vdCB0aGUgSFEg
-c2NhbGVyIHdhcyB1c2VkIG9yIG5vdC4gTm93IGl0IHdpbGwgcmVqZWN0IGFueXRoaW5nDQo+ID4g
-YWJvdmUgMi4wIGV2ZW4gaWYgdGhlIEhRIHNjYWxlciBpcyB1c2VkLiBTbyBJIGd1ZXNzIHRlY2hu
-aWNhbGx5IGl0J3MgYSBiaXQNCj4gPiBsZXNzIGJyb2tlbiBub3csIGJ1dCBtb3JlIGxpbWl0ZWQu
-IEFueXdheXMsIHNob3VsZCBiZSBwb3NzaWJsZSB0byBqdXN0DQo+ID4gY2hlY2sgdGhlIHNjYWxl
-ciBtb2RlIGFuZCBwaWNrIHRoZSBjb3JyZWN0IHNjYWxpbmcgbGltaXRzIGJhc2VkIG9uIGl0Lg0K
-PiANCj4gSSBzZWUgd2hhdCB5b3UgbWVhbi4gIEJ1dCB0aGUgY29kZSBmcm9tIGJlZm9yZSBoYWQg
-dGhlIGV4YWN0IHNhbWUNCj4gdGhpbmcsIEkgdGhpbms/IFdlIHdlcmUgYWxzbyBjaGVja2luZyBm
-b3IgVkVSID49IDEwIGFuZCBvbmx5IHRoZW4gdXNpbmcNCj4gMy4wLiAgRm9yIGFueXRoaW5nIGVs
-c2UgdGhlIGxpbWl0IHdhcyAyLjAuICBJcyB5b3VyIGNvbW1lbnQgcmVsYXRlZCB0bw0KPiB0aGUg
-RklYTUUgSSByZW1vdmVkIGZyb20gYmVsb3c/ICh5b3VyIGxhc3QgY29tbWVudCBpbiB0aGlzIGVt
-YWlsKQ0KPiANCj4gDQo+ID4gPiA+ID4gKw0KPiA+ID4gPiA+ICsJCS8qIENoZWNrIGlmIHJlcXVp
-cmVkIHNjYWxpbmcgaXMgd2l0aGluIGxpbWl0cyAqLw0KPiA+ID4gPiA+ICsJCWhzY2FsZSA9IGRy
-bV9yZWN0X2NhbGNfaHNjYWxlKHNyYywgZHN0LCAxLCBtYXhfaHNjYWxlKTsNCj4gPiA+ID4gPiAr
-CQl2c2NhbGUgPSBkcm1fcmVjdF9jYWxjX3ZzY2FsZShzcmMsIGRzdCwgMSwgbWF4X3ZzY2FsZSk7
-DQo+ID4gPiA+ID4gKw0KPiA+ID4gPiA+ICsJCWlmIChoc2NhbGUgPCAwIHx8IHZzY2FsZSA8IDAp
-IHsNCj4gPiA+ID4gPiArCQkJZHJtX2RiZ19rbXMoJmRldl9wcml2LT5kcm0sDQo+ID4gPiA+ID4g
-KwkJCQkgICAgIlNjYWxlciAlZCBkb2Vzbid0IHN1cHBvcnQgcmVxdWlyZWQgcGxhbmUgc2NhbGlu
-Z1xuIiwNCj4gPiA+ID4gPiArCQkJCSAgICAqc2NhbGVyX2lkKTsNCj4gPiA+ID4gPiArCQkJZHJt
-X3JlY3RfZGVidWdfcHJpbnQoInNyYzogIiwgc3JjLCB0cnVlKTsNCj4gPiA+ID4gPiArCQkJZHJt
-X3JlY3RfZGVidWdfcHJpbnQoImRzdDogIiwgZHN0LCBmYWxzZSk7DQo+ID4gPiA+ID4gKw0KPiA+
-ID4gPiA+ICsJCQlzY2FsZXJfc3RhdGUtPnNjYWxlcnNbKnNjYWxlcl9pZF0uaW5fdXNlID0gMDsN
-Cj4gPiA+ID4gPiArCQkJKnNjYWxlcl9pZCA9IC0xOw0KPiA+ID4gPiA+ICsNCj4gPiA+ID4gPiAr
-CQkJcmV0dXJuOw0KPiA+ID4gPiANCj4gPiA+ID4gVGhpcyB3b3VsZCBoYXZlIHRvIHJldHVybiBh
-biBlcnJvciByYXRoZXIgdGhhbiBwcmV0ZW5kaW5nIHRoYXQNCj4gPiA+ID4gZXZlcnl0aGluZyBp
-cyBmaW5lLg0KPiA+ID4gDQo+ID4gPiBXZSB3ZXJlIGFscmVhZHkgcHJldGVuZGluZyBldmVyeXRo
-aW5nIGlzIGZpbmUgaWYgYSBzY2FsZXIgaWYgd2UNCj4gPiA+IGNvdWxkbid0IGZpbmQgYSBmcmVl
-IHNjYWxlciwgZm9yIGluc3RhbmNlLCBzbyBJIGp1c3Qga2VwdCB0aGUgc2FtZQ0KPiA+ID4gbG9n
-aWMsIGNsZWFyaW5nIHVwIHRoZSBzY2FsZXJfaWQgYW5kIG1hcmtpbmcgdGhlIHNjYWxlciBhcyBu
-b3QgaW4gdXNlDQo+ID4gPiBhcyB3ZWxsLg0KPiA+ID4gDQo+ID4gPiBJIGNhbiBjb252ZXJ0IHRo
-aXMgdG8gcmV0dXJuIGFuIGVycm9yLCBvZiBjb3Vyc2UuICBCdXQgdGhlbiBpbiB0aGUgIm5vdA0K
-PiA+ID4gZnJlZSBzY2FsZXIiIGNhc2Ugd2Ugd291bGQgc3RpbGwganVzdCBpZ25vcmUgaXQgb3Ig
-c2hvdWxkIHdlIGNoYW5nZSB0aGUNCj4gPiA+IGJlaGF2aW9yIGFuZCBtYWtlIGl0IGZhaWwgYXMg
-d2VsbD8NCj4gPiANCj4gPiBUaGUgY29kZSBpcyBhIG1lc3MsIGJ1dCBpdCBkb2VzIGxvb2sgbGlr
-ZSBpbnRlbF9hdG9taWNfc2V0dXBfc2NhbGVycygpDQo+ID4gc2hvdWxkIGZhaWwgY29ycmVjdGx5
-IGlmIHdlIGNhbid0IGZpbmQgZW5vdWdoIHNjYWxlcnMuDQo+IA0KPiBPa2F5LCBzbyBJJ2xsIGNo
-YW5nZSB0aGlzIGZ1bmN0aW9uIHRvIHJldHVybiBlcnJvcnMgaW4gYm90aCBjYXNlcy4NCj4gDQo+
-IA0KPiA+ID4gWy4uLl0NCj4gPiA+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9hdG9taWNfcGxhbmUuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfYXRvbWljX3BsYW5lLmMNCj4gPiA+ID4gPiBpbmRleCAxMGUxZmM5ZDA2OTgu
-LjkxMDBmMzI4ZGY2MCAxMDA2NDQNCj4gPiA+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2F0b21pY19wbGFuZS5jDQo+ID4gPiA+ID4gKysrIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hdG9taWNfcGxhbmUuYw0KPiA+ID4gPiA+IEBAIC04
-ODcsNyArODg3LDcgQEAgdm9pZCBpbnRlbF9jcnRjX3BsYW5lc191cGRhdGVfYXJtKHN0cnVjdCBp
-bnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLA0KPiA+ID4gPiA+ICANCj4gPiA+ID4gPiAgaW50IGlu
-dGVsX2F0b21pY19wbGFuZV9jaGVja19jbGlwcGluZyhzdHJ1Y3QgaW50ZWxfcGxhbmVfc3RhdGUg
-KnBsYW5lX3N0YXRlLA0KPiA+ID4gPiA+ICAJCQkJICAgICAgc3RydWN0IGludGVsX2NydGNfc3Rh
-dGUgKmNydGNfc3RhdGUsDQo+ID4gPiA+ID4gLQkJCQkgICAgICBpbnQgbWluX3NjYWxlLCBpbnQg
-bWF4X3NjYWxlLA0KPiA+ID4gPiA+ICsJCQkJICAgICAgYm9vbCBhbGxvd19zY2FsaW5nLA0KPiA+
-ID4gPiA+ICAJCQkJICAgICAgYm9vbCBjYW5fcG9zaXRpb24pDQo+ID4gPiA+ID4gIHsNCj4gPiA+
-ID4gPiAgCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1ID0gdG9faTkxNShwbGFuZV9zdGF0
-ZS0+dWFwaS5wbGFuZS0+ZGV2KTsNCj4gPiA+ID4gPiBAQCAtODk3LDE5ICs4OTcsNTAgQEAgaW50
-IGludGVsX2F0b21pY19wbGFuZV9jaGVja19jbGlwcGluZyhzdHJ1Y3QgaW50ZWxfcGxhbmVfc3Rh
-dGUgKnBsYW5lX3N0YXRlLA0KPiA+ID4gPiA+ICAJY29uc3Qgc3RydWN0IGRybV9yZWN0ICpjbGlw
-ID0gJmNydGNfc3RhdGUtPnBpcGVfc3JjOw0KPiA+ID4gPiA+ICAJdW5zaWduZWQgaW50IHJvdGF0
-aW9uID0gcGxhbmVfc3RhdGUtPmh3LnJvdGF0aW9uOw0KPiA+ID4gPiA+ICAJaW50IGhzY2FsZSwg
-dnNjYWxlOw0KPiA+ID4gPiA+ICsJaW50IG1heF9oc2NhbGUsIG1pbl9oc2NhbGUsIG1heF92c2Nh
-bGUsIG1pbl92c2NhbGU7DQo+ID4gPiA+ID4gIA0KPiA+ID4gPiA+ICAJaWYgKCFmYikgew0KPiA+
-ID4gPiA+ICAJCXBsYW5lX3N0YXRlLT51YXBpLnZpc2libGUgPSBmYWxzZTsNCj4gPiA+ID4gPiAg
-CQlyZXR1cm4gMDsNCj4gPiA+ID4gPiAgCX0NCj4gPiA+ID4gPiAgDQo+ID4gPiA+ID4gKwkvKg0K
-PiA+ID4gPiA+ICsJICogQXQgdGhpcyBwb2ludCB3ZSBkb24ndCByZWFsbHkga25vdyB0aGUgSFcg
-bGltaXRhdGlvbnMsIHNvDQo+ID4gPiA+ID4gKwkgKiB3ZSBqdXN0IHNhbml0aXplIHRoZSB2YWx1
-ZXMgYWdhaW5zdCB0aGUgbWF4aW11bSBzdXBwb3J0ZWQNCj4gPiA+ID4gPiArCSAqIHNjYWxpbmcu
-DQo+ID4gPiA+ID4gKwkgKi8NCj4gPiA+ID4gPiArCWlmIChhbGxvd19zY2FsaW5nKSB7DQo+ID4g
-PiA+ID4gKwkJbWluX3ZzY2FsZSA9IDE7DQo+ID4gPiA+ID4gKwkJbWluX2hzY2FsZSA9IDE7DQo+
-ID4gPiA+ID4gKw0KPiA+ID4gPiA+ICsJCWlmIChESVNQTEFZX1ZFUihpOTE1KSA8IDEwIHx8DQo+
-ID4gPiA+ID4gKwkJICAgIGludGVsX2Zvcm1hdF9pbmZvX2lzX3l1dl9zZW1pcGxhbmFyKGZiLT5m
-b3JtYXQsDQo+ID4gPiA+ID4gKwkJCQkJCQlmYi0+bW9kaWZpZXIpKSB7DQo+ID4gPiA+ID4gKwkJ
-CW1heF92c2NhbGUgPSAweDIwMDAwIC0gMTsNCj4gPiA+ID4gPiArCQkJbWF4X2hzY2FsZSA9IDB4
-MjAwMDAgLSAxOw0KPiA+ID4gPiA+ICsJCX0gZWxzZSB7DQo+ID4gPiA+ID4gKwkJCW1heF92c2Nh
-bGUgPSAweDMwMDAwIC0gMTsNCj4gPiA+ID4gPiArCQkJbWF4X2hzY2FsZSA9IDB4MzAwMDAgLSAx
-Ow0KPiA+ID4gPiA+ICsJCX0NCj4gPiA+ID4gPiArCX0gZWxzZSB7DQo+ID4gPiA+ID4gKwkJbWlu
-X2hzY2FsZSA9IERSTV9QTEFORV9OT19TQ0FMSU5HOw0KPiA+ID4gPiA+ICsJCW1heF9oc2NhbGUg
-PSBEUk1fUExBTkVfTk9fU0NBTElORzsNCj4gPiA+ID4gPiArCQltaW5fdnNjYWxlID0gRFJNX1BM
-QU5FX05PX1NDQUxJTkc7DQo+ID4gPiA+ID4gKwkJbWF4X3ZzY2FsZSA9IERSTV9QTEFORV9OT19T
-Q0FMSU5HOw0KPiA+ID4gPiA+ICsJfQ0KPiA+ID4gPiANCj4gPiA+ID4gSSBzdGlsbCBkb24ndCBz
-ZWUgdGhlIHBvaW50IGluIG1vdmluZyB0aGlzIGh3IHNwZWNpZmljIGtub3dsZWRnZQ0KPiA+ID4g
-PiBmcm9tIHRoZSBtb3JlIGh3IHNwZWNpZmljIGZpbGVzIGludG8gdGhlIGh3IGFnbm9zdGljIGZp
-bGUuDQo+ID4gPiANCj4gPiA+IElzIHRoaXMgZmlsZSByZWFsbHkgdGhhdCBIVyBhZ25vc3RpYz8g
-SSBzZWUgbG90cyBvZiB2ZXJzaW9uIGNoZWNrcyB3aXRoDQo+ID4gPiAiaWYgKERJU1BMQVlfVkVS
-KHgpKSIgYWxsIG92ZXIgdGhlIHBsYWNlLg0KPiA+IA0KPiA+IEl0J3MgaHcgYWdub3N0aWMgaW4g
-dGhlIHNlbnNlIHRoYXQgbW9zdCBvZiBpdCBhcHBsaWVzDQo+ID4gdG8gYWxsIGh3IGdlbmVyYXRp
-b25zLiBBbmQgdGhpcyBmdW5jdGlvbiBpbiBwYXJ0aWN1bGFyIGlzDQo+ID4gcHJldHR5IG11Y2gg
-ZW50aXJlbHkgaHcgYWdub3N0aWMgY3VycmVudGx5Lg0KPiA+IA0KPiANCj4gDQo+IA0KPiANCj4g
-PiA+IEFzIHdlIGRpc2N1c3NlZCBiZWZvcmUsIEkgdGhpbmsgdGhpcyBraW5kIG9mIHJ1bGVzIHNo
-b3VsZCBiZSBpbiBIVy0NCj4gPiA+IHNwZWNpZmljIGNvbmZpZ3VyYXRpb25zLCBidXQgd2UgZG9u
-J3QgaGF2ZSB0aGF0IHlldC4gIEFuZCBJIHRob3VnaHQgaXQNCj4gPiA+IHdvdWxkIGJlIGJldHRl
-ciB0byBrZWVwIHRoZXNlIGRlY2lzaW9ucyBpbiBhIHNpbmdsZSBwbGFjZSByYXRoZXIgdGhhbg0K
-PiA+ID4ganVzdCBjYWxsaW5nIGZ1bmN0aW9ucyBpbiBvdGhlciBmaWxlcy4uLg0KPiA+ID4gDQo+
-ID4gPiBJZiB5b3UgcHJlZmVyLCBJIGNhbiBtb3ZlIHRoaXMgYmFjayB0byBza2xfdW5pdmVyc2Fs
-X3BsYW5lLmMgb3Igc29tZQ0KPiA+ID4gb3RoZXIgb2YgdGhlIHNrbF8qLmMgZmlsZXMsIGJ1dCBU
-QkggdGhleSBkb24ndCBzZWVtIHRvIGJlIHRoZSByaWdodA0KPiA+ID4gcGxhY2UgZm9yIHRoaXMg
-dG8gbWUgZWl0aGVyLi4uDQo+ID4gDQo+ID4gVGhlIGN1cnJlbnQgcGxhY2Uga25vd3MgZXhhY3Rs
-eSB3aGF0IGtpbmQgb2YgaGFyZHdhcmUvcGxhbmUgaXRzDQo+ID4gZGVhbGluZyB3aXRoLCBhbmQg
-dGh1cyBrbm93cyBpdHMgbGltaXRzLiBTZWVtcyBwZXJmZWN0bHkgZmluZSB0byBtZS4NCj4gDQo+
-IEJ5ICJjdXJyZW50IHBsYWNlIiB5b3UgbWVhbiBiZWZvcmUgdGhpcyBwYXRjaD8gSS5lLiBpbg0K
-PiBza2xfdW5pdmVyc2FsX3BsYW5lLmM/DQo+IA0KPiANCj4gPiA+IFsuLi5dDQo+ID4gPiA+ID4g
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfc3ByaXRlLmMg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nwcml0ZS5jDQo+ID4gPiA+ID4g
-aW5kZXggZTZiNGQyNGI5Y2QwLi45YWQxMTczYTA1NTEgMTAwNjQ0DQo+ID4gPiA+ID4gLS0tIGEv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9zcHJpdGUuYw0KPiA+ID4gPiA+ICsr
-KyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfc3ByaXRlLmMNCj4gPiA+ID4g
-PiBAQCAtMTM1NSwyMiArMTM1NSwxMSBAQCBnNHhfc3ByaXRlX2NoZWNrKHN0cnVjdCBpbnRlbF9j
-cnRjX3N0YXRlICpjcnRjX3N0YXRlLA0KPiA+ID4gPiA+ICB7DQo+ID4gPiA+ID4gIAlzdHJ1Y3Qg
-aW50ZWxfcGxhbmUgKnBsYW5lID0gdG9faW50ZWxfcGxhbmUocGxhbmVfc3RhdGUtPnVhcGkucGxh
-bmUpOw0KPiA+ID4gPiA+ICAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gdG9f
-aTkxNShwbGFuZS0+YmFzZS5kZXYpOw0KPiA+ID4gPiA+IC0JaW50IG1pbl9zY2FsZSA9IERSTV9Q
-TEFORV9OT19TQ0FMSU5HOw0KPiA+ID4gPiA+IC0JaW50IG1heF9zY2FsZSA9IERSTV9QTEFORV9O
-T19TQ0FMSU5HOw0KPiA+ID4gPiA+ICAJaW50IHJldDsNCj4gPiA+ID4gPiAgDQo+ID4gPiA+ID4g
-LQlpZiAoZzR4X2ZiX3NjYWxhYmxlKHBsYW5lX3N0YXRlLT5ody5mYikpIHsNCj4gPiA+ID4gPiAt
-CQlpZiAoRElTUExBWV9WRVIoZGV2X3ByaXYpIDwgNykgew0KPiA+ID4gPiA+IC0JCQltaW5fc2Nh
-bGUgPSAxOw0KPiA+ID4gPiA+IC0JCQltYXhfc2NhbGUgPSAxNiA8PCAxNjsNCj4gPiA+ID4gPiAt
-CQl9IGVsc2UgaWYgKElTX0lWWUJSSURHRShkZXZfcHJpdikpIHsNCj4gPiA+ID4gPiAtCQkJbWlu
-X3NjYWxlID0gMTsNCj4gPiA+ID4gPiAtCQkJbWF4X3NjYWxlID0gMiA8PCAxNjsNCj4gPiA+ID4g
-PiAtCQl9DQo+ID4gPiA+ID4gLQl9DQo+ID4gPiA+IA0KPiA+ID4gPiBTbyB3aGF0IGhhcHBlbmVk
-IHRvIHRoZXNlIGxpbWl0cz8NCj4gPiA+IA0KPiA+ID4gT2gsIGl0IHNlZW1zIHRoYXQgSSBsb3N0
-IHRoZW0uICBJIGd1ZXNzIHRoZXkgc2hvdWxkIGJlIG1vdmVkIHRvIHRoZQ0KPiA+ID4gaW50ZWxf
-YXRvbWljX3BsYW5lX2NoZWNrX2NsaXBwaW5nKCkgZnVuY3Rpb24uICBBZ2FpbiwgdG8ga2VlcCBp
-dCBhbGwgaW4NCj4gPiA+IGEgc2luZ2xlIHBsYWNlLiAgQnV0IHRoaXMgc2VlbXMgdG8gYmUgb25s
-eSByZXF1aXJlZCBpbiB0aGUgc3ByaXRlIGNvZGUsDQo+ID4gPiBzbyBJJ20gbm90IHN1cmUgd2hh
-dCBJIGNhbiBkby4NCj4gPiA+IA0KPiA+ID4gSXQncyBhIHByb2JsZW0gdG8gaGF2ZSB0aGlzIGtp
-bmRzIG9mIGNoZWNrcyBldmVyeXdoZXJlLiDwn5ieDQoNCkkgY2FuJ3Qgd3JhcCBteSBoZWFkIGFy
-b3VuZCB0aGlzLiAgV2l0aCBteSBwYXRjaCwgdGhlIElWSUJSSURHRSBwYXJ0IGlzDQpva2F5LCBi
-ZWNhdXNlIElWSUJSSURHRSBpcyB2ZXJzaW9uIDcgYW5kIGZvciBhbnl0aGluZyBiZWxvdyB2ZXJz
-aW9uIDEwDQp3ZSB1c2UgMi4wIGFzIHRoZSBsaW1pdC4NCg0KQnV0IEkgZG9uJ3QgdW5kZXJzdGFu
-ZCB3aHkgYW55dGhpbmcgYmVsb3cgdmVyc2lvbiA3IGhhcyBhIGxpbWl0IG9mIDE2LjANCmFuZCBv
-bmx5IGZvciB0aGlzIHNwcml0ZSByZWxhdGVkIGNoZWNrLiAgSXMgdGhhdCByZWFsbHkgY29ycmVj
-dD8gV2h5IGlzDQppdCBvbmx5IHJlbGF0ZWQgdG8gdGhlIHNwcml0ZSBjaGVja3M/DQoNCg0KPiA+
-ID4gDQo+ID4gPiBbLi4uXQ0KPiA+ID4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L3NrbF91bml2ZXJzYWxfcGxhbmUuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvc2tsX3VuaXZlcnNhbF9wbGFuZS5jDQo+ID4gPiA+ID4gaW5kZXggNzY0OTBjYzU5
-ZDhmLi5lMmFlNjYyNDM3OGYgMTAwNjQ0DQo+ID4gPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9za2xfdW5pdmVyc2FsX3BsYW5lLmMNCj4gPiA+ID4gPiArKysgYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L3NrbF91bml2ZXJzYWxfcGxhbmUuYw0KPiA+ID4gPiA+
-IEBAIC0xNDYzLDIyICsxNDYzLDYgQEAgc3RhdGljIGludCBza2xfcGxhbmVfY2hlY2tfbnYxMl9y
-b3RhdGlvbihjb25zdCBzdHJ1Y3QgaW50ZWxfcGxhbmVfc3RhdGUgKnBsYW5lX3MNCj4gPiA+ID4g
-PiAgCXJldHVybiAwOw0KPiA+ID4gPiA+ICB9DQo+ID4gPiA+ID4gIA0KPiA+ID4gPiA+IC1zdGF0
-aWMgaW50IHNrbF9wbGFuZV9tYXhfc2NhbGUoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9w
-cml2LA0KPiA+ID4gPiA+IC0JCQkgICAgICAgY29uc3Qgc3RydWN0IGRybV9mcmFtZWJ1ZmZlciAq
-ZmIpDQo+ID4gPiA+ID4gLXsNCj4gPiA+ID4gPiAtCS8qDQo+ID4gPiA+ID4gLQkgKiBXZSBkb24n
-dCB5ZXQga25vdyB0aGUgZmluYWwgc291cmNlIHdpZHRoIG5vcg0KPiA+ID4gPiA+IC0JICogd2hl
-dGhlciB3ZSBjYW4gdXNlIHRoZSBIUSBzY2FsZXIgbW9kZS4gQXNzdW1lDQo+ID4gPiA+ID4gLQkg
-KiB0aGUgYmVzdCBjYXNlLg0KPiA+ID4gPiA+IC0JICogRklYTUUgbmVlZCB0byBwcm9wZXJseSBj
-aGVjayB0aGlzIGxhdGVyLg0KPiA+ID4gPiA+IC0JICovDQo+ID4gPiA+IA0KPiA+ID4gPiBEb2Vz
-bid0IGxvb2sgbGlrZSB0aGF0IEZJWE1FIGhhcyBiZWVuIGRlYWx0IHdpdGggYXMgZmFyDQo+ID4g
-PiA+IGFzIHRoZSBocSBzY2FsZXIgaXMgY29uY2VybmVkLg0KPiA+ID4gDQo+ID4gPiBXZSBub3cg
-Y2hlY2sgdGhlIGxpbWl0cyBfYWZ0ZXJfIGhhdmluZyBkZWNpZGVkIHdoZXRoZXIgSFEgbW9kZSBp
-cyB1c2VkLg0KPiA+ID4gU28gdGhhdCBzaG91bGQgYmUgY292ZXJlZCwgcmlnaHQ/DQo+ID4gDQo+
-ID4gSWYgd2UgYWN0YXVsbHkgYWRkIHRoZSBocSBtb2RlIGNoZWNrIHdoZW4gZGV0ZXJtaW5pbmcg
-dGhlIHNjYWxpbmcNCj4gPiBsaW1pdHMuDQo+IA0KPiBSaWdodCwgc28gdGhlIG5ldyBGSVhNRSBJ
-J2xsIGFkZCBhcyBkaXNjdXNzZWQgYWJvdmUgc2hvdWxkIGNvdmVyIHRoaXMuDQo+IA0KPiAtLQ0K
-PiBDaGVlcnMsDQo+IEx1Y2EuDQoNCg==
+
+
+On 01.12.2022 01:41, John Harrison wrote:
+> On 11/23/2022 12:45, Michal Wajdeczko wrote:
+>> On 23.11.2022 02:25, John Harrison wrote:
+>>> On 11/22/2022 09:54, Michal Wajdeczko wrote:
+>>>> On 18.11.2022 02:58, John.C.Harrison@Intel.com wrote:
+>>>>> From: John Harrison <John.C.Harrison@Intel.com>
+>>>>>
+>>>>> Re-work the existing GuC CT printers and extend as required to match
+>>>>> the new wrapping scheme.
+>>>>>
+>>>>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+>>>>> ---
+>>>>>    drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 222
+>>>>> +++++++++++-----------
+>>>>>    1 file changed, 113 insertions(+), 109 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+>>>>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+>>>>> index 2b22065e87bf9..9d404fb377637 100644
+>>>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+>>>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+>>>>> @@ -18,31 +18,49 @@ static inline struct intel_guc *ct_to_guc(struct
+>>>>> intel_guc_ct *ct)
+>>>>>        return container_of(ct, struct intel_guc, ct);
+>>>>>    }
+>>>>>    -static inline struct intel_gt *ct_to_gt(struct intel_guc_ct *ct)
+>>>>> -{
+>>>>> -    return guc_to_gt(ct_to_guc(ct));
+>>>>> -}
+>>>>> -
+>>>>>    static inline struct drm_i915_private *ct_to_i915(struct
+>>>>> intel_guc_ct *ct)
+>>>>>    {
+>>>>> -    return ct_to_gt(ct)->i915;
+>>>>> -}
+>>>>> +    struct intel_guc *guc = ct_to_guc(ct);
+>>>>> +    struct intel_gt *gt = guc_to_gt(guc);
+>>>>>    -static inline struct drm_device *ct_to_drm(struct intel_guc_ct
+>>>>> *ct)
+>>>>> -{
+>>>>> -    return &ct_to_i915(ct)->drm;
+>>>>> +    return gt->i915;
+>>>>>    }
+>>>>>    -#define CT_ERROR(_ct, _fmt, ...) \
+>>>>> -    drm_err(ct_to_drm(_ct), "CT: " _fmt, ##__VA_ARGS__)
+>>>>> +#define ct_err(_ct, _fmt, ...) \
+>>>>> +    guc_err(ct_to_guc(_ct), "CT " _fmt, ##__VA_ARGS__)
+>>>>> +
+>>>>> +#define ct_warn(_ct, _fmt, ...) \
+>>>>> +    guc_warn(ct_to_guc(_ct), "CT " _fmt, ##__VA_ARGS__)
+>>>>> +
+>>>>> +#define ct_notice(_ct, _fmt, ...) \
+>>>>> +    guc_notice(ct_to_guc(_ct), "CT " _fmt, ##__VA_ARGS__)
+>>>>> +
+>>>>> +#define ct_info(_ct, _fmt, ...) \
+>>>>> +    guc_info(ct_to_guc(_ct), "CT " _fmt, ##__VA_ARGS__)
+>>>>> +
+>>>>>    #ifdef CONFIG_DRM_I915_DEBUG_GUC
+>>>>> -#define CT_DEBUG(_ct, _fmt, ...) \
+>>>>> -    drm_dbg(ct_to_drm(_ct), "CT: " _fmt, ##__VA_ARGS__)
+>>>>> +#define ct_dbg(_ct, _fmt, ...) \
+>>>>> +    guc_dbg(ct_to_guc(_ct), "CT " _fmt, ##__VA_ARGS__)
+>>>>>    #else
+>>>>> -#define CT_DEBUG(...)    do { } while (0)
+>>>>> +#define ct_dbg(...)    do { } while (0)
+>>>>>    #endif
+>>>>> -#define CT_PROBE_ERROR(_ct, _fmt, ...) \
+>>>>> -    i915_probe_error(ct_to_i915(ct), "CT: " _fmt, ##__VA_ARGS__)
+>>>>> +
+>>>>> +#define ct_probe_error(_ct, _fmt, ...) \
+>>>>> +    do { \
+>>>>> +        if (i915_error_injected()) \
+>>>>> +            ct_dbg(_ct, _fmt, ##__VA_ARGS__); \
+>>>>> +        else \
+>>>>> +            ct_err(_ct, _fmt, ##__VA_ARGS__); \
+>>>>> +    } while (0)
+>>>> guc_probe_error ?
+>>>>
+>>>>> +
+>>>>> +#define ct_WARN_ON(_ct, _condition) \
+>>>>> +    ct_WARN(_ct, _condition, "%s", "ct_WARN_ON("
+>>>>> __stringify(_condition) ")")
+>>>>> +
+>>>>> +#define ct_WARN(_ct, _condition, _fmt, ...) \
+>>>>> +    guc_WARN(ct_to_guc(_ct), _condition, "CT " _fmt, ##__VA_ARGS__)
+>>>>> +
+>>>>> +#define ct_WARN_ONCE(_ct, _condition, _fmt, ...) \
+>>>>> +    guc_WARN_ONCE(ct_to_guc(_ct), _condition, "CT " _fmt,
+>>>>> ##__VA_ARGS__)
+>>>>>      /**
+>>>>>     * DOC: CTB Blob
+>>>>> @@ -170,7 +188,7 @@ static int ct_control_enable(struct intel_guc_ct
+>>>>> *ct, bool enable)
+>>>>>        err = guc_action_control_ctb(ct_to_guc(ct), enable ?
+>>>>>                         GUC_CTB_CONTROL_ENABLE :
+>>>>> GUC_CTB_CONTROL_DISABLE);
+>>>>>        if (unlikely(err))
+>>>>> -        CT_PROBE_ERROR(ct, "Failed to control/%s CTB (%pe)\n",
+>>>>> +        ct_probe_error(ct, "Failed to control/%s CTB (%pe)\n",
+>>>>>                       str_enable_disable(enable), ERR_PTR(err));
+>>>> btw, shouldn't we change all messages to start with lowercase ?
+>>>>
+>>>> was:
+>>>>      "CT0: Failed to control/%s CTB (%pe)"
+>>>> is:
+>>>>      "GT0: GuC CT Failed to control/%s CTB (%pe)"
+>>>>
+>>>> unless we keep colon (as suggested by Tvrtko) as then:
+>>>>
+>>>>      "GT0: GuC CT: Failed to control/%s CTB (%pe)"
+>>> Blanket added the colon makes it messy when a string actually wants to
+>>> start with the prefix. The rule I've been using is lower case word when
+>>> the prefix was part of the string, upper case word when the prefix is
+>> Hmm, I'm not sure that we should attempt to have such a flexible rule as
+>> we shouldn't rely too much on actual format of the prefix as it could be
+>> changed any time.  All we should know about final log message is that it
+>> _will_ properly identify the "GT" or "GuC" that this log is related to.
+>>
+>> So I would suggest to be just consistent and probably always start with
+>> upper case, as that seems to be mostly used in kernel error logs, and
+>> just make sure that any prefix will honor that (by including colon, or
+>> braces), so this will always work like:
+>>
+>> "[drm] *ERROR* GT0: Failed to foo (-EIO)"
+>> "[drm] *ERROR* GT0: GUC: Failed to foo (-EIO)"
+>> "[drm] *ERROR* GT0: GUC: CT: Failed to foo (-EIO)"
+>>
+>> or
+>>
+>> "[drm] *ERROR* GT0: Failed to foo (-EIO)"
+>> "[drm] *ERROR* GT0: [GUC] Failed to foo (-EIO)"
+>> "[drm] *ERROR* GT0: [GUC] CT: Failed to foo (-EIO)"
+>>
+>> and even for:
+>>
+>> "[drm] *ERROR* GT(root) Failed to foo (-EIO)"
+>> "[drm] *ERROR* GuC(media) Failed to foo (-EIO)"
+>> "[drm] *ERROR* GT0 [GuC:CT] Failed to foo (-EIO)"
+> All of which are hideous/complex/verbose/inconsistent. 'GT0: GUC: CT:'?
+> Really? Or 'GT0: [GUC] CT:'? Why the random mix of separators? And how
+> would you implement '[GUC:CT]' without having a CT definition that is
+> entirely self contained and does chain on to the GuC level version?
+
+you missed the point, as those were just examples of different possible
+prefixes that one could define, to show that actual message shall not
+make any assumption how such prefix will look like or how it will end
+(like with or w/o colon, with "GuC" or "GT" tag or whatever)
+
+> 
+> This is pointless bikeshedding. If you want to re-write every single
+> debug print (yet again) and invent much more complicated macro
+
+the opposite, I want clear understanding how messages should be written
+to *avoid* rewriting them if (for some reason) we decide to change or
+update the prefix in the future
+
+> definitions then feel free to take over the patch set. If not can we
+> just approve the v3 version and move on to doing some actual work?
+
+if everyone is happy that there is inconsistency in use between gt_xxx
+messages where we shall be using messages starting with upper case
+(since prefix ends with colon) and guc/ct_xxx messages where we shall be
+using lower case message (since there is a known prefix without colon,
+either "GuC" or "CT") then I'll be also fine, but for now that bothers
+me a little, hence asking for clarifications/agreement
+
+and while for dbg level messages it doesn't matter, I assume we should
+be consistent for err/warn/info messages (as those will eventually show
+up to the end user) so let maintainers decide here what is expectation here
+
+> 
+> John.
+> 
+> 
+>>
+>>
+>>> just being added as a prefix. I originally just had the prefix as raw
+>>> with no trailing space, so the individual print could decide to add a
+>>> colon, a space, or whatever as appropriate. But that just makes for
+>>> messy code with some files having every string look like ": Stuff
+>>> happened" and other files have every string look like " failed to ...".
+>>> The current version seems to be the most readable from the point of view
+>>> of writing the code and of reading the dmesg results.
+>>>
+>>> And to be clear, the 'CT0' you have in your 'was' example only exists in
+>>> the internal tree. It never made it to upstream. It is also just plain
+>>> wrong. Each GT has two CTs - send and receive. So having 'CT1' meaning
+>>> some random CT on GT1 (as opposed to the read channel on GT0, for
+>>> example) was very confusing.
+>> I don't think I was wrong, it might be you confusing CT with CTB.
+>>
+>> Note that we only support _single_ CT (Command Transport) and this
+>> single CT includes _pair_ of CTBs (Command Transport Buffers).
+>>
+>> And logs/macros are CT oriented, not CTB.
+> The GuC spec does not make any distinction. In fact, there is no CT in
+
+but "CT" concept is already there, we do have intel_guc_ct, right?
+
+https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h#L22
+
+https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h#L56
+
+> the spec. There is just CTB. So at best it is ambiguous as to what CT0 /
+> CT1 refers to.
+> 
+>>
+>> Regarding those my internal changes that were printing "CT%u": they were
+>> added exactly for the same reason as your series: to know which GT
+>> traffic we are tracing.  And were done locally on CT level only as there
+>> was no helpers that would automatically append "GT%u" prefix - helpers
+>> that you're defining right now ;)
+>>
+>> Michal
+>>
+>>> John.
+>>>
+>>>
+>>>> Michal
+>>>>
+>>>>>          return err;
+>>>>> @@ -201,7 +219,7 @@ static int ct_register_buffer(struct intel_guc_ct
+>>>>> *ct, bool send,
+>>>>>                       size);
+>>>>>        if (unlikely(err))
+>>>>>    failed:
+>>>>> -        CT_PROBE_ERROR(ct, "Failed to register %s buffer (%pe)\n",
+>>>>> +        ct_probe_error(ct, "Failed to register %s buffer (%pe)\n",
+>>>>>                       send ? "SEND" : "RECV", ERR_PTR(err));
+>>>>>          return err;
+>>>>> @@ -235,21 +253,21 @@ int intel_guc_ct_init(struct intel_guc_ct *ct)
+>>>>>        blob_size = 2 * CTB_DESC_SIZE + CTB_H2G_BUFFER_SIZE +
+>>>>> CTB_G2H_BUFFER_SIZE;
+>>>>>        err = intel_guc_allocate_and_map_vma(guc, blob_size, &ct->vma,
+>>>>> &blob);
+>>>>>        if (unlikely(err)) {
+>>>>> -        CT_PROBE_ERROR(ct, "Failed to allocate %u for CTB data
+>>>>> (%pe)\n",
+>>>>> +        ct_probe_error(ct, "Failed to allocate %u for CTB data
+>>>>> (%pe)\n",
+>>>>>                       blob_size, ERR_PTR(err));
+>>>>>            return err;
+>>>>>        }
+>>>>>    -    CT_DEBUG(ct, "base=%#x size=%u\n", intel_guc_ggtt_offset(guc,
+>>>>> ct->vma), blob_size);
+>>>>> +    ct_dbg(ct, "base=%#x size=%u\n", intel_guc_ggtt_offset(guc,
+>>>>> ct->vma), blob_size);
+>>>>>          /* store pointers to desc and cmds for send ctb */
+>>>>>        desc = blob;
+>>>>>        cmds = blob + 2 * CTB_DESC_SIZE;
+>>>>>        cmds_size = CTB_H2G_BUFFER_SIZE;
+>>>>>        resv_space = 0;
+>>>>> -    CT_DEBUG(ct, "%s desc %#tx cmds %#tx size %u/%u\n", "send",
+>>>>> -         ptrdiff(desc, blob), ptrdiff(cmds, blob), cmds_size,
+>>>>> -         resv_space);
+>>>>> +    ct_dbg(ct, "%s desc %#tx cmds %#tx size %u/%u\n", "send",
+>>>>> +           ptrdiff(desc, blob), ptrdiff(cmds, blob), cmds_size,
+>>>>> +           resv_space);
+>>>>>          guc_ct_buffer_init(&ct->ctbs.send, desc, cmds, cmds_size,
+>>>>> resv_space);
+>>>>>    @@ -258,9 +276,9 @@ int intel_guc_ct_init(struct intel_guc_ct *ct)
+>>>>>        cmds = blob + 2 * CTB_DESC_SIZE + CTB_H2G_BUFFER_SIZE;
+>>>>>        cmds_size = CTB_G2H_BUFFER_SIZE;
+>>>>>        resv_space = G2H_ROOM_BUFFER_SIZE;
+>>>>> -    CT_DEBUG(ct, "%s desc %#tx cmds %#tx size %u/%u\n", "recv",
+>>>>> -         ptrdiff(desc, blob), ptrdiff(cmds, blob), cmds_size,
+>>>>> -         resv_space);
+>>>>> +    ct_dbg(ct, "%s desc %#tx cmds %#tx size %u/%u\n", "recv",
+>>>>> +           ptrdiff(desc, blob), ptrdiff(cmds, blob), cmds_size,
+>>>>> +           resv_space);
+>>>>>          guc_ct_buffer_init(&ct->ctbs.recv, desc, cmds, cmds_size,
+>>>>> resv_space);
+>>>>>    @@ -338,7 +356,7 @@ int intel_guc_ct_enable(struct intel_guc_ct
+>>>>> *ct)
+>>>>>        return 0;
+>>>>>      err_out:
+>>>>> -    CT_PROBE_ERROR(ct, "Failed to enable CTB (%pe)\n", ERR_PTR(err));
+>>>>> +    ct_probe_error(ct, "Failed to enable CTB (%pe)\n", ERR_PTR(err));
+>>>>>        return err;
+>>>>>    }
+>>>>>    @@ -387,14 +405,12 @@ static int ct_write(struct intel_guc_ct *ct,
+>>>>>      #ifdef CONFIG_DRM_I915_DEBUG_GUC
+>>>>>        if (unlikely(tail != READ_ONCE(desc->tail))) {
+>>>>> -        CT_ERROR(ct, "Tail was modified %u != %u\n",
+>>>>> -             desc->tail, tail);
+>>>>> +        ct_err(ct, "Tail was modified %u != %u\n", desc->tail, tail);
+>>>>>            desc->status |= GUC_CTB_STATUS_MISMATCH;
+>>>>>            goto corrupted;
+>>>>>        }
+>>>>>        if (unlikely(READ_ONCE(desc->head) >= size)) {
+>>>>> -        CT_ERROR(ct, "Invalid head offset %u >= %u)\n",
+>>>>> -             desc->head, size);
+>>>>> +        ct_err(ct, "Invalid head offset %u >= %u)\n", desc->head,
+>>>>> size);
+>>>>>            desc->status |= GUC_CTB_STATUS_OVERFLOW;
+>>>>>            goto corrupted;
+>>>>>        }
+>>>>> @@ -415,8 +431,8 @@ static int ct_write(struct intel_guc_ct *ct,
+>>>>>            FIELD_PREP(GUC_HXG_EVENT_MSG_0_ACTION |
+>>>>>                   GUC_HXG_EVENT_MSG_0_DATA0, action[0]);
+>>>>>    -    CT_DEBUG(ct, "writing (tail %u) %*ph %*ph %*ph\n",
+>>>>> -         tail, 4, &header, 4, &hxg, 4 * (len - 1), &action[1]);
+>>>>> +    ct_dbg(ct, "writing (tail %u) %*ph %*ph %*ph\n",
+>>>>> +           tail, 4, &header, 4, &hxg, 4 * (len - 1), &action[1]);
+>>>>>          cmds[tail] = header;
+>>>>>        tail = (tail + 1) % size;
+>>>>> @@ -447,8 +463,8 @@ static int ct_write(struct intel_guc_ct *ct,
+>>>>>        return 0;
+>>>>>      corrupted:
+>>>>> -    CT_ERROR(ct, "Corrupted descriptor head=%u tail=%u status=%#x\n",
+>>>>> -         desc->head, desc->tail, desc->status);
+>>>>> +    ct_err(ct, "Corrupted descriptor on write head=%u tail=%u
+>>>>> status=%#x\n",
+>>>>> +           desc->head, desc->tail, desc->status);
+>>>>>        ctb->broken = true;
+>>>>>        return -EPIPE;
+>>>>>    }
+>>>>> @@ -507,17 +523,14 @@ static inline bool ct_deadlocked(struct
+>>>>> intel_guc_ct *ct)
+>>>>>            struct guc_ct_buffer_desc *send = ct->ctbs.send.desc;
+>>>>>            struct guc_ct_buffer_desc *recv = ct->ctbs.send.desc;
+>>>>>    -        CT_ERROR(ct, "Communication stalled for %lld ms, desc
+>>>>> status=%#x,%#x\n",
+>>>>> -             ktime_ms_delta(ktime_get(), ct->stall_time),
+>>>>> -             send->status, recv->status);
+>>>>> -        CT_ERROR(ct, "H2G Space: %u (Bytes)\n",
+>>>>> -             atomic_read(&ct->ctbs.send.space) * 4);
+>>>>> -        CT_ERROR(ct, "Head: %u (Dwords)\n",
+>>>>> ct->ctbs.send.desc->head);
+>>>>> -        CT_ERROR(ct, "Tail: %u (Dwords)\n",
+>>>>> ct->ctbs.send.desc->tail);
+>>>>> -        CT_ERROR(ct, "G2H Space: %u (Bytes)\n",
+>>>>> -             atomic_read(&ct->ctbs.recv.space) * 4);
+>>>>> -        CT_ERROR(ct, "Head: %u\n (Dwords)",
+>>>>> ct->ctbs.recv.desc->head);
+>>>>> -        CT_ERROR(ct, "Tail: %u\n (Dwords)",
+>>>>> ct->ctbs.recv.desc->tail);
+>>>>> +        ct_err(ct, "Communication stalled for %lld ms, desc
+>>>>> status=%#x,%#x\n",
+>>>>> +               ktime_ms_delta(ktime_get(), ct->stall_time),
+>>>>> send->status, recv->status);
+>>>>> +        ct_err(ct, "H2G Space: %u (Bytes)\n",
+>>>>> atomic_read(&ct->ctbs.send.space) * 4);
+>>>>> +        ct_err(ct, "Head: %u (Dwords)\n", ct->ctbs.send.desc->head);
+>>>>> +        ct_err(ct, "Tail: %u (Dwords)\n", ct->ctbs.send.desc->tail);
+>>>>> +        ct_err(ct, "G2H Space: %u (Bytes)\n",
+>>>>> atomic_read(&ct->ctbs.recv.space) * 4);
+>>>>> +        ct_err(ct, "Head: %u\n (Dwords)", ct->ctbs.recv.desc->head);
+>>>>> +        ct_err(ct, "Tail: %u\n (Dwords)", ct->ctbs.recv.desc->tail);
+>>>>>              ct->ctbs.send.broken = true;
+>>>>>        }
+>>>>> @@ -563,8 +576,7 @@ static inline bool h2g_has_room(struct
+>>>>> intel_guc_ct *ct, u32 len_dw)
+>>>>>          head = READ_ONCE(desc->head);
+>>>>>        if (unlikely(head > ctb->size)) {
+>>>>> -        CT_ERROR(ct, "Invalid head offset %u >= %u)\n",
+>>>>> -             head, ctb->size);
+>>>>> +        ct_err(ct, "Invalid head offset %u >= %u)\n", head,
+>>>>> ctb->size);
+>>>>>            desc->status |= GUC_CTB_STATUS_OVERFLOW;
+>>>>>            ctb->broken = true;
+>>>>>            return false;
+>>>>> @@ -715,17 +727,17 @@ static int ct_send(struct intel_guc_ct *ct,
+>>>>>                /* wait_for_ct_request_update returns -ENODEV on
+>>>>> reset/suspend in progress.
+>>>>>                 * In this case, output is debug rather than error info
+>>>>>                 */
+>>>>> -            CT_DEBUG(ct, "Request %#x (fence %u) cancelled as CTB is
+>>>>> disabled\n",
+>>>>> -                 action[0], request.fence);
+>>>>> +            ct_dbg(ct, "Request %#x (fence %u) cancelled as CTB is
+>>>>> disabled\n",
+>>>>> +                   action[0], request.fence);
+>>>>>            else
+>>>>> -            CT_ERROR(ct, "No response for request %#x (fence %u)\n",
+>>>>> -                 action[0], request.fence);
+>>>>> +            ct_err(ct, "No response for request %#x (fence %u)\n",
+>>>>> +                   action[0], request.fence);
+>>>>>            goto unlink;
+>>>>>        }
+>>>>>          if (FIELD_GET(GUC_HXG_MSG_0_TYPE, *status) ==
+>>>>> GUC_HXG_TYPE_NO_RESPONSE_RETRY) {
+>>>>> -        CT_DEBUG(ct, "retrying request %#x (%u)\n", *action,
+>>>>> -             FIELD_GET(GUC_HXG_RETRY_MSG_0_REASON, *status));
+>>>>> +        ct_dbg(ct, "retrying request %#x (%u)\n", *action,
+>>>>> +               FIELD_GET(GUC_HXG_RETRY_MSG_0_REASON, *status));
+>>>>>            send_again = true;
+>>>>>            goto unlink;
+>>>>>        }
+>>>>> @@ -737,12 +749,12 @@ static int ct_send(struct intel_guc_ct *ct,
+>>>>>          if (response_buf) {
+>>>>>            /* There shall be no data in the status */
+>>>>> -        WARN_ON(FIELD_GET(GUC_HXG_RESPONSE_MSG_0_DATA0,
+>>>>> request.status));
+>>>>> +        ct_WARN_ON(ct, FIELD_GET(GUC_HXG_RESPONSE_MSG_0_DATA0,
+>>>>> request.status));
+>>>>>            /* Return actual response len */
+>>>>>            err = request.response_len;
+>>>>>        } else {
+>>>>>            /* There shall be no response payload */
+>>>>> -        WARN_ON(request.response_len);
+>>>>> +        ct_WARN_ON(ct, request.response_len);
+>>>>>            /* Return data decoded from the status dword */
+>>>>>            err = FIELD_GET(GUC_HXG_RESPONSE_MSG_0_DATA0, *status);
+>>>>>        }
+>>>>> @@ -771,7 +783,7 @@ int intel_guc_ct_send(struct intel_guc_ct *ct,
+>>>>> const u32 *action, u32 len,
+>>>>>            struct intel_guc *guc = ct_to_guc(ct);
+>>>>>            struct intel_uc *uc = container_of(guc, struct intel_uc,
+>>>>> guc);
+>>>>>    -        WARN(!uc->reset_in_progress, "Unexpected send:
+>>>>> action=%#x\n", *action);
+>>>>> +        ct_WARN(ct, !uc->reset_in_progress, "Unexpected send:
+>>>>> action=%#x\n", *action);
+>>>>>            return -ENODEV;
+>>>>>        }
+>>>>>    @@ -784,11 +796,11 @@ int intel_guc_ct_send(struct intel_guc_ct
+>>>>> *ct, const u32 *action, u32 len,
+>>>>>        ret = ct_send(ct, action, len, response_buf, response_buf_size,
+>>>>> &status);
+>>>>>        if (unlikely(ret < 0)) {
+>>>>>            if (ret != -ENODEV)
+>>>>> -            CT_ERROR(ct, "Sending action %#x failed (%pe)
+>>>>> status=%#X\n",
+>>>>> -                 action[0], ERR_PTR(ret), status);
+>>>>> +            ct_err(ct, "sending action %#x failed (%pe)
+>>>>> status=%#X\n",
+>>>>> +                   action[0], ERR_PTR(ret), status);
+>>>>>        } else if (unlikely(ret)) {
+>>>>> -        CT_DEBUG(ct, "send action %#x returned %d (%#x)\n",
+>>>>> -             action[0], ret, ret);
+>>>>> +        ct_dbg(ct, "send action %#x returned %d (%#x)\n",
+>>>>> +               action[0], ret, ret);
+>>>>>        }
+>>>>>          return ret;
+>>>>> @@ -838,7 +850,7 @@ static int ct_read(struct intel_guc_ct *ct,
+>>>>> struct ct_incoming_msg **msg)
+>>>>>                 * contexts/engines being reset. But should never
+>>>>> happen as
+>>>>>                 * no contexts should be active when CLIENT_RESET is
+>>>>> sent.
+>>>>>                 */
+>>>>> -            CT_ERROR(ct, "Unexpected G2H after GuC has stopped!\n");
+>>>>> +            ct_err(ct, "Unexpected G2H after GuC has stopped!\n");
+>>>>>                status &= ~GUC_CTB_STATUS_UNUSED;
+>>>>>            }
+>>>>>    @@ -850,15 +862,13 @@ static int ct_read(struct intel_guc_ct *ct,
+>>>>> struct ct_incoming_msg **msg)
+>>>>>      #ifdef CONFIG_DRM_I915_DEBUG_GUC
+>>>>>        if (unlikely(head != READ_ONCE(desc->head))) {
+>>>>> -        CT_ERROR(ct, "Head was modified %u != %u\n",
+>>>>> -             desc->head, head);
+>>>>> +        ct_err(ct, "Head was modified %u != %u\n", desc->head, head);
+>>>>>            desc->status |= GUC_CTB_STATUS_MISMATCH;
+>>>>>            goto corrupted;
+>>>>>        }
+>>>>>    #endif
+>>>>>        if (unlikely(tail >= size)) {
+>>>>> -        CT_ERROR(ct, "Invalid tail offset %u >= %u)\n",
+>>>>> -             tail, size);
+>>>>> +        ct_err(ct, "Invalid tail offset %u >= %u)\n", tail, size);
+>>>>>            desc->status |= GUC_CTB_STATUS_OVERFLOW;
+>>>>>            goto corrupted;
+>>>>>        }
+>>>>> @@ -873,7 +883,7 @@ static int ct_read(struct intel_guc_ct *ct,
+>>>>> struct ct_incoming_msg **msg)
+>>>>>        /* beware of buffer wrap case */
+>>>>>        if (unlikely(available < 0))
+>>>>>            available += size;
+>>>>> -    CT_DEBUG(ct, "available %d (%u:%u:%u)\n", available, head, tail,
+>>>>> size);
+>>>>> +    ct_dbg(ct, "read available %d (%u:%u:%u)\n", available, head,
+>>>>> tail, size);
+>>>>>        GEM_BUG_ON(available < 0);
+>>>>>          header = cmds[head];
+>>>>> @@ -882,24 +892,24 @@ static int ct_read(struct intel_guc_ct *ct,
+>>>>> struct ct_incoming_msg **msg)
+>>>>>        /* message len with header */
+>>>>>        len = FIELD_GET(GUC_CTB_MSG_0_NUM_DWORDS, header) +
+>>>>> GUC_CTB_MSG_MIN_LEN;
+>>>>>        if (unlikely(len > (u32)available)) {
+>>>>> -        CT_ERROR(ct, "Incomplete message %*ph %*ph %*ph\n",
+>>>>> -             4, &header,
+>>>>> -             4 * (head + available - 1 > size ?
+>>>>> -                  size - head : available - 1), &cmds[head],
+>>>>> -             4 * (head + available - 1 > size ?
+>>>>> -                  available - 1 - size + head : 0), &cmds[0]);
+>>>>> +        ct_err(ct, "Incomplete message %*ph %*ph %*ph\n",
+>>>>> +               4, &header,
+>>>>> +               4 * (head + available - 1 > size ?
+>>>>> +                size - head : available - 1), &cmds[head],
+>>>>> +               4 * (head + available - 1 > size ?
+>>>>> +                available - 1 - size + head : 0), &cmds[0]);
+>>>>>            desc->status |= GUC_CTB_STATUS_UNDERFLOW;
+>>>>>            goto corrupted;
+>>>>>        }
+>>>>>          *msg = ct_alloc_msg(len);
+>>>>>        if (!*msg) {
+>>>>> -        CT_ERROR(ct, "No memory for message %*ph %*ph %*ph\n",
+>>>>> -             4, &header,
+>>>>> -             4 * (head + available - 1 > size ?
+>>>>> -                  size - head : available - 1), &cmds[head],
+>>>>> -             4 * (head + available - 1 > size ?
+>>>>> -                  available - 1 - size + head : 0), &cmds[0]);
+>>>>> +        ct_err(ct, "No memory for message %*ph %*ph %*ph\n",
+>>>>> +               4, &header,
+>>>>> +               4 * (head + available - 1 > size ?
+>>>>> +                size - head : available - 1), &cmds[head],
+>>>>> +               4 * (head + available - 1 > size ?
+>>>>> +                available - 1 - size + head : 0), &cmds[0]);
+>>>>>            return available;
+>>>>>        }
+>>>>>    @@ -909,7 +919,7 @@ static int ct_read(struct intel_guc_ct *ct,
+>>>>> struct ct_incoming_msg **msg)
+>>>>>            (*msg)->msg[i] = cmds[head];
+>>>>>            head = (head + 1) % size;
+>>>>>        }
+>>>>> -    CT_DEBUG(ct, "received %*ph\n", 4 * len, (*msg)->msg);
+>>>>> +    ct_dbg(ct, "received %*ph\n", 4 * len, (*msg)->msg);
+>>>>>          /* update local copies */
+>>>>>        ctb->head = head;
+>>>>> @@ -920,8 +930,8 @@ static int ct_read(struct intel_guc_ct *ct,
+>>>>> struct ct_incoming_msg **msg)
+>>>>>        return available - len;
+>>>>>      corrupted:
+>>>>> -    CT_ERROR(ct, "Corrupted descriptor head=%u tail=%u status=%#x\n",
+>>>>> -         desc->head, desc->tail, desc->status);
+>>>>> +    ct_err(ct, "Corrupted descriptor on read head=%u tail=%u
+>>>>> status=%#x\n",
+>>>>> +           desc->head, desc->tail, desc->status);
+>>>>>        ctb->broken = true;
+>>>>>        return -EPIPE;
+>>>>>    }
+>>>>> @@ -944,18 +954,17 @@ static int ct_handle_response(struct
+>>>>> intel_guc_ct *ct, struct ct_incoming_msg *r
+>>>>>               FIELD_GET(GUC_HXG_MSG_0_TYPE, hxg[0]) !=
+>>>>> GUC_HXG_TYPE_NO_RESPONSE_RETRY &&
+>>>>>               FIELD_GET(GUC_HXG_MSG_0_TYPE, hxg[0]) !=
+>>>>> GUC_HXG_TYPE_RESPONSE_FAILURE);
+>>>>>    -    CT_DEBUG(ct, "response fence %u status %#x\n", fence, hxg[0]);
+>>>>> +    ct_dbg(ct, "response fence %u status %#x\n", fence, hxg[0]);
+>>>>>          spin_lock_irqsave(&ct->requests.lock, flags);
+>>>>>        list_for_each_entry(req, &ct->requests.pending, link) {
+>>>>>            if (unlikely(fence != req->fence)) {
+>>>>> -            CT_DEBUG(ct, "request %u awaits response\n",
+>>>>> -                 req->fence);
+>>>>> +            ct_dbg(ct, "request %u awaits response\n", req->fence);
+>>>>>                continue;
+>>>>>            }
+>>>>>            if (unlikely(datalen > req->response_len)) {
+>>>>> -            CT_ERROR(ct, "Response %u too long (datalen %u > %u)\n",
+>>>>> -                 req->fence, datalen, req->response_len);
+>>>>> +            ct_err(ct, "response %u too long (datalen %u > %u)\n",
+>>>>> +                   req->fence, datalen, req->response_len);
+>>>>>                datalen = min(datalen, req->response_len);
+>>>>>                err = -EMSGSIZE;
+>>>>>            }
+>>>>> @@ -967,12 +976,11 @@ static int ct_handle_response(struct
+>>>>> intel_guc_ct *ct, struct ct_incoming_msg *r
+>>>>>            break;
+>>>>>        }
+>>>>>        if (!found) {
+>>>>> -        CT_ERROR(ct, "Unsolicited response (fence %u)\n", fence);
+>>>>> -        CT_ERROR(ct, "Could not find fence=%u, last_fence=%u\n",
+>>>>> fence,
+>>>>> -             ct->requests.last_fence);
+>>>>> +        ct_err(ct, "Unsolicited response (fence %u)\n", fence);
+>>>>> +        ct_err(ct, "Could not find fence=%u, last_fence=%u\n", fence,
+>>>>> +               ct->requests.last_fence);
+>>>>>            list_for_each_entry(req, &ct->requests.pending, link)
+>>>>> -            CT_ERROR(ct, "request %u awaits response\n",
+>>>>> -                 req->fence);
+>>>>> +            ct_err(ct, "request %u awaits response\n", req->fence);
+>>>>>            err = -ENOKEY;
+>>>>>        }
+>>>>>        spin_unlock_irqrestore(&ct->requests.lock, flags);
+>>>>> @@ -998,7 +1006,7 @@ static int ct_process_request(struct
+>>>>> intel_guc_ct *ct, struct ct_incoming_msg *r
+>>>>>        action = FIELD_GET(GUC_HXG_EVENT_MSG_0_ACTION, hxg[0]);
+>>>>>        len = hxg_len - GUC_HXG_MSG_MIN_LEN;
+>>>>>    -    CT_DEBUG(ct, "request %x %*ph\n", action, 4 * len, payload);
+>>>>> +    ct_dbg(ct, "request %x %*ph\n", action, 4 * len, payload);
+>>>>>          switch (action) {
+>>>>>        case INTEL_GUC_ACTION_DEFAULT:
+>>>>> @@ -1016,9 +1024,6 @@ static int ct_process_request(struct
+>>>>> intel_guc_ct *ct, struct ct_incoming_msg *r
+>>>>>            break;
+>>>>>        case INTEL_GUC_ACTION_STATE_CAPTURE_NOTIFICATION:
+>>>>>            ret = intel_guc_error_capture_process_msg(guc, payload,
+>>>>> len);
+>>>>> -        if (unlikely(ret))
+>>>>> -            CT_ERROR(ct, "error capture notification failed %x
+>>>>> %*ph\n",
+>>>>> -                 action, 4 * len, payload);
+>>>>>            break;
+>>>>>        case INTEL_GUC_ACTION_ENGINE_FAILURE_NOTIFICATION:
+>>>>>            ret = intel_guc_engine_failure_process_msg(guc, payload,
+>>>>> len);
+>>>>> @@ -1028,11 +1033,11 @@ static int ct_process_request(struct
+>>>>> intel_guc_ct *ct, struct ct_incoming_msg *r
+>>>>>            ret = 0;
+>>>>>            break;
+>>>>>        case INTEL_GUC_ACTION_NOTIFY_CRASH_DUMP_POSTED:
+>>>>> -        CT_ERROR(ct, "Received GuC crash dump notification!\n");
+>>>>> +        guc_err(guc, "notification: Crash dump!\n");
+>>>>>            ret = 0;
+>>>>>            break;
+>>>>>        case INTEL_GUC_ACTION_NOTIFY_EXCEPTION:
+>>>>> -        CT_ERROR(ct, "Received GuC exception notification!\n");
+>>>>> +        guc_err(guc, "notification: Exception!\n");
+>>>>>            ret = 0;
+>>>>>            break;
+>>>>>        default:
+>>>>> @@ -1041,8 +1046,7 @@ static int ct_process_request(struct
+>>>>> intel_guc_ct *ct, struct ct_incoming_msg *r
+>>>>>        }
+>>>>>          if (unlikely(ret)) {
+>>>>> -        CT_ERROR(ct, "Failed to process request %04x (%pe)\n",
+>>>>> -             action, ERR_PTR(ret));
+>>>>> +        ct_err(ct, "Failed to process request %04x (%pe)\n", action,
+>>>>> ERR_PTR(ret));
+>>>>>            return ret;
+>>>>>        }
+>>>>>    @@ -1070,8 +1074,8 @@ static bool
+>>>>> ct_process_incoming_requests(struct intel_guc_ct *ct)
+>>>>>          err = ct_process_request(ct, request);
+>>>>>        if (unlikely(err)) {
+>>>>> -        CT_ERROR(ct, "Failed to process CT message (%pe) %*ph\n",
+>>>>> -             ERR_PTR(err), 4 * request->size, request->msg);
+>>>>> +        ct_err(ct, "Failed to process message (%pe) %*ph\n",
+>>>>> +               ERR_PTR(err), 4 * request->size, request->msg);
+>>>>>            ct_free_msg(request);
+>>>>>        }
+>>>>>    @@ -1149,8 +1153,8 @@ static int ct_handle_hxg(struct intel_guc_ct
+>>>>> *ct, struct ct_incoming_msg *msg)
+>>>>>          if (unlikely(err)) {
+>>>>>    failed:
+>>>>> -        CT_ERROR(ct, "Failed to handle HXG message (%pe) %*ph\n",
+>>>>> -             ERR_PTR(err), 4 * GUC_HXG_MSG_MIN_LEN, hxg);
+>>>>> +        ct_err(ct, "Failed to handle HXG message (%pe) %*ph\n",
+>>>>> +               ERR_PTR(err), 4 * GUC_HXG_MSG_MIN_LEN, hxg);
+>>>>>        }
+>>>>>        return err;
+>>>>>    }
+>>>>> @@ -1166,8 +1170,8 @@ static void ct_handle_msg(struct intel_guc_ct
+>>>>> *ct, struct ct_incoming_msg *msg)
+>>>>>            err = -EOPNOTSUPP;
+>>>>>          if (unlikely(err)) {
+>>>>> -        CT_ERROR(ct, "Failed to process CT message (%pe) %*ph\n",
+>>>>> -             ERR_PTR(err), 4 * msg->size, msg->msg);
+>>>>> +        ct_err(ct, "Failed to handle message (%pe) %*ph\n",
+>>>>> +               ERR_PTR(err), 4 * msg->size, msg->msg);
+>>>>>            ct_free_msg(msg);
+>>>>>        }
+>>>>>    }
+>>>>> @@ -1198,7 +1202,7 @@ static void ct_try_receive_message(struct
+>>>>> intel_guc_ct *ct)
+>>>>>    {
+>>>>>        int ret;
+>>>>>    -    if (GEM_WARN_ON(!ct->enabled))
+>>>>> +    if (ct_WARN_ON(ct, !ct->enabled))
+>>>>>            return;
+>>>>>          ret = ct_receive(ct);
+>>>>> @@ -1220,7 +1224,7 @@ static void ct_receive_tasklet_func(struct
+>>>>> tasklet_struct *t)
+>>>>>    void intel_guc_ct_event_handler(struct intel_guc_ct *ct)
+>>>>>    {
+>>>>>        if (unlikely(!ct->enabled)) {
+>>>>> -        WARN(1, "Unexpected GuC event received while CT
+>>>>> disabled!\n");
+>>>>> +        ct_warn(ct, "Unexpected event received while disabled!\n");
+>>>>>            return;
+>>>>>        }
+>>>>>    
+> 
