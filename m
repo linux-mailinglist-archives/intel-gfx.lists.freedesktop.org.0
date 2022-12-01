@@ -1,154 +1,150 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEB5C63E968
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Dec 2022 06:46:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7241C63E96F
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Dec 2022 06:49:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3A4C10E105;
-	Thu,  1 Dec 2022 05:46:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5886A10E0F7;
+	Thu,  1 Dec 2022 05:49:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2703610E0F7
- for <intel-gfx@lists.freedesktop.org>; Thu,  1 Dec 2022 05:46:16 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FE2710E0C3
+ for <intel-gfx@lists.freedesktop.org>; Thu,  1 Dec 2022 05:49:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669873576; x=1701409576;
+ t=1669873750; x=1701409750;
  h=message-id:date:subject:to:references:from:in-reply-to:
  content-transfer-encoding:mime-version;
- bh=mThFVdRVljTAagJMBxOKcHCSgsrIfwZqQp1mF8DYhzk=;
- b=Uwr2qWOHzXYke/ZW0AGwF8I52TRDycMwfp1JRdrbgTFVuTy8FPPMnaMu
- 71GG9xlk8pyBlzmp5PTjNITjcXAZ8gHKe5jt4Ez3taX4uCow12D9zu0uz
- e9n/kfKNp+SiM+9GXnuWWIWxttoA+xsOJeFZS0DegzvaYIX9kWM6C0Zpi
- M3CWOjCbkc4ZPfjR3RMIj2s2vbklN8Grnktr9w8sGfvTeXgIHlzHh6ucI
- ul5unk9SWkCZc3rpuVq3juV1PEFv1u/Voo0HaCFk/u0k5pCshXGmRKtn/
- dCcR53CYyTqkCLUFaiLwlAXqNhEApHd3QKFaIHSgvkoJ0d7jYx1Xn5XDe A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10547"; a="317449733"
-X-IronPort-AV: E=Sophos;i="5.96,207,1665471600"; d="scan'208";a="317449733"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2022 21:46:13 -0800
+ bh=CGY21HZNjfqHzt9YpcBEHeYenO1s2SvTCXxrW6oSbt0=;
+ b=RfdljET4xHS4oDpbCSZ+bKE5iL1kxmmR0SaEvTHUZm/z0Q+6RkSigFv6
+ F09w097PkKvTATyl7fySd3eUP869U3jfd9WOp15WeGbhGy+JUDOsU++Xf
+ v9iBPBTQjmQfU6lmEmLm77au7mv/rvEjBZjZlYGdQ0P0PiD0tZhViLgue
+ JnluFFxPoiyPWjQiiTQPSVtbTygoqY+uNxLwOoB4Re8W3/ureM84QLJ0e
+ 8ABDOtmwCxuloxvZjxH5fci/1pLZopaL/Zs28uNSl8y9EoXFMX/0s13lm
+ IK5azFD1OFNyTmKfduh3WCQ3S8XBkPkE1FlPBSeLIePnG7uD1FREgvii/ g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10547"; a="342519085"
+X-IronPort-AV: E=Sophos;i="5.96,207,1665471600"; d="scan'208";a="342519085"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2022 21:49:09 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10547"; a="622167341"
-X-IronPort-AV: E=Sophos;i="5.96,207,1665471600"; d="scan'208";a="622167341"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orsmga006.jf.intel.com with ESMTP; 30 Nov 2022 21:46:12 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+X-IronPort-AV: E=McAfee;i="6500,9779,10547"; a="646621739"
+X-IronPort-AV: E=Sophos;i="5.96,207,1665471600"; d="scan'208";a="646621739"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga007.fm.intel.com with ESMTP; 30 Nov 2022 21:49:09 -0800
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Wed, 30 Nov 2022 21:49:09 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
  fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Wed, 30 Nov 2022 21:46:12 -0800
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Wed, 30 Nov 2022 21:46:11 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Wed, 30 Nov 2022 21:46:11 -0800
+ 15.1.2507.16 via Frontend Transport; Wed, 30 Nov 2022 21:49:09 -0800
 Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.108)
  by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Wed, 30 Nov 2022 21:46:11 -0800
+ 15.1.2507.16; Wed, 30 Nov 2022 21:49:08 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Xchpz4QgApVfAX3ZRquEmAwhBanTMy+l//jRsYh8WiEu6Elhs2uqVufM5ESXK79Eurb97i4VDMs8eh8diOQMDd7z8vHqWcG08jHoxuv/OdF0YtuR68WEkOybeeKfWyNUBNDqjgg6WjlnDT4HFOZJd6UWJc7VczyOqiS+f2DlcGgHUNK+kYe0GOX3vfdUbqgtPts5n7xbLtOck11YVjoQ+sLEKj4O2+UxHyGSynoXNphLYdYvEsjBudjkCS7AGjIXOiQNDO95CTkKXXGGVh1dP6Wtuv3hv1DB0M1lp7i0au/th8OP4jJqCxVFyhUhpkUSoNzmz10mrjZwbMCHC5XrgQ==
+ b=AlEYKxeUBFdHOcZcy4fkH4SEqaT5mgF7ojMTo6c7ivkVqY48AC8S1X2/oWQaqKdCq4uqFOZY2FMuLbPEl4nTD+HdUaIeP7YcMNYfcBBYH8c5jPIpow/Z4xoon4kLbkZB91Ez3Xaj/AtIlGjQCk1ZzjOeN4tex6/9p9attH650HFBQftLCgPquea0kJPcmAflC1HXtg2etXe40RalCc2fhiUfJi3XhZChrW7cchfR71cEBNJEQHlk4YjMnKdTUvilVXRYvjEocSJFcU4U8pEFsvIoUAS3+6SowkH9cUGr03aG2SunBUBwzNBD+yjnChPOPZTKGklRzPkLHXHYMYZUGA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=twkX3iTUJEgKJr6Hl8Vfe1mR/DCYeb1y2w+lUiyB1dY=;
- b=A/KOr0svCuBSRcQw4HXuW7XZT2fPVewkuwUv9jkor6T2rK4+XJ6tJyWUGVh4tUtQ5wE8a9LPOB5lnfD441TlB5TNtfhDkZV24LJzMUFkLJ+mfA8yRzhdkC9OdsJpG6UVLP+fHroch3LcP5S6UVzPUPev5JmXz44mu5McPr0Md51UEGkSbtJDGqvPMUEUDjoT97zqREllZvLiRNJ3ys32vI5HfXB6k2noEHjZnN0xCrQgDJt57BUme03hcxzxiWlue7kvrfivaucjV82lGQkSxyB1J4z4maL94i2yBr1YTQCIKdr1OPUnC7VwQjBHWHmutmzT18aRP6qF/aoJDF0lbg==
+ bh=G2GzsyyosAZ+WTGh5y0Rk3lH+x0u8Hn+gaXBwZO/v4g=;
+ b=FgZ5t3w2lYdO4ODZgnY9eIWO5HEDxDc5qzPTSDTE4w2OP3ta8xccSYElY9KXzVdgIeigP35oed7eSj3k4K25G3W25atcNohITAcgdoWov51a8UeLHdm0290+X3UHhqpZV4VxaI29YLn8nceglBGSluRkiMUXjZ5ke3KOU0jYEZx8a1TKI4ixrgTM42xkPslU5RRYBSAWePORXMlmRMSZSCp5gjSmUXwEqR88e/4Di00WDob4lSMZzShLZoJVhxqRu1use29hne0s24zNeytVuwxqEg8VuHpAdFAm1bbSifXWaK+YgvsDkTWC0qIRAuw2MV0NACrrb9I0uU7iA9mNfA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by SJ2PR11MB7574.namprd11.prod.outlook.com (2603:10b6:a03:4ca::17) with
+ by PH0PR11MB4935.namprd11.prod.outlook.com (2603:10b6:510:35::24) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5857.23; Thu, 1 Dec
- 2022 05:46:04 +0000
+ 2022 05:49:02 +0000
 Received: from DM4PR11MB5341.namprd11.prod.outlook.com
  ([fe80::21a6:81fa:3ed7:a486]) by DM4PR11MB5341.namprd11.prod.outlook.com
  ([fe80::21a6:81fa:3ed7:a486%9]) with mapi id 15.20.5857.023; Thu, 1 Dec 2022
- 05:46:04 +0000
-Message-ID: <23780f01-ab31-71e0-23fc-258b80e138ef@intel.com>
-Date: Thu, 1 Dec 2022 11:15:55 +0530
+ 05:49:01 +0000
+Message-ID: <9db93db5-723e-09ad-3191-83eb36bcce9c@intel.com>
+Date: Thu, 1 Dec 2022 11:18:52 +0530
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
 Content-Language: en-US
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  <intel-gfx@lists.freedesktop.org>
 References: <20221123152638.20622-1-ville.syrjala@linux.intel.com>
- <20221123152638.20622-5-ville.syrjala@linux.intel.com>
+ <20221123152638.20622-6-ville.syrjala@linux.intel.com>
 From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <20221123152638.20622-5-ville.syrjala@linux.intel.com>
+In-Reply-To: <20221123152638.20622-6-ville.syrjala@linux.intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PN2PR01CA0018.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:25::23) To DM4PR11MB5341.namprd11.prod.outlook.com
+X-ClientProxiedBy: PN2PR01CA0204.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:e9::14) To DM4PR11MB5341.namprd11.prod.outlook.com
  (2603:10b6:5:390::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|SJ2PR11MB7574:EE_
-X-MS-Office365-Filtering-Correlation-Id: 723c23f4-a8a3-41b2-d57a-08dad35f55e3
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|PH0PR11MB4935:EE_
+X-MS-Office365-Filtering-Correlation-Id: 07ab9059-7d15-46d8-fbcc-08dad35fbf99
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: nSfEL95EkLKIbSMqcIANtq56WcKU2JTB2+pB35JihTr9+5QuNKJGjkJAsMZtBv0emnAhA/BebcUgCQ/8Cp88axOFAGaaJZGPpn/iEDG24XHadtc2JzUzn03RcESSsi73Zs2NKUbxmVGps6lhsKkJX2tv7R0Mka/hVJ/w4eiyOQO3lz3JrlR5tB+I4rNJ85zHyWKspUYFdomRbA/ncvl5MNVizF/4Pba7oato7zmHal23nPB9M0xBYwQGUrpJjUcRkFmLaiS0Ozyzn9O8a4zWXwVEUY3H4UI5SDITJonPWsSK8EChg+n8IOoriZV1llmm89YlE+Qh6IwjJ3aY35yP3RCsvpQEI+hbAr01xqR62F5lFSfEmVB2wUhSrSThoaoCBzyfhjb+uGwlwD2hgbLctlspq7KSXeNy6kV7MUkiMo9A2Hne/AsYkQG2O9YPoSkgtCGzTWhE+fe5dF46iUXT/7VegNFNS4lQGtFd/CSn3DLP5P/m4CrdemAmQGctyan1YMI0tUbn5bX7b/YFZt8D8YXrVAXdDTOSLz6+uV8yisrTVS6jrH7g9r+hSuIeWBSr0h5rDselJ/m0l5qVV+zkPAhdO3RMvi+6KRtc4KdM23WW/54SHc6vZ2YUst2QFWOXKb9C2xTLIY5p4I0T719c8VgaA08WD4OmRBMzJ7ewOo24mRxyp9WqtECB+bZcCQtTWfSq+QUUXw/mAuX5DhgH3Q/v73xsyPd92tJEp4JeauE=
+X-Microsoft-Antispam-Message-Info: ZVS7PekZ4jelzCn/eTWirtlUmiQanAZhz7yK9ADd6bS13a+USWEPTgPQ6g+aNKH6ARIDAx+dPKHxp4rkaTcUPKkm8if8Nu3Pqg2G+FInx8x6xejQLQ/IJ7D4cZlqTuumrZJ65JosIUP+HM3kEwyHw5Ttm0zrT6l2cbUxjMK5DF1Zw0WjTPeX1JzbiPr9yEv6v30bdnYeNUN2DM9JclDojOaiCADM/L8qpovL5VBXuMwnzXoEL5bEA+E077EEazjw7DJxD38hgX4nwX9LyZhPetqpnryoOwhrQAuCDWN/HHymKTu4y2yz/F9iMsuKzsnh2/cbgbCIgtyJO35QZ5CSKiu3JS120/47iJi6fm0CnkUafF19Blhtc5YdBqEDhkHWcAzQgCc49zpTWeOmOtcf5XrBuXLXSaI6qVTNSXfmeMkzWQQ+mGnPykPzLSzGRh7/V4k+mTuLSC7fwoRcV3ZomCZ0/y3boC0CJVRtGgRG+oN9Q5SJdBIQc2x3LN+PGb+dbreboD6HZXhtYpN4ERhPSPGUjv/dZU9m+rNyDApcLzt4ZZPzooWM+HdphLdpb6htHDIxusIri9wzW5ww6UXiICtXwaUItPm9HXACdE4Z1nED72TNosWxSve+I1NWdNxYxMFUar6Jq3WpL2wPcYMcfMw93EVeVaTEWkCqaeL50j4YUD91CXDv8yz+vKCmufU/YtJ0aJgh/OWXjLH3FNeOC4K036E0WLS+Qr2Gt53Kb8w=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(366004)(376002)(346002)(136003)(39860400002)(396003)(451199015)(31686004)(36756003)(5660300002)(66946007)(86362001)(31696002)(41300700001)(316002)(8676002)(66476007)(2906002)(8936002)(82960400001)(2616005)(38100700002)(66556008)(6486002)(83380400001)(186003)(55236004)(478600001)(26005)(53546011)(6506007)(6512007)(6666004)(43740500002)(45980500001);
+ SFS:(13230022)(39860400002)(366004)(376002)(136003)(346002)(396003)(451199015)(8676002)(2906002)(41300700001)(66476007)(8936002)(66946007)(66556008)(6666004)(5660300002)(478600001)(36756003)(38100700002)(6512007)(26005)(53546011)(31686004)(2616005)(316002)(186003)(6486002)(55236004)(6506007)(83380400001)(86362001)(66574015)(31696002)(82960400001)(45980500001)(43740500002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RUk3ZkEvaEV4RXV3NHk5MHduMUROVnVoNE9acXIwNlNGV3UzWGtGT1ZKb1ZL?=
- =?utf-8?B?azNyRnhJaW5sb1g5NkY2M3lhT21kRVZyODB1WGRIZGp5YmNWcXFSNytlRDNZ?=
- =?utf-8?B?SThxaG1oYVNUNDJDaXkwQ0tkNDgyTms5RFZSd3NhMGJVSUo0aWNuOFluZURG?=
- =?utf-8?B?MWV6Q2JMNGpZbDdqN3RpeFBLT3dhVHBEcWs2QkxpT0pwNnFTMXRlVEorSGIw?=
- =?utf-8?B?Y0xXRUZSK2UvLzRNZXpjR2dHT3hvdkY4dkxlM3NlMjc4T05KaUs5RDhPWkpE?=
- =?utf-8?B?NUVNcU0xazQveFVYaWgvZ3dYT2xFbStJVm5sUy9XQ04wZTdqR2FXbDNzV2Rn?=
- =?utf-8?B?a2JYVU00RUxESUlCUlRMeHgwT25ZK29GR2FsaU5xL0s5TmVsd1RoQlQ0NEJJ?=
- =?utf-8?B?ZkhKWjRLTlpBWE00VWp4Ri9TUHBsM1hobStualRMbjdadWtQT0JHYktZTmF1?=
- =?utf-8?B?d1pSdk5BRXBIV1hhNzBKWnNyL2FGSExkSkpYSHF6QmlJOTRGUjJqSkJINW1w?=
- =?utf-8?B?b1BxbHdoY3FsU3JVdXlkOWRYcDNFaUE0Tk42bjFLQVcvdGVScEpMd3pyQzZk?=
- =?utf-8?B?RE1KbEx1SzUzZHJVaWxWWmhINmcvSVlHVkJJRUpva3doY1lDMVhJTXVYb0Jk?=
- =?utf-8?B?eXgrdURhYmpXUEw4QUphWllQZHlMZkg0ay8zaWVKTm8va1hjTERucFNNYjBq?=
- =?utf-8?B?eDR0OHhjWEhrdVV2ZHVqbHJldWtWMkdjZ0w0UFFXTFJOVG1QbDgwL0FxMm55?=
- =?utf-8?B?cGk4SHpPaGREUDkxU1NyOHp2WEVHQlpvRmVrT2VuQVpsaGlFQ3RiOXF3NG5W?=
- =?utf-8?B?NHB4cDU2ckVSNTcxeTlMRGp4emNBLzI3UFRjdTJacEtMbCtEVGZOTTZJdUdu?=
- =?utf-8?B?anFwQVFkNFBGZW9iZk9CRHlJOU9UekEzcW5jTVFTQTFGL0JYVk5QdjQzakdC?=
- =?utf-8?B?VTgvSzN4bFljRm85Qmlpay81SUl5d2l6R0ZQcnJPVkVxQ0tlQ08rN3JzTSsw?=
- =?utf-8?B?YXU3Z21xRytnVlZFaWF0VEJ3d0VHSVVXdTQ1cDJRMC8waktYaFJ4QTVjZ3l0?=
- =?utf-8?B?OW11TmFOREl3Qk1hbVZobFB2L1F1cThJaXRDaE01WTIrbEp0ZmFTK2FEa3Jl?=
- =?utf-8?B?dGV0S056NUdiTFBxOE03K1lWZGhEQ0V4N0JTWXF1MEhCWWJVdkFGV3NpODJ3?=
- =?utf-8?B?NlgyOEd6SlBpRVNBdWNoV2xPMFhoanNKK2k2WjRSOFhTOHpwcHlhMFFXNXMv?=
- =?utf-8?B?anVHYllOUlFONFFaNGVxR1EvL2VuVE12RFcrWHpSUUJoVlYyQWxud0RReTZZ?=
- =?utf-8?B?d2JMcmZwaXFuZDd3ZEI1cTc3UGFGMytwUVVidDZlVkRoQWkzaTMxWEhsTmpv?=
- =?utf-8?B?Vm1sQ2ZHcHVDV1JFZ21XdlM5UXlDaFhRTE9nYXU0V2szM3BMR3J4eU03Sjha?=
- =?utf-8?B?NjNjWUNTOFgvMzYxMEltVkR5ZVFRZ01RUDNsQ0FibFhSOGl5aVJHNkFwL1d4?=
- =?utf-8?B?VnZpNlpGSkEyM0xBVEtCSlFJeXVMRFNJc1Bsd1c0Y1JZWTNNTkU5dnJkdnV4?=
- =?utf-8?B?emlsR3ZaRERnNzJrcjE0MnRLRkdvN1grdTdrbzBYZUtGdmxUb29SMTdmeU96?=
- =?utf-8?B?UXZ6RnI3QVNNV2JUSG9QSE1BOW5yNnh3NUhwanRoRzg1L2VzNHNzbEtHaTVo?=
- =?utf-8?B?WVJMREI0VFRZaFVXL2RxaFJuM3h6TTJ5cUsvNTl2M1NrTlEwSzExM0VKOWcz?=
- =?utf-8?B?ekp2ZDRYTzJxZ1hJK3VlYWNpM1hSZU5rZVZPVithMnBLZWVPemZWZDIwOHpz?=
- =?utf-8?B?MGtNdEl4T2Fxd2hmZGlNeWkrZ2FrK2lZTXV2UHJNdG9udmNZTzAvVGdHK2F1?=
- =?utf-8?B?bklvTU1xQS9HeTVQWkNRUEVwN2p4SUYxY1lDVzhYclU2ZE96aU53cklqdXRM?=
- =?utf-8?B?ZUlNc1RnNUNnc2QwRlJ1Y0NITXpJYmtSeS9YYWpQempIVDdnZFVIckdCUmxT?=
- =?utf-8?B?NnNSUEYrRGMyRnNWN3d0bzRKanRNYzFYOVRUQzlBd3hEU0FyaUtKSDZmQ05T?=
- =?utf-8?B?WVVRSlFKeCt1eVhEOTNtUmsrVlJOR0Z1MS9TWmRCc21ESzQ1WWtLdTduRlRU?=
- =?utf-8?B?TlQ3Zi8wWGhwM09TT0FZR1V3RnJPRkxvMXZ2R2RLQ0wzd1V2N3ZYblZQRkxk?=
- =?utf-8?B?ZFE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 723c23f4-a8a3-41b2-d57a-08dad35f55e3
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cXRhTkt6Qjc3b2swQ3IvSlI2QkNxVUgvZnRFOVZsQkEzbUlWRDlEZmtpN2xT?=
+ =?utf-8?B?Y0E0SHhwcVVINnBtUDl5b0VLMnVLcTJQZThISXlTNWxIT3VHOHUxMGJiYXRp?=
+ =?utf-8?B?NzYrZ2l4UDhCL1ZPVmc3SitGT01wczZXdTZrUXpyUVBsUTBRV3g4NEJWdXdj?=
+ =?utf-8?B?WXBYcDVoOVFCQjBhZldaQjFNWlVGS3lwOWdZWjQ4WVhCNExkU29IWWczV29G?=
+ =?utf-8?B?UnFpV3MxNDFxVzVVYU5wbzl5N1l0TWVDb2VyRGRqSnh6R3pFYml3bTVMZHlT?=
+ =?utf-8?B?WWxiajljRUgzYllya2Vxd2M4ZGM1SUliTGlJeFJMOXc4QzkyeDVCRVZZVHlN?=
+ =?utf-8?B?dWZyV3FJUEc4ZUQyaTNhZm1UNGFCWWFuLzJGOG95blliQnNsdisyR2s0SE5y?=
+ =?utf-8?B?cjRrQUVwZ3FxSHdQS2lxV1BqZGlGeTVkOW5IOE11NnlxcGZaamdYTFlXaUNI?=
+ =?utf-8?B?Njc2d0tzMElWQnlJU0tZS2dtR2s2N2RKRDlsZ1Boc1dEb1BmaHNRT1VZQ3Fr?=
+ =?utf-8?B?Sllqb1hPMjRyMEU3NGJTRituc1NYaXJkaHhQWGFTQW5RNVBBeGNpU2Q1aUJt?=
+ =?utf-8?B?NFhoTk9jOGZaNlovYUNIeUtCZWtUUW5KNk93cFczeC9LRzZYY0JoN2pPa3Nu?=
+ =?utf-8?B?Nnp6QVBOV1g4LzVBUjhqNmI3S1N4ZmxvWjRqRUloZUYxVEs1RmhOTzZyY2x3?=
+ =?utf-8?B?NUxvNXpqeVo2UHZPVXo5a21YV0NxSnltOEU1TXJqSXQ1Y0RoOEVhdXlSN0gr?=
+ =?utf-8?B?bDZxZ1RsNlpTOUJGSW95ZHk1WFFXb210VEh2QStjR2k3WUo5WWdibVZWNlJm?=
+ =?utf-8?B?VXkreW9WVTAydFNCN2lVUnNSQW0waUh1WW9QbGlxRjYxVUdBd0I4Zzdiekxs?=
+ =?utf-8?B?K0s4MmpIVlBzTC9ZSFpJc25WVE0wNkRVc2xtWUxtTGRTdEVlQ3dEbFY5VURj?=
+ =?utf-8?B?M3NFME82WFQvQXVYaTJUMXVRZUhQRzkvTmxUWFNzTGhsL0tZQ242OFY1bEti?=
+ =?utf-8?B?MnlpcjJpdWJIMkYzVGQ2SjdpU3d2SERQTWlLaExrcWVXR0RsbWw1L3R4cE1q?=
+ =?utf-8?B?K2RSNFBKQUROQ3c4ckY5WE1YMUlZa0lIN2dvZERGd0ZER1FzcVlPTTVTTlV6?=
+ =?utf-8?B?Q3RMQ3FPMm94T3orNzBJZVhkMG1jbVJKckNiazFTaWpPTWtTaHZnUnhxUmRQ?=
+ =?utf-8?B?WmNVMGhCR0RHR2dWWnJpOUY3V2o1bmRoRHJFaFRJV2Y2NDNmSUxpTmdoeDRS?=
+ =?utf-8?B?WWFnZi9pTExzbm01ZnNXeEs3cFJvYmEwTFhqZTY3OGdUcHkvV01PeHRyMXRj?=
+ =?utf-8?B?Q01aM0ZrRURwSW5MaU1VUkxWUHlLbUhBa1lMVlQwV3A0MXFSQjg1NkYxTkIw?=
+ =?utf-8?B?c0VQODVRSWkyRGJGK0tHOTl0RXZ1SmNjYWgwNkpPNmpZcGQ3WlR4ZWhtUXl6?=
+ =?utf-8?B?T2tLYlQ0djJIbE9GcnBsNlVCaXBpdEs2b1BtYTErSnRYeWtHNUlYRWJHVlQv?=
+ =?utf-8?B?KzRvcXBRcGlsS01vclkvd2dmb0hEVHdmejlhVFlIN3RoQWZYMytIRUN3bXhm?=
+ =?utf-8?B?c1FBc2tpT1ZQYWJidFAvQVgyby9qbmdOZVdIajFWOVgxNk5sSWhLcGRqaEhP?=
+ =?utf-8?B?TVRuR1Q1Q0IycEpGTXNQTmkzUmRPY3pUZ2hjQ1J1ZHBkeEJuVjZrckNaSzJ6?=
+ =?utf-8?B?TWY1QWc1TmdoOHM4RU1Tei9uL3lqRXBMZ3NST2ZKZzV1YjB2ZzlJQXhTS1Z4?=
+ =?utf-8?B?ckNEOHVkeHNxSkRIN2sxODh3UTB4L3ErVDBCVUd2MnFzZFRLSkNyTGxhQ1pJ?=
+ =?utf-8?B?cDJ5Rk9jVDlER0hsMm5QZ3NCRmFIUmlFdE1qZzZzalBqdUJaeSt4Mmx1NWFY?=
+ =?utf-8?B?Uk9BWmNnSVpULzZxRUo1OVBDY3R4aVlGZEpRSWJmUEVXUzF4U29LUGs0cUFU?=
+ =?utf-8?B?aFZEWm44SU9CdzBZbWJDZjkrV0k5S0t4eXN3cldpMW9zMWVDVzVvKzhSa3Bk?=
+ =?utf-8?B?Vi9HazE1YzNQNnpnTHFCcEsrL0JyaVA5RGFPWWZuTkJKOEUxUy92WkpRVm9m?=
+ =?utf-8?B?bHNVWFZXck50bVNTOTFscW9kVnpDYnM2Q2FWamhHSUFzT1FBVGtQTzRLbjBH?=
+ =?utf-8?B?ZWhmQUFQK2U0N3lzNEg0NTFGa3R5UENSSE9KL0RSQ2JHUGFvcWhreEVnMlhu?=
+ =?utf-8?B?dlE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 07ab9059-7d15-46d8-fbcc-08dad35fbf99
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2022 05:46:04.3632 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2022 05:49:01.7333 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Gz8JksqbuHLvafpLxhfTRvODllWFeZW+dWejTiEAvEc1MylqA95dAXDPH9HHcX0Qw101rJzCETGqFw12g/oIs7i1YnZ6EmWUmC+2M4cVE2U=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7574
+X-MS-Exchange-CrossTenant-UserPrincipalName: fHDnLwPgIN4g/3wwbI8gnuWp4cnU7rKwXqFL2Nr/zmjeDjallxOD2GPsYfGtqkSsOa0dJ1Fnul1S7TDHLkvZOhf4U0C+tAyl2p7jQpb8f9w=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4935
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 04/13] drm/i915: Clean up various indexed
- LUT registers
+Subject: Re: [Intel-gfx] [PATCH 05/13] drm/i915: Standardize auto-increment
+ LUT load procedure
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,214 +160,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+LGTM.
+
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
 On 11/23/2022 8:56 PM, Ville Syrjala wrote:
 > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 >
-> Use REG_BIT() & co. for the LUT index registers, and also
-> use the REG_FIELD_PREP() stuff a bit more consistently when
-> generating the values for said registers.
+> Various gamma units on various platforms have some problems loading
+> the LUT index and auto-increment bit at the same time. We have to
+> do this in two steps. The first known case was the glk degamma LUT,
+> but at least ADL has another known case.
+>
+> We're not going to suffer too badly from a couple of extra register
+> writes here, so let's just standardize on this practice for all
+> auto-increment LUT loads/reads. This way we never have to worry about
+> this specific issue again. And for good measure always reset the
+> index back to zero at the end (we already did this in a few places).
 >
 > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > ---
->   drivers/gpu/drm/i915/display/intel_color.c | 46 +++++++++++++++-------
->   drivers/gpu/drm/i915/i915_reg.h            | 18 +++++----
->   2 files changed, 41 insertions(+), 23 deletions(-)
+>   drivers/gpu/drm/i915/display/intel_color.c | 19 ++++++++++++++++++-
+>   1 file changed, 18 insertions(+), 1 deletion(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-> index 956b221860e6..c960c2aaf328 100644
+> index c960c2aaf328..bd7e781d9d07 100644
 > --- a/drivers/gpu/drm/i915/display/intel_color.c
 > +++ b/drivers/gpu/drm/i915/display/intel_color.c
-> @@ -910,7 +910,8 @@ static void ivb_load_lut_10(struct intel_crtc *crtc,
+> @@ -934,6 +934,8 @@ static void bdw_load_lut_10(struct intel_crtc *crtc,
+>   	int i, lut_size = drm_color_lut_size(blob);
 >   	enum pipe pipe = crtc->pipe;
 >   
->   	for (i = 0; i < lut_size; i++) {
-> -		intel_de_write_fw(i915, PREC_PAL_INDEX(pipe), prec_index++);
-> +		intel_de_write_fw(i915, PREC_PAL_INDEX(pipe),
-> +				  prec_index + i);
->   		intel_de_write_fw(i915, PREC_PAL_DATA(pipe),
->   				  ilk_lut_10(&lut[i]));
->   	}
-> @@ -919,7 +920,8 @@ static void ivb_load_lut_10(struct intel_crtc *crtc,
->   	 * Reset the index, otherwise it prevents the legacy palette to be
->   	 * written properly.
->   	 */
-> -	intel_de_write_fw(i915, PREC_PAL_INDEX(pipe), 0);
 > +	intel_de_write_fw(i915, PREC_PAL_INDEX(pipe),
-> +			  PAL_PREC_INDEX_VALUE(0));
->   }
->   
->   /* On BDW+ the index auto increment mode actually works */
-> @@ -933,7 +935,8 @@ static void bdw_load_lut_10(struct intel_crtc *crtc,
->   	enum pipe pipe = crtc->pipe;
->   
->   	intel_de_write_fw(i915, PREC_PAL_INDEX(pipe),
-> -			  prec_index | PAL_PREC_AUTO_INCREMENT);
-> +			  PAL_PREC_AUTO_INCREMENT |
 > +			  prec_index);
->   
->   	for (i = 0; i < lut_size; i++)
->   		intel_de_write_fw(i915, PREC_PAL_DATA(pipe),
-> @@ -943,7 +946,8 @@ static void bdw_load_lut_10(struct intel_crtc *crtc,
->   	 * Reset the index, otherwise it prevents the legacy palette to be
->   	 * written properly.
+>   	intel_de_write_fw(i915, PREC_PAL_INDEX(pipe),
+>   			  PAL_PREC_AUTO_INCREMENT |
+>   			  prec_index);
+> @@ -1138,7 +1140,10 @@ icl_program_gamma_superfine_segment(const struct intel_crtc_state *crtc_state)
+>   	 * 2/(8 * 128 * 256) ... 8/(8 * 128 * 256).
 >   	 */
-> -	intel_de_write_fw(i915, PREC_PAL_INDEX(pipe), 0);
-> +	intel_de_write_fw(i915, PREC_PAL_INDEX(pipe),
-> +			  PAL_PREC_INDEX_VALUE(0));
->   }
->   
->   static void ivb_load_lut_ext_max(const struct intel_crtc_state *crtc_state)
-> @@ -1049,9 +1053,11 @@ static void glk_load_degamma_lut(const struct intel_crtc_state *crtc_state,
->   	 * ignore the index bits, so we need to reset it to index 0
->   	 * separately.
->   	 */
-> -	intel_de_write_fw(i915, PRE_CSC_GAMC_INDEX(pipe), 0);
->   	intel_de_write_fw(i915, PRE_CSC_GAMC_INDEX(pipe),
-> -			  PRE_CSC_GAMC_AUTO_INCREMENT);
-> +			  PRE_CSC_GAMC_INDEX_VALUE(0));
-> +	intel_de_write_fw(i915, PRE_CSC_GAMC_INDEX(pipe),
-> +			  PRE_CSC_GAMC_AUTO_INCREMENT |
-> +			  PRE_CSC_GAMC_INDEX_VALUE(0));
->   
->   	for (i = 0; i < lut_size; i++) {
->   		/*
-> @@ -1165,7 +1171,9 @@ icl_program_gamma_multi_segment(const struct intel_crtc_state *crtc_state)
->   	 * seg2[0] being unused by the hardware.
->   	 */
->   	intel_dsb_reg_write(crtc_state, PREC_PAL_INDEX(pipe),
+>   	intel_dsb_reg_write(crtc_state, PREC_PAL_MULTI_SEG_INDEX(pipe),
 > -			    PAL_PREC_AUTO_INCREMENT);
+> +			    PAL_PREC_MULTI_SEG_INDEX_VALUE(0));
+> +	intel_dsb_reg_write(crtc_state, PREC_PAL_MULTI_SEG_INDEX(pipe),
 > +			    PAL_PREC_AUTO_INCREMENT |
-> +			    PAL_PREC_INDEX_VALUE(0));
-> +
->   	for (i = 1; i < 257; i++) {
->   		entry = &lut[i * 8];
->   		intel_dsb_indexed_reg_write(crtc_state, PREC_PAL_DATA(pipe),
-> @@ -2756,7 +2764,8 @@ static struct drm_property_blob *ivb_read_lut_10(struct intel_crtc *crtc,
->   		ilk_lut_10_pack(&lut[i], val);
->   	}
->   
-> -	intel_de_write_fw(dev_priv, PREC_PAL_INDEX(pipe), 0);
-> +	intel_de_write_fw(dev_priv, PREC_PAL_INDEX(pipe),
-> +			  PAL_PREC_INDEX_VALUE(0));
->   
->   	return blob;
->   }
-> @@ -2811,7 +2820,8 @@ static struct drm_property_blob *bdw_read_lut_10(struct intel_crtc *crtc,
->   	lut = blob->data;
->   
->   	intel_de_write_fw(i915, PREC_PAL_INDEX(pipe),
-> -			  prec_index | PAL_PREC_AUTO_INCREMENT);
-> +			  PAL_PREC_AUTO_INCREMENT |
-> +			  prec_index);
->   
->   	for (i = 0; i < lut_size; i++) {
->   		u32 val = intel_de_read_fw(i915, PREC_PAL_DATA(pipe));
-> @@ -2819,7 +2829,8 @@ static struct drm_property_blob *bdw_read_lut_10(struct intel_crtc *crtc,
->   		ilk_lut_10_pack(&lut[i], val);
->   	}
->   
-> -	intel_de_write_fw(i915, PREC_PAL_INDEX(pipe), 0);
-> +	intel_de_write_fw(i915, PREC_PAL_INDEX(pipe),
-> +			  PAL_PREC_INDEX_VALUE(0));
->   
->   	return blob;
->   }
-> @@ -2876,9 +2887,11 @@ static struct drm_property_blob *glk_read_degamma_lut(struct intel_crtc *crtc)
->   	 * ignore the index bits, so we need to reset it to index 0
->   	 * separately.
->   	 */
-> -	intel_de_write_fw(dev_priv, PRE_CSC_GAMC_INDEX(pipe), 0);
->   	intel_de_write_fw(dev_priv, PRE_CSC_GAMC_INDEX(pipe),
-> -			  PRE_CSC_GAMC_AUTO_INCREMENT);
-> +			  PRE_CSC_GAMC_INDEX_VALUE(0));
-> +	intel_de_write_fw(dev_priv, PRE_CSC_GAMC_INDEX(pipe),
-> +			  PRE_CSC_GAMC_AUTO_INCREMENT |
-> +			  PRE_CSC_GAMC_INDEX_VALUE(0));
->   
->   	for (i = 0; i < lut_size; i++) {
->   		u32 val = intel_de_read_fw(dev_priv, PRE_CSC_GAMC_DATA(pipe));
-> @@ -2888,7 +2901,8 @@ static struct drm_property_blob *glk_read_degamma_lut(struct intel_crtc *crtc)
->   		lut[i].blue = val;
->   	}
->   
-> -	intel_de_write_fw(dev_priv, PRE_CSC_GAMC_INDEX(pipe), 0);
-> +	intel_de_write_fw(dev_priv, PRE_CSC_GAMC_INDEX(pipe),
-> +			  PRE_CSC_GAMC_INDEX_VALUE(0));
->   
->   	return blob;
->   }
-> @@ -2934,7 +2948,8 @@ icl_read_lut_multi_segment(struct intel_crtc *crtc)
->   	lut = blob->data;
->   
->   	intel_de_write_fw(i915, PREC_PAL_MULTI_SEG_INDEX(pipe),
-> -			  PAL_PREC_AUTO_INCREMENT);
-> +			  PAL_PREC_MULTI_SEG_AUTO_INCREMENT |
-> +			  PAL_PREC_MULTI_SEG_INDEX_VALUE(0));
+> +			    PAL_PREC_MULTI_SEG_INDEX_VALUE(0));
 >   
 >   	for (i = 0; i < 9; i++) {
->   		u32 ldw = intel_de_read_fw(i915, PREC_PAL_MULTI_SEG_DATA(pipe));
-> @@ -2943,7 +2958,8 @@ icl_read_lut_multi_segment(struct intel_crtc *crtc)
->   		ilk_lut_12p4_pack(&lut[i], ldw, udw);
+>   		const struct drm_color_lut *entry = &lut[i];
+> @@ -1148,6 +1153,9 @@ icl_program_gamma_superfine_segment(const struct intel_crtc_state *crtc_state)
+>   		intel_dsb_indexed_reg_write(crtc_state, PREC_PAL_MULTI_SEG_DATA(pipe),
+>   					    ilk_lut_12p4_udw(entry));
+>   	}
+> +
+> +	intel_dsb_reg_write(crtc_state, PREC_PAL_MULTI_SEG_INDEX(pipe),
+> +			    PAL_PREC_MULTI_SEG_INDEX_VALUE(0));
+>   }
+>   
+>   static void
+> @@ -1170,6 +1178,8 @@ icl_program_gamma_multi_segment(const struct intel_crtc_state *crtc_state)
+>   	 * PAL_PREC_INDEX[0] and PAL_PREC_INDEX[1] map to seg2[1],
+>   	 * seg2[0] being unused by the hardware.
+>   	 */
+> +	intel_dsb_reg_write(crtc_state, PREC_PAL_INDEX(pipe),
+> +			    PAL_PREC_INDEX_VALUE(0));
+>   	intel_dsb_reg_write(crtc_state, PREC_PAL_INDEX(pipe),
+>   			    PAL_PREC_AUTO_INCREMENT |
+>   			    PAL_PREC_INDEX_VALUE(0));
+> @@ -1202,6 +1212,9 @@ icl_program_gamma_multi_segment(const struct intel_crtc_state *crtc_state)
+>   					    ilk_lut_12p4_udw(entry));
 >   	}
 >   
-> -	intel_de_write_fw(i915, PREC_PAL_MULTI_SEG_INDEX(pipe), 0);
+> +	intel_dsb_reg_write(crtc_state, PREC_PAL_INDEX(pipe),
+> +			    PAL_PREC_INDEX_VALUE(0));
+> +
+>   	/* The last entry in the LUT is to be programmed in GCMAX */
+>   	entry = &lut[256 * 8 * 128];
+>   	ivb_load_lut_max(crtc_state, entry);
+> @@ -2819,6 +2832,8 @@ static struct drm_property_blob *bdw_read_lut_10(struct intel_crtc *crtc,
+>   
+>   	lut = blob->data;
+>   
+> +	intel_de_write_fw(i915, PREC_PAL_INDEX(pipe),
+> +			  prec_index);
+>   	intel_de_write_fw(i915, PREC_PAL_INDEX(pipe),
+>   			  PAL_PREC_AUTO_INCREMENT |
+>   			  prec_index);
+> @@ -2947,6 +2962,8 @@ icl_read_lut_multi_segment(struct intel_crtc *crtc)
+>   
+>   	lut = blob->data;
+>   
 > +	intel_de_write_fw(i915, PREC_PAL_MULTI_SEG_INDEX(pipe),
 > +			  PAL_PREC_MULTI_SEG_INDEX_VALUE(0));
->   
->   	/*
->   	 * FIXME readouts from PAL_PREC_DATA register aren't giving
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 80ac50d80af4..22fb9fd78483 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -7531,11 +7531,10 @@ enum skl_power_gate {
->   #define _PAL_PREC_INDEX_A	0x4A400
->   #define _PAL_PREC_INDEX_B	0x4AC00
->   #define _PAL_PREC_INDEX_C	0x4B400
-> -#define   PAL_PREC_10_12_BIT		(0 << 31)
-> -#define   PAL_PREC_SPLIT_MODE		(1 << 31)
-> -#define   PAL_PREC_AUTO_INCREMENT	(1 << 15)
-> -#define   PAL_PREC_INDEX_VALUE_MASK	(0x3ff << 0)
-> -#define   PAL_PREC_INDEX_VALUE(x)	((x) << 0)
-> +#define   PAL_PREC_SPLIT_MODE		REG_BIT(31)
-> +#define   PAL_PREC_AUTO_INCREMENT	REG_BIT(15)
-> +#define   PAL_PREC_INDEX_VALUE_MASK	REG_GENMASK(9, 0)
-> +#define   PAL_PREC_INDEX_VALUE(x)	REG_FIELD_PREP(PAL_PREC_INDEX_VALUE_MASK, (x))
->   #define _PAL_PREC_DATA_A	0x4A404
->   #define _PAL_PREC_DATA_B	0x4AC04
->   #define _PAL_PREC_DATA_C	0x4B404
-> @@ -7559,7 +7558,9 @@ enum skl_power_gate {
->   #define _PRE_CSC_GAMC_INDEX_A	0x4A484
->   #define _PRE_CSC_GAMC_INDEX_B	0x4AC84
->   #define _PRE_CSC_GAMC_INDEX_C	0x4B484
-> -#define   PRE_CSC_GAMC_AUTO_INCREMENT	(1 << 10)
-> +#define   PRE_CSC_GAMC_AUTO_INCREMENT	REG_BIT(10)
-> +#define   PRE_CSC_GAMC_INDEX_VALUE_MASK	REG_GENMASK(7, 0)
-
-
-PRE_CSC_GAMC_INDEX_VALUE_MASK till TGL seem to be using bits 0:5. For 
-ADL+ this seem to be 0:7 though. Would it make sense to use separate masks?
-
-
-Regards,
-
-Ankit
-
-
-> +#define   PRE_CSC_GAMC_INDEX_VALUE(x)	REG_FIELD_PREP(PRE_CSC_GAMC_INDEX_VALUE_MASK, (x))
->   #define _PRE_CSC_GAMC_DATA_A	0x4A488
->   #define _PRE_CSC_GAMC_DATA_B	0x4AC88
->   #define _PRE_CSC_GAMC_DATA_C	0x4B488
-> @@ -7570,8 +7571,9 @@ enum skl_power_gate {
->   /* ICL Multi segmented gamma */
->   #define _PAL_PREC_MULTI_SEG_INDEX_A	0x4A408
->   #define _PAL_PREC_MULTI_SEG_INDEX_B	0x4AC08
-> -#define  PAL_PREC_MULTI_SEGMENT_AUTO_INCREMENT		REG_BIT(15)
-> -#define  PAL_PREC_MULTI_SEGMENT_INDEX_VALUE_MASK	REG_GENMASK(4, 0)
-> +#define   PAL_PREC_MULTI_SEG_AUTO_INCREMENT	REG_BIT(15)
-> +#define   PAL_PREC_MULTI_SEG_INDEX_VALUE_MASK	REG_GENMASK(4, 0)
-> +#define   PAL_PREC_MULTI_SEG_INDEX_VALUE(x)	REG_FIELD_PREP(PAL_PREC_MULTI_SEG_INDEX_VALUE_MASK, (x))
->   
->   #define _PAL_PREC_MULTI_SEG_DATA_A	0x4A40C
->   #define _PAL_PREC_MULTI_SEG_DATA_B	0x4AC0C
+>   	intel_de_write_fw(i915, PREC_PAL_MULTI_SEG_INDEX(pipe),
+>   			  PAL_PREC_MULTI_SEG_AUTO_INCREMENT |
+>   			  PAL_PREC_MULTI_SEG_INDEX_VALUE(0));
