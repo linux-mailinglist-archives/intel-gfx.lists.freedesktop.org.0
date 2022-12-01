@@ -1,34 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3EDF63EAE3
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Dec 2022 09:14:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA44A63EB7F
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Dec 2022 09:47:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D730C10E54D;
-	Thu,  1 Dec 2022 08:14:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FE1110E579;
+	Thu,  1 Dec 2022 08:47:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8557610E54D;
- Thu,  1 Dec 2022 08:14:24 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 58543AADE3;
- Thu,  1 Dec 2022 08:14:24 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0932954987858769039=="
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 852AB10E573;
+ Thu,  1 Dec 2022 08:47:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1669884432; x=1701420432;
+ h=date:from:to:cc:subject:message-id:mime-version:
+ content-transfer-encoding;
+ bh=fyWsC3rPUetbJLO6tv5cesZTzlnzLpF97GPCWE8fJO0=;
+ b=IcASCaPuq7Dk5ajSHXK7vuKmJA5feBMT80mnyj5Jm2lC47EYFqrSmm37
+ ZOe/Weiu8c7YrPz7p31MHtL153FfmrWkRM/ydQIyoY3NA6+sxqquNKtqw
+ U5M9py+C0fhjkgTGJn5uZ+jxWTzgobPvNGK2fpoJ6M4ogilwoS4UXBjQ0
+ CrstakwNjcCFSnHgTMv26fxyPykSiDNGo/628ts/vLFhu+2l+e3d26gad
+ qZDjnYq/IA1eMS8NgDqR9qZk4D4IOYytkDHprKMun2v2rTV0tG1+8mskv
+ wF4pcgifD5euM7G8ub1PJwArOKv/VajRBzI6KTdiJusci2ArxwNkFTxWF Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10547"; a="342554239"
+X-IronPort-AV: E=Sophos;i="5.96,207,1665471600"; d="scan'208";a="342554239"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2022 00:46:56 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10547"; a="646676999"
+X-IronPort-AV: E=Sophos;i="5.96,207,1665471600"; d="scan'208";a="646676999"
+Received: from aguefor-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.213.229.22])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2022 00:46:51 -0800
+Date: Thu, 1 Dec 2022 08:46:49 +0000
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <Y4hp+a3TJ13t2ZA1@tursulin-desk>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>
-Date: Thu, 01 Dec 2022 08:14:24 -0000
-Message-ID: <166988246432.14635.688062361287129921@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221201072308.1905679-1-jouni.hogander@intel.com>
-In-Reply-To: <20221201072308.1905679-1-jouni.hogander@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/psr=3A_Add_continuous_full_frame_bit_together_with_single?=
- =?utf-8?q?_=28rev2=29?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PULL] drm-intel-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,244 +56,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0932954987858769039==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Dave, Daniel,
 
-== Series Details ==
+A few more small fixes for the release candidate week.
 
-Series: drm/i915/psr: Add continuous full frame bit together with single (rev2)
-URL   : https://patchwork.freedesktop.org/series/111420/
-State : success
+Fixes for confused return values when waiting on request retirement, which
+can explode in the GuC backend, fix for reading on DRAM info data and a
+fix to filter out impossible display pipes from the bigjoiner code.
 
-== Summary ==
+Regards,
 
-CI Bug Log - changes from CI_DRM_12457 -> Patchwork_111420v2
-====================================================
+Tvrtko
 
-Summary
--------
+drm-intel-fixes-2022-12-01:
+- Fix dram info readout (Radhakrishna Sripada)
+- Remove non-existent pipes from bigjoiner pipe mask (Ville Syrjälä)
+- Fix negative value passed as remaining time (Janusz Krzysztofik)
+- Never return 0 if not all requests retired (Janusz Krzysztofik)
+The following changes since commit b7b275e60bcd5f89771e865a8239325f86d9927d:
 
-  **SUCCESS**
+  Linux 6.1-rc7 (2022-11-27 13:31:48 -0800)
 
-  No regressions found.
+are available in the Git repository at:
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111420v2/index.html
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2022-12-01
 
-Participating hosts (38 -> 34)
-------------------------------
+for you to fetch changes up to 12b8b046e4c9de40fa59b6f067d6826f4e688f68:
 
-  Additional (1): bat-atsm-1 
-  Missing    (5): fi-ilk-m540 fi-rkl-11600 fi-tgl-dsi fi-kbl-x1275 bat-rpls-1 
+  drm/i915: Never return 0 if not all requests retired (2022-11-29 08:49:15 +0000)
 
-Possible new issues
--------------------
+----------------------------------------------------------------
+- Fix dram info readout (Radhakrishna Sripada)
+- Remove non-existent pipes from bigjoiner pipe mask (Ville Syrjälä)
+- Fix negative value passed as remaining time (Janusz Krzysztofik)
+- Never return 0 if not all requests retired (Janusz Krzysztofik)
 
-  Here are the unknown changes that may have been introduced in Patchwork_111420v2:
+----------------------------------------------------------------
+Janusz Krzysztofik (2):
+      drm/i915: Fix negative value passed as remaining time
+      drm/i915: Never return 0 if not all requests retired
 
-### IGT changes ###
+Radhakrishna Sripada (1):
+      drm/i915/mtl: Fix dram info readout
 
-#### Suppressed ####
+Ville Syrjälä (1):
+      drm/i915: Remove non-existent pipes from bigjoiner pipe mask
 
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - {bat-atsm-1}:       NOTRUN -> [INCOMPLETE][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111420v2/bat-atsm-1/igt@gem_exec_suspend@basic-s0@smem.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_111420v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-rkl-guc:         NOTRUN -> [SKIP][2] ([fdo#111827])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111420v2/fi-rkl-guc/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
-    - fi-bsw-kefka:       [PASS][3] -> [FAIL][4] ([i915#6298])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12457/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111420v2/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@execlists:
-    - {fi-ehl-2}:         [INCOMPLETE][5] ([i915#2940]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12457/fi-ehl-2/igt@i915_selftest@live@execlists.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111420v2/fi-ehl-2/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@gt_lrc:
-    - fi-rkl-guc:         [INCOMPLETE][7] ([i915#4983]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12457/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111420v2/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
-    - fi-bsw-kefka:       [FAIL][9] ([i915#6298]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12457/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111420v2/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1836]: https://gitlab.freedesktop.org/drm/intel/issues/1836
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#6077]: https://gitlab.freedesktop.org/drm/intel/issues/6077
-  [i915#6078]: https://gitlab.freedesktop.org/drm/intel/issues/6078
-  [i915#6093]: https://gitlab.freedesktop.org/drm/intel/issues/6093
-  [i915#6094]: https://gitlab.freedesktop.org/drm/intel/issues/6094
-  [i915#6166]: https://gitlab.freedesktop.org/drm/intel/issues/6166
-  [i915#6257]: https://gitlab.freedesktop.org/drm/intel/issues/6257
-  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
-  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
-  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
-  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
-  [i915#7357]: https://gitlab.freedesktop.org/drm/intel/issues/7357
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12457 -> Patchwork_111420v2
-
-  CI-20190529: 20190529
-  CI_DRM_12457: 42273934c8b473fd88e6689a589e9b4050c46bec @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7076: 888725538e0d6bbb94bbbb1ac278d4afcbbbdad0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_111420v2: 42273934c8b473fd88e6689a589e9b4050c46bec @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-abf3e2bb9c59 drm/i915/psr: Add continuous full frame bit together with single
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111420v2/index.html
-
---===============0932954987858769039==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/psr: Add continuous full frame bit together with single (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/111420/">https://patchwork.freedesktop.org/series/111420/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111420v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111420v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12457 -&gt; Patchwork_111420v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111420v2/index.html</p>
-<h2>Participating hosts (38 -&gt; 34)</h2>
-<p>Additional (1): bat-atsm-1 <br />
-  Missing    (5): fi-ilk-m540 fi-rkl-11600 fi-tgl-dsi fi-kbl-x1275 bat-rpls-1 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_111420v2:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@gem_exec_suspend@basic-s0@smem:<ul>
-<li>{bat-atsm-1}:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111420v2/bat-atsm-1/igt@gem_exec_suspend@basic-s0@smem.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_111420v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111420v2/fi-rkl-guc/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12457/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111420v2/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12457/fi-ehl-2/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111420v2/fi-ehl-2/igt@i915_selftest@live@execlists.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12457/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111420v2/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12457/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111420v2/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12457 -&gt; Patchwork_111420v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12457: 42273934c8b473fd88e6689a589e9b4050c46bec @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7076: 888725538e0d6bbb94bbbb1ac278d4afcbbbdad0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_111420v2: 42273934c8b473fd88e6689a589e9b4050c46bec @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>abf3e2bb9c59 drm/i915/psr: Add continuous full frame bit together with single</p>
-
-</body>
-</html>
-
---===============0932954987858769039==--
+ drivers/gpu/drm/i915/display/intel_display.c | 10 +++++++---
+ drivers/gpu/drm/i915/gt/intel_gt.c           |  9 +++++++--
+ drivers/gpu/drm/i915/gt/intel_gt_requests.c  |  2 +-
+ drivers/gpu/drm/i915/intel_dram.c            |  3 +--
+ 4 files changed, 16 insertions(+), 8 deletions(-)
