@@ -2,59 +2,137 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BB8E63F558
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Dec 2022 17:36:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6790563F581
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Dec 2022 17:41:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7093F10E151;
-	Thu,  1 Dec 2022 16:36:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE3DB10E640;
+	Thu,  1 Dec 2022 16:41:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D45010E151
- for <intel-gfx@lists.freedesktop.org>; Thu,  1 Dec 2022 16:36:38 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 550A910E640;
+ Thu,  1 Dec 2022 16:41:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669912598; x=1701448598;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=bxpLuR40W2YhZiSvciJxMHTr93YSeDbdHacYUSFM3nI=;
- b=EfDFeVHfJBrenAa+psvB7PF6ZbcwG7qBJmhbMKAtqD4zbiytsNu4K9fn
- 5+rYI1WHcJJKg/Spr6uoBTAiKjb0quklfcVdg2ARffk6w/X/4kKfYFRaX
- M2MDPq1Zi5JbGmp5GVooMshAj8FXzm3qVOJC9OHgIKFMVbVNB3wikjopS
- shDkzKUC3Mjc3OoqEQOJQsm7Om4j5vr7l2QP6jvBChRUZEqy4CL91vm+E
- URwE7QNK8UJx6xj/lHA02Lt/LLuJk494rcjBBh5H7HLZ4ZVdJvyPOiYj2
- 0gbGA6okUSUy9Ebm3ods5iafLdOhCXbOEpyon+8YS0gYRaWe8vVuwTxWq Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10548"; a="380021081"
-X-IronPort-AV: E=Sophos;i="5.96,209,1665471600"; d="scan'208";a="380021081"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2022 08:36:37 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10548"; a="646821645"
-X-IronPort-AV: E=Sophos;i="5.96,209,1665471600"; d="scan'208";a="646821645"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.21.183])
- ([10.213.21.183])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2022 08:36:35 -0800
-Message-ID: <c0bb381e-43d2-3af9-0ada-2bc60027a4f5@intel.com>
-Date: Thu, 1 Dec 2022 17:36:33 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.5.0
-Content-Language: en-US
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- John Harrison <john.c.harrison@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20221128165209.353706-1-andrzej.hajda@intel.com>
- <36b9d912-84b3-d050-59aa-b95c245551d2@linux.intel.com>
- <0846a17b-9562-0592-003a-4336fcac8f51@intel.com>
- <394f6232-50bf-1344-8165-ff6abf3b9323@linux.intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <394f6232-50bf-1344-8165-ff6abf3b9323@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ t=1669912887; x=1701448887;
+ h=date:from:to:cc:subject:message-id:
+ content-transfer-encoding:mime-version;
+ bh=mt7gswslCUpkPFctyXffRuodGk5k5gBOMhqCvkN/V6I=;
+ b=QndHOMMHNI+kCTcDlNMtDgzbPrOr3Q24CiNnHxRJ0JZVwBv//W9kqBXJ
+ Ad3tipu8eNu6G/1nNRRtvvTm5KYiqZmiOSo4tOIgYvm3xzuckfLPrztWD
+ erUUVP3Oo3ssTaQEFYtSL6j3PiVBKhnXXyN0q20V2eUuqGpg5WvEahx90
+ 1a39w/p8hWe3J9bCuX9Ricv5uNZ7+zyGhmsSunVbpJ/pGG26j1Y8mOn+6
+ 2C7L5RkAVSaLyMGa37UyIUOV4v2VwcoTWT3A+YApnEK+ROBdEhAEVEqfb
+ jEsmKNpUdZX7j/C5BedX8ORJj0vPkRekuKukePDKhAG+e6kWnEBz/9PL0 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10548"; a="303335387"
+X-IronPort-AV: E=Sophos;i="5.96,209,1665471600"; d="scan'208";a="303335387"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2022 08:40:45 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10548"; a="769292609"
+X-IronPort-AV: E=Sophos;i="5.96,209,1665471600"; d="scan'208";a="769292609"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orsmga004.jf.intel.com with ESMTP; 01 Dec 2022 08:40:45 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Thu, 1 Dec 2022 08:40:45 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Thu, 1 Dec 2022 08:40:44 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Thu, 1 Dec 2022 08:40:44 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.47) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Thu, 1 Dec 2022 08:40:44 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=UNQp0OenrGYIgC75RiB33s/GAwxe7FS0sroNOIaf7atjgklItAJOPcEKD+rPjqVv+fIelpKBjjA7nGSRipTNxDstdw4hhzN1kb2AqNrG68Ub8lewgXSWN+v3r2xFMWMfiH1Z9J7LaZfwbanXbYGPq59FkcpY6onhPsm6JkzzNiixlz3iIBOqEjZ1S2CiaItNOi25kTQ4HpEIwjjN7lRkhj8AF8isVbsQ22aZNlaPwBi6JP/lccKc04HXl9/v/1+7d5W8SJXhzN6pen2hWxXro8M8f+euhSgFbRtXA0d7xXnJsJuVoFAaatXD2vwUzJz2watWiUrqLyQievwPrRQ1OQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RjkoItOZP66rad4m3TSfZZ0Sws3ih2e/amff5/n+BUY=;
+ b=lr1+Dk9A6gc0EChZd4Uwmjpzshi5qUirVEZdX9WFbx1DWZaAYO8RX6bbEZMRbT/lzUn2unOKjA1TmwsqKsYT2u67rDRNS+hDnB7uer9md+kL+RvoO1efPifl5xKIxiKQ7ni4SPa0CBrANPYwslfMRQtAJNMbPjX/7Rym/5N3ZwJuJ+MH/MjTYgqp7uLyMS4vF1lmDClVqRvLPua7edyvGAKyZpO0sUr8TOcmYlFQEswCVesD3vL0z89jFmPzMsXDU1GKIrXII0IDxaUxXnlJpUrKXycgTjkcHamhks7zB2EyxLJkMX1G1awiPuBctDReFYa/8ISao27xlhKVVrccMQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by SA0PR11MB4573.namprd11.prod.outlook.com (2603:10b6:806:98::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5857.23; Thu, 1 Dec
+ 2022 16:40:43 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::499c:efe3:4397:808]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::499c:efe3:4397:808%7]) with mapi id 15.20.5880.008; Thu, 1 Dec 2022
+ 16:40:42 +0000
+Date: Thu, 1 Dec 2022 11:40:37 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <Y4jZBRw9KvlKgkr6@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: fix exiting context timeout
- calculation
+X-ClientProxiedBy: BYAPR02CA0017.namprd02.prod.outlook.com
+ (2603:10b6:a02:ee::30) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|SA0PR11MB4573:EE_
+X-MS-Office365-Filtering-Correlation-Id: ce708a55-394d-46da-9014-08dad3bac99d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: jGUhQjNrp17QbV+ZLlohAdhQ/Qq2zkEDxxGOBtm7+/r2CV/S4TugZdo+xuPt+uKPWUNS66keufbSpshdqVs2lxTELAw5jwgxEJRL5g+GB6pjbbjQ1PyB4WV/Oie8Q5s0lLSqtbH/ul98FOlKS8mYBJVcKo+NpfI5QGHPIa4UJaHm4I7NWPr93QNk26yk2a4LEFAsAR1NfjKUa5XYa14pje0tUsiezAMnfiWW799jgBvPAvY1VJASIHcY7S5+E3farMeLvZNDUaMJA9Pvex+hpvSk/V+UvEHEFPw2MBsTmxBSCpnMPnRP3/Bjo0SIdFtWOI353Pl5TbS6c66zeGdhpMYJCiXaD4Y2qJR77hC46QPCVJlp/vdBiVviG9BqAF2+JEnhwGih63V9Ah4TBR8AjQRPWcIXEoO9l0bf+ySH3guCT21oKEXSf32C/xRblUh5HD5qgOtHQn6vFky7agJ7Are1BiIUZGFiMANh9Q7obFuqsHwxV84wXbHzRGRQDTmEsrXgCY7KCIUw4TFoVBPJf2nZsUIy/dSTycxAsHfly5XTbx4QRaC36T0FsS5+SRu4nNwM8nT6XQch6fu+n9ckkgP7lZ87scZXFfyx2qZhVrBN8eDU+MQgpIvoXI3PzQkp
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(376002)(136003)(39860400002)(366004)(396003)(346002)(451199015)(36756003)(66946007)(2616005)(478600001)(6666004)(316002)(26005)(4326008)(66476007)(6486002)(8676002)(8936002)(6506007)(86362001)(4001150100001)(6512007)(7416002)(2906002)(186003)(66556008)(41300700001)(66574015)(5660300002)(44832011)(110136005)(82960400001)(54906003)(83380400001)(38100700002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?1nA08nlOExaNHSYWzp6MhZjDZPHY6v8PXtZ1nQraI+jUZeQpDFtGJPyy/r?=
+ =?iso-8859-1?Q?JZrLFfr+d0VCs6unC8MLjcpfrvRDNQ69buzjIHx3tM8E2HlgFhAy+wY5Xa?=
+ =?iso-8859-1?Q?uTu3WBc6BR0LqGYspRMONR0FI4MmGssRd+5KSxvPVkQxfBPXOWiK3zu/m4?=
+ =?iso-8859-1?Q?thdp4Oz5tG0p1/emzXsVnMeG8TYZcz2tAUhfSeHv4mls1uK40j3elsuF46?=
+ =?iso-8859-1?Q?mj38QRxOBQaWlsK54+FGf9MgHZSqQO0csj0EV+LBEO30BhXKx/3AuqJMe1?=
+ =?iso-8859-1?Q?AnfMVbJkusZT6hCWYoCpSVfbPA+9+jGZpn0xS7BqwJOlwFk9seJboeqfxm?=
+ =?iso-8859-1?Q?74Cy7lbmpO0d8zH6Tdpkq+it8I2yzliayIDwKyjLjCui5dHMrU3isVuAeD?=
+ =?iso-8859-1?Q?UVVHeqEr576GjUZYMAioGP/qVTGdqG0F+87q057xttKGoms32/rdf5wGX8?=
+ =?iso-8859-1?Q?nnz2JaKTubCbuJFg3klUFSaQbd9KOHciD0Hk0jj6PB6q9fT8o47bqokD8+?=
+ =?iso-8859-1?Q?nEeWROcvh5FizzmJFsKKWeGGIw5rWFMJC794c/7H9eXP5jFkIIxc1DVEfl?=
+ =?iso-8859-1?Q?UTeyNHjsFFnY+djKn0FLMJfEk7s0wCJJJ5qle+aFvP/TjfZf8LvvrF7JfG?=
+ =?iso-8859-1?Q?A108ZjmLLjUW1fiRmf39JztAq8hN0A2l30AdiUaXlUiByX3ehhKhnh5yFv?=
+ =?iso-8859-1?Q?JHel7KxFeUIStB4MSaSXozJil3h9utKb6n7u6tUcKdXI+RXdSgkLNFaH2f?=
+ =?iso-8859-1?Q?5z7ktm9b7H9Sdxmk5z8pCVs8UNIB3iHxjqESOs+50EtWu2qGZPtKLbuOzb?=
+ =?iso-8859-1?Q?8f8JbgNG/6LphchIG4uzOP6RH5/cUqQuZGZB23V9VaDto7Jfqg2uUwfI1p?=
+ =?iso-8859-1?Q?/v5L+bK/Lt5ITF27sXZw1EQKid7R1azKITfkSWHHdK0GY9AvCSi0k5ymTZ?=
+ =?iso-8859-1?Q?5HZ50QFD5lYsHGIHSFjgBgpaRqq0mPQLqWg50J3QPlTTCE0V01tUGFmM1v?=
+ =?iso-8859-1?Q?4F8wEGQs//qvOMqYOMUWbsrOL1YCfcH6wokmIu8pqleXRFJ/9oWIB3pESC?=
+ =?iso-8859-1?Q?vw78OHukHZLsQKjx+cX1m7qecMkRCAPwgQeH3nruBbuOSEfy0Qh0vstnVF?=
+ =?iso-8859-1?Q?Xye30wU25ZPBKfodtI4hRdZOZz8Gjg0rDMIoK69txUCadGcq0lpFtCn8y4?=
+ =?iso-8859-1?Q?BrRECoGZ8dMx+Vtmk9pdGpDjpshUWzUk2QVXkvJ7Pg1GRFwt9QpaTfQDSw?=
+ =?iso-8859-1?Q?KmLGhO0062hNs01IrpZaOjB4/NLUN5IWD9SCBBQ8+gAaw+zYucoMhz00kH?=
+ =?iso-8859-1?Q?Da0YEYKxlSxtxMD0N5F0eBjMEnW5P1lrHeUpokvYIjQm62cW/Wi9r0bPFm?=
+ =?iso-8859-1?Q?OTGDAmjHzq7Ycl3q/8rV1JmaYa3Uxkf3PbsIy2XDN/vyasA2KWJHmr2rhQ?=
+ =?iso-8859-1?Q?jHhJK8rfqpMojNxmmX+DFFTMI8IvVP7b9maxct/MW0YlzP1xPNDM147dlJ?=
+ =?iso-8859-1?Q?afr6QNJP2uicUxLeHrCOR6g22Dj5HFA8gkBwIFvxS280yhD8iQE14IsSjm?=
+ =?iso-8859-1?Q?wImKq+Tm2LgbkFDpHFiPbwD/quBLrqmpqVJFq+y7lGSxmG5Yx0e8KuHuPC?=
+ =?iso-8859-1?Q?Nq7IugKLyBBITrfdwHJ4uH4YLNVDnClZ4H?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: ce708a55-394d-46da-9014-08dad3bac99d
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2022 16:40:42.8614 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: RxAEXNGLNW3wpW/8bgHvSSPHlN73d1FZIiZZhnEcrZ4Ue3EscXK0rBLCDKHGNeGJR8k52tlNbKS+XIyH2fb7ew==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4573
+X-OriginatorOrg: intel.com
+Subject: [Intel-gfx] [PULL] drm-intel-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,114 +145,124 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 01.12.2022 11:28, Tvrtko Ursulin wrote:
-> 
-> On 01/12/2022 00:22, John Harrison wrote:
->> On 11/29/2022 00:43, Tvrtko Ursulin wrote:
->>> On 28/11/2022 16:52, Andrzej Hajda wrote:
->>>> In case context is exiting preempt_timeout_ms is used for timeout,
->>>> but since introduction of DRM_I915_PREEMPT_TIMEOUT_COMPUTE it increases
->>>> to 7.5 seconds. Heartbeat occurs earlier but it is still 2.5s.
->>>>
->>>> Fixes: d7a8680ec9fb21 ("drm/i915: Improve long running compute w/a 
->>>> for GuC submission")
->>>> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2410
->>>> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
->>>> ---
->>>> Hi all,
->>>>
->>>> I am not sure what is expected solution here, and if my patch does not
->>>> actually reverts intentions of patch d7a8680ec9fb21. Feel free to 
->>>> propose
->>>> something better.
->>>> Other alternative would be to increase t/o in IGT tests, but I am 
->>>> not sure
->>>> if this is good direction.
->>>
->>> Is it the hack with the FIXME marker from 47daf84a8bfb ("drm/i915: 
->>> Make the heartbeat play nice with long pre-emption timeouts") that 
->>> actually breaks things? (If IGT modifies the preempt timeout the 
->>> heartbeat extension will not work as intended.)
->>>
->>> If so, I think we agreed during review that was a weakness which 
->>> needs to be addressed, but I would need to re-read the old threads to 
->>> remember what was the plan. Regardless what it was it may be time is 
->>> now to continue with those improvements.
->>>
->> What is the actual issue? Just that closing contexts are taking 
->> forever to actually close? That would be the whole point of the 
->> 'context_is_exiting' patch. Which I still totally disagree with.
->>
->> If the context is being closed 'gracefully' and it is intended that it 
->> should be allowed time to pre-empt without being killed via an engine 
->> reset then the 7.5s delay is required. That is the officially agreed 
->> upon timeout to allow compute capable contexts to reach a pre-emption 
->> point before they should be killed. If an IGT is failing because it 
->> enforces a shorter timeout then the IGT needs to be updated to account 
->> for the fact that i915 has to support slow compute workloads.
->>
->> If the context is being closed 'forcefully' and should be killed 
->> immediately then you should be using the 'BANNED_PREEMPT_TIMEOUT' 
->> value not the sysfs/config value.
->>
->> Regarding heartbeats...
->>
->> The heartbeat period is 2.5s. But there are up to five heartbeat 
->> periods between the heartbeat starting and it declaring a hang. The 
->> patch you mention also introduced a check on the pre-emption timeout 
->> when the last period starts. If the pre-emption timeout is longer than 
->> the heartbeat period then the last period is extended to guarantee 
->> that a full pre-emption time is granted before declaring the hang.
->>
->> Are you saying that a heartbeat timeout is occurring and killing the 
->> system? Or are you just worried that something doesn't align correctly?
-> 
-> I leave this to Andrzej since I am not the one debugging this. I just 
-> glanced over the IGT and saw that there's code in there which sets both 
-> the preempt timeout and heartbeat interval to non-default values. And 
-> then I remembered this:
+Hi Dave and Daniel,
 
-The test is gem_ctx_persistence@many-contexts. It does not modify sysfs 
-timeouts, but it assumes 1sec is enough to wait for exiting context 
-(no-preemption). It works with bcs, vcs, vecs, but fails on rcs since it has
-timeout set to 7.5sec (btw it works with GuC submissions enabled). It 
-seemed to me somehow inconsistent, but if this is how it should work
-I will just adjust the test.
+Here goes our next-fixes targeting 6.2-rc1.
 
-Regards
-Andrzej
+Please notice that DG2 DMC had a minor bump version in order
+to fix the remaining issues related to PCI warns at DC state
+transition. I didn't request the team to provide the fallback
+to the previous version because we are moving this fix to the
+6.2 along with the force_probe removal. But I warned them if
+any minor bump is needed after that that all the new rules
+need to be respected. Besides, I have also requested them to
+make changes to comply with the new rules. Or to remove the
+minor version from the fw like GuC did or remove the version
+entirely like HuC did, since the there's no direct ABI involved
+that needs version. I expect this work to be done for the next
+platforms.
 
+Still about the DG2, the other MEI patches to fix the potential
+huc loading failure where already picked up by Greg. So we shall
+have them into 6.2 as well. Meanwhile we are keeping them in
+our topic/core-for-CI.
 
-> 
-> next_heartbeat():
-> ...
->          /*
->           * FIXME: The final period extension is disabled if the period 
-> has been
->           * modified from the default. This is to prevent issues with 
-> certain
->           * selftests which override the value and expect specific 
-> behaviour.
->           * Once the selftests have been updated to either cope with 
-> variable
->           * heartbeat periods (or to override the pre-emption timeout as 
-> well,
->           * or just to add a selftest specific override of the 
-> extension), the
->           * generic override can be removed.
->           */
->          if (rq && rq->sched.attr.priority >= I915_PRIORITY_BARRIER &&
->              delay == engine->defaults.heartbeat_interval_ms) {
-> 
-> Which then wouldn't dtrt with last heartbeat pulse extensions, if the 
-> IGT would be relying on that. Don't know, just pointing out to check and 
-> see if this FIXME needs to be prioritised.
-> 
-> Regards,
-> 
-> Tvrtko
+Other than that, small fixes and couple targeting stable below.
 
+drm-intel-next-fixes-2022-12-01:
+
+- Multi-cast register fix (Matt)
+- Fix workarounds on gen2-3 (Tvrtko)
+- Bigjoiner fix (Ville)
+- Make Guc default_list a const data (Jani)
+- Acquire forcewake before uncore read (Umesh)
+- Selftest fix (Umesh)
+- HuC related fixes (Daniele)
+- Fix some incorrect return values (Janusz)
+- Fix a memory leak in bios related code (Xia)
+- Fix VBT send packet port selection (Mikko)
+- DG2's DMC fix bump for Register noclaims and few restore (Gustavo)
+
+Thanks,
+Rodrigo.
+
+The following changes since commit 3d335a523b938a445a674be24d1dd5c7a4c86fb6:
+
+  Merge tag 'drm-intel-next-2022-11-18' of git://anongit.freedesktop.org/drm/drm-intel into drm-next (2022-11-23 09:15:44 +1000)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-next-fixes-2022-12-01
+
+for you to fetch changes up to 7d579eff3e55a256fdd71624543747ed4d7fa38b:
+
+  drm/i915/dmc: Update DG2 DMC version to v2.08 (2022-11-30 09:07:14 -0500)
+
+----------------------------------------------------------------
+- Multi-cast register fix (Matt)
+- Fix workarounds on gen2-3 (Tvrtko)
+- Bigjoiner fix (Ville)
+- Make Guc default_list a const data (Jani)
+- Acquire forcewake before uncore read (Umesh)
+- Selftest fix (Umesh)
+- HuC related fixes (Daniele)
+- Fix some incorrect return values (Janusz)
+- Fix a memory leak in bios related code (Xia)
+- Fix VBT send packet port selection (Mikko)
+- DG2's DMC fix bump for Register noclaims and few restore (Gustavo)
+
+----------------------------------------------------------------
+Daniele Ceraolo Spurio (2):
+      drm/i915/huc: fix leak of debug object in huc load fence on driver unload
+      drm/i915/huc: always init the delayed load fence
+
+Gustavo Sousa (1):
+      drm/i915/dmc: Update DG2 DMC version to v2.08
+
+Jani Nikula (1):
+      drm/i915/guc: make default_lists const data
+
+Janusz Krzysztofik (2):
+      drm/i915: Fix negative value passed as remaining time
+      drm/i915: Never return 0 if not all requests retired
+
+Matt Roper (1):
+      drm/i915/gt: Manage uncore->lock while waiting on MCR register
+
+Mikko Kovanen (1):
+      drm/i915/dsi: fix VBT send packet port selection for dual link DSI
+
+Tvrtko Ursulin (1):
+      drm/i915: Fix workarounds on Gen2-3
+
+Umesh Nerlige Ramappa (2):
+      i915/uncore: Acquire fw before loop in intel_uncore_read64_2x32
+      drm/i915/selftest: Bump up sample period for busy stats selftest
+
+Ville Syrj�l� (1):
+      drm/i915: Remove non-existent pipes from bigjoiner pipe mask
+
+Xia Fukun (1):
+      drm/i915/bios: fix a memory leak in generate_lfp_data_ptrs
+
+ drivers/gpu/drm/i915/display/intel_bios.c      |  2 +-
+ drivers/gpu/drm/i915/display/intel_display.c   | 10 +++--
+ drivers/gpu/drm/i915/display/intel_dmc.c       |  4 +-
+ drivers/gpu/drm/i915/display/intel_dsi_vbt.c   |  4 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c             | 15 ++++---
+ drivers/gpu/drm/i915/gt/intel_gt_mcr.c         | 18 ++++----
+ drivers/gpu/drm/i915/gt/intel_gt_mcr.h         | 12 +++---
+ drivers/gpu/drm/i915/gt/intel_gt_requests.c    |  2 +-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c    |  5 +--
+ drivers/gpu/drm/i915/gt/selftest_engine_pm.c   |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_huc.c         | 57 ++++++++++++++++++--------
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c          |  1 +
+ drivers/gpu/drm/i915/intel_uncore.h            | 44 +++++++++++++-------
+ 14 files changed, 113 insertions(+), 65 deletions(-)
