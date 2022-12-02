@@ -2,49 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA93E64042E
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Dec 2022 11:10:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C84864045F
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Dec 2022 11:18:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4E6F10E6CE;
-	Fri,  2 Dec 2022 10:10:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6615910E6B6;
+	Fri,  2 Dec 2022 10:18:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C72010E6CB
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 Dec 2022 10:10:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669975802; x=1701511802;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=GzB/ovfEXuD3vh8aT5SrZiE6iWHn6gMUP3ezM2tu2gQ=;
- b=PXOAfJRHmSrcLGtWOtwqqGmPv4fa26xuO4f7AcPf95BoucMLH/YR5kjs
- Y/ThywWQZpsZYUYMPSjx0PNXLI+Qguy3BiMn8MwsHkeCRdbKdq3nS6Yu7
- OB/HBPAItdh4i6swBsiKyLDhRPoea8XeFsjTYb9WZ4WRMYh1dXkBlY+MQ
- +vuNGpY/sb4fKs4dh7T9Tyj9Vk13+iE5N3GDW3wR6+ujDFsMyOyxjQVuI
- od9ITB0WIwvjiJdOvH2Ynr3/bPkBMcjdBJrepAtgLG82YSsxMghH0M16i
- uXUUv3UjKotZmcSfcjQmt3/MZBXHpHQ8KrSeBaxPCjo7679uHx7GF5/pb A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10548"; a="313564633"
-X-IronPort-AV: E=Sophos;i="5.96,212,1665471600"; d="scan'208";a="313564633"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2022 02:10:00 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10548"; a="647115834"
-X-IronPort-AV: E=Sophos;i="5.96,212,1665471600"; d="scan'208";a="647115834"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2022 02:09:58 -0800
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  2 Dec 2022 15:40:28 +0530
-Message-Id: <20221202101028.803630-15-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221202101028.803630-1-ankit.k.nautiyal@intel.com>
-References: <20221202101028.803630-1-ankit.k.nautiyal@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1358910E6B6;
+ Fri,  2 Dec 2022 10:18:43 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0B7B3A882E;
+ Fri,  2 Dec 2022 10:18:43 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v5 14/14] drm/i915/dp: Add a wrapper to check
- frl/tmds downstream constraints
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Fri, 02 Dec 2022 10:18:43 -0000
+Message-ID: <166997632301.27864.5800233307946154292@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221202100246.406758-1-matthew.auld@intel.com>
+In-Reply-To: <20221202100246.406758-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5Bv5=2C1/3=5D_drm/i915/migrate=3A_Acc?=
+ =?utf-8?q?ount_for_the_reserved=5Fspace?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,101 +41,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add a wrapper function to check dp_downstream clock/bandwidth
-constraints. Based on whether the sink supports FRL/TMDS the wrapper
-calls the appropriate FRL/TMDS functions.
+== Series Details ==
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 51 +++++++++++--------------
- 1 file changed, 23 insertions(+), 28 deletions(-)
+Series: series starting with [v5,1/3] drm/i915/migrate: Account for the reserved_space
+URL   : https://patchwork.freedesktop.org/series/111577/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 4b6a70cae851..00d3ed156bbf 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1031,6 +1031,18 @@ intel_dp_frl_bw_valid(struct intel_dp *intel_dp, int target_clock,
- 	return MODE_OK;
- }
- 
-+static enum drm_mode_status
-+intel_dp_hdmi_bw_check(struct intel_dp *intel_dp,
-+		       int target_clock, int bpc,
-+		       enum intel_output_format sink_format,
-+		       bool is_frl)
-+{
-+	if (is_frl)
-+		return intel_dp_frl_bw_valid(intel_dp, target_clock, 8, sink_format);
-+
-+	return intel_dp_tmds_clock_valid(intel_dp, target_clock, 8, sink_format, true);
-+}
-+
- static enum drm_mode_status
- intel_dp_mode_valid_downstream(struct intel_connector *connector,
- 			       const struct drm_display_mode *mode,
-@@ -1040,48 +1052,31 @@ intel_dp_mode_valid_downstream(struct intel_connector *connector,
- 	const struct drm_display_info *info = &connector->base.display_info;
- 	enum drm_mode_status status;
- 	bool ycbcr_420_only = drm_mode_is_420_only(info, mode);
-+	bool is_frl;
- 	enum intel_output_format sink_format;
-+	int bpc = 8; /* Assume 8bpc for the DP++/HDMI/DVI TMDS/FRL bw heck */
- 
--	ycbcr_420_only = drm_mode_is_420_only(info, mode);
-+	if (ycbcr_420_only && connector->base.ycbcr_420_allowed)
-+		sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
-+	else
-+		sink_format = INTEL_OUTPUT_FORMAT_RGB;
- 
- 	/* If PCON supports FRL MODE, check FRL bandwidth constraints */
--	if (intel_dp->dfp.pcon_max_frl_bw) {
--
--		if (ycbcr_420_only && connector->base.ycbcr_420_allowed)
--			sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
--		else
--			sink_format = INTEL_OUTPUT_FORMAT_RGB;
--
--		/* Assume 8bpc for the HDMI2.1 FRL BW check */
--		status = intel_dp_frl_bw_valid(intel_dp, target_clock, 8, sink_format);
--		if (status != MODE_OK) {
--			if (sink_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
--			    !drm_mode_is_420_also(info, mode))
--				return status;
--			sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
--			status = intel_dp_frl_bw_valid(intel_dp, target_clock, 8, sink_format);
--			if (status != MODE_OK)
--				return status;
--		}
-+	is_frl = intel_dp->dfp.pcon_max_frl_bw ? true : false;
- 
--		return MODE_OK;
--	}
--
--	if (intel_dp->dfp.max_dotclock &&
-+	if (!is_frl && intel_dp->dfp.max_dotclock &&
- 	    target_clock > intel_dp->dfp.max_dotclock)
- 		return MODE_CLOCK_HIGH;
- 
--	/* Assume 8bpc for the DP++/HDMI/DVI TMDS clock check */
--	status = intel_dp_tmds_clock_valid(intel_dp, target_clock,
--					   8, sink_format, true);
-+	status = intel_dp_hdmi_bw_check(intel_dp, target_clock, bpc, sink_format, is_frl);
- 
- 	if (status != MODE_OK) {
- 		if (sink_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
- 		    !drm_mode_is_420_also(info, mode))
- 			return status;
- 		sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
--		status = intel_dp_tmds_clock_valid(intel_dp, target_clock,
--						   8, sink_format, true);
-+		status = intel_dp_hdmi_bw_check(intel_dp, target_clock, bpc, sink_format, is_frl);
-+	} else {
- 		if (status != MODE_OK)
- 			return status;
- 	}
--- 
-2.25.1
+== Summary ==
+
+Error: dim checkpatch failed
+977e2603928c drm/i915/migrate: Account for the reserved_space
+-:36: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#36: FILE: drivers/gpu/drm/i915/gt/intel_migrate.c:347:
++       struct intel_ring *ring = rq->ring;$
+
+-:38: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#38: FILE: drivers/gpu/drm/i915/gt/intel_migrate.c:349:
++       pkt = min_t(int, pkt, (ring->space - rq->reserved_space) / sizeof(u32) + 5);$
+
+-:39: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#39: FILE: drivers/gpu/drm/i915/gt/intel_migrate.c:350:
++       pkt = min_t(int, pkt, (ring->size - ring->emit) / sizeof(u32) + 5);$
+
+-:41: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#41: FILE: drivers/gpu/drm/i915/gt/intel_migrate.c:352:
++       return pkt;$
+
+total: 0 errors, 4 warnings, 0 checks, 34 lines checked
+bce28e11b423 drm/i915/selftests: use live_subtests for live_migrate
+d5c2ffdf5bf0 drm/i915/selftests: exercise emit_pte() with nearly full ring
+-:15: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#15: 
+v5: Use a simple on-stack timer to kill the spinner instead of kthread (Chris)
+
+-:82: WARNING:TRACING_LOGGING: Unnecessary ftrace-like logging - prefer using ftrace
+#82: FILE: drivers/gpu/drm/i915/gt/selftest_migrate.c:543:
++	pr_info("%s\n", __func__);
+
+total: 0 errors, 2 warnings, 0 checks, 187 lines checked
+
 
