@@ -1,59 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C4856402CB
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Dec 2022 10:01:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABBFC640300
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Dec 2022 10:14:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D6B7E10E6B0;
-	Fri,  2 Dec 2022 09:01:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52E9910E1A4;
+	Fri,  2 Dec 2022 09:14:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4DAB10E6B1
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 Dec 2022 09:01:15 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89FE510E1AC
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 Dec 2022 09:14:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669971675; x=1701507675;
+ t=1669972469; x=1701508469;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=AeDoNJcY5pk+HUxR/D+iGswbJMPMfdYpojl+pjWRD24=;
- b=Lb8duQtsgu3Fc/CXFlmqyRCk3D7q8Ho3nqKlrN9zEMRBjg2VQDwnSuby
- kmKxqkJOTpY0JkrAhTSTOJ1tTX+iTpJJpcUoGOjm67WGuzO5R8F+cmMa/
- XoakHH3CcqmNM2MzbJa2dMdhw1vic+3c6I3dVFELPNY2Di2bnVhFExQd6
- qVXCqLKjtSx85Nnx2R8I9GkCxTESPxno3gKsMYZpR8ztm2vj/gbbkb+Gt
- edezPEDxhLVeoHn/TS+5eP0OfkioHajN+4Ej89Z8rq44e3QZigrN8eFax
- GmIo8To5yYyNvbpFjUyOLOHcsUBN8dxKw14IUd4O/FyGXOCqXXSyFQyJE Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10548"; a="380200202"
-X-IronPort-AV: E=Sophos;i="5.96,210,1665471600"; d="scan'208";a="380200202"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2022 01:00:03 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10548"; a="644963899"
-X-IronPort-AV: E=Sophos;i="5.96,210,1665471600"; d="scan'208";a="644963899"
+ bh=/SsQzId0Wzk0AU5eVAxw/wh34DvyqESppvU2zIZnsIE=;
+ b=C091JnkiYW2pNuX+l9jEUP6HyFHJQgWVvmfmCKG+TKSHwaXHGt2vAm4u
+ xzvs7DkbTEiIEy3ERhPn+LGm3RJLJRA7KxYLuCOWutJKXRrLWLQqxbwEw
+ YNzN7LWv+00t9y37ZjhbID0Kbgx57dYsC0VZ9lgvIX5r2F0hmxER6xot9
+ GNAf9jVE757PH54bumR0RJEai5cb/7MQY73ispVpGa8/w/W+zrLLPFboQ
+ jzPS++J1KDgqFGB8TPgaGyMTKxviY6u5XUGPhi2GMYFmLRamxw6t24qZ8
+ SFHhMLbyMRAoN9NAg4UeFZbHxI5+e6IEjBCOxahv0IwE3/1wiYbEqBHcx g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10548"; a="315942463"
+X-IronPort-AV: E=Sophos;i="5.96,210,1665471600"; d="scan'208";a="315942463"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2022 01:14:29 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10548"; a="890082545"
+X-IronPort-AV: E=Sophos;i="5.96,210,1665471600"; d="scan'208";a="890082545"
 Received: from macematx-mobl1.ger.corp.intel.com (HELO [10.213.211.34])
  ([10.213.211.34])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2022 01:00:01 -0800
-Message-ID: <3fcf71b9-337f-6186-7b00-27cbfd116743@linux.intel.com>
-Date: Fri, 2 Dec 2022 08:59:59 +0000
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2022 01:14:27 -0800
+Message-ID: <fdabe479-b063-e6d5-0a1e-e2d3cebb705f@linux.intel.com>
+Date: Fri, 2 Dec 2022 09:14:25 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
 Content-Language: en-US
-To: Matt Roper <matthew.d.roper@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-References: <20221130231709.4870-1-matthew.s.atwood@intel.com>
- <20221130231709.4870-2-matthew.s.atwood@intel.com>
- <d4adadc3-6426-ff25-d6ac-79662414ccbb@linux.intel.com>
- <20221201172307.u5z2vcg2ce4344iv@ldmartin-desk2.lan>
- <Y4k3jt4N2oWeVZKN@mdroper-desk1.amr.corp.intel.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+ John Harrison <john.c.harrison@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20221128165209.353706-1-andrzej.hajda@intel.com>
+ <36b9d912-84b3-d050-59aa-b95c245551d2@linux.intel.com>
+ <0846a17b-9562-0592-003a-4336fcac8f51@intel.com>
+ <394f6232-50bf-1344-8165-ff6abf3b9323@linux.intel.com>
+ <c0bb381e-43d2-3af9-0ada-2bc60027a4f5@intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <Y4k3jt4N2oWeVZKN@mdroper-desk1.amr.corp.intel.com>
+In-Reply-To: <c0bb381e-43d2-3af9-0ada-2bc60027a4f5@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/mtl: Add initial gt workarounds
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: fix exiting context timeout
+ calculation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,111 +67,147 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 01/12/2022 23:23, Matt Roper wrote:
-> On Thu, Dec 01, 2022 at 09:23:07AM -0800, Lucas De Marchi wrote:
->> On Thu, Dec 01, 2022 at 01:15:35PM +0000, Tvrtko Ursulin wrote:
->>>
->>> On 30/11/2022 23:17, Matt Atwood wrote:
->>>> From: Matt Roper <matthew.d.roper@intel.com>
->>>>
->>>> This patch introduces initial workarounds for mtl platform
->>>>
->>>> Bspec:66622
->>>>
->>>> Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
->>>> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
->>>> ---
->>>>   drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   4 +-
->>>>   .../drm/i915/gt/intel_execlists_submission.c  |   4 +-
->>>>   drivers/gpu/drm/i915/gt/intel_gt_mcr.c        |  11 +-
->>>>   drivers/gpu/drm/i915/gt/intel_gt_regs.h       |   5 +
->>>>   drivers/gpu/drm/i915/gt/intel_workarounds.c   | 105 +++++++++++++-----
->>>>   drivers/gpu/drm/i915/gt/uc/intel_guc.c        |   9 +-
->>>>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  10 +-
->>>>   drivers/gpu/drm/i915/i915_drv.h               |   4 +
->>>>   drivers/gpu/drm/i915/intel_device_info.c      |   6 +
->>>>   9 files changed, 121 insertions(+), 37 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>>> index c33e0d72d670..af88d8ab61c1 100644
->>>> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>>> @@ -1479,7 +1479,9 @@ static int __intel_engine_stop_cs(struct intel_engine_cs *engine,
->>>>   	 * Wa_22011802037 : gen11, gen12, Prior to doing a reset, ensure CS is
->>>>   	 * stopped, set ring stop bit and prefetch disable bit to halt CS
->>>>   	 */
->>>> -	if (IS_GRAPHICS_VER(engine->i915, 11, 12))
->>>> +	if (IS_MTL_GRAPHICS_STEP(engine->i915, M, STEP_A0, STEP_B0) ||
->>>> +	    (GRAPHICS_VER(engine->i915) >= 11 &&
->>>> +	    GRAPHICS_VER_FULL(engine->i915) < IP_VER(12, 70)))
->>>
->>> Does comment need updating to reflect the workaround applicability?
->>> Elsewhere as well. Some are left as dg2 only. Some gen11,gen12 only.
->>>
->>> Then there's a few of this same change logic throught the patch, so I
->>> assume a general situation of workarounds applying to only early MTL.
->>>
->>> if ((IS_GRAPHICS_VER(engine->i915, 11, 12)) &&
->>>      !IS_MTL_GRAPHICS_STEP(engine->i915, M, STEP_B1, STEP_FOREVER)
->>>
->>> Would this be correct and simpler? Not sure about STEP_B1 for start of
+On 01/12/2022 16:36, Andrzej Hajda wrote:
+> On 01.12.2022 11:28, Tvrtko Ursulin wrote:
 >>
->> should be STEP_B0 if doing this. The stepping check is inclusive on the
->> left, exclusive on the right, i.e:  [STEP_A0, STEP_B0).
+>> On 01/12/2022 00:22, John Harrison wrote:
+>>> On 11/29/2022 00:43, Tvrtko Ursulin wrote:
+>>>> On 28/11/2022 16:52, Andrzej Hajda wrote:
+>>>>> In case context is exiting preempt_timeout_ms is used for timeout,
+>>>>> but since introduction of DRM_I915_PREEMPT_TIMEOUT_COMPUTE it 
+>>>>> increases
+>>>>> to 7.5 seconds. Heartbeat occurs earlier but it is still 2.5s.
+>>>>>
+>>>>> Fixes: d7a8680ec9fb21 ("drm/i915: Improve long running compute w/a 
+>>>>> for GuC submission")
+>>>>> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2410
+>>>>> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+>>>>> ---
+>>>>> Hi all,
+>>>>>
+>>>>> I am not sure what is expected solution here, and if my patch does not
+>>>>> actually reverts intentions of patch d7a8680ec9fb21. Feel free to 
+>>>>> propose
+>>>>> something better.
+>>>>> Other alternative would be to increase t/o in IGT tests, but I am 
+>>>>> not sure
+>>>>> if this is good direction.
+>>>>
+>>>> Is it the hack with the FIXME marker from 47daf84a8bfb ("drm/i915: 
+>>>> Make the heartbeat play nice with long pre-emption timeouts") that 
+>>>> actually breaks things? (If IGT modifies the preempt timeout the 
+>>>> heartbeat extension will not work as intended.)
+>>>>
+>>>> If so, I think we agreed during review that was a weakness which 
+>>>> needs to be addressed, but I would need to re-read the old threads 
+>>>> to remember what was the plan. Regardless what it was it may be time 
+>>>> is now to continue with those improvements.
+>>>>
+>>> What is the actual issue? Just that closing contexts are taking 
+>>> forever to actually close? That would be the whole point of the 
+>>> 'context_is_exiting' patch. Which I still totally disagree with.
+>>>
+>>> If the context is being closed 'gracefully' and it is intended that 
+>>> it should be allowed time to pre-empt without being killed via an 
+>>> engine reset then the 7.5s delay is required. That is the officially 
+>>> agreed upon timeout to allow compute capable contexts to reach a 
+>>> pre-emption point before they should be killed. If an IGT is failing 
+>>> because it enforces a shorter timeout then the IGT needs to be 
+>>> updated to account for the fact that i915 has to support slow compute 
+>>> workloads.
+>>>
+>>> If the context is being closed 'forcefully' and should be killed 
+>>> immediately then you should be using the 'BANNED_PREEMPT_TIMEOUT' 
+>>> value not the sysfs/config value.
+>>>
+>>> Regarding heartbeats...
+>>>
+>>> The heartbeat period is 2.5s. But there are up to five heartbeat 
+>>> periods between the heartbeat starting and it declaring a hang. The 
+>>> patch you mention also introduced a check on the pre-emption timeout 
+>>> when the last period starts. If the pre-emption timeout is longer 
+>>> than the heartbeat period then the last period is extended to 
+>>> guarantee that a full pre-emption time is granted before declaring 
+>>> the hang.
+>>>
+>>> Are you saying that a heartbeat timeout is occurring and killing the 
+>>> system? Or are you just worried that something doesn't align correctly?
 >>
->> But even if the check is simpler, I'd avoid doing a negative check to
->> maintain consistency.
+>> I leave this to Andrzej since I am not the one debugging this. I just 
+>> glanced over the IGT and saw that there's code in there which sets 
+>> both the preempt timeout and heartbeat interval to non-default values. 
+>> And then I remembered this:
 > 
-> Agreed; if you have access to the internal workaround database, you can
-> query a list of which platforms/steppings a given workaround applies to
-> and get a list that basically lays things out something like
-> 
->    Wa_XXXXXXXX:
->      MTL:        [a0..b0)
->      PVC:        not needed
->      DG2-G10:    [b1..c3)
->      DG2-G11:    [a0..a2)
->      XEHPSDV:    all steppings
->      ADL-P:      not needed
->      ...
-> 
-> Even if the code condition has a bunch of arms, it should translate
-> pretty clearly to what's in the workaround database, so it's easier to
-> audit and make sure we aren't missing anything.  With all the platforms
-> we have these days, negative tests make it a lot harder to verify (and
-> in your example here would cause problems if we get something like a new
-> 12.80 or 12.90 platform down the road...presumably those wouldn't want
-> this workaround either, but wouldn't be captured properly).
-> 
-> The corollary of that is that we should be really careful about using
-> range checks like IS_GRAPHICS_VER() that only compare the major version
-> number.  If we aren't sure we've fully moved past the upper end of the
-> range, there's a possibility that new platforms may show up that
-> shouldn't be included in that range (as MTL did in this case, breaking
-> our "applies to all 11.x and 12.x" assumption).
+> The test is gem_ctx_persistence@many-contexts. It does not modify sysfs 
+> timeouts, but it assumes 1sec is enough to wait for exiting context 
+> (no-preemption). It works with bcs, vcs, vecs, but fails on rcs since it 
+> has
+> timeout set to 7.5sec (btw it works with GuC submissions enabled). It 
+> seemed to me somehow inconsistent, but if this is how it should work
+> I will just adjust the test.
 
-Yeah okay, perhaps it is just a mix of major and full ver check which 
-looked a bit naff in the code to me, and the unfortunate fact the 
-workaround ends in the middle (stepping wise) of a part/major gen.
+This looks odd then. That test is using non-preemptable spinners and 
+AFAICT it keeps submitting them for 30s, across all engines, and then it 
+stops and waits for one second for all of them to exit.
 
-On the topic of comments ("/* Wa_16012604467:adlp,mtl[a0,b0] */" and 
-such) and code getting out of sync - lets tidy that up. Either it's 
-always correct (in sync), or it's completely removed. Having a mix is 
-just bad an pointless.
+With the 7.5 preempt timeout I'd expect test should fail both with GuC 
+and execlists.
 
-If the tool you guys use to query the database can output the 
-"Wa_NNNNNN:xxx,yyy,zzz" format, I'd say keep the comments (and fix them 
-up) because then that is the reference which *can* be useful when 
-reviewing and spotting things like (oh you've inverted the logic when 
-adding the new platform). But if the tool can no to that then just drop 
-the platform list from them? Although I am kind of hoping the tool can 
-output that info and it's useful to have them sprinkled around the code.
+What should happen is that every context is marked as "exiting" and is 
+revoked. On the next scheduling event they would all be dropped.
+
+So I think two questions - how did increase of preempt timeout to 7.5s 
+pass CI - is the failure sporadic for instance?
+
+Second question - you are saying with GuC test always passes - how does 
+GuC manages to revoke a non-preemptible spinner in less than one second 
+if preempt timeout is 7.5s.. colour me confused.
+
+Anyway those questions are secondary.. Fix here I think pretty obviously 
+is for many_contexts() to fetch the preempt timeout from sysfs and allow 
+for that much time (plus a safety factor). Use the longest timeout 
+between all engines since all are submitted to.
 
 Regards,
 
 Tvrtko
+
+> 
+> Regards
+> Andrzej
+> 
+> 
+>>
+>> next_heartbeat():
+>> ...
+>>          /*
+>>           * FIXME: The final period extension is disabled if the 
+>> period has been
+>>           * modified from the default. This is to prevent issues with 
+>> certain
+>>           * selftests which override the value and expect specific 
+>> behaviour.
+>>           * Once the selftests have been updated to either cope with 
+>> variable
+>>           * heartbeat periods (or to override the pre-emption timeout 
+>> as well,
+>>           * or just to add a selftest specific override of the 
+>> extension), the
+>>           * generic override can be removed.
+>>           */
+>>          if (rq && rq->sched.attr.priority >= I915_PRIORITY_BARRIER &&
+>>              delay == engine->defaults.heartbeat_interval_ms) {
+>>
+>> Which then wouldn't dtrt with last heartbeat pulse extensions, if the 
+>> IGT would be relying on that. Don't know, just pointing out to check 
+>> and see if this FIXME needs to be prioritised.
+>>
+>> Regards,
+>>
+>> Tvrtko
+> 
