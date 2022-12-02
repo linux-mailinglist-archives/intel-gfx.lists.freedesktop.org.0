@@ -1,50 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EF06640650
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Dec 2022 13:03:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1EE4640651
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Dec 2022 13:03:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 680E510E6EC;
-	Fri,  2 Dec 2022 12:03:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBCC210E6E7;
+	Fri,  2 Dec 2022 12:03:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F214110E6E8;
- Fri,  2 Dec 2022 12:02:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C2F910E6E8;
+ Fri,  2 Dec 2022 12:02:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669982575; x=1701518575;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=AwtK6UTgF9FdnMF+3D8BGX4baMgwHfyxenAs1IeFVGE=;
- b=ko9G9i/s6b0ODPSiw7lsdNG3tS+PLlXM7EYD89O7QybixGMUgTNvFiwE
- c1Fo9PNcVv8/6RkbESP8jRqYfwPhPAv81X/DCnqogcs0G/dHPkCPXoLfI
- 8pVmGeGgnrnjBawwu+wGN1Nrpk8eO2auXCStcic5mfWSIk0ewwt/EBnIB
- XRTJznpX/G8js37ckpAgDPzjKGIwxgF5xuNrXiS7enseexYEvlz/T4cVC
- QzRBtjkbM3SfSZgM/gc7Y9V+rxEte6NmXDwg1vHJe4W+jHXLU6PflqjQ0
- 3/e1/nNgzqPZuTkytFAcCLeJmLxhwvG0E/ejfNAVRehvsXPxJXsGy5FPR w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10548"; a="342876040"
-X-IronPort-AV: E=Sophos;i="5.96,212,1665471600"; d="scan'208";a="342876040"
+ t=1669982577; x=1701518577;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=8eFGMLUUkte6rhiMNUFMGgTLUnuoLJvZ3qGx13u0Ey8=;
+ b=RzRQcpYhJGGvfpIvznGJGitNMXi2S+3chba+mmsDf+j4HBxUtyJ7kp8d
+ qos0lkEvyG0Ncu2V83JmXBewCYFuKlyP3XjRYV8E8jzfgNO4gCxYMRwSj
+ iLDMv8Dyz4j89gGhuGNrNjaTy0bB9ECWnX+STQxqiFFzI63b7MGXrTq7x
+ S/Q8ltUq6Pfg/LzlVfVjZCEnp0bubxO6rTVooOsLgoWW0A/DoOayAxk/4
+ T6ZGlXv3kDOuD3vfFOGDBnQV0hOQBY3UbBj/Lt0gT3UCnjj8PFxbx8wjf
+ fzXla3S9Bf3PeoNNaNqjWH5ohEAMf6S2QnaXGumM+FI8JW/PvtHyiD36r w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10548"; a="342876068"
+X-IronPort-AV: E=Sophos;i="5.96,212,1665471600"; d="scan'208";a="342876068"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2022 04:02:55 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10548"; a="751238133"
-X-IronPort-AV: E=Sophos;i="5.96,212,1665471600"; d="scan'208";a="751238133"
+ 02 Dec 2022 04:02:56 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10548"; a="751238148"
+X-IronPort-AV: E=Sophos;i="5.96,212,1665471600"; d="scan'208";a="751238148"
 Received: from ctfarrel-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
  ([10.252.18.53])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2022 04:02:53 -0800
+ 02 Dec 2022 04:02:55 -0800
 From: Matthew Auld <matthew.auld@intel.com>
 To: igt-dev@lists.freedesktop.org
-Date: Fri,  2 Dec 2022 12:02:41 +0000
-Message-Id: <20221202120242.425128-1-matthew.auld@intel.com>
+Date: Fri,  2 Dec 2022 12:02:42 +0000
+Message-Id: <20221202120242.425128-2-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.38.1
+In-Reply-To: <20221202120242.425128-1-matthew.auld@intel.com>
+References: <20221202120242.425128-1-matthew.auld@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t v2 1/2] lib/dmabuf_sync_file: move common
- stuff into lib
+Subject: [Intel-gfx] [PATCH i-g-t v2 2/2] tests/i915/gem_exec_balancer:
+ exercise dmabuf import
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,448 +63,98 @@ Cc: intel-gfx@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-So we can use this across different tests.
+With parallel submission it should be easy to get a fence array as the
+output fence. Try importing this into dma-buf reservation object, to see
+if anything explodes.
 
-v2
-  - Add docs for everything (Petri)
-  - Add missing copyright and fix headers slightly (Kamil)
+v2: (Kamil)
+ - Use ifdef __linux__ for linux headers
+ - Add igt_describe() for new test
 
+References: https://gitlab.freedesktop.org/drm/intel/-/issues/7532
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-Cc: Petri Latvala <petri.latvala@intel.com>
 Cc: Andrzej Hajda <andrzej.hajda@intel.com>
 Cc: Nirmoy Das <nirmoy.das@intel.com>
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 ---
- .../igt-gpu-tools/igt-gpu-tools-docs.xml      |   1 +
- lib/dmabuf_sync_file.c                        | 211 ++++++++++++++++++
- lib/dmabuf_sync_file.h                        |  26 +++
- lib/meson.build                               |   1 +
- tests/dmabuf_sync_file.c                      | 133 +----------
- 5 files changed, 243 insertions(+), 129 deletions(-)
- create mode 100644 lib/dmabuf_sync_file.c
- create mode 100644 lib/dmabuf_sync_file.h
+ tests/i915/gem_exec_balancer.c | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
 
-diff --git a/docs/reference/igt-gpu-tools/igt-gpu-tools-docs.xml b/docs/reference/igt-gpu-tools/igt-gpu-tools-docs.xml
-index 1ce842f4..102c8a89 100644
---- a/docs/reference/igt-gpu-tools/igt-gpu-tools-docs.xml
-+++ b/docs/reference/igt-gpu-tools/igt-gpu-tools-docs.xml
-@@ -15,6 +15,7 @@
+diff --git a/tests/i915/gem_exec_balancer.c b/tests/i915/gem_exec_balancer.c
+index 4300dbd1..d7acdca1 100644
+--- a/tests/i915/gem_exec_balancer.c
++++ b/tests/i915/gem_exec_balancer.c
+@@ -27,6 +27,7 @@
+ #include <sys/signal.h>
+ #include <poll.h>
  
-   <chapter>
-     <title>API Reference</title>
-+    <xi:include href="xml/dmabuf_sync_file.xml"/>
-     <xi:include href="xml/drmtest.xml"/>
-     <xi:include href="xml/igt_alsa.xml"/>
-     <xi:include href="xml/igt_audio.xml"/>
-diff --git a/lib/dmabuf_sync_file.c b/lib/dmabuf_sync_file.c
-new file mode 100644
-index 00000000..bcce2486
---- /dev/null
-+++ b/lib/dmabuf_sync_file.c
-@@ -0,0 +1,211 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2022 Intel Corporation
-+ */
-+
-+#include "igt.h"
-+#include "igt_vgem.h"
-+#include "sw_sync.h"
-+
 +#include "dmabuf_sync_file.h"
-+
-+/**
-+ * SECTION: dmabuf_sync_file
-+ * @short_description: DMABUF importing/exporting fencing support library
-+ * @title: DMABUF Sync File
-+ * @include: dmabuf_sync_file.h
-+ */
-+
-+struct igt_dma_buf_sync_file {
-+	__u32 flags;
-+	__s32 fd;
-+};
-+
-+#define IGT_DMA_BUF_IOCTL_EXPORT_SYNC_FILE _IOWR(DMA_BUF_BASE, 2, struct igt_dma_buf_sync_file)
-+#define IGT_DMA_BUF_IOCTL_IMPORT_SYNC_FILE _IOW(DMA_BUF_BASE, 3, struct igt_dma_buf_sync_file)
-+
-+/**
-+ * has_dmabuf_export_sync_file:
-+ * @fd: The open drm fd
-+ *
-+ * Check if the kernel supports exporting a sync file from dmabuf.
-+ */
-+bool has_dmabuf_export_sync_file(int fd)
-+{
-+	struct vgem_bo bo;
-+	int dmabuf, ret;
-+	struct igt_dma_buf_sync_file arg;
-+
-+	bo.width = 1;
-+	bo.height = 1;
-+	bo.bpp = 32;
-+	vgem_create(fd, &bo);
-+
-+	dmabuf = prime_handle_to_fd(fd, bo.handle);
-+	gem_close(fd, bo.handle);
-+
-+	arg.flags = DMA_BUF_SYNC_WRITE;
-+	arg.fd = -1;
-+
-+	ret = igt_ioctl(dmabuf, IGT_DMA_BUF_IOCTL_EXPORT_SYNC_FILE, &arg);
-+	close(dmabuf);
-+	igt_assert(ret == 0 || errno == ENOTTY);
-+
-+	return ret == 0;
-+}
-+
-+/**
-+ * dmabuf_export_sync_file:
-+ * @dmabuf: The dmabuf fd
-+ * @flags: The flags to control the behaviour
-+ *
-+ * Take a snapshot of the current dma-resv fences in the dmabuf, and export as a
-+ * syncfile. The @flags should at least specify either DMA_BUF_SYNC_WRITE or
-+ * DMA_BUF_SYNC_READ, depending on if we care about the read or write fences.
-+ */
-+int dmabuf_export_sync_file(int dmabuf, uint32_t flags)
-+{
-+	struct igt_dma_buf_sync_file arg;
-+
-+	arg.flags = flags;
-+	arg.fd = -1;
-+	do_ioctl(dmabuf, IGT_DMA_BUF_IOCTL_EXPORT_SYNC_FILE, &arg);
-+
-+	return arg.fd;
-+}
-+
-+/**
-+ * has_dmabuf_import_sync_file:
-+ * @fd: The open drm fd
-+ *
-+ * Check if the kernel supports importing a sync file into a dmabuf.
-+ */
-+bool has_dmabuf_import_sync_file(int fd)
-+{
-+	struct vgem_bo bo;
-+	int dmabuf, timeline, fence, ret;
-+	struct igt_dma_buf_sync_file arg;
-+
-+	bo.width = 1;
-+	bo.height = 1;
-+	bo.bpp = 32;
-+	vgem_create(fd, &bo);
-+
-+	dmabuf = prime_handle_to_fd(fd, bo.handle);
-+	gem_close(fd, bo.handle);
-+
-+	timeline = sw_sync_timeline_create();
-+	fence = sw_sync_timeline_create_fence(timeline, 1);
-+	sw_sync_timeline_inc(timeline, 1);
-+
-+	arg.flags = DMA_BUF_SYNC_RW;
-+	arg.fd = fence;
-+
-+	ret = igt_ioctl(dmabuf, IGT_DMA_BUF_IOCTL_IMPORT_SYNC_FILE, &arg);
-+	close(dmabuf);
-+	close(fence);
-+	igt_assert(ret == 0 || errno == ENOTTY);
-+
-+	return ret == 0;
-+}
-+
-+/**
-+ * dmabuf_import_sync_file:
-+ * @dmabuf: The dmabuf fd
-+ * @flags: The flags to control the behaviour
-+ * @sync_fd: The sync file (i.e our fence) to import
-+ *
-+ * Import the sync file @sync_fd, into the dmabuf. The @flags should at least
-+ * specify DMA_BUF_SYNC_WRITE or DMA_BUF_SYNC_READ, depending on if we are
-+ * importing the @sync_fd as a read or write fence.
-+ */
-+void dmabuf_import_sync_file(int dmabuf, uint32_t flags, int sync_fd)
-+{
-+	struct igt_dma_buf_sync_file arg;
-+
-+	arg.flags = flags;
-+	arg.fd = sync_fd;
-+	do_ioctl(dmabuf, IGT_DMA_BUF_IOCTL_IMPORT_SYNC_FILE, &arg);
-+}
-+
-+/**
-+ * dmabuf_import_timeline_fence:
-+ * @dmabuf: The dmabuf fd
-+ * @flags: The flags to control the behaviour
-+ * @timeline: The sync file timeline where the new fence is created
-+ * @seqno: The sequence number to use for the fence
-+ *
-+ * Create a new fence as part of @timeline, and import as a sync file into the
-+ * dmabuf.  The @flags should at least specify DMA_BUF_SYNC_WRITE or
-+ * DMA_BUF_SYNC_READ, depending on if we are importing the new fence as a read
-+ * or write fence.
-+ */
-+void dmabuf_import_timeline_fence(int dmabuf, uint32_t flags,
-+				  int timeline, uint32_t seqno)
-+{
-+	int fence;
-+
-+	fence = sw_sync_timeline_create_fence(timeline, seqno);
-+	dmabuf_import_sync_file(dmabuf, flags, fence);
-+	close(fence);
-+}
-+
-+/**
-+ * dmabuf_busy:
-+ * @dmabuf: The dmabuf fd
-+ * @flags: The flags to control the behaviour
-+ *
-+ * Check if the fences in the dmabuf are still busy. The @flags should at least
-+ * specify DMA_BUF_SYNC_WRITE or DMA_BUF_SYNC_READ, depending on if we are
-+ * checking if the read or read fences have all signalled. Or DMA_BUF_SYNC_RW if
-+ * we care about both.
-+ */
-+bool dmabuf_busy(int dmabuf, uint32_t flags)
-+{
-+	struct pollfd pfd = { .fd = dmabuf };
-+
-+	/* If DMA_BUF_SYNC_WRITE is set, we don't want to set POLLIN or
-+	 * else poll() may return a non-zero value if there are only read
-+	 * fences because POLLIN is ready even if POLLOUT isn't.
-+	 */
-+	if (flags & DMA_BUF_SYNC_WRITE)
-+		pfd.events |= POLLOUT;
-+	else if (flags & DMA_BUF_SYNC_READ)
-+		pfd.events |= POLLIN;
-+
-+	return poll(&pfd, 1, 0) == 0;
-+}
-+
-+/**
-+ * sync_file_busy:
-+ * @sync_file: The sync file to check
-+ *
-+ * Check if the @sync_file is still busy or not.
-+ */
-+bool sync_file_busy(int sync_file)
-+{
-+	struct pollfd pfd = { .fd = sync_file, .events = POLLIN };
-+	return poll(&pfd, 1, 0) == 0;
-+}
-+
-+/**
-+ * dmabuf_sync_file_busy:
-+ * @dmabuf: The dmabuf fd
-+ * @flags: The flags to control the behaviour
-+ *
-+ * Export the current fences in @dmabuf as a sync file and check if still busy.
-+ * The @flags should at least contain DMA_BUF_SYNC_WRITE or DMA_BUF_SYNC_READ,
-+ * to specify which fences are to be exported from the @dmabuf and checked if
-+ * busy. Or DMA_BUF_SYNC_RW if we care about both.
-+ */
-+bool dmabuf_sync_file_busy(int dmabuf, uint32_t flags)
-+{
-+	int sync_file;
-+	bool busy;
-+
-+	sync_file = dmabuf_export_sync_file(dmabuf, flags);
-+	busy = sync_file_busy(sync_file);
-+	close(sync_file);
-+
-+	return busy;
-+}
-diff --git a/lib/dmabuf_sync_file.h b/lib/dmabuf_sync_file.h
-new file mode 100644
-index 00000000..d642ff30
---- /dev/null
-+++ b/lib/dmabuf_sync_file.h
-@@ -0,0 +1,26 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2022 Intel Corporation
-+ */
-+
-+#ifndef DMABUF_SYNC_FILE_H
-+#define DMABUF_SYNC_FILE_H
-+
-+#ifdef __linux__
-+#include <linux/dma-buf.h>
-+#endif
-+#include <sys/poll.h>
-+#include <stdbool.h>
-+#include <stdint.h>
-+
-+bool has_dmabuf_export_sync_file(int fd);
-+bool has_dmabuf_import_sync_file(int fd);
-+int dmabuf_export_sync_file(int dmabuf, uint32_t flags);
-+void dmabuf_import_sync_file(int dmabuf, uint32_t flags, int sync_fd);
-+void dmabuf_import_timeline_fence(int dmabuf, uint32_t flags,
-+			     int timeline, uint32_t seqno);
-+bool dmabuf_busy(int dmabuf, uint32_t flags);
-+bool sync_file_busy(int sync_file);
-+bool dmabuf_sync_file_busy(int dmabuf, uint32_t flags);
-+
-+#endif
-diff --git a/lib/meson.build b/lib/meson.build
-index cef2d0ff..896d5733 100644
---- a/lib/meson.build
-+++ b/lib/meson.build
-@@ -1,5 +1,6 @@
- lib_sources = [
- 	'drmtest.c',
-+	'dmabuf_sync_file.c',
- 	'huc_copy.c',
- 	'i915/gem.c',
- 	'i915/gem_context.c',
-diff --git a/tests/dmabuf_sync_file.c b/tests/dmabuf_sync_file.c
-index 2179a76d..25bb6ad7 100644
---- a/tests/dmabuf_sync_file.c
-+++ b/tests/dmabuf_sync_file.c
-@@ -1,140 +1,15 @@
- // SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2022 Intel Corporation
-+ */
+ #include "i915/gem.h"
+ #include "i915/gem_engine_topology.h"
+ #include "i915/gem_create.h"
+@@ -2856,6 +2857,7 @@ static void logical_sort_siblings(int i915,
+ #define PARALLEL_SUBMIT_FENCE		(0x1 << 3)
+ #define PARALLEL_CONTEXTS		(0x1 << 4)
+ #define PARALLEL_VIRTUAL		(0x1 << 5)
++#define PARALLEL_OUT_FENCE_DMABUF	(0x1 << 6)
  
- #include "igt.h"
- #include "igt_vgem.h"
- #include "sw_sync.h"
--
--#include <linux/dma-buf.h>
--#include <sys/poll.h>
-+#include "dmabuf_sync_file.h"
+ static void parallel_thread(int i915, unsigned int flags,
+ 			    struct i915_engine_class_instance *siblings,
+@@ -2871,6 +2873,8 @@ static void parallel_thread(int i915, unsigned int flags,
+ 	uint32_t target_bo_idx = 0;
+ 	uint32_t first_bb_idx = 1;
+ 	intel_ctx_cfg_t cfg;
++	uint32_t dmabuf_handle;
++	int dmabuf;
  
- IGT_TEST_DESCRIPTION("Tests for sync_file support in dma-buf");
+ 	igt_assert(bb_per_execbuf < 32);
  
--struct igt_dma_buf_sync_file {
--	__u32 flags;
--	__s32 fd;
--};
--
--#define IGT_DMA_BUF_IOCTL_EXPORT_SYNC_FILE _IOWR(DMA_BUF_BASE, 2, struct igt_dma_buf_sync_file)
--#define IGT_DMA_BUF_IOCTL_IMPORT_SYNC_FILE _IOW(DMA_BUF_BASE, 3, struct igt_dma_buf_sync_file)
--
--static bool has_dmabuf_export_sync_file(int fd)
--{
--	struct vgem_bo bo;
--	int dmabuf, ret;
--	struct igt_dma_buf_sync_file arg;
--
--	bo.width = 1;
--	bo.height = 1;
--	bo.bpp = 32;
--	vgem_create(fd, &bo);
--
--	dmabuf = prime_handle_to_fd(fd, bo.handle);
--	gem_close(fd, bo.handle);
--
--	arg.flags = DMA_BUF_SYNC_WRITE;
--	arg.fd = -1;
--
--	ret = igt_ioctl(dmabuf, IGT_DMA_BUF_IOCTL_EXPORT_SYNC_FILE, &arg);
--	close(dmabuf);
--	igt_assert(ret == 0 || errno == ENOTTY);
--
--	return ret == 0;
--}
--
--static int dmabuf_export_sync_file(int dmabuf, uint32_t flags)
--{
--	struct igt_dma_buf_sync_file arg;
--
--	arg.flags = flags;
--	arg.fd = -1;
--	do_ioctl(dmabuf, IGT_DMA_BUF_IOCTL_EXPORT_SYNC_FILE, &arg);
--
--	return arg.fd;
--}
--
--static bool has_dmabuf_import_sync_file(int fd)
--{
--	struct vgem_bo bo;
--	int dmabuf, timeline, fence, ret;
--	struct igt_dma_buf_sync_file arg;
--
--	bo.width = 1;
--	bo.height = 1;
--	bo.bpp = 32;
--	vgem_create(fd, &bo);
--
--	dmabuf = prime_handle_to_fd(fd, bo.handle);
--	gem_close(fd, bo.handle);
--
--	timeline = sw_sync_timeline_create();
--	fence = sw_sync_timeline_create_fence(timeline, 1);
--	sw_sync_timeline_inc(timeline, 1);
--
--	arg.flags = DMA_BUF_SYNC_RW;
--	arg.fd = fence;
--
--	ret = igt_ioctl(dmabuf, IGT_DMA_BUF_IOCTL_IMPORT_SYNC_FILE, &arg);
--	close(dmabuf);
--	close(fence);
--	igt_assert(ret == 0 || errno == ENOTTY);
--
--	return ret == 0;
--}
--
--static void dmabuf_import_sync_file(int dmabuf, uint32_t flags, int sync_fd)
--{
--	struct igt_dma_buf_sync_file arg;
--
--	arg.flags = flags;
--	arg.fd = sync_fd;
--	do_ioctl(dmabuf, IGT_DMA_BUF_IOCTL_IMPORT_SYNC_FILE, &arg);
--}
--
--static void
--dmabuf_import_timeline_fence(int dmabuf, uint32_t flags,
--			     int timeline, uint32_t seqno)
--{
--	int fence;
--
--	fence = sw_sync_timeline_create_fence(timeline, seqno);
--	dmabuf_import_sync_file(dmabuf, flags, fence);
--	close(fence);
--}
--
--static bool dmabuf_busy(int dmabuf, uint32_t flags)
--{
--	struct pollfd pfd = { .fd = dmabuf };
--
--	/* If DMA_BUF_SYNC_WRITE is set, we don't want to set POLLIN or
--	 * else poll() may return a non-zero value if there are only read
--	 * fences because POLLIN is ready even if POLLOUT isn't.
--	 */
--	if (flags & DMA_BUF_SYNC_WRITE)
--		pfd.events |= POLLOUT;
--	else if (flags & DMA_BUF_SYNC_READ)
--		pfd.events |= POLLIN;
--
--	return poll(&pfd, 1, 0) == 0;
--}
--
--static bool sync_file_busy(int sync_file)
--{
--	struct pollfd pfd = { .fd = sync_file, .events = POLLIN };
--	return poll(&pfd, 1, 0) == 0;
--}
--
--static bool dmabuf_sync_file_busy(int dmabuf, uint32_t flags)
--{
--	int sync_file;
--	bool busy;
--
--	sync_file = dmabuf_export_sync_file(dmabuf, flags);
--	busy = sync_file_busy(sync_file);
--	close(sync_file);
--
--	return busy;
--}
--
- static void test_export_basic(int fd)
- {
- 	struct vgem_bo bo;
+@@ -2924,11 +2928,20 @@ static void parallel_thread(int i915, unsigned int flags,
+ 	execbuf.buffers_ptr = to_user_pointer(obj);
+ 	execbuf.rsvd1 = ctx->id;
+ 
++	if (flags & PARALLEL_OUT_FENCE_DMABUF) {
++		dmabuf_handle = gem_create(i915, 4096);
++		dmabuf = prime_handle_to_fd(i915, dmabuf_handle);
++	}
++
+ 	for (n = 0; n < PARALLEL_BB_LOOP_COUNT; ++n) {
+ 		execbuf.flags &= ~0x3full;
+ 		gem_execbuf_wr(i915, &execbuf);
+ 
+ 		if (flags & PARALLEL_OUT_FENCE) {
++			if (flags & PARALLEL_OUT_FENCE_DMABUF)
++				dmabuf_import_sync_file(dmabuf, DMA_BUF_SYNC_WRITE,
++							execbuf.rsvd2 >> 32);
++
+ 			igt_assert_eq(sync_fence_wait(execbuf.rsvd2 >> 32,
+ 						      1000), 0);
+ 			igt_assert_eq(sync_fence_status(execbuf.rsvd2 >> 32), 1);
+@@ -2959,6 +2972,11 @@ static void parallel_thread(int i915, unsigned int flags,
+ 	if (fence)
+ 		close(fence);
+ 
++	if (flags & PARALLEL_OUT_FENCE_DMABUF) {
++		gem_close(i915, dmabuf_handle);
++		close(dmabuf);
++	}
++
+ 	check_bo(i915, obj[target_bo_idx].handle,
+ 		 bb_per_execbuf * PARALLEL_BB_LOOP_COUNT, true);
+ 
+@@ -3420,6 +3438,11 @@ igt_main
+ 		igt_subtest("parallel-out-fence")
+ 			parallel(i915, PARALLEL_OUT_FENCE);
+ 
++		igt_describe("Regression test to check that dmabuf imported sync file can handle fence array");
++		igt_subtest("parallel-dmabuf-import-out-fence")
++			parallel(i915, PARALLEL_OUT_FENCE |
++				 PARALLEL_OUT_FENCE_DMABUF);
++
+ 		igt_subtest("parallel-keep-in-fence")
+ 			parallel(i915, PARALLEL_OUT_FENCE | PARALLEL_IN_FENCE);
+ 
 -- 
 2.38.1
 
