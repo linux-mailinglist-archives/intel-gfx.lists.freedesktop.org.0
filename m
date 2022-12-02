@@ -1,58 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D50A64051C
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Dec 2022 11:49:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0102464058E
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Dec 2022 12:13:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8A3A10E6CB;
-	Fri,  2 Dec 2022 10:48:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDD9C10E6D9;
+	Fri,  2 Dec 2022 11:13:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1F7F10E6C4;
- Fri,  2 Dec 2022 10:48:06 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D976010E6D9;
+ Fri,  2 Dec 2022 11:13:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669978086; x=1701514086;
+ t=1669979583; x=1701515583;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=vOPVRgPVULUgtb45aXqPYh1cZ2cZOwnPxmInSunpMDY=;
- b=DmIVwmWTxjoqvUq673bLqUpC3h2fvhcu5lbPgnqgJEmI1g6yOgn98mXw
- m9S5BL3B+pU2p7hHS8WfvcgyXkBvWsGM43E00BQ09ZnBLRy6D9kQy1uCP
- sVZo86b2PGsENgOW9EcWdoi069X3xlErkK4arL84hgzStw3bx5n70zDKU
- +f9dxvpDn6X0OuFXHui1g7UZ8OKPxpoN+vV5sx0LhQ2d6c420J2saG3tN
- BOQtHSGgOkdOrvOaNRDonXdGuyILPV3NV7Ohd+96agcPuBtzhwsgbSiSt
- 8sIcDwyDDrH9eUhb6ZbMR5BXtVafetCbSyHomfifZZg7KtP167XNTwdth Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10548"; a="315957053"
-X-IronPort-AV: E=Sophos;i="5.96,212,1665471600"; d="scan'208";a="315957053"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2022 02:48:05 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10548"; a="751218977"
-X-IronPort-AV: E=Sophos;i="5.96,212,1665471600"; d="scan'208";a="751218977"
-Received: from ysmelkov-mobl.ger.corp.intel.com (HELO localhost)
- ([10.213.5.119])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2022 02:48:04 -0800
-Date: Fri, 2 Dec 2022 11:48:01 +0100
-From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Message-ID: <Y4nX4VIFCgk3CilX@kamilkon-desk1>
-Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- igt-dev@lists.freedesktop.org,
- Matthew Auld <matthew.auld@intel.com>,
- intel-gfx@lists.freedesktop.org,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
-References: <20221201164944.327019-1-matthew.auld@intel.com>
+ mime-version:in-reply-to;
+ bh=pyBYVphqUTlXX1TSLoH/ZyWA9dYxkUdhcdDaZICoNQc=;
+ b=VkxskLMftyBG6Mj6znsJnQDCZESSi7ynx9yKVoZv95zA9cWPd8J14Ivq
+ C8snVDpz8aQ9AukZ/7pcvrCaIORqQxnKvI7ITTz7HIrI1+0ksQh8gF4kB
+ aVrbjAL4lcQ4sT4uRlWwhK/Qjz1U/hKPow247slMO41um8xMiD0e6pHIY
+ izrrcx2uayypkedOQWFh80k9oj7xiS/uKPawDxqoQ9j4HA2QSB2dUGVL8
+ uA+pYMtIFhwkyu476F8z2QpZpbeRV87wYDuyJlOTPK6CMIxi+4XZJmZrN
+ 8qrTijRWEMU+PJCJOG/sWWLCh9MDg4kRoIlfgoQFadJEnHVXtTqgazXDL Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10548"; a="317081440"
+X-IronPort-AV: E=Sophos;i="5.96,212,1665471600"; d="scan'208";a="317081440"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2022 03:11:37 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10548"; a="819406145"
+X-IronPort-AV: E=Sophos;i="5.96,212,1665471600"; d="scan'208";a="819406145"
+Received: from noest-mobl4.ger.corp.intel.com (HELO intel.com)
+ ([10.252.35.227])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2022 03:11:33 -0800
+Date: Fri, 2 Dec 2022 12:11:30 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <Y4ndYv5C6K39C8PP@ashyti-mobl2.lan>
+References: <20221201144446.333776-1-andi.shyti@linux.intel.com>
+ <20221201203912.346110-1-andi.shyti@linux.intel.com>
+ <8a8152b6-a7f9-7ecb-4e5b-2b961f8e3ee2@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221201164944.327019-1-matthew.auld@intel.com>
-Subject: Re: [Intel-gfx] [PATCH i-g-t 1/2] lib/dmabuf_sync_file: move common
- stuff into lib
+In-Reply-To: <8a8152b6-a7f9-7ecb-4e5b-2b961f8e3ee2@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v6 3/5] drm/i915: Introduce guard pages to
+ i915_vma
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,379 +60,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
+Cc: Thomas =?iso-8859-15?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Matthew,
+Hi Tvrtko,
 
-On 2022-12-01 at 16:49:43 +0000, Matthew Auld wrote:
-> So we can use this across different tests.
+On Fri, Dec 02, 2022 at 10:20:11AM +0000, Tvrtko Ursulin wrote:
 > 
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> Cc: Nirmoy Das <nirmoy.das@intel.com>
-> ---
->  lib/dmabuf_sync_file.c   | 138 +++++++++++++++++++++++++++++++++++++++
->  lib/dmabuf_sync_file.h   |  19 ++++++
->  lib/meson.build          |   1 +
->  tests/dmabuf_sync_file.c | 135 ++------------------------------------
->  4 files changed, 164 insertions(+), 129 deletions(-)
->  create mode 100644 lib/dmabuf_sync_file.c
->  create mode 100644 lib/dmabuf_sync_file.h
+> On 01/12/2022 20:39, Andi Shyti wrote:
+> > From: Chris Wilson <chris@chris-wilson.co.uk>
+> > 
+> > Introduce the concept of padding the i915_vma with guard pages before
+> > and after. The major consequence is that all ordinary uses of i915_vma
+> > must use i915_vma_offset/i915_vma_size and not i915_vma.node.start/size
+> > directly, as the drm_mm_node will include the guard pages that surround
+> > our object.
+> > 
+> > The biggest connundrum is how exactly to mix requesting a fixed address
+> > with guard pages, particularly through the existing uABI. The user does
+> > not know about guard pages, so such must be transparent to the user, and
+> > so the execobj.offset must be that of the object itself excluding the
+> > guard. So a PIN_OFFSET_FIXED must then be exclusive of the guard pages.
+> > The caveat is that some placements will be impossible with guard pages,
+> > as wrap arounds need to be avoided, and the vma itself will require a
+> > larger node. We must not report EINVAL but ENOSPC as these are unavailable
+> > locations within the GTT rather than conflicting user requirements.
+> > 
+> > In the next patch, we start using guard pages for scanout objects. While
+> > these are limited to GGTT vma, on a few platforms these vma (or at least
+> > an alias of the vma) is shared with userspace, so we may leak the
+> > existence of such guards if we are not careful to ensure that the
+> > execobj.offset is transparent and excludes the guards. (On such platforms
+> > like ivb, without full-ppgtt, userspace has to use relocations so the
+> > presence of more untouchable regions within its GTT such be of no further
+> > issue.)
+> > 
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+> > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+> > ---
+> > Hi Tvrtko,
+> > 
+> > I removed your r-b in this version because I restored the original value
+> > of the guard being aligned with the vma size alignment. Turns out that
+> > CI failed with the latest version because the guard was becoming too big
+> > (we would have hit the GEM_BUG_ON)[*].
+> > 
+> > The reason why now the guard is aligned with the vma alignment is that
+> > the area is already aligned and if we use as a starting address start +
+> > guard, guard needs to be aligned, otherwise we screw up all the memory
+> > alignment.
+> > 
+> > Let me know if it makes sense to you.
 > 
-> diff --git a/lib/dmabuf_sync_file.c b/lib/dmabuf_sync_file.c
-> new file mode 100644
-> index 00000000..24e0f96d
-> --- /dev/null
-> +++ b/lib/dmabuf_sync_file.c
-> @@ -0,0 +1,138 @@
-> +// SPDX-License-Identifier: MIT
-
-Add also copyright here, like in lib/intel_allocator.c
-(I changed year):
-/*
- * Copyright © 2022 Intel Corporation
- */
-
-> +
-> +#ifdef __linux__
-> +#include <linux/dma-buf.h>
-> +#endif
-> +#include <sys/poll.h>
-> +
-> +#include "igt.h"
-> +#include "igt_vgem.h"
-> +#include "sw_sync.h"
-> +
-> +#include "dmabuf_sync_file.h"
-> +
-> +struct igt_dma_buf_sync_file {
-> +	__u32 flags;
-> +	__s32 fd;
-> +};
-> +
-> +#define IGT_DMA_BUF_IOCTL_EXPORT_SYNC_FILE _IOWR(DMA_BUF_BASE, 2, struct igt_dma_buf_sync_file)
-> +#define IGT_DMA_BUF_IOCTL_IMPORT_SYNC_FILE _IOW(DMA_BUF_BASE, 3, struct igt_dma_buf_sync_file)
-> +
-> +bool has_dmabuf_export_sync_file(int fd)
-> +{
-> +	struct vgem_bo bo;
-> +	int dmabuf, ret;
-> +	struct igt_dma_buf_sync_file arg;
-> +
-> +	bo.width = 1;
-> +	bo.height = 1;
-> +	bo.bpp = 32;
-> +	vgem_create(fd, &bo);
-> +
-> +	dmabuf = prime_handle_to_fd(fd, bo.handle);
-> +	gem_close(fd, bo.handle);
-> +
-> +	arg.flags = DMA_BUF_SYNC_WRITE;
-> +	arg.fd = -1;
-> +
-> +	ret = igt_ioctl(dmabuf, IGT_DMA_BUF_IOCTL_EXPORT_SYNC_FILE, &arg);
-> +	close(dmabuf);
-> +	igt_assert(ret == 0 || errno == ENOTTY);
-> +
-> +	return ret == 0;
-> +}
-> +
-> +int dmabuf_export_sync_file(int dmabuf, uint32_t flags)
-> +{
-> +	struct igt_dma_buf_sync_file arg;
-> +
-> +	arg.flags = flags;
-> +	arg.fd = -1;
-> +	do_ioctl(dmabuf, IGT_DMA_BUF_IOCTL_EXPORT_SYNC_FILE, &arg);
-> +
-> +	return arg.fd;
-> +}
-> +
-> +bool has_dmabuf_import_sync_file(int fd)
-> +{
-> +	struct vgem_bo bo;
-> +	int dmabuf, timeline, fence, ret;
-> +	struct igt_dma_buf_sync_file arg;
-> +
-> +	bo.width = 1;
-> +	bo.height = 1;
-> +	bo.bpp = 32;
-> +	vgem_create(fd, &bo);
-> +
-> +	dmabuf = prime_handle_to_fd(fd, bo.handle);
-> +	gem_close(fd, bo.handle);
-> +
-> +	timeline = sw_sync_timeline_create();
-> +	fence = sw_sync_timeline_create_fence(timeline, 1);
-> +	sw_sync_timeline_inc(timeline, 1);
-> +
-> +	arg.flags = DMA_BUF_SYNC_RW;
-> +	arg.fd = fence;
-> +
-> +	ret = igt_ioctl(dmabuf, IGT_DMA_BUF_IOCTL_IMPORT_SYNC_FILE, &arg);
-> +	close(dmabuf);
-> +	close(fence);
-> +	igt_assert(ret == 0 || errno == ENOTTY);
-> +
-> +	return ret == 0;
-> +}
-> +
-> +void dmabuf_import_sync_file(int dmabuf, uint32_t flags, int sync_fd)
-> +{
-> +	struct igt_dma_buf_sync_file arg;
-> +
-> +	arg.flags = flags;
-> +	arg.fd = sync_fd;
-> +	do_ioctl(dmabuf, IGT_DMA_BUF_IOCTL_IMPORT_SYNC_FILE, &arg);
-> +}
-> +
-> +void
-> +dmabuf_import_timeline_fence(int dmabuf, uint32_t flags,
-> +			     int timeline, uint32_t seqno)
-> +{
-> +	int fence;
-> +
-> +	fence = sw_sync_timeline_create_fence(timeline, seqno);
-> +	dmabuf_import_sync_file(dmabuf, flags, fence);
-> +	close(fence);
-> +}
-> +
-> +bool dmabuf_busy(int dmabuf, uint32_t flags)
-> +{
-> +	struct pollfd pfd = { .fd = dmabuf };
-> +
-> +	/* If DMA_BUF_SYNC_WRITE is set, we don't want to set POLLIN or
-> +	 * else poll() may return a non-zero value if there are only read
-> +	 * fences because POLLIN is ready even if POLLOUT isn't.
-> +	 */
-> +	if (flags & DMA_BUF_SYNC_WRITE)
-> +		pfd.events |= POLLOUT;
-> +	else if (flags & DMA_BUF_SYNC_READ)
-> +		pfd.events |= POLLIN;
-> +
-> +	return poll(&pfd, 1, 0) == 0;
-> +}
-> +
-> +bool sync_file_busy(int sync_file)
-> +{
-> +	struct pollfd pfd = { .fd = sync_file, .events = POLLIN };
-> +	return poll(&pfd, 1, 0) == 0;
-> +}
-> +
-> +bool dmabuf_sync_file_busy(int dmabuf, uint32_t flags)
-> +{
-> +	int sync_file;
-> +	bool busy;
-> +
-> +	sync_file = dmabuf_export_sync_file(dmabuf, flags);
-> +	busy = sync_file_busy(sync_file);
-> +	close(sync_file);
-> +
-> +	return busy;
-> +}
-> diff --git a/lib/dmabuf_sync_file.h b/lib/dmabuf_sync_file.h
-> new file mode 100644
-> index 00000000..08da8150
-> --- /dev/null
-> +++ b/lib/dmabuf_sync_file.h
-> @@ -0,0 +1,19 @@
-> +/* SPDX-License-Identifier: MIT */
-
-Same here, add copyright.
-
-> +
-> +#ifndef DMABUF_SYNC_FILE_H
-> +#define DMABUF_SYNC_FILE_H
-> +
-> +#include <stdbool.h>
-> +#include <stdint.h>
-> +
-> +bool has_dmabuf_export_sync_file(int fd);
-> +bool has_dmabuf_import_sync_file(int fd);
-> +int dmabuf_export_sync_file(int dmabuf, uint32_t flags);
-> +void dmabuf_import_sync_file(int dmabuf, uint32_t flags, int sync_fd);
-> +void dmabuf_import_timeline_fence(int dmabuf, uint32_t flags,
-> +			     int timeline, uint32_t seqno);
-> +bool dmabuf_busy(int dmabuf, uint32_t flags);
-> +bool sync_file_busy(int sync_file);
-> +bool dmabuf_sync_file_busy(int dmabuf, uint32_t flags);
-> +
-> +#endif
-> diff --git a/lib/meson.build b/lib/meson.build
-> index cef2d0ff..896d5733 100644
-> --- a/lib/meson.build
-> +++ b/lib/meson.build
-> @@ -1,5 +1,6 @@
->  lib_sources = [
->  	'drmtest.c',
-> +	'dmabuf_sync_file.c',
->  	'huc_copy.c',
->  	'i915/gem.c',
->  	'i915/gem_context.c',
-> diff --git a/tests/dmabuf_sync_file.c b/tests/dmabuf_sync_file.c
-> index 2179a76d..f59be125 100644
-> --- a/tests/dmabuf_sync_file.c
-> +++ b/tests/dmabuf_sync_file.c
-> @@ -1,140 +1,17 @@
->  // SPDX-License-Identifier: MIT
-
-Same here, add copyright.
-
->  
-> +#ifdef __linux__
-> +#include <linux/dma-buf.h>
-> +#endif
-> +#include <sys/poll.h>
-> +
-
-These two includes above should be in dmabuf_sync_file.h
-
-Regards,
-Kamil
-
->  #include "igt.h"
->  #include "igt_vgem.h"
->  #include "sw_sync.h"
-> -
-> -#include <linux/dma-buf.h>
-> -#include <sys/poll.h>
-> +#include "dmabuf_sync_file.h"
->  
->  IGT_TEST_DESCRIPTION("Tests for sync_file support in dma-buf");
->  
-> -struct igt_dma_buf_sync_file {
-> -	__u32 flags;
-> -	__s32 fd;
-> -};
-> -
-> -#define IGT_DMA_BUF_IOCTL_EXPORT_SYNC_FILE _IOWR(DMA_BUF_BASE, 2, struct igt_dma_buf_sync_file)
-> -#define IGT_DMA_BUF_IOCTL_IMPORT_SYNC_FILE _IOW(DMA_BUF_BASE, 3, struct igt_dma_buf_sync_file)
-> -
-> -static bool has_dmabuf_export_sync_file(int fd)
-> -{
-> -	struct vgem_bo bo;
-> -	int dmabuf, ret;
-> -	struct igt_dma_buf_sync_file arg;
-> -
-> -	bo.width = 1;
-> -	bo.height = 1;
-> -	bo.bpp = 32;
-> -	vgem_create(fd, &bo);
-> -
-> -	dmabuf = prime_handle_to_fd(fd, bo.handle);
-> -	gem_close(fd, bo.handle);
-> -
-> -	arg.flags = DMA_BUF_SYNC_WRITE;
-> -	arg.fd = -1;
-> -
-> -	ret = igt_ioctl(dmabuf, IGT_DMA_BUF_IOCTL_EXPORT_SYNC_FILE, &arg);
-> -	close(dmabuf);
-> -	igt_assert(ret == 0 || errno == ENOTTY);
-> -
-> -	return ret == 0;
-> -}
-> -
-> -static int dmabuf_export_sync_file(int dmabuf, uint32_t flags)
-> -{
-> -	struct igt_dma_buf_sync_file arg;
-> -
-> -	arg.flags = flags;
-> -	arg.fd = -1;
-> -	do_ioctl(dmabuf, IGT_DMA_BUF_IOCTL_EXPORT_SYNC_FILE, &arg);
-> -
-> -	return arg.fd;
-> -}
-> -
-> -static bool has_dmabuf_import_sync_file(int fd)
-> -{
-> -	struct vgem_bo bo;
-> -	int dmabuf, timeline, fence, ret;
-> -	struct igt_dma_buf_sync_file arg;
-> -
-> -	bo.width = 1;
-> -	bo.height = 1;
-> -	bo.bpp = 32;
-> -	vgem_create(fd, &bo);
-> -
-> -	dmabuf = prime_handle_to_fd(fd, bo.handle);
-> -	gem_close(fd, bo.handle);
-> -
-> -	timeline = sw_sync_timeline_create();
-> -	fence = sw_sync_timeline_create_fence(timeline, 1);
-> -	sw_sync_timeline_inc(timeline, 1);
-> -
-> -	arg.flags = DMA_BUF_SYNC_RW;
-> -	arg.fd = fence;
-> -
-> -	ret = igt_ioctl(dmabuf, IGT_DMA_BUF_IOCTL_IMPORT_SYNC_FILE, &arg);
-> -	close(dmabuf);
-> -	close(fence);
-> -	igt_assert(ret == 0 || errno == ENOTTY);
-> -
-> -	return ret == 0;
-> -}
-> -
-> -static void dmabuf_import_sync_file(int dmabuf, uint32_t flags, int sync_fd)
-> -{
-> -	struct igt_dma_buf_sync_file arg;
-> -
-> -	arg.flags = flags;
-> -	arg.fd = sync_fd;
-> -	do_ioctl(dmabuf, IGT_DMA_BUF_IOCTL_IMPORT_SYNC_FILE, &arg);
-> -}
-> -
-> -static void
-> -dmabuf_import_timeline_fence(int dmabuf, uint32_t flags,
-> -			     int timeline, uint32_t seqno)
-> -{
-> -	int fence;
-> -
-> -	fence = sw_sync_timeline_create_fence(timeline, seqno);
-> -	dmabuf_import_sync_file(dmabuf, flags, fence);
-> -	close(fence);
-> -}
-> -
-> -static bool dmabuf_busy(int dmabuf, uint32_t flags)
-> -{
-> -	struct pollfd pfd = { .fd = dmabuf };
-> -
-> -	/* If DMA_BUF_SYNC_WRITE is set, we don't want to set POLLIN or
-> -	 * else poll() may return a non-zero value if there are only read
-> -	 * fences because POLLIN is ready even if POLLOUT isn't.
-> -	 */
-> -	if (flags & DMA_BUF_SYNC_WRITE)
-> -		pfd.events |= POLLOUT;
-> -	else if (flags & DMA_BUF_SYNC_READ)
-> -		pfd.events |= POLLIN;
-> -
-> -	return poll(&pfd, 1, 0) == 0;
-> -}
-> -
-> -static bool sync_file_busy(int sync_file)
-> -{
-> -	struct pollfd pfd = { .fd = sync_file, .events = POLLIN };
-> -	return poll(&pfd, 1, 0) == 0;
-> -}
-> -
-> -static bool dmabuf_sync_file_busy(int dmabuf, uint32_t flags)
-> -{
-> -	int sync_file;
-> -	bool busy;
-> -
-> -	sync_file = dmabuf_export_sync_file(dmabuf, flags);
-> -	busy = sync_file_busy(sync_file);
-> -	close(sync_file);
-> -
-> -	return busy;
-> -}
-> -
->  static void test_export_basic(int fd)
->  {
->  	struct vgem_bo bo;
-> -- 
-> 2.38.1
+> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 > 
+> Conditional to promise of a prioritised follow up improvement, if it turns
+> out GGTT wastage due a bit over zealous guard size comes to bite.
+
+Sure! I'll be alert!
+
+There are some unrelated failures from CI, just to be sure I sent
+last night a trybot run.
+
+Thanks, Tvrtko!
+
+Andi
