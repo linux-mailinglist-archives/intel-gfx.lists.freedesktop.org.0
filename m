@@ -1,34 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 433B76407CA
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Dec 2022 14:38:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFAE26407D6
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Dec 2022 14:44:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B325E10E05D;
-	Fri,  2 Dec 2022 13:38:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B0C510E707;
+	Fri,  2 Dec 2022 13:44:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B0F8F10E0BD;
- Fri,  2 Dec 2022 13:38:03 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AB095AA01E;
- Fri,  2 Dec 2022 13:38:03 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EAA9210E0BD
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 Dec 2022 13:44:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1669988655; x=1701524655;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=P9LTZzxBF4hKZiHgc1+5qi/byCe3trhei8w2TPRMnSY=;
+ b=I0glwI7Ld4NgQKM2K3GaqA1MVHg9+aArk5djIX4gnD01QUqeeKTv7HcY
+ vPP9/e2Wz2PKIrxCqKb8SVYjtiX4xmorK+hOTyig4pXT431YUs4TEPxvN
+ yXp+Ro7gSmj88YupMmTbENGRmI18UOcEvc0oi/hnFPXAvM/c5dtaNgDR/
+ uQs/bvi+QRuI7u9bfYgcvws3cjp7Rk2+1cOusBVCt4rPIBSVBtJf0rO3Q
+ W6roNUjAvJIe0uH0bv/Wa7SmW/mSZtO+BBge/w+HZtUAxPeiXlK3PLXls
+ fR7WXOigEkpBlR8igjuj39Y7XiUO0RpLb+wSiyALggk8hgVJY8zRFuc6e g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10548"; a="317102397"
+X-IronPort-AV: E=Sophos;i="5.96,212,1665471600"; d="scan'208";a="317102397"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2022 05:44:15 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10548"; a="622703988"
+X-IronPort-AV: E=Sophos;i="5.96,212,1665471600"; d="scan'208";a="622703988"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by orsmga006.jf.intel.com with SMTP; 02 Dec 2022 05:44:13 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 02 Dec 2022 15:44:12 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  2 Dec 2022 15:44:08 +0200
+Message-Id: <20221202134412.21943-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.37.4
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Fri, 02 Dec 2022 13:38:03 -0000
-Message-ID: <166998828367.27865.8263989008921058938@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221202122844.428006-1-matthew.auld@intel.com>
-In-Reply-To: <20221202122844.428006-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5Bv6=2C1/3=5D_drm/i915/migrate=3A_Acc?=
- =?utf-8?q?ount_for_the_reserved=5Fspace?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/4] drm/i915/vrr: VRR fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,31 +57,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Series: series starting with [v6,1/3] drm/i915/migrate: Account for the reserved_space
-URL   : https://patchwork.freedesktop.org/series/111583/
-State : warning
+Fix a bunch of VRR problems:
+- inconsistent register latch point on icl/tgl
+- bogus guardband/vblank exit length calculations on adl+
+- adjustments to the vrr enable/disable seqeuence to avoid
+  pipe/transcoder getting stuck on mtl when switching from
+  vrr mode to non-vrr mode
 
-== Summary ==
+Ville Syrjälä (4):
+  drm/i915/vrr: Make registers latch in a consitent place on icl/tgl
+  drm/i915/vrr: Fix guardband/vblank exit length calculation for adl+
+  drm/i915/vrr: Reorder transcoder vs. vrr enable/disable
+  drm/i915/vrr: Be more careful with the bits in TRANS_VRR_CTL
 
-Error: dim checkpatch failed
-475d93799f92 drm/i915/migrate: Account for the reserved_space
-e9b2c66ac06c drm/i915/selftests: use live_subtests for live_migrate
-9a6a474d8db7 drm/i915/selftests: exercise emit_pte() with nearly full ring
--:15: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#15: 
-v5: Use a simple on-stack timer to kill the spinner instead of kthread (Chris)
+ drivers/gpu/drm/i915/display/intel_ddi.c |  8 ++--
+ drivers/gpu/drm/i915/display/intel_vrr.c | 59 ++++++++++++------------
+ 2 files changed, 34 insertions(+), 33 deletions(-)
 
--:82: WARNING:TRACING_LOGGING: Unnecessary ftrace-like logging - prefer using ftrace
-#82: FILE: drivers/gpu/drm/i915/gt/selftest_migrate.c:543:
-+	pr_info("%s\n", __func__);
-
-total: 0 errors, 2 warnings, 0 checks, 187 lines checked
-
+-- 
+2.37.4
 
