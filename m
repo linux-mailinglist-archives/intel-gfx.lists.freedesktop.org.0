@@ -2,47 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFAB26413F2
-	for <lists+intel-gfx@lfdr.de>; Sat,  3 Dec 2022 04:15:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5242B64140B
+	for <lists+intel-gfx@lfdr.de>; Sat,  3 Dec 2022 04:46:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10A9B10E73C;
-	Sat,  3 Dec 2022 03:15:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00A4910E73C;
+	Sat,  3 Dec 2022 03:46:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05B0D10E73C
- for <intel-gfx@lists.freedesktop.org>; Sat,  3 Dec 2022 03:15:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1670037304; x=1701573304;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=wjcCQZPWqkcK9RGxzI/bAAsLAEZiHvzblIATiDtz6PA=;
- b=Ojd7LtWum5qfTK/X/XhPNAcnONHCaNnRZSSmjUJLA2eQ/V55JQK99xoz
- d0ZOB4vA2P9dvfqUTALy0djipGle3sptSMVt0f1uisCcWshtQzwtgfyi5
- 8YPpyuOGDMJbyyZxBt+u8mIzX3+Ac4slEWkOn1hMxkpH5Qp+LXGWAXpCa
- Bnzdu51z10L6267qcg80ZufjNsdS2Z//4MVmM4cvLukra0PGJeplzU11o
- Srbk0herW9EPFL4OBycEHZ0W2VwOnwrXjctVeGWTyspTUpENFDJcI/W3F
- BtbUvVmM6zgg2edBfV9pJBVXx9Gbn3TACA2/l6dhwmyBftPBhLKEI7VnK w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10549"; a="378242297"
-X-IronPort-AV: E=Sophos;i="5.96,214,1665471600"; d="scan'208";a="378242297"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2022 19:15:03 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10549"; a="645238803"
-X-IronPort-AV: E=Sophos;i="5.96,214,1665471600"; d="scan'208";a="645238803"
-Received: from unerlige-ril.jf.intel.com ([10.165.21.138])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2022 19:15:02 -0800
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  2 Dec 2022 19:14:54 -0800
-Message-Id: <20221203031454.1280538-1-ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.38.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5391A10E73C;
+ Sat,  3 Dec 2022 03:45:58 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4C8FEAA01E;
+ Sat,  3 Dec 2022 03:45:58 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/hwmon: Silence "mailbox access failed"
- warning in snb_pcode_read
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
+Date: Sat, 03 Dec 2022 03:45:58 -0000
+Message-ID: <167003915827.8385.14711611812007311704@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221203031454.1280538-1-ashutosh.dixit@intel.com>
+In-Reply-To: <20221203031454.1280538-1-ashutosh.dixit@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/hwmon=3A_Silence_=22mailbox_access_failed=22_warni?=
+ =?utf-8?q?ng_in_snb=5Fpcode=5Fread?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,40 +41,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-hwm_pcode_read_i1 is called during i915 load. This results in the following
-warning from snb_pcode_read because POWER_SETUP_SUBCOMMAND_READ_I1 is
-unsupported on DG1/DG2.
+== Series Details ==
 
-[drm:snb_pcode_read [i915]] warning: pcode (read from mbox 47c) \
-				mailbox access failed for snb_pcode_read_p [i915]: -6
+Series: drm/i915/hwmon: Silence "mailbox access failed" warning in snb_pcode_read
+URL   : https://patchwork.freedesktop.org/series/111599/
+State : warning
 
-The code handles the unsupported command but the warning in dmesg is a red
+== Summary ==
+
+Error: dim checkpatch failed
+941c63ebf808 drm/i915/hwmon: Silence "mailbox access failed" warning in snb_pcode_read
+-:15: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#15: 
 herring which has resulted in a couple of bugs being filed. Therefore silence
-the warning by avoiding calling snb_pcode_read_p for DG1/DG2.
 
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
----
- drivers/gpu/drm/i915/i915_hwmon.c | 4 ++++
- 1 file changed, 4 insertions(+)
+total: 0 errors, 1 warnings, 0 checks, 10 lines checked
 
-diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
-index c588a17f97e98..cca7a4350ec8f 100644
---- a/drivers/gpu/drm/i915/i915_hwmon.c
-+++ b/drivers/gpu/drm/i915/i915_hwmon.c
-@@ -293,6 +293,10 @@ static const struct hwmon_channel_info *hwm_gt_info[] = {
- /* I1 is exposed as power_crit or as curr_crit depending on bit 31 */
- static int hwm_pcode_read_i1(struct drm_i915_private *i915, u32 *uval)
- {
-+	/* Avoid ILLEGAL_SUBCOMMAND "mailbox access failed" warning in snb_pcode_read */
-+	if (IS_DG1(i915) || IS_DG2(i915))
-+		return -ENXIO;
-+
- 	return snb_pcode_read_p(&i915->uncore, PCODE_POWER_SETUP,
- 				POWER_SETUP_SUBCOMMAND_READ_I1, 0, uval);
- }
--- 
-2.38.0
 
