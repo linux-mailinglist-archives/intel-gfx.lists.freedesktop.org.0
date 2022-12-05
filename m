@@ -2,53 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 688A56426D1
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Dec 2022 11:38:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9373F6426F3
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 Dec 2022 11:51:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECCE410E055;
-	Mon,  5 Dec 2022 10:38:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 160E710E1AE;
+	Mon,  5 Dec 2022 10:51:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A22ED10E055
- for <intel-gfx@lists.freedesktop.org>; Mon,  5 Dec 2022 10:38:13 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2A9E10E081;
+ Mon,  5 Dec 2022 10:51:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1670236693; x=1701772693;
+ t=1670237460; x=1701773460;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=3CC5FEi31pXXQ5u0ggvTHC5xYFRxX1g57kzbFaUnkbs=;
- b=mJBMQzV0OTj0Y65nWcq2RHZY9BgrbzkvGbPvFOgbQIJFg5Jrgu/rRksg
- lQpQM1SgPQIFHNI8hwlyKlOH1bBWQ4Jq7/0MIQ++/MzXsGScPSk2Xw1s9
- kR6con9JrUdGYEehheN/MArNVyf443VxLLKtkpoJHzciuWmAKo6dIvtrx
- 0o6wEMZxDw96HyoShvYuoz1Ld+kaBh0efZrPYBLU60S2zXa6h+UsYjTIx
- WUzcNA7YGFxH2cZoDmat5RQsOyspX3fnON/Lg7QKqc0ZAmr2EsOxssRU7
- /F/afGlLATBWuJ3O1teIf7l50OoPmzmHiWv/SeJJuggOGEV1OkfBNdRgY g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10551"; a="299743678"
-X-IronPort-AV: E=Sophos;i="5.96,219,1665471600"; d="scan'208";a="299743678"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2022 02:38:12 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10551"; a="596153785"
-X-IronPort-AV: E=Sophos;i="5.96,219,1665471600"; d="scan'208";a="596153785"
+ bh=ZtQiyBckUqwzejPR2GfLMw1fO1ZsEeVGuEaG9PLVtdI=;
+ b=N/oB47w+D3XnGphv8r+02MIiwrur+pA2vncxnGPeY5TnnRzynGA7HV+y
+ R+BtqkFyEL+0VdazbmKx5ag0s6BNW8Fw0EZbLyEisaVDhFlsdVh/3GcKd
+ 95JSoeH9rQnUT54bq25Zyw1t8u/CyB2AVE2k0Iu9gxe8geymUqw/sRXxq
+ k01DNaaGeps2Z7BtLnRtvY3El3CF2LrRHrHEQl7K1AROrIu2H++JZVs9n
+ TA2a0z9VN3Km5teMe+R9iBamh8EkNEJgZg2W7JgTs7h3W2LjUez4gWRdx
+ L9PfW3ekRl2eet719tnFxXuvae8EyHi1B5uhFj/K+xYQX0zwqhuR3ZHEg w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10551"; a="315021579"
+X-IronPort-AV: E=Sophos;i="5.96,219,1665471600"; d="scan'208";a="315021579"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2022 02:51:00 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10551"; a="623461396"
+X-IronPort-AV: E=Sophos;i="5.96,219,1665471600"; d="scan'208";a="623461396"
 Received: from akramiss-mobl1.amr.corp.intel.com (HELO localhost)
  ([10.252.54.203])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2022 02:38:10 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>,
- intel-gfx@lists.freedesktop.org, ville.syrjala@linux.intel.com,
- imre.deak@intel.com
-In-Reply-To: <20221201064437.4180130-1-arun.r.murthy@intel.com>
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2022 02:50:56 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: ye.xingchen@zte.com.cn, joonas.lahtinen@linux.intel.com
+In-Reply-To: <202212011053265568903@zte.com.cn>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221124070925.3834910-1-arun.r.murthy@intel.com>
- <20221201064437.4180130-1-arun.r.murthy@intel.com>
-Date: Mon, 05 Dec 2022 12:38:07 +0200
-Message-ID: <87bkoi2l0w.fsf@intel.com>
+References: <202212011053265568903@zte.com.cn>
+Date: Mon, 05 Dec 2022 12:50:53 +0200
+Message-ID: <878rjm2kfm.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCHv2] drm/i915/dp: Change aux_ctl reg read to
- polling read
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: use sysfs_emit() to instead of
+ scnprintf()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,96 +58,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, daniel@ffwll.ch, rodrigo.vivi@intel.com,
+ airlied@gmail.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 01 Dec 2022, Arun R Murthy <arun.r.murthy@intel.com> wrote:
-> The busy timeout logic checks for the AUX BUSY, then waits for the
-> timeout period and then after timeout reads the register for BUSY set
-> and fails.
-
-That's inaccurate. It checks for busy, waits for the gmbus irq, and on
-timeout or irq, whichever happens first, checks busy again.
-
-The commit message fails to explain what is wrong with that. The
-rationale is missing.
-
-> Instead replace interrupt with polling so as to read the AUX CTL
-> register often before the timeout period.
-
-Again, what's the problem that this addresses? Are you not getting an
-irq, and often hitting the timeout? Or do you think there's too much
-delay between getting the irq and continuing? Or what?
-
+On Thu, 01 Dec 2022, <ye.xingchen@zte.com.cn> wrote:
+> From: ye xingchen <ye.xingchen@zte.com.cn>
 >
-> v2: replace interrupt with polling read
->
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp_aux.c | 24 ++++++++++++---------
->  1 file changed, 14 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> index 664bebdecea7..22c0a59850df 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> @@ -40,20 +40,24 @@ intel_dp_aux_wait_done(struct intel_dp *intel_dp)
->  	i915_reg_t ch_ctl = intel_dp->aux_ch_ctl_reg(intel_dp);
->  	const unsigned int timeout_ms = 10;
->  	u32 status;
-> -	bool done;
-> -
-> -#define C (((status = intel_uncore_read_notrace(&i915->uncore, ch_ctl)) & DP_AUX_CH_CTL_SEND_BUSY) == 0)
-> -	done = wait_event_timeout(i915->display.gmbus.wait_queue, C,
-> -				  msecs_to_jiffies_timeout(timeout_ms));
-> +	int try;
->  
-> +	for (try = 0; try < 10; try++) {
-> +		status = intel_uncore_read_notrace(&i915->uncore, ch_ctl);
-> +		if ((status & DP_AUX_CH_CTL_SEND_BUSY) == 0)
-> +			break;
-> +		msleep(1);
+> Replace the open-code with sysfs_emit() to simplify the code.
 
-I believe msleep(1), while used quite a bit in the kernel, is considered
-bad style. You don't really know how long it's going to sleep, it's not
-that accurate. It could be 10-20 ms I think. (IIRC I've seen 100+ ms
-sleeps on busy systems.) So if the condition never happens, you might be
-looping for 100-200 ms here instead of the 10 ms.
+I was going to push this, but noticed the function has a third
+scnprintf(), and the last two play together with count. It would be
+confusing to have a mix of sysfs_emit() and scnprintf(). The third one
+can't be blindly converted to sysfs_emit() because it writes at an
+offset not aligned by PAGE_SIZE.
 
-And you might wait for 20+ ms before the 2nd read of the register.
-
-If your problem is the delay between the irq calling wake_up_all() and
-this actually waking up (which I believe is subject to the same
-latencies as msleep()) then this is all pretty random. You need to
-analyze and describe the problem better.
-
-> +	}
->  	/* just trace the final value */
->  	trace_i915_reg_rw(false, ch_ctl, status, sizeof(status), true);
-
-This should continue to trace the final value. Now you read status once
-more after this.
-
+So I'm not taking this.
 
 BR,
 Jani.
 
->  
-> -	if (!done)
-> -		drm_err(&i915->drm,
-> -			"%s: did not complete or timeout within %ums (status 0x%08x)\n",
-> -			intel_dp->aux.name, timeout_ms, status);
-> -#undef C
-> +	if (try == 3) {
-> +		status = intel_uncore_read_notrace(&i915->uncore, ch_ctl);
-> +		if ((status & DP_AUX_CH_CTL_SEND_BUSY) != 0)
-> +			drm_err(&i915->drm,
-> +				"%s: did not complete or timeout within %ums (status 0x%08x)\n",
-> +				intel_dp->aux.name, timeout_ms, status);
-> +	}
->  
->  	return status;
->  }
+>
+> Signed-off-by: ye xingchen <ye.xingchen@zte.com.cn>
+> ---
+>  drivers/gpu/drm/i915/i915_mitigations.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_mitigations.c b/drivers/gpu/drm/i915/i915_mitigations.c
+> index def7302ef7fe..2b7aaaefb3a9 100644
+> --- a/drivers/gpu/drm/i915/i915_mitigations.c
+> +++ b/drivers/gpu/drm/i915/i915_mitigations.c
+> @@ -102,10 +102,10 @@ static int mitigations_get(char *buffer, const struct kernel_param *kp)
+>  	bool enable;
+>
+>  	if (!local)
+> -		return scnprintf(buffer, PAGE_SIZE, "%s\n", "off");
+> +		return sysfs_emit(buffer, "%s\n", "off");
+>
+>  	if (local & BIT(BITS_PER_LONG - 1)) {
+> -		count = scnprintf(buffer, PAGE_SIZE, "%s,", "auto");
+> +		count = sysfs_emit(buffer, "%s,", "auto");
+>  		enable = false;
+>  	} else {
+>  		enable = true;
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
