@@ -1,50 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6EFC642369
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Dec 2022 08:07:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 084C2642392
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 Dec 2022 08:29:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DACC410E104;
-	Mon,  5 Dec 2022 07:07:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A48D10E0FA;
+	Mon,  5 Dec 2022 07:29:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2732D10E10C
- for <intel-gfx@lists.freedesktop.org>; Mon,  5 Dec 2022 07:07:08 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 77ECB10E0FA
+ for <intel-gfx@lists.freedesktop.org>; Mon,  5 Dec 2022 07:29:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1670224028; x=1701760028;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Rxy3l081PMlXOc5zlcfbgfm4hPojxBm6Ur9Ayljtm/0=;
- b=DVCrj9sXaXOVcslCHNOZloGts7HnNfWr6lL+b1t4ECHDEtKnolZhAE9/
- QkS58FypUwTbwBsmBnmjNbHFSG8YWZ6lkKoS+pSWaRDiuZgRWTJ/0hjiq
- 9pKR2ypow3sQzLw/ADGBQ/YSTO/yhQWpgh3WqDgJKSMBdItIOC8KzZZtZ
- ntZHV+NfvdcYdrz5KMrMtUlvm4+/75X5+RMsxrmHVyVgpRHHlLc4XKqrX
- JeBRftUgn4+DdSChFfaGoqikDcsctwVEF0I/lw+Jnm2GLyvk6Lwx602DQ
- 87vjj7gevSnzKQHIoqZDKW9L/YUiK1ZEsbMUNtxybp3rs1jIUBL0nddKZ Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10551"; a="317423702"
-X-IronPort-AV: E=Sophos;i="5.96,218,1665471600"; d="scan'208";a="317423702"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2022 23:07:07 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10551"; a="676489420"
-X-IronPort-AV: E=Sophos;i="5.96,218,1665471600"; d="scan'208";a="676489420"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by orsmga008.jf.intel.com with ESMTP; 04 Dec 2022 23:07:04 -0800
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  5 Dec 2022 12:35:43 +0530
-Message-Id: <20221205070543.2510309-10-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221205070543.2510309-1-suraj.kandpal@intel.com>
-References: <20221205070543.2510309-1-suraj.kandpal@intel.com>
+ t=1670225349; x=1701761349;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=QNTDi8Uv023zp9mc1dk02Tmuumo31FzgctLncw/R41Q=;
+ b=M+NayRJ4PUsmNAkbJKVhUe7JqgPddL6mquuIB9kOPsv7qm4XzOM4Xz8X
+ av8gmGG2HD702RCnO9xPWJSQuKKVoX+6Gnwzrk0LKQeDGg3XJXdPGOFka
+ c/PQn2+xks3YwdbK5YOOOl+KZ3/ztUfsuUkVcpP8IOuPqVRmlr6hBBbwC
+ OImw35dfncafeKYL1/UOS58DucW/31BOCV/zfn2OG+PcDPLw6yHbWpKov
+ FjxW4yMeD7pPTBYMuhvhrI87zqBaocov1yXl4x3T0q/J6P5HmkDnjrVLf
+ Vl3Iwh9mtVdkCeA3pNqEMtZQks8HM+3q0unqBULDTtKL5MsG5eTfqGEsY Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10551"; a="303900679"
+X-IronPort-AV: E=Sophos;i="5.96,218,1665471600"; d="scan'208";a="303900679"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2022 23:29:08 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10551"; a="770257361"
+X-IronPort-AV: E=Sophos;i="5.96,218,1665471600"; d="scan'208";a="770257361"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2022 23:29:07 -0800
+Date: Mon, 5 Dec 2022 09:28:59 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Message-ID: <Y42du6EzVtTs2ir5@intel.com>
+References: <20221128101922.217217-1-ankit.k.nautiyal@intel.com>
+ <20221128101922.217217-5-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 09/13] drm/i915/hdcp: HDCP2.x Refactoring to
- agnotic cp f/w
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221128101922.217217-5-ankit.k.nautiyal@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 04/11] drm/i915/dp: Get optimal link config
+ to have best compressed bpp
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,488 +58,310 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tomas Winkler <tomas.winkler@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Anshuman Gupta <anshuman.gupta@intel.com>
+On Mon, Nov 28, 2022 at 03:49:15PM +0530, Ankit Nautiyal wrote:
+> Currently, we take the max lane, rate and pipe bpp, to get the maximum
+> compressed bpp possible. We then set the output bpp to this value.
+> This patch provides support to have max bpp, min rate and min lanes,
+> that can support the min compressed bpp.
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 223 +++++++++++++++++++++---
+>  1 file changed, 200 insertions(+), 23 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 8ddbbada22ab..10f9292e1e0d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -1461,6 +1461,187 @@ static int intel_dp_dsc_compute_params(struct intel_encoder *encoder,
+>  	return drm_dsc_compute_rc_parameters(vdsc_cfg);
+>  }
+>  
+> +static bool is_dsc_bw_sufficient(int link_rate, int lane_count, int compressed_bpp,
+> +				 const struct drm_display_mode *adjusted_mode)
+> +{
+> +	int mode_rate = intel_dp_link_required(adjusted_mode->crtc_clock, compressed_bpp);
+> +	int link_avail = intel_dp_max_data_rate(link_rate, lane_count);
+> +
+> +	return mode_rate <= link_avail;
+> +}
+> +
+> +static int dsc_compute_link_config(struct intel_dp *intel_dp,
+> +				   struct intel_crtc_state *pipe_config,
+> +				   struct link_config_limits *limits,
+> +				   int pipe_bpp,
+> +				   u16 compressed_bpp)
+> +{
+> +	const struct drm_display_mode *adjusted_mode =
+> +		&pipe_config->hw.adjusted_mode;
+> +	int link_rate, lane_count;
+> +	int dsc_max_bpp;
+> +	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+> +	int i;
+> +
+> +	for (i = 0; i < intel_dp->num_common_rates; i++) {
+> +		link_rate = intel_dp_common_rate(intel_dp, i);
+> +		if (link_rate < limits->min_rate || link_rate > limits->max_rate)
+> +			continue;
+> +
+> +		for (lane_count = limits->min_lane_count;
+> +		     lane_count <= limits->max_lane_count;
+> +		     lane_count <<= 1) {
+> +			dsc_max_bpp = intel_dp_dsc_get_output_bpp_max(dev_priv,
+> +								      link_rate,
+> +								      lane_count,
+> +								      adjusted_mode->crtc_clock,
+> +								      adjusted_mode->crtc_hdisplay,
+> +								      pipe_config->bigjoiner_pipes,
+> +								      pipe_bpp);
+> +			if (compressed_bpp > dsc_max_bpp)
+> +				continue;
+> +
+> +			if (!is_dsc_bw_sufficient(link_rate, lane_count,
+> +						  compressed_bpp, adjusted_mode))
+> +				continue;
+> +
+> +			pipe_config->lane_count = lane_count;
+> +			pipe_config->port_clock = link_rate;
+> +
+> +			return 0;
+> +		}
+> +	}
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static u16 dsc_max_sink_compressed_bppx16(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE],
+> +					  struct intel_crtc_state *pipe_config,
+> +					  int bpc)
+> +{
+> +	u16 max_bpp = dsc_dpcd[DP_DSC_MAX_BITS_PER_PIXEL_LOW - DP_DSC_SUPPORT] |
+> +		     (dsc_dpcd[DP_DSC_MAX_BITS_PER_PIXEL_HI - DP_DSC_SUPPORT] &
+> +		      DP_DSC_MAX_BITS_PER_PIXEL_HI_MASK << DP_DSC_MAX_BITS_PER_PIXEL_HI_SHIFT);
+> +
+> +	if (max_bpp)
+> +		return max_bpp;
 
-As now we have more then one type of content protection
-secrity firmware. Let change the i915_cp_fw_hdcp_interface.h
-header naming convention to suit generic f/w type.
-%s/MEI_/FW_
-%s/mei_fw/cp_fw
-%s/mei_dev/fw_dev
+I guess it should be max_bpp << 4, just as everything else returned, unless that
+dpcd reg doesn't store it shifted already, which doesn't seem to be the case.
 
-As interface to CP FW can be either a non i915 component or
-i915 intergral component, change structure name Accordingly.
-%s/i915_hdcp_comp_master/i915_hdcp_fw_master
-%s/i915_hdcp_component_ops/i915_hdcp_fw_ops
+> +	/*
+> +	 * If support not given in DPCD 67h, 68h use the Maximum Allowed bit rate
+> +	 * values as given in spec Table 2-157 DP v2.0
+> +	 */
+> +	switch (pipe_config->output_format) {
+> +	case INTEL_OUTPUT_FORMAT_RGB:
+> +	case INTEL_OUTPUT_FORMAT_YCBCR444:
+> +		return (3 * bpc) << 4;
+> +	case INTEL_OUTPUT_FORMAT_YCBCR420:
+> +		return (3 * (bpc / 2)) << 4;
+> +	default:
+> +		MISSING_CASE(pipe_config->output_format);
+> +		break;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static u16 dsc_min_compressed_bppx16(struct intel_crtc_state *pipe_config)
+> +{
+> +	switch (pipe_config->output_format) {
+> +	case INTEL_OUTPUT_FORMAT_RGB:
+> +	case INTEL_OUTPUT_FORMAT_YCBCR444:
+> +		return 8 << 4;
+> +	case INTEL_OUTPUT_FORMAT_YCBCR420:
+> +		return 6 << 4;
+> +	default:
+> +		MISSING_CASE(pipe_config->output_format);
+> +		break;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int dsc_compute_compressed_bpp(struct intel_dp *intel_dp,
+> +				      struct intel_crtc_state *pipe_config,
+> +				      struct link_config_limits *limits,
+> +				      int pipe_bpp)
+> +{
+> +	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+> +	u16 compressed_bpp;
+> +	int dsc_min_bpp, dsc_src_max_bpp, dsc_sink_max_bpp, dsc_max_bpp;
+> +	int ret;
+> +
+> +	dsc_min_bpp = max(dsc_min_compressed_bppx16(pipe_config) >> 4, 8);
+> +	if (DISPLAY_VER(dev_priv) <= 12)
+> +		dsc_src_max_bpp = 23;
+> +	else
+> +		dsc_src_max_bpp = 27;
+> +	dsc_sink_max_bpp = dsc_max_sink_compressed_bppx16(intel_dp->dsc_dpcd,
+> +							  pipe_config, pipe_bpp / 3) >> 4;
+> +
+> +	dsc_max_bpp = dsc_sink_max_bpp ? min(dsc_sink_max_bpp, dsc_src_max_bpp) : dsc_src_max_bpp;
 
-Cc: Tomas Winkler <tomas.winkler@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Uma Shankar <uma.shankar@intel.com>
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- .../gpu/drm/i915/display/intel_display_core.h |  3 +-
- drivers/gpu/drm/i915/display/intel_hdcp.c     | 66 ++++++++---------
- drivers/misc/mei/hdcp/mei_hdcp.c              | 12 ++--
- include/drm/i915_cp_fw_hdcp_interface.h       | 70 +++++++++----------
- 4 files changed, 76 insertions(+), 75 deletions(-)
+Another thing when I was checking it eventually could end up with same compressed bpp, just
+as input bpp, which I guess is wrong(we should still try to get some benefit from DSC, no
+point in having compressed bpp, same as input bpp, even if source/sink allows that)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index 57ddce3ba02b..a769cc8e2745 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -16,6 +16,7 @@
- #include <drm/drm_connector.h>
- #include <drm/drm_modeset_lock.h>
- 
-+#include "i915/i915_cp_fw_hdcp_interface.h"
- #include "intel_cdclk.h"
- #include "intel_display.h"
- #include "intel_display_power.h"
-@@ -368,7 +369,7 @@ struct intel_display {
- 	} gmbus;
- 
- 	struct {
--		struct i915_hdcp_comp_master *master;
-+		struct i915_hdcp_fw_master *master;
- 		bool comp_added;
- 
- 		/* Mutex to protect the above hdcp component related values. */
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 6406fd487ee5..e856b10948ab 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -1143,7 +1143,7 @@ hdcp2_prepare_ake_init(struct intel_connector *connector,
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
- 	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
- 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
--	struct i915_hdcp_comp_master *comp;
-+	struct i915_hdcp_fw_master *comp;
- 	int ret;
- 
- 	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-@@ -1154,7 +1154,7 @@ hdcp2_prepare_ake_init(struct intel_connector *connector,
- 		return -EINVAL;
- 	}
- 
--	ret = comp->ops->initiate_hdcp2_session(comp->mei_dev, data, ake_data);
-+	ret = comp->ops->initiate_hdcp2_session(comp->fw_dev, data, ake_data);
- 	if (ret)
- 		drm_dbg_kms(&dev_priv->drm, "Prepare_ake_init failed. %d\n",
- 			    ret);
-@@ -1173,7 +1173,7 @@ hdcp2_verify_rx_cert_prepare_km(struct intel_connector *connector,
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
- 	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
- 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
--	struct i915_hdcp_comp_master *comp;
-+	struct i915_hdcp_fw_master *comp;
- 	int ret;
- 
- 	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-@@ -1184,7 +1184,7 @@ hdcp2_verify_rx_cert_prepare_km(struct intel_connector *connector,
- 		return -EINVAL;
- 	}
- 
--	ret = comp->ops->verify_receiver_cert_prepare_km(comp->mei_dev, data,
-+	ret = comp->ops->verify_receiver_cert_prepare_km(comp->fw_dev, data,
- 							 rx_cert, paired,
- 							 ek_pub_km, msg_sz);
- 	if (ret < 0)
-@@ -1201,7 +1201,7 @@ static int hdcp2_verify_hprime(struct intel_connector *connector,
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
- 	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
- 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
--	struct i915_hdcp_comp_master *comp;
-+	struct i915_hdcp_fw_master *comp;
- 	int ret;
- 
- 	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-@@ -1212,7 +1212,7 @@ static int hdcp2_verify_hprime(struct intel_connector *connector,
- 		return -EINVAL;
- 	}
- 
--	ret = comp->ops->verify_hprime(comp->mei_dev, data, rx_hprime);
-+	ret = comp->ops->verify_hprime(comp->fw_dev, data, rx_hprime);
- 	if (ret < 0)
- 		drm_dbg_kms(&dev_priv->drm, "Verify hprime failed. %d\n", ret);
- 	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
-@@ -1227,7 +1227,7 @@ hdcp2_store_pairing_info(struct intel_connector *connector,
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
- 	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
- 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
--	struct i915_hdcp_comp_master *comp;
-+	struct i915_hdcp_fw_master *comp;
- 	int ret;
- 
- 	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-@@ -1238,7 +1238,7 @@ hdcp2_store_pairing_info(struct intel_connector *connector,
- 		return -EINVAL;
- 	}
- 
--	ret = comp->ops->store_pairing_info(comp->mei_dev, data, pairing_info);
-+	ret = comp->ops->store_pairing_info(comp->fw_dev, data, pairing_info);
- 	if (ret < 0)
- 		drm_dbg_kms(&dev_priv->drm, "Store pairing info failed. %d\n",
- 			    ret);
-@@ -1254,7 +1254,7 @@ hdcp2_prepare_lc_init(struct intel_connector *connector,
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
- 	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
- 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
--	struct i915_hdcp_comp_master *comp;
-+	struct i915_hdcp_fw_master *comp;
- 	int ret;
- 
- 	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-@@ -1265,7 +1265,7 @@ hdcp2_prepare_lc_init(struct intel_connector *connector,
- 		return -EINVAL;
- 	}
- 
--	ret = comp->ops->initiate_locality_check(comp->mei_dev, data, lc_init);
-+	ret = comp->ops->initiate_locality_check(comp->fw_dev, data, lc_init);
- 	if (ret < 0)
- 		drm_dbg_kms(&dev_priv->drm, "Prepare lc_init failed. %d\n",
- 			    ret);
-@@ -1281,7 +1281,7 @@ hdcp2_verify_lprime(struct intel_connector *connector,
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
- 	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
- 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
--	struct i915_hdcp_comp_master *comp;
-+	struct i915_hdcp_fw_master *comp;
- 	int ret;
- 
- 	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-@@ -1292,7 +1292,7 @@ hdcp2_verify_lprime(struct intel_connector *connector,
- 		return -EINVAL;
- 	}
- 
--	ret = comp->ops->verify_lprime(comp->mei_dev, data, rx_lprime);
-+	ret = comp->ops->verify_lprime(comp->fw_dev, data, rx_lprime);
- 	if (ret < 0)
- 		drm_dbg_kms(&dev_priv->drm, "Verify L_Prime failed. %d\n",
- 			    ret);
-@@ -1307,7 +1307,7 @@ static int hdcp2_prepare_skey(struct intel_connector *connector,
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
- 	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
- 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
--	struct i915_hdcp_comp_master *comp;
-+	struct i915_hdcp_fw_master *comp;
- 	int ret;
- 
- 	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-@@ -1318,7 +1318,7 @@ static int hdcp2_prepare_skey(struct intel_connector *connector,
- 		return -EINVAL;
- 	}
- 
--	ret = comp->ops->get_session_key(comp->mei_dev, data, ske_data);
-+	ret = comp->ops->get_session_key(comp->fw_dev, data, ske_data);
- 	if (ret < 0)
- 		drm_dbg_kms(&dev_priv->drm, "Get session key failed. %d\n",
- 			    ret);
-@@ -1336,7 +1336,7 @@ hdcp2_verify_rep_topology_prepare_ack(struct intel_connector *connector,
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
- 	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
- 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
--	struct i915_hdcp_comp_master *comp;
-+	struct i915_hdcp_fw_master *comp;
- 	int ret;
- 
- 	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-@@ -1347,7 +1347,7 @@ hdcp2_verify_rep_topology_prepare_ack(struct intel_connector *connector,
- 		return -EINVAL;
- 	}
- 
--	ret = comp->ops->repeater_check_flow_prepare_ack(comp->mei_dev, data,
-+	ret = comp->ops->repeater_check_flow_prepare_ack(comp->fw_dev, data,
- 							 rep_topology,
- 							 rep_send_ack);
- 	if (ret < 0)
-@@ -1365,7 +1365,7 @@ hdcp2_verify_mprime(struct intel_connector *connector,
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
- 	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
- 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
--	struct i915_hdcp_comp_master *comp;
-+	struct i915_hdcp_fw_master *comp;
- 	int ret;
- 
- 	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-@@ -1376,7 +1376,7 @@ hdcp2_verify_mprime(struct intel_connector *connector,
- 		return -EINVAL;
- 	}
- 
--	ret = comp->ops->verify_mprime(comp->mei_dev, data, stream_ready);
-+	ret = comp->ops->verify_mprime(comp->fw_dev, data, stream_ready);
- 	if (ret < 0)
- 		drm_dbg_kms(&dev_priv->drm, "Verify mprime failed. %d\n", ret);
- 	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
-@@ -1389,7 +1389,7 @@ static int hdcp2_authenticate_port(struct intel_connector *connector)
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
- 	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
- 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
--	struct i915_hdcp_comp_master *comp;
-+	struct i915_hdcp_fw_master *comp;
- 	int ret;
- 
- 	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-@@ -1400,7 +1400,7 @@ static int hdcp2_authenticate_port(struct intel_connector *connector)
- 		return -EINVAL;
- 	}
- 
--	ret = comp->ops->enable_hdcp_authentication(comp->mei_dev, data);
-+	ret = comp->ops->enable_hdcp_authentication(comp->fw_dev, data);
- 	if (ret < 0)
- 		drm_dbg_kms(&dev_priv->drm, "Enable hdcp auth failed. %d\n",
- 			    ret);
-@@ -1413,7 +1413,7 @@ static int hdcp2_close_mei_session(struct intel_connector *connector)
- {
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
- 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
--	struct i915_hdcp_comp_master *comp;
-+	struct i915_hdcp_fw_master *comp;
- 	int ret;
- 
- 	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-@@ -1424,7 +1424,7 @@ static int hdcp2_close_mei_session(struct intel_connector *connector)
- 		return -EINVAL;
- 	}
- 
--	ret = comp->ops->close_hdcp_session(comp->mei_dev,
-+	ret = comp->ops->close_hdcp_session(comp->fw_dev,
- 					     &dig_port->hdcp_port_data);
- 	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- 
-@@ -2145,8 +2145,8 @@ static int i915_hdcp_component_bind(struct device *i915_kdev,
- 
- 	drm_dbg(&dev_priv->drm, "I915 HDCP comp bind\n");
- 	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
--	dev_priv->display.hdcp.master = (struct i915_hdcp_comp_master *)data;
--	dev_priv->display.hdcp.master->mei_dev = mei_kdev;
-+	dev_priv->display.hdcp.master = (struct i915_hdcp_fw_master *)data;
-+	dev_priv->display.hdcp.master->fw_dev = mei_kdev;
- 	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- 
- 	return 0;
-@@ -2168,25 +2168,25 @@ static const struct component_ops i915_hdcp_component_ops = {
- 	.unbind = i915_hdcp_component_unbind,
- };
- 
--static enum mei_fw_ddi intel_get_mei_fw_ddi_index(enum port port)
-+static enum cp_fw_ddi intel_get_mei_fw_ddi_index(enum port port)
- {
- 	switch (port) {
- 	case PORT_A:
--		return MEI_DDI_A;
-+		return FW_DDI_A;
- 	case PORT_B ... PORT_F:
--		return (enum mei_fw_ddi)port;
-+		return (enum cp_fw_ddi)port;
- 	default:
--		return MEI_DDI_INVALID_PORT;
-+		return FW_DDI_INVALID_PORT;
- 	}
- }
- 
--static enum mei_fw_tc intel_get_mei_fw_tc(enum transcoder cpu_transcoder)
-+static enum cp_fw_tc intel_get_mei_fw_tc(enum transcoder cpu_transcoder)
- {
- 	switch (cpu_transcoder) {
- 	case TRANSCODER_A ... TRANSCODER_D:
--		return (enum mei_fw_tc)(cpu_transcoder | 0x10);
-+		return (enum cp_fw_tc)(cpu_transcoder | 0x10);
- 	default: /* eDP, DSI TRANSCODERS are non HDCP capable */
--		return MEI_INVALID_TRANSCODER;
-+		return FW_INVALID_TRANSCODER;
- 	}
- }
- 
-@@ -2206,14 +2206,14 @@ static int initialize_hdcp_port_data(struct intel_connector *connector,
- 		 * As per ME FW API expectation, for GEN 12+, fw_ddi is filled
- 		 * with zero(INVALID PORT index).
- 		 */
--		data->fw_ddi = MEI_DDI_INVALID_PORT;
-+		data->fw_ddi = FW_DDI_INVALID_PORT;
- 
- 	/*
- 	 * As associated transcoder is set and modified at modeset, here fw_tc
- 	 * is initialized to zero (invalid transcoder index). This will be
- 	 * retained for <Gen12 forever.
- 	 */
--	data->fw_tc = MEI_INVALID_TRANSCODER;
-+	data->fw_tc = FW_INVALID_TRANSCODER;
- 
- 	data->port_type = (u8)HDCP_PORT_TYPE_INTEGRATED;
- 	data->protocol = (u8)shim->protocol;
-diff --git a/drivers/misc/mei/hdcp/mei_hdcp.c b/drivers/misc/mei/hdcp/mei_hdcp.c
-index 7e3cd3fd7f7b..7ca8b739cd31 100644
---- a/drivers/misc/mei/hdcp/mei_hdcp.c
-+++ b/drivers/misc/mei/hdcp/mei_hdcp.c
-@@ -715,7 +715,7 @@ mei_hdcp_close_session(struct device *dev, struct hdcp_port_data *data)
- 	return 0;
- }
- 
--static const struct i915_hdcp_component_ops mei_hdcp_ops = {
-+static const struct i915_hdcp_fw_ops mei_hdcp_ops = {
- 	.owner = THIS_MODULE,
- 	.initiate_hdcp2_session = mei_hdcp_initiate_session,
- 	.verify_receiver_cert_prepare_km =
-@@ -735,13 +735,13 @@ static const struct i915_hdcp_component_ops mei_hdcp_ops = {
- static int mei_component_master_bind(struct device *dev)
- {
- 	struct mei_cl_device *cldev = to_mei_cl_device(dev);
--	struct i915_hdcp_comp_master *comp_master =
-+	struct i915_hdcp_fw_master *comp_master =
- 						mei_cldev_get_drvdata(cldev);
- 	int ret;
- 
- 	dev_dbg(dev, "%s\n", __func__);
- 	comp_master->ops = &mei_hdcp_ops;
--	comp_master->mei_dev = dev;
-+	comp_master->fw_dev = dev;
- 	ret = component_bind_all(dev, comp_master);
- 	if (ret < 0)
- 		return ret;
-@@ -752,7 +752,7 @@ static int mei_component_master_bind(struct device *dev)
- static void mei_component_master_unbind(struct device *dev)
- {
- 	struct mei_cl_device *cldev = to_mei_cl_device(dev);
--	struct i915_hdcp_comp_master *comp_master =
-+	struct i915_hdcp_fw_master *comp_master =
- 						mei_cldev_get_drvdata(cldev);
- 
- 	dev_dbg(dev, "%s\n", __func__);
-@@ -801,7 +801,7 @@ static int mei_hdcp_component_match(struct device *dev, int subcomponent,
- static int mei_hdcp_probe(struct mei_cl_device *cldev,
- 			  const struct mei_cl_device_id *id)
- {
--	struct i915_hdcp_comp_master *comp_master;
-+	struct i915_hdcp_fw_master *comp_master;
- 	struct component_match *master_match;
- 	int ret;
- 
-@@ -846,7 +846,7 @@ static int mei_hdcp_probe(struct mei_cl_device *cldev,
- 
- static void mei_hdcp_remove(struct mei_cl_device *cldev)
- {
--	struct i915_hdcp_comp_master *comp_master =
-+	struct i915_hdcp_fw_master *comp_master =
- 						mei_cldev_get_drvdata(cldev);
- 	int ret;
- 
-diff --git a/include/drm/i915_cp_fw_hdcp_interface.h b/include/drm/i915_cp_fw_hdcp_interface.h
-index e5dc6b985b2f..3abfe6d414b8 100644
---- a/include/drm/i915_cp_fw_hdcp_interface.h
-+++ b/include/drm/i915_cp_fw_hdcp_interface.h
-@@ -41,38 +41,38 @@ enum hdcp_wired_protocol {
- 	HDCP_PROTOCOL_DP
- };
- 
--enum mei_fw_ddi {
--	MEI_DDI_INVALID_PORT = 0x0,
-+enum cp_fw_ddi {
-+	FW_DDI_INVALID_PORT = 0x0,
- 
--	MEI_DDI_B = 1,
--	MEI_DDI_C,
--	MEI_DDI_D,
--	MEI_DDI_E,
--	MEI_DDI_F,
--	MEI_DDI_A = 7,
--	MEI_DDI_RANGE_END = MEI_DDI_A,
-+	FW_DDI_B = 1,
-+	FW_DDI_C,
-+	FW_DDI_D,
-+	FW_DDI_E,
-+	FW_DDI_F,
-+	FW_DDI_A = 7,
-+	FW_DDI_RANGE_END = FW_DDI_A,
- };
- 
- /**
-  * enum mei_fw_tc - ME Firmware defined index for transcoders
-- * @MEI_INVALID_TRANSCODER: Index for Invalid transcoder
-- * @MEI_TRANSCODER_EDP: Index for EDP Transcoder
-- * @MEI_TRANSCODER_DSI0: Index for DSI0 Transcoder
-- * @MEI_TRANSCODER_DSI1: Index for DSI1 Transcoder
-- * @MEI_TRANSCODER_A: Index for Transcoder A
-- * @MEI_TRANSCODER_B: Index for Transcoder B
-- * @MEI_TRANSCODER_C: Index for Transcoder C
-- * @MEI_TRANSCODER_D: Index for Transcoder D
-+ * @FW_INVALID_TRANSCODER: Index for Invalid transcoder
-+ * @FW_TRANSCODER_EDP: Index for EDP Transcoder
-+ * @FW_TRANSCODER_DSI0: Index for DSI0 Transcoder
-+ * @FW_TRANSCODER_DSI1: Index for DSI1 Transcoder
-+ * @FW_TRANSCODER_A: Index for Transcoder A
-+ * @FW_TRANSCODER_B: Index for Transcoder B
-+ * @FW_TRANSCODER_C: Index for Transcoder C
-+ * @FW_TRANSCODER_D: Index for Transcoder D
-  */
--enum mei_fw_tc {
--	MEI_INVALID_TRANSCODER = 0x00,
--	MEI_TRANSCODER_EDP,
--	MEI_TRANSCODER_DSI0,
--	MEI_TRANSCODER_DSI1,
--	MEI_TRANSCODER_A = 0x10,
--	MEI_TRANSCODER_B,
--	MEI_TRANSCODER_C,
--	MEI_TRANSCODER_D
-+enum cp_fw_tc {
-+	FW_INVALID_TRANSCODER = 0x00,
-+	FW_TRANSCODER_EDP,
-+	FW_TRANSCODER_DSI0,
-+	FW_TRANSCODER_DSI1,
-+	FW_TRANSCODER_A = 0x10,
-+	FW_TRANSCODER_B,
-+	FW_TRANSCODER_C,
-+	FW_TRANSCODER_D
- };
- 
- /**
-@@ -90,8 +90,8 @@ enum mei_fw_tc {
-  *	     streams
-  */
- struct hdcp_port_data {
--	enum mei_fw_ddi fw_ddi;
--	enum mei_fw_tc fw_tc;
-+	enum cp_fw_ddi fw_ddi;
-+	enum cp_fw_tc fw_tc;
- 	u8 port_type;
- 	u8 protocol;
- 	u16 k;
-@@ -119,7 +119,7 @@ struct hdcp_port_data {
-  * @close_hdcp_session: Close the Wired HDCP Tx session per port.
-  *			This also disables the authenticated state of the port.
-  */
--struct i915_hdcp_component_ops {
-+struct i915_hdcp_fw_ops {
- 	/**
- 	 * @owner: mei_hdcp module
- 	 */
-@@ -168,14 +168,14 @@ struct i915_hdcp_component_ops {
- };
- 
- /**
-- * struct i915_hdcp_component_master - Used for communication between i915
-- * and mei_hdcp drivers for the HDCP2.2 services
-- * @mei_dev: device that provide the HDCP2.2 service from MEI Bus.
-+ * struct i915_hdcp_fw_master - Used for communication between i915
-+ * and cp fw hdcp intf driver like mei_hdcp for the HDCP2.2 services
-+ * @fw_dev: device that provide the HDCP2.2 service from CP FW interface.
-  * @hdcp_ops: Ops implemented by mei_hdcp driver, used by i915 driver.
-  */
--struct i915_hdcp_comp_master {
--	struct device *mei_dev;
--	const struct i915_hdcp_component_ops *ops;
-+struct i915_hdcp_fw_master {
-+	struct device *fw_dev;
-+	const struct i915_hdcp_fw_ops *ops;
- 
- 	/* To protect the above members. */
- 	struct mutex mutex;
--- 
-2.25.1
+Otherwise the situation was that we were getting compressed bpp = 24, input bpp = 24.
 
+So I would add something like 
+
+dsc_max_bpp = min(dsc_max_bpp, (pipe_bpp - 1));
+
+in next patch where you switch to 16x form that would be like:
+
+dsc_max_bppx16 = min(dsc_max_bppx16, (pipe_bpp - 1) << 4);
+
+to prevent this.
+
+> +
+> +	for (compressed_bpp = dsc_max_bpp;
+> +	     compressed_bpp >= dsc_min_bpp;
+> +	     compressed_bpp--) {
+> +		ret = dsc_compute_link_config(intel_dp,
+> +					      pipe_config,
+> +					      limits,
+> +					      pipe_bpp,
+> +					      compressed_bpp);
+> +		if (ret == 0) {
+> +			pipe_config->dsc.compressed_bpp = compressed_bpp;
+> +			return 0;
+> +		}
+> +	}
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static int intel_dp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
+> +					 struct intel_crtc_state *pipe_config,
+> +					 struct drm_connector_state *conn_state,
+> +					 struct link_config_limits *limits)
+> +{
+> +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+> +	u8 dsc_bpc[3] = {0};
+> +	u8 dsc_max_bpc, dsc_max_bpp;
+> +	u8 max_req_bpc = conn_state->max_requested_bpc;
+> +	int i, bpp, ret;
+> +	int num_bpc = drm_dp_dsc_sink_supported_input_bpcs(intel_dp->dsc_dpcd,
+> +							   dsc_bpc);
+> +
+> +	/* Max DSC Input BPC for ICL is 10 and for TGL+ is 12 */
+> +	if (DISPLAY_VER(i915) >= 12)
+> +		dsc_max_bpc = min_t(u8, 12, limits->max_bpp);
+> +	else
+> +		dsc_max_bpc = min_t(u8, 10, max_req_bpc);
+> +
+> +	dsc_max_bpp = min(dsc_max_bpc * 3, limits->max_bpp);
+> +
+> +	/*
+> +	 * Get the maximum DSC bpc that will be supported by any valid
+> +	 * link configuration and compressed bpp.
+> +	 */
+> +	for (i = 0; i < num_bpc; i++) {
+> +		bpp = dsc_bpc[i] * 3;
+> +
+> +		if (bpp < limits->min_bpp)
+> +			continue;
+> +
+> +		if (bpp > limits->max_bpp)
+> +			break;
+
+When I was testing it myself with kms_dsc it didn't work initially, the reason 
+was that you need "continue" here, instead of "break", the thing is that dsc_bpc 
+is populated in descending order, so lets say the biggest bpc will come first, 
+however even if it goes beyond the limits, it doesn't mean we should bail out, 
+but rather we should continue and check the rest dsc_bpc array elements.
+
+Stan
+
+> +
+> +		ret = dsc_compute_compressed_bpp(intel_dp, pipe_config,
+> +						 limits, bpp);
+> +		if (ret == 0) {
+> +			pipe_config->pipe_bpp = bpp;
+> +
+> +			return 0;
+> +		}
+> +	}
+> +
+> +	return -EINVAL;
+> +}
+> +
+>  static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+>  				       struct intel_crtc_state *pipe_config,
+>  				       struct drm_connector_state *conn_state,
+> @@ -1505,17 +1686,11 @@ static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+>  		return -EINVAL;
+>  	}
+>  
+> -	pipe_config->pipe_bpp = pipe_bpp;
+> -
+> -	/*
+> -	 * For now enable DSC for max link rate, max lane count.
+> -	 * Optimize this later for the minimum possible link rate/lane count
+> -	 * with DSC enabled for the requested mode.
+> -	 */
+> -	pipe_config->port_clock = limits->max_rate;
+> -	pipe_config->lane_count = limits->max_lane_count;
+> -
+>  	if (intel_dp_is_edp(intel_dp)) {
+> +		pipe_config->pipe_bpp = pipe_bpp;
+> +		pipe_config->port_clock = limits->max_rate;
+> +		pipe_config->lane_count = limits->max_lane_count;
+> +
+>  		pipe_config->dsc.compressed_bpp =
+>  			min_t(u16, drm_edp_dsc_sink_output_bpp(intel_dp->dsc_dpcd) >> 4,
+>  			      pipe_config->pipe_bpp);
+> @@ -1523,29 +1698,31 @@ static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+>  			drm_dp_dsc_sink_max_slice_count(intel_dp->dsc_dpcd,
+>  							true);
+>  	} else {
+> -		u16 dsc_max_output_bpp;
+>  		u8 dsc_dp_slice_count;
+>  
+> -		dsc_max_output_bpp =
+> -			intel_dp_dsc_get_output_bpp_max(dev_priv,
+> -							pipe_config->port_clock,
+> -							pipe_config->lane_count,
+> -							adjusted_mode->crtc_clock,
+> -							adjusted_mode->crtc_hdisplay,
+> -							pipe_config->bigjoiner_pipes,
+> -							pipe_bpp);
+> +		if (intel_dp->force_dsc_bpc &&
+> +		    intel_dp->force_dsc_bpc <= conn_state->max_requested_bpc)
+> +			ret = dsc_compute_compressed_bpp(intel_dp, pipe_config,
+> +							 limits, pipe_bpp);
+> +		else
+> +			ret = intel_dp_dsc_compute_pipe_bpp(intel_dp, pipe_config,
+> +							    conn_state, limits);
+> +		if (ret < 0) {
+> +			drm_dbg_kms(&dev_priv->drm,
+> +				    "Cannot support mode with DSC with any link config\n");
+> +			return ret;
+> +		}
+> +
+>  		dsc_dp_slice_count =
+>  			intel_dp_dsc_get_slice_count(intel_dp,
+>  						     adjusted_mode->crtc_clock,
+>  						     adjusted_mode->crtc_hdisplay,
+>  						     pipe_config->bigjoiner_pipes);
+> -		if (!dsc_max_output_bpp || !dsc_dp_slice_count) {
+> +		if (!dsc_dp_slice_count) {
+>  			drm_dbg_kms(&dev_priv->drm,
+> -				    "Compressed BPP/Slice Count not supported\n");
+> +				    "Slice Count not supported\n");
+>  			return -EINVAL;
+>  		}
+> -		pipe_config->dsc.compressed_bpp = min_t(u16, dsc_max_output_bpp,
+> -							pipe_config->pipe_bpp);
+>  		pipe_config->dsc.slice_count = dsc_dp_slice_count;
+>  	}
+>  
+> -- 
+> 2.25.1
+> 
