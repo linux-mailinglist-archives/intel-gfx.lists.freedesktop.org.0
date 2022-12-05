@@ -2,85 +2,85 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 572B3642203
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Dec 2022 04:53:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5449064221F
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 Dec 2022 04:58:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B06DC10E0C1;
-	Mon,  5 Dec 2022 03:53:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 919C010E0C5;
+	Mon,  5 Dec 2022 03:58:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CDD410E0C1
- for <intel-gfx@lists.freedesktop.org>; Mon,  5 Dec 2022 03:53:10 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1AEC410E0C5
+ for <intel-gfx@lists.freedesktop.org>; Mon,  5 Dec 2022 03:58:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1670212390; x=1701748390;
+ t=1670212688; x=1701748688;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=8VNAvy40JLCzwZDLdUMfc+8Ra20H7nKTctlIBBUXuCc=;
- b=F+pPa+BYPMQJsGurlA0teNv5WRZxTpVKcaDC7ku+AKRA//7Pfk1r3P+L
- h/rwCJiKxhIId7kw6D/ePRHG4/vj07F2ccHOykkuCytX0kB5zjBbP/fyn
- FIHE9FqOzD6T2cR6IjwDFeMq1vjqL1JqIyivbsGJSXkd3AaIQakkHH0iP
- FUSSmaLI5TRJ5jzPuNQT0snJOrnuKBrV/y3XsilGJAIYMSPTUhgZduK1l
- 4LyrV0aYt4qwKd3UvpsBRHQfJEYrHo0rKdJoqjH7J6IAbOuwpaS1BMHu4
- /ACxOLas50CMrOYb9rkPkvXQ0QthcD2CtacZienPqTETOw044K0TnM0sg A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10551"; a="316284088"
-X-IronPort-AV: E=Sophos;i="5.96,218,1665471600"; d="scan'208";a="316284088"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2022 19:53:10 -0800
+ bh=lYqzNZBkLgzNRszziyjuq5zuCCaLi0CkKCOmk0KJjqc=;
+ b=C7beW/9OeqzyamPBM1G19zWJk6AoQNfHT7ly1fpfZWQRxasm1sHCyvjG
+ Qd5Xc12upDu2uXSdDdHlEgrJAqic7aXFwrHic1AAhrzko3sZQKzZOfXNi
+ MUBxUw1tKvODl52mJloLAhKkqc1NPTUjG+WMTasKtgDxyZIyiD/LR03Xb
+ dzB13y2eOHxekQhnw1pTs8B2uEmSe/iepeXrBg1V5JCkqL5iqdmhyVXtR
+ 2mxrAvm87wypL1TwtN+c9tGeW0lBtc+LrVxDh0BtEjKQ9H3e+m3H9oxIR
+ BeHEvxW42xXqDVNPAQ4QXcBsPGhHW5thrIJrRTyqDrrTXAnfc46IWmZrx Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10551"; a="303874951"
+X-IronPort-AV: E=Sophos;i="5.96,218,1665471600"; d="scan'208";a="303874951"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2022 19:58:07 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10551"; a="714247723"
-X-IronPort-AV: E=Sophos;i="5.96,218,1665471600"; d="scan'208";a="714247723"
+X-IronPort-AV: E=McAfee;i="6500,9779,10551"; a="752020544"
+X-IronPort-AV: E=Sophos;i="5.96,218,1665471600"; d="scan'208";a="752020544"
 Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmsmga004.fm.intel.com with ESMTP; 04 Dec 2022 19:53:09 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ by fmsmga002.fm.intel.com with ESMTP; 04 Dec 2022 19:58:07 -0800
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
  ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Sun, 4 Dec 2022 19:53:08 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.16; Sun, 4 Dec 2022 19:58:06 -0800
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Sun, 4 Dec 2022 19:53:08 -0800
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.100)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.16; Sun, 4 Dec 2022 19:58:06 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Sun, 4 Dec 2022 19:58:06 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.48) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Sun, 4 Dec 2022 19:53:08 -0800
+ 15.1.2507.16; Sun, 4 Dec 2022 19:58:06 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JM3VBVwW5toIFtQzvRUaGIKxTjWi8xT1Eyq/5XvdAyWlqvCeaoUOQswGfp3r01I8ZL/RR3b7ekEpnRCGoH6qJxSZfZAjN91C7TFhusO2hoycR8DT3z+zU3NX9b2cjMsfLrQ071B7A79jvubQNL7gwdZW4qib44NrEmn9p9sKyqFhxj1FJVJYU/V8MIZq1xcIPTKxswZcCw7zd4ALgekyqICk3WJgGObvs3UbRRZzzMQk+/cN8B02Bm58JaiINDhWgN4MxF9400OpgG9DfNSQz4pm/FC2OucXmpJvSL1BO4jJKHHLxhbKC8GBWEHPZ2iRMFlDxoDimM7HPJWLDgyKRg==
+ b=HsIhRDz6a8Nqyj0XEFsFetP0qIlUGTO8W6GUN/fnRz0/8UFA7tUdGtGx74eaE0tf6C8Ms3pB1tOl1CkJM16PY7/ohpZxTzelc97mcL8IIPr1KrfSXEKhpAd1EklJmfNrKTUr3f3LdXBPqkZB4WVl/WBhtqeIf/YFYBpDO8u4AMWsakq05i2uD9ANVuZlkio81PmysQDDl3gLz7zK+jYnlgErnmPeUdWafCrqM5bm/Q5KQyy8G3OkuY5NkPR9Ga5Sf346AJCh62P1lo608moWBuAa8PhO0HP4778wI1c6ScSn02wRd2FJwTH5sa58UpObASLDaEbNY/NVP+DUqmqFUg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=p647Fq26NN3nlxZlnhU8aYkMyxm1oeWIaZaYgNzYg84=;
- b=SKcw9Yt1/XGZLN0H8OC8FgcOWWxDhBzqMWp2skD8CcIeqSrYbY8bS/q54G9PbFfIGq+6t8qWavD/uMMqvmUUXFhkhF9TQY/zprWq6xUztrqs7XH3F8K7UbSguIpnWS/MUM+spH2Ht4PdPuEDRVF7hvd1FKcZdQUv4prgNVmaE3nhsJ+JcV9t6dN13oXKsAGzEVHI4AZqJYa7dDF0p+q6lNv24zkYOdSy0lZG2l4j6JqZl8xmwI1Mto4/gPGL0sapgU1txEkIWTW9pbi/gFMAINASJ1tzq/8LNRe0ldzCZj0lseFkKi/hOlrRDx7C0Kb3P7iVnAfiaGnqQ22E0KYaZw==
+ bh=eS/XhsPw9moX6l4p83gq01i0o1u0jzwbboJ0nxYud2E=;
+ b=SM35uVnqIoCXpHOR6UcBY58+YpTOlz/TlrVHKjiPieYRe83ySfG7SpVCnBUveRuzUldyyOsdrDCRjflFw8ljJ9VRAGdJRK8W47yj+5v3fXrGRbsysFVBOqg8/FGil9LlCuaQI/jEl8SuT2XvPSUrB0AoanjFAywLJzOqcNIM0FHi/KGWqgRUwgIKgnSgt8UeB0b9S6EeOOPAqSJCc7mVS3dQ3RtgZVbtskC+tfjefXnkhcI/NTekNrZHgUaDYOU1Wfs0QhN90lSJXI5foI6wzzuJlX4PjsQQpa6N+aUABG2dj4Nbl4plBNKzolNbwRB+pYkHcATn66K3AvZy5uONMA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from DM6PR11MB3177.namprd11.prod.outlook.com (2603:10b6:5:c::28) by
- BL1PR11MB5414.namprd11.prod.outlook.com (2603:10b6:208:31e::17) with
+Received: from CY5PR11MB6211.namprd11.prod.outlook.com (2603:10b6:930:25::6)
+ by DS0PR11MB6445.namprd11.prod.outlook.com (2603:10b6:8:c6::11) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.14; Mon, 5 Dec
- 2022 03:53:06 +0000
-Received: from DM6PR11MB3177.namprd11.prod.outlook.com
- ([fe80::83e5:2c2f:3b78:aa88]) by DM6PR11MB3177.namprd11.prod.outlook.com
- ([fe80::83e5:2c2f:3b78:aa88%7]) with mapi id 15.20.5880.013; Mon, 5 Dec 2022
- 03:53:06 +0000
-From: "Murthy, Arun R" <arun.r.murthy@intel.com>
-To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Thread-Topic: [Intel-gfx] [PATCHv3] drm/i915: Support Async Flip on Linear
- buffers
-Thread-Index: AQHYwaOE/EXAADz+NkeUK0QgUHi7O63WeiyAgAhR7zCAB3v7gIAhL06wgBv+ZsCAADSigIA7i3ow
-Date: Mon, 5 Dec 2022 03:53:06 +0000
-Message-ID: <DM6PR11MB317798369C490821952A7C27BA189@DM6PR11MB3177.namprd11.prod.outlook.com>
-References: <20220426120407.1334318-1-arun.r.murthy@intel.com>
- <20220906034803.4094252-1-arun.r.murthy@intel.com>
- <DM6PR11MB31775117B7388776D2E6DFD2BA439@DM6PR11MB3177.namprd11.prod.outlook.com>
- <DM6PR11MB3177451D1F3A10D00706461ABA469@DM6PR11MB3177.namprd11.prod.outlook.com>
- <DM6PR11MB31771349661CE3E0C2CB28BABA4D9@DM6PR11MB3177.namprd11.prod.outlook.com>
- <DM6PR11MB31777D09EBDFB4604D5E6631BA209@DM6PR11MB3177.namprd11.prod.outlook.com>
- <DM6PR11MB3177CFCD0942A580C4E9FE5BBA329@DM6PR11MB3177.namprd11.prod.outlook.com>
- <Y1t3J2vIoiaPhYuR@intel.com>
-In-Reply-To: <Y1t3J2vIoiaPhYuR@intel.com>
+ 2022 03:58:04 +0000
+Received: from CY5PR11MB6211.namprd11.prod.outlook.com
+ ([fe80::7d38:853:2b5c:92ae]) by CY5PR11MB6211.namprd11.prod.outlook.com
+ ([fe80::7d38:853:2b5c:92ae%8]) with mapi id 15.20.5880.013; Mon, 5 Dec 2022
+ 03:58:04 +0000
+From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+Thread-Topic: [PATCH] drm/i915/hwmon: Silence "mailbox access failed" warning
+ in snb_pcode_read
+Thread-Index: AQHZBsV2ZgW7F9dgmk+JnuKXeyjHPq5b6EWwgAACblCAApzKAIAAI31g
+Date: Mon, 5 Dec 2022 03:58:04 +0000
+Message-ID: <CY5PR11MB62115AC3E1F74DACC677A19395189@CY5PR11MB6211.namprd11.prod.outlook.com>
+References: <20221203031454.1280538-1-ashutosh.dixit@intel.com>
+ <CY5PR11MB62116199075E689C273AD41E95169@CY5PR11MB6211.namprd11.prod.outlook.com>
+ <CY5PR11MB6211C5036EF25186C61056D995169@CY5PR11MB6211.namprd11.prod.outlook.com>
+ <87359u632b.wl-ashutosh.dixit@intel.com>
+In-Reply-To: <87359u632b.wl-ashutosh.dixit@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -88,61 +88,59 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM6PR11MB3177:EE_|BL1PR11MB5414:EE_
-x-ms-office365-filtering-correlation-id: db33c98d-d581-4346-e307-08dad67437c5
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-traffictypediagnostic: CY5PR11MB6211:EE_|DS0PR11MB6445:EE_
+x-ms-office365-filtering-correlation-id: aeb0ba82-b220-4f63-10d6-08dad674e90c
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: j/apg1LXYzGaLw26s4+33QwmTu7aDJI5Qg2/+8KU3wfrs4wxbUZ2FIL9s5UnpJwgm06YR/QdcPi7iScgvvFftvbhwIMYDXnRMvkOjykDBCs/5ifkGkNc687clLi4aUNFcfaT2RXQLDkMcPvuP8/5191kgT1lsWGjzuxD6AH6/QUegdtiJmki7VAo/N7/0EB6kN5kNrTL5mAoFNa90dw3KpQ87T0+1Gs0sx6cw/uxJyqw8Qk76DoQpkC0F1JBqv4Uj+5Xd3nZL9lU08OxJvu4j16V+rpLCz5TALDBeoI16loujAAQMRoTc5KsIXg5zl6EsOHcM1EwB+CGKeb7lpJAji8ZKrXgi0f4FVyrXQEC8pqAM7KRfpMONDA+tIS36NH3MlUp2dOZ6P/zO8ZhxKg5bZDhrh2spimnlCu3T+SsJ9zo4bKq3nRCOUR9LApViJXMLR6RbGaSJOWFjxGJZ1iOZVGUszkS2B603QAFqfoCArlI4VD2SnwZzF3lvNwTjcha8Ts1gG+fqSXbM+B+eviJzjvC+cCqOKkdvd2IlS9LspEwMako5Jp4MI81gZfq0J3vN6F1LZxKBTeXQyUjp785etjJOUWy0nrzbgkpDwGiIoL5sjq3IiZJ/xDD9/9FwAe0dHaemurpdOQ9tMPR/IbDYBQV2pcHMIyvlobtSqeJHex2rY+kG5uXfUFcqR2dNoS4sAzJ/7PEfBvogcDyvU97SltSGWXfioBN+iZKWqSdDtA=
+x-microsoft-antispam-message-info: D0r2gV8L9xoGLzZAskQzFbOwBD2eLabSZLH1O1Mhod5GZXTfUF43N+B53z8TLGwVhbzTvasy1Qcdz5Tkfqt/a/7plBuFA75YBQp1Sz2/D52QDYookjWfBlSxEEeBkBF28qQmRueLYULvRKDwF/JEuqeFoxXAuZQ3XaKyPL2yAukwE44EBy5s5quzHn3B+pZm5m6WefmS4Ah3Vs6kwCC8q9CUnkq/3OKYecA0hgP4yCEOpYEeYWjaYLOBWaq49K607MBv6fFDhUqxMFk+fqdGhBlykIIQbzoVEuIYmDKiXuulP9o0BK8UO4GMejHP/HF5hFEVU9u8I93DDjqikmfJzektWn/fcXoxBlY6axKNS3Xq1fQs98u0Vy+kO/AEQrmHLNapA2mSd+pu8sbtX0kHAKRnd3kWNOpNSbNy7+yWg1bPeuBRmuShq2E+K/Ap37yzbcyIK2TyjCqIlt2/PJXCMDiTyAcEOBkuApjOsxKH1JO119YBwbBNP9X/yzpXBVHQ+uUZo8JY/PYSbwJsTT0D24Pi41p/N9GTTmkSUOif5kecbbw/flzquQl/oKN2QjriGsZ60jXzwwd17ltxlVU4loManPnCBET2KltzQFZS/9psDk5QhrNFAEC+qd86OKWRUVWRPYAeJJTYKmDxQt4qn36OawLPqpEhhl/PbasjIUI56C7PejlkuqG5H6ZoMLXnluk2slK94wEesnXNjQGi0w==
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR11MB3177.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(346002)(396003)(39860400002)(366004)(376002)(136003)(451199015)(2906002)(83380400001)(186003)(41300700001)(66946007)(76116006)(55016003)(33656002)(86362001)(38100700002)(122000001)(26005)(9686003)(38070700005)(82960400001)(52536014)(66574015)(5660300002)(4326008)(66556008)(66476007)(64756008)(8676002)(66446008)(8936002)(6916009)(316002)(478600001)(55236004)(53546011)(966005)(71200400001)(54906003)(6506007)(7696005);
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6211.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(136003)(396003)(39860400002)(346002)(376002)(366004)(451199015)(122000001)(83380400001)(33656002)(86362001)(38100700002)(82960400001)(38070700005)(15650500001)(2906002)(5660300002)(4326008)(41300700001)(8936002)(6862004)(52536014)(8676002)(55016003)(64756008)(55236004)(53546011)(9686003)(186003)(26005)(7696005)(6506007)(107886003)(316002)(54906003)(6636002)(76116006)(66946007)(66556008)(66476007)(66446008)(478600001)(71200400001);
  DIR:OUT; SFP:1102; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?jOpE0XDZWUouSYpd9Vwa3GSNzp3+rZJSM2bCet+ZVQgAV/v5tiBMMTIyxr?=
- =?iso-8859-1?Q?TGcXGQ3s//i1VoaHM2qa1UsfaqqDXyHavAKcY+RSdrQVKrrOzlYcbO/wPo?=
- =?iso-8859-1?Q?eSjOuIVI4ibnS5cu+aWoU9TY5J/GwcjGwu9YFLwE/QuFeYbLlxcGqv74SR?=
- =?iso-8859-1?Q?WrCuLbdh0Tu/Zn+4/Vcr2kT1sT0iB3eJu8Xw129+TLz2UBX/+RB5BQ5SI5?=
- =?iso-8859-1?Q?ryH2BJpViWMx187gAqw85nFzP9qmb1cmzWq4etLgoCO5I5XKMA/ZqpGnG2?=
- =?iso-8859-1?Q?IxI0fgHf6byfwGfZw3trk5eFYBLFJdFVIoXtDCvOqpmfKs+3oiVO+38sXi?=
- =?iso-8859-1?Q?goHUtI9oK+LcvKheWeFyFCkbEAGffo1Csh/m624YzQPB9AOsTr7wk0O0/8?=
- =?iso-8859-1?Q?q9xJdbVpnYh/FAJLTxVdAcXyEye9QPPkiaDhdAELABI+TJowqQo6wXTPxt?=
- =?iso-8859-1?Q?xZ6p+PuTWzUwIbOKdLCq4TYErC28uk9smtK3XmsC5HMVQS6pTG4z2ggubb?=
- =?iso-8859-1?Q?kXIOeVm/vb9REx0un+rKaq0WLaKF0TssBkyoDZcP5cMmlR5NqL36cKMYBM?=
- =?iso-8859-1?Q?Fotlb89rmOIM7UeGUD00w6Nf6mMc3799VDwXueqvuZzFDjyRAkynncRZdG?=
- =?iso-8859-1?Q?qdESaOv1cVnq+49B6WYtYEDDMVfGkCa5p1s5TXetaAhqkKpEbleVlVKqP8?=
- =?iso-8859-1?Q?1TQ/XbB4s6DEO6kPi35AUfu6x2HWxyNyMRIPRX7JJWWYQatdXxGjtCo1CL?=
- =?iso-8859-1?Q?Tmpcffd+NsUWxLaw9hV14uJd7zfvSCko+RudjtmDW/wb0JzAZY3DqfbJnc?=
- =?iso-8859-1?Q?a0EQd7sx43MJfZm2S436OgPkJUFbW++8+c70ejgGUZ7VO9vUzjExv80eDG?=
- =?iso-8859-1?Q?bKJSaSS1JmMfzxE06imIBlwEllMyuiXt4PBj7dXfaxfgPijL1RtQNnfswW?=
- =?iso-8859-1?Q?MgPCcflW/oBA8ju3ux0rSr8zJoxkqImCAD8UdsVhFFy9WIjsDMosxkoWZq?=
- =?iso-8859-1?Q?83hpDUGK7Ht1NtDQlQprANqpBwYqf5V6agUOvtulqhHLr6Ju4eKCy5trJp?=
- =?iso-8859-1?Q?t9jKdcJ1t7loQe1zPDzrUuWHkZ30hIFH2+EZ/xyL9PBi5f2bBNC6T5DvtW?=
- =?iso-8859-1?Q?SOMFR/TIHq7YxDS3mdL3wAMRXqnekGuxvOsSD4sZIKUm2KVjWDt+If+0Pq?=
- =?iso-8859-1?Q?m4PjkXnVqkjsEmCdBpi2fla9XSg/hLUAbWX4kxC5K8/LbHjW64W5KtQTQF?=
- =?iso-8859-1?Q?2Kc8EbNPpz5G1xiMSTK1TvmRRK41i3qrNM7tk5krk+U54+xVkKhiT/X65g?=
- =?iso-8859-1?Q?nhzpEwVnWdAUgEjy1X/inxILqIWTrM/Q5Y+bErvx/P+1o7Nzw5opBac48R?=
- =?iso-8859-1?Q?l0XGuBi0Sl8chkv3b7j9PyYwFTrWJUhlggrmfthCE5otx6BO/R3S4yjkgi?=
- =?iso-8859-1?Q?Okmw+65+MJwHQ511MQHWGL9tLQwgzfyuX/XrreEtohf6ODEF+tSVGAcqTu?=
- =?iso-8859-1?Q?xkogOsTn6W/NbsZa1AwG1XP0CDkjzS7jWz1heZJELLB12AvffEDph1ImSb?=
- =?iso-8859-1?Q?H2Zn9u35Jg6piOSs+ydBL1RXrdIn8TZiWBLiEdjZUIWTvFH6w7aNIX1j08?=
- =?iso-8859-1?Q?KI6ZtBS7JMw+RO0SbY8E2LLONb364RVCbw?=
-Content-Type: text/plain; charset="iso-8859-1"
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?RzHrUOsJOSxBEouPwyFSgaCxJ2ORcFrVuhosLey59qlr3TRbuXCKUn5c5g+v?=
+ =?us-ascii?Q?NPIKrfbr8fgETzKNYHRRDsW58VhB5NTxZqBhbKfScmpPrH1FlWcBDfCuacRv?=
+ =?us-ascii?Q?VN/pDy+1vsl0wmK9p+Q48VpHjc57i282ppI2OUViqO/w3lJlGUSr/EYNzl/4?=
+ =?us-ascii?Q?mnM0HBG4fTCqAZTcC/Xg97H4N+ntzSYxh0FnhiuD/9t/kPdFwIzw3ZyS4XBZ?=
+ =?us-ascii?Q?s94gj9Eb7linlpy/8reewj1wMLCPYIcFjcWzL1J4IF3uGY/VVdux5zQo+gAM?=
+ =?us-ascii?Q?fCv+R75Lm3ndrndLgffl1wCagOF9wZPratODI8YFDyquy3y4c2qr+PLHQ0bi?=
+ =?us-ascii?Q?rOMaJrug2j+ZSUDz6QpMWw4nhEaN94/0VOeAhIim2TZ72UuSuVj8v30m6YYo?=
+ =?us-ascii?Q?jboSdOAykAOo6DnoR2Vbr69Gax7edkO+WaABd8Yllb6Kk+I83qvS5mnzVxkM?=
+ =?us-ascii?Q?msZtuY5R5DQB9fiLygv1UAVBn4cMeLIYoN+QakmkFYsOXQV5gGSEdWar9TaM?=
+ =?us-ascii?Q?0aW1JiiFUv773S59cAX2y7ChHSSGuxqc3EIbNGnypoUF7s+S2jbmpP1t6z17?=
+ =?us-ascii?Q?ZECLG6fVU4QLgbapNoyugztglDqasvLivFe4lu4O3gfcKO5wX9iE3rhLn0Us?=
+ =?us-ascii?Q?zNBuR/DJAr2rKX8gHX0x5w7owNDLeUD9ljYUGx/HfR4oVDOjUo1YJiEYE7SN?=
+ =?us-ascii?Q?jnAeR/n2XrTsT+kWnqzg6CIIBKs7dw+xrWf4awl6rKLoz5S1X2IKqu3ivnZ5?=
+ =?us-ascii?Q?Ioc5DUIFBh/kLn0Jf1Dm/KJh6aKxQ4uGLinrnT25dPEK8mtdnU7OCsSmUZN/?=
+ =?us-ascii?Q?kqKoPyCA/uX9z85bW+BFPH5osZsFCUNqXZq3j0KUshgmIY4XnfaLTuASRlyn?=
+ =?us-ascii?Q?ey3gx6yxIf3pt53D5oUIj7iDtclKz+lR3h9FELhiHtkk5Ik5qmoHTrGZV9gZ?=
+ =?us-ascii?Q?jTtILkwVyzABPRRLQI0dTBz9rfXN+NN5CcMTUuNCPP109O/hvun4hZ8FUvBa?=
+ =?us-ascii?Q?4lMgI3DmYi+pzJPnm6SsRo0pXGFjLtMgJKTvKcoJoMrlk0zeOaAvvfP9mCsa?=
+ =?us-ascii?Q?Vbp8OdLjuJiM3mAIedbwQ8ImKWI3hi58TZinlDj5SEd567Ofxsc69pFx1EuX?=
+ =?us-ascii?Q?jXj3Yt6weEKF1R5caEpHaK2WCUYrkCFFEV1RYkXvevToZJG4xp4fro2AHoB8?=
+ =?us-ascii?Q?jkT9UZFbdeOCu0mappnrdGZEHW33nM3yX/4e3dGkvT5Xk6pg/Dd+U3OtSthl?=
+ =?us-ascii?Q?tV/Rm26hAQHQwhtTKELbuw1aMdOdZsJyIp8aOAo7XyVgggQd44l8vcV/RJj3?=
+ =?us-ascii?Q?Yfnwhd8FElepmLu4DjJZcd4wSqn4BRGVGMch6y59C1FA4MHAGg4qLzA5I2PM?=
+ =?us-ascii?Q?2z22167o9Uv5h/8x/IrRTgf5Y2XXUzn1EQSWHgWy90AINxMDEDS/2xDg1ioW?=
+ =?us-ascii?Q?THO8vgXHV1Z39GNoCBOl1etT+K8cYd9wA5QN7cE9+5VP5af5oXUE3i4bf85f?=
+ =?us-ascii?Q?CiXWqL5hWER+Sp5YZwqD8JBwTlK5imPxYIr0G1Dw3REvx4o8bYAcK/kLYhG0?=
+ =?us-ascii?Q?T9dP0zfjsI7HoW+kIgrfx5mz1alQWapU8K/6lhaQ?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3177.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: db33c98d-d581-4346-e307-08dad67437c5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Dec 2022 03:53:06.6299 (UTC)
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6211.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: aeb0ba82-b220-4f63-10d6-08dad674e90c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Dec 2022 03:58:04.0623 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 3WvM6yBak6AQwX30obAslq0XjkrvmmAGFVmsdtS+jzqMb47gbmo2TjFfHWre3N62hYof8WrHK6QGfSirxcQmhg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5414
+X-MS-Exchange-CrossTenant-userprincipalname: t38So2fHxWQd80Ys21u4oNM63HBkCdOgTClJC/Ma5Io8PemhwvNLoiUImpQf9HIlEj06jrNle6cAMZyH+8dvk/qbKsZ7ICCqMRYGxrPRic8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB6445
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCHv3] drm/i915: Support Async Flip on Linear
- buffers
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/hwmon: Silence "mailbox access
+ failed" warning in snb_pcode_read
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,158 +153,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Syrjala, Ville" <ville.syrjala@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+
+
 > -----Original Message-----
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Sent: Friday, October 28, 2022 12:01 PM
-> To: Murthy, Arun R <arun.r.murthy@intel.com>
-> Cc: intel-gfx@lists.freedesktop.org; Syrjala, Ville <ville.syrjala@intel.=
-com>
-> Subject: Re: [Intel-gfx] [PATCHv3] drm/i915: Support Async Flip on Linear
-> buffers
+> From: Dixit, Ashutosh <ashutosh.dixit@intel.com>
+> Sent: Monday, December 5, 2022 7:10 AM
+> To: Gupta, Anshuman <anshuman.gupta@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org; Nilawar, Badal
+> <badal.nilawar@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>
+> Subject: Re: [PATCH] drm/i915/hwmon: Silence "mailbox access failed"
+> warning in snb_pcode_read
 >=20
-> On Fri, Oct 28, 2022 at 03:23:02AM +0000, Murthy, Arun R wrote:
-> > Gentle Reminder!
->=20
-> Is the igt stuff merged, and did this pass the test?
->=20
-IGT patches are waiting for kernel to be merged.
-
-Test results can be located @ https://intel-gfx-ci.01.org/tree/drm-tip/Tryb=
-ot_109443v7/index.html
-
-Thanks and Regards,
-Arun R Murthy
---------------------
+> On Sat, 03 Dec 2022 01:47:06 -0800, Gupta, Anshuman wrote:
 > >
-> > > -----Original Message-----
-> > > From: Murthy, Arun R
-> > > Sent: Monday, October 10, 2022 1:24 PM
-> > > To: 'intel-gfx@lists.freedesktop.org'
-> > > <intel-gfx@lists.freedesktop.org>
-> > > Cc: Syrjala, Ville <ville.syrjala@intel.com>
-> > > Subject: RE: [PATCHv3] drm/i915: Support Async Flip on Linear
-> > > buffers
-> > >
-> > > Ville,
-> > > 	Gentle reminder!
-> > >
-> > > Thanks and Regards,
-> > > Arun R Murthy
-> > > --------------------
-> > >
-> > > > -----Original Message-----
-> > > > From: Murthy, Arun R
-> > > > Sent: Monday, September 19, 2022 10:38 AM
-> > > > To: 'intel-gfx@lists.freedesktop.org'
-> > > > <intel-gfx@lists.freedesktop.org>
-> > > > Cc: Syrjala, Ville <ville.syrjala@intel.com>
-> > > > Subject: RE: [PATCHv3] drm/i915: Support Async Flip on Linear
-> > > > buffers
-> > > >
-> > > > If no comments, can anyone merge the patch!
-> > > >
-> > > > Thanks and Regards,
-> > > > Arun R Murthy
-> > > > --------------------
-> > > >
-> > > > > -----Original Message-----
-> > > > > From: Murthy, Arun R
-> > > > > Sent: Wednesday, September 14, 2022 4:21 PM
-> > > > > To: Murthy, Arun R <arun.r.murthy@intel.com>; intel-
-> > > > > gfx@lists.freedesktop.org
-> > > > > Cc: Syrjala, Ville <ville.syrjala@intel.com>
-> > > > > Subject: RE: [PATCHv3] drm/i915: Support Async Flip on Linear
-> > > > > buffers
-> > > > >
-> > > > > Gentle Reminder!
-> > > > > Any comments?
-> > > > >
-> > > > > Thanks and Regards,
-> > > > > Arun R Murthy
-> > > > > --------------------
-> > > > >
-> > > > > > -----Original Message-----
-> > > > > > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On
-> > > > > > Behalf Of Murthy, Arun R
-> > > > > > Sent: Friday, September 9, 2022 9:17 AM
-> > > > > > To: intel-gfx@lists.freedesktop.org
-> > > > > > Cc: Syrjala, Ville <ville.syrjala@intel.com>
-> > > > > > Subject: Re: [Intel-gfx] [PATCHv3] drm/i915: Support Async
-> > > > > > Flip on Linear buffers
-> > > > > >
-> > > > > > Gentle Reminder!
-> > > > > >
-> > > > > > > -----Original Message-----
-> > > > > > > From: Murthy, Arun R <arun.r.murthy@intel.com>
-> > > > > > > Sent: Tuesday, September 6, 2022 9:18 AM
-> > > > > > > To: intel-gfx@lists.freedesktop.org
-> > > > > > > Cc: ville.syrjala@linux.intel.com; Murthy, Arun R
-> > > > > > > <arun.r.murthy@intel.com>
-> > > > > > > Subject: [PATCHv3] drm/i915: Support Async Flip on Linear
-> > > > > > > buffers
-> > > > > > >
-> > > > > > > Starting from Gen12 Async Flip is supported on linear buffers=
-.
-> > > > > > > This patch enables support for async on linear buffer.
-> > > > > > >
-> > > > > > > UseCase: In Hybrid graphics, for hardware unsupported pixel
-> > > > > > > formats it will be converted to linear memory and then compos=
-ed.
-> > > > > > >
-> > > > > > > v2: Added use case
-> > > > > > > v3: Added FIXME for ICL indicating the restrictions
-> > > > > > >
-> > > > > > > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> > > > > > > ---
-> > > > > > >  drivers/gpu/drm/i915/display/intel_display.c | 14
-> > > > > > > ++++++++++++++
-> > > > > > >  1 file changed, 14 insertions(+)
-> > > > > > >
-> > > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > > > b/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > > > index be7cff722196..1880cfe70a7d 100644
-> > > > > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > > > @@ -6610,6 +6610,20 @@ static int
-> > > > > > > intel_async_flip_check_hw(struct intel_atomic_state *state, s=
-truct
-> in
-> > > > > > >  		 * this selectively if required.
-> > > > > > >  		 */
-> > > > > > >  		switch (new_plane_state->hw.fb->modifier) {
-> > > > > > > +		case DRM_FORMAT_MOD_LINEAR:
-> > > > > > > +			/*
-> > > > > > > +			 * FIXME: Async on Linear buffer is supported
-> > > on ICL
-> > > > > > > as
-> > > > > > > +			 * but with additional alignment and fbc
-> > > restrictions
-> > > > > > > +			 * need to be taken care of. These aren't
-> > > applicable
-> > > > > > > for
-> > > > > > > +			 * gen12+.
-> > > > > > > +			 */
-> > > > > > > +			if (DISPLAY_VER(i915) < 12) {
-> > > > > > > +				drm_dbg_kms(&i915->drm,
-> > > > > > > +					"[PLANE:%d:%s] Modifier
-> > > does not
-> > > > > > > support async flips\n",
-> > > > > > > +					plane->base.base.id, plane-
-> > > > > > > >base.name);
-> > > > > > > +				return -EINVAL;
-> > > > > > > +			}
-> > > > > > > +
-> > > > > > >  		case I915_FORMAT_MOD_X_TILED:
-> > > > > > >  		case I915_FORMAT_MOD_Y_TILED:
-> > > > > > >  		case I915_FORMAT_MOD_Yf_TILED:
-> > > > > > > --
-> > > > > > > 2.25.1
 >=20
+> Hi Anshuman,
+>=20
+> > > > hwm_pcode_read_i1 is called during i915 load. This results in the
+> > > > following warning from snb_pcode_read because
+> > > > POWER_SETUP_SUBCOMMAND_READ_I1 is unsupported on DG1/DG2.
+> > > >
+> > > > [drm:snb_pcode_read [i915]] warning: pcode (read from mbox 47c) \
+> > > >				mailbox access failed for snb_pcode_read_p
+> > > > [i915]: -6
+> > > >
+> > > > The code handles the unsupported command but the warning in dmesg
+> > > > is a red herring which has resulted in a couple of bugs being filed=
+.
+> > > > Therefore silence the warning by avoiding calling snb_pcode_read_p
+> > > > for > > DG1/DG2.
+> > > >
+> > > > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/i915/i915_hwmon.c | 4 ++++
+> > > >  1 file changed, 4 insertions(+)
+> > > >
+> > > > diff --git a/drivers/gpu/drm/i915/i915_hwmon.c
+> > > > b/drivers/gpu/drm/i915/i915_hwmon.c
+> > > > index c588a17f97e98..cca7a4350ec8f 100644
+> > > > --- a/drivers/gpu/drm/i915/i915_hwmon.c
+> > > > +++ b/drivers/gpu/drm/i915/i915_hwmon.c
+> > > > @@ -293,6 +293,10 @@ static const struct hwmon_channel_info
+> > > > *hwm_gt_info[] =3D {
+> > > >  /* I1 is exposed as power_crit or as curr_crit depending on bit
+> > > > 31 */ static int hwm_pcode_read_i1(struct drm_i915_private *i915,
+> > > > u32 *uval) {
+> > > > +	/* Avoid ILLEGAL_SUBCOMMAND "mailbox access failed" warning in
+> > > > snb_pcode_read */
+> > > > +	if (IS_DG1(i915) || IS_DG2(i915))
+> > > > +		return -ENXIO;
+> > >
+> > > AFAIK it is specific to client specific parts,
+>=20
+> No this is not true, see c8939848f7e4 where it says I1 power is exposed a=
+s
+> power1_crit for client products and as curr1_crit for server. Also I know=
+ this is
+> available on future client products. So it appears only DG1 and DG2 were =
+an
+> exception because of lack of HW support, this will available in the futur=
+e for
+> client. Therefore the patch looks correct to me.
+>=20
+> > > how about declaring a is_client intel_runtime_info flag to
+> > > distinguish between client and server part. That *intel_device_info*
+> > > will also cover any future platform as well.
+Thanks for explanation.
+Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
+>=20
+> Thanks.
 > --
-> Ville Syrj=E4l=E4
-> Intel
+> Ashutosh
