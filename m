@@ -2,55 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73BA964436D
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Dec 2022 13:50:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B073644461
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Dec 2022 14:15:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6303A89A5E;
-	Tue,  6 Dec 2022 12:50:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD2AF10E065;
+	Tue,  6 Dec 2022 13:15:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB9DD10E31D
- for <intel-gfx@lists.freedesktop.org>; Tue,  6 Dec 2022 12:50:01 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9887210E065
+ for <intel-gfx@lists.freedesktop.org>; Tue,  6 Dec 2022 13:15:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1670331001; x=1701867001;
+ t=1670332503; x=1701868503;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=Mtk+Vk1B9nutmEiwfe+JBi3cP78MkEAyABeAV91zcuk=;
- b=Kzu+G7hllZGkZi+x+Cc9CVQ7kzYNAnV/kEFyY1o/G0schd+D5jtSFi3+
- FYq/nw4vGoTfa0FPR6l2S0jHFHDa8eVgsFT/vMTfc6+T2q6aYNzh8BJwG
- utBKV0qOlTeu1wNF4KVfUOR3KnilRO3TxIk+8Y0Nn2xp0WX2G52Mrh38X
- JGEMRTd52iToOrhfxMnnmucrKKjP4tCDLnzbNSBSPODfnjNjss4ugeC7q
- wjwg9Yg2QhfNV46KyY0H4acO6Mzopsz1NfRKQKCVxLFA5V1wrWgX44rUx
- OredyFYHmF6rpbt0gAPMjLStzdsMvVXJOv8rAVGjDfn1QQXTq6Fc3cvZ4 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10552"; a="318475227"
-X-IronPort-AV: E=Sophos;i="5.96,222,1665471600"; d="scan'208";a="318475227"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2022 04:50:01 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10552"; a="709656573"
-X-IronPort-AV: E=Sophos;i="5.96,222,1665471600"; d="scan'208";a="709656573"
+ bh=bSF95f2zO8C2e2KNdrjSn0iD3j8gCCpS1QQIfCtHPBU=;
+ b=QD1aBuHjLxEFYUH82bxW2vCJTt7iM5kD0kENKebj6jquPvZFCYQvVvJ2
+ Glo3nULSeHkLgR7YKQscqORUt9ZCbUYiEgraAh4VGPrh6p9CscDQWnoMo
+ BnEBY1g8OhqyZyfW2RtfFKIY870Pi23wFZRotZG6aBL6D70fB8twbXbOR
+ X9lyDvxG4Zg+/fXannsr9nAVff1lOYeF9mA6009SJz8rEowyBwvu7Mu14
+ r+rO9hwd+KsajzdDtAOvPX4eenvY/EqdDfmX+PDlWBBxyh1GjCWic1HFG
+ tnZBL7BvXLSAcNQ8LonkJWX7d/iThCamz6tq9eosefqWRrtxR1FeM4Q5i A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10552"; a="314262734"
+X-IronPort-AV: E=Sophos;i="5.96,222,1665471600"; d="scan'208";a="314262734"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Dec 2022 05:15:02 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10552"; a="596573411"
+X-IronPort-AV: E=Sophos;i="5.96,222,1665471600"; d="scan'208";a="596573411"
 Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.23.172])
  ([10.213.23.172])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2022 04:49:59 -0800
-Message-ID: <b7630308-167f-f654-2801-d45767c2fb92@intel.com>
-Date: Tue, 6 Dec 2022 13:49:57 +0100
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Dec 2022 05:15:01 -0800
+Message-ID: <fafc2b20-1e66-98e3-a75d-a9eecc540f4d@intel.com>
+Date: Tue, 6 Dec 2022 14:14:58 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Firefox/102.0 Thunderbird/102.5.1
 Content-Language: en-US
 To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
 References: <20221202122844.428006-1-matthew.auld@intel.com>
+ <20221202122844.428006-2-matthew.auld@intel.com>
 From: Andrzej Hajda <andrzej.hajda@intel.com>
 Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
  Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20221202122844.428006-1-matthew.auld@intel.com>
+In-Reply-To: <20221202122844.428006-2-matthew.auld@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v6 1/3] drm/i915/migrate: Account for the
- reserved_space
+Subject: Re: [Intel-gfx] [PATCH v6 2/3] drm/i915/selftests: use
+ live_subtests for live_migrate
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,95 +64,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org, Chris Wilson <chris.p.wilson@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: Chris Wilson <chris.p.wilson@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
-
-I messed-up with versions, my prev comment landed in v2, so I put it 
-here to clean things up.
-
 On 02.12.2022 13:28, Matthew Auld wrote:
-> From: Chris Wilson <chris.p.wilson@intel.com>
->
-> If the ring is nearly full when calling into emit_pte(), we might
-> incorrectly trample the reserved_space when constructing the packet to
-> emit the PTEs. This then triggers the GEM_BUG_ON(rq->reserved_space >
-> ring->space) when later submitting the request, since the request itself
-> doesn't have enough space left in the ring to emit things like
-> workarounds, breadcrumbs etc.
->
-> v2: Fix the whitespace errors
->
-> Testcase: igt@i915_selftests@live_emit_pte_full_ring
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/7535
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6889
-> Fixes: cf586021642d ("drm/i915/gt: Pipelined page migration")
-> Signed-off-by: Chris Wilson <chris.p.wilson@intel.com>
+> Probably a good idea to do an igt_flush_test() at the end of each
+> subtest, just to be sure the previous work has been flushed and doesn't
+> somehow interfere with the current subtest.
+> 
 > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+> Cc: Chris Wilson <chris.p.wilson@intel.com>
 > Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
 > Cc: Nirmoy Das <nirmoy.das@intel.com>
-> Cc: <stable@vger.kernel.org> # v5.15+
-> Tested-by: Nirmoy Das <nirmoy.das@intel.com>
-> Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/intel_migrate.c | 16 ++++++++++++----
->   1 file changed, 12 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
-> index b405a04135ca..b783f6f740c8 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_migrate.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
-> @@ -342,6 +342,16 @@ static int emit_no_arbitration(struct i915_request *rq)
->   	return 0;
->   }
->   
-> +static int max_pte_pkt_size(struct i915_request *rq, int pkt)
-> +{
-> +	struct intel_ring *ring = rq->ring;
-> +
-> +	pkt = min_t(int, pkt, (ring->space - rq->reserved_space) / sizeof(u32) + 5);
-> +	pkt = min_t(int, pkt, (ring->size - ring->emit) / sizeof(u32) + 5);
-> +
-> +	return pkt;
-> +}
-> +
 
-I guess, the assumption that subtractions of u32 values do not 
-overflows, is valid.
-Then I guess more natural would be use u32 for all vars involved, this 
-way we can use min instead of min_t, minor nit.
-
-Anyway:
 Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
 Regards
 Andrzej
 
->   static int emit_pte(struct i915_request *rq,
->   		    struct sgt_dma *it,
->   		    enum i915_cache_level cache_level,
-> @@ -388,8 +398,7 @@ static int emit_pte(struct i915_request *rq,
->   		return PTR_ERR(cs);
+> ---
+>   drivers/gpu/drm/i915/gt/selftest_migrate.c | 28 ++++++++++++++++------
+>   1 file changed, 21 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_migrate.c b/drivers/gpu/drm/i915/gt/selftest_migrate.c
+> index 0dc5309c90a4..1eab025ac002 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_migrate.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_migrate.c
+> @@ -486,7 +486,8 @@ global_clear(struct intel_migrate *migrate, u32 sz, struct rnd_state *prng)
 >   
->   	/* Pack as many PTE updates as possible into a single MI command */
-> -	pkt = min_t(int, dword_length, ring->space / sizeof(u32) + 5);
-> -	pkt = min_t(int, pkt, (ring->size - ring->emit) / sizeof(u32) + 5);
-> +	pkt = max_pte_pkt_size(rq, dword_length);
+>   static int live_migrate_copy(void *arg)
+>   {
+> -	struct intel_migrate *migrate = arg;
+> +	struct intel_gt *gt = arg;
+> +	struct intel_migrate *migrate = &gt->migrate;
+>   	struct drm_i915_private *i915 = migrate->context->engine->i915;
+>   	I915_RND_STATE(prng);
+>   	int i;
+> @@ -507,7 +508,8 @@ static int live_migrate_copy(void *arg)
 >   
->   	hdr = cs;
->   	*cs++ = MI_STORE_DATA_IMM | REG_BIT(21); /* as qword elements */
-> @@ -422,8 +431,7 @@ static int emit_pte(struct i915_request *rq,
->   				}
->   			}
+>   static int live_migrate_clear(void *arg)
+>   {
+> -	struct intel_migrate *migrate = arg;
+> +	struct intel_gt *gt = arg;
+> +	struct intel_migrate *migrate = &gt->migrate;
+>   	struct drm_i915_private *i915 = migrate->context->engine->i915;
+>   	I915_RND_STATE(prng);
+>   	int i;
+> @@ -593,7 +595,10 @@ static int __thread_migrate_copy(void *arg)
 >   
-> -			pkt = min_t(int, dword_rem, ring->space / sizeof(u32) + 5);
-> -			pkt = min_t(int, pkt, (ring->size - ring->emit) / sizeof(u32) + 5);
-> +			pkt = max_pte_pkt_size(rq, dword_rem);
+>   static int thread_migrate_copy(void *arg)
+>   {
+> -	return threaded_migrate(arg, __thread_migrate_copy, 0);
+> +	struct intel_gt *gt = arg;
+> +	struct intel_migrate *migrate = &gt->migrate;
+> +
+> +	return threaded_migrate(migrate, __thread_migrate_copy, 0);
+>   }
 >   
->   			hdr = cs;
->   			*cs++ = MI_STORE_DATA_IMM | REG_BIT(21);
+>   static int __thread_global_copy(void *arg)
+> @@ -605,7 +610,10 @@ static int __thread_global_copy(void *arg)
+>   
+>   static int thread_global_copy(void *arg)
+>   {
+> -	return threaded_migrate(arg, __thread_global_copy, 0);
+> +	struct intel_gt *gt = arg;
+> +	struct intel_migrate *migrate = &gt->migrate;
+> +
+> +	return threaded_migrate(migrate, __thread_global_copy, 0);
+>   }
+>   
+>   static int __thread_migrate_clear(void *arg)
+> @@ -624,12 +632,18 @@ static int __thread_global_clear(void *arg)
+>   
+>   static int thread_migrate_clear(void *arg)
+>   {
+> -	return threaded_migrate(arg, __thread_migrate_clear, 0);
+> +	struct intel_gt *gt = arg;
+> +	struct intel_migrate *migrate = &gt->migrate;
+> +
+> +	return threaded_migrate(migrate, __thread_migrate_clear, 0);
+>   }
+>   
+>   static int thread_global_clear(void *arg)
+>   {
+> -	return threaded_migrate(arg, __thread_global_clear, 0);
+> +	struct intel_gt *gt = arg;
+> +	struct intel_migrate *migrate = &gt->migrate;
+> +
+> +	return threaded_migrate(migrate, __thread_global_clear, 0);
+>   }
+>   
+>   int intel_migrate_live_selftests(struct drm_i915_private *i915)
+> @@ -647,7 +661,7 @@ int intel_migrate_live_selftests(struct drm_i915_private *i915)
+>   	if (!gt->migrate.context)
+>   		return 0;
+>   
+> -	return i915_subtests(tests, &gt->migrate);
+> +	return intel_gt_live_subtests(tests, gt);
+>   }
+>   
+>   static struct drm_i915_gem_object *
 
