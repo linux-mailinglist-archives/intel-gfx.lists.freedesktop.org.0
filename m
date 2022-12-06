@@ -1,55 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4B5E643EB2
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Dec 2022 09:33:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1623D643EBE
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Dec 2022 09:35:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16CCB10E302;
-	Tue,  6 Dec 2022 08:33:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BE3410E302;
+	Tue,  6 Dec 2022 08:35:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B64410E302
- for <intel-gfx@lists.freedesktop.org>; Tue,  6 Dec 2022 08:32:59 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78B9810E302
+ for <intel-gfx@lists.freedesktop.org>; Tue,  6 Dec 2022 08:35:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1670315579; x=1701851579;
- h=message-id:date:mime-version:subject:to:references:from:
+ t=1670315743; x=1701851743;
+ h=message-id:date:mime-version:subject:from:to:references:
  in-reply-to:content-transfer-encoding;
- bh=wQoIsPbFkZ8dG5lTH8XEWv4Or8VbJsy65HMV8HmkadU=;
- b=d69uDMou4FFxPsEmmh+QNmsPGH3it+i6KspbqKeKzW6WaZ+zh+qdCkJU
- dJrxPTCwO8AjIIns7vBlblgww/G1F7jvtTVxQTLaq+y/wmPSqO9zA4LIe
- VsCmE+3By2cP+yjrOB7OuzpnWhXoNqHBi+uaXrV0OVUMZKd5MlF83vrbs
- 7NLEac8THTO9HRQ1z6cFDnErPxmMXKItxRn/EHP/w5cCzuS39/eQzUCsl
- BsxUwOzyGlXKfrULRhZvgNkJF2lsbWqFzNCI0M38/cqqP+RIXU9NpIvwv
- gHeoSdmzjQ4h0WyqL5xZEagbarfwyXhDMiI0nVVwXQ0tvQd4r6C/Vg8Qg Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10552"; a="317710781"
-X-IronPort-AV: E=Sophos;i="5.96,220,1665471600"; d="scan'208";a="317710781"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2022 00:32:58 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10552"; a="734912175"
-X-IronPort-AV: E=Sophos;i="5.96,220,1665471600"; d="scan'208";a="734912175"
+ bh=K0z9CNvGuPWNFvKj2RoaKEik71FItyIRoNeSnlMoUW0=;
+ b=Dm4brwqZwFNlh+CXYgyPe9ibzu+hXVK0TL+xmY9CRr0U0lFJUvUVpT1h
+ 2K9K1plp/gDyGrYL/b1tYATCSLU031t5uuAj9B9cuBnNNiO2yslvjb839
+ ny/UFGNS3lYhxzGS7KfwpzbAdLVwGrGa2hIWw0BZgFf4oCcQjDpTPQ9g2
+ VLVXixl9++dVINnEowoTUvkPCLya9aZnXmRbikQ+goqb7IgMHzyAkiv12
+ 9qQAGyH20Lfu9lJ8gLzX99eRThLFYBfZi04knjd830NuhH9QCKZI3Rh0s
+ gByMlyMDRkAt+t8Gu02JB/3f2TP3B6WeU+f+rygzvJNQqzD02Jis6kFON g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10552"; a="299992494"
+X-IronPort-AV: E=Sophos;i="5.96,220,1665471600"; d="scan'208";a="299992494"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Dec 2022 00:35:42 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10552"; a="714720128"
+X-IronPort-AV: E=Sophos;i="5.96,220,1665471600"; d="scan'208";a="714720128"
 Received: from kflahert-mobl.ger.corp.intel.com (HELO [10.213.212.142])
  ([10.213.212.142])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2022 00:32:57 -0800
-Message-ID: <a52b763f-179a-8f3f-dfd3-d7d9329d6481@linux.intel.com>
-Date: Tue, 6 Dec 2022 08:32:55 +0000
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Dec 2022 00:35:38 -0800
+Message-ID: <15e01c05-af96-09b1-ebcd-84c6808d5925@linux.intel.com>
+Date: Tue, 6 Dec 2022 08:35:36 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
 Content-Language: en-US
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 To: Alan Previn <alan.previn.teres.alexis@intel.com>,
  intel-gfx@lists.freedesktop.org
 References: <20220509210151.1843173-1-alan.previn.teres.alexis@intel.com>
  <20220509210151.1843173-2-alan.previn.teres.alexis@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+ <a52b763f-179a-8f3f-dfd3-d7d9329d6481@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <20220509210151.1843173-2-alan.previn.teres.alexis@intel.com>
+In-Reply-To: <a52b763f-179a-8f3f-dfd3-d7d9329d6481@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Subject: Re: [Intel-gfx] [Intel-gfx 1/6] drm/i915/guc: Fix GuC relay log
  debugfs failing open
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -68,46 +69,31 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 09/05/2022 22:01, Alan Previn wrote:
-> When GuC-Error-Capture was introduced, we created
-> buf_in_use as a way to identify if relay logging
-> had started. It is meant to replace the previous
-> method where a mmap of the GuC log buffer was
-> the indicator but not since GuC Error Capture
-> shares that mapping throughout operation.
+On 06/12/2022 08:32, Tvrtko Ursulin wrote:
 > 
-> However, that method of checking was not updated
-> when the debugfs guc_log_relay_ctl_open was called.
-> Fix that check.
+> On 09/05/2022 22:01, Alan Previn wrote:
+>> When GuC-Error-Capture was introduced, we created
+>> buf_in_use as a way to identify if relay logging
+>> had started. It is meant to replace the previous
+>> method where a mmap of the GuC log buffer was
+>> the indicator but not since GuC Error Capture
+>> shares that mapping throughout operation.
+>>
+>> However, that method of checking was not updated
+>> when the debugfs guc_log_relay_ctl_open was called.
+>> Fix that check.
+>>
+>> Fixes:
+>>     drm/i915/guc: Add capture region into intel_guc_log
+>>     (daff407a083d).
 > 
-> Fixes:
->     drm/i915/guc: Add capture region into intel_guc_log
->     (daff407a083d).
+> Wrong format of fixes tag - if you want this picked up by any of the 
+> automated tooling, it won't be. (And you probably do given DG2 is out of 
+> force probe.)
 
-Wrong format of fixes tag - if you want this picked up by any of the 
-automated tooling, it won't be. (And you probably do given DG2 is out of 
-force probe.)
+ENOCOFFEE - replying to re-surrected ancient thread so I guess this does 
+not matter any more.
 
 Regards,
 
 Tvrtko
-
-> Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
-> Link: https://patchwork.freedesktop.org/patch/479021/?series=101603&rev=1
-> ---
->   drivers/gpu/drm/i915/gt/uc/intel_guc_log.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
-> index 78d2989fe917..09f4d5fbca82 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
-> @@ -568,7 +568,7 @@ int intel_guc_log_set_level(struct intel_guc_log *log, u32 level)
->   
->   bool intel_guc_log_relay_created(const struct intel_guc_log *log)
->   {
-> -	return log->buf_addr;
-> +	return log->relay.buf_in_use;
->   }
->   
->   int intel_guc_log_relay_open(struct intel_guc_log *log)
