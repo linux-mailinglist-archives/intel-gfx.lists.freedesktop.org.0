@@ -1,47 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BDDB644175
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Dec 2022 11:45:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFF84644173
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Dec 2022 11:45:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8675A10E316;
-	Tue,  6 Dec 2022 10:45:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8DAE10E313;
+	Tue,  6 Dec 2022 10:45:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 558BD10E120
- for <intel-gfx@lists.freedesktop.org>; Tue,  6 Dec 2022 10:45:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4FFB10E31D
+ for <intel-gfx@lists.freedesktop.org>; Tue,  6 Dec 2022 10:45:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1670323533; x=1701859533;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=jiTzygfupp80ic8DqHtqAy0uPNbBwBFXR5zQo0xVRBY=;
- b=BQJip4X6vsyhqlCNdfXfU7iPrrwvsiWDB5SDTP9EoPK7QiLCfSPs6b+O
- nnSfHpQslrOhcbL1t7bnE7Lk3+hjzYgiVnGR6T5rw9EkDty6zWlG2p21I
- 8C7HU8+nahckaHKs1KByu8s9AoJ03IYHsOVz4yS6/n+nsOWAoOttvniZs
- sy3/XOuQCyZOZY3yuNNBJqgwosF0PKgkfQEpwUPJIOe03uAIqXSI6csrN
- KTQBJdOap/E4IOCwMnrd1BiY59pTnH7MDLnANdxk4CHbDhXYUemn9mIr7
- HWGcIWp2yg5bqcjKYOb6zgQNV7spL/vcGrJH7gJwDTOxRpVPBEI0tee2N g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10552"; a="317735326"
-X-IronPort-AV: E=Sophos;i="5.96,222,1665471600"; d="scan'208";a="317735326"
+ t=1670323534; x=1701859534;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=jhkIswVapvaD6PpaWVoeVF7oP+mMaAGZ9eSI9uln4NI=;
+ b=QmYC/gKPD1oYp+8SQK+Iw6vCDW7YHC5UuGQMbSHzkmE1G4ipnCVPwTHD
+ MwFl/q/T0br0pB1EREqwIJuRi5Z6L6VuI0LV4v9q9n7NMIUY32YzpcXJG
+ Zp+IT836avV17Lr0mw5JQiA+avbpUb+IeJJyg6il0MBgnz8SvmBVW1DoL
+ 83sFEHCzkveVRf5PyKQiSKw1M6JICf+Z87ahfmkctfagZM9YKa394GW0H
+ pGDELJ28ekMoySDve5QgeEToMZGK/GUq1o2BS4u45EfRekGQQZUkIoQl+
+ HAeqFD03vGRGlzW7PpAed9Jj6UpEcpn1kgXd6fPwtOBkC/ovkiB1ci+HN g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10552"; a="317735331"
+X-IronPort-AV: E=Sophos;i="5.96,222,1665471600"; d="scan'208";a="317735331"
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2022 02:45:32 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10552"; a="714757908"
-X-IronPort-AV: E=Sophos;i="5.96,222,1665471600"; d="scan'208";a="714757908"
+ 06 Dec 2022 02:45:34 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10552"; a="714757915"
+X-IronPort-AV: E=Sophos;i="5.96,222,1665471600"; d="scan'208";a="714757915"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2022 02:45:30 -0800
+ 06 Dec 2022 02:45:32 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  6 Dec 2022 16:16:18 +0530
-Message-Id: <20221206104630.1263525-1-ankit.k.nautiyal@intel.com>
+Date: Tue,  6 Dec 2022 16:16:19 +0530
+Message-Id: <20221206104630.1263525-2-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20221206104630.1263525-1-ankit.k.nautiyal@intel.com>
+References: <20221206104630.1263525-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 00/12] Add DSC fractional bpp support
+Subject: [Intel-gfx] [PATCH v1 01/12] drm/i915/dp: Check if force dsc bpc <=
+ max requested bpc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,63 +60,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patch series adds support for having fractional compressed bpp
-for MTL+. The initial patches that lay groundwork to iterate over valid
-compressed bpps to select the 'best' compressed bpp with optimal link
-configuration are taken from upstream pending series:
-https://patchwork.freedesktop.org/series/105200/
+Add a check to use force DSC bpc only if its less that the connector max
+requested bpc.
 
-The later patches, add changes to accommodate compressed bpp with
-fractional part, including changes to QP calculations.
-To get the 'best' compressed bpp, we iterate over the valid compressed
-bpp values, but with fractional step size 1/16, 1/8, 1/4 or 1/2 as per
-sink support.
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 23 ++++++++++++++++++-----
+ 1 file changed, 18 insertions(+), 5 deletions(-)
 
-The last 2 patches add support to depict DSC sink's fractional support,
-and debugfs to enforce use of fractional bpp, while choosing an
-appropriate compressed bpp.
-
-Rev2:
--Added patch to fix DSC Receiver Cap size macro. (kernel test robot)
--Addressed review comments from Stan.
-
-Ankit Nautiyal (9):
-  drm/i915/dp: Check if force dsc bpc <= max requested bpc
-  drm/display/dp: Fix the DP DSC Receiver cap size
-  drm/display/dp: Add helper function to get DSC bpp prescision
-  drm/i915/dp: Rename helpers to get DSC max pipe bpp and max output bpp
-  drm/i915/dp: Get optimal link config to have best compressed bpp
-  drm/i915/display: Store compressed bpp in U6.4 format
-  drm/i915/display: Consider fractional vdsc bpp while computing m_n
-    values
-  drm/i915/audio : Consider fractional vdsc bpp while computing tu_data
-  drm/i915/dp: Iterate over output bpp with fractional step size
-
-Swati Sharma (2):
-  drm/i915/dsc: Add debugfs entry to validate DSC fractional bpp
-  drm/i915/dsc: Allow DSC only with fractional bpp when forced from
-    debugfs
-
-Vandita Kulkarni (1):
-  drm/i915/dsc/mtl: Add support for fractional bpp
-
- drivers/gpu/drm/display/drm_dp_helper.c       |  27 ++
- drivers/gpu/drm/i915/display/icl_dsi.c        |  10 +-
- drivers/gpu/drm/i915/display/intel_audio.c    |  14 +-
- drivers/gpu/drm/i915/display/intel_bios.c     |   2 +-
- drivers/gpu/drm/i915/display/intel_display.c  |   6 +-
- drivers/gpu/drm/i915/display/intel_display.h  |   2 +-
- .../drm/i915/display/intel_display_debugfs.c  |  84 +++++
- .../drm/i915/display/intel_display_types.h    |  17 +-
- drivers/gpu/drm/i915/display/intel_dp.c       | 321 ++++++++++++++----
- drivers/gpu/drm/i915/display/intel_dp_mst.c   |   3 +-
- drivers/gpu/drm/i915/display/intel_fdi.c      |   2 +-
- .../gpu/drm/i915/display/intel_qp_tables.c    |   3 -
- drivers/gpu/drm/i915/display/intel_vdsc.c     |  16 +-
- include/drm/display/drm_dp.h                  |   2 +-
- include/drm/display/drm_dp_helper.h           |   1 +
- 15 files changed, 426 insertions(+), 84 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 1607c86af025..52081eb7bd40 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -1474,7 +1474,7 @@ static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+ 	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
+ 	const struct drm_display_mode *adjusted_mode =
+ 		&pipe_config->hw.adjusted_mode;
+-	int pipe_bpp;
++	int pipe_bpp, pipe_bpp_max;
+ 	int ret;
+ 
+ 	pipe_config->fec_enable = !intel_dp_is_edp(intel_dp) &&
+@@ -1483,9 +1483,21 @@ static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+ 	if (!intel_dp_supports_dsc(intel_dp, pipe_config))
+ 		return -EINVAL;
+ 
+-	pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp, conn_state->max_requested_bpc);
++	/*
++	 * If Force DSC BPC is set, try to use that to compute the pipe bpp,
++	 * otherwise set pipe_bpp to the max bpp.
++	 */
++	pipe_bpp_max = intel_dp_dsc_compute_bpp(intel_dp, conn_state->max_requested_bpc);
+ 
+-	if (intel_dp->force_dsc_bpc) {
++	if (!intel_dp->force_dsc_bpc) {
++		pipe_bpp = pipe_bpp_max;
++	} else if (intel_dp->force_dsc_bpc &&
++		   intel_dp->force_dsc_bpc > conn_state->max_requested_bpc) {
++		drm_dbg_kms(&dev_priv->drm,
++			    "Ignoring force dsc bpc:%d, conflict with max requested bpc:%d",
++			    intel_dp->force_dsc_bpc, conn_state->max_requested_bpc);
++		pipe_bpp = pipe_bpp_max;
++	} else {
+ 		pipe_bpp = intel_dp->force_dsc_bpc * 3;
+ 		drm_dbg_kms(&dev_priv->drm, "Input DSC BPP forced to %d", pipe_bpp);
+ 	}
+@@ -1497,12 +1509,13 @@ static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+ 		return -EINVAL;
+ 	}
+ 
++	pipe_config->pipe_bpp = pipe_bpp;
++
+ 	/*
+-	 * For now enable DSC for max bpp, max link rate, max lane count.
++	 * For now enable DSC for max link rate, max lane count.
+ 	 * Optimize this later for the minimum possible link rate/lane count
+ 	 * with DSC enabled for the requested mode.
+ 	 */
+-	pipe_config->pipe_bpp = pipe_bpp;
+ 	pipe_config->port_clock = limits->max_rate;
+ 	pipe_config->lane_count = limits->max_lane_count;
+ 
 -- 
 2.25.1
 
