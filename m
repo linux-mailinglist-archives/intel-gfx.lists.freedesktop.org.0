@@ -2,49 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 769BB643E2B
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Dec 2022 09:13:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4B5E643EB2
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Dec 2022 09:33:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A64110E303;
-	Tue,  6 Dec 2022 08:13:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16CCB10E302;
+	Tue,  6 Dec 2022 08:33:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A656610E302
- for <intel-gfx@lists.freedesktop.org>; Tue,  6 Dec 2022 08:13:04 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B64410E302
+ for <intel-gfx@lists.freedesktop.org>; Tue,  6 Dec 2022 08:32:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1670314384; x=1701850384;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=2fsOoet2VVCdXT41Z9eBERxIE6ibcNPTUEsPP/LPv5Q=;
- b=KtFs1aSDp++5762o2v8/VKz/TvVC3gKflOUQVWlgzpNsVdc6zuou7izs
- vR86Fgr+MFQZHkhCtk5Afy7DhXoDYb4wgHKfvdrhqWOsAkaSAptRR7AiS
- w93j/LnKytS+1bxWVvhUtWaFqokB43T6+wEwfGOFIL2YtyBpzGxdsP+xa
- lpYn//4Zzvl40BhJAMXzzKO6sJ6Vb6gn/5iSHkpTQqFXTdnBaOP4kECRF
- yl8+KfPTDIStJ2LoeZx1sdIRl0xS/k8wVlkzFvEljiIz3JTUrPdT0TDmJ
- a16um/roOK2wCxRKso3MwuJisLvAKbiood2n9xDvSL289HPl1GTQZr1kj Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10552"; a="296257755"
-X-IronPort-AV: E=Sophos;i="5.96,220,1665471600"; d="scan'208";a="296257755"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2022 00:13:02 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10552"; a="891290038"
-X-IronPort-AV: E=Sophos;i="5.96,220,1665471600"; d="scan'208";a="891290038"
-Received: from aravind-dev.iind.intel.com ([10.145.162.80])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2022 00:12:57 -0800
-From: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  6 Dec 2022 13:57:39 +0530
-Message-Id: <f8cfaaab25f700b1826eedeba55d68334396e92a.1670311877.git.aravind.iddamsetty@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <97b42ba0ae91b1ed6feb6e5c090bff2445719bf7.1670311877.git.aravind.iddamsetty@intel.com>
-References: <97b42ba0ae91b1ed6feb6e5c090bff2445719bf7.1670311877.git.aravind.iddamsetty@intel.com>
+ t=1670315579; x=1701851579;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=wQoIsPbFkZ8dG5lTH8XEWv4Or8VbJsy65HMV8HmkadU=;
+ b=d69uDMou4FFxPsEmmh+QNmsPGH3it+i6KspbqKeKzW6WaZ+zh+qdCkJU
+ dJrxPTCwO8AjIIns7vBlblgww/G1F7jvtTVxQTLaq+y/wmPSqO9zA4LIe
+ VsCmE+3By2cP+yjrOB7OuzpnWhXoNqHBi+uaXrV0OVUMZKd5MlF83vrbs
+ 7NLEac8THTO9HRQ1z6cFDnErPxmMXKItxRn/EHP/w5cCzuS39/eQzUCsl
+ BsxUwOzyGlXKfrULRhZvgNkJF2lsbWqFzNCI0M38/cqqP+RIXU9NpIvwv
+ gHeoSdmzjQ4h0WyqL5xZEagbarfwyXhDMiI0nVVwXQ0tvQd4r6C/Vg8Qg Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10552"; a="317710781"
+X-IronPort-AV: E=Sophos;i="5.96,220,1665471600"; d="scan'208";a="317710781"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Dec 2022 00:32:58 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10552"; a="734912175"
+X-IronPort-AV: E=Sophos;i="5.96,220,1665471600"; d="scan'208";a="734912175"
+Received: from kflahert-mobl.ger.corp.intel.com (HELO [10.213.212.142])
+ ([10.213.212.142])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Dec 2022 00:32:57 -0800
+Message-ID: <a52b763f-179a-8f3f-dfd3-d7d9329d6481@linux.intel.com>
+Date: Tue, 6 Dec 2022 08:32:55 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 4/4] drm/i915/mtl/UAPI: Disable
- GET/SET_CACHING IOCTL for MTL+
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Content-Language: en-US
+To: Alan Previn <alan.previn.teres.alexis@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20220509210151.1843173-1-alan.previn.teres.alexis@intel.com>
+ <20220509210151.1843173-2-alan.previn.teres.alexis@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20220509210151.1843173-2-alan.previn.teres.alexis@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [Intel-gfx 1/6] drm/i915/guc: Fix GuC relay log
+ debugfs failing open
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,68 +64,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Pallavi Mishra <pallavi.mishra@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Pallavi Mishra <pallavi.mishra@intel.com>
 
-It's a noop on all new platforms starting from MTL.
-Refer: (e7737b67ab46) drm/i915/uapi: reject caching ioctls for discrete
+On 09/05/2022 22:01, Alan Previn wrote:
+> When GuC-Error-Capture was introduced, we created
+> buf_in_use as a way to identify if relay logging
+> had started. It is meant to replace the previous
+> method where a mmap of the GuC log buffer was
+> the indicator but not since GuC Error Capture
+> shares that mapping throughout operation.
+> 
+> However, that method of checking was not updated
+> when the debugfs guc_log_relay_ctl_open was called.
+> Fix that check.
+> 
+> Fixes:
+>     drm/i915/guc: Add capture region into intel_guc_log
+>     (daff407a083d).
 
-v2:
-1. block get caching ioctl
-2. return ENODEV similar to DGFX
-3. update the doc in i915_drm.h
+Wrong format of fixes tag - if you want this picked up by any of the 
+automated tooling, it won't be. (And you probably do given DG2 is out of 
+force probe.)
 
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Regards,
 
-Signed-off-by: Pallavi Mishra <pallavi.mishra@intel.com>
-Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_domain.c | 4 ++--
- include/uapi/drm/i915_drm.h                | 3 +++
- 2 files changed, 5 insertions(+), 2 deletions(-)
+Tvrtko
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_domain.c b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-index d44a152ce680..cf817ee0aa01 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-@@ -291,7 +291,7 @@ int i915_gem_get_caching_ioctl(struct drm_device *dev, void *data,
- 	struct drm_i915_gem_object *obj;
- 	int err = 0;
- 
--	if (IS_DGFX(to_i915(dev)))
-+	if (IS_DGFX(to_i915(dev)) || GRAPHICS_VER_FULL(to_i915(dev)) >= IP_VER(12, 70))
- 		return -ENODEV;
- 
- 	rcu_read_lock();
-@@ -329,7 +329,7 @@ int i915_gem_set_caching_ioctl(struct drm_device *dev, void *data,
- 	enum i915_cache_level level;
- 	int ret = 0;
- 
--	if (IS_DGFX(i915))
-+	if (IS_DGFX(i915) || GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70))
- 		return -ENODEV;
- 
- 	switch (args->caching) {
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index 8df261c5ab9b..3467fd879427 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -1626,6 +1626,9 @@ struct drm_i915_gem_busy {
-  *     - Everything else is always allocated and mapped as write-back, with the
-  *       guarantee that everything is also coherent with the GPU.
-  *
-+ * Starting from MTL even on integrated platforms set/get caching is no longer
-+ * supported and object will be mapped as write-combined only.
-+ *
-  * Note that this is likely to change in the future again, where we might need
-  * more flexibility on future devices, so making this all explicit as part of a
-  * new &drm_i915_gem_create_ext extension is probable.
--- 
-2.25.1
-
+> Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+> Link: https://patchwork.freedesktop.org/patch/479021/?series=101603&rev=1
+> ---
+>   drivers/gpu/drm/i915/gt/uc/intel_guc_log.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
+> index 78d2989fe917..09f4d5fbca82 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
+> @@ -568,7 +568,7 @@ int intel_guc_log_set_level(struct intel_guc_log *log, u32 level)
+>   
+>   bool intel_guc_log_relay_created(const struct intel_guc_log *log)
+>   {
+> -	return log->buf_addr;
+> +	return log->relay.buf_in_use;
+>   }
+>   
+>   int intel_guc_log_relay_open(struct intel_guc_log *log)
