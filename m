@@ -1,50 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0F1D643E2A
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Dec 2022 09:13:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01103643E29
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Dec 2022 09:13:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B810810E302;
-	Tue,  6 Dec 2022 08:13:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B51310E300;
+	Tue,  6 Dec 2022 08:13:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D2AD10E2FD
- for <intel-gfx@lists.freedesktop.org>; Tue,  6 Dec 2022 08:13:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 805A410E300
+ for <intel-gfx@lists.freedesktop.org>; Tue,  6 Dec 2022 08:13:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1670314384; x=1701850384;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ElBQm7zziDnEiuD0XpkAkUOtn4yzo6JBnKDQULMEbnY=;
- b=E15ogsdeWr9dUyhG4UsbcErrHgBwBB0cJIUmRAv/bkIquIqW0trLJWE9
- xF8KlEKC+FN/ogSJ1zEYhZHo84A/aJjfEdRxh0ivELNJSEOVHJZeq4KOY
- jjcinLb+qUsHfLIxvaefNSvaP8tVAxk6cvM8/pfjLMuIaI6sNaytsqOXF
- UdrCs/YxdFzJDVeroMGfYPsGD1c1E1Dpc6afOJRK45nUEJNf7qeNDrker
- 2h8Px0vjRr37m9BgDk9nYu0aPpMeYL8mJ5uvJ6kUyDIa1v4FGJPkvdrBL
- IEvRyfozBMevX69O0chfBr4FpinVOOountg5+pu6CtltR0O2XOywMsAFa Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10552"; a="296257750"
-X-IronPort-AV: E=Sophos;i="5.96,220,1665471600"; d="scan'208";a="296257750"
+ bh=PujUksDDcj2+PYzfbPFwa5yXUoclrmeX8Nr7x0LxITw=;
+ b=WIg3twtLDa7FzfZQcyWYOQJumzsLDePErJbCT65f+MC2AyjOSmk1/qQa
+ 7aXExYO0ShE6OvIhGgGC/Oo9FjlPnIGDoD+Vj7pzRd6v7/QYDaHe2jbAY
+ tDaBKl9jRuIyhH7kEXCYiINzBueqU18YZwhPAM3Y3HjoIiNhbc22dwbY1
+ uHT+LLooJA/0gRiKCKfD/0aTlB7h2parKS63YuEvFKhzP4wZivWNSuh8x
+ H+urYrjjXaV1SQoiGZPUrCfoDIp8ulG+sC6dQ1uAwGFNvVtw3kKQnBvLj
+ jO6vy3PwBLDQdv54E1JXUmP6BKImsq6ePxFN0G4UvdP50qBKrTynbVa+J Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10552"; a="296257746"
+X-IronPort-AV: E=Sophos;i="5.96,220,1665471600"; d="scan'208";a="296257746"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Dec 2022 00:13:02 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10552"; a="891290005"
-X-IronPort-AV: E=Sophos;i="5.96,220,1665471600"; d="scan'208";a="891290005"
+X-IronPort-AV: E=McAfee;i="6500,9779,10552"; a="891290034"
+X-IronPort-AV: E=Sophos;i="5.96,220,1665471600"; d="scan'208";a="891290034"
 Received: from aravind-dev.iind.intel.com ([10.145.162.80])
  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2022 00:12:53 -0800
+ 06 Dec 2022 00:12:55 -0800
 From: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  6 Dec 2022 13:57:37 +0530
-Message-Id: <5abb076e8a8f78bf1e13a08d8300d2f7cc043cac.1670311877.git.aravind.iddamsetty@intel.com>
+Date: Tue,  6 Dec 2022 13:57:38 +0530
+Message-Id: <6f0bec943061dfa4604e3c479f44e98169ebd082.1670311877.git.aravind.iddamsetty@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <97b42ba0ae91b1ed6feb6e5c090bff2445719bf7.1670311877.git.aravind.iddamsetty@intel.com>
 References: <97b42ba0ae91b1ed6feb6e5c090bff2445719bf7.1670311877.git.aravind.iddamsetty@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/4] drm/i915: Reference pte_encode through vm
- pointer
+Subject: [Intel-gfx] [PATCH 3/4] drm/i915/mtl: Define new PTE encode for MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,102 +60,164 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-New platforms will use different encode functions.
+Add a separate PTE encode function for MTL. The number of PAT registers
+have increased to 16 on MTL. All 16 PAT registers are available for
+PPGTT mapped pages, but only the lower 4 are available for GGTT mapped
+pages.
+
+BSPEC: 63884
 
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Cc: Matt Roper <matthew.d.roper@intel.com>
+Co-developed-by: Fei Yang <fei.yang@intel.com>
+Signed-off-by: Fei Yang <fei.yang@intel.com>
 Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dpt.c |  2 +-
- drivers/gpu/drm/i915/gt/gen8_ppgtt.c     | 10 +++++-----
- drivers/gpu/drm/i915/gt/intel_ggtt.c     |  4 ++--
- 3 files changed, 8 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c | 33 +++++++++++++++++++++++++++-
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.h |  4 ++++
+ drivers/gpu/drm/i915/gt/intel_ggtt.c | 32 ++++++++++++++++++++++++++-
+ drivers/gpu/drm/i915/gt/intel_gtt.h  | 13 +++++++++--
+ 4 files changed, 78 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpt.c b/drivers/gpu/drm/i915/display/intel_dpt.c
-index ad1a37b515fb..cb8ed9bfb240 100644
---- a/drivers/gpu/drm/i915/display/intel_dpt.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpt.c
-@@ -298,7 +298,7 @@ intel_dpt_create(struct intel_framebuffer *fb)
- 	vm->vma_ops.bind_vma    = dpt_bind_vma;
- 	vm->vma_ops.unbind_vma  = dpt_unbind_vma;
- 
--	vm->pte_encode = gen8_ggtt_pte_encode;
-+	vm->pte_encode = vm->gt->ggtt->vm.pte_encode;
- 
- 	dpt->obj = dpt_obj;
- 
 diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-index 4daaa6f55668..31e838eee2ef 100644
+index 31e838eee2ef..4197b43150cc 100644
 --- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
 +++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-@@ -427,7 +427,7 @@ gen8_ppgtt_insert_pte(struct i915_ppgtt *ppgtt,
- 		      u32 flags)
- {
- 	struct i915_page_directory *pd;
--	const gen8_pte_t pte_encode = gen8_pte_encode(0, cache_level, flags);
-+	const gen8_pte_t pte_encode = ppgtt->vm.pte_encode(0, cache_level, flags);
- 	gen8_pte_t *vaddr;
- 
- 	pd = i915_pd_entry(pdp, gen8_pd_index(idx, 2));
-@@ -580,7 +580,7 @@ static void gen8_ppgtt_insert_huge(struct i915_address_space *vm,
- 				   enum i915_cache_level cache_level,
- 				   u32 flags)
- {
--	const gen8_pte_t pte_encode = gen8_pte_encode(0, cache_level, flags);
-+	const gen8_pte_t pte_encode = vm->pte_encode(0, cache_level, flags);
- 	unsigned int rem = sg_dma_len(iter->sg);
- 	u64 start = vma_res->start;
- 
-@@ -743,7 +743,7 @@ static void gen8_ppgtt_insert_entry(struct i915_address_space *vm,
- 	GEM_BUG_ON(pt->is_compact);
- 
- 	vaddr = px_vaddr(pt);
--	vaddr[gen8_pd_index(idx, 0)] = gen8_pte_encode(addr, level, flags);
-+	vaddr[gen8_pd_index(idx, 0)] = vm->pte_encode(addr, level, flags);
- 	drm_clflush_virt_range(&vaddr[gen8_pd_index(idx, 0)], sizeof(*vaddr));
+@@ -55,6 +55,34 @@ static u64 gen8_pte_encode(dma_addr_t addr,
+ 	return pte;
  }
  
-@@ -773,7 +773,7 @@ static void __xehpsdv_ppgtt_insert_entry_lm(struct i915_address_space *vm,
- 	}
++static u64 mtl_pte_encode(dma_addr_t addr,
++			  enum i915_cache_level level,
++			  u32 flags)
++{
++	gen8_pte_t pte = addr | GEN8_PAGE_PRESENT | GEN8_PAGE_RW;
++
++	if (unlikely(flags & PTE_READ_ONLY))
++		pte &= ~GEN8_PAGE_RW;
++
++	if (flags & PTE_LM)
++		pte |= GEN12_PPGTT_PTE_LM | GEN12_PPGTT_PTE_NC;
++
++	switch (level) {
++	case I915_CACHE_NONE:
++		pte |= GEN12_PPGTT_PTE_PAT1;
++		break;
++	case I915_CACHE_LLC:
++	case I915_CACHE_L3_LLC:
++		pte |= GEN12_PPGTT_PTE_PAT0 | GEN12_PPGTT_PTE_PAT1;
++		break;
++	case I915_CACHE_WT:
++		pte |= GEN12_PPGTT_PTE_PAT0;
++		break;
++	}
++
++	return pte;
++}
++
+ static void gen8_ppgtt_notify_vgt(struct i915_ppgtt *ppgtt, bool create)
+ {
+ 	struct drm_i915_private *i915 = ppgtt->vm.i915;
+@@ -963,7 +991,10 @@ struct i915_ppgtt *gen8_ppgtt_create(struct intel_gt *gt,
+ 	 */
+ 	ppgtt->vm.alloc_scratch_dma = alloc_pt_dma;
  
- 	vaddr = px_vaddr(pt);
--	vaddr[gen8_pd_index(idx, 0) / 16] = gen8_pte_encode(addr, level, flags);
-+	vaddr[gen8_pd_index(idx, 0) / 16] = vm->pte_encode(addr, level, flags);
- }
+-	ppgtt->vm.pte_encode = gen8_pte_encode;
++	if (GRAPHICS_VER_FULL(gt->i915) >= IP_VER(12, 70))
++		ppgtt->vm.pte_encode = mtl_pte_encode;
++	else
++		ppgtt->vm.pte_encode = gen8_pte_encode;
  
- static void xehpsdv_ppgtt_insert_entry(struct i915_address_space *vm,
-@@ -820,7 +820,7 @@ static int gen8_init_scratch(struct i915_address_space *vm)
- 		pte_flags |= PTE_LM;
+ 	ppgtt->vm.bind_async_flags = I915_VMA_LOCAL_BIND;
+ 	ppgtt->vm.insert_entries = gen8_ppgtt_insert;
+diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.h b/drivers/gpu/drm/i915/gt/gen8_ppgtt.h
+index f541d19264b4..c48f1fc32909 100644
+--- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.h
++++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.h
+@@ -19,4 +19,8 @@ u64 gen8_ggtt_pte_encode(dma_addr_t addr,
+ 			 enum i915_cache_level level,
+ 			 u32 flags);
  
- 	vm->scratch[0]->encode =
--		gen8_pte_encode(px_dma(vm->scratch[0]),
-+		vm->pte_encode(px_dma(vm->scratch[0]),
- 				I915_CACHE_NONE, pte_flags);
- 
- 	for (i = 1; i <= vm->top; i++) {
++u64 mtl_ggtt_pte_encode(dma_addr_t addr,
++			enum i915_cache_level level,
++			u32 flags);
++
+ #endif
 diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index 7644738b9cdb..82203ad85b0e 100644
+index 82203ad85b0e..3b6f1f6f780a 100644
 --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
 +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -273,7 +273,7 @@ static void gen8_ggtt_insert_page(struct i915_address_space *vm,
- 	gen8_pte_t __iomem *pte =
- 		(gen8_pte_t __iomem *)ggtt->gsm + offset / I915_GTT_PAGE_SIZE;
- 
--	gen8_set_pte(pte, gen8_ggtt_pte_encode(addr, level, flags));
-+	gen8_set_pte(pte, ggtt->vm.pte_encode(addr, level, flags));
- 
- 	ggtt->invalidate(ggtt);
+@@ -246,6 +246,33 @@ static void guc_ggtt_invalidate(struct i915_ggtt *ggtt)
+ 	}
  }
-@@ -283,8 +283,8 @@ static void gen8_ggtt_insert_entries(struct i915_address_space *vm,
- 				     enum i915_cache_level level,
- 				     u32 flags)
- {
--	const gen8_pte_t pte_encode = gen8_ggtt_pte_encode(0, level, flags);
- 	struct i915_ggtt *ggtt = i915_vm_to_ggtt(vm);
-+	const gen8_pte_t pte_encode = ggtt->vm.pte_encode(0, level, flags);
- 	gen8_pte_t __iomem *gte;
- 	gen8_pte_t __iomem *end;
- 	struct sgt_iter iter;
+ 
++u64 mtl_ggtt_pte_encode(dma_addr_t addr,
++			enum i915_cache_level level,
++			u32 flags)
++{
++	gen8_pte_t pte = addr | GEN8_PAGE_PRESENT;
++
++	GEM_BUG_ON(addr & ~GEN12_GGTT_PTE_ADDR_MASK);
++
++	if (flags & PTE_LM)
++		pte |= GEN12_GGTT_PTE_LM;
++
++	switch (level) {
++	case I915_CACHE_NONE:
++		pte |= MTL_GGTT_PTE_PAT1;
++		break;
++	case I915_CACHE_LLC:
++	case I915_CACHE_L3_LLC:
++		pte |= MTL_GGTT_PTE_PAT0 | MTL_GGTT_PTE_PAT1;
++		break;
++	case I915_CACHE_WT:
++		pte |= MTL_GGTT_PTE_PAT0;
++		break;
++	}
++
++	return pte;
++}
++
+ u64 gen8_ggtt_pte_encode(dma_addr_t addr,
+ 			 enum i915_cache_level level,
+ 			 u32 flags)
+@@ -993,7 +1020,10 @@ static int gen8_gmch_probe(struct i915_ggtt *ggtt)
+ 	ggtt->vm.vma_ops.bind_vma    = intel_ggtt_bind_vma;
+ 	ggtt->vm.vma_ops.unbind_vma  = intel_ggtt_unbind_vma;
+ 
+-	ggtt->vm.pte_encode = gen8_ggtt_pte_encode;
++	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70))
++		ggtt->vm.pte_encode = mtl_ggtt_pte_encode;
++	else
++		ggtt->vm.pte_encode = gen8_ggtt_pte_encode;
+ 
+ 	return ggtt_probe_common(ggtt, size);
+ }
+diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
+index 8a3e0a6793dd..4bb7a4005452 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gtt.h
++++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
+@@ -88,9 +88,18 @@ typedef u64 gen8_pte_t;
+ #define BYT_PTE_SNOOPED_BY_CPU_CACHES	REG_BIT(2)
+ #define BYT_PTE_WRITEABLE		REG_BIT(1)
+ 
++#define GEN12_PPGTT_PTE_PAT3    BIT_ULL(62)
+ #define GEN12_PPGTT_PTE_LM	BIT_ULL(11)
+-
+-#define GEN12_GGTT_PTE_LM	BIT_ULL(1)
++#define GEN12_PPGTT_PTE_PAT2    BIT_ULL(7)
++#define GEN12_PPGTT_PTE_NC      BIT_ULL(5)
++#define GEN12_PPGTT_PTE_PAT1    BIT_ULL(4)
++#define GEN12_PPGTT_PTE_PAT0    BIT_ULL(3)
++
++#define GEN12_GGTT_PTE_LM		BIT_ULL(1)
++#define MTL_GGTT_PTE_PAT0		BIT_ULL(52)
++#define MTL_GGTT_PTE_PAT1		BIT_ULL(53)
++#define GEN12_GGTT_PTE_ADDR_MASK	GENMASK_ULL(45, 12)
++#define MTL_GGTT_PTE_PAT_MASK		GENMASK_ULL(53, 52)
+ 
+ #define GEN12_PDE_64K BIT(6)
+ #define GEN12_PTE_PS64 BIT(8)
 -- 
 2.25.1
 
