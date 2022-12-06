@@ -1,66 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76BE16439F4
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Dec 2022 01:29:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7BE06439FC
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Dec 2022 01:35:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F4A210E2CC;
-	Tue,  6 Dec 2022 00:29:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46C9B10E2CD;
+	Tue,  6 Dec 2022 00:35:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com
- [IPv6:2607:f8b0:4864:20::102b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD24E10E2D0
- for <intel-gfx@lists.freedesktop.org>; Tue,  6 Dec 2022 00:29:31 +0000 (UTC)
-Received: by mail-pj1-x102b.google.com with SMTP id
- w15-20020a17090a380f00b0021873113cb4so13226466pjb.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 05 Dec 2022 16:29:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=mime-version:user-agent:content-transfer-encoding:references
- :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
- :message-id:reply-to;
- bh=vyaDSn+oYD7CInmeov9jjxqs1c8Lv1QC/NC1z6u6VD0=;
- b=UNQeikPKS+vaSnHZzd5RC5pEfHFIn+ShM+2O/6fW77YvB1dv4Uye1q8/SmvuFC6TvX
- L+1j4lgSazanLZTlNuyaBBRITIJvmFYQ50BAwkMauxksprRV5H1FmSp3y0FBN4q64Ay1
- 0ujhjoXNWPXC/kFUx6cvc3JspnnM8joLhhmeg=
+Received: from mail-io1-xd35.google.com (mail-io1-xd35.google.com
+ [IPv6:2607:f8b0:4864:20::d35])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19FC610E2CD;
+ Tue,  6 Dec 2022 00:34:57 +0000 (UTC)
+Received: by mail-io1-xd35.google.com with SMTP id r72so3705858iod.5;
+ Mon, 05 Dec 2022 16:34:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=oll6l9lDa1YzuMAbRwQ0w/RLOsi7h8EqrYGzxo3MxIc=;
+ b=UD9DWHz/UiGFDtsU3HDSrNzMZNDuCpetOaCUNlHtv0S6U0MQYLIfcmL3jLYBuz0Q5h
+ eRd7MHClCouL9L03xTA089WBIsiCEySm2/x5gzjAtQS43+ojIgeKbrYxMsN0Clz3bkV6
+ yAnID7BIdH493G2rS4XD+Zk6RXZPjx6NrWwPiUpJ4acsMtlhyvGIunczW4FgCYDMpSDl
+ C0NT6MJ9m1EZ/RnxPEr+OKNFglmYnIurtVrPiQo7TkLtectGVdrqj6AofOOzo8UvBEEk
+ 76Rxq1dUlmjcVHhag7ETkTymPiSovZYHAyIFRrc2u11HUvGMpUYAecdIuS3bvhPCFRUh
+ tGuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=mime-version:user-agent:content-transfer-encoding:references
- :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=vyaDSn+oYD7CInmeov9jjxqs1c8Lv1QC/NC1z6u6VD0=;
- b=iNyu4VGO7Aw2l7n+C1ARbWW9adQELwSJqnAYUQU7dOs4fia/VS2yOQX6djN4tVJS/R
- 1MfrsIBGQIxYBlJY1zJSCJRTuRetq+QayDYs6OFK0cjHYOJv9RRAcOCMa6S7XFuT1vVo
- RiBAeRHhplO+b6bfLOs9qO9EepVi5W8zUfvE0nAUU2RNdknLmlNAlxK+n1SesRoar+jT
- sC37isrWWiP7YJ/zWOilAmifLRxP/Jag/kEAan8ksQNnERRqTcY9I5OU80gzd6884me/
- +F1zHaua9E8d0DiA1kVihZtVuAzIxcH0Lm3Mebjoyykk4yJ3D8eNYDJQSvN92vLMDmmh
- hd4A==
-X-Gm-Message-State: ANoB5plBMN6H6i7yKXv30uP60QQ2kghxbn1uFd/dniWWzfGc8xPhqT8V
- OEyFf11ju9OTmugCHl8++iAJGGsVN0YLRUsidVU=
-X-Google-Smtp-Source: AA0mqf4T7hz5FmkZKmBVkxyFH22xb/QV7GnTkb0NKLWcKcrLGv3DAlR4JFh/29bGN37QKgkuZeY2Ow==
-X-Received: by 2002:a17:902:bb10:b0:189:6292:827e with SMTP id
- im16-20020a170902bb1000b001896292827emr55243913plb.97.1670286571128; 
- Mon, 05 Dec 2022 16:29:31 -0800 (PST)
-Received: from justonli-glaptop.lan (c-71-237-220-48.hsd1.or.comcast.net.
- [71.237.220.48]) by smtp.gmail.com with ESMTPSA id
- b9-20020a170902d40900b0018703bf42desm11144382ple.159.2022.12.05.16.29.30
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=oll6l9lDa1YzuMAbRwQ0w/RLOsi7h8EqrYGzxo3MxIc=;
+ b=mVe096CUMYrr4lK+WfhwMEoqsj9BatFBjUv+Tro2p6joHvoDAeQkfC07GjK/87rnWm
+ Gff9Lewn0oU5N2JRpQFrZiXiktdUtt0FqT7WCwToB7BMsFQPRWKo8H03MY5fhj47c83H
+ 8oSRFWK7Rkb2r8BC4r9tjmRcg8Poj2si7tOxusE1VS6AzNINiBpapJib50G8iHuHBNE5
+ 62kUHw4hsIkvfSJcnta1QZm5YbALoq8cOLTxbNOGOYqmH+0tCMRrNzLio/WuxyNmCIGA
+ lDN0IugRhiuIDuNS/xStEX+6nPJjjt1RXoxfHJnpG4VHM1GPPkIDEuNfNpH8nxgocmqd
+ R1DA==
+X-Gm-Message-State: ANoB5pliwpe7WXZFde6QpvE00EN/Maf3VuVgNDVzKlN7gYytqXszGaII
+ XLWwg8u8LwCoj3f7YG4PLNY=
+X-Google-Smtp-Source: AA0mqf5PWVymzCnbWJXpMIHyTjb22OYxykYQ86bDxVxB4HjTi4ucYqEGKfdpkztJZ/eaV/plIOquCQ==
+X-Received: by 2002:a05:6638:3720:b0:38a:3771:cbff with SMTP id
+ k32-20020a056638372000b0038a3771cbffmr4702557jav.223.1670286896073; 
+ Mon, 05 Dec 2022 16:34:56 -0800 (PST)
+Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
+ by smtp.googlemail.com with ESMTPSA id
+ x3-20020a056602160300b006bba42f7822sm6408213iow.52.2022.12.05.16.34.55
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 05 Dec 2022 16:29:30 -0800 (PST)
-Message-ID: <05bd855ce7f920b7022686cda37f98878d183727.camel@chromium.org>
-From: Juston Li <justonli@chromium.org>
-To: Alan Previn <alan.previn.teres.alexis@intel.com>, 
+ Mon, 05 Dec 2022 16:34:55 -0800 (PST)
+From: Jim Cromie <jim.cromie@gmail.com>
+To: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org
-Date: Mon, 05 Dec 2022 16:29:29 -0800
-In-Reply-To: <20221129004832.3735764-3-alan.previn.teres.alexis@intel.com>
-References: <20221129004832.3735764-1-alan.previn.teres.alexis@intel.com>
- <20221129004832.3735764-3-alan.previn.teres.alexis@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-User-Agent: Evolution 3.46.0-2 
+Date: Mon,  5 Dec 2022 17:34:07 -0700
+Message-Id: <20221206003424.592078-1-jim.cromie@gmail.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 2/3] drm/i915/pxp: Trigger the global
- teardown for before suspending
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [RFC PATCH 00/17] DRM_USE_DYNAMIC_DEBUG regression
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,146 +70,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: jani.nikula@intel.com, daniel.vetter@ffwll.ch, jbaron@akamai.com,
+ Jim Cromie <jim.cromie@gmail.com>, seanpaul@chromium.org,
+ gregkh@linuxfoundation.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAyMDIyLTExLTI4IGF0IDE2OjQ4IC0wODAwLCBBbGFuIFByZXZpbiB3cm90ZToKPiBB
-IGRyaXZlciBidWcgd2FzIHJlY2VudGx5IGRpc2NvdmVyZWQgd2hlcmUgdGhlIHNlY3VyaXR5IGZp
-cm13YXJlIHdhcwo+IHJlY2VpdmluZyBpbnRlcm5hbCBIVyBzaWduYWxzIGluZGljYXRpbmcgdGhh
-dCBzZXNzaW9uIGtleSBleHBpcmF0aW9ucwo+IGhhZCBvY2N1cnJlZC4gQXJjaGl0ZWN0dXJhbGx5
-LCB0aGUgZmlybXdhcmUgd2FzIGV4cGVjdGluZyBhIHJlc3BvbnNlCj4gZnJvbSB0aGUgR3VDIHRv
-IGFja25vd2xlZGdlIHRoZSBldmVudCB3aXRoIHRoZSBmaXJtd2FyZSBzaWRlLgo+IEhvd2V2ZXIg
-dGhlIE9TIHdhcyBpbiBhIHN1c3BlbmRlZCBzdGF0ZSBhbmQgR3VDIGhhZCBiZWVuIHJlc2V0Lgo+
-IAo+IEludGVybmFsIHNwZWNpZmljYXRpb25zIGFjdHVhbGx5IHJlcXVpcmVkIHRoZSBkcml2ZXIg
-dG8gZW5zdXJlCj4gdGhhdCBhbGwgYWN0aXZlIHNlc3Npb25zIGJlIHByb3Blcmx5IGNsZWFuZWQg
-dXAgaW4gc3VjaCBjYXNlcyB3aGVyZQo+IHRoZSBzeXN0ZW0gaXMgc3VzcGVuZGVkIGFuZCB0aGUg
-R3VDIHBvdGVudGlhbGx5IHVuYWJsZSB0byByZXNwb25kLgo+IAo+IFRoaXMgcGF0Y2ggYWRkcyB0
-aGUgZ2xvYmFsIHRlYXJkb3duIGNvZGUgaW4gaTkxNSdzIHN1c3BlbmRfcHJlcGFyZQo+IGNvZGUg
-cGF0aC4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBBbGFuIFByZXZpbiA8YWxhbi5wcmV2aW4udGVyZXMu
-YWxleGlzQGludGVsLmNvbT4KPiAtLS0KPiDCoGRyaXZlcnMvZ3B1L2RybS9pOTE1L3B4cC9pbnRl
-bF9weHAuY8KgwqDCoMKgwqDCoMKgwqAgfCA2MCArKysrKysrKysrKysrKysrKy0KPiAtLQo+IMKg
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvcHhwL2ludGVsX3B4cC5owqDCoMKgwqDCoMKgwqDCoCB8wqAg
-MSArCj4gwqBkcml2ZXJzL2dwdS9kcm0vaTkxNS9weHAvaW50ZWxfcHhwX3BtLmPCoMKgwqDCoMKg
-IHzCoCAyICstCj4gwqBkcml2ZXJzL2dwdS9kcm0vaTkxNS9weHAvaW50ZWxfcHhwX3Nlc3Npb24u
-YyB8wqAgOSArKy0KPiDCoGRyaXZlcnMvZ3B1L2RybS9pOTE1L3B4cC9pbnRlbF9weHBfc2Vzc2lv
-bi5oIHzCoCA1ICsrCj4gwqA1IGZpbGVzIGNoYW5nZWQsIDY0IGluc2VydGlvbnMoKyksIDEzIGRl
-bGV0aW9ucygtKQo+IAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9weHAvaW50
-ZWxfcHhwLmMKPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L3B4cC9pbnRlbF9weHAuYwo+IGluZGV4
-IDVlZmU2MWY2NzU0Ni4uNjU5NDEwYWUxYjg5IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L3B4cC9pbnRlbF9weHAuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L3B4cC9p
-bnRlbF9weHAuYwo+IEBAIC0xOTgsNiArMTk4LDU1IEBAIHN0YXRpYyBib29sIHB4cF9jb21wb25l
-bnRfYm91bmQoc3RydWN0IGludGVsX3B4cAo+ICpweHApCj4gwqDCoMKgwqDCoMKgwqDCoHJldHVy
-biBib3VuZDsKPiDCoH0KPiDCoAo+ICtzdGF0aWMgaW50IF9fcHhwX2dsb2JhbF90ZWFyZG93bl9s
-b2NrZWQoc3RydWN0IGludGVsX3B4cCAqcHhwLCBib29sCj4gdGVybWluYXRlX2Zvcl9jbGVhbnVw
-KQo+ICt7Cj4gK8KgwqDCoMKgwqDCoMKgaWYgKHRlcm1pbmF0ZV9mb3JfY2xlYW51cCkgewo+ICvC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBpZiAoIXB4cC0+YXJiX2lzX3ZhbGlkKQo+ICvC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIDA7Cj4g
-K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoC8qCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCAqIFRvIGVuc3VyZSBzeW5jaHJvbm91cyBhbmQgY29oZXJlbnQgc2Vzc2lvbgo+
-IHRlYXJkb3duIGNvbXBsZXRpb24KPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICog
-aW4gcmVzcG9uc2UgdG8gc3VzcGVuZCBvciBzaHV0ZG93biB0cmlnZ2VycywgZG9uJ3QKPiB1c2Vy
-IGEgd29ya2VyLgo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKi8KPiArwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgaW50ZWxfcHhwX21hcmtfdGVybWluYXRpb25faW5fcHJv
-Z3Jlc3MocHhwKTsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgaW50ZWxfcHhwX3Rl
-cm1pbmF0ZShweHAsIGZhbHNlKTsKPiArwqDCoMKgwqDCoMKgwqB9IGVsc2Ugewo+ICvCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBpZiAocHhwLT5hcmJfaXNfdmFsaWQpCj4gK8KgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gMDsKPiArwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgLyoKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgICogSWYgd2UgYXJlIG5vdCBpbiBmaW5hbCB0ZXJtaW5hdGlvbiwgYW5kIHRoZSBhcmItCj4g
-c2Vzc2lvbiBpcyBjdXJyZW50bHkKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICog
-aW5hY3RpdmUsIHdlIGFyZSBkb2luZyBhIHJlc2V0IGFuZCByZXN0YXJ0IGR1ZSB0bwo+IHNvbWUg
-cnVudGltZSBldmVudC4KPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICogVXNlIHRo
-ZSB3b3JrZXIgdGhhdCB3YXMgZGVzaWduZWQgZm9yIHRoaXMuCj4gK8KgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCAqLwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBweHBfcXVl
-dWVfdGVybWluYXRpb24ocHhwKTsKPiArwqDCoMKgwqDCoMKgwqB9Cj4gKwo+ICvCoMKgwqDCoMKg
-wqDCoGlmICghd2FpdF9mb3JfY29tcGxldGlvbl90aW1lb3V0KCZweHAtPnRlcm1pbmF0aW9uLAo+
-IG1zZWNzX3RvX2ppZmZpZXMoMjUwKSkpCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oHJldHVybiAtRVRJTUVET1VUOwo+ICsKPiArwqDCoMKgwqDCoMKgwqByZXR1cm4gMDsKPiArfQo+
-ICsKPiArdm9pZCBpbnRlbF9weHBfZW5kKHN0cnVjdCBpbnRlbF9weHAgKnB4cCkKPiArewo+ICvC
-oMKgwqDCoMKgwqDCoHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1ID0gcHhwX3RvX2d0KHB4
-cCktPmk5MTU7Cj4gK8KgwqDCoMKgwqDCoMKgaW50ZWxfd2FrZXJlZl90IHdha2VyZWY7Cj4gKwo+
-ICvCoMKgwqDCoMKgwqDCoGlmICghaW50ZWxfcHhwX2lzX2VuYWJsZWQocHhwKSkKPiArwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuOwo+ICsKPiArwqDCoMKgwqDCoMKgwqB3YWtl
-cmVmID0gaW50ZWxfcnVudGltZV9wbV9nZXQoJmk5MTUtPnJ1bnRpbWVfcG0pOwo+ICsKPiArwqDC
-oMKgwqDCoMKgwqBtdXRleF9sb2NrKCZweHAtPmFyYl9tdXRleCk7Cj4gKwo+ICvCoMKgwqDCoMKg
-wqDCoGlmIChfX3B4cF9nbG9iYWxfdGVhcmRvd25fbG9ja2VkKHB4cCwgdHJ1ZSkpCj4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGRybV9kYmcoJihweHBfdG9fZ3QocHhwKSktPmk5MTUt
-PmRybSwgIlBYUCBlbmQgdGltZWQKPiBvdXRcbiIpOwo+ICsKPiArwqDCoMKgwqDCoMKgwqBtdXRl
-eF91bmxvY2soJnB4cC0+YXJiX211dGV4KTsKPiArCj4gK8KgwqDCoMKgwqDCoMKgaW50ZWxfcHhw
-X2ZpbmlfaHcocHhwKTsKPiArwqDCoMKgwqDCoMKgwqBpbnRlbF9ydW50aW1lX3BtX3B1dCgmaTkx
-NS0+cnVudGltZV9wbSwgd2FrZXJlZik7Cj4gK30KPiArCj4gwqAvKgo+IMKgICogdGhlIGFyYiBz
-ZXNzaW9uIGlzIHJlc3RhcnRlZCBmcm9tIHRoZSBpcnEgd29yayB3aGVuIHdlIHJlY2VpdmUKPiB0
-aGUKPiDCoCAqIHRlcm1pbmF0aW9uIGNvbXBsZXRpb24gaW50ZXJydXB0Cj4gQEAgLTIxNCwxNiAr
-MjYzLDkgQEAgaW50IGludGVsX3B4cF9zdGFydChzdHJ1Y3QgaW50ZWxfcHhwICpweHApCj4gwqAK
-PiDCoMKgwqDCoMKgwqDCoMKgbXV0ZXhfbG9jaygmcHhwLT5hcmJfbXV0ZXgpOwo+IMKgCj4gLcKg
-wqDCoMKgwqDCoMKgaWYgKHB4cC0+YXJiX2lzX3ZhbGlkKQo+IC3CoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqBnb3RvIHVubG9jazsKPiAtCj4gLcKgwqDCoMKgwqDCoMKgcHhwX3F1ZXVlX3Rl
-cm1pbmF0aW9uKHB4cCk7Cj4gLQo+IC3CoMKgwqDCoMKgwqDCoGlmICghd2FpdF9mb3JfY29tcGxl
-dGlvbl90aW1lb3V0KCZweHAtPnRlcm1pbmF0aW9uLAo+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBt
-c2Vjc190b19qaWZmaWVzKDI1MCkpKSB7Cj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oHJldCA9IC1FVElNRURPVVQ7Cj4gK8KgwqDCoMKgwqDCoMKgcmV0ID0gX19weHBfZ2xvYmFsX3Rl
-YXJkb3duX2xvY2tlZChweHAsIGZhbHNlKTsKPiArwqDCoMKgwqDCoMKgwqBpZiAocmV0KQo+IMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZ290byB1bmxvY2s7Cj4gLcKgwqDCoMKgwqDC
-oMKgfQo+IMKgCj4gwqDCoMKgwqDCoMKgwqDCoC8qIG1ha2Ugc3VyZSB0aGUgY29tcGlsZXIgZG9l
-c24ndCBvcHRpbWl6ZSB0aGUgZG91YmxlIGFjY2Vzcwo+ICovCj4gwqDCoMKgwqDCoMKgwqDCoGJh
-cnJpZXIoKTsKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvcHhwL2ludGVsX3B4
-cC5oCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9weHAvaW50ZWxfcHhwLmgKPiBpbmRleCBiYmVi
-OGVkOGUyMTEuLmEwNmI2NTg1MDI0NiAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9weHAvaW50ZWxfcHhwLmgKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9weHAvaW50ZWxf
-cHhwLmgKPiBAQCAtMjYsNiArMjYsNyBAQCB2b2lkIGludGVsX3B4cF9tYXJrX3Rlcm1pbmF0aW9u
-X2luX3Byb2dyZXNzKHN0cnVjdAo+IGludGVsX3B4cCAqcHhwKTsKPiDCoHZvaWQgaW50ZWxfcHhw
-X3RlZV9lbmRfYXJiX2Z3X3Nlc3Npb24oc3RydWN0IGludGVsX3B4cCAqcHhwLCB1MzIKPiBhcmJf
-c2Vzc2lvbl9pZCk7Cj4gwqAKPiDCoGludCBpbnRlbF9weHBfc3RhcnQoc3RydWN0IGludGVsX3B4
-cCAqcHhwKTsKPiArdm9pZCBpbnRlbF9weHBfZW5kKHN0cnVjdCBpbnRlbF9weHAgKnB4cCk7Cj4g
-wqAKPiDCoGludCBpbnRlbF9weHBfa2V5X2NoZWNrKHN0cnVjdCBpbnRlbF9weHAgKnB4cCwKPiDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgZHJt
-X2k5MTVfZ2VtX29iamVjdCAqb2JqLAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9weHAvaW50ZWxfcHhwX3BtLmMKPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L3B4cC9pbnRlbF9w
-eHBfcG0uYwo+IGluZGV4IDZhN2Q0ZTJlZTEzOC4uMzZhZjUyYzI4ZTYzIDEwMDY0NAo+IC0tLSBh
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L3B4cC9pbnRlbF9weHBfcG0uYwo+ICsrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L3B4cC9pbnRlbF9weHBfcG0uYwo+IEBAIC0xNCw3ICsxNCw3IEBAIHZvaWQg
-aW50ZWxfcHhwX3N1c3BlbmRfcHJlcGFyZShzdHJ1Y3QgaW50ZWxfcHhwCj4gKnB4cCkKPiDCoMKg
-wqDCoMKgwqDCoMKgaWYgKCFpbnRlbF9weHBfaXNfZW5hYmxlZChweHApKQo+IMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuOwo+IMKgCj4gLcKgwqDCoMKgwqDCoMKgcHhwLT5h
-cmJfaXNfdmFsaWQgPSBmYWxzZTsKPiArwqDCoMKgwqDCoMKgwqBpbnRlbF9weHBfZW5kKHB4cCk7
-Cj4gwqAKPiDCoMKgwqDCoMKgwqDCoMKgaW50ZWxfcHhwX2ludmFsaWRhdGUocHhwKTsKPiDCoH0K
-PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvcHhwL2ludGVsX3B4cF9zZXNzaW9u
-LmMKPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L3B4cC9pbnRlbF9weHBfc2Vzc2lvbi5jCj4gaW5k
-ZXggOGViODg2ZDNmMmEwLi43OTRjY2RkMDBiYjkgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvcHhwL2ludGVsX3B4cF9zZXNzaW9uLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9weHAvaW50ZWxfcHhwX3Nlc3Npb24uYwo+IEBAIC0xMTgsMTEgKzExOCwxNCBAQCBzdGF0
-aWMgaW50Cj4gcHhwX3Rlcm1pbmF0ZV9hcmJfc2Vzc2lvbl9hbmRfZ2xvYmFsKHN0cnVjdCBpbnRl
-bF9weHAgKnB4cCkKPiDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIHJldDsKPiDCoH0KPiDCoAo+IC1z
-dGF0aWMgdm9pZCBweHBfdGVybWluYXRlKHN0cnVjdCBpbnRlbF9weHAgKnB4cCkKPiArdm9pZCBp
-bnRlbF9weHBfdGVybWluYXRlKHN0cnVjdCBpbnRlbF9weHAgKnB4cCwgYm9vbCByZXN0YXJ0X2Fy
-YikKPiDCoHsKPiDCoMKgwqDCoMKgwqDCoMKgaW50IHJldDsKPiDCoAo+IC3CoMKgwqDCoMKgwqDC
-oHB4cC0+aHdfc3RhdGVfaW52YWxpZGF0ZWQgPSB0cnVlOwo+ICvCoMKgwqDCoMKgwqDCoGlmIChy
-ZXN0YXJ0X2FyYikKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcHhwLT5od19zdGF0
-ZV9pbnZhbGlkYXRlZCA9IHRydWU7Cj4gK8KgwqDCoMKgwqDCoMKgZWxzZQo+ICvCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqBweHAtPmh3X3N0YXRlX2ludmFsaWRhdGVkID0gZmFsc2U7Cgpu
-aXQ6IGludGVsX3B4cF9zdXNwZW5kKCkgYWxzbyBzZXRzIHRoaXMgdG8gZmFsc2UKClJldmlld2Vk
-LWJ5OiBKdXN0b24gTGkgPGp1c3RvbmxpQGNocm9taXVtLm9yZz4KCj4gwqAKPiDCoMKgwqDCoMKg
-wqDCoMKgLyoKPiDCoMKgwqDCoMKgwqDCoMKgICogaWYgd2UgZmFpbCB0byBzdWJtaXQgdGhlIHRl
-cm1pbmF0aW9uIHRoZXJlIGlzIG5vIHBvaW50IGluCj4gd2FpdGluZyBmb3IKPiBAQCAtMTcwLDcg
-KzE3Myw3IEBAIHN0YXRpYyB2b2lkIHB4cF9zZXNzaW9uX3dvcmsoc3RydWN0IHdvcmtfc3RydWN0
-Cj4gKndvcmspCj4gwqAKPiDCoMKgwqDCoMKgwqDCoMKgaWYgKGV2ZW50cyAmIFBYUF9URVJNSU5B
-VElPTl9SRVFVRVNUKSB7Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBldmVudHMg
-Jj0gflBYUF9URVJNSU5BVElPTl9DT01QTEVURTsKPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgcHhwX3Rlcm1pbmF0ZShweHApOwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqBpbnRlbF9weHBfdGVybWluYXRlKHB4cCwgdHJ1ZSk7Cj4gwqDCoMKgwqDCoMKgwqDCoH0KPiDC
-oAo+IMKgwqDCoMKgwqDCoMKgwqBpZiAoZXZlbnRzICYgUFhQX1RFUk1JTkFUSU9OX0NPTVBMRVRF
-KQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9weHAvaW50ZWxfcHhwX3Nlc3Np
-b24uaAo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvcHhwL2ludGVsX3B4cF9zZXNzaW9uLmgKPiBp
-bmRleCA5MDNhYzUyY2ZmYTEuLjRmOTQ0YjYzYjViNiAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9weHAvaW50ZWxfcHhwX3Nlc3Npb24uaAo+ICsrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L3B4cC9pbnRlbF9weHBfc2Vzc2lvbi5oCj4gQEAgLTEyLDkgKzEyLDE0IEBAIHN0cnVj
-dCBpbnRlbF9weHA7Cj4gwqAKPiDCoCNpZmRlZiBDT05GSUdfRFJNX0k5MTVfUFhQCj4gwqB2b2lk
-IGludGVsX3B4cF9zZXNzaW9uX21hbmFnZW1lbnRfaW5pdChzdHJ1Y3QgaW50ZWxfcHhwICpweHAp
-Owo+ICt2b2lkIGludGVsX3B4cF90ZXJtaW5hdGUoc3RydWN0IGludGVsX3B4cCAqcHhwLCBib29s
-IHJlc3RhcnRfYXJiKTsKPiDCoCNlbHNlCj4gwqBzdGF0aWMgaW5saW5lIHZvaWQgaW50ZWxfcHhw
-X3Nlc3Npb25fbWFuYWdlbWVudF9pbml0KHN0cnVjdAo+IGludGVsX3B4cCAqcHhwKQo+IMKgewo+
-IMKgfQo+ICsKPiArc3RhdGljIGlubGluZSB2b2lkIGludGVsX3B4cF90ZXJtaW5hdGUoc3RydWN0
-IGludGVsX3B4cCAqcHhwLCBib29sCj4gcmVzdGFydF9hcmIpCj4gK3sKPiArfQo+IMKgI2VuZGlm
-Cj4gwqAjZW5kaWYgLyogX19JTlRFTF9QWFBfU0VTU0lPTl9IX18gKi8KCg==
+Hi everyone,
+
+DRM_USE_DYNAMIC_DEBUG=y has a regression on rc-*
+
+Regression is due to a chicken-egg problem loading modules; on
+`modprobe i915`, drm is loaded 1st, and drm.debug is set.  When
+drm_debug_enabled() tested __drm_debug at runtime, that just worked.
+
+But with DRM_USE_DYNAMIC_DEBUG=y, the runtime test is replaced with a
+post-load enablement of drm_dbg/dyndbg callsites (static-keys), via
+dyndbg's callback on __drm_debug.  Since all drm-drivers need drm.ko,
+it is loaded 1st, then drm.debug=X is applied, then drivers load, but
+too late for drm_dbgs to be enabled.
+
+STATUS
+
+For all-loadable drm,i915,amdgpu configs, it almost works, but
+propagating drm.debug to dependent modules doesnt actually apply,
+though the motions are there.  This is not the problem I want to chase
+here.
+
+The more basic trouble is:
+
+For builtin drm + helpers, things are broken pretty early; at the
+beginning of dynamic_debug_init().  As the ddebug_sanity() commit-msg
+describes in some detail, the records added by _USE fail to reference
+the struct ddebug_class_map created and exported by _DEFINE, but get
+separate addresses to "other" data that segv's when used as the
+expected pointer. FWIW, the pointer val starts with "revi".
+
+OVERVIEW
+
+DECLARE_DYNDBG_CLASSMAP is broken: it is one-size-fits-all-poorly.
+It muddles the distinction between a (single) definition, and multiple
+references.  Something exported should suffice.
+
+The core of this patchset splits it into:
+
+DYNDBG_CLASSMAP_DEFINE	used once per subsystem to define each classmap
+DYNDBG_CLASSMAP_USE	declare dependence on a DEFINEd classmap
+
+This makes the weird coordinated-changes-by-identical-classmaps
+"feature" unnecessary; the DEFINE can export the var, and USE refers
+to the exported var.
+
+So this patchset adds another section: __dyndbg_class_refs.
+
+It is like __dyndbg_classes; it is scanned under ddebug_add_module(),
+and attached to each module's ddebug_table.  Once attached, it can be
+used like classes to validate and apply class FOO >control queries.
+
+It also maps the class user -> definer explicitly, so that when the
+module is loaded, the section scan can find the kernel-param that is
+wired to dyndbg's kparam-callback, and apply its state-var, forex:
+__drm_debug to the just loaded helper/driver module.
+
+Theres plenty to address Im sure.
+
+Jim Cromie (17):
+  test-dyndbg: fixup CLASSMAP usage error
+  test-dyndbg: show that DEBUG enables prdbgs at compiletime
+  dyndbg: fix readback value on LEVEL_NAMES interfaces
+  dyndbg: replace classmap list with a vector
+  dyndbg: make ddebug_apply_class_bitmap more selective
+  dyndbg: dynamic_debug_init - use pointer inequality, not strcmp
+  dyndbg: drop NUM_TYPE_ARRAY
+  dyndbg: reduce verbose/debug clutter
+  dyndbg-API: replace DECLARE_DYNDBG_CLASSMAP with
+    DYNDBG_CLASSMAP(_DEFINE|_USE)
+  dyndbg-API: specialize DYNDBG_CLASSMAP_(DEFINE|USE)
+  dyndbg-API: DYNDBG_CLASSMAP_USE drop extra args
+  dyndbg-API: DYNDBG_CLASSMAP_DEFINE() improvements
+  drm_print: fix stale macro-name in comment
+  dyndbg: unwrap __ddebug_add_module inner function NOTYET
+  dyndbg: ddebug_sanity()
+  dyndbg: mess-w-dep-class
+  dyndbg: miss-on HACK
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c |  14 +-
+ drivers/gpu/drm/display/drm_dp_helper.c |  14 +-
+ drivers/gpu/drm/drm_crtc_helper.c       |  14 +-
+ drivers/gpu/drm/drm_print.c             |  22 +--
+ drivers/gpu/drm/i915/i915_params.c      |  14 +-
+ drivers/gpu/drm/nouveau/nouveau_drm.c   |  14 +-
+ include/asm-generic/vmlinux.lds.h       |   3 +
+ include/drm/drm_print.h                 |   6 +-
+ include/linux/dynamic_debug.h           |  57 ++++--
+ include/linux/map.h                     |  54 ++++++
+ kernel/module/main.c                    |   2 +
+ lib/dynamic_debug.c                     | 240 +++++++++++++++++++-----
+ lib/test_dynamic_debug.c                |  47 ++---
+ 13 files changed, 344 insertions(+), 157 deletions(-)
+ create mode 100644 include/linux/map.h
+
+-- 
+2.38.1
 
