@@ -2,65 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 020C7643A51
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Dec 2022 01:37:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B1DBB643A91
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Dec 2022 02:15:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37F3310E32C;
-	Tue,  6 Dec 2022 00:35:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F08F10E0E1;
+	Tue,  6 Dec 2022 01:15:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-io1-xd35.google.com (mail-io1-xd35.google.com
- [IPv6:2607:f8b0:4864:20::d35])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28A4710E2EA;
- Tue,  6 Dec 2022 00:35:18 +0000 (UTC)
-Received: by mail-io1-xd35.google.com with SMTP id e189so8776167iof.1;
- Mon, 05 Dec 2022 16:35:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=6+UDrWNXMMGhk9HzOMZBwbh5zjmulDfm2DaVnY/OUhI=;
- b=eLeE2dj14exQeQIr1ko9hCDJKvzZBxL31dknUIIIFaYlxA20UJuCHiOsbgVMQoo33m
- 2qhDf9Fm5NpvMorwLHW2iBCbaXEhs0Ck79a3jMQjJmVaDNi4k9/rhuIC3/1Gyvv0GbR+
- yKtYcRWC+dnl+PUbTvH1i7/GSpRDrUAGqM4zlpfzTJeAvZ4iqQmZ+sVffIQCD0emjCs5
- 5jm7Evqqm3oba1alb0augbhYBWWBxnrTQhdwTAknsh9m5ifR2ccK3kKdNe2ZYDfzsEMf
- OIoI0aUK+FFtI09eRSWSEtHRzDt3Cgyic2eQc+OWFGf93/+6XibjSm98FxmBkViMUuO4
- H9AQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=6+UDrWNXMMGhk9HzOMZBwbh5zjmulDfm2DaVnY/OUhI=;
- b=aPS0vWDH/JxY97kEFmbOayI/qjkUPpq/1CN6abz07vLLczC5A9e9hpFLRn7X3KW7K+
- M+Bhshu+nCKUXNDnkfAEK1XSVFWpkHbR8PSR+ZZu+MzoEjurSEvO4lkWiDZGyns/+t2y
- nQ69uwC08Zh9EIFz0pzIcXLPqmJ5Pb7p31SBZzk9i8tKu0MdZQfOvWKKTk94htRn0smt
- jF3gzOA+mpZYweWDUpxzMIvram0ZkYuKxk+6Z9tBv0maFBsHUvXxZlfECHWMf6hS8CX/
- kVwpAKJplyCo0NVhMi3kuBcqF5ZgllnY2NaL1tGGj9rNDLmIVgX3e8ttonnfEHALMgWl
- nOTA==
-X-Gm-Message-State: ANoB5pkR/kBbhNRNu9MN7/hZKfmmb7oab7f/9zSKQP/sOIzZ8P3QL7H+
- cVsV0H/lqKKZuPNeMEejnbo=
-X-Google-Smtp-Source: AA0mqf7S5bHLlbhVAzPpHg9sCL9n3qLeloz+E671RFH4nKtb1ybTIO5QlE+Jm2CCx5RS1oF/exUDcw==
-X-Received: by 2002:a02:23ca:0:b0:372:59cb:f242 with SMTP id
- u193-20020a0223ca000000b0037259cbf242mr39977560jau.135.1670286917295; 
- Mon, 05 Dec 2022 16:35:17 -0800 (PST)
-Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
- by smtp.googlemail.com with ESMTPSA id
- x3-20020a056602160300b006bba42f7822sm6408213iow.52.2022.12.05.16.35.16
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 05 Dec 2022 16:35:16 -0800 (PST)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Date: Mon,  5 Dec 2022 17:34:24 -0700
-Message-Id: <20221206003424.592078-18-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221206003424.592078-1-jim.cromie@gmail.com>
-References: <20221206003424.592078-1-jim.cromie@gmail.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B45710E0E1;
+ Tue,  6 Dec 2022 01:15:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1670289319; x=1701825319;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=hbQShNZX/rk3VUPVGk4QNY5SHehQVeHOKYMcpafhxA0=;
+ b=b5siLjzFZGc6fUgvQOnXrGDmzs1mFEcPzwVmZl44KUDhX3asXeWU2mgG
+ 1huOs11ITPv7ter2odj/GFxQWZ2sg2MHxVlxJEIdneMzgzJIUSG/mlIM7
+ f7rO2t6lu3B6ysBPbi/LXIYtHUJjZXOkhgowe61d5bPJ4Uiatb8ik0Dbc
+ 090YUJgkODT/fSrzWaBjWxN4WTMAuZEA3RyPtldKoy5SIUi45GkWs/bNN
+ DVWSB40Lgs7sV8s52c1bZX4gGe4a3tFws8wydaiwhvBnTnb82eJt6w0Q0
+ kXQF5OIEukCsfsFu5dEs6TuUs4oU/HTIkkShi0Y2te9uofIK5TDAtn9dQ w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10552"; a="317650456"
+X-IronPort-AV: E=Sophos;i="5.96,220,1665471600"; d="scan'208";a="317650456"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2022 17:15:18 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10552"; a="974890685"
+X-IronPort-AV: E=Sophos;i="5.96,220,1665471600"; d="scan'208";a="974890685"
+Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2022 17:15:18 -0800
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  5 Dec 2022 17:19:02 -0800
+Message-Id: <20221206011908.2745508-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC PATCH 17/17] dyndbg: miss-on HACK
+Subject: [Intel-gfx] [PATCH v2 0/6] drm/i915: Add support for GSC FW loading
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,41 +54,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, daniel.vetter@ffwll.ch, jbaron@akamai.com,
- Jim Cromie <jim.cromie@gmail.com>, seanpaul@chromium.org,
- gregkh@linuxfoundation.org
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
+ dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-dont break the loop, to see multiple clients.  the 3 client records
-are differently wrong.
----
- lib/dynamic_debug.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+Starting from MTL, the GSC FW is runtime loaded by the driver, instead
+of being stored in flash memory. Loading the GSC FW is required to allow
+the media GT to go into its C6 state and for content protection features
+(PXP, HDCP).
 
-diff --git a/lib/dynamic_debug.c b/lib/dynamic_debug.c
-index 3ef1c0a1f0cd..a26eaa348731 100644
---- a/lib/dynamic_debug.c
-+++ b/lib/dynamic_debug.c
-@@ -629,6 +629,7 @@ static int ddebug_apply_class_bitmap(const struct ddebug_class_param *dcp,
- 		v2pr_info("bit_%d: %d matches on class: %s -> 0x%lx\n", bi,
- 			  ct, map->class_names[bi], *new_bits);
- 	}
-+	v2pr_info("applied bitmap: 0x%lx to: 0x%lx\n", *new_bits, *old_bits);
- 	return matches;
- }
- 
-@@ -1321,8 +1322,8 @@ static void ddebug_attach_client_module_classes(struct ddebug_table *dt, struct
- 			 */
- 			v2pr_info("break on %d/%d\n", i, di->num_class_refs);
- 			dt->num_class_refs = 1;
--			break;
--		}
-+		} else
-+			v2pr_info("miss on %d/%d\n", i, di->num_class_refs);
- 	}
- }
- 
+The loading happens via a submission to the GSC engine. All subsequent
+communication with the FW will also happen via the engine, although no
+further messages are implemented as part of this series.
+
+This series also adds the GSC engine flag to the MTL platform, with the
+engine being runtime disabled if the FW is not selected, which makes the
+FW definition (not included in the series) the ultimate enabler for the
+whole GSC block.
+
+Note that just loading the FW is not enough for it to be fully
+functional. We'll also need to establish and handle a communication
+channel between GSC and CSME (a.k.a. SW proxy). This will require a new
+mei component to handle the CSME side of things, so it will be pushed as
+a separate series.
+
+v2: Use wq to load the GSC, address minor review comments.
+
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
+Daniele Ceraolo Spurio (5):
+  drm/i915/uc: Introduce GSC FW
+  drm/i915/gsc: Skip the version check when fetching the GSC FW
+  drm/i915/gsc: GSC firmware loading
+  drm/i915/gsc: Do a driver-FLR on unload if GSC was loaded
+  drm/i915/mtl: MTL has one GSC CS on the media GT
+
+Jonathan Cavitt (1):
+  drm/i915/gsc: Disable GSC engine and power well if FW is not selected
+
+ drivers/gpu/drm/i915/Makefile                |  11 +-
+ drivers/gpu/drm/i915/gt/intel_engine.h       |   2 +
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c    |  18 ++
+ drivers/gpu/drm/i915/gt/intel_gpu_commands.h |   7 +
+ drivers/gpu/drm/i915/gt/intel_gt.h           |   5 +
+ drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c    | 210 +++++++++++++++++++
+ drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.h    |  15 ++
+ drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.c    | 137 ++++++++++++
+ drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.h    |  47 +++++
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c        |  23 ++
+ drivers/gpu/drm/i915/gt/uc/intel_uc.h        |   3 +
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c     |  78 +++++--
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h     |   8 +-
+ drivers/gpu/drm/i915/i915_params.c           |   3 +
+ drivers/gpu/drm/i915/i915_params.h           |   1 +
+ drivers/gpu/drm/i915/i915_pci.c              |   2 +-
+ drivers/gpu/drm/i915/i915_reg.h              |   3 +
+ drivers/gpu/drm/i915/intel_uncore.c          |  61 ++++++
+ drivers/gpu/drm/i915/intel_uncore.h          |  13 ++
+ 19 files changed, 626 insertions(+), 21 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.h
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.c
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.h
+
 -- 
-2.38.1
+2.37.3
 
