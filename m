@@ -2,49 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1DAF643A9D
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Dec 2022 02:16:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 59EE7643AE6
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Dec 2022 02:43:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CE0F10E2EC;
-	Tue,  6 Dec 2022 01:15:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E137D10E033;
+	Tue,  6 Dec 2022 01:43:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AF6110E2EB;
- Tue,  6 Dec 2022 01:15:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1670289331; x=1701825331;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=kD3MapRAnUEeCcihf1HuFNJAvWgIpzYDpQ7Tw/E1hiM=;
- b=brjOIepSQ3NPCIDxePh36jaX4WUVcBVkgjDGbIGfwQ2Y+SY4nR0bBDSa
- +KUYzo7ppGwyb7DYTXUvMxcWmbrstTbtkY0Y3EuhZ9dbNM+7ttEV4nAAh
- ui1ZJJBWOkByVV4d9HiJzJSKIxL78qSMoFrTwijrjmD+0YKg2CUmZNFZa
- vzgLAO7DuY6sywdhnDK59jJkbhuFGEU6ozhTVivjreFXkk0GfqN7Pt3As
- BYGeLJ+tpenAoBjeZAOROIK1a+3Rhhg2er6Vv7WwntNbMits6QmK1MnzB
- foXh/PMeKQNNtucAcdBVPh3ftH6GYV4Ci35NyU3shIAPnLIc3SsuCIWVo A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10552"; a="317650483"
-X-IronPort-AV: E=Sophos;i="5.96,220,1665471600"; d="scan'208";a="317650483"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2022 17:15:31 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10552"; a="974890727"
-X-IronPort-AV: E=Sophos;i="5.96,220,1665471600"; d="scan'208";a="974890727"
-Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2022 17:15:30 -0800
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  5 Dec 2022 17:19:08 -0800
-Message-Id: <20221206011908.2745508-7-daniele.ceraolospurio@intel.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20221206011908.2745508-1-daniele.ceraolospurio@intel.com>
-References: <20221206011908.2745508-1-daniele.ceraolospurio@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3B0E410E033;
+ Tue,  6 Dec 2022 01:43:14 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3478CA0003;
+ Tue,  6 Dec 2022 01:43:14 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 6/6] drm/i915/mtl: MTL has one GSC CS on the
- media GT
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Alan Previn" <alan.previn.teres.alexis@intel.com>
+Date: Tue, 06 Dec 2022 01:43:14 -0000
+Message-ID: <167029099418.3370.13205947935921211170@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221206000332.134137-1-alan.previn.teres.alexis@intel.com>
+In-Reply-To: <20221206000332.134137-1-alan.previn.teres.alexis@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5Bv9=2C1/1=5D_drm/i915/pxp=3A_Promote?=
+ =?utf-8?q?_pxp_subsystem_to_top-level_of_i915?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,35 +41,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Now that we have the GSC FW support code as a user to the GSC CS, we
-can add the relevant flag to the engine mask. Note that the engine will
-still be disabled until we define the GSC FW binary file.
+== Series Details ==
 
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/i915/i915_pci.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Series: series starting with [v9,1/1] drm/i915/pxp: Promote pxp subsystem to top-level of i915
+URL   : https://patchwork.freedesktop.org/series/111650/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index 414b4bfd514b..3f803c1280c0 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -1125,7 +1125,7 @@ static const struct intel_gt_definition xelpmp_extra_gt[] = {
- 		.type = GT_MEDIA,
- 		.name = "Standalone Media GT",
- 		.gsi_offset = MTL_MEDIA_GSI_BASE,
--		.engine_mask = BIT(VECS0) | BIT(VCS0) | BIT(VCS2),
-+		.engine_mask = BIT(VECS0) | BIT(VCS0) | BIT(VCS2) | BIT(GSC0),
- 	},
- 	{}
- };
--- 
-2.37.3
+== Summary ==
+
+Error: dim checkpatch failed
+c366ae879c50 drm/i915/pxp: Promote pxp subsystem to top-level of i915
+-:114: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#114: 
+References: https://patchwork.freedesktop.org/patch/msgid/20221202011407.4068371-1-alan.previn.teres.alexis@intel.com
+
+total: 0 errors, 1 warnings, 0 checks, 780 lines checked
+
 
