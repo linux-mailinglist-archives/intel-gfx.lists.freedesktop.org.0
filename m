@@ -2,65 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DECB6441D5
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Dec 2022 12:07:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92B0E644365
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Dec 2022 13:46:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7671F10E131;
-	Tue,  6 Dec 2022 11:06:53 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D20F10E02D;
- Tue,  6 Dec 2022 11:06:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC21310E31A;
+	Tue,  6 Dec 2022 12:46:22 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 351B010E31A
+ for <intel-gfx@lists.freedesktop.org>; Tue,  6 Dec 2022 12:46:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1670324807; x=1701860807;
+ t=1670330778; x=1701866778;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=j/s4k56FcWW7rGTDDJr6WBmvVF+OANMnkay5be1k41M=;
- b=e9RYlKvTV4+WNWlN73ewjh7wE+JiNwB4dDDEIqABDz+nB145Xz88GYFi
- OZSuLa18AIA+mOcQ1G0Qkipn97aqjCvTA11Tboo41Dg1ojmY4HfmnePcy
- hmPM/PV6GO/qdql/947bGp8qKzrjy2O8DCaADXAufBf9mNlJUBHF0rhHH
- MIu15o6JNLqLx6cMo5wwTp3ACSZ6FSVwl3HYKuyz48khsqtUm+OhnOKa0
- FfqIoetWsqIM6V1nxMGUxCJ2Yjuf1Y8STxb1OhTCloPasr/xGxWif+urz
- CwFGcVp+IsHvPyU91yRTqpcTLwhB0JZ3kYEYQ65JOGInQzyy+jFz6/hjh A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10552"; a="317739137"
-X-IronPort-AV: E=Sophos;i="5.96,222,1665471600"; d="scan'208";a="317739137"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2022 03:06:46 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10552"; a="714763101"
-X-IronPort-AV: E=Sophos;i="5.96,222,1665471600"; d="scan'208";a="714763101"
-Received: from kflahert-mobl.ger.corp.intel.com (HELO [10.213.212.142])
- ([10.213.212.142])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2022 03:06:45 -0800
-Message-ID: <f0ebffa1-45b7-d6f9-4341-3fa8aabae3f5@linux.intel.com>
-Date: Tue, 6 Dec 2022 11:06:43 +0000
+ bh=wA27S/oqwnQlYlMg+dXYFKrlC5AywmwWCl5dqeP+tkM=;
+ b=V6V0Jk6Z3oyHegNr1bVaCCoocHA+mfq7G97/PUQBoLoxxAgXj4sqCoGn
+ eHtb9iht6bRcSkN/YraEu0/mLKFwzC8mSJoCozWpchAt3C0QK6aBzKLQJ
+ 7RjRtw5I35GJDQR4UbaUb407eBeC9/nRa0NLblJIlh4c0lECMI1hWF0f7
+ 4LkJHiNzZrvtwaNXIXz8oh0gBH2NlWTzfVg61eb4JGp1iKVsxqvqN0UUc
+ qk3644AB+QGU90uE9Bc4bsGtPb17DjUP/QzgRWKIlWkihI/Z7RlpYQAL4
+ xoKCKBypQVTvjhyMM5o6IpVfMWLaG1U0XFzaeRbhs0d7KgFogk3LxGJVC g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10552"; a="315324608"
+X-IronPort-AV: E=Sophos;i="5.96,222,1665471600"; d="scan'208";a="315324608"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Dec 2022 04:46:17 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10552"; a="820568935"
+X-IronPort-AV: E=Sophos;i="5.96,222,1665471600"; d="scan'208";a="820568935"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.23.172])
+ ([10.213.23.172])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Dec 2022 04:46:15 -0800
+Message-ID: <453dda8d-ffba-9352-df99-74b7bcc6a860@intel.com>
+Date: Tue, 6 Dec 2022 13:46:13 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.5.1
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20221118135723.621653-1-matthew.auld@intel.com>
 Content-Language: en-US
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- John Harrison <john.c.harrison@intel.com>, Intel-GFX@Lists.FreeDesktop.Org
-References: <20221118015858.2548106-1-John.C.Harrison@Intel.com>
- <20221118015858.2548106-5-John.C.Harrison@Intel.com>
- <48f594de-9682-4b60-f934-9420d02b405e@intel.com>
- <dd9559e8-7d65-d7bb-ea1a-d169a1c7eec3@intel.com>
- <4579b7e8-eae7-b760-66aa-b01273d18aab@intel.com>
- <d658f8fa-a063-aa0c-48ff-14f32cb6b339@intel.com>
- <9a5a84be-a5ae-7be2-f522-5e976511e4e1@intel.com>
- <143a660d-de2d-a77a-b490-8ad2add80420@linux.intel.com>
- <dd787d9d-8559-1da4-7e99-2635ef1341a8@intel.com>
- <c5622088-e381-1df4-417d-9b033b0a6afe@linux.intel.com>
- <467f47f4-c30f-16ba-3330-a3d4752366a8@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <467f47f4-c30f-16ba-3330-a3d4752366a8@intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20221118135723.621653-1-matthew.auld@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2 4/5] drm/i915/guc: Add GuC CT specific
- debug print wrappers
+Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915/migrate: Account for the
+ reserved_space
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,155 +63,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Cc: Chris Wilson <chris.p.wilson@intel.com>, stable@vger.kernel.org,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On 18.11.2022 14:57, Matthew Auld wrote:
+> From: Chris Wilson <chris.p.wilson@intel.com>
+> 
+> If the ring is nearly full when calling into emit_pte(), we might
+> incorrectly trample the reserved_space when constructing the packet to
+> emit the PTEs. This then triggers the GEM_BUG_ON(rq->reserved_space >
+> ring->space) when later submitting the request, since the request itself
+> doesn't have enough space left in the ring to emit things like
+> workarounds, breadcrumbs etc.
+> 
+> Testcase: igt@i915_selftests@live_emit_pte_full_ring
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/7535
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6889
+> Fixes: cf586021642d ("drm/i915/gt: Pipelined page migration")
+> Signed-off-by: Chris Wilson <chris.p.wilson@intel.com>
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+> Cc: Nirmoy Das <nirmoy.das@intel.com>
+> Cc: <stable@vger.kernel.org> # v5.15+
+> ---
+>   drivers/gpu/drm/i915/gt/intel_migrate.c | 16 ++++++++++++----
+>   1 file changed, 12 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
+> index b405a04135ca..48c3b5168558 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_migrate.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
+> @@ -342,6 +342,16 @@ static int emit_no_arbitration(struct i915_request *rq)
+>   	return 0;
+>   }
+>   
+> +static int max_pte_pkt_size(struct i915_request *rq, int pkt)
+> +{
+> +       struct intel_ring *ring = rq->ring;
+> +
+> +       pkt = min_t(int, pkt, (ring->space - rq->reserved_space) / sizeof(u32) + 5);
+> +       pkt = min_t(int, pkt, (ring->size - ring->emit) / sizeof(u32) + 5);
+> +
+> +       return pkt;
+> +}
+> +
 
-On 05/12/2022 18:44, Michal Wajdeczko wrote:
-> On 05.12.2022 14:16, Tvrtko Ursulin wrote:
->>
->> On 02/12/2022 20:14, John Harrison wrote:
->>
->>>>> and while for dbg level messages it doesn't matter, I assume we should
->>>>> be consistent for err/warn/info messages (as those will eventually show
->>>>> up to the end user) so let maintainers decide here what is
->>>>> expectation here
->>>>
->>>> Could we have some examples pasted here, of the end result of this
->>>> series, for all message "categories" (origins, macros, whatever)?
->>>
->>> GT initialisation:
->>> gt_err(gt, "Failed to allocate scratch page\n");
->>> i915 0000:00:02.0: [drm] GT0: Failed to allocate scratch page
->>>
->>> G2H notification handler:
->>> guc_err(guc, "notification: Invalid length %u for deregister done\n",
->>> len);
->>> i915 0000:00:02.0: [drm] GT0: GuC notification: Invalid length 0 for
->>> deregister done
-> 
-> please note that today this message is coded as:
-> 
-> drm_err(&guc_to_gt(guc)->i915->drm, "Invalid length %u\n", len);
-> -> i915 0000:00:02.0: [drm] Invalid length %u
-> 
-> which makes this rather an example of meaningless log
+I guess, the assumption that subtractions of u32 values do not 
+overflows, is valid.
+Then I guess more natural would be use u32 for all vars involved, this 
+way we can use min instead of min_t, minor nit.
 
-Okay, so log text needs improving anyway which is orthogonal.
+Anyway:
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
->> I'm not liking the inconsistency between gt_err and guc_err where with
->> latter callers either need to start the message with lower case because
->> of the unstructured "GuC " prefix added. Which then reads bad if callers
->> do guc_err(guc, "Error X happend").
->>
->> Looks like Michal was pointing out the same thing, AFAIU at least when
->> re-reading the thread now.
->>
->> Why wouldn't this work:
->>
->> guc_err(guc, "Invalid length %u for deregister done notification\n", len);
->> i915 0000:00:02.0: [drm] GT0: GuC: Invalid length 0 for deregister done
->> notification
-> 
-> +1
-> 
->>
->> Or if the use case for adding custom prefixes is strong then maybe
->> consider:
->>
->> guc_err(guc, "notification", "Invalid length 0 for deregister done");
->> i915 0000:00:02.0: [drm] GT0: GuC notification: Invalid length 0 for
->> deregister done
->>
->> guc_err(guc, "", "Error X");
->> i915 0000:00:02.0: [drm] GT0: GuC: Error X
-> 
-> -1
-> 
-> this will make logging macros too different from others (unless we
-> hide/use prefixes inside macros only, but I'm not sure there is any ROI)
+Regards
+Andrzej
 
-Yeah I said if the use case is strong, no strong opinion either way.
 
->>> CTB initialisation:
->>> ct_probe_error(ct, "Failed to control/%s CTB (%pe)\n",
->>> str_enable_disable(enable), ERR_PTR(err));
->>> i915 0000:00:02.0: [drm] GT0: GuC CT Failed to control/enable CTB
->>> (EINVAL)
->>
->> Okay same as above.
->>
->>> Random meaningless (to me) message that is apparently a display thing:
->>> drm_dbg_kms(&dev_priv->drm, "disabling %s\n", pll->info->name);
->>> i915 0000:00:02.0: [drm:intel_disable_shared_dpll [i915]] disabling
->>> PORT PLL B
->>
->> Plan is to not touch outside gt/.
->>
->>> I'm sure you can extrapolate to all other forms of dbg, notice, info,
->>> etc. without me having to manually type each one out, given that they
->>> are all identical.
->>>
->>> Personally, I think the above should be just:
->>> gt_err(gt, "Failed to allocate scratch page\n");
->>> i915 0000:00:02.0: [drm] GT0: Failed to allocate scratch page
->>>
->>> gt_err(guc_to_gt(guc), "G2H: Invalid length for deregister done:
->>> %u\n", len);
->>> i915 0000:00:02.0: [drm] GT0: G2H: Invalid length for deregister done: 0
-> 
-> that's probably should be:
-> 
-> 	"Invalid length for G2H deregister done: %u\n
-> 
-> and it will still just look fine if we auto append the 'GuC' prefix:
-> 
-> i915 0000:00:02.0: [drm] GT0: GuC: Invalid length for G2H deregister
-> 
->>>
->>> gt_probe_error(ct_to_gt(ct), "Failed to %s CT %d buffer (%pe)\n",
->>> str_enable_disable(enable), send ? "SEND" : "RECV", ERR_PTR(err));
->>> i915 0000:00:02.0: [drm] GT0: Failed to enable CT SEND buffer (EINVAL)
-> 
-> having "GuC/CT" prefix here will also look fine:
-> 
-> i915 0000:00:02.0: [drm] GT0: GuC: Failed to enable CT SEND buffer
-> i915 0000:00:02.0: [drm] GT0: GuC: CT: Failed to enable SEND buffer
-> i915 0000:00:02.0: [drm] GT0: CT: Failed to enable SEND buffer
+>   static int emit_pte(struct i915_request *rq,
+>   		    struct sgt_dma *it,
+>   		    enum i915_cache_level cache_level,
+> @@ -388,8 +398,7 @@ static int emit_pte(struct i915_request *rq,
+>   		return PTR_ERR(cs);
+>   
+>   	/* Pack as many PTE updates as possible into a single MI command */
+> -	pkt = min_t(int, dword_length, ring->space / sizeof(u32) + 5);
+> -	pkt = min_t(int, pkt, (ring->size - ring->emit) / sizeof(u32) + 5);
+> +	pkt = max_pte_pkt_size(rq, dword_length);
+>   
+>   	hdr = cs;
+>   	*cs++ = MI_STORE_DATA_IMM | REG_BIT(21); /* as qword elements */
+> @@ -422,8 +431,7 @@ static int emit_pte(struct i915_request *rq,
+>   				}
+>   			}
+>   
+> -			pkt = min_t(int, dword_rem, ring->space / sizeof(u32) + 5);
+> -			pkt = min_t(int, pkt, (ring->size - ring->emit) / sizeof(u32) + 5);
+> +			pkt = max_pte_pkt_size(rq, dword_rem);
+>   
+>   			hdr = cs;
+>   			*cs++ = MI_STORE_DATA_IMM | REG_BIT(21);
 
-Works for me.
-
->> We could but it seems we agreed some weeks ago to consolidate the
->> existing CT_ERROR macros and such in this exercise. At least no
->> objections were raised to that plan.
->>
->> If now we want to go back on that, and if you want to have
->> guc_to_gt(guc) in all gt/uc/ call sites that's fine by me, but please
->> get some acks and consensus from people who work in that area. And under
->> that option someone would also need to convert the CT code to new macros.
-> 
-> while the main goal of this series was to have GT# appended to the log
-> messages but we also wanted to simplify the use of the logging macros by
-> passing the component pointer directly (with extra *bonus* that allows
-> to auto append component specific prefix, if any, like CT macros do)
-> 
-> IMHO adding guc_xxx() macros with "GuC:" prefix will do the trick and
-> since many of the existing GuC related logs are already broken or
-> incomplete, we might fix them accordingly.
-> 
-> In other words in addition to gt_xxx() I still want additional guc_xxx()
-> macros (as it will allow us to fix related messages) and ct_xxx() macros
-> (as we already have CT_xxx so no need to change anything)
-
-Both approaches are fine by me as long as it's logical and consistent 
-and we manage not to leave the conversion half-done for too long.
-
-Maybe as a way forward work could be split? If John wants to deal with 
-gt_xxx macros, avoid touching GuC (putting his original motivation 
-aside) and you want to convert the gt/uc folder? Assuming John you are 
-okay with "GuC:" and "CT:" prefixes.
-
-Regards,
-
-Tvrtko
