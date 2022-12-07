@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF968645FF5
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Dec 2022 18:18:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14E91645FF6
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Dec 2022 18:18:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34DB410E409;
-	Wed,  7 Dec 2022 17:18:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3EF6D89811;
+	Wed,  7 Dec 2022 17:18:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 059A310E40C
- for <intel-gfx@lists.freedesktop.org>; Wed,  7 Dec 2022 17:18:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 337A910E40C
+ for <intel-gfx@lists.freedesktop.org>; Wed,  7 Dec 2022 17:18:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1670433496; x=1701969496;
+ t=1670433499; x=1701969499;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=hfY72uXrE45V34tEWsnyqFYih5IbhTA5//xWMzTegn0=;
- b=VqBe0EC/BPoc2DZf+8EfpdtmAGSDAdWc1qrD8DogJD7vwJLhHOOzJFCV
- VxjqyBCxsUb4z94X/GyAlJG2M4S4GkEon2CGoniduyPXi5hy5rb4gSXmw
- YYP7Kckuq/yev+WxQRiVsV5ncHe1sJ8JIjeGi6YwowaOVEVSRn4WK45zi
- TnSSLpBp6OR02orVSnhoC70822LtS5qYQ9SI3030GSgYfoDa84Gtao2t+
- qAwvO4YUtnhRRb6wJP5L49aUTmmhYZwBD77ZxTO+GTlAX+EJt33tEpy/2
- viqFILUwOqw3rsgcMGFCWwThDuTlqBHw64UdYRDeb6FsP5wnNUZEH8i9S w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10554"; a="318087560"
-X-IronPort-AV: E=Sophos;i="5.96,225,1665471600"; d="scan'208";a="318087560"
+ bh=iFXgLPnDXLeMfKfOoLSd9lQGZAhtjjbcbCuNZLywra8=;
+ b=ToSN5YOYpc+7jD7EXKhEsKArV9T+ZPQUUds+1NEpLawcyu5ZKu5c4pFv
+ Ct5CccNbp+k4zSa53tbtDe3xT3rCOUYh3TgoKNud/ASq0NZTjFsZ3Qur+
+ d6J2YNUkLR2/CMh5LglIAfA0tUi7/wWrCg71WClC1yyCpHZqSDJJ281vX
+ /Tab2hS6E/mztI7WsTsrAmj6hZOqf6bm4YzlhJbWKq/TO0Nrt0g5UDJDt
+ Q3zuKUf6KoVJCLcUH7X7xGVdKKmYsHEMsi4pWX+OlL5Fh1lPdX37gEXJl
+ nMGSoqOtVn2a8dycLFgvck0oikOVB86G4xc603bMDNaiYqGqA1dfDSu74 g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10554"; a="318087586"
+X-IronPort-AV: E=Sophos;i="5.96,225,1665471600"; d="scan'208";a="318087586"
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2022 09:18:14 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10554"; a="715260903"
-X-IronPort-AV: E=Sophos;i="5.96,225,1665471600"; d="scan'208";a="715260903"
+ 07 Dec 2022 09:18:18 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10554"; a="715260919"
+X-IronPort-AV: E=Sophos;i="5.96,225,1665471600"; d="scan'208";a="715260919"
 Received: from fbackhou-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.36.192])
  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2022 09:18:11 -0800
+ 07 Dec 2022 09:18:16 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  7 Dec 2022 19:17:25 +0200
-Message-Id: <05690286d1521ec9c82d680122cca9a90a75b8dd.1670433372.git.jani.nikula@intel.com>
+Date: Wed,  7 Dec 2022 19:17:26 +0200
+Message-Id: <588815fc60752b6470ee4067246698d478309fa1.1670433372.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1670433372.git.jani.nikula@intel.com>
 References: <cover.1670433372.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 08/11] drm/i915/gmbus: switch to intel_de_*
+Subject: [Intel-gfx] [PATCH v2 09/11] drm/i915/wm: switch to intel_de_*
  register accessors in display code
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,119 +68,133 @@ Avoid direct uncore use in display code.
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_gmbus.c | 46 ++++++++--------------
- 1 file changed, 17 insertions(+), 29 deletions(-)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 42 +++++++++-----------
+ 1 file changed, 18 insertions(+), 24 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
-index a5840a28a69d..0bc4f6b48e80 100644
---- a/drivers/gpu/drm/i915/display/intel_gmbus.c
-+++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
-@@ -255,14 +255,12 @@ static void bxt_gmbus_clock_gating(struct drm_i915_private *i915,
- static u32 get_reserved(struct intel_gmbus *bus)
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index e0766d1be966..ae4e9e680c2e 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -45,8 +45,7 @@ u8 intel_enabled_dbuf_slices_mask(struct drm_i915_private *i915)
+ 	enum dbuf_slice slice;
+ 
+ 	for_each_dbuf_slice(i915, slice) {
+-		if (intel_uncore_read(&i915->uncore,
+-				      DBUF_CTL_S(slice)) & DBUF_POWER_STATE)
++		if (intel_de_read(i915, DBUF_CTL_S(slice)) & DBUF_POWER_STATE)
+ 			enabled_slices |= BIT(slice);
+ 	}
+ 
+@@ -75,7 +74,7 @@ intel_sagv_block_time(struct drm_i915_private *i915)
+ 	if (DISPLAY_VER(i915) >= 14) {
+ 		u32 val;
+ 
+-		val = intel_uncore_read(&i915->uncore, MTL_LATENCY_SAGV);
++		val = intel_de_read(i915, MTL_LATENCY_SAGV);
+ 
+ 		return REG_FIELD_GET(MTL_LATENCY_QCLK_SAGV, val);
+ 	} else if (DISPLAY_VER(i915) >= 12) {
+@@ -756,18 +755,18 @@ skl_ddb_get_hw_plane_state(struct drm_i915_private *i915,
+ 
+ 	/* Cursor doesn't support NV12/planar, so no extra calculation needed */
+ 	if (plane_id == PLANE_CURSOR) {
+-		val = intel_uncore_read(&i915->uncore, CUR_BUF_CFG(pipe));
++		val = intel_de_read(i915, CUR_BUF_CFG(pipe));
+ 		skl_ddb_entry_init_from_hw(ddb, val);
+ 		return;
+ 	}
+ 
+-	val = intel_uncore_read(&i915->uncore, PLANE_BUF_CFG(pipe, plane_id));
++	val = intel_de_read(i915, PLANE_BUF_CFG(pipe, plane_id));
+ 	skl_ddb_entry_init_from_hw(ddb, val);
+ 
+ 	if (DISPLAY_VER(i915) >= 11)
+ 		return;
+ 
+-	val = intel_uncore_read(&i915->uncore, PLANE_NV12_BUF_CFG(pipe, plane_id));
++	val = intel_de_read(i915, PLANE_NV12_BUF_CFG(pipe, plane_id));
+ 	skl_ddb_entry_init_from_hw(ddb_y, val);
+ }
+ 
+@@ -2821,36 +2820,32 @@ static void skl_pipe_wm_get_hw_state(struct intel_crtc *crtc,
+ 
+ 		for (level = 0; level <= max_level; level++) {
+ 			if (plane_id != PLANE_CURSOR)
+-				val = intel_uncore_read(&i915->uncore, PLANE_WM(pipe, plane_id, level));
++				val = intel_de_read(i915, PLANE_WM(pipe, plane_id, level));
+ 			else
+-				val = intel_uncore_read(&i915->uncore, CUR_WM(pipe, level));
++				val = intel_de_read(i915, CUR_WM(pipe, level));
+ 
+ 			skl_wm_level_from_reg_val(val, &wm->wm[level]);
+ 		}
+ 
+ 		if (plane_id != PLANE_CURSOR)
+-			val = intel_uncore_read(&i915->uncore, PLANE_WM_TRANS(pipe, plane_id));
++			val = intel_de_read(i915, PLANE_WM_TRANS(pipe, plane_id));
+ 		else
+-			val = intel_uncore_read(&i915->uncore, CUR_WM_TRANS(pipe));
++			val = intel_de_read(i915, CUR_WM_TRANS(pipe));
+ 
+ 		skl_wm_level_from_reg_val(val, &wm->trans_wm);
+ 
+ 		if (HAS_HW_SAGV_WM(i915)) {
+ 			if (plane_id != PLANE_CURSOR)
+-				val = intel_uncore_read(&i915->uncore,
+-							PLANE_WM_SAGV(pipe, plane_id));
++				val = intel_de_read(i915, PLANE_WM_SAGV(pipe, plane_id));
+ 			else
+-				val = intel_uncore_read(&i915->uncore,
+-							CUR_WM_SAGV(pipe));
++				val = intel_de_read(i915, CUR_WM_SAGV(pipe));
+ 
+ 			skl_wm_level_from_reg_val(val, &wm->sagv.wm0);
+ 
+ 			if (plane_id != PLANE_CURSOR)
+-				val = intel_uncore_read(&i915->uncore,
+-							PLANE_WM_SAGV_TRANS(pipe, plane_id));
++				val = intel_de_read(i915, PLANE_WM_SAGV_TRANS(pipe, plane_id));
+ 			else
+-				val = intel_uncore_read(&i915->uncore,
+-							CUR_WM_SAGV_TRANS(pipe));
++				val = intel_de_read(i915, CUR_WM_SAGV_TRANS(pipe));
+ 
+ 			skl_wm_level_from_reg_val(val, &wm->sagv.trans_wm);
+ 		} else if (DISPLAY_VER(i915) >= 12) {
+@@ -3126,8 +3121,8 @@ void skl_watermark_ipc_update(struct drm_i915_private *i915)
+ 	if (!HAS_IPC(i915))
+ 		return;
+ 
+-	intel_uncore_rmw(&i915->uncore, DISP_ARB_CTL2, DISP_IPC_ENABLE,
+-			 skl_watermark_ipc_enabled(i915) ? DISP_IPC_ENABLE : 0);
++	intel_de_rmw(i915, DISP_ARB_CTL2, DISP_IPC_ENABLE,
++		     skl_watermark_ipc_enabled(i915) ? DISP_IPC_ENABLE : 0);
+ }
+ 
+ static bool skl_watermark_ipc_can_enable(struct drm_i915_private *i915)
+@@ -3201,19 +3196,18 @@ adjust_wm_latency(struct drm_i915_private *i915,
+ 
+ static void mtl_read_wm_latency(struct drm_i915_private *i915, u16 wm[])
  {
- 	struct drm_i915_private *i915 = bus->i915;
 -	struct intel_uncore *uncore = &i915->uncore;
- 	u32 reserved = 0;
+ 	int max_level = ilk_wm_max_level(i915);
+ 	u32 val;
  
- 	/* On most chips, these bits must be preserved in software. */
- 	if (!IS_I830(i915) && !IS_I845G(i915))
--		reserved = intel_uncore_read_notrace(uncore, bus->gpio_reg) &
--			   (GPIO_DATA_PULLUP_DISABLE |
--			    GPIO_CLOCK_PULLUP_DISABLE);
-+		reserved = intel_de_read_notrace(i915, bus->gpio_reg) &
-+			(GPIO_DATA_PULLUP_DISABLE | GPIO_CLOCK_PULLUP_DISABLE);
+-	val = intel_uncore_read(uncore, MTL_LATENCY_LP0_LP1);
++	val = intel_de_read(i915, MTL_LATENCY_LP0_LP1);
+ 	wm[0] = REG_FIELD_GET(MTL_LATENCY_LEVEL_EVEN_MASK, val);
+ 	wm[1] = REG_FIELD_GET(MTL_LATENCY_LEVEL_ODD_MASK, val);
  
- 	return reserved;
- }
-@@ -270,37 +268,31 @@ static u32 get_reserved(struct intel_gmbus *bus)
- static int get_clock(void *data)
- {
- 	struct intel_gmbus *bus = data;
--	struct intel_uncore *uncore = &bus->i915->uncore;
-+	struct drm_i915_private *i915 = bus->i915;
- 	u32 reserved = get_reserved(bus);
+-	val = intel_uncore_read(uncore, MTL_LATENCY_LP2_LP3);
++	val = intel_de_read(i915, MTL_LATENCY_LP2_LP3);
+ 	wm[2] = REG_FIELD_GET(MTL_LATENCY_LEVEL_EVEN_MASK, val);
+ 	wm[3] = REG_FIELD_GET(MTL_LATENCY_LEVEL_ODD_MASK, val);
  
--	intel_uncore_write_notrace(uncore,
--				   bus->gpio_reg,
--				   reserved | GPIO_CLOCK_DIR_MASK);
--	intel_uncore_write_notrace(uncore, bus->gpio_reg, reserved);
-+	intel_de_write_notrace(i915, bus->gpio_reg, reserved | GPIO_CLOCK_DIR_MASK);
-+	intel_de_write_notrace(i915, bus->gpio_reg, reserved);
+-	val = intel_uncore_read(uncore, MTL_LATENCY_LP4_LP5);
++	val = intel_de_read(i915, MTL_LATENCY_LP4_LP5);
+ 	wm[4] = REG_FIELD_GET(MTL_LATENCY_LEVEL_EVEN_MASK, val);
+ 	wm[5] = REG_FIELD_GET(MTL_LATENCY_LEVEL_ODD_MASK, val);
  
--	return (intel_uncore_read_notrace(uncore, bus->gpio_reg) &
--		GPIO_CLOCK_VAL_IN) != 0;
-+	return (intel_de_read_notrace(i915, bus->gpio_reg) & GPIO_CLOCK_VAL_IN) != 0;
- }
- 
- static int get_data(void *data)
- {
- 	struct intel_gmbus *bus = data;
--	struct intel_uncore *uncore = &bus->i915->uncore;
-+	struct drm_i915_private *i915 = bus->i915;
- 	u32 reserved = get_reserved(bus);
- 
--	intel_uncore_write_notrace(uncore,
--				   bus->gpio_reg,
--				   reserved | GPIO_DATA_DIR_MASK);
--	intel_uncore_write_notrace(uncore, bus->gpio_reg, reserved);
-+	intel_de_write_notrace(i915, bus->gpio_reg, reserved | GPIO_DATA_DIR_MASK);
-+	intel_de_write_notrace(i915, bus->gpio_reg, reserved);
- 
--	return (intel_uncore_read_notrace(uncore, bus->gpio_reg) &
--		GPIO_DATA_VAL_IN) != 0;
-+	return (intel_de_read_notrace(i915, bus->gpio_reg) & GPIO_DATA_VAL_IN) != 0;
- }
- 
- static void set_clock(void *data, int state_high)
- {
- 	struct intel_gmbus *bus = data;
--	struct intel_uncore *uncore = &bus->i915->uncore;
-+	struct drm_i915_private *i915 = bus->i915;
- 	u32 reserved = get_reserved(bus);
- 	u32 clock_bits;
- 
-@@ -310,16 +302,14 @@ static void set_clock(void *data, int state_high)
- 		clock_bits = GPIO_CLOCK_DIR_OUT | GPIO_CLOCK_DIR_MASK |
- 			     GPIO_CLOCK_VAL_MASK;
- 
--	intel_uncore_write_notrace(uncore,
--				   bus->gpio_reg,
--				   reserved | clock_bits);
--	intel_uncore_posting_read(uncore, bus->gpio_reg);
-+	intel_de_write_notrace(i915, bus->gpio_reg, reserved | clock_bits);
-+	intel_de_posting_read(i915, bus->gpio_reg);
- }
- 
- static void set_data(void *data, int state_high)
- {
- 	struct intel_gmbus *bus = data;
--	struct intel_uncore *uncore = &bus->i915->uncore;
-+	struct drm_i915_private *i915 = bus->i915;
- 	u32 reserved = get_reserved(bus);
- 	u32 data_bits;
- 
-@@ -329,8 +319,8 @@ static void set_data(void *data, int state_high)
- 		data_bits = GPIO_DATA_DIR_OUT | GPIO_DATA_DIR_MASK |
- 			GPIO_DATA_VAL_MASK;
- 
--	intel_uncore_write_notrace(uncore, bus->gpio_reg, reserved | data_bits);
--	intel_uncore_posting_read(uncore, bus->gpio_reg);
-+	intel_de_write_notrace(i915, bus->gpio_reg, reserved | data_bits);
-+	intel_de_posting_read(i915, bus->gpio_reg);
- }
- 
- static int
-@@ -439,9 +429,7 @@ gmbus_wait_idle(struct drm_i915_private *i915)
- 	add_wait_queue(&i915->display.gmbus.wait_queue, &wait);
- 	intel_de_write_fw(i915, GMBUS4(i915), irq_enable);
- 
--	ret = intel_wait_for_register_fw(&i915->uncore,
--					 GMBUS2(i915), GMBUS_ACTIVE, 0,
--					 10);
-+	ret = intel_de_wait_for_register_fw(i915, GMBUS2(i915), GMBUS_ACTIVE, 0, 10);
- 
- 	intel_de_write_fw(i915, GMBUS4(i915), 0);
- 	remove_wait_queue(&i915->display.gmbus.wait_queue, &wait);
 -- 
 2.34.1
 
