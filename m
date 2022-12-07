@@ -1,56 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EDF0645D3A
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Dec 2022 16:06:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2B77645D4D
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Dec 2022 16:11:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7874389ABE;
-	Wed,  7 Dec 2022 15:06:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B929310E3C8;
+	Wed,  7 Dec 2022 15:11:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2081589ABE
- for <intel-gfx@lists.freedesktop.org>; Wed,  7 Dec 2022 15:06:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E101610E3C8
+ for <intel-gfx@lists.freedesktop.org>; Wed,  7 Dec 2022 15:11:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1670425581; x=1701961581;
+ t=1670425862; x=1701961862;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=oOtly/rCaVzmm0j8z0PYDRtMBNBX1kqoVQlMaCcOev0=;
- b=YqivPqnDOEP2Q/BUw1eQtpyNNHCspcxOGSerPvYS752ErLsOHOIl0Pb4
- L2jyj0KQajAcSmAE//lbQ0Gmaj/c7HH/EP59Bl7mMhbOfvi6/Wto/FMXF
- hcWbx3EC8lJWBI+1kH+FwypnhXB6WxwM8rWl6R7WH5zS/UOtOWPQg+Q41
- xC6kT40FGUBCalXQkpufkDkHlGk7PDWgBLFUlGY26F2JxbIJ1ae026IsV
- KlFigDYNZQ7cbMnfVp7pxLsAZDkjpElmAXf3EiiPljrDTXxvy+817/xpZ
- /pPKeG4VoBpB8LKc9XfVdIuKehSDgMVS4J3ZmtIfysEjblcLWlpsKoCA7 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10553"; a="296604837"
-X-IronPort-AV: E=Sophos;i="5.96,225,1665471600"; d="scan'208";a="296604837"
+ bh=KrC+3kAQrpBc1Ri2aBbz0c6JEf2Xcx7kMEQvbBW+iec=;
+ b=H6rgMDbQ1OYjoD7AulDznhzdfMqRWOQHAYwtStmAsFZG76ibDKXcMC0L
+ lzJzyFE78H3XlPGDJL4uSz1hdCuhEwkaE2w+Kz8syN/wl6s3duTaPXYPK
+ rgEIauTdAeoFIszort01Gu18tcb1u4A4OT62iCIDfnWFdo8FzM5oXzuVO
+ IJmZDp2BJDN5fOTAG9j/H7NRUrkb8XwCb0WaTVKvfCKbcoM3iw9pJSRh+
+ nH+A4UfFHmz6n/601fCBlcbbbRteaQ/QKjzdM1V69xD2ATq+YWEVWVTRf
+ MnSxUh53HTufH4UCXYsKHXJxq3qUbYptgF4XsaD4Wnq1KHvihh3OhlxZJ w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10553"; a="296606482"
+X-IronPort-AV: E=Sophos;i="5.96,225,1665471600"; d="scan'208";a="296606482"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2022 07:06:13 -0800
+ 07 Dec 2022 07:11:00 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10553"; a="753129129"
-X-IronPort-AV: E=Sophos;i="5.96,225,1665471600"; d="scan'208";a="753129129"
+X-IronPort-AV: E=McAfee;i="6500,9779,10553"; a="753130988"
+X-IronPort-AV: E=Sophos;i="5.96,225,1665471600"; d="scan'208";a="753130988"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga002.fm.intel.com with SMTP; 07 Dec 2022 07:06:11 -0800
+ by fmsmga002.fm.intel.com with SMTP; 07 Dec 2022 07:10:55 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 07 Dec 2022 17:06:10 +0200
-Date: Wed, 7 Dec 2022 17:06:10 +0200
+ Wed, 07 Dec 2022 17:10:54 +0200
+Date: Wed, 7 Dec 2022 17:10:54 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: "Navare, Manasi" <manasi.d.navare@intel.com>
-Message-ID: <Y5Cr4ro8OQjDqeMD@intel.com>
+Message-ID: <Y5Cs/tILCmsuizzK@intel.com>
 References: <20221202134412.21943-1-ville.syrjala@linux.intel.com>
- <20221202134412.21943-2-ville.syrjala@linux.intel.com>
- <20221205201309.GA1208376@mdnavare-mobl1.jf.intel.com>
+ <20221202134412.21943-3-ville.syrjala@linux.intel.com>
+ <20221205203425.GA1209420@mdnavare-mobl1.jf.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221205201309.GA1208376@mdnavare-mobl1.jf.intel.com>
+In-Reply-To: <20221205203425.GA1209420@mdnavare-mobl1.jf.intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/vrr: Make registers latch in a
- consitent place on icl/tgl
+Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915/vrr: Fix guardband/vblank exit
+ length calculation for adl+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,73 +67,74 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Dec 05, 2022 at 12:13:09PM -0800, Navare, Manasi wrote:
-> On Fri, Dec 02, 2022 at 03:44:09PM +0200, Ville Syrjala wrote:
+On Mon, Dec 05, 2022 at 12:34:25PM -0800, Navare, Manasi wrote:
+> On Fri, Dec 02, 2022 at 03:44:10PM +0200, Ville Syrjala wrote:
 > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > > 
-> > Account for the framestart delay when calculating the "pipeline full"
-> > value for icl/tgl vrr. This puts the start of vblank (ie. where the
-> > double bufferd registers get latched) to a consistent place regardless
-> > of what framestart delay value is used. framestart delay does not
-> > change where start of vblank occurs in non-vrr mode and I can't see
-> > any reason why we'd want different behaviour in vrr mode.
-> > 
-> > Currently framestart delay is always set to 1, and the hardcoded 4
-> > scanlines in the code means we're currently delaying the start of
-> > vblank by three extra lines. And with framestart delay set to 4 we'd
-> > have no extra delay.
+> > We are miscalculating both the guardband value, and the resulting
+> > vblank exit length on adl+. This means that our start of vblank
+> > (double buffered register latch point) is incorrect, and we also
+> > think that it's not where it actually is (hence vblank evasion/etc.
+> > may not work properly). Fix up the calculations to match the real
+> > hardware behaviour (as reverse engineered by intel_display_poller).
 > > 
 > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_vrr.c | 6 +++---
+> >  1 file changed, 3 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+> > index 6655dd2c1684..753e7b211708 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> > @@ -78,10 +78,10 @@ static int intel_vrr_vblank_exit_length(const struct intel_crtc_state *crtc_stat
+> >  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> >  	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> >  
+> > -	/* The hw imposes the extra scanline before frame start */
+> >  	if (DISPLAY_VER(i915) >= 13)
+> > -		return crtc_state->vrr.guardband + crtc_state->framestart_delay + 1;
+> > +		return crtc_state->vrr.guardband;
 > 
-> So now basically if we want to delay the vblank, then we will need to
-> update framestart_delay to somethin other than 1.
+> This makes sense since with guardband, there is no framestart delay
 
-No. framestart_delay does not affect where vblank starts. Or rather
-it's not supposed to, but before this patch it was was affect when
-VRR was enabled.
+framestart delay is still a thing. But it's not something that
+affects how the hardware interprets the guardband value.
 
-> Currently with framestart_delay = 1, there is no vblank delay, its just
-> vrr.vmin - vdisplay so the vblank start right after?
 > 
-> Is this the correct understanding?
+> >  	else
+> > +		/* The hw imposes the extra scanline before frame start */
+> >  		return crtc_state->vrr.pipeline_full + crtc_state->framestart_delay + 1;
+> >  }
+> >  
+> > @@ -151,7 +151,7 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+> >  		 * number of scan lines. Assuming 0 for no DSB.
+> >  		 */
+> >  		crtc_state->vrr.guardband =
+> > -			crtc_state->vrr.vmin - adjusted_mode->crtc_vdisplay;
+> > +			crtc_state->vrr.vmin + 1 - adjusted_mode->crtc_vdisplay;
 > 
-> Anyway, if this logic is validated to work then should be fine.
-> Basically this will only impact display <13, so as long as we dont
-> regress anything on TGL then we should be good.
+> Why are we adding + 1 here? The bspec says guardband should be :
+> Guardband = Vmin - Vactive - Window2 where in our case Window2 = 0
+> If we need that + 1 to get this working, then perhaps we need to update
+> Bspec?
+
+flipline is what actaully determines the start of vblank, and
+'flipline>=vmin+1' always.
+
 > 
-> Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
+> I kind of want to see if this is still breaking if we dont have that +
+> 1?
+
+Without it start of vblank happens one line later than where we want it
+to happen.
+
 > 
 > Manasi
 > 
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_vrr.c | 13 ++-----------
-> >  1 file changed, 2 insertions(+), 11 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> > index 7b1357e82b69..6655dd2c1684 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> > @@ -153,18 +153,9 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
-> >  		crtc_state->vrr.guardband =
-> >  			crtc_state->vrr.vmin - adjusted_mode->crtc_vdisplay;
 > >  	} else {
-> > -		/*
-> > -		 * FIXME: s/4/framestart_delay/ to get consistent
-> > -		 * earliest/latest points for register latching regardless
-> > -		 * of the framestart_delay used?
-> > -		 *
-> > -		 * FIXME: this really needs the extra scanline to provide consistent
-> > -		 * behaviour for all framestart_delay values. Otherwise with
-> > -		 * framestart_delay==4 we will end up extending the min vblank by
-> > -		 * one extra line.
-> > -		 */
 > >  		crtc_state->vrr.pipeline_full =
-> > -			min(255, crtc_state->vrr.vmin - adjusted_mode->crtc_vdisplay - 4 - 1);
-> > +			min(255, crtc_state->vrr.vmin - adjusted_mode->crtc_vdisplay -
-> > +			    crtc_state->framestart_delay - 1);
-> >  	}
-> >  
-> >  	crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
+> >  			min(255, crtc_state->vrr.vmin - adjusted_mode->crtc_vdisplay -
 > > -- 
 > > 2.37.4
 > > 
