@@ -1,50 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BE4A645C53
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Dec 2022 15:20:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09489645CB8
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Dec 2022 15:35:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74EBD10E3B9;
-	Wed,  7 Dec 2022 14:20:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E118710E109;
+	Wed,  7 Dec 2022 14:35:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9746B10E3B9
- for <intel-gfx@lists.freedesktop.org>; Wed,  7 Dec 2022 14:20:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1670422844; x=1701958844;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=JkNPgUi+V8v050j/tgUwj0eaBZaPZXTOIInyRDuwDZs=;
- b=jb+qjITHjIGJHuWYHCVyYz/BeWgLX/ajW8IGrax45gpiLvlWQqeMc6UH
- 4BZq+gV8rngU1fwsxAJFIlDwYf0ArALIaK9eIlJPSs7YIiNDDiKJ/LSmQ
- x1ZVrsfoiGtG9k0gL2fM+aFOmMmt3sLORFU3w3GiXW3jWHhbMMFFibmqL
- yKvqbKtUfWlQoNt7NlhbJHWq9AgkONOE7DZesLZVOqy+RdB/6wJBb8mw9
- GEHa67prsOeXh21mbktpcMohTRkjWtgXKqPSN/j2LNatQ6jo79KXuepfN
- Y92SF/62yKkcA7Hi8P5pYEj00RY+lECapgt9Un47RB3I5eRW1mSo+RNQN w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10553"; a="318757638"
-X-IronPort-AV: E=Sophos;i="5.96,225,1665471600"; d="scan'208";a="318757638"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2022 06:20:18 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10553"; a="753113297"
-X-IronPort-AV: E=Sophos;i="5.96,225,1665471600"; d="scan'208";a="753113297"
-Received: from kstrozan-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.5.34])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2022 06:20:17 -0800
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  7 Dec 2022 14:19:13 +0000
-Message-Id: <20221207141913.210995-1-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.38.1
+Received: from aposti.net (aposti.net [89.234.176.197])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F01E210E109
+ for <intel-gfx@lists.freedesktop.org>; Wed,  7 Dec 2022 14:35:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+ s=mail; t=1670423740; h=from:from:sender:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=YqDxxxhZHaBdHsBXxbpRVSGi+NbNR5i1v15tPxKzHUs=;
+ b=QYkLCuKxOX0S/9+aqaVMWBjJKzV+AZ8I1j8Osu8jbWE9iUYzVAVb+KQ6xmO9vSonqy93jX
+ MiTK3tITq1Etm5HLopinGmsZNCxhXN0D04gKhiejoSe+kGvZtR+q8qvsbjwfDmdSO3x4u6
+ 4Iv4E/j/8YyM5UTyXzZGqbn3bP2w9Aw=
+Message-ID: <4232b29f81ac80e41da78d79cbfc03d2790ae8d3.camel@crapouillou.net>
+From: Paul Cercueil <paul@crapouillou.net>
+To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, "tvrtko.ursulin@linux.intel.com"
+ <tvrtko.ursulin@linux.intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Date: Wed, 07 Dec 2022 14:35:37 +0000
+In-Reply-To: <a52e97690775c651b08b0095319bcc244e939fc3.camel@intel.com>
+References: <20221130022928.196982-1-rodrigo.vivi@intel.com>
+ <1813a272-a6e1-9b96-1d47-92302860f5b7@linux.intel.com>
+ <a52e97690775c651b08b0095319bcc244e939fc3.camel@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/migrate: fix corner case in CCS aux
- copying
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Remove CONFIG_PM dependency from
+ RC6.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,75 +49,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In the case of lmem -> lmem transfers, which is currently only possible
-with small-bar systems, we need to ensure we copy the CCS aux state
-as-is, rather than nuke it. This should fix some nasty visual corruption
-sometimes seen on DG2 small-bar systems, when also using DG2_RC_CCS_CC
-for the surface.
+Hi Rodrigo,
 
-Fixes: e3afc690188b ("drm/i915/display: consider DG2_RC_CCS_CC when migrating buffers")
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Nirmoy Das <nirmoy.das@intel.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_migrate.c | 37 +++++++++++++++++++------
- 1 file changed, 29 insertions(+), 8 deletions(-)
+Le mercredi 30 novembre 2022 =C3=A0 13:37 +0000, Vivi, Rodrigo a =C3=A9crit=
+=C2=A0:
+> On Wed, 2022-11-30 at 11:47 +0000, Tvrtko Ursulin wrote:
+> >=20
+> > On 30/11/2022 02:29, Rodrigo Vivi wrote:
+> > > RC6 is a sleep state that doesn't depend on the cpu sleep,
+> > > or any of the APM or ACPI or anything related to the
+> > > CONFIG_PM.
+> > >=20
+> > > A long time ago we have removed the module parameter
+> > > that allows the RC6 disablement. We want that feature enabled
+> > > everywhere. However, for some reason this CONFIG_PM was long
+> > > forgotten behind.
+> > >=20
+> > > If we end up needing knobs to disable RC6 we should create
+> > > individual ones, rather than relying on this master one.
+> >=20
+> > Digging in history shows 5ab3633d6907 ("drm/i915: make rc6 in sysfs
+> > functions conditional") and then it appears the issue could still
+> > be=20
+> > present, since we still use power_group_name which is NULL when
+> > !CONFIG_PM.
+>=20
+> oh, indeed!
+> So, we should probably go with Paul's proposal:
+> https://lists.freedesktop.org/archives/intel-gfx/2022-November/311569.htm=
+l
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
-index b405a04135ca..e25de6a8e04c 100644
---- a/drivers/gpu/drm/i915/gt/intel_migrate.c
-+++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
-@@ -829,14 +829,35 @@ intel_context_migrate_copy(struct intel_context *ce,
- 			if (err)
- 				goto out_rq;
- 
--			/*
--			 * While we can't always restore/manage the CCS state,
--			 * we still need to ensure we don't leak the CCS state
--			 * from the previous user, so make sure we overwrite it
--			 * with something.
--			 */
--			err = emit_copy_ccs(rq, dst_offset, INDIRECT_ACCESS,
--					    dst_offset, DIRECT_ACCESS, len);
-+			if (src_is_lmem) {
-+				/*
-+				 * If the src is already in lmem, then we must
-+				 * be doing an lmem -> lmem transfer, and so
-+				 * should be safe to directly copy the CCS
-+				 * state. In this case we have either
-+				 * initialised the CCS aux state when first
-+				 * clearing the pages (since it is already
-+				 * allocated in lmem), or the user has
-+				 * potentially populated it, in which case we
-+				 * need to copy the CCS state as-is.
-+				 */
-+				err = emit_copy_ccs(rq,
-+						    dst_offset, INDIRECT_ACCESS,
-+						    src_offset, INDIRECT_ACCESS,
-+						    len);
-+			} else {
-+				/*
-+				 * While we can't always restore/manage the CCS
-+				 * state, we still need to ensure we don't leak
-+				 * the CCS state from the previous user, so make
-+				 * sure we overwrite it with something.
-+				 */
-+				err = emit_copy_ccs(rq,
-+						    dst_offset, INDIRECT_ACCESS,
-+						    dst_offset, DIRECT_ACCESS,
-+						    len);
-+			}
-+
- 			if (err)
- 				goto out_rq;
- 
--- 
-2.38.1
+Could you ack it then? Or is there something to change?
+
+Cheers,
+-Paul
+
+> >=20
+> > $ ls -l /sys/class/drm/card0/power/
+> > total 0
+> > -rw-r--r-- 1 root root 4096 Nov 30 11:45 async
+> > -rw-r--r-- 1 root root 4096 Nov 30 11:45 autosuspend_delay_ms
+> > -rw-r--r-- 1 root root 4096 Nov 30 11:45 control
+> > -r--r--r-- 1 root root 4096 Nov 30 11:45 rc6_enable
+> > -r--r--r-- 1 root root 4096 Nov 30 11:45 rc6_residency_ms
+> > -r--r--r-- 1 root root 4096 Nov 30 11:45 runtime_active_kids
+> > -r--r--r-- 1 root root 4096 Nov 30 11:45 runtime_active_time
+> > -r--r--r-- 1 root root 4096 Nov 30 11:45 runtime_enabled
+> > -r--r--r-- 1 root root 4096 Nov 30 11:45 runtime_status
+> > -r--r--r-- 1 root root 4096 Nov 30 11:45 runtime_suspended_time
+> > -r--r--r-- 1 root root 4096 Nov 30 11:45 runtime_usage
+> >=20
+> > Other than rc6 entries I guess come from somewhere else but I
+> > haven't
+> > looked from where exactly.
+>=20
+>=20
+> Ouch! Everything else here comes from the pci's pm_runtime.
+> Probably our bad decision was to add rc6 to it.
+> But we do need to stick to that.
+>=20
+>=20
+> >=20
+> > Regards,
+> >=20
+> > Tvrtko
+> >=20
+> > > Cc: Paul Cercueil <paul@crapouillou.net>
+> > > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > ---
+> > > =C2=A0 drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c | 6 ------
+> > > =C2=A0 1 file changed, 6 deletions(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
+> > > b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
+> > > index cf71305ad586..77327ede18ad 100644
+> > > --- a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
+> > > +++ b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
+> > > @@ -164,7 +164,6 @@ sysfs_gt_attribute_r_func(struct kobject
+> > > *kobj,
+> > > struct attribute *attr,
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0
+> > > NULL);=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0\
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0INTEL_GT_ATTR_RO(_nam=
+e)
+> > > =C2=A0=20
+> > > -#ifdef CONFIG_PM
+> > > =C2=A0 static u32 get_residency(struct intel_gt *gt, enum
+> > > intel_rc6_res_type id)
+> > > =C2=A0 {
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_wakeref_t waker=
+ef;
+> > > @@ -329,11 +328,6 @@ static void intel_sysfs_rc6_init(struct
+> > > intel_gt *gt, struct kobject *kobj)
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 gt->info.id, ERR_PTR(ret))=
+;
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+> > > =C2=A0 }
+> > > -#else
+> > > -static void intel_sysfs_rc6_init(struct intel_gt *gt, struct
+> > > kobject *kobj)
+> > > -{
+> > > -}
+> > > -#endif /* CONFIG_PM */
+> > > =C2=A0=20
+> > > =C2=A0 static u32 __act_freq_mhz_show(struct intel_gt *gt)
+> > > =C2=A0 {
+>=20
+>=20
 
