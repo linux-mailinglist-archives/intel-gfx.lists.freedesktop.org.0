@@ -2,49 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D5DF64644F
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Dec 2022 23:52:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4874464652B
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Dec 2022 00:34:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A95C010E426;
-	Wed,  7 Dec 2022 22:52:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAF4110E19B;
+	Wed,  7 Dec 2022 23:34:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9909810E426
- for <intel-gfx@lists.freedesktop.org>; Wed,  7 Dec 2022 22:52:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1670453543; x=1701989543;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=RcE+4SQHTbBM/kRUjZVNenuoCtbIMSMeZfcsfIUTb2c=;
- b=Gdl+dt6El9IyYLnfWgCExHooG/9b6CxIsZx0CrsyybJT+6YvDOARnlj0
- TOcpkiNG33e4AIynWTRWMDqL4g054KTH9sAfXubSmLR+eRTmZgOPtZI4Z
- s9H96MlsypoTT6iynyggkPSGYCRv4eTnKsKneAi9IvwO5QhsdF0cqAJjP
- M4Zf1ZqB51D+PWbC7a/KSleEi5oQRfSOItUJd2fHsCq1C9CBTQzCDIHRC
- Gx0A5MaLiMHjWTQwdyM2Sj5+HLosBnrGGTi9gg8kXx9DpHLE/fhg4Uq7B
- rz7XHKTA8gp7uJn82GxdLqLf09uJTJ2CAMsdPBtvqmoXO6mRo+WY6IlK8 w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10554"; a="304650843"
-X-IronPort-AV: E=Sophos;i="5.96,225,1665471600"; d="scan'208";a="304650843"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2022 14:52:23 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10554"; a="679304557"
-X-IronPort-AV: E=Sophos;i="5.96,225,1665471600"; d="scan'208";a="679304557"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by orsmga001.jf.intel.com with SMTP; 07 Dec 2022 14:52:21 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 08 Dec 2022 00:52:19 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  8 Dec 2022 00:52:19 +0200
-Message-Id: <20221207225219.29060-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.37.4
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 15AF610E045;
+ Wed,  7 Dec 2022 23:34:07 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 14D7EA77A5;
+ Wed,  7 Dec 2022 23:34:07 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0773907156346388845=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Fix VLV/CHV HDMI/DP audio enable
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Wed, 07 Dec 2022 23:34:07 -0000
+Message-ID: <167045604707.14514.14157183467164222166@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221207225219.29060-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20221207225219.29060-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Fix_VLV/CHV_HDMI/DP_audio_enable?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,136 +40,287 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--===============0773907156346388845==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Despite what I claimed in commit c3c5dc1d9224
-("drm/i915/audio: Do the vblank waits") the vblank
-interrupts are in fact not enabled yet when we do the
-audio enable sequence on VLV/CHV (all other platforms are
-fine).
+== Series Details ==
 
-Reorder the enable sequence on VLV/CHV to match that of the
-other platforms so that the audio enable happens after the
-pipe has been enabled.
+Series: drm/i915: Fix VLV/CHV HDMI/DP audio enable
+URL   : https://patchwork.freedesktop.org/series/111749/
+State : success
 
-Fixes: c3c5dc1d9224 ("drm/i915/audio: Do the vblank waits")
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/g4x_dp.c   |  4 +--
- drivers/gpu/drm/i915/display/g4x_hdmi.c | 41 ++++++++++++++++---------
- 2 files changed, 29 insertions(+), 16 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
-index 3593938dcd87..24ef36ec2d3d 100644
---- a/drivers/gpu/drm/i915/display/g4x_dp.c
-+++ b/drivers/gpu/drm/i915/display/g4x_dp.c
-@@ -673,8 +673,6 @@ static void intel_enable_dp(struct intel_atomic_state *state,
- 	intel_dp_pcon_dsc_configure(intel_dp, pipe_config);
- 	intel_dp_start_link_train(intel_dp, pipe_config);
- 	intel_dp_stop_link_train(intel_dp, pipe_config);
--
--	intel_audio_codec_enable(encoder, pipe_config, conn_state);
- }
- 
- static void g4x_enable_dp(struct intel_atomic_state *state,
-@@ -683,6 +681,7 @@ static void g4x_enable_dp(struct intel_atomic_state *state,
- 			  const struct drm_connector_state *conn_state)
- {
- 	intel_enable_dp(state, encoder, pipe_config, conn_state);
-+	intel_audio_codec_enable(encoder, pipe_config, conn_state);
- 	intel_edp_backlight_on(pipe_config, conn_state);
- }
- 
-@@ -691,6 +690,7 @@ static void vlv_enable_dp(struct intel_atomic_state *state,
- 			  const struct intel_crtc_state *pipe_config,
- 			  const struct drm_connector_state *conn_state)
- {
-+	intel_audio_codec_enable(encoder, pipe_config, conn_state);
- 	intel_edp_backlight_on(pipe_config, conn_state);
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.c b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-index 121caeaa409b..c3580d96765c 100644
---- a/drivers/gpu/drm/i915/display/g4x_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-@@ -157,24 +157,32 @@ static void intel_hdmi_get_config(struct intel_encoder *encoder,
- 			     &pipe_config->infoframes.hdmi);
- }
- 
-+static void g4x_hdmi_enable_port(struct intel_encoder *encoder,
-+				 const struct intel_crtc_state *pipe_config)
-+{
-+	struct drm_device *dev = encoder->base.dev;
-+	struct drm_i915_private *dev_priv = to_i915(dev);
-+	struct intel_hdmi *intel_hdmi = enc_to_intel_hdmi(encoder);
-+	u32 temp;
-+
-+	temp = intel_de_read(dev_priv, intel_hdmi->hdmi_reg);
-+
-+	temp |= SDVO_ENABLE;
-+	if (pipe_config->has_audio)
-+		temp |= HDMI_AUDIO_ENABLE;
-+
-+	intel_de_write(dev_priv, intel_hdmi->hdmi_reg, temp);
-+	intel_de_posting_read(dev_priv, intel_hdmi->hdmi_reg);
-+}
-+
- static void g4x_enable_hdmi(struct intel_atomic_state *state,
- 			    struct intel_encoder *encoder,
- 			    const struct intel_crtc_state *pipe_config,
- 			    const struct drm_connector_state *conn_state)
- {
--	struct drm_device *dev = encoder->base.dev;
--	struct drm_i915_private *dev_priv = to_i915(dev);
--	struct intel_hdmi *intel_hdmi = enc_to_intel_hdmi(encoder);
--	u32 temp;
-+	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
- 
--	temp = intel_de_read(dev_priv, intel_hdmi->hdmi_reg);
--
--	temp |= SDVO_ENABLE;
--	if (pipe_config->has_audio)
--		temp |= HDMI_AUDIO_ENABLE;
--
--	intel_de_write(dev_priv, intel_hdmi->hdmi_reg, temp);
--	intel_de_posting_read(dev_priv, intel_hdmi->hdmi_reg);
-+	g4x_hdmi_enable_port(encoder, pipe_config);
- 
- 	drm_WARN_ON(&dev_priv->drm, pipe_config->has_audio &&
- 		    !pipe_config->has_hdmi_sink);
-@@ -294,6 +302,11 @@ static void vlv_enable_hdmi(struct intel_atomic_state *state,
- 			    const struct intel_crtc_state *pipe_config,
- 			    const struct drm_connector_state *conn_state)
- {
-+	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-+
-+	drm_WARN_ON(&dev_priv->drm, pipe_config->has_audio &&
-+		    !pipe_config->has_hdmi_sink);
-+	intel_audio_codec_enable(encoder, pipe_config, conn_state);
- }
- 
- static void intel_disable_hdmi(struct intel_atomic_state *state,
-@@ -415,7 +428,7 @@ static void vlv_hdmi_pre_enable(struct intel_atomic_state *state,
- 			      pipe_config->has_infoframe,
- 			      pipe_config, conn_state);
- 
--	g4x_enable_hdmi(state, encoder, pipe_config, conn_state);
-+	g4x_hdmi_enable_port(encoder, pipe_config);
- 
- 	vlv_wait_port_ready(dev_priv, dig_port, 0x0);
- }
-@@ -492,7 +505,7 @@ static void chv_hdmi_pre_enable(struct intel_atomic_state *state,
- 			      pipe_config->has_infoframe,
- 			      pipe_config, conn_state);
- 
--	g4x_enable_hdmi(state, encoder, pipe_config, conn_state);
-+	g4x_hdmi_enable_port(encoder, pipe_config);
- 
- 	vlv_wait_port_ready(dev_priv, dig_port, 0x0);
- 
--- 
-2.37.4
+CI Bug Log - changes from CI_DRM_12478 -> Patchwork_111749v1
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111749v1/index.html
+
+Participating hosts (39 -> 39)
+------------------------------
+
+  Additional (2): bat-rpls-2 fi-bsw-nick 
+  Missing    (2): bat-atsm-1 bat-dg1-6 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_111749v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@fbdev@eof:
+    - fi-kbl-soraka:      [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12478/fi-kbl-soraka/igt@fbdev@eof.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111749v1/fi-kbl-soraka/igt@fbdev@eof.html
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][3] ([fdo#109271]) +39 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111749v1/fi-bsw-nick/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  * igt@gem_tiled_blits@basic:
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][4] ([fdo#109271]) +20 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111749v1/fi-bsw-n3050/igt@gem_tiled_blits@basic.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-kbl-soraka:      [PASS][5] -> [DMESG-FAIL][6] ([i915#5334])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12478/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111749v1/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+    - fi-glk-j4005:       [PASS][7] -> [DMESG-FAIL][8] ([i915#5334])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12478/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111749v1/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][9] ([fdo#109271] / [fdo#111827])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111749v1/fi-hsw-4770/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_chamelium@hdmi-edid-read:
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][10] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111749v1/fi-bsw-n3050/igt@kms_chamelium@hdmi-edid-read.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][11] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111749v1/fi-bsw-nick/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@load:
+    - fi-bsw-n3050:       [DMESG-WARN][12] ([i915#1982] / [i915#7430]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12478/fi-bsw-n3050/igt@i915_module_load@load.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111749v1/fi-bsw-n3050/igt@i915_module_load@load.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [INCOMPLETE][14] ([i915#4785]) -> [PASS][15]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12478/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111749v1/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
+    - fi-bsw-kefka:       [FAIL][16] ([i915#6298]) -> [PASS][17]
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12478/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111749v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+
+  * igt@kms_pipe_crc_basic@read-crc@pipe-b-dp-1:
+    - {bat-adlp-9}:       [FAIL][18] -> [PASS][19] +3 similar issues
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12478/bat-adlp-9/igt@kms_pipe_crc_basic@read-crc@pipe-b-dp-1.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111749v1/bat-adlp-9/igt@kms_pipe_crc_basic@read-crc@pipe-b-dp-1.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4258]: https://gitlab.freedesktop.org/drm/intel/issues/4258
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#5153]: https://gitlab.freedesktop.org/drm/intel/issues/5153
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6559]: https://gitlab.freedesktop.org/drm/intel/issues/6559
+  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
+  [i915#7346]: https://gitlab.freedesktop.org/drm/intel/issues/7346
+  [i915#7430]: https://gitlab.freedesktop.org/drm/intel/issues/7430
+  [i915#7456]: https://gitlab.freedesktop.org/drm/intel/issues/7456
+  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12478 -> Patchwork_111749v1
+
+  CI-20190529: 20190529
+  CI_DRM_12478: f5d2f00fe4daf65ecd6634dec39fbf66b44535e3 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7085: 11af20de3877b23a244b816453bfc41d83591a15 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_111749v1: f5d2f00fe4daf65ecd6634dec39fbf66b44535e3 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+44f581679cba drm/i915: Fix VLV/CHV HDMI/DP audio enable
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111749v1/index.html
+
+--===============0773907156346388845==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Fix VLV/CHV HDMI/DP audio enable</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/111749/">https://patchwork.freedesktop.org/series/111749/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111749v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111749v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12478 -&gt; Patchwork_111749v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111749v1/index.html</p>
+<h2>Participating hosts (39 -&gt; 39)</h2>
+<p>Additional (2): bat-rpls-2 fi-bsw-nick <br />
+  Missing    (2): bat-atsm-1 bat-dg1-6 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_111749v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@fbdev@eof:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12478/fi-kbl-soraka/igt@fbdev@eof.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111749v1/fi-kbl-soraka/igt@fbdev@eof.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111749v1/fi-bsw-nick/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +39 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_blits@basic:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111749v1/fi-bsw-n3050/igt@gem_tiled_blits@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +20 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>
+<p>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12478/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111749v1/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</p>
+</li>
+<li>
+<p>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12478/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111749v1/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111749v1/fi-hsw-4770/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-edid-read:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111749v1/fi-bsw-n3050/igt@kms_chamelium@hdmi-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111749v1/fi-bsw-nick/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_module_load@load:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12478/fi-bsw-n3050/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7430">i915#7430</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111749v1/fi-bsw-n3050/igt@i915_module_load@load.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12478/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111749v1/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12478/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111749v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc@pipe-b-dp-1:</p>
+<ul>
+<li>{bat-adlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12478/bat-adlp-9/igt@kms_pipe_crc_basic@read-crc@pipe-b-dp-1.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111749v1/bat-adlp-9/igt@kms_pipe_crc_basic@read-crc@pipe-b-dp-1.html">PASS</a> +3 similar issues</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12478 -&gt; Patchwork_111749v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12478: f5d2f00fe4daf65ecd6634dec39fbf66b44535e3 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7085: 11af20de3877b23a244b816453bfc41d83591a15 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_111749v1: f5d2f00fe4daf65ecd6634dec39fbf66b44535e3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>44f581679cba drm/i915: Fix VLV/CHV HDMI/DP audio enable</p>
+
+</body>
+</html>
+
+--===============0773907156346388845==--
