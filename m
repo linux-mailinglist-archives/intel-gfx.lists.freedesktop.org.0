@@ -1,49 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35B3B6473C4
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Dec 2022 17:01:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E04766473C5
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Dec 2022 17:02:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 251A910E4BF;
-	Thu,  8 Dec 2022 16:01:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A98C810E4C2;
+	Thu,  8 Dec 2022 16:01:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE37710E4BB
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Dec 2022 16:01:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D22E210E4BB
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Dec 2022 16:01:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1670515308; x=1702051308;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Adq4Y2uQGDrDaYjtwJYsnaVrdO7ARdZoy/Vo3hLmr4Q=;
- b=YjytSyfS8MUQ1qn39WA8WVQVMd8VJ+ow7SynvzaHG4pi+JGdUlr+1zm0
- skCh5e9q7eA9QjfTV9aI3yYuv9jJ9QELws68SK47du/6HPuYcYVhOyogF
- 61SXvq+8EmhvgSJE8k8IglM4KMVUfNwUPYkXv/mNJukZskL4JTmPr9//2
- zWwIgFbJoz0RanHZGLa+WjG4dE9xtEMOI9Kd4B7cFXJy0mKh/i37TVrTB
- oep0Z5WbmxogOUxd+gBWv/XPiIokkKVUi6n6lz+00RlkLaru3Px6BPVmI
- 9hYTOoZzCBDTY6qFnvnxO8970pHtOjLEZlwT4oBBe3ogXQ6F/qeJ4BKSJ A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10555"; a="304861123"
-X-IronPort-AV: E=Sophos;i="5.96,227,1665471600"; d="scan'208";a="304861123"
+ t=1670515309; x=1702051309;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Hys+AOhVGolVlLN1yUvLtqVSDmscYIarTwcD0PDe2vA=;
+ b=D3WcTJ9YNirZ2kB2UMY+4cWaRhWAQDS+Q5ZxVk8sp7y6KA0OZrAXHMfU
+ g1crN97fggdvn2hzRg1AK+Uy33Gpz9u3HIhcRKUfCzvoC8dpO7V1hUSjP
+ PKtcsSP2KJ+afckzBLom+Q18s/NEMv3U9eqSNRhXkEemTQ8YvoOlLL6h8
+ Fq46xbm0idUXBLRzEU1ZU5G+ExFGuhDNEj3G9z3CfqcPMJHd0oHTuDSIS
+ RGAgqXcYNrM8+EFIVp4l9tSWmU6i4EoAf9MaP3egKDJh1DsnIVSymDXzw
+ Y3XiMRdD9DNcEYy4yUvdft838d3vB1PS1TgxIRQ/4F6ipeZGZ+NoAlXmB A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10555"; a="304861140"
+X-IronPort-AV: E=Sophos;i="5.96,227,1665471600"; d="scan'208";a="304861140"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2022 08:01:16 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10555"; a="679580766"
-X-IronPort-AV: E=Sophos;i="5.96,227,1665471600"; d="scan'208";a="679580766"
+ 08 Dec 2022 08:01:18 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10555"; a="679580831"
+X-IronPort-AV: E=Sophos;i="5.96,227,1665471600"; d="scan'208";a="679580831"
 Received: from lab-ah.igk.intel.com ([10.91.215.196])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2022 08:01:13 -0800
+ 08 Dec 2022 08:01:16 -0800
 From: Andrzej Hajda <andrzej.hajda@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  8 Dec 2022 17:01:00 +0100
-Message-Id: <20221208160103.308581-1-andrzej.hajda@intel.com>
+Date: Thu,  8 Dec 2022 17:01:01 +0100
+Message-Id: <20221208160103.308581-2-andrzej.hajda@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221208160103.308581-1-andrzej.hajda@intel.com>
+References: <20221208160103.308581-1-andrzej.hajda@intel.com>
 MIME-Version: 1.0
 Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
  80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/4] drm/i915/display: kill fetch_and_zero usage
+Subject: [Intel-gfx] [PATCH 2/4] drm/i915/gt: kill fetch_and_zero usage
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,302 +67,279 @@ Macro fetch_and_zero will be dropped.
 
 Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
 ---
- drivers/gpu/drm/i915/display/icl_dsi.c        |  2 +-
- drivers/gpu/drm/i915/display/intel_ddi.c      |  6 ++---
- drivers/gpu/drm/i915/display/intel_display.c  |  4 ++--
- .../drm/i915/display/intel_display_power.c    | 22 +++++++++----------
- drivers/gpu/drm/i915/display/intel_dmc.c      |  2 +-
- drivers/gpu/drm/i915/display/intel_fb_pin.c   |  6 ++---
- drivers/gpu/drm/i915/display/intel_fbdev.c    |  3 ++-
- drivers/gpu/drm/i915/display/intel_overlay.c  |  4 ++--
- drivers/gpu/drm/i915/display/intel_pps.c      |  4 ++--
- drivers/gpu/drm/i915/display/intel_tc.c       |  4 ++--
- 10 files changed, 29 insertions(+), 28 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c            | 2 +-
+ drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c     | 4 ++--
+ drivers/gpu/drm/i915/gt/intel_execlists_submission.c | 4 ++--
+ drivers/gpu/drm/i915/gt/intel_ggtt.c                 | 4 ++--
+ drivers/gpu/drm/i915/gt/intel_gsc.c                  | 2 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c                   | 4 ++--
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c                | 2 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c                  | 6 +++---
+ drivers/gpu/drm/i915/gt/intel_migrate.c              | 2 +-
+ drivers/gpu/drm/i915/gt/intel_rc6.c                  | 2 +-
+ drivers/gpu/drm/i915/gt/intel_rps.c                  | 2 +-
+ drivers/gpu/drm/i915/gt/selftest_context.c           | 2 +-
+ drivers/gpu/drm/i915/gt/selftest_ring_submission.c   | 2 +-
+ drivers/gpu/drm/i915/gt/selftest_timeline.c          | 2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c                | 2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c             | 2 +-
+ 16 files changed, 22 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index d16b30a2dded33..505e21e5ae1df7 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -1425,7 +1425,7 @@ static void gen11_dsi_disable_io_power(struct intel_encoder *encoder)
- 	for_each_dsi_port(port, intel_dsi->ports) {
- 		intel_wakeref_t wakeref;
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index c33e0d72d6702b..a756ac519a1e0b 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -1024,7 +1024,7 @@ static void cleanup_status_page(struct intel_engine_cs *engine)
+ 	/* Prevent writes into HWSP after returning the page to the system */
+ 	intel_engine_set_hwsp_writemask(engine, ~0u);
  
--		wakeref = fetch_and_zero(&intel_dsi->io_wakeref[port]);
-+		wakeref = xchg(&intel_dsi->io_wakeref[port], 0);
- 		intel_display_power_put(dev_priv,
- 					port == PORT_A ?
- 					POWER_DOMAIN_PORT_DDI_IO_A :
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 5f9a2410fc4c35..fca39847390a53 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -902,7 +902,7 @@ main_link_aux_power_domain_put(struct intel_digital_port *dig_port,
- 		intel_ddi_main_link_aux_domain(dig_port, crtc_state);
- 	intel_wakeref_t wf;
- 
--	wf = fetch_and_zero(&dig_port->aux_wakeref);
-+	wf = xchg(&dig_port->aux_wakeref, 0);
- 	if (!wf)
+-	vma = fetch_and_zero(&engine->status_page.vma);
++	vma = xchg(&engine->status_page.vma, NULL);
+ 	if (!vma)
  		return;
  
-@@ -2678,7 +2678,7 @@ static void intel_ddi_post_disable_dp(struct intel_atomic_state *state,
- 	if (!intel_tc_port_in_tbt_alt_mode(dig_port))
- 		intel_display_power_put(dev_priv,
- 					dig_port->ddi_io_power_domain,
--					fetch_and_zero(&dig_port->ddi_io_wakeref));
-+					xchg(&dig_port->ddi_io_wakeref, 0));
- 
- 	intel_ddi_disable_clock(encoder);
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+index 9a527e1f5be655..18d2be92e8a536 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+@@ -229,7 +229,7 @@ static void heartbeat(struct work_struct *wrk)
+ 	mutex_unlock(&ce->timeline->mutex);
+ out:
+ 	if (!engine->i915->params.enable_hangcheck || !next_heartbeat(engine))
+-		i915_request_put(fetch_and_zero(&engine->heartbeat.systole));
++		i915_request_put(xchg(&engine->heartbeat.systole, 0));
+ 	intel_engine_pm_put(engine);
  }
-@@ -2705,7 +2705,7 @@ static void intel_ddi_post_disable_hdmi(struct intel_atomic_state *state,
  
- 	intel_display_power_put(dev_priv,
- 				dig_port->ddi_io_power_domain,
--				fetch_and_zero(&dig_port->ddi_io_wakeref));
-+				xchg(&dig_port->ddi_io_wakeref, 0));
+@@ -244,7 +244,7 @@ void intel_engine_unpark_heartbeat(struct intel_engine_cs *engine)
+ void intel_engine_park_heartbeat(struct intel_engine_cs *engine)
+ {
+ 	if (cancel_delayed_work(&engine->heartbeat.work))
+-		i915_request_put(fetch_and_zero(&engine->heartbeat.systole));
++		i915_request_put(xchg(&engine->heartbeat.systole, 0));
+ }
  
- 	intel_ddi_disable_clock(encoder);
+ void intel_gt_unpark_heartbeats(struct intel_gt *gt)
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+index 49a8f10d76c77b..f7c8f30baa17ea 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -3197,7 +3197,7 @@ static void execlists_reset_cancel(struct intel_engine_cs *engine)
+ 		RB_CLEAR_NODE(rb);
  
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 32b25715718644..16d55f9c8f9e91 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -964,7 +964,7 @@ void intel_display_finish_reset(struct drm_i915_private *i915)
- 	if (!test_bit(I915_RESET_MODESET, &to_gt(i915)->reset.flags))
+ 		spin_lock(&ve->base.sched_engine->lock);
+-		rq = fetch_and_zero(&ve->request);
++		rq = xchg(&ve->request, NULL);
+ 		if (rq) {
+ 			if (i915_request_mark_eio(rq)) {
+ 				rq->engine = engine;
+@@ -3602,7 +3602,7 @@ static void rcu_virtual_context_destroy(struct work_struct *wrk)
+ 
+ 		spin_lock_irq(&ve->base.sched_engine->lock);
+ 
+-		old = fetch_and_zero(&ve->request);
++		old = xchg(&ve->request, NULL);
+ 		if (old) {
+ 			GEM_BUG_ON(!__i915_request_is_complete(old));
+ 			__i915_request_submit(old);
+diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+index 0c7fe360f87331..a3980476cb3919 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+@@ -684,7 +684,7 @@ static void fini_aliasing_ppgtt(struct i915_ggtt *ggtt)
+ {
+ 	struct i915_ppgtt *ppgtt;
+ 
+-	ppgtt = fetch_and_zero(&ggtt->alias);
++	ppgtt = xchg(&ggtt->alias, NULL);
+ 	if (!ppgtt)
  		return;
  
--	state = fetch_and_zero(&i915->display.restore.modeset_state);
-+	state = xchg(&i915->display.restore.modeset_state, NULL);
- 	if (!state)
- 		goto unlock;
+@@ -1238,7 +1238,7 @@ bool i915_ggtt_resume_vm(struct i915_address_space *vm)
+ 				   was_bound);
  
-@@ -7591,7 +7591,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 		 * cleanup. So copy and reset the dsb structure to sync with
- 		 * commit_done and later do dsb cleanup in cleanup_work.
+ 		if (obj) { /* only used during resume => exclusive access */
+-			write_domain_objs |= fetch_and_zero(&obj->write_domain);
++			write_domain_objs |= xchg(&obj->write_domain, 0);
+ 			obj->read_domains |= I915_GEM_DOMAIN_GTT;
+ 		}
+ 	}
+diff --git a/drivers/gpu/drm/i915/gt/intel_gsc.c b/drivers/gpu/drm/i915/gt/intel_gsc.c
+index bcc3605158dbde..836826ed75dc0f 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gsc.c
++++ b/drivers/gpu/drm/i915/gt/intel_gsc.c
+@@ -70,7 +70,7 @@ gsc_ext_om_alloc(struct intel_gsc *gsc, struct intel_gsc_intf *intf, size_t size
+ 
+ static void gsc_ext_om_destroy(struct intel_gsc_intf *intf)
+ {
+-	struct drm_i915_gem_object *obj = fetch_and_zero(&intf->gem_obj);
++	struct drm_i915_gem_object *obj = xchg(&intf->gem_obj, NULL);
+ 
+ 	if (!obj)
+ 		return;
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+index 4e7af9bc73ad05..6ac942f3c63379 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+@@ -757,7 +757,7 @@ int intel_gt_init(struct intel_gt *gt)
+ 	intel_uc_fini(&gt->uc);
+ err_engines:
+ 	intel_engines_release(gt);
+-	i915_vm_put(fetch_and_zero(&gt->vm));
++	i915_vm_put(xchg(&gt->vm, 0));
+ err_pm:
+ 	intel_gt_pm_fini(gt);
+ 	intel_gt_fini_scratch(gt);
+@@ -806,7 +806,7 @@ void intel_gt_driver_release(struct intel_gt *gt)
+ {
+ 	struct i915_address_space *vm;
+ 
+-	vm = fetch_and_zero(&gt->vm);
++	vm = xchg(&gt->vm, NULL);
+ 	if (vm) /* FIXME being called twice on error paths :( */
+ 		i915_vm_put(vm);
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+index 16db85fab0b19b..5d8284a1f039fd 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+@@ -123,7 +123,7 @@ static int __gt_unpark(struct intel_wakeref *wf)
+ static int __gt_park(struct intel_wakeref *wf)
+ {
+ 	struct intel_gt *gt = container_of(wf, typeof(*gt), wakeref);
+-	intel_wakeref_t wakeref = fetch_and_zero(&gt->awake);
++	intel_wakeref_t wakeref = xchg(&gt->awake, 0);
+ 	struct drm_i915_private *i915 = gt->i915;
+ 
+ 	GT_TRACE(gt, "\n");
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 7771a19008c604..3057fd6d489567 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1144,7 +1144,7 @@ __lrc_alloc_state(struct intel_context *ce, struct intel_engine_cs *engine)
+ static struct intel_timeline *
+ pinned_timeline(struct intel_context *ce, struct intel_engine_cs *engine)
+ {
+-	struct intel_timeline *tl = fetch_and_zero(&ce->timeline);
++	struct intel_timeline *tl = xchg(&ce->timeline, NULL);
+ 
+ 	return intel_timeline_create_from_engine(engine, page_unmask_bits(tl));
+ }
+@@ -1261,8 +1261,8 @@ void lrc_fini(struct intel_context *ce)
+ 	if (!ce->state)
+ 		return;
+ 
+-	intel_ring_put(fetch_and_zero(&ce->ring));
+-	i915_vma_put(fetch_and_zero(&ce->state));
++	intel_ring_put(xchg(&ce->ring, 0));
++	i915_vma_put(xchg(&ce->state, 0));
+ }
+ 
+ void lrc_destroy(struct kref *kref)
+diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
+index b405a04135ca21..ce5314d23d79c9 100644
+--- a/drivers/gpu/drm/i915/gt/intel_migrate.c
++++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
+@@ -1116,7 +1116,7 @@ void intel_migrate_fini(struct intel_migrate *m)
+ {
+ 	struct intel_context *ce;
+ 
+-	ce = fetch_and_zero(&m->context);
++	ce = xchg(&m->context, NULL);
+ 	if (!ce)
+ 		return;
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
+index 2ee4051e4d9613..3d3f0e8e1b0d2e 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rc6.c
++++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
+@@ -702,7 +702,7 @@ void intel_rc6_fini(struct intel_rc6 *rc6)
+ 
+ 	intel_rc6_disable(rc6);
+ 
+-	pctx = fetch_and_zero(&rc6->pctx);
++	pctx = xchg(&rc6->pctx, NULL);
+ 	if (pctx)
+ 		i915_gem_object_put(pctx);
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+index 9ad3bc7201cbaa..95ad3072fa7a82 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.c
++++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+@@ -1831,7 +1831,7 @@ static void rps_work(struct work_struct *work)
+ 	u32 pm_iir = 0;
+ 
+ 	spin_lock_irq(gt->irq_lock);
+-	pm_iir = fetch_and_zero(&rps->pm_iir) & rps->pm_events;
++	pm_iir = xchg(&rps->pm_iir, 0) & rps->pm_events;
+ 	client_boost = atomic_read(&rps->num_waiters);
+ 	spin_unlock_irq(gt->irq_lock);
+ 
+diff --git a/drivers/gpu/drm/i915/gt/selftest_context.c b/drivers/gpu/drm/i915/gt/selftest_context.c
+index 76fbae358072df..f43eff969112ca 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_context.c
++++ b/drivers/gpu/drm/i915/gt/selftest_context.c
+@@ -171,7 +171,7 @@ static int live_context_size(void *arg)
+ 		 * active state is sufficient, we are only checking that we
+ 		 * don't use more than we planned.
  		 */
--		old_crtc_state->dsb = fetch_and_zero(&new_crtc_state->dsb);
-+		old_crtc_state->dsb = xchg(&new_crtc_state->dsb, NULL);
- 	}
+-		saved = fetch_and_zero(&engine->default_state);
++		saved = xchg(&engine->default_state, NULL);
  
- 	/* Underruns don't always raise interrupts, so check manually */
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 3adba64937de68..f7640573683041 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -474,7 +474,7 @@ intel_display_power_grab_async_put_ref(struct drm_i915_private *dev_priv,
+ 		/* Overlaps with the execlists redzone */
+ 		engine->context_size += I915_GTT_PAGE_SIZE;
+diff --git a/drivers/gpu/drm/i915/gt/selftest_ring_submission.c b/drivers/gpu/drm/i915/gt/selftest_ring_submission.c
+index 87ceb0f374b673..847b2e5219aaf8 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/selftest_ring_submission.c
+@@ -269,7 +269,7 @@ static int live_ctx_switch_wa(void *arg)
+ 		if (IS_GRAPHICS_VER(gt->i915, 4, 5))
+ 			continue; /* MI_STORE_DWORD is privileged! */
  
- 	cancel_delayed_work(&power_domains->async_put_work);
- 	intel_runtime_pm_put_raw(&dev_priv->runtime_pm,
--				 fetch_and_zero(&power_domains->async_put_wakeref));
-+				 xchg(&power_domains->async_put_wakeref, 0));
- out_verify:
- 	verify_async_put_domains_state(power_domains);
+-		saved_wa = fetch_and_zero(&engine->wa_ctx.vma);
++		saved_wa = xchg(&engine->wa_ctx.vma, NULL);
  
-@@ -660,7 +660,7 @@ intel_display_power_put_async_work(struct work_struct *work)
- 	 * Bail out if all the domain refs pending to be released were grabbed
- 	 * by subsequent gets or a flush_work.
- 	 */
--	old_work_wakeref = fetch_and_zero(&power_domains->async_put_wakeref);
-+	old_work_wakeref = xchg(&power_domains->async_put_wakeref, 0);
- 	if (!old_work_wakeref)
- 		goto out_verify;
- 
-@@ -675,7 +675,7 @@ intel_display_power_put_async_work(struct work_struct *work)
- 		bitmap_zero(power_domains->async_put_domains[1].bits,
- 			    POWER_DOMAIN_NUM);
- 		queue_async_put_domains_work(power_domains,
--					     fetch_and_zero(&new_work_wakeref));
-+					     xchg(&new_work_wakeref, 0));
- 	} else {
- 		/*
- 		 * Cancel the work that got queued after this one got dequeued,
-@@ -729,7 +729,7 @@ void __intel_display_power_put_async(struct drm_i915_private *i915,
- 	} else {
- 		set_bit(domain, power_domains->async_put_domains[0].bits);
- 		queue_async_put_domains_work(power_domains,
--					     fetch_and_zero(&work_wakeref));
-+					     xchg(&work_wakeref, 0));
- 	}
- 
- out_verify:
-@@ -763,7 +763,7 @@ void intel_display_power_flush_work(struct drm_i915_private *i915)
- 
- 	mutex_lock(&power_domains->lock);
- 
--	work_wakeref = fetch_and_zero(&power_domains->async_put_wakeref);
-+	work_wakeref = xchg(&power_domains->async_put_wakeref, 0);
- 	if (!work_wakeref)
- 		goto out_verify;
- 
-@@ -891,7 +891,7 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
- 		intel_wakeref_t __maybe_unused wf = -1;
- 
- #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
--		wf = fetch_and_zero(&power_domain_set->wakerefs[domain]);
-+		wf = xchg(&power_domain_set->wakerefs[domain], 0);
- #endif
- 		intel_display_power_put(i915, domain, wf);
- 		clear_bit(domain, power_domain_set->mask.bits);
-@@ -1943,12 +1943,12 @@ void intel_power_domains_init_hw(struct drm_i915_private *i915, bool resume)
- void intel_power_domains_driver_remove(struct drm_i915_private *i915)
+ 		intel_engine_pm_get(engine);
+ 		err = __live_ctx_switch_wa(engine);
+diff --git a/drivers/gpu/drm/i915/gt/selftest_timeline.c b/drivers/gpu/drm/i915/gt/selftest_timeline.c
+index 522d0190509ccc..d89a98e82e5968 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_timeline.c
++++ b/drivers/gpu/drm/i915/gt/selftest_timeline.c
+@@ -892,7 +892,7 @@ static int create_watcher(struct hwsp_watcher *w,
+ static int check_watcher(struct hwsp_watcher *w, const char *name,
+ 			 bool (*op)(u32 hwsp, u32 seqno))
  {
- 	intel_wakeref_t wakeref __maybe_unused =
--		fetch_and_zero(&i915->display.power.domains.init_wakeref);
-+		xchg(&i915->display.power.domains.init_wakeref, 0);
+-	struct i915_request *rq = fetch_and_zero(&w->rq);
++	struct i915_request *rq = xchg(&w->rq, NULL);
+ 	u32 offset, end;
+ 	int err;
  
- 	/* Remove the refcount we took to keep power well support disabled. */
- 	if (!i915->params.disable_power_well)
- 		intel_display_power_put(i915, POWER_DOMAIN_INIT,
--					fetch_and_zero(&i915->display.power.domains.disable_wakeref));
-+					xchg(&i915->display.power.domains.disable_wakeref, 0));
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+index 4f4b519e12c1b7..4af616585bddf8 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+@@ -166,7 +166,7 @@ static void __uc_capture_load_err_log(struct intel_uc *uc)
  
- 	intel_display_power_flush_work_sync(i915);
- 
-@@ -2004,7 +2004,7 @@ void intel_power_domains_sanitize_state(struct drm_i915_private *i915)
- void intel_power_domains_enable(struct drm_i915_private *i915)
+ static void __uc_free_load_err_log(struct intel_uc *uc)
  {
- 	intel_wakeref_t wakeref __maybe_unused =
--		fetch_and_zero(&i915->display.power.domains.init_wakeref);
-+		xchg(&i915->display.power.domains.init_wakeref, 0);
+-	struct drm_i915_gem_object *log = fetch_and_zero(&uc->load_err_log);
++	struct drm_i915_gem_object *log = xchg(&uc->load_err_log, NULL);
  
- 	intel_display_power_put(i915, POWER_DOMAIN_INIT, wakeref);
- 	intel_power_domains_verify_state(i915);
-@@ -2044,7 +2044,7 @@ void intel_power_domains_suspend(struct drm_i915_private *i915,
- {
- 	struct i915_power_domains *power_domains = &i915->display.power.domains;
- 	intel_wakeref_t wakeref __maybe_unused =
--		fetch_and_zero(&power_domains->init_wakeref);
-+		xchg(&power_domains->init_wakeref, 0);
- 
- 	intel_display_power_put(i915, POWER_DOMAIN_INIT, wakeref);
- 
-@@ -2069,7 +2069,7 @@ void intel_power_domains_suspend(struct drm_i915_private *i915,
- 	 */
- 	if (!i915->params.disable_power_well)
- 		intel_display_power_put(i915, POWER_DOMAIN_INIT,
--					fetch_and_zero(&i915->display.power.domains.disable_wakeref));
-+					xchg(&i915->display.power.domains.disable_wakeref, 0));
- 
- 	intel_display_power_flush_work(i915);
- 	intel_power_domains_verify_state(i915);
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index eff3add706117c..8b37af6f04ba05 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -838,7 +838,7 @@ static void intel_dmc_runtime_pm_get(struct drm_i915_private *dev_priv)
- static void intel_dmc_runtime_pm_put(struct drm_i915_private *dev_priv)
- {
- 	intel_wakeref_t wakeref __maybe_unused =
--		fetch_and_zero(&dev_priv->display.dmc.wakeref);
-+		xchg(&dev_priv->display.dmc.wakeref, 0);
- 
- 	intel_display_power_put(dev_priv, POWER_DOMAIN_INIT, wakeref);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-index 1aca7552a85d03..92a506e0188c9f 100644
---- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-@@ -285,17 +285,17 @@ void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state)
- 	struct i915_vma *vma;
- 
- 	if (!intel_fb_uses_dpt(fb)) {
--		vma = fetch_and_zero(&old_plane_state->ggtt_vma);
-+		vma = xchg(&old_plane_state->ggtt_vma, NULL);
- 		if (vma)
- 			intel_unpin_fb_vma(vma, old_plane_state->flags);
- 	} else {
- 		struct intel_framebuffer *intel_fb = to_intel_framebuffer(fb);
- 
--		vma = fetch_and_zero(&old_plane_state->dpt_vma);
-+		vma = xchg(&old_plane_state->dpt_vma, NULL);
- 		if (vma)
- 			intel_unpin_fb_vma(vma, old_plane_state->flags);
- 
--		vma = fetch_and_zero(&old_plane_state->ggtt_vma);
-+		vma = xchg(&old_plane_state->ggtt_vma, NULL);
- 		if (vma)
- 			intel_dpt_unpin(intel_fb->dpt_vm);
- 	}
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index 03ed4607a46d21..e9cb951abf2776 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -591,7 +591,8 @@ void intel_fbdev_unregister(struct drm_i915_private *dev_priv)
- 
- void intel_fbdev_fini(struct drm_i915_private *dev_priv)
- {
--	struct intel_fbdev *ifbdev = fetch_and_zero(&dev_priv->display.fbdev.fbdev);
-+	struct intel_fbdev *ifbdev = xchg(&dev_priv->display.fbdev.fbdev,
-+					  NULL);
- 
- 	if (!ifbdev)
- 		return;
-diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
-index c12bdca8da9ba6..8a24c515145157 100644
---- a/drivers/gpu/drm/i915/display/intel_overlay.c
-+++ b/drivers/gpu/drm/i915/display/intel_overlay.c
-@@ -355,7 +355,7 @@ static void intel_overlay_release_old_vma(struct intel_overlay *overlay)
- {
- 	struct i915_vma *vma;
- 
--	vma = fetch_and_zero(&overlay->old_vma);
-+	vma = xchg(&overlay->old_vma, NULL);
- 	if (drm_WARN_ON(&overlay->i915->drm, !vma))
+ 	if (log)
+ 		i915_gem_object_put(log);
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+index 6c83a8b66c9e32..f08c65e4bcdb39 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+@@ -1055,7 +1055,7 @@ void intel_uc_fw_cleanup_fetch(struct intel_uc_fw *uc_fw)
+ 	if (!intel_uc_fw_is_available(uc_fw))
  		return;
  
-@@ -1428,7 +1428,7 @@ void intel_overlay_cleanup(struct drm_i915_private *dev_priv)
- {
- 	struct intel_overlay *overlay;
+-	i915_gem_object_put(fetch_and_zero(&uc_fw->obj));
++	i915_gem_object_put(xchg(&uc_fw->obj, 0));
  
--	overlay = fetch_and_zero(&dev_priv->display.overlay);
-+	overlay = xchg(&dev_priv->display.overlay, NULL);
- 	if (!overlay)
- 		return;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-index 9bbf41a076f728..1359253013bb63 100644
---- a/drivers/gpu/drm/i915/display/intel_pps.c
-+++ b/drivers/gpu/drm/i915/display/intel_pps.c
-@@ -690,7 +690,7 @@ static void intel_pps_vdd_off_sync_unlocked(struct intel_dp *intel_dp)
- 
- 	intel_display_power_put(dev_priv,
- 				intel_aux_power_domain(dig_port),
--				fetch_and_zero(&intel_dp->pps.vdd_wakeref));
-+				xchg(&intel_dp->pps.vdd_wakeref, 0));
+ 	intel_uc_fw_change_status(uc_fw, INTEL_UC_FIRMWARE_SELECTED);
  }
- 
- void intel_pps_vdd_off_sync(struct intel_dp *intel_dp)
-@@ -866,7 +866,7 @@ void intel_pps_off_unlocked(struct intel_dp *intel_dp)
- 	/* We got a reference when we enabled the VDD. */
- 	intel_display_power_put(dev_priv,
- 				intel_aux_power_domain(dig_port),
--				fetch_and_zero(&intel_dp->pps.vdd_wakeref));
-+				xchg(&intel_dp->pps.vdd_wakeref, 0));
- }
- 
- void intel_pps_off(struct intel_dp *intel_dp)
-diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-index 70624b4b2d38c1..c9272ef93d8629 100644
---- a/drivers/gpu/drm/i915/display/intel_tc.c
-+++ b/drivers/gpu/drm/i915/display/intel_tc.c
-@@ -671,7 +671,7 @@ static void intel_tc_port_update_mode(struct intel_digital_port *dig_port,
- 
- 	/* Get power domain matching the new mode after reset. */
- 	tc_cold_unblock(dig_port, dig_port->tc_lock_power_domain,
--			fetch_and_zero(&dig_port->tc_lock_wakeref));
-+			xchg(&dig_port->tc_lock_wakeref, 0));
- 	if (dig_port->tc_mode != TC_PORT_DISCONNECTED)
- 		dig_port->tc_lock_wakeref = tc_cold_block(dig_port,
- 							  &dig_port->tc_lock_power_domain);
-@@ -767,7 +767,7 @@ void intel_tc_port_sanitize_mode(struct intel_digital_port *dig_port)
- 		icl_tc_phy_disconnect(dig_port);
- 
- 		tc_cold_unblock(dig_port, dig_port->tc_lock_power_domain,
--				fetch_and_zero(&dig_port->tc_lock_wakeref));
-+				xchg(&dig_port->tc_lock_wakeref, 0));
- 	}
- 
- 	drm_dbg_kms(&i915->drm, "Port %s: sanitize mode (%s)\n",
 -- 
 2.34.1
 
