@@ -1,61 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22A93647365
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Dec 2022 16:44:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F771647398
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Dec 2022 16:53:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5E1510E4B8;
-	Thu,  8 Dec 2022 15:44:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67EF310E4B8;
+	Thu,  8 Dec 2022 15:53:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82B0510E4B8
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Dec 2022 15:44:16 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD60D10E0EF;
+ Thu,  8 Dec 2022 15:53:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1670514256; x=1702050256;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=/6yaUHCemGLQtEe3a57z1kTXstgTMZu1pZpZSy28xKQ=;
- b=QYyhChL0k7j9AUH+IlTBqbfnqNI42aKh3NZypmhGkkzbMBQP4nhQLJzy
- V0LfW3BPIIwN7qXJyORmZBM2vvVEB6GlUuc6MANrL8snJ9EsT11dKgR0S
- MN+b6bVMzDuZoTkORECQb62EVwTs3cPxEFptugdVrj54L4nq7GlaNjmBF
- 4G9jY3oF+CWy/G+HZ2dYdI67mUprOC0oYrzxsB/2kZhXTmKosoGRwxYRs
- 5SfqVMtBJksfhKazsCJxuXERETDLkntJ8/44Qah2rR4KgxVTYfaVk/s+F
- nMrf1TtpN2PTrqv0xAJpy+c19hQMoAYENBJtiGrkXt1qGnT6VlDrEnmKY g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10555"; a="296891143"
-X-IronPort-AV: E=Sophos;i="5.96,227,1665471600"; d="scan'208";a="296891143"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2022 07:44:16 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10555"; a="753615963"
-X-IronPort-AV: E=Sophos;i="5.96,227,1665471600"; d="scan'208";a="753615963"
-Received: from jharford-mobl.ger.corp.intel.com (HELO [10.213.232.246])
- ([10.213.232.246])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2022 07:44:14 -0800
-Message-ID: <4295836a-2702-c534-c861-f6b5055017f2@linux.intel.com>
-Date: Thu, 8 Dec 2022 15:44:12 +0000
+ t=1670514805; x=1702050805;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=Oetrozn7hREZ1+E90eIuWjD6cJMvrafRb9KTJQ6cvAQ=;
+ b=izHi7omGR7sl6P2DFIQcvDv4dNUSBrp8NPXl1hw2KhIAEQ9P3DrI3vDG
+ lDJrbkX3xfYCKfpxhPzVo0a+jrF4IuFeohvyAodqr1vGZpogZLUupglnh
+ uvmSRxqEzzRFM6GKlMxGnjTVni2VORk0xDbtey0GtGDZvNrhv+NsbsY/w
+ lz7Uh4pcnYjO3fnaVYkeuOjTFU0qG5S6RXWrAfJVK26ezXi7zpl466kMi
+ 2TrkDBelijSTWJPtiDSy4QCvhLG5lJriQwjMKIvz1oW4BgoEVClBQSBvu
+ 41Y8HG6WK8Hkv9mfbXWhhVtZfoeT5Q3gZFBld3hxrQka2DfJrhVE+Yj8b Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10555"; a="314850719"
+X-IronPort-AV: E=Sophos;i="5.96,227,1665471600"; d="scan'208";a="314850719"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2022 07:53:25 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10555"; a="735852344"
+X-IronPort-AV: E=Sophos;i="5.96,227,1665471600"; d="scan'208";a="735852344"
+Received: from smile.fi.intel.com ([10.237.72.54])
+ by FMSMGA003.fm.intel.com with ESMTP; 08 Dec 2022 07:53:19 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1p3JD3-006QZD-2Z; Thu, 08 Dec 2022 17:53:17 +0200
+Date: Thu, 8 Dec 2022 17:53:17 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Message-ID: <Y5IIbTtF4dHxRn/W@smile.fi.intel.com>
+References: <20221130134838.23805-1-andriy.shevchenko@linux.intel.com>
+ <Y5HelZhkxnPf6hIs@smile.fi.intel.com> <Y5HjTpzmgZWft+nF@kroah.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Content-Language: en-US
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- "Hajda, Andrzej" <andrzej.hajda@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-References: <20221208111217.3734461-1-andrzej.hajda@intel.com>
- <877cz213fa.fsf@intel.com>
- <a53c2ec0607493d46fe0fc9f1884cd5d32103058.camel@intel.com>
- <87tu26ym4x.fsf@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <87tu26ym4x.fsf@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/display: use fetch_and_zero if
- applicable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y5HjTpzmgZWft+nF@kroah.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: Re: [Intel-gfx] [PATCH v5 1/4] i915: Move list_count() to list.h as
+ list_count_nodes() for broader use
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,73 +62,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Mathias Nyman <mathias.nyman@linux.intel.com>,
+ Mathias Nyman <mathias.nyman@intel.com>, Jani Nikula <jani.nikula@intel.com>,
+ Kevin Cernekee <cernekee@gmail.com>, intel-gfx@lists.freedesktop.org,
+ linux-usb@vger.kernel.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 08/12/2022 15:02, Jani Nikula wrote:
-> On Thu, 08 Dec 2022, "Vivi, Rodrigo" <rodrigo.vivi@intel.com> wrote:
->> On Thu, 2022-12-08 at 14:32 +0200, Jani Nikula wrote:
->>> On Thu, 08 Dec 2022, Andrzej Hajda <andrzej.hajda@intel.com> wrote:
->>>> Simplify the code.
->>>
->>> Personally, I absolutely hate fetch_and_zero().
->>>
->>> I understand the point, but there are two main traps:
->>>
->>> First, the name implies atomicity, which there is none at all.
->>>
->>> Second, the name implies it's part of a kernel core header, which it
->>> isn't, and this just amplifies the first point.
->>>
->>> It's surprising and misleading, and those are not things I like about
->>> interfaces in the kernel.
->>>
->>> I would not like to see this proliferate. If fetch_and_zero() was
->>> atomic
->>> *and* part of a core kernel header, it would be a different matter.
->>> But
->>> I don't think that's going to happen, exactly because it won't be
->>> atomic
->>> and the name implies it is.
->>
->> +1 here.
->>
->> Please let's go the other way around and try to kill macros like this.
->>
->> we either kill or we ensure this gets accepted in the core kernel
->> libraries.
+On Thu, Dec 08, 2022 at 02:14:54PM +0100, Greg Kroah-Hartman wrote:
+> On Thu, Dec 08, 2022 at 02:54:45PM +0200, Andy Shevchenko wrote:
+> > On Wed, Nov 30, 2022 at 03:48:35PM +0200, Andy Shevchenko wrote:
+> > > Some of the existing users, and definitely will be new ones, want to
+> > > count existing nodes in the list. Provide a generic API for that by
+> > > moving code from i915 to list.h.
+> > 
+> > Greg, I believe this one is ready to be taken. Or please tell me what I need
+> > to do.
 > 
-> Agreed. I'd be fine with either:
-> 
-> 1) Get something like this accepted in core kernel headers:
-> 
-> #define fetch_and_zero(ptr) xchg(ptr, 0)
-> 
-> 2) Do this in i915:
-> 
-> @@
-> expression E;
-> @@
-> 
-> - fetch_and_zero(E)
-> + xchg(E, 0)
+> Wait for me to get through the current backlog of patches that I have in
+> my review queue.  Odds are, it will have to wait until after 6.2-rc1 is
+> out based on when 6.1 is going to be released.
 
-We don't need atomic so both solution would IMO be bad.
+It's fine, no hurry and take your time!
 
-We could propose __fetch_and_zero and fetch_and_zero, to mimic 
-__set_bit/set_bit&co for some consistency in terms of atomic vs 
-non-atomic API flavour?
+> Don't worry, it's not lost.
 
-Assuming of course people will think that the long-ish name of the 
-utility macro brings an overall positive cost benefit.
+Thank you, got it!
 
-Worth a try I guess.
+-- 
+With Best Regards,
+Andy Shevchenko
 
-First step I think we need a cocci script for finding the open coded 
-"fetch and zero" pattern. Not my forte but I can try if no one else has 
-an immediate solution or desire to drive the attempt.
 
-Regards,
-
-Tvrtko
