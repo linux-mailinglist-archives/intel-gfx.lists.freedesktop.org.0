@@ -2,43 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82C86647098
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Dec 2022 14:15:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C3866470E3
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Dec 2022 14:36:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 182EA10E49E;
-	Thu,  8 Dec 2022 13:15:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F46210E49F;
+	Thu,  8 Dec 2022 13:36:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3640310E49E;
- Thu,  8 Dec 2022 13:15:01 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 02A09B823CA;
- Thu,  8 Dec 2022 13:14:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26C58C433C1;
- Thu,  8 Dec 2022 13:14:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1670505297;
- bh=glSCtV+QzoCCztEb8hKzqZvn/Kmi//N93WanQimJ3rk=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=EAwqHfgMtkZyHyvjY/V2PP92GiVHFAxUQ7AfeBuSj2egHNczQ63uPStxjudUu/19G
- iUO41j6S9tvKd6wB2+l2kEQOY1mH8qlOHgmC+MPr8+X0+cdrOKq94DDdWV4lGraL3p
- LX4/TT3k/jY5ZPbxpqpUXk0oy6EdKm9cVysL2+dM=
-Date: Thu, 8 Dec 2022 14:14:54 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Message-ID: <Y5HjTpzmgZWft+nF@kroah.com>
-References: <20221130134838.23805-1-andriy.shevchenko@linux.intel.com>
- <Y5HelZhkxnPf6hIs@smile.fi.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 875DF10E49F
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Dec 2022 13:36:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1670506604; x=1702042604;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ThOM/0YNt8LTr7sUDojUhFJveEsC1YhxzHrM4P+jQk4=;
+ b=EkWsLVz+qK0XFblJ36id3W38e5X009Xtl/Jc2Pe49tvo/6D+jTKQZ0eO
+ FlrwEOogGnJL5WxMev0gf8LJDA+ZyxFjDSH5kNMl3L8E1+Dv6SL0og08/
+ RH/2o7TiFyEFzzBM4lWlBUcmwH0TsC9c7D8JNmYT6/rH71xT9hC1Ln+Ci
+ BlR+hslwTvW1Gtzh9ovRbh2svWuUtW8PfEQ8ibendpU5VSpeTlIRDB9nM
+ xlDZm7+MQRYOCXUH3RglMcB3E0FHihrU74+iAo9/A52etRHI6TD818wZt
+ nSOuM3akrJorU5vxnwR0eGmWvhIJFwZCNKSWSJn8m/523r5M/ro5GX70a A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10554"; a="318312284"
+X-IronPort-AV: E=Sophos;i="5.96,227,1665471600"; d="scan'208";a="318312284"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2022 05:36:43 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10554"; a="975860023"
+X-IronPort-AV: E=Sophos;i="5.96,227,1665471600"; d="scan'208";a="975860023"
+Received: from danyang-mobl.ccr.corp.intel.com (HELO localhost)
+ ([10.252.18.245])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2022 05:36:42 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  8 Dec 2022 15:36:38 +0200
+Message-Id: <20221208133638.478024-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y5HelZhkxnPf6hIs@smile.fi.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v5 1/4] i915: Move list_count() to list.h as
- list_count_nodes() for broader use
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/display: no need for gt/gen8_ppgtt.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,31 +56,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mathias Nyman <mathias.nyman@linux.intel.com>,
- Mathias Nyman <mathias.nyman@intel.com>, Jani Nikula <jani.nikula@intel.com>,
- Kevin Cernekee <cernekee@gmail.com>, intel-gfx@lists.freedesktop.org,
- linux-usb@vger.kernel.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 08, 2022 at 02:54:45PM +0200, Andy Shevchenko wrote:
-> On Wed, Nov 30, 2022 at 03:48:35PM +0200, Andy Shevchenko wrote:
-> > Some of the existing users, and definitely will be new ones, want to
-> > count existing nodes in the list. Provide a generic API for that by
-> > moving code from i915 to list.h.
-> 
-> Greg, I believe this one is ready to be taken. Or please tell me what I need
-> to do.
+Remove an unnecessary include.
 
-Wait for me to get through the current backlog of patches that I have in
-my review queue.  Odds are, it will have to wait until after 6.2-rc1 is
-out based on when 6.1 is going to be released.
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-Don't worry, it's not lost.
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 32b257157186..6cdfdae2c712 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -70,8 +70,6 @@
+ #include "gem/i915_gem_lmem.h"
+ #include "gem/i915_gem_object.h"
+ 
+-#include "gt/gen8_ppgtt.h"
+-
+ #include "g4x_dp.h"
+ #include "g4x_hdmi.h"
+ #include "hsw_ips.h"
+-- 
+2.34.1
 
-thanks,
-
-greg k-h
