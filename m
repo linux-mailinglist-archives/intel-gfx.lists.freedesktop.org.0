@@ -2,76 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B90D647129
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Dec 2022 14:56:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71C3964725D
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Dec 2022 16:01:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49C9D10E4A8;
-	Thu,  8 Dec 2022 13:56:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66C2210E4AE;
+	Thu,  8 Dec 2022 15:01:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com
- [66.111.4.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9FD710E4A8
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Dec 2022 13:55:09 +0000 (UTC)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
- by mailout.nyi.internal (Postfix) with ESMTP id 3E0CF5C0110;
- Thu,  8 Dec 2022 08:55:07 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute4.internal (MEProxy); Thu, 08 Dec 2022 08:55:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- invisiblethingslab.com; h=cc:cc:content-type:date:date:from:from
- :in-reply-to:message-id:mime-version:reply-to:sender:subject
- :subject:to:to; s=fm1; t=1670507707; x=1670594107; bh=6GKpjudIqv
- TWDk1IikFFGhAigKJs3+rT6h11l7fzCp8=; b=mDFCuZoklYstfq7H4HG1qETEV0
- W+f8FY8dt794xsufTS3A9fTJbGcI8BtMShglShqIzajIyq3HryDtYBJ9xWsp8Qd0
- gBvtN1zxV9kD9U6eZ2c/koXQx7wAaqsYcMAZuGIa4bCBi84JH1+D1GY8F8O800aM
- TNe5J+I0t1RzJ8Wm9j/TCVmjCFYcFhmPBqn5O9Ewx+BnthtH2ydNQjr6uOLmwrDE
- b5GkYZZzHATWYUCKLYjlkoDEt3Vj7nHXYL3A1xSZMQCKqyAiWsurHV+apiw+CwB6
- ZDl4w4Vx72tQnQriCXgzDu1weIRW3NmYPlGxHXdRjRtQisC4sGBppKK6AxLw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
- :feedback-id:from:from:in-reply-to:message-id:mime-version
- :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1670507707; x=
- 1670594107; bh=6GKpjudIqvTWDk1IikFFGhAigKJs3+rT6h11l7fzCp8=; b=Z
- 8QOdcPshuupEpeJx3YgCY5X1eHI371vnP77kt4cV2hFIcgbQR1JFaw8kKt+d/aa2
- t2/8fifmvU/wTioWS9W5TKkVB2MhOVmVL/DuwatHXv0gaChNl7PCSFntWoAQ7XyP
- J8AWur2GwgDhTV+/WWp8BltgFeMxCDIZBgQM9H6M7qtt7AIXmqooNzhsFhky/CqK
- VCk0/ii1AsQPeFFk05Cp9/zCKwO55KyiTwyoNh9OO/zjf16fkIkWyKvlt7DxEUCu
- QCvhH5LZ3pP+ImX8tYs0HzejELUt3v/b/bCgHVb0Y1aa55ih02EtUOPPHn49wCnm
- seDRlmlHeq4LbZkebWNYg==
-X-ME-Sender: <xms:uuyRY1qahaXJDEDXIIk4i0KzYCWVEvn4anML35uKYTBEF9aPjd6IJA>
- <xme:uuyRY3qwfSE2PAZlciN4-gFFGIpd-1NLsC3cB9Tecu_DhmaxzuO_XSr2B28PpDouu
- C1bRHfUzhUYGA>
-X-ME-Received: <xmr:uuyRYyMY6qIrlzR2GRdPVmN9XRmkinLH2rPolAOJYuBDwLWeOuoEzAb6I_M9aS9UID8B5tbCwOKo63wSpRHKxHkj6CSLHSLtGw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvddtgdehjecutefuodetggdotefrodftvf
- curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
- uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
- fjughrpeffhffvvefukfggtggusehgtderredttdejnecuhfhrohhmpeforghrvghkucfo
- rghrtgiihihkohifshhkihdqifpkrhgvtghkihcuoehmrghrmhgrrhgvkhesihhnvhhish
- hisghlvghthhhinhhgshhlrggsrdgtohhmqeenucggtffrrghtthgvrhhnpeehgfeuvdej
- keeikeeludelteevfeegffegteefffetheetffduudejuedugfdvteenucffohhmrghinh
- epqhhusggvshdqohhsrdhorhhgpdhgihhthhhusgdrtghomhenucevlhhushhtvghrufhi
- iigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrghrmhgrrhgvkhesihhnvhhish
- hisghlvghthhhinhhgshhlrggsrdgtohhm
-X-ME-Proxy: <xmx:uuyRYw4lg46xf1wtvrKkLRFbrCWzDuTQo4EtCzwrPateB9rU5p_JPg>
- <xmx:uuyRY04fTQqLGNPNQw9qb19VUdiVI3pmwfx_ql7oiIQB6buUIdT6Mg>
- <xmx:uuyRY4gExa2qR8wMfKiY6Oo8HVdJKId--nPvhig1X-JixGBA7ONZYQ>
- <xmx:u-yRYzZN_CVlZA3sah7SeEdKXkmQjMFPSpuGPON2iv9ewtlMwtjXpQ>
-Feedback-ID: i1568416f:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 8 Dec 2022 08:55:05 -0500 (EST)
-Date: Thu, 8 Dec 2022 14:55:02 +0100
-From: Marek =?utf-8?Q?Marczykowski-G=C3=B3recki?=
- <marmarek@invisiblethingslab.com>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7D6210E4AE
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Dec 2022 15:01:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1670511665; x=1702047665;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=3qsMwEKA1zeayM7rPw50ADMeh4dxONcAT7Kn3UmBf68=;
+ b=RKjZ7/5EnHl6WG4WmHxxbd1EMmOQpTDO4EzDtP76r+Bz3hN9u74ud9IU
+ XqB3yU10echMqHJbOlDAzvS+/mOiiOd2F49UuOkvwe1/mkMmJf4We9Ntv
+ +jqjAM1zfdD5pPHQQE3v6KdhlllBlkLKaH57TeLGidQma4311bs+hgp3i
+ tpv5gQLH5k0vi6owdUnhTePnwPVk4UmjaUyW0wuI4d+jRgErXseaCEZYw
+ X2fPZVXwVG5yDoe+njzKa2V2O2RbFT7i6xhCfNUfW/bXLcyASlDlq03dn
+ FD8LNwZ1Cf025wF8qUzFa9B7fWaWkhb8m/WO1GT426NZzhdfeaG2i/zJl w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10555"; a="381494566"
+X-IronPort-AV: E=Sophos;i="5.96,227,1665471600"; d="scan'208";a="381494566"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2022 06:23:53 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10555"; a="735811111"
+X-IronPort-AV: E=Sophos;i="5.96,227,1665471600"; d="scan'208";a="735811111"
+Received: from danyang-mobl.ccr.corp.intel.com (HELO localhost)
+ ([10.252.18.245])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2022 06:23:51 -0800
+From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Message-ID: <Y5Hst0bCxQDTN7lK@mail-itl>
+Date: Thu,  8 Dec 2022 16:23:47 +0200
+Message-Id: <20221208142347.602726-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature"; boundary="/WNi7iDpw1KwqA/X"
-Content-Disposition: inline
-X-Mailman-Approved-At: Thu, 08 Dec 2022 13:56:14 +0000
-Subject: [Intel-gfx] i915 and PAT attributes on Xen PV
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: add new "soc" sub-directory and move
+ PCH and DRAM code there
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,103 +58,124 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- "Demi M. Obenour" <demi@invisiblethingslab.com>,
- xen-devel <xen-devel@lists.xenproject.org>
+Cc: jani.nikula@intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Add a new sub-directory for things that aren't specifically about the
+GPU and don't really belong in the i915 driver top level, but also don't
+belong under any of the existing sub-directories either.
 
---/WNi7iDpw1KwqA/X
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 8 Dec 2022 14:55:02 +0100
-From: Marek =?utf-8?Q?Marczykowski-G=C3=B3recki?= <marmarek@invisiblethingslab.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: xen-devel <xen-devel@lists.xenproject.org>,
-	"Demi M. Obenour" <demi@invisiblethingslab.com>,
-	Jani Nikula <jani.nikula@linux.intel.com>,
-	Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
-	Rodrigo Vivi <rodrigo.vivi@intel.com>,
-	Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
-	Matt Roper <matthew.d.roper@intel.com>,
-	Lucas De Marchi <lucas.demarchi@intel.com>,
-	=?utf-8?B?Sm9zw6k=?= Roberto de Souza <jose.souza@intel.com>
-Subject: i915 and PAT attributes on Xen PV
+Name it "soc", and move the PCH and DRAM code there.
 
-Hi,
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-There is an issue with i915 on Xen PV (dom0). The end result is a lot of
-glitches, like here: https://openqa.qubes-os.org/tests/54748#step/startup/8
-(this one is on ADL, Linux 6.1-rc7 as a Xen PV dom0). It's using Xorg
-with "modesetting" driver.
+---
 
-After some iterations of debugging, we narrowed it down to i915 handling
-caching. The main difference is that PAT is setup differently on Xen PV
-than on native Linux. Normally, Linux does have appropriate abstraction
-for that, but apparently something related to i915 doesn't play well
-with it. The specific difference is:
-native linux:
-x86/PAT: Configuration [0-7]: WB  WC  UC- UC  WB  WP  UC- WT
-xen pv:
-x86/PAT: Configuration [0-7]: WB  WT  UC- UC  WC  WP  UC  UC
-                                  ~~          ~~      ~~  ~~
+Naming, always the naming! soc? ext? offcore? In the Makefile I'm adding
+comment "core peripheral code", which is also silly. *facepalm*
+---
+ drivers/gpu/drm/i915/Makefile               | 7 +++++--
+ drivers/gpu/drm/i915/i915_driver.c          | 3 ++-
+ drivers/gpu/drm/i915/i915_drv.h             | 3 ++-
+ drivers/gpu/drm/i915/{ => soc}/intel_dram.c | 0
+ drivers/gpu/drm/i915/{ => soc}/intel_dram.h | 0
+ drivers/gpu/drm/i915/{ => soc}/intel_pch.c  | 0
+ drivers/gpu/drm/i915/{ => soc}/intel_pch.h  | 0
+ 7 files changed, 9 insertions(+), 4 deletions(-)
+ rename drivers/gpu/drm/i915/{ => soc}/intel_dram.c (100%)
+ rename drivers/gpu/drm/i915/{ => soc}/intel_dram.h (100%)
+ rename drivers/gpu/drm/i915/{ => soc}/intel_pch.c (100%)
+ rename drivers/gpu/drm/i915/{ => soc}/intel_pch.h (100%)
 
-The specific impact depends on kernel version and the hardware. The most
-severe issues I see on >=3DADL, but some older hardware is affected too -
-sometimes only if composition is disabled in the window manager.
-Some more information is collected at
-https://github.com/QubesOS/qubes-issues/issues/4782 (and few linked
-duplicates...).
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index 01974b82d205..7046e435a155 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -48,9 +48,7 @@ i915-y += i915_driver.o \
+ 	  i915_sysfs.o \
+ 	  i915_utils.o \
+ 	  intel_device_info.o \
+-	  intel_dram.o \
+ 	  intel_memory_region.o \
+-	  intel_pch.o \
+ 	  intel_pcode.o \
+ 	  intel_pm.o \
+ 	  intel_region_ttm.o \
+@@ -62,6 +60,11 @@ i915-y += i915_driver.o \
+ 	  vlv_sideband.o \
+ 	  vlv_suspend.o
+ 
++# core peripheral code
++i915-y += \
++	soc/intel_dram.o \
++	soc/intel_pch.o
++
+ # core library code
+ i915-y += \
+ 	i915_memcpy.o \
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index 4cc3ced83959..6c87cfa0d7c8 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -75,6 +75,8 @@
+ 
+ #include "pxp/intel_pxp_pm.h"
+ 
++#include "soc/intel_dram.h"
++
+ #include "i915_file_private.h"
+ #include "i915_debugfs.h"
+ #include "i915_driver.h"
+@@ -93,7 +95,6 @@
+ #include "i915_sysfs.h"
+ #include "i915_utils.h"
+ #include "i915_vgpu.h"
+-#include "intel_dram.h"
+ #include "intel_gvt.h"
+ #include "intel_memory_region.h"
+ #include "intel_pci_config.h"
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index a8a5bd426e78..b6d0c12ffeea 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -49,6 +49,8 @@
+ #include "gt/intel_workarounds.h"
+ #include "gt/uc/intel_uc.h"
+ 
++#include "soc/intel_pch.h"
++
+ #include "i915_drm_client.h"
+ #include "i915_gem.h"
+ #include "i915_gpu_error.h"
+@@ -58,7 +60,6 @@
+ #include "i915_utils.h"
+ #include "intel_device_info.h"
+ #include "intel_memory_region.h"
+-#include "intel_pch.h"
+ #include "intel_runtime_pm.h"
+ #include "intel_step.h"
+ #include "intel_uncore.h"
+diff --git a/drivers/gpu/drm/i915/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
+similarity index 100%
+rename from drivers/gpu/drm/i915/intel_dram.c
+rename to drivers/gpu/drm/i915/soc/intel_dram.c
+diff --git a/drivers/gpu/drm/i915/intel_dram.h b/drivers/gpu/drm/i915/soc/intel_dram.h
+similarity index 100%
+rename from drivers/gpu/drm/i915/intel_dram.h
+rename to drivers/gpu/drm/i915/soc/intel_dram.h
+diff --git a/drivers/gpu/drm/i915/intel_pch.c b/drivers/gpu/drm/i915/soc/intel_pch.c
+similarity index 100%
+rename from drivers/gpu/drm/i915/intel_pch.c
+rename to drivers/gpu/drm/i915/soc/intel_pch.c
+diff --git a/drivers/gpu/drm/i915/intel_pch.h b/drivers/gpu/drm/i915/soc/intel_pch.h
+similarity index 100%
+rename from drivers/gpu/drm/i915/intel_pch.h
+rename to drivers/gpu/drm/i915/soc/intel_pch.h
+-- 
+2.34.1
 
-Kind-of related commit is here:
-https://github.com/torvalds/linux/commit/bdd8b6c98239cad ("drm/i915:
-replace X86_FEATURE_PAT with pat_enabled()") - it is the place where
-i915 explicitly checks for PAT support, so I'm cc-ing people mentioned
-there too.
-
-Any ideas?
-
-The issue can be easily reproduced without Xen too, by adjusting PAT in
-Linux:
------8<-----
-diff --git a/arch/x86/mm/pat/memtype.c b/arch/x86/mm/pat/memtype.c
-index 66a209f7eb86..319ab60c8d8c 100644
---- a/arch/x86/mm/pat/memtype.c
-+++ b/arch/x86/mm/pat/memtype.c
-@@ -400,8 +400,8 @@ void pat_init(void)
- 		 * The reserved slots are unused, but mapped to their
- 		 * corresponding types in the presence of PAT errata.
- 		 */
--		pat =3D PAT(0, WB) | PAT(1, WC) | PAT(2, UC_MINUS) | PAT(3, UC) |
--		      PAT(4, WB) | PAT(5, WP) | PAT(6, UC_MINUS) | PAT(7, WT);
-+		pat =3D PAT(0, WB) | PAT(1, WT) | PAT(2, UC_MINUS) | PAT(3, UC) |
-+		      PAT(4, WC) | PAT(5, WP) | PAT(6, UC)       | PAT(7, UC);
- 	}
-=20
- 	if (!pat_bp_initialized) {
------8<-----
-
---=20
-Best Regards,
-Marek Marczykowski-G=C3=B3recki
-Invisible Things Lab
-
---/WNi7iDpw1KwqA/X
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEhrpukzGPukRmQqkK24/THMrX1ywFAmOR7LYACgkQ24/THMrX
-1yzsegf/UEoA3BXWjSoPh2vPR63ezhmOsqkC/ZOINc54wnoQx7XDzMjC/vUUWsHe
-Wx2zWhrarVgRQ6mSV1ZC+gODIcJIn9jTmdLaf/7Ge7osLxgmejKhMaO9xuZ1ppHG
-ZcRw+nCl073wchwuNvjAvCcsB3G08HtXiWUlBXj64yC8+RR3zhaqZYUs06T/o1qs
-T/4Jf7yzzthVd/LOXSU/FbGfhDqEzOjyHedsOdJHiDuQT9QLitK1J7fh8iN4T5eO
-EmDoYO2bo/pA9M9K1jRWfxZF3vFyyEEJPpOKwVc+ahKTMANyymXclFIJuHAAJdyX
-wEMEcqHFPXnBbZ+V/vAfrXWoTJbYzg==
-=29Zz
------END PGP SIGNATURE-----
-
---/WNi7iDpw1KwqA/X--
