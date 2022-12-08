@@ -2,56 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A10E64742E
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Dec 2022 17:25:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A557F64743F
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Dec 2022 17:27:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CE7E10E12C;
-	Thu,  8 Dec 2022 16:25:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C6CD10E12C;
+	Thu,  8 Dec 2022 16:27:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A6D110E12C
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Dec 2022 16:25:28 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C712210E12C
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Dec 2022 16:27:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1670516728; x=1702052728;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=UgZMaJNVDbsqnMpEhkJkw2Xg5u/rG6Zyijp9PDtnyxY=;
- b=UH4u4OyqTz3dx3A6jxsMrbyd2St6IOqXj4n+1mf3wN21eYtX1gR4TV2Q
- Ubo+B7enb2ebRa+13vfUJMTNvJT7Dxk3e1nsa+pTnT9MaK8rNhvZ9BSWP
- h4TvDyxzMzUAQoVAU3bwJCoksaQAGYO1GO/vm3iW4s7tsS36u7bvGSguu
- hLNB5qiea+vr0ZcVEkRKcUz7ocHM9U/ynw1I47m3O90lb94Idpoj2OUHA
- yno0RoNUR5p5kuMLUdMYFxXOr+urTlD2cIz9UfcUWTnvcnYUWuf5LgwMk
- NmipvZDLxDTkUf/7MifcXottlSRN5ymFnDvLJuzZfBVidUZeSIePq85Sh w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10555"; a="296903755"
-X-IronPort-AV: E=Sophos;i="5.96,227,1665471600"; d="scan'208";a="296903755"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2022 08:25:26 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10555"; a="677810622"
-X-IronPort-AV: E=Sophos;i="5.96,227,1665471600"; d="scan'208";a="677810622"
-Received: from aslawinx-mobl.ger.corp.intel.com (HELO [10.99.249.223])
- ([10.99.249.223])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2022 08:25:24 -0800
-Message-ID: <5dd6e067-bc93-ad01-8cf2-3bb5c9a45443@linux.intel.com>
-Date: Thu, 8 Dec 2022 17:25:21 +0100
+ t=1670516862; x=1702052862;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=FdPsIHXTLYgOTmlWk9yZloXMW2pF7G1IoW2lqR6/DUA=;
+ b=YDcb0XSE82681UCYrR6zEKxEQkIyC0HRn3XWtUtsK8/EY6gXCj84WG7r
+ e67nGPuJIJY0xwP7J4UlXdt3JSSY7OpqnsUMwUHPOHCO3fBWatV8w5QyN
+ A8ZPR0qIyFtECpbblxKLmdqX+Mvyf4KE2I/haUsbBSkwMBVSLvaGv4eQ3
+ pVFomQmU00FuhPiX5dsnm4T2mRafvsPzf65eq4sqKq2jAPtA1AtCdPXPA
+ BXCw+AvUWYvtbSPOEWevcX1VK5bQEnfte3rbqcmhwczFYGeAMXFXBiJXl
+ AkPlxD/w0KV+CfE76CHK5eYgKawPGyD8XV4QO5ILxv/NKmRXhw3O7eKs5 g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10555"; a="300646735"
+X-IronPort-AV: E=Sophos;i="5.96,227,1665471600"; d="scan'208";a="300646735"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2022 08:26:56 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10555"; a="821398068"
+X-IronPort-AV: E=Sophos;i="5.96,227,1665471600"; d="scan'208";a="821398068"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.6.160])
+ ([10.213.6.160])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2022 08:26:53 -0800
+Message-ID: <4fc63ffa-f0a5-d1d5-153d-e8515ed210c9@intel.com>
+Date: Thu, 8 Dec 2022 17:26:50 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
+ Firefox/102.0 Thunderbird/102.5.1
 Content-Language: en-US
-To: Kai Vehmanen <kai.vehmanen@linux.intel.com>, alsa-devel@alsa-project.org, 
- tiwai@suse.de
-References: <20221208154358.3848764-1-kai.vehmanen@linux.intel.com>
- <20221208154358.3848764-2-kai.vehmanen@linux.intel.com>
-From: =?UTF-8?Q?Amadeusz_S=c5=82awi=c5=84ski?=
- <amadeuszx.slawinski@linux.intel.com>
-In-Reply-To: <20221208154358.3848764-2-kai.vehmanen@linux.intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+References: <20221208111217.3734461-1-andrzej.hajda@intel.com>
+ <877cz213fa.fsf@intel.com>
+ <a53c2ec0607493d46fe0fc9f1884cd5d32103058.camel@intel.com>
+ <87tu26ym4x.fsf@intel.com>
+ <4295836a-2702-c534-c861-f6b5055017f2@linux.intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <4295836a-2702-c534-c861-f6b5055017f2@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 1/3] ALSA: hda/hdmi: fix i915 silent stream
- programming flow
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/display: use fetch_and_zero if
+ applicable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,69 +70,100 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 12/8/2022 4:43 PM, Kai Vehmanen wrote:
-> The i915 display codec may not successfully transition to
-> normal audio streaming mode, if the stream id is programmed
-> while codec is actively transmitting data. This can happen
-> when silent stream is enabled in KAE mode.
+On 08.12.2022 16:44, Tvrtko Ursulin wrote:
 > 
-> Fix the issue by implementing a i915 specific programming
-> flow, where the silent streaming is temporarily stopped,
-> a small delay is applied to ensure display codec becomes
-> idle, and then proceed with reprogramming the stream ID.
+> On 08/12/2022 15:02, Jani Nikula wrote:
+>> On Thu, 08 Dec 2022, "Vivi, Rodrigo" <rodrigo.vivi@intel.com> wrote:
+>>> On Thu, 2022-12-08 at 14:32 +0200, Jani Nikula wrote:
+>>>> On Thu, 08 Dec 2022, Andrzej Hajda <andrzej.hajda@intel.com> wrote:
+>>>>> Simplify the code.
+>>>>
+>>>> Personally, I absolutely hate fetch_and_zero().
+>>>>
+>>>> I understand the point, but there are two main traps:
+>>>>
+>>>> First, the name implies atomicity, which there is none at all.
+>>>>
+>>>> Second, the name implies it's part of a kernel core header, which it
+>>>> isn't, and this just amplifies the first point.
+>>>>
+>>>> It's surprising and misleading, and those are not things I like about
+>>>> interfaces in the kernel.
+>>>>
+>>>> I would not like to see this proliferate. If fetch_and_zero() was
+>>>> atomic
+>>>> *and* part of a core kernel header, it would be a different matter.
+>>>> But
+>>>> I don't think that's going to happen, exactly because it won't be
+>>>> atomic
+>>>> and the name implies it is.
+>>>
+>>> +1 here.
+>>>
+>>> Please let's go the other way around and try to kill macros like this.
+>>>
+>>> we either kill or we ensure this gets accepted in the core kernel
+>>> libraries.
+>>
+>> Agreed. I'd be fine with either:
+>>
+>> 1) Get something like this accepted in core kernel headers:
+>>
+>> #define fetch_and_zero(ptr) xchg(ptr, 0)
+>>
+>> 2) Do this in i915:
+>>
+>> @@
+>> expression E;
+>> @@
+>>
+>> - fetch_and_zero(E)
+>> + xchg(E, 0)
 > 
-> Fixes: 15175a4f2bbb ("ALSA: hda/hdmi: add keep-alive support for ADL-P and DG2")
-> Link: https://gitlab.freedesktop.org/drm/intel/-/issues/7353
-> Signed-off-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-> Reviewed-by: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-> Tested-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> ---
->   sound/pci/hda/patch_hdmi.c | 23 +++++++++++++++++++++--
->   1 file changed, 21 insertions(+), 2 deletions(-)
-> 
-> diff --git a/sound/pci/hda/patch_hdmi.c b/sound/pci/hda/patch_hdmi.c
-> index 7a40ddfd695a..a0ba24165ae2 100644
-> --- a/sound/pci/hda/patch_hdmi.c
-> +++ b/sound/pci/hda/patch_hdmi.c
-> @@ -2879,9 +2879,28 @@ static int i915_hsw_setup_stream(struct hda_codec *codec, hda_nid_t cvt_nid,
->   				 hda_nid_t pin_nid, int dev_id, u32 stream_tag,
->   				 int format)
->   {
-> +	struct hdmi_spec *spec = codec->spec;
-> +	int pin_idx = pin_id_to_pin_index(codec, pin_nid, dev_id);
+> We don't need atomic so both solution would IMO be bad.
 
-Shouldn't return value from pin_id_to_pin_index() be checked? It seems 
-that it can return -EINVAL.
+Heh, too late, already sent :)
 
-> +	struct hdmi_spec_per_pin *per_pin = get_pin(spec, pin_idx);
-> +	int res;
-> +
->   	haswell_verify_D0(codec, cvt_nid, pin_nid);
-> -	return hdmi_setup_stream(codec, cvt_nid, pin_nid, dev_id,
-> -				 stream_tag, format);
-> +
-> +	if (spec->silent_stream_type == SILENT_STREAM_KAE && per_pin && per_pin->silent_stream) {
-> +		silent_stream_set_kae(codec, per_pin, false);
-> +		/* wait for pending transfers in codec to clear */
-> +		usleep_range(100, 200);
-> +	}
-> +
-> +	res = hdmi_setup_stream(codec, cvt_nid, pin_nid, dev_id,
-> +				stream_tag, format);
-> +
-> +	if (spec->silent_stream_type == SILENT_STREAM_KAE && per_pin && per_pin->silent_stream) {
-> +		usleep_range(100, 200);
-> +		silent_stream_set_kae(codec, per_pin, true);
-> +	}
-> +
-> +	return res;
->   }
->   
->   /* pin_cvt_fixup ops override for HSW+ and VLV+ */
+> 
+> We could propose __fetch_and_zero and fetch_and_zero, to mimic 
+> __set_bit/set_bit&co for some consistency in terms of atomic vs 
+> non-atomic API flavour?
+> 
+
+Or non-atomic xchg
+
+
+> Assuming of course people will think that the long-ish name of the 
+> utility macro brings an overall positive cost benefit.
+> 
+> Worth a try I guess.
+> 
+> First step I think we need a cocci script for finding the open coded 
+> "fetch and zero" pattern. Not my forte but I can try if no one else has 
+> an immediate solution or desire to drive the attempt.
+
+About 1600 patterns:
+x = y;
+y = 0;
+
+but I guess there could be more:
+x = xchg(&y, 0);
+
+x = y;
+...
+y = 0;
+
+custom macros
+
+Regards
+Andrzej
+
+
+> 
+> Regards,
+> 
+> Tvrtko
 
