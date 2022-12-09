@@ -2,49 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 197696482DB
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Dec 2022 14:41:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0696E6482F7
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Dec 2022 14:51:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE6D410E002;
-	Fri,  9 Dec 2022 13:41:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 913FA10E535;
+	Fri,  9 Dec 2022 13:51:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B9C110E002
- for <intel-gfx@lists.freedesktop.org>; Fri,  9 Dec 2022 13:41:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1670593288; x=1702129288;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Dp5XJRTLnxkGRJpd5KsfuaSbmrCmGuMxRAV04Igr+ks=;
- b=AsBKRHExQqcqOU9k1A6QZFznYzIddvDMx/cW2B98MDgWJlilT1bl7GTK
- 6+zYhiEwVSza7nRHO6MFy8d2JMKEJ+yKD7wP2gsvBfini2XtOlu0SMubt
- GV8nDRq9tXrO6GtQbCvb0r/aqsWm5ChB8OpqgOmFcWbMGMxVPm5Ghqh1J
- v9qUyX/cbz8pkOB0I9G/SbytGOAdFURrVnBqppzpG12aYF0SBROLvhrd1
- henIRpU6GnKuJE5AshWIOi8qQX4+4g7ktsNyzv+ZvZMBLRTAseafOCNYs
- qtjM9rZbHYxO1nQsF0bk37Mj99VSBYgSWvzri1aeIQw4r8+JKOlV1RHQe A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10556"; a="381765022"
-X-IronPort-AV: E=Sophos;i="5.96,230,1665471600"; d="scan'208";a="381765022"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2022 05:41:26 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10556"; a="710888535"
-X-IronPort-AV: E=Sophos;i="5.96,230,1665471600"; d="scan'208";a="710888535"
-Received: from sarahgar-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.5.186])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2022 05:41:25 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  9 Dec 2022 15:41:21 +0200
-Message-Id: <20221209134121.921070-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E18DB10E535;
+ Fri,  9 Dec 2022 13:51:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D8A17A0078;
+ Fri,  9 Dec 2022 13:51:19 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1753884586969177929=="
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/display: drop redundant display/ from
- #includes
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Fri, 09 Dec 2022 13:51:19 -0000
+Message-ID: <167059387984.9709.1210072669598707012@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221202122844.428006-1-matthew.auld@intel.com>
+In-Reply-To: <20221202122844.428006-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv6=2C1/3=5D_drm/i915/migrate=3A_Account_fo?=
+ =?utf-8?q?r_the_reserved=5Fspace_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,183 +41,176 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Drop the redundant sub-directory from #includes under display/. Group
-and sort the results.
+--===============1753884586969177929==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bios.c    |  9 ++--
- drivers/gpu/drm/i915/display/intel_display.c | 51 ++++++++++----------
- drivers/gpu/drm/i915/display/intel_psr.c     |  3 +-
- 3 files changed, 30 insertions(+), 33 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 572a4e3769f3..f7be6b25a975 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -25,16 +25,15 @@
-  *
-  */
- 
--#include <drm/drm_edid.h>
- #include <drm/display/drm_dp_helper.h>
- #include <drm/display/drm_dsc_helper.h>
--
--#include "display/intel_display.h"
--#include "display/intel_display_types.h"
--#include "display/intel_gmbus.h"
-+#include <drm/drm_edid.h>
- 
- #include "i915_drv.h"
- #include "i915_reg.h"
-+#include "intel_display.h"
-+#include "intel_display_types.h"
-+#include "intel_gmbus.h"
- 
- #define _INTEL_BIOS_PRIVATE
- #include "intel_vbt_defs.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 6cdfdae2c712..a875fdef1476 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -24,15 +24,15 @@
-  *	Eric Anholt <eric@anholt.net>
-  */
- 
--#include <acpi/video.h>
-+#include <linux/dma-resv.h>
- #include <linux/i2c.h>
- #include <linux/input.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
--#include <linux/dma-resv.h>
- #include <linux/slab.h>
- #include <linux/string_helpers.h>
- #include <linux/vga_switcheroo.h>
-+#include <acpi/video.h>
- 
- #include <drm/display/drm_dp_helper.h>
- #include <drm/drm_atomic.h>
-@@ -45,28 +45,6 @@
- #include <drm/drm_probe_helper.h>
- #include <drm/drm_rect.h>
- 
--#include "display/intel_audio.h"
--#include "display/intel_crt.h"
--#include "display/intel_ddi.h"
--#include "display/intel_display_debugfs.h"
--#include "display/intel_display_power.h"
--#include "display/intel_dp.h"
--#include "display/intel_dp_mst.h"
--#include "display/intel_dpll.h"
--#include "display/intel_dpll_mgr.h"
--#include "display/intel_drrs.h"
--#include "display/intel_dsi.h"
--#include "display/intel_dvo.h"
--#include "display/intel_fb.h"
--#include "display/intel_gmbus.h"
--#include "display/intel_hdmi.h"
--#include "display/intel_lvds.h"
--#include "display/intel_sdvo.h"
--#include "display/intel_snps_phy.h"
--#include "display/intel_tv.h"
--#include "display/intel_vdsc.h"
--#include "display/intel_vrr.h"
--
- #include "gem/i915_gem_lmem.h"
- #include "gem/i915_gem_object.h"
- 
-@@ -76,32 +54,49 @@
- #include "i915_drv.h"
- #include "i915_reg.h"
- #include "i915_utils.h"
-+#include "i9xx_plane.h"
- #include "icl_dsi.h"
- #include "intel_acpi.h"
- #include "intel_atomic.h"
- #include "intel_atomic_plane.h"
-+#include "intel_audio.h"
- #include "intel_bw.h"
- #include "intel_cdclk.h"
- #include "intel_color.h"
-+#include "intel_crt.h"
- #include "intel_crtc.h"
- #include "intel_crtc_state_dump.h"
-+#include "intel_ddi.h"
- #include "intel_de.h"
-+#include "intel_display_debugfs.h"
-+#include "intel_display_power.h"
- #include "intel_display_types.h"
- #include "intel_dmc.h"
-+#include "intel_dp.h"
- #include "intel_dp_link_training.h"
-+#include "intel_dp_mst.h"
- #include "intel_dpio_phy.h"
-+#include "intel_dpll.h"
-+#include "intel_dpll_mgr.h"
- #include "intel_dpt.h"
-+#include "intel_drrs.h"
- #include "intel_dsb.h"
-+#include "intel_dsi.h"
-+#include "intel_dvo.h"
-+#include "intel_fb.h"
- #include "intel_fbc.h"
- #include "intel_fbdev.h"
- #include "intel_fdi.h"
- #include "intel_fifo_underrun.h"
- #include "intel_frontbuffer.h"
-+#include "intel_gmbus.h"
- #include "intel_hdcp.h"
-+#include "intel_hdmi.h"
- #include "intel_hotplug.h"
- #include "intel_hti.h"
--#include "intel_modeset_verify.h"
-+#include "intel_lvds.h"
- #include "intel_modeset_setup.h"
-+#include "intel_modeset_verify.h"
- #include "intel_overlay.h"
- #include "intel_panel.h"
- #include "intel_pch_display.h"
-@@ -113,10 +108,14 @@
- #include "intel_pps.h"
- #include "intel_psr.h"
- #include "intel_quirks.h"
-+#include "intel_sdvo.h"
-+#include "intel_snps_phy.h"
- #include "intel_sprite.h"
- #include "intel_tc.h"
-+#include "intel_tv.h"
-+#include "intel_vdsc.h"
- #include "intel_vga.h"
--#include "i9xx_plane.h"
-+#include "intel_vrr.h"
- #include "skl_scaler.h"
- #include "skl_universal_plane.h"
- #include "skl_watermark.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 5b678916e6db..b0fd090ad75a 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -24,14 +24,13 @@
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_damage_helper.h>
- 
--#include "display/intel_dp.h"
--
- #include "i915_drv.h"
- #include "i915_reg.h"
- #include "intel_atomic.h"
- #include "intel_crtc.h"
- #include "intel_de.h"
- #include "intel_display_types.h"
-+#include "intel_dp.h"
- #include "intel_dp_aux.h"
- #include "intel_hdmi.h"
- #include "intel_psr.h"
--- 
-2.34.1
+Series: series starting with [v6,1/3] drm/i915/migrate: Account for the reserved_space (rev2)
+URL   : https://patchwork.freedesktop.org/series/111583/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_12489 -> Patchwork_111583v2
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111583v2/index.html
+
+Participating hosts (25 -> 25)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_111583v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - fi-rkl-11600:       [PASS][1] -> [INCOMPLETE][2] ([i915#4817])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12489/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111583v2/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - {bat-rpls-2}:       [WARN][3] ([i915#7346]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12489/bat-rpls-2/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111583v2/bat-rpls-2/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - {fi-jsl-1}:         [INCOMPLETE][5] -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12489/fi-jsl-1/igt@i915_selftest@live@hangcheck.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111583v2/fi-jsl-1/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#4817]: https://gitlab.freedesktop.org/drm/intel/issues/4817
+  [i915#7346]: https://gitlab.freedesktop.org/drm/intel/issues/7346
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12489 -> Patchwork_111583v2
+
+  CI-20190529: 20190529
+  CI_DRM_12489: 88ce885700bc3fad08382b83f408ac47abad7f3b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7089: f8a4a0b59ab9f0e408cb0817e440f63e7859917e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_111583v2: 88ce885700bc3fad08382b83f408ac47abad7f3b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+ed587b9e5322 drm/i915/selftests: exercise emit_pte() with nearly full ring
+8422ba167a5c drm/i915/selftests: use live_subtests for live_migrate
+ab6b5695bfc3 drm/i915/migrate: Account for the reserved_space
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111583v2/index.html
+
+--===============1753884586969177929==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v6,1/3] drm/i915/migrate: Account for the reserved_space (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/111583/">https://patchwork.freedesktop.org/series/111583/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111583v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111583v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12489 -&gt; Patchwork_111583v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111583v2/index.html</p>
+<h2>Participating hosts (25 -&gt; 25)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_111583v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_suspend@basic-s3-without-i915:<ul>
+<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12489/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111583v2/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4817">i915#4817</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12489/bat-rpls-2/igt@i915_pm_rpm@module-reload.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7346">i915#7346</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111583v2/bat-rpls-2/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>{fi-jsl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12489/fi-jsl-1/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111583v2/fi-jsl-1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12489 -&gt; Patchwork_111583v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12489: 88ce885700bc3fad08382b83f408ac47abad7f3b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7089: f8a4a0b59ab9f0e408cb0817e440f63e7859917e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_111583v2: 88ce885700bc3fad08382b83f408ac47abad7f3b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>ed587b9e5322 drm/i915/selftests: exercise emit_pte() with nearly full ring<br />
+8422ba167a5c drm/i915/selftests: use live_subtests for live_migrate<br />
+ab6b5695bfc3 drm/i915/migrate: Account for the reserved_space</p>
+
+</body>
+</html>
+
+--===============1753884586969177929==--
