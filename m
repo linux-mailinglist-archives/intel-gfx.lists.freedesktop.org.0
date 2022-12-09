@@ -1,48 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86A8E647FA4
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Dec 2022 09:57:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78198647FA6
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Dec 2022 09:57:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EB4C10E501;
-	Fri,  9 Dec 2022 08:57:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACA0610E506;
+	Fri,  9 Dec 2022 08:57:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9D8910E501
- for <intel-gfx@lists.freedesktop.org>; Fri,  9 Dec 2022 08:57:06 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C24C10E504
+ for <intel-gfx@lists.freedesktop.org>; Fri,  9 Dec 2022 08:57:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1670576226; x=1702112226;
+ t=1670576261; x=1702112261;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=c13fM8/AoBGUTmBrJBfGMlFwPuM2hVKZ1q6x0lzqYDM=;
- b=n8tTUHk/dHCDRw93MG2jEXrFbl3OwBCwPkr2wup6HL0yz/DQUYN0uziY
- 3SEnCjTcsZ+hEnujcDqS4FVShFtpKBmYlyvf3Bwd81eR138SYiJnZBTrh
- rI6rtxq8MhJVn/D7LxastyFw/TnuFhoKFX0tRplpJ9vGcKuWdCvWc/R64
- AbewejadChdmO8eU/l4dUXX/mudf3GMqZnA9zAWAlvdnMMVxikcTwKpCw
- j1w33bYos1zyxwFw+BKGlgWDiO6O/fU0LlVyur05TAUJqi+5FqST8UE65
- xTRm0SipMx6+hPTKvI7HbWMoe0oEFzwNA1d6IWQaoyCggkFz2y0u2x9en Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10555"; a="316122179"
-X-IronPort-AV: E=Sophos;i="5.96,230,1665471600"; d="scan'208";a="316122179"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2022 00:57:06 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10555"; a="976213910"
-X-IronPort-AV: E=Sophos;i="5.96,230,1665471600"; d="scan'208";a="976213910"
+ bh=GuuM/5E6zyCb6u/qvibe/Hw6cbDD6QKDtFy8dvnHPtY=;
+ b=M7FTPiSmWIMcrrDmUbCHdF6AidHh1tR+zulnd+fjacapeWW0YUbzjAsl
+ Nyb+XZ668QMkanvrN/TEo/CGZG63X0GjKGXBnoAzjpivIkWofEHyyMB9Y
+ BOIcfkUYNtlMCF2V5vsIfPAsZKCNdmFHSIBA7pI/tZkEGGqEwYSLpgsr7
+ Hg8qdfM+q7GLWCo7hlxIYUBgeB7oQX1lD3isQ6xeb1TiUmlpvqsOk8SDS
+ JzZs0zCA5clxJ74EfKCgQFX/MAICLtslBCnTJcEmjFOlHVbM6j4fgseGV
+ goS+W/tpvq/Iol8p8oz+lTEF6vr3HuI37B+gJofQCoMjti/L/3kXXdTm9 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10555"; a="319279242"
+X-IronPort-AV: E=Sophos;i="5.96,230,1665471600"; d="scan'208";a="319279242"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2022 00:57:40 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10555"; a="679868387"
+X-IronPort-AV: E=Sophos;i="5.96,230,1665471600"; d="scan'208";a="679868387"
 Received: from sarahgar-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.5.186])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2022 00:57:05 -0800
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2022 00:57:39 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: Lucas De Marchi <lucas.demarchi@intel.com>
 In-Reply-To: <20221208191056.imesdzudpeltiuno@ldmartin-desk2.lan>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20221208133638.478024-1-jani.nikula@intel.com>
  <20221208191056.imesdzudpeltiuno@ldmartin-desk2.lan>
-Date: Fri, 09 Dec 2022 10:57:02 +0200
-Message-ID: <87k031ymxt.fsf@intel.com>
+Date: Fri, 09 Dec 2022 10:57:36 +0200
+Message-ID: <87h6y5ymwv.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: no need for
@@ -74,19 +74,16 @@ On Thu, 08 Dec 2022, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
 >
 > include-what-you-use  does this, but I'm not sure it can grok
 > kernel / i915
-
-Yeah I've looked at it. Would be nice to use it via CHECK=iwyu, but it
-needs a wrapper to deal with the parameters, and haven't gotten around
-to that yet. And from past experience with iwyu, I'm not really
-expecting a whole lot. It can be a bit overzealous.
-
-BR,
-Jani.
-
 >
 > Anyway,
 >
 > Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+
+Also, thanks. Pushed to drm-intel-next.
+
+BR,
+Jani.
+
 >
 > Lucas De Marchi
 >
