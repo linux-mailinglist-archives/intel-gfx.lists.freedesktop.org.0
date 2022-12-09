@@ -2,55 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8861A647F73
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Dec 2022 09:42:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AEA0D647F8B
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Dec 2022 09:50:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA5D910E504;
-	Fri,  9 Dec 2022 08:42:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57DFE10E4FB;
+	Fri,  9 Dec 2022 08:50:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96D2810E504
- for <intel-gfx@lists.freedesktop.org>; Fri,  9 Dec 2022 08:42:52 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61A6510E4FF
+ for <intel-gfx@lists.freedesktop.org>; Fri,  9 Dec 2022 08:50:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1670575372; x=1702111372;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=kIRgCfYgDmRWOiXbDjhYipu+Iwvtd6xLf7NkbullC7I=;
- b=FB+6Jj8IZLVqXPfhWS5IKRcFc3ZGzvOODYeo4/XVcEhPsGYJ+Pvj0YB+
- +0r8GghVEmsN7sgav8oAuo7PT7V71u10Taun9rZnp+PjpcB72rbCuyn39
- 8df50HVjl7lQkHXU9waAUr2HNb+XJNGCv+8FDDg3GVYINOBOyv2wCdagc
- O2MPWZfjuBAYGEn9WvdviyoCuLcCwGnOtWjnBNLsAJuxXeQ6vRX0jmsLF
- 5VmpAnWGEnMhrmMpTLzu/V/p8ok5uYNWW0659xoA4z7fuGAJ6ZiZDzuRa
- WDPRKiLpl6T46y1Y9Jub56gS0RERF+ayHnYKuEwDqUtu4YGF4nUolQJ1h w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10555"; a="297766987"
-X-IronPort-AV: E=Sophos;i="5.96,230,1665471600"; d="scan'208";a="297766987"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2022 00:42:44 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10555"; a="753950171"
-X-IronPort-AV: E=Sophos;i="5.96,230,1665471600"; d="scan'208";a="753950171"
-Received: from eliteleevi.tm.intel.com ([10.237.54.20])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2022 00:42:26 -0800
-Date: Fri, 9 Dec 2022 10:42:07 +0200 (EET)
-From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-X-X-Sender: kvehmane@eliteleevi.tm.intel.com
-To: =?ISO-8859-2?Q?Amadeusz_S=B3awi=F1ski?=
- <amadeuszx.slawinski@linux.intel.com>
-In-Reply-To: <5dd6e067-bc93-ad01-8cf2-3bb5c9a45443@linux.intel.com>
-Message-ID: <alpine.DEB.2.22.394.2212091037140.3532114@eliteleevi.tm.intel.com>
-References: <20221208154358.3848764-1-kai.vehmanen@linux.intel.com>
- <20221208154358.3848764-2-kai.vehmanen@linux.intel.com>
- <5dd6e067-bc93-ad01-8cf2-3bb5c9a45443@linux.intel.com>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7 02160 Espoo
+ t=1670575814; x=1702111814;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=n0Hk0Zi1C/LD4g2AnB3PeG19CRj/uLNhBaeTjrH9lN4=;
+ b=ljQu+L1gdUe299BHhHCr/lJXHxzmvs22Iv7Q2wslGSiEmuUWNYO6pxm8
+ u2q8M3vuP3khUysPn7pSYtgxnwcnYdAlG/zyJeNp4Z6AyOGuu9IKGJ6jW
+ OHAWi4g6NlnN1W4Grcz63qlioQj7HOeuA5oCoUg2JyE8Yx6wGzTGNVS57
+ ycF0mqVuEBRg6WwKgdyYx85PHFvG/OsTd9NMmmZDRS5Z4wQSZ3v0aqBga
+ mrNFy3osT5hROeDrIWjbAn5NtF0J+xHaImLKBgIeTEG3rjVZ+i+boj39H
+ HCnCty/iuKuPuQ27w3XX04QS6+HL12nGjkQgtn9HU88Zp3d4xpeksCGEP Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10555"; a="403671078"
+X-IronPort-AV: E=Sophos;i="5.96,230,1665471600"; d="scan'208";a="403671078"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2022 00:50:13 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10555"; a="821665501"
+X-IronPort-AV: E=Sophos;i="5.96,230,1665471600"; d="scan'208";a="821665501"
+Received: from sarahgar-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.5.186])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2022 00:50:11 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Khaled Almahallawy <khaled.almahallawy@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20221123220926.170034-1-khaled.almahallawy@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20221123220926.170034-1-khaled.almahallawy@intel.com>
+Date: Fri, 09 Dec 2022 10:50:08 +0200
+Message-ID: <87pmctyn9b.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed;
- boundary="-318106570-1563028819-1670575331=:3532114"
-Subject: Re: [Intel-gfx] [PATCH 1/3] ALSA: hda/hdmi: fix i915 silent stream
- programming flow
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v4] drm/i915/display: Don't disable
+ DDI/Transcoder when setting phy test pattern
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,44 +59,119 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alsa-devel <alsa-devel@alsa-project.org>, Takashi Iwai <tiwai@suse.de>,
- intel-gfx@lists.freedesktop.org,
- Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+On Wed, 23 Nov 2022, Khaled Almahallawy <khaled.almahallawy@intel.com> wrote:
+> Bspecs has updated recently to remove the restriction to disable
+> DDI/Transcoder before setting PHY test pattern. This update is to
+> address PHY compliance test failures observed on a port with LTTPR.
+> The issue is that when Transc. is disabled, the main link signals fed
+> to LTTPR will be dropped invalidating link training, which will affect
+> the quality of the phy test pattern when the transcoder is enabled again.
+>
+> v2: Update commit message (Clint)
+> v3: Add missing Signed-off in v2
+> v4: Update Bspec and commit message for pre-gen12 (Jani)
+>
+> Bspec: 50482, 7555
+> Cc: Imre Deak <imre.deak@intel.com>
+> Cc: Clint Taylor <clinton.a.taylor@intel.com>
+> CC: Jani Nikula <jani.nikula@intel.com>
+> Tested-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
+> Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
+> Reviewed-by: Clint Taylor <clinton.a.taylor@intel.com>
+> Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
 
----318106570-1563028819-1670575331=:3532114
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Thanks for the patch and review, pushed to drm-intel-next.
 
-Hi,
+BR,
+Jani.
 
-On Thu, 8 Dec 2022, Amadeusz Sławiński wrote:
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 59 -------------------------
+>  1 file changed, 59 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index cf8a2f644bab..9ce3562d027d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -3698,61 +3698,6 @@ static void intel_dp_phy_pattern_update(struct intel_dp *intel_dp,
+>  	}
+>  }
+>  
+> -static void
+> -intel_dp_autotest_phy_ddi_disable(struct intel_dp *intel_dp,
+> -				  const struct intel_crtc_state *crtc_state)
+> -{
+> -	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+> -	struct drm_device *dev = dig_port->base.base.dev;
+> -	struct drm_i915_private *dev_priv = to_i915(dev);
+> -	struct intel_crtc *crtc = to_intel_crtc(dig_port->base.base.crtc);
+> -	enum pipe pipe = crtc->pipe;
+> -	u32 trans_ddi_func_ctl_value, trans_conf_value, dp_tp_ctl_value;
+> -
+> -	trans_ddi_func_ctl_value = intel_de_read(dev_priv,
+> -						 TRANS_DDI_FUNC_CTL(pipe));
+> -	trans_conf_value = intel_de_read(dev_priv, PIPECONF(pipe));
+> -	dp_tp_ctl_value = intel_de_read(dev_priv, TGL_DP_TP_CTL(pipe));
+> -
+> -	trans_ddi_func_ctl_value &= ~(TRANS_DDI_FUNC_ENABLE |
+> -				      TGL_TRANS_DDI_PORT_MASK);
+> -	trans_conf_value &= ~PIPECONF_ENABLE;
+> -	dp_tp_ctl_value &= ~DP_TP_CTL_ENABLE;
+> -
+> -	intel_de_write(dev_priv, PIPECONF(pipe), trans_conf_value);
+> -	intel_de_write(dev_priv, TRANS_DDI_FUNC_CTL(pipe),
+> -		       trans_ddi_func_ctl_value);
+> -	intel_de_write(dev_priv, TGL_DP_TP_CTL(pipe), dp_tp_ctl_value);
+> -}
+> -
+> -static void
+> -intel_dp_autotest_phy_ddi_enable(struct intel_dp *intel_dp,
+> -				 const struct intel_crtc_state *crtc_state)
+> -{
+> -	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+> -	struct drm_device *dev = dig_port->base.base.dev;
+> -	struct drm_i915_private *dev_priv = to_i915(dev);
+> -	enum port port = dig_port->base.port;
+> -	struct intel_crtc *crtc = to_intel_crtc(dig_port->base.base.crtc);
+> -	enum pipe pipe = crtc->pipe;
+> -	u32 trans_ddi_func_ctl_value, trans_conf_value, dp_tp_ctl_value;
+> -
+> -	trans_ddi_func_ctl_value = intel_de_read(dev_priv,
+> -						 TRANS_DDI_FUNC_CTL(pipe));
+> -	trans_conf_value = intel_de_read(dev_priv, PIPECONF(pipe));
+> -	dp_tp_ctl_value = intel_de_read(dev_priv, TGL_DP_TP_CTL(pipe));
+> -
+> -	trans_ddi_func_ctl_value |= TRANS_DDI_FUNC_ENABLE |
+> -				    TGL_TRANS_DDI_SELECT_PORT(port);
+> -	trans_conf_value |= PIPECONF_ENABLE;
+> -	dp_tp_ctl_value |= DP_TP_CTL_ENABLE;
+> -
+> -	intel_de_write(dev_priv, PIPECONF(pipe), trans_conf_value);
+> -	intel_de_write(dev_priv, TGL_DP_TP_CTL(pipe), dp_tp_ctl_value);
+> -	intel_de_write(dev_priv, TRANS_DDI_FUNC_CTL(pipe),
+> -		       trans_ddi_func_ctl_value);
+> -}
+> -
+>  static void intel_dp_process_phy_request(struct intel_dp *intel_dp,
+>  					 const struct intel_crtc_state *crtc_state)
+>  {
+> @@ -3771,14 +3716,10 @@ static void intel_dp_process_phy_request(struct intel_dp *intel_dp,
+>  	intel_dp_get_adjust_train(intel_dp, crtc_state, DP_PHY_DPRX,
+>  				  link_status);
+>  
+> -	intel_dp_autotest_phy_ddi_disable(intel_dp, crtc_state);
+> -
+>  	intel_dp_set_signal_levels(intel_dp, crtc_state, DP_PHY_DPRX);
+>  
+>  	intel_dp_phy_pattern_update(intel_dp, crtc_state);
+>  
+> -	intel_dp_autotest_phy_ddi_enable(intel_dp, crtc_state);
+> -
+>  	drm_dp_dpcd_write(&intel_dp->aux, DP_TRAINING_LANE0_SET,
+>  			  intel_dp->train_set, crtc_state->lane_count);
 
-> On 12/8/2022 4:43 PM, Kai Vehmanen wrote:
-> > @@ -2879,9 +2879,28 @@ static int i915_hsw_setup_stream(struct hda_codec
-> > *codec, hda_nid_t cvt_nid,
-> >   				 hda_nid_t pin_nid, int dev_id, u32
-> > stream_tag,
-> >   				 int format)
-> >   {
-> > +	struct hdmi_spec *spec = codec->spec;
-> > +	int pin_idx = pin_id_to_pin_index(codec, pin_nid, dev_id);
-> 
-> Shouldn't return value from pin_id_to_pin_index() be checked? It seems that it
-> can return -EINVAL.
-
-that's a good point. I think we are safe with current code as setup_stream 
-ops is only called from generic_hdmi_playback_pcm_prepare() and 
-spec->ops.setup_stream() there is only called with a valid pin. But this 
-leaves room for future errors, and passing negative index to get_pin() is 
-pretty bad. Let me send a V2 later today.
-
-Thanks for the review!
-
-Br, Kai
----318106570-1563028819-1670575331=:3532114--
+-- 
+Jani Nikula, Intel Open Source Graphics Center
