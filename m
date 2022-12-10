@@ -2,49 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3164D64E144
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Dec 2022 19:48:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A78264E257
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Dec 2022 21:29:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4633E10E4D3;
-	Thu, 15 Dec 2022 18:48:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56B3610E566;
+	Thu, 15 Dec 2022 20:29:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CED7510E4D3;
- Thu, 15 Dec 2022 18:48:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671130106; x=1702666106;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ogspCvicFhhzdkF7v9AuTncGKWm32X+u+8OosTh5eL4=;
- b=kGPtBf5XS/BKS+F9kzlOpKaSFhfF9V8B4vvJJjbbbeGzTze2Po8wmfyd
- CKoH2awW/zA06cJcbCigDDPUGzGGZDUQzrBVutizki5ryyNoG2ZvaOZuI
- ZN5OaNOSuajUg7U3n9VgyrPmPIOYaXBeEEtvbMU3f3OWmVhV0nITtqdOt
- LBasB82bpAdr0GL/ZnpIEctjAgQnbEnxoJGquqrDuSB6i2EsOnti5k/9/
- jlIRbknxdGOdPfqVMepdDXEnmffRT3Bzg3/9CQp8PEJmfT+ZF8C4qJbtU
- LA6PV+uuls7aXX22GQd+koKkqigoJoaDoGa5+qO9dz5M96BEm3Bq2xKNV w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10562"; a="317470496"
-X-IronPort-AV: E=Sophos;i="5.96,248,1665471600"; d="scan'208";a="317470496"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2022 10:48:26 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10562"; a="894889082"
-X-IronPort-AV: E=Sophos;i="5.96,248,1665471600"; d="scan'208";a="894889082"
-Received: from popovaan-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.252.59.139])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2022 10:48:24 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ashutosh Dixit <ashutosh.dixit@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20221215184409.2467595-1-ashutosh.dixit@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221215184409.2467595-1-ashutosh.dixit@intel.com>
-Date: Thu, 15 Dec 2022 20:48:21 +0200
-Message-ID: <87bko4v6yy.fsf@intel.com>
+X-Greylist: delayed 315 seconds by postgrey-1.36 at gabe;
+ Sat, 10 Dec 2022 18:07:07 UTC
+Received: from forward103j.mail.yandex.net (forward103j.mail.yandex.net
+ [5.45.198.246])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 501B810E0DC;
+ Sat, 10 Dec 2022 18:07:07 +0000 (UTC)
+Received: from forward101q.mail.yandex.net (forward101q.mail.yandex.net
+ [IPv6:2a02:6b8:c0e:4b:0:640:4012:bb98])
+ by forward103j.mail.yandex.net (Yandex) with ESMTP id 798FF101AF4;
+ Sat, 10 Dec 2022 21:01:47 +0300 (MSK)
+Received: from vla5-1ef2161cc1d7.qloud-c.yandex.net
+ (vla5-1ef2161cc1d7.qloud-c.yandex.net
+ [IPv6:2a02:6b8:c18:3607:0:640:1ef2:161c])
+ by forward101q.mail.yandex.net (Yandex) with ESMTP id 74E1F13E80002;
+ Sat, 10 Dec 2022 21:01:47 +0300 (MSK)
+Received: by vla5-1ef2161cc1d7.qloud-c.yandex.net (smtp/Yandex) with ESMTPSA
+ id j1gRoFCZEOs1-LYqGIaIh; Sat, 10 Dec 2022 21:01:46 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=skif-web.ru; s=mail;
+ t=1670695306; bh=d4LSP210pPsizDp0BFbLhYh/xU1PF2q/gTxyraEFraM=;
+ h=Message-Id:Date:Cc:Subject:To:From;
+ b=ojObATcgxbhAkntM7e5z327TbthRoYz/QbiRZaEzjRc/gdDlqzt+2mMwf+bH6tCnQ
+ aiT/mHwkFWCPVDO9y0VNtBV1qdKqZmaz5qI1EgmFTP7ASBPo7fOZ5vjvzGMyri4vwk
+ cwWcU+jaVX5kLFh9NaPyO7arokanAosSrZLiHHHc=
+Authentication-Results: vla5-1ef2161cc1d7.qloud-c.yandex.net;
+ dkim=pass header.i=@skif-web.ru
+From: Alexey Lukyanchuk <skif@skif-web.ru>
+To: tvrtko.ursulin@linux.intel.com
+Date: Sat, 10 Dec 2022 21:01:19 +0300
+Message-Id: <20221210180118.22087-1-skif@skif-web.ru>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/hwmon: Display clamped PL1 limit
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 15 Dec 2022 20:29:21 +0000
+Subject: [Intel-gfx] [PATCH RFC] fix dell wyse 3040 poweroff
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,99 +56,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: Alexey Lukyanchuk <skif@skif-web.ru>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 15 Dec 2022, Ashutosh Dixit <ashutosh.dixit@intel.com> wrote:
-> HW allows arbitrary PL1 limits to be set but silently clamps these values
-> to "typical but not guaranteed" min/max values in pkg_power_sku
-> register. Follow the same pattern for sysfs, allow arbitrary PL1 limits to
-> be set but display clamped values when read.
+Dell wyse 3040 cat't poweroff aftet kernel 5.11.
+It happens  because i915_driver_shutdown function.
+Disabling of this function mitigate this problem.
 
-The commit message lacks the most important thing: why?
+Fixes: 440b354f3 ("drivers/gpu/drm:power off troubles on dell wyse 3040") 
+Signed-off-by: Alexey Lukyanchuk <skif@skif-web.ru> 
+---
+There is trouble with i915_driver_shutdown function. After some diving I found that trouble looks like race condition in drm_atomic_get_connector_state function (drivers/gpu/drm/drm_atomic.c), maybe it linked to iterators. Now I fully exclude i915_driver_shutdown for wyse 3040 device.
 
+Can any one comment on this one please ? 
+---
+ drivers/gpu/drm/i915/display/intel_quirks.c | 25 +++++++++++++++++++++
+ drivers/gpu/drm/i915/i915_driver.c          |  3 +++
+ drivers/gpu/drm/i915/i915_drv.h             |  1 +
+ 3 files changed, 29 insertions(+)
 
-BR,
-Jani.
-
->
-> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_hwmon.c        | 39 ++++++++++++++++++++----
->  drivers/gpu/drm/i915/intel_mchbar_regs.h |  2 ++
->  2 files changed, 35 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
-> index cca7a4350ec8f..1225bc432f0d5 100644
-> --- a/drivers/gpu/drm/i915/i915_hwmon.c
-> +++ b/drivers/gpu/drm/i915/i915_hwmon.c
-> @@ -359,6 +359,38 @@ hwm_power_is_visible(const struct hwm_drvdata *ddat, u32 attr, int chan)
->  	}
->  }
->  
-> +/*
-> + * HW allows arbitrary PL1 limits to be set but silently clamps these values to
-> + * "typical but not guaranteed" min/max values in rg.pkg_power_sku. Follow the
-> + * same pattern for sysfs, allow arbitrary PL1 limits to be set but display
-> + * clamped values when read. Write/read I1 also follows the same pattern.
-> + */
-> +static int
-> +hwm_power_max_read(struct hwm_drvdata *ddat, long *val)
-> +{
-> +	struct i915_hwmon *hwmon = ddat->hwmon;
-> +	intel_wakeref_t wakeref;
-> +	u64 r, min, max;
-> +
-> +	*val = hwm_field_read_and_scale(ddat,
-> +					hwmon->rg.pkg_rapl_limit,
-> +					PKG_PWR_LIM_1,
-> +					hwmon->scl_shift_power,
-> +					SF_POWER);
-> +
-> +	with_intel_runtime_pm(ddat->uncore->rpm, wakeref)
-> +		r = intel_uncore_read64(ddat->uncore, hwmon->rg.pkg_power_sku);
-> +	min = REG_FIELD_GET(PKG_MIN_PWR, r);
-> +	min = mul_u64_u32_shr(min, SF_POWER, hwmon->scl_shift_power);
-> +	max = REG_FIELD_GET(PKG_MAX_PWR, r);
-> +	max = mul_u64_u32_shr(max, SF_POWER, hwmon->scl_shift_power);
-> +
-> +	if (min && max)
-> +		*val = clamp_t(u64, *val, min, max);
-> +
-> +	return 0;
-> +}
-> +
->  static int
->  hwm_power_read(struct hwm_drvdata *ddat, u32 attr, int chan, long *val)
->  {
-> @@ -368,12 +400,7 @@ hwm_power_read(struct hwm_drvdata *ddat, u32 attr, int chan, long *val)
->  
->  	switch (attr) {
->  	case hwmon_power_max:
-> -		*val = hwm_field_read_and_scale(ddat,
-> -						hwmon->rg.pkg_rapl_limit,
-> -						PKG_PWR_LIM_1,
-> -						hwmon->scl_shift_power,
-> -						SF_POWER);
-> -		return 0;
-> +		return hwm_power_max_read(ddat, val);
->  	case hwmon_power_rated_max:
->  		*val = hwm_field_read_and_scale(ddat,
->  						hwmon->rg.pkg_power_sku,
-> diff --git a/drivers/gpu/drm/i915/intel_mchbar_regs.h b/drivers/gpu/drm/i915/intel_mchbar_regs.h
-> index f93e9af43ac35..73900c098d591 100644
-> --- a/drivers/gpu/drm/i915/intel_mchbar_regs.h
-> +++ b/drivers/gpu/drm/i915/intel_mchbar_regs.h
-> @@ -194,6 +194,8 @@
->   */
->  #define PCU_PACKAGE_POWER_SKU			_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5930)
->  #define   PKG_PKG_TDP				GENMASK_ULL(14, 0)
-> +#define   PKG_MIN_PWR				GENMASK_ULL(30, 16)
-> +#define   PKG_MAX_PWR				GENMASK_ULL(46, 32)
->  #define   PKG_MAX_WIN				GENMASK_ULL(54, 48)
->  #define     PKG_MAX_WIN_X			GENMASK_ULL(54, 53)
->  #define     PKG_MAX_WIN_Y			GENMASK_ULL(52, 48)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
+index e415cd7c0..a6a549d48 100644
+--- a/drivers/gpu/drm/i915/display/intel_quirks.c
++++ b/drivers/gpu/drm/i915/display/intel_quirks.c
+@@ -60,6 +60,12 @@ static void quirk_no_pps_backlight_power_hook(struct drm_i915_private *i915)
+ 	drm_info(&i915->drm, "Applying no pps backlight power quirk\n");
+ }
+ 
++static void quirk_wyse_3040_shutdown_fix(struct drm_i915_private *i915)
++{
++	i915->quirks |= QUIRK_WYSE_3040_SHUTDOWN_FIX;
++	drm_info(&i915->drm, "Applying wyse 3040 shutdown fix\n");
++}
++
+ struct intel_quirk {
+ 	int device;
+ 	int subsystem_vendor;
+@@ -85,6 +91,12 @@ static int intel_dmi_no_pps_backlight(const struct dmi_system_id *id)
+ 	return 1;
+ }
+ 
++static int wyse_3040_shutdown_fix(const struct dmi_system_id *id)
++{
++	DRM_INFO("This device need help with poweroff %s\n", id->ident);
++	return 1;
++}
++
+ static const struct intel_dmi_quirk intel_dmi_quirks[] = {
+ 	{
+ 		.dmi_id_list = &(const struct dmi_system_id[]) {
+@@ -131,6 +143,19 @@ static const struct intel_dmi_quirk intel_dmi_quirks[] = {
+ 		},
+ 		.hook = quirk_no_pps_backlight_power_hook,
+ 	},
++	{
++		.dmi_id_list = &(const struct dmi_system_id[]) {
++			{
++				.callback = wyse_3040_shutdown_fix,
++				.ident = "Dell Inc. 0G56C0",
++				.matches = {DMI_EXACT_MATCH(DMI_BOARD_VENDOR, "Dell Inc."),
++					    DMI_EXACT_MATCH(DMI_BOARD_NAME, "0G56C0"),
++				},
++			},
++			{ }
++		},
++		.hook = quirk_wyse_3040_shutdown_fix,
++	},
+ };
+ 
+ static struct intel_quirk intel_quirks[] = {
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index deb8a8b76..af60fb79a 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -1079,6 +1079,9 @@ static void intel_shutdown_encoders(struct drm_i915_private *dev_priv)
+ 
+ void i915_driver_shutdown(struct drm_i915_private *i915)
+ {
++	if (!(i915->quirks & QUIRK_WYSE_3040_SHUTDOWN_FIX))
++		return;
++
+ 	disable_rpm_wakeref_asserts(&i915->runtime_pm);
+ 	intel_runtime_pm_disable(&i915->runtime_pm);
+ 	intel_power_domains_disable(i915);
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 086bbe894..fdd6866e7 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -200,6 +200,7 @@ struct drm_i915_display_funcs {
+ #define QUIRK_INCREASE_T12_DELAY (1<<6)
+ #define QUIRK_INCREASE_DDI_DISABLED_TIME (1<<7)
+ #define QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK (1<<8)
++#define QUIRK_WYSE_3040_SHUTDOWN_FIX (1<<9)
+ 
+ struct i915_suspend_saved_registers {
+ 	u32 saveDSPARB;
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.25.1
+
