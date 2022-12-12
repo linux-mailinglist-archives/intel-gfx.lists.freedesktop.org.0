@@ -1,48 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75782649922
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Dec 2022 08:03:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D9E1649959
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Dec 2022 08:07:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3255710E15B;
-	Mon, 12 Dec 2022 07:02:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 597A710E15B;
+	Mon, 12 Dec 2022 07:07:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B655710E15B
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Dec 2022 07:02:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1670828574; x=1702364574;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Yrj0HJDKfExYDlk12lmLZpOPRuoIOuf+k0SK4MxeANo=;
- b=BflQAhGcsHuKXTXI1QYlTONh+2h14CVu7Ya0otrDSKsXf5moi4owSeiF
- E0OkEo8o4exG8KNfNNbzaDe+8/7MOS/wRCLJ8a1IUU6k3yFz781mfMYNW
- 8Ypm2LC/aDiSwigJfTpD6f5+BttZtOSNqUQlSYBBNkJkWw9Qcj99HaaEW
- 074NcaS4BNgxR1Anz+0+yi3/a7t6UF5JyTAXGoKQNi4WWreB5eNXEMZWe
- 8Ae9Y7nkQTYhgGymiLOibM/WPy9Gv3U0XHieh55YabbbRK0ZDV5GeOgcK
- 9/F8gfaOqFdvGMh/RgndvxVwsye3rDWxVaj22jjqb51wf2HuCCB6uzqlK w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10558"; a="382094739"
-X-IronPort-AV: E=Sophos;i="5.96,237,1665471600"; d="scan'208";a="382094739"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2022 23:02:53 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10558"; a="822383185"
-X-IronPort-AV: E=Sophos;i="5.96,237,1665471600"; d="scan'208";a="822383185"
-Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orsmga005.jf.intel.com with ESMTP; 11 Dec 2022 23:02:52 -0800
-From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 12 Dec 2022 12:32:28 +0530
-Message-Id: <20221212070228.2563936-1-mitulkumar.ajitkumar.golani@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E277A10E15B;
+ Mon, 12 Dec 2022 07:07:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A252AA0BA8;
+ Mon, 12 Dec 2022 07:07:33 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/display: Enable VDIP Enable VSC
- whenever GMP DIP enabled
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
+Date: Mon, 12 Dec 2022 07:07:33 -0000
+Message-ID: <167082885363.12119.8548412407240944833@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221212070228.2563936-1-mitulkumar.ajitkumar.golani@intel.com>
+In-Reply-To: <20221212070228.2563936-1-mitulkumar.ajitkumar.golani@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915/display=3A_Enable_VDIP_Enable_VSC_whenever_GMP_DIP_enab?=
+ =?utf-8?q?led?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,46 +41,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-GMP VDIP gets dropped when enabled without VSC DIP being
-enabled. Enable VSC DIP whenever GMP DIP is enabled
+== Series Details ==
 
-WA:14015402699
+Series: drm/i915/display: Enable VDIP Enable VSC whenever GMP DIP enabled
+URL   : https://patchwork.freedesktop.org/series/111835/
+State : failure
 
-Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c     | 2 ++
- drivers/gpu/drm/i915/display/intel_lspcon.c | 2 ++
- 2 files changed, 4 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 72cf83a27405..4d63a9ce5f42 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3278,6 +3278,8 @@ void intel_dp_set_infoframes(struct intel_encoder *encoder,
- 	u32 dip_enable = VIDEO_DIP_ENABLE_AVI_HSW | VIDEO_DIP_ENABLE_GCP_HSW |
- 			 VIDEO_DIP_ENABLE_VS_HSW | VIDEO_DIP_ENABLE_GMP_HSW |
- 			 VIDEO_DIP_ENABLE_SPD_HSW | VIDEO_DIP_ENABLE_DRM_GLK;
-+	if (IS_DISPLAY_VER(dev_priv, 13, 14)
-+			dip_enable |= VIDEO_DIP_ENABLE_VSC_HSW;
- 	u32 val = intel_de_read(dev_priv, reg) & ~dip_enable;
- 
- 	/* TODO: Add DSC case (DIP_ENABLE_PPS) */
-diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/drm/i915/display/intel_lspcon.c
-index 9ff1c0b223ad..a5c449a05b4d 100644
---- a/drivers/gpu/drm/i915/display/intel_lspcon.c
-+++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
-@@ -630,6 +630,8 @@ u32 lspcon_infoframes_enabled(struct intel_encoder *encoder,
- 		tmp = intel_de_read(dev_priv,
- 				    HSW_TVIDEO_DIP_CTL(pipe_config->cpu_transcoder));
- 		mask = VIDEO_DIP_ENABLE_GMP_HSW;
-+		if (IS_DISPLAY_VER(dev_priv, 13, 14)
-+				mask |= VIDEO_DIP_ENABLE_VSC_HSW;
- 
- 		if (tmp & mask)
- 			val |= intel_hdmi_infoframe_enable(HDMI_PACKET_TYPE_GAMUT_METADATA);
--- 
-2.25.1
+Error: make failed
+  CALL    scripts/checksyscalls.sh
+  DESCEND objtool
+  CC [M]  drivers/gpu/drm/i915/display/intel_dp.o
+drivers/gpu/drm/i915/display/intel_dp.c: In function ‘intel_dp_set_infoframes’:
+drivers/gpu/drm/i915/display/intel_dp.c:3282:4: error: expected ‘)’ before ‘dip_enable’
+    dip_enable |= VIDEO_DIP_ENABLE_VSC_HSW;
+    ^~~~~~~~~~
+drivers/gpu/drm/i915/display/intel_dp.c:3281:5: note: to match this ‘(’
+  if (IS_DISPLAY_VER(dev_priv, 13, 14)
+     ^
+drivers/gpu/drm/i915/display/intel_dp.c:3301:1: error: expected expression before ‘}’ token
+ }
+ ^
+drivers/gpu/drm/i915/display/intel_dp.c:3278:6: error: unused variable ‘dip_enable’ [-Werror=unused-variable]
+  u32 dip_enable = VIDEO_DIP_ENABLE_AVI_HSW | VIDEO_DIP_ENABLE_GCP_HSW |
+      ^~~~~~~~~~
+drivers/gpu/drm/i915/display/intel_dp.c:3277:13: error: unused variable ‘reg’ [-Werror=unused-variable]
+  i915_reg_t reg = HSW_TVIDEO_DIP_CTL(crtc_state->cpu_transcoder);
+             ^~~
+At top level:
+drivers/gpu/drm/i915/display/intel_dp.c:3219:13: error: ‘intel_write_dp_sdp’ defined but not used [-Werror=unused-function]
+ static void intel_write_dp_sdp(struct intel_encoder *encoder,
+             ^~~~~~~~~~~~~~~~~~
+cc1: all warnings being treated as errors
+scripts/Makefile.build:250: recipe for target 'drivers/gpu/drm/i915/display/intel_dp.o' failed
+make[5]: *** [drivers/gpu/drm/i915/display/intel_dp.o] Error 1
+scripts/Makefile.build:500: recipe for target 'drivers/gpu/drm/i915' failed
+make[4]: *** [drivers/gpu/drm/i915] Error 2
+scripts/Makefile.build:500: recipe for target 'drivers/gpu/drm' failed
+make[3]: *** [drivers/gpu/drm] Error 2
+scripts/Makefile.build:500: recipe for target 'drivers/gpu' failed
+make[2]: *** [drivers/gpu] Error 2
+scripts/Makefile.build:500: recipe for target 'drivers' failed
+make[1]: *** [drivers] Error 2
+Makefile:1992: recipe for target '.' failed
+make: *** [.] Error 2
+
 
