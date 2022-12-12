@@ -2,32 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 002F264AA8F
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Dec 2022 23:46:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35A7464AB2C
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Dec 2022 00:09:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 709CE10E2AB;
-	Mon, 12 Dec 2022 22:46:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FB5610E2A9;
+	Mon, 12 Dec 2022 23:09:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0723B10E2A7;
- Mon, 12 Dec 2022 22:46:14 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 013E4A00E6;
- Mon, 12 Dec 2022 22:46:13 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0528309520475148295=="
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A5B489B70;
+ Mon, 12 Dec 2022 23:09:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1670886542; x=1702422542;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=3o1WZ8betb2kUnHIXBXlT1hezIJeiPny7iniEYg6MUM=;
+ b=Yi+4u5ddQy3sjvEbI0xyhGsw6lkkWfIw9zh9p+FlEqn+0eyq/mMcsmXJ
+ /4UbvOFUnyNST1cDAs1BpjmfZrYqJT27Fgux8cuYrFkioCqVOC72ZfF7K
+ /ParWmImWBqVJky/O7Dly19HGy0NQZ5wzHAM1ECvvR2LERnN6k7U/P2Vd
+ GDjgLpomIqLK5mMzPySNl4SqBal8AIrJ4r8y8NqNtGRwg5fu3jGLeFYDU
+ H5tFdjuXnx8osaGdUzxCSGcXBedKZRfxbrLfQXQEYjb7VpMxUtWxDhKq5
+ 4O9P8pacQdqw7wvwqNxOTNL4rwYSfsfZAxYBmSU15fIl6ShjpnaJVApXQ Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10559"; a="319128073"
+X-IronPort-AV: E=Sophos;i="5.96,239,1665471600"; d="scan'208";a="319128073"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2022 15:08:58 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10559"; a="822661955"
+X-IronPort-AV: E=Sophos;i="5.96,239,1665471600"; d="scan'208";a="822661955"
+Received: from anicol1x-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.252.59.70])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2022 15:08:56 -0800
+Date: Tue, 13 Dec 2022 00:08:50 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <Y5e0gh2u8uTlwQL6@ashyti-mobl2.lan>
+References: <20221212161338.1007659-1-andi.shyti@linux.intel.com>
+ <Y5dc7vhfh6yixFRo@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
-Date: Mon, 12 Dec 2022 22:46:13 -0000
-Message-ID: <167088517396.12118.18086761468211010914@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221212220902.1819159-1-umesh.nerlige.ramappa@intel.com>
-In-Reply-To: <20221212220902.1819159-1-umesh.nerlige.ramappa@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/mtl=3A_Add_OAG_32_bit_format_support_for_MTL?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y5dc7vhfh6yixFRo@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Reset twice
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,160 +58,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0528309520475148295==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Rodrigo,
 
-== Series Details ==
+On Mon, Dec 12, 2022 at 11:55:10AM -0500, Rodrigo Vivi wrote:
+> On Mon, Dec 12, 2022 at 05:13:38PM +0100, Andi Shyti wrote:
+> > From: Chris Wilson <chris@chris-wilson.co.uk>
+> > 
+> > After applying an engine reset, on some platforms like Jasperlake, we
+> > occasionally detect that the engine state is not cleared until shortly
+> > after the resume. As we try to resume the engine with volatile internal
+> > state, the first request fails with a spurious CS event (it looks like
+> > it reports a lite-restore to the hung context, instead of the expected
+> > idle->active context switch).
+> > 
+> > Signed-off-by: Chris Wilson <hris@chris-wilson.co.uk>
+> 
+> There's a typo in the signature email I'm afraid...
 
-Series: drm/i915/mtl: Add OAG 32 bit format support for MTL
-URL   : https://patchwork.freedesktop.org/series/111868/
-State : success
+oh yes, I forgot the 'C' :)
 
-== Summary ==
+> Other than that, have we checked the possibility of using the driver-initiated-flr bit
+> instead of this second loop? That should be the right way to guarantee everything is
+> cleared on gen11+...
 
-CI Bug Log - changes from CI_DRM_12497 -> Patchwork_111868v1
-====================================================
+maybe I am misinterpreting it, but is FLR the same as resetting
+hardware domains individually?
 
-Summary
--------
+How am I supposed to use driver_initiated_flr() in this context?
 
-  **SUCCESS**
+Thanks,
+Andi
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111868v1/index.html
-
-Participating hosts (18 -> 19)
-------------------------------
-
-  Additional (1): fi-pnv-d510 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_111868v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-pnv-d510:        NOTRUN -> [FAIL][1] ([i915#7229])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111868v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-
-  * igt@kms_psr@primary_page_flip:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][2] ([fdo#109271]) +44 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111868v1/fi-pnv-d510/igt@kms_psr@primary_page_flip.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#7229]: https://gitlab.freedesktop.org/drm/intel/issues/7229
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12497 -> Patchwork_111868v1
-
-  CI-20190529: 20190529
-  CI_DRM_12497: 6636ff92fd32bda3fed63832bc12bf2a9d7c1c33 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7091: b8015f920c9f469d3733854263cb878373c1df51 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_111868v1: 6636ff92fd32bda3fed63832bc12bf2a9d7c1c33 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-bf4eec46f88a drm/i915/mtl: Add OA support by enabling 32 bit OAG formats for MTL
-02d46558c571 drm/i915/mtl: Update OA mux whitelist for MTL
-9f6e92daefe0 drm/i915/mtl: Add Wa_14015846243 to fix OA vs CS timestamp mismatch
-4a63fce76c5d drm/i915/mtl: Resize noa_wait BO size to save restore GPR regs
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111868v1/index.html
-
---===============0528309520475148295==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/mtl: Add OAG 32 bit format support for MTL</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/111868/">https://patchwork.freedesktop.org/series/111868/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111868v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111868v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12497 -&gt; Patchwork_111868v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111868v1/index.html</p>
-<h2>Participating hosts (18 -&gt; 19)</h2>
-<p>Additional (1): fi-pnv-d510 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_111868v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111868v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7229">i915#7229</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111868v1/fi-pnv-d510/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +44 similar issues</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12497 -&gt; Patchwork_111868v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12497: 6636ff92fd32bda3fed63832bc12bf2a9d7c1c33 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7091: b8015f920c9f469d3733854263cb878373c1df51 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_111868v1: 6636ff92fd32bda3fed63832bc12bf2a9d7c1c33 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>bf4eec46f88a drm/i915/mtl: Add OA support by enabling 32 bit OAG formats for MTL<br />
-02d46558c571 drm/i915/mtl: Update OA mux whitelist for MTL<br />
-9f6e92daefe0 drm/i915/mtl: Add Wa_14015846243 to fix OA vs CS timestamp mismatch<br />
-4a63fce76c5d drm/i915/mtl: Resize noa_wait BO size to save restore GPR regs</p>
-
-</body>
-</html>
-
---===============0528309520475148295==--
+> > Cc: stable@vger.kernel.org
+> > Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> > Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/gt/intel_reset.c | 34 ++++++++++++++++++++++-----
+> >  1 file changed, 28 insertions(+), 6 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+> > index ffde89c5835a4..88dfc0c5316ff 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_reset.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+> > @@ -268,6 +268,7 @@ static int ilk_do_reset(struct intel_gt *gt, intel_engine_mask_t engine_mask,
+> >  static int gen6_hw_domain_reset(struct intel_gt *gt, u32 hw_domain_mask)
+> >  {
+> >  	struct intel_uncore *uncore = gt->uncore;
+> > +	int loops = 2;
+> >  	int err;
+> >  
+> >  	/*
+> > @@ -275,18 +276,39 @@ static int gen6_hw_domain_reset(struct intel_gt *gt, u32 hw_domain_mask)
+> >  	 * for fifo space for the write or forcewake the chip for
+> >  	 * the read
+> >  	 */
+> > -	intel_uncore_write_fw(uncore, GEN6_GDRST, hw_domain_mask);
+> > +	do {
+> > +		intel_uncore_write_fw(uncore, GEN6_GDRST, hw_domain_mask);
+> >  
+> > -	/* Wait for the device to ack the reset requests */
+> > -	err = __intel_wait_for_register_fw(uncore,
+> > -					   GEN6_GDRST, hw_domain_mask, 0,
+> > -					   500, 0,
+> > -					   NULL);
+> > +		/*
+> > +		 * Wait for the device to ack the reset requests.
+> > +		 *
+> > +		 * On some platforms, e.g. Jasperlake, we see see that the
+> > +		 * engine register state is not cleared until shortly after
+> > +		 * GDRST reports completion, causing a failure as we try
+> > +		 * to immediately resume while the internal state is still
+> > +		 * in flux. If we immediately repeat the reset, the second
+> > +		 * reset appears to serialise with the first, and since
+> > +		 * it is a no-op, the registers should retain their reset
+> > +		 * value. However, there is still a concern that upon
+> > +		 * leaving the second reset, the internal engine state
+> > +		 * is still in flux and not ready for resuming.
+> > +		 */
+> > +		err = __intel_wait_for_register_fw(uncore, GEN6_GDRST,
+> > +						   hw_domain_mask, 0,
+> > +						   2000, 0,
+> > +						   NULL);
+> > +	} while (err == 0 && --loops);
+> >  	if (err)
+> >  		GT_TRACE(gt,
+> >  			 "Wait for 0x%08x engines reset failed\n",
+> >  			 hw_domain_mask);
+> >  
+> > +	/*
+> > +	 * As we have observed that the engine state is still volatile
+> > +	 * after GDRST is acked, impose a small delay to let everything settle.
+> > +	 */
+> > +	udelay(50);
+> > +
+> >  	return err;
+> >  }
+> >  
+> > -- 
+> > 2.38.1
+> > 
