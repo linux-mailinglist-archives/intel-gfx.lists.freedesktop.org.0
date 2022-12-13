@@ -2,50 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5808764B239
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Dec 2022 10:21:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D53564B257
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Dec 2022 10:28:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9457810E2EE;
-	Tue, 13 Dec 2022 09:21:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D15BD10E2ED;
+	Tue, 13 Dec 2022 09:28:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D31D10E2EE
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Dec 2022 09:21:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1670923298; x=1702459298;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ihNaGnsaTZ4dzLbOM7UmXpc1qSaoqZ0N/8aDYfPxJBU=;
- b=exUecuRD9cTBBrfs6vMltDmkTa7El34hOEugHZq/4z6yYS8OztlcwwtG
- 7NrHJcvv7yg2DOMSBaa0yqu0sfLLWtHXfnIuHIF2vYfOY2veHQZLDFZuD
- M4+JhG6U33YwO7SmaqlV9OwO9Y2/Vm1iBgDuWV/jArE5keboujjFMeH0/
- QbOfbh0nnp7fjSGvu78CaCKKSZPG4abNRCRZQwVXfqeGHgfyp5rZCErQX
- b7KbrMO710J3UNRqj2MXa17f/4zj49wj1aXZUn3GDlfhyzhLbIffDfok3
- ahVCP9UWZGTfElVXmyPy0hIbOs/K5h/rlvVuiiSCz8mgvnRqaHL5Tmt4A g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10559"; a="345146168"
-X-IronPort-AV: E=Sophos;i="5.96,240,1665471600"; d="scan'208";a="345146168"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2022 01:21:37 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10559"; a="822818515"
-X-IronPort-AV: E=Sophos;i="5.96,240,1665471600"; d="scan'208";a="822818515"
-Received: from lab-ah.igk.intel.com ([10.91.215.196])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2022 01:21:31 -0800
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 13 Dec 2022 10:21:22 +0100
-Message-Id: <20221213092122.1034491-1-andrzej.hajda@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <12f79230-ca3f-caa1-fe2c-3eff89211707@linux.intel.com>
-References: <12f79230-ca3f-caa1-fe2c-3eff89211707@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8165D10E2ED;
+ Tue, 13 Dec 2022 09:28:25 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 79AD7AADE6;
+ Tue, 13 Dec 2022 09:28:25 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4440854778866020001=="
 MIME-Version: 1.0
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: cleanup TLB invalidation code
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Date: Tue, 13 Dec 2022 09:28:25 -0000
+Message-ID: <167092370545.25536.15507456096077925114@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221213070158.2621403-1-suraj.kandpal@intel.com>
+In-Reply-To: <20221213070158.2621403-1-suraj.kandpal@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRW5h?=
+ =?utf-8?q?ble_HDCP2=2Ex_via_GSC_CS_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,250 +40,225 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-After adding multicast and write mask support the TLB invalidation
-code become slightly incosistent and redundant.
+--===============4440854778866020001==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
----
-Hi,
+== Series Details ==
 
-This is another cleanup attempt.
-Multicast makes things quite complicated, either lot of ifs, either redundancy.
-I guess we will end up with some common helpers to support cases where the same
-code should access mcr and traditional registers, depending on GPU version.
+Series: Enable HDCP2.x via GSC CS (rev2)
+URL   : https://patchwork.freedesktop.org/series/111876/
+State : success
 
-I took some ideas from your proposition, but I've replaced get_reg_and_bit with two
-very simple helpers.
+== Summary ==
 
-Regards
-Andrzej
----
- drivers/gpu/drm/i915/gt/intel_gt.c | 148 +++++++++++++----------------
- 1 file changed, 64 insertions(+), 84 deletions(-)
+CI Bug Log - changes from CI_DRM_12498 -> Patchwork_111876v2
+====================================================
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index 7eeee5a7cb33cb..e777600e0425ed 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -983,35 +983,15 @@ void intel_gt_info_print(const struct intel_gt_info *info,
- 	intel_sseu_dump(&info->sseu, p);
- }
- 
--struct reg_and_bit {
--	union {
--		i915_reg_t reg;
--		i915_mcr_reg_t mcr_reg;
--	};
--	u32 bit;
-+union inv_reg {
-+	i915_reg_t reg;
-+	i915_mcr_reg_t mcr_reg;
- };
- 
--static struct reg_and_bit
--get_reg_and_bit(const struct intel_engine_cs *engine, const bool gen8,
--		const i915_reg_t *regs, const unsigned int num)
--{
--	const unsigned int class = engine->class;
--	struct reg_and_bit rb = { };
--
--	if (drm_WARN_ON_ONCE(&engine->i915->drm,
--			     class >= num || !regs[class].reg))
--		return rb;
--
--	rb.reg = regs[class];
--	if (gen8 && class == VIDEO_DECODE_CLASS)
--		rb.reg.reg += 4 * engine->instance; /* GEN8_M2TCR */
--	else
--		rb.bit = engine->instance;
--
--	rb.bit = BIT(rb.bit);
--
--	return rb;
--}
-+struct inv_reg_and_bit {
-+	union inv_reg addr;
-+	u32 bit;
-+};
- 
- /*
-  * HW architecture suggest typical invalidation time at 40us,
-@@ -1026,52 +1006,72 @@ get_reg_and_bit(const struct intel_engine_cs *engine, const bool gen8,
-  * but are now considered MCR registers.  Since they exist within a GAM range,
-  * the primary instance of the register rolls up the status from each unit.
-  */
--static int wait_for_invalidate(struct intel_gt *gt, struct reg_and_bit rb)
-+static int wait_for_invalidate(struct intel_gt *gt, struct inv_reg_and_bit rb)
- {
- 	if (GRAPHICS_VER_FULL(gt->i915) >= IP_VER(12, 50))
--		return intel_gt_mcr_wait_for_reg(gt, rb.mcr_reg, rb.bit, 0,
-+		return intel_gt_mcr_wait_for_reg(gt, rb.addr.mcr_reg, rb.bit, 0,
- 						 TLB_INVAL_TIMEOUT_US,
- 						 TLB_INVAL_TIMEOUT_MS);
- 	else
--		return __intel_wait_for_register_fw(gt->uncore, rb.reg, rb.bit, 0,
-+		return __intel_wait_for_register_fw(gt->uncore, rb.addr.reg,
-+						    rb.bit, 0,
- 						    TLB_INVAL_TIMEOUT_US,
- 						    TLB_INVAL_TIMEOUT_MS,
- 						    NULL);
- }
- 
-+static void inv_reg_set_write_mask(struct inv_reg_and_bit *rb, u8 class, u8 ver)
-+{
-+	if (ver >= 12 && (class == VIDEO_DECODE_CLASS ||
-+			  class == VIDEO_ENHANCEMENT_CLASS ||
-+			  class == COMPUTE_CLASS))
-+		rb->bit = _MASKED_BIT_ENABLE(rb->bit);
-+}
-+
-+static void inv_reg_set_instance(struct inv_reg_and_bit *rb, u8 class,
-+				 u8 instance, u8 ver)
-+{
-+	if (ver < 11 && class == VIDEO_DECODE_CLASS) {
-+		rb->addr.reg.reg += 4 * instance; /* GEN8_M2TCR */
-+		rb->bit = 1;
-+	} else {
-+		rb->bit = BIT(instance);
-+	}
-+}
-+
- static void mmio_invalidate_full(struct intel_gt *gt)
- {
--	static const i915_reg_t gen8_regs[] = {
--		[RENDER_CLASS]			= GEN8_RTCR,
--		[VIDEO_DECODE_CLASS]		= GEN8_M1TCR, /* , GEN8_M2TCR */
--		[VIDEO_ENHANCEMENT_CLASS]	= GEN8_VTCR,
--		[COPY_ENGINE_CLASS]		= GEN8_BTCR,
-+	static const union inv_reg gen8_regs[] = {
-+		[RENDER_CLASS].reg		= GEN8_RTCR,
-+		[VIDEO_DECODE_CLASS].reg	= GEN8_M1TCR, /* , GEN8_M2TCR */
-+		[VIDEO_ENHANCEMENT_CLASS].reg	= GEN8_VTCR,
-+		[COPY_ENGINE_CLASS].reg		= GEN8_BTCR,
- 	};
--	static const i915_reg_t gen12_regs[] = {
--		[RENDER_CLASS]			= GEN12_GFX_TLB_INV_CR,
--		[VIDEO_DECODE_CLASS]		= GEN12_VD_TLB_INV_CR,
--		[VIDEO_ENHANCEMENT_CLASS]	= GEN12_VE_TLB_INV_CR,
--		[COPY_ENGINE_CLASS]		= GEN12_BLT_TLB_INV_CR,
--		[COMPUTE_CLASS]			= GEN12_COMPCTX_TLB_INV_CR,
-+	static const union inv_reg gen12_regs[] = {
-+		[RENDER_CLASS].reg		= GEN12_GFX_TLB_INV_CR,
-+		[VIDEO_DECODE_CLASS].reg	= GEN12_VD_TLB_INV_CR,
-+		[VIDEO_ENHANCEMENT_CLASS].reg	= GEN12_VE_TLB_INV_CR,
-+		[COPY_ENGINE_CLASS].reg		= GEN12_BLT_TLB_INV_CR,
-+		[COMPUTE_CLASS].reg		= GEN12_COMPCTX_TLB_INV_CR,
- 	};
--	static const i915_mcr_reg_t xehp_regs[] = {
--		[RENDER_CLASS]			= XEHP_GFX_TLB_INV_CR,
--		[VIDEO_DECODE_CLASS]		= XEHP_VD_TLB_INV_CR,
--		[VIDEO_ENHANCEMENT_CLASS]	= XEHP_VE_TLB_INV_CR,
--		[COPY_ENGINE_CLASS]		= XEHP_BLT_TLB_INV_CR,
--		[COMPUTE_CLASS]			= XEHP_COMPCTX_TLB_INV_CR,
-+	static const union inv_reg xehp_regs[] = {
-+		[RENDER_CLASS].mcr_reg		= XEHP_GFX_TLB_INV_CR,
-+		[VIDEO_DECODE_CLASS].mcr_reg	= XEHP_VD_TLB_INV_CR,
-+		[VIDEO_ENHANCEMENT_CLASS].mcr_reg = XEHP_VE_TLB_INV_CR,
-+		[COPY_ENGINE_CLASS].mcr_reg	= XEHP_BLT_TLB_INV_CR,
-+		[COMPUTE_CLASS].mcr_reg		= XEHP_COMPCTX_TLB_INV_CR,
- 	};
- 	struct drm_i915_private *i915 = gt->i915;
- 	struct intel_uncore *uncore = gt->uncore;
- 	struct intel_engine_cs *engine;
- 	intel_engine_mask_t awake, tmp;
-+	const union inv_reg *regs;
- 	enum intel_engine_id id;
--	const i915_reg_t *regs;
- 	unsigned int num = 0;
- 	unsigned long flags;
- 
- 	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
--		regs = NULL;
-+		regs = xehp_regs;
- 		num = ARRAY_SIZE(xehp_regs);
- 	} else if (GRAPHICS_VER(i915) == 12) {
- 		regs = gen12_regs;
-@@ -1083,10 +1083,6 @@ static void mmio_invalidate_full(struct intel_gt *gt)
- 		return;
- 	}
- 
--	if (drm_WARN_ONCE(&i915->drm, !num,
--			  "Platform does not implement TLB invalidation!"))
--		return;
--
- 	intel_uncore_forcewake_get(uncore, FORCEWAKE_ALL);
- 
- 	intel_gt_mcr_lock(gt, &flags);
-@@ -1094,33 +1090,22 @@ static void mmio_invalidate_full(struct intel_gt *gt)
- 
- 	awake = 0;
- 	for_each_engine(engine, gt, id) {
--		struct reg_and_bit rb;
-+		struct inv_reg_and_bit rb;
- 
- 		if (!intel_engine_pm_is_awake(engine))
- 			continue;
- 
--		if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
--			u32 val = BIT(engine->instance);
--
--			if (engine->class == VIDEO_DECODE_CLASS ||
--			    engine->class == VIDEO_ENHANCEMENT_CLASS ||
--			    engine->class == COMPUTE_CLASS)
--				val = _MASKED_BIT_ENABLE(val);
--			intel_gt_mcr_multicast_write_fw(gt,
--							xehp_regs[engine->class],
--							val);
--		} else {
--			rb = get_reg_and_bit(engine, regs == gen8_regs, regs, num);
--			if (!i915_mmio_reg_offset(rb.reg))
--				continue;
--
--			if (GRAPHICS_VER(i915) == 12 && (engine->class == VIDEO_DECODE_CLASS ||
--			    engine->class == VIDEO_ENHANCEMENT_CLASS ||
--			    engine->class == COMPUTE_CLASS))
--				rb.bit = _MASKED_BIT_ENABLE(rb.bit);
--
--			intel_uncore_write_fw(uncore, rb.reg, rb.bit);
--		}
-+		rb.addr = regs[engine->class];
-+		if (!i915_mmio_reg_offset(rb.addr.reg))
-+			continue;
-+		inv_reg_set_instance(&rb, engine->class, engine->instance,
-+				     GRAPHICS_VER(i915));
-+		inv_reg_set_write_mask(&rb, engine->class, GRAPHICS_VER(i915));
-+		if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50))
-+			intel_gt_mcr_multicast_write_fw(gt, rb.addr.mcr_reg,
-+							rb.bit);
-+		else
-+			intel_uncore_write_fw(uncore, rb.addr.reg, rb.bit);
- 		awake |= engine->mask;
- 	}
- 
-@@ -1139,15 +1124,10 @@ static void mmio_invalidate_full(struct intel_gt *gt)
- 	intel_gt_mcr_unlock(gt, flags);
- 
- 	for_each_engine_masked(engine, gt, awake, tmp) {
--		struct reg_and_bit rb;
--
--		if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
--			rb.mcr_reg = xehp_regs[engine->class];
--			rb.bit = BIT(engine->instance);
--		} else {
--			rb = get_reg_and_bit(engine, regs == gen8_regs, regs, num);
--		}
-+		struct inv_reg_and_bit rb = { .addr = regs[engine->class] };
- 
-+		inv_reg_set_instance(&rb, engine->class, engine->instance,
-+				     GRAPHICS_VER(i915));
- 		if (wait_for_invalidate(gt, rb))
- 			drm_err_ratelimited(&gt->i915->drm,
- 					    "%s TLB invalidation did not complete in %ums!\n",
--- 
-2.34.1
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/index.html
+
+Participating hosts (39 -> 39)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_111876v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - fi-rkl-11600:       NOTRUN -> [INCOMPLETE][1] ([i915#6179])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][2] ([fdo#109271] / [fdo#111827])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/fi-hsw-4770/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_gttfill@basic:
+    - fi-pnv-d510:        [FAIL][3] ([i915#7229]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12498/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [INCOMPLETE][5] ([i915#4785]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12498/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@slpc:
+    - {bat-adlp-9}:       [DMESG-FAIL][7] ([i915#6367]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12498/bat-adlp-9/igt@i915_selftest@live@slpc.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/bat-adlp-9/igt@i915_selftest@live@slpc.html
+
+  
+#### Warnings ####
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - fi-rkl-11600:       [INCOMPLETE][9] ([i915#4817]) -> [FAIL][10] ([fdo#103375])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12498/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#4817]: https://gitlab.freedesktop.org/drm/intel/issues/4817
+  [i915#6179]: https://gitlab.freedesktop.org/drm/intel/issues/6179
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#7229]: https://gitlab.freedesktop.org/drm/intel/issues/7229
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12498 -> Patchwork_111876v2
+
+  CI-20190529: 20190529
+  CI_DRM_12498: 76c062e92f2d28ab3d6a1b122cae8931e55b4fd9 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7091: b8015f920c9f469d3733854263cb878373c1df51 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_111876v2: 76c062e92f2d28ab3d6a1b122cae8931e55b4fd9 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+5af5aee5e720 drm/i915/mtl: Add HDCP GSC interface
+9984069eb8cd drm/i915/mtl: Adding function to send command to GSC CS
+ab28a96f815b drm/i915/hdcp: Fill wired_cmd_in structures at a single place
+06dbf3976bd8 drm/i915/hdcp: Refactor HDCP API structures
+93132565111b drm/i915/hdcp: HDCP2.x Refactoring to agnotic cp f/w
+9344448e085f drm/i915/hdcp: Keep cp fw agonstic naming convention
+6a20065a698a drm/i915/gsc: Create GSC request submission mechanism
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/index.html
+
+--===============4440854778866020001==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Enable HDCP2.x via GSC CS (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/111876/">https://patchwork.freedesktop.org/series/111876/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12498 -&gt; Patchwork_111876v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/index.html</p>
+<h2>Participating hosts (39 -&gt; 39)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_111876v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6179">i915#6179</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/fi-hsw-4770/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_gttfill@basic:</p>
+<ul>
+<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12498/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7229">i915#7229</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12498/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@slpc:</p>
+<ul>
+<li>{bat-adlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12498/bat-adlp-9/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/bat-adlp-9/igt@i915_selftest@live@slpc.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_suspend@basic-s3-without-i915:<ul>
+<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12498/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4817">i915#4817</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12498 -&gt; Patchwork_111876v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12498: 76c062e92f2d28ab3d6a1b122cae8931e55b4fd9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7091: b8015f920c9f469d3733854263cb878373c1df51 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_111876v2: 76c062e92f2d28ab3d6a1b122cae8931e55b4fd9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>5af5aee5e720 drm/i915/mtl: Add HDCP GSC interface<br />
+9984069eb8cd drm/i915/mtl: Adding function to send command to GSC CS<br />
+ab28a96f815b drm/i915/hdcp: Fill wired_cmd_in structures at a single place<br />
+06dbf3976bd8 drm/i915/hdcp: Refactor HDCP API structures<br />
+93132565111b drm/i915/hdcp: HDCP2.x Refactoring to agnotic cp f/w<br />
+9344448e085f drm/i915/hdcp: Keep cp fw agonstic naming convention<br />
+6a20065a698a drm/i915/gsc: Create GSC request submission mechanism</p>
+
+</body>
+</html>
+
+--===============4440854778866020001==--
