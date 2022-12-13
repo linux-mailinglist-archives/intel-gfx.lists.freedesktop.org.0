@@ -2,33 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14E6964B694
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Dec 2022 14:47:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EF6A64B69D
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Dec 2022 14:52:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AACEB10E318;
-	Tue, 13 Dec 2022 13:46:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8B8010E319;
+	Tue, 13 Dec 2022 13:52:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2ED5610E312;
- Tue, 13 Dec 2022 13:46:43 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id ED3F3AADDD;
- Tue, 13 Dec 2022 13:46:42 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1874179967551320954=="
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 013AC10E319
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Dec 2022 13:52:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1670939523; x=1702475523;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=QJDvLzwR5jJL0HRTBep1UT27ddj2t7OHr1tnO62+yq4=;
+ b=g8V9wySdK4pvz/+Ie3aJ2wn5zYOKhQe+qImVt0UWYGRk8UWx37cyz4+S
+ Keln463wFR9Y53Fs9UU9oNd3KfASvcY0e3qRJm7jVWLeGm7gnlR6tCTO4
+ Q/OEPM27kccjuts5Eb1RnqOFOPZSuO6LohX2iCur0d59Gz9CeJWdGpxQW
+ ti2eYhDl947D6WmFXHTnygAGLUFzupAbkXl88uVnrNG45JW7R51axSyUR
+ 3ECCQtjbljNi8jfweFo3vhJumxw+EQFhVLAz5OQ3Z0AJY4MGcG6eE0TdG
+ 3ZKhcvEK+vVS0ufhPhgGkth34HTemyq9fTS75GqbTuehk5+eoBqELk6AW Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10559"; a="404389192"
+X-IronPort-AV: E=Sophos;i="5.96,241,1665471600"; d="scan'208";a="404389192"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2022 05:52:03 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10559"; a="679306732"
+X-IronPort-AV: E=Sophos;i="5.96,241,1665471600"; d="scan'208";a="679306732"
+Received: from saarniko-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.42.39])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2022 05:52:00 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+In-Reply-To: <Y5H4cAEKzdxTwIaf@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20221208142347.602726-1-jani.nikula@intel.com>
+ <Y5H4cAEKzdxTwIaf@intel.com>
+Date: Tue, 13 Dec 2022 15:51:57 +0200
+Message-ID: <87mt7rwgw2.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Tue, 13 Dec 2022 13:46:42 -0000
-Message-ID: <167093920296.25539.14677294301068790741@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221213123917.4066375-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20221213123917.4066375-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_fix_TLB_invalidation_fo?=
- =?utf-8?q?r_Gen12=2E50_video_and_compute_engines?=
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: add new "soc" sub-directory and
+ move PCH and DRAM code there
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,260 +60,156 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1874179967551320954==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 08 Dec 2022, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> On Thu, Dec 08, 2022 at 04:23:47PM +0200, Jani Nikula wrote:
+>> Add a new sub-directory for things that aren't specifically about the
+>> GPU and don't really belong in the i915 driver top level, but also don't
+>> belong under any of the existing sub-directories either.
+>>=20
+>> Name it "soc", and move the PCH and DRAM code there.
+>>=20
+>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+>> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>>=20
+>> ---
+>>=20
+>> Naming, always the naming! soc? ext? offcore? In the Makefile I'm adding
+>> comment "core peripheral code", which is also silly. *facepalm*
+>> ---
+>>  drivers/gpu/drm/i915/Makefile               | 7 +++++--
+>>  drivers/gpu/drm/i915/i915_driver.c          | 3 ++-
+>>  drivers/gpu/drm/i915/i915_drv.h             | 3 ++-
+>>  drivers/gpu/drm/i915/{ =3D> soc}/intel_dram.c | 0
+>>  drivers/gpu/drm/i915/{ =3D> soc}/intel_dram.h | 0
+>>  drivers/gpu/drm/i915/{ =3D> soc}/intel_pch.c  | 0
+>>  drivers/gpu/drm/i915/{ =3D> soc}/intel_pch.h  | 0
+>>  7 files changed, 9 insertions(+), 4 deletions(-)
+>>  rename drivers/gpu/drm/i915/{ =3D> soc}/intel_dram.c (100%)
+>>  rename drivers/gpu/drm/i915/{ =3D> soc}/intel_dram.h (100%)
+>>  rename drivers/gpu/drm/i915/{ =3D> soc}/intel_pch.c (100%)
+>>  rename drivers/gpu/drm/i915/{ =3D> soc}/intel_pch.h (100%)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefi=
+le
+>> index 01974b82d205..7046e435a155 100644
+>> --- a/drivers/gpu/drm/i915/Makefile
+>> +++ b/drivers/gpu/drm/i915/Makefile
+>> @@ -48,9 +48,7 @@ i915-y +=3D i915_driver.o \
+>>  	  i915_sysfs.o \
+>>  	  i915_utils.o \
+>>  	  intel_device_info.o \
+>> -	  intel_dram.o \
+>>  	  intel_memory_region.o \
+>> -	  intel_pch.o \
+>>  	  intel_pcode.o \
+>
+> should pcode be moved as well?
+>
+>>  	  intel_pm.o \
+>>  	  intel_region_ttm.o \
+>> @@ -62,6 +60,11 @@ i915-y +=3D i915_driver.o \
+>>  	  vlv_sideband.o \
+>
+> and also maybe the sideband?
 
-== Series Details ==
+Yeah, should be considered as a follow-up.
 
-Series: series starting with [1/2] drm/i915: fix TLB invalidation for Gen12.50 video and compute engines
-URL   : https://patchwork.freedesktop.org/series/111895/
-State : success
+>
+> anyway,
+>
+> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-== Summary ==
+Thanks, pushed to drm-intel-next.
 
-CI Bug Log - changes from CI_DRM_12501 -> Patchwork_111895v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111895v1/index.html
-
-Participating hosts (38 -> 19)
-------------------------------
-
-  Additional (1): fi-skl-guc 
-  Missing    (20): fi-kbl-soraka bat-dg1-6 bat-dg1-5 bat-adlp-6 fi-skl-6600u fi-bsw-n3050 bat-dg2-8 bat-adlm-1 bat-dg2-9 fi-bwr-2160 bat-adln-1 bat-atsm-1 bat-jsl-3 bat-rplp-1 bat-dg2-11 fi-bsw-nick bat-dg1-7 bat-kbl-2 bat-adlp-9 bat-adlp-4 
-
-New tests
----------
-
-  New tests have been introduced between CI_DRM_12501 and Patchwork_111895v1:
-
-### New IGT tests (5) ###
-
-  * igt@fbdev@eof:
-    - Statuses : 17 pass(s) 2 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@fbdev@nullptr:
-    - Statuses : 17 pass(s) 2 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@fbdev@read:
-    - Statuses : 17 pass(s) 2 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@fbdev@write:
-    - Statuses : 17 pass(s) 2 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@gem_exec_suspend@basic-s0:
-    - Statuses :
-    - Exec time: [None] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_111895v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-skl-guc:         NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111895v1/fi-skl-guc/igt@gem_lmem_swapping@basic.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - fi-rkl-11600:       [PASS][2] -> [INCOMPLETE][3] ([i915#4817])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12501/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111895v1/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-skl-guc:         NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111895v1/fi-skl-guc/igt@kms_chamelium@hdmi-crc-fast.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - fi-skl-guc:         NOTRUN -> [SKIP][5] ([fdo#109271]) +9 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111895v1/fi-skl-guc/igt@kms_setmode@basic-clone-single-crtc.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-pnv-d510:        [FAIL][6] ([i915#7229]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12501/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111895v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4817]: https://gitlab.freedesktop.org/drm/intel/issues/4817
-  [i915#7229]: https://gitlab.freedesktop.org/drm/intel/issues/7229
+BR,
+Jani.
 
 
-Build changes
--------------
+>
+>>  	  vlv_suspend.o
+>>=20=20
+>> +# core peripheral code
+>> +i915-y +=3D \
+>> +	soc/intel_dram.o \
+>> +	soc/intel_pch.o
+>> +
+>>  # core library code
+>>  i915-y +=3D \
+>>  	i915_memcpy.o \
+>> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i=
+915_driver.c
+>> index 4cc3ced83959..6c87cfa0d7c8 100644
+>> --- a/drivers/gpu/drm/i915/i915_driver.c
+>> +++ b/drivers/gpu/drm/i915/i915_driver.c
+>> @@ -75,6 +75,8 @@
+>>=20=20
+>>  #include "pxp/intel_pxp_pm.h"
+>>=20=20
+>> +#include "soc/intel_dram.h"
+>> +
+>>  #include "i915_file_private.h"
+>>  #include "i915_debugfs.h"
+>>  #include "i915_driver.h"
+>> @@ -93,7 +95,6 @@
+>>  #include "i915_sysfs.h"
+>>  #include "i915_utils.h"
+>>  #include "i915_vgpu.h"
+>> -#include "intel_dram.h"
+>>  #include "intel_gvt.h"
+>>  #include "intel_memory_region.h"
+>>  #include "intel_pci_config.h"
+>> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915=
+_drv.h
+>> index a8a5bd426e78..b6d0c12ffeea 100644
+>> --- a/drivers/gpu/drm/i915/i915_drv.h
+>> +++ b/drivers/gpu/drm/i915/i915_drv.h
+>> @@ -49,6 +49,8 @@
+>>  #include "gt/intel_workarounds.h"
+>>  #include "gt/uc/intel_uc.h"
+>>=20=20
+>> +#include "soc/intel_pch.h"
+>> +
+>>  #include "i915_drm_client.h"
+>>  #include "i915_gem.h"
+>>  #include "i915_gpu_error.h"
+>> @@ -58,7 +60,6 @@
+>>  #include "i915_utils.h"
+>>  #include "intel_device_info.h"
+>>  #include "intel_memory_region.h"
+>> -#include "intel_pch.h"
+>>  #include "intel_runtime_pm.h"
+>>  #include "intel_step.h"
+>>  #include "intel_uncore.h"
+>> diff --git a/drivers/gpu/drm/i915/intel_dram.c b/drivers/gpu/drm/i915/so=
+c/intel_dram.c
+>> similarity index 100%
+>> rename from drivers/gpu/drm/i915/intel_dram.c
+>> rename to drivers/gpu/drm/i915/soc/intel_dram.c
+>> diff --git a/drivers/gpu/drm/i915/intel_dram.h b/drivers/gpu/drm/i915/so=
+c/intel_dram.h
+>> similarity index 100%
+>> rename from drivers/gpu/drm/i915/intel_dram.h
+>> rename to drivers/gpu/drm/i915/soc/intel_dram.h
+>> diff --git a/drivers/gpu/drm/i915/intel_pch.c b/drivers/gpu/drm/i915/soc=
+/intel_pch.c
+>> similarity index 100%
+>> rename from drivers/gpu/drm/i915/intel_pch.c
+>> rename to drivers/gpu/drm/i915/soc/intel_pch.c
+>> diff --git a/drivers/gpu/drm/i915/intel_pch.h b/drivers/gpu/drm/i915/soc=
+/intel_pch.h
+>> similarity index 100%
+>> rename from drivers/gpu/drm/i915/intel_pch.h
+>> rename to drivers/gpu/drm/i915/soc/intel_pch.h
+>> --=20
+>> 2.34.1
+>>=20
 
-  * Linux: CI_DRM_12501 -> Patchwork_111895v1
-
-  CI-20190529: 20190529
-  CI_DRM_12501: 1b38b5a419ab3d838b6ac95d22f1fe057fc8889d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7091: b8015f920c9f469d3733854263cb878373c1df51 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_111895v1: 1b38b5a419ab3d838b6ac95d22f1fe057fc8889d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-7f444672992b drm/i915: Consolidate TLB invalidation flow
-2efdc15febdd drm/i915: fix TLB invalidation for Gen12.50 video and compute engines
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111895v1/index.html
-
---===============1874179967551320954==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915: fix TLB invalidation for Gen12.50 video and compute engines</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/111895/">https://patchwork.freedesktop.org/series/111895/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111895v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111895v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12501 -&gt; Patchwork_111895v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111895v1/index.html</p>
-<h2>Participating hosts (38 -&gt; 19)</h2>
-<p>Additional (1): fi-skl-guc <br />
-  Missing    (20): fi-kbl-soraka bat-dg1-6 bat-dg1-5 bat-adlp-6 fi-skl-6600u fi-bsw-n3050 bat-dg2-8 bat-adlm-1 bat-dg2-9 fi-bwr-2160 bat-adln-1 bat-atsm-1 bat-jsl-3 bat-rplp-1 bat-dg2-11 fi-bsw-nick bat-dg1-7 bat-kbl-2 bat-adlp-9 bat-adlp-4 </p>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_12501 and Patchwork_111895v1:</p>
-<h3>New IGT tests (5)</h3>
-<ul>
-<li>
-<p>igt@fbdev@eof:</p>
-<ul>
-<li>Statuses : 17 pass(s) 2 skip(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@fbdev@nullptr:</p>
-<ul>
-<li>Statuses : 17 pass(s) 2 skip(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@fbdev@read:</p>
-<ul>
-<li>Statuses : 17 pass(s) 2 skip(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@fbdev@write:</p>
-<ul>
-<li>Statuses : 17 pass(s) 2 skip(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>Statuses :</li>
-<li>Exec time: [None] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_111895v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-skl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111895v1/fi-skl-guc/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12501/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111895v1/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4817">i915#4817</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-crc-fast:</p>
-<ul>
-<li>fi-skl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111895v1/fi-skl-guc/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>fi-skl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111895v1/fi-skl-guc/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_exec_gttfill@basic:<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12501/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7229">i915#7229</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111895v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12501 -&gt; Patchwork_111895v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12501: 1b38b5a419ab3d838b6ac95d22f1fe057fc8889d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7091: b8015f920c9f469d3733854263cb878373c1df51 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_111895v1: 1b38b5a419ab3d838b6ac95d22f1fe057fc8889d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>7f444672992b drm/i915: Consolidate TLB invalidation flow<br />
-2efdc15febdd drm/i915: fix TLB invalidation for Gen12.50 video and compute engines</p>
-
-</body>
-</html>
-
---===============1874179967551320954==--
+--=20
+Jani Nikula, Intel Open Source Graphics Center
