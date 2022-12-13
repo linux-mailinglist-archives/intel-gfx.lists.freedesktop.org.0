@@ -2,41 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B51E164BEFD
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Dec 2022 23:01:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E88BC64C0C1
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Dec 2022 00:42:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C95B10E1F6;
-	Tue, 13 Dec 2022 22:00:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D585510E377;
+	Tue, 13 Dec 2022 23:41:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (unknown [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF03210E1F6;
- Tue, 13 Dec 2022 22:00:50 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4NWsrC2Dlkz4xYQ;
- Wed, 14 Dec 2022 09:00:43 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1670968844;
- bh=dnKDY1oXjcC0Tv/ElhCbaTcvHEJsm3IIOdeK96sWOaY=;
- h=Date:From:To:Cc:Subject:From;
- b=KOjC+qxk0SniGC3699LJGn3Mg13cGc6AbZqjHItVe0afRcsZhGlepkXm823jdSow3
- fxDbJxNyhhACD9dP+5wteSajpQeL4k2s1CPW2IPz8c3ss2A1VrA+67Lt9qpIoyDqal
- HmD7qTWzBAQXGL7kMDaaLDMuSSBcT8erlr39fryDQcqWma+kPbPqoj0m9uiSWWeSPK
- gZtzXJwFRZUpKeLryTkoQ3DKE4IsWd2iwiJ4wdo5Yo+Mj0f2csW+0lmYao+19FAhME
- 7s8OUbl+9wwmHuxBc/gm/KmpMek204qf5H4Id/wkIdjU1eZFc2k+XqoWuhPx7TdC4L
- C078cxdVu37Dw==
-Date: Wed, 14 Dec 2022 09:00:42 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20221214090042.1da0da04@canb.auug.org.au>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21DAE10E377;
+ Tue, 13 Dec 2022 23:41:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1670974895; x=1702510895;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=gXr5hdftXSwTe8HYtWAX09BmtGpQEaMwG752pf1xvfQ=;
+ b=DNlxfOkLqPAzo3qYDMLBzLc2vW3fddgJtdW5IlCET76ZMoPFpsnk3pjx
+ 5E2SEbiyAik5vXrwiDcJndZAfNjqcw44rT5/a90A8iOCeKp4igcBfs58C
+ u/jPYXwM92dEfQ2UXYGOscuRXHlhqZtWSmNnWNj1GRYWbl7b9OuvCymi+
+ rjB77OCTEfWhMKE855oFefBvh7BAiuWlvXVIIAlvktKbmEmLU5EPUGnHM
+ WbwMP3m2JOacd30ZYQhlUs350AHPWODlUDQHsanhvWJWc/nL35l/4edSJ
+ O01zjw42EEYm3MFeq8zJD4kBQVEstyKndmWz1GqcfnLtzClMOxQ1dQmUg A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10560"; a="319407332"
+X-IronPort-AV: E=Sophos;i="5.96,242,1665471600"; d="scan'208";a="319407332"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2022 15:41:23 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10560"; a="823072950"
+X-IronPort-AV: E=Sophos;i="5.96,242,1665471600"; d="scan'208";a="823072950"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2022 15:41:23 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 13 Dec 2022 15:41:19 -0800
+Message-Id: <20221213234119.2963317-1-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/Yyb61wh00qLWsTl=2x39==M";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-Subject: [Intel-gfx] linux-next: manual merge of the drm-misc-fixes tree
- with Linus' tree
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/dg2: Return Wa_22012654132 to just
+ specific steppings
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,99 +55,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/Yyb61wh00qLWsTl=2x39==M
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Programming of the ENABLE_PREFETCH_INTO_IC bit originally showed up in
+both the general DG2 tuning guide (applicable to all DG2
+variants/steppings) and under Wa_22012654132 (applicable only to
+specific steppings).  It has now been removed from the tuning guide, and
+the guidance is to only program it in the specific steppings associated
+with the workaround.
 
-Hi all,
+Bspec: 68331
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 27 ++++++++++-----------
+ 1 file changed, 13 insertions(+), 14 deletions(-)
 
-Today's linux-next merge of the drm-misc-fixes tree got a conflict in:
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 7d71f5bbddc8..bf84efb3f15f 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -2913,20 +2913,6 @@ add_render_compute_tuning_settings(struct drm_i915_private *i915,
+ 	if (IS_DG2(i915)) {
+ 		wa_mcr_write_or(wal, XEHP_L3SCQREG7, BLEND_FILL_CACHING_OPT_DIS);
+ 		wa_mcr_write_clr_set(wal, RT_CTRL, STACKID_CTRL, STACKID_CTRL_512);
+-
+-		/*
+-		 * This is also listed as Wa_22012654132 for certain DG2
+-		 * steppings, but the tuning setting programming is a superset
+-		 * since it applies to all DG2 variants and steppings.
+-		 *
+-		 * Note that register 0xE420 is write-only and cannot be read
+-		 * back for verification on DG2 (due to Wa_14012342262), so
+-		 * we need to explicitly skip the readback.
+-		 */
+-		wa_mcr_add(wal, GEN10_CACHE_MODE_SS, 0,
+-			   _MASKED_BIT_ENABLE(ENABLE_PREFETCH_INTO_IC),
+-			   0 /* write-only, so skip validation */,
+-			   true);
+ 	}
+ 
+ 	/*
+@@ -3022,6 +3008,19 @@ general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_li
+ 		/* Wa_18017747507:dg2 */
+ 		wa_masked_en(wal, VFG_PREEMPTION_CHICKEN, POLYGON_TRIFAN_LINELOOP_DISABLE);
+ 	}
++
++	if (IS_DG2_GRAPHICS_STEP(i915, G10, STEP_A0, STEP_C0) || IS_DG2_G11(i915))
++		/*
++		 * Wa_22012654132
++		 *
++		 * Note that register 0xE420 is write-only and cannot be read
++		 * back for verification on DG2 (due to Wa_14012342262), so
++		 * we need to explicitly skip the readback.
++		 */
++		wa_mcr_add(wal, GEN10_CACHE_MODE_SS, 0,
++			   _MASKED_BIT_ENABLE(ENABLE_PREFETCH_INTO_IC),
++			   0 /* write-only, so skip validation */,
++			   true);
+ }
+ 
+ static void
+-- 
+2.38.1
 
-  drivers/dma-buf/dma-buf.c
-
-between commit:
-
-  28743e25fa1c ("dma-buf: Remove obsoleted internal lock")
-
-from Linus' tree and commit:
-
-  f728a5ea27c9 ("dma-buf: fix dma_buf_export init order v2")
-
-from the drm-misc-fixes tree.
-
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
-
---=20
-Cheers,
-Stephen Rothwell
-
-diff --cc drivers/dma-buf/dma-buf.c
-index b6c36914e7c6,eb6b59363c4f..000000000000
---- a/drivers/dma-buf/dma-buf.c
-+++ b/drivers/dma-buf/dma-buf.c
-@@@ -658,23 -655,24 +660,23 @@@ struct dma_buf *dma_buf_export(const st
-  	init_waitqueue_head(&dmabuf->poll);
-  	dmabuf->cb_in.poll =3D dmabuf->cb_out.poll =3D &dmabuf->poll;
-  	dmabuf->cb_in.active =3D dmabuf->cb_out.active =3D 0;
- -	mutex_init(&dmabuf->lock);
-+ 	INIT_LIST_HEAD(&dmabuf->attachments);
- =20
-  	if (!resv) {
-- 		resv =3D (struct dma_resv *)&dmabuf[1];
-- 		dma_resv_init(resv);
-+ 		dmabuf->resv =3D (struct dma_resv *)&dmabuf[1];
-+ 		dma_resv_init(dmabuf->resv);
-+ 	} else {
-+ 		dmabuf->resv =3D resv;
-  	}
-- 	dmabuf->resv =3D resv;
- =20
-- 	file =3D dma_buf_getfile(dmabuf, exp_info->flags);
-- 	if (IS_ERR(file)) {
-- 		ret =3D PTR_ERR(file);
-+ 	ret =3D dma_buf_stats_setup(dmabuf, file);
-+ 	if (ret)
-  		goto err_dmabuf;
-- 	}
- =20
-+ 	file->private_data =3D dmabuf;
-+ 	file->f_path.dentry->d_fsdata =3D dmabuf;
-  	dmabuf->file =3D file;
- =20
-- 	INIT_LIST_HEAD(&dmabuf->attachments);
--=20
-  	mutex_lock(&db_list.lock);
-  	list_add(&dmabuf->list_node, &db_list.head);
-  	mutex_unlock(&db_list.lock);
-
---Sig_/Yyb61wh00qLWsTl=2x39==M
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmOY9goACgkQAVBC80lX
-0GxE4wf/YfEkxbiaehvNd37ZMtx4/2ICMz4VIuMhpjRmPrbP99hv6PHome3nja0A
-4ZVm0zvHSQmrDzNEMQnONhqqZ1kxc9WW5/6Nz0yos/mUUCnAxv6TiadvmxSpOivL
-uV2KW/dorfwLYkmjkycrCq/YYBN9boB3eTShqyBAY/cx4XWc7+klNd0uv+IuNgxN
-/HMZAv2m6C8Lb5W4HbUhUKp99xKRh4Wf08tZu8Gxe8MDwMA4xP/gW3ZBj6EflRT0
-MFm+yvyf3Fmpb8zFAAY+b4tnUyGakJDiX8OX+o4Djtu4jIf40IFE/8ZmcmCQ+B2V
-XWVlge0T8cQ+WrnZ3cXQE+sMhqTacQ==
-=fKvB
------END PGP SIGNATURE-----
-
---Sig_/Yyb61wh00qLWsTl=2x39==M--
