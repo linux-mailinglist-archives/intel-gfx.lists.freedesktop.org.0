@@ -2,32 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95EF364B068
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Dec 2022 08:30:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E0C4364B064
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Dec 2022 08:29:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 423A710E2D9;
-	Tue, 13 Dec 2022 07:29:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E954010E2DA;
+	Tue, 13 Dec 2022 07:29:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8558510E2D9;
- Tue, 13 Dec 2022 07:29:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id A371C10E2DA;
+ Tue, 13 Dec 2022 07:29:34 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7E4E5AA0ED;
- Tue, 13 Dec 2022 07:29:31 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6FC45AA0ED;
+ Tue, 13 Dec 2022 07:29:34 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Date: Tue, 13 Dec 2022 07:29:31 -0000
-Message-ID: <167091657148.25537.17576942482734581432@emeril.freedesktop.org>
+Date: Tue, 13 Dec 2022 07:29:34 -0000
+Message-ID: <167091657445.25538.2921089820897435921@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20221213070158.2621403-1-suraj.kandpal@intel.com>
 In-Reply-To: <20221213070158.2621403-1-suraj.kandpal@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Enable_HDCP2=2Ex_via_GSC_CS_=28rev2=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Enable_HDCP2=2Ex_via_GSC_CS_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,45 +53,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-d39a03598736 drm/i915/gsc: Create GSC request submission mechanism
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 11, in <module>
-    import git
-ModuleNotFoundError: No module named 'git'
--:140: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#140: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 147 lines checked
-6482b09862f4 drm/i915/hdcp: Keep cp fw agonstic naming convention
--:45: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#45: 
-rename from include/drm/i915_mei_hdcp_interface.h
-
-total: 0 errors, 1 warnings, 0 checks, 31 lines checked
-7256f15a75cb drm/i915/hdcp: HDCP2.x Refactoring to agnotic cp f/w
-43b094c874c5 drm/i915/hdcp: Refactor HDCP API structures
-217fef3c6b6a drm/i915/hdcp: Fill wired_cmd_in structures at a single place
-fefe94c18264 drm/i915/mtl: Adding function to send command to GSC CS
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 11, in <module>
-    import git
-ModuleNotFoundError: No module named 'git'
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 11, in <module>
-    import git
-ModuleNotFoundError: No module named 'git'
--:35: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#35: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 249 lines checked
-47a6013f0896 drm/i915/mtl: Add HDCP GSC interface
--:592: CHECK:ALLOC_SIZEOF_STRUCT: Prefer kzalloc(sizeof(*data)...) over kzalloc(sizeof(struct i915_hdcp_fw_master)...)
-#592: FILE: drivers/gpu/drm/i915/display/intel_hdcp_gsc.c:499:
-+	data = kzalloc(sizeof(struct i915_hdcp_fw_master), GFP_KERNEL);
-
-total: 0 errors, 0 warnings, 1 checks, 586 lines checked
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
