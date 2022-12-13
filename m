@@ -2,32 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0C2B64B086
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Dec 2022 08:41:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D34364B0CA
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Dec 2022 09:09:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1A4010E2D9;
-	Tue, 13 Dec 2022 07:40:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0AFB10E2D9;
+	Tue, 13 Dec 2022 08:09:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B995210E2D9;
- Tue, 13 Dec 2022 07:40:38 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B007AAADD7;
- Tue, 13 Dec 2022 07:40:38 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7984620290001274537=="
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7130F10E2D9
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Dec 2022 08:09:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1670918948; x=1702454948;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=KM/w1dCYt8hJkJb0gElquy8YHCYhMihti1DgPA0f2BY=;
+ b=WR1ZjMF7NqtbnzIzO8fSMvfIlNXDoicnNcMI3jQZ5wIfB3yK2sFtyNwG
+ itltm1niCGfKvS8fB5AOCjJYFdNajpQeyCLJ5Nz83T1q77XK+vMmhJZyK
+ 9xPp1W+CPNqlj0Js9QY52PMjb7h1LnZG4VuolAmoVgP2I15YGiI8p2MoU
+ 4bCX7nxS22qh6H9YCfwlPH5FQMKMnCJNVulrxrTqqncEGdb/NjuR1LbAV
+ CUQIYRRpgCDtKFUMOB6EC8EcBwFCAHGfAS6hXUY/vVvlnoKb6XPkUmEni
+ z9sc7DvkCSJwzQkhP2kXmPSTzKnFAlrAcvr7awNKNRwHDJ5iGEt7W2p2E w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10559"; a="319217912"
+X-IronPort-AV: E=Sophos;i="5.96,240,1665471600"; d="scan'208";a="319217912"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2022 00:09:00 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10559"; a="822788950"
+X-IronPort-AV: E=Sophos;i="5.96,240,1665471600"; d="scan'208";a="822788950"
+Received: from amicu-mobl.ger.corp.intel.com (HELO localhost) ([10.252.19.220])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2022 00:08:58 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>, "Deak,
+ Imre" <imre.deak@intel.com>
+In-Reply-To: <DM6PR11MB3177460353B550B64AA3CB4CBAE39@DM6PR11MB3177.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20221124070925.3834910-1-arun.r.murthy@intel.com>
+ <20221209083510.475948-1-arun.r.murthy@intel.com>
+ <87cz8szwha.fsf@intel.com>
+ <DM6PR11MB3177460353B550B64AA3CB4CBAE39@DM6PR11MB3177.namprd11.prod.outlook.com>
+Date: Tue, 13 Dec 2022 10:08:55 +0200
+Message-ID: <87pmcnybc8.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Date: Tue, 13 Dec 2022 07:40:38 -0000
-Message-ID: <167091723868.25539.10903433432111238337@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221213070158.2621403-1-suraj.kandpal@intel.com>
-In-Reply-To: <20221213070158.2621403-1-suraj.kandpal@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgRW5h?=
- =?utf-8?q?ble_HDCP2=2Ex_via_GSC_CS_=28rev2=29?=
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [RESEND PATCHv3] drm/i915/dp: Change aux_ctl reg
+ read to polling read
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,220 +62,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7984620290001274537==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 13 Dec 2022, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
+>> -----Original Message-----
+>> From: Nikula, Jani <jani.nikula@intel.com>
+>> Sent: Friday, December 9, 2022 4:16 PM
+>> To: Murthy, Arun R <arun.r.murthy@intel.com>; intel-
+>> gfx@lists.freedesktop.org; ville.syrjala@linux.intel.com; Deak, Imre
+>> <imre.deak@intel.com>
+>> Cc: Murthy, Arun R <arun.r.murthy@intel.com>
+>> Subject: Re: [RESEND PATCHv3] drm/i915/dp: Change aux_ctl reg read to
+>> polling read
+>>
+>> On Fri, 09 Dec 2022, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+>> > The busy timeout logic checks for the AUX BUSY, then waits for the
+>> > timeout period and then after timeout reads the register for BUSY or
+>> > Success.
+>> > Instead replace interrupt with polling so as to read the AUX CTL
+>> > register often before the timeout period. Looks like there might be
+>> > some issue with interrupt-on-read. Hence changing the logic to polling
+>> read.
+>> >
+>> > v2: replace interrupt with polling read
+>> > v3: use usleep_rang instead of msleep, updated commit msg
+>> >
+>> > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+>> > ---
+>> >  drivers/gpu/drm/i915/display/intel_dp_aux.c | 24
+>> > ++++++++++++---------
+>> >  1 file changed, 14 insertions(+), 10 deletions(-)
+>> >
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+>> > b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+>> > index 91c93c93e5fc..230f27d75846 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+>> > +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+>> > @@ -41,21 +41,25 @@ intel_dp_aux_wait_done(struct intel_dp *intel_dp)
+>> >     i915_reg_t ch_ctl = intel_dp->aux_ch_ctl_reg(intel_dp);
+>> >     const unsigned int timeout_ms = 10;
+>> >     u32 status;
+>> > -   bool done;
+>> > +   int try;
+>> >
+>> > -#define C (((status = intel_de_read_notrace(i915, ch_ctl)) &
+>> DP_AUX_CH_CTL_SEND_BUSY) == 0)
+>> > -   done = wait_event_timeout(i915->display.gmbus.wait_queue, C,
+>> > -                             msecs_to_jiffies_timeout(timeout_ms));
+>> > +   for (try = 0; try < 10; try++) {
+>> > +           status = intel_uncore_read_notrace(&i915->uncore, ch_ctl);
+>> > +           if ((status & DP_AUX_CH_CTL_SEND_BUSY) == 0)
+>> > +                   break;
+>> > +           usleep_range(400, 500);
+>> > +   }
+>> > +   if (try == 3) {
+>> > +           status = intel_uncore_read_notrace(&i915->uncore, ch_ctl);
+>> > +           if ((status & DP_AUX_CH_CTL_SEND_BUSY) != 0)
+>> > +                   drm_err(&i915->drm,
+>> > +                           "%s: did not complete or timeout within
+>> %ums (status 0x%08x)\n",
+>> > +                           intel_dp->aux.name, timeout_ms, status);
+>> > +   }
+>> >
+>> >     /* just trace the final value */
+>> >     trace_i915_reg_rw(false, ch_ctl, status, sizeof(status), true);
+>>
+>> Okay, so there are still a bunch of issues above. For example, try < 10 vs. try
+>> == 3, reverting back to intel_uncore_* functions after conflict resolution,
+>> having duplicated reads and conditions.
+> The logic tries to read in a loop for 10 times with a sleep of 500usec between each reads.
+> Finally after the 10th iteration for the last time the register is read again and the status is returned.
 
-== Series Details ==
+Yeah, but the condition is (try == 3).
 
-Series: Enable HDCP2.x via GSC CS (rev2)
-URL   : https://patchwork.freedesktop.org/series/111876/
-State : failure
+>
+>>
+>> Now, I should've taken a step back earlier and realized you should use the
+>> helper we already have for this: intel_de_wait_for_register().
+>
+> I checked this earlier. The reason for not opting this is this function is its
+> interrupt-on-read, but we need a polling read with timeout.
 
-== Summary ==
+It *is* a polling read with a timeout, with a bunch of smarts.
 
-CI Bug Log - changes from CI_DRM_12498 -> Patchwork_111876v2
-====================================================
+BR,
+Jani.
 
-Summary
--------
+>
+> Thanks and Regards,
+> Arun R Murthy
+> --------------------
+>>
+>> All of the above shrinks to just a few lines:
+>>
+>>       ret = intel_de_wait_for_register(i915, ch_ctl,
+>> DP_AUX_CH_CTL_SEND_BUSY, 0, timeout_ms);
+>>       if (ret)
+>>               drm_err(...);
+>>
+>> Sorry for missing this earlier.
+>>
+>> BR,
+>> Jani.
+>>
+>> >
+>> > -   if (!done)
+>> > -           drm_err(&i915->drm,
+>> > -                   "%s: did not complete or timeout within %ums
+>> (status 0x%08x)\n",
+>> > -                   intel_dp->aux.name, timeout_ms, status);
+>> > -#undef C
+>> > -
+>> >     return status;
+>> >  }
+>>
+>> --
+>> Jani Nikula, Intel Open Source Graphics Center
 
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_111876v2 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_111876v2, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/index.html
-
-Participating hosts (39 -> 19)
-------------------------------
-
-  ERROR: It appears as if the changes made in Patchwork_111876v2 prevented too many machines from booting.
-
-  Missing    (20): fi-kbl-soraka bat-dg1-6 bat-dg1-5 bat-adlp-6 fi-skl-6600u fi-bsw-n3050 bat-dg2-8 bat-adlm-1 bat-dg2-9 fi-bwr-2160 bat-adln-1 bat-atsm-1 bat-jsl-3 bat-rplp-1 bat-dg2-11 fi-bsw-nick bat-dg1-7 bat-kbl-2 bat-adlp-9 bat-adlp-4 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_111876v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - fi-rkl-11600:       NOTRUN -> [INCOMPLETE][1] ([i915#6179])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][2] ([fdo#109271] / [fdo#111827])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/fi-hsw-4770/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-pnv-d510:        [FAIL][3] ([i915#7229]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12498/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        [INCOMPLETE][5] ([i915#4785]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12498/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-
-  
-#### Warnings ####
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - fi-rkl-11600:       [INCOMPLETE][7] ([i915#4817]) -> [FAIL][8] ([fdo#103375])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12498/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
-
-  
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
-  [i915#4817]: https://gitlab.freedesktop.org/drm/intel/issues/4817
-  [i915#6179]: https://gitlab.freedesktop.org/drm/intel/issues/6179
-  [i915#7229]: https://gitlab.freedesktop.org/drm/intel/issues/7229
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12498 -> Patchwork_111876v2
-
-  CI-20190529: 20190529
-  CI_DRM_12498: 76c062e92f2d28ab3d6a1b122cae8931e55b4fd9 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7091: b8015f920c9f469d3733854263cb878373c1df51 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_111876v2: 76c062e92f2d28ab3d6a1b122cae8931e55b4fd9 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-5af5aee5e720 drm/i915/mtl: Add HDCP GSC interface
-9984069eb8cd drm/i915/mtl: Adding function to send command to GSC CS
-ab28a96f815b drm/i915/hdcp: Fill wired_cmd_in structures at a single place
-06dbf3976bd8 drm/i915/hdcp: Refactor HDCP API structures
-93132565111b drm/i915/hdcp: HDCP2.x Refactoring to agnotic cp f/w
-9344448e085f drm/i915/hdcp: Keep cp fw agonstic naming convention
-6a20065a698a drm/i915/gsc: Create GSC request submission mechanism
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/index.html
-
---===============7984620290001274537==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Enable HDCP2.x via GSC CS (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/111876/">https://patchwork.freedesktop.org/series/111876/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12498 -&gt; Patchwork_111876v2</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_111876v2 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_111876v2, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/index.html</p>
-<h2>Participating hosts (39 -&gt; 19)</h2>
-<p>ERROR: It appears as if the changes made in Patchwork_111876v2 prevented too many machines from booting.</p>
-<p>Missing    (20): fi-kbl-soraka bat-dg1-6 bat-dg1-5 bat-adlp-6 fi-skl-6600u fi-bsw-n3050 bat-dg2-8 bat-adlm-1 bat-dg2-9 fi-bwr-2160 bat-adln-1 bat-atsm-1 bat-jsl-3 bat-rplp-1 bat-dg2-11 fi-bsw-nick bat-dg1-7 bat-kbl-2 bat-adlp-9 bat-adlp-4 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_111876v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6179">i915#6179</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/fi-hsw-4770/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12498/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7229">i915#7229</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12498/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_suspend@basic-s3-without-i915:<ul>
-<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12498/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4817">i915#4817</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v2/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12498 -&gt; Patchwork_111876v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12498: 76c062e92f2d28ab3d6a1b122cae8931e55b4fd9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7091: b8015f920c9f469d3733854263cb878373c1df51 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_111876v2: 76c062e92f2d28ab3d6a1b122cae8931e55b4fd9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>5af5aee5e720 drm/i915/mtl: Add HDCP GSC interface<br />
-9984069eb8cd drm/i915/mtl: Adding function to send command to GSC CS<br />
-ab28a96f815b drm/i915/hdcp: Fill wired_cmd_in structures at a single place<br />
-06dbf3976bd8 drm/i915/hdcp: Refactor HDCP API structures<br />
-93132565111b drm/i915/hdcp: HDCP2.x Refactoring to agnotic cp f/w<br />
-9344448e085f drm/i915/hdcp: Keep cp fw agonstic naming convention<br />
-6a20065a698a drm/i915/gsc: Create GSC request submission mechanism</p>
-
-</body>
-</html>
-
---===============7984620290001274537==--
+-- 
+Jani Nikula, Intel Open Source Graphics Center
