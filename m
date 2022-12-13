@@ -2,33 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65AE764B454
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Dec 2022 12:40:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6ACEF64B468
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Dec 2022 12:46:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7221510E1BE;
-	Tue, 13 Dec 2022 11:40:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D995210E1D5;
+	Tue, 13 Dec 2022 11:45:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6737D10E1BE;
- Tue, 13 Dec 2022 11:40:18 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 453C6AA0ED;
- Tue, 13 Dec 2022 11:40:18 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6648297482567183331=="
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56C5710E1D5
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Dec 2022 11:45:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1670931941; x=1702467941;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=t93yYo/T2Hu4i6eZE/ZiyymAQfl4SAm6+MXHGrZBb5M=;
+ b=SAS59neOO1iFdqZ5meBQYsoOqUuTVacDYFleDaPxweB3AOxZtUVLv8p/
+ LEAoYkEoV4o97oTwzyerD2X4EpYMuTPx9ssBQCdJryMu6wukYbaQTF5L1
+ 8Zr+inHFfnWIgog/buzQwGi78QbKHEHwr/MD3BWWxfHnvrYQjb7VmiSFK
+ CF4o4N4NohufLBLJNZYR71LbRZ/3KSlSmR4vNjHCwmpiYfTLXxnt5ej5V
+ mIxuvub6NtFDPSfPpwtcV9ZMo1pDLNcnTv5vS+xWKtgHHBzoXSZnH0EcD
+ MzaRjrnbwLvOx340FlCBMBjS9uboWCGXtQGaJm3kvE6+4lI0aOEFDWc9t g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10559"; a="298452152"
+X-IronPort-AV: E=Sophos;i="5.96,241,1665471600"; d="scan'208";a="298452152"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2022 03:45:40 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10559"; a="893890051"
+X-IronPort-AV: E=Sophos;i="5.96,241,1665471600"; d="scan'208";a="893890051"
+Received: from lherman-mobl.ger.corp.intel.com (HELO [10.213.234.101])
+ ([10.213.234.101])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2022 03:45:39 -0800
+Message-ID: <2a8527c8-95ba-4a06-550b-df991eaa3cb7@linux.intel.com>
+Date: Tue, 13 Dec 2022 11:45:37 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Tue, 13 Dec 2022 11:40:18 -0000
-Message-ID: <167093161827.25539.16531115986412043458@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221213095924.2036700-1-jani.nikula@intel.com>
-In-Reply-To: <20221213095924.2036700-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/dsi=3A_add_support_for_ICL+_native_MIPI_GPIO_sequence_=28?=
- =?utf-8?q?rev4=29?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Content-Language: en-US
+To: Matt Roper <matthew.d.roper@intel.com>,
+ Matt Atwood <matthew.s.atwood@intel.com>
+References: <20221209220543.502047-1-matthew.s.atwood@intel.com>
+ <Y5O7fni8yzeV+cqR@mdroper-desk1.amr.corp.intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <Y5O7fni8yzeV+cqR@mdroper-desk1.amr.corp.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v4] drm/i915/mtl: Initial display workarounds
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,213 +63,192 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, lucas.demarchi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6648297482567183331==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 09/12/2022 22:49, Matt Roper wrote:
+> On Fri, Dec 09, 2022 at 02:05:43PM -0800, Matt Atwood wrote:
+>> From: Jouni Högander <jouni.hogander@intel.com>
+>>
+>> This patch introduces initial workarounds for mtl platform
+>>
+>> v2: switch IS_MTL_DISPLAY_STEP to use IS_METEORLAKE from testing display
+>> ver. (Tvrtko)
+>>
+>> v3: clerical issues, extend 16015201720 to mtl. (MattR)
+>>
+>> v4: make sure 16015201720 includes display 13. (MattR)
+>>
+>> Bspec: 66624
+>>
+>> Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+>> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+> 
+> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+> 
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_dmc.c  |  4 ++--
+>>   drivers/gpu/drm/i915/display/intel_fbc.c  |  6 +++--
+>>   drivers/gpu/drm/i915/display/intel_hdmi.c |  3 ++-
+>>   drivers/gpu/drm/i915/display/intel_psr.c  | 27 ++++++++++++++++-------
+>>   drivers/gpu/drm/i915/i915_drv.h           |  4 ++++
+>>   5 files changed, 31 insertions(+), 13 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+>> index eff3add70611..8f4880a17ae0 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+>> @@ -387,11 +387,11 @@ static void pipedmc_clock_gating_wa(struct drm_i915_private *i915, bool enable)
+>>   {
+>>   	enum pipe pipe;
+>>   
+>> -	if (DISPLAY_VER(i915) != 13)
+>> +	if (DISPLAY_VER(i915) < 13)
+>>   		return;
+>>   
+>>   	/*
+>> -	 * Wa_16015201720:adl-p,dg2
+>> +	 * Wa_16015201720:adl-p,dg2, mtl
 
-Series: drm/i915/dsi: add support for ICL+ native MIPI GPIO sequence (rev4)
-URL   : https://patchwork.freedesktop.org/series/111850/
-State : failure
+[stray space but nvm]
 
-== Summary ==
+Recently we started a little bit of discussion on whether these comments 
+will be getting updated or completely removed which was left hanging in 
+the air. Are we trending towards a mess of them being completely 
+unreliable becuase different people are following different direction here?
 
-CI Bug Log - changes from CI_DRM_12501 -> Patchwork_111850v4
-====================================================
+Regards,
 
-Summary
--------
+Tvrtko
 
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_111850v4 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_111850v4, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111850v4/index.html
-
-Participating hosts (38 -> 19)
-------------------------------
-
-  ERROR: It appears as if the changes made in Patchwork_111850v4 prevented too many machines from booting.
-
-  Additional (1): fi-skl-guc 
-  Missing    (20): fi-kbl-soraka bat-dg1-6 bat-dg1-5 bat-adlp-6 fi-skl-6600u fi-bsw-n3050 bat-dg2-8 bat-adlm-1 bat-dg2-9 fi-bwr-2160 bat-adln-1 bat-atsm-1 bat-jsl-3 bat-rplp-1 bat-dg2-11 fi-bsw-nick bat-dg1-7 bat-kbl-2 bat-adlp-9 bat-adlp-4 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_111850v4 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-skl-guc:         NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111850v4/fi-skl-guc/igt@gem_lmem_swapping@basic.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - fi-rkl-11600:       [PASS][2] -> [INCOMPLETE][3] ([i915#4817])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12501/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111850v4/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-skl-guc:         NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111850v4/fi-skl-guc/igt@kms_chamelium@hdmi-crc-fast.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
-    - fi-bsw-kefka:       [PASS][5] -> [FAIL][6] ([i915#6298])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12501/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111850v4/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - fi-skl-guc:         NOTRUN -> [SKIP][7] ([fdo#109271]) +9 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111850v4/fi-skl-guc/igt@kms_setmode@basic-clone-single-crtc.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-pnv-d510:        [FAIL][8] ([i915#7229]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12501/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111850v4/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4817]: https://gitlab.freedesktop.org/drm/intel/issues/4817
-  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
-  [i915#7229]: https://gitlab.freedesktop.org/drm/intel/issues/7229
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12501 -> Patchwork_111850v4
-
-  CI-20190529: 20190529
-  CI_DRM_12501: 1b38b5a419ab3d838b6ac95d22f1fe057fc8889d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7091: b8015f920c9f469d3733854263cb878373c1df51 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_111850v4: 1b38b5a419ab3d838b6ac95d22f1fe057fc8889d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-7de3009ac12d drm/i915/dsi: add support for ICL+ native MIPI GPIO sequence
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111850v4/index.html
-
---===============6648297482567183331==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dsi: add support for ICL+ native MIPI GPIO sequence (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/111850/">https://patchwork.freedesktop.org/series/111850/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111850v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111850v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12501 -&gt; Patchwork_111850v4</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_111850v4 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_111850v4, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111850v4/index.html</p>
-<h2>Participating hosts (38 -&gt; 19)</h2>
-<p>ERROR: It appears as if the changes made in Patchwork_111850v4 prevented too many machines from booting.</p>
-<p>Additional (1): fi-skl-guc <br />
-  Missing    (20): fi-kbl-soraka bat-dg1-6 bat-dg1-5 bat-adlp-6 fi-skl-6600u fi-bsw-n3050 bat-dg2-8 bat-adlm-1 bat-dg2-9 fi-bwr-2160 bat-adln-1 bat-atsm-1 bat-jsl-3 bat-rplp-1 bat-dg2-11 fi-bsw-nick bat-dg1-7 bat-kbl-2 bat-adlp-9 bat-adlp-4 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_111850v4 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-skl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111850v4/fi-skl-guc/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12501/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111850v4/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4817">i915#4817</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-crc-fast:</p>
-<ul>
-<li>fi-skl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111850v4/fi-skl-guc/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12501/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111850v4/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>fi-skl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111850v4/fi-skl-guc/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_exec_gttfill@basic:<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12501/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7229">i915#7229</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111850v4/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12501 -&gt; Patchwork_111850v4</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12501: 1b38b5a419ab3d838b6ac95d22f1fe057fc8889d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7091: b8015f920c9f469d3733854263cb878373c1df51 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_111850v4: 1b38b5a419ab3d838b6ac95d22f1fe057fc8889d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>7de3009ac12d drm/i915/dsi: add support for ICL+ native MIPI GPIO sequence</p>
-
-</body>
-</html>
-
---===============6648297482567183331==--
+>>   	 * The WA requires clock gating to be disabled all the time
+>>   	 * for pipe A and B.
+>>   	 * For pipe C and D clock gating needs to be disabled only
+>> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+>> index deba0c49c827..5e69d3c11d21 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+>> @@ -811,7 +811,7 @@ static void intel_fbc_program_cfb(struct intel_fbc *fbc)
+>>   
+>>   static void intel_fbc_program_workarounds(struct intel_fbc *fbc)
+>>   {
+>> -	/* Wa_22014263786:icl,jsl,tgl,dg1,rkl,adls,adlp */
+>> +	/* Wa_22014263786:icl,jsl,tgl,dg1,rkl,adls,adlp,mtl */
+>>   	if (DISPLAY_VER(fbc->i915) >= 11 && !IS_DG2(fbc->i915))
+>>   		intel_de_rmw(fbc->i915, ILK_DPFC_CHICKEN(fbc->id), 0,
+>>   			     DPFC_CHICKEN_FORCE_SLB_INVALIDATION);
+>> @@ -1091,7 +1091,9 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
+>>   	}
+>>   
+>>   	/* Wa_14016291713 */
+>> -	if (IS_DISPLAY_VER(i915, 12, 13) && crtc_state->has_psr) {
+>> +	if ((IS_DISPLAY_VER(i915, 12, 13) ||
+>> +	     IS_MTL_DISPLAY_STEP(i915, STEP_A0, STEP_C0)) &&
+>> +	    crtc_state->has_psr) {
+>>   		plane_state->no_fbc_reason = "PSR1 enabled (Wa_14016291713)";
+>>   		return 0;
+>>   	}
+>> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+>> index e82f8a07e2b0..efa2da080f62 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+>> @@ -537,7 +537,8 @@ void hsw_write_infoframe(struct intel_encoder *encoder,
+>>   			       0);
+>>   
+>>   	/* Wa_14013475917 */
+>> -	if (DISPLAY_VER(dev_priv) == 13 && crtc_state->has_psr &&
+>> +	if ((DISPLAY_VER(dev_priv) == 13 ||
+>> +	     IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0)) && crtc_state->has_psr &&
+>>   	    type == DP_SDP_VSC)
+>>   		return;
+>>   
+>> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+>> index 5b678916e6db..9820e5fdd087 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+>> @@ -797,7 +797,7 @@ static bool psr2_granularity_check(struct intel_dp *intel_dp,
+>>   		return intel_dp->psr.su_y_granularity == 4;
+>>   
+>>   	/*
+>> -	 * adl_p and display 14+ platforms has 1 line granularity.
+>> +	 * adl_p and mtl platforms have 1 line granularity.
+>>   	 * For other platforms with SW tracking we can adjust the y coordinates
+>>   	 * to match sink requirement if multiple of 4.
+>>   	 */
+>> @@ -1170,11 +1170,14 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
+>>   				     PSR2_ADD_VERTICAL_LINE_COUNT);
+>>   
+>>   		/*
+>> -		 * Wa_16014451276:adlp
+>> +		 * Wa_16014451276:adlp,mtl[a0,b0]
+>>   		 * All supported adlp panels have 1-based X granularity, this may
+>>   		 * cause issues if non-supported panels are used.
+>>   		 */
+>> -		if (IS_ALDERLAKE_P(dev_priv))
+>> +		if (IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
+>> +			intel_de_rmw(dev_priv, MTL_CHICKEN_TRANS(cpu_transcoder), 0,
+>> +				     ADLP_1_BASED_X_GRANULARITY);
+>> +		else if (IS_ALDERLAKE_P(dev_priv))
+>>   			intel_de_rmw(dev_priv, CHICKEN_TRANS(cpu_transcoder), 0,
+>>   				     ADLP_1_BASED_X_GRANULARITY);
+>>   
+>> @@ -1185,8 +1188,12 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
+>>   				     TRANS_SET_CONTEXT_LATENCY_MASK,
+>>   				     TRANS_SET_CONTEXT_LATENCY_VALUE(1));
+>>   
+>> -		/* Wa_16012604467:adlp */
+>> -		if (IS_ALDERLAKE_P(dev_priv))
+>> +		/* Wa_16012604467:adlp,mtl[a0,b0] */
+>> +		if (IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
+>> +			intel_de_rmw(dev_priv,
+>> +				     MTL_CLKGATE_DIS_TRANS(cpu_transcoder), 0,
+>> +				     MTL_CLKGATE_DIS_TRANS_DMASC_GATING_DIS);
+>> +		else if (IS_ALDERLAKE_P(dev_priv))
+>>   			intel_de_rmw(dev_priv, CLKGATE_DIS_MISC, 0,
+>>   				     CLKGATE_DIS_MISC_DMASC_GATING_DIS);
+>>   
+>> @@ -1362,8 +1369,12 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
+>>   				     TRANS_SET_CONTEXT_LATENCY(intel_dp->psr.transcoder),
+>>   				     TRANS_SET_CONTEXT_LATENCY_MASK, 0);
+>>   
+>> -		/* Wa_16012604467:adlp */
+>> -		if (IS_ALDERLAKE_P(dev_priv))
+>> +		/* Wa_16012604467:adlp,mtl[a0,b0] */
+>> +		if (IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
+>> +			intel_de_rmw(dev_priv,
+>> +				     MTL_CLKGATE_DIS_TRANS(intel_dp->psr.transcoder),
+>> +				     MTL_CLKGATE_DIS_TRANS_DMASC_GATING_DIS, 0);
+>> +		else if (IS_ALDERLAKE_P(dev_priv))
+>>   			intel_de_rmw(dev_priv, CLKGATE_DIS_MISC,
+>>   				     CLKGATE_DIS_MISC_DMASC_GATING_DIS, 0);
+>>   
+>> @@ -1625,7 +1636,7 @@ static void psr2_man_trk_ctl_calc(struct intel_crtc_state *crtc_state,
+>>   
+>>   	if (full_update) {
+>>   		/*
+>> -		 * Not applying Wa_14014971508:adlp as we do not support the
+>> +		 * Not applying Wa_14014971508:adlp,mtl as we do not support the
+>>   		 * feature that requires this workaround.
+>>   		 */
+>>   		val |= man_trk_ctl_single_full_frame_bit_get(dev_priv);
+>> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+>> index a8a5bd426e78..0ad206f76b7b 100644
+>> --- a/drivers/gpu/drm/i915/i915_drv.h
+>> +++ b/drivers/gpu/drm/i915/i915_drv.h
+>> @@ -727,6 +727,10 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>>   	(IS_SUBPLATFORM(__i915, INTEL_METEORLAKE, INTEL_SUBPLATFORM_##variant) && \
+>>   	 IS_GRAPHICS_STEP(__i915, since, until))
+>>   
+>> +#define IS_MTL_DISPLAY_STEP(__i915, since, until) \
+>> +	(IS_METEORLAKE(__i915) && \
+>> +	 IS_DISPLAY_STEP(__i915, since, until))
+>> +
+>>   /*
+>>    * DG2 hardware steppings are a bit unusual.  The hardware design was forked to
+>>    * create three variants (G10, G11, and G12) which each have distinct
+>> -- 
+>> 2.38.1
+>>
+> 
