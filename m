@@ -2,51 +2,142 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B56A564B383
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Dec 2022 11:47:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41FF864B387
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Dec 2022 11:48:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 073EA10E2FF;
-	Tue, 13 Dec 2022 10:47:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3920A10E306;
+	Tue, 13 Dec 2022 10:47:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C51610E2FF
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Dec 2022 10:47:07 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0D1910E306;
+ Tue, 13 Dec 2022 10:47:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1670928427; x=1702464427;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=PLigep51TPE+6QzIwu2/xRm27iTRTPLD8q3DAM85ZyQ=;
- b=JijL6XAChsXoh9WPIy9ng6uF9+2euxX2b0+pck3X5cEAQNslwWbPwq95
- iC3jaa0Np65zbHm8lQ/UGeAdu7ZdmqV5RXcRQiduFlWMYanRIS8FO2xaI
- PWT5mcDJJYC0G/aaYg5dGUkPgRh/jB7jkE8zNlDyMVB72a9Ruf4oOBJ+n
- KMbVhUzxsrAGkZN+qhON2eHz94y4YztrANVy2Oed9frrRAKSp5Nmegj3E
- oyF4QDp5ChERad+SAm6+TNlZezZkOZvGyYBotTLYGzUPmpr31eyKFMV+M
- K3zKyYYZ0ckIu5rwemZ//OyXhJwrt21u+k0/I/OMEBeZTQtS1DqxIeG+1 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10559"; a="315738281"
-X-IronPort-AV: E=Sophos;i="5.96,241,1665471600"; d="scan'208";a="315738281"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2022 02:47:06 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10559"; a="790874040"
-X-IronPort-AV: E=Sophos;i="5.96,241,1665471600"; d="scan'208";a="790874040"
-Received: from amicu-mobl.ger.corp.intel.com (HELO localhost) ([10.252.19.220])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2022 02:47:05 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20221213070158.2621403-7-suraj.kandpal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221213070158.2621403-1-suraj.kandpal@intel.com>
- <20221213070158.2621403-7-suraj.kandpal@intel.com>
-Date: Tue, 13 Dec 2022 12:47:03 +0200
-Message-ID: <87359jy40o.fsf@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+ t=1670928465; x=1702464465;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=Ppz86myWl4dw6PRdICVKBV9EV6dhxfN1XvHIrLD2gU8=;
+ b=UplBiiZYfEt9U+mW9QXweNnIqRKrAPvEsnP2pUgXTXVzXG5+JXL/+hs3
+ 8XoWfaCvzwpKNu/C5vuScfMPttS4mu6TOeccGBHdk8D0P8BeZvKm3Uq5v
+ uUAguT/5x3ea8PlgK5s0wVGzzwC/rEfWWr2m8SX126T09HL2K0BG4VPcp
+ xt+0YDreib6LzQKwwlfaooxI+wogLaDv4onFUXFsOw8djDZ3jw09yYYPt
+ 1ec1yji7OKuOFyVS8hLn8uERrcwjomDAV/1Ana5zTMgdJWKUaBGZrw8O+
+ E6gqmmJQ0iDlMQrJTFwsTJoy56noJoZxrcZy2Hbbo7wS/7N2zRvLZjI1O w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10559"; a="380305368"
+X-IronPort-AV: E=Sophos;i="5.96,241,1665471600"; d="scan'208";a="380305368"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2022 02:47:44 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10559"; a="650692466"
+X-IronPort-AV: E=Sophos;i="5.96,241,1665471600"; d="scan'208";a="650692466"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmsmga007.fm.intel.com with ESMTP; 13 Dec 2022 02:47:44 -0800
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Tue, 13 Dec 2022 02:47:44 -0800
+Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Tue, 13 Dec 2022 02:47:43 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Tue, 13 Dec 2022 02:47:43 -0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.169)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Tue, 13 Dec 2022 02:47:43 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ct5Ih3exVP+pNqJqnhgxbHNZExyNmDoDhthe1jXuXFCUD0eLmOPyC7mph3PrqDTQoqXQF6Pw6hPEdhSLLa3SnpbsTpfkkHiMQEbjA5bxRj1lnX3ybgm5GtIddwrIJu885n59WNwuUOsUDEW72+1Z9uXft9JLK2DGbqd+rle7XCi4h04RhyAOIp4//QkS4kJPaOUt6QWTgtZAnN+SYaVB82pHzJGexx/fAxSQxn4yT20vMUR6RiRpUU7W8Hkob4VEJ0lj0JaUS/V2/eF0g7XHrOAZywWKFsCuOYldyuqCnRPNagc02UeuqYdGvfJtMp5TCgeZKsp/ty3dCnhXVMQJYA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=D1qF0pr0o08nmR+6Vpyt681xzeQZjipergrza8AVtMQ=;
+ b=J6re38FJ+bpqjO26uFkNbIZjpcKEwnW8CaWawhLf50nKmjSZ0NMVwGUG2Wnh7aOgRuXNbAVI7v+HrZMXiPuKju+EtypuYWFq7wcHgQ30f3Nn+Kame6Q5fKIS6Sb2g93TjJahS6T2D84cP2zrUc1PDjkKamOO63yJEOk3MNZE1wCQV5ocRg4klhzwuzrHQ5+dS49rQ8+I/Kfo2IrZWMK+UmrSIcOQZ6SmqdvRpodnoqyNDfVP2v5LULiS3d2RABrPYH8HXu6EPI1gC34pTz7bZtbE1Y2irzP+BonAibsgngMj22gWFT56EYtWqAKuFWw143FsVfUTZh//qbBgpDXq3g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from SJ1PR11MB6204.namprd11.prod.outlook.com (2603:10b6:a03:459::19)
+ by SN7PR11MB7565.namprd11.prod.outlook.com (2603:10b6:806:344::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.19; Tue, 13 Dec
+ 2022 10:47:36 +0000
+Received: from SJ1PR11MB6204.namprd11.prod.outlook.com
+ ([fe80::4e35:9914:650b:269a]) by SJ1PR11MB6204.namprd11.prod.outlook.com
+ ([fe80::4e35:9914:650b:269a%8]) with mapi id 15.20.5880.019; Tue, 13 Dec 2022
+ 10:47:36 +0000
+From: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
+To: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
+ "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/gt: Modify mismatched function name
+Thread-Index: AQHZDtjEgdZrOK7N4kO7ODo7FzRGVq5ron/w
+Date: Tue, 13 Dec 2022 10:47:36 +0000
+Message-ID: <SJ1PR11MB62042313A2F529D22CC799F081E39@SJ1PR11MB6204.namprd11.prod.outlook.com>
+References: <20221213095145.1899-1-jiapeng.chong@linux.alibaba.com>
+In-Reply-To: <20221213095145.1899-1-jiapeng.chong@linux.alibaba.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ1PR11MB6204:EE_|SN7PR11MB7565:EE_
+x-ms-office365-filtering-correlation-id: 61cdcd37-49a2-4b12-6c9b-08dadcf772d7
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: sD8vNFb4VWyv48g3xBZOI45C5wWXBTQ6c0U/lJs2JtZTHWzIdz07xdJMYapQJa1fl7Wui1x3JYgN2cEe81iKfM4RNTjUsEe3vQMogQ09PItPaEembSZYMaAJ6q4YYzvXgMdIl571Sf1lhgjQxyYangW0EvVjsQ96h0IwnmZ/a95+wBZtdxusAJGCEsh5BK3cR4R5FLbNEHIsyuTuRBccf8uiOjPWNsHkO7IhyB5CtV0zBk8F47GWUBbaYsFSNrfUzR/+dWpQph2XOijWTR2iOc96CAMPaTnthYmvPoZ+TUY0HWxRj/qAdQO75ChnEEZIoO4nYfWuDeHaKwDuso9mr9Cp/pR9QsCN9+2aXDuJyeJdN0gZDziJtcHa18cVRr3I8vrbLZl09zMy1oxkvVXnvhVlFUZo7/9hlT9WfSaT5SY1+E8MloTdl7GHVrsvv0XznhmJ6keXRE52vOoVDmIkeQm3J88ydX44tF1GYkdTAbeMwa/CrCXVe1YCaF7/RUd/ge5u+j+6G+QebK6fFPTxmXm2x7A9aWrkS+Da16y4Rybge5JAo4r7X4Q8D1aDoKrJ47VxaTkXe+c5Shh7T6j/gmAZrvm4wDPKHRbu4uUfta/ueJ3VVMHFsUk16pMV+lWdpZkA4O70dESvopOCv6l/LWwY5c1QgCYAWa3s0G9MB8+1UnU/3KaEBqrrLCbFpERInsWv5/LgmS+nqtro6JgWnScff36c2i17Kutygwfhff0=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ1PR11MB6204.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(346002)(376002)(39860400002)(136003)(366004)(396003)(451199015)(38100700002)(6506007)(7696005)(82960400001)(478600001)(55016003)(966005)(41300700001)(186003)(76116006)(66946007)(4326008)(86362001)(66446008)(26005)(64756008)(9686003)(8676002)(66556008)(53546011)(71200400001)(38070700005)(83380400001)(66476007)(52536014)(5660300002)(8936002)(316002)(122000001)(33656002)(110136005)(2906002)(54906003);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?eqzDy62TcTtSgKBlCRvjUlEnrwJECQQitodVM3pLoiD8m3S2oE770pLdScXK?=
+ =?us-ascii?Q?+127kiVm1zNjmKAeuEKqxOVInfKPWXTc6HjTW78b3AvGguZo6v1/bCBP98aU?=
+ =?us-ascii?Q?JuZYrykU9s+s0xrS+U32ZvVmrr1UdwqysKjJOyT/uPLIZBclP+aevAIPa+sc?=
+ =?us-ascii?Q?cIEjR2LWs1uuyc7poONyUHHgl20+xVzadFUoYOhhHnNEFjqXfY8C8UfT97CW?=
+ =?us-ascii?Q?zSIK+OrY0QOO7a+D1QfdoM4NsK7RZr5gbH+GQC/mrNTKKX2ECB75NcpKmP30?=
+ =?us-ascii?Q?DOLha+1uqFXsGnk9lBC7c6f67JDFIuqcopTvi3WrT6TgfZJ5/imMXGySZaR4?=
+ =?us-ascii?Q?IcSGUKpQ5MkAdBskK61p1gIt1ZjgHrwjMkG/EotfGVTuBs1q9kjaj8hBYYiw?=
+ =?us-ascii?Q?ZDp615Y7dTaiaJg4eiIb0LlrM/ry0hfxuysI0BhnjaQMmOf98toHI8XR97C/?=
+ =?us-ascii?Q?USVrHgIVxTKtvRUWLQgcEtcOpcHF6dyyqIF4dvI5ED6jHF2QWyL9y26ccosY?=
+ =?us-ascii?Q?7m5IjWMbZ0VFwCkB8JKJtkcHFiQCzWXqvqiG2vSIDcThmoFzmjOsvp3rhlzy?=
+ =?us-ascii?Q?kz8gjsPPuSDFGG3vJPHRr0v1h69hC+Xi7O+I3PpTu8ZdmMLtCmrsSNDrJYQe?=
+ =?us-ascii?Q?5wp2fcYYlmqWl955OmRDh67rAMyN17feCasN4jTA1hy9S6msY9thIMC4XSUd?=
+ =?us-ascii?Q?CjNz6v7yUmTSwS+XoN/x+ksTwfaCEm54ZFQ8gkMJ6Asoi2WfoG7rcFvxJldc?=
+ =?us-ascii?Q?Kn5b8FWG/ADQPJgFaVE1MEUyXlmsJ743lASp7JS7DeM/A8e9U3G4g6PwXb3I?=
+ =?us-ascii?Q?jLPfeSva8qgu0BO0j6mWeTkgUOtmVOnLoP54nPvY60dz/wmifNGZFfbCcoI7?=
+ =?us-ascii?Q?C22gPu2I+H8olAJhzmSn0kBW4Jh5Uba21gwfSuUsCnrLG3UxMk3ItwjDRof8?=
+ =?us-ascii?Q?m5Mkl1pod5L6wUMxsd6noziumH2WRvnqwjDmwE+cIeYYVMptyY6S965fbmCo?=
+ =?us-ascii?Q?RZnFh242sdHaYhKw+XT32cKi5Ek0zGM66gAKG1fpn0KGIeGcUKmPeKvFBgLo?=
+ =?us-ascii?Q?0OKYacO3LfVVhOh0tz/lAtrdDjKyiKLMd6J5ctatWGWklbgQxQNntNvpaC+u?=
+ =?us-ascii?Q?j5vEmLlbIdzrogAO2GclrbLhDzhVl64qLb7TEY/inqyTSloE2+rGZAqBecT5?=
+ =?us-ascii?Q?Uq4e8J7b+rJlHw+Jmq53h46T7QMlItaRCrNJtbyFxn+CLoeG5mJTywHropo/?=
+ =?us-ascii?Q?Nitrdq30VIV+m0YJa7sa2psYM7/PancRoaUeagePTuoBN49xW2Gmrd8r62xN?=
+ =?us-ascii?Q?/fOFsJQHRxqHTes4CfBIKnRK89tJmFWr7OSrGEwRXH7ODLa/Qu8UWK+RCr0G?=
+ =?us-ascii?Q?zQR8l1y/RcDUWH9WV3tLzHGPthl8Z4NYcr9zgdR1UYSP61V6CiAARgMfXhyR?=
+ =?us-ascii?Q?PH1KnpOgrRhq1I2esqtQO36q/E2ysjX0D7C4EsGerVR6fQMA7ESzg9wMnuSd?=
+ =?us-ascii?Q?tVd1S9TULJSjFSNVvogyuvUp405eaFhlgfXb7HuJpxaORmpqNFZasDyqC8R8?=
+ =?us-ascii?Q?eje/88POVu3THZ0Ga6swUFg0REvV6Wai3j9WqZEmLSZi0PD3RcECvF+fEsQ7?=
+ =?us-ascii?Q?BQ=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v2 6/7] drm/i915/mtl: Adding function to
- send command to GSC CS
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6204.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 61cdcd37-49a2-4b12-6c9b-08dadcf772d7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Dec 2022 10:47:36.7631 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 530sLaeKtUh0uS1/49a5S3d43I9+ByedP58vT3l4Oby5UExl8LQ4sT4ogs86HtMHwHhqcvJToC58vohLVOoeGtrDbvQevMcMev36fdW1/f8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7565
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Modify mismatched function name
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,334 +150,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Abaci Robot <abaci@linux.alibaba.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "daniel@ffwll.ch" <daniel@ffwll.ch>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ "airlied@gmail.com" <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 13 Dec 2022, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> Adding function that takes care of sending command to gsc cs. We start
-> of with allocation of memory for our command intel_hdcp_gsc_message that
-> contains gsc cs memory header as directed in specs followed by the
-> actual payload hdcp message that we want to send.
-> Spec states that we need to poll pending bit of response header around
-> 20 times each try being 50ms apart hence adding that to current
-> gsc_msg_send function
-> Also we use the same function to take care of both sending and receiving
-> hence no separate function to get the response.
->
-> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: Uma Shankar <uma.shankar@intel.com>
-> Cc: Anshuman Gupta <anshuman.gupta@intel.com>
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Indeed looks like miss. Thanks for the patch.
+
+Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+
+> -----Original Message-----
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
+> Jiapeng Chong
+> Sent: Tuesday, December 13, 2022 3:22 PM
+> To: jani.nikula@linux.intel.com
+> Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>; intel-
+> gfx@lists.freedesktop.org; Abaci Robot <abaci@linux.alibaba.com>; linux-
+> kernel@vger.kernel.org; dri-devel@lists.freedesktop.org; daniel@ffwll.ch;
+> Vivi, Rodrigo <rodrigo.vivi@intel.com>; airlied@gmail.com
+> Subject: [Intel-gfx] [PATCH] drm/i915/gt: Modify mismatched function name
+>=20
+> No functional modification involved.
+>=20
+> drivers/gpu/drm/i915/gt/intel_engine_cs.c:1306: warning: expecting
+> prototype for intel_engines_init_common(). Prototype was for
+> engine_init_common() instead.
+>=20
+> Link: https://bugzilla.openanolis.cn/show_bug.cgi?id=3D3442
+> Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+> Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
 > ---
->  drivers/gpu/drm/i915/Makefile                 |   1 +
->  drivers/gpu/drm/i915/display/intel_hdcp_gsc.c | 207 ++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_hdcp_gsc.h |  28 +++
->  drivers/gpu/drm/i915/gt/uc/intel_gsc_fwif.h   |   1 +
->  4 files changed, 237 insertions(+)
->  create mode 100644 drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
->  create mode 100644 drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
->
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index dfa211451a1d..42b8c3430365 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -250,6 +250,7 @@ i915-y +=3D \
->  	display/intel_frontbuffer.o \
->  	display/intel_global_state.o \
->  	display/intel_hdcp.o \
-> +	display/intel_hdcp_gsc.o \
->  	display/intel_hotplug.o \
->  	display/intel_hti.o \
->  	display/intel_lpe_audio.o \
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c b/drivers/gpu/=
-drm/i915/display/intel_hdcp_gsc.c
-> new file mode 100644
-> index 000000000000..aea3a1158c75
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-> @@ -0,0 +1,207 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright 2021, Intel Corporation.
-> + */
-> +
-> +#include "i915_drv.h"
-> +#include "gt/uc/intel_gsc_fw.h"
-> +#include "gt/uc/intel_gsc_fwif.h"
-> +#include "gem/i915_gem_region.h"
-> +#include "i915_utils.h"
-> +#include "display/intel_hdcp_gsc.h"
+>  drivers/gpu/drm/i915/gt/intel_engine_cs.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> index c33e0d72d670..dfcd3a91fbe7 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> @@ -1292,7 +1292,7 @@ create_kernel_context(struct intel_engine_cs
+> *engine)  }
+>=20
+>  /**
+> - * intel_engines_init_common - initialize cengine state which might requ=
+ire
+> hw access
+> + * engine_init_common - initialize cengine state which might require hw
+> + access
+>   * @engine: Engine to initialize.
+>   *
+>   * Initializes @engine@ structure members shared between legacy and
+> execlists
+> --
+> 2.20.1.7.g153144c
 
-Please sort.
-
-> +
-> +struct intel_hdcp_gsc_message {
-> +	struct drm_i915_gem_object *obj;
-> +	struct i915_vma *vma;
-> +	void *hdcp_cmd;
-> +};
-> +
-> +/*This function helps allocate memory for the command that we will send =
-to gsc cs */
-> +static int intel_initialize_hdcp_gsc_message(struct drm_i915_private *i9=
-15,
-> +					     struct intel_hdcp_gsc_message *hdcp_message)
-> +{
-> +	struct intel_gt *gt =3D i915->media_gt;
-> +	struct drm_i915_gem_object *obj =3D NULL;
-> +	struct i915_vma *vma =3D NULL;
-> +	void *cmd;
-> +	int err;
-> +
-> +	hdcp_message->obj =3D NULL;
-> +	hdcp_message->hdcp_cmd =3D NULL;
-> +	hdcp_message->vma =3D NULL;
-> +
-> +	/* allocate object of one page for HDCP command memory and store it */
-> +	obj =3D i915_gem_object_create_shmem(gt->i915, PAGE_SIZE);
-> +
-> +	if (IS_ERR(obj)) {
-> +		drm_err(&gt->i915->drm, "Failed to allocate HDCP streaming command!\n"=
-);
-> +		return PTR_ERR(obj);
-> +	}
-> +
-> +	cmd =3D i915_gem_object_pin_map_unlocked(obj, i915_coherent_map_type(gt=
-->i915, obj, true));
-> +	if (IS_ERR(cmd)) {
-> +		drm_err(&gt->i915->drm, "Failed to map gsc message page!\n");
-> +		err =3D PTR_ERR(cmd);
-> +		goto out_unpin;
-> +	}
-> +
-> +	vma =3D i915_vma_instance(obj, &gt->ggtt->vm, NULL);
-> +	if (IS_ERR(vma)) {
-> +		err =3D PTR_ERR(vma);
-> +		goto out_unmap;
-> +	}
-> +
-> +	err =3D i915_vma_pin(vma, 0, 0, PIN_GLOBAL);
-> +	if (err)
-> +		goto out_unmap;
-> +
-> +	memset(cmd, 0, obj->base.size);
-> +
-> +	hdcp_message->obj =3D obj;
-> +	hdcp_message->hdcp_cmd =3D cmd;
-> +	hdcp_message->vma =3D vma;
-> +
-> +	return 0;
-> +
-> +out_unmap:
-> +	i915_gem_object_unpin_map(obj);
-> +out_unpin:
-> +	i915_gem_object_put(obj);
-> +	return err;
-> +}
-> +
-> +static void intel_free_hdcp_gsc_message(struct intel_hdcp_gsc_message *h=
-dcp_message)
-> +{
-> +	struct drm_i915_gem_object *obj =3D fetch_and_zero(&hdcp_message->obj);
-> +
-> +	if (!obj)
-> +		return;
-> +
-> +	if (hdcp_message->vma)
-> +		i915_vma_unpin(fetch_and_zero(&hdcp_message->vma));
-> +
-> +	i915_gem_object_unpin_map(obj);
-> +	i915_gem_object_put(obj);
-> +	kfree(hdcp_message);
-> +}
-> +
-> +static int intel_gsc_send_sync(struct drm_i915_private *i915,
-> +			       struct intel_gsc_mtl_header *header, u64 addr,
-> +			       size_t msg_out_len)
-> +{
-> +	struct intel_gt *gt =3D i915->media_gt;
-> +	int ret;
-> +
-> +	header->flags =3D 0;
-> +	ret =3D intel_gsc_fw_heci_send(&gt->uc.gsc, addr, header->message_size,
-> +				     addr, msg_out_len + sizeof(*header));
-> +	if (ret) {
-> +		drm_err(&i915->drm, "failed to send gsc HDCP msg (%d)\n", ret);
-> +		return ret;
-> +	}
-> +	/*
-> +	 * Checking validity marker for memory sanity
-> +	 */
-> +	if (header->validity_marker !=3D GSC_HECI_VALIDITY_MARKER) {
-> +		drm_err(&i915->drm, "invalid validity marker\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (header->status !=3D 0) {
-> +		drm_err(&i915->drm, "header status indicates error %d\n",
-> +			header->status);
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (header->flags & INTEL_GSC_MSG_PENDING)
-> +		return -EAGAIN;
-> +
-> +	return 0;
-> +}
-> +
-> +/*
-> + * This function can now be used for sending requests and will also hand=
-le
-> + * receipt of reply messages hence no different function of message retr=
-ieval
-> + * is required. We will initialize intel_hdcp_gsc_message structure then=
- add
-> + * gsc cs memory header as stated in specs after which the normal HDCP p=
-ayload
-> + * will follow
-> + */
-> +ssize_t intel_hdcp_gsc_msg_send(struct drm_i915_private *i915, u8 *msg_i=
-n,
-> +				size_t msg_in_len, u8 *msg_out, size_t msg_out_len)
-> +{
-> +	struct intel_gt *gt =3D i915->media_gt;
-> +	struct intel_gsc_mtl_header *header;
-> +	const size_t max_msg_size =3D PAGE_SIZE - sizeof(*header);
-> +	struct intel_hdcp_gsc_message *hdcp_message;
-> +	u64 addr;
-> +	u32 reply_size;
-> +	int ret, tries =3D 0;
-> +
-> +	if (!intel_uc_uses_gsc_uc(&gt->uc))
-> +		return -ENODEV;
-> +
-> +	if (msg_in_len > max_msg_size || msg_out_len > max_msg_size)
-> +		return -ENOSPC;
-> +
-> +	hdcp_message =3D kzalloc(sizeof(*hdcp_message), GFP_KERNEL);
-> +
-> +	if (!hdcp_message)
-> +		return -ENOMEM;
-> +
-> +	ret =3D intel_initialize_hdcp_gsc_message(i915, hdcp_message);
-> +
-> +	if (ret) {
-> +		drm_err(&i915->drm,
-> +			"Could not initialize hdcp_message\n");
-> +		goto err;
-> +	}
-> +
-> +	header =3D hdcp_message->hdcp_cmd;
-> +	addr =3D i915_ggtt_offset(hdcp_message->vma);
-> +
-> +	memset(header, 0, sizeof(*header));
-> +	header->validity_marker =3D GSC_HECI_VALIDITY_MARKER;
-> +	header->gsc_address =3D HECI_MEADDRESS_HDCP;
-> +	header->host_session_handle =3D 0;
-> +	header->header_version =3D MTL_GSC_HEADER_VERSION;
-> +	header->message_size =3D msg_in_len + sizeof(*header);
-> +
-> +	memcpy(hdcp_message->hdcp_cmd + sizeof(*header), msg_in, msg_in_len);
-> +
-> +	/*
-> +	 * Keep sending request in case the pending bit is set no need to add
-> +	 * message handle as we are using same address hence loc. of header is
-> +	 * same and it will contain the message handle. we will send the message
-> +	 * 20 times each message 50 ms apart
-> +	 */
-> +	do {
-> +		ret =3D intel_gsc_send_sync(i915, header, addr, msg_out_len);
-> +
-> +		/* Only try again if gsc says so */
-> +		if (ret !=3D -EAGAIN)
-> +			break;
-> +
-> +		msleep(50);
-> +
-> +	} while (++tries < 20);
-> +
-> +	if (ret)
-> +		goto err;
-> +
-> +	/* we use the same mem for the reply, so header is in the same loc */
-> +	reply_size =3D header->message_size - sizeof(*header);
-> +	if (reply_size > msg_out_len) {
-> +		drm_warn(&i915->drm, "caller with insufficient HDCP reply size %u (%d)=
-\n",
-> +			 reply_size, (u32)msg_out_len);
-> +		reply_size =3D msg_out_len;
-> +	} else if (reply_size !=3D msg_out_len) {
-> +		drm_dbg_kms(&i915->drm, "caller unexpected HCDP reply size %u (%d)\n",
-> +			    reply_size, (u32)msg_out_len);
-> +	}
-> +
-> +	memcpy(msg_out, hdcp_message->hdcp_cmd + sizeof(*header), msg_out_len);
-> +
-> +err:
-> +	intel_free_hdcp_gsc_message(hdcp_message);
-> +	return ret;
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h b/drivers/gpu/=
-drm/i915/display/intel_hdcp_gsc.h
-> new file mode 100644
-> index 000000000000..9f3e3880fe0a
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
-> @@ -0,0 +1,28 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright =C2=A9 2021 Intel Corporation
-> + */
-> +
-> +#ifndef __INTEL_HDCP_GSC_H__
-> +#define __INTEL_HDCP_GSC_H__
-> +
-> +#include <linux/types.h>
-> +#include <linux/err.h>
-> +/*
-> + * FIXME: Spec states that we need to create a random
-> + * host session everytime we send message for now creating
-> + * a static host session to avoid clashes not using this
-> + * header as of now as we see an error if we use anything
-> + * other than 0 as host session
-> + */
-> +#define GSC_HDCP_HOST_HANDLE	0x12233FFEEDD00000
-
-This is unused.
-
-> +
-> +struct drm_i915_private;
-> +
-> +ssize_t intel_hdcp_gsc_msg_send(struct drm_i915_private *i915, u8 *msg_i=
-n,
-> +				size_t msg_in_len, u8 *msg_out,
-> +				size_t msg_out_len);
-> +int intel_gsc_hdcp_init(struct drm_i915_private *i915);
-> +int intel_gsc_hdcp_fini(struct drm_i915_private *i915);
-
-The function naming needs to match file name.
-
-intel_hdcp_gsc.[ch] -> intel_hdcp_gsc_xxx().
-
-BR,
-Jani.
-
-> +
-> +#endif /* __INTEL_HDCP_GCS_H__ */
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_gsc_fwif.h b/drivers/gpu/dr=
-m/i915/gt/uc/intel_gsc_fwif.h
-> index 1c2a04d092a8..19b98c75367a 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_gsc_fwif.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_gsc_fwif.h
-> @@ -34,6 +34,7 @@ struct intel_gsc_mtl_header {
->  	 * Bits 16-31: Extension Size
->  	 */
->  	u32 flags;
-> +#define INTEL_GSC_MSG_PENDING	1
->=20=20
->  	u32 status;
->  } __packed;
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
