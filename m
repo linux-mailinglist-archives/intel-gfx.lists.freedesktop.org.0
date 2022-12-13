@@ -2,33 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 594B664B309
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Dec 2022 11:15:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4592464B32F
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Dec 2022 11:25:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53A7910E1B4;
-	Tue, 13 Dec 2022 10:15:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 207FF10E2F8;
+	Tue, 13 Dec 2022 10:24:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 239F010E1B4;
- Tue, 13 Dec 2022 10:15:49 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1D831AA0ED;
- Tue, 13 Dec 2022 10:15:49 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3572674025923622262=="
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E5C710E2F3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Dec 2022 10:24:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1670927090; x=1702463090;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=F1R4zpTr2wBzaHfa5pzwofb9pYRHOrZEfwZDiCmg4Yc=;
+ b=bYfpOI6w+tCKjacH2jAQ2hEsM3P0UXhFaaD/Zxe0gKhXssTW9d+pd0ru
+ 2Y3UQV4mPZsEx6l5TshO5ZDtBRla7aHcT5OFhDcNnZUD9IZ9pHEPSUIpf
+ i+3VdKB8bxW+yLidSJWuMhKV9ciojUbxYpgGaZOFt6b6wA5RGEcWbSsHx
+ Bbwk9FocCVkW4btpNh4emYnlK7jvOia4uDlf2Bk7gUeo6pfZXEpzuGesL
+ cnrk/Ozk1A3PjCyzMqElctCPSf8u7tGdm6Un6AIHsAu+vYLhOYJa6ShIM
+ usc7YNR5+L4qLr5Pj/ZgSmuPbksp4G87vKNTEIcIHQFz4Tf+kbdoIk8Bo w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10559"; a="319242999"
+X-IronPort-AV: E=Sophos;i="5.96,241,1665471600"; d="scan'208";a="319242999"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2022 02:24:49 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10559"; a="893870781"
+X-IronPort-AV: E=Sophos;i="5.96,241,1665471600"; d="scan'208";a="893870781"
+Received: from amicu-mobl.ger.corp.intel.com (HELO localhost) ([10.252.19.220])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2022 02:24:48 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20221213070158.2621403-4-suraj.kandpal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20221213070158.2621403-1-suraj.kandpal@intel.com>
+ <20221213070158.2621403-4-suraj.kandpal@intel.com>
+Date: Tue, 13 Dec 2022 12:24:45 +0200
+Message-ID: <87fsdjy51u.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andrzej Hajda" <andrzej.hajda@intel.com>
-Date: Tue, 13 Dec 2022 10:15:49 -0000
-Message-ID: <167092654908.25537.18442397835872813538@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221207173630.973662-1-andrzej.hajda@intel.com>
-In-Reply-To: <20221207173630.973662-1-andrzej.hajda@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_fix_TLB_invalidation_fo?=
- =?utf-8?q?r_Gen12=2E50_video_and_compute_engines_=28rev3=29?=
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v2 3/7] drm/i915/hdcp: HDCP2.x Refactoring
+ to agnotic cp f/w
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,234 +58,494 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Tomas Winkler <tomas.winkler@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3572674025923622262==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 13 Dec 2022, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> From: Anshuman Gupta <anshuman.gupta@intel.com>
+>
+> As now we have more then one type of content protection
+> secrity firmware. Let change the i915_cp_fw_hdcp_interface.h
+> header naming convention to suit generic f/w type.
+> %s/MEI_/FW_
+> %s/mei_fw/cp_fw
+> %s/mei_dev/fw_dev
+>
+> As interface to CP FW can be either a non i915 component or
+> i915 intergral component, change structure name Accordingly.
+> %s/i915_hdcp_comp_master/i915_hdcp_fw_master
+> %s/i915_hdcp_component_ops/i915_hdcp_fw_ops
+>
+> Cc: Tomas Winkler <tomas.winkler@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Uma Shankar <uma.shankar@intel.com>
+> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+>  .../gpu/drm/i915/display/intel_display_core.h |  3 +-
+>  drivers/gpu/drm/i915/display/intel_hdcp.c     | 66 ++++++++---------
+>  drivers/misc/mei/hdcp/mei_hdcp.c              | 12 ++--
+>  include/drm/i915_cp_fw_hdcp_interface.h       | 70 +++++++++----------
+>  4 files changed, 76 insertions(+), 75 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+> index 57ddce3ba02b..a769cc8e2745 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+> @@ -16,6 +16,7 @@
+>  #include <drm/drm_connector.h>
+>  #include <drm/drm_modeset_lock.h>
+>  
+> +#include "i915/i915_cp_fw_hdcp_interface.h"
 
-== Series Details ==
+What's with the i915/ subdir?
 
-Series: series starting with [1/2] drm/i915: fix TLB invalidation for Gen12.50 video and compute engines (rev3)
-URL   : https://patchwork.freedesktop.org/series/111744/
-State : success
+Anyway, please prefer forward declarations over includes in headers.
 
-== Summary ==
+>  #include "intel_cdclk.h"
+>  #include "intel_display.h"
+>  #include "intel_display_power.h"
+> @@ -368,7 +369,7 @@ struct intel_display {
+>  	} gmbus;
+>  
+>  	struct {
+> -		struct i915_hdcp_comp_master *master;
+> +		struct i915_hdcp_fw_master *master;
+>  		bool comp_added;
+>  
+>  		/* Mutex to protect the above hdcp component related values. */
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index 6406fd487ee5..e856b10948ab 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -1143,7 +1143,7 @@ hdcp2_prepare_ake_init(struct intel_connector *connector,
+>  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+>  	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+> -	struct i915_hdcp_comp_master *comp;
+> +	struct i915_hdcp_fw_master *comp;
+>  	int ret;
+>  
+>  	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
+> @@ -1154,7 +1154,7 @@ hdcp2_prepare_ake_init(struct intel_connector *connector,
+>  		return -EINVAL;
+>  	}
+>  
+> -	ret = comp->ops->initiate_hdcp2_session(comp->mei_dev, data, ake_data);
+> +	ret = comp->ops->initiate_hdcp2_session(comp->fw_dev, data, ake_data);
+>  	if (ret)
+>  		drm_dbg_kms(&dev_priv->drm, "Prepare_ake_init failed. %d\n",
+>  			    ret);
+> @@ -1173,7 +1173,7 @@ hdcp2_verify_rx_cert_prepare_km(struct intel_connector *connector,
+>  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+>  	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+> -	struct i915_hdcp_comp_master *comp;
+> +	struct i915_hdcp_fw_master *comp;
+>  	int ret;
+>  
+>  	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
+> @@ -1184,7 +1184,7 @@ hdcp2_verify_rx_cert_prepare_km(struct intel_connector *connector,
+>  		return -EINVAL;
+>  	}
+>  
+> -	ret = comp->ops->verify_receiver_cert_prepare_km(comp->mei_dev, data,
+> +	ret = comp->ops->verify_receiver_cert_prepare_km(comp->fw_dev, data,
+>  							 rx_cert, paired,
+>  							 ek_pub_km, msg_sz);
+>  	if (ret < 0)
+> @@ -1201,7 +1201,7 @@ static int hdcp2_verify_hprime(struct intel_connector *connector,
+>  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+>  	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+> -	struct i915_hdcp_comp_master *comp;
+> +	struct i915_hdcp_fw_master *comp;
+>  	int ret;
+>  
+>  	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
+> @@ -1212,7 +1212,7 @@ static int hdcp2_verify_hprime(struct intel_connector *connector,
+>  		return -EINVAL;
+>  	}
+>  
+> -	ret = comp->ops->verify_hprime(comp->mei_dev, data, rx_hprime);
+> +	ret = comp->ops->verify_hprime(comp->fw_dev, data, rx_hprime);
+>  	if (ret < 0)
+>  		drm_dbg_kms(&dev_priv->drm, "Verify hprime failed. %d\n", ret);
+>  	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+> @@ -1227,7 +1227,7 @@ hdcp2_store_pairing_info(struct intel_connector *connector,
+>  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+>  	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+> -	struct i915_hdcp_comp_master *comp;
+> +	struct i915_hdcp_fw_master *comp;
+>  	int ret;
+>  
+>  	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
+> @@ -1238,7 +1238,7 @@ hdcp2_store_pairing_info(struct intel_connector *connector,
+>  		return -EINVAL;
+>  	}
+>  
+> -	ret = comp->ops->store_pairing_info(comp->mei_dev, data, pairing_info);
+> +	ret = comp->ops->store_pairing_info(comp->fw_dev, data, pairing_info);
+>  	if (ret < 0)
+>  		drm_dbg_kms(&dev_priv->drm, "Store pairing info failed. %d\n",
+>  			    ret);
+> @@ -1254,7 +1254,7 @@ hdcp2_prepare_lc_init(struct intel_connector *connector,
+>  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+>  	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+> -	struct i915_hdcp_comp_master *comp;
+> +	struct i915_hdcp_fw_master *comp;
+>  	int ret;
+>  
+>  	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
+> @@ -1265,7 +1265,7 @@ hdcp2_prepare_lc_init(struct intel_connector *connector,
+>  		return -EINVAL;
+>  	}
+>  
+> -	ret = comp->ops->initiate_locality_check(comp->mei_dev, data, lc_init);
+> +	ret = comp->ops->initiate_locality_check(comp->fw_dev, data, lc_init);
+>  	if (ret < 0)
+>  		drm_dbg_kms(&dev_priv->drm, "Prepare lc_init failed. %d\n",
+>  			    ret);
+> @@ -1281,7 +1281,7 @@ hdcp2_verify_lprime(struct intel_connector *connector,
+>  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+>  	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+> -	struct i915_hdcp_comp_master *comp;
+> +	struct i915_hdcp_fw_master *comp;
+>  	int ret;
+>  
+>  	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
+> @@ -1292,7 +1292,7 @@ hdcp2_verify_lprime(struct intel_connector *connector,
+>  		return -EINVAL;
+>  	}
+>  
+> -	ret = comp->ops->verify_lprime(comp->mei_dev, data, rx_lprime);
+> +	ret = comp->ops->verify_lprime(comp->fw_dev, data, rx_lprime);
+>  	if (ret < 0)
+>  		drm_dbg_kms(&dev_priv->drm, "Verify L_Prime failed. %d\n",
+>  			    ret);
+> @@ -1307,7 +1307,7 @@ static int hdcp2_prepare_skey(struct intel_connector *connector,
+>  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+>  	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+> -	struct i915_hdcp_comp_master *comp;
+> +	struct i915_hdcp_fw_master *comp;
+>  	int ret;
+>  
+>  	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
+> @@ -1318,7 +1318,7 @@ static int hdcp2_prepare_skey(struct intel_connector *connector,
+>  		return -EINVAL;
+>  	}
+>  
+> -	ret = comp->ops->get_session_key(comp->mei_dev, data, ske_data);
+> +	ret = comp->ops->get_session_key(comp->fw_dev, data, ske_data);
+>  	if (ret < 0)
+>  		drm_dbg_kms(&dev_priv->drm, "Get session key failed. %d\n",
+>  			    ret);
+> @@ -1336,7 +1336,7 @@ hdcp2_verify_rep_topology_prepare_ack(struct intel_connector *connector,
+>  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+>  	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+> -	struct i915_hdcp_comp_master *comp;
+> +	struct i915_hdcp_fw_master *comp;
+>  	int ret;
+>  
+>  	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
+> @@ -1347,7 +1347,7 @@ hdcp2_verify_rep_topology_prepare_ack(struct intel_connector *connector,
+>  		return -EINVAL;
+>  	}
+>  
+> -	ret = comp->ops->repeater_check_flow_prepare_ack(comp->mei_dev, data,
+> +	ret = comp->ops->repeater_check_flow_prepare_ack(comp->fw_dev, data,
+>  							 rep_topology,
+>  							 rep_send_ack);
+>  	if (ret < 0)
+> @@ -1365,7 +1365,7 @@ hdcp2_verify_mprime(struct intel_connector *connector,
+>  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+>  	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+> -	struct i915_hdcp_comp_master *comp;
+> +	struct i915_hdcp_fw_master *comp;
+>  	int ret;
+>  
+>  	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
+> @@ -1376,7 +1376,7 @@ hdcp2_verify_mprime(struct intel_connector *connector,
+>  		return -EINVAL;
+>  	}
+>  
+> -	ret = comp->ops->verify_mprime(comp->mei_dev, data, stream_ready);
+> +	ret = comp->ops->verify_mprime(comp->fw_dev, data, stream_ready);
+>  	if (ret < 0)
+>  		drm_dbg_kms(&dev_priv->drm, "Verify mprime failed. %d\n", ret);
+>  	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+> @@ -1389,7 +1389,7 @@ static int hdcp2_authenticate_port(struct intel_connector *connector)
+>  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+>  	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+> -	struct i915_hdcp_comp_master *comp;
+> +	struct i915_hdcp_fw_master *comp;
+>  	int ret;
+>  
+>  	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
+> @@ -1400,7 +1400,7 @@ static int hdcp2_authenticate_port(struct intel_connector *connector)
+>  		return -EINVAL;
+>  	}
+>  
+> -	ret = comp->ops->enable_hdcp_authentication(comp->mei_dev, data);
+> +	ret = comp->ops->enable_hdcp_authentication(comp->fw_dev, data);
+>  	if (ret < 0)
+>  		drm_dbg_kms(&dev_priv->drm, "Enable hdcp auth failed. %d\n",
+>  			    ret);
+> @@ -1413,7 +1413,7 @@ static int hdcp2_close_mei_session(struct intel_connector *connector)
+>  {
+>  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+> -	struct i915_hdcp_comp_master *comp;
+> +	struct i915_hdcp_fw_master *comp;
+>  	int ret;
+>  
+>  	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
+> @@ -1424,7 +1424,7 @@ static int hdcp2_close_mei_session(struct intel_connector *connector)
+>  		return -EINVAL;
+>  	}
+>  
+> -	ret = comp->ops->close_hdcp_session(comp->mei_dev,
+> +	ret = comp->ops->close_hdcp_session(comp->fw_dev,
+>  					     &dig_port->hdcp_port_data);
+>  	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+>  
+> @@ -2145,8 +2145,8 @@ static int i915_hdcp_component_bind(struct device *i915_kdev,
+>  
+>  	drm_dbg(&dev_priv->drm, "I915 HDCP comp bind\n");
+>  	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
+> -	dev_priv->display.hdcp.master = (struct i915_hdcp_comp_master *)data;
+> -	dev_priv->display.hdcp.master->mei_dev = mei_kdev;
+> +	dev_priv->display.hdcp.master = (struct i915_hdcp_fw_master *)data;
+> +	dev_priv->display.hdcp.master->fw_dev = mei_kdev;
+>  	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+>  
+>  	return 0;
+> @@ -2168,25 +2168,25 @@ static const struct component_ops i915_hdcp_component_ops = {
+>  	.unbind = i915_hdcp_component_unbind,
+>  };
+>  
+> -static enum mei_fw_ddi intel_get_mei_fw_ddi_index(enum port port)
+> +static enum cp_fw_ddi intel_get_mei_fw_ddi_index(enum port port)
+>  {
+>  	switch (port) {
+>  	case PORT_A:
+> -		return MEI_DDI_A;
+> +		return FW_DDI_A;
+>  	case PORT_B ... PORT_F:
+> -		return (enum mei_fw_ddi)port;
+> +		return (enum cp_fw_ddi)port;
+>  	default:
+> -		return MEI_DDI_INVALID_PORT;
+> +		return FW_DDI_INVALID_PORT;
+>  	}
+>  }
+>  
+> -static enum mei_fw_tc intel_get_mei_fw_tc(enum transcoder cpu_transcoder)
+> +static enum cp_fw_tc intel_get_mei_fw_tc(enum transcoder cpu_transcoder)
+>  {
+>  	switch (cpu_transcoder) {
+>  	case TRANSCODER_A ... TRANSCODER_D:
+> -		return (enum mei_fw_tc)(cpu_transcoder | 0x10);
+> +		return (enum cp_fw_tc)(cpu_transcoder | 0x10);
+>  	default: /* eDP, DSI TRANSCODERS are non HDCP capable */
+> -		return MEI_INVALID_TRANSCODER;
+> +		return FW_INVALID_TRANSCODER;
+>  	}
+>  }
+>  
+> @@ -2206,14 +2206,14 @@ static int initialize_hdcp_port_data(struct intel_connector *connector,
+>  		 * As per ME FW API expectation, for GEN 12+, fw_ddi is filled
+>  		 * with zero(INVALID PORT index).
+>  		 */
+> -		data->fw_ddi = MEI_DDI_INVALID_PORT;
+> +		data->fw_ddi = FW_DDI_INVALID_PORT;
+>  
+>  	/*
+>  	 * As associated transcoder is set and modified at modeset, here fw_tc
+>  	 * is initialized to zero (invalid transcoder index). This will be
+>  	 * retained for <Gen12 forever.
+>  	 */
+> -	data->fw_tc = MEI_INVALID_TRANSCODER;
+> +	data->fw_tc = FW_INVALID_TRANSCODER;
+>  
+>  	data->port_type = (u8)HDCP_PORT_TYPE_INTEGRATED;
+>  	data->protocol = (u8)shim->protocol;
+> diff --git a/drivers/misc/mei/hdcp/mei_hdcp.c b/drivers/misc/mei/hdcp/mei_hdcp.c
+> index 7e3cd3fd7f7b..7ca8b739cd31 100644
+> --- a/drivers/misc/mei/hdcp/mei_hdcp.c
+> +++ b/drivers/misc/mei/hdcp/mei_hdcp.c
+> @@ -715,7 +715,7 @@ mei_hdcp_close_session(struct device *dev, struct hdcp_port_data *data)
+>  	return 0;
+>  }
+>  
+> -static const struct i915_hdcp_component_ops mei_hdcp_ops = {
+> +static const struct i915_hdcp_fw_ops mei_hdcp_ops = {
+>  	.owner = THIS_MODULE,
+>  	.initiate_hdcp2_session = mei_hdcp_initiate_session,
+>  	.verify_receiver_cert_prepare_km =
+> @@ -735,13 +735,13 @@ static const struct i915_hdcp_component_ops mei_hdcp_ops = {
+>  static int mei_component_master_bind(struct device *dev)
+>  {
+>  	struct mei_cl_device *cldev = to_mei_cl_device(dev);
+> -	struct i915_hdcp_comp_master *comp_master =
+> +	struct i915_hdcp_fw_master *comp_master =
+>  						mei_cldev_get_drvdata(cldev);
+>  	int ret;
+>  
+>  	dev_dbg(dev, "%s\n", __func__);
+>  	comp_master->ops = &mei_hdcp_ops;
+> -	comp_master->mei_dev = dev;
+> +	comp_master->fw_dev = dev;
+>  	ret = component_bind_all(dev, comp_master);
+>  	if (ret < 0)
+>  		return ret;
+> @@ -752,7 +752,7 @@ static int mei_component_master_bind(struct device *dev)
+>  static void mei_component_master_unbind(struct device *dev)
+>  {
+>  	struct mei_cl_device *cldev = to_mei_cl_device(dev);
+> -	struct i915_hdcp_comp_master *comp_master =
+> +	struct i915_hdcp_fw_master *comp_master =
+>  						mei_cldev_get_drvdata(cldev);
+>  
+>  	dev_dbg(dev, "%s\n", __func__);
+> @@ -801,7 +801,7 @@ static int mei_hdcp_component_match(struct device *dev, int subcomponent,
+>  static int mei_hdcp_probe(struct mei_cl_device *cldev,
+>  			  const struct mei_cl_device_id *id)
+>  {
+> -	struct i915_hdcp_comp_master *comp_master;
+> +	struct i915_hdcp_fw_master *comp_master;
+>  	struct component_match *master_match;
+>  	int ret;
+>  
+> @@ -846,7 +846,7 @@ static int mei_hdcp_probe(struct mei_cl_device *cldev,
+>  
+>  static void mei_hdcp_remove(struct mei_cl_device *cldev)
+>  {
+> -	struct i915_hdcp_comp_master *comp_master =
+> +	struct i915_hdcp_fw_master *comp_master =
+>  						mei_cldev_get_drvdata(cldev);
+>  	int ret;
+>  
+> diff --git a/include/drm/i915_cp_fw_hdcp_interface.h b/include/drm/i915_cp_fw_hdcp_interface.h
+> index e5dc6b985b2f..3abfe6d414b8 100644
+> --- a/include/drm/i915_cp_fw_hdcp_interface.h
+> +++ b/include/drm/i915_cp_fw_hdcp_interface.h
+> @@ -41,38 +41,38 @@ enum hdcp_wired_protocol {
+>  	HDCP_PROTOCOL_DP
+>  };
+>  
+> -enum mei_fw_ddi {
+> -	MEI_DDI_INVALID_PORT = 0x0,
+> +enum cp_fw_ddi {
+> +	FW_DDI_INVALID_PORT = 0x0,
+>  
+> -	MEI_DDI_B = 1,
+> -	MEI_DDI_C,
+> -	MEI_DDI_D,
+> -	MEI_DDI_E,
+> -	MEI_DDI_F,
+> -	MEI_DDI_A = 7,
+> -	MEI_DDI_RANGE_END = MEI_DDI_A,
+> +	FW_DDI_B = 1,
+> +	FW_DDI_C,
+> +	FW_DDI_D,
+> +	FW_DDI_E,
+> +	FW_DDI_F,
+> +	FW_DDI_A = 7,
+> +	FW_DDI_RANGE_END = FW_DDI_A,
+>  };
+>  
+>  /**
+>   * enum mei_fw_tc - ME Firmware defined index for transcoders
+> - * @MEI_INVALID_TRANSCODER: Index for Invalid transcoder
+> - * @MEI_TRANSCODER_EDP: Index for EDP Transcoder
+> - * @MEI_TRANSCODER_DSI0: Index for DSI0 Transcoder
+> - * @MEI_TRANSCODER_DSI1: Index for DSI1 Transcoder
+> - * @MEI_TRANSCODER_A: Index for Transcoder A
+> - * @MEI_TRANSCODER_B: Index for Transcoder B
+> - * @MEI_TRANSCODER_C: Index for Transcoder C
+> - * @MEI_TRANSCODER_D: Index for Transcoder D
+> + * @FW_INVALID_TRANSCODER: Index for Invalid transcoder
+> + * @FW_TRANSCODER_EDP: Index for EDP Transcoder
+> + * @FW_TRANSCODER_DSI0: Index for DSI0 Transcoder
+> + * @FW_TRANSCODER_DSI1: Index for DSI1 Transcoder
+> + * @FW_TRANSCODER_A: Index for Transcoder A
+> + * @FW_TRANSCODER_B: Index for Transcoder B
+> + * @FW_TRANSCODER_C: Index for Transcoder C
+> + * @FW_TRANSCODER_D: Index for Transcoder D
+>   */
+> -enum mei_fw_tc {
+> -	MEI_INVALID_TRANSCODER = 0x00,
+> -	MEI_TRANSCODER_EDP,
+> -	MEI_TRANSCODER_DSI0,
+> -	MEI_TRANSCODER_DSI1,
+> -	MEI_TRANSCODER_A = 0x10,
+> -	MEI_TRANSCODER_B,
+> -	MEI_TRANSCODER_C,
+> -	MEI_TRANSCODER_D
+> +enum cp_fw_tc {
+> +	FW_INVALID_TRANSCODER = 0x00,
+> +	FW_TRANSCODER_EDP,
+> +	FW_TRANSCODER_DSI0,
+> +	FW_TRANSCODER_DSI1,
+> +	FW_TRANSCODER_A = 0x10,
+> +	FW_TRANSCODER_B,
+> +	FW_TRANSCODER_C,
+> +	FW_TRANSCODER_D
+>  };
+>  
+>  /**
+> @@ -90,8 +90,8 @@ enum mei_fw_tc {
+>   *	     streams
+>   */
+>  struct hdcp_port_data {
+> -	enum mei_fw_ddi fw_ddi;
+> -	enum mei_fw_tc fw_tc;
+> +	enum cp_fw_ddi fw_ddi;
+> +	enum cp_fw_tc fw_tc;
+>  	u8 port_type;
+>  	u8 protocol;
+>  	u16 k;
+> @@ -119,7 +119,7 @@ struct hdcp_port_data {
+>   * @close_hdcp_session: Close the Wired HDCP Tx session per port.
+>   *			This also disables the authenticated state of the port.
+>   */
+> -struct i915_hdcp_component_ops {
+> +struct i915_hdcp_fw_ops {
+>  	/**
+>  	 * @owner: mei_hdcp module
+>  	 */
+> @@ -168,14 +168,14 @@ struct i915_hdcp_component_ops {
+>  };
+>  
+>  /**
+> - * struct i915_hdcp_component_master - Used for communication between i915
+> - * and mei_hdcp drivers for the HDCP2.2 services
+> - * @mei_dev: device that provide the HDCP2.2 service from MEI Bus.
+> + * struct i915_hdcp_fw_master - Used for communication between i915
+> + * and cp fw hdcp intf driver like mei_hdcp for the HDCP2.2 services
+> + * @fw_dev: device that provide the HDCP2.2 service from CP FW interface.
+>   * @hdcp_ops: Ops implemented by mei_hdcp driver, used by i915 driver.
+>   */
+> -struct i915_hdcp_comp_master {
+> -	struct device *mei_dev;
+> -	const struct i915_hdcp_component_ops *ops;
+> +struct i915_hdcp_fw_master {
+> +	struct device *fw_dev;
+> +	const struct i915_hdcp_fw_ops *ops;
+>  
+>  	/* To protect the above members. */
+>  	struct mutex mutex;
 
-CI Bug Log - changes from CI_DRM_12501 -> Patchwork_111744v3
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111744v3/index.html
-
-Participating hosts (38 -> 41)
-------------------------------
-
-  Additional (3): fi-skl-guc bat-rpls-1 bat-jsl-1 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_111744v3 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-skl-guc:         NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111744v3/fi-skl-guc/igt@gem_lmem_swapping@basic.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - fi-rkl-11600:       [PASS][2] -> [INCOMPLETE][3] ([i915#4817])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12501/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111744v3/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-skl-guc:         NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111744v3/fi-skl-guc/igt@kms_chamelium@hdmi-crc-fast.html
-
-  * igt@kms_psr@sprite_plane_onoff:
-    - fi-skl-guc:         NOTRUN -> [SKIP][5] ([fdo#109271]) +9 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111744v3/fi-skl-guc/igt@kms_psr@sprite_plane_onoff.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-pnv-d510:        [FAIL][6] ([i915#7229]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12501/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111744v3/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-
-  * igt@i915_selftest@live@migrate:
-    - {bat-adlp-9}:       [DMESG-FAIL][8] -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12501/bat-adlp-9/igt@i915_selftest@live@migrate.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111744v3/bat-adlp-9/igt@i915_selftest@live@migrate.html
-    - {bat-adlp-6}:       [DMESG-FAIL][10] -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12501/bat-adlp-6/igt@i915_selftest@live@migrate.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111744v3/bat-adlp-6/igt@i915_selftest@live@migrate.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#3003]: https://gitlab.freedesktop.org/drm/intel/issues/3003
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4817]: https://gitlab.freedesktop.org/drm/intel/issues/4817
-  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
-  [i915#6794]: https://gitlab.freedesktop.org/drm/intel/issues/6794
-  [i915#7229]: https://gitlab.freedesktop.org/drm/intel/issues/7229
-  [i915#7456]: https://gitlab.freedesktop.org/drm/intel/issues/7456
-  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12501 -> Patchwork_111744v3
-
-  CI-20190529: 20190529
-  CI_DRM_12501: 1b38b5a419ab3d838b6ac95d22f1fe057fc8889d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7091: b8015f920c9f469d3733854263cb878373c1df51 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_111744v3: 1b38b5a419ab3d838b6ac95d22f1fe057fc8889d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-fa0e6651d2b5 drm/i915: cleanup TLB invalidation code
-7f2e0208920a drm/i915: fix TLB invalidation for Gen12.50 video and compute engines
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111744v3/index.html
-
---===============3572674025923622262==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915: fix TLB invalidation for Gen12.50 video and compute engines (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/111744/">https://patchwork.freedesktop.org/series/111744/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111744v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111744v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12501 -&gt; Patchwork_111744v3</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111744v3/index.html</p>
-<h2>Participating hosts (38 -&gt; 41)</h2>
-<p>Additional (3): fi-skl-guc bat-rpls-1 bat-jsl-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_111744v3 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-skl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111744v3/fi-skl-guc/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12501/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111744v3/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4817">i915#4817</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-crc-fast:</p>
-<ul>
-<li>fi-skl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111744v3/fi-skl-guc/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@sprite_plane_onoff:</p>
-<ul>
-<li>fi-skl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111744v3/fi-skl-guc/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12501/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7229">i915#7229</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111744v3/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@migrate:</p>
-<ul>
-<li>
-<p>{bat-adlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12501/bat-adlp-9/igt@i915_selftest@live@migrate.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111744v3/bat-adlp-9/igt@i915_selftest@live@migrate.html">PASS</a></p>
-</li>
-<li>
-<p>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12501/bat-adlp-6/igt@i915_selftest@live@migrate.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111744v3/bat-adlp-6/igt@i915_selftest@live@migrate.html">PASS</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12501 -&gt; Patchwork_111744v3</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12501: 1b38b5a419ab3d838b6ac95d22f1fe057fc8889d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7091: b8015f920c9f469d3733854263cb878373c1df51 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_111744v3: 1b38b5a419ab3d838b6ac95d22f1fe057fc8889d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>fa0e6651d2b5 drm/i915: cleanup TLB invalidation code<br />
-7f2e0208920a drm/i915: fix TLB invalidation for Gen12.50 video and compute engines</p>
-
-</body>
-</html>
-
---===============3572674025923622262==--
+-- 
+Jani Nikula, Intel Open Source Graphics Center
