@@ -2,34 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A39964B2C6
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Dec 2022 10:53:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BFF564B2D4
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Dec 2022 10:56:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2842610E2F2;
-	Tue, 13 Dec 2022 09:52:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEE3C10E2F2;
+	Tue, 13 Dec 2022 09:56:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 109890 seconds by postgrey-1.36 at gabe;
- Tue, 13 Dec 2022 09:52:25 UTC
-Received: from out30-54.freemail.mail.aliyun.com
- (out30-54.freemail.mail.aliyun.com [115.124.30.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6798D10E2F2;
- Tue, 13 Dec 2022 09:52:23 +0000 (UTC)
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R881e4; CH=green; DM=||false|;
- DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018045192;
- MF=jiapeng.chong@linux.alibaba.com; NM=0; PH=DS; RN=11; SR=0;
- TI=SMTPD_---0VXDgPPb_1670925129; 
-Received: from localhost(mailfrom:jiapeng.chong@linux.alibaba.com
- fp:SMTPD_---0VXDgPPb_1670925129) by smtp.aliyun-inc.com;
- Tue, 13 Dec 2022 17:52:15 +0800
-From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
-To: jani.nikula@linux.intel.com
-Date: Tue, 13 Dec 2022 17:51:45 +0800
-Message-Id: <20221213095145.1899-1-jiapeng.chong@linux.alibaba.com>
-X-Mailer: git-send-email 2.20.1.7.g153144c
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C2C8810E2F2;
+ Tue, 13 Dec 2022 09:55:59 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6B27DA7E03;
+ Tue, 13 Dec 2022 09:55:59 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Modify mismatched function name
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andrzej Hajda" <andrzej.hajda@intel.com>
+Date: Tue, 13 Dec 2022 09:55:59 -0000
+Message-ID: <167092535940.25538.5924934636084824297@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221207173630.973662-1-andrzej.hajda@intel.com>
+In-Reply-To: <20221207173630.973662-1-andrzej.hajda@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIHNl?=
+ =?utf-8?q?ries_starting_with_=5B1/2=5D_drm/i915=3A_fix_TLB_invalidation_f?=
+ =?utf-8?q?or_Gen12=2E50_video_and_compute_engines_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,37 +41,22 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
- intel-gfx@lists.freedesktop.org, Abaci Robot <abaci@linux.alibaba.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, daniel@ffwll.ch,
- rodrigo.vivi@intel.com, airlied@gmail.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-No functional modification involved.
+== Series Details ==
 
-drivers/gpu/drm/i915/gt/intel_engine_cs.c:1306: warning: expecting prototype for intel_engines_init_common(). Prototype was for engine_init_common() instead.
+Series: series starting with [1/2] drm/i915: fix TLB invalidation for Gen12.50 video and compute engines (rev3)
+URL   : https://patchwork.freedesktop.org/series/111744/
+State : warning
 
-Link: https://bugzilla.openanolis.cn/show_bug.cgi?id=3442
-Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
----
- drivers/gpu/drm/i915/gt/intel_engine_cs.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index c33e0d72d670..dfcd3a91fbe7 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -1292,7 +1292,7 @@ create_kernel_context(struct intel_engine_cs *engine)
- }
- 
- /**
-- * intel_engines_init_common - initialize cengine state which might require hw access
-+ * engine_init_common - initialize cengine state which might require hw access
-  * @engine: Engine to initialize.
-  *
-  * Initializes @engine@ structure members shared between legacy and execlists
--- 
-2.20.1.7.g153144c
+Error: make htmldocs had i915 warnings
+./drivers/gpu/drm/i915/display/intel_dsb.c:201: warning: Excess function parameter 'crtc_state' description in 'intel_dsb_reg_write'
+./drivers/gpu/drm/i915/display/intel_dsb.c:201: warning: Function parameter or member 'dsb' not described in 'intel_dsb_reg_write'
+./drivers/gpu/drm/i915/display/intel_dsb.c:201: warning: Excess function parameter 'crtc_state' description in 'intel_dsb_reg_write'
+
 
