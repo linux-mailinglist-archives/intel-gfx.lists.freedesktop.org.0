@@ -2,32 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23E8F64C642
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Dec 2022 10:49:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08F0764C725
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Dec 2022 11:32:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB18E10E3A2;
-	Wed, 14 Dec 2022 09:49:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96D3310E3A5;
+	Wed, 14 Dec 2022 10:31:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6450B10E3A1;
- Wed, 14 Dec 2022 09:48:59 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5DB4CAA917;
- Wed, 14 Dec 2022 09:48:59 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8245957200581902062=="
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3A4810E3A5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Dec 2022 10:31:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1671013895; x=1702549895;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=huQCmpg3XnJsmh/qEw7HKhy/I3Elb8Qly2L/x98Xgk8=;
+ b=mf0pCup8Qm302WSlhMTVNokQyEcuKsumF7ssTIRqv908nZQ2a4jGovVG
+ NrrTZF6ogmPt8DihQi8nrR6eO1v3i9knw+mNlS6pbAjvaD1Y3a315uK8c
+ uGhtquZqi0vOUsi57Qm53AERmtGjP+GeLDyWwjvUxvkSvf0UBQYS+ZFVZ
+ Sa5RiUucFDU50r5xqTVVgmj5t+tRoOcC79Riszz1aZzeML8OwnPwj+Ghu
+ EFE0HPkDpQK3mvBbzam7uxo2+v96VMBRWAk+t7YOLCZgnOKIKd/m9DNtb
+ AhMKomGcdFw8G71PcwEaPhCd78mVwqLHP6w+58e2ZaUS3j5dsNn0T8xB8 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10560"; a="345436704"
+X-IronPort-AV: E=Sophos;i="5.96,244,1665471600"; d="scan'208";a="345436704"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Dec 2022 02:31:34 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10560"; a="712462193"
+X-IronPort-AV: E=Sophos;i="5.96,244,1665471600"; d="scan'208";a="712462193"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Dec 2022 02:31:33 -0800
+Date: Wed, 14 Dec 2022 12:31:24 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
+Message-ID: <Y5ml/OHxUUU/GzzA@intel.com>
+References: <20221124103623.13974-1-stanislav.lisovskiy@intel.com>
+ <20221124103623.13974-2-stanislav.lisovskiy@intel.com>
+ <CY4PR1101MB2166A66996BCE28F1B6B70C1F8129@CY4PR1101MB2166.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Date: Wed, 14 Dec 2022 09:48:59 -0000
-Message-ID: <167101133935.8284.9937994489463659323@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221214090758.3040356-1-suraj.kandpal@intel.com>
-In-Reply-To: <20221214090758.3040356-1-suraj.kandpal@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRW5h?=
- =?utf-8?q?ble_HDCP2=2Ex_via_GSC_CS_=28rev3=29?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CY4PR1101MB2166A66996BCE28F1B6B70C1F8129@CY4PR1101MB2166.namprd11.prod.outlook.com>
+Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915: Implement workaround for
+ CDCLK PLL disable/enable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,284 +59,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8245957200581902062==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, Nov 29, 2022 at 09:19:40PM +0200, Srivatsa, Anusha wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
+> > Stanislav Lisovskiy
+> > Sent: Thursday, November 24, 2022 2:36 AM
+> > To: intel-gfx@lists.freedesktop.org
+> > Cc: Nikula, Jani <jani.nikula@intel.com>
+> > Subject: [Intel-gfx] [PATCH 1/1] drm/i915: Implement workaround for CDCLK
+> > PLL disable/enable
+> > 
+> > It was reported that we might get a hung and loss of register access in some
+> > cases when CDCLK PLL is disabled and then enabled, while squashing is
+> > enabled.
+> > As a workaround it was proposed by HW team that SW should disable
+> > squashing when CDCLK PLL is being reenabled.
+> > 
+> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_cdclk.c | 14 ++++++++++++--
+> >  1 file changed, 12 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > index 0c107a38f9d0..e338f288c9ac 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > @@ -1801,6 +1801,13 @@ static bool
+> > cdclk_compute_crawl_and_squash_midpoint(struct drm_i915_private *i91
+> >  	return true;
+> >  }
+> > 
+> > +static bool pll_enable_wa_needed(struct drm_i915_private *dev_priv) {
+> > +	return ((IS_DG2(dev_priv) || IS_METEORLAKE(dev_priv))
+> > +		&& dev_priv->display.cdclk.hw.vco > 0
+> > +		&& HAS_CDCLK_SQUASH(dev_priv));
+> Redundant check. If it is MTL or DG2, then it will have HAS_CDCLK_SQUASH set to true always. Shouldn't vco be 0 instead of > 0. The commit message says the hang can be observed when moving from 0 to > 0 vco. 
+> 
+> Anusha
 
-== Series Details ==
+Idea was that we probably should bind more to the feature rather than platform, I agree checking both "IS_DG2" and if
+platform has squashing is redundant, because then we would have to add each new platform manually, so I would leave
+HAS_CDCLK_SQUASH and then at some point just cut off using some INTEL_GEN or other check all the new platforms where
+this is fixed in HW.
 
-Series: Enable HDCP2.x via GSC CS (rev3)
-URL   : https://patchwork.freedesktop.org/series/111876/
-State : success
+Regarding vco, the icl_cdclk_pll_update func works as follows:
 
-== Summary ==
+if (i915->display.cdclk.hw.vco != 0 &&
+    i915->display.cdclk.hw.vco != vco)
+    icl_cdclk_pll_disable(i915);
 
-CI Bug Log - changes from CI_DRM_12502 -> Patchwork_111876v3
-====================================================
+if (i915->display.cdclk.hw.vco != vco)
+    icl_cdclk_pll_enable(i915, vco);
 
-Summary
--------
+1) if vco changes from zero value(i915->display.cdclk.hw.vco) to non-zero value(vco), that means
+   currently squashing is anyway disabled(if vco == 0, cdclk is set to "bypass" and squash waveform
+   is 0), so the W/A is not needed.
 
-  **SUCCESS**
+2) if vco changes from non-zero value in i915->display.cdclk.hw.vco to zero value(vco), we are not 
+   going to call icl_cdclk_pll_enable anyway so W/A is also not needed.
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/index.html
-
-Participating hosts (39 -> 19)
-------------------------------
-
-  Missing    (20): fi-kbl-soraka bat-dg1-6 bat-dg1-5 bat-adlp-6 bat-rpls-1 fi-skl-6600u fi-bsw-n3050 bat-dg2-8 bat-adlm-1 bat-dg2-9 bat-adln-1 bat-jsl-3 bat-rplp-1 bat-dg2-11 fi-bsw-nick bat-dg1-7 bat-kbl-2 bat-adlp-9 bat-jsl-1 bat-adlp-4 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_111876v3 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@load:
-    - fi-rkl-11600:       [PASS][1] -> [SKIP][2] ([i915#6227])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12502/fi-rkl-11600/igt@i915_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-rkl-11600/igt@i915_module_load@load.html
-    - fi-icl-u2:          [PASS][3] -> [SKIP][4] ([i915#6227])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12502/fi-icl-u2/igt@i915_module_load@load.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-icl-u2/igt@i915_module_load@load.html
-    - fi-glk-j4005:       [PASS][5] -> [SKIP][6] ([fdo#109271])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12502/fi-glk-j4005/igt@i915_module_load@load.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-glk-j4005/igt@i915_module_load@load.html
-    - fi-rkl-guc:         [PASS][7] -> [SKIP][8] ([i915#6227])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12502/fi-rkl-guc/igt@i915_module_load@load.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-rkl-guc/igt@i915_module_load@load.html
-    - fi-skl-guc:         [PASS][9] -> [SKIP][10] ([fdo#109271] / [i915#6227])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12502/fi-skl-guc/igt@i915_module_load@load.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-skl-guc/igt@i915_module_load@load.html
-    - fi-skl-6700k2:      [PASS][11] -> [SKIP][12] ([fdo#109271] / [i915#6227])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12502/fi-skl-6700k2/igt@i915_module_load@load.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-skl-6700k2/igt@i915_module_load@load.html
-    - fi-kbl-7567u:       [PASS][13] -> [SKIP][14] ([fdo#109271] / [i915#6227])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12502/fi-kbl-7567u/igt@i915_module_load@load.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-kbl-7567u/igt@i915_module_load@load.html
-    - fi-adl-ddr5:        [PASS][15] -> [SKIP][16] ([i915#6227])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12502/fi-adl-ddr5/igt@i915_module_load@load.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-adl-ddr5/igt@i915_module_load@load.html
-    - fi-cfl-guc:         [PASS][17] -> [SKIP][18] ([fdo#109271] / [i915#6227])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12502/fi-cfl-guc/igt@i915_module_load@load.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-cfl-guc/igt@i915_module_load@load.html
-    - fi-hsw-4770:        [PASS][19] -> [SKIP][20] ([fdo#109271])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12502/fi-hsw-4770/igt@i915_module_load@load.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-hsw-4770/igt@i915_module_load@load.html
-    - fi-ivb-3770:        [PASS][21] -> [SKIP][22] ([fdo#109271])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12502/fi-ivb-3770/igt@i915_module_load@load.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-ivb-3770/igt@i915_module_load@load.html
-    - fi-snb-2600:        [PASS][23] -> [SKIP][24] ([fdo#109271])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12502/fi-snb-2600/igt@i915_module_load@load.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-snb-2600/igt@i915_module_load@load.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][25] ([fdo#109271] / [fdo#111827])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-hsw-4770/igt@kms_chamelium@common-hpd-after-suspend.html
-    - fi-rkl-guc:         NOTRUN -> [SKIP][26] ([fdo#111827])
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-rkl-guc/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_lrc:
-    - fi-rkl-guc:         [INCOMPLETE][27] ([i915#4983]) -> [PASS][28]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12502/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        [INCOMPLETE][29] ([i915#4785]) -> [PASS][30]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12502/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
-    - fi-bsw-kefka:       [FAIL][31] ([i915#6298]) -> [PASS][32]
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12502/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#6227]: https://gitlab.freedesktop.org/drm/intel/issues/6227
-  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
+3) if vco changes from some non-zero value in i915->display.cdclk.hw.vco to other non-zero value(vco),
+   which can happen if CDCLK changes, then icl_cdclk_pll_disable(hw vco!=0 and vco!=0) and then 
+   icl_cdclk_pll_enable would be called(hw vco is still not equal to vco)
+   So that disabling enabling in between is what we are interested and where we should make sure
+   squashing is disabled.
+   BTW I have another question - is this code even correct? Shouldn't we avoid disabling/enabling PLL if we have
+   squashing/crawling? As I understood the whole point of having swuashing/crawling is avoiding swithing the PLL
+   on and off.
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_12502 -> Patchwork_111876v3
-
-  CI-20190529: 20190529
-  CI_DRM_12502: cc44a1e87ea6b788868878295119398966f98a81 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7092: 59e3bf83f6bae0918276f880f969a10d279c657a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_111876v3: cc44a1e87ea6b788868878295119398966f98a81 @ git://anongit.freedesktop.org/gfx-ci/linux
+Stan
 
 
-### Linux commits
-
-a537a5696217 drm/i915/mtl: Add HDCP GSC interface
-e7d156905ea7 drm/i915/mtl: Add function to send command to GSC CS
-10719923d1c6 drm/i915/hdcp: Fill wired_cmd_in structures at a single place
-2636b34afca7 drm/i915/hdcp: Refactor HDCP API structures
-6a99f5231f39 drm/i915/hdcp: HDCP2.x Refactoring to agnotic cp f/w
-f28fa6235392 drm/i915/hdcp: Keep cp fw agonstic naming convention
-96811d85cfab drm/i915/gsc: Create GSC request submission mechanism
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/index.html
-
---===============8245957200581902062==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Enable HDCP2.x via GSC CS (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/111876/">https://patchwork.freedesktop.org/series/111876/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12502 -&gt; Patchwork_111876v3</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/index.html</p>
-<h2>Participating hosts (39 -&gt; 19)</h2>
-<p>Missing    (20): fi-kbl-soraka bat-dg1-6 bat-dg1-5 bat-adlp-6 bat-rpls-1 fi-skl-6600u fi-bsw-n3050 bat-dg2-8 bat-adlm-1 bat-dg2-9 bat-adln-1 bat-jsl-3 bat-rplp-1 bat-dg2-11 fi-bsw-nick bat-dg1-7 bat-kbl-2 bat-adlp-9 bat-jsl-1 bat-adlp-4 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_111876v3 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>
-<p>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12502/fi-rkl-11600/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-rkl-11600/igt@i915_module_load@load.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6227">i915#6227</a>)</p>
-</li>
-<li>
-<p>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12502/fi-icl-u2/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-icl-u2/igt@i915_module_load@load.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6227">i915#6227</a>)</p>
-</li>
-<li>
-<p>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12502/fi-glk-j4005/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-glk-j4005/igt@i915_module_load@load.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</p>
-</li>
-<li>
-<p>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12502/fi-rkl-guc/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-rkl-guc/igt@i915_module_load@load.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6227">i915#6227</a>)</p>
-</li>
-<li>
-<p>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12502/fi-skl-guc/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-skl-guc/igt@i915_module_load@load.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6227">i915#6227</a>)</p>
-</li>
-<li>
-<p>fi-skl-6700k2:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12502/fi-skl-6700k2/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-skl-6700k2/igt@i915_module_load@load.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6227">i915#6227</a>)</p>
-</li>
-<li>
-<p>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12502/fi-kbl-7567u/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-kbl-7567u/igt@i915_module_load@load.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6227">i915#6227</a>)</p>
-</li>
-<li>
-<p>fi-adl-ddr5:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12502/fi-adl-ddr5/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-adl-ddr5/igt@i915_module_load@load.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6227">i915#6227</a>)</p>
-</li>
-<li>
-<p>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12502/fi-cfl-guc/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-cfl-guc/igt@i915_module_load@load.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6227">i915#6227</a>)</p>
-</li>
-<li>
-<p>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12502/fi-hsw-4770/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-hsw-4770/igt@i915_module_load@load.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</p>
-</li>
-<li>
-<p>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12502/fi-ivb-3770/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-ivb-3770/igt@i915_module_load@load.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</p>
-</li>
-<li>
-<p>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12502/fi-snb-2600/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-snb-2600/igt@i915_module_load@load.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>
-<p>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-hsw-4770/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</p>
-</li>
-<li>
-<p>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-rkl-guc/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12502/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12502/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12502/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v3/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12502 -&gt; Patchwork_111876v3</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12502: cc44a1e87ea6b788868878295119398966f98a81 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7092: 59e3bf83f6bae0918276f880f969a10d279c657a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_111876v3: cc44a1e87ea6b788868878295119398966f98a81 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>a537a5696217 drm/i915/mtl: Add HDCP GSC interface<br />
-e7d156905ea7 drm/i915/mtl: Add function to send command to GSC CS<br />
-10719923d1c6 drm/i915/hdcp: Fill wired_cmd_in structures at a single place<br />
-2636b34afca7 drm/i915/hdcp: Refactor HDCP API structures<br />
-6a99f5231f39 drm/i915/hdcp: HDCP2.x Refactoring to agnotic cp f/w<br />
-f28fa6235392 drm/i915/hdcp: Keep cp fw agonstic naming convention<br />
-96811d85cfab drm/i915/gsc: Create GSC request submission mechanism</p>
-
-</body>
-</html>
-
---===============8245957200581902062==--
+> > +}
+> > +
+> >  static void _bxt_set_cdclk(struct drm_i915_private *dev_priv,
+> >  			   const struct intel_cdclk_config *cdclk_config,
+> >  			   enum pipe pipe)
+> > @@ -1815,9 +1822,12 @@ static void _bxt_set_cdclk(struct
+> > drm_i915_private *dev_priv,
+> >  	    !cdclk_pll_is_unknown(dev_priv->display.cdclk.hw.vco)) {
+> >  		if (dev_priv->display.cdclk.hw.vco != vco)
+> >  			adlp_cdclk_pll_crawl(dev_priv, vco);
+> > -	} else if (DISPLAY_VER(dev_priv) >= 11)
+> > +	} else if (DISPLAY_VER(dev_priv) >= 11) {
+> > +		if (pll_enable_wa_needed(dev_priv))
+> > +			dg2_cdclk_squash_program(dev_priv, 0);
+> > +
+> >  		icl_cdclk_pll_update(dev_priv, vco);
+> > -	else
+> > +	} else
+> >  		bxt_cdclk_pll_update(dev_priv, vco);
+> > 
+> >  	waveform = cdclk_squash_waveform(dev_priv, cdclk);
+> > --
+> > 2.37.3
+> 
