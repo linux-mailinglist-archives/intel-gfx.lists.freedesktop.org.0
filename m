@@ -2,57 +2,139 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AAD264C2CE
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Dec 2022 04:33:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 772D164C2E1
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Dec 2022 04:46:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AE0D10E215;
-	Wed, 14 Dec 2022 03:33:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0D4410E212;
+	Wed, 14 Dec 2022 03:46:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oa1-x31.google.com (mail-oa1-x31.google.com
- [IPv6:2001:4860:4864:20::31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C4A010E215
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Dec 2022 03:32:57 +0000 (UTC)
-Received: by mail-oa1-x31.google.com with SMTP id
- 586e51a60fabf-1441d7d40c6so15099759fac.8
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Dec 2022 19:32:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=yHKuHXmXIqmncHIFNewnNyGOQVnpLME4y5lTywUMmUk=;
- b=Iu/Hc6z/w8Rx2A1QwT0I+doPYM4ciizLkgSvRtRbtc1BuOzzBHi/Kq5Fsxg0990C8R
- 9ocoxoyAjYLZhjdA8r5cQOv4XxK6J11/22y4x6+G7nsA+BGKYdSsv2tTIC9u30mblSnJ
- tS5rr7RoYF/lTrH4gnyAoxaEC7F1bQob7EfnI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=yHKuHXmXIqmncHIFNewnNyGOQVnpLME4y5lTywUMmUk=;
- b=54z4YXPSb5LKuF748jr1PnELmbQK18TkEfZVwTsojBXyIttPAl9T9/noCXMKzgruQ4
- KnZnVOFqzWfha8WjADZNTB0qR2FssfuPFRWFq8UBEbHyuysYfOXlahDXUuVfXDSwUg5K
- 8I2JZJyI5wgw6dFiAoMSHy169ECKrHfFuRwhYHxqs3ZI2b/YzdeyIk7WQAyra1M/O2fo
- VxfjVv30hBe4LhF4hWr7ft1SSDMt+lStg2ttZfZRg4NIXJkBijMlcb5AB6QSMwNaq/8I
- bD0QxICw/3Oha4vcNKDelV9RDoXtHk10VUtIMqXC0OZUKHS9OdEQjV4KI9AxLAVXdjMf
- J/DQ==
-X-Gm-Message-State: AFqh2kq7LqAa09YS1WhQPXJb01sfwJa9IskeSRB3KFfIafYs8z7hteVJ
- w2fVAMcCT2174QnbwQ89QsDWuo68erV2lwXFnSbVtw==
-X-Google-Smtp-Source: AA0mqf4e1lGTadTAJcBI1FuFpd7Pycdz8A94gV06+GlHuporV57kF5kIngoqeLtC8g+c1pb8yy1CWlG6AwoENE0s2tg=
-X-Received: by 2002:a05:6870:638b:b0:144:96b3:5fd7 with SMTP id
- t11-20020a056870638b00b0014496b35fd7mr76194oap.173.1670988776811; Tue, 13 Dec
- 2022 19:32:56 -0800 (PST)
-MIME-Version: 1.0
-References: <20221206161141.128921-1-matthew.auld@intel.com>
-In-Reply-To: <20221206161141.128921-1-matthew.auld@intel.com>
-From: Mani Milani <mani@chromium.org>
-Date: Wed, 14 Dec 2022 14:32:45 +1100
-Message-ID: <CAHzEqDkd5u5A+2EfeVpnMoqHLWS=d5uLQquGDQ5TLAcx8Oydqw@mail.gmail.com>
-To: Matthew Auld <matthew.auld@intel.com>
-Content-Type: text/plain; charset="UTF-8"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AEF910E212
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Dec 2022 03:46:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1670989569; x=1702525569;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=1C4gsIwBiZJIK17IFtw4dOn8OT07OUwNROdwovVck3U=;
+ b=FvSvZ4B9Sja5vn8dO/vdhnQSu/WHPxRkVmgeTbH4G7wT40NzwIUs/tLl
+ CfVmqlI5caCrE312r2Oc0DgSNhMkr5VOsfU0v0bjkXxv15E1BRUYpYDni
+ 3gESO8Mcapec3Y9mMZpNPg1lz19uFsJfKQznanYdAVWJA+8XCrRfE7DmB
+ 3K2b/NFyS6fW+k8SFEr+LXIYnFKo4foGh0Jqp9cpU/KABFSeFNnsESeJ6
+ XRDa8ejWHs+kp32VrQL8dcx3o2jPL2M0EzpAaml3KTPUc0mVlwKbcDfv7
+ 5nU34D8ChERS2PKpXOUD3uK4wus7aA8tC8bZBeUeJQc2Hb04b+g048Xvz g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10560"; a="318345518"
+X-IronPort-AV: E=Sophos;i="5.96,243,1665471600"; d="scan'208";a="318345518"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2022 19:46:08 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10560"; a="717461485"
+X-IronPort-AV: E=Sophos;i="5.96,243,1665471600"; d="scan'208";a="717461485"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmsmga004.fm.intel.com with ESMTP; 13 Dec 2022 19:46:08 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Tue, 13 Dec 2022 19:46:08 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Tue, 13 Dec 2022 19:46:08 -0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.176)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Tue, 13 Dec 2022 19:46:07 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kCq5jGoBRt76bvF5zTwuWFJ6ofNn3F1/WF/512RGh4duWYqJMCPXM1sy3XU0+t1E6qRfhf53Qe1WzoLeRrSsAk7tLP/zeXeNnthbtRN9kYgAuWG+vtcjs6iqGivb/iRlPm5FAaEiIkiDEJ9yupVLfGd4gmwvQDLsrhAjPzDqnS0zraSQTr3hN4m1Kw2XyJ2UzUnCrNcTRvZvFCto8vilPdoG8c7gDlsbkRnUGuC2AcNKQqGfHh2Fwfeeoasg2vJB5PR2FAIfTaTg5EzNAn9m9nkHJviXGrQ4iUh88iCLixryfyrFrSoRUCQMCkzdqy+VFJy0gQJmmK/FtH31GM9o0Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=aYg9tf5l8+Q/KRM+Tdu07q5kLCx+LMZjVB0dvF2OJMc=;
+ b=kqIeWrZElE21oc/8AJ9AZihk3zQGR0R3MX7yI9Ka7Jpd08hmKIk3rqn67O5UOl/EujPWoloiNgLoRMddW0Qvz32gIOJRihP2/n9/fSWp84nSdGqTdvyOAvsJ14fXfKWNiGivSVCB5EWsdvt2G+Grcbugiz1Zhbq380HlGS60ObA4yj0WvkigPiM4cpdyxZTYcP4JUOzSxc2qmRu7r1y23kRSZxTspvgdwGn3ipfNv7iDFBM4Yj2zcc0iPStQPBQrAW9nQLQyTD7BvH4fL4iGaxq9c6IN/CXLzdRlp3+mvR4+1X3JSYXEt8aWmjpLHcp8sA1FdoTX2bYfOrBQp6Wjnw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from BL0PR11MB3170.namprd11.prod.outlook.com (2603:10b6:208:64::10)
+ by BL1PR11MB5384.namprd11.prod.outlook.com (2603:10b6:208:311::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.19; Wed, 14 Dec
+ 2022 03:46:01 +0000
+Received: from BL0PR11MB3170.namprd11.prod.outlook.com
+ ([fe80::8189:b5f5:4397:3530]) by BL0PR11MB3170.namprd11.prod.outlook.com
+ ([fe80::8189:b5f5:4397:3530%6]) with mapi id 15.20.5880.019; Wed, 14 Dec 2022
+ 03:46:01 +0000
+From: "Murthy, Arun R" <arun.r.murthy@intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/hdmi: Go for scrambling only if
+ platform supports TMDS clock > 340MHz
+Thread-Index: AQHZDrbKxbIjEpoIdUuaRItoCyOqzq5svmLg
+Date: Wed, 14 Dec 2022 03:46:01 +0000
+Message-ID: <BL0PR11MB3170C9A62B892B5619D8D943BAE09@BL0PR11MB3170.namprd11.prod.outlook.com>
+References: <20221213055106.2044535-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20221213055106.2044535-1-ankit.k.nautiyal@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BL0PR11MB3170:EE_|BL1PR11MB5384:EE_
+x-ms-office365-filtering-correlation-id: 31ac0512-4014-4e32-8dc6-08dadd85b7f0
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: NSYiWuhGMGhgg8M1KmBh+aeqWZf+gP+Y6tCvcUldjBr2qaQCVgH2q+nH1sZme87h32daAoJ451UXYun8KUBmfQN2ENnxQT2QDSJUpcEmqVGtWEkaNlguqTBu4tp2Vxi5QTwtdznEh5IMRbmCGug64I4uIHRdHmB8GyOeQm/bALYs6iWg/gPEK9csTv4YdY8JvufKUaZwpyXzRfDhxWmJAey3SbONUMx1dgHixB8cb6q1sSrsXb1TC9ct1k8yZa0hgFpVVlmdqJSNB3G8Lv9vkup/jSPovqyQZuxAH7Bz5mdOq9TeraBRA7r0DY55gyA9Yda/ivd7q5lfJPaRTBK7oK9Mu23FxVCuUggMu53Ay1Jmg3+9C7PzIkLawXfehNhyfiePbMaEj+wgKxJMbF83v73+UcdISbr++2RM3RcVbwp9Jgmq+1XBtCHV9PETxVB08oQUxIPhR6Fcm0Tj2Rgxi35NTq7x+Qii5N/H2opuhpLxdzphkzIRSQXJJBIJXTwFlgbjjp5GRdD8I1Qf/Z3MEXbpU8ulELAb/cOgK75SzNc3Pf+esCfB72PKgF5SfnGQ+K89lK/l+YGT5MlPo5WpFftZbyhm4O8ne93mqRRD+BbpIDhvi6En8Rhw2zyET4OwVQKbLHnQotyUMRQGJcdSJhnqcNU0vtMv5SBKEuz/gGlAc0QPiwvY73ZsgLLf8up9Qjqw1BEXtgTWvRyt9ctfag==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL0PR11MB3170.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(39860400002)(366004)(376002)(346002)(396003)(136003)(451199015)(2906002)(53546011)(64756008)(52536014)(5660300002)(8936002)(33656002)(41300700001)(86362001)(83380400001)(66946007)(71200400001)(66476007)(7696005)(26005)(55236004)(8676002)(6506007)(186003)(9686003)(66556008)(66446008)(55016003)(122000001)(316002)(110136005)(76116006)(38070700005)(38100700002)(82960400001)(478600001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?3x5UfUpSf3x95nsnD9L0gaKCjapmBk9rBc/GJcXc7CNUJb73P6fj0UMA95UU?=
+ =?us-ascii?Q?V+MeTrr4URxOWe854LZh/ClzFB40/0qtl0tRvluQtiHTeCazeqjIJaQYZ0dT?=
+ =?us-ascii?Q?uQzZObcgfUwOPmCP1jJvtF6exSskziC0/rB1Qiq7OvE7NffKIflNxexgUYwy?=
+ =?us-ascii?Q?NEzUOvhuR5U0ZK1Hrv1wMe4JvnQEkmvT5U5Val7go4EVuVShx6cOdfQhlN1y?=
+ =?us-ascii?Q?ddPJQdjGROj14uZBxd2aPXHTBgQEilmQYG0X1Y3U4DYR0eJz49ivbTyEcGOP?=
+ =?us-ascii?Q?wkusDMRtpksCvSE3jHFPM+hgUDZb3BIHM/xyN1UAl8o93LJp9IZ4iqop06sr?=
+ =?us-ascii?Q?4I53mUjDEM9+NoOYAQil+vVdUvT+bBYjiF/mPtwdY8jtwcHSGcS99aRQ7OKp?=
+ =?us-ascii?Q?jjav33cIJ5DF8NrcQgUkRV6lRw0K1yBGS1iunKeRRCDM83KkyLNDGDhffcrw?=
+ =?us-ascii?Q?jzwjTlpe4ihUKxgIWsPuyPU8jPuMgZ7INGYPjbOOVNTSdZUeLKfDF0wDy2Zi?=
+ =?us-ascii?Q?K+0GI4NSaob9J1WvFJDF58baQE94c2tz6+ZtEN+M/jWAze5fIJIA+2g/mj7/?=
+ =?us-ascii?Q?TsAxLL8lqFd9tIVXBESK4XY79l5Ia7rsgTSRBCwcJ65CPQAjL30GCIXDpxEn?=
+ =?us-ascii?Q?BZxf26M4iGkoNssZcq5Lk07WENRE2eKWVVB+btlAGgQUnJYtz+2SylvMb6ji?=
+ =?us-ascii?Q?UjFGfJbCX9Lj68gux/WEDuwZg+91/7VWk9sVpE02LGt/+CI/fXo9PgOa7CDV?=
+ =?us-ascii?Q?wmojGdrCo/T7gh3x8QHB5ZtIipmvHhKM/ybDHb8ob9rV6mJpHrDwscmU5I+b?=
+ =?us-ascii?Q?5+0HeLhAG4ykiEYhHLsgiMKHtMxA+FU4JjqHM/5MHFjdqdDt7NHFjAhU8n6O?=
+ =?us-ascii?Q?5aZu01hbqlysZ8L+7uyeyNjrOdYaFCuQ8VH20Ve9QVkcseQlnEC+jY0GmURd?=
+ =?us-ascii?Q?jp1XjO1yexJvU9GS4KgNvCxdmIS2LYktlHrJA+dKpSgNTGN+IIBQ3bUJ349m?=
+ =?us-ascii?Q?Cpx2g1G8KtQD38PemRYfnWbKKVYf2oMevzPrXkhisP506XZfZ1GTlzFQIBO/?=
+ =?us-ascii?Q?2GIFjDb7mZa5tQ1TshWEERpBlxh0I4woaEa9VZuerqIA5KsTbH5TqKQhw+Yz?=
+ =?us-ascii?Q?cYPD7hRpex2d7x9XAUNQLDyzQUY/UYdwWOBxH+0f3TzsMR48cMf4nUKGl0wc?=
+ =?us-ascii?Q?/ZJ6Jm8NU5pe0VxE8BizlUWICtvk5Ll2NySpxWDBMFjZYtlPtcbzDTpk2ZDI?=
+ =?us-ascii?Q?2oVafd/vwBDfyjfp6M5JJomO56OKCGci19lmJkFt5Lq8RCc+WFdalKDrQkOi?=
+ =?us-ascii?Q?w2i8zevBruEMP1kLJASp5b5Nc8y6Sg1D9Q8oBxG8shomVAfXFVw19IzwQg8o?=
+ =?us-ascii?Q?a1z3XhBsyHDhPxhZfYJJuhy/agzghivcjcOLMmQC66AaRJeDPWJAxEjfRDB/?=
+ =?us-ascii?Q?usTA857VxeXzrdBqAcpAdUJkEL5OcfD/E6kEWZg6ZyJwtj+vhOJ3mBqkwuw2?=
+ =?us-ascii?Q?Sod9EQ8yQwQmXHqjT1eADjHMd9R5OP3nTjhAD+3ZrIVCL5fKl7Xrs2+0azJm?=
+ =?us-ascii?Q?CGfVmVBmjSKzzmiDgiMvQBF08tmjRai+Hy/f10lY?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: improve the catch-all evict to
- handle lock contention
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR11MB3170.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 31ac0512-4014-4e32-8dc6-08dadd85b7f0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Dec 2022 03:46:01.2418 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 9/cpgI6ivP+Jxcii49nzHMMs2n4FSjsg8cCHInf8uVjgA6iP8C3DjKYd53f1FBsBw1uLtIi/rn2FMfC3SspKog==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5384
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/hdmi: Go for scrambling only if
+ platform supports TMDS clock > 340MHz
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,336 +147,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, stable@vger.kernel.org,
- Andrzej Hajda <andrzej.hajda@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Thank you for the patch.
+> -----Original Message-----
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of An=
+kit
+> Nautiyal
+> Sent: Tuesday, December 13, 2022 11:21 AM
+> To: intel-gfx@lists.freedesktop.org
+> Subject: [Intel-gfx] [PATCH] drm/i915/hdmi: Go for scrambling only if
+> platform supports TMDS clock > 340MHz
+>=20
+> There are cases, where devices have an HDMI1.4 retimer, and TMDS clock
+> rate is capped to 340MHz via VBT. In such cases scrambling might be
+> supported by the platform and an HDMI2.0 sink for lower TMDS rates, but
+> not supported by the retimer, causing blankouts.
+>=20
+> So avoid enabling scrambling, if the TMDS clock is capped to <=3D 340MHz.
+>=20
+Doesn't this clash with scrambling with low rates?
 
-I briefly tested this patch and it does fix my original problem of
-"user-space application crashing due to receiving an -ENOSPC". Once
-the code is reviewed, I can test it further and report back.
-
-However, there are a few changes in this patch that change the code
-behaviour, which I do not understand. I must admit that I am not very
-familiar with this code, but I decided to raise these points anyway, I
-hope that is OK.
-Please find my comments inline below:
-
-On Wed, Dec 7, 2022 at 3:11 AM Matthew Auld <matthew.auld@intel.com> wrote:
->
-> The catch-all evict can fail due to object lock contention, since it
-> only goes as far as trylocking the object, due to us already holding the
-> vm->mutex. Doing a full object lock here can deadlock, since the
-> vm->mutex is always our inner lock. Add another execbuf pass which drops
-> the vm->mutex and then tries to grab the object will the full lock,
-> before then retrying the eviction. This should be good enough for now to
-> fix the immediate regression with userspace seeing -ENOSPC from execbuf
-> due to contended object locks during GTT eviction.
->
-> Testcase: igt@gem_ppgtt@shrink-vs-evict-*
-> Fixes: 7e00897be8bf ("drm/i915: Add object locking to i915_gem_evict_for_=
-node and i915_gem_evict_something, v2.")
-> References: https://gitlab.freedesktop.org/drm/intel/-/issues/7627
-> References: https://gitlab.freedesktop.org/drm/intel/-/issues/7570
-> References: https://bugzilla.mozilla.org/show_bug.cgi?id=3D1779558
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> Cc: Mani Milani <mani@chromium.org>
-> Cc: <stable@vger.kernel.org> # v5.18+
+Thanks and Regards,
+Arun R Murthy
+--------------------
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 > ---
->  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 25 +++++++++++--
->  drivers/gpu/drm/i915/gem/i915_gem_mman.c      |  2 +-
->  drivers/gpu/drm/i915/i915_gem_evict.c         | 37 ++++++++++++++-----
->  drivers/gpu/drm/i915/i915_gem_evict.h         |  4 +-
->  drivers/gpu/drm/i915/i915_vma.c               |  2 +-
->  .../gpu/drm/i915/selftests/i915_gem_evict.c   |  4 +-
->  6 files changed, 56 insertions(+), 18 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu=
-/drm/i915/gem/i915_gem_execbuffer.c
-> index 86956b902c97..e2ce1e4e9723 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -745,25 +745,44 @@ static int eb_reserve(struct i915_execbuffer *eb)
->          *
->          * Defragmenting is skipped if all objects are pinned at a fixed =
-location.
->          */
-> -       for (pass =3D 0; pass <=3D 2; pass++) {
-> +       for (pass =3D 0; pass <=3D 3; pass++) {
->                 int pin_flags =3D PIN_USER | PIN_VALIDATE;
->
->                 if (pass =3D=3D 0)
->                         pin_flags |=3D PIN_NONBLOCK;
->
->                 if (pass >=3D 1)
-> -                       unpinned =3D eb_unbind(eb, pass =3D=3D 2);
-> +                       unpinned =3D eb_unbind(eb, pass >=3D 2);
->
->                 if (pass =3D=3D 2) {
->                         err =3D mutex_lock_interruptible(&eb->context->vm=
-->mutex);
->                         if (!err) {
-> -                               err =3D i915_gem_evict_vm(eb->context->vm=
-, &eb->ww);
-> +                               err =3D i915_gem_evict_vm(eb->context->vm=
-, &eb->ww, NULL);
->                                 mutex_unlock(&eb->context->vm->mutex);
->                         }
->                         if (err)
->                                 return err;
->                 }
->
-> +               if (pass =3D=3D 3) {
-> +retry:
-> +                       err =3D mutex_lock_interruptible(&eb->context->vm=
-->mutex);
-> +                       if (!err) {
-> +                               struct drm_i915_gem_object *busy_bo =3D N=
-ULL;
+>  drivers/gpu/drm/i915/display/intel_hdmi.c | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> index efa2da080f62..c124fe667bc0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -2244,6 +2244,11 @@ static bool intel_hdmi_is_cloned(const struct
+> intel_crtc_state *crtc_state)
+>  		!is_power_of_2(crtc_state->uapi.encoder_mask);
+>  }
+>=20
+> +static bool source_can_support_scrambling(struct intel_encoder
+> +*encoder) {
+> +	return intel_hdmi_source_max_tmds_clock(encoder) > 340000; }
 > +
-> +                               err =3D i915_gem_evict_vm(eb->context->vm=
-, &eb->ww, &busy_bo);
-> +                               mutex_unlock(&eb->context->vm->mutex);
-> +                               if (err && busy_bo) {
-> +                                       err =3D i915_gem_object_lock(busy=
-_bo, &eb->ww);
-> +                                       i915_gem_object_put(busy_bo);
-> +                                       if (!err)
-> +                                               goto retry;
-Could we possibly get stuck in a never-ending 'retry' loop here?
-
-> +                               }
-> +                       }
-> +                       if (err)
-> +                               return err;
-> +               }
-> +
->                 list_for_each_entry(ev, &eb->unbound, bind_link) {
->                         err =3D eb_reserve_vma(eb, ev, pin_flags);
->                         if (err)
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i=
-915/gem/i915_gem_mman.c
-> index d73ba0f5c4c5..4f69bff63068 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> @@ -369,7 +369,7 @@ static vm_fault_t vm_fault_gtt(struct vm_fault *vmf)
->                 if (vma =3D=3D ERR_PTR(-ENOSPC)) {
->                         ret =3D mutex_lock_interruptible(&ggtt->vm.mutex)=
-;
->                         if (!ret) {
-> -                               ret =3D i915_gem_evict_vm(&ggtt->vm, &ww)=
-;
-> +                               ret =3D i915_gem_evict_vm(&ggtt->vm, &ww,=
- NULL);
->                                 mutex_unlock(&ggtt->vm.mutex);
->                         }
->                         if (ret)
-> diff --git a/drivers/gpu/drm/i915/i915_gem_evict.c b/drivers/gpu/drm/i915=
-/i915_gem_evict.c
-> index 4cfe36b0366b..c02ebd6900ae 100644
-> --- a/drivers/gpu/drm/i915/i915_gem_evict.c
-> +++ b/drivers/gpu/drm/i915/i915_gem_evict.c
-> @@ -441,6 +441,11 @@ int i915_gem_evict_for_node(struct i915_address_spac=
-e *vm,
->   * @vm: Address space to cleanse
->   * @ww: An optional struct i915_gem_ww_ctx. If not NULL, i915_gem_evict_=
-vm
->   * will be able to evict vma's locked by the ww as well.
-> + * @busy_bo: Optional pointer to struct drm_i915_gem_object. If not NULL=
-, then
-> + * in the event i915_gem_evict_vm() is unable to trylock an object for e=
-viction,
-> + * then @busy_bo will point to it. -EBUSY is also returned. The caller m=
-ust drop
-> + * the vm->mutex, before trying again to acquire the contended lock. The=
- caller
-> + * also owns a reference to the object.
->   *
->   * This function evicts all vmas from a vm.
->   *
-> @@ -450,7 +455,8 @@ int i915_gem_evict_for_node(struct i915_address_space=
- *vm,
->   * To clarify: This is for freeing up virtual address space, not for fre=
-eing
->   * memory in e.g. the shrinker.
->   */
-> -int i915_gem_evict_vm(struct i915_address_space *vm, struct i915_gem_ww_=
-ctx *ww)
-> +int i915_gem_evict_vm(struct i915_address_space *vm, struct i915_gem_ww_=
-ctx *ww,
-> +                     struct drm_i915_gem_object **busy_bo)
->  {
->         int ret =3D 0;
->
-> @@ -482,15 +488,22 @@ int i915_gem_evict_vm(struct i915_address_space *vm=
-, struct i915_gem_ww_ctx *ww)
->                          * the resv is shared among multiple objects, we =
-still
->                          * need the object ref.
->                          */
-> -                       if (dying_vma(vma) ||
-> +                       if (!i915_gem_object_get_rcu(vma->obj) ||
->                             (ww && (dma_resv_locking_ctx(vma->obj->base.r=
-esv) =3D=3D &ww->ctx))) {
->                                 __i915_vma_pin(vma);
->                                 list_add(&vma->evict_link, &locked_evicti=
-on_list);
->                                 continue;
->                         }
->
-> -                       if (!i915_gem_object_trylock(vma->obj, ww))
-> +                       if (!i915_gem_object_trylock(vma->obj, ww)) {
-> +                               if (busy_bo) {
-> +                                       *busy_bo =3D vma->obj; /* holds r=
-ef */
-> +                                       ret =3D -EBUSY;
-> +                                       break;
-> +                               }
-> +                               i915_gem_object_put(vma->obj);
-If the 'trylock' above fails and 'busy_bo' is NULL, then the code
-reaches here twice for every call of this function. This means the
-'i915_gem_object_put()' above gets called twice, as opposed to the
-previous behaviour where it was never called. I wonder why the change?
-
->                                 continue;
-> +                       }
->
->                         __i915_vma_pin(vma);
->                         list_add(&vma->evict_link, &eviction_list);
-> @@ -498,25 +511,29 @@ int i915_gem_evict_vm(struct i915_address_space *vm=
-, struct i915_gem_ww_ctx *ww)
->                 if (list_empty(&eviction_list) && list_empty(&locked_evic=
-tion_list))
->                         break;
->
-> -               ret =3D 0;
-I don't understand why the line above is removed? This causes the
-inconsistencies I have explained in my comments further down.
-Whereas if we keep this line, then all the vma's already in
-'locked_eviction_list' and 'eviction_list' lists get evicted normally,
-and with 'trylock' failing again on the consecutive loop iteration(s)
-where the eviction lists are empty, we will return with the correct
--EBUSY code anyway.
-
->                 /* Unbind locked objects first, before unlocking the evic=
-tion_list */
->                 list_for_each_entry_safe(vma, vn, &locked_eviction_list, =
-evict_link) {
->                         __i915_vma_unpin(vma);
->
-> -                       if (ret =3D=3D 0)
-> +                       if (ret =3D=3D 0) {
->                                 ret =3D __i915_vma_unbind(vma);
-> -                       if (ret !=3D -EINTR) /* "Get me out of here!" */
-> -                               ret =3D 0;
-> +                               if (ret !=3D -EINTR) /* "Get me out of he=
-re!" */
-> +                                       ret =3D 0;
-> +                       }
-> +                       if (!dying_vma(vma))
-> +                               i915_gem_object_put(vma->obj);
-If 'busy_bo' !=3D NULL and the 'trylock' above fails resulting in 'ret'
-=3D -EBUSY, then for vma's prior to that, we end up calling
-'i915_gem_object_put()' without calling '__i915_vma_unbind()'.
-IIUC, this means we effectively end up calling 'i915_gem_object_put()'
-twice for vma's appearing before 'trylock' failure in the list, and
-only once for vma's appearing after. This:
-1. Does not seem correct!
-2. Is different from previous code behaviour.
-Why the change?
-
->                 }
->
->                 list_for_each_entry_safe(vma, vn, &eviction_list, evict_l=
-ink) {
->                         __i915_vma_unpin(vma);
-> -                       if (ret =3D=3D 0)
-> +                       if (ret =3D=3D 0) {
->                                 ret =3D __i915_vma_unbind(vma);
-> -                       if (ret !=3D -EINTR) /* "Get me out of here!" */
-> -                               ret =3D 0;
-> +                               if (ret !=3D -EINTR) /* "Get me out of he=
-re!" */
-> +                                       ret =3D 0;
-> +                       }
->
->                         i915_gem_object_unlock(vma->obj);
-> +                       i915_gem_object_put(vma->obj);
-Same as my previous comment above.
-
->                 }
->         } while (ret =3D=3D 0);
->
-> diff --git a/drivers/gpu/drm/i915/i915_gem_evict.h b/drivers/gpu/drm/i915=
-/i915_gem_evict.h
-> index e593c530f9bd..bf0ee0e4fe60 100644
-> --- a/drivers/gpu/drm/i915/i915_gem_evict.h
-> +++ b/drivers/gpu/drm/i915/i915_gem_evict.h
-> @@ -11,6 +11,7 @@
->  struct drm_mm_node;
->  struct i915_address_space;
->  struct i915_gem_ww_ctx;
-> +struct drm_i915_gem_object;
->
->  int __must_check i915_gem_evict_something(struct i915_address_space *vm,
->                                           struct i915_gem_ww_ctx *ww,
-> @@ -23,6 +24,7 @@ int __must_check i915_gem_evict_for_node(struct i915_ad=
-dress_space *vm,
->                                          struct drm_mm_node *node,
->                                          unsigned int flags);
->  int i915_gem_evict_vm(struct i915_address_space *vm,
-> -                     struct i915_gem_ww_ctx *ww);
-> +                     struct i915_gem_ww_ctx *ww,
-> +                     struct drm_i915_gem_object **busy_bo);
->
->  #endif /* __I915_GEM_EVICT_H__ */
-> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_=
-vma.c
-> index 34f0e6c923c2..7d044888ac33 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.c
-> +++ b/drivers/gpu/drm/i915/i915_vma.c
-> @@ -1599,7 +1599,7 @@ static int __i915_ggtt_pin(struct i915_vma *vma, st=
-ruct i915_gem_ww_ctx *ww,
->                          * locked objects when called from execbuf when p=
-inning
->                          * is removed. This would probably regress badly.
->                          */
-> -                       i915_gem_evict_vm(vm, NULL);
-> +                       i915_gem_evict_vm(vm, NULL, NULL);
->                         mutex_unlock(&vm->mutex);
->                 }
->         } while (1);
-> diff --git a/drivers/gpu/drm/i915/selftests/i915_gem_evict.c b/drivers/gp=
-u/drm/i915/selftests/i915_gem_evict.c
-> index 8c6517d29b8e..37068542aafe 100644
-> --- a/drivers/gpu/drm/i915/selftests/i915_gem_evict.c
-> +++ b/drivers/gpu/drm/i915/selftests/i915_gem_evict.c
-> @@ -344,7 +344,7 @@ static int igt_evict_vm(void *arg)
->
->         /* Everything is pinned, nothing should happen */
->         mutex_lock(&ggtt->vm.mutex);
-> -       err =3D i915_gem_evict_vm(&ggtt->vm, NULL);
-> +       err =3D i915_gem_evict_vm(&ggtt->vm, NULL, NULL);
->         mutex_unlock(&ggtt->vm.mutex);
->         if (err) {
->                 pr_err("i915_gem_evict_vm on a full GGTT returned err=3D%=
-d]\n",
-> @@ -356,7 +356,7 @@ static int igt_evict_vm(void *arg)
->
->         for_i915_gem_ww(&ww, err, false) {
->                 mutex_lock(&ggtt->vm.mutex);
-> -               err =3D i915_gem_evict_vm(&ggtt->vm, &ww);
-> +               err =3D i915_gem_evict_vm(&ggtt->vm, &ww, NULL);
->                 mutex_unlock(&ggtt->vm.mutex);
->         }
->
+>  int intel_hdmi_compute_config(struct intel_encoder *encoder,
+>  			      struct intel_crtc_state *pipe_config,
+>  			      struct drm_connector_state *conn_state) @@ -
+> 2301,7 +2306,7 @@ int intel_hdmi_compute_config(struct intel_encoder
+> *encoder,
+>=20
+>  	pipe_config->lane_count =3D 4;
+>=20
+> -	if (scdc->scrambling.supported && DISPLAY_VER(dev_priv) >=3D 10) {
+> +	if (scdc->scrambling.supported &&
+> +source_can_support_scrambling(encoder)) {
+>  		if (scdc->scrambling.low_rates)
+>  			pipe_config->hdmi_scrambling =3D true;
+>=20
 > --
-> 2.38.1
->
+> 2.25.1
+
