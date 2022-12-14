@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFD8964C58B
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Dec 2022 10:09:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BEEB864C591
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Dec 2022 10:09:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 536FA10E38D;
-	Wed, 14 Dec 2022 09:09:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3831D10E38F;
+	Wed, 14 Dec 2022 09:09:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9B5C890FE
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Dec 2022 09:09:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E526890FE
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Dec 2022 09:09:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671008941; x=1702544941;
+ t=1671008945; x=1702544945;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=UcEu9H8V4qvXcXOi4PSM1710TvIhtvCEI+JsV0Yyk68=;
- b=AaUDpYC15p1YuoPwK4afW4icH1SnlL30GFtbbqEJxFUlKS3dVQsgleCo
- XmtxJ7w/+AEc4jK/22MHVx7Y1Q8SnrsupJyl5TJwaLWiimivYABndtqeV
- 0v9B0PFpil87PL0DdYTDC+I1UQol+VstS11UPdu6u3wdqQxf8dp/01sKL
- e719RRhaoaLzKIDxsDmIjbUTI6/Qg3ismWKwrns2N1dO/FD7WJTQSfemC
- UKe6ea+Bq6s1VkLqlVZaMCUA6EnIfkj754fDT7JPOvKVtl12a1HPAJgWN
- ov4U+b12ug11HckXZuiqbKzWwrXTJE5az/D97frDSMvRB7pN6fe/d03Fj g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10560"; a="317054623"
-X-IronPort-AV: E=Sophos;i="5.96,244,1665471600"; d="scan'208";a="317054623"
+ bh=9jdFfobme4dbTHeXbpYgnQcWy/LWWfnR2TsnkhRC3r4=;
+ b=bWcjUZnFtdZ64zg7xwhVSXoGvDBTOnyCBwvASuPLOf7MwPbaXu7HhH7a
+ LwaexA6sCavt4eFhg+pWbvR6ZNrfowOieleMk8sBBHn+ZdcWWvhQh1MPq
+ 2tErYS6rwm7aVDGqShGbGWqJFVR21jyNPOMHVij3LLYyYNX0sNUQoRIKu
+ oNI+5tMRDFEVAUN52UqIeFNdjjgVgPCj+dSUg35Sx2G3dC3J0QQbu+6TI
+ 5GDvcfGq6YXXGbs1/+kB6iLyG59spN78whwMFOmuxB4dUgyrx181wAGXo
+ MKb/rF1YhyRELPSVLZIbGZ2b/ZjxwLr3EOQVBv8jVSBdTgPFiFeoPZKdx A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10560"; a="317054650"
+X-IronPort-AV: E=Sophos;i="5.96,244,1665471600"; d="scan'208";a="317054650"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2022 01:09:01 -0800
+ 14 Dec 2022 01:09:04 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10560"; a="681458390"
-X-IronPort-AV: E=Sophos;i="5.96,244,1665471600"; d="scan'208";a="681458390"
+X-IronPort-AV: E=McAfee;i="6500,9779,10560"; a="681458416"
+X-IronPort-AV: E=Sophos;i="5.96,244,1665471600"; d="scan'208";a="681458416"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by orsmga001.jf.intel.com with ESMTP; 14 Dec 2022 01:08:59 -0800
+ by orsmga001.jf.intel.com with ESMTP; 14 Dec 2022 01:09:01 -0800
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 14 Dec 2022 14:37:52 +0530
-Message-Id: <20221214090758.3040356-2-suraj.kandpal@intel.com>
+Date: Wed, 14 Dec 2022 14:37:53 +0530
+Message-Id: <20221214090758.3040356-3-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221214090758.3040356-1-suraj.kandpal@intel.com>
 References: <20221214090758.3040356-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 1/7] drm/i915/gsc: Create GSC request
- submission mechanism
+Subject: [Intel-gfx] [PATCH v3 2/7] drm/i915/hdcp: Keep cp fw agonstic
+ naming convention
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,197 +58,246 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, Alan Previn <alan.previn.teres.alexis@intel.com>
+Cc: jani.nikula@intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tomas Winkler <tomas.winkler@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-HDCP and PXP will require a common function to allow it to
-submit commands to the gsc cs. Also adding the gsc mtl header
-that needs to be added on to the existing payloads of HDCP
-and PXP.
+From: Anshuman Gupta <anshuman.gupta@intel.com>
 
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
-Signed-off-by: Suraj Kandpal<suraj.kandpal@intel.com>
+Change the include/drm/i915_mei_hdcp_interface.h to
+include/drm/i915_cp_fw_hdcp_interface.h
+
+Cc: Tomas Winkler <tomas.winkler@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Uma Shankar <uma.shankar@intel.com>
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Acked-by: Tomas Winkler <tomas.winkler@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gpu_commands.h |  2 +
- drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c    | 62 +++++++++++++++++++-
- drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.h    |  3 +
- drivers/gpu/drm/i915/gt/uc/intel_gsc_fwif.h  | 41 +++++++++++++
- 4 files changed, 105 insertions(+), 3 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_gsc_fwif.h
+ .../drm/i915/display/intel_display_types.h    |   2 +-
+ drivers/misc/mei/hdcp/mei_hdcp.c              |   2 +-
+ include/drm/i915_mei_hdcp_interface.h         | 184 ------------------
+ 3 files changed, 2 insertions(+), 186 deletions(-)
+ delete mode 100644 include/drm/i915_mei_hdcp_interface.h
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-index 2af1ae3831df..454179884801 100644
---- a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-@@ -439,6 +439,8 @@
- #define GSC_FW_LOAD GSC_INSTR(1, 0, 2)
- #define   HECI1_FW_LIMIT_VALID (1 << 31)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 32e8b2fc3cc6..81d195ef5e57 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -43,7 +43,7 @@
+ #include <drm/drm_rect.h>
+ #include <drm/drm_vblank.h>
+ #include <drm/drm_vblank_work.h>
+-#include <drm/i915_mei_hdcp_interface.h>
++#include <drm/i915_hdcp_interface.h>
+ #include <media/cec-notifier.h>
  
-+#define GSC_HECI_CMD_PKT GSC_INSTR(0, 0, 6)
-+
- /*
-  * Used to convert any address to canonical form.
-  * Starting from gen8, some commands (e.g. STATE_BASE_ADDRESS,
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c
-index e73d4440c5e8..f00e88fdb5d2 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c
-@@ -30,6 +30,35 @@ bool intel_gsc_uc_fw_init_done(struct intel_gsc_uc *gsc)
- 	return fw_status & GSC_FW_INIT_COMPLETE_BIT;
- }
+ #include "i915_vma.h"
+diff --git a/drivers/misc/mei/hdcp/mei_hdcp.c b/drivers/misc/mei/hdcp/mei_hdcp.c
+index e889a8bd7ac8..cbad27511899 100644
+--- a/drivers/misc/mei/hdcp/mei_hdcp.c
++++ b/drivers/misc/mei/hdcp/mei_hdcp.c
+@@ -23,7 +23,7 @@
+ #include <linux/component.h>
+ #include <drm/drm_connector.h>
+ #include <drm/i915_component.h>
+-#include <drm/i915_mei_hdcp_interface.h>
++#include <drm/i915_hdcp_interface.h>
  
-+struct gsc_heci_pkt {
-+	u64 addr_in;
-+	u32 size_in;
-+	u64 addr_out;
-+	u32 size_out;
-+};
-+
-+static int emit_gsc_heci_pkt(struct i915_request *rq, struct gsc_heci_pkt *pkt)
-+{
-+	u32 *cs;
-+
-+	cs = intel_ring_begin(rq, 8);
-+	if (IS_ERR(cs))
-+		return PTR_ERR(cs);
-+
-+	*cs++ = GSC_HECI_CMD_PKT;
-+	*cs++ = lower_32_bits(pkt->addr_in);
-+	*cs++ = upper_32_bits(pkt->addr_in);
-+	*cs++ = pkt->size_in;
-+	*cs++ = lower_32_bits(pkt->addr_out);
-+	*cs++ = upper_32_bits(pkt->addr_out);
-+	*cs++ = pkt->size_out;
-+	*cs++ = 0;
-+
-+	intel_ring_advance(rq, cs);
-+
-+	return 0;
-+}
-+
- static int emit_gsc_fw_load(struct i915_request *rq, struct intel_gsc_uc *gsc)
- {
- 	u32 offset = i915_ggtt_offset(gsc->local);
-@@ -49,7 +78,12 @@ static int emit_gsc_fw_load(struct i915_request *rq, struct intel_gsc_uc *gsc)
- 	return 0;
- }
+ #include "mei_hdcp.h"
  
--static int gsc_fw_load(struct intel_gsc_uc *gsc)
-+/*
-+ * Our submissions to GSC are going to be either a FW load or an heci pkt, but
-+ * all the request emission logic is the same so we can use a common func and
-+ * just add the correct cmd
-+ */
-+static int submit_to_gsc_fw(struct intel_gsc_uc *gsc, struct gsc_heci_pkt *pkt)
- {
- 	struct intel_context *ce = gsc->ce;
- 	struct i915_request *rq;
-@@ -68,7 +102,11 @@ static int gsc_fw_load(struct intel_gsc_uc *gsc)
- 			goto out_rq;
- 	}
- 
--	err = emit_gsc_fw_load(rq, gsc);
-+	if (pkt)
-+		err = emit_gsc_heci_pkt(rq, pkt);
-+	else
-+		err = emit_gsc_fw_load(rq, gsc);
-+
- 	if (err)
- 		goto out_rq;
- 
-@@ -89,12 +127,30 @@ static int gsc_fw_load(struct intel_gsc_uc *gsc)
- 
- 	if (err)
- 		drm_err(&gsc_uc_to_gt(gsc)->i915->drm,
--			"Request submission for GSC load failed (%d)\n",
-+			"Request submission for GSC failed (%d)\n",
- 			err);
- 
- 	return err;
- }
- 
-+static int gsc_fw_load(struct intel_gsc_uc *gsc)
-+{
-+	return submit_to_gsc_fw(gsc, NULL);
-+}
-+
-+int intel_gsc_fw_heci_send(struct intel_gsc_uc *gsc, u64 addr_in, u32 size_in,
-+			   u64 addr_out, u32 size_out)
-+{
-+	struct gsc_heci_pkt pkt = {
-+	.addr_in = addr_in,
-+	.size_in = size_in,
-+	.addr_out = addr_out,
-+	.size_out = size_out
-+	};
-+
-+	return submit_to_gsc_fw(gsc, &pkt);
-+}
-+
- static int gsc_fw_load_prepare(struct intel_gsc_uc *gsc)
- {
- 	struct intel_gt *gt = gsc_uc_to_gt(gsc);
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.h b/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.h
-index 4b5dbb44afb4..4a75c3dec669 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.h
-@@ -12,4 +12,7 @@ struct intel_gsc_uc;
- 
- int intel_gsc_uc_fw_upload(struct intel_gsc_uc *gsc);
- bool intel_gsc_uc_fw_init_done(struct intel_gsc_uc *gsc);
-+int intel_gsc_fw_heci_send(struct intel_gsc_uc *gsc, u64 addr_in, u32 size_in,
-+			   u64 addr_out, u32 size_out);
-+
- #endif
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_gsc_fwif.h b/drivers/gpu/drm/i915/gt/uc/intel_gsc_fwif.h
-new file mode 100644
-index 000000000000..1c2a04d092a8
---- /dev/null
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_gsc_fwif.h
-@@ -0,0 +1,41 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2021 Intel Corporation
-+ */
-+
-+#ifndef _INTEL_GSC_FWIF_H_
-+#define _INTEL_GSC_FWIF_H_
-+
-+#include <linux/types.h>
-+
-+struct intel_gsc_mtl_header {
-+	u32 validity_marker;
-+#define GSC_HECI_VALIDITY_MARKER 0xA578875A
-+
-+	u8 gsc_address;
-+#define HECI_MEADDRESS_PXP 17
-+#define HECI_MEADDRESS_HDCP 18
-+
-+	u8 reserved1;
-+
-+	u16 header_version;
-+#define MTL_GSC_HEADER_VERSION 1
-+
-+	u64 host_session_handle;
-+	u64 gsc_message_handle;
-+
-+	u32 message_size; /* lower 20 bits only, upper 12 are reserved */
-+
-+	/*
-+	 * Flags mask:
-+	 * Bit 0: Pending
-+	 * Bit 1: Session Cleanup;
-+	 * Bits 2-15: Flags
-+	 * Bits 16-31: Extension Size
-+	 */
-+	u32 flags;
-+
-+	u32 status;
-+} __packed;
-+
-+#endif
+diff --git a/include/drm/i915_mei_hdcp_interface.h b/include/drm/i915_mei_hdcp_interface.h
+deleted file mode 100644
+index f441cbcd95a4..000000000000
+--- a/include/drm/i915_mei_hdcp_interface.h
++++ /dev/null
+@@ -1,184 +0,0 @@
+-/* SPDX-License-Identifier: (GPL-2.0+) */
+-/*
+- * Copyright © 2017-2019 Intel Corporation
+- *
+- * Authors:
+- * Ramalingam C <ramalingam.c@intel.com>
+- */
+-
+-#ifndef _I915_MEI_HDCP_INTERFACE_H_
+-#define _I915_MEI_HDCP_INTERFACE_H_
+-
+-#include <linux/mutex.h>
+-#include <linux/device.h>
+-#include <drm/display/drm_hdcp.h>
+-
+-/**
+- * enum hdcp_port_type - HDCP port implementation type defined by ME FW
+- * @HDCP_PORT_TYPE_INVALID: Invalid hdcp port type
+- * @HDCP_PORT_TYPE_INTEGRATED: In-Host HDCP2.x port
+- * @HDCP_PORT_TYPE_LSPCON: HDCP2.2 discrete wired Tx port with LSPCON
+- *			   (HDMI 2.0) solution
+- * @HDCP_PORT_TYPE_CPDP: HDCP2.2 discrete wired Tx port using the CPDP (DP 1.3)
+- *			 solution
+- */
+-enum hdcp_port_type {
+-	HDCP_PORT_TYPE_INVALID,
+-	HDCP_PORT_TYPE_INTEGRATED,
+-	HDCP_PORT_TYPE_LSPCON,
+-	HDCP_PORT_TYPE_CPDP
+-};
+-
+-/**
+- * enum hdcp_wired_protocol - HDCP adaptation used on the port
+- * @HDCP_PROTOCOL_INVALID: Invalid HDCP adaptation protocol
+- * @HDCP_PROTOCOL_HDMI: HDMI adaptation of HDCP used on the port
+- * @HDCP_PROTOCOL_DP: DP adaptation of HDCP used on the port
+- */
+-enum hdcp_wired_protocol {
+-	HDCP_PROTOCOL_INVALID,
+-	HDCP_PROTOCOL_HDMI,
+-	HDCP_PROTOCOL_DP
+-};
+-
+-enum mei_fw_ddi {
+-	MEI_DDI_INVALID_PORT = 0x0,
+-
+-	MEI_DDI_B = 1,
+-	MEI_DDI_C,
+-	MEI_DDI_D,
+-	MEI_DDI_E,
+-	MEI_DDI_F,
+-	MEI_DDI_A = 7,
+-	MEI_DDI_RANGE_END = MEI_DDI_A,
+-};
+-
+-/**
+- * enum mei_fw_tc - ME Firmware defined index for transcoders
+- * @MEI_INVALID_TRANSCODER: Index for Invalid transcoder
+- * @MEI_TRANSCODER_EDP: Index for EDP Transcoder
+- * @MEI_TRANSCODER_DSI0: Index for DSI0 Transcoder
+- * @MEI_TRANSCODER_DSI1: Index for DSI1 Transcoder
+- * @MEI_TRANSCODER_A: Index for Transcoder A
+- * @MEI_TRANSCODER_B: Index for Transcoder B
+- * @MEI_TRANSCODER_C: Index for Transcoder C
+- * @MEI_TRANSCODER_D: Index for Transcoder D
+- */
+-enum mei_fw_tc {
+-	MEI_INVALID_TRANSCODER = 0x00,
+-	MEI_TRANSCODER_EDP,
+-	MEI_TRANSCODER_DSI0,
+-	MEI_TRANSCODER_DSI1,
+-	MEI_TRANSCODER_A = 0x10,
+-	MEI_TRANSCODER_B,
+-	MEI_TRANSCODER_C,
+-	MEI_TRANSCODER_D
+-};
+-
+-/**
+- * struct hdcp_port_data - intel specific HDCP port data
+- * @fw_ddi: ddi index as per ME FW
+- * @fw_tc: transcoder index as per ME FW
+- * @port_type: HDCP port type as per ME FW classification
+- * @protocol: HDCP adaptation as per ME FW
+- * @k: No of streams transmitted on a port. Only on DP MST this is != 1
+- * @seq_num_m: Count of RepeaterAuth_Stream_Manage msg propagated.
+- *	       Initialized to 0 on AKE_INIT. Incremented after every successful
+- *	       transmission of RepeaterAuth_Stream_Manage message. When it rolls
+- *	       over re-Auth has to be triggered.
+- * @streams: struct hdcp2_streamid_type[k]. Defines the type and id for the
+- *	     streams
+- */
+-struct hdcp_port_data {
+-	enum mei_fw_ddi fw_ddi;
+-	enum mei_fw_tc fw_tc;
+-	u8 port_type;
+-	u8 protocol;
+-	u16 k;
+-	u32 seq_num_m;
+-	struct hdcp2_streamid_type *streams;
+-};
+-
+-/**
+- * struct i915_hdcp_component_ops- ops for HDCP2.2 services.
+- * @owner: Module providing the ops
+- * @initiate_hdcp2_session: Initiate a Wired HDCP2.2 Tx Session.
+- *			    And Prepare AKE_Init.
+- * @verify_receiver_cert_prepare_km: Verify the Receiver Certificate
+- *				     AKE_Send_Cert and prepare
+-				     AKE_Stored_Km/AKE_No_Stored_Km
+- * @verify_hprime: Verify AKE_Send_H_prime
+- * @store_pairing_info: Store pairing info received
+- * @initiate_locality_check: Prepare LC_Init
+- * @verify_lprime: Verify lprime
+- * @get_session_key: Prepare SKE_Send_Eks
+- * @repeater_check_flow_prepare_ack: Validate the Downstream topology
+- *				     and prepare rep_ack
+- * @verify_mprime: Verify mprime
+- * @enable_hdcp_authentication:  Mark a port as authenticated.
+- * @close_hdcp_session: Close the Wired HDCP Tx session per port.
+- *			This also disables the authenticated state of the port.
+- */
+-struct i915_hdcp_component_ops {
+-	/**
+-	 * @owner: mei_hdcp module
+-	 */
+-	struct module *owner;
+-
+-	int (*initiate_hdcp2_session)(struct device *dev,
+-				      struct hdcp_port_data *data,
+-				      struct hdcp2_ake_init *ake_data);
+-	int (*verify_receiver_cert_prepare_km)(struct device *dev,
+-					       struct hdcp_port_data *data,
+-					       struct hdcp2_ake_send_cert
+-								*rx_cert,
+-					       bool *km_stored,
+-					       struct hdcp2_ake_no_stored_km
+-								*ek_pub_km,
+-					       size_t *msg_sz);
+-	int (*verify_hprime)(struct device *dev,
+-			     struct hdcp_port_data *data,
+-			     struct hdcp2_ake_send_hprime *rx_hprime);
+-	int (*store_pairing_info)(struct device *dev,
+-				  struct hdcp_port_data *data,
+-				  struct hdcp2_ake_send_pairing_info
+-								*pairing_info);
+-	int (*initiate_locality_check)(struct device *dev,
+-				       struct hdcp_port_data *data,
+-				       struct hdcp2_lc_init *lc_init_data);
+-	int (*verify_lprime)(struct device *dev,
+-			     struct hdcp_port_data *data,
+-			     struct hdcp2_lc_send_lprime *rx_lprime);
+-	int (*get_session_key)(struct device *dev,
+-			       struct hdcp_port_data *data,
+-			       struct hdcp2_ske_send_eks *ske_data);
+-	int (*repeater_check_flow_prepare_ack)(struct device *dev,
+-					       struct hdcp_port_data *data,
+-					       struct hdcp2_rep_send_receiverid_list
+-								*rep_topology,
+-					       struct hdcp2_rep_send_ack
+-								*rep_send_ack);
+-	int (*verify_mprime)(struct device *dev,
+-			     struct hdcp_port_data *data,
+-			     struct hdcp2_rep_stream_ready *stream_ready);
+-	int (*enable_hdcp_authentication)(struct device *dev,
+-					  struct hdcp_port_data *data);
+-	int (*close_hdcp_session)(struct device *dev,
+-				  struct hdcp_port_data *data);
+-};
+-
+-/**
+- * struct i915_hdcp_component_master - Used for communication between i915
+- * and mei_hdcp drivers for the HDCP2.2 services
+- * @mei_dev: device that provide the HDCP2.2 service from MEI Bus.
+- * @hdcp_ops: Ops implemented by mei_hdcp driver, used by i915 driver.
+- */
+-struct i915_hdcp_comp_master {
+-	struct device *mei_dev;
+-	const struct i915_hdcp_component_ops *ops;
+-
+-	/* To protect the above members. */
+-	struct mutex mutex;
+-};
+-
+-#endif /* _I915_MEI_HDCP_INTERFACE_H_ */
 -- 
 2.25.1
 
