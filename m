@@ -2,52 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5651764D992
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Dec 2022 11:31:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 294FD64D999
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Dec 2022 11:35:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E50710E518;
-	Thu, 15 Dec 2022 10:30:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B6B310E51C;
+	Thu, 15 Dec 2022 10:35:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38DED10E518
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Dec 2022 10:30:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671100241; x=1702636241;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=kZ4RmLCjhj2JTM5rqHpHfTBZKaBBYqwOC4Av8r28FDY=;
- b=K2D9bBkwLqShhkkmq2yRiwq2UbQ4be5fLOOPtAdewqZ8z3zBWKPW2AlM
- iNpFdM0WxFiRHHaIHpQPTBvhMi4Jrow0x4uxXaBCReClAhZ3hkXIR0K7K
- 84kHboB+jybqR6dpk8NyDXPtlumh7mTPqZbN2781OAfiy/KUoLRHIurqU
- VTHqxuUmBJLBIkT5q74k2PNRhupQ4v3muCPaxD8QNDBCbIhNWgqraMV3q
- S5WYXSJdTPQQzD7SsuAol0MrV5Z7ZhHVEyuYvCpnuuiBeyRvsURWbR4aH
- 0ryxW89wGk9y8C1xdZtEYtzj6dTEmvmuE5bcmAKnA9InpxztrzJNL+bIq A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10561"; a="319784220"
-X-IronPort-AV: E=Sophos;i="5.96,247,1665471600"; d="scan'208";a="319784220"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2022 02:30:31 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10561"; a="680058104"
-X-IronPort-AV: E=Sophos;i="5.96,247,1665471600"; d="scan'208";a="680058104"
-Received: from tgodea-mobl.ger.corp.intel.com (HELO localhost) ([10.252.61.26])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2022 02:30:29 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>,
- intel-gfx@lists.freedesktop.org, ville.syrjala@linux.intel.com,
- imre.deak@intel.com
-In-Reply-To: <20221215095533.1073528-1-arun.r.murthy@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221124070925.3834910-1-arun.r.murthy@intel.com>
- <20221215095533.1073528-1-arun.r.murthy@intel.com>
-Date: Thu, 15 Dec 2022 12:30:26 +0200
-Message-ID: <87pmclufgd.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3753D10E519;
+ Thu, 15 Dec 2022 10:34:56 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 30CD2A0BCB;
+ Thu, 15 Dec 2022 10:34:56 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1435858411897430644=="
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCHv6] drm/i915/dp: change aux_ctl reg read to
- polling read
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+Date: Thu, 15 Dec 2022 10:34:56 -0000
+Message-ID: <167110049616.25118.6691386082633435096@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221124070925.3834910-1-arun.r.murthy@intel.com>
+In-Reply-To: <20221124070925.3834910-1-arun.r.murthy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/dp=3A_wait_on_timeout_before_retry_include_sw_delay_=28re?=
+ =?utf-8?b?djYp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,67 +41,210 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 15 Dec 2022, Arun R Murthy <arun.r.murthy@intel.com> wrote:
-> The busy timeout logic checks for the AUX BUSY, then waits for the
-> timeout period and then after timeout reads the register for BUSY or
-> Success.
-> Instead replace interrupt with polling so as to read the AUX CTL
-> register often before the timeout period. Looks like there might be some
-> issue with interrupt-on-read. Hence changing the logic to polling read.
->
-> v2: replace interrupt with polling read
-> v3: use usleep_rang instead of msleep, updated commit msg
-> v4: use intel_wait_for_regiter internal function
-> v5: use __intel_de_wait_for_register with 500us slow and 10ms fast timeout
-> v6: check return value of __intel_de_wait_for_register
->
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp_aux.c | 15 +++++----------
->  1 file changed, 5 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> index 91c93c93e5fc..dec88f41380e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> @@ -40,21 +40,16 @@ intel_dp_aux_wait_done(struct intel_dp *intel_dp)
->  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
->  	i915_reg_t ch_ctl = intel_dp->aux_ch_ctl_reg(intel_dp);
->  	const unsigned int timeout_ms = 10;
-> -	u32 status;
-> -	bool done;
-> -
-> -#define C (((status = intel_de_read_notrace(i915, ch_ctl)) & DP_AUX_CH_CTL_SEND_BUSY) == 0)
-> -	done = wait_event_timeout(i915->display.gmbus.wait_queue, C,
-> -				  msecs_to_jiffies_timeout(timeout_ms));
-> +	u32 status, ret;
->  
-> -	/* just trace the final value */
-> -	trace_i915_reg_rw(false, ch_ctl, status, sizeof(status), true);
-> +	ret = __intel_de_wait_for_register(i915, ch_ctl,
-> +				     DP_AUX_CH_CTL_SEND_BUSY, 0,
-> +				     500, timeout_ms, &status);
->  
-> -	if (!done)
-> +	if (ret == -ETIMEDOUT)
+--===============1435858411897430644==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-What's wrong with this comparison? Although it probably does work by
-coincidence.
+== Series Details ==
 
-BR,
-Jani.
+Series: drm/i915/dp: wait on timeout before retry include sw delay (rev6)
+URL   : https://patchwork.freedesktop.org/series/111303/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_12508 -> Patchwork_111303v6
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_111303v6 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_111303v6, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111303v6/index.html
+
+Participating hosts (19 -> 19)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_111303v6:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_suspend@basic-s2idle-without-i915:
+    - fi-snb-2600:        [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12508/fi-snb-2600/igt@i915_suspend@basic-s2idle-without-i915.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111303v6/fi-snb-2600/igt@i915_suspend@basic-s2idle-without-i915.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_111303v6 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - fi-rkl-11600:       NOTRUN -> [INCOMPLETE][3] ([i915#6179])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111303v6/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html
+
+  * igt@gem_softpin@allocator-basic:
+    - fi-ivb-3770:        NOTRUN -> [SKIP][4] ([fdo#109271]) +18 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111303v6/fi-ivb-3770/igt@gem_softpin@allocator-basic.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-ivb-3770:        NOTRUN -> [SKIP][5] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111303v6/fi-ivb-3770/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  
+#### Warnings ####
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - fi-rkl-11600:       [INCOMPLETE][6] ([i915#4817]) -> [FAIL][7] ([fdo#103375])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12508/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111303v6/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
+
+  
+  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#4817]: https://gitlab.freedesktop.org/drm/intel/issues/4817
+  [i915#6179]: https://gitlab.freedesktop.org/drm/intel/issues/6179
 
 
->  		drm_err(&i915->drm,
->  			"%s: did not complete or timeout within %ums (status 0x%08x)\n",
->  			intel_dp->aux.name, timeout_ms, status);
-> -#undef C
->  
->  	return status;
->  }
+Build changes
+-------------
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+  * Linux: CI_DRM_12508 -> Patchwork_111303v6
+
+  CI-20190529: 20190529
+  CI_DRM_12508: 50bbaf39d655c47685f84dd1fb0c2cb4fb7e5286 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7094: 1763071e9d50c5e992257c9197cb26f166de6fae @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_111303v6: 50bbaf39d655c47685f84dd1fb0c2cb4fb7e5286 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+a62c9c7447a9 drm/i915/dp: change aux_ctl reg read to polling read
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111303v6/index.html
+
+--===============1435858411897430644==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dp: wait on timeout before retry include sw delay (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/111303/">https://patchwork.freedesktop.org/series/111303/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111303v6/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111303v6/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12508 -&gt; Patchwork_111303v6</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_111303v6 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_111303v6, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111303v6/index.html</p>
+<h2>Participating hosts (19 -&gt; 19)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_111303v6:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_suspend@basic-s2idle-without-i915:<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12508/fi-snb-2600/igt@i915_suspend@basic-s2idle-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111303v6/fi-snb-2600/igt@i915_suspend@basic-s2idle-without-i915.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_111303v6 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111303v6/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6179">i915#6179</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_softpin@allocator-basic:</p>
+<ul>
+<li>fi-ivb-3770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111303v6/fi-ivb-3770/igt@gem_softpin@allocator-basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +18 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-ivb-3770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111303v6/fi-ivb-3770/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_suspend@basic-s3-without-i915:<ul>
+<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12508/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4817">i915#4817</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111303v6/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12508 -&gt; Patchwork_111303v6</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12508: 50bbaf39d655c47685f84dd1fb0c2cb4fb7e5286 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7094: 1763071e9d50c5e992257c9197cb26f166de6fae @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_111303v6: 50bbaf39d655c47685f84dd1fb0c2cb4fb7e5286 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>a62c9c7447a9 drm/i915/dp: change aux_ctl reg read to polling read</p>
+
+</body>
+</html>
+
+--===============1435858411897430644==--
