@@ -2,33 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F7E764DCC5
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Dec 2022 15:15:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34BD464DCCC
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Dec 2022 15:20:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 565B710E0AB;
-	Thu, 15 Dec 2022 14:14:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EBB510E0BF;
+	Thu, 15 Dec 2022 14:20:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 93FEA10E0AE;
- Thu, 15 Dec 2022 14:14:33 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8DEEFAADE4;
- Thu, 15 Dec 2022 14:14:33 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com
+ [IPv6:2a00:1450:4864:20::52f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3879410E0BB;
+ Thu, 15 Dec 2022 14:19:59 +0000 (UTC)
+Received: by mail-ed1-x52f.google.com with SMTP id e13so27234841edj.7;
+ Thu, 15 Dec 2022 06:19:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:references:to:from
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=cBQj9jBKLCqeFFkhSPkBgbsPvUUVxvlpmvVujeZcMVo=;
+ b=BmtyYHtFs4XV4sd6Mi7VEXXxhLVsI+WMOwOlASH7zAb148BpIQ00m5fpR3OwLg73Rg
+ 1Jnp+Dk1hMFPGdSpufTfb3S/3nZZDSNTIc2iNNGGc071uG88BuQmt7Yf92xIS3kMf9nE
+ EZQaiYfrgVx6QnoSBA9zTlw7OzMnVhbEkWURTrfEC1dHMtMQp0HcHHgWxpcjrR7GGew4
+ 9JrNSAdPI4NS9Q1klza1ZUK6aMAIAWhKwCRuccSEjVL2dFKuIn/S/2n2L/PvkFbz+ooA
+ qs3qv90pldsA9MuOg0Venz2c6uQ+wL/K673xWJywb5+bOQLSiGOMjEFUGZeOwuuP9UWr
+ KO2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:references:to:from
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=cBQj9jBKLCqeFFkhSPkBgbsPvUUVxvlpmvVujeZcMVo=;
+ b=6n3BJwII+kc5+H+bxOERffEsjyzzeLMxs5dd70lmv/jlZWlYOaKbqmciid/5aNUvKS
+ xVtyLE8XsgQ4rAaH1myIUF+RTRw80IDwkI2IcDO2nR6UPnz4Qp0Q67JKZWDq4tHZFuo/
+ 372doFx+HGc+qjdUpyHoDdyn3K5Oe6tB2yaJX6KfBVkmyJdhfqQx2slEahCkxlyHH7rm
+ o1GEddttzRm1n+NVuc2dFKNwHFRMqiCVmnSV3gfMYHUNvC3G/Rmfv9b848g+DJju9+Or
+ CB8iDBZMU6YsKDdGiYBZLdgq5kAIASnZvu66pE3C2hqstjVwAfu2qMBZDdwlZsr86+uH
+ hn4w==
+X-Gm-Message-State: ANoB5pkRWrOmQNoPLoLLtzxnBqSLigyE25uXlBC7ZKXEiKCese4vFI21
+ XEwKn1gOoFzi+5abVQngYEnyP7yF+mk=
+X-Google-Smtp-Source: AA0mqf6+RVANxMVf1nkwk15dGhutpVuAJjdO2z51JHNs0gyi9pf/wPb44IxIx9h7CXwAWibxaDyf+w==
+X-Received: by 2002:a05:6402:eaa:b0:462:c7ed:7b41 with SMTP id
+ h42-20020a0564020eaa00b00462c7ed7b41mr22697120eda.21.1671113997664; 
+ Thu, 15 Dec 2022 06:19:57 -0800 (PST)
+Received: from [192.168.178.21] (p5b0ea2e7.dip0.t-ipconnect.de.
+ [91.14.162.231]) by smtp.gmail.com with ESMTPSA id
+ w14-20020a056402070e00b00463a83ce063sm7346026edx.96.2022.12.15.06.19.56
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 15 Dec 2022 06:19:57 -0800 (PST)
+Message-ID: <0169e3dd-c705-175d-9045-2baf0cbabb78@gmail.com>
+Date: Thu, 15 Dec 2022 15:19:55 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arun R Murthy" <arun.r.murthy@intel.com>
-Date: Thu, 15 Dec 2022 14:14:33 -0000
-Message-ID: <167111367355.25116.14053444266514451032@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221124070925.3834910-1-arun.r.murthy@intel.com>
-In-Reply-To: <20221124070925.3834910-1-arun.r.murthy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
- =?utf-8?q?m/i915/dp=3A_wait_on_timeout_before_retry_include_sw_delay_=28r?=
- =?utf-8?q?ev8=29?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+To: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ Dave Airlie <airlied@redhat.com>, Daniel Vetter <daniel@ffwll.ch>
+References: <20221125102137.1801-1-christian.koenig@amd.com>
+ <20221125102137.1801-6-christian.koenig@amd.com>
+In-Reply-To: <20221125102137.1801-6-christian.koenig@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 6/9] drm/qxl: stop using ttm_bo_wait
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,22 +77,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Am 25.11.22 um 11:21 schrieb Christian König:
+> TTM is just wrapping core DMA functionality here, remove the mid-layer.
+> No functional change.
 
-Series: drm/i915/dp: wait on timeout before retry include sw delay (rev8)
-URL   : https://patchwork.freedesktop.org/series/111303/
-State : warning
+Any objections to this guys?
 
-== Summary ==
+I'm basically just following a suggestion from Daniel here and it 
+already triggered a discussion about the timeout for i915.
 
-Error: make htmldocs had i915 warnings
-./drivers/gpu/drm/i915/display/intel_dsb.c:201: warning: Excess function parameter 'crtc_state' description in 'intel_dsb_reg_write'
-./drivers/gpu/drm/i915/display/intel_dsb.c:201: warning: Function parameter or member 'dsb' not described in 'intel_dsb_reg_write'
-./drivers/gpu/drm/i915/display/intel_dsb.c:201: warning: Excess function parameter 'crtc_state' description in 'intel_dsb_reg_write'
+Thanks,
+Christian.
 
+>
+> Signed-off-by: Christian König <christian.koenig@amd.com>
+> ---
+>   drivers/gpu/drm/qxl/qxl_cmd.c | 16 ++++++++++++++--
+>   1 file changed, 14 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/qxl/qxl_cmd.c b/drivers/gpu/drm/qxl/qxl_cmd.c
+> index 63aa96a69752..281edab518cd 100644
+> --- a/drivers/gpu/drm/qxl/qxl_cmd.c
+> +++ b/drivers/gpu/drm/qxl/qxl_cmd.c
+> @@ -579,7 +579,7 @@ void qxl_surface_evict(struct qxl_device *qdev, struct qxl_bo *surf, bool do_upd
+>   
+>   static int qxl_reap_surf(struct qxl_device *qdev, struct qxl_bo *surf, bool stall)
+>   {
+> -	int ret;
+> +	long ret;
+>   
+>   	ret = qxl_bo_reserve(surf);
+>   	if (ret)
+> @@ -588,7 +588,19 @@ static int qxl_reap_surf(struct qxl_device *qdev, struct qxl_bo *surf, bool stal
+>   	if (stall)
+>   		mutex_unlock(&qdev->surf_evict_mutex);
+>   
+> -	ret = ttm_bo_wait(&surf->tbo, true, !stall);
+> +	if (stall) {
+> +		ret = dma_resv_wait_timeout(surf->tbo.base.resv,
+> +					    DMA_RESV_USAGE_BOOKKEEP, true,
+> +					    15 * HZ);
+> +		if (ret > 0)
+> +			ret = 0;
+> +		else if (ret == 0)
+> +			ret = -EBUSY;
+> +	} else {
+> +		ret = dma_resv_test_signaled(surf->tbo.base.resv,
+> +					     DMA_RESV_USAGE_BOOKKEEP);
+> +		ret = ret ? -EBUSY : 0;
+> +	}
+>   
+>   	if (stall)
+>   		mutex_lock(&qdev->surf_evict_mutex);
 
