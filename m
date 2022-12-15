@@ -2,59 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EE5364D9FB
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Dec 2022 12:03:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD36764DA17
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Dec 2022 12:13:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C04710E08B;
-	Thu, 15 Dec 2022 11:03:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38F2A10E527;
+	Thu, 15 Dec 2022 11:13:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23BE410E08B
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Dec 2022 11:03:47 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 765B410E527
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Dec 2022 11:13:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671102227; x=1702638227;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=McCXvImer/A/nVvk3BCMNHdEFPZq6HQPsdeqJhNeFKE=;
- b=N/uDWL2l6nAAevU4b2vf0+q9jsHhC0oXhzllAHPGGwD3HkSesSe2msrO
- Moqz6Kmtwq6anf/q7niBmPfO2BF1/XHKGe/FcUjCbEly07Rev/bLJW9Kc
- iIPM7D2P5BObCpQmxQjTcvX0X2lw/ulAB6xna0qxoFgKMwPIiIDATuJQ6
- OmpIeGWEH+aYszDWbfi5c6/GKSN5ZRAKQ4+qRZYoShCDzjJp2HYMkSDLQ
- xCrECFFQgbthx3Q713Lv3SgqfXRLqrkLyylBWZzkIHeQqECDjqa3C2rtn
- aJtCP3oZ/A6p6RJ3DzJH8IE9w+OUVJsist2G2KsJiGmWbP09a337R/fBK g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10561"; a="382954029"
-X-IronPort-AV: E=Sophos;i="5.96,247,1665471600"; d="scan'208";a="382954029"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2022 03:03:46 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10561"; a="599568431"
-X-IronPort-AV: E=Sophos;i="5.96,247,1665471600"; d="scan'208";a="599568431"
-Received: from tgodea-mobl.ger.corp.intel.com (HELO localhost) ([10.252.61.26])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2022 03:03:45 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-In-Reply-To: <DM6PR11MB31778B4A7658B5C1796A4268BAE19@DM6PR11MB3177.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1670855299.git.jani.nikula@intel.com>
- <ad40080099b3d0c95f0fac89053b5c34d2ef4549.1670855299.git.jani.nikula@intel.com>
- <BL0PR11MB31703B1D64C3125DE1B3EADDBAE09@BL0PR11MB3170.namprd11.prod.outlook.com>
- <87k02uwdlw.fsf@intel.com>
- <DM6PR11MB31777C066D99AFF73AD5D956BAE19@DM6PR11MB3177.namprd11.prod.outlook.com>
- <87wn6tuj1x.fsf@intel.com>
- <DM6PR11MB3177A60D4B187A5676EC9818BAE19@DM6PR11MB3177.namprd11.prod.outlook.com>
- <87sfhhufx1.fsf@intel.com>
- <DM6PR11MB31778B4A7658B5C1796A4268BAE19@DM6PR11MB3177.namprd11.prod.outlook.com>
-Date: Thu, 15 Dec 2022 13:03:42 +0200
-Message-ID: <87mt7pudwx.fsf@intel.com>
+ t=1671102802; x=1702638802;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=eB+ZZNmHDawWwFvBUPVZTSwScLWekLFetH0zCcKTT+0=;
+ b=bbIquWm7Inc2EsftGER9vyqFvy0iA26lr2qSC1yW4G5lECCHm7dTchdy
+ kvh8jIiUXjJrtzJSvLZdT6/TES/PeFPsXrEdPGRFufnrlITYl5GYnvHOK
+ DTljHh+ntZ6G+IbCkhrt+qtibpTlORpmkR0gXLIbLujFCq6MuZtbfABM/
+ kqoP3owLGYWoip/Zvu1RdcKtsORI5XWwLphDonoWCcNY4bOBx2h2gLZKR
+ 6kBjWro8Gsi3DEGrK+DivY4Np87B+3+jjmMrlm59g8QffS8oQWISV7l3t
+ bd0K6W8Rg1K0W50HANLbeBEkRa3B0ohqkoShE2JfxnIOGs6erN74bn0O6 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10561"; a="404919192"
+X-IronPort-AV: E=Sophos;i="5.96,247,1665471600"; d="scan'208";a="404919192"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2022 03:13:21 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10561"; a="978185397"
+X-IronPort-AV: E=Sophos;i="5.96,247,1665471600"; d="scan'208";a="978185397"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by fmsmga005.fm.intel.com with ESMTP; 15 Dec 2022 03:13:19 -0800
+From: Arun R Murthy <arun.r.murthy@intel.com>
+To: intel-gfx@lists.freedesktop.org, ville.syrjala@linux.intel.com,
+ jani.nikula@intel.com, imre.deak@intel.com
+Date: Thu, 15 Dec 2022 16:43:38 +0530
+Message-Id: <20221215111338.1080698-1-arun.r.murthy@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20221124070925.3834910-1-arun.r.murthy@intel.com>
+References: <20221124070925.3834910-1-arun.r.murthy@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 2/7] drm/i915/display: move more scanline
- functions to intel_vblank.[ch]
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCHv6] drm/i915/dp: change aux_ctl reg read to
+ polling read
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,63 +61,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 15 Dec 2022, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
->> -----Original Message-----
->> From: Nikula, Jani <jani.nikula@intel.com>
->> Sent: Thursday, December 15, 2022 3:50 PM
->> To: Murthy, Arun R <arun.r.murthy@intel.com>; intel-
->> gfx@lists.freedesktop.org
->> Subject: RE: [Intel-gfx] [PATCH 2/7] drm/i915/display: move more scanline
->> functions to intel_vblank.[ch]
->>
->> On Thu, 15 Dec 2022, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
->> >> >> And how would you propose to drop the wrapper? The wrappers are
->> >> >> all about readability in the caller side:
->> >> >>
->> >> > I didn=E2=80=99t mean to drop the wrapper, understand that wrapper =
-is more
->> >> readable, what I meant is to replace
->> >> wait_for_pipe_scanline_moving/stopped with its function contents.
->> >>
->> >> Why should we duplicate the code?
->> >
->> > static void intel_wait_for_pipe_scanline_moving(struct intel_crtc *crt=
-c) {
-> Bool state can be added as a parameter to this function, on the other han=
-d, can have state =3D false as a magic value as well.
+The busy timeout logic checks for the AUX BUSY, then waits for the
+timeout period and then after timeout reads the register for BUSY or
+Success.
+Instead replace interrupt with polling so as to read the AUX CTL
+register often before the timeout period. Looks like there might be some
+issue with interrupt-on-read. Hence changing the logic to polling read.
 
-Then it boils down to what we already have?
+v2: replace interrupt with polling read
+v3: use usleep_rang instead of msleep, updated commit msg
+v4: use intel_wait_for_regiter internal function
+v5: use __intel_de_wait_for_register with 500us slow and 10ms fast timeout
+v6: check return value of __intel_de_wait_for_register
 
-Too much talk now, please send actual working code instead.
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp_aux.c | 14 +++++---------
+ 1 file changed, 5 insertions(+), 9 deletions(-)
 
-BR,
-Jani.
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+index 91c93c93e5fc..973dadecf712 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+@@ -41,20 +41,16 @@ intel_dp_aux_wait_done(struct intel_dp *intel_dp)
+ 	i915_reg_t ch_ctl = intel_dp->aux_ch_ctl_reg(intel_dp);
+ 	const unsigned int timeout_ms = 10;
+ 	u32 status;
+-	bool done;
+-
+-#define C (((status = intel_de_read_notrace(i915, ch_ctl)) & DP_AUX_CH_CTL_SEND_BUSY) == 0)
+-	done = wait_event_timeout(i915->display.gmbus.wait_queue, C,
+-				  msecs_to_jiffies_timeout(timeout_ms));
++	int ret;
+ 
+-	/* just trace the final value */
+-	trace_i915_reg_rw(false, ch_ctl, status, sizeof(status), true);
++	ret = __intel_de_wait_for_register(i915, ch_ctl,
++					   DP_AUX_CH_CTL_SEND_BUSY, 0,
++					   500, timeout_ms, &status);
+ 
+-	if (!done)
++	if (ret == -ETIMEDOUT)
+ 		drm_err(&i915->drm,
+ 			"%s: did not complete or timeout within %ums (status 0x%08x)\n",
+ 			intel_dp->aux.name, timeout_ms, status);
+-#undef C
+ 
+ 	return status;
+ }
+-- 
+2.25.1
 
-
->
-> Thanks and Regards,
-> Arun R Murthy
-> -------------------
->> >         struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
->> >         enum pipe pipe =3D crtc->pipe
->> >
->> >         /* Wait for the display line to settle/start moving */
->> >         if (wait_for(pipe_scanline_is_moving(dev_priv, pipe) =3D=3D st=
-ate,
->> > 100))
->> >
->> >         drm_err(&dev_priv->drm,
->> >                   "pipe %c scanline %s wait timed out\n",
->> >                          pipe_name(pipe), str_on_off(state)); }
->>
->> And the state variable comes from where?
->>
->> BR,
->> Jani.
->>
->>
->> --
->> Jani Nikula, Intel Open Source Graphics Center
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
