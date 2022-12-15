@@ -2,57 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BCA164DD6B
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Dec 2022 16:12:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0ACA64DDAF
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Dec 2022 16:20:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C78C010E0E4;
-	Thu, 15 Dec 2022 15:11:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0329510E38F;
+	Thu, 15 Dec 2022 15:20:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7896710E0C1
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Dec 2022 15:11:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671117099; x=1702653099;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=SqIOslmV5aGSX0Gxf85CZFd+AxVbDg7q5gE8vG2z+Xs=;
- b=NdvhbwWUQWtxI1y64i4dps04uq+l+w1XFBVZnylt4vbI4EDXwgdmcWuy
- qbyPOndFi8FtPkMDk6U6zWO1/g1kdBu8ALOClaCcdmf3BD3j6Y+yOgvv/
- jxtyqu9MeVqNpniiVIgCXp4OO8Q5jrwSpkngX9O0N2xd8lOox+9m8nuXJ
- shCRourL40IQFlzsCvSlCDKeD4vyNHv7DM2KLSAZKbwTx+EouCB+e5ZAb
- ZQuxbaMq/7dfrmsNqgN1u1AEHRmflVwLj/xk7JfVHHtCFrFftmGjMD/Oa
- S63QrxBBT9LlewlBNDPb3RlBi7c2FC3f01LfgQxmxqzPmX0Y06u3+qaXY Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10561"; a="345787814"
-X-IronPort-AV: E=Sophos;i="5.96,247,1665471600"; d="scan'208";a="345787814"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2022 07:11:15 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10561"; a="823735926"
-X-IronPort-AV: E=Sophos;i="5.96,247,1665471600"; d="scan'208";a="823735926"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.30.217])
- ([10.213.30.217])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2022 07:09:47 -0800
-Message-ID: <af944fd6-546c-84e5-3790-2758840df046@intel.com>
-Date: Thu, 15 Dec 2022 16:09:44 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2116B10E244;
+ Thu, 15 Dec 2022 15:20:25 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 480E2AADDD;
+ Thu, 15 Dec 2022 15:20:24 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8122310434748201647=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.5.1
-Content-Language: en-US
-To: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>,
- intel-gfx@lists.freedesktop.org
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
+Date: Thu, 15 Dec 2022 15:20:24 -0000
+Message-ID: <167111762425.25117.3574632418818997089@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
 References: <20221215125227.1165037-1-gwan-gyeong.mun@intel.com>
- <20221215125227.1165037-2-gwan-gyeong.mun@intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20221215125227.1165037-2-gwan-gyeong.mun@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v15 1/7] overflow: Introduce
- overflows_type() and castable_to_type()
+In-Reply-To: <20221215125227.1165037-1-gwan-gyeong.mun@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRml4?=
+ =?utf-8?q?es_integer_overflow_or_integer_truncation_issues_in_page_lookup?=
+ =?utf-8?q?s=2C_ttm_place_configuration_and_scatterlist_creation?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,590 +41,746 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: thomas.hellstrom@linux.intel.com, jani.nikula@intel.com,
- chris@chris-wilson.co.uk, matthew.auld@intel.com, mchehab@kernel.org,
- nirmoy.das@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============8122310434748201647==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: Fixes integer overflow or integer truncation issues in page lookups, ttm place configuration and scatterlist creation
+URL   : https://patchwork.freedesktop.org/series/111963/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_12510 -> Patchwork_111963v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/index.html
+
+Participating hosts (19 -> 41)
+------------------------------
+
+  Additional (22): fi-kbl-soraka bat-dg1-6 bat-dg1-5 bat-adlp-6 bat-rpls-1 bat-rpls-2 fi-skl-6600u fi-bsw-n3050 bat-dg2-8 bat-adlm-1 bat-dg2-9 fi-bwr-2160 bat-adln-1 bat-atsm-1 bat-jsl-3 bat-rplp-1 bat-dg2-11 fi-bsw-nick bat-dg1-7 bat-kbl-2 bat-adlp-9 bat-adlp-4 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_111963v1:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_selftest@live@coherency:
+    - {bat-jsl-3}:        NOTRUN -> [INCOMPLETE][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-jsl-3/igt@i915_selftest@live@coherency.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-1:
+    - {bat-rpls-2}:       NOTRUN -> [FAIL][2] +1 similar issue
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-rpls-2/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-1.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_111963v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@debugfs_test@basic-hwmon:
+    - bat-adlp-4:         NOTRUN -> [SKIP][3] ([i915#7456])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-adlp-4/igt@debugfs_test@basic-hwmon.html
+
+  * igt@gem_exec_gttfill@basic:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][4] ([fdo#109271]) +7 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-kbl-soraka/igt@gem_exec_gttfill@basic.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-skl-6600u:       NOTRUN -> [SKIP][5] ([fdo#109271] / [i915#2190])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][6] ([fdo#109271] / [i915#2190])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][7] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][8] ([fdo#109271]) +39 similar issues
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-bsw-nick/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  * igt@gem_lmem_swapping@random-engines:
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][9] ([fdo#109271]) +20 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html
+    - fi-skl-6600u:       NOTRUN -> [SKIP][10] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-skl-6600u/igt@gem_lmem_swapping@random-engines.html
+
+  * igt@gem_lmem_swapping@verify-random:
+    - bat-adlp-4:         NOTRUN -> [SKIP][11] ([i915#4613]) +3 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-adlp-4/igt@gem_lmem_swapping@verify-random.html
+
+  * igt@gem_mmap@basic:
+    - bat-dg1-5:          NOTRUN -> [SKIP][12] ([i915#4083])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-5/igt@gem_mmap@basic.html
+    - bat-dg1-6:          NOTRUN -> [SKIP][13] ([i915#4083])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-6/igt@gem_mmap@basic.html
+
+  * igt@gem_render_tiled_blits@basic:
+    - bat-dg1-6:          NOTRUN -> [SKIP][14] ([i915#4079]) +1 similar issue
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-6/igt@gem_render_tiled_blits@basic.html
+
+  * igt@gem_tiled_fence_blits@basic:
+    - bat-dg1-6:          NOTRUN -> [SKIP][15] ([i915#4077]) +2 similar issues
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-6/igt@gem_tiled_fence_blits@basic.html
+    - bat-dg1-5:          NOTRUN -> [SKIP][16] ([i915#4077]) +2 similar issues
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-5/igt@gem_tiled_fence_blits@basic.html
+
+  * igt@gem_tiled_pread_basic:
+    - bat-dg1-5:          NOTRUN -> [SKIP][17] ([i915#4079]) +1 similar issue
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-5/igt@gem_tiled_pread_basic.html
+    - bat-adlp-4:         NOTRUN -> [SKIP][18] ([i915#3282])
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-adlp-4/igt@gem_tiled_pread_basic.html
+
+  * igt@i915_pm_backlight@basic-brightness:
+    - bat-dg1-6:          NOTRUN -> [SKIP][19] ([i915#7561])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-6/igt@i915_pm_backlight@basic-brightness.html
+    - bat-dg1-5:          NOTRUN -> [SKIP][20] ([i915#7561])
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-5/igt@i915_pm_backlight@basic-brightness.html
+
+  * igt@i915_pm_rps@basic-api:
+    - bat-dg1-6:          NOTRUN -> [SKIP][21] ([i915#6621])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-6/igt@i915_pm_rps@basic-api.html
+    - bat-dg1-5:          NOTRUN -> [SKIP][22] ([i915#6621])
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-5/igt@i915_pm_rps@basic-api.html
+    - bat-adlp-4:         NOTRUN -> [SKIP][23] ([i915#6621])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-adlp-4/igt@i915_pm_rps@basic-api.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][24] ([i915#1886])
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [PASS][25] -> [INCOMPLETE][26] ([i915#4785])
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12510/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@late_gt_pm:
+    - fi-kbl-soraka:      NOTRUN -> [INCOMPLETE][27] ([i915#7640])
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-kbl-soraka/igt@i915_selftest@live@late_gt_pm.html
+
+  * igt@kms_addfb_basic@basic-x-tiled-legacy:
+    - bat-dg1-5:          NOTRUN -> [SKIP][28] ([i915#4212]) +7 similar issues
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-5/igt@kms_addfb_basic@basic-x-tiled-legacy.html
+
+  * igt@kms_addfb_basic@basic-y-tiled-legacy:
+    - bat-dg1-5:          NOTRUN -> [SKIP][29] ([i915#4215])
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-5/igt@kms_addfb_basic@basic-y-tiled-legacy.html
+    - bat-dg1-6:          NOTRUN -> [SKIP][30] ([i915#4215])
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-6/igt@kms_addfb_basic@basic-y-tiled-legacy.html
+
+  * igt@kms_addfb_basic@tile-pitch-mismatch:
+    - bat-dg1-6:          NOTRUN -> [SKIP][31] ([i915#4212]) +7 similar issues
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-6/igt@kms_addfb_basic@tile-pitch-mismatch.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - bat-adlp-4:         NOTRUN -> [SKIP][32] ([fdo#111827]) +8 similar issues
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-adlp-4/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_chamelium@dp-edid-read:
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][33] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-bsw-n3050/igt@kms_chamelium@dp-edid-read.html
+
+  * igt@kms_chamelium@hdmi-crc-fast:
+    - fi-skl-6600u:       NOTRUN -> [SKIP][34] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-skl-6600u/igt@kms_chamelium@hdmi-crc-fast.html
+    - bat-dg1-6:          NOTRUN -> [SKIP][35] ([fdo#111827]) +8 similar issues
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-6/igt@kms_chamelium@hdmi-crc-fast.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][36] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-bsw-nick/igt@kms_chamelium@hdmi-hpd-fast.html
+    - bat-dg1-5:          NOTRUN -> [SKIP][37] ([fdo#111827]) +8 similar issues
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-5/igt@kms_chamelium@hdmi-hpd-fast.html
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][38] ([fdo#109271] / [fdo#111827]) +7 similar issues
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-kbl-soraka/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor:
+    - bat-adlp-4:         NOTRUN -> [SKIP][39] ([i915#4103])
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-adlp-4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor.html
+    - bat-dg1-5:          NOTRUN -> [SKIP][40] ([i915#4103] / [i915#4213])
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-5/igt@kms_cursor_legacy@basic-busy-flip-before-cursor.html
+    - bat-dg1-6:          NOTRUN -> [SKIP][41] ([i915#4103] / [i915#4213])
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-6/igt@kms_cursor_legacy@basic-busy-flip-before-cursor.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - bat-dg1-5:          NOTRUN -> [SKIP][42] ([fdo#109285])
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-5/igt@kms_force_connector_basic@force-load-detect.html
+    - bat-dg1-6:          NOTRUN -> [SKIP][43] ([fdo#109285])
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-6/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_force_connector_basic@prune-stale-modes:
+    - bat-adlp-4:         NOTRUN -> [SKIP][44] ([i915#4093]) +3 similar issues
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-adlp-4/igt@kms_force_connector_basic@prune-stale-modes.html
+
+  * igt@kms_psr@primary_mmap_gtt:
+    - fi-bwr-2160:        NOTRUN -> [SKIP][45] ([fdo#109271]) +54 similar issues
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-bwr-2160/igt@kms_psr@primary_mmap_gtt.html
+
+  * igt@kms_psr@sprite_plane_onoff:
+    - bat-dg1-6:          NOTRUN -> [SKIP][46] ([i915#1072] / [i915#4078]) +3 similar issues
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-6/igt@kms_psr@sprite_plane_onoff.html
+    - bat-dg1-5:          NOTRUN -> [SKIP][47] ([i915#1072] / [i915#4078]) +3 similar issues
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-5/igt@kms_psr@sprite_plane_onoff.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - bat-dg1-6:          NOTRUN -> [SKIP][48] ([i915#3555])
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-6/igt@kms_setmode@basic-clone-single-crtc.html
+    - bat-dg1-5:          NOTRUN -> [SKIP][49] ([i915#3555])
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-5/igt@kms_setmode@basic-clone-single-crtc.html
+    - bat-adlp-4:         NOTRUN -> [SKIP][50] ([i915#3555] / [i915#4579])
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-adlp-4/igt@kms_setmode@basic-clone-single-crtc.html
+
+  * igt@prime_vgem@basic-fence-read:
+    - bat-dg1-5:          NOTRUN -> [SKIP][51] ([i915#3708]) +3 similar issues
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-5/igt@prime_vgem@basic-fence-read.html
+
+  * igt@prime_vgem@basic-gtt:
+    - bat-dg1-5:          NOTRUN -> [SKIP][52] ([i915#3708] / [i915#4077]) +1 similar issue
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-5/igt@prime_vgem@basic-gtt.html
+    - bat-dg1-6:          NOTRUN -> [SKIP][53] ([i915#3708] / [i915#4077]) +1 similar issue
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-6/igt@prime_vgem@basic-gtt.html
+
+  * igt@prime_vgem@basic-read:
+    - bat-dg1-6:          NOTRUN -> [SKIP][54] ([i915#3708]) +3 similar issues
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-6/igt@prime_vgem@basic-read.html
+
+  * igt@prime_vgem@basic-userptr:
+    - bat-adlp-4:         NOTRUN -> [SKIP][55] ([fdo#109295] / [i915#3301] / [i915#3708])
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-adlp-4/igt@prime_vgem@basic-userptr.html
+    - fi-skl-6600u:       NOTRUN -> [SKIP][56] ([fdo#109271]) +4 similar issues
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-skl-6600u/igt@prime_vgem@basic-userptr.html
+    - bat-dg1-5:          NOTRUN -> [SKIP][57] ([i915#3708] / [i915#4873])
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-5/igt@prime_vgem@basic-userptr.html
+    - bat-dg1-6:          NOTRUN -> [SKIP][58] ([i915#3708] / [i915#4873])
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-6/igt@prime_vgem@basic-userptr.html
+
+  * igt@prime_vgem@basic-write:
+    - bat-adlp-4:         NOTRUN -> [SKIP][59] ([fdo#109295] / [i915#3291] / [i915#3708]) +2 similar issues
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-adlp-4/igt@prime_vgem@basic-write.html
+
+  * igt@runner@aborted:
+    - fi-hsw-4770:        NOTRUN -> [FAIL][60] ([fdo#109271] / [i915#4312] / [i915#5594])
+   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-hsw-4770/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
+    - fi-bsw-kefka:       [FAIL][61] ([i915#6298]) -> [PASS][62]
+   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12510/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1836]: https://gitlab.freedesktop.org/drm/intel/issues/1836
+  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
+  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#3003]: https://gitlab.freedesktop.org/drm/intel/issues/3003
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4078]: https://gitlab.freedesktop.org/drm/intel/issues/4078
+  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#4093]: https://gitlab.freedesktop.org/drm/intel/issues/4093
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
+  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
+  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
+  [i915#4258]: https://gitlab.freedesktop.org/drm/intel/issues/4258
+  [i915#4303]: https://gitlab.freedesktop.org/drm/intel/issues/4303
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#4873]: https://gitlab.freedesktop.org/drm/intel/issues/4873
+  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
+  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#5594]: https://gitlab.freedesktop.org/drm/intel/issues/5594
+  [i915#6077]: https://gitlab.freedesktop.org/drm/intel/issues/6077
+  [i915#6078]: https://gitlab.freedesktop.org/drm/intel/issues/6078
+  [i915#6093]: https://gitlab.freedesktop.org/drm/intel/issues/6093
+  [i915#6094]: https://gitlab.freedesktop.org/drm/intel/issues/6094
+  [i915#6166]: https://gitlab.freedesktop.org/drm/intel/issues/6166
+  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
+  [i915#6311]: https://gitlab.freedesktop.org/drm/intel/issues/6311
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
+  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
+  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
+  [i915#7357]: https://gitlab.freedesktop.org/drm/intel/issues/7357
+  [i915#7456]: https://gitlab.freedesktop.org/drm/intel/issues/7456
+  [i915#7498]: https://gitlab.freedesktop.org/drm/intel/issues/7498
+  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
+  [i915#7640]: https://gitlab.freedesktop.org/drm/intel/issues/7640
 
 
-On 15.12.2022 13:52, Gwan-gyeong Mun wrote:
-> From: Kees Cook <keescook@chromium.org>
->
-> Implement a robust overflows_type() macro to test if a variable or
-> constant value would overflow another variable or type. This can be
-> used as a constant expression for static_assert() (which requires a
-> constant expression[1][2]) when used on constant values. This must be
-> constructed manually, since __builtin_add_overflow() does not produce
-> a constant expression[3].
->
-> Additionally adds castable_to_type(), similar to __same_type(), but for
-> checking if a constant value would overflow if cast to a given type.
->
-> Add unit tests for overflows_type(), __same_type(), and castable_to_type()
-> to the existing KUnit "overflow" test:
->
-> [16:03:33] ================== overflow (21 subtests) ==================
-> ...
-> [16:03:33] [PASSED] overflows_type_test
-> [16:03:33] [PASSED] same_type_test
-> [16:03:33] [PASSED] castable_to_type_test
-> [16:03:33] ==================== [PASSED] overflow =====================
-> [16:03:33] ============================================================
-> [16:03:33] Testing complete. Ran 21 tests: passed: 21
-> [16:03:33] Elapsed time: 24.022s total, 0.002s configuring, 22.598s building, 0.767s running
->
-> [1] https://en.cppreference.com/w/c/language/_Static_assert
-> [2] C11 standard (ISO/IEC 9899:2011): 6.7.10 Static assertions
-> [3] https://gcc.gnu.org/onlinedocs/gcc/Integer-Overflow-Builtins.html
->      6.56 Built-in Functions to Perform Arithmetic with Overflow Checking
->      Built-in Function: bool __builtin_add_overflow (type1 a, type2 b,
->
-> Cc: Luc Van Oostenryck <luc.vanoostenryck@gmail.com>
-> Cc: Nathan Chancellor <nathan@kernel.org>
-> Cc: Nick Desaulniers <ndesaulniers@google.com>
-> Cc: Tom Rix <trix@redhat.com>
-> Cc: Daniel Latypov <dlatypov@google.com>
-> Cc: Vitor Massaru Iha <vitor@massaru.org>
-> Cc: "Gustavo A. R. Silva" <gustavoars@kernel.org>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: linux-hardening@vger.kernel.org
-> Cc: llvm@lists.linux.dev
-> Co-developed-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-> Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-> Signed-off-by: Kees Cook <keescook@chromium.org>
-> Link: https://lore.kernel.org/r/20221024201125.1416422-1-gwan-gyeong.mun@intel.com
-> ---
->   drivers/gpu/drm/i915/i915_user_extensions.c |   2 +-
->   drivers/gpu/drm/i915/i915_utils.h           |   4 -
->   include/linux/compiler.h                    |   1 +
->   include/linux/overflow.h                    |  48 +++
->   lib/Makefile                                |   1 +
->   lib/overflow_kunit.c                        | 381 ++++++++++++++++++++
->   6 files changed, 432 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_user_extensions.c b/drivers/gpu/drm/i915/i915_user_extensions.c
-> index c822d0aafd2d..e3f808372c47 100644
-> --- a/drivers/gpu/drm/i915/i915_user_extensions.c
-> +++ b/drivers/gpu/drm/i915/i915_user_extensions.c
-> @@ -51,7 +51,7 @@ int i915_user_extensions(struct i915_user_extension __user *ext,
->   			return err;
->   
->   		if (get_user(next, &ext->next_extension) ||
-> -		    overflows_type(next, ext))
-> +		    overflows_type(next, uintptr_t))
->   			return -EFAULT;
->   
->   		ext = u64_to_user_ptr(next);
-> diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
-> index b64192d9c7da..2c430c0c3bad 100644
-> --- a/drivers/gpu/drm/i915/i915_utils.h
-> +++ b/drivers/gpu/drm/i915/i915_utils.h
-> @@ -111,10 +111,6 @@ bool i915_error_injected(void);
->   #define range_overflows_end_t(type, start, size, max) \
->   	range_overflows_end((type)(start), (type)(size), (type)(max))
->   
-> -/* Note we don't consider signbits :| */
-> -#define overflows_type(x, T) \
-> -	(sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T))
-> -
->   #define ptr_mask_bits(ptr, n) ({					\
->   	unsigned long __v = (unsigned long)(ptr);			\
->   	(typeof(ptr))(__v & -BIT(n));					\
-> diff --git a/include/linux/compiler.h b/include/linux/compiler.h
-> index 973a1bfd7ef5..947a60b801db 100644
-> --- a/include/linux/compiler.h
-> +++ b/include/linux/compiler.h
-> @@ -236,6 +236,7 @@ static inline void *offset_to_ptr(const int *off)
->    * bool and also pointer types.
->    */
->   #define is_signed_type(type) (((type)(-1)) < (__force type)1)
-> +#define is_unsigned_type(type) (!is_signed_type(type))
->   
->   /*
->    * This is needed in functions which generate the stack canary, see
-> diff --git a/include/linux/overflow.h b/include/linux/overflow.h
-> index 1d3be1a2204c..16ae8d912390 100644
-> --- a/include/linux/overflow.h
-> +++ b/include/linux/overflow.h
-> @@ -128,6 +128,54 @@ static inline bool __must_check __must_check_overflow(bool overflow)
->   	(*_d >> _to_shift) != _a);					\
->   }))
->   
-> +#define __overflows_type_constexpr(x, T) (			\
-> +	is_unsigned_type(typeof(x)) ?				\
-> +		(x) > type_max(typeof(T)) ? 1 : 0		\
-> +	: is_unsigned_type(typeof(T)) ?				\
-> +		(x) < 0 || (x) > type_max(typeof(T)) ? 1 : 0	\
-> +		: (x) < type_min(typeof(T)) ||			\
-> +		  (x) > type_max(typeof(T)) ? 1 : 0)
+Build changes
+-------------
 
-Syntactically seems fine, but I am little bit lost with indentation. 
-Shouldn't the last two lines be one tab to the left?  Up to you.
-Btw, maybe extra helper in_range/between: in_range(x, type_min(T), 
-type_max(T)) :)
-The rest looks OK
+  * Linux: CI_DRM_12510 -> Patchwork_111963v1
 
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+  CI-20190529: 20190529
+  CI_DRM_12510: e7a0d02714edf5ceac30b8da5ed7151d7dadbd40 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7094: 1763071e9d50c5e992257c9197cb26f166de6fae @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_111963v1: e7a0d02714edf5ceac30b8da5ed7151d7dadbd40 @ git://anongit.freedesktop.org/gfx-ci/linux
 
-Regards
-Andrzej
 
-> +
-> +#define __overflows_type(x, T)		({	\
-> +	typeof(T) v = 0;			\
-> +	check_add_overflow((x), v, &v);		\
-> +})
-> +
-> +/**
-> + * overflows_type - helper for checking the overflows between value, variables,
-> + *		    or data type
-> + *
-> + * @n: source constant value or variable to be checked
-> + * @T: destination variable or data type proposed to store @x
-> + *
-> + * Compares the @x expression for whether or not it can safely fit in
-> + * the storage of the type in @T. @x and @T can have different types.
-> + * If @x is a constant expression, this will also resolve to a constant
-> + * expression.
-> + *
-> + * Returns: true if overflow can occur, false otherwise.
-> + */
-> +#define overflows_type(n, T)					\
-> +	__builtin_choose_expr(__is_constexpr(n),		\
-> +			      __overflows_type_constexpr(n, T),	\
-> +			      __overflows_type(n, T))
-> +
-> +/**
-> + * castable_to_type - like __same_type(), but also allows for casted literals
-> + *
-> + * @n: variable or constant value
-> + * @T: variable or data type
-> + *
-> + * Unlike the __same_type() macro, this allows a constant value as the
-> + * first argument. If this value would not overflow into an assignment
-> + * of the second argument's type, it returns true. Otherwise, this falls
-> + * back to __same_type().
-> + */
-> +#define castable_to_type(n, T)						\
-> +	__builtin_choose_expr(__is_constexpr(n),			\
-> +			      !__overflows_type_constexpr(n, T),	\
-> +			      __same_type(n, T))
-> +
->   /**
->    * size_mul() - Calculate size_t multiplication with saturation at SIZE_MAX
->    * @factor1: first factor
-> diff --git a/lib/Makefile b/lib/Makefile
-> index 59bd7c2f793a..889f96b10f12 100644
-> --- a/lib/Makefile
-> +++ b/lib/Makefile
-> @@ -377,6 +377,7 @@ obj-$(CONFIG_CMDLINE_KUNIT_TEST) += cmdline_kunit.o
->   obj-$(CONFIG_SLUB_KUNIT_TEST) += slub_kunit.o
->   obj-$(CONFIG_MEMCPY_KUNIT_TEST) += memcpy_kunit.o
->   obj-$(CONFIG_IS_SIGNED_TYPE_KUNIT_TEST) += is_signed_type_kunit.o
-> +CFLAGS_overflow_kunit.o = $(call cc-disable-warning, tautological-constant-out-of-range-compare)
->   obj-$(CONFIG_OVERFLOW_KUNIT_TEST) += overflow_kunit.o
->   CFLAGS_stackinit_kunit.o += $(call cc-disable-warning, switch-unreachable)
->   obj-$(CONFIG_STACKINIT_KUNIT_TEST) += stackinit_kunit.o
-> diff --git a/lib/overflow_kunit.c b/lib/overflow_kunit.c
-> index b8556a2e7bb1..dcd3ba102db6 100644
-> --- a/lib/overflow_kunit.c
-> +++ b/lib/overflow_kunit.c
-> @@ -736,6 +736,384 @@ static void overflow_size_helpers_test(struct kunit *test)
->   #undef check_one_size_helper
->   }
->   
-> +static void overflows_type_test(struct kunit *test)
-> +{
-> +	int count = 0;
-> +	unsigned int var;
-> +
-> +#define __TEST_OVERFLOWS_TYPE(func, arg1, arg2, of)	do {		\
-> +	bool __of = func(arg1, arg2);					\
-> +	KUNIT_EXPECT_EQ_MSG(test, __of, of,				\
-> +		"expected " #func "(" #arg1 ", " #arg2 " to%s overflow\n",\
-> +		of ? "" : " not");					\
-> +	count++;							\
-> +} while (0)
-> +
-> +/* Args are: first type, second type, value, overflow expected */
-> +#define TEST_OVERFLOWS_TYPE(__t1, __t2, v, of) do {			\
-> +	__t1 t1 = (v);							\
-> +	__t2 t2;							\
-> +	__TEST_OVERFLOWS_TYPE(__overflows_type, t1, t2, of);		\
-> +	__TEST_OVERFLOWS_TYPE(__overflows_type, t1, __t2, of);		\
-> +	__TEST_OVERFLOWS_TYPE(__overflows_type_constexpr, t1, t2, of);	\
-> +	__TEST_OVERFLOWS_TYPE(__overflows_type_constexpr, t1, __t2, of);\
-> +} while (0)
-> +
-> +	TEST_OVERFLOWS_TYPE(u8, u8, U8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u8, u16, U8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u8, s8, U8_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u8, s8, S8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u8, s8, (u8)S8_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(u8, s16, U8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s8, u8, S8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s8, u8, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s8, u8, S8_MIN, true);
-> +	TEST_OVERFLOWS_TYPE(s8, u16, S8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s8, u16, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s8, u16, S8_MIN, true);
-> +	TEST_OVERFLOWS_TYPE(s8, u32, S8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s8, u32, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s8, u32, S8_MIN, true);
-> +#if BITS_PER_LONG == 64
-> +	TEST_OVERFLOWS_TYPE(s8, u64, S8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s8, u64, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s8, u64, S8_MIN, true);
-> +#endif
-> +	TEST_OVERFLOWS_TYPE(s8, s8, S8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s8, s8, S8_MIN, false);
-> +	TEST_OVERFLOWS_TYPE(s8, s16, S8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s8, s16, S8_MIN, false);
-> +	TEST_OVERFLOWS_TYPE(u16, u8, U8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u16, u8, (u16)U8_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(u16, u8, U16_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u16, s8, S8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u16, s8, (u16)S8_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(u16, s8, U16_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u16, s16, S16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u16, s16, (u16)S16_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(u16, s16, U16_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u16, u32, U16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u16, s32, U16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s16, u8, U8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s16, u8, (s16)U8_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(s16, u8, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s16, u8, S16_MIN, true);
-> +	TEST_OVERFLOWS_TYPE(s16, u16, S16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s16, u16, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s16, u16, S16_MIN, true);
-> +	TEST_OVERFLOWS_TYPE(s16, u32, S16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s16, u32, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s16, u32, S16_MIN, true);
-> +#if BITS_PER_LONG == 64
-> +	TEST_OVERFLOWS_TYPE(s16, u64, S16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s16, u64, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s16, u64, S16_MIN, true);
-> +#endif
-> +	TEST_OVERFLOWS_TYPE(s16, s8, S8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s16, s8, S8_MIN, false);
-> +	TEST_OVERFLOWS_TYPE(s16, s8, (s16)S8_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(s16, s8, (s16)S8_MIN - 1, true);
-> +	TEST_OVERFLOWS_TYPE(s16, s8, S16_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(s16, s8, S16_MIN, true);
-> +	TEST_OVERFLOWS_TYPE(s16, s16, S16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s16, s16, S16_MIN, false);
-> +	TEST_OVERFLOWS_TYPE(s16, s32, S16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s16, s32, S16_MIN, false);
-> +	TEST_OVERFLOWS_TYPE(u32, u8, U8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u32, u8, (u32)U8_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(u32, u8, U32_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u32, s8, S8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u32, s8, (u32)S8_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(u32, s8, U32_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u32, u16, U16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u32, u16, U16_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(u32, u16, U32_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u32, s16, S16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u32, s16, (u32)S16_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(u32, s16, U32_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u32, u32, U32_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u32, s32, S32_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u32, s32, U32_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u32, s32, (u32)S32_MAX + 1, true);
-> +#if BITS_PER_LONG == 64
-> +	TEST_OVERFLOWS_TYPE(u32, u64, U32_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u32, s64, U32_MAX, false);
-> +#endif
-> +	TEST_OVERFLOWS_TYPE(s32, u8, U8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s32, u8, (s32)U8_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(s32, u16, S32_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(s32, u8, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s32, u8, S32_MIN, true);
-> +	TEST_OVERFLOWS_TYPE(s32, u16, U16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s32, u16, (s32)U16_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(s32, u16, S32_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(s32, u16, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s32, u16, S32_MIN, true);
-> +	TEST_OVERFLOWS_TYPE(s32, u32, S32_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s32, u32, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s32, u32, S32_MIN, true);
-> +#if BITS_PER_LONG == 64
-> +	TEST_OVERFLOWS_TYPE(s32, u64, S32_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s32, u64, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s32, u64, S32_MIN, true);
-> +#endif
-> +	TEST_OVERFLOWS_TYPE(s32, s8, S8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s32, s8, S8_MIN, false);
-> +	TEST_OVERFLOWS_TYPE(s32, s8, (s32)S8_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(s32, s8, (s32)S8_MIN - 1, true);
-> +	TEST_OVERFLOWS_TYPE(s32, s8, S32_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(s32, s8, S32_MIN, true);
-> +	TEST_OVERFLOWS_TYPE(s32, s16, S16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s32, s16, S16_MIN, false);
-> +	TEST_OVERFLOWS_TYPE(s32, s16, (s32)S16_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(s32, s16, (s32)S16_MIN - 1, true);
-> +	TEST_OVERFLOWS_TYPE(s32, s16, S32_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(s32, s16, S32_MIN, true);
-> +	TEST_OVERFLOWS_TYPE(s32, s32, S32_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s32, s32, S32_MIN, false);
-> +#if BITS_PER_LONG == 64
-> +	TEST_OVERFLOWS_TYPE(s32, s64, S32_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s32, s64, S32_MIN, false);
-> +	TEST_OVERFLOWS_TYPE(u64, u8, U64_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u64, u8, U8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u64, u8, (u64)U8_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(u64, u16, U64_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u64, u16, U16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u64, u16, (u64)U16_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(u64, u32, U64_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u64, u32, U32_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u64, u32, (u64)U32_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(u64, u64, U64_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u64, s8, S8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u64, s8, (u64)S8_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(u64, s8, U64_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u64, s16, S16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u64, s16, (u64)S16_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(u64, s16, U64_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u64, s32, S32_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u64, s32, (u64)S32_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(u64, s32, U64_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u64, s64, S64_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(u64, s64, U64_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(u64, s64, (u64)S64_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(s64, u8, S64_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(s64, u8, S64_MIN, true);
-> +	TEST_OVERFLOWS_TYPE(s64, u8, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s64, u8, U8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s64, u8, (s64)U8_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(s64, u16, S64_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(s64, u16, S64_MIN, true);
-> +	TEST_OVERFLOWS_TYPE(s64, u16, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s64, u16, U16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s64, u16, (s64)U16_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(s64, u32, S64_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(s64, u32, S64_MIN, true);
-> +	TEST_OVERFLOWS_TYPE(s64, u32, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s64, u32, U32_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s64, u32, (s64)U32_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(s64, u64, S64_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s64, u64, S64_MIN, true);
-> +	TEST_OVERFLOWS_TYPE(s64, u64, -1, true);
-> +	TEST_OVERFLOWS_TYPE(s64, s8, S8_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s64, s8, S8_MIN, false);
-> +	TEST_OVERFLOWS_TYPE(s64, s8, (s64)S8_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(s64, s8, (s64)S8_MIN - 1, true);
-> +	TEST_OVERFLOWS_TYPE(s64, s8, S64_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(s64, s16, S16_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s64, s16, S16_MIN, false);
-> +	TEST_OVERFLOWS_TYPE(s64, s16, (s64)S16_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(s64, s16, (s64)S16_MIN - 1, true);
-> +	TEST_OVERFLOWS_TYPE(s64, s16, S64_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(s64, s32, S32_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s64, s32, S32_MIN, false);
-> +	TEST_OVERFLOWS_TYPE(s64, s32, (s64)S32_MAX + 1, true);
-> +	TEST_OVERFLOWS_TYPE(s64, s32, (s64)S32_MIN - 1, true);
-> +	TEST_OVERFLOWS_TYPE(s64, s32, S64_MAX, true);
-> +	TEST_OVERFLOWS_TYPE(s64, s64, S64_MAX, false);
-> +	TEST_OVERFLOWS_TYPE(s64, s64, S64_MIN, false);
-> +#endif
-> +
-> +	/* Check for macro side-effects. */
-> +	var = INT_MAX - 1;
-> +	__TEST_OVERFLOWS_TYPE(__overflows_type, var++, int, false);
-> +	__TEST_OVERFLOWS_TYPE(__overflows_type, var++, int, false);
-> +	__TEST_OVERFLOWS_TYPE(__overflows_type, var++, int, true);
-> +	var = INT_MAX - 1;
-> +	__TEST_OVERFLOWS_TYPE(overflows_type, var++, int, false);
-> +	__TEST_OVERFLOWS_TYPE(overflows_type, var++, int, false);
-> +	__TEST_OVERFLOWS_TYPE(overflows_type, var++, int, true);
-> +
-> +	kunit_info(test, "%d overflows_type() tests finished\n", count);
-> +#undef TEST_OVERFLOWS_TYPE
-> +#undef __TEST_OVERFLOWS_TYPE
-> +}
-> +
-> +static void same_type_test(struct kunit *test)
-> +{
-> +	int count = 0;
-> +	int var;
-> +
-> +#define TEST_SAME_TYPE(t1, t2, same)			do {	\
-> +	typeof(t1) __t1h = type_max(t1);			\
-> +	typeof(t1) __t1l = type_min(t1);			\
-> +	typeof(t2) __t2h = type_max(t2);			\
-> +	typeof(t2) __t2l = type_min(t2);			\
-> +	KUNIT_EXPECT_EQ(test, true, __same_type(t1, __t1h));	\
-> +	KUNIT_EXPECT_EQ(test, true, __same_type(t1, __t1l));	\
-> +	KUNIT_EXPECT_EQ(test, true, __same_type(__t1h, t1));	\
-> +	KUNIT_EXPECT_EQ(test, true, __same_type(__t1l, t1));	\
-> +	KUNIT_EXPECT_EQ(test, true, __same_type(t2, __t2h));	\
-> +	KUNIT_EXPECT_EQ(test, true, __same_type(t2, __t2l));	\
-> +	KUNIT_EXPECT_EQ(test, true, __same_type(__t2h, t2));	\
-> +	KUNIT_EXPECT_EQ(test, true, __same_type(__t2l, t2));	\
-> +	KUNIT_EXPECT_EQ(test, same, __same_type(t1, t2));	\
-> +	KUNIT_EXPECT_EQ(test, same, __same_type(t2, __t1h));	\
-> +	KUNIT_EXPECT_EQ(test, same, __same_type(t2, __t1l));	\
-> +	KUNIT_EXPECT_EQ(test, same, __same_type(__t1h, t2));	\
-> +	KUNIT_EXPECT_EQ(test, same, __same_type(__t1l, t2));	\
-> +	KUNIT_EXPECT_EQ(test, same, __same_type(t1, __t2h));	\
-> +	KUNIT_EXPECT_EQ(test, same, __same_type(t1, __t2l));	\
-> +	KUNIT_EXPECT_EQ(test, same, __same_type(__t2h, t1));	\
-> +	KUNIT_EXPECT_EQ(test, same, __same_type(__t2l, t1));	\
-> +} while (0)
-> +
-> +#if BITS_PER_LONG == 64
-> +# define TEST_SAME_TYPE64(base, t, m)	TEST_SAME_TYPE(base, t, m)
-> +#else
-> +# define TEST_SAME_TYPE64(base, t, m)	do { } while (0)
-> +#endif
-> +
-> +#define TEST_TYPE_SETS(base, mu8, mu16, mu32, ms8, ms16, ms32, mu64, ms64) \
-> +do {									\
-> +	TEST_SAME_TYPE(base,  u8,  mu8);				\
-> +	TEST_SAME_TYPE(base, u16, mu16);				\
-> +	TEST_SAME_TYPE(base, u32, mu32);				\
-> +	TEST_SAME_TYPE(base,  s8,  ms8);				\
-> +	TEST_SAME_TYPE(base, s16, ms16);				\
-> +	TEST_SAME_TYPE(base, s32, ms32);				\
-> +	TEST_SAME_TYPE64(base, u64, mu64);				\
-> +	TEST_SAME_TYPE64(base, s64, ms64);				\
-> +} while (0)
-> +
-> +	TEST_TYPE_SETS(u8,   true, false, false, false, false, false, false, false);
-> +	TEST_TYPE_SETS(u16, false,  true, false, false, false, false, false, false);
-> +	TEST_TYPE_SETS(u32, false, false,  true, false, false, false, false, false);
-> +	TEST_TYPE_SETS(s8,  false, false, false,  true, false, false, false, false);
-> +	TEST_TYPE_SETS(s16, false, false, false, false,  true, false, false, false);
-> +	TEST_TYPE_SETS(s32, false, false, false, false, false,  true, false, false);
-> +#if BITS_PER_LONG == 64
-> +	TEST_TYPE_SETS(u64, false, false, false, false, false, false,  true, false);
-> +	TEST_TYPE_SETS(s64, false, false, false, false, false, false, false,  true);
-> +#endif
-> +
-> +	/* Check for macro side-effects. */
-> +	var = 4;
-> +	KUNIT_EXPECT_EQ(test, var, 4);
-> +	KUNIT_EXPECT_TRUE(test, __same_type(var++, int));
-> +	KUNIT_EXPECT_EQ(test, var, 4);
-> +	KUNIT_EXPECT_TRUE(test, __same_type(int, var++));
-> +	KUNIT_EXPECT_EQ(test, var, 4);
-> +	KUNIT_EXPECT_TRUE(test, __same_type(var++, var++));
-> +	KUNIT_EXPECT_EQ(test, var, 4);
-> +
-> +	kunit_info(test, "%d __same_type() tests finished\n", count);
-> +
-> +#undef TEST_TYPE_SETS
-> +#undef TEST_SAME_TYPE64
-> +#undef TEST_SAME_TYPE
-> +}
-> +
-> +static void castable_to_type_test(struct kunit *test)
-> +{
-> +	int count = 0;
-> +
-> +#define TEST_CASTABLE_TO_TYPE(arg1, arg2, pass)	do {	\
-> +	bool __pass = castable_to_type(arg1, arg2);		\
-> +	KUNIT_EXPECT_EQ_MSG(test, __pass, pass,			\
-> +		"expected castable_to_type(" #arg1 ", " #arg2 ") to%s pass\n",\
-> +		pass ? "" : " not");				\
-> +	count++;						\
-> +} while (0)
-> +
-> +	TEST_CASTABLE_TO_TYPE(16, u8, true);
-> +	TEST_CASTABLE_TO_TYPE(16, u16, true);
-> +	TEST_CASTABLE_TO_TYPE(16, u32, true);
-> +	TEST_CASTABLE_TO_TYPE(16, s8, true);
-> +	TEST_CASTABLE_TO_TYPE(16, s16, true);
-> +	TEST_CASTABLE_TO_TYPE(16, s32, true);
-> +	TEST_CASTABLE_TO_TYPE(-16, s8, true);
-> +	TEST_CASTABLE_TO_TYPE(-16, s16, true);
-> +	TEST_CASTABLE_TO_TYPE(-16, s32, true);
-> +#if BITS_PER_LONG == 64
-> +	TEST_CASTABLE_TO_TYPE(16, u64, true);
-> +	TEST_CASTABLE_TO_TYPE(-16, s64, true);
-> +#endif
-> +
-> +#define TEST_CASTABLE_TO_TYPE_VAR(width)	do {				\
-> +	u ## width u ## width ## var = 0;					\
-> +	s ## width s ## width ## var = 0;					\
-> +										\
-> +	/* Constant expressions that fit types. */				\
-> +	TEST_CASTABLE_TO_TYPE(type_max(u ## width), u ## width, true);		\
-> +	TEST_CASTABLE_TO_TYPE(type_min(u ## width), u ## width, true);		\
-> +	TEST_CASTABLE_TO_TYPE(type_max(u ## width), u ## width ## var, true);	\
-> +	TEST_CASTABLE_TO_TYPE(type_min(u ## width), u ## width ## var, true);	\
-> +	TEST_CASTABLE_TO_TYPE(type_max(s ## width), s ## width, true);		\
-> +	TEST_CASTABLE_TO_TYPE(type_min(s ## width), s ## width, true);		\
-> +	TEST_CASTABLE_TO_TYPE(type_max(s ## width), s ## width ## var, true);	\
-> +	TEST_CASTABLE_TO_TYPE(type_min(u ## width), s ## width ## var, true);	\
-> +	/* Constant expressions that do not fit types. */			\
-> +	TEST_CASTABLE_TO_TYPE(type_max(u ## width), s ## width, false);		\
-> +	TEST_CASTABLE_TO_TYPE(type_max(u ## width), s ## width ## var, false);	\
-> +	TEST_CASTABLE_TO_TYPE(type_min(s ## width), u ## width, false);		\
-> +	TEST_CASTABLE_TO_TYPE(type_min(s ## width), u ## width ## var, false);	\
-> +	/* Non-constant expression with mismatched type. */			\
-> +	TEST_CASTABLE_TO_TYPE(s ## width ## var, u ## width, false);		\
-> +	TEST_CASTABLE_TO_TYPE(u ## width ## var, s ## width, false);		\
-> +} while (0)
-> +
-> +#define TEST_CASTABLE_TO_TYPE_RANGE(width)	do {				\
-> +	unsigned long big = U ## width ## _MAX;					\
-> +	signed long small = S ## width ## _MIN;					\
-> +	u ## width u ## width ## var = 0;					\
-> +	s ## width s ## width ## var = 0;					\
-> +										\
-> +	/* Constant expression in range. */					\
-> +	TEST_CASTABLE_TO_TYPE(U ## width ## _MAX, u ## width, true);		\
-> +	TEST_CASTABLE_TO_TYPE(U ## width ## _MAX, u ## width ## var, true);	\
-> +	TEST_CASTABLE_TO_TYPE(S ## width ## _MIN, s ## width, true);		\
-> +	TEST_CASTABLE_TO_TYPE(S ## width ## _MIN, s ## width ## var, true);	\
-> +	/* Constant expression out of range. */					\
-> +	TEST_CASTABLE_TO_TYPE((unsigned long)U ## width ## _MAX + 1, u ## width, false); \
-> +	TEST_CASTABLE_TO_TYPE((unsigned long)U ## width ## _MAX + 1, u ## width ## var, false); \
-> +	TEST_CASTABLE_TO_TYPE((signed long)S ## width ## _MIN - 1, s ## width, false); \
-> +	TEST_CASTABLE_TO_TYPE((signed long)S ## width ## _MIN - 1, s ## width ## var, false); \
-> +	/* Non-constant expression with mismatched type. */			\
-> +	TEST_CASTABLE_TO_TYPE(big, u ## width, false);				\
-> +	TEST_CASTABLE_TO_TYPE(big, u ## width ## var, false);			\
-> +	TEST_CASTABLE_TO_TYPE(small, s ## width, false);			\
-> +	TEST_CASTABLE_TO_TYPE(small, s ## width ## var, false);			\
-> +} while (0)
-> +
-> +	TEST_CASTABLE_TO_TYPE_VAR(8);
-> +	TEST_CASTABLE_TO_TYPE_VAR(16);
-> +	TEST_CASTABLE_TO_TYPE_VAR(32);
-> +#if BITS_PER_LONG == 64
-> +	TEST_CASTABLE_TO_TYPE_VAR(64);
-> +#endif
-> +
-> +	TEST_CASTABLE_TO_TYPE_RANGE(8);
-> +	TEST_CASTABLE_TO_TYPE_RANGE(16);
-> +#if BITS_PER_LONG == 64
-> +	TEST_CASTABLE_TO_TYPE_RANGE(32);
-> +#endif
-> +	kunit_info(test, "%d castable_to_type() tests finished\n", count);
-> +
-> +#undef TEST_CASTABLE_TO_TYPE_RANGE
-> +#undef TEST_CASTABLE_TO_TYPE_VAR
-> +#undef TEST_CASTABLE_TO_TYPE
-> +}
-> +
->   static struct kunit_case overflow_test_cases[] = {
->   	KUNIT_CASE(u8_u8__u8_overflow_test),
->   	KUNIT_CASE(s8_s8__s8_overflow_test),
-> @@ -755,6 +1133,9 @@ static struct kunit_case overflow_test_cases[] = {
->   	KUNIT_CASE(shift_nonsense_test),
->   	KUNIT_CASE(overflow_allocation_test),
->   	KUNIT_CASE(overflow_size_helpers_test),
-> +	KUNIT_CASE(overflows_type_test),
-> +	KUNIT_CASE(same_type_test),
-> +	KUNIT_CASE(castable_to_type_test),
->   	{}
->   };
->   
+### Linux commits
 
+bbf64a76e1e2 drm/i915: Remove truncation warning for large objects
+5042d9bc7b22 drm/i915: Use error code as -E2BIG when the size of gem ttm object is too large
+0c2142b41ac9 drm/i915: Check if the size is too big while creating shmem file
+edd8a1ef90f2 drm/i915: Check for integer truncation on the configuration of ttm place
+385e2d6d8a27 drm/i915: Check for integer truncation on scatterlist creation
+476700f9aa6d drm/i915/gem: Typecheck page lookups
+50a091d71029 overflow: Introduce overflows_type() and castable_to_type()
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/index.html
+
+--===============8122310434748201647==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Fixes integer overflow or integer truncation issues in page lookups, ttm place configuration and scatterlist creation</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/111963/">https://patchwork.freedesktop.org/series/111963/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12510 -&gt; Patchwork_111963v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/index.html</p>
+<h2>Participating hosts (19 -&gt; 41)</h2>
+<p>Additional (22): fi-kbl-soraka bat-dg1-6 bat-dg1-5 bat-adlp-6 bat-rpls-1 bat-rpls-2 fi-skl-6600u fi-bsw-n3050 bat-dg2-8 bat-adlm-1 bat-dg2-9 fi-bwr-2160 bat-adln-1 bat-atsm-1 bat-jsl-3 bat-rplp-1 bat-dg2-11 fi-bsw-nick bat-dg1-7 bat-kbl-2 bat-adlp-9 bat-adlp-4 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_111963v1:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>
+<p>igt@i915_selftest@live@coherency:</p>
+<ul>
+<li>{bat-jsl-3}:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-jsl-3/igt@i915_selftest@live@coherency.html">INCOMPLETE</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-1:</p>
+<ul>
+<li>{bat-rpls-2}:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-rpls-2/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-hdmi-a-1.html">FAIL</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_111963v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@debugfs_test@basic-hwmon:</p>
+<ul>
+<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-adlp-4/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7456">i915#7456</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_gttfill@basic:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-kbl-soraka/igt@gem_exec_gttfill@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +7 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>
+<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
+</li>
+<li>
+<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-bsw-nick/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +39 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@random-engines:</p>
+<ul>
+<li>
+<p>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +20 similar issues</p>
+</li>
+<li>
+<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-skl-6600u/igt@gem_lmem_swapping@random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@verify-random:</p>
+<ul>
+<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-adlp-4/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap@basic:</p>
+<ul>
+<li>
+<p>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-5/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</p>
+</li>
+<li>
+<p>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-6/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_render_tiled_blits@basic:</p>
+<ul>
+<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-6/igt@gem_render_tiled_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_fence_blits@basic:</p>
+<ul>
+<li>
+<p>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-6/igt@gem_tiled_fence_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +2 similar issues</p>
+</li>
+<li>
+<p>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-5/igt@gem_tiled_fence_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +2 similar issues</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_pread_basic:</p>
+<ul>
+<li>
+<p>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-5/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 similar issue</p>
+</li>
+<li>
+<p>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-adlp-4/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3282">i915#3282</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_backlight@basic-brightness:</p>
+<ul>
+<li>
+<p>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-6/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7561">i915#7561</a>)</p>
+</li>
+<li>
+<p>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-5/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7561">i915#7561</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rps@basic-api:</p>
+<ul>
+<li>
+<p>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-6/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6621">i915#6621</a>)</p>
+</li>
+<li>
+<p>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-5/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6621">i915#6621</a>)</p>
+</li>
+<li>
+<p>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-adlp-4/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6621">i915#6621</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12510/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@late_gt_pm:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-kbl-soraka/igt@i915_selftest@live@late_gt_pm.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7640">i915#7640</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@basic-x-tiled-legacy:</p>
+<ul>
+<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-5/igt@kms_addfb_basic@basic-x-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4212">i915#4212</a>) +7 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@basic-y-tiled-legacy:</p>
+<ul>
+<li>
+<p>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-5/igt@kms_addfb_basic@basic-y-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4215">i915#4215</a>)</p>
+</li>
+<li>
+<p>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-6/igt@kms_addfb_basic@basic-y-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4215">i915#4215</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@tile-pitch-mismatch:</p>
+<ul>
+<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-6/igt@kms_addfb_basic@tile-pitch-mismatch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4212">i915#4212</a>) +7 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-adlp-4/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-edid-read:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-bsw-n3050/igt@kms_chamelium@dp-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-crc-fast:</p>
+<ul>
+<li>
+<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-skl-6600u/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</p>
+</li>
+<li>
+<p>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-6/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
+<ul>
+<li>
+<p>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-bsw-nick/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</p>
+</li>
+<li>
+<p>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-5/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</p>
+</li>
+<li>
+<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-kbl-soraka/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +7 similar issues</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor:</p>
+<ul>
+<li>
+<p>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-adlp-4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>)</p>
+</li>
+<li>
+<p>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-5/igt@kms_cursor_legacy@basic-busy-flip-before-cursor.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4213">i915#4213</a>)</p>
+</li>
+<li>
+<p>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-6/igt@kms_cursor_legacy@basic-busy-flip-before-cursor.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4213">i915#4213</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>
+<p>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-5/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</p>
+</li>
+<li>
+<p>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-6/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
+<ul>
+<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-adlp-4/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4093">i915#4093</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_mmap_gtt:</p>
+<ul>
+<li>fi-bwr-2160:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-bwr-2160/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +54 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@sprite_plane_onoff:</p>
+<ul>
+<li>
+<p>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-6/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4078">i915#4078</a>) +3 similar issues</p>
+</li>
+<li>
+<p>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-5/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4078">i915#4078</a>) +3 similar issues</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>
+<p>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-6/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</p>
+</li>
+<li>
+<p>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-5/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</p>
+</li>
+<li>
+<p>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-adlp-4/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4579">i915#4579</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-read:</p>
+<ul>
+<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-5/igt@prime_vgem@basic-fence-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-gtt:</p>
+<ul>
+<li>
+<p>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-5/igt@prime_vgem@basic-gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +1 similar issue</p>
+</li>
+<li>
+<p>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-6/igt@prime_vgem@basic-gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +1 similar issue</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-read:</p>
+<ul>
+<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-6/igt@prime_vgem@basic-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>
+<p>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-adlp-4/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>)</p>
+</li>
+<li>
+<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-skl-6600u/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +4 similar issues</p>
+</li>
+<li>
+<p>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-5/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4873">i915#4873</a>)</p>
+</li>
+<li>
+<p>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-dg1-6/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4873">i915#4873</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-write:</p>
+<ul>
+<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/bat-adlp-4/igt@prime_vgem@basic-write.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3291">i915#3291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5594">i915#5594</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12510/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111963v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12510 -&gt; Patchwork_111963v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12510: e7a0d02714edf5ceac30b8da5ed7151d7dadbd40 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7094: 1763071e9d50c5e992257c9197cb26f166de6fae @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_111963v1: e7a0d02714edf5ceac30b8da5ed7151d7dadbd40 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>bbf64a76e1e2 drm/i915: Remove truncation warning for large objects<br />
+5042d9bc7b22 drm/i915: Use error code as -E2BIG when the size of gem ttm object is too large<br />
+0c2142b41ac9 drm/i915: Check if the size is too big while creating shmem file<br />
+edd8a1ef90f2 drm/i915: Check for integer truncation on the configuration of ttm place<br />
+385e2d6d8a27 drm/i915: Check for integer truncation on scatterlist creation<br />
+476700f9aa6d drm/i915/gem: Typecheck page lookups<br />
+50a091d71029 overflow: Introduce overflows_type() and castable_to_type()</p>
+
+</body>
+</html>
+
+--===============8122310434748201647==--
