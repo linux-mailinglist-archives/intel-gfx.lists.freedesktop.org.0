@@ -2,61 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EFE564E259
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Dec 2022 21:30:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 90F1164E1AA
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Dec 2022 20:18:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B270C10E558;
-	Thu, 15 Dec 2022 20:29:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D80810E513;
+	Thu, 15 Dec 2022 19:17:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com
- [IPv6:2607:f8b0:4864:20::1133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B523E10E418
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Dec 2022 15:16:02 +0000 (UTC)
-Received: by mail-yw1-x1133.google.com with SMTP id
- 00721157ae682-3f15a6f72d0so839617b3.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Dec 2022 07:16:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=i8/7ompYoprPv6p5gopqt1zlXtmepYGFLCWXe2gsqzg=;
- b=BUfL3YrZ28K+1n6E2SQ9fOqgRKi2RgeotU3ckXNn8xFWPTs42cuoGfphfjNQOV0pgx
- 7/jp35I3w0HRIOFVcsghYPgMBrhr8AMNN8/bTKnJa17Hz49AiqnR3KxJME/VVIigK+sS
- o/Lm4IOiEo8w6nxX4t2A4IzKZLODEjcrKKDsdmGKLI1atzrsu3mpNZREk5A83gxmOZAt
- L+k/IzYKvXs7B7hnKP1erYHIobJ4iQu87BD3pnHQtG8fBQOI4ExEQ0QtE/CElufFbNCA
- yV0c98uSdPhEqukbLuFuzz8L6ZLLU8J5/FlBKjiGFYDWzKiB3XFMXdMwK39OTfRDW0AO
- GSIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=i8/7ompYoprPv6p5gopqt1zlXtmepYGFLCWXe2gsqzg=;
- b=xjlvkxgaqkV1RyX+SuD4w/n7XByk3lupLdmtEMdM5pAiiyln2Hl3bgw37wKXYWcEJj
- lZcyYxWPqax93lc/NabnV9bF32RieiHmRmQe8LzsG3fVBXL2srQ8Gl5OqOsBUyi23XBM
- Nx1zquP9i4LkwGOn/E7XB+JgfJRj00EAliNJI1+ChNABFxHO1N535xJ8pK0PqkIGv/KY
- P+ZR9K/gnLkGsM3Iek6hZfqLNFj4W6TLISHW3F3ceznDLIpJ9FGT8XIZZpTR+Mha3Uuv
- toQFN2RXtpRSk8yQNJcKmjuBt3oKjCMoXZdhNAZs9qOWShwieFGrI386MrbWIIsOTNCP
- 4DbA==
-X-Gm-Message-State: ANoB5pm12e4VN2HjOqAQSuhDns+A04NTz65Q3gnDs91hjb8aLlQIii65
- mWfwO1IMgtahknqYXEFO4krDrAwi/41gBs5ZoXxR5g==
-X-Google-Smtp-Source: AA0mqf6N7NofCRVaBdlZmzX/2IFdQaSJdENS2yaazN5Bc4VEowcispQ6llOh6euNJwrBHENhxHLAYZsrXmLpw9L8cy4=
-X-Received: by 2002:a81:1e44:0:b0:370:7a9a:564 with SMTP id
- e65-20020a811e44000000b003707a9a0564mr27785992ywe.278.1671030961275; Wed, 14
- Dec 2022 07:16:01 -0800 (PST)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7C4E10E513;
+ Thu, 15 Dec 2022 19:17:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1671131852; x=1702667852;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=iou9Wrf5DCw6IIbHC+yc4W2bLgksXdyaZPYkluAot44=;
+ b=Sbk70tqXuGqOX+SFnJpD299QkwWo5qDapWRACvzKXanY4qnTokCRtIxd
+ XykIXcx8hmzNW3P0FyX52aLZjZxv6cSRR+Tc+TbB+/yFHnLRCwM2f6eK/
+ MqiYwvdNUAd4Ge9NDhHg8TGJVGKHlOocQJbE4Zzwa+NVK1B2CaB/PE4Sj
+ Xw+0QOdZ/AMkbB0s31WyxrR43h37AiHy6A0jSRpCHHdJjnf0QKlPdZWVZ
+ gExlgDh/BTpvj3bPoG5m7zO044WzVWd3ZGvJ++HJoXGahT3m+jIE4RJ91
+ xDl+dw5K2WYjy7lqpiQx3+n42pkPf5ZgbHNIGPeKTdC7AWd2qwnLu0u3Z Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10562"; a="306443436"
+X-IronPort-AV: E=Sophos;i="5.96,248,1665471600"; d="scan'208";a="306443436"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2022 11:17:31 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10562"; a="738265323"
+X-IronPort-AV: E=Sophos;i="5.96,248,1665471600"; d="scan'208";a="738265323"
+Received: from unerlige-ril.jf.intel.com ([10.165.21.138])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2022 11:17:31 -0800
+From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 15 Dec 2022 11:17:27 -0800
+Message-Id: <20221215191727.2468770-1-ashutosh.dixit@intel.com>
+X-Mailer: git-send-email 2.38.0
 MIME-Version: 1.0
-References: <cover.1670778651.git.david.keisarschm@mail.huji.ac.il>
- <b3caaa5ac5fca4b729bf1ecd0d01968c09e6d083.1670778652.git.david.keisarschm@mail.huji.ac.il>
- <Y5c8KLzJFz/XZMiM@zx2c4.com> <20221214123358.GA1062210@linux.intel.com>
-In-Reply-To: <20221214123358.GA1062210@linux.intel.com>
-From: Eric Dumazet <edumazet@google.com>
-Date: Wed, 14 Dec 2022 16:15:49 +0100
-Message-ID: <CANn89iJtK4m1cWvCwp=L_rEOEBa+B1kLZJAw0D9_cYPQcAj+Mw@mail.gmail.com>
-To: Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Thu, 15 Dec 2022 20:29:21 +0000
-Subject: Re: [Intel-gfx] [PATCH 1/5] Renaming weak prng invocations -
- prandom_bytes_state, prandom_u32_state
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/hwmon: Display clamped PL1 limit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,64 +54,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Jason A. Donenfeld" <Jason@zx2c4.com>,
- Vignesh Raghavendra <vigneshr@ti.com>, Peter Zijlstra <peterz@infradead.org>,
- Joonsoo Kim <iamjoonsoo.kim@lge.com>,
- Roman Gushchin <roman.gushchin@linux.dev>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Alexei Starovoitov <ast@kernel.org>, dri-devel@lists.freedesktop.org,
- Song Liu <song@kernel.org>, linux-mtd@lists.infradead.org,
- Stanislav Fomichev <sdf@google.com>, "H. Peter Anvin" <hpa@zytor.com>,
- Hyeonggon Yoo <42.hyeyoo@gmail.com>, Christoph Lameter <cl@linux.com>,
- Daniel Borkmann <daniel@iogearbox.net>, Richard Weinberger <richard@nod.at>,
- x86@kernel.org, John Fastabend <john.fastabend@gmail.com>,
- Andrii Nakryiko <andrii@kernel.org>, ilay.bahat1@gmail.com,
- Ingo Molnar <mingo@redhat.com>, David Rientjes <rientjes@google.com>,
- Yonghong Song <yhs@fb.com>, Paolo Abeni <pabeni@redhat.com>,
- "James E.J. Bottomley" <jejb@linux.ibm.com>, Petr Mladek <pmladek@suse.com>,
- david.keisarschm@mail.huji.ac.il, Dave Hansen <dave.hansen@linux.intel.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>, intel-gfx@lists.freedesktop.org,
- Steven Rostedt <rostedt@goodmis.org>, KP Singh <kpsingh@kernel.org>,
- Jakub Kicinski <kuba@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Borislav Petkov <bp@alien8.de>, Hannes Reinecke <hare@suse.de>,
- Andy Lutomirski <luto@kernel.org>, Jiri Pirko <jiri@nvidia.com>,
- Thomas Gleixner <tglx@linutronix.de>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, bpf@vger.kernel.org,
- Vlastimil Babka <vbabka@suse.cz>, Hao Luo <haoluo@google.com>,
- linux-scsi@vger.kernel.org, "Martin K. Petersen" <martin.petersen@oracle.com>,
- linux-mm@kvack.org, netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- Pekka Enberg <penberg@kernel.org>,
- Sergey Senozhatsky <senozhatsky@chromium.org>, aksecurity@gmail.com,
- Jiri Olsa <jolsa@kernel.org>, Andrew Morton <akpm@linux-foundation.org>,
- Martin KaFai Lau <martin.lau@linux.dev>,
- "David S. Miller" <davem@davemloft.net>
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 14, 2022 at 1:34 PM Stanislaw Gruszka
-<stanislaw.gruszka@linux.intel.com> wrote:
->
-> On Mon, Dec 12, 2022 at 03:35:20PM +0100, Jason A. Donenfeld wrote:
-> > Please CC me on future revisions.
-> >
-> > As of 6.2, the prandom namespace is *only* for predictable randomness.
-> > There's no need to rename anything. So nack on this patch 1/5.
->
-> It is not obvious (for casual developers like me) that p in prandom
-> stands for predictable. Some renaming would be useful IMHO.
+HW allows arbitrary PL1 limits to be set but silently clamps these values
+to "typical but not guaranteed" min/max values in pkg_power_sku
+register. Follow the same pattern for sysfs, allow arbitrary PL1 limits to
+be set but display clamped values when read, so that users see PL1 limits
+HW is likely using. Otherwise users think HW is using arbitrarily high/low
+PL1 limits they might have set. The previous write/read I1 power1_crit
+limit also follows the same clamping pattern.
 
-Renaming makes backports more complicated, because stable teams will
-have to 'undo' name changes.
-Stable teams are already overwhelmed by the amount of backports, and
-silly merge conflicts.
+v2: Explain "why" in commit message and include bug link (Jani Nikula)
 
-Take another example :
+Bug: https://gitlab.freedesktop.org/drm/intel/-/issues/7704
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+---
+ drivers/gpu/drm/i915/i915_hwmon.c        | 39 ++++++++++++++++++++----
+ drivers/gpu/drm/i915/intel_mchbar_regs.h |  2 ++
+ 2 files changed, 35 insertions(+), 6 deletions(-)
 
-u64 timecounter_read(struct timecounter *tc)
+diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
+index cca7a4350ec8f..1225bc432f0d5 100644
+--- a/drivers/gpu/drm/i915/i915_hwmon.c
++++ b/drivers/gpu/drm/i915/i915_hwmon.c
+@@ -359,6 +359,38 @@ hwm_power_is_visible(const struct hwm_drvdata *ddat, u32 attr, int chan)
+ 	}
+ }
+ 
++/*
++ * HW allows arbitrary PL1 limits to be set but silently clamps these values to
++ * "typical but not guaranteed" min/max values in rg.pkg_power_sku. Follow the
++ * same pattern for sysfs, allow arbitrary PL1 limits to be set but display
++ * clamped values when read. Write/read I1 also follows the same pattern.
++ */
++static int
++hwm_power_max_read(struct hwm_drvdata *ddat, long *val)
++{
++	struct i915_hwmon *hwmon = ddat->hwmon;
++	intel_wakeref_t wakeref;
++	u64 r, min, max;
++
++	*val = hwm_field_read_and_scale(ddat,
++					hwmon->rg.pkg_rapl_limit,
++					PKG_PWR_LIM_1,
++					hwmon->scl_shift_power,
++					SF_POWER);
++
++	with_intel_runtime_pm(ddat->uncore->rpm, wakeref)
++		r = intel_uncore_read64(ddat->uncore, hwmon->rg.pkg_power_sku);
++	min = REG_FIELD_GET(PKG_MIN_PWR, r);
++	min = mul_u64_u32_shr(min, SF_POWER, hwmon->scl_shift_power);
++	max = REG_FIELD_GET(PKG_MAX_PWR, r);
++	max = mul_u64_u32_shr(max, SF_POWER, hwmon->scl_shift_power);
++
++	if (min && max)
++		*val = clamp_t(u64, *val, min, max);
++
++	return 0;
++}
++
+ static int
+ hwm_power_read(struct hwm_drvdata *ddat, u32 attr, int chan, long *val)
+ {
+@@ -368,12 +400,7 @@ hwm_power_read(struct hwm_drvdata *ddat, u32 attr, int chan, long *val)
+ 
+ 	switch (attr) {
+ 	case hwmon_power_max:
+-		*val = hwm_field_read_and_scale(ddat,
+-						hwmon->rg.pkg_rapl_limit,
+-						PKG_PWR_LIM_1,
+-						hwmon->scl_shift_power,
+-						SF_POWER);
+-		return 0;
++		return hwm_power_max_read(ddat, val);
+ 	case hwmon_power_rated_max:
+ 		*val = hwm_field_read_and_scale(ddat,
+ 						hwmon->rg.pkg_power_sku,
+diff --git a/drivers/gpu/drm/i915/intel_mchbar_regs.h b/drivers/gpu/drm/i915/intel_mchbar_regs.h
+index f93e9af43ac35..73900c098d591 100644
+--- a/drivers/gpu/drm/i915/intel_mchbar_regs.h
++++ b/drivers/gpu/drm/i915/intel_mchbar_regs.h
+@@ -194,6 +194,8 @@
+  */
+ #define PCU_PACKAGE_POWER_SKU			_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5930)
+ #define   PKG_PKG_TDP				GENMASK_ULL(14, 0)
++#define   PKG_MIN_PWR				GENMASK_ULL(30, 16)
++#define   PKG_MAX_PWR				GENMASK_ULL(46, 32)
+ #define   PKG_MAX_WIN				GENMASK_ULL(54, 48)
+ #define     PKG_MAX_WIN_X			GENMASK_ULL(54, 53)
+ #define     PKG_MAX_WIN_Y			GENMASK_ULL(52, 48)
+-- 
+2.38.0
 
-You would think this function would read the timecounter, right ?
-
-Well, it _updates_ many fields from @tc, so a 'better name' would also
-be useful.
-
-linux kernel is not for casual readers.
