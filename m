@@ -2,49 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A705364D814
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Dec 2022 09:55:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EEE0464D83B
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Dec 2022 10:05:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B34D710E4FA;
-	Thu, 15 Dec 2022 08:55:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88B3310E009;
+	Thu, 15 Dec 2022 09:05:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEACD10E4FA
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Dec 2022 08:54:56 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C77F010E09B
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Dec 2022 09:05:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671094496; x=1702630496;
+ t=1671095151; x=1702631151;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=IlRwxFDW25yNkNL6qkpV8Sv/BO7SdGK/aMMpuPhuUGE=;
- b=Oq2BmMvEL+Wmqibpf828A+X1nvQFaaVgtxrzcudc3agQeXozHdf9TEU3
- 7LvEJoFQoaa+5j1waxUJO/ERSUlFwjEXz4pySs4nM9PM1Ouqq1G54e8+2
- eKVHM43r0teMLMnqSI8cYhO58pwB2ILSdId/zblT4HJnK366yK0AmC2oq
- wdA3IAIT5ClkFFTHSqpJqCSddzHIY1O/xtC7a0160piu/C3bspEozc6TL
- oxgeHKL+PYEJ1/cNSbtZ3GkDPvRayAB5+OygSCnF4xaBvZn8udzl/t+tO
- MLVyXPQq6Sjah+fz7kV0Brhdt3nFU2CkGh2D8bc7hBxAjx8+05t0BImPH Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10561"; a="316263159"
-X-IronPort-AV: E=Sophos;i="5.96,246,1665471600"; d="scan'208";a="316263159"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2022 00:54:56 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10561"; a="681780591"
-X-IronPort-AV: E=Sophos;i="5.96,246,1665471600"; d="scan'208";a="681780591"
+ bh=qk1QgV3DEtqfYb5DrqZUPvlya/gBppPA23hQO80OVoY=;
+ b=AFTP08VgQO9N34mKmgxOXdEoIhdswLqcpOVgydp6cF1KqK1gMnikHnPX
+ ClmTEEXGVQvA7mxoqFnDyVZ/ROCdZYszHs4hYXFisq/ZTYDh1BWjndoAA
+ luGjRPNKk/PhDtRQcucm9Oh/3WVMiXAGMdfxf6FE1L/xfNcads8OuchkI
+ r8p5Y4t61nSUvPY6ShHk+D/ISx7kd3gbkQ0XoNoZf74jSbpyFZnn9fLyG
+ TaBAV+OwBqfmU8q54QDe0ZmGMNQVkSK7DyoMuwWEcdRmkadsBUlWEiIOF
+ +PlL6paPfl8/M1FvI+dQTDBavDWyL+NZXpMBTkjUA2JLRFg13/AB9dqZa Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10561"; a="345715692"
+X-IronPort-AV: E=Sophos;i="5.96,247,1665471600"; d="scan'208";a="345715692"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2022 01:05:37 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10561"; a="627096867"
+X-IronPort-AV: E=Sophos;i="5.96,247,1665471600"; d="scan'208";a="627096867"
 Received: from tgodea-mobl.ger.corp.intel.com (HELO localhost) ([10.252.61.26])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2022 00:54:53 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20221215001459.3759580-1-lucas.demarchi@intel.com>
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2022 01:05:34 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Arun R Murthy <arun.r.murthy@intel.com>,
+ intel-gfx@lists.freedesktop.org, ville.syrjala@linux.intel.com,
+ imre.deak@intel.com
+In-Reply-To: <20221214162112.1036757-1-arun.r.murthy@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221215001459.3759580-1-lucas.demarchi@intel.com>
-Date: Thu, 15 Dec 2022 10:54:51 +0200
-Message-ID: <874jtxvyg4.fsf@intel.com>
+References: <20221124070925.3834910-1-arun.r.murthy@intel.com>
+ <20221214162112.1036757-1-arun.r.murthy@intel.com>
+Date: Thu, 15 Dec 2022 11:05:31 +0200
+Message-ID: <871qp1vxyc.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: ratelimit errors in display
- engine irq
+Subject: Re: [Intel-gfx] [PATCHv5] drm/i915/dp: change aux_ctl reg read to
+ polling read
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,92 +60,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 14 Dec 2022, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> While debugging page table faults it's useful not to kill the machine
-> with thousands of error mesages. Ratelimit all errors in
-> gen8_de_irq_handler().
+On Wed, 14 Dec 2022, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+> The busy timeout logic checks for the AUX BUSY, then waits for the
+> timeout period and then after timeout reads the register for BUSY or
+> Success.
+> Instead replace interrupt with polling so as to read the AUX CTL
+> register often before the timeout period. Looks like there might be some
+> issue with interrupt-on-read. Hence changing the logic to polling read.
 >
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
+> v2: replace interrupt with polling read
+> v3: use usleep_rang instead of msleep, updated commit msg
+> v4: use intel_wait_for_regiter internal function
+> v5: use __intel_de_wait_for_register with 500us slow and 10ms fast timeout
+>
+> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 > ---
->  drivers/gpu/drm/i915/i915_irq.c | 28 ++++++++++++++--------------
->  1 file changed, 14 insertions(+), 14 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_dp_aux.c | 35 ++++++---------------
+>  1 file changed, 9 insertions(+), 26 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-> index edfe363af838..7a43d1bb6f97 100644
-> --- a/drivers/gpu/drm/i915/i915_irq.c
-> +++ b/drivers/gpu/drm/i915/i915_irq.c
-> @@ -2448,8 +2448,8 @@ gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
->  			ret = IRQ_HANDLED;
->  			gen8_de_misc_irq_handler(dev_priv, iir);
->  		} else {
-> -			drm_err(&dev_priv->drm,
-> -				"The master control interrupt lied (DE MISC)!\n");
-> +			drm_err_ratelimited(&dev_priv->drm,
-> +					    "The master control interrupt lied (DE MISC)!\n");
->  		}
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> index 91c93c93e5fc..772da38b451f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> @@ -34,31 +34,6 @@ static void intel_dp_aux_unpack(u32 src, u8 *dst, int dst_bytes)
+>  		dst[i] = src >> ((3 - i) * 8);
+>  }
+>  
+> -static u32
+> -intel_dp_aux_wait_done(struct intel_dp *intel_dp)
+> -{
+> -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+> -	i915_reg_t ch_ctl = intel_dp->aux_ch_ctl_reg(intel_dp);
+> -	const unsigned int timeout_ms = 10;
+> -	u32 status;
+> -	bool done;
+> -
+> -#define C (((status = intel_de_read_notrace(i915, ch_ctl)) & DP_AUX_CH_CTL_SEND_BUSY) == 0)
+> -	done = wait_event_timeout(i915->display.gmbus.wait_queue, C,
+> -				  msecs_to_jiffies_timeout(timeout_ms));
+> -
+> -	/* just trace the final value */
+> -	trace_i915_reg_rw(false, ch_ctl, status, sizeof(status), true);
+> -
+> -	if (!done)
+> -		drm_err(&i915->drm,
+> -			"%s: did not complete or timeout within %ums (status 0x%08x)\n",
+> -			intel_dp->aux.name, timeout_ms, status);
+> -#undef C
+> -
+> -	return status;
+> -}
+> -
+
+Please keep the function.
+
+intel_dp_aux_xfer() is long enough as it is. It really doesn't need the
+added lines, quite the opposite.
+
+The intel_dp_aux_wait_done() also gives a name to what's being done.
+
+>  static u32 g4x_get_aux_clock_divider(struct intel_dp *intel_dp, int index)
+>  {
+>  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+> @@ -264,6 +239,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
 >  	}
 >  
-> @@ -2460,8 +2460,8 @@ gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
->  			ret = IRQ_HANDLED;
->  			gen11_hpd_irq_handler(dev_priv, iir);
->  		} else {
-> -			drm_err(&dev_priv->drm,
-> -				"The master control interrupt lied, (DE HPD)!\n");
-> +			drm_err_ratelimited(&dev_priv->drm,
-> +					    "The master control interrupt lied, (DE HPD)!\n");
->  		}
->  	}
+>  	while ((aux_clock_divider = intel_dp->get_aux_clock_divider(intel_dp, clock++))) {
+> +		u32 timeout_ms = 10;
+>  		u32 send_ctl = intel_dp->get_aux_send_ctl(intel_dp,
+>  							  send_bytes,
+>  							  aux_clock_divider);
+> @@ -281,7 +257,14 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+>  			/* Send the command and wait for it to complete */
+>  			intel_de_write(i915, ch_ctl, send_ctl);
 >  
-> @@ -2510,12 +2510,12 @@ gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
->  			}
+> -			status = intel_dp_aux_wait_done(intel_dp);
+> +			__intel_de_wait_for_register(i915, ch_ctl,
+> +						     DP_AUX_CH_CTL_SEND_BUSY, 0,
+> +						     500, timeout_ms, &status);
+> +
+> +			if ((status & DP_AUX_CH_CTL_SEND_BUSY) != 0)
+> +				drm_err(&i915->drm,
+> +					"%s: did not complete or timeout within %ums (status 0x%08x)\n",
+> +					intel_dp->aux.name, timeout_ms, status);
+
+Please use the return value of intel_de_wait_for_register() to determine
+the timeout instead of duplicating the condition. (Feels like I said
+this a few times already?)
+
+BR,
+Jani.
+
 >  
->  			if (!found)
-> -				drm_err(&dev_priv->drm,
-> -					"Unexpected DE Port interrupt\n");
-> +				drm_err_ratelimited(&dev_priv->drm,
-> +						    "Unexpected DE Port interrupt\n");
->  		}
->  		else
-> -			drm_err(&dev_priv->drm,
-> -				"The master control interrupt lied (DE PORT)!\n");
-> +			drm_err_ratelimited(&dev_priv->drm,
-> +					    "The master control interrupt lied (DE PORT)!\n");
->  	}
->  
->  	for_each_pipe(dev_priv, pipe) {
-> @@ -2526,8 +2526,8 @@ gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
->  
->  		iir = intel_uncore_read(&dev_priv->uncore, GEN8_DE_PIPE_IIR(pipe));
->  		if (!iir) {
-> -			drm_err(&dev_priv->drm,
-> -				"The master control interrupt lied (DE PIPE)!\n");
-> +			drm_err_ratelimited(&dev_priv->drm,
-> +					    "The master control interrupt lied (DE PIPE)!\n");
->  			continue;
->  		}
->  
-> @@ -2548,10 +2548,10 @@ gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
->  
->  		fault_errors = iir & gen8_de_pipe_fault_mask(dev_priv);
->  		if (fault_errors)
-> -			drm_err(&dev_priv->drm,
-> -				"Fault errors on pipe %c: 0x%08x\n",
-> -				pipe_name(pipe),
-> -				fault_errors);
-> +			drm_err_ratelimited(&dev_priv->drm,
-> +					    "Fault errors on pipe %c: 0x%08x\n",
-> +					    pipe_name(pipe),
-> +					    fault_errors);
->  	}
->  
->  	if (HAS_PCH_SPLIT(dev_priv) && !HAS_PCH_NOP(dev_priv) &&
+>  			/* Clear done status and any errors */
+>  			intel_de_write(i915, ch_ctl,
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
