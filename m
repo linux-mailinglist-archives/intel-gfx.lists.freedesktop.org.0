@@ -2,52 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEE0464D83B
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Dec 2022 10:05:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 285A364D854
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Dec 2022 10:12:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88B3310E009;
-	Thu, 15 Dec 2022 09:05:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53E4F10E507;
+	Thu, 15 Dec 2022 09:12:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C77F010E09B
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Dec 2022 09:05:51 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D336710E507
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Dec 2022 09:12:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671095151; x=1702631151;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=qk1QgV3DEtqfYb5DrqZUPvlya/gBppPA23hQO80OVoY=;
- b=AFTP08VgQO9N34mKmgxOXdEoIhdswLqcpOVgydp6cF1KqK1gMnikHnPX
- ClmTEEXGVQvA7mxoqFnDyVZ/ROCdZYszHs4hYXFisq/ZTYDh1BWjndoAA
- luGjRPNKk/PhDtRQcucm9Oh/3WVMiXAGMdfxf6FE1L/xfNcads8OuchkI
- r8p5Y4t61nSUvPY6ShHk+D/ISx7kd3gbkQ0XoNoZf74jSbpyFZnn9fLyG
- TaBAV+OwBqfmU8q54QDe0ZmGMNQVkSK7DyoMuwWEcdRmkadsBUlWEiIOF
- +PlL6paPfl8/M1FvI+dQTDBavDWyL+NZXpMBTkjUA2JLRFg13/AB9dqZa Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10561"; a="345715692"
-X-IronPort-AV: E=Sophos;i="5.96,247,1665471600"; d="scan'208";a="345715692"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2022 01:05:37 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10561"; a="627096867"
-X-IronPort-AV: E=Sophos;i="5.96,247,1665471600"; d="scan'208";a="627096867"
+ t=1671095566; x=1702631566;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=6GF6Yds4RyBzyjDm+C53fDQ0oeIg3Kd4Hxf054LJE6A=;
+ b=XwQ8PbMk7raDTCFSpqM5Ry1V6sZdjGku4Q2L1uKvMOPQbh3zi/O5NL3p
+ zluR+8uvC8l5lpyNZXp8kv8MBunyh0maULbvI1+G2Lmlf+1nUEXIyC8FT
+ iE1K3DYPtAW8MhoDzvOT/HqYzd4b6UwJpldGa4s0/zryB5l+WJTaffodx
+ mbnu9gKCM+CKPJUkWeuOwsE5iuM87DYTmU3Oc8CCSTRSFhMG45H3idwSS
+ Nh/Q9SiTJmeNN/Swx6EawJSNZYPL5J7xWHyuAqgGpB0vTdHqn9dMLZLt0
+ Ad4LGLRRw+g7ERJ5+eqx+rsjsGzZdwds0zBvSjpAb5D26ALpLxe0kOMCm A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10561"; a="306270628"
+X-IronPort-AV: E=Sophos;i="5.96,247,1665471600"; d="scan'208";a="306270628"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2022 01:12:46 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10561"; a="649303158"
+X-IronPort-AV: E=Sophos;i="5.96,247,1665471600"; d="scan'208";a="649303158"
 Received: from tgodea-mobl.ger.corp.intel.com (HELO localhost) ([10.252.61.26])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2022 01:05:34 -0800
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2022 01:12:44 -0800
 From: Jani Nikula <jani.nikula@intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>,
- intel-gfx@lists.freedesktop.org, ville.syrjala@linux.intel.com,
- imre.deak@intel.com
-In-Reply-To: <20221214162112.1036757-1-arun.r.murthy@intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+In-Reply-To: <DM6PR11MB31777C066D99AFF73AD5D956BAE19@DM6PR11MB3177.namprd11.prod.outlook.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221124070925.3834910-1-arun.r.murthy@intel.com>
- <20221214162112.1036757-1-arun.r.murthy@intel.com>
-Date: Thu, 15 Dec 2022 11:05:31 +0200
-Message-ID: <871qp1vxyc.fsf@intel.com>
+References: <cover.1670855299.git.jani.nikula@intel.com>
+ <ad40080099b3d0c95f0fac89053b5c34d2ef4549.1670855299.git.jani.nikula@intel.com>
+ <BL0PR11MB31703B1D64C3125DE1B3EADDBAE09@BL0PR11MB3170.namprd11.prod.outlook.com>
+ <87k02uwdlw.fsf@intel.com>
+ <DM6PR11MB31777C066D99AFF73AD5D956BAE19@DM6PR11MB3177.namprd11.prod.outlook.com>
+Date: Thu, 15 Dec 2022 11:12:42 +0200
+Message-ID: <87wn6tuj1x.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCHv5] drm/i915/dp: change aux_ctl reg read to
- polling read
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 2/7] drm/i915/display: move more scanline
+ functions to intel_vblank.[ch]
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,100 +66,198 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 14 Dec 2022, Arun R Murthy <arun.r.murthy@intel.com> wrote:
-> The busy timeout logic checks for the AUX BUSY, then waits for the
-> timeout period and then after timeout reads the register for BUSY or
-> Success.
-> Instead replace interrupt with polling so as to read the AUX CTL
-> register often before the timeout period. Looks like there might be some
-> issue with interrupt-on-read. Hence changing the logic to polling read.
+On Thu, 15 Dec 2022, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
+>> -----Original Message-----
+>> From: Nikula, Jani <jani.nikula@intel.com>
+>> Sent: Wednesday, December 14, 2022 2:45 PM
+>> To: Murthy, Arun R <arun.r.murthy@intel.com>; intel-
+>> gfx@lists.freedesktop.org
+>> Subject: RE: [Intel-gfx] [PATCH 2/7] drm/i915/display: move more scanline
+>> functions to intel_vblank.[ch]
+>>
+>> On Wed, 14 Dec 2022, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
+>> >> -----Original Message-----
+>> >> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf
+>> >> Of Jani Nikula
+>> >> Sent: Monday, December 12, 2022 7:59 PM
+>> >> To: intel-gfx@lists.freedesktop.org
+>> >> Cc: Nikula, Jani <jani.nikula@intel.com>
+>> >> Subject: [Intel-gfx] [PATCH 2/7] drm/i915/display: move more scanline
+>> >> functions to intel_vblank.[ch]
+>> >>
+>> >> Reduce clutter in intel_display.c by moving the scanline
+>> >> moving/stopped wait functions to intel_vblank.[ch].
+>> >>
+>> >> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> >> ---
+>> >>  drivers/gpu/drm/i915/display/intel_display.c | 36
+>> >> +------------------- drivers/gpu/drm/i915/display/intel_vblank.c  |
+>> >> 35 +++++++++++++++++++ drivers/gpu/drm/i915/display/intel_vblank.h  |
+>> >> 2 ++
+>> >>  3 files changed, 38 insertions(+), 35 deletions(-)
+>> >>
+>> >> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+>> >> b/drivers/gpu/drm/i915/display/intel_display.c
+>> >> index 6cdfdae2c712..0cdb514d7ee0 100644
+>> >> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>> >> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>> >> @@ -115,6 +115,7 @@
+>> >>  #include "intel_quirks.h"
+>> >>  #include "intel_sprite.h"
+>> >>  #include "intel_tc.h"
+>> >> +#include "intel_vblank.h"
+>> >>  #include "intel_vga.h"
+>> >>  #include "i9xx_plane.h"
+>> >>  #include "skl_scaler.h"
+>> >> @@ -386,41 +387,6 @@ struct intel_crtc *intel_master_crtc(const
+>> >> struct intel_crtc_state *crtc_state)
+>> >>               return to_intel_crtc(crtc_state->uapi.crtc);
+>> >>  }
+>> >>
+>> >> -static bool pipe_scanline_is_moving(struct drm_i915_private *dev_pri=
+v,
+>> >> -                                 enum pipe pipe)
+>> >> -{
+>> >> -     i915_reg_t reg =3D PIPEDSL(pipe);
+>> >> -     u32 line1, line2;
+>> >> -
+>> >> -     line1 =3D intel_de_read(dev_priv, reg) & PIPEDSL_LINE_MASK;
+>> >> -     msleep(5);
+>> >> -     line2 =3D intel_de_read(dev_priv, reg) & PIPEDSL_LINE_MASK;
+>> >> -
+>> >> -     return line1 !=3D line2;
+>> >> -}
+>> >> -
+>> >> -static void wait_for_pipe_scanline_moving(struct intel_crtc *crtc,
+>> >> bool state) -{
+>> >> -     struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+>> >> -     enum pipe pipe =3D crtc->pipe;
+>> >> -
+>> >> -     /* Wait for the display line to settle/start moving */
+>> >> -     if (wait_for(pipe_scanline_is_moving(dev_priv, pipe) =3D=3D sta=
+te, 100))
+>> >> -             drm_err(&dev_priv->drm,
+>> >> -                     "pipe %c scanline %s wait timed out\n",
+>> >> -                     pipe_name(pipe), str_on_off(state));
+>> >> -}
+>> >> -
+>> >> -static void intel_wait_for_pipe_scanline_stopped(struct intel_crtc *=
+crtc) -{
+>> >> -     wait_for_pipe_scanline_moving(crtc, false);
+>> >> -}
+>> >> -
+>> >> -static void intel_wait_for_pipe_scanline_moving(struct intel_crtc *c=
+rtc) -{
+>> >> -     wait_for_pipe_scanline_moving(crtc, true);
+>> >> -}
+>> >> -
+>> >>  static void
+>> >>  intel_wait_for_pipe_off(const struct intel_crtc_state
+>> >> *old_crtc_state)  { diff -- git
+>> >> a/drivers/gpu/drm/i915/display/intel_vblank.c
+>> >> b/drivers/gpu/drm/i915/display/intel_vblank.c
+>> >> index 78a579496ad1..f25ec643a0a3 100644
+>> >> --- a/drivers/gpu/drm/i915/display/intel_vblank.c
+>> >> +++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+>> >> @@ -417,3 +417,38 @@ int intel_get_crtc_scanline(struct intel_crtc
+>> >> *crtc)
+>> >>
+>> >>       return position;
+>> >>  }
+>> >> +
+>> >> +static bool pipe_scanline_is_moving(struct drm_i915_private *dev_pri=
+v,
+>> >> +                                 enum pipe pipe) {
+>> >> +     i915_reg_t reg =3D PIPEDSL(pipe);
+>> >> +     u32 line1, line2;
+>> >> +
+>> >> +     line1 =3D intel_de_read(dev_priv, reg) & PIPEDSL_LINE_MASK;
+>> >> +     msleep(5);
+>> >> +     line2 =3D intel_de_read(dev_priv, reg) & PIPEDSL_LINE_MASK;
+>> >> +
+>> >> +     return line1 !=3D line2;
+>> >> +}
+>> >> +
+>> >> +static void wait_for_pipe_scanline_moving(struct intel_crtc *crtc,
+>> >> +bool
+>> >> +state) {
+>> >> +     struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+>> >> +     enum pipe pipe =3D crtc->pipe;
+>> >> +
+>> >> +     /* Wait for the display line to settle/start moving */
+>> >> +     if (wait_for(pipe_scanline_is_moving(dev_priv, pipe) =3D=3D sta=
+te, 100))
+>> >> +             drm_err(&dev_priv->drm,
+>> >> +                     "pipe %c scanline %s wait timed out\n",
+>> >> +                     pipe_name(pipe), str_on_off(state)); }
+>> >> +
+>> >> +void intel_wait_for_pipe_scanline_stopped(struct intel_crtc *crtc) {
+>> >> +     wait_for_pipe_scanline_moving(crtc, false); }
+>> >> +
+>> > Is this wrapper function required, since nothing else is being other
+>> > than calling the function wait_for_pipe_scanline_moving, can this be
+>> > replaced?
+>>
+>> Well, first, this patch is only about code *movement*. Any changes like =
+that
+>> would have to be separate.
+>>
+> Ok.
+> Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
 >
-> v2: replace interrupt with polling read
-> v3: use usleep_rang instead of msleep, updated commit msg
-> v4: use intel_wait_for_regiter internal function
-> v5: use __intel_de_wait_for_register with 500us slow and 10ms fast timeout
->
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp_aux.c | 35 ++++++---------------
->  1 file changed, 9 insertions(+), 26 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> index 91c93c93e5fc..772da38b451f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> @@ -34,31 +34,6 @@ static void intel_dp_aux_unpack(u32 src, u8 *dst, int dst_bytes)
->  		dst[i] = src >> ((3 - i) * 8);
->  }
->  
-> -static u32
-> -intel_dp_aux_wait_done(struct intel_dp *intel_dp)
-> -{
-> -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> -	i915_reg_t ch_ctl = intel_dp->aux_ch_ctl_reg(intel_dp);
-> -	const unsigned int timeout_ms = 10;
-> -	u32 status;
-> -	bool done;
-> -
-> -#define C (((status = intel_de_read_notrace(i915, ch_ctl)) & DP_AUX_CH_CTL_SEND_BUSY) == 0)
-> -	done = wait_event_timeout(i915->display.gmbus.wait_queue, C,
-> -				  msecs_to_jiffies_timeout(timeout_ms));
-> -
-> -	/* just trace the final value */
-> -	trace_i915_reg_rw(false, ch_ctl, status, sizeof(status), true);
-> -
-> -	if (!done)
-> -		drm_err(&i915->drm,
-> -			"%s: did not complete or timeout within %ums (status 0x%08x)\n",
-> -			intel_dp->aux.name, timeout_ms, status);
-> -#undef C
-> -
-> -	return status;
-> -}
-> -
+>> And how would you propose to drop the wrapper? The wrappers are all
+>> about readability in the caller side:
+>>
+> I didn=E2=80=99t mean to drop the wrapper, understand that wrapper is mor=
+e readable, what I meant is to replace wait_for_pipe_scanline_moving/stoppe=
+d with its function contents.
 
-Please keep the function.
-
-intel_dp_aux_xfer() is long enough as it is. It really doesn't need the
-added lines, quite the opposite.
-
-The intel_dp_aux_wait_done() also gives a name to what's being done.
-
->  static u32 g4x_get_aux_clock_divider(struct intel_dp *intel_dp, int index)
->  {
->  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-> @@ -264,6 +239,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
->  	}
->  
->  	while ((aux_clock_divider = intel_dp->get_aux_clock_divider(intel_dp, clock++))) {
-> +		u32 timeout_ms = 10;
->  		u32 send_ctl = intel_dp->get_aux_send_ctl(intel_dp,
->  							  send_bytes,
->  							  aux_clock_divider);
-> @@ -281,7 +257,14 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
->  			/* Send the command and wait for it to complete */
->  			intel_de_write(i915, ch_ctl, send_ctl);
->  
-> -			status = intel_dp_aux_wait_done(intel_dp);
-> +			__intel_de_wait_for_register(i915, ch_ctl,
-> +						     DP_AUX_CH_CTL_SEND_BUSY, 0,
-> +						     500, timeout_ms, &status);
-> +
-> +			if ((status & DP_AUX_CH_CTL_SEND_BUSY) != 0)
-> +				drm_err(&i915->drm,
-> +					"%s: did not complete or timeout within %ums (status 0x%08x)\n",
-> +					intel_dp->aux.name, timeout_ms, status);
-
-Please use the return value of intel_de_wait_for_register() to determine
-the timeout instead of duplicating the condition. (Feels like I said
-this a few times already?)
+Why should we duplicate the code?
 
 BR,
 Jani.
 
->  
->  			/* Clear done status and any errors */
->  			intel_de_write(i915, ch_ctl,
+>
+> Thanks and Regards,
+> Arun R Murthy
+> --------------------
+>> intel_wait_for_pipe_scanline_stopped(crtc)
+>>
+>> vs.
+>>
+>> intel_wait_for_pipe_scanline_moving(crtc, false)
+>>
+>> BR,
+>> Jani.
+>>
+>> >
+>> > Thanks and Regards,
+>> > Arun R Murthy
+>> > --------------------
+>> >
+>> >> +void intel_wait_for_pipe_scanline_moving(struct intel_crtc *crtc) {
+>> >> +     wait_for_pipe_scanline_moving(crtc, true); }
+>> >> diff --git a/drivers/gpu/drm/i915/display/intel_vblank.h
+>> >> b/drivers/gpu/drm/i915/display/intel_vblank.h
+>> >> index 9c0034d7454d..54870cabd734 100644
+>> >> --- a/drivers/gpu/drm/i915/display/intel_vblank.h
+>> >> +++ b/drivers/gpu/drm/i915/display/intel_vblank.h
+>> >> @@ -17,5 +17,7 @@ u32 g4x_get_vblank_counter(struct drm_crtc *crtc);
+>> >> bool intel_crtc_get_vblank_timestamp(struct drm_crtc *crtc, int
+>> *max_error,
+>> >>                                    ktime_t *vblank_time, bool
+>> >> in_vblank_irq); int intel_get_crtc_scanline(struct intel_crtc *crtc);
+>> >> +void intel_wait_for_pipe_scanline_stopped(struct intel_crtc *crtc);
+>> >> +void intel_wait_for_pipe_scanline_moving(struct intel_crtc *crtc);
+>> >>
+>> >>  #endif /* __INTEL_VBLANK_H__ */
+>> >> --
+>> >> 2.34.1
+>> >
+>>
+>> --
+>> Jani Nikula, Intel Open Source Graphics Center
 
--- 
+--=20
 Jani Nikula, Intel Open Source Graphics Center
