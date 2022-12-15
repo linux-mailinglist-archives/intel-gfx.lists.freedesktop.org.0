@@ -2,50 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 025D864D97D
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Dec 2022 11:25:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5651764D992
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Dec 2022 11:31:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 622B510E513;
-	Thu, 15 Dec 2022 10:25:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E50710E518;
+	Thu, 15 Dec 2022 10:30:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3194C10E513
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Dec 2022 10:24:57 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38DED10E518
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Dec 2022 10:30:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671099897; x=1702635897;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=f/vpzdkmUEUtAOy9McpzETqN3/GzlBuPdx3eyA3ZeYI=;
- b=C2JeTy+u3DGEBJaraF6q0ZW6sGDj1nbJBfaKq9o+6oHYOOy0zeqD7wGg
- Fa4Xf+Aj2TNCeJbwgelxXru45wZozd2zQyNuqpVJRtVT9rSTeIBDSC3W3
- MsmmxYvbm3QfDfoaNaYJotho6PgxlK5cU992ER7EywtLW9SmtVQLYOBHU
- te+MGJXtBkSRGnUkF4UpxVi8TQpIHZidUbhsesKI7bOb3PwzlYGYEfTXs
- Ag93+IGCea+SsXTcBQihBQgza984QU//3MAuYgh96ggwtuVqabQ0Arund
- QeDuOd03Ap7CFoTFzSa6HxDxei8xtVmFWnlmDZAeBXLh1ftEX8m00I+2x Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10561"; a="320499383"
-X-IronPort-AV: E=Sophos;i="5.96,247,1665471600"; d="scan'208";a="320499383"
+ t=1671100241; x=1702636241;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=kZ4RmLCjhj2JTM5rqHpHfTBZKaBBYqwOC4Av8r28FDY=;
+ b=K2D9bBkwLqShhkkmq2yRiwq2UbQ4be5fLOOPtAdewqZ8z3zBWKPW2AlM
+ iNpFdM0WxFiRHHaIHpQPTBvhMi4Jrow0x4uxXaBCReClAhZ3hkXIR0K7K
+ 84kHboB+jybqR6dpk8NyDXPtlumh7mTPqZbN2781OAfiy/KUoLRHIurqU
+ VTHqxuUmBJLBIkT5q74k2PNRhupQ4v3muCPaxD8QNDBCbIhNWgqraMV3q
+ S5WYXSJdTPQQzD7SsuAol0MrV5Z7ZhHVEyuYvCpnuuiBeyRvsURWbR4aH
+ 0ryxW89wGk9y8C1xdZtEYtzj6dTEmvmuE5bcmAKnA9InpxztrzJNL+bIq A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10561"; a="319784220"
+X-IronPort-AV: E=Sophos;i="5.96,247,1665471600"; d="scan'208";a="319784220"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2022 02:24:47 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10561"; a="680057436"
-X-IronPort-AV: E=Sophos;i="5.96,247,1665471600"; d="scan'208";a="680057436"
-Received: from bdragu-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.251.214.166])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2022 02:30:31 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10561"; a="680058104"
+X-IronPort-AV: E=Sophos;i="5.96,247,1665471600"; d="scan'208";a="680058104"
+Received: from tgodea-mobl.ger.corp.intel.com (HELO localhost) ([10.252.61.26])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2022 02:24:45 -0800
-Date: Thu, 15 Dec 2022 11:24:38 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>
-Message-ID: <Y5r15hz8PQUnfAVi@ashyti-mobl2.lan>
-References: <20221214075439.402485-1-andrzej.hajda@intel.com>
+ 15 Dec 2022 02:30:29 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Arun R Murthy <arun.r.murthy@intel.com>,
+ intel-gfx@lists.freedesktop.org, ville.syrjala@linux.intel.com,
+ imre.deak@intel.com
+In-Reply-To: <20221215095533.1073528-1-arun.r.murthy@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20221124070925.3834910-1-arun.r.murthy@intel.com>
+ <20221215095533.1073528-1-arun.r.murthy@intel.com>
+Date: Thu, 15 Dec 2022 12:30:26 +0200
+Message-ID: <87pmclufgd.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221214075439.402485-1-andrzej.hajda@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: fix TLB invalidation for Gen12.50
- video and compute engines
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCHv6] drm/i915/dp: change aux_ctl reg read to
+ polling read
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,57 +60,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 14, 2022 at 08:54:39AM +0100, Andrzej Hajda wrote:
-> In case of Gen12.50 video and compute engines, TLB_INV registers are
-> masked - to modify one bit, corresponding bit in upper half of the register
-> must be enabled, otherwise nothing happens.
-> 
-> Fixes: 77fa9efc16a9 ("drm/i915/xehp: Create separate reg definitions for new MCR registers")
-> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
-> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-Pushed to drm-intel-gt-next.
-
-Thanks,
-Andi
-
+On Thu, 15 Dec 2022, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+> The busy timeout logic checks for the AUX BUSY, then waits for the
+> timeout period and then after timeout reads the register for BUSY or
+> Success.
+> Instead replace interrupt with polling so as to read the AUX CTL
+> register often before the timeout period. Looks like there might be some
+> issue with interrupt-on-read. Hence changing the logic to polling read.
+>
+> v2: replace interrupt with polling read
+> v3: use usleep_rang instead of msleep, updated commit msg
+> v4: use intel_wait_for_regiter internal function
+> v5: use __intel_de_wait_for_register with 500us slow and 10ms fast timeout
+> v6: check return value of __intel_de_wait_for_register
+>
+> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 > ---
-> Hi,
-> 
-> This patch was sent already to ML, but together with refactoring patch.
-> Since it contains fix and should be merged ASAP it is sent separately
-> to get CI test results.
-> 
-> Regards
-> Andrzej
-> ---
->  drivers/gpu/drm/i915/gt/intel_gt.c | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-> index 63f95c5f36146b..7eeee5a7cb33cb 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-> @@ -1100,9 +1100,15 @@ static void mmio_invalidate_full(struct intel_gt *gt)
->  			continue;
+>  drivers/gpu/drm/i915/display/intel_dp_aux.c | 15 +++++----------
+>  1 file changed, 5 insertions(+), 10 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> index 91c93c93e5fc..dec88f41380e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> @@ -40,21 +40,16 @@ intel_dp_aux_wait_done(struct intel_dp *intel_dp)
+>  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+>  	i915_reg_t ch_ctl = intel_dp->aux_ch_ctl_reg(intel_dp);
+>  	const unsigned int timeout_ms = 10;
+> -	u32 status;
+> -	bool done;
+> -
+> -#define C (((status = intel_de_read_notrace(i915, ch_ctl)) & DP_AUX_CH_CTL_SEND_BUSY) == 0)
+> -	done = wait_event_timeout(i915->display.gmbus.wait_queue, C,
+> -				  msecs_to_jiffies_timeout(timeout_ms));
+> +	u32 status, ret;
 >  
->  		if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
-> +			u32 val = BIT(engine->instance);
-> +
-> +			if (engine->class == VIDEO_DECODE_CLASS ||
-> +			    engine->class == VIDEO_ENHANCEMENT_CLASS ||
-> +			    engine->class == COMPUTE_CLASS)
-> +				val = _MASKED_BIT_ENABLE(val);
->  			intel_gt_mcr_multicast_write_fw(gt,
->  							xehp_regs[engine->class],
-> -							BIT(engine->instance));
-> +							val);
->  		} else {
->  			rb = get_reg_and_bit(engine, regs == gen8_regs, regs, num);
->  			if (!i915_mmio_reg_offset(rb.reg))
-> -- 
-> 2.34.1
+> -	/* just trace the final value */
+> -	trace_i915_reg_rw(false, ch_ctl, status, sizeof(status), true);
+> +	ret = __intel_de_wait_for_register(i915, ch_ctl,
+> +				     DP_AUX_CH_CTL_SEND_BUSY, 0,
+> +				     500, timeout_ms, &status);
+>  
+> -	if (!done)
+> +	if (ret == -ETIMEDOUT)
+
+What's wrong with this comparison? Although it probably does work by
+coincidence.
+
+BR,
+Jani.
+
+
+>  		drm_err(&i915->drm,
+>  			"%s: did not complete or timeout within %ums (status 0x%08x)\n",
+>  			intel_dp->aux.name, timeout_ms, status);
+> -#undef C
+>  
+>  	return status;
+>  }
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
