@@ -2,51 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B6B364E549
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Dec 2022 01:39:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 422AB64E57A
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Dec 2022 01:57:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10DE310E0C9;
-	Fri, 16 Dec 2022 00:39:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BBEF10E112;
+	Fri, 16 Dec 2022 00:57:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD50A10E5B4
- for <intel-gfx@lists.freedesktop.org>; Fri, 16 Dec 2022 00:39:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671151154; x=1702687154;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=mBPz3QzahoH/pvngDCVfYdu7fTgf7DmJ/3HdSXN4crI=;
- b=nvMDRcFYCgaoKN9qs27qSukRQTJr//P30KTLhmm1ss2FbUatMHucke7c
- K6rYxVy+86ycD5eH/Rkt8/HP+tNNFKfDBarNTJ6QJevCVYhh6X/cVXPT2
- aBE70JpwRy8w/mx7SmBmxvRB0AM7HswFIegiiYGCJNqiLywFGGau+nq+e
- +2w2u19CAqXhOg0UWbA5N2hp+XWcsC0fz6CPPkb2CkUAqdbEnqdA1Kxav
- VwkIvTRVahd8IWYV0iZJonUi0/6mqHlb9PWAJLT/JNOLdmOszCaqTmKq7
- 2h+ARtZwKvVARGmfrW9VDjsR3jdquqZE6cILa2omM+7XjIZZEl7fxpm84 w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10562"; a="405103894"
-X-IronPort-AV: E=Sophos;i="5.96,248,1665471600"; d="scan'208";a="405103894"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2022 16:38:54 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10562"; a="643100230"
-X-IronPort-AV: E=Sophos;i="5.96,248,1665471600"; d="scan'208";a="643100230"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by orsmga007.jf.intel.com with SMTP; 15 Dec 2022 16:38:52 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 16 Dec 2022 02:38:52 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 16 Dec 2022 02:38:10 +0200
-Message-Id: <20221216003810.13338-14-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.37.4
-In-Reply-To: <20221216003810.13338-1-ville.syrjala@linux.intel.com>
-References: <20221216003810.13338-1-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9CCF010E027;
+ Fri, 16 Dec 2022 00:57:18 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 951DBA8830;
+ Fri, 16 Dec 2022 00:57:18 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 13/13] drm/i915/dsb: Pimp debug/error prints
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Fri, 16 Dec 2022 00:57:18 -0000
+Message-ID: <167115223857.5852.10124115039416316057@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221216003810.13338-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20221216003810.13338-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/dsb=3A_DSB_fixes/cleanups?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,63 +40,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-Print the crtc/DSB id information to make it clear which DSB engine
-we're talking about.
+Series: drm/i915/dsb: DSB fixes/cleanups
+URL   : https://patchwork.freedesktop.org/series/111997/
+State : warning
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_dsb.c | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index 96bc117fd6a0..f41146fc84d7 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -88,7 +88,8 @@ static bool assert_dsb_has_room(struct intel_dsb *dsb)
- 
- 	/* each instruction is 2 dwords */
- 	return !drm_WARN(&i915->drm, dsb->free_pos > dsb->size - 2,
--			 "DSB buffer overflow\n");
-+			 "[CRTC:%d:%s] DSB %d buffer overflow\n",
-+			 crtc->base.base.id, crtc->base.name, dsb->id);
- }
- 
- static bool is_dsb_busy(struct drm_i915_private *i915, enum pipe pipe,
-@@ -232,7 +233,8 @@ void intel_dsb_commit(struct intel_dsb *dsb)
- 		return;
- 
- 	if (is_dsb_busy(dev_priv, pipe, dsb->id)) {
--		drm_err(&dev_priv->drm, "DSB engine is busy.\n");
-+		drm_err(&dev_priv->drm, "[CRTC:%d:%s] DSB %d is busy\n",
-+			crtc->base.base.id, crtc->base.name, dsb->id);
- 		goto reset;
- 	}
- 
-@@ -250,7 +252,8 @@ void intel_dsb_commit(struct intel_dsb *dsb)
- 
- 	if (wait_for(!is_dsb_busy(dev_priv, pipe, dsb->id), 1))
- 		drm_err(&dev_priv->drm,
--			"Timed out waiting for DSB workload completion.\n");
-+			"[CRTC:%d:%s] DSB %d timed out waiting for idle\n",
-+			crtc->base.base.id, crtc->base.name, dsb->id);
- 
- reset:
- 	dsb->free_pos = 0;
-@@ -325,7 +328,8 @@ struct intel_dsb *intel_dsb_prepare(struct intel_crtc *crtc,
- 	kfree(dsb);
- out:
- 	drm_info_once(&i915->drm,
--		      "DSB queue setup failed, will fallback to MMIO for display HW programming\n");
-+		      "[CRTC:%d:%s] DSB %d queue setup failed, will fallback to MMIO for display HW programming\n",
-+		      crtc->base.base.id, crtc->base.name, DSB1);
- 
- 	return NULL;
- }
--- 
-2.37.4
+Error: dim checkpatch failed
+5051d5d03037 drm/i915/dsb: Stop with the RMW
+a5525d4aab22 drm/i915/dsb: Inline DSB_CTRL writes into intel_dsb_commit()
+ecb9ca56c2fc drm/i915/dsb: Align DSB register writes to 8 bytes
+bd96caebe2ba drm/i915/dsb: Fix DSB command buffer size checks
+4106472e980c drm/i915/dsb: Extract assert_dsb_has_room()
+8da6747f2c2f drm/i915/dsb: Extract intel_dsb_emit()
+85956ab12e9a drm/i915/dsb: Improve the indexed reg write checks
+3f0ff8f03ef7 drm/i915/dsb: Handle the indexed vs. not inside the DSB code
+40a70b0d9cbb drm/i915/dsb: Introduce intel_dsb_align_tail()
+dfb4ea142837 drm/i915/dsb: Allow the caller to pass in the DSB buffer size
+3faa7075e220 drm/i915/dsb: Add mode DSB opcodes
+551e52e82eb0 drm/i915/dsb: Define more DSB registers
+-:62: WARNING:LONG_LINE_COMMENT: line length of 105 exceeds 100 columns
+#62: FILE: drivers/gpu/drm/i915/i915_reg.h:8144:
++#define   DSB_RM_CLAIM_TIMEOUT_COUNT(x)	REG_FIELD_PREP(DSB_RM_CLAIM_TIMEOUT_COUNT_MASK, (x)) /* clocks */
+
+total: 0 errors, 1 warnings, 0 checks, 56 lines checked
+492da2cad714 drm/i915/dsb: Pimp debug/error prints
+
 
