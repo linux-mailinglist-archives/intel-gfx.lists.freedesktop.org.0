@@ -2,57 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B861464EE58
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Dec 2022 17:00:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BDAB64EE59
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Dec 2022 17:00:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BFA510E5E7;
-	Fri, 16 Dec 2022 16:00:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 854AF10E5E8;
+	Fri, 16 Dec 2022 16:00:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 01AD410E5E7
- for <intel-gfx@lists.freedesktop.org>; Fri, 16 Dec 2022 15:59:56 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8417510E5E8;
+ Fri, 16 Dec 2022 16:00:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671206400; x=1702742400;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=5K8IluxG9AdSuzawwWgiPZ+97ZllBcCV6JS1w15KTC4=;
- b=U9YZ9AuAOiDzilNltLOeTC27XJjyBqQTyedEEHvSf72KP/ylVQ4ME6wm
- V8ckkPXFWfWzX06M0jU+naMTibTyOgN2zDvsjaw8+cDaU8RLyuIVtdTMh
- 5MIwpCyBwh8y9quC3HNevhv9l88zi69iEgnW5wVokCBhRLekdjKw+yn53
- 7+CL04OUSX/nfkYdLR6eQIp05dSlXuWJgQTNKIMM3PwKwLM+e+e8Ux9OQ
- pnbfqfHRHJc6E+Fp5y/lvFTq6R0C1kNIsNqjBuOltNciE1IN00D0soXEA
- RkM9YKjrr647XBqbfMjh8EtwhPa1sXy9jyPyp5I1AYyID4AX6NzY4uW5r w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10563"; a="346075621"
-X-IronPort-AV: E=Sophos;i="5.96,249,1665471600"; d="scan'208";a="346075621"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2022 07:59:39 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10563"; a="713299290"
-X-IronPort-AV: E=Sophos;i="5.96,249,1665471600"; d="scan'208";a="713299290"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.30.201])
- ([10.213.30.201])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2022 07:59:38 -0800
-Message-ID: <0a8bc5f2-8f6e-3d77-f385-2af25d9464e4@intel.com>
-Date: Fri, 16 Dec 2022 16:59:36 +0100
+ t=1671206435; x=1702742435;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=m/QWgDVl1KeOUtNTIjYiFm5i7WKWcyi+lpVATnTR0yI=;
+ b=N3M/vHPyXq93VzKClwNY3k/W9mqLBIxTPYQ/UEHnYcauWMqjIPTLS/sC
+ m1TEm16aNIEGY/IkfHZ3I4RYxYoeRuJDHMsgJKUR/72jetmAcr9RB5zBV
+ KgMASYishgEO+iG/M/vgecSg0ovhSQoBdqxk8V/HDvVdPHpZMyIANuTuC
+ B+rX8PhLGjuSw73VDh/ITYqFWPjtuKZBnuAlxBcsdqddy2g4eM91t/6Tx
+ jN8FMpS2OPlrbYpe/nZylwqTGEWehtAYjSJJjT7RvxTxgcbSmsLqrQ0eS
+ 5LYgQxvYYCp8CVpA14b1gsF/3ihHhJXncDCyjiOZXvzrNkPYYtrH9eY6Q w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10563"; a="381214801"
+X-IronPort-AV: E=Sophos;i="5.96,249,1665471600"; d="scan'208";a="381214801"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2022 08:00:33 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10563"; a="895286445"
+X-IronPort-AV: E=Sophos;i="5.96,249,1665471600"; d="scan'208";a="895286445"
+Received: from fbielich-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.252.62.38])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2022 08:00:31 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Fri, 16 Dec 2022 18:00:14 +0200
+Message-Id: <cover.1671206131.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.5.1
-Content-Language: en-US
-To: Matthew Auld <matthew.auld@intel.com>, Nirmoy Das <nirmoy.das@intel.com>, 
- intel-gfx@lists.freedesktop.org
-References: <20221216152744.18658-1-nirmoy.das@intel.com>
- <9e24bdca-c4e0-dfa7-cd90-d6dcc29f912e@intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <9e24bdca-c4e0-dfa7-cd90-d6dcc29f912e@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Use helper func to find out map
- type
+Subject: [Intel-gfx] [PATCH v6 00/12] drm/edid,
+ drm/i915: further drm_edid work, finally switch i915 over
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,57 +59,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 16.12.2022 16:43, Matthew Auld wrote:
-> On 16/12/2022 15:27, Nirmoy Das wrote:
->> Use i915_coherent_map_type() function to find out
->> map_type of the shmem obj.
->>
->> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
->> ---
->>   drivers/gpu/drm/i915/gt/shmem_utils.c | 7 +++++--
->>   1 file changed, 5 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/shmem_utils.c 
->> b/drivers/gpu/drm/i915/gt/shmem_utils.c
->> index 402f085f3a02..e1a69803624f 100644
->> --- a/drivers/gpu/drm/i915/gt/shmem_utils.c
->> +++ b/drivers/gpu/drm/i915/gt/shmem_utils.c
->> @@ -8,6 +8,7 @@
->>   #include <linux/pagemap.h>
->>   #include <linux/shmem_fs.h>
->> +#include "i915_drv.h"
->>   #include "gem/i915_gem_object.h"
->>   #include "gem/i915_gem_lmem.h"
->>   #include "shmem_utils.h"
->> @@ -32,6 +33,8 @@ struct file *shmem_create_from_data(const char 
->> *name, void *data, size_t len)
->>   struct file *shmem_create_from_object(struct drm_i915_gem_object *obj)
->>   {
->> +    struct drm_i915_private *i915 = to_i915(obj->base.dev);
->> +    enum i915_map_type map_type;
->>       struct file *file;
->>       void *ptr;
->> @@ -41,8 +44,8 @@ struct file *shmem_create_from_object(struct 
->> drm_i915_gem_object *obj)
->>           return file;
->>       }
->> -    ptr = i915_gem_object_pin_map_unlocked(obj, 
->> i915_gem_object_is_lmem(obj) ?
->> -                        I915_MAP_WC : I915_MAP_WB);
->> +    map_type = i915_coherent_map_type(i915, obj, false);
-> 
-> This will now use wc on non-llc.
+The drm_edid handling still needed some plumbing in drm_edid.c before we
+could convert i915 over to use it. Specifically
+drm_edid_connector_update() needed to be split to two, with separate
+drm_edid_connector_add_modes(). This is better explained in patch 7
+commit message.
 
-i915_coherent_map_type(i915, obj, true) should do the trick.
+With that in patches 1-8 along with some refactorings, we can finally
+switch i915 over to use drm_edid. And with that, i915 starts supporting
+the HF-EEODB extension.
 
-Regards
-Andrzej
+I've dropped Ville's earlier R-b from some of the patches because
+they've changed so much over the rebases and changes.
 
-> 
->> +    ptr = i915_gem_object_pin_map_unlocked(obj, map_type);
->>       if (IS_ERR(ptr))
->>           return ERR_CAST(ptr);
+
+BR,
+Jani.
+
+
+Cc: Imre Deak <imre.deak@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+Jani Nikula (12):
+  drm/edid: store quirks in display info
+  drm/edid: stop passing quirks around
+  drm/edid: rename struct drm_display_info *display to *info
+  drm/edid: merge ELD handling to update_display_info()
+  drm/edid: move EDID BPC quirk application to update_display_info()
+  drm/edid: refactor _drm_edid_connector_update() and rename
+  drm/edid: add separate drm_edid_connector_add_modes()
+  drm/edid: remove redundant _drm_connector_update_edid_property()
+  drm/i915/edid: convert DP, HDMI and LVDS to drm_edid
+  drm/i915/bios: convert intel_bios_init_panel() to drm_edid
+  drm/i915/opregion: convert intel_opregion_get_edid() to struct
+    drm_edid
+  drm/i915/panel: move panel fixed EDID to struct intel_panel
+
+ drivers/gpu/drm/drm_edid.c                    | 187 +++++++++---------
+ drivers/gpu/drm/drm_probe_helper.c            |   4 +-
+ drivers/gpu/drm/i915/display/icl_dsi.c        |   2 +-
+ drivers/gpu/drm/i915/display/intel_bios.c     |  23 +--
+ drivers/gpu/drm/i915/display/intel_bios.h     |   4 +-
+ .../gpu/drm/i915/display/intel_connector.c    |   5 +-
+ .../drm/i915/display/intel_display_types.h    |   8 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |  91 +++++----
+ drivers/gpu/drm/i915/display/intel_dvo.c      |   2 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |  28 +--
+ drivers/gpu/drm/i915/display/intel_lvds.c     |  51 +++--
+ drivers/gpu/drm/i915/display/intel_opregion.c |  29 ++-
+ drivers/gpu/drm/i915/display/intel_opregion.h |   4 +-
+ drivers/gpu/drm/i915/display/intel_panel.c    |  10 +-
+ drivers/gpu/drm/i915/display/intel_panel.h    |   4 +-
+ drivers/gpu/drm/i915/display/intel_sdvo.c     |   2 +-
+ drivers/gpu/drm/i915/display/vlv_dsi.c        |   2 +-
+ include/drm/drm_connector.h                   |   5 +
+ include/drm/drm_edid.h                        |   2 +
+ 19 files changed, 246 insertions(+), 217 deletions(-)
+
+-- 
+2.34.1
 
