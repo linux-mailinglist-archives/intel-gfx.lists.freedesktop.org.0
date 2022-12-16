@@ -2,52 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4660764EF3A
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Dec 2022 17:34:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8DE064EF37
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Dec 2022 17:34:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 699D710E602;
-	Fri, 16 Dec 2022 16:33:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C97D10E603;
+	Fri, 16 Dec 2022 16:33:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CBE610E5F6;
- Fri, 16 Dec 2022 16:33:47 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D85D10E5F6
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Dec 2022 16:33:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671208427; x=1702744427;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=3omOzoexz7b2rPBIg3en969awPF/T7AOgbuk5SQGxBk=;
- b=mAmEAv/mALZFTCSp0u84qwu8bMYAP7YYbDKAJHQPhwViLFbP3sYm0T8B
- h44XmyIeX+oUndQ1N5012XHgDcxs/Bfhf8Un+gdJnZOptEErV97yOpThm
- Ix8OTUCIKX5w0lEu+alcnNB2eTm1afB78LXt6TepKyH/6h1NhgI4emLA3
- znuB+ME/VgjECkrH3ZrmB62rZtciAfGeQNwdoYnhPcUqVIfbbyipHmmck
- 1IV410Oof43xGNX7bqjOmFYXdmhAuqgBqGczW0RVJ0dHYaa6+lju0P93I
- /kSKix4VoEgw2hYYXIjXQcTJwvtrGrW8wZWtzkT0CuXjQe5v+qRWsnM2l Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10563"; a="405258210"
-X-IronPort-AV: E=Sophos;i="5.96,249,1665471600"; d="scan'208";a="405258210"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2022 08:33:46 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10563"; a="643323420"
-X-IronPort-AV: E=Sophos;i="5.96,249,1665471600"; d="scan'208";a="643323420"
-Received: from ideak-desk.fi.intel.com ([10.237.72.58])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2022 08:33:44 -0800
-Date: Fri, 16 Dec 2022 18:33:40 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <Y5yd5PvWb2fl66/s@ideak-desk.fi.intel.com>
-References: <20221214184258.2869417-1-imre.deak@intel.com>
- <1ade43347769118c82f1b68bd8b51172a1012a37.camel@redhat.com>
- <Y5yKXXBUycSHov5g@ideak-desk.fi.intel.com>
- <875yebuy68.fsf@intel.com>
+ t=1671208429; x=1702744429;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=/h5GWTqfJqtBI5j0zE4Ktx161j/+kvNPijSBcd43YvY=;
+ b=OejbPm4qyb3yCF3uWJ+qL6LTA8dxoFkyKb51ctJhW7UnEvoBQXxw6etj
+ obp8jUaElUBA1bkI8mbegTERduodpwXDQyZCQp+u/JkAMAZU87wUfbnMT
+ NezAqUGkh5QXoT7ZLRDmmAJ9xX0Nsx2Z2a37eEdefBlu6d5cIr8H5arNa
+ pcqVu3RQF/XEj1Z2Q9HU8YvUc8bqAuZh+dRYwNoZr9wLU8/fR4jvwLrSQ
+ FX7aivAeYN+sSnI4GX1hLXHap3Yjj3vy4PCeXtpE1bf9Zhq7fVgDyO7UL
+ 8FIvSUEtPlXP/bII2dObsNSpOT8kw7tQOPxqtwNZQu0qn9sGMb1LOUNqV Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10563"; a="302423077"
+X-IronPort-AV: E=Sophos;i="5.96,249,1665471600"; d="scan'208";a="302423077"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2022 08:33:48 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10563"; a="718417695"
+X-IronPort-AV: E=Sophos;i="5.96,249,1665471600"; d="scan'208";a="718417695"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.61.253])
+ ([10.252.61.253])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2022 08:33:47 -0800
+Message-ID: <f5a6b933-c7ea-7b03-7906-dd1ee4454eef@linux.intel.com>
+Date: Fri, 16 Dec 2022 17:33:44 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <875yebuy68.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/display/dp_mst: Fix down/up message
- handling after sink disconnect
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Content-Language: en-US
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, Nirmoy Das <nirmoy.das@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20221216152744.18658-1-nirmoy.das@intel.com>
+ <9e24bdca-c4e0-dfa7-cd90-d6dcc29f912e@intel.com>
+ <0a8bc5f2-8f6e-3d77-f385-2af25d9464e4@intel.com>
+From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
+In-Reply-To: <0a8bc5f2-8f6e-3d77-f385-2af25d9464e4@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Use helper func to find out map
+ type
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,80 +65,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 16, 2022 at 06:10:39PM +0200, Jani Nikula wrote:
-> On Fri, 16 Dec 2022, Imre Deak <imre.deak@intel.com> wrote:
-> > On Wed, Dec 14, 2022 at 04:41:42PM -0500, Lyude Paul wrote:
-> >> For the whole series:
-> >> 
-> >> Reviewed-by: Lyude Paul <lyude@redhat.com>
-> >
-> > Thanks for the review, pushed it to drm-misc-next.
-> 
-> Hmm, with the drm-misc *not* cherry-picking patches from drm-misc-next
-> to drm-misc-fixes, these will only get backported to stable kernels
-> after they hit Linus' tree in the next (as opposed to current) merge
-> window after a full development cycle. Wonder if they should be
-> expedited.
 
-Ok, it should've been pushed to -fixes then, will do that next time.
-Yes, I think sending them already before the next merge window would be
-good.
+On 12/16/2022 4:59 PM, Andrzej Hajda wrote:
+> On 16.12.2022 16:43, Matthew Auld wrote:
+>> On 16/12/2022 15:27, Nirmoy Das wrote:
+>>> Use i915_coherent_map_type() function to find out
+>>> map_type of the shmem obj.
+>>>
+>>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/i915/gt/shmem_utils.c | 7 +++++--
+>>>   1 file changed, 5 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gt/shmem_utils.c 
+>>> b/drivers/gpu/drm/i915/gt/shmem_utils.c
+>>> index 402f085f3a02..e1a69803624f 100644
+>>> --- a/drivers/gpu/drm/i915/gt/shmem_utils.c
+>>> +++ b/drivers/gpu/drm/i915/gt/shmem_utils.c
+>>> @@ -8,6 +8,7 @@
+>>>   #include <linux/pagemap.h>
+>>>   #include <linux/shmem_fs.h>
+>>> +#include "i915_drv.h"
+>>>   #include "gem/i915_gem_object.h"
+>>>   #include "gem/i915_gem_lmem.h"
+>>>   #include "shmem_utils.h"
+>>> @@ -32,6 +33,8 @@ struct file *shmem_create_from_data(const char 
+>>> *name, void *data, size_t len)
+>>>   struct file *shmem_create_from_object(struct drm_i915_gem_object 
+>>> *obj)
+>>>   {
+>>> +    struct drm_i915_private *i915 = to_i915(obj->base.dev);
+>>> +    enum i915_map_type map_type;
+>>>       struct file *file;
+>>>       void *ptr;
+>>> @@ -41,8 +44,8 @@ struct file *shmem_create_from_object(struct 
+>>> drm_i915_gem_object *obj)
+>>>           return file;
+>>>       }
+>>> -    ptr = i915_gem_object_pin_map_unlocked(obj, 
+>>> i915_gem_object_is_lmem(obj) ?
+>>> -                        I915_MAP_WC : I915_MAP_WB);
+>>> +    map_type = i915_coherent_map_type(i915, obj, false);
+>>
+>> This will now use wc on non-llc.
+>
+> i915_coherent_map_type(i915, obj, true) should do the trick.
 
-> 
-> BR,
-> Jani.
-> 
-> >
-> >> Thanks!
-> >> 
-> >> On Wed, 2022-12-14 at 20:42 +0200, Imre Deak wrote:
-> >> > If the sink gets disconnected during receiving a multi-packet DP MST AUX
-> >> > down-reply/up-request sideband message, the state keeping track of which
-> >> > packets have been received already is not reset. This results in a failed
-> >> > sanity check for the subsequent message packet received after a sink is
-> >> > reconnected (due to the pending message not yet completed with an
-> >> > end-of-message-transfer packet), indicated by the
-> >> > 
-> >> > "sideband msg set header failed"
-> >> > 
-> >> > error.
-> >> > 
-> >> > Fix the above by resetting the up/down message reception state after a
-> >> > disconnect event.
-> >> > 
-> >> > Cc: Lyude Paul <lyude@redhat.com>
-> >> > Cc: <stable@vger.kernel.org> # v3.17+
-> >> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> >> > ---
-> >> >  drivers/gpu/drm/display/drm_dp_mst_topology.c | 3 +++
-> >> >  1 file changed, 3 insertions(+)
-> >> > 
-> >> > diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> >> > index 51a46689cda70..90819fff2c9ba 100644
-> >> > --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> >> > +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> >> > @@ -3641,6 +3641,9 @@ int drm_dp_mst_topology_mgr_set_mst(struct drm_dp_mst_topology_mgr *mgr, bool ms
-> >> >  		drm_dp_dpcd_writeb(mgr->aux, DP_MSTM_CTRL, 0);
-> >> >  		ret = 0;
-> >> >  		mgr->payload_id_table_cleared = false;
-> >> > +
-> >> > +		memset(&mgr->down_rep_recv, 0, sizeof(mgr->down_rep_recv));
-> >> > +		memset(&mgr->up_req_recv, 0, sizeof(mgr->up_req_recv));
-> >> >  	}
-> >> >  
-> >> >  out_unlock:
-> >> 
-> >> -- 
-> >> Cheers,
-> >>  Lyude Paul (she/her)
-> >>  Software Engineer at Red Hat
-> >> 
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+
+Thanks Matt and  Andrzej for catching this. I will resend.
+
+
+Nirmoy
+
+>
+> Regards
+> Andrzej
+>
+>>
+>>> +    ptr = i915_gem_object_pin_map_unlocked(obj, map_type);
+>>>       if (IS_ERR(ptr))
+>>>           return ERR_CAST(ptr);
+>
