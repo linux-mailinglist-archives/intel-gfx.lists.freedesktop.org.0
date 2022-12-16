@@ -2,56 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A9E364E868
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Dec 2022 10:02:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F6E364E893
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Dec 2022 10:24:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E300710E132;
-	Fri, 16 Dec 2022 09:01:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B46110E0F2;
+	Fri, 16 Dec 2022 09:24:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19CF910E132
- for <intel-gfx@lists.freedesktop.org>; Fri, 16 Dec 2022 09:01:35 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0688910E0F2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Dec 2022 09:24:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671181295; x=1702717295;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=UzcrxHDkMP7tHeWxoaIe2dLLwIOZHcG1rm4Uzdd5ciI=;
- b=WzYLJHRkOLLITZ4ovCDUVB076VQ52pQy/MGNPaUAx2/W8ISH8j8HWhWZ
- 84Xunv5TJIE8FKQY9xDeO39hvDj11FoSt8CXnoEhOi8IXuaYSGdGuRQyt
- AKS116Ps0seCTHyb4jNT3Rr+F3bARqHiynnCFWaTaSHK5XHcvj5s8na8M
- Kg47Kb7f4QCqBOf34FGEehe8k3q2I5iLaSFvZJfM4m7+7/3kqc+mZ9zcV
- pTTrSt1fVNpfoCMw0L09Aj9pRnEn4lNei4GfuTs0McOeAURSbWw8WnYJa
- 3od7haK1TpN7crNh1g5clPth+NWKb/4107g/v8hNGq3nEMUx6lxI0RS1z w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10562"; a="320807092"
-X-IronPort-AV: E=Sophos;i="5.96,249,1665471600"; d="scan'208";a="320807092"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2022 01:01:34 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10562"; a="718298150"
-X-IronPort-AV: E=Sophos;i="5.96,249,1665471600"; d="scan'208";a="718298150"
-Received: from eoghanru-mobl1.ger.corp.intel.com (HELO [10.213.219.23])
- ([10.213.219.23])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2022 01:01:32 -0800
-Message-ID: <597415ca-3ede-25da-50b8-91fb6cc21bb3@linux.intel.com>
-Date: Fri, 16 Dec 2022 09:01:30 +0000
+ t=1671182647; x=1702718647;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=gu6Pat10px5Ux8numrVaDgF6lDz4/9JE+O+4nSXEkwU=;
+ b=g+n9tYQNUTiEgBmjnLs0n9eQzOOmRSVWvJE6zvkI9fvPLNv62ci+93wg
+ /Fr71lLdcO28zehjBzhh6tN0fYP6bPVndL4JCTUQoU6JwSpeoLYpLffik
+ 92h3Xty/Hw08USjHHYFqpQHl/FCmbzUsa44NwlCwUfbuUs6dvfMUKkUCg
+ wwnvrDh2DWzwYib+Dq5nRshoVHjndKjpemr8q7kl92v3bMr92mLOjRBbn
+ MfDB/tADZqABz6IJ+TrSVR5RlwaLcaVBA30mxRJotXfB7Qod3s7DGIgr0
+ 81ygD8h/rNMyJCLneDHSosfnKn3wOO26GZ8NQkBQ9liGzCyz1clVPGmHv g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10562"; a="317624232"
+X-IronPort-AV: E=Sophos;i="5.96,249,1665471600"; d="scan'208";a="317624232"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2022 01:24:06 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10562"; a="895166117"
+X-IronPort-AV: E=Sophos;i="5.96,249,1665471600"; d="scan'208";a="895166117"
+Received: from lab-ah.igk.intel.com ([10.91.215.196])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2022 01:24:04 -0800
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 16 Dec 2022 10:23:55 +0100
+Message-Id: <20221216092356.3336893-1-andrzej.hajda@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Content-Language: en-US
-To: Matt Roper <matthew.d.roper@intel.com>
-References: <20221209220543.502047-1-matthew.s.atwood@intel.com>
- <Y5O7fni8yzeV+cqR@mdroper-desk1.amr.corp.intel.com>
- <2a8527c8-95ba-4a06-550b-df991eaa3cb7@linux.intel.com>
- <Y5j0b/bykbitCa4Q@mdroper-desk1.amr.corp.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <Y5j0b/bykbitCa4Q@mdroper-desk1.amr.corp.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v4] drm/i915/mtl: Initial display workarounds
+Subject: [Intel-gfx] [PATCH] drm/i915/display/vlv: use intel_de_rmw if
+ possible
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,204 +57,435 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: lucas.demarchi@intel.com, intel-gfx@lists.freedesktop.org
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+The helper makes the code more compact and readable.
 
-On 13/12/2022 21:53, Matt Roper wrote:
-> On Tue, Dec 13, 2022 at 11:45:37AM +0000, Tvrtko Ursulin wrote:
->>
->> On 09/12/2022 22:49, Matt Roper wrote:
->>> On Fri, Dec 09, 2022 at 02:05:43PM -0800, Matt Atwood wrote:
->>>> From: Jouni Högander <jouni.hogander@intel.com>
->>>>
->>>> This patch introduces initial workarounds for mtl platform
->>>>
->>>> v2: switch IS_MTL_DISPLAY_STEP to use IS_METEORLAKE from testing display
->>>> ver. (Tvrtko)
->>>>
->>>> v3: clerical issues, extend 16015201720 to mtl. (MattR)
->>>>
->>>> v4: make sure 16015201720 includes display 13. (MattR)
->>>>
->>>> Bspec: 66624
->>>>
->>>> Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
->>>> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
->>>
->>> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
->>>
->>>> ---
->>>>    drivers/gpu/drm/i915/display/intel_dmc.c  |  4 ++--
->>>>    drivers/gpu/drm/i915/display/intel_fbc.c  |  6 +++--
->>>>    drivers/gpu/drm/i915/display/intel_hdmi.c |  3 ++-
->>>>    drivers/gpu/drm/i915/display/intel_psr.c  | 27 ++++++++++++++++-------
->>>>    drivers/gpu/drm/i915/i915_drv.h           |  4 ++++
->>>>    5 files changed, 31 insertions(+), 13 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
->>>> index eff3add70611..8f4880a17ae0 100644
->>>> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
->>>> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
->>>> @@ -387,11 +387,11 @@ static void pipedmc_clock_gating_wa(struct drm_i915_private *i915, bool enable)
->>>>    {
->>>>    	enum pipe pipe;
->>>> -	if (DISPLAY_VER(i915) != 13)
->>>> +	if (DISPLAY_VER(i915) < 13)
->>>>    		return;
->>>>    	/*
->>>> -	 * Wa_16015201720:adl-p,dg2
->>>> +	 * Wa_16015201720:adl-p,dg2, mtl
->>
->> [stray space but nvm]
->>
->> Recently we started a little bit of discussion on whether these comments
->> will be getting updated or completely removed which was left hanging in the
->> air. Are we trending towards a mess of them being completely unreliable
->> becuase different people are following different direction here?
-> 
-> I'm planning to send a couple patches to clean these up across the
-> driver soon.  Today they're handled in an inconsistent manner throughout
-> the driver, some of them haven't been updated when the corresponding
-> code conditions got updated, etc.  I'll want to audit all of the bounds
-> again too to make sure we haven't overlooked any adjustments to the
-> workaround database.
+Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+---
+Hi all,
 
-Sounds good.
+Here is another set of refactoring read/modify/write registers.
+I have split it to smaller chunks to make the review and patch preparation
+process less painful - cocci script do the most importan work, but
+there are many small improvements, style corrections performed by hand.
 
-What is the clean up plan - remove them all or sync with reality?
+Regards
+Andrzej
+---
 
-Regards,
+ drivers/gpu/drm/i915/display/vlv_dsi.c     | 157 ++++++---------------
+ drivers/gpu/drm/i915/display/vlv_dsi_pll.c |  18 +--
+ 2 files changed, 51 insertions(+), 124 deletions(-)
 
-Tvrtko
+diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+index 662bdb656aa304..7ab69bc6b49477 100644
+--- a/drivers/gpu/drm/i915/display/vlv_dsi.c
++++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+@@ -331,32 +331,23 @@ static bool glk_dsi_enable_io(struct intel_encoder *encoder)
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+ 	enum port port;
+-	u32 tmp;
+ 	bool cold_boot = false;
+ 
+ 	/* Set the MIPI mode
+ 	 * If MIPI_Mode is off, then writing to LP_Wake bit is not reflecting.
+ 	 * Power ON MIPI IO first and then write into IO reset and LP wake bits
+ 	 */
+-	for_each_dsi_port(port, intel_dsi->ports) {
+-		tmp = intel_de_read(dev_priv, MIPI_CTRL(port));
+-		intel_de_write(dev_priv, MIPI_CTRL(port),
+-			       tmp | GLK_MIPIIO_ENABLE);
+-	}
++	for_each_dsi_port(port, intel_dsi->ports)
++		intel_de_rmw(dev_priv, MIPI_CTRL(port), 0, GLK_MIPIIO_ENABLE);
+ 
+ 	/* Put the IO into reset */
+-	tmp = intel_de_read(dev_priv, MIPI_CTRL(PORT_A));
+-	tmp &= ~GLK_MIPIIO_RESET_RELEASED;
+-	intel_de_write(dev_priv, MIPI_CTRL(PORT_A), tmp);
++	intel_de_rmw(dev_priv, MIPI_CTRL(PORT_A), GLK_MIPIIO_RESET_RELEASED, 0);
+ 
+ 	/* Program LP Wake */
+ 	for_each_dsi_port(port, intel_dsi->ports) {
+-		tmp = intel_de_read(dev_priv, MIPI_CTRL(port));
+-		if (!(intel_de_read(dev_priv, MIPI_DEVICE_READY(port)) & DEVICE_READY))
+-			tmp &= ~GLK_LP_WAKE;
+-		else
+-			tmp |= GLK_LP_WAKE;
+-		intel_de_write(dev_priv, MIPI_CTRL(port), tmp);
++		u32 tmp = intel_de_read(dev_priv, MIPI_DEVICE_READY(port));
++		intel_de_rmw(dev_priv, MIPI_CTRL(port),
++			     GLK_LP_WAKE, (tmp & DEVICE_READY) ? GLK_LP_WAKE : 0);
+ 	}
+ 
+ 	/* Wait for Pwr ACK */
+@@ -380,7 +371,6 @@ static void glk_dsi_device_ready(struct intel_encoder *encoder)
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+ 	enum port port;
+-	u32 val;
+ 
+ 	/* Wait for MIPI PHY status bit to set */
+ 	for_each_dsi_port(port, intel_dsi->ports) {
+@@ -390,24 +380,18 @@ static void glk_dsi_device_ready(struct intel_encoder *encoder)
+ 	}
+ 
+ 	/* Get IO out of reset */
+-	val = intel_de_read(dev_priv, MIPI_CTRL(PORT_A));
+-	intel_de_write(dev_priv, MIPI_CTRL(PORT_A),
+-		       val | GLK_MIPIIO_RESET_RELEASED);
++	intel_de_rmw(dev_priv, MIPI_CTRL(PORT_A), 0, GLK_MIPIIO_RESET_RELEASED);
+ 
+ 	/* Get IO out of Low power state*/
+ 	for_each_dsi_port(port, intel_dsi->ports) {
+ 		if (!(intel_de_read(dev_priv, MIPI_DEVICE_READY(port)) & DEVICE_READY)) {
+-			val = intel_de_read(dev_priv, MIPI_DEVICE_READY(port));
+-			val &= ~ULPS_STATE_MASK;
+-			val |= DEVICE_READY;
+-			intel_de_write(dev_priv, MIPI_DEVICE_READY(port), val);
++			intel_de_rmw(dev_priv, MIPI_DEVICE_READY(port),
++				     ULPS_STATE_MASK, DEVICE_READY);
+ 			usleep_range(10, 15);
+ 		} else {
+ 			/* Enter ULPS */
+-			val = intel_de_read(dev_priv, MIPI_DEVICE_READY(port));
+-			val &= ~ULPS_STATE_MASK;
+-			val |= (ULPS_STATE_ENTER | DEVICE_READY);
+-			intel_de_write(dev_priv, MIPI_DEVICE_READY(port), val);
++			intel_de_rmw(dev_priv, MIPI_DEVICE_READY(port),
++				     ULPS_STATE_MASK, ULPS_STATE_ENTER | DEVICE_READY);
+ 
+ 			/* Wait for ULPS active */
+ 			if (intel_de_wait_for_clear(dev_priv, MIPI_CTRL(port),
+@@ -415,20 +399,15 @@ static void glk_dsi_device_ready(struct intel_encoder *encoder)
+ 				drm_err(&dev_priv->drm, "ULPS not active\n");
+ 
+ 			/* Exit ULPS */
+-			val = intel_de_read(dev_priv, MIPI_DEVICE_READY(port));
+-			val &= ~ULPS_STATE_MASK;
+-			val |= (ULPS_STATE_EXIT | DEVICE_READY);
+-			intel_de_write(dev_priv, MIPI_DEVICE_READY(port), val);
++			intel_de_rmw(dev_priv, MIPI_DEVICE_READY(port),
++				     ULPS_STATE_MASK, ULPS_STATE_EXIT | DEVICE_READY);
+ 
+ 			/* Enter Normal Mode */
+-			val = intel_de_read(dev_priv, MIPI_DEVICE_READY(port));
+-			val &= ~ULPS_STATE_MASK;
+-			val |= (ULPS_STATE_NORMAL_OPERATION | DEVICE_READY);
+-			intel_de_write(dev_priv, MIPI_DEVICE_READY(port), val);
+-
+-			val = intel_de_read(dev_priv, MIPI_CTRL(port));
+-			val &= ~GLK_LP_WAKE;
+-			intel_de_write(dev_priv, MIPI_CTRL(port), val);
++			intel_de_rmw(dev_priv, MIPI_DEVICE_READY(port),
++				     ULPS_STATE_MASK,
++				     ULPS_STATE_NORMAL_OPERATION | DEVICE_READY);
++
++			intel_de_rmw(dev_priv, MIPI_CTRL(port), GLK_LP_WAKE, 0);
+ 		}
+ 	}
+ 
+@@ -460,9 +439,7 @@ static void bxt_dsi_device_ready(struct intel_encoder *encoder)
+ 
+ 	/* Enable MIPI PHY transparent latch */
+ 	for_each_dsi_port(port, intel_dsi->ports) {
+-		val = intel_de_read(dev_priv, BXT_MIPI_PORT_CTRL(port));
+-		intel_de_write(dev_priv, BXT_MIPI_PORT_CTRL(port),
+-			       val | LP_OUTPUT_HOLD);
++		intel_de_rmw(dev_priv, BXT_MIPI_PORT_CTRL(port), 0, LP_OUTPUT_HOLD);
+ 		usleep_range(2000, 2500);
+ 	}
+ 
+@@ -482,7 +459,6 @@ static void vlv_dsi_device_ready(struct intel_encoder *encoder)
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+ 	enum port port;
+-	u32 val;
+ 
+ 	drm_dbg_kms(&dev_priv->drm, "\n");
+ 
+@@ -505,9 +481,7 @@ static void vlv_dsi_device_ready(struct intel_encoder *encoder)
+ 		 * Common bit for both MIPI Port A & MIPI Port C
+ 		 * No similar bit in MIPI Port C reg
+ 		 */
+-		val = intel_de_read(dev_priv, MIPI_PORT_CTRL(PORT_A));
+-		intel_de_write(dev_priv, MIPI_PORT_CTRL(PORT_A),
+-			       val | LP_OUTPUT_HOLD);
++		intel_de_rmw(dev_priv, MIPI_PORT_CTRL(PORT_A), 0, LP_OUTPUT_HOLD);
+ 		usleep_range(1000, 1500);
+ 
+ 		intel_de_write(dev_priv, MIPI_DEVICE_READY(port),
+@@ -537,15 +511,11 @@ static void glk_dsi_enter_low_power_mode(struct intel_encoder *encoder)
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+ 	enum port port;
+-	u32 val;
+ 
+ 	/* Enter ULPS */
+-	for_each_dsi_port(port, intel_dsi->ports) {
+-		val = intel_de_read(dev_priv, MIPI_DEVICE_READY(port));
+-		val &= ~ULPS_STATE_MASK;
+-		val |= (ULPS_STATE_ENTER | DEVICE_READY);
+-		intel_de_write(dev_priv, MIPI_DEVICE_READY(port), val);
+-	}
++	for_each_dsi_port(port, intel_dsi->ports)
++		intel_de_rmw(dev_priv, MIPI_DEVICE_READY(port),
++			     ULPS_STATE_MASK, ULPS_STATE_ENTER | DEVICE_READY);
+ 
+ 	/* Wait for MIPI PHY status bit to unset */
+ 	for_each_dsi_port(port, intel_dsi->ports) {
+@@ -568,12 +538,9 @@ static void glk_dsi_disable_mipi_io(struct intel_encoder *encoder)
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+ 	enum port port;
+-	u32 tmp;
+ 
+ 	/* Put the IO into reset */
+-	tmp = intel_de_read(dev_priv, MIPI_CTRL(PORT_A));
+-	tmp &= ~GLK_MIPIIO_RESET_RELEASED;
+-	intel_de_write(dev_priv, MIPI_CTRL(PORT_A), tmp);
++	intel_de_rmw(dev_priv, MIPI_CTRL(PORT_A), GLK_MIPIIO_RESET_RELEASED, 0);
+ 
+ 	/* Wait for MIPI PHY status bit to unset */
+ 	for_each_dsi_port(port, intel_dsi->ports) {
+@@ -583,11 +550,8 @@ static void glk_dsi_disable_mipi_io(struct intel_encoder *encoder)
+ 	}
+ 
+ 	/* Clear MIPI mode */
+-	for_each_dsi_port(port, intel_dsi->ports) {
+-		tmp = intel_de_read(dev_priv, MIPI_CTRL(port));
+-		tmp &= ~GLK_MIPIIO_ENABLE;
+-		intel_de_write(dev_priv, MIPI_CTRL(port), tmp);
+-	}
++	for_each_dsi_port(port, intel_dsi->ports)
++		intel_de_rmw(dev_priv, MIPI_CTRL(port), GLK_MIPIIO_ENABLE, 0);
+ }
+ 
+ static void glk_dsi_clear_device_ready(struct intel_encoder *encoder)
+@@ -607,7 +571,6 @@ static void vlv_dsi_clear_device_ready(struct intel_encoder *encoder)
+ 		/* Common bit for both MIPI Port A & MIPI Port C on VLV/CHV */
+ 		i915_reg_t port_ctrl = IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv) ?
+ 			BXT_MIPI_PORT_CTRL(port) : MIPI_PORT_CTRL(PORT_A);
+-		u32 val;
+ 
+ 		intel_de_write(dev_priv, MIPI_DEVICE_READY(port),
+ 			       DEVICE_READY | ULPS_STATE_ENTER);
+@@ -631,8 +594,7 @@ static void vlv_dsi_clear_device_ready(struct intel_encoder *encoder)
+ 			drm_err(&dev_priv->drm, "DSI LP not going Low\n");
+ 
+ 		/* Disable MIPI PHY transparent latch */
+-		val = intel_de_read(dev_priv, port_ctrl);
+-		intel_de_write(dev_priv, port_ctrl, val & ~LP_OUTPUT_HOLD);
++		intel_de_rmw(dev_priv, port_ctrl, LP_OUTPUT_HOLD, 0);
+ 		usleep_range(1000, 1500);
+ 
+ 		intel_de_write(dev_priv, MIPI_DEVICE_READY(port), 0x00);
+@@ -649,23 +611,18 @@ static void intel_dsi_port_enable(struct intel_encoder *encoder,
+ 	enum port port;
+ 
+ 	if (intel_dsi->dual_link == DSI_DUAL_LINK_FRONT_BACK) {
+-		u32 temp;
++		u32 temp = intel_dsi->pixel_overlap;
+ 		if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv)) {
+-			for_each_dsi_port(port, intel_dsi->ports) {
+-				temp = intel_de_read(dev_priv,
+-						     MIPI_CTRL(port));
+-				temp &= ~BXT_PIXEL_OVERLAP_CNT_MASK |
+-					intel_dsi->pixel_overlap <<
+-					BXT_PIXEL_OVERLAP_CNT_SHIFT;
+-				intel_de_write(dev_priv, MIPI_CTRL(port),
+-					       temp);
+-			}
++			for_each_dsi_port(port, intel_dsi->ports)
++				intel_de_rmw(dev_priv, MIPI_CTRL(port),
++					     BXT_PIXEL_OVERLAP_CNT_MASK &
++					     ~(temp << BXT_PIXEL_OVERLAP_CNT_SHIFT),
++					     0);
+ 		} else {
+-			temp = intel_de_read(dev_priv, VLV_CHICKEN_3);
+-			temp &= ~PIXEL_OVERLAP_CNT_MASK |
+-					intel_dsi->pixel_overlap <<
+-					PIXEL_OVERLAP_CNT_SHIFT;
+-			intel_de_write(dev_priv, VLV_CHICKEN_3, temp);
++			intel_de_rmw(dev_priv, VLV_CHICKEN_3,
++				     PIXEL_OVERLAP_CNT_MASK &
++				     ~(temp << PIXEL_OVERLAP_CNT_SHIFT),
++				     0);
+ 		}
+ 	}
+ 
+@@ -709,11 +666,9 @@ static void intel_dsi_port_disable(struct intel_encoder *encoder)
+ 	for_each_dsi_port(port, intel_dsi->ports) {
+ 		i915_reg_t port_ctrl = IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv) ?
+ 			BXT_MIPI_PORT_CTRL(port) : MIPI_PORT_CTRL(port);
+-		u32 temp;
+ 
+ 		/* de-assert ip_tg_enable signal */
+-		temp = intel_de_read(dev_priv, port_ctrl);
+-		intel_de_write(dev_priv, port_ctrl, temp & ~DPI_ENABLE);
++		intel_de_rmw(dev_priv, port_ctrl, DPI_ENABLE, 0);
+ 		intel_de_posting_read(dev_priv, port_ctrl);
+ 	}
+ }
+@@ -787,7 +742,6 @@ static void intel_dsi_pre_enable(struct intel_atomic_state *state,
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 	enum pipe pipe = crtc->pipe;
+ 	enum port port;
+-	u32 val;
+ 	bool glk_cold_boot = false;
+ 
+ 	drm_dbg_kms(&dev_priv->drm, "\n");
+@@ -810,9 +764,7 @@ static void intel_dsi_pre_enable(struct intel_atomic_state *state,
+ 
+ 	if (IS_BROXTON(dev_priv)) {
+ 		/* Add MIPI IO reset programming for modeset */
+-		val = intel_de_read(dev_priv, BXT_P_CR_GT_DISP_PWRON);
+-		intel_de_write(dev_priv, BXT_P_CR_GT_DISP_PWRON,
+-			       val | MIPIO_RST_CTRL);
++		intel_de_rmw(dev_priv, BXT_P_CR_GT_DISP_PWRON, 0, MIPIO_RST_CTRL);
+ 
+ 		/* Power up DSI regulator */
+ 		intel_de_write(dev_priv, BXT_P_DSI_REGULATOR_CFG, STAP_SELECT);
+@@ -820,12 +772,9 @@ static void intel_dsi_pre_enable(struct intel_atomic_state *state,
+ 	}
+ 
+ 	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
+-		u32 val;
+-
+ 		/* Disable DPOunit clock gating, can stall pipe */
+-		val = intel_de_read(dev_priv, DSPCLK_GATE_D(dev_priv));
+-		val |= DPOUNIT_CLOCK_GATE_DISABLE;
+-		intel_de_write(dev_priv, DSPCLK_GATE_D(dev_priv), val);
++		intel_de_rmw(dev_priv, DSPCLK_GATE_D(dev_priv),
++			     0, DPOUNIT_CLOCK_GATE_DISABLE);
+ 	}
+ 
+ 	if (!IS_GEMINILAKE(dev_priv))
+@@ -949,7 +898,6 @@ static void intel_dsi_post_disable(struct intel_atomic_state *state,
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+ 	enum port port;
+-	u32 val;
+ 
+ 	drm_dbg_kms(&dev_priv->drm, "\n");
+ 
+@@ -987,21 +935,16 @@ static void intel_dsi_post_disable(struct intel_atomic_state *state,
+ 			       HS_IO_CTRL_SELECT);
+ 
+ 		/* Add MIPI IO reset programming for modeset */
+-		val = intel_de_read(dev_priv, BXT_P_CR_GT_DISP_PWRON);
+-		intel_de_write(dev_priv, BXT_P_CR_GT_DISP_PWRON,
+-			       val & ~MIPIO_RST_CTRL);
++		intel_de_rmw(dev_priv, BXT_P_CR_GT_DISP_PWRON, MIPIO_RST_CTRL, 0);
+ 	}
+ 
+ 	if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv)) {
+ 		bxt_dsi_pll_disable(encoder);
+ 	} else {
+-		u32 val;
+-
+ 		vlv_dsi_pll_disable(encoder);
+ 
+-		val = intel_de_read(dev_priv, DSPCLK_GATE_D(dev_priv));
+-		val &= ~DPOUNIT_CLOCK_GATE_DISABLE;
+-		intel_de_write(dev_priv, DSPCLK_GATE_D(dev_priv), val);
++		intel_de_rmw(dev_priv, DSPCLK_GATE_D(dev_priv),
++			     DPOUNIT_CLOCK_GATE_DISABLE, 0);
+ 	}
+ 
+ 	/* Assert reset */
+@@ -1432,11 +1375,8 @@ static void intel_dsi_prepare(struct intel_encoder *intel_encoder,
+ 		} else if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv)) {
+ 			enum pipe pipe = crtc->pipe;
+ 
+-			tmp = intel_de_read(dev_priv, MIPI_CTRL(port));
+-			tmp &= ~BXT_PIPE_SELECT_MASK;
+-
+-			tmp |= BXT_PIPE_SELECT(pipe);
+-			intel_de_write(dev_priv, MIPI_CTRL(port), tmp);
++			intel_de_rmw(dev_priv, MIPI_CTRL(port),
++				     BXT_PIPE_SELECT_MASK, BXT_PIPE_SELECT(pipe));
+ 		}
+ 
+ 		/* XXX: why here, why like this? handling in irq handler?! */
+@@ -1605,7 +1545,6 @@ static void intel_dsi_unprepare(struct intel_encoder *encoder)
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+ 	enum port port;
+-	u32 val;
+ 
+ 	if (IS_GEMINILAKE(dev_priv))
+ 		return;
+@@ -1620,9 +1559,7 @@ static void intel_dsi_unprepare(struct intel_encoder *encoder)
+ 			vlv_dsi_reset_clocks(encoder, port);
+ 		intel_de_write(dev_priv, MIPI_EOT_DISABLE(port), CLOCKSTOP);
+ 
+-		val = intel_de_read(dev_priv, MIPI_DSI_FUNC_PRG(port));
+-		val &= ~VID_MODE_FORMAT_MASK;
+-		intel_de_write(dev_priv, MIPI_DSI_FUNC_PRG(port), val);
++		intel_de_rmw(dev_priv, MIPI_DSI_FUNC_PRG(port), VID_MODE_FORMAT_MASK, 0);
+ 
+ 		intel_de_write(dev_priv, MIPI_DEVICE_READY(port), 0x1);
+ 	}
+diff --git a/drivers/gpu/drm/i915/display/vlv_dsi_pll.c b/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
+index af7402127cd99a..b697badbbe7110 100644
+--- a/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
++++ b/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
+@@ -302,13 +302,10 @@ bool bxt_dsi_pll_is_enabled(struct drm_i915_private *dev_priv)
+ void bxt_dsi_pll_disable(struct intel_encoder *encoder)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+-	u32 val;
+ 
+ 	drm_dbg_kms(&dev_priv->drm, "\n");
+ 
+-	val = intel_de_read(dev_priv, BXT_DSI_PLL_ENABLE);
+-	val &= ~BXT_DSI_PLL_DO_ENABLE;
+-	intel_de_write(dev_priv, BXT_DSI_PLL_ENABLE, val);
++	intel_de_rmw(dev_priv, BXT_DSI_PLL_ENABLE, BXT_DSI_PLL_DO_ENABLE, 0);
+ 
+ 	/*
+ 	 * PLL lock should deassert within 200us.
+@@ -542,7 +539,6 @@ void bxt_dsi_pll_enable(struct intel_encoder *encoder,
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+ 	enum port port;
+-	u32 val;
+ 
+ 	drm_dbg_kms(&dev_priv->drm, "\n");
+ 
+@@ -559,9 +555,7 @@ void bxt_dsi_pll_enable(struct intel_encoder *encoder,
+ 	}
+ 
+ 	/* Enable DSI PLL */
+-	val = intel_de_read(dev_priv, BXT_DSI_PLL_ENABLE);
+-	val |= BXT_DSI_PLL_DO_ENABLE;
+-	intel_de_write(dev_priv, BXT_DSI_PLL_ENABLE, val);
++	intel_de_rmw(dev_priv, BXT_DSI_PLL_ENABLE, 0, BXT_DSI_PLL_DO_ENABLE);
+ 
+ 	/* Timeout and fail if PLL not locked */
+ 	if (intel_de_wait_for_set(dev_priv, BXT_DSI_PLL_ENABLE,
+@@ -589,13 +583,9 @@ void bxt_dsi_reset_clocks(struct intel_encoder *encoder, enum port port)
+ 		tmp &= ~(BXT_MIPI_RX_ESCLK_LOWER_FIXDIV_MASK(port));
+ 		intel_de_write(dev_priv, BXT_MIPI_CLOCK_CTL, tmp);
+ 	} else {
+-		tmp = intel_de_read(dev_priv, MIPIO_TXESC_CLK_DIV1);
+-		tmp &= ~GLK_TX_ESC_CLK_DIV1_MASK;
+-		intel_de_write(dev_priv, MIPIO_TXESC_CLK_DIV1, tmp);
++		intel_de_rmw(dev_priv, MIPIO_TXESC_CLK_DIV1, GLK_TX_ESC_CLK_DIV1_MASK, 0);
+ 
+-		tmp = intel_de_read(dev_priv, MIPIO_TXESC_CLK_DIV2);
+-		tmp &= ~GLK_TX_ESC_CLK_DIV2_MASK;
+-		intel_de_write(dev_priv, MIPIO_TXESC_CLK_DIV2, tmp);
++		intel_de_rmw(dev_priv, MIPIO_TXESC_CLK_DIV2, GLK_TX_ESC_CLK_DIV2_MASK, 0);
+ 	}
+ 	intel_de_write(dev_priv, MIPI_EOT_DISABLE(port), CLOCKSTOP);
+ }
+-- 
+2.34.1
 
-> 
-> I probably won't get to this until after the new year, but it's on my
-> todo list.
-> 
-> 
-> Matt
-> 
->>
->> Regards,
->>
->> Tvrtko
->>
->>>>    	 * The WA requires clock gating to be disabled all the time
->>>>    	 * for pipe A and B.
->>>>    	 * For pipe C and D clock gating needs to be disabled only
->>>> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
->>>> index deba0c49c827..5e69d3c11d21 100644
->>>> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
->>>> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
->>>> @@ -811,7 +811,7 @@ static void intel_fbc_program_cfb(struct intel_fbc *fbc)
->>>>    static void intel_fbc_program_workarounds(struct intel_fbc *fbc)
->>>>    {
->>>> -	/* Wa_22014263786:icl,jsl,tgl,dg1,rkl,adls,adlp */
->>>> +	/* Wa_22014263786:icl,jsl,tgl,dg1,rkl,adls,adlp,mtl */
->>>>    	if (DISPLAY_VER(fbc->i915) >= 11 && !IS_DG2(fbc->i915))
->>>>    		intel_de_rmw(fbc->i915, ILK_DPFC_CHICKEN(fbc->id), 0,
->>>>    			     DPFC_CHICKEN_FORCE_SLB_INVALIDATION);
->>>> @@ -1091,7 +1091,9 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
->>>>    	}
->>>>    	/* Wa_14016291713 */
->>>> -	if (IS_DISPLAY_VER(i915, 12, 13) && crtc_state->has_psr) {
->>>> +	if ((IS_DISPLAY_VER(i915, 12, 13) ||
->>>> +	     IS_MTL_DISPLAY_STEP(i915, STEP_A0, STEP_C0)) &&
->>>> +	    crtc_state->has_psr) {
->>>>    		plane_state->no_fbc_reason = "PSR1 enabled (Wa_14016291713)";
->>>>    		return 0;
->>>>    	}
->>>> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
->>>> index e82f8a07e2b0..efa2da080f62 100644
->>>> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
->>>> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
->>>> @@ -537,7 +537,8 @@ void hsw_write_infoframe(struct intel_encoder *encoder,
->>>>    			       0);
->>>>    	/* Wa_14013475917 */
->>>> -	if (DISPLAY_VER(dev_priv) == 13 && crtc_state->has_psr &&
->>>> +	if ((DISPLAY_VER(dev_priv) == 13 ||
->>>> +	     IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0)) && crtc_state->has_psr &&
->>>>    	    type == DP_SDP_VSC)
->>>>    		return;
->>>> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
->>>> index 5b678916e6db..9820e5fdd087 100644
->>>> --- a/drivers/gpu/drm/i915/display/intel_psr.c
->>>> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
->>>> @@ -797,7 +797,7 @@ static bool psr2_granularity_check(struct intel_dp *intel_dp,
->>>>    		return intel_dp->psr.su_y_granularity == 4;
->>>>    	/*
->>>> -	 * adl_p and display 14+ platforms has 1 line granularity.
->>>> +	 * adl_p and mtl platforms have 1 line granularity.
->>>>    	 * For other platforms with SW tracking we can adjust the y coordinates
->>>>    	 * to match sink requirement if multiple of 4.
->>>>    	 */
->>>> @@ -1170,11 +1170,14 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
->>>>    				     PSR2_ADD_VERTICAL_LINE_COUNT);
->>>>    		/*
->>>> -		 * Wa_16014451276:adlp
->>>> +		 * Wa_16014451276:adlp,mtl[a0,b0]
->>>>    		 * All supported adlp panels have 1-based X granularity, this may
->>>>    		 * cause issues if non-supported panels are used.
->>>>    		 */
->>>> -		if (IS_ALDERLAKE_P(dev_priv))
->>>> +		if (IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
->>>> +			intel_de_rmw(dev_priv, MTL_CHICKEN_TRANS(cpu_transcoder), 0,
->>>> +				     ADLP_1_BASED_X_GRANULARITY);
->>>> +		else if (IS_ALDERLAKE_P(dev_priv))
->>>>    			intel_de_rmw(dev_priv, CHICKEN_TRANS(cpu_transcoder), 0,
->>>>    				     ADLP_1_BASED_X_GRANULARITY);
->>>> @@ -1185,8 +1188,12 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
->>>>    				     TRANS_SET_CONTEXT_LATENCY_MASK,
->>>>    				     TRANS_SET_CONTEXT_LATENCY_VALUE(1));
->>>> -		/* Wa_16012604467:adlp */
->>>> -		if (IS_ALDERLAKE_P(dev_priv))
->>>> +		/* Wa_16012604467:adlp,mtl[a0,b0] */
->>>> +		if (IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
->>>> +			intel_de_rmw(dev_priv,
->>>> +				     MTL_CLKGATE_DIS_TRANS(cpu_transcoder), 0,
->>>> +				     MTL_CLKGATE_DIS_TRANS_DMASC_GATING_DIS);
->>>> +		else if (IS_ALDERLAKE_P(dev_priv))
->>>>    			intel_de_rmw(dev_priv, CLKGATE_DIS_MISC, 0,
->>>>    				     CLKGATE_DIS_MISC_DMASC_GATING_DIS);
->>>> @@ -1362,8 +1369,12 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
->>>>    				     TRANS_SET_CONTEXT_LATENCY(intel_dp->psr.transcoder),
->>>>    				     TRANS_SET_CONTEXT_LATENCY_MASK, 0);
->>>> -		/* Wa_16012604467:adlp */
->>>> -		if (IS_ALDERLAKE_P(dev_priv))
->>>> +		/* Wa_16012604467:adlp,mtl[a0,b0] */
->>>> +		if (IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
->>>> +			intel_de_rmw(dev_priv,
->>>> +				     MTL_CLKGATE_DIS_TRANS(intel_dp->psr.transcoder),
->>>> +				     MTL_CLKGATE_DIS_TRANS_DMASC_GATING_DIS, 0);
->>>> +		else if (IS_ALDERLAKE_P(dev_priv))
->>>>    			intel_de_rmw(dev_priv, CLKGATE_DIS_MISC,
->>>>    				     CLKGATE_DIS_MISC_DMASC_GATING_DIS, 0);
->>>> @@ -1625,7 +1636,7 @@ static void psr2_man_trk_ctl_calc(struct intel_crtc_state *crtc_state,
->>>>    	if (full_update) {
->>>>    		/*
->>>> -		 * Not applying Wa_14014971508:adlp as we do not support the
->>>> +		 * Not applying Wa_14014971508:adlp,mtl as we do not support the
->>>>    		 * feature that requires this workaround.
->>>>    		 */
->>>>    		val |= man_trk_ctl_single_full_frame_bit_get(dev_priv);
->>>> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
->>>> index a8a5bd426e78..0ad206f76b7b 100644
->>>> --- a/drivers/gpu/drm/i915/i915_drv.h
->>>> +++ b/drivers/gpu/drm/i915/i915_drv.h
->>>> @@ -727,6 +727,10 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
->>>>    	(IS_SUBPLATFORM(__i915, INTEL_METEORLAKE, INTEL_SUBPLATFORM_##variant) && \
->>>>    	 IS_GRAPHICS_STEP(__i915, since, until))
->>>> +#define IS_MTL_DISPLAY_STEP(__i915, since, until) \
->>>> +	(IS_METEORLAKE(__i915) && \
->>>> +	 IS_DISPLAY_STEP(__i915, since, until))
->>>> +
->>>>    /*
->>>>     * DG2 hardware steppings are a bit unusual.  The hardware design was forked to
->>>>     * create three variants (G10, G11, and G12) which each have distinct
->>>> -- 
->>>> 2.38.1
->>>>
->>>
-> 
