@@ -2,149 +2,91 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 680BE64F2F3
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Dec 2022 22:07:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A50C64FDF6
+	for <lists+intel-gfx@lfdr.de>; Sun, 18 Dec 2022 07:58:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A63D910E631;
-	Fri, 16 Dec 2022 21:06:34 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5DDE10E631;
- Fri, 16 Dec 2022 21:06:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671224790; x=1702760790;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=6rFIv0bnxvBZoaD1uwPm9PoR3la5kARLfaP/JLVTl48=;
- b=bjfCmYcJqgR9Gp0On171qgFMpMkMF8QNIq+UX5QDWQfq8fzV5OfxCRCe
- j0sSbP45T1cyJ2N1R6a9CeHsvD1L83hWUGlrSgojkjYPkyre4Cd1rJEJH
- gAKMEJ/CODUSiM0TNiea6aPJkPQRtlOvZ1JEkZgSueNPFjq2iaIupLvW1
- 2jre/t9xliAlO0GyUWrRZKwqqr2Ae6SJm2mE/iXG2m92fi8Q4hO+8fw4H
- PZ8UopOioiKOFbA1R/2SwdL8IU9EqJ5xK3MkmYJIueyDHHrjUdWBzn7Zs
- 0kMFOtnJre4zopKNCe5NtGxtoyFm4CJ5duXiPpCLpckEEEfRmcsJTZxy+ A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10563"; a="381278689"
-X-IronPort-AV: E=Sophos;i="5.96,251,1665471600"; d="scan'208";a="381278689"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2022 13:06:30 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10563"; a="643391260"
-X-IronPort-AV: E=Sophos;i="5.96,251,1665471600"; d="scan'208";a="643391260"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga007.jf.intel.com with ESMTP; 16 Dec 2022 13:06:29 -0800
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Fri, 16 Dec 2022 13:06:27 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Fri, 16 Dec 2022 13:06:27 -0800
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.44) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Fri, 16 Dec 2022 13:06:27 -0800
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5715B10E16E;
+	Sun, 18 Dec 2022 06:57:53 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7680810E16A;
+ Sun, 18 Dec 2022 06:57:39 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AFuwuW03GBdGK7/ZYkPcnb6HivOgMt0mQ34xvxgIlKF9zZCC6xbqQRWbBIKODDX8bK914AOsRRaCnj/QoH+aSnbdW8xLkyBfbTkCRZqfyPa82d5TLRtUg/gCzEO+M1ubBLD9s0dwVW7QMeorSlnK+6taAS7UpuCbTlDGxR/qS7u1dihV+28s9+E9txW/S6EcazKhgNHSw/0UKZWPYKZjNu/IV+xP+SjTzIczGrClp+vcJ7WfwIuNvGxkUs4bMOsmWki7FqL00BP82luoMjPmGg1bSZ+ZiUVmcDubguuhAM/L5EL5VZhnjul1bPMT0/ra99GRYvltNbJ+POGbPodt6g==
+ b=V8R3pyh61703lU5NROfcxG33NBEW3TIxYiocJNOOdi+DWBVSSSH+hn82iG125dttG16rMuWEfPjsf6vTpXs8qJgfu3WpKfb/DJtB5j7jemo+NOkGLnCTJO3AzhNOfNgOKe3cd6gvMgLiHwGsIQtWD+j2xHnZXarp77yyzLZ/sZcSj7hQ0p27UES6Q1MirSQeTh/Pmn6otI1sbAZYeSl7uichNLeLu3pdGgKfXQXRHxU9/MuUlM1zqC2V1G2T0WfpZTM1UjzqpuzShX5u7NGcEC8qA+QGIkVbLx3CRKWdWt7+jN9nENUDYU5hOspVwR9nMYoQYBrqAxiHrZSF98+5Qw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1pV1+d92I1EAwMYIjIAUohz1sxDgy3ODMCRUSYGAHLo=;
- b=ibjMLyya5WUfs0rSNBszhx8RTbe8YKJb5MjNX2uOeAvGOAxXwkUuWCUXkcNnpmLAIxzigy2Ut9GGxBtCe4U9MdeRLi/55MXaJYnXSe6O5LLvGa4sHX7y9Ai73IiNz7wRQIxDs7/cKee+EUgf0E97Gy4ZI3mk+HqBbGYvPpmALwNK83rfUVDvCK2LUO3UVZW+p0YlnmpAMIVbZgjkhcvhL3XpzHL26lAFMKmndermntItgpL9VBW3AR4EUqx+V6V2SimMI1YnqKN7td+UldFJzejuxIw1vOsIqHvIJErmftqkB2QdEGzYrvC14U4BG09yb7xrmuXm4+yg9nDatmY/JA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BY5PR11MB3911.namprd11.prod.outlook.com (2603:10b6:a03:18d::29)
- by DS0PR11MB7880.namprd11.prod.outlook.com (2603:10b6:8:f3::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5924.12; Fri, 16 Dec
- 2022 21:06:25 +0000
-Received: from BY5PR11MB3911.namprd11.prod.outlook.com
- ([fe80::ec2f:4a87:326b:2610]) by BY5PR11MB3911.namprd11.prod.outlook.com
- ([fe80::ec2f:4a87:326b:2610%7]) with mapi id 15.20.5880.021; Fri, 16 Dec 2022
- 21:06:25 +0000
-Message-ID: <ffbb8a44-d88a-46c3-308e-a4156ba0721d@intel.com>
-Date: Fri, 16 Dec 2022 13:06:23 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.5.1
-Content-Language: en-GB
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-References: <20221129211253.3183480-1-John.C.Harrison@Intel.com>
- <20221129211253.3183480-2-John.C.Harrison@Intel.com>
- <Y5fa1w2yIUVgBhyp@unerlige-ril>
-From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <Y5fa1w2yIUVgBhyp@unerlige-ril>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BY3PR03CA0006.namprd03.prod.outlook.com
- (2603:10b6:a03:39a::11) To BY5PR11MB3911.namprd11.prod.outlook.com
- (2603:10b6:a03:18d::29)
+ bh=1F97svJn5QstKb6b4YUQYjqNSdCYS/XSCzT7/mpSBlU=;
+ b=ChwvdSwtqjR/UUCUPYV+Ova5icpTLZ+YysaOHSdCL+rW7pg9N0z6ka8NvDCL26Ci9MsoK5XhiNQ+XBLosWhp5G0ForJU5QNNV7oipocO7VjRkqLEm0q4agXTr4qHQYvJ+Shp3EyV3g+fu+qbwjdCH+hzEunfPjjrX11xCGENx037XJ+3VGtEvJMRzg29N/dkE8jhAvGI3vIEXBBsuSJa1bUsHpDM8+/PN4cPStd0icazJosZFnulKAJy26K42MJbSe92OxycTSAUxcibkBSYcxdtp0eWYxERkgS96THNDjSLiYFSJ1M2nfvf94pPnfn4wUqqIIT8Z9UN2IckMDD+cA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1F97svJn5QstKb6b4YUQYjqNSdCYS/XSCzT7/mpSBlU=;
+ b=zRfDNsfysLuNL74CoL/IZ7FbwYgqZjTznTMHkQ/IHmtY31yXi6CuCCdqMzCr32mcGitL+vgNVnysMerGgF9cjcSbws/MnDkydqG9WjmTCW/3onCsDbLPONhG2uRqodYkRJxENqu1AMUihgXmhFRwReiCAOoLmEm6jKFrPK5nXeo=
+Received: from BN0PR10CA0007.namprd10.prod.outlook.com (2603:10b6:408:143::25)
+ by SN7PR12MB8170.namprd12.prod.outlook.com (2603:10b6:806:32c::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5924.16; Sun, 18 Dec
+ 2022 06:57:32 +0000
+Received: from BN8NAM11FT116.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:143:cafe::56) by BN0PR10CA0007.outlook.office365.com
+ (2603:10b6:408:143::25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5924.17 via Frontend
+ Transport; Sun, 18 Dec 2022 06:57:32 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT116.mail.protection.outlook.com (10.13.176.67) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5924.16 via Frontend Transport; Sun, 18 Dec 2022 06:57:31 +0000
+Received: from pp-server-two.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Sun, 18 Dec
+ 2022 00:57:28 -0600
+From: xinhui pan <xinhui.pan@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Date: Sun, 18 Dec 2022 14:57:08 +0800
+Message-ID: <20221218065708.93332-1-xinhui.pan@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BY5PR11MB3911:EE_|DS0PR11MB7880:EE_
-X-MS-Office365-Filtering-Correlation-Id: aea6ccbd-b6a4-42bd-b24a-08dadfa96456
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT116:EE_|SN7PR12MB8170:EE_
+X-MS-Office365-Filtering-Correlation-Id: fdbb26fb-0852-4ed5-11d7-08dae0c5227d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: J0/BlLOlolpmnxwMDU8pxcOFAMjB0UpWGYOM7BCSF+Ic7Dk7PWE/j+nzK2VELROYiR52lQIlvBsFmU2/Ddx562ISuuKr9fQuYR8C8AkQy16hF4wEHJGifSr0RFxISV5elgXGFLph7WwFfYd8C99dJ5Ktb48GGFsywmot6jvK7rC9SBdBIoE1wpd5bKBeCRiMs2gILtGEmwwAzbfmvwGeRwPSA/fMgBjrA56wM8kxRoZ/T7hz5DYuoxC5MBizLH+6+q5ltWFwY/ElCmv/2Dp9aXiW+TyeoSzFT33dPqGo7e5N4BhuamIFwISMBFQEXMELxiOClPBVdWYY2m4BHKJywGpNEzjbf1HIYRXuNesfL9oqsWxMHAODGkhlcjIgFmATmehc1LXE5ax4G/UKbIq6XZ4MgKzrpMCYiF+ODOaxABUh2At5tmTtCuFcEL40451zXfhx1XO/WUP8W6vybykgIzPVcy6u/WAvaltRdDVPCi27Q/6Gl3tYw1KbCgwzkB90J8YhwSji3kbko1NRTzcIWl6LbUcvIS7aSWB5mVv4ouJy0QYB4fYnEpc60C/qo3ius4+yQ1LckdHy3uGri4RmctPbanpwYDNbgyu3REOh9WV87CMV6RRjqtDrcOa5nT3MFH1PAZ6Ip9DOml4pqPyOaSxJaLaa7vZRxFQNHamE51av6DNx0p9w+xgFP+wQ+Q0apHXN22IWV+SzOyZA2NcjL/0OhjUuUZiyzMEO6FyrJ8o=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BY5PR11MB3911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(396003)(376002)(39860400002)(346002)(366004)(136003)(451199015)(6486002)(6636002)(31696002)(82960400001)(4326008)(316002)(8676002)(41300700001)(36756003)(66476007)(450100002)(37006003)(66556008)(66946007)(2616005)(86362001)(83380400001)(38100700002)(478600001)(6506007)(26005)(6512007)(186003)(53546011)(5660300002)(2906002)(31686004)(6862004)(8936002)(45980500001)(43740500002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Qkk1bHRkU2xXZy9Ucjh0LzJaOFVsSXd6S0NKbWxvNnZ2UmpkMzF4VkpsTUhj?=
- =?utf-8?B?TXlVaEtoT2c0MkhvY3d4R0lHdTQyOUFyMUl5QVJvZFM1cmxWL2Z4Rk4zSy9I?=
- =?utf-8?B?VGxMbjU4TmJEUFUxMnN1OFdaYnprbVdFR0k5Y3pNUWVtY0EvKzlpVVRCd01G?=
- =?utf-8?B?U2NOTHNNM0p5bElKdDEvQjBrRFE4MmVDTDdrYmdROW5TNnRzMXJFZ3VBaTV6?=
- =?utf-8?B?RVFmNDh0SlptbWpXS282YVN1S2t6WkdVRzlwa3Y3bmpVUUtMZTJiUUsxejJi?=
- =?utf-8?B?aFJNemkrcU0zSm5BK3k1S3U0RVpDeHZZTTNVY0VEd3pEUmdIZENQM3VRTldI?=
- =?utf-8?B?TmhYeHdITThEdVVCM1k2cXFqcHVKcnBPbGlNVUhicXVvTGk2WEJ6U1gxYlc3?=
- =?utf-8?B?QWtrRjBVdzcrRmU3cExqd1VOSzhGbVEzMEpnTzFpOFJGY01nWmhvTWwrckQw?=
- =?utf-8?B?aWdEUzJ5MWVENGdCdlAvU1NqUkxkT1VnMFczT1VNdWVCZWFma2krNDJrZGN5?=
- =?utf-8?B?bjFBVVRvVVlpT0VBS3R2SFpCK1Q1TlhXOG03cUdlVVVKTG5rczVia1NMOVlW?=
- =?utf-8?B?UHJxanowS00ySVdJU2VQaTZldi81aFdURHphZ3FmTDZLdXJHMzM0bVZNc0d4?=
- =?utf-8?B?WHlzejBTQ1NYOFE0SHQ1WGJ4L2QzOGdXQ2l0c3M1OGRtSUI3QnhRVVlyYVJl?=
- =?utf-8?B?TXE2aUl3K0pHSk5CMHBGRGZncUt2bzRPbVVKeWxrTkdreTQ1Z05jM3JYTTMr?=
- =?utf-8?B?OUVwYUhtTTN3TjlwMWdVci90bVR3bnVCeFNLcVlKYnUyZWx0WEJnSm94WlZV?=
- =?utf-8?B?NTJ0N0lkRUtQc3hqbWlXa0NHTjVjUC9iUGpoempla3JVd05NYkdpbXNXMzNB?=
- =?utf-8?B?RG8xaC9vZDYyMHl6MHoyY1IyMndibGYyeS9aQjQ0ZmFrL1FhaCtHK2FZdWVQ?=
- =?utf-8?B?eTB2ais2eVl4STE0bmUxVFdGcTVPS2lsaEVHdEV5MUEraURHZzVSYjZibTgw?=
- =?utf-8?B?ajI3d3VqYTRVNVRRcHZ4UnpkTHByaTcxR0pHTnJuNTUybXpnNi9sOUF2TFdm?=
- =?utf-8?B?YmhTVCtyWmRWUzc1Ni9EL2tQYWRvVFhXbXZOUCs4NkYyQU5OaVFrRm1HcHAy?=
- =?utf-8?B?cHFabUVDb0ZtRlJkd0dHSk9NTnk0ZkllaHlBeWIwYTluWGtRVEdtNndabE1z?=
- =?utf-8?B?aG9RYTFDUnpBYVhWKzFma2pQWm5hZDBPODVmdXRSTFVuWUxremRaMmNvZ3Jn?=
- =?utf-8?B?NTY3RnlJWnRwMVJ0dVUrZm5uZUkrWVZPSXpwekxxUHFOSFd6Qmw2ZGlQb3U5?=
- =?utf-8?B?czZtR2NoVndnOHI2amhJcVdodlE2MC9sV09pOUcraFdCOEw3RkZHbWtYdGVv?=
- =?utf-8?B?Q3JSV2ovWlRWVlRqV0lPWHhGNkJIUU1DMlVpMDNyV0dNV2ZEUklPZ0RLMHBj?=
- =?utf-8?B?Z2FWZVVTSlViUUdObjJwM3A2NUFPN1FSOFN5YXR2TDhDK3M2RVltMWFydldN?=
- =?utf-8?B?VEU1cS9STDREWG9FL1Zac3BkUitSREtrTStaajlTcDZ2bmJwZUhESzFtZTQw?=
- =?utf-8?B?bFJocHh5bkRGeWtFdVZqMlNXVW9KL3RyOEFjdlRCV3g4czB3T3pINlFxeTF6?=
- =?utf-8?B?cGVFaDZWYk1jalRLRW5KWEVyY0tYVSs5cDhNT1ZvekpnWXlMWmxBUTdVOE0z?=
- =?utf-8?B?ZGd6Wmo2NHBoRTNTZXRGcy82TndPN2xOMThMSkhBWTZHTW5SdzNFdHFySkZz?=
- =?utf-8?B?Q3d1QlF3QTJMR3JrU2ZQUkRxblVrTURUS0dZTVp2a0ZNQVVjaVNLck4wY0U3?=
- =?utf-8?B?USs1M2xrOXRXSVRsUndyWmh6RzlFcTBFekVGYUZUV2UxSUsveERSVFNWbW1M?=
- =?utf-8?B?WUZUNmdTbXhtdnRtVkNFN3JwUkZhckttdnExYXQ4K0lSRW5RNGcvQ2V2cFhH?=
- =?utf-8?B?RDBSOW1JdGNDbU54MitVUzhrTjkzVkRMS2RmZVdZVkRkNzhILzAvdXBGUURX?=
- =?utf-8?B?MkZUWVJOK0RiWmpHcU9heHlMbkQyZ2VxekI5YmVkT0hZUlZTYXUrUXFIMm1G?=
- =?utf-8?B?L0pzaXozaHhOcmgvazNEQUVaUDgxQjdsa05mNk5xbUFvWmxGM1drZXB1Ungr?=
- =?utf-8?B?YmtvUm9BZFB1RlZWTGNqY0gwS0J6MnY1NFdRWnlKUE1VU25FNjBhYVNwaldX?=
- =?utf-8?B?Mmc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: aea6ccbd-b6a4-42bd-b24a-08dadfa96456
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3911.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Dec 2022 21:06:25.3935 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0w7NRvMSUr5A7A+zf+4JOYGHTmCVbZpAQ8RJ0DohklVnvxcGZZR5AswfQHzuvGmg4F4QUJ7IH3Ma2nJ+V6aszYCGQW+wgEnwd3NqieWgpY0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7880
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Allow error capture without a
- request
+X-Microsoft-Antispam-Message-Info: bcSupmG/14fHwdYV7g5rV0txZHsZMyafyV7LRfcuqx8aZBcLiucUIzYivCPPB6cb5SMAsvrvx/MgVXs8S0+5zOWWN+UItW5Kck9lAsnvEqQ3TvjVbOI8LoPNK21VUD2X2nu7fBk9FGZlnZUkGVCtETzivT+tcnTEfGCWxseavcSb//sJ2DTJ8Gxj4EAlZWQkHCGVwr1ewAHHoRkU6DkRoSbxe6AaRQTqwyntbKYQLTiHda85My9zYyDoa0wObobCyr4Kb5sgWoJonRnLiPQUVZZh2YZFJU3zNnp/k9byKAZeR+bvgrCasQb+60yeNg7S504fILqi1HdZZbMlEEvsa/QWUz6iOKnhwi2WkUTNqfXBBDXwzhKgO9hWoSO/aemaKX90DBJV0dbpIhf8BqHqZMuMW0CahsFle0tNaxis/3BdkJjBEw0KGymEfRR1I87O2UVQ3lS6IvoqK+GeahZIFixqJ0kMo7buJMQN8cytruMTf6XVB3qw9UN5a/1a/PvAdqnu0fQ64UuDAleGBbLZOoIM4XapkmrbVXpMiSlbwJBKDCLQHLAGkrJy/xG+Om5dW+b3MpGYX9tC6XvGYCSDRzWAzSjf3qWxk2pVd0NsrAEQKIunF4bBshmFelUh7QaymOhVbXDTkc6hH1qgFMaX45WXrqjpZYrz/BfYTez0dEYCdq4pPiC9mOlb7LWcWOLCfWsoj04xQbSEsEbKfJU/d0XZ9W0d73I4OjeICg/q2tE=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230022)(4636009)(346002)(396003)(376002)(136003)(39860400002)(451199015)(40470700004)(46966006)(36840700001)(7696005)(82740400003)(316002)(478600001)(6916009)(54906003)(1076003)(4326008)(6666004)(8676002)(70206006)(70586007)(26005)(186003)(16526019)(2616005)(426003)(5660300002)(47076005)(8936002)(2906002)(83380400001)(41300700001)(336012)(36860700001)(81166007)(36756003)(356005)(40460700003)(82310400005)(86362001)(40480700001)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2022 06:57:31.7678 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: fdbb26fb-0852-4ed5-11d7-08dae0c5227d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT116.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8170
+Subject: [Intel-gfx] [PATCH v6] drm: Optimise for continuous memory
+ allocation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,181 +99,220 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-GFX@lists.freedesktop.org, DRI-Devel@lists.freedesktop.org
+Cc: arunpravin.paneerselvam@amd.com, intel-gfx@lists.freedesktop.org, xinhui
+ pan <xinhui.pan@amd.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, matthew.auld@intel.com, daniel@ffwll.ch,
+ christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Optimise a little when continuous memory request fails.
 
+There are memory holes and continuous memory request usually fails when
+order is too big.
+Currently buddy only look for exactly order memory for such request.
+Now we can try again to look for several smaller continuous memory on
+failure.
 
-On 12/12/2022 17:52, Umesh Nerlige Ramappa wrote:
-> On Tue, Nov 29, 2022 at 01:12:52PM -0800, John.C.Harrison@Intel.com 
-> wrote:
->> From: John Harrison <John.C.Harrison@Intel.com>
->>
->> There was a report of error captures occurring without any hung
->> context being indicated despite the capture being initiated by a 'hung
->> context notification' from GuC. The problem was not reproducible.
->> However, it is possible to happen if the context in question has no
->> active requests. For example, if the hang was in the context switch
->> itself then the breadcrumb write would have occurred and the KMD would
->> see an idle context.
->>
->> In the interests of attempting to provide as much information as
->> possible about a hang, it seems wise to include the engine info
->> regardless of whether a request was found or not. As opposed to just
->> prentending there was no hang at all.
->>
->> So update the error capture code to always record engine information
->> if an engine is given. Which means updating record_context() to take a
->> context instead of a request (which it only ever used to find the
->> context anyway). And split the request agnostic parts of
->> intel_engine_coredump_add_request() out into a seaprate function.
->>
->> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->> ---
->> drivers/gpu/drm/i915/i915_gpu_error.c | 55 +++++++++++++++++++--------
->> 1 file changed, 40 insertions(+), 15 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c 
->> b/drivers/gpu/drm/i915/i915_gpu_error.c
->> index 9d5d5a397b64e..2ed1c84c9fab4 100644
->> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
->> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
->> @@ -1370,14 +1370,14 @@ static void engine_record_execlists(struct 
->> intel_engine_coredump *ee)
->> }
->>
->> static bool record_context(struct i915_gem_context_coredump *e,
->> -               const struct i915_request *rq)
->> +               struct intel_context *ce)
->> {
->>     struct i915_gem_context *ctx;
->>     struct task_struct *task;
->>     bool simulated;
->>
->>     rcu_read_lock();
->> -    ctx = rcu_dereference(rq->context->gem_context);
->> +    ctx = rcu_dereference(ce->gem_context);
->>     if (ctx && !kref_get_unless_zero(&ctx->ref))
->>         ctx = NULL;
->>     rcu_read_unlock();
->> @@ -1396,8 +1396,8 @@ static bool record_context(struct 
->> i915_gem_context_coredump *e,
->>     e->guilty = atomic_read(&ctx->guilty_count);
->>     e->active = atomic_read(&ctx->active_count);
->>
->> -    e->total_runtime = intel_context_get_total_runtime_ns(rq->context);
->> -    e->avg_runtime = intel_context_get_avg_runtime_ns(rq->context);
->> +    e->total_runtime = intel_context_get_total_runtime_ns(ce);
->> +    e->avg_runtime = intel_context_get_avg_runtime_ns(ce);
->>
->>     simulated = i915_gem_context_no_error_capture(ctx);
->>
->> @@ -1532,15 +1532,37 @@ intel_engine_coredump_alloc(struct 
->> intel_engine_cs *engine, gfp_t gfp, u32 dump_
->>     return ee;
->> }
->>
->> +static struct intel_engine_capture_vma *
->> +engine_coredump_add_context(struct intel_engine_coredump *ee,
->> +                struct intel_context *ce,
->> +                gfp_t gfp)
->> +{
->> +    struct intel_engine_capture_vma *vma = NULL;
->> +
->> +    ee->simulated |= record_context(&ee->context, ce);
->> +    if (ee->simulated)
->> +        return NULL;
->> +
->> +    /*
->> +     * We need to copy these to an anonymous buffer
->> +     * as the simplest method to avoid being overwritten
->> +     * by userspace.
->> +     */
->> +    vma = capture_vma(vma, ce->ring->vma, "ring", gfp);
->> +    vma = capture_vma(vma, ce->state, "HW context", gfp);
->> +
->> +    return vma;
->> +}
->> +
->> struct intel_engine_capture_vma *
->> intel_engine_coredump_add_request(struct intel_engine_coredump *ee,
->>                   struct i915_request *rq,
->>                   gfp_t gfp)
->> {
->> -    struct intel_engine_capture_vma *vma = NULL;
->> +    struct intel_engine_capture_vma *vma;
->>
->> -    ee->simulated |= record_context(&ee->context, rq);
->> -    if (ee->simulated)
->> +    vma = engine_coredump_add_context(ee, rq->context, gfp);
->> +    if (!vma)
->>         return NULL;
->>
->>     /*
->> @@ -1550,8 +1572,6 @@ intel_engine_coredump_add_request(struct 
->> intel_engine_coredump *ee,
->>      */
->>     vma = capture_vma_snapshot(vma, rq->batch_res, gfp, "batch");
->>     vma = capture_user(vma, rq, gfp);
->> -    vma = capture_vma(vma, rq->ring->vma, "ring", gfp);
->> -    vma = capture_vma(vma, rq->context->state, "HW context", gfp);
->>
->>     ee->rq_head = rq->head;
->>     ee->rq_post = rq->postfix;
->> @@ -1608,8 +1628,11 @@ capture_engine(struct intel_engine_cs *engine,
->>     if (ce) {
->>         intel_engine_clear_hung_context(engine);
->>         rq = intel_context_find_active_request(ce);
->> -        if (!rq || !i915_request_started(rq))
->> -            goto no_request_capture;
->> +        if (rq && !i915_request_started(rq)) {
->> +            drm_info(&engine->gt->i915->drm, "Got hung context on %s 
->> with no active request!\n",
->> +                 engine->name);
->> +            rq = NULL;
->> +        }
->>     } else {
->>         /*
->>          * Getting here with GuC enabled means it is a forced error 
->> capture
->> @@ -1625,12 +1648,14 @@ capture_engine(struct intel_engine_cs *engine,
->>     if (rq)
->>         rq = i915_request_get_rcu(rq);
->>
->> -    if (!rq)
->> -        goto no_request_capture;
->> +    if (rq)
->> +        capture = intel_engine_coredump_add_request(ee, rq, 
->> ATOMIC_MAYFAIL);
->
-> 2 back-to-back if (rq) could merge together,
->
->
-> otherwise, lgtm
->
-> Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->
-> Umesh
-There was actually an unconditional put of rq just after the block 
-below. So will need to repost to fix that anyway. Not sure how it didn't 
-manage to bang when testing captures with the rq forced to null!?
+Signed-off-by: xinhui pan <xinhui.pan@amd.com>
+---
+change from v5:
+reworked
+---
+ drivers/gpu/drm/drm_buddy.c | 161 ++++++++++++++++++++++++++++++++++--
+ 1 file changed, 154 insertions(+), 7 deletions(-)
 
-John.
-
->> +    else if (ce)
->> +        capture = engine_coredump_add_context(ee, ce, ATOMIC_MAYFAIL);
->>
->> -    capture = intel_engine_coredump_add_request(ee, rq, 
->> ATOMIC_MAYFAIL);
->>     if (!capture) {
->> -        i915_request_put(rq);
->> +        if (rq)
->> +            i915_request_put(rq);
->>         goto no_request_capture;
->>     }
->>     if (dump_flags & CORE_DUMP_FLAG_IS_GUC_CAPTURE)
->> -- 
->> 2.37.3
->>
+diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+index 11bb59399471..6c795e1b3247 100644
+--- a/drivers/gpu/drm/drm_buddy.c
++++ b/drivers/gpu/drm/drm_buddy.c
+@@ -386,6 +386,140 @@ alloc_range_bias(struct drm_buddy *mm,
+ 	return ERR_PTR(err);
+ }
+ 
++static void __continuous_block_in_tree(struct drm_buddy_block *top_block,
++				       struct list_head *fbl,
++				       int left,
++				       int min_order)
++{
++	/*
++	 * Look for continuous memory of
++	 * [top_block) when left is true or (top_block] when left is false.
++	 * The list of fbl looks like (top_block1][free_block][...][top_blockX).
++	 * Memory offset is in ascending order.
++	 */
++	while (top_block) {
++		struct drm_buddy_block *block = top_block;
++		int order;
++
++		while (drm_buddy_block_is_split(block))
++			block = left ? block->left : block->right;
++
++		order = drm_buddy_block_order(block);
++		if (order < min_order || !drm_buddy_block_is_free(block))
++			return;
++
++		if (left)
++			list_add_tail(&block->tmp_link, fbl);
++		else
++			list_add(&block->tmp_link, fbl);
++
++		if (order == min_order)
++			return;
++		top_block = __get_buddy(block);
++	}
++}
++
++static bool __free_block_in_order(struct list_head *fbl,
++				  struct drm_buddy_block *cur,
++				  int order,
++				  struct drm_buddy_block **first,
++				  struct drm_buddy_block **last)
++{
++	struct drm_buddy_block *fb = cur, *lb = list_next_entry(cur, tmp_link);
++	u64 pages = BIT(order);
++	u64 cur_pages = 0;
++
++	/*
++	 * Look for continuous memory which satisfy requested order.
++	 * Memory in list fbl are already in below order.
++	 * 1) Memory offset are in ascending order.
++	 * 2) Memory size are in ascending order from left to middle and
++	 * descending order from middle to right.
++	 * So walk through the list of fbl from middle to both sides to
++	 * choose the bigger memory.
++	 * This is because one memory with order X are composed with 2 of order X-1
++	 * or 1 of order X-1 and 2 of order X-2, etc. Looks like below.
++	 *      n
++	 *    {∑(X - y)} + {2 * (X-n-1))}
++	 *      1
++	 * And the last 2 memory of order (X-n-1) are at the two sides of list.
++	 */
++	list_for_each_entry_from_reverse(fb, fbl, tmp_link) {
++		int prev_order = drm_buddy_block_order(fb);
++
++		list_for_each_entry_from(lb, fbl, tmp_link) {
++			int next_order = drm_buddy_block_order(lb);
++
++			if (prev_order <= next_order)
++				cur_pages += BIT(next_order);
++			else
++				break;
++		}
++
++		cur_pages += BIT(prev_order);
++		if (pages == cur_pages) {
++			*first = fb;
++			*last = list_prev_entry(lb, tmp_link);
++			return true;
++		}
++		BUG_ON(pages < cur_pages);
++	}
++
++	*first = *last = NULL;
++	return false;
++}
++
++static struct drm_buddy_block *
++find_continuous_blocks(struct drm_buddy *mm,
++		       int order,
++		       unsigned long flags,
++		       struct drm_buddy_block **lb)
++{
++	struct list_head *head = &mm->free_list[order - 1];
++	struct drm_buddy_block *free_block, *first = NULL, *last = NULL;
++
++	/*
++	 * Look for continuous free memory in buddy and buddy-in-law.
++	 * IOW, the most left blocks at right of free block and the most right
++	 * blocks at left of free block.
++	 */
++
++	list_for_each_entry(free_block, head, link) {
++		struct drm_buddy_block *buddy, *parent, *block;
++		int left, min_order = 0;
++		LIST_HEAD(fbl);
++
++		parent = free_block->parent;
++		if (!parent)
++			continue;
++
++		left = parent->left == free_block;
++		list_add(&free_block->tmp_link, &fbl);
++		buddy = __get_buddy(free_block);
++		__continuous_block_in_tree(buddy, &fbl, left, min_order);
++
++		while (parent && !((parent->left == block) ^ left)) {
++			block = parent;
++			parent = parent->parent;
++		}
++
++		if (!parent)
++			continue;
++
++		buddy = __get_buddy(block);
++		__continuous_block_in_tree(buddy, &fbl, !left, min_order);
++
++		/* list head of fbl is invalid outside.
++		 * Walk through list from first fo last only.
++		 */
++		if (__free_block_in_order(&fbl, free_block, order, &first, &last))
++			break;
++	}
++
++	*lb = last;
++	return first;
++}
++
+ static struct drm_buddy_block *
+ get_maxblock(struct list_head *head)
+ {
+@@ -637,7 +771,7 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+ 			   struct list_head *blocks,
+ 			   unsigned long flags)
+ {
+-	struct drm_buddy_block *block = NULL;
++	struct drm_buddy_block *block = NULL, *last_block = NULL;
+ 	unsigned int min_order, order;
+ 	unsigned long pages;
+ 	LIST_HEAD(allocated);
+@@ -689,17 +823,30 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+ 				break;
+ 
+ 			if (order-- == min_order) {
++				if (!(flags & DRM_BUDDY_RANGE_ALLOCATION) &&
++				    min_order != 0 && pages == BIT(min_order)) {
++					block = find_continuous_blocks(mm,
++								       min_order,
++								       flags,
++								       &last_block);
++					if (block)
++						break;
++				}
+ 				err = -ENOSPC;
+ 				goto err_free;
+ 			}
+ 		} while (1);
+ 
+-		mark_allocated(block);
+-		mm->avail -= drm_buddy_block_size(mm, block);
+-		kmemleak_update_trace(block);
+-		list_add_tail(&block->link, &allocated);
+-
+-		pages -= BIT(order);
++		do {
++			mark_allocated(block);
++			mm->avail -= drm_buddy_block_size(mm, block);
++			kmemleak_update_trace(block);
++			list_add_tail(&block->link, &allocated);
++			pages -= BIT(drm_buddy_block_order(block));
++			if (block == last_block || !last_block)
++				break;
++			block = list_next_entry(block, tmp_link);
++		} while (block);
+ 
+ 		if (!pages)
+ 			break;
+-- 
+2.34.1
 
