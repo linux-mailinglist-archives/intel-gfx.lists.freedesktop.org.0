@@ -2,91 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A50C64FDF6
-	for <lists+intel-gfx@lfdr.de>; Sun, 18 Dec 2022 07:58:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9450650525
+	for <lists+intel-gfx@lfdr.de>; Sun, 18 Dec 2022 23:52:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5715B10E16E;
-	Sun, 18 Dec 2022 06:57:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A7E310E1EF;
+	Sun, 18 Dec 2022 22:51:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7680810E16A;
- Sun, 18 Dec 2022 06:57:39 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=V8R3pyh61703lU5NROfcxG33NBEW3TIxYiocJNOOdi+DWBVSSSH+hn82iG125dttG16rMuWEfPjsf6vTpXs8qJgfu3WpKfb/DJtB5j7jemo+NOkGLnCTJO3AzhNOfNgOKe3cd6gvMgLiHwGsIQtWD+j2xHnZXarp77yyzLZ/sZcSj7hQ0p27UES6Q1MirSQeTh/Pmn6otI1sbAZYeSl7uichNLeLu3pdGgKfXQXRHxU9/MuUlM1zqC2V1G2T0WfpZTM1UjzqpuzShX5u7NGcEC8qA+QGIkVbLx3CRKWdWt7+jN9nENUDYU5hOspVwR9nMYoQYBrqAxiHrZSF98+5Qw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1F97svJn5QstKb6b4YUQYjqNSdCYS/XSCzT7/mpSBlU=;
- b=ChwvdSwtqjR/UUCUPYV+Ova5icpTLZ+YysaOHSdCL+rW7pg9N0z6ka8NvDCL26Ci9MsoK5XhiNQ+XBLosWhp5G0ForJU5QNNV7oipocO7VjRkqLEm0q4agXTr4qHQYvJ+Shp3EyV3g+fu+qbwjdCH+hzEunfPjjrX11xCGENx037XJ+3VGtEvJMRzg29N/dkE8jhAvGI3vIEXBBsuSJa1bUsHpDM8+/PN4cPStd0icazJosZFnulKAJy26K42MJbSe92OxycTSAUxcibkBSYcxdtp0eWYxERkgS96THNDjSLiYFSJ1M2nfvf94pPnfn4wUqqIIT8Z9UN2IckMDD+cA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1F97svJn5QstKb6b4YUQYjqNSdCYS/XSCzT7/mpSBlU=;
- b=zRfDNsfysLuNL74CoL/IZ7FbwYgqZjTznTMHkQ/IHmtY31yXi6CuCCdqMzCr32mcGitL+vgNVnysMerGgF9cjcSbws/MnDkydqG9WjmTCW/3onCsDbLPONhG2uRqodYkRJxENqu1AMUihgXmhFRwReiCAOoLmEm6jKFrPK5nXeo=
-Received: from BN0PR10CA0007.namprd10.prod.outlook.com (2603:10b6:408:143::25)
- by SN7PR12MB8170.namprd12.prod.outlook.com (2603:10b6:806:32c::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5924.16; Sun, 18 Dec
- 2022 06:57:32 +0000
-Received: from BN8NAM11FT116.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:143:cafe::56) by BN0PR10CA0007.outlook.office365.com
- (2603:10b6:408:143::25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5924.17 via Frontend
- Transport; Sun, 18 Dec 2022 06:57:32 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT116.mail.protection.outlook.com (10.13.176.67) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5924.16 via Frontend Transport; Sun, 18 Dec 2022 06:57:31 +0000
-Received: from pp-server-two.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Sun, 18 Dec
- 2022 00:57:28 -0600
-From: xinhui pan <xinhui.pan@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Date: Sun, 18 Dec 2022 14:57:08 +0800
-Message-ID: <20221218065708.93332-1-xinhui.pan@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A04F310E1EF;
+ Sun, 18 Dec 2022 22:51:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9B3FFAA914;
+ Sun, 18 Dec 2022 22:51:19 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4690248693913616950=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT116:EE_|SN7PR12MB8170:EE_
-X-MS-Office365-Filtering-Correlation-Id: fdbb26fb-0852-4ed5-11d7-08dae0c5227d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: bcSupmG/14fHwdYV7g5rV0txZHsZMyafyV7LRfcuqx8aZBcLiucUIzYivCPPB6cb5SMAsvrvx/MgVXs8S0+5zOWWN+UItW5Kck9lAsnvEqQ3TvjVbOI8LoPNK21VUD2X2nu7fBk9FGZlnZUkGVCtETzivT+tcnTEfGCWxseavcSb//sJ2DTJ8Gxj4EAlZWQkHCGVwr1ewAHHoRkU6DkRoSbxe6AaRQTqwyntbKYQLTiHda85My9zYyDoa0wObobCyr4Kb5sgWoJonRnLiPQUVZZh2YZFJU3zNnp/k9byKAZeR+bvgrCasQb+60yeNg7S504fILqi1HdZZbMlEEvsa/QWUz6iOKnhwi2WkUTNqfXBBDXwzhKgO9hWoSO/aemaKX90DBJV0dbpIhf8BqHqZMuMW0CahsFle0tNaxis/3BdkJjBEw0KGymEfRR1I87O2UVQ3lS6IvoqK+GeahZIFixqJ0kMo7buJMQN8cytruMTf6XVB3qw9UN5a/1a/PvAdqnu0fQ64UuDAleGBbLZOoIM4XapkmrbVXpMiSlbwJBKDCLQHLAGkrJy/xG+Om5dW+b3MpGYX9tC6XvGYCSDRzWAzSjf3qWxk2pVd0NsrAEQKIunF4bBshmFelUh7QaymOhVbXDTkc6hH1qgFMaX45WXrqjpZYrz/BfYTez0dEYCdq4pPiC9mOlb7LWcWOLCfWsoj04xQbSEsEbKfJU/d0XZ9W0d73I4OjeICg/q2tE=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(346002)(396003)(376002)(136003)(39860400002)(451199015)(40470700004)(46966006)(36840700001)(7696005)(82740400003)(316002)(478600001)(6916009)(54906003)(1076003)(4326008)(6666004)(8676002)(70206006)(70586007)(26005)(186003)(16526019)(2616005)(426003)(5660300002)(47076005)(8936002)(2906002)(83380400001)(41300700001)(336012)(36860700001)(81166007)(36756003)(356005)(40460700003)(82310400005)(86362001)(40480700001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2022 06:57:31.7678 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fdbb26fb-0852-4ed5-11d7-08dae0c5227d
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT116.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8170
-Subject: [Intel-gfx] [PATCH v6] drm: Optimise for continuous memory
- allocation
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Sun, 18 Dec 2022 22:51:19 -0000
+Message-ID: <167140387961.28978.5158290545251104804@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221216113456.414183-1-matthew.auld@intel.com>
+In-Reply-To: <20221216113456.414183-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_improve_the_catch-all_evict_to_handle_lock_contention_?=
+ =?utf-8?b?KHJldjIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,220 +41,227 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: arunpravin.paneerselvam@amd.com, intel-gfx@lists.freedesktop.org, xinhui
- pan <xinhui.pan@amd.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, matthew.auld@intel.com, daniel@ffwll.ch,
- christian.koenig@amd.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Optimise a little when continuous memory request fails.
+--===============4690248693913616950==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-There are memory holes and continuous memory request usually fails when
-order is too big.
-Currently buddy only look for exactly order memory for such request.
-Now we can try again to look for several smaller continuous memory on
-failure.
+== Series Details ==
 
-Signed-off-by: xinhui pan <xinhui.pan@amd.com>
----
-change from v5:
-reworked
----
- drivers/gpu/drm/drm_buddy.c | 161 ++++++++++++++++++++++++++++++++++--
- 1 file changed, 154 insertions(+), 7 deletions(-)
+Series: drm/i915: improve the catch-all evict to handle lock contention (rev2)
+URL   : https://patchwork.freedesktop.org/series/111686/
+State : success
 
-diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
-index 11bb59399471..6c795e1b3247 100644
---- a/drivers/gpu/drm/drm_buddy.c
-+++ b/drivers/gpu/drm/drm_buddy.c
-@@ -386,6 +386,140 @@ alloc_range_bias(struct drm_buddy *mm,
- 	return ERR_PTR(err);
- }
- 
-+static void __continuous_block_in_tree(struct drm_buddy_block *top_block,
-+				       struct list_head *fbl,
-+				       int left,
-+				       int min_order)
-+{
-+	/*
-+	 * Look for continuous memory of
-+	 * [top_block) when left is true or (top_block] when left is false.
-+	 * The list of fbl looks like (top_block1][free_block][...][top_blockX).
-+	 * Memory offset is in ascending order.
-+	 */
-+	while (top_block) {
-+		struct drm_buddy_block *block = top_block;
-+		int order;
-+
-+		while (drm_buddy_block_is_split(block))
-+			block = left ? block->left : block->right;
-+
-+		order = drm_buddy_block_order(block);
-+		if (order < min_order || !drm_buddy_block_is_free(block))
-+			return;
-+
-+		if (left)
-+			list_add_tail(&block->tmp_link, fbl);
-+		else
-+			list_add(&block->tmp_link, fbl);
-+
-+		if (order == min_order)
-+			return;
-+		top_block = __get_buddy(block);
-+	}
-+}
-+
-+static bool __free_block_in_order(struct list_head *fbl,
-+				  struct drm_buddy_block *cur,
-+				  int order,
-+				  struct drm_buddy_block **first,
-+				  struct drm_buddy_block **last)
-+{
-+	struct drm_buddy_block *fb = cur, *lb = list_next_entry(cur, tmp_link);
-+	u64 pages = BIT(order);
-+	u64 cur_pages = 0;
-+
-+	/*
-+	 * Look for continuous memory which satisfy requested order.
-+	 * Memory in list fbl are already in below order.
-+	 * 1) Memory offset are in ascending order.
-+	 * 2) Memory size are in ascending order from left to middle and
-+	 * descending order from middle to right.
-+	 * So walk through the list of fbl from middle to both sides to
-+	 * choose the bigger memory.
-+	 * This is because one memory with order X are composed with 2 of order X-1
-+	 * or 1 of order X-1 and 2 of order X-2, etc. Looks like below.
-+	 *      n
-+	 *    {∑(X - y)} + {2 * (X-n-1))}
-+	 *      1
-+	 * And the last 2 memory of order (X-n-1) are at the two sides of list.
-+	 */
-+	list_for_each_entry_from_reverse(fb, fbl, tmp_link) {
-+		int prev_order = drm_buddy_block_order(fb);
-+
-+		list_for_each_entry_from(lb, fbl, tmp_link) {
-+			int next_order = drm_buddy_block_order(lb);
-+
-+			if (prev_order <= next_order)
-+				cur_pages += BIT(next_order);
-+			else
-+				break;
-+		}
-+
-+		cur_pages += BIT(prev_order);
-+		if (pages == cur_pages) {
-+			*first = fb;
-+			*last = list_prev_entry(lb, tmp_link);
-+			return true;
-+		}
-+		BUG_ON(pages < cur_pages);
-+	}
-+
-+	*first = *last = NULL;
-+	return false;
-+}
-+
-+static struct drm_buddy_block *
-+find_continuous_blocks(struct drm_buddy *mm,
-+		       int order,
-+		       unsigned long flags,
-+		       struct drm_buddy_block **lb)
-+{
-+	struct list_head *head = &mm->free_list[order - 1];
-+	struct drm_buddy_block *free_block, *first = NULL, *last = NULL;
-+
-+	/*
-+	 * Look for continuous free memory in buddy and buddy-in-law.
-+	 * IOW, the most left blocks at right of free block and the most right
-+	 * blocks at left of free block.
-+	 */
-+
-+	list_for_each_entry(free_block, head, link) {
-+		struct drm_buddy_block *buddy, *parent, *block;
-+		int left, min_order = 0;
-+		LIST_HEAD(fbl);
-+
-+		parent = free_block->parent;
-+		if (!parent)
-+			continue;
-+
-+		left = parent->left == free_block;
-+		list_add(&free_block->tmp_link, &fbl);
-+		buddy = __get_buddy(free_block);
-+		__continuous_block_in_tree(buddy, &fbl, left, min_order);
-+
-+		while (parent && !((parent->left == block) ^ left)) {
-+			block = parent;
-+			parent = parent->parent;
-+		}
-+
-+		if (!parent)
-+			continue;
-+
-+		buddy = __get_buddy(block);
-+		__continuous_block_in_tree(buddy, &fbl, !left, min_order);
-+
-+		/* list head of fbl is invalid outside.
-+		 * Walk through list from first fo last only.
-+		 */
-+		if (__free_block_in_order(&fbl, free_block, order, &first, &last))
-+			break;
-+	}
-+
-+	*lb = last;
-+	return first;
-+}
-+
- static struct drm_buddy_block *
- get_maxblock(struct list_head *head)
- {
-@@ -637,7 +771,7 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
- 			   struct list_head *blocks,
- 			   unsigned long flags)
- {
--	struct drm_buddy_block *block = NULL;
-+	struct drm_buddy_block *block = NULL, *last_block = NULL;
- 	unsigned int min_order, order;
- 	unsigned long pages;
- 	LIST_HEAD(allocated);
-@@ -689,17 +823,30 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
- 				break;
- 
- 			if (order-- == min_order) {
-+				if (!(flags & DRM_BUDDY_RANGE_ALLOCATION) &&
-+				    min_order != 0 && pages == BIT(min_order)) {
-+					block = find_continuous_blocks(mm,
-+								       min_order,
-+								       flags,
-+								       &last_block);
-+					if (block)
-+						break;
-+				}
- 				err = -ENOSPC;
- 				goto err_free;
- 			}
- 		} while (1);
- 
--		mark_allocated(block);
--		mm->avail -= drm_buddy_block_size(mm, block);
--		kmemleak_update_trace(block);
--		list_add_tail(&block->link, &allocated);
--
--		pages -= BIT(order);
-+		do {
-+			mark_allocated(block);
-+			mm->avail -= drm_buddy_block_size(mm, block);
-+			kmemleak_update_trace(block);
-+			list_add_tail(&block->link, &allocated);
-+			pages -= BIT(drm_buddy_block_order(block));
-+			if (block == last_block || !last_block)
-+				break;
-+			block = list_next_entry(block, tmp_link);
-+		} while (block);
- 
- 		if (!pages)
- 			break;
--- 
-2.34.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_12512 -> Patchwork_111686v2
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111686v2/index.html
+
+Participating hosts (42 -> 41)
+------------------------------
+
+  Additional (1): fi-tgl-dsi 
+  Missing    (2): fi-rkl-11600 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_111686v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-kbl-soraka:      [PASS][1] -> [DMESG-FAIL][2] ([i915#5334])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12512/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111686v2/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@late_gt_pm:
+    - fi-kbl-soraka:      [PASS][3] -> [INCOMPLETE][4] ([i915#7640])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12512/fi-kbl-soraka/igt@i915_selftest@live@late_gt_pm.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111686v2/fi-kbl-soraka/igt@i915_selftest@live@late_gt_pm.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-rkl-guc:         NOTRUN -> [SKIP][5] ([fdo#111827])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111686v2/fi-rkl-guc/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@reset:
+    - {bat-rpls-2}:       [DMESG-FAIL][6] ([i915#4983]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12512/bat-rpls-2/igt@i915_selftest@live@reset.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111686v2/bat-rpls-2/igt@i915_selftest@live@reset.html
+
+  * igt@i915_selftest@live@workarounds:
+    - fi-rkl-guc:         [INCOMPLETE][8] ([i915#4983]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12512/fi-rkl-guc/igt@i915_selftest@live@workarounds.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111686v2/fi-rkl-guc/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
+    - fi-bsw-kefka:       [FAIL][10] ([i915#6298]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12512/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111686v2/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109284]: https://bugs.freedesktop.org/show_bug.cgi?id=109284
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [fdo#110189]: https://bugs.freedesktop.org/show_bug.cgi?id=110189
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6471]: https://gitlab.freedesktop.org/drm/intel/issues/6471
+  [i915#6687]: https://gitlab.freedesktop.org/drm/intel/issues/6687
+  [i915#6856]: https://gitlab.freedesktop.org/drm/intel/issues/6856
+  [i915#7125]: https://gitlab.freedesktop.org/drm/intel/issues/7125
+  [i915#7456]: https://gitlab.freedesktop.org/drm/intel/issues/7456
+  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
+  [i915#7640]: https://gitlab.freedesktop.org/drm/intel/issues/7640
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12512 -> Patchwork_111686v2
+
+  CI-20190529: 20190529
+  CI_DRM_12512: 32c0d1e3ac9cf7e7b64a53dcafeeb7173a2f511b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7096: f2f515390fb11554d22c7b78b94e288026545326 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_111686v2: 32c0d1e3ac9cf7e7b64a53dcafeeb7173a2f511b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+041f4be8fb0e drm/i915: improve the catch-all evict to handle lock contention
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111686v2/index.html
+
+--===============4690248693913616950==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: improve the catch-all evict to handle lock contention (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/111686/">https://patchwork.freedesktop.org/series/111686/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111686v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111686v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12512 -&gt; Patchwork_111686v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111686v2/index.html</p>
+<h2>Participating hosts (42 -&gt; 41)</h2>
+<p>Additional (1): fi-tgl-dsi <br />
+  Missing    (2): fi-rkl-11600 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_111686v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12512/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111686v2/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@late_gt_pm:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12512/fi-kbl-soraka/igt@i915_selftest@live@late_gt_pm.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111686v2/fi-kbl-soraka/igt@i915_selftest@live@late_gt_pm.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7640">i915#7640</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111686v2/fi-rkl-guc/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@reset:</p>
+<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12512/bat-rpls-2/igt@i915_selftest@live@reset.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111686v2/bat-rpls-2/igt@i915_selftest@live@reset.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12512/fi-rkl-guc/igt@i915_selftest@live@workarounds.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111686v2/fi-rkl-guc/igt@i915_selftest@live@workarounds.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12512/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111686v2/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12512 -&gt; Patchwork_111686v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12512: 32c0d1e3ac9cf7e7b64a53dcafeeb7173a2f511b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7096: f2f515390fb11554d22c7b78b94e288026545326 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_111686v2: 32c0d1e3ac9cf7e7b64a53dcafeeb7173a2f511b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>041f4be8fb0e drm/i915: improve the catch-all evict to handle lock contention</p>
+
+</body>
+</html>
+
+--===============4690248693913616950==--
