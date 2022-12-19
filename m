@@ -2,55 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9543565117B
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Dec 2022 19:04:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9798A6511CB
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Dec 2022 19:27:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D442010E2E7;
-	Mon, 19 Dec 2022 18:04:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAA4510E00C;
+	Mon, 19 Dec 2022 18:27:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80BE810E2E7
- for <intel-gfx@lists.freedesktop.org>; Mon, 19 Dec 2022 18:04:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671473044; x=1703009044;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=NvupqBcIDZcZS4i/DcG/nApL64SmFe0J3BnHFPCWiz8=;
- b=ePTqxbqShPG2V7rGuf5eAd0mdQk1raUoYUS1T6U9+9A92P9H1R20+mU8
- RKU09LImTtwHczNjz0raLCCkjHxqP0iPvU8qtKv8Yz05/o4Vxqv07LsQ5
- JJtZklXNWpKGACZLad2wge6ASa2Xj/+K2TTyYxBAwa8QYS9eajANfPsgq
- 56rJYw4zm4VKEeQ6+BaKpem2hDvNhpenPEaUwsimtVmZqRWpl30gKrkfI
- o1WY0xo9ITbLNphl5ukEb8HjtWk3OqOX9g/anGt2+m7IIkehSDbZwT41W
- wOAHMU7oxlF7mEmwE87YEsBJWGg7uj60b7mRsSDayFWSeBI3TBcXm6Twq g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10566"; a="405665415"
-X-IronPort-AV: E=Sophos;i="5.96,257,1665471600"; d="scan'208";a="405665415"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2022 10:04:04 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10566"; a="979475664"
-X-IronPort-AV: E=Sophos;i="5.96,257,1665471600"; d="scan'208";a="979475664"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.16.42])
- ([10.213.16.42])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2022 10:04:02 -0800
-Message-ID: <660fc517-82ad-1ecf-17c8-6f9017caaddd@intel.com>
-Date: Mon, 19 Dec 2022 19:04:01 +0100
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com
+ [IPv6:2a00:1450:4864:20::631])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6318310E048
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Dec 2022 18:27:38 +0000 (UTC)
+Received: by mail-ej1-x631.google.com with SMTP id u19so23616984ejm.8
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Dec 2022 10:27:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:to
+ :content-language:subject:reply-to:user-agent:mime-version:date
+ :message-id:from:to:cc:subject:date:message-id:reply-to;
+ bh=Mx74UzzjaE8Hw1sSi+f84B4hhx0XR8LO82jc2xh5jm4=;
+ b=Y/9FweuBSEmwFZ5ClnbmXgWtJ9IImYt+gUNdEiPAKFnI4FqRWD1fCDA7uWgMM6g+HD
+ rA44LVVsY21LlieyMnN4oq95SKmujq9ADGCYVNQlSLUoOcEfCkU8iswNEnDkjLn5dKnd
+ /eGWZqMPrwQ+2RNMyoySvwM6l6qny4OWQIZxTLj+7dSDh0E4LYO10A0PAqmxbKpdAKHK
+ fogl9wIaPKB5yzQeDK7AczDPklsEQISde0UbN5qI72/OfDBj8v+vZw41VjmsTlMtb74a
+ PAhhDLywa7IZQ2nbgkxIItUHvwsvUQuH1RPgaP19Rjt/WxzAiVyaGFd680N/39Qd1GAc
+ jTUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:to
+ :content-language:subject:reply-to:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=Mx74UzzjaE8Hw1sSi+f84B4hhx0XR8LO82jc2xh5jm4=;
+ b=pFi/vfMHpzsyaecYDsYPtg8ZrmrfwQRDDC10Yx8MeubegSJyZduz54oMaTl9ir/Fnf
+ DYhXrruVOSdqzK8ctYruP2c7+uahzUNxmDotDP1qOgdadjs0cyw52JUhIrxbFxo01+BA
+ QEEaQSKm97PC3kA8Ngg64ZLTsxVqgf9a0gxXq202xngYa0+DT/mxMZUqoGCPI2rTDQwZ
+ zPTUg5FQ8yhRA5nZCxhD6B7nGrA9f8a3dl0/KZ/KAzXTpjKHa4xVHQoTMA5BfuiYHvrH
+ Fw//uKYunNZrD2Y+H11YonbU3PLJcUjlunytQT4z2C1HsxPWxX7ELg9Rrb5WMRnv2iOP
+ aG0g==
+X-Gm-Message-State: ANoB5pmU40fMcIClC4uj0pspwLbA2M04H/9TGvW9UpQ23bRtah4066S4
+ rv4qZeApV6+VzJlSnGdRGcEHPbebT6BqpS6Z
+X-Google-Smtp-Source: AA0mqf4RP99IlMeyZ0DP3JkjUmAvtveBQRdNCjXer2uWMu6VTVdQKyPCVTN6iTBCPgKKlc3JnpQECA==
+X-Received: by 2002:a17:907:d503:b0:7c0:a99c:485c with SMTP id
+ wb3-20020a170907d50300b007c0a99c485cmr27522080ejc.68.1671474456751; 
+ Mon, 19 Dec 2022 10:27:36 -0800 (PST)
+Received: from [0.0.0.0] ([134.134.139.87])
+ by smtp.googlemail.com with ESMTPSA id
+ 20-20020a170906311400b0073d81b0882asm4721671ejx.7.2022.12.19.10.27.34
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 19 Dec 2022 10:27:36 -0800 (PST)
+Message-ID: <2000a445-44f2-9aab-7631-69c283532d40@gmail.com>
+Date: Mon, 19 Dec 2022 20:27:30 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.5.1
+ Thunderbird/102.6.0
 Content-Language: en-US
-To: Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20221219112933.21417-1-nirmoy.das@intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20221219112933.21417-1-nirmoy.das@intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20221219135035.13059-1-stanislav.lisovskiy@intel.com>
+From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+In-Reply-To: <20221219135035.13059-1-stanislav.lisovskiy@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Use helper func to find out
- map type
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/mtl: Add support of Tile4 to MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,60 +76,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.auld@intel.com
+Reply-To: juhapekka.heikkila@gmail.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 19.12.2022 12:29, Nirmoy Das wrote:
-> Use i915_coherent_map_type() function to find out
-> map_type of the shmem obj.
+Hi Stan,
+
+On 19.12.2022 15.50, Stanislav Lisovskiy wrote:
+> We have some Tile4 tests now skipping, which were
+> supposed to be working. So lets make them work, by
+> adding display_ver 14 as supported.
 > 
-> v2: handle non-llc platform(Matt)
-> 
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 > ---
->   drivers/gpu/drm/i915/gt/shmem_utils.c | 7 +++++--
->   1 file changed, 5 insertions(+), 2 deletions(-)
+>   drivers/gpu/drm/i915/display/intel_fb.c | 8 ++++----
+>   1 file changed, 4 insertions(+), 4 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/shmem_utils.c b/drivers/gpu/drm/i915/gt/shmem_utils.c
-> index 402f085f3a02..449c9ed44382 100644
-> --- a/drivers/gpu/drm/i915/gt/shmem_utils.c
-> +++ b/drivers/gpu/drm/i915/gt/shmem_utils.c
-> @@ -8,6 +8,7 @@
->   #include <linux/pagemap.h>
->   #include <linux/shmem_fs.h>
->   
-> +#include "i915_drv.h"
->   #include "gem/i915_gem_object.h"
->   #include "gem/i915_gem_lmem.h"
->   #include "shmem_utils.h"
-> @@ -32,6 +33,8 @@ struct file *shmem_create_from_data(const char *name, void *data, size_t len)
->   
->   struct file *shmem_create_from_object(struct drm_i915_gem_object *obj)
->   {
-> +	struct drm_i915_private *i915 = to_i915(obj->base.dev);
-> +	enum i915_map_type map_type;
->   	struct file *file;
->   	void *ptr;
->   
-> @@ -41,8 +44,8 @@ struct file *shmem_create_from_object(struct drm_i915_gem_object *obj)
->   		return file;
->   	}
->   
-> -	ptr = i915_gem_object_pin_map_unlocked(obj, i915_gem_object_is_lmem(obj) ?
-> -						I915_MAP_WC : I915_MAP_WB);
-> +	map_type = i915_coherent_map_type(i915, obj, true);
-> +	ptr = i915_gem_object_pin_map_unlocked(obj, map_type);
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+> index 63137ae5ab217..75a17f38def53 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> @@ -158,11 +158,11 @@ struct intel_modifier_desc {
+>   static const struct intel_modifier_desc intel_modifiers[] = {
+>   	{
+>   		.modifier = I915_FORMAT_MOD_4_TILED_DG2_MC_CCS,
+> -		.display_ver = { 13, 13 },
+> +		.display_ver = { 13, 14 },
 
+I don't think you'd want to do this. These DG2 ccs modifiers rely on 
+usage of flat ccs which is not present in Meteorlake.
 
-More lines, but less branches, some gain :)
+>   		.plane_caps = INTEL_PLANE_CAP_TILING_4 | INTEL_PLANE_CAP_CCS_MC,
+>   	}, {
+>   		.modifier = I915_FORMAT_MOD_4_TILED_DG2_RC_CCS_CC,
+> -		.display_ver = { 13, 13 },
+> +		.display_ver = { 13, 14 },
 
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+Let's drop this change too.
 
-Regards
-Andrzej
-
->   	if (IS_ERR(ptr))
->   		return ERR_CAST(ptr);
+>   		.plane_caps = INTEL_PLANE_CAP_TILING_4 | INTEL_PLANE_CAP_CCS_RC_CC,
 >   
+>   		.ccs.cc_planes = BIT(1),
+> @@ -170,11 +170,11 @@ static const struct intel_modifier_desc intel_modifiers[] = {
+>   		FORMAT_OVERRIDE(gen12_flat_ccs_cc_formats),
+>   	}, {
+>   		.modifier = I915_FORMAT_MOD_4_TILED_DG2_RC_CCS,
+> -		.display_ver = { 13, 13 },
+> +		.display_ver = { 13, 14 },
+
+And this.
+
+>   		.plane_caps = INTEL_PLANE_CAP_TILING_4 | INTEL_PLANE_CAP_CCS_RC,
+>   	}, {
+>   		.modifier = I915_FORMAT_MOD_4_TILED,
+> -		.display_ver = { 13, 13 },
+> +		.display_ver = { 13, 14 },
+
+Here you could do something like ".display_ver = { 13, -1 }," to enable 
+tile4 from version 13 onward and we'll fix it if it ever change in the 
+future.
+
+/Juha-Pekka
+
+>   		.plane_caps = INTEL_PLANE_CAP_TILING_4,
+>   	}, {
+>   		.modifier = I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS,
 
