@@ -2,46 +2,74 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AA94653783
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Dec 2022 21:20:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50753653782
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Dec 2022 21:20:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9ED7C10E4BB;
-	Wed, 21 Dec 2022 20:20:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B7A410E4B7;
+	Wed, 21 Dec 2022 20:20:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 946 seconds by postgrey-1.36 at gabe;
- Mon, 19 Dec 2022 08:14:05 UTC
-Received: from m12.mail.163.com (m12.mail.163.com [220.181.12.198])
- by gabe.freedesktop.org (Postfix) with ESMTP id D890710E1F7;
- Mon, 19 Dec 2022 08:14:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
- s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=Hzd8l
- f6HY4y2Yw9uc+TdTUhpidkvFZA9uoCnx/ZjXJY=; b=UykVbeZaZcR2s+sQubBlD
- Gsa9w0ba/ivcEYX4AGmLCBHWkNum3qHH7OBFjoLsIYujCvedluxNUWSVNHUlaroz
- Q0iyNvwrBN79oTsgcnXNWLLTwnqEmcU2h01h768tl/HLe+vuhCvPofLHwxEz6D/T
- 47DERHVVrrH/n4IXvrHRHA=
-Received: from leanderwang-LC2.localdomain (unknown [111.206.145.21])
- by zwqz-smtp-mta-g0-2 (Coremail) with SMTP id _____wCXjF1NGaBjOMpSAA--.24784S2;
- Mon, 19 Dec 2022 15:57:02 +0800 (CST)
-From: Zheng Wang <zyytlz.wz@163.com>
-To: zhi.a.wang@intel.com
-Date: Mon, 19 Dec 2022 15:57:00 +0800
-Message-Id: <20221219075700.220058-1-zyytlz.wz@163.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <da557524-02ff-2ac7-7960-6f710c2d41d6@intel.com>
-References: <da557524-02ff-2ac7-7960-6f710c2d41d6@intel.com>
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de
+ [85.220.165.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB95510E218
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Dec 2022 09:01:45 +0000 (UTC)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+ by metis.ext.pengutronix.de with esmtps
+ (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
+ (envelope-from <ukl@pengutronix.de>)
+ id 1p7BdX-00055t-G9; Mon, 19 Dec 2022 09:36:39 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+ by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+ (envelope-from <ukl@pengutronix.de>)
+ id 1p7BdS-000I7t-UR; Mon, 19 Dec 2022 09:36:34 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+ (envelope-from <ukl@pengutronix.de>)
+ id 1p7BdS-006GXR-8z; Mon, 19 Dec 2022 09:36:34 +0100
+From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, Dave Airlie <airlied@redhat.com>,
+ Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
+ Xinliang Liu <xinliang.liu@linaro.org>, Tian Tao <tiantao6@hisilicon.com>,
+ John Stultz <jstultz@google.com>,
+ Xinwei Kong <kong.kongxinwei@hisilicon.com>,
+ Chen Feng <puck.chen@hisilicon.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>,
+ Javier Martinez Canillas <javierm@redhat.com>
+Date: Mon, 19 Dec 2022 09:36:27 +0100
+Message-Id: <20221219083627.1401627-1-u.kleine-koenig@pengutronix.de>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5224;
+ i=u.kleine-koenig@pengutronix.de; h=from:subject;
+ bh=ZqfFbvgJpMyKVKFmiZCYnPmobkFNQjvPehywec6oyBE=;
+ b=owEBbQGS/pANAwAKAcH8FHityuwJAcsmYgBjoCKHEJAtYyv1GKjnjBFZ0ZCBl4J5k3935lB4hMVw
+ 9i3WuFyJATMEAAEKAB0WIQR+cioWkBis/z50pAvB/BR4rcrsCQUCY6AihwAKCRDB/BR4rcrsCcixB/
+ 9hHo0+rNOd9s5KE7RHOsnO3muEbuMyw3QJhVVfVboODKLwdKCmjvBrrjRCG61slD4Xm5T6TnhZ0rHY
+ gEaIra20QAEkhbb1rDBig3igiMCvo3TOSg07DiOfbJAQivllRgTvvYZ5Sta55/ipBt58svNiQpdkd3
+ 7hvV5XzAXzK6RNL6H1tg71K2M2RI0AFI4rdJf2ACrubw/fAc/lHKxy8CxO0GjqhRvGrsG0TAfiQdYA
+ /ghQjMcj3J4H4XapZ8XwJJSJlhSHIxh/VU1kzB6AEuA4U8z03CU829UClkJGz6lASW97FQXMzKoZJ+
+ rwf5wKvKN0Jn6M68TphEMosYDhGEHP
+X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp;
+ fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: _____wCXjF1NGaBjOMpSAA--.24784S2
-X-Coremail-Antispam: 1Uf129KBjvdXoW7GF48GF45Kr43KF4UtFWDurg_yoWfZFc_uF
- yxCwn7Cw1DJFsxWw43tFnxXr409rn5XrZ2g3yFvrW7GasrZFnrWas3J3sIgrs7t393KrW5
- Kr4DXrWjvryj9jkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
- 9fnUUvcSsGvfC2KfnxnUUI43ZEXa7sRtMKCJUUUUU==
-X-Originating-IP: [111.206.145.21]
-X-CM-SenderInfo: h2113zf2oz6qqrwthudrp/1tbiQhHcU1aED4R+7wAAsU
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
+ SAEximRunCond expanded to false
+X-PTX-Original-Recipient: intel-gfx@lists.freedesktop.org
 X-Mailman-Approved-At: Wed, 21 Dec 2022 20:19:41 +0000
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/gvt: fix double free bug in
- split_2MB_gtt_entry
+Subject: [Intel-gfx] [PATCH v3] drm: Only select I2C_ALGOBIT for drivers
+ that actually need it
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,35 +82,149 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alex000young@gmail.com, security@kernel.org,
- intel-gvt-dev@lists.freedesktop.org, airlied@linux.ie,
- gregkh@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
- hackerzheng666@gmail.com, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, 1002992920@qq.com, zyytlz.wz@163.com,
- airlied@gmail.com
+Cc: kernel@pengutronix.de, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Zhi,
+While working on a drm driver that doesn't need the i2c algobit stuff I
+noticed that DRM selects this code even though only 8 drivers actually use
+it. While also only some drivers use i2c, keep the select for I2C for the
+next cleanup patch. Still prepare this already by also selecting I2C for
+the individual drivers.
 
-Thanks again for your reply and clear explaination about the function.
-I still have some doubt about the fix. Here is a invoke chain :
-ppgtt_populate_spt
-  ->ppgtt_populate_shadow_entry
-    ->split_2MB_gtt_entry
-As far as I'm concerned, when something error happens in DMA mapping,
-which will make intel_gvt_dma_map_guest_page return none-zero code,
-It will invoke ppgtt_invalidate_spt and call ppgtt_free_spt,which will
-finally free spt by kfree. But the caller doesn't notice that and frees
-spt by calling ppgtt_free_spt again. This is a typical UAF/Double Free
-vulnerability. So I think the key point is about how to handle spt properly.
-The handle newly allocated spt (aka sub_spt) is not the root cause of this
-issue. Could you please give me more advice about how to fix this security
-bug? Besides, I'm not sure if there are more similar problems in othe location.
+Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+---
+ drivers/gpu/drm/Kconfig                 | 1 -
+ drivers/gpu/drm/amd/amdgpu/Kconfig      | 2 ++
+ drivers/gpu/drm/ast/Kconfig             | 2 ++
+ drivers/gpu/drm/gma500/Kconfig          | 2 ++
+ drivers/gpu/drm/hisilicon/hibmc/Kconfig | 2 ++
+ drivers/gpu/drm/i915/Kconfig            | 2 ++
+ drivers/gpu/drm/mgag200/Kconfig         | 2 ++
+ drivers/gpu/drm/nouveau/Kconfig         | 2 ++
+ drivers/gpu/drm/radeon/Kconfig          | 2 ++
+ 9 files changed, 16 insertions(+), 1 deletion(-)
 
-Best regards,
-Zheng Wang
+diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+index 315cbdf61979..93c732a8f870 100644
+--- a/drivers/gpu/drm/Kconfig
++++ b/drivers/gpu/drm/Kconfig
+@@ -12,7 +12,6 @@ menuconfig DRM
+ 	select HDMI
+ 	select FB_CMDLINE
+ 	select I2C
+-	select I2C_ALGOBIT
+ 	select DMA_SHARED_BUFFER
+ 	select SYNC_FILE
+ # gallium uses SYS_kcmp for os_same_file_description() to de-duplicate
+diff --git a/drivers/gpu/drm/amd/amdgpu/Kconfig b/drivers/gpu/drm/amd/amdgpu/Kconfig
+index 5fcd510f1abb..5341b6b242c3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/Kconfig
++++ b/drivers/gpu/drm/amd/amdgpu/Kconfig
+@@ -13,6 +13,8 @@ config DRM_AMDGPU
+ 	select DRM_TTM_HELPER
+ 	select POWER_SUPPLY
+ 	select HWMON
++	select I2C
++	select I2C_ALGOBIT
+ 	select BACKLIGHT_CLASS_DEVICE
+ 	select INTERVAL_TREE
+ 	select DRM_BUDDY
+diff --git a/drivers/gpu/drm/ast/Kconfig b/drivers/gpu/drm/ast/Kconfig
+index d367a90cd3de..563fa7a3b546 100644
+--- a/drivers/gpu/drm/ast/Kconfig
++++ b/drivers/gpu/drm/ast/Kconfig
+@@ -4,6 +4,8 @@ config DRM_AST
+ 	depends on DRM && PCI && MMU
+ 	select DRM_GEM_SHMEM_HELPER
+ 	select DRM_KMS_HELPER
++	select I2C
++	select I2C_ALGOBIT
+ 	help
+ 	 Say yes for experimental AST GPU driver. Do not enable
+ 	 this driver without having a working -modesetting,
+diff --git a/drivers/gpu/drm/gma500/Kconfig b/drivers/gpu/drm/gma500/Kconfig
+index 807b989e3c77..2efc0eb41c64 100644
+--- a/drivers/gpu/drm/gma500/Kconfig
++++ b/drivers/gpu/drm/gma500/Kconfig
+@@ -3,6 +3,8 @@ config DRM_GMA500
+ 	tristate "Intel GMA500/600/3600/3650 KMS Framebuffer"
+ 	depends on DRM && PCI && X86 && MMU
+ 	select DRM_KMS_HELPER
++	select I2C
++	select I2C_ALGOBIT
+ 	# GMA500 depends on ACPI_VIDEO when ACPI is enabled, just like i915
+ 	select ACPI_VIDEO if ACPI
+ 	select BACKLIGHT_CLASS_DEVICE if ACPI
+diff --git a/drivers/gpu/drm/hisilicon/hibmc/Kconfig b/drivers/gpu/drm/hisilicon/hibmc/Kconfig
+index 4e41c144a290..126504318a4f 100644
+--- a/drivers/gpu/drm/hisilicon/hibmc/Kconfig
++++ b/drivers/gpu/drm/hisilicon/hibmc/Kconfig
+@@ -7,6 +7,8 @@ config DRM_HISI_HIBMC
+ 	select DRM_VRAM_HELPER
+ 	select DRM_TTM
+ 	select DRM_TTM_HELPER
++	select I2C
++	select I2C_ALGOBIT
+ 	help
+ 	  Choose this option if you have a Hisilicon Hibmc soc chipset.
+ 	  If M is selected the module will be called hibmc-drm.
+diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
+index 3efce05d7b57..c6e3792622f2 100644
+--- a/drivers/gpu/drm/i915/Kconfig
++++ b/drivers/gpu/drm/i915/Kconfig
+@@ -18,6 +18,8 @@ config DRM_I915
+ 	select DRM_PANEL
+ 	select DRM_MIPI_DSI
+ 	select RELAY
++	select I2C
++	select I2C_ALGOBIT
+ 	select IRQ_WORK
+ 	# i915 depends on ACPI_VIDEO when ACPI is enabled
+ 	# but for select to work, need to select ACPI_VIDEO's dependencies, ick
+diff --git a/drivers/gpu/drm/mgag200/Kconfig b/drivers/gpu/drm/mgag200/Kconfig
+index eec59658a938..b28c5e4828f4 100644
+--- a/drivers/gpu/drm/mgag200/Kconfig
++++ b/drivers/gpu/drm/mgag200/Kconfig
+@@ -4,6 +4,8 @@ config DRM_MGAG200
+ 	depends on DRM && PCI && MMU
+ 	select DRM_GEM_SHMEM_HELPER
+ 	select DRM_KMS_HELPER
++	select I2C
++	select I2C_ALGOBIT
+ 	help
+ 	 This is a KMS driver for Matrox G200 chips. It supports the original
+ 	 MGA G200 desktop chips and the server variants. It requires 0.3.0
+diff --git a/drivers/gpu/drm/nouveau/Kconfig b/drivers/gpu/drm/nouveau/Kconfig
+index 03d12caf9e26..a0bb3987bf63 100644
+--- a/drivers/gpu/drm/nouveau/Kconfig
++++ b/drivers/gpu/drm/nouveau/Kconfig
+@@ -10,6 +10,8 @@ config DRM_NOUVEAU
+ 	select DRM_KMS_HELPER
+ 	select DRM_TTM
+ 	select DRM_TTM_HELPER
++	select I2C
++	select I2C_ALGOBIT
+ 	select BACKLIGHT_CLASS_DEVICE if DRM_NOUVEAU_BACKLIGHT
+ 	select X86_PLATFORM_DEVICES if ACPI && X86
+ 	select ACPI_WMI if ACPI && X86
+diff --git a/drivers/gpu/drm/radeon/Kconfig b/drivers/gpu/drm/radeon/Kconfig
+index 97a277f9a25e..62a596d3a891 100644
+--- a/drivers/gpu/drm/radeon/Kconfig
++++ b/drivers/gpu/drm/radeon/Kconfig
+@@ -15,6 +15,8 @@ config DRM_RADEON
+ 	select HWMON
+ 	select BACKLIGHT_CLASS_DEVICE
+ 	select INTERVAL_TREE
++	select I2C
++	select I2C_ALGOBIT
+ 	# radeon depends on ACPI_VIDEO when ACPI is enabled, for select to work
+ 	# ACPI_VIDEO's dependencies must also be selected.
+ 	select INPUT if ACPI
 
+base-commit: ca39c4daa6f7f770b1329ffb46f1e4a6bcc3f291
 -- 
-2.25.1
+2.38.1
 
