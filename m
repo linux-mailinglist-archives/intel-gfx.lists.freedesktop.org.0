@@ -2,151 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 501C365088A
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Dec 2022 09:23:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B873665089E
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Dec 2022 09:38:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 312E110E1FA;
-	Mon, 19 Dec 2022 08:22:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A82DE10E206;
+	Mon, 19 Dec 2022 08:37:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A59FA10E1F7;
- Mon, 19 Dec 2022 08:22:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671438125; x=1702974125;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=QadssjCDV5PLprBTDDWtAAeyWE7a9p/f00NETfKSTCA=;
- b=ZKabaZDTDv5jF6TH+hlekyJebh/TQsHYPHshIoqRTCfwj6+uE9NWkysh
- MGXVHyCh3lja4nL+Y3MyTLZ1bJGD1u3uAJt2KEaAvaNX670WVM+ud5gNe
- sl/iQVTHpEI44WRu6B50Hqc6cccu+Y9LMIP6Pgc7X+02NkCmgELdoiyWM
- tAarVd+FbeTjZdrp9EijMxE5YACLjKXMXLS85phoNbNmTJBCLHPyqdDRH
- MPOxgPAq2kBqytLXeBxM5czxYNNdPvqNgDSl5dhvc42muov+PnClsnBEP
- 1sXN4o+1GlNaRuf9uy27tM8yqA5QNSKz3RFrI2Cr3WO/CCZKavHeuXzbO g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10565"; a="321187367"
-X-IronPort-AV: E=Sophos;i="5.96,255,1665471600"; d="scan'208";a="321187367"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2022 00:22:04 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10565"; a="757534720"
-X-IronPort-AV: E=Sophos;i="5.96,255,1665471600"; d="scan'208";a="757534720"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga002.fm.intel.com with ESMTP; 19 Dec 2022 00:22:04 -0800
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Mon, 19 Dec 2022 00:22:04 -0800
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Mon, 19 Dec 2022 00:22:04 -0800
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.47) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Mon, 19 Dec 2022 00:22:03 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MOjufdDsSPhRp/0y299rkQpa+HeugGbv/80qh8qcjo8VDSoFRtRQPHyq7bmurprEQqVM07Q/Z7FLEgXApHwKLaSaJzct6KZQiqVh3Hy73BF3FFkYPsZdAxkCl8pvDgfn/ZvU/nr/stARx2Sf2eu1FWHSf8ekkofSgk0ii9n/67j4KXbLI1vkRj2Rl5kVKHjd9FuvwQbXhPEG9g7Ol/snVyzowJTtyak3ul7AkVq9wP0Q/zqInVWX9hGMFN/SdCxPx/+4xgI01HkROJC0dTlBMzumyarGfOZ0Sh7MChiCTTvBGRRXCbsRF0dKfvbc5/3FxC4LbKPYUJMo3Y3vZqMeLQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QadssjCDV5PLprBTDDWtAAeyWE7a9p/f00NETfKSTCA=;
- b=AiIahpwLTAS9Ldd61oZpoT2EI03m0vrmgEnIvjZXvAvQkQO4HXy7mZrDhvwhWAEzjGYr9XPJr3XC9a3hkEUdASy6slPp5E8gaumFk30P01VhVkD4boYsg0FmXL6TueZlPubvwUN5umcSOHIcFr+XEyuM5VYeXt5FfZGgr3TM1pSeSmxdrtAXdrmkh5KWyVefMSqwpDo4H6A1vw635bjoBxWauEbvn7K/NakIQPGDDTYDVS4Mj0MInxLYGQoqdts5ckusuFZ/9V9/QbjO6lZRf9vcNji3tE+5Oa7usKpAW/Ujw1MGbwIKrqCj6cw+ZEeqe+wtQ6w0kBw2+qdylc4lFg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB5549.namprd11.prod.outlook.com (2603:10b6:5:388::7) by
- CO1PR11MB5073.namprd11.prod.outlook.com (2603:10b6:303:92::23) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5924.16; Mon, 19 Dec 2022 08:22:01 +0000
-Received: from DM4PR11MB5549.namprd11.prod.outlook.com
- ([fe80::4cb1:2965:376:8bda]) by DM4PR11MB5549.namprd11.prod.outlook.com
- ([fe80::4cb1:2965:376:8bda%7]) with mapi id 15.20.5924.016; Mon, 19 Dec 2022
- 08:22:01 +0000
-From: "Wang, Zhi A" <zhi.a.wang@intel.com>
-To: Zheng Wang <zyytlz.wz@163.com>
-Thread-Topic: [Intel-gfx] [PATCH v3] drm/i915/gvt: fix double free bug in
- split_2MB_gtt_entry
-Thread-Index: AQHY6cLGBXkP1Tf3okih35bsJFVnIK5vEcgAgAAMroCABgz2AIAABv6A
-Date: Mon, 19 Dec 2022 08:22:01 +0000
-Message-ID: <11728bc1-7b59-1623-b517-d1a0d57eb275@intel.com>
-References: <da557524-02ff-2ac7-7960-6f710c2d41d6@intel.com>
- <20221219075700.220058-1-zyytlz.wz@163.com>
-In-Reply-To: <20221219075700.220058-1-zyytlz.wz@163.com>
-Accept-Language: en-FI, en-US
-Content-Language: aa
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB5549:EE_|CO1PR11MB5073:EE_
-x-ms-office365-filtering-correlation-id: c75a7344-0dd3-4bfb-3abb-08dae19a1ae8
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: kXeKNtnbJH2QIGAYj1Dtk9uut9BxCiciZXEZ3wQjQbbgnueyx6V+w3QIg72cvZOt21LzY7dUfy7WpMEUdjeftvQAxqTRW/eb6GRVy0Q9iPw1bROVou4nztMI57GMgIp5k2d+HcAXUpRajlImAgcoVCwdrUXNEcYANYEbKK0yXVUxbMqE5v+GF0X4VNitAQ6DX8O9pLCinJhgC9m+1xlSUexT9nMH4Tlivym6PsIjI+hyvd9gg/xCq3vmMtg16seLfRIdSc57NbVfqmGJdNJ/+kayjoOK57RZiuk4k3gjRzaZtTN4EdN24qEXzrrxiy8zeyczfBDHwzkYqhzZx4Ompn9MvR/MkKGqBoxGZnM57/2wOUsfo3g0bouDlnElGAf8gpTjFaHTZ7QXf3LCMZrp8Z+HVeTuqCCEX8kBC1YNUEtrpkrgabKs1h3Lt15Zx23xx//b6KAzAhpoQLsOJb2VZPiCO1wSTk5cmdgf3cwUH7hoZErye9XLUZoAWz4aTub3kpViCLk954LWhJmXjMWos+Kf2Y/uSy6D7aAILZNceNYg8L+XkIvk0579HF/GqdQsLBykxcRUOTaA/aMA5Cgyyeaqcr02l6AM2upX2zQO4xFNdr+2vIQyQ0ngI50hltnTNNSkWIsC5NyxGhXwxyQxY48RoDuM6Ayh5FqUmiW36rhut+432/rQ2TZhssZ8+6UpU6qWQv+N8pS/fFvchtyjIg1DQyoq8ivf72aVqZqYpJlTMgLGpI6CM4Ml5nf+DP9ul5Zr5sFfVhuEKRctJkYPWQ==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5549.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(366004)(396003)(376002)(39860400002)(346002)(136003)(451199015)(6506007)(478600001)(6486002)(36756003)(71200400001)(2906002)(53546011)(26005)(6512007)(186003)(31696002)(41300700001)(8676002)(66556008)(76116006)(66946007)(66476007)(66446008)(91956017)(38070700005)(64756008)(4326008)(7416002)(83380400001)(5660300002)(316002)(122000001)(8936002)(6916009)(54906003)(82960400001)(86362001)(38100700002)(31686004)(2616005)(43740500002)(45980500001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?TmRVdEJ0bi9rSzdtaStpSGNEVWtDWlJWK3orM0ZiTDFBZEhpdTRtR3MySWd2?=
- =?utf-8?B?S05ESTlxMVFZVDBJNnEvRjlyQlZWREY2TTd1M1FOSUZtWVBBWFhrWXE1MDFa?=
- =?utf-8?B?ck9RUklyVDZsdCsrRVUvaWd2YUN3SDBSU2hEaU1Wd2dXOUNhanIxS2FST0VQ?=
- =?utf-8?B?Z2QyWkFBV2x0bjJ6UnIrRm1MRmtTMExHYUErQlViNkgrK2tqblRiT1haeW9h?=
- =?utf-8?B?eGMrdE5KUlFkY3ZhY0xOTlliSlJkWHgyc3ZhWW9xNUNuUEZVNWkzV3E2Sm5L?=
- =?utf-8?B?L0dVUW1Xekw3Z1RJSGl0YkhycXFvK0FDb2p3U3FVb2RjTHVOcHc3THcvQ3g5?=
- =?utf-8?B?ZVdGendGVWtzMnc5M1hsa3hXVDdjM1pmWWY0dlRlSGQvN0VRMGlQcmJBTlpY?=
- =?utf-8?B?clZTWCtuMVBSNDF0VE5kQ2pUT0t4cVUwZkF4S29EdTdhSWZOVmpVejR1dUkw?=
- =?utf-8?B?ODdHd1plRnlCQmNEQXFiL3ZWdm9NK0VUY1I3UkN2VXlzencrUG8yUm5nTmVG?=
- =?utf-8?B?RXNJcFVNRVBScEU1ajFJWk9vN09qZ1ZvcjNIZzBTLzI1NXRlbGIvZGFOSnlL?=
- =?utf-8?B?Z1hOVHpldVpKbnFscmhHQUVYVWlteTdRNWRhREs3MEJTYWlTeGNSeWZDd0oz?=
- =?utf-8?B?ZG5aZVRqQTF2S0xpQXo4dk04ZTBIT2Z1OTJSRnBWOG9nb0ppU2tubHZIZzZJ?=
- =?utf-8?B?MlRJeXcrYjJiM3BRQXh4ZlNvSFBrb1lPalRrUkZ6ZnZzN1B3dUdGMHdsRXAv?=
- =?utf-8?B?MUw4OWRTK1o1OHJvN1ZuNnk0OTEvR0kyc0hxUVBjampwdEdvNVlZeVhYMDhU?=
- =?utf-8?B?TzBNU1dDQUhub0dwaW5MQWQ0R09oQlV3eTQ3LzFoT3l4T0JNN1VERW1ZRFNS?=
- =?utf-8?B?c3haOU9kTk5rL1cxa0g1dVczUlRnT2JhMjRKblpQVG5CWWpzREZMMTQ4YUEw?=
- =?utf-8?B?RCtMRmlrdnk2RzBpWEF5elVuclFEcVQ4V1NLQWFKbVdvZm1NRlBNd3EwNEJC?=
- =?utf-8?B?bk9iRlh2dVVnVEI3dnU1V2pYeEE2SjRpYitIQVJjTGMyVVUwbi9XZU9uTjAy?=
- =?utf-8?B?R1dac0lCM0ltNjVPQnRpQ2tKMXJWLzEwY0JQMnlQMXNldEFkRVlaVEVqUW40?=
- =?utf-8?B?cDUwa28yakZxRnlNWXhxeFZEdytMY2l5YWtxN2VhVjJ5QWtOUDFwcVVwbWNu?=
- =?utf-8?B?U2kxVSttQnJCb1hwMXdMTG5RdFhSZFNjVkxXcGNDREt2c2tpc3I0T2tkaFk5?=
- =?utf-8?B?SGFNK2E1YWVMa0ZkUUhXcFZ6SGUvdUIzWGN3MDNCMEd0N29iTzA2T0JQZVZM?=
- =?utf-8?B?TnMrR0lEWWoxQWFpMG5TanFqWWZnaTJjNm9USkFzZ2hBSk1yb0ZBT256WCtD?=
- =?utf-8?B?L3NPMUNoMFR2aWowM1FlazlxUG9wMjRjMVVGMlo2UVA4UU9Gb0srMUhSTjdk?=
- =?utf-8?B?NjhSZGpxT1ZOaWRRMXNFSjRsdkxOaEg3TTBWNzVYZFdsOE9pV0hpeHViVU9H?=
- =?utf-8?B?QWdydVZZdGdNeXlDM2p4TXkrTjJrTmZlWVl6M2tQK1RORk9qQy9JRFNlWFNa?=
- =?utf-8?B?SHZQR1F4NzcxdFhpRHRzYzZiaE9peUEwcEVoa0xTazFqUmhDR1M4M01sM2J0?=
- =?utf-8?B?empDeDB1REdPSmFwTGJ2LzgyNDRsM0lZeXRsQ2gxK2FnSmtPVDlVMnRLSlNJ?=
- =?utf-8?B?R0Z4QUZXaGFFckhDWmRnU3ByY1lCMU43dWlmTVpTam84WWhBS3NEWXl1ZkNk?=
- =?utf-8?B?OXpYMm8rU2JTeHRtK3REYzR5c2E1c0c3MVlYQVFHclFWYWN1RG5FWGtaVlNn?=
- =?utf-8?B?MDYvTThBWWI3am5id3Mwa1FINzdLVHpDNTc2Vi9xcDM3Zk1TTjExL05mWnFM?=
- =?utf-8?B?dUpFblFBY08zTjNkaFo4TmpjTE9Vb3NFbFZ6ZndzTWYzdk5Idit5YXZaNmZE?=
- =?utf-8?B?U09oQjNhcjI3eTRveGV1N1FFTE45TkFPT3dzRzM1N0t1Mit3dVRmMHA0ekJx?=
- =?utf-8?B?T25CU2RvNmlRRHkwdy9RMjhIRks5ZjR1emZWbmdZbjdGK0F1V3dWYTNZenlY?=
- =?utf-8?B?SUI3OTJBRGNNOFk2bjBkWkYrYWdwMHY2STIvR2hPaElTQkh4ZUJuSE1ZUGNG?=
- =?utf-8?Q?YekwAt/+yGrdE+wjH7qYrDVUC?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <E156909705587449AFC1269623DE30E1@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com
+ [IPv6:2a00:1450:4864:20::42d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F06B410E209;
+ Mon, 19 Dec 2022 08:37:43 +0000 (UTC)
+Received: by mail-wr1-x42d.google.com with SMTP id h11so7801592wrw.13;
+ Mon, 19 Dec 2022 00:37:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=d4PUWpDCc5OCB6Ld0BBIMnycdruf1PmlxbuZjGzJaNI=;
+ b=jEjbWPy3wl7ITLr6+vKM2O1zBwRTG+Cfcc/X5DlmiSBitzlS/LzwgnImKPhv/5D6ED
+ BH/znKkATw3mwgY8kioKuh6GmSRHT0rXCP0dFs+Kg5rAPJT/rRpuB/TZk4rmltnpADqO
+ nitrydB3ZiDPtrY1g7PuvJG10i2LmF1ZeS+cek8jn32aayFBGJ0SIyeTmSWLMlx7kvOy
+ l+gL6LB3sqdo39ElbKft1MMy9yqN9wZLrgPeu2s5qsNemG+M+hA2A3Eb96jVfB4G8Vn3
+ pC1KfVRrp82KsdyUXz3L7Z8LrGyIbVtsjjDJoF3rL2hZfVNfDkbU7SwliRRAfPitUU7Q
+ R8VA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=d4PUWpDCc5OCB6Ld0BBIMnycdruf1PmlxbuZjGzJaNI=;
+ b=zEFUT6+IG2MuIH2Ag8eGM0T5RBxiMZ84reMda86TNHLKzU6+VoPZQHkYxyDBKxx/Kd
+ GQ3KbDuW6sLfI4Ni53BsnxBKjL711QuKTne1If0wpaRCZjEzhnhIpebwB52mnqYKPYnN
+ OBpy+lVxTSstMIlH4YT2hkjXJsVNMsKQ7NxgPfXdtAyDNmdmxLd1TiAUCpnRfC0df7l+
+ 8Ukp/GE5/RNlpC8DaLTVLEWsvATc/eOYE0gxU6T6lgcVchIpLc5vJCi4R4DKHi55w8C4
+ 4cT8f2ZWqb73bj0KtraVYVx6ADg3m9Tsp56pGFBHPoEVV2cnHguCCCMSYnzrbBEn8gG3
+ 1hVA==
+X-Gm-Message-State: ANoB5pmDLV/zGPiWDmPZOQJGC9TwpuBkQWlKW0cgko0pRWDkF21qw2gv
+ htu1NZfxp1MICVRc9prQ6CM=
+X-Google-Smtp-Source: AA0mqf4wyPidEccC0M5VF4p936r5kX1uhUcQHMLls8ZiooP3dZ4udmDJHm0BIgHEVPnEnYWqyGCr9Q==
+X-Received: by 2002:a5d:6091:0:b0:242:2088:1546 with SMTP id
+ w17-20020a5d6091000000b0024220881546mr32222857wrt.61.1671439062329; 
+ Mon, 19 Dec 2022 00:37:42 -0800 (PST)
+Received: from ?IPV6:2a02:908:1256:79a0:83d7:3937:b31e:d44c?
+ ([2a02:908:1256:79a0:83d7:3937:b31e:d44c])
+ by smtp.gmail.com with ESMTPSA id
+ d7-20020a5d5387000000b00241e4bff85asm9285780wrv.100.2022.12.19.00.37.41
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 19 Dec 2022 00:37:41 -0800 (PST)
+Message-ID: <9e886927-df5a-e264-8d8d-c83045bac732@gmail.com>
+Date: Mon, 19 Dec 2022 09:37:44 +0100
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5549.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c75a7344-0dd3-4bfb-3abb-08dae19a1ae8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Dec 2022 08:22:01.8517 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 0R3swrm9fpEh67mTzj5nZRtp7hTIInuS1mT1KypJUxIJXF7zgeYQ0B8TY1sa6dAzeV/Y/KQXXh3h865W4zoGSg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5073
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/gvt: fix double free bug in
- split_2MB_gtt_entry
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Content-Language: en-US
+To: xinhui pan <xinhui.pan@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20221218065708.93332-1-xinhui.pan@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <20221218065708.93332-1-xinhui.pan@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v6] drm: Optimise for continuous memory
+ allocation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,43 +76,234 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "alex000young@gmail.com" <alex000young@gmail.com>,
- "security@kernel.org" <security@kernel.org>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "airlied@linux.ie" <airlied@linux.ie>,
- "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "hackerzheng666@gmail.com" <hackerzheng666@gmail.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "1002992920@qq.com" <1002992920@qq.com>,
- "airlied@gmail.com" <airlied@gmail.com>
+Cc: arunpravin.paneerselvam@amd.com, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ matthew.auld@intel.com, daniel@ffwll.ch, christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gMTIvMTkvMjAyMiA5OjU3IEFNLCBaaGVuZyBXYW5nIHdyb3RlOg0KPiBIaSBaaGksDQo+IA0K
-PiBUaGFua3MgYWdhaW4gZm9yIHlvdXIgcmVwbHkgYW5kIGNsZWFyIGV4cGxhaW5hdGlvbiBhYm91
-dCB0aGUgZnVuY3Rpb24uDQo+IEkgc3RpbGwgaGF2ZSBzb21lIGRvdWJ0IGFib3V0IHRoZSBmaXgu
-IEhlcmUgaXMgYSBpbnZva2UgY2hhaW4gOg0KPiBwcGd0dF9wb3B1bGF0ZV9zcHQNCj4gICAgLT5w
-cGd0dF9wb3B1bGF0ZV9zaGFkb3dfZW50cnkNCj4gICAgICAtPnNwbGl0XzJNQl9ndHRfZW50cnkN
-Cj4gQXMgZmFyIGFzIEknbSBjb25jZXJuZWQsIHdoZW4gc29tZXRoaW5nIGVycm9yIGhhcHBlbnMg
-aW4gRE1BIG1hcHBpbmcsDQo+IHdoaWNoIHdpbGwgbWFrZSBpbnRlbF9ndnRfZG1hX21hcF9ndWVz
-dF9wYWdlIHJldHVybiBub25lLXplcm8gY29kZSwNCj4gSXQgd2lsbCBpbnZva2UgcHBndHRfaW52
-YWxpZGF0ZV9zcHQgYW5kIGNhbGwgcHBndHRfZnJlZV9zcHQsd2hpY2ggd2lsbA0KPiBmaW5hbGx5
-IGZyZWUgc3B0IGJ5IGtmcmVlLiBCdXQgdGhlIGNhbGxlciBkb2Vzbid0IG5vdGljZSB0aGF0IGFu
-ZCBmcmVlcw0KPiBzcHQgYnkgY2FsbGluZyBwcGd0dF9mcmVlX3NwdCBhZ2Fpbi4gVGhpcyBpcyBh
-IHR5cGljYWwgVUFGL0RvdWJsZSBGcmVlDQo+IHZ1bG5lcmFiaWxpdHkuIFNvIEkgdGhpbmsgdGhl
-IGtleSBwb2ludCBpcyBhYm91dCBob3cgdG8gaGFuZGxlIHNwdCBwcm9wZXJseS4NCj4gVGhlIGhh
-bmRsZSBuZXdseSBhbGxvY2F0ZWQgc3B0IChha2Egc3ViX3NwdCkgaXMgbm90IHRoZSByb290IGNh
-dXNlIG9mIHRoaXMNCj4gaXNzdWUuIENvdWxkIHlvdSBwbGVhc2UgZ2l2ZSBtZSBtb3JlIGFkdmlj
-ZSBhYm91dCBob3cgdG8gZml4IHRoaXMgc2VjdXJpdHkNCj4gYnVnPyBCZXNpZGVzLCBJJ20gbm90
-IHN1cmUgaWYgdGhlcmUgYXJlIG1vcmUgc2ltaWxhciBwcm9ibGVtcyBpbiBvdGhlIGxvY2F0aW9u
-Lg0KPiANCj4gQmVzdCByZWdhcmRzLA0KPiBaaGVuZyBXYW5nDQo+IA0KDQpJIHRoaW5rIGl0IGlz
-IGEgY2FzZS1ieS1jYXNlIHRoaW5nLiBGb3IgZXhhbXBsZToNCg0KVGhlIGN1cnJlbnQgc2NlbmFy
-aW8gaW4gdGhpcyBmdW5jdGlvbiBsb29rcyBsaWtlIGJlbG93Og0KDQpjYWxsZXIgcGFzcyBzcHQg
-YQ0KZnVuY3Rpb24NCglhbGxvYyBzcHQgYg0KCXNvbWV0aGluZyBlcnJvcg0KCWZyZWUgc3B0IGEN
-CglyZXR1cm4gZXJyb3INCg0KVGhlIHByb2JsZW0gaXM6IHRoZSBmdW5jdGlvbiB3cm9uZ2x5IGZy
-ZWVzIHRoZSBzcHQgYSBpbnN0ZWFkIGZyZWUgd2hhdCANCml0IGFsbG9jYXRlcy4NCg0KQSBwcm9w
-ZXIgZml4IHNob3VsZCBiZToNCg0KY2FsbGVyIHBhc3Mgc3B0IGENCmZ1bmN0aW9uDQoJYWxsb2Mg
-c3B0IGINCglzb21ldGhpbmcgZXJyb3INCgkqZnJlZSBzcHQgYioNCglyZXR1cm4gZXJyb3INCg0K
-VGhhbmtzLA0KWmhpLg0KDQo=
+Am 18.12.22 um 07:57 schrieb xinhui pan:
+> Optimise a little when continuous memory request fails.
+>
+> There are memory holes and continuous memory request usually fails when
+> order is too big.
+> Currently buddy only look for exactly order memory for such request.
+> Now we can try again to look for several smaller continuous memory on
+> failure.
+
+I'm still pretty sure that this is illegal.
+
+See the order is not only the minimum we need for linear allocation, but 
+also the minimum alignment we need.
+
+So if you look at some block combination like 010 when searching for an 
+order 2 allocation you satisfy the contiguous constrain, but not the 
+alignment constrain and that's illegal.
+
+Additional to that we have a huge additional CPU overhead for contiguous 
+allocations with that.
+
+Regards,
+Christian.
+
+>
+> Signed-off-by: xinhui pan <xinhui.pan@amd.com>
+> ---
+> change from v5:
+> reworked
+> ---
+>   drivers/gpu/drm/drm_buddy.c | 161 ++++++++++++++++++++++++++++++++++--
+>   1 file changed, 154 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+> index 11bb59399471..6c795e1b3247 100644
+> --- a/drivers/gpu/drm/drm_buddy.c
+> +++ b/drivers/gpu/drm/drm_buddy.c
+> @@ -386,6 +386,140 @@ alloc_range_bias(struct drm_buddy *mm,
+>   	return ERR_PTR(err);
+>   }
+>   
+> +static void __continuous_block_in_tree(struct drm_buddy_block *top_block,
+> +				       struct list_head *fbl,
+> +				       int left,
+> +				       int min_order)
+> +{
+> +	/*
+> +	 * Look for continuous memory of
+> +	 * [top_block) when left is true or (top_block] when left is false.
+> +	 * The list of fbl looks like (top_block1][free_block][...][top_blockX).
+> +	 * Memory offset is in ascending order.
+> +	 */
+> +	while (top_block) {
+> +		struct drm_buddy_block *block = top_block;
+> +		int order;
+> +
+> +		while (drm_buddy_block_is_split(block))
+> +			block = left ? block->left : block->right;
+> +
+> +		order = drm_buddy_block_order(block);
+> +		if (order < min_order || !drm_buddy_block_is_free(block))
+> +			return;
+> +
+> +		if (left)
+> +			list_add_tail(&block->tmp_link, fbl);
+> +		else
+> +			list_add(&block->tmp_link, fbl);
+> +
+> +		if (order == min_order)
+> +			return;
+> +		top_block = __get_buddy(block);
+> +	}
+> +}
+> +
+> +static bool __free_block_in_order(struct list_head *fbl,
+> +				  struct drm_buddy_block *cur,
+> +				  int order,
+> +				  struct drm_buddy_block **first,
+> +				  struct drm_buddy_block **last)
+> +{
+> +	struct drm_buddy_block *fb = cur, *lb = list_next_entry(cur, tmp_link);
+> +	u64 pages = BIT(order);
+> +	u64 cur_pages = 0;
+> +
+> +	/*
+> +	 * Look for continuous memory which satisfy requested order.
+> +	 * Memory in list fbl are already in below order.
+> +	 * 1) Memory offset are in ascending order.
+> +	 * 2) Memory size are in ascending order from left to middle and
+> +	 * descending order from middle to right.
+> +	 * So walk through the list of fbl from middle to both sides to
+> +	 * choose the bigger memory.
+> +	 * This is because one memory with order X are composed with 2 of order X-1
+> +	 * or 1 of order X-1 and 2 of order X-2, etc. Looks like below.
+> +	 *      n
+> +	 *    {∑(X - y)} + {2 * (X-n-1))}
+> +	 *      1
+> +	 * And the last 2 memory of order (X-n-1) are at the two sides of list.
+> +	 */
+> +	list_for_each_entry_from_reverse(fb, fbl, tmp_link) {
+> +		int prev_order = drm_buddy_block_order(fb);
+> +
+> +		list_for_each_entry_from(lb, fbl, tmp_link) {
+> +			int next_order = drm_buddy_block_order(lb);
+> +
+> +			if (prev_order <= next_order)
+> +				cur_pages += BIT(next_order);
+> +			else
+> +				break;
+> +		}
+> +
+> +		cur_pages += BIT(prev_order);
+> +		if (pages == cur_pages) {
+> +			*first = fb;
+> +			*last = list_prev_entry(lb, tmp_link);
+> +			return true;
+> +		}
+> +		BUG_ON(pages < cur_pages);
+> +	}
+> +
+> +	*first = *last = NULL;
+> +	return false;
+> +}
+> +
+> +static struct drm_buddy_block *
+> +find_continuous_blocks(struct drm_buddy *mm,
+> +		       int order,
+> +		       unsigned long flags,
+> +		       struct drm_buddy_block **lb)
+> +{
+> +	struct list_head *head = &mm->free_list[order - 1];
+> +	struct drm_buddy_block *free_block, *first = NULL, *last = NULL;
+> +
+> +	/*
+> +	 * Look for continuous free memory in buddy and buddy-in-law.
+> +	 * IOW, the most left blocks at right of free block and the most right
+> +	 * blocks at left of free block.
+> +	 */
+> +
+> +	list_for_each_entry(free_block, head, link) {
+> +		struct drm_buddy_block *buddy, *parent, *block;
+> +		int left, min_order = 0;
+> +		LIST_HEAD(fbl);
+> +
+> +		parent = free_block->parent;
+> +		if (!parent)
+> +			continue;
+> +
+> +		left = parent->left == free_block;
+> +		list_add(&free_block->tmp_link, &fbl);
+> +		buddy = __get_buddy(free_block);
+> +		__continuous_block_in_tree(buddy, &fbl, left, min_order);
+> +
+> +		while (parent && !((parent->left == block) ^ left)) {
+> +			block = parent;
+> +			parent = parent->parent;
+> +		}
+> +
+> +		if (!parent)
+> +			continue;
+> +
+> +		buddy = __get_buddy(block);
+> +		__continuous_block_in_tree(buddy, &fbl, !left, min_order);
+> +
+> +		/* list head of fbl is invalid outside.
+> +		 * Walk through list from first fo last only.
+> +		 */
+> +		if (__free_block_in_order(&fbl, free_block, order, &first, &last))
+> +			break;
+> +	}
+> +
+> +	*lb = last;
+> +	return first;
+> +}
+> +
+>   static struct drm_buddy_block *
+>   get_maxblock(struct list_head *head)
+>   {
+> @@ -637,7 +771,7 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+>   			   struct list_head *blocks,
+>   			   unsigned long flags)
+>   {
+> -	struct drm_buddy_block *block = NULL;
+> +	struct drm_buddy_block *block = NULL, *last_block = NULL;
+>   	unsigned int min_order, order;
+>   	unsigned long pages;
+>   	LIST_HEAD(allocated);
+> @@ -689,17 +823,30 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+>   				break;
+>   
+>   			if (order-- == min_order) {
+> +				if (!(flags & DRM_BUDDY_RANGE_ALLOCATION) &&
+> +				    min_order != 0 && pages == BIT(min_order)) {
+> +					block = find_continuous_blocks(mm,
+> +								       min_order,
+> +								       flags,
+> +								       &last_block);
+> +					if (block)
+> +						break;
+> +				}
+>   				err = -ENOSPC;
+>   				goto err_free;
+>   			}
+>   		} while (1);
+>   
+> -		mark_allocated(block);
+> -		mm->avail -= drm_buddy_block_size(mm, block);
+> -		kmemleak_update_trace(block);
+> -		list_add_tail(&block->link, &allocated);
+> -
+> -		pages -= BIT(order);
+> +		do {
+> +			mark_allocated(block);
+> +			mm->avail -= drm_buddy_block_size(mm, block);
+> +			kmemleak_update_trace(block);
+> +			list_add_tail(&block->link, &allocated);
+> +			pages -= BIT(drm_buddy_block_order(block));
+> +			if (block == last_block || !last_block)
+> +				break;
+> +			block = list_next_entry(block, tmp_link);
+> +		} while (block);
+>   
+>   		if (!pages)
+>   			break;
+
