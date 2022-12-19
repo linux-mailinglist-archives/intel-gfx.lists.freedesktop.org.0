@@ -2,146 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14255650AF4
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Dec 2022 12:53:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E134D650C73
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Dec 2022 14:09:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3F9710E0C7;
-	Mon, 19 Dec 2022 11:53:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1305410E07D;
+	Mon, 19 Dec 2022 13:09:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F30510E05F
- for <intel-gfx@lists.freedesktop.org>; Mon, 19 Dec 2022 11:53:02 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7558210E07D
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Dec 2022 13:09:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671450782; x=1702986782;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=6u+OsM5KfJyinEiKbEpauFlT8aF2+JNYe6UvKDfmnQU=;
- b=aFQwSzjeuM1zqeTYALGbBD9bnj7Afooi4V/SC/qLJdjeLlgF+F+DXBPy
- l0GiRM49G201YTaXVa0uC8URfeMtmtznuN8qKc8LQcFWGGLleBBI+qoEl
- rv0HrhUFcWW5BBSHMtnIXQqxpWAPRO/C5CAlRWZgDEOWydkUWuWxdeCz9
- Fx/pOEeTjYGVpzmCrOJ6M8bH3MYJc6nznGwPvHbT6c+g7rfnOjozwIhzI
- IZUnt1YhIG3plKrHDRWyMruIByPvz3lJPJEwUrMjCrvMk6O1BKbhD0hcN
- iG0E8fV5yDNpg3I+Xi6QDv4Vw8CUaOl/bdyd89o4D+AqvTEaQ6aDvTgVS Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10565"; a="307007713"
-X-IronPort-AV: E=Sophos;i="5.96,255,1665471600"; d="scan'208";a="307007713"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2022 03:53:01 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10565"; a="824826732"
-X-IronPort-AV: E=Sophos;i="5.96,255,1665471600"; d="scan'208";a="824826732"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga005.jf.intel.com with ESMTP; 19 Dec 2022 03:53:01 -0800
-Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Mon, 19 Dec 2022 03:53:01 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Mon, 19 Dec 2022 03:53:01 -0800
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.42) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Mon, 19 Dec 2022 03:53:00 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ukd5/AZB3q7iDAJz8nmvyC8zt6twdgdpOmilZAxwPRsEr4M78RjtlcavCI+YPNMv92OLQGsIBWjgK2hyCRTNLT60xLo3F5ov2g0aLytuEiZ8IbZ5ljxuJu//CxaOVWv/lBduwhiC0/BI4hL1H0GZb2+tO0/jvslZWhGM6tvUv8NUCeinBf/9oma3kBQlH9wE9hG+LD7UVERJnYseUsO+Hfw4ZmsIFUmDHniBH0TIS82s4oEluSuhgQQeSKuoZIRYCyvjfnj2t/vZ9q7Ow+Rmo1kxuZ4+qhhtv+o3hGrKYi2UuaGMLAgEtT3hKFKFB/icPHwqFokR+xAqUaUVi1yToQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Z7GKZTIhC+85BVWJAjrWpvXKrnKWOxPcdbxx/p4MUgY=;
- b=DhZpfF3HSYg2DiKu8YEtZJCzTqlvJBGR0boYFORnmxRIlVPiY7hsDZQpYpbFSA30Xe+TOhi6NpL8C8bKPQF+gzNhtqHBJk1HCSvATPrdNLn1mPUAAx5UrrbFtxmnJ9MnmdLA+Dp6lJ4sptjQT9NYNdRQmX4sjh1VecLcfJgreym8EKqQ4trFy/n6n6oKMBhH7TQu+4IYEnB45SnXAs414cqJryproou05l0cwKwRCo6YwA+nYkIc/TcrTyECwx/gLxTzy/hzjZZQFwfh90xblCp1By4wKTeLIQM5bJHSf/weIHnrIxkOOwPaKdKCTOP/8qU227IQZZ0FZ4Rw0m5ASA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BL0PR11MB2961.namprd11.prod.outlook.com (2603:10b6:208:76::23)
- by DS0PR11MB7441.namprd11.prod.outlook.com (2603:10b6:8:141::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5924.16; Mon, 19 Dec
- 2022 11:52:58 +0000
-Received: from BL0PR11MB2961.namprd11.prod.outlook.com
- ([fe80::755:cc4:8c46:509f]) by BL0PR11MB2961.namprd11.prod.outlook.com
- ([fe80::755:cc4:8c46:509f%6]) with mapi id 15.20.5924.016; Mon, 19 Dec 2022
- 11:52:58 +0000
-Message-ID: <3dfbc5b9-39d2-3c7b-cfb3-9d86645e9e31@intel.com>
-Date: Mon, 19 Dec 2022 13:52:53 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Content-Language: en-US
-To: <intel-gfx@lists.freedesktop.org>
-References: <20221219113649.21926-1-nirmoy.das@intel.com>
-From: "Das, Nirmoy" <nirmoy.das@intel.com>
-In-Reply-To: <20221219113649.21926-1-nirmoy.das@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR3P281CA0067.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:4b::14) To BL0PR11MB2961.namprd11.prod.outlook.com
- (2603:10b6:208:76::23)
+ t=1671455345; x=1702991345;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=YFpJuZhv1/Q5VTaogBu1JTFydwZmhIpsql716klE9jg=;
+ b=NPS+Rd+Z12bkyVw6oCeySAbcje2FIDHwL3kWrHpGKnBTjZr7PMpFhLIp
+ +QJedEXkyNR7MKwZUalunLy5yxzK0AYA7aHHPDadyZiW8RbFm9Vjwx75y
+ lZr0Dn6F3eG9CCnXvfG97iFSp6hlzCFfYtiUsJr1dVfV+a2EZWcm5NaOG
+ pHvQRKkp8VUp+ou0IWlZW9wDg85pfiuyVjCgES/05s+tL8i58FXe+YpU3
+ G8GVYLnfO168UI2lxryLbUbqMqQsCsAh5LHcIAG+SSmK/qgqSx5DSgFFj
+ ZyUGvERT4Kg13xlN7nILl0x/QeynNkw5tuXWJlhLXZmeRyfwLiQ+il8Es Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10565"; a="320515852"
+X-IronPort-AV: E=Sophos;i="5.96,255,1665471600"; d="scan'208";a="320515852"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2022 05:08:55 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10565"; a="714010593"
+X-IronPort-AV: E=Sophos;i="5.96,255,1665471600"; d="scan'208";a="714010593"
+Received: from lab-ah.igk.intel.com ([10.91.215.196])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2022 05:08:53 -0800
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 19 Dec 2022 14:08:44 +0100
+Message-Id: <20221219130844.2914001-1-andrzej.hajda@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL0PR11MB2961:EE_|DS0PR11MB7441:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4c5d8eea-b14c-42f3-8da0-08dae1b792c2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: GLDeCgVWDnI33H7jwY+zo6ywXsBn8QdN8lM8qkDdI/7pglroyq0UUoOMD/9QBivPqRUqpq+pDLJWAAUNW82r91XjB4FmXqxhdjo7MmjiTa1pQzuEGzuzrzk3/vlij6vWKrOqoldhEFwPMms5yZ5xVhsEqTvgEqFU76xsN7E0p7lHggeE0NjGKa34KLiQgMcgkeJd2ToCaeEfInxxPguM1Bm0WWSozJleY1exHiSCnsOZ7QvQiZcDC1IwzxTJrcwP90UOBveXA9eJEayz07t8RJ5ed+aWY9fhLd49QvYsttudLDB2udNY4nHG+05XZNgdM/iqYna8/2SoQTMH+636cDQ3E3Q6moM2gnvfPIsYWy9xJ/qGfSdUWS5m22cSVgQxpSWbwDn3xsnYsoqovFCoi5p/E55j18YXqfwdm44pscbDkw/h+PeCAJ244L7E7XtMh3x5csHywyUiRcZqxIh51X1nEbr9FmuVw55X68uxb4uAfJHbquuCt9Pca4uuAz74vLxkdEGKe2gFRYwKIoCSE4ypx+NEE+G0G54SJg861HF8Z6K/SnoJJ+xAFvYc5oIW/64x/kXewWP5mhzsURZGrADCh3fY6ND5cIjQDirMO3CmwGlH1n2gnD6HElPegmGFqznxBj/NSdXa2r75PPamLjOnkjTa0HWY2od6QgOJtY2hQseFwWIeytYIiV4T+RqYvZ7Fn3JIU4no8ODqUzqqwlkhAk2sB8Z62qwfXDnnwM0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL0PR11MB2961.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(396003)(136003)(39860400002)(366004)(346002)(376002)(451199015)(36756003)(6486002)(316002)(53546011)(6916009)(66476007)(31696002)(6506007)(8676002)(4326008)(38100700002)(2616005)(86362001)(66946007)(66556008)(478600001)(82960400001)(5660300002)(31686004)(83380400001)(8936002)(6666004)(66574015)(2906002)(6512007)(26005)(186003)(41300700001)(45980500001)(43740500002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SzlEVEEycDlkRUVDQ1ZZNVpweU55ZXltREJZT011WmJma0ZVbGtxRkYzSGxV?=
- =?utf-8?B?d05GZE5RRU5tYlhVd1liY1FVSExzU1AyQWEvMUVkYU1LZWhsUFh2aGRjYndC?=
- =?utf-8?B?aG95SFVNdmZ0MlVuUy9TV0pkQmZXakNwcWJ3NDBEbDc2K3VVeVNlT3EvN2Vk?=
- =?utf-8?B?VVJ1UjNhVHRKMFEveEZoS2hmNFMwQnhpRGh2R2ZUMDltU0w2U2EvOHQvUHBY?=
- =?utf-8?B?a3VOcm0wTlRxTmlHYkRBL3lpU2pCaGlYZXdIdE1VWXVtSXkyc0pIY1ZjWS92?=
- =?utf-8?B?Wkx4RHBEUDIvOG5KRmhtS3pPaGVTWDJwclAya1hadFZyVFY5UGMvbldKUGVF?=
- =?utf-8?B?VllKT0xrazRCQ2xDMzJGQmpBc0dURmRhcCs2UzJkZjlUTE10N1Q3TTM2cjZH?=
- =?utf-8?B?Uzc1eENJZC9vRUNuWXpVTXdJMDFPZGZFQ2RPbC9xbE0wZzJNR3lxbTBnQzUv?=
- =?utf-8?B?VU1tSnEya3ljaE1FOXQ3aUkxNEY4L1ZtTnliVkw3UlNZK0hWUlBseFRxek9W?=
- =?utf-8?B?TUpDMWM0WGxEZHhVbnZYM3J3ckk3M1c1Zm0zVUlLc0RlU3VJNVpjMUFkaW1q?=
- =?utf-8?B?NXRjeHpRMnNaTWNUU2RsZVMzNGs4Wm8wSUJxYUc3RE9QT2RHb0NmOC9MUmlt?=
- =?utf-8?B?UnVDL1JINDBaRlpKYVl0SS9mWWllY0RSUEh4VE9EaVlGUk55VnpVT0lqREph?=
- =?utf-8?B?cW9qSmpvbk9jVEZhckdXUVpaRG5yNnBEK3Z3U005OHVtaVRBeEprcW9jQXJm?=
- =?utf-8?B?elphb1VyYmNRbHZWVmhIZ0Q0YTRiUForYTJpdERJWW1Rd2lNZlQvdVU4UTdn?=
- =?utf-8?B?K1dBaTRDWmhIRkxtVmJmQXVUMG5BMkxad0NhZkYwUWY2U3l6dHlpTU55KzhJ?=
- =?utf-8?B?bnFoNTFKVUk0NStQVldaVnhwa1dwQ3JlNGw5UC80MVJBc2lJci93THlmOFFX?=
- =?utf-8?B?YzNGUjBCVEd5Z1ZnSzUyUWs4WUZ0cGZOaThod0dhRm5HZVhvSW5aYWpZakk4?=
- =?utf-8?B?K2N1MW03QXo5dWM3aWZkcjZTcjdPTTJ1NFVyazFRcWdnUGJVRXJmR2pyZ2dQ?=
- =?utf-8?B?RFV0TDQ0NFh0WC94cjFNWWh6RnAySlBJeUsraTFGbWZOTjFjKzh2L3dSTHo0?=
- =?utf-8?B?M3IzM2VYT25tVHV4R2lKaUtzY3NYUzdydVpZcEduQTlEK1dCQThRejgrSkgw?=
- =?utf-8?B?c1AyeXhDYXZNZEFyclRpZ0dLY3ZXREVjMXpmU3E0aEtTemRoRERXdktnSFRm?=
- =?utf-8?B?TXVQS3RoS1BSbTNPcUxINFNtRXNSYkNOUGRCei9QakJnL0tTdzQ5VE9FMWJz?=
- =?utf-8?B?OTNUWC9Ra2NSQVZNdENNcE1BK3ZKbXVoZDZsU2pyQXZWYjJOa2pIOWlsOGJ0?=
- =?utf-8?B?U29DK3RoTFJpcytROVExYisyZS9XcXlidG1PVTFncmMwMVJ3SXdydUhCdE15?=
- =?utf-8?B?M0tGYXp1MVlSRitLNEdqZkVWQS9WUVFqaUZlTzB3aHJPa2pjam50TWJRMks4?=
- =?utf-8?B?QytTZ3crY25aR0J1eTE5d3pNdXRVWkpyZUVWOWxqZHZtM2sweWE1OUs0TkM1?=
- =?utf-8?B?RDV5TmN6M1dlNFJDM3doeGFzaWg3THdEYjdabTNJc1BCN2UrTy84QTMwK0k4?=
- =?utf-8?B?dDNIT2J1QTZqUitzODdTZjZHQjZUZjU3M2oxeXppeEdoaVh3UUwrbFA1ejNr?=
- =?utf-8?B?cTFFYjdleGVac0JlbU5kT2lybDFUTTJkUVpOWDI3QXFQcmtQb3J1OFFWTEda?=
- =?utf-8?B?cnA0bklrUXVCczZ4WGxFb2IybVNqRTk1Z0p3bVpUNFdROExlaEZxUG9hQnpT?=
- =?utf-8?B?aExvRFpxK2tIWDJUMTBlVDI1ZnNFQ0YyWWFuZThrYnljaVlDYjBYL00xbGxS?=
- =?utf-8?B?dmR1T3pCbkhTMGpRclc2YzFMbkdpRkVuNWkyc3FSMWhlVVRoRHg2bWZmZC9h?=
- =?utf-8?B?eW9ldHdtNzlkZVpja3ovS2FjeE5iREUyN2h0dUdxRGNZMkpvOW5RQjNUWEs0?=
- =?utf-8?B?bVVCNTFFSWdsVXZobHpUTFhBME04Wk1FeE9sQTl5aEtGWjFBRGpub2JYUnU1?=
- =?utf-8?B?OWhvY25UMmhDVXI5Q1Q0YjRnUEVMZlVxb0JSb0Z3TmRpNlV5eG0xdFg2K0xQ?=
- =?utf-8?Q?t4sOOMvSrk+1suljgPwkBnaPd?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4c5d8eea-b14c-42f3-8da0-08dae1b792c2
-X-MS-Exchange-CrossTenant-AuthSource: BL0PR11MB2961.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Dec 2022 11:52:58.6491 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: PSnJ7aFQCA+UMR8J2JT+vpA8qFY5+gv3/mt+3r3hVIuXql6yQ4fI6+B/R/xBeEJT4nVcfXFIyQT44t7sTSUEaQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7441
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Accomodate for nested dma_resv
- fence addition
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/display/dsi: use intel_de_rmw if
+ possible
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,46 +57,510 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This needs better explanation and probably CC to stable.
+The helper makes the code more compact and readable.
 
-Please ignore this, I will resend.
+Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+---
+ drivers/gpu/drm/i915/display/icl_dsi.c | 256 ++++++++-----------------
+ 1 file changed, 82 insertions(+), 174 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index ae14c794c4bc09..b02ac9d2b1e4a2 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -207,7 +207,7 @@ void icl_dsi_frame_update(struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+-	u32 tmp, mode_flags;
++	u32 mode_flags;
+ 	enum port port;
+ 
+ 	mode_flags = crtc_state->mode_flags;
+@@ -224,9 +224,7 @@ void icl_dsi_frame_update(struct intel_crtc_state *crtc_state)
+ 	else
+ 		return;
+ 
+-	tmp = intel_de_read(dev_priv, DSI_CMD_FRMCTL(port));
+-	tmp |= DSI_FRAME_UPDATE_REQUEST;
+-	intel_de_write(dev_priv, DSI_CMD_FRMCTL(port), tmp);
++	intel_de_rmw(dev_priv, DSI_CMD_FRMCTL(port), 0, DSI_FRAME_UPDATE_REQUEST);
+ }
+ 
+ static void dsi_program_swing_and_deemphasis(struct intel_encoder *encoder)
+@@ -234,7 +232,7 @@ static void dsi_program_swing_and_deemphasis(struct intel_encoder *encoder)
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+ 	enum phy phy;
+-	u32 tmp;
++	u32 tmp, mask, val;
+ 	int lane;
+ 
+ 	for_each_dsi_phy(phy, intel_dsi->phys) {
+@@ -242,56 +240,35 @@ static void dsi_program_swing_and_deemphasis(struct intel_encoder *encoder)
+ 		 * Program voltage swing and pre-emphasis level values as per
+ 		 * table in BSPEC under DDI buffer programing
+ 		 */
++		mask = SCALING_MODE_SEL_MASK | RTERM_SELECT_MASK;
++		val = SCALING_MODE_SEL(0x2) | TAP2_DISABLE | TAP3_DISABLE |
++		      RTERM_SELECT(0x6);
+ 		tmp = intel_de_read(dev_priv, ICL_PORT_TX_DW5_LN(0, phy));
+-		tmp &= ~(SCALING_MODE_SEL_MASK | RTERM_SELECT_MASK);
+-		tmp |= SCALING_MODE_SEL(0x2);
+-		tmp |= TAP2_DISABLE | TAP3_DISABLE;
+-		tmp |= RTERM_SELECT(0x6);
++		tmp &= ~mask;
++		tmp |= val;
+ 		intel_de_write(dev_priv, ICL_PORT_TX_DW5_GRP(phy), tmp);
++		intel_de_rmw(dev_priv, ICL_PORT_TX_DW5_AUX(phy), mask, val);
+ 
+-		tmp = intel_de_read(dev_priv, ICL_PORT_TX_DW5_AUX(phy));
+-		tmp &= ~(SCALING_MODE_SEL_MASK | RTERM_SELECT_MASK);
+-		tmp |= SCALING_MODE_SEL(0x2);
+-		tmp |= TAP2_DISABLE | TAP3_DISABLE;
+-		tmp |= RTERM_SELECT(0x6);
+-		intel_de_write(dev_priv, ICL_PORT_TX_DW5_AUX(phy), tmp);
+-
++		mask = SWING_SEL_LOWER_MASK | SWING_SEL_UPPER_MASK |
++		       RCOMP_SCALAR_MASK;
++		val = SWING_SEL_UPPER(0x2) | SWING_SEL_LOWER(0x2) |
++		      RCOMP_SCALAR(0x98);
+ 		tmp = intel_de_read(dev_priv, ICL_PORT_TX_DW2_LN(0, phy));
+-		tmp &= ~(SWING_SEL_LOWER_MASK | SWING_SEL_UPPER_MASK |
+-			 RCOMP_SCALAR_MASK);
+-		tmp |= SWING_SEL_UPPER(0x2);
+-		tmp |= SWING_SEL_LOWER(0x2);
+-		tmp |= RCOMP_SCALAR(0x98);
++		tmp &= ~mask;
++		tmp |= val;
+ 		intel_de_write(dev_priv, ICL_PORT_TX_DW2_GRP(phy), tmp);
++		intel_de_rmw(dev_priv, ICL_PORT_TX_DW2_AUX(phy), mask, val);
+ 
+-		tmp = intel_de_read(dev_priv, ICL_PORT_TX_DW2_AUX(phy));
+-		tmp &= ~(SWING_SEL_LOWER_MASK | SWING_SEL_UPPER_MASK |
+-			 RCOMP_SCALAR_MASK);
+-		tmp |= SWING_SEL_UPPER(0x2);
+-		tmp |= SWING_SEL_LOWER(0x2);
+-		tmp |= RCOMP_SCALAR(0x98);
+-		intel_de_write(dev_priv, ICL_PORT_TX_DW2_AUX(phy), tmp);
+-
+-		tmp = intel_de_read(dev_priv, ICL_PORT_TX_DW4_AUX(phy));
+-		tmp &= ~(POST_CURSOR_1_MASK | POST_CURSOR_2_MASK |
+-			 CURSOR_COEFF_MASK);
+-		tmp |= POST_CURSOR_1(0x0);
+-		tmp |= POST_CURSOR_2(0x0);
+-		tmp |= CURSOR_COEFF(0x3f);
+-		intel_de_write(dev_priv, ICL_PORT_TX_DW4_AUX(phy), tmp);
+-
+-		for (lane = 0; lane <= 3; lane++) {
+-			/* Bspec: must not use GRP register for write */
+-			tmp = intel_de_read(dev_priv,
+-					    ICL_PORT_TX_DW4_LN(lane, phy));
+-			tmp &= ~(POST_CURSOR_1_MASK | POST_CURSOR_2_MASK |
+-				 CURSOR_COEFF_MASK);
+-			tmp |= POST_CURSOR_1(0x0);
+-			tmp |= POST_CURSOR_2(0x0);
+-			tmp |= CURSOR_COEFF(0x3f);
+-			intel_de_write(dev_priv,
+-				       ICL_PORT_TX_DW4_LN(lane, phy), tmp);
+-		}
++		mask = POST_CURSOR_1_MASK | POST_CURSOR_2_MASK |
++		       CURSOR_COEFF_MASK;
++		val = POST_CURSOR_1(0x0) | POST_CURSOR_2(0x0) |
++		      CURSOR_COEFF(0x3f);
++		intel_de_rmw(dev_priv, ICL_PORT_TX_DW4_AUX(phy), mask, val);
++
++		/* Bspec: must not use GRP register for write */
++		for (lane = 0; lane <= 3; lane++)
++			intel_de_rmw(dev_priv, ICL_PORT_TX_DW4_LN(lane, phy),
++				     mask, val);
+ 	}
+ }
+ 
+@@ -310,7 +287,6 @@ static void configure_dual_link_mode(struct intel_encoder *encoder,
+ 	if (intel_dsi->dual_link == DSI_DUAL_LINK_FRONT_BACK) {
+ 		const struct drm_display_mode *adjusted_mode =
+ 					&pipe_config->hw.adjusted_mode;
+-		u32 dss_ctl2;
+ 		u16 hactive = adjusted_mode->crtc_hdisplay;
+ 		u16 dl_buffer_depth;
+ 
+@@ -323,10 +299,8 @@ static void configure_dual_link_mode(struct intel_encoder *encoder,
+ 
+ 		dss_ctl1 &= ~LEFT_DL_BUF_TARGET_DEPTH_MASK;
+ 		dss_ctl1 |= LEFT_DL_BUF_TARGET_DEPTH(dl_buffer_depth);
+-		dss_ctl2 = intel_de_read(dev_priv, DSS_CTL2);
+-		dss_ctl2 &= ~RIGHT_DL_BUF_TARGET_DEPTH_MASK;
+-		dss_ctl2 |= RIGHT_DL_BUF_TARGET_DEPTH(dl_buffer_depth);
+-		intel_de_write(dev_priv, DSS_CTL2, dss_ctl2);
++		intel_de_rmw(dev_priv, DSS_CTL2, RIGHT_DL_BUF_TARGET_DEPTH_MASK,
++			     RIGHT_DL_BUF_TARGET_DEPTH(dl_buffer_depth));
+ 	} else {
+ 		/* Interleave */
+ 		dss_ctl1 |= DUAL_LINK_MODE_INTERLEAVE;
+@@ -412,13 +386,10 @@ static void gen11_dsi_enable_io_power(struct intel_encoder *encoder)
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+ 	enum port port;
+-	u32 tmp;
+ 
+-	for_each_dsi_port(port, intel_dsi->ports) {
+-		tmp = intel_de_read(dev_priv, ICL_DSI_IO_MODECTL(port));
+-		tmp |= COMBO_PHY_MODE_DSI;
+-		intel_de_write(dev_priv, ICL_DSI_IO_MODECTL(port), tmp);
+-	}
++	for_each_dsi_port(port, intel_dsi->ports)
++		intel_de_rmw(dev_priv, ICL_DSI_IO_MODECTL(port),
++			     0, COMBO_PHY_MODE_DSI);
+ 
+ 	get_dsi_io_power_domains(dev_priv, intel_dsi);
+ }
+@@ -444,26 +415,16 @@ static void gen11_dsi_config_phy_lanes_sequence(struct intel_encoder *encoder)
+ 
+ 	/* Step 4b(i) set loadgen select for transmit and aux lanes */
+ 	for_each_dsi_phy(phy, intel_dsi->phys) {
+-		tmp = intel_de_read(dev_priv, ICL_PORT_TX_DW4_AUX(phy));
+-		tmp &= ~LOADGEN_SELECT;
+-		intel_de_write(dev_priv, ICL_PORT_TX_DW4_AUX(phy), tmp);
+-		for (lane = 0; lane <= 3; lane++) {
+-			tmp = intel_de_read(dev_priv,
+-					    ICL_PORT_TX_DW4_LN(lane, phy));
+-			tmp &= ~LOADGEN_SELECT;
+-			if (lane != 2)
+-				tmp |= LOADGEN_SELECT;
+-			intel_de_write(dev_priv,
+-				       ICL_PORT_TX_DW4_LN(lane, phy), tmp);
+-		}
++		intel_de_rmw(dev_priv, ICL_PORT_TX_DW4_AUX(phy), LOADGEN_SELECT, 0);
++		for (lane = 0; lane <= 3; lane++)
++			intel_de_rmw(dev_priv, ICL_PORT_TX_DW4_LN(lane, phy),
++				     LOADGEN_SELECT, lane != 2 ? LOADGEN_SELECT : 0);
+ 	}
+ 
+ 	/* Step 4b(ii) set latency optimization for transmit and aux lanes */
+ 	for_each_dsi_phy(phy, intel_dsi->phys) {
+-		tmp = intel_de_read(dev_priv, ICL_PORT_TX_DW2_AUX(phy));
+-		tmp &= ~FRC_LATENCY_OPTIM_MASK;
+-		tmp |= FRC_LATENCY_OPTIM_VAL(0x5);
+-		intel_de_write(dev_priv, ICL_PORT_TX_DW2_AUX(phy), tmp);
++		intel_de_rmw(dev_priv, ICL_PORT_TX_DW2_AUX(phy),
++			     FRC_LATENCY_OPTIM_MASK, FRC_LATENCY_OPTIM_VAL(0x5));
+ 		tmp = intel_de_read(dev_priv, ICL_PORT_TX_DW2_LN(0, phy));
+ 		tmp &= ~FRC_LATENCY_OPTIM_MASK;
+ 		tmp |= FRC_LATENCY_OPTIM_VAL(0x5);
+@@ -471,12 +432,8 @@ static void gen11_dsi_config_phy_lanes_sequence(struct intel_encoder *encoder)
+ 
+ 		/* For EHL, TGL, set latency optimization for PCS_DW1 lanes */
+ 		if (IS_JSL_EHL(dev_priv) || (DISPLAY_VER(dev_priv) >= 12)) {
+-			tmp = intel_de_read(dev_priv,
+-					    ICL_PORT_PCS_DW1_AUX(phy));
+-			tmp &= ~LATENCY_OPTIM_MASK;
+-			tmp |= LATENCY_OPTIM_VAL(0);
+-			intel_de_write(dev_priv, ICL_PORT_PCS_DW1_AUX(phy),
+-				       tmp);
++			intel_de_rmw(dev_priv, ICL_PORT_PCS_DW1_AUX(phy),
++				     LATENCY_OPTIM_MASK, LATENCY_OPTIM_VAL(0));
+ 
+ 			tmp = intel_de_read(dev_priv,
+ 					    ICL_PORT_PCS_DW1_LN(0, phy));
+@@ -501,9 +458,7 @@ static void gen11_dsi_voltage_swing_program_seq(struct intel_encoder *encoder)
+ 		tmp = intel_de_read(dev_priv, ICL_PORT_PCS_DW1_LN(0, phy));
+ 		tmp &= ~COMMON_KEEPER_EN;
+ 		intel_de_write(dev_priv, ICL_PORT_PCS_DW1_GRP(phy), tmp);
+-		tmp = intel_de_read(dev_priv, ICL_PORT_PCS_DW1_AUX(phy));
+-		tmp &= ~COMMON_KEEPER_EN;
+-		intel_de_write(dev_priv, ICL_PORT_PCS_DW1_AUX(phy), tmp);
++		intel_de_rmw(dev_priv, ICL_PORT_PCS_DW1_AUX(phy), COMMON_KEEPER_EN, 0);
+ 	}
+ 
+ 	/*
+@@ -511,20 +466,15 @@ static void gen11_dsi_voltage_swing_program_seq(struct intel_encoder *encoder)
+ 	 * Note: loadgen select program is done
+ 	 * as part of lane phy sequence configuration
+ 	 */
+-	for_each_dsi_phy(phy, intel_dsi->phys) {
+-		tmp = intel_de_read(dev_priv, ICL_PORT_CL_DW5(phy));
+-		tmp |= SUS_CLOCK_CONFIG;
+-		intel_de_write(dev_priv, ICL_PORT_CL_DW5(phy), tmp);
+-	}
++	for_each_dsi_phy(phy, intel_dsi->phys)
++		intel_de_rmw(dev_priv, ICL_PORT_CL_DW5(phy), 0, SUS_CLOCK_CONFIG);
+ 
+ 	/* Clear training enable to change swing values */
+ 	for_each_dsi_phy(phy, intel_dsi->phys) {
+ 		tmp = intel_de_read(dev_priv, ICL_PORT_TX_DW5_LN(0, phy));
+ 		tmp &= ~TX_TRAINING_EN;
+ 		intel_de_write(dev_priv, ICL_PORT_TX_DW5_GRP(phy), tmp);
+-		tmp = intel_de_read(dev_priv, ICL_PORT_TX_DW5_AUX(phy));
+-		tmp &= ~TX_TRAINING_EN;
+-		intel_de_write(dev_priv, ICL_PORT_TX_DW5_AUX(phy), tmp);
++		intel_de_rmw(dev_priv, ICL_PORT_TX_DW5_AUX(phy), TX_TRAINING_EN, 0);
+ 	}
+ 
+ 	/* Program swing and de-emphasis */
+@@ -535,9 +485,7 @@ static void gen11_dsi_voltage_swing_program_seq(struct intel_encoder *encoder)
+ 		tmp = intel_de_read(dev_priv, ICL_PORT_TX_DW5_LN(0, phy));
+ 		tmp |= TX_TRAINING_EN;
+ 		intel_de_write(dev_priv, ICL_PORT_TX_DW5_GRP(phy), tmp);
+-		tmp = intel_de_read(dev_priv, ICL_PORT_TX_DW5_AUX(phy));
+-		tmp |= TX_TRAINING_EN;
+-		intel_de_write(dev_priv, ICL_PORT_TX_DW5_AUX(phy), tmp);
++		intel_de_rmw(dev_priv, ICL_PORT_TX_DW5_AUX(phy), 0, TX_TRAINING_EN);
+ 	}
+ }
+ 
+@@ -545,13 +493,10 @@ static void gen11_dsi_enable_ddi_buffer(struct intel_encoder *encoder)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+-	u32 tmp;
+ 	enum port port;
+ 
+ 	for_each_dsi_port(port, intel_dsi->ports) {
+-		tmp = intel_de_read(dev_priv, DDI_BUF_CTL(port));
+-		tmp |= DDI_BUF_CTL_ENABLE;
+-		intel_de_write(dev_priv, DDI_BUF_CTL(port), tmp);
++		intel_de_rmw(dev_priv, DDI_BUF_CTL(port), 0, DDI_BUF_CTL_ENABLE);
+ 
+ 		if (wait_for_us(!(intel_de_read(dev_priv, DDI_BUF_CTL(port)) &
+ 				  DDI_BUF_IS_IDLE),
+@@ -567,17 +512,13 @@ gen11_dsi_setup_dphy_timings(struct intel_encoder *encoder,
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+-	u32 tmp;
+ 	enum port port;
+ 	enum phy phy;
+ 
+ 	/* Program T-INIT master registers */
+-	for_each_dsi_port(port, intel_dsi->ports) {
+-		tmp = intel_de_read(dev_priv, ICL_DSI_T_INIT_MASTER(port));
+-		tmp &= ~DSI_T_INIT_MASTER_MASK;
+-		tmp |= intel_dsi->init_count;
+-		intel_de_write(dev_priv, ICL_DSI_T_INIT_MASTER(port), tmp);
+-	}
++	for_each_dsi_port(port, intel_dsi->ports)
++		intel_de_rmw(dev_priv, ICL_DSI_T_INIT_MASTER(port),
++			     DSI_T_INIT_MASTER_MASK, intel_dsi->init_count);
+ 
+ 	/* Program DPHY clock lanes timings */
+ 	for_each_dsi_port(port, intel_dsi->ports) {
+@@ -608,31 +549,22 @@ gen11_dsi_setup_dphy_timings(struct intel_encoder *encoder,
+ 	if (DISPLAY_VER(dev_priv) == 11) {
+ 		if (afe_clk(encoder, crtc_state) <= 800000) {
+ 			for_each_dsi_port(port, intel_dsi->ports) {
+-				tmp = intel_de_read(dev_priv,
+-						    DPHY_TA_TIMING_PARAM(port));
+-				tmp &= ~TA_SURE_MASK;
+-				tmp |= TA_SURE_OVERRIDE | TA_SURE(0);
+-				intel_de_write(dev_priv,
+-					       DPHY_TA_TIMING_PARAM(port),
+-					       tmp);
++				intel_de_rmw(dev_priv, DPHY_TA_TIMING_PARAM(port),
++					     TA_SURE_MASK,
++					     TA_SURE_OVERRIDE | TA_SURE(0));
+ 
+ 				/* shadow register inside display core */
+-				tmp = intel_de_read(dev_priv,
+-						    DSI_TA_TIMING_PARAM(port));
+-				tmp &= ~TA_SURE_MASK;
+-				tmp |= TA_SURE_OVERRIDE | TA_SURE(0);
+-				intel_de_write(dev_priv,
+-					       DSI_TA_TIMING_PARAM(port), tmp);
++				intel_de_rmw(dev_priv, DSI_TA_TIMING_PARAM(port),
++					     TA_SURE_MASK,
++					     TA_SURE_OVERRIDE | TA_SURE(0));
+ 			}
+ 		}
+ 	}
+ 
+ 	if (IS_JSL_EHL(dev_priv)) {
+-		for_each_dsi_phy(phy, intel_dsi->phys) {
+-			tmp = intel_de_read(dev_priv, ICL_DPHY_CHKN(phy));
+-			tmp |= ICL_DPHY_CHKN_AFE_OVER_PPI_STRAP;
+-			intel_de_write(dev_priv, ICL_DPHY_CHKN(phy), tmp);
+-		}
++		for_each_dsi_phy(phy, intel_dsi->phys)
++			intel_de_rmw(dev_priv, ICL_DPHY_CHKN(phy),
++				     0, ICL_DPHY_CHKN_AFE_OVER_PPI_STRAP);
+ 	}
+ }
+ 
+@@ -824,11 +756,8 @@ gen11_dsi_configure_transcoder(struct intel_encoder *encoder,
+ 	if (intel_dsi->dual_link) {
+ 		for_each_dsi_port(port, intel_dsi->ports) {
+ 			dsi_trans = dsi_port_to_transcoder(port);
+-			tmp = intel_de_read(dev_priv,
+-					    TRANS_DDI_FUNC_CTL2(dsi_trans));
+-			tmp |= PORT_SYNC_MODE_ENABLE;
+-			intel_de_write(dev_priv,
+-				       TRANS_DDI_FUNC_CTL2(dsi_trans), tmp);
++			intel_de_rmw(dev_priv, TRANS_DDI_FUNC_CTL2(dsi_trans),
++				     0, PORT_SYNC_MODE_ENABLE);
+ 		}
+ 
+ 		/* configure stream splitting */
+@@ -1044,13 +973,10 @@ static void gen11_dsi_enable_transcoder(struct intel_encoder *encoder)
+ 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+ 	enum port port;
+ 	enum transcoder dsi_trans;
+-	u32 tmp;
+ 
+ 	for_each_dsi_port(port, intel_dsi->ports) {
+ 		dsi_trans = dsi_port_to_transcoder(port);
+-		tmp = intel_de_read(dev_priv, PIPECONF(dsi_trans));
+-		tmp |= PIPECONF_ENABLE;
+-		intel_de_write(dev_priv, PIPECONF(dsi_trans), tmp);
++		intel_de_rmw(dev_priv, PIPECONF(dsi_trans), 0, PIPECONF_ENABLE);
+ 
+ 		/* wait for transcoder to be enabled */
+ 		if (intel_de_wait_for_set(dev_priv, PIPECONF(dsi_trans),
+@@ -1067,7 +993,7 @@ static void gen11_dsi_setup_timeouts(struct intel_encoder *encoder,
+ 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+ 	enum port port;
+ 	enum transcoder dsi_trans;
+-	u32 tmp, hs_tx_timeout, lp_rx_timeout, ta_timeout, divisor, mul;
++	u32 hs_tx_timeout, lp_rx_timeout, ta_timeout, divisor, mul;
+ 
+ 	/*
+ 	 * escape clock count calculation:
+@@ -1087,26 +1013,23 @@ static void gen11_dsi_setup_timeouts(struct intel_encoder *encoder,
+ 		dsi_trans = dsi_port_to_transcoder(port);
+ 
+ 		/* program hst_tx_timeout */
+-		tmp = intel_de_read(dev_priv, DSI_HSTX_TO(dsi_trans));
+-		tmp &= ~HSTX_TIMEOUT_VALUE_MASK;
+-		tmp |= HSTX_TIMEOUT_VALUE(hs_tx_timeout);
+-		intel_de_write(dev_priv, DSI_HSTX_TO(dsi_trans), tmp);
++		intel_de_rmw(dev_priv, DSI_HSTX_TO(dsi_trans),
++			     HSTX_TIMEOUT_VALUE_MASK,
++			     HSTX_TIMEOUT_VALUE(hs_tx_timeout));
+ 
+ 		/* FIXME: DSI_CALIB_TO */
+ 
+ 		/* program lp_rx_host timeout */
+-		tmp = intel_de_read(dev_priv, DSI_LPRX_HOST_TO(dsi_trans));
+-		tmp &= ~LPRX_TIMEOUT_VALUE_MASK;
+-		tmp |= LPRX_TIMEOUT_VALUE(lp_rx_timeout);
+-		intel_de_write(dev_priv, DSI_LPRX_HOST_TO(dsi_trans), tmp);
++		intel_de_rmw(dev_priv, DSI_LPRX_HOST_TO(dsi_trans),
++			     LPRX_TIMEOUT_VALUE_MASK,
++			     LPRX_TIMEOUT_VALUE(lp_rx_timeout));
+ 
+ 		/* FIXME: DSI_PWAIT_TO */
+ 
+ 		/* program turn around timeout */
+-		tmp = intel_de_read(dev_priv, DSI_TA_TO(dsi_trans));
+-		tmp &= ~TA_TIMEOUT_VALUE_MASK;
+-		tmp |= TA_TIMEOUT_VALUE(ta_timeout);
+-		intel_de_write(dev_priv, DSI_TA_TO(dsi_trans), tmp);
++		intel_de_rmw(dev_priv, DSI_TA_TO(dsi_trans),
++			     TA_TIMEOUT_VALUE_MASK,
++			     TA_TIMEOUT_VALUE(ta_timeout));
+ 	}
+ }
+ 
+@@ -1310,15 +1233,12 @@ static void gen11_dsi_disable_transcoder(struct intel_encoder *encoder)
+ 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+ 	enum port port;
+ 	enum transcoder dsi_trans;
+-	u32 tmp;
+ 
+ 	for_each_dsi_port(port, intel_dsi->ports) {
+ 		dsi_trans = dsi_port_to_transcoder(port);
+ 
+ 		/* disable transcoder */
+-		tmp = intel_de_read(dev_priv, PIPECONF(dsi_trans));
+-		tmp &= ~PIPECONF_ENABLE;
+-		intel_de_write(dev_priv, PIPECONF(dsi_trans), tmp);
++		intel_de_rmw(dev_priv, PIPECONF(dsi_trans), PIPECONF_ENABLE, 0);
+ 
+ 		/* wait for transcoder to be disabled */
+ 		if (intel_de_wait_for_clear(dev_priv, PIPECONF(dsi_trans),
+@@ -1350,11 +1270,9 @@ static void gen11_dsi_deconfigure_trancoder(struct intel_encoder *encoder)
+ 
+ 	/* disable periodic update mode */
+ 	if (is_cmd_mode(intel_dsi)) {
+-		for_each_dsi_port(port, intel_dsi->ports) {
+-			tmp = intel_de_read(dev_priv, DSI_CMD_FRMCTL(port));
+-			tmp &= ~DSI_PERIODIC_FRAME_UPDATE_ENABLE;
+-			intel_de_write(dev_priv, DSI_CMD_FRMCTL(port), tmp);
+-		}
++		for_each_dsi_port(port, intel_dsi->ports)
++			intel_de_rmw(dev_priv, DSI_CMD_FRMCTL(port),
++				     DSI_PERIODIC_FRAME_UPDATE_ENABLE, 0);
+ 	}
+ 
+ 	/* put dsi link in ULPS */
+@@ -1374,20 +1292,16 @@ static void gen11_dsi_deconfigure_trancoder(struct intel_encoder *encoder)
+ 	/* disable ddi function */
+ 	for_each_dsi_port(port, intel_dsi->ports) {
+ 		dsi_trans = dsi_port_to_transcoder(port);
+-		tmp = intel_de_read(dev_priv, TRANS_DDI_FUNC_CTL(dsi_trans));
+-		tmp &= ~TRANS_DDI_FUNC_ENABLE;
+-		intel_de_write(dev_priv, TRANS_DDI_FUNC_CTL(dsi_trans), tmp);
++		intel_de_rmw(dev_priv, TRANS_DDI_FUNC_CTL(dsi_trans),
++			     TRANS_DDI_FUNC_ENABLE, 0);
+ 	}
+ 
+ 	/* disable port sync mode if dual link */
+ 	if (intel_dsi->dual_link) {
+ 		for_each_dsi_port(port, intel_dsi->ports) {
+ 			dsi_trans = dsi_port_to_transcoder(port);
+-			tmp = intel_de_read(dev_priv,
+-					    TRANS_DDI_FUNC_CTL2(dsi_trans));
+-			tmp &= ~PORT_SYNC_MODE_ENABLE;
+-			intel_de_write(dev_priv,
+-				       TRANS_DDI_FUNC_CTL2(dsi_trans), tmp);
++			intel_de_rmw(dev_priv, TRANS_DDI_FUNC_CTL2(dsi_trans),
++				     PORT_SYNC_MODE_ENABLE, 0);
+ 		}
+ 	}
+ }
+@@ -1396,14 +1310,11 @@ static void gen11_dsi_disable_port(struct intel_encoder *encoder)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+-	u32 tmp;
+ 	enum port port;
+ 
+ 	gen11_dsi_ungate_clocks(encoder);
+ 	for_each_dsi_port(port, intel_dsi->ports) {
+-		tmp = intel_de_read(dev_priv, DDI_BUF_CTL(port));
+-		tmp &= ~DDI_BUF_CTL_ENABLE;
+-		intel_de_write(dev_priv, DDI_BUF_CTL(port), tmp);
++		intel_de_rmw(dev_priv, DDI_BUF_CTL(port), DDI_BUF_CTL_ENABLE, 0);
+ 
+ 		if (wait_for_us((intel_de_read(dev_priv, DDI_BUF_CTL(port)) &
+ 				 DDI_BUF_IS_IDLE),
+@@ -1420,7 +1331,6 @@ static void gen11_dsi_disable_io_power(struct intel_encoder *encoder)
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+ 	enum port port;
+-	u32 tmp;
+ 
+ 	for_each_dsi_port(port, intel_dsi->ports) {
+ 		intel_wakeref_t wakeref;
+@@ -1434,11 +1344,9 @@ static void gen11_dsi_disable_io_power(struct intel_encoder *encoder)
+ 	}
+ 
+ 	/* set mode to DDI */
+-	for_each_dsi_port(port, intel_dsi->ports) {
+-		tmp = intel_de_read(dev_priv, ICL_DSI_IO_MODECTL(port));
+-		tmp &= ~COMBO_PHY_MODE_DSI;
+-		intel_de_write(dev_priv, ICL_DSI_IO_MODECTL(port), tmp);
+-	}
++	for_each_dsi_port(port, intel_dsi->ports)
++		intel_de_rmw(dev_priv, ICL_DSI_IO_MODECTL(port),
++			     COMBO_PHY_MODE_DSI, 0);
+ }
+ 
+ static void gen11_dsi_disable(struct intel_atomic_state *state,
+-- 
+2.34.1
 
-Nirmoy
-
-On 12/19/2022 1:36 PM, Nirmoy Das wrote:
-> We have below nested fence slot reservation and then fence addition
-> to that dma_resv.
-> dma_resv_reserve_fences() from --> ttm_bo_handle_move_mem()
->          dma_resv_reserve_fences() from --> i915_vma_unbind_async()
->          dma_resv_add_fence() from --> i915_vma_unbind_async()
-> dma_resv_add_fence() from -->ttm_bo_move_accel_cleanup()
->
-> A nested dma_resv_reserve_fences will not reserve extra slots and if the
-> BO comes with lots of fences in its dma_resv, we might see:
->
-> BUG_ON(fobj->num_fences >= fobj->max_fences);
->
-> Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-> ---
->   drivers/gpu/drm/i915/i915_vma.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-> index 7d044888ac33..5ac4c1c2403c 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.c
-> +++ b/drivers/gpu/drm/i915/i915_vma.c
-> @@ -2149,7 +2149,7 @@ int i915_vma_unbind_async(struct i915_vma *vma, bool trylock_vm)
->   	if (!obj->mm.rsgt)
->   		return -EBUSY;
->   
-> -	err = dma_resv_reserve_fences(obj->base.resv, 1);
-> +	err = dma_resv_reserve_fences(obj->base.resv, 2);
->   	if (err)
->   		return -EBUSY;
->   
