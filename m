@@ -2,80 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3548651DE0
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 10:46:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CC9D651E8E
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 11:14:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37C3C10E370;
-	Tue, 20 Dec 2022 09:46:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FC7D10E0A9;
+	Tue, 20 Dec 2022 10:14:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC17310E36E
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 09:46:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1671529598;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=ykdKuygOSTPkcM25esQW4i241lwYH2V5lSGsmvsr/ls=;
- b=BldQbzBhuE0/5vrwaJdn65DNG2D+TkgHJnSVkCFDElj8SV5/SrhPac9qhRT98S7FRhBuih
- 9cdMIme56nIL1SK+biulHxp27arVWr8wn74JQigP4HP7begtgzn+nqY9uBi8RaextJeRG/
- NJKDT7If1x105Ugs4WEheobLpymJzVU=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-227-qJwX7qs7N8GJVNT88z0mHQ-1; Tue, 20 Dec 2022 04:46:37 -0500
-X-MC-Unique: qJwX7qs7N8GJVNT88z0mHQ-1
-Received: by mail-wm1-f72.google.com with SMTP id
- b47-20020a05600c4aaf00b003d031aeb1b6so7801281wmp.9
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 01:46:37 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=ykdKuygOSTPkcM25esQW4i241lwYH2V5lSGsmvsr/ls=;
- b=yHxMe3nEa18XIW7//aOOkkRQF4kzhYftN65tpIkocdSzAGQVi+LdT5mn01fJR3UYcp
- wJTIH8mbUYVMBzX/N5alRRdT535+6s++IhbHjNovpkac0hh6/7A61mLLXvyYXIFnfSdF
- m3jHmY9bDc3BlEhs8+4ow2W5uX8Ouv+KabLjDP2Y5eCvR4p8naFoSwEO9VbFbzNj2UtQ
- gW4aptAjQ3W+4SZjoJb/s9LuAPl+yHlSxDLc/PZgJL3f9vi7Be4WZq0q3tmTGntU9g+c
- DMF+V+n6pgc1QnpfM201FraciIqbrUrWAa0ppZFFI16jQtWDid3+e9CybMgkbJDg5JnM
- cvwg==
-X-Gm-Message-State: AFqh2kq0aKS2U3+pY4bKGf5yXkcW3CuAm6vnfnnLGlaZhemnCW0Q8S5p
- RkP1ZTsMcgf2HiKWqpv41+UTv0S1EouYqj0rIATudseVylJSoFWOau/zwoFsdUf+7tW6mgh+Ckd
- l8XPIlZHEXn9IS7WRn2/5NhqBpNWz
-X-Received: by 2002:a05:6000:718:b0:256:ce1b:74ac with SMTP id
- bs24-20020a056000071800b00256ce1b74acmr19147670wrb.29.1671529596403; 
- Tue, 20 Dec 2022 01:46:36 -0800 (PST)
-X-Google-Smtp-Source: AMrXdXvJLK/eM71NU46wbs2aboKoDtpTCvPv8+GeJSh+yzufeE4NK5CbBNZkmGr9N2Pg6bIDfe3F3Q==
-X-Received: by 2002:a05:6000:718:b0:256:ce1b:74ac with SMTP id
- bs24-20020a056000071800b00256ce1b74acmr19147664wrb.29.1671529596230; 
- Tue, 20 Dec 2022 01:46:36 -0800 (PST)
-Received: from [192.168.1.130] (205.pool92-176-231.dynamic.orange.es.
- [92.176.231.205]) by smtp.gmail.com with ESMTPSA id
- c16-20020adffb50000000b002365254ea42sm12325758wrs.1.2022.12.20.01.46.35
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 20 Dec 2022 01:46:35 -0800 (PST)
-Message-ID: <978cd907-65ce-2a89-e046-17a75c0ab832@redhat.com>
-Date: Tue, 20 Dec 2022 10:46:35 +0100
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39E5989B66
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 10:14:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1671531244; x=1703067244;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=iAfb2MciPr3g3gv6hjYUNVNlm1dhUhLCOsHl8UH+IX0=;
+ b=GKtheja9FqKdDaCvcmI56uh7qssHu6ea2rNWT7f6Zm+2pLw0n2Ar+bz9
+ 5sLiQueZbTCST+DqL7QTYlvgMKJuqY2gF98Ut45IQgsuzoLzToC12xcfX
+ prHxhiKw/8W3kk9ynGzO3UDBoIkmTYyEqZI8ns4ts2rc4VtBcwiNbnXwq
+ Tq5soadq5JsjHMJ+q5E5Wz3xKfuUWLOeCCfYO+h7WCYo7VaN7W+aLM6dX
+ DxUVNS+ADEo7huTUFXTf9k+2rRT+hOxEAaCstBa3KpEY3AGCEFNqRvB1X
+ bXR4cERvBMW2TsCJuwFFZfDgC36/4e18SNSjQiEfDtrxPYd0zlF+DPJPL A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10566"; a="405827602"
+X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="405827602"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2022 02:14:03 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10566"; a="644368623"
+X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="644368623"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2022 02:14:02 -0800
+Date: Tue, 20 Dec 2022 12:13:53 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Message-ID: <Y6GK4RxXN7H6CLYd@intel.com>
+References: <20221219135035.13059-1-stanislav.lisovskiy@intel.com>
+ <2000a445-44f2-9aab-7631-69c283532d40@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
- airlied@gmail.com, deller@gmx.de
-References: <20221219160516.23436-1-tzimmermann@suse.de>
- <20221219160516.23436-19-tzimmermann@suse.de>
-From: Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <20221219160516.23436-19-tzimmermann@suse.de>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 18/18] drm/fbdev: Remove aperture handling
- and FBINFO_MISC_FIRMWARE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2000a445-44f2-9aab-7631-69c283532d40@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/mtl: Add support of Tile4 to MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,33 +57,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-hyperv@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 12/19/22 17:05, Thomas Zimmermann wrote:
-> There are no users left of struct fb_info.apertures and the flag
-> FBINFO_MISC_FIRMWARE. Remove both and the aperture-ownership code
-> in the fbdev core. All code for aperture ownership is now located
-> in the fbdev drivers.
+On Mon, Dec 19, 2022 at 08:27:30PM +0200, Juha-Pekka Heikkila wrote:
+> Hi Stan,
 > 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> ---
->  drivers/video/fbdev/core/fbmem.c   | 33 ------------------------------
->  drivers/video/fbdev/core/fbsysfs.c |  1 -
->  include/linux/fb.h                 | 22 --------------------
->  3 files changed, 56 deletions(-)
+> On 19.12.2022 15.50, Stanislav Lisovskiy wrote:
+> > We have some Tile4 tests now skipping, which were
+> > supposed to be working. So lets make them work, by
+> > adding display_ver 14 as supported.
+> > 
+> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/display/intel_fb.c | 8 ++++----
+> >   1 file changed, 4 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+> > index 63137ae5ab217..75a17f38def53 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> > @@ -158,11 +158,11 @@ struct intel_modifier_desc {
+> >   static const struct intel_modifier_desc intel_modifiers[] = {
+> >   	{
+> >   		.modifier = I915_FORMAT_MOD_4_TILED_DG2_MC_CCS,
+> > -		.display_ver = { 13, 13 },
+> > +		.display_ver = { 13, 14 },
+> 
+> I don't think you'd want to do this. These DG2 ccs modifiers rely on usage
+> of flat ccs which is not present in Meteorlake.
+> 
+> >   		.plane_caps = INTEL_PLANE_CAP_TILING_4 | INTEL_PLANE_CAP_CCS_MC,
+> >   	}, {
+> >   		.modifier = I915_FORMAT_MOD_4_TILED_DG2_RC_CCS_CC,
+> > -		.display_ver = { 13, 13 },
+> > +		.display_ver = { 13, 14 },
+> 
+> Let's drop this change too.
+> 
+> >   		.plane_caps = INTEL_PLANE_CAP_TILING_4 | INTEL_PLANE_CAP_CCS_RC_CC,
+> >   		.ccs.cc_planes = BIT(1),
+> > @@ -170,11 +170,11 @@ static const struct intel_modifier_desc intel_modifiers[] = {
+> >   		FORMAT_OVERRIDE(gen12_flat_ccs_cc_formats),
+> >   	}, {
+> >   		.modifier = I915_FORMAT_MOD_4_TILED_DG2_RC_CCS,
+> > -		.display_ver = { 13, 13 },
+> > +		.display_ver = { 13, 14 },
+> 
+> And this.
 
-Nice patch!
+Ah, I have been surfing yesterday the spec, trying to find if ccs is supported or not, looks like
+I got bit confused. 
 
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+> 
+> >   		.plane_caps = INTEL_PLANE_CAP_TILING_4 | INTEL_PLANE_CAP_CCS_RC,
+> >   	}, {
+> >   		.modifier = I915_FORMAT_MOD_4_TILED,
+> > -		.display_ver = { 13, 13 },
+> > +		.display_ver = { 13, 14 },
+> 
+> Here you could do something like ".display_ver = { 13, -1 }," to enable
+> tile4 from version 13 onward and we'll fix it if it ever change in the
+> future.
 
--- 
-Best regards,
+Yeah, recently had similar approach in other feature.
 
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+Stan
 
+> 
+> /Juha-Pekka
+> 
+> >   		.plane_caps = INTEL_PLANE_CAP_TILING_4,
+> >   	}, {
+> >   		.modifier = I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS,
+> 
