@@ -2,57 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C35CD6523FD
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 16:52:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06F3F65241C
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 17:03:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5502B10E0A8;
-	Tue, 20 Dec 2022 15:52:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA95310E073;
+	Tue, 20 Dec 2022 16:03:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B30BC10E0A8
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 15:52:39 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1189310E073
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 16:03:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671551559; x=1703087559;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=WfxpPwz0gOHw8mrohKkaAF66bDrKqt25wum+nerwjNU=;
- b=Vi6Wut4/kYtrYLwmvVQ8Kfz+J1tppOUeQxDM4DSyjaxQHxFJnxIp80/n
- gjRGcGsICSr2h9citSgQUT/2nb7o6ODlmCRMno82EolxibVZbILrRGVJa
- DY/xSpk2NfxteG+r3VooGhPyKT1yvKvyIYXzW+CvItVoRI6Q1dBO2DSQ2
- ZE1nP32YLjic1qBLGXCSub17xKndBNA6WR5nIjpYjY1hYNyiYK/XTPdbY
- TTlmMvKEXIsr3lAw2iAbr2vbe0dUL2wUWjnxJQQm3Hxi5A9J9E1pn5a/y
- NdsTSzWqvAM8rEuP9emiUfN6uNRAymr/rAqSsCxgr5uLyIKCs/clY9WJk Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="299315634"
-X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="299315634"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2022 07:52:39 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="719616727"
-X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="719616727"
-Received: from downeyb-mobl1.ger.corp.intel.com (HELO [10.213.237.87])
- ([10.213.237.87])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2022 07:52:37 -0800
-Message-ID: <15ef1bb9-7312-5d98-8bf0-0af1a37cfd2a@linux.intel.com>
-Date: Tue, 20 Dec 2022 15:52:35 +0000
+ t=1671552197; x=1703088197;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=PyFU7HjG2peLI6GlnHlaE8fonpOvBDyuuxaVWzK6epM=;
+ b=GuzSrxxhYWtdNlmGWM0uJi/dstLcZo3GM6Hzt6CNCGMOiF5i0VcLEagp
+ FzhOQA7fmBvvzI9aNsf6T02VIsIu+F4LaYzH2pbNucV3ZyxpqYKfQ4KB/
+ 9fFB/p49kVmPppx1xTT/mpYZK7NymA5sIGzfMPTo1EDxowy7/x6aHR6/t
+ Yi/0N8TOJqFLOtDuWq1refaUmx48xMz1EVjdxW4sqTRjgZcdkMXReclbq
+ SSgVwYIJErCGQEM5rUhv9AbxCfp4kkvDUg7I9rJM+3ybvYBfynUkuT0Wo
+ Tgk6APRv4ISQDVe6ZORgGQ1RwAob3+4J1t+XJCmE+ugHE2aJqcj5lGxW8 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="320823963"
+X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="320823963"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2022 08:03:02 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="979844991"
+X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="979844991"
+Received: from spalapa-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.60.249])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2022 08:03:00 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>, "Deak,
+ Imre" <imre.deak@intel.com>
+In-Reply-To: <DM6PR11MB3177E122AC904FB5F30EF6EDBAE59@DM6PR11MB3177.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20221124070925.3834910-1-arun.r.murthy@intel.com>
+ <20221215111338.1080698-1-arun.r.murthy@intel.com>
+ <DM6PR11MB3177E122AC904FB5F30EF6EDBAE59@DM6PR11MB3177.namprd11.prod.outlook.com>
+Date: Tue, 20 Dec 2022 18:02:58 +0200
+Message-ID: <87len22hcd.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Content-Language: en-US
-To: srinivas pandruvada <srinivas.pandruvada@linux.intel.com>,
- Mirsad Todorovac <mirsad.todorovac@alu.unizg.hr>,
- LKML <linux-kernel@vger.kernel.org>, jani.nikula@linux.intel.com,
- joonas.lahtinen@linux.intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <f849cc70-b21f-6476-ba26-08989d1243c2@alu.unizg.hr>
- <05424a5351a847786377a548dba0759917d8046c.camel@linux.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <05424a5351a847786377a548dba0759917d8046c.camel@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] Possible regression in drm/i915 driver: memleak
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCHv6] drm/i915/dp: change aux_ctl reg read to
+ polling read
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,90 +62,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Thorsten Leemhuis <regressions@leemhuis.info>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, 19 Dec 2022, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
+> Any comments?
 
-Hi,
+From #intel-gfx:
 
-On 20/12/2022 15:22, srinivas pandruvada wrote:
-> +Added DRM mailing list and maintainers
-> 
-> On Tue, 2022-12-20 at 15:33 +0100, Mirsad Todorovac wrote:
->> Hi all,
+<vsyrjala> bashing the hw for 500 usec seems a bit harsh
+
+Which is true. The default for intel_de_wait_for_register() is 2
+us. Should probably stick to that.
+
+BR,
+Jani.
+
+
+>
+> Thanks and Regards,
+> Arun R Murthy
+> --------------------
+>
+>> -----Original Message-----
+>> From: Murthy, Arun R <arun.r.murthy@intel.com>
+>> Sent: Thursday, December 15, 2022 4:44 PM
+>> To: intel-gfx@lists.freedesktop.org; ville.syrjala@linux.intel.com; Nikula, Jani
+>> <jani.nikula@intel.com>; Deak, Imre <imre.deak@intel.com>
+>> Cc: Murthy, Arun R <arun.r.murthy@intel.com>
+>> Subject: [PATCHv6] drm/i915/dp: change aux_ctl reg read to polling read
 >>
->> I have been unsuccessful to find any particular Intel i915 maintainer
->> emails, so my best bet is to post here, as you will must assuredly
->> already know them.
-
-For future reference you can use ${kernel_dir}/scripts/get_maintainer.pl -f ...
-
->> The problem is a kernel memory leak that is repeatedly occurring
->> triggered during the execution of Chrome browser under the latest
->> 6.1.0+
->> kernel of this morning and Almalinux 8.6 on a Lenovo desktop box
->> with Intel(R) Core(TM) i5-8400 CPU @ 2.80GHz CPU.
+>> The busy timeout logic checks for the AUX BUSY, then waits for the timeout
+>> period and then after timeout reads the register for BUSY or Success.
+>> Instead replace interrupt with polling so as to read the AUX CTL register often
+>> before the timeout period. Looks like there might be some issue with
+>> interrupt-on-read. Hence changing the logic to polling read.
 >>
->> The build is with KMEMLEAK, KASAN and MGLRU turned on during the
->> build,
->> on a vanilla mainline kernel from Mr. Torvalds' tree.
+>> v2: replace interrupt with polling read
+>> v3: use usleep_rang instead of msleep, updated commit msg
+>> v4: use intel_wait_for_regiter internal function
+>> v5: use __intel_de_wait_for_register with 500us slow and 10ms fast timeout
+>> v6: check return value of __intel_de_wait_for_register
 >>
->> The leaks look like this one:
+>> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_dp_aux.c | 14 +++++---------
+>>  1 file changed, 5 insertions(+), 9 deletions(-)
 >>
->> unreferenced object 0xffff888131754880 (size 64):
->>     comm "chrome", pid 13058, jiffies 4298568878 (age 3708.084s)
->>     hex dump (first 32 bytes):
->>       01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
->> ................
->>       00 00 00 00 00 00 00 00 00 80 1e 3e 83 88 ff ff
->> ...........>....
->>     backtrace:
->>       [<ffffffff9e9b5542>] slab_post_alloc_hook+0xb2/0x340
->>       [<ffffffff9e9bbf5f>] __kmem_cache_alloc_node+0x1bf/0x2c0
->>       [<ffffffff9e8f767a>] kmalloc_trace+0x2a/0xb0
->>       [<ffffffffc08dfde5>] drm_vma_node_allow+0x45/0x150 [drm]
->>       [<ffffffffc0b33315>] __assign_mmap_offset_handle+0x615/0x820
->> [i915]
->>       [<ffffffffc0b34057>] i915_gem_mmap_offset_ioctl+0x77/0x110
->> [i915]
->>       [<ffffffffc08bc5e1>] drm_ioctl_kernel+0x181/0x280 [drm]
->>       [<ffffffffc08bc9cd>] drm_ioctl+0x2dd/0x6a0 [drm]
->>       [<ffffffff9ea54744>] __x64_sys_ioctl+0xc4/0x100
->>       [<ffffffff9fbc0178>] do_syscall_64+0x58/0x80
->>       [<ffffffff9fc000aa>] entry_SYSCALL_64_after_hwframe+0x72/0xdc
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+>> b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+>> index 91c93c93e5fc..973dadecf712 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+>> @@ -41,20 +41,16 @@ intel_dp_aux_wait_done(struct intel_dp *intel_dp)
+>>       i915_reg_t ch_ctl = intel_dp->aux_ch_ctl_reg(intel_dp);
+>>       const unsigned int timeout_ms = 10;
+>>       u32 status;
+>> -     bool done;
+>> -
+>> -#define C (((status = intel_de_read_notrace(i915, ch_ctl)) &
+>> DP_AUX_CH_CTL_SEND_BUSY) == 0)
+>> -     done = wait_event_timeout(i915->display.gmbus.wait_queue, C,
+>> -                               msecs_to_jiffies_timeout(timeout_ms));
+>> +     int ret;
 >>
->> The complete list of leaks in attachment, but they seem similar or
->> the same.
+>> -     /* just trace the final value */
+>> -     trace_i915_reg_rw(false, ch_ctl, status, sizeof(status), true);
+>> +     ret = __intel_de_wait_for_register(i915, ch_ctl,
+>> +                                        DP_AUX_CH_CTL_SEND_BUSY, 0,
+>> +                                        500, timeout_ms, &status);
 >>
->> Please find attached lshw and kernel build config file.
+>> -     if (!done)
+>> +     if (ret == -ETIMEDOUT)
+>>               drm_err(&i915->drm,
+>>                       "%s: did not complete or timeout within %ums
+>> (status 0x%08x)\n",
+>>                       intel_dp->aux.name, timeout_ms, status); -#undef C
 >>
->> I will probably check the same parms on my laptop at home, which is
->> also
->> Lenovo, but a different hw config and Ubuntu 22.10.
+>>       return status;
+>>  }
+>> --
+>> 2.25.1
+>
 
-Could you try the below patch?
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-index c3ea243d414d..0b07534c203a 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-@@ -679,9 +679,10 @@ mmap_offset_attach(struct drm_i915_gem_object *obj,
-  insert:
-         mmo = insert_mmo(obj, mmo);
-         GEM_BUG_ON(lookup_mmo(obj, mmap_type) != mmo);
--out:
-+
-         if (file)
-                 drm_vma_node_allow(&mmo->vma_node, file);
-+out:
-         return mmo;
-
-  err:
-
-Maybe it is not the best fix but curious to know if it will make the leak go away.
-
-Regards,
-
-Tvrtko
+-- 
+Jani Nikula, Intel Open Source Graphics Center
