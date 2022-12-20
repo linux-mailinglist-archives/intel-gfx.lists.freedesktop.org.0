@@ -2,153 +2,149 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A54D651F82
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 12:13:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A425B651F88
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 12:16:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62EAA10E3A7;
-	Tue, 20 Dec 2022 11:12:57 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AD6F10E3A7
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 11:12:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2946B10E3AB;
+	Tue, 20 Dec 2022 11:16:14 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6B2410E3A9;
+ Tue, 20 Dec 2022 11:16:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671534769; x=1703070769;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=+j/IXLWM+nofZFEONakoA4sjpfP3f8dxf7iTmwpbKUE=;
- b=kU57df1qenIWdRk3WPjR9cxZwfNFRN7CQ2ztl0vOGsH1j00mPK8e6bPS
- WKxy+BRkvb+dhL59mLRsHs6DY/6CDZFSwoSDOTrSI9p8HAskb3uDv3iu2
- gnJLoMSa7OGJaKbbN+EWhK4PMIK4uJI3IO1V3ngVh9iJUXqYeeit2Y5Mm
- TTk58tTnNuA+dZUcX0ZxaHvZ0eMOJjIdUhnbL3TTZEPDzKVULf1kgOHMV
- NoXsjrnX1oyX+2yok4Jl/otUbb6wtfdae0qeGiih92dbTakyuQlXon+9+
- CX3p9a5PuOVwTnmOPltg9fCJK8DycHLWmUzMEkp9h7gJEOIu4F5wXtxS7 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10566"; a="303013150"
-X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="303013150"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2022 03:12:47 -0800
+ t=1671534968; x=1703070968;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=tj7xxgrZIgZfETltJVvF2gxASi/LN7yI/v4VqSnioYI=;
+ b=OMuP8vJFSr64DswLWfAYdd0LVFw8GSuD8kSETpA0avFQ5s7FICpElS2r
+ QpAObz2HdT+pwgczGn4WGkba+mtL0qoFwyON68pQRX6jictqpX2n/Dv6V
+ IjTG3kXHlQpSlpDk23VeYyyGVaZNxm/hWcyBRmHghWHKrfo7nsPvSiJaU
+ ta60/x01guJbppCwdV6NVkzx+sgY+2ZUaiFQEoRkHQhhMGbqLm7JJ44vB
+ IDQ9qFQin67ZKR2WK0mhgBbBw7+rT0NfGUp2Bfc6Yr16aguSbDrKL/Y8N
+ 6RmAlV8Ftm/9A6wVxDsqN5GBYQFL5SvGET350LSaLn6LL+dK2IkSbvkip A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10566"; a="318283229"
+X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="318283229"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2022 03:16:08 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10566"; a="714384248"
-X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="714384248"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga008.fm.intel.com with ESMTP; 20 Dec 2022 03:12:45 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6500,9779,10566"; a="775257822"
+X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="775257822"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orsmga004.jf.intel.com with ESMTP; 20 Dec 2022 03:16:07 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Tue, 20 Dec 2022 03:12:45 -0800
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.1.2507.16; Tue, 20 Dec 2022 03:16:07 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Tue, 20 Dec 2022 03:12:45 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Tue, 20 Dec 2022 03:12:45 -0800
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.177)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.16 via Frontend Transport; Tue, 20 Dec 2022 03:16:07 -0800
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.102)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Tue, 20 Dec 2022 03:12:44 -0800
+ 15.1.2507.16; Tue, 20 Dec 2022 03:16:06 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eBpShYVdcu56avSxf6VqJnXnWz3V9oNkIclR2li7LEyr0HdVCE+LpbCLd6kfUfV2MSbbxuI7xuJofvvRIV9p8g0lkcRxWT506emeyOV1GBZMa9QfTu+Y0KOeLsESgMikShpYPC6nL6yL12ElMm4ONnDstK+T1YBFwz8wYAbw3ZcwadlNwJupbU7ipWrQAebyGPftYgOrJGoGAEdmug4MLdtGC7UyIc3b7aNTHnwwLnlkI1+RILMc12RbYaMxoPkfQymsTViJi3U4iY+ZrzvMljTL1UOF5k97MdfdM+ScymmKZyctnWyaRL2JcU8lZlQrqbGKWKPUkfEU7jiOOJQzmg==
+ b=PzXVzmaU0gH2qYGK+JHCDoLGrb9KAwjyg/mfLoEjvwHtDhHncSNovT3Pg05i1klFYCf9/cO3Fi+f8Vt6GQsRfpikNXxMTlppfrfgyXKaGsVass6+0kHsFWSU13u9crdjXoy1s5uTd08+u1/9ezTROLc6ONzZFptHn0XuK1UXJPSkdzN27EfVE/tKxRPv6JHLuaTLmKb68CWjoMZ+PBQ6IlTb9VU4RdCCBr5NTLgQYUqQzkKjS0I4g550CwQVgvJ/u8hS24HRRcYD3CChUdF/jMieZTHRIoxSawDEOvWeqrsL2j9OsHJPKOWevCYEuagHPkNqmrxNJkJ8pM4UogZY/A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gzQ3fU3baxgOaHwbQFu3MVhZ8ojt4hHtYApucXxoUWc=;
- b=li5nl4cxLvAaSckBhG7TflPxIsG5Dz58PWkAUuBlC+rL12ZXD6jGIU9DIvtb84ysQ552jZ12LWeXySR+RGMsOsPql4Yu3yjhwgJsgAWr3PDIhIKwtLl5GMhes0J4XkwZVxV8d5dN6l9lqrD6ggUAo1rkbrQDc+p3PwxoybLWv9mFt+V0qlLJ5/IbYa19M806Kh32lNxdlp0aYbyumurVVF9ACYchcBlWSRfEp+cXEAfIPLhhlJMuZDtbVhG8B4A9pxoELNYaNZqp1R2h5RdEz9H/2w6QLqde6iOiw7D3wj13tBzNUMceDqtbgTh/X2PQCYYfAfvojGnaARxYl8VFOQ==
+ bh=Q9GZZp/f/RbtYVlIGHTogNEwXi8LqAAZgbuG7rA7tQ4=;
+ b=JLui4GqDeuXbZy7yhDCUZ1/7AOvm7z/j6U6vFHif+Bseia59RE8JIYs3TVbyB4FwiDwVK46e2emNETA7YCyzwGeC2C9g5sm6NMCXnYns3C4GRhafFXanGwn06pPfNR1V/qJ5QDZhNncAa2sXbawyUmuibtf3SOvIrIUqD80mffnUHRTv/bo4d83AXCGBcLTMXhz509hzq1b12W1kzRwFv9v+PmiL5Oi3lj/DaFMZJY+ZvjD+HZkj+4MynMn7dy/gaVula74FkkfQko15w5oR/WsCZRf3s95T+LcXkurCVALwEG7skvlsYHmrGKeHPRpEGgqtzcZ8VCfFrXFxTfDTxQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by SJ1PR11MB6227.namprd11.prod.outlook.com (2603:10b6:a03:45a::10) with
+Received: from DM4PR11MB5488.namprd11.prod.outlook.com (2603:10b6:5:39d::5) by
+ IA0PR11MB7790.namprd11.prod.outlook.com (2603:10b6:208:403::10) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5924.16; Tue, 20 Dec
- 2022 11:12:43 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::6591:f625:d30c:c35e]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::6591:f625:d30c:c35e%6]) with mapi id 15.20.5924.016; Tue, 20 Dec 2022
- 11:12:43 +0000
-Message-ID: <fa41b2aa-94f8-e400-0a05-9bf08cf83d83@intel.com>
-Date: Tue, 20 Dec 2022 16:42:35 +0530
+ 2022 11:16:04 +0000
+Received: from DM4PR11MB5488.namprd11.prod.outlook.com
+ ([fe80::1209:b438:8e6b:509]) by DM4PR11MB5488.namprd11.prod.outlook.com
+ ([fe80::1209:b438:8e6b:509%8]) with mapi id 15.20.5924.016; Tue, 20 Dec 2022
+ 11:16:03 +0000
+Message-ID: <6cf54357-ef07-fafc-c5e8-3b80ef519d2b@intel.com>
+Date: Tue, 20 Dec 2022 12:15:58 +0100
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- <intel-gfx@lists.freedesktop.org>
-References: <20221220034512.2898859-1-ankit.k.nautiyal@intel.com>
- <875ye64ffj.fsf@intel.com>
+ Thunderbird/102.6.0
+To: <John.C.Harrison@Intel.com>, <Intel-GFX@Lists.FreeDesktop.Org>
+References: <20221220024147.4118685-1-John.C.Harrison@Intel.com>
+ <20221220024147.4118685-4-John.C.Harrison@Intel.com>
 Content-Language: en-US
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <875ye64ffj.fsf@intel.com>
+From: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
+In-Reply-To: <20221220024147.4118685-4-John.C.Harrison@Intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN2PR01CA0098.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:27::13) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR0P281CA0015.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:15::20) To DM4PR11MB5488.namprd11.prod.outlook.com
+ (2603:10b6:5:39d::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|SJ1PR11MB6227:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6fdc7233-e720-41a0-2343-08dae27b1d73
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5488:EE_|IA0PR11MB7790:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4b10e114-5739-47dc-92fe-08dae27b94f4
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: LT9l1U3lUj4TMwHpHHvHCj9Ib/GudDAOXOenj04f4MMrPSCHZtgifXfRdYH7bhv1cIYfVocEZUMI6jFsAAUF+bIj0bkNjDi93TDEHjtF4F3pBnkLMM9Cek6Q9MGYUNiyF4mL+3aX03IwzoAIdkcuTuQDD7NqSwPQv6/93EcLB62y2ZWIXcS1eCyqmiIUG8nW4Inw+f3kTtaHEVtlQb0DRhuQ7aDv2BuM5YRt6z11c8kMZEkRb2kk8Hn+sMKuWZCNmAjiV3wiPg+ZqvkRDwpnCxAGcx9FFeeLU13kFOqjX+T1/t8TcjAw36fy6Fxs5ETeDm1Y4WntkQa8mcgAuWCkznP9QpmI8MUb5YmgtzMk9UVxJP2e04JSzobHaI5lQG3uUgioAFQu/2dcBEkDDAoZapyra5cvhvqRJy1wco+8mhbf4LP+GAOv8QVX5SlLQ/PddyVgQo340vMlj9tGs+tgSeftCHE5hteEtf7dwVDbKlmBLMfHOyBHnHBgk5O5GlPKPDWVJm4zeqJ75gGjlp6WXRWa4GuGeOuHNCYCgU8ou+byN03jCLs2QO2FySw9m372lFVbWpds3HyJIpCCq5fxDWUPKhrorLO/z6bYH+78CGukOB/vHOJvLRQpr4qTnIfBhlAR6QU48yrXvloBbbAWHKmaA9mhipetOlBeyU2HJ8JkBH+N7RwrF4k3shuwEp56NFMwvEhk/ZLT1TMXKvY89CC9pIc3uf3cOTJQXc7b5CM=
+X-Microsoft-Antispam-Message-Info: sOVS5Aj5kd+hrxou8PzcGUNtOLnnddb42OvN5ElS7eDbuTpfdkIJat6sarLcD4lDlgJOMOtQO9j4YAgexXbrT/j187aXmPhSWZ923FnShAK4xA9cmvy7K6vCSoJwWkKjxEPq2a8CaVDj43UF8Ntzasb1dtp0HIMVl6ItauQl6HPiRdTpUi8KPfw2dlqYYbMXnt/5jMSEqM1lcVziz/pOvoQnQb6RHQlAydZZ9pBuvMxOTe66hRa7k0A2GfwHL8TCcY6zZKlRdjKRJXoo2peVvAW3ILtzz22n3KBGnOBJvTk29ubkNxBzignnPBC1DhZRGEre8kfflU/yLczyN4kjFgwBy45TAVB1qKXlV9LhViOqMQ06s0JWPE3PK5v/I77ch2Qc4ARto3T+95s9r6HsOZ2Yo7jSoqFdwz4RZa1Bwv7EKXte0/IxXHScFFQuGAVnXk01xBj3K8RyNseTgdlO3UMNIBCeh1sPMq0/d+C+/B7IhY8P9eosMUJirnQTGedkInCOzY6J4ERBCr61EV4EO1gpv6dbSDUH7h1OGZsdpOyFehYYDjMs0fEfv5rmy+V2vkM1DPanCflrxN+H0ahaRDqdBUUG97gLwtwWARE57t3otKEJOlo9brtdjRfUTfybmQzuivpK9kzhKSqXCllm+zv+VXqr/BnwZXJ2yuqcEsQ=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(396003)(366004)(346002)(39860400002)(376002)(136003)(451199015)(8936002)(31686004)(6512007)(5660300002)(83380400001)(55236004)(53546011)(66556008)(66476007)(6506007)(8676002)(41300700001)(66946007)(86362001)(2906002)(2616005)(38100700002)(82960400001)(186003)(26005)(6486002)(36756003)(478600001)(6666004)(31696002)(316002)(45980500001)(43740500002);
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5488.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(39860400002)(136003)(376002)(366004)(396003)(346002)(451199015)(8936002)(31686004)(5660300002)(41300700001)(66556008)(8676002)(66476007)(66946007)(4326008)(36756003)(26005)(6666004)(53546011)(83380400001)(82960400001)(2906002)(38100700002)(478600001)(6512007)(186003)(6506007)(316002)(6486002)(66899015)(54906003)(66574015)(31696002)(86362001)(2616005)(43740500002)(45980500001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NHI3cWplQUVCejYvUGV1NS83SjhTcGNQbEVLQU9zMmcvTkYrMElWb1huUFZz?=
- =?utf-8?B?RUo4QzF1UjdwTmkwcXVUazVFNCtha2xGYVlvVCtydWRrRkJxSmlLclJmV0RP?=
- =?utf-8?B?aVR5UUl2YWs0cGZBZEZiU2ZDbllSQndyN25wT3dqQ0FyKyswUC8rTmllR2V6?=
- =?utf-8?B?cjhFTjh3Y3VrLzNVTS9TZ3VTN1BmTTVkNlFlcG9iSlZTMFljNG9tZGg1S1ky?=
- =?utf-8?B?NE1uWUZPV3BUNHlSVVRzQ2x2OWx2a2g0Nlg0SmpaZmtjSlNXSUN6eFhWd05p?=
- =?utf-8?B?eWRHZS9RTHFMdTR3N2ZwUmJQQUIyMFZOeTRXOEFqZWFWNWUrU1RxNTZ1Q0dp?=
- =?utf-8?B?SStEYlIrVTNJZmJXc2hjWXRZZ3h3RVBUNjlZZHoyeGhzZWh0RkhVZFBSalFL?=
- =?utf-8?B?b0dzbURabnZqaVNCNGZWWlBpVVJWblpuUnhoOU9IQXkySFNhbkJuTVhLZEkr?=
- =?utf-8?B?VzRWZC9hZUhJSnZ0WVFWL0g1WDN1TkVGT0hOdFQ1QVVJZENrbXM3ejhQZjJV?=
- =?utf-8?B?Y3ROR3BsNzUxZUN4SFNCUSsrei8vQzBhejJyYnFoZHJoYjNxSStRUEVCVitp?=
- =?utf-8?B?T0E1aEZ3VlpFYXFmWWVOeUlUaGpiMDJIcHNMR2tFNEV2cTZoaEV0OTlCM00v?=
- =?utf-8?B?T3RoM0lTbndIbm1tbnROZUp3T2E3RExabTBGYzI0a3d4Z1U3WlZPb2lYWWpS?=
- =?utf-8?B?TXcrU2U2bk5BamRESC8vazNLTE9tS29ZN0xtZmRUSk1vY0tzaXZaOXNoWlFv?=
- =?utf-8?B?RWhYZGFsZFVUNFZjNnh4ckhDUUlPelBGb3ZpOWZ5VGtmdUZjRHcwM2w5MEho?=
- =?utf-8?B?eDNYNGRiekp4dytjNStoZVhqcnFscmo0R2t0cTdIZStkRHhtWmxxNW5EdUdp?=
- =?utf-8?B?NWw3Q05Xb1RUeVpER0gzNXpMNldCNVB3c2VUV0dhVHl1VWp4NEVNMmlsdkJu?=
- =?utf-8?B?ditTWm1lWTRQVmh1QjZJKzhiVnF3cTFBRE1STDROZG1zblJ6THJSL3hYRU9M?=
- =?utf-8?B?K0VCR0JCV3V4b01GWFFJTCtVSkNGT0x3YnVNV2VnMTdndDJFUzRtaGh2MFB5?=
- =?utf-8?B?b01NT1Z1ZWMxZzM4NHpOVURjUGVuRWtUN0dTV2JOVjNtWnB2N2pDaUZiUzZY?=
- =?utf-8?B?Zjh0dzRVbjVpN0c5MmZlZUpRQzRkT05XZGZJZmYxZUZ1OFFGdmxZNWlkK2FB?=
- =?utf-8?B?N0dBVnRaWGpwYlF6V1NBL09WbkQ0TUlPdjlRYnJmL00rbWVYT2dRK0lFa1dx?=
- =?utf-8?B?SlRnVlBrU2VSU3FCdFBCWjBvUXVoRExqWFREWGExZnNnUXhWdCtIUVpCVm8z?=
- =?utf-8?B?dmVpWkZheDZxcHY2amZDT1JjeFdDV2xBQVJROUF6TjNyOWhGSVBZNEVVRkhk?=
- =?utf-8?B?K3RPU3hyQmI1ZkJDZDRzSjFqbTM1YU9td2ViYzJ3Z2ZTQVREdGVjaGlvWkZk?=
- =?utf-8?B?M2pteko5aHlyeHpiT1Y4WnRteHhMYUdtT1JyQmhNZnlXZ0c3WXdEK0lsZVRu?=
- =?utf-8?B?TzBIMUtNMnIvNW9PY2l2MHdMTmZLcXl2WUhmTmFVUldJSXVpeGxQWGIzZ2tT?=
- =?utf-8?B?YkYwNEt4bjVnOEsrNkVmU3RCendPUlpkVzBRWmMzRSt4Q1c0ekgveHQzRUV4?=
- =?utf-8?B?N2w1MTVYSEExNU92NFZZWWZHcjNDZWFWaUV5b2VKempqdmtoQ05vaWsvLzk3?=
- =?utf-8?B?N1lHR2dHMWxOQkI2ZnRGditYVXpBT0psUXBHbFF5N3RkSmo1SzdVL250MWdN?=
- =?utf-8?B?N2JyT0NTRXpaSzRtL1JNS0h1UDdtb29KSWdWa1htNTVjc3hROE9FektDZFRD?=
- =?utf-8?B?U29RaVEwWWpPSzgzbDN5SDZKeEIxWlZmY2UvRyt3RWdiVHYvL3NsYkFwUHhi?=
- =?utf-8?B?MjZhcE9jRFBXUkNJa0FtMmxOU2QyRVp5c1d2Um12TGZlSlFWMjJKa2t5dFhE?=
- =?utf-8?B?ZjZEQ0d5TnRBU1BRK1Y1Y0dkM29NZXBtNTZqVWhKMldkVENvaUJmYjlTYms4?=
- =?utf-8?B?N3lYbmQ5RjU3emdQNjh4K0tDUjJuOUhnVnZXQythQ2lOOVQ5UXlqNVZNblhU?=
- =?utf-8?B?TDh5QUV3b2J4ZDlMRFhHVFZKSFhiVExZdUJmS05YYVYxWElheFBtVHRodFhT?=
- =?utf-8?B?ZXE2Rnh4c0plUVROMlRDeStwRW1kaGZEMEVpMHlFYk1nMTBLMDVDU3NsV0or?=
- =?utf-8?B?TWc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6fdc7233-e720-41a0-2343-08dae27b1d73
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TnRBSC9jRXJRNU9EeDhWVXZqdWJtSGg4NVlqSmxiWkJHVzlMOEFHOVJLZk9L?=
+ =?utf-8?B?TjRTeTdMTkRUaVJKLytMN0R0aWYyMWt4L2xuQWFSRXVub0dSWXhiakZmUElq?=
+ =?utf-8?B?RW1RQUYzUlUxQm4zQXFCcXpBQ0hsaExtclRxY1c1OVlFb3BTL2NRcytXM1N2?=
+ =?utf-8?B?SjZTQXF3OEpjQldBbElURGxVdEE4Q3FESjhHcHJMNkwvRjNXYU5xdTJJRnox?=
+ =?utf-8?B?aytkdVNMWkl0QTdQc2NuZG5CcFBBWC9randhdUdDQThBTHo5MHlnRDllaFRI?=
+ =?utf-8?B?SVhLNng3dWdZYlVPMDQ2OWVTT1ZvTlRRQjhXc0lyaUs0RGpyejV6SnRwS0hz?=
+ =?utf-8?B?VTJFUjhKTEpCZThVY2s1NE9sTUpqMGoxZjRKQXVHcmsvRSt0UHZPcFdsMUlH?=
+ =?utf-8?B?MkpFSUo2MFA5K0pRdnhiOHNxM2h2eWY2cmxPN0tDdlJ0RktjblJUSWdIY2oz?=
+ =?utf-8?B?cW8rSjNwREIvalVKZjBkeDN1cVF6dXJTeGd6OFRXZEcvYWswRWw4bkl6TDl4?=
+ =?utf-8?B?VkxkRVFkWkszcUdDUWNWdk5EV0huN3R0TFBlaHljWHMrdEFzdWQ1VkMwOEFv?=
+ =?utf-8?B?OExJRXBUaGlUUnFUbGpFUDFpOEJhbUFJczFONWRQNXFrRnZ3RU4zbEJscHA5?=
+ =?utf-8?B?azhUd3pJMUlkUUQ0Ukg4WHpGRm82bFUxZW1CeE5VMWY1YkNIUmxQYkFyamZW?=
+ =?utf-8?B?a3I3SmxQVGI5cENqWjIreXZUWmhOem1DR0dGTERQK3p4Q2NyTWpNZnl0dGZa?=
+ =?utf-8?B?Q2t6c3grUVBhd0R6WVVDVk04Nm5ydEZyVFRHUW5CbFhLdW9BT2tNbTdpNzd1?=
+ =?utf-8?B?ODlERGYrQUtKbkV5TEIrTHZMM2M1ZGhaaldFQkJPOWM0WDhVM2pvTVFSREZO?=
+ =?utf-8?B?eWVZTEwyY3daOE4rUjlKekF5K2tHa2hGdUFoZFkyN3k5OWhZelp1cjRHajds?=
+ =?utf-8?B?QThvUXphbmluaUtYUXc0UXFQZWVDL2ExTHVyRXJyNkdKblFOeDNuY2J4RTJh?=
+ =?utf-8?B?OTNiK0ZnS0dtZGZ4OVVwZmxqdmhMUkl1c09hVDdORjNjVkMxTGllVVdSbXNv?=
+ =?utf-8?B?NVFibE5GT3hWSk4rSkhWN1hDT0hUcVFkK3RkUjFOaG1LU0x1b3E4UHZMREhT?=
+ =?utf-8?B?dFNEV255S05iOEFEbmxTeUx1ajF6VXE5QkpWVmM2bjA1YUJZOGc2RlpJdDRt?=
+ =?utf-8?B?VkJSTkt6YjlVeno0eWVrTnpQbHlOOXR3VGd2V0U0R0xvdlFUbllMblcvSWtV?=
+ =?utf-8?B?VWJnNWxZTTEyTXJ4QldxWVIzWmExb2dTTXRwQk1oZEsxVm51Y3djdDdkaG5S?=
+ =?utf-8?B?eTJlWGZsQUNGOEdwL2Y5dFhUUFVjOWJlR2x0bkkwYmxZUkFWaHNtd1lLN0F3?=
+ =?utf-8?B?SHRWaWRMbjkrL0ZFbmhiY3hmVEdjM3hWUGRBZ1V2ZmR1WUJ2T0k4UUtiT0RL?=
+ =?utf-8?B?WWxSL0QxNk5Pc3dDc2xlblRYN01ScDB0Qmhyc09iYjVocFVXK2U3MFh1ZFNK?=
+ =?utf-8?B?Wm54OUJuZDFJZWtkV0VReExvTkIxcG9IazR2Qk1mcmRTakNjN244UzJid3JB?=
+ =?utf-8?B?NE1VUUFXR1B2OGJlWGtIL1FBOGQyWGt3cVN6SHdzeHJJb1ZJZWVrMnpScDNz?=
+ =?utf-8?B?ZkN3ckRxTG90YktxRWxpbGJkQ1N0QStNL1BQL0duVHVDN1VUVTJjaDhsN1Ba?=
+ =?utf-8?B?bzk4Q1hPOHltOVdpUEE1VkUrMFo3bit1dHdub3NpeW8vOXl1QkI2K2R0OTg3?=
+ =?utf-8?B?NDRMNUhFYUxiNDlvUEFyZDJXU0NCVU5KT0xMRFRETVNZWmlUcGIvZXhCWXll?=
+ =?utf-8?B?Q1V6RjZoRGFCRmxJekNxQ2tXbnRIeUhXNlcyY0IrSDJ0L216bEhsVUVTSWlz?=
+ =?utf-8?B?Q21uYVJOTTI3Q2ZlS2E5UG0xUkJWbkNsa2tRT0F3OWFrUm41bjd5SGhsaTR5?=
+ =?utf-8?B?R3dSTVRaUVpZaittM2xCY3RBcnUrZXNibUZ4eXpGUTVmdnVkVHc5U3QyQVph?=
+ =?utf-8?B?QjBpRnhWeVNVRmtYWCtmT0RTejd4VmgxTzVTMGJzL01KVk9aOWN0Y2QwM0Zy?=
+ =?utf-8?B?bkF4czVuUDBMaHp6UlBpb24xV0dLbmp0MEZ3eGhhcmxoNWRPb1N5eVlMTjZQ?=
+ =?utf-8?B?TnZFVENuTUo3L1h5Qi96Tjc5c1lSSFlsRVV2b0FNbnhFT2lBd0M4UVRQUVBp?=
+ =?utf-8?B?NWc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4b10e114-5739-47dc-92fe-08dae27b94f4
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5488.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Dec 2022 11:12:43.2723 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Dec 2022 11:16:03.7070 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3Q6NLWljCq+DDMkz8pWEwy2qppvLNzWlaMxlrru8l3qHobuBj5rWWiLbbnGIk/IkPJXV+o8XsD3vIIHQvCPWj77PRfufS9w5QLC2PippLeg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR11MB6227
+X-MS-Exchange-CrossTenant-UserPrincipalName: rg5MlVx95Xj/mA76ljqVu+pheFB6wS8oQbGmXX298cj4gdgfyqfOVI9OJaPydPttfBcFyUKBor/9xu2Aq7oi2RZYkGp+9USLmrR29Onwu+U=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7790
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/hdmi: Go for scrambling only if
- platform supports TMDS clock > 340MHz
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/uc: Fix two issues with
+ over-size firmware files
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,90 +157,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ Alan Previn <alan.previn.teres.alexis@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>, DRI-Devel@Lists.FreeDesktop.Org,
+ Matthew Auld <matthew.auld@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 12/20/2022 2:31 PM, Jani Nikula wrote:
-> On Tue, 20 Dec 2022, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
->> There are cases, where devices have an HDMI1.4 retimer, and TMDS clock rate
->> is capped to 340MHz via VBT. In such cases scrambling might be supported
->> by the platform and an HDMI2.0 sink for lower TMDS rates, but not
->> supported by the retimer, causing blankouts.
->>
->> So avoid enabling scrambling, if the TMDS clock is capped to <= 340MHz.
->>
->> v2: Added comment, documenting the rationale to check for TMDS clock,
->> before going for scrambling. (Arun)
->>
->> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->> Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
->> ---
->>   drivers/gpu/drm/i915/display/intel_hdmi.c | 21 ++++++++++++++++++++-
->>   1 file changed, 20 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
->> index efa2da080f62..7603426af9a0 100644
->> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
->> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
->> @@ -2244,6 +2244,25 @@ static bool intel_hdmi_is_cloned(const struct intel_crtc_state *crtc_state)
->>   		!is_power_of_2(crtc_state->uapi.encoder_mask);
->>   }
->>   
->> +static bool source_can_support_scrambling(struct intel_encoder *encoder)
-> "source can support scrambling" reads like "if this function returns
-> true, source might support scrambing, but also might not, depends on
-> something else".
+
+On 12/20/2022 3:41 AM, John.C.Harrison@Intel.com wrote:
+> From: John Harrison <John.C.Harrison@Intel.com>
 >
-> So does this mean "source supports scrambling" or "source can support
-> scrambling"? If the latter, as it is now named, what *else* is required
-> for source to support scrambling?
-
-Hmm.. the intention is to have a function to check if source supports 
-scrambling.
-
-Sink side support is checked by 'scdc->scrambling.supported' so we want 
-to have a function that tells us, whether source supports scrambling.
-
-I will modify the function name to : source_supports_scrambling() to 
-avoid the confusion.
-
-Thanks & Regards,
-
-Ankit
-
-
-> BR,
-> Jani.
+> In the case where a firmware file is too large (e.g. someone
+> downloaded a web page ASCII dump from github...), the firmware object
+> is released but the pointer is not zerod. If no other firmware file
+> was found then release would be called again leading to a double kfree.
 >
+> Also, the size check was only being applied to the initial firmware
+> load not any of the subsequent attempts. So move the check into a
+> wrapper that is used for all loads.
 >
+> Fixes: 016241168dc5 ("drm/i915/uc: use different ggtt pin offsets for uc loads")
+> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+
+There was another patch that was sent to fix the double free 
+(https://patchwork.freedesktop.org/series/111545/), but this one is 
+better because it also fixes the size check.
+
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+
+Daniele
+
+> ---
+>   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c | 42 ++++++++++++++++--------
+>   1 file changed, 28 insertions(+), 14 deletions(-)
 >
->> +{
->> +	/*
->> +	 * Gen 10+ support HDMI 2.0 : the max tmds clock is 594MHz, and
->> +	 * scrambling is supported.
->> +	 * But there seem to be cases where certain platforms that support
->> +	 * HDMI 2.0, have an HDMI1.4 retimer chip, and the max tmds clock is
->> +	 * capped by VBT to less than 340MHz.
->> +	 *
->> +	 * In such cases when an HDMI2.0 sink is connected, it creates a
->> +	 * problem : the platform and the sink both support scrambling but the
->> +	 * HDMI 1.4 retimer chip doesn't.
->> +	 *
->> +	 * So go for scrambling, based on the max tmds clock taking into account,
->> +	 * restrictions coming from VBT.
->> +	 */
->> +	return intel_hdmi_source_max_tmds_clock(encoder) > 340000;
->> +}
->> +
->>   int intel_hdmi_compute_config(struct intel_encoder *encoder,
->>   			      struct intel_crtc_state *pipe_config,
->>   			      struct drm_connector_state *conn_state)
->> @@ -2301,7 +2320,7 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
->>   
->>   	pipe_config->lane_count = 4;
->>   
->> -	if (scdc->scrambling.supported && DISPLAY_VER(dev_priv) >= 10) {
->> +	if (scdc->scrambling.supported && source_can_support_scrambling(encoder)) {
->>   		if (scdc->scrambling.low_rates)
->>   			pipe_config->hdmi_scrambling = true;
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+> index d6ff6c584c1e1..06b5f92ba3a55 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+> @@ -675,6 +675,32 @@ static int check_fw_header(struct intel_gt *gt,
+>   	return 0;
+>   }
+>   
+> +int try_firmware_load(struct intel_uc_fw *uc_fw, const struct firmware **fw)
+> +{
+> +	struct intel_gt *gt = __uc_fw_to_gt(uc_fw);
+> +	struct device *dev = gt->i915->drm.dev;
+> +	int err;
+> +
+> +	err = firmware_request_nowarn(fw, uc_fw->file_selected.path, dev);
+> +
+> +	if (err)
+> +		return err;
+> +
+> +	if ((*fw)->size > INTEL_UC_RSVD_GGTT_PER_FW) {
+> +		drm_err(&gt->i915->drm,
+> +			"%s firmware %s: size (%zuKB) exceeds max supported size (%uKB)\n",
+> +			intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
+> +			(*fw)->size / SZ_1K, INTEL_UC_RSVD_GGTT_PER_FW / SZ_1K);
+> +
+> +		/* try to find another blob to load */
+> +		release_firmware(*fw);
+> +		*fw = NULL;
+> +		return -ENOENT;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>   /**
+>    * intel_uc_fw_fetch - fetch uC firmware
+>    * @uc_fw: uC firmware
+> @@ -688,7 +714,6 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
+>   	struct intel_gt *gt = __uc_fw_to_gt(uc_fw);
+>   	struct drm_i915_private *i915 = gt->i915;
+>   	struct intel_uc_fw_file file_ideal;
+> -	struct device *dev = i915->drm.dev;
+>   	struct drm_i915_gem_object *obj;
+>   	const struct firmware *fw = NULL;
+>   	bool old_ver = false;
+> @@ -704,20 +729,9 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
+>   	__force_fw_fetch_failures(uc_fw, -EINVAL);
+>   	__force_fw_fetch_failures(uc_fw, -ESTALE);
+>   
+> -	err = firmware_request_nowarn(&fw, uc_fw->file_selected.path, dev);
+> +	err = try_firmware_load(uc_fw, &fw);
+>   	memcpy(&file_ideal, &uc_fw->file_wanted, sizeof(file_ideal));
+>   
+> -	if (!err && fw->size > INTEL_UC_RSVD_GGTT_PER_FW) {
+> -		drm_err(&i915->drm,
+> -			"%s firmware %s: size (%zuKB) exceeds max supported size (%uKB)\n",
+> -			intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
+> -			fw->size / SZ_1K, INTEL_UC_RSVD_GGTT_PER_FW / SZ_1K);
+> -
+> -		/* try to find another blob to load */
+> -		release_firmware(fw);
+> -		err = -ENOENT;
+> -	}
+> -
+>   	/* Any error is terminal if overriding. Don't bother searching for older versions */
+>   	if (err && intel_uc_fw_is_overridden(uc_fw))
+>   		goto fail;
+> @@ -738,7 +752,7 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
+>   			break;
+>   		}
+>   
+> -		err = firmware_request_nowarn(&fw, uc_fw->file_selected.path, dev);
+> +		err = try_firmware_load(uc_fw, &fw);
+>   	}
+>   
+>   	if (err)
+
