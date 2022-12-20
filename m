@@ -2,50 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03A60651CC1
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 10:02:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF917651CCC
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 10:04:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A9B710E09C;
-	Tue, 20 Dec 2022 09:01:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0CD110E0B8;
+	Tue, 20 Dec 2022 09:03:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97F1210E339
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 09:01:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671526886; x=1703062886;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=/m1rTkyKbc7WTELnTtWV/XCXto8U2qpw0IxkzflFT8o=;
- b=QxBbPiN+gmfj1pB4eNpO3ejEouGjp41dg97pk0hR4TiITb0sfSuvMDwJ
- h3SarMMHMNznI8CbF/ybFcCvbOjbTm/uoGXLDWKeDEIpDntenpoqyztRl
- q9zfvPwz7c21uEy1EIdsMuVdzavFxrHPa1IGLerDZVTyknrY5sUcJfU/y
- NdmM81cXGPe0HOeWii1ZJbQGZjr35MFw5BraHn8NeEebr9dAe7F/czk7M
- VP+p+eS0Zahf0yg5J6apfMOHiBAdoFZENqQCxTPau0Lsf0syh7j26+g8m
- 7coYfuimxN0f1i7XsL+PMXslrDqdAiq6ORtfOafnIj5Uydvds8XHfLJOB A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10566"; a="346666227"
-X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="346666227"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2022 01:01:25 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10566"; a="681558695"
-X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="681558695"
-Received: from spalapa-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.60.249])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2022 01:01:23 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20221220034512.2898859-1-ankit.k.nautiyal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221220034512.2898859-1-ankit.k.nautiyal@intel.com>
-Date: Tue, 20 Dec 2022 11:01:20 +0200
-Message-ID: <875ye64ffj.fsf@intel.com>
+Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com
+ [IPv6:2001:4860:4864:20::2a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 437F410E09C;
+ Tue, 20 Dec 2022 09:03:54 +0000 (UTC)
+Received: by mail-oa1-x2a.google.com with SMTP id
+ 586e51a60fabf-1442977d77dso14692586fac.6; 
+ Tue, 20 Dec 2022 01:03:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=UzvNL+TsR6wJp/VVk0N1EHg2FFHt1BbH9bwtEX37Mi8=;
+ b=l3PXEmY/Kh0b3BeAbHpZa0feNze1JUpM8+hStS2W1fAAhwIMr19+c7vde4hb3ClotP
+ Je6KhjVpQ3nXGc+tmOdyLDy1po5FWDBYKeh3I0dcKWIb49j6tkB8f3AIgrICYeIEDYo6
+ vwbcqk2Oz9ctUixuyecsbsY7PtYPFr5RuMYa2CAix4hdO/zOtysHwkRTIuW4Za+b8R0T
+ fD0n7MzKKc8jibi1q4YkG7zWGsHs7/zmm35OhNU+w5QLrsyN1gZBG1PVQPHgTF3MMs9H
+ 4LkJytrnPymeTkXq5oXhKRy0tzt2k3W2V1XWQz0kOpmvPcCjQ23PtZWRsfyXpOxXk5yP
+ jicQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=UzvNL+TsR6wJp/VVk0N1EHg2FFHt1BbH9bwtEX37Mi8=;
+ b=Bgt+WNyRHY/hAdhQi9jKnoVht9MTZxE/ewEZZ56KBH4IrYRd9rKf0oNmdy3rI5LS1f
+ nfeylwB58bbC4pkRVOBG8ghfhVu8EFpLFPxWfcrNfdd4S4c75n9bbvvOhrdjpLKZCT9y
+ fy+6+ddAsu5mwWjwyNz2sd0d4QfwjCTU69NMaEoGeP8DVztBEIlDKK8j8LK/1bLaZfgK
+ 5OcpQh5lv8rygvqeaPnFhQSoqlZ7u8+KhQ8tamewRoweqSb/Np6/GDWMPlkUhSIER3vL
+ PR3U0Yzv15qiHusXiwn5cLT8l/H67v0bGD48FbeElG0jqZHegwhaA9OP+YiDokVbRhHj
+ hhMQ==
+X-Gm-Message-State: AFqh2krpwtdc2jtbXPnaFY4lUNJaULNVult4h+TeO5sPymKcuVi5E1Kh
+ z2j52fSwqKQ7ZN/hk2aYyN20prdNs18iXmo3Wh8=
+X-Google-Smtp-Source: AMrXdXveFr80wwpqNX3EU58rZEURdkoOkmVxIfys7NPcpdUmvbzGH0j/NN1RcyEMJ4xghKpphstg1uEAj1cGVX+gMlU=
+X-Received: by 2002:a05:6870:6083:b0:14b:7e0a:eefa with SMTP id
+ t3-20020a056870608300b0014b7e0aeefamr1637834oae.49.1671527033285; Tue, 20 Dec
+ 2022 01:03:53 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/hdmi: Go for scrambling only if
- platform supports TMDS clock > 340MHz
+References: <11728bc1-7b59-1623-b517-d1a0d57eb275@intel.com>
+ <20221219125204.1001149-1-zyytlz.wz@163.com>
+ <20221220082255.GE30028@zhen-hp.sh.intel.com>
+In-Reply-To: <20221220082255.GE30028@zhen-hp.sh.intel.com>
+From: Zheng Hacker <hackerzheng666@gmail.com>
+Date: Tue, 20 Dec 2022 17:03:41 +0800
+Message-ID: <CAJedcCzD6Zc=ncxH5821OA=zL49bUFqD2hYT=TruU2AVt+_2hg@mail.gmail.com>
+To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [RESEND PATCH v4] drm/i915/gvt: fix double free bug
+ in split_2MB_gtt_entry
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,78 +70,109 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: alex000young@gmail.com, security@kernel.org, airlied@linux.ie,
+ gregkh@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ 1002992920@qq.com, airlied@gmail.com, Zheng Wang <zyytlz.wz@163.com>,
+ intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 20 Dec 2022, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
-> There are cases, where devices have an HDMI1.4 retimer, and TMDS clock rate
-> is capped to 340MHz via VBT. In such cases scrambling might be supported
-> by the platform and an HDMI2.0 sink for lower TMDS rates, but not
-> supported by the retimer, causing blankouts.
+Zhenyu Wang <zhenyuw@linux.intel.com> =E4=BA=8E2022=E5=B9=B412=E6=9C=8820=
+=E6=97=A5=E5=91=A8=E4=BA=8C 16:25=E5=86=99=E9=81=93=EF=BC=9A
 >
-> So avoid enabling scrambling, if the TMDS clock is capped to <= 340MHz.
+> On 2022.12.19 20:52:04 +0800, Zheng Wang wrote:
+> > If intel_gvt_dma_map_guest_page failed, it will call
+> >  ppgtt_invalidate_spt, which will finally free the spt. But the caller =
+does
+> >  not notice that, it will free spt again in error path.
+> >
 >
-> v2: Added comment, documenting the rationale to check for TMDS clock,
-> before going for scrambling. (Arun)
+> It's not clear from this description which caller is actually wrong,
+> better to clarify the problem in ppgtt_populate_spt_by_guest_entry() func=
+tion.
 >
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_hdmi.c | 21 ++++++++++++++++++++-
->  1 file changed, 20 insertions(+), 1 deletion(-)
+
+Get it, will do in the next fix.
+
+
+> >                                                  PAGE_SIZE, &dma_addr);
+> > -             if (ret) {
+> > -                     ppgtt_invalidate_spt(spt);
+> > -                     return ret;
+> > -             }
+> > +             if (ret)
+> > +                     goto err;
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> index efa2da080f62..7603426af9a0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> @@ -2244,6 +2244,25 @@ static bool intel_hdmi_is_cloned(const struct intel_crtc_state *crtc_state)
->  		!is_power_of_2(crtc_state->uapi.encoder_mask);
->  }
->  
-> +static bool source_can_support_scrambling(struct intel_encoder *encoder)
+> I think it's fine to remove this and leave to upper caller, but again ple=
+ase
+> describe the behavior change in commit message as well, e.g to fix the sa=
+nity
+> of spt destroy that leaving previous invalidate and free of spt to caller=
+ function
+> instead of within callee function.
 
-"source can support scrambling" reads like "if this function returns
-true, source might support scrambing, but also might not, depends on
-something else".
+Sorry for my bad habit. Will do in the next version.
 
-So does this mean "source supports scrambling" or "source can support
-scrambling"? If the latter, as it is now named, what *else* is required
-for source to support scrambling?
+> >               sub_se.val64 =3D se->val64;
+> >
+> >               /* Copy the PAT field from PDE. */
+> > @@ -1231,6 +1229,47 @@ static int split_2MB_gtt_entry(struct intel_vgpu=
+ *vgpu,
+> >       ops->set_pfn(se, sub_spt->shadow_page.mfn);
+> >       ppgtt_set_shadow_entry(spt, se, index);
+> >       return 0;
+> > +err:
+> > +     /* Undone the existing mappings of DMA addr. */
+> > +     for_each_present_shadow_entry(spt, &e, parent_index) {
+>
+> sub_spt? We're undoing what's mapped for sub_spt right?
 
-BR,
-Jani.
+Yes, will change it to sub_spt in the next version.
+
+>
+> > +             switch (e.type) {
+> > +             case GTT_TYPE_PPGTT_PTE_4K_ENTRY:
+> > +                     gvt_vdbg_mm("invalidate 4K entry\n");
+> > +                     ppgtt_invalidate_pte(spt, &e);
+> > +                     break;
+> > +             case GTT_TYPE_PPGTT_PTE_64K_ENTRY:
+> > +                     /* We don't setup 64K shadow entry so far. */
+> > +                     WARN(1, "suspicious 64K gtt entry\n");
+> > +                     continue;
+> > +             case GTT_TYPE_PPGTT_PTE_2M_ENTRY:
+> > +                     gvt_vdbg_mm("invalidate 2M entry\n");
+> > +                     continue;
+> > +             case GTT_TYPE_PPGTT_PTE_1G_ENTRY:
+> > +                     WARN(1, "GVT doesn't support 1GB page\n");
+> > +                     continue;
+> > +             case GTT_TYPE_PPGTT_PML4_ENTRY:
+> > +             case GTT_TYPE_PPGTT_PDP_ENTRY:
+> > +             case GTT_TYPE_PPGTT_PDE_ENTRY:
+>
+> I don't think this all entry type makes sense, as here we just split
+> 2M entry for multiple 4K PTE entry.
+
+I got it. I will leave the code for handling 4K PTE entry only.
+
+>
+> > +                     gvt_vdbg_mm("invalidate PMUL4/PDP/PDE entry\n");
+> > +                     ret1 =3D ppgtt_invalidate_spt_by_shadow_entry(
+> > +                                     spt->vgpu, &e);
+> > +                     if (ret1) {
+> > +                             gvt_vgpu_err("fail: shadow page %p shadow=
+ entry 0x%llx type %d\n",
+> > +                             spt, e.val64, e.type);
+> > +                             goto free_spt;
+> > +                     }
+>
+> for above reason, I don't think this is valid.
+
+Got it.
 
 
+Thanks for your carefully reviewing. I'll try to fix that in the coming pat=
+ch.
 
-> +{
-> +	/*
-> +	 * Gen 10+ support HDMI 2.0 : the max tmds clock is 594MHz, and
-> +	 * scrambling is supported.
-> +	 * But there seem to be cases where certain platforms that support
-> +	 * HDMI 2.0, have an HDMI1.4 retimer chip, and the max tmds clock is
-> +	 * capped by VBT to less than 340MHz.
-> +	 *
-> +	 * In such cases when an HDMI2.0 sink is connected, it creates a
-> +	 * problem : the platform and the sink both support scrambling but the
-> +	 * HDMI 1.4 retimer chip doesn't.
-> +	 *
-> +	 * So go for scrambling, based on the max tmds clock taking into account,
-> +	 * restrictions coming from VBT.
-> +	 */
-> +	return intel_hdmi_source_max_tmds_clock(encoder) > 340000;
-> +}
-> +
->  int intel_hdmi_compute_config(struct intel_encoder *encoder,
->  			      struct intel_crtc_state *pipe_config,
->  			      struct drm_connector_state *conn_state)
-> @@ -2301,7 +2320,7 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
->  
->  	pipe_config->lane_count = 4;
->  
-> -	if (scdc->scrambling.supported && DISPLAY_VER(dev_priv) >= 10) {
-> +	if (scdc->scrambling.supported && source_can_support_scrambling(encoder)) {
->  		if (scdc->scrambling.low_rates)
->  			pipe_config->hdmi_scrambling = true;
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Best regards,
+Zheng Wang
