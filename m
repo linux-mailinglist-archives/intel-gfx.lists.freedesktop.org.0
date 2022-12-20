@@ -2,55 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 763F6651EDC
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 11:33:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5419651EFC
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 11:39:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C4C410E379;
-	Tue, 20 Dec 2022 10:33:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2271B10E37D;
+	Tue, 20 Dec 2022 10:39:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 811D410E379
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 10:33:12 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8919F10E37D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 10:39:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671532392; x=1703068392;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=GFY27XT1HHoS1UEnIpPW40aLrrqV9w3cWR12DwwAy4Y=;
- b=Foo3IGt4ofvA/k+KMZpLQtn4Myj/Jx5UYNYifFppBdLeVbEinB0VjewR
- ax2VpP0vgI5urbd3zjzk2b+8jmlb07anDANr8MssYvKMmERS1+EqzYCOs
- KDZZ9pQ+5tEwsj6nVhYZbDwcrT9ywetiSZwPQKE8M1qa/g1G5TOuXMLxh
- a/Laf9ZBkN5ZlVyA7e4ZvVENb5N5C5ffqlt567qAAxTasnUxGk45lvrtg
- cN6+OebmPRdWiorM9h6/s3ICvz/76ta7pSW44UlV5xLkSFwmbF2k4yGbe
- oCx6iKgj0fEtvFtAAbraK/6Tog8zPx36sbc1AGy4zpY8eXB71MkSXalgT w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10566"; a="320761210"
-X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="320761210"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2022 02:33:11 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10566"; a="775244557"
-X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="775244557"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.249.41.33])
- ([10.249.41.33])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2022 02:33:10 -0800
-Message-ID: <c88f147a-c4bd-c988-d3ec-8a53c6bf7acd@linux.intel.com>
-Date: Tue, 20 Dec 2022 12:33:06 +0200
+ t=1671532762; x=1703068762;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=Ex4KfL40DDQt8ToruSYOCDUrycRlkaYofCsKb+NQjUw=;
+ b=EnHsDPG0t/Vv3z61lClxm6EvkkrdJvWNI5agyc626qv7c48OGAxC2dTX
+ TBDkkqTglgveuo0t/JLh86mK2CRDyOinh8J0tJ72z0e20BIzkYjKoSbpx
+ LDPiiTZNeSCmMf/YqEvtoxphSAEwwMFxadM1eAqh4s3zNDRVNDFxQVaN3
+ /uqqnC9lLliPlRv8ztKiqS41NmHRq7Hi8/GK6XAqZdmHffxXk5VtgrKf/
+ ZDXB4loLNz1iLwOqLL3OyOyM0B+jHOZHi6R0TEuiJPTUvT/EttxoqwCb7
+ wUkqz8MmSX1Hteemiz0QO/qBnuGodFg1z1i26+lJ7nzcHB4i0VXvlA3Fg A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10566"; a="307264251"
+X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="307264251"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2022 02:39:21 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10566"; a="714376720"
+X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="714376720"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by fmsmga008.fm.intel.com with SMTP; 20 Dec 2022 02:39:17 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 20 Dec 2022 12:39:17 +0200
+Date: Tue, 20 Dec 2022 12:39:17 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Simon Ser <contact@emersion.fr>
+Message-ID: <Y6GQ1XvL7wU0kLbO@intel.com>
+References: <20221215155138.246676-1-contact@emersion.fr>
+ <20221215155138.246676-2-contact@emersion.fr>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Content-Language: en-US
-To: Andrzej Hajda <andrzej.hajda@intel.com>, Nirmoy Das
- <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20221219112933.21417-1-nirmoy.das@intel.com>
- <660fc517-82ad-1ecf-17c8-6f9017caaddd@intel.com>
-From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
-In-Reply-To: <660fc517-82ad-1ecf-17c8-6f9017caaddd@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Use helper func to find out
- map type
+In-Reply-To: <20221215155138.246676-2-contact@emersion.fr>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/dp_mst: don't pull
+ unregistered connectors into state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,73 +62,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.auld@intel.com
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, Dec 15, 2022 at 03:51:50PM +0000, Simon Ser wrote:
+> In intel_dp_mst_atomic_master_trans_check(), we pull connectors
+> sharing the same DP-MST stream into the atomic state. However,
+> if the connector is unregistered, this later fails with:
+> 
+>     [  559.425658] i915 0000:00:02.0: [drm:drm_atomic_helper_check_modeset] [CONNECTOR:378:DP-7] is not registered
+> 
+> Skip these unregistered connectors to allow user-space to turn them
+> off.
+> 
+> Fixes part of this wlroots issue:
+> https://gitlab.freedesktop.org/wlroots/wlroots/-/issues/3407
+> 
+> Signed-off-by: Simon Ser <contact@emersion.fr>
+> Cc: Ville Syrj�l� <ville.syrjala@linux.intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Lyude Paul <lyude@redhat.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index f773e117ebc4..70859a927a9d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -280,7 +280,8 @@ intel_dp_mst_atomic_master_trans_check(struct intel_connector *connector,
+>  		struct intel_crtc *crtc;
+>  
+>  		if (connector_iter->mst_port != connector->mst_port ||
+> -		    connector_iter == connector)
+> +		    connector_iter == connector ||
+> +		    connector_iter->base.registration_state == DRM_CONNECTOR_UNREGISTERED)
+>  			continue;
 
-On 12/19/2022 8:04 PM, Andrzej Hajda wrote:
-> On 19.12.2022 12:29, Nirmoy Das wrote:
->> Use i915_coherent_map_type() function to find out
->> map_type of the shmem obj.
->>
->> v2: handle non-llc platform(Matt)
->>
->> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
->> ---
->>   drivers/gpu/drm/i915/gt/shmem_utils.c | 7 +++++--
->>   1 file changed, 5 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/shmem_utils.c 
->> b/drivers/gpu/drm/i915/gt/shmem_utils.c
->> index 402f085f3a02..449c9ed44382 100644
->> --- a/drivers/gpu/drm/i915/gt/shmem_utils.c
->> +++ b/drivers/gpu/drm/i915/gt/shmem_utils.c
->> @@ -8,6 +8,7 @@
->>   #include <linux/pagemap.h>
->>   #include <linux/shmem_fs.h>
->>   +#include "i915_drv.h"
->>   #include "gem/i915_gem_object.h"
->>   #include "gem/i915_gem_lmem.h"
->>   #include "shmem_utils.h"
->> @@ -32,6 +33,8 @@ struct file *shmem_create_from_data(const char 
->> *name, void *data, size_t len)
->>     struct file *shmem_create_from_object(struct drm_i915_gem_object 
->> *obj)
->>   {
->> +    struct drm_i915_private *i915 = to_i915(obj->base.dev);
->> +    enum i915_map_type map_type;
->>       struct file *file;
->>       void *ptr;
->>   @@ -41,8 +44,8 @@ struct file *shmem_create_from_object(struct 
->> drm_i915_gem_object *obj)
->>           return file;
->>       }
->>   -    ptr = i915_gem_object_pin_map_unlocked(obj, 
->> i915_gem_object_is_lmem(obj) ?
->> -                        I915_MAP_WC : I915_MAP_WB);
->> +    map_type = i915_coherent_map_type(i915, obj, true);
->> +    ptr = i915_gem_object_pin_map_unlocked(obj, map_type);
->
->
-> More lines, but less branches, some gain :)
->
+We can't really do that. It would risk leaving slave transcoders
+enabled while the master is undergoing a full modeset.
 
-Yes and I am more behind the idea of unifying finding map_type with this 
-helper.
+I think a couple of ways we could go about this:
+- kill the registration check entirely/partially
+  I think Imre already has some plans for the partial killing
+  due to some type-c vs. pm firmware issues that also need force
+  a full modeset
+- relocate this stuff to happen after drm_atomic_helper_check_modeset()
+  like we already do for eg. bigjoiner. IIRC this was discussed as an
+  option when we added intel_dp_mst_atomic_master_trans_check() but
+  I don't recall anymore why we specifically chose to do this from
+  connector.atomic_check().
 
+>  
+>  		conn_iter_state = intel_atomic_get_digital_connector_state(state,
+> -- 
+> 2.39.0
+> 
 
-> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-
-
-Thanks!
-
-Nirmoy
-
->
-> Regards
-> Andrzej
->
->>       if (IS_ERR(ptr))
->>           return ERR_CAST(ptr);
->
+-- 
+Ville Syrj�l�
+Intel
