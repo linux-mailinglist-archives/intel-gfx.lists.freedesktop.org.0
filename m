@@ -2,54 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 154DB65283C
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 22:11:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9C4165285A
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 22:24:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2481210E0DE;
-	Tue, 20 Dec 2022 21:10:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9BEA10E406;
+	Tue, 20 Dec 2022 21:23:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86C7910E0DE
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 21:10:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671570638; x=1703106638;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=igY+XIMIHcUyLIhql3qfXwVaCWtiGdBbeciLTacVxxU=;
- b=I9ukuOW69b6MAfZnypETH6OIEnaSuf7ymgLhfxZXKZR0jW9FDPQByywp
- 0xW2NunChfrYlCWs6fzni6tcegni7CqBTLvZhIDDbA8YOIDE8mt5YujYx
- n0SYxaD++FwC0wH9uLmhnrPz/2RG40jB9lll49nk3lnsBs4a1TX/3y+0Q
- /JdjhjXUgh6Cgv6XWqqMMRuzYKaEE7oBRcPdEpMOvyL4+t47P6E9YYFEb
- Z9kgMWffldec9oGPcux0/i6NOc61v8o2AN81gYxWldEy2qACe53IQ/hYp
- wz3lBG9h9hu6ZakOZOknYnI9ONqPP72sZl1EjNlHU9fUjlr54iITVwpWO A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="317357033"
-X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="317357033"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2022 13:10:38 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="628882675"
-X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="628882675"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by orsmga006.jf.intel.com with SMTP; 20 Dec 2022 13:10:35 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 20 Dec 2022 23:10:34 +0200
-Date: Tue, 20 Dec 2022 23:10:34 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Luca Coelho <luciano.coelho@intel.com>
-Message-ID: <Y6IkyljA87ZzQ/1t@intel.com>
-References: <20221220120724.196570-1-luciano.coelho@intel.com>
- <20221220120724.196570-3-luciano.coelho@intel.com>
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com
+ [IPv6:2a00:1450:4864:20::52d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E5C7710E406
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 21:23:25 +0000 (UTC)
+Received: by mail-ed1-x52d.google.com with SMTP id m19so19359657edj.8
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 13:23:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:to
+ :content-language:subject:reply-to:user-agent:mime-version:date
+ :message-id:from:to:cc:subject:date:message-id:reply-to;
+ bh=lCzjnOluGHEUA/mW9Ju4GsKFh21aPETjHNGVncx6FZ8=;
+ b=QlqXLYh8MCIqZoJkqRO6HRrATzhG4QgKGUSQ2HRDTZ1T0IFuJ6+YKzwZwlEdkHcqFh
+ kWtJU5OwE2z0eqWuqM5Eu1LVCYnDpLJEuE10LPFE63ayf9Dp7bjs2zfOhgRr/qLcT7yT
+ ostke7g3DAZfc4J6wlHAWgD0VkrtTeugB+Y0UOrNl6dwB0AuohPEjzNtBmgapeXcWn/H
+ GKPI0vLsf5HWcrZDY4pVIHnZ+d82VHVD17iOBmWcldtr3h1xTLdodnDGyUUn2OufF002
+ P8Mn96SwIFaqXiDyDDd10+VbaNFX6nUBNscp48q0O62hpjKXNj5WaQb61B9fgV87v7Tb
+ 6pWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:to
+ :content-language:subject:reply-to:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=lCzjnOluGHEUA/mW9Ju4GsKFh21aPETjHNGVncx6FZ8=;
+ b=wxHCJS4aFWoGKuQV3GejEXqKhtPBGKTy37UkT2z6qseaGYR5rJGj94EhWs7fejg27c
+ ymoCQNcww+5qvK+X8/ixJiRZfq5Ue6ZT06/g+oex3BP5qqrMdN3i+/ry8n/kW55vYE9W
+ ZNUnnVFdqKvDYOpkoaor0KgpH+C4sI4/YVLTrcRLBI3WLf8I8+gjCPONw76LI4U2znd5
+ RgwC5gw7wmSD7il7SoQ/6Ouf4fEduWwh/hadt4ectQdFA/EBgJ6JNB3LZF2XIjpq/ov4
+ 9ljESMxpzFZrNrhQWyBGAl/GzlYHI3+Hg6GA9sTbxUD9MqvpmWxqospx79wK8d540VVw
+ j/sg==
+X-Gm-Message-State: AFqh2kqGKy0AiATPwi8zsvrUwdnWTnRV8aY5Vuf9sAau6fT1rZ+/t23H
+ XXudfACxxiV/4za4AdKV/U1ZZrkYovdvG0zD
+X-Google-Smtp-Source: AMrXdXsjATW24FCS28eIRRrdrtT3aex4SG8nDTeW75hc6tbQmsQyMqN5b/pE35F8/+7824Gfj3us6Q==
+X-Received: by 2002:aa7:dc04:0:b0:472:3008:bcfc with SMTP id
+ b4-20020aa7dc04000000b004723008bcfcmr23480947edu.15.1671571404061; 
+ Tue, 20 Dec 2022 13:23:24 -0800 (PST)
+Received: from [0.0.0.0] ([134.134.139.78])
+ by smtp.googlemail.com with ESMTPSA id
+ t25-20020a056402241900b004643f1524f3sm6134508eda.44.2022.12.20.13.23.21
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 20 Dec 2022 13:23:23 -0800 (PST)
+Message-ID: <dca1d107-a529-fea3-0d1f-ba33ea3bf881@gmail.com>
+Date: Tue, 20 Dec 2022 23:23:17 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221220120724.196570-3-luciano.coelho@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v6 2/2] drm/i915/mtl: Limit scaler input to
- 4k in plane scaling
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Content-Language: en-US
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20221220162926.22805-1-stanislav.lisovskiy@intel.com>
+From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+In-Reply-To: <20221220162926.22805-1-stanislav.lisovskiy@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/mtl: Add support of Tile4 to MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,80 +76,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Reply-To: juhapekka.heikkila@gmail.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Dec 20, 2022 at 02:07:24PM +0200, Luca Coelho wrote:
-> From: Animesh Manna <animesh.manna@intel.com>
+On 20.12.2022 18.29, Stanislav Lisovskiy wrote:
+> We have some Tile4 tests now skipping, which were
+> supposed to be working. So lets make them work, by
+> adding display_ver 14 as supported.
 > 
-> As part of die area reduction max input source modified to 4096
-> for MTL so modified range check logic of scaler.
+> v2: - Remove "14" for Tile 4 CCS formats, as they
+>        seem to be not supported by DG2(Juha-Pekka Heikkila)
+
+DG2 ccs modifiers not supported on MTL. DG2 ccs modifiers are of course 
+supported on DG2.
+
+>      - For generic Tile 4, the opposite - lets use -1
+>        in order to make sure all the next gens support it by
+>        default(Juha-Pekka Heikkila)
 > 
-> Signed-off-by: Jos? Roberto de Souza <jose.souza@intel.com>
-> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-> Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/skl_scaler.c | 31 +++++++++++++++++------
->  1 file changed, 23 insertions(+), 8 deletions(-)
+>   drivers/gpu/drm/i915/display/intel_fb.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-> index d7390067b7d4..6baa07142b03 100644
-> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
-> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-> @@ -103,6 +103,8 @@ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
->  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
->  	const struct drm_display_mode *adjusted_mode =
->  		&crtc_state->hw.adjusted_mode;
-> +	int min_src_w, min_src_h, min_dst_w, min_dst_h;
-> +	int max_src_w, max_src_h, max_dst_w, max_dst_h;
->  
->  	/*
->  	 * Src coordinates are already rotated by 270 degrees for
-> @@ -157,15 +159,28 @@ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
->  		return -EINVAL;
->  	}
->  
-> +	min_src_w = SKL_MIN_SRC_W;
-> +	min_src_h = SKL_MIN_SRC_H;
-> +	min_dst_w = SKL_MIN_DST_W;
-> +	min_dst_h = SKL_MIN_DST_H;
-> +
-> +	if (DISPLAY_VER(dev_priv) >= 11 && DISPLAY_VER(dev_priv) < 14) {
-> +		max_src_w = ICL_MAX_SRC_W;
-> +		max_src_h = ICL_MAX_SRC_H;
-> +		max_dst_w = ICL_MAX_DST_W;
-> +		max_dst_h = ICL_MAX_DST_H;
-> +	} else {
-> +		max_src_w = SKL_MAX_SRC_W;
-> +		max_src_h = SKL_MAX_SRC_H;
-> +		max_dst_w = SKL_MAX_DST_W;
-> +		max_dst_h = SKL_MAX_DST_H;
-> +	}
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+> index 63137ae5ab217..93d0e46e54813 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> @@ -174,7 +174,7 @@ static const struct intel_modifier_desc intel_modifiers[] = {
+>   		.plane_caps = INTEL_PLANE_CAP_TILING_4 | INTEL_PLANE_CAP_CCS_RC,
+>   	}, {
+>   		.modifier = I915_FORMAT_MOD_4_TILED,
+> -		.display_ver = { 13, 13 },
+> +		.display_ver = { 13, -1 },
+>   		.plane_caps = INTEL_PLANE_CAP_TILING_4,
+>   	}, {
+>   		.modifier = I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS,
 
-Bspec says max_src_w=4096, max_src_h=8192, max_dst_w=8192,
-max_dst_h=8192.
-
-> +
->  	/* range checks */
-> -	if (src_w < SKL_MIN_SRC_W || src_h < SKL_MIN_SRC_H ||
-> -	    dst_w < SKL_MIN_DST_W || dst_h < SKL_MIN_DST_H ||
-> -	    (DISPLAY_VER(dev_priv) >= 11 &&
-> -	     (src_w > ICL_MAX_SRC_W || src_h > ICL_MAX_SRC_H ||
-> -	      dst_w > ICL_MAX_DST_W || dst_h > ICL_MAX_DST_H)) ||
-> -	    (DISPLAY_VER(dev_priv) < 11 &&
-> -	     (src_w > SKL_MAX_SRC_W || src_h > SKL_MAX_SRC_H ||
-> -	      dst_w > SKL_MAX_DST_W || dst_h > SKL_MAX_DST_H)))	{
-> +	if (src_w < min_src_w || src_h < min_src_h ||
-> +	    dst_w < min_dst_w || dst_h < min_dst_h ||
-> +	    src_w > max_src_w || src_h > max_src_h ||
-> +	    dst_w > max_dst_w || dst_h > max_dst_h) {
->  		drm_dbg_kms(&dev_priv->drm,
->  			    "scaler_user index %u.%u: src %ux%u dst %ux%u "
->  			    "size is out of scaler range\n",
-> -- 
-> 2.38.1
-
--- 
-Ville Syrjälä
-Intel
+Reviewed-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
