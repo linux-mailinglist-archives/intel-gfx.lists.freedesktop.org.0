@@ -2,56 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2157C65281F
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 21:58:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1632965282B
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 22:01:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 427D910E406;
-	Tue, 20 Dec 2022 20:58:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90E9510E0DE;
+	Tue, 20 Dec 2022 21:00:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B9B310E406
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 20:58:16 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AEA2B10E0DE
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 21:00:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671569896; x=1703105896;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=0WLXu15lVV0reKYMGQLhDuP+CUe4pB52lrrY627iiOE=;
- b=LlljL8rYdjz4NTv9hV1XJ9gWWy8nBF2o5OOyMR6UNTrkHGVLYHrtzVkG
- qFmLV9Z7RwzNq/rW2xeaSKkzECgGssnGzdPt/8su3fdFduRFoEjzbIq3M
- YkIuFsnYpLrRuTiBbIbfJUFaRpwyJFkua1PEkQyRFTy3ap2PaGqF5cNWF
- Ttss8n8AuY00he6Vxu1scxsuhp+LsbHBg6/K5K7JpnInGCc37x46NfePI
- bLWvC1W7Wtc6p6tlG42RNxdE39YPY0CfZoqdVng+N0o+xFJsoJzvUVbyq
- MDnkby/02AQZQz/9CiTqz8cusrHHEgFeckAMVXvyEvg7aPmHOn+qiNc6b A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="317354909"
-X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="317354909"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2022 12:58:15 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="628877547"
-X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="628877547"
-Received: from spalapa-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.60.249])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2022 12:58:13 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>, "Deak,
- Imre" <imre.deak@intel.com>
-In-Reply-To: <DM6PR11MB3177C23771ACBA36E1027AA2BAEA9@DM6PR11MB3177.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221124070925.3834910-1-arun.r.murthy@intel.com>
- <20221215111338.1080698-1-arun.r.murthy@intel.com>
- <DM6PR11MB3177E122AC904FB5F30EF6EDBAE59@DM6PR11MB3177.namprd11.prod.outlook.com>
- <87len22hcd.fsf@intel.com>
- <DM6PR11MB3177C23771ACBA36E1027AA2BAEA9@DM6PR11MB3177.namprd11.prod.outlook.com>
-Date: Tue, 20 Dec 2022 22:58:11 +0200
-Message-ID: <87ili53i8s.fsf@intel.com>
+ t=1671570055; x=1703106055;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=1X6ZKZQ++W9ByrxVJ0I6LWnJvP+E+uuJss29pVkHfkk=;
+ b=aApOhuWHHgSsNHNvbv8iaUoX17hK5IlqUUxUpPSba3cFhIayO2xPQN3g
+ Lz2yAK8cXtz9/i7powhQxVdiZk+Zdj3gEyYZvANL1hC7Ex9JnBa839AJB
+ aP8e6bV9/5hN+xkFw7O91X9DkSwCHsoSkwHOcq7w/gm9ht4e9Gv1KLeIf
+ 8VpBUYRA/31OPF7zBcNrqWvc4xxnUyrbYKgkCA0HusotVlBK1fgyiYN3W
+ +GSdgq63kv8ibsH3b4Xp0s+VoeACKmKVlqUQrfl5m2XMAk3sfGyK8NY2E
+ a5OU/8shqEa/+0urTDIYz5oLQZVarzV65zbxIBpGaelKKKriJfei4Ax1P A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="319773699"
+X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="319773699"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2022 13:00:55 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="601244155"
+X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="601244155"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by orsmga003.jf.intel.com with SMTP; 20 Dec 2022 13:00:52 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 20 Dec 2022 23:00:51 +0200
+Date: Tue, 20 Dec 2022 23:00:51 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Luca Coelho <luciano.coelho@intel.com>
+Message-ID: <Y6IigxnW4salMgXB@intel.com>
+References: <20221220120724.196570-1-luciano.coelho@intel.com>
+ <20221220120724.196570-2-luciano.coelho@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCHv6] drm/i915/dp: change aux_ctl reg read to
- polling read
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221220120724.196570-2-luciano.coelho@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v6 1/2] drm/i915/mtl: limit second scaler
+ vertical scaling in ver >= 14
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,127 +62,219 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 20 Dec 2022, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
->> -----Original Message-----
->> From: Nikula, Jani <jani.nikula@intel.com>
->> Sent: Tuesday, December 20, 2022 9:33 PM
->> To: Murthy, Arun R <arun.r.murthy@intel.com>; intel-
->> gfx@lists.freedesktop.org; ville.syrjala@linux.intel.com; Deak, Imre
->> <imre.deak@intel.com>
->> Subject: RE: [PATCHv6] drm/i915/dp: change aux_ctl reg read to polling read
->>
->> On Mon, 19 Dec 2022, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
->> > Any comments?
->>
->> From #intel-gfx:
->>
->> <vsyrjala> bashing the hw for 500 usec seems a bit harsh
->>
->> Which is true. The default for intel_de_wait_for_register() is 2 us. Should
->> probably stick to that.
->
-> Recommendation as per windows code base is 50us interval for polling
-> the register, so will change it to 50us.
+On Tue, Dec 20, 2022 at 02:07:23PM +0200, Luca Coelho wrote:
+> In newer hardware versions (i.e. display version >= 14), the second
+> scaler doesn't support vertical scaling.
+> 
+> The current implementation of the scaling limits is simplified and
+> only occurs when the planes are created, so we don't know which scaler
+> is being used.
+> 
+> In order to handle separate scaling limits for horizontal and vertical
+> scaling, and different limits per scaler, split the checks in two
+> phases.  We first do a simple check during plane creation and use the
+> best-case scenario (because we don't know the scaler that may be used
+> at a later point) and then do a more specific check when the scalers
+> are actually being set up.
+> 
+> Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+> ---
+> 
+> In v2:
+>    * fix DRM_PLANE_NO_SCALING renamed macros;
+> 
+> In v3:
+>    * No changes.
+> 
+> In v4:
+>    * Got rid of the changes in the general planes max scale code;
+>    * Added a couple of FIXMEs;
+>    * Made intel_atomic_setup_scaler() return an int with errors;
+> 
+> In v5:
+>    * Just resent with a cover letter.
+> 
+> In v6:
+>    * Now the correct version again (same as v4).
+> 
+> 
+> drivers/gpu/drm/i915/display/intel_atomic.c | 83 ++++++++++++++++++---
+>  1 file changed, 73 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
+> index 6621aa245caf..8373be283d8b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic.c
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
+> @@ -41,6 +41,7 @@
+>  #include "intel_global_state.h"
+>  #include "intel_hdcp.h"
+>  #include "intel_psr.h"
+> +#include "intel_fb.h"
+>  #include "skl_universal_plane.h"
+>  
+>  /**
+> @@ -310,11 +311,11 @@ intel_crtc_destroy_state(struct drm_crtc *crtc,
+>  	kfree(crtc_state);
+>  }
+>  
+> -static void intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_state,
+> -				      int num_scalers_need, struct intel_crtc *intel_crtc,
+> -				      const char *name, int idx,
+> -				      struct intel_plane_state *plane_state,
+> -				      int *scaler_id)
+> +static int intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_state,
+> +				     int num_scalers_need, struct intel_crtc *intel_crtc,
+> +				     const char *name, int idx,
+> +				     struct intel_plane_state *plane_state,
+> +				     int *scaler_id)
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(intel_crtc->base.dev);
+>  	int j;
+> @@ -334,7 +335,7 @@ static void intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_sta
+>  
+>  	if (drm_WARN(&dev_priv->drm, *scaler_id < 0,
+>  		     "Cannot find scaler for %s:%d\n", name, idx))
+> -		return;
+> +		return -EBUSY;
+>  
+>  	/* set scaler mode */
+>  	if (plane_state && plane_state->hw.fb &&
+> @@ -375,9 +376,69 @@ static void intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_sta
+>  		mode = SKL_PS_SCALER_MODE_DYN;
+>  	}
+>  
+> +	/*
+> +	 * FIXME: we should also check the scaler factors for pfit, so
+> +	 * this shouldn't be tied directly to planes.
+> +	 */
+> +	if (plane_state && plane_state->hw.fb) {
+> +		const struct drm_framebuffer *fb = plane_state->hw.fb;
+> +		struct drm_rect *src = &plane_state->uapi.src;
+> +		struct drm_rect *dst = &plane_state->uapi.dst;
 
-The parameter is *not* the interval. It's the timeout for fast wait in a
-loop with just cpu_relax() in between. So please keep it 2 us.
+Those can be const.
 
-If the condition doesn't happen in the fast timeout, it'll fall back to
-the slow wait (in this case 10 ms timeout), which starts off with 10 us
-interval, doubling on every poll until it's above 1000 us.
+> +		int hscale, vscale, max_vscale, max_hscale;
+> +
+> +		/*
+> +		 * FIXME: When two scalers are needed, but only one of
+> +		 * them needs to downscale, we should make sure that
+> +		 * the one that needs downscaling support is assigned
+> +		 * as the first scaler, so we don't reject downscaling
+> +		 * unnecessarily.
+> +		 */
+> +
+> +		if (DISPLAY_VER(dev_priv) >= 14) {
+> +			/*
+> +			 * On versions 14 and up, only the first
+> +			 * scaler supports a vertical scaling factor
+> +			 * of more than 1.0, while a horizontal
+> +			 * scaling factor of 3.0 is supported.
+> +			 */
+> +			max_hscale = 0x30000 - 1;
+> +			if (*scaler_id == 0)
+> +				max_vscale = 0x30000 - 1;
+> +			else
+> +				max_vscale = 0x10000;
+> +
+> +		} else if (DISPLAY_VER(dev_priv) >= 10 ||
+> +			   !intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier)) {
+> +			max_hscale = 0x30000 - 1;
+> +			max_vscale = 0x30000 - 1;
+> +		} else {
+> +			max_hscale = 0x20000 - 1;
+> +			max_vscale = 0x20000 - 1;
+> +		}
 
+We'd want something along these lines if we want to handle 
+the hq vs. dyn scaler stuff correctly.
 
-BR,
-Jani.
+if (DISPLAY_VER(dev_priv) >= 14) {
+	...
+} else if (DISPLAY_VER(dev_priv) >= 10)
+	max_hscale = 0x30000 - 1;
+	max_vscale = 0x30000 - 1;
+} else if (mode == NV12) {
+	max_hscale = 0x20000 - 1;
+	max_vscale = 0x20000 - 1;
+} else if (mode == HQ || src_w <= 2048) {
+	max_hscale = 0x30000 - 1;
+	max_vscale = 0x30000 - 1;
+} else {
+	max_hscale = 0x30000 - 1;
+	max_vscale = 0x20000 - 1;
+}
 
+Though we could leave that for a followup patch, in which
+case perhaps add a FIXME.
 
->
-> Thanks and Regards,
-> Arun R Murthy
-> --------------------
->>
->> BR,
->> Jani.
->>
->>
->> >
->> > Thanks and Regards,
->> > Arun R Murthy
->> > --------------------
->> >
->> >> -----Original Message-----
->> >> From: Murthy, Arun R <arun.r.murthy@intel.com>
->> >> Sent: Thursday, December 15, 2022 4:44 PM
->> >> To: intel-gfx@lists.freedesktop.org; ville.syrjala@linux.intel.com;
->> >> Nikula, Jani <jani.nikula@intel.com>; Deak, Imre
->> >> <imre.deak@intel.com>
->> >> Cc: Murthy, Arun R <arun.r.murthy@intel.com>
->> >> Subject: [PATCHv6] drm/i915/dp: change aux_ctl reg read to polling
->> >> read
->> >>
->> >> The busy timeout logic checks for the AUX BUSY, then waits for the
->> >> timeout period and then after timeout reads the register for BUSY or
->> Success.
->> >> Instead replace interrupt with polling so as to read the AUX CTL
->> >> register often before the timeout period. Looks like there might be
->> >> some issue with interrupt-on-read. Hence changing the logic to polling
->> read.
->> >>
->> >> v2: replace interrupt with polling read
->> >> v3: use usleep_rang instead of msleep, updated commit msg
->> >> v4: use intel_wait_for_regiter internal function
->> >> v5: use __intel_de_wait_for_register with 500us slow and 10ms fast
->> >> timeout
->> >> v6: check return value of __intel_de_wait_for_register
->> >>
->> >> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
->> >> ---
->> >>  drivers/gpu/drm/i915/display/intel_dp_aux.c | 14 +++++---------
->> >>  1 file changed, 5 insertions(+), 9 deletions(-)
->> >>
->> >> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c
->> >> b/drivers/gpu/drm/i915/display/intel_dp_aux.c
->> >> index 91c93c93e5fc..973dadecf712 100644
->> >> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
->> >> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
->> >> @@ -41,20 +41,16 @@ intel_dp_aux_wait_done(struct intel_dp
->> *intel_dp)
->> >>       i915_reg_t ch_ctl = intel_dp->aux_ch_ctl_reg(intel_dp);
->> >>       const unsigned int timeout_ms = 10;
->> >>       u32 status;
->> >> -     bool done;
->> >> -
->> >> -#define C (((status = intel_de_read_notrace(i915, ch_ctl)) &
->> >> DP_AUX_CH_CTL_SEND_BUSY) == 0)
->> >> -     done = wait_event_timeout(i915->display.gmbus.wait_queue, C,
->> >> -                               msecs_to_jiffies_timeout(timeout_ms));
->> >> +     int ret;
->> >>
->> >> -     /* just trace the final value */
->> >> -     trace_i915_reg_rw(false, ch_ctl, status, sizeof(status), true);
->> >> +     ret = __intel_de_wait_for_register(i915, ch_ctl,
->> >> +                                        DP_AUX_CH_CTL_SEND_BUSY, 0,
->> >> +                                        500, timeout_ms, &status);
->> >>
->> >> -     if (!done)
->> >> +     if (ret == -ETIMEDOUT)
->> >>               drm_err(&i915->drm,
->> >>                       "%s: did not complete or timeout within %ums
->> >> (status 0x%08x)\n",
->> >>                       intel_dp->aux.name, timeout_ms, status);
->> >> -#undef C
->> >>
->> >>       return status;
->> >>  }
->> >> --
->> >> 2.25.1
->> >
->>
->> --
->> Jani Nikula, Intel Open Source Graphics Center
+> +
+> +		/* Check if required scaling is within limits */
+> +		hscale = drm_rect_calc_hscale(src, dst, 1, max_hscale);
+> +		vscale = drm_rect_calc_vscale(src, dst, 1, max_vscale);
+> +
+> +		if (hscale < 0 || vscale < 0) {
+> +			drm_dbg_kms(&dev_priv->drm,
+> +				    "Scaler %d doesn't support required plane scaling\n",
+> +				    *scaler_id);
+> +			drm_rect_debug_print("src: ", src, true);
+> +			drm_rect_debug_print("dst: ", dst, false);
+> +
+> +			scaler_state->scalers[*scaler_id].in_use = 0;
+> +			*scaler_id = -1;
+
+There should be no need to undo stuff like this.
+
+> +
+> +			return -EOPNOTSUPP;
+
+We typically just go with -EINVAL for pretty much everything.
+Given the number of things that can go wrong no one can realistically
+figure out what happened/how to resolve it based on the errno alone
+anyway.
+
+> +		}
+> +	}
+> +
+>  	drm_dbg_kms(&dev_priv->drm, "Attached scaler id %u.%u to %s:%d\n",
+>  		    intel_crtc->pipe, *scaler_id, name, idx);
+>  	scaler_state->scalers[*scaler_id].mode = mode;
+> +
+> +	return 0;
+>  }
+>  
+>  /**
+> @@ -437,7 +498,7 @@ int intel_atomic_setup_scalers(struct drm_i915_private *dev_priv,
+>  	for (i = 0; i < sizeof(scaler_state->scaler_users) * 8; i++) {
+>  		int *scaler_id;
+>  		const char *name;
+> -		int idx;
+> +		int idx, ret;
+>  
+>  		/* skip if scaler not required */
+>  		if (!(scaler_state->scaler_users & (1 << i)))
+> @@ -494,9 +555,11 @@ int intel_atomic_setup_scalers(struct drm_i915_private *dev_priv,
+>  			scaler_id = &plane_state->scaler_id;
+>  		}
+>  
+> -		intel_atomic_setup_scaler(scaler_state, num_scalers_need,
+> -					  intel_crtc, name, idx,
+> -					  plane_state, scaler_id);
+> +		ret = intel_atomic_setup_scaler(scaler_state, num_scalers_need,
+> +						intel_crtc, name, idx,
+> +						plane_state, scaler_id);
+> +		if (ret < 0)
+> +			return ret;
+>  	}
+>  
+>  	return 0;
+> -- 
+> 2.38.1
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+Ville Syrjälä
+Intel
