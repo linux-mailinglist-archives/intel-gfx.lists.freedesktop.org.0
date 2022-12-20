@@ -2,64 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 886B165377B
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Dec 2022 21:19:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05B69652749
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 20:48:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F99610E4AD;
-	Wed, 21 Dec 2022 20:19:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85F4210E3CC;
+	Tue, 20 Dec 2022 19:47:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from domac.alu.hr (domac.alu.hr [161.53.235.3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD55D10E3BD
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 19:34:54 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by domac.alu.hr (Postfix) with ESMTP id 45633604F2;
- Tue, 20 Dec 2022 20:34:22 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=alu.unizg.hr; s=mail;
- t=1671564862; bh=AMvAYSCzhnqBUsJKH9QAi3LBf/OWQgyZqdczOwEVN5g=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=mVsjDFm8MseZY2DSlA41G+9hfP+qFwB5rrgC0BhlAjXpBwJqpvTYKblpAIgc/L3SW
- RDinGcWaa8somyQ97bMt6ZbkiGVwaiszg4NmJTh9L8dJuyla2BMT5GPNGovM1YAX+M
- L1p1us18STXBwFsKzpr17u7N4/Wfnl9KQv7wTZl2eqg3k0Sbc3Brz+r3W/VBLnksmI
- RjZcJ48G9DUZw5z517lT2SPfKoZNRZcOfwV7RT+awgDpozXz7AeqWAmZBfNLnD04Xn
- Qmk4VLqyrJ/CT2ycbOLBQZZSV8xlnDN5sPADsrJ6FfMfiO+tFPHbVW+QY5GQCkeMok
- UaPSNVnBLO4Lg==
-X-Virus-Scanned: Debian amavisd-new at domac.alu.hr
-Received: from domac.alu.hr ([127.0.0.1])
- by localhost (domac.alu.hr [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 71VgMwB9AUsD; Tue, 20 Dec 2022 20:34:19 +0100 (CET)
-Received: from [193.198.186.200] (pc-mtodorov.slava.alu.hr [193.198.186.200])
- by domac.alu.hr (Postfix) with ESMTPSA id 82F71604F1;
- Tue, 20 Dec 2022 20:34:19 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=alu.unizg.hr; s=mail;
- t=1671564859; bh=AMvAYSCzhnqBUsJKH9QAi3LBf/OWQgyZqdczOwEVN5g=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=oVyhOM5yC9Hjq8b5tJmxPzzgoXwbBCy/t+wnYru2DA6NsILmXMI/MzfGlSxUUHHjU
- bWjQCcxAJlD39Jvz2O3+jXz8/HERg4eqTY6P1/eSqsswDaJA6vCn7AbjebgZ/4WUVv
- r8GznaV0Fm7lid2A4QZ78pbob/55Eo3kJ8E8rDjaEXMsORsD1EITdy9Z1A5DDfUIFO
- A+0uNBy/Z/oqxI8nBLNQCeiVEmMKeoHhiJSZLWroAjVMntGoQoNk0yrsB/t36O6A7Q
- 0wkJIBwFvyJMYWwOqRM4SOqs5MlImA6NPxC29TWt64WcVY8weZgLzVqQqqOYaJcgqa
- BT8CLb15uSl/A==
-Message-ID: <619bdecc-cf87-60a4-f50d-836f4c073ea7@alu.unizg.hr>
-Date: Tue, 20 Dec 2022 20:34:12 +0100
+X-Greylist: delayed 454 seconds by postgrey-1.36 at gabe;
+ Tue, 20 Dec 2022 19:47:46 UTC
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBA3410E3CC
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 19:47:46 +0000 (UTC)
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+ id 8D0971C09F9; Tue, 20 Dec 2022 20:39:56 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
+ t=1671565196;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=Z6Z4LV97YlfeiHNsI0GPtvBWuPiFBia9iXHj9p0V7f4=;
+ b=iSK/6k6YdYfe0pf3QIaGF0m9os72nxF3CAqc4kVpFydNcBeDZyAXwLd29ygI3aWdCD/P4E
+ hjb1tP04xpxvEqTGSku5jVwZ3Ze5vyiRMUS/PfukmleXTPDA24OIQLtf5lIYLLX2i19Nc9
+ ctnIK+xkRK2AK199jxQW3iEge/uxrTY=
+Date: Tue, 20 Dec 2022 20:39:56 +0100
+From: Pavel Machek <pavel@ucw.cz>
+To: Steven Rostedt <rostedt@goodmis.org>
+Message-ID: <Y6IPjC9mpnoquL8S@duo.ucw.cz>
+References: <20221220134519.3dd1318b@gandalf.local.home>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- srinivas pandruvada <srinivas.pandruvada@linux.intel.com>,
- LKML <linux-kernel@vger.kernel.org>, jani.nikula@linux.intel.com,
- joonas.lahtinen@linux.intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <f849cc70-b21f-6476-ba26-08989d1243c2@alu.unizg.hr>
- <05424a5351a847786377a548dba0759917d8046c.camel@linux.intel.com>
- <15ef1bb9-7312-5d98-8bf0-0af1a37cfd2a@linux.intel.com>
-Content-Language: en-US, hr
-From: Mirsad Todorovac <mirsad.todorovac@alu.unizg.hr>
-In-Reply-To: <15ef1bb9-7312-5d98-8bf0-0af1a37cfd2a@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 21 Dec 2022 20:19:41 +0000
-Subject: Re: [Intel-gfx] LOOKS GOOD: Possible regression in drm/i915 driver:
- memleak
+Content-Type: multipart/signed; micalg=pgp-sha1;
+ protocol="application/pgp-signature"; boundary="Q4QndSuPZQc8d5xp"
+Content-Disposition: inline
+In-Reply-To: <20221220134519.3dd1318b@gandalf.local.home>
+Subject: Re: [Intel-gfx] [PATCH] treewide: Convert del_timer*() to
+ timer_shutdown*()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,150 +49,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Thorsten Leemhuis <regressions@leemhuis.info>
+Cc: alsa-devel@alsa-project.org, linux-staging@lists.linux.dev,
+ linux-sh@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-leds@vger.kernel.org, drbd-dev@lists.linbit.com,
+ linux-nilfs@vger.kernel.org, linux-scsi@vger.kernel.org,
+ linux-atm-general@lists.sourceforge.net, lvs-devel@vger.kernel.org,
+ linux-acpi@vger.kernel.org, SHA-cyfmac-dev-list@infineon.com,
+ coreteam@netfilter.org, intel-wired-lan@lists.osuosl.org,
+ linux-input@vger.kernel.org, tipc-discussion@lists.sourceforge.net,
+ linux-ext4@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+ linux-media@vger.kernel.org, bridge@lists.linux-foundation.org,
+ intel-gfx@lists.freedesktop.org, linux-nfs@vger.kernel.org,
+ linux-block@vger.kernel.org, cgroups@vger.kernel.org,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Anna-Maria Gleixner <anna-maria@linutronix.de>,
+ brcm80211-dev-list.pdl@broadcom.com, Stephen Boyd <sboyd@kernel.org>,
+ netdev@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-wireless@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+ Julia Lawall <Julia.Lawall@inria.fr>, linux-bluetooth@vger.kernel.org,
+ netfilter-devel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 12/20/22 16:52, Tvrtko Ursulin wrote:
 
-> On 20/12/2022 15:22, srinivas pandruvada wrote:
->> +Added DRM mailing list and maintainers
->>
->> On Tue, 2022-12-20 at 15:33 +0100, Mirsad Todorovac wrote:
->>> Hi all,
->>>
->>> I have been unsuccessful to find any particular Intel i915 maintainer
->>> emails, so my best bet is to post here, as you will must assuredly
->>> already know them.
-> 
-> For future reference you can use ${kernel_dir}/scripts/get_maintainer.pl 
-> -f ...
-> 
->>> The problem is a kernel memory leak that is repeatedly occurring
->>> triggered during the execution of Chrome browser under the latest
->>> 6.1.0+
->>> kernel of this morning and Almalinux 8.6 on a Lenovo desktop box
->>> with Intel(R) Core(TM) i5-8400 CPU @ 2.80GHz CPU.
->>>
->>> The build is with KMEMLEAK, KASAN and MGLRU turned on during the
->>> build,
->>> on a vanilla mainline kernel from Mr. Torvalds' tree.
->>>
->>> The leaks look like this one:
->>>
->>> unreferenced object 0xffff888131754880 (size 64):
->>>     comm "chrome", pid 13058, jiffies 4298568878 (age 3708.084s)
->>>     hex dump (first 32 bytes):
->>>       01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
->>> ................
->>>       00 00 00 00 00 00 00 00 00 80 1e 3e 83 88 ff ff
->>> ...........>....
->>>     backtrace:
->>>       [<ffffffff9e9b5542>] slab_post_alloc_hook+0xb2/0x340
->>>       [<ffffffff9e9bbf5f>] __kmem_cache_alloc_node+0x1bf/0x2c0
->>>       [<ffffffff9e8f767a>] kmalloc_trace+0x2a/0xb0
->>>       [<ffffffffc08dfde5>] drm_vma_node_allow+0x45/0x150 [drm]
->>>       [<ffffffffc0b33315>] __assign_mmap_offset_handle+0x615/0x820
->>> [i915]
->>>       [<ffffffffc0b34057>] i915_gem_mmap_offset_ioctl+0x77/0x110
->>> [i915]
->>>       [<ffffffffc08bc5e1>] drm_ioctl_kernel+0x181/0x280 [drm]
->>>       [<ffffffffc08bc9cd>] drm_ioctl+0x2dd/0x6a0 [drm]
->>>       [<ffffffff9ea54744>] __x64_sys_ioctl+0xc4/0x100
->>>       [<ffffffff9fbc0178>] do_syscall_64+0x58/0x80
->>>       [<ffffffff9fc000aa>] entry_SYSCALL_64_after_hwframe+0x72/0xdc
->>>
->>> The complete list of leaks in attachment, but they seem similar or
->>> the same.
->>>
->>> Please find attached lshw and kernel build config file.
->>>
->>> I will probably check the same parms on my laptop at home, which is
->>> also
->>> Lenovo, but a different hw config and Ubuntu 22.10.
-> 
-> Could you try the below patch?
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c 
-> b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> index c3ea243d414d..0b07534c203a 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> @@ -679,9 +679,10 @@ mmap_offset_attach(struct drm_i915_gem_object *obj,
->   insert:
->          mmo = insert_mmo(obj, mmo);
->          GEM_BUG_ON(lookup_mmo(obj, mmap_type) != mmo);
-> -out:
-> +
->          if (file)
->                  drm_vma_node_allow(&mmo->vma_node, file);
-> +out:
->          return mmo;
-> 
->   err:
-> 
-> Maybe it is not the best fix but curious to know if it will make the 
-> leak go away.
+--Q4QndSuPZQc8d5xp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Tue 2022-12-20 13:45:19, Steven Rostedt wrote:
+> [
+>   Linus,
+>=20
+>     I ran the script against your latest master branch:
+>     commit b6bb9676f2165d518b35ba3bea5f1fcfc0d969bf
+>=20
+>     As the timer_shutdown*() code is now in your tree, I figured
+>     we can start doing the conversions. At least add the trivial ones
+>     now as Thomas suggested that this gets applied at the end of the
+>     merge window, to avoid conflicts with linux-next during the
+>     development cycle. I can wait to Friday to run it again, and
+>     resubmit.
+>=20
+>     What is the best way to handle this?
+> ]
+>=20
+> From: "Steven Rostedt (Google)" <rostedt@goodmis.org>
+>=20
+> Due to several bugs caused by timers being re-armed after they are
+> shutdown and just before they are freed, a new state of timers was added
+> called "shutdown". After a timer is set to this state, then it can no
+> longer be re-armed.
+>=20
+> The following script was run to find all the trivial locations where
+> del_timer() or del_timer_sync() is called in the same function that the
+> object holding the timer is freed. It also ignores any locations where the
+> timer->function is modified between the del_timer*() and the free(), as
+> that is not considered a "trivial" case.
+>=20
+> This was created by using a coccinelle script and the following
+commands:
 
-After 27 minutes uptime with the patched kernel it looks promising.
-It is much longer than it took for the buggy kernel to leak slabs.
+LED parts looks good to me.
 
-Here is the output:
+Getting it in just before -rc1 would be best solution for me.
 
-[root@pc-mtodorov marvin]# echo scan > /sys/kernel/debug/kmemleak
-[root@pc-mtodorov marvin]# cat !$
-cat /sys/kernel/debug/kmemleak
-unreferenced object 0xffff888105028d80 (size 16):
-   comm "kworker/u12:5", pid 359, jiffies 4294902898 (age 1620.144s)
-   hex dump (first 16 bytes):
-     6d 65 6d 73 74 69 63 6b 30 00 00 00 00 00 00 00  memstick0.......
-   backtrace:
-     [<ffffffffb6bb5542>] slab_post_alloc_hook+0xb2/0x340
-     [<ffffffffb6bbbf5f>] __kmem_cache_alloc_node+0x1bf/0x2c0
-     [<ffffffffb6af8175>] __kmalloc_node_track_caller+0x55/0x160
-     [<ffffffffb6ae34a6>] kstrdup+0x36/0x60
-     [<ffffffffb6ae3508>] kstrdup_const+0x28/0x30
-     [<ffffffffb70d0757>] kvasprintf_const+0x97/0xd0
-     [<ffffffffb7c9cdf4>] kobject_set_name_vargs+0x34/0xc0
-     [<ffffffffb750289b>] dev_set_name+0x9b/0xd0
-     [<ffffffffc12d9201>] memstick_check+0x181/0x639 [memstick]
-     [<ffffffffb676e1d6>] process_one_work+0x4e6/0x7e0
-     [<ffffffffb676e556>] worker_thread+0x76/0x770
-     [<ffffffffb677b468>] kthread+0x168/0x1a0
-     [<ffffffffb6604c99>] ret_from_fork+0x29/0x50
-[root@pc-mtodorov marvin]# w
-  20:27:35 up 27 min,  2 users,  load average: 0.83, 1.15, 1.19
-USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
-marvin   tty2     tty2             20:01   27:10  10:12   2.09s 
-/opt/google/chrome/chrome --type=utility --utility-sub-type=audio.m
-marvin   pts/1    -                20:01    0.00s  2:00   0.38s sudo bash
-[root@pc-mtodorov marvin]# uname -rms
-Linux 6.1.0-b6bb9676f216-mglru-kmemlk-kasan+ x86_64
-[root@pc-mtodorov marvin]#
+Best regards,
+								Pavel
+--=20
+People of Russia, stop Putin before his war on Ukraine escalates.
 
-2. On the Ubuntu 22.10 with Debian build I did not reproduce the error 
-thus far.
+--Q4QndSuPZQc8d5xp
+Content-Type: application/pgp-signature; name="signature.asc"
 
-This looks to me like fixed, but if it doesn't leak anything until 
-Thursday morning when I will see this desktop box next time, then we'll 
-know with more certainty.
+-----BEGIN PGP SIGNATURE-----
 
-Hope this helps. (My $0.02 .)
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCY6IPjAAKCRAw5/Bqldv6
+8qFnAJ4h7/YkgMmaMAi5FTo4aeUHj64lowCgv7jO/1JyimzJx+06JHTOXFlIAIk=
+=01ne
+-----END PGP SIGNATURE-----
 
-Kudos for the quick fix :)
-
-Kind regards,
-Mirsad
-
--- 
-Mirsad Goran Todorovac
-Sistem inženjer
-Grafički fakultet | Akademija likovnih umjetnosti
-Sveučilište u Zagrebu
--- 
-System engineer
-Faculty of Graphic Arts | Academy of Fine Arts
-University of Zagreb, Republic of Croatia
+--Q4QndSuPZQc8d5xp--
