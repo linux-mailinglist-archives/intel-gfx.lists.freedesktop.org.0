@@ -2,156 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5829651FF0
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 12:53:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5205165200D
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 13:00:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5A3F10E3AF;
-	Tue, 20 Dec 2022 11:53:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5BDB10E0A9;
+	Tue, 20 Dec 2022 12:00:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1848610E3AF
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 11:52:58 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9049310E0A9
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 12:00:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671537178; x=1703073178;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=8ijKJKoeEr1bZHGkCzskoUviR8HJgvFy51oR+XFhZ30=;
- b=FTvuzOQ2G1OrpJtvfD4ri7cv2ZFH7bsENjAh6MILmwJVa9ZED0bNQjMj
- wwdjHzSDScb6M4ZGc6ByBnSNnViM8Fel6LsFbaOooqW+st07yepKieJvy
- 5jhoDLY03O8tMzGfmNk6GQItnn2ACT3HPb4pKf5F2WO1MS9qLRAvQA7Jt
- sBt1iV0rdLw2o3EZZxnfMo8UIRKFZxDhnr9oQD8Q336amkKR0h4skpZy+
- +49P9eQO5cZpqg756hxve6ZgtnhY/oNlJ1t6rYI9jLZYLCJQclLUtaxc/
- Apn1mbabcY0O5/zP6HqheoG3enStuzflNUGHPyqqsPGF+X8/ZtY0lJSPc A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10566"; a="299937888"
-X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="299937888"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2022 03:52:57 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10566"; a="719508404"
-X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="719508404"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga004.fm.intel.com with ESMTP; 20 Dec 2022 03:52:57 -0800
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Tue, 20 Dec 2022 03:52:56 -0800
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Tue, 20 Dec 2022 03:52:56 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Tue, 20 Dec 2022 03:52:56 -0800
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.103)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Tue, 20 Dec 2022 03:52:56 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FVC3F2oI/HW5dNEOSBeiuNqmuYEYRkxzTAHjoSeSx+5gZLvssFmsS5+6fPvVsHlr+T+O2RXk6Vx48uoKW/RZB8DAOoUhHawOvXuopNizKz6n6VFLRGOfH+F/LZ7/o2uUV0k2J8MS3CZ0T4s1zB/PTKAZy4KtMaKztMF+GZGS8MucxH60F47inV9THkMuNJ0aHifJsC2h7UrwO3kmtmjxbAUEcHVfVDYwPXGQ7+uNKtXOJGn+xUsL+4bLNWAsqPMkS1BDb31I47MWAbvWfWfPXR4U5X0JnF3XGPCa2BVJbDfO88ro2C+AYXovt8DiqFdON3RM0wavy6FN/xSkma8naA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8ijKJKoeEr1bZHGkCzskoUviR8HJgvFy51oR+XFhZ30=;
- b=HFE+PlU4zi3+Jsv6dWWWVMkRDmGQEmScopcIPVgGtlye5FV/LgAoHXwMn7uuUnTI7H0ix5EdGguNTfTSJarRkPuCNT+dBXWmL1NI43dYWbi2PjLWwqYDKxIgUIkrBscNhGgZlliPcUlkpoF3ivL0PSUG70hEFYsON0Q18DWoSl0BSw+QOts5nDSMmz6wmL7EEEz1dlLf1pHcxwGV4Mhlou1Lp8LS3Tmz0EN+qxqSDifePXipt2VTpe9NZCPeT/F67oWS3kIMVjCmiPeirHqqiWkZbsp9Qj3QUCh/4zJeq2s/lDjRdh2R2FbUEVYI0LyoGCw4j/71kAzw2p588Xf35A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from BYAPR11MB3207.namprd11.prod.outlook.com (2603:10b6:a03:7c::14)
- by SN7PR11MB7512.namprd11.prod.outlook.com (2603:10b6:806:345::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5924.16; Tue, 20 Dec
- 2022 11:52:54 +0000
-Received: from BYAPR11MB3207.namprd11.prod.outlook.com
- ([fe80::5546:ea97:1beb:cb5f]) by BYAPR11MB3207.namprd11.prod.outlook.com
- ([fe80::5546:ea97:1beb:cb5f%4]) with mapi id 15.20.5924.016; Tue, 20 Dec 2022
- 11:52:54 +0000
-From: "Coelho, Luciano" <luciano.coelho@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
-Thread-Topic: [PATCH v5 1/2] drm/i915/mtl: limit second scaler vertical
- scaling in ver >= 14
-Thread-Index: AQHZFGOO13R+uvtW9kegqkfngBEjYq52qmeA
-Date: Tue, 20 Dec 2022 11:52:54 +0000
-Message-ID: <5b9e0ab34dc280b13da9e238b4aae05e4014d7fe.camel@intel.com>
-References: <20221220081117.169803-1-luciano.coelho@intel.com>
- <20221220081117.169803-2-luciano.coelho@intel.com>
- <Y6GX4N21TzJYDN2q@intel.com>
-In-Reply-To: <Y6GX4N21TzJYDN2q@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.46.2-1 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BYAPR11MB3207:EE_|SN7PR11MB7512:EE_
-x-ms-office365-filtering-correlation-id: bd3e8ef3-2726-4d61-ee42-08dae280baf6
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: DYhlDxN6syxwevXJpRAyJhuaRaGrbnJ2uq6B3J/R0aSxEk5Vbyy/qAADrCleTCtBqe1Hb3hwUpX97BrbRUBC+XfmyrKnlHBx4OUvLSXaXTZ8DbakJDVDtNcjfOppiHACtt6TKhbH2yDXEE0PS1c7tE1S3T6Qj75CaW5BJbQpNbU4u56f/tMAPVfMgyj+sKPw88zwzyxpl1EnlHqjegXkI3S8bYPEE3kEXC/YDCQxX2NXLLoiGVmwAFO1w3bEK0GeLJur8Z6RRvBes72prH1cR31z5lwEOe73/GMH8u867T5NmOnJsar745gH8PaqbIBIPAhseFGmWB4VavFW2OQWxK5k3TmDUEd1dwXX0tG9Y3zwLSAJLSItCBwWWI0OeSIyxR/VCdh8mIDqh72h/2w6QZ01WINgCu9cp1xLpb2TAKY7frEL9PL+nrHVnXaaQfe4LjBW+EmloXBCN+tuZyR8yRBfEBtGlh2BR68UEgFYi0jvJZS2OE/TTHklz+vc0Rc9ajL+QyoGo+FtGy0zln60j5d+7oSZJFv0BBuwyZcWbxX+vfTsSgwwdxGvuQXyghJ0gVVXt/MSgWLceuPtSCYnYAo6T/oIUDONkEmwWSZWj624+6n58pGYL2ggx2m/x2np7XOKo97JtIGbYLvzaOe4dv4wkstpw9M1eK4PrOuJe3QMXDEP91MZSaGAs9K9l/oYeSX3uUoIjTRWUsI6gZbUcQ==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR11MB3207.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(136003)(39860400002)(366004)(376002)(346002)(396003)(451199015)(186003)(64756008)(66946007)(8676002)(66476007)(6916009)(6512007)(66556008)(76116006)(91956017)(66446008)(5660300002)(4326008)(122000001)(8936002)(26005)(82960400001)(36756003)(38100700002)(6506007)(71200400001)(66574015)(86362001)(316002)(38070700005)(83380400001)(4001150100001)(2616005)(2906002)(41300700001)(478600001)(6486002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZGJRd2JzRG04ZVk4cWVXS1oyL3FZV3pqUXBoNFdQMEhaM09MaHF3cXd6cUR5?=
- =?utf-8?B?S2t2cnFNSjdXbXZrQVhEdU9xaFNZVEVlc0xobmZybjRjYzFYdkJUUGhrY29l?=
- =?utf-8?B?d1NBdWlCd1VBajV2OXBVc2V5TjlNQWNnVXI4T3YwMTRRRDZXQklvMC9aUlE3?=
- =?utf-8?B?WEVmMEpRVjdxUHdWUSs5VHd2Um1KQTVLeC9yVU1UaEZQQVVhdVBiMFRLWkNV?=
- =?utf-8?B?TGRoUGlQSmtjNlpVRGl4aEZyZEpNakZzamEvMjRIWTNmNmF6UGwxQWRVWmhw?=
- =?utf-8?B?YmZZNVVBNm4vUVY0UlpPcWdIMS9ramNQVmZDUnUzQk9Va2ZuSGE4eUs2SERJ?=
- =?utf-8?B?czBiUzY5QVg4aHpiVEZZcVFVbTZYSVlBRWRsaGRMWGg2UU9MRjJVZFVUK0ls?=
- =?utf-8?B?ckpCcStZTWZFNEVkZG5yR3BmTnpwb3NzYzBaNTJlUmVpbDFjRzNJNE5FdWU5?=
- =?utf-8?B?ekd3UWJVa1NpdGt1TituZURjVEVYbDRzYUdYeFJUaWFSTm9VVHZzdnFYTHpq?=
- =?utf-8?B?WXhkdk42ZHhFelRCTEp3dFZCRHkzdXhSam9qajZJajVJSXdBRHVJOW9nTklB?=
- =?utf-8?B?RU5iOXF4ZjlwdmdWMzRBSzR0S0o4dU1OZGhROWtpWFZzTmcwbEQ5ZWMvaE83?=
- =?utf-8?B?VFpUTytmUnR0UjRKaUtCekdPM3QrRkg1WDdPYzltKzhzOW9Tb0ZtS0NlQVdX?=
- =?utf-8?B?dXE3dTNqY243R044MmlTWXlaUmpEVXZrV0FxS1NXSE5VcmZHeEQ2azVEQWIv?=
- =?utf-8?B?RVJXejIrWkNyMWd1VXR2TklCMi9EVE01a3R5ZWlVTlhGUDNwV2VzNmpNaUlW?=
- =?utf-8?B?T09mR21vWEFaVXEwT0h6Z2tmTTdaSHZUVU1ENDZRaWh3YUdQYWVWdjIxZ3ky?=
- =?utf-8?B?YmEydTIxcW56VEEyVGhDeWVrM0ZBajVwcFlSZkQ0Qi9ib2JPOHlwdlU2TUQ1?=
- =?utf-8?B?UDkxZkVFMWNoWVRSZ1Z4VWxaa1ovOGxCMURxQitOMkhROENFcTJ0RmZ1eW1Q?=
- =?utf-8?B?a3VQUjVBRUQwRmhZSk42UUVUVWlWV2tYWHBNcmJqR05MR0xSR1UxQ3ZYQXE2?=
- =?utf-8?B?a1ZzQU9BQWZJbEVsRFV2a1d3clFLSmptZzZaVjM1R3Z1eDIvSE0zQ0hLclhS?=
- =?utf-8?B?L0g5ajlLQUk2QzNZYWxYZElsanhVMnRveGVzZGo5enUwY3hTM2M5RFRzOGox?=
- =?utf-8?B?dUNnVm53aklvWTlVQnU5cWkrTTM1MDFxbTc4TERPOVZCald6NUVpUTZZK25K?=
- =?utf-8?B?czI3NDJrQ3pRckptMVkzVEw2Mlc5V3I4ZzQ3UUc3bFBaQ256ZTl5aml2RVVL?=
- =?utf-8?B?VlFlK1RwVlo2cVhtWGpKTlZybVp1MjJXNGpwNzZDOVNxTFFBd2JTOU5mY2Rt?=
- =?utf-8?B?WGpQK0ZmempKNURqbmZLVi9VR2pydlNnTDB2T2RqM0VqRmwya1czT0Fic2pJ?=
- =?utf-8?B?R1BSMkd4RExscTBkTXlkbkZVdWtVdkhmeExzWUVMbnJwMTYzQmhuQWVDaUdW?=
- =?utf-8?B?T1JlelRKUHBRMTRVaUlyWmNEQi8rTnQwaU5sa3YrMzlmeVZ6QWpmUDI1dS9y?=
- =?utf-8?B?aVM4SXNVS2twVkNFeHNvU0IzT2g4YlBKa3V5ZkhEeEsyUGhEd1JiOWgyZDFI?=
- =?utf-8?B?Z3R5T3c1ak95KyttYXVQRHBENjdTQnFkVmZEaFdsb3QrL01ZM1dMaTd4RkJt?=
- =?utf-8?B?UE1rSWJwY2lMYXlHM2VBbjdXMithcG0xQUhCV3NUbUx3V01uOEZtWnVDZUxt?=
- =?utf-8?B?MDVGZXZsWkNxVXdETitVc2VrWDJzSjFYOXRWTnRvUkRKYXZSWmVSVlp0WWJw?=
- =?utf-8?B?ZUYxZ1RUS3pzdXdIdGJXdDNPT1VyS2NNa0ZOang1czArU1djZmM5TzZ0dzBL?=
- =?utf-8?B?ZUtuRzBuY0V6V2xMYzhmeVdjRTR0L25QcFYvTFVxUk5ZczZrNTE0ZkxWZmZh?=
- =?utf-8?B?VHRSdjBlVUY4YXJJNzlQZktMNy84azNlaEVBV2ZHUEVPbndJNG9zeGFXcVhJ?=
- =?utf-8?B?WTgxaFFaNWpXT3NuMW1GbkkvVlF4UFllY0cxYUU5c0RBSlFHODJSVEc3R2No?=
- =?utf-8?B?T2Y3aE5YS3I5S0JBdEVsOGhEZmpaaGlDNTUrQ2FHQnc3NkxVNUpBd3NYTTRZ?=
- =?utf-8?B?MTgvZC9oaFVhamltandvMVR5cHVaL01kSkFVWGtFVWMrbS9FblpjNUg0ZTZ2?=
- =?utf-8?B?VHc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <DF4CC6D5AC3F9E4B9101C530A3DC729D@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+ t=1671537639; x=1703073639;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=VLHDqEyEt1U01yQBt8nCuMnKwKoPHisYG8Rz1QHUc+A=;
+ b=NAv52ijX67xIoqAx3Yf+OepwobH10egljMGXiBVucH3QnB2wTvqNn8qO
+ nSQPD4fH1QR/DIc6DJQl4WQOWc2llBS1EZ09vY4p1/XOGA9YcKXV02h8X
+ VnFiJJbcZ/xpVPgExvwAskPer3kxqJJ39XEJlT0/yZ1EtNtmrKGrYQEY7
+ 9FQmc49lqGcFJoZfMfbGoC6L5pXvpEwwIG1erRZG1fRmhTuxhz2oR9L2G
+ XO2sYhu1DFoKhyWU/zP6pAkaioBTbb/7LOFiWZJ/RHit8Rxjq/pobeP/m
+ zuqPW342vkUsMpUfkbLFaVVLbi52yU6hktqkHpYjrM2vN4WaxSl23vIag w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10566"; a="346698120"
+X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="346698120"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2022 04:00:38 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10566"; a="650965169"
+X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="650965169"
+Received: from lab-ah.igk.intel.com ([10.91.215.196])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2022 04:00:36 -0800
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 20 Dec 2022 13:00:22 +0100
+Message-Id: <20221220120023.1214620-1-andrzej.hajda@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3207.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bd3e8ef3-2726-4d61-ee42-08dae280baf6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Dec 2022 11:52:54.6157 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 4VeD7ji1iOu74eTijBRyaT4WNGNA+IGCgOzJYCIEWGTSQp3Gdpg+pnq1pJMrE+Odr2/Tdv5QNkXqHHMFBF6d1wtDlvaJEp32zi7VrNrpdTk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7512
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v5 1/2] drm/i915/mtl: limit second scaler
- vertical scaling in ver >= 14
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/display/core: use intel_de_rmw if
+ possible
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,172 +57,762 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDIyLTEyLTIwIGF0IDEzOjA5ICswMjAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
-DQo+IE9uIFR1ZSwgRGVjIDIwLCAyMDIyIGF0IDEwOjExOjE2QU0gKzAyMDAsIEx1Y2EgQ29lbGhv
-IHdyb3RlOg0KPiA+IEluIG5ld2VyIGhhcmR3YXJlIHZlcnNpb25zIChpLmUuIGRpc3BsYXkgdmVy
-c2lvbiA+PSAxNCksIHRoZSBzZWNvbmQNCj4gPiBzY2FsZXIgZG9lc24ndCBzdXBwb3J0IHZlcnRp
-Y2FsIHNjYWxpbmcuDQo+ID4gDQo+ID4gVGhlIGN1cnJlbnQgaW1wbGVtZW50YXRpb24gb2YgdGhl
-IHNjYWxpbmcgbGltaXRzIGlzIHNpbXBsaWZpZWQgYW5kDQo+ID4gb25seSBvY2N1cnMgd2hlbiB0
-aGUgcGxhbmVzIGFyZSBjcmVhdGVkLCBzbyB3ZSBkb24ndCBrbm93IHdoaWNoIHNjYWxlcg0KPiA+
-IGlzIGJlaW5nIHVzZWQuDQo+ID4gDQo+ID4gSW4gb3JkZXIgdG8gaGFuZGxlIHNlcGFyYXRlIHNj
-YWxpbmcgbGltaXRzIGZvciBob3Jpem9udGFsIGFuZCB2ZXJ0aWNhbA0KPiA+IHNjYWxpbmcsIGFu
-ZCBkaWZmZXJlbnQgbGltaXRzIHBlciBzY2FsZXIsIHNwbGl0IHRoZSBjaGVja3MgaW4gdHdvDQo+
-ID4gcGhhc2VzLiAgV2UgZmlyc3QgZG8gYSBzaW1wbGUgY2hlY2sgZHVyaW5nIHBsYW5lIGNyZWF0
-aW9uIGFuZCB1c2UgdGhlDQo+ID4gYmVzdC1jYXNlIHNjZW5hcmlvIChiZWNhdXNlIHdlIGRvbid0
-IGtub3cgdGhlIHNjYWxlciB0aGF0IG1heSBiZSB1c2VkDQo+ID4gYXQgYSBsYXRlciBwb2ludCkg
-YW5kIHRoZW4gZG8gYSBtb3JlIHNwZWNpZmljIGNoZWNrIHdoZW4gdGhlIHNjYWxlcnMNCj4gPiBh
-cmUgYWN0dWFsbHkgYmVpbmcgc2V0IHVwLg0KPiA+IA0KPiA+IFNpZ25lZC1vZmYtYnk6IEx1Y2Eg
-Q29lbGhvIDxsdWNpYW5vLmNvZWxob0BpbnRlbC5jb20+DQo+ID4gLS0tDQo+ID4gDQo+ID4gSW4g
-djI6DQo+ID4gICAgKiBmaXggRFJNX1BMQU5FX05PX1NDQUxJTkcgcmVuYW1lZCBtYWNyb3M7DQo+
-ID4gDQo+ID4gSW4gdjM6DQo+ID4gICAgKiBObyBjaGFuZ2VzLg0KPiA+IA0KPiA+IEluIHY0Og0K
-PiA+ICAgICogR290IHJpZCBvZiB0aGUgY2hhbmdlcyBpbiB0aGUgZ2VuZXJhbCBwbGFuZXMgbWF4
-IHNjYWxlIGNvZGU7DQo+ID4gICAgKiBBZGRlZCBhIGNvdXBsZSBvZiBGSVhNRXM7DQo+ID4gICAg
-KiBNYWRlIGludGVsX2F0b21pY19zZXR1cF9zY2FsZXIoKSByZXR1cm4gYW4gaW50IHdpdGggZXJy
-b3JzOw0KPiA+IA0KPiA+IEluIHY1Og0KPiA+ICAgICogSnVzdCByZXNlbnQgd2l0aCBhIGNvdmVy
-IGxldHRlci4NCj4gPiANCj4gPiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2k5eHhfcGxh
-bmUuYyAgICAgfCAgNCArLQ0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2F0b21pYy5jICAgfCA4MyArKysrKysrKysrKysrKysrLS0tDQo+ID4gIC4uLi9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9hdG9taWNfcGxhbmUuYyB8IDMwICsrKysrKy0NCj4gPiAgLi4uL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2F0b21pY19wbGFuZS5oIHwgIDIgKy0NCj4gPiAgZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jdXJzb3IuYyAgIHwgIDQgKy0NCj4gPiAg
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9zcHJpdGUuYyAgIHwgMjAgKy0tLS0N
-Cj4gPiAgLi4uL2RybS9pOTE1L2Rpc3BsYXkvc2tsX3VuaXZlcnNhbF9wbGFuZS5jICAgIHwgNDUg
-KysrKystLS0tLQ0KPiA+ICA3IGZpbGVzIGNoYW5nZWQsIDEyOCBpbnNlcnRpb25zKCspLCA2MCBk
-ZWxldGlvbnMoLSkNCj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pOXh4X3BsYW5lLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2k5eHhf
-cGxhbmUuYw0KPiA+IGluZGV4IGVjYWViN2RjMTk2Yi4uMzkwZTk2ZjA2OTJiIDEwMDY0NA0KPiA+
-IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaTl4eF9wbGFuZS5jDQo+ID4gKysr
-IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pOXh4X3BsYW5lLmMNCj4gPiBAQCAtMzI2
-LDkgKzMyNiw3IEBAIGk5eHhfcGxhbmVfY2hlY2soc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNy
-dGNfc3RhdGUsDQo+ID4gIAlpZiAocmV0KQ0KPiA+ICAJCXJldHVybiByZXQ7DQo+ID4gIA0KPiA+
-IC0JcmV0ID0gaW50ZWxfYXRvbWljX3BsYW5lX2NoZWNrX2NsaXBwaW5nKHBsYW5lX3N0YXRlLCBj
-cnRjX3N0YXRlLA0KPiA+IC0JCQkJCQlEUk1fUExBTkVfTk9fU0NBTElORywNCj4gPiAtCQkJCQkJ
-RFJNX1BMQU5FX05PX1NDQUxJTkcsDQo+ID4gKwlyZXQgPSBpbnRlbF9hdG9taWNfcGxhbmVfY2hl
-Y2tfY2xpcHBpbmcocGxhbmVfc3RhdGUsIGNydGNfc3RhdGUsIGZhbHNlLA0KPiA+ICAJCQkJCQlp
-OXh4X3BsYW5lX2hhc193aW5kb3dpbmcocGxhbmUpKTsNCj4gPiAgCWlmIChyZXQpDQo+ID4gIAkJ
-cmV0dXJuIHJldDsNCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9hdG9taWMuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYXRv
-bWljLmMNCj4gPiBpbmRleCA2NjIxYWEyNDVjYWYuLmJmNDc2MWE0MDY3NSAxMDA2NDQNCj4gPiAt
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2F0b21pYy5jDQo+ID4gKysr
-IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hdG9taWMuYw0KPiA+IEBAIC0z
-OCw2ICszOCw3IEBADQo+ID4gICNpbmNsdWRlICJpbnRlbF9hdG9taWMuaCINCj4gPiAgI2luY2x1
-ZGUgImludGVsX2NkY2xrLmgiDQo+ID4gICNpbmNsdWRlICJpbnRlbF9kaXNwbGF5X3R5cGVzLmgi
-DQo+ID4gKyNpbmNsdWRlICJpbnRlbF9mYi5oIg0KPiA+ICAjaW5jbHVkZSAiaW50ZWxfZ2xvYmFs
-X3N0YXRlLmgiDQo+ID4gICNpbmNsdWRlICJpbnRlbF9oZGNwLmgiDQo+ID4gICNpbmNsdWRlICJp
-bnRlbF9wc3IuaCINCj4gPiBAQCAtMzEwLDExICszMTEsMTEgQEAgaW50ZWxfY3J0Y19kZXN0cm95
-X3N0YXRlKHN0cnVjdCBkcm1fY3J0YyAqY3J0YywNCj4gPiAgCWtmcmVlKGNydGNfc3RhdGUpOw0K
-PiA+ICB9DQo+ID4gIA0KPiA+IC1zdGF0aWMgdm9pZCBpbnRlbF9hdG9taWNfc2V0dXBfc2NhbGVy
-KHN0cnVjdCBpbnRlbF9jcnRjX3NjYWxlcl9zdGF0ZSAqc2NhbGVyX3N0YXRlLA0KPiA+IC0JCQkJ
-ICAgICAgaW50IG51bV9zY2FsZXJzX25lZWQsIHN0cnVjdCBpbnRlbF9jcnRjICppbnRlbF9jcnRj
-LA0KPiA+IC0JCQkJICAgICAgY29uc3QgY2hhciAqbmFtZSwgaW50IGlkeCwNCj4gPiAtCQkJCSAg
-ICAgIHN0cnVjdCBpbnRlbF9wbGFuZV9zdGF0ZSAqcGxhbmVfc3RhdGUsDQo+ID4gLQkJCQkgICAg
-ICBpbnQgKnNjYWxlcl9pZCkNCj4gPiArc3RhdGljIGludCBpbnRlbF9hdG9taWNfc2V0dXBfc2Nh
-bGVyKHN0cnVjdCBpbnRlbF9jcnRjX3NjYWxlcl9zdGF0ZSAqc2NhbGVyX3N0YXRlLA0KPiA+ICsJ
-CQkJICAgICBpbnQgbnVtX3NjYWxlcnNfbmVlZCwgc3RydWN0IGludGVsX2NydGMgKmludGVsX2Ny
-dGMsDQo+ID4gKwkJCQkgICAgIGNvbnN0IGNoYXIgKm5hbWUsIGludCBpZHgsDQo+ID4gKwkJCQkg
-ICAgIHN0cnVjdCBpbnRlbF9wbGFuZV9zdGF0ZSAqcGxhbmVfc3RhdGUsDQo+ID4gKwkJCQkgICAg
-IGludCAqc2NhbGVyX2lkKQ0KPiA+ICB7DQo+ID4gIAlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAq
-ZGV2X3ByaXYgPSB0b19pOTE1KGludGVsX2NydGMtPmJhc2UuZGV2KTsNCj4gPiAgCWludCBqOw0K
-PiA+IEBAIC0zMzQsNyArMzM1LDcgQEAgc3RhdGljIHZvaWQgaW50ZWxfYXRvbWljX3NldHVwX3Nj
-YWxlcihzdHJ1Y3QgaW50ZWxfY3J0Y19zY2FsZXJfc3RhdGUgKnNjYWxlcl9zdGENCj4gPiAgDQo+
-ID4gIAlpZiAoZHJtX1dBUk4oJmRldl9wcml2LT5kcm0sICpzY2FsZXJfaWQgPCAwLA0KPiA+ICAJ
-CSAgICAgIkNhbm5vdCBmaW5kIHNjYWxlciBmb3IgJXM6JWRcbiIsIG5hbWUsIGlkeCkpDQo+ID4g
-LQkJcmV0dXJuOw0KPiA+ICsJCXJldHVybiAtRUJVU1k7DQo+ID4gIA0KPiA+ICAJLyogc2V0IHNj
-YWxlciBtb2RlICovDQo+ID4gIAlpZiAocGxhbmVfc3RhdGUgJiYgcGxhbmVfc3RhdGUtPmh3LmZi
-ICYmDQo+ID4gQEAgLTM3NSw5ICszNzYsNjkgQEAgc3RhdGljIHZvaWQgaW50ZWxfYXRvbWljX3Nl
-dHVwX3NjYWxlcihzdHJ1Y3QgaW50ZWxfY3J0Y19zY2FsZXJfc3RhdGUgKnNjYWxlcl9zdGENCj4g
-PiAgCQltb2RlID0gU0tMX1BTX1NDQUxFUl9NT0RFX0RZTjsNCj4gPiAgCX0NCj4gPiAgDQo+ID4g
-KwkvKg0KPiA+ICsJICogRklYTUU6IHdlIHNob3VsZCBhbHNvIGNoZWNrIHRoZSBzY2FsZXIgZmFj
-dG9ycyBmb3IgcGZpdCwgc28NCj4gPiArCSAqIHRoaXMgc2hvdWxkbid0IGJlIHRpZWQgZGlyZWN0
-bHkgdG8gcGxhbmVzLg0KPiA+ICsJICovDQo+ID4gKwlpZiAocGxhbmVfc3RhdGUgJiYgcGxhbmVf
-c3RhdGUtPmh3LmZiKSB7DQo+ID4gKwkJY29uc3Qgc3RydWN0IGRybV9mcmFtZWJ1ZmZlciAqZmIg
-PSBwbGFuZV9zdGF0ZS0+aHcuZmI7DQo+ID4gKwkJc3RydWN0IGRybV9yZWN0ICpzcmMgPSAmcGxh
-bmVfc3RhdGUtPnVhcGkuc3JjOw0KPiA+ICsJCXN0cnVjdCBkcm1fcmVjdCAqZHN0ID0gJnBsYW5l
-X3N0YXRlLT51YXBpLmRzdDsNCj4gPiArCQlpbnQgaHNjYWxlLCB2c2NhbGUsIG1heF92c2NhbGUs
-IG1heF9oc2NhbGU7DQo+ID4gKw0KPiA+ICsJCS8qDQo+ID4gKwkJICogRklYTUU6IFdoZW4gdHdv
-IHNjYWxlcnMgYXJlIG5lZWRlZCwgYnV0IG9ubHkgb25lIG9mDQo+ID4gKwkJICogdGhlbSBuZWVk
-cyB0byBkb3duc2NhbGUsIHdlIHNob3VsZCBtYWtlIHN1cmUgdGhhdA0KPiA+ICsJCSAqIHRoZSBv
-bmUgdGhhdCBuZWVkcyBkb3duc2NhbGluZyBzdXBwb3J0IGlzIGFzc2lnbmVkDQo+ID4gKwkJICog
-YXMgdGhlIGZpcnN0IHNjYWxlciwgc28gd2UgZG9uJ3QgcmVqZWN0IGRvd25zY2FsaW5nDQo+ID4g
-KwkJICogdW5uZWNlc3NhcmlseS4NCj4gPiArCQkgKi8NCj4gPiArDQo+ID4gKwkJaWYgKERJU1BM
-QVlfVkVSKGRldl9wcml2KSA+PSAxNCkgew0KPiA+ICsJCQkvKg0KPiA+ICsJCQkgKiBPbiB2ZXJz
-aW9ucyAxNCBhbmQgdXAsIG9ubHkgdGhlIGZpcnN0DQo+ID4gKwkJCSAqIHNjYWxlciBzdXBwb3J0
-cyBhIHZlcnRpY2FsIHNjYWxpbmcgZmFjdG9yDQo+ID4gKwkJCSAqIG9mIG1vcmUgdGhhbiAxLjAs
-IHdoaWxlIGEgaG9yaXpvbnRhbA0KPiA+ICsJCQkgKiBzY2FsaW5nIGZhY3RvciBvZiAzLjAgaXMg
-c3VwcG9ydGVkLg0KPiA+ICsJCQkgKi8NCj4gPiArCQkJbWF4X2hzY2FsZSA9IDB4MzAwMDAgLSAx
-Ow0KPiA+ICsJCQlpZiAoKnNjYWxlcl9pZCA9PSAwKQ0KPiA+ICsJCQkJbWF4X3ZzY2FsZSA9IDB4
-MzAwMDAgLSAxOw0KPiA+ICsJCQllbHNlDQo+ID4gKwkJCQltYXhfdnNjYWxlID0gMHgxMDAwMDsN
-Cj4gPiArDQo+ID4gKwkJfSBlbHNlIGlmIChESVNQTEFZX1ZFUihkZXZfcHJpdikgPj0gMTAgfHwN
-Cj4gPiArCQkJICAgIWludGVsX2Zvcm1hdF9pbmZvX2lzX3l1dl9zZW1pcGxhbmFyKGZiLT5mb3Jt
-YXQsIGZiLT5tb2RpZmllcikpIHsNCj4gPiArCQkJbWF4X2hzY2FsZSA9IDB4MzAwMDAgLSAxOw0K
-PiA+ICsJCQltYXhfdnNjYWxlID0gMHgzMDAwMCAtIDE7DQo+ID4gKwkJfSBlbHNlIHsNCj4gPiAr
-CQkJbWF4X2hzY2FsZSA9IDB4MjAwMDAgLSAxOw0KPiA+ICsJCQltYXhfdnNjYWxlID0gMHgyMDAw
-MCAtIDE7DQo+ID4gKwkJfQ0KPiA+ICsNCj4gPiArCQkvKiBDaGVjayBpZiByZXF1aXJlZCBzY2Fs
-aW5nIGlzIHdpdGhpbiBsaW1pdHMgKi8NCj4gPiArCQloc2NhbGUgPSBkcm1fcmVjdF9jYWxjX2hz
-Y2FsZShzcmMsIGRzdCwgMSwgbWF4X2hzY2FsZSk7DQo+ID4gKwkJdnNjYWxlID0gZHJtX3JlY3Rf
-Y2FsY192c2NhbGUoc3JjLCBkc3QsIDEsIG1heF92c2NhbGUpOw0KPiA+ICsNCj4gPiArCQlpZiAo
-aHNjYWxlIDwgMCB8fCB2c2NhbGUgPCAwKSB7DQo+ID4gKwkJCWRybV9kYmdfa21zKCZkZXZfcHJp
-di0+ZHJtLA0KPiA+ICsJCQkJICAgICJTY2FsZXIgJWQgZG9lc24ndCBzdXBwb3J0IHJlcXVpcmVk
-IHBsYW5lIHNjYWxpbmdcbiIsDQo+ID4gKwkJCQkgICAgKnNjYWxlcl9pZCk7DQo+ID4gKwkJCWRy
-bV9yZWN0X2RlYnVnX3ByaW50KCJzcmM6ICIsIHNyYywgdHJ1ZSk7DQo+ID4gKwkJCWRybV9yZWN0
-X2RlYnVnX3ByaW50KCJkc3Q6ICIsIGRzdCwgZmFsc2UpOw0KPiA+ICsNCj4gPiArCQkJc2NhbGVy
-X3N0YXRlLT5zY2FsZXJzWypzY2FsZXJfaWRdLmluX3VzZSA9IDA7DQo+ID4gKwkJCSpzY2FsZXJf
-aWQgPSAtMTsNCj4gPiArDQo+ID4gKwkJCXJldHVybiAtRU9QTk9UU1VQUDsNCj4gPiArCQl9DQo+
-ID4gKwl9DQo+ID4gKw0KPiA+ICAJZHJtX2RiZ19rbXMoJmRldl9wcml2LT5kcm0sICJBdHRhY2hl
-ZCBzY2FsZXIgaWQgJXUuJXUgdG8gJXM6JWRcbiIsDQo+ID4gIAkJICAgIGludGVsX2NydGMtPnBp
-cGUsICpzY2FsZXJfaWQsIG5hbWUsIGlkeCk7DQo+ID4gIAlzY2FsZXJfc3RhdGUtPnNjYWxlcnNb
-KnNjYWxlcl9pZF0ubW9kZSA9IG1vZGU7DQo+ID4gKw0KPiA+ICsJcmV0dXJuIDA7DQo+ID4gIH0N
-Cj4gPiAgDQo+ID4gIC8qKg0KPiA+IEBAIC00MzcsNyArNDk4LDcgQEAgaW50IGludGVsX2F0b21p
-Y19zZXR1cF9zY2FsZXJzKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwNCj4gPiAg
-CWZvciAoaSA9IDA7IGkgPCBzaXplb2Yoc2NhbGVyX3N0YXRlLT5zY2FsZXJfdXNlcnMpICogODsg
-aSsrKSB7DQo+ID4gIAkJaW50ICpzY2FsZXJfaWQ7DQo+ID4gIAkJY29uc3QgY2hhciAqbmFtZTsN
-Cj4gPiAtCQlpbnQgaWR4Ow0KPiA+ICsJCWludCBpZHgsIHJldDsNCj4gPiAgDQo+ID4gIAkJLyog
-c2tpcCBpZiBzY2FsZXIgbm90IHJlcXVpcmVkICovDQo+ID4gIAkJaWYgKCEoc2NhbGVyX3N0YXRl
-LT5zY2FsZXJfdXNlcnMgJiAoMSA8PCBpKSkpDQo+ID4gQEAgLTQ5NCw5ICs1NTUsMTEgQEAgaW50
-IGludGVsX2F0b21pY19zZXR1cF9zY2FsZXJzKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZf
-cHJpdiwNCj4gPiAgCQkJc2NhbGVyX2lkID0gJnBsYW5lX3N0YXRlLT5zY2FsZXJfaWQ7DQo+ID4g
-IAkJfQ0KPiA+ICANCj4gPiAtCQlpbnRlbF9hdG9taWNfc2V0dXBfc2NhbGVyKHNjYWxlcl9zdGF0
-ZSwgbnVtX3NjYWxlcnNfbmVlZCwNCj4gPiAtCQkJCQkgIGludGVsX2NydGMsIG5hbWUsIGlkeCwN
-Cj4gPiAtCQkJCQkgIHBsYW5lX3N0YXRlLCBzY2FsZXJfaWQpOw0KPiA+ICsJCXJldCA9IGludGVs
-X2F0b21pY19zZXR1cF9zY2FsZXIoc2NhbGVyX3N0YXRlLCBudW1fc2NhbGVyc19uZWVkLA0KPiA+
-ICsJCQkJCQlpbnRlbF9jcnRjLCBuYW1lLCBpZHgsDQo+ID4gKwkJCQkJCXBsYW5lX3N0YXRlLCBz
-Y2FsZXJfaWQpOw0KPiA+ICsJCWlmIChyZXQpDQo+ID4gKwkJCXJldHVybiByZXQ7DQo+ID4gIAl9
-DQo+ID4gIA0KPiA+ICAJcmV0dXJuIDA7DQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfYXRvbWljX3BsYW5lLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2F0b21pY19wbGFuZS5jDQo+ID4gaW5kZXggMTBlMWZjOWQwNjk4Li41
-MGEwNWNjZDJkZGEgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9hdG9taWNfcGxhbmUuYw0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfYXRvbWljX3BsYW5lLmMNCj4gPiBAQCAtODg3LDcgKzg4Nyw3IEBAIHZvaWQg
-aW50ZWxfY3J0Y19wbGFuZXNfdXBkYXRlX2FybShzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpz
-dGF0ZSwNCj4gPiAgDQo+ID4gIGludCBpbnRlbF9hdG9taWNfcGxhbmVfY2hlY2tfY2xpcHBpbmco
-c3RydWN0IGludGVsX3BsYW5lX3N0YXRlICpwbGFuZV9zdGF0ZSwNCj4gPiAgCQkJCSAgICAgIHN0
-cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlLA0KPiA+IC0JCQkJICAgICAgaW50IG1p
-bl9zY2FsZSwgaW50IG1heF9zY2FsZSwNCj4gPiArCQkJCSAgICAgIGJvb2wgYWxsb3dfc2NhbGlu
-ZywNCj4gPiAgCQkJCSAgICAgIGJvb2wgY2FuX3Bvc2l0aW9uKQ0KPiA+ICB7DQo+ID4gIAlzdHJ1
-Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9IHRvX2k5MTUocGxhbmVfc3RhdGUtPnVhcGkucGxh
-bmUtPmRldik7DQo+ID4gQEAgLTg5NywxOSArODk3LDQxIEBAIGludCBpbnRlbF9hdG9taWNfcGxh
-bmVfY2hlY2tfY2xpcHBpbmcoc3RydWN0IGludGVsX3BsYW5lX3N0YXRlICpwbGFuZV9zdGF0ZSwN
-Cj4gPiAgCWNvbnN0IHN0cnVjdCBkcm1fcmVjdCAqY2xpcCA9ICZjcnRjX3N0YXRlLT5waXBlX3Ny
-YzsNCj4gPiAgCXVuc2lnbmVkIGludCByb3RhdGlvbiA9IHBsYW5lX3N0YXRlLT5ody5yb3RhdGlv
-bjsNCj4gPiAgCWludCBoc2NhbGUsIHZzY2FsZTsNCj4gPiArCWludCBtYXhfaHNjYWxlLCBtaW5f
-aHNjYWxlLCBtYXhfdnNjYWxlLCBtaW5fdnNjYWxlOw0KPiA+ICANCj4gPiAgCWlmICghZmIpIHsN
-Cj4gPiAgCQlwbGFuZV9zdGF0ZS0+dWFwaS52aXNpYmxlID0gZmFsc2U7DQo+ID4gIAkJcmV0dXJu
-IDA7DQo+ID4gIAl9DQo+ID4gIA0KPiA+ICsJLyoNCj4gPiArCSAqIEF0IHRoaXMgcG9pbnQgd2Ug
-ZG9uJ3QgcmVhbGx5IGtub3cgdGhlIEhXIGxpbWl0YXRpb25zLCBzbw0KPiA+ICsJICogd2UganVz
-dCBzYW5pdGl6ZSB0aGUgdmFsdWVzIGFnYWluc3QgdGhlIG1heGltdW0gc3VwcG9ydGVkDQo+ID4g
-KwkgKiBzY2FsaW5nLg0KPiA+ICsJICovDQo+ID4gKwlpZiAoIWFsbG93X3NjYWxpbmcpIHsNCj4g
-PiArCQltaW5faHNjYWxlID0gRFJNX1BMQU5FX05PX1NDQUxJTkc7DQo+ID4gKwkJbWF4X2hzY2Fs
-ZSA9IERSTV9QTEFORV9OT19TQ0FMSU5HOw0KPiA+ICsJCW1pbl92c2NhbGUgPSBEUk1fUExBTkVf
-Tk9fU0NBTElORzsNCj4gPiArCQltYXhfdnNjYWxlID0gRFJNX1BMQU5FX05PX1NDQUxJTkc7DQo+
-ID4gKwl9IGVsc2Ugew0KPiA+ICsJCXNrbF9wbGFuZV9tYXhfc2NhbGUoaTkxNSwgZmIsDQo+ID4g
-KwkJCQkgICAgJm1heF9oc2NhbGUsICZtaW5faHNjYWxlLA0KPiA+ICsJCQkJICAgICZtYXhfdnNj
-YWxlLCAmbWluX3ZzY2FsZSk7DQo+ID4gKwl9DQo+IA0KPiBUaGlzIHN0dWZmIGlzIHN0aWxsIGJy
-b2tlbiBmb3IgcHJlLXNrbC4gUGxlYXNlIGp1c3QgZHJvcCBhbGwNCj4gdGhlIGNoYW5nZXMgdG8g
-aW50ZWxfYXRvbWljX3BsYW5lX2NoZWNrX2NsaXBwaW5nKCkuDQoNCkRhbW4sIGl0IHNlZW1zIHRo
-YXQgSSBzZW50IHRoZSB3cm9uZyB2ZXJzaW9uLiAgVGhpcyB3YXMgcmVtb3ZlZCBpbiB2NCwNCmJ1
-dCBJIHRvb2sgdGhlIHdyb25nIHZlcnNpb24gaGVyZS4gIEknbGwgcmVzZW5kLg0KDQotLQ0KQ2hl
-ZXJzLA0KTHVjYS4NCg==
+The helper makes the code more compact and readable.
+
+Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+---
+Hi all,
+
+This is the last patchset converting different flavours
+of register updates to intel_de_rmw. There are probably
+still some remnants, which would require functional changes
+to allow conversion. They would need probably more individual
+approach.
+
+Jani, thank you for reviews.
+
+And the final diffstat for all patches:
+26 files changed, 425 insertions(+), 952 deletions(-)
+
+Regards
+Andrzej
+---
+ drivers/gpu/drm/i915/display/intel_display.c  |  22 +--
+ .../drm/i915/display/intel_display_power.c    |  49 ++----
+ .../i915/display/intel_display_power_well.c   |  82 +++------
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 165 ++++++------------
+ .../drm/i915/display/intel_modeset_setup.c    |  17 +-
+ 5 files changed, 108 insertions(+), 227 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index e75b9b2a0e015a..c6c566a6572b8b 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -293,11 +293,11 @@ static void
+ skl_wa_827(struct drm_i915_private *dev_priv, enum pipe pipe, bool enable)
+ {
+ 	if (enable)
+-		intel_de_write(dev_priv, CLKGATE_DIS_PSL(pipe),
+-		               intel_de_read(dev_priv, CLKGATE_DIS_PSL(pipe)) | DUPS1_GATING_DIS | DUPS2_GATING_DIS);
++		intel_de_rmw(dev_priv, CLKGATE_DIS_PSL(pipe),
++			     0, DUPS1_GATING_DIS | DUPS2_GATING_DIS);
+ 	else
+-		intel_de_write(dev_priv, CLKGATE_DIS_PSL(pipe),
+-		               intel_de_read(dev_priv, CLKGATE_DIS_PSL(pipe)) & ~(DUPS1_GATING_DIS | DUPS2_GATING_DIS));
++		intel_de_rmw(dev_priv, CLKGATE_DIS_PSL(pipe),
++		             DUPS1_GATING_DIS | DUPS2_GATING_DIS, 0);
+ }
+ 
+ /* Wa_2006604312:icl,ehl */
+@@ -306,11 +306,9 @@ icl_wa_scalerclkgating(struct drm_i915_private *dev_priv, enum pipe pipe,
+ 		       bool enable)
+ {
+ 	if (enable)
+-		intel_de_write(dev_priv, CLKGATE_DIS_PSL(pipe),
+-		               intel_de_read(dev_priv, CLKGATE_DIS_PSL(pipe)) | DPFR_GATING_DIS);
++		intel_de_rmw(dev_priv, CLKGATE_DIS_PSL(pipe), 0, DPFR_GATING_DIS);
+ 	else
+-		intel_de_write(dev_priv, CLKGATE_DIS_PSL(pipe),
+-		               intel_de_read(dev_priv, CLKGATE_DIS_PSL(pipe)) & ~DPFR_GATING_DIS);
++		intel_de_rmw(dev_priv, CLKGATE_DIS_PSL(pipe), DPFR_GATING_DIS, 0);
+ }
+ 
+ /* Wa_1604331009:icl,jsl,ehl */
+@@ -1852,12 +1850,10 @@ static void hsw_set_frame_start_delay(const struct intel_crtc_state *crtc_state)
+ 	enum transcoder transcoder = crtc_state->cpu_transcoder;
+ 	i915_reg_t reg = DISPLAY_VER(dev_priv) >= 14 ? MTL_CHICKEN_TRANS(transcoder) :
+ 			 CHICKEN_TRANS(transcoder);
+-	u32 val;
+ 
+-	val = intel_de_read(dev_priv, reg);
+-	val &= ~HSW_FRAME_START_DELAY_MASK;
+-	val |= HSW_FRAME_START_DELAY(crtc_state->framestart_delay - 1);
+-	intel_de_write(dev_priv, reg, val);
++	intel_de_rmw(dev_priv, reg,
++		     HSW_FRAME_START_DELAY_MASK,
++		     HSW_FRAME_START_DELAY(crtc_state->framestart_delay - 1));
+ }
+ 
+ static void icl_ddi_bigjoiner_pre_enable(struct intel_atomic_state *state,
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 1a23ecd4623a53..90d7a623d6e3cc 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -1260,9 +1260,7 @@ static void hsw_disable_lcpll(struct drm_i915_private *dev_priv,
+ 		drm_err(&dev_priv->drm, "D_COMP RCOMP still in progress\n");
+ 
+ 	if (allow_power_down) {
+-		val = intel_de_read(dev_priv, LCPLL_CTL);
+-		val |= LCPLL_POWER_DOWN_ALLOW;
+-		intel_de_write(dev_priv, LCPLL_CTL, val);
++		intel_de_rmw(dev_priv, LCPLL_CTL, 0, LCPLL_POWER_DOWN_ALLOW);
+ 		intel_de_posting_read(dev_priv, LCPLL_CTL);
+ 	}
+ }
+@@ -1306,9 +1304,7 @@ static void hsw_restore_lcpll(struct drm_i915_private *dev_priv)
+ 		drm_err(&dev_priv->drm, "LCPLL not locked yet\n");
+ 
+ 	if (val & LCPLL_CD_SOURCE_FCLK) {
+-		val = intel_de_read(dev_priv, LCPLL_CTL);
+-		val &= ~LCPLL_CD_SOURCE_FCLK;
+-		intel_de_write(dev_priv, LCPLL_CTL, val);
++		intel_de_rmw(dev_priv, LCPLL_CTL, LCPLL_CD_SOURCE_FCLK, 0);
+ 
+ 		if (wait_for_us((intel_de_read(dev_priv, LCPLL_CTL) &
+ 				 LCPLL_CD_SOURCE_FCLK_DONE) == 0, 1))
+@@ -1347,15 +1343,11 @@ static void hsw_restore_lcpll(struct drm_i915_private *dev_priv)
+  */
+ static void hsw_enable_pc8(struct drm_i915_private *dev_priv)
+ {
+-	u32 val;
+-
+ 	drm_dbg_kms(&dev_priv->drm, "Enabling package C8+\n");
+ 
+-	if (HAS_PCH_LPT_LP(dev_priv)) {
+-		val = intel_de_read(dev_priv, SOUTH_DSPCLK_GATE_D);
+-		val &= ~PCH_LP_PARTITION_LEVEL_DISABLE;
+-		intel_de_write(dev_priv, SOUTH_DSPCLK_GATE_D, val);
+-	}
++	if (HAS_PCH_LPT_LP(dev_priv))
++		intel_de_rmw(dev_priv, SOUTH_DSPCLK_GATE_D,
++			     PCH_LP_PARTITION_LEVEL_DISABLE, 0);
+ 
+ 	lpt_disable_clkout_dp(dev_priv);
+ 	hsw_disable_lcpll(dev_priv, true, true);
+@@ -1363,25 +1355,21 @@ static void hsw_enable_pc8(struct drm_i915_private *dev_priv)
+ 
+ static void hsw_disable_pc8(struct drm_i915_private *dev_priv)
+ {
+-	u32 val;
+-
+ 	drm_dbg_kms(&dev_priv->drm, "Disabling package C8+\n");
+ 
+ 	hsw_restore_lcpll(dev_priv);
+ 	intel_init_pch_refclk(dev_priv);
+ 
+-	if (HAS_PCH_LPT_LP(dev_priv)) {
+-		val = intel_de_read(dev_priv, SOUTH_DSPCLK_GATE_D);
+-		val |= PCH_LP_PARTITION_LEVEL_DISABLE;
+-		intel_de_write(dev_priv, SOUTH_DSPCLK_GATE_D, val);
+-	}
++	if (HAS_PCH_LPT_LP(dev_priv))
++		intel_de_rmw(dev_priv, SOUTH_DSPCLK_GATE_D,
++			     0, PCH_LP_PARTITION_LEVEL_DISABLE);
+ }
+ 
+ static void intel_pch_reset_handshake(struct drm_i915_private *dev_priv,
+ 				      bool enable)
+ {
+ 	i915_reg_t reg;
+-	u32 reset_bits, val;
++	u32 reset_bits;
+ 
+ 	if (IS_IVYBRIDGE(dev_priv)) {
+ 		reg = GEN7_MSG_CTL;
+@@ -1394,14 +1382,7 @@ static void intel_pch_reset_handshake(struct drm_i915_private *dev_priv,
+ 	if (DISPLAY_VER(dev_priv) >= 14)
+ 		reset_bits |= MTL_RESET_PICA_HANDSHAKE_EN;
+ 
+-	val = intel_de_read(dev_priv, reg);
+-
+-	if (enable)
+-		val |= reset_bits;
+-	else
+-		val &= ~reset_bits;
+-
+-	intel_de_write(dev_priv, reg, val);
++	intel_de_rmw(dev_priv, reg, reset_bits, enable ? reset_bits : 0);
+ }
+ 
+ static void skl_display_core_init(struct drm_i915_private *dev_priv,
+@@ -1618,7 +1599,6 @@ static void icl_display_core_init(struct drm_i915_private *dev_priv,
+ {
+ 	struct i915_power_domains *power_domains = &dev_priv->display.power.domains;
+ 	struct i915_power_well *well;
+-	u32 val;
+ 
+ 	gen9_set_dc_state(dev_priv, DC_STATE_DISABLE);
+ 
+@@ -1670,11 +1650,10 @@ static void icl_display_core_init(struct drm_i915_private *dev_priv,
+ 		intel_dmc_load_program(dev_priv);
+ 
+ 	/* Wa_14011508470:tgl,dg1,rkl,adl-s,adl-p */
+-	if (DISPLAY_VER(dev_priv) >= 12) {
+-		val = DCPR_CLEAR_MEMSTAT_DIS | DCPR_SEND_RESP_IMM |
+-		      DCPR_MASK_LPMODE | DCPR_MASK_MAXLATENCY_MEMUP_CLR;
+-		intel_de_rmw(dev_priv, GEN11_CHICKEN_DCPR_2, 0, val);
+-	}
++	if (DISPLAY_VER(dev_priv) >= 12)
++		intel_de_rmw(dev_priv, GEN11_CHICKEN_DCPR_2, 0,
++			     DCPR_CLEAR_MEMSTAT_DIS | DCPR_SEND_RESP_IMM |
++			     DCPR_MASK_LPMODE | DCPR_MASK_MAXLATENCY_MEMUP_CLR);
+ 
+ 	/* Wa_14011503030:xelpd */
+ 	if (DISPLAY_VER(dev_priv) >= 13)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+index 8710dd41ffd4c6..05b431f968cb49 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+@@ -333,7 +333,6 @@ static void hsw_power_well_enable(struct drm_i915_private *dev_priv,
+ {
+ 	const struct i915_power_well_regs *regs = power_well->desc->ops->regs;
+ 	int pw_idx = i915_power_well_instance(power_well)->hsw.idx;
+-	u32 val;
+ 
+ 	if (power_well->desc->has_fuses) {
+ 		enum skl_power_gate pg;
+@@ -356,9 +355,7 @@ static void hsw_power_well_enable(struct drm_i915_private *dev_priv,
+ 			gen9_wait_for_power_well_fuses(dev_priv, SKL_PG0);
+ 	}
+ 
+-	val = intel_de_read(dev_priv, regs->driver);
+-	intel_de_write(dev_priv, regs->driver,
+-		       val | HSW_PWR_WELL_CTL_REQ(pw_idx));
++	intel_de_rmw(dev_priv, regs->driver, 0, HSW_PWR_WELL_CTL_REQ(pw_idx));
+ 
+ 	hsw_wait_for_power_well_enable(dev_priv, power_well, false);
+ 
+@@ -380,14 +377,11 @@ static void hsw_power_well_disable(struct drm_i915_private *dev_priv,
+ {
+ 	const struct i915_power_well_regs *regs = power_well->desc->ops->regs;
+ 	int pw_idx = i915_power_well_instance(power_well)->hsw.idx;
+-	u32 val;
+ 
+ 	hsw_power_well_pre_disable(dev_priv,
+ 				   power_well->desc->irq_pipe_mask);
+ 
+-	val = intel_de_read(dev_priv, regs->driver);
+-	intel_de_write(dev_priv, regs->driver,
+-		       val & ~HSW_PWR_WELL_CTL_REQ(pw_idx));
++	intel_de_rmw(dev_priv, regs->driver, HSW_PWR_WELL_CTL_REQ(pw_idx), 0);
+ 	hsw_wait_for_power_well_disable(dev_priv, power_well);
+ }
+ 
+@@ -398,29 +392,22 @@ icl_combo_phy_aux_power_well_enable(struct drm_i915_private *dev_priv,
+ 	const struct i915_power_well_regs *regs = power_well->desc->ops->regs;
+ 	int pw_idx = i915_power_well_instance(power_well)->hsw.idx;
+ 	enum phy phy = icl_aux_pw_to_phy(dev_priv, power_well);
+-	u32 val;
+ 
+ 	drm_WARN_ON(&dev_priv->drm, !IS_ICELAKE(dev_priv));
+ 
+-	val = intel_de_read(dev_priv, regs->driver);
+-	intel_de_write(dev_priv, regs->driver,
+-		       val | HSW_PWR_WELL_CTL_REQ(pw_idx));
++	intel_de_rmw(dev_priv, regs->driver, 0, HSW_PWR_WELL_CTL_REQ(pw_idx));
+ 
+-	if (DISPLAY_VER(dev_priv) < 12) {
+-		val = intel_de_read(dev_priv, ICL_PORT_CL_DW12(phy));
+-		intel_de_write(dev_priv, ICL_PORT_CL_DW12(phy),
+-			       val | ICL_LANE_ENABLE_AUX);
+-	}
++	if (DISPLAY_VER(dev_priv) < 12)
++		intel_de_rmw(dev_priv, ICL_PORT_CL_DW12(phy),
++			     0, ICL_LANE_ENABLE_AUX);
+ 
+ 	hsw_wait_for_power_well_enable(dev_priv, power_well, false);
+ 
+ 	/* Display WA #1178: icl */
+ 	if (pw_idx >= ICL_PW_CTL_IDX_AUX_A && pw_idx <= ICL_PW_CTL_IDX_AUX_B &&
+-	    !intel_bios_is_port_edp(dev_priv, (enum port)phy)) {
+-		val = intel_de_read(dev_priv, ICL_AUX_ANAOVRD1(pw_idx));
+-		val |= ICL_AUX_ANAOVRD1_ENABLE | ICL_AUX_ANAOVRD1_LDO_BYPASS;
+-		intel_de_write(dev_priv, ICL_AUX_ANAOVRD1(pw_idx), val);
+-	}
++	    !intel_bios_is_port_edp(dev_priv, (enum port)phy))
++		intel_de_rmw(dev_priv, ICL_AUX_ANAOVRD1(pw_idx),
++			     0, ICL_AUX_ANAOVRD1_ENABLE | ICL_AUX_ANAOVRD1_LDO_BYPASS);
+ }
+ 
+ static void
+@@ -430,17 +417,12 @@ icl_combo_phy_aux_power_well_disable(struct drm_i915_private *dev_priv,
+ 	const struct i915_power_well_regs *regs = power_well->desc->ops->regs;
+ 	int pw_idx = i915_power_well_instance(power_well)->hsw.idx;
+ 	enum phy phy = icl_aux_pw_to_phy(dev_priv, power_well);
+-	u32 val;
+ 
+ 	drm_WARN_ON(&dev_priv->drm, !IS_ICELAKE(dev_priv));
+ 
+-	val = intel_de_read(dev_priv, ICL_PORT_CL_DW12(phy));
+-	intel_de_write(dev_priv, ICL_PORT_CL_DW12(phy),
+-		       val & ~ICL_LANE_ENABLE_AUX);
++	intel_de_rmw(dev_priv, ICL_PORT_CL_DW12(phy), ICL_LANE_ENABLE_AUX, 0);
+ 
+-	val = intel_de_read(dev_priv, regs->driver);
+-	intel_de_write(dev_priv, regs->driver,
+-		       val & ~HSW_PWR_WELL_CTL_REQ(pw_idx));
++	intel_de_rmw(dev_priv, regs->driver, HSW_PWR_WELL_CTL_REQ(pw_idx), 0);
+ 
+ 	hsw_wait_for_power_well_disable(dev_priv, power_well);
+ }
+@@ -502,19 +484,15 @@ icl_tc_phy_aux_power_well_enable(struct drm_i915_private *dev_priv,
+ 	const struct i915_power_well_regs *regs = power_well->desc->ops->regs;
+ 	bool is_tbt = power_well->desc->is_tc_tbt;
+ 	bool timeout_expected;
+-	u32 val;
+ 
+ 	icl_tc_port_assert_ref_held(dev_priv, power_well, dig_port);
+ 
+-	val = intel_de_read(dev_priv, DP_AUX_CH_CTL(aux_ch));
+-	val &= ~DP_AUX_CH_CTL_TBT_IO;
+-	if (is_tbt)
+-		val |= DP_AUX_CH_CTL_TBT_IO;
+-	intel_de_write(dev_priv, DP_AUX_CH_CTL(aux_ch), val);
++	intel_de_rmw(dev_priv, DP_AUX_CH_CTL(aux_ch),
++		     DP_AUX_CH_CTL_TBT_IO, is_tbt ? DP_AUX_CH_CTL_TBT_IO : 0);
+ 
+-	val = intel_de_read(dev_priv, regs->driver);
+-	intel_de_write(dev_priv, regs->driver,
+-		       val | HSW_PWR_WELL_CTL_REQ(i915_power_well_instance(power_well)->hsw.idx));
++	intel_de_rmw(dev_priv, regs->driver,
++		     0,
++		     HSW_PWR_WELL_CTL_REQ(i915_power_well_instance(power_well)->hsw.idx));
+ 
+ 	/*
+ 	 * An AUX timeout is expected if the TBT DP tunnel is down,
+@@ -776,12 +754,8 @@ static void tgl_enable_dc3co(struct drm_i915_private *dev_priv)
+ 
+ static void tgl_disable_dc3co(struct drm_i915_private *dev_priv)
+ {
+-	u32 val;
+-
+ 	drm_dbg_kms(&dev_priv->drm, "Disabling DC3CO\n");
+-	val = intel_de_read(dev_priv, DC_STATE_EN);
+-	val &= ~DC_STATE_DC3CO_STATUS;
+-	intel_de_write(dev_priv, DC_STATE_EN, val);
++	intel_de_rmw(dev_priv, DC_STATE_EN, DC_STATE_DC3CO_STATUS, 0);
+ 	gen9_set_dc_state(dev_priv, DC_STATE_DISABLE);
+ 	/*
+ 	 * Delay of 200us DC3CO Exit time B.Spec 49196
+@@ -820,8 +794,8 @@ void gen9_enable_dc5(struct drm_i915_private *dev_priv)
+ 
+ 	/* Wa Display #1183: skl,kbl,cfl */
+ 	if (DISPLAY_VER(dev_priv) == 9 && !IS_BROXTON(dev_priv))
+-		intel_de_write(dev_priv, GEN8_CHICKEN_DCPR_1,
+-			       intel_de_read(dev_priv, GEN8_CHICKEN_DCPR_1) | SKL_SELECT_ALTERNATE_DC_EXIT);
++		intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1,
++			     0, SKL_SELECT_ALTERNATE_DC_EXIT);
+ 
+ 	gen9_set_dc_state(dev_priv, DC_STATE_EN_UPTO_DC5);
+ }
+@@ -847,8 +821,8 @@ void skl_enable_dc6(struct drm_i915_private *dev_priv)
+ 
+ 	/* Wa Display #1183: skl,kbl,cfl */
+ 	if (DISPLAY_VER(dev_priv) == 9 && !IS_BROXTON(dev_priv))
+-		intel_de_write(dev_priv, GEN8_CHICKEN_DCPR_1,
+-			       intel_de_read(dev_priv, GEN8_CHICKEN_DCPR_1) | SKL_SELECT_ALTERNATE_DC_EXIT);
++		intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1,
++			     0, SKL_SELECT_ALTERNATE_DC_EXIT);
+ 
+ 	gen9_set_dc_state(dev_priv, DC_STATE_EN_UPTO_DC6);
+ }
+@@ -1149,18 +1123,14 @@ static bool vlv_power_well_enabled(struct drm_i915_private *dev_priv,
+ 
+ static void vlv_init_display_clock_gating(struct drm_i915_private *dev_priv)
+ {
+-	u32 val;
+-
+ 	/*
+ 	 * On driver load, a pipe may be active and driving a DSI display.
+ 	 * Preserve DPOUNIT_CLOCK_GATE_DISABLE to avoid the pipe getting stuck
+ 	 * (and never recovering) in this case. intel_dsi_post_disable() will
+ 	 * clear it when we turn off the display.
+ 	 */
+-	val = intel_de_read(dev_priv, DSPCLK_GATE_D(dev_priv));
+-	val &= DPOUNIT_CLOCK_GATE_DISABLE;
+-	val |= VRHUNIT_CLOCK_GATE_DISABLE;
+-	intel_de_write(dev_priv, DSPCLK_GATE_D(dev_priv), val);
++	intel_de_rmw(dev_priv, DSPCLK_GATE_D(dev_priv),
++		     ~DPOUNIT_CLOCK_GATE_DISABLE, VRHUNIT_CLOCK_GATE_DISABLE);
+ 
+ 	/*
+ 	 * Disable trickle feed and enable pnd deadline calculation
+@@ -1276,8 +1246,7 @@ static void vlv_dpio_cmn_power_well_enable(struct drm_i915_private *dev_priv,
+ 	 * both PLLs disabled, or we risk losing DPIO and PLL
+ 	 * synchronization.
+ 	 */
+-	intel_de_write(dev_priv, DPIO_CTL,
+-		       intel_de_read(dev_priv, DPIO_CTL) | DPIO_CMNRST);
++	intel_de_rmw(dev_priv, DPIO_CTL, 0, DPIO_CMNRST);
+ }
+ 
+ static void vlv_dpio_cmn_power_well_disable(struct drm_i915_private *dev_priv,
+@@ -1289,8 +1258,7 @@ static void vlv_dpio_cmn_power_well_disable(struct drm_i915_private *dev_priv,
+ 		assert_pll_disabled(dev_priv, pipe);
+ 
+ 	/* Assert common reset */
+-	intel_de_write(dev_priv, DPIO_CTL,
+-		       intel_de_read(dev_priv, DPIO_CTL) & ~DPIO_CMNRST);
++	intel_de_rmw(dev_priv, DPIO_CTL, DPIO_CMNRST, 0);
+ 
+ 	vlv_set_power_well(dev_priv, power_well, false);
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index 1974eb580ed198..e9215ebcdfc44d 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -608,10 +608,8 @@ static void hsw_ddi_wrpll_disable(struct drm_i915_private *dev_priv,
+ 				  struct intel_shared_dpll *pll)
+ {
+ 	const enum intel_dpll_id id = pll->info->id;
+-	u32 val;
+ 
+-	val = intel_de_read(dev_priv, WRPLL_CTL(id));
+-	intel_de_write(dev_priv, WRPLL_CTL(id), val & ~WRPLL_PLL_ENABLE);
++	intel_de_rmw(dev_priv, WRPLL_CTL(id), WRPLL_PLL_ENABLE, 0);
+ 	intel_de_posting_read(dev_priv, WRPLL_CTL(id));
+ 
+ 	/*
+@@ -626,10 +624,8 @@ static void hsw_ddi_spll_disable(struct drm_i915_private *dev_priv,
+ 				 struct intel_shared_dpll *pll)
+ {
+ 	enum intel_dpll_id id = pll->info->id;
+-	u32 val;
+ 
+-	val = intel_de_read(dev_priv, SPLL_CTL);
+-	intel_de_write(dev_priv, SPLL_CTL, val & ~SPLL_PLL_ENABLE);
++	intel_de_rmw(dev_priv, SPLL_CTL, SPLL_PLL_ENABLE, 0);
+ 	intel_de_posting_read(dev_priv, SPLL_CTL);
+ 
+ 	/*
+@@ -1238,16 +1234,10 @@ static void skl_ddi_pll_write_ctrl1(struct drm_i915_private *dev_priv,
+ 				    struct intel_shared_dpll *pll)
+ {
+ 	const enum intel_dpll_id id = pll->info->id;
+-	u32 val;
+ 
+-	val = intel_de_read(dev_priv, DPLL_CTRL1);
+-
+-	val &= ~(DPLL_CTRL1_HDMI_MODE(id) |
+-		 DPLL_CTRL1_SSC(id) |
+-		 DPLL_CTRL1_LINK_RATE_MASK(id));
+-	val |= pll->state.hw_state.ctrl1 << (id * 6);
+-
+-	intel_de_write(dev_priv, DPLL_CTRL1, val);
++	intel_de_rmw(dev_priv, DPLL_CTRL1,
++		     DPLL_CTRL1_HDMI_MODE(id) | DPLL_CTRL1_SSC(id) | DPLL_CTRL1_LINK_RATE_MASK(id),
++		     pll->state.hw_state.ctrl1 << (id * 6));
+ 	intel_de_posting_read(dev_priv, DPLL_CTRL1);
+ }
+ 
+@@ -1265,8 +1255,7 @@ static void skl_ddi_pll_enable(struct drm_i915_private *dev_priv,
+ 	intel_de_posting_read(dev_priv, regs[id].cfgcr2);
+ 
+ 	/* the enable bit is always bit 31 */
+-	intel_de_write(dev_priv, regs[id].ctl,
+-		       intel_de_read(dev_priv, regs[id].ctl) | LCPLL_PLL_ENABLE);
++	intel_de_rmw(dev_priv, regs[id].ctl, 0, LCPLL_PLL_ENABLE);
+ 
+ 	if (intel_de_wait_for_set(dev_priv, DPLL_STATUS, DPLL_LOCK(id), 5))
+ 		drm_err(&dev_priv->drm, "DPLL %d not locked\n", id);
+@@ -1285,8 +1274,7 @@ static void skl_ddi_pll_disable(struct drm_i915_private *dev_priv,
+ 	const enum intel_dpll_id id = pll->info->id;
+ 
+ 	/* the enable bit is always bit 31 */
+-	intel_de_write(dev_priv, regs[id].ctl,
+-		       intel_de_read(dev_priv, regs[id].ctl) & ~LCPLL_PLL_ENABLE);
++	intel_de_rmw(dev_priv, regs[id].ctl, LCPLL_PLL_ENABLE, 0);
+ 	intel_de_posting_read(dev_priv, regs[id].ctl);
+ }
+ 
+@@ -1902,14 +1890,11 @@ static void bxt_ddi_pll_enable(struct drm_i915_private *dev_priv,
+ 	bxt_port_to_phy_channel(dev_priv, port, &phy, &ch);
+ 
+ 	/* Non-SSC reference */
+-	temp = intel_de_read(dev_priv, BXT_PORT_PLL_ENABLE(port));
+-	temp |= PORT_PLL_REF_SEL;
+-	intel_de_write(dev_priv, BXT_PORT_PLL_ENABLE(port), temp);
++	intel_de_rmw(dev_priv, BXT_PORT_PLL_ENABLE(port), 0, PORT_PLL_REF_SEL);
+ 
+ 	if (IS_GEMINILAKE(dev_priv)) {
+-		temp = intel_de_read(dev_priv, BXT_PORT_PLL_ENABLE(port));
+-		temp |= PORT_PLL_POWER_ENABLE;
+-		intel_de_write(dev_priv, BXT_PORT_PLL_ENABLE(port), temp);
++		intel_de_rmw(dev_priv, BXT_PORT_PLL_ENABLE(port),
++			     0, PORT_PLL_POWER_ENABLE);
+ 
+ 		if (wait_for_us((intel_de_read(dev_priv, BXT_PORT_PLL_ENABLE(port)) &
+ 				 PORT_PLL_POWER_STATE), 200))
+@@ -1918,39 +1903,28 @@ static void bxt_ddi_pll_enable(struct drm_i915_private *dev_priv,
+ 	}
+ 
+ 	/* Disable 10 bit clock */
+-	temp = intel_de_read(dev_priv, BXT_PORT_PLL_EBB_4(phy, ch));
+-	temp &= ~PORT_PLL_10BIT_CLK_ENABLE;
+-	intel_de_write(dev_priv, BXT_PORT_PLL_EBB_4(phy, ch), temp);
++	intel_de_rmw(dev_priv, BXT_PORT_PLL_EBB_4(phy, ch),
++		     PORT_PLL_10BIT_CLK_ENABLE, 0);
+ 
+ 	/* Write P1 & P2 */
+-	temp = intel_de_read(dev_priv, BXT_PORT_PLL_EBB_0(phy, ch));
+-	temp &= ~(PORT_PLL_P1_MASK | PORT_PLL_P2_MASK);
+-	temp |= pll->state.hw_state.ebb0;
+-	intel_de_write(dev_priv, BXT_PORT_PLL_EBB_0(phy, ch), temp);
++	intel_de_rmw(dev_priv, BXT_PORT_PLL_EBB_0(phy, ch),
++		     PORT_PLL_P1_MASK | PORT_PLL_P2_MASK, pll->state.hw_state.ebb0);
+ 
+ 	/* Write M2 integer */
+-	temp = intel_de_read(dev_priv, BXT_PORT_PLL(phy, ch, 0));
+-	temp &= ~PORT_PLL_M2_INT_MASK;
+-	temp |= pll->state.hw_state.pll0;
+-	intel_de_write(dev_priv, BXT_PORT_PLL(phy, ch, 0), temp);
++	intel_de_rmw(dev_priv, BXT_PORT_PLL(phy, ch, 0),
++		     PORT_PLL_M2_INT_MASK, pll->state.hw_state.pll0);
+ 
+ 	/* Write N */
+-	temp = intel_de_read(dev_priv, BXT_PORT_PLL(phy, ch, 1));
+-	temp &= ~PORT_PLL_N_MASK;
+-	temp |= pll->state.hw_state.pll1;
+-	intel_de_write(dev_priv, BXT_PORT_PLL(phy, ch, 1), temp);
++	intel_de_rmw(dev_priv, BXT_PORT_PLL(phy, ch, 1),
++		     PORT_PLL_N_MASK, pll->state.hw_state.pll1);
+ 
+ 	/* Write M2 fraction */
+-	temp = intel_de_read(dev_priv, BXT_PORT_PLL(phy, ch, 2));
+-	temp &= ~PORT_PLL_M2_FRAC_MASK;
+-	temp |= pll->state.hw_state.pll2;
+-	intel_de_write(dev_priv, BXT_PORT_PLL(phy, ch, 2), temp);
++	intel_de_rmw(dev_priv, BXT_PORT_PLL(phy, ch, 2),
++		     PORT_PLL_M2_FRAC_MASK, pll->state.hw_state.pll2);
+ 
+ 	/* Write M2 fraction enable */
+-	temp = intel_de_read(dev_priv, BXT_PORT_PLL(phy, ch, 3));
+-	temp &= ~PORT_PLL_M2_FRAC_ENABLE;
+-	temp |= pll->state.hw_state.pll3;
+-	intel_de_write(dev_priv, BXT_PORT_PLL(phy, ch, 3), temp);
++	intel_de_rmw(dev_priv, BXT_PORT_PLL(phy, ch, 3),
++		     PORT_PLL_M2_FRAC_ENABLE, pll->state.hw_state.pll3);
+ 
+ 	/* Write coeff */
+ 	temp = intel_de_read(dev_priv, BXT_PORT_PLL(phy, ch, 6));
+@@ -1961,15 +1935,11 @@ static void bxt_ddi_pll_enable(struct drm_i915_private *dev_priv,
+ 	intel_de_write(dev_priv, BXT_PORT_PLL(phy, ch, 6), temp);
+ 
+ 	/* Write calibration val */
+-	temp = intel_de_read(dev_priv, BXT_PORT_PLL(phy, ch, 8));
+-	temp &= ~PORT_PLL_TARGET_CNT_MASK;
+-	temp |= pll->state.hw_state.pll8;
+-	intel_de_write(dev_priv, BXT_PORT_PLL(phy, ch, 8), temp);
++	intel_de_rmw(dev_priv, BXT_PORT_PLL(phy, ch, 8),
++		     PORT_PLL_TARGET_CNT_MASK, pll->state.hw_state.pll8);
+ 
+-	temp = intel_de_read(dev_priv, BXT_PORT_PLL(phy, ch, 9));
+-	temp &= ~PORT_PLL_LOCK_THRESHOLD_MASK;
+-	temp |= pll->state.hw_state.pll9;
+-	intel_de_write(dev_priv, BXT_PORT_PLL(phy, ch, 9), temp);
++	intel_de_rmw(dev_priv, BXT_PORT_PLL(phy, ch, 9),
++		     PORT_PLL_LOCK_THRESHOLD_MASK, pll->state.hw_state.pll9);
+ 
+ 	temp = intel_de_read(dev_priv, BXT_PORT_PLL(phy, ch, 10));
+ 	temp &= ~PORT_PLL_DCO_AMP_OVR_EN_H;
+@@ -1986,9 +1956,7 @@ static void bxt_ddi_pll_enable(struct drm_i915_private *dev_priv,
+ 	intel_de_write(dev_priv, BXT_PORT_PLL_EBB_4(phy, ch), temp);
+ 
+ 	/* Enable PLL */
+-	temp = intel_de_read(dev_priv, BXT_PORT_PLL_ENABLE(port));
+-	temp |= PORT_PLL_ENABLE;
+-	intel_de_write(dev_priv, BXT_PORT_PLL_ENABLE(port), temp);
++	intel_de_rmw(dev_priv, BXT_PORT_PLL_ENABLE(port), 0, PORT_PLL_ENABLE);
+ 	intel_de_posting_read(dev_priv, BXT_PORT_PLL_ENABLE(port));
+ 
+ 	if (wait_for_us((intel_de_read(dev_priv, BXT_PORT_PLL_ENABLE(port)) & PORT_PLL_LOCK),
+@@ -2016,17 +1984,13 @@ static void bxt_ddi_pll_disable(struct drm_i915_private *dev_priv,
+ 					struct intel_shared_dpll *pll)
+ {
+ 	enum port port = (enum port)pll->info->id; /* 1:1 port->PLL mapping */
+-	u32 temp;
+ 
+-	temp = intel_de_read(dev_priv, BXT_PORT_PLL_ENABLE(port));
+-	temp &= ~PORT_PLL_ENABLE;
+-	intel_de_write(dev_priv, BXT_PORT_PLL_ENABLE(port), temp);
++	intel_de_rmw(dev_priv, BXT_PORT_PLL_ENABLE(port), PORT_PLL_ENABLE, 0);
+ 	intel_de_posting_read(dev_priv, BXT_PORT_PLL_ENABLE(port));
+ 
+ 	if (IS_GEMINILAKE(dev_priv)) {
+-		temp = intel_de_read(dev_priv, BXT_PORT_PLL_ENABLE(port));
+-		temp &= ~PORT_PLL_POWER_ENABLE;
+-		intel_de_write(dev_priv, BXT_PORT_PLL_ENABLE(port), temp);
++		intel_de_rmw(dev_priv, BXT_PORT_PLL_ENABLE(port),
++			     PORT_PLL_POWER_ENABLE, 0);
+ 
+ 		if (wait_for_us(!(intel_de_read(dev_priv, BXT_PORT_PLL_ENABLE(port)) &
+ 				  PORT_PLL_POWER_STATE), 200))
+@@ -3641,8 +3605,8 @@ static void icl_dpll_write(struct drm_i915_private *dev_priv,
+ 			 !i915_mmio_reg_valid(div0_reg));
+ 	if (dev_priv->display.vbt.override_afc_startup &&
+ 	    i915_mmio_reg_valid(div0_reg))
+-		intel_de_rmw(dev_priv, div0_reg, TGL_DPLL0_DIV0_AFC_STARTUP_MASK,
+-			     hw_state->div0);
++		intel_de_rmw(dev_priv, div0_reg,
++			     TGL_DPLL0_DIV0_AFC_STARTUP_MASK, hw_state->div0);
+ 	intel_de_posting_read(dev_priv, cfgcr1_reg);
+ }
+ 
+@@ -3651,7 +3615,6 @@ static void icl_mg_pll_write(struct drm_i915_private *dev_priv,
+ {
+ 	struct intel_dpll_hw_state *hw_state = &pll->state.hw_state;
+ 	enum tc_port tc_port = icl_pll_id_to_tc_port(pll->info->id);
+-	u32 val;
+ 
+ 	/*
+ 	 * Some of the following registers have reserved fields, so program
+@@ -3659,23 +3622,19 @@ static void icl_mg_pll_write(struct drm_i915_private *dev_priv,
+ 	 * during the calc/readout phase if the mask depends on some other HW
+ 	 * state like refclk, see icl_calc_mg_pll_state().
+ 	 */
+-	val = intel_de_read(dev_priv, MG_REFCLKIN_CTL(tc_port));
+-	val &= ~MG_REFCLKIN_CTL_OD_2_MUX_MASK;
+-	val |= hw_state->mg_refclkin_ctl;
+-	intel_de_write(dev_priv, MG_REFCLKIN_CTL(tc_port), val);
++	intel_de_rmw(dev_priv, MG_REFCLKIN_CTL(tc_port),
++		     MG_REFCLKIN_CTL_OD_2_MUX_MASK, hw_state->mg_refclkin_ctl);
+ 
+-	val = intel_de_read(dev_priv, MG_CLKTOP2_CORECLKCTL1(tc_port));
+-	val &= ~MG_CLKTOP2_CORECLKCTL1_A_DIVRATIO_MASK;
+-	val |= hw_state->mg_clktop2_coreclkctl1;
+-	intel_de_write(dev_priv, MG_CLKTOP2_CORECLKCTL1(tc_port), val);
++	intel_de_rmw(dev_priv, MG_CLKTOP2_CORECLKCTL1(tc_port),
++		     MG_CLKTOP2_CORECLKCTL1_A_DIVRATIO_MASK,
++		     hw_state->mg_clktop2_coreclkctl1);
+ 
+-	val = intel_de_read(dev_priv, MG_CLKTOP2_HSCLKCTL(tc_port));
+-	val &= ~(MG_CLKTOP2_HSCLKCTL_TLINEDRV_CLKSEL_MASK |
+-		 MG_CLKTOP2_HSCLKCTL_CORE_INPUTSEL_MASK |
+-		 MG_CLKTOP2_HSCLKCTL_HSDIV_RATIO_MASK |
+-		 MG_CLKTOP2_HSCLKCTL_DSDIV_RATIO_MASK);
+-	val |= hw_state->mg_clktop2_hsclkctl;
+-	intel_de_write(dev_priv, MG_CLKTOP2_HSCLKCTL(tc_port), val);
++	intel_de_rmw(dev_priv, MG_CLKTOP2_HSCLKCTL(tc_port),
++		     MG_CLKTOP2_HSCLKCTL_TLINEDRV_CLKSEL_MASK |
++		     MG_CLKTOP2_HSCLKCTL_CORE_INPUTSEL_MASK |
++		     MG_CLKTOP2_HSCLKCTL_HSDIV_RATIO_MASK |
++		     MG_CLKTOP2_HSCLKCTL_DSDIV_RATIO_MASK,
++		     hw_state->mg_clktop2_hsclkctl);
+ 
+ 	intel_de_write(dev_priv, MG_PLL_DIV0(tc_port), hw_state->mg_pll_div0);
+ 	intel_de_write(dev_priv, MG_PLL_DIV1(tc_port), hw_state->mg_pll_div1);
+@@ -3684,15 +3643,12 @@ static void icl_mg_pll_write(struct drm_i915_private *dev_priv,
+ 		       hw_state->mg_pll_frac_lock);
+ 	intel_de_write(dev_priv, MG_PLL_SSC(tc_port), hw_state->mg_pll_ssc);
+ 
+-	val = intel_de_read(dev_priv, MG_PLL_BIAS(tc_port));
+-	val &= ~hw_state->mg_pll_bias_mask;
+-	val |= hw_state->mg_pll_bias;
+-	intel_de_write(dev_priv, MG_PLL_BIAS(tc_port), val);
++	intel_de_rmw(dev_priv, MG_PLL_BIAS(tc_port),
++		     hw_state->mg_pll_bias_mask, hw_state->mg_pll_bias);
+ 
+-	val = intel_de_read(dev_priv, MG_PLL_TDC_COLDST_BIAS(tc_port));
+-	val &= ~hw_state->mg_pll_tdc_coldst_bias_mask;
+-	val |= hw_state->mg_pll_tdc_coldst_bias;
+-	intel_de_write(dev_priv, MG_PLL_TDC_COLDST_BIAS(tc_port), val);
++	intel_de_rmw(dev_priv, MG_PLL_TDC_COLDST_BIAS(tc_port),
++		     hw_state->mg_pll_tdc_coldst_bias_mask,
++		     hw_state->mg_pll_tdc_coldst_bias);
+ 
+ 	intel_de_posting_read(dev_priv, MG_PLL_TDC_COLDST_BIAS(tc_port));
+ }
+@@ -3766,11 +3722,7 @@ static void icl_pll_power_enable(struct drm_i915_private *dev_priv,
+ 				 struct intel_shared_dpll *pll,
+ 				 i915_reg_t enable_reg)
+ {
+-	u32 val;
+-
+-	val = intel_de_read(dev_priv, enable_reg);
+-	val |= PLL_POWER_ENABLE;
+-	intel_de_write(dev_priv, enable_reg, val);
++	intel_de_rmw(dev_priv, enable_reg, 0, PLL_POWER_ENABLE);
+ 
+ 	/*
+ 	 * The spec says we need to "wait" but it also says it should be
+@@ -3785,11 +3737,7 @@ static void icl_pll_enable(struct drm_i915_private *dev_priv,
+ 			   struct intel_shared_dpll *pll,
+ 			   i915_reg_t enable_reg)
+ {
+-	u32 val;
+-
+-	val = intel_de_read(dev_priv, enable_reg);
+-	val |= PLL_ENABLE;
+-	intel_de_write(dev_priv, enable_reg, val);
++	intel_de_rmw(dev_priv, enable_reg, 0, PLL_ENABLE);
+ 
+ 	/* Timeout is actually 600us. */
+ 	if (intel_de_wait_for_set(dev_priv, enable_reg, PLL_LOCK, 1))
+@@ -3815,8 +3763,7 @@ static void adlp_cmtg_clock_gating_wa(struct drm_i915_private *i915, struct inte
+ 	 * since TRANS_CMTG_CHICKEN is only accessible while DPLL0 is enabled.
+ 	 */
+ 	val = intel_de_read(i915, TRANS_CMTG_CHICKEN);
+-	val = intel_de_read(i915, TRANS_CMTG_CHICKEN);
+-	intel_de_write(i915, TRANS_CMTG_CHICKEN, DISABLE_DPT_CLK_GATING);
++	val = intel_de_rmw(i915, TRANS_CMTG_CHICKEN, ~0, DISABLE_DPT_CLK_GATING);
+ 	if (drm_WARN_ON(&i915->drm, val & ~DISABLE_DPT_CLK_GATING))
+ 		drm_dbg_kms(&i915->drm, "Unexpected flags in TRANS_CMTG_CHICKEN: %08x\n", val);
+ }
+@@ -3900,8 +3847,6 @@ static void icl_pll_disable(struct drm_i915_private *dev_priv,
+ 			    struct intel_shared_dpll *pll,
+ 			    i915_reg_t enable_reg)
+ {
+-	u32 val;
+-
+ 	/* The first steps are done by intel_ddi_post_disable(). */
+ 
+ 	/*
+@@ -3910,9 +3855,7 @@ static void icl_pll_disable(struct drm_i915_private *dev_priv,
+ 	 * nothing here.
+ 	 */
+ 
+-	val = intel_de_read(dev_priv, enable_reg);
+-	val &= ~PLL_ENABLE;
+-	intel_de_write(dev_priv, enable_reg, val);
++	intel_de_rmw(dev_priv, enable_reg, PLL_ENABLE, 0);
+ 
+ 	/* Timeout is actually 1us. */
+ 	if (intel_de_wait_for_clear(dev_priv, enable_reg, PLL_LOCK, 1))
+@@ -3920,9 +3863,7 @@ static void icl_pll_disable(struct drm_i915_private *dev_priv,
+ 
+ 	/* DVFS post sequence would be here. See the comment above. */
+ 
+-	val = intel_de_read(dev_priv, enable_reg);
+-	val &= ~PLL_POWER_ENABLE;
+-	intel_de_write(dev_priv, enable_reg, val);
++	intel_de_rmw(dev_priv, enable_reg, PLL_POWER_ENABLE, 0);
+ 
+ 	/*
+ 	 * The spec says we need to "wait" but it also says it should be
+diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+index 96395bfbd41dfb..6f6dc7c6b88b0c 100644
+--- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
++++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+@@ -647,17 +647,14 @@ static void intel_early_display_was(struct drm_i915_private *i915)
+ 	 * Also known as Wa_14010480278.
+ 	 */
+ 	if (IS_DISPLAY_VER(i915, 10, 12))
+-		intel_de_write(i915, GEN9_CLKGATE_DIS_0,
+-			       intel_de_read(i915, GEN9_CLKGATE_DIS_0) | DARBF_GATING_DIS);
++		intel_de_rmw(i915, GEN9_CLKGATE_DIS_0, 0, DARBF_GATING_DIS);
+ 
+-	if (IS_HASWELL(i915)) {
+-		/*
+-		 * WaRsPkgCStateDisplayPMReq:hsw
+-		 * System hang if this isn't done before disabling all planes!
+-		 */
+-		intel_de_write(i915, CHICKEN_PAR1_1,
+-			       intel_de_read(i915, CHICKEN_PAR1_1) | FORCE_ARB_IDLE_PLANES);
+-	}
++	/*
++	 * WaRsPkgCStateDisplayPMReq:hsw
++	 * System hang if this isn't done before disabling all planes!
++	 */
++	if (IS_HASWELL(i915))
++		intel_de_rmw(i915, CHICKEN_PAR1_1, 0, FORCE_ARB_IDLE_PLANES);
+ 
+ 	if (IS_KABYLAKE(i915) || IS_COFFEELAKE(i915) || IS_COMETLAKE(i915)) {
+ 		/* Display WA #1142:kbl,cfl,cml */
+-- 
+2.34.1
+
