@@ -2,49 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5646652796
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 21:11:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2157C65281F
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 21:58:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CA9010E3F3;
-	Tue, 20 Dec 2022 20:11:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 427D910E406;
+	Tue, 20 Dec 2022 20:58:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 102A210E3F3
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 20:11:52 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B9B310E406
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 20:58:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671567112; x=1703103112;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=OZkI8+L2JywNydgNGDhMP7mGxBx3zTbx6iMqU2mMJfc=;
- b=QQWZM7URsAjsSTkpfvVbGbqMnJ9HhVG/BvKLdZrBhj7M/RHmWL6VMEj6
- iK61dChQ0RNkRxR5E8ZGrJoWmzJ6w89lj5ho3VhjvFoBKC3sgXwAW2H/J
- mrgb5Pwq9E+g5wYU9j2yLL5Em1ozxV4cRVSfloWM2hrmWR2R+2mFErcZp
- OVqNob6Dp599ldfR40oBh68vPpvuXXrye0dcNSv+8d3zoaBIZrOeT3+9V
- dPxKlNG7FbtNZYn63512RRKMVOalGi06zsB11ugMtF379A130oRhVEzWW
- LwoZBcvpx9MKqcAabfT9iMTVf1l+LP6GBv+QZIVa91l2ajf167z/E7pvC Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="405950689"
-X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="405950689"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2022 12:11:51 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="681785489"
-X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="681785489"
-Received: from dtpaulso-mobl.amr.corp.intel.com (HELO gjsousa-mobl2.intel.com)
- ([10.209.148.251])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2022 12:11:49 -0800
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 20 Dec 2022 17:11:04 -0300
-Message-Id: <20221220201104.339399-3-gustavo.sousa@intel.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221220201104.339399-1-gustavo.sousa@intel.com>
-References: <20221220201104.339399-1-gustavo.sousa@intel.com>
+ t=1671569896; x=1703105896;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=0WLXu15lVV0reKYMGQLhDuP+CUe4pB52lrrY627iiOE=;
+ b=LlljL8rYdjz4NTv9hV1XJ9gWWy8nBF2o5OOyMR6UNTrkHGVLYHrtzVkG
+ qFmLV9Z7RwzNq/rW2xeaSKkzECgGssnGzdPt/8su3fdFduRFoEjzbIq3M
+ YkIuFsnYpLrRuTiBbIbfJUFaRpwyJFkua1PEkQyRFTy3ap2PaGqF5cNWF
+ Ttss8n8AuY00he6Vxu1scxsuhp+LsbHBg6/K5K7JpnInGCc37x46NfePI
+ bLWvC1W7Wtc6p6tlG42RNxdE39YPY0CfZoqdVng+N0o+xFJsoJzvUVbyq
+ MDnkby/02AQZQz/9CiTqz8cusrHHEgFeckAMVXvyEvg7aPmHOn+qiNc6b A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="317354909"
+X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="317354909"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2022 12:58:15 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="628877547"
+X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="628877547"
+Received: from spalapa-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.60.249])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2022 12:58:13 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>, "Deak,
+ Imre" <imre.deak@intel.com>
+In-Reply-To: <DM6PR11MB3177C23771ACBA36E1027AA2BAEA9@DM6PR11MB3177.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20221124070925.3834910-1-arun.r.murthy@intel.com>
+ <20221215111338.1080698-1-arun.r.murthy@intel.com>
+ <DM6PR11MB3177E122AC904FB5F30EF6EDBAE59@DM6PR11MB3177.namprd11.prod.outlook.com>
+ <87len22hcd.fsf@intel.com>
+ <DM6PR11MB3177C23771ACBA36E1027AA2BAEA9@DM6PR11MB3177.namprd11.prod.outlook.com>
+Date: Tue, 20 Dec 2022 22:58:11 +0200
+Message-ID: <87ili53i8s.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/dmc: Use unversioned firmware paths
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCHv6] drm/i915/dp: change aux_ctl reg read to
+ polling read
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,177 +64,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As we do not require specific versions anymore, change the convention
-for blob filenames to stop using version numbers. This simplifies code
-maintenance, since we do not need to keep updating blob paths for new
-DMC releases, and also makes DMC loading compatible with systems that do
-not have the latest firmware release.
+On Tue, 20 Dec 2022, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
+>> -----Original Message-----
+>> From: Nikula, Jani <jani.nikula@intel.com>
+>> Sent: Tuesday, December 20, 2022 9:33 PM
+>> To: Murthy, Arun R <arun.r.murthy@intel.com>; intel-
+>> gfx@lists.freedesktop.org; ville.syrjala@linux.intel.com; Deak, Imre
+>> <imre.deak@intel.com>
+>> Subject: RE: [PATCHv6] drm/i915/dp: change aux_ctl reg read to polling read
+>>
+>> On Mon, 19 Dec 2022, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
+>> > Any comments?
+>>
+>> From #intel-gfx:
+>>
+>> <vsyrjala> bashing the hw for 500 usec seems a bit harsh
+>>
+>> Which is true. The default for intel_de_wait_for_register() is 2 us. Should
+>> probably stick to that.
+>
+> Recommendation as per windows code base is 50us interval for polling
+> the register, so will change it to 50us.
 
-References: https://lore.kernel.org/r/Y3081s7c5ksutpMW@intel.com
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dmc.c | 98 ++++++++++++++++++++----
- 1 file changed, 82 insertions(+), 16 deletions(-)
+The parameter is *not* the interval. It's the timeout for fast wait in a
+loop with just cpu_relax() in between. So please keep it 2 us.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 4124b3d37110..b11f0f451dd7 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -42,51 +42,70 @@
- #define DMC_VERSION_MAJOR(version)	((version) >> 16)
- #define DMC_VERSION_MINOR(version)	((version) & 0xffff)
- 
--#define DMC_PATH(platform, major, minor) \
--	"i915/"				 \
--	__stringify(platform) "_dmc_ver" \
--	__stringify(major) "_"		 \
-+#define DMC_PATH(platform) \
-+	"i915/" __stringify(platform) "_dmc.bin"
-+
-+/*
-+ * New DMC additions should not use this. This is used solely to remain
-+ * compatible with systems that have not yet updated DMC blobs to use
-+ * unversioned file names.
-+ */
-+#define DMC_LEGACY_PATH(platform, major, minor) \
-+	"i915/"					\
-+	__stringify(platform) "_dmc_ver"	\
-+	__stringify(major) "_"			\
- 	__stringify(minor) ".bin"
- 
- #define DISPLAY_VER13_DMC_MAX_FW_SIZE	0x20000
- 
- #define DISPLAY_VER12_DMC_MAX_FW_SIZE	ICL_DMC_MAX_FW_SIZE
- 
--#define DG2_DMC_PATH			DMC_PATH(dg2, 2, 08)
-+#define DG2_DMC_PATH			DMC_PATH(dg2)
-+#define DG2_DMC_LEGACY_PATH		DMC_LEGACY_PATH(dg2, 2, 08)
- MODULE_FIRMWARE(DG2_DMC_PATH);
- 
--#define ADLP_DMC_PATH			DMC_PATH(adlp, 2, 16)
-+#define ADLP_DMC_PATH			DMC_PATH(adlp)
-+#define ADLP_DMC_LEGACY_PATH		DMC_LEGACY_PATH(adlp, 2, 16)
- MODULE_FIRMWARE(ADLP_DMC_PATH);
- 
--#define ADLS_DMC_PATH			DMC_PATH(adls, 2, 01)
-+#define ADLS_DMC_PATH			DMC_PATH(adls)
-+#define ADLS_DMC_LEGACY_PATH		DMC_LEGACY_PATH(adls, 2, 01)
- MODULE_FIRMWARE(ADLS_DMC_PATH);
- 
--#define DG1_DMC_PATH			DMC_PATH(dg1, 2, 02)
-+#define DG1_DMC_PATH			DMC_PATH(dg1)
-+#define DG1_DMC_LEGACY_PATH		DMC_LEGACY_PATH(dg1, 2, 02)
- MODULE_FIRMWARE(DG1_DMC_PATH);
- 
--#define RKL_DMC_PATH			DMC_PATH(rkl, 2, 03)
-+#define RKL_DMC_PATH			DMC_PATH(rkl)
-+#define RKL_DMC_LEGACY_PATH		DMC_LEGACY_PATH(rkl, 2, 03)
- MODULE_FIRMWARE(RKL_DMC_PATH);
- 
--#define TGL_DMC_PATH			DMC_PATH(tgl, 2, 12)
-+#define TGL_DMC_PATH			DMC_PATH(tgl)
-+#define TGL_DMC_LEGACY_PATH		DMC_LEGACY_PATH(tgl, 2, 12)
- MODULE_FIRMWARE(TGL_DMC_PATH);
- 
--#define ICL_DMC_PATH			DMC_PATH(icl, 1, 09)
-+#define ICL_DMC_PATH			DMC_PATH(icl)
-+#define ICL_DMC_LEGACY_PATH		DMC_LEGACY_PATH(icl, 1, 09)
- #define ICL_DMC_MAX_FW_SIZE		0x6000
- MODULE_FIRMWARE(ICL_DMC_PATH);
- 
--#define GLK_DMC_PATH			DMC_PATH(glk, 1, 04)
-+#define GLK_DMC_PATH			DMC_PATH(glk)
-+#define GLK_DMC_LEGACY_PATH		DMC_LEGACY_PATH(glk, 1, 04)
- #define GLK_DMC_MAX_FW_SIZE		0x4000
- MODULE_FIRMWARE(GLK_DMC_PATH);
- 
--#define KBL_DMC_PATH			DMC_PATH(kbl, 1, 04)
-+#define KBL_DMC_PATH			DMC_PATH(kbl)
-+#define KBL_DMC_LEGACY_PATH		DMC_LEGACY_PATH(kbl, 1, 04)
- #define KBL_DMC_MAX_FW_SIZE		BXT_DMC_MAX_FW_SIZE
- MODULE_FIRMWARE(KBL_DMC_PATH);
- 
--#define SKL_DMC_PATH			DMC_PATH(skl, 1, 27)
-+#define SKL_DMC_PATH			DMC_PATH(skl)
-+#define SKL_DMC_LEGACY_PATH		DMC_LEGACY_PATH(skl, 1, 27)
- #define SKL_DMC_MAX_FW_SIZE		BXT_DMC_MAX_FW_SIZE
- MODULE_FIRMWARE(SKL_DMC_PATH);
- 
--#define BXT_DMC_PATH			DMC_PATH(bxt, 1, 07)
-+#define BXT_DMC_PATH			DMC_PATH(bxt)
-+#define BXT_DMC_LEGACY_PATH		DMC_LEGACY_PATH(bxt, 1, 07)
- #define BXT_DMC_MAX_FW_SIZE		0x3000
- MODULE_FIRMWARE(BXT_DMC_PATH);
- 
-@@ -821,16 +840,63 @@ static void intel_dmc_runtime_pm_put(struct drm_i915_private *dev_priv)
- 	intel_display_power_put(dev_priv, POWER_DOMAIN_INIT, wakeref);
- }
- 
-+static const char *dmc_legacy_path(struct drm_i915_private *i915)
-+{
-+	if (IS_DG2(i915)) {
-+		return DG2_DMC_LEGACY_PATH;
-+	} else if (IS_ALDERLAKE_P(i915)) {
-+		return ADLP_DMC_LEGACY_PATH;
-+	} else if (IS_ALDERLAKE_S(i915)) {
-+		return ADLS_DMC_LEGACY_PATH;
-+	} else if (IS_DG1(i915)) {
-+		return DG1_DMC_LEGACY_PATH;
-+	} else if (IS_ROCKETLAKE(i915)) {
-+		return RKL_DMC_LEGACY_PATH;
-+	} else if (IS_TIGERLAKE(i915)) {
-+		return TGL_DMC_LEGACY_PATH;
-+	} else if (DISPLAY_VER(i915) == 11) {
-+		return ICL_DMC_LEGACY_PATH;
-+	} else if (IS_GEMINILAKE(i915)) {
-+		return GLK_DMC_LEGACY_PATH;
-+	} else if (IS_KABYLAKE(i915) ||
-+		   IS_COFFEELAKE(i915) ||
-+		   IS_COMETLAKE(i915)) {
-+		return KBL_DMC_LEGACY_PATH;
-+	} else if (IS_SKYLAKE(i915)) {
-+		return SKL_DMC_LEGACY_PATH;
-+	} else if (IS_BROXTON(i915)) {
-+		return BXT_DMC_LEGACY_PATH;
-+	}
-+
-+	return NULL;
-+}
-+
- static void dmc_load_work_fn(struct work_struct *work)
- {
- 	struct drm_i915_private *dev_priv;
- 	struct intel_dmc *dmc;
- 	const struct firmware *fw = NULL;
-+	const char *legacy_path;
-+	int err;
- 
- 	dev_priv = container_of(work, typeof(*dev_priv), display.dmc.work);
- 	dmc = &dev_priv->display.dmc;
- 
--	request_firmware(&fw, dev_priv->display.dmc.fw_path, dev_priv->drm.dev);
-+	err = firmware_request_nowarn(&fw, dev_priv->display.dmc.fw_path, dev_priv->drm.dev);
-+
-+	if (err == -ENOENT && !dev_priv->params.dmc_firmware_path) {
-+		legacy_path = dmc_legacy_path(dev_priv);
-+		if (legacy_path) {
-+			drm_dbg_kms(&dev_priv->drm,
-+				    "%s not found, falling back to %s\n",
-+				    dmc->fw_path,
-+				    legacy_path);
-+			err = firmware_request_nowarn(&fw, legacy_path, dev_priv->drm.dev);
-+			if (err == 0)
-+				dev_priv->display.dmc.fw_path = legacy_path;
-+		}
-+	}
-+
- 	parse_dmc_fw(dev_priv, fw);
- 
- 	if (intel_dmc_has_payload(dev_priv)) {
+If the condition doesn't happen in the fast timeout, it'll fall back to
+the slow wait (in this case 10 ms timeout), which starts off with 10 us
+interval, doubling on every poll until it's above 1000 us.
+
+
+BR,
+Jani.
+
+
+>
+> Thanks and Regards,
+> Arun R Murthy
+> --------------------
+>>
+>> BR,
+>> Jani.
+>>
+>>
+>> >
+>> > Thanks and Regards,
+>> > Arun R Murthy
+>> > --------------------
+>> >
+>> >> -----Original Message-----
+>> >> From: Murthy, Arun R <arun.r.murthy@intel.com>
+>> >> Sent: Thursday, December 15, 2022 4:44 PM
+>> >> To: intel-gfx@lists.freedesktop.org; ville.syrjala@linux.intel.com;
+>> >> Nikula, Jani <jani.nikula@intel.com>; Deak, Imre
+>> >> <imre.deak@intel.com>
+>> >> Cc: Murthy, Arun R <arun.r.murthy@intel.com>
+>> >> Subject: [PATCHv6] drm/i915/dp: change aux_ctl reg read to polling
+>> >> read
+>> >>
+>> >> The busy timeout logic checks for the AUX BUSY, then waits for the
+>> >> timeout period and then after timeout reads the register for BUSY or
+>> Success.
+>> >> Instead replace interrupt with polling so as to read the AUX CTL
+>> >> register often before the timeout period. Looks like there might be
+>> >> some issue with interrupt-on-read. Hence changing the logic to polling
+>> read.
+>> >>
+>> >> v2: replace interrupt with polling read
+>> >> v3: use usleep_rang instead of msleep, updated commit msg
+>> >> v4: use intel_wait_for_regiter internal function
+>> >> v5: use __intel_de_wait_for_register with 500us slow and 10ms fast
+>> >> timeout
+>> >> v6: check return value of __intel_de_wait_for_register
+>> >>
+>> >> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+>> >> ---
+>> >>  drivers/gpu/drm/i915/display/intel_dp_aux.c | 14 +++++---------
+>> >>  1 file changed, 5 insertions(+), 9 deletions(-)
+>> >>
+>> >> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+>> >> b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+>> >> index 91c93c93e5fc..973dadecf712 100644
+>> >> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+>> >> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+>> >> @@ -41,20 +41,16 @@ intel_dp_aux_wait_done(struct intel_dp
+>> *intel_dp)
+>> >>       i915_reg_t ch_ctl = intel_dp->aux_ch_ctl_reg(intel_dp);
+>> >>       const unsigned int timeout_ms = 10;
+>> >>       u32 status;
+>> >> -     bool done;
+>> >> -
+>> >> -#define C (((status = intel_de_read_notrace(i915, ch_ctl)) &
+>> >> DP_AUX_CH_CTL_SEND_BUSY) == 0)
+>> >> -     done = wait_event_timeout(i915->display.gmbus.wait_queue, C,
+>> >> -                               msecs_to_jiffies_timeout(timeout_ms));
+>> >> +     int ret;
+>> >>
+>> >> -     /* just trace the final value */
+>> >> -     trace_i915_reg_rw(false, ch_ctl, status, sizeof(status), true);
+>> >> +     ret = __intel_de_wait_for_register(i915, ch_ctl,
+>> >> +                                        DP_AUX_CH_CTL_SEND_BUSY, 0,
+>> >> +                                        500, timeout_ms, &status);
+>> >>
+>> >> -     if (!done)
+>> >> +     if (ret == -ETIMEDOUT)
+>> >>               drm_err(&i915->drm,
+>> >>                       "%s: did not complete or timeout within %ums
+>> >> (status 0x%08x)\n",
+>> >>                       intel_dp->aux.name, timeout_ms, status);
+>> >> -#undef C
+>> >>
+>> >>       return status;
+>> >>  }
+>> >> --
+>> >> 2.25.1
+>> >
+>>
+>> --
+>> Jani Nikula, Intel Open Source Graphics Center
+
 -- 
-2.38.1
-
+Jani Nikula, Intel Open Source Graphics Center
