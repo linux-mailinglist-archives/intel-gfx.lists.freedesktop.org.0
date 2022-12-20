@@ -2,50 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DCE2652031
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 13:08:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 730FA652032
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 13:08:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35FC110E05C;
-	Tue, 20 Dec 2022 12:08:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B307610E3A0;
+	Tue, 20 Dec 2022 12:08:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9B3110E3A0
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 12:07:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E6DE10E3A0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 12:07:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671538059; x=1703074059;
+ t=1671538061; x=1703074061;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=nFq6Vx3wg4xljIrLtS9svOvwe9m7X6UTkWBSA9m3/rA=;
- b=IpkelOKiOVjcPdNbswKnX6HvYV7ZLsYleGmcUqduJZARkZzSsdHZeLRb
- WVgw9WXJgyJSeTjsBPMw61G2zX7g7hh2RQvS0YUuIUoGvs6h/sKwRtbnB
- gcv9QUFW2W2lx/yPYwt7DgPucoPlEejzWza28NCuavJXIDuX3Hc0xckIc
- uCyt5EKGy1iPPBPOc96c5Er0xriOGiKYAe18p8qsav3wO4b7zsZRHsJkO
- 16jRjHek1blLpxtXv76BKh4R7KhpZSI+Ry1MeIEOFjwfHswfJOA7Max1b
- 2QEeGHQ5fTZrGqG1jX5oRPvDpR6pDBacMONkVJve7glP6aUpdKfBGIi4g A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10566"; a="405845467"
-X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="405845467"
+ bh=lkkRTUK8/Op8UbLfXpjefAg+zNr3oHvS/2GjohNuyAw=;
+ b=My2a3PfGZHRKuwMUjP40yTxyibuDr5LX+zcBQblW/zL1ATEVJZhOSDbe
+ VK5ffbKY/ISFb3lXppYUq9EFY3FVpsWsRxbvLyrGdChAjpFD+rErEKNnj
+ WFYFt2RRmQtAlRX4tmATF1fOXaSutgkbdk31XM5XlwA5WLlYXQhZgYDGf
+ CMRdhdHFvQexiYmAoaakwHNzF1yZs8OdC30uT7nQjYGKmdRhUn4RHeDso
+ TyRMFVk2NNbE0tnIJ/H1KQCAO/rXC/EIb7bVVYvOinS6mDUGnBw8xTCin
+ hw2pFUguUncb2x0/kpf5aZEKGhsGRsr8UAoR9HzHMFYLkU/bvRn2KnZGl w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10566"; a="405845470"
+X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="405845470"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2022 04:07:39 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10566"; a="628699221"
-X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="628699221"
+ 20 Dec 2022 04:07:41 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10566"; a="628699227"
+X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="628699227"
 Received: from asignori-mobl3.ger.corp.intel.com (HELO
  kveik.ger.corp.intel.com) ([10.252.46.89])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2022 04:07:38 -0800
+ 20 Dec 2022 04:07:39 -0800
 From: Luca Coelho <luciano.coelho@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 20 Dec 2022 14:07:23 +0200
-Message-Id: <20221220120724.196570-2-luciano.coelho@intel.com>
+Date: Tue, 20 Dec 2022 14:07:24 +0200
+Message-Id: <20221220120724.196570-3-luciano.coelho@intel.com>
 X-Mailer: git-send-email 2.38.1
 In-Reply-To: <20221220120724.196570-1-luciano.coelho@intel.com>
 References: <20221220120724.196570-1-luciano.coelho@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v6 1/2] drm/i915/mtl: limit second scaler
- vertical scaling in ver >= 14
+Subject: [Intel-gfx] [PATCH v6 2/2] drm/i915/mtl: Limit scaler input to 4k
+ in plane scaling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,176 +62,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In newer hardware versions (i.e. display version >= 14), the second
-scaler doesn't support vertical scaling.
+From: Animesh Manna <animesh.manna@intel.com>
 
-The current implementation of the scaling limits is simplified and
-only occurs when the planes are created, so we don't know which scaler
-is being used.
+As part of die area reduction max input source modified to 4096
+for MTL so modified range check logic of scaler.
 
-In order to handle separate scaling limits for horizontal and vertical
-scaling, and different limits per scaler, split the checks in two
-phases.  We first do a simple check during plane creation and use the
-best-case scenario (because we don't know the scaler that may be used
-at a later point) and then do a more specific check when the scalers
-are actually being set up.
-
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
 ---
+ drivers/gpu/drm/i915/display/skl_scaler.c | 31 +++++++++++++++++------
+ 1 file changed, 23 insertions(+), 8 deletions(-)
 
-In v2:
-   * fix DRM_PLANE_NO_SCALING renamed macros;
-
-In v3:
-   * No changes.
-
-In v4:
-   * Got rid of the changes in the general planes max scale code;
-   * Added a couple of FIXMEs;
-   * Made intel_atomic_setup_scaler() return an int with errors;
-
-In v5:
-   * Just resent with a cover letter.
-
-In v6:
-   * Now the correct version again (same as v4).
-
-
-drivers/gpu/drm/i915/display/intel_atomic.c | 83 ++++++++++++++++++---
- 1 file changed, 73 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
-index 6621aa245caf..8373be283d8b 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic.c
-@@ -41,6 +41,7 @@
- #include "intel_global_state.h"
- #include "intel_hdcp.h"
- #include "intel_psr.h"
-+#include "intel_fb.h"
- #include "skl_universal_plane.h"
+diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+index d7390067b7d4..6baa07142b03 100644
+--- a/drivers/gpu/drm/i915/display/skl_scaler.c
++++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+@@ -103,6 +103,8 @@ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 	const struct drm_display_mode *adjusted_mode =
+ 		&crtc_state->hw.adjusted_mode;
++	int min_src_w, min_src_h, min_dst_w, min_dst_h;
++	int max_src_w, max_src_h, max_dst_w, max_dst_h;
  
- /**
-@@ -310,11 +311,11 @@ intel_crtc_destroy_state(struct drm_crtc *crtc,
- 	kfree(crtc_state);
- }
- 
--static void intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_state,
--				      int num_scalers_need, struct intel_crtc *intel_crtc,
--				      const char *name, int idx,
--				      struct intel_plane_state *plane_state,
--				      int *scaler_id)
-+static int intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_state,
-+				     int num_scalers_need, struct intel_crtc *intel_crtc,
-+				     const char *name, int idx,
-+				     struct intel_plane_state *plane_state,
-+				     int *scaler_id)
- {
- 	struct drm_i915_private *dev_priv = to_i915(intel_crtc->base.dev);
- 	int j;
-@@ -334,7 +335,7 @@ static void intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_sta
- 
- 	if (drm_WARN(&dev_priv->drm, *scaler_id < 0,
- 		     "Cannot find scaler for %s:%d\n", name, idx))
--		return;
-+		return -EBUSY;
- 
- 	/* set scaler mode */
- 	if (plane_state && plane_state->hw.fb &&
-@@ -375,9 +376,69 @@ static void intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_sta
- 		mode = SKL_PS_SCALER_MODE_DYN;
+ 	/*
+ 	 * Src coordinates are already rotated by 270 degrees for
+@@ -157,15 +159,28 @@ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
+ 		return -EINVAL;
  	}
  
-+	/*
-+	 * FIXME: we should also check the scaler factors for pfit, so
-+	 * this shouldn't be tied directly to planes.
-+	 */
-+	if (plane_state && plane_state->hw.fb) {
-+		const struct drm_framebuffer *fb = plane_state->hw.fb;
-+		struct drm_rect *src = &plane_state->uapi.src;
-+		struct drm_rect *dst = &plane_state->uapi.dst;
-+		int hscale, vscale, max_vscale, max_hscale;
++	min_src_w = SKL_MIN_SRC_W;
++	min_src_h = SKL_MIN_SRC_H;
++	min_dst_w = SKL_MIN_DST_W;
++	min_dst_h = SKL_MIN_DST_H;
 +
-+		/*
-+		 * FIXME: When two scalers are needed, but only one of
-+		 * them needs to downscale, we should make sure that
-+		 * the one that needs downscaling support is assigned
-+		 * as the first scaler, so we don't reject downscaling
-+		 * unnecessarily.
-+		 */
-+
-+		if (DISPLAY_VER(dev_priv) >= 14) {
-+			/*
-+			 * On versions 14 and up, only the first
-+			 * scaler supports a vertical scaling factor
-+			 * of more than 1.0, while a horizontal
-+			 * scaling factor of 3.0 is supported.
-+			 */
-+			max_hscale = 0x30000 - 1;
-+			if (*scaler_id == 0)
-+				max_vscale = 0x30000 - 1;
-+			else
-+				max_vscale = 0x10000;
-+
-+		} else if (DISPLAY_VER(dev_priv) >= 10 ||
-+			   !intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier)) {
-+			max_hscale = 0x30000 - 1;
-+			max_vscale = 0x30000 - 1;
-+		} else {
-+			max_hscale = 0x20000 - 1;
-+			max_vscale = 0x20000 - 1;
-+		}
-+
-+		/* Check if required scaling is within limits */
-+		hscale = drm_rect_calc_hscale(src, dst, 1, max_hscale);
-+		vscale = drm_rect_calc_vscale(src, dst, 1, max_vscale);
-+
-+		if (hscale < 0 || vscale < 0) {
-+			drm_dbg_kms(&dev_priv->drm,
-+				    "Scaler %d doesn't support required plane scaling\n",
-+				    *scaler_id);
-+			drm_rect_debug_print("src: ", src, true);
-+			drm_rect_debug_print("dst: ", dst, false);
-+
-+			scaler_state->scalers[*scaler_id].in_use = 0;
-+			*scaler_id = -1;
-+
-+			return -EOPNOTSUPP;
-+		}
++	if (DISPLAY_VER(dev_priv) >= 11 && DISPLAY_VER(dev_priv) < 14) {
++		max_src_w = ICL_MAX_SRC_W;
++		max_src_h = ICL_MAX_SRC_H;
++		max_dst_w = ICL_MAX_DST_W;
++		max_dst_h = ICL_MAX_DST_H;
++	} else {
++		max_src_w = SKL_MAX_SRC_W;
++		max_src_h = SKL_MAX_SRC_H;
++		max_dst_w = SKL_MAX_DST_W;
++		max_dst_h = SKL_MAX_DST_H;
 +	}
 +
- 	drm_dbg_kms(&dev_priv->drm, "Attached scaler id %u.%u to %s:%d\n",
- 		    intel_crtc->pipe, *scaler_id, name, idx);
- 	scaler_state->scalers[*scaler_id].mode = mode;
-+
-+	return 0;
- }
- 
- /**
-@@ -437,7 +498,7 @@ int intel_atomic_setup_scalers(struct drm_i915_private *dev_priv,
- 	for (i = 0; i < sizeof(scaler_state->scaler_users) * 8; i++) {
- 		int *scaler_id;
- 		const char *name;
--		int idx;
-+		int idx, ret;
- 
- 		/* skip if scaler not required */
- 		if (!(scaler_state->scaler_users & (1 << i)))
-@@ -494,9 +555,11 @@ int intel_atomic_setup_scalers(struct drm_i915_private *dev_priv,
- 			scaler_id = &plane_state->scaler_id;
- 		}
- 
--		intel_atomic_setup_scaler(scaler_state, num_scalers_need,
--					  intel_crtc, name, idx,
--					  plane_state, scaler_id);
-+		ret = intel_atomic_setup_scaler(scaler_state, num_scalers_need,
-+						intel_crtc, name, idx,
-+						plane_state, scaler_id);
-+		if (ret < 0)
-+			return ret;
- 	}
- 
- 	return 0;
+ 	/* range checks */
+-	if (src_w < SKL_MIN_SRC_W || src_h < SKL_MIN_SRC_H ||
+-	    dst_w < SKL_MIN_DST_W || dst_h < SKL_MIN_DST_H ||
+-	    (DISPLAY_VER(dev_priv) >= 11 &&
+-	     (src_w > ICL_MAX_SRC_W || src_h > ICL_MAX_SRC_H ||
+-	      dst_w > ICL_MAX_DST_W || dst_h > ICL_MAX_DST_H)) ||
+-	    (DISPLAY_VER(dev_priv) < 11 &&
+-	     (src_w > SKL_MAX_SRC_W || src_h > SKL_MAX_SRC_H ||
+-	      dst_w > SKL_MAX_DST_W || dst_h > SKL_MAX_DST_H)))	{
++	if (src_w < min_src_w || src_h < min_src_h ||
++	    dst_w < min_dst_w || dst_h < min_dst_h ||
++	    src_w > max_src_w || src_h > max_src_h ||
++	    dst_w > max_dst_w || dst_h > max_dst_h) {
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "scaler_user index %u.%u: src %ux%u dst %ux%u "
+ 			    "size is out of scaler range\n",
 -- 
 2.38.1
 
