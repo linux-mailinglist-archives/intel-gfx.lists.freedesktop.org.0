@@ -2,54 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C19396521A9
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 14:45:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 285136521E4
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 15:01:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E98F10E375;
-	Tue, 20 Dec 2022 13:45:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9699110E058;
+	Tue, 20 Dec 2022 14:01:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9184A10E375;
- Tue, 20 Dec 2022 13:45:03 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6647B10E375
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 14:01:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671543903; x=1703079903;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=Q10DAnKVsK0OL7OMHnMNZu5Em0pNle5mFWj77vcVlXQ=;
- b=ShuL3DmumQMZin+wFFYSlW/EiIk+Xj3MmQeivO9qoKrehEU9OnU8I0aQ
- drsXQjbR3cPFXjJRZvFJjX+5Fj+l0zsTrdHokUdDS9M1wW1ZuKjASSC2b
- JaEEIvpMoDm6PmB/jlXSJlMO/1foao7Uc0Iiz0gR+QeFoSN9viAER7Tgm
- FiBFBrOBGNHKcBCeplOMX2Wjktp49HZuPY1ynsqXn/JKyOM4r/5yeRMD6
- k1Zoe77TGCtIDVayU4QRtIrkR2bP5mGFCxGIXNctK/PJ0R+SXWjqayAGB
- u/H7KtQIWpurqGO1yjVd2KG3qBo/RzQJwHA/f3kio2SJ58Leyoqzh+Pzx g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="303036685"
-X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="303036685"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2022 05:45:01 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="775311316"
-X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="775311316"
+ t=1671544874; x=1703080874;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=q/S23FEjqABLFgMW7/9XJKvcSO6CrcCve4T412iUaTk=;
+ b=nYE5zuIpE1MugSJqK40B2FEcT4FIVOReACp6bI2iJ5AGg9Yi6f9kfOWl
+ oDQc+uzWFqAESQGtFWEfdd6dXv8CtobHzfjMia85wp/r9MJqtWAbA+aNw
+ zvIc26wLLD97eeTU1Qjtc/zkWE8TArs59to2JPCpB0+XGwFoy7+B4lD2w
+ FNpPHisJ7+5Ghk2bmhPXQUmPUbF7HMGjePfJR84AQrpsaVKLPasiKzEK9
+ EzVm1MlPwOKFgN5/X4PlCTnA/VezaUu4RlUsrxTuUWQuWxxico3+Q+hdM
+ JFToXo5UdTmSms77Rp1Lgzb/vRTK6152h8lZUEOFORf3TsnFuwqS4/MEZ Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="318309806"
+X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="318309806"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2022 06:01:13 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="825261027"
+X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="825261027"
 Received: from spalapa-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.60.249])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2022 05:44:59 -0800
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2022 06:01:10 -0800
 From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-In-Reply-To: <Y6GyadM7DS6Z+Hvd@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1671206131.git.jani.nikula@intel.com>
- <f35102562feb9ca63462a902a582c3494fccde4d.1671206131.git.jani.nikula@intel.com>
- <Y6GsQXvDKPKsHf30@intel.com> <87wn6m2q6m.fsf@intel.com>
- <Y6GyadM7DS6Z+Hvd@intel.com>
-Date: Tue, 20 Dec 2022 15:44:57 +0200
-Message-ID: <87sfha2nqe.fsf@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 20 Dec 2022 16:01:05 +0200
+Message-Id: <20221220140105.313333-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v6 06/12] drm/edid: refactor
- _drm_edid_connector_update() and rename
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/dsi: fix MIPI_BKLT_EN_1 native GPIO
+ index
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,155 +58,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 20 Dec 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Tue, Dec 20, 2022 at 02:52:01PM +0200, Jani Nikula wrote:
->> On Tue, 20 Dec 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.=
-com> wrote:
->> > On Fri, Dec 16, 2022 at 06:00:20PM +0200, Jani Nikula wrote:
->> >> By moving update_display_info() out of _drm_edid_connector_update() we
->> >> make the function purely about adding modes.
->> >
->> > I don't think that's quite true. The 4:2:0 stuff still updates
->> > various display_info things from the mode parsing functions.
->>=20
->> Right. I meant the top level. Will amend the commit message.
->
-> So what's going to happen with the 4:2:0 stuff? Are we just clobbering
-> it if/when someone calls the update_display_info() stuff w/o calling=20
-> add_modes()?
+Due to copy-paste fail, MIPI_BKLT_EN_1 would always use PPS index 1,
+never 0. Fix the sloppiest commit in recent memory.
 
-Don't do that then?
+Fixes: f087cfe6fcff ("drm/i915/dsi: add support for ICL+ native MIPI GPIO sequence")
+Reported-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-*sigh*
+diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+index 41f025f089d9..2cbc1292ab38 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
++++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+@@ -430,7 +430,7 @@ static void icl_native_gpio_set_value(struct drm_i915_private *dev_priv,
+ 		break;
+ 	case MIPI_BKLT_EN_1:
+ 	case MIPI_BKLT_EN_2:
+-		index = gpio == MIPI_AVDD_EN_1 ? 0 : 1;
++		index = gpio == MIPI_BKLT_EN_1 ? 0 : 1;
+ 
+ 		intel_de_rmw(dev_priv, PP_CONTROL(index), EDP_BLC_ENABLE,
+ 			     value ? EDP_BLC_ENABLE : 0);
+-- 
+2.34.1
 
-I don't know.
-
-It's pretty much the same thing as only calling update_display_info(),
-before adding modes, and looking at the relevant info fields *before*
-the add modes call. That's probably already happening.
-
-I really wanted to put this all together into one call so nobody could
-do that silly stuff. But then for various reasons drivers want to not
-only read the EDID but also parse it in ->detect, and ->detect gets
-called a lot.
-
-We can't keep adding modes to probed modes in ->detect all the time
-without pruning them. I thought about trying to avoid adding duplicated
-modes in probed modes list, but it looks like another rabbit hole with
-no end in sight. Don't really want to go that route.
-
-If we want to make this fool proof, one way to fix this would be to do
-all the info changes in step 1, even the ones that are currently added
-via add modes. Iterate through everything, but only do the info
-changes. And in step 2 only add the modes to probed modes list.
-
-In any case, the current state of affairs is bonkers already. There's
-supposed to be 1) reading the EDID, 2) updating the info, and 3) adding
-the modes. But both drm_get_edid() *and* drm_add_edid_modes() do the
-display info and property update part too. We've just been adding calls
-here and there to patch things up. Nobody cares. Just add more calls
-updating stuff, and hope it'll be fine. That's gotta stop.
-
-
-BR,
-Jani.
-
-
-
->
->>=20
->> BR,
->> Jani.
->>=20
->>=20
->> >
->> >> Rename accordingly.
->> >>=20
->> >> Cc: Imre Deak <imre.deak@intel.com>
->> >> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> >> ---
->> >>  drivers/gpu/drm/drm_edid.c | 25 ++++++++++++-------------
->> >>  1 file changed, 12 insertions(+), 13 deletions(-)
->> >>=20
->> >> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
->> >> index 15f69c362fc3..4ebfd7212bce 100644
->> >> --- a/drivers/gpu/drm/drm_edid.c
->> >> +++ b/drivers/gpu/drm/drm_edid.c
->> >> @@ -6575,19 +6575,12 @@ static int add_displayid_detailed_modes(struc=
-t drm_connector *connector,
->> >>  	return num_modes;
->> >>  }
->> >>=20=20
->> >> -static int _drm_edid_connector_update(struct drm_connector *connecto=
-r,
->> >> -				      const struct drm_edid *drm_edid)
->> >> +static int _drm_edid_connector_add_modes(struct drm_connector *conne=
-ctor,
->> >> +					 const struct drm_edid *drm_edid)
->> >>  {
->> >>  	const struct drm_display_info *info =3D &connector->display_info;
->> >>  	int num_modes =3D 0;
->> >>=20=20
->> >> -	/*
->> >> -	 * CEA-861-F adds ycbcr capability map block, for HDMI 2.0 sinks.
->> >> -	 * To avoid multiple parsing of same block, lets parse that map
->> >> -	 * from sink info, before parsing CEA modes.
->> >> -	 */
->> >> -	update_display_info(connector, drm_edid);
->> >> -
->> >>  	if (!drm_edid)
->> >>  		return 0;
->> >>=20=20
->> >> @@ -6692,7 +6685,9 @@ int drm_edid_connector_update(struct drm_connec=
-tor *connector,
->> >>  {
->> >>  	int count;
->> >>=20=20
->> >> -	count =3D _drm_edid_connector_update(connector, drm_edid);
->> >> +	update_display_info(connector, drm_edid);
->> >> +
->> >> +	count =3D _drm_edid_connector_add_modes(connector, drm_edid);
->> >>=20=20
->> >>  	_drm_update_tile_info(connector, drm_edid);
->> >>=20=20
->> >> @@ -6762,7 +6757,8 @@ EXPORT_SYMBOL(drm_connector_update_edid_propert=
-y);
->> >>   */
->> >>  int drm_add_edid_modes(struct drm_connector *connector, struct edid =
-*edid)
->> >>  {
->> >> -	struct drm_edid drm_edid;
->> >> +	struct drm_edid _drm_edid;
->> >> +	const struct drm_edid *drm_edid;
->> >>=20=20
->> >>  	if (edid && !drm_edid_is_valid(edid)) {
->> >>  		drm_warn(connector->dev, "[CONNECTOR:%d:%s] EDID invalid.\n",
->> >> @@ -6770,8 +6766,11 @@ int drm_add_edid_modes(struct drm_connector *c=
-onnector, struct edid *edid)
->> >>  		edid =3D NULL;
->> >>  	}
->> >>=20=20
->> >> -	return _drm_edid_connector_update(connector,
->> >> -					  drm_edid_legacy_init(&drm_edid, edid));
->> >> +	drm_edid =3D drm_edid_legacy_init(&_drm_edid, edid);
->> >> +
->> >> +	update_display_info(connector, drm_edid);
->> >> +
->> >> +	return _drm_edid_connector_add_modes(connector, drm_edid);
->> >>  }
->> >>  EXPORT_SYMBOL(drm_add_edid_modes);
->> >>=20=20
->> >> --=20
->> >> 2.34.1
->>=20
->> --=20
->> Jani Nikula, Intel Open Source Graphics Center
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
