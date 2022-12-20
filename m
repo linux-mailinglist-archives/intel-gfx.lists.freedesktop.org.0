@@ -2,62 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF917651CCC
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 10:04:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C345651CE6
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 10:11:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0CD110E0B8;
-	Tue, 20 Dec 2022 09:03:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAA6F10E341;
+	Tue, 20 Dec 2022 09:10:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com
- [IPv6:2001:4860:4864:20::2a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 437F410E09C;
- Tue, 20 Dec 2022 09:03:54 +0000 (UTC)
-Received: by mail-oa1-x2a.google.com with SMTP id
- 586e51a60fabf-1442977d77dso14692586fac.6; 
- Tue, 20 Dec 2022 01:03:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=UzvNL+TsR6wJp/VVk0N1EHg2FFHt1BbH9bwtEX37Mi8=;
- b=l3PXEmY/Kh0b3BeAbHpZa0feNze1JUpM8+hStS2W1fAAhwIMr19+c7vde4hb3ClotP
- Je6KhjVpQ3nXGc+tmOdyLDy1po5FWDBYKeh3I0dcKWIb49j6tkB8f3AIgrICYeIEDYo6
- vwbcqk2Oz9ctUixuyecsbsY7PtYPFr5RuMYa2CAix4hdO/zOtysHwkRTIuW4Za+b8R0T
- fD0n7MzKKc8jibi1q4YkG7zWGsHs7/zmm35OhNU+w5QLrsyN1gZBG1PVQPHgTF3MMs9H
- 4LkJytrnPymeTkXq5oXhKRy0tzt2k3W2V1XWQz0kOpmvPcCjQ23PtZWRsfyXpOxXk5yP
- jicQ==
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20F6310E343
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 09:10:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1671527437;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Nkva43Ev6FmONs/91WyhlWJwflJzPv43uZcJFYvlalU=;
+ b=JzBWdQOszQ7DlHvTb0wSn8Tf1GCTLLK10xId6uF2YQIQ914Kxxi9ub5Cam8pK0D55BVThL
+ g4zTUdGjkSvhx77Fjh4k3+fkswYcSzF01TsVZK4g2GIY/ATw8im/zjRR7F5EGAVOeyEOTs
+ ncE15wSmZIKhfZaj7UBYA8UJCr4TU/c=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-459-Tge_k7_qNsa-M8KYbzWxnw-1; Tue, 20 Dec 2022 04:10:36 -0500
+X-MC-Unique: Tge_k7_qNsa-M8KYbzWxnw-1
+Received: by mail-wm1-f71.google.com with SMTP id
+ r129-20020a1c4487000000b003d153a83d27so6294544wma.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 01:10:36 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=UzvNL+TsR6wJp/VVk0N1EHg2FFHt1BbH9bwtEX37Mi8=;
- b=Bgt+WNyRHY/hAdhQi9jKnoVht9MTZxE/ewEZZ56KBH4IrYRd9rKf0oNmdy3rI5LS1f
- nfeylwB58bbC4pkRVOBG8ghfhVu8EFpLFPxWfcrNfdd4S4c75n9bbvvOhrdjpLKZCT9y
- fy+6+ddAsu5mwWjwyNz2sd0d4QfwjCTU69NMaEoGeP8DVztBEIlDKK8j8LK/1bLaZfgK
- 5OcpQh5lv8rygvqeaPnFhQSoqlZ7u8+KhQ8tamewRoweqSb/Np6/GDWMPlkUhSIER3vL
- PR3U0Yzv15qiHusXiwn5cLT8l/H67v0bGD48FbeElG0jqZHegwhaA9OP+YiDokVbRhHj
- hhMQ==
-X-Gm-Message-State: AFqh2krpwtdc2jtbXPnaFY4lUNJaULNVult4h+TeO5sPymKcuVi5E1Kh
- z2j52fSwqKQ7ZN/hk2aYyN20prdNs18iXmo3Wh8=
-X-Google-Smtp-Source: AMrXdXveFr80wwpqNX3EU58rZEURdkoOkmVxIfys7NPcpdUmvbzGH0j/NN1RcyEMJ4xghKpphstg1uEAj1cGVX+gMlU=
-X-Received: by 2002:a05:6870:6083:b0:14b:7e0a:eefa with SMTP id
- t3-20020a056870608300b0014b7e0aeefamr1637834oae.49.1671527033285; Tue, 20 Dec
- 2022 01:03:53 -0800 (PST)
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=Nkva43Ev6FmONs/91WyhlWJwflJzPv43uZcJFYvlalU=;
+ b=388+q/x5cnJcOSqL0tH1T2bdN1PYxvj72MZTQMpR60+mPP/QbpgPzmUWdqL0G3dOPY
+ UkrMLaJ7sOxBdlEH0/a4wkKengJB90xE7LKwm7hcFtWF52OTACfFhMRyJciJa+9jx4Oc
+ yEqqBu72vqwxdZYen7mnwzfkF7YpDH3kSP5Ha/PToF+3duEkIw+282j98Fmxk81aCvkc
+ MftYvqMu+OUCHhCET09G2KybKKayxgAXFguQo+nlkpmqDR+JjTJV3Sm2gGqw72b6prPl
+ Zyc8D7+iOdzHWN45m++p16tANOZHwmgzf6bVqpX/aEHsvW4vcmuCzspP3HW2SG+u9AAa
+ h/mw==
+X-Gm-Message-State: AFqh2ko2FlI5EHo9Uvn3l3Nf5hKuYe8jLJ3ZXIo276W6OeIvuYQQRr7R
+ 23RHNPDGg6axef/XDI8odnETyRb45bt1VNJ0faNAzfL6wCcxEHYujyR0K8utR824azvilNf8vS+
+ E2QbElit+Vy8hjZcCq+fvJQJUEKTN
+X-Received: by 2002:a5d:624a:0:b0:242:19b3:67 with SMTP id
+ m10-20020a5d624a000000b0024219b30067mr748871wrv.37.1671527435422; 
+ Tue, 20 Dec 2022 01:10:35 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXvZ4T3pjgbBye4AD0pnUB9As/CnLPdlMjMDQrxm4f9mLfnMBPQihgpuK1r6jSAdZ8wsH7ZV9g==
+X-Received: by 2002:a5d:624a:0:b0:242:19b3:67 with SMTP id
+ m10-20020a5d624a000000b0024219b30067mr748861wrv.37.1671527435215; 
+ Tue, 20 Dec 2022 01:10:35 -0800 (PST)
+Received: from [192.168.1.130] (205.pool92-176-231.dynamic.orange.es.
+ [92.176.231.205]) by smtp.gmail.com with ESMTPSA id
+ v5-20020a5d59c5000000b00241fea203b6sm12177113wry.87.2022.12.20.01.10.34
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 20 Dec 2022 01:10:34 -0800 (PST)
+Message-ID: <1ba311d8-efe5-c3f0-761e-1b5695dd5ba2@redhat.com>
+Date: Tue, 20 Dec 2022 10:10:33 +0100
 MIME-Version: 1.0
-References: <11728bc1-7b59-1623-b517-d1a0d57eb275@intel.com>
- <20221219125204.1001149-1-zyytlz.wz@163.com>
- <20221220082255.GE30028@zhen-hp.sh.intel.com>
-In-Reply-To: <20221220082255.GE30028@zhen-hp.sh.intel.com>
-From: Zheng Hacker <hackerzheng666@gmail.com>
-Date: Tue, 20 Dec 2022 17:03:41 +0800
-Message-ID: <CAJedcCzD6Zc=ncxH5821OA=zL49bUFqD2hYT=TruU2AVt+_2hg@mail.gmail.com>
-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [RESEND PATCH v4] drm/i915/gvt: fix double free bug
- in split_2MB_gtt_entry
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
+ airlied@gmail.com, deller@gmx.de
+References: <20221219160516.23436-1-tzimmermann@suse.de>
+ <20221219160516.23436-2-tzimmermann@suse.de>
+From: Javier Martinez Canillas <javierm@redhat.com>
+In-Reply-To: <20221219160516.23436-2-tzimmermann@suse.de>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 01/18] fbcon: Remove trailing whitespaces
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,109 +87,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alex000young@gmail.com, security@kernel.org, airlied@linux.ie,
- gregkh@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- 1002992920@qq.com, airlied@gmail.com, Zheng Wang <zyytlz.wz@163.com>,
- intel-gvt-dev@lists.freedesktop.org
+Cc: linux-fbdev@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-hyperv@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Zhenyu Wang <zhenyuw@linux.intel.com> =E4=BA=8E2022=E5=B9=B412=E6=9C=8820=
-=E6=97=A5=E5=91=A8=E4=BA=8C 16:25=E5=86=99=E9=81=93=EF=BC=9A
->
-> On 2022.12.19 20:52:04 +0800, Zheng Wang wrote:
-> > If intel_gvt_dma_map_guest_page failed, it will call
-> >  ppgtt_invalidate_spt, which will finally free the spt. But the caller =
-does
-> >  not notice that, it will free spt again in error path.
-> >
->
-> It's not clear from this description which caller is actually wrong,
-> better to clarify the problem in ppgtt_populate_spt_by_guest_entry() func=
-tion.
->
+On 12/19/22 17:04, Thomas Zimmermann wrote:
+> Fix coding style. No functional changes.
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> ---
 
-Get it, will do in the next fix.
+Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
 
-
-> >                                                  PAGE_SIZE, &dma_addr);
-> > -             if (ret) {
-> > -                     ppgtt_invalidate_spt(spt);
-> > -                     return ret;
-> > -             }
-> > +             if (ret)
-> > +                     goto err;
->
-> I think it's fine to remove this and leave to upper caller, but again ple=
-ase
-> describe the behavior change in commit message as well, e.g to fix the sa=
-nity
-> of spt destroy that leaving previous invalidate and free of spt to caller=
- function
-> instead of within callee function.
-
-Sorry for my bad habit. Will do in the next version.
-
-> >               sub_se.val64 =3D se->val64;
-> >
-> >               /* Copy the PAT field from PDE. */
-> > @@ -1231,6 +1229,47 @@ static int split_2MB_gtt_entry(struct intel_vgpu=
- *vgpu,
-> >       ops->set_pfn(se, sub_spt->shadow_page.mfn);
-> >       ppgtt_set_shadow_entry(spt, se, index);
-> >       return 0;
-> > +err:
-> > +     /* Undone the existing mappings of DMA addr. */
-> > +     for_each_present_shadow_entry(spt, &e, parent_index) {
->
-> sub_spt? We're undoing what's mapped for sub_spt right?
-
-Yes, will change it to sub_spt in the next version.
-
->
-> > +             switch (e.type) {
-> > +             case GTT_TYPE_PPGTT_PTE_4K_ENTRY:
-> > +                     gvt_vdbg_mm("invalidate 4K entry\n");
-> > +                     ppgtt_invalidate_pte(spt, &e);
-> > +                     break;
-> > +             case GTT_TYPE_PPGTT_PTE_64K_ENTRY:
-> > +                     /* We don't setup 64K shadow entry so far. */
-> > +                     WARN(1, "suspicious 64K gtt entry\n");
-> > +                     continue;
-> > +             case GTT_TYPE_PPGTT_PTE_2M_ENTRY:
-> > +                     gvt_vdbg_mm("invalidate 2M entry\n");
-> > +                     continue;
-> > +             case GTT_TYPE_PPGTT_PTE_1G_ENTRY:
-> > +                     WARN(1, "GVT doesn't support 1GB page\n");
-> > +                     continue;
-> > +             case GTT_TYPE_PPGTT_PML4_ENTRY:
-> > +             case GTT_TYPE_PPGTT_PDP_ENTRY:
-> > +             case GTT_TYPE_PPGTT_PDE_ENTRY:
->
-> I don't think this all entry type makes sense, as here we just split
-> 2M entry for multiple 4K PTE entry.
-
-I got it. I will leave the code for handling 4K PTE entry only.
-
->
-> > +                     gvt_vdbg_mm("invalidate PMUL4/PDP/PDE entry\n");
-> > +                     ret1 =3D ppgtt_invalidate_spt_by_shadow_entry(
-> > +                                     spt->vgpu, &e);
-> > +                     if (ret1) {
-> > +                             gvt_vgpu_err("fail: shadow page %p shadow=
- entry 0x%llx type %d\n",
-> > +                             spt, e.val64, e.type);
-> > +                             goto free_spt;
-> > +                     }
->
-> for above reason, I don't think this is valid.
-
-Got it.
-
-
-Thanks for your carefully reviewing. I'll try to fix that in the coming pat=
-ch.
-
+-- 
 Best regards,
-Zheng Wang
+
+Javier Martinez Canillas
+Core Platforms
+Red Hat
+
