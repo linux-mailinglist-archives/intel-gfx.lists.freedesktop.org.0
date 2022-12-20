@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BEE46522E1
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 15:43:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 534126523A0
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 16:23:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49C2710E375;
-	Tue, 20 Dec 2022 14:42:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64C7A10E07F;
+	Tue, 20 Dec 2022 15:22:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36F4810E375
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 14:42:54 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34A3610E0AB
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 15:22:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671547374; x=1703083374;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=a8OaORhkqPA5wR5lUhMKPtPHpRftB5mQoGkbVgQckjo=;
- b=hZGsVS2RNreUMUwiqSMbz9s1rRBgp4RWUGHMT/VtZWKXk3A5KNYojcRL
- ZlugwLOsjm0jPQ4QcMlHkXM6X4laCqfjl6WRJSap4csz48nhXyCEBYFWS
- WsQ1MzhS+rBCebq5ThlU58oK3YQY40XjSYRM/mh7zxFEJCcUo0FYtIyCD
- qNw4lCZ9EcWabnhD0pJT2QmmEXfTnt+32dhZ5wfXWD5rkxBUyuwo6LhMT
- j4bsSKeHWlUhfGxgr45WRhZm9hcnHa2vO97kcNuz+tRfu3yqMrvYdkMZC
- d2OO9jAc0l4aVuCqUDGrnNninJaRqMK3N8/DKOYfv2weX22mx7gjsDaQy w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="299969250"
-X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="299969250"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2022 06:42:47 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="793338385"
-X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="793338385"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga001.fm.intel.com with SMTP; 20 Dec 2022 06:42:45 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 20 Dec 2022 16:42:44 +0200
-Date: Tue, 20 Dec 2022 16:42:44 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <Y6HJ5H7ddL7j2Omy@intel.com>
-References: <20221220140105.313333-1-jani.nikula@intel.com>
+ t=1671549772; x=1703085772;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=6gLafIRStZG6lRFMZBHBv6Gl27kyIWKo/pz2JOmDTLk=;
+ b=LXxFs9gXX2VcoCJUuQPdO7Vb6SobVqgi/HBsxcQqqVOAn00xdVjYHX0Q
+ x8enhzzoh20ybah8MxqFuwMIuedpMwnPfiSeomm0B/cbwRbodKPFNuVhl
+ I26HktT6/Pr8AWojZZGvuNJ+tM9lddShyr4g7pfQKXt6niXTeVo3csAhC
+ oyKRhVLMOX5Q8XTZvGIWC9Hj++LNpDjAw7hrbmmjIY2KqAZ0H2bQ1z9An
+ GApJECIjqZZm0+91uB5lRwFGS6OEaPByctcX8dto3LLSkNbgf6PcVWnQA
+ ddeTZom28VeQDYncMe9zS+jCEQoteYaW/GUUnJYJx7x1SVnoZJiBTMBXs Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="319688047"
+X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="319688047"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2022 07:22:37 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="719601472"
+X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="719601472"
+Received: from kjayadev-mobl.amr.corp.intel.com (HELO
+ spandruv-desk1.amr.corp.intel.com) ([10.251.27.109])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2022 07:22:37 -0800
+Message-ID: <05424a5351a847786377a548dba0759917d8046c.camel@linux.intel.com>
+From: srinivas pandruvada <srinivas.pandruvada@linux.intel.com>
+To: Mirsad Todorovac <mirsad.todorovac@alu.unizg.hr>, LKML
+ <linux-kernel@vger.kernel.org>, jani.nikula@linux.intel.com, 
+ joonas.lahtinen@linux.intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ tvrtko.ursulin@linux.intel.com
+Date: Tue, 20 Dec 2022 07:22:36 -0800
+In-Reply-To: <f849cc70-b21f-6476-ba26-08989d1243c2@alu.unizg.hr>
+References: <f849cc70-b21f-6476-ba26-08989d1243c2@alu.unizg.hr>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.42.4 (3.42.4-2.fc35) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221220140105.313333-1-jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsi: fix MIPI_BKLT_EN_1 native
- GPIO index
+Subject: Re: [Intel-gfx] Possible regression in drm/i915 driver: memleak
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,40 +61,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+ Thorsten Leemhuis <regressions@leemhuis.info>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Dec 20, 2022 at 04:01:05PM +0200, Jani Nikula wrote:
-> Due to copy-paste fail, MIPI_BKLT_EN_1 would always use PPS index 1,
-> never 0. Fix the sloppiest commit in recent memory.
-> 
-> Fixes: f087cfe6fcff ("drm/i915/dsi: add support for ICL+ native MIPI GPIO sequence")
-> Reported-by: Ville Syrj�l� <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++Added DRM mailing list and maintainers
 
-Reviewed-by: Ville Syrj�l� <ville.syrjala@linux.intel.com>
-
-> ---
->  drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+On Tue, 2022-12-20 at 15:33 +0100, Mirsad Todorovac wrote:
+> Hi all,
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-> index 41f025f089d9..2cbc1292ab38 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-> @@ -430,7 +430,7 @@ static void icl_native_gpio_set_value(struct drm_i915_private *dev_priv,
->  		break;
->  	case MIPI_BKLT_EN_1:
->  	case MIPI_BKLT_EN_2:
-> -		index = gpio == MIPI_AVDD_EN_1 ? 0 : 1;
-> +		index = gpio == MIPI_BKLT_EN_1 ? 0 : 1;
->  
->  		intel_de_rmw(dev_priv, PP_CONTROL(index), EDP_BLC_ENABLE,
->  			     value ? EDP_BLC_ENABLE : 0);
+> I have been unsuccessful to find any particular Intel i915 maintainer
+> emails, so my best bet is to post here, as you will must assuredly 
+> already know them.
+> 
+> The problem is a kernel memory leak that is repeatedly occurring 
+> triggered during the execution of Chrome browser under the latest
+> 6.1.0+ 
+> kernel of this morning and Almalinux 8.6 on a Lenovo desktop box
+> with Intel(R) Core(TM) i5-8400 CPU @ 2.80GHz CPU.
+> 
+> The build is with KMEMLEAK, KASAN and MGLRU turned on during the
+> build, 
+> on a vanilla mainline kernel from Mr. Torvalds' tree.
+> 
+> The leaks look like this one:
+> 
+> unreferenced object 0xffff888131754880 (size 64):
+>    comm "chrome", pid 13058, jiffies 4298568878 (age 3708.084s)
+>    hex dump (first 32 bytes):
+>      01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+> ................
+>      00 00 00 00 00 00 00 00 00 80 1e 3e 83 88 ff ff 
+> ...........>....
+>    backtrace:
+>      [<ffffffff9e9b5542>] slab_post_alloc_hook+0xb2/0x340
+>      [<ffffffff9e9bbf5f>] __kmem_cache_alloc_node+0x1bf/0x2c0
+>      [<ffffffff9e8f767a>] kmalloc_trace+0x2a/0xb0
+>      [<ffffffffc08dfde5>] drm_vma_node_allow+0x45/0x150 [drm]
+>      [<ffffffffc0b33315>] __assign_mmap_offset_handle+0x615/0x820
+> [i915]
+>      [<ffffffffc0b34057>] i915_gem_mmap_offset_ioctl+0x77/0x110
+> [i915]
+>      [<ffffffffc08bc5e1>] drm_ioctl_kernel+0x181/0x280 [drm]
+>      [<ffffffffc08bc9cd>] drm_ioctl+0x2dd/0x6a0 [drm]
+>      [<ffffffff9ea54744>] __x64_sys_ioctl+0xc4/0x100
+>      [<ffffffff9fbc0178>] do_syscall_64+0x58/0x80
+>      [<ffffffff9fc000aa>] entry_SYSCALL_64_after_hwframe+0x72/0xdc
+> 
+> The complete list of leaks in attachment, but they seem similar or
+> the same.
+> 
+> Please find attached lshw and kernel build config file.
+> 
+> I will probably check the same parms on my laptop at home, which is
+> also 
+> Lenovo, but a different hw config and Ubuntu 22.10.
+> 
+> Thanks,
+> Mirsad
+> 
 > -- 
-> 2.34.1
+> Mirsad Goran Todorovac
+> Sistem inženjer
+> Grafički fakultet | Akademija likovnih umjetnosti
+> Sveučilište u Zagrebu
 
--- 
-Ville Syrj�l�
-Intel
