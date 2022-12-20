@@ -2,48 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5205165200D
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 13:00:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F3F065200F
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 13:00:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5BDB10E0A9;
-	Tue, 20 Dec 2022 12:00:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2469B10E3B9;
+	Tue, 20 Dec 2022 12:00:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9049310E0A9
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 12:00:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7687710E0A9
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 12:00:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671537639; x=1703073639;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=VLHDqEyEt1U01yQBt8nCuMnKwKoPHisYG8Rz1QHUc+A=;
- b=NAv52ijX67xIoqAx3Yf+OepwobH10egljMGXiBVucH3QnB2wTvqNn8qO
- nSQPD4fH1QR/DIc6DJQl4WQOWc2llBS1EZ09vY4p1/XOGA9YcKXV02h8X
- VnFiJJbcZ/xpVPgExvwAskPer3kxqJJ39XEJlT0/yZ1EtNtmrKGrYQEY7
- 9FQmc49lqGcFJoZfMfbGoC6L5pXvpEwwIG1erRZG1fRmhTuxhz2oR9L2G
- XO2sYhu1DFoKhyWU/zP6pAkaioBTbb/7LOFiWZJ/RHit8Rxjq/pobeP/m
- zuqPW342vkUsMpUfkbLFaVVLbi52yU6hktqkHpYjrM2vN4WaxSl23vIag w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10566"; a="346698120"
-X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="346698120"
+ t=1671537642; x=1703073642;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=ZDa/4XotJvlOEOtBSdO9d2xO3jgTmbBnU9ovtnaEJHQ=;
+ b=Ui5u3lCJd/HaS683EZ8em4HqDNikw7I/dSOnnXC18Cked2hcei3eyoZB
+ xkdL/El1XWGWLIaPgRRlf6wMj11OnPbgANJnoxzq7OxyuyFrIz4g/bpZA
+ dVsdhm38SSOtkhp5WDLWY9OPUuCK2ZkW2OnHO37c9CYcbHuIGjLeVR7Xk
+ n/kSuRi4IJYnheFTYMRMu0WiGnBhcwQK+7KSSnVrC8XLmdAbZV/yUJpEh
+ ZVtnfidvBB/EU1alycCfVoxXAtmI9QhX3sm8k9i5132RU0u5KhZ+6lipN
+ cxkia6yIiBL9NMHeHAEgYRmC456D0wU5LJVa2BsSeJOgCLYbNEzQ0fMiE Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10566"; a="346698129"
+X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="346698129"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2022 04:00:38 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10566"; a="650965169"
-X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="650965169"
+ 20 Dec 2022 04:00:42 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10566"; a="650965181"
+X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="650965181"
 Received: from lab-ah.igk.intel.com ([10.91.215.196])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2022 04:00:36 -0800
+ 20 Dec 2022 04:00:38 -0800
 From: Andrzej Hajda <andrzej.hajda@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 20 Dec 2022 13:00:22 +0100
-Message-Id: <20221220120023.1214620-1-andrzej.hajda@intel.com>
+Date: Tue, 20 Dec 2022 13:00:23 +0100
+Message-Id: <20221220120023.1214620-2-andrzej.hajda@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221220120023.1214620-1-andrzej.hajda@intel.com>
+References: <20221220120023.1214620-1-andrzej.hajda@intel.com>
 MIME-Version: 1.0
 Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
  80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915/display/core: use intel_de_rmw if
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915/display/misc: use intel_de_rmw if
  possible
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,753 +68,1046 @@ The helper makes the code more compact and readable.
 
 Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
 ---
-Hi all,
+ drivers/gpu/drm/i915/display/g4x_dp.c         | 12 ++--
+ drivers/gpu/drm/i915/display/g4x_hdmi.c       |  8 +--
+ .../gpu/drm/i915/display/intel_backlight.c    | 59 +++++++------------
+ .../gpu/drm/i915/display/intel_combo_phy.c    | 43 ++++----------
+ drivers/gpu/drm/i915/display/intel_ddi.c      | 49 +++++----------
+ drivers/gpu/drm/i915/display/intel_dpio_phy.c | 51 +++++-----------
+ drivers/gpu/drm/i915/display/intel_drrs.c     | 12 +---
+ drivers/gpu/drm/i915/display/intel_dvo.c      |  7 +--
+ drivers/gpu/drm/i915/display/intel_fdi.c      |  3 +-
+ drivers/gpu/drm/i915/display/intel_gmbus.c    | 30 ++--------
+ drivers/gpu/drm/i915/display/intel_hdcp.c     | 15 ++---
+ drivers/gpu/drm/i915/display/intel_hdmi.c     | 40 ++++---------
+ drivers/gpu/drm/i915/display/intel_lvds.c     | 12 ++--
+ .../gpu/drm/i915/display/intel_pch_display.c  | 41 ++++---------
+ .../gpu/drm/i915/display/intel_pch_refclk.c   | 10 +---
+ drivers/gpu/drm/i915/display/intel_pps.c      | 14 ++---
+ drivers/gpu/drm/i915/display/intel_psr.c      | 40 ++++---------
+ drivers/gpu/drm/i915/display/intel_tv.c       | 18 ++----
+ 18 files changed, 141 insertions(+), 323 deletions(-)
 
-This is the last patchset converting different flavours
-of register updates to intel_de_rmw. There are probably
-still some remnants, which would require functional changes
-to allow conversion. They would need probably more individual
-approach.
-
-Jani, thank you for reviews.
-
-And the final diffstat for all patches:
-26 files changed, 425 insertions(+), 952 deletions(-)
-
-Regards
-Andrzej
----
- drivers/gpu/drm/i915/display/intel_display.c  |  22 +--
- .../drm/i915/display/intel_display_power.c    |  49 ++----
- .../i915/display/intel_display_power_well.c   |  82 +++------
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 165 ++++++------------
- .../drm/i915/display/intel_modeset_setup.c    |  17 +-
- 5 files changed, 108 insertions(+), 227 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index e75b9b2a0e015a..c6c566a6572b8b 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -293,11 +293,11 @@ static void
- skl_wa_827(struct drm_i915_private *dev_priv, enum pipe pipe, bool enable)
- {
- 	if (enable)
--		intel_de_write(dev_priv, CLKGATE_DIS_PSL(pipe),
--		               intel_de_read(dev_priv, CLKGATE_DIS_PSL(pipe)) | DUPS1_GATING_DIS | DUPS2_GATING_DIS);
-+		intel_de_rmw(dev_priv, CLKGATE_DIS_PSL(pipe),
-+			     0, DUPS1_GATING_DIS | DUPS2_GATING_DIS);
- 	else
--		intel_de_write(dev_priv, CLKGATE_DIS_PSL(pipe),
--		               intel_de_read(dev_priv, CLKGATE_DIS_PSL(pipe)) & ~(DUPS1_GATING_DIS | DUPS2_GATING_DIS));
-+		intel_de_rmw(dev_priv, CLKGATE_DIS_PSL(pipe),
-+		             DUPS1_GATING_DIS | DUPS2_GATING_DIS, 0);
+diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
+index 24ef36ec2d3d3c..9629b174ec5d2c 100644
+--- a/drivers/gpu/drm/i915/display/g4x_dp.c
++++ b/drivers/gpu/drm/i915/display/g4x_dp.c
+@@ -136,16 +136,12 @@ static void intel_dp_prepare(struct intel_encoder *encoder,
+ 
+ 		intel_dp->DP |= DP_PIPE_SEL_IVB(crtc->pipe);
+ 	} else if (HAS_PCH_CPT(dev_priv) && port != PORT_A) {
+-		u32 trans_dp;
+-
+ 		intel_dp->DP |= DP_LINK_TRAIN_OFF_CPT;
+ 
+-		trans_dp = intel_de_read(dev_priv, TRANS_DP_CTL(crtc->pipe));
+-		if (drm_dp_enhanced_frame_cap(intel_dp->dpcd))
+-			trans_dp |= TRANS_DP_ENH_FRAMING;
+-		else
+-			trans_dp &= ~TRANS_DP_ENH_FRAMING;
+-		intel_de_write(dev_priv, TRANS_DP_CTL(crtc->pipe), trans_dp);
++		intel_de_rmw(dev_priv, TRANS_DP_CTL(crtc->pipe),
++			     TRANS_DP_ENH_FRAMING,
++			     drm_dp_enhanced_frame_cap(intel_dp->dpcd) ?
++			     TRANS_DP_ENH_FRAMING : 0);
+ 	} else {
+ 		if (IS_G4X(dev_priv) && pipe_config->limited_color_range)
+ 			intel_dp->DP |= DP_COLOR_RANGE_16_235;
+diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.c b/drivers/gpu/drm/i915/display/g4x_hdmi.c
+index c3580d96765c6c..f58849b416ea89 100644
+--- a/drivers/gpu/drm/i915/display/g4x_hdmi.c
++++ b/drivers/gpu/drm/i915/display/g4x_hdmi.c
+@@ -271,8 +271,8 @@ static void cpt_enable_hdmi(struct intel_atomic_state *state,
+ 	 */
+ 
+ 	if (pipe_config->pipe_bpp > 24) {
+-		intel_de_write(dev_priv, TRANS_CHICKEN1(pipe),
+-			       intel_de_read(dev_priv, TRANS_CHICKEN1(pipe)) | TRANS_CHICKEN1_HDMIUNIT_GC_DISABLE);
++		intel_de_rmw(dev_priv, TRANS_CHICKEN1(pipe),
++			     0, TRANS_CHICKEN1_HDMIUNIT_GC_DISABLE);
+ 
+ 		temp &= ~SDVO_COLOR_FORMAT_MASK;
+ 		temp |= SDVO_COLOR_FORMAT_8bpc;
+@@ -288,8 +288,8 @@ static void cpt_enable_hdmi(struct intel_atomic_state *state,
+ 		intel_de_write(dev_priv, intel_hdmi->hdmi_reg, temp);
+ 		intel_de_posting_read(dev_priv, intel_hdmi->hdmi_reg);
+ 
+-		intel_de_write(dev_priv, TRANS_CHICKEN1(pipe),
+-			       intel_de_read(dev_priv, TRANS_CHICKEN1(pipe)) & ~TRANS_CHICKEN1_HDMIUNIT_GC_DISABLE);
++		intel_de_rmw(dev_priv, TRANS_CHICKEN1(pipe),
++			     TRANS_CHICKEN1_HDMIUNIT_GC_DISABLE, 0);
+ 	}
+ 
+ 	drm_WARN_ON(&dev_priv->drm, pipe_config->has_audio &&
+diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
+index 5b7da72c95b8c5..b088921c543eaa 100644
+--- a/drivers/gpu/drm/i915/display/intel_backlight.c
++++ b/drivers/gpu/drm/i915/display/intel_backlight.c
+@@ -349,8 +349,7 @@ static void lpt_disable_backlight(const struct drm_connector_state *old_conn_sta
+ 		intel_de_write(i915, BLC_PWM_CPU_CTL2, tmp & ~BLM_PWM_ENABLE);
+ 	}
+ 
+-	tmp = intel_de_read(i915, BLC_PWM_PCH_CTL1);
+-	intel_de_write(i915, BLC_PWM_PCH_CTL1, tmp & ~BLM_PCH_PWM_ENABLE);
++	tmp = intel_de_rmw(i915, BLC_PWM_PCH_CTL1, BLM_PCH_PWM_ENABLE, 0);
  }
  
- /* Wa_2006604312:icl,ehl */
-@@ -306,11 +306,9 @@ icl_wa_scalerclkgating(struct drm_i915_private *dev_priv, enum pipe pipe,
- 		       bool enable)
- {
- 	if (enable)
--		intel_de_write(dev_priv, CLKGATE_DIS_PSL(pipe),
--		               intel_de_read(dev_priv, CLKGATE_DIS_PSL(pipe)) | DPFR_GATING_DIS);
-+		intel_de_rmw(dev_priv, CLKGATE_DIS_PSL(pipe), 0, DPFR_GATING_DIS);
- 	else
--		intel_de_write(dev_priv, CLKGATE_DIS_PSL(pipe),
--		               intel_de_read(dev_priv, CLKGATE_DIS_PSL(pipe)) & ~DPFR_GATING_DIS);
-+		intel_de_rmw(dev_priv, CLKGATE_DIS_PSL(pipe), DPFR_GATING_DIS, 0);
+ static void pch_disable_backlight(const struct drm_connector_state *old_conn_state, u32 val)
+@@ -361,11 +360,9 @@ static void pch_disable_backlight(const struct drm_connector_state *old_conn_sta
+ 
+ 	intel_backlight_set_pwm_level(old_conn_state, val);
+ 
+-	tmp = intel_de_read(i915, BLC_PWM_CPU_CTL2);
+-	intel_de_write(i915, BLC_PWM_CPU_CTL2, tmp & ~BLM_PWM_ENABLE);
++	intel_de_rmw(i915, BLC_PWM_CPU_CTL2, BLM_PWM_ENABLE, 0);
+ 
+-	tmp = intel_de_read(i915, BLC_PWM_PCH_CTL1);
+-	intel_de_write(i915, BLC_PWM_PCH_CTL1, tmp & ~BLM_PCH_PWM_ENABLE);
++	tmp = intel_de_rmw(i915, BLC_PWM_PCH_CTL1, BLM_PCH_PWM_ENABLE, 0);
  }
  
- /* Wa_1604331009:icl,jsl,ehl */
-@@ -1852,12 +1850,10 @@ static void hsw_set_frame_start_delay(const struct intel_crtc_state *crtc_state)
- 	enum transcoder transcoder = crtc_state->cpu_transcoder;
- 	i915_reg_t reg = DISPLAY_VER(dev_priv) >= 14 ? MTL_CHICKEN_TRANS(transcoder) :
- 			 CHICKEN_TRANS(transcoder);
+ static void i9xx_disable_backlight(const struct drm_connector_state *old_conn_state, u32 val)
+@@ -380,8 +377,7 @@ static void i965_disable_backlight(const struct drm_connector_state *old_conn_st
+ 
+ 	intel_backlight_set_pwm_level(old_conn_state, val);
+ 
+-	tmp = intel_de_read(i915, BLC_PWM_CTL2);
+-	intel_de_write(i915, BLC_PWM_CTL2, tmp & ~BLM_PWM_ENABLE);
++	tmp = intel_de_rmw(i915, BLC_PWM_CTL2, BLM_PWM_ENABLE, 0);
+ }
+ 
+ static void vlv_disable_backlight(const struct drm_connector_state *old_conn_state, u32 val)
+@@ -393,8 +389,7 @@ static void vlv_disable_backlight(const struct drm_connector_state *old_conn_sta
+ 
+ 	intel_backlight_set_pwm_level(old_conn_state, val);
+ 
+-	tmp = intel_de_read(i915, VLV_BLC_PWM_CTL2(pipe));
+-	intel_de_write(i915, VLV_BLC_PWM_CTL2(pipe), tmp & ~BLM_PWM_ENABLE);
++	tmp = intel_de_rmw(i915, VLV_BLC_PWM_CTL2(pipe), BLM_PWM_ENABLE, 0);
+ }
+ 
+ static void bxt_disable_backlight(const struct drm_connector_state *old_conn_state, u32 val)
+@@ -402,19 +397,14 @@ static void bxt_disable_backlight(const struct drm_connector_state *old_conn_sta
+ 	struct intel_connector *connector = to_intel_connector(old_conn_state->connector);
+ 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+ 	struct intel_panel *panel = &connector->panel;
+-	u32 tmp;
+ 
+ 	intel_backlight_set_pwm_level(old_conn_state, val);
+ 
+-	tmp = intel_de_read(i915, BXT_BLC_PWM_CTL(panel->backlight.controller));
+-	intel_de_write(i915, BXT_BLC_PWM_CTL(panel->backlight.controller),
+-		       tmp & ~BXT_BLC_PWM_ENABLE);
++	intel_de_rmw(i915, BXT_BLC_PWM_CTL(panel->backlight.controller),
++		     BXT_BLC_PWM_ENABLE, 0);
+ 
+-	if (panel->backlight.controller == 1) {
+-		val = intel_de_read(i915, UTIL_PIN_CTL);
+-		val &= ~UTIL_PIN_ENABLE;
+-		intel_de_write(i915, UTIL_PIN_CTL, val);
+-	}
++	if (panel->backlight.controller == 1)
++		intel_de_rmw(i915, UTIL_PIN_CTL, UTIL_PIN_ENABLE, 0);
+ }
+ 
+ static void cnp_disable_backlight(const struct drm_connector_state *old_conn_state, u32 val)
+@@ -422,13 +412,11 @@ static void cnp_disable_backlight(const struct drm_connector_state *old_conn_sta
+ 	struct intel_connector *connector = to_intel_connector(old_conn_state->connector);
+ 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+ 	struct intel_panel *panel = &connector->panel;
+-	u32 tmp;
+ 
+ 	intel_backlight_set_pwm_level(old_conn_state, val);
+ 
+-	tmp = intel_de_read(i915, BXT_BLC_PWM_CTL(panel->backlight.controller));
+-	intel_de_write(i915, BXT_BLC_PWM_CTL(panel->backlight.controller),
+-		       tmp & ~BXT_BLC_PWM_ENABLE);
++	intel_de_rmw(i915, BXT_BLC_PWM_CTL(panel->backlight.controller),
++		     BXT_BLC_PWM_ENABLE, 0);
+ }
+ 
+ static void ext_pwm_disable_backlight(const struct drm_connector_state *old_conn_state, u32 level)
+@@ -478,7 +466,7 @@ static void lpt_enable_backlight(const struct intel_crtc_state *crtc_state,
+ 	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+ 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+ 	struct intel_panel *panel = &connector->panel;
+-	u32 pch_ctl1, pch_ctl2, schicken;
++	u32 pch_ctl1, pch_ctl2;
+ 
+ 	pch_ctl1 = intel_de_read(i915, BLC_PWM_PCH_CTL1);
+ 	if (pch_ctl1 & BLM_PCH_PWM_ENABLE) {
+@@ -487,21 +475,14 @@ static void lpt_enable_backlight(const struct intel_crtc_state *crtc_state,
+ 		intel_de_write(i915, BLC_PWM_PCH_CTL1, pch_ctl1);
+ 	}
+ 
+-	if (HAS_PCH_LPT(i915)) {
+-		schicken = intel_de_read(i915, SOUTH_CHICKEN2);
+-		if (panel->backlight.alternate_pwm_increment)
+-			schicken |= LPT_PWM_GRANULARITY;
+-		else
+-			schicken &= ~LPT_PWM_GRANULARITY;
+-		intel_de_write(i915, SOUTH_CHICKEN2, schicken);
+-	} else {
+-		schicken = intel_de_read(i915, SOUTH_CHICKEN1);
+-		if (panel->backlight.alternate_pwm_increment)
+-			schicken |= SPT_PWM_GRANULARITY;
+-		else
+-			schicken &= ~SPT_PWM_GRANULARITY;
+-		intel_de_write(i915, SOUTH_CHICKEN1, schicken);
+-	}
++	if (HAS_PCH_LPT(i915))
++		intel_de_rmw(i915, SOUTH_CHICKEN2, LPT_PWM_GRANULARITY,
++			     panel->backlight.alternate_pwm_increment ?
++			     LPT_PWM_GRANULARITY : 0);
++	else
++		intel_de_rmw(i915, SOUTH_CHICKEN1, SPT_PWM_GRANULARITY,
++			     panel->backlight.alternate_pwm_increment ?
++			     SPT_PWM_GRANULARITY : 0);
+ 
+ 	pch_ctl2 = panel->backlight.pwm_level_max << 16;
+ 	intel_de_write(i915, BLC_PWM_PCH_CTL2, pch_ctl2);
+diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy.c b/drivers/gpu/drm/i915/display/intel_combo_phy.c
+index 8b870b2dd4f9d9..27e98eabb0060a 100644
+--- a/drivers/gpu/drm/i915/display/intel_combo_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_combo_phy.c
+@@ -78,14 +78,11 @@ static void icl_set_procmon_ref_values(struct drm_i915_private *dev_priv,
+ 				       enum phy phy)
+ {
+ 	const struct icl_procmon *procmon;
 -	u32 val;
  
--	val = intel_de_read(dev_priv, reg);
--	val &= ~HSW_FRAME_START_DELAY_MASK;
--	val |= HSW_FRAME_START_DELAY(crtc_state->framestart_delay - 1);
--	intel_de_write(dev_priv, reg, val);
-+	intel_de_rmw(dev_priv, reg,
-+		     HSW_FRAME_START_DELAY_MASK,
-+		     HSW_FRAME_START_DELAY(crtc_state->framestart_delay - 1));
+ 	procmon = icl_get_procmon_ref_values(dev_priv, phy);
+ 
+-	val = intel_de_read(dev_priv, ICL_PORT_COMP_DW1(phy));
+-	val &= ~((0xff << 16) | 0xff);
+-	val |= procmon->dw1;
+-	intel_de_write(dev_priv, ICL_PORT_COMP_DW1(phy), val);
++	intel_de_rmw(dev_priv, ICL_PORT_COMP_DW1(phy),
++		     (0xff << 16) | 0xff, procmon->dw1);
+ 
+ 	intel_de_write(dev_priv, ICL_PORT_COMP_DW9(phy), procmon->dw9);
+ 	intel_de_write(dev_priv, ICL_PORT_COMP_DW10(phy), procmon->dw10);
+@@ -267,7 +264,6 @@ void intel_combo_phy_power_up_lanes(struct drm_i915_private *dev_priv,
+ 				    int lane_count, bool lane_reversal)
+ {
+ 	u8 lane_mask;
+-	u32 val;
+ 
+ 	if (is_dsi) {
+ 		drm_WARN_ON(&dev_priv->drm, lane_reversal);
+@@ -308,10 +304,8 @@ void intel_combo_phy_power_up_lanes(struct drm_i915_private *dev_priv,
+ 		}
+ 	}
+ 
+-	val = intel_de_read(dev_priv, ICL_PORT_CL_DW10(phy));
+-	val &= ~PWR_DOWN_LN_MASK;
+-	val |= lane_mask;
+-	intel_de_write(dev_priv, ICL_PORT_CL_DW10(phy), val);
++	intel_de_rmw(dev_priv, ICL_PORT_CL_DW10(phy),
++		     PWR_DOWN_LN_MASK, lane_mask);
  }
  
- static void icl_ddi_bigjoiner_pre_enable(struct intel_atomic_state *state,
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 1a23ecd4623a53..90d7a623d6e3cc 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -1260,9 +1260,7 @@ static void hsw_disable_lcpll(struct drm_i915_private *dev_priv,
- 		drm_err(&dev_priv->drm, "D_COMP RCOMP still in progress\n");
+ static void icl_combo_phys_init(struct drm_i915_private *dev_priv)
+@@ -366,19 +360,13 @@ static void icl_combo_phys_init(struct drm_i915_private *dev_priv)
  
- 	if (allow_power_down) {
--		val = intel_de_read(dev_priv, LCPLL_CTL);
--		val |= LCPLL_POWER_DOWN_ALLOW;
--		intel_de_write(dev_priv, LCPLL_CTL, val);
-+		intel_de_rmw(dev_priv, LCPLL_CTL, 0, LCPLL_POWER_DOWN_ALLOW);
- 		intel_de_posting_read(dev_priv, LCPLL_CTL);
+ 		icl_set_procmon_ref_values(dev_priv, phy);
+ 
+-		if (phy_is_master(dev_priv, phy)) {
+-			val = intel_de_read(dev_priv, ICL_PORT_COMP_DW8(phy));
+-			val |= IREFGEN;
+-			intel_de_write(dev_priv, ICL_PORT_COMP_DW8(phy), val);
+-		}
+-
+-		val = intel_de_read(dev_priv, ICL_PORT_COMP_DW0(phy));
+-		val |= COMP_INIT;
+-		intel_de_write(dev_priv, ICL_PORT_COMP_DW0(phy), val);
++		if (phy_is_master(dev_priv, phy))
++			intel_de_rmw(dev_priv, ICL_PORT_COMP_DW8(phy),
++				     0, IREFGEN);
+ 
+-		val = intel_de_read(dev_priv, ICL_PORT_CL_DW5(phy));
+-		val |= CL_POWER_DOWN_ENABLE;
+-		intel_de_write(dev_priv, ICL_PORT_CL_DW5(phy), val);
++		intel_de_rmw(dev_priv, ICL_PORT_COMP_DW0(phy), 0, COMP_INIT);
++		intel_de_rmw(dev_priv, ICL_PORT_CL_DW5(phy),
++			     0, CL_POWER_DOWN_ENABLE);
  	}
  }
-@@ -1306,9 +1304,7 @@ static void hsw_restore_lcpll(struct drm_i915_private *dev_priv)
- 		drm_err(&dev_priv->drm, "LCPLL not locked yet\n");
  
- 	if (val & LCPLL_CD_SOURCE_FCLK) {
--		val = intel_de_read(dev_priv, LCPLL_CTL);
--		val &= ~LCPLL_CD_SOURCE_FCLK;
--		intel_de_write(dev_priv, LCPLL_CTL, val);
-+		intel_de_rmw(dev_priv, LCPLL_CTL, LCPLL_CD_SOURCE_FCLK, 0);
+@@ -387,8 +375,6 @@ static void icl_combo_phys_uninit(struct drm_i915_private *dev_priv)
+ 	enum phy phy;
  
- 		if (wait_for_us((intel_de_read(dev_priv, LCPLL_CTL) &
- 				 LCPLL_CD_SOURCE_FCLK_DONE) == 0, 1))
-@@ -1347,15 +1343,11 @@ static void hsw_restore_lcpll(struct drm_i915_private *dev_priv)
-  */
- static void hsw_enable_pc8(struct drm_i915_private *dev_priv)
- {
--	u32 val;
+ 	for_each_combo_phy_reverse(dev_priv, phy) {
+-		u32 val;
 -
- 	drm_dbg_kms(&dev_priv->drm, "Enabling package C8+\n");
+ 		if (phy == PHY_A &&
+ 		    !icl_combo_phy_verify_state(dev_priv, phy)) {
+ 			if (IS_TIGERLAKE(dev_priv) || IS_DG1(dev_priv)) {
+@@ -410,14 +396,11 @@ static void icl_combo_phys_uninit(struct drm_i915_private *dev_priv)
+ 		if (!has_phy_misc(dev_priv, phy))
+ 			goto skip_phy_misc;
  
--	if (HAS_PCH_LPT_LP(dev_priv)) {
--		val = intel_de_read(dev_priv, SOUTH_DSPCLK_GATE_D);
--		val &= ~PCH_LP_PARTITION_LEVEL_DISABLE;
--		intel_de_write(dev_priv, SOUTH_DSPCLK_GATE_D, val);
--	}
-+	if (HAS_PCH_LPT_LP(dev_priv))
-+		intel_de_rmw(dev_priv, SOUTH_DSPCLK_GATE_D,
-+			     PCH_LP_PARTITION_LEVEL_DISABLE, 0);
+-		val = intel_de_read(dev_priv, ICL_PHY_MISC(phy));
+-		val |= ICL_PHY_MISC_DE_IO_COMP_PWR_DOWN;
+-		intel_de_write(dev_priv, ICL_PHY_MISC(phy), val);
++		intel_de_rmw(dev_priv, ICL_PHY_MISC(phy), 0,
++			     ICL_PHY_MISC_DE_IO_COMP_PWR_DOWN);
  
- 	lpt_disable_clkout_dp(dev_priv);
- 	hsw_disable_lcpll(dev_priv, true, true);
-@@ -1363,25 +1355,21 @@ static void hsw_enable_pc8(struct drm_i915_private *dev_priv)
- 
- static void hsw_disable_pc8(struct drm_i915_private *dev_priv)
- {
--	u32 val;
--
- 	drm_dbg_kms(&dev_priv->drm, "Disabling package C8+\n");
- 
- 	hsw_restore_lcpll(dev_priv);
- 	intel_init_pch_refclk(dev_priv);
- 
--	if (HAS_PCH_LPT_LP(dev_priv)) {
--		val = intel_de_read(dev_priv, SOUTH_DSPCLK_GATE_D);
--		val |= PCH_LP_PARTITION_LEVEL_DISABLE;
--		intel_de_write(dev_priv, SOUTH_DSPCLK_GATE_D, val);
--	}
-+	if (HAS_PCH_LPT_LP(dev_priv))
-+		intel_de_rmw(dev_priv, SOUTH_DSPCLK_GATE_D,
-+			     0, PCH_LP_PARTITION_LEVEL_DISABLE);
+ skip_phy_misc:
+-		val = intel_de_read(dev_priv, ICL_PORT_COMP_DW0(phy));
+-		val &= ~COMP_INIT;
+-		intel_de_write(dev_priv, ICL_PORT_COMP_DW0(phy), val);
++		intel_de_rmw(dev_priv, ICL_PORT_COMP_DW0(phy), COMP_INIT, 0);
+ 	}
  }
  
- static void intel_pch_reset_handshake(struct drm_i915_private *dev_priv,
- 				      bool enable)
- {
- 	i915_reg_t reg;
--	u32 reset_bits, val;
-+	u32 reset_bits;
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 69595cbb276651..121649015ddb15 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -631,19 +631,14 @@ int intel_ddi_toggle_hdcp_bits(struct intel_encoder *intel_encoder,
+ 	struct drm_i915_private *dev_priv = to_i915(dev);
+ 	intel_wakeref_t wakeref;
+ 	int ret = 0;
+-	u32 tmp;
  
- 	if (IS_IVYBRIDGE(dev_priv)) {
- 		reg = GEN7_MSG_CTL;
-@@ -1394,14 +1382,7 @@ static void intel_pch_reset_handshake(struct drm_i915_private *dev_priv,
- 	if (DISPLAY_VER(dev_priv) >= 14)
- 		reset_bits |= MTL_RESET_PICA_HANDSHAKE_EN;
+ 	wakeref = intel_display_power_get_if_enabled(dev_priv,
+ 						     intel_encoder->power_domain);
+ 	if (drm_WARN_ON(dev, !wakeref))
+ 		return -ENXIO;
  
--	val = intel_de_read(dev_priv, reg);
--
+-	tmp = intel_de_read(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder));
 -	if (enable)
--		val |= reset_bits;
+-		tmp |= hdcp_mask;
 -	else
--		val &= ~reset_bits;
--
--	intel_de_write(dev_priv, reg, val);
-+	intel_de_rmw(dev_priv, reg, reset_bits, enable ? reset_bits : 0);
+-		tmp &= ~hdcp_mask;
+-	intel_de_write(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder), tmp);
++	intel_de_rmw(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder),
++		     hdcp_mask, enable ? hdcp_mask : 0);
+ 	intel_display_power_put(dev_priv, intel_encoder->power_domain, wakeref);
+ 	return ret;
+ }
+@@ -2187,15 +2182,13 @@ static void intel_ddi_enable_fec(struct intel_encoder *encoder,
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct intel_dp *intel_dp;
+-	u32 val;
+ 
+ 	if (!crtc_state->fec_enable)
+ 		return;
+ 
+ 	intel_dp = enc_to_intel_dp(encoder);
+-	val = intel_de_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
+-	val |= DP_TP_CTL_FEC_ENABLE;
+-	intel_de_write(dev_priv, dp_tp_ctl_reg(encoder, crtc_state), val);
++	intel_de_rmw(dev_priv, dp_tp_ctl_reg(encoder, crtc_state),
++		     0, DP_TP_CTL_FEC_ENABLE);
  }
  
- static void skl_display_core_init(struct drm_i915_private *dev_priv,
-@@ -1618,7 +1599,6 @@ static void icl_display_core_init(struct drm_i915_private *dev_priv,
+ static void intel_ddi_disable_fec_state(struct intel_encoder *encoder,
+@@ -2203,15 +2196,13 @@ static void intel_ddi_disable_fec_state(struct intel_encoder *encoder,
  {
- 	struct i915_power_domains *power_domains = &dev_priv->display.power.domains;
- 	struct i915_power_well *well;
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct intel_dp *intel_dp;
 -	u32 val;
  
- 	gen9_set_dc_state(dev_priv, DC_STATE_DISABLE);
+ 	if (!crtc_state->fec_enable)
+ 		return;
  
-@@ -1670,11 +1650,10 @@ static void icl_display_core_init(struct drm_i915_private *dev_priv,
- 		intel_dmc_load_program(dev_priv);
+ 	intel_dp = enc_to_intel_dp(encoder);
+-	val = intel_de_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
+-	val &= ~DP_TP_CTL_FEC_ENABLE;
+-	intel_de_write(dev_priv, dp_tp_ctl_reg(encoder, crtc_state), val);
++	intel_de_rmw(dev_priv, dp_tp_ctl_reg(encoder, crtc_state),
++		     DP_TP_CTL_FEC_ENABLE, 0);
+ 	intel_de_posting_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
+ }
  
- 	/* Wa_14011508470:tgl,dg1,rkl,adl-s,adl-p */
--	if (DISPLAY_VER(dev_priv) >= 12) {
--		val = DCPR_CLEAR_MEMSTAT_DIS | DCPR_SEND_RESP_IMM |
--		      DCPR_MASK_LPMODE | DCPR_MASK_MAXLATENCY_MEMUP_CLR;
--		intel_de_rmw(dev_priv, GEN11_CHICKEN_DCPR_2, 0, val);
--	}
-+	if (DISPLAY_VER(dev_priv) >= 12)
-+		intel_de_rmw(dev_priv, GEN11_CHICKEN_DCPR_2, 0,
-+			     DCPR_CLEAR_MEMSTAT_DIS | DCPR_SEND_RESP_IMM |
-+			     DCPR_MASK_LPMODE | DCPR_MASK_MAXLATENCY_MEMUP_CLR);
- 
- 	/* Wa_14011503030:xelpd */
- 	if (DISPLAY_VER(dev_priv) >= 13)
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index 8710dd41ffd4c6..05b431f968cb49 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -333,7 +333,6 @@ static void hsw_power_well_enable(struct drm_i915_private *dev_priv,
- {
- 	const struct i915_power_well_regs *regs = power_well->desc->ops->regs;
- 	int pw_idx = i915_power_well_instance(power_well)->hsw.idx;
--	u32 val;
- 
- 	if (power_well->desc->has_fuses) {
- 		enum skl_power_gate pg;
-@@ -356,9 +355,7 @@ static void hsw_power_well_enable(struct drm_i915_private *dev_priv,
- 			gen9_wait_for_power_well_fuses(dev_priv, SKL_PG0);
+@@ -2609,12 +2600,10 @@ static void intel_disable_ddi_buf(struct intel_encoder *encoder,
+ 		wait = true;
  	}
  
--	val = intel_de_read(dev_priv, regs->driver);
--	intel_de_write(dev_priv, regs->driver,
--		       val | HSW_PWR_WELL_CTL_REQ(pw_idx));
-+	intel_de_rmw(dev_priv, regs->driver, 0, HSW_PWR_WELL_CTL_REQ(pw_idx));
+-	if (intel_crtc_has_dp_encoder(crtc_state)) {
+-		val = intel_de_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
+-		val &= ~(DP_TP_CTL_ENABLE | DP_TP_CTL_LINK_TRAIN_MASK);
+-		val |= DP_TP_CTL_LINK_TRAIN_PAT1;
+-		intel_de_write(dev_priv, dp_tp_ctl_reg(encoder, crtc_state), val);
+-	}
++	if (intel_crtc_has_dp_encoder(crtc_state))
++		intel_de_rmw(dev_priv, dp_tp_ctl_reg(encoder, crtc_state),
++		             DP_TP_CTL_ENABLE | DP_TP_CTL_LINK_TRAIN_MASK,
++		             DP_TP_CTL_LINK_TRAIN_PAT1);
  
- 	hsw_wait_for_power_well_enable(dev_priv, power_well, false);
+ 	/* Disable FEC in DP Sink */
+ 	intel_ddi_disable_fec_state(encoder, crtc_state);
+@@ -2647,15 +2636,10 @@ static void intel_ddi_post_disable_dp(struct intel_atomic_state *state,
+ 	if (DISPLAY_VER(dev_priv) >= 12) {
+ 		if (is_mst) {
+ 			enum transcoder cpu_transcoder = old_crtc_state->cpu_transcoder;
+-			u32 val;
  
-@@ -380,14 +377,11 @@ static void hsw_power_well_disable(struct drm_i915_private *dev_priv,
- {
- 	const struct i915_power_well_regs *regs = power_well->desc->ops->regs;
- 	int pw_idx = i915_power_well_instance(power_well)->hsw.idx;
+-			val = intel_de_read(dev_priv,
+-					    TRANS_DDI_FUNC_CTL(cpu_transcoder));
+-			val &= ~(TGL_TRANS_DDI_PORT_MASK |
+-				 TRANS_DDI_MODE_SELECT_MASK);
+-			intel_de_write(dev_priv,
+-				       TRANS_DDI_FUNC_CTL(cpu_transcoder),
+-				       val);
++			intel_de_rmw(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder),
++				     TGL_TRANS_DDI_PORT_MASK | TRANS_DDI_MODE_SELECT_MASK,
++				     0);
+ 		}
+ 	} else {
+ 		if (!is_mst)
+@@ -3207,12 +3191,9 @@ static void intel_ddi_set_idle_link_train(struct intel_dp *intel_dp,
+ 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	enum port port = encoder->port;
 -	u32 val;
  
- 	hsw_power_well_pre_disable(dev_priv,
- 				   power_well->desc->irq_pipe_mask);
+-	val = intel_de_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
+-	val &= ~DP_TP_CTL_LINK_TRAIN_MASK;
+-	val |= DP_TP_CTL_LINK_TRAIN_IDLE;
+-	intel_de_write(dev_priv, dp_tp_ctl_reg(encoder, crtc_state), val);
++	intel_de_rmw(dev_priv, dp_tp_ctl_reg(encoder, crtc_state),
++		     DP_TP_CTL_LINK_TRAIN_MASK, DP_TP_CTL_LINK_TRAIN_IDLE);
  
--	val = intel_de_read(dev_priv, regs->driver);
--	intel_de_write(dev_priv, regs->driver,
--		       val & ~HSW_PWR_WELL_CTL_REQ(pw_idx));
-+	intel_de_rmw(dev_priv, regs->driver, HSW_PWR_WELL_CTL_REQ(pw_idx), 0);
- 	hsw_wait_for_power_well_disable(dev_priv, power_well);
+ 	/*
+ 	 * Until TGL on PORT_A we can have only eDP in SST mode. There the only
+diff --git a/drivers/gpu/drm/i915/display/intel_dpio_phy.c b/drivers/gpu/drm/i915/display/intel_dpio_phy.c
+index 7eb7440b31803f..9d825fdaa29055 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpio_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_dpio_phy.c
+@@ -389,9 +389,7 @@ static void _bxt_ddi_phy_init(struct drm_i915_private *dev_priv,
+ 			"force reprogramming it\n", phy);
+ 	}
+ 
+-	val = intel_de_read(dev_priv, BXT_P_CR_GT_DISP_PWRON);
+-	val |= phy_info->pwron_mask;
+-	intel_de_write(dev_priv, BXT_P_CR_GT_DISP_PWRON, val);
++	intel_de_rmw(dev_priv, BXT_P_CR_GT_DISP_PWRON, 0, phy_info->pwron_mask);
+ 
+ 	/*
+ 	 * The PHY registers start out inaccessible and respond to reads with
+@@ -410,27 +408,19 @@ static void _bxt_ddi_phy_init(struct drm_i915_private *dev_priv,
+ 			phy);
+ 
+ 	/* Program PLL Rcomp code offset */
+-	val = intel_de_read(dev_priv, BXT_PORT_CL1CM_DW9(phy));
+-	val &= ~IREF0RC_OFFSET_MASK;
+-	val |= 0xE4 << IREF0RC_OFFSET_SHIFT;
+-	intel_de_write(dev_priv, BXT_PORT_CL1CM_DW9(phy), val);
++	intel_de_rmw(dev_priv, BXT_PORT_CL1CM_DW9(phy), IREF0RC_OFFSET_MASK,
++		     0xE4 << IREF0RC_OFFSET_SHIFT);
+ 
+-	val = intel_de_read(dev_priv, BXT_PORT_CL1CM_DW10(phy));
+-	val &= ~IREF1RC_OFFSET_MASK;
+-	val |= 0xE4 << IREF1RC_OFFSET_SHIFT;
+-	intel_de_write(dev_priv, BXT_PORT_CL1CM_DW10(phy), val);
++	intel_de_rmw(dev_priv, BXT_PORT_CL1CM_DW10(phy), IREF1RC_OFFSET_MASK,
++		     0xE4 << IREF1RC_OFFSET_SHIFT);
+ 
+ 	/* Program power gating */
+-	val = intel_de_read(dev_priv, BXT_PORT_CL1CM_DW28(phy));
+-	val |= OCL1_POWER_DOWN_EN | DW28_OLDO_DYN_PWR_DOWN_EN |
+-		SUS_CLK_CONFIG;
+-	intel_de_write(dev_priv, BXT_PORT_CL1CM_DW28(phy), val);
+-
+-	if (phy_info->dual_channel) {
+-		val = intel_de_read(dev_priv, BXT_PORT_CL2CM_DW6(phy));
+-		val |= DW6_OLDO_DYN_PWR_DOWN_EN;
+-		intel_de_write(dev_priv, BXT_PORT_CL2CM_DW6(phy), val);
+-	}
++	intel_de_rmw(dev_priv, BXT_PORT_CL1CM_DW28(phy), 0,
++		     OCL1_POWER_DOWN_EN | DW28_OLDO_DYN_PWR_DOWN_EN | SUS_CLK_CONFIG);
++
++	if (phy_info->dual_channel)
++		intel_de_rmw(dev_priv, BXT_PORT_CL2CM_DW6(phy), 0,
++			     DW6_OLDO_DYN_PWR_DOWN_EN);
+ 
+ 	if (phy_info->rcomp_phy != -1) {
+ 		u32 grc_code;
+@@ -448,34 +438,25 @@ static void _bxt_ddi_phy_init(struct drm_i915_private *dev_priv,
+ 			   val << GRC_CODE_SLOW_SHIFT |
+ 			   val;
+ 		intel_de_write(dev_priv, BXT_PORT_REF_DW6(phy), grc_code);
+-
+-		val = intel_de_read(dev_priv, BXT_PORT_REF_DW8(phy));
+-		val |= GRC_DIS | GRC_RDY_OVRD;
+-		intel_de_write(dev_priv, BXT_PORT_REF_DW8(phy), val);
++		intel_de_rmw(dev_priv, BXT_PORT_REF_DW8(phy),
++			     0, GRC_DIS | GRC_RDY_OVRD);
+ 	}
+ 
+ 	if (phy_info->reset_delay)
+ 		udelay(phy_info->reset_delay);
+ 
+-	val = intel_de_read(dev_priv, BXT_PHY_CTL_FAMILY(phy));
+-	val |= COMMON_RESET_DIS;
+-	intel_de_write(dev_priv, BXT_PHY_CTL_FAMILY(phy), val);
++	intel_de_rmw(dev_priv, BXT_PHY_CTL_FAMILY(phy), 0, COMMON_RESET_DIS);
  }
  
-@@ -398,29 +392,22 @@ icl_combo_phy_aux_power_well_enable(struct drm_i915_private *dev_priv,
- 	const struct i915_power_well_regs *regs = power_well->desc->ops->regs;
- 	int pw_idx = i915_power_well_instance(power_well)->hsw.idx;
- 	enum phy phy = icl_aux_pw_to_phy(dev_priv, power_well);
+ void bxt_ddi_phy_uninit(struct drm_i915_private *dev_priv, enum dpio_phy phy)
+ {
+ 	const struct bxt_ddi_phy_info *phy_info;
 -	u32 val;
  
- 	drm_WARN_ON(&dev_priv->drm, !IS_ICELAKE(dev_priv));
+ 	phy_info = bxt_get_phy_info(dev_priv, phy);
  
--	val = intel_de_read(dev_priv, regs->driver);
--	intel_de_write(dev_priv, regs->driver,
--		       val | HSW_PWR_WELL_CTL_REQ(pw_idx));
-+	intel_de_rmw(dev_priv, regs->driver, 0, HSW_PWR_WELL_CTL_REQ(pw_idx));
+-	val = intel_de_read(dev_priv, BXT_PHY_CTL_FAMILY(phy));
+-	val &= ~COMMON_RESET_DIS;
+-	intel_de_write(dev_priv, BXT_PHY_CTL_FAMILY(phy), val);
++	intel_de_rmw(dev_priv, BXT_PHY_CTL_FAMILY(phy), COMMON_RESET_DIS, 0);
  
--	if (DISPLAY_VER(dev_priv) < 12) {
--		val = intel_de_read(dev_priv, ICL_PORT_CL_DW12(phy));
--		intel_de_write(dev_priv, ICL_PORT_CL_DW12(phy),
--			       val | ICL_LANE_ENABLE_AUX);
--	}
-+	if (DISPLAY_VER(dev_priv) < 12)
-+		intel_de_rmw(dev_priv, ICL_PORT_CL_DW12(phy),
-+			     0, ICL_LANE_ENABLE_AUX);
+-	val = intel_de_read(dev_priv, BXT_P_CR_GT_DISP_PWRON);
+-	val &= ~phy_info->pwron_mask;
+-	intel_de_write(dev_priv, BXT_P_CR_GT_DISP_PWRON, val);
++	intel_de_rmw(dev_priv, BXT_P_CR_GT_DISP_PWRON, phy_info->pwron_mask, 0);
+ }
  
- 	hsw_wait_for_power_well_enable(dev_priv, power_well, false);
+ void bxt_ddi_phy_init(struct drm_i915_private *dev_priv, enum dpio_phy phy)
+diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c b/drivers/gpu/drm/i915/display/intel_drrs.c
+index 5b9e44443814e9..a52974f5f66042 100644
+--- a/drivers/gpu/drm/i915/display/intel_drrs.c
++++ b/drivers/gpu/drm/i915/display/intel_drrs.c
+@@ -68,21 +68,15 @@ intel_drrs_set_refresh_rate_pipeconf(struct intel_crtc *crtc,
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 	enum transcoder cpu_transcoder = crtc->drrs.cpu_transcoder;
+-	u32 val, bit;
++	u32 bit;
  
- 	/* Display WA #1178: icl */
- 	if (pw_idx >= ICL_PW_CTL_IDX_AUX_A && pw_idx <= ICL_PW_CTL_IDX_AUX_B &&
--	    !intel_bios_is_port_edp(dev_priv, (enum port)phy)) {
--		val = intel_de_read(dev_priv, ICL_AUX_ANAOVRD1(pw_idx));
--		val |= ICL_AUX_ANAOVRD1_ENABLE | ICL_AUX_ANAOVRD1_LDO_BYPASS;
--		intel_de_write(dev_priv, ICL_AUX_ANAOVRD1(pw_idx), val);
--	}
-+	    !intel_bios_is_port_edp(dev_priv, (enum port)phy))
-+		intel_de_rmw(dev_priv, ICL_AUX_ANAOVRD1(pw_idx),
-+			     0, ICL_AUX_ANAOVRD1_ENABLE | ICL_AUX_ANAOVRD1_LDO_BYPASS);
+ 	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+ 		bit = PIPECONF_REFRESH_RATE_ALT_VLV;
+ 	else
+ 		bit = PIPECONF_REFRESH_RATE_ALT_ILK;
+ 
+-	val = intel_de_read(dev_priv, PIPECONF(cpu_transcoder));
+-
+-	if (refresh_rate == DRRS_REFRESH_RATE_LOW)
+-		val |= bit;
+-	else
+-		val &= ~bit;
+-
+-	intel_de_write(dev_priv, PIPECONF(cpu_transcoder), val);
++	intel_de_rmw(dev_priv, PIPECONF(cpu_transcoder),
++		     bit, refresh_rate == DRRS_REFRESH_RATE_LOW ? bit : 0);
  }
  
  static void
-@@ -430,17 +417,12 @@ icl_combo_phy_aux_power_well_disable(struct drm_i915_private *dev_priv,
- 	const struct i915_power_well_regs *regs = power_well->desc->ops->regs;
- 	int pw_idx = i915_power_well_instance(power_well)->hsw.idx;
- 	enum phy phy = icl_aux_pw_to_phy(dev_priv, power_well);
--	u32 val;
- 
- 	drm_WARN_ON(&dev_priv->drm, !IS_ICELAKE(dev_priv));
- 
--	val = intel_de_read(dev_priv, ICL_PORT_CL_DW12(phy));
--	intel_de_write(dev_priv, ICL_PORT_CL_DW12(phy),
--		       val & ~ICL_LANE_ENABLE_AUX);
-+	intel_de_rmw(dev_priv, ICL_PORT_CL_DW12(phy), ICL_LANE_ENABLE_AUX, 0);
- 
--	val = intel_de_read(dev_priv, regs->driver);
--	intel_de_write(dev_priv, regs->driver,
--		       val & ~HSW_PWR_WELL_CTL_REQ(pw_idx));
-+	intel_de_rmw(dev_priv, regs->driver, HSW_PWR_WELL_CTL_REQ(pw_idx), 0);
- 
- 	hsw_wait_for_power_well_disable(dev_priv, power_well);
- }
-@@ -502,19 +484,15 @@ icl_tc_phy_aux_power_well_enable(struct drm_i915_private *dev_priv,
- 	const struct i915_power_well_regs *regs = power_well->desc->ops->regs;
- 	bool is_tbt = power_well->desc->is_tc_tbt;
- 	bool timeout_expected;
--	u32 val;
- 
- 	icl_tc_port_assert_ref_held(dev_priv, power_well, dig_port);
- 
--	val = intel_de_read(dev_priv, DP_AUX_CH_CTL(aux_ch));
--	val &= ~DP_AUX_CH_CTL_TBT_IO;
--	if (is_tbt)
--		val |= DP_AUX_CH_CTL_TBT_IO;
--	intel_de_write(dev_priv, DP_AUX_CH_CTL(aux_ch), val);
-+	intel_de_rmw(dev_priv, DP_AUX_CH_CTL(aux_ch),
-+		     DP_AUX_CH_CTL_TBT_IO, is_tbt ? DP_AUX_CH_CTL_TBT_IO : 0);
- 
--	val = intel_de_read(dev_priv, regs->driver);
--	intel_de_write(dev_priv, regs->driver,
--		       val | HSW_PWR_WELL_CTL_REQ(i915_power_well_instance(power_well)->hsw.idx));
-+	intel_de_rmw(dev_priv, regs->driver,
-+		     0,
-+		     HSW_PWR_WELL_CTL_REQ(i915_power_well_instance(power_well)->hsw.idx));
- 
- 	/*
- 	 * An AUX timeout is expected if the TBT DP tunnel is down,
-@@ -776,12 +754,8 @@ static void tgl_enable_dc3co(struct drm_i915_private *dev_priv)
- 
- static void tgl_disable_dc3co(struct drm_i915_private *dev_priv)
- {
--	u32 val;
--
- 	drm_dbg_kms(&dev_priv->drm, "Disabling DC3CO\n");
--	val = intel_de_read(dev_priv, DC_STATE_EN);
--	val &= ~DC_STATE_DC3CO_STATUS;
--	intel_de_write(dev_priv, DC_STATE_EN, val);
-+	intel_de_rmw(dev_priv, DC_STATE_EN, DC_STATE_DC3CO_STATUS, 0);
- 	gen9_set_dc_state(dev_priv, DC_STATE_DISABLE);
- 	/*
- 	 * Delay of 200us DC3CO Exit time B.Spec 49196
-@@ -820,8 +794,8 @@ void gen9_enable_dc5(struct drm_i915_private *dev_priv)
- 
- 	/* Wa Display #1183: skl,kbl,cfl */
- 	if (DISPLAY_VER(dev_priv) == 9 && !IS_BROXTON(dev_priv))
--		intel_de_write(dev_priv, GEN8_CHICKEN_DCPR_1,
--			       intel_de_read(dev_priv, GEN8_CHICKEN_DCPR_1) | SKL_SELECT_ALTERNATE_DC_EXIT);
-+		intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1,
-+			     0, SKL_SELECT_ALTERNATE_DC_EXIT);
- 
- 	gen9_set_dc_state(dev_priv, DC_STATE_EN_UPTO_DC5);
- }
-@@ -847,8 +821,8 @@ void skl_enable_dc6(struct drm_i915_private *dev_priv)
- 
- 	/* Wa Display #1183: skl,kbl,cfl */
- 	if (DISPLAY_VER(dev_priv) == 9 && !IS_BROXTON(dev_priv))
--		intel_de_write(dev_priv, GEN8_CHICKEN_DCPR_1,
--			       intel_de_read(dev_priv, GEN8_CHICKEN_DCPR_1) | SKL_SELECT_ALTERNATE_DC_EXIT);
-+		intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1,
-+			     0, SKL_SELECT_ALTERNATE_DC_EXIT);
- 
- 	gen9_set_dc_state(dev_priv, DC_STATE_EN_UPTO_DC6);
- }
-@@ -1149,18 +1123,14 @@ static bool vlv_power_well_enabled(struct drm_i915_private *dev_priv,
- 
- static void vlv_init_display_clock_gating(struct drm_i915_private *dev_priv)
- {
--	u32 val;
--
- 	/*
- 	 * On driver load, a pipe may be active and driving a DSI display.
- 	 * Preserve DPOUNIT_CLOCK_GATE_DISABLE to avoid the pipe getting stuck
- 	 * (and never recovering) in this case. intel_dsi_post_disable() will
- 	 * clear it when we turn off the display.
+diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c b/drivers/gpu/drm/i915/display/intel_dvo.c
+index 4aeae0f3ac9172..77d413781020de 100644
+--- a/drivers/gpu/drm/i915/display/intel_dvo.c
++++ b/drivers/gpu/drm/i915/display/intel_dvo.c
+@@ -444,11 +444,8 @@ static bool intel_dvo_init_dev(struct drm_i915_private *dev_priv,
+ 	 * the clock enabled before we attempt to initialize
+ 	 * the device.
  	 */
--	val = intel_de_read(dev_priv, DSPCLK_GATE_D(dev_priv));
--	val &= DPOUNIT_CLOCK_GATE_DISABLE;
--	val |= VRHUNIT_CLOCK_GATE_DISABLE;
--	intel_de_write(dev_priv, DSPCLK_GATE_D(dev_priv), val);
-+	intel_de_rmw(dev_priv, DSPCLK_GATE_D(dev_priv),
-+		     ~DPOUNIT_CLOCK_GATE_DISABLE, VRHUNIT_CLOCK_GATE_DISABLE);
+-	for_each_pipe(dev_priv, pipe) {
+-		dpll[pipe] = intel_de_read(dev_priv, DPLL(pipe));
+-		intel_de_write(dev_priv, DPLL(pipe),
+-			       dpll[pipe] | DPLL_DVO_2X_MODE);
+-	}
++	for_each_pipe(dev_priv, pipe)
++		dpll[pipe] = intel_de_rmw(dev_priv, DPLL(pipe), 0, DPLL_DVO_2X_MODE);
  
- 	/*
- 	 * Disable trickle feed and enable pnd deadline calculation
-@@ -1276,8 +1246,7 @@ static void vlv_dpio_cmn_power_well_enable(struct drm_i915_private *dev_priv,
- 	 * both PLLs disabled, or we risk losing DPIO and PLL
- 	 * synchronization.
- 	 */
--	intel_de_write(dev_priv, DPIO_CTL,
--		       intel_de_read(dev_priv, DPIO_CTL) | DPIO_CMNRST);
-+	intel_de_rmw(dev_priv, DPIO_CTL, 0, DPIO_CMNRST);
+ 	ret = dvo->dev_ops->init(&intel_dvo->dev, i2c);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
+index f62d9a9313498c..02bba5bcc00afc 100644
+--- a/drivers/gpu/drm/i915/display/intel_fdi.c
++++ b/drivers/gpu/drm/i915/display/intel_fdi.c
+@@ -366,8 +366,7 @@ void intel_fdi_normal_train(struct intel_crtc *crtc)
+ 
+ 	/* IVB wants error correction enabled */
+ 	if (IS_IVYBRIDGE(dev_priv))
+-		intel_de_write(dev_priv, reg,
+-			       intel_de_read(dev_priv, reg) | FDI_FS_ERRC_ENABLE | FDI_FE_ERRC_ENABLE);
++		intel_de_rmw(dev_priv, reg, 0, FDI_FS_ERRC_ENABLE | FDI_FE_ERRC_ENABLE);
  }
  
- static void vlv_dpio_cmn_power_well_disable(struct drm_i915_private *dev_priv,
-@@ -1289,8 +1258,7 @@ static void vlv_dpio_cmn_power_well_disable(struct drm_i915_private *dev_priv,
- 		assert_pll_disabled(dev_priv, pipe);
- 
- 	/* Assert common reset */
--	intel_de_write(dev_priv, DPIO_CTL,
--		       intel_de_read(dev_priv, DPIO_CTL) & ~DPIO_CMNRST);
-+	intel_de_rmw(dev_priv, DPIO_CTL, DPIO_CMNRST, 0);
- 
- 	vlv_set_power_well(dev_priv, power_well, false);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 1974eb580ed198..e9215ebcdfc44d 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -608,10 +608,8 @@ static void hsw_ddi_wrpll_disable(struct drm_i915_private *dev_priv,
- 				  struct intel_shared_dpll *pll)
+ /* The FDI link training functions for ILK/Ibexpeak. */
+diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
+index 0bc4f6b48e80ae..3ddfc8080ee890 100644
+--- a/drivers/gpu/drm/i915/display/intel_gmbus.c
++++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
+@@ -215,41 +215,23 @@ intel_gmbus_reset(struct drm_i915_private *i915)
+ static void pnv_gmbus_clock_gating(struct drm_i915_private *i915,
+ 				   bool enable)
  {
- 	const enum intel_dpll_id id = pll->info->id;
 -	u32 val;
- 
--	val = intel_de_read(dev_priv, WRPLL_CTL(id));
--	intel_de_write(dev_priv, WRPLL_CTL(id), val & ~WRPLL_PLL_ENABLE);
-+	intel_de_rmw(dev_priv, WRPLL_CTL(id), WRPLL_PLL_ENABLE, 0);
- 	intel_de_posting_read(dev_priv, WRPLL_CTL(id));
- 
- 	/*
-@@ -626,10 +624,8 @@ static void hsw_ddi_spll_disable(struct drm_i915_private *dev_priv,
- 				 struct intel_shared_dpll *pll)
- {
- 	enum intel_dpll_id id = pll->info->id;
--	u32 val;
- 
--	val = intel_de_read(dev_priv, SPLL_CTL);
--	intel_de_write(dev_priv, SPLL_CTL, val & ~SPLL_PLL_ENABLE);
-+	intel_de_rmw(dev_priv, SPLL_CTL, SPLL_PLL_ENABLE, 0);
- 	intel_de_posting_read(dev_priv, SPLL_CTL);
- 
- 	/*
-@@ -1238,16 +1234,10 @@ static void skl_ddi_pll_write_ctrl1(struct drm_i915_private *dev_priv,
- 				    struct intel_shared_dpll *pll)
- {
- 	const enum intel_dpll_id id = pll->info->id;
--	u32 val;
- 
--	val = intel_de_read(dev_priv, DPLL_CTRL1);
 -
--	val &= ~(DPLL_CTRL1_HDMI_MODE(id) |
--		 DPLL_CTRL1_SSC(id) |
--		 DPLL_CTRL1_LINK_RATE_MASK(id));
--	val |= pll->state.hw_state.ctrl1 << (id * 6);
+ 	/* When using bit bashing for I2C, this bit needs to be set to 1 */
+-	val = intel_de_read(i915, DSPCLK_GATE_D(i915));
+-	if (!enable)
+-		val |= PNV_GMBUSUNIT_CLOCK_GATE_DISABLE;
+-	else
+-		val &= ~PNV_GMBUSUNIT_CLOCK_GATE_DISABLE;
+-	intel_de_write(i915, DSPCLK_GATE_D(i915), val);
++	intel_de_rmw(i915, DSPCLK_GATE_D(i915), PNV_GMBUSUNIT_CLOCK_GATE_DISABLE,
++		     !enable ? PNV_GMBUSUNIT_CLOCK_GATE_DISABLE : 0);
+ }
+ 
+ static void pch_gmbus_clock_gating(struct drm_i915_private *i915,
+ 				   bool enable)
+ {
+-	u32 val;
 -
--	intel_de_write(dev_priv, DPLL_CTRL1, val);
-+	intel_de_rmw(dev_priv, DPLL_CTRL1,
-+		     DPLL_CTRL1_HDMI_MODE(id) | DPLL_CTRL1_SSC(id) | DPLL_CTRL1_LINK_RATE_MASK(id),
-+		     pll->state.hw_state.ctrl1 << (id * 6));
- 	intel_de_posting_read(dev_priv, DPLL_CTRL1);
+-	val = intel_de_read(i915, SOUTH_DSPCLK_GATE_D);
+-	if (!enable)
+-		val |= PCH_GMBUSUNIT_CLOCK_GATE_DISABLE;
+-	else
+-		val &= ~PCH_GMBUSUNIT_CLOCK_GATE_DISABLE;
+-	intel_de_write(i915, SOUTH_DSPCLK_GATE_D, val);
++	intel_de_rmw(i915, SOUTH_DSPCLK_GATE_D, PCH_GMBUSUNIT_CLOCK_GATE_DISABLE,
++		     !enable ? PCH_GMBUSUNIT_CLOCK_GATE_DISABLE : 0);
  }
  
-@@ -1265,8 +1255,7 @@ static void skl_ddi_pll_enable(struct drm_i915_private *dev_priv,
- 	intel_de_posting_read(dev_priv, regs[id].cfgcr2);
- 
- 	/* the enable bit is always bit 31 */
--	intel_de_write(dev_priv, regs[id].ctl,
--		       intel_de_read(dev_priv, regs[id].ctl) | LCPLL_PLL_ENABLE);
-+	intel_de_rmw(dev_priv, regs[id].ctl, 0, LCPLL_PLL_ENABLE);
- 
- 	if (intel_de_wait_for_set(dev_priv, DPLL_STATUS, DPLL_LOCK(id), 5))
- 		drm_err(&dev_priv->drm, "DPLL %d not locked\n", id);
-@@ -1285,8 +1274,7 @@ static void skl_ddi_pll_disable(struct drm_i915_private *dev_priv,
- 	const enum intel_dpll_id id = pll->info->id;
- 
- 	/* the enable bit is always bit 31 */
--	intel_de_write(dev_priv, regs[id].ctl,
--		       intel_de_read(dev_priv, regs[id].ctl) & ~LCPLL_PLL_ENABLE);
-+	intel_de_rmw(dev_priv, regs[id].ctl, LCPLL_PLL_ENABLE, 0);
- 	intel_de_posting_read(dev_priv, regs[id].ctl);
+ static void bxt_gmbus_clock_gating(struct drm_i915_private *i915,
+ 				   bool enable)
+ {
+-	u32 val;
+-
+-	val = intel_de_read(i915, GEN9_CLKGATE_DIS_4);
+-	if (!enable)
+-		val |= BXT_GMBUS_GATING_DIS;
+-	else
+-		val &= ~BXT_GMBUS_GATING_DIS;
+-	intel_de_write(i915, GEN9_CLKGATE_DIS_4, val);
++	intel_de_rmw(i915, GEN9_CLKGATE_DIS_4, BXT_GMBUS_GATING_DIS,
++		     !enable ? BXT_GMBUS_GATING_DIS : 0);
  }
  
-@@ -1902,14 +1890,11 @@ static void bxt_ddi_pll_enable(struct drm_i915_private *dev_priv,
- 	bxt_port_to_phy_channel(dev_priv, port, &phy, &ch);
+ static u32 get_reserved(struct intel_gmbus *bus)
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index 6406fd487ee524..2984d2810e42cc 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -943,8 +943,7 @@ static int _intel_hdcp_disable(struct intel_connector *connector)
  
- 	/* Non-SSC reference */
--	temp = intel_de_read(dev_priv, BXT_PORT_PLL_ENABLE(port));
--	temp |= PORT_PLL_REF_SEL;
--	intel_de_write(dev_priv, BXT_PORT_PLL_ENABLE(port), temp);
-+	intel_de_rmw(dev_priv, BXT_PORT_PLL_ENABLE(port), 0, PORT_PLL_REF_SEL);
+ 	repeater_ctl = intel_hdcp_get_repeater_ctl(dev_priv, cpu_transcoder,
+ 						   port);
+-	intel_de_write(dev_priv, HDCP_REP_CTL,
+-		       intel_de_read(dev_priv, HDCP_REP_CTL) & ~repeater_ctl);
++	intel_de_rmw(dev_priv, HDCP_REP_CTL, repeater_ctl, 0);
  
- 	if (IS_GEMINILAKE(dev_priv)) {
--		temp = intel_de_read(dev_priv, BXT_PORT_PLL_ENABLE(port));
--		temp |= PORT_PLL_POWER_ENABLE;
--		intel_de_write(dev_priv, BXT_PORT_PLL_ENABLE(port), temp);
-+		intel_de_rmw(dev_priv, BXT_PORT_PLL_ENABLE(port),
-+			     0, PORT_PLL_POWER_ENABLE);
- 
- 		if (wait_for_us((intel_de_read(dev_priv, BXT_PORT_PLL_ENABLE(port)) &
- 				 PORT_PLL_POWER_STATE), 200))
-@@ -1918,39 +1903,28 @@ static void bxt_ddi_pll_enable(struct drm_i915_private *dev_priv,
+ 	ret = hdcp->shim->toggle_signalling(dig_port, cpu_transcoder, false);
+ 	if (ret) {
+@@ -1819,12 +1818,10 @@ static int hdcp2_enable_encryption(struct intel_connector *connector)
  	}
  
- 	/* Disable 10 bit clock */
--	temp = intel_de_read(dev_priv, BXT_PORT_PLL_EBB_4(phy, ch));
--	temp &= ~PORT_PLL_10BIT_CLK_ENABLE;
--	intel_de_write(dev_priv, BXT_PORT_PLL_EBB_4(phy, ch), temp);
-+	intel_de_rmw(dev_priv, BXT_PORT_PLL_EBB_4(phy, ch),
-+		     PORT_PLL_10BIT_CLK_ENABLE, 0);
+ 	if (intel_de_read(dev_priv, HDCP2_STATUS(dev_priv, cpu_transcoder, port)) &
+-	    LINK_AUTH_STATUS) {
++	    LINK_AUTH_STATUS)
+ 		/* Link is Authenticated. Now set for Encryption */
+-		intel_de_write(dev_priv,
+-			       HDCP2_CTL(dev_priv, cpu_transcoder, port),
+-			       intel_de_read(dev_priv, HDCP2_CTL(dev_priv, cpu_transcoder, port)) | CTL_LINK_ENCRYPTION_REQ);
+-	}
++		intel_de_rmw(dev_priv, HDCP2_CTL(dev_priv, cpu_transcoder, port),
++			     0, CTL_LINK_ENCRYPTION_REQ);
  
- 	/* Write P1 & P2 */
--	temp = intel_de_read(dev_priv, BXT_PORT_PLL_EBB_0(phy, ch));
--	temp &= ~(PORT_PLL_P1_MASK | PORT_PLL_P2_MASK);
--	temp |= pll->state.hw_state.ebb0;
--	intel_de_write(dev_priv, BXT_PORT_PLL_EBB_0(phy, ch), temp);
-+	intel_de_rmw(dev_priv, BXT_PORT_PLL_EBB_0(phy, ch),
-+		     PORT_PLL_P1_MASK | PORT_PLL_P2_MASK, pll->state.hw_state.ebb0);
+ 	ret = intel_de_wait_for_set(dev_priv,
+ 				    HDCP2_STATUS(dev_priv, cpu_transcoder,
+@@ -1848,8 +1845,8 @@ static int hdcp2_disable_encryption(struct intel_connector *connector)
+ 	drm_WARN_ON(&dev_priv->drm, !(intel_de_read(dev_priv, HDCP2_STATUS(dev_priv, cpu_transcoder, port)) &
+ 				      LINK_ENCRYPTION_STATUS));
  
- 	/* Write M2 integer */
--	temp = intel_de_read(dev_priv, BXT_PORT_PLL(phy, ch, 0));
--	temp &= ~PORT_PLL_M2_INT_MASK;
--	temp |= pll->state.hw_state.pll0;
--	intel_de_write(dev_priv, BXT_PORT_PLL(phy, ch, 0), temp);
-+	intel_de_rmw(dev_priv, BXT_PORT_PLL(phy, ch, 0),
-+		     PORT_PLL_M2_INT_MASK, pll->state.hw_state.pll0);
+-	intel_de_write(dev_priv, HDCP2_CTL(dev_priv, cpu_transcoder, port),
+-		       intel_de_read(dev_priv, HDCP2_CTL(dev_priv, cpu_transcoder, port)) & ~CTL_LINK_ENCRYPTION_REQ);
++	intel_de_rmw(dev_priv, HDCP2_CTL(dev_priv, cpu_transcoder, port),
++		     CTL_LINK_ENCRYPTION_REQ, 0);
  
- 	/* Write N */
--	temp = intel_de_read(dev_priv, BXT_PORT_PLL(phy, ch, 1));
--	temp &= ~PORT_PLL_N_MASK;
--	temp |= pll->state.hw_state.pll1;
--	intel_de_write(dev_priv, BXT_PORT_PLL(phy, ch, 1), temp);
-+	intel_de_rmw(dev_priv, BXT_PORT_PLL(phy, ch, 1),
-+		     PORT_PLL_N_MASK, pll->state.hw_state.pll1);
- 
- 	/* Write M2 fraction */
--	temp = intel_de_read(dev_priv, BXT_PORT_PLL(phy, ch, 2));
--	temp &= ~PORT_PLL_M2_FRAC_MASK;
--	temp |= pll->state.hw_state.pll2;
--	intel_de_write(dev_priv, BXT_PORT_PLL(phy, ch, 2), temp);
-+	intel_de_rmw(dev_priv, BXT_PORT_PLL(phy, ch, 2),
-+		     PORT_PLL_M2_FRAC_MASK, pll->state.hw_state.pll2);
- 
- 	/* Write M2 fraction enable */
--	temp = intel_de_read(dev_priv, BXT_PORT_PLL(phy, ch, 3));
--	temp &= ~PORT_PLL_M2_FRAC_ENABLE;
--	temp |= pll->state.hw_state.pll3;
--	intel_de_write(dev_priv, BXT_PORT_PLL(phy, ch, 3), temp);
-+	intel_de_rmw(dev_priv, BXT_PORT_PLL(phy, ch, 3),
-+		     PORT_PLL_M2_FRAC_ENABLE, pll->state.hw_state.pll3);
- 
- 	/* Write coeff */
- 	temp = intel_de_read(dev_priv, BXT_PORT_PLL(phy, ch, 6));
-@@ -1961,15 +1935,11 @@ static void bxt_ddi_pll_enable(struct drm_i915_private *dev_priv,
- 	intel_de_write(dev_priv, BXT_PORT_PLL(phy, ch, 6), temp);
- 
- 	/* Write calibration val */
--	temp = intel_de_read(dev_priv, BXT_PORT_PLL(phy, ch, 8));
--	temp &= ~PORT_PLL_TARGET_CNT_MASK;
--	temp |= pll->state.hw_state.pll8;
--	intel_de_write(dev_priv, BXT_PORT_PLL(phy, ch, 8), temp);
-+	intel_de_rmw(dev_priv, BXT_PORT_PLL(phy, ch, 8),
-+		     PORT_PLL_TARGET_CNT_MASK, pll->state.hw_state.pll8);
- 
--	temp = intel_de_read(dev_priv, BXT_PORT_PLL(phy, ch, 9));
--	temp &= ~PORT_PLL_LOCK_THRESHOLD_MASK;
--	temp |= pll->state.hw_state.pll9;
--	intel_de_write(dev_priv, BXT_PORT_PLL(phy, ch, 9), temp);
-+	intel_de_rmw(dev_priv, BXT_PORT_PLL(phy, ch, 9),
-+		     PORT_PLL_LOCK_THRESHOLD_MASK, pll->state.hw_state.pll9);
- 
- 	temp = intel_de_read(dev_priv, BXT_PORT_PLL(phy, ch, 10));
- 	temp &= ~PORT_PLL_DCO_AMP_OVR_EN_H;
-@@ -1986,9 +1956,7 @@ static void bxt_ddi_pll_enable(struct drm_i915_private *dev_priv,
- 	intel_de_write(dev_priv, BXT_PORT_PLL_EBB_4(phy, ch), temp);
- 
- 	/* Enable PLL */
--	temp = intel_de_read(dev_priv, BXT_PORT_PLL_ENABLE(port));
--	temp |= PORT_PLL_ENABLE;
--	intel_de_write(dev_priv, BXT_PORT_PLL_ENABLE(port), temp);
-+	intel_de_rmw(dev_priv, BXT_PORT_PLL_ENABLE(port), 0, PORT_PLL_ENABLE);
- 	intel_de_posting_read(dev_priv, BXT_PORT_PLL_ENABLE(port));
- 
- 	if (wait_for_us((intel_de_read(dev_priv, BXT_PORT_PLL_ENABLE(port)) & PORT_PLL_LOCK),
-@@ -2016,17 +1984,13 @@ static void bxt_ddi_pll_disable(struct drm_i915_private *dev_priv,
- 					struct intel_shared_dpll *pll)
+ 	ret = intel_de_wait_for_clear(dev_priv,
+ 				      HDCP2_STATUS(dev_priv, cpu_transcoder,
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index efa2da080f62d4..4b09f17aa4b23b 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -237,15 +237,11 @@ static void g4x_read_infoframe(struct intel_encoder *encoder,
+ 			       void *frame, ssize_t len)
  {
- 	enum port port = (enum port)pll->info->id; /* 1:1 port->PLL mapping */
--	u32 temp;
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+-	u32 val, *data = frame;
++	u32 *data = frame;
+ 	int i;
  
--	temp = intel_de_read(dev_priv, BXT_PORT_PLL_ENABLE(port));
--	temp &= ~PORT_PLL_ENABLE;
--	intel_de_write(dev_priv, BXT_PORT_PLL_ENABLE(port), temp);
-+	intel_de_rmw(dev_priv, BXT_PORT_PLL_ENABLE(port), PORT_PLL_ENABLE, 0);
- 	intel_de_posting_read(dev_priv, BXT_PORT_PLL_ENABLE(port));
+-	val = intel_de_read(dev_priv, VIDEO_DIP_CTL);
+-
+-	val &= ~(VIDEO_DIP_SELECT_MASK | 0xf); /* clear DIP data offset */
+-	val |= g4x_infoframe_index(type);
+-
+-	intel_de_write(dev_priv, VIDEO_DIP_CTL, val);
++	intel_de_rmw(dev_priv, VIDEO_DIP_CTL,
++		     VIDEO_DIP_SELECT_MASK | 0xf, g4x_infoframe_index(type));
  
- 	if (IS_GEMINILAKE(dev_priv)) {
--		temp = intel_de_read(dev_priv, BXT_PORT_PLL_ENABLE(port));
--		temp &= ~PORT_PLL_POWER_ENABLE;
--		intel_de_write(dev_priv, BXT_PORT_PLL_ENABLE(port), temp);
-+		intel_de_rmw(dev_priv, BXT_PORT_PLL_ENABLE(port),
-+			     PORT_PLL_POWER_ENABLE, 0);
+ 	for (i = 0; i < len; i += 4)
+ 		*data++ = intel_de_read(dev_priv, VIDEO_DIP_DATA);
+@@ -313,15 +309,11 @@ static void ibx_read_infoframe(struct intel_encoder *encoder,
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+-	u32 val, *data = frame;
++	u32 *data = frame;
+ 	int i;
  
- 		if (wait_for_us(!(intel_de_read(dev_priv, BXT_PORT_PLL_ENABLE(port)) &
- 				  PORT_PLL_POWER_STATE), 200))
-@@ -3641,8 +3605,8 @@ static void icl_dpll_write(struct drm_i915_private *dev_priv,
- 			 !i915_mmio_reg_valid(div0_reg));
- 	if (dev_priv->display.vbt.override_afc_startup &&
- 	    i915_mmio_reg_valid(div0_reg))
--		intel_de_rmw(dev_priv, div0_reg, TGL_DPLL0_DIV0_AFC_STARTUP_MASK,
--			     hw_state->div0);
-+		intel_de_rmw(dev_priv, div0_reg,
-+			     TGL_DPLL0_DIV0_AFC_STARTUP_MASK, hw_state->div0);
- 	intel_de_posting_read(dev_priv, cfgcr1_reg);
+-	val = intel_de_read(dev_priv, TVIDEO_DIP_CTL(crtc->pipe));
+-
+-	val &= ~(VIDEO_DIP_SELECT_MASK | 0xf); /* clear DIP data offset */
+-	val |= g4x_infoframe_index(type);
+-
+-	intel_de_write(dev_priv, TVIDEO_DIP_CTL(crtc->pipe), val);
++	intel_de_rmw(dev_priv, TVIDEO_DIP_CTL(crtc->pipe),
++		     VIDEO_DIP_SELECT_MASK | 0xf, g4x_infoframe_index(type));
+ 
+ 	for (i = 0; i < len; i += 4)
+ 		*data++ = intel_de_read(dev_priv, TVIDEO_DIP_DATA(crtc->pipe));
+@@ -395,15 +387,11 @@ static void cpt_read_infoframe(struct intel_encoder *encoder,
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+-	u32 val, *data = frame;
++	u32 *data = frame;
+ 	int i;
+ 
+-	val = intel_de_read(dev_priv, TVIDEO_DIP_CTL(crtc->pipe));
+-
+-	val &= ~(VIDEO_DIP_SELECT_MASK | 0xf); /* clear DIP data offset */
+-	val |= g4x_infoframe_index(type);
+-
+-	intel_de_write(dev_priv, TVIDEO_DIP_CTL(crtc->pipe), val);
++	intel_de_rmw(dev_priv, TVIDEO_DIP_CTL(crtc->pipe),
++		     VIDEO_DIP_SELECT_MASK | 0xf, g4x_infoframe_index(type));
+ 
+ 	for (i = 0; i < len; i += 4)
+ 		*data++ = intel_de_read(dev_priv, TVIDEO_DIP_DATA(crtc->pipe));
+@@ -471,15 +459,11 @@ static void vlv_read_infoframe(struct intel_encoder *encoder,
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+-	u32 val, *data = frame;
++	u32 *data = frame;
+ 	int i;
+ 
+-	val = intel_de_read(dev_priv, VLV_TVIDEO_DIP_CTL(crtc->pipe));
+-
+-	val &= ~(VIDEO_DIP_SELECT_MASK | 0xf); /* clear DIP data offset */
+-	val |= g4x_infoframe_index(type);
+-
+-	intel_de_write(dev_priv, VLV_TVIDEO_DIP_CTL(crtc->pipe), val);
++	intel_de_rmw(dev_priv, VLV_TVIDEO_DIP_CTL(crtc->pipe),
++		     VIDEO_DIP_SELECT_MASK | 0xf, g4x_infoframe_index(type));
+ 
+ 	for (i = 0; i < len; i += 4)
+ 		*data++ = intel_de_read(dev_priv,
+diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
+index aecec992cd0d2d..e8f47b7ef87649 100644
+--- a/drivers/gpu/drm/i915/display/intel_lvds.c
++++ b/drivers/gpu/drm/i915/display/intel_lvds.c
+@@ -316,11 +316,9 @@ static void intel_enable_lvds(struct intel_atomic_state *state,
+ 	struct intel_lvds_encoder *lvds_encoder = to_lvds_encoder(encoder);
+ 	struct drm_i915_private *dev_priv = to_i915(dev);
+ 
+-	intel_de_write(dev_priv, lvds_encoder->reg,
+-		       intel_de_read(dev_priv, lvds_encoder->reg) | LVDS_PORT_EN);
++	intel_de_rmw(dev_priv, lvds_encoder->reg, 0, LVDS_PORT_EN);
+ 
+-	intel_de_write(dev_priv, PP_CONTROL(0),
+-		       intel_de_read(dev_priv, PP_CONTROL(0)) | PANEL_POWER_ON);
++	intel_de_rmw(dev_priv, PP_CONTROL(0), 0, PANEL_POWER_ON);
+ 	intel_de_posting_read(dev_priv, lvds_encoder->reg);
+ 
+ 	if (intel_de_wait_for_set(dev_priv, PP_STATUS(0), PP_ON, 5000))
+@@ -338,14 +336,12 @@ static void intel_disable_lvds(struct intel_atomic_state *state,
+ 	struct intel_lvds_encoder *lvds_encoder = to_lvds_encoder(encoder);
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 
+-	intel_de_write(dev_priv, PP_CONTROL(0),
+-		       intel_de_read(dev_priv, PP_CONTROL(0)) & ~PANEL_POWER_ON);
++	intel_de_rmw(dev_priv, PP_CONTROL(0), PANEL_POWER_ON, 0);
+ 	if (intel_de_wait_for_clear(dev_priv, PP_STATUS(0), PP_ON, 1000))
+ 		drm_err(&dev_priv->drm,
+ 			"timed out waiting for panel to power off\n");
+ 
+-	intel_de_write(dev_priv, lvds_encoder->reg,
+-		       intel_de_read(dev_priv, lvds_encoder->reg) & ~LVDS_PORT_EN);
++	intel_de_rmw(dev_priv, lvds_encoder->reg, LVDS_PORT_EN, 0);
+ 	intel_de_posting_read(dev_priv, lvds_encoder->reg);
  }
  
-@@ -3651,7 +3615,6 @@ static void icl_mg_pll_write(struct drm_i915_private *dev_priv,
- {
- 	struct intel_dpll_hw_state *hw_state = &pll->state.hw_state;
- 	enum tc_port tc_port = icl_pll_id_to_tc_port(pll->info->id);
+diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.c b/drivers/gpu/drm/i915/display/intel_pch_display.c
+index cecc0d007cf39c..4b5e069a1b9051 100644
+--- a/drivers/gpu/drm/i915/display/intel_pch_display.c
++++ b/drivers/gpu/drm/i915/display/intel_pch_display.c
+@@ -307,7 +307,6 @@ static void ilk_disable_pch_transcoder(struct intel_crtc *crtc)
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 	enum pipe pipe = crtc->pipe;
+ 	i915_reg_t reg;
 -	u32 val;
  
- 	/*
- 	 * Some of the following registers have reserved fields, so program
-@@ -3659,23 +3622,19 @@ static void icl_mg_pll_write(struct drm_i915_private *dev_priv,
- 	 * during the calc/readout phase if the mask depends on some other HW
- 	 * state like refclk, see icl_calc_mg_pll_state().
- 	 */
--	val = intel_de_read(dev_priv, MG_REFCLKIN_CTL(tc_port));
--	val &= ~MG_REFCLKIN_CTL_OD_2_MUX_MASK;
--	val |= hw_state->mg_refclkin_ctl;
--	intel_de_write(dev_priv, MG_REFCLKIN_CTL(tc_port), val);
-+	intel_de_rmw(dev_priv, MG_REFCLKIN_CTL(tc_port),
-+		     MG_REFCLKIN_CTL_OD_2_MUX_MASK, hw_state->mg_refclkin_ctl);
+ 	/* FDI relies on the transcoder */
+ 	assert_fdi_tx_disabled(dev_priv, pipe);
+@@ -317,21 +316,16 @@ static void ilk_disable_pch_transcoder(struct intel_crtc *crtc)
+ 	assert_pch_ports_disabled(dev_priv, pipe);
  
--	val = intel_de_read(dev_priv, MG_CLKTOP2_CORECLKCTL1(tc_port));
--	val &= ~MG_CLKTOP2_CORECLKCTL1_A_DIVRATIO_MASK;
--	val |= hw_state->mg_clktop2_coreclkctl1;
--	intel_de_write(dev_priv, MG_CLKTOP2_CORECLKCTL1(tc_port), val);
-+	intel_de_rmw(dev_priv, MG_CLKTOP2_CORECLKCTL1(tc_port),
-+		     MG_CLKTOP2_CORECLKCTL1_A_DIVRATIO_MASK,
-+		     hw_state->mg_clktop2_coreclkctl1);
+ 	reg = PCH_TRANSCONF(pipe);
+-	val = intel_de_read(dev_priv, reg);
+-	val &= ~TRANS_ENABLE;
+-	intel_de_write(dev_priv, reg, val);
++	intel_de_rmw(dev_priv, reg, TRANS_ENABLE, 0);
+ 	/* wait for PCH transcoder off, transcoder state */
+ 	if (intel_de_wait_for_clear(dev_priv, reg, TRANS_STATE_ENABLE, 50))
+ 		drm_err(&dev_priv->drm, "failed to disable transcoder %c\n",
+ 			pipe_name(pipe));
  
--	val = intel_de_read(dev_priv, MG_CLKTOP2_HSCLKCTL(tc_port));
--	val &= ~(MG_CLKTOP2_HSCLKCTL_TLINEDRV_CLKSEL_MASK |
--		 MG_CLKTOP2_HSCLKCTL_CORE_INPUTSEL_MASK |
--		 MG_CLKTOP2_HSCLKCTL_HSDIV_RATIO_MASK |
--		 MG_CLKTOP2_HSCLKCTL_DSDIV_RATIO_MASK);
--	val |= hw_state->mg_clktop2_hsclkctl;
--	intel_de_write(dev_priv, MG_CLKTOP2_HSCLKCTL(tc_port), val);
-+	intel_de_rmw(dev_priv, MG_CLKTOP2_HSCLKCTL(tc_port),
-+		     MG_CLKTOP2_HSCLKCTL_TLINEDRV_CLKSEL_MASK |
-+		     MG_CLKTOP2_HSCLKCTL_CORE_INPUTSEL_MASK |
-+		     MG_CLKTOP2_HSCLKCTL_HSDIV_RATIO_MASK |
-+		     MG_CLKTOP2_HSCLKCTL_DSDIV_RATIO_MASK,
-+		     hw_state->mg_clktop2_hsclkctl);
- 
- 	intel_de_write(dev_priv, MG_PLL_DIV0(tc_port), hw_state->mg_pll_div0);
- 	intel_de_write(dev_priv, MG_PLL_DIV1(tc_port), hw_state->mg_pll_div1);
-@@ -3684,15 +3643,12 @@ static void icl_mg_pll_write(struct drm_i915_private *dev_priv,
- 		       hw_state->mg_pll_frac_lock);
- 	intel_de_write(dev_priv, MG_PLL_SSC(tc_port), hw_state->mg_pll_ssc);
- 
--	val = intel_de_read(dev_priv, MG_PLL_BIAS(tc_port));
--	val &= ~hw_state->mg_pll_bias_mask;
--	val |= hw_state->mg_pll_bias;
--	intel_de_write(dev_priv, MG_PLL_BIAS(tc_port), val);
-+	intel_de_rmw(dev_priv, MG_PLL_BIAS(tc_port),
-+		     hw_state->mg_pll_bias_mask, hw_state->mg_pll_bias);
- 
--	val = intel_de_read(dev_priv, MG_PLL_TDC_COLDST_BIAS(tc_port));
--	val &= ~hw_state->mg_pll_tdc_coldst_bias_mask;
--	val |= hw_state->mg_pll_tdc_coldst_bias;
--	intel_de_write(dev_priv, MG_PLL_TDC_COLDST_BIAS(tc_port), val);
-+	intel_de_rmw(dev_priv, MG_PLL_TDC_COLDST_BIAS(tc_port),
-+		     hw_state->mg_pll_tdc_coldst_bias_mask,
-+		     hw_state->mg_pll_tdc_coldst_bias);
- 
- 	intel_de_posting_read(dev_priv, MG_PLL_TDC_COLDST_BIAS(tc_port));
+-	if (HAS_PCH_CPT(dev_priv)) {
++	if (HAS_PCH_CPT(dev_priv))
+ 		/* Workaround: Clear the timing override chicken bit again. */
+-		reg = TRANS_CHICKEN2(pipe);
+-		val = intel_de_read(dev_priv, reg);
+-		val &= ~TRANS_CHICKEN2_TIMING_OVERRIDE;
+-		intel_de_write(dev_priv, reg, val);
+-	}
++		intel_de_rmw(dev_priv, TRANS_CHICKEN2(pipe),
++			     TRANS_CHICKEN2_TIMING_OVERRIDE, 0);
  }
-@@ -3766,11 +3722,7 @@ static void icl_pll_power_enable(struct drm_i915_private *dev_priv,
- 				 struct intel_shared_dpll *pll,
- 				 i915_reg_t enable_reg)
+ 
+ void ilk_pch_pre_enable(struct intel_atomic_state *state,
+@@ -456,21 +450,14 @@ void ilk_pch_post_disable(struct intel_atomic_state *state,
+ 	ilk_disable_pch_transcoder(crtc);
+ 
+ 	if (HAS_PCH_CPT(dev_priv)) {
+-		i915_reg_t reg;
+-		u32 temp;
+-
+ 		/* disable TRANS_DP_CTL */
+-		reg = TRANS_DP_CTL(pipe);
+-		temp = intel_de_read(dev_priv, reg);
+-		temp &= ~(TRANS_DP_OUTPUT_ENABLE |
+-			  TRANS_DP_PORT_SEL_MASK);
+-		temp |= TRANS_DP_PORT_SEL_NONE;
+-		intel_de_write(dev_priv, reg, temp);
++		intel_de_rmw(dev_priv, TRANS_DP_CTL(pipe),
++			     TRANS_DP_OUTPUT_ENABLE | TRANS_DP_PORT_SEL_MASK,
++			     TRANS_DP_PORT_SEL_NONE);
+ 
+ 		/* disable DPLL_SEL */
+-		temp = intel_de_read(dev_priv, PCH_DPLL_SEL);
+-		temp &= ~(TRANS_DPLL_ENABLE(pipe) | TRANS_DPLLB_SEL(pipe));
+-		intel_de_write(dev_priv, PCH_DPLL_SEL, temp);
++		intel_de_rmw(dev_priv, PCH_DPLL_SEL,
++			     TRANS_DPLL_ENABLE(pipe) | TRANS_DPLLB_SEL(pipe), 0);
+ 	}
+ 
+ 	ilk_fdi_pll_disable(crtc);
+@@ -580,20 +567,14 @@ static void lpt_enable_pch_transcoder(const struct intel_crtc_state *crtc_state)
+ 
+ static void lpt_disable_pch_transcoder(struct drm_i915_private *dev_priv)
  {
 -	u32 val;
 -
--	val = intel_de_read(dev_priv, enable_reg);
--	val |= PLL_POWER_ENABLE;
--	intel_de_write(dev_priv, enable_reg, val);
-+	intel_de_rmw(dev_priv, enable_reg, 0, PLL_POWER_ENABLE);
+-	val = intel_de_read(dev_priv, LPT_TRANSCONF);
+-	val &= ~TRANS_ENABLE;
+-	intel_de_write(dev_priv, LPT_TRANSCONF, val);
++	intel_de_rmw(dev_priv, LPT_TRANSCONF, TRANS_ENABLE, 0);
+ 	/* wait for PCH transcoder off, transcoder state */
+ 	if (intel_de_wait_for_clear(dev_priv, LPT_TRANSCONF,
+ 				    TRANS_STATE_ENABLE, 50))
+ 		drm_err(&dev_priv->drm, "Failed to disable PCH transcoder\n");
  
- 	/*
- 	 * The spec says we need to "wait" but it also says it should be
-@@ -3785,11 +3737,7 @@ static void icl_pll_enable(struct drm_i915_private *dev_priv,
- 			   struct intel_shared_dpll *pll,
- 			   i915_reg_t enable_reg)
- {
--	u32 val;
--
--	val = intel_de_read(dev_priv, enable_reg);
--	val |= PLL_ENABLE;
--	intel_de_write(dev_priv, enable_reg, val);
-+	intel_de_rmw(dev_priv, enable_reg, 0, PLL_ENABLE);
- 
- 	/* Timeout is actually 600us. */
- 	if (intel_de_wait_for_set(dev_priv, enable_reg, PLL_LOCK, 1))
-@@ -3815,8 +3763,7 @@ static void adlp_cmtg_clock_gating_wa(struct drm_i915_private *i915, struct inte
- 	 * since TRANS_CMTG_CHICKEN is only accessible while DPLL0 is enabled.
- 	 */
- 	val = intel_de_read(i915, TRANS_CMTG_CHICKEN);
--	val = intel_de_read(i915, TRANS_CMTG_CHICKEN);
--	intel_de_write(i915, TRANS_CMTG_CHICKEN, DISABLE_DPT_CLK_GATING);
-+	val = intel_de_rmw(i915, TRANS_CMTG_CHICKEN, ~0, DISABLE_DPT_CLK_GATING);
- 	if (drm_WARN_ON(&i915->drm, val & ~DISABLE_DPT_CLK_GATING))
- 		drm_dbg_kms(&i915->drm, "Unexpected flags in TRANS_CMTG_CHICKEN: %08x\n", val);
+ 	/* Workaround: clear timing override bit. */
+-	val = intel_de_read(dev_priv, TRANS_CHICKEN2(PIPE_A));
+-	val &= ~TRANS_CHICKEN2_TIMING_OVERRIDE;
+-	intel_de_write(dev_priv, TRANS_CHICKEN2(PIPE_A), val);
++	intel_de_rmw(dev_priv, TRANS_CHICKEN2(PIPE_A), TRANS_CHICKEN2_TIMING_OVERRIDE, 0);
  }
-@@ -3900,8 +3847,6 @@ static void icl_pll_disable(struct drm_i915_private *dev_priv,
- 			    struct intel_shared_dpll *pll,
- 			    i915_reg_t enable_reg)
+ 
+ void lpt_pch_enable(struct intel_atomic_state *state,
+diff --git a/drivers/gpu/drm/i915/display/intel_pch_refclk.c b/drivers/gpu/drm/i915/display/intel_pch_refclk.c
+index 08a94365b7d13b..6780c8fd9a1d31 100644
+--- a/drivers/gpu/drm/i915/display/intel_pch_refclk.c
++++ b/drivers/gpu/drm/i915/display/intel_pch_refclk.c
+@@ -12,19 +12,13 @@
+ 
+ static void lpt_fdi_reset_mphy(struct drm_i915_private *dev_priv)
  {
--	u32 val;
+-	u32 tmp;
 -
- 	/* The first steps are done by intel_ddi_post_disable(). */
+-	tmp = intel_de_read(dev_priv, SOUTH_CHICKEN2);
+-	tmp |= FDI_MPHY_IOSFSB_RESET_CTL;
+-	intel_de_write(dev_priv, SOUTH_CHICKEN2, tmp);
++	intel_de_rmw(dev_priv, SOUTH_CHICKEN2, 0, FDI_MPHY_IOSFSB_RESET_CTL);
  
+ 	if (wait_for_us(intel_de_read(dev_priv, SOUTH_CHICKEN2) &
+ 			FDI_MPHY_IOSFSB_RESET_STATUS, 100))
+ 		drm_err(&dev_priv->drm, "FDI mPHY reset assert timeout\n");
+ 
+-	tmp = intel_de_read(dev_priv, SOUTH_CHICKEN2);
+-	tmp &= ~FDI_MPHY_IOSFSB_RESET_CTL;
+-	intel_de_write(dev_priv, SOUTH_CHICKEN2, tmp);
++	intel_de_rmw(dev_priv, SOUTH_CHICKEN2, FDI_MPHY_IOSFSB_RESET_CTL, 0);
+ 
+ 	if (wait_for_us((intel_de_read(dev_priv, SOUTH_CHICKEN2) &
+ 			 FDI_MPHY_IOSFSB_RESET_STATUS) == 0, 100))
+diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+index 7b21438edd9bc5..a4e00cab5f0ed8 100644
+--- a/drivers/gpu/drm/i915/display/intel_pps.c
++++ b/drivers/gpu/drm/i915/display/intel_pps.c
+@@ -1534,17 +1534,13 @@ static void pps_init_registers(struct intel_dp *intel_dp, bool force_disable_vdd
  	/*
-@@ -3910,9 +3855,7 @@ static void icl_pll_disable(struct drm_i915_private *dev_priv,
- 	 * nothing here.
+ 	 * Compute the divisor for the pp clock, simply match the Bspec formula.
  	 */
+-	if (i915_mmio_reg_valid(regs.pp_div)) {
++	if (i915_mmio_reg_valid(regs.pp_div))
+ 		intel_de_write(dev_priv, regs.pp_div,
+ 			       REG_FIELD_PREP(PP_REFERENCE_DIVIDER_MASK, (100 * div) / 2 - 1) | REG_FIELD_PREP(PANEL_POWER_CYCLE_DELAY_MASK, DIV_ROUND_UP(seq->t11_t12, 1000)));
+-	} else {
+-		u32 pp_ctl;
+-
+-		pp_ctl = intel_de_read(dev_priv, regs.pp_ctrl);
+-		pp_ctl &= ~BXT_POWER_CYCLE_DELAY_MASK;
+-		pp_ctl |= REG_FIELD_PREP(BXT_POWER_CYCLE_DELAY_MASK, DIV_ROUND_UP(seq->t11_t12, 1000));
+-		intel_de_write(dev_priv, regs.pp_ctrl, pp_ctl);
+-	}
++	else
++		intel_de_rmw(dev_priv, regs.pp_ctrl, BXT_POWER_CYCLE_DELAY_MASK,
++			     REG_FIELD_PREP(BXT_POWER_CYCLE_DELAY_MASK,
++					    DIV_ROUND_UP(seq->t11_t12, 1000)));
  
--	val = intel_de_read(dev_priv, enable_reg);
--	val &= ~PLL_ENABLE;
--	intel_de_write(dev_priv, enable_reg, val);
-+	intel_de_rmw(dev_priv, enable_reg, PLL_ENABLE, 0);
+ 	drm_dbg_kms(&dev_priv->drm,
+ 		    "panel power sequencer register settings: PP_ON %#x, PP_OFF %#x, PP_DIV %#x\n",
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 9820e5fdd087ae..7dc80f0d4a3b78 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -153,7 +153,7 @@ static void psr_irq_control(struct intel_dp *intel_dp)
+ {
+ 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+ 	i915_reg_t imr_reg;
+-	u32 mask, val;
++	u32 mask;
  
- 	/* Timeout is actually 1us. */
- 	if (intel_de_wait_for_clear(dev_priv, enable_reg, PLL_LOCK, 1))
-@@ -3920,9 +3863,7 @@ static void icl_pll_disable(struct drm_i915_private *dev_priv,
+ 	if (DISPLAY_VER(dev_priv) >= 12)
+ 		imr_reg = TRANS_PSR_IMR(intel_dp->psr.transcoder);
+@@ -165,10 +165,7 @@ static void psr_irq_control(struct intel_dp *intel_dp)
+ 		mask |= psr_irq_post_exit_bit_get(intel_dp) |
+ 			psr_irq_pre_entry_bit_get(intel_dp);
  
- 	/* DVFS post sequence would be here. See the comment above. */
+-	val = intel_de_read(dev_priv, imr_reg);
+-	val &= ~psr_irq_mask_get(intel_dp);
+-	val |= ~mask;
+-	intel_de_write(dev_priv, imr_reg, val);
++	intel_de_rmw(dev_priv, imr_reg, psr_irq_mask_get(intel_dp), ~mask);
+ }
  
--	val = intel_de_read(dev_priv, enable_reg);
--	val &= ~PLL_POWER_ENABLE;
--	intel_de_write(dev_priv, enable_reg, val);
-+	intel_de_rmw(dev_priv, enable_reg, PLL_POWER_ENABLE, 0);
+ static void psr_event_print(struct drm_i915_private *i915,
+@@ -246,8 +243,6 @@ void intel_psr_irq_handler(struct intel_dp *intel_dp, u32 psr_iir)
+ 	}
  
- 	/*
- 	 * The spec says we need to "wait" but it also says it should be
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-index 96395bfbd41dfb..6f6dc7c6b88b0c 100644
---- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-@@ -647,17 +647,14 @@ static void intel_early_display_was(struct drm_i915_private *i915)
- 	 * Also known as Wa_14010480278.
- 	 */
- 	if (IS_DISPLAY_VER(i915, 10, 12))
--		intel_de_write(i915, GEN9_CLKGATE_DIS_0,
--			       intel_de_read(i915, GEN9_CLKGATE_DIS_0) | DARBF_GATING_DIS);
-+		intel_de_rmw(i915, GEN9_CLKGATE_DIS_0, 0, DARBF_GATING_DIS);
+ 	if (psr_iir & psr_irq_psr_error_bit_get(intel_dp)) {
+-		u32 val;
+-
+ 		drm_warn(&dev_priv->drm, "[transcoder %s] PSR aux error\n",
+ 			 transcoder_name(cpu_transcoder));
  
--	if (IS_HASWELL(i915)) {
+@@ -261,9 +256,7 @@ void intel_psr_irq_handler(struct intel_dp *intel_dp, u32 psr_iir)
+ 		 * again so we don't care about unmask the interruption
+ 		 * or unset irq_aux_error.
+ 		 */
+-		val = intel_de_read(dev_priv, imr_reg);
+-		val |= psr_irq_psr_error_bit_get(intel_dp);
+-		intel_de_write(dev_priv, imr_reg, val);
++		intel_de_rmw(dev_priv, imr_reg, 0, psr_irq_psr_error_bit_get(intel_dp));
+ 
+ 		schedule_work(&intel_dp->psr.work);
+ 	}
+@@ -638,13 +631,10 @@ static void psr2_program_idle_frames(struct intel_dp *intel_dp,
+ 				     u32 idle_frames)
+ {
+ 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+-	u32 val;
+ 
+ 	idle_frames <<=  EDP_PSR2_IDLE_FRAME_SHIFT;
+-	val = intel_de_read(dev_priv, EDP_PSR2_CTL(intel_dp->psr.transcoder));
+-	val &= ~EDP_PSR2_IDLE_FRAME_MASK;
+-	val |= idle_frames;
+-	intel_de_write(dev_priv, EDP_PSR2_CTL(intel_dp->psr.transcoder), val);
++	intel_de_rmw(dev_priv, EDP_PSR2_CTL(intel_dp->psr.transcoder),
++		     EDP_PSR2_IDLE_FRAME_MASK, idle_frames);
+ }
+ 
+ static void tgl_psr2_enable_dc3co(struct intel_dp *intel_dp)
+@@ -1144,19 +1134,13 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
+ 
+ 	psr_irq_control(intel_dp);
+ 
+-	if (intel_dp->psr.dc3co_exitline) {
+-		u32 val;
+-
 -		/*
--		 * WaRsPkgCStateDisplayPMReq:hsw
--		 * System hang if this isn't done before disabling all planes!
+-		 * TODO: if future platforms supports DC3CO in more than one
+-		 * transcoder, EXITLINE will need to be unset when disabling PSR
 -		 */
--		intel_de_write(i915, CHICKEN_PAR1_1,
--			       intel_de_read(i915, CHICKEN_PAR1_1) | FORCE_ARB_IDLE_PLANES);
+-		val = intel_de_read(dev_priv, EXITLINE(cpu_transcoder));
+-		val &= ~EXITLINE_MASK;
+-		val |= intel_dp->psr.dc3co_exitline << EXITLINE_SHIFT;
+-		val |= EXITLINE_ENABLE;
+-		intel_de_write(dev_priv, EXITLINE(cpu_transcoder), val);
 -	}
 +	/*
-+	 * WaRsPkgCStateDisplayPMReq:hsw
-+	 * System hang if this isn't done before disabling all planes!
++	 * TODO: if future platforms supports DC3CO in more than one
++	 * transcoder, EXITLINE will need to be unset when disabling PSR
 +	 */
-+	if (IS_HASWELL(i915))
-+		intel_de_rmw(i915, CHICKEN_PAR1_1, 0, FORCE_ARB_IDLE_PLANES);
++	if (intel_dp->psr.dc3co_exitline)
++		intel_de_rmw(dev_priv, EXITLINE(cpu_transcoder), EXITLINE_MASK,
++			     intel_dp->psr.dc3co_exitline << EXITLINE_SHIFT | EXITLINE_ENABLE);
  
- 	if (IS_KABYLAKE(i915) || IS_COFFEELAKE(i915) || IS_COMETLAKE(i915)) {
- 		/* Display WA #1142:kbl,cfl,cml */
+ 	if (HAS_PSR_HW_TRACKING(dev_priv) && HAS_PSR2_SEL_FETCH(dev_priv))
+ 		intel_de_rmw(dev_priv, CHICKEN_PAR1_1, IGNORE_PSR2_HW_TRACKING,
+diff --git a/drivers/gpu/drm/i915/display/intel_tv.c b/drivers/gpu/drm/i915/display/intel_tv.c
+index b986bf075889a1..e1b0034db9be66 100644
+--- a/drivers/gpu/drm/i915/display/intel_tv.c
++++ b/drivers/gpu/drm/i915/display/intel_tv.c
+@@ -930,8 +930,7 @@ intel_enable_tv(struct intel_atomic_state *state,
+ 	/* Prevents vblank waits from timing out in intel_tv_detect_type() */
+ 	intel_crtc_wait_for_next_vblank(to_intel_crtc(pipe_config->uapi.crtc));
+ 
+-	intel_de_write(dev_priv, TV_CTL,
+-		       intel_de_read(dev_priv, TV_CTL) | TV_ENC_ENABLE);
++	intel_de_rmw(dev_priv, TV_CTL, 0, TV_ENC_ENABLE);
+ }
+ 
+ static void
+@@ -943,8 +942,7 @@ intel_disable_tv(struct intel_atomic_state *state,
+ 	struct drm_device *dev = encoder->base.dev;
+ 	struct drm_i915_private *dev_priv = to_i915(dev);
+ 
+-	intel_de_write(dev_priv, TV_CTL,
+-		       intel_de_read(dev_priv, TV_CTL) & ~TV_ENC_ENABLE);
++	intel_de_rmw(dev_priv, TV_CTL, TV_ENC_ENABLE, 0);
+ }
+ 
+ static const struct tv_mode *intel_tv_mode_find(const struct drm_connector_state *conn_state)
+@@ -1945,15 +1943,9 @@ intel_tv_init(struct drm_i915_private *dev_priv)
+ 	 * Sanity check the TV output by checking to see if the
+ 	 * DAC register holds a value
+ 	 */
+-	save_tv_dac = intel_de_read(dev_priv, TV_DAC);
+-
+-	intel_de_write(dev_priv, TV_DAC, save_tv_dac | TVDAC_STATE_CHG_EN);
+-	tv_dac_on = intel_de_read(dev_priv, TV_DAC);
+-
+-	intel_de_write(dev_priv, TV_DAC, save_tv_dac & ~TVDAC_STATE_CHG_EN);
+-	tv_dac_off = intel_de_read(dev_priv, TV_DAC);
+-
+-	intel_de_write(dev_priv, TV_DAC, save_tv_dac);
++	save_tv_dac = intel_de_rmw(dev_priv, TV_DAC, 0, TVDAC_STATE_CHG_EN);
++	tv_dac_on = intel_de_rmw(dev_priv, TV_DAC, ~0, save_tv_dac & ~TVDAC_STATE_CHG_EN);
++	tv_dac_off = intel_de_rmw(dev_priv, TV_DAC, ~0, save_tv_dac);
+ 
+ 	/*
+ 	 * If the register does not hold the state change enable
 -- 
 2.34.1
 
