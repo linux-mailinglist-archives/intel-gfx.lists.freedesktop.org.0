@@ -2,54 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F881652084
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 13:37:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7267F6520DD
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 13:41:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D532510E099;
-	Tue, 20 Dec 2022 12:36:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51D4910E081;
+	Tue, 20 Dec 2022 12:41:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FC4C10E099;
- Tue, 20 Dec 2022 12:36:21 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1551510E081
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 12:40:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671539781; x=1703075781;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=DoA/cand5GZK1y2u65AYXJaJ79LjAAVyBESYmM0f8fA=;
- b=iqcH8poEbgu1jqlrgRrnhVf0Y87lmpqyWyVoK50OFQB6Htcrp+PE7mzx
- xO77quNxhvYv7Svk7mn9D744OGDUL7tt+BFylqlaLBUM9VC7WTEMo/t6d
- n5fa+o7CMQH02v9GRLQoXHup1ThVSwxaLNahlyf+NvwpH0nrM0Ygcbp0K
- lenNVBE+UieeFz9keZWPowwgfDZ1YE40v+fHm4vh9p+MHUY5Xie7i/Mj2
- PQ5tFV0tl0XhJEVFAZgkD13sQ4+Dc3rlR+xSNCoejaMAj4Y7kYdrcliLC
- N90T5t054jqMxx+3KE346PITaLRD843c6XnmrKvAk2mq2qA2Iavbgy85M Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10566"; a="299277046"
-X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="299277046"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2022 04:36:21 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10566"; a="714402787"
-X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="714402787"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga008.fm.intel.com with SMTP; 20 Dec 2022 04:36:18 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 20 Dec 2022 14:36:17 +0200
-Date: Tue, 20 Dec 2022 14:36:17 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <Y6GsQXvDKPKsHf30@intel.com>
-References: <cover.1671206131.git.jani.nikula@intel.com>
- <f35102562feb9ca63462a902a582c3494fccde4d.1671206131.git.jani.nikula@intel.com>
+ t=1671540053; x=1703076053;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=b0l6Rc5JFCF2xpIhXLmZYeR1fDOTW3R++iEn+YTAjZY=;
+ b=mltFF+7jnPa/PJ1wMywXCUbE/wCH8eSn2ovM1fNb4OyhFvtkxsp64NOA
+ E2XcGYtnwq/3pwO1x3XagB3xSj4U3DyskQEiOyhMnWUKBHDjnu12zxBfc
+ ZlTfJumsHnW3UjcC+MH7IXZkBsim3fSAxb1DeWPkRvkdSPGllpFQujSue
+ hWqf73yRrOf/dl8M6lShzBk+Yz4IJLM7EC1GfJnRlzsxJPOJIBEsPQ3fU
+ 08ZVpedMwzxnNWTFeXXL7HOfbhL4nScuguVJPLvWRvqVbvFwTEUXD7LLy
+ AILoXDG29xICPfS52QR+b16vMBG93L5HmkSbtktxFNO6Mg6JW86O68L2K A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10566"; a="299945786"
+X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="299945786"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2022 04:40:52 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10566"; a="644404239"
+X-IronPort-AV: E=Sophos;i="5.96,259,1665471600"; d="scan'208";a="644404239"
+Received: from spalapa-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.60.249])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2022 04:40:50 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, "Deak, Imre" <imre.deak@intel.com>
+In-Reply-To: <20221220094618.207126-1-maarten.lankhorst@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20221220094618.207126-1-maarten.lankhorst@linux.intel.com>
+Date: Tue, 20 Dec 2022 14:40:47 +0200
+Message-ID: <87zgbi2qpc.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <f35102562feb9ca63462a902a582c3494fccde4d.1671206131.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v6 06/12] drm/edid: refactor
- _drm_edid_connector_update() and rename
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Fix a use-after-free when
+ intel_edp_init_connector fails
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,90 +58,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 16, 2022 at 06:00:20PM +0200, Jani Nikula wrote:
-> By moving update_display_info() out of _drm_edid_connector_update() we
-> make the function purely about adding modes.
+On Tue, 20 Dec 2022, Maarten Lankhorst <maarten.lankhorst@linux.intel.com> wrote:
+> We enable the DP aux channel during probe, but may free the connector
+> soon afterwards. Ensure the DP aux display power put is completed before
+> everything is freed, to prevent a use-after-free in icl_aux_pw_to_phy(),
+> called from icl_combo_phy_aux_power_well_disable.
 
-I don't think that's quite true. The 4:2:0 stuff still updates
-various display_info things from the mode parsing functions.
+Feels like the placement of the intel_display_power_flush_work_sync()
+call in intel_dp_aux_fini() is a bit arbitrary.
 
-> Rename accordingly.
-> 
-> Cc: Imre Deak <imre.deak@intel.com>
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+If we add it in intel_dp_aux_fini(), the async and sync waits will both
+be called on the regular encoder destroy path.
+
+Maybe both intel_ddi_encoder_destroy() and intel_dp_encoder_destroy()
+should call intel_display_power_flush_work_sync(), instead of async, and
+maybe the error paths should call those functions instead of just
+drm_encoder_cleanup()?
+
+Imre?
+
+
+BR,
+Jani.
+
+
+>
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 > ---
->  drivers/gpu/drm/drm_edid.c | 25 ++++++++++++-------------
->  1 file changed, 12 insertions(+), 13 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index 15f69c362fc3..4ebfd7212bce 100644
-> --- a/drivers/gpu/drm/drm_edid.c
-> +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -6575,19 +6575,12 @@ static int add_displayid_detailed_modes(struct drm_connector *connector,
->  	return num_modes;
->  }
->  
-> -static int _drm_edid_connector_update(struct drm_connector *connector,
-> -				      const struct drm_edid *drm_edid)
-> +static int _drm_edid_connector_add_modes(struct drm_connector *connector,
-> +					 const struct drm_edid *drm_edid)
->  {
->  	const struct drm_display_info *info = &connector->display_info;
->  	int num_modes = 0;
->  
-> -	/*
-> -	 * CEA-861-F adds ycbcr capability map block, for HDMI 2.0 sinks.
-> -	 * To avoid multiple parsing of same block, lets parse that map
-> -	 * from sink info, before parsing CEA modes.
-> -	 */
-> -	update_display_info(connector, drm_edid);
-> -
->  	if (!drm_edid)
->  		return 0;
->  
-> @@ -6692,7 +6685,9 @@ int drm_edid_connector_update(struct drm_connector *connector,
->  {
->  	int count;
->  
-> -	count = _drm_edid_connector_update(connector, drm_edid);
-> +	update_display_info(connector, drm_edid);
-> +
-> +	count = _drm_edid_connector_add_modes(connector, drm_edid);
->  
->  	_drm_update_tile_info(connector, drm_edid);
->  
-> @@ -6762,7 +6757,8 @@ EXPORT_SYMBOL(drm_connector_update_edid_property);
+>  drivers/gpu/drm/i915/display/intel_display_power.c | 2 +-
+>  drivers/gpu/drm/i915/display/intel_display_power.h | 1 +
+>  drivers/gpu/drm/i915/display/intel_dp_aux.c        | 2 ++
+>  3 files changed, 4 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> index 04915f85a0df..0edb5532461f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -776,7 +776,7 @@ void intel_display_power_flush_work(struct drm_i915_private *i915)
+>   * Like intel_display_power_flush_work(), but also ensure that the work
+>   * handler function is not running any more when this function returns.
 >   */
->  int drm_add_edid_modes(struct drm_connector *connector, struct edid *edid)
+> -static void
+> +void
+>  intel_display_power_flush_work_sync(struct drm_i915_private *i915)
 >  {
-> -	struct drm_edid drm_edid;
-> +	struct drm_edid _drm_edid;
-> +	const struct drm_edid *drm_edid;
+>  	struct i915_power_domains *power_domains = &i915->display.power.domains;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
+> index 7136ea3f233e..dc10ee0519e6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
+> @@ -188,6 +188,7 @@ void __intel_display_power_put_async(struct drm_i915_private *i915,
+>  				     enum intel_display_power_domain domain,
+>  				     intel_wakeref_t wakeref);
+>  void intel_display_power_flush_work(struct drm_i915_private *i915);
+> +void intel_display_power_flush_work_sync(struct drm_i915_private *i915);
+>  #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
+>  void intel_display_power_put(struct drm_i915_private *dev_priv,
+>  			     enum intel_display_power_domain domain,
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> index f1835c74bff0..1006dddad2d5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> @@ -680,6 +680,8 @@ void intel_dp_aux_fini(struct intel_dp *intel_dp)
+>  	if (cpu_latency_qos_request_active(&intel_dp->pm_qos))
+>  		cpu_latency_qos_remove_request(&intel_dp->pm_qos);
 >  
->  	if (edid && !drm_edid_is_valid(edid)) {
->  		drm_warn(connector->dev, "[CONNECTOR:%d:%s] EDID invalid.\n",
-> @@ -6770,8 +6766,11 @@ int drm_add_edid_modes(struct drm_connector *connector, struct edid *edid)
->  		edid = NULL;
->  	}
->  
-> -	return _drm_edid_connector_update(connector,
-> -					  drm_edid_legacy_init(&drm_edid, edid));
-> +	drm_edid = drm_edid_legacy_init(&_drm_edid, edid);
-> +
-> +	update_display_info(connector, drm_edid);
-> +
-> +	return _drm_edid_connector_add_modes(connector, drm_edid);
+> +	/* Ensure async work from intel_dp_aux_xfer() is flushed before we clean up */
+> +	intel_display_power_flush_work_sync(dp_to_i915(intel_dp));
+>  	kfree(intel_dp->aux.name);
 >  }
->  EXPORT_SYMBOL(drm_add_edid_modes);
->  
-> -- 
-> 2.34.1
 
 -- 
-Ville Syrjälä
-Intel
+Jani Nikula, Intel Open Source Graphics Center
