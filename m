@@ -2,80 +2,27 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17424651DD9
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 10:45:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC4EE651E19
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Dec 2022 10:55:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28D7610E36E;
-	Tue, 20 Dec 2022 09:45:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5B4710E381;
+	Tue, 20 Dec 2022 09:54:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A8CC10E369
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 09:44:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1671529494;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=1J4eLv+5To8BjnLItTbs6pq8g5LjZHk9PMjLEQIi8Lo=;
- b=IwhJ1TnMPfZUbZ7tPKa6oNzi3XFasCTygm/h3L4s5eQg+txyIoqVQh5S8A8IJZjsuqCzud
- 3qgTO9buphS/BGOFWNOSVoBqiWEaYEYbh5yLDJFNMHzGDQOAXwPyUUiJzhRyUctC0fVOwu
- U0I91t9VQadKHfNJPZYV7mvSHTLwb9M=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-46-AGZYXW40O96kRzliAmTgkQ-1; Tue, 20 Dec 2022 04:44:53 -0500
-X-MC-Unique: AGZYXW40O96kRzliAmTgkQ-1
-Received: by mail-wm1-f72.google.com with SMTP id
- 9-20020a1c0209000000b003d1c0a147f6so7808544wmc.4
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 01:44:53 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=1J4eLv+5To8BjnLItTbs6pq8g5LjZHk9PMjLEQIi8Lo=;
- b=YLRjUVmyVjBCEUSpZWmmwmXAYc9hfPqXGFNNho3txkGc2iDfIYRxl4cuhjkbQm1wms
- b9f2Vg6QTygU1riSDJxavcx9JRiaYCjnckm4oUE5FtYxdIlxiX0z3UnbwP7WeWV9IMQe
- jNm413wG9I1ERYxRIUGb3aq1ttoo2HhYVTfoim/DqDsjNUWQvYgEH8dI0aIpPuJCNBBC
- +Nc7u/6Px86xd/JKVUvtG/siYin7ISt4FdVuN5v63SUo7bFHowrM71kCIXdRn+1NAhaP
- ctVhKoJ4r1dHGgrjhRKuYVLfOW0tePr2YQwjzQ5ZhWtD/DSQMCWsVz3VxOGXGJxUztoP
- 3E3A==
-X-Gm-Message-State: ANoB5pmdszvxpbRWrXZf8crznPr164f3SyTj2Ko2OGYCVTSAw5mvfjvG
- 0YeDsVpTfDMlRBSJ+xp3ws4wvGV0Pbi8fm6NjVANAyiErsGd+f5kQ080Y7ou5nIhndwl/8e7TO0
- Wv+7HvppOZoVYBZnmrmoJwPhuGmkh
-X-Received: by 2002:a05:600c:3508:b0:3cf:b73f:bf8f with SMTP id
- h8-20020a05600c350800b003cfb73fbf8fmr34866240wmq.7.1671529492808; 
- Tue, 20 Dec 2022 01:44:52 -0800 (PST)
-X-Google-Smtp-Source: AA0mqf74M8Sm1ZUMeD1MRSt8ye6pyF2JALOeT/hhACXzocPTXyP3LI6efvyoi2Xa1weHvEDgcZ0pkQ==
-X-Received: by 2002:a05:600c:3508:b0:3cf:b73f:bf8f with SMTP id
- h8-20020a05600c350800b003cfb73fbf8fmr34866233wmq.7.1671529492648; 
- Tue, 20 Dec 2022 01:44:52 -0800 (PST)
-Received: from [192.168.1.130] (205.pool92-176-231.dynamic.orange.es.
- [92.176.231.205]) by smtp.gmail.com with ESMTPSA id
- t16-20020a1c7710000000b003c6f3f6675bsm21680659wmi.26.2022.12.20.01.44.51
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 20 Dec 2022 01:44:52 -0800 (PST)
-Message-ID: <cb8af91b-4d5a-6d0a-6604-d99fc4a0f0e9@redhat.com>
-Date: Tue, 20 Dec 2022 10:44:51 +0100
+X-Greylist: delayed 448 seconds by postgrey-1.36 at gabe;
+ Tue, 20 Dec 2022 09:54:25 UTC
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6919410E372
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Dec 2022 09:54:25 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 20 Dec 2022 10:46:18 +0100
+Message-Id: <20221220094618.207126-1-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
- airlied@gmail.com, deller@gmx.de
-References: <20221219160516.23436-1-tzimmermann@suse.de>
- <20221219160516.23436-18-tzimmermann@suse.de>
-From: Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <20221219160516.23436-18-tzimmermann@suse.de>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 17/18] fbdev/vga16fb: Do not use struct
- fb_info.apertures
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/display: Fix a use-after-free when
+ intel_edp_init_connector fails
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,27 +35,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-hyperv@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 12/19/22 17:05, Thomas Zimmermann wrote:
-> Acquire ownership of the firmware scanout buffer by calling Linux'
-> aperture helpers. Remove the use of struct fb_info.apertures and do
-> not set FBINFO_MISC_FIRMWARE; both of which previously configured
-> buffer ownership.
-> 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> ---
+We enable the DP aux channel during probe, but may free the connector
+soon afterwards. Ensure the DP aux display power put is completed before
+everything is freed, to prevent a use-after-free in icl_aux_pw_to_phy(),
+called from icl_combo_phy_aux_power_well_disable.
 
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_power.c | 2 +-
+ drivers/gpu/drm/i915/display/intel_display_power.h | 1 +
+ drivers/gpu/drm/i915/display/intel_dp_aux.c        | 2 ++
+ 3 files changed, 4 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 04915f85a0df..0edb5532461f 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -776,7 +776,7 @@ void intel_display_power_flush_work(struct drm_i915_private *i915)
+  * Like intel_display_power_flush_work(), but also ensure that the work
+  * handler function is not running any more when this function returns.
+  */
+-static void
++void
+ intel_display_power_flush_work_sync(struct drm_i915_private *i915)
+ {
+ 	struct i915_power_domains *power_domains = &i915->display.power.domains;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
+index 7136ea3f233e..dc10ee0519e6 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.h
++++ b/drivers/gpu/drm/i915/display/intel_display_power.h
+@@ -188,6 +188,7 @@ void __intel_display_power_put_async(struct drm_i915_private *i915,
+ 				     enum intel_display_power_domain domain,
+ 				     intel_wakeref_t wakeref);
+ void intel_display_power_flush_work(struct drm_i915_private *i915);
++void intel_display_power_flush_work_sync(struct drm_i915_private *i915);
+ #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
+ void intel_display_power_put(struct drm_i915_private *dev_priv,
+ 			     enum intel_display_power_domain domain,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+index f1835c74bff0..1006dddad2d5 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+@@ -680,6 +680,8 @@ void intel_dp_aux_fini(struct intel_dp *intel_dp)
+ 	if (cpu_latency_qos_request_active(&intel_dp->pm_qos))
+ 		cpu_latency_qos_remove_request(&intel_dp->pm_qos);
+ 
++	/* Ensure async work from intel_dp_aux_xfer() is flushed before we clean up */
++	intel_display_power_flush_work_sync(dp_to_i915(intel_dp));
+ 	kfree(intel_dp->aux.name);
+ }
+ 
 -- 
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+2.37.2
 
