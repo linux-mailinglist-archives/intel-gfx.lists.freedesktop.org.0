@@ -2,50 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BC0E652BD0
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Dec 2022 04:32:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2D41652C39
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Dec 2022 06:01:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2337810E027;
-	Wed, 21 Dec 2022 03:31:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD56710E027;
+	Wed, 21 Dec 2022 05:01:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9A2010E027
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Dec 2022 03:31:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671593511; x=1703129511;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=42lkFem5FucW3NpNCfixdeW91hrsW69XOkb+Tss6Zzk=;
- b=NhkD23c6j561hJBUXYQFgUv3He7SqNevW5xusx4Vw0DPc3OzLjU8gDL8
- RdaK98xXdXhdL2UFmIBfuD89HuG+HdUYJVb2R6tqrjzgRvB4flJRSYqM+
- 9e8gUhL6HWBenMslZmhnwalPpZgH8jBNHy68inmd3JA4ED/VIcRxX21et
- RqgVqHIvD/qSrw9ZxAoi81BfEcJwP/FFIoUI09anPhQcz/r6TPYQAuLi5
- AuKRVC5AbtZzp3wz69vwb2t8Xb3ei6nr1QXiwXtHgD5BhFca6UxG2irZG
- aNajtrYuVWaX6hsNfRAn0jWBvocnQwAbxgH/HzVEGjyUOr6j8ZP/dpvj4 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="384121266"
-X-IronPort-AV: E=Sophos;i="5.96,261,1665471600"; d="scan'208";a="384121266"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2022 19:31:51 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="793545960"
-X-IronPort-AV: E=Sophos;i="5.96,261,1665471600"; d="scan'208";a="793545960"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by fmsmga001.fm.intel.com with ESMTP; 20 Dec 2022 19:31:49 -0800
-From: Arun R Murthy <arun.r.murthy@intel.com>
-To: intel-gfx@lists.freedesktop.org, ville.syrjala@linux.intel.com,
- jani.nikula@intel.com, imre.deak@intel.com
-Date: Wed, 21 Dec 2022 09:02:09 +0530
-Message-Id: <20221221033209.1284435-1-arun.r.murthy@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221124070925.3834910-1-arun.r.murthy@intel.com>
-References: <20221124070925.3834910-1-arun.r.murthy@intel.com>
+Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com
+ [IPv6:2607:f8b0:4864:20::32e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 929D510E00B;
+ Wed, 21 Dec 2022 05:01:38 +0000 (UTC)
+Received: by mail-ot1-x32e.google.com with SMTP id
+ j16-20020a056830271000b0067202045ee9so8439182otu.7; 
+ Tue, 20 Dec 2022 21:01:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=uDUOHVCc9K3hdDQtTl6zCt6I0//F7xbzgiL5zzmDHKU=;
+ b=meh0/v7prpFdpKiPJ2jFndEeeaLwe28XcA3Wg4xD2/6znobuR8gOtGAT62vSkwC/y3
+ bUaZKxv6XpNj0JW3vKL5hqC9tW5LPcucYX09ux9reWhiU9gIdavVc1E6DVwW2m1geAbz
+ J+B+aL17Me09HsYZR3ecaY/VTK0codX/zMleIguScWjX/nZ5mnbnJTAzYqsCAf0hH8NS
+ oapnDOL3/5601W6BxO5x1miXR1WtbM5i1M+eyppj8QT6SV32q+olRoVOm6TjiSecc9sF
+ ltkd9asgtFUyObo5WUS6NtA2Ocw7oc258SBFzcjx3XrwaFYczF3+Np64hDi1usb8MRw1
+ r5zQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=uDUOHVCc9K3hdDQtTl6zCt6I0//F7xbzgiL5zzmDHKU=;
+ b=M12arGmswzyADbjiIXPwyS4eSbMLHN3vZodfujVReyZSH1DqiIVeOLR+ZcgD1MDLrg
+ LaVWwmO+ljjmMk78KKg5gysWzfcLlQXwdazoLgAdEcKPwqsoKBRG1+4TQUoEMH/SqIbY
+ mD0K6lpGyEK27Bgk+yIQDN/zVYwYARzhIUz28Yey3e+1eBYyidte7Xm3GnSA1yx7xOIM
+ 6Olyr1upc7QhDqAEywsaR3i437gLP8h+yuxNXZ0rKc9FM/qCryU6ncaFLs8XE7tYX71P
+ bS9HEWdNnFeAQ9vhtKJCARBJl40hun5ol8rV/K0jreEG4ov18nHghWsp7ZTv6f4GDc1I
+ qHsQ==
+X-Gm-Message-State: AFqh2kqzPpsPy0+f49HCT/EOUmoEkSnGoWnp+VfdHYW8dMKuXCuOfopc
+ f4UvmIiT+i8tyQokDgAatrCCYnqo8dCYFddKrts=
+X-Google-Smtp-Source: AMrXdXtS1JI4CuCqdbp9KkbNyVpLqhCpVOQBSeOh2PyUNfq8iexFzbkqPy13qZFcsTa54khLLs/pav+EzFCl8ZS6zV8=
+X-Received: by 2002:a05:6830:3095:b0:670:7942:b562 with SMTP id
+ g21-20020a056830309500b006707942b562mr41452ots.84.1671598897767; Tue, 20 Dec
+ 2022 21:01:37 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCHv7] drm/i915/dp: change aux_ctl reg read to
- polling read
+References: <11728bc1-7b59-1623-b517-d1a0d57eb275@intel.com>
+ <20221220094014.1128207-1-zyytlz.wz@163.com>
+ <20221221025857.GG30028@zhen-hp.sh.intel.com>
+In-Reply-To: <20221221025857.GG30028@zhen-hp.sh.intel.com>
+From: Zheng Hacker <hackerzheng666@gmail.com>
+Date: Wed, 21 Dec 2022 13:01:26 +0800
+Message-ID: <CAJedcCyvSW_RAOrzUkWM8Li8x6Jkd0FL6uCXCz2Jzk33dng4jQ@mail.gmail.com>
+To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v5] drm/i915/gvt: fix double free bug in
+ split_2MB_gtt_entry
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,58 +70,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: alex000young@gmail.com, security@kernel.org, airlied@linux.ie,
+ gregkh@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ 1002992920@qq.com, airlied@gmail.com, Zheng Wang <zyytlz.wz@163.com>,
+ intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The busy timeout logic checks for the AUX BUSY, then waits for the
-timeout period and then after timeout reads the register for BUSY or
-Success.
-Instead replace interrupt with polling so as to read the AUX CTL
-register often before the timeout period. Looks like there might be some
-issue with interrupt-on-read. Hence changing the logic to polling read.
+Zhenyu Wang <zhenyuw@linux.intel.com> =E4=BA=8E2022=E5=B9=B412=E6=9C=8821=
+=E6=97=A5=E5=91=A8=E4=B8=89 11:01=E5=86=99=E9=81=93=EF=BC=9A
+>
+> On 2022.12.20 17:40:14 +0800, Zheng Wang wrote:
+> > If intel_gvt_dma_map_guest_page failed, it will call
+> >  ppgtt_invalidate_spt, which will finally free the spt. But the
+> >  caller function ppgtt_populate_spt_by_guest_entry does not notice
+> >  that, it will free spt again in its error path.
+>
+> indent
 
-v2: replace interrupt with polling read
-v3: use usleep_rang instead of msleep, updated commit msg
-v4: use intel_wait_for_regiter internal function
-v5: use __intel_de_wait_for_register with 500us slow and 10ms fast timeout
-v6: check return value of __intel_de_wait_for_register
-v7: using default 2us for intel_de_wait_for_register
+Yeap :)
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp_aux.c | 14 +++++---------
- 1 file changed, 5 insertions(+), 9 deletions(-)
+> > +             if (ret)
+> > +                     goto err;
+> >               sub_se.val64 =3D se->val64;
+> >
+> >               /* Copy the PAT field from PDE. */
+> > @@ -1231,6 +1229,18 @@ static int split_2MB_gtt_entry(struct intel_vgpu=
+ *vgpu,
+> >       ops->set_pfn(se, sub_spt->shadow_page.mfn);
+> >       ppgtt_set_shadow_entry(spt, se, index);
+> >       return 0;
+> > +err:
+> > +     /* Undone the existing mappings of DMA addr. */
+>
+> We need a verb here for Undo.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-index 91c93c93e5fc..5a176bfb10a2 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-@@ -41,20 +41,16 @@ intel_dp_aux_wait_done(struct intel_dp *intel_dp)
- 	i915_reg_t ch_ctl = intel_dp->aux_ch_ctl_reg(intel_dp);
- 	const unsigned int timeout_ms = 10;
- 	u32 status;
--	bool done;
--
--#define C (((status = intel_de_read_notrace(i915, ch_ctl)) & DP_AUX_CH_CTL_SEND_BUSY) == 0)
--	done = wait_event_timeout(i915->display.gmbus.wait_queue, C,
--				  msecs_to_jiffies_timeout(timeout_ms));
-+	int ret;
- 
--	/* just trace the final value */
--	trace_i915_reg_rw(false, ch_ctl, status, sizeof(status), true);
-+	ret = __intel_de_wait_for_register(i915, ch_ctl,
-+					   DP_AUX_CH_CTL_SEND_BUSY, 0,
-+					   2, timeout_ms, &status);
- 
--	if (!done)
-+	if (ret == -ETIMEDOUT)
- 		drm_err(&i915->drm,
- 			"%s: did not complete or timeout within %ums (status 0x%08x)\n",
- 			intel_dp->aux.name, timeout_ms, status);
--#undef C
- 
- 	return status;
- }
--- 
-2.25.1
+Get it.
 
+>
+> > +     for_each_present_shadow_entry(sub_spt, &sub_se, sub_index) {
+> > +             gvt_vdbg_mm("invalidate 4K entry\n");
+> > +             ppgtt_invalidate_pte(sub_spt, &sub_se);
+> > +     }
+> > +     /* Release the new allocated spt. */
+> > +     trace_spt_change(sub_spt->vgpu->id, "release", sub_spt,
+> > +             sub_spt->guest_page.gfn, sub_spt->shadow_page.type);
+> > +     ppgtt_free_spt(sub_spt);
+> > +     sub_spt =3D NULL;
+>
+> Not need to reset local variable that has no use then.
+>
+> I'll handle these trivial fixes during the merge.
+>
+
+Very thanks for that.
+
+Best regards,
+Zheng Wang
