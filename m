@@ -2,53 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB4176533BD
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Dec 2022 17:01:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A23F265347D
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Dec 2022 18:02:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5149E10E467;
-	Wed, 21 Dec 2022 16:00:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A75D10E46C;
+	Wed, 21 Dec 2022 17:02:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFFC910E133;
- Wed, 21 Dec 2022 16:00:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671638450; x=1703174450;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=utpaUq3NLdj/cYD0oA6quQYipPzQpqxc4zZ/vzw35bY=;
- b=lZJiYwoPvBxJyXFdJwNitCe1Cp7/XW9LTy5p9Rf/wwBSNz5apuhN/ED3
- cfXg3pqadbGsJaXdHdfKnRLh9oJLz6iMa6nFw/L88WKYVks1uwzcqX/IX
- uipdx5LDvywUm60WgsEQGUIe9CZGdeGT4dtvfbo0Rd/+zALOC2r2ovht9
- lOg4lCSNgdm/gPrDD1/3aT2EcPcgTV+tTNkMfFUBXkR2+7ZmTC/louc0t
- uMVO8r4BtB/8Tlu0B3LZX9DyWkcqHi0OAfPnbWYOKXSnSruTKAVoC5y/S
- Hb87VDD5Mcgs+POgE5IdTdIIjStyLNj6GiNgLkwFOUAlpA/LTvbpmJfKu w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="303332506"
-X-IronPort-AV: E=Sophos;i="5.96,262,1665471600"; d="scan'208";a="303332506"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2022 07:59:59 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="644886198"
-X-IronPort-AV: E=Sophos;i="5.96,262,1665471600"; d="scan'208";a="644886198"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.249.40.127])
- ([10.249.40.127])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2022 07:59:57 -0800
-Message-ID: <a95ad257-085b-a7d8-16fb-233b23192b10@linux.intel.com>
-Date: Wed, 21 Dec 2022 17:59:54 +0200
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C0B8D10E46A;
+ Wed, 21 Dec 2022 17:02:27 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B62A6A3ECB;
+ Wed, 21 Dec 2022 17:02:27 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2482847600091112724=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Content-Language: en-US
-To: Matthew Auld <matthew.auld@intel.com>, igt-dev@lists.freedesktop.org
-References: <20221220104625.147654-1-matthew.auld@intel.com>
-From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
-In-Reply-To: <20221220104625.147654-1-matthew.auld@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t v3] tests/i915/gem_ppgtt:
- verify GTT eviction with contended locks
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
+Date: Wed, 21 Dec 2022 17:02:27 -0000
+Message-ID: <167164214770.32312.18426494578554708932@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221219104000.3936094-1-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20221219104000.3936094-1-daniele.ceraolospurio@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/mtl=3A_implement_wa_14015076503_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,197 +40,271 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Mani Milani <mani@chromium.org>,
- Nirmoy Das <nirmoy.das@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============2482847600091112724==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 12/20/2022 12:46 PM, Matthew Auld wrote:
-> We should still be able to GTT evict objects during execbuf (old
-> bindings can linger around), even if there is object lock contention. In
-> the worst case the execbuf should just wait on the contented locks.
-> Returning -ENOSPC smells like a regression from past behaviour, and
-> seems to break userspace.
->
-> v2:
->    - Add coverage for explicit softpin
->    - Add timeout for the spinner
-> v3:
->    - Improve the test description
->
-> References: https://gitlab.freedesktop.org/drm/intel/-/issues/7570
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> Cc: Nirmoy Das <nirmoy.das@intel.com>
-> Cc: Mani Milani <mani@chromium.org>
-> ---
->   tests/i915/gem_ppgtt.c | 133 +++++++++++++++++++++++++++++++++++++++++
->   1 file changed, 133 insertions(+)
->
-> diff --git a/tests/i915/gem_ppgtt.c b/tests/i915/gem_ppgtt.c
-> index 9673ce22..024e8d47 100644
-> --- a/tests/i915/gem_ppgtt.c
-> +++ b/tests/i915/gem_ppgtt.c
-> @@ -255,6 +255,131 @@ static void flink_and_close(void)
->   	close(fd2);
->   }
->   
-> +#define PAGE_SIZE 4096
-> +
-> +static uint32_t batch_create_size(int fd, uint64_t size)
-> +{
-> +	const uint32_t bbe = MI_BATCH_BUFFER_END;
-> +	uint32_t handle;
-> +
-> +	handle = gem_create(fd, size);
-> +	gem_write(fd, handle, 0, &bbe, sizeof(bbe));
-> +
-> +	return handle;
-> +}
-> +
-> +#define IGT_USE_ANY	0x1
-> +#define IGT_USE_PINNED	0x2
-> +static void upload(int fd, uint32_t handle, uint32_t in_fence, uint32_t ctx_id,
-> +		   unsigned int flags)
-> +{
-> +	struct drm_i915_gem_exec_object2 exec[2] = {};
-> +	struct drm_i915_gem_execbuffer2 execbuf = {
-> +		.buffers_ptr = to_user_pointer(&exec),
-> +		.buffer_count = 1,
-> +		.rsvd1 = ctx_id,
-> +	};
-> +
-> +	if (in_fence) {
-> +		execbuf.rsvd2 = in_fence;
-> +		execbuf.flags = I915_EXEC_FENCE_IN;
-> +	}
-> +
-> +	exec[0].handle = handle;
-> +	exec[0].flags = EXEC_OBJECT_SUPPORTS_48B_ADDRESS;
-> +
-> +	if (flags & IGT_USE_PINNED)
-> +		exec[0].flags |= EXEC_OBJECT_PINNED; /* offset = 0 */
-> +
-> +	if (flags & IGT_USE_ANY) {
-> +		exec[0].flags |= EXEC_OBJECT_PAD_TO_SIZE;
-> +		exec[0].pad_to_size = gem_aperture_size(fd);
-> +	}
-> +
-> +	gem_execbuf(fd, &execbuf);
-> +}
-> +
-> +static void shrink_vs_evict(unsigned int flags)
-> +{
-> +	const unsigned int nproc = sysconf(_SC_NPROCESSORS_ONLN) + 1;
-> +	const uint64_t timeout_5s = 5000000000LL;
+== Series Details ==
 
+Series: drm/i915/mtl: implement wa 14015076503 (rev2)
+URL   : https://patchwork.freedesktop.org/series/112049/
+State : success
 
-5*NSEC_PER_SEC would be nice.
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_12518 -> Patchwork_112049v2
+====================================================
 
-> +	int fd = drm_open_driver(DRIVER_INTEL);
-> +	uint64_t ahnd = get_reloc_ahnd(fd, 0);
-> +	const intel_ctx_t *ctx_arr[nproc];
-> +	igt_spin_t *spinner;
-> +	uint32_t handle1;
-> +	int i;
-> +
-> +	/*
-> +	 * Try to simulate some nasty object lock contention during GTT
-> +	 * eviction. Create a BO and bind across several different VMs.  Invoke
-> +	 * the shrinker on that shared BO, followed by triggering GTT eviction
-> +	 * across all VMs.  Both require the object lock to make forward
-> +	 * progress when trying to unbind the BO, but the shrinker will be
-> +	 * blocked by the spinner (until killed).  Once the spinner is killed
-> +	 * the shrinker should be able to unbind the object and drop the object
-> +	 * lock, and GTT eviction should eventually succeed. At no point should
-> +	 * we see -ENOSPC from the execbuf, even if we can't currently grab the
-> +	 * object lock.
-> +	 */
-> +
-> +	igt_require(gem_uses_full_ppgtt(fd));
-> +
-> +	igt_drop_caches_set(fd, DROP_ALL);
-> +
-> +	handle1 = gem_create(fd, PAGE_SIZE);
-> +
-> +	spinner = igt_spin_new(fd,
-> +			       .ahnd = ahnd,
-> +			       .flags = IGT_SPIN_FENCE_OUT);
-> +	igt_spin_set_timeout(spinner, timeout_5s);
-> +
-> +	/*
-> +	 * Create several VMs to ensure we don't block on the same vm lock. The
-> +	 * goal of the test is to ensure that object lock contention doesn't
-> +	 * somehow result in -ENOSPC from execbuf, if we need to trigger GTT
-> +	 * eviction.
-> +	 */
-> +	for (i = 0; i < nproc; i++) {
-> +		ctx_arr[i] = intel_ctx_create(fd, NULL);
-> +
-> +		upload(fd, handle1, spinner->execbuf.rsvd2 >> 32,
-> +		       ctx_arr[i]->id, flags);
-> +	}
-> +
-> +	igt_fork(child, 1)
-> +		igt_drop_caches_set(fd, DROP_ALL);
-> +
-> +	sleep(2); /* Give the shrinker time to find handle1 */
-> +
-> +	igt_fork(child, nproc) {
-> +		uint32_t handle2 = gem_create(fd, PAGE_SIZE);
-> +
-> +		/*
-> +		 * One of these forks will be stuck on the vm mutex, since the
-> +		 * shrinker is holding it (along with the object lock) while
-> +		 * trying to unbind the chosen vma, but is blocked by the
-> +		 * spinner. The rest should only block waiting to grab the
-> +		 * object lock for handle1, before then trying to GTT evict it
-> +		 * from their respective vm. In either case the contention of
-> +		 * the vm->mutex or object lock should never result in -ENOSPC
-> +		 * or some other error.
-> +		 */
-> +		handle2 = batch_create_size(fd, PAGE_SIZE);
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112049v2/index.html
+
+Participating hosts (43 -> 45)
+------------------------------
+
+  Additional (3): fi-kbl-soraka fi-hsw-4770 fi-pnv-d510 
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_112049v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_gttfill@basic:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271]) +7 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112049v2/fi-kbl-soraka/igt@gem_exec_gttfill@basic.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#2190])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112049v2/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112049v2/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
+
+  * igt@gem_softpin@allocator-basic-reserve:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][4] ([fdo#109271]) +11 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112049v2/fi-hsw-4770/igt@gem_softpin@allocator-basic-reserve.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][5] ([i915#1886])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112049v2/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        NOTRUN -> [INCOMPLETE][6] ([i915#4785])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112049v2/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][7] ([fdo#109271] / [fdo#111827]) +7 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112049v2/fi-hsw-4770/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][8] ([fdo#109271] / [fdo#111827]) +7 similar issues
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112049v2/fi-kbl-soraka/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][9] ([fdo#109271]) +44 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112049v2/fi-pnv-d510/igt@kms_psr@primary_page_flip.html
+
+  * igt@kms_psr@sprite_plane_onoff:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][10] ([fdo#109271] / [i915#1072]) +3 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112049v2/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html
+
+  * igt@runner@aborted:
+    - fi-hsw-4770:        NOTRUN -> [FAIL][11] ([fdo#109271] / [i915#4312] / [i915#5594])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112049v2/fi-hsw-4770/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@reset:
+    - {bat-rpls-2}:       [DMESG-FAIL][12] ([i915#4983]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12518/bat-rpls-2/igt@i915_selftest@live@reset.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112049v2/bat-rpls-2/igt@i915_selftest@live@reset.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5594]: https://gitlab.freedesktop.org/drm/intel/issues/5594
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6687]: https://gitlab.freedesktop.org/drm/intel/issues/6687
 
 
-This can be
+Build changes
+-------------
 
-uint32_t handle2 = batch_create_size(fd, PAGE_SIZE);
+  * Linux: CI_DRM_12518 -> Patchwork_112049v2
 
-Above gem_create seems unnecessary. With those
+  CI-20190529: 20190529
+  CI_DRM_12518: df4e12de87c0d61fe5d5047b33399fd3ca8e773c @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7100: 04466b02a9b5356d266a899daa5183c1f6b0e20f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_112049v2: df4e12de87c0d61fe5d5047b33399fd3ca8e773c @ git://anongit.freedesktop.org/gfx-ci/linux
 
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+
+### Linux commits
+
+f4cf9377101c drm/i915/mtl: implement wa 14015076503
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112049v2/index.html
+
+--===============2482847600091112724==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
-> +
-> +		upload(fd, handle2, 0, ctx_arr[child]->id, flags);
-> +		gem_close(fd, handle2);
-> +	}
-> +
-> +	igt_waitchildren();
-> +	igt_spin_free(fd, spinner);
-> +
-> +	for (i = 0; i < nproc; i++)
-> +		intel_ctx_destroy(fd, ctx_arr[i]);
-> +
-> +	gem_close(fd, handle1);
-> +}
-> +
->   static bool has_contexts(void)
->   {
->   	bool result;
-> @@ -331,4 +456,12 @@ igt_main
->   
->   	igt_subtest("flink-and-close-vma-leak")
->   		flink_and_close();
-> +
-> +	igt_describe("Regression test to verify GTT eviction can't randomly fail due to object lock contention");
-> +	igt_subtest_group {
-> +		igt_subtest("shrink-vs-evict-any")
-> +			shrink_vs_evict(IGT_USE_ANY);
-> +		igt_subtest("shrink-vs-evict-pinned")
-> +			shrink_vs_evict(IGT_USE_PINNED);
-> +	}
->   }
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/mtl: implement wa 14015076503 (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/112049/">https://patchwork.freedesktop.org/series/112049/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112049v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112049v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12518 -&gt; Patchwork_112049v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112049v2/index.html</p>
+<h2>Participating hosts (43 -&gt; 45)</h2>
+<p>Additional (3): fi-kbl-soraka fi-hsw-4770 fi-pnv-d510 <br />
+  Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_112049v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_gttfill@basic:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112049v2/fi-kbl-soraka/igt@gem_exec_gttfill@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +7 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112049v2/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112049v2/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_softpin@allocator-basic-reserve:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112049v2/fi-hsw-4770/igt@gem_softpin@allocator-basic-reserve.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +11 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112049v2/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112049v2/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112049v2/fi-hsw-4770/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +7 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112049v2/fi-kbl-soraka/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +7 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_page_flip:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112049v2/fi-pnv-d510/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +44 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@sprite_plane_onoff:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112049v2/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112049v2/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5594">i915#5594</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@reset:<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12518/bat-rpls-2/igt@i915_selftest@live@reset.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112049v2/bat-rpls-2/igt@i915_selftest@live@reset.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12518 -&gt; Patchwork_112049v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12518: df4e12de87c0d61fe5d5047b33399fd3ca8e773c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7100: 04466b02a9b5356d266a899daa5183c1f6b0e20f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_112049v2: df4e12de87c0d61fe5d5047b33399fd3ca8e773c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>f4cf9377101c drm/i915/mtl: implement wa 14015076503</p>
+
+</body>
+</html>
+
+--===============2482847600091112724==--
