@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6883B652F4B
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Dec 2022 11:22:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71871652F6F
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Dec 2022 11:26:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCAFF10E44D;
-	Wed, 21 Dec 2022 10:21:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5211A10E44C;
+	Wed, 21 Dec 2022 10:26:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A89310E44C;
- Wed, 21 Dec 2022 10:21:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE76E10E44C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Dec 2022 10:26:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671618098; x=1703154098;
+ t=1671618393; x=1703154393;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=DTdR7zZgooUQ0H67TXLNrHJZaw686fxX2xoXCtDae9A=;
- b=flNvSl7geLAPGke2zLd/5oGPjE7+HV7GxNPGn6v0g70WG22UD2XQtuLl
- F9d3By/sRm5gKpFJ0WZu5LkPY82f7Qx+Sw2H3WZZzhVT71KlBQvHs3nll
- UE+ryprYsCXsw5QxZd0fWYfc6+SaNjEUW2ReGfHquhExOm2+assCxLUtD
- 9y+7jGzJJp45iuedINKZ1/VWjpz+q2qIJ+jx7toOSm4zsC6Qoy4ua79Qo
- Gk0MLT2P0ZKVIFHfVCV2MYBdKdoHwwORx8Lsbrk8W6nEtdZuXjGmpYVzh
- 5pj+HJUBY2oJQqi7P0l0S7BXJUcsgbWiLTLrMlrF1l6Q5TH2v4z24Yj+h w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="406078303"
-X-IronPort-AV: E=Sophos;i="5.96,262,1665471600"; d="scan'208";a="406078303"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ bh=m6Lra/5W9fBKHQxp0nra1MAJbhykS8kmgkhF2kGV47c=;
+ b=E7jJME5R8WIsHecJVwM0JhaEfdzwz/YGqbk/rD9F23QoFfMROifZpT3j
+ PH+CME6gplrLDECBXpQamULihdtU+vOENI92raSLYxgNy9/Bj2mmErkGO
+ aQXNi3v0NFXa6E0IMUXXfGQhvpIs9VhDuaPTdYm9ISuK5X21DuKCuAXEf
+ S3ACyNLmn4XXmOu4gVfUynhiWZqvadmGk+yCUdGd/q+2GcK2qjGiT0nld
+ El91PLNCDMbJz1a9fLa4jwkhffsS43K4jlI8iDhnhmyT/aaUpeEdXZRip
+ 1aUWHLn7MFJjphGebDYnBUrZYVfPFFLsilrDYoXSdMO3Xsgro+SrNrZWk A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="406079250"
+X-IronPort-AV: E=Sophos;i="5.96,262,1665471600"; d="scan'208";a="406079250"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2022 02:21:37 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="681983601"
-X-IronPort-AV: E=Sophos;i="5.96,262,1665471600"; d="scan'208";a="681983601"
+ 21 Dec 2022 02:26:30 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="653457861"
+X-IronPort-AV: E=Sophos;i="5.96,262,1665471600"; d="scan'208";a="653457861"
 Received: from jorgeblx-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.252.46.119])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2022 02:21:34 -0800
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Dec 2022 02:26:29 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Alan Previn <alan.previn.teres.alexis@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20221220221158.2390090-1-alan.previn.teres.alexis@intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20221220201104.339399-3-gustavo.sousa@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221220221158.2390090-1-alan.previn.teres.alexis@intel.com>
-Date: Wed, 21 Dec 2022 12:21:32 +0200
-Message-ID: <87zgbh12hf.fsf@intel.com>
+References: <20221220201104.339399-1-gustavo.sousa@intel.com>
+ <20221220201104.339399-3-gustavo.sousa@intel.com>
+Date: Wed, 21 Dec 2022 12:26:26 +0200
+Message-ID: <87wn6l1299.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v2 1/1] drm/i915/pxp: Use drm_dbg if arb
- session failed due to fw version
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/dmc: Use unversioned firmware
+ paths
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,66 +59,184 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
- dri-devel@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 20 Dec 2022, Alan Previn <alan.previn.teres.alexis@intel.com> wrote:
-> If PXP arb-session is being attempted on older hardware SKUs or
-> on hardware with older, unsupported, firmware versions, then don't
-> report the failure with a drm_error. Instead, look specifically for
-> the API-version error reply and drm_dbg that reply. In this case, the
-> user-space will eventually get a -ENODEV for the protected context
-> creation which is the correct behavior and we don't create unnecessary
-> drm_error's in our dmesg (for what is unsupported platforms).
+On Tue, 20 Dec 2022, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> As we do not require specific versions anymore, change the convention
+> for blob filenames to stop using version numbers. This simplifies code
+> maintenance, since we do not need to keep updating blob paths for new
+> DMC releases, and also makes DMC loading compatible with systems that do
+> not have the latest firmware release.
 >
-> Changes from prio revs:
->    v1 : - print incorrect version from input packet, not output.
->
-> Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+> References: https://lore.kernel.org/r/Y3081s7c5ksutpMW@intel.com
+> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 > ---
->  drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_cmn.h | 1 +
->  drivers/gpu/drm/i915/pxp/intel_pxp_tee.c               | 5 +++++
->  2 files changed, 6 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_dmc.c | 98 ++++++++++++++++++++----
+>  1 file changed, 82 insertions(+), 16 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_cmn.h b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_cmn.h
-> index c2f23394f9b8..aaa8187a0afb 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_cmn.h
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_cmn.h
-> @@ -17,6 +17,7 @@
->   */
->  enum pxp_status {
->  	PXP_STATUS_SUCCESS = 0x0,
-> +	PXP_STATUS_ERROR_API_VERSION = 0x1002,
->  	PXP_STATUS_OP_NOT_PERMITTED = 0x4013
->  };
+> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+> index 4124b3d37110..b11f0f451dd7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+> @@ -42,51 +42,70 @@
+>  #define DMC_VERSION_MAJOR(version)	((version) >> 16)
+>  #define DMC_VERSION_MINOR(version)	((version) & 0xffff)
 >  
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> index d50354bfb993..9d084ed9cc50 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> @@ -298,6 +298,11 @@ int intel_pxp_tee_cmd_create_arb_session(struct intel_pxp *pxp,
+> -#define DMC_PATH(platform, major, minor) \
+> -	"i915/"				 \
+> -	__stringify(platform) "_dmc_ver" \
+> -	__stringify(major) "_"		 \
+> +#define DMC_PATH(platform) \
+> +	"i915/" __stringify(platform) "_dmc.bin"
+> +
+> +/*
+> + * New DMC additions should not use this. This is used solely to remain
+> + * compatible with systems that have not yet updated DMC blobs to use
+> + * unversioned file names.
+> + */
+> +#define DMC_LEGACY_PATH(platform, major, minor) \
+> +	"i915/"					\
+> +	__stringify(platform) "_dmc_ver"	\
+> +	__stringify(major) "_"			\
+>  	__stringify(minor) ".bin"
 >  
->  	if (ret)
->  		drm_err(&i915->drm, "Failed to send tee msg ret=[%d]\n", ret);
+>  #define DISPLAY_VER13_DMC_MAX_FW_SIZE	0x20000
+>  
+>  #define DISPLAY_VER12_DMC_MAX_FW_SIZE	ICL_DMC_MAX_FW_SIZE
+>  
+> -#define DG2_DMC_PATH			DMC_PATH(dg2, 2, 08)
+> +#define DG2_DMC_PATH			DMC_PATH(dg2)
+> +#define DG2_DMC_LEGACY_PATH		DMC_LEGACY_PATH(dg2, 2, 08)
+>  MODULE_FIRMWARE(DG2_DMC_PATH);
+>  
+> -#define ADLP_DMC_PATH			DMC_PATH(adlp, 2, 16)
+> +#define ADLP_DMC_PATH			DMC_PATH(adlp)
+> +#define ADLP_DMC_LEGACY_PATH		DMC_LEGACY_PATH(adlp, 2, 16)
+>  MODULE_FIRMWARE(ADLP_DMC_PATH);
+>  
+> -#define ADLS_DMC_PATH			DMC_PATH(adls, 2, 01)
+> +#define ADLS_DMC_PATH			DMC_PATH(adls)
+> +#define ADLS_DMC_LEGACY_PATH		DMC_LEGACY_PATH(adls, 2, 01)
+>  MODULE_FIRMWARE(ADLS_DMC_PATH);
+>  
+> -#define DG1_DMC_PATH			DMC_PATH(dg1, 2, 02)
+> +#define DG1_DMC_PATH			DMC_PATH(dg1)
+> +#define DG1_DMC_LEGACY_PATH		DMC_LEGACY_PATH(dg1, 2, 02)
+>  MODULE_FIRMWARE(DG1_DMC_PATH);
+>  
+> -#define RKL_DMC_PATH			DMC_PATH(rkl, 2, 03)
+> +#define RKL_DMC_PATH			DMC_PATH(rkl)
+> +#define RKL_DMC_LEGACY_PATH		DMC_LEGACY_PATH(rkl, 2, 03)
+>  MODULE_FIRMWARE(RKL_DMC_PATH);
+>  
+> -#define TGL_DMC_PATH			DMC_PATH(tgl, 2, 12)
+> +#define TGL_DMC_PATH			DMC_PATH(tgl)
+> +#define TGL_DMC_LEGACY_PATH		DMC_LEGACY_PATH(tgl, 2, 12)
+>  MODULE_FIRMWARE(TGL_DMC_PATH);
+>  
+> -#define ICL_DMC_PATH			DMC_PATH(icl, 1, 09)
+> +#define ICL_DMC_PATH			DMC_PATH(icl)
+> +#define ICL_DMC_LEGACY_PATH		DMC_LEGACY_PATH(icl, 1, 09)
+>  #define ICL_DMC_MAX_FW_SIZE		0x6000
+>  MODULE_FIRMWARE(ICL_DMC_PATH);
+>  
+> -#define GLK_DMC_PATH			DMC_PATH(glk, 1, 04)
+> +#define GLK_DMC_PATH			DMC_PATH(glk)
+> +#define GLK_DMC_LEGACY_PATH		DMC_LEGACY_PATH(glk, 1, 04)
+>  #define GLK_DMC_MAX_FW_SIZE		0x4000
+>  MODULE_FIRMWARE(GLK_DMC_PATH);
+>  
+> -#define KBL_DMC_PATH			DMC_PATH(kbl, 1, 04)
+> +#define KBL_DMC_PATH			DMC_PATH(kbl)
+> +#define KBL_DMC_LEGACY_PATH		DMC_LEGACY_PATH(kbl, 1, 04)
+>  #define KBL_DMC_MAX_FW_SIZE		BXT_DMC_MAX_FW_SIZE
+>  MODULE_FIRMWARE(KBL_DMC_PATH);
+>  
+> -#define SKL_DMC_PATH			DMC_PATH(skl, 1, 27)
+> +#define SKL_DMC_PATH			DMC_PATH(skl)
+> +#define SKL_DMC_LEGACY_PATH		DMC_LEGACY_PATH(skl, 1, 27)
+>  #define SKL_DMC_MAX_FW_SIZE		BXT_DMC_MAX_FW_SIZE
+>  MODULE_FIRMWARE(SKL_DMC_PATH);
+>  
+> -#define BXT_DMC_PATH			DMC_PATH(bxt, 1, 07)
+> +#define BXT_DMC_PATH			DMC_PATH(bxt)
+> +#define BXT_DMC_LEGACY_PATH		DMC_LEGACY_PATH(bxt, 1, 07)
+>  #define BXT_DMC_MAX_FW_SIZE		0x3000
+>  MODULE_FIRMWARE(BXT_DMC_PATH);
+>  
+> @@ -821,16 +840,63 @@ static void intel_dmc_runtime_pm_put(struct drm_i915_private *dev_priv)
+>  	intel_display_power_put(dev_priv, POWER_DOMAIN_INIT, wakeref);
+>  }
+>  
+> +static const char *dmc_legacy_path(struct drm_i915_private *i915)
+> +{
+> +	if (IS_DG2(i915)) {
+> +		return DG2_DMC_LEGACY_PATH;
+> +	} else if (IS_ALDERLAKE_P(i915)) {
+> +		return ADLP_DMC_LEGACY_PATH;
+> +	} else if (IS_ALDERLAKE_S(i915)) {
+> +		return ADLS_DMC_LEGACY_PATH;
+> +	} else if (IS_DG1(i915)) {
+> +		return DG1_DMC_LEGACY_PATH;
+> +	} else if (IS_ROCKETLAKE(i915)) {
+> +		return RKL_DMC_LEGACY_PATH;
+> +	} else if (IS_TIGERLAKE(i915)) {
+> +		return TGL_DMC_LEGACY_PATH;
+> +	} else if (DISPLAY_VER(i915) == 11) {
+> +		return ICL_DMC_LEGACY_PATH;
+> +	} else if (IS_GEMINILAKE(i915)) {
+> +		return GLK_DMC_LEGACY_PATH;
+> +	} else if (IS_KABYLAKE(i915) ||
+> +		   IS_COFFEELAKE(i915) ||
+> +		   IS_COMETLAKE(i915)) {
+> +		return KBL_DMC_LEGACY_PATH;
+> +	} else if (IS_SKYLAKE(i915)) {
+> +		return SKL_DMC_LEGACY_PATH;
+> +	} else if (IS_BROXTON(i915)) {
+> +		return BXT_DMC_LEGACY_PATH;
+> +	}
+> +
+> +	return NULL;
+> +}
+> +
+>  static void dmc_load_work_fn(struct work_struct *work)
+>  {
+>  	struct drm_i915_private *dev_priv;
+>  	struct intel_dmc *dmc;
+>  	const struct firmware *fw = NULL;
+> +	const char *legacy_path;
+> +	int err;
+>  
+>  	dev_priv = container_of(work, typeof(*dev_priv), display.dmc.work);
+>  	dmc = &dev_priv->display.dmc;
+>  
+> -	request_firmware(&fw, dev_priv->display.dmc.fw_path, dev_priv->drm.dev);
+> +	err = firmware_request_nowarn(&fw, dev_priv->display.dmc.fw_path, dev_priv->drm.dev);
+> +
+> +	if (err == -ENOENT && !dev_priv->params.dmc_firmware_path) {
+> +		legacy_path = dmc_legacy_path(dev_priv);
+> +		if (legacy_path) {
+> +			drm_dbg_kms(&dev_priv->drm,
+> +				    "%s not found, falling back to %s\n",
+> +				    dmc->fw_path,
+> +				    legacy_path);
+> +			err = firmware_request_nowarn(&fw, legacy_path, dev_priv->drm.dev);
+> +			if (err == 0)
+> +				dev_priv->display.dmc.fw_path = legacy_path;
+> +		}
+> +	}
 > +
 
-Superfluous newline that someone's gonna send a patch later to
-remove. Easier to just not add it.
+I'd keep the request_firmware() with warnings.
 
 BR,
 Jani.
 
-> +	else if (msg_out.header.status == PXP_STATUS_ERROR_API_VERSION)
-> +		drm_dbg(&i915->drm, "PXP firmware version unsupported, requested: "
-> +			"CMD-ID-[0x%08x] on API-Ver-[0x%08x]\n",
-> +			msg_in.header.command_id, msg_in.header.api_version);
->  	else if (msg_out.header.status != 0x0)
->  		drm_warn(&i915->drm, "PXP firmware failed arb session init request ret=[0x%08x]\n",
->  			 msg_out.header.status);
->
-> base-commit: cc44a1e87ea6b788868878295119398966f98a81
+>  	parse_dmc_fw(dev_priv, fw);
+>  
+>  	if (intel_dmc_has_payload(dev_priv)) {
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
