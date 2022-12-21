@@ -2,50 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E97FA6532E5
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Dec 2022 16:07:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA2386532E6
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Dec 2022 16:08:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12ED710E458;
-	Wed, 21 Dec 2022 15:07:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B22A10E455;
+	Wed, 21 Dec 2022 15:08:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F10F10E457
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Dec 2022 15:07:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671635222; x=1703171222;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=+egNmzwcCE2fjgk8KbRDoXV2gI0ca5h/+fy6XSlk2TM=;
- b=I5p86MN+94UiPgn8dYE1vo/FjHoR2HUJCP20Sag6uGFqFyoQxcDf4W3C
- TzWiaFsegn0zpERiO1Q3Qu/5oGXRO2c849CL2E62TGpuYQXoq45YpjZ9F
- A2+kMRkM0YcOHwrSU66WX9nlGD9VkYC3EsQbmma8PIGQ/JK++lxabDOL9
- YbsrnwA+KT67x4DhTVaJp5tK24vZo3jszIwmdMIMTh+OvPShWoQfoD5xp
- KVR3alMd2KLRyMxRfnL6n4OrhAKZTB1UmPet3WDRW1DDxPRj56UxZ2xfF
- qFa3e5N/0VdGj7lF1r3q6nYlJSUenNI2XVgeMO4gsPl1b84S1iN3RiCWB g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="321802445"
-X-IronPort-AV: E=Sophos;i="5.96,262,1665471600"; d="scan'208";a="321802445"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2022 07:07:01 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="775697942"
-X-IronPort-AV: E=Sophos;i="5.96,262,1665471600"; d="scan'208";a="775697942"
-Received: from eolivagx-mobl.amr.corp.intel.com (HELO gjsousa-mobl2.intel.com)
- ([10.212.58.4])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2022 07:07:00 -0800
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 21 Dec 2022 12:06:24 -0300
-Message-Id: <20221221150624.402325-3-gustavo.sousa@intel.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221221150624.402325-1-gustavo.sousa@intel.com>
-References: <20221221150624.402325-1-gustavo.sousa@intel.com>
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB00810E455
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Dec 2022 15:08:15 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 546EA5CD7E;
+ Wed, 21 Dec 2022 15:08:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1671635294; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=qb48aFlVSKBKHZaR8Wp6tucx5khLytsf8dJnImo6yJQ=;
+ b=oRuqIBP5B9XllIrwt7q7qaGC/Qhx8QmeRMjqLd4jf7mc50GGJONibi7CtksQ1XSH0WwF1+
+ RxbVtoaDoBS/84GXT6PIbKABkghO+L2Is5O+hgofznDY4kcM1j4+NNYPlVOT4m5NIlBwm1
+ ajhGXI8yPV758Z/L0q2cQ5IZ7qFJiys=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1671635294;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=qb48aFlVSKBKHZaR8Wp6tucx5khLytsf8dJnImo6yJQ=;
+ b=VJqQAGpkGBgrFUike7FOYuylHp2OUm6bWUO6aGkkSp9ZFBJb3zZvHANmw0p+FIzzAY09U2
+ NSBBEKZauDsXevAw==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 34A721390E;
+ Wed, 21 Dec 2022 15:08:14 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id CijSC14ho2O1KAAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Wed, 21 Dec 2022 15:08:14 +0000
+Message-ID: <4e929234-8a88-4d81-7b4b-19d4d5e52b44@suse.de>
+Date: Wed, 21 Dec 2022 16:08:13 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 2/2] drm/i915/dmc: Use unversioned firmware
- paths
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Content-Language: en-US
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+References: <20221129124302.291759-1-jouni.hogander@intel.com>
+ <287763d0-a708-efa2-f84e-bf50d4a58d64@suse.de> <Y6MdhrwVjkzGx6z5@intel.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+In-Reply-To: <Y6MdhrwVjkzGx6z5@intel.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------9DOws4B3eiOVckhEp6emmEGp"
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/fbdev: Implement fb_dirty for
+ intel custom fb helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,182 +71,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As we do not require specific versions anymore, change the convention
-for blob filenames to stop using version numbers. This simplifies code
-maintenance, since we do not need to keep updating blob paths for new
-DMC releases, and also makes DMC loading compatible with systems that do
-not have the latest firmware release.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------9DOws4B3eiOVckhEp6emmEGp
+Content-Type: multipart/mixed; boundary="------------n4sYI0o2e2v0fSD2DaemhD0q";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: =?UTF-8?Q?Jouni_H=c3=b6gander?= <jouni.hogander@intel.com>,
+ intel-gfx@lists.freedesktop.org, Jani Nikula <jani.nikula@intel.com>
+Message-ID: <4e929234-8a88-4d81-7b4b-19d4d5e52b44@suse.de>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/fbdev: Implement fb_dirty for intel
+ custom fb helper
+References: <20221129124302.291759-1-jouni.hogander@intel.com>
+ <287763d0-a708-efa2-f84e-bf50d4a58d64@suse.de> <Y6MdhrwVjkzGx6z5@intel.com>
+In-Reply-To: <Y6MdhrwVjkzGx6z5@intel.com>
 
-v2:
-  - Keep using request_firmware() instead of firmware_request_nowarn().
-    (Jani)
+--------------n4sYI0o2e2v0fSD2DaemhD0q
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-References: https://lore.kernel.org/r/Y3081s7c5ksutpMW@intel.com
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dmc.c | 98 ++++++++++++++++++++----
- 1 file changed, 82 insertions(+), 16 deletions(-)
+SGkNCg0KQW0gMjEuMTIuMjIgdW0gMTU6NTEgc2NocmllYiBWaWxsZSBTeXJqw6Rsw6Q6DQo+
+IE9uIFdlZCwgRGVjIDIxLCAyMDIyIGF0IDExOjQ5OjU5QU0gKzAxMDAsIFRob21hcyBaaW1t
+ZXJtYW5uIHdyb3RlOg0KPj4gSGkNCj4+DQo+PiBBbSAyOS4xMS4yMiB1bSAxMzo0MyBzY2hy
+aWViIEpvdW5pIEjDtmdhbmRlcjoNCj4+PiBBZnRlciBzcGxpdHRpbmcgZ2VuZXJpYyBkcm1f
+ZmJfaGVscGVyIGludG8gaXQncyBvd24gZmlsZSBpdCdzIGxlZnQgdG8NCj4+PiBoZWxwZXIg
+aW1wbGVtZW50YXRpb24gdG8gaGF2ZSBmYl9kaXJ0eSBmdW5jdGlvbi4gQ3VycmVudGx5IGlu
+dGVsDQo+Pj4gZmIgZG9lc24ndCBoYXZlIGl0LiBUaGlzIGlzIGNhdXNpbmcgcHJvYmxlbXMg
+d2hlbiBQU1IgaXMgZW5hYmxlZC4NCj4+Pg0KPj4+IEltcGxlbWVudCBzaW1wbGUgZmJfZGly
+dHkgY2FsbGJhY2sgdG8gZGVsaXZlciBub3RpZmljYXRpb25zIHRvIHBzcg0KPj4+IGFib3V0
+IHVwZGF0ZXMgaW4gZmIgY29uc29sZS4NCj4+DQo+PiBJJ20gYSBiaXQgY29uZnVzZWQgYWJv
+dXQgaTkxNSdzIHVzZSBvZiBmYl9kaXJ0eSBoZXJlLiBIb3cgaXMgdGhpcw0KPj4gc3VwcG9z
+ZWQgdG8gaW50ZXJhY3Qgd2l0aCBtbWFwPyAgaTkxNSBkb2Vzbid0IHVzZSBkZWZlcnJlZCBJ
+L08gc28gZmJkZXYNCj4+IG1tYXAgd2lsbCBuZXZlciBjYWxsIGZiX2RpcnR5IGlmIHVzZXJz
+cGFjZSB3cml0ZXMgdG8gbW1hcCdlZCBwYWdlcy4gSXMNCj4+IHRoaXMgb25seSByZXF1aXJl
+ZCBmb3IgdGhlIGtlcm5lbCdzIGdyYXBoaWNzIGNvbnNvbGU/DQo+IA0KPiBJdCdzIHJlcXVp
+cmVkIGZvciBldmVyeXRoaW5nLiBtbWFwIGlzIHByZXN1bWFibHkgYm9ya2VkIGZvcg0KPiB0
+aGUgY2FzZXMgd2hlcmUgd2UgY2FuJ3QgdXNlIGFueSBodyBiYXNlZCBkYW1hZ2UgdHJhY2tp
+bmcuDQoNCkluIHRoaXMgY2FzZSwgaXQgd291bGQgbWFrZSBzZW5zZSB0byBpbXBsZW1lbnQg
+dGhlIHVwZGF0ZSB3aXRoIGZiX2RpcnR5IA0KKGluc3RlYWQgb2YgdGhlIGZiX29wcyBJIG1l
+bnRpb25lZCkuDQoNCkZvciBtbWFwIHlvdSBjYW4gdXNlIGZiZGV2J3MgZGVmZXJyZWQgSS9P
+LiBUaGVyZSdzIA0KZHJtX2ZiX2hlbHBlcl9kZWZlcnJlcl9pbygpIHRoYXQgdHJhY2tzIG1t
+YXBlZCBwYWdlcyBhbmQgcmVndWxhcmx5IGNhbGxzIA0KZmJfZGlydHkgdG8gbGV0IHRoZSBk
+cml2ZXIgZG8gYW4gdXBkYXRlLg0KDQpCZXN0IHJlZ2FyZHMNClRob21hcw0KDQo+IA0KPj4N
+Cj4+IEJlc3QgcmVnYXJkcw0KPj4gVGhvbWFzDQo+Pg0KPj4+DQo+Pj4gQ2M6IFRob21hcyBa
+aW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPg0KPj4+IENjOiBKYW5pIE5pa3VsYSA8
+amFuaS5uaWt1bGFAaW50ZWwuY29tPg0KPj4+IFNpZ25lZC1vZmYtYnk6IEpvdW5pIEjDtmdh
+bmRlciA8am91bmkuaG9nYW5kZXJAaW50ZWwuY29tPg0KPj4+IC0tLQ0KPj4+ICAgIGRyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJkZXYuYyB8IDkgKysrKysrKysrDQo+
+Pj4gICAgMSBmaWxlIGNoYW5nZWQsIDkgaW5zZXJ0aW9ucygrKQ0KPj4+DQo+Pj4gZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJkZXYuYyBiL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJkZXYuYw0KPj4+IGluZGV4IDU1
+NzVkN2FiZGMwOS4uN2M3ZmJhM2ZlNjllIDEwMDY0NA0KPj4+IC0tLSBhL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJkZXYuYw0KPj4+ICsrKyBiL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJkZXYuYw0KPj4+IEBAIC0zMjgsOCArMzI4LDE3
+IEBAIHN0YXRpYyBpbnQgaW50ZWxmYl9jcmVhdGUoc3RydWN0IGRybV9mYl9oZWxwZXIgKmhl
+bHBlciwNCj4+PiAgICAJcmV0dXJuIHJldDsNCj4+PiAgICB9DQo+Pj4gICAgDQo+Pj4gK3N0
+YXRpYyBpbnQgaW50ZWxmYl9kaXJ0eShzdHJ1Y3QgZHJtX2ZiX2hlbHBlciAqaGVscGVyLCBz
+dHJ1Y3QgZHJtX2NsaXBfcmVjdCAqY2xpcCkNCj4+PiArew0KPj4+ICsJaWYgKGhlbHBlci0+
+ZmItPmZ1bmNzLT5kaXJ0eSkNCj4+PiArCQlyZXR1cm4gaGVscGVyLT5mYi0+ZnVuY3MtPmRp
+cnR5KGhlbHBlci0+ZmIsIE5VTEwsIDAsIDAsIGNsaXAsIDEpOw0KPj4+ICsNCj4+PiArCXJl
+dHVybiAwOw0KPj4+ICt9DQo+Pj4gKw0KPj4+ICAgIHN0YXRpYyBjb25zdCBzdHJ1Y3QgZHJt
+X2ZiX2hlbHBlcl9mdW5jcyBpbnRlbF9mYl9oZWxwZXJfZnVuY3MgPSB7DQo+Pj4gICAgCS5m
+Yl9wcm9iZSA9IGludGVsZmJfY3JlYXRlLA0KPj4+ICsJLmZiX2RpcnR5ID0gaW50ZWxmYl9k
+aXJ0eSwNCj4+PiAgICB9Ow0KPj4+ICAgIA0KPj4+ICAgIHN0YXRpYyB2b2lkIGludGVsX2Zi
+ZGV2X2Rlc3Ryb3koc3RydWN0IGludGVsX2ZiZGV2ICppZmJkZXYpDQo+Pg0KPj4gLS0gDQo+
+PiBUaG9tYXMgWmltbWVybWFubg0KPj4gR3JhcGhpY3MgRHJpdmVyIERldmVsb3Blcg0KPj4g
+U1VTRSBTb2Z0d2FyZSBTb2x1dGlvbnMgR2VybWFueSBHbWJIDQo+PiBNYXhmZWxkc3RyLiA1
+LCA5MDQwOSBOw7xybmJlcmcsIEdlcm1hbnkNCj4+IChIUkIgMzY4MDksIEFHIE7DvHJuYmVy
+ZykNCj4+IEdlc2Now6RmdHNmw7xocmVyOiBJdm8gVG90ZXYNCj4gDQo+IA0KPiANCj4gDQoN
+Ci0tIA0KVGhvbWFzIFppbW1lcm1hbm4NCkdyYXBoaWNzIERyaXZlciBEZXZlbG9wZXINClNV
+U0UgU29mdHdhcmUgU29sdXRpb25zIEdlcm1hbnkgR21iSA0KTWF4ZmVsZHN0ci4gNSwgOTA0
+MDkgTsO8cm5iZXJnLCBHZXJtYW55DQooSFJCIDM2ODA5LCBBRyBOw7xybmJlcmcpDQpHZXNj
+aMOkZnRzZsO8aHJlcjogSXZvIFRvdGV2DQo=
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 4124b3d37110..1e4cd58671d7 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -42,51 +42,70 @@
- #define DMC_VERSION_MAJOR(version)	((version) >> 16)
- #define DMC_VERSION_MINOR(version)	((version) & 0xffff)
- 
--#define DMC_PATH(platform, major, minor) \
--	"i915/"				 \
--	__stringify(platform) "_dmc_ver" \
--	__stringify(major) "_"		 \
-+#define DMC_PATH(platform) \
-+	"i915/" __stringify(platform) "_dmc.bin"
-+
-+/*
-+ * New DMC additions should not use this. This is used solely to remain
-+ * compatible with systems that have not yet updated DMC blobs to use
-+ * unversioned file names.
-+ */
-+#define DMC_LEGACY_PATH(platform, major, minor) \
-+	"i915/"					\
-+	__stringify(platform) "_dmc_ver"	\
-+	__stringify(major) "_"			\
- 	__stringify(minor) ".bin"
- 
- #define DISPLAY_VER13_DMC_MAX_FW_SIZE	0x20000
- 
- #define DISPLAY_VER12_DMC_MAX_FW_SIZE	ICL_DMC_MAX_FW_SIZE
- 
--#define DG2_DMC_PATH			DMC_PATH(dg2, 2, 08)
-+#define DG2_DMC_PATH			DMC_PATH(dg2)
-+#define DG2_DMC_LEGACY_PATH		DMC_LEGACY_PATH(dg2, 2, 08)
- MODULE_FIRMWARE(DG2_DMC_PATH);
- 
--#define ADLP_DMC_PATH			DMC_PATH(adlp, 2, 16)
-+#define ADLP_DMC_PATH			DMC_PATH(adlp)
-+#define ADLP_DMC_LEGACY_PATH		DMC_LEGACY_PATH(adlp, 2, 16)
- MODULE_FIRMWARE(ADLP_DMC_PATH);
- 
--#define ADLS_DMC_PATH			DMC_PATH(adls, 2, 01)
-+#define ADLS_DMC_PATH			DMC_PATH(adls)
-+#define ADLS_DMC_LEGACY_PATH		DMC_LEGACY_PATH(adls, 2, 01)
- MODULE_FIRMWARE(ADLS_DMC_PATH);
- 
--#define DG1_DMC_PATH			DMC_PATH(dg1, 2, 02)
-+#define DG1_DMC_PATH			DMC_PATH(dg1)
-+#define DG1_DMC_LEGACY_PATH		DMC_LEGACY_PATH(dg1, 2, 02)
- MODULE_FIRMWARE(DG1_DMC_PATH);
- 
--#define RKL_DMC_PATH			DMC_PATH(rkl, 2, 03)
-+#define RKL_DMC_PATH			DMC_PATH(rkl)
-+#define RKL_DMC_LEGACY_PATH		DMC_LEGACY_PATH(rkl, 2, 03)
- MODULE_FIRMWARE(RKL_DMC_PATH);
- 
--#define TGL_DMC_PATH			DMC_PATH(tgl, 2, 12)
-+#define TGL_DMC_PATH			DMC_PATH(tgl)
-+#define TGL_DMC_LEGACY_PATH		DMC_LEGACY_PATH(tgl, 2, 12)
- MODULE_FIRMWARE(TGL_DMC_PATH);
- 
--#define ICL_DMC_PATH			DMC_PATH(icl, 1, 09)
-+#define ICL_DMC_PATH			DMC_PATH(icl)
-+#define ICL_DMC_LEGACY_PATH		DMC_LEGACY_PATH(icl, 1, 09)
- #define ICL_DMC_MAX_FW_SIZE		0x6000
- MODULE_FIRMWARE(ICL_DMC_PATH);
- 
--#define GLK_DMC_PATH			DMC_PATH(glk, 1, 04)
-+#define GLK_DMC_PATH			DMC_PATH(glk)
-+#define GLK_DMC_LEGACY_PATH		DMC_LEGACY_PATH(glk, 1, 04)
- #define GLK_DMC_MAX_FW_SIZE		0x4000
- MODULE_FIRMWARE(GLK_DMC_PATH);
- 
--#define KBL_DMC_PATH			DMC_PATH(kbl, 1, 04)
-+#define KBL_DMC_PATH			DMC_PATH(kbl)
-+#define KBL_DMC_LEGACY_PATH		DMC_LEGACY_PATH(kbl, 1, 04)
- #define KBL_DMC_MAX_FW_SIZE		BXT_DMC_MAX_FW_SIZE
- MODULE_FIRMWARE(KBL_DMC_PATH);
- 
--#define SKL_DMC_PATH			DMC_PATH(skl, 1, 27)
-+#define SKL_DMC_PATH			DMC_PATH(skl)
-+#define SKL_DMC_LEGACY_PATH		DMC_LEGACY_PATH(skl, 1, 27)
- #define SKL_DMC_MAX_FW_SIZE		BXT_DMC_MAX_FW_SIZE
- MODULE_FIRMWARE(SKL_DMC_PATH);
- 
--#define BXT_DMC_PATH			DMC_PATH(bxt, 1, 07)
-+#define BXT_DMC_PATH			DMC_PATH(bxt)
-+#define BXT_DMC_LEGACY_PATH		DMC_LEGACY_PATH(bxt, 1, 07)
- #define BXT_DMC_MAX_FW_SIZE		0x3000
- MODULE_FIRMWARE(BXT_DMC_PATH);
- 
-@@ -821,16 +840,63 @@ static void intel_dmc_runtime_pm_put(struct drm_i915_private *dev_priv)
- 	intel_display_power_put(dev_priv, POWER_DOMAIN_INIT, wakeref);
- }
- 
-+static const char *dmc_legacy_path(struct drm_i915_private *i915)
-+{
-+	if (IS_DG2(i915)) {
-+		return DG2_DMC_LEGACY_PATH;
-+	} else if (IS_ALDERLAKE_P(i915)) {
-+		return ADLP_DMC_LEGACY_PATH;
-+	} else if (IS_ALDERLAKE_S(i915)) {
-+		return ADLS_DMC_LEGACY_PATH;
-+	} else if (IS_DG1(i915)) {
-+		return DG1_DMC_LEGACY_PATH;
-+	} else if (IS_ROCKETLAKE(i915)) {
-+		return RKL_DMC_LEGACY_PATH;
-+	} else if (IS_TIGERLAKE(i915)) {
-+		return TGL_DMC_LEGACY_PATH;
-+	} else if (DISPLAY_VER(i915) == 11) {
-+		return ICL_DMC_LEGACY_PATH;
-+	} else if (IS_GEMINILAKE(i915)) {
-+		return GLK_DMC_LEGACY_PATH;
-+	} else if (IS_KABYLAKE(i915) ||
-+		   IS_COFFEELAKE(i915) ||
-+		   IS_COMETLAKE(i915)) {
-+		return KBL_DMC_LEGACY_PATH;
-+	} else if (IS_SKYLAKE(i915)) {
-+		return SKL_DMC_LEGACY_PATH;
-+	} else if (IS_BROXTON(i915)) {
-+		return BXT_DMC_LEGACY_PATH;
-+	}
-+
-+	return NULL;
-+}
-+
- static void dmc_load_work_fn(struct work_struct *work)
- {
- 	struct drm_i915_private *dev_priv;
- 	struct intel_dmc *dmc;
- 	const struct firmware *fw = NULL;
-+	const char *legacy_path;
-+	int err;
- 
- 	dev_priv = container_of(work, typeof(*dev_priv), display.dmc.work);
- 	dmc = &dev_priv->display.dmc;
- 
--	request_firmware(&fw, dev_priv->display.dmc.fw_path, dev_priv->drm.dev);
-+	err = request_firmware(&fw, dev_priv->display.dmc.fw_path, dev_priv->drm.dev);
-+
-+	if (err == -ENOENT && !dev_priv->params.dmc_firmware_path) {
-+		legacy_path = dmc_legacy_path(dev_priv);
-+		if (legacy_path) {
-+			drm_dbg_kms(&dev_priv->drm,
-+				    "%s not found, falling back to %s\n",
-+				    dmc->fw_path,
-+				    legacy_path);
-+			err = request_firmware(&fw, legacy_path, dev_priv->drm.dev);
-+			if (err == 0)
-+				dev_priv->display.dmc.fw_path = legacy_path;
-+		}
-+	}
-+
- 	parse_dmc_fw(dev_priv, fw);
- 
- 	if (intel_dmc_has_payload(dev_priv)) {
--- 
-2.38.1
+--------------n4sYI0o2e2v0fSD2DaemhD0q--
 
+--------------9DOws4B3eiOVckhEp6emmEGp
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmOjIV0FAwAAAAAACgkQlh/E3EQov+Cm
+ERAAh+zszvtEAiUf02FInaxsPpnwyXBOZErFchigtTey7tJp+QgG+NGPbulNjwk8XH04nERG2QMu
++6za97ChNfmIyyv7Bqb3fE9NSV6VWKCXZ9nOHoqQks1QAw7t03oeBzSrUKuJs/2Jag4TshmyzU2B
+vujw2aGtG7aUMRYITLLKtV6bhBoqiuISsvuEvjpIKEVrWg0FKQzOJY+/TmIKZZ34bCWNhyyGioMe
+BPfzCge52j5f0YQ46BmCuuDMBF9qeNhpZwiJ8bSMaIaDUznVIUMgKDHR0ASoDJ4PWlOUcEDqX/Ki
+Kh+j+iM4vsGdiuzt1C0VQuzkVsvcXiSf5TLfjgixUAzg/cgNol/p4e1XAnVXvnfm1ag0zy2/tYY3
+BBJZaHDKa8eWDZ1E1VvAyWnA5xTaBx8wWRm6SNpVsV+Fjnw2TZFMtCSI6IP2xci72cryDb1PiFU5
+DTk70oSan9pb1aJFfHZd/DG7QtZParj3j7qMRyhf8fTsoakqhlhX5P00TK4ZHoHKoH/iRQ3Kv6aA
+mfS524hNvMWL3CjpxyyCwEn3qUfhBvy0UpIQV3s7MGSrU5OHjMvLVC+1mneaGVCBXhBs9Dms/tOk
+wfPTZCQnw00/Ti5DYUt3R5DSEUU947ZySvPMhPDxlBgIiy/WC1U+TyDYn1yeCFjWuxIpRNOT0sDu
+v0s=
+=qq4H
+-----END PGP SIGNATURE-----
+
+--------------9DOws4B3eiOVckhEp6emmEGp--
