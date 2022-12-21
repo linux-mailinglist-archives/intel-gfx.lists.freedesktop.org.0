@@ -2,48 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20208653997
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Dec 2022 00:04:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F77965399E
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Dec 2022 00:12:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FEDC10E02D;
-	Wed, 21 Dec 2022 23:03:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 489DE10E00F;
+	Wed, 21 Dec 2022 23:12:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFE7310E135;
- Wed, 21 Dec 2022 23:03:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671663823; x=1703199823;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=rkqspy9JZnOKiKQY8/9w7m0+kGXTpEmU2kglbH4Htv4=;
- b=I4EgpRFqLnjnl3hm5Evvad/aYYs19dFSWsDY5vbg84Su3jjZl8trHWan
- Yk1Z2JBsnKPon9ljr8ND3lRPxGxNEBVyE1s71Do3JixiNCu/WEDP7y5jd
- P3/NkszAKBCq7tAGS6VEMTFSCxdPDgTnmTpPqwdzOC53zwAfVlOnk9DoP
- HUWWQhrFHSnlwg+8IJpy/i+1m5DfnLaFXmbSwgx4SOTf6XRAbs8s8/JiK
- cxFWaKopuGJha1NhbPmZavIqC1Jq+1Gu5OFP+JoUlCC+O9vM+SouBvFCr
- BeWJXan188uZ2yICmCGq/USR2FPf0Il0GObp96jeECpW8zdgp8582xfR/ g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10568"; a="321905562"
-X-IronPort-AV: E=Sophos;i="5.96,263,1665471600"; d="scan'208";a="321905562"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2022 15:03:43 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10568"; a="793864465"
-X-IronPort-AV: E=Sophos;i="5.96,263,1665471600"; d="scan'208";a="793864465"
-Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
- by fmsmga001.fm.intel.com with ESMTP; 21 Dec 2022 15:03:43 -0800
-From: Alan Previn <alan.previn.teres.alexis@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 21 Dec 2022 15:06:28 -0800
-Message-Id: <20221221230628.2715916-8-alan.previn.teres.alexis@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221221230628.2715916-1-alan.previn.teres.alexis@intel.com>
-References: <20221221230628.2715916-1-alan.previn.teres.alexis@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 961B110E00F;
+ Wed, 21 Dec 2022 23:12:16 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8F2B0AADE3;
+ Wed, 21 Dec 2022 23:12:16 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 7/7] HAX: force enable PXP Kconfig
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andrzej Hajda" <andrzej.hajda@intel.com>
+Date: Wed, 21 Dec 2022 23:12:16 -0000
+Message-ID: <167166433655.32312.9844687330690254556@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221220120023.1214620-1-andrzej.hajda@intel.com>
+In-Reply-To: <20221220120023.1214620-1-andrzej.hajda@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/2=5D_drm/i915/display/core=3A_use?=
+ =?utf-8?q?_intel=5Fde=5Frmw_if_possible?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,50 +41,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
-	Vivi@freedesktop.org,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rodrigo <rodrigo.vivi@intel.com>,
-	Alexander Usyskin <alexander.usyskin@intel.com>,
-	dri-devel@lists.freedesktop.org,
-	Tomas Winkler <tomas.winkler@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Force PXP configs on for CI testing to trigger full subtests
-in IGT's gem_pxp as opposed to the partial "unsupported hw substests".
+== Series Details ==
 
-Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
----
- drivers/gpu/drm/i915/Kconfig | 2 +-
- drivers/misc/mei/pxp/Kconfig | 1 +
- 2 files changed, 2 insertions(+), 1 deletion(-)
+Series: series starting with [1/2] drm/i915/display/core: use intel_de_rmw if possible
+URL   : https://patchwork.freedesktop.org/series/112101/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
-index 3efce05d7b57..93595d804ef0 100644
---- a/drivers/gpu/drm/i915/Kconfig
-+++ b/drivers/gpu/drm/i915/Kconfig
-@@ -136,7 +136,7 @@ config DRM_I915_PXP
- 	bool "Enable Intel PXP support"
- 	depends on DRM_I915
- 	depends on INTEL_MEI && INTEL_MEI_PXP
--	default n
-+	default y
- 	help
- 	  PXP (Protected Xe Path) is an i915 component, available on graphics
- 	  version 12 and newer GPUs, that helps to establish the hardware
-diff --git a/drivers/misc/mei/pxp/Kconfig b/drivers/misc/mei/pxp/Kconfig
-index 4029b96afc04..89e4ee5b4b07 100644
---- a/drivers/misc/mei/pxp/Kconfig
-+++ b/drivers/misc/mei/pxp/Kconfig
-@@ -6,6 +6,7 @@ config INTEL_MEI_PXP
- 	tristate "Intel PXP services of ME Interface"
- 	select INTEL_MEI_ME
- 	depends on DRM_I915
-+	default y
- 	help
- 	  MEI Support for PXP Services on Intel platforms.
- 
--- 
-2.34.1
+== Summary ==
+
+Error: dim checkpatch failed
+d968db4e1183 drm/i915/display/core: use intel_de_rmw if possible
+-:26: ERROR:CODE_INDENT: code indent should use tabs where possible
+#26: FILE: drivers/gpu/drm/i915/display/intel_display.c:300:
++^I^I             DUPS1_GATING_DIS | DUPS2_GATING_DIS, 0);$
+
+total: 1 errors, 0 warnings, 0 checks, 661 lines checked
+6df65ec24a4a drm/i915/display/misc: use intel_de_rmw if possible
+-:357: ERROR:CODE_INDENT: code indent should use tabs where possible
+#357: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:2618:
++^I^I             DP_TP_CTL_ENABLE | DP_TP_CTL_LINK_TRAIN_MASK,$
+
+-:358: ERROR:CODE_INDENT: code indent should use tabs where possible
+#358: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:2619:
++^I^I             DP_TP_CTL_LINK_TRAIN_PAT1);$
+
+total: 2 errors, 0 warnings, 0 checks, 894 lines checked
+
 
