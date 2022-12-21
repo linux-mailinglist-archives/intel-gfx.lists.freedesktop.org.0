@@ -2,53 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20A31652BAB
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Dec 2022 04:01:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BC0E652BD0
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Dec 2022 04:32:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8802A10E027;
-	Wed, 21 Dec 2022 03:01:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2337810E027;
+	Wed, 21 Dec 2022 03:31:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A867A10E027;
- Wed, 21 Dec 2022 03:01:00 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9A2010E027
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Dec 2022 03:31:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671591660; x=1703127660;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=ngIptXVnxZMIe4OUDAY5u4LE/bWGVw3oiibRWxIuKl4=;
- b=n18zwGiLowolA8DGOyPXeA1oWgFCtRqecwolloDAZhx53wMA1e+KgiTQ
- r3VQHs9k4vFkT5ziVBCByUtY2hkxI+1qkKaWkd2c43Rk4KTV0BVojSB9a
- 8efNP81X9Tmg3yB7Ec0zuhRVAIm5kFAFApr51/2i61o6DsoNLbyk9qXv4
- cZALisoPgrL2ejcyfhKMQptNG5RZrrixEoU6Pru0BchYGGnaTQ0viaVR1
- r6ozM+U1Z6u+IRX+QxxZJxkoRwKNGva0vXaUZixc2VhEAganUzrI0xXjT
- HDrKWAxYMcOMv9llV/rDHFymeQRgo5CXtS7oBbMijUqCQGYE6AFW+ofxT Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="317407628"
-X-IronPort-AV: E=Sophos;i="5.96,261,1665471600"; 
- d="asc'?scan'208";a="317407628"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2022 19:01:00 -0800
+ t=1671593511; x=1703129511;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=42lkFem5FucW3NpNCfixdeW91hrsW69XOkb+Tss6Zzk=;
+ b=NhkD23c6j561hJBUXYQFgUv3He7SqNevW5xusx4Vw0DPc3OzLjU8gDL8
+ RdaK98xXdXhdL2UFmIBfuD89HuG+HdUYJVb2R6tqrjzgRvB4flJRSYqM+
+ 9e8gUhL6HWBenMslZmhnwalPpZgH8jBNHy68inmd3JA4ED/VIcRxX21et
+ RqgVqHIvD/qSrw9ZxAoi81BfEcJwP/FFIoUI09anPhQcz/r6TPYQAuLi5
+ AuKRVC5AbtZzp3wz69vwb2t8Xb3ei6nr1QXiwXtHgD5BhFca6UxG2irZG
+ aNajtrYuVWaX6hsNfRAn0jWBvocnQwAbxgH/HzVEGjyUOr6j8ZP/dpvj4 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="384121266"
+X-IronPort-AV: E=Sophos;i="5.96,261,1665471600"; d="scan'208";a="384121266"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2022 19:31:51 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="758359486"
-X-IronPort-AV: E=Sophos;i="5.96,261,1665471600"; 
- d="asc'?scan'208";a="758359486"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.159.108])
- by fmsmga002.fm.intel.com with ESMTP; 20 Dec 2022 19:00:56 -0800
-Date: Wed, 21 Dec 2022 10:58:57 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Zheng Wang <zyytlz.wz@163.com>
-Message-ID: <20221221025857.GG30028@zhen-hp.sh.intel.com>
-References: <11728bc1-7b59-1623-b517-d1a0d57eb275@intel.com>
- <20221220094014.1128207-1-zyytlz.wz@163.com>
+X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="793545960"
+X-IronPort-AV: E=Sophos;i="5.96,261,1665471600"; d="scan'208";a="793545960"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by fmsmga001.fm.intel.com with ESMTP; 20 Dec 2022 19:31:49 -0800
+From: Arun R Murthy <arun.r.murthy@intel.com>
+To: intel-gfx@lists.freedesktop.org, ville.syrjala@linux.intel.com,
+ jani.nikula@intel.com, imre.deak@intel.com
+Date: Wed, 21 Dec 2022 09:02:09 +0530
+Message-Id: <20221221033209.1284435-1-arun.r.murthy@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20221124070925.3834910-1-arun.r.murthy@intel.com>
+References: <20221124070925.3834910-1-arun.r.murthy@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
- protocol="application/pgp-signature"; boundary="iRaAnoDFBoP0sW/E"
-Content-Disposition: inline
-In-Reply-To: <20221220094014.1128207-1-zyytlz.wz@163.com>
-Subject: Re: [Intel-gfx] [PATCH v5] drm/i915/gvt: fix double free bug in
- split_2MB_gtt_entry
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCHv7] drm/i915/dp: change aux_ctl reg read to
+ polling read
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,121 +58,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: alex000young@gmail.com, security@kernel.org, airlied@linux.ie,
- gregkh@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
- hackerzheng666@gmail.com, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, 1002992920@qq.com, airlied@gmail.com,
- intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+The busy timeout logic checks for the AUX BUSY, then waits for the
+timeout period and then after timeout reads the register for BUSY or
+Success.
+Instead replace interrupt with polling so as to read the AUX CTL
+register often before the timeout period. Looks like there might be some
+issue with interrupt-on-read. Hence changing the logic to polling read.
 
---iRaAnoDFBoP0sW/E
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+v2: replace interrupt with polling read
+v3: use usleep_rang instead of msleep, updated commit msg
+v4: use intel_wait_for_regiter internal function
+v5: use __intel_de_wait_for_register with 500us slow and 10ms fast timeout
+v6: check return value of __intel_de_wait_for_register
+v7: using default 2us for intel_de_wait_for_register
 
-On 2022.12.20 17:40:14 +0800, Zheng Wang wrote:
-> If intel_gvt_dma_map_guest_page failed, it will call
->  ppgtt_invalidate_spt, which will finally free the spt. But the
->  caller function ppgtt_populate_spt_by_guest_entry does not notice
->  that, it will free spt again in its error path.
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp_aux.c | 14 +++++---------
+ 1 file changed, 5 insertions(+), 9 deletions(-)
 
-indent
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+index 91c93c93e5fc..5a176bfb10a2 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+@@ -41,20 +41,16 @@ intel_dp_aux_wait_done(struct intel_dp *intel_dp)
+ 	i915_reg_t ch_ctl = intel_dp->aux_ch_ctl_reg(intel_dp);
+ 	const unsigned int timeout_ms = 10;
+ 	u32 status;
+-	bool done;
+-
+-#define C (((status = intel_de_read_notrace(i915, ch_ctl)) & DP_AUX_CH_CTL_SEND_BUSY) == 0)
+-	done = wait_event_timeout(i915->display.gmbus.wait_queue, C,
+-				  msecs_to_jiffies_timeout(timeout_ms));
++	int ret;
+ 
+-	/* just trace the final value */
+-	trace_i915_reg_rw(false, ch_ctl, status, sizeof(status), true);
++	ret = __intel_de_wait_for_register(i915, ch_ctl,
++					   DP_AUX_CH_CTL_SEND_BUSY, 0,
++					   2, timeout_ms, &status);
+ 
+-	if (!done)
++	if (ret == -ETIMEDOUT)
+ 		drm_err(&i915->drm,
+ 			"%s: did not complete or timeout within %ums (status 0x%08x)\n",
+ 			intel_dp->aux.name, timeout_ms, status);
+-#undef C
+ 
+ 	return status;
+ }
+-- 
+2.25.1
 
->=20
-> Fix this by undoing the mapping of DMA address and freeing sub_spt.
-> Besides, leave the handle of spt destroy to caller function instead of
-> callee function when error occurs.
->=20
-> Fixes: b901b252b6cf ("drm/i915/gvt: Add 2M huge gtt support")
-> Signed-off-by: Zheng Wang <zyytlz.wz@163.com>
-> ---
-> v5:
-> - remove unnecessary switch-case code for there is only one particular ca=
-se,
-> correct the unmap target from parent_spt to sub_spt.add more details in
-> commit message. All suggested by Zhenyu
->=20
-> v4:
-> - fix by undo the mapping of DMA address and free sub_spt suggested by Zhi
->=20
-> v3:
-> - correct spelling mistake and remove unused variable suggested by Greg
->=20
-> v2: https://lore.kernel.org/all/20221006165845.1735393-1-zyytlz.wz@163.co=
-m/
->=20
-> v1: https://lore.kernel.org/all/20220928033340.1063949-1-zyytlz.wz@163.co=
-m/
-> ---
->  drivers/gpu/drm/i915/gvt/gtt.c | 18 ++++++++++++++----
->  1 file changed, 14 insertions(+), 4 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/gt=
-t.c
-> index 51e5e8fb505b..4d478a59eb7d 100644
-> --- a/drivers/gpu/drm/i915/gvt/gtt.c
-> +++ b/drivers/gpu/drm/i915/gvt/gtt.c
-> @@ -1209,10 +1209,8 @@ static int split_2MB_gtt_entry(struct intel_vgpu *=
-vgpu,
->  	for_each_shadow_entry(sub_spt, &sub_se, sub_index) {
->  		ret =3D intel_gvt_dma_map_guest_page(vgpu, start_gfn + sub_index,
->  						   PAGE_SIZE, &dma_addr);
-> -		if (ret) {
-> -			ppgtt_invalidate_spt(spt);
-> -			return ret;
-> -		}
-> +		if (ret)
-> +			goto err;
->  		sub_se.val64 =3D se->val64;
-> =20
->  		/* Copy the PAT field from PDE. */
-> @@ -1231,6 +1229,18 @@ static int split_2MB_gtt_entry(struct intel_vgpu *=
-vgpu,
->  	ops->set_pfn(se, sub_spt->shadow_page.mfn);
->  	ppgtt_set_shadow_entry(spt, se, index);
->  	return 0;
-> +err:
-> +	/* Undone the existing mappings of DMA addr. */
-
-We need a verb here for Undo.
-
-> +	for_each_present_shadow_entry(sub_spt, &sub_se, sub_index) {
-> +		gvt_vdbg_mm("invalidate 4K entry\n");
-> +		ppgtt_invalidate_pte(sub_spt, &sub_se);
-> +	}
-> +	/* Release the new allocated spt. */
-> +	trace_spt_change(sub_spt->vgpu->id, "release", sub_spt,
-> +		sub_spt->guest_page.gfn, sub_spt->shadow_page.type);
-> +	ppgtt_free_spt(sub_spt);
-> +	sub_spt =3D NULL;
-
-Not need to reset local variable that has no use then.
-
-I'll handle these trivial fixes during the merge.
-
-Reviewed-by: Zhenyu Wang <zhenyuw@linux.intel.com>
-
-thanks
-
-> +	return ret;
->  }
-> =20
->  static int split_64KB_gtt_entry(struct intel_vgpu *vgpu,
-> --=20
-> 2.25.1
->=20
-
---iRaAnoDFBoP0sW/E
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCY6J2bAAKCRCxBBozTXgY
-J4GiAJsFOKAdtGPzsQN3CVsAcH45M9QuNQCdE4KWAAIn09n29aAGm2FukS+JhgE=
-=xGqD
------END PGP SIGNATURE-----
-
---iRaAnoDFBoP0sW/E--
