@@ -2,64 +2,155 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A425A653787
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Dec 2022 21:20:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9047E652E7C
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Dec 2022 10:28:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1C4B10E4B8;
-	Wed, 21 Dec 2022 20:20:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F24C10E09A;
+	Wed, 21 Dec 2022 09:28:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from domac.alu.hr (domac.alu.hr [161.53.235.3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02F1C10E033
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Dec 2022 07:15:54 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by domac.alu.hr (Postfix) with ESMTP id 87647604F1;
- Wed, 21 Dec 2022 08:15:18 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=alu.unizg.hr; s=mail;
- t=1671606918; bh=ZtlAaE33ZZV4SRhYl62x38s2P5dFAXk9MtedaQ1GwJQ=;
- h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
- b=hWwX6B24XRPEiDD2g8Ml63SL7ENYpyECRW9YB50LlNx+drKGlbOuE7s5md1Th28cv
- +ccKC11cSq5YI7bDaP+9Z1qNvtZ8a57f57OHLvX7H5AUq/VPpOUD+ZgF5B1vCC9Q2E
- 2zZRJCLduZ8KGaovktZl9J5qE4mL3cGIG5Ob5f03vCmiowQpJPqtNRh33Ax10qYUbC
- CgbwQx0bUXtcqT18MKxZnOUaOtY8jwfuzySMAw0oe+siQF6OqB0CSOBTqkcQ5IgGrJ
- j6S8o8oR3BLKFJOjWvIRO2b6iYCld6227Cu6JloummITDyb/3Q9HTH1lJCgbv78ldF
- MPyWM8ubaHVnA==
-X-Virus-Scanned: Debian amavisd-new at domac.alu.hr
-Received: from domac.alu.hr ([127.0.0.1])
- by localhost (domac.alu.hr [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id R7N6VywRqYZj; Wed, 21 Dec 2022 08:15:16 +0100 (CET)
-Received: from [10.0.1.53] (grf-nat.grf.hr [161.53.83.23])
- by domac.alu.hr (Postfix) with ESMTPSA id 6EE20604EE;
- Wed, 21 Dec 2022 08:15:15 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=alu.unizg.hr; s=mail;
- t=1671606915; bh=ZtlAaE33ZZV4SRhYl62x38s2P5dFAXk9MtedaQ1GwJQ=;
- h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
- b=ceVnQHDOpjRUL+PgA+ZT+1TNTr0uObNSZc8akBXH/X8eK6a89Sw81T5Dkwdy1twZJ
- b6ycWGWDkW4aezlJBNgWTYhpEyxbJb9J9sM7i1P62T3QGSr3YzdBPRYEnk0Arjhra9
- aweo8EoP82Fzi21UugOgZB0DGj5l85++xEts2XtI9QGYfqHYMFZ4TRW1xU22b95N/Y
- imradjcpUjYplRdJOHzclUYN0KUWpxmuJf9J1HmnwoxC5NaK7LeHdJ8Tqx6uZACwsC
- iCwhpkQor9c7bd4dBvROSCrfxgMMEMvooBQvKiwmt+mhTMw1x7B1nGNHowDVVkyChf
- DltNLxhfxnRoQ==
-Message-ID: <24360ef5-a088-58be-d03e-e72ed63d0e13@alu.unizg.hr>
-Date: Wed, 21 Dec 2022 08:15:09 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-From: Mirsad Goran Todorovac <mirsad.todorovac@alu.unizg.hr>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- srinivas pandruvada <srinivas.pandruvada@linux.intel.com>,
- LKML <linux-kernel@vger.kernel.org>, jani.nikula@linux.intel.com,
- joonas.lahtinen@linux.intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <f849cc70-b21f-6476-ba26-08989d1243c2@alu.unizg.hr>
- <05424a5351a847786377a548dba0759917d8046c.camel@linux.intel.com>
- <15ef1bb9-7312-5d98-8bf0-0af1a37cfd2a@linux.intel.com>
- <619bdecc-cf87-60a4-f50d-836f4c073ea7@alu.unizg.hr>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F06DB10E09A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Dec 2022 09:28:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1671614892; x=1703150892;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=MzlEArMyzK5jhGTfwTnv8+MHpb9ZRU4mtwl9h3R23GM=;
+ b=af4jgRzL/vLUw450bsFSzumRNYuQVdCY+plVOejrKCktn30nmnlgROls
+ zyjnoDBDz29PnzrTbhAOjFU5jnLU6xmPboy8+/PmqCk1ZmdYhItqkHZR6
+ nbvNadG6r8TMRuL1oYQQ1oxn5FVfX2xVnK/AeKxYWjDcdlziVqv/eMwNl
+ hGW3etj80OUPzLqiJ2yG88BwjvHsIOuEPug/ricWHnXP7eKmW+05N6zsf
+ /wWYAs7ixkJ5Irq33f0c1XISDe4KKOiJ+D1LUrbF7Lx/PP6vjogH7cGhX
+ ZgwP2V0T5KKKtgOnisQewVqkO8DK3FyTI7moenoCvwCSW4k3fqE6pj/VY g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="321739977"
+X-IronPort-AV: E=Sophos;i="5.96,262,1665471600"; d="scan'208";a="321739977"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Dec 2022 01:28:05 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="719886288"
+X-IronPort-AV: E=Sophos;i="5.96,262,1665471600"; d="scan'208";a="719886288"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmsmga004.fm.intel.com with ESMTP; 21 Dec 2022 01:28:05 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Wed, 21 Dec 2022 01:28:04 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Wed, 21 Dec 2022 01:28:04 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Wed, 21 Dec 2022 01:28:03 -0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.171)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Wed, 21 Dec 2022 01:28:02 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=O+bFRfEZbOS3ETMY/OGr4b/a5S+49+2cFZJDy0b22MNdXtrDAtSb9gdeX26/npqVSB+EWf8V5V9It8/G8xBbilyWKpQg3S0ISlXHmbNQAj3FFh46WrlRbJsRuvtG3LKd2m0/ItbcMK03G2qz0J67hmTR2dOvKfEW/bENkoJIMGAHuZP7xEzsBMK93ukjYQMlQiFJ20l/x24tEl4sD8ry32CocOv4lgnd3No2ZxlXv5VuCf88rEM6umW+VE0saANpTLmv1flf/otHJesMObKnLx9Hib6XyAQlXwOlpbEo6AaMpi/RDhUdcWLodt1M0J+VNcYpv4J+cZEaRGUbjzwB6A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=MzlEArMyzK5jhGTfwTnv8+MHpb9ZRU4mtwl9h3R23GM=;
+ b=Jo0TJLFoldVlkiPMBBCNM+ZfLUPfmF9cvNVz2pvCbnYrZimdXgVf+B7qfKY7G5D38H2p7G/4u3pDvTpP75dvnWjXL1NU5HeaQyMLo6z/Z3B+et2I6QNAE++5V//ohGzt0qiuB3F6QCHbS/lfosUD1sZq0RFT51FvBnK0k5gXe8+I/Y788LzvuvMjTpaVQbv1D0ecpUrpGEEu5in38vSYcPTqIazQ89svWQv/eifdy/QN3roL1OdtF/ZOn/6Zj+xQJtudLReaJ+oww2mcU9CzxRPrOjMQOyV+OPhvjhcz5NHi2YxdjZPphfEZQAcYS7MaQ4wh0CyE3QHfCo0s+fQuVw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB6019.namprd11.prod.outlook.com (2603:10b6:8:60::5) by
+ SJ0PR11MB6622.namprd11.prod.outlook.com (2603:10b6:a03:478::6) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5924.16; Wed, 21 Dec 2022 09:28:00 +0000
+Received: from DM4PR11MB6019.namprd11.prod.outlook.com
+ ([fe80::1a7c:e221:1ca2:f43]) by DM4PR11MB6019.namprd11.prod.outlook.com
+ ([fe80::1a7c:e221:1ca2:f43%8]) with mapi id 15.20.5924.016; Wed, 21 Dec 2022
+ 09:28:00 +0000
+From: "Hogander, Jouni" <jouni.hogander@intel.com>
+To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/fbdev: Implement fb_dirty for intel
+ custom fb helper
+Thread-Index: AQHZA/Azr6e9Mfmq0UuOMKQXzOlaVK53L/MAgAABdACAAQPAgA==
+Date: Wed, 21 Dec 2022 09:28:00 +0000
+Message-ID: <f0ccd8fc4ac380dd89d7e0bd4cad1dd1a3a918f3.camel@intel.com>
+References: <20221129124302.291759-1-jouni.hogander@intel.com>
+ <Y6H2gmQJRmCCP1gG@intel.com> <Y6H3ugZOxZzroO6Q@intel.com>
+In-Reply-To: <Y6H3ugZOxZzroO6Q@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-In-Reply-To: <619bdecc-cf87-60a4-f50d-836f4c073ea7@alu.unizg.hr>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 21 Dec 2022 20:19:41 +0000
-Subject: Re: [Intel-gfx] Possible regression in drm/i915 driver: memleak
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB6019:EE_|SJ0PR11MB6622:EE_
+x-ms-office365-filtering-correlation-id: c337bd41-9ccf-4be7-36cf-08dae335a72c
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: NhXDmh6WbOIlGf9+r51WGfaaM0memv045LYrJnXX93i+EVfBFbcxNp/jGKNs1lLlb6wfYmnZPXJyFZhDIn7oboOzfqyLi+Y+vc12jW9KHyVHGn4o+Sx6/zhlM9ZA9OpvHZaGlgSIv+sscA36R9JKu36xNyhxsAAYpcibTN1kNd+poZ3u2rNAXW2TFiLFkm+RMZvjVOcJrndrm1MP5Gs2s1BpsUq4bkjM3T3kLzB7F9w4h/xeUYTykF1uI3D+12ET9cnAN72weRVSShv6L7flqJj2p36t5eTAwaxYAeGZZjNLfS6CFw4fVaiUwcoyAr096Zm7vu7oF/xw9QjH7z5erPW6Ya8vp10+OaD5hfT0alOYlFAFPIg4XrnACpuB1q+4zWaKYC1Isr0WI7fVVxcPgcrJxsCwbw5lEmz4xnOhQ6WOQo202p293e+v72z4SC6T55/P+uKtIsMPAMCrBLIEFM7ALrir1q4deZ97txEwVCu61x/5Sxwwlkj/AIv5+5TLdwbZDB+S6d3CjfFL1QPkDoyaoDAmF1wDC5At3YWoZxmkuRQ5TtZfxENm2E33U6/HuLCq4wrF/XeXIgq52J6ZKxri3WrlbO06Y0iBPP4FA0Tns89t2L7JMdAxu4GhLOpZ0OwTTfeBK9+oWsA49/W/m1MYKiKkZ+eSiQMvoGsc6+T0qmouZl+V7RYXFnllTUDsm0tJEbYfmQzp+zKSS2nmhRzFbXGxbGe7JGKZYJxya8s=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB6019.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(366004)(396003)(376002)(39860400002)(136003)(346002)(451199015)(66574015)(8936002)(5660300002)(83380400001)(186003)(41300700001)(6512007)(26005)(4001150100001)(2906002)(316002)(6486002)(82960400001)(478600001)(38070700005)(6916009)(6506007)(54906003)(86362001)(36756003)(4326008)(91956017)(2616005)(76116006)(64756008)(71200400001)(66946007)(66556008)(66446008)(8676002)(38100700002)(66476007)(122000001)(14143004);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?cEJwVExwaUtpeEIxTVZjMTN3WDQ5cEZRNnM5NTkzMmYzZUd1cUcxK0I5SnJW?=
+ =?utf-8?B?V3BYMTk0RUhWOFM0VVNnYnlZeXhnT3cvM3FEcmxYTW9JcmcvSE1OL1JVdGRk?=
+ =?utf-8?B?eWYvdk1xU09wZGUvVGFQc1RGaHVMcmhOb1QwVWRvekJubDZJL0E4enFOa08y?=
+ =?utf-8?B?eUhoVW5adm1PL0I1L2Fuc1Rta2djSUU5R0dEMHdzNkNIbkdGUE1uV3dOMWtW?=
+ =?utf-8?B?TlRqQVZDVUhQVCtONHhPOVhGSTNQRTZuQUJYRlZuSlU2d29reUZGU0dRUWF6?=
+ =?utf-8?B?SlNBS0pBMVdBY1lEWGVqQy9jUE1MUWFqU3hPTVd0djNKVmdvbThaV3JsQUZ5?=
+ =?utf-8?B?dE96VmxTbUJYV280MjNqbXcxc09TR1dLQkJiWlRKT0RSVTk2NkRRVU1jMzBh?=
+ =?utf-8?B?QlYzNHF0bVJOR0RSVHB4K1hhUDMwdVN0MHhQYnFxZm9NNk1rVW9pdGRIdGRJ?=
+ =?utf-8?B?UmVudmRueCtIOXI4QzY1VEVzUTNPTHl1dUlXUnBDV3BMdXhFN1NiTDdmdHVn?=
+ =?utf-8?B?MlBUSjNyeXl2K3J5SWJaRmxlYVovRnYwUE05RWRBa3VhL1FVZlJMWHZZbXJ5?=
+ =?utf-8?B?RTRwSURGa3BnNmgwNVhWQm03d0Z2VXlMYmNYOXpSV09obVg3Q25qS0xhMDYw?=
+ =?utf-8?B?bnlUZU4rd0R4QUludUM3MHJlTTlFemM0VEhBcjBIQWl0dGxBMmh2Q2taZFdF?=
+ =?utf-8?B?RGdjY3Fldml5elBpZVZXMVErNWliMHhVWVQvN25nc1hWdVhuYmVwTVA1WTVx?=
+ =?utf-8?B?ZHpvUHlwN1dyUWYwY1JhN1RFeFg5eDRJZ1gwdmFvS0F2cGo0cHR6cXlnQ3Ni?=
+ =?utf-8?B?TXJDUCtZMzdzdWZqbC9mRVRjUTg1MW13SFdueGV0cGdEVHhKRHphTlJiVEZC?=
+ =?utf-8?B?SDBPSlJLeXUySUQzMmZ3cnlRbEdhZTUzUHdtM1ArQ2Z5dUdmVnhxZWt6UmhE?=
+ =?utf-8?B?bExVV1N4VFN5K01wUTdGSm9OK1N2SHp3ZjRiSmNMZ1l2YTRRZitDekRHUUcw?=
+ =?utf-8?B?Z25ySDl0VjEvMHZ2WHVYK2x2RlZpaEd4UUROTnU1d3ZFZmxNRjRYcG5tZzV2?=
+ =?utf-8?B?MmEyZGZ0N0dTVHVlUTJIclVjTWZ3TTAxYVFHRzdSb3pMaHF5WUdIbitMNlNG?=
+ =?utf-8?B?ZmNjTDZtVFd6NHkxanRSNkxPMnR3dlUvaWxIaXA1SWticUVwSFkzZm92L204?=
+ =?utf-8?B?U1hKNW9wMDUwRGZhRzh3V0h1Yy8wc2F6aE1XRXpCcjBld09LeVJkNHFleCtk?=
+ =?utf-8?B?NkZFeE51eTg5ZDA4YnRhdCtvL2dmb1ByUXl1eDJvTElGWHhuaVJPYnl4L25a?=
+ =?utf-8?B?eUJUaG1BOXhleG15ZmpQSUU5SzdraGtxM21hNDBBejBVYkdwMXdUVGVOYnZB?=
+ =?utf-8?B?MkhCNFJ3MUZYQ3loUFpTeERUdG9BZFV2SldoQnlmOVJ5bUgxMi9KR21yeTlv?=
+ =?utf-8?B?R2ZSbUxBU09FZ2o2SmNHWDJYY0FwRC8xOWtxWFFRc3RITW5Za0ZJaExqdDc1?=
+ =?utf-8?B?dTF5L2lRSmYzWDlESzBldGpYaS9STnlmbkxWYUxHSXBkNmRXYzl6aVRldW1r?=
+ =?utf-8?B?YXJMSFJFSE1LK0dWdGxqWWIycmxWbEJEdVpuRGtNMFNCak5jODhHQUJGU2Vt?=
+ =?utf-8?B?cWU5TmRlQnc3S0NKUU43NnluVElCQ1lMdFd5L3hTSUJFZTlKSHBsanpmMEhQ?=
+ =?utf-8?B?WlNzZjFSUnM3bjd0U3VhbmREZ0grQ2l1KzhUWjBDTnV3VlM5UjVIRk42RmZB?=
+ =?utf-8?B?RGtCa0d1WGZuYmI0d2JPbVFsdlJoMXNSQWh5Rk1USlI1Mm05WmhVVTUrc1c0?=
+ =?utf-8?B?V0dZMUF3UlM4aFhuS1cydEZrVDlpN0dETk5IL3ZMcEZvRE5pcWkrWXFjWTQ3?=
+ =?utf-8?B?b3owUUxRbHZvQjNJRkJBWWp1c0ZUK1N5SllJOWVhWEIvN1Z3OTRnM3g0SHZt?=
+ =?utf-8?B?djJmUXg3TG9VaUlVeHlOT1FuNXhOaDZJUW1FUHQ1UHp0cnRvZXhMZFpOdElo?=
+ =?utf-8?B?YTV1YnIrK1JSYmlUVkZ5UjQvNk1FK1pDdDhKWUN0QXVmV3NSdTNaZ3NGV2ho?=
+ =?utf-8?B?TUxiQXNNYmp1Q2NoQWRzVS9WYVVGN2hSc09vWDV1WXcxRjRWTUNyTWN1bDBI?=
+ =?utf-8?B?OHdNQjhJTDNXd001MVRGeldZK3FGV3ArUjBKTUl5dHJ6TEZxblhpaFEyN1Iy?=
+ =?utf-8?B?bUE9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <00B8A28ED1DDFF44B4976C629C053E0B@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6019.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c337bd41-9ccf-4be7-36cf-08dae335a72c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Dec 2022 09:28:00.3654 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 0wEmll262EaeVmKSaml1p5EfkeE7x1942S1O0rkVFCbucKTn+EfekRbbA4mDibg8Eb+wDdZ5plX8VkDVcjZ9qQCLzyfkY6HYcJpGIbyQZqI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB6622
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/fbdev: Implement fb_dirty for
+ intel custom fb helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,158 +163,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Thorsten Leemhuis <regressions@leemhuis.info>
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 20.12.2022. 20:34, Mirsad Todorovac wrote:
-> On 12/20/22 16:52, Tvrtko Ursulin wrote:
->
->> On 20/12/2022 15:22, srinivas pandruvada wrote:
->>> +Added DRM mailing list and maintainers
->>>
->>> On Tue, 2022-12-20 at 15:33 +0100, Mirsad Todorovac wrote:
->>>> Hi all,
->>>>
->>>> I have been unsuccessful to find any particular Intel i915 maintainer
->>>> emails, so my best bet is to post here, as you will must assuredly
->>>> already know them.
->>
->> For future reference you can use 
->> ${kernel_dir}/scripts/get_maintainer.pl -f ...
->>
->>>> The problem is a kernel memory leak that is repeatedly occurring
->>>> triggered during the execution of Chrome browser under the latest
->>>> 6.1.0+
->>>> kernel of this morning and Almalinux 8.6 on a Lenovo desktop box
->>>> with Intel(R) Core(TM) i5-8400 CPU @ 2.80GHz CPU.
->>>>
->>>> The build is with KMEMLEAK, KASAN and MGLRU turned on during the
->>>> build,
->>>> on a vanilla mainline kernel from Mr. Torvalds' tree.
->>>>
->>>> The leaks look like this one:
->>>>
->>>> unreferenced object 0xffff888131754880 (size 64):
->>>>     comm "chrome", pid 13058, jiffies 4298568878 (age 3708.084s)
->>>>     hex dump (first 32 bytes):
->>>>       01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
->>>> ................
->>>>       00 00 00 00 00 00 00 00 00 80 1e 3e 83 88 ff ff
->>>> ...........>....
->>>>     backtrace:
->>>>       [<ffffffff9e9b5542>] slab_post_alloc_hook+0xb2/0x340
->>>>       [<ffffffff9e9bbf5f>] __kmem_cache_alloc_node+0x1bf/0x2c0
->>>>       [<ffffffff9e8f767a>] kmalloc_trace+0x2a/0xb0
->>>>       [<ffffffffc08dfde5>] drm_vma_node_allow+0x45/0x150 [drm]
->>>>       [<ffffffffc0b33315>] __assign_mmap_offset_handle+0x615/0x820
->>>> [i915]
->>>>       [<ffffffffc0b34057>] i915_gem_mmap_offset_ioctl+0x77/0x110
->>>> [i915]
->>>>       [<ffffffffc08bc5e1>] drm_ioctl_kernel+0x181/0x280 [drm]
->>>>       [<ffffffffc08bc9cd>] drm_ioctl+0x2dd/0x6a0 [drm]
->>>>       [<ffffffff9ea54744>] __x64_sys_ioctl+0xc4/0x100
->>>>       [<ffffffff9fbc0178>] do_syscall_64+0x58/0x80
->>>>       [<ffffffff9fc000aa>] entry_SYSCALL_64_after_hwframe+0x72/0xdc
->>>>
->>>> The complete list of leaks in attachment, but they seem similar or
->>>> the same.
->>>>
->>>> Please find attached lshw and kernel build config file.
->>>>
->>>> I will probably check the same parms on my laptop at home, which is
->>>> also
->>>> Lenovo, but a different hw config and Ubuntu 22.10.
->>
->> Could you try the below patch?
->>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c 
->> b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
->> index c3ea243d414d..0b07534c203a 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
->> @@ -679,9 +679,10 @@ mmap_offset_attach(struct drm_i915_gem_object *obj,
->>   insert:
->>          mmo = insert_mmo(obj, mmo);
->>          GEM_BUG_ON(lookup_mmo(obj, mmap_type) != mmo);
->> -out:
->> +
->>          if (file)
->>                  drm_vma_node_allow(&mmo->vma_node, file);
->> +out:
->>          return mmo;
->>
->>   err:
->>
->> Maybe it is not the best fix but curious to know if it will make the 
->> leak go away.
->
-> Hi,
->
-> After 27 minutes uptime with the patched kernel it looks promising.
-> It is much longer than it took for the buggy kernel to leak slabs.
->
-> Here is the output:
->
-> [root@pc-mtodorov marvin]# echo scan > /sys/kernel/debug/kmemleak
-> [root@pc-mtodorov marvin]# cat !$
-> cat /sys/kernel/debug/kmemleak
-> unreferenced object 0xffff888105028d80 (size 16):
->   comm "kworker/u12:5", pid 359, jiffies 4294902898 (age 1620.144s)
->   hex dump (first 16 bytes):
->     6d 65 6d 73 74 69 63 6b 30 00 00 00 00 00 00 00 memstick0.......
->   backtrace:
->     [<ffffffffb6bb5542>] slab_post_alloc_hook+0xb2/0x340
->     [<ffffffffb6bbbf5f>] __kmem_cache_alloc_node+0x1bf/0x2c0
->     [<ffffffffb6af8175>] __kmalloc_node_track_caller+0x55/0x160
->     [<ffffffffb6ae34a6>] kstrdup+0x36/0x60
->     [<ffffffffb6ae3508>] kstrdup_const+0x28/0x30
->     [<ffffffffb70d0757>] kvasprintf_const+0x97/0xd0
->     [<ffffffffb7c9cdf4>] kobject_set_name_vargs+0x34/0xc0
->     [<ffffffffb750289b>] dev_set_name+0x9b/0xd0
->     [<ffffffffc12d9201>] memstick_check+0x181/0x639 [memstick]
->     [<ffffffffb676e1d6>] process_one_work+0x4e6/0x7e0
->     [<ffffffffb676e556>] worker_thread+0x76/0x770
->     [<ffffffffb677b468>] kthread+0x168/0x1a0
->     [<ffffffffb6604c99>] ret_from_fork+0x29/0x50
-> [root@pc-mtodorov marvin]# w
->  20:27:35 up 27 min,  2 users,  load average: 0.83, 1.15, 1.19
-> USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
-> marvin   tty2     tty2             20:01   27:10  10:12   2.09s 
-> /opt/google/chrome/chrome --type=utility --utility-sub-type=audio.m
-> marvin   pts/1    -                20:01    0.00s  2:00   0.38s sudo bash
-> [root@pc-mtodorov marvin]# uname -rms
-> Linux 6.1.0-b6bb9676f216-mglru-kmemlk-kasan+ x86_64
-> [root@pc-mtodorov marvin]#
->
-> 2. On the Ubuntu 22.10 with Debian build I did not reproduce the error 
-> thus far.
->
-> This looks to me like fixed, but if it doesn't leak anything until 
-> Thursday morning when I will see this desktop box next time, then 
-> we'll know with more certainty. 
-
-After an inspection in the morning local time and 12:10h uptime, it 
-appears that the problem is fixed. No chrome-triggered 
-i915_gem_mmap_offset_ioctl leaks.
-
-By this uptime, there were about 30 instances of leaks in the unpatched 
-kernel.
-
-Congratulations!
-
-Kind regards,
-Mirsad
-
--- 
-Mirsad Todorovac
-System engineer
-Faculty of Graphic Arts | Academy of Fine Arts
-University of Zagreb
-Republic of Croatia, the European Union
---
-Sistem inženjer
-Grafički fakultet | Akademija likovnih umjetnosti
-Sveučilište u Zagrebu
-
+T24gVHVlLCAyMDIyLTEyLTIwIGF0IDE5OjU4ICswMjAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
+DQo+IE9uIFR1ZSwgRGVjIDIwLCAyMDIyIGF0IDA3OjUzOjA2UE0gKzAyMDAsIFZpbGxlIFN5cmrD
+pGzDpCB3cm90ZToNCj4gPiBPbiBUdWUsIE5vdiAyOSwgMjAyMiBhdCAwMjo0MzowMlBNICswMjAw
+LCBKb3VuaSBIw7ZnYW5kZXIgd3JvdGU6DQo+ID4gPiBBZnRlciBzcGxpdHRpbmcgZ2VuZXJpYyBk
+cm1fZmJfaGVscGVyIGludG8gaXQncyBvd24gZmlsZSBpdCdzDQo+ID4gPiBsZWZ0IHRvDQo+ID4g
+PiBoZWxwZXIgaW1wbGVtZW50YXRpb24gdG8gaGF2ZSBmYl9kaXJ0eSBmdW5jdGlvbi4gQ3VycmVu
+dGx5IGludGVsDQo+ID4gPiBmYiBkb2Vzbid0IGhhdmUgaXQuIFRoaXMgaXMgY2F1c2luZyBwcm9i
+bGVtcyB3aGVuIFBTUiBpcyBlbmFibGVkLg0KPiA+ID4gDQo+ID4gPiBJbXBsZW1lbnQgc2ltcGxl
+IGZiX2RpcnR5IGNhbGxiYWNrIHRvIGRlbGl2ZXIgbm90aWZpY2F0aW9ucyB0bw0KPiA+ID4gcHNy
+DQo+ID4gPiBhYm91dCB1cGRhdGVzIGluIGZiIGNvbnNvbGUuDQo+ID4gDQo+ID4gSnVzdCBmb3Vu
+ZCB0aGlzIHJlZ3Jlc3Npb24gbXlzZWxmIGFmdGVyIGJlaW5nIGJhZmZsZWQgd2h5IHRoZQ0KPiA+
+IHZ0IGNvbnNvbGUgd2FzIGlub3BlcmFibGUgcmlnaHQgYWZ0ZXIgdGhlIGRyaXZlciBnZXRzIGxv
+YWRlZC4NCj4gPiANCj4gPiBJdCdzIGFsc28gbm90IGp1c3QgcHNyLCBidXQgYWxzbyBmYmMgdGhh
+dCBpcyBoYXZpbmcgaXNzdWVzLg0KPiA+IA0KPiA+IE5lZWRzIGEgZml4ZXMgKyBjYzpzdGFibGUg
+dGFncy4NCj4gDQo+IEFjdHVhbGx5IGxvb2tzIGxpa2UgaXQgZGlkbid0IG1ha2UgaXQgaW50byA2
+LjEgc28gSSBndWVzcw0KPiBubyBjYzpzdGFibGUgbmVlZGVkLg0KDQpBZGRlZCBGaXhlcyB0YWcu
+DQoNCj4gDQo+ID4gDQo+ID4gPiANCj4gPiA+IENjOiBUaG9tYXMgWmltbWVybWFubiA8dHppbW1l
+cm1hbm5Ac3VzZS5kZT4NCj4gPiA+IENjOiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwu
+Y29tPg0KPiA+ID4gU2lnbmVkLW9mZi1ieTogSm91bmkgSMO2Z2FuZGVyIDxqb3VuaS5ob2dhbmRl
+ckBpbnRlbC5jb20+DQo+ID4gPiAtLS0NCj4gPiA+IMKgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
+cGxheS9pbnRlbF9mYmRldi5jIHwgOSArKysrKysrKysNCj4gPiA+IMKgMSBmaWxlIGNoYW5nZWQs
+IDkgaW5zZXJ0aW9ucygrKQ0KPiA+ID4gDQo+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmRldi5jDQo+ID4gPiBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfZmJkZXYuYw0KPiA+ID4gaW5kZXggNTU3NWQ3YWJkYzA5Li43Yzdm
+YmEzZmU2OWUgMTAwNjQ0DQo+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX2ZiZGV2LmMNCj4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfZmJkZXYuYw0KPiA+ID4gQEAgLTMyOCw4ICszMjgsMTcgQEAgc3RhdGljIGludCBpbnRl
+bGZiX2NyZWF0ZShzdHJ1Y3QNCj4gPiA+IGRybV9mYl9oZWxwZXIgKmhlbHBlciwNCj4gPiA+IMKg
+wqDCoMKgwqDCoMKgwqByZXR1cm4gcmV0Ow0KPiA+ID4gwqB9DQo+ID4gPiDCoA0KPiA+ID4gK3N0
+YXRpYyBpbnQgaW50ZWxmYl9kaXJ0eShzdHJ1Y3QgZHJtX2ZiX2hlbHBlciAqaGVscGVyLCBzdHJ1
+Y3QNCj4gPiA+IGRybV9jbGlwX3JlY3QgKmNsaXApDQo+ID4gPiArew0KPiA+IA0KPiA+IFRoZSBv
+cmlnaW5hbCB0aGluZyBoYWQgc29tZSBraW5kIG9mICJpcyB0aGlzIHJlY3QgYWN0dWFsbHkNCj4g
+PiB2aXNpYmxlPyINCj4gPiBjaGVjayBoZXJlLiBEb2VzIGFueW9uZSBrbm93IHdoeSBpdCB3YXMg
+dGhlcmUsIGFuZCBpZiBzbyBtYXliZSBpdA0KPiA+IHNob3VsZA0KPiA+IGdvIGJhY2sgdG8gdGhl
+IGhpZ2hlciBsZXZlbCBmdW5jdGlvbiBzbyBldmVyeW9uZSBkb2Vucyd0IG5lZWQgdG8NCj4gPiBh
+ZGQgaXQNCj4gPiBiYWNrIGluPw0KDQpJJ2xsIGd1ZXNzIHlvdSBtZWFuIHRoaXMgb25lID86DQoN
+Ci8vIHNuaXANCiAgICAgICAvKiBDYWxsIGRhbWFnZSBoYW5kbGVycyBvbmx5IGlmIG5lY2Vzc2Fy
+eSAqLw0KICAgICAgIGlmICghKGNsaXAtPngxIDwgY2xpcC0+eDIgJiYgY2xpcC0+eTEgPCBjbGlw
+LT55MikpDQogICAgICAgICAgICAgICByZXR1cm4gMDsNCi8vIHNuaXANCg0KSSB3aWxsIGNyZWF0
+ZSBzZXBhcmF0ZSBwYXRjaCBmb3IgdGhpcy4NCg0KPiA+IA0KPiA+ID4gK8KgwqDCoMKgwqDCoMKg
+aWYgKGhlbHBlci0+ZmItPmZ1bmNzLT5kaXJ0eSkNCj4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqByZXR1cm4gaGVscGVyLT5mYi0+ZnVuY3MtPmRpcnR5KGhlbHBlci0+ZmIsIE5V
+TEwsDQo+ID4gPiAwLCAwLCBjbGlwLCAxKTsNCj4gPiA+ICsNCj4gPiA+ICvCoMKgwqDCoMKgwqDC
+oHJldHVybiAwOw0KPiA+ID4gK30NCj4gPiA+ICsNCj4gPiA+IMKgc3RhdGljIGNvbnN0IHN0cnVj
+dCBkcm1fZmJfaGVscGVyX2Z1bmNzIGludGVsX2ZiX2hlbHBlcl9mdW5jcyA9DQo+ID4gPiB7DQo+
+ID4gPiDCoMKgwqDCoMKgwqDCoMKgLmZiX3Byb2JlID0gaW50ZWxmYl9jcmVhdGUsDQo+ID4gPiAr
+wqDCoMKgwqDCoMKgwqAuZmJfZGlydHkgPSBpbnRlbGZiX2RpcnR5LA0KPiA+ID4gwqB9Ow0KPiA+
+ID4gwqANCj4gPiA+IMKgc3RhdGljIHZvaWQgaW50ZWxfZmJkZXZfZGVzdHJveShzdHJ1Y3QgaW50
+ZWxfZmJkZXYgKmlmYmRldikNCj4gPiA+IC0tIA0KPiA+ID4gMi4zNC4xDQo+ID4gDQo+ID4gLS0g
+DQo+ID4gVmlsbGUgU3lyasOkbMOkDQo+ID4gSW50ZWwNCj4gDQoNCkJSLA0KDQpKb3VuaSBIw7Zn
+YW5kZXINCg==
