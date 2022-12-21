@@ -2,56 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46A8265331A
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Dec 2022 16:22:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DF0E653391
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Dec 2022 16:40:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C659610E45E;
-	Wed, 21 Dec 2022 15:22:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D044910E125;
+	Wed, 21 Dec 2022 15:39:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B98010E45E
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Dec 2022 15:22:41 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACF7F10E125
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Dec 2022 15:39:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671636161; x=1703172161;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=ZVTmLlQph5X4EOyCXC2N6aar3VHzsC28Z7BYczdmW+s=;
- b=RWpjM1KWVThFx3riUtCEMXiVQFAZ43GB/cibNg3QpWhG3FKR/sFHzPSJ
- Px564O7jJHXdQeKuBhX2uV78va+G38r/VRNTIZ9OkH0H3ySGkYMxqOYxe
- f70MloxJDKUAXF9h3t9A2LLyphBV3nUJYU6KUbR+GgVPfRGnwt3rh4m4b
- jQ/1WXEgKL4qA9f8Cph4fPtJ5XEZ74cxnsCw60hy7F4EpVZabGMIGYB5h
- vPqSlSgfklKcD+3p9AgZKMebXkRQ7uh4sE03w0IDS2IVLPo8k1lEhJAx/
- KFKXWbaQM6KLDSwjagFuwp38yjy71QlvXGAGOj79/BKJT1thMvZrK4j38 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="319945478"
-X-IronPort-AV: E=Sophos;i="5.96,262,1665471600"; d="scan'208";a="319945478"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2022 07:22:40 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="758553313"
-X-IronPort-AV: E=Sophos;i="5.96,262,1665471600"; d="scan'208";a="758553313"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga002.fm.intel.com with SMTP; 21 Dec 2022 07:22:38 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 21 Dec 2022 17:22:37 +0200
-Date: Wed, 21 Dec 2022 17:22:37 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <Y6MkvVJ1ZLnhaXBi@intel.com>
-References: <20221129124302.291759-1-jouni.hogander@intel.com>
- <287763d0-a708-efa2-f84e-bf50d4a58d64@suse.de>
- <Y6MdhrwVjkzGx6z5@intel.com>
- <4e929234-8a88-4d81-7b4b-19d4d5e52b44@suse.de>
+ t=1671637191; x=1703173191;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ne81+rZv8RPuLpIvrNQ2EmuPxtHlPm0WBNsQXlttLsU=;
+ b=lmwm/TpkSw8+LdzGRj/TuqkNfqyLIABiZPMDj3IWS6dFwepF44IbvP5D
+ I89HPQJ7NPZD6HHpLWqIeKElwclNApkcpNzPx60nC2Ug1Drj30mxwcVzH
+ SL0sMFB+QTu+B9fAMRPDnavY8lsTKefsJL0Dpid47OUJ4RCGUINpJK8hv
+ zWpEaBiM4MW8czXlAc9OQb/RWao1nqe1zTXdJwFguUJmEoOzoH+4wQTpM
+ 94vJVjI7ssOHerrW3CS6XC4D/BmnI2zzikELHQjCPOPvV+Ipx84lAhnmX
+ g0aiebvhpG9j5yEWbN2km6dH2kgwoRgQayF2Xxyfyu78wPOfe13wskpmg g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="299576465"
+X-IronPort-AV: E=Sophos;i="5.96,262,1665471600"; d="scan'208";a="299576465"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Dec 2022 07:39:50 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="644879797"
+X-IronPort-AV: E=Sophos;i="5.96,262,1665471600"; d="scan'208";a="644879797"
+Received: from dut-internal-9dd7.jf.intel.com ([10.24.14.53])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Dec 2022 07:39:49 -0800
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 21 Dec 2022 07:35:14 -0800
+Message-Id: <20221221153514.3874262-1-jonathan.cavitt@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <4e929234-8a88-4d81-7b4b-19d4d5e52b44@suse.de>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/fbdev: Implement fb_dirty for
- intel custom fb helper
+Subject: [Intel-gfx] [PATCH] drm/i915: Enable XE_HP 4Tile support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,47 +54,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: jonathan.cavitt@intel.com,
+ Telukuntla Sreedhar <sreedhar.telukuntla@intel.com>,
+ Bommu Krishnaiah <krishnaiah.bommu@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 21, 2022 at 04:08:13PM +0100, Thomas Zimmermann wrote:
-> Hi
-> 
-> Am 21.12.22 um 15:51 schrieb Ville Syrjälä:
-> > On Wed, Dec 21, 2022 at 11:49:59AM +0100, Thomas Zimmermann wrote:
-> >> Hi
-> >>
-> >> Am 29.11.22 um 13:43 schrieb Jouni Högander:
-> >>> After splitting generic drm_fb_helper into it's own file it's left to
-> >>> helper implementation to have fb_dirty function. Currently intel
-> >>> fb doesn't have it. This is causing problems when PSR is enabled.
-> >>>
-> >>> Implement simple fb_dirty callback to deliver notifications to psr
-> >>> about updates in fb console.
-> >>
-> >> I'm a bit confused about i915's use of fb_dirty here. How is this
-> >> supposed to interact with mmap?  i915 doesn't use deferred I/O so fbdev
-> >> mmap will never call fb_dirty if userspace writes to mmap'ed pages. Is
-> >> this only required for the kernel's graphics console?
-> > 
-> > It's required for everything. mmap is presumably borked for
-> > the cases where we can't use any hw based damage tracking.
-> 
-> In this case, it would make sense to implement the update with fb_dirty 
-> (instead of the fb_ops I mentioned).
-> 
-> For mmap you can use fbdev's deferred I/O. There's 
-> drm_fb_helper_deferrer_io() that tracks mmaped pages and regularly calls 
-> fb_dirty to let the driver do an update.
+Add .has_4tile tag to XE_HP_FEATURES set.
+Remove duplicate entry from DG2_FEATURES.
 
-Not sure we want the extra defio overhead for a feature
-no one is likely to ever need.
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
+Cc: Roper Matthew D <matthew.d.roper@intel.com>
+Cc: Kempczynski Zbigniew <Zbigniew.Kempczynski@intel.com>
+Cc: Telukuntla Sreedhar <sreedhar.telukuntla@intel.com>
+Acked-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/i915/i915_pci.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-If we actually cared about any of this we could perhaps
-just hook into .fb_mmap() and turn off any stuff that
-needs software dirty tracking while the buffer is mapped.
-
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index 668e9da52584..7fd74cc28c0a 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -1017,6 +1017,7 @@ static const struct intel_device_info adl_p_info = {
+ 	.has_3d_pipeline = 1, \
+ 	.has_64bit_reloc = 1, \
+ 	.has_flat_ccs = 1, \
++	.has_4tile = 1, \
+ 	.has_global_mocs = 1, \
+ 	.has_gt_uc = 1, \
+ 	.has_llc = 1, \
+@@ -1061,7 +1062,6 @@ static const struct intel_device_info xehpsdv_info = {
+ 	.__runtime.graphics.ip.rel = 55, \
+ 	.__runtime.media.ip.rel = 55, \
+ 	PLATFORM(INTEL_DG2), \
+-	.has_4tile = 1, \
+ 	.has_64k_pages = 1, \
+ 	.has_guc_deprivilege = 1, \
+ 	.has_heci_pxp = 1, \
 -- 
-Ville Syrjälä
-Intel
+2.25.1
+
