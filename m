@@ -2,32 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1162C6533B8
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Dec 2022 16:56:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB4176533BD
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Dec 2022 17:01:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7879410E133;
-	Wed, 21 Dec 2022 15:56:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5149E10E467;
+	Wed, 21 Dec 2022 16:00:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 180B510E133;
- Wed, 21 Dec 2022 15:56:10 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 03F9BA00E8;
- Wed, 21 Dec 2022 15:56:10 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6637919697928305547=="
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFFC910E133;
+ Wed, 21 Dec 2022 16:00:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1671638450; x=1703174450;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=utpaUq3NLdj/cYD0oA6quQYipPzQpqxc4zZ/vzw35bY=;
+ b=lZJiYwoPvBxJyXFdJwNitCe1Cp7/XW9LTy5p9Rf/wwBSNz5apuhN/ED3
+ cfXg3pqadbGsJaXdHdfKnRLh9oJLz6iMa6nFw/L88WKYVks1uwzcqX/IX
+ uipdx5LDvywUm60WgsEQGUIe9CZGdeGT4dtvfbo0Rd/+zALOC2r2ovht9
+ lOg4lCSNgdm/gPrDD1/3aT2EcPcgTV+tTNkMfFUBXkR2+7ZmTC/louc0t
+ uMVO8r4BtB/8Tlu0B3LZX9DyWkcqHi0OAfPnbWYOKXSnSruTKAVoC5y/S
+ Hb87VDD5Mcgs+POgE5IdTdIIjStyLNj6GiNgLkwFOUAlpA/LTvbpmJfKu w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="303332506"
+X-IronPort-AV: E=Sophos;i="5.96,262,1665471600"; d="scan'208";a="303332506"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Dec 2022 07:59:59 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10567"; a="644886198"
+X-IronPort-AV: E=Sophos;i="5.96,262,1665471600"; d="scan'208";a="644886198"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.249.40.127])
+ ([10.249.40.127])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Dec 2022 07:59:57 -0800
+Message-ID: <a95ad257-085b-a7d8-16fb-233b23192b10@linux.intel.com>
+Date: Wed, 21 Dec 2022 17:59:54 +0200
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andrzej Hajda" <andrzej.hajda@intel.com>
-Date: Wed, 21 Dec 2022 15:56:10 -0000
-Message-ID: <167163817000.32312.2740124416851690243@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221219130844.2914001-1-andrzej.hajda@intel.com>
-In-Reply-To: <20221219130844.2914001-1-andrzej.hajda@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/display/dsi=3A_use_intel=5Fde=5Frmw_if_possible?=
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Content-Language: en-US
+To: Matthew Auld <matthew.auld@intel.com>, igt-dev@lists.freedesktop.org
+References: <20221220104625.147654-1-matthew.auld@intel.com>
+From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
+In-Reply-To: <20221220104625.147654-1-matthew.auld@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t v3] tests/i915/gem_ppgtt:
+ verify GTT eviction with contended locks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,192 +61,197 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Mani Milani <mani@chromium.org>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6637919697928305547==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
-
-Series: drm/i915/display/dsi: use intel_de_rmw if possible
-URL   : https://patchwork.freedesktop.org/series/112062/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_12517_full -> Patchwork_112062v1_full
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112062v1/index.html
-
-Participating hosts (14 -> 9)
-------------------------------
-
-  Missing    (5): pig-kbl-iris shard-tglu-9 pig-glk-j5005 pig-skl-6260u shard-rkl 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_112062v1_full that come from known issues:
-
-### IGT changes ###
-
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109274]: https://bugs.freedesktop.org/show_bug.cgi?id=109274
-  [fdo#109279]: https://bugs.freedesktop.org/show_bug.cgi?id=109279
-  [fdo#109280]: https://bugs.freedesktop.org/show_bug.cgi?id=109280
-  [fdo#109289]: https://bugs.freedesktop.org/show_bug.cgi?id=109289
-  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
-  [fdo#109302]: https://bugs.freedesktop.org/show_bug.cgi?id=109302
-  [fdo#109307]: https://bugs.freedesktop.org/show_bug.cgi?id=109307
-  [fdo#109309]: https://bugs.freedesktop.org/show_bug.cgi?id=109309
-  [fdo#109313]: https://bugs.freedesktop.org/show_bug.cgi?id=109313
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#109506]: https://bugs.freedesktop.org/show_bug.cgi?id=109506
-  [fdo#109642]: https://bugs.freedesktop.org/show_bug.cgi?id=109642
-  [fdo#110189]: https://bugs.freedesktop.org/show_bug.cgi?id=110189
-  [fdo#111068]: https://bugs.freedesktop.org/show_bug.cgi?id=111068
-  [fdo#111614]: https://bugs.freedesktop.org/show_bug.cgi?id=111614
-  [fdo#111615]: https://bugs.freedesktop.org/show_bug.cgi?id=111615
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [fdo#112054]: https://bugs.freedesktop.org/show_bug.cgi?id=112054
-  [i915#1769]: https://gitlab.freedesktop.org/drm/intel/issues/1769
-  [i915#1839]: https://gitlab.freedesktop.org/drm/intel/issues/1839
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2437]: https://gitlab.freedesktop.org/drm/intel/issues/2437
-  [i915#2527]: https://gitlab.freedesktop.org/drm/intel/issues/2527
-  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#2587]: https://gitlab.freedesktop.org/drm/intel/issues/2587
-  [i915#2658]: https://gitlab.freedesktop.org/drm/intel/issues/2658
-  [i915#2672]: https://gitlab.freedesktop.org/drm/intel/issues/2672
-  [i915#2681]: https://gitlab.freedesktop.org/drm/intel/issues/2681
-  [i915#2705]: https://gitlab.freedesktop.org/drm/intel/issues/2705
-  [i915#2842]: https://gitlab.freedesktop.org/drm/intel/issues/2842
-  [i915#2856]: https://gitlab.freedesktop.org/drm/intel/issues/2856
-  [i915#2994]: https://gitlab.freedesktop.org/drm/intel/issues/2994
-  [i915#3116]: https://gitlab.freedesktop.org/drm/intel/issues/3116
-  [i915#3297]: https://gitlab.freedesktop.org/drm/intel/issues/3297
-  [i915#3299]: https://gitlab.freedesktop.org/drm/intel/issues/3299
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3323]: https://gitlab.freedesktop.org/drm/intel/issues/3323
-  [i915#3359]: https://gitlab.freedesktop.org/drm/intel/issues/3359
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
-  [i915#3689]: https://gitlab.freedesktop.org/drm/intel/issues/3689
-  [i915#3742]: https://gitlab.freedesktop.org/drm/intel/issues/3742
-  [i915#3804]: https://gitlab.freedesktop.org/drm/intel/issues/3804
-  [i915#3886]: https://gitlab.freedesktop.org/drm/intel/issues/3886
-  [i915#404]: https://gitlab.freedesktop.org/drm/intel/issues/404
-  [i915#4270]: https://gitlab.freedesktop.org/drm/intel/issues/4270
-  [i915#4281]: https://gitlab.freedesktop.org/drm/intel/issues/4281
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4767]: https://gitlab.freedesktop.org/drm/intel/issues/4767
-  [i915#5176]: https://gitlab.freedesktop.org/drm/intel/issues/5176
-  [i915#5235]: https://gitlab.freedesktop.org/drm/intel/issues/5235
-  [i915#5286]: https://gitlab.freedesktop.org/drm/intel/issues/5286
-  [i915#5288]: https://gitlab.freedesktop.org/drm/intel/issues/5288
-  [i915#5325]: https://gitlab.freedesktop.org/drm/intel/issues/5325
-  [i915#5439]: https://gitlab.freedesktop.org/drm/intel/issues/5439
-  [i915#5461]: https://gitlab.freedesktop.org/drm/intel/issues/5461
-  [i915#6095]: https://gitlab.freedesktop.org/drm/intel/issues/6095
-  [i915#6230]: https://gitlab.freedesktop.org/drm/intel/issues/6230
-  [i915#6335]: https://gitlab.freedesktop.org/drm/intel/issues/6335
-  [i915#6524]: https://gitlab.freedesktop.org/drm/intel/issues/6524
-  [i915#658]: https://gitlab.freedesktop.org/drm/intel/issues/658
-  [i915#7116]: https://gitlab.freedesktop.org/drm/intel/issues/7116
-  [i915#7118]: https://gitlab.freedesktop.org/drm/intel/issues/7118
-  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
-  [i915#7582]: https://gitlab.freedesktop.org/drm/intel/issues/7582
-  [i915#7651]: https://gitlab.freedesktop.org/drm/intel/issues/7651
-  [i915#7697]: https://gitlab.freedesktop.org/drm/intel/issues/7697
+On 12/20/2022 12:46 PM, Matthew Auld wrote:
+> We should still be able to GTT evict objects during execbuf (old
+> bindings can linger around), even if there is object lock contention. In
+> the worst case the execbuf should just wait on the contented locks.
+> Returning -ENOSPC smells like a regression from past behaviour, and
+> seems to break userspace.
+>
+> v2:
+>    - Add coverage for explicit softpin
+>    - Add timeout for the spinner
+> v3:
+>    - Improve the test description
+>
+> References: https://gitlab.freedesktop.org/drm/intel/-/issues/7570
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+> Cc: Nirmoy Das <nirmoy.das@intel.com>
+> Cc: Mani Milani <mani@chromium.org>
+> ---
+>   tests/i915/gem_ppgtt.c | 133 +++++++++++++++++++++++++++++++++++++++++
+>   1 file changed, 133 insertions(+)
+>
+> diff --git a/tests/i915/gem_ppgtt.c b/tests/i915/gem_ppgtt.c
+> index 9673ce22..024e8d47 100644
+> --- a/tests/i915/gem_ppgtt.c
+> +++ b/tests/i915/gem_ppgtt.c
+> @@ -255,6 +255,131 @@ static void flink_and_close(void)
+>   	close(fd2);
+>   }
+>   
+> +#define PAGE_SIZE 4096
+> +
+> +static uint32_t batch_create_size(int fd, uint64_t size)
+> +{
+> +	const uint32_t bbe = MI_BATCH_BUFFER_END;
+> +	uint32_t handle;
+> +
+> +	handle = gem_create(fd, size);
+> +	gem_write(fd, handle, 0, &bbe, sizeof(bbe));
+> +
+> +	return handle;
+> +}
+> +
+> +#define IGT_USE_ANY	0x1
+> +#define IGT_USE_PINNED	0x2
+> +static void upload(int fd, uint32_t handle, uint32_t in_fence, uint32_t ctx_id,
+> +		   unsigned int flags)
+> +{
+> +	struct drm_i915_gem_exec_object2 exec[2] = {};
+> +	struct drm_i915_gem_execbuffer2 execbuf = {
+> +		.buffers_ptr = to_user_pointer(&exec),
+> +		.buffer_count = 1,
+> +		.rsvd1 = ctx_id,
+> +	};
+> +
+> +	if (in_fence) {
+> +		execbuf.rsvd2 = in_fence;
+> +		execbuf.flags = I915_EXEC_FENCE_IN;
+> +	}
+> +
+> +	exec[0].handle = handle;
+> +	exec[0].flags = EXEC_OBJECT_SUPPORTS_48B_ADDRESS;
+> +
+> +	if (flags & IGT_USE_PINNED)
+> +		exec[0].flags |= EXEC_OBJECT_PINNED; /* offset = 0 */
+> +
+> +	if (flags & IGT_USE_ANY) {
+> +		exec[0].flags |= EXEC_OBJECT_PAD_TO_SIZE;
+> +		exec[0].pad_to_size = gem_aperture_size(fd);
+> +	}
+> +
+> +	gem_execbuf(fd, &execbuf);
+> +}
+> +
+> +static void shrink_vs_evict(unsigned int flags)
+> +{
+> +	const unsigned int nproc = sysconf(_SC_NPROCESSORS_ONLN) + 1;
+> +	const uint64_t timeout_5s = 5000000000LL;
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_12517 -> Patchwork_112062v1
-  * Piglit: piglit_4509 -> None
-
-  CI-20190529: 20190529
-  CI_DRM_12517: 0ccc7ebce461c057c63b5879b8ace1a34ea8423a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7100: 04466b02a9b5356d266a899daa5183c1f6b0e20f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_112062v1: 0ccc7ebce461c057c63b5879b8ace1a34ea8423a @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112062v1/index.html
-
---===============6637919697928305547==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+5*NSEC_PER_SEC would be nice.
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+> +	int fd = drm_open_driver(DRIVER_INTEL);
+> +	uint64_t ahnd = get_reloc_ahnd(fd, 0);
+> +	const intel_ctx_t *ctx_arr[nproc];
+> +	igt_spin_t *spinner;
+> +	uint32_t handle1;
+> +	int i;
+> +
+> +	/*
+> +	 * Try to simulate some nasty object lock contention during GTT
+> +	 * eviction. Create a BO and bind across several different VMs.  Invoke
+> +	 * the shrinker on that shared BO, followed by triggering GTT eviction
+> +	 * across all VMs.  Both require the object lock to make forward
+> +	 * progress when trying to unbind the BO, but the shrinker will be
+> +	 * blocked by the spinner (until killed).  Once the spinner is killed
+> +	 * the shrinker should be able to unbind the object and drop the object
+> +	 * lock, and GTT eviction should eventually succeed. At no point should
+> +	 * we see -ENOSPC from the execbuf, even if we can't currently grab the
+> +	 * object lock.
+> +	 */
+> +
+> +	igt_require(gem_uses_full_ppgtt(fd));
+> +
+> +	igt_drop_caches_set(fd, DROP_ALL);
+> +
+> +	handle1 = gem_create(fd, PAGE_SIZE);
+> +
+> +	spinner = igt_spin_new(fd,
+> +			       .ahnd = ahnd,
+> +			       .flags = IGT_SPIN_FENCE_OUT);
+> +	igt_spin_set_timeout(spinner, timeout_5s);
+> +
+> +	/*
+> +	 * Create several VMs to ensure we don't block on the same vm lock. The
+> +	 * goal of the test is to ensure that object lock contention doesn't
+> +	 * somehow result in -ENOSPC from execbuf, if we need to trigger GTT
+> +	 * eviction.
+> +	 */
+> +	for (i = 0; i < nproc; i++) {
+> +		ctx_arr[i] = intel_ctx_create(fd, NULL);
+> +
+> +		upload(fd, handle1, spinner->execbuf.rsvd2 >> 32,
+> +		       ctx_arr[i]->id, flags);
+> +	}
+> +
+> +	igt_fork(child, 1)
+> +		igt_drop_caches_set(fd, DROP_ALL);
+> +
+> +	sleep(2); /* Give the shrinker time to find handle1 */
+> +
+> +	igt_fork(child, nproc) {
+> +		uint32_t handle2 = gem_create(fd, PAGE_SIZE);
+> +
+> +		/*
+> +		 * One of these forks will be stuck on the vm mutex, since the
+> +		 * shrinker is holding it (along with the object lock) while
+> +		 * trying to unbind the chosen vma, but is blocked by the
+> +		 * spinner. The rest should only block waiting to grab the
+> +		 * object lock for handle1, before then trying to GTT evict it
+> +		 * from their respective vm. In either case the contention of
+> +		 * the vm->mutex or object lock should never result in -ENOSPC
+> +		 * or some other error.
+> +		 */
+> +		handle2 = batch_create_size(fd, PAGE_SIZE);
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display/dsi: use intel_de_rmw if possible</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/112062/">https://patchwork.freedesktop.org/series/112062/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+This can be
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112062v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112062v1/index.html</a></td></tr>
+uint32_t handle2 = batch_create_size(fd, PAGE_SIZE);
 
-</table>
+Above gem_create seems unnecessary. With those
+
+Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
 
 
-    <h1>CI Bug Log - changes from CI_DRM_12517_full -&gt; Patchwork_112062v1_full</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112062v1/index.html</p>
-<h2>Participating hosts (14 -&gt; 9)</h2>
-<p>Missing    (5): pig-kbl-iris shard-tglu-9 pig-glk-j5005 pig-skl-6260u shard-rkl </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_112062v1_full that come from known issues:</p>
-<h3>IGT changes</h3>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12517 -&gt; Patchwork_112062v1</li>
-<li>Piglit: piglit_4509 -&gt; None</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12517: 0ccc7ebce461c057c63b5879b8ace1a34ea8423a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7100: 04466b02a9b5356d266a899daa5183c1f6b0e20f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_112062v1: 0ccc7ebce461c057c63b5879b8ace1a34ea8423a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
 
-</body>
-</html>
-
---===============6637919697928305547==--
+> +
+> +		upload(fd, handle2, 0, ctx_arr[child]->id, flags);
+> +		gem_close(fd, handle2);
+> +	}
+> +
+> +	igt_waitchildren();
+> +	igt_spin_free(fd, spinner);
+> +
+> +	for (i = 0; i < nproc; i++)
+> +		intel_ctx_destroy(fd, ctx_arr[i]);
+> +
+> +	gem_close(fd, handle1);
+> +}
+> +
+>   static bool has_contexts(void)
+>   {
+>   	bool result;
+> @@ -331,4 +456,12 @@ igt_main
+>   
+>   	igt_subtest("flink-and-close-vma-leak")
+>   		flink_and_close();
+> +
+> +	igt_describe("Regression test to verify GTT eviction can't randomly fail due to object lock contention");
+> +	igt_subtest_group {
+> +		igt_subtest("shrink-vs-evict-any")
+> +			shrink_vs_evict(IGT_USE_ANY);
+> +		igt_subtest("shrink-vs-evict-pinned")
+> +			shrink_vs_evict(IGT_USE_PINNED);
+> +	}
+>   }
