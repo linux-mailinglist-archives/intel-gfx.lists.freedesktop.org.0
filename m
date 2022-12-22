@@ -2,55 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0ACA6542B6
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Dec 2022 15:17:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B299B654436
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Dec 2022 16:22:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FDFE10E163;
-	Thu, 22 Dec 2022 14:17:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A7E910E04D;
+	Thu, 22 Dec 2022 15:22:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 792DA10E160;
- Thu, 22 Dec 2022 14:17:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671718648; x=1703254648;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=meZJDY1PMUtgLkPrUblSxd3HYWLxd7p0iVKy4Ko1qbk=;
- b=iUm2KU0rDre6tmN6s+s8l2/7ICOnJNxv129qzHEN855OShvjjwysq+7g
- 1C2WXTU/a00d54gKgoTZBdAObGy5BRzQKlmKHOZSde1sVUOce8VzcnzCd
- 7im0oQJCmxVJRxs7/pFd8GzBIL95938hx7diqbd4+pcEUKPykMrXOfCdq
- 8BKA87hKzb5tovTNn/j/ddKK/p0kPD7Uc9hAFSoLApfT7rt3Iq7NNH7Ms
- 4fPs2xcM+Ab+4AGf+q/0vg8I7OlYfzHxQXc5i77152MT9nEmbv4bTKIC9
- eem4M0oXdKDjZhyyuyKqeQvav1QGS90CiPMmHIVyteqwpns/jdBrDBWDM A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10569"; a="307820230"
-X-IronPort-AV: E=Sophos;i="5.96,265,1665471600"; d="scan'208";a="307820230"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2022 06:17:27 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10569"; a="651797661"
-X-IronPort-AV: E=Sophos;i="5.96,265,1665471600"; d="scan'208";a="651797661"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.17.92])
- ([10.213.17.92])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2022 06:17:21 -0800
-Message-ID: <286f817c-2e3a-aba9-1083-73f25bafd84c@intel.com>
-Date: Thu, 22 Dec 2022 15:17:18 +0100
+Received: from domac.alu.hr (domac.alu.hr [161.53.235.3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F3AD10E04D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Dec 2022 15:22:43 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by domac.alu.hr (Postfix) with ESMTP id CC2A5604F1;
+ Thu, 22 Dec 2022 16:22:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=alu.unizg.hr; s=mail;
+ t=1671722524; bh=vNDIYTwEss2KZvwae1b8e3lfz3SV2TKIW9N1SEMH9n4=;
+ h=Date:From:Subject:To:Cc:References:In-Reply-To:From;
+ b=ZlBJ2hzltLu41o8Yjexvn42Ix3eFfdoKw/ece7ISvy8oJDp4K+X0cOmfz3V5PNJ2P
+ twGfDM+4ZQuf6NbIWbh02WU+IomQimj7GqXMUE3P5junXYq6lMORRrcNhj7nlx2r8z
+ 0J3qeGGuTglrWii/EB3mXgq5Fno25r0PKvXtvUsdlLSY6issH+JEvR1clpXdEdo0Pn
+ 43saIu9zuDjM9Y+Wp7FrWlf1qRfOCilKpJLGRduzC+ROttFW3k98BToEZYx2t/RY+u
+ 1g7KKx8hQXUd1KKB4njNfWf8C9RHJ7514YrjEQ3k6UkxbQA1IkAlgXM667BCK7Gah4
+ dFq54i6ME4cMw==
+X-Virus-Scanned: Debian amavisd-new at domac.alu.hr
+Received: from domac.alu.hr ([127.0.0.1])
+ by localhost (domac.alu.hr [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id zE2Ll1VIcGzM; Thu, 22 Dec 2022 16:22:02 +0100 (CET)
+Received: from [193.198.186.200] (PC-MTODOROV.slava.alu.hr [193.198.186.200])
+ by domac.alu.hr (Postfix) with ESMTPSA id 3763A604F5;
+ Thu, 22 Dec 2022 16:22:02 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=alu.unizg.hr; s=mail;
+ t=1671722522; bh=vNDIYTwEss2KZvwae1b8e3lfz3SV2TKIW9N1SEMH9n4=;
+ h=Date:From:Subject:To:Cc:References:In-Reply-To:From;
+ b=Kv7FFRhruDr2IkZL7MoVf343AkSP3/kAWB6dznjs+KAVV0LhHNa5hj7aQrqdTLGe/
+ 5XflJFsRgP/xHEX3XRKij1vb3pwSa8BLLOzBKCAaWM+w/piSRa1vBQc2bE/K6jaqG3
+ e1z9dw6yT55Nr4IoIyZuHjm5FjpoTLfJVk2o01t0ryKQRglaV9yppagevkgz6oqVx1
+ UY9MWLCmSJ+y2bL8QBe3qzMuHzWmWNyn4iczj1myEyDSy4ZCTNuZDZ0HlL61X25RrE
+ zzxPNWfXurrj8ZYAbpCo/oVn/VMbTRB/VtRTV0BIEohiYdVt7rjJHvkRSS/cXmXPA2
+ S8h0q7CrmNw6g==
+Message-ID: <d8d62c8a-32e0-9975-5ed5-b832bb8df549@alu.unizg.hr>
+Date: Thu, 22 Dec 2022 16:21:56 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.6.0
-Content-Language: en-US
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-References: <20221222114635.1251934-1-andrzej.hajda@intel.com>
- <CAMuHMdUE-a6SffG1PH=WfrMx-CNLB9EfUr4qmL_USBP31YGoNg@mail.gmail.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <CAMuHMdUE-a6SffG1PH=WfrMx-CNLB9EfUr4qmL_USBP31YGoNg@mail.gmail.com>
+ Thunderbird/102.6.0
+From: Mirsad Goran Todorovac <mirsad.todorovac@alu.unizg.hr>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ srinivas pandruvada <srinivas.pandruvada@linux.intel.com>,
+ LKML <linux-kernel@vger.kernel.org>, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <f849cc70-b21f-6476-ba26-08989d1243c2@alu.unizg.hr>
+ <05424a5351a847786377a548dba0759917d8046c.camel@linux.intel.com>
+ <15ef1bb9-7312-5d98-8bf0-0af1a37cfd2a@linux.intel.com>
+ <619bdecc-cf87-60a4-f50d-836f4c073ea7@alu.unizg.hr>
+ <8e080674-36ab-9260-046e-f4e3c931a3b9@alu.unizg.hr>
+ <96661293-32d7-0bb4-fb0e-28086eaaecc3@linux.intel.com>
+Content-Language: en-US, hr, en-GB, de-DE
+In-Reply-To: <96661293-32d7-0bb4-fb0e-28086eaaecc3@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 00/19] Introduce __xchg, non-atomic xchg
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] LOOKS GOOD: Possible regression in drm/i915 driver:
+ memleak
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,84 +74,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, linux-ia64@vger.kernel.org,
- linux-sh@vger.kernel.org, Peter Zijlstra <peterz@infradead.org>,
- dri-devel@lists.freedesktop.org, linux-mips@vger.kernel.org,
- sparclinux@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-s390@vger.kernel.org, linux-hexagon@vger.kernel.org,
- linux-snps-arc@lists.infradead.org, Boqun Feng <boqun.feng@gmail.com>,
- linux-xtensa@linux-xtensa.org, Arnd Bergmann <arnd@arndb.de>,
- intel-gfx@lists.freedesktop.org, linux-m68k@lists.linux-m68k.org,
- openrisc@lists.librecores.org, loongarch@lists.linux.dev,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- linux-arm-kernel@lists.infradead.org, linux-parisc@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-alpha@vger.kernel.org,
- Andrew Morton <akpm@linux-foundation.org>, linuxppc-dev@lists.ozlabs.org
+Cc: intel-gfx@lists.freedesktop.org,
+ Thorsten Leemhuis <regressions@leemhuis.info>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 22.12.2022 15:12, Geert Uytterhoeven wrote:
-> Hi Andrzej,
->
-> Thanks for your series!
->
-> On Thu, Dec 22, 2022 at 12:49 PM Andrzej Hajda <andrzej.hajda@intel.com> wrote:
->> I hope there will be place for such tiny helper in kernel.
->> Quick cocci analyze shows there is probably few thousands places
->> where it could be useful.
->> I am not sure who is good person to review/ack such patches,
->> so I've used my intuition to construct to/cc lists, sorry for mistakes.
->> This is the 2nd approach of the same idea, with comments addressed[0].
->>
->> The helper is tiny and there are advices we can leave without it, so
->> I want to present few arguments why it would be good to have it:
->>
->> 1. Code readability/simplification/number of lines:
->>
->> Real example from drivers/net/ethernet/mellanox/mlx5/core/esw/qos.c:
->> -       previous_min_rate = evport->qos.min_rate;
->> -       evport->qos.min_rate = min_rate;
->> +       previous_min_rate = __xchg(evport->qos.min_rate, min_rate);
-> Upon closer look, shouldn't that be
->
->      previous_min_rate = __xchg(&evport->qos.min_rate, min_rate);
->
-> ?
-
-Yes, you are right, the first argument is a pointer.
-
-Regards
-Andrzej
+On 12/22/2022 09:04, Tvrtko Ursulin wrote:
 
 >
->> For sure the code is more compact, and IMHO more readable.
+> On 22/12/2022 00:12, Mirsad Goran Todorovac wrote:
+>> On 20. 12. 2022. 20:34, Mirsad Todorovac wrote:
 >>
->> 2. Presence of similar helpers in other somehow related languages/libs:
+>> As I hear no reply from Tvrtko, and there is already 1d5h uptime with 
+>> no leaks (but
+>> the kworker with memstick_check nag I couldn't bisect on the only box 
+>> that reproduced it,
+>> because something in hw was not supported in pre 4.16 kernels on the 
+>> Lenovo V530S-07ICB.
+>> Or I am doing something wrong.)
 >>
->> a) Rust[1]: 'replace' from std::mem module, there is also 'take'
->>      helper (__xchg(&x, 0)), which is the same as private helper in
->>      i915 - fetch_and_zero, see latest patch.
->> b) C++ [2]: 'exchange' from utility header.
+>> However, now I can find the memstick maintainers thanks to Tvrtko's 
+>> hint.
 >>
->> If the idea is OK there are still 2 qestions to answer:
+>> If you no longer require my service, I would close this on my behalf.
 >>
->> 1. Name of the helper, __xchg follows kernel conventions,
->>      but for me Rust names are also OK.
-> Before I realized the missing "&", I wondered how this is different
-> from swap(), so naming is important.
-> https://elixir.bootlin.com/linux/latest/source/include/linux/minmax.h#L139
->
-> Gr{oetje,eeting}s,
->
->                          Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                  -- Linus Torvalds
+>> I hope I did not cause too much trouble. The knowledgeable knew that 
+>> this was not a security
+>> risk, but only a bug. (30 leaks of 64 bytes each were hardly to 
+>> exhaust memory in any realistic
+>> time.)
+>>
+>> However, having some experience with software development, I always 
+>> preferred bugs reported
+>> and fixed rather than concealed and lying in wait (or worse, found 
+>> first by a motivated
+>> adversary.) Forgive me this rant, I do not live from writing kernel 
+>> drivers, this is just a
+>> pet project as of time being ...
+Hi,
+> It is not forgotten - I was trying to reach out to the original author 
+> of the fixlet which worked for you. If that fails I will take it up on 
+> myself, but need to set aside some time to get into the exact problem 
+> space before I can vouch for the fix and send it on my own.
+That's good news. Possibly with some assistance I could bisect on pre 
+4.16 kernels with the additional drivers.
+> In the meantime definitely thanks a lot for testing this quickly and 
+> reporting back!
+Not at all, I considered it a privilege to assist your team.
+> What will happen next is, that when either the original author or 
+> myself are ready to send out the fix as a proper patch, you will be 
+> copied on it via the "Reported-by" and possibly "Tested-by" tags. 
+> Latter is if the patch remains identical. If it changes we might 
+> kindly ask you to re-test if possible.
+
+I've seen the published patch and it seems like the same two lines 
+change (-1/+1).
+In case of a change, I will attempt to test with the same config, setup 
+and running programs.
+
+I may need to correct myself in regard as to security aspect of this 
+patch as addressed in 786555987207.
+
+QUOTE:
+
+     Currently we create a new mmap_offset for every call to
+     mmap_offset_ioctl. This exposes ourselves to an abusive client that may
+     simply create new mmap_offsets ad infinitum, which will exhaust 
+physical
+     memory and the virtual address space. In addition to the exhaustion, a
+     very long linear list of mmap_offsets causes other clients using the
+     object to incur long list walks -- these long lists can also be
+     generated by simply having many clients generate their own mmap_offset.
+
+It is unobvious whether the bug that caused chrome to trigger 30 
+memleaks could be exploited by an
+abusive script to exhaust larger parts of kernel memory and possibly 
+crash the kernel?
+
+Thanks,
+Mirsad
+
+-- 
+Mirsad Goran Todorovac
+Sistem inženjer
+Grafički fakultet | Akademija likovnih umjetnosti
+Sveučilište u Zagrebu
+--
+System engineer
+Faculty of Graphic Arts | Academy of Fine Arts
+University of Zagreb, Republic of Croatia
+tel. +385 (0)1 3711 451
+mob. +385 91 57 88 355
 
