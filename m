@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D05F5653C49
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Dec 2022 07:45:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3B99653C4A
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Dec 2022 07:45:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6AEB10E4FD;
-	Thu, 22 Dec 2022 06:45:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3858410E503;
+	Thu, 22 Dec 2022 06:45:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0730F10E4FC
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Dec 2022 06:45:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4ADBC10E4FD
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Dec 2022 06:45:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671691503; x=1703227503;
+ t=1671691506; x=1703227506;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=LUeLzf7gGj7gAB/pPLsSrylI8h4Lg0T0o7Bn7t7pYk8=;
- b=O+3N9Or1ntC5XjRbCyjiXK0/FnQCBtn+HQAyOvE6wegw8fExrnIYE0B6
- P1OUZTYOzfD6InMhSK0i+bwk0SYRRFt7JxX7zIskjdQkTEp3HdJlq/C0I
- Oe8c5TYEjdLQ+fBl8A5OYlXZ0pafbOpzZ+hRQRsxoeGSOGw/ugEHbH5T7
- R0Sc+dgDmrVkCH/MQEWKqDvkcGb6/KEheN+UwgWxB8CS7CylapoSlZaCa
- 5bo3+GW8VmxunnQ8DNk+MvxhakzKazUtkC+7Z1XPJDW40m6/0FexsKkjG
- SoqQ+p9mzy2vWmG/Sl2r7myIxfu7nXUJaXRfRKcIPypqh5nvYQZRXt6fH g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10568"; a="300397450"
-X-IronPort-AV: E=Sophos;i="5.96,264,1665471600"; d="scan'208";a="300397450"
+ bh=6d/cxNZWSXnEPwQypt5ioFi3OGHCwX+eLNG0ZS61j38=;
+ b=D1cHgTH/TXP0kohibzVVP193N4xa6NXjmLQT3SjeFzucEgw12VL1LzeT
+ dXzATvELpVeLmVtvbQu3RztEYnT396wED1r9hejY1SGYHFDui6XBBCV+R
+ dzGhF4tu3C6OJgZjm5cQVCmP+UAwiJebYVMCpyeSeFdn3ZLRpyjhQ6vZO
+ 30yKxDCn/t/NqD/dpiUaprTpPIcfY9WMeHfjQUrJ7rbAoZ/fkYA6mY1gl
+ R5rlNJLG+dL+j0JpOXmFWwfKImP2QnuORDgYaPJKBp712c966MOdiuV7q
+ ETWqitYV2YGhAeihNeLjL1CnGgPEclLZZnpd7CZH+gBhj+IvdY41bp48K g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10568"; a="300397463"
+X-IronPort-AV: E=Sophos;i="5.96,264,1665471600"; d="scan'208";a="300397463"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2022 22:45:02 -0800
+ 21 Dec 2022 22:45:06 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10568"; a="715052129"
-X-IronPort-AV: E=Sophos;i="5.96,264,1665471600"; d="scan'208";a="715052129"
+X-IronPort-AV: E=McAfee;i="6500,9779,10568"; a="715052193"
+X-IronPort-AV: E=Sophos;i="5.96,264,1665471600"; d="scan'208";a="715052193"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by fmsmga008.fm.intel.com with ESMTP; 21 Dec 2022 22:45:00 -0800
+ by fmsmga008.fm.intel.com with ESMTP; 21 Dec 2022 22:45:03 -0800
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 22 Dec 2022 12:13:51 +0530
-Message-Id: <20221222064355.3642557-4-suraj.kandpal@intel.com>
+Date: Thu, 22 Dec 2022 12:13:52 +0530
+Message-Id: <20221222064355.3642557-5-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221222064355.3642557-1-suraj.kandpal@intel.com>
 References: <20221222064355.3642557-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 3/7] i915/hdcp: HDCP2.x Refactoring to
- agnostic hdcp
+Subject: [Intel-gfx] [PATCH v4 4/7] drm/i915/hdcp: Refactor HDCP API
+ structures
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,19 +62,10 @@ Cc: jani.nikula@intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As now we have more then one type of content protection
-secrity firmware. Let change the i915_cp_fw_hdcp_interface.h
-header naming convention to suit generic f/w type.
-%s/MEI_/HDCP_
-%s/mei_dev/hdcp_dev
-
-As interface to CP FW can be either a non i915 component or
-i915 intergral component, change structure name Accordingly.
-%s/i915_hdcp_comp_master/i915_hdcp_master
-%s/i915_hdcp_component_ops/i915_hdcp_ops
-
---v3
--Changing names to drop cp_fw to make naming more agnostic[Jani]
+It requires to move intel specific HDCP API structures to
+i915_cp_fw_hdcp_interface.h from driver/misc/mei/hdcp/mei_hdcp.h
+so that any content protection fw interfaces can use these
+structures.
 
 Cc: Tomas Winkler <tomas.winkler@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
@@ -83,505 +74,940 @@ Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_core.h |  3 +-
- drivers/gpu/drm/i915/display/intel_hdcp.c     | 79 ++++++++++---------
- drivers/misc/mei/hdcp/mei_hdcp.c              | 56 ++++++-------
- 3 files changed, 70 insertions(+), 68 deletions(-)
+ drivers/misc/mei/hdcp/mei_hdcp.c  |  44 ++--
+ drivers/misc/mei/hdcp/mei_hdcp.h  | 354 -----------------------------
+ include/drm/i915_hdcp_interface.h | 355 ++++++++++++++++++++++++++++++
+ 3 files changed, 377 insertions(+), 376 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index 57ddce3ba02b..132e9134ba05 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -15,6 +15,7 @@
- 
- #include <drm/drm_connector.h>
- #include <drm/drm_modeset_lock.h>
-+#include <drm/i915_hdcp_interface.h>
- 
- #include "intel_cdclk.h"
- #include "intel_display.h"
-@@ -368,7 +369,7 @@ struct intel_display {
- 	} gmbus;
- 
- 	struct {
--		struct i915_hdcp_comp_master *master;
-+		struct i915_hdcp_master *master;
- 		bool comp_added;
- 
- 		/* Mutex to protect the above hdcp component related values. */
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 6406fd487ee5..a0f978e56879 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -1143,7 +1143,7 @@ hdcp2_prepare_ake_init(struct intel_connector *connector,
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
- 	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
- 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
--	struct i915_hdcp_comp_master *comp;
-+	struct i915_hdcp_master *comp;
- 	int ret;
- 
- 	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-@@ -1154,7 +1154,7 @@ hdcp2_prepare_ake_init(struct intel_connector *connector,
- 		return -EINVAL;
- 	}
- 
--	ret = comp->ops->initiate_hdcp2_session(comp->mei_dev, data, ake_data);
-+	ret = comp->ops->initiate_hdcp2_session(comp->hdcp_dev, data, ake_data);
- 	if (ret)
- 		drm_dbg_kms(&dev_priv->drm, "Prepare_ake_init failed. %d\n",
- 			    ret);
-@@ -1173,7 +1173,7 @@ hdcp2_verify_rx_cert_prepare_km(struct intel_connector *connector,
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
- 	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
- 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
--	struct i915_hdcp_comp_master *comp;
-+	struct i915_hdcp_master *comp;
- 	int ret;
- 
- 	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-@@ -1184,7 +1184,7 @@ hdcp2_verify_rx_cert_prepare_km(struct intel_connector *connector,
- 		return -EINVAL;
- 	}
- 
--	ret = comp->ops->verify_receiver_cert_prepare_km(comp->mei_dev, data,
-+	ret = comp->ops->verify_receiver_cert_prepare_km(comp->hdcp_dev, data,
- 							 rx_cert, paired,
- 							 ek_pub_km, msg_sz);
- 	if (ret < 0)
-@@ -1201,7 +1201,7 @@ static int hdcp2_verify_hprime(struct intel_connector *connector,
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
- 	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
- 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
--	struct i915_hdcp_comp_master *comp;
-+	struct i915_hdcp_master *comp;
- 	int ret;
- 
- 	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-@@ -1212,7 +1212,7 @@ static int hdcp2_verify_hprime(struct intel_connector *connector,
- 		return -EINVAL;
- 	}
- 
--	ret = comp->ops->verify_hprime(comp->mei_dev, data, rx_hprime);
-+	ret = comp->ops->verify_hprime(comp->hdcp_dev, data, rx_hprime);
- 	if (ret < 0)
- 		drm_dbg_kms(&dev_priv->drm, "Verify hprime failed. %d\n", ret);
- 	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
-@@ -1227,7 +1227,7 @@ hdcp2_store_pairing_info(struct intel_connector *connector,
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
- 	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
- 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
--	struct i915_hdcp_comp_master *comp;
-+	struct i915_hdcp_master *comp;
- 	int ret;
- 
- 	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-@@ -1238,7 +1238,7 @@ hdcp2_store_pairing_info(struct intel_connector *connector,
- 		return -EINVAL;
- 	}
- 
--	ret = comp->ops->store_pairing_info(comp->mei_dev, data, pairing_info);
-+	ret = comp->ops->store_pairing_info(comp->hdcp_dev, data, pairing_info);
- 	if (ret < 0)
- 		drm_dbg_kms(&dev_priv->drm, "Store pairing info failed. %d\n",
- 			    ret);
-@@ -1254,7 +1254,7 @@ hdcp2_prepare_lc_init(struct intel_connector *connector,
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
- 	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
- 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
--	struct i915_hdcp_comp_master *comp;
-+	struct i915_hdcp_master *comp;
- 	int ret;
- 
- 	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-@@ -1265,7 +1265,7 @@ hdcp2_prepare_lc_init(struct intel_connector *connector,
- 		return -EINVAL;
- 	}
- 
--	ret = comp->ops->initiate_locality_check(comp->mei_dev, data, lc_init);
-+	ret = comp->ops->initiate_locality_check(comp->hdcp_dev, data, lc_init);
- 	if (ret < 0)
- 		drm_dbg_kms(&dev_priv->drm, "Prepare lc_init failed. %d\n",
- 			    ret);
-@@ -1281,7 +1281,7 @@ hdcp2_verify_lprime(struct intel_connector *connector,
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
- 	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
- 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
--	struct i915_hdcp_comp_master *comp;
-+	struct i915_hdcp_master *comp;
- 	int ret;
- 
- 	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-@@ -1292,7 +1292,7 @@ hdcp2_verify_lprime(struct intel_connector *connector,
- 		return -EINVAL;
- 	}
- 
--	ret = comp->ops->verify_lprime(comp->mei_dev, data, rx_lprime);
-+	ret = comp->ops->verify_lprime(comp->hdcp_dev, data, rx_lprime);
- 	if (ret < 0)
- 		drm_dbg_kms(&dev_priv->drm, "Verify L_Prime failed. %d\n",
- 			    ret);
-@@ -1307,7 +1307,7 @@ static int hdcp2_prepare_skey(struct intel_connector *connector,
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
- 	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
- 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
--	struct i915_hdcp_comp_master *comp;
-+	struct i915_hdcp_master *comp;
- 	int ret;
- 
- 	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-@@ -1318,7 +1318,7 @@ static int hdcp2_prepare_skey(struct intel_connector *connector,
- 		return -EINVAL;
- 	}
- 
--	ret = comp->ops->get_session_key(comp->mei_dev, data, ske_data);
-+	ret = comp->ops->get_session_key(comp->hdcp_dev, data, ske_data);
- 	if (ret < 0)
- 		drm_dbg_kms(&dev_priv->drm, "Get session key failed. %d\n",
- 			    ret);
-@@ -1336,7 +1336,7 @@ hdcp2_verify_rep_topology_prepare_ack(struct intel_connector *connector,
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
- 	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
- 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
--	struct i915_hdcp_comp_master *comp;
-+	struct i915_hdcp_master *comp;
- 	int ret;
- 
- 	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-@@ -1347,7 +1347,7 @@ hdcp2_verify_rep_topology_prepare_ack(struct intel_connector *connector,
- 		return -EINVAL;
- 	}
- 
--	ret = comp->ops->repeater_check_flow_prepare_ack(comp->mei_dev, data,
-+	ret = comp->ops->repeater_check_flow_prepare_ack(comp->hdcp_dev, data,
- 							 rep_topology,
- 							 rep_send_ack);
- 	if (ret < 0)
-@@ -1365,7 +1365,7 @@ hdcp2_verify_mprime(struct intel_connector *connector,
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
- 	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
- 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
--	struct i915_hdcp_comp_master *comp;
-+	struct i915_hdcp_master *comp;
- 	int ret;
- 
- 	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-@@ -1376,7 +1376,7 @@ hdcp2_verify_mprime(struct intel_connector *connector,
- 		return -EINVAL;
- 	}
- 
--	ret = comp->ops->verify_mprime(comp->mei_dev, data, stream_ready);
-+	ret = comp->ops->verify_mprime(comp->hdcp_dev, data, stream_ready);
- 	if (ret < 0)
- 		drm_dbg_kms(&dev_priv->drm, "Verify mprime failed. %d\n", ret);
- 	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
-@@ -1389,7 +1389,7 @@ static int hdcp2_authenticate_port(struct intel_connector *connector)
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
- 	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
- 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
--	struct i915_hdcp_comp_master *comp;
-+	struct i915_hdcp_master *comp;
- 	int ret;
- 
- 	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-@@ -1400,7 +1400,7 @@ static int hdcp2_authenticate_port(struct intel_connector *connector)
- 		return -EINVAL;
- 	}
- 
--	ret = comp->ops->enable_hdcp_authentication(comp->mei_dev, data);
-+	ret = comp->ops->enable_hdcp_authentication(comp->hdcp_dev, data);
- 	if (ret < 0)
- 		drm_dbg_kms(&dev_priv->drm, "Enable hdcp auth failed. %d\n",
- 			    ret);
-@@ -1409,11 +1409,11 @@ static int hdcp2_authenticate_port(struct intel_connector *connector)
- 	return ret;
- }
- 
--static int hdcp2_close_mei_session(struct intel_connector *connector)
-+static int hdcp2_close_session(struct intel_connector *connector)
- {
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
- 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
--	struct i915_hdcp_comp_master *comp;
-+	struct i915_hdcp_master *comp;
- 	int ret;
- 
- 	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-@@ -1424,7 +1424,7 @@ static int hdcp2_close_mei_session(struct intel_connector *connector)
- 		return -EINVAL;
- 	}
- 
--	ret = comp->ops->close_hdcp_session(comp->mei_dev,
-+	ret = comp->ops->close_hdcp_session(comp->hdcp_dev,
- 					     &dig_port->hdcp_port_data);
- 	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- 
-@@ -1433,7 +1433,7 @@ static int hdcp2_close_mei_session(struct intel_connector *connector)
- 
- static int hdcp2_deauthenticate_port(struct intel_connector *connector)
- {
--	return hdcp2_close_mei_session(connector);
-+	return hdcp2_close_session(connector);
- }
- 
- /* Authentication flow starts from here */
-@@ -2145,8 +2145,8 @@ static int i915_hdcp_component_bind(struct device *i915_kdev,
- 
- 	drm_dbg(&dev_priv->drm, "I915 HDCP comp bind\n");
- 	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
--	dev_priv->display.hdcp.master = (struct i915_hdcp_comp_master *)data;
--	dev_priv->display.hdcp.master->mei_dev = mei_kdev;
-+	dev_priv->display.hdcp.master = (struct i915_hdcp_master *)data;
-+	dev_priv->display.hdcp.master->hdcp_dev = mei_kdev;
- 	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- 
- 	return 0;
-@@ -2168,25 +2168,25 @@ static const struct component_ops i915_hdcp_component_ops = {
- 	.unbind = i915_hdcp_component_unbind,
- };
- 
--static enum mei_fw_ddi intel_get_mei_fw_ddi_index(enum port port)
-+static enum hdcp_ddi intel_get_hdcp_ddi_index(enum port port)
- {
- 	switch (port) {
- 	case PORT_A:
--		return MEI_DDI_A;
-+		return HDCP_DDI_A;
- 	case PORT_B ... PORT_F:
--		return (enum mei_fw_ddi)port;
-+		return (enum hdcp_ddi)port;
- 	default:
--		return MEI_DDI_INVALID_PORT;
-+		return HDCP_DDI_INVALID_PORT;
- 	}
- }
- 
--static enum mei_fw_tc intel_get_mei_fw_tc(enum transcoder cpu_transcoder)
-+static enum hdcp_transcoder intel_get_hdcp_transcoder(enum transcoder cpu_transcoder)
- {
- 	switch (cpu_transcoder) {
- 	case TRANSCODER_A ... TRANSCODER_D:
--		return (enum mei_fw_tc)(cpu_transcoder | 0x10);
-+		return (enum hdcp_transcoder)(cpu_transcoder | 0x10);
- 	default: /* eDP, DSI TRANSCODERS are non HDCP capable */
--		return MEI_INVALID_TRANSCODER;
-+		return HDCP_INVALID_TRANSCODER;
- 	}
- }
- 
-@@ -2200,20 +2200,20 @@ static int initialize_hdcp_port_data(struct intel_connector *connector,
- 	enum port port = dig_port->base.port;
- 
- 	if (DISPLAY_VER(dev_priv) < 12)
--		data->fw_ddi = intel_get_mei_fw_ddi_index(port);
-+		data->hdcp_ddi = intel_get_hdcp_ddi_index(port);
- 	else
- 		/*
--		 * As per ME FW API expectation, for GEN 12+, fw_ddi is filled
-+		 * As per ME FW API expectation, for GEN 12+, hdcp_ddi is filled
- 		 * with zero(INVALID PORT index).
- 		 */
--		data->fw_ddi = MEI_DDI_INVALID_PORT;
-+		data->hdcp_ddi = HDCP_DDI_INVALID_PORT;
- 
- 	/*
--	 * As associated transcoder is set and modified at modeset, here fw_tc
-+	 * As associated transcoder is set and modified at modeset, here hdcp_transcoder
- 	 * is initialized to zero (invalid transcoder index). This will be
- 	 * retained for <Gen12 forever.
- 	 */
--	data->fw_tc = MEI_INVALID_TRANSCODER;
-+	data->hdcp_transcoder = HDCP_INVALID_TRANSCODER;
- 
- 	data->port_type = (u8)HDCP_PORT_TYPE_INTEGRATED;
- 	data->protocol = (u8)shim->protocol;
-@@ -2350,7 +2350,8 @@ int intel_hdcp_enable(struct intel_connector *connector,
- 	}
- 
- 	if (DISPLAY_VER(dev_priv) >= 12)
--		dig_port->hdcp_port_data.fw_tc = intel_get_mei_fw_tc(hdcp->cpu_transcoder);
-+		dig_port->hdcp_port_data.hdcp_transcoder =
-+			intel_get_hdcp_transcoder(hdcp->cpu_transcoder);
- 
- 	/*
- 	 * Considering that HDCP2.2 is more secure than HDCP1.4, If the setup
 diff --git a/drivers/misc/mei/hdcp/mei_hdcp.c b/drivers/misc/mei/hdcp/mei_hdcp.c
-index cbad27511899..0ff0bd07e385 100644
+index 0ff0bd07e385..d4faecbbbe76 100644
 --- a/drivers/misc/mei/hdcp/mei_hdcp.c
 +++ b/drivers/misc/mei/hdcp/mei_hdcp.c
-@@ -57,8 +57,8 @@ mei_hdcp_initiate_session(struct device *dev, struct hdcp_port_data *data,
+@@ -52,7 +52,7 @@ mei_hdcp_initiate_session(struct device *dev, struct hdcp_port_data *data,
+ 
+ 	session_init_in.header.api_version = HDCP_API_VERSION;
+ 	session_init_in.header.command_id = WIRED_INITIATE_HDCP2_SESSION;
+-	session_init_in.header.status = ME_HDCP_STATUS_SUCCESS;
++	session_init_in.header.status = FW_HDCP_STATUS_SUCCESS;
+ 	session_init_in.header.buffer_len =
  				WIRED_CMD_BUF_LEN_INITIATE_HDCP2_SESSION_IN;
  
- 	session_init_in.port.integrated_port_type = data->port_type;
--	session_init_in.port.physical_port = (u8)data->fw_ddi;
--	session_init_in.port.attached_transcoder = (u8)data->fw_tc;
-+	session_init_in.port.physical_port = (u8)data->hdcp_ddi;
-+	session_init_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
- 	session_init_in.protocol = data->protocol;
+@@ -75,7 +75,7 @@ mei_hdcp_initiate_session(struct device *dev, struct hdcp_port_data *data,
+ 		return byte;
+ 	}
  
- 	byte = mei_cldev_send(cldev, (u8 *)&session_init_in,
-@@ -127,8 +127,8 @@ mei_hdcp_verify_receiver_cert_prepare_km(struct device *dev,
+-	if (session_init_out.header.status != ME_HDCP_STATUS_SUCCESS) {
++	if (session_init_out.header.status != FW_HDCP_STATUS_SUCCESS) {
+ 		dev_dbg(dev, "ME cmd 0x%08X Failed. Status: 0x%X\n",
+ 			WIRED_INITIATE_HDCP2_SESSION,
+ 			session_init_out.header.status);
+@@ -122,7 +122,7 @@ mei_hdcp_verify_receiver_cert_prepare_km(struct device *dev,
+ 
+ 	verify_rxcert_in.header.api_version = HDCP_API_VERSION;
+ 	verify_rxcert_in.header.command_id = WIRED_VERIFY_RECEIVER_CERT;
+-	verify_rxcert_in.header.status = ME_HDCP_STATUS_SUCCESS;
++	verify_rxcert_in.header.status = FW_HDCP_STATUS_SUCCESS;
+ 	verify_rxcert_in.header.buffer_len =
  				WIRED_CMD_BUF_LEN_VERIFY_RECEIVER_CERT_IN;
  
- 	verify_rxcert_in.port.integrated_port_type = data->port_type;
--	verify_rxcert_in.port.physical_port = (u8)data->fw_ddi;
--	verify_rxcert_in.port.attached_transcoder = (u8)data->fw_tc;
-+	verify_rxcert_in.port.physical_port = (u8)data->hdcp_ddi;
-+	verify_rxcert_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
+@@ -148,7 +148,7 @@ mei_hdcp_verify_receiver_cert_prepare_km(struct device *dev,
+ 		return byte;
+ 	}
  
- 	verify_rxcert_in.cert_rx = rx_cert->cert_rx;
- 	memcpy(verify_rxcert_in.r_rx, &rx_cert->r_rx, HDCP_2_2_RRX_LEN);
-@@ -198,8 +198,8 @@ mei_hdcp_verify_hprime(struct device *dev, struct hdcp_port_data *data,
+-	if (verify_rxcert_out.header.status != ME_HDCP_STATUS_SUCCESS) {
++	if (verify_rxcert_out.header.status != FW_HDCP_STATUS_SUCCESS) {
+ 		dev_dbg(dev, "ME cmd 0x%08X Failed. Status: 0x%X\n",
+ 			WIRED_VERIFY_RECEIVER_CERT,
+ 			verify_rxcert_out.header.status);
+@@ -194,7 +194,7 @@ mei_hdcp_verify_hprime(struct device *dev, struct hdcp_port_data *data,
+ 
+ 	send_hprime_in.header.api_version = HDCP_API_VERSION;
+ 	send_hprime_in.header.command_id = WIRED_AKE_SEND_HPRIME;
+-	send_hprime_in.header.status = ME_HDCP_STATUS_SUCCESS;
++	send_hprime_in.header.status = FW_HDCP_STATUS_SUCCESS;
  	send_hprime_in.header.buffer_len = WIRED_CMD_BUF_LEN_AKE_SEND_HPRIME_IN;
  
  	send_hprime_in.port.integrated_port_type = data->port_type;
--	send_hprime_in.port.physical_port = (u8)data->fw_ddi;
--	send_hprime_in.port.attached_transcoder = (u8)data->fw_tc;
-+	send_hprime_in.port.physical_port = (u8)data->hdcp_ddi;
-+	send_hprime_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
+@@ -218,7 +218,7 @@ mei_hdcp_verify_hprime(struct device *dev, struct hdcp_port_data *data,
+ 		return byte;
+ 	}
  
- 	memcpy(send_hprime_in.h_prime, rx_hprime->h_prime,
- 	       HDCP_2_2_H_PRIME_LEN);
-@@ -256,8 +256,8 @@ mei_hdcp_store_pairing_info(struct device *dev, struct hdcp_port_data *data,
+-	if (send_hprime_out.header.status != ME_HDCP_STATUS_SUCCESS) {
++	if (send_hprime_out.header.status != FW_HDCP_STATUS_SUCCESS) {
+ 		dev_dbg(dev, "ME cmd 0x%08X Failed. Status: 0x%X\n",
+ 			WIRED_AKE_SEND_HPRIME, send_hprime_out.header.status);
+ 		return -EIO;
+@@ -251,7 +251,7 @@ mei_hdcp_store_pairing_info(struct device *dev, struct hdcp_port_data *data,
+ 
+ 	pairing_info_in.header.api_version = HDCP_API_VERSION;
+ 	pairing_info_in.header.command_id = WIRED_AKE_SEND_PAIRING_INFO;
+-	pairing_info_in.header.status = ME_HDCP_STATUS_SUCCESS;
++	pairing_info_in.header.status = FW_HDCP_STATUS_SUCCESS;
+ 	pairing_info_in.header.buffer_len =
  					WIRED_CMD_BUF_LEN_SEND_PAIRING_INFO_IN;
  
- 	pairing_info_in.port.integrated_port_type = data->port_type;
--	pairing_info_in.port.physical_port = (u8)data->fw_ddi;
--	pairing_info_in.port.attached_transcoder = (u8)data->fw_tc;
-+	pairing_info_in.port.physical_port = (u8)data->hdcp_ddi;
-+	pairing_info_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
+@@ -276,7 +276,7 @@ mei_hdcp_store_pairing_info(struct device *dev, struct hdcp_port_data *data,
+ 		return byte;
+ 	}
  
- 	memcpy(pairing_info_in.e_kh_km, pairing_info->e_kh_km,
- 	       HDCP_2_2_E_KH_KM_LEN);
-@@ -315,8 +315,8 @@ mei_hdcp_initiate_locality_check(struct device *dev,
+-	if (pairing_info_out.header.status != ME_HDCP_STATUS_SUCCESS) {
++	if (pairing_info_out.header.status != FW_HDCP_STATUS_SUCCESS) {
+ 		dev_dbg(dev, "ME cmd 0x%08X failed. Status: 0x%X\n",
+ 			WIRED_AKE_SEND_PAIRING_INFO,
+ 			pairing_info_out.header.status);
+@@ -311,7 +311,7 @@ mei_hdcp_initiate_locality_check(struct device *dev,
+ 
+ 	lc_init_in.header.api_version = HDCP_API_VERSION;
+ 	lc_init_in.header.command_id = WIRED_INIT_LOCALITY_CHECK;
+-	lc_init_in.header.status = ME_HDCP_STATUS_SUCCESS;
++	lc_init_in.header.status = FW_HDCP_STATUS_SUCCESS;
  	lc_init_in.header.buffer_len = WIRED_CMD_BUF_LEN_INIT_LOCALITY_CHECK_IN;
  
  	lc_init_in.port.integrated_port_type = data->port_type;
--	lc_init_in.port.physical_port = (u8)data->fw_ddi;
--	lc_init_in.port.attached_transcoder = (u8)data->fw_tc;
-+	lc_init_in.port.physical_port = (u8)data->hdcp_ddi;
-+	lc_init_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
+@@ -330,7 +330,7 @@ mei_hdcp_initiate_locality_check(struct device *dev,
+ 		return byte;
+ 	}
  
- 	byte = mei_cldev_send(cldev, (u8 *)&lc_init_in, sizeof(lc_init_in));
- 	if (byte < 0) {
-@@ -371,8 +371,8 @@ mei_hdcp_verify_lprime(struct device *dev, struct hdcp_port_data *data,
+-	if (lc_init_out.header.status != ME_HDCP_STATUS_SUCCESS) {
++	if (lc_init_out.header.status != FW_HDCP_STATUS_SUCCESS) {
+ 		dev_dbg(dev, "ME cmd 0x%08X Failed. status: 0x%X\n",
+ 			WIRED_INIT_LOCALITY_CHECK, lc_init_out.header.status);
+ 		return -EIO;
+@@ -366,7 +366,7 @@ mei_hdcp_verify_lprime(struct device *dev, struct hdcp_port_data *data,
+ 
+ 	verify_lprime_in.header.api_version = HDCP_API_VERSION;
+ 	verify_lprime_in.header.command_id = WIRED_VALIDATE_LOCALITY;
+-	verify_lprime_in.header.status = ME_HDCP_STATUS_SUCCESS;
++	verify_lprime_in.header.status = FW_HDCP_STATUS_SUCCESS;
+ 	verify_lprime_in.header.buffer_len =
  					WIRED_CMD_BUF_LEN_VALIDATE_LOCALITY_IN;
  
- 	verify_lprime_in.port.integrated_port_type = data->port_type;
--	verify_lprime_in.port.physical_port = (u8)data->fw_ddi;
--	verify_lprime_in.port.attached_transcoder = (u8)data->fw_tc;
-+	verify_lprime_in.port.physical_port = (u8)data->hdcp_ddi;
-+	verify_lprime_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
+@@ -391,7 +391,7 @@ mei_hdcp_verify_lprime(struct device *dev, struct hdcp_port_data *data,
+ 		return byte;
+ 	}
  
- 	memcpy(verify_lprime_in.l_prime, rx_lprime->l_prime,
- 	       HDCP_2_2_L_PRIME_LEN);
-@@ -429,8 +429,8 @@ static int mei_hdcp_get_session_key(struct device *dev,
+-	if (verify_lprime_out.header.status != ME_HDCP_STATUS_SUCCESS) {
++	if (verify_lprime_out.header.status != FW_HDCP_STATUS_SUCCESS) {
+ 		dev_dbg(dev, "ME cmd 0x%08X failed. status: 0x%X\n",
+ 			WIRED_VALIDATE_LOCALITY,
+ 			verify_lprime_out.header.status);
+@@ -425,7 +425,7 @@ static int mei_hdcp_get_session_key(struct device *dev,
+ 
+ 	get_skey_in.header.api_version = HDCP_API_VERSION;
+ 	get_skey_in.header.command_id = WIRED_GET_SESSION_KEY;
+-	get_skey_in.header.status = ME_HDCP_STATUS_SUCCESS;
++	get_skey_in.header.status = FW_HDCP_STATUS_SUCCESS;
  	get_skey_in.header.buffer_len = WIRED_CMD_BUF_LEN_GET_SESSION_KEY_IN;
  
  	get_skey_in.port.integrated_port_type = data->port_type;
--	get_skey_in.port.physical_port = (u8)data->fw_ddi;
--	get_skey_in.port.attached_transcoder = (u8)data->fw_tc;
-+	get_skey_in.port.physical_port = (u8)data->hdcp_ddi;
-+	get_skey_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
+@@ -445,7 +445,7 @@ static int mei_hdcp_get_session_key(struct device *dev,
+ 		return byte;
+ 	}
  
- 	byte = mei_cldev_send(cldev, (u8 *)&get_skey_in, sizeof(get_skey_in));
- 	if (byte < 0) {
-@@ -494,8 +494,8 @@ mei_hdcp_repeater_check_flow_prepare_ack(struct device *dev,
+-	if (get_skey_out.header.status != ME_HDCP_STATUS_SUCCESS) {
++	if (get_skey_out.header.status != FW_HDCP_STATUS_SUCCESS) {
+ 		dev_dbg(dev, "ME cmd 0x%08X failed. status: 0x%X\n",
+ 			WIRED_GET_SESSION_KEY, get_skey_out.header.status);
+ 		return -EIO;
+@@ -489,7 +489,7 @@ mei_hdcp_repeater_check_flow_prepare_ack(struct device *dev,
+ 
+ 	verify_repeater_in.header.api_version = HDCP_API_VERSION;
+ 	verify_repeater_in.header.command_id = WIRED_VERIFY_REPEATER;
+-	verify_repeater_in.header.status = ME_HDCP_STATUS_SUCCESS;
++	verify_repeater_in.header.status = FW_HDCP_STATUS_SUCCESS;
+ 	verify_repeater_in.header.buffer_len =
  					WIRED_CMD_BUF_LEN_VERIFY_REPEATER_IN;
  
- 	verify_repeater_in.port.integrated_port_type = data->port_type;
--	verify_repeater_in.port.physical_port = (u8)data->fw_ddi;
--	verify_repeater_in.port.attached_transcoder = (u8)data->fw_tc;
-+	verify_repeater_in.port.physical_port = (u8)data->hdcp_ddi;
-+	verify_repeater_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
+@@ -520,7 +520,7 @@ mei_hdcp_repeater_check_flow_prepare_ack(struct device *dev,
+ 		return byte;
+ 	}
  
- 	memcpy(verify_repeater_in.rx_info, rep_topology->rx_info,
- 	       HDCP_2_2_RXINFO_LEN);
-@@ -572,8 +572,8 @@ static int mei_hdcp_verify_mprime(struct device *dev,
+-	if (verify_repeater_out.header.status != ME_HDCP_STATUS_SUCCESS) {
++	if (verify_repeater_out.header.status != FW_HDCP_STATUS_SUCCESS) {
+ 		dev_dbg(dev, "ME cmd 0x%08X failed. status: 0x%X\n",
+ 			WIRED_VERIFY_REPEATER,
+ 			verify_repeater_out.header.status);
+@@ -568,7 +568,7 @@ static int mei_hdcp_verify_mprime(struct device *dev,
+ 
+ 	verify_mprime_in->header.api_version = HDCP_API_VERSION;
+ 	verify_mprime_in->header.command_id = WIRED_REPEATER_AUTH_STREAM_REQ;
+-	verify_mprime_in->header.status = ME_HDCP_STATUS_SUCCESS;
++	verify_mprime_in->header.status = FW_HDCP_STATUS_SUCCESS;
  	verify_mprime_in->header.buffer_len = cmd_size  - sizeof(verify_mprime_in->header);
  
  	verify_mprime_in->port.integrated_port_type = data->port_type;
--	verify_mprime_in->port.physical_port = (u8)data->fw_ddi;
--	verify_mprime_in->port.attached_transcoder = (u8)data->fw_tc;
-+	verify_mprime_in->port.physical_port = (u8)data->hdcp_ddi;
-+	verify_mprime_in->port.attached_transcoder = (u8)data->hdcp_transcoder;
+@@ -597,7 +597,7 @@ static int mei_hdcp_verify_mprime(struct device *dev,
+ 		return byte;
+ 	}
  
- 	memcpy(verify_mprime_in->m_prime, stream_ready->m_prime, HDCP_2_2_MPRIME_LEN);
- 	drm_hdcp_cpu_to_be24(verify_mprime_in->seq_num_m, data->seq_num_m);
-@@ -634,8 +634,8 @@ static int mei_hdcp_enable_authentication(struct device *dev,
+-	if (verify_mprime_out.header.status != ME_HDCP_STATUS_SUCCESS) {
++	if (verify_mprime_out.header.status != FW_HDCP_STATUS_SUCCESS) {
+ 		dev_dbg(dev, "ME cmd 0x%08X failed. status: 0x%X\n",
+ 			WIRED_REPEATER_AUTH_STREAM_REQ,
+ 			verify_mprime_out.header.status);
+@@ -630,7 +630,7 @@ static int mei_hdcp_enable_authentication(struct device *dev,
+ 
+ 	enable_auth_in.header.api_version = HDCP_API_VERSION;
+ 	enable_auth_in.header.command_id = WIRED_ENABLE_AUTH;
+-	enable_auth_in.header.status = ME_HDCP_STATUS_SUCCESS;
++	enable_auth_in.header.status = FW_HDCP_STATUS_SUCCESS;
  	enable_auth_in.header.buffer_len = WIRED_CMD_BUF_LEN_ENABLE_AUTH_IN;
  
  	enable_auth_in.port.integrated_port_type = data->port_type;
--	enable_auth_in.port.physical_port = (u8)data->fw_ddi;
--	enable_auth_in.port.attached_transcoder = (u8)data->fw_tc;
-+	enable_auth_in.port.physical_port = (u8)data->hdcp_ddi;
-+	enable_auth_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
- 	enable_auth_in.stream_type = data->streams[0].stream_type;
+@@ -652,7 +652,7 @@ static int mei_hdcp_enable_authentication(struct device *dev,
+ 		return byte;
+ 	}
  
- 	byte = mei_cldev_send(cldev, (u8 *)&enable_auth_in,
-@@ -689,8 +689,8 @@ mei_hdcp_close_session(struct device *dev, struct hdcp_port_data *data)
+-	if (enable_auth_out.header.status != ME_HDCP_STATUS_SUCCESS) {
++	if (enable_auth_out.header.status != FW_HDCP_STATUS_SUCCESS) {
+ 		dev_dbg(dev, "ME cmd 0x%08X failed. status: 0x%X\n",
+ 			WIRED_ENABLE_AUTH, enable_auth_out.header.status);
+ 		return -EIO;
+@@ -684,7 +684,7 @@ mei_hdcp_close_session(struct device *dev, struct hdcp_port_data *data)
+ 
+ 	session_close_in.header.api_version = HDCP_API_VERSION;
+ 	session_close_in.header.command_id = WIRED_CLOSE_SESSION;
+-	session_close_in.header.status = ME_HDCP_STATUS_SUCCESS;
++	session_close_in.header.status = FW_HDCP_STATUS_SUCCESS;
+ 	session_close_in.header.buffer_len =
  				WIRED_CMD_BUF_LEN_CLOSE_SESSION_IN;
  
- 	session_close_in.port.integrated_port_type = data->port_type;
--	session_close_in.port.physical_port = (u8)data->fw_ddi;
--	session_close_in.port.attached_transcoder = (u8)data->fw_tc;
-+	session_close_in.port.physical_port = (u8)data->hdcp_ddi;
-+	session_close_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
+@@ -706,7 +706,7 @@ mei_hdcp_close_session(struct device *dev, struct hdcp_port_data *data)
+ 		return byte;
+ 	}
  
- 	byte = mei_cldev_send(cldev, (u8 *)&session_close_in,
- 			      sizeof(session_close_in));
-@@ -715,7 +715,7 @@ mei_hdcp_close_session(struct device *dev, struct hdcp_port_data *data)
- 	return 0;
- }
+-	if (session_close_out.header.status != ME_HDCP_STATUS_SUCCESS) {
++	if (session_close_out.header.status != FW_HDCP_STATUS_SUCCESS) {
+ 		dev_dbg(dev, "Session Close Failed. status: 0x%X\n",
+ 			session_close_out.header.status);
+ 		return -EIO;
+diff --git a/drivers/misc/mei/hdcp/mei_hdcp.h b/drivers/misc/mei/hdcp/mei_hdcp.h
+index ca09c8f83d6b..0683d83ec17a 100644
+--- a/drivers/misc/mei/hdcp/mei_hdcp.h
++++ b/drivers/misc/mei/hdcp/mei_hdcp.h
+@@ -11,358 +11,4 @@
  
--static const struct i915_hdcp_component_ops mei_hdcp_ops = {
-+static const struct i915_hdcp_ops mei_hdcp_ops = {
- 	.owner = THIS_MODULE,
- 	.initiate_hdcp2_session = mei_hdcp_initiate_session,
- 	.verify_receiver_cert_prepare_km =
-@@ -735,13 +735,13 @@ static const struct i915_hdcp_component_ops mei_hdcp_ops = {
- static int mei_component_master_bind(struct device *dev)
- {
- 	struct mei_cl_device *cldev = to_mei_cl_device(dev);
--	struct i915_hdcp_comp_master *comp_master =
-+	struct i915_hdcp_master *comp_master =
- 						mei_cldev_get_drvdata(cldev);
- 	int ret;
+ #include <drm/display/drm_hdcp.h>
  
- 	dev_dbg(dev, "%s\n", __func__);
- 	comp_master->ops = &mei_hdcp_ops;
--	comp_master->mei_dev = dev;
-+	comp_master->hdcp_dev = dev;
- 	ret = component_bind_all(dev, comp_master);
- 	if (ret < 0)
- 		return ret;
-@@ -752,7 +752,7 @@ static int mei_component_master_bind(struct device *dev)
- static void mei_component_master_unbind(struct device *dev)
- {
- 	struct mei_cl_device *cldev = to_mei_cl_device(dev);
--	struct i915_hdcp_comp_master *comp_master =
-+	struct i915_hdcp_master *comp_master =
- 						mei_cldev_get_drvdata(cldev);
+-/* me_hdcp_status: Enumeration of all HDCP Status Codes */
+-enum me_hdcp_status {
+-	ME_HDCP_STATUS_SUCCESS			= 0x0000,
+-
+-	/* WiDi Generic Status Codes */
+-	ME_HDCP_STATUS_INTERNAL_ERROR		= 0x1000,
+-	ME_HDCP_STATUS_UNKNOWN_ERROR		= 0x1001,
+-	ME_HDCP_STATUS_INCORRECT_API_VERSION	= 0x1002,
+-	ME_HDCP_STATUS_INVALID_FUNCTION		= 0x1003,
+-	ME_HDCP_STATUS_INVALID_BUFFER_LENGTH	= 0x1004,
+-	ME_HDCP_STATUS_INVALID_PARAMS		= 0x1005,
+-	ME_HDCP_STATUS_AUTHENTICATION_FAILED	= 0x1006,
+-
+-	/* WiDi Status Codes */
+-	ME_HDCP_INVALID_SESSION_STATE		= 0x6000,
+-	ME_HDCP_SRM_FRAGMENT_UNEXPECTED		= 0x6001,
+-	ME_HDCP_SRM_INVALID_LENGTH		= 0x6002,
+-	ME_HDCP_SRM_FRAGMENT_OFFSET_INVALID	= 0x6003,
+-	ME_HDCP_SRM_VERIFICATION_FAILED		= 0x6004,
+-	ME_HDCP_SRM_VERSION_TOO_OLD		= 0x6005,
+-	ME_HDCP_RX_CERT_VERIFICATION_FAILED	= 0x6006,
+-	ME_HDCP_RX_REVOKED			= 0x6007,
+-	ME_HDCP_H_VERIFICATION_FAILED		= 0x6008,
+-	ME_HDCP_REPEATER_CHECK_UNEXPECTED	= 0x6009,
+-	ME_HDCP_TOPOLOGY_MAX_EXCEEDED		= 0x600A,
+-	ME_HDCP_V_VERIFICATION_FAILED		= 0x600B,
+-	ME_HDCP_L_VERIFICATION_FAILED		= 0x600C,
+-	ME_HDCP_STREAM_KEY_ALLOC_FAILED		= 0x600D,
+-	ME_HDCP_BASE_KEY_RESET_FAILED		= 0x600E,
+-	ME_HDCP_NONCE_GENERATION_FAILED		= 0x600F,
+-	ME_HDCP_STATUS_INVALID_E_KEY_STATE	= 0x6010,
+-	ME_HDCP_STATUS_INVALID_CS_ICV		= 0x6011,
+-	ME_HDCP_STATUS_INVALID_KB_KEY_STATE	= 0x6012,
+-	ME_HDCP_STATUS_INVALID_PAVP_MODE_ICV	= 0x6013,
+-	ME_HDCP_STATUS_INVALID_PAVP_MODE	= 0x6014,
+-	ME_HDCP_STATUS_LC_MAX_ATTEMPTS		= 0x6015,
+-
+-	/* New status for HDCP 2.1 */
+-	ME_HDCP_STATUS_MISMATCH_IN_M		= 0x6016,
+-
+-	/* New status code for HDCP 2.2 Rx */
+-	ME_HDCP_STATUS_RX_PROV_NOT_ALLOWED	= 0x6017,
+-	ME_HDCP_STATUS_RX_PROV_WRONG_SUBJECT	= 0x6018,
+-	ME_HDCP_RX_NEEDS_PROVISIONING		= 0x6019,
+-	ME_HDCP_BKSV_ICV_AUTH_FAILED		= 0x6020,
+-	ME_HDCP_STATUS_INVALID_STREAM_ID	= 0x6021,
+-	ME_HDCP_STATUS_CHAIN_NOT_INITIALIZED	= 0x6022,
+-	ME_HDCP_FAIL_NOT_EXPECTED		= 0x6023,
+-	ME_HDCP_FAIL_HDCP_OFF			= 0x6024,
+-	ME_HDCP_FAIL_INVALID_PAVP_MEMORY_MODE	= 0x6025,
+-	ME_HDCP_FAIL_AES_ECB_FAILURE		= 0x6026,
+-	ME_HDCP_FEATURE_NOT_SUPPORTED		= 0x6027,
+-	ME_HDCP_DMA_READ_ERROR			= 0x6028,
+-	ME_HDCP_DMA_WRITE_ERROR			= 0x6029,
+-	ME_HDCP_FAIL_INVALID_PACKET_SIZE	= 0x6030,
+-	ME_HDCP_H264_PARSING_ERROR		= 0x6031,
+-	ME_HDCP_HDCP2_ERRATA_VIDEO_VIOLATION	= 0x6032,
+-	ME_HDCP_HDCP2_ERRATA_AUDIO_VIOLATION	= 0x6033,
+-	ME_HDCP_TX_ACTIVE_ERROR			= 0x6034,
+-	ME_HDCP_MODE_CHANGE_ERROR		= 0x6035,
+-	ME_HDCP_STREAM_TYPE_ERROR		= 0x6036,
+-	ME_HDCP_STREAM_MANAGE_NOT_POSSIBLE	= 0x6037,
+-
+-	ME_HDCP_STATUS_PORT_INVALID_COMMAND	= 0x6038,
+-	ME_HDCP_STATUS_UNSUPPORTED_PROTOCOL	= 0x6039,
+-	ME_HDCP_STATUS_INVALID_PORT_INDEX	= 0x603a,
+-	ME_HDCP_STATUS_TX_AUTH_NEEDED		= 0x603b,
+-	ME_HDCP_STATUS_NOT_INTEGRATED_PORT	= 0x603c,
+-	ME_HDCP_STATUS_SESSION_MAX_REACHED	= 0x603d,
+-
+-	/* hdcp capable bit is not set in rx_caps(error is unique to DP) */
+-	ME_HDCP_STATUS_NOT_HDCP_CAPABLE		= 0x6041,
+-
+-	ME_HDCP_STATUS_INVALID_STREAM_COUNT	= 0x6042,
+-};
+-
+-#define HDCP_API_VERSION				0x00010000
+-
+-#define HDCP_M_LEN					16
+-#define HDCP_KH_LEN					16
+-
+-/* Payload Buffer size(Excluding Header) for CMDs and corresponding response */
+-/* Wired_Tx_AKE  */
+-#define	WIRED_CMD_BUF_LEN_INITIATE_HDCP2_SESSION_IN	(4 + 1)
+-#define	WIRED_CMD_BUF_LEN_INITIATE_HDCP2_SESSION_OUT	(4 + 8 + 3)
+-
+-#define	WIRED_CMD_BUF_LEN_VERIFY_RECEIVER_CERT_IN	(4 + 522 + 8 + 3)
+-#define	WIRED_CMD_BUF_LEN_VERIFY_RECEIVER_CERT_MIN_OUT	(4 + 1 + 3 + 16 + 16)
+-#define	WIRED_CMD_BUF_LEN_VERIFY_RECEIVER_CERT_MAX_OUT	(4 + 1 + 3 + 128)
+-
+-#define	WIRED_CMD_BUF_LEN_AKE_SEND_HPRIME_IN		(4 + 32)
+-#define	WIRED_CMD_BUF_LEN_AKE_SEND_HPRIME_OUT		(4)
+-
+-#define	WIRED_CMD_BUF_LEN_SEND_PAIRING_INFO_IN		(4 + 16)
+-#define	WIRED_CMD_BUF_LEN_SEND_PAIRING_INFO_OUT		(4)
+-
+-#define	WIRED_CMD_BUF_LEN_CLOSE_SESSION_IN		(4)
+-#define	WIRED_CMD_BUF_LEN_CLOSE_SESSION_OUT		(4)
+-
+-/* Wired_Tx_LC */
+-#define	WIRED_CMD_BUF_LEN_INIT_LOCALITY_CHECK_IN	(4)
+-#define	WIRED_CMD_BUF_LEN_INIT_LOCALITY_CHECK_OUT	(4 + 8)
+-
+-#define	WIRED_CMD_BUF_LEN_VALIDATE_LOCALITY_IN		(4 + 32)
+-#define	WIRED_CMD_BUF_LEN_VALIDATE_LOCALITY_OUT		(4)
+-
+-/* Wired_Tx_SKE */
+-#define	WIRED_CMD_BUF_LEN_GET_SESSION_KEY_IN		(4)
+-#define	WIRED_CMD_BUF_LEN_GET_SESSION_KEY_OUT		(4 + 16 + 8)
+-
+-/* Wired_Tx_SKE */
+-#define	WIRED_CMD_BUF_LEN_ENABLE_AUTH_IN		(4 + 1)
+-#define	WIRED_CMD_BUF_LEN_ENABLE_AUTH_OUT		(4)
+-
+-/* Wired_Tx_Repeater */
+-#define	WIRED_CMD_BUF_LEN_VERIFY_REPEATER_IN		(4 + 2 + 3 + 16 + 155)
+-#define	WIRED_CMD_BUF_LEN_VERIFY_REPEATER_OUT		(4 + 1 + 16)
+-
+-#define	WIRED_CMD_BUF_LEN_REPEATER_AUTH_STREAM_REQ_MIN_IN	(4 + 3 + \
+-								32 + 2 + 2)
+-
+-#define	WIRED_CMD_BUF_LEN_REPEATER_AUTH_STREAM_REQ_OUT		(4)
+-
+-/* hdcp_command_id: Enumeration of all WIRED HDCP Command IDs */
+-enum hdcp_command_id {
+-	_WIDI_COMMAND_BASE		= 0x00030000,
+-	WIDI_INITIATE_HDCP2_SESSION	= _WIDI_COMMAND_BASE,
+-	HDCP_GET_SRM_STATUS,
+-	HDCP_SEND_SRM_FRAGMENT,
+-
+-	/* The wired HDCP Tx commands */
+-	_WIRED_COMMAND_BASE		= 0x00031000,
+-	WIRED_INITIATE_HDCP2_SESSION	= _WIRED_COMMAND_BASE,
+-	WIRED_VERIFY_RECEIVER_CERT,
+-	WIRED_AKE_SEND_HPRIME,
+-	WIRED_AKE_SEND_PAIRING_INFO,
+-	WIRED_INIT_LOCALITY_CHECK,
+-	WIRED_VALIDATE_LOCALITY,
+-	WIRED_GET_SESSION_KEY,
+-	WIRED_ENABLE_AUTH,
+-	WIRED_VERIFY_REPEATER,
+-	WIRED_REPEATER_AUTH_STREAM_REQ,
+-	WIRED_CLOSE_SESSION,
+-
+-	_WIRED_COMMANDS_COUNT,
+-};
+-
+-union encrypted_buff {
+-	u8		e_kpub_km[HDCP_2_2_E_KPUB_KM_LEN];
+-	u8		e_kh_km_m[HDCP_2_2_E_KH_KM_M_LEN];
+-	struct {
+-		u8	e_kh_km[HDCP_KH_LEN];
+-		u8	m[HDCP_M_LEN];
+-	} __packed;
+-};
+-
+-/* HDCP HECI message header. All header values are little endian. */
+-struct hdcp_cmd_header {
+-	u32			api_version;
+-	u32			command_id;
+-	enum me_hdcp_status	status;
+-	/* Length of the HECI message (excluding the header) */
+-	u32			buffer_len;
+-} __packed;
+-
+-/* Empty command request or response. No data follows the header. */
+-struct hdcp_cmd_no_data {
+-	struct hdcp_cmd_header header;
+-} __packed;
+-
+-/* Uniquely identifies the hdcp port being addressed for a given command. */
+-struct hdcp_port_id {
+-	u8	integrated_port_type;
+-	/* physical_port is used until Gen11.5. Must be zero for Gen11.5+ */
+-	u8	physical_port;
+-	/* attached_transcoder is for Gen11.5+. Set to zero for <Gen11.5 */
+-	u8	attached_transcoder;
+-	u8	reserved;
+-} __packed;
+-
+-/*
+- * Data structures for integrated wired HDCP2 Tx in
+- * support of the AKE protocol
+- */
+-/* HECI struct for integrated wired HDCP Tx session initiation. */
+-struct wired_cmd_initiate_hdcp2_session_in {
+-	struct hdcp_cmd_header	header;
+-	struct hdcp_port_id	port;
+-	u8			protocol; /* for HDMI vs DP */
+-} __packed;
+-
+-struct wired_cmd_initiate_hdcp2_session_out {
+-	struct hdcp_cmd_header	header;
+-	struct hdcp_port_id	port;
+-	u8			r_tx[HDCP_2_2_RTX_LEN];
+-	struct hdcp2_tx_caps	tx_caps;
+-} __packed;
+-
+-/* HECI struct for ending an integrated wired HDCP Tx session. */
+-struct wired_cmd_close_session_in {
+-	struct hdcp_cmd_header	header;
+-	struct hdcp_port_id	port;
+-} __packed;
+-
+-struct wired_cmd_close_session_out {
+-	struct hdcp_cmd_header	header;
+-	struct hdcp_port_id	port;
+-} __packed;
+-
+-/* HECI struct for integrated wired HDCP Tx Rx Cert verification. */
+-struct wired_cmd_verify_receiver_cert_in {
+-	struct hdcp_cmd_header	header;
+-	struct hdcp_port_id	port;
+-	struct hdcp2_cert_rx	cert_rx;
+-	u8			r_rx[HDCP_2_2_RRX_LEN];
+-	u8			rx_caps[HDCP_2_2_RXCAPS_LEN];
+-} __packed;
+-
+-struct wired_cmd_verify_receiver_cert_out {
+-	struct hdcp_cmd_header	header;
+-	struct hdcp_port_id	port;
+-	u8			km_stored;
+-	u8			reserved[3];
+-	union encrypted_buff	ekm_buff;
+-} __packed;
+-
+-/* HECI struct for verification of Rx's Hprime in a HDCP Tx session */
+-struct wired_cmd_ake_send_hprime_in {
+-	struct hdcp_cmd_header	header;
+-	struct hdcp_port_id	port;
+-	u8			h_prime[HDCP_2_2_H_PRIME_LEN];
+-} __packed;
+-
+-struct wired_cmd_ake_send_hprime_out {
+-	struct hdcp_cmd_header	header;
+-	struct hdcp_port_id	port;
+-} __packed;
+-
+-/*
+- * HECI struct for sending in AKE pairing data generated by the Rx in an
+- * integrated wired HDCP Tx session.
+- */
+-struct wired_cmd_ake_send_pairing_info_in {
+-	struct hdcp_cmd_header	header;
+-	struct hdcp_port_id	port;
+-	u8			e_kh_km[HDCP_2_2_E_KH_KM_LEN];
+-} __packed;
+-
+-struct wired_cmd_ake_send_pairing_info_out {
+-	struct hdcp_cmd_header	header;
+-	struct hdcp_port_id	port;
+-} __packed;
+-
+-/* Data structures for integrated wired HDCP2 Tx in support of the LC protocol*/
+-/*
+- * HECI struct for initiating locality check with an
+- * integrated wired HDCP Tx session.
+- */
+-struct wired_cmd_init_locality_check_in {
+-	struct hdcp_cmd_header	header;
+-	struct hdcp_port_id	port;
+-} __packed;
+-
+-struct wired_cmd_init_locality_check_out {
+-	struct hdcp_cmd_header	header;
+-	struct hdcp_port_id	port;
+-	u8			r_n[HDCP_2_2_RN_LEN];
+-} __packed;
+-
+-/*
+- * HECI struct for validating an Rx's LPrime value in an
+- * integrated wired HDCP Tx session.
+- */
+-struct wired_cmd_validate_locality_in {
+-	struct hdcp_cmd_header	header;
+-	struct hdcp_port_id	port;
+-	u8			l_prime[HDCP_2_2_L_PRIME_LEN];
+-} __packed;
+-
+-struct wired_cmd_validate_locality_out {
+-	struct hdcp_cmd_header	header;
+-	struct hdcp_port_id	port;
+-} __packed;
+-
+-/*
+- * Data structures for integrated wired HDCP2 Tx in support of the
+- * SKE protocol
+- */
+-/* HECI struct for creating session key */
+-struct wired_cmd_get_session_key_in {
+-	struct hdcp_cmd_header	header;
+-	struct hdcp_port_id	port;
+-} __packed;
+-
+-struct wired_cmd_get_session_key_out {
+-	struct hdcp_cmd_header	header;
+-	struct hdcp_port_id	port;
+-	u8			e_dkey_ks[HDCP_2_2_E_DKEY_KS_LEN];
+-	u8			r_iv[HDCP_2_2_RIV_LEN];
+-} __packed;
+-
+-/* HECI struct for the Tx enable authentication command */
+-struct wired_cmd_enable_auth_in {
+-	struct hdcp_cmd_header	header;
+-	struct hdcp_port_id	port;
+-	u8			stream_type;
+-} __packed;
+-
+-struct wired_cmd_enable_auth_out {
+-	struct hdcp_cmd_header	header;
+-	struct hdcp_port_id	port;
+-} __packed;
+-
+-/*
+- * Data structures for integrated wired HDCP2 Tx in support of
+- * the repeater protocols
+- */
+-/*
+- * HECI struct for verifying the downstream repeater's HDCP topology in an
+- * integrated wired HDCP Tx session.
+- */
+-struct wired_cmd_verify_repeater_in {
+-	struct hdcp_cmd_header	header;
+-	struct hdcp_port_id	port;
+-	u8			rx_info[HDCP_2_2_RXINFO_LEN];
+-	u8			seq_num_v[HDCP_2_2_SEQ_NUM_LEN];
+-	u8			v_prime[HDCP_2_2_V_PRIME_HALF_LEN];
+-	u8			receiver_ids[HDCP_2_2_RECEIVER_IDS_MAX_LEN];
+-} __packed;
+-
+-struct wired_cmd_verify_repeater_out {
+-	struct hdcp_cmd_header	header;
+-	struct hdcp_port_id	port;
+-	u8			content_type_supported;
+-	u8			v[HDCP_2_2_V_PRIME_HALF_LEN];
+-} __packed;
+-
+-/*
+- * HECI struct in support of stream management in an
+- * integrated wired HDCP Tx session.
+- */
+-struct wired_cmd_repeater_auth_stream_req_in {
+-	struct hdcp_cmd_header		header;
+-	struct hdcp_port_id		port;
+-	u8				seq_num_m[HDCP_2_2_SEQ_NUM_LEN];
+-	u8				m_prime[HDCP_2_2_MPRIME_LEN];
+-	__be16				k;
+-	struct hdcp2_streamid_type	streams[];
+-} __packed;
+-
+-struct wired_cmd_repeater_auth_stream_req_out {
+-	struct hdcp_cmd_header	header;
+-	struct hdcp_port_id	port;
+-} __packed;
+ #endif /* __MEI_HDCP_H__ */
+diff --git a/include/drm/i915_hdcp_interface.h b/include/drm/i915_hdcp_interface.h
+index d24f6726e50c..a92925cd1eae 100644
+--- a/include/drm/i915_hdcp_interface.h
++++ b/include/drm/i915_hdcp_interface.h
+@@ -181,4 +181,359 @@ struct i915_hdcp_master {
+ 	struct mutex mutex;
+ };
  
- 	dev_dbg(dev, "%s\n", __func__);
-@@ -801,7 +801,7 @@ static int mei_hdcp_component_match(struct device *dev, int subcomponent,
- static int mei_hdcp_probe(struct mei_cl_device *cldev,
- 			  const struct mei_cl_device_id *id)
- {
--	struct i915_hdcp_comp_master *comp_master;
-+	struct i915_hdcp_master *comp_master;
- 	struct component_match *master_match;
- 	int ret;
- 
-@@ -846,7 +846,7 @@ static int mei_hdcp_probe(struct mei_cl_device *cldev,
- 
- static void mei_hdcp_remove(struct mei_cl_device *cldev)
- {
--	struct i915_hdcp_comp_master *comp_master =
-+	struct i915_hdcp_master *comp_master =
- 						mei_cldev_get_drvdata(cldev);
- 	int ret;
- 
++/* fw_hdcp_status: Enumeration of all HDCP Status Codes */
++enum fw_hdcp_status {
++	FW_HDCP_STATUS_SUCCESS			= 0x0000,
++
++	/* WiDi Generic Status Codes */
++	FW_HDCP_STATUS_INTERNAL_ERROR		= 0x1000,
++	FW_HDCP_STATUS_UNKNOWN_ERROR		= 0x1001,
++	FW_HDCP_STATUS_INCORRECT_API_VERSION	= 0x1002,
++	FW_HDCP_STATUS_INVALID_FUNCTION		= 0x1003,
++	FW_HDCP_STATUS_INVALID_BUFFER_LENGTH	= 0x1004,
++	FW_HDCP_STATUS_INVALID_PARAMS		= 0x1005,
++	FW_HDCP_STATUS_AUTHENTICATION_FAILED	= 0x1006,
++
++	/* WiDi Status Codes */
++	FW_HDCP_INVALID_SESSION_STATE		= 0x6000,
++	FW_HDCP_SRM_FRAGMENT_UNEXPECTED		= 0x6001,
++	FW_HDCP_SRM_INVALID_LENGTH		= 0x6002,
++	FW_HDCP_SRM_FRAGMENT_OFFSET_INVALID	= 0x6003,
++	FW_HDCP_SRM_VERIFICATION_FAILED		= 0x6004,
++	FW_HDCP_SRM_VERSION_TOO_OLD		= 0x6005,
++	FW_HDCP_RX_CERT_VERIFICATION_FAILED	= 0x6006,
++	FW_HDCP_RX_REVOKED			= 0x6007,
++	FW_HDCP_H_VERIFICATION_FAILED		= 0x6008,
++	FW_HDCP_REPEATER_CHECK_UNEXPECTED	= 0x6009,
++	FW_HDCP_TOPOLOGY_MAX_EXCEEDED		= 0x600A,
++	FW_HDCP_V_VERIFICATION_FAILED		= 0x600B,
++	FW_HDCP_L_VERIFICATION_FAILED		= 0x600C,
++	FW_HDCP_STREAM_KEY_ALLOC_FAILED		= 0x600D,
++	FW_HDCP_BASE_KEY_RESET_FAILED		= 0x600E,
++	FW_HDCP_NONCE_GENERATION_FAILED		= 0x600F,
++	FW_HDCP_STATUS_INVALID_E_KEY_STATE	= 0x6010,
++	FW_HDCP_STATUS_INVALID_CS_ICV		= 0x6011,
++	FW_HDCP_STATUS_INVALID_KB_KEY_STATE	= 0x6012,
++	FW_HDCP_STATUS_INVALID_PAVP_MODE_ICV	= 0x6013,
++	FW_HDCP_STATUS_INVALID_PAVP_MODE	= 0x6014,
++	FW_HDCP_STATUS_LC_MAX_ATTEMPTS		= 0x6015,
++
++	/* New status for HDCP 2.1 */
++	FW_HDCP_STATUS_MISMATCH_IN_M		= 0x6016,
++
++	/* New status code for HDCP 2.2 Rx */
++	FW_HDCP_STATUS_RX_PROV_NOT_ALLOWED	= 0x6017,
++	FW_HDCP_STATUS_RX_PROV_WRONG_SUBJECT	= 0x6018,
++	FW_HDCP_RX_NEEDS_PROVISIONING		= 0x6019,
++	FW_HDCP_BKSV_ICV_AUTH_FAILED		= 0x6020,
++	FW_HDCP_STATUS_INVALID_STREAM_ID	= 0x6021,
++	FW_HDCP_STATUS_CHAIN_NOT_INITIALIZED	= 0x6022,
++	FW_HDCP_FAIL_NOT_EXPECTED		= 0x6023,
++	FW_HDCP_FAIL_HDCP_OFF			= 0x6024,
++	FW_HDCP_FAIL_INVALID_PAVP_MEMORY_MODE	= 0x6025,
++	FW_HDCP_FAIL_AES_ECB_FAILURE		= 0x6026,
++	FW_HDCP_FEATURE_NOT_SUPPORTED		= 0x6027,
++	FW_HDCP_DMA_READ_ERROR			= 0x6028,
++	FW_HDCP_DMA_WRITE_ERROR			= 0x6029,
++	FW_HDCP_FAIL_INVALID_PACKET_SIZE	= 0x6030,
++	FW_HDCP_H264_PARSING_ERROR		= 0x6031,
++	FW_HDCP_HDCP2_ERRATA_VIDEO_VIOLATION	= 0x6032,
++	FW_HDCP_HDCP2_ERRATA_AUDIO_VIOLATION	= 0x6033,
++	FW_HDCP_TX_ACTIVE_ERROR			= 0x6034,
++	FW_HDCP_MODE_CHANGE_ERROR		= 0x6035,
++	FW_HDCP_STREAM_TYPE_ERROR		= 0x6036,
++	FW_HDCP_STREAM_MANAGE_NOT_POSSIBLE	= 0x6037,
++
++	FW_HDCP_STATUS_PORT_INVALID_COMMAND	= 0x6038,
++	FW_HDCP_STATUS_UNSUPPORTED_PROTOCOL	= 0x6039,
++	FW_HDCP_STATUS_INVALID_PORT_INDEX	= 0x603a,
++	FW_HDCP_STATUS_TX_AUTH_NEEDED		= 0x603b,
++	FW_HDCP_STATUS_NOT_INTEGRATED_PORT	= 0x603c,
++	FW_HDCP_STATUS_SESSION_MAX_REACHED	= 0x603d,
++
++	/* hdcp capable bit is not set in rx_caps(error is unique to DP) */
++	FW_HDCP_STATUS_NOT_HDCP_CAPABLE		= 0x6041,
++
++	FW_HDCP_STATUS_INVALID_STREAM_COUNT	= 0x6042,
++};
++
++#define HDCP_API_VERSION				0x00010000
++
++#define HDCP_M_LEN					16
++#define HDCP_KH_LEN					16
++
++/* Payload Buffer size(Excluding Header) for CMDs and corresponding response */
++/* Wired_Tx_AKE  */
++#define	WIRED_CMD_BUF_LEN_INITIATE_HDCP2_SESSION_IN	(4 + 1)
++#define	WIRED_CMD_BUF_LEN_INITIATE_HDCP2_SESSION_OUT	(4 + 8 + 3)
++
++#define	WIRED_CMD_BUF_LEN_VERIFY_RECEIVER_CERT_IN	(4 + 522 + 8 + 3)
++#define	WIRED_CMD_BUF_LEN_VERIFY_RECEIVER_CERT_MIN_OUT	(4 + 1 + 3 + 16 + 16)
++#define	WIRED_CMD_BUF_LEN_VERIFY_RECEIVER_CERT_MAX_OUT	(4 + 1 + 3 + 128)
++
++#define	WIRED_CMD_BUF_LEN_AKE_SEND_HPRIME_IN		(4 + 32)
++#define	WIRED_CMD_BUF_LEN_AKE_SEND_HPRIME_OUT		(4)
++
++#define	WIRED_CMD_BUF_LEN_SEND_PAIRING_INFO_IN		(4 + 16)
++#define	WIRED_CMD_BUF_LEN_SEND_PAIRING_INFO_OUT		(4)
++
++#define	WIRED_CMD_BUF_LEN_CLOSE_SESSION_IN		(4)
++#define	WIRED_CMD_BUF_LEN_CLOSE_SESSION_OUT		(4)
++
++/* Wired_Tx_LC */
++#define	WIRED_CMD_BUF_LEN_INIT_LOCALITY_CHECK_IN	(4)
++#define	WIRED_CMD_BUF_LEN_INIT_LOCALITY_CHECK_OUT	(4 + 8)
++
++#define	WIRED_CMD_BUF_LEN_VALIDATE_LOCALITY_IN		(4 + 32)
++#define	WIRED_CMD_BUF_LEN_VALIDATE_LOCALITY_OUT		(4)
++
++/* Wired_Tx_SKE */
++#define	WIRED_CMD_BUF_LEN_GET_SESSION_KEY_IN		(4)
++#define	WIRED_CMD_BUF_LEN_GET_SESSION_KEY_OUT		(4 + 16 + 8)
++
++/* Wired_Tx_SKE */
++#define	WIRED_CMD_BUF_LEN_ENABLE_AUTH_IN		(4 + 1)
++#define	WIRED_CMD_BUF_LEN_ENABLE_AUTH_OUT		(4)
++
++/* Wired_Tx_Repeater */
++#define	WIRED_CMD_BUF_LEN_VERIFY_REPEATER_IN		(4 + 2 + 3 + 16 + 155)
++#define	WIRED_CMD_BUF_LEN_VERIFY_REPEATER_OUT		(4 + 1 + 16)
++
++#define	WIRED_CMD_BUF_LEN_REPEATER_AUTH_STREAM_REQ_MIN_IN	(4 + 3 + \
++								32 + 2 + 2)
++
++#define	WIRED_CMD_BUF_LEN_REPEATER_AUTH_STREAM_REQ_OUT		(4)
++
++/* hdcp_command_id: Enumeration of all WIRED HDCP Command IDs */
++enum hdcp_command_id {
++	_WIDI_COMMAND_BASE		= 0x00030000,
++	WIDI_INITIATE_HDCP2_SESSION	= _WIDI_COMMAND_BASE,
++	HDCP_GET_SRM_STATUS,
++	HDCP_SEND_SRM_FRAGMENT,
++
++	/* The wired HDCP Tx commands */
++	_WIRED_COMMAND_BASE		= 0x00031000,
++	WIRED_INITIATE_HDCP2_SESSION	= _WIRED_COMMAND_BASE,
++	WIRED_VERIFY_RECEIVER_CERT,
++	WIRED_AKE_SEND_HPRIME,
++	WIRED_AKE_SEND_PAIRING_INFO,
++	WIRED_INIT_LOCALITY_CHECK,
++	WIRED_VALIDATE_LOCALITY,
++	WIRED_GET_SESSION_KEY,
++	WIRED_ENABLE_AUTH,
++	WIRED_VERIFY_REPEATER,
++	WIRED_REPEATER_AUTH_STREAM_REQ,
++	WIRED_CLOSE_SESSION,
++
++	_WIRED_COMMANDS_COUNT,
++};
++
++union encrypted_buff {
++	u8		e_kpub_km[HDCP_2_2_E_KPUB_KM_LEN];
++	u8		e_kh_km_m[HDCP_2_2_E_KH_KM_M_LEN];
++	struct {
++		u8	e_kh_km[HDCP_KH_LEN];
++		u8	m[HDCP_M_LEN];
++	} __packed;
++};
++
++/* HDCP HECI message header. All header values are little endian. */
++struct hdcp_cmd_header {
++	u32			api_version;
++	u32			command_id;
++	enum fw_hdcp_status	status;
++	/* Length of the HECI message (excluding the header) */
++	u32			buffer_len;
++} __packed;
++
++/* Empty command request or response. No data follows the header. */
++struct hdcp_cmd_no_data {
++	struct hdcp_cmd_header header;
++} __packed;
++
++/* Uniquely identifies the hdcp port being addressed for a given command. */
++struct hdcp_port_id {
++	u8	integrated_port_type;
++	/* physical_port is used until Gen11.5. Must be zero for Gen11.5+ */
++	u8	physical_port;
++	/* attached_transcoder is for Gen11.5+. Set to zero for <Gen11.5 */
++	u8	attached_transcoder;
++	u8	reserved;
++} __packed;
++
++/*
++ * Data structures for integrated wired HDCP2 Tx in
++ * support of the AKE protocol
++ */
++/* HECI struct for integrated wired HDCP Tx session initiation. */
++struct wired_cmd_initiate_hdcp2_session_in {
++	struct hdcp_cmd_header	header;
++	struct hdcp_port_id	port;
++	u8			protocol; /* for HDMI vs DP */
++} __packed;
++
++struct wired_cmd_initiate_hdcp2_session_out {
++	struct hdcp_cmd_header	header;
++	struct hdcp_port_id	port;
++	u8			r_tx[HDCP_2_2_RTX_LEN];
++	struct hdcp2_tx_caps	tx_caps;
++} __packed;
++
++/* HECI struct for ending an integrated wired HDCP Tx session. */
++struct wired_cmd_close_session_in {
++	struct hdcp_cmd_header	header;
++	struct hdcp_port_id	port;
++} __packed;
++
++struct wired_cmd_close_session_out {
++	struct hdcp_cmd_header	header;
++	struct hdcp_port_id	port;
++} __packed;
++
++/* HECI struct for integrated wired HDCP Tx Rx Cert verification. */
++struct wired_cmd_verify_receiver_cert_in {
++	struct hdcp_cmd_header	header;
++	struct hdcp_port_id	port;
++	struct hdcp2_cert_rx	cert_rx;
++	u8			r_rx[HDCP_2_2_RRX_LEN];
++	u8			rx_caps[HDCP_2_2_RXCAPS_LEN];
++} __packed;
++
++struct wired_cmd_verify_receiver_cert_out {
++	struct hdcp_cmd_header	header;
++	struct hdcp_port_id	port;
++	u8			km_stored;
++	u8			reserved[3];
++	union encrypted_buff	ekm_buff;
++} __packed;
++
++/* HECI struct for verification of Rx's Hprime in a HDCP Tx session */
++struct wired_cmd_ake_send_hprime_in {
++	struct hdcp_cmd_header	header;
++	struct hdcp_port_id	port;
++	u8			h_prime[HDCP_2_2_H_PRIME_LEN];
++} __packed;
++
++struct wired_cmd_ake_send_hprime_out {
++	struct hdcp_cmd_header	header;
++	struct hdcp_port_id	port;
++} __packed;
++
++/*
++ * HECI struct for sending in AKE pairing data generated by the Rx in an
++ * integrated wired HDCP Tx session.
++ */
++struct wired_cmd_ake_send_pairing_info_in {
++	struct hdcp_cmd_header	header;
++	struct hdcp_port_id	port;
++	u8			e_kh_km[HDCP_2_2_E_KH_KM_LEN];
++} __packed;
++
++struct wired_cmd_ake_send_pairing_info_out {
++	struct hdcp_cmd_header	header;
++	struct hdcp_port_id	port;
++} __packed;
++
++/* Data structures for integrated wired HDCP2 Tx in support of the LC protocol*/
++/*
++ * HECI struct for initiating locality check with an
++ * integrated wired HDCP Tx session.
++ */
++struct wired_cmd_init_locality_check_in {
++	struct hdcp_cmd_header	header;
++	struct hdcp_port_id	port;
++} __packed;
++
++struct wired_cmd_init_locality_check_out {
++	struct hdcp_cmd_header	header;
++	struct hdcp_port_id	port;
++	u8			r_n[HDCP_2_2_RN_LEN];
++} __packed;
++
++/*
++ * HECI struct for validating an Rx's LPrime value in an
++ * integrated wired HDCP Tx session.
++ */
++struct wired_cmd_validate_locality_in {
++	struct hdcp_cmd_header	header;
++	struct hdcp_port_id	port;
++	u8			l_prime[HDCP_2_2_L_PRIME_LEN];
++} __packed;
++
++struct wired_cmd_validate_locality_out {
++	struct hdcp_cmd_header	header;
++	struct hdcp_port_id	port;
++} __packed;
++
++/*
++ * Data structures for integrated wired HDCP2 Tx in support of the
++ * SKE protocol
++ */
++/* HECI struct for creating session key */
++struct wired_cmd_get_session_key_in {
++	struct hdcp_cmd_header	header;
++	struct hdcp_port_id	port;
++} __packed;
++
++struct wired_cmd_get_session_key_out {
++	struct hdcp_cmd_header	header;
++	struct hdcp_port_id	port;
++	u8			e_dkey_ks[HDCP_2_2_E_DKEY_KS_LEN];
++	u8			r_iv[HDCP_2_2_RIV_LEN];
++} __packed;
++
++/* HECI struct for the Tx enable authentication command */
++struct wired_cmd_enable_auth_in {
++	struct hdcp_cmd_header	header;
++	struct hdcp_port_id	port;
++	u8			stream_type;
++} __packed;
++
++struct wired_cmd_enable_auth_out {
++	struct hdcp_cmd_header	header;
++	struct hdcp_port_id	port;
++} __packed;
++
++/*
++ * Data structures for integrated wired HDCP2 Tx in support of
++ * the repeater protocols
++ */
++/*
++ * HECI struct for verifying the downstream repeater's HDCP topology in an
++ * integrated wired HDCP Tx session.
++ */
++struct wired_cmd_verify_repeater_in {
++	struct hdcp_cmd_header	header;
++	struct hdcp_port_id	port;
++	u8			rx_info[HDCP_2_2_RXINFO_LEN];
++	u8			seq_num_v[HDCP_2_2_SEQ_NUM_LEN];
++	u8			v_prime[HDCP_2_2_V_PRIME_HALF_LEN];
++	u8			receiver_ids[HDCP_2_2_RECEIVER_IDS_MAX_LEN];
++} __packed;
++
++struct wired_cmd_verify_repeater_out {
++	struct hdcp_cmd_header	header;
++	struct hdcp_port_id	port;
++	u8			content_type_supported;
++	u8			v[HDCP_2_2_V_PRIME_HALF_LEN];
++} __packed;
++
++/*
++ * HECI struct in support of stream management in an
++ * integrated wired HDCP Tx session.
++ */
++struct wired_cmd_repeater_auth_stream_req_in {
++	struct hdcp_cmd_header		header;
++	struct hdcp_port_id		port;
++	u8				seq_num_m[HDCP_2_2_SEQ_NUM_LEN];
++	u8				m_prime[HDCP_2_2_MPRIME_LEN];
++	__be16				k;
++	struct hdcp2_streamid_type	streams[];
++} __packed;
++
++struct wired_cmd_repeater_auth_stream_req_out {
++	struct hdcp_cmd_header	header;
++	struct hdcp_port_id	port;
++} __packed;
++
+ #endif /* _I915_HDCP_INTERFACE_H_ */
 -- 
 2.25.1
 
