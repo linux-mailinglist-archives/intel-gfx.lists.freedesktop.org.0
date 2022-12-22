@@ -2,50 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D996C653CF6
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Dec 2022 09:26:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA8E4653D01
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Dec 2022 09:30:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3D7D10E514;
-	Thu, 22 Dec 2022 08:26:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE08B10E527;
+	Thu, 22 Dec 2022 08:30:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E47CE10E514;
- Thu, 22 Dec 2022 08:26:23 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51B3610E527
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Dec 2022 08:30:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671697583; x=1703233583;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=G26Xi+3Mu0RsqVsMq6+Wo/lBvmZFtlv/v/jQGWH5Td4=;
- b=K/cEpwdwUmkwVPI9dUNuTztrBZFPoUd0X0En7Bhp4w6lqFMhkXW7+UED
- bAnf7rASr/aKGcJS0n9653lp46Gq21+7wyjqAhja0TcwBS8gvlv+kLyyI
- 1qDWdfZZErUSJE9VmwKwRHuCxvasnFbg5qpNHuwRAHwbNI5zIrzanBt5B
- 1VmjtOzL5qPxJ4lwLONp/NyKd1TniIKzeN50WjKXQovFf5iwRQwdbCb/+
- WRNs01AgCkfZ99XWhyE/urAZYOIm67KZ4Ropg8gZi7gM9Y5fdyUAa/MMJ
- NZMJwz+qFD/OjJ7UEVf5aYjoES5nFKPVjxq2WL8me9d10Zt7Mob7baZIx Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10568"; a="384426683"
-X-IronPort-AV: E=Sophos;i="5.96,265,1665471600"; d="scan'208";a="384426683"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2022 00:26:23 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10568"; a="645127601"
-X-IronPort-AV: E=Sophos;i="5.96,265,1665471600"; d="scan'208";a="645127601"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2022 00:26:23 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Thu, 22 Dec 2022 00:25:57 -0800
-Message-Id: <20221222082557.1364711-5-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20221222082557.1364711-1-lucas.demarchi@intel.com>
-References: <20221222082557.1364711-1-lucas.demarchi@intel.com>
+ t=1671697807; x=1703233807;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=Rf9ZNz0+k7YDP5f695EjMvDqSxQgEwLSpAmEJPlt22M=;
+ b=XWYMYt7czXBIY49q21CcPpfzO1eZ6eXxSch9Vi6zOU1F5e5TnqNUZV9Q
+ LCJC2KQAXhc03jfdLchrizUIGsVuZ7KObBmwrSg7NEFgooZeR9TWJl5Hy
+ /luxy25EkKieJo0tIljPqLys1sDTn0PU4QgOvDYEtUzzsY72khQIM5VsT
+ awrUfF1nieGsyZ9H3GeFzI2+/3vnax8YF710g4t5ogLLNzestd0BzZhvb
+ kK1B0RoWL/02afl1zro1lOlSEx1SfL0UYqVrOe4YUhnf+cgTBVHl1hD9B
+ RaZUYF5CXQmbtzA/Am5+93F54KlKsWnWt4Q2eRcuSCrAXN7lprQIcL3uh w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10568"; a="318771210"
+X-IronPort-AV: E=Sophos;i="5.96,265,1665471600"; d="scan'208";a="318771210"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Dec 2022 00:30:05 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10568"; a="715081283"
+X-IronPort-AV: E=Sophos;i="5.96,265,1665471600"; d="scan'208";a="715081283"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by fmsmga008.fm.intel.com with SMTP; 22 Dec 2022 00:29:58 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 22 Dec 2022 10:29:57 +0200
+Date: Thu, 22 Dec 2022 10:29:57 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Andrew Cooper <Andrew.Cooper3@citrix.com>
+Message-ID: <Y6QVhRP+voSLi9xm@intel.com>
+References: <Y5Hst0bCxQDTN7lK@mail-itl>
+ <1c326e0c-5812-083a-0739-aa20fab3efc4@citrix.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/4] fixup! drm/i915: Remove platform comments
- from workarounds
+In-Reply-To: <1c326e0c-5812-083a-0739-aa20fab3efc4@citrix.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [cache coherency bug] i915 and PAT attributes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,87 +61,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ the arch/x86 maintainers <x86@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Marek =?iso-8859-1?Q?Marczykowski-G=F3recki?=
+ <marmarek@invisiblethingslab.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ "Demi M. Obenour" <demi@invisiblethingslab.com>,
+ xen-devel <xen-devel@lists.xenproject.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
----
- drivers/gpu/drm/i915/display/intel_psr.c | 2 +-
- drivers/gpu/drm/i915/i915_perf.c         | 4 ++--
- drivers/gpu/drm/i915/intel_pm.c          | 4 ++--
- drivers/gpu/drm/i915/intel_uncore.c      | 2 +-
- 4 files changed, 6 insertions(+), 6 deletions(-)
+On Fri, Dec 16, 2022 at 03:30:13PM +0000, Andrew Cooper wrote:
+> On 08/12/2022 1:55 pm, Marek Marczykowski-Górecki wrote:
+> > Hi,
+> >
+> > There is an issue with i915 on Xen PV (dom0). The end result is a lot of
+> > glitches, like here: https://openqa.qubes-os.org/tests/54748#step/startup/8
+> > (this one is on ADL, Linux 6.1-rc7 as a Xen PV dom0). It's using Xorg
+> > with "modesetting" driver.
+> >
+> > After some iterations of debugging, we narrowed it down to i915 handling
+> > caching. The main difference is that PAT is setup differently on Xen PV
+> > than on native Linux. Normally, Linux does have appropriate abstraction
+> > for that, but apparently something related to i915 doesn't play well
+> > with it. The specific difference is:
+> > native linux:
+> > x86/PAT: Configuration [0-7]: WB  WC  UC- UC  WB  WP  UC- WT
+> > xen pv:
+> > x86/PAT: Configuration [0-7]: WB  WT  UC- UC  WC  WP  UC  UC
+> >                                   ~~          ~~      ~~  ~~
+> >
+> > The specific impact depends on kernel version and the hardware. The most
+> > severe issues I see on >=ADL, but some older hardware is affected too -
+> > sometimes only if composition is disabled in the window manager.
+> > Some more information is collected at
+> > https://github.com/QubesOS/qubes-issues/issues/4782 (and few linked
+> > duplicates...).
+> >
+> > Kind-of related commit is here:
+> > https://github.com/torvalds/linux/commit/bdd8b6c98239cad ("drm/i915:
+> > replace X86_FEATURE_PAT with pat_enabled()") - it is the place where
+> > i915 explicitly checks for PAT support, so I'm cc-ing people mentioned
+> > there too.
+> >
+> > Any ideas?
+> >
+> > The issue can be easily reproduced without Xen too, by adjusting PAT in
+> > Linux:
+> > -----8<-----
+> > diff --git a/arch/x86/mm/pat/memtype.c b/arch/x86/mm/pat/memtype.c
+> > index 66a209f7eb86..319ab60c8d8c 100644
+> > --- a/arch/x86/mm/pat/memtype.c
+> > +++ b/arch/x86/mm/pat/memtype.c
+> > @@ -400,8 +400,8 @@ void pat_init(void)
+> >  		 * The reserved slots are unused, but mapped to their
+> >  		 * corresponding types in the presence of PAT errata.
+> >  		 */
+> > -		pat = PAT(0, WB) | PAT(1, WC) | PAT(2, UC_MINUS) | PAT(3, UC) |
+> > -		      PAT(4, WB) | PAT(5, WP) | PAT(6, UC_MINUS) | PAT(7, WT);
+> > +		pat = PAT(0, WB) | PAT(1, WT) | PAT(2, UC_MINUS) | PAT(3, UC) |
+> > +		      PAT(4, WC) | PAT(5, WP) | PAT(6, UC)       | PAT(7, UC);
+> >  	}
+> >  
+> >  	if (!pat_bp_initialized) {
+> > -----8<-----
+> >
+> 
+> Hello, can anyone help please?
+> 
+> Intel's CI has taken this reproducer of the bug, and confirmed the
+> regression. 
+> https://lore.kernel.org/intel-gfx/Y5Hst0bCxQDTN7lK@mail-itl/T/#m4480c15a0d117dce6210562eb542875e757647fb
+> 
+> We're reasonably confident that it is an i915 bug (given the repro with
+> no Xen in the mix), but we're out of any further ideas.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 328c886309f3..543881838def 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1636,7 +1636,7 @@ static void psr2_man_trk_ctl_calc(struct intel_crtc_state *crtc_state,
- 
- 	if (full_update) {
- 		/*
--		 * Not applying Wa_14014971508
-+		 * Not applying Wa_14014971508 as we do not support the
- 		 * feature that requires this workaround.
- 		 */
- 		val |= man_trk_ctl_single_full_frame_bit_get(dev_priv);
-diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 49f7e1fbd96c..9e6686b8c8f0 100644
---- a/drivers/gpu/drm/i915/i915_perf.c
-+++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -1590,7 +1590,7 @@ static void i915_oa_stream_destroy(struct i915_perf_stream *stream)
- 	free_oa_buffer(stream);
- 
- 	/*
--	 * Wa_16011777198
-+	 * Wa_16011777198 - Unset the override of GUCRC mode to enable rc6.
- 	 */
- 	if (intel_uc_uses_guc_rc(&gt->uc) &&
- 	    (IS_DG2_GRAPHICS_STEP(gt->i915, G10, STEP_A0, STEP_C0) ||
-@@ -3293,7 +3293,7 @@ static int i915_oa_stream_init(struct i915_perf_stream *stream,
- 	intel_uncore_forcewake_get(stream->uncore, FORCEWAKE_ALL);
- 
- 	/*
--	 * Wa_16011777198
-+	 * Wa_16011777198 - GuC resets render as part of the Wa. This causes
- 	 * OA to lose the configuration state. Prevent this by overriding GUCRC
- 	 * mode.
- 	 */
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 82a59738ca4a..492973085297 100644
---- a/drivers/gpu/drm/i915/intel_pm.c
-+++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -4578,7 +4578,7 @@ static void ivb_init_clock_gating(struct drm_i915_private *dev_priv)
- 
- 	/*
- 	 * According to the spec, bit 13 (RCZUNIT) must be set on IVB.
--	 * This implements the WaDisableRCZUnitClockGating
-+	 * This implements the WaDisableRCZUnitClockGating workaround.
- 	 */
- 	intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL2,
- 		   GEN6_RCZUNIT_CLOCK_GATE_DISABLE);
-@@ -4615,7 +4615,7 @@ static void vlv_init_clock_gating(struct drm_i915_private *dev_priv)
- 
- 	/*
- 	 * According to the spec, bit 13 (RCZUNIT) must be set on IVB.
--	 * This implements the WaDisableRCZUnitClockGating
-+	 * This implements the WaDisableRCZUnitClockGating workaround.
- 	 */
- 	intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL2,
- 		   GEN6_RCZUNIT_CLOCK_GATE_DISABLE);
-diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
-index e56dbb20f2fe..182791a9cabb 100644
---- a/drivers/gpu/drm/i915/intel_uncore.c
-+++ b/drivers/gpu/drm/i915/intel_uncore.c
-@@ -1887,7 +1887,7 @@ static const struct intel_forcewake_range __xelpmp_fw_ranges[] = {
- static void
- ilk_dummy_write(struct intel_uncore *uncore)
- {
--	/* WaIssueDummyWriteToWakeupFromRC6
-+	/* WaIssueDummyWriteToWakeupFromRC6 - Issue a dummy write to wake up
- 	 * the chip from rc6 before touching it for real. MI_MODE is masked,
- 	 * hence harmless to write 0 into. */
- 	__raw_uncore_write32(uncore, RING_MI_MODE(RENDER_RING_BASE), 0);
+I don't think we have any code that assumes anything about the PAT,
+apart from WC being available (which seems like it should still be
+the case with your modified PAT). I suppose you'll just have to 
+start digging from pgprot_writecombine()/noncached() and make sure
+everything ends up using the correct PAT entry.
+
 -- 
-2.39.0
-
+Ville Syrjälä
+Intel
