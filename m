@@ -2,61 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8B0F653CC1
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Dec 2022 09:05:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4327C653CCD
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Dec 2022 09:12:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8802A10E084;
-	Thu, 22 Dec 2022 08:04:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9101D10E513;
+	Thu, 22 Dec 2022 08:12:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9679810E514
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Dec 2022 08:04:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671696274; x=1703232274;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Ck/D9rGQcSeNbPG4CJDv/aTqzZ9AYTxRboxtnRgB2Uk=;
- b=EkUVtbpuUcZthEHI45Bec9nxEPMUzaj3967+ixg9WYbliYUf3V7kHmt6
- /j1Q8y43D4KPdiLTirI53LTzON7G8Y0Ndb10wVQrDa6+7CHaXtV6vcKxV
- mC/wPk+Bwv/iCKWlQ5ZeAeW9yFazlFNJ3MA1c465VjEmw7rJFbZVwJ1Ar
- MytVtw/Dgvz3b0IgFNkWlvZA0S0Ld4IB2BPlrGGI3jmgkaWajhOp7nRTS
- tmH2sXCuttQ61plGNy5CP9mPBdK6/rsxdpkiar3vAQgOkGQmYDQjymVem
- sxf4EvgOOP8galZQryoXSDwqq3LotytGgTUcT1poMVcV8h+n3ohCtaGJi Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10568"; a="303502488"
-X-IronPort-AV: E=Sophos;i="5.96,264,1665471600"; d="scan'208";a="303502488"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2022 00:04:33 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10568"; a="645121170"
-X-IronPort-AV: E=Sophos;i="5.96,264,1665471600"; d="scan'208";a="645121170"
-Received: from cprice2-mobl.ger.corp.intel.com (HELO [10.213.220.27])
- ([10.213.220.27])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2022 00:04:30 -0800
-Message-ID: <96661293-32d7-0bb4-fb0e-28086eaaecc3@linux.intel.com>
-Date: Thu, 22 Dec 2022 08:04:28 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D9FB810E512;
+ Thu, 22 Dec 2022 08:12:03 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 90195AA0ED;
+ Thu, 22 Dec 2022 08:12:02 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5990493910746247407=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Content-Language: en-US
-To: Mirsad Goran Todorovac <mirsad.todorovac@alu.unizg.hr>,
- srinivas pandruvada <srinivas.pandruvada@linux.intel.com>,
- LKML <linux-kernel@vger.kernel.org>, jani.nikula@linux.intel.com,
- joonas.lahtinen@linux.intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <f849cc70-b21f-6476-ba26-08989d1243c2@alu.unizg.hr>
- <05424a5351a847786377a548dba0759917d8046c.camel@linux.intel.com>
- <15ef1bb9-7312-5d98-8bf0-0af1a37cfd2a@linux.intel.com>
- <619bdecc-cf87-60a4-f50d-836f4c073ea7@alu.unizg.hr>
- <8e080674-36ab-9260-046e-f4e3c931a3b9@alu.unizg.hr>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <8e080674-36ab-9260-046e-f4e3c931a3b9@alu.unizg.hr>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] LOOKS GOOD: Possible regression in drm/i915 driver:
- memleak
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Thomas Zimmermann" <tzimmermann@suse.de>
+Date: Thu, 22 Dec 2022 08:12:02 -0000
+Message-ID: <167169672255.14835.12345802470793651136@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221219160516.23436-1-tzimmermann@suse.de>
+In-Reply-To: <20221219160516.23436-1-tzimmermann@suse.de>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?=2C_fbdev=3A_Remove_apertures_structure_and_FBINFO=5FMISC=5FFIR?=
+ =?utf-8?q?MWARE_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,173 +41,201 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Thorsten Leemhuis <regressions@leemhuis.info>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============5990493910746247407==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 22/12/2022 00:12, Mirsad Goran Todorovac wrote:
-> On 20. 12. 2022. 20:34, Mirsad Todorovac wrote:
->> On 12/20/22 16:52, Tvrtko Ursulin wrote:
->>
->>> On 20/12/2022 15:22, srinivas pandruvada wrote:
->>>> +Added DRM mailing list and maintainers
->>>>
->>>> On Tue, 2022-12-20 at 15:33 +0100, Mirsad Todorovac wrote:
->>>>> Hi all,
->>>>>
->>>>> I have been unsuccessful to find any particular Intel i915 maintainer
->>>>> emails, so my best bet is to post here, as you will must assuredly
->>>>> already know them.
->>>
->>> For future reference you can use 
->>> ${kernel_dir}/scripts/get_maintainer.pl -f ...
->>>
->>>>> The problem is a kernel memory leak that is repeatedly occurring
->>>>> triggered during the execution of Chrome browser under the latest
->>>>> 6.1.0+
->>>>> kernel of this morning and Almalinux 8.6 on a Lenovo desktop box
->>>>> with Intel(R) Core(TM) i5-8400 CPU @ 2.80GHz CPU.
->>>>>
->>>>> The build is with KMEMLEAK, KASAN and MGLRU turned on during the
->>>>> build,
->>>>> on a vanilla mainline kernel from Mr. Torvalds' tree.
->>>>>
->>>>> The leaks look like this one:
->>>>>
->>>>> unreferenced object 0xffff888131754880 (size 64):
->>>>>     comm "chrome", pid 13058, jiffies 4298568878 (age 3708.084s)
->>>>>     hex dump (first 32 bytes):
->>>>>       01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
->>>>> ................
->>>>>       00 00 00 00 00 00 00 00 00 80 1e 3e 83 88 ff ff
->>>>> ...........>....
->>>>>     backtrace:
->>>>>       [<ffffffff9e9b5542>] slab_post_alloc_hook+0xb2/0x340
->>>>>       [<ffffffff9e9bbf5f>] __kmem_cache_alloc_node+0x1bf/0x2c0
->>>>>       [<ffffffff9e8f767a>] kmalloc_trace+0x2a/0xb0
->>>>>       [<ffffffffc08dfde5>] drm_vma_node_allow+0x45/0x150 [drm]
->>>>>       [<ffffffffc0b33315>] __assign_mmap_offset_handle+0x615/0x820
->>>>> [i915]
->>>>>       [<ffffffffc0b34057>] i915_gem_mmap_offset_ioctl+0x77/0x110
->>>>> [i915]
->>>>>       [<ffffffffc08bc5e1>] drm_ioctl_kernel+0x181/0x280 [drm]
->>>>>       [<ffffffffc08bc9cd>] drm_ioctl+0x2dd/0x6a0 [drm]
->>>>>       [<ffffffff9ea54744>] __x64_sys_ioctl+0xc4/0x100
->>>>>       [<ffffffff9fbc0178>] do_syscall_64+0x58/0x80
->>>>>       [<ffffffff9fc000aa>] entry_SYSCALL_64_after_hwframe+0x72/0xdc
->>>>>
->>>>> The complete list of leaks in attachment, but they seem similar or
->>>>> the same.
->>>>>
->>>>> Please find attached lshw and kernel build config file.
->>>>>
->>>>> I will probably check the same parms on my laptop at home, which is
->>>>> also
->>>>> Lenovo, but a different hw config and Ubuntu 22.10.
->>>
->>> Could you try the below patch?
->>>
->>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c 
->>> b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
->>> index c3ea243d414d..0b07534c203a 100644
->>> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
->>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
->>> @@ -679,9 +679,10 @@ mmap_offset_attach(struct drm_i915_gem_object *obj,
->>>   insert:
->>>          mmo = insert_mmo(obj, mmo);
->>>          GEM_BUG_ON(lookup_mmo(obj, mmap_type) != mmo);
->>> -out:
->>> +
->>>          if (file)
->>>                  drm_vma_node_allow(&mmo->vma_node, file);
->>> +out:
->>>          return mmo;
->>>
->>>   err:
->>>
->>> Maybe it is not the best fix but curious to know if it will make the 
->>> leak go away.
->>
->> Hi,
->>
->> After 27 minutes uptime with the patched kernel it looks promising.
->> It is much longer than it took for the buggy kernel to leak slabs.
->>
->> Here is the output:
->>
->> [root@pc-mtodorov marvin]# echo scan > /sys/kernel/debug/kmemleak
->> [root@pc-mtodorov marvin]# cat !$
->> cat /sys/kernel/debug/kmemleak
->> unreferenced object 0xffff888105028d80 (size 16):
->>    comm "kworker/u12:5", pid 359, jiffies 4294902898 (age 1620.144s)
->>    hex dump (first 16 bytes):
->>      6d 65 6d 73 74 69 63 6b 30 00 00 00 00 00 00 00  memstick0.......
->>    backtrace:
->>      [<ffffffffb6bb5542>] slab_post_alloc_hook+0xb2/0x340
->>      [<ffffffffb6bbbf5f>] __kmem_cache_alloc_node+0x1bf/0x2c0
->>      [<ffffffffb6af8175>] __kmalloc_node_track_caller+0x55/0x160
->>      [<ffffffffb6ae34a6>] kstrdup+0x36/0x60
->>      [<ffffffffb6ae3508>] kstrdup_const+0x28/0x30
->>      [<ffffffffb70d0757>] kvasprintf_const+0x97/0xd0
->>      [<ffffffffb7c9cdf4>] kobject_set_name_vargs+0x34/0xc0
->>      [<ffffffffb750289b>] dev_set_name+0x9b/0xd0
->>      [<ffffffffc12d9201>] memstick_check+0x181/0x639 [memstick]
->>      [<ffffffffb676e1d6>] process_one_work+0x4e6/0x7e0
->>      [<ffffffffb676e556>] worker_thread+0x76/0x770
->>      [<ffffffffb677b468>] kthread+0x168/0x1a0
->>      [<ffffffffb6604c99>] ret_from_fork+0x29/0x50
->> [root@pc-mtodorov marvin]# w
->>   20:27:35 up 27 min,  2 users,  load average: 0.83, 1.15, 1.19
->> USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
->> marvin   tty2     tty2             20:01   27:10  10:12   2.09s 
->> /opt/google/chrome/chrome --type=utility --utility-sub-type=audio.m
->> marvin   pts/1    -                20:01    0.00s  2:00   0.38s sudo bash
->> [root@pc-mtodorov marvin]# uname -rms
->> Linux 6.1.0-b6bb9676f216-mglru-kmemlk-kasan+ x86_64
->> [root@pc-mtodorov marvin]#
-> 
-> As I hear no reply from Tvrtko, and there is already 1d5h uptime with no 
-> leaks (but
-> the kworker with memstick_check nag I couldn't bisect on the only box 
-> that reproduced it,
-> because something in hw was not supported in pre 4.16 kernels on the 
-> Lenovo V530S-07ICB.
-> Or I am doing something wrong.)
-> 
-> However, now I can find the memstick maintainers thanks to Tvrtko's hint.
-> 
-> If you no longer require my service, I would close this on my behalf.
-> 
-> I hope I did not cause too much trouble. The knowledgeable knew that 
-> this was not a security
-> risk, but only a bug. (30 leaks of 64 bytes each were hardly to exhaust 
-> memory in any realistic
-> time.)
-> 
-> However, having some experience with software development, I always 
-> preferred bugs reported
-> and fixed rather than concealed and lying in wait (or worse, found first 
-> by a motivated
-> adversary.) Forgive me this rant, I do not live from writing kernel 
-> drivers, this is just a
-> pet project as of time being ...
+== Series Details ==
 
-It is not forgotten - I was trying to reach out to the original author 
-of the fixlet which worked for you. If that fails I will take it up on 
-myself, but need to set aside some time to get into the exact problem 
-space before I can vouch for the fix and send it on my own.
+Series: drm, fbdev: Remove apertures structure and FBINFO_MISC_FIRMWARE (rev2)
+URL   : https://patchwork.freedesktop.org/series/112069/
+State : success
 
-In the meantime definitely thanks a lot for testing this quickly and 
-reporting back!
+== Summary ==
 
-What will happen next is, that when either the original author or myself 
-are ready to send out the fix as a proper patch, you will be copied on 
-it via the "Reported-by" and possibly "Tested-by" tags. Latter is if the 
-patch remains identical. If it changes we might kindly ask you to 
-re-test if possible.
+CI Bug Log - changes from CI_DRM_12521 -> Patchwork_112069v2
+====================================================
 
-Regards,
+Summary
+-------
 
-Tvrtko
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112069v2/index.html
+
+Participating hosts (46 -> 45)
+------------------------------
+
+  Missing    (1): bat-atsm-1 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_112069v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [PASS][1] -> [INCOMPLETE][2] ([i915#4785])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12521/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112069v2/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+    - bat-dg1-5:          [PASS][3] -> [INCOMPLETE][4] ([i915#4983])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12521/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112069v2/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
+
+  * igt@runner@aborted:
+    - fi-hsw-4770:        NOTRUN -> [FAIL][5] ([fdo#109271] / [i915#4312] / [i915#5594])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112069v2/fi-hsw-4770/igt@runner@aborted.html
+    - bat-dg1-5:          NOTRUN -> [FAIL][6] ([i915#4312])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112069v2/bat-dg1-5/igt@runner@aborted.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5594]: https://gitlab.freedesktop.org/drm/intel/issues/5594
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12521 -> Patchwork_112069v2
+
+  CI-20190529: 20190529
+  CI_DRM_12521: 584eb294ab7b1273c5ef505a33f2a5d89c877fcd @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7101: bd33b4c060eb6b2e24c5784b2aa817ae5840f84f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_112069v2: 584eb294ab7b1273c5ef505a33f2a5d89c877fcd @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+19b034976333 drm/fbdev: Remove aperture handling and FBINFO_MISC_FIRMWARE
+60f2bde3dbcf fbdev/vga16fb: Do not use struct fb_info.apertures
+499844d92d56 fbdev/vesafb: Do not use struct fb_info.apertures
+d8c2620aa2a2 fbdev/vesafb: Remove trailing whitespaces
+2d23f20a288b fbdev/simplefb: Do not use struct fb_info.apertures
+560addfbec2f fbdev/offb: Do not use struct fb_info.apertures
+c89260bbd67a fbdev/offb: Allocate struct offb_par with framebuffer_alloc()
+1c1e130fd479 fbdev/efifb: Do not use struct fb_info.apertures
+473e7f788067 fbdev/efifb: Add struct efifb_par for driver data
+1dfa46e3cdfa vfio-mdev/mdpy-fb: Do not set struct fb_info.apertures
+fc3ca744e6f9 fbdev/hyperv-fb: Do not set struct fb_info.apertures
+aa63d07f6438 fbdev/clps711x-fb: Do not set struct fb_info.apertures
+2af5a9cf4381 drm/fb-helper: Do not allocate unused apertures structure
+a5d752dfe3d5 drm/radeon: Do not set struct fb_info.apertures
+b8fa763fb622 drm/i915: Do not set struct fb_info.apertures
+dd9c39b9598c drm/gma500: Do not set struct fb_info.apertures
+744e4af1e98c Revert "fbcon: don't lose the console font across generic->chip driver switch"
+635a3b51d2ba fbcon: Remove trailing whitespaces
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112069v2/index.html
+
+--===============5990493910746247407==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm, fbdev: Remove apertures structure and FBINFO_MISC_FIRMWARE (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/112069/">https://patchwork.freedesktop.org/series/112069/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112069v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112069v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12521 -&gt; Patchwork_112069v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112069v2/index.html</p>
+<h2>Participating hosts (46 -&gt; 45)</h2>
+<p>Missing    (1): bat-atsm-1 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_112069v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>
+<p>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12521/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112069v2/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</p>
+</li>
+<li>
+<p>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12521/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112069v2/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112069v2/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5594">i915#5594</a>)</p>
+</li>
+<li>
+<p>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112069v2/bat-dg1-5/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12521 -&gt; Patchwork_112069v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12521: 584eb294ab7b1273c5ef505a33f2a5d89c877fcd @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7101: bd33b4c060eb6b2e24c5784b2aa817ae5840f84f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_112069v2: 584eb294ab7b1273c5ef505a33f2a5d89c877fcd @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>19b034976333 drm/fbdev: Remove aperture handling and FBINFO_MISC_FIRMWARE<br />
+60f2bde3dbcf fbdev/vga16fb: Do not use struct fb_info.apertures<br />
+499844d92d56 fbdev/vesafb: Do not use struct fb_info.apertures<br />
+d8c2620aa2a2 fbdev/vesafb: Remove trailing whitespaces<br />
+2d23f20a288b fbdev/simplefb: Do not use struct fb_info.apertures<br />
+560addfbec2f fbdev/offb: Do not use struct fb_info.apertures<br />
+c89260bbd67a fbdev/offb: Allocate struct offb_par with framebuffer_alloc()<br />
+1c1e130fd479 fbdev/efifb: Do not use struct fb_info.apertures<br />
+473e7f788067 fbdev/efifb: Add struct efifb_par for driver data<br />
+1dfa46e3cdfa vfio-mdev/mdpy-fb: Do not set struct fb_info.apertures<br />
+fc3ca744e6f9 fbdev/hyperv-fb: Do not set struct fb_info.apertures<br />
+aa63d07f6438 fbdev/clps711x-fb: Do not set struct fb_info.apertures<br />
+2af5a9cf4381 drm/fb-helper: Do not allocate unused apertures structure<br />
+a5d752dfe3d5 drm/radeon: Do not set struct fb_info.apertures<br />
+b8fa763fb622 drm/i915: Do not set struct fb_info.apertures<br />
+dd9c39b9598c drm/gma500: Do not set struct fb_info.apertures<br />
+744e4af1e98c Revert "fbcon: don't lose the console font across generic-&gt;chip driver switch"<br />
+635a3b51d2ba fbcon: Remove trailing whitespaces</p>
+
+</body>
+</html>
+
+--===============5990493910746247407==--
