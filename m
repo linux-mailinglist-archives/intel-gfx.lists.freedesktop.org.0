@@ -2,32 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD992653EB7
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Dec 2022 12:09:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BA9D653EB8
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Dec 2022 12:09:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99AB810E071;
-	Thu, 22 Dec 2022 11:09:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD20610E15A;
+	Thu, 22 Dec 2022 11:09:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 860B410E071;
- Thu, 22 Dec 2022 11:09:09 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D222E10E15A;
+ Thu, 22 Dec 2022 11:09:11 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7FB46A0BCB;
- Thu, 22 Dec 2022 11:09:09 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id CF503A0BCB;
+ Thu, 22 Dec 2022 11:09:11 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: john.c.harrison@intel.com
-Date: Thu, 22 Dec 2022 11:09:09 -0000
-Message-ID: <167170734949.14837.13353838580275043169@emeril.freedesktop.org>
+Date: Thu, 22 Dec 2022 11:09:11 -0000
+Message-ID: <167170735184.14836.12529280055737060156@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20221221193031.687266-1-John.C.Harrison@Intel.com>
 In-Reply-To: <20221221193031.687266-1-John.C.Harrison@Intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Fixes_for_various_UC_related_issues_=28rev2=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Fixes_for_various_UC_related_issues_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,14 +53,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-bf35e0a177be drm/i915/guc: Fix missing return code checks in submission init
-4c3490ae03f6 drm/i915/guc: Fix a static analysis warning
--:27: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
-#27: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:2541:
-+	GEM_BUG_ON(!desc);
-
-total: 0 errors, 1 warnings, 0 checks, 7 lines checked
-1a47dc148fe9 drm/i915/uc: Fix two issues with over-size firmware files
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
