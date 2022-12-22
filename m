@@ -2,32 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49CA165461D
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Dec 2022 19:50:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E84C4656CEF
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Dec 2022 17:33:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 381F610E0FE;
-	Thu, 22 Dec 2022 18:49:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5675710E161;
+	Tue, 27 Dec 2022 16:33:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id EAE6410E0FE;
- Thu, 22 Dec 2022 18:49:44 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D8ABFA47DF;
- Thu, 22 Dec 2022 18:49:44 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2057068622543112359=="
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com
+ [IPv6:2a00:1450:4864:20::32b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9785710E559;
+ Thu, 22 Dec 2022 18:53:26 +0000 (UTC)
+Received: by mail-wm1-x32b.google.com with SMTP id
+ ay2-20020a05600c1e0200b003d22e3e796dso1999227wmb.0; 
+ Thu, 22 Dec 2022 10:53:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+ :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=mZRm9urdOthWqTYxAw02fxkoMKYNKeTirXSn3tbLtpc=;
+ b=DqydNKpoK6xZ9NSkK2c/6XM/aLr5fmVcnfv97GPGX4t5d7SoTa1+Vj7MbKtmyUz2kG
+ wEZv9euJIhxdwnS5KDjjxd7WRLWoknTnb7dET+eUcY2RTZ3kIF3m+H4D2G5Ky0PknVfL
+ Pb9zTvvYizHD2gGeZwV1XN15iZSqKwdQAZZQMkQzluqK20AayXQfNV9HR5CljPueba3M
+ c5JXXjGBW71+n2yDA7hqZ74NPrTba2GW9H8fRTM2AVHcN4M9Zcp/XU5uf5DrmEdLdUwc
+ uweuf1M7V6MRMRcExOe2U6+80LMwxr2u7ZMnirQicpzKUo+UtZU0ibU3OTdmV9HcNAjU
+ eKCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+ :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=mZRm9urdOthWqTYxAw02fxkoMKYNKeTirXSn3tbLtpc=;
+ b=xpa6+7hlkTKNe+L8m1wM53TvjqBNERqPKnNnbK1eQl1AWyldJG5znsDFNHjTk+Bxcq
+ sb0WHin8vqR9doMvZDSy8ze7o+g3xY7BlD/+5st6Zq5afCFYRSPj7PlrVfIkfmhR2kcO
+ O81TjUZcrM1/0fniR2R/qohAslf0l3NyjsSwCAuDPKgJl5FhmHTDDQl8dcsSwvKDrRdD
+ uvWwc5SX1ciozIPfiE1QaePG7PTsgpv/iYEb6LWbUuYoxV+g6U3Hvch+v1aIkmk7QZao
+ 0QSe3I54T+R7NUDmPaHM3vWJw4odVVWxDXMfvUwvJETeHaUMaFtcNX1CXTxYhB/xw58f
+ BYPg==
+X-Gm-Message-State: AFqh2kovhb581eBgUTQXtFDfzmtQizDw3Ex5HNA6wK0MaPWOroGh31lK
+ aU6m67lbCDkBwxarKQn3nnI=
+X-Google-Smtp-Source: AMrXdXsiZnZT37+W2XIO83aQjb+0JFc6XJ5Ad9sd0DAmV5sXvHfzSlJOJgF0vWfO7rAT6BENa8pdNQ==
+X-Received: by 2002:a05:600c:15d4:b0:3d1:d746:d95b with SMTP id
+ v20-20020a05600c15d400b003d1d746d95bmr7888624wmf.41.1671735205373; 
+ Thu, 22 Dec 2022 10:53:25 -0800 (PST)
+Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
+ a6-20020adff7c6000000b002421db5f279sm1163666wrq.78.2022.12.22.10.53.23
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 22 Dec 2022 10:53:24 -0800 (PST)
+Date: Thu, 22 Dec 2022 21:53:20 +0300
+From: Dan Carpenter <error27@gmail.com>
+To: oe-kbuild@lists.linux.dev, xinhui pan <xinhui.pan@amd.com>,
+ amd-gfx@lists.freedesktop.org
+Message-ID: <202212222042.6Dhv6XWG-lkp@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andrzej Hajda" <andrzej.hajda@intel.com>
-Date: Thu, 22 Dec 2022 18:49:44 -0000
-Message-ID: <167173498485.14837.17271266408691814436@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221222114635.1251934-1-andrzej.hajda@intel.com>
-In-Reply-To: <20221222114635.1251934-1-andrzej.hajda@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgSW50?=
- =?utf-8?q?roduce_=5F=5Fxchg=2C_non-atomic_xchg?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221218065708.93332-1-xinhui.pan@amd.com>
+X-Mailman-Approved-At: Tue, 27 Dec 2022 16:32:55 +0000
+Subject: Re: [Intel-gfx] [PATCH v6] drm: Optimise for continuous memory
+ allocation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,309 +72,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: arunpravin.paneerselvam@amd.com, intel-gfx@lists.freedesktop.org,
+ xinhui pan <xinhui.pan@amd.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, matthew.auld@intel.com, daniel@ffwll.ch,
+ oe-kbuild-all@lists.linux.dev, christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2057068622543112359==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi xinhui,
 
-== Series Details ==
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Series: Introduce __xchg, non-atomic xchg
-URL   : https://patchwork.freedesktop.org/series/112169/
-State : success
+url:    https://github.com/intel-lab-lkp/linux/commits/xinhui-pan/drm-Optimise-for-continuous-memory-allocation/20221218-145922
+base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
+patch link:    https://lore.kernel.org/r/20221218065708.93332-1-xinhui.pan%40amd.com
+patch subject: [PATCH v6] drm: Optimise for continuous memory allocation
+config: s390-randconfig-m041-20221218
+compiler: s390-linux-gcc (GCC) 12.1.0
 
-== Summary ==
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <error27@gmail.com>
 
-CI Bug Log - changes from CI_DRM_12522 -> Patchwork_112169v1
-====================================================
+smatch warnings:
+drivers/gpu/drm/drm_buddy.c:501 find_continuous_blocks() error: uninitialized symbol 'block'.
 
-Summary
--------
+vim +/block +501 drivers/gpu/drm/drm_buddy.c
 
-  **SUCCESS**
+8a257b57bc11a2 xinhui pan 2022-12-18  472  static struct drm_buddy_block *
+8a257b57bc11a2 xinhui pan 2022-12-18  473  find_continuous_blocks(struct drm_buddy *mm,
+8a257b57bc11a2 xinhui pan 2022-12-18  474  		       int order,
+8a257b57bc11a2 xinhui pan 2022-12-18  475  		       unsigned long flags,
+8a257b57bc11a2 xinhui pan 2022-12-18  476  		       struct drm_buddy_block **lb)
+8a257b57bc11a2 xinhui pan 2022-12-18  477  {
+8a257b57bc11a2 xinhui pan 2022-12-18  478  	struct list_head *head = &mm->free_list[order - 1];
+8a257b57bc11a2 xinhui pan 2022-12-18  479  	struct drm_buddy_block *free_block, *first = NULL, *last = NULL;
+8a257b57bc11a2 xinhui pan 2022-12-18  480  
+8a257b57bc11a2 xinhui pan 2022-12-18  481  	/*
+8a257b57bc11a2 xinhui pan 2022-12-18  482  	 * Look for continuous free memory in buddy and buddy-in-law.
+8a257b57bc11a2 xinhui pan 2022-12-18  483  	 * IOW, the most left blocks at right of free block and the most right
+8a257b57bc11a2 xinhui pan 2022-12-18  484  	 * blocks at left of free block.
+8a257b57bc11a2 xinhui pan 2022-12-18  485  	 */
+8a257b57bc11a2 xinhui pan 2022-12-18  486  
+8a257b57bc11a2 xinhui pan 2022-12-18  487  	list_for_each_entry(free_block, head, link) {
+8a257b57bc11a2 xinhui pan 2022-12-18  488  		struct drm_buddy_block *buddy, *parent, *block;
+8a257b57bc11a2 xinhui pan 2022-12-18  489  		int left, min_order = 0;
+8a257b57bc11a2 xinhui pan 2022-12-18  490  		LIST_HEAD(fbl);
+8a257b57bc11a2 xinhui pan 2022-12-18  491  
+8a257b57bc11a2 xinhui pan 2022-12-18  492  		parent = free_block->parent;
+8a257b57bc11a2 xinhui pan 2022-12-18  493  		if (!parent)
+8a257b57bc11a2 xinhui pan 2022-12-18  494  			continue;
+8a257b57bc11a2 xinhui pan 2022-12-18  495  
+8a257b57bc11a2 xinhui pan 2022-12-18  496  		left = parent->left == free_block;
+8a257b57bc11a2 xinhui pan 2022-12-18  497  		list_add(&free_block->tmp_link, &fbl);
+8a257b57bc11a2 xinhui pan 2022-12-18  498  		buddy = __get_buddy(free_block);
+8a257b57bc11a2 xinhui pan 2022-12-18  499  		__continuous_block_in_tree(buddy, &fbl, left, min_order);
+8a257b57bc11a2 xinhui pan 2022-12-18  500  
+8a257b57bc11a2 xinhui pan 2022-12-18 @501  		while (parent && !((parent->left == block) ^ left)) {
+                                                                                            ^^^^^
+Not initialized on first iteration.
 
-  No regressions found.
+8a257b57bc11a2 xinhui pan 2022-12-18  502  			block = parent;
+8a257b57bc11a2 xinhui pan 2022-12-18  503  			parent = parent->parent;
+8a257b57bc11a2 xinhui pan 2022-12-18  504  		}
+8a257b57bc11a2 xinhui pan 2022-12-18  505  
+8a257b57bc11a2 xinhui pan 2022-12-18  506  		if (!parent)
+8a257b57bc11a2 xinhui pan 2022-12-18  507  			continue;
+8a257b57bc11a2 xinhui pan 2022-12-18  508  
+8a257b57bc11a2 xinhui pan 2022-12-18  509  		buddy = __get_buddy(block);
+8a257b57bc11a2 xinhui pan 2022-12-18  510  		__continuous_block_in_tree(buddy, &fbl, !left, min_order);
+8a257b57bc11a2 xinhui pan 2022-12-18  511  
+8a257b57bc11a2 xinhui pan 2022-12-18  512  		/* list head of fbl is invalid outside.
+8a257b57bc11a2 xinhui pan 2022-12-18  513  		 * Walk through list from first fo last only.
+8a257b57bc11a2 xinhui pan 2022-12-18  514  		 */
+8a257b57bc11a2 xinhui pan 2022-12-18  515  		if (__free_block_in_order(&fbl, free_block, order, &first, &last))
+8a257b57bc11a2 xinhui pan 2022-12-18  516  			break;
+8a257b57bc11a2 xinhui pan 2022-12-18  517  	}
+8a257b57bc11a2 xinhui pan 2022-12-18  518  
+8a257b57bc11a2 xinhui pan 2022-12-18  519  	*lb = last;
+8a257b57bc11a2 xinhui pan 2022-12-18  520  	return first;
+8a257b57bc11a2 xinhui pan 2022-12-18  521  }
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112169v1/index.html
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
 
-Participating hosts (44 -> 46)
-------------------------------
-
-  Additional (2): bat-adlm-1 bat-atsm-1 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_112169v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-kbl-soraka:      [PASS][1] -> [DMESG-FAIL][2] ([i915#5334])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12522/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112169v1/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        [PASS][3] -> [INCOMPLETE][4] ([i915#4785])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12522/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112169v1/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@late_gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [INCOMPLETE][5] ([i915#7640])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112169v1/fi-kbl-soraka/igt@i915_selftest@live@late_gt_pm.html
-
-  * igt@runner@aborted:
-    - fi-hsw-4770:        NOTRUN -> [FAIL][6] ([fdo#109271] / [i915#4312] / [i915#5594])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112169v1/fi-hsw-4770/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-apl-guc:         [FAIL][7] -> [PASS][8] +11 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12522/fi-apl-guc/igt@i915_selftest@live@execlists.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112169v1/fi-apl-guc/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [DMESG-FAIL][9] ([i915#5334]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12522/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112169v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@guc_hang:
-    - fi-kbl-soraka:      [INCOMPLETE][11] ([i915#7640]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12522/fi-kbl-soraka/igt@i915_selftest@live@guc_hang.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112169v1/fi-kbl-soraka/igt@i915_selftest@live@guc_hang.html
-
-  * igt@i915_selftest@live@reset:
-    - {bat-rpls-1}:       [DMESG-FAIL][13] ([i915#4983]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12522/bat-rpls-1/igt@i915_selftest@live@reset.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112169v1/bat-rpls-1/igt@i915_selftest@live@reset.html
-
-  
-#### Warnings ####
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-apl-guc:         [SKIP][15] ([fdo#109271]) -> [SKIP][16] ([fdo#109271] / [fdo#111827])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12522/fi-apl-guc/igt@kms_chamelium@common-hpd-after-suspend.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112169v1/fi-apl-guc/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1836]: https://gitlab.freedesktop.org/drm/intel/issues/1836
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#5594]: https://gitlab.freedesktop.org/drm/intel/issues/5594
-  [i915#6077]: https://gitlab.freedesktop.org/drm/intel/issues/6077
-  [i915#6078]: https://gitlab.freedesktop.org/drm/intel/issues/6078
-  [i915#6093]: https://gitlab.freedesktop.org/drm/intel/issues/6093
-  [i915#6094]: https://gitlab.freedesktop.org/drm/intel/issues/6094
-  [i915#6166]: https://gitlab.freedesktop.org/drm/intel/issues/6166
-  [i915#6311]: https://gitlab.freedesktop.org/drm/intel/issues/6311
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
-  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
-  [i915#7357]: https://gitlab.freedesktop.org/drm/intel/issues/7357
-  [i915#7456]: https://gitlab.freedesktop.org/drm/intel/issues/7456
-  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
-  [i915#7640]: https://gitlab.freedesktop.org/drm/intel/issues/7640
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12522 -> Patchwork_112169v1
-
-  CI-20190529: 20190529
-  CI_DRM_12522: d659fc77d1fd87f314c1bf510f3fbac009c2529d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7102: bacfdc84a9c02556c5441deb21e3a3f18a07347d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_112169v1: d659fc77d1fd87f314c1bf510f3fbac009c2529d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-730ff107ef7c drm/i915/gt: use __xchg instead of internal helper
-30a76ce50d10 linux/include: add non-atomic version of xchg
-40aadfd92872 arch/xtensa: rename internal name __xchg to __arch_xchg
-2afbb0fdcaa5 arch/sparc: rename internal name __xchg to __arch_xchg
-5d6912781444 arch/sh: rename internal name __xchg to __arch_xchg
-717a0971c0bc arch/s390: rename internal name __xchg to __arch_xchg
-251a9d6f4b85 arch/riscv: rename internal name __xchg to __arch_xchg
-715ae1c43d54 arch/powerpc: correct logged function names in xchg helpers
-3fb04ad26074 arch/parisc: rename internal name __xchg to __arch_xchg
-469e8f9c0540 arch/openrisc: rename internal name __xchg to __arch_xchg
-e87895b15f55 arch/mips: rename internal name __xchg to __arch_xchg
-66a0d43f4ae8 arch/m68k: rename internal name __xchg to __arch_xchg
-51c171101bf9 arch/loongarch: rename internal name __xchg to __arch_xchg
-edf61d92ffd5 arch/ia64: rename internal name __xchg to __arch_xchg
-427973458e67 arch/hexagon: rename internal name __xchg to __arch_xchg
-7ae5dcfed9cd arch/arm64: rename internal name __xchg to __arch_xchg
-f33e1a2e304a arch/arm: rename internal name __xchg to __arch_xchg
-0e291b15b237 arch/arc: rename internal name __xchg to __arch_xchg
-c93e4dca6465 arch/alpha: rename internal name __xchg to __arch_xchg
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112169v1/index.html
-
---===============2057068622543112359==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Introduce __xchg, non-atomic xchg</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/112169/">https://patchwork.freedesktop.org/series/112169/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112169v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112169v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12522 -&gt; Patchwork_112169v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112169v1/index.html</p>
-<h2>Participating hosts (44 -&gt; 46)</h2>
-<p>Additional (2): bat-adlm-1 bat-atsm-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_112169v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12522/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112169v1/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12522/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112169v1/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@late_gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112169v1/fi-kbl-soraka/igt@i915_selftest@live@late_gt_pm.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7640">i915#7640</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112169v1/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5594">i915#5594</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12522/fi-apl-guc/igt@i915_selftest@live@execlists.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112169v1/fi-apl-guc/igt@i915_selftest@live@execlists.html">PASS</a> +11 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12522/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112169v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@guc_hang:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12522/fi-kbl-soraka/igt@i915_selftest@live@guc_hang.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7640">i915#7640</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112169v1/fi-kbl-soraka/igt@i915_selftest@live@guc_hang.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@reset:</p>
-<ul>
-<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12522/bat-rpls-1/igt@i915_selftest@live@reset.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112169v1/bat-rpls-1/igt@i915_selftest@live@reset.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_chamelium@common-hpd-after-suspend:<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12522/fi-apl-guc/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112169v1/fi-apl-guc/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12522 -&gt; Patchwork_112169v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12522: d659fc77d1fd87f314c1bf510f3fbac009c2529d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7102: bacfdc84a9c02556c5441deb21e3a3f18a07347d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_112169v1: d659fc77d1fd87f314c1bf510f3fbac009c2529d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>730ff107ef7c drm/i915/gt: use __xchg instead of internal helper<br />
-30a76ce50d10 linux/include: add non-atomic version of xchg<br />
-40aadfd92872 arch/xtensa: rename internal name __xchg to __arch_xchg<br />
-2afbb0fdcaa5 arch/sparc: rename internal name __xchg to __arch_xchg<br />
-5d6912781444 arch/sh: rename internal name __xchg to __arch_xchg<br />
-717a0971c0bc arch/s390: rename internal name __xchg to __arch_xchg<br />
-251a9d6f4b85 arch/riscv: rename internal name __xchg to __arch_xchg<br />
-715ae1c43d54 arch/powerpc: correct logged function names in xchg helpers<br />
-3fb04ad26074 arch/parisc: rename internal name __xchg to __arch_xchg<br />
-469e8f9c0540 arch/openrisc: rename internal name __xchg to __arch_xchg<br />
-e87895b15f55 arch/mips: rename internal name __xchg to __arch_xchg<br />
-66a0d43f4ae8 arch/m68k: rename internal name __xchg to __arch_xchg<br />
-51c171101bf9 arch/loongarch: rename internal name __xchg to __arch_xchg<br />
-edf61d92ffd5 arch/ia64: rename internal name __xchg to __arch_xchg<br />
-427973458e67 arch/hexagon: rename internal name __xchg to __arch_xchg<br />
-7ae5dcfed9cd arch/arm64: rename internal name __xchg to __arch_xchg<br />
-f33e1a2e304a arch/arm: rename internal name __xchg to __arch_xchg<br />
-0e291b15b237 arch/arc: rename internal name __xchg to __arch_xchg<br />
-c93e4dca6465 arch/alpha: rename internal name __xchg to __arch_xchg</p>
-
-</body>
-</html>
-
---===============2057068622543112359==--
