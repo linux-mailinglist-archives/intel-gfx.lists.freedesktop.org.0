@@ -2,63 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2C996549F0
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Dec 2022 01:58:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 037346549EE
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Dec 2022 01:58:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE2AC10E5FF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C079910E5FE;
 	Fri, 23 Dec 2022 00:57:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x44a.google.com (mail-pf1-x44a.google.com
- [IPv6:2607:f8b0:4864:20::44a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B31B10E5F1
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Dec 2022 00:57:54 +0000 (UTC)
-Received: by mail-pf1-x44a.google.com with SMTP id
- e6-20020aa78c46000000b005772151d489so1839962pfd.15
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Dec 2022 16:57:54 -0800 (PST)
+Received: from mail-yw1-x1149.google.com (mail-yw1-x1149.google.com
+ [IPv6:2607:f8b0:4864:20::1149])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3414510E5F0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Dec 2022 00:57:56 +0000 (UTC)
+Received: by mail-yw1-x1149.google.com with SMTP id
+ 00721157ae682-3b5da1b3130so36658417b3.5
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Dec 2022 16:57:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
  h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
  :date:reply-to:from:to:cc:subject:date:message-id:reply-to;
- bh=NBTVXhB5C1LBSgUVZgx9DDnSqNxpCLvQp+2Tt7daAzY=;
- b=PlfdJuINIz79VbNXj96aWe6+xyqOcNWgoFfBKXO69TEmccmX1942p1Kyzpar864asr
- XDLlrV4h/z3yt7ub3l4JawTQViMgB+vso07ZoO5qPG8HZ8ZwZ79n9sNsdI9q2RoIwbeG
- AbHqwyDWwx9IAhFNAoqcInUGxLMtyU01VX9lvM0rmbSOQgWKiNnfERh1rh/elzAovs+8
- 3y70iyzOvz/NxL9S/TaVq/aBs6+nmTg/gOUzTp23eWU84817bdw4cPSr/sXHXzdSEx8S
- P4Mp5+sUcRqXpTl/uiqPGeug+OSUTglz8ISXwjwtbnXBQir9/d83nYa1sF0t6p/+TDh4
- ciOw==
+ bh=bmfAlTw7KPee5BT5ARosoNOxp58PoziaZSGblHMcfn4=;
+ b=amS6AkiqMBz2E56adUfZiZ0qlzFza/fJe6yjksEjN98poxV1G9yKoHPq4XyIgUDl6W
+ b0j6KpXbhKHQIta4bAmN85o52XADQ8scOEOZSLR5KbrWNt/rUmlxexxrVEftn9sSpavR
+ D/DVLsAt87QaZI94sXNT6csbY/FBT+eVhyy3di1Vx8TMTAiJc1tP+z0E7pDkuhB2ozgN
+ PpCTfzSt+VrBnQFSog2A7devVxciaxdcDmjgsHqiNCufShQRC4ex5XadOqvSOrUJCwA0
+ +AJG0WHNAN/z7DeX5h4b84L91y+VXfruFFfgNxuCH7pE6WWTh8H8aE2+WdP6oyi1ga2f
+ FmZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
  :date:reply-to:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=NBTVXhB5C1LBSgUVZgx9DDnSqNxpCLvQp+2Tt7daAzY=;
- b=WGaYTjhziZ9afQt30mf4aeHlMXmpEcOx5bTlvjiAdRhzZZnTecIMN9mvJdpRJibZcV
- IfFzdBg+o/Q/ttrRQtAQ6CM2ALIPIG/MDRp4GErotdHiYPA5I8EJil5ohqSNmGAu/G2V
- vPFKMcwvXbUSYc+iiDf4n1Tfyii046rp75L3Sox1iuU4Y9ItrJnXtU1eLOIx7JBazKx7
- swJMkYUNA7JsK0PwUb5+7DcT7Owu8C8nu87te4gJ9vR46NxWZ8XIFfkP1+O9WKdXDhx9
- Y0M7ggbqKLXHKUwRp/CD3pG+9AWJwC0CAlH0BHuxOn2bSO55DFjL+rbVWOLGtPztafJk
- Xpfg==
-X-Gm-Message-State: AFqh2koAJg2WQljZNyEfS22Y39Yrm5LS3RxY+5QRHpT+Hcik/G1ksuU2
- 8WykXftwh5WIaghY0q8EA5HtwLTGPKA=
-X-Google-Smtp-Source: AMrXdXtuJpzQAA6YsAARKoo86Ndko68Bw/8PzP0Po4HgPrkiwdi87VkArdRLlydeD02n3c8sF2p0uUxApik=
+ bh=bmfAlTw7KPee5BT5ARosoNOxp58PoziaZSGblHMcfn4=;
+ b=S6Q5lznLOvKb1kXbGAXualYYRqJTe04ypcO295tiyp1orJZp9hoAIO1jwosOOuQpWd
+ TiXqkeKdTQrOpjgEQ8QJgpNa7+va50NCYa+Fr7nC/wTVBrpQZNRUZovGt7J4UpLO6t79
+ YGa1qS4cuaMCZwvx8nh2bmUQth2Y3ut6DqyGv+teLPQ5sApgPuNP3C5giXke+uTAW21o
+ Lo6/CbDtFYdWNDE5QnsMTpwX8adhsyhKcX/r4kuYUXp/MXPlGJVX7KADU0BZbQ8kjh4A
+ hLkiDVhiiqTtiQj6Emo9CjEry4n1Gtjp73NIxNA/aX4DXPrfODU8nmiJXM3GEHL4iuW8
+ 5V2A==
+X-Gm-Message-State: AFqh2krlEinBNMpum7ZGYsc3XK2rWnuzERhcOiIAbP4uTVHekzAKV0Oo
+ Wv6kTUPt3lXX7yoAmEId0FVk+1hb858=
+X-Google-Smtp-Source: AMrXdXuelVqYRvBCw91exHE5VvR3XEOzgowyFkxm9PKa7uAoxnrWKeIzL7byPsTWp4O1/ngYmKJObusY+/c=
 X-Received: from zagreus.c.googlers.com
  ([fda3:e722:ac3:cc00:7f:e700:c0a8:5c37])
- (user=seanjc job=sendgmr) by 2002:a17:902:c155:b0:189:9a71:109b with SMTP id
- 21-20020a170902c15500b001899a71109bmr561626plj.171.1671757073922; Thu, 22 Dec
- 2022 16:57:53 -0800 (PST)
-Date: Fri, 23 Dec 2022 00:57:17 +0000
+ (user=seanjc job=sendgmr) by 2002:a05:690c:582:b0:466:a29c:3cf7 with SMTP id
+ bo2-20020a05690c058200b00466a29c3cf7mr450161ywb.270.1671757075486; Thu, 22
+ Dec 2022 16:57:55 -0800 (PST)
+Date: Fri, 23 Dec 2022 00:57:18 +0000
 In-Reply-To: <20221223005739.1295925-1-seanjc@google.com>
 Mime-Version: 1.0
 References: <20221223005739.1295925-1-seanjc@google.com>
 X-Mailer: git-send-email 2.39.0.314.g84b9a713c41-goog
-Message-ID: <20221223005739.1295925-6-seanjc@google.com>
+Message-ID: <20221223005739.1295925-7-seanjc@google.com>
 From: Sean Christopherson <seanjc@google.com>
 To: Sean Christopherson <seanjc@google.com>,
  Paolo Bonzini <pbonzini@redhat.com>, 
  Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.a.wang@intel.com>
 Content-Type: text/plain; charset="UTF-8"
-Subject: [Intel-gfx] [PATCH 05/27] drm/i915/gvt: Put the page reference
- obtained by KVM's gfn_to_pfn()
+Subject: [Intel-gfx] [PATCH 06/27] drm/i915/gvt: Don't rely on KVM's
+ gfn_to_pfn() to query possible 2M GTT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,41 +78,105 @@ Cc: Yan Zhao <yan.y.zhao@intel.com>, kvm@vger.kernel.org,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Put the struct page reference acquired by gfn_to_pfn(), KVM's API is that
-the caller is ultimately responsible for dropping any reference.
+Now that gvt_pin_guest_page() explicitly verifies the pinned PFN is a
+transparent hugepage page, don't use KVM's gfn_to_pfn() to pre-check if a
+2M GTT entry is possible and instead just try to map the GFN with a 2MB
+entry.  Using KVM to query pfn that is ultimately managed through VFIO is
+odd, and KVM's gfn_to_pfn() is not intended for non-KVM consumption; it's
+exported only because of KVM vendor modules (x86 and PPC).
 
-Note, kvm_release_pfn_clean() ensures the pfn is actually a refcounted
-struct page before trying to put any references.
-
-Fixes: b901b252b6cf ("drm/i915/gvt: Add 2M huge gtt support")
 Signed-off-by: Sean Christopherson <seanjc@google.com>
 ---
- drivers/gpu/drm/i915/gvt/gtt.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gvt/gtt.c | 33 +++++++++++----------------------
+ 1 file changed, 11 insertions(+), 22 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/gtt.c
-index 6736d7bd94ea..9936f8bd19af 100644
+index 9936f8bd19af..59ba6639e622 100644
 --- a/drivers/gpu/drm/i915/gvt/gtt.c
 +++ b/drivers/gpu/drm/i915/gvt/gtt.c
-@@ -1181,6 +1181,7 @@ static int is_2MB_gtt_possible(struct intel_vgpu *vgpu,
+@@ -1167,21 +1167,19 @@ static inline void ppgtt_generate_shadow_entry(struct intel_gvt_gtt_entry *se,
+ }
+ 
+ /*
+- * Check if can do 2M page
++ * Try to map a 2M gtt entry.
+  * @vgpu: target vgpu
+  * @entry: target pfn's gtt entry
+  *
+- * Return 1 if 2MB huge gtt shadowing is possible, 0 if miscondition,
+- * negative if found err.
++ * Return 1 if 2MB huge gtt shadow was creation, 0 if the entry needs to be
++ * split, negative if found err.
+  */
+-static int is_2MB_gtt_possible(struct intel_vgpu *vgpu,
+-	struct intel_gvt_gtt_entry *entry)
++static int try_map_2MB_gtt_entry(struct intel_vgpu *vgpu,
++	struct intel_gvt_gtt_entry *entry, dma_addr_t *dma_addr)
+ {
+ 	const struct intel_gvt_gtt_pte_ops *ops = vgpu->gvt->gtt.pte_ops;
  	unsigned long gfn = ops->get_pfn(entry);
- 	kvm_pfn_t pfn;
+-	kvm_pfn_t pfn;
  	int max_level;
-+	int ret;
+-	int ret;
  
  	if (!HAS_PAGE_SIZES(vgpu->gvt->gt->i915, I915_GTT_PAGE_SIZE_2M))
  		return 0;
-@@ -1200,7 +1201,9 @@ static int is_2MB_gtt_possible(struct intel_vgpu *vgpu,
- 	if (!pfn_valid(pfn))
- 		return -EINVAL;
+@@ -1194,16 +1192,7 @@ static int is_2MB_gtt_possible(struct intel_vgpu *vgpu,
+ 	if (max_level < PG_LEVEL_2M)
+ 		return 0;
  
--	return PageTransHuge(pfn_to_page(pfn));
-+	ret = PageTransHuge(pfn_to_page(pfn));
-+	kvm_release_pfn_clean(pfn);
-+	return ret;
+-	pfn = gfn_to_pfn(vgpu->vfio_device.kvm, gfn);
+-	if (is_error_noslot_pfn(pfn))
+-		return -EINVAL;
+-
+-	if (!pfn_valid(pfn))
+-		return -EINVAL;
+-
+-	ret = PageTransHuge(pfn_to_page(pfn));
+-	kvm_release_pfn_clean(pfn);
+-	return ret;
++	return intel_gvt_dma_map_guest_page(vgpu, gfn, I915_GTT_PAGE_SIZE_2M, dma_addr);
  }
  
  static int split_2MB_gtt_entry(struct intel_vgpu *vgpu,
+@@ -1290,7 +1279,7 @@ static int ppgtt_populate_shadow_entry(struct intel_vgpu *vgpu,
+ {
+ 	const struct intel_gvt_gtt_pte_ops *pte_ops = vgpu->gvt->gtt.pte_ops;
+ 	struct intel_gvt_gtt_entry se = *ge;
+-	unsigned long gfn, page_size = PAGE_SIZE;
++	unsigned long gfn;
+ 	dma_addr_t dma_addr;
+ 	int ret;
+ 
+@@ -1313,13 +1302,12 @@ static int ppgtt_populate_shadow_entry(struct intel_vgpu *vgpu,
+ 		return split_64KB_gtt_entry(vgpu, spt, index, &se);
+ 	case GTT_TYPE_PPGTT_PTE_2M_ENTRY:
+ 		gvt_vdbg_mm("shadow 2M gtt entry\n");
+-		ret = is_2MB_gtt_possible(vgpu, ge);
++		ret = try_map_2MB_gtt_entry(vgpu, ge, &dma_addr);
+ 		if (ret == 0)
+ 			return split_2MB_gtt_entry(vgpu, spt, index, &se);
+ 		else if (ret < 0)
+ 			return ret;
+-		page_size = I915_GTT_PAGE_SIZE_2M;
+-		break;
++		goto set_shadow_entry;
+ 	case GTT_TYPE_PPGTT_PTE_1G_ENTRY:
+ 		gvt_vgpu_err("GVT doesn't support 1GB entry\n");
+ 		return -EINVAL;
+@@ -1328,10 +1316,11 @@ static int ppgtt_populate_shadow_entry(struct intel_vgpu *vgpu,
+ 	}
+ 
+ 	/* direct shadow */
+-	ret = intel_gvt_dma_map_guest_page(vgpu, gfn, page_size, &dma_addr);
++	ret = intel_gvt_dma_map_guest_page(vgpu, gfn, PAGE_SIZE, &dma_addr);
+ 	if (ret)
+ 		return -ENXIO;
+ 
++set_shadow_entry:
+ 	pte_ops->set_pfn(&se, dma_addr >> PAGE_SHIFT);
+ 	ppgtt_set_shadow_entry(spt, &se, index);
+ 	return 0;
 -- 
 2.39.0.314.g84b9a713c41-goog
 
