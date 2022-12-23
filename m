@@ -2,51 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58B8B6550B8
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Dec 2022 14:06:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C2086550C1
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Dec 2022 14:15:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3762410E653;
-	Fri, 23 Dec 2022 13:05:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21B2B10E64E;
+	Fri, 23 Dec 2022 13:15:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B774A10E64E
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Dec 2022 13:05:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671800727; x=1703336727;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=HQsXOvKjA52TdYRakGU838pnXSzv1JHL30gagGiv1mg=;
- b=RUQLr7EUch/fwNJRsBxDV6zn2Xrn5j5dUI6mPtCGsDtH/HKl/jRFDWHx
- wfyGEjXrDVPuYUO5G3o87tWOBLOfVNi2aCZo4xurx79IlLrRgzi8nJ85+
- /RruOqFVZJ+/jW1/V08rWxeFqgl0yGE/vqGkku64y4PaM7FrRYqeGUs11
- PAzTGNgEy8deGu3EqpCyAH692Q8/U2wBGbyv9fhyjlPFReL4EXV+orFlK
- 0/A9cdDhfTIqDdXpWJcLm88UZ8T2AACXCUhUD6KibuYqp9lkBWhv4NCtE
- cP6GTUQb3ttkiBfESzKxB4aQA46ozcj3HzibdZHWJYCCIexBm/icYUJPb g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10569"; a="322270531"
-X-IronPort-AV: E=Sophos;i="5.96,268,1665471600"; d="scan'208";a="322270531"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Dec 2022 05:05:27 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10569"; a="980934577"
-X-IronPort-AV: E=Sophos;i="5.96,268,1665471600"; d="scan'208";a="980934577"
-Received: from ipuustin-mobl1.ger.corp.intel.com (HELO
- kveik.ger.corp.intel.com) ([10.251.219.9])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Dec 2022 05:05:26 -0800
-From: Luca Coelho <luciano.coelho@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 23 Dec 2022 15:05:09 +0200
-Message-Id: <20221223130509.43245-3-luciano.coelho@intel.com>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20221223130509.43245-1-luciano.coelho@intel.com>
-References: <20221223130509.43245-1-luciano.coelho@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7DB3710E64A;
+ Fri, 23 Dec 2022 13:15:21 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5E90DA00E8;
+ Fri, 23 Dec 2022 13:15:21 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1865612410188991186=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v7 2/2] drm/i915/mtl: update scaler source and
- destination limits for MTL
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mauro Carvalho Chehab" <mchehab@kernel.org>
+Date: Fri, 23 Dec 2022 13:15:21 -0000
+Message-ID: <167180132135.30343.14843487068377892891@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221223121821.358021-1-andi.shyti@linux.intel.com>
+In-Reply-To: <20221223121821.358021-1-andi.shyti@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Retry_RING=5FHEAD_reset_until_it_sticks_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,108 +40,243 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Animesh Manna <animesh.manna@intel.com>
+--===============1865612410188991186==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The max source and destination limits for scalers in MTL have changed.
-Use the new values accordingly.
+== Series Details ==
 
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
----
+Series: drm/i915/gt: Retry RING_HEAD reset until it sticks (rev2)
+URL   : https://patchwork.freedesktop.org/series/106377/
+State : success
 
-In v2:
-   * No changes;
+== Summary ==
 
-In v3:
-   * Removed stray reviewed-by tag;
-   * Added my s-o-b.
+CI Bug Log - changes from CI_DRM_12524 -> Patchwork_106377v2
+====================================================
 
-In v4:
-   * No changes.
+Summary
+-------
 
-In v5:
-   * Just resent with a cover letter.
+  **SUCCESS**
 
-In v6:
-   * Now the correct version again (same as v4).
+  No regressions found.
 
-In v7:
-   * Update to new MTL limits according to the bspec.
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106377v2/index.html
+
+Participating hosts (45 -> 46)
+------------------------------
+
+  Additional (1): bat-atsm-1 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_106377v2:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_selftest@live@workarounds:
+    - {bat-rpls-2}:       [PASS][1] -> [DMESG-FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12524/bat-rpls-2/igt@i915_selftest@live@workarounds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106377v2/bat-rpls-2/igt@i915_selftest@live@workarounds.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_106377v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-kbl-soraka:      [PASS][3] -> [DMESG-FAIL][4] ([i915#5334])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12524/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106377v2/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_gttfill@basic:
+    - fi-pnv-d510:        [FAIL][5] ([i915#7229]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12524/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106377v2/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+
+  * igt@i915_selftest@live@migrate:
+    - bat-adlp-4:         [DMESG-FAIL][7] ([i915#7699]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12524/bat-adlp-4/igt@i915_selftest@live@migrate.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106377v2/bat-adlp-4/igt@i915_selftest@live@migrate.html
+
+  * igt@i915_selftest@live@slpc:
+    - {bat-adln-1}:       [DMESG-FAIL][9] ([i915#6997]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12524/bat-adln-1/igt@i915_selftest@live@slpc.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106377v2/bat-adln-1/igt@i915_selftest@live@slpc.html
+
+  * igt@i915_selftest@live@workarounds:
+    - {bat-rpls-1}:       [DMESG-WARN][11] -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12524/bat-rpls-1/igt@i915_selftest@live@workarounds.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106377v2/bat-rpls-1/igt@i915_selftest@live@workarounds.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1836]: https://gitlab.freedesktop.org/drm/intel/issues/1836
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#6077]: https://gitlab.freedesktop.org/drm/intel/issues/6077
+  [i915#6078]: https://gitlab.freedesktop.org/drm/intel/issues/6078
+  [i915#6093]: https://gitlab.freedesktop.org/drm/intel/issues/6093
+  [i915#6094]: https://gitlab.freedesktop.org/drm/intel/issues/6094
+  [i915#6166]: https://gitlab.freedesktop.org/drm/intel/issues/6166
+  [i915#6257]: https://gitlab.freedesktop.org/drm/intel/issues/6257
+  [i915#6311]: https://gitlab.freedesktop.org/drm/intel/issues/6311
+  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
+  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
+  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
+  [i915#7229]: https://gitlab.freedesktop.org/drm/intel/issues/7229
+  [i915#7357]: https://gitlab.freedesktop.org/drm/intel/issues/7357
+  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
 
 
- drivers/gpu/drm/i915/display/skl_scaler.c | 40 ++++++++++++++++++-----
- 1 file changed, 32 insertions(+), 8 deletions(-)
+Build changes
+-------------
 
-diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-index d7390067b7d4..01e881293612 100644
---- a/drivers/gpu/drm/i915/display/skl_scaler.c
-+++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-@@ -87,6 +87,10 @@ static u16 skl_scaler_calc_phase(int sub, int scale, bool chroma_cosited)
- #define ICL_MAX_SRC_H 4096
- #define ICL_MAX_DST_W 5120
- #define ICL_MAX_DST_H 4096
-+#define MTL_MAX_SRC_W 4096
-+#define MTL_MAX_SRC_H 8192
-+#define MTL_MAX_DST_W 8192
-+#define MTL_MAX_DST_H 8192
- #define SKL_MIN_YUV_420_SRC_W 16
- #define SKL_MIN_YUV_420_SRC_H 16
- 
-@@ -103,6 +107,8 @@ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	const struct drm_display_mode *adjusted_mode =
- 		&crtc_state->hw.adjusted_mode;
-+	int min_src_w, min_src_h, min_dst_w, min_dst_h;
-+	int max_src_w, max_src_h, max_dst_w, max_dst_h;
- 
- 	/*
- 	 * Src coordinates are already rotated by 270 degrees for
-@@ -157,15 +163,33 @@ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
- 		return -EINVAL;
- 	}
- 
-+	min_src_w = SKL_MIN_SRC_W;
-+	min_src_h = SKL_MIN_SRC_H;
-+	min_dst_w = SKL_MIN_DST_W;
-+	min_dst_h = SKL_MIN_DST_H;
-+
-+	if (DISPLAY_VER(dev_priv) < 11) {
-+		max_src_w = SKL_MAX_SRC_W;
-+		max_src_h = SKL_MAX_SRC_H;
-+		max_dst_w = SKL_MAX_DST_W;
-+		max_dst_h = SKL_MAX_DST_H;
-+	} else if (DISPLAY_VER(dev_priv) < 14) {
-+		max_src_w = ICL_MAX_SRC_W;
-+		max_src_h = ICL_MAX_SRC_H;
-+		max_dst_w = ICL_MAX_DST_W;
-+		max_dst_h = ICL_MAX_DST_H;
-+	} else {
-+		max_src_w = MTL_MAX_SRC_W;
-+		max_src_h = MTL_MAX_SRC_H;
-+		max_dst_w = MTL_MAX_DST_W;
-+		max_dst_h = MTL_MAX_DST_H;
-+	}
-+
- 	/* range checks */
--	if (src_w < SKL_MIN_SRC_W || src_h < SKL_MIN_SRC_H ||
--	    dst_w < SKL_MIN_DST_W || dst_h < SKL_MIN_DST_H ||
--	    (DISPLAY_VER(dev_priv) >= 11 &&
--	     (src_w > ICL_MAX_SRC_W || src_h > ICL_MAX_SRC_H ||
--	      dst_w > ICL_MAX_DST_W || dst_h > ICL_MAX_DST_H)) ||
--	    (DISPLAY_VER(dev_priv) < 11 &&
--	     (src_w > SKL_MAX_SRC_W || src_h > SKL_MAX_SRC_H ||
--	      dst_w > SKL_MAX_DST_W || dst_h > SKL_MAX_DST_H)))	{
-+	if (src_w < min_src_w || src_h < min_src_h ||
-+	    dst_w < min_dst_w || dst_h < min_dst_h ||
-+	    src_w > max_src_w || src_h > max_src_h ||
-+	    dst_w > max_dst_w || dst_h > max_dst_h) {
- 		drm_dbg_kms(&dev_priv->drm,
- 			    "scaler_user index %u.%u: src %ux%u dst %ux%u "
- 			    "size is out of scaler range\n",
--- 
-2.39.0
+  * Linux: CI_DRM_12524 -> Patchwork_106377v2
 
+  CI-20190529: 20190529
+  CI_DRM_12524: a29956c69a562e85ef8657e39382bc207a339941 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7102: bacfdc84a9c02556c5441deb21e3a3f18a07347d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_106377v2: a29956c69a562e85ef8657e39382bc207a339941 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+408162e35b81 drm/i915/gt: Retry RING_HEAD reset until it sticks
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106377v2/index.html
+
+--===============1865612410188991186==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gt: Retry RING_HEAD reset until it sticks (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/106377/">https://patchwork.freedesktop.org/series/106377/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106377v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106377v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12524 -&gt; Patchwork_106377v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106377v2/index.html</p>
+<h2>Participating hosts (45 -&gt; 46)</h2>
+<p>Additional (1): bat-atsm-1 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_106377v2:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12524/bat-rpls-2/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106377v2/bat-rpls-2/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_106377v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@gt_heartbeat:<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12524/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106377v2/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_gttfill@basic:</p>
+<ul>
+<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12524/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7229">i915#7229</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106377v2/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@migrate:</p>
+<ul>
+<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12524/bat-adlp-4/igt@i915_selftest@live@migrate.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106377v2/bat-adlp-4/igt@i915_selftest@live@migrate.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@slpc:</p>
+<ul>
+<li>{bat-adln-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12524/bat-adln-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6997">i915#6997</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106377v2/bat-adln-1/igt@i915_selftest@live@slpc.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12524/bat-rpls-1/igt@i915_selftest@live@workarounds.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106377v2/bat-rpls-1/igt@i915_selftest@live@workarounds.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12524 -&gt; Patchwork_106377v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12524: a29956c69a562e85ef8657e39382bc207a339941 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7102: bacfdc84a9c02556c5441deb21e3a3f18a07347d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_106377v2: a29956c69a562e85ef8657e39382bc207a339941 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>408162e35b81 drm/i915/gt: Retry RING_HEAD reset until it sticks</p>
+
+</body>
+</html>
+
+--===============1865612410188991186==--
