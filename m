@@ -2,59 +2,158 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CE3465534B
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Dec 2022 18:43:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DDF8B65539D
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Dec 2022 19:25:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07E0E10E1C0;
-	Fri, 23 Dec 2022 17:43:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B87610E0F0;
+	Fri, 23 Dec 2022 18:25:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oa1-x35.google.com (mail-oa1-x35.google.com
- [IPv6:2001:4860:4864:20::35])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38BEE10E1C0;
- Fri, 23 Dec 2022 17:43:10 +0000 (UTC)
-Received: by mail-oa1-x35.google.com with SMTP id
- 586e51a60fabf-1322d768ba7so6607314fac.5; 
- Fri, 23 Dec 2022 09:43:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=3Gbm3HjHSvO9ZqwIw8l0jkXHXLax5XuWUSm/tD2PIEk=;
- b=Bu95Dssvhnt9eExkuJXddB9NJ3VxVl/UpBOyIJ0Qf2FlUCIGIoctbkY/VuvVPRIBEI
- RDenHukqJ2YtaEdZVK12azK5on6i/tYxucKpk5CqeD83F7p7Pq+QEWIETb8oqj+fAtjI
- wp9GdZBztddgfiz1BO059dA2DB9PQxXUkb0OnVkw09ndN/S5KM2//RTyMR6UiWXNNGQg
- BXOnuV6niTZ/K418E5EE0xMiKP32U+u6wZ2JN2Cg0A7pRJOojPNBbLSVnC33P6f09V5s
- YzBBhXVe2z7gIRvO1UQKXCA5dX0o4LauyazApsdlvkrMKrieaXrrH+4zfqsShxpYwMAM
- OgOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=3Gbm3HjHSvO9ZqwIw8l0jkXHXLax5XuWUSm/tD2PIEk=;
- b=H4P0XE3GtR6hH4xYe6uS5/ogJVcPzXzhq+EHqb8R4P2mkOMW1U2Xw/10tewNak8jii
- qp4HQtPBADgRgVxUr39XsgLPvab+LcWZWOGHASdQ6a/lYKismTKetYLtBMZieURzmQ49
- +AKYsbyjMJ9Z+qjj8aJwYV/a9SnoDPNa1SQmCZoZEyFZuvPyp93YW28wq3HcCRn4fqXd
- 79LxOT/gCKoQo7/ETdzyQ5NnTuk0uxTLAewdzLypqqfH9WMvGQ4RI38yqRKZm9O6niM3
- V1UowpA7L6K6lzTsyfzkhVNeFUlu6IOLdthFaJWXgH7qm37CyWLVLvKGfcF107dW3vJC
- gs0w==
-X-Gm-Message-State: AFqh2kpMSDapwRVDgnd1+TdKpurkv74FGY8ob8KJGPVWtKrdTRsEMcuJ
- uFWGiiJXFODwrilyZlYcrAFyi4EWNEb20ojaZbXBqlNZ
-X-Google-Smtp-Source: AMrXdXsmlBeiuFaAMIPmwVsP0TGOLwORBH1wc+TsAbUe0V/hyT0zensPvaMGGsqd/oth9AF+5uToGr0/r1btsd32bYQ=
-X-Received: by 2002:a05:6870:513:b0:13d:51fe:3404 with SMTP id
- j19-20020a056870051300b0013d51fe3404mr639858oao.183.1671817389270; Fri, 23
- Dec 2022 09:43:09 -0800 (PST)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 546CC10E083
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Dec 2022 18:25:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1671819903; x=1703355903;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-id:content-transfer-encoding:mime-version;
+ bh=BemXpc9S0rBFQUhC+OrjxRpjp5QXPWnyySPTZ0UReMU=;
+ b=PE4djcPHSzrIwQplZBJbKGx5vlekvruQGJT9DrDZnPJvw3EDskIIYgTQ
+ 1HRUi6YaoRrhZn8NflUibVk7r6o+JPp4ti/OLsVGHQLQZpDNJlRF/9QhF
+ l/qQeZgvrI7mD4Bx0mh4rX4rBtPdBnF4kEAfSrse2+e4nNdiYK24WwIml
+ uXJEcUr/Cvd1mdJeAQvsF003b1A4TBqEQijlSO218FG0a+i0Qpk/V+IPg
+ sG7KbI0JuqQBIRgMCDMqEbmpkmLdrXjh902xHKroE47YeEA6xa9/99t4i
+ hQgT5vSNaCCPNx3yIGKaLNOuHZfj7SX4geA7k0BlXc85OIUgNmVdtFQ+Z Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10570"; a="320422634"
+X-IronPort-AV: E=Sophos;i="5.96,269,1665471600"; d="scan'208";a="320422634"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Dec 2022 10:24:56 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10570"; a="682785253"
+X-IronPort-AV: E=Sophos;i="5.96,269,1665471600"; d="scan'208";a="682785253"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga008.jf.intel.com with ESMTP; 23 Dec 2022 10:24:55 -0800
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Fri, 23 Dec 2022 10:24:55 -0800
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Fri, 23 Dec 2022 10:24:54 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Fri, 23 Dec 2022 10:24:54 -0800
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.172)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Fri, 23 Dec 2022 10:24:54 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VOF8LZ8ogL8tPdd+po0SqyIYyrW7DQnqPq4FUZtcVtpRgdiCAqxIwOA5vnNJA2pyu7aveXU+xmHnR/VE8HLHrDPJwcT8b01oTswolrfj0N7q0QHibjj0E4w26gidDhYr5VGywSSutPFr5h/64GihNpA7cXOL7imX9IjF/byZs1NSltsoEFJ00AySH/j9RQcedAc1xdGZKpvsuXo7r0RrI9R+DGDx+DArglG2wKXFWaBE8B5KVIKyhUaPSJKQCxlApvO43+XqaYslthek4iUpzI1DVE3XPwJjlr99zrJD39IP9dJDT/WmtZHCXcjuxN+22rCYOZOfDLwTedxHzMd0hw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BemXpc9S0rBFQUhC+OrjxRpjp5QXPWnyySPTZ0UReMU=;
+ b=h3D7TZ0zpyQaHhi1SOQlO5h2ted2HA9fkX6USHR1c5hHfg+bgJLSzRYWc4uKbYgir+HG/KyZ+OJaOrBtCncm/CMQFEsEQBnZnBvK4HwZPC/ecZOCwLFg9RlHbC8GPwlR+4Wcm3c5k111zqGCVV0NlEckOsE59PZJ3qWRTIDkeF2gDy9Svk0csDaF0UqHlT8+kfjcs5/0PyQYaxcHzi50C6Qn0Hr2OL/S7wDQfPDKc/UJx+eU8ClOvid7QwbQxU8NVRN1vtqTaxBSDjJeLfHmrGWfDPHu97F0osQ9GfYLXcBYw1TXxT5WHGxMzNOmNmkIuNY54OdTQhiXBKcMFUmayA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from BYAPR11MB3207.namprd11.prod.outlook.com (2603:10b6:a03:7c::14)
+ by SA1PR11MB5780.namprd11.prod.outlook.com (2603:10b6:806:233::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5924.16; Fri, 23 Dec
+ 2022 18:24:52 +0000
+Received: from BYAPR11MB3207.namprd11.prod.outlook.com
+ ([fe80::5546:ea97:1beb:cb5f]) by BYAPR11MB3207.namprd11.prod.outlook.com
+ ([fe80::5546:ea97:1beb:cb5f%4]) with mapi id 15.20.5924.016; Fri, 23 Dec 2022
+ 18:24:52 +0000
+From: "Coelho, Luciano" <luciano.coelho@intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH v7 2/2] drm/i915/mtl: update scaler source
+ and destination limits for MTL
+Thread-Index: AQHZFtfuNRVdsXn3AEuTd/S3GffEgK57g4IAgABGagA=
+Date: Fri, 23 Dec 2022 18:24:52 +0000
+Message-ID: <c3f038459745667a582124002ed794c9c503c9ac.camel@intel.com>
+References: <20221223130509.43245-1-luciano.coelho@intel.com>
+ <20221223130509.43245-3-luciano.coelho@intel.com>
+ <7252418d-6631-b609-c67a-5ca65c460acb@intel.com>
+ <d01d9a88-648e-0edd-f867-305bf07337fb@intel.com>
+In-Reply-To: <d01d9a88-648e-0edd-f867-305bf07337fb@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.46.2-1 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BYAPR11MB3207:EE_|SA1PR11MB5780:EE_
+x-ms-office365-filtering-correlation-id: 4d0ea1e6-ca15-4243-7513-08dae512fbc1
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Ets9C9teYSqlPSJuNmwvmsc4UkH110M/M1lX6lSvgxqXWsLqGaulGQFdi8+xQ1f6XYiftU8avheu5/cgqmR7o0wM1YONKfeYrnSOJradYtYFvxFmDQKGT/zkkKStoLk0nqZ466p7vKB5D7rr6W6Ux5984hrWEKYRUhDn/vqNH2Io9LKI48Fz7ZSBVX27ZkXtNAlItGQTlSifT8X61tPfx++nvqnZb7+eg1f8s8ZBEveJ2gop6sMDDNYC2g9oJf1BLRZZzgNOgXkcJYzpecpuA4iqhCTQ/VQWp0WCfG57izKp6tIc2exstSKUv4+kdc0sttipcx/EEb+rD0YSK9yu74OObKyBAmazVbQpORtqV3dqSl/GBhf5U9/cvI9l80c3aZ+mfZtZbJHEleFAsSiTPPJFs+kClvPXZkHYn7bBquflYbNHXRYMFtQHTSCXcVFV+hKTfdlqV1awe2gWSB0K3TNpEwwEH4wUwvXsHUkvaYglT4KXf9AO0p3bbpm/JuJ0s1fItFTX81rvDlQ8K/AjSqztc+B0730TbwbCgI37o0FGAc27ZMqd2VxiJ32RDO+qiHEKQIUIKprmV1dDkU5OkEntmoZS9W9Oyy3Tied8vwxv1/yWW4lebRJSnfq1x9YGO8J6U6JyuFd4NDuQeLD6wDcFYI+SePWwzqGYchzcZwQtMwrJd5uTyiSESEskXK6S
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR11MB3207.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(39860400002)(136003)(366004)(376002)(346002)(396003)(451199015)(38070700005)(2616005)(66476007)(64756008)(66446008)(66946007)(66556008)(76116006)(8676002)(82960400001)(186003)(26005)(122000001)(6512007)(8936002)(91956017)(38100700002)(41300700001)(316002)(2906002)(4001150100001)(86362001)(83380400001)(5660300002)(6486002)(478600001)(36756003)(15650500001)(6506007)(53546011)(71200400001)(110136005);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?eHljZWRGVURxWGIwWVBsN2hHbGQzQkQ4V1VBNi9tT1hIQ05wNm1UTEk3MHJD?=
+ =?utf-8?B?TVBnbzR6eThaVGRRbVhMYldZSW5YQ2RqaE5RczgxZEdDa0trcUlBem1JR2NZ?=
+ =?utf-8?B?OXVpTGxpT2IvQi96RFQxWkovSk95QWg2Y3JNK2Y2OUU4M25QZ1ZmbU1QbUhJ?=
+ =?utf-8?B?T2ZsaHQ3blFjdFlHTHFsL0RIOVI3em9EYkM0RHAwSzlwVExYNjRrSVJzcGFK?=
+ =?utf-8?B?a2djQWhZTXNQaThTZFhwK0YwMHdwOHBuQTlFMUx6SVFvSVJNbkVSa0FMSjlT?=
+ =?utf-8?B?bm90RkRCekJkSnZCTjhTLzFabnZSbDAzaG5RbU9YNDd1N3BIUWs3dmdmSGlm?=
+ =?utf-8?B?U3NtbzhpUjlNWU9xWXZKaUZHN29hTE9RY01GRlRCUkU3ckd4amJ4WENvVk5a?=
+ =?utf-8?B?SmJReHdicDAyRjRIYVJnRGxoUmViZVlLYUpsZ1VoR3E1Z1M1THljblZHMStl?=
+ =?utf-8?B?ZUFtSEF2d3pnMldHMzd2YkxEUjNCdExhQ1k5ZFZHM2c2RzRhbGloa2U0azdH?=
+ =?utf-8?B?QTV0RVR6Ukl3VHlPem1TeEIxYjN3cU9GVDJRT1VVNWJLUE5DNmpkZ241NDlT?=
+ =?utf-8?B?NmdubVVsajA0UzNWaWQxWlhqTkhUVmpGZVYzaVkxdnJoUGJDbG85dThCd09N?=
+ =?utf-8?B?SmxFbHR5cFVZVlRVdy9SWnd6YkpZM3ZmcUJ6Q1g2d3lPcThvWVpBbzNQSXoz?=
+ =?utf-8?B?aG14czAvVjBaYUZocStRYUtqTDhjNnROem9TNHBnMjFzTFMzU2I1a2ZwcGVq?=
+ =?utf-8?B?dExhNGtGMXpteHRXeWwxTkYwb2FCSUJvdlB0YWFQMUJoTElVTHZGS285UjZa?=
+ =?utf-8?B?ZFNhaVc1M05lSnRhWW44QjFTeHlJamw3OSs5NEhFSFpzSVB6V1RHRnA2V0VD?=
+ =?utf-8?B?K2M1U2k5MW43aHcyQ00wd041UHdKVHNld00zV2tTYjZFcURPZXFpUllCOE1k?=
+ =?utf-8?B?aWZLUkdEbjR5bTFDdGkwdUxLVWlVSFJaSHVEdGloN1BCYXg0SUxjUzJFNFNk?=
+ =?utf-8?B?bG9hd0o5RjRDdTZQdDREVlRsMUJuYjBCSHFSZjMrRUxHWk9yRW9QOXNaNys4?=
+ =?utf-8?B?SXBuK0hiYVJERE9VZUlZTjZoMDFmeTlENGhDSjRsQ1paamp2a2hPZGVZR3dk?=
+ =?utf-8?B?OHpMZ0V5S0ViOWl3WGVabWpyZ09MM2htRW9YdDBmYmlQVndnOWVEMGRkRFVL?=
+ =?utf-8?B?MTg0NSs5UjhhWGFwRk81MUdmYjRaaUJNak1pSzFTMlBWOGtJUEpIaDVoWnlH?=
+ =?utf-8?B?R3I1eGovMFZ4cDlhTWhFSWU5SUxTdzJ1WVdHRXlieXlFR3B5QVNzengvUXVI?=
+ =?utf-8?B?akFhdTBDS0FuZXN3eWcyWjJCdytjb2p6YVZoeWRiQWZGV2tJUGdDMjFCejho?=
+ =?utf-8?B?VGRhVjEwOUhmb1czTTE4UEJLa2NvQTIwdk1JMnJka25xYVQ3ckYya0c1TENR?=
+ =?utf-8?B?QnpqWlo3VXhUaXNtTi9XV1hiWUY3SkpKSCtBaUswS0lVZ1JFTDUrMHJaazZT?=
+ =?utf-8?B?Njdpb0dMZXNITUNGc1pkM1JXUUdaajRNY1VpY1dGRjhDYkxRNW5tdG5Nckc5?=
+ =?utf-8?B?ZW8vNDdZVHArcGhEUXY1R3dzRmUzZmRsSUxJWHlUeXkxYUR4Yk1ZMTJIMzhS?=
+ =?utf-8?B?TkFpK0pVNmxUN1F6VDVZK3BzTGdGQkd0RHZYcTIxOXJZRjhFYjlIVnlFbWk5?=
+ =?utf-8?B?QXpleGNMeFZVUXVRczRsL1NFaTZld3hmS3JhNExUMXVkL3RCVThrWjJQM0hu?=
+ =?utf-8?B?c29ZZURGTWlpRUhYancyODd6T2tzZ1ZSblRxQm84Z2JRTkhEbTdZM0k1L2Rn?=
+ =?utf-8?B?aGsyWlZiOHVObkl4K1JEWml1ZlVUMGVmNFovVWZOS3ZmVVBHaVZFSlFrMCtt?=
+ =?utf-8?B?ZDAyV2w2R2kxc3RLaUt2TGJyeTFRTHRVMm5VWGpXYzdXVktud3BvbGhtcEps?=
+ =?utf-8?B?aVl4NnhqQXJmcVFPdW4rMHcza29FN0pobDVhSFM5SVMrbm1nditUNmFqci9K?=
+ =?utf-8?B?SitlZFluOWdOY3lTSEJWeUNFbzVUWFlVYnNscSs5MzVFVytuN1Y4bUxTZm8z?=
+ =?utf-8?B?bWE1L0N5RXV6SzRyRXJkRXpCTG5GWHB2SWE5MVpYZWRHQzAwZ2dwNndyaTE2?=
+ =?utf-8?B?cGgyUFMzT1hOYk9waEovVWdwd1dsZkhMYWtPdVpsRzhYV0M1STZ4ckhaUnl2?=
+ =?utf-8?B?ZVE9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <9F711DFB0B3F0F40AD42FACFECB2E46F@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20221222222127.34560-1-matthew.brost@intel.com>
- <20221222222127.34560-5-matthew.brost@intel.com>
-In-Reply-To: <20221222222127.34560-5-matthew.brost@intel.com>
-From: Rob Clark <robdclark@gmail.com>
-Date: Fri, 23 Dec 2022 09:42:58 -0800
-Message-ID: <CAF6AEGvin1x1xW4GWVtP+exiDeza5EWcChDURgX-9mcqbs8APw@mail.gmail.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [RFC PATCH 04/20] drm/sched: Convert drm scheduler
- to use a work queue rather than kthread
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3207.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4d0ea1e6-ca15-4243-7513-08dae512fbc1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Dec 2022 18:24:52.1965 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Kh9wCoaj0T5D/qnUTpKDPLX2ywytmiA4ws0tWX8alSuV37ay9rslfudGUiXsn+Y1sEGnhKHc8j+QXlWzhxGuV9aenUvHvv/gl6FnPYkByJ4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB5780
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v7 2/2] drm/i915/mtl: update scaler source
+ and destination limits for MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,470 +166,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 22, 2022 at 2:29 PM Matthew Brost <matthew.brost@intel.com> wrote:
->
-> In XE, the new Intel GPU driver, a choice has made to have a 1 to 1
-> mapping between a drm_gpu_scheduler and drm_sched_entity. At first this
-> seems a bit odd but let us explain the reasoning below.
->
-> 1. In XE the submission order from multiple drm_sched_entity is not
-> guaranteed to be the same completion even if targeting the same hardware
-> engine. This is because in XE we have a firmware scheduler, the GuC,
-> which allowed to reorder, timeslice, and preempt submissions. If a using
-> shared drm_gpu_scheduler across multiple drm_sched_entity, the TDR falls
-> apart as the TDR expects submission order == completion order. Using a
-> dedicated drm_gpu_scheduler per drm_sched_entity solve this problem.
->
-> 2. In XE submissions are done via programming a ring buffer (circular
-> buffer), a drm_gpu_scheduler provides a limit on number of jobs, if the
-> limit of number jobs is set to RING_SIZE / MAX_SIZE_PER_JOB we get flow
-> control on the ring for free.
->
-> A problem with this design is currently a drm_gpu_scheduler uses a
-> kthread for submission / job cleanup. This doesn't scale if a large
-> number of drm_gpu_scheduler are used. To work around the scaling issue,
-> use a worker rather than kthread for submission / job cleanup.
-
-You might want to enable CONFIG_DRM_MSM in your kconfig, I think you
-missed a part
-
-BR,
--R
-
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c |  14 +--
->  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  |  12 +-
->  drivers/gpu/drm/scheduler/sched_main.c      | 124 ++++++++++++--------
->  include/drm/gpu_scheduler.h                 |  13 +-
->  4 files changed, 93 insertions(+), 70 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-> index f60753f97ac5..9c2a10aeb0b3 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-> @@ -1489,9 +1489,9 @@ static int amdgpu_debugfs_test_ib_show(struct seq_file *m, void *unused)
->         for (i = 0; i < AMDGPU_MAX_RINGS; i++) {
->                 struct amdgpu_ring *ring = adev->rings[i];
->
-> -               if (!ring || !ring->sched.thread)
-> +               if (!ring || !ring->sched.ready)
->                         continue;
-> -               kthread_park(ring->sched.thread);
-> +               drm_sched_run_wq_stop(&ring->sched);
->         }
->
->         seq_printf(m, "run ib test:\n");
-> @@ -1505,9 +1505,9 @@ static int amdgpu_debugfs_test_ib_show(struct seq_file *m, void *unused)
->         for (i = 0; i < AMDGPU_MAX_RINGS; i++) {
->                 struct amdgpu_ring *ring = adev->rings[i];
->
-> -               if (!ring || !ring->sched.thread)
-> +               if (!ring || !ring->sched.ready)
->                         continue;
-> -               kthread_unpark(ring->sched.thread);
-> +               drm_sched_run_wq_start(&ring->sched);
->         }
->
->         up_write(&adev->reset_domain->sem);
-> @@ -1727,7 +1727,7 @@ static int amdgpu_debugfs_ib_preempt(void *data, u64 val)
->
->         ring = adev->rings[val];
->
-> -       if (!ring || !ring->funcs->preempt_ib || !ring->sched.thread)
-> +       if (!ring || !ring->funcs->preempt_ib || !ring->sched.ready)
->                 return -EINVAL;
->
->         /* the last preemption failed */
-> @@ -1745,7 +1745,7 @@ static int amdgpu_debugfs_ib_preempt(void *data, u64 val)
->                 goto pro_end;
->
->         /* stop the scheduler */
-> -       kthread_park(ring->sched.thread);
-> +       drm_sched_run_wq_stop(&ring->sched);
->
->         /* preempt the IB */
->         r = amdgpu_ring_preempt_ib(ring);
-> @@ -1779,7 +1779,7 @@ static int amdgpu_debugfs_ib_preempt(void *data, u64 val)
->
->  failure:
->         /* restart the scheduler */
-> -       kthread_unpark(ring->sched.thread);
-> +       drm_sched_run_wq_start(&ring->sched);
->
->         up_read(&adev->reset_domain->sem);
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> index 076ae400d099..9552929ccf87 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -4577,7 +4577,7 @@ bool amdgpu_device_has_job_running(struct amdgpu_device *adev)
->         for (i = 0; i < AMDGPU_MAX_RINGS; ++i) {
->                 struct amdgpu_ring *ring = adev->rings[i];
->
-> -               if (!ring || !ring->sched.thread)
-> +               if (!ring || !ring->sched.ready)
->                         continue;
->
->                 spin_lock(&ring->sched.job_list_lock);
-> @@ -4708,7 +4708,7 @@ int amdgpu_device_pre_asic_reset(struct amdgpu_device *adev,
->         for (i = 0; i < AMDGPU_MAX_RINGS; ++i) {
->                 struct amdgpu_ring *ring = adev->rings[i];
->
-> -               if (!ring || !ring->sched.thread)
-> +               if (!ring || !ring->sched.ready)
->                         continue;
->
->                 /*clear job fence from fence drv to avoid force_completion
-> @@ -5247,7 +5247,7 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
->                 for (i = 0; i < AMDGPU_MAX_RINGS; ++i) {
->                         struct amdgpu_ring *ring = tmp_adev->rings[i];
->
-> -                       if (!ring || !ring->sched.thread)
-> +                       if (!ring || !ring->sched.ready)
->                                 continue;
->
->                         drm_sched_stop(&ring->sched, job ? &job->base : NULL);
-> @@ -5321,7 +5321,7 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
->                 for (i = 0; i < AMDGPU_MAX_RINGS; ++i) {
->                         struct amdgpu_ring *ring = tmp_adev->rings[i];
->
-> -                       if (!ring || !ring->sched.thread)
-> +                       if (!ring || !ring->sched.ready)
->                                 continue;
->
->                         drm_sched_start(&ring->sched, true);
-> @@ -5648,7 +5648,7 @@ pci_ers_result_t amdgpu_pci_error_detected(struct pci_dev *pdev, pci_channel_sta
->                 for (i = 0; i < AMDGPU_MAX_RINGS; ++i) {
->                         struct amdgpu_ring *ring = adev->rings[i];
->
-> -                       if (!ring || !ring->sched.thread)
-> +                       if (!ring || !ring->sched.ready)
->                                 continue;
->
->                         drm_sched_stop(&ring->sched, NULL);
-> @@ -5776,7 +5776,7 @@ void amdgpu_pci_resume(struct pci_dev *pdev)
->         for (i = 0; i < AMDGPU_MAX_RINGS; ++i) {
->                 struct amdgpu_ring *ring = adev->rings[i];
->
-> -               if (!ring || !ring->sched.thread)
-> +               if (!ring || !ring->sched.ready)
->                         continue;
->
->                 drm_sched_start(&ring->sched, true);
-> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-> index 27d52ffbb808..8c64045d0692 100644
-> --- a/drivers/gpu/drm/scheduler/sched_main.c
-> +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> @@ -44,7 +44,6 @@
->   * The jobs in a entity are always scheduled in the order that they were pushed.
->   */
->
-> -#include <linux/kthread.h>
->  #include <linux/wait.h>
->  #include <linux/sched.h>
->  #include <linux/completion.h>
-> @@ -251,6 +250,53 @@ drm_sched_rq_select_entity_fifo(struct drm_sched_rq *rq)
->         return rb ? rb_entry(rb, struct drm_sched_entity, rb_tree_node) : NULL;
->  }
->
-> +/**
-> + * drm_sched_run_wq_stop - stop scheduler run worker
-> + *
-> + * @sched: scheduler instance to stop run worker
-> + */
-> +void drm_sched_run_wq_stop(struct drm_gpu_scheduler *sched)
-> +{
-> +       sched->pause_run_wq = true;
-> +       smp_wmb();
-> +
-> +       cancel_work_sync(&sched->work_run);
-> +}
-> +EXPORT_SYMBOL(drm_sched_run_wq_stop);
-> +
-> +/**
-> + * drm_sched_run_wq_start - start scheduler run worker
-> + *
-> + * @sched: scheduler instance to start run worker
-> + */
-> +void drm_sched_run_wq_start(struct drm_gpu_scheduler *sched)
-> +{
-> +       sched->pause_run_wq = false;
-> +       smp_wmb();
-> +
-> +       queue_work(sched->run_wq, &sched->work_run);
-> +}
-> +EXPORT_SYMBOL(drm_sched_run_wq_start);
-> +
-> +/**
-> + * drm_sched_run_wq_queue - queue scheduler run worker
-> + *
-> + * @sched: scheduler instance to queue run worker
-> + */
-> +static void drm_sched_run_wq_queue(struct drm_gpu_scheduler *sched)
-> +{
-> +       smp_rmb();
-> +
-> +       /*
-> +        * Try not to schedule work if pause_run_wq set but not the end of world
-> +        * if we do as either it will be cancelled by the above
-> +        * cancel_work_sync, or drm_sched_main turns into a NOP while
-> +        * pause_run_wq is set.
-> +        */
-> +       if (!sched->pause_run_wq)
-> +               queue_work(sched->run_wq, &sched->work_run);
-> +}
-> +
->  /**
->   * drm_sched_job_done - complete a job
->   * @s_job: pointer to the job which is done
-> @@ -270,7 +316,7 @@ static void drm_sched_job_done(struct drm_sched_job *s_job)
->         dma_fence_get(&s_fence->finished);
->         drm_sched_fence_finished(s_fence);
->         dma_fence_put(&s_fence->finished);
-> -       wake_up_interruptible(&sched->wake_up_worker);
-> +       drm_sched_run_wq_queue(sched);
->  }
->
->  /**
-> @@ -433,7 +479,7 @@ void drm_sched_stop(struct drm_gpu_scheduler *sched, struct drm_sched_job *bad)
->  {
->         struct drm_sched_job *s_job, *tmp;
->
-> -       kthread_park(sched->thread);
-> +       drm_sched_run_wq_stop(sched);
->
->         /*
->          * Reinsert back the bad job here - now it's safe as
-> @@ -546,7 +592,7 @@ void drm_sched_start(struct drm_gpu_scheduler *sched, bool full_recovery)
->                 spin_unlock(&sched->job_list_lock);
->         }
->
-> -       kthread_unpark(sched->thread);
-> +       drm_sched_run_wq_start(sched);
->  }
->  EXPORT_SYMBOL(drm_sched_start);
->
-> @@ -831,7 +877,7 @@ static bool drm_sched_ready(struct drm_gpu_scheduler *sched)
->  void drm_sched_wakeup(struct drm_gpu_scheduler *sched)
->  {
->         if (drm_sched_ready(sched))
-> -               wake_up_interruptible(&sched->wake_up_worker);
-> +               drm_sched_run_wq_queue(sched);
->  }
->
->  /**
-> @@ -941,60 +987,42 @@ drm_sched_pick_best(struct drm_gpu_scheduler **sched_list,
->  }
->  EXPORT_SYMBOL(drm_sched_pick_best);
->
-> -/**
-> - * drm_sched_blocked - check if the scheduler is blocked
-> - *
-> - * @sched: scheduler instance
-> - *
-> - * Returns true if blocked, otherwise false.
-> - */
-> -static bool drm_sched_blocked(struct drm_gpu_scheduler *sched)
-> -{
-> -       if (kthread_should_park()) {
-> -               kthread_parkme();
-> -               return true;
-> -       }
-> -
-> -       return false;
-> -}
-> -
->  /**
->   * drm_sched_main - main scheduler thread
->   *
->   * @param: scheduler instance
-> - *
-> - * Returns 0.
->   */
-> -static int drm_sched_main(void *param)
-> +static void drm_sched_main(struct work_struct *w)
->  {
-> -       struct drm_gpu_scheduler *sched = (struct drm_gpu_scheduler *)param;
-> +       struct drm_gpu_scheduler *sched =
-> +               container_of(w, struct drm_gpu_scheduler, work_run);
->         int r;
->
-> -       sched_set_fifo_low(current);
-> -
-> -       while (!kthread_should_stop()) {
-> -               struct drm_sched_entity *entity = NULL;
-> +       while (!READ_ONCE(sched->pause_run_wq)) {
-> +               struct drm_sched_entity *entity;
->                 struct drm_sched_fence *s_fence;
->                 struct drm_sched_job *sched_job;
->                 struct dma_fence *fence;
-> -               struct drm_sched_job *cleanup_job = NULL;
-> +               struct drm_sched_job *cleanup_job;
->
-> -               wait_event_interruptible(sched->wake_up_worker,
-> -                                        (cleanup_job = drm_sched_get_cleanup_job(sched)) ||
-> -                                        (!drm_sched_blocked(sched) &&
-> -                                         (entity = drm_sched_select_entity(sched))) ||
-> -                                        kthread_should_stop());
-> +               cleanup_job = drm_sched_get_cleanup_job(sched);
-> +               entity = drm_sched_select_entity(sched);
->
->                 if (cleanup_job)
->                         sched->ops->free_job(cleanup_job);
->
-> -               if (!entity)
-> +               if (!entity) {
-> +                       if (!cleanup_job)
-> +                               break;
->                         continue;
-> +               }
->
->                 sched_job = drm_sched_entity_pop_job(entity);
->
->                 if (!sched_job) {
->                         complete_all(&entity->entity_idle);
-> +                       if (!cleanup_job)
-> +                               break;
->                         continue;
->                 }
->
-> @@ -1022,14 +1050,14 @@ static int drm_sched_main(void *param)
->                                           r);
->                 } else {
->                         if (IS_ERR(fence))
-> -                               dma_fence_set_error(&s_fence->finished, PTR_ERR(fence));
-> +                               dma_fence_set_error(&s_fence->finished,
-> +                                                   PTR_ERR(fence));
->
->                         drm_sched_job_done(sched_job);
->                 }
->
->                 wake_up(&sched->job_scheduled);
->         }
-> -       return 0;
->  }
->
->  /**
-> @@ -1054,35 +1082,28 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
->                    long timeout, struct workqueue_struct *timeout_wq,
->                    atomic_t *score, const char *name, struct device *dev)
->  {
-> -       int i, ret;
-> +       int i;
->         sched->ops = ops;
->         sched->hw_submission_limit = hw_submission;
->         sched->name = name;
->         sched->timeout = timeout;
->         sched->timeout_wq = timeout_wq ? : system_wq;
-> +       sched->run_wq = system_wq;      /* FIXME: Let user pass this in */
->         sched->hang_limit = hang_limit;
->         sched->score = score ? score : &sched->_score;
->         sched->dev = dev;
->         for (i = DRM_SCHED_PRIORITY_MIN; i < DRM_SCHED_PRIORITY_COUNT; i++)
->                 drm_sched_rq_init(sched, &sched->sched_rq[i]);
->
-> -       init_waitqueue_head(&sched->wake_up_worker);
->         init_waitqueue_head(&sched->job_scheduled);
->         INIT_LIST_HEAD(&sched->pending_list);
->         spin_lock_init(&sched->job_list_lock);
->         atomic_set(&sched->hw_rq_count, 0);
->         INIT_DELAYED_WORK(&sched->work_tdr, drm_sched_job_timedout);
-> +       INIT_WORK(&sched->work_run, drm_sched_main);
->         atomic_set(&sched->_score, 0);
->         atomic64_set(&sched->job_id_count, 0);
-> -
-> -       /* Each scheduler will run on a seperate kernel thread */
-> -       sched->thread = kthread_run(drm_sched_main, sched, sched->name);
-> -       if (IS_ERR(sched->thread)) {
-> -               ret = PTR_ERR(sched->thread);
-> -               sched->thread = NULL;
-> -               DRM_DEV_ERROR(sched->dev, "Failed to create scheduler for %s.\n", name);
-> -               return ret;
-> -       }
-> +       sched->pause_run_wq = false;
->
->         sched->ready = true;
->         return 0;
-> @@ -1101,8 +1122,7 @@ void drm_sched_fini(struct drm_gpu_scheduler *sched)
->         struct drm_sched_entity *s_entity;
->         int i;
->
-> -       if (sched->thread)
-> -               kthread_stop(sched->thread);
-> +       drm_sched_run_wq_stop(sched);
->
->         for (i = DRM_SCHED_PRIORITY_COUNT - 1; i >= DRM_SCHED_PRIORITY_MIN; i--) {
->                 struct drm_sched_rq *rq = &sched->sched_rq[i];
-> diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-> index ca857ec9e7eb..ff50f3c289cd 100644
-> --- a/include/drm/gpu_scheduler.h
-> +++ b/include/drm/gpu_scheduler.h
-> @@ -456,17 +456,16 @@ struct drm_sched_backend_ops {
->   * @timeout: the time after which a job is removed from the scheduler.
->   * @name: name of the ring for which this scheduler is being used.
->   * @sched_rq: priority wise array of run queues.
-> - * @wake_up_worker: the wait queue on which the scheduler sleeps until a job
-> - *                  is ready to be scheduled.
->   * @job_scheduled: once @drm_sched_entity_do_release is called the scheduler
->   *                 waits on this wait queue until all the scheduled jobs are
->   *                 finished.
->   * @hw_rq_count: the number of jobs currently in the hardware queue.
->   * @job_id_count: used to assign unique id to the each job.
-> + * @run_wq: workqueue used to queue @work_run
->   * @timeout_wq: workqueue used to queue @work_tdr
-> + * @work_run: schedules jobs and cleans up entities
->   * @work_tdr: schedules a delayed call to @drm_sched_job_timedout after the
->   *            timeout interval is over.
-> - * @thread: the kthread on which the scheduler which run.
->   * @pending_list: the list of jobs which are currently in the job queue.
->   * @job_list_lock: lock to protect the pending_list.
->   * @hang_limit: once the hangs by a job crosses this limit then it is marked
-> @@ -475,6 +474,7 @@ struct drm_sched_backend_ops {
->   * @_score: score used when the driver doesn't provide one
->   * @ready: marks if the underlying HW is ready to work
->   * @free_guilty: A hit to time out handler to free the guilty job.
-> + * @pause_run_wq: pause queuing of @work_run on @run_wq
->   * @dev: system &struct device
->   *
->   * One scheduler is implemented for each hardware ring.
-> @@ -485,13 +485,13 @@ struct drm_gpu_scheduler {
->         long                            timeout;
->         const char                      *name;
->         struct drm_sched_rq             sched_rq[DRM_SCHED_PRIORITY_COUNT];
-> -       wait_queue_head_t               wake_up_worker;
->         wait_queue_head_t               job_scheduled;
->         atomic_t                        hw_rq_count;
->         atomic64_t                      job_id_count;
-> +       struct workqueue_struct         *run_wq;
->         struct workqueue_struct         *timeout_wq;
-> +       struct work_struct              work_run;
->         struct delayed_work             work_tdr;
-> -       struct task_struct              *thread;
->         struct list_head                pending_list;
->         spinlock_t                      job_list_lock;
->         int                             hang_limit;
-> @@ -499,6 +499,7 @@ struct drm_gpu_scheduler {
->         atomic_t                        _score;
->         bool                            ready;
->         bool                            free_guilty;
-> +       bool                            pause_run_wq;
->         struct device                   *dev;
->  };
->
-> @@ -529,6 +530,8 @@ void drm_sched_entity_modify_sched(struct drm_sched_entity *entity,
->
->  void drm_sched_job_cleanup(struct drm_sched_job *job);
->  void drm_sched_wakeup(struct drm_gpu_scheduler *sched);
-> +void drm_sched_run_wq_stop(struct drm_gpu_scheduler *sched);
-> +void drm_sched_run_wq_start(struct drm_gpu_scheduler *sched);
->  void drm_sched_stop(struct drm_gpu_scheduler *sched, struct drm_sched_job *bad);
->  void drm_sched_start(struct drm_gpu_scheduler *sched, bool full_recovery);
->  void drm_sched_resubmit_jobs(struct drm_gpu_scheduler *sched);
-> --
-> 2.37.3
->
+T24gRnJpLCAyMDIyLTEyLTIzIGF0IDE5OjQyICswNTMwLCBOYXV0aXlhbCwgQW5raXQgSyB3cm90
+ZToNCj4gT24gMTIvMjMvMjAyMiA3OjM3IFBNLCBOYXV0aXlhbCwgQW5raXQgSyB3cm90ZToNCj4g
+PiANCj4gPiBPbiAxMi8yMy8yMDIyIDY6MzUgUE0sIEx1Y2EgQ29lbGhvIHdyb3RlOg0KPiA+ID4g
+RnJvbTogQW5pbWVzaCBNYW5uYSA8YW5pbWVzaC5tYW5uYUBpbnRlbC5jb20+DQo+ID4gPiANCj4g
+PiA+IFRoZSBtYXggc291cmNlIGFuZCBkZXN0aW5hdGlvbiBsaW1pdHMgZm9yIHNjYWxlcnMgaW4g
+TVRMIGhhdmUgY2hhbmdlZC4NCj4gPiA+IFVzZSB0aGUgbmV3IHZhbHVlcyBhY2NvcmRpbmdseS4N
+Cj4gPiA+IA0KPiA+ID4gU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9z
+ZS5zb3V6YUBpbnRlbC5jb20+DQo+ID4gPiBTaWduZWQtb2ZmLWJ5OiBBbmltZXNoIE1hbm5hIDxh
+bmltZXNoLm1hbm5hQGludGVsLmNvbT4NCj4gPiA+IFNpZ25lZC1vZmYtYnk6IEx1Y2EgQ29lbGhv
+IDxsdWNpYW5vLmNvZWxob0BpbnRlbC5jb20+DQo+ID4gPiAtLS0NCj4gPiA+IA0KPiA+ID4gSW4g
+djI6DQo+ID4gPiDCoMKgwqAgKiBObyBjaGFuZ2VzOw0KPiA+ID4gDQo+ID4gPiBJbiB2MzoNCj4g
+PiA+IMKgwqDCoCAqIFJlbW92ZWQgc3RyYXkgcmV2aWV3ZWQtYnkgdGFnOw0KPiA+ID4gwqDCoMKg
+ICogQWRkZWQgbXkgcy1vLWIuDQo+ID4gPiANCj4gPiA+IEluIHY0Og0KPiA+ID4gwqDCoMKgICog
+Tm8gY2hhbmdlcy4NCj4gPiA+IA0KPiA+ID4gSW4gdjU6DQo+ID4gPiDCoMKgwqAgKiBKdXN0IHJl
+c2VudCB3aXRoIGEgY292ZXIgbGV0dGVyLg0KPiA+ID4gDQo+ID4gPiBJbiB2NjoNCj4gPiA+IMKg
+wqDCoCAqIE5vdyB0aGUgY29ycmVjdCB2ZXJzaW9uIGFnYWluIChzYW1lIGFzIHY0KS4NCj4gPiA+
+IA0KPiA+ID4gSW4gdjc6DQo+ID4gPiDCoMKgwqAgKiBVcGRhdGUgdG8gbmV3IE1UTCBsaW1pdHMg
+YWNjb3JkaW5nIHRvIHRoZSBic3BlYy4NCj4gPiA+IA0KPiA+ID4gDQo+ID4gPiDCoCBkcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L3NrbF9zY2FsZXIuYyB8IDQwICsrKysrKysrKysrKysrKysr
+Ky0tLS0tDQo+ID4gPiDCoCAxIGZpbGUgY2hhbmdlZCwgMzIgaW5zZXJ0aW9ucygrKSwgOCBkZWxl
+dGlvbnMoLSkNCj4gPiA+IA0KPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvc2tsX3NjYWxlci5jIA0KPiA+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L3NrbF9zY2FsZXIuYw0KPiA+ID4gaW5kZXggZDczOTAwNjdiN2Q0Li4wMWU4ODEyOTM2MTIg
+MTAwNjQ0DQo+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L3NrbF9zY2Fs
+ZXIuYw0KPiA+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9za2xfc2NhbGVy
+LmMNCj4gPiA+IEBAIC04Nyw2ICs4NywxMCBAQCBzdGF0aWMgdTE2IHNrbF9zY2FsZXJfY2FsY19w
+aGFzZShpbnQgc3ViLCBpbnQgDQo+ID4gPiBzY2FsZSwgYm9vbCBjaHJvbWFfY29zaXRlZCkNCj4g
+PiA+IMKgICNkZWZpbmUgSUNMX01BWF9TUkNfSCA0MDk2DQo+ID4gPiDCoCAjZGVmaW5lIElDTF9N
+QVhfRFNUX1cgNTEyMA0KPiA+ID4gwqAgI2RlZmluZSBJQ0xfTUFYX0RTVF9IIDQwOTYNCj4gPiA+
+ICsjZGVmaW5lIE1UTF9NQVhfU1JDX1cgNDA5Ng0KPiA+ID4gKyNkZWZpbmUgTVRMX01BWF9TUkNf
+SCA4MTkyDQo+ID4gPiArI2RlZmluZSBNVExfTUFYX0RTVF9XIDgxOTINCj4gPiA+ICsjZGVmaW5l
+IE1UTF9NQVhfRFNUX0ggODE5Mg0KPiA+ID4gwqAgI2RlZmluZSBTS0xfTUlOX1lVVl80MjBfU1JD
+X1cgMTYNCj4gPiA+IMKgICNkZWZpbmUgU0tMX01JTl9ZVVZfNDIwX1NSQ19IIDE2DQo+ID4gPiDC
+oCBAQCAtMTAzLDYgKzEwNyw4IEBAIHNrbF91cGRhdGVfc2NhbGVyKHN0cnVjdCBpbnRlbF9jcnRj
+X3N0YXRlIA0KPiA+ID4gKmNydGNfc3RhdGUsIGJvb2wgZm9yY2VfZGV0YWNoLA0KPiA+ID4gwqDC
+oMKgwqDCoCBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYgPSB0b19pOTE1KGNydGMt
+PmJhc2UuZGV2KTsNCj4gPiA+IMKgwqDCoMKgwqAgY29uc3Qgc3RydWN0IGRybV9kaXNwbGF5X21v
+ZGUgKmFkanVzdGVkX21vZGUgPQ0KPiA+ID4gwqDCoMKgwqDCoMKgwqDCoMKgICZjcnRjX3N0YXRl
+LT5ody5hZGp1c3RlZF9tb2RlOw0KPiA+ID4gK8KgwqDCoCBpbnQgbWluX3NyY193LCBtaW5fc3Jj
+X2gsIG1pbl9kc3RfdywgbWluX2RzdF9oOw0KPiA+ID4gK8KgwqDCoCBpbnQgbWF4X3NyY193LCBt
+YXhfc3JjX2gsIG1heF9kc3RfdywgbWF4X2RzdF9oOw0KPiA+ID4gwqAgwqDCoMKgwqDCoCAvKg0K
+PiA+ID4gwqDCoMKgwqDCoMKgICogU3JjIGNvb3JkaW5hdGVzIGFyZSBhbHJlYWR5IHJvdGF0ZWQg
+YnkgMjcwIGRlZ3JlZXMgZm9yDQo+ID4gPiBAQCAtMTU3LDE1ICsxNjMsMzMgQEAgc2tsX3VwZGF0
+ZV9zY2FsZXIoc3RydWN0IGludGVsX2NydGNfc3RhdGUgDQo+ID4gPiAqY3J0Y19zdGF0ZSwgYm9v
+bCBmb3JjZV9kZXRhY2gsDQo+ID4gPiDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJuIC1FSU5WQUw7
+DQo+ID4gPiDCoMKgwqDCoMKgIH0NCj4gPiA+IMKgICvCoMKgwqAgbWluX3NyY193ID0gU0tMX01J
+Tl9TUkNfVzsNCj4gPiA+ICvCoMKgwqAgbWluX3NyY19oID0gU0tMX01JTl9TUkNfSDsNCj4gPiA+
+ICvCoMKgwqAgbWluX2RzdF93ID0gU0tMX01JTl9EU1RfVzsNCj4gPiA+ICvCoMKgwqAgbWluX2Rz
+dF9oID0gU0tMX01JTl9EU1RfSDsNCj4gPiA+ICsNCj4gPiA+ICvCoMKgwqAgaWYgKERJU1BMQVlf
+VkVSKGRldl9wcml2KSA8IDExKSB7DQo+ID4gPiArwqDCoMKgwqDCoMKgwqAgbWF4X3NyY193ID0g
+U0tMX01BWF9TUkNfVzsNCj4gPiA+ICvCoMKgwqDCoMKgwqDCoCBtYXhfc3JjX2ggPSBTS0xfTUFY
+X1NSQ19IOw0KPiA+ID4gK8KgwqDCoMKgwqDCoMKgIG1heF9kc3RfdyA9IFNLTF9NQVhfRFNUX1c7
+DQo+ID4gPiArwqDCoMKgwqDCoMKgwqAgbWF4X2RzdF9oID0gU0tMX01BWF9EU1RfSDsNCj4gPiA+
+ICvCoMKgwqAgfSBlbHNlIGlmIChESVNQTEFZX1ZFUihkZXZfcHJpdikgPCAxNCkgew0KPiA+ID4g
+K8KgwqDCoMKgwqDCoMKgIG1heF9zcmNfdyA9IElDTF9NQVhfU1JDX1c7DQo+ID4gPiArwqDCoMKg
+wqDCoMKgwqAgbWF4X3NyY19oID0gSUNMX01BWF9TUkNfSDsNCj4gPiA+ICvCoMKgwqDCoMKgwqDC
+oCBtYXhfZHN0X3cgPSBJQ0xfTUFYX0RTVF9XOw0KPiA+ID4gK8KgwqDCoMKgwqDCoMKgIG1heF9k
+c3RfaCA9IElDTF9NQVhfRFNUX0g7DQo+ID4gDQo+ID4gSGkgTHVjYSwNCj4gPiANCj4gPiBSZWNl
+bnRseSB0aGVyZSBpcyBhIGNoYW5nZSBpbiBCc3BlYzo1MDQ0MSBhbmQgbm93IGZvciBHZW4gMTIg
+c2NhbGVycywgDQo+ID4gdGhlIE1BWF9TUkNfVyBpcyA1MTIwIHBpeGVscyBhbmQgTUFYX1NSQ19I
+IGlzIDgxOTIuDQo+IA0KPiANCj4gU2xpZ2h0IGNvcnJlY3Rpb24gOiB0aGlzIGlzIGZvciBib3Ro
+IEdlbjEyLGFuZCAxMy4NCj4gDQo+IFJlZ2FyZHMsDQo+IA0KPiBBbmtpdA0KPiANCj4gDQo+ID4g
+DQo+ID4gTUFYX0RTVF9XLCBhbmQgTUFYX0RTVF9IIGFyZSA4MTkyLg0KPiA+IA0KPiA+IEFzIHdl
+IGFyZSByZWZhY3RvcmluZyB0aGlzIHBhcnQsIGNhbiB3ZSBpbmNsdWRlIGEgc2VwYXJhdGUgcGF0
+Y2ggZm9yIA0KPiA+IEdlbiAxMiBpbiB0aGlzIHNlcmllcz8NCg0KVGhhbmtzIGZvciBwb2ludGlu
+ZyBvdXQsIEFua2l0IQ0KDQpCdXQgc2luY2UgbXkgc2VyaWVzIGlzIHNwZWNpZmljYWxseSB0YXJn
+ZXRpbmcgTVRMLCBJJ20gZ29pbmcgdG8gc2VuZCBpdA0KYXMgYSBzdGFuZC1hbG9uZSBwYXRjaCwg
+aWYgdGhhdCdzIG9rLg0KDQotLQ0KQ2hlZXJzLA0KTHVjYS4NCg==
