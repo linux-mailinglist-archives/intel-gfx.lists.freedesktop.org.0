@@ -2,56 +2,144 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59E01654F86
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Dec 2022 12:14:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DAC7654FD4
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Dec 2022 12:52:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFC0310E187;
-	Fri, 23 Dec 2022 11:13:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EC2910E187;
+	Fri, 23 Dec 2022 11:52:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89BD110E187;
- Fri, 23 Dec 2022 11:13:43 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F388510E187
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Dec 2022 11:52:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1671794023; x=1703330023;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=fS49hjvhPQi7qWmi9Wx+A23qmh6Nn21iu5yxOlK5qGI=;
- b=RybA7W+oBX2Mrs+Vz2F/a9VD1RWPEgiYZXnfHhMVmS8U59gu52BpkT1v
- gz8f8Rl+l6oEFxpew+dlYlYVDnuIRJYsjEzCVE+i40Ee5F2lwx6db5EIn
- YZnkbjdRJmALvVZRf4Z9MUpvY4ORR9ANwWPBGFWdckcioADUoJMGXmcdj
- v+GbsHhalF19t41Xmo4wjfOmRyxOAi8ofVKySfESuqjaUDQYgj4CmfV+u
- kBHpvjFlUBc9/YJhxCJxn9mIpLYZxWBRvFMSCB/mN0LVQaPZnTFlqkhWZ
- Td9zWqyjtXitRpmuLs5hnGlgyZ61Thff0Y2UpIIZMG43AEfAGa38DgSEh Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10569"; a="317961412"
-X-IronPort-AV: E=Sophos;i="5.96,268,1665471600"; d="scan'208";a="317961412"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Dec 2022 03:13:40 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10569"; a="684510035"
-X-IronPort-AV: E=Sophos;i="5.96,268,1665471600"; d="scan'208";a="684510035"
-Received: from mirabhat-mobl1.amr.corp.intel.com (HELO [10.213.188.137])
- ([10.213.188.137])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Dec 2022 03:13:33 -0800
-Message-ID: <a08b8c97-a972-ad5f-d5d2-0f172fc7b15e@linux.intel.com>
-Date: Fri, 23 Dec 2022 11:13:31 +0000
+ t=1671796335; x=1703332335;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=HzPtFx6fpk6Bf2jCU30cSGJpuXqFvo5L/WmtO2eyIqo=;
+ b=C0NXY/4WZe8zvXmUSWv3MHRds7WHj9C2VBICM/IXRbM0OiA991/mWoJL
+ U9Yfz+xcaXsdO4V1OOIYpaLutPTbZ+FU78Bu5rKFRwjGQ5vmEMWFn0Kiv
+ OAhlwu0G3Lz2+Ilsv/uvvtsgwKFwlvONo8xU5A1HoVR490GE6lAXPXasd
+ hwP6j/UKe9/TaoY4YipKqrUBy30l4l++QQPfqLVOt/FZLFigCPe941x2s
+ eNf7uEJMO7t7u4qhT+MbpIaAujz2+t5hAfZ951NgLSpvK1oC7bz+9JEfk
+ 3cZdzlEpV1IB4fThYmEQThZD0v/Te6w1KPMOQA9UqMKBbAa/E52kNotvT w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10569"; a="303792841"
+X-IronPort-AV: E=Sophos;i="5.96,268,1665471600"; d="scan'208";a="303792841"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Dec 2022 03:52:11 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10569"; a="602180161"
+X-IronPort-AV: E=Sophos;i="5.96,268,1665471600"; d="scan'208";a="602180161"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga003.jf.intel.com with ESMTP; 23 Dec 2022 03:52:10 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Fri, 23 Dec 2022 03:52:10 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Fri, 23 Dec 2022 03:52:10 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Fri, 23 Dec 2022 03:52:10 -0800
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.107)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Fri, 23 Dec 2022 03:52:09 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=UofvQH5gzdCvJjhpFviZmxLaXXO/QEwvqRBe7hbHQNXwRv03IyJ1NfA/QSwpPTZ5qoY/uwfNBZ9REiUAXmymm+HnLuaZfEwcl9RIYmSikFQALlVhOIlxxgetMNhnt5/mcAJHtCRu+gEilBEkmUxjJ4M7LxT7ldfpsrwBym29yO5jgBdHjcmo4TiBGz1+gBBXrwHJdOJ2i37nWrNWA2AMY1gSG+ECKfkIZxvfCKmmDeAiTfcDlZwu3b5E/ZKHjxeOcLfaSp98J2cHWwxSctt5+Jrr/sHIJiGID8BElk1JqffGEc288gxAYz0cPlbAJYGo7Ihqfj5HzySLXTuKW+ivew==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Sxj6rJpI53jt067ePeUspq9NDJDQ2itxNuIqdnwIOdA=;
+ b=AkQNzBK11hlGqBk7XvwgjcCqNguQ1bcqkEfGcvxm0jivKYForHkHOk2PiWrKWYXRYX6LEZeg+0YDzW74f5OukEp8J1ofKbPNcjSC/b+FPzs6h8n9imnvaU7up4ztnucfj0nqlG11VrSkCRIRXjNf8hBQo3Cynm+7o2E1TRtp9MhRLHqh19HNfGmrkkDtfzPC02fuuipxB7x9fhaOPgkBqRThPiz9BOAolUZJJosdG7hCYJBBmcBC5JbaaMrrCL+6tkaZxx9LH54sjPETv/vQWCPAOJ6HJSqgg1As9jcxSVl/EjoXAtQl/wsq62bn3ekDQwmTgzoP7bZmTEbZOkNWwA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BN8PR11MB3556.namprd11.prod.outlook.com (2603:10b6:408:8d::31)
+ by MW3PR11MB4697.namprd11.prod.outlook.com (2603:10b6:303:2c::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.13; Fri, 23 Dec
+ 2022 11:52:07 +0000
+Received: from BN8PR11MB3556.namprd11.prod.outlook.com
+ ([fe80::993c:13fc:ebc9:7168]) by BN8PR11MB3556.namprd11.prod.outlook.com
+ ([fe80::993c:13fc:ebc9:7168%4]) with mapi id 15.20.5944.013; Fri, 23 Dec 2022
+ 11:52:06 +0000
+Date: Fri, 23 Dec 2022 08:51:59 -0300
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <20221223115159.px2ho2rqp4ivmonr@gjsousa-mobl2>
+References: <20221220201104.339399-1-gustavo.sousa@intel.com>
+ <20221220201104.339399-3-gustavo.sousa@intel.com>
+ <87wn6l1299.fsf@intel.com>
+ <20221222002345.xbz37hl6gzhb44np@ldmartin-desk2.lan>
+ <20221222221208.dk6tgqrwx7o3rdwh@gjsousa-mobl2>
+ <20221223005221.4wv73d2j2d6kmw5w@ldmartin-desk2.lan>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20221223005221.4wv73d2j2d6kmw5w@ldmartin-desk2.lan>
+X-ClientProxiedBy: BY5PR16CA0028.namprd16.prod.outlook.com
+ (2603:10b6:a03:1a0::41) To BN8PR11MB3556.namprd11.prod.outlook.com
+ (2603:10b6:408:8d::31)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Content-Language: en-US
-To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-References: <20221222222127.34560-1-matthew.brost@intel.com>
- <20221222222127.34560-12-matthew.brost@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20221222222127.34560-12-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [RFC PATCH 11/20] drm/i915: Remove gem and overlay
- frontbuffer tracking
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8PR11MB3556:EE_|MW3PR11MB4697:EE_
+X-MS-Office365-Filtering-Correlation-Id: 87243c84-d0ce-4912-d430-08dae4dc1d4e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: NXR3ZSvOWIcs94tNlHV80TBhk/s6zV5qeqaG0Xps9ID38kEZCDMQH0Suw4dHq/LtlYHuz1aJkJbB3Ne6qE7HY/ubDdOsd7ciqBJLeLqaNrMT69+XM+hxv/yQ6dW+EH5u5VOyW4KcCAJ2DIZkTXDZC1PmUPkg1Y+eWxQVD2In0lm0RjgYCFthOvYYnG+Hi9SGbv05EXMNY6eIEPscaqsFkNOkYVwm1BBNwtJLg3fTuvufEWfLl2uZP/3ll691/dFqCJPcOfFl08qRWrGJVS5sK0Ws5BFBwtsf9/Zho9bhrKD2CqajxnBoukunM6OCaYL+9NjO27MHh6nRwn+ccPbtbILYqKknK88ie1JYrMH1JKGJ4mitxy180solwxT3OiG1arDqLzpBZ8NzRmsBS7VA0vL5m6240Wa5BgSVdRtmMkjf+V6UnTnX0xtGaQRGizX+XGCOr7tlxLBpPQtZrLnToqBadQQN1CiTFblAWHShb4dICvlHHoqE2ISVe+GU1geqbsHmZwKCQDAlHSHUhc6L3ZsgdIXBsDcUlh/oHu55wdrXWW0qCOk4C/f1hDjNtX/tQShlQqTA9SrncHUj+BQgUJBU7WZM+vhN4bzzI2ivndMN/+hnez9o3hp3WyoIY3NQNVEf6vf0sqZLeMtUdiWjapzu5+SmntJY/+mVCpWITlk=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN8PR11MB3556.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(7916004)(346002)(136003)(376002)(396003)(366004)(39860400002)(451199015)(6506007)(186003)(26005)(6512007)(9686003)(478600001)(33716001)(966005)(6486002)(6666004)(82960400001)(38100700002)(86362001)(83380400001)(54906003)(1076003)(44832011)(5660300002)(8936002)(6862004)(30864003)(2906002)(4326008)(8676002)(66556008)(66946007)(66476007)(6636002)(316002)(41300700001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?3te2c8B1n2TlnBC9NFajFkfBuJWs9Nk9QW0wux62fUp5Jkre9lEZTspcdo6C?=
+ =?us-ascii?Q?qqiDBRwRXJYS9MshWf877s0N8AyNEKzfpO3OfTbAxmtVp4Va5qKNO743GxSa?=
+ =?us-ascii?Q?pNTRyzo9tF+5NTrPhgnM8alzOFtNto0lXlWtX/DMDnZLD43XrHW2upntM9Vn?=
+ =?us-ascii?Q?shcVu70gAGTPxYmM15QCYrkdon/khJEUGB3rBJw1azk5Tw6kn/BZ75E2JQrp?=
+ =?us-ascii?Q?9LdkN1qM/PysnIcSnWuXf3WLcPm5DXyfNOq8fIr9++nJOjgBehqf76M6DhpQ?=
+ =?us-ascii?Q?lNHEwVMC4c5NRuj2bcOnwF8ZWa04nQA9gWbKWZqOnXgnt30my29Up3H+mmDF?=
+ =?us-ascii?Q?jGicMlA13Vqr4kWTthyCAifHAGq7qRct5szxOAqdOjd0V7ndbc/2x+tXYgCF?=
+ =?us-ascii?Q?uvyQ9netNM2hxUTd7wOm6P16j7zpa80nQ1BCjeWTWflAjtMyqhIOSWLFNmJA?=
+ =?us-ascii?Q?HxUea8qaGldNvR+urUvzGvjDoNhjSWhrVSw+C4TTnQRNtckgTgJ/Q9lUZj3D?=
+ =?us-ascii?Q?JZyckn9ObLrZUQFeYgZnXZH+20334abW2vbsjU57PEMRxeCjEe+rOk3ZNr8k?=
+ =?us-ascii?Q?JFo70AHBIh0EcE1SiaSoKAqFYChRk9XX8w/C2QQUjyKp6zd1gPW2ZHfn15bX?=
+ =?us-ascii?Q?rZ+RRLx6iBmzEErr2jcIUBhABUV/OBQ9JkZsS06S4c8oHTOyXqDO31jACo8i?=
+ =?us-ascii?Q?qru99r5tA6+7V9xu7fNknSeivqiG47XzsMQzAByCtEfQqiRkPrA1jEP1Pw6U?=
+ =?us-ascii?Q?x6nRLSUSeXbNvI4dDyIIhLlLRMRzTqN6pQ6EjQNZ7wsg3McZ3sBrdDxR3MLM?=
+ =?us-ascii?Q?wCrBbGogtbHwFjX804a69E44kQJ/DZLwwiSb+VndmHMkknLEQkBOGccf6tV5?=
+ =?us-ascii?Q?Z02YQTxHv7V4ynZ9z8TrBhONl4hvmjpMxZwnUNnJQLI7fRWiMc5EZ2huEgKQ?=
+ =?us-ascii?Q?Q+O1+tmO/3z94ReQnotnsaxs50hjwKoNh8GfC0X8HsmNJg1EJ99WHBexzKil?=
+ =?us-ascii?Q?CFF5V96wfwgXtpRbh0WZ6LnyQp2CKZPD20AIL3mtE0a6sUxNOeGEZIl5Koa+?=
+ =?us-ascii?Q?gCovrIvVGseWQxLZYsDMNLNrpZeCldpAYGdOdUTh9tPLUsa1YL21bV8/ZI2a?=
+ =?us-ascii?Q?E1LY+kf1HHc6EQtnrBeTbaPg/JYEjMFCtgie9XQUDHdHwVblzCu3TqwNQw+U?=
+ =?us-ascii?Q?IRGGVTAe/ZSEojEnA93mKOBzhWJVcSr+O8d/AS0zY7Kpu3xNFuNVfHHFLYy4?=
+ =?us-ascii?Q?AHs6oB1/U4akQW/y8EaHDbWDbWHvDdfcNnLrKq/2aB1pyRiibV0JjMXAZzkr?=
+ =?us-ascii?Q?RAmNCGe8acH0rMZJ0PoLRjLLC/yyrG9ufHkWh+lE1AOi59/iPjPor+eOdRM4?=
+ =?us-ascii?Q?2Way62e6VPUcR5yQieKeenFc4QmFc9wtVTN69UX/oIf2Z9a+UShbGwA+3A+z?=
+ =?us-ascii?Q?27PghdiASNHtqf9pYCA7hd7rGBWoas7rLzjzlzspuWEC9HEui0QSsvHMSicg?=
+ =?us-ascii?Q?Z1Bl9A/0gKbHb6JGMV3LmvpjRpbIDxV2EKHgG+nl77F7HAEquwZ8RBb0ant/?=
+ =?us-ascii?Q?PMkhA4Te1ccX00eZmiL70NIfc1xZarFbPPRx2nkdhRDOo0c7cGUAJLkctSts?=
+ =?us-ascii?Q?ag=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 87243c84-d0ce-4912-d430-08dae4dc1d4e
+X-MS-Exchange-CrossTenant-AuthSource: BN8PR11MB3556.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Dec 2022 11:52:06.3864 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: /Akyt4MVtoaz79Fia2htmHZEolPdTlszc16PqWY0VaIK5I1u9bQUxsK/qlYqebbB+fvs4oofIaRSUIpvLYLQ8w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4697
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/dmc: Use unversioned firmware
+ paths
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,438 +152,278 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 22/12/2022 22:21, Matthew Brost wrote:
-> From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+On Thu, Dec 22, 2022 at 04:52:21PM -0800, Lucas De Marchi wrote:
+> On Thu, Dec 22, 2022 at 07:12:08PM -0300, Gustavo Sousa wrote:
+> > On Wed, Dec 21, 2022 at 04:23:45PM -0800, Lucas De Marchi wrote:
+> > > On Wed, Dec 21, 2022 at 12:26:26PM +0200, Jani Nikula wrote:
+> > > > On Tue, 20 Dec 2022, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> > > > > As we do not require specific versions anymore, change the convention
+> > > > > for blob filenames to stop using version numbers. This simplifies code
+> > > > > maintenance, since we do not need to keep updating blob paths for new
+> > > > > DMC releases, and also makes DMC loading compatible with systems that do
+> > > > > not have the latest firmware release.
+> > > > >
+> > > > > References: https://lore.kernel.org/r/Y3081s7c5ksutpMW@intel.com
+> > > > > Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> > > > > ---
+> > > > >  drivers/gpu/drm/i915/display/intel_dmc.c | 98 ++++++++++++++++++++----
+> > > > >  1 file changed, 82 insertions(+), 16 deletions(-)
+> > > > >
+> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+> > > > > index 4124b3d37110..b11f0f451dd7 100644
+> > > > > --- a/drivers/gpu/drm/i915/display/intel_dmc.c
+> > > > > +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+> > > > > @@ -42,51 +42,70 @@
+> > > > >  #define DMC_VERSION_MAJOR(version)	((version) >> 16)
+> > > > >  #define DMC_VERSION_MINOR(version)	((version) & 0xffff)
+> > > > >
+> > > > > -#define DMC_PATH(platform, major, minor) \
+> > > > > -	"i915/"				 \
+> > > > > -	__stringify(platform) "_dmc_ver" \
+> > > > > -	__stringify(major) "_"		 \
+> > > > > +#define DMC_PATH(platform) \
+> > > > > +	"i915/" __stringify(platform) "_dmc.bin"
+> > > > > +
+> > > > > +/*
+> > > > > + * New DMC additions should not use this. This is used solely to remain
+> > > > > + * compatible with systems that have not yet updated DMC blobs to use
+> > > > > + * unversioned file names.
+> > > > > + */
+> > > > > +#define DMC_LEGACY_PATH(platform, major, minor) \
+> > > > > +	"i915/"					\
+> > > > > +	__stringify(platform) "_dmc_ver"	\
+> > > > > +	__stringify(major) "_"			\
+> > > > >  	__stringify(minor) ".bin"
+> > > > >
+> > > > >  #define DISPLAY_VER13_DMC_MAX_FW_SIZE	0x20000
+> > > > >
+> > > > >  #define DISPLAY_VER12_DMC_MAX_FW_SIZE	ICL_DMC_MAX_FW_SIZE
+> > > > >
+> > > > > -#define DG2_DMC_PATH			DMC_PATH(dg2, 2, 08)
+> > > > > +#define DG2_DMC_PATH			DMC_PATH(dg2)
+> > > > > +#define DG2_DMC_LEGACY_PATH		DMC_LEGACY_PATH(dg2, 2, 08)
+> > > > >  MODULE_FIRMWARE(DG2_DMC_PATH);
+> > > 
+> > > We have an issue here.  Previously `modinfo --field=firmware i915`
+> > > would report i915/dg2_dmc_ver2_08.bin. Now it's going to report
+> > > i915/dg2_dmc.bin
+> > > 
+> > > that modinfo call is what distros use to bundle the firmware blobs in
+> > > the initrd. It may also be used for creating package dependendies.
+> > > 
+> > > If we do this, unless they have updated their linux-firmware
+> > > packages, the initrd will be left without the firmware.
+> > > Just checked
+> > > git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git main
+> > > and we still don't have the unversioned firmware there.
+> > 
+> > Interesting. Thanks for the explanation!
+> > 
+> > I think one way of approaching the issue would be to synchronize the process:
+> > 
+> > 1. Work toward getting approval for the patch (i.e. r-b);
+> > 2. With the approval, send a PR to linux-firmware with the necessary changes;
+> > 3. After the linux-firmware PR is merged, the patch could be integraged.
+> > 
+> > I think that would still apply if going with your proposal on your next comment.
+> > 
+> > > 
+> > > > >
+> > > > > -#define ADLP_DMC_PATH			DMC_PATH(adlp, 2, 16)
+> > > > > +#define ADLP_DMC_PATH			DMC_PATH(adlp)
+> > > > > +#define ADLP_DMC_LEGACY_PATH		DMC_LEGACY_PATH(adlp, 2, 16)
+> > > > >  MODULE_FIRMWARE(ADLP_DMC_PATH);
+> > > > >
+> > > > > -#define ADLS_DMC_PATH			DMC_PATH(adls, 2, 01)
+> > > > > +#define ADLS_DMC_PATH			DMC_PATH(adls)
+> > > > > +#define ADLS_DMC_LEGACY_PATH		DMC_LEGACY_PATH(adls, 2, 01)
+> > > > >  MODULE_FIRMWARE(ADLS_DMC_PATH);
+> > > > >
+> > > > > -#define DG1_DMC_PATH			DMC_PATH(dg1, 2, 02)
+> > > > > +#define DG1_DMC_PATH			DMC_PATH(dg1)
+> > > > > +#define DG1_DMC_LEGACY_PATH		DMC_LEGACY_PATH(dg1, 2, 02)
+> > > > >  MODULE_FIRMWARE(DG1_DMC_PATH);
+> > > > >
+> > > > > -#define RKL_DMC_PATH			DMC_PATH(rkl, 2, 03)
+> > > > > +#define RKL_DMC_PATH			DMC_PATH(rkl)
+> > > > > +#define RKL_DMC_LEGACY_PATH		DMC_LEGACY_PATH(rkl, 2, 03)
+> > > > >  MODULE_FIRMWARE(RKL_DMC_PATH);
+> > > > >
+> > > > > -#define TGL_DMC_PATH			DMC_PATH(tgl, 2, 12)
+> > > > > +#define TGL_DMC_PATH			DMC_PATH(tgl)
+> > > > > +#define TGL_DMC_LEGACY_PATH		DMC_LEGACY_PATH(tgl, 2, 12)
+> > > > >  MODULE_FIRMWARE(TGL_DMC_PATH);
+> > > > >
+> > > > > -#define ICL_DMC_PATH			DMC_PATH(icl, 1, 09)
+> > > > > +#define ICL_DMC_PATH			DMC_PATH(icl)
+> > > > > +#define ICL_DMC_LEGACY_PATH		DMC_LEGACY_PATH(icl, 1, 09)
+> > > > >  #define ICL_DMC_MAX_FW_SIZE		0x6000
+> > > > >  MODULE_FIRMWARE(ICL_DMC_PATH);
+> > > > >
+> > > > > -#define GLK_DMC_PATH			DMC_PATH(glk, 1, 04)
+> > > > > +#define GLK_DMC_PATH			DMC_PATH(glk)
+> > > > > +#define GLK_DMC_LEGACY_PATH		DMC_LEGACY_PATH(glk, 1, 04)
+> > > > >  #define GLK_DMC_MAX_FW_SIZE		0x4000
+> > > > >  MODULE_FIRMWARE(GLK_DMC_PATH);
+> > > > >
+> > > > > -#define KBL_DMC_PATH			DMC_PATH(kbl, 1, 04)
+> > > > > +#define KBL_DMC_PATH			DMC_PATH(kbl)
+> > > > > +#define KBL_DMC_LEGACY_PATH		DMC_LEGACY_PATH(kbl, 1, 04)
+> > > > >  #define KBL_DMC_MAX_FW_SIZE		BXT_DMC_MAX_FW_SIZE
+> > > > >  MODULE_FIRMWARE(KBL_DMC_PATH);
+> > > > >
+> > > > > -#define SKL_DMC_PATH			DMC_PATH(skl, 1, 27)
+> > > > > +#define SKL_DMC_PATH			DMC_PATH(skl)
+> > > > > +#define SKL_DMC_LEGACY_PATH		DMC_LEGACY_PATH(skl, 1, 27)
+> > > > >  #define SKL_DMC_MAX_FW_SIZE		BXT_DMC_MAX_FW_SIZE
+> > > > >  MODULE_FIRMWARE(SKL_DMC_PATH);
+> > > > >
+> > > > > -#define BXT_DMC_PATH			DMC_PATH(bxt, 1, 07)
+> > > > > +#define BXT_DMC_PATH			DMC_PATH(bxt)
+> > > > > +#define BXT_DMC_LEGACY_PATH		DMC_LEGACY_PATH(bxt, 1, 07)
+> > > > >  #define BXT_DMC_MAX_FW_SIZE		0x3000
+> > > > >  MODULE_FIRMWARE(BXT_DMC_PATH);
+> > > > >
+> > > > > @@ -821,16 +840,63 @@ static void intel_dmc_runtime_pm_put(struct drm_i915_private *dev_priv)
+> > > > >  	intel_display_power_put(dev_priv, POWER_DOMAIN_INIT, wakeref);
+> > > > >  }
+> > > > >
+> > > > > +static const char *dmc_legacy_path(struct drm_i915_private *i915)
+> > > > > +{
+> > > > > +	if (IS_DG2(i915)) {
+> > > > > +		return DG2_DMC_LEGACY_PATH;
+> > > > > +	} else if (IS_ALDERLAKE_P(i915)) {
+> > > > > +		return ADLP_DMC_LEGACY_PATH;
+> > > > > +	} else if (IS_ALDERLAKE_S(i915)) {
+> > > > > +		return ADLS_DMC_LEGACY_PATH;
+> > > > > +	} else if (IS_DG1(i915)) {
+> > > > > +		return DG1_DMC_LEGACY_PATH;
+> > > > > +	} else if (IS_ROCKETLAKE(i915)) {
+> > > > > +		return RKL_DMC_LEGACY_PATH;
+> > > > > +	} else if (IS_TIGERLAKE(i915)) {
+> > > > > +		return TGL_DMC_LEGACY_PATH;
+> > > > > +	} else if (DISPLAY_VER(i915) == 11) {
+> > > > > +		return ICL_DMC_LEGACY_PATH;
+> > > > > +	} else if (IS_GEMINILAKE(i915)) {
+> > > > > +		return GLK_DMC_LEGACY_PATH;
+> > > > > +	} else if (IS_KABYLAKE(i915) ||
+> > > > > +		   IS_COFFEELAKE(i915) ||
+> > > > > +		   IS_COMETLAKE(i915)) {
+> > > > > +		return KBL_DMC_LEGACY_PATH;
+> > > > > +	} else if (IS_SKYLAKE(i915)) {
+> > > > > +		return SKL_DMC_LEGACY_PATH;
+> > > > > +	} else if (IS_BROXTON(i915)) {
+> > > > > +		return BXT_DMC_LEGACY_PATH;
+> > > > > +	}
+> > > > > +
+> > > > > +	return NULL;
+> > > > > +}
+> > > > > +
+> > > > >  static void dmc_load_work_fn(struct work_struct *work)
+> > > > >  {
+> > > > >  	struct drm_i915_private *dev_priv;
+> > > > >  	struct intel_dmc *dmc;
+> > > > >  	const struct firmware *fw = NULL;
+> > > > > +	const char *legacy_path;
+> > > > > +	int err;
+> > > > >
+> > > > >  	dev_priv = container_of(work, typeof(*dev_priv), display.dmc.work);
+> > > > >  	dmc = &dev_priv->display.dmc;
+> > > > >
+> > > > > -	request_firmware(&fw, dev_priv->display.dmc.fw_path, dev_priv->drm.dev);
+> > > > > +	err = firmware_request_nowarn(&fw, dev_priv->display.dmc.fw_path, dev_priv->drm.dev);
+> > > > > +
+> > > > > +	if (err == -ENOENT && !dev_priv->params.dmc_firmware_path) {
+> > > > > +		legacy_path = dmc_legacy_path(dev_priv);
+> > > > > +		if (legacy_path) {
+> > > > > +			drm_dbg_kms(&dev_priv->drm,
+> > > > > +				    "%s not found, falling back to %s\n",
+> > > > > +				    dmc->fw_path,
+> > > > > +				    legacy_path);
+> > > > > +			err = firmware_request_nowarn(&fw, legacy_path, dev_priv->drm.dev);
+> > > > > +			if (err == 0)
+> > > > > +				dev_priv->display.dmc.fw_path = legacy_path;
+> > > > > +		}
+> > > > > +	}
+> > > > > +
+> > > >
+> > > > I'd keep the request_firmware() with warnings.
+> > > 
+> > > then not only it will be missing from initrd but we will also trigger
+> > > new warnings. Humn, I think one alternative approach and my proposal
+> > > would be:
+> > > 
+> > > leave platforms that already have published firmware as is as long as
+> > > they are not behind a force_probe. For the new platforms, like mtl,
+> > > just use the platform name and don't bother about the version.
+> > > We will also have to fix it in the linux-firmware repo.
+> > > 
+> > > We are likely not updating DMC for very old platforms anyway, no need to
+> > > rename them.  I think that after having symlinks in place in
+> > > linux-firmware for a few years/months, then we can go back and kill the
+> > > version numbers if we really want to.
+> > 
+> > Sounds good.
+> > 
+> > This patch was an attempt to have all supported platforms changed to the new
+> > convention and keep us from having to send a new patch for each platform that
+> > would need the change because of a new firmware release. But to avoid warnings,
+> > I think your proposal would be better indeed.
+> > 
+> > It seems that currently the only platforms with display that are
+> > using require_force_probe = 1 are DG1 and MTL, and the latter does not have an
+> > entry in intel_dmc.c yet. Moving forward with your proposal, I guess we could
+> > also keep DG1 as is and only update it when/if the time comes.
+> > 
+> > That said, I still think we would need the logic for loading from legacy paths
+> > as fallback so that we do not cause regressions when, for example, ADL has an
+> > update and we "move" it to the new convention. Do you agree?
+> > 
+> > So here is my proposal:
+> > 
+> > - Keep using the same paths (i.e. versioned ones) for the current entries in
+> >  intel_dmc.c, but define them with DMC_LEGACY_PATH() and reserve DMC_PATH() for
+> >  the new convention.
+> > 
+> > - Keep the logic for the fallback in place because we know that it will be
+> >  needed soon enough for some more recent platforms.
 > 
-> Frontbuffer update handling should be done explicitly by using dirtyfb
-> calls only.
-
-A bit terse - questions around if this breaks something, and if it does 
-what and why it is okay, were left hanging in the air in the previous 
-thread (a6cdde0b-47a1-967d-f2c4-9299618cb1fb@linux.intel.com). Can that 
-be discussed please?
-
-Plus, this does not appear to be either DRM core or Xe work so maybe 
-doesn't need to be in this series to start with?!
-
-Regards,
-
-Tvrtko
-
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> ---
->   drivers/gpu/drm/i915/display/i9xx_plane.c     |  1 +
->   drivers/gpu/drm/i915/display/intel_drrs.c     |  1 +
->   drivers/gpu/drm/i915/display/intel_fb.c       |  1 +
->   drivers/gpu/drm/i915/display/intel_overlay.c  | 14 -----------
->   .../drm/i915/display/intel_plane_initial.c    |  1 +
->   drivers/gpu/drm/i915/display/intel_psr.c      |  1 +
->   .../drm/i915/display/skl_universal_plane.c    |  1 +
->   drivers/gpu/drm/i915/gem/i915_gem_clflush.c   |  4 ---
->   drivers/gpu/drm/i915/gem/i915_gem_domain.c    |  7 ------
->   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  2 --
->   drivers/gpu/drm/i915/gem/i915_gem_object.c    | 25 -------------------
->   drivers/gpu/drm/i915/gem/i915_gem_object.h    | 22 ----------------
->   drivers/gpu/drm/i915/gem/i915_gem_phys.c      |  4 ---
->   drivers/gpu/drm/i915/i915_driver.c            |  1 +
->   drivers/gpu/drm/i915/i915_gem.c               |  8 ------
->   drivers/gpu/drm/i915/i915_gem_gtt.c           |  1 -
->   drivers/gpu/drm/i915/i915_vma.c               | 12 ---------
->   17 files changed, 7 insertions(+), 99 deletions(-)
+> here is where we disagree. I don't think we need any fallback, because
+> it will likely not work:
 > 
-> diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
-> index ecaeb7dc196b..633e462d96a0 100644
-> --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
-> +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
-> @@ -17,6 +17,7 @@
->   #include "intel_display_types.h"
->   #include "intel_fb.h"
->   #include "intel_fbc.h"
-> +#include "intel_frontbuffer.h"
->   #include "intel_sprite.h"
->   
->   /* Primary plane formats for gen <= 3 */
-> diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c b/drivers/gpu/drm/i915/display/intel_drrs.c
-> index 5b9e44443814..3503d112387d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_drrs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_drrs.c
-> @@ -9,6 +9,7 @@
->   #include "intel_de.h"
->   #include "intel_display_types.h"
->   #include "intel_drrs.h"
-> +#include "intel_frontbuffer.h"
->   #include "intel_panel.h"
->   
->   /**
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-> index 63137ae5ab21..7cf31c87884c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> @@ -12,6 +12,7 @@
->   #include "intel_display_types.h"
->   #include "intel_dpt.h"
->   #include "intel_fb.h"
-> +#include "intel_frontbuffer.h"
->   
->   #define check_array_bounds(i915, a, i) drm_WARN_ON(&(i915)->drm, (i) >= ARRAY_SIZE(a))
->   
-> diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
-> index c12bdca8da9b..5b86563ce577 100644
-> --- a/drivers/gpu/drm/i915/display/intel_overlay.c
-> +++ b/drivers/gpu/drm/i915/display/intel_overlay.c
-> @@ -186,7 +186,6 @@ struct intel_overlay {
->   	struct intel_crtc *crtc;
->   	struct i915_vma *vma;
->   	struct i915_vma *old_vma;
-> -	struct intel_frontbuffer *frontbuffer;
->   	bool active;
->   	bool pfit_active;
->   	u32 pfit_vscale_ratio; /* shifted-point number, (1<<12) == 1.0 */
-> @@ -287,20 +286,9 @@ static void intel_overlay_flip_prepare(struct intel_overlay *overlay,
->   				       struct i915_vma *vma)
->   {
->   	enum pipe pipe = overlay->crtc->pipe;
-> -	struct intel_frontbuffer *frontbuffer = NULL;
->   
->   	drm_WARN_ON(&overlay->i915->drm, overlay->old_vma);
->   
-> -	if (vma)
-> -		frontbuffer = intel_frontbuffer_get(vma->obj);
-> -
-> -	intel_frontbuffer_track(overlay->frontbuffer, frontbuffer,
-> -				INTEL_FRONTBUFFER_OVERLAY(pipe));
-> -
-> -	if (overlay->frontbuffer)
-> -		intel_frontbuffer_put(overlay->frontbuffer);
-> -	overlay->frontbuffer = frontbuffer;
-> -
->   	intel_frontbuffer_flip_prepare(overlay->i915,
->   				       INTEL_FRONTBUFFER_OVERLAY(pipe));
->   
-> @@ -810,8 +798,6 @@ static int intel_overlay_do_put_image(struct intel_overlay *overlay,
->   		goto out_pin_section;
->   	}
->   
-> -	i915_gem_object_flush_frontbuffer(new_bo, ORIGIN_DIRTYFB);
-> -
->   	if (!overlay->active) {
->   		const struct intel_crtc_state *crtc_state =
->   			overlay->crtc->config;
-> diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-> index 76be796df255..cad9c8884af3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
-> +++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-> @@ -9,6 +9,7 @@
->   #include "intel_display.h"
->   #include "intel_display_types.h"
->   #include "intel_fb.h"
-> +#include "intel_frontbuffer.h"
->   #include "intel_plane_initial.h"
->   
->   static bool
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> index 9820e5fdd087..bc998b526d88 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -33,6 +33,7 @@
->   #include "intel_de.h"
->   #include "intel_display_types.h"
->   #include "intel_dp_aux.h"
-> +#include "intel_frontbuffer.h"
->   #include "intel_hdmi.h"
->   #include "intel_psr.h"
->   #include "intel_snps_phy.h"
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> index 4b79c2d2d617..2f5524f380b0 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -16,6 +16,7 @@
->   #include "intel_display_types.h"
->   #include "intel_fb.h"
->   #include "intel_fbc.h"
-> +#include "intel_frontbuffer.h"
->   #include "intel_psr.h"
->   #include "intel_sprite.h"
->   #include "skl_scaler.h"
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_clflush.c b/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
-> index b3b398fe689c..df2db78b10ca 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
-> @@ -6,8 +6,6 @@
->   
->   #include <drm/drm_cache.h>
->   
-> -#include "display/intel_frontbuffer.h"
-> -
->   #include "i915_drv.h"
->   #include "i915_gem_clflush.h"
->   #include "i915_sw_fence_work.h"
-> @@ -22,8 +20,6 @@ static void __do_clflush(struct drm_i915_gem_object *obj)
->   {
->   	GEM_BUG_ON(!i915_gem_object_has_pages(obj));
->   	drm_clflush_sg(obj->mm.pages);
-> -
-> -	i915_gem_object_flush_frontbuffer(obj, ORIGIN_CPU);
->   }
->   
->   static void clflush_work(struct dma_fence_work *base)
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_domain.c b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-> index 9969e687ad85..cd5505da4884 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-> @@ -4,7 +4,6 @@
->    * Copyright © 2014-2016 Intel Corporation
->    */
->   
-> -#include "display/intel_frontbuffer.h"
->   #include "gt/intel_gt.h"
->   
->   #include "i915_drv.h"
-> @@ -65,8 +64,6 @@ flush_write_domain(struct drm_i915_gem_object *obj, unsigned int flush_domains)
->   				intel_gt_flush_ggtt_writes(vma->vm->gt);
->   		}
->   		spin_unlock(&obj->vma.lock);
-> -
-> -		i915_gem_object_flush_frontbuffer(obj, ORIGIN_CPU);
->   		break;
->   
->   	case I915_GEM_DOMAIN_WC:
-> @@ -629,9 +626,6 @@ i915_gem_set_domain_ioctl(struct drm_device *dev, void *data,
->   out_unlock:
->   	i915_gem_object_unlock(obj);
->   
-> -	if (!err && write_domain)
-> -		i915_gem_object_invalidate_frontbuffer(obj, ORIGIN_CPU);
-> -
->   out:
->   	i915_gem_object_put(obj);
->   	return err;
-> @@ -742,7 +736,6 @@ int i915_gem_object_prepare_write(struct drm_i915_gem_object *obj,
->   	}
->   
->   out:
-> -	i915_gem_object_invalidate_frontbuffer(obj, ORIGIN_CPU);
->   	obj->mm.dirty = true;
->   	/* return with the pages pinned */
->   	return 0;
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index f98600ca7557..08f84d4f4f92 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -11,8 +11,6 @@
->   
->   #include <drm/drm_syncobj.h>
->   
-> -#include "display/intel_frontbuffer.h"
-> -
->   #include "gem/i915_gem_ioctls.h"
->   #include "gt/intel_context.h"
->   #include "gt/intel_gpu_commands.h"
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> index 1a0886b8aaa1..d2fef38cd12e 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> @@ -27,7 +27,6 @@
->   
->   #include <drm/drm_cache.h>
->   
-> -#include "display/intel_frontbuffer.h"
->   #include "pxp/intel_pxp.h"
->   
->   #include "i915_drv.h"
-> @@ -400,30 +399,6 @@ static void i915_gem_free_object(struct drm_gem_object *gem_obj)
->   		queue_work(i915->wq, &i915->mm.free_work);
->   }
->   
-> -void __i915_gem_object_flush_frontbuffer(struct drm_i915_gem_object *obj,
-> -					 enum fb_op_origin origin)
-> -{
-> -	struct intel_frontbuffer *front;
-> -
-> -	front = __intel_frontbuffer_get(obj);
-> -	if (front) {
-> -		intel_frontbuffer_flush(front, origin);
-> -		intel_frontbuffer_put(front);
-> -	}
-> -}
-> -
-> -void __i915_gem_object_invalidate_frontbuffer(struct drm_i915_gem_object *obj,
-> -					      enum fb_op_origin origin)
-> -{
-> -	struct intel_frontbuffer *front;
-> -
-> -	front = __intel_frontbuffer_get(obj);
-> -	if (front) {
-> -		intel_frontbuffer_invalidate(front, origin);
-> -		intel_frontbuffer_put(front);
-> -	}
-> -}
-> -
->   static void
->   i915_gem_object_read_from_page_kmap(struct drm_i915_gem_object *obj, u64 offset, void *dst, int size)
->   {
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> index 3db53769864c..90dba761889c 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> @@ -11,7 +11,6 @@
->   #include <drm/drm_file.h>
->   #include <drm/drm_device.h>
->   
-> -#include "display/intel_frontbuffer.h"
->   #include "intel_memory_region.h"
->   #include "i915_gem_object_types.h"
->   #include "i915_gem_gtt.h"
-> @@ -573,27 +572,6 @@ int i915_gem_object_wait_priority(struct drm_i915_gem_object *obj,
->   				  unsigned int flags,
->   				  const struct i915_sched_attr *attr);
->   
-> -void __i915_gem_object_flush_frontbuffer(struct drm_i915_gem_object *obj,
-> -					 enum fb_op_origin origin);
-> -void __i915_gem_object_invalidate_frontbuffer(struct drm_i915_gem_object *obj,
-> -					      enum fb_op_origin origin);
-> -
-> -static inline void
-> -i915_gem_object_flush_frontbuffer(struct drm_i915_gem_object *obj,
-> -				  enum fb_op_origin origin)
-> -{
-> -	if (unlikely(rcu_access_pointer(obj->frontbuffer)))
-> -		__i915_gem_object_flush_frontbuffer(obj, origin);
-> -}
-> -
-> -static inline void
-> -i915_gem_object_invalidate_frontbuffer(struct drm_i915_gem_object *obj,
-> -				       enum fb_op_origin origin)
-> -{
-> -	if (unlikely(rcu_access_pointer(obj->frontbuffer)))
-> -		__i915_gem_object_invalidate_frontbuffer(obj, origin);
-> -}
-> -
->   int i915_gem_object_read_from_page(struct drm_i915_gem_object *obj, u64 offset, void *dst, int size);
->   
->   bool i915_gem_object_is_shmem(const struct drm_i915_gem_object *obj);
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_phys.c b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-> index 68453572275b..4cf57676e180 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-> @@ -156,15 +156,11 @@ int i915_gem_object_pwrite_phys(struct drm_i915_gem_object *obj,
->   	 * We manually control the domain here and pretend that it
->   	 * remains coherent i.e. in the GTT domain, like shmem_pwrite.
->   	 */
-> -	i915_gem_object_invalidate_frontbuffer(obj, ORIGIN_CPU);
-> -
->   	if (copy_from_user(vaddr, user_data, args->size))
->   		return -EFAULT;
->   
->   	drm_clflush_virt_range(vaddr, args->size);
->   	intel_gt_chipset_flush(to_gt(i915));
-> -
-> -	i915_gem_object_flush_frontbuffer(obj, ORIGIN_CPU);
->   	return 0;
->   }
->   
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index c1e427ba57ae..f4201f9c5f84 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -346,6 +346,7 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
->   
->   	spin_lock_init(&dev_priv->irq_lock);
->   	spin_lock_init(&dev_priv->gpu_error.lock);
-> +	spin_lock_init(&dev_priv->display.fb_tracking.lock);
->   	mutex_init(&dev_priv->display.backlight.lock);
->   
->   	mutex_init(&dev_priv->sb_lock);
-> diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-> index 969581e7106f..594891291735 100644
-> --- a/drivers/gpu/drm/i915/i915_gem.c
-> +++ b/drivers/gpu/drm/i915/i915_gem.c
-> @@ -40,7 +40,6 @@
->   #include <drm/drm_vma_manager.h>
->   
->   #include "display/intel_display.h"
-> -#include "display/intel_frontbuffer.h"
->   
->   #include "gem/i915_gem_clflush.h"
->   #include "gem/i915_gem_context.h"
-> @@ -569,8 +568,6 @@ i915_gem_gtt_pwrite_fast(struct drm_i915_gem_object *obj,
->   		goto out_rpm;
->   	}
->   
-> -	i915_gem_object_invalidate_frontbuffer(obj, ORIGIN_CPU);
-> -
->   	user_data = u64_to_user_ptr(args->data_ptr);
->   	offset = args->offset;
->   	remain = args->size;
-> @@ -613,7 +610,6 @@ i915_gem_gtt_pwrite_fast(struct drm_i915_gem_object *obj,
->   	}
->   
->   	intel_gt_flush_ggtt_writes(ggtt->vm.gt);
-> -	i915_gem_object_flush_frontbuffer(obj, ORIGIN_CPU);
->   
->   	i915_gem_gtt_cleanup(obj, &node, vma);
->   out_rpm:
-> @@ -700,8 +696,6 @@ i915_gem_shmem_pwrite(struct drm_i915_gem_object *obj,
->   		offset = 0;
->   	}
->   
-> -	i915_gem_object_flush_frontbuffer(obj, ORIGIN_CPU);
-> -
->   	i915_gem_object_unpin_pages(obj);
->   	return ret;
->   
-> @@ -1272,8 +1266,6 @@ void i915_gem_init_early(struct drm_i915_private *dev_priv)
->   {
->   	i915_gem_init__mm(dev_priv);
->   	i915_gem_init__contexts(dev_priv);
-> -
-> -	spin_lock_init(&dev_priv->display.fb_tracking.lock);
->   }
->   
->   void i915_gem_cleanup_early(struct drm_i915_private *dev_priv)
-> diff --git a/drivers/gpu/drm/i915/i915_gem_gtt.c b/drivers/gpu/drm/i915/i915_gem_gtt.c
-> index 7bd1861ddbdf..a9662cc6ed1e 100644
-> --- a/drivers/gpu/drm/i915/i915_gem_gtt.c
-> +++ b/drivers/gpu/drm/i915/i915_gem_gtt.c
-> @@ -15,7 +15,6 @@
->   #include <asm/set_memory.h>
->   #include <asm/smp.h>
->   
-> -#include "display/intel_frontbuffer.h"
->   #include "gt/intel_gt.h"
->   #include "gt/intel_gt_requests.h"
->   
-> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-> index 7d044888ac33..e3b73175805b 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.c
-> +++ b/drivers/gpu/drm/i915/i915_vma.c
-> @@ -26,7 +26,6 @@
->   #include <linux/dma-fence-array.h>
->   #include <drm/drm_gem.h>
->   
-> -#include "display/intel_frontbuffer.h"
->   #include "gem/i915_gem_lmem.h"
->   #include "gem/i915_gem_tiling.h"
->   #include "gt/intel_engine.h"
-> @@ -1901,17 +1900,6 @@ int _i915_vma_move_to_active(struct i915_vma *vma,
->   			return err;
->   	}
->   
-> -	if (flags & EXEC_OBJECT_WRITE) {
-> -		struct intel_frontbuffer *front;
-> -
-> -		front = __intel_frontbuffer_get(obj);
-> -		if (unlikely(front)) {
-> -			if (intel_frontbuffer_invalidate(front, ORIGIN_CS))
-> -				i915_active_add_request(&front->write, rq);
-> -			intel_frontbuffer_put(front);
-> -		}
-> -	}
-> -
->   	if (fence) {
->   		struct dma_fence *curr;
->   		enum dma_resv_usage usage;
+> 	MODULE_FIRMWARE(ADLP_DMC_PATH);
+
+Yeah... I was thinking about this and maybe we could also have MODULE_FIRMWARE()
+calls for legacy paths as well. Looking at the documentation for
+MODULE_FIRMWARE(), the module files are understood as "optional", so I think it
+would be somewhat okay for one of the two missing, as long as the one is found.
+
+I think declaring possibly missing fallback paths is less ugly than overwriting
+the versioned path with a blob of a different version.
+
+> 
+> this means that distros will only package and or update their initrd
+> with the unversioned path. If a developer updates the kernel, the
+> fallback will simply not work if i915 is loaded from the initrd.
+> 
+> For those older platforms I think we can simply keep updating
+> linux-firmware overwriting the same dmc_adlp_2_16.bin. It's ugly, but
+> doesn't break compatibility.
+> 
+> I defer to maintainers to chime in on that though. Jani/Rodrigo, what do
+> you think?
+> 
+> Lucas De Marchi
+> 
+> > 
+> > - Similarly to your last remark, if we find it necessary, we could in the future
+> >  remove the fallback logic after linux-firmware has all blobs using the new
+> >  convention for good enough time.
+> > 
+> > 
+> > --
+> > Gustavo Sousa
