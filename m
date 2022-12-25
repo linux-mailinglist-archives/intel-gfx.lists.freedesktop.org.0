@@ -2,45 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD334656CF3
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Dec 2022 17:33:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00A76655E21
+	for <lists+intel-gfx@lfdr.de>; Sun, 25 Dec 2022 20:03:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87B3110E15D;
-	Tue, 27 Dec 2022 16:32:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8632710E0A4;
+	Sun, 25 Dec 2022 19:03:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from msg-1.mailo.com (msg-1.mailo.com [213.182.54.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FF3A10E11B;
- Sun, 25 Dec 2022 07:48:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailo.com; s=mailo;
- t=1671954490; bh=aBta368pCzAXtdUGLmcTgKPtuQS+E+6V5AUDhc5bAYg=;
- h=X-EA-Auth:Date:From:To:Cc:Subject:Message-ID:References:
- MIME-Version:Content-Type:In-Reply-To;
- b=Yb4s9iD8tadJFgSm4v5UFdKvDkq10qjgFGfAIIPbyK+bxyf3nwKeqxyN7pdDwghwd
- Km/v/eEVcA7iSWFbDql4qNYLmQBQ0LlvqdRpSexEE3LFrIvFpOGXH0g2MjTLOC24ID
- cwoUsW3Y3AqB+wp2E0ME/ENz8kF0N+R0Xxfj7+mc=
-Received: by b-6.in.mailobj.net [192.168.90.16] with ESMTP
- via ip-206.mailobj.net [213.182.55.206]
- Sun, 25 Dec 2022 08:48:10 +0100 (CET)
-X-EA-Auth: NixFvOfkNIjC/V/jyidk3xF9ifjT9WgqJGK5iP0nd0HTff1Tpd/mTcntT0tjjTYLbIT+FAfQOfJhuMAHEzlVq6dnT+wDu5c9
-Date: Sun, 25 Dec 2022 13:18:05 +0530
-From: Deepak R Varma <drv@mailo.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Message-ID: <1cce7ada5c91f81f9b3d6b2d68eb7fda4dd9fbf7.1671952191.git.drv@mailo.com>
-References: <cover.1671952191.git.drv@mailo.com>
+X-Greylist: delayed 461 seconds by postgrey-1.36 at gabe;
+ Sun, 25 Dec 2022 19:03:20 UTC
+Received: from forward104o.mail.yandex.net (forward104o.mail.yandex.net
+ [37.140.190.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D04CE10E0A4;
+ Sun, 25 Dec 2022 19:03:20 +0000 (UTC)
+Received: from iva2-656890eaceb5.qloud-c.yandex.net
+ (iva2-656890eaceb5.qloud-c.yandex.net
+ [IPv6:2a02:6b8:c0c:6902:0:640:6568:90ea])
+ by forward104o.mail.yandex.net (Yandex) with ESMTP id 3FF3965D364D;
+ Sun, 25 Dec 2022 21:55:28 +0300 (MSK)
+Received: by iva2-656890eaceb5.qloud-c.yandex.net (smtp/Yandex) with ESMTPSA
+ id PtSiBVLYnSw1-ulrl9j4Y; Sun, 25 Dec 2022 21:55:27 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=skif-web.ru; s=mail;
+ t=1671994527; bh=iy4Od4RVHqYXYNH+uE4Skx6pnQbptFi0CvgCUrJzDyU=;
+ h=Message-Id:Date:In-Reply-To:Cc:Subject:References:To:From;
+ b=cce3df4d7VmoYXdrsOIu7YTdL0tcUTTQphxLJY1ocSMGEwsSMh2CInXYMUWe/9MCL
+ TzR7Tk2hAl5E5r1FTH5AqPAGnAi14fwmXMINmfUguLnZtGS6vXbKNE/3OfYp0063QJ
+ w8jiktL+fpKnBGq22vs25hjaaD91gaNSZBRPKAI4=
+Authentication-Results: iva2-656890eaceb5.qloud-c.yandex.net;
+ dkim=pass header.i=@skif-web.ru
+From: Alexey Lukyanchuk <skif@skif-web.ru>
+To: tvrtko.ursulin@linux.intel.com
+Date: Sun, 25 Dec 2022 21:55:08 +0300
+Message-Id: <20221225185507.149677-1-skif@skif-web.ru>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20221225184413.146916-1-skif@skif-web.ru>
+References: <20221225184413.146916-1-skif@skif-web.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1671952191.git.drv@mailo.com>
-X-Mailman-Approved-At: Tue, 27 Dec 2022 16:32:55 +0000
-Subject: [Intel-gfx] [PATCH v2 2/2] drm/i915/selftests: Convert atomic_* API
- calls for i915_active.count refcount_*
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2] drm/i915: dell wyse 3040 shutdown fix
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,69 +53,164 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Praveen Kumar <kumarpraveen@linux.microsoft.com>,
- Deepak R Varma <drv@mailo.com>, Saurabh Singh Sengar <ssengar@microsoft.com>
+Cc: dri-devel@lists.freedesktop.org, Alexey Lukyanchuk <skif@skif-web.ru>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Handle the struct i915_active member variable count transition from
-atomic_t type to refcount_t type for selftest use cases. Transition the
-atomic_*() API calls to their equivalent refcount_*() API calls.
+dell wyse 3040 doesn't peform poweroff properly, but instead remains in 
+turned power on state. Additional mutex_lock and 
+intel_crtc_wait_for_next_vblank 
+feature 6.2 kernel resolve this trouble.
 
-Reported-by: kernel test robot <lkp@intel.com>
-Signed-off-by: Deepak R Varma <drv@mailo.com>
+cc: stable@vger.kernel.org
+original commit Link: https://patchwork.freedesktop.org/patch/508926/
+fixes: fe0f1e3bfdfeb53e18f1206aea4f40b9bd1f291c
+Signed-off-by: Alexey Lukyanchuk <skif@skif-web.ru>
 ---
-Please note:
-   1. Proposed changes are compile tested only.
-   2. This patch 2/2 is required to be applied after patch 1/2 due to
-      inter dependency.
+I got some troubles with this device (dell wyse 3040) since kernel 5.11
+started to use i915_driver_shutdown function. I found solution here:
 
-Changes in v2:
-   1. Patch added to patch series.
-   2. Handle build issues Reported-by: kernel test robot <lkp@intel.com>
-      Include changes for i915/selftests use cases for atomic_* to refcount_*
-      transition.
+https://lore.kernel.org/dri-devel/Y1wd6ZJ8LdJpCfZL@intel.com/#r
 
+---
+ drivers/gpu/drm/i915/display/intel_audio.c | 37 +++++++++++++++-------
+ 1 file changed, 25 insertions(+), 12 deletions(-)
 
- drivers/gpu/drm/i915/selftests/i915_active.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/selftests/i915_active.c b/drivers/gpu/drm/i915/selftests/i915_active.c
-index b61fe850e924..f1eca59e0180 100644
---- a/drivers/gpu/drm/i915/selftests/i915_active.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_active.c
-@@ -125,9 +125,9 @@ __live_active_setup(struct drm_i915_private *i915)
- 		pr_err("i915_active retired before submission!\n");
- 		err = -EINVAL;
- 	}
--	if (atomic_read(&active->base.count) != count) {
-+	if (refcount_read(&active->base.count) != count) {
- 		pr_err("i915_active not tracking all requests, found %d, expected %d\n",
--		       atomic_read(&active->base.count), count);
-+		       refcount_read(&active->base.count), count);
- 		err = -EINVAL;
- 	}
-
-@@ -279,7 +279,7 @@ static struct intel_engine_cs *node_to_barrier(struct active_node *it)
- void i915_active_print(struct i915_active *ref, struct drm_printer *m)
+diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+index aacbc6da8..44344ecdf 100644
+--- a/drivers/gpu/drm/i915/display/intel_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_audio.c
+@@ -336,6 +336,7 @@ static void g4x_audio_codec_disable(struct intel_encoder *encoder,
+ 				    const struct drm_connector_state *old_conn_state)
  {
- 	drm_printf(m, "active %ps:%ps\n", ref->active, ref->retire);
--	drm_printf(m, "\tcount: %d\n", atomic_read(&ref->count));
-+	drm_printf(m, "\tcount: %d\n", refcount_read(&ref->count));
- 	drm_printf(m, "\tpreallocated barriers? %s\n",
- 		   str_yes_no(!llist_empty(&ref->preallocated_barriers)));
-
-@@ -324,7 +324,7 @@ static void active_flush(struct i915_active *ref,
- 	spin_lock_irq(fence->lock);
- 	__list_del_entry(&active->cb.node);
- 	spin_unlock_irq(fence->lock); /* serialise with fence->cb_list */
--	atomic_dec(&ref->count);
-+	refcount_dec(&ref->count);
-
- 	GEM_BUG_ON(!test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags));
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
++	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
+ 	u32 eldv, tmp;
+ 
+ 	tmp = intel_de_read(dev_priv, G4X_AUD_VID_DID);
+@@ -348,6 +349,9 @@ static void g4x_audio_codec_disable(struct intel_encoder *encoder,
+ 	tmp = intel_de_read(dev_priv, G4X_AUD_CNTL_ST);
+ 	tmp &= ~eldv;
+ 	intel_de_write(dev_priv, G4X_AUD_CNTL_ST, tmp);
++
++	intel_crtc_wait_for_next_vblank(crtc);
++	intel_crtc_wait_for_next_vblank(crtc);
  }
---
-2.34.1
-
-
+ 
+ static void g4x_audio_codec_enable(struct intel_encoder *encoder,
+@@ -355,12 +359,15 @@ static void g4x_audio_codec_enable(struct intel_encoder *encoder,
+ 				   const struct drm_connector_state *conn_state)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_connector *connector = conn_state->connector;
+ 	const u8 *eld = connector->eld;
+ 	u32 eldv;
+ 	u32 tmp;
+ 	int len, i;
+ 
++	intel_crtc_wait_for_next_vblank(crtc);
++
+ 	tmp = intel_de_read(dev_priv, G4X_AUD_VID_DID);
+ 	if (tmp == INTEL_AUDIO_DEVBLC || tmp == INTEL_AUDIO_DEVCL)
+ 		eldv = G4X_ELDV_DEVCL_DEVBLC;
+@@ -493,6 +500,7 @@ static void hsw_audio_codec_disable(struct intel_encoder *encoder,
+ 				    const struct drm_connector_state *old_conn_state)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
++	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
+ 	enum transcoder cpu_transcoder = old_crtc_state->cpu_transcoder;
+ 	u32 tmp;
+ 
+@@ -508,6 +516,10 @@ static void hsw_audio_codec_disable(struct intel_encoder *encoder,
+ 		tmp |= AUD_CONFIG_N_VALUE_INDEX;
+ 	intel_de_write(dev_priv, HSW_AUD_CFG(cpu_transcoder), tmp);
+ 
++
++	intel_crtc_wait_for_next_vblank(crtc);
++	intel_crtc_wait_for_next_vblank(crtc);
++
+ 	/* Invalidate ELD */
+ 	tmp = intel_de_read(dev_priv, HSW_AUD_PIN_ELD_CP_VLD);
+ 	tmp &= ~AUDIO_ELD_VALID(cpu_transcoder);
+@@ -633,6 +645,7 @@ static void hsw_audio_codec_enable(struct intel_encoder *encoder,
+ 				   const struct drm_connector_state *conn_state)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_connector *connector = conn_state->connector;
+ 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+ 	const u8 *eld = connector->eld;
+@@ -651,12 +664,7 @@ static void hsw_audio_codec_enable(struct intel_encoder *encoder,
+ 	tmp &= ~AUDIO_ELD_VALID(cpu_transcoder);
+ 	intel_de_write(dev_priv, HSW_AUD_PIN_ELD_CP_VLD, tmp);
+ 
+-	/*
+-	 * FIXME: We're supposed to wait for vblank here, but we have vblanks
+-	 * disabled during the mode set. The proper fix would be to push the
+-	 * rest of the setup into a vblank work item, queued here, but the
+-	 * infrastructure is not there yet.
+-	 */
++	intel_crtc_wait_for_next_vblank(crtc);
+ 
+ 	/* Reset ELD write address */
+ 	tmp = intel_de_read(dev_priv, HSW_AUD_DIP_ELD_CTRL(cpu_transcoder));
+@@ -705,6 +713,8 @@ static void ilk_audio_codec_disable(struct intel_encoder *encoder,
+ 		aud_cntrl_st2 = CPT_AUD_CNTRL_ST2;
+ 	}
+ 
++	mutex_lock(&dev_priv->display.audio.mutex);
++
+ 	/* Disable timestamps */
+ 	tmp = intel_de_read(dev_priv, aud_config);
+ 	tmp &= ~AUD_CONFIG_N_VALUE_INDEX;
+@@ -721,6 +731,10 @@ static void ilk_audio_codec_disable(struct intel_encoder *encoder,
+ 	tmp = intel_de_read(dev_priv, aud_cntrl_st2);
+ 	tmp &= ~eldv;
+ 	intel_de_write(dev_priv, aud_cntrl_st2, tmp);
++	mutex_unlock(&dev_priv->display.audio.mutex);
++
++	intel_crtc_wait_for_next_vblank(crtc);
++	intel_crtc_wait_for_next_vblank(crtc);
+ }
+ 
+ static void ilk_audio_codec_enable(struct intel_encoder *encoder,
+@@ -740,12 +754,7 @@ static void ilk_audio_codec_enable(struct intel_encoder *encoder,
+ 	if (drm_WARN_ON(&dev_priv->drm, port == PORT_A))
+ 		return;
+ 
+-	/*
+-	 * FIXME: We're supposed to wait for vblank here, but we have vblanks
+-	 * disabled during the mode set. The proper fix would be to push the
+-	 * rest of the setup into a vblank work item, queued here, but the
+-	 * infrastructure is not there yet.
+-	 */
++	intel_crtc_wait_for_next_vblank(crtc);
+ 
+ 	if (HAS_PCH_IBX(dev_priv)) {
+ 		hdmiw_hdmiedid = IBX_HDMIW_HDMIEDID(pipe);
+@@ -767,6 +776,8 @@ static void ilk_audio_codec_enable(struct intel_encoder *encoder,
+ 
+ 	eldv = IBX_ELD_VALID(port);
+ 
++	mutex_lock(&dev_priv->display.audio.mutex);
++
+ 	/* Invalidate ELD */
+ 	tmp = intel_de_read(dev_priv, aud_cntrl_st2);
+ 	tmp &= ~eldv;
+@@ -798,6 +809,8 @@ static void ilk_audio_codec_enable(struct intel_encoder *encoder,
+ 	else
+ 		tmp |= audio_config_hdmi_pixel_clock(crtc_state);
+ 	intel_de_write(dev_priv, aud_config, tmp);
++
++	mutex_unlock(&dev_priv->display.audio.mutex);
+ }
+ 
+ /**
+-- 
+2.25.1
 
