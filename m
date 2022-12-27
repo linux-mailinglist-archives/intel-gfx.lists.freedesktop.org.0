@@ -2,66 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E000655E74
-	for <lists+intel-gfx@lfdr.de>; Sun, 25 Dec 2022 23:49:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3E9565676B
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Dec 2022 06:54:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1819510E0C4;
-	Sun, 25 Dec 2022 22:48:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79E1D10E14B;
+	Tue, 27 Dec 2022 05:53:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from domac.alu.hr (domac.alu.hr [161.53.235.3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9DA510E0C4
- for <intel-gfx@lists.freedesktop.org>; Sun, 25 Dec 2022 22:48:45 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by domac.alu.hr (Postfix) with ESMTP id DA5A3604F1;
- Sun, 25 Dec 2022 23:48:42 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=alu.unizg.hr; s=mail;
- t=1672008522; bh=oNApb5QM5s75fshbNGtiiUvijVtwdbWnm6jGOhvSEAs=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=ho/xmpq7FLRDKwyY9qHacbVb0YL+BHqL1jB7D7btxkrX/aj/hCOGHneh/TiIgT4dR
- WD3GFtVPCXcvsWiyQJjjZBKK4by6Et6N3ZBS81kq15hvgdzmNd5wAtmFvAZxiIgO+i
- IvwOHRNLXxWuFeInlpz2Am0T6loK42u4/d89fDdbZd8rNvmx4YDGMzpR3iuZzcshUl
- r9OnqT4FhCeHu8QdnWNy9iq0CJLhy4YNn5O+nLzwrKzblnMDI0QL7HWSXvUAGCw3Aj
- bk2y9FMr876doxsQh0u9bvbKck/irfO3Lxy07keelovr8ylTWBaO7UalCIJyRMxw5M
- LL1//Dt/JF3xA==
-X-Virus-Scanned: Debian amavisd-new at domac.alu.hr
-Received: from domac.alu.hr ([127.0.0.1])
- by localhost (domac.alu.hr [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id ps51lI9qI_Y5; Sun, 25 Dec 2022 23:48:40 +0100 (CET)
-Received: from [192.168.0.12] (unknown [188.252.198.170])
- by domac.alu.hr (Postfix) with ESMTPSA id 4A862604F0;
- Sun, 25 Dec 2022 23:48:39 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=alu.unizg.hr; s=mail;
- t=1672008520; bh=oNApb5QM5s75fshbNGtiiUvijVtwdbWnm6jGOhvSEAs=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=uj5NpnHxJs3ls32FpngWd3WXHtrIgYkQWCThCyX1fpILPZvF+6Wiwj68F7APSh5Yg
- u2AuxWkLTsyXpMTd1E1xq2JLdytud7BzPyrFAcEAjZkbkHSI9d9+fJC43CthExU+EC
- CG7dUBFUCM7BOtmyVVvamRFqg6awOgaCtFiYbE6PMKev+1CKd7OL6EA7LH6F9BUezt
- AmLxS1cxaRkvdgRRe560+OMtTp3d4QaclvNMIUcfmLSnLEHBhIs0ncaQuj1/at2sUZ
- yxvH3AlFqAC0xXujriCM/y9g7FV7uhZ4cN2bXhPwobVmNT5W1dJM1M2H4cPUASPMMt
- 0UF9gX0D0aWrw==
-Message-ID: <edab9da6-df81-7167-acdd-f2ea22c7ed90@alu.unizg.hr>
-Date: Sun, 25 Dec 2022 23:48:38 +0100
+Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com
+ [IPv6:2607:f8b0:4864:20::d2c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C77A10E138
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Dec 2022 05:53:35 +0000 (UTC)
+Received: by mail-io1-xd2c.google.com with SMTP id i83so6503244ioa.11
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Dec 2022 21:53:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=9wARd1L8KoeksEpzilviu4ulCrJM4nCfjKCQtrReh+8=;
+ b=KtWR1NWXObtv0A+S1nWRpm41eZaY26/OpoTg1WUZ0w96TGoaGxTskVlBy9RmAUg26I
+ R50W5tkC5ZcQFkjLlDpE3K+Eebi3Ek2LtjejuCN1dyyzmdDotjvb03OKSHhHed9q3n1F
+ scwRYzxgCR93T0aHENr/aJvGK684YPRaGbyzI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=9wARd1L8KoeksEpzilviu4ulCrJM4nCfjKCQtrReh+8=;
+ b=glKBCarhYPJHL1dza0gc7DCHwh3GQsYOt+hHyWCWI1/l0SwA3PgavxXlhGvPB4lxjF
+ l5ddd0au6x9HYkApZqCdkzpONi4hEJKhrTA8JjY2obQ7Gx7DuYszf0RHJHepFkiVeovZ
+ tKlJ70pj7BbfwpY0UbDQPbC0IbwTMQbs1MJexcEUFrDGs2oL2RLlhTMFnzWzbkpnK3hJ
+ QutR6tYYwiknvdZuFhHnTKSqZwlIu/4SeKnXVxgTHWBodxbwbX4K9RZxjkqQTejJiRVF
+ EWYTgKi6LeOoYcbNkRLkglDAw3wn21Gnp4ELPrTysLp7PThHP0P/xbQIULYvEeXCaueO
+ 0Gpg==
+X-Gm-Message-State: AFqh2kpwjIM+FKrHm8GRTygXsgu0sEmawwuGek1MU52IT7rnd7NHd7uj
+ XVzZf+4/+u0ZXBY7GoF7k6EsCaXXYz563cjP
+X-Google-Smtp-Source: AMrXdXte67TRl8MJY98BS/POkZrzxYuSwpJzPmANvIyiIz41oROqn94AbLwguwkLz3ZdO3qL9GeTXA==
+X-Received: by 2002:a6b:da19:0:b0:6e4:e62c:38e3 with SMTP id
+ x25-20020a6bda19000000b006e4e62c38e3mr15013786iob.5.1672120414631; 
+ Mon, 26 Dec 2022 21:53:34 -0800 (PST)
+Received: from midworld.bld.corp.google.com
+ ([2620:15c:183:200:2d44:773f:eb35:d838])
+ by smtp.gmail.com with ESMTPSA id
+ z11-20020a05660217cb00b006df2b3f17c3sm4678335iox.30.2022.12.26.21.53.33
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 26 Dec 2022 21:53:34 -0800 (PST)
+From: Drew Davenport <ddavenport@chromium.org>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 26 Dec 2022 22:53:24 -0700
+Message-Id: <20221226225246.1.I15dff7bb5a0e485c862eae61a69096caf12ef29f@changeid>
+X-Mailer: git-send-email 2.39.0.314.g84b9a713c41-goog
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Content-Language: en-US
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- srinivas pandruvada <srinivas.pandruvada@linux.intel.com>,
- LKML <linux-kernel@vger.kernel.org>, jani.nikula@linux.intel.com,
- joonas.lahtinen@linux.intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <f849cc70-b21f-6476-ba26-08989d1243c2@alu.unizg.hr>
- <05424a5351a847786377a548dba0759917d8046c.camel@linux.intel.com>
- <15ef1bb9-7312-5d98-8bf0-0af1a37cfd2a@linux.intel.com>
- <619bdecc-cf87-60a4-f50d-836f4c073ea7@alu.unizg.hr>
- <8e080674-36ab-9260-046e-f4e3c931a3b9@alu.unizg.hr>
- <96661293-32d7-0bb4-fb0e-28086eaaecc3@linux.intel.com>
-From: Mirsad Goran Todorovac <mirsad.todorovac@alu.unizg.hr>
-In-Reply-To: <96661293-32d7-0bb4-fb0e-28086eaaecc3@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] LOOKS GOOD: Possible regression in drm/i915 driver:
- memleak
+Subject: [Intel-gfx] [PATCH] drm/i915/display: Check source height is > 0
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,30 +66,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Thorsten Leemhuis <regressions@leemhuis.info>
+Cc: dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ linux-kernel@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Drew Davenport <ddavenport@chromium.org>, David Airlie <airlied@gmail.com>,
+ =?UTF-8?q?Juha-Pekka=20Heikkil=C3=A4?= <juha-pekka.heikkila@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 22. 12. 2022. 09:04, Tvrtko Ursulin wrote:
-> 
-> In the meantime definitely thanks a lot for testing this quickly and reporting back!
+The error message suggests that the height of the src rect must be at
+least 1. Reject source with height of 0.
 
-Don't think much of it - anyone with CONFIG_KMEMLEAK enabled could have caught this bug.
+Signed-off-by: Drew Davenport <ddavenport@chromium.org>
 
-I was surprised that you found the fix in less than an hour without me having to bisect :)
+---
+I was investigating some divide-by-zero crash reports on ChromeOS which
+pointed to the intel_adjusted_rate function. Further prodding showed
+that I could reproduce this in a simple test program if I made src_h
+some value less than 1 but greater than 0.
 
-Kind regards,
-Mirsad
+This seemed to be a sensible place to check that the source height is at
+least 1. I tried to repro this issue on an amd device I had on hand, and
+the configuration was rejected.
 
---
-Mirsad Goran Todorovac
-Sistem inženjer
-Grafički fakultet | Akademija likovnih umjetnosti
-Sveučilište u Zagrebu
+Would it make sense to add a check that source dimensions are at least 1
+somewhere in core, like in drm_atomic_plane_check? Or is that a valid
+use case on some devices, and thus any such check should be done on a
+per-driver basis?
+
+Thanks.
+
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 4b79c2d2d6177..9b172a1e90deb 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -1627,7 +1627,7 @@ static int skl_check_main_surface(struct intel_plane_state *plane_state)
+ 	u32 offset;
+ 	int ret;
+ 
+-	if (w > max_width || w < min_width || h > max_height) {
++	if (w > max_width || w < min_width || h > max_height || h < 1) {
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "requested Y/RGB source size %dx%d outside limits (min: %dx1 max: %dx%d)\n",
+ 			    w, h, min_width, max_width, max_height);
 -- 
-System engineer
-Faculty of Graphic Arts | Academy of Fine Arts
-University of Zagreb, Republic of Croatia
-The European Union
+2.39.0.314.g84b9a713c41-goog
 
