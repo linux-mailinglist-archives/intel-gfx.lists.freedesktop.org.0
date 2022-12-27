@@ -2,58 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3E9565676B
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Dec 2022 06:54:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58CBA656CED
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Dec 2022 17:33:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79E1D10E14B;
-	Tue, 27 Dec 2022 05:53:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B821510E160;
+	Tue, 27 Dec 2022 16:32:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com
- [IPv6:2607:f8b0:4864:20::d2c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C77A10E138
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Dec 2022 05:53:35 +0000 (UTC)
-Received: by mail-io1-xd2c.google.com with SMTP id i83so6503244ioa.11
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Dec 2022 21:53:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=9wARd1L8KoeksEpzilviu4ulCrJM4nCfjKCQtrReh+8=;
- b=KtWR1NWXObtv0A+S1nWRpm41eZaY26/OpoTg1WUZ0w96TGoaGxTskVlBy9RmAUg26I
- R50W5tkC5ZcQFkjLlDpE3K+Eebi3Ek2LtjejuCN1dyyzmdDotjvb03OKSHhHed9q3n1F
- scwRYzxgCR93T0aHENr/aJvGK684YPRaGbyzI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=9wARd1L8KoeksEpzilviu4ulCrJM4nCfjKCQtrReh+8=;
- b=glKBCarhYPJHL1dza0gc7DCHwh3GQsYOt+hHyWCWI1/l0SwA3PgavxXlhGvPB4lxjF
- l5ddd0au6x9HYkApZqCdkzpONi4hEJKhrTA8JjY2obQ7Gx7DuYszf0RHJHepFkiVeovZ
- tKlJ70pj7BbfwpY0UbDQPbC0IbwTMQbs1MJexcEUFrDGs2oL2RLlhTMFnzWzbkpnK3hJ
- QutR6tYYwiknvdZuFhHnTKSqZwlIu/4SeKnXVxgTHWBodxbwbX4K9RZxjkqQTejJiRVF
- EWYTgKi6LeOoYcbNkRLkglDAw3wn21Gnp4ELPrTysLp7PThHP0P/xbQIULYvEeXCaueO
- 0Gpg==
-X-Gm-Message-State: AFqh2kpwjIM+FKrHm8GRTygXsgu0sEmawwuGek1MU52IT7rnd7NHd7uj
- XVzZf+4/+u0ZXBY7GoF7k6EsCaXXYz563cjP
-X-Google-Smtp-Source: AMrXdXte67TRl8MJY98BS/POkZrzxYuSwpJzPmANvIyiIz41oROqn94AbLwguwkLz3ZdO3qL9GeTXA==
-X-Received: by 2002:a6b:da19:0:b0:6e4:e62c:38e3 with SMTP id
- x25-20020a6bda19000000b006e4e62c38e3mr15013786iob.5.1672120414631; 
- Mon, 26 Dec 2022 21:53:34 -0800 (PST)
-Received: from midworld.bld.corp.google.com
- ([2620:15c:183:200:2d44:773f:eb35:d838])
- by smtp.gmail.com with ESMTPSA id
- z11-20020a05660217cb00b006df2b3f17c3sm4678335iox.30.2022.12.26.21.53.33
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 26 Dec 2022 21:53:34 -0800 (PST)
-From: Drew Davenport <ddavenport@chromium.org>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 26 Dec 2022 22:53:24 -0700
-Message-Id: <20221226225246.1.I15dff7bb5a0e485c862eae61a69096caf12ef29f@changeid>
-X-Mailer: git-send-email 2.39.0.314.g84b9a713c41-goog
+Received: from msg-1.mailo.com (msg-1.mailo.com [213.182.54.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 987EB10E2E6;
+ Tue, 27 Dec 2022 07:55:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailo.com; s=mailo;
+ t=1672127688; bh=giLygN6VCt7V445nQatslkp77AOYXtWjJUE7E0bEqc0=;
+ h=X-EA-Auth:Date:From:To:Cc:Subject:Message-ID:MIME-Version:
+ Content-Type;
+ b=QCqXgq8OvC0nS2bvkqSJGiSC4vJEpFoCCALoQUcVCT4D3XEaiDtb1L8tJGJKo9bHo
+ 0wVRz/R+tSsQ6WUVRx4ievKOIoP4Lu5e6PBAYCTxWlJYcxB8v5UReEZRb0q8O5ro3G
+ ZLqMs3FLEz9Cheb7v1fV9WXMRCBL5GQ8egm0c11k=
+Received: by b-2.in.mailobj.net [192.168.90.12] with ESMTP
+ via ip-206.mailobj.net [213.182.55.206]
+ Tue, 27 Dec 2022 08:54:48 +0100 (CET)
+X-EA-Auth: Y/txN7h7M1NSBRb/aAVjjQNqoV1iyiWxffr+VZOusP9tx6BTq8pNJEqpfWcIfiLuIBYbzBtgFVghFHIsVPbvkC8b7+YujL3P
+Date: Tue, 27 Dec 2022 13:24:39 +0530
+From: Deepak R Varma <drv@mailo.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Message-ID: <Y6qkv/YVsUQ6kpYp@qemulion>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/display: Check source height is > 0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailman-Approved-At: Tue, 27 Dec 2022 16:32:55 +0000
+Subject: [Intel-gfx] [PATCH] drm/i915/display: Avoid full proxy f_ops for
+ DRRS debug attributes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,52 +51,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- linux-kernel@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Drew Davenport <ddavenport@chromium.org>, David Airlie <airlied@gmail.com>,
- =?UTF-8?q?Juha-Pekka=20Heikkil=C3=A4?= <juha-pekka.heikkila@intel.com>
+Cc: Praveen Kumar <kumarpraveen@linux.microsoft.com>,
+ Deepak R Varma <drv@mailo.com>, Saurabh Singh Sengar <ssengar@microsoft.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The error message suggests that the height of the src rect must be at
-least 1. Reject source with height of 0.
+Using DEFINE_SIMPLE_ATTRIBUTE macro with the debugfs_create_file()
+function adds the overhead of introducing a proxy file operation
+functions to wrap the original read/write inside file removal protection
+functions. This adds significant overhead in terms of introducing and
+managing the proxy factory file operations structure and function
+wrapping at runtime.
+As a replacement, a combination of DEFINE_DEBUGFS_ATTRIBUTE macro paired
+with debugfs_create_file_unsafe() is suggested to be used instead.  The
+DEFINE_DEBUGFS_ATTRIBUTE utilises debugfs_file_get() and
+debugfs_file_put() wrappers to protect the original read and write
+function calls for the debug attributes. There is no need for any
+runtime proxy file operations to be managed by the debugfs core.
 
-Signed-off-by: Drew Davenport <ddavenport@chromium.org>
+This Change is reported by the debugfs_simple_attr.cocci Coccinelle
+semantic patch.
 
+Signed-off-by: Deepak R Varma <drv@mailo.com>
 ---
-I was investigating some divide-by-zero crash reports on ChromeOS which
-pointed to the intel_adjusted_rate function. Further prodding showed
-that I could reproduce this in a simple test program if I made src_h
-some value less than 1 but greater than 0.
+ drivers/gpu/drm/i915/display/intel_drrs.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-This seemed to be a sensible place to check that the source height is at
-least 1. I tried to repro this issue on an amd device I had on hand, and
-the configuration was rejected.
+diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c b/drivers/gpu/drm/i915/display/intel_drrs.c
+index 5b9e44443814..84ba7379d6f8 100644
+--- a/drivers/gpu/drm/i915/display/intel_drrs.c
++++ b/drivers/gpu/drm/i915/display/intel_drrs.c
+@@ -374,16 +374,16 @@ static int intel_drrs_debugfs_ctl_set(void *data, u64 val)
+ 	return ret;
+ }
 
-Would it make sense to add a check that source dimensions are at least 1
-somewhere in core, like in drm_atomic_plane_check? Or is that a valid
-use case on some devices, and thus any such check should be done on a
-per-driver basis?
+-DEFINE_SIMPLE_ATTRIBUTE(intel_drrs_debugfs_ctl_fops,
+-			NULL, intel_drrs_debugfs_ctl_set, "%llu\n");
++DEFINE_DEBUGFS_ATTRIBUTE(intel_drrs_debugfs_ctl_fops,
++			 NULL, intel_drrs_debugfs_ctl_set, "%llu\n");
 
-Thanks.
+ void intel_drrs_crtc_debugfs_add(struct intel_crtc *crtc)
+ {
+ 	debugfs_create_file("i915_drrs_status", 0444, crtc->base.debugfs_entry,
+ 			    crtc, &intel_drrs_debugfs_status_fops);
 
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+-	debugfs_create_file("i915_drrs_ctl", 0644, crtc->base.debugfs_entry,
+-			    crtc, &intel_drrs_debugfs_ctl_fops);
++	debugfs_create_file_unsafe("i915_drrs_ctl", 0644, crtc->base.debugfs_entry,
++				    crtc, &intel_drrs_debugfs_ctl_fops);
+ }
 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 4b79c2d2d6177..9b172a1e90deb 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -1627,7 +1627,7 @@ static int skl_check_main_surface(struct intel_plane_state *plane_state)
- 	u32 offset;
- 	int ret;
- 
--	if (w > max_width || w < min_width || h > max_height) {
-+	if (w > max_width || w < min_width || h > max_height || h < 1) {
- 		drm_dbg_kms(&dev_priv->drm,
- 			    "requested Y/RGB source size %dx%d outside limits (min: %dx1 max: %dx%d)\n",
- 			    w, h, min_width, max_width, max_height);
--- 
-2.39.0.314.g84b9a713c41-goog
+ static int intel_drrs_debugfs_type_show(struct seq_file *m, void *unused)
+--
+2.34.1
+
+
 
