@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D68B065865C
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Dec 2022 20:24:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8381565865D
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Dec 2022 20:24:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BEE510E3F0;
-	Wed, 28 Dec 2022 19:24:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC4A710E083;
+	Wed, 28 Dec 2022 19:24:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDAFE10E3EF
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Dec 2022 19:23:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D1A910E083
+ for <intel-gfx@lists.freedesktop.org>; Wed, 28 Dec 2022 19:24:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1672255438; x=1703791438;
+ t=1672255442; x=1703791442;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QiCwxgPCInhOyy0MVGlUxG8k+CFy08UBe0/x7/c10n8=;
- b=Zh052ML+A5m/ef4Zz+lomoGsyOBGP1TlHmIc6bzDBfgDH9bA+4NLt8lp
- F4UVO+GwaZ7cConqXcycWwgUNRChQ5egWz2Fy2d7mmRR788u5NOj4jstj
- b1ldV5H07jmWQq2M87RUpuXD175/z2GsVrtaSEsGEIvXoktI3g0oz9ALY
- n2Dq6DQs2xjf4MvAeZPhZWe74NIpc9S8tez+dkxZKs0Svoj9LUzhD9Qq4
- S8SiIXHDEgsPL07cov6S9esCQ/5xrpElKGqJZx9y42aaDsqBY7DIiZ1+R
- jD8p2qm5P+MuOiOJ8F8wvQBd7EcOOKRO48Ssz3SbSrwdhoPZyp51a1pRH A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10574"; a="318602700"
-X-IronPort-AV: E=Sophos;i="5.96,281,1665471600"; d="scan'208";a="318602700"
+ bh=9Cr9ixCcUs7bTEjvY7bQVDS+W1GG8HwXfoHWRf/bUMA=;
+ b=dzZEghusp0IMUbk1OYr7PDDaf2xzoGHOLl2wyIZ2IWebi3DWfvH0pUyX
+ B0ZnPaaWg6IwcQpdmGpks4wO9Jl7D4T74Xw1mYsCwz9eIxxStzxPEfWri
+ ssMU2wcZTUvsQkgGLEThs4MwQO/8Y5KMTMBa+D5Ys8IhNsWv4KVb+U9h4
+ O9L7IR85ojjyY6LUcoSwsCULVevsFIVcJ3DCqTuURtvzzBfXuPaRyUroX
+ c+0M8bA2i+Fk3lU1svNW7QYZJiYEr20Fsh+pJjAQw0eCfp3zK5lsgEz4O
+ 2kkZ3V99Z1a74UpPotPFoq1S8Wt3z0ybZB5mvtN3fpIllBQI8WT+SLhsb Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10574"; a="318602709"
+X-IronPort-AV: E=Sophos;i="5.96,281,1665471600"; d="scan'208";a="318602709"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Dec 2022 11:23:57 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10574"; a="683999640"
-X-IronPort-AV: E=Sophos;i="5.96,281,1665471600"; d="scan'208";a="683999640"
+ 28 Dec 2022 11:24:01 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10574"; a="683999650"
+X-IronPort-AV: E=Sophos;i="5.96,281,1665471600"; d="scan'208";a="683999650"
 Received: from rsznejde-mobl.ger.corp.intel.com (HELO
  paris.ger.corp.intel.com) ([10.249.140.251])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Dec 2022 11:23:53 -0800
+ 28 Dec 2022 11:23:57 -0800
 From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 28 Dec 2022 21:22:49 +0200
-Message-Id: <20221228192252.917299-4-gwan-gyeong.mun@intel.com>
+Date: Wed, 28 Dec 2022 21:22:50 +0200
+Message-Id: <20221228192252.917299-5-gwan-gyeong.mun@intel.com>
 X-Mailer: git-send-email 2.37.1
 In-Reply-To: <20221228192252.917299-1-gwan-gyeong.mun@intel.com>
 References: <20221228192252.917299-1-gwan-gyeong.mun@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v16 3/6] drm/i915: Check for integer truncation
- on the configuration of ttm place
+Subject: [Intel-gfx] [PATCH v16 4/6] drm/i915: Check if the size is too big
+ while creating shmem file
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,99 +65,51 @@ Cc: thomas.hellstrom@linux.intel.com, andrzej.hajda@intel.com,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There is an impedance mismatch between the first/last valid page
-frame number of ttm place in unsigned and our memory/page accounting in
-unsigned long.
-As the object size is under the control of userspace, we have to be prudent
-and catch the conversion errors.
-To catch the implicit truncation as we switch from unsigned long to
-unsigned, we use overflows_type check and report E2BIG or overflow_type
-prior to the operation.
+The __shmem_file_setup() function returns -EINVAL if size is greater than
+MAX_LFS_FILESIZE. To handle the same error as other code that returns
+-E2BIG when the size is too large, it add a code that returns -E2BIG when
+the size is larger than the size that can be handled.
 
-v3: Not to change execution inside a macro. (Mauro)
-    Add safe_conversion_gem_bug_on() macro and remove temporal
-    SAFE_CONVERSION() macro.
-v4: Fix unhandled GEM_BUG_ON() macro call from safe_conversion_gem_bug_on()
-v6: Fix to follow general use case for GEM_BUG_ON(). (Jani)
-v7: Fix to use WARN_ON() macro where GEM_BUG_ON() macro was used. (Jani)
-v8: Replace safe_conversion() with check_assign() (Kees)
-v14: Split one macro of assignment with checking of overflow to two steps,
-     first overflow check, and second assignment.
+v4: If BITS_PER_LONG is 32, size > MAX_LFS_FILESIZE is always false, so it
+    checks only when BITS_PER_LONG is 64.
 
 Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Cc: Matthew Auld <matthew.auld@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com> (v2)
-Reviewed-by: Mauro Carvalho Chehab <mchehab@kernel.org> (v3)
+Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+Reviewed-by: Mauro Carvalho Chehab <mchehab@kernel.org>
 Reported-by: kernel test robot <lkp@intel.com>
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com> (v5)
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c |  3 +++
- drivers/gpu/drm/i915/intel_region_ttm.c | 14 ++++++++++++++
- 2 files changed, 17 insertions(+)
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-index 244fca7c39f9..ae10c7bdd509 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-@@ -140,13 +140,16 @@ i915_ttm_place_from_region(const struct intel_memory_region *mr,
- 	if (flags & I915_BO_ALLOC_CONTIGUOUS)
- 		place->flags |= TTM_PL_FLAG_CONTIGUOUS;
- 	if (offset != I915_BO_INVALID_OFFSET) {
-+		WARN_ON(overflows_type(offset >> PAGE_SHIFT, place->fpfn));
- 		place->fpfn = offset >> PAGE_SHIFT;
-+		WARN_ON(overflows_type(place->fpfn + (size >> PAGE_SHIFT), place->lpfn));
- 		place->lpfn = place->fpfn + (size >> PAGE_SHIFT);
- 	} else if (mr->io_size && mr->io_size < mr->total) {
- 		if (flags & I915_BO_ALLOC_GPU_ONLY) {
- 			place->flags |= TTM_PL_FLAG_TOPDOWN;
- 		} else {
- 			place->fpfn = 0;
-+			WARN_ON(overflows_type(mr->io_size >> PAGE_SHIFT, place->lpfn));
- 			place->lpfn = mr->io_size >> PAGE_SHIFT;
- 		}
- 	}
-diff --git a/drivers/gpu/drm/i915/intel_region_ttm.c b/drivers/gpu/drm/i915/intel_region_ttm.c
-index 4dc0702081b8..b7fbd5abb42a 100644
---- a/drivers/gpu/drm/i915/intel_region_ttm.c
-+++ b/drivers/gpu/drm/i915/intel_region_ttm.c
-@@ -208,13 +208,25 @@ intel_region_ttm_resource_alloc(struct intel_memory_region *mem,
- 	if (flags & I915_BO_ALLOC_CONTIGUOUS)
- 		place.flags |= TTM_PL_FLAG_CONTIGUOUS;
- 	if (offset != I915_BO_INVALID_OFFSET) {
-+		if (WARN_ON(overflows_type(offset >> PAGE_SHIFT, place.fpfn))) {
-+			ret = -E2BIG;
-+			goto out;
-+		}
- 		place.fpfn = offset >> PAGE_SHIFT;
-+		if (WARN_ON(overflows_type(place.fpfn + (size >> PAGE_SHIFT), place.lpfn))) {
-+			ret = -E2BIG;
-+			goto out;
-+		}
- 		place.lpfn = place.fpfn + (size >> PAGE_SHIFT);
- 	} else if (mem->io_size && mem->io_size < mem->total) {
- 		if (flags & I915_BO_ALLOC_GPU_ONLY) {
- 			place.flags |= TTM_PL_FLAG_TOPDOWN;
- 		} else {
- 			place.fpfn = 0;
-+			if (WARN_ON(overflows_type(mem->io_size >> PAGE_SHIFT, place.lpfn))) {
-+				ret = -E2BIG;
-+				goto out;
-+			}
- 			place.lpfn = mem->io_size >> PAGE_SHIFT;
- 		}
- 	}
-@@ -223,6 +235,8 @@ intel_region_ttm_resource_alloc(struct intel_memory_region *mem,
- 	mock_bo.bdev = &mem->i915->bdev;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+index 28e857f8c169..e767791e40e0 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+@@ -541,6 +541,20 @@ static int __create_shmem(struct drm_i915_private *i915,
  
- 	ret = man->func->alloc(man, &mock_bo, &place, &res);
+ 	drm_gem_private_object_init(&i915->drm, obj, size);
+ 
++	/* XXX: The __shmem_file_setup() function returns -EINVAL if size is
++	 * greater than MAX_LFS_FILESIZE.
++	 * To handle the same error as other code that returns -E2BIG when
++	 * the size is too large, we add a code that returns -E2BIG when the
++	 * size is larger than the size that can be handled.
++	 * If BITS_PER_LONG is 32, size > MAX_LFS_FILESIZE is always false,
++	 * so we only needs to check when BITS_PER_LONG is 64.
++	 * If BITS_PER_LONG is 32, E2BIG checks are processed when
++	 * i915_gem_object_size_2big() is called before init_object() callback
++	 * is called.
++	 */
++	if (BITS_PER_LONG == 64 && size > MAX_LFS_FILESIZE)
++		return -E2BIG;
 +
-+out:
- 	if (ret == -ENOSPC)
- 		ret = -ENXIO;
- 	if (!ret)
+ 	if (i915->mm.gemfs)
+ 		filp = shmem_file_setup_with_mnt(i915->mm.gemfs, "i915", size,
+ 						 flags);
 -- 
 2.37.1
 
