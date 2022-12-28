@@ -2,51 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C747E65865B
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Dec 2022 20:24:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9EBA658690
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Dec 2022 20:51:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1EC0A10E1E5;
-	Wed, 28 Dec 2022 19:24:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05A9910E1E7;
+	Wed, 28 Dec 2022 19:51:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F226B10E1D4
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Dec 2022 19:24:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1672255450; x=1703791450;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=2riY/hRbHoO2aGwdb4IMclhNVqPZFpVN1i9kW2PSfhc=;
- b=OszkZFJqRBiSAgTuSDIg0k13kNl0vboBFA5n2K/JEM2tsh2BoIcVY817
- cASPbDLlp1wPDb+h+DY0UbHHGz8fRm591fFdhWNdMHWCDTX/qv068qyJO
- dV7HfMLU+twPxp2hbkVaGOLxXqqTnG9ottYle8rmPXKD9izw5EVFgQZDn
- /9GpD+cidJGLxLnpZYdQaESDWG5phNnk1fToFb1RO+OpngllORmHsv8pa
- 74k+3PvVqh3PVuws5r0tshEmRh0u8uI/x0eOv7ByBlUzlygLNMaUApF/3
- OE77LElsjFOORz3hqKzD7XJFWy2CsSmxrAmjMScomPAdDSTz6Tz+4pa6o g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10574"; a="318602737"
-X-IronPort-AV: E=Sophos;i="5.96,281,1665471600"; d="scan'208";a="318602737"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Dec 2022 11:24:10 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10574"; a="683999672"
-X-IronPort-AV: E=Sophos;i="5.96,281,1665471600"; d="scan'208";a="683999672"
-Received: from rsznejde-mobl.ger.corp.intel.com (HELO
- paris.ger.corp.intel.com) ([10.249.140.251])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Dec 2022 11:24:06 -0800
-From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 28 Dec 2022 21:22:52 +0200
-Message-Id: <20221228192252.917299-7-gwan-gyeong.mun@intel.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20221228192252.917299-1-gwan-gyeong.mun@intel.com>
-References: <20221228192252.917299-1-gwan-gyeong.mun@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 82E2A10E1E5;
+ Wed, 28 Dec 2022 19:51:51 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7A712AA917;
+ Wed, 28 Dec 2022 19:51:51 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v16 6/6] drm/i915: Remove truncation warning for
- large objects
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
+Date: Wed, 28 Dec 2022 19:51:51 -0000
+Message-ID: <167225711146.24088.8938887270368297395@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221228192252.917299-1-gwan-gyeong.mun@intel.com>
+In-Reply-To: <20221228192252.917299-1-gwan-gyeong.mun@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Fixes_integer_overflow_or_integer_truncation_issues_in_page?=
+ =?utf-8?q?_lookups=2C_ttm_place_configuration_and_scatterlist_creation?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,65 +41,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: thomas.hellstrom@linux.intel.com, andrzej.hajda@intel.com,
- jani.nikula@intel.com, chris@chris-wilson.co.uk, matthew.auld@intel.com,
- mchehab@kernel.org, nirmoy.das@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Chris Wilson <chris@chris-wilson.co.uk>
+== Series Details ==
 
-Having addressed the issues surrounding incorrect types for local
-variables and potential integer truncation in using the scatterlist API,
-we have closed all the loop holes we had previously identified with
-dangerously large object creation. As such, we can eliminate the warning
-put in place to remind us to complete the review.
+Series: Fixes integer overflow or integer truncation issues in page lookups, ttm place configuration and scatterlist creation
+URL   : https://patchwork.freedesktop.org/series/112279/
+State : warning
 
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Brian Welty <brian.welty@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Testcase: igt@gem_create@create-massive
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/4991
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
-Reviewed-by: Mauro Carvalho Chehab <mchehab@kernel.org>
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_object.h | 15 ---------------
- 1 file changed, 15 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-index 4a661af87c4d..f9a8acbba715 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-@@ -20,25 +20,10 @@
- 
- enum intel_region_id;
- 
--/*
-- * XXX: There is a prevalence of the assumption that we fit the
-- * object's page count inside a 32bit _signed_ variable. Let's document
-- * this and catch if we ever need to fix it. In the meantime, if you do
-- * spot such a local variable, please consider fixing!
-- *
-- * We can check for invalidly typed locals with typecheck(), see for example
-- * i915_gem_object_get_sg().
-- */
--#define GEM_CHECK_SIZE_OVERFLOW(sz) \
--	GEM_WARN_ON((sz) >> PAGE_SHIFT > INT_MAX)
--
- static inline bool i915_gem_object_size_2big(u64 size)
- {
- 	struct drm_i915_gem_object *obj;
- 
--	if (GEM_CHECK_SIZE_OVERFLOW(size))
--		return true;
--
- 	if (overflows_type(size, obj->base.size))
- 		return true;
- 
--- 
-2.37.1
+Error: dim checkpatch failed
+580bc7c6ee10 drm/i915/gem: Typecheck page lookups
+-:56: WARNING:DEPRECATED_API: Deprecated use of 'kmap_atomic', prefer 'kmap_local_page' instead
+#56: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.c:434:
++	src_map = kmap_atomic(i915_gem_object_get_page(obj, idx));
+
+-:76: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#76: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.c:489:
++	GEM_BUG_ON(overflows_type(offset >> PAGE_SHIFT, pgoff_t));
+
+-:150: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#150: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:413:
++#define i915_gem_object_page_iter_get_sg(obj, it, n, offset) ({	\
++	static_assert(castable_to_type(n, pgoff_t));		\
++	__i915_gem_object_page_iter_get_sg(obj, it, n, offset);	\
++})
+
+-:199: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#199: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:458:
++#define i915_gem_object_get_sg(obj, n, offset) ({	\
++	static_assert(castable_to_type(n, pgoff_t));	\
++	__i915_gem_object_get_sg(obj, n, offset);	\
++})
+
+-:248: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#248: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:503:
++#define i915_gem_object_get_sg_dma(obj, n, offset) ({	\
++	static_assert(castable_to_type(n, pgoff_t));	\
++	__i915_gem_object_get_sg_dma(obj, n, offset);	\
++})
+
+-:286: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#286: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:539:
++#define i915_gem_object_get_page(obj, n) ({		\
++	static_assert(castable_to_type(n, pgoff_t));	\
++	__i915_gem_object_get_page(obj, n);		\
++})
+
+-:323: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#323: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:574:
++#define i915_gem_object_get_dirty_page(obj, n) ({	\
++	static_assert(castable_to_type(n, pgoff_t));	\
++	__i915_gem_object_get_dirty_page(obj, n);	\
++})
+
+-:364: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#364: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:612:
++#define i915_gem_object_get_dma_address_len(obj, n, len) ({	\
++	static_assert(castable_to_type(n, pgoff_t));		\
++	__i915_gem_object_get_dma_address_len(obj, n, len);	\
++})
+
+-:401: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#401: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:647:
++#define i915_gem_object_get_dma_address(obj, n) ({	\
++	static_assert(castable_to_type(n, pgoff_t));	\
++	__i915_gem_object_get_dma_address(obj, n);	\
++})
+
+total: 0 errors, 2 warnings, 7 checks, 616 lines checked
+383085856287 drm/i915: Check for integer truncation on scatterlist creation
+60d38f11dfc7 drm/i915: Check for integer truncation on the configuration of ttm place
+c51e58da471c drm/i915: Check if the size is too big while creating shmem file
+96ee63399a5e drm/i915: Use error code as -E2BIG when the size of gem ttm object is too large
+2402a45e5aac drm/i915: Remove truncation warning for large objects
+
 
