@@ -2,33 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C65A66577ED
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Dec 2022 15:40:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC408659607
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Dec 2022 09:00:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6249710E3A3;
-	Wed, 28 Dec 2022 14:40:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B1B410E44B;
+	Fri, 30 Dec 2022 08:00:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9226C10E3A3;
- Wed, 28 Dec 2022 14:40:19 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8FCC2AADEB;
- Wed, 28 Dec 2022 14:40:19 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 71E5610E3A6;
+ Wed, 28 Dec 2022 14:43:45 +0000 (UTC)
+Received: from [192.168.1.139] (unknown [171.76.80.102])
+ by linux.microsoft.com (Postfix) with ESMTPSA id 676CE20F26B6;
+ Wed, 28 Dec 2022 06:43:42 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 676CE20F26B6
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+ s=default; t=1672238625;
+ bh=eISDS/91oiq1DS7pKCpl1TnGMMOr/ZfUtjW/6tYTuBo=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=JA/DFLkJg+lq0r974VDtsSIzXPguPqbLgZMMrdHHFydbLbq6uiflSW7pRUYc7jZ4V
+ JCJbMMLq6SQXaSF44FNDtApMoSBCxsMeTzl/KU2oCe71ev6/CiHYxYpBdettrtcK9H
+ iKndRKC3FCLd8gA6bCKjQE49B/+rLttmkRNOpAnY=
+Message-ID: <adabe9ea-1e25-5d4f-88d6-cd232af04693@linux.microsoft.com>
+Date: Wed, 28 Dec 2022 20:13:39 +0530
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Content-Language: en-US
+To: Deepak R Varma <drv@mailo.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+References: <cover.1671952191.git.drv@mailo.com>
+ <fe31efd659622839c7f7bc2890d9e3411bbfa7cd.1671952191.git.drv@mailo.com>
+From: Praveen Kumar <kumarpraveen@linux.microsoft.com>
+In-Reply-To: <fe31efd659622839c7f7bc2890d9e3411bbfa7cd.1671952191.git.drv@mailo.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
-Date: Wed, 28 Dec 2022 14:40:19 -0000
-Message-ID: <167223841958.24092.8715664391186845951@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221228142533.880703-1-gwan-gyeong.mun@intel.com>
-In-Reply-To: <20221228142533.880703-1-gwan-gyeong.mun@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?Fixes_integer_overflow_or_integer_truncation_issues_in_page_loo?=
- =?utf-8?q?kups=2C_ttm_place_configuration_and_scatterlist_creation?=
+X-Mailman-Approved-At: Fri, 30 Dec 2022 08:00:00 +0000
+Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915: convert i915_active.count
+ from atomic_t to refcount_t
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,21 +57,206 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Saurabh Singh Sengar <ssengar@microsoft.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 25-12-2022 13:17, Deepak R Varma wrote:
+> The refcount_* APIs are designed to address known issues with the
+> atomic_t APIs for reference counting. They provide following distinct
+> advantages:
+>    - protect the reference counters from overflow/underflow
+>    - avoid use-after-free errors
+>    - provide improved memory ordering guarantee schemes
+>    - neater and safer.
+> Hence, convert the atomic_t count member variable and associated
+> atomic_*() API calls to equivalent refcount_t type and refcount_*() API
+> calls.
+> 
+> This patch proposal address the following warnings generated by
+> the atomic_as_refcounter.cocci coccinelle script
+> 	atomic_add_unless
+> 
+> Signed-off-by: Deepak R Varma <drv@mailo.com>
+> ---
+> Please note:
+>    1. Proposed changes are compile tested only.
+>    2. This patch 1/2 is required to be applied before patch 2/2 due to
+>       interdependency.
+> 
+> Changes in v2:
+>    1. Patch added to the patch series.
+>    2. Handle build issues Reported-by: kernel test robot <lkp@intel.com>
+>       Earlier a standalone patch was sent for the i915 base driver only. The
+>       Kernel Test Robot reported build failure for additional atomic_*() calls
+>       specific to i915 debugging support when enabled. This version now includes
+>       those changes as well.
+> 
+> 
+>  drivers/gpu/drm/i915/i915_active.c       | 28 +++++++++++++-----------
+>  drivers/gpu/drm/i915/i915_active.h       |  6 ++---
+>  drivers/gpu/drm/i915/i915_active_types.h |  4 ++--
+>  3 files changed, 20 insertions(+), 18 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
+> index 7412abf166a8..5e58d8b1e947 100644
+> --- a/drivers/gpu/drm/i915/i915_active.c
+> +++ b/drivers/gpu/drm/i915/i915_active.c
+> @@ -92,14 +92,14 @@ static void debug_active_init(struct i915_active *ref)
+>  static void debug_active_activate(struct i915_active *ref)
+>  {
+>  	lockdep_assert_held(&ref->tree_lock);
+> -	if (!atomic_read(&ref->count)) /* before the first inc */
+> +	if (!refcount_read(&ref->count)) /* before the first inc */
+>  		debug_object_activate(ref, &active_debug_desc);
+>  }
+> 
+>  static void debug_active_deactivate(struct i915_active *ref)
+>  {
+>  	lockdep_assert_held(&ref->tree_lock);
+> -	if (!atomic_read(&ref->count)) /* after the last dec */
+> +	if (!refcount_read(&ref->count)) /* after the last dec */
+>  		debug_object_deactivate(ref, &active_debug_desc);
+>  }
+> 
+> @@ -133,7 +133,7 @@ __active_retire(struct i915_active *ref)
+>  	GEM_BUG_ON(i915_active_is_idle(ref));
+> 
+>  	/* return the unused nodes to our slabcache -- flushing the allocator */
+> -	if (!atomic_dec_and_lock_irqsave(&ref->count, &ref->tree_lock, flags))
+> +	if (!refcount_dec_and_lock_irqsave(&ref->count, &ref->tree_lock, &flags))
+>  		return;
+> 
+>  	GEM_BUG_ON(rcu_access_pointer(ref->excl.fence));
+> @@ -179,8 +179,8 @@ active_work(struct work_struct *wrk)
+>  {
+>  	struct i915_active *ref = container_of(wrk, typeof(*ref), work);
+> 
+> -	GEM_BUG_ON(!atomic_read(&ref->count));
+> -	if (atomic_add_unless(&ref->count, -1, 1))
+> +	GEM_BUG_ON(!refcount_read(&ref->count));
+> +	if (refcount_dec_not_one(&ref->count))
 
-Series: Fixes integer overflow or integer truncation issues in page lookups, ttm place configuration and scatterlist creation
-URL   : https://patchwork.freedesktop.org/series/112270/
-State : warning
+I'm not sure if this is correct here, I assume we should be adding instead here its decrementing ?
 
-== Summary ==
+>  		return;
+> 
+>  	__active_retire(ref);
+> @@ -189,8 +189,8 @@ active_work(struct work_struct *wrk)
+>  static void
+>  active_retire(struct i915_active *ref)
+>  {
+> -	GEM_BUG_ON(!atomic_read(&ref->count));
+> -	if (atomic_add_unless(&ref->count, -1, 1))
+> +	GEM_BUG_ON(!refcount_read(&ref->count));
+> +	if (refcount_dec_not_one(&ref->count))
+>  		return;
+> 
+>  	if (ref->flags & I915_ACTIVE_RETIRE_SLEEPS) {
+> @@ -354,7 +354,7 @@ void __i915_active_init(struct i915_active *ref,
+>  	ref->cache = NULL;
+> 
+>  	init_llist_head(&ref->preallocated_barriers);
+> -	atomic_set(&ref->count, 0);
+> +	refcount_set(&ref->count, 0);
+>  	__mutex_init(&ref->mutex, "i915_active", mkey);
+>  	__i915_active_fence_init(&ref->excl, NULL, excl_retire);
+>  	INIT_WORK(&ref->work, active_work);
+> @@ -445,7 +445,7 @@ int i915_active_add_request(struct i915_active *ref, struct i915_request *rq)
+> 
+>  	if (replace_barrier(ref, active)) {
+>  		RCU_INIT_POINTER(active->fence, NULL);
+> -		atomic_dec(&ref->count);
+> +		refcount_dec(&ref->count);
+>  	}
+>  	if (!__i915_active_fence_set(active, fence))
+>  		__i915_active_acquire(ref);
+> @@ -488,14 +488,16 @@ i915_active_set_exclusive(struct i915_active *ref, struct dma_fence *f)
+>  bool i915_active_acquire_if_busy(struct i915_active *ref)
+>  {
+>  	debug_active_assert(ref);
+> -	return atomic_add_unless(&ref->count, 1, 0);
+> +	return refcount_add_not_zero(1, &ref->count);
+>  }
+> 
+>  static void __i915_active_activate(struct i915_active *ref)
+>  {
+>  	spin_lock_irq(&ref->tree_lock); /* __active_retire() */
+> -	if (!atomic_fetch_inc(&ref->count))
+> +	if (!refcount_inc_not_zero(&ref->count)) {
+> +		refcount_inc(&ref->count);
+>  		debug_active_activate(ref);
+> +	}
+>  	spin_unlock_irq(&ref->tree_lock);
+>  }
+> 
+> @@ -757,7 +759,7 @@ int i915_sw_fence_await_active(struct i915_sw_fence *fence,
+>  void i915_active_fini(struct i915_active *ref)
+>  {
+>  	debug_active_fini(ref);
+> -	GEM_BUG_ON(atomic_read(&ref->count));
+> +	GEM_BUG_ON(refcount_read(&ref->count));
+>  	GEM_BUG_ON(work_pending(&ref->work));
+>  	mutex_destroy(&ref->mutex);
+> 
+> @@ -927,7 +929,7 @@ int i915_active_acquire_preallocate_barrier(struct i915_active *ref,
+> 
+>  		first = first->next;
+> 
+> -		atomic_dec(&ref->count);
+> +		refcount_dec(&ref->count);
+>  		intel_engine_pm_put(barrier_to_engine(node));
+> 
+>  		kmem_cache_free(slab_cache, node);
+> diff --git a/drivers/gpu/drm/i915/i915_active.h b/drivers/gpu/drm/i915/i915_active.h
+> index 7eb44132183a..116c7c28466a 100644
+> --- a/drivers/gpu/drm/i915/i915_active.h
+> +++ b/drivers/gpu/drm/i915/i915_active.h
+> @@ -193,14 +193,14 @@ void i915_active_release(struct i915_active *ref);
+> 
+>  static inline void __i915_active_acquire(struct i915_active *ref)
+>  {
+> -	GEM_BUG_ON(!atomic_read(&ref->count));
+> -	atomic_inc(&ref->count);
+> +	GEM_BUG_ON(!refcount_read(&ref->count));
+> +	refcount_inc(&ref->count);
+>  }
+> 
+>  static inline bool
+>  i915_active_is_idle(const struct i915_active *ref)
+>  {
+> -	return !atomic_read(&ref->count);
+> +	return !refcount_read(&ref->count);
+>  }
+> 
+>  void i915_active_fini(struct i915_active *ref);
+> diff --git a/drivers/gpu/drm/i915/i915_active_types.h b/drivers/gpu/drm/i915/i915_active_types.h
+> index b02a78ac87db..152a3a25d9f7 100644
+> --- a/drivers/gpu/drm/i915/i915_active_types.h
+> +++ b/drivers/gpu/drm/i915/i915_active_types.h
+> @@ -7,7 +7,7 @@
+>  #ifndef _I915_ACTIVE_TYPES_H_
+>  #define _I915_ACTIVE_TYPES_H_
+> 
+> -#include <linux/atomic.h>
+> +#include <linux/refcount.h>
+>  #include <linux/dma-fence.h>
+>  #include <linux/llist.h>
+>  #include <linux/mutex.h>
+> @@ -23,7 +23,7 @@ struct i915_active_fence {
+>  struct active_node;
+> 
+>  struct i915_active {
+> -	atomic_t count;
+> +	refcount_t count;
+>  	struct mutex mutex;
+> 
+>  	spinlock_t tree_lock;
+> --
+> 2.34.1
+> 
+> 
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+Regards,
 
-
+~Praveen.
