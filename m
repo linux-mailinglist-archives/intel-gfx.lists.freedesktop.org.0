@@ -2,111 +2,122 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF0BB659606
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Dec 2022 09:00:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4763D659604
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Dec 2022 09:00:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0DE510E442;
-	Fri, 30 Dec 2022 08:00:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A66DE10E0D0;
+	Fri, 30 Dec 2022 08:00:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from AUS01-ME3-obe.outbound.protection.outlook.com
- (mail-me3aus01olkn2189.outbound.protection.outlook.com [40.92.63.189])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE65010E05E;
- Thu, 29 Dec 2022 13:27:33 +0000 (UTC)
+Received: from CO1PR02CU002-vft-obe.outbound.protection.outlook.com
+ (mail-westus2azon11020026.outbound.protection.outlook.com [52.101.46.26])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACA7F10E3EF;
+ Thu, 29 Dec 2022 15:57:38 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PNS4jp+cf19e2H8x2LatwC8Hp7hlACQbdCJJe3giFx3TB1ApJL9vrcK+miOKZXHkc9X8YlQiH/hgRaQ4XJQvwOcoNSOAsJ6Uf23FTDByYocl/rRkdfs4koKdQsn0MIUK0m8zJALghOCAUXW+Yjxb7eeduIyDZbKLUYxtz0xgc22cyieeQhoUQhehXZ6d2fo4EzpKWW8fGQ+LNXK8R4f+tUKZWqewTCx9PJChCBeGHKec7gxVx+U4tkCf1NFGnOoUO9Oy1WP3+FxNirXJaD3gJoIiduGTqpfGpb3g3ges1X8oQN0eg/rRDyIOr5p30a1wn1dbovtmqgfdUaIx6STt9w==
+ b=a7qz9zPeLPdUlV/MxmDppT0AGJ6/ozH9hFpC8oFQsSnPtHaoKPpgiu0SKFGw1Qmsv4UumKQJNQhlcvIdZrVr9/y4PnLXYbTMHiIatoEeOGk4PbjZM3EbWKdVvvHLz3Dj3thSDNIhgvnN7ORkqjgc9cVIk+cDvl2TZD38rvqZHXp5sORGKEt6aHZj/TPs25xpLlBnhgAU8RFHErzZ2yT53PVVBq+E/l7ZHB87J1ryohm9vEDWtPYh3DXINM0CJPRmBH6h1gB7uEGQryEtGM0nAPby003//LiiYVnl7J39TfgH3vWINJTLTLWYOCTGoQxkfCgs/h6jCFyTP9M6qI8wJQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+4sEKuRdSV1eGMTKI/BrW8wP3LoxL8J190/W6HAe9O4=;
- b=jAeu7FFOxIvFuO/tn7k/5TYsEX0j9AjFhfVAW7K19KXNwvJ1pSUr70MUHyS3IFyMNRGywwsSYcVFCqSqkujC1PjAv7RgTg4+uzxaJN+a1DlrllBnYoHeSfaMa0ztPUOMaFhcyQNWM9MXyq/7LqfHAI/Ktp6NJDNxS6OFFyVMTBqZIIpVUUY4HycBqjZVE2IKaP1KFikkXqMH/3Xjrk/ciGuAn4bKOLIIoFPWnBcVUYIzaUbMP8uLCqvDTKEkfAIDk8DcaQ5dLXM8Jc42b/zMJl0DomtCI/J4rKczoLP3GtIUNW6fCMav5bvFwvRWqYtWM1CfK0gv2bp+z2chh/Bi/A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
+ bh=dMqbUgvhPnFSaq8qaAp8g+oUSRhCQxu0K/dKsQTzQEw=;
+ b=XC9CQxtsFh7fdWMnoIzdXR12gVRX+NodwP105f7jXrVr//8yTWr01tNdfHTH+ztkNGTn/vhI7NcFqdDSywi0LnHJUFqHfPc5lElnB7TMKWvT3ErRpW3PsHiIpglwjyE2LX87t8kmT0ak/AMgt0gJOF+mQrANNySP6CFP/y8aLnOv7ovWIOZM8eqv8qS9dE1u098Jqmt1UI1A9LxQAKN5sRCszRhj53BlQFpP5DdZS+9sst9vswzWw0fyQQ0kDKOUa13DNFlkw3/6PQRODUaW+EyTarXmDlMrFaJfBkdXJwHYl7y7nA0kMgGD0UasFTx8g2eRwZbacEaUHYOhgDcf8A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microsoft.com; dmarc=pass action=none
+ header.from=microsoft.com; dkim=pass header.d=microsoft.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+4sEKuRdSV1eGMTKI/BrW8wP3LoxL8J190/W6HAe9O4=;
- b=OlH4RHOAQaySYMjodbdSMa2c6d+oQw6Z04p1afixzVJOSbRUCwJ6HttdIZzOyw75As1z+SCmyJSsyRfSdx6+hWC4RSvnc9qlbKp5UWXfkStq6Jk5hk7EQ2vxguPsW+D7srYuWjD3lGeDo9iaWtteupuJIMGRtTTUefKWXqwuGLzJn9j5MYAAgrEhliLrL8wqxB4yjA6t+Wq8GdlxBYlW+Ky2viZzTz3xje9WkxjDJvCsWssN5icuvmQUoL4Mgjbx8nICsfli8TRs0EfVHkCyqjQTHeZRzShLAm+geyMoqcCppx8LvYmEkVV/D0y+e/oq2OSUBU9wAT2PQJDqFoW37A==
-Received: from SYZP282MB3252.AUSP282.PROD.OUTLOOK.COM (2603:10c6:10:169::6) by
- ME3P282MB2626.AUSP282.PROD.OUTLOOK.COM (2603:10c6:220:115::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5944.16; Thu, 29 Dec 2022 13:27:27 +0000
-Received: from SYZP282MB3252.AUSP282.PROD.OUTLOOK.COM
- ([fe80::3021:4e2f:269f:86a2]) by SYZP282MB3252.AUSP282.PROD.OUTLOOK.COM
- ([fe80::3021:4e2f:269f:86a2%6]) with mapi id 15.20.5944.016; Thu, 29 Dec 2022
- 13:27:27 +0000
-From: qi zhou <atmgnd@outlook.com>
-To: "matthew.auld@intel.com" <matthew.auld@intel.com>, open list
- <linux-kernel@vger.kernel.org>, "zhi.a.wang@intel.com"
- <zhi.a.wang@intel.com>, "jani.nikula@linux.intel.com"
- <jani.nikula@linux.intel.com>, "joonas.lahtinen@linux.intel.com"
- <joonas.lahtinen@linux.intel.com>, "rodrigo.vivi@intel.com"
- <rodrigo.vivi@intel.com>, "tvrtko.ursulin@linux.intel.com"
- <tvrtko.ursulin@linux.intel.com>, "airlied@gmail.com" <airlied@gmail.com>,
- "daniel@ffwll.ch" <daniel@ffwll.ch>, "alex.williamson@redhat.com"
- <alex.williamson@redhat.com>, "cohuck@redhat.com" <cohuck@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Thread-Topic: [PATCH] fix gvtg cursor position if it is negative
-Thread-Index: AQHZG4eUlO6VebNR50mtjCIRm5fqp66E2jBu
-Date: Thu, 29 Dec 2022 13:27:27 +0000
-Message-ID: <SYZP282MB3252C832275ACAD8C8C2A091C9F39@SYZP282MB3252.AUSP282.PROD.OUTLOOK.COM>
-References: <SYZP282MB3252074E5A0A1C467337132AC9F39@SYZP282MB3252.AUSP282.PROD.OUTLOOK.COM>
-In-Reply-To: <SYZP282MB3252074E5A0A1C467337132AC9F39@SYZP282MB3252.AUSP282.PROD.OUTLOOK.COM>
-Accept-Language: en-US, zh-CN
+ bh=dMqbUgvhPnFSaq8qaAp8g+oUSRhCQxu0K/dKsQTzQEw=;
+ b=aQgC7jgwO+SsBf7gWpeGAsMNQvQyL4st4lkNbQMzW+pDnSCW1SaGTWGTVDDJXYUhI88hAeBaJlKF4PkrlGIiVwxF+Pa1Q77OcW0RcyXcMkwWQa77M/DLbf/enQuZA40AauIjEb3DmryKuV5pa5xRpTnLu1J5YMvCm3Dh48Dep0M=
+Received: from BYAPR21MB1688.namprd21.prod.outlook.com (2603:10b6:a02:bf::26)
+ by BY5PR21MB1410.namprd21.prod.outlook.com (2603:10b6:a03:232::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.9; Thu, 29 Dec
+ 2022 15:57:36 +0000
+Received: from BYAPR21MB1688.namprd21.prod.outlook.com
+ ([fe80::db1a:4e71:c688:b7b1]) by BYAPR21MB1688.namprd21.prod.outlook.com
+ ([fe80::db1a:4e71:c688:b7b1%7]) with mapi id 15.20.5986.007; Thu, 29 Dec 2022
+ 15:57:36 +0000
+From: "Michael Kelley (LINUX)" <mikelley@microsoft.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>, "daniel@ffwll.ch"
+ <daniel@ffwll.ch>, "airlied@gmail.com" <airlied@gmail.com>, "deller@gmx.de"
+ <deller@gmx.de>, "javierm@redhat.com" <javierm@redhat.com>
+Thread-Topic: [PATCH 08/18] fbdev/hyperv-fb: Do not set struct
+ fb_info.apertures
+Thread-Index: AQHZE8PKXOCI5g/V+0Kur/EU/q61Ta6FFFsQ
+Date: Thu, 29 Dec 2022 15:57:35 +0000
+Message-ID: <BYAPR21MB16883E1B4E7A685EE4CC5142D7F39@BYAPR21MB1688.namprd21.prod.outlook.com>
+References: <20221219160516.23436-1-tzimmermann@suse.de>
+ <20221219160516.23436-9-tzimmermann@suse.de>
+In-Reply-To: <20221219160516.23436-9-tzimmermann@suse.de>
+Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-msip_labels: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [LVo5SZwuP6AiZP0E16U1TMNxwPpiVhMt]
+msip_labels: MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_ActionId=b26a9e3f-2fc8-4dd1-8189-e3d8a093c2d8;
+ MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_ContentBits=0;
+ MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_Enabled=true;
+ MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_Method=Standard;
+ MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_Name=Internal;
+ MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_SetDate=2022-12-29T15:55:16Z;
+ MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_SiteId=72f988bf-86f1-41af-91ab-2d7cd011db47;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microsoft.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SYZP282MB3252:EE_|ME3P282MB2626:EE_
-x-ms-office365-filtering-correlation-id: 73c4fa68-f318-4605-1db9-08dae9a06e1f
-x-ms-exchange-slblob-mailprops: EgT5Wr3QDKz918u76bcdvRMWUZXhBQCAJL9uKGdeHbeboL+FBVsfOZCqHvoGt/iho6kUuNsqOyXCCPrIY7KNnUSGis/MZ+4415HLWFkq6lgkfyGIw5w/h9sDaleJaRkRM3PcH+4j/0BxRD7CwPfwSYOBRpS6KJYEssDwG6qrrH9WKDzEUkPJJduG+dRdOGqoL8XoAvcz/WbxdZnLI5fR13aNWUlFXFUY0zAjPexxujHD8o3iQTdtoX4vJYJp65994TRrYf+jsoyoLVI8YEJn9785Tr3YMLKkb0B1O8Tfdz/zkztSQWpQulrejfm8yga9y5AWryYISW0zqdDBPG4sl3Te7XpKDAwZisNFizQ/Uy1/nH/C9ngmKvkTFxYRCCQIRHcfwzA69umLP929zuieBCQADwGOr+WWHNTKWUwRVXWnpsgPNrian4rRbM+NMtn2kwSe5CBuInw56Ivw36Tvekfgc0JmVI1WGvJEJOT1vklebXjST48Mv9LEIL00f841xiTYAAevximyKzpjSXR008e9ZpkYqSNNMwRmgnrldPW8nvt7guXdyLLBDoGYUtE2ZOuR6J11g/tUugvT5hySZtsTdnkuzgvVJ/FPLyR9n+MQT6cdMHxhaZCO07mMZ4szTXoV5+SkQQB709sVpnyh/ZdrFOFlisz8wcJy0j1VhhAl1gCB9J+3il4YxUtGFPGGi0onYdFHKjzxex97B4JRMNUXAijcRYonzjdyN2CGM0o=
+x-ms-traffictypediagnostic: BYAPR21MB1688:EE_|BY5PR21MB1410:EE_
+x-ms-office365-filtering-correlation-id: 412a947a-202f-4500-4d9b-08dae9b5675c
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 6L6XZ1fOzrE4jIgm4JmnsXUrrV3NX+P/vD9IfGJu4cSmZGRihbFw4btBZQHjJDRWuR+MeG9wgatsA2i1Y+Z8QypWG7YS5vjZe/ew7LeOhD9HsMo1xOXs3p9vshzjcu+9Ouu+CEAO9dFk/kpA8He4Ae1OM16nMccnu046OiLKqfwjo8UC0GMc6a8wmAufvFSkfW8r1dkHcE45pLpSPqVOumXneo3PO/SWfhKGE6fvlKIVcndpGgxirRouEOSKg3PDZ+3Y/gS+tX946F7lyEipwlypLhl3GTgflDEZ/V7Jr7qRE/0uoIJC8V4LORnI96kbvyVN1JIY1gXUbQoLYVcGZljXayFuuQol2UWz/LgZ8TuiMA6OPScvdtuGWXyQIg7bcvsCoKznqohznIaQCMss6A+PYkU8sXHw7yDkvsNHtkzMHldXZntJf+5zLgMEe2Oiv/b0lWkW2hay4hGPiIWvlHkEo/8Zox4mtXYKUkNwU20MnYQQbz9r7p2/n/nbdW6IktavKsLh0uKyBbafW6muEuVozEWtJV0sS5/F13gyVKWAtYZ15JyMHn0wt0RHu342QzN0cJj3HaX5TZPWCd9eAvt9v/6qN/VZRinLPf+4w48kCo5RGZ8mZcjwuAGs7qBiz6Cqr/yJvCXj0nTCGn57q/PV47+SXFk3ddtRHhSzsdE=
+x-microsoft-antispam-message-info: e9QbZIagjV8AmBo6Ovk10TuliXsP/cqWZ5t8N6SK5eYVdk8jia0DDFNNf1K4sUt84UNbbbpbXEoZ44ojtHJeKUqpOG9i8qwxQucHPEfPomFfxnFgX0WIFXo4DieBGOtm1TJqkOJHtmP5m6MVHS+s67NRecPV3RDefbsLK3dposcXgwXh0oyGrPRk2809q5cGfWl8jkCfcbgiWobgESqbAJAzykgVVgq+HS6lOLKoF9TL/vEmjv5MSYQuKRfnLFmUgDb3dYGPpKsGQ/KCUTvCrHIV/5osRJtBeOPQtAzHGU1djlfW4CKqI/6g/cnZz2MrMnU68uKAAsyheBh9jlHiASRvXfhB4gxqD65HVYZXitxRptYuobFflxg0tgXKeGMmEeAJZhtLwoLubAV2MGSP8DWaY2jT5Ji+Fj0M6mdtqq/S/xBb9Qc5PsW4696K4ii+keejw6wtTxP+CrQ86zVt1pr3J6pdX3KBBkQVZ5/k01wEhSGo0c+T6TcSJ4Jc0eL7ptilQo/07ECIF00ZkCNyqLxihs5qWtJ1MstOnh+xGMfw/upYvwSYrobAfDQda0vlg0f/sO7eqEtp9cImXhO0/Xg4pLDVYPXpNtRxA3yiLcHlXD7hHcnwDEgeVfqDm4raVKU315ykgRg0HVUD6/47EJlY/mylOo4InLjZy9wCSFOcQegD/Wta2WSjjseOWohBaNsh8gZpWIuHfB3GN6ZB6p9LvpgoxsNEkpNbZ1U6qmcgEEdJOPX/bH3NY7fbSM+O
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR21MB1688.namprd21.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(4636009)(366004)(346002)(136003)(376002)(39860400002)(396003)(451199015)(38100700002)(82960400001)(82950400001)(122000001)(10290500003)(33656002)(86362001)(38070700005)(64756008)(76116006)(66446008)(66946007)(8676002)(66476007)(4326008)(66556008)(41300700001)(110136005)(54906003)(316002)(55016003)(8990500004)(2906002)(7416002)(5660300002)(52536014)(9686003)(8936002)(83380400001)(478600001)(7696005)(71200400001)(186003)(26005)(6506007);
+ DIR:OUT; SFP:1102; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?CSw2kqIV0/DvsqFJ/FoaYZb/nwDM8BFcsZbNhluzjSQTQiaTzSflnyn5Ge?=
- =?iso-8859-1?Q?dMe734+ZT1/l/h+EQbvl7qPhxx3PQmAs5hRj0Gma8QbvjR8P16OuG1HXop?=
- =?iso-8859-1?Q?NQwLGPZs/j2cCEcuel0NhP9J1EFuzN/A0de9ljeNEI9QR+1UhK8Nhu/yWB?=
- =?iso-8859-1?Q?LYfi8jyW68S4xB8mA9W57Bu5KRunXahkzZkFeJkcJbT+WT56zOF4v0f5b1?=
- =?iso-8859-1?Q?Mu06LjXTyur7ZGsxP3DEkJ51tjhUFt39hYq+RWR9MjnSBLJXEvrko+fZbB?=
- =?iso-8859-1?Q?a45cqIhcyb6fL4qdIZbRK4HDCHDKJ+7lZ1zCW7n2J0fma37QaTnwc3flY3?=
- =?iso-8859-1?Q?9BDSCaIwENwQKUNRNGO/3UhdobpZAh43OEk2Wm4rraUqSZpTY+m4b6PycI?=
- =?iso-8859-1?Q?K3/Q2P32UHp1pAAzipmQAGvipvuC88qR5KXs6/L/kukBG4GAh06Df/Bq0y?=
- =?iso-8859-1?Q?9ROoO6SbPXX/vFe5m+Vw9+EkPGWw3OJg1IeC/bmueJ5MWbh40XtWWPodTl?=
- =?iso-8859-1?Q?y8lOwnBBmKNmrzX2RONWYj9fEvQkp3KXEKXKoA4e3VV0EV7emhaZraw/8I?=
- =?iso-8859-1?Q?5sFrdfvj2X+np6QyWVjogalkKQp1oxQKjBJ392jydJsull6hFo56CxtfQJ?=
- =?iso-8859-1?Q?rf+ZTI9lbWozy/+U2ipvPPsT7e/hRIB0yLj3P6r1m9X4Dy3id66yo0sytC?=
- =?iso-8859-1?Q?9uKo8cKLrTyGDLSNrPjb/s7Y2yji9WWLp93FJrzYZRreb6/ongmXu54GXF?=
- =?iso-8859-1?Q?o0IvfJQ8AEKqjZinp3ZcWSmGF1UTfW+V8Rx7b2hSH9ijHc++5b+XG7Aw67?=
- =?iso-8859-1?Q?A9w5iSSuZaO4l99oUvN1aAyRYd+Zu8VYe/hKc6Bak+JshsrxBQefVJbedm?=
- =?iso-8859-1?Q?sEbiKjL3RN2fSK1jvDvpS5cR0VovPJC2zkONPJ7+Ym+zBHwaWYOrJbEUl9?=
- =?iso-8859-1?Q?2Pe33sVeObPQc4VC1zZuu4fYUOG9ZiGWKYaeZqzfwQELBZF21X5t3lT3Jy?=
- =?iso-8859-1?Q?P94HmOqGQLf1KiDBv/zCGT0Hy7I8QRKTLTt3l8DUHfOXTLD8G/8lZeMIt3?=
- =?iso-8859-1?Q?SIHysT6CAgHz5MbTyinUiRRdoTTKJQmaRldaD+t2O9vkLquuYFps7+FxiM?=
- =?iso-8859-1?Q?oRy5s7aV0+YQmxipFAQwD0KlrhDbPAa2AZALT7ZAG+KuwIYCFrZ/5Y5UGr?=
- =?iso-8859-1?Q?VrB0ELsETu2ih3Cuwekcbj1WVuOmTWRqvZ10wjzlhDMzKu6IS+fdkjDdP/?=
- =?iso-8859-1?Q?oEqtpM+Su0SZqfN8l0FjHzjuct/El68J5ggq5bRzdYV+oyw+KxG5NBEzfH?=
- =?iso-8859-1?Q?JGg9?=
-Content-Type: text/plain; charset="iso-8859-1"
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?B9fzLlubny1ymtAfsPyZt+pXsQq0gidCuVvnNL883dteKtt6fdX61Nod0Wx8?=
+ =?us-ascii?Q?dP7JqnnWf0wC9GHHjesuqP64QA0MW5uuOWAV5InBNDy3DuNgbEsmNH0OL5tu?=
+ =?us-ascii?Q?ke6ChYmZ0VifJnrv67qmzSWO0YSEhbJwE3Wu7jIv9bpmfT95/SdxTkL43kQ0?=
+ =?us-ascii?Q?2gdeFXvW5cy0ycU+c5K4UpwJW67/TSun+CFOsvLkdvf/664D1eWD4BONVaRK?=
+ =?us-ascii?Q?wj5qITR74Sl1pJF/dL6rJcBhMxSNLrgv9lFb95vUK35ICfKcQAo/2NVCV7lL?=
+ =?us-ascii?Q?CyFduSBQfzEpvygrrn2sXaLaiNa9YKSlv6OJld6X6ucKvkktOeCva52RO8xG?=
+ =?us-ascii?Q?fTxBd8I7ZhZymx+b1fCMyvuNNK4FRvaLEhexRE6IseqvLqUo0Gl/BL9KpHSA?=
+ =?us-ascii?Q?wIt0DvgHcb7BfmeU1stoKhxSGw1R6AawEvigztOOwAEyiCQPPDhlH98WtuHp?=
+ =?us-ascii?Q?iHsO48+fDvE4XXpn2z3oDhaZ2ec9DAPT1tjzHk0eI5F3SA7ti4SA7j2+ifHx?=
+ =?us-ascii?Q?W0/MttJT7vxi0IzDrsj1VDBFcfjxKTvgIEvZYCyPgV9P8XwjFf/+GIkRpmvq?=
+ =?us-ascii?Q?4Akm0EpsBMHbwgoTb2NXq7zgECtXrME3PdOz/tDYSDN3snfJ6ZOUJRDNpdis?=
+ =?us-ascii?Q?pxr3bdDGvXeyXo4S7NZT+9aGJcq//8WXbxKeOGlCoKY1Kn+l8XvF3K6oXOzg?=
+ =?us-ascii?Q?ELQHEmmKVz6Gi8C/w9HFtbMypEj4pE7WfVyI+eyDta4rFUE9CxYQwsQMW9WV?=
+ =?us-ascii?Q?k7efBKvdAKFCNuLjoYkrdz2567VB6Rq+3XqJR2eS6y+Hq3MnJ8t5iwhDQ8p7?=
+ =?us-ascii?Q?KXTSPT/pFasGVBACaTCW2NVuwXqH61lCfHuW1czQLoidKqIFiS4pJjTK9prN?=
+ =?us-ascii?Q?e0siA1f5bcrcCiYvo2b+KSSXuBXVSpsYFtCRnrpq1H8BQdHtNHoaZWTcm+fh?=
+ =?us-ascii?Q?crs+YJ9dS4CXY2pAvflSDPRNwRe0NYVW8h7rfAIJLqM/hEOv5puLMih3jV2+?=
+ =?us-ascii?Q?R+PCpZw0o8obsf7NVdGJ9P7NlXq1h6VfvMm4bBJXJJfW53kkXZt8DFyTRh4Q?=
+ =?us-ascii?Q?wuaHh9tSrz6/2epCfkq3YpbfxcNxYP4GsyVlBoitzcVoT6fmmjFZk8kRfTgt?=
+ =?us-ascii?Q?hFEqLvnKPOpiu4IjR5oXn8b/v5K/OxLsLxeFnDeVfOcP8ZrFcgRfwlVkWHds?=
+ =?us-ascii?Q?9N6j+8IGzcm9Z79En6pda+nO8zEq87VJ1+ZZ0xYzbqua4A2ooBglZRLI9Qwb?=
+ =?us-ascii?Q?Ah3OrKPL+Qz5DuTcPruBP62I8WgF+BGulSAYWkzfy5KBzFZ7Io9pjH49jPpy?=
+ =?us-ascii?Q?D2foC4nht4AG0xzTIgT02gtbUpKa0zgjep67/ZU7AElMS18OF2rKK/rgxzyZ?=
+ =?us-ascii?Q?jkGf31QSFy21DNuz2y6z9LtT4fC5k7XW6Q4yqYFhIzalXcfzQVqyxDBDut18?=
+ =?us-ascii?Q?jH0VrnwQ5EmA/QMRdoZ+jd4dxWDiVFKg0b+0cuTDf7aVqhQ5Jf0Un3JJMZfb?=
+ =?us-ascii?Q?Bmy2AbgVbObPv8Kcqb9RbZ7pTU7c5USo8Ar+QAGsNctI0a990m7+ml0aG5WT?=
+ =?us-ascii?Q?Um3wKL+vfqATGUtjDXqlkDHtcbjUTpLDfr7M5dCmvcoxYTbVhxb14g7ho3V6?=
+ =?us-ascii?Q?uw=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-OriginatorOrg: outlook.com
+X-OriginatorOrg: microsoft.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SYZP282MB3252.AUSP282.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 73c4fa68-f318-4605-1db9-08dae9a06e1f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Dec 2022 13:27:27.7293 (UTC)
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR21MB1688.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 412a947a-202f-4500-4d9b-08dae9b5675c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Dec 2022 15:57:35.8176 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: ME3P282MB2626
+X-MS-Exchange-CrossTenant-id: 72f988bf-86f1-41af-91ab-2d7cd011db47
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: lLrt+wI0JeYtfgEXm4279hc77Hr8/VZ5NfqMjcK6d1ffvUUqB7kwTZA1Q+HFp5l2vSTmaJZXZfp1eYZqJqu0ynWT70okGcDKG53xXbZJIsA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR21MB1410
 X-Mailman-Approved-At: Fri, 30 Dec 2022 08:00:00 +0000
-Subject: Re: [Intel-gfx] [PATCH] fix gvtg cursor position if it is negative
+Subject: Re: [Intel-gfx] [PATCH 08/18] fbdev/hyperv-fb: Do not set struct
+ fb_info.apertures
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -119,287 +130,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "qemu-devel@nongnu.org" <qemu-devel@nongnu.org>,
- qi zhou <ATMGND@OUTLOOK.COM>
+Cc: "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "linux-hyperv@vger.kernel.org" <linux-hyperv@vger.kernel.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-To test, you need patch qemu too, I paste it here for convenience, and I it=
- have been sent to qemu dev mailling list=0A=
-=0A=
-From 4f14d6216d3f05f01ffe419ff0baeebe416a3e58 Mon Sep 17 00:00:00 2001=0A=
-From: Qi Zhou <atmgnd@outlook.com>=0A=
-Date: Thu, 29 Dec 2022 20:25:06 +0800=0A=
-Subject: [PATCH] fix gvtg cursor position if it is negative=0A=
-=0A=
-It is valid if position of cursor is negative(not hotspot coordinates). for=
-=0A=
-example: precision section, resize, move, north east arrow...=0A=
-=0A=
-Signed-off-by: Qi Zhou <atmgnd@outlook.com>=0A=
----=0A=
- include/hw/vfio/vfio-common.h | 6 ++++--=0A=
- include/ui/console.h          | 4 ++--=0A=
- include/ui/gtk.h              | 2 +-=0A=
- linux-headers/linux/vfio.h    | 4 ++--=0A=
- ui/console.c                  | 2 +-=0A=
- ui/dbus-listener.c            | 2 +-=0A=
- ui/egl-headless.c             | 2 +-=0A=
- ui/gtk-egl.c                  | 2 +-=0A=
- ui/spice-display.c            | 2 +-=0A=
- 9 files changed, 14 insertions(+), 12 deletions(-)=0A=
-=0A=
-diff --git a/include/hw/vfio/vfio-common.h b/include/hw/vfio/vfio-common.h=
-=0A=
-index e573f5a9f1..8048816176 100644=0A=
---- a/include/hw/vfio/vfio-common.h=0A=
-+++ b/include/hw/vfio/vfio-common.h=0A=
-@@ -166,8 +166,10 @@ typedef struct VFIOGroup {=0A=
- =0A=
- typedef struct VFIODMABuf {=0A=
-     QemuDmaBuf buf;=0A=
--    uint32_t pos_x, pos_y, pos_updates;=0A=
--    uint32_t hot_x, hot_y, hot_updates;=0A=
-+    int32_t pos_x, pos_y;=0A=
-+    uint32_t pos_updates;=0A=
-+    uint32_t hot_x, hot_y;=0A=
-+    uint32_t hot_updates;=0A=
-     int dmabuf_id;=0A=
-     QTAILQ_ENTRY(VFIODMABuf) next;=0A=
- } VFIODMABuf;=0A=
-diff --git a/include/ui/console.h b/include/ui/console.h=0A=
-index e400ee9fa7..589d0fd621 100644=0A=
---- a/include/ui/console.h=0A=
-+++ b/include/ui/console.h=0A=
-@@ -264,7 +264,7 @@ typedef struct DisplayChangeListenerOps {=0A=
-                                  uint32_t hot_x, uint32_t hot_y);=0A=
-     /* optional */=0A=
-     void (*dpy_gl_cursor_position)(DisplayChangeListener *dcl,=0A=
--                                   uint32_t pos_x, uint32_t pos_y);=0A=
-+                                   int32_t pos_x, int32_t pos_y);=0A=
-     /* optional */=0A=
-     void (*dpy_gl_release_dmabuf)(DisplayChangeListener *dcl,=0A=
-                                   QemuDmaBuf *dmabuf);=0A=
-@@ -362,7 +362,7 @@ void dpy_gl_scanout_dmabuf(QemuConsole *con,=0A=
- void dpy_gl_cursor_dmabuf(QemuConsole *con, QemuDmaBuf *dmabuf,=0A=
-                           bool have_hot, uint32_t hot_x, uint32_t hot_y);=
-=0A=
- void dpy_gl_cursor_position(QemuConsole *con,=0A=
--                            uint32_t pos_x, uint32_t pos_y);=0A=
-+                            int32_t pos_x, int32_t pos_y);=0A=
- void dpy_gl_release_dmabuf(QemuConsole *con,=0A=
-                            QemuDmaBuf *dmabuf);=0A=
- void dpy_gl_update(QemuConsole *con,=0A=
-diff --git a/include/ui/gtk.h b/include/ui/gtk.h=0A=
-index ae0f53740d..bb28360185 100644=0A=
---- a/include/ui/gtk.h=0A=
-+++ b/include/ui/gtk.h=0A=
-@@ -182,7 +182,7 @@ void gd_egl_cursor_dmabuf(DisplayChangeListener *dcl,=
-=0A=
-                           QemuDmaBuf *dmabuf, bool have_hot,=0A=
-                           uint32_t hot_x, uint32_t hot_y);=0A=
- void gd_egl_cursor_position(DisplayChangeListener *dcl,=0A=
--                            uint32_t pos_x, uint32_t pos_y);=0A=
-+                            int32_t pos_x, int32_t pos_y);=0A=
- void gd_egl_flush(DisplayChangeListener *dcl,=0A=
-                   uint32_t x, uint32_t y, uint32_t w, uint32_t h);=0A=
- void gd_egl_scanout_flush(DisplayChangeListener *dcl,=0A=
-diff --git a/linux-headers/linux/vfio.h b/linux-headers/linux/vfio.h=0A=
-index ede44b5572..646db069b8 100644=0A=
---- a/linux-headers/linux/vfio.h=0A=
-+++ b/linux-headers/linux/vfio.h=0A=
-@@ -720,8 +720,8 @@ struct vfio_device_gfx_plane_info {=0A=
- 	__u32 height;	/* height of plane */=0A=
- 	__u32 stride;	/* stride of plane */=0A=
- 	__u32 size;	/* size of plane in bytes, align on page*/=0A=
--	__u32 x_pos;	/* horizontal position of cursor plane */=0A=
--	__u32 y_pos;	/* vertical position of cursor plane*/=0A=
-+	__s32 x_pos;	/* horizontal position of cursor plane */=0A=
-+	__s32 y_pos;	/* vertical position of cursor plane*/=0A=
- 	__u32 x_hot;    /* horizontal position of cursor hotspot */=0A=
- 	__u32 y_hot;    /* vertical position of cursor hotspot */=0A=
- 	union {=0A=
-diff --git a/ui/console.c b/ui/console.c=0A=
-index 9ff9217f9b..8dffacf07d 100644=0A=
---- a/ui/console.c=0A=
-+++ b/ui/console.c=0A=
-@@ -2049,7 +2049,7 @@ void dpy_gl_cursor_dmabuf(QemuConsole *con, QemuDmaBu=
-f *dmabuf,=0A=
- }=0A=
- =0A=
- void dpy_gl_cursor_position(QemuConsole *con,=0A=
--                            uint32_t pos_x, uint32_t pos_y)=0A=
-+                            int32_t pos_x, int32_t pos_y)=0A=
- {=0A=
-     DisplayState *s =3D con->ds;=0A=
-     DisplayChangeListener *dcl;=0A=
-diff --git a/ui/dbus-listener.c b/ui/dbus-listener.c=0A=
-index f9fc8eda51..43c00b7a75 100644=0A=
---- a/ui/dbus-listener.c=0A=
-+++ b/ui/dbus-listener.c=0A=
-@@ -188,7 +188,7 @@ static void dbus_cursor_dmabuf(DisplayChangeListener *d=
-cl,=0A=
- }=0A=
- =0A=
- static void dbus_cursor_position(DisplayChangeListener *dcl,=0A=
--                                 uint32_t pos_x, uint32_t pos_y)=0A=
-+                                 int32_t pos_x, int32_t pos_y)=0A=
- {=0A=
-     DBusDisplayListener *ddl =3D container_of(dcl, DBusDisplayListener, dc=
-l);=0A=
- =0A=
-diff --git a/ui/egl-headless.c b/ui/egl-headless.c=0A=
-index 7a30fd9777..7a03b08d46 100644=0A=
---- a/ui/egl-headless.c=0A=
-+++ b/ui/egl-headless.c=0A=
-@@ -110,7 +110,7 @@ static void egl_cursor_dmabuf(DisplayChangeListener *dc=
-l,=0A=
- }=0A=
- =0A=
- static void egl_cursor_position(DisplayChangeListener *dcl,=0A=
--                                uint32_t pos_x, uint32_t pos_y)=0A=
-+                                int32_t pos_x, int32_t pos_y)=0A=
- {=0A=
-     egl_dpy *edpy =3D container_of(dcl, egl_dpy, dcl);=0A=
- =0A=
-diff --git a/ui/gtk-egl.c b/ui/gtk-egl.c=0A=
-index e84431790c..a454402212 100644=0A=
---- a/ui/gtk-egl.c=0A=
-+++ b/ui/gtk-egl.c=0A=
-@@ -286,7 +286,7 @@ void gd_egl_cursor_dmabuf(DisplayChangeListener *dcl,=
-=0A=
- }=0A=
- =0A=
- void gd_egl_cursor_position(DisplayChangeListener *dcl,=0A=
--                            uint32_t pos_x, uint32_t pos_y)=0A=
-+                            int32_t pos_x, int32_t pos_y)=0A=
- {=0A=
-     VirtualConsole *vc =3D container_of(dcl, VirtualConsole, gfx.dcl);=0A=
- =0A=
-diff --git a/ui/spice-display.c b/ui/spice-display.c=0A=
-index 494168e7fe..347c3917bf 100644=0A=
---- a/ui/spice-display.c=0A=
-+++ b/ui/spice-display.c=0A=
-@@ -1002,7 +1002,7 @@ static void qemu_spice_gl_cursor_dmabuf(DisplayChange=
-Listener *dcl,=0A=
- }=0A=
- =0A=
- static void qemu_spice_gl_cursor_position(DisplayChangeListener *dcl,=0A=
--                                          uint32_t pos_x, uint32_t pos_y)=
-=0A=
-+                                          int32_t pos_x, int32_t pos_y)=0A=
- {=0A=
-     SimpleSpiceDisplay *ssd =3D container_of(dcl, SimpleSpiceDisplay, dcl)=
-;=0A=
- =0A=
--- =0A=
-2.25.1=0A=
-=0A=
-=0A=
-=0A=
-=0A=
-=0A=
-From: qi zhou <atmgnd@outlook.com>=0A=
-Sent: Thursday, December 29, 2022 21:17=0A=
-To: matthew.auld@intel.com <matthew.auld@intel.com>; open list <linux-kerne=
-l@vger.kernel.org>; zhi.a.wang@intel.com <zhi.a.wang@intel.com>; jani.nikul=
-a@linux.intel.com <jani.nikula@linux.intel.com>; joonas.lahtinen@linux.inte=
-l.com <joonas.lahtinen@linux.intel.com>; rodrigo.vivi@intel.com <rodrigo.vi=
-vi@intel.com>; tvrtko.ursulin@linux.intel.com <tvrtko.ursulin@linux.intel.c=
-om>; airlied@gmail.com <airlied@gmail.com>; daniel@ffwll.ch <daniel@ffwll.c=
-h>; alex.williamson@redhat.com <alex.williamson@redhat.com>; cohuck@redhat.=
-com <cohuck@redhat.com>; intel-gvt-dev@lists.freedesktop.org <intel-gvt-dev=
-@lists.freedesktop.org>; intel-gfx@lists.freedesktop.org <intel-gfx@lists.f=
-reedesktop.org>; dri-devel@lists.freedesktop.org <dri-devel@lists.freedeskt=
-op.org>=0A=
-Subject: [PATCH] fix gvtg cursor position if it is negative =0A=
-=A0=0A=
-From 8d2a0c2c265119cb481deab825ea59c9605f3bd8 Mon Sep 17 00:00:00 2001=0A=
-From: Qi Zhou <atmgnd@outlook.com>=0A=
-Date: Thu, 29 Dec 2022 20:15:51 +0800=0A=
-Subject: [PATCH] fix gvtg cursor position if it is negative=0A=
-=0A=
-It is valid if position of cursor is negative(not hotspot coordinates). for=
-=0A=
-example: precision section, resize, move, north east arrow...=0A=
-=0A=
-Signed-off-by: Qi Zhou <atmgnd@outlook.com>=0A=
----=0A=
-=A0drivers/gpu/drm/i915/gvt/dmabuf.c | 5 ++---=0A=
-=A0drivers/gpu/drm/i915/gvt/dmabuf.h | 4 ++--=0A=
-=A0include/uapi/linux/vfio.h=A0=A0=A0=A0=A0=A0=A0=A0 | 4 ++--=0A=
-=A03 files changed, 6 insertions(+), 7 deletions(-)=0A=
-=0A=
-diff --git a/drivers/gpu/drm/i915/gvt/dmabuf.c b/drivers/gpu/drm/i915/gvt/d=
-mabuf.c=0A=
-index 355f1c0e8664..b91122b33222 100644=0A=
---- a/drivers/gpu/drm/i915/gvt/dmabuf.c=0A=
-+++ b/drivers/gpu/drm/i915/gvt/dmabuf.c=0A=
-@@ -299,9 +299,8 @@ static int vgpu_get_plane_info(struct drm_device *dev,=
-=0A=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 info->stride =3D c.width *=
- (c.bpp / 8);=0A=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 info->drm_format =3D c.drm=
-_format;=0A=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 info->drm_format_mod =3D 0=
-;=0A=
--=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 info->x_pos =3D c.x_pos;=0A=
--=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 info->y_pos =3D c.y_pos;=0A=
--=0A=
-+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 info->x_pos =3D c.x_sign ? -c.x=
-_pos : c.x_pos;=0A=
-+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 info->y_pos =3D c.y_sign ? -c.y=
-_pos : c.y_pos;=0A=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 if (validate_hotspot(&c)) =
-{=0A=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 in=
-fo->x_hot =3D c.x_hot;=0A=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 in=
-fo->y_hot =3D c.y_hot;=0A=
-diff --git a/drivers/gpu/drm/i915/gvt/dmabuf.h b/drivers/gpu/drm/i915/gvt/d=
-mabuf.h=0A=
-index 3dcdb6570eda..4103106d7cc2 100644=0A=
---- a/drivers/gpu/drm/i915/gvt/dmabuf.h=0A=
-+++ b/drivers/gpu/drm/i915/gvt/dmabuf.h=0A=
-@@ -41,8 +41,8 @@ struct intel_vgpu_fb_info {=0A=
-=A0=A0=A0=A0=A0=A0=A0=A0 __u32 height;=A0=A0 /* height of plane */=0A=
-=A0=A0=A0=A0=A0=A0=A0=A0 __u32 stride;=A0=A0 /* stride of plane */=0A=
-=A0=A0=A0=A0=A0=A0=A0=A0 __u32 size;=A0=A0=A0=A0 /* size of plane in bytes,=
- align on page */=0A=
--=A0=A0=A0=A0=A0=A0 __u32 x_pos;=A0=A0=A0 /* horizontal position of cursor =
-plane */=0A=
--=A0=A0=A0=A0=A0=A0 __u32 y_pos;=A0=A0=A0 /* vertical position of cursor pl=
-ane */=0A=
-+=A0=A0=A0=A0=A0=A0 __s32 x_pos;=A0=A0=A0 /* horizontal position of cursor =
-plane */=0A=
-+=A0=A0=A0=A0=A0=A0 __s32 y_pos;=A0=A0=A0 /* vertical position of cursor pl=
-ane */=0A=
-=A0=A0=A0=A0=A0=A0=A0=A0 __u32 x_hot;=A0=A0=A0 /* horizontal position of cu=
-rsor hotspot */=0A=
-=A0=A0=A0=A0=A0=A0=A0=A0 __u32 y_hot;=A0=A0=A0 /* vertical position of curs=
-or hotspot */=0A=
-=A0=A0=A0=A0=A0=A0=A0=A0 struct intel_vgpu_dmabuf_obj *obj;=0A=
-diff --git a/include/uapi/linux/vfio.h b/include/uapi/linux/vfio.h=0A=
-index 23105eb036fa..a9b93251ac7f 100644=0A=
---- a/include/uapi/linux/vfio.h=0A=
-+++ b/include/uapi/linux/vfio.h=0A=
-@@ -720,8 +720,8 @@ struct vfio_device_gfx_plane_info {=0A=
-=A0=A0=A0=A0=A0=A0=A0=A0 __u32 height;=A0=A0 /* height of plane */=0A=
-=A0=A0=A0=A0=A0=A0=A0=A0 __u32 stride;=A0=A0 /* stride of plane */=0A=
-=A0=A0=A0=A0=A0=A0=A0=A0 __u32 size;=A0=A0=A0=A0 /* size of plane in bytes,=
- align on page*/=0A=
--=A0=A0=A0=A0=A0=A0 __u32 x_pos;=A0=A0=A0 /* horizontal position of cursor =
-plane */=0A=
--=A0=A0=A0=A0=A0=A0 __u32 y_pos;=A0=A0=A0 /* vertical position of cursor pl=
-ane*/=0A=
-+=A0=A0=A0=A0=A0=A0 __s32 x_pos;=A0=A0=A0 /* horizontal position of cursor =
-plane */=0A=
-+=A0=A0=A0=A0=A0=A0 __s32 y_pos;=A0=A0=A0 /* vertical position of cursor pl=
-ane*/=0A=
-=A0=A0=A0=A0=A0=A0=A0=A0 __u32 x_hot;=A0=A0=A0 /* horizontal position of cu=
-rsor hotspot */=0A=
-=A0=A0=A0=A0=A0=A0=A0=A0 __u32 y_hot;=A0=A0=A0 /* vertical position of curs=
-or hotspot */=0A=
-=A0=A0=A0=A0=A0=A0=A0=A0 union {=0A=
--- =0A=
-2.25.1=
+From: Thomas Zimmermann <tzimmermann@suse.de> Sent: Monday, December 19, 20=
+22 8:05 AM
+>=20
+> Generic fbdev drivers use the apertures field in struct fb_info to
+> control ownership of the framebuffer memory and graphics device. Do
+> not set the values in hyperv-fb.
+>=20
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> ---
+>  drivers/video/fbdev/hyperv_fb.c | 17 ++++++-----------
+>  1 file changed, 6 insertions(+), 11 deletions(-)
+>=20
+> diff --git a/drivers/video/fbdev/hyperv_fb.c b/drivers/video/fbdev/hyperv=
+_fb.c
+> index d8edb5635f77..1c7d6ff5a6c0 100644
+> --- a/drivers/video/fbdev/hyperv_fb.c
+> +++ b/drivers/video/fbdev/hyperv_fb.c
+> @@ -988,13 +988,10 @@ static int hvfb_getmem(struct hv_device *hdev, stru=
+ct fb_info *info)
+>  	struct pci_dev *pdev  =3D NULL;
+>  	void __iomem *fb_virt;
+>  	int gen2vm =3D efi_enabled(EFI_BOOT);
+> +	resource_size_t base, size;
+>  	phys_addr_t paddr;
+>  	int ret;
+>=20
+> -	info->apertures =3D alloc_apertures(1);
+> -	if (!info->apertures)
+> -		return -ENOMEM;
+> -
+>  	if (!gen2vm) {
+>  		pdev =3D pci_get_device(PCI_VENDOR_ID_MICROSOFT,
+>  			PCI_DEVICE_ID_HYPERV_VIDEO, NULL);
+> @@ -1003,8 +1000,8 @@ static int hvfb_getmem(struct hv_device *hdev, stru=
+ct fb_info *info)
+>  			return -ENODEV;
+>  		}
+>=20
+> -		info->apertures->ranges[0].base =3D pci_resource_start(pdev, 0);
+> -		info->apertures->ranges[0].size =3D pci_resource_len(pdev, 0);
+> +		base =3D pci_resource_start(pdev, 0);
+> +		size =3D pci_resource_len(pdev, 0);
+>=20
+>  		/*
+>  		 * For Gen 1 VM, we can directly use the contiguous memory
+> @@ -1027,8 +1024,8 @@ static int hvfb_getmem(struct hv_device *hdev, stru=
+ct fb_info *info)
+>  		}
+>  		pr_info("Unable to allocate enough contiguous physical memory on Gen 1=
+ VM. Using MMIO instead.\n");
+>  	} else {
+> -		info->apertures->ranges[0].base =3D screen_info.lfb_base;
+> -		info->apertures->ranges[0].size =3D screen_info.lfb_size;
+> +		base =3D screen_info.lfb_base;
+> +		size =3D screen_info.lfb_size;
+>  	}
+>=20
+>  	/*
+> @@ -1070,9 +1067,7 @@ static int hvfb_getmem(struct hv_device *hdev, stru=
+ct fb_info *info)
+>  	info->screen_size =3D dio_fb_size;
+>=20
+>  getmem_done:
+> -	aperture_remove_conflicting_devices(info->apertures->ranges[0].base,
+> -					    info->apertures->ranges[0].size,
+> -					    false, KBUILD_MODNAME);
+> +	aperture_remove_conflicting_devices(base, size, false, KBUILD_MODNAME);
+>=20
+>  	if (gen2vm) {
+>  		/* framebuffer is reallocated, clear screen_info to avoid misuse from =
+kexec */
+> --
+> 2.39.0
+
+Reviewed-by: Michael Kelley <mikelley@microsoft.com>
+
