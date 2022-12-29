@@ -2,55 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E265658B40
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Dec 2022 10:55:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CBE9658C1F
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Dec 2022 12:22:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BAD110E1F1;
-	Thu, 29 Dec 2022 09:55:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38AC310E15B;
+	Thu, 29 Dec 2022 11:21:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BDEC10E1EE;
- Thu, 29 Dec 2022 09:54:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A92F910E15B
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Dec 2022 11:21:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1672307698; x=1703843698;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Ekul8eGeWcmCvyM+3dUi16jfyX+OFQQRDZLG3bQVomQ=;
- b=d+7bN+tjqh3eof9bdGje2kpI4zamfY6oXHKsH+IltfywydlGu2NF0yZG
- 4vIYv/W8lJbY30ukqxMBcjHIRPMCg9jmTJADrPDZdo1FJxI3F6MVBRfwY
- BIgsMVcxs9JW7VBN0D8cQHYX+iVJvNWG3lWD/FemsFFxxPHFlM+r1fbYY
- qVh8BxuHJ89OYNeXwCreHJSPhBe+76NSoPDLdOu7BGq1oDzOlJyyMm8DT
- Ef4uT6gE+ggVAwsKhrxH9vy9WHVpZ+HRJiPSnjy/8deUA37o+bNIcgSHi
- 0elXSLbGnfbt6xofms5/X0zBh+1Hn27+PPdr9nHZYPjJGtGv4Kw4SFjyF g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10574"; a="318699301"
-X-IronPort-AV: E=Sophos;i="5.96,283,1665471600"; d="scan'208";a="318699301"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ t=1672312896; x=1703848896;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=ElsKLYwfL/jOPq2RFerFYKrEshEDZ6G2B0V3gZSNhRg=;
+ b=MObEKocQTHXu/DI1kAfAQ3vKrqFJiQxYAVuymkd/S4BL6JrKJX6wfuNq
+ Y9otOKhC+X2x2nsC36PoPLVvC8r22H0NKXkjzUlJpBlC0nJm24Br2fA71
+ Tmbcw7pDRhxR/JwGsH/Bd1dkFeRhX0+ptb/V611LBQIcu1b2ZerKzRh18
+ 0W3Bl3zYn7elZvoT8vopzPUdSOLZ3h85FdphngqFqP4fJCF6Aco/HJlFB
+ CxhM2SbckxarWElHb/Hgy59FqmkETyiS98tpvVZu7FUJ6NP8aD8xcW5M2
+ OyT6pV/JSSLvNWtZivHEA6rw59egYQgNlG8E6fOjy1HC6EEK/m2uzlvLD A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10574"; a="318711172"
+X-IronPort-AV: E=Sophos;i="5.96,283,1665471600"; d="scan'208";a="318711172"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Dec 2022 01:54:57 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10574"; a="742258354"
-X-IronPort-AV: E=Sophos;i="5.96,283,1665471600"; d="scan'208";a="742258354"
+ 29 Dec 2022 03:21:35 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10574"; a="684188246"
+X-IronPort-AV: E=Sophos;i="5.96,283,1665471600"; d="scan'208";a="684188246"
 Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.17.178])
  ([10.213.17.178])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Dec 2022 01:54:52 -0800
-Message-ID: <6e727952-3ad0-fcc3-82f1-c465dcffd56f@intel.com>
-Date: Thu, 29 Dec 2022 10:54:50 +0100
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Dec 2022 03:21:34 -0800
+Message-ID: <4a00986d-8041-6c90-eaff-86c6ceb0b157@intel.com>
+Date: Thu, 29 Dec 2022 12:21:32 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Firefox/102.0 Thunderbird/102.6.1
-To: Andrew Morton <akpm@linux-foundation.org>
-References: <20221222114635.1251934-1-andrzej.hajda@intel.com>
- <20221222092147.d2bb177c67870884f2e59a9b@linux-foundation.org>
 Content-Language: en-US
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20221222063428.3052172-1-ankit.k.nautiyal@intel.com>
 From: Andrzej Hajda <andrzej.hajda@intel.com>
 Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
  Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20221222092147.d2bb177c67870884f2e59a9b@linux-foundation.org>
+In-Reply-To: <20221222063428.3052172-1-ankit.k.nautiyal@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 00/19] Introduce __xchg, non-atomic xchg
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsb: Remove check for dsb in
+ dsb_commit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,91 +64,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, linux-m68k@vger.kernel.org,
- linux-ia64@vger.kernel.org, linux-sh@vger.kernel.org,
- Peter Zijlstra <peterz@infradead.org>, dri-devel@lists.freedesktop.org,
- linux-mips@vger.kernel.org, sparclinux@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
- linux-hexagon@vger.kernel.org, linux-snps-arc@lists.infradead.org,
- Boqun Feng <boqun.feng@gmail.com>, linux-xtensa@linux-xtensa.org,
- Arnd Bergmann <arnd@arndb.de>, intel-gfx@lists.freedesktop.org,
- openrisc@lists.librecores.org, loongarch@lists.linux.dev,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- linux-arm-kernel@lists.infradead.org, linux-parisc@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-alpha@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Forgive me late response - Holidays,
+On 22.12.2022 07:34, Ankit Nautiyal wrote:
+> The dsb context should be already checked for NULL, before dsb_commit gets
+> called. So remove the check for dsb inside dsb_commit.
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_dsb.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+> index 3d63c1bf1e4f..ce1f8e0c2cd9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dsb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+> @@ -228,7 +228,7 @@ void intel_dsb_commit(struct intel_dsb *dsb)
+>   	enum pipe pipe = crtc->pipe;
+>   	u32 tail;
+>   
+> -	if (!(dsb && dsb->free_pos))
+> +	if (!dsb->free_pos)
 
-On 22.12.2022 18:21, Andrew Morton wrote:
-> On Thu, 22 Dec 2022 12:46:16 +0100 Andrzej Hajda <andrzej.hajda@intel.com> wrote:
->
->> Hi all,
->>
->> I hope there will be place for such tiny helper in kernel.
->> Quick cocci analyze shows there is probably few thousands places
->> where it could be useful.
-> So to clarify, the intent here is a simple readability cleanup for
-> existing open-coded exchange operations.
-
-And replace private helpers with common one, see the last patch - the 
-ultimate goal
-would be to replace all occurrences of fetch_and_zero with __xchg.
-
-> The intent is *not* to
-> identify existing xchg() sites which are unnecessarily atomic and to
-> optimize them by using the non-atomic version.
->
-> Have you considered the latter?
-
-If you mean some way of (semi-)automatic detection of such cases, then 
-no. Anyway this could be quite interesting challenge.
-
->
->> I am not sure who is good person to review/ack such patches,
-> I can take 'em.
->
->> so I've used my intuition to construct to/cc lists, sorry for mistakes.
->> This is the 2nd approach of the same idea, with comments addressed[0].
->>
->> The helper is tiny and there are advices we can leave without it, so
->> I want to present few arguments why it would be good to have it:
->>
->> 1. Code readability/simplification/number of lines:
->>
->> Real example from drivers/net/ethernet/mellanox/mlx5/core/esw/qos.c:
->> -       previous_min_rate = evport->qos.min_rate;
->> -       evport->qos.min_rate = min_rate;
->> +       previous_min_rate = __xchg(evport->qos.min_rate, min_rate);
->>
->> For sure the code is more compact, and IMHO more readable.
->>
->> 2. Presence of similar helpers in other somehow related languages/libs:
->>
->> a) Rust[1]: 'replace' from std::mem module, there is also 'take'
->>      helper (__xchg(&x, 0)), which is the same as private helper in
->>      i915 - fetch_and_zero, see latest patch.
->> b) C++ [2]: 'exchange' from utility header.
->>
->> If the idea is OK there are still 2 qestions to answer:
->>
->> 1. Name of the helper, __xchg follows kernel conventions,
->>      but for me Rust names are also OK.
-> I like replace(), or, shockingly, exchange().
->
-> But...   Can we simply make swap() return the previous value?
->
-> 	previous_min_rate = swap(&evport->qos.min_rate, min_rate);
-
-As Alexander already pointed out, swap requires 'references' to two 
-variables,
-in contrast to xchg which requires reference to variable and value.
-So we cannot use swap for cases:
-     old_value = __xchg(&x, new_value);
+Alternative would be allow passing NULL dsb, ie. removal of check on the 
+caller.
+Anyway:
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
 Regards
 Andrzej
+
+>   		return;
+>   
+>   	if (!intel_dsb_enable_engine(dev_priv, pipe, dsb->id))
 
