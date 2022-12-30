@@ -2,143 +2,137 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DDB6659ABC
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Dec 2022 17:56:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93A37659AD3
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Dec 2022 18:08:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99E6810E459;
-	Fri, 30 Dec 2022 16:56:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94B2D10E459;
+	Fri, 30 Dec 2022 17:08:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16C1B10E459
- for <intel-gfx@lists.freedesktop.org>; Fri, 30 Dec 2022 16:56:11 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE60C10E459
+ for <intel-gfx@lists.freedesktop.org>; Fri, 30 Dec 2022 17:08:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1672419371; x=1703955371;
+ t=1672420133; x=1703956133;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=iuvET0ir6IaDUPnS2T8SEXg+vjyCw/uS0NZDlM0QtHo=;
- b=JZImgBgegf1UwtJMO16U2eX6ydWN9w4e5mIT3OtXGHMn6/Pd0goW0n+0
- fpHaze2A0A3eNBzyWKZ/fgr/FB1eVjAbp98lQPyavrJ/1xks9+xhG4k4B
- 19QdeRnjjZvOAWG8EcMBrItff5yyZ3KBTC5GZlI7hAX/S7i1W3tAAOlwb
- t44GrtTzjsTDWdGQE35tHuz8iNUaTHvw18bJgMZVNAlXaBcSZt6nUwjB6
- h50UHISG1vck1/xGiU4mtzkoTKXeitk8UP3QpKvtFQDIOzEEwtRu+D//2
- juLKpdsNn4sblttG1roLrEep8gyEGkcFpVa0aocIGxOCXMowag7rM0p4s w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10576"; a="301601269"
-X-IronPort-AV: E=Sophos;i="5.96,287,1665471600"; d="scan'208";a="301601269"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Dec 2022 08:56:10 -0800
+ bh=BOYo7pcHk4Xlh2rTu3HTx8oLrGc5iRUkfLk5ouCTBCs=;
+ b=WKRdN/qkeo8GhEFlNeOQNN1BkvHcgK0u/7LKKlv7RMeqV0HnxqiFKMqO
+ Enf57BC8WzsdglIMLITlv8sz2j301AZ5vr/lh0FraUOQ9RWIQ7U1ZpfPR
+ XZM+q1fPJMGHTZH6x1YBvX70Wy47uhjqLtyd+DcDB6tO9oPwUG3ypx+2u
+ 3u7AkTFGo44V5EDOR7BUopr4M3mkhYhbuA31quO3EG1/oSH2HYZhxNNxH
+ FmNY7n+c7QNHt8LMQCzBOECUookzjXbRNw7UMBD0gwGoWtPna3gLoDUYT
+ tw3f/ECRHmdEf+1Gjj6Y9HAHMN1ZQR7TrsSr5ZlLerhJ+mVKJ2AKkMdpZ A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10576"; a="385661784"
+X-IronPort-AV: E=Sophos;i="5.96,287,1665471600"; d="scan'208";a="385661784"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Dec 2022 09:08:53 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10576"; a="655900785"
-X-IronPort-AV: E=Sophos;i="5.96,287,1665471600"; d="scan'208";a="655900785"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmsmga007.fm.intel.com with ESMTP; 30 Dec 2022 08:56:10 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10576"; a="796272090"
+X-IronPort-AV: E=Sophos;i="5.96,287,1665471600"; d="scan'208";a="796272090"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmsmga001.fm.intel.com with ESMTP; 30 Dec 2022 09:08:52 -0800
 Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Fri, 30 Dec 2022 08:56:10 -0800
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.16; Fri, 30 Dec 2022 09:08:52 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Fri, 30 Dec 2022 08:56:09 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Fri, 30 Dec 2022 08:56:09 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.105)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.16 via Frontend Transport; Fri, 30 Dec 2022 09:08:52 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.105)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Fri, 30 Dec 2022 08:56:08 -0800
+ 15.1.2507.16; Fri, 30 Dec 2022 09:08:51 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lOAMs3InSKp8CmeDhFKocaIvD5i2wzqgF0C6HKC8zYk1X4HpgIzAVlO5iTwLtxocqx1fxb3qYD9W6JsBuWwXfBbAP2FNlqwa10FVPKCV7U0p3FOv4AzTziGRJ+l+gFfG0c71iplWQpxAlWBoy4eLgqo8wtz7k+Ld6NYeCcA+s2EOYmskpHRQr+b+A1MIR6axovGdmslIGHhQWcIzH7Q6ydqNNi/EoRn/grekFYAi9kUaZL6fjE8NptuiWRzl07lJAo36eyEIjbW05gG0lHUK4Z9o1xADNRduB0SpNUeTFn2io0Pjg3CUT+iNi1bqzMi+ZCKOcMOer6+kVuY9fSXQmw==
+ b=QzWwpplxEjQC1eK7BVnhOuxRHu4Gglb7EssuHF7ynDqQVsig/98NgdsbZoEBaqRF+6uhH3zqvvPpKAnr54jqvZWZjlZwNJgVO0NVJcBumoIU1Ob6e4btDA2wELjxSREnFd+rpQbHLH2jH8F9L6+S990i8SEBbvGA49NnIIc1xtYZGiLkmhPVIOBvim2Jaecms6TOTAtovj6X7/QGyO7xPz2uZYXODpO79BI3MgCRa6Mv7kQzITJ62nYltQSexNPpaiqV13kU6fhyaBkQTNSBrYPxszE/6+G8369Lmpnv7QxEsWw5rjL4uuajgzmGgbBXfSsA6JLHLut06hn+knfjxg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=miOIfdkdwk4JkN4L541KmbQSJnYNO7TFR7/iGYDNJzw=;
- b=HYUwfFJvrRpOJmhXm14mNvX/9UtJT9pifCcE9e1kZ9eglEP+V+HPiUp+t12BHVLkbACWWDqqd6XlnrO4JVEGG53hvQ0v5TaCCnhW6eiu0E2V9IAm2MkfukGa6k5940YfzzII1H2+I3X7xWR+sgOkDZ0LEv9/ZkhhgxVBMooGXGf7jmrGT78zFHSA+8TPcu1QzA9wNpiNWlKjRMSmnw/PP0yO7NjNex9ki5YXWUxy3pEmL1Z5kt0/In17S4fxknuAzYBOLitW4jyVuvBZacGKsROZcXTfvZtUsD3QirHDzGV4dQnzkqiBoa00lujd+ErOQ6xAix4ULrf8GWegyNfSDA==
+ bh=8wFD8l7Gq31mLvtlaJhNVNuRI0lOP89b3DGqw/JVaOY=;
+ b=FtKon7W0+ELsEUJbXY+T4PGhZGQvCLcB9xGRW1DeVc1rJ0tgCQDZfchLaBh6HWAoF/eTxSCKs5RQQH/swzqqzYANUxJdFLCeXP1x97MmDWWtByrXoqchdWpdSxDJMVmuaVm+8jGIItOItKj6xUO7r2n2YsSKGmgMTgKpaPPNnZ0aXLMqemVQmEBP4Ii72TMkbWHPi6NCE9x0pRHX4Se+2L8aEFKUe1Jaldpwf8AuXvqkExN1nBOh6hioYdBbFvM75VMgQ9CRybR55wP71j0bwg2+q5TJAaCfaX9UgIEtOCl7Ns23ORa03JdqCy664Ob0UZAutdr7+XT1s3irGwDGag==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by CY8PR11MB6844.namprd11.prod.outlook.com (2603:10b6:930:5f::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.19; Fri, 30 Dec
- 2022 16:56:05 +0000
+ by MW4PR11MB5936.namprd11.prod.outlook.com (2603:10b6:303:16b::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.15; Fri, 30 Dec
+ 2022 17:08:48 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::499c:efe3:4397:808]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::499c:efe3:4397:808%9]) with mapi id 15.20.5944.016; Fri, 30 Dec 2022
- 16:56:05 +0000
-Date: Fri, 30 Dec 2022 11:56:00 -0500
+ 17:08:48 +0000
+Date: Fri, 30 Dec 2022 12:08:44 -0500
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-Message-ID: <Y68YIO5auRf0vR4u@intel.com>
-References: <20221229190740.45471-1-gustavo.sousa@intel.com>
- <20221229190740.45471-3-gustavo.sousa@intel.com>
- <Y66lryH0QYwmtxbN@intel.com>
- <20221230133628.oyk4vlvaoi7ue3b7@gjsousa-mobl2>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <Y68bHEiFZJMZJ9Ot@intel.com>
+References: <20221229161230.1261938-1-rodrigo.vivi@intel.com>
+ <20221229180134.ulydr5qprda3z3zz@gjsousa-mobl2>
+ <Y66euxZzzpuHmnVd@intel.com> <87358x12r8.fsf@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20221230133628.oyk4vlvaoi7ue3b7@gjsousa-mobl2>
-X-ClientProxiedBy: BYAPR21CA0022.namprd21.prod.outlook.com
- (2603:10b6:a03:114::32) To MN0PR11MB6059.namprd11.prod.outlook.com
+In-Reply-To: <87358x12r8.fsf@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0063.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c4::8) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|CY8PR11MB6844:EE_
-X-MS-Office365-Filtering-Correlation-Id: 12c94eb1-848c-4c94-22a8-08daea86bd6d
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|MW4PR11MB5936:EE_
+X-MS-Office365-Filtering-Correlation-Id: e242eeaa-c90d-4e94-82d1-08daea888431
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: STbOOY/P7wYOsLJSEOVm+6K/7PIu4rBBfcO+LNL/QWQllK1TRfL+jq+rat7d0REAbDBS422gQ5eopjHPaI1naJ4twDRoj5vKAzbNY//FXWD5Ff/kHZ57RXEuEHb9qUu5ACXVvwNnhBiCcjqoC/yfQqELmvETDCenKoKogwTp0vtXkHaSLxbmaqYerRhfISsBRlXu7UsweRqIa8Eatf060Lq4c9suMZy4HrIkmrQYJgbJxiIkJf5etP5br5GYnJ/eJUGq3gmMJsnlFaEYqgTIWfIzLwwhpdaXBTPFdx1eEJ19vDymh72hs5r2F4kDTmmyyPwpv0htxob/Ei73heewlFSbqG/Y6MZZp6QmfXIoaumghVm+Yj/rKlEe0WBJMr0PHicXix4EtuvNW9wlkmtt3FPA7uwUHAsrABGXK0F2GTldoeJsBGn7NF0bjsobpDBlBk7HhZ10fiFZEb7fXDZQXuXuDXar3JMbotHtg9Ve89j4wmHjR4sKR93hGrRMH6fo+orHS3EhT4I2aACJMyy025c8VvTEngCzYal4w1Lsikjp81r9/+PjNNo3qQVshOzVuvxqKCfAV0+LH8hxV0RQ4hXILnZQBXpKOMivoCv4MYP7oixp5cr+wNrGiav8C4t9xkGBSP2ahsblxBqKci3xhOPj8B3SUs2DrDQa4e6S4LU=
+X-Microsoft-Antispam-Message-Info: gtUjFRpmYtCktLnjOLXF20fliur3L3EONCigs4PYa4KkOCBtjNy3tsvtSfkKWfAihl60iiKzK3ogx/aRJeF49kaBGAyAh6WcdTTyj+0nNX0oc+xouolIJOQcggujBZQvwUK8TT9b+52dDe6McxLOz9eJ1eJaxTwNktNTyyNLN4xJjCnReGw8Iq6OTEOcqQABmTD+HmC1+VNkE9o/014UQ3RHPFszjG7M1UFDtt5tinaOT/J5ZfCOJeW5Vy3tKrrL4sAueCA0gCWodM09tLx82gNa6ZnsOFP7vjRGgRwLk9ZZCfMpA7BMfBCQtZD5E3dnkyh0uVIIdG/5YCnbpaPaVVyicO7cMW2bX/MzwI1ljNMtrWuJk467yj+DCNMzoXPJ695zCiTvBSG0ZN3/HUPm42mgDrtqiAdEyLOv4NFxyUoH3PWCbLtLKuEdsngFDDaVRbHu+J4SlA95dztZWu2xP6+wM87KJ3NnYDIgcXJUB2xOTWmbnQQhNhEJCyMwDLQnrLcAAnQYNKb6AswJHIevxnO9nTkHCQcIaQ9YjXGweklCFsT3aHClGfzzohThnsXVt194dfsd9wAgVlJORcbXjKBTXTTf8wa/NEpWTWswv4rkqNrPyxfJZ6N8dv7+hNFtSiPwXqekDUgzz3UvTY59Ag==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(376002)(39860400002)(136003)(366004)(396003)(346002)(451199015)(6486002)(107886003)(186003)(4326008)(8676002)(36756003)(66946007)(966005)(5660300002)(66556008)(66476007)(2616005)(6666004)(6512007)(478600001)(6862004)(316002)(83380400001)(37006003)(86362001)(6636002)(8936002)(54906003)(26005)(6506007)(41300700001)(38100700002)(82960400001)(44832011)(2906002);
+ SFS:(13230022)(136003)(39860400002)(346002)(376002)(396003)(366004)(451199015)(4326008)(6486002)(478600001)(6666004)(316002)(6916009)(2906002)(36756003)(82960400001)(83380400001)(38100700002)(2616005)(6506007)(26005)(86362001)(6512007)(186003)(8676002)(8936002)(44832011)(66476007)(66556008)(66946007)(5660300002)(41300700001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?XSiSQlxDlNNi546+hy2wtqd5IoQ0gZhGlCzqn6KNb2XkPwJEmLBoVm1Q6UXD?=
- =?us-ascii?Q?wKz+nkQhhxpf8OpqwTuJViz3BjvH2cG21ROMy5BTHqX2EHgS0jq8oUanVA+n?=
- =?us-ascii?Q?nMZ2ZSaX4R06PTjBCwABT8KZG34lffZso3eFryBIL1oLrWSsovOiUin9wca/?=
- =?us-ascii?Q?XLCUB76BqOldtBco7mwfD2ms5uBlg07WTj4RHy9qVrOhW5TsOOsAkfLPizcb?=
- =?us-ascii?Q?ofvod2xk4MnAE3ZsXKv5EtpVZzuERuXt/fYGmtESYe/B+LK/T/LCoUnemVzA?=
- =?us-ascii?Q?Xm5Q3RFmkwskai+tPeKKpZ/7bHS1DwpH1r5pw0RbNncxJAJlyzbt/oS4RJnJ?=
- =?us-ascii?Q?++BoJC7rn97s2RGB1Ohg8Nx6NbwGxg1JEiOU2XfOw198y5QNdyBK6/LEbx1n?=
- =?us-ascii?Q?QETXW1V+i+Da343SYYj4b7CWAKWq4AjIq0pQlf1zPxIGZlkAJo7AHB6hs9Df?=
- =?us-ascii?Q?QYuGcJ2t8PxXjnLb6p5uOTkGq3Ur0XOcqJ/dYFp32TxhcjFdVpYvV0ZIT7b3?=
- =?us-ascii?Q?W4wfODXH05fsTb1wbQiTbphimfv/cb0Rk53xkq748Yp8/FYccH4pC2Ok8mDT?=
- =?us-ascii?Q?2HRlxuuH3pDR9wQUF5gxGgIT3UXk5Q2wPz8nh9I5Y+oudZye4pVi9yVJYBro?=
- =?us-ascii?Q?PHJlgPz7FoB/qpgxw/47oUheGk6IJhkgewAm4R4qffFuFDOYeECXv109B5vR?=
- =?us-ascii?Q?bm1qXfFgjqv0CSFhBwVF1gVGSfr4C7wRligqKafAl16BBJkOFrTvxqqPOEd5?=
- =?us-ascii?Q?gus3/i3/uHWKX+fS/NYNaHjz7t+iX9scjXbaPY+jbhiKdjOK/jyToxnf2w/d?=
- =?us-ascii?Q?3a+lFLhu6Lh6AP1agCHOIeScFHpTa3uycVJrx3cyf8nnbEVSy/afRxw2gt85?=
- =?us-ascii?Q?q8o5hgObJ7uTX4mg5zN465xXYOc3ZC1Fln6EooFQ57EUm8JdzmRKYvmEeGnY?=
- =?us-ascii?Q?gevmESxLb98BM9Taks7L4CYMko/NOxjGmUwBkxGKhmKA53woLhz+7mlzxB4S?=
- =?us-ascii?Q?0gTASp9vHHfd2BOr4ywyn4JRa07LQvyoEvQp37RFH786W5F32XKq3b7eRCwf?=
- =?us-ascii?Q?yn50IwYhL9zbXh39kNczN6uLR//T4V3akXqm9isb6C43lzUvHYAztp8qDRYe?=
- =?us-ascii?Q?HUCxL0KbBn1Lelixi5ekLkdUmAgF6SkC6d3fT5cp6IK1gcYojL0Qz0Zl1xNt?=
- =?us-ascii?Q?y42eAHvv0hfZx6z5Y1ZBer+KdSm6vEBXBFtcBRWa+ttUwAjjgi7YObCivfR9?=
- =?us-ascii?Q?fORE5Hx3WVxUFfeKK4DSeJkR98XWVIKuAFxzrJstWrdgWg0UO0KwkZDcb7UP?=
- =?us-ascii?Q?5MmvAlBd9Aq2eTYk87sjL+LTrC5CULXgU0cuI1T5qdfPbpHN3Yj+7NQ7bHDH?=
- =?us-ascii?Q?K+ZdMyA3ML/ReESIzZmjmnPVfoeeRFpyh31bl/dnVkD0E4SSeifsX7LRfeST?=
- =?us-ascii?Q?M2nI3iFgISz1VJSt/68quu6CtFp3Nfuu3zICQXZtM6SSsBM7J+RqmRelNdnM?=
- =?us-ascii?Q?exywRa0VLlb2YJ0DN8t3TRXfPxpvU3rBzFtxz/e/knGwoT6qZ45BK50jwQju?=
- =?us-ascii?Q?N+NanGB0g7nFDQYe4IxVyMG2SCB77SKvYR/TMd0pp9AcfBA9eUVjH8trrx1+?=
- =?us-ascii?Q?YQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 12c94eb1-848c-4c94-22a8-08daea86bd6d
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?SGl5qtts+ZCzi4QXZGJg2JvxiZeepPk+A8OCffBP31v3BQxL0jm4SicS12gA?=
+ =?us-ascii?Q?9OqJAqoY3sB0lKmeP25IoLd1HYRSY0+4XsiUi1VbbNVG/FnznWOKA3NxEKnK?=
+ =?us-ascii?Q?pJygnU/bcr/UY9MUC7dVFcmJ/L1jY3pjwTpst9vsyQ3lDWWaachjbDy17yQy?=
+ =?us-ascii?Q?1SZJvIKLvWeHT/wahXqeMMo/lOITayMwSUPlCNl0w8Tium6HUKxisc6UsV70?=
+ =?us-ascii?Q?U6wrrKyKvEHFzhXxIOisIw4+GTKYO0TcC9bQUOUZki0YNTOo8vsFeJaNQlhW?=
+ =?us-ascii?Q?cStpPlj3DeQ+Ge6K2g3k29n/4N81HXKjsS8Mf00WLBjKifkUK2RiFPsz6BjA?=
+ =?us-ascii?Q?UxIVpDYxQCNozYCVIiRt6Yp4HGb2JBnHABzLJXENepu8SIaH0IfcGtPuvmfm?=
+ =?us-ascii?Q?S9+dJAd5LTWBidwYnNFwkdFX94nfnKmeXPRbeMY1Kbg8FI0WzEvEYZFTsYhC?=
+ =?us-ascii?Q?MqXmY9hhfnnBqbcBryjeyg0v6ztISPCQ1V0GW51QQlOI1LENIj18/1acDrRO?=
+ =?us-ascii?Q?tJDa/bEksHDZVtF7jukev9Ia2wJGXqMHzd9QmVqMRE6w2rx7D0SnghBbnzyI?=
+ =?us-ascii?Q?CaobGrhYGbLHFMag9JoDAjbIgU0aJ49a/A8vGrz/fADN35BZnZOELiz8wndv?=
+ =?us-ascii?Q?9OynoXcIrXOby7hbTsGr5Z2H3nhQQheOGFi2l6XNWOb1fXb8KFqVYbtFkn43?=
+ =?us-ascii?Q?Lr5xhaXea5BqUKC+G/aK+M8H3JghQewZsc0O6Jv3OEqQmcuP2gsSZqyhNb/Q?=
+ =?us-ascii?Q?Rw/UdghLM1NSrdvZ39ykAIpArMM6Wml1GrnD54S3vLRD3AzKxEueI+cIod5H?=
+ =?us-ascii?Q?LgeYtAqxPi0oC4N+ay9wP7C57IlB502v7bXm9Oh58Mv2tB5Nk1bs1DfhMsBc?=
+ =?us-ascii?Q?3YS1pTwCl3842ONT3RZflosOLpCB0ldTlIsJfgFt/7/5U2miOk1DXGkWE/X9?=
+ =?us-ascii?Q?aZ5esEBQD5+QdFwexJyGTadRteoa55FaUBpxgSLqLqJ66Sm7kEasWqlqe103?=
+ =?us-ascii?Q?NlevIiWt/sIS2u5DwYgBFOY8qSclLWC48eRhC/RX19GPAuPY2nFs3k6aQ+OA?=
+ =?us-ascii?Q?eRfiR2ICjJAV8w7Y5qDhJEodAE1+1tRYxJb8TbY5zBex8qS39Gh5kpQ9kq89?=
+ =?us-ascii?Q?h9uRbN5JtZDGIUc4l4FKsrutMT9vUWWX0DaHDIxOLx/i830HZ9GeEdfPbJKK?=
+ =?us-ascii?Q?ukqdzmFgpktKpBhvhc7l47dQ2YC3SFs2WoA3nkqoa9s9irq90rT/eITgSRa7?=
+ =?us-ascii?Q?2/9LifFxHZ2oouZKPUVdqPkh1JnHPC3aZ9QmVXO713T0axn3G0QBoCGAjq4V?=
+ =?us-ascii?Q?V+paT2LhP5T/N2lv8AxEDb1GLYWyOb5SR+Fe/gNy/72bLEAv7vxIdBQdwRum?=
+ =?us-ascii?Q?e8i3PL4e4LKWjHIg091urOtgCmXDhRKZRB+DEAKi3drxZ1sTQpnxavT64hxu?=
+ =?us-ascii?Q?69YsCNZN64ClP2y2poEO78OsSI3e/w4ZagbFa0+1hF2xsy8q3d/zDtm/qC38?=
+ =?us-ascii?Q?5+3u2xfvTfMEibI1xsWWVawTZv3iB9m23AIGDCdKBmwJM1yp/99p+t4Vjr7U?=
+ =?us-ascii?Q?mmZNg+xqTRFtJzls3QUj5wd3UVzXU1SqYPmZxQPGr2piNCl11I33l4quxMz+?=
+ =?us-ascii?Q?4w=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e242eeaa-c90d-4e94-82d1-08daea888431
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Dec 2022 16:56:05.2628 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Dec 2022 17:08:48.2822 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: avD9jDd+FZqBxOoO7c2RkDySqog5ma9uTNr70Hj/eAOBYcc15wuZCOWMiFmVFKkeh2MrOgucXdde99kACD55wQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6844
+X-MS-Exchange-CrossTenant-UserPrincipalName: pmZz8BYAXfFCuClaiUS/QeaLivpj4XtdH0JcdXvwCe8I+LKpscZCvcj/r0Lnu4ct7W1bDwirKACmaCic1Rlz0Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB5936
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v3 2/2] drm/i915/dmc: Prepare to use
- unversioned paths
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Expand force_probe to block probe
+ of devices as well.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,230 +145,195 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 30, 2022 at 10:36:28AM -0300, Gustavo Sousa wrote:
-> On Fri, Dec 30, 2022 at 03:47:43AM -0500, Rodrigo Vivi wrote:
-> > On Thu, Dec 29, 2022 at 04:07:40PM -0300, Gustavo Sousa wrote:
-> > > New DMC releases in linux-firmware will stop using version number in
-> > > blob filenames. This new convention provides the following benefits:
-> > > 
-> > >   1. It simplifies code maintenance, as new DMC releases for a platform
-> > >      using the new convention will always use the same filename for the
-> > >      blob.
-> > > 
-> > >   2. It allows DMC to be loaded even if the target system does not have
-> > >      the most recent firmware installed.
-> > > 
-> > > Prepare the driver by:
-> > > 
-> > >   - Using the new convention for DMC_PATH() and renaming the currently
-> > >     used one to make it clear it is for the legacy scheme.
-> > > 
-> > >   - Implementing a fallback mechanism for future transitions from
-> > >     versioned to unversioned paths so that we do not cause a regression
-> > >     for systems not having the most up-to-date linux-firmware files.
-> > > 
-> > > v2:
-> > >   - Keep using request_firmware() instead of firmware_request_nowarn().
-> > >     (Jani)
-> > > v3:
-> > >   - Keep current DMC paths instead of directly using unversioned ones,
-> > >     so that we do not disturb initrd generation.
-> > >     (Lucas, Rodrigo)
-> > > 
-> > > References: https://lore.kernel.org/r/Y3081s7c5ksutpMW@intel.com
-> > 
-> > I also don't believe this link is a good reference here...
+On Fri, Dec 30, 2022 at 02:42:51PM +0200, Jani Nikula wrote:
+> On Fri, 30 Dec 2022, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> > On Thu, Dec 29, 2022 at 03:01:34PM -0300, Gustavo Sousa wrote:
+> >> On Thu, Dec 29, 2022 at 11:12:30AM -0500, Rodrigo Vivi wrote:
+> >> > There are new cases where we want to block i915 probe, such
+> >> > as when experimenting or developing the new Xe driver.
+> >> > 
+> >> > But also, with the new hibrid cards, users or developers might
+> >> > want to use i915 only on integrated and fully block the probe
+> >> > of the i915 for the discrete. Or vice versa.
+> >> > 
+> >> > Oh, and there are even older development and validation reasons,
+> >> > like when you use some distro where the modprobe.blacklist is
+> >> > not present.
+> >> > 
+> >> > But in any case, let's introduce a more granular control, but without
+> >> > introducing yet another parameter, but using the existent force_probe
+> >> > one.
+> >> > 
+> >> > Just by adding a ! in the begin of the id in the force_probe, like
+> >> > in this case where we would block the probe for Alder Lake:
+> >> > 
+> >> > $ insmod i915.ko force_probe='!46a6'
+> >> > 
+> >> > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> >> > ---
+> >> >  drivers/gpu/drm/i915/Kconfig       | 13 ++++++++++---
+> >> >  drivers/gpu/drm/i915/i915_params.c |  2 +-
+> >> >  drivers/gpu/drm/i915/i915_pci.c    | 29 +++++++++++++++++++++++++----
+> >> >  3 files changed, 36 insertions(+), 8 deletions(-)
+> >> > 
+> >> > diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
+> >> > index 3efce05d7b57..8873cd0355b7 100644
+> >> > --- a/drivers/gpu/drm/i915/Kconfig
+> >> > +++ b/drivers/gpu/drm/i915/Kconfig
+> >> > @@ -54,24 +54,31 @@ config DRM_I915
+> >> >  	  If "M" is selected, the module will be called i915.
+> >> >  
+> >> >  config DRM_I915_FORCE_PROBE
+> >> > -	string "Force probe driver for selected new Intel hardware"
+> >> > +	string "Force probe i915 for selected Intel hardware IDs"
+> >> >  	depends on DRM_I915
+> >> >  	help
+> >> >  	  This is the default value for the i915.force_probe module
+> >> >  	  parameter. Using the module parameter overrides this option.
+> >> >  
+> >> > -	  Force probe the driver for new Intel graphics devices that are
+> >> > +	  Force probe the i915 for Intel graphics devices that are
+> >> >  	  recognized but not properly supported by this kernel version. It is
+> >> >  	  recommended to upgrade to a kernel version with proper support as soon
+> >> >  	  as it is available.
+> >> >  
+> >> > +	  It can also be used to block the probe of recognized and fully
+> >> > +	  supported devices.
+> >> > +
+> >> >  	  Use "" to disable force probe. If in doubt, use this.
+> >> >  
+> >> > -	  Use "<pci-id>[,<pci-id>,...]" to force probe the driver for listed
+> >> > +	  Use "<pci-id>[,<pci-id>,...]" to force probe the i915 for listed
+> >> >  	  devices. For example, "4500" or "4500,4571".
+> >> >  
+> >> >  	  Use "*" to force probe the driver for all known devices.
+> >> >  
+> >> > +	  Use "!" right before the ID to block the probe of the device. For
+> >> > +	  example, "4500,!4571" forces the probe of 4500 and blocks the probe of
+> >> > +	  4571.
+> >> > +
+> >> >  config DRM_I915_CAPTURE_ERROR
+> >> >  	bool "Enable capturing GPU state following a hang"
+> >> >  	depends on DRM_I915
+> >> > diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
+> >> > index 61578f2860cd..d634bd3f641a 100644
+> >> > --- a/drivers/gpu/drm/i915/i915_params.c
+> >> > +++ b/drivers/gpu/drm/i915/i915_params.c
+> >> > @@ -122,7 +122,7 @@ i915_param_named_unsafe(enable_psr2_sel_fetch, bool, 0400,
+> >> >  	"Default: 0");
+> >> >  
+> >> >  i915_param_named_unsafe(force_probe, charp, 0400,
+> >> > -	"Force probe the driver for specified devices. "
+> >> > +	"Force probe options for specified supported devices. "
+> >> >  	"See CONFIG_DRM_I915_FORCE_PROBE for details.");
+> >> >  
+> >> >  i915_param_named_unsafe(disable_power_well, int, 0400,
+> >> > diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> >> > index 668e9da52584..fc1383f3a646 100644
+> >> > --- a/drivers/gpu/drm/i915/i915_pci.c
+> >> > +++ b/drivers/gpu/drm/i915/i915_pci.c
+> >> > @@ -1253,7 +1253,7 @@ static void i915_pci_remove(struct pci_dev *pdev)
+> >> >  }
+> >> >  
+> >> >  /* is device_id present in comma separated list of ids */
+> >> > -static bool force_probe(u16 device_id, const char *devices)
+> >> > +static bool device_id_in_list(u16 device_id, const char *devices, bool negative)
+> >> >  {
+> >> >  	char *s, *p, *tok;
+> >> >  	bool ret;
+> >> > @@ -1272,6 +1272,12 @@ static bool force_probe(u16 device_id, const char *devices)
+> >> >  	for (p = s, ret = false; (tok = strsep(&p, ",")) != NULL; ) {
+> >> >  		u16 val;
+> >> >  
+> >> > +		if (negative && tok[0] == '!')
+> >> > +			tok++;
+> >> > +		else if ((negative && tok[0] != '!') ||
+> >> > +			 (!negative && tok[0] == '!'))
+> >> > +			 continue;
+> >> > +
+> >> >  		if (kstrtou16(tok, 16, &val) == 0 && val == device_id) {
+> >> >  			ret = true;
+> >> >  			break;
+> >> > @@ -1283,6 +1289,16 @@ static bool force_probe(u16 device_id, const char *devices)
+> >> >  	return ret;
+> >> >  }
+> >> >  
+> >> > +static bool id_forced(u16 device_id)
+> >> > +{
+> >> > +	return device_id_in_list(device_id, i915_modparams.force_probe, false);
+> >> > +}
+> >> > +
+> >> > +static bool id_blocked(u16 device_id)
+> >> > +{
+> >> > +	return device_id_in_list(device_id, i915_modparams.force_probe, true);
+> >> > +}
+> >> 
+> >> I think id_blocked() would return true for any device id if force_probe was "*".
+> >
+> > good catch. I will just wait until middle next week to see if someone has something
+> > against the idea in general and then re-spin a version with:
+> >
+> > - if (strcmp(devices, "*") == 0)
+> > + if (strcmp(devices, "*") == 0 && !negative)
 > 
-> Noted.
-> 
-> > 
-> > Regarding the patch, I liked the approach in general.
-> > 
-> > The patch is really neat, but I believe we will need to split it:
-> > 
-> > 1. Add the new DMC_PATH and DMC_LEGACY_PATH only with the introduction
-> > of the mtl_dmc.bin
-> > 
-> > 2. And the fallback function, add only if/when we get a real fallback.
-> 
-> Okay. For future reference, how should that be implemented with respect to the
-> organization of the patches? I see two ways of doing it and have a personal
-> preference for the first one:
-> 
-> a) The future series would have first a patch adding the necessary functionality
->    and a second one using it.
-> 
-> b) The addition of the functionality would be incorporated in the same patch
->    using it.
-> 
-> For example, for (2), (a) would be a series two patches, the first adding the
-> fallback mechanism and the second one changing ADLP to use unversioned paths;
-> and (b) would be all of that in a single patch.
-> 
-> I looks to me that approach (b) has a potential issue. For example, let's say we
-> in the future we decide to revert that specific firmware update but we already
-> have other platforms also using the fallback - a clean revert is not possible
-> there and we would need to make sure that the fallback mechanism is kept.
-> 
-> That's why I like (a) more and I think (b) would be more appropriate for cases
-> where the functionality and it's user(s) have almost like a "1:1" relationship
-> (not strictly speaking, read that as "having a somewhat static and restricted
-> set of users").
+> I admit I didn't bother checking, but please ensure force_probe=!* also
+> works to block everything.
 
-yeap, it is case by case. The advantage on the (b) approach is that OSVs
-can backport only 1 patch.
+makes sense
 
-And the revert doesn't necessarily need to be a git-revert. In this case
-it would be only one line getting back to the older firmware.
+-       if (strcmp(devices, "*") == 0)
++       if (negative && strcmp(devices, "!*") == 0)
++               return true;
++       if (!negative && strcmp(devices, "*") == 0)
 
-But really up to you ;)
-As long as they are together either in the same patch or same series.
+will be it.
 
-> 
-> > 
-> > Oh, and I just realized that when doing the new _dmc.bin path we also
-> > need to make sure that we read the fw_version from the header and
-> > print as a drm_info msg somewhere.
-> 
-> I think the version is already being read by parse_dmc_fw_css() and printed at
-> the end of dmc_load_work_fn() if the blob was loaded and parsed succesfully.
-
-Oh, I had missed that. If it is already happening please disregard my comment.
+Thanks,
+Rodrigo.
 
 > 
-> > 
-> > > Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-> > > Cc: Jani Nikula <jani.nikula@intel.com>
-> > > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_dmc.c | 62 ++++++++++++++++++------
-> > >  1 file changed, 46 insertions(+), 16 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-> > > index 4124b3d37110..12f05b2d33a3 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_dmc.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-> > > @@ -42,51 +42,59 @@
-> > >  #define DMC_VERSION_MAJOR(version)	((version) >> 16)
-> > >  #define DMC_VERSION_MINOR(version)	((version) & 0xffff)
-> > >  
-> > > -#define DMC_PATH(platform, major, minor) \
-> > > -	"i915/"				 \
-> > > -	__stringify(platform) "_dmc_ver" \
-> > > -	__stringify(major) "_"		 \
-> > > +#define DMC_PATH(platform) \
-> > > +	"i915/" __stringify(platform) "_dmc.bin"
-> > > +
-> > > +/*
-> > > + * New DMC additions should not use this. This is used solely to remain
-> > > + * compatible with systems that have not yet updated DMC blobs to use
-> > > + * unversioned file names.
-> > > + */
-> > > +#define DMC_LEGACY_PATH(platform, major, minor) \
-> > > +	"i915/"					\
-> > > +	__stringify(platform) "_dmc_ver"	\
-> > > +	__stringify(major) "_"			\
-> > >  	__stringify(minor) ".bin"
-> > >  
-> > >  #define DISPLAY_VER13_DMC_MAX_FW_SIZE	0x20000
-> > >  
-> > >  #define DISPLAY_VER12_DMC_MAX_FW_SIZE	ICL_DMC_MAX_FW_SIZE
-> > >  
-> > > -#define DG2_DMC_PATH			DMC_PATH(dg2, 2, 08)
-> > > +#define DG2_DMC_PATH			DMC_LEGACY_PATH(dg2, 2, 08)
-> > >  MODULE_FIRMWARE(DG2_DMC_PATH);
-> > >  
-> > > -#define ADLP_DMC_PATH			DMC_PATH(adlp, 2, 16)
-> > > +#define ADLP_DMC_PATH			DMC_LEGACY_PATH(adlp, 2, 16)
-> > >  MODULE_FIRMWARE(ADLP_DMC_PATH);
-> > >  
-> > > -#define ADLS_DMC_PATH			DMC_PATH(adls, 2, 01)
-> > > +#define ADLS_DMC_PATH			DMC_LEGACY_PATH(adls, 2, 01)
-> > >  MODULE_FIRMWARE(ADLS_DMC_PATH);
-> > >  
-> > > -#define DG1_DMC_PATH			DMC_PATH(dg1, 2, 02)
-> > > +#define DG1_DMC_PATH			DMC_LEGACY_PATH(dg1, 2, 02)
-> > >  MODULE_FIRMWARE(DG1_DMC_PATH);
-> > >  
-> > > -#define RKL_DMC_PATH			DMC_PATH(rkl, 2, 03)
-> > > +#define RKL_DMC_PATH			DMC_LEGACY_PATH(rkl, 2, 03)
-> > >  MODULE_FIRMWARE(RKL_DMC_PATH);
-> > >  
-> > > -#define TGL_DMC_PATH			DMC_PATH(tgl, 2, 12)
-> > > +#define TGL_DMC_PATH			DMC_LEGACY_PATH(tgl, 2, 12)
-> > >  MODULE_FIRMWARE(TGL_DMC_PATH);
-> > >  
-> > > -#define ICL_DMC_PATH			DMC_PATH(icl, 1, 09)
-> > > +#define ICL_DMC_PATH			DMC_LEGACY_PATH(icl, 1, 09)
-> > >  #define ICL_DMC_MAX_FW_SIZE		0x6000
-> > >  MODULE_FIRMWARE(ICL_DMC_PATH);
-> > >  
-> > > -#define GLK_DMC_PATH			DMC_PATH(glk, 1, 04)
-> > > +#define GLK_DMC_PATH			DMC_LEGACY_PATH(glk, 1, 04)
-> > >  #define GLK_DMC_MAX_FW_SIZE		0x4000
-> > >  MODULE_FIRMWARE(GLK_DMC_PATH);
-> > >  
-> > > -#define KBL_DMC_PATH			DMC_PATH(kbl, 1, 04)
-> > > +#define KBL_DMC_PATH			DMC_LEGACY_PATH(kbl, 1, 04)
-> > >  #define KBL_DMC_MAX_FW_SIZE		BXT_DMC_MAX_FW_SIZE
-> > >  MODULE_FIRMWARE(KBL_DMC_PATH);
-> > >  
-> > > -#define SKL_DMC_PATH			DMC_PATH(skl, 1, 27)
-> > > +#define SKL_DMC_PATH			DMC_LEGACY_PATH(skl, 1, 27)
-> > >  #define SKL_DMC_MAX_FW_SIZE		BXT_DMC_MAX_FW_SIZE
-> > >  MODULE_FIRMWARE(SKL_DMC_PATH);
-> > >  
-> > > -#define BXT_DMC_PATH			DMC_PATH(bxt, 1, 07)
-> > > +#define BXT_DMC_PATH			DMC_LEGACY_PATH(bxt, 1, 07)
-> > >  #define BXT_DMC_MAX_FW_SIZE		0x3000
-> > >  MODULE_FIRMWARE(BXT_DMC_PATH);
-> > >  
-> > > @@ -821,16 +829,38 @@ static void intel_dmc_runtime_pm_put(struct drm_i915_private *dev_priv)
-> > >  	intel_display_power_put(dev_priv, POWER_DOMAIN_INIT, wakeref);
-> > >  }
-> > >  
-> > > +static const char *dmc_fallback_path(struct drm_i915_private *i915)
-> > > +{
-> > > +	/* No fallback paths for now. */
-> > > +	return NULL;
-> > > +}
-> > > +
-> > >  static void dmc_load_work_fn(struct work_struct *work)
-> > >  {
-> > >  	struct drm_i915_private *dev_priv;
-> > >  	struct intel_dmc *dmc;
-> > >  	const struct firmware *fw = NULL;
-> > > +	const char *fallback_path;
-> > > +	int err;
-> > >  
-> > >  	dev_priv = container_of(work, typeof(*dev_priv), display.dmc.work);
-> > >  	dmc = &dev_priv->display.dmc;
-> > >  
-> > > -	request_firmware(&fw, dev_priv->display.dmc.fw_path, dev_priv->drm.dev);
-> > > +	err = request_firmware(&fw, dev_priv->display.dmc.fw_path, dev_priv->drm.dev);
-> > > +
-> > > +	if (err == -ENOENT && !dev_priv->params.dmc_firmware_path) {
-> > > +		fallback_path = dmc_fallback_path(dev_priv);
-> > > +		if (fallback_path) {
-> > > +			drm_dbg_kms(&dev_priv->drm,
-> > > +				    "%s not found, falling back to %s\n",
-> > > +				    dmc->fw_path,
-> > > +				    fallback_path);
-> > > +			err = request_firmware(&fw, fallback_path, dev_priv->drm.dev);
-> > > +			if (err == 0)
-> > > +				dev_priv->display.dmc.fw_path = fallback_path;
-> > > +		}
-> > > +	}
-> > > +
-> > >  	parse_dmc_fw(dev_priv, fw);
-> > >  
-> > >  	if (intel_dmc_has_payload(dev_priv)) {
-> > > -- 
-> > > 2.39.0
-> > > 
+> BR,
+> Jani.
+> 
+> >
+> >> 
+> >> > +
+> >> >  bool i915_pci_resource_valid(struct pci_dev *pdev, int bar)
+> >> >  {
+> >> >  	if (!pci_resource_flags(pdev, bar))
+> >> > @@ -1308,10 +1324,9 @@ static int i915_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+> >> >  		(struct intel_device_info *) ent->driver_data;
+> >> >  	int err;
+> >> >  
+> >> > -	if (intel_info->require_force_probe &&
+> >> > -	    !force_probe(pdev->device, i915_modparams.force_probe)) {
+> >> > +	if (intel_info->require_force_probe && !id_forced(pdev->device)) {
+> >> >  		dev_info(&pdev->dev,
+> >> > -			 "Your graphics device %04x is not properly supported by the driver in this\n"
+> >> > +			 "Your graphics device %04x is not properly supported by i915 in this\n"
+> >> >  			 "kernel version. To force driver probe anyway, use i915.force_probe=%04x\n"
+> >> >  			 "module parameter or CONFIG_DRM_I915_FORCE_PROBE=%04x configuration option,\n"
+> >> >  			 "or (recommended) check for kernel updates.\n",
+> >> > @@ -1319,6 +1334,12 @@ static int i915_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+> >> >  		return -ENODEV;
+> >> >  	}
+> >> >  
+> >> > +	if (id_blocked(pdev->device)) {
+> >> > +		dev_info(&pdev->dev, "I915 probe blocked for Device ID %04x.\n",
+> >> > +			 pdev->device);
+> >> > +		return -ENODEV;
+> >> > +	}
+> >> > +
+> >> >  	/* Only bind to function 0 of the device. Early generations
+> >> >  	 * used function 1 as a placeholder for multi-head. This causes
+> >> >  	 * us confusion instead, especially on the systems where both
+> >> > -- 
+> >> > 2.38.1
+> >> > 
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
