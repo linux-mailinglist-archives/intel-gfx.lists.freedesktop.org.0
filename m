@@ -2,142 +2,143 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A73D659AB1
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Dec 2022 17:52:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DDB6659ABC
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Dec 2022 17:56:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 926F010E459;
-	Fri, 30 Dec 2022 16:52:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99E6810E459;
+	Fri, 30 Dec 2022 16:56:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1817F10E459
- for <intel-gfx@lists.freedesktop.org>; Fri, 30 Dec 2022 16:52:16 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16C1B10E459
+ for <intel-gfx@lists.freedesktop.org>; Fri, 30 Dec 2022 16:56:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1672419136; x=1703955136;
+ t=1672419371; x=1703955371;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=f3bms1Es6CIoCIupXu52Etg32qoIBsp2nIiJcdL5Ic0=;
- b=Yi99dYZRbgqsEoYe/98JrJxD7FG2DbmM22Mjg5iRUPFrJX9DJeGFs6DI
- 2Vh1Stgd9DiOUqnUf+COiRvWIGHQw9L9bFb8az/MpOIkwMLLcQb1/UJ73
- 5tk8vCWp2B5aXwowNK/zJqzJ4U9WQoPc3PBsHb4p4wpHXseI8kchfSa1a
- +LDuXUQZhAnJQGbpEKOuZ+nfJupNxGrLxz3/gVembm4QS3eDVP/G8CybV
- 7qaXzjTUJKO8ZQ/vt5a3wwlR0RWLw7SSFvk6j/32K5AYFuXh+pDathyx1
- LNvFKShkha5iMk+Llh+Wu3TEclxuZBe8+rgFZr+pQzB1XX7tfeKCPnMR+ A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10576"; a="348443983"
-X-IronPort-AV: E=Sophos;i="5.96,287,1665471600"; d="scan'208";a="348443983"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Dec 2022 08:52:15 -0800
+ bh=iuvET0ir6IaDUPnS2T8SEXg+vjyCw/uS0NZDlM0QtHo=;
+ b=JZImgBgegf1UwtJMO16U2eX6ydWN9w4e5mIT3OtXGHMn6/Pd0goW0n+0
+ fpHaze2A0A3eNBzyWKZ/fgr/FB1eVjAbp98lQPyavrJ/1xks9+xhG4k4B
+ 19QdeRnjjZvOAWG8EcMBrItff5yyZ3KBTC5GZlI7hAX/S7i1W3tAAOlwb
+ t44GrtTzjsTDWdGQE35tHuz8iNUaTHvw18bJgMZVNAlXaBcSZt6nUwjB6
+ h50UHISG1vck1/xGiU4mtzkoTKXeitk8UP3QpKvtFQDIOzEEwtRu+D//2
+ juLKpdsNn4sblttG1roLrEep8gyEGkcFpVa0aocIGxOCXMowag7rM0p4s w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10576"; a="301601269"
+X-IronPort-AV: E=Sophos;i="5.96,287,1665471600"; d="scan'208";a="301601269"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Dec 2022 08:56:10 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10576"; a="722385236"
-X-IronPort-AV: E=Sophos;i="5.96,287,1665471600"; d="scan'208";a="722385236"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga004.fm.intel.com with ESMTP; 30 Dec 2022 08:52:15 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6500,9779,10576"; a="655900785"
+X-IronPort-AV: E=Sophos;i="5.96,287,1665471600"; d="scan'208";a="655900785"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga007.fm.intel.com with ESMTP; 30 Dec 2022 08:56:10 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Fri, 30 Dec 2022 08:52:15 -0800
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.1.2507.16; Fri, 30 Dec 2022 08:56:10 -0800
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Fri, 30 Dec 2022 08:52:14 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ 15.1.2507.16; Fri, 30 Dec 2022 08:56:09 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Fri, 30 Dec 2022 08:52:14 -0800
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.47) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.16 via Frontend Transport; Fri, 30 Dec 2022 08:56:09 -0800
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.105)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Fri, 30 Dec 2022 08:52:13 -0800
+ 15.1.2507.16; Fri, 30 Dec 2022 08:56:08 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YPPhk+hK31/pkzvWEtrz53qdk0wLJpEE+6MmR3ORjSQdPExqWsGpXvD5tVUm7WkjqDskn4ExwbEgj/8ilFVermFdXm+eqx9dU5Rq015JSXpNdV/eArWszL2RoNwtBZhCJH85RuLmhKGawNWyGF/fl6aiOkztDTM0y50TWvbLoxOukZQMBqPJL0OVy0ai3f3Pz+Wag9JzalI6AtuLO0vwcwWF1gtXSrepjWYcdPd5wmZuldcSFW1sudY5+ooQsOMwJZUuFp1IZlU2k3x8ShBPJPU38/jouMzvzdP82RiJIbgije6uHrJ9naEQWeOrilM/e6FDsjoxJSjAvdHuP3VG6g==
+ b=lOAMs3InSKp8CmeDhFKocaIvD5i2wzqgF0C6HKC8zYk1X4HpgIzAVlO5iTwLtxocqx1fxb3qYD9W6JsBuWwXfBbAP2FNlqwa10FVPKCV7U0p3FOv4AzTziGRJ+l+gFfG0c71iplWQpxAlWBoy4eLgqo8wtz7k+Ld6NYeCcA+s2EOYmskpHRQr+b+A1MIR6axovGdmslIGHhQWcIzH7Q6ydqNNi/EoRn/grekFYAi9kUaZL6fjE8NptuiWRzl07lJAo36eyEIjbW05gG0lHUK4Z9o1xADNRduB0SpNUeTFn2io0Pjg3CUT+iNi1bqzMi+ZCKOcMOer6+kVuY9fSXQmw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2dzRIXHqW2Bqa6i5a4S0tck0ex+ATC3vfFAtOqC0uh0=;
- b=fIUQuPcpCuXJg7/1TYcvyssEQ2sKlDDEGYN21c7/8GoWavfio0AGSW+0EZ6fNVT7eqla/Y27s7fFHBwPxBoAvFT3J4h7yCe5OeNlIKbnhA2Rw0NQfLKaTAS2h9P+EZmV6eZFlPBAvCLI0EE6Yq088eTBt+tN4IPs69Oscx2JBYme5oMC9gDT6PLy4IFCEFOQ/AHHIyaMIIp5OqvFE9aK2jy4bZJ9Gio7h4sawRXNZJ3FQtd9OT0QIUDtn0PTJSHBr3a0svtEcDnmZE3bv1eJnJ3tw9gHZMZLXbQRAWWW9UnLz4GZTkaB/1A4EVCBYsbE3hm1+vdJzK9B/SWsamVKqA==
+ bh=miOIfdkdwk4JkN4L541KmbQSJnYNO7TFR7/iGYDNJzw=;
+ b=HYUwfFJvrRpOJmhXm14mNvX/9UtJT9pifCcE9e1kZ9eglEP+V+HPiUp+t12BHVLkbACWWDqqd6XlnrO4JVEGG53hvQ0v5TaCCnhW6eiu0E2V9IAm2MkfukGa6k5940YfzzII1H2+I3X7xWR+sgOkDZ0LEv9/ZkhhgxVBMooGXGf7jmrGT78zFHSA+8TPcu1QzA9wNpiNWlKjRMSmnw/PP0yO7NjNex9ki5YXWUxy3pEmL1Z5kt0/In17S4fxknuAzYBOLitW4jyVuvBZacGKsROZcXTfvZtUsD3QirHDzGV4dQnzkqiBoa00lujd+ErOQ6xAix4ULrf8GWegyNfSDA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by PH0PR11MB5625.namprd11.prod.outlook.com (2603:10b6:510:ea::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.16; Fri, 30 Dec
- 2022 16:52:11 +0000
+ by CY8PR11MB6844.namprd11.prod.outlook.com (2603:10b6:930:5f::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.19; Fri, 30 Dec
+ 2022 16:56:05 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::499c:efe3:4397:808]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::499c:efe3:4397:808%9]) with mapi id 15.20.5944.016; Fri, 30 Dec 2022
- 16:52:11 +0000
-Date: Fri, 30 Dec 2022 11:52:07 -0500
+ 16:56:05 +0000
+Date: Fri, 30 Dec 2022 11:56:00 -0500
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: Gustavo Sousa <gustavo.sousa@intel.com>
-Message-ID: <Y68XNxd0PrpcJ1U3@intel.com>
+Message-ID: <Y68YIO5auRf0vR4u@intel.com>
 References: <20221229190740.45471-1-gustavo.sousa@intel.com>
- <20221229190740.45471-2-gustavo.sousa@intel.com>
- <Y66iKQ5aGdMzyVh2@intel.com>
- <20221230124239.hepfnh75dhb5urpd@gjsousa-mobl2>
+ <20221229190740.45471-3-gustavo.sousa@intel.com>
+ <Y66lryH0QYwmtxbN@intel.com>
+ <20221230133628.oyk4vlvaoi7ue3b7@gjsousa-mobl2>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20221230124239.hepfnh75dhb5urpd@gjsousa-mobl2>
-X-ClientProxiedBy: SJ0PR05CA0007.namprd05.prod.outlook.com
- (2603:10b6:a03:33b::12) To MN0PR11MB6059.namprd11.prod.outlook.com
+In-Reply-To: <20221230133628.oyk4vlvaoi7ue3b7@gjsousa-mobl2>
+X-ClientProxiedBy: BYAPR21CA0022.namprd21.prod.outlook.com
+ (2603:10b6:a03:114::32) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|PH0PR11MB5625:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6281252f-0070-41e6-1741-08daea863231
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|CY8PR11MB6844:EE_
+X-MS-Office365-Filtering-Correlation-Id: 12c94eb1-848c-4c94-22a8-08daea86bd6d
 X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: tnLI0piRCYzHFK1je9I1oasLq9Ml3bvNsIBZbVuvxnguRIUBD85+8hMZGjbOKYArjce/eDDrmQZRZ1usnFnsejem/+DdSJFXFZdCL91SqicTt0y6ohHnYHMKxQV8rsysZWVX4CISAqAC43IpC+8e6KowNmE3QFFx87PKlb6iVjoTGQcof4Wg/QSAGx82tsuFf5e4mrB1BVZ3JUZtpsPxv48iedp4DlG0PUCUSL12WecnC7Vs8kmCDlT09vLowKqHfq+GtlxV0qYr3xlThyONAXhbhi9JQb30uqOpcnTF61EdcCeCAkrjJ7TqLGJA3gIOB828Ftv7YeLj50vXukW7Ppt4Mu0Ra8hroS071UPXmCuxX9sMdt0cge5P9mpSwIaqklGzPTP/We9WKDEwrnje6C7bGLgrwI/VqUM9y2mv/bYXYl8aPhCu6U+0OMfa9Ko8KhQ+410Uvnr80UETj7qlnhwyug14KZlAyY1vv5ynhT856+WQCsKOCKUcVMg+YdrQ2lrOiUPidVHlpImrJSci/kXgXghNTtNKvvnzboD/kCykzJojz0TFcZYhYwvGUqt0BgAgoxWnh73gpQ72ocOvh7sNYS+EzdF+Yf1XHUExSJrihbjbmKOLsmRPAJJ7sDB115L/5Twzk8vYzP2FLjJchg6BWcP/NFy4QZ5/kBlotUVQkINEkzKchl+fpLFzru8+AUyEQ2LsG/wB8YKz2/UAmg==
+X-Microsoft-Antispam-Message-Info: STbOOY/P7wYOsLJSEOVm+6K/7PIu4rBBfcO+LNL/QWQllK1TRfL+jq+rat7d0REAbDBS422gQ5eopjHPaI1naJ4twDRoj5vKAzbNY//FXWD5Ff/kHZ57RXEuEHb9qUu5ACXVvwNnhBiCcjqoC/yfQqELmvETDCenKoKogwTp0vtXkHaSLxbmaqYerRhfISsBRlXu7UsweRqIa8Eatf060Lq4c9suMZy4HrIkmrQYJgbJxiIkJf5etP5br5GYnJ/eJUGq3gmMJsnlFaEYqgTIWfIzLwwhpdaXBTPFdx1eEJ19vDymh72hs5r2F4kDTmmyyPwpv0htxob/Ei73heewlFSbqG/Y6MZZp6QmfXIoaumghVm+Yj/rKlEe0WBJMr0PHicXix4EtuvNW9wlkmtt3FPA7uwUHAsrABGXK0F2GTldoeJsBGn7NF0bjsobpDBlBk7HhZ10fiFZEb7fXDZQXuXuDXar3JMbotHtg9Ve89j4wmHjR4sKR93hGrRMH6fo+orHS3EhT4I2aACJMyy025c8VvTEngCzYal4w1Lsikjp81r9/+PjNNo3qQVshOzVuvxqKCfAV0+LH8hxV0RQ4hXILnZQBXpKOMivoCv4MYP7oixp5cr+wNrGiav8C4t9xkGBSP2ahsblxBqKci3xhOPj8B3SUs2DrDQa4e6S4LU=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(136003)(346002)(39860400002)(396003)(366004)(376002)(451199015)(38100700002)(82960400001)(6862004)(8936002)(6666004)(36756003)(54906003)(6636002)(107886003)(6506007)(44832011)(66476007)(186003)(2616005)(6512007)(26005)(4326008)(86362001)(8676002)(66556008)(2906002)(37006003)(66946007)(5660300002)(316002)(41300700001)(83380400001)(6486002)(966005)(478600001);
+ SFS:(13230022)(376002)(39860400002)(136003)(366004)(396003)(346002)(451199015)(6486002)(107886003)(186003)(4326008)(8676002)(36756003)(66946007)(966005)(5660300002)(66556008)(66476007)(2616005)(6666004)(6512007)(478600001)(6862004)(316002)(83380400001)(37006003)(86362001)(6636002)(8936002)(54906003)(26005)(6506007)(41300700001)(38100700002)(82960400001)(44832011)(2906002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?eEuQw9kyuNBq27Xunmi2HW6lDjrtxK6YtK303v6Cxrnw08l49OGzCL6LB5+K?=
- =?us-ascii?Q?ZVg4W18cTywk3CPWSXykISMDE5ABmXZGxtzbE5or8EtFbxujnnIMqFUF/06v?=
- =?us-ascii?Q?6ZxH7s6VXhzIQ0GvoV8Yrn/82y4PtHUuyRbVElr5yzRpJ8/A0okOFxuD7pyJ?=
- =?us-ascii?Q?+5hllt4gFPkN6vLOIc7sKmqKDdMXZGbGfvoJpFSTI+QjBlQCLpauW76lBOXi?=
- =?us-ascii?Q?o1eWSylkPO51AfHcqg+bDjAU0XwaZbK/6bzyiQtoBC6jGdLvYZv1IezeruUj?=
- =?us-ascii?Q?Qbp2IzkNBCCmHqrZoHKcRmftX5CITWTQkx2XlbrDg/cXibDEkBhQ9HepC4tw?=
- =?us-ascii?Q?FJSQzE2LiYTBWmLPCsoZAMURS0irPUClL2mCYF+7w686Cp69/Sl4D4780iwk?=
- =?us-ascii?Q?N4Lvt3Z0/A/Gluds+7EAWXI68EVhbgjSWVY4mtzxJ4vf9jr93ISAPSvh3y+o?=
- =?us-ascii?Q?nwyHivyDlYT4+wtBw8HO12BJN5UNAeQAYJdApm8GE5A0GCwQgtfsGKC61Mjx?=
- =?us-ascii?Q?34++TLc2Ktz2QQKLWKFW/lXR0Qhw3qFuCg9pj77pK+H3b5kNgOOwBCmI6VE/?=
- =?us-ascii?Q?BXan4RTKKNeErokqC7M6zH8cjtekGh/GvXfwMo2ZuHPFkLqEl14Xxy7SaQzG?=
- =?us-ascii?Q?pGmp4OoryYJo5ywuZDLbVLQ9QT4EuyEEfHrI1oNKSPYWj9QZw1iEgjK3AbVZ?=
- =?us-ascii?Q?wxd/ffDK3T+EbmwYLwi4shYXJwNGowNL7gF+Uydl36AxR3x2bEPv+iV3Ssa2?=
- =?us-ascii?Q?9r3U9yadD5PWBOSMwf8wPSXVk3OzoyOfbVkX885dIuvy7eb9Ec3RqgimRsx5?=
- =?us-ascii?Q?lGiYJs9ah4C6/viYMM56EGGNQjTV5S+/Y8GDOkmElUa+N5mCZNMdx7PdtLgw?=
- =?us-ascii?Q?2ANxFBuN0tNUfig4S1GJyqMDSGL3rjYYiK4ej4oRFIJJJNP6r1qKd3HAFjem?=
- =?us-ascii?Q?gb0Hs4kcmq6JFGmcDKqnbZlbwSQ+BkBuzAJz8+K6M91E55gCUxAvCD+WNvjH?=
- =?us-ascii?Q?OW5M8zjRywdB3gtO5C11FUvNG0HhQOAWJ/BVodumyczc2DzoRd51xaONKkBA?=
- =?us-ascii?Q?WoJHXlTxOqsbKdToRnLrtmE8kO71g6MKW0Je4LcEO9xdl8k6yUDFaolqFz22?=
- =?us-ascii?Q?MhQl4v9oLA6EevaOuRvFUyN15IKoWhRTsealZTIGEumOalJ+R5LhoV2zariJ?=
- =?us-ascii?Q?AXVQT8JlwTGvdIPpqLbEjKxtbWyaWkIGg6tsaz9zduYvZbV0zeCUMEaiK7Rp?=
- =?us-ascii?Q?roIyuFcWVNWwnkIZItlrjJsXFejUGHrgVj8Uq5888hvfSu351XVMAx6BrTY/?=
- =?us-ascii?Q?jKIPYW5iCsffDV02H7zci38Vlso96jSESZmVUURqht1W99+6QYBkNENfXI68?=
- =?us-ascii?Q?iou5b6aGHxxpdvnDIKOGnfwrTDKcZLBwa3Fm8JkmeESAk/s/t2NVkeqCoCIG?=
- =?us-ascii?Q?dFDKRMiCLIPzMd9allCBe4VIFidduKO/0E6PrEbi/H1vn+JPlOK2J7mqyx0u?=
- =?us-ascii?Q?+UM2HiTJh/vT4tBQ9y54Qvj//qoLUphMrh4161F26RNuE7U6zx6gW3nRbG7K?=
- =?us-ascii?Q?Hca61mKGgshAcSz8PM2qyixCcuvDD1cuD+8LIIFj?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6281252f-0070-41e6-1741-08daea863231
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?XSiSQlxDlNNi546+hy2wtqd5IoQ0gZhGlCzqn6KNb2XkPwJEmLBoVm1Q6UXD?=
+ =?us-ascii?Q?wKz+nkQhhxpf8OpqwTuJViz3BjvH2cG21ROMy5BTHqX2EHgS0jq8oUanVA+n?=
+ =?us-ascii?Q?nMZ2ZSaX4R06PTjBCwABT8KZG34lffZso3eFryBIL1oLrWSsovOiUin9wca/?=
+ =?us-ascii?Q?XLCUB76BqOldtBco7mwfD2ms5uBlg07WTj4RHy9qVrOhW5TsOOsAkfLPizcb?=
+ =?us-ascii?Q?ofvod2xk4MnAE3ZsXKv5EtpVZzuERuXt/fYGmtESYe/B+LK/T/LCoUnemVzA?=
+ =?us-ascii?Q?Xm5Q3RFmkwskai+tPeKKpZ/7bHS1DwpH1r5pw0RbNncxJAJlyzbt/oS4RJnJ?=
+ =?us-ascii?Q?++BoJC7rn97s2RGB1Ohg8Nx6NbwGxg1JEiOU2XfOw198y5QNdyBK6/LEbx1n?=
+ =?us-ascii?Q?QETXW1V+i+Da343SYYj4b7CWAKWq4AjIq0pQlf1zPxIGZlkAJo7AHB6hs9Df?=
+ =?us-ascii?Q?QYuGcJ2t8PxXjnLb6p5uOTkGq3Ur0XOcqJ/dYFp32TxhcjFdVpYvV0ZIT7b3?=
+ =?us-ascii?Q?W4wfODXH05fsTb1wbQiTbphimfv/cb0Rk53xkq748Yp8/FYccH4pC2Ok8mDT?=
+ =?us-ascii?Q?2HRlxuuH3pDR9wQUF5gxGgIT3UXk5Q2wPz8nh9I5Y+oudZye4pVi9yVJYBro?=
+ =?us-ascii?Q?PHJlgPz7FoB/qpgxw/47oUheGk6IJhkgewAm4R4qffFuFDOYeECXv109B5vR?=
+ =?us-ascii?Q?bm1qXfFgjqv0CSFhBwVF1gVGSfr4C7wRligqKafAl16BBJkOFrTvxqqPOEd5?=
+ =?us-ascii?Q?gus3/i3/uHWKX+fS/NYNaHjz7t+iX9scjXbaPY+jbhiKdjOK/jyToxnf2w/d?=
+ =?us-ascii?Q?3a+lFLhu6Lh6AP1agCHOIeScFHpTa3uycVJrx3cyf8nnbEVSy/afRxw2gt85?=
+ =?us-ascii?Q?q8o5hgObJ7uTX4mg5zN465xXYOc3ZC1Fln6EooFQ57EUm8JdzmRKYvmEeGnY?=
+ =?us-ascii?Q?gevmESxLb98BM9Taks7L4CYMko/NOxjGmUwBkxGKhmKA53woLhz+7mlzxB4S?=
+ =?us-ascii?Q?0gTASp9vHHfd2BOr4ywyn4JRa07LQvyoEvQp37RFH786W5F32XKq3b7eRCwf?=
+ =?us-ascii?Q?yn50IwYhL9zbXh39kNczN6uLR//T4V3akXqm9isb6C43lzUvHYAztp8qDRYe?=
+ =?us-ascii?Q?HUCxL0KbBn1Lelixi5ekLkdUmAgF6SkC6d3fT5cp6IK1gcYojL0Qz0Zl1xNt?=
+ =?us-ascii?Q?y42eAHvv0hfZx6z5Y1ZBer+KdSm6vEBXBFtcBRWa+ttUwAjjgi7YObCivfR9?=
+ =?us-ascii?Q?fORE5Hx3WVxUFfeKK4DSeJkR98XWVIKuAFxzrJstWrdgWg0UO0KwkZDcb7UP?=
+ =?us-ascii?Q?5MmvAlBd9Aq2eTYk87sjL+LTrC5CULXgU0cuI1T5qdfPbpHN3Yj+7NQ7bHDH?=
+ =?us-ascii?Q?K+ZdMyA3ML/ReESIzZmjmnPVfoeeRFpyh31bl/dnVkD0E4SSeifsX7LRfeST?=
+ =?us-ascii?Q?M2nI3iFgISz1VJSt/68quu6CtFp3Nfuu3zICQXZtM6SSsBM7J+RqmRelNdnM?=
+ =?us-ascii?Q?exywRa0VLlb2YJ0DN8t3TRXfPxpvU3rBzFtxz/e/knGwoT6qZ45BK50jwQju?=
+ =?us-ascii?Q?N+NanGB0g7nFDQYe4IxVyMG2SCB77SKvYR/TMd0pp9AcfBA9eUVjH8trrx1+?=
+ =?us-ascii?Q?YQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 12c94eb1-848c-4c94-22a8-08daea86bd6d
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Dec 2022 16:52:11.7262 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Dec 2022 16:56:05.2628 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: TZsH0WSKlebasEXrkzzEmhr/Qsb96wwJhkNHKU57+aNJnDZjDO+NWWrjYZfCfa4DQupfPBcgEovF0vHcofGLeA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5625
+X-MS-Exchange-CrossTenant-UserPrincipalName: avD9jDd+FZqBxOoO7c2RkDySqog5ma9uTNr70Hj/eAOBYcc15wuZCOWMiFmVFKkeh2MrOgucXdde99kACD55wQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6844
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v3 1/2] drm/i915/dmc: Do not require
- specific versions
+Subject: Re: [Intel-gfx] [PATCH v3 2/2] drm/i915/dmc: Prepare to use
+ unversioned paths
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,199 +156,225 @@ Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 30, 2022 at 09:42:39AM -0300, Gustavo Sousa wrote:
-> On Fri, Dec 30, 2022 at 03:32:41AM -0500, Rodrigo Vivi wrote:
-> > On Thu, Dec 29, 2022 at 04:07:39PM -0300, Gustavo Sousa wrote:
-> > > Currently there is no DMC version requirement with respect to how i915
-> > > interacts with it and new versions of the firmware serve as drop-in
-> > > replacements of older ones. As such, do not require specific versions.
+On Fri, Dec 30, 2022 at 10:36:28AM -0300, Gustavo Sousa wrote:
+> On Fri, Dec 30, 2022 at 03:47:43AM -0500, Rodrigo Vivi wrote:
+> > On Thu, Dec 29, 2022 at 04:07:40PM -0300, Gustavo Sousa wrote:
+> > > New DMC releases in linux-firmware will stop using version number in
+> > > blob filenames. This new convention provides the following benefits:
+> > > 
+> > >   1. It simplifies code maintenance, as new DMC releases for a platform
+> > >      using the new convention will always use the same filename for the
+> > >      blob.
+> > > 
+> > >   2. It allows DMC to be loaded even if the target system does not have
+> > >      the most recent firmware installed.
+> > > 
+> > > Prepare the driver by:
+> > > 
+> > >   - Using the new convention for DMC_PATH() and renaming the currently
+> > >     used one to make it clear it is for the legacy scheme.
+> > > 
+> > >   - Implementing a fallback mechanism for future transitions from
+> > >     versioned to unversioned paths so that we do not cause a regression
+> > >     for systems not having the most up-to-date linux-firmware files.
+> > > 
+> > > v2:
+> > >   - Keep using request_firmware() instead of firmware_request_nowarn().
+> > >     (Jani)
+> > > v3:
+> > >   - Keep current DMC paths instead of directly using unversioned ones,
+> > >     so that we do not disturb initrd generation.
+> > >     (Lucas, Rodrigo)
 > > > 
 > > > References: https://lore.kernel.org/r/Y3081s7c5ksutpMW@intel.com
 > > 
-> > I don't believe this link is a good reference as justification
-> > of this patch.
-> > 
-> > Probably https://docs.kernel.org/next/driver-api/firmware/firmware-usage-guidelines.html
-> > is a better link?
+> > I also don't believe this link is a good reference here...
 > 
-> Yep. I agree this would be better. Is there an "archive" version of this page?
-> Just to make sure we link to the exact version of that guide at the time of
-> writing this patch.
-
-This question reminded me that I should had used this link instead:
-https://www.kernel.org/doc/html/latest/driver-api/firmware/firmware-usage-guidelines.html
-
-And this is the one you are looking for:
-https://www.kernel.org/doc/html/v6.1/driver-api/firmware/firmware-usage-guidelines.html
-
+> Noted.
 > 
 > > 
-> > Also, in the commit message we should be more clear that i915
-> > interacts with the Hardware and not with any FW ABI/API, so the API
-> > is fixed within the platform, hence no need to get this so-tied
-> > version requirement.
+> > Regarding the patch, I liked the approach in general.
+> > 
+> > The patch is really neat, but I believe we will need to split it:
+> > 
+> > 1. Add the new DMC_PATH and DMC_LEGACY_PATH only with the introduction
+> > of the mtl_dmc.bin
+> > 
+> > 2. And the fallback function, add only if/when we get a real fallback.
 > 
-> Thanks! I'll grab this paragraph and adapt it into the commit message if you
-> allow me =)
+> Okay. For future reference, how should that be implemented with respect to the
+> organization of the patches? I see two ways of doing it and have a personal
+> preference for the first one:
+> 
+> a) The future series would have first a patch adding the necessary functionality
+>    and a second one using it.
+> 
+> b) The addition of the functionality would be incorporated in the same patch
+>    using it.
+> 
+> For example, for (2), (a) would be a series two patches, the first adding the
+> fallback mechanism and the second one changing ADLP to use unversioned paths;
+> and (b) would be all of that in a single patch.
+> 
+> I looks to me that approach (b) has a potential issue. For example, let's say we
+> in the future we decide to revert that specific firmware update but we already
+> have other platforms also using the fallback - a clean revert is not possible
+> there and we would need to make sure that the fallback mechanism is kept.
+> 
+> That's why I like (a) more and I think (b) would be more appropriate for cases
+> where the functionality and it's user(s) have almost like a "1:1" relationship
+> (not strictly speaking, read that as "having a somewhat static and restricted
+> set of users").
 
-sure, thanks!
+yeap, it is case by case. The advantage on the (b) approach is that OSVs
+can backport only 1 patch.
+
+And the revert doesn't necessarily need to be a git-revert. In this case
+it would be only one line getting back to the older firmware.
+
+But really up to you ;)
+As long as they are together either in the same patch or same series.
 
 > 
 > > 
-> > with the commit msg changed you can count on my reviewed-by,
-> > the patch looks good to me.
+> > Oh, and I just realized that when doing the new _dmc.bin path we also
+> > need to make sure that we read the fw_version from the header and
+> > print as a drm_info msg somewhere.
+> 
+> I think the version is already being read by parse_dmc_fw_css() and printed at
+> the end of dmc_load_work_fn() if the blob was loaded and parsed succesfully.
+
+Oh, I had missed that. If it is already happening please disregard my comment.
+
+> 
 > > 
 > > > Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> > > Cc: Jani Nikula <jani.nikula@intel.com>
+> > > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > > > ---
-> > >  drivers/gpu/drm/i915/display/intel_dmc.c | 35 ------------------------
-> > >  drivers/gpu/drm/i915/display/intel_dmc.h |  1 -
-> > >  2 files changed, 36 deletions(-)
+> > >  drivers/gpu/drm/i915/display/intel_dmc.c | 62 ++++++++++++++++++------
+> > >  1 file changed, 46 insertions(+), 16 deletions(-)
 > > > 
 > > > diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-> > > index 905b5dcdca14..4124b3d37110 100644
+> > > index 4124b3d37110..12f05b2d33a3 100644
 > > > --- a/drivers/gpu/drm/i915/display/intel_dmc.c
 > > > +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-> > > @@ -53,51 +53,40 @@
+> > > @@ -42,51 +42,59 @@
+> > >  #define DMC_VERSION_MAJOR(version)	((version) >> 16)
+> > >  #define DMC_VERSION_MINOR(version)	((version) & 0xffff)
+> > >  
+> > > -#define DMC_PATH(platform, major, minor) \
+> > > -	"i915/"				 \
+> > > -	__stringify(platform) "_dmc_ver" \
+> > > -	__stringify(major) "_"		 \
+> > > +#define DMC_PATH(platform) \
+> > > +	"i915/" __stringify(platform) "_dmc.bin"
+> > > +
+> > > +/*
+> > > + * New DMC additions should not use this. This is used solely to remain
+> > > + * compatible with systems that have not yet updated DMC blobs to use
+> > > + * unversioned file names.
+> > > + */
+> > > +#define DMC_LEGACY_PATH(platform, major, minor) \
+> > > +	"i915/"					\
+> > > +	__stringify(platform) "_dmc_ver"	\
+> > > +	__stringify(major) "_"			\
+> > >  	__stringify(minor) ".bin"
+> > >  
+> > >  #define DISPLAY_VER13_DMC_MAX_FW_SIZE	0x20000
+> > >  
 > > >  #define DISPLAY_VER12_DMC_MAX_FW_SIZE	ICL_DMC_MAX_FW_SIZE
 > > >  
-> > >  #define DG2_DMC_PATH			DMC_PATH(dg2, 2, 08)
-> > > -#define DG2_DMC_VERSION_REQUIRED	DMC_VERSION(2, 8)
+> > > -#define DG2_DMC_PATH			DMC_PATH(dg2, 2, 08)
+> > > +#define DG2_DMC_PATH			DMC_LEGACY_PATH(dg2, 2, 08)
 > > >  MODULE_FIRMWARE(DG2_DMC_PATH);
 > > >  
-> > >  #define ADLP_DMC_PATH			DMC_PATH(adlp, 2, 16)
-> > > -#define ADLP_DMC_VERSION_REQUIRED	DMC_VERSION(2, 16)
+> > > -#define ADLP_DMC_PATH			DMC_PATH(adlp, 2, 16)
+> > > +#define ADLP_DMC_PATH			DMC_LEGACY_PATH(adlp, 2, 16)
 > > >  MODULE_FIRMWARE(ADLP_DMC_PATH);
 > > >  
-> > >  #define ADLS_DMC_PATH			DMC_PATH(adls, 2, 01)
-> > > -#define ADLS_DMC_VERSION_REQUIRED	DMC_VERSION(2, 1)
+> > > -#define ADLS_DMC_PATH			DMC_PATH(adls, 2, 01)
+> > > +#define ADLS_DMC_PATH			DMC_LEGACY_PATH(adls, 2, 01)
 > > >  MODULE_FIRMWARE(ADLS_DMC_PATH);
 > > >  
-> > >  #define DG1_DMC_PATH			DMC_PATH(dg1, 2, 02)
-> > > -#define DG1_DMC_VERSION_REQUIRED	DMC_VERSION(2, 2)
+> > > -#define DG1_DMC_PATH			DMC_PATH(dg1, 2, 02)
+> > > +#define DG1_DMC_PATH			DMC_LEGACY_PATH(dg1, 2, 02)
 > > >  MODULE_FIRMWARE(DG1_DMC_PATH);
 > > >  
-> > >  #define RKL_DMC_PATH			DMC_PATH(rkl, 2, 03)
-> > > -#define RKL_DMC_VERSION_REQUIRED	DMC_VERSION(2, 3)
+> > > -#define RKL_DMC_PATH			DMC_PATH(rkl, 2, 03)
+> > > +#define RKL_DMC_PATH			DMC_LEGACY_PATH(rkl, 2, 03)
 > > >  MODULE_FIRMWARE(RKL_DMC_PATH);
 > > >  
-> > >  #define TGL_DMC_PATH			DMC_PATH(tgl, 2, 12)
-> > > -#define TGL_DMC_VERSION_REQUIRED	DMC_VERSION(2, 12)
+> > > -#define TGL_DMC_PATH			DMC_PATH(tgl, 2, 12)
+> > > +#define TGL_DMC_PATH			DMC_LEGACY_PATH(tgl, 2, 12)
 > > >  MODULE_FIRMWARE(TGL_DMC_PATH);
 > > >  
-> > >  #define ICL_DMC_PATH			DMC_PATH(icl, 1, 09)
-> > > -#define ICL_DMC_VERSION_REQUIRED	DMC_VERSION(1, 9)
+> > > -#define ICL_DMC_PATH			DMC_PATH(icl, 1, 09)
+> > > +#define ICL_DMC_PATH			DMC_LEGACY_PATH(icl, 1, 09)
 > > >  #define ICL_DMC_MAX_FW_SIZE		0x6000
 > > >  MODULE_FIRMWARE(ICL_DMC_PATH);
 > > >  
-> > >  #define GLK_DMC_PATH			DMC_PATH(glk, 1, 04)
-> > > -#define GLK_DMC_VERSION_REQUIRED	DMC_VERSION(1, 4)
+> > > -#define GLK_DMC_PATH			DMC_PATH(glk, 1, 04)
+> > > +#define GLK_DMC_PATH			DMC_LEGACY_PATH(glk, 1, 04)
 > > >  #define GLK_DMC_MAX_FW_SIZE		0x4000
 > > >  MODULE_FIRMWARE(GLK_DMC_PATH);
 > > >  
-> > >  #define KBL_DMC_PATH			DMC_PATH(kbl, 1, 04)
-> > > -#define KBL_DMC_VERSION_REQUIRED	DMC_VERSION(1, 4)
+> > > -#define KBL_DMC_PATH			DMC_PATH(kbl, 1, 04)
+> > > +#define KBL_DMC_PATH			DMC_LEGACY_PATH(kbl, 1, 04)
 > > >  #define KBL_DMC_MAX_FW_SIZE		BXT_DMC_MAX_FW_SIZE
 > > >  MODULE_FIRMWARE(KBL_DMC_PATH);
 > > >  
-> > >  #define SKL_DMC_PATH			DMC_PATH(skl, 1, 27)
-> > > -#define SKL_DMC_VERSION_REQUIRED	DMC_VERSION(1, 27)
+> > > -#define SKL_DMC_PATH			DMC_PATH(skl, 1, 27)
+> > > +#define SKL_DMC_PATH			DMC_LEGACY_PATH(skl, 1, 27)
 > > >  #define SKL_DMC_MAX_FW_SIZE		BXT_DMC_MAX_FW_SIZE
 > > >  MODULE_FIRMWARE(SKL_DMC_PATH);
 > > >  
-> > >  #define BXT_DMC_PATH			DMC_PATH(bxt, 1, 07)
-> > > -#define BXT_DMC_VERSION_REQUIRED	DMC_VERSION(1, 7)
+> > > -#define BXT_DMC_PATH			DMC_PATH(bxt, 1, 07)
+> > > +#define BXT_DMC_PATH			DMC_LEGACY_PATH(bxt, 1, 07)
 > > >  #define BXT_DMC_MAX_FW_SIZE		0x3000
 > > >  MODULE_FIRMWARE(BXT_DMC_PATH);
 > > >  
-> > > @@ -765,17 +754,6 @@ static u32 parse_dmc_fw_css(struct intel_dmc *dmc,
-> > >  		return 0;
-> > >  	}
+> > > @@ -821,16 +829,38 @@ static void intel_dmc_runtime_pm_put(struct drm_i915_private *dev_priv)
+> > >  	intel_display_power_put(dev_priv, POWER_DOMAIN_INIT, wakeref);
+> > >  }
 > > >  
-> > > -	if (dmc->required_version &&
-> > > -	    css_header->version != dmc->required_version) {
-> > > -		drm_info(&i915->drm, "Refusing to load DMC firmware v%u.%u,"
-> > > -			 " please use v%u.%u\n",
-> > > -			 DMC_VERSION_MAJOR(css_header->version),
-> > > -			 DMC_VERSION_MINOR(css_header->version),
-> > > -			 DMC_VERSION_MAJOR(dmc->required_version),
-> > > -			 DMC_VERSION_MINOR(dmc->required_version));
-> > > -		return 0;
-> > > -	}
-> > > -
-> > >  	dmc->version = css_header->version;
+> > > +static const char *dmc_fallback_path(struct drm_i915_private *i915)
+> > > +{
+> > > +	/* No fallback paths for now. */
+> > > +	return NULL;
+> > > +}
+> > > +
+> > >  static void dmc_load_work_fn(struct work_struct *work)
+> > >  {
+> > >  	struct drm_i915_private *dev_priv;
+> > >  	struct intel_dmc *dmc;
+> > >  	const struct firmware *fw = NULL;
+> > > +	const char *fallback_path;
+> > > +	int err;
 > > >  
-> > >  	return sizeof(struct intel_css_header);
-> > > @@ -903,49 +881,38 @@ void intel_dmc_ucode_init(struct drm_i915_private *dev_priv)
+> > >  	dev_priv = container_of(work, typeof(*dev_priv), display.dmc.work);
+> > >  	dmc = &dev_priv->display.dmc;
 > > >  
-> > >  	if (IS_DG2(dev_priv)) {
-> > >  		dmc->fw_path = DG2_DMC_PATH;
-> > > -		dmc->required_version = DG2_DMC_VERSION_REQUIRED;
-> > >  		dmc->max_fw_size = DISPLAY_VER13_DMC_MAX_FW_SIZE;
-> > >  	} else if (IS_ALDERLAKE_P(dev_priv)) {
-> > >  		dmc->fw_path = ADLP_DMC_PATH;
-> > > -		dmc->required_version = ADLP_DMC_VERSION_REQUIRED;
-> > >  		dmc->max_fw_size = DISPLAY_VER13_DMC_MAX_FW_SIZE;
-> > >  	} else if (IS_ALDERLAKE_S(dev_priv)) {
-> > >  		dmc->fw_path = ADLS_DMC_PATH;
-> > > -		dmc->required_version = ADLS_DMC_VERSION_REQUIRED;
-> > >  		dmc->max_fw_size = DISPLAY_VER12_DMC_MAX_FW_SIZE;
-> > >  	} else if (IS_DG1(dev_priv)) {
-> > >  		dmc->fw_path = DG1_DMC_PATH;
-> > > -		dmc->required_version = DG1_DMC_VERSION_REQUIRED;
-> > >  		dmc->max_fw_size = DISPLAY_VER12_DMC_MAX_FW_SIZE;
-> > >  	} else if (IS_ROCKETLAKE(dev_priv)) {
-> > >  		dmc->fw_path = RKL_DMC_PATH;
-> > > -		dmc->required_version = RKL_DMC_VERSION_REQUIRED;
-> > >  		dmc->max_fw_size = DISPLAY_VER12_DMC_MAX_FW_SIZE;
-> > >  	} else if (IS_TIGERLAKE(dev_priv)) {
-> > >  		dmc->fw_path = TGL_DMC_PATH;
-> > > -		dmc->required_version = TGL_DMC_VERSION_REQUIRED;
-> > >  		dmc->max_fw_size = DISPLAY_VER12_DMC_MAX_FW_SIZE;
-> > >  	} else if (DISPLAY_VER(dev_priv) == 11) {
-> > >  		dmc->fw_path = ICL_DMC_PATH;
-> > > -		dmc->required_version = ICL_DMC_VERSION_REQUIRED;
-> > >  		dmc->max_fw_size = ICL_DMC_MAX_FW_SIZE;
-> > >  	} else if (IS_GEMINILAKE(dev_priv)) {
-> > >  		dmc->fw_path = GLK_DMC_PATH;
-> > > -		dmc->required_version = GLK_DMC_VERSION_REQUIRED;
-> > >  		dmc->max_fw_size = GLK_DMC_MAX_FW_SIZE;
-> > >  	} else if (IS_KABYLAKE(dev_priv) ||
-> > >  		   IS_COFFEELAKE(dev_priv) ||
-> > >  		   IS_COMETLAKE(dev_priv)) {
-> > >  		dmc->fw_path = KBL_DMC_PATH;
-> > > -		dmc->required_version = KBL_DMC_VERSION_REQUIRED;
-> > >  		dmc->max_fw_size = KBL_DMC_MAX_FW_SIZE;
-> > >  	} else if (IS_SKYLAKE(dev_priv)) {
-> > >  		dmc->fw_path = SKL_DMC_PATH;
-> > > -		dmc->required_version = SKL_DMC_VERSION_REQUIRED;
-> > >  		dmc->max_fw_size = SKL_DMC_MAX_FW_SIZE;
-> > >  	} else if (IS_BROXTON(dev_priv)) {
-> > >  		dmc->fw_path = BXT_DMC_PATH;
-> > > -		dmc->required_version = BXT_DMC_VERSION_REQUIRED;
-> > >  		dmc->max_fw_size = BXT_DMC_MAX_FW_SIZE;
-> > >  	}
+> > > -	request_firmware(&fw, dev_priv->display.dmc.fw_path, dev_priv->drm.dev);
+> > > +	err = request_firmware(&fw, dev_priv->display.dmc.fw_path, dev_priv->drm.dev);
+> > > +
+> > > +	if (err == -ENOENT && !dev_priv->params.dmc_firmware_path) {
+> > > +		fallback_path = dmc_fallback_path(dev_priv);
+> > > +		if (fallback_path) {
+> > > +			drm_dbg_kms(&dev_priv->drm,
+> > > +				    "%s not found, falling back to %s\n",
+> > > +				    dmc->fw_path,
+> > > +				    fallback_path);
+> > > +			err = request_firmware(&fw, fallback_path, dev_priv->drm.dev);
+> > > +			if (err == 0)
+> > > +				dev_priv->display.dmc.fw_path = fallback_path;
+> > > +		}
+> > > +	}
+> > > +
+> > >  	parse_dmc_fw(dev_priv, fw);
 > > >  
-> > > @@ -958,8 +925,6 @@ void intel_dmc_ucode_init(struct drm_i915_private *dev_priv)
-> > >  		}
-> > >  
-> > >  		dmc->fw_path = dev_priv->params.dmc_firmware_path;
-> > > -		/* Bypass version check for firmware override. */
-> > > -		dmc->required_version = 0;
-> > >  	}
-> > >  
-> > >  	if (!dmc->fw_path) {
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_dmc.h b/drivers/gpu/drm/i915/display/intel_dmc.h
-> > > index 67e03315ef99..435eab9b016b 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_dmc.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dmc.h
-> > > @@ -25,7 +25,6 @@ enum {
-> > >  struct intel_dmc {
-> > >  	struct work_struct work;
-> > >  	const char *fw_path;
-> > > -	u32 required_version;
-> > >  	u32 max_fw_size; /* bytes */
-> > >  	u32 version;
-> > >  	struct dmc_fw_info {
+> > >  	if (intel_dmc_has_payload(dev_priv)) {
 > > > -- 
 > > > 2.39.0
 > > > 
