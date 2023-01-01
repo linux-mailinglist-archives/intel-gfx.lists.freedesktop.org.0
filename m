@@ -1,61 +1,149 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93BF265A9A4
-	for <lists+intel-gfx@lfdr.de>; Sun,  1 Jan 2023 12:01:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 244B765A9F4
+	for <lists+intel-gfx@lfdr.de>; Sun,  1 Jan 2023 13:18:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B51DD10E072;
-	Sun,  1 Jan 2023 11:01:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0845810E18E;
+	Sun,  1 Jan 2023 12:18:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com
- [IPv6:2a00:1450:4864:20::32d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FCE510E092
- for <intel-gfx@lists.freedesktop.org>; Sun,  1 Jan 2023 11:01:08 +0000 (UTC)
-Received: by mail-wm1-x32d.google.com with SMTP id ja17so18352323wmb.3
- for <intel-gfx@lists.freedesktop.org>; Sun, 01 Jan 2023 03:01:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=fbN4sgockCVO/B+yBctAM+MEuOBH+6vJWelCNlHH77g=;
- b=QVmcBv8W8kVU5ZEJXj3c/wGX88kQTr7TbdErLuN6PnTdUO0apb/X4SRfpx71YRVJ8D
- Fis9EZUjwNcE8xWOSiGO0OI62cRPlRXZoVNBv2XWkfWCrFKxjcq69Vq1ijVrcUOYdCqN
- LDA2fJsi75fq7ZnG+7WuO40VexQjL8R2L7FDE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=fbN4sgockCVO/B+yBctAM+MEuOBH+6vJWelCNlHH77g=;
- b=5jrlPRuW2vbYW8Kn7MNnHI2Rk42UphlxTRD56gdv6HimW6FXdzJysA6lEgC7JKR9RC
- PhhJclyHDk57AhnluhtSJPWMMGgC1+QqrQAEaXwu+4TlhLh8CDhEtp05VplRFyJxFl91
- eKRi3ObwetobMGS+TRYusb0B3GTxEZkWVuhhJ3AjKY8FWnZHXYm/1XKRD/Eu5d8Oz8XB
- 321+sF8fUp6V1dMNiVXjDVbBtKBGl22OSfmHyZ2wfh7O/PIzF4xaKWIJDk880LneiCUg
- 7cxh22BHabMaFl9WIKHB1yi/xy//sce1bYwLJb5bXC1uW42EpkIcaG+kAIZfnDqJlJ3x
- Se2w==
-X-Gm-Message-State: AFqh2krGFuruemk64JQDSXO/54ANuBk/e/ujzEZHjBmJaUUm6QHN5XwB
- 9WpJeg94laBCZYYJYxqAvd67og==
-X-Google-Smtp-Source: AMrXdXune319SggnWIBXR1AabzXHhNu+EsgO2NQYTsfiVAs8HyAFsHZ5qwM33WVqP6tAWwJOK/Huwg==
-X-Received: by 2002:a05:600c:601e:b0:3d4:a1ba:a971 with SMTP id
- az30-20020a05600c601e00b003d4a1baa971mr26670294wmb.24.1672570866625; 
- Sun, 01 Jan 2023 03:01:06 -0800 (PST)
-Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
- [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
- z13-20020adff74d000000b002366f9bd717sm29782141wrp.45.2023.01.01.03.01.04
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 01 Jan 2023 03:01:05 -0800 (PST)
-Date: Sun, 1 Jan 2023 12:01:02 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Message-ID: <Y7Fn7jyvyhsa48Bi@phenom.ffwll.local>
-References: <Y662ijDHrZCjTFla@intel.com>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8A6E10E18E
+ for <intel-gfx@lists.freedesktop.org>; Sun,  1 Jan 2023 12:18:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1672575491; x=1704111491;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=AapHypA1EIxSlOHrhuMITM6V6IuEVx4arPD9mSNpIqU=;
+ b=KFJRlvtnOGO33Z7bEmdeWk29y/wZOzF6agYUYaPS0JAzv8XYhCXfUNF8
+ /c5wqlxZ2+LUxtWHZdAmxubYYVvk3cEYWMfZZpmn3GiJXaTrMPBgaxzUb
+ C89gBajSv6aYm9BLpGH5UGPqIGHA5cC8vzD1YIjsVaQWoMkStuAYDpYV3
+ 1JdmKf4M3wYO6A+JiQu3rtPSV1ugoNKN/OAcRi8DYhUDw9zdmpalL11YM
+ DasO2Z8vRtPCTdh64KaTDM1/IO3Io55ngLoduuPCHIJ2Lp2TTVFtghJsB
+ 22hxnzKvINtbLXI9qEAIEMixpu6pw7hRg+vSKJmijN8XqDGhKSmuXhvEY w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10577"; a="301070702"
+X-IronPort-AV: E=Sophos;i="5.96,292,1665471600"; d="scan'208";a="301070702"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jan 2023 04:18:11 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10577"; a="656254297"
+X-IronPort-AV: E=Sophos;i="5.96,292,1665471600"; d="scan'208";a="656254297"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga007.fm.intel.com with ESMTP; 01 Jan 2023 04:18:11 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Sun, 1 Jan 2023 04:18:10 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Sun, 1 Jan 2023 04:18:10 -0800
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.47) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Sun, 1 Jan 2023 04:18:10 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Vpy1YNRk2YOlRtXZB6GWdtAAwNOIe0cIURt5ChvO583Ys75/86vx5KZg92/Cb8ncNFdfR6gjF+WYc76o88jeAbklsuVdOklQGIsT/5pHgvHzEHijQGnfPrYsWDkQaVhBGcB3TZxGs/JMsk8aLmSMzv469sklOXTv3SD+3TWLvQSsggkw0TZPYJgkEteu7msC4iPDVJsrJzrOt3DaN9Y1r9WGOUtZZJcb9JmPWu/9SizzQ2PrguKjVk3Qn5WM2XMywss0E8oRreuImalFR6khp6juA1zzKK+hI0TeWNMKAnVzDsw/4e8g3dF15kIW0gVYrOOcla78PQLTiuMMmaNqoQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sfjAA3ePdS9ajQhQne4rBGZ+iXLWMcXGbT8+9YIwLps=;
+ b=XISMYkvzI1yRUxMO5Q0gKr0JwaZWqwYmL9ClBJshv1h0UqzclFLnG3ang+nLaPEdgLRe/Qibag83glLspc2sB5jPjUodLcewvwMXwjBtvbKDSsyd9dpySn5a9ibjPo0wNbIWmFRpp7aiB1Wvv1G2iTvDRmIstCGKKBFmSvouylf2SQQN+3hqER0QWTZ7pz/jXqkuDcvQJAVEz/2yubuevwmzfi5PYapABFJAs5FI6o5uLpw/cfHamamV084cc/SFXlPOg1BYdZI5P5pF/YiKSMXG0PnK940OwMmu8iN1crrcSqgOXvPMaDd084+k0+aIk/9ezzO/W9cTAyq8bzPSLw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by BL1PR11MB5544.namprd11.prod.outlook.com (2603:10b6:208:314::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.19; Sun, 1 Jan
+ 2023 12:18:08 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::6591:f625:d30c:c35e]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::6591:f625:d30c:c35e%7]) with mapi id 15.20.5944.019; Sun, 1 Jan 2023
+ 12:18:08 +0000
+Message-ID: <d238b2f1-cce7-635f-df31-acbc46a7c8d1@intel.com>
+Date: Sun, 1 Jan 2023 17:47:57 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+To: Andrzej Hajda <andrzej.hajda@intel.com>, <intel-gfx@lists.freedesktop.org>
+References: <20221222063428.3052172-1-ankit.k.nautiyal@intel.com>
+ <4a00986d-8041-6c90-eaff-86c6ceb0b157@intel.com>
+Content-Language: en-US
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <4a00986d-8041-6c90-eaff-86c6ceb0b157@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PN2PR01CA0211.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:ea::6) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y662ijDHrZCjTFla@intel.com>
-X-Operating-System: Linux phenom 5.19.0-2-amd64 
-Subject: Re: [Intel-gfx] [PULL] drm-intel-fixes
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|BL1PR11MB5544:EE_
+X-MS-Office365-Filtering-Correlation-Id: 06ec55c1-d368-4500-faf4-08daebf23dc4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: bVmKfJ+VJI2B7HPQeMC0lwlSArLFnwsOr7mEqBlrl8vveNs/fR8grg8G4sS6VpiyZitGjlmm0RX4Ty55/1irYHYBkkXlWf6rKl16Iq4YVeOp6IrwmK+VJ2pNxcE8Xk2/6Ypucwlx3BRnkOXRB2Z9T5XGZzwTzg8TZfcdtL4EACZ+OWH55pH5TT3r0tIb+jOKE9qqdVSao0ngTuitrudjGyv7mIXMiSHMH5R/D8tplzJ2EwB+ODik9LtJe6nSkx1vQFKXvhZWtcGemSt0USZKaFsq5LRxwlB9kPIpIMRWhudDGHqotIqgm6ZWhLSOBeBajHgrPkiwsh5mj0ZS7cUPGmVVsHrkSoC3wXd5iRzs/pUdUiy4DuoCM0OvX198Rwd3wC7X87dZf+XybuVS8oYIFZ9kDN0WBxWcVfBHgEqOOQvpzpDr3/KFKh1C8fPpkg7S09kjK0xsLQXsf0uqwAPIdHK+WeK007QrU+737J47EJntG4KiNkt06n8LUpBe3u1zSh40QfWDuUXggDfvARnr5/zK47ro9295CPTVo+AFOVLBPmmpAjLqfUM8eCgiJWuhhBJrZ2hGkihTtsxGmRwd3zaMVfp5wdW3DLj8DZ5g6RqFwcyq3/U4cMD8ogXBT35CxS61NxpNd+1blFUyk5dxQz81O++Pqp5w6ARqmk6E8jUuXtUh9VFyeXzptHI7TEbyOikJV91hV1iz1gHj5ekGaknJcJUsJQtpy2uSVn9yBzFq4P2mo/KLKjkV3hyYXTqW
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(39860400002)(136003)(366004)(396003)(346002)(376002)(451199015)(316002)(2616005)(31696002)(6486002)(6512007)(26005)(186003)(478600001)(36756003)(86362001)(6506007)(53546011)(55236004)(31686004)(41300700001)(6666004)(8936002)(2906002)(83380400001)(5660300002)(66476007)(66556008)(66946007)(82960400001)(8676002)(38100700002)(22166003)(43740500002)(45980500001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cFErYk55eW9VRVp4N0RWNjAzcE5BQ2U2Q0xKcmsvcGpVTlU3dDc4bVR6SVFD?=
+ =?utf-8?B?bUF3alZVN3ZKc05YNEhaWUZKY3oxcjJYTXdCV1B3RENnWXhtVHdQTnNQbWp5?=
+ =?utf-8?B?Ny9WbE5kbldQVHVOQWVZM0lmaFZzaldQcmNqeEhuYjIrMXlJdkZBVHpkdlM0?=
+ =?utf-8?B?MXc1d2p5Z2JNb0JZSm9UR056UDl5UkRjTXMyMlM4ZTZoQWh1WXNXcFR1bHJ1?=
+ =?utf-8?B?cDZpOG41MTdlYUZjUDRicUpjWk1QZjVmSStaWkxIaE9aUjJDMmd5RUk1RzZ2?=
+ =?utf-8?B?TVpIMDc2bEo5T0VaWVNHRjdjbVlLb3ZSSU5VbVB1VjVYSGRTNzNrMVdvaUUz?=
+ =?utf-8?B?UEprMlRqeFhJWTF3bHV3RTFTa29XL2pKWERSUElzZzZSM3ozNk1qMkZmVEp3?=
+ =?utf-8?B?RmdIaWlJNVpOY2pKUHFsTWdSdjZ2emY2bUczRlhWcjl3b2JHOUZFVWExZTYr?=
+ =?utf-8?B?cThtYVh6UW1ZUmMra0I4bmRqOHc2K2syNEptTUh4VG44aHppRW9OK29KQ2VF?=
+ =?utf-8?B?R1c1b1hZdUF2T3hoemJpR2UvUGo4aTUzZ2ZYV0NtUmZsSGJWQVdkbGhIRDhy?=
+ =?utf-8?B?bEhmVDF5Y0pac1BreFQzSU4xVUlQejMyK3NZNHNyVGNZcnB4a1hJeUVndjdJ?=
+ =?utf-8?B?dDlVS1NMQWozMkkzazd1YTVleVlVSFo4QldwNkNkbjdkcE83T25xelhmN0Zj?=
+ =?utf-8?B?WWd4alVMYmwyUFlEZnFid0VpOWprQTB5V0EwQUk3bUNRZjE2QnBmRmZEcVkz?=
+ =?utf-8?B?TytxVjU5WjJkWDdMclA4OFZ0T0d5M29uVUN1K08yeTNQL05rc3ZBOEdkK1Jh?=
+ =?utf-8?B?V3MyN3BXSDRaS3YzcW1Icmg2TGtjbkZRbC9VT2VkZTU2b3g5RUM0SHpBNVBJ?=
+ =?utf-8?B?VXVzTXNmaC9jS3lBakUyRFIzd1BHcUNPSzcxWWYyTlU1YWt0R2lydFpPOHFx?=
+ =?utf-8?B?V1JkREFxYVRTNE5IeDZCVHRINWRmWXJJdXVUUUl0aGpSem12M2NaMjg3enBG?=
+ =?utf-8?B?UW05SFBYNWdxdlV2ZEVac0NXcVJzbW5lMnQwZUU3Q0E3bXh3NmUweXVXSmZZ?=
+ =?utf-8?B?RmhkVG45TDYyU3ZGMHkrOVlWUi8xZnRFSi9rVkxWeE1ySmxST2F0a1Y2SGRa?=
+ =?utf-8?B?dEp6QTl6T2x0SFh4V0grWEQ1Ykl1K1RCSGZYSTBPODI4NEtNbzdEMGRqZVpz?=
+ =?utf-8?B?a2V4UG1nb0hzWm1EeGpRSWRFTEhEUXpyM0VZR0FvYVVEK0ZOL0p0ZHNMSnpS?=
+ =?utf-8?B?TUR6RVhJWWI1cEV4NXBSYjh0NlFRTmQ5T3YxQmJhcUhjMlhRdjZCOTBGVUFX?=
+ =?utf-8?B?YTBUczNlOFgvTXNaNHhNa0NnWldlbGNpSlR1Q201aWpySTMzWTg3T3NIdnlM?=
+ =?utf-8?B?bjd5M0lXUzJkck1qdVpocDBOQkwwUmRPZkZGU3JmZmdmRkQxeHFjd1lTYU9u?=
+ =?utf-8?B?d1lBcVRPbG16Q2VneDArdnp3UDhaZXdaVk1nTkxPQnN3TmZJQldRSWZYd1NB?=
+ =?utf-8?B?YmdmNDVTd3FBYmp3TDUrdm5Wb3FFTDR0SmdhM2JUeVk2bWh4Y25YR1RiL1l2?=
+ =?utf-8?B?MmsvbVNuZXh2dzdWM1J4djVBbE9NclpQVUMvbDBlMjMrdEd6NGtSQXU5N0cz?=
+ =?utf-8?B?aUFiWnlMekkyZ3hoUllyVnlXdUJ6cUhPZm90RVFsZXBWS2c5Q3ZjSEE0Wkxn?=
+ =?utf-8?B?bERKaGZSV2F4ZVo2S1JndlUwZnRsclJLSytmMzgwV2tjdTgza0lNZTNHUzZH?=
+ =?utf-8?B?OWlhQ0h2cGhzK1pBb05oNWNPS2REUmJ2RGJTdXZRQkR3R0FZc09IVVBXTWh5?=
+ =?utf-8?B?TjY2MmVEKzVnRHlrcFNneWJiWVJONmFTb3BReEphbmZvbEZ4dnBEMEltUngz?=
+ =?utf-8?B?RnQwY0JEY0QwdjNMUVhoU09XV3d1QXYvQzdTb0N4cGtiZlRRbjNjN3FlNmNP?=
+ =?utf-8?B?MGNiZ2FIZHdqMFFib0lHZGFRbVJsZnhzQzhxcEhtWjduK3dGNUcweGU0UFBB?=
+ =?utf-8?B?MWIzOHVwbUVZS1pOU1oyeTZaWnM5UlhEa3BrZHN4NHRST0l5OTNoUndMaEt2?=
+ =?utf-8?B?SXNNQXMvUUhaUEhPeVdQdWt5dWJYdFM3YTZxZjJQWmtlMzhFMGpxaFFwQ1pm?=
+ =?utf-8?B?aWs2OVNVNHBMQWZ6MFg0eW9SSGFIMDBMS051ejhyMk9xSTBtZG9tbHZrdklE?=
+ =?utf-8?B?WVE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 06ec55c1-d368-4500-faf4-08daebf23dc4
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jan 2023 12:18:08.0873 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: id1rr3oNWw/T/ViSsRu8/dR3o+Qv0fAohfAJFfWJOrzn9nFknb/FYuzmxbEorBe16gkGI7se7jlPON4oVV2ORV3KQpv/3TPs6jOL9VAZ5Qg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5544
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsb: Remove check for dsb in
+ dsb_commit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,116 +156,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
- dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Dave Airlie <airlied@gmail.com>,
- intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 30, 2022 at 04:59:38AM -0500, Rodrigo Vivi wrote:
-> Hi Dave and Daniel,
-> 
-> Here goes the initial fixes for 6.2.
-> 
-> The most critical ones seems to be the evict fix from Matt and
-> the MIPI DSI from Jani. Both targeting stable trees.
-> 
-> I'm sorry for sending this on a Friday and not on a Thursday as
-> usual. Where did this week go? Worst case this wait one week
-> and I get it rebased and resent earlier next week.
-> 
-> Where did 2022 go? Happy New Year!
 
-Cheers to you too!
+On 12/29/2022 4:51 PM, Andrzej Hajda wrote:
+> On 22.12.2022 07:34, Ankit Nautiyal wrote:
+>> The dsb context should be already checked for NULL, before dsb_commit 
+>> gets
+>> called. So remove the check for dsb inside dsb_commit.
+>>
+>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_dsb.c | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c 
+>> b/drivers/gpu/drm/i915/display/intel_dsb.c
+>> index 3d63c1bf1e4f..ce1f8e0c2cd9 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dsb.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+>> @@ -228,7 +228,7 @@ void intel_dsb_commit(struct intel_dsb *dsb)
+>>       enum pipe pipe = crtc->pipe;
+>>       u32 tail;
+>>   -    if (!(dsb && dsb->free_pos))
+>> +    if (!dsb->free_pos)
+>
+> Alternative would be allow passing NULL dsb, ie. removal of check on 
+> the caller.
 
-> Cheers,
-> Rodrigo.
-> 
-> 
-> drm-intel-fixes-2022-12-30:
-> - fix TLB invalidation for DG2 and newer platforms. (Andrzej)
-> - Remove __maybe_unused from mtl_info (Lucas)
-> - improve the catch-all evict to handle lock contention (Matt Auld)
-> - Fix two issues with over-size (GuC/HuC) firmware files (John)
-> - Fix DSI resume issues on ICL+ (Jani)
-> 
-> Thanks,
-> Rodrigo.
-> 
-> The following changes since commit 1b929c02afd37871d5afb9d498426f83432e71c2:
-> 
->   Linux 6.2-rc1 (2022-12-25 13:41:39 -0800)
-> 
-> are available in the Git repository at:
-> 
->   git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2022-12-30
 
-Pulled, I'll try to get it out for Linus to include it in -rc2 still.
+Thanks Andrzej. Yes that can be a way, I just went ahead with, what is 
+followed in other function.
 
-> for you to fetch changes up to 6217e9f05a74df48c77ee68993d587cdfdb1feb7:
-> 
->   drm/i915/dsi: fix MIPI_BKLT_EN_1 native GPIO index (2022-12-30 04:28:46 -0500)
-> 
-> ----------------------------------------------------------------
-> - fix TLB invalidation for DG2 and newer platforms. (Andrzej)
-> - Remove __maybe_unused from mtl_info (Lucas)
-> - improve the catch-all evict to handle lock contention (Matt Auld)
+Like most of the other dsb functions, we are already using dsb context 
+to get crtc in the first line, so this check at later stage is not useful.
 
-Just a quick comment, this one has
+Thanks & Regards,
 
-Fixes: 7e00897be8bf ("drm/i915: Add object locking to i915_gem_evict_for_node and i915_gem_evict_something, v2.")
+Ankit
 
-but I don't think that's entirely accurate. I might mix up some details
-(and today is not the day to dig these out) and it's been two years
-already when I discussed this Maarten, but this issue is older. It got
-introduced with the conversion to per-object locking, and then somewhat
-artfully papered over with the async object pinning infrastructure (which
-had the design issue of being flat out in violation of upstream locking
-hierarchy).
 
-In practice it makes no difference, because there's no way you can
-backport any of this to a point before the locking rework from Maarten (or
-alternatively, revert until the glorious struct_mutex days). A bit more
-review on a core locking change like this would have been good though imo.
-
-Cheers, Daniel
-
-> - Fix two issues with over-size (GuC/HuC) firmware files (John)
-> - Fix DSI resume issues on ICL+ (Jani)
-> 
-> ----------------------------------------------------------------
-> Andrzej Hajda (1):
->       drm/i915: fix TLB invalidation for Gen12.50 video and compute engines
-> 
-> Jani Nikula (2):
->       drm/i915/dsi: add support for ICL+ native MIPI GPIO sequence
->       drm/i915/dsi: fix MIPI_BKLT_EN_1 native GPIO index
-> 
-> John Harrison (1):
->       drm/i915/uc: Fix two issues with over-size firmware files
-> 
-> Lucas De Marchi (1):
->       drm/i915: Remove __maybe_unused from mtl_info
-> 
-> Matthew Auld (1):
->       drm/i915: improve the catch-all evict to handle lock contention
-> 
->  drivers/gpu/drm/i915/display/intel_dsi_vbt.c    | 94 ++++++++++++++++++++++++-
->  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c  | 59 +++++++++++++---
->  drivers/gpu/drm/i915/gem/i915_gem_mman.c        |  2 +-
->  drivers/gpu/drm/i915/gt/intel_gt.c              |  8 ++-
->  drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c        | 42 +++++++----
->  drivers/gpu/drm/i915/i915_gem_evict.c           | 37 +++++++---
->  drivers/gpu/drm/i915/i915_gem_evict.h           |  4 +-
->  drivers/gpu/drm/i915/i915_irq.c                 |  3 +
->  drivers/gpu/drm/i915/i915_pci.c                 |  1 -
->  drivers/gpu/drm/i915/i915_reg.h                 |  1 +
->  drivers/gpu/drm/i915/i915_vma.c                 |  2 +-
->  drivers/gpu/drm/i915/selftests/i915_gem_evict.c |  4 +-
->  12 files changed, 212 insertions(+), 45 deletions(-)
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+> Anyway:
+> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+>
+> Regards
+> Andrzej
+>
+>>           return;
+>>         if (!intel_dsb_enable_engine(dev_priv, pipe, dsb->id))
+>
