@@ -1,33 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4545365AD57
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Jan 2023 06:58:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12BD065AD6D
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Jan 2023 07:20:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DAFDC10E177;
-	Mon,  2 Jan 2023 05:58:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2501C10E177;
+	Mon,  2 Jan 2023 06:20:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id BBCD010E177;
- Mon,  2 Jan 2023 05:58:43 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9BF23A0169;
- Mon,  2 Jan 2023 05:58:43 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E3AB10E0CC
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Jan 2023 06:20:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1672640412; x=1704176412;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=4v39lxQ4KNRRmauM+n4vwvoYGegMOWdiR03dGlE7s/E=;
+ b=UbblKFliiCxPcozj0J5r8lunHUOLBeYFmupov9EGzn5mFORGOW6VCx8d
+ 0BKRSV2K27+YeGo5tbMKWgRc7I0WZFE2sVfulmCgLiA6aMLHhTZJrt5+u
+ 6/cRRlMoB5AXLMkeRCw19Xrzg7+yH1QJ7gPcLXFdg0XJ5t29RuK+CND29
+ Dp24X1l2Dk7I1DgwL5pweBRG88zYLpZk1YtXlMtMDyAo1hDieqyz35NG7
+ qq/cPkGgs7jFxZ4FHS4Ko7r8zZ5cXDgNN14hTlpZ/M8kmi8FzKJcsB2sp
+ zqgKsw3xNqEUqwr89j9wXlL4vCtC47t9tKl4xKcMlcS+zhvi04F4GA2xy Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10577"; a="348657597"
+X-IronPort-AV: E=Sophos;i="5.96,293,1665471600"; d="scan'208";a="348657597"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jan 2023 22:20:11 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10577"; a="647840538"
+X-IronPort-AV: E=Sophos;i="5.96,293,1665471600"; d="scan'208";a="647840538"
+Received: from chaitanya.iind.intel.com ([10.190.239.113])
+ by orsmga007.jf.intel.com with ESMTP; 01 Jan 2023 22:20:08 -0800
+From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  2 Jan 2023 11:50:01 +0530
+Message-Id: <20230102062005.720964-1-chaitanya.kumar.borah@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Date: Mon, 02 Jan 2023 05:58:43 -0000
-Message-ID: <167263912360.12724.17420036335267805583@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230102054047.124624-1-suraj.kandpal@intel.com>
-In-Reply-To: <20230102054047.124624-1-suraj.kandpal@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Enable_HDCP2=2Ex_via_GSC_CS_=28rev5=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [RFC 0/4] Add new CDCLK step for RPL-U
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,71 +54,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: ville.syrjala@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+A new step of 480MHz has been added on SKUs that have a RPL-U
+device id. This particular step is to support 120Hz panels
+more efficiently.
 
-Series: Enable HDCP2.x via GSC CS (rev5)
-URL   : https://patchwork.freedesktop.org/series/111876/
-State : warning
+This patchset adds a new table to include this new CDCLK
+step. Details can be found in BSpec entry 55409.
 
-== Summary ==
+RPL-U device ids are currently added within the RPL-P sub
+platform. It seems to be an overkill to add a separate sub
+platform just to support this change. Therefore, quirks
+are a good way to achieve this.
 
-Error: dim checkpatch failed
-9a07090d8197 drm/i915/gsc: Create GSC request submission mechanism
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:57: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#57: 
-new file mode 100644
+In addition to identifying RPL-U device id, we need to make a
+distinction between ES and QS parts as this change comes only to
+QS parts. CPUID Brand string is the only way to make this distinction
+currently. ES parts have "Genuine Intel" in their brand string
+while QS parts have a more specific brand string, for ex.
+"13th Gen Intel(R) Core(TM) i5-1345U". Therefore, 480Mhz step is only
+supported in SKUs which does not contain the string "Genuine Intel" in
+the Brand string.
 
-total: 0 errors, 1 warnings, 0 checks, 159 lines checked
-a571bde83c0b drm/i915/hdcp: Keep cp fw agonstic naming convention
--:45: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#45: 
-rename from include/drm/i915_mei_hdcp_interface.h
+The patch "drm/i915: Apply CDCLK quirk only on QS parts" adds this
+change. We have separated this patch because we request feedback
+from the community if this change needs to be upstreamed or not
+as ES parts will be deprecated in future. Feedbacks are welcome.
 
-total: 0 errors, 1 warnings, 0 checks, 151 lines checked
-65259b94f5f4 i915/hdcp: HDCP2.x Refactoring to agnostic hdcp
-4fabd9f209bf drm/i915/hdcp: Refactor HDCP API structures
-464655e9ac02 drm/i915/hdcp: Fill wired_cmd_in structures at a single place
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:28: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#28: 
-new file mode 100644
+Chaitanya Kumar Borah (4):
+  drm/i915/quirks: Add quirk for 480MHz CDCLK step
+  drm/i915/display: Add 480 MHz CDCLK steps for RPL-U
+  drm/i915: Initialize intel quirks before CDCLK initialization
+  drm/i915: Apply CDCLK quirk only on QS parts
 
-total: 0 errors, 1 warnings, 0 checks, 485 lines checked
-11622100a427 drm/i915/mtl: Add function to send command to GSC CS
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:44: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#44: 
-new file mode 100644
+ drivers/gpu/drm/i915/display/intel_cdclk.c   | 25 ++++++++++++
+ drivers/gpu/drm/i915/display/intel_display.c |  2 -
+ drivers/gpu/drm/i915/display/intel_quirks.c  | 40 ++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_quirks.h  |  1 +
+ drivers/gpu/drm/i915/i915_driver.c           |  2 +
+ 5 files changed, 68 insertions(+), 2 deletions(-)
 
-total: 0 errors, 1 warnings, 0 checks, 267 lines checked
-3d3788af1cdb drm/i915/mtl: Add HDCP GSC interface
--:607: CHECK:ALLOC_SIZEOF_STRUCT: Prefer kzalloc(sizeof(*data)...) over kzalloc(sizeof(struct i915_hdcp_master)...)
-#607: FILE: drivers/gpu/drm/i915/display/intel_hdcp_gsc.c:506:
-+	data = kzalloc(sizeof(struct i915_hdcp_master), GFP_KERNEL);
-
-total: 0 errors, 0 warnings, 1 checks, 615 lines checked
-
+-- 
+2.25.1
 
