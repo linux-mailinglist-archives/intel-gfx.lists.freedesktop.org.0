@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20A3365AF3D
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Jan 2023 11:04:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 76CF865AF41
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Jan 2023 11:05:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D9B010E2EC;
-	Mon,  2 Jan 2023 10:04:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEF8C10E2EC;
+	Mon,  2 Jan 2023 10:05:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1318010E2E7
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 Jan 2023 10:04:01 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6477E10E2EC
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Jan 2023 10:05:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1672653841; x=1704189841;
+ t=1672653911; x=1704189911;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=ZiLCTdXqC1eUfHtaZ8ou7LnUmbg2vciyHM/gNNU1QHI=;
- b=J8djplAxDblWjdwabN9ydK7jUzH+SBhnlaDAFzwskYRGDb7qc3yIb1B1
- jRJEC6uUZO1x9R6FmBGEdXqZ0X2HtTk0RQyXlj18iaMUAEMC+TV3Owmus
- OJdOlFiaASDYV9dKGFEzByM11KrdaE1F1mXdJKXEaIqGp9uWO83hXj3pB
- 2zMZpyOiEpDPQKOEdXcre9tYmLpxONP9qZtA0zetQCmH8bnaV28UUJ+lr
- yyhYZCDHA4MDgTgzZJRWwqMZ0sD6LBNMbPWVJLOj+vr4H1xDLET8SZn+w
- zXco363ewsAM7Mf/FuFbs2fPfpIx8x9JO+EcdTRXbH0OMw+eCCLrBdrZx w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10577"; a="348677903"
-X-IronPort-AV: E=Sophos;i="5.96,293,1665471600"; d="scan'208";a="348677903"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jan 2023 02:04:00 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10577"; a="899840532"
-X-IronPort-AV: E=Sophos;i="5.96,293,1665471600"; d="scan'208";a="899840532"
+ bh=lRrRBVfQydA9VkscEeDSvOpJb3o9ReEgkTYVk5WkI+o=;
+ b=PMYE6wi2pHd5mjy61KQ1LFoGNiQKSzf1FAQ3D2Zv+q/1kLd/EB28rewq
+ seHWvXiyecgILUabvXC/1Eusra88W3taXlA+IRPnwJve247coAsz1v/9B
+ t/Usma03S5QKigWtj2LLDbqw/T2nVFZ7tchKqasrLV9l/SBtbQYhB75nK
+ Rgl1roJMSzQ+1dRY0XrxwVLdR7xNAWOt45yEb27g3uikImt4XHSGCzYLt
+ pUKumi9a0NGJyBnsjjv44jtllIYbprmii73Si3vdmq066+YSnhqMqJkEE
+ XJ+KHj0KGjg2SmSNt9TqyOljepyZjKYmnYsw5aOessh+uL31h+hWMfWqP Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10577"; a="319161181"
+X-IronPort-AV: E=Sophos;i="5.96,293,1665471600"; d="scan'208";a="319161181"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jan 2023 02:05:10 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10577"; a="796830944"
+X-IronPort-AV: E=Sophos;i="5.96,293,1665471600"; d="scan'208";a="796830944"
 Received: from shoey-mobl.ger.corp.intel.com (HELO localhost) ([10.252.9.185])
- by fmsmga006-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jan 2023 02:03:57 -0800
+ by fmsmga001-auth.fm.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jan 2023 02:05:07 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230102062005.720964-2-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20230102062005.720964-3-chaitanya.kumar.borah@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20230102062005.720964-1-chaitanya.kumar.borah@intel.com>
- <20230102062005.720964-2-chaitanya.kumar.borah@intel.com>
-Date: Mon, 02 Jan 2023 12:03:54 +0200
-Message-ID: <87tu19z20l.fsf@intel.com>
+ <20230102062005.720964-3-chaitanya.kumar.borah@intel.com>
+Date: Mon, 02 Jan 2023 12:05:03 +0200
+Message-ID: <87r0wdz1yo.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [RFC 1/4] drm/i915/quirks: Add quirk for 480MHz
- CDCLK step
+Subject: Re: [Intel-gfx] [RFC 2/4] drm/i915/display: Add 480 MHz CDCLK steps
+ for RPL-U
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,21 +64,12 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Mon, 02 Jan 2023, Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com> wrote:
-> A new CDCLK step of 480MHz has been added on SKUs that has a
-> RPL-U device id. This is done to support 120Hz displays with
-> more efficiency.
->
-> RPL-U device ids are currently added within the RPL-P sub
-> platform. It seems to be an overkill to add a separate sub
-> platform just to support this change. Therefore, quirks
-> are a good way to achieve the same.
+> A new step of 480MHz has been added on SKUs that have a RPL-U
+> device id to support 120Hz displays more efficiently. Use a
+> new quirk to identify the machine for which this change needs
+> to be applied.
 
-The thing is, this part is *not* a quirk. It's basic enabling for RPL-U.
-
-If you start conflating quirks and basic enabling to avoid overkill,
-you're eventually going to end up in all kinds of trouble with
-maintenance.
-
+Again, it's not a quirk, and should not be added as one.
 
 BR,
 Jani.
@@ -88,54 +79,63 @@ Jani.
 >
 > Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_quirks.c | 14 ++++++++++++++
->  drivers/gpu/drm/i915/display/intel_quirks.h |  1 +
->  2 files changed, 15 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_cdclk.c | 25 ++++++++++++++++++++++
+>  1 file changed, 25 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
-> index 6e48d3bcdfec..0a30499835b3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_quirks.c
-> +++ b/drivers/gpu/drm/i915/display/intel_quirks.c
-> @@ -65,6 +65,16 @@ static void quirk_no_pps_backlight_power_hook(struct drm_i915_private *i915)
->  	drm_info(&i915->drm, "Applying no pps backlight power quirk\n");
->  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> index 0c107a38f9d0..f5df0a806765 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -38,6 +38,7 @@
+>  #include "intel_pcode.h"
+>  #include "intel_psr.h"
+>  #include "vlv_sideband.h"
+> +#include "intel_quirks.h"
 >  
-> +/*
-> + * A new step of 480MHz has been added on SKUs that have a RPL-U device id.
-> + * This particular step is to better support 120Hz panels.
-> + */
-> +static void quirk_480mhz_cdclk_step_hook(struct drm_i915_private *i915)
-> +{
-> +	intel_set_quirk(i915, QUIRK_480MHZ_CDCLK_STEP);
-> +	drm_info(&i915->drm, "Applying 480MHz CDCLK step quirk\n");
-> +}
+>  /**
+>   * DOC: CDCLK / RAWCLK
+> @@ -1329,6 +1330,27 @@ static const struct intel_cdclk_vals adlp_cdclk_table[] = {
+>  	{}
+>  };
+>  
+> +static const struct intel_cdclk_vals rplu_cdclk_table[] = {
+> +	{ .refclk = 19200, .cdclk = 172800, .divider = 3, .ratio = 27 },
+> +	{ .refclk = 19200, .cdclk = 192000, .divider = 2, .ratio = 20 },
+> +	{ .refclk = 19200, .cdclk = 480000, .divider = 2, .ratio = 50 },
+> +	{ .refclk = 19200, .cdclk = 556800, .divider = 2, .ratio = 58 },
+> +	{ .refclk = 19200, .cdclk = 652800, .divider = 2, .ratio = 68 },
 > +
->  struct intel_quirk {
->  	int device;
->  	int subsystem_vendor;
-> @@ -199,6 +209,10 @@ static struct intel_quirk intel_quirks[] = {
->  	/* ECS Liva Q2 */
->  	{ 0x3185, 0x1019, 0xa94d, quirk_increase_ddi_disabled_time },
->  	{ 0x3184, 0x1019, 0xa94d, quirk_increase_ddi_disabled_time },
-> +	/* RPL-U */
-> +	{ 0xA7A1, PCI_ANY_ID, PCI_ANY_ID, quirk_480mhz_cdclk_step_hook },
-> +	{ 0xA721, PCI_ANY_ID, PCI_ANY_ID, quirk_480mhz_cdclk_step_hook },
-> +	{ 0xA7A9, PCI_ANY_ID, PCI_ANY_ID, quirk_480mhz_cdclk_step_hook },
->  };
->  
->  void intel_init_quirks(struct drm_i915_private *i915)
-> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h b/drivers/gpu/drm/i915/display/intel_quirks.h
-> index 10a4d163149f..71e05684f5f4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_quirks.h
-> +++ b/drivers/gpu/drm/i915/display/intel_quirks.h
-> @@ -17,6 +17,7 @@ enum intel_quirk_id {
->  	QUIRK_INVERT_BRIGHTNESS,
->  	QUIRK_LVDS_SSC_DISABLE,
->  	QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK,
-> +	QUIRK_480MHZ_CDCLK_STEP,
->  };
->  
->  void intel_init_quirks(struct drm_i915_private *i915);
+> +	{ .refclk = 24000, .cdclk = 176000, .divider = 3, .ratio = 22 },
+> +	{ .refclk = 24000, .cdclk = 192000, .divider = 2, .ratio = 16 },
+> +	{ .refclk = 24000, .cdclk = 480000, .divider = 2, .ratio = 40 },
+> +	{ .refclk = 24000, .cdclk = 552000, .divider = 2, .ratio = 46 },
+> +	{ .refclk = 24400, .cdclk = 648000, .divider = 2, .ratio = 54 },
+> +
+> +	{ .refclk = 38400, .cdclk = 179200, .divider = 3, .ratio = 14 },
+> +	{ .refclk = 38400, .cdclk = 192000, .divider = 2, .ratio = 10 },
+> +	{ .refclk = 38400, .cdclk = 480000, .divider = 2, .ratio = 25 },
+> +	{ .refclk = 38400, .cdclk = 556800, .divider = 2, .ratio = 29 },
+> +	{ .refclk = 38400, .cdclk = 652800, .divider = 2, .ratio = 34 },
+> +	{}
+> +};
+> +
+>  static const struct intel_cdclk_vals dg2_cdclk_table[] = {
+>  	{ .refclk = 38400, .cdclk = 163200, .divider = 2, .ratio = 34, .waveform = 0x8888 },
+>  	{ .refclk = 38400, .cdclk = 204000, .divider = 2, .ratio = 34, .waveform = 0x9248 },
+> @@ -3353,6 +3375,9 @@ void intel_init_cdclk_hooks(struct drm_i915_private *dev_priv)
+>  		/* Wa_22011320316:adl-p[a0] */
+>  		if (IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
+>  			dev_priv->display.cdclk.table = adlp_a_step_cdclk_table;
+> +		/* BSpec: 55409 */
+
+We don't bother with bspec references in code. Add them in commit
+messages.
+
+> +		else if (intel_has_quirk(dev_priv, QUIRK_480MHZ_CDCLK_STEP))
+> +			dev_priv->display.cdclk.table = rplu_cdclk_table;
+>  		else
+>  			dev_priv->display.cdclk.table = adlp_cdclk_table;
+>  	} else if (IS_ROCKETLAKE(dev_priv)) {
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
