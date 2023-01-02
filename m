@@ -2,32 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EAB665B34E
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Jan 2023 15:24:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32EB865B351
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Jan 2023 15:28:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D56D810E349;
-	Mon,  2 Jan 2023 14:24:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15B9B10E349;
+	Mon,  2 Jan 2023 14:28:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3B69710E349;
- Mon,  2 Jan 2023 14:24:14 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3256EAADE6;
- Mon,  2 Jan 2023 14:24:14 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5477603103166739356=="
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C57810E349;
+ Mon,  2 Jan 2023 14:27:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1672669678; x=1704205678;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=m2XtFGgQcnvEbqfEX2AJFgubdYVpm7owXNhKI2flAJQ=;
+ b=cAgZXcm5V5+7zTxGkprDgl4bzNhk5YMwtEvInNd5xoFQwHS45/taMoHi
+ VRSW+5KjljzoQ1/2hOnstftzl6sglIJoy1uR4CAicNV47bm6jVzdCH+QR
+ BlRJA3Xg0jjCpgWv0e4I1qcQFd3bcn6wpGDJjZ9ecKaxT4y8vb9+ZrodD
+ fTliN+A6BxkRkaus2PhRrld3UyA4plt/L0hoRHZc4xMqL48QSKnrOfkcg
+ 3ru8I8wV/1SX1+fgxl/e8O8bj2J8xWmfazDcDcgayK3Gs4SooZgZ/qq3H
+ a9RRQChmfVpapO9hnLDp+MTHDkcw79I30FgO/Gs/d6GPCS0W6esRBFsuW g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10578"; a="301179228"
+X-IronPort-AV: E=Sophos;i="5.96,294,1665471600"; d="scan'208";a="301179228"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jan 2023 06:27:57 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10578"; a="654504251"
+X-IronPort-AV: E=Sophos;i="5.96,294,1665471600"; d="scan'208";a="654504251"
+Received: from bhomann-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.252.48.10])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jan 2023 06:27:54 -0800
+Date: Mon, 2 Jan 2023 15:27:51 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Nirmoy Das <nirmoy.das@intel.com>
+Message-ID: <Y7LpskDkbpuybI17@ashyti-mobl2.lan>
+References: <20221230183500.20553-1-nirmoy.das@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Mon, 02 Jan 2023 14:24:14 -0000
-Message-ID: <167266945416.12726.16586317938111324867@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230102132306.9663-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20230102132306.9663-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Fix_timeslots_argument_for_DP_DSC_SST_case?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221230183500.20553-1-nirmoy.das@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Use "%zu" to format size_t
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,188 +57,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ chris@chris-wilson.co.uk, andrzej.hajda@intel.com, rodrigo.vivi@intel.com,
+ mchehab@kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5477603103166739356==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Dec 30, 2022 at 07:35:00PM +0100, Nirmoy Das wrote:
+> Switch to %zu for printing size_t which will
+> fix compilation warning for 32-bit build.
+> 
+> Reported-by: kernel test robot <lkp@intel.com>
+> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 
-== Series Details ==
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-Series: drm/i915: Fix timeslots argument for DP DSC SST case
-URL   : https://patchwork.freedesktop.org/series/112349/
-State : success
+Andi
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_12536 -> Patchwork_112349v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112349v1/index.html
-
-Participating hosts (45 -> 41)
-------------------------------
-
-  Missing    (4): fi-kbl-soraka fi-bsw-kefka bat-atsm-1 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_112349v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@migrate:
-    - bat-adlp-4:         [PASS][1] -> [DMESG-FAIL][2] ([i915#7699])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12536/bat-adlp-4/igt@i915_selftest@live@migrate.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112349v1/bat-adlp-4/igt@i915_selftest@live@migrate.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [DMESG-FAIL][3] ([i915#5334]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12536/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112349v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@slpc:
-    - {bat-rpls-1}:       [DMESG-FAIL][5] ([i915#6367]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12536/bat-rpls-1/igt@i915_selftest@live@slpc.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112349v1/bat-rpls-1/igt@i915_selftest@live@slpc.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size:
-    - {bat-adlp-9}:       [FAIL][7] ([i915#4289]) -> [PASS][8] +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12536/bat-adlp-9/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112349v1/bat-adlp-9/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
-  [i915#4137]: https://gitlab.freedesktop.org/drm/intel/issues/4137
-  [i915#4289]: https://gitlab.freedesktop.org/drm/intel/issues/4289
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#5763]: https://gitlab.freedesktop.org/drm/intel/issues/5763
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#7336]: https://gitlab.freedesktop.org/drm/intel/issues/7336
-  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12536 -> Patchwork_112349v1
-
-  CI-20190529: 20190529
-  CI_DRM_12536: 4c18d8b1c2a1f11e99f865f60fbce9fedd3376fc @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7105: 305e8d105abf033cb850d1fb118e5cbfb6c9cd40 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_112349v1: 4c18d8b1c2a1f11e99f865f60fbce9fedd3376fc @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-7ee0789c9b7a drm/i915: Fix timeslots argument for DP DSC SST case
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112349v1/index.html
-
---===============5477603103166739356==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Fix timeslots argument for DP DSC SST case</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/112349/">https://patchwork.freedesktop.org/series/112349/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112349v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112349v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12536 -&gt; Patchwork_112349v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112349v1/index.html</p>
-<h2>Participating hosts (45 -&gt; 41)</h2>
-<p>Missing    (4): fi-kbl-soraka fi-bsw-kefka bat-atsm-1 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_112349v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@migrate:<ul>
-<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12536/bat-adlp-4/igt@i915_selftest@live@migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112349v1/bat-adlp-4/igt@i915_selftest@live@migrate.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12536/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112349v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@slpc:</p>
-<ul>
-<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12536/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112349v1/bat-rpls-1/igt@i915_selftest@live@slpc.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size:</p>
-<ul>
-<li>{bat-adlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12536/bat-adlp-9/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4289">i915#4289</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112349v1/bat-adlp-9/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12536 -&gt; Patchwork_112349v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12536: 4c18d8b1c2a1f11e99f865f60fbce9fedd3376fc @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7105: 305e8d105abf033cb850d1fb118e5cbfb6c9cd40 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_112349v1: 4c18d8b1c2a1f11e99f865f60fbce9fedd3376fc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>7ee0789c9b7a drm/i915: Fix timeslots argument for DP DSC SST case</p>
-
-</body>
-</html>
-
---===============5477603103166739356==--
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> index e767791e40e0..114443096841 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> @@ -238,7 +238,7 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
+>  			goto rebuild_st;
+>  		} else {
+>  			dev_warn(i915->drm.dev,
+> -				 "Failed to DMA remap %lu pages\n",
+> +				 "Failed to DMA remap %zu pages\n",
+>  				 obj->base.size >> PAGE_SHIFT);
+>  			goto err_pages;
+>  		}
+> -- 
+> 2.38.0
