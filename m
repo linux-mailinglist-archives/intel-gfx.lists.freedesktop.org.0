@@ -1,66 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1EDF65C84D
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Jan 2023 21:43:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A306765C8B0
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Jan 2023 22:14:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 641FE10E21C;
-	Tue,  3 Jan 2023 20:43:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 776A110E22F;
+	Tue,  3 Jan 2023 21:14:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com
- [IPv6:2607:f8b0:4864:20::1036])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C57D10E21B
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Jan 2023 20:43:21 +0000 (UTC)
-Received: by mail-pj1-x1036.google.com with SMTP id v23so34094987pju.3
- for <intel-gfx@lists.freedesktop.org>; Tue, 03 Jan 2023 12:43:21 -0800 (PST)
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com
+ [IPv6:2607:f8b0:4864:20::1029])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41A7E10E22F
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Jan 2023 21:13:59 +0000 (UTC)
+Received: by mail-pj1-x1029.google.com with SMTP id
+ j8-20020a17090a3e0800b00225fdd5007fso22774299pjc.2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 03 Jan 2023 13:13:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=xa61Ou7j/846wt97LkeShrQLxxw8hvcUHjRwhnCxBCc=;
- b=TRm8LLcbBZjdkaye1ciJYctw6wm9URMlqbJ1906WJVxLDuKmUx722YaaZouoCB+fM/
- fx7xcyib0PtiWeUlApsonrBo5Qi5OZO5MatQeKw68gjkWsuYOsTkMR69iP4M8rDi1RrG
- +yB0Xg0oyShcZT+u0OaOXMecYFnIFyLe9cBVIsCTCJHFUH9mufMqZgrQGPv845H9x8Im
- oLQY3EzoIHULs3TQlMcP36a18sgdW9CtLFirUBznKSMM4V+FS7zmwX0YYO4BST1+yvCi
- LulcuShq9RZKVGqael5KMpKjulXoP2pEXztql/1ZIOMcGNV9rw6f0MKqvRd2rox3NBFs
- cWFQ==
+ bh=9p6xOAllsdwmLNRF1CYEiIp55ypvlzYzax0rYzleWNo=;
+ b=ciy1v2owEhU15SQWAmYsdnJ1U5xMAuX9wzmG43dAuqW7vCvtsEpJkV55tG9JuZSJTS
+ fkvXO7rqR96Q01Np531KBtWzzBAiqUHSw/2uwB4qMojVHHvYWrsBgarkdFofh14rFl46
+ 5ARxqE5hr1JAnrDVEFTfxpMNxqTaY+rrkJQcMQOr4UVOQZHdDLS/hwXhHwcwbA/IY8po
+ qXiNsF0hj8M1B7TphtxcQfzfMw/zLvuuRxxIH1zB1J8kDFkEljiJjUoh2A49ocsY8i22
+ wer+iZUB0riKCypu60lSg3hRyA4GpRQsKFwwsgPYHJr/3UMjMrruzD2CC22ebXuacWn7
+ 9bNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=xa61Ou7j/846wt97LkeShrQLxxw8hvcUHjRwhnCxBCc=;
- b=RMuUHCrng9OaBvBrJ3GWHJ/MUVXfMWugIcsRrymr0HGuqNb1V7JjcoQCoZywrU6Qlx
- U1RpGtVT1b3ltJwjVKy9hdCDDnzlDKnxPBb9K1bx6tLRpVTTGaDVE2MIHsteMJw/vHMM
- FlnlSYBS66x6HHlQkytbMq+QA7w4ng3P4iZ9+cG20m+k0BbnE2CUp4o12sJV2KbPYHIB
- Itf8MHKADjhv3mATVsKQpkVRlL28daSkd0xKL2UdiNHE0M1pMvdDx7eXuk0zJEdsaNja
- kr1rGyWAKfv0r9UGOfLEx9Skg/pexGSjQd2N2po5Gu7vOknKiRgXUTuDIWRWRA29aAmC
- +cJA==
-X-Gm-Message-State: AFqh2kqWV9VtuP/ciPGHhsyltT31ImXiFe6dALsVslaYFNE6iW1hxrqO
- fMCcYsrJn1R6luEhC03605NHoQ==
-X-Google-Smtp-Source: AMrXdXunwdEn9XsOkAK37phwnHpqU8JPscGX/vIB459rXA0SHYQW7eVPVrszViDVGf0nnCl3jmsVxQ==
-X-Received: by 2002:a17:903:41ca:b0:189:6624:58c0 with SMTP id
- u10-20020a17090341ca00b00189662458c0mr4304764ple.3.1672778601095; 
- Tue, 03 Jan 2023 12:43:21 -0800 (PST)
+ bh=9p6xOAllsdwmLNRF1CYEiIp55ypvlzYzax0rYzleWNo=;
+ b=AYqUtpFRktMcXnQRXWRy5bNBMPiF586Ys/A/Uk6kLwey9POui98nZ2OggRuoEjaQ72
+ 5lvBdPV5neaF3Hz5Kg0JH8r/7rrnJ0PmBndlhwgIXT7HWTYSazctE5rD92oh6sa2bO4p
+ pqi58LYZEZc8MRwVDJqByLRxSvNxxucLnV66DRj6tVAB7YhcnD9V0OwS5TdnrLmeTZZ6
+ FAKtft1ZR9hrMW0g8YJBvjJlbpecY0EbA1OEQg3QrsyNRuXlPILCeZzmnAYDe9eQIdHe
+ JsQOYYTT7rjpY8iLCrgazbT2n+JjZ5Tp1RRsUWOneK5oqjZ/Ml2HpVous0OQGSuzcqPg
+ tHOw==
+X-Gm-Message-State: AFqh2kpRs+p6ZIWpepmISlyRLRm29xeJBmdMpbM2josMnHfckRNCxRkA
+ 0VTOfPJWpusv/yuw37SN59rlkQ==
+X-Google-Smtp-Source: AMrXdXsUJWWyS0pzIR8xoON1mt4qFc3XLmvSjOul9xU40XtPwpStroqnw3FiN9s3u4jye6EKg+pYPw==
+X-Received: by 2002:a17:902:ce90:b0:192:8a1e:9bc7 with SMTP id
+ f16-20020a170902ce9000b001928a1e9bc7mr2157751plg.0.1672780438696; 
+ Tue, 03 Jan 2023 13:13:58 -0800 (PST)
 Received: from google.com (7.104.168.34.bc.googleusercontent.com.
  [34.168.104.7]) by smtp.gmail.com with ESMTPSA id
- t14-20020a1709027fce00b0019141c79b1dsm22670248plb.254.2023.01.03.12.43.20
+ h11-20020a170902680b00b00192849d1209sm3321073plk.96.2023.01.03.13.13.58
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 03 Jan 2023 12:43:20 -0800 (PST)
-Date: Tue, 3 Jan 2023 20:43:17 +0000
+ Tue, 03 Jan 2023 13:13:58 -0800 (PST)
+Date: Tue, 3 Jan 2023 21:13:54 +0000
 From: Sean Christopherson <seanjc@google.com>
 To: Yan Zhao <yan.y.zhao@intel.com>
-Message-ID: <Y7STZZkd3EaRXLTC@google.com>
+Message-ID: <Y7SaklDQD0EoIs8l@google.com>
 References: <20221223005739.1295925-1-seanjc@google.com>
- <20221223005739.1295925-10-seanjc@google.com>
- <Y6vOEjHZhOWulyo1@yzhao56-desk.sh.intel.com>
+ <20221223005739.1295925-4-seanjc@google.com>
+ <Y6vXTcxDNovrmeVB@yzhao56-desk.sh.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Y6vOEjHZhOWulyo1@yzhao56-desk.sh.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 09/27] drm/i915/gvt: Protect gfn hash table
- with dedicated mutex
+In-Reply-To: <Y6vXTcxDNovrmeVB@yzhao56-desk.sh.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 03/27] drm/i915/gvt: Incorporate KVM memslot
+ info into check for 2MiB GTT entry
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,107 +81,73 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Wed, Dec 28, 2022, Yan Zhao wrote:
-> On Fri, Dec 23, 2022 at 12:57:21AM +0000, Sean Christopherson wrote:
-> > Add and use a new mutex, gfn_lock, to protect accesses to the hash table
-> > used to track which gfns are write-protected when shadowing the guest's
-> > GTT.  This fixes a bug where kvmgt_page_track_write(), which doesn't hold
-> > kvm->mmu_lock, could race with intel_gvt_page_track_remove() and trigger
-> > a use-after-free.
+> On Fri, Dec 23, 2022 at 12:57:15AM +0000, Sean Christopherson wrote:
+> > Honor KVM's max allowed page size when determining whether or not a 2MiB
+> > GTT shadow page can be created for the guest.  Querying KVM's max allowed
+> > size is somewhat odd as there's no strict requirement that KVM's memslots
+> > and VFIO's mappings are configured with the same gfn=>hva mapping, but
+> Without vIOMMU, VFIO's mapping is configured with the same as KVM's
+> memslots, i.e. with the same gfn==>HVA mapping
+
+But that's controlled by userspace, correct?
+
+> > the check will be accurate if userspace wants to have a functional guest,
+> > and at the very least checking KVM's memslots guarantees that the entire
+> > 2MiB range has been exposed to the guest.
+> 
+> I think just check the entrie 2MiB GFN range are all within KVM memslot is
+> enough.
+
+Strictly speaking, no.  E.g. if a 2MiB region is covered with multiple memslots
+and the memslots have different properties.
+
+> If for some reason, KVM maps a 2MiB range in 4K sizes, KVMGT can still map
+> it in IOMMU size in 2MiB size as long as the PFNs are continous and the
+> whole range is all exposed to guest.
+
+I agree that practically speaking this will hold true, but if KVMGT wants to honor
+KVM's memslots then checking that KVM allows a hugepage is correct.  Hrm, but on
+the flip side, KVMGT ignores read-only memslot flags, so KVMGT is already ignoring
+pieces of KVM's memslots.
+
+I have no objection to KVMGT defining its ABI such that KVMGT is allowed to create
+2MiB so long as (a) the GFN is contiguous according to VFIO, and (b) that the entire
+2MiB range is exposed to the guest.
+
+That said, being fully permissive also seems wasteful, e.g. KVM would need to
+explicitly support straddling multiple memslots.
+
+As a middle ground, what about tweaking kvm_page_track_is_valid_gfn() to take a
+range, and then checking that the range is contained in a single memslot?
+
+E.g. something like:
+
+bool kvm_page_track_is_contiguous_gfn_range(struct kvm *kvm, gfn_t gfn,
+					    unsigned long nr_pages)
+{
+	struct kvm_memory_slot *memslot;
+	bool ret;
+	int idx;
+
+	idx = srcu_read_lock(&kvm->srcu);
+	memslot = gfn_to_memslot(kvm, gfn);
+	ret = kvm_is_visible_memslot(memslot) &&
+	      gfn + nr_pages <= memslot->base_gfn + memslot->npages;
+	srcu_read_unlock(&kvm->srcu, idx);
+
+	return ret;
+}
+
+> Actually normal device passthrough with VFIO-PCI also maps GFNs in a
+> similar way, i.e. maps a guest visible range in as large size as
+> possible as long as the PFN is continous. 
 > > 
-> > Fixing kvmgt_page_track_write() by taking kvm->mmu_lock is not an option
-> > as mmu_lock is a r/w spinlock, and intel_vgpu_page_track_handler() might
-> > sleep when acquiring vgpu->cache_lock deep down the callstack:
-> > 
-> >   intel_vgpu_page_track_handler()
-> >   |
-> >   |->  page_track->handler / ppgtt_write_protection_handler()
-> >        |
-> >        |-> ppgtt_handle_guest_write_page_table_bytes()
-> >            |
-> >            |->  ppgtt_handle_guest_write_page_table()
-> >                 |
-> >                 |-> ppgtt_handle_guest_entry_removal()
-> >                     |
-> >                     |-> ppgtt_invalidate_pte()
-> >                         |
-> >                         |-> intel_gvt_dma_unmap_guest_page()
-> >                             |
-> >                             |-> mutex_lock(&vgpu->cache_lock);
-> > 
-> This gfn_lock could lead to deadlock in below sequence.
-> 
-> (1) kvm_write_track_add_gfn() to GFN 1
-> (2) kvmgt_page_track_write() for GFN 1
-> kvmgt_page_track_write()
-> |
-> |->mutex_lock(&info->vgpu_lock)
-> |->intel_vgpu_page_track_handler (as is kvmgt_gfn_is_write_protected)
->    |
->    |->page_track->handler() (ppgtt_write_protection_handler())
->       |	
->       |->ppgtt_handle_guest_write_page_table_bytes()
->          |
->          |->ppgtt_handle_guest_write_page_table()
-> 	    |
-> 	    |->ppgtt_handle_guest_entry_add() --> new_present
-> 	       |
-> 	       |->ppgtt_populate_spt_by_guest_entry()
-> 	          |
-> 		  |->intel_vgpu_enable_page_track() --> for GFN 2
-> 		     |
-> 		     |->intel_gvt_page_track_add()
-> 		        |
-> 			|->mutex_lock(&info->gfn_lock) ===>deadlock
+> > Note, KVM may also restrict the mapping size for reasons that aren't
+> > relevant to KVMGT, e.g. for KVM's iTLB multi-hit workaround or if the gfn
+> Will iTLB multi-hit affect DMA?
 
-Or even more simply, 
+I highly doubt it, I can't imagine an IOMMU would have a dedicated instruction
+TLB :-)
 
-  kvmgt_page_track_write()
-  |
-  -> intel_vgpu_page_track_handler()
-     |
-     -> intel_gvt_page_track_remove()
-
-> 
-> Below fix based on this patch is to reuse vgpu_lock to protect the hash table
-> info->ptable.
-> Please check if it's good.
-> 
-> 
-> diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
-> index b924ed079ad4..526bd973e784 100644
-> --- a/drivers/gpu/drm/i915/gvt/kvmgt.c
-> +++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
-> @@ -364,7 +364,7 @@ __kvmgt_protect_table_find(struct intel_vgpu *info, gfn_t gfn)
->  {
->         struct kvmgt_pgfn *p, *res = NULL;
-> 
-> -       lockdep_assert_held(&info->gfn_lock);
-> +       lockdep_assert_held(&info->vgpu_lock);
-> 
->         hash_for_each_possible(info->ptable, p, hnode, gfn) {
->                 if (gfn == p->gfn) {
-> @@ -388,7 +388,7 @@ static void kvmgt_protect_table_add(struct intel_vgpu *info, gfn_t gfn)
->  {
->         struct kvmgt_pgfn *p;
-> 
-> -       lockdep_assert_held(&info->gfn_lock);
-> +       lockdep_assert_held(&info->vgpu_lock);
-
-I'll just delete these assertions, the one in __kvmgt_protect_table_find() should
-cover everything and is ultimately the assert that matters.
-
-> @@ -1629,12 +1629,11 @@ static void kvmgt_page_track_remove_region(gfn_t gfn, unsigned long nr_pages,
->         struct intel_vgpu *info =
->                 container_of(node, struct intel_vgpu, track_node);
->  
-> -       mutex_lock(&info->gfn_lock);
-> +       lockdep_assert_held(&info->vgpu_lock);
-
-This path needs to manually take vgpu_lock as it's called from KVM.  IIRC, this
-is the main reason I tried adding a new lock.  That and I had a hell of a time
-figuring out whether or not vgpu_lock would actually be held.
-
-Looking at this with fresh eyes, AFAICT intel_vgpu_reset_gtt() is the only other
-path that can reach __kvmgt_protect_table_find() without holding vgpu_lock, by
-way of intel_gvt_page_track_remove().  But unless there's magic I'm missing, that's
-dead code and can simply be deleted.
+> AFAIK, IOMMU mappings currently never sets exec bit (and I'm told this bit is
+> under discussion to be removed).
