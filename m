@@ -1,52 +1,76 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABD9E65C1BC
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Jan 2023 15:21:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FC9765C25D
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Jan 2023 15:55:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF2BE10E3E2;
-	Tue,  3 Jan 2023 14:21:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5D5110E1F7;
+	Tue,  3 Jan 2023 14:55:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk
- [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22B1D10E3E2;
- Tue,  3 Jan 2023 14:21:48 +0000 (UTC)
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: bbrezillon)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id B3E646602CDE;
- Tue,  3 Jan 2023 14:21:46 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1672755706;
- bh=MTfHI02UGbWJj+qUOI+EFvE5NKqvAa/kAFhxaiRYjH4=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=lYtIx67ydvHxQVChMkU77XZFJnrtwn6y1JdQ15j/oKYrtQmYTMUM1P9F+gJ2euGbV
- UIwSqoN6TGfQTviyT/HUIJ+lBY91V5X7306uWQv2o2re/RSY4LMF0ic5+gbnrg9q0P
- YkFynz/HrpG3P7Kp60U+8Z0zerDm5tiN09gmHUxy+KnWuy2e6S/2JeQPuNbrUCxNJM
- xKxf368UxmSULqFaHNXFGrRnlHeDZg5UfcW7l/Lf28Q69nEfjLJLsQbJ5QLhCosmAq
- tC9pZPO8FhDoAQl0AQYc5xCFOxx4gfbobc/pe1uqxzI4E/56vB7BCezV1epMFNoVFa
- NVF5n/UQ/FQWQ==
-Date: Tue, 3 Jan 2023 15:21:43 +0100
-From: Boris Brezillon <boris.brezillon@collabora.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <20230103152143.7ebc5136@collabora.com>
-In-Reply-To: <7d6df13c-6c2e-d713-edc8-128d6e19f187@linux.intel.com>
-References: <20221222222127.34560-1-matthew.brost@intel.com>
- <20221222222127.34560-5-matthew.brost@intel.com>
- <20221230112042.2ddd1946@collabora.com>
- <20221230125508.57af8a14@collabora.com>
- <20230102083019.24b99647@collabora.com>
- <7d6df13c-6c2e-d713-edc8-128d6e19f187@linux.intel.com>
-Organization: Collabora
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
+X-Greylist: delayed 380 seconds by postgrey-1.36 at gabe;
+ Tue, 03 Jan 2023 14:55:53 UTC
+Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
+ [64.147.123.27])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8A6B10E1F7;
+ Tue,  3 Jan 2023 14:55:53 +0000 (UTC)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+ by mailnew.west.internal (Postfix) with ESMTP id 9DFA22B06765;
+ Tue,  3 Jan 2023 09:49:29 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute6.internal (MEProxy); Tue, 03 Jan 2023 09:49:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-type:date:date:from:from:in-reply-to:message-id
+ :mime-version:reply-to:sender:subject:subject:to:to; s=fm3; t=
+ 1672757369; x=1672764569; bh=0U8Dc4iCaL6C9vbYyR27QO6ej8UD7Qm71qF
+ u47CiqGI=; b=bMuNGTn/bW42fVpm/AlA1Jl4Ba0g0oJ6zpV00K4yh8FOhHcOlV4
+ y8EiIF4X+zqB5s07dtL3j0AMwLLyUq+OiGLGZLViKIiSfhMttngMRB/9DB2yTGc3
+ ZRCNyHAfohm+0ia/BF1zhjWx9SwDqnG3zrMoPVKNohevIiv+RbB/5MU7UWM32Z8S
+ gQYcaq8sbEUAshF1jfRnAlifglbKIS93BSrmEDMamvodT5JzpCo8A4JdiGW6Ii74
+ dcrXNQC4qVALojwxRlnJr752Ou7crx+hjVQ7GjE1s6nvRpqiDNwjIM7/kGF+TY2j
+ JyJ9i+mtsG9RDzcJRE7Vyfnwo8a4RqlMpTg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+ :feedback-id:from:from:in-reply-to:message-id:mime-version
+ :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1672757369; x=
+ 1672764569; bh=0U8Dc4iCaL6C9vbYyR27QO6ej8UD7Qm71qFu47CiqGI=; b=P
+ x+aDsqDROIFBnX2ATdDZ59g5eZwizyLHx3McwaCJ2FQoU+err1FBZj36U1pg9lrE
+ z7mRAwKHlbcMwtr7q5IKZL8Kl5nZ9/kiBskzZRZiP7i79fEp9qBLLQE6jCY9jAus
+ 5lBMWBPaowt7y8unCaucpNyNI8jG9ydzYSsBcR9M8QXDqSaOmAmRQihMBcvSQJTC
+ QA2N2PDTU9Sc8B2dCALkT1kRqq2KI74SUeNXaX6lmCKisKi9dILxIDc+SX0t5+Wa
+ n1OK3+RE43HvT0lz2gmRE5e/kysMj8xNoN6XdyGVm0vORiYBlZCr6tnqwnZly1Ve
+ H2NlTwFziK5SZdl1p3PAw==
+X-ME-Sender: <xms:eEC0YzhWVj5Pu9AIKO1F1fC4xWxbmznNfq1bf_deOxSwxrH-m9Xp3g>
+ <xme:eEC0YwAiz2-zafDwBq5UZX0RGN1TbwUVFrx9IGoTW3V_6LVs687jGrPJgUayhFtfJ
+ UcZ13GGGyf-VCmaYBM>
+X-ME-Received: <xmr:eEC0YzHSHQNljVIymFR7M8d8NTbw49oknea9NdCbh-yHExUnF92xG_HKVlY4V54imFfMeOroHantTdQqMEsHCgT4FbrPN8is8rXM1vur60NZXQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrjeeggdeilecutefuodetggdotefrodftvf
+ curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+ uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+ fjughrpeffhffvvefukfggtggusehgtderredttddvnecuhfhrohhmpeforgigihhmvgcu
+ tfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvg
+ hrnhepueeiheejhfeivedtheduffdttefgtdeuvddvueegtefgveegvedugeffudevjeei
+ necuffhomhgrihhnpehfrhgvvgguvghskhhtohhprdhorhhgnecuvehluhhsthgvrhfuih
+ iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordht
+ vggthh
+X-ME-Proxy: <xmx:eEC0YwTxmaYIXN_ECOYmpA0__-9ZMNMmpY3F9T3KqVZAIR4jVrjaCQ>
+ <xmx:eEC0Ywz7CCJg4Qe8kzpalZ3hXMZKzxLTcDMGsVKIpTJ_7dLGTCiK_Q>
+ <xmx:eEC0Y25IVucFDWli_yrkErmKdIioLLKzf3DyxukzxNrGzBIdOedBHA>
+ <xmx:eUC0Y3jsCraBnKQzBsChCK9iWhWfnkUQ7q1bQ9ooGHaj4Z1lmnWgY4jciQg>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 3 Jan 2023 09:49:28 -0500 (EST)
+Date: Tue, 3 Jan 2023 15:49:26 +0100
+From: Maxime Ripard <maxime@cerno.tech>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20230103144926.bmjjni3xnuis2jmq@houat>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [RFC PATCH 04/20] drm/sched: Convert drm scheduler
- to use a work queue rather than kthread
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="r4krfhntoipmnwy5"
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,180 +83,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
 
-On Tue, 3 Jan 2023 13:02:15 +0000
-Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
+--r4krfhntoipmnwy5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> On 02/01/2023 07:30, Boris Brezillon wrote:
-> > On Fri, 30 Dec 2022 12:55:08 +0100
-> > Boris Brezillon <boris.brezillon@collabora.com> wrote:
-> >   
-> >> On Fri, 30 Dec 2022 11:20:42 +0100
-> >> Boris Brezillon <boris.brezillon@collabora.com> wrote:
-> >>  
-> >>> Hello Matthew,
-> >>>
-> >>> On Thu, 22 Dec 2022 14:21:11 -0800
-> >>> Matthew Brost <matthew.brost@intel.com> wrote:
-> >>>      
-> >>>> In XE, the new Intel GPU driver, a choice has made to have a 1 to 1
-> >>>> mapping between a drm_gpu_scheduler and drm_sched_entity. At first this
-> >>>> seems a bit odd but let us explain the reasoning below.
-> >>>>
-> >>>> 1. In XE the submission order from multiple drm_sched_entity is not
-> >>>> guaranteed to be the same completion even if targeting the same hardware
-> >>>> engine. This is because in XE we have a firmware scheduler, the GuC,
-> >>>> which allowed to reorder, timeslice, and preempt submissions. If a using
-> >>>> shared drm_gpu_scheduler across multiple drm_sched_entity, the TDR falls
-> >>>> apart as the TDR expects submission order == completion order. Using a
-> >>>> dedicated drm_gpu_scheduler per drm_sched_entity solve this problem.  
-> >>>
-> >>> Oh, that's interesting. I've been trying to solve the same sort of
-> >>> issues to support Arm's new Mali GPU which is relying on a FW-assisted
-> >>> scheduling scheme (you give the FW N streams to execute, and it does
-> >>> the scheduling between those N command streams, the kernel driver
-> >>> does timeslice scheduling to update the command streams passed to the
-> >>> FW). I must admit I gave up on using drm_sched at some point, mostly
-> >>> because the integration with drm_sched was painful, but also because I
-> >>> felt trying to bend drm_sched to make it interact with a
-> >>> timeslice-oriented scheduling model wasn't really future proof. Giving
-> >>> drm_sched_entity exlusive access to a drm_gpu_scheduler probably might
-> >>> help for a few things (didn't think it through yet), but I feel it's
-> >>> coming short on other aspects we have to deal with on Arm GPUs.  
-> >>
-> >> Ok, so I just had a quick look at the Xe driver and how it
-> >> instantiates the drm_sched_entity and drm_gpu_scheduler, and I think I
-> >> have a better understanding of how you get away with using drm_sched
-> >> while still controlling how scheduling is really done. Here
-> >> drm_gpu_scheduler is just a dummy abstract that let's you use the
-> >> drm_sched job queuing/dep/tracking mechanism. The whole run-queue
-> >> selection is dumb because there's only one entity ever bound to the
-> >> scheduler (the one that's part of the xe_guc_engine object which also
-> >> contains the drm_gpu_scheduler instance). I guess the main issue we'd
-> >> have on Arm is the fact that the stream doesn't necessarily get
-> >> scheduled when ->run_job() is called, it can be placed in the runnable
-> >> queue and be picked later by the kernel-side scheduler when a FW slot
-> >> gets released. That can probably be sorted out by manually disabling the
-> >> job timer and re-enabling it when the stream gets picked by the
-> >> scheduler. But my main concern remains, we're basically abusing
-> >> drm_sched here.
-> >>
-> >> For the Arm driver, that means turning the following sequence
-> >>
-> >> 1. wait for job deps
-> >> 2. queue job to ringbuf and push the stream to the runnable
-> >>     queue (if it wasn't queued already). Wakeup the timeslice scheduler
-> >>     to re-evaluate (if the stream is not on a FW slot already)
-> >> 3. stream gets picked by the timeslice scheduler and sent to the FW for
-> >>     execution
-> >>
-> >> into
-> >>
-> >> 1. queue job to entity which takes care of waiting for job deps for
-> >>     us
-> >> 2. schedule a drm_sched_main iteration
-> >> 3. the only available entity is picked, and the first job from this
-> >>     entity is dequeued. ->run_job() is called: the job is queued to the
-> >>     ringbuf and the stream is pushed to the runnable queue (if it wasn't
-> >>     queued already). Wakeup the timeslice scheduler to re-evaluate (if
-> >>     the stream is not on a FW slot already)
-> >> 4. stream gets picked by the timeslice scheduler and sent to the FW for
-> >>     execution
-> >>
-> >> That's one extra step we don't really need. To sum-up, yes, all the
-> >> job/entity tracking might be interesting to share/re-use, but I wonder
-> >> if we couldn't have that without pulling out the scheduling part of
-> >> drm_sched, or maybe I'm missing something, and there's something in
-> >> drm_gpu_scheduler you really need.  
-> > 
-> > On second thought, that's probably an acceptable overhead (not even
-> > sure the extra step I was mentioning exists in practice, because dep
-> > fence signaled state is checked as part of the drm_sched_main
-> > iteration, so that's basically replacing the worker I schedule to
-> > check job deps), and I like the idea of being able to re-use drm_sched
-> > dep-tracking without resorting to invasive changes to the existing
-> > logic, so I'll probably give it a try.  
-> 
-> I agree with the concerns and think that how Xe proposes to integrate 
-> with drm_sched is a problem, or at least significantly inelegant.
+Hi Daniel, Dave,
 
-Okay, so it looks like I'm not the only one to be bothered by the way Xe
-tries to bypass the drm_sched limitations :-).
+Here's the drm-misc-next-fixes leftovers.
 
-> 
-> AFAICT it proposes to have 1:1 between *userspace* created contexts (per 
-> context _and_ engine) and drm_sched. I am not sure avoiding invasive 
-> changes to the shared code is in the spirit of the overall idea and 
-> instead opportunity should be used to look at way to refactor/improve 
-> drm_sched.
-> 
-> Even on the low level, the idea to replace drm_sched threads with 
-> workers has a few problems.
-> 
-> To start with, the pattern of:
-> 
->    while (not_stopped) {
-> 	keep picking jobs
->    }
-> 
-> Feels fundamentally in disagreement with workers (while obviously fits 
-> perfectly with the current kthread design).
-> 
-> Secondly, it probably demands separate workers (not optional), otherwise 
-> behaviour of shared workqueues has either the potential to explode 
-> number kernel threads anyway, or add latency.
-> 
-> What would be interesting to learn is whether the option of refactoring 
-> drm_sched to deal with out of order completion was considered and what 
-> were the conclusions.
+Maxime
 
-I might be wrong, but I don't think the fundamental issue here is the
-out-of-order completion thing that's mentioned in the commit message.
-It just feels like this is a symptom of the impedance mismatch we
-have between priority+FIFO-based job scheduling and
-priority+timeslice-based queue scheduling (a queue being represented by
-a drm_sched_entity in drm_sched).
+drm-misc-next-fixes-2023-01-03:
+The drm-misc-next-fixes leftovers. It addresses a bug in drm/scheduler
+ending up causing a lockup, and reduces the stack usage of some drm/mm
+kunit tests.
+The following changes since commit b02897e56b4e1fa6445be695ce5d605bb098435c:
 
-> 
-> Second option perhaps to split out the drm_sched code into parts which 
-> would lend themselves more to "pick and choose" of its functionalities. 
-> Specifically, Xe wants frontend dependency tracking, but not any 
-> scheduling really (neither least busy drm_sched, neither FIFO/RQ entity 
-> picking), so even having all these data structures in memory is a waste.
+  Revert "drm/fb-helper: Perform damage handling in deferred-I/O helper" (2022-11-23 09:11:32 +0100)
 
-Same thing for the panfrost+CSF driver I was mentioning in my previous
-emails.
+are available in the Git repository at:
 
-> 
-> With the first option then the end result could be drm_sched per engine 
-> class (hardware view), which I think fits with the GuC model. Give all 
-> schedulable contexts (entities) to the GuC and then mostly forget about 
-> them. Timeslicing and re-ordering and all happens transparently to the 
-> kernel from that point until completion.
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2023-01-03
 
-Yep, that would work. I guess it would mean creating an intermediate
-abstract/interface to schedule entities and then implement this
-interface for the simple HW-engine+job-scheduling case, so that
-existing drm_sched users don't see a difference, and new drivers that
-need to interface with FW-assisted schedulers can implement the
-higher-lever entity scheduling interface. Don't know what this
-interface would look like though.
+for you to fetch changes up to 03dec92c4f788c54a7c01b40a018f601eb8a6c52:
 
-> 
-> Or with the second option you would build on some smaller refactored 
-> sub-components of drm_sched, by maybe splitting the dependency tracking 
-> from scheduling (RR/FIFO entity picking code).
+  drm/scheduler: Fix lockup in drm_sched_entity_kill() (2023-01-02 17:45:18 +0300)
 
-What I've done so far is duplicate the dep-tracking logic in the
-driver. It's not that much code, but it would be nice to not have to
-duplicate it in the first place...
+----------------------------------------------------------------
+The drm-misc-next-fixes leftovers. It addresses a bug in drm/scheduler
+ending up causing a lockup, and reduces the stack usage of some drm/mm
+kunit tests.
 
-Regards,
+----------------------------------------------------------------
+Arnd Bergmann (1):
+      drm/tests: reduce drm_mm_test stack usage
 
-Boris
+Dmitry Osipenko (1):
+      drm/scheduler: Fix lockup in drm_sched_entity_kill()
 
+ drivers/gpu/drm/scheduler/sched_entity.c | 2 +-
+ drivers/gpu/drm/scheduler/sched_main.c   | 4 ++--
+ drivers/gpu/drm/tests/Makefile           | 2 ++
+ drivers/gpu/drm/tests/drm_mm_test.c      | 6 +++---
+ 4 files changed, 8 insertions(+), 6 deletions(-)
+
+--r4krfhntoipmnwy5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCY7RAdgAKCRDj7w1vZxhR
+xTwJAQDhD+Gn8Zs+WsCoFUVYBUCTdWvjj4fgowvuFw0e2mL0YAEA5lrHa0bPDyQN
+KfPdB9Ue7ep3XHHYbvIr0Uz91Rq+yws=
+=oNgP
+-----END PGP SIGNATURE-----
+
+--r4krfhntoipmnwy5--
