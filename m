@@ -1,91 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7ECB65BF7B
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Jan 2023 13:00:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 937A665BFC9
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Jan 2023 13:21:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C979D10E3CC;
-	Tue,  3 Jan 2023 11:59:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88F1A10E15B;
+	Tue,  3 Jan 2023 12:21:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 2554 seconds by postgrey-1.36 at gabe;
- Tue, 03 Jan 2023 10:48:11 UTC
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
- [148.163.156.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 01FA710E3C9;
- Tue,  3 Jan 2023 10:48:11 +0000 (UTC)
-Received: from pps.filterd (m0098404.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
- 3037hcSP015068; Tue, 3 Jan 2023 10:02:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
- h=date : from : to : cc :
- subject : message-id : references : mime-version : content-type :
- in-reply-to; s=pp1; bh=dMHVtFosqWThDyY5SftMoOPjqDlLusCntZAFShOz2mY=;
- b=KQ8gHflm592WlbRAgwdQmZyTRlHDWh9M3ZAPFV+EMcsIOXJ461PiMpCp5cUVt9BL1e6j
- zqllDR5Fb/gxAm41jRkoRbn7AyAsUGSUMf7knMuu/spo09IOUdLrV2GM4nc+OlkQbkE7
- IJzG4uvffHGaWIteJBPi+B7FHAqQUQN3AtsThHUAZCqJQIQDHXbgZuAeeqSo9WeDmPJj
- eEQnkInKW+xzSa/aKKaqEDcmxJK5+xsGNpjiHiXPohV0tqVjzNS2xI1QFRZv2I9KIldN
- wQ9mkHaOJ5pKdofCP9qAqPj5s8umAAK+tXrV9dZ+20maLxpkr4T38HkHLw9ablzK3SFk /w== 
-Received: from pps.reinject (localhost [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3mvbt6xp9k-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 03 Jan 2023 10:02:20 +0000
-Received: from m0098404.ppops.net (m0098404.ppops.net [127.0.0.1])
- by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 3039LwDp027251;
- Tue, 3 Jan 2023 10:02:19 GMT
-Received: from ppma02fra.de.ibm.com (47.49.7a9f.ip4.static.sl-reverse.com
- [159.122.73.71])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3mvbt6xp8p-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 03 Jan 2023 10:02:19 +0000
-Received: from pps.filterd (ppma02fra.de.ibm.com [127.0.0.1])
- by ppma02fra.de.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 302CL8aj017444;
- Tue, 3 Jan 2023 10:02:16 GMT
-Received: from smtprelay03.fra02v.mail.ibm.com ([9.218.2.224])
- by ppma02fra.de.ibm.com (PPS) with ESMTPS id 3mtcq6tmts-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 03 Jan 2023 10:02:16 +0000
-Received: from smtpav03.fra02v.mail.ibm.com (smtpav03.fra02v.mail.ibm.com
- [10.20.54.102])
- by smtprelay03.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 303A2EKB49938694
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 3 Jan 2023 10:02:14 GMT
-Received: from smtpav03.fra02v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 3B14420071;
- Tue,  3 Jan 2023 10:02:14 +0000 (GMT)
-Received: from smtpav03.fra02v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id F230A20069;
- Tue,  3 Jan 2023 10:02:12 +0000 (GMT)
-Received: from osiris (unknown [9.171.83.23])
- by smtpav03.fra02v.mail.ibm.com (Postfix) with ESMTPS;
- Tue,  3 Jan 2023 10:02:12 +0000 (GMT)
-Date: Tue, 3 Jan 2023 11:02:09 +0100
-From: Heiko Carstens <hca@linux.ibm.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>
-Message-ID: <Y7P9IcR7/jgYWMcq@osiris>
-References: <202212300642.6pdgegGO-lkp@intel.com>
- <20221230141552.128508-1-andrzej.hajda@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 191D210E15B;
+ Tue,  3 Jan 2023 12:21:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1672748472; x=1704284472;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=KmEeBB6ogEn4O+bmDHObjHdGkcyXpgi7TRjPctoOmoc=;
+ b=AKPy9rf4rPKGAbs0+yUgiDZXO1m6b/SLhpAV+yyyQ3CGYRfZd+mqAHJI
+ Kwbczvl7hi5PmkoHvbSNqNG6qdIoHTXa04gKRkeVcI//feCy4AJQTOnET
+ gPkVgM/RC39CLrFSdB5WL8NshB1zaLrWzEmA1sgdRJK+1HyqO/7F6M/Mp
+ 1x/UrjNN9xta5/TTALHfwXr/ld9gKxzi6XjRX4vTVGMy36L+CC6eSWro3
+ yKoh4OA6E9LVJMeGWX/yGTDolgKugVB6AHCIszXeOnypHArHsXpZ+HCxV
+ mv4gIun1rjMNU1o0cxfuP/XINqAs7/V1hj1IL0xYiJPyeEZ53LHLHY1SA A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10578"; a="322880623"
+X-IronPort-AV: E=Sophos;i="5.96,296,1665471600"; d="scan'208";a="322880623"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jan 2023 04:21:11 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10578"; a="778839135"
+X-IronPort-AV: E=Sophos;i="5.96,296,1665471600"; d="scan'208";a="778839135"
+Received: from adorney-mobl.ger.corp.intel.com (HELO [10.213.222.30])
+ ([10.213.222.30])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jan 2023 04:21:10 -0800
+Message-ID: <cd0e2491-92d4-58df-628b-985768472157@linux.intel.com>
+Date: Tue, 3 Jan 2023 12:21:08 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221230141552.128508-1-andrzej.hajda@intel.com>
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: JUKgavQnlJumrUvi-CztUW8Qob9IZFEg
-X-Proofpoint-GUID: 0ZquoQ4B0WHjt8os5pwnxRNooiQSYFH8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2023-01-03_01,2023-01-03_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 clxscore=1011
- lowpriorityscore=0 mlxlogscore=712 priorityscore=1501 bulkscore=0
- spamscore=0 adultscore=0 phishscore=0 suspectscore=0 mlxscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2301030088
-X-Mailman-Approved-At: Tue, 03 Jan 2023 11:59:45 +0000
-Subject: Re: [Intel-gfx] [PATCH v3] arch: rename all internal names __xchg
- to __arch_xchg
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Content-Language: en-US
+To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+References: <20221222222127.34560-1-matthew.brost@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20221222222127.34560-1-matthew.brost@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [RFC PATCH 00/20] Initial Xe driver submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,57 +62,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, linux-ia64@vger.kernel.org,
- linux-sh@vger.kernel.org, Peter Zijlstra <peterz@infradead.org>,
- dri-devel@lists.freedesktop.org, linux-mips@vger.kernel.org,
- sparclinux@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-s390@vger.kernel.org, linux-hexagon@vger.kernel.org,
- linux-snps-arc@lists.infradead.org, Boqun Feng <boqun.feng@gmail.com>,
- linux-xtensa@linux-xtensa.org, Arnd Bergmann <arnd@arndb.de>,
- intel-gfx@lists.freedesktop.org, linux-m68k@lists.linux-m68k.org,
- openrisc@lists.librecores.org, loongarch@lists.linux.dev,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- linux-arm-kernel@lists.infradead.org, linux-parisc@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-alpha@vger.kernel.org,
- Andrew Morton <akpm@linux-foundation.org>, linuxppc-dev@lists.ozlabs.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 30, 2022 at 03:15:52PM +0100, Andrzej Hajda wrote:
-> __xchg will be used for non-atomic xchg macro.
+
+On 22/12/2022 22:21, Matthew Brost wrote:
+> Hello,
 > 
-> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
-> Reviewed-by: Arnd Bergmann <arnd@arndb.de>
-> ---
-> v2: squashed all arch patches into one
-> v3: fixed alpha/xchg_local, thx to lkp@intel.com
-> ---
-...
->  arch/s390/include/asm/cmpxchg.h      | 4 ++--
-> diff --git a/arch/s390/include/asm/cmpxchg.h b/arch/s390/include/asm/cmpxchg.h
-> index 84c3f0d576c5b1..efc16f4aac8643 100644
-> --- a/arch/s390/include/asm/cmpxchg.h
-> +++ b/arch/s390/include/asm/cmpxchg.h
-> @@ -14,7 +14,7 @@
->  
->  void __xchg_called_with_bad_pointer(void);
->  
-> -static __always_inline unsigned long __xchg(unsigned long x,
-> +static __always_inline unsigned long __arch_xchg(unsigned long x,
->  					    unsigned long address, int size)
+> This is a submission for Xe, a new driver for Intel GPUs that supports both
+> integrated and discrete platforms starting with Tiger Lake (first platform with
+> Intel Xe Architecture). The intention of this new driver is to have a fresh base
+> to work from that is unencumbered by older platforms, whilst also taking the
+> opportunity to rearchitect our driver to increase sharing across the drm
+> subsystem, both leveraging and allowing us to contribute more towards other
+> shared components like TTM and drm/scheduler. The memory model is based on VM
+> bind which is similar to the i915 implementation. Likewise the execbuf
+> implementation for Xe is very similar to execbuf3 in the i915 [1].
+> 
+> The code is at a stage where it is already functional and has experimental
+> support for multiple platforms starting from Tiger Lake, with initial support
+> implemented in Mesa (for Iris and Anv, our OpenGL and Vulkan drivers), as well
+> as in NEO (for OpenCL and Level0). A Mesa MR has been posted [2] and NEO
+> implementation will be released publicly early next year. We also have a suite
+> of IGTs for XE that will appear on the IGT list shortly.
+> 
+> It has been built with the assumption of supporting multiple architectures from
+> the get-go, right now with tests running both on X86 and ARM hosts. And we
+> intend to continue working on it and improving on it as part of the kernel
+> community upstream.
+> 
+> The new Xe driver leverages a lot from i915 and work on i915 continues as we
+> ready Xe for production throughout 2023.
+> 
+> As for display, the intent is to share the display code with the i915 driver so
+> that there is maximum reuse there. Currently this is being done by compiling the
+> display code twice, but alternatives to that are under consideration and we want
+> to have more discussion on what the best final solution will look like over the
+> next few months. Right now, work is ongoing in refactoring the display codebase
+> to remove as much as possible any unnecessary dependencies on i915 specific data
+> structures there..
+> 
+> We currently have 2 submission backends, execlists and GuC. The execlist is
+> meant mostly for testing and is not fully functional while GuC backend is fully
+> functional. As with the i915 and GuC submission, in Xe the GuC firmware is
+> required and should be placed in /lib/firmware/xe.
 
-Please adjust the alignment of the second line.
+What is the plan going forward for the execlists backend? I think it 
+would be preferable to not upstream something semi-functional and so to 
+carry technical debt in the brand new code base, from the very start. If 
+it is for Tigerlake, which is the starting platform for Xe, could it be 
+made GuC only Tigerlake for instance?
 
-> @@ -77,7 +77,7 @@ static __always_inline unsigned long __xchg(unsigned long x,
->  	__typeof__(*(ptr)) __ret;					\
->  									\
->  	__ret = (__typeof__(*(ptr)))					\
-> -		__xchg((unsigned long)(x), (unsigned long)(ptr),	\
-> +		__arch_xchg((unsigned long)(x), (unsigned long)(ptr),	\
->  		       sizeof(*(ptr)));					\
+Regards,
 
-Same here.
-
-The same is true for a couple of other architectures - not sure if
-they care however.
+Tvrtko
