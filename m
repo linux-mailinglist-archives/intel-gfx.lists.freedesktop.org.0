@@ -1,61 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A870765D7C4
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Jan 2023 17:02:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B46A865DC79
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Jan 2023 20:01:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2487310E0E9;
-	Wed,  4 Jan 2023 16:02:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F10710E46F;
+	Wed,  4 Jan 2023 19:01:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oa1-x29.google.com (mail-oa1-x29.google.com
- [IPv6:2001:4860:4864:20::29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2F7710E0E9;
- Wed,  4 Jan 2023 16:02:03 +0000 (UTC)
-Received: by mail-oa1-x29.google.com with SMTP id
- 586e51a60fabf-150debe2b7cso4535576fac.0; 
- Wed, 04 Jan 2023 08:02:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=dbxcoVY0DgdrSOX7d3aDUlP2o3UoN8oC3rIriS/EF0k=;
- b=XAfNJ97ImbinlKrs4QKgOorOx8RGUF+Ngf9LyhWkQWUDhWAvuapaA1UUIsFXzfh9Yv
- ZmS4edJqSKvuwb5q+6Uuz2bXuTIjPTDRPTdPNzBcWvWTm6vvdMSoIf+aY4DibI32DN5h
- NZbJA0mckrTltx5JWMsAAjS7CvGOecuovznudQai7fijXT97dTF01E4wd2L/SEuIlj4H
- gCzxn3gd1Et7U1bKR46Zpg/v4oV4Oz92Zr0r8gQCSaB7P+rBIwydqQh0nkM1Ne8NS0AA
- wrmTYu19MYTwMdVzD/lyjpMjIcX7H6EEu2nwlhr3mkhcfUhV1C8h/Zh6dl4KdYzu0tDB
- 3J8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=dbxcoVY0DgdrSOX7d3aDUlP2o3UoN8oC3rIriS/EF0k=;
- b=0a+p2Jz5jgCRglr2Abmr3yCyIJBmcViOrqZ1yXmuqQvJ97/w4rPUAIeYSVem/eK83p
- y+clVqwhsbVG5sR6vg0EH8cigbu87aT0NoYJN8Ve2mFZ+fqnKAtuHv3GcWFoIxHoDMsR
- 31cauCU7hLiGcvZOzA+tSndcgJCtf0fId4z7xgUMAlZeIpJLNqIu+W3Do0oe8THEKo5n
- efDhnNzYVflfs37NXmPHQL56iYCtZzqFibaQvTnsYpbE78slTbbX1rSVkgmCsTfjVwxJ
- VZdYl7sOIkIWUxsZYquOEb8Bp+Hc585jKVlDO7MxsOUfqsyOTUJw8EY+AtfV2G1i+32i
- mZxg==
-X-Gm-Message-State: AFqh2kq4I4Vf/zSoEyko7WgqjDDObGrGSzUNeKz6dpFbPR7gobdfKyWp
- tg4AwjMdcwTxKii275eEjXqwTOrXqsqqhz+lVIU=
-X-Google-Smtp-Source: AMrXdXsnE2rqLOnlA12voGE1jLf9aVoj61EOCZjNmqtIdw+rdwolzvSJDAAQfS3bXEae+Oe+JWo+/SrX+CpQ7bBe1tc=
-X-Received: by 2002:a05:6870:513:b0:13d:51fe:3404 with SMTP id
- j19-20020a056870051300b0013d51fe3404mr2830737oao.183.1672848122968; Wed, 04
- Jan 2023 08:02:02 -0800 (PST)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 245E510E047;
+ Tue,  3 Jan 2023 14:41:44 +0000 (UTC)
+Received: from maud (unknown [12.157.81.133])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ (Authenticated sender: alyssa)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id B189F6602CFA;
+ Tue,  3 Jan 2023 14:41:40 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1672756902;
+ bh=9kUBaPr5+/NLgDqrmIPkb/x8jcn2Rs9mopL9MBfl8Hs=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=M7W+Tc+M4crTRtWOpsrk7r7xw14EIiPobNgMAYi/54VpJkCdLi7xao1iSVl8YzgdG
+ jYByAYZqJeLxMCgsIStPoPMshPXH1UD2uFknqqGkRGN7tQiZ543zW4nF4EFU1bW+3s
+ DWPiTxwerzCjPtc/Kjzx3JlG9G15rgO9ro8s67AI85F9hU4ERhm+3pzG7MeDjF9YgH
+ kZj+6R2jdmMcLR0jxEDuOdxAr0+4OHQzs7w8YQcV+FwAyrGFrQdqT5e2rbVY/zMM1C
+ Lx6/zMDMW4p6AlNYPmFx35UjCWHVeACkKFqW43zRpjaJ3yzjfdt+pHbS8D4qmegcLm
+ JYtzs83Zg5hWQ==
+Date: Tue, 3 Jan 2023 09:41:31 -0500
+From: Alyssa Rosenzweig <alyssa@collabora.com>
+To: Boris Brezillon <boris.brezillon@collabora.com>
+Message-ID: <Y7Q+m2m1rPV1HzBR@maud>
+References: <20221222222127.34560-1-matthew.brost@intel.com>
+ <8c0a1792-c2bd-375f-fa56-747e34b085f4@suse.de>
+ <87cz7xyxft.fsf@intel.com> <20230103145648.24947c06@collabora.com>
 MIME-Version: 1.0
-References: <20230103234948.1218393-1-robdclark@gmail.com>
- <04ec647c-184e-942e-a7ed-4ba393e591b7@linux.intel.com>
-In-Reply-To: <04ec647c-184e-942e-a7ed-4ba393e591b7@linux.intel.com>
-From: Rob Clark <robdclark@gmail.com>
-Date: Wed, 4 Jan 2023 08:01:51 -0800
-Message-ID: <CAF6AEGvjMhMngXBj=r9SkRwFinO6C_BzoZRadL2HuzjWZsEw3w@mail.gmail.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix potential context UAFs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230103145648.24947c06@collabora.com>
+X-Mailman-Approved-At: Wed, 04 Jan 2023 19:01:00 +0000
+Subject: Re: [Intel-gfx] [RFC PATCH 00/20] Initial Xe driver submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,146 +54,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "open list:INTEL DRM DRIVERS" <intel-gfx@lists.freedesktop.org>,
- open list <linux-kernel@vger.kernel.org>,
- Chris Wilson <chris@chris-wilson.co.uk>, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>, katrinzhou <katrinzhou@tencent.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 4, 2023 at 1:34 AM Tvrtko Ursulin
-<tvrtko.ursulin@linux.intel.com> wrote:
->
->
-> On 03/01/2023 23:49, Rob Clark wrote:
-> > From: Rob Clark <robdclark@chromium.org>
-> >
-> > gem_context_register() makes the context visible to userspace, and whic=
-h
-> > point a separate thread can trigger the I915_GEM_CONTEXT_DESTROY ioctl.
-> > So we need to ensure that nothing uses the ctx ptr after this.  And we
-> > need to ensure that adding the ctx to the xarray is the *last* thing
-> > that gem_context_register() does with the ctx pointer.
->
-> Any backtraces from oopses or notes on how it was found to record in the =
-commit message?
+> > For one thing, setting that up would be a lot of up front infrastructure
+> > work. I'm not sure how to even pull that off when Xe is still
+> > out-of-tree and i915 development plunges on upstream as ever.
+> > 
+> > For another, realistically, the overlap between supported platforms is
+> > going to end at some point, and eventually new platforms are only going
+> > to be supported with Xe. That's going to open up new possibilities for
+> > refactoring also the display code. I think it would be premature to lock
+> > in to a common directory structure or a common helper module at this
+> > point.
+> > 
+> > I'm not saying no to the idea, and we've contemplated it before, but I
+> > think there are still too many moving parts to decide to go that way.
+> 
+> FWIW, I actually have the same dilemma with the driver for new Mali GPUs
+> I'm working on. I initially started making it a sub-driver of the
+> existing panfrost driver (some HW blocks are similar, like the
+> IOMMU and a few other things, and some SW abstracts can be shared here
+> and there, like the GEM allocator logic). But I'm now considering
+> forking the driver (after Alyssa planted the seed :-)), not only
+> because I want to start from a clean sheet on the the uAPI front
+> (wouldn't be an issue in your case, because you're talking about
+> sharing helpers, not the driver frontend), but also because any refactor
+> to panfrost is a potential source of regression for existing users. So,
+> I tend to agree with Jani here, trying to share code before things have
+> settled down is likely to cause pain to both Xe and i915
+> users+developers.
 
-It was a UAF bug that was reported to us
+++
 
-https://bugs.chromium.org/p/chromium/issues/detail?id=3D1401594 (but I
-guess security bugs are not going to be visible)
+I pretend to have never written a kernel driver, so will not comment
+there. But Boris and I were previously bit trying to share code between
+our GL and VK drivers, before VK settled down, causing pain for both. I
+don't want a kernelside repeat of that (for either Mali or Intel).
 
->
-> > Signed-off-by: Rob Clark <robdclark@chromium.org>
->
-> Fixes: a4c1cdd34e2c ("drm/i915/gem: Delay context creation (v3)")
-> References: 3aa9945a528e ("drm/i915: Separate GEM context construction an=
-d registration to userspace")
-> Cc: <stable@vger.kernel.org> # v5.15+
->
-> > ---
-> >   drivers/gpu/drm/i915/gem/i915_gem_context.c | 24 +++++++++++++++-----=
--
-> >   1 file changed, 18 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/=
-drm/i915/gem/i915_gem_context.c
-> > index 7f2831efc798..6250de9b9196 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > @@ -1688,6 +1688,10 @@ void i915_gem_init__contexts(struct drm_i915_pri=
-vate *i915)
-> >       init_contexts(&i915->gem.contexts);
-> >   }
-> >
-> > +/*
-> > + * Note that this implicitly consumes the ctx reference, by placing
-> > + * the ctx in the context_xa.
-> > + */
-> >   static void gem_context_register(struct i915_gem_context *ctx,
-> >                                struct drm_i915_file_private *fpriv,
-> >                                u32 id)
-> > @@ -1703,10 +1707,6 @@ static void gem_context_register(struct i915_gem=
-_context *ctx,
-> >       snprintf(ctx->name, sizeof(ctx->name), "%s[%d]",
-> >                current->comm, pid_nr(ctx->pid));
-> >
-> > -     /* And finally expose ourselves to userspace via the idr */
-> > -     old =3D xa_store(&fpriv->context_xa, id, ctx, GFP_KERNEL);
-> > -     WARN_ON(old);
-> > -
-> >       spin_lock(&ctx->client->ctx_lock);
-> >       list_add_tail_rcu(&ctx->client_link, &ctx->client->ctx_list);
-> >       spin_unlock(&ctx->client->ctx_lock);
-> > @@ -1714,6 +1714,10 @@ static void gem_context_register(struct i915_gem=
-_context *ctx,
-> >       spin_lock(&i915->gem.contexts.lock);
-> >       list_add_tail(&ctx->link, &i915->gem.contexts.list);
-> >       spin_unlock(&i915->gem.contexts.lock);
-> > +
-> > +     /* And finally expose ourselves to userspace via the idr */
-> > +     old =3D xa_store(&fpriv->context_xa, id, ctx, GFP_KERNEL);
-> > +     WARN_ON(old);
->
-> Have you seen that this hunk is needed or just moving it for a good measu=
-re? To be clear, it is probably best to move it even if the current placeme=
-nt cannot cause any problems, I am just double-checking if you had any conc=
-rete observations here while mulling over easier stable backports if we wou=
-ld omit it.
->
-
-This was actually the originally reported issue, the
-finalize_create_context_locked() part was something I found when the
-original report prompted me to audit gem_context_register() call
-paths.
-
-
-> >   }
-> >
-> >   int i915_gem_context_open(struct drm_i915_private *i915,
-> > @@ -2199,14 +2203,22 @@ finalize_create_context_locked(struct drm_i915_=
-file_private *file_priv,
-> >       if (IS_ERR(ctx))
-> >               return ctx;
-> >
-> > +     /*
-> > +      * One for the xarray and one for the caller.  We need to grab
-> > +      * the reference *prior* to making the ctx visble to userspace
-> > +      * in gem_context_register(), as at any point after that
-> > +      * userspace can try to race us with another thread destroying
-> > +      * the context under our feet.
-> > +      */
-> > +     i915_gem_context_get(ctx);
-> > +
-> >       gem_context_register(ctx, file_priv, id);
-> >
-> >       old =3D xa_erase(&file_priv->proto_context_xa, id);
-> >       GEM_BUG_ON(old !=3D pc);
-> >       proto_context_close(file_priv->dev_priv, pc);
-> >
-> > -     /* One for the xarray and one for the caller */
-> > -     return i915_gem_context_get(ctx);
-> > +     return ctx;
->
-> Otherwise userspace can look up a context which hasn't had it's reference=
- count increased yep. I can add the Fixes: and Stable: tags while merging i=
-f no complaints.
->
-> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-Thanks
-
-BR,
--R
-
->
-> Regards,
->
-> Tvrtko
->
-> >   }
-> >
-> >   struct i915_gem_context *
+I tend to think that, if you're tempted to share a driver frontend
+without the backend, that's a sign that there's too much boilerplate for
+the frontend and maybe there needs to be more helpers somewhere. For Xe,
+that doesn't apply since the hw overlaps between the drivers, but for
+Mali, there really is more different than similar and there's an
+obvious, acute break between "old Mali" and "new Mali". The shared
+"instantiate a DRM driver boilerplate" is pretty trivial, and the MMU
+code is as simple as it gets...
