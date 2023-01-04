@@ -1,54 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F3C265CF90
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Jan 2023 10:34:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E24CC65CFD0
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Jan 2023 10:39:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0201E10E509;
-	Wed,  4 Jan 2023 09:34:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AF4510E511;
+	Wed,  4 Jan 2023 09:39:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 046A610E509;
- Wed,  4 Jan 2023 09:34:00 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C60E610E51A
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 Jan 2023 09:39:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1672824841; x=1704360841;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=KPN8YqY9LSOEXrt90pYffb+Xv9BOeYf4y3o6s7PYJ+s=;
- b=EdNrL82zUUb6tL6/FVZFZQt6aq+CppjjQ4tSOYqNUAtTGKS7KJdbXf1c
- X1N51T4FlEySt1mMnKufvMJTzkKEZ/riR5niG0A8NCy8ZiiKvci+5EAtI
- t2qcpiLgxq6h1p2XzSZq11NCCow0uAmcuskprOH7Q0Hph9RQ+/f/6DJDU
- 9qN/3qT7gAUJI6Kz95lpiN2dSJ453pTnwp7gJKnk3SgVGRWEbaR5kKXJJ
- RE0Gpxq/pBpwZOnPRRsXDFy73sh3qPXoYP2ZbAc6gs4tTDMY4QofXza/I
- wlrgWBNBu0FMMxkpIEuNUl4/ljJJUehLeHiDqbPqjy4rzcvRp9qTrW6ho Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10579"; a="301582480"
-X-IronPort-AV: E=Sophos;i="5.96,299,1665471600"; d="scan'208";a="301582480"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2023 01:34:00 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10579"; a="743790546"
-X-IronPort-AV: E=Sophos;i="5.96,299,1665471600"; d="scan'208";a="743790546"
-Received: from wfurtakx-mobl.ger.corp.intel.com (HELO [10.213.223.45])
- ([10.213.223.45])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2023 01:33:56 -0800
-Message-ID: <04ec647c-184e-942e-a7ed-4ba393e591b7@linux.intel.com>
-Date: Wed, 4 Jan 2023 09:33:54 +0000
+ t=1672825162; x=1704361162;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=vW7iAP43fXf1436VgzQlRgw8As3YUrgy9/qCLZn0GE4=;
+ b=mhiZZUW7WYawJmvbr6CgwUGQY3IkzRVTcbUJpAzNwQnpAv60pOVu34Sw
+ jNsFToyMebFaZ3QL5ngxATlZhFJKSK7wcoXJ2yAOSVmuX23e5iLTvx5+D
+ 3L6L4+7niVwXJu68Tn9hx/VqDMRSMQUO8FdTsk1uTikeDTi21HIhQgHsZ
+ pbaD8QfC9t9sNbiRnAV4Nj7hEOcUwjfhQRfu7st/ztC6MlZQqbcZWXY7S
+ 6KuooSV/R8f47SkH9fCT2hldo/NGypjCZu7GW19UiE+RD3uRsFs1lhhVh
+ IYBOuQcRObow3RbHAsmVFDcmBmuTzlFVgTj0eSNsmEM09SPuHWb2ZB05B g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10579"; a="384182310"
+X-IronPort-AV: E=Sophos;i="5.96,299,1665471600"; d="scan'208";a="384182310"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2023 01:39:21 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10579"; a="718393179"
+X-IronPort-AV: E=Sophos;i="5.96,299,1665471600"; d="scan'208";a="718393179"
+Received: from mkabdel-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.25.63])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2023 01:39:19 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230103194701.1492984-1-rodrigo.vivi@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <Y68bHEiFZJMZJ9Ot@intel.com>
+ <20230103194701.1492984-1-rodrigo.vivi@intel.com>
+Date: Wed, 04 Jan 2023 11:39:17 +0200
+Message-ID: <87tu16y6yi.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Content-Language: en-US
-To: Rob Clark <robdclark@gmail.com>, dri-devel@lists.freedesktop.org
-References: <20230103234948.1218393-1-robdclark@gmail.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20230103234948.1218393-1-robdclark@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix potential context UAFs
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Expand force_probe to block probe
+ of devices as well.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,109 +59,196 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- "open list:INTEL DRM DRIVERS" <intel-gfx@lists.freedesktop.org>,
- open list <linux-kernel@vger.kernel.org>,
- Chris Wilson <chris@chris-wilson.co.uk>, Daniel Vetter <daniel@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- katrinzhou <katrinzhou@tencent.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, 03 Jan 2023, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> There are new cases where we want to block i915 probe, such
+> as when experimenting or developing the new Xe driver.
+>
+> But also, with the new hibrid cards, users or developers might
 
-On 03/01/2023 23:49, Rob Clark wrote:
-> From: Rob Clark <robdclark@chromium.org>
-> 
-> gem_context_register() makes the context visible to userspace, and which
-> point a separate thread can trigger the I915_GEM_CONTEXT_DESTROY ioctl.
-> So we need to ensure that nothing uses the ctx ptr after this.  And we
-> need to ensure that adding the ctx to the xarray is the *last* thing
-> that gem_context_register() does with the ctx pointer.
+*hybrid
 
-Any backtraces from oopses or notes on how it was found to record in the commit message?
+> want to use i915 only on integrated and fully block the probe
+> of the i915 for the discrete. Or vice versa.
+>
+> Oh, and there are even older development and validation reasons,
+> like when you use some distro where the modprobe.blacklist is
+> not present.
 
-> Signed-off-by: Rob Clark <robdclark@chromium.org>
+Maybe s/Oh, and t/T/
 
-Fixes: a4c1cdd34e2c ("drm/i915/gem: Delay context creation (v3)")
-References: 3aa9945a528e ("drm/i915: Separate GEM context construction and registration to userspace")
-Cc: <stable@vger.kernel.org> # v5.15+
+>
+> But in any case, let's introduce a more granular control, but without
+> introducing yet another parameter, but using the existent force_probe
+> one.
+>
+> Just by adding a ! in the begin of the id in the force_probe, like
+> in this case where we would block the probe for Alder Lake:
+>
+> $ insmod i915.ko force_probe='!46a6'
+>
+> v2: Take care of '*' and  '!*' cases as pointed out by
+>     Gustavo and Jani.
+>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+That said, there's no way to do stuff like "1234,!*" to force 1234 but
+block everything else. Can be added later as needed.
+
+Also, "1234,!1234" and "!1234,1234" both block 1234. Sure, user error,
+but just noting. Can be tweaked later as needed.
+
+
+BR,
+Jani.
 
 > ---
->   drivers/gpu/drm/i915/gem/i915_gem_context.c | 24 +++++++++++++++------
->   1 file changed, 18 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> index 7f2831efc798..6250de9b9196 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> @@ -1688,6 +1688,10 @@ void i915_gem_init__contexts(struct drm_i915_private *i915)
->   	init_contexts(&i915->gem.contexts);
->   }
->   
-> +/*
-> + * Note that this implicitly consumes the ctx reference, by placing
-> + * the ctx in the context_xa.
-> + */
->   static void gem_context_register(struct i915_gem_context *ctx,
->   				 struct drm_i915_file_private *fpriv,
->   				 u32 id)
-> @@ -1703,10 +1707,6 @@ static void gem_context_register(struct i915_gem_context *ctx,
->   	snprintf(ctx->name, sizeof(ctx->name), "%s[%d]",
->   		 current->comm, pid_nr(ctx->pid));
->   
-> -	/* And finally expose ourselves to userspace via the idr */
-> -	old = xa_store(&fpriv->context_xa, id, ctx, GFP_KERNEL);
-> -	WARN_ON(old);
-> -
->   	spin_lock(&ctx->client->ctx_lock);
->   	list_add_tail_rcu(&ctx->client_link, &ctx->client->ctx_list);
->   	spin_unlock(&ctx->client->ctx_lock);
-> @@ -1714,6 +1714,10 @@ static void gem_context_register(struct i915_gem_context *ctx,
->   	spin_lock(&i915->gem.contexts.lock);
->   	list_add_tail(&ctx->link, &i915->gem.contexts.list);
->   	spin_unlock(&i915->gem.contexts.lock);
+>  drivers/gpu/drm/i915/Kconfig       | 15 +++++++++++---
+>  drivers/gpu/drm/i915/i915_params.c |  2 +-
+>  drivers/gpu/drm/i915/i915_pci.c    | 33 +++++++++++++++++++++++++-----
+>  3 files changed, 41 insertions(+), 9 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
+> index 3efce05d7b57..8eb3e60aeec9 100644
+> --- a/drivers/gpu/drm/i915/Kconfig
+> +++ b/drivers/gpu/drm/i915/Kconfig
+> @@ -54,24 +54,33 @@ config DRM_I915
+>  	  If "M" is selected, the module will be called i915.
+>  
+>  config DRM_I915_FORCE_PROBE
+> -	string "Force probe driver for selected new Intel hardware"
+> +	string "Force probe i915 for selected Intel hardware IDs"
+>  	depends on DRM_I915
+>  	help
+>  	  This is the default value for the i915.force_probe module
+>  	  parameter. Using the module parameter overrides this option.
+>  
+> -	  Force probe the driver for new Intel graphics devices that are
+> +	  Force probe the i915 for Intel graphics devices that are
+>  	  recognized but not properly supported by this kernel version. It is
+>  	  recommended to upgrade to a kernel version with proper support as soon
+>  	  as it is available.
+>  
+> +	  It can also be used to block the probe of recognized and fully
+> +	  supported devices.
 > +
-> +	/* And finally expose ourselves to userspace via the idr */
-> +	old = xa_store(&fpriv->context_xa, id, ctx, GFP_KERNEL);
-> +	WARN_ON(old);
-
-Have you seen that this hunk is needed or just moving it for a good measure? To be clear, it is probably best to move it even if the current placement cannot cause any problems, I am just double-checking if you had any concrete observations here while mulling over easier stable backports if we would omit it.
-
->   }
->   
->   int i915_gem_context_open(struct drm_i915_private *i915,
-> @@ -2199,14 +2203,22 @@ finalize_create_context_locked(struct drm_i915_file_private *file_priv,
->   	if (IS_ERR(ctx))
->   		return ctx;
->   
-> +	/*
-> +	 * One for the xarray and one for the caller.  We need to grab
-> +	 * the reference *prior* to making the ctx visble to userspace
-> +	 * in gem_context_register(), as at any point after that
-> +	 * userspace can try to race us with another thread destroying
-> +	 * the context under our feet.
-> +	 */
-> +	i915_gem_context_get(ctx);
+>  	  Use "" to disable force probe. If in doubt, use this.
+>  
+> -	  Use "<pci-id>[,<pci-id>,...]" to force probe the driver for listed
+> +	  Use "<pci-id>[,<pci-id>,...]" to force probe the i915 for listed
+>  	  devices. For example, "4500" or "4500,4571".
+>  
+>  	  Use "*" to force probe the driver for all known devices.
+>  
+> +	  Use "!" right before the ID to block the probe of the device. For
+> +	  example, "4500,!4571" forces the probe of 4500 and blocks the probe of
+> +	  4571.
 > +
->   	gem_context_register(ctx, file_priv, id);
->   
->   	old = xa_erase(&file_priv->proto_context_xa, id);
->   	GEM_BUG_ON(old != pc);
->   	proto_context_close(file_priv->dev_priv, pc);
->   
-> -	/* One for the xarray and one for the caller */
-> -	return i915_gem_context_get(ctx);
-> +	return ctx;
+> +	  Use "!*" to block the probe of the driver for all known devices.
+> +
+>  config DRM_I915_CAPTURE_ERROR
+>  	bool "Enable capturing GPU state following a hang"
+>  	depends on DRM_I915
+> diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
+> index 61578f2860cd..d634bd3f641a 100644
+> --- a/drivers/gpu/drm/i915/i915_params.c
+> +++ b/drivers/gpu/drm/i915/i915_params.c
+> @@ -122,7 +122,7 @@ i915_param_named_unsafe(enable_psr2_sel_fetch, bool, 0400,
+>  	"Default: 0");
+>  
+>  i915_param_named_unsafe(force_probe, charp, 0400,
+> -	"Force probe the driver for specified devices. "
+> +	"Force probe options for specified supported devices. "
+>  	"See CONFIG_DRM_I915_FORCE_PROBE for details.");
+>  
+>  i915_param_named_unsafe(disable_power_well, int, 0400,
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> index 7fd74cc28c0a..bc1af7e8f398 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -1253,7 +1253,7 @@ static void i915_pci_remove(struct pci_dev *pdev)
+>  }
+>  
+>  /* is device_id present in comma separated list of ids */
+> -static bool force_probe(u16 device_id, const char *devices)
+> +static bool device_id_in_list(u16 device_id, const char *devices, bool negative)
+>  {
+>  	char *s, *p, *tok;
+>  	bool ret;
+> @@ -1262,7 +1262,9 @@ static bool force_probe(u16 device_id, const char *devices)
+>  		return false;
+>  
+>  	/* match everything */
+> -	if (strcmp(devices, "*") == 0)
+> +	if (negative && strcmp(devices, "!*") == 0)
+> +		return true;
+> +	if (!negative && strcmp(devices, "*") == 0)
+>  		return true;
+>  
+>  	s = kstrdup(devices, GFP_KERNEL);
+> @@ -1272,6 +1274,12 @@ static bool force_probe(u16 device_id, const char *devices)
+>  	for (p = s, ret = false; (tok = strsep(&p, ",")) != NULL; ) {
+>  		u16 val;
+>  
+> +		if (negative && tok[0] == '!')
+> +			tok++;
+> +		else if ((negative && tok[0] != '!') ||
+> +			 (!negative && tok[0] == '!'))
+> +			continue;
+> +
+>  		if (kstrtou16(tok, 16, &val) == 0 && val == device_id) {
+>  			ret = true;
+>  			break;
+> @@ -1283,6 +1291,16 @@ static bool force_probe(u16 device_id, const char *devices)
+>  	return ret;
+>  }
+>  
+> +static bool id_forced(u16 device_id)
+> +{
+> +	return device_id_in_list(device_id, i915_modparams.force_probe, false);
+> +}
+> +
+> +static bool id_blocked(u16 device_id)
+> +{
+> +	return device_id_in_list(device_id, i915_modparams.force_probe, true);
+> +}
+> +
+>  bool i915_pci_resource_valid(struct pci_dev *pdev, int bar)
+>  {
+>  	if (!pci_resource_flags(pdev, bar))
+> @@ -1308,10 +1326,9 @@ static int i915_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+>  		(struct intel_device_info *) ent->driver_data;
+>  	int err;
+>  
+> -	if (intel_info->require_force_probe &&
+> -	    !force_probe(pdev->device, i915_modparams.force_probe)) {
+> +	if (intel_info->require_force_probe && !id_forced(pdev->device)) {
+>  		dev_info(&pdev->dev,
+> -			 "Your graphics device %04x is not properly supported by the driver in this\n"
+> +			 "Your graphics device %04x is not properly supported by i915 in this\n"
+>  			 "kernel version. To force driver probe anyway, use i915.force_probe=%04x\n"
+>  			 "module parameter or CONFIG_DRM_I915_FORCE_PROBE=%04x configuration option,\n"
+>  			 "or (recommended) check for kernel updates.\n",
+> @@ -1319,6 +1336,12 @@ static int i915_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+>  		return -ENODEV;
+>  	}
+>  
+> +	if (id_blocked(pdev->device)) {
+> +		dev_info(&pdev->dev, "I915 probe blocked for Device ID %04x.\n",
+> +			 pdev->device);
+> +		return -ENODEV;
+> +	}
+> +
+>  	/* Only bind to function 0 of the device. Early generations
+>  	 * used function 1 as a placeholder for multi-head. This causes
+>  	 * us confusion instead, especially on the systems where both
 
-Otherwise userspace can look up a context which hasn't had it's reference count increased yep. I can add the Fixes: and Stable: tags while merging if no complaints.
-
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-Regards,
-
-Tvrtko
-
->   }
->   
->   struct i915_gem_context *
+-- 
+Jani Nikula, Intel Open Source Graphics Center
