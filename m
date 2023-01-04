@@ -2,149 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF2B165CE76
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Jan 2023 09:40:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A22965CE99
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Jan 2023 09:46:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8342410E067;
-	Wed,  4 Jan 2023 08:40:10 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D21D910E067
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 Jan 2023 08:40:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9634110E43B;
+	Wed,  4 Jan 2023 08:46:09 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB37210E43B;
+ Wed,  4 Jan 2023 08:46:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1672821606; x=1704357606;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=qiWiStBTJhI3gl+BsUNyrX6DHXHe5nySqwvotOnV+Mo=;
- b=gTTMm0B883xNiLi9fVCkXCk34rKbrwQFOwh3Sh6za1o985zQzuMfume7
- nTzRIEYMJ97sJ15/dvhE5LOtM4Lj98ENskroiCi10epE+0M+lsapoaA2l
- 24SK36cyi5vG+ZDz4MA1GEgJRrbcZA5PbNgvZk79pCaup0NQIhSn2UYST
- dmQ80/dpkgl3nou1yFqJmNpKp65KLnJpJLwXW+Fqkm026uyRnwpG09w0a
- XEWE63WSjjmpc+/uRWrt7602siT0dSN7+aMVy6TpBF47AmlE/wnye8cpI
- xfzLx2OcJpTaLZ5PynK+xP5DKsqQ9JMwsiCxUcW4iCt4W5keiq0mUEuDH w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10579"; a="319589035"
-X-IronPort-AV: E=Sophos;i="5.96,299,1665471600"; d="scan'208";a="319589035"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2023 00:40:05 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10579"; a="829115425"
-X-IronPort-AV: E=Sophos;i="5.96,299,1665471600"; d="scan'208";a="829115425"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga005.jf.intel.com with ESMTP; 04 Jan 2023 00:40:05 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Wed, 4 Jan 2023 00:40:05 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Wed, 4 Jan 2023 00:40:05 -0800
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.168)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Wed, 4 Jan 2023 00:40:04 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XtcrQcdD0hzcUmUziOux2Cnv2Jt4QXztIUXV4cOjRQvaa4kGT12WTbVZBdQeMiaPV0oKvMxZJZWgMl8IMsqaG9XPLGU6I8J5Z1N+6nLcpkNc1QPUYQkBBcSHgcUcsUBwh88u1YQ0r5JDlKNJAV/t1kQ3i+s+7NRuR35dlEfeW7qBY9l9pVruIC2JbaAEHiLzFAuR4kdhYPhpyuV9LbOQ6MhKLwVbhM2U9yFPvvfkRNr9ae3ssL5474f3MdApGrtMgA/MlQ7DQ5SHdpObMkYNj/4IgRC/xMeEf4iTPL2qeiMjAH1BpBluUjVThhuOk9d4rWxcbCa/KtiJW/c7cf5Kxw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qiWiStBTJhI3gl+BsUNyrX6DHXHe5nySqwvotOnV+Mo=;
- b=Opim4oVJVf+C7ebM/25uYU1djE4gvFlCZNKfafVpBQyVor2dlrJar3Sw0X+DgasaX7ShJ+i6VIczysAB4Cy2IPjuVa0VQJdIRxlUAoPjj4XlpAPI1lEgD9C6AushhlsczD9rwKAkjH6A9hmlYk0araKMYFexZp/beEoTRPzGA4qVvu8ydz60/GeJanqxmVMKYr4ZgS/JzkwKugvVe9AgHbwG7aUGxyxFF2voDqRElE9EvLu+eS/qC5XN5LacTgW3dnhhXUdsqiJoc100d/3IfsohbYLZOv9LucZAnLq3IZ9VunFRIyxB/rdwaX/6T17mRtEVu2DvMQ4s75q8cNTGEg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from PH7PR11MB5981.namprd11.prod.outlook.com (2603:10b6:510:1e0::15)
- by SJ2PR11MB7647.namprd11.prod.outlook.com (2603:10b6:a03:4c3::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.19; Wed, 4 Jan
- 2023 08:40:03 +0000
-Received: from PH7PR11MB5981.namprd11.prod.outlook.com
- ([fe80::f0a1:f049:98db:6cb2]) by PH7PR11MB5981.namprd11.prod.outlook.com
- ([fe80::f0a1:f049:98db:6cb2%3]) with mapi id 15.20.5944.019; Wed, 4 Jan 2023
- 08:40:03 +0000
-From: "Manna, Animesh" <animesh.manna@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 02/13] drm/i915/dsb: Inline DSB_CTRL writes
- into intel_dsb_commit()
-Thread-Index: AQHZEObPcSzxDU3ZBEiNo/MhD/g+C66OBAXQ
-Date: Wed, 4 Jan 2023 08:40:03 +0000
-Message-ID: <PH7PR11MB59813B63A184E585BA9DE043F9F59@PH7PR11MB5981.namprd11.prod.outlook.com>
-References: <20221216003810.13338-1-ville.syrjala@linux.intel.com>
- <20221216003810.13338-3-ville.syrjala@linux.intel.com>
-In-Reply-To: <20221216003810.13338-3-ville.syrjala@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH7PR11MB5981:EE_|SJ2PR11MB7647:EE_
-x-ms-office365-filtering-correlation-id: eb14387e-1a60-4cf8-98da-08daee2f461b
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: aH4aobawfMrQKcEKnRJTsHcx8ouZz7uSsBqQOWpcRixEnovBY9StDO9anADGbMkRReJalDbkMIk8FXOjwEVQupdPbfTi+xvHAcO6WWhpGhZvqy0JygTkxo6xZJr7CtTxeMvxf08hgsxdu01q0iDWHQfjCt6vzZMhdb6/OqEPjD/Zrm5K75OGUTmVupxjYa51BD9lXMDv4PXMJZyPtMjCyALPdNFDqx8XwBZfDLuY5pdJZBXW3UQMwxypCDDsRy+BOxGnedTqpNw89WMUJ0Kh57WJ98I97VVhqzEoikMaX80qRLwSYeSRNxGeudrNda7VYA1ZVQxk90vWvc6G10YyV/+2V0ZDq+BXTXmasqFJ9nkgk0B01c2H72sjFOPKrBPucZVKl3lld1aHLAZvHG9CROLdoArlXlpIo3Vv+zGKrYXHbRrQvHawtKouyxqITVDccUIx8eKu2yPwALHbHN5FGxYpZJggco9rf7kP71TDtLmcE3MHOEVHFq4h036Wy4CeAgdm/f7mXjr/mb97c+jDtEURrFA3OX4sfboX+5VGCJe/z5lgV3NA0jZHpnDNDfdtRZXbq6Hs36OqXK76fn664VMx3q0uDphPjtRzYZvkkh6xESJtoViRjQwWHHgb9b1EvU5KQY2WrklhI6gmKIWeA2fjRgdSlWLrIX2pFzSDUzbxU8uPEwQKwD3cF6Q4U0H+VNg7kvM5ReHf+8270cuiqQ==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB5981.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(396003)(39860400002)(136003)(346002)(366004)(376002)(451199015)(41300700001)(8936002)(66946007)(8676002)(5660300002)(110136005)(316002)(52536014)(2906002)(66556008)(71200400001)(7696005)(55236004)(53546011)(6506007)(66446008)(478600001)(76116006)(64756008)(66476007)(86362001)(55016003)(26005)(186003)(9686003)(83380400001)(38100700002)(122000001)(38070700005)(82960400001)(33656002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?am52Ri9vZkkwZ1VtRUQ3WEJWaWtaRnJzUVFnUkdUZ1c3cWJCZkx3S1JUeGsy?=
- =?utf-8?B?K0pGdGliNEdxVDlpMGQ5MTI2ejdMV2h4U0ZqaVJBRCtPS3FYNkd4L1NIUHdl?=
- =?utf-8?B?VHhzc0loRUp6dzNZMjl3NGtrbUlBSnVYaElsMFhkek8xMWE2REtkMGdGQWgx?=
- =?utf-8?B?bWdqcDJmOHRrZHlIRnNvMFNvTFJaM2piaW5VU1gxYk9VVzZGRThMb1RFVW5V?=
- =?utf-8?B?VWxVVm44b0J1WnRJUm9MaVVMSGZHNENuaWdCY0ZMTEVYNGpKMW5ja2tvOUFS?=
- =?utf-8?B?ckRibnk0MlEwaENYYWlNYWhnbmdGRmxTUi9Gd3RISUVjTWZ5dG1KNkRCdjFO?=
- =?utf-8?B?TkNnaTNMQWl2ZWFObXdyTWprR093RXVpdk0xYmQ4TWU1RXJpRHI3QVA0cHpi?=
- =?utf-8?B?TWdNSTY1aTdQMnVsSjhKSWpERy9lVHJEMldHaXNTbG1tYW5PaURsSWc3Vkla?=
- =?utf-8?B?ZHkraWprQTZ2QVJTbXkvcDZPYXZRSldNRWNRT2dwZWE5T1hxK1crL1lIaXRV?=
- =?utf-8?B?dVpKSmI2NUNEdE56L2R1VmtqQ04xa2xINE5ueVNaOFg5UU4vWnEvd3ZMRGJl?=
- =?utf-8?B?cCtHQlFZRzkrZUljUzA3YjZoa2UwSmFLd2kyNGIwMHRxR2lIcXlaS3BiNVJr?=
- =?utf-8?B?ZkRIUnBhbDQraEc4d2plb3A5YTZ2cUZJU0lCQzdMNGYvcE1wSTlkNzJzYkRV?=
- =?utf-8?B?OWpFcTVJZENaTEFjQndMTFJSY281T3gyZmpSeHpjVElpRWc5YlZmNnNCTWNi?=
- =?utf-8?B?aWJ4OG15SUJFMm5hZTJTWWxuNG10OHBERVhrY3RKVnplWmZSUWhvWVdESU1h?=
- =?utf-8?B?dkJtRmFENm1XTVE2ZWhKeXlENm0vOXZueXpJeUJRKzM1R3psZUJWUjdZQlNT?=
- =?utf-8?B?VW96Yzh5Y2pyQXFnT0N1eGpIL2Y2cFZta0g3STZ3U3RGcm9reWFMc3dsWUxk?=
- =?utf-8?B?eGUvcVAwRTVxNmdGZThMZEdpVzN4STFZdjRoZlZlZE01RzQyQjY4U2JtRzBI?=
- =?utf-8?B?dTJFRjBrZ01qNGM2RFpSZzJQK080c0N5U2VKcnFweWdtaWJwNnZRdTR1Ti9l?=
- =?utf-8?B?L3ZFQWdsWURNS0hKOVNvZVlrUGd1TFBka3ZKRk1UR1ZZL2lSZ2YvUnN5Y1Bm?=
- =?utf-8?B?blpoTm90djNKOC9QRGJDbkxtVk5GbHFoQkplVWpzWHl1bGJaZXBWeS9Uc3Iy?=
- =?utf-8?B?TC9zQXJtMFVTNDUvYnBhbUpUbVVwZU5DczcyOFU0MGJWZmdUUGpMK2FtNzZp?=
- =?utf-8?B?QnU0VUFZY2UwMWYzeXRYdXBlRHNxaXpFN0ViYysySlVLektpL2JTVzBodTM1?=
- =?utf-8?B?L3FnL2N5VlFaYnhZaEFsQkkweGZ0WlNVU2MzY0Q1SXhGZ05pd1dLeEtUeWdB?=
- =?utf-8?B?L3RJanVjazMzSjh3cHhoZ0tLc0tBdE1oMnEwdUpPaGtUcEZrVnhiclhLYXJL?=
- =?utf-8?B?MytYYWNIeUFRVmRXVXRrck1NWmZnZnFMRmhSc21iWnpyTmIzN1JmaUNTaFAr?=
- =?utf-8?B?ZzRrcGJON2ZFVnBmU1ducHZaalZydStWTFp6WWl1Y0NBLzk2ZlFqK28yU3BN?=
- =?utf-8?B?TE9yaVd3RHc5WHdpbGZIM3VFa0sxZis5b1IySm9UVHRPZmtjUjFLa1pGVnd2?=
- =?utf-8?B?MFB6cUVPTXA5OVBsOXBPcWtyZUNraDloOFM3cDZ6MmthWFBEeld1MnZmKytJ?=
- =?utf-8?B?MVk0bUx2cWwvUHZyYXBBcHd2bjZkTWlRT08yY2tMWGxURXpVYm4wRTgwc1ZO?=
- =?utf-8?B?ZjdUaUlONjEydGx2UFpnSm1keHIyNE9rUFNrQ3NBNnRINFRTUU1ldVBJanRS?=
- =?utf-8?B?M0s4M2hScmJLTGNlc0RYdkNyUmNWcFBRZTRmeVM2d0xxditaMlVnVHJkQjh3?=
- =?utf-8?B?dFJWTGovWm9hTFpBeXJsblVLQVJiQjhFOC8zNlFxc0g0aENuS05raFNGTEJi?=
- =?utf-8?B?R1RiMUFSV3kyeHpWaWd4d3VnRzVnb1FDcFBhVkVJN2FacE04N3h6K2o1cmZk?=
- =?utf-8?B?U0pwUnFCVGNNTGh1NS82QThLOEJqZVZrczhJV2pndmErNWRRUm0wcTg0MDRH?=
- =?utf-8?B?eGJaUkthV0hVamxSTTRieG9Ra3k3ZUxDNUV2eklZTUd6NTYwamFtWVgwbmlM?=
- =?utf-8?Q?mzLkYod/ZOPKv08BVHZQWySb+?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ t=1672821967; x=1704357967;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=rTcoz6hnmEijbD54kXR8pp5MuA3dxuQOO+dpzG4tE5w=;
+ b=duJ1cOJ2KFKC/y/T8Eqp47Nkb9Nek+octhfJ0jP5fw7vfJCCRo9MLClt
+ iHSnUXtBLTArZv2Ba9xgIWaTuKh1mHbrqgwXQdbVJF0MbgTDHPJhg2G9R
+ VntGva8RyTWPEp+BiCGmxLlmE7dRVNd8Cr+d7XPcZvcsl+FEpppTuF21z
+ 6v3UPDg7Z0lIFeILCndWFwy7Q2GiHZJ8pQ6tFaw3Mqs9qTJBmgcQScHHn
+ e3LB7NwgfS3vFY96kR/xobFvuD4nji9OFBKqiQhC9j8SbWUwP7FXYsX+x
+ inub/VibsInHx9FSR28ZTtdpD5UBO/nmxNhwjWbKH6MSjmaiykONUqHN2 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10579"; a="321947869"
+X-IronPort-AV: E=Sophos;i="5.96,299,1665471600"; d="scan'208";a="321947869"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2023 00:46:07 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10579"; a="762605748"
+X-IronPort-AV: E=Sophos;i="5.96,299,1665471600"; d="scan'208";a="762605748"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.19.18])
+ ([10.213.19.18])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2023 00:46:05 -0800
+Message-ID: <9699628a-829a-faa5-5267-27849224e0b0@intel.com>
+Date: Wed, 4 Jan 2023 09:46:03 +0100
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB5981.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: eb14387e-1a60-4cf8-98da-08daee2f461b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Jan 2023 08:40:03.3120 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 9zLM186U0hfuT3gvyCNpWo3b1OAxZWRB5Wfdy6mnC5m94u5fJOlLdPRk2anONtdixgiLdfLLuw5cgKv45co7JA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7647
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 02/13] drm/i915/dsb: Inline DSB_CTRL writes
- into intel_dsb_commit()
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.6.1
+To: Matt Roper <matthew.d.roper@intel.com>
+References: <20221219101316.168129-1-tvrtko.ursulin@linux.intel.com>
+ <20221219101316.168129-3-tvrtko.ursulin@linux.intel.com>
+ <083b4424-d984-a2d2-1f58-035e4c1c82bd@intel.com>
+ <Y7SIwogJwS2teOgy@mdroper-desk1.amr.corp.intel.com>
+Content-Language: en-US
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <Y7SIwogJwS2teOgy@mdroper-desk1.amr.corp.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Consolidate TLB invalidation
+ flow
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,80 +66,388 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwtZ2Z4IDxpbnRl
-bC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBWaWxsZQ0K
-PiBTeXJqYWxhDQo+IFNlbnQ6IEZyaWRheSwgRGVjZW1iZXIgMTYsIDIwMjIgNjowOCBBTQ0KPiBU
-bzogaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBTdWJqZWN0OiBbSW50ZWwtZ2Z4
-XSBbUEFUQ0ggMDIvMTNdIGRybS9pOTE1L2RzYjogSW5saW5lIERTQl9DVFJMIHdyaXRlcyBpbnRv
-DQo+IGludGVsX2RzYl9jb21taXQoKQ0KPiANCj4gRnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxs
-ZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4gDQo+IE5vIHBvaW50IGluIGhhdmluZyB0aGVz
-ZSB3cmFwcGVycyBmb3IgYSBzaW1wbGUgRFNCX0NUUkwgd3JpdGUuDQo+IElubGluZSB0aGVtIGlu
-dG8gaW50ZWxfZHNiX2NvbW1pdCgpLg0KPiANCj4gU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOk
-bMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCg0KQXMgcGVyIGJzcGVjIGJlZm9y
-ZSB0b3VjaGluZyBjdHJsLCBoZWFkIGFuZCB0YWlsIHJlZ2lzdGVyIHdlIHNob3VsZCBjaGVjayBm
-b3IgZHNiIGlkbGVuZXNzLg0KQnV0IG9uZSBjaGVjayBpcyBzdWZmaWNpZW50IGFuZCBEU0Igd2ls
-bCBiZSBhY3RpdmUgYWZ0ZXIgcHJvZ3JhbW1pbmcgdGFpbCByZWdpc3Rlci4NClRoZSBjdXJyZW50
-IGNoYW5nZXMgTEdUTS4NCg0KUmV2aWV3ZWQtYnk6IEFuaW1lc2ggTWFubmEgPEFuaW1lc2gubWFu
-bmFAaW50ZWwuY29tPg0KPiAtLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfZHNiLmMgfCA2MiArKysrKystLS0tLS0tLS0tLS0tLS0tLS0NCj4gIDEgZmlsZSBjaGFuZ2Vk
-LCAxNCBpbnNlcnRpb25zKCspLCA0OCBkZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RzYi5jDQo+IGIvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kc2IuYw0KPiBpbmRleCBlYmViYWY4MDJkZWUuLjkwYTIy
-YWYzMGFhYiAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9kc2IuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RzYi5j
-DQo+IEBAIC03NiwzNCArNzYsNiBAQCBzdGF0aWMgYm9vbCBpc19kc2JfYnVzeShzdHJ1Y3QgZHJt
-X2k5MTVfcHJpdmF0ZSAqaTkxNSwNCj4gZW51bSBwaXBlIHBpcGUsDQo+ICAJcmV0dXJuIGludGVs
-X2RlX3JlYWQoaTkxNSwgRFNCX0NUUkwocGlwZSwgaWQpKSAmIERTQl9TVEFUVVNfQlVTWTsNCj4g
-fQ0KPiANCj4gLXN0YXRpYyBib29sIGludGVsX2RzYl9lbmFibGVfZW5naW5lKHN0cnVjdCBkcm1f
-aTkxNV9wcml2YXRlICppOTE1LA0KPiAtCQkJCSAgICBlbnVtIHBpcGUgcGlwZSwgZW51bSBkc2Jf
-aWQgaWQpDQo+IC17DQo+IC0JaWYgKGlzX2RzYl9idXN5KGk5MTUsIHBpcGUsIGlkKSkgew0KPiAt
-CQlkcm1fZGJnX2ttcygmaTkxNS0+ZHJtLCAiRFNCIGVuZ2luZSBpcyBidXN5LlxuIik7DQo+IC0J
-CXJldHVybiBmYWxzZTsNCj4gLQl9DQo+IC0NCj4gLQlpbnRlbF9kZV93cml0ZShpOTE1LCBEU0Jf
-Q1RSTChwaXBlLCBpZCksIERTQl9FTkFCTEUpOw0KPiAtCWludGVsX2RlX3Bvc3RpbmdfcmVhZChp
-OTE1LCBEU0JfQ1RSTChwaXBlLCBpZCkpOw0KPiAtDQo+IC0JcmV0dXJuIHRydWU7DQo+IC19DQo+
-IC0NCj4gLXN0YXRpYyBib29sIGludGVsX2RzYl9kaXNhYmxlX2VuZ2luZShzdHJ1Y3QgZHJtX2k5
-MTVfcHJpdmF0ZSAqaTkxNSwNCj4gLQkJCQkgICAgIGVudW0gcGlwZSBwaXBlLCBlbnVtIGRzYl9p
-ZCBpZCkNCj4gLXsNCj4gLQlpZiAoaXNfZHNiX2J1c3koaTkxNSwgcGlwZSwgaWQpKSB7DQo+IC0J
-CWRybV9kYmdfa21zKCZpOTE1LT5kcm0sICJEU0IgZW5naW5lIGlzIGJ1c3kuXG4iKTsNCj4gLQkJ
-cmV0dXJuIGZhbHNlOw0KPiAtCX0NCj4gLQ0KPiAtCWludGVsX2RlX3dyaXRlKGk5MTUsIERTQl9D
-VFJMKHBpcGUsIGlkKSwgMCk7DQo+IC0JaW50ZWxfZGVfcG9zdGluZ19yZWFkKGk5MTUsIERTQl9D
-VFJMKHBpcGUsIGlkKSk7DQo+IC0NCj4gLQlyZXR1cm4gdHJ1ZTsNCj4gLX0NCj4gLQ0KPiAgLyoq
-DQo+ICAgKiBpbnRlbF9kc2JfaW5kZXhlZF9yZWdfd3JpdGUoKSAtV3JpdGUgdG8gdGhlIERTQiBj
-b250ZXh0IGZvciBhdXRvDQo+ICAgKiBpbmNyZW1lbnQgcmVnaXN0ZXIuDQo+IEBAIC0yMjMsNDIg
-KzE5NSwzNiBAQCB2b2lkIGludGVsX2RzYl9jb21taXQoc3RydWN0IGludGVsX2RzYiAqZHNiKQ0K
-PiAgCWlmICghKGRzYiAmJiBkc2ItPmZyZWVfcG9zKSkNCj4gIAkJcmV0dXJuOw0KPiANCj4gLQlp
-ZiAoIWludGVsX2RzYl9lbmFibGVfZW5naW5lKGRldl9wcml2LCBwaXBlLCBkc2ItPmlkKSkNCj4g
-LQkJZ290byByZXNldDsNCj4gLQ0KPiAtCWlmIChpc19kc2JfYnVzeShkZXZfcHJpdiwgcGlwZSwg
-ZHNiLT5pZCkpIHsNCj4gLQkJZHJtX2VycigmZGV2X3ByaXYtPmRybSwNCj4gLQkJCSJIRUFEX1BU
-UiB3cml0ZSBmYWlsZWQgLSBkc2IgZW5naW5lIGlzIGJ1c3kuXG4iKTsNCj4gLQkJZ290byByZXNl
-dDsNCj4gLQl9DQo+IC0JaW50ZWxfZGVfd3JpdGUoZGV2X3ByaXYsIERTQl9IRUFEKHBpcGUsIGRz
-Yi0+aWQpLA0KPiAtCQkgICAgICAgaTkxNV9nZ3R0X29mZnNldChkc2ItPnZtYSkpOw0KPiAtDQo+
-ICAJdGFpbCA9IEFMSUdOKGRzYi0+ZnJlZV9wb3MgKiA0LCBDQUNIRUxJTkVfQllURVMpOw0KPiAg
-CWlmICh0YWlsID4gZHNiLT5mcmVlX3BvcyAqIDQpDQo+ICAJCW1lbXNldCgmZHNiLT5jbWRfYnVm
-W2RzYi0+ZnJlZV9wb3NdLCAwLA0KPiAgCQkgICAgICAgKHRhaWwgLSBkc2ItPmZyZWVfcG9zICog
-NCkpOw0KPiANCj4gIAlpZiAoaXNfZHNiX2J1c3koZGV2X3ByaXYsIHBpcGUsIGRzYi0+aWQpKSB7
-DQo+IC0JCWRybV9lcnIoJmRldl9wcml2LT5kcm0sDQo+IC0JCQkiVEFJTF9QVFIgd3JpdGUgZmFp
-bGVkIC0gZHNiIGVuZ2luZSBpcyBidXN5LlxuIik7DQo+ICsJCWRybV9lcnIoJmRldl9wcml2LT5k
-cm0sICJEU0IgZW5naW5lIGlzIGJ1c3kuXG4iKTsNCj4gIAkJZ290byByZXNldDsNCj4gIAl9DQo+
-IC0JZHJtX2RiZ19rbXMoJmRldl9wcml2LT5kcm0sDQo+IC0JCSAgICAiRFNCIGV4ZWN1dGlvbiBz
-dGFydGVkIC0gaGVhZCAweCV4LCB0YWlsIDB4JXhcbiIsDQo+IC0JCSAgICBpOTE1X2dndHRfb2Zm
-c2V0KGRzYi0+dm1hKSwgdGFpbCk7DQo+ICsNCj4gKwlpbnRlbF9kZV93cml0ZShkZXZfcHJpdiwg
-RFNCX0NUUkwocGlwZSwgZHNiLT5pZCksDQo+ICsJCSAgICAgICBEU0JfRU5BQkxFKTsNCj4gKwlp
-bnRlbF9kZV93cml0ZShkZXZfcHJpdiwgRFNCX0hFQUQocGlwZSwgZHNiLT5pZCksDQo+ICsJCSAg
-ICAgICBpOTE1X2dndHRfb2Zmc2V0KGRzYi0+dm1hKSk7DQo+ICAJaW50ZWxfZGVfd3JpdGUoZGV2
-X3ByaXYsIERTQl9UQUlMKHBpcGUsIGRzYi0+aWQpLA0KPiAgCQkgICAgICAgaTkxNV9nZ3R0X29m
-ZnNldChkc2ItPnZtYSkgKyB0YWlsKTsNCj4gLQlpZiAod2FpdF9mb3IoIWlzX2RzYl9idXN5KGRl
-dl9wcml2LCBwaXBlLCBkc2ItPmlkKSwgMSkpIHsNCj4gKw0KPiArCWRybV9kYmdfa21zKCZkZXZf
-cHJpdi0+ZHJtLA0KPiArCQkgICAgIkRTQiBleGVjdXRpb24gc3RhcnRlZCAtIGhlYWQgMHgleCwg
-dGFpbCAweCV4XG4iLA0KPiArCQkgICAgaTkxNV9nZ3R0X29mZnNldChkc2ItPnZtYSksDQo+ICsJ
-CSAgICBpOTE1X2dndHRfb2Zmc2V0KGRzYi0+dm1hKSArIHRhaWwpOw0KPiArDQo+ICsJaWYgKHdh
-aXRfZm9yKCFpc19kc2JfYnVzeShkZXZfcHJpdiwgcGlwZSwgZHNiLT5pZCksIDEpKQ0KPiAgCQlk
-cm1fZXJyKCZkZXZfcHJpdi0+ZHJtLA0KPiAgCQkJIlRpbWVkIG91dCB3YWl0aW5nIGZvciBEU0Ig
-d29ya2xvYWQNCj4gY29tcGxldGlvbi5cbiIpOw0KPiAtCQlnb3RvIHJlc2V0Ow0KPiAtCX0NCj4g
-DQo+ICByZXNldDoNCj4gIAlkc2ItPmZyZWVfcG9zID0gMDsNCj4gIAlkc2ItPmluc19zdGFydF9v
-ZmZzZXQgPSAwOw0KPiAtCWludGVsX2RzYl9kaXNhYmxlX2VuZ2luZShkZXZfcHJpdiwgcGlwZSwg
-ZHNiLT5pZCk7DQo+ICsJaW50ZWxfZGVfd3JpdGUoZGV2X3ByaXYsIERTQl9DVFJMKHBpcGUsIGRz
-Yi0+aWQpLCAwKTsNCj4gIH0NCj4gDQo+ICAvKioNCj4gLS0NCj4gMi4zNy40DQoNCg==
+On 03.01.2023 20:57, Matt Roper wrote:
+> On Mon, Dec 19, 2022 at 05:10:02PM +0100, Andrzej Hajda wrote:
+>> On 19.12.2022 11:13, Tvrtko Ursulin wrote:
+>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>
+>>> As the logic for selecting the register and corresponsing values grew, the
+>>
+>> corresponding
+>>
+>>> code become a bit unsightly. Consolidate by storing the required values at
+>>> engine init time in the engine itself, and by doing so minimise the amount
+>>> of invariant platform and engine checks during each and every TLB
+>>> invalidation.
+>>>
+>>> v2:
+>>>    * Fail engine probe if TLB invlidations registers are unknown.
+>>>
+>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+>>> Cc: Matt Roper <matthew.d.roper@intel.com>
+>>> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com> # v1
+>>> ---
+>>>    drivers/gpu/drm/i915/gt/intel_engine_cs.c    |  93 +++++++++++++
+>>>    drivers/gpu/drm/i915/gt/intel_engine_types.h |  15 +++
+>>>    drivers/gpu/drm/i915/gt/intel_gt.c           | 135 +++----------------
+>>>    3 files changed, 128 insertions(+), 115 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+>>> index 99c4b866addd..d47dadfc25c8 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+>>> @@ -1143,12 +1143,105 @@ static int init_status_page(struct intel_engine_cs *engine)
+>>>    	return ret;
+>>>    }
+>>> +static int intel_engine_init_tlb_invalidation(struct intel_engine_cs *engine)
+>>> +{
+>>> +	static const union intel_engine_tlb_inv_reg gen8_regs[] = {
+>>> +		[RENDER_CLASS].reg		= GEN8_RTCR,
+>>> +		[VIDEO_DECODE_CLASS].reg	= GEN8_M1TCR, /* , GEN8_M2TCR */
+>>> +		[VIDEO_ENHANCEMENT_CLASS].reg	= GEN8_VTCR,
+>>> +		[COPY_ENGINE_CLASS].reg		= GEN8_BTCR,
+>>> +	};
+>>> +	static const union intel_engine_tlb_inv_reg gen12_regs[] = {
+>>> +		[RENDER_CLASS].reg		= GEN12_GFX_TLB_INV_CR,
+>>> +		[VIDEO_DECODE_CLASS].reg	= GEN12_VD_TLB_INV_CR,
+>>> +		[VIDEO_ENHANCEMENT_CLASS].reg	= GEN12_VE_TLB_INV_CR,
+>>> +		[COPY_ENGINE_CLASS].reg		= GEN12_BLT_TLB_INV_CR,
+>>> +		[COMPUTE_CLASS].reg		= GEN12_COMPCTX_TLB_INV_CR,
+>>> +	};
+>>> +	static const union intel_engine_tlb_inv_reg xehp_regs[] = {
+>>> +		[RENDER_CLASS].mcr_reg		  = XEHP_GFX_TLB_INV_CR,
+>>> +		[VIDEO_DECODE_CLASS].mcr_reg	  = XEHP_VD_TLB_INV_CR,
+>>> +		[VIDEO_ENHANCEMENT_CLASS].mcr_reg = XEHP_VE_TLB_INV_CR,
+>>> +		[COPY_ENGINE_CLASS].mcr_reg	  = XEHP_BLT_TLB_INV_CR,
+>>> +		[COMPUTE_CLASS].mcr_reg		  = XEHP_COMPCTX_TLB_INV_CR,
+>>> +	};
+>>> +	struct drm_i915_private *i915 = engine->i915;
+>>> +	const union intel_engine_tlb_inv_reg *regs;
+>>> +	union intel_engine_tlb_inv_reg reg;
+>>> +	unsigned int class = engine->class;
+>>> +	unsigned int num = 0;
+>>> +	u32 val;
+>>> +
+>>> +	/*
+>>> +	 * New platforms should not be added with catch-all-newer (>=)
+>>> +	 * condition so that any later platform added triggers the below warning
+>>> +	 * and in turn mandates a human cross-check of whether the invalidation
+>>> +	 * flows have compatible semantics.
+>>> +	 *
+>>> +	 * For instance with the 11.00 -> 12.00 transition three out of five
+>>> +	 * respective engine registers were moved to masked type. Then after the
+>>> +	 * 12.00 -> 12.50 transition multi cast handling is required too.
+>>> +	 */
+>>> +
+>>> +	if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 50)) {
+> 
+> This is bad...it only captures XEHPSDV and breaks the handling of DG2
+> (12.55), PVC (12.60), and MTL (12.70, 12.71, and 12.72).  You're not
+> hitting the warning as expected since those are all now being captured
+> by the next case of the if/else ladder.  With the way GMD_ID works, we
+> may also get new version numbers that silently show up in hardware too
+> at some point (e.g., 12.73, 12.74, etc.)
+> 
+>>> +		regs = xehp_regs;
+>>> +		num = ARRAY_SIZE(xehp_regs);
+>>> +	} else if (GRAPHICS_VER(i915) == 12) {
+> 
+> You'd want to change this to
+> 
+>          GRAPHICS_VER_FULL(i915) == IP_VER(12, 0)
+> 
+> to get the behavior you expected.
+
+According to dg1_info dg1 has IP_VER(12, 10), it will not fit into this 
+bucket.
+
+Regards
+Andrzej
+
+> 
+> 
+> Matt
+> 
+>>> +		regs = gen12_regs;
+>>> +		num = ARRAY_SIZE(gen12_regs);
+>>> +	} else if (GRAPHICS_VER(i915) >= 8 && GRAPHICS_VER(i915) <= 11) {
+>>> +		regs = gen8_regs;
+>>> +		num = ARRAY_SIZE(gen8_regs);
+>>> +	} else if (GRAPHICS_VER(i915) < 8) {
+>>> +		return 0;
+>>> +	} > +
+>>> +	if (drm_WARN_ONCE(&i915->drm, !num,
+>>> +			  "Platform does not implement TLB invalidation!"))
+>>> +		return -ENODEV;
+>>> +
+>>> +	if (drm_WARN_ON_ONCE(&i915->drm,
+>>> +			     class >= num ||
+>>> +			     (!regs[class].reg.reg &&
+>>> +			      !regs[class].mcr_reg.reg)))
+>>> +		return -ERANGE;
+>>
+>> I hope the propagation of -ERANGE to device probe is OK.
+>>
+>> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+>>
+>> Regards
+>> Andrzej
+>>
+>>> +
+>>> +	reg = regs[class];
+>>> +
+>>> +	if (GRAPHICS_VER(i915) == 8 && class == VIDEO_DECODE_CLASS) {
+>>> +		reg.reg.reg += 4 * engine->instance; /* GEN8_M2TCR */
+>>> +		val = 0;
+>>> +	} else {
+>>> +		val = engine->instance;
+>>> +	}
+>>> +
+>>> +	val = BIT(val);
+>>> +
+>>> +	engine->tlb_inv.mcr = regs == xehp_regs;
+>>> +	engine->tlb_inv.reg = reg;
+>>> +	engine->tlb_inv.done = val;
+>>> +
+>>> +	if (GRAPHICS_VER(i915) >= 12 &&
+>>> +	    (engine->class == VIDEO_DECODE_CLASS ||
+>>> +	     engine->class == VIDEO_ENHANCEMENT_CLASS ||
+>>> +	     engine->class == COMPUTE_CLASS))
+>>> +		engine->tlb_inv.request = _MASKED_BIT_ENABLE(val);
+>>> +	else
+>>> +		engine->tlb_inv.request = val;
+>>> +
+>>> +	return 0;
+>>> +}
+>>> +
+>>>    static int engine_setup_common(struct intel_engine_cs *engine)
+>>>    {
+>>>    	int err;
+>>>    	init_llist_head(&engine->barrier_tasks);
+>>> +	err = intel_engine_init_tlb_invalidation(engine);
+>>> +	if (err)
+>>> +		return err;
+>>> +
+>>>    	err = init_status_page(engine);
+>>>    	if (err)
+>>>    		return err;
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+>>> index 4fd54fb8810f..8c661fe89314 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+>>> @@ -341,6 +341,19 @@ struct intel_engine_guc_stats {
+>>>    	u64 start_gt_clk;
+>>>    };
+>>> +union intel_engine_tlb_inv_reg {
+>>> +	i915_reg_t	reg;
+>>> +	i915_mcr_reg_t	mcr_reg;
+>>> +};
+>>> +
+>>> +struct intel_engine_tlb_inv
+>>> +{
+>>> +	bool mcr;
+>>> +	union intel_engine_tlb_inv_reg reg;
+>>> +	u32 request;
+>>> +	u32 done;
+>>> +};
+>>> +
+>>>    struct intel_engine_cs {
+>>>    	struct drm_i915_private *i915;
+>>>    	struct intel_gt *gt;
+>>> @@ -372,6 +385,8 @@ struct intel_engine_cs {
+>>>    	u32 context_size;
+>>>    	u32 mmio_base;
+>>> +	struct intel_engine_tlb_inv tlb_inv;
+>>> +
+>>>    	/*
+>>>    	 * Some w/a require forcewake to be held (which prevents RC6) while
+>>>    	 * a particular engine is active. If so, we set fw_domain to which
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+>>> index 854841a731cb..9fb0ac03f51a 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+>>> @@ -983,36 +983,6 @@ void intel_gt_info_print(const struct intel_gt_info *info,
+>>>    	intel_sseu_dump(&info->sseu, p);
+>>>    }
+>>> -struct reg_and_bit {
+>>> -	union {
+>>> -		i915_reg_t reg;
+>>> -		i915_mcr_reg_t mcr_reg;
+>>> -	};
+>>> -	u32 bit;
+>>> -};
+>>> -
+>>> -static struct reg_and_bit
+>>> -get_reg_and_bit(const struct intel_engine_cs *engine, const bool gen8,
+>>> -		const i915_reg_t *regs, const unsigned int num)
+>>> -{
+>>> -	const unsigned int class = engine->class;
+>>> -	struct reg_and_bit rb = { };
+>>> -
+>>> -	if (drm_WARN_ON_ONCE(&engine->i915->drm,
+>>> -			     class >= num || !regs[class].reg))
+>>> -		return rb;
+>>> -
+>>> -	rb.reg = regs[class];
+>>> -	if (gen8 && class == VIDEO_DECODE_CLASS)
+>>> -		rb.reg.reg += 4 * engine->instance; /* GEN8_M2TCR */
+>>> -	else
+>>> -		rb.bit = engine->instance;
+>>> -
+>>> -	rb.bit = BIT(rb.bit);
+>>> -
+>>> -	return rb;
+>>> -}
+>>> -
+>>>    /*
+>>>     * HW architecture suggest typical invalidation time at 40us,
+>>>     * with pessimistic cases up to 100us and a recommendation to
+>>> @@ -1026,14 +996,20 @@ get_reg_and_bit(const struct intel_engine_cs *engine, const bool gen8,
+>>>     * but are now considered MCR registers.  Since they exist within a GAM range,
+>>>     * the primary instance of the register rolls up the status from each unit.
+>>>     */
+>>> -static int wait_for_invalidate(struct intel_gt *gt, struct reg_and_bit rb)
+>>> +static int wait_for_invalidate(struct intel_engine_cs *engine)
+>>>    {
+>>> -	if (GRAPHICS_VER_FULL(gt->i915) >= IP_VER(12, 50))
+>>> -		return intel_gt_mcr_wait_for_reg(gt, rb.mcr_reg, rb.bit, 0,
+>>> +	if (engine->tlb_inv.mcr)
+>>> +		return intel_gt_mcr_wait_for_reg(engine->gt,
+>>> +						 engine->tlb_inv.reg.mcr_reg,
+>>> +						 engine->tlb_inv.done,
+>>> +						 0,
+>>>    						 TLB_INVAL_TIMEOUT_US,
+>>>    						 TLB_INVAL_TIMEOUT_MS);
+>>>    	else
+>>> -		return __intel_wait_for_register_fw(gt->uncore, rb.reg, rb.bit, 0,
+>>> +		return __intel_wait_for_register_fw(engine->gt->uncore,
+>>> +						    engine->tlb_inv.reg.reg,
+>>> +						    engine->tlb_inv.done,
+>>> +						    0,
+>>>    						    TLB_INVAL_TIMEOUT_US,
+>>>    						    TLB_INVAL_TIMEOUT_MS,
+>>>    						    NULL);
+>>> @@ -1041,61 +1017,14 @@ static int wait_for_invalidate(struct intel_gt *gt, struct reg_and_bit rb)
+>>>    static void mmio_invalidate_full(struct intel_gt *gt)
+>>>    {
+>>> -	static const i915_reg_t gen8_regs[] = {
+>>> -		[RENDER_CLASS]			= GEN8_RTCR,
+>>> -		[VIDEO_DECODE_CLASS]		= GEN8_M1TCR, /* , GEN8_M2TCR */
+>>> -		[VIDEO_ENHANCEMENT_CLASS]	= GEN8_VTCR,
+>>> -		[COPY_ENGINE_CLASS]		= GEN8_BTCR,
+>>> -	};
+>>> -	static const i915_reg_t gen12_regs[] = {
+>>> -		[RENDER_CLASS]			= GEN12_GFX_TLB_INV_CR,
+>>> -		[VIDEO_DECODE_CLASS]		= GEN12_VD_TLB_INV_CR,
+>>> -		[VIDEO_ENHANCEMENT_CLASS]	= GEN12_VE_TLB_INV_CR,
+>>> -		[COPY_ENGINE_CLASS]		= GEN12_BLT_TLB_INV_CR,
+>>> -		[COMPUTE_CLASS]			= GEN12_COMPCTX_TLB_INV_CR,
+>>> -	};
+>>> -	static const i915_mcr_reg_t xehp_regs[] = {
+>>> -		[RENDER_CLASS]			= XEHP_GFX_TLB_INV_CR,
+>>> -		[VIDEO_DECODE_CLASS]		= XEHP_VD_TLB_INV_CR,
+>>> -		[VIDEO_ENHANCEMENT_CLASS]	= XEHP_VE_TLB_INV_CR,
+>>> -		[COPY_ENGINE_CLASS]		= XEHP_BLT_TLB_INV_CR,
+>>> -		[COMPUTE_CLASS]			= XEHP_COMPCTX_TLB_INV_CR,
+>>> -	};
+>>>    	struct drm_i915_private *i915 = gt->i915;
+>>>    	struct intel_uncore *uncore = gt->uncore;
+>>>    	struct intel_engine_cs *engine;
+>>>    	intel_engine_mask_t awake, tmp;
+>>>    	enum intel_engine_id id;
+>>> -	const i915_reg_t *regs;
+>>> -	unsigned int num = 0;
+>>>    	unsigned long flags;
+>>> -	/*
+>>> -	 * New platforms should not be added with catch-all-newer (>=)
+>>> -	 * condition so that any later platform added triggers the below warning
+>>> -	 * and in turn mandates a human cross-check of whether the invalidation
+>>> -	 * flows have compatible semantics.
+>>> -	 *
+>>> -	 * For instance with the 11.00 -> 12.00 transition three out of five
+>>> -	 * respective engine registers were moved to masked type. Then after the
+>>> -	 * 12.00 -> 12.50 transition multi cast handling is required too.
+>>> -	 */
+>>> -
+>>> -	if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 50)) {
+>>> -		regs = NULL;
+>>> -		num = ARRAY_SIZE(xehp_regs);
+>>> -	} else if (GRAPHICS_VER(i915) == 12) {
+>>> -		regs = gen12_regs;
+>>> -		num = ARRAY_SIZE(gen12_regs);
+>>> -	} else if (GRAPHICS_VER(i915) >= 8 && GRAPHICS_VER(i915) <= 11) {
+>>> -		regs = gen8_regs;
+>>> -		num = ARRAY_SIZE(gen8_regs);
+>>> -	} else if (GRAPHICS_VER(i915) < 8) {
+>>> -		return;
+>>> -	}
+>>> -
+>>> -	if (drm_WARN_ONCE(&i915->drm, !num,
+>>> -			  "Platform does not implement TLB invalidation!"))
+>>> +	if (GRAPHICS_VER(i915) < 8)
+>>>    		return;
+>>>    	intel_uncore_forcewake_get(uncore, FORCEWAKE_ALL);
+>>> @@ -1105,33 +1034,18 @@ static void mmio_invalidate_full(struct intel_gt *gt)
+>>>    	awake = 0;
+>>>    	for_each_engine(engine, gt, id) {
+>>> -		struct reg_and_bit rb;
+>>> -
+>>>    		if (!intel_engine_pm_is_awake(engine))
+>>>    			continue;
+>>> -		if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
+>>> -			u32 val = BIT(engine->instance);
+>>> -
+>>> -			if (engine->class == VIDEO_DECODE_CLASS ||
+>>> -			    engine->class == VIDEO_ENHANCEMENT_CLASS ||
+>>> -			    engine->class == COMPUTE_CLASS)
+>>> -				val = _MASKED_BIT_ENABLE(val);
+>>> +		if (engine->tlb_inv.mcr)
+>>>    			intel_gt_mcr_multicast_write_fw(gt,
+>>> -							xehp_regs[engine->class],
+>>> -							val);
+>>> -		} else {
+>>> -			rb = get_reg_and_bit(engine, regs == gen8_regs, regs, num);
+>>> -			if (!i915_mmio_reg_offset(rb.reg))
+>>> -				continue;
+>>> -
+>>> -			if (GRAPHICS_VER(i915) == 12 && (engine->class == VIDEO_DECODE_CLASS ||
+>>> -			    engine->class == VIDEO_ENHANCEMENT_CLASS ||
+>>> -			    engine->class == COMPUTE_CLASS))
+>>> -				rb.bit = _MASKED_BIT_ENABLE(rb.bit);
+>>> -
+>>> -			intel_uncore_write_fw(uncore, rb.reg, rb.bit);
+>>> -		}
+>>> +							engine->tlb_inv.reg.mcr_reg,
+>>> +							engine->tlb_inv.request);
+>>> +		else
+>>> +			intel_uncore_write_fw(uncore,
+>>> +					      engine->tlb_inv.reg.reg,
+>>> +					      engine->tlb_inv.request);
+>>> +
+>>>    		awake |= engine->mask;
+>>>    	}
+>>> @@ -1150,16 +1064,7 @@ static void mmio_invalidate_full(struct intel_gt *gt)
+>>>    	intel_gt_mcr_unlock(gt, flags);
+>>>    	for_each_engine_masked(engine, gt, awake, tmp) {
+>>> -		struct reg_and_bit rb;
+>>> -
+>>> -		if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
+>>> -			rb.mcr_reg = xehp_regs[engine->class];
+>>> -			rb.bit = BIT(engine->instance);
+>>> -		} else {
+>>> -			rb = get_reg_and_bit(engine, regs == gen8_regs, regs, num);
+>>> -		}
+>>> -
+>>> -		if (wait_for_invalidate(gt, rb))
+>>> +		if (wait_for_invalidate(engine))
+>>>    			drm_err_ratelimited(&gt->i915->drm,
+>>>    					    "%s TLB invalidation did not complete in %ums!\n",
+>>>    					    engine->name, TLB_INVAL_TIMEOUT_MS);
+>>
+> 
+
