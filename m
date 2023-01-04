@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63CE465CF79
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Jan 2023 10:23:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F3C265CF90
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Jan 2023 10:34:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C43710E1C6;
-	Wed,  4 Jan 2023 09:23:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0201E10E509;
+	Wed,  4 Jan 2023 09:34:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 676C910E1C6
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 Jan 2023 09:23:46 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 046A610E509;
+ Wed,  4 Jan 2023 09:34:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1672824226; x=1704360226;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=8ieY12p/+/awlBFXq5ZgLAu/2/Dt9fH2Xus2GiTFjjk=;
- b=I/x7jcTRPfE/96q173A5WvypEyQs5ciq5MhjpYa7a6Zx5K/1Gz8ZYkKV
- ikY3A7l2wKAi8WNoMUzuBHQgZZVhx55Tkk+GArMd3tYPUKLEuKXgEJ81T
- 6vZP5OCFMZAcD21MZ0lnTgL+yL9+l/8m+0ukeoCmhvPvt6c/YxIEmba/7
- lv7Cz56NNEZO82V6iTxyMg4zfLIkmZEzDibaTOU7GeElGOBE7VU0xGcVM
- su6My8hojSzM1wq/zvRDlOF1wB9oK19wJ6zMAzPi51ngn1fwVxA7GXR/W
- qseEVzfzg337lXy8uyIbiOvApm95PCuK5YHItq27C0Dg8w6PmCESy4KbO g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10579"; a="408147689"
-X-IronPort-AV: E=Sophos;i="5.96,299,1665471600"; d="scan'208";a="408147689"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2023 01:23:45 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10579"; a="900500296"
-X-IronPort-AV: E=Sophos;i="5.96,299,1665471600"; d="scan'208";a="900500296"
-Received: from mkabdel-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.25.63])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2023 01:23:44 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230104090229.1402628-1-jouni.hogander@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230104090229.1402628-1-jouni.hogander@intel.com>
-Date: Wed, 04 Jan 2023 11:23:42 +0200
-Message-ID: <87wn62y7oh.fsf@intel.com>
+ t=1672824841; x=1704360841;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=KPN8YqY9LSOEXrt90pYffb+Xv9BOeYf4y3o6s7PYJ+s=;
+ b=EdNrL82zUUb6tL6/FVZFZQt6aq+CppjjQ4tSOYqNUAtTGKS7KJdbXf1c
+ X1N51T4FlEySt1mMnKufvMJTzkKEZ/riR5niG0A8NCy8ZiiKvci+5EAtI
+ t2qcpiLgxq6h1p2XzSZq11NCCow0uAmcuskprOH7Q0Hph9RQ+/f/6DJDU
+ 9qN/3qT7gAUJI6Kz95lpiN2dSJ453pTnwp7gJKnk3SgVGRWEbaR5kKXJJ
+ RE0Gpxq/pBpwZOnPRRsXDFy73sh3qPXoYP2ZbAc6gs4tTDMY4QofXza/I
+ wlrgWBNBu0FMMxkpIEuNUl4/ljJJUehLeHiDqbPqjy4rzcvRp9qTrW6ho Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10579"; a="301582480"
+X-IronPort-AV: E=Sophos;i="5.96,299,1665471600"; d="scan'208";a="301582480"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2023 01:34:00 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10579"; a="743790546"
+X-IronPort-AV: E=Sophos;i="5.96,299,1665471600"; d="scan'208";a="743790546"
+Received: from wfurtakx-mobl.ger.corp.intel.com (HELO [10.213.223.45])
+ ([10.213.223.45])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2023 01:33:56 -0800
+Message-ID: <04ec647c-184e-942e-a7ed-4ba393e591b7@linux.intel.com>
+Date: Wed, 4 Jan 2023 09:33:54 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/display: Implement
- Wa_14015648006
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Content-Language: en-US
+To: Rob Clark <robdclark@gmail.com>, dri-devel@lists.freedesktop.org
+References: <20230103234948.1218393-1-robdclark@gmail.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20230103234948.1218393-1-robdclark@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix potential context UAFs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,149 +61,109 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Rob Clark <robdclark@chromium.org>,
+ =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ "open list:INTEL DRM DRIVERS" <intel-gfx@lists.freedesktop.org>,
+ open list <linux-kernel@vger.kernel.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
+ katrinzhou <katrinzhou@tencent.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 04 Jan 2023, Jouni H=C3=B6gander <jouni.hogander@intel.com> wrote:
-> Add 4th pipe and extend TGL Wa_16013835468 to support ADLP, MTL and
-> DG2 and all TGL steppings.
 
-Please prefix the subject with "drm/i915/psr" instead of the overly
-generic "display".
+On 03/01/2023 23:49, Rob Clark wrote:
+> From: Rob Clark <robdclark@chromium.org>
+> 
+> gem_context_register() makes the context visible to userspace, and which
+> point a separate thread can trigger the I915_GEM_CONTEXT_DESTROY ioctl.
+> So we need to ensure that nothing uses the ctx ptr after this.  And we
+> need to ensure that adding the ctx to the xarray is the *last* thing
+> that gem_context_register() does with the ctx pointer.
 
->
-> BSpec: 54369, 55378, 66624
->
-> v2:
->  - apply for PSR1 as well
->  - remove stepping information from comments
->
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Jos=C3=A9 Roberto de Souza <jose.souza@intel.com>
-> Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
->
+Any backtraces from oopses or notes on how it was found to record in the commit message?
 
-Nitpick, while at it, please no blank lines between tags.
+> Signed-off-by: Rob Clark <robdclark@chromium.org>
 
-Both of the above can be fixed while applying if there's no other reason
-to resend the patch.
+Fixes: a4c1cdd34e2c ("drm/i915/gem: Delay context creation (v3)")
+References: 3aa9945a528e ("drm/i915: Separate GEM context construction and registration to userspace")
+Cc: <stable@vger.kernel.org> # v5.15+
 
-BR,
-Jani.
-
-> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
-> Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_psr.c | 48 ++++++++++++++----------
->  drivers/gpu/drm/i915/i915_reg.h          |  1 +
->  2 files changed, 29 insertions(+), 20 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i=
-915/display/intel_psr.c
-> index d0d774219cc5..507f810d4a4a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -1112,6 +1112,8 @@ static u32 wa_16013835468_bit_get(struct intel_dp *=
-intel_dp)
->  		return LATENCY_REPORTING_REMOVED_PIPE_B;
->  	case PIPE_C:
->  		return LATENCY_REPORTING_REMOVED_PIPE_C;
-> +	case PIPE_D:
-> +		return LATENCY_REPORTING_REMOVED_PIPE_D;
->  	default:
->  		MISSING_CASE(intel_dp->psr.pipe);
->  		return 0;
-> @@ -1163,6 +1165,23 @@ static void intel_psr_enable_source(struct intel_d=
-p *intel_dp,
->  			     intel_dp->psr.psr2_sel_fetch_enabled ?
->  			     IGNORE_PSR2_HW_TRACKING : 0);
->=20=20
-> +	/*
-> +	 * Wa_16013835468
-> +	 * Wa_14015648006
-> +	 */
-> +	if (IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0) ||
-> +	    IS_DISPLAY_VER(dev_priv, 12, 13)) {
-> +		u16 vtotal, vblank;
-> +
-> +		vtotal =3D crtc_state->uapi.adjusted_mode.crtc_vtotal -
-> +			crtc_state->uapi.adjusted_mode.crtc_vdisplay;
-> +		vblank =3D crtc_state->uapi.adjusted_mode.crtc_vblank_end -
-> +			crtc_state->uapi.adjusted_mode.crtc_vblank_start;
-> +		if (vblank > vtotal)
-> +			intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1, 0,
-> +				     wa_16013835468_bit_get(intel_dp));
-> +	}
-> +
->  	if (intel_dp->psr.psr2_enabled) {
->  		if (DISPLAY_VER(dev_priv) =3D=3D 9)
->  			intel_de_rmw(dev_priv, CHICKEN_TRANS(cpu_transcoder), 0,
-> @@ -1196,20 +1215,6 @@ static void intel_psr_enable_source(struct intel_d=
-p *intel_dp,
->  		else if (IS_ALDERLAKE_P(dev_priv))
->  			intel_de_rmw(dev_priv, CLKGATE_DIS_MISC, 0,
->  				     CLKGATE_DIS_MISC_DMASC_GATING_DIS);
+>   drivers/gpu/drm/i915/gem/i915_gem_context.c | 24 +++++++++++++++------
+>   1 file changed, 18 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> index 7f2831efc798..6250de9b9196 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> @@ -1688,6 +1688,10 @@ void i915_gem_init__contexts(struct drm_i915_private *i915)
+>   	init_contexts(&i915->gem.contexts);
+>   }
+>   
+> +/*
+> + * Note that this implicitly consumes the ctx reference, by placing
+> + * the ctx in the context_xa.
+> + */
+>   static void gem_context_register(struct i915_gem_context *ctx,
+>   				 struct drm_i915_file_private *fpriv,
+>   				 u32 id)
+> @@ -1703,10 +1707,6 @@ static void gem_context_register(struct i915_gem_context *ctx,
+>   	snprintf(ctx->name, sizeof(ctx->name), "%s[%d]",
+>   		 current->comm, pid_nr(ctx->pid));
+>   
+> -	/* And finally expose ourselves to userspace via the idr */
+> -	old = xa_store(&fpriv->context_xa, id, ctx, GFP_KERNEL);
+> -	WARN_ON(old);
 > -
-> -		/* Wa_16013835468:tgl[b0+], dg1 */
-> -		if (IS_TGL_DISPLAY_STEP(dev_priv, STEP_B0, STEP_FOREVER) ||
-> -		    IS_DG1(dev_priv)) {
-> -			u16 vtotal, vblank;
-> -
-> -			vtotal =3D crtc_state->uapi.adjusted_mode.crtc_vtotal -
-> -				 crtc_state->uapi.adjusted_mode.crtc_vdisplay;
-> -			vblank =3D crtc_state->uapi.adjusted_mode.crtc_vblank_end -
-> -				 crtc_state->uapi.adjusted_mode.crtc_vblank_start;
-> -			if (vblank > vtotal)
-> -				intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1, 0,
-> -					     wa_16013835468_bit_get(intel_dp));
-> -		}
->  	}
->  }
->=20=20
-> @@ -1362,6 +1367,15 @@ static void intel_psr_disable_locked(struct intel_=
-dp *intel_dp)
->  		intel_de_rmw(dev_priv, CHICKEN_PAR1_1,
->  			     DIS_RAM_BYPASS_PSR2_MAN_TRACK, 0);
->=20=20
-> +	/*
-> +	 * Wa_16013835468
-> +	 * Wa_14015648006
-> +	 */
-> +	if (IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0) ||
-> +	    IS_DISPLAY_VER(dev_priv, 12, 13))
-> +		intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1,
-> +			     wa_16013835468_bit_get(intel_dp), 0);
+>   	spin_lock(&ctx->client->ctx_lock);
+>   	list_add_tail_rcu(&ctx->client_link, &ctx->client->ctx_list);
+>   	spin_unlock(&ctx->client->ctx_lock);
+> @@ -1714,6 +1714,10 @@ static void gem_context_register(struct i915_gem_context *ctx,
+>   	spin_lock(&i915->gem.contexts.lock);
+>   	list_add_tail(&ctx->link, &i915->gem.contexts.list);
+>   	spin_unlock(&i915->gem.contexts.lock);
 > +
->  	if (intel_dp->psr.psr2_enabled) {
->  		/* Wa_16011168373:adl-p */
->  		if (IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
-> @@ -1377,12 +1391,6 @@ static void intel_psr_disable_locked(struct intel_=
-dp *intel_dp)
->  		else if (IS_ALDERLAKE_P(dev_priv))
->  			intel_de_rmw(dev_priv, CLKGATE_DIS_MISC,
->  				     CLKGATE_DIS_MISC_DMASC_GATING_DIS, 0);
-> -
-> -		/* Wa_16013835468:tgl[b0+], dg1 */
-> -		if (IS_TGL_DISPLAY_STEP(dev_priv, STEP_B0, STEP_FOREVER) ||
-> -		    IS_DG1(dev_priv))
-> -			intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1,
-> -				     wa_16013835468_bit_get(intel_dp), 0);
->  	}
->=20=20
->  	intel_snps_phy_update_psr_power_state(dev_priv, phy, false);
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
-reg.h
-> index 8b2cf980f323..b0b3b511e19f 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -5737,6 +5737,7 @@
->  #define  RESET_PCH_HANDSHAKE_ENABLE	REG_BIT(4)
->=20=20
->  #define GEN8_CHICKEN_DCPR_1			_MMIO(0x46430)
-> +#define   LATENCY_REPORTING_REMOVED_PIPE_D	REG_BIT(31)
->  #define   SKL_SELECT_ALTERNATE_DC_EXIT		REG_BIT(30)
->  #define   LATENCY_REPORTING_REMOVED_PIPE_C	REG_BIT(25)
->  #define   LATENCY_REPORTING_REMOVED_PIPE_B	REG_BIT(24)
+> +	/* And finally expose ourselves to userspace via the idr */
+> +	old = xa_store(&fpriv->context_xa, id, ctx, GFP_KERNEL);
+> +	WARN_ON(old);
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+Have you seen that this hunk is needed or just moving it for a good measure? To be clear, it is probably best to move it even if the current placement cannot cause any problems, I am just double-checking if you had any concrete observations here while mulling over easier stable backports if we would omit it.
+
+>   }
+>   
+>   int i915_gem_context_open(struct drm_i915_private *i915,
+> @@ -2199,14 +2203,22 @@ finalize_create_context_locked(struct drm_i915_file_private *file_priv,
+>   	if (IS_ERR(ctx))
+>   		return ctx;
+>   
+> +	/*
+> +	 * One for the xarray and one for the caller.  We need to grab
+> +	 * the reference *prior* to making the ctx visble to userspace
+> +	 * in gem_context_register(), as at any point after that
+> +	 * userspace can try to race us with another thread destroying
+> +	 * the context under our feet.
+> +	 */
+> +	i915_gem_context_get(ctx);
+> +
+>   	gem_context_register(ctx, file_priv, id);
+>   
+>   	old = xa_erase(&file_priv->proto_context_xa, id);
+>   	GEM_BUG_ON(old != pc);
+>   	proto_context_close(file_priv->dev_priv, pc);
+>   
+> -	/* One for the xarray and one for the caller */
+> -	return i915_gem_context_get(ctx);
+> +	return ctx;
+
+Otherwise userspace can look up a context which hasn't had it's reference count increased yep. I can add the Fixes: and Stable: tags while merging if no complaints.
+
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+
+Regards,
+
+Tvrtko
+
+>   }
+>   
+>   struct i915_gem_context *
