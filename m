@@ -2,51 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BE6B65D009
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Jan 2023 10:56:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10D9365D012
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Jan 2023 10:58:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82FC910E52B;
-	Wed,  4 Jan 2023 09:56:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA78710E52C;
+	Wed,  4 Jan 2023 09:58:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C675510E524
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 Jan 2023 09:56:54 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3170410E524;
+ Wed,  4 Jan 2023 09:58:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1672826214; x=1704362214;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=pVUukVFKx9zBCIaiMTAeB+iuRTF2WUGw3D2HQNj+bqc=;
- b=I758zfiDS5ZP/f8nzyzumco9I/qPZpJgnneZmHrjBg81qYQKMUoT5YmP
- bVX3R/SLrjkWZZmGWDeDR/x7IUj8E9plhRCzp32Itq8X+oTT2ZCooVr+Y
- 86kr6wpMETTDzT/gTk7CL2sKShAp6Q/7pgqIjwglji7aL0bN7ixxE/SP3
- BQCedjYgSodZTv800t1cqGjDqrer+LGlRUtJ3cEeRfuEwPylA1/CS7L24
- 8CH5XqNl3cKMDlbHwelOVQ4tEeatol0d48vxPKXK/cEB5PZmZI6TNCFoH
- keCazK/afBgE+A6ooj0rsLnRhe9y2gJnFjjZOInA6g5GR94BMl0FYb7ET Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10579"; a="323896094"
-X-IronPort-AV: E=Sophos;i="5.96,299,1665471600"; d="scan'208";a="323896094"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2023 01:56:53 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10579"; a="762625272"
-X-IronPort-AV: E=Sophos;i="5.96,299,1665471600"; d="scan'208";a="762625272"
-Received: from mkabdel-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.25.63])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2023 01:56:50 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230102054047.124624-8-suraj.kandpal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230102054047.124624-1-suraj.kandpal@intel.com>
- <20230102054047.124624-8-suraj.kandpal@intel.com>
-Date: Wed, 04 Jan 2023 11:56:48 +0200
-Message-ID: <87h6x6y65b.fsf@intel.com>
+ t=1672826297; x=1704362297;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=rOa9H4gmBvjM+pb1wqyo83z9QzIY7bryT1AL4rjLBtc=;
+ b=JqtLdRy7vILw/Pl7RXDO/gPPiVgZwMrKKxwaMTF3YIVtWTmNXYXWwq+7
+ tFsjzV9lp6Ujc6nP8OvU5Fb6QebdavD7/5sqK1g9TaYg7s0/TwDAKaYMb
+ ERuakdYxMS00hHpjjmucGLILO3GMscb5onb1bxOhEjpOi0C20TM0MwHng
+ 9Y37EpicHdU/tj25qRsRMRgIctQC7kVJO+dxKvB87Sj5PJodv5c5+8gIN
+ 3vCn5tRCJIQ3Uh3O2Y2C6MFW+nF2AbRi4xOo+ICs67nJCwDYIS9UwtamP
+ fwOjn4XKcpYFejFmNaW8EuKKjtt9H498ojOxPDY5PKQXX9Hs2Od+5Gai3 g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10579"; a="408155288"
+X-IronPort-AV: E=Sophos;i="5.96,299,1665471600"; d="scan'208";a="408155288"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2023 01:58:16 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10579"; a="723589330"
+X-IronPort-AV: E=Sophos;i="5.96,299,1665471600"; d="scan'208";a="723589330"
+Received: from wfurtakx-mobl.ger.corp.intel.com (HELO [10.213.223.45])
+ ([10.213.223.45])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2023 01:58:15 -0800
+Message-ID: <2641f51d-8b79-0d47-90f5-b60e9f6edf33@linux.intel.com>
+Date: Wed, 4 Jan 2023 09:58:13 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v5 7/7] drm/i915/mtl: Add HDCP GSC interface
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Content-Language: en-US
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+References: <20221222082557.1364711-1-lucas.demarchi@intel.com>
+ <20221222082557.1364711-2-lucas.demarchi@intel.com>
+ <2cfeee8a-7b7e-c203-37b4-f7a502123a5a@linux.intel.com>
+ <20221222155535.gmih2rurxlo2xuo5@ldmartin-desk2.lan>
+ <4c8ffcd3-259e-f651-6f32-296896d8b4b7@linux.intel.com>
+ <20221223182807.tfyrx2yrjbv4flx7@ldmartin-desk2.lan>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20221223182807.tfyrx2yrjbv4flx7@ldmartin-desk2.lan>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/gt: Remove platform comments
+ from workarounds
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,707 +67,228 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tomas Winkler <tomas.winkler@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 02 Jan 2023, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> MTL uses GSC command streamer i.e gsc cs to send HDCP/PXP commands
-> to GSC f/w. It requires to keep hdcp display driver
-> agnostic to content protection f/w (ME/GSC fw) in the form of
-> i915_hdcp_fw_ops generic ops.
->
-> Adding HDCP GSC CS interface by leveraging the i915_hdcp_fw_ops generic
-> ops instead of I915_HDCP_COMPONENT as integral part of i915.
->
-> Adding checks to see if GSC is loaded and proxy is setup
->
-> --v3
-> -abstract DISPLAY_VER check [Jani]
-> -bring function declaration and definition in same patch[Jani]
->
-> Cc: Tomas Winkler <tomas.winkler@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Uma Shankar <uma.shankar@intel.com>
-> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_hdcp.c     |  28 +-
->  drivers/gpu/drm/i915/display/intel_hdcp_gsc.c | 513 +++++++++++++++++-
->  drivers/gpu/drm/i915/display/intel_hdcp_gsc.h |   5 +-
->  3 files changed, 537 insertions(+), 9 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/=
-i915/display/intel_hdcp.c
-> index a0f978e56879..0fef4a4356ea 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -25,6 +25,8 @@
->  #include "intel_hdcp.h"
->  #include "intel_hdcp_regs.h"
->  #include "intel_pcode.h"
-> +#include "intel_connector.h"
-> +#include "intel_hdcp_gsc.h"
->=20=20
->  #define KEY_LOAD_TRIES	5
->  #define HDCP2_LC_RETRY_CNT			3
-> @@ -203,13 +205,20 @@ bool intel_hdcp2_capable(struct intel_connector *co=
-nnector)
->  	struct intel_digital_port *dig_port =3D intel_attached_dig_port(connect=
-or);
->  	struct drm_i915_private *dev_priv =3D to_i915(connector->base.dev);
->  	struct intel_hdcp *hdcp =3D &connector->hdcp;
-> +	struct intel_gt *gt =3D dev_priv->media_gt;
-> +	struct intel_gsc_uc *gsc =3D &gt->uc.gsc;
->  	bool capable =3D false;
->=20=20
->  	/* I915 support for HDCP2.2 */
->  	if (!hdcp->hdcp2_supported)
->  		return false;
->=20=20
-> -	/* MEI interface is solid */
-> +	/* If MTL+ make sure gsc is loaded and proxy is setup */
-> +	if (DISPLAY_VER(dev_priv) >=3D 14)
-> +		if (!intel_uc_fw_is_running(&gsc->fw))
-> +			return false;
-> +
-> +	/* MEI/GSC interface is solid depending on which is used */
->  	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
->  	if (!dev_priv->display.hdcp.comp_added ||  !dev_priv->display.hdcp.mast=
-er) {
->  		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
-> @@ -2235,7 +2244,7 @@ static int initialize_hdcp_port_data(struct intel_c=
-onnector *connector,
->=20=20
->  static bool is_hdcp2_supported(struct drm_i915_private *dev_priv)
->  {
-> -	if (!IS_ENABLED(CONFIG_INTEL_MEI_HDCP))
-> +	if (intel_hdcp_gsc_cs_required(dev_priv) && !IS_ENABLED(CONFIG_INTEL_ME=
-I_HDCP))
->  		return false;
->=20=20
->  	return (DISPLAY_VER(dev_priv) >=3D 10 ||
-> @@ -2256,10 +2265,14 @@ void intel_hdcp_component_init(struct drm_i915_pr=
-ivate *dev_priv)
->=20=20
->  	dev_priv->display.hdcp.comp_added =3D true;
->  	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
-> -	ret =3D component_add_typed(dev_priv->drm.dev, &i915_hdcp_component_ops,
-> -				  I915_COMPONENT_HDCP);
-> +
-> +	if (intel_hdcp_gsc_cs_required(dev_priv))
-> +		ret =3D intel_hdcp_gsc_init(dev_priv);
-> +	else
-> +		ret =3D component_add_typed(dev_priv->drm.dev, &i915_hdcp_component_op=
-s,
-> +					  I915_COMPONENT_HDCP);
->  	if (ret < 0) {
-> -		drm_dbg_kms(&dev_priv->drm, "Failed at component add(%d)\n",
-> +		drm_dbg_kms(&dev_priv->drm, "Failed at fw component add(%d)\n",
->  			    ret);
->  		mutex_lock(&dev_priv->display.hdcp.comp_mutex);
->  		dev_priv->display.hdcp.comp_added =3D false;
-> @@ -2486,7 +2499,10 @@ void intel_hdcp_component_fini(struct drm_i915_pri=
-vate *dev_priv)
->  	dev_priv->display.hdcp.comp_added =3D false;
->  	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
->=20=20
-> -	component_del(dev_priv->drm.dev, &i915_hdcp_component_ops);
-> +	if (intel_hdcp_gsc_cs_required(dev_priv))
-> +		intel_hdcp_gsc_fini(dev_priv);
-> +	else
-> +		component_del(dev_priv->drm.dev, &i915_hdcp_component_ops);
->  }
->=20=20
->  void intel_hdcp_cleanup(struct intel_connector *connector)
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c b/drivers/gpu/=
-drm/i915/display/intel_hdcp_gsc.c
-> index 04d449bc483b..c42aa8b547a4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-> @@ -1,8 +1,10 @@
->  // SPDX-License-Identifier: MIT
->  /*
-> - * Copyright 2021, Intel Corporation.
-> + * Copyright 2022, Intel Corporation.
->   */
->=20=20
-> +#include <drm/i915_hdcp_interface.h>
-> +
->  #include "display/intel_hdcp_gsc.h"
->  #include "gem/i915_gem_region.h"
->  #include "gt/uc/intel_gsc_uc_heci_cmd_submit.h"
-> @@ -15,6 +17,512 @@ struct intel_hdcp_gsc_message {
->  	void *hdcp_cmd;
->  };
->=20=20
-> +bool intel_hdcp_gsc_cs_required(struct drm_i915_private *i915)
-> +{
-> +	if (DISPLAY_VER(i915) >=3D 14)
-> +		return true;
-> +	return false;
-> +}
-> +
-> +static int
-> +gsc_hdcp_initiate_session(struct device *dev, struct hdcp_port_data *dat=
-a,
-> +			  struct hdcp2_ake_init *ake_data)
-> +{
-> +	struct wired_cmd_initiate_hdcp2_session_in session_init_in =3D { { 0 } =
-};
-> +	struct wired_cmd_initiate_hdcp2_session_out
-> +						session_init_out =3D { { 0 } };
-> +	struct drm_i915_private *i915;
-> +	ssize_t byte;
-> +
-> +	if (!dev || !data || !ake_data)
-> +		return -EINVAL;
-> +
-> +	i915 =3D kdev_to_i915(dev);
-> +	if (!i915) {
-> +		dev_err(dev, "DRM not initialized, aborting HDCP.\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	i915_hdcp_fill_session_in(&session_init_in, data);
-> +	byte =3D intel_hdcp_gsc_msg_send(i915, (u8 *)&session_init_in,
-> +				       sizeof(session_init_in),
-> +				       (u8 *)&session_init_out,
-> +				       sizeof(session_init_out));
-> +	if (byte < 0) {
-> +		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-> +		return byte;
-> +	}
-> +
-> +	if (session_init_out.header.status !=3D FW_HDCP_STATUS_SUCCESS) {
-> +		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X Failed. Status: 0x%X\n",
-> +			    WIRED_INITIATE_HDCP2_SESSION,
-> +			    session_init_out.header.status);
-> +		return -EIO;
-> +	}
-> +
-> +	ake_data->msg_id =3D HDCP_2_2_AKE_INIT;
-> +	ake_data->tx_caps =3D session_init_out.tx_caps;
-> +	memcpy(ake_data->r_tx, session_init_out.r_tx, HDCP_2_2_RTX_LEN);
-> +
-> +	return 0;
-> +}
-> +
-> +static int
-> +gsc_hdcp_verify_receiver_cert_prepare_km(struct device *dev,
-> +					 struct hdcp_port_data *data,
-> +					 struct hdcp2_ake_send_cert *rx_cert,
-> +					 bool *km_stored,
-> +					 struct hdcp2_ake_no_stored_km
-> +								*ek_pub_km,
-> +					 size_t *msg_sz)
-> +{
-> +	struct wired_cmd_verify_receiver_cert_in verify_rxcert_in =3D { { 0 } };
-> +	struct wired_cmd_verify_receiver_cert_out verify_rxcert_out =3D { { 0 }=
- };
-> +	struct drm_i915_private *i915;
-> +	ssize_t byte;
-> +
-> +	if (!dev || !data || !rx_cert || !km_stored || !ek_pub_km || !msg_sz)
-> +		return -EINVAL;
-> +
-> +	i915 =3D kdev_to_i915(dev);
-> +	if (!i915) {
-> +		dev_err(dev, "DRM not initialized, aborting HDCP.\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	i915_hdcp_fill_rxcert_in(&verify_rxcert_in, rx_cert, data);
-> +	byte =3D intel_hdcp_gsc_msg_send(i915, (u8 *)&verify_rxcert_in,
-> +				       sizeof(verify_rxcert_in),
-> +				       (u8 *)&verify_rxcert_out,
-> +				       sizeof(verify_rxcert_out));
-> +	if (byte < 0) {
-> +		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed: %zd\n", byte);
-> +		return byte;
-> +	}
-> +
-> +	if (verify_rxcert_out.header.status !=3D FW_HDCP_STATUS_SUCCESS) {
-> +		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X Failed. Status: 0x%X\n",
-> +			    WIRED_VERIFY_RECEIVER_CERT,
-> +			    verify_rxcert_out.header.status);
-> +		return -EIO;
-> +	}
-> +
-> +	*km_stored =3D !!verify_rxcert_out.km_stored;
-> +	if (verify_rxcert_out.km_stored) {
-> +		ek_pub_km->msg_id =3D HDCP_2_2_AKE_STORED_KM;
-> +		*msg_sz =3D sizeof(struct hdcp2_ake_stored_km);
-> +	} else {
-> +		ek_pub_km->msg_id =3D HDCP_2_2_AKE_NO_STORED_KM;
-> +		*msg_sz =3D sizeof(struct hdcp2_ake_no_stored_km);
-> +	}
-> +
-> +	memcpy(ek_pub_km->e_kpub_km, &verify_rxcert_out.ekm_buff,
-> +	       sizeof(verify_rxcert_out.ekm_buff));
-> +
-> +	return 0;
-> +}
-> +
-> +static int
-> +gsc_hdcp_verify_hprime(struct device *dev, struct hdcp_port_data *data,
-> +		       struct hdcp2_ake_send_hprime *rx_hprime)
-> +{
-> +	struct wired_cmd_ake_send_hprime_in send_hprime_in =3D { { 0 } };
-> +	struct wired_cmd_ake_send_hprime_out send_hprime_out =3D { { 0 } };
-> +	struct drm_i915_private *i915;
-> +	ssize_t byte;
-> +
-> +	if (!dev || !data || !rx_hprime)
-> +		return -EINVAL;
-> +
-> +	i915 =3D kdev_to_i915(dev);
-> +	if (!i915) {
-> +		dev_err(dev, "DRM not initialized, aborting HDCP.\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	i915_hdcp_fill_hprime_in(&send_hprime_in, rx_hprime, data);
-> +	byte =3D intel_hdcp_gsc_msg_send(i915, (u8 *)&send_hprime_in,
-> +				       sizeof(send_hprime_in),
-> +				       (u8 *)&send_hprime_out,
-> +				       sizeof(send_hprime_out));
-> +	if (byte < 0) {
-> +		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-> +		return byte;
-> +	}
-> +
-> +	if (send_hprime_out.header.status !=3D FW_HDCP_STATUS_SUCCESS) {
-> +		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X Failed. Status: 0x%X\n",
-> +			    WIRED_AKE_SEND_HPRIME, send_hprime_out.header.status);
-> +		return -EIO;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int
-> +gsc_hdcp_store_pairing_info(struct device *dev, struct hdcp_port_data *d=
-ata,
-> +			    struct hdcp2_ake_send_pairing_info *pairing_info)
-> +{
-> +	struct wired_cmd_ake_send_pairing_info_in pairing_info_in =3D { { 0 } };
-> +	struct wired_cmd_ake_send_pairing_info_out pairing_info_out =3D { { 0 }=
- };
-> +	struct drm_i915_private *i915;
-> +	ssize_t byte;
-> +
-> +	if (!dev || !data || !pairing_info)
-> +		return -EINVAL;
-> +
-> +	i915 =3D kdev_to_i915(dev);
-> +	if (!i915) {
-> +		dev_err(dev, "DRM not initialized, aborting HDCP.\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	i915_hdcp_fill_pairing_info_in(&pairing_info_in, pairing_info,
-> +				       data);
-> +	byte =3D intel_hdcp_gsc_msg_send(i915, (u8 *)&pairing_info_in,
-> +				       sizeof(pairing_info_in),
-> +				       (u8 *)&pairing_info_out,
-> +				       sizeof(pairing_info_out));
-> +	if (byte < 0) {
-> +		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-> +		return byte;
-> +	}
-> +
-> +	if (pairing_info_out.header.status !=3D FW_HDCP_STATUS_SUCCESS) {
-> +		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X failed. Status: 0x%X\n",
-> +			    WIRED_AKE_SEND_PAIRING_INFO,
-> +			    pairing_info_out.header.status);
-> +		return -EIO;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int
-> +gsc_hdcp_initiate_locality_check(struct device *dev,
-> +				 struct hdcp_port_data *data,
-> +				 struct hdcp2_lc_init *lc_init_data)
-> +{
-> +	struct wired_cmd_init_locality_check_in lc_init_in =3D { { 0 } };
-> +	struct wired_cmd_init_locality_check_out lc_init_out =3D { { 0 } };
-> +	struct drm_i915_private *i915;
-> +	ssize_t byte;
-> +
-> +	if (!dev || !data || !lc_init_data)
-> +		return -EINVAL;
-> +
-> +	i915 =3D kdev_to_i915(dev);
-> +	if (!i915) {
-> +		dev_err(dev, "DRM not initialized, aborting HDCP.\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	i915_hdcp_fill_locality_check_in(&lc_init_in, data);
-> +	byte =3D intel_hdcp_gsc_msg_send(i915, (u8 *)&lc_init_in, sizeof(lc_ini=
-t_in),
-> +				       (u8 *)&lc_init_out, sizeof(lc_init_out));
-> +	if (byte < 0) {
-> +		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-> +		return byte;
-> +	}
-> +
-> +	if (lc_init_out.header.status !=3D FW_HDCP_STATUS_SUCCESS) {
-> +		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X Failed. status: 0x%X\n",
-> +			    WIRED_INIT_LOCALITY_CHECK, lc_init_out.header.status);
-> +		return -EIO;
-> +	}
-> +
-> +	lc_init_data->msg_id =3D HDCP_2_2_LC_INIT;
-> +	memcpy(lc_init_data->r_n, lc_init_out.r_n, HDCP_2_2_RN_LEN);
-> +
-> +	return 0;
-> +}
-> +
-> +static int
-> +gsc_hdcp_verify_lprime(struct device *dev, struct hdcp_port_data *data,
-> +		       struct hdcp2_lc_send_lprime *rx_lprime)
-> +{
-> +	struct wired_cmd_validate_locality_in verify_lprime_in =3D { { 0 } };
-> +	struct wired_cmd_validate_locality_out verify_lprime_out =3D { { 0 } };
-> +	struct drm_i915_private *i915;
-> +	ssize_t byte;
-> +
-> +	if (!dev || !data || !rx_lprime)
-> +		return -EINVAL;
-> +
-> +	i915 =3D kdev_to_i915(dev);
-> +	if (!i915) {
-> +		dev_err(dev, "DRM not initialized, aborting HDCP.\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	i915_hdcp_fill_validate_locality_in(&verify_lprime_in, rx_lprime,
-> +					    data);
-> +	byte =3D intel_hdcp_gsc_msg_send(i915, (u8 *)&verify_lprime_in,
-> +				       sizeof(verify_lprime_in),
-> +				       (u8 *)&verify_lprime_out,
-> +				       sizeof(verify_lprime_out));
-> +	if (byte < 0) {
-> +		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-> +		return byte;
-> +	}
-> +
-> +	if (verify_lprime_out.header.status !=3D FW_HDCP_STATUS_SUCCESS) {
-> +		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X failed. status: 0x%X\n",
-> +			    WIRED_VALIDATE_LOCALITY,
-> +			    verify_lprime_out.header.status);
-> +		return -EIO;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int gsc_hdcp_get_session_key(struct device *dev,
-> +				    struct hdcp_port_data *data,
-> +				    struct hdcp2_ske_send_eks *ske_data)
-> +{
-> +	struct wired_cmd_get_session_key_in get_skey_in =3D { { 0 } };
-> +	struct wired_cmd_get_session_key_out get_skey_out =3D { { 0 } };
-> +	struct drm_i915_private *i915;
-> +	ssize_t byte;
-> +
-> +	if (!dev || !data || !ske_data)
-> +		return -EINVAL;
-> +
-> +	i915 =3D kdev_to_i915(dev);
-> +	if (!i915) {
-> +		dev_err(dev, "DRM not initialized, aborting HDCP.\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	i915_hdcp_fill_session_key_in(&get_skey_in, data);
-> +	byte =3D intel_hdcp_gsc_msg_send(i915, (u8 *)&get_skey_in, sizeof(get_s=
-key_in),
-> +				       (u8 *)&get_skey_out, sizeof(get_skey_out));
-> +	if (byte < 0) {
-> +		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-> +		return byte;
-> +	}
-> +
-> +	if (get_skey_out.header.status !=3D FW_HDCP_STATUS_SUCCESS) {
-> +		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X failed. status: 0x%X\n",
-> +			    WIRED_GET_SESSION_KEY, get_skey_out.header.status);
-> +		return -EIO;
-> +	}
-> +
-> +	ske_data->msg_id =3D HDCP_2_2_SKE_SEND_EKS;
-> +	memcpy(ske_data->e_dkey_ks, get_skey_out.e_dkey_ks,
-> +	       HDCP_2_2_E_DKEY_KS_LEN);
-> +	memcpy(ske_data->riv, get_skey_out.r_iv, HDCP_2_2_RIV_LEN);
-> +
-> +	return 0;
-> +}
-> +
-> +static int
-> +gsc_hdcp_repeater_check_flow_prepare_ack(struct device *dev,
-> +					 struct hdcp_port_data *data,
-> +					 struct hdcp2_rep_send_receiverid_list
-> +							*rep_topology,
-> +					 struct hdcp2_rep_send_ack
-> +							*rep_send_ack)
-> +{
-> +	struct wired_cmd_verify_repeater_in verify_repeater_in =3D { { 0 } };
-> +	struct wired_cmd_verify_repeater_out verify_repeater_out =3D { { 0 } };
-> +	struct drm_i915_private *i915;
-> +	ssize_t byte;
-> +
-> +	if (!dev || !rep_topology || !rep_send_ack || !data)
-> +		return -EINVAL;
-> +
-> +	i915 =3D kdev_to_i915(dev);
-> +	if (!i915) {
-> +		dev_err(dev, "DRM not initialized, aborting HDCP.\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	i915_hdcp_fill_repeater_in(&verify_repeater_in, rep_topology, data);
-> +	byte =3D intel_hdcp_gsc_msg_send(i915, (u8 *)&verify_repeater_in,
-> +				       sizeof(verify_repeater_in),
-> +				       (u8 *)&verify_repeater_out,
-> +				       sizeof(verify_repeater_out));
-> +	if (byte < 0) {
-> +		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-> +		return byte;
-> +	}
-> +
-> +	if (verify_repeater_out.header.status !=3D FW_HDCP_STATUS_SUCCESS) {
-> +		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X failed. status: 0x%X\n",
-> +			    WIRED_VERIFY_REPEATER,
-> +			    verify_repeater_out.header.status);
-> +		return -EIO;
-> +	}
-> +
-> +	memcpy(rep_send_ack->v, verify_repeater_out.v,
-> +	       HDCP_2_2_V_PRIME_HALF_LEN);
-> +	rep_send_ack->msg_id =3D HDCP_2_2_REP_SEND_ACK;
-> +
-> +	return 0;
-> +}
-> +
-> +static int gsc_hdcp_verify_mprime(struct device *dev,
-> +				  struct hdcp_port_data *data,
-> +				  struct hdcp2_rep_stream_ready *stream_ready)
-> +{
-> +	struct wired_cmd_repeater_auth_stream_req_in *verify_mprime_in;
-> +	struct wired_cmd_repeater_auth_stream_req_out
-> +					verify_mprime_out =3D { { 0 } };
-> +	struct drm_i915_private *i915;
-> +	ssize_t byte;
-> +	size_t cmd_size;
-> +
-> +	if (!dev || !stream_ready || !data)
-> +		return -EINVAL;
-> +
-> +	i915 =3D kdev_to_i915(dev);
-> +	if (!i915) {
-> +		dev_err(dev, "DRM not initialized, aborting HDCP.\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	cmd_size =3D struct_size(verify_mprime_in, streams, data->k);
-> +	if (cmd_size =3D=3D SIZE_MAX)
-> +		return -EINVAL;
-> +
-> +	verify_mprime_in =3D kzalloc(cmd_size, GFP_KERNEL);
-> +	if (!verify_mprime_in)
-> +		return -ENOMEM;
-> +
-> +	i915_hdcp_fill_auth_stream_req_in(verify_mprime_in, stream_ready,
-> +					  cmd_size, data);
-> +	byte =3D intel_hdcp_gsc_msg_send(i915, (u8 *)verify_mprime_in, cmd_size,
-> +				       (u8 *)&verify_mprime_out,
-> +				       sizeof(verify_mprime_out));
-> +	kfree(verify_mprime_in);
-> +	if (byte < 0) {
-> +		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-> +		return byte;
-> +	}
-> +
-> +	if (verify_mprime_out.header.status !=3D FW_HDCP_STATUS_SUCCESS) {
-> +		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X failed. status: 0x%X\n",
-> +			    WIRED_REPEATER_AUTH_STREAM_REQ,
-> +			    verify_mprime_out.header.status);
-> +		return -EIO;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int gsc_hdcp_enable_authentication(struct device *dev,
-> +					  struct hdcp_port_data *data)
-> +{
-> +	struct wired_cmd_enable_auth_in enable_auth_in =3D { { 0 } };
-> +	struct wired_cmd_enable_auth_out enable_auth_out =3D { { 0 } };
-> +	struct drm_i915_private *i915;
-> +	ssize_t byte;
-> +
-> +	if (!dev || !data)
-> +		return -EINVAL;
-> +
-> +	i915 =3D kdev_to_i915(dev);
-> +	if (!i915) {
-> +		dev_err(dev, "DRM not initialized, aborting HDCP.\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	i915_hdcp_fill_enable_auth_in(&enable_auth_in, data);
-> +	byte =3D intel_hdcp_gsc_msg_send(i915, (u8 *)&enable_auth_in,
-> +				       sizeof(enable_auth_in),
-> +				       (u8 *)&enable_auth_out,
-> +				       sizeof(enable_auth_out));
-> +	if (byte < 0) {
-> +		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-> +		return byte;
-> +	}
-> +
-> +	if (enable_auth_out.header.status !=3D FW_HDCP_STATUS_SUCCESS) {
-> +		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X failed. status: 0x%X\n",
-> +			    WIRED_ENABLE_AUTH, enable_auth_out.header.status);
-> +		return -EIO;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int
-> +gsc_hdcp_close_session(struct device *dev, struct hdcp_port_data *data)
-> +{
-> +	struct wired_cmd_close_session_in session_close_in =3D { { 0 } };
-> +	struct wired_cmd_close_session_out session_close_out =3D { { 0 } };
-> +	struct drm_i915_private *i915;
-> +	ssize_t byte;
-> +
-> +	if (!dev || !data)
-> +		return -EINVAL;
-> +
-> +	i915 =3D kdev_to_i915(dev);
-> +	if (!i915) {
-> +		dev_err(dev, "DRM not initialized, aborting HDCP.\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	i915_hdcp_fill_close_session_in(&session_close_in, data);
-> +	byte =3D intel_hdcp_gsc_msg_send(i915, (u8 *)&session_close_in,
-> +				       sizeof(session_close_in),
-> +				       (u8 *)&session_close_out,
-> +				       sizeof(session_close_out));
-> +	if (byte < 0) {
-> +		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-> +		return byte;
-> +	}
-> +
-> +	if (session_close_out.header.status !=3D FW_HDCP_STATUS_SUCCESS) {
-> +		drm_dbg_kms(&i915->drm, "Session Close Failed. status: 0x%X\n",
-> +			    session_close_out.header.status);
-> +		return -EIO;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct i915_hdcp_ops gsc_hdcp_ops =3D {
-> +	.initiate_hdcp2_session =3D gsc_hdcp_initiate_session,
-> +	.verify_receiver_cert_prepare_km =3D
-> +				gsc_hdcp_verify_receiver_cert_prepare_km,
-> +	.verify_hprime =3D gsc_hdcp_verify_hprime,
-> +	.store_pairing_info =3D gsc_hdcp_store_pairing_info,
-> +	.initiate_locality_check =3D gsc_hdcp_initiate_locality_check,
-> +	.verify_lprime =3D gsc_hdcp_verify_lprime,
-> +	.get_session_key =3D gsc_hdcp_get_session_key,
-> +	.repeater_check_flow_prepare_ack =3D
-> +				gsc_hdcp_repeater_check_flow_prepare_ack,
-> +	.verify_mprime =3D gsc_hdcp_verify_mprime,
-> +	.enable_hdcp_authentication =3D gsc_hdcp_enable_authentication,
-> +	.close_hdcp_session =3D gsc_hdcp_close_session,
-> +};
-> +
-> +int intel_hdcp_gsc_init(struct drm_i915_private *i915)
-> +{
-> +	struct i915_hdcp_master *data;
-> +
-> +	data =3D kzalloc(sizeof(struct i915_hdcp_master), GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	mutex_lock(&i915->display.hdcp.comp_mutex);
-> +	i915->display.hdcp.master =3D data;
-> +	i915->display.hdcp.master->hdcp_dev =3D i915->drm.dev;
-> +	i915->display.hdcp.master->ops =3D &gsc_hdcp_ops;
-> +	mutex_unlock(&i915->display.hdcp.comp_mutex);
-> +
-> +	return 0;
-> +}
-> +
-> +int intel_hdcp_gsc_fini(struct drm_i915_private *i915)
-> +{
-> +	/* TODO: decrease GSC f/w reference count. */
-> +	kfree(i915->display.hdcp.master);
-> +	return 0;
-> +}
-> +
->  /*This function helps allocate memory for the command that we will send =
-to gsc cs */
->  static int intel_initialize_hdcp_gsc_message(struct drm_i915_private *i9=
-15,
->  					     struct intel_hdcp_gsc_message *hdcp_message)
-> @@ -124,7 +632,8 @@ static int intel_gsc_send_sync(struct drm_i915_privat=
-e *i915,
->   * will follow
->   */
->  ssize_t intel_hdcp_gsc_msg_send(struct drm_i915_private *i915, u8 *msg_i=
-n,
-> -				size_t msg_in_len, u8 *msg_out, size_t msg_out_len)
-> +				size_t msg_in_len, u8 *msg_out,
-> +				size_t msg_out_len)
->  {
->  	struct intel_gt *gt =3D i915->media_gt;
->  	struct intel_gsc_mtl_header *header;
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h b/drivers/gpu/=
-drm/i915/display/intel_hdcp_gsc.h
-> index 8f2563ab958b..1ce71729d6f9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
-> @@ -1,6 +1,6 @@
->  /* SPDX-License-Identifier: MIT */
->  /*
-> - * Copyright =C2=A9 2021 Intel Corporation
-> + * Copyright =C2=A9 2022 Intel Corporation
 
-You add this file in the same series with 2021, and change it later to
-2022. What's the point?
+On 23/12/2022 18:28, Lucas De Marchi wrote:
+> On Fri, Dec 23, 2022 at 09:02:35AM +0000, Tvrtko Ursulin wrote:
+>>
+>> On 22/12/2022 15:55, Lucas De Marchi wrote:
+>>> On Thu, Dec 22, 2022 at 10:27:00AM +0000, Tvrtko Ursulin wrote:
+>>>>
+>>>> On 22/12/2022 08:25, Lucas De Marchi wrote:
+>>>>> The comments are redundant to the checks being done to apply the
+>>>>> workarounds and very often get outdated as workarounds need to be
+>>>>> extended to new platforms or steppings.  Remove them altogether with
+>>>>> the following matches (platforms extracted from intel_workarounds.c):
+>>>>>
+>>>>>     find drivers/gpu/drm/i915/gt/ -name '*.c' | xargs sed -i -E \
+>>>>> 's/(Wa.*):(bdw|chv|bxt|glk|skl|kbl|cfl|cfl|whl|cml|aml|chv|cl|bw|ctg|elk|ilk|snb|dg|pvc|g4x|ilk|gen|glk|kbl|cml|glk|kbl|cml|hsw|icl|ehl|ivb|hsw|ivb|vlv|kbl|pvc|rkl|dg|adl|skl|skl|bxt|blk|cfl|cnl|glk|snb|tgl|vlv|xehpsdv).*/\1/'
+>>>>>     find drivers/gpu/drm/i915/gt/ -name '*.c' | xargs sed -i -E \
+>>>>> 's/(Wa.*):(bdw|chv|bxt|glk|skl|kbl|cfl|cfl|whl|cml|aml|chv|cl|bw|ctg|elk|ilk|snb|dg|pvc|g4x|ilk|gen|glk|kbl|cml|glk|kbl|cml|hsw|icl|ehl|ivb|hsw|ivb|vlv|kbl|pvc|rkl|dg|adl|skl|skl|bxt|blk|cfl|cnl|glk|snb|tgl|vlv|xehpsdv).*\*\//\1
+>>>>>
+>>>>> Same things was executed in the gem directory, omitted here for 
+>>>>> brevity.
+>>>>
+>>>>> There were a few false positives that included the workaround
+>>>>> description. Those were manually patched.
+>>>>
+>>>> sed -E 's/(Wa[a-zA-Z0-9_]+)[:,]([a-zA-Z0-9,-_\+\[]{2,})/\1/'
+>>>
+>>> then there are false negatives. We have Was in the form
+>>> "Wa_xxx:tgl,dg2, mtl". False positives we can fixup, false negatives
+>>> we simply don't see. After running that in gt/:
+>>>
+>>> $ git grep ": mtl" -- drivers/gpu/drm/i915/
+>>> drivers/gpu/drm/i915/gt/intel_gt_pm.c:  /* Wa_14017073508: mtl */
+>>> drivers/gpu/drm/i915/gt/intel_gt_pm.c:  /* Wa_14017073508: mtl */
+>>> drivers/gpu/drm/i915/gt/intel_gt_pm.c:  /* Wa_14017073508: mtl */
+>>> drivers/gpu/drm/i915/gt/intel_gt_pm.c:  /* Wa_14017073508: mtl */
+>>> drivers/gpu/drm/i915/gt/uc/intel_guc_rc.c:       * Wa_14017073508: mtl
+>>> drivers/gpu/drm/i915/i915_reg.h:/* Wa_14017210380: mtl */
+>>>
+>>> I was going with the platform names to avoid the false
+>>> negatives and because I was entertaining the idea of only doing this for
+>>> latest platforms where we do have the "Wa_[[:number:]]" form
+>>>
+>>>>
+>>>> Maybe..
+>>>>
+>>>> Matt recently said he has this worked planned, but more importantly 
+>>>> - I gather then that the WA lookup tool definitely does not output 
+>>>> these strings?
+>>>
+>>> Whatever it does it's true only at the time it's called. It simply 
+>>> tells what
+>>> are the platforms and steppings the Wa applies to. We can change the
+>>> output to whatever we want, but that is not the point.
+>>> Those comments get stale and bring no real value as they match 1:1
+>>> what the code is supposed to be doing. Several times a patch has to
+>>> update just that comment to "extend a workaround" to a next platform.
+>>> This is not always done, so we get a comment that doesn't match what is
+>>> supposed to be there.
+>>
+>> Tl;dr; version - lets park this until January and discuss once 
+>> everyone is back.
+> 
+> I'll leave my comment here since I will be out until mid January.
+> 
+>>
+>> Longer version. I've been trying to get us talking about this a couple 
+>> times before and I'd really like to close with an explicit consensus, 
+>> discussion points addressed instead of skipped and just moving ahead 
+>> with patches.
+>>
+>> References:
+>>  3fcf71b9-337f-6186-7b00-27cbfd116743@linux.intel.com
+>>  Y5j0b/bykbitCa4Q@mdroper-desk1.amr.corp.intel.com
+>>
+>> So point I wanted to discuss is whether these comments are truly 
+>> useless or maybe they can help during review. If the tool can actually 
+>> output them then I am leaning towards that they can be.
+> 
+> I consider "can the tool output xyz?" asking the wrong question.
+> "The tool", which is our own small python script querying a database can
+> output anything like that if we want to. The database has information of
+> what are the platforms/steppings for each the WA is known to be applied
+> *today*. And that can change and do change often, particularly for early
+> steppings and recent platforms.
+> 
+>> Thought is, when a patch comes for review adding a new platform, 
+>> stepping, whatever, to an existing if condition, if it contains the 
+>> comments reviewer can more easily spot a hyphotetical logic inversion 
+>> error or similar. It is also trivial to check that both condition and 
+>> comment have been updated. (So lets not be rash and remove something 
+>> maybe useful just because it can go stale *only if* reviewers are not 
+>> giving sufficient attention that changes are made in tandem.)
+> 
+> I can argue to the other side too. We don't have comments in the kernel
+> like
+> 
+>      /* Add 1 to i */
+>      i += 1;
+> 
+> This is exactly what these comments are doing. And they are misleading
 
-Also, it's now 2023.
+I'll file this under "Reductio ad absurdum", kind of. :)
 
-BR,
-Jani.
+> and may introduce bugs rather than helping reviewing:
+> 
+>      Wa_12345:tgl[a0,c0)
+>      if (IS_TGL_GRAPHICS_STEP(STEP_A0, STEP_B0)
+> 
+> One might read the comment, skipping over the condition and thinking
+> "ok, we already extended this WA to B* steppings, which doesn't match
+> the code.
 
->   */
->=20=20
->  #ifndef __INTEL_HDCP_GSC_H__
-> @@ -11,8 +11,11 @@
->=20=20
->  struct drm_i915_private;
->=20=20
-> +bool intel_hdcp_gsc_cs_required(struct drm_i915_private *i915);
->  ssize_t intel_hdcp_gsc_msg_send(struct drm_i915_private *i915, u8 *msg_i=
-n,
->  				size_t msg_in_len, u8 *msg_out,
->  				size_t msg_out_len);
-> +int intel_hdcp_gsc_init(struct drm_i915_private *i915);
-> +int intel_hdcp_gsc_fini(struct drm_i915_private *i915);
->=20=20
->  #endif /* __INTEL_HDCP_GCS_H__ */
+That would be reviewer error to assume B0 is the last B stepping, 
+without actually checking. Equally as reviewer error would be to assume 
+any WA adding patch is adding the correct conditions, again, without 
+actually checking. Which leads me to ...
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+>> From a slightly different angle - do we expect anyone reviewing 
+>> workaround patches will cross-check against the tool? Would it be 
+>> simpler and more efficient that they could just cross-check against 
+>> the comment output from the tool and put into the patch by the author?
+> 
+> see above. Someone cross-checking the comment is cross-checking the
+> wrong thing. As I said, it happens more on early enabling of a platform.
+
+... my point which seems to have been missed by both, well question 
+really, do you expect every reviewer to cross-check against the WA 
+database when reviewing WA changes? I don't see that was answered.
+
+I guarantee that it won't happen and people will rubber stamp. So my 
+argument was that we could make it both easier for reviewers *and* 
+decrease the likelyhood of misses, if we kept platforms designators in 
+comments.
+
+Yeah it is much easier to rip them out that to find and fix the ones 
+which went out of sync but that shouldn't be high on the list of criteria.
+
+Argument that it is easy to overlook during review that comments and 
+code do not match I don't think holds. That describes a very sloppy 
+review. And if review is assumed to be that sloppy, do you really trust 
+review to check against the WA database?
+
+So my argument is that it is trivial for reviewers to spot comments and 
+code do not match. Trivial and fast. And it's trivial (I hope) for the 
+WA tool to output the right format for pasting in comments.
+
+Those are the points I would like to have explicitly discounted before 
+proceeding. Maybe to be even clearer the workflow would be like this:
+
+Patch author:
+
+1. Runs the WA tool for a WA number. Tool outputs text.
+2. Pastes text verbatim in the comment.
+3. Adjusts code to match.
+
+Reviewer:
+
+1. Verifies both code and comment were changed.
+2. Verifies code matches the comment.
+
+If the counter proposal is, patch author:
+
+1. Runs the WA tool for a WA number. Tool outputs text.
+2. Adjusts code to match.
+
+Reviewer:
+
+1. Runs the WA tool. Tool outputs text.
+2. Checks patch matchs the WA tool output.
+
+I will accept it but I strongly believe skipping of step 2 will happen 
+and it will be impossible to know. Rubber stamping with the options of 
+comments+code at least leaves a trace of comment and code being out of sync.
+
+>> And point here to stress out is that accidental logic errors (missed 
+>> workarounds) can be super expensive to debug in the field. Sometimes 
+>> it can literally take _months_ for sporadic and hard to reproduce 
+>> issues to get debugged, handed over between the teams, etc. So any way 
+>> in which we can influence the likelyhood of that happening is 
+>> something to weigh carefully.
+> 
+> yes, that's why I want to remove the comments: from my experience they
+> are more a source of bugs rather than helping.
+> 
+>> Secondary but also important - if i915 is end of line then an extra 
+>> why we want to rip out this for ancient platforms. Is the cost/benefit 
+>> positive there?
+> 
+> yep, here I agree and was my argument about using the platform names
+> rather than a more "catch all" regex. I think doing this only for tgl+
+> platforms or even dg2+ would be ok.
+
+Okay this is something to have as a 2nd option indeed. DG2 is out of 
+force probe so maybe try with MTL. Although different rules for 
+different platforms I don't know if will work in practice. Could be 
+justt too complicated to be practical.
+
+>> As a side note, and going back to the question of what the tool can 
+>> output. Long time ago I had an idea where we could improve all this by 
+>> making it completely data-driven. Have the WA database inspecting tool 
+>> output a table which could be directly pasted into code and 
+>> interpreted by i915.
+>>
+>> For reference look at intel_workarounds_table.h in 
+>> https://patchwork.freedesktop.org/patch/399377/?series=83580&rev=3 and 
+>> see what you thing. That was just a sketch of the idea, not complete, 
+>> and yes, i915 end of life point makes it moot.
+> 
+> now that xe is announced I can talk about this part... this was more
+> or less what I implemented in xe: it's a table with
+> "register + condition + action". There are the most common condition
+> checks builtin + a function hook for the more advanced ones. During
+> binding the driver walks the table and coalesces the entries creating
+> a per-register value that can be used at the proper times, depending if
+> they are gt, engine, context workarounds.
+
+Cool, I support that high level approach.
+
+Regards,
+
+Tvrtko
