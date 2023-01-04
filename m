@@ -2,51 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5223E65CFFD
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Jan 2023 10:53:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CDC5965CFFE
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Jan 2023 10:54:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB45210E51F;
-	Wed,  4 Jan 2023 09:53:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E52010E527;
+	Wed,  4 Jan 2023 09:54:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6746710E51F
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 Jan 2023 09:53:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1672826033; x=1704362033;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=d4kcu2GyyIfLH46ax8QJ8tFTxmE/6Q+AsueXRWgE5r0=;
- b=nM/aAvgqbYlboWOeqsZ0LLrYFYe2nRHGtlhTvcA7zh9rq4oD0lRLz/ib
- Tazwjpl+RDG1r6OwI/e6HDVrTLEWlkoHLIOXpZV9/5pMFD3l6AdvuOCjF
- cR30lJQ326KL8W0deUFtix+7WTBPHV4oII5Lq4v/ml8mHMSMkpXtygyDt
- qA/Y1Mqo59GC15DexAl9wp3tALA3ymuDBNvAND0JahcjDLcJNM8Vwkbys
- fnt1JZdVbri0iznU0CyvYgDWXcIJ6zHPEDDeGTzxVDwRNcX/yd573XYy5
- BlcC1oZbM51H9+bQchMC+S0P6TpWMYJv5EvWiuU1M0IPRlOXXNzonIn3t w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10579"; a="323895503"
-X-IronPort-AV: E=Sophos;i="5.96,299,1665471600"; d="scan'208";a="323895503"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2023 01:53:50 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10579"; a="762624457"
-X-IronPort-AV: E=Sophos;i="5.96,299,1665471600"; d="scan'208";a="762624457"
-Received: from mkabdel-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.25.63])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2023 01:53:46 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230102054047.124624-6-suraj.kandpal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230102054047.124624-1-suraj.kandpal@intel.com>
- <20230102054047.124624-6-suraj.kandpal@intel.com>
-Date: Wed, 04 Jan 2023 11:53:44 +0200
-Message-ID: <87k022y6af.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E47D510E538;
+ Wed,  4 Jan 2023 09:54:00 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E02ECAADD6;
+ Wed,  4 Jan 2023 09:54:00 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0318185135363027290=="
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v5 5/7] drm/i915/hdcp: Fill wired_cmd_in
- structures at a single place
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Kahola, Mika" <mika.kahola@intel.com>
+Date: Wed, 04 Jan 2023 09:54:00 -0000
+Message-ID: <167282604091.24956.12619211871849511271@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230104090229.1402628-1-jouni.hogander@intel.com>
+In-Reply-To: <20230104090229.1402628-1-jouni.hogander@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_Implement_Wa=5F14015648006_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,554 +40,492 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 02 Jan 2023, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> Need to fill wired cmd in structures at a single place as they remain
-> same for both gsc and mei.
+--===============0318185135363027290==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I'm still opposed to adding this stuff to i915 and exporting the
-symbols. Seems like it should be a separate component, because this is
-not about i915.
+== Series Details ==
 
-Cc: other maintainers, please chime in.
+Series: drm/i915/display: Implement Wa_14015648006 (rev3)
+URL   : https://patchwork.freedesktop.org/series/103518/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_12541 -> Patchwork_103518v3
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_103518v3 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_103518v3, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/index.html
+
+Participating hosts (42 -> 42)
+------------------------------
+
+  Additional (2): fi-kbl-soraka fi-rkl-11600 
+  Missing    (2): bat-dg2-oem1 bat-atsm-1 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_103518v3:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-icl-u2:          [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12541/fi-icl-u2/igt@debugfs_test@read_all_entries.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-icl-u2/igt@debugfs_test@read_all_entries.html
+
+  * igt@i915_selftest@live@guc:
+    - fi-kbl-soraka:      NOTRUN -> [INCOMPLETE][3]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-kbl-soraka/igt@i915_selftest@live@guc.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_pm_rpm@basic-rte:
+    - {bat-adln-1}:       [PASS][4] -> [DMESG-WARN][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12541/bat-adln-1/igt@i915_pm_rpm@basic-rte.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/bat-adln-1/igt@i915_pm_rpm@basic-rte.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - {bat-rpls-1}:       [PASS][6] -> [INCOMPLETE][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12541/bat-rpls-1/igt@i915_selftest@live@hangcheck.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/bat-rpls-1/igt@i915_selftest@live@hangcheck.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_103518v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@debugfs_test@basic-hwmon:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][8] ([i915#7456])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-rkl-11600/igt@debugfs_test@basic-hwmon.html
+
+  * igt@gem_exec_gttfill@basic:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][9] ([fdo#109271]) +7 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-kbl-soraka/igt@gem_exec_gttfill@basic.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][10] ([fdo#109271] / [i915#2190])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
+    - fi-rkl-11600:       NOTRUN -> [SKIP][11] ([i915#2190])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-rkl-11600/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][12] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
+    - fi-rkl-11600:       NOTRUN -> [SKIP][13] ([i915#4613]) +3 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-rkl-11600/igt@gem_lmem_swapping@basic.html
+
+  * igt@gem_tiled_pread_basic:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][14] ([i915#3282])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-rkl-11600/igt@gem_tiled_pread_basic.html
+
+  * igt@i915_pm_backlight@basic-brightness:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][15] ([i915#7561])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-rkl-11600/igt@i915_pm_backlight@basic-brightness.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][16] ([i915#5334])
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][17] ([i915#1886])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - fi-rkl-11600:       NOTRUN -> [INCOMPLETE][18] ([i915#4817])
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - bat-dg1-6:          NOTRUN -> [SKIP][19] ([fdo#111827])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/bat-dg1-6/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_chamelium@hdmi-edid-read:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][20] ([fdo#111827]) +7 similar issues
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-rkl-11600/igt@kms_chamelium@hdmi-edid-read.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][21] ([fdo#109271] / [fdo#111827]) +7 similar issues
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-kbl-soraka/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][22] ([i915#4103])
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-rkl-11600/igt@kms_cursor_legacy@basic-busy-flip-before-cursor.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
+    - fi-bsw-n3050:       [PASS][23] -> [FAIL][24] ([i915#6298])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12541/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][25] ([fdo#109285] / [i915#4098])
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-rkl-11600/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][26] ([i915#1072]) +3 similar issues
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-rkl-11600/igt@kms_psr@primary_page_flip.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][27] ([i915#3555] / [i915#4098])
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-rkl-11600/igt@kms_setmode@basic-clone-single-crtc.html
+
+  * igt@prime_vgem@basic-read:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][28] ([fdo#109295] / [i915#3291] / [i915#3708]) +2 similar issues
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-rkl-11600/igt@prime_vgem@basic-read.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][29] ([fdo#109295] / [i915#3301] / [i915#3708])
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-rkl-11600/igt@prime_vgem@basic-userptr.html
+
+  * igt@runner@aborted:
+    - fi-icl-u2:          NOTRUN -> [FAIL][30] ([i915#4312])
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-icl-u2/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg1-6:          [INCOMPLETE][31] -> [PASS][32]
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12541/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@slpc:
+    - bat-adlp-4:         [DMESG-FAIL][33] ([i915#6367]) -> [PASS][34]
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12541/bat-adlp-4/igt@i915_selftest@live@slpc.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/bat-adlp-4/igt@i915_selftest@live@slpc.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-dp-1:
+    - {bat-adlp-9}:       [DMESG-WARN][35] ([i915#2867]) -> [PASS][36]
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12541/bat-adlp-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-dp-1.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/bat-adlp-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-dp-1.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#4098]: https://gitlab.freedesktop.org/drm/intel/issues/4098
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4817]: https://gitlab.freedesktop.org/drm/intel/issues/4817
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
+  [i915#7336]: https://gitlab.freedesktop.org/drm/intel/issues/7336
+  [i915#7456]: https://gitlab.freedesktop.org/drm/intel/issues/7456
+  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
 
 
-BR,
-Jani.
+Build changes
+-------------
 
->
-> --v3
-> -remove inline function from header [Jani]
->
-> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  drivers/gpu/drm/i915/Makefile              |   1 +
->  drivers/gpu/drm/i915/i915_hdcp_interface.c | 216 +++++++++++++++++++++
->  drivers/misc/mei/hdcp/mei_hdcp.c           | 153 ++-------------
->  include/drm/i915_hdcp_interface.h          |  39 ++++
->  4 files changed, 270 insertions(+), 139 deletions(-)
->  create mode 100644 drivers/gpu/drm/i915/i915_hdcp_interface.c
->
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index 461d6b40656d..c6a9826af58d 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -36,6 +36,7 @@ i915-y += i915_driver.o \
->  	  i915_drm_client.o \
->  	  i915_config.o \
->  	  i915_getparam.o \
-> +	  i915_hdcp_interface.o\
->  	  i915_ioctl.o \
->  	  i915_irq.o \
->  	  i915_mitigations.o \
-> diff --git a/drivers/gpu/drm/i915/i915_hdcp_interface.c b/drivers/gpu/drm/i915/i915_hdcp_interface.c
-> new file mode 100644
-> index 000000000000..e6b787c2fa50
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/i915_hdcp_interface.c
-> @@ -0,0 +1,216 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright 2022, Intel Corporation.
-> + */
-> +
-> +#include <drm/i915_hdcp_interface.h>
-> +
-> +void
-> +i915_hdcp_fill_session_in(struct wired_cmd_initiate_hdcp2_session_in *session_init_in,
-> +			  struct hdcp_port_data *data)
-> +{
-> +	session_init_in->header.api_version = HDCP_API_VERSION;
-> +	session_init_in->header.command_id = WIRED_INITIATE_HDCP2_SESSION;
-> +	session_init_in->header.status = FW_HDCP_STATUS_SUCCESS;
-> +	session_init_in->header.buffer_len =
-> +				WIRED_CMD_BUF_LEN_INITIATE_HDCP2_SESSION_IN;
-> +
-> +	session_init_in->port.integrated_port_type = data->port_type;
-> +	session_init_in->port.physical_port = (u8)data->hdcp_ddi;
-> +	session_init_in->port.attached_transcoder = (u8)data->hdcp_transcoder;
-> +	session_init_in->protocol = data->protocol;
-> +}
-> +EXPORT_SYMBOL(i915_hdcp_fill_session_in);
-> +
-> +void
-> +i915_hdcp_fill_rxcert_in(struct wired_cmd_verify_receiver_cert_in *verify_rxcert_in,
-> +			 struct hdcp2_ake_send_cert *rx_cert,
-> +			 struct hdcp_port_data *data)
-> +{
-> +	verify_rxcert_in->header.api_version = HDCP_API_VERSION;
-> +	verify_rxcert_in->header.command_id = WIRED_VERIFY_RECEIVER_CERT;
-> +	verify_rxcert_in->header.status = FW_HDCP_STATUS_SUCCESS;
-> +	verify_rxcert_in->header.buffer_len =
-> +				WIRED_CMD_BUF_LEN_VERIFY_RECEIVER_CERT_IN;
-> +
-> +	verify_rxcert_in->port.integrated_port_type = data->port_type;
-> +	verify_rxcert_in->port.physical_port = (u8)data->hdcp_ddi;
-> +	verify_rxcert_in->port.attached_transcoder = (u8)data->hdcp_transcoder;
-> +
-> +	verify_rxcert_in->cert_rx = rx_cert->cert_rx;
-> +	memcpy(verify_rxcert_in->r_rx, &rx_cert->r_rx, HDCP_2_2_RRX_LEN);
-> +	memcpy(verify_rxcert_in->rx_caps, rx_cert->rx_caps, HDCP_2_2_RXCAPS_LEN);
-> +}
-> +EXPORT_SYMBOL(i915_hdcp_fill_rxcert_in);
-> +
-> +void
-> +i915_hdcp_fill_hprime_in(struct wired_cmd_ake_send_hprime_in *send_hprime_in,
-> +			 struct hdcp2_ake_send_hprime *rx_hprime,
-> +			 struct hdcp_port_data *data)
-> +{
-> +	send_hprime_in->header.api_version = HDCP_API_VERSION;
-> +	send_hprime_in->header.command_id = WIRED_AKE_SEND_HPRIME;
-> +	send_hprime_in->header.status = FW_HDCP_STATUS_SUCCESS;
-> +	send_hprime_in->header.buffer_len = WIRED_CMD_BUF_LEN_AKE_SEND_HPRIME_IN;
-> +
-> +	send_hprime_in->port.integrated_port_type = data->port_type;
-> +	send_hprime_in->port.physical_port = (u8)data->hdcp_ddi;
-> +	send_hprime_in->port.attached_transcoder = (u8)data->hdcp_transcoder;
-> +
-> +	memcpy(send_hprime_in->h_prime, rx_hprime->h_prime,
-> +	       HDCP_2_2_H_PRIME_LEN);
-> +}
-> +EXPORT_SYMBOL(i915_hdcp_fill_hprime_in);
-> +
-> +void
-> +i915_hdcp_fill_pairing_info_in(struct wired_cmd_ake_send_pairing_info_in *pairing_info_in,
-> +			       struct hdcp2_ake_send_pairing_info *pairing_info,
-> +			       struct hdcp_port_data *data)
-> +{
-> +	pairing_info_in->header.api_version = HDCP_API_VERSION;
-> +	pairing_info_in->header.command_id = WIRED_AKE_SEND_PAIRING_INFO;
-> +	pairing_info_in->header.status = FW_HDCP_STATUS_SUCCESS;
-> +	pairing_info_in->header.buffer_len =
-> +				WIRED_CMD_BUF_LEN_SEND_PAIRING_INFO_IN;
-> +
-> +	pairing_info_in->port.integrated_port_type = data->port_type;
-> +	pairing_info_in->port.physical_port = (u8)data->hdcp_ddi;
-> +	pairing_info_in->port.attached_transcoder = (u8)data->hdcp_transcoder;
-> +
-> +	memcpy(pairing_info_in->e_kh_km, pairing_info->e_kh_km,
-> +	       HDCP_2_2_E_KH_KM_LEN);
-> +}
-> +EXPORT_SYMBOL(i915_hdcp_fill_pairing_info_in);
-> +
-> +void
-> +i915_hdcp_fill_locality_check_in(struct wired_cmd_init_locality_check_in *lc_init_in,
-> +				 struct hdcp_port_data *data)
-> +{
-> +	lc_init_in->header.api_version = HDCP_API_VERSION;
-> +	lc_init_in->header.command_id = WIRED_INIT_LOCALITY_CHECK;
-> +	lc_init_in->header.status = FW_HDCP_STATUS_SUCCESS;
-> +	lc_init_in->header.buffer_len = WIRED_CMD_BUF_LEN_INIT_LOCALITY_CHECK_IN;
-> +
-> +	lc_init_in->port.integrated_port_type = data->port_type;
-> +	lc_init_in->port.physical_port = (u8)data->hdcp_ddi;
-> +	lc_init_in->port.attached_transcoder = (u8)data->hdcp_transcoder;
-> +}
-> +EXPORT_SYMBOL(i915_hdcp_fill_locality_check_in);
-> +
-> +void
-> +i915_hdcp_fill_validate_locality_in(struct wired_cmd_validate_locality_in *verify_lprime_in,
-> +				    struct hdcp2_lc_send_lprime *rx_lprime,
-> +				    struct hdcp_port_data *data)
-> +{
-> +	verify_lprime_in->header.api_version = HDCP_API_VERSION;
-> +	verify_lprime_in->header.command_id = WIRED_VALIDATE_LOCALITY;
-> +	verify_lprime_in->header.status = FW_HDCP_STATUS_SUCCESS;
-> +	verify_lprime_in->header.buffer_len =
-> +					WIRED_CMD_BUF_LEN_VALIDATE_LOCALITY_IN;
-> +
-> +	verify_lprime_in->port.integrated_port_type = data->port_type;
-> +	verify_lprime_in->port.physical_port = (u8)data->hdcp_ddi;
-> +	verify_lprime_in->port.attached_transcoder = (u8)data->hdcp_transcoder;
-> +
-> +	memcpy(verify_lprime_in->l_prime, rx_lprime->l_prime,
-> +	       HDCP_2_2_L_PRIME_LEN);
-> +}
-> +EXPORT_SYMBOL(i915_hdcp_fill_validate_locality_in);
-> +
-> +void
-> +i915_hdcp_fill_session_key_in(struct wired_cmd_get_session_key_in *get_skey_in,
-> +			      struct hdcp_port_data *data)
-> +{
-> +	get_skey_in->header.api_version = HDCP_API_VERSION;
-> +	get_skey_in->header.command_id = WIRED_GET_SESSION_KEY;
-> +	get_skey_in->header.status = FW_HDCP_STATUS_SUCCESS;
-> +	get_skey_in->header.buffer_len = WIRED_CMD_BUF_LEN_GET_SESSION_KEY_IN;
-> +
-> +	get_skey_in->port.integrated_port_type = data->port_type;
-> +	get_skey_in->port.physical_port = (u8)data->hdcp_ddi;
-> +	get_skey_in->port.attached_transcoder = (u8)data->hdcp_transcoder;
-> +}
-> +EXPORT_SYMBOL(i915_hdcp_fill_session_key_in);
-> +
-> +void
-> +i915_hdcp_fill_repeater_in(struct wired_cmd_verify_repeater_in *verify_repeater_in,
-> +			   struct hdcp2_rep_send_receiverid_list *rep_topology,
-> +			   struct hdcp_port_data *data)
-> +{
-> +	verify_repeater_in->header.api_version = HDCP_API_VERSION;
-> +	verify_repeater_in->header.command_id = WIRED_VERIFY_REPEATER;
-> +	verify_repeater_in->header.status = FW_HDCP_STATUS_SUCCESS;
-> +	verify_repeater_in->header.buffer_len =
-> +				WIRED_CMD_BUF_LEN_VERIFY_REPEATER_IN;
-> +
-> +	verify_repeater_in->port.integrated_port_type = data->port_type;
-> +	verify_repeater_in->port.physical_port = (u8)data->hdcp_ddi;
-> +	verify_repeater_in->port.attached_transcoder = (u8)data->hdcp_transcoder;
-> +
-> +	memcpy(verify_repeater_in->rx_info, rep_topology->rx_info,
-> +	       HDCP_2_2_RXINFO_LEN);
-> +	memcpy(verify_repeater_in->seq_num_v, rep_topology->seq_num_v,
-> +	       HDCP_2_2_SEQ_NUM_LEN);
-> +	memcpy(verify_repeater_in->v_prime, rep_topology->v_prime,
-> +	       HDCP_2_2_V_PRIME_HALF_LEN);
-> +	memcpy(verify_repeater_in->receiver_ids, rep_topology->receiver_ids,
-> +	       HDCP_2_2_RECEIVER_IDS_MAX_LEN);
-> +}
-> +EXPORT_SYMBOL(i915_hdcp_fill_repeater_in);
-> +
-> +void
-> +i915_hdcp_fill_auth_stream_req_in(struct wired_cmd_repeater_auth_stream_req_in *verify_mprime_in,
-> +				  struct hdcp2_rep_stream_ready *stream_ready, ssize_t cmd_size,
-> +				  struct hdcp_port_data *data)
-> +{
-> +	verify_mprime_in->header.api_version = HDCP_API_VERSION;
-> +	verify_mprime_in->header.command_id = WIRED_REPEATER_AUTH_STREAM_REQ;
-> +	verify_mprime_in->header.status = FW_HDCP_STATUS_SUCCESS;
-> +	verify_mprime_in->header.buffer_len = cmd_size  - sizeof(verify_mprime_in->header);
-> +
-> +	verify_mprime_in->port.integrated_port_type = data->port_type;
-> +	verify_mprime_in->port.physical_port = (u8)data->hdcp_ddi;
-> +	verify_mprime_in->port.attached_transcoder = (u8)data->hdcp_transcoder;
-> +
-> +	memcpy(verify_mprime_in->m_prime, stream_ready->m_prime, HDCP_2_2_MPRIME_LEN);
-> +	drm_hdcp_cpu_to_be24(verify_mprime_in->seq_num_m, data->seq_num_m);
-> +
-> +	memcpy(verify_mprime_in->streams, data->streams,
-> +	       array_size(data->k, sizeof(*data->streams)));
-> +
-> +	verify_mprime_in->k = cpu_to_be16(data->k);
-> +}
-> +EXPORT_SYMBOL(i915_hdcp_fill_auth_stream_req_in);
-> +
-> +void
-> +i915_hdcp_fill_enable_auth_in(struct wired_cmd_enable_auth_in *enable_auth_in,
-> +			      struct hdcp_port_data *data)
-> +{
-> +	enable_auth_in->header.api_version = HDCP_API_VERSION;
-> +	enable_auth_in->header.command_id = WIRED_ENABLE_AUTH;
-> +	enable_auth_in->header.status = FW_HDCP_STATUS_SUCCESS;
-> +	enable_auth_in->header.buffer_len = WIRED_CMD_BUF_LEN_ENABLE_AUTH_IN;
-> +
-> +	enable_auth_in->port.integrated_port_type = data->port_type;
-> +	enable_auth_in->port.physical_port = (u8)data->hdcp_ddi;
-> +	enable_auth_in->port.attached_transcoder = (u8)data->hdcp_transcoder;
-> +	enable_auth_in->stream_type = data->streams[0].stream_type;
-> +}
-> +EXPORT_SYMBOL(i915_hdcp_fill_enable_auth_in);
-> +
-> +void
-> +i915_hdcp_fill_close_session_in(struct wired_cmd_close_session_in *session_close_in,
-> +				struct hdcp_port_data *data)
-> +{
-> +	session_close_in->header.api_version = HDCP_API_VERSION;
-> +	session_close_in->header.command_id = WIRED_CLOSE_SESSION;
-> +	session_close_in->header.status = FW_HDCP_STATUS_SUCCESS;
-> +	session_close_in->header.buffer_len =
-> +				WIRED_CMD_BUF_LEN_CLOSE_SESSION_IN;
-> +
-> +	session_close_in->port.integrated_port_type = data->port_type;
-> +	session_close_in->port.physical_port = (u8)data->hdcp_ddi;
-> +	session_close_in->port.attached_transcoder = (u8)data->hdcp_transcoder;
-> +}
-> +EXPORT_SYMBOL(i915_hdcp_fill_close_session_in);
-> +
-> diff --git a/drivers/misc/mei/hdcp/mei_hdcp.c b/drivers/misc/mei/hdcp/mei_hdcp.c
-> index d4faecbbbe76..2cf42e98dfae 100644
-> --- a/drivers/misc/mei/hdcp/mei_hdcp.c
-> +++ b/drivers/misc/mei/hdcp/mei_hdcp.c
-> @@ -50,17 +50,7 @@ mei_hdcp_initiate_session(struct device *dev, struct hdcp_port_data *data,
->  
->  	cldev = to_mei_cl_device(dev);
->  
-> -	session_init_in.header.api_version = HDCP_API_VERSION;
-> -	session_init_in.header.command_id = WIRED_INITIATE_HDCP2_SESSION;
-> -	session_init_in.header.status = FW_HDCP_STATUS_SUCCESS;
-> -	session_init_in.header.buffer_len =
-> -				WIRED_CMD_BUF_LEN_INITIATE_HDCP2_SESSION_IN;
-> -
-> -	session_init_in.port.integrated_port_type = data->port_type;
-> -	session_init_in.port.physical_port = (u8)data->hdcp_ddi;
-> -	session_init_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
-> -	session_init_in.protocol = data->protocol;
-> -
-> +	i915_hdcp_fill_session_in(&session_init_in, data);
->  	byte = mei_cldev_send(cldev, (u8 *)&session_init_in,
->  			      sizeof(session_init_in));
->  	if (byte < 0) {
-> @@ -119,21 +109,7 @@ mei_hdcp_verify_receiver_cert_prepare_km(struct device *dev,
->  		return -EINVAL;
->  
->  	cldev = to_mei_cl_device(dev);
-> -
-> -	verify_rxcert_in.header.api_version = HDCP_API_VERSION;
-> -	verify_rxcert_in.header.command_id = WIRED_VERIFY_RECEIVER_CERT;
-> -	verify_rxcert_in.header.status = FW_HDCP_STATUS_SUCCESS;
-> -	verify_rxcert_in.header.buffer_len =
-> -				WIRED_CMD_BUF_LEN_VERIFY_RECEIVER_CERT_IN;
-> -
-> -	verify_rxcert_in.port.integrated_port_type = data->port_type;
-> -	verify_rxcert_in.port.physical_port = (u8)data->hdcp_ddi;
-> -	verify_rxcert_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
-> -
-> -	verify_rxcert_in.cert_rx = rx_cert->cert_rx;
-> -	memcpy(verify_rxcert_in.r_rx, &rx_cert->r_rx, HDCP_2_2_RRX_LEN);
-> -	memcpy(verify_rxcert_in.rx_caps, rx_cert->rx_caps, HDCP_2_2_RXCAPS_LEN);
-> -
-> +	i915_hdcp_fill_rxcert_in(&verify_rxcert_in, rx_cert, data);
->  	byte = mei_cldev_send(cldev, (u8 *)&verify_rxcert_in,
->  			      sizeof(verify_rxcert_in));
->  	if (byte < 0) {
-> @@ -192,18 +168,7 @@ mei_hdcp_verify_hprime(struct device *dev, struct hdcp_port_data *data,
->  
->  	cldev = to_mei_cl_device(dev);
->  
-> -	send_hprime_in.header.api_version = HDCP_API_VERSION;
-> -	send_hprime_in.header.command_id = WIRED_AKE_SEND_HPRIME;
-> -	send_hprime_in.header.status = FW_HDCP_STATUS_SUCCESS;
-> -	send_hprime_in.header.buffer_len = WIRED_CMD_BUF_LEN_AKE_SEND_HPRIME_IN;
-> -
-> -	send_hprime_in.port.integrated_port_type = data->port_type;
-> -	send_hprime_in.port.physical_port = (u8)data->hdcp_ddi;
-> -	send_hprime_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
-> -
-> -	memcpy(send_hprime_in.h_prime, rx_hprime->h_prime,
-> -	       HDCP_2_2_H_PRIME_LEN);
-> -
-> +	i915_hdcp_fill_hprime_in(&send_hprime_in, rx_hprime, data);
->  	byte = mei_cldev_send(cldev, (u8 *)&send_hprime_in,
->  			      sizeof(send_hprime_in));
->  	if (byte < 0) {
-> @@ -248,20 +213,8 @@ mei_hdcp_store_pairing_info(struct device *dev, struct hdcp_port_data *data,
->  		return -EINVAL;
->  
->  	cldev = to_mei_cl_device(dev);
-> -
-> -	pairing_info_in.header.api_version = HDCP_API_VERSION;
-> -	pairing_info_in.header.command_id = WIRED_AKE_SEND_PAIRING_INFO;
-> -	pairing_info_in.header.status = FW_HDCP_STATUS_SUCCESS;
-> -	pairing_info_in.header.buffer_len =
-> -					WIRED_CMD_BUF_LEN_SEND_PAIRING_INFO_IN;
-> -
-> -	pairing_info_in.port.integrated_port_type = data->port_type;
-> -	pairing_info_in.port.physical_port = (u8)data->hdcp_ddi;
-> -	pairing_info_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
-> -
-> -	memcpy(pairing_info_in.e_kh_km, pairing_info->e_kh_km,
-> -	       HDCP_2_2_E_KH_KM_LEN);
-> -
-> +	i915_hdcp_fill_pairing_info_in(&pairing_info_in, pairing_info,
-> +				       data);
->  	byte = mei_cldev_send(cldev, (u8 *)&pairing_info_in,
->  			      sizeof(pairing_info_in));
->  	if (byte < 0) {
-> @@ -309,15 +262,7 @@ mei_hdcp_initiate_locality_check(struct device *dev,
->  
->  	cldev = to_mei_cl_device(dev);
->  
-> -	lc_init_in.header.api_version = HDCP_API_VERSION;
-> -	lc_init_in.header.command_id = WIRED_INIT_LOCALITY_CHECK;
-> -	lc_init_in.header.status = FW_HDCP_STATUS_SUCCESS;
-> -	lc_init_in.header.buffer_len = WIRED_CMD_BUF_LEN_INIT_LOCALITY_CHECK_IN;
-> -
-> -	lc_init_in.port.integrated_port_type = data->port_type;
-> -	lc_init_in.port.physical_port = (u8)data->hdcp_ddi;
-> -	lc_init_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
-> -
-> +	i915_hdcp_fill_locality_check_in(&lc_init_in, data);
->  	byte = mei_cldev_send(cldev, (u8 *)&lc_init_in, sizeof(lc_init_in));
->  	if (byte < 0) {
->  		dev_dbg(dev, "mei_cldev_send failed. %zd\n", byte);
-> @@ -364,19 +309,8 @@ mei_hdcp_verify_lprime(struct device *dev, struct hdcp_port_data *data,
->  
->  	cldev = to_mei_cl_device(dev);
->  
-> -	verify_lprime_in.header.api_version = HDCP_API_VERSION;
-> -	verify_lprime_in.header.command_id = WIRED_VALIDATE_LOCALITY;
-> -	verify_lprime_in.header.status = FW_HDCP_STATUS_SUCCESS;
-> -	verify_lprime_in.header.buffer_len =
-> -					WIRED_CMD_BUF_LEN_VALIDATE_LOCALITY_IN;
-> -
-> -	verify_lprime_in.port.integrated_port_type = data->port_type;
-> -	verify_lprime_in.port.physical_port = (u8)data->hdcp_ddi;
-> -	verify_lprime_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
-> -
-> -	memcpy(verify_lprime_in.l_prime, rx_lprime->l_prime,
-> -	       HDCP_2_2_L_PRIME_LEN);
-> -
-> +	i915_hdcp_fill_validate_locality_in(&verify_lprime_in, rx_lprime,
-> +					    data);
->  	byte = mei_cldev_send(cldev, (u8 *)&verify_lprime_in,
->  			      sizeof(verify_lprime_in));
->  	if (byte < 0) {
-> @@ -423,15 +357,7 @@ static int mei_hdcp_get_session_key(struct device *dev,
->  
->  	cldev = to_mei_cl_device(dev);
->  
-> -	get_skey_in.header.api_version = HDCP_API_VERSION;
-> -	get_skey_in.header.command_id = WIRED_GET_SESSION_KEY;
-> -	get_skey_in.header.status = FW_HDCP_STATUS_SUCCESS;
-> -	get_skey_in.header.buffer_len = WIRED_CMD_BUF_LEN_GET_SESSION_KEY_IN;
-> -
-> -	get_skey_in.port.integrated_port_type = data->port_type;
-> -	get_skey_in.port.physical_port = (u8)data->hdcp_ddi;
-> -	get_skey_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
-> -
-> +	i915_hdcp_fill_session_key_in(&get_skey_in, data);
->  	byte = mei_cldev_send(cldev, (u8 *)&get_skey_in, sizeof(get_skey_in));
->  	if (byte < 0) {
->  		dev_dbg(dev, "mei_cldev_send failed. %zd\n", byte);
-> @@ -487,25 +413,7 @@ mei_hdcp_repeater_check_flow_prepare_ack(struct device *dev,
->  
->  	cldev = to_mei_cl_device(dev);
->  
-> -	verify_repeater_in.header.api_version = HDCP_API_VERSION;
-> -	verify_repeater_in.header.command_id = WIRED_VERIFY_REPEATER;
-> -	verify_repeater_in.header.status = FW_HDCP_STATUS_SUCCESS;
-> -	verify_repeater_in.header.buffer_len =
-> -					WIRED_CMD_BUF_LEN_VERIFY_REPEATER_IN;
-> -
-> -	verify_repeater_in.port.integrated_port_type = data->port_type;
-> -	verify_repeater_in.port.physical_port = (u8)data->hdcp_ddi;
-> -	verify_repeater_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
-> -
-> -	memcpy(verify_repeater_in.rx_info, rep_topology->rx_info,
-> -	       HDCP_2_2_RXINFO_LEN);
-> -	memcpy(verify_repeater_in.seq_num_v, rep_topology->seq_num_v,
-> -	       HDCP_2_2_SEQ_NUM_LEN);
-> -	memcpy(verify_repeater_in.v_prime, rep_topology->v_prime,
-> -	       HDCP_2_2_V_PRIME_HALF_LEN);
-> -	memcpy(verify_repeater_in.receiver_ids, rep_topology->receiver_ids,
-> -	       HDCP_2_2_RECEIVER_IDS_MAX_LEN);
-> -
-> +	i915_hdcp_fill_repeater_in(&verify_repeater_in, rep_topology, data);
->  	byte = mei_cldev_send(cldev, (u8 *)&verify_repeater_in,
->  			      sizeof(verify_repeater_in));
->  	if (byte < 0) {
-> @@ -566,23 +474,8 @@ static int mei_hdcp_verify_mprime(struct device *dev,
->  	if (!verify_mprime_in)
->  		return -ENOMEM;
->  
-> -	verify_mprime_in->header.api_version = HDCP_API_VERSION;
-> -	verify_mprime_in->header.command_id = WIRED_REPEATER_AUTH_STREAM_REQ;
-> -	verify_mprime_in->header.status = FW_HDCP_STATUS_SUCCESS;
-> -	verify_mprime_in->header.buffer_len = cmd_size  - sizeof(verify_mprime_in->header);
-> -
-> -	verify_mprime_in->port.integrated_port_type = data->port_type;
-> -	verify_mprime_in->port.physical_port = (u8)data->hdcp_ddi;
-> -	verify_mprime_in->port.attached_transcoder = (u8)data->hdcp_transcoder;
-> -
-> -	memcpy(verify_mprime_in->m_prime, stream_ready->m_prime, HDCP_2_2_MPRIME_LEN);
-> -	drm_hdcp_cpu_to_be24(verify_mprime_in->seq_num_m, data->seq_num_m);
-> -
-> -	memcpy(verify_mprime_in->streams, data->streams,
-> -	       array_size(data->k, sizeof(*data->streams)));
-> -
-> -	verify_mprime_in->k = cpu_to_be16(data->k);
-> -
-> +	i915_hdcp_fill_auth_stream_req_in(verify_mprime_in, stream_ready,
-> +					  cmd_size, data);
->  	byte = mei_cldev_send(cldev, (u8 *)verify_mprime_in, cmd_size);
->  	kfree(verify_mprime_in);
->  	if (byte < 0) {
-> @@ -628,16 +521,7 @@ static int mei_hdcp_enable_authentication(struct device *dev,
->  
->  	cldev = to_mei_cl_device(dev);
->  
-> -	enable_auth_in.header.api_version = HDCP_API_VERSION;
-> -	enable_auth_in.header.command_id = WIRED_ENABLE_AUTH;
-> -	enable_auth_in.header.status = FW_HDCP_STATUS_SUCCESS;
-> -	enable_auth_in.header.buffer_len = WIRED_CMD_BUF_LEN_ENABLE_AUTH_IN;
-> -
-> -	enable_auth_in.port.integrated_port_type = data->port_type;
-> -	enable_auth_in.port.physical_port = (u8)data->hdcp_ddi;
-> -	enable_auth_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
-> -	enable_auth_in.stream_type = data->streams[0].stream_type;
-> -
-> +	i915_hdcp_fill_enable_auth_in(&enable_auth_in, data);
->  	byte = mei_cldev_send(cldev, (u8 *)&enable_auth_in,
->  			      sizeof(enable_auth_in));
->  	if (byte < 0) {
-> @@ -682,16 +566,7 @@ mei_hdcp_close_session(struct device *dev, struct hdcp_port_data *data)
->  
->  	cldev = to_mei_cl_device(dev);
->  
-> -	session_close_in.header.api_version = HDCP_API_VERSION;
-> -	session_close_in.header.command_id = WIRED_CLOSE_SESSION;
-> -	session_close_in.header.status = FW_HDCP_STATUS_SUCCESS;
-> -	session_close_in.header.buffer_len =
-> -				WIRED_CMD_BUF_LEN_CLOSE_SESSION_IN;
-> -
-> -	session_close_in.port.integrated_port_type = data->port_type;
-> -	session_close_in.port.physical_port = (u8)data->hdcp_ddi;
-> -	session_close_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
-> -
-> +	i915_hdcp_fill_close_session_in(&session_close_in, data);
->  	byte = mei_cldev_send(cldev, (u8 *)&session_close_in,
->  			      sizeof(session_close_in));
->  	if (byte < 0) {
-> diff --git a/include/drm/i915_hdcp_interface.h b/include/drm/i915_hdcp_interface.h
-> index a92925cd1eae..9952bf78d4f7 100644
-> --- a/include/drm/i915_hdcp_interface.h
-> +++ b/include/drm/i915_hdcp_interface.h
-> @@ -536,4 +536,43 @@ struct wired_cmd_repeater_auth_stream_req_out {
->  	struct hdcp_port_id	port;
->  } __packed;
->  
-> +void
-> +i915_hdcp_fill_session_in(struct wired_cmd_initiate_hdcp2_session_in *session_init_in,
-> +			  struct hdcp_port_data *data);
-> +void
-> +i915_hdcp_fill_rxcert_in(struct wired_cmd_verify_receiver_cert_in *verify_rxcert_in,
-> +			 struct hdcp2_ake_send_cert *rx_cert,
-> +			 struct hdcp_port_data *data);
-> +void
-> +i915_hdcp_fill_hprime_in(struct wired_cmd_ake_send_hprime_in *send_hprime_in,
-> +			 struct hdcp2_ake_send_hprime *rx_hprime,
-> +			 struct hdcp_port_data *data);
-> +void
-> +i915_hdcp_fill_pairing_info_in(struct wired_cmd_ake_send_pairing_info_in *pairing_info_in,
-> +			       struct hdcp2_ake_send_pairing_info *pairing_info,
-> +			       struct hdcp_port_data *data);
-> +void
-> +i915_hdcp_fill_locality_check_in(struct wired_cmd_init_locality_check_in *lc_init_in,
-> +				 struct hdcp_port_data *data);
-> +void
-> +i915_hdcp_fill_validate_locality_in(struct wired_cmd_validate_locality_in *verify_lprime_in,
-> +				    struct hdcp2_lc_send_lprime *rx_lprime,
-> +				    struct hdcp_port_data *data);
-> +void
-> +i915_hdcp_fill_session_key_in(struct wired_cmd_get_session_key_in *get_skey_in,
-> +			      struct hdcp_port_data *data);
-> +void
-> +i915_hdcp_fill_repeater_in(struct wired_cmd_verify_repeater_in *verify_repeater_in,
-> +			   struct hdcp2_rep_send_receiverid_list *rep_topology,
-> +			   struct hdcp_port_data *data);
-> +void
-> +i915_hdcp_fill_auth_stream_req_in(struct wired_cmd_repeater_auth_stream_req_in *verify_mprime_in,
-> +				  struct hdcp2_rep_stream_ready *stream_ready, ssize_t cmd_size,
-> +				  struct hdcp_port_data *data);
-> +void
-> +i915_hdcp_fill_enable_auth_in(struct wired_cmd_enable_auth_in *enable_auth_in,
-> +			      struct hdcp_port_data *data);
-> +void
-> +i915_hdcp_fill_close_session_in(struct wired_cmd_close_session_in *session_close_in,
-> +				struct hdcp_port_data *data);
->  #endif /* _I915_HDCP_INTERFACE_H_ */
+  * Linux: CI_DRM_12541 -> Patchwork_103518v3
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+  CI-20190529: 20190529
+  CI_DRM_12541: b832866fa6063614b3637598aca19aee3bc3039f @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7106: 8cce332bdc50d2b20d553d7a0221737f4399d031 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_103518v3: b832866fa6063614b3637598aca19aee3bc3039f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+9c038cd4a34d drm/i915/display: Implement Wa_14015648006
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/index.html
+
+--===============0318185135363027290==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Implement Wa_14015648006 (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/103518/">https://patchwork.freedesktop.org/series/103518/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12541 -&gt; Patchwork_103518v3</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_103518v3 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_103518v3, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/index.html</p>
+<h2>Participating hosts (42 -&gt; 42)</h2>
+<p>Additional (2): fi-kbl-soraka fi-rkl-11600 <br />
+  Missing    (2): bat-dg2-oem1 bat-atsm-1 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_103518v3:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@debugfs_test@read_all_entries:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12541/fi-icl-u2/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-icl-u2/igt@debugfs_test@read_all_entries.html">ABORT</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@guc:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-kbl-soraka/igt@i915_selftest@live@guc.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@basic-rte:</p>
+<ul>
+<li>{bat-adln-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12541/bat-adln-1/igt@i915_pm_rpm@basic-rte.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/bat-adln-1/igt@i915_pm_rpm@basic-rte.html">DMESG-WARN</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12541/bat-rpls-1/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/bat-rpls-1/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_103518v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@debugfs_test@basic-hwmon:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-rkl-11600/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7456">i915#7456</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_gttfill@basic:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-kbl-soraka/igt@gem_exec_gttfill@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +7 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>
+<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
+</li>
+<li>
+<p>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-rkl-11600/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>
+<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</p>
+</li>
+<li>
+<p>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-rkl-11600/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_pread_basic:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-rkl-11600/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3282">i915#3282</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_backlight@basic-brightness:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-rkl-11600/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7561">i915#7561</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4817">i915#4817</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/bat-dg1-6/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-edid-read:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-rkl-11600/igt@kms_chamelium@hdmi-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +7 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-kbl-soraka/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +7 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-rkl-11600/igt@kms_cursor_legacy@basic-busy-flip-before-cursor.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12541/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-rkl-11600/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4098">i915#4098</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_page_flip:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-rkl-11600/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-rkl-11600/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4098">i915#4098</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-read:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-rkl-11600/igt@prime_vgem@basic-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3291">i915#3291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-rkl-11600/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/fi-icl-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12541/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@slpc:</p>
+<ul>
+<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12541/bat-adlp-4/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/bat-adlp-4/igt@i915_selftest@live@slpc.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-dp-1:</p>
+<ul>
+<li>{bat-adlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12541/bat-adlp-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-dp-1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103518v3/bat-adlp-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-dp-1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12541 -&gt; Patchwork_103518v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12541: b832866fa6063614b3637598aca19aee3bc3039f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7106: 8cce332bdc50d2b20d553d7a0221737f4399d031 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_103518v3: b832866fa6063614b3637598aca19aee3bc3039f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>9c038cd4a34d drm/i915/display: Implement Wa_14015648006</p>
+
+</body>
+</html>
+
+--===============0318185135363027290==--
