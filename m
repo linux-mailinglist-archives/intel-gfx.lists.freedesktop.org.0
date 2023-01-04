@@ -2,63 +2,145 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94C1565D725
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Jan 2023 16:18:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A441765D730
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Jan 2023 16:21:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 519B710E4FB;
-	Wed,  4 Jan 2023 15:18:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73B7010E469;
+	Wed,  4 Jan 2023 15:21:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com
- [IPv6:2a00:1450:4864:20::32d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DE5C10E509
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 Jan 2023 15:18:21 +0000 (UTC)
-Received: by mail-wm1-x32d.google.com with SMTP id
- c65-20020a1c3544000000b003cfffd00fc0so29767928wma.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 04 Jan 2023 07:18:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=lUy/E1ScW2/Bi1enpSvyf3iifUUDxLQBiwU0Jn23xxk=;
- b=hQ/N5aAdWCD9ZMZSiP69h83Z8h8eCAMF5SRrd7XkUr/1Ae+ZAzCFW5CCCpvVx++1th
- BlIPlCwvm7OOGnDNga4qnh0zKR7KAAYODrEtpc248NsAFc8AjxDA/++3uYJ1z0pSyus7
- nVnaqwaVFXXQa3hwgZu2X57OBg+RuPMQRTG2g=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=lUy/E1ScW2/Bi1enpSvyf3iifUUDxLQBiwU0Jn23xxk=;
- b=Hu4rkTuYFaJNfQ6wThLLjQeheAZCfCoRe691rZkH6W/QTeyv+pA/zDS3hWJdI2acm8
- QMcfa7L7R71Oji1BJuRXogazPlVKEL0Gwur13vsPQKZkTsnjkXq7qFW8LoUKar4jzbB+
- xumLNVmhaSvGXR2c/RMSGY5bkAkvN7vSBDJpw0fFwNttpv4FsuKgFJIWDcfSmPp+ldZ/
- FKbNkVT7Br1stdXfeGBjda1cphTS+W3CHdA+Kmk4Oj2b0MyzvOZGeT6JNBo/AnGtQ/dT
- SbtbldYWdCcIGsh72hE4cBF7y/dst9Z6esoIMakPLjkPPmt3dvPmDBl2lIAJH7oJSrwg
- zNgA==
-X-Gm-Message-State: AFqh2kog0xCgqfp1yCB3grI2kApCgkmlH8xx6oXLrJ+62/HVNestr9mG
- uhxXFxXVWUB42h5JgPNNCjgLyQ==
-X-Google-Smtp-Source: AMrXdXvo0cLi4qUZiq/tAtX8dBMthNXb6cP7bjD74aJYuCgg5Kj8RrsFJwEHseVuMo6sWuBcGkTXXw==
-X-Received: by 2002:a05:600c:1ca5:b0:3d1:d746:7bca with SMTP id
- k37-20020a05600c1ca500b003d1d7467bcamr34270547wms.4.1672845499577; 
- Wed, 04 Jan 2023 07:18:19 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id
- s16-20020a1cf210000000b003c6bd12ac27sm45415707wmc.37.2023.01.04.07.18.17
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 04 Jan 2023 07:18:18 -0800 (PST)
-Date: Wed, 4 Jan 2023 16:18:16 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <Y7WYuGtZeKZCbeaf@phenom.ffwll.local>
-References: <Y7QIwlfElAYWxRcR@linux-uq9g>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A945E10E469
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 Jan 2023 15:21:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1672845713; x=1704381713;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=l/5+CWbmz7VuGNIZw0biHeHAcO0GPlmSfjPGGpT7aLo=;
+ b=Gfh2ZPVzbnHUPyBXzF9R69xtA3tYdwUWV1C1ZwWUg/W8XBM2JQJdQtJB
+ ohsL6Smgman6ZdbHCD9JoejUKcLEcJUDv44B1XKuVNV83lTo9awYseCYH
+ w1SmTdvF/1N4tQ/F+a+pV/BHevXk79sHnbKYeyGsBpjAbyse+ZBw7vSQ5
+ sKQ+6BV7G928tR38epL3DqITGqdIWRBEBwmdx23pc6vBcYOibH0s+cz5o
+ /6CxqCBR4a7yh2z+zI0meCsiPqsxtR35L+14jcDH7Es02UjNiVV8zKxkY
+ sC1YWsDuw4kENZDC17bskqgc3esZb1GLWIJClc6MPJzrRy1h/hYluVk15 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10580"; a="302327122"
+X-IronPort-AV: E=Sophos;i="5.96,300,1665471600"; d="scan'208";a="302327122"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2023 07:21:52 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10580"; a="632817783"
+X-IronPort-AV: E=Sophos;i="5.96,300,1665471600"; d="scan'208";a="632817783"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orsmga006.jf.intel.com with ESMTP; 04 Jan 2023 07:21:49 -0800
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Wed, 4 Jan 2023 07:21:49 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Wed, 4 Jan 2023 07:21:48 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Wed, 4 Jan 2023 07:21:48 -0800
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.171)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Wed, 4 Jan 2023 07:21:47 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CI55+JoE3dK+73dNewCMP5WH2edigorUCFRIyZROt7Of8zTXJPUMgYTJbZ6PSHg8vCrezmVB7qLQpNWEp/ZHGEliaHHRPUgqnlFBOPIhBfZlhM73eGApkk8iO2OnvQz197BQ/Ij/Jd4oCXOEeb6PnEym/k75cVgGvsNZn+UJ2DGZw3tNXTJFf2+ZJzTdckqSWUn+1OA9eZTFZMmOrtLKeSIdX+1N9QXTvq//Q/yncI7JYj/lshwF+NDE1phQzi7JIjh4FLfFA5Ci/jifYts9zDw7hS9C54ZxTu3+5Y9Hh7Z4eH0e0FQNexD/yZRbU6zWKvjOnGcRjGSjSpTcQ9EwvA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=pvYivXGVzNGKk0oA3r34dlDSe5UJZi3VXU7DuWs+bG8=;
+ b=BZk1FC5BpEDv9aVkh26LTSxKE4G7j50jKnGFJxwTFhnOCUikHBN/MleAoD12xUyzfwwnmCstHJnBrceeGLuzo6p+CSRaO8jjs+2J8S3cdt3rtaXu0lxlaYtUvgf7stKTy6Ny+8VSlfCotq93hNe9Ic67rYJr5k4E6NB+uWOiCXm6U21PbH86Ci7sde/im4d2BTr0CqMR7gfBR1zOh3fZrA91AG0IKBdH1ZFN2FBNvKyGu/7IiByTM3zg2BUk5sQA4OSpvf2GAijfgDiRGFK3yebRE3FgnI+7Z/ea3aQEvnZgU7X1FgUb0s4NdTh/Lg9op9Aa9oZ2D3vqSV93YgOIZQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM6PR11MB3177.namprd11.prod.outlook.com (2603:10b6:5:c::28) by
+ MW4PR11MB7077.namprd11.prod.outlook.com (2603:10b6:303:21a::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.18; Wed, 4 Jan
+ 2023 15:21:45 +0000
+Received: from DM6PR11MB3177.namprd11.prod.outlook.com
+ ([fe80::f1cb:21b7:f511:ea11]) by DM6PR11MB3177.namprd11.prod.outlook.com
+ ([fe80::f1cb:21b7:f511:ea11%5]) with mapi id 15.20.5944.019; Wed, 4 Jan 2023
+ 15:21:44 +0000
+From: "Murthy, Arun R" <arun.r.murthy@intel.com>
+To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "ville.syrjala@linux.intel.com"
+ <ville.syrjala@linux.intel.com>, "Deak, Imre" <imre.deak@intel.com>
+Thread-Topic: [PATCHv7] drm/i915/dp: change aux_ctl reg read to polling read
+Thread-Index: AQHZFOzJQW3u+4DJ3Ee+rsp4Exd4n66OVtiAgAAfkjA=
+Date: Wed, 4 Jan 2023 15:21:44 +0000
+Message-ID: <DM6PR11MB31770EC23D94ACD273A75418BAF59@DM6PR11MB3177.namprd11.prod.outlook.com>
+References: <20221124070925.3834910-1-arun.r.murthy@intel.com>
+ <20221221033209.1284435-1-arun.r.murthy@intel.com> <87wn62wht2.fsf@intel.com>
+In-Reply-To: <87wn62wht2.fsf@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM6PR11MB3177:EE_|MW4PR11MB7077:EE_
+x-ms-office365-filtering-correlation-id: f165cb0b-4a24-456b-f691-08daee6763a4
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: G0w8elUNHiryPzLcwrz2krlYvrx0zTvU2qPmLp3xh1ITe2jqlPBtZPVh9L1mAsvdH2F/wCv/8ZqQ1n+oH3vgSOWlK+AQQiwYXDOUJ0WawfEsgR5upEiIGF3Nd8IyhzyMOZHEJwBi2OoU7KJhigif11ThVUeWQrZRGMtDUleBeSN4VycVNOUxmDv6ZLUu52jtVwMn2kbTE2ojN6Es42q7tkSxTFAydvsC6AQ6xiYLXI0r23/ELloowZ4mNCdD2jRdOC+oD8dgogBdSKhr+uHFEfhW0PQYDlLfMcPYd1TGD6soQjdDAmoASbsKNkVskJB2Cxybqs2Ge4Zb40S8Z0vYSo7A4+WJ7GKJWPfOz21B5QmZHa1wbM6ltG/81T2kJUwaCrudRxzryIQT2BV5jvRqyp2fB+ZTiX01+XdbJQwV84J6pRkwjERqeDVtu5fRvlSDYmq4LgWsIOvSS4aMzrpWbb0Tx5Pw1vL3Kt3i0gabXhq50DGKjdLFQa3tUPVxPZtAmm27XWgTf9LxwQw1dAZxFE8AQtRZ9WRzRjpfiXSKQh0tyO1mzVYz1tgTKvN61WsOeI6nz3y6AH+FnmJNWO5nb56wZ5B4WqVRCkyxaM4IikH3VMY+7ZuJV6UzzwTzKaBQ3nYjC42cuu5UULf+xee1o3Y7ZCvVsZzT7OV6jTV8GUBIs76WRLHf2YNyEpLA2p1C
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR11MB3177.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(346002)(136003)(39860400002)(396003)(366004)(376002)(451199015)(122000001)(55236004)(38070700005)(38100700002)(6506007)(41300700001)(186003)(52536014)(478600001)(53546011)(82960400001)(5660300002)(66946007)(6636002)(9686003)(86362001)(7696005)(64756008)(66476007)(66556008)(71200400001)(66446008)(76116006)(55016003)(26005)(8936002)(2906002)(33656002)(316002)(110136005)(8676002)(83380400001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?+mFm0NeCge2JHwzdv+S03su8YyIVD4ATByV/ClVCQ0WPuTIHHrMas5ey/G+Q?=
+ =?us-ascii?Q?hOxewWdCKDEF22fNuBqTXTfz8RwFOxFD6j7adHc+LcNnIgr+I/PX7rH3jdu7?=
+ =?us-ascii?Q?HIlfcELQGveFpUpANeimZTQv7rxVQIqBk/ObX+CJzyr2oyPaTLL5/KvETgyK?=
+ =?us-ascii?Q?TXgUJnF5erCt58n+nuCpKFYunxDATP1c1+DrkoR3QY+LAIfOSWczCtOIOQfJ?=
+ =?us-ascii?Q?zCQ7QFTrJ/t9wffVAX1mf06AWPYlSPBI3jtwGGbkw3t/KMgjFXxLBr7SNYPj?=
+ =?us-ascii?Q?MzCSgvfLSHZeDZjJRYywUZjgaybrMyMdwvD3GOktHHAJmLqTkEfdxDdkQmOZ?=
+ =?us-ascii?Q?dXgcM1a0D9qB0a3cjwRhG5cls+xAIQk/bgzis3IExUl3vIyhIgvXmAbztZHd?=
+ =?us-ascii?Q?XVJ5BSKMqX/QM9XSDzPDCp7E67tbcIBsrQrReYUJrAXt/ZRuq6jhW3hCR3Kj?=
+ =?us-ascii?Q?AanwGH28SCMUi4LX8r538U9IMYzuRiFxcGUgcRq3oF1szkoB+T7ezWPActnx?=
+ =?us-ascii?Q?JqR2Yua2Au+hPmXZ40WRtHxtXyNc0QtR46F9Ed0+yxNPt4fV1r4+REIap1Ry?=
+ =?us-ascii?Q?QutgxO2REMpriWOPqgFuToXVSLRJ9ApvuWAL5h75AdOKL3o1tiEfXqQWWd/W?=
+ =?us-ascii?Q?o/6Ba+/8vb9rD6IcJwcF5Z0bQeMf8xfWS4ydLAnK12MhUbZBkUTG35d1CKnD?=
+ =?us-ascii?Q?HxsJZ0gRtpaO3vVzMNs0XChVaQrBHsF60X5cqnbtMRqd/A5LjQ39w/kUGz26?=
+ =?us-ascii?Q?LpjM6EAnlOq1dbl0mvH6CcGl3zLL/rB1KvqGauSNbW1clRoH647OQkP/rMaj?=
+ =?us-ascii?Q?cv/T0bpviUTTbe5MeSt15XQimR18pwZBQuu+SJLKxyQLWP42nko/0NEgzMTW?=
+ =?us-ascii?Q?alzw3slI+r7HN9b3UgF/3oudM6ZF3ufb6tIYbijtQ4P3YG8K4/b79a1urfQ7?=
+ =?us-ascii?Q?gWTLqTv0XNxaandyX+sRcAQPm2hsYnntnC34FCUxmPqsR3jw5LShIP05tbJd?=
+ =?us-ascii?Q?3yFTgB9d6u1daiKk2h8RHKAi8XmuRHYt/wPrT1qReajWBTkfGa2tEq6ZoYf1?=
+ =?us-ascii?Q?IRExszajk4JXRyqqvQ/g8RWSehRHtcLaCTt1kZ0TlBKoepctoszgHvgur7i9?=
+ =?us-ascii?Q?FkrfaT9R7V1Z6Vvp9zH4pnAxu85y9ZY93ItbvEnF7kOCuzNuovL8cnOGXLcT?=
+ =?us-ascii?Q?Tc66k2Ego3oSdU6CS3T2NhOkq/KZ0dqcQxj1CDHAIkCoCUwsLeJcsDNBWlvT?=
+ =?us-ascii?Q?kRdWn+AAfsFJ4+dBqZnl0XpzwiJn6SYUOXVEDD94U/BY2B9O2Rpk37Q8wQVY?=
+ =?us-ascii?Q?cujpE1q8cW3V+2knvz0hz8M8JX2Ahq8h5WSFLQmZWtwTqrvMJdh3r7pzpwor?=
+ =?us-ascii?Q?S7KvkoV+tjrY8K7qreIvmfsvR68wUN02xZFSudGK6fHPOco3iei9ab2Z7NsA?=
+ =?us-ascii?Q?kAK0ibwfSpTW62zjHdRmOOeypwWtItrSSUNxqlmsLSl+uz3T5KAjVHHWe9Tp?=
+ =?us-ascii?Q?EkwNjwBeYoTDyA4lBgiWp/6i/cidjW3alX4eWz6FUzrV5DgZPmXLMZBGxcLi?=
+ =?us-ascii?Q?Jn6vPXNG0AeSPXEt1JV20wDyj+4k9dG43VlyHAr/?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Y7QIwlfElAYWxRcR@linux-uq9g>
-X-Operating-System: Linux phenom 5.19.0-2-amd64 
-Subject: Re: [Intel-gfx] [PULL] drm-misc-next
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3177.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f165cb0b-4a24-456b-f691-08daee6763a4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Jan 2023 15:21:44.6987 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Rcgi8Nw61Nm6u7+N9bD7D8qv/RDa6GDMHyDDA3aSCX5e1c0GFSN2YkOHZJFA8kjBp2DrL5tB8BBosfoOBKuX3g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB7077
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCHv7] drm/i915/dp: change aux_ctl reg read to
+ polling read
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,794 +153,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
- dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Dave Airlie <airlied@gmail.com>,
- intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 03, 2023 at 11:51:46AM +0100, Thomas Zimmermann wrote:
-> Hi Dave and Daniel,
-> 
-> here's the first PR for drm-misc-next for the upcomming version v6.3
-> of the Linux kernel. Overall, it's fairly small; due to holidays, I
-> guess. Noteworthy changes are in connector TV-mode handling, KUnit tests
-> and MIPI helpers.
-> 
-> Best regards
-> Thomas
-> 
-> drm-misc-next-2023-01-03:
-> drm-misc-next for v6.3:
-> 
-> UAPI Changes:
-> 
->  * connector: Support analog-TV mode property
-> 
->  * media: Add MEDIA_BUS_FMT_RGB565_1X24_CPADHI,
->    MEDIA_BUS_FMT_RGB666_1X18 and MEDIA_BUS_FMT_RGB666_1X24_CPADHI
-> 
-> Cross-subsystem Changes:
-> 
->  * dma-buf: Documentation fixes
-> 
->  * i2c: Introduce i2c_client_get_device_id() helper
-> 
-> Core Changes:
-> 
->  * Improve support for analog TV output
-> 
->  * bridge: Remove unused drm_bridge_chain functions
-> 
->  * debugfs: Add per-device helpers and convert various DRM drivers
-> 
->  * dp-mst: Various fixes
-> 
->  * fbdev emulation: Always pick 32 bpp as default
-> 
->  * KUnit: Add tests for managed helpers; Various cleanups
-> 
->  * panel-orientation: Add quirks for Lenovo Yoga Tab 3 X90F and DynaBook K50
-> 
->  * TTM: Open-code ttm_bo_wait() and remove the helper
-> 
-> Driver Changes:
-> 
->  * Fix preferred depth and bpp values throughout DRM drivers
-> 
->  * Remove #CONFIG_PM guards throughout DRM drivers
-> 
->  * ast: Various fixes
-> 
->  * bridge: Implement i2c's probe_new in various drivers; Fixes; ite-it6505:
->    Locking fixes, Cache EDID data; ite-it66121: Support IT6610 chip,
->    Cleanups; lontium-tl9611: Fix HDMI on DragonBoard 845c; parade-ps8640:
->    Use atomic bridge functions
-> 
->  * gud: Convert to DRM shadow-plane helpers; Perform flushing synchronously
->    during atomic update
-> 
->  * ili9486: Support 16-bit pixel data
-> 
->  * imx: Split off IPUv3 driver; Various fixes
-> 
->  * mipi-dbi: Convert to DRM shadow-plane helpers plus rsp driver changes;
->    Support separate I/O-voltage supply
-> 
->  * mxsfb: Depend on ARCH_MXS or ARCH_MXC
-> 
->  * omapdrm: Various fixes
-> 
->  * panel: Use ktime_get_boottime() to measure power-down delay in various
->    drivers; Fix auto-suspend delay in various drivers; orisetech-ota5601a:
->    Add support
-> 
->  * sprd: Cleanups
-> 
->  * sun4i: Convert to new TV-mode property
-> 
->  * tidss: Various fixes
-> 
->  * v3d: Various fixes
-> 
->  * vc4: Convert to new TV-mode property; Support Kunit tests; Cleanups;
->    dpi: Support RGB565 and RGB666 formats; dsi: Convert DSI driver to
->    bridge
-> 
->  * virtio: Improve tracing
-> 
->  * vkms: Support small cursors in IGT tests; Various fixes
-> The following changes since commit d47f9580839eb6fe568e38b2084d94887fbf5ce0:
-> 
->   Backmerge tag 'v6.1-rc6' into drm-next (2022-11-24 11:05:43 +1000)
-> 
-> are available in the Git repository at:
-> 
->   git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2023-01-03
+> -----Original Message-----
+> From: Nikula, Jani <jani.nikula@intel.com>
+> Sent: Wednesday, January 4, 2023 6:58 PM
+> To: Murthy, Arun R <arun.r.murthy@intel.com>; intel-
+> gfx@lists.freedesktop.org; ville.syrjala@linux.intel.com; Deak, Imre
+> <imre.deak@intel.com>
+> Cc: Murthy, Arun R <arun.r.murthy@intel.com>
+> Subject: Re: [PATCHv7] drm/i915/dp: change aux_ctl reg read to polling re=
+ad
+>=20
+> On Wed, 21 Dec 2022, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+> > The busy timeout logic checks for the AUX BUSY, then waits for the
+> > timeout period and then after timeout reads the register for BUSY or
+> > Success.
+> > Instead replace interrupt with polling so as to read the AUX CTL
+> > register often before the timeout period. Looks like there might be
+> > some issue with interrupt-on-read. Hence changing the logic to polling
+> read.
+> >
+> > v2: replace interrupt with polling read
+> > v3: use usleep_rang instead of msleep, updated commit msg
+> > v4: use intel_wait_for_regiter internal function
+> > v5: use __intel_de_wait_for_register with 500us slow and 10ms fast
+> > timeout
+> > v6: check return value of __intel_de_wait_for_register
+> > v7: using default 2us for intel_de_wait_for_register
+> >
+> > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+>=20
+> Pushed to drm-intel-next, thanks for the patch.
 
-Pulled to drm-next, thanks
--Daniel
+Thanks!
 
-> 
-> for you to fetch changes up to 2591939e881cf728b6ac45971eeec2f58051c101:
-> 
->   drm/virtio: Spiff out cmd queue/response traces (2023-01-02 17:51:27 +0300)
-> 
-> ----------------------------------------------------------------
-> drm-misc-next for v6.3:
-> 
-> UAPI Changes:
-> 
->  * connector: Support analog-TV mode property
-> 
->  * media: Add MEDIA_BUS_FMT_RGB565_1X24_CPADHI,
->    MEDIA_BUS_FMT_RGB666_1X18 and MEDIA_BUS_FMT_RGB666_1X24_CPADHI
-> 
-> Cross-subsystem Changes:
-> 
->  * dma-buf: Documentation fixes
-> 
->  * i2c: Introduce i2c_client_get_device_id() helper
-> 
-> Core Changes:
-> 
->  * Improve support for analog TV output
-> 
->  * bridge: Remove unused drm_bridge_chain functions
-> 
->  * debugfs: Add per-device helpers and convert various DRM drivers
-> 
->  * dp-mst: Various fixes
-> 
->  * fbdev emulation: Always pick 32 bpp as default
-> 
->  * KUnit: Add tests for managed helpers; Various cleanups
-> 
->  * panel-orientation: Add quirks for Lenovo Yoga Tab 3 X90F and DynaBook K50
-> 
->  * TTM: Open-code ttm_bo_wait() and remove the helper
-> 
-> Driver Changes:
-> 
->  * Fix preferred depth and bpp values throughout DRM drivers
-> 
->  * Remove #CONFIG_PM guards throughout DRM drivers
-> 
->  * ast: Various fixes
-> 
->  * bridge: Implement i2c's probe_new in various drivers; Fixes; ite-it6505:
->    Locking fixes, Cache EDID data; ite-it66121: Support IT6610 chip,
->    Cleanups; lontium-tl9611: Fix HDMI on DragonBoard 845c; parade-ps8640:
->    Use atomic bridge functions
-> 
->  * gud: Convert to DRM shadow-plane helpers; Perform flushing synchronously
->    during atomic update
-> 
->  * ili9486: Support 16-bit pixel data
-> 
->  * imx: Split off IPUv3 driver; Various fixes
-> 
->  * mipi-dbi: Convert to DRM shadow-plane helpers plus rsp driver changes;i
->    Support separate I/O-voltage supply
-> 
->  * mxsfb: Depend on ARCH_MXS or ARCH_MXC
-> 
->  * omapdrm: Various fixes
-> 
->  * panel: Use ktime_get_boottime() to measure power-down delay in various
->    drivers; Fix auto-suspend delay in various drivers; orisetech-ota5601a:
->    Add support
-> 
->  * sprd: Cleanups
-> 
->  * sun4i: Convert to new TV-mode property
-> 
->  * tidss: Various fixes
-> 
->  * v3d: Various fixes
-> 
->  * vc4: Convert to new TV-mode property; Support Kunit tests; Cleanups;
->    dpi: Support RGB565 and RGB666 formats; dsi: Convert DSI driver to
->    bridge
-> 
->  * virtio: Improve tracing
-> 
->  * vkms: Support small cursors in IGT tests; Various fixes
-> 
-> ----------------------------------------------------------------
-> Alaa Emad (1):
->       drm/vkms: change min cursor size to accept smaller values
-> 
-> Allen Ballway (1):
->       drm: panel-orientation-quirks: Add quirk for DynaBook K50
-> 
-> Andrew Davis (1):
->       drm/tidss: Set max DMA segment size
-> 
-> Carlo Caione (2):
->       drm/tiny: ili9486: Enable driver module autoloading
->       drm/tiny: ili9486: Do not assume 8-bit only SPI controllers
-> 
-> Chris Morgan (2):
->       media: uapi: add MEDIA_BUS_FMT_RGB565_1X24_CPADHI
->       drm/vc4: dpi: Support RGB565 format
-> 
-> Christian König (6):
->       drm/ttm: remove ttm_bo_(un)lock_delayed_workqueue
->       drm/ttm: use per BO cleanup workers
->       drm/ttm: merge ttm_bo_api.h and ttm_bo_driver.h v2
->       drm/ttm: use ttm_bo_wait_ctx instead of ttm_bo_wait
->       drm/i915: stop using ttm_bo_wait
->       drm/qxl: stop using ttm_bo_wait
-> 
-> Christophe Branchereau (2):
->       drm/panel: add the orisetech ota5601a
->       dt-bindings: display/panel: Add the Focaltech gpt3
-> 
-> Dave Stevenson (13):
->       drm/vc4: dpi: Change the default DPI format to being 18bpp, not 24.
->       drm/vc4: dpi: Fix format mapping for RGB565
->       drm/mediatek: dp: Replace usage of drm_bridge_chain_ functions
->       drm/bridge: Introduce pre_enable_prev_first to alter bridge init order
->       drm/panel: Add prepare_prev_first flag to drm_panel
->       drm/bridge: Document the expected behaviour of DSI host controllers
->       drm/vc4: dsi: Rename bridge to out_bridge
->       drm/vc4: dsi: Move initialisation to encoder_mode_set
->       drm/vc4: dsi: Remove splitting the bridge chain from the driver
->       drm/vc4: dsi: Convert to use atomic operations
->       drm/vc4: dsi: Convert to using a bridge instead of encoder
->       drm/vc4: dsi: Remove entry to ULPS from vc4_dsi post_disable
->       drm/bridge: panel: Set pre_enable_prev_first from drmm_panel_bridge_add
-> 
-> Deepak R Varma (1):
->       drm/sprd: remove redundant error logging
-> 
-> Drew Davenport (5):
->       drm/panel-edp: Use ktime_get_boottime for delays
->       drm/panel-samsung-atna33xc20: Use ktime_get_boottime for delays
->       drm/panel-simple: Use ktime_get_boottime for delays
->       drm/bridge/parade-ps8640: Extend autosuspend
->       drm/panel-samsung-atna33xc20: Extend autosuspend delay
-> 
-> Frieder Schrempf (1):
->       drm/bridge: ti-sn65dsi83: Fix delay after reset deassert to match spec
-> 
-> Geert Uytterhoeven (2):
->       drm: mxsfb: DRM_IMX_LCDIF should depend on ARCH_MXC
->       drm: mxsfb: DRM_MXSFB should depend on ARCH_MXS || ARCH_MXC
-> 
-> Hans de Goede (1):
->       drm: panel-orientation-quirks: Add quirk for Lenovo Yoga Tab 3 X90F
-> 
-> Imre Deak (3):
->       drm/display/dp_mst: Fix down/up message handling after sink disconnect
->       drm/display/dp_mst: Fix down message handling after a packet reception error
->       drm/display/dp_mst: Fix payload addition on a disconnected sink
-> 
-> Jani Nikula (1):
->       drm/audio: make drm_audio_component.h self-contained
-> 
-> Joerg Quinten (3):
->       media: uapi: add MEDIA_BUS_FMT_BGR666_1X18
->       media: uapi: add MEDIA_BUS_FMT_BGR666_1X24_CPADHI
->       drm/vc4: dpi: Support BGR666 formats
-> 
-> Liang He (1):
->       gpu: ipu-v3: common: Add of_node_put() for reference returned by of_graph_get_port_by_id()
-> 
-> Lucas Stach (1):
->       drm/imx: move IPUv3 driver into separate subdirectory
-> 
-> Mateusz Kwiatkowski (2):
->       drm/vc4: vec: Check for VEC output constraints
->       drm/vc4: vec: Add support for more analog TV standards
-> 
-> Matti Vaittinen (2):
->       drm/bridge: sii902x: Use devm_regulator_bulk_get_enable()
->       drm/meson: dw-hdmi: Use devm_regulator_*get_enable*()
-> 
-> Maxime Ripard (50):
->       drm/tests: client: Mention that we can't use MODULE_ macros
->       drm/connector: Rename legacy TV property
->       drm/connector: Only register TV mode property if present
->       drm/connector: Rename drm_mode_create_tv_properties
->       drm/connector: Add TV standard property
->       drm/modes: Add a function to generate analog display modes
->       drm/connector: Add a function to lookup a TV mode by its name
->       drm/modes: Introduce the tv_mode property as a command-line option
->       drm/modes: Properly generate a drm_display_mode from a named mode
->       drm/client: Remove match on mode name
->       drm/modes: Introduce more named modes
->       drm/atomic-helper: Add a TV properties reset helper
->       drm/atomic-helper: Add an analog TV atomic_check implementation
->       drm/vc4: vec: Use TV Reset implementation
->       drm/vc4: vec: Convert to the new TV mode property
->       drm/sun4i: tv: Convert to the new TV mode property
->       drm/atomic: Constify the old/new state accessors
->       drm/vc4: Constify container_of wrappers
->       drm/vc4: kms: Constify the HVS old/new state helpers
->       drm/vc4: kms: Sort the CRTCs by output before assigning them
->       drm/vc4: txp: Reorder the variable assignments
->       drm/vc4: Add TXP encoder type
->       drm/vc4: txp: Initialise the CRTC before the encoder and connector
->       drm/vc4: crtc: Pass the device and data in vc4_crtc_init
->       drm/vc4: crtc: Provide a CRTC name
->       drm/tests: helpers: Add missing export
->       drm/doc: Fix title underline length
->       drm/modes: Use strscpy() to copy command-line mode name
->       drm/tests: probe_helper: Fix uninitialized variable
->       drm/tests: helpers: Move the helper header to include/drm
->       drm/tests: Introduce a config option for the KUnit helpers
->       drm/tests: helpers: Document drm_kunit_device_init()
->       drm/tests: helpers: Switch to EXPORT_SYMBOL_GPL
->       drm/tests: helpers: Rename the device init helper
->       drm/tests: helpers: Remove the name parameter
->       drm/tests: helpers: Create the device in another function
->       drm/tests: helpers: Switch to a platform_device
->       drm/tests: helpers: Make sure the device is bound
->       drm/tests: helpers: Allow for a custom device struct to be allocated
->       drm/tests: helpers: Allow to pass a custom drm_driver
->       drm/tests: Add a test for DRM managed actions
->       drm/vc4: Move HVS state to main header
->       drm/vc4: crtc: Introduce a lower-level crtc init helper
->       drm/vc4: crtc: Make encoder lookup helper public
->       drm/vc4: hvs: Provide a function to initialize the HVS structure
->       drm/vc4: tests: Introduce a mocking infrastructure
->       drm/vc4: tests: Fail the current test if we access a register
->       drm/vc4: tests: Add unit test suite for the PV muxing
->       Documentation: gpu: vc4: Add KUnit Tests Section
->       drm/vc4: Improve the KUnit documentation
-> 
-> Maíra Canal (8):
->       drm/debugfs: create device-centered debugfs functions
->       drm: use new debugfs device-centered functions on DRM core files
->       drm/debugfs: create debugfs late register functions
->       drm/vc4: use new debugfs device-centered functions
->       drm/v3d: use new debugfs device-centered functions
->       drm/vkms: use new debugfs device-centered functions
->       drm/todo: update the debugfs clean up task
->       drm/vc4: drop all currently held locks if deadlock happens
-> 
-> Melissa Wen (2):
->       drm/v3d: cleanup BOs properly when lookup_bos fails
->       drm/v3d: replace obj lookup steps with drm_gem_objects_lookup
-> 
-> Noralf Trønnes (8):
->       drm/probe-helper: Provide a TV get_modes helper
->       drm/gud: Fix UBSAN warning
->       drm/gud: Don't retry a failed framebuffer flush
->       drm/gud: Split up gud_flush_work()
->       drm/gud: Prepare buffer for CPU access in gud_flush_work()
->       drm/gud: Use the shadow plane helper
->       drm/gud: Enable synchronous flushing by default
->       drm/gud: Fix missing include
-> 
-> Otto Pflüger (3):
->       drm/mipi-dbi: Support separate I/O regulator
->       drm/tiny: panel-mipi-dbi: Read I/O supply from DT
->       dt-bindings: display: panel: mipi-dbi-spi: Add io-supply
-> 
-> Paul Cercueil (20):
->       drm: atmel-hlcdc: Remove #ifdef guards for PM related functions
->       drm: imx/dcss: Remove #ifdef guards for PM related functions
->       drm: panfrost: Remove #ifdef guards for PM related functions
->       drm: rcar-du: Remove #ifdef guards for PM related functions
->       drm: shmobile: Remove #ifdef guards for PM related functions
->       drm: tilcdc: Remove #ifdef guards for PM related functions
->       drm: vboxvideo: Remove #ifdef guards for PM related functions
->       drm: gm12u320: Remove #ifdef guards for PM related functions
->       drm/i915/gt: Remove #ifdef guards for PM related functions
->       drm: exynos: Remove #ifdef guards for PM related functions
->       dt-bindings: display: bridge: it66121: Add compatible string for IT6610
->       drm: bridge: it66121: Use devm_regulator_bulk_get_enable()
->       drm: bridge: it66121: Use regmap_noinc_read()
->       drm: bridge: it66121: Write AVI infoframe with regmap_bulk_write()
->       drm: bridge: it66121: Fix wait for DDC ready
->       drm: bridge: it66121: Don't use DDC error IRQs
->       drm: bridge: it66121: Don't clear DDC FIFO twice
->       drm: bridge: it66121: Set DDC preamble only once before reading EDID
->       drm: bridge: it66121: Move VID/PID to new it66121_chip_info structure
->       drm: bridge: it66121: Add support for the IT6610
-> 
-> Philipp Zabel (1):
->       drm/imx: ipuv3-plane: Fix overlay plane width
-> 
-> Pin-yen Lin (2):
->       drm/bridge: it6505: Guard bridge power in IRQ handler
->       drm/bridge: it6505: Add caching for EDID
-> 
-> Randolph Sapp (1):
->       drm: tidss: Fix pixel format definition
-> 
-> Rob Clark (1):
->       drm/virtio: Spiff out cmd queue/response traces
-> 
-> Robert Foss (2):
->       Merge branch 'i2c/client_device_id_helper-immutable' of https://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux into drm-misc-next
->       drm/bridge: lt9611: Fix PLL being unable to lock
-> 
-> Sam Ravnborg (2):
->       drm/bridge: ps8640: Use atomic variants of drm_bridge_funcs
->       drm/bridge: Drop unused drm_bridge_chain functions
-> 
-> Shang XiaoJing (1):
->       drm/vc4: vec: Use pm_runtime_resume_and_get() in vc4_vec_encoder_enable()
-> 
-> Stefan Eichenberger (1):
->       drm/bridge: lt8912b: Add hot plug detection
-> 
-> T.J. Mercier (1):
->       dma-buf: A collection of typo and documentation fixes
-> 
-> Thomas Zimmermann (17):
->       Merge drm/drm-next into drm-misc-next
->       drm/hisilicon/hibmc: Fix preferred depth and bpp
->       drm/logicvc: Fix preferred fbdev cpp
->       drm/cirrus: Decouple fbdev bpp value from color depth
->       drm/ofdrm: Set preferred depth from format of scanout buffer
->       drm/simpledrm: Set preferred depth from format of scanout buffer
->       drm/solomon: Set preferred color depth and bpp to the correct values
->       drm/fb-helper: Don't use the preferred depth for the BPP default
->       drm/simple-kms: Remove drm_gem_simple_display_pipe_prepare_fb()
->       drm/ili9225: Call MIPI DBI mode_valid helper
->       drm/st7586: Call MIPI DBI mode_valid helper
->       drm/mipi-dbi: Initialize default driver functions with macro
->       drm/mipi-dbi: Prepare framebuffer copy operation in pipe-update helpers
->       drm/mipi-dbi: Support shadow-plane state
->       drm/mipi-dbi: Use shadow-plane mappings
->       drm/mipi-dbi: Move drm_dev_{enter, exit}() out from fb_dirty functions
->       drm/ast: Init iosys_map pointer as I/O memory for damage handling
-> 
-> Tomi Valkeinen (1):
->       drm/omap: dsi: Fix excessive stack usage
-> 
-> Uwe Kleine-König (25):
->       drm/bridge: ti-sn65dsi86: Convert to i2c's .probe_new()
->       drm/bridge: chrontel-ch7033: Convert to i2c's .probe_new()
->       drm/bridge/analogix/anx6345: Convert to i2c's .probe_new()
->       drm/bridge/analogix/anx78xx: Convert to i2c's .probe_new()
->       drm/bridge: anx7625: Convert to i2c's .probe_new()
->       drm/bridge: icn6211: Convert to i2c's .probe_new()
->       drm/bridge: it6505: Convert to i2c's .probe_new()
->       drm/bridge: it66121: Convert to i2c's .probe_new()
->       drm/bridge: lt8912b: Convert to i2c's .probe_new()
->       drm/bridge: lt9211: Convert to i2c's .probe_new()
->       drm/bridge: lt9611: Convert to i2c's .probe_new()
->       drm/bridge: lt9611uxc: Convert to i2c's .probe_new()
->       drm/bridge: megachips: Convert to i2c's .probe_new()
->       drm/bridge: nxp-ptn3460: Convert to i2c's .probe_new()
->       drm/bridge: sii902x: Convert to i2c's .probe_new()
->       drm/bridge: sii9234: Convert to i2c's .probe_new()
->       drm/bridge: sii8620: Convert to i2c's .probe_new()
->       drm/bridge: tc358767: Convert to i2c's .probe_new()
->       drm/bridge: tc358768: Convert to i2c's .probe_new()
->       drm/bridge/tc358775: Convert to i2c's .probe_new()
->       drm/bridge: tfp410: Convert to i2c's .probe_new()
->       drm/bridge: adv7511: Convert to i2c's .probe_new()
->       drm/bridge: parade-ps8622: Convert to i2c's .probe_new()
->       drm/bridge: ti-sn65dsi83: Convert to i2c's .probe_new()
->       drm/drv: Make use of local variable driver in drm_dev_register()
-> 
-> Xin Ji (1):
->       drm/bridge: anx7625: keep last configure timing
-> 
-> Yuan Can (4):
->       drm/bridge: megachips: Fix error handling in i2c_register_driver()
->       drm/vkms: Fix memory leak in vkms_init()
->       drm/vkms: Fix null-ptr-deref in vkms_release()
->       drm/omapdrm: Remove unused struct csc_coef_rgb2yuv
-> 
-> allen chen (2):
->       dt-bindings: it6505: add properties to restrict output bandwidth
->       drm/bridge: add it6505 driver to read data-lanes and link-frequencies from dt
-> 
->  .../bindings/display/bridge/ite,it6505.yaml        |   68 +-
->  .../bindings/display/bridge/ite,it66121.yaml       |    4 +-
->  .../bindings/display/panel/focaltech,gpt3.yaml     |   56 ++
->  .../bindings/display/panel/panel-mipi-dbi-spi.yaml |    8 +-
->  Documentation/fb/modedb.rst                        |    5 +
->  Documentation/gpu/drm-kms-helpers.rst              |    7 +
->  Documentation/gpu/drm-kms.rst                      |    6 +
->  Documentation/gpu/drm-uapi.rst                     |   12 +-
->  Documentation/gpu/todo.rst                         |   13 +-
->  Documentation/gpu/vc4.rst                          |   19 +
->  .../userspace-api/media/v4l/subdev-formats.rst     |  111 +++
->  MAINTAINERS                                        |    2 +-
->  drivers/dma-buf/dma-buf.c                          |   14 +-
->  drivers/dma-buf/udmabuf.c                          |   28 +
->  drivers/gpu/drm/Kconfig                            |    7 +
->  drivers/gpu/drm/Makefile                           |    2 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu.h                |    3 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c   |    1 +
->  drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h        |    2 +
->  drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c             |    2 +
->  drivers/gpu/drm/amd/amdgpu/amdgpu_cs.h             |    2 +
->  drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c        |    6 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c         |    6 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c        |    1 +
->  drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.h         |    1 -
->  drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c            |    1 +
->  drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c            |    1 +
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c            |    4 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c             |    1 +
->  drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h             |    2 +-
->  drivers/gpu/drm/amd/amdkfd/kfd_svm.c               |    1 +
->  drivers/gpu/drm/ast/ast_mode.c                     |    2 +-
->  drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c       |    9 +-
->  drivers/gpu/drm/bridge/adv7511/adv7511_drv.c       |    5 +-
->  drivers/gpu/drm/bridge/analogix/analogix-anx6345.c |    5 +-
->  drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c |    5 +-
->  drivers/gpu/drm/bridge/analogix/anx7625.c          |    6 +-
->  drivers/gpu/drm/bridge/chipone-icn6211.c           |    5 +-
->  drivers/gpu/drm/bridge/chrontel-ch7033.c           |    5 +-
->  drivers/gpu/drm/bridge/ite-it6505.c                |  132 ++-
->  drivers/gpu/drm/bridge/ite-it66121.c               |  320 +++---
->  drivers/gpu/drm/bridge/lontium-lt8912b.c           |   26 +-
->  drivers/gpu/drm/bridge/lontium-lt9211.c            |    5 +-
->  drivers/gpu/drm/bridge/lontium-lt9611.c            |    6 +-
->  drivers/gpu/drm/bridge/lontium-lt9611uxc.c         |    5 +-
->  .../drm/bridge/megachips-stdpxxxx-ge-b850v3-fw.c   |   16 +-
->  drivers/gpu/drm/bridge/nxp-ptn3460.c               |    5 +-
->  drivers/gpu/drm/bridge/panel.c                     |    4 +
->  drivers/gpu/drm/bridge/parade-ps8622.c             |    6 +-
->  drivers/gpu/drm/bridge/parade-ps8640.c             |   22 +-
->  drivers/gpu/drm/bridge/sii902x.c                   |   31 +-
->  drivers/gpu/drm/bridge/sii9234.c                   |    5 +-
->  drivers/gpu/drm/bridge/sil-sii8620.c               |    5 +-
->  drivers/gpu/drm/bridge/tc358767.c                  |    4 +-
->  drivers/gpu/drm/bridge/tc358768.c                  |    5 +-
->  drivers/gpu/drm/bridge/tc358775.c                  |    4 +-
->  drivers/gpu/drm/bridge/ti-sn65dsi83.c              |    8 +-
->  drivers/gpu/drm/bridge/ti-sn65dsi86.c              |    5 +-
->  drivers/gpu/drm/bridge/ti-tfp410.c                 |    5 +-
->  drivers/gpu/drm/display/drm_dp_mst_topology.c      |   12 +-
->  drivers/gpu/drm/drm_atomic.c                       |   23 +-
->  drivers/gpu/drm/drm_atomic_state_helper.c          |  124 +++
->  drivers/gpu/drm/drm_atomic_uapi.c                  |    4 +
->  drivers/gpu/drm/drm_bridge.c                       |  294 +++---
->  drivers/gpu/drm/drm_client.c                       |   11 +-
->  drivers/gpu/drm/drm_client_modeset.c               |    4 -
->  drivers/gpu/drm/drm_connector.c                    |  173 +++-
->  drivers/gpu/drm/drm_debugfs.c                      |  102 +-
->  drivers/gpu/drm/drm_drv.c                          |    7 +-
->  drivers/gpu/drm/drm_fb_helper.c                    |   30 +-
->  drivers/gpu/drm/drm_fbdev_generic.c                |   15 +-
->  drivers/gpu/drm/drm_fourcc.c                       |    4 +
->  drivers/gpu/drm/drm_framebuffer.c                  |   11 +-
->  drivers/gpu/drm/drm_gem.c                          |   19 +-
->  drivers/gpu/drm/drm_gem_atomic_helper.c            |   31 +-
->  drivers/gpu/drm/drm_gem_shmem_helper.c             |    4 +-
->  drivers/gpu/drm/drm_gem_ttm_helper.c               |    2 +
->  drivers/gpu/drm/drm_gem_vram_helper.c              |   12 +-
->  drivers/gpu/drm/drm_internal.h                     |    5 +
->  drivers/gpu/drm/drm_mipi_dbi.c                     |  158 ++-
->  drivers/gpu/drm/drm_mode_config.c                  |   10 +-
->  drivers/gpu/drm/drm_modes.c                        |  546 +++++++++-
->  drivers/gpu/drm/drm_panel_orientation_quirks.c     |   33 +-
->  drivers/gpu/drm/drm_probe_helper.c                 |   82 ++
->  drivers/gpu/drm/drm_simple_kms_helper.c            |    2 +-
->  drivers/gpu/drm/exynos/exynos5433_drm_decon.c      |   13 +-
->  drivers/gpu/drm/exynos/exynos7_drm_decon.c         |   12 +-
->  drivers/gpu/drm/exynos/exynos_dp.c                 |   11 +-
->  drivers/gpu/drm/exynos/exynos_drm_fimc.c           |   11 +-
->  drivers/gpu/drm/exynos/exynos_drm_fimd.c           |   11 +-
->  drivers/gpu/drm/exynos/exynos_drm_g2d.c            |   10 +-
->  drivers/gpu/drm/exynos/exynos_drm_mic.c            |   11 +-
->  drivers/gpu/drm/exynos/exynos_drm_rotator.c        |   12 +-
->  drivers/gpu/drm/exynos/exynos_drm_scaler.c         |   12 +-
->  drivers/gpu/drm/gud/gud_connector.c                |   10 +-
->  drivers/gpu/drm/gud/gud_drv.c                      |    1 +
->  drivers/gpu/drm/gud/gud_internal.h                 |    1 +
->  drivers/gpu/drm/gud/gud_pipe.c                     |  223 +++--
->  drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c    |    4 +-
->  drivers/gpu/drm/i2c/ch7006_drv.c                   |    8 +-
->  drivers/gpu/drm/i915/display/intel_tv.c            |    4 +-
->  drivers/gpu/drm/i915/gem/i915_gem_object_types.h   |    2 +-
->  drivers/gpu/drm/i915/gem/i915_gem_ttm.c            |   11 +-
->  drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c       |    2 +-
->  drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c        |    8 +-
->  drivers/gpu/drm/i915/i915_deps.c                   |    2 +-
->  drivers/gpu/drm/i915/i915_gem.c                    |    2 +-
->  drivers/gpu/drm/i915/i915_ttm_buddy_manager.c      |    2 +-
->  drivers/gpu/drm/i915/intel_region_ttm.c            |    3 +-
->  drivers/gpu/drm/imx/Kconfig                        |   41 +-
->  drivers/gpu/drm/imx/Makefile                       |   10 +-
->  drivers/gpu/drm/imx/dcss/dcss-dev.c                |   17 +-
->  drivers/gpu/drm/imx/dcss/dcss-dev.h                |    7 +-
->  drivers/gpu/drm/imx/dcss/dcss-drv.c                |    8 +-
->  drivers/gpu/drm/imx/ipuv3/Kconfig                  |   41 +
->  drivers/gpu/drm/imx/ipuv3/Makefile                 |   11 +
->  drivers/gpu/drm/imx/{ => ipuv3}/dw_hdmi-imx.c      |    0
->  drivers/gpu/drm/imx/{ => ipuv3}/imx-drm-core.c     |    0
->  drivers/gpu/drm/imx/{ => ipuv3}/imx-drm.h          |    0
->  drivers/gpu/drm/imx/{ => ipuv3}/imx-ldb.c          |    0
->  drivers/gpu/drm/imx/{ => ipuv3}/imx-tve.c          |    0
->  drivers/gpu/drm/imx/{ => ipuv3}/ipuv3-crtc.c       |    0
->  drivers/gpu/drm/imx/{ => ipuv3}/ipuv3-plane.c      |   14 +-
->  drivers/gpu/drm/imx/{ => ipuv3}/ipuv3-plane.h      |    0
->  drivers/gpu/drm/imx/{ => ipuv3}/parallel-display.c |    0
->  drivers/gpu/drm/logicvc/logicvc_drm.c              |   13 +-
->  drivers/gpu/drm/mediatek/mtk_dp.c                  |    4 +-
->  drivers/gpu/drm/meson/meson_dw_hdmi.c              |   23 +-
->  drivers/gpu/drm/mxsfb/Kconfig                      |    2 +
->  drivers/gpu/drm/nouveau/dispnv04/tvnv17.c          |    6 +-
->  drivers/gpu/drm/nouveau/nouveau_bo.c               |    1 +
->  drivers/gpu/drm/nouveau/nouveau_bo.h               |    3 +-
->  drivers/gpu/drm/nouveau/nouveau_drv.h              |    3 +-
->  drivers/gpu/drm/nouveau/nouveau_mem.c              |    3 +-
->  drivers/gpu/drm/nouveau/nouveau_mem.h              |    2 +-
->  drivers/gpu/drm/nouveau/nouveau_prime.c            |    1 +
->  drivers/gpu/drm/nouveau/nouveau_sgdma.c            |    1 +
->  drivers/gpu/drm/omapdrm/dss/dispc.c                |    5 -
->  drivers/gpu/drm/omapdrm/dss/dsi.c                  |   26 +-
->  drivers/gpu/drm/panel/Kconfig                      |    9 +
->  drivers/gpu/drm/panel/Makefile                     |    1 +
->  drivers/gpu/drm/panel/panel-edp.c                  |    8 +-
->  drivers/gpu/drm/panel/panel-ilitek-ili9341.c       |    6 +-
->  drivers/gpu/drm/panel/panel-orisetech-ota5601a.c   |  364 +++++++
->  drivers/gpu/drm/panel/panel-samsung-atna33xc20.c   |   10 +-
->  drivers/gpu/drm/panel/panel-simple.c               |    6 +-
->  drivers/gpu/drm/panfrost/panfrost_device.c         |   10 +-
->  drivers/gpu/drm/panfrost/panfrost_device.h         |    4 +-
->  drivers/gpu/drm/panfrost/panfrost_drv.c            |    7 +-
->  drivers/gpu/drm/qxl/qxl_cmd.c                      |   16 +-
->  drivers/gpu/drm/qxl/qxl_drv.h                      |    3 +-
->  drivers/gpu/drm/qxl/qxl_ttm.c                      |    4 +-
->  drivers/gpu/drm/radeon/radeon.h                    |    3 +-
->  drivers/gpu/drm/radeon/radeon_device.c             |    5 -
->  drivers/gpu/drm/radeon/radeon_pm.c                 |    4 +-
->  drivers/gpu/drm/radeon/radeon_prime.c              |    2 +
->  drivers/gpu/drm/radeon/radeon_ttm.c                |    4 +-
->  drivers/gpu/drm/rcar-du/rcar_du_drv.c              |    9 +-
->  drivers/gpu/drm/scheduler/sched_entity.c           |    2 +-
->  drivers/gpu/drm/scheduler/sched_main.c             |    4 +-
->  drivers/gpu/drm/shmobile/shmob_drm_drv.c           |    9 +-
->  drivers/gpu/drm/solomon/ssd130x.c                  |    4 +-
->  drivers/gpu/drm/sprd/sprd_dpu.c                    |    4 +-
->  drivers/gpu/drm/sun4i/sun4i_tv.c                   |  141 +--
->  drivers/gpu/drm/tests/Makefile                     |    8 +-
->  drivers/gpu/drm/tests/drm_client_modeset_test.c    |  110 ++-
->  drivers/gpu/drm/tests/drm_cmdline_parser_test.c    |   68 ++
->  drivers/gpu/drm/tests/drm_connector_test.c         |   76 ++
->  drivers/gpu/drm/tests/drm_kunit_helpers.c          |  105 +-
->  drivers/gpu/drm/tests/drm_kunit_helpers.h          |   11 -
->  drivers/gpu/drm/tests/drm_managed_test.c           |   71 ++
->  drivers/gpu/drm/tests/drm_modes_test.c             |  158 +++
->  drivers/gpu/drm/tests/drm_probe_helper_test.c      |  218 ++++
->  drivers/gpu/drm/tidss/tidss_dispc.c                |    6 +-
->  drivers/gpu/drm/tilcdc/tilcdc_drv.c                |    9 +-
->  drivers/gpu/drm/tiny/cirrus.c                      |    2 +-
->  drivers/gpu/drm/tiny/gm12u320.c                    |   15 +-
->  drivers/gpu/drm/tiny/hx8357d.c                     |    5 +-
->  drivers/gpu/drm/tiny/ili9163.c                     |    6 +-
->  drivers/gpu/drm/tiny/ili9225.c                     |   36 +-
->  drivers/gpu/drm/tiny/ili9341.c                     |    5 +-
->  drivers/gpu/drm/tiny/ili9486.c                     |   20 +-
->  drivers/gpu/drm/tiny/mi0283qt.c                    |    5 +-
->  drivers/gpu/drm/tiny/ofdrm.c                       |   13 +-
->  drivers/gpu/drm/tiny/panel-mipi-dbi.c              |   10 +-
->  drivers/gpu/drm/tiny/simpledrm.c                   |    4 +-
->  drivers/gpu/drm/tiny/st7586.c                      |   39 +-
->  drivers/gpu/drm/tiny/st7735r.c                     |    5 +-
->  drivers/gpu/drm/ttm/ttm_bo.c                       |  211 ++--
->  drivers/gpu/drm/ttm/ttm_bo_util.c                  |  111 ++-
->  drivers/gpu/drm/ttm/ttm_bo_vm.c                    |   19 +-
->  drivers/gpu/drm/ttm/ttm_device.c                   |   26 +-
->  drivers/gpu/drm/ttm/ttm_execbuf_util.c             |    6 +-
->  drivers/gpu/drm/ttm/ttm_pool.c                     |    3 +-
->  drivers/gpu/drm/ttm/ttm_range_manager.c            |    2 +-
->  drivers/gpu/drm/ttm/ttm_resource.c                 |    3 +-
->  drivers/gpu/drm/ttm/ttm_tt.c                       |    3 +-
->  drivers/gpu/drm/v3d/v3d_debugfs.c                  |   22 +-
->  drivers/gpu/drm/v3d/v3d_gem.c                      |   55 +-
->  drivers/gpu/drm/vboxvideo/vbox_drv.c               |    6 +-
->  drivers/gpu/drm/vc4/Kconfig                        |   16 +
->  drivers/gpu/drm/vc4/Makefile                       |    7 +
->  drivers/gpu/drm/vc4/tests/.kunitconfig             |   13 +
->  drivers/gpu/drm/vc4/tests/vc4_mock.c               |  200 ++++
->  drivers/gpu/drm/vc4/tests/vc4_mock.h               |   63 ++
->  drivers/gpu/drm/vc4/tests/vc4_mock_crtc.c          |   41 +
->  drivers/gpu/drm/vc4/tests/vc4_mock_output.c        |  138 +++
->  drivers/gpu/drm/vc4/tests/vc4_mock_plane.c         |   47 +
->  drivers/gpu/drm/vc4/tests/vc4_test_pv_muxing.c     | 1039 ++++++++++++++++++++
->  drivers/gpu/drm/vc4/vc4_bo.c                       |   10 +-
->  drivers/gpu/drm/vc4/vc4_crtc.c                     |  144 ++-
->  drivers/gpu/drm/vc4/vc4_debugfs.c                  |   36 +-
->  drivers/gpu/drm/vc4/vc4_dpi.c                      |   34 +-
->  drivers/gpu/drm/vc4/vc4_drv.c                      |    5 +-
->  drivers/gpu/drm/vc4/vc4_drv.h                      |  148 ++-
->  drivers/gpu/drm/vc4/vc4_dsi.c                      |  186 ++--
->  drivers/gpu/drm/vc4/vc4_hdmi.c                     |   23 +-
->  drivers/gpu/drm/vc4/vc4_hdmi_regs.h                |    4 +
->  drivers/gpu/drm/vc4/vc4_hvs.c                      |   97 +-
->  drivers/gpu/drm/vc4/vc4_kms.c                      |  138 +--
->  drivers/gpu/drm/vc4/vc4_txp.c                      |   62 +-
->  drivers/gpu/drm/vc4/vc4_v3d.c                      |   14 +-
->  drivers/gpu/drm/vc4/vc4_vec.c                      |  361 +++++--
->  drivers/gpu/drm/virtio/virtgpu_drv.h               |    3 +
->  drivers/gpu/drm/virtio/virtgpu_trace.h             |   26 +-
->  drivers/gpu/drm/virtio/virtgpu_vq.c                |   13 +-
->  drivers/gpu/drm/vkms/vkms_drv.c                    |   27 +-
->  drivers/gpu/drm/vkms/vkms_drv.h                    |    4 +-
->  drivers/gpu/drm/vmwgfx/vmwgfx_cmdbuf.c             |    2 +-
->  drivers/gpu/drm/vmwgfx/vmwgfx_drv.c                |    1 -
->  drivers/gpu/drm/vmwgfx/vmwgfx_drv.h                |    4 +-
->  drivers/gpu/drm/vmwgfx/vmwgfx_execbuf.c            |    2 +-
->  drivers/gpu/drm/vmwgfx/vmwgfx_gmr.c                |    1 -
->  drivers/gpu/drm/vmwgfx/vmwgfx_gmrid_manager.c      |    1 -
->  drivers/gpu/drm/vmwgfx/vmwgfx_system_manager.c     |    1 -
->  drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c         |    1 -
->  drivers/gpu/ipu-v3/ipu-common.c                    |    1 +
->  drivers/i2c/i2c-core-base.c                        |   14 +
->  drivers/video/fbdev/core/fb_defio.c                |   16 -
->  include/drm/drm_atomic.h                           |   32 +-
->  include/drm/drm_atomic_state_helper.h              |    4 +
->  include/drm/drm_audio_component.h                  |    3 +
->  include/drm/drm_bridge.h                           |   36 +-
->  include/drm/drm_connector.h                        |   82 +-
->  include/drm/drm_debugfs.h                          |   41 +
->  include/drm/drm_device.h                           |   15 +
->  include/drm/drm_fb_helper.h                        |    2 +
->  include/drm/drm_gem.h                              |    1 +
->  include/drm/drm_gem_atomic_helper.h                |    2 -
->  include/drm/drm_gem_ttm_helper.h                   |    3 +-
->  include/drm/drm_gem_vram_helper.h                  |    4 +-
->  include/drm/drm_kunit_helpers.h                    |   91 ++
->  include/drm/drm_mipi_dbi.h                         |   43 +-
->  include/drm/drm_mode_config.h                      |   12 +-
->  include/drm/drm_modes.h                            |   17 +
->  include/drm/drm_panel.h                            |   10 +
->  include/drm/drm_plane.h                            |    4 +-
->  include/drm/drm_probe_helper.h                     |    1 +
->  include/drm/drm_simple_kms_helper.h                |    4 +-
->  include/drm/ttm/{ttm_bo_api.h => ttm_bo.h}         |  371 ++++---
->  include/drm/ttm/ttm_bo_driver.h                    |  303 ------
->  include/drm/ttm/ttm_device.h                       |    7 +-
->  include/drm/ttm/ttm_execbuf_util.h                 |    4 +-
->  include/linux/dma-buf.h                            |    4 +-
->  include/linux/fb.h                                 |    3 +-
->  include/linux/i2c.h                                |    1 +
->  include/uapi/linux/media-bus-format.h              |    5 +-
->  267 files changed, 7001 insertions(+), 2561 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/focaltech,gpt3.yaml
->  create mode 100644 drivers/gpu/drm/imx/ipuv3/Kconfig
->  create mode 100644 drivers/gpu/drm/imx/ipuv3/Makefile
->  rename drivers/gpu/drm/imx/{ => ipuv3}/dw_hdmi-imx.c (100%)
->  rename drivers/gpu/drm/imx/{ => ipuv3}/imx-drm-core.c (100%)
->  rename drivers/gpu/drm/imx/{ => ipuv3}/imx-drm.h (100%)
->  rename drivers/gpu/drm/imx/{ => ipuv3}/imx-ldb.c (100%)
->  rename drivers/gpu/drm/imx/{ => ipuv3}/imx-tve.c (100%)
->  rename drivers/gpu/drm/imx/{ => ipuv3}/ipuv3-crtc.c (100%)
->  rename drivers/gpu/drm/imx/{ => ipuv3}/ipuv3-plane.c (98%)
->  rename drivers/gpu/drm/imx/{ => ipuv3}/ipuv3-plane.h (100%)
->  rename drivers/gpu/drm/imx/{ => ipuv3}/parallel-display.c (100%)
->  create mode 100644 drivers/gpu/drm/panel/panel-orisetech-ota5601a.c
->  create mode 100644 drivers/gpu/drm/tests/drm_connector_test.c
->  delete mode 100644 drivers/gpu/drm/tests/drm_kunit_helpers.h
->  create mode 100644 drivers/gpu/drm/tests/drm_managed_test.c
->  create mode 100644 drivers/gpu/drm/tests/drm_modes_test.c
->  create mode 100644 drivers/gpu/drm/tests/drm_probe_helper_test.c
->  create mode 100644 drivers/gpu/drm/vc4/tests/.kunitconfig
->  create mode 100644 drivers/gpu/drm/vc4/tests/vc4_mock.c
->  create mode 100644 drivers/gpu/drm/vc4/tests/vc4_mock.h
->  create mode 100644 drivers/gpu/drm/vc4/tests/vc4_mock_crtc.c
->  create mode 100644 drivers/gpu/drm/vc4/tests/vc4_mock_output.c
->  create mode 100644 drivers/gpu/drm/vc4/tests/vc4_mock_plane.c
->  create mode 100644 drivers/gpu/drm/vc4/tests/vc4_test_pv_muxing.c
->  create mode 100644 include/drm/drm_kunit_helpers.h
->  rename include/drm/ttm/{ttm_bo_api.h => ttm_bo.h} (66%)
->  delete mode 100644 include/drm/ttm/ttm_bo_driver.h
-> 
-> -- 
-> Thomas Zimmermann
-> Graphics Driver Developer
-> SUSE Software Solutions Germany GmbH
-> Maxfeldstr. 5, 90409 Nürnberg, Germany
-> (HRB 36809, AG Nürnberg)
-> Geschäftsführer: Felix Imendörffer
+>=20
+> How about replacing the other open coded try loop in intel_dp_aux_xfer()
+> with intel_de_wait_for_register() too?
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Sure will float a patch for that too.
+
+Thanks and Regards,
+Arun R Murthy
+--------------------
+>=20
+> BR,
+> Jani.
+>=20
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp_aux.c | 14 +++++---------
+> >  1 file changed, 5 insertions(+), 9 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> > b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> > index 91c93c93e5fc..5a176bfb10a2 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> > @@ -41,20 +41,16 @@ intel_dp_aux_wait_done(struct intel_dp *intel_dp)
+> >  	i915_reg_t ch_ctl =3D intel_dp->aux_ch_ctl_reg(intel_dp);
+> >  	const unsigned int timeout_ms =3D 10;
+> >  	u32 status;
+> > -	bool done;
+> > -
+> > -#define C (((status =3D intel_de_read_notrace(i915, ch_ctl)) &
+> DP_AUX_CH_CTL_SEND_BUSY) =3D=3D 0)
+> > -	done =3D wait_event_timeout(i915->display.gmbus.wait_queue, C,
+> > -				  msecs_to_jiffies_timeout(timeout_ms));
+> > +	int ret;
+> >
+> > -	/* just trace the final value */
+> > -	trace_i915_reg_rw(false, ch_ctl, status, sizeof(status), true);
+> > +	ret =3D __intel_de_wait_for_register(i915, ch_ctl,
+> > +					   DP_AUX_CH_CTL_SEND_BUSY, 0,
+> > +					   2, timeout_ms, &status);
+> >
+> > -	if (!done)
+> > +	if (ret =3D=3D -ETIMEDOUT)
+> >  		drm_err(&i915->drm,
+> >  			"%s: did not complete or timeout within %ums
+> (status 0x%08x)\n",
+> >  			intel_dp->aux.name, timeout_ms, status); -#undef C
+> >
+> >  	return status;
+> >  }
+>=20
+> --
+> Jani Nikula, Intel Open Source Graphics Center
