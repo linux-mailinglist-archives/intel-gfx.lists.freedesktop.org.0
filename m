@@ -2,58 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 508E465D061
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Jan 2023 11:08:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 959DE65D07A
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Jan 2023 11:15:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFBA510E56A;
-	Wed,  4 Jan 2023 10:08:35 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F8CB10E56A;
- Wed,  4 Jan 2023 10:08:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 771AC10E56F;
+	Wed,  4 Jan 2023 10:15:00 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B5CF10E56F
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 Jan 2023 10:14:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1672826914; x=1704362914;
+ t=1672827298; x=1704363298;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=NGHGib1U6D2wARLPjdMFf6PUETAizeB9ioowpLTLMkE=;
- b=IF5xI6PqTbeIbTDQh1eFaIDQk4D9HwuXU7jhm4Ir3TyKAsUwUpWY1NGd
- wYlu9QntGiGYJqf2kJnXmNsueObQIkXF/x7IThXt9Xh9ILkMJvfY1ehKr
- KJ42Mrmqldf+Jb762boy7i2t2ODYdihMRyTRA9a7X3IEpR2XR1snCqxLJ
- ELg8mfsXV5++VLWte5MFXj+rwm+wnQgBXCCeM4cfSSNlEXdOAWaiXZ8IV
- 8Pz5LSYkXvGRGGWHVzox7MIVYnVrRevNSjJLANwPDAb0qiSMdch/HUVey
- N+uW6MvlRpyFLNbq66ZQRi3f4TvENYYQqUdxQggdF1MbznCvidZheC6KT w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10579"; a="305402673"
-X-IronPort-AV: E=Sophos;i="5.96,299,1665471600"; d="scan'208";a="305402673"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2023 02:08:33 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10579"; a="829137108"
-X-IronPort-AV: E=Sophos;i="5.96,299,1665471600"; d="scan'208";a="829137108"
+ bh=uLP4A3XlLXIFjMFMsEcgdE9OmjLne242EwwwhbCNK8Y=;
+ b=a3Hw1xG9izSKSioQgcumxa5Z6ASDpLI8ZfA//dM7uLPS0tmKePPew8W3
+ 6FHAY0mTZ1og+PiN6OJDXRJrx06D+KC3dBP0E3TjAuh3IEzoFtS/SXC/n
+ sD1DIXONXit+3Xyg4++VRFn6X3f5EPs0e28DwFEw5pCIgAXM2Dv5AJJzs
+ +4Jqej74in9YkY1ocGyVAJqykv79VSKjJwbBiMI2w+2K/sx0LVyZusZvo
+ 7LFu3DvfRceZ9FFYLkzecgbXwvtcMYao46Lr5EeeB9DX15o2AtVDwU3WJ
+ GruKPK1Y/hhGNC0pmSVZmHKWMfFr6Z+yimxr6HmONR08jZfnvbcLFEFAa A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10579"; a="301590621"
+X-IronPort-AV: E=Sophos;i="5.96,299,1665471600"; d="scan'208";a="301590621"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2023 02:14:57 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10579"; a="762629803"
+X-IronPort-AV: E=Sophos;i="5.96,299,1665471600"; d="scan'208";a="762629803"
 Received: from wfurtakx-mobl.ger.corp.intel.com (HELO [10.213.223.45])
  ([10.213.223.45])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2023 02:08:31 -0800
-Message-ID: <210966b7-d736-48cd-15f4-3451d96914b6@linux.intel.com>
-Date: Wed, 4 Jan 2023 10:08:29 +0000
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2023 02:14:55 -0800
+Message-ID: <823d28bf-3bb4-4b97-0821-e920588ffec4@linux.intel.com>
+Date: Wed, 4 Jan 2023 10:14:54 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
 Content-Language: en-US
-To: Matt Roper <matthew.d.roper@intel.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>
-References: <20221219101316.168129-1-tvrtko.ursulin@linux.intel.com>
- <20221219101316.168129-3-tvrtko.ursulin@linux.intel.com>
- <083b4424-d984-a2d2-1f58-035e4c1c82bd@intel.com>
- <Y7SIwogJwS2teOgy@mdroper-desk1.amr.corp.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>,
+ Suraj Kandpal <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20230102054047.124624-1-suraj.kandpal@intel.com>
+ <20230102054047.124624-6-suraj.kandpal@intel.com> <87k022y6af.fsf@intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <Y7SIwogJwS2teOgy@mdroper-desk1.amr.corp.intel.com>
+In-Reply-To: <87k022y6af.fsf@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Consolidate TLB invalidation
- flow
+Subject: Re: [Intel-gfx] [PATCH v5 5/7] drm/i915/hdcp: Fill wired_cmd_in
+ structures at a single place
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,404 +64,566 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 03/01/2023 19:57, Matt Roper wrote:
-> On Mon, Dec 19, 2022 at 05:10:02PM +0100, Andrzej Hajda wrote:
->> On 19.12.2022 11:13, Tvrtko Ursulin wrote:
->>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>
->>> As the logic for selecting the register and corresponsing values grew, the
+On 04/01/2023 09:53, Jani Nikula wrote:
+> On Mon, 02 Jan 2023, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+>> Need to fill wired cmd in structures at a single place as they remain
+>> same for both gsc and mei.
+> 
+> I'm still opposed to adding this stuff to i915 and exporting the
+> symbols. Seems like it should be a separate component, because this is
+> not about i915.
+> 
+> Cc: other maintainers, please chime in.
+> 
+>> --v3
+>> -remove inline function from header [Jani]
 >>
->> corresponding
+>> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/Makefile              |   1 +
+>>   drivers/gpu/drm/i915/i915_hdcp_interface.c | 216 +++++++++++++++++++++
+>>   drivers/misc/mei/hdcp/mei_hdcp.c           | 153 ++-------------
+>>   include/drm/i915_hdcp_interface.h          |  39 ++++
+>>   4 files changed, 270 insertions(+), 139 deletions(-)
+>>   create mode 100644 drivers/gpu/drm/i915/i915_hdcp_interface.c
 >>
->>> code become a bit unsightly. Consolidate by storing the required values at
->>> engine init time in the engine itself, and by doing so minimise the amount
->>> of invariant platform and engine checks during each and every TLB
->>> invalidation.
->>>
->>> v2:
->>>    * Fail engine probe if TLB invlidations registers are unknown.
->>>
->>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
->>> Cc: Matt Roper <matthew.d.roper@intel.com>
->>> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com> # v1
->>> ---
->>>    drivers/gpu/drm/i915/gt/intel_engine_cs.c    |  93 +++++++++++++
->>>    drivers/gpu/drm/i915/gt/intel_engine_types.h |  15 +++
->>>    drivers/gpu/drm/i915/gt/intel_gt.c           | 135 +++----------------
->>>    3 files changed, 128 insertions(+), 115 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>> index 99c4b866addd..d47dadfc25c8 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>> @@ -1143,12 +1143,105 @@ static int init_status_page(struct intel_engine_cs *engine)
->>>    	return ret;
->>>    }
->>> +static int intel_engine_init_tlb_invalidation(struct intel_engine_cs *engine)
->>> +{
->>> +	static const union intel_engine_tlb_inv_reg gen8_regs[] = {
->>> +		[RENDER_CLASS].reg		= GEN8_RTCR,
->>> +		[VIDEO_DECODE_CLASS].reg	= GEN8_M1TCR, /* , GEN8_M2TCR */
->>> +		[VIDEO_ENHANCEMENT_CLASS].reg	= GEN8_VTCR,
->>> +		[COPY_ENGINE_CLASS].reg		= GEN8_BTCR,
->>> +	};
->>> +	static const union intel_engine_tlb_inv_reg gen12_regs[] = {
->>> +		[RENDER_CLASS].reg		= GEN12_GFX_TLB_INV_CR,
->>> +		[VIDEO_DECODE_CLASS].reg	= GEN12_VD_TLB_INV_CR,
->>> +		[VIDEO_ENHANCEMENT_CLASS].reg	= GEN12_VE_TLB_INV_CR,
->>> +		[COPY_ENGINE_CLASS].reg		= GEN12_BLT_TLB_INV_CR,
->>> +		[COMPUTE_CLASS].reg		= GEN12_COMPCTX_TLB_INV_CR,
->>> +	};
->>> +	static const union intel_engine_tlb_inv_reg xehp_regs[] = {
->>> +		[RENDER_CLASS].mcr_reg		  = XEHP_GFX_TLB_INV_CR,
->>> +		[VIDEO_DECODE_CLASS].mcr_reg	  = XEHP_VD_TLB_INV_CR,
->>> +		[VIDEO_ENHANCEMENT_CLASS].mcr_reg = XEHP_VE_TLB_INV_CR,
->>> +		[COPY_ENGINE_CLASS].mcr_reg	  = XEHP_BLT_TLB_INV_CR,
->>> +		[COMPUTE_CLASS].mcr_reg		  = XEHP_COMPCTX_TLB_INV_CR,
->>> +	};
->>> +	struct drm_i915_private *i915 = engine->i915;
->>> +	const union intel_engine_tlb_inv_reg *regs;
->>> +	union intel_engine_tlb_inv_reg reg;
->>> +	unsigned int class = engine->class;
->>> +	unsigned int num = 0;
->>> +	u32 val;
->>> +
->>> +	/*
->>> +	 * New platforms should not be added with catch-all-newer (>=)
->>> +	 * condition so that any later platform added triggers the below warning
->>> +	 * and in turn mandates a human cross-check of whether the invalidation
->>> +	 * flows have compatible semantics.
->>> +	 *
->>> +	 * For instance with the 11.00 -> 12.00 transition three out of five
->>> +	 * respective engine registers were moved to masked type. Then after the
->>> +	 * 12.00 -> 12.50 transition multi cast handling is required too.
->>> +	 */
->>> +
->>> +	if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 50)) {
-> 
-> This is bad...it only captures XEHPSDV and breaks the handling of DG2
-> (12.55), PVC (12.60), and MTL (12.70, 12.71, and 12.72).  You're not
-> hitting the warning as expected since those are all now being captured
-> by the next case of the if/else ladder.  With the way GMD_ID works, we
-> may also get new version numbers that silently show up in hardware too
-> at some point (e.g., 12.73, 12.74, etc.)
+>> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+>> index 461d6b40656d..c6a9826af58d 100644
+>> --- a/drivers/gpu/drm/i915/Makefile
+>> +++ b/drivers/gpu/drm/i915/Makefile
+>> @@ -36,6 +36,7 @@ i915-y += i915_driver.o \
+>>   	  i915_drm_client.o \
+>>   	  i915_config.o \
+>>   	  i915_getparam.o \
+>> +	  i915_hdcp_interface.o\
+>>   	  i915_ioctl.o \
+>>   	  i915_irq.o \
+>>   	  i915_mitigations.o \
+>> diff --git a/drivers/gpu/drm/i915/i915_hdcp_interface.c b/drivers/gpu/drm/i915/i915_hdcp_interface.c
+>> new file mode 100644
+>> index 000000000000..e6b787c2fa50
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/i915/i915_hdcp_interface.c
+>> @@ -0,0 +1,216 @@
+>> +// SPDX-License-Identifier: MIT
+>> +/*
+>> + * Copyright 2022, Intel Corporation.
+>> + */
+>> +
+>> +#include <drm/i915_hdcp_interface.h>
+>> +
+>> +void
+>> +i915_hdcp_fill_session_in(struct wired_cmd_initiate_hdcp2_session_in *session_init_in,
+>> +			  struct hdcp_port_data *data)
+>> +{
+>> +	session_init_in->header.api_version = HDCP_API_VERSION;
+>> +	session_init_in->header.command_id = WIRED_INITIATE_HDCP2_SESSION;
+>> +	session_init_in->header.status = FW_HDCP_STATUS_SUCCESS;
+>> +	session_init_in->header.buffer_len =
+>> +				WIRED_CMD_BUF_LEN_INITIATE_HDCP2_SESSION_IN;
+>> +
+>> +	session_init_in->port.integrated_port_type = data->port_type;
+>> +	session_init_in->port.physical_port = (u8)data->hdcp_ddi;
+>> +	session_init_in->port.attached_transcoder = (u8)data->hdcp_transcoder;
+>> +	session_init_in->protocol = data->protocol;
+>> +}
+>> +EXPORT_SYMBOL(i915_hdcp_fill_session_in);
 
-Great (on multiple counts) ...
+I am not familiar enough with the problem space but this kind of trivial 
+exported symbols definitely do not look like the best choice.
 
-> 
->>> +		regs = xehp_regs;
->>> +		num = ARRAY_SIZE(xehp_regs);
->>> +	} else if (GRAPHICS_VER(i915) == 12) {
-> 
-> You'd want to change this to
-> 
->          GRAPHICS_VER_FULL(i915) == IP_VER(12, 0)
-> 
-> to get the behavior you expected.
+Presumably there are two kernel modules dealing with this HDCP protocol 
+in which case would creating a kernel module like intel_hdcp, which 
+would establish the protocol definitions and API to use it. I915 and any 
+other module would then depend on that module and use it.
 
-Okay, that, and then to be as safe as I intended, ie. warn on every new 
-platforms so developers *must* check registers are still compatible 
-during platform enablement, we would need a full ver range check 
-something like:
-
-	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50) &&
-	    GRAPHICS_VER_FULL(i915) <= IP_VER(12, 55)) {
-		regs = xehp_regs;
-		num = ARRAY_SIZE(xehp_regs);
-	} else if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 0)) {
-		regs = gen12_regs;
-		num = ARRAY_SIZE(gen12_regs);
-
-What do you think about that?
-
-Or you are saying new GMD IDs may appear in the field without first 
-having passed the new platform enablemend process? That would be 
-horrible so I hope not.
+Presumably this is what Jani meant actually and that sounds like the 
+exactly right direction to me. I just don't know enough about the scope 
+of the protocol to propose anything more specific.
 
 Regards,
 
 Tvrtko
 
->>> +		regs = gen12_regs;
->>> +		num = ARRAY_SIZE(gen12_regs);
->>> +	} else if (GRAPHICS_VER(i915) >= 8 && GRAPHICS_VER(i915) <= 11) {
->>> +		regs = gen8_regs;
->>> +		num = ARRAY_SIZE(gen8_regs);
->>> +	} else if (GRAPHICS_VER(i915) < 8) {
->>> +		return 0;
->>> +	} > +
->>> +	if (drm_WARN_ONCE(&i915->drm, !num,
->>> +			  "Platform does not implement TLB invalidation!"))
->>> +		return -ENODEV;
->>> +
->>> +	if (drm_WARN_ON_ONCE(&i915->drm,
->>> +			     class >= num ||
->>> +			     (!regs[class].reg.reg &&
->>> +			      !regs[class].mcr_reg.reg)))
->>> +		return -ERANGE;
->>
->> I hope the propagation of -ERANGE to device probe is OK.
->>
->> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
->>
->> Regards
->> Andrzej
->>
->>> +
->>> +	reg = regs[class];
->>> +
->>> +	if (GRAPHICS_VER(i915) == 8 && class == VIDEO_DECODE_CLASS) {
->>> +		reg.reg.reg += 4 * engine->instance; /* GEN8_M2TCR */
->>> +		val = 0;
->>> +	} else {
->>> +		val = engine->instance;
->>> +	}
->>> +
->>> +	val = BIT(val);
->>> +
->>> +	engine->tlb_inv.mcr = regs == xehp_regs;
->>> +	engine->tlb_inv.reg = reg;
->>> +	engine->tlb_inv.done = val;
->>> +
->>> +	if (GRAPHICS_VER(i915) >= 12 &&
->>> +	    (engine->class == VIDEO_DECODE_CLASS ||
->>> +	     engine->class == VIDEO_ENHANCEMENT_CLASS ||
->>> +	     engine->class == COMPUTE_CLASS))
->>> +		engine->tlb_inv.request = _MASKED_BIT_ENABLE(val);
->>> +	else
->>> +		engine->tlb_inv.request = val;
->>> +
->>> +	return 0;
->>> +}
->>> +
->>>    static int engine_setup_common(struct intel_engine_cs *engine)
->>>    {
->>>    	int err;
->>>    	init_llist_head(&engine->barrier_tasks);
->>> +	err = intel_engine_init_tlb_invalidation(engine);
->>> +	if (err)
->>> +		return err;
->>> +
->>>    	err = init_status_page(engine);
->>>    	if (err)
->>>    		return err;
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
->>> index 4fd54fb8810f..8c661fe89314 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
->>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
->>> @@ -341,6 +341,19 @@ struct intel_engine_guc_stats {
->>>    	u64 start_gt_clk;
->>>    };
->>> +union intel_engine_tlb_inv_reg {
->>> +	i915_reg_t	reg;
->>> +	i915_mcr_reg_t	mcr_reg;
->>> +};
->>> +
->>> +struct intel_engine_tlb_inv
->>> +{
->>> +	bool mcr;
->>> +	union intel_engine_tlb_inv_reg reg;
->>> +	u32 request;
->>> +	u32 done;
->>> +};
->>> +
->>>    struct intel_engine_cs {
->>>    	struct drm_i915_private *i915;
->>>    	struct intel_gt *gt;
->>> @@ -372,6 +385,8 @@ struct intel_engine_cs {
->>>    	u32 context_size;
->>>    	u32 mmio_base;
->>> +	struct intel_engine_tlb_inv tlb_inv;
->>> +
->>>    	/*
->>>    	 * Some w/a require forcewake to be held (which prevents RC6) while
->>>    	 * a particular engine is active. If so, we set fw_domain to which
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
->>> index 854841a731cb..9fb0ac03f51a 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
->>> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
->>> @@ -983,36 +983,6 @@ void intel_gt_info_print(const struct intel_gt_info *info,
->>>    	intel_sseu_dump(&info->sseu, p);
->>>    }
->>> -struct reg_and_bit {
->>> -	union {
->>> -		i915_reg_t reg;
->>> -		i915_mcr_reg_t mcr_reg;
->>> -	};
->>> -	u32 bit;
->>> -};
->>> -
->>> -static struct reg_and_bit
->>> -get_reg_and_bit(const struct intel_engine_cs *engine, const bool gen8,
->>> -		const i915_reg_t *regs, const unsigned int num)
->>> -{
->>> -	const unsigned int class = engine->class;
->>> -	struct reg_and_bit rb = { };
->>> -
->>> -	if (drm_WARN_ON_ONCE(&engine->i915->drm,
->>> -			     class >= num || !regs[class].reg))
->>> -		return rb;
->>> -
->>> -	rb.reg = regs[class];
->>> -	if (gen8 && class == VIDEO_DECODE_CLASS)
->>> -		rb.reg.reg += 4 * engine->instance; /* GEN8_M2TCR */
->>> -	else
->>> -		rb.bit = engine->instance;
->>> -
->>> -	rb.bit = BIT(rb.bit);
->>> -
->>> -	return rb;
->>> -}
->>> -
->>>    /*
->>>     * HW architecture suggest typical invalidation time at 40us,
->>>     * with pessimistic cases up to 100us and a recommendation to
->>> @@ -1026,14 +996,20 @@ get_reg_and_bit(const struct intel_engine_cs *engine, const bool gen8,
->>>     * but are now considered MCR registers.  Since they exist within a GAM range,
->>>     * the primary instance of the register rolls up the status from each unit.
->>>     */
->>> -static int wait_for_invalidate(struct intel_gt *gt, struct reg_and_bit rb)
->>> +static int wait_for_invalidate(struct intel_engine_cs *engine)
->>>    {
->>> -	if (GRAPHICS_VER_FULL(gt->i915) >= IP_VER(12, 50))
->>> -		return intel_gt_mcr_wait_for_reg(gt, rb.mcr_reg, rb.bit, 0,
->>> +	if (engine->tlb_inv.mcr)
->>> +		return intel_gt_mcr_wait_for_reg(engine->gt,
->>> +						 engine->tlb_inv.reg.mcr_reg,
->>> +						 engine->tlb_inv.done,
->>> +						 0,
->>>    						 TLB_INVAL_TIMEOUT_US,
->>>    						 TLB_INVAL_TIMEOUT_MS);
->>>    	else
->>> -		return __intel_wait_for_register_fw(gt->uncore, rb.reg, rb.bit, 0,
->>> +		return __intel_wait_for_register_fw(engine->gt->uncore,
->>> +						    engine->tlb_inv.reg.reg,
->>> +						    engine->tlb_inv.done,
->>> +						    0,
->>>    						    TLB_INVAL_TIMEOUT_US,
->>>    						    TLB_INVAL_TIMEOUT_MS,
->>>    						    NULL);
->>> @@ -1041,61 +1017,14 @@ static int wait_for_invalidate(struct intel_gt *gt, struct reg_and_bit rb)
->>>    static void mmio_invalidate_full(struct intel_gt *gt)
->>>    {
->>> -	static const i915_reg_t gen8_regs[] = {
->>> -		[RENDER_CLASS]			= GEN8_RTCR,
->>> -		[VIDEO_DECODE_CLASS]		= GEN8_M1TCR, /* , GEN8_M2TCR */
->>> -		[VIDEO_ENHANCEMENT_CLASS]	= GEN8_VTCR,
->>> -		[COPY_ENGINE_CLASS]		= GEN8_BTCR,
->>> -	};
->>> -	static const i915_reg_t gen12_regs[] = {
->>> -		[RENDER_CLASS]			= GEN12_GFX_TLB_INV_CR,
->>> -		[VIDEO_DECODE_CLASS]		= GEN12_VD_TLB_INV_CR,
->>> -		[VIDEO_ENHANCEMENT_CLASS]	= GEN12_VE_TLB_INV_CR,
->>> -		[COPY_ENGINE_CLASS]		= GEN12_BLT_TLB_INV_CR,
->>> -		[COMPUTE_CLASS]			= GEN12_COMPCTX_TLB_INV_CR,
->>> -	};
->>> -	static const i915_mcr_reg_t xehp_regs[] = {
->>> -		[RENDER_CLASS]			= XEHP_GFX_TLB_INV_CR,
->>> -		[VIDEO_DECODE_CLASS]		= XEHP_VD_TLB_INV_CR,
->>> -		[VIDEO_ENHANCEMENT_CLASS]	= XEHP_VE_TLB_INV_CR,
->>> -		[COPY_ENGINE_CLASS]		= XEHP_BLT_TLB_INV_CR,
->>> -		[COMPUTE_CLASS]			= XEHP_COMPCTX_TLB_INV_CR,
->>> -	};
->>>    	struct drm_i915_private *i915 = gt->i915;
->>>    	struct intel_uncore *uncore = gt->uncore;
->>>    	struct intel_engine_cs *engine;
->>>    	intel_engine_mask_t awake, tmp;
->>>    	enum intel_engine_id id;
->>> -	const i915_reg_t *regs;
->>> -	unsigned int num = 0;
->>>    	unsigned long flags;
->>> -	/*
->>> -	 * New platforms should not be added with catch-all-newer (>=)
->>> -	 * condition so that any later platform added triggers the below warning
->>> -	 * and in turn mandates a human cross-check of whether the invalidation
->>> -	 * flows have compatible semantics.
->>> -	 *
->>> -	 * For instance with the 11.00 -> 12.00 transition three out of five
->>> -	 * respective engine registers were moved to masked type. Then after the
->>> -	 * 12.00 -> 12.50 transition multi cast handling is required too.
->>> -	 */
->>> -
->>> -	if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 50)) {
->>> -		regs = NULL;
->>> -		num = ARRAY_SIZE(xehp_regs);
->>> -	} else if (GRAPHICS_VER(i915) == 12) {
->>> -		regs = gen12_regs;
->>> -		num = ARRAY_SIZE(gen12_regs);
->>> -	} else if (GRAPHICS_VER(i915) >= 8 && GRAPHICS_VER(i915) <= 11) {
->>> -		regs = gen8_regs;
->>> -		num = ARRAY_SIZE(gen8_regs);
->>> -	} else if (GRAPHICS_VER(i915) < 8) {
->>> -		return;
->>> -	}
->>> -
->>> -	if (drm_WARN_ONCE(&i915->drm, !num,
->>> -			  "Platform does not implement TLB invalidation!"))
->>> +	if (GRAPHICS_VER(i915) < 8)
->>>    		return;
->>>    	intel_uncore_forcewake_get(uncore, FORCEWAKE_ALL);
->>> @@ -1105,33 +1034,18 @@ static void mmio_invalidate_full(struct intel_gt *gt)
->>>    	awake = 0;
->>>    	for_each_engine(engine, gt, id) {
->>> -		struct reg_and_bit rb;
->>> -
->>>    		if (!intel_engine_pm_is_awake(engine))
->>>    			continue;
->>> -		if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
->>> -			u32 val = BIT(engine->instance);
->>> -
->>> -			if (engine->class == VIDEO_DECODE_CLASS ||
->>> -			    engine->class == VIDEO_ENHANCEMENT_CLASS ||
->>> -			    engine->class == COMPUTE_CLASS)
->>> -				val = _MASKED_BIT_ENABLE(val);
->>> +		if (engine->tlb_inv.mcr)
->>>    			intel_gt_mcr_multicast_write_fw(gt,
->>> -							xehp_regs[engine->class],
->>> -							val);
->>> -		} else {
->>> -			rb = get_reg_and_bit(engine, regs == gen8_regs, regs, num);
->>> -			if (!i915_mmio_reg_offset(rb.reg))
->>> -				continue;
->>> -
->>> -			if (GRAPHICS_VER(i915) == 12 && (engine->class == VIDEO_DECODE_CLASS ||
->>> -			    engine->class == VIDEO_ENHANCEMENT_CLASS ||
->>> -			    engine->class == COMPUTE_CLASS))
->>> -				rb.bit = _MASKED_BIT_ENABLE(rb.bit);
->>> -
->>> -			intel_uncore_write_fw(uncore, rb.reg, rb.bit);
->>> -		}
->>> +							engine->tlb_inv.reg.mcr_reg,
->>> +							engine->tlb_inv.request);
->>> +		else
->>> +			intel_uncore_write_fw(uncore,
->>> +					      engine->tlb_inv.reg.reg,
->>> +					      engine->tlb_inv.request);
->>> +
->>>    		awake |= engine->mask;
->>>    	}
->>> @@ -1150,16 +1064,7 @@ static void mmio_invalidate_full(struct intel_gt *gt)
->>>    	intel_gt_mcr_unlock(gt, flags);
->>>    	for_each_engine_masked(engine, gt, awake, tmp) {
->>> -		struct reg_and_bit rb;
->>> -
->>> -		if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
->>> -			rb.mcr_reg = xehp_regs[engine->class];
->>> -			rb.bit = BIT(engine->instance);
->>> -		} else {
->>> -			rb = get_reg_and_bit(engine, regs == gen8_regs, regs, num);
->>> -		}
->>> -
->>> -		if (wait_for_invalidate(gt, rb))
->>> +		if (wait_for_invalidate(engine))
->>>    			drm_err_ratelimited(&gt->i915->drm,
->>>    					    "%s TLB invalidation did not complete in %ums!\n",
->>>    					    engine->name, TLB_INVAL_TIMEOUT_MS);
->>
+>> +
+>> +void
+>> +i915_hdcp_fill_rxcert_in(struct wired_cmd_verify_receiver_cert_in *verify_rxcert_in,
+>> +			 struct hdcp2_ake_send_cert *rx_cert,
+>> +			 struct hdcp_port_data *data)
+>> +{
+>> +	verify_rxcert_in->header.api_version = HDCP_API_VERSION;
+>> +	verify_rxcert_in->header.command_id = WIRED_VERIFY_RECEIVER_CERT;
+>> +	verify_rxcert_in->header.status = FW_HDCP_STATUS_SUCCESS;
+>> +	verify_rxcert_in->header.buffer_len =
+>> +				WIRED_CMD_BUF_LEN_VERIFY_RECEIVER_CERT_IN;
+>> +
+>> +	verify_rxcert_in->port.integrated_port_type = data->port_type;
+>> +	verify_rxcert_in->port.physical_port = (u8)data->hdcp_ddi;
+>> +	verify_rxcert_in->port.attached_transcoder = (u8)data->hdcp_transcoder;
+>> +
+>> +	verify_rxcert_in->cert_rx = rx_cert->cert_rx;
+>> +	memcpy(verify_rxcert_in->r_rx, &rx_cert->r_rx, HDCP_2_2_RRX_LEN);
+>> +	memcpy(verify_rxcert_in->rx_caps, rx_cert->rx_caps, HDCP_2_2_RXCAPS_LEN);
+>> +}
+>> +EXPORT_SYMBOL(i915_hdcp_fill_rxcert_in);
+>> +
+>> +void
+>> +i915_hdcp_fill_hprime_in(struct wired_cmd_ake_send_hprime_in *send_hprime_in,
+>> +			 struct hdcp2_ake_send_hprime *rx_hprime,
+>> +			 struct hdcp_port_data *data)
+>> +{
+>> +	send_hprime_in->header.api_version = HDCP_API_VERSION;
+>> +	send_hprime_in->header.command_id = WIRED_AKE_SEND_HPRIME;
+>> +	send_hprime_in->header.status = FW_HDCP_STATUS_SUCCESS;
+>> +	send_hprime_in->header.buffer_len = WIRED_CMD_BUF_LEN_AKE_SEND_HPRIME_IN;
+>> +
+>> +	send_hprime_in->port.integrated_port_type = data->port_type;
+>> +	send_hprime_in->port.physical_port = (u8)data->hdcp_ddi;
+>> +	send_hprime_in->port.attached_transcoder = (u8)data->hdcp_transcoder;
+>> +
+>> +	memcpy(send_hprime_in->h_prime, rx_hprime->h_prime,
+>> +	       HDCP_2_2_H_PRIME_LEN);
+>> +}
+>> +EXPORT_SYMBOL(i915_hdcp_fill_hprime_in);
+>> +
+>> +void
+>> +i915_hdcp_fill_pairing_info_in(struct wired_cmd_ake_send_pairing_info_in *pairing_info_in,
+>> +			       struct hdcp2_ake_send_pairing_info *pairing_info,
+>> +			       struct hdcp_port_data *data)
+>> +{
+>> +	pairing_info_in->header.api_version = HDCP_API_VERSION;
+>> +	pairing_info_in->header.command_id = WIRED_AKE_SEND_PAIRING_INFO;
+>> +	pairing_info_in->header.status = FW_HDCP_STATUS_SUCCESS;
+>> +	pairing_info_in->header.buffer_len =
+>> +				WIRED_CMD_BUF_LEN_SEND_PAIRING_INFO_IN;
+>> +
+>> +	pairing_info_in->port.integrated_port_type = data->port_type;
+>> +	pairing_info_in->port.physical_port = (u8)data->hdcp_ddi;
+>> +	pairing_info_in->port.attached_transcoder = (u8)data->hdcp_transcoder;
+>> +
+>> +	memcpy(pairing_info_in->e_kh_km, pairing_info->e_kh_km,
+>> +	       HDCP_2_2_E_KH_KM_LEN);
+>> +}
+>> +EXPORT_SYMBOL(i915_hdcp_fill_pairing_info_in);
+>> +
+>> +void
+>> +i915_hdcp_fill_locality_check_in(struct wired_cmd_init_locality_check_in *lc_init_in,
+>> +				 struct hdcp_port_data *data)
+>> +{
+>> +	lc_init_in->header.api_version = HDCP_API_VERSION;
+>> +	lc_init_in->header.command_id = WIRED_INIT_LOCALITY_CHECK;
+>> +	lc_init_in->header.status = FW_HDCP_STATUS_SUCCESS;
+>> +	lc_init_in->header.buffer_len = WIRED_CMD_BUF_LEN_INIT_LOCALITY_CHECK_IN;
+>> +
+>> +	lc_init_in->port.integrated_port_type = data->port_type;
+>> +	lc_init_in->port.physical_port = (u8)data->hdcp_ddi;
+>> +	lc_init_in->port.attached_transcoder = (u8)data->hdcp_transcoder;
+>> +}
+>> +EXPORT_SYMBOL(i915_hdcp_fill_locality_check_in);
+>> +
+>> +void
+>> +i915_hdcp_fill_validate_locality_in(struct wired_cmd_validate_locality_in *verify_lprime_in,
+>> +				    struct hdcp2_lc_send_lprime *rx_lprime,
+>> +				    struct hdcp_port_data *data)
+>> +{
+>> +	verify_lprime_in->header.api_version = HDCP_API_VERSION;
+>> +	verify_lprime_in->header.command_id = WIRED_VALIDATE_LOCALITY;
+>> +	verify_lprime_in->header.status = FW_HDCP_STATUS_SUCCESS;
+>> +	verify_lprime_in->header.buffer_len =
+>> +					WIRED_CMD_BUF_LEN_VALIDATE_LOCALITY_IN;
+>> +
+>> +	verify_lprime_in->port.integrated_port_type = data->port_type;
+>> +	verify_lprime_in->port.physical_port = (u8)data->hdcp_ddi;
+>> +	verify_lprime_in->port.attached_transcoder = (u8)data->hdcp_transcoder;
+>> +
+>> +	memcpy(verify_lprime_in->l_prime, rx_lprime->l_prime,
+>> +	       HDCP_2_2_L_PRIME_LEN);
+>> +}
+>> +EXPORT_SYMBOL(i915_hdcp_fill_validate_locality_in);
+>> +
+>> +void
+>> +i915_hdcp_fill_session_key_in(struct wired_cmd_get_session_key_in *get_skey_in,
+>> +			      struct hdcp_port_data *data)
+>> +{
+>> +	get_skey_in->header.api_version = HDCP_API_VERSION;
+>> +	get_skey_in->header.command_id = WIRED_GET_SESSION_KEY;
+>> +	get_skey_in->header.status = FW_HDCP_STATUS_SUCCESS;
+>> +	get_skey_in->header.buffer_len = WIRED_CMD_BUF_LEN_GET_SESSION_KEY_IN;
+>> +
+>> +	get_skey_in->port.integrated_port_type = data->port_type;
+>> +	get_skey_in->port.physical_port = (u8)data->hdcp_ddi;
+>> +	get_skey_in->port.attached_transcoder = (u8)data->hdcp_transcoder;
+>> +}
+>> +EXPORT_SYMBOL(i915_hdcp_fill_session_key_in);
+>> +
+>> +void
+>> +i915_hdcp_fill_repeater_in(struct wired_cmd_verify_repeater_in *verify_repeater_in,
+>> +			   struct hdcp2_rep_send_receiverid_list *rep_topology,
+>> +			   struct hdcp_port_data *data)
+>> +{
+>> +	verify_repeater_in->header.api_version = HDCP_API_VERSION;
+>> +	verify_repeater_in->header.command_id = WIRED_VERIFY_REPEATER;
+>> +	verify_repeater_in->header.status = FW_HDCP_STATUS_SUCCESS;
+>> +	verify_repeater_in->header.buffer_len =
+>> +				WIRED_CMD_BUF_LEN_VERIFY_REPEATER_IN;
+>> +
+>> +	verify_repeater_in->port.integrated_port_type = data->port_type;
+>> +	verify_repeater_in->port.physical_port = (u8)data->hdcp_ddi;
+>> +	verify_repeater_in->port.attached_transcoder = (u8)data->hdcp_transcoder;
+>> +
+>> +	memcpy(verify_repeater_in->rx_info, rep_topology->rx_info,
+>> +	       HDCP_2_2_RXINFO_LEN);
+>> +	memcpy(verify_repeater_in->seq_num_v, rep_topology->seq_num_v,
+>> +	       HDCP_2_2_SEQ_NUM_LEN);
+>> +	memcpy(verify_repeater_in->v_prime, rep_topology->v_prime,
+>> +	       HDCP_2_2_V_PRIME_HALF_LEN);
+>> +	memcpy(verify_repeater_in->receiver_ids, rep_topology->receiver_ids,
+>> +	       HDCP_2_2_RECEIVER_IDS_MAX_LEN);
+>> +}
+>> +EXPORT_SYMBOL(i915_hdcp_fill_repeater_in);
+>> +
+>> +void
+>> +i915_hdcp_fill_auth_stream_req_in(struct wired_cmd_repeater_auth_stream_req_in *verify_mprime_in,
+>> +				  struct hdcp2_rep_stream_ready *stream_ready, ssize_t cmd_size,
+>> +				  struct hdcp_port_data *data)
+>> +{
+>> +	verify_mprime_in->header.api_version = HDCP_API_VERSION;
+>> +	verify_mprime_in->header.command_id = WIRED_REPEATER_AUTH_STREAM_REQ;
+>> +	verify_mprime_in->header.status = FW_HDCP_STATUS_SUCCESS;
+>> +	verify_mprime_in->header.buffer_len = cmd_size  - sizeof(verify_mprime_in->header);
+>> +
+>> +	verify_mprime_in->port.integrated_port_type = data->port_type;
+>> +	verify_mprime_in->port.physical_port = (u8)data->hdcp_ddi;
+>> +	verify_mprime_in->port.attached_transcoder = (u8)data->hdcp_transcoder;
+>> +
+>> +	memcpy(verify_mprime_in->m_prime, stream_ready->m_prime, HDCP_2_2_MPRIME_LEN);
+>> +	drm_hdcp_cpu_to_be24(verify_mprime_in->seq_num_m, data->seq_num_m);
+>> +
+>> +	memcpy(verify_mprime_in->streams, data->streams,
+>> +	       array_size(data->k, sizeof(*data->streams)));
+>> +
+>> +	verify_mprime_in->k = cpu_to_be16(data->k);
+>> +}
+>> +EXPORT_SYMBOL(i915_hdcp_fill_auth_stream_req_in);
+>> +
+>> +void
+>> +i915_hdcp_fill_enable_auth_in(struct wired_cmd_enable_auth_in *enable_auth_in,
+>> +			      struct hdcp_port_data *data)
+>> +{
+>> +	enable_auth_in->header.api_version = HDCP_API_VERSION;
+>> +	enable_auth_in->header.command_id = WIRED_ENABLE_AUTH;
+>> +	enable_auth_in->header.status = FW_HDCP_STATUS_SUCCESS;
+>> +	enable_auth_in->header.buffer_len = WIRED_CMD_BUF_LEN_ENABLE_AUTH_IN;
+>> +
+>> +	enable_auth_in->port.integrated_port_type = data->port_type;
+>> +	enable_auth_in->port.physical_port = (u8)data->hdcp_ddi;
+>> +	enable_auth_in->port.attached_transcoder = (u8)data->hdcp_transcoder;
+>> +	enable_auth_in->stream_type = data->streams[0].stream_type;
+>> +}
+>> +EXPORT_SYMBOL(i915_hdcp_fill_enable_auth_in);
+>> +
+>> +void
+>> +i915_hdcp_fill_close_session_in(struct wired_cmd_close_session_in *session_close_in,
+>> +				struct hdcp_port_data *data)
+>> +{
+>> +	session_close_in->header.api_version = HDCP_API_VERSION;
+>> +	session_close_in->header.command_id = WIRED_CLOSE_SESSION;
+>> +	session_close_in->header.status = FW_HDCP_STATUS_SUCCESS;
+>> +	session_close_in->header.buffer_len =
+>> +				WIRED_CMD_BUF_LEN_CLOSE_SESSION_IN;
+>> +
+>> +	session_close_in->port.integrated_port_type = data->port_type;
+>> +	session_close_in->port.physical_port = (u8)data->hdcp_ddi;
+>> +	session_close_in->port.attached_transcoder = (u8)data->hdcp_transcoder;
+>> +}
+>> +EXPORT_SYMBOL(i915_hdcp_fill_close_session_in);
+>> +
+>> diff --git a/drivers/misc/mei/hdcp/mei_hdcp.c b/drivers/misc/mei/hdcp/mei_hdcp.c
+>> index d4faecbbbe76..2cf42e98dfae 100644
+>> --- a/drivers/misc/mei/hdcp/mei_hdcp.c
+>> +++ b/drivers/misc/mei/hdcp/mei_hdcp.c
+>> @@ -50,17 +50,7 @@ mei_hdcp_initiate_session(struct device *dev, struct hdcp_port_data *data,
+>>   
+>>   	cldev = to_mei_cl_device(dev);
+>>   
+>> -	session_init_in.header.api_version = HDCP_API_VERSION;
+>> -	session_init_in.header.command_id = WIRED_INITIATE_HDCP2_SESSION;
+>> -	session_init_in.header.status = FW_HDCP_STATUS_SUCCESS;
+>> -	session_init_in.header.buffer_len =
+>> -				WIRED_CMD_BUF_LEN_INITIATE_HDCP2_SESSION_IN;
+>> -
+>> -	session_init_in.port.integrated_port_type = data->port_type;
+>> -	session_init_in.port.physical_port = (u8)data->hdcp_ddi;
+>> -	session_init_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
+>> -	session_init_in.protocol = data->protocol;
+>> -
+>> +	i915_hdcp_fill_session_in(&session_init_in, data);
+>>   	byte = mei_cldev_send(cldev, (u8 *)&session_init_in,
+>>   			      sizeof(session_init_in));
+>>   	if (byte < 0) {
+>> @@ -119,21 +109,7 @@ mei_hdcp_verify_receiver_cert_prepare_km(struct device *dev,
+>>   		return -EINVAL;
+>>   
+>>   	cldev = to_mei_cl_device(dev);
+>> -
+>> -	verify_rxcert_in.header.api_version = HDCP_API_VERSION;
+>> -	verify_rxcert_in.header.command_id = WIRED_VERIFY_RECEIVER_CERT;
+>> -	verify_rxcert_in.header.status = FW_HDCP_STATUS_SUCCESS;
+>> -	verify_rxcert_in.header.buffer_len =
+>> -				WIRED_CMD_BUF_LEN_VERIFY_RECEIVER_CERT_IN;
+>> -
+>> -	verify_rxcert_in.port.integrated_port_type = data->port_type;
+>> -	verify_rxcert_in.port.physical_port = (u8)data->hdcp_ddi;
+>> -	verify_rxcert_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
+>> -
+>> -	verify_rxcert_in.cert_rx = rx_cert->cert_rx;
+>> -	memcpy(verify_rxcert_in.r_rx, &rx_cert->r_rx, HDCP_2_2_RRX_LEN);
+>> -	memcpy(verify_rxcert_in.rx_caps, rx_cert->rx_caps, HDCP_2_2_RXCAPS_LEN);
+>> -
+>> +	i915_hdcp_fill_rxcert_in(&verify_rxcert_in, rx_cert, data);
+>>   	byte = mei_cldev_send(cldev, (u8 *)&verify_rxcert_in,
+>>   			      sizeof(verify_rxcert_in));
+>>   	if (byte < 0) {
+>> @@ -192,18 +168,7 @@ mei_hdcp_verify_hprime(struct device *dev, struct hdcp_port_data *data,
+>>   
+>>   	cldev = to_mei_cl_device(dev);
+>>   
+>> -	send_hprime_in.header.api_version = HDCP_API_VERSION;
+>> -	send_hprime_in.header.command_id = WIRED_AKE_SEND_HPRIME;
+>> -	send_hprime_in.header.status = FW_HDCP_STATUS_SUCCESS;
+>> -	send_hprime_in.header.buffer_len = WIRED_CMD_BUF_LEN_AKE_SEND_HPRIME_IN;
+>> -
+>> -	send_hprime_in.port.integrated_port_type = data->port_type;
+>> -	send_hprime_in.port.physical_port = (u8)data->hdcp_ddi;
+>> -	send_hprime_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
+>> -
+>> -	memcpy(send_hprime_in.h_prime, rx_hprime->h_prime,
+>> -	       HDCP_2_2_H_PRIME_LEN);
+>> -
+>> +	i915_hdcp_fill_hprime_in(&send_hprime_in, rx_hprime, data);
+>>   	byte = mei_cldev_send(cldev, (u8 *)&send_hprime_in,
+>>   			      sizeof(send_hprime_in));
+>>   	if (byte < 0) {
+>> @@ -248,20 +213,8 @@ mei_hdcp_store_pairing_info(struct device *dev, struct hdcp_port_data *data,
+>>   		return -EINVAL;
+>>   
+>>   	cldev = to_mei_cl_device(dev);
+>> -
+>> -	pairing_info_in.header.api_version = HDCP_API_VERSION;
+>> -	pairing_info_in.header.command_id = WIRED_AKE_SEND_PAIRING_INFO;
+>> -	pairing_info_in.header.status = FW_HDCP_STATUS_SUCCESS;
+>> -	pairing_info_in.header.buffer_len =
+>> -					WIRED_CMD_BUF_LEN_SEND_PAIRING_INFO_IN;
+>> -
+>> -	pairing_info_in.port.integrated_port_type = data->port_type;
+>> -	pairing_info_in.port.physical_port = (u8)data->hdcp_ddi;
+>> -	pairing_info_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
+>> -
+>> -	memcpy(pairing_info_in.e_kh_km, pairing_info->e_kh_km,
+>> -	       HDCP_2_2_E_KH_KM_LEN);
+>> -
+>> +	i915_hdcp_fill_pairing_info_in(&pairing_info_in, pairing_info,
+>> +				       data);
+>>   	byte = mei_cldev_send(cldev, (u8 *)&pairing_info_in,
+>>   			      sizeof(pairing_info_in));
+>>   	if (byte < 0) {
+>> @@ -309,15 +262,7 @@ mei_hdcp_initiate_locality_check(struct device *dev,
+>>   
+>>   	cldev = to_mei_cl_device(dev);
+>>   
+>> -	lc_init_in.header.api_version = HDCP_API_VERSION;
+>> -	lc_init_in.header.command_id = WIRED_INIT_LOCALITY_CHECK;
+>> -	lc_init_in.header.status = FW_HDCP_STATUS_SUCCESS;
+>> -	lc_init_in.header.buffer_len = WIRED_CMD_BUF_LEN_INIT_LOCALITY_CHECK_IN;
+>> -
+>> -	lc_init_in.port.integrated_port_type = data->port_type;
+>> -	lc_init_in.port.physical_port = (u8)data->hdcp_ddi;
+>> -	lc_init_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
+>> -
+>> +	i915_hdcp_fill_locality_check_in(&lc_init_in, data);
+>>   	byte = mei_cldev_send(cldev, (u8 *)&lc_init_in, sizeof(lc_init_in));
+>>   	if (byte < 0) {
+>>   		dev_dbg(dev, "mei_cldev_send failed. %zd\n", byte);
+>> @@ -364,19 +309,8 @@ mei_hdcp_verify_lprime(struct device *dev, struct hdcp_port_data *data,
+>>   
+>>   	cldev = to_mei_cl_device(dev);
+>>   
+>> -	verify_lprime_in.header.api_version = HDCP_API_VERSION;
+>> -	verify_lprime_in.header.command_id = WIRED_VALIDATE_LOCALITY;
+>> -	verify_lprime_in.header.status = FW_HDCP_STATUS_SUCCESS;
+>> -	verify_lprime_in.header.buffer_len =
+>> -					WIRED_CMD_BUF_LEN_VALIDATE_LOCALITY_IN;
+>> -
+>> -	verify_lprime_in.port.integrated_port_type = data->port_type;
+>> -	verify_lprime_in.port.physical_port = (u8)data->hdcp_ddi;
+>> -	verify_lprime_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
+>> -
+>> -	memcpy(verify_lprime_in.l_prime, rx_lprime->l_prime,
+>> -	       HDCP_2_2_L_PRIME_LEN);
+>> -
+>> +	i915_hdcp_fill_validate_locality_in(&verify_lprime_in, rx_lprime,
+>> +					    data);
+>>   	byte = mei_cldev_send(cldev, (u8 *)&verify_lprime_in,
+>>   			      sizeof(verify_lprime_in));
+>>   	if (byte < 0) {
+>> @@ -423,15 +357,7 @@ static int mei_hdcp_get_session_key(struct device *dev,
+>>   
+>>   	cldev = to_mei_cl_device(dev);
+>>   
+>> -	get_skey_in.header.api_version = HDCP_API_VERSION;
+>> -	get_skey_in.header.command_id = WIRED_GET_SESSION_KEY;
+>> -	get_skey_in.header.status = FW_HDCP_STATUS_SUCCESS;
+>> -	get_skey_in.header.buffer_len = WIRED_CMD_BUF_LEN_GET_SESSION_KEY_IN;
+>> -
+>> -	get_skey_in.port.integrated_port_type = data->port_type;
+>> -	get_skey_in.port.physical_port = (u8)data->hdcp_ddi;
+>> -	get_skey_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
+>> -
+>> +	i915_hdcp_fill_session_key_in(&get_skey_in, data);
+>>   	byte = mei_cldev_send(cldev, (u8 *)&get_skey_in, sizeof(get_skey_in));
+>>   	if (byte < 0) {
+>>   		dev_dbg(dev, "mei_cldev_send failed. %zd\n", byte);
+>> @@ -487,25 +413,7 @@ mei_hdcp_repeater_check_flow_prepare_ack(struct device *dev,
+>>   
+>>   	cldev = to_mei_cl_device(dev);
+>>   
+>> -	verify_repeater_in.header.api_version = HDCP_API_VERSION;
+>> -	verify_repeater_in.header.command_id = WIRED_VERIFY_REPEATER;
+>> -	verify_repeater_in.header.status = FW_HDCP_STATUS_SUCCESS;
+>> -	verify_repeater_in.header.buffer_len =
+>> -					WIRED_CMD_BUF_LEN_VERIFY_REPEATER_IN;
+>> -
+>> -	verify_repeater_in.port.integrated_port_type = data->port_type;
+>> -	verify_repeater_in.port.physical_port = (u8)data->hdcp_ddi;
+>> -	verify_repeater_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
+>> -
+>> -	memcpy(verify_repeater_in.rx_info, rep_topology->rx_info,
+>> -	       HDCP_2_2_RXINFO_LEN);
+>> -	memcpy(verify_repeater_in.seq_num_v, rep_topology->seq_num_v,
+>> -	       HDCP_2_2_SEQ_NUM_LEN);
+>> -	memcpy(verify_repeater_in.v_prime, rep_topology->v_prime,
+>> -	       HDCP_2_2_V_PRIME_HALF_LEN);
+>> -	memcpy(verify_repeater_in.receiver_ids, rep_topology->receiver_ids,
+>> -	       HDCP_2_2_RECEIVER_IDS_MAX_LEN);
+>> -
+>> +	i915_hdcp_fill_repeater_in(&verify_repeater_in, rep_topology, data);
+>>   	byte = mei_cldev_send(cldev, (u8 *)&verify_repeater_in,
+>>   			      sizeof(verify_repeater_in));
+>>   	if (byte < 0) {
+>> @@ -566,23 +474,8 @@ static int mei_hdcp_verify_mprime(struct device *dev,
+>>   	if (!verify_mprime_in)
+>>   		return -ENOMEM;
+>>   
+>> -	verify_mprime_in->header.api_version = HDCP_API_VERSION;
+>> -	verify_mprime_in->header.command_id = WIRED_REPEATER_AUTH_STREAM_REQ;
+>> -	verify_mprime_in->header.status = FW_HDCP_STATUS_SUCCESS;
+>> -	verify_mprime_in->header.buffer_len = cmd_size  - sizeof(verify_mprime_in->header);
+>> -
+>> -	verify_mprime_in->port.integrated_port_type = data->port_type;
+>> -	verify_mprime_in->port.physical_port = (u8)data->hdcp_ddi;
+>> -	verify_mprime_in->port.attached_transcoder = (u8)data->hdcp_transcoder;
+>> -
+>> -	memcpy(verify_mprime_in->m_prime, stream_ready->m_prime, HDCP_2_2_MPRIME_LEN);
+>> -	drm_hdcp_cpu_to_be24(verify_mprime_in->seq_num_m, data->seq_num_m);
+>> -
+>> -	memcpy(verify_mprime_in->streams, data->streams,
+>> -	       array_size(data->k, sizeof(*data->streams)));
+>> -
+>> -	verify_mprime_in->k = cpu_to_be16(data->k);
+>> -
+>> +	i915_hdcp_fill_auth_stream_req_in(verify_mprime_in, stream_ready,
+>> +					  cmd_size, data);
+>>   	byte = mei_cldev_send(cldev, (u8 *)verify_mprime_in, cmd_size);
+>>   	kfree(verify_mprime_in);
+>>   	if (byte < 0) {
+>> @@ -628,16 +521,7 @@ static int mei_hdcp_enable_authentication(struct device *dev,
+>>   
+>>   	cldev = to_mei_cl_device(dev);
+>>   
+>> -	enable_auth_in.header.api_version = HDCP_API_VERSION;
+>> -	enable_auth_in.header.command_id = WIRED_ENABLE_AUTH;
+>> -	enable_auth_in.header.status = FW_HDCP_STATUS_SUCCESS;
+>> -	enable_auth_in.header.buffer_len = WIRED_CMD_BUF_LEN_ENABLE_AUTH_IN;
+>> -
+>> -	enable_auth_in.port.integrated_port_type = data->port_type;
+>> -	enable_auth_in.port.physical_port = (u8)data->hdcp_ddi;
+>> -	enable_auth_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
+>> -	enable_auth_in.stream_type = data->streams[0].stream_type;
+>> -
+>> +	i915_hdcp_fill_enable_auth_in(&enable_auth_in, data);
+>>   	byte = mei_cldev_send(cldev, (u8 *)&enable_auth_in,
+>>   			      sizeof(enable_auth_in));
+>>   	if (byte < 0) {
+>> @@ -682,16 +566,7 @@ mei_hdcp_close_session(struct device *dev, struct hdcp_port_data *data)
+>>   
+>>   	cldev = to_mei_cl_device(dev);
+>>   
+>> -	session_close_in.header.api_version = HDCP_API_VERSION;
+>> -	session_close_in.header.command_id = WIRED_CLOSE_SESSION;
+>> -	session_close_in.header.status = FW_HDCP_STATUS_SUCCESS;
+>> -	session_close_in.header.buffer_len =
+>> -				WIRED_CMD_BUF_LEN_CLOSE_SESSION_IN;
+>> -
+>> -	session_close_in.port.integrated_port_type = data->port_type;
+>> -	session_close_in.port.physical_port = (u8)data->hdcp_ddi;
+>> -	session_close_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
+>> -
+>> +	i915_hdcp_fill_close_session_in(&session_close_in, data);
+>>   	byte = mei_cldev_send(cldev, (u8 *)&session_close_in,
+>>   			      sizeof(session_close_in));
+>>   	if (byte < 0) {
+>> diff --git a/include/drm/i915_hdcp_interface.h b/include/drm/i915_hdcp_interface.h
+>> index a92925cd1eae..9952bf78d4f7 100644
+>> --- a/include/drm/i915_hdcp_interface.h
+>> +++ b/include/drm/i915_hdcp_interface.h
+>> @@ -536,4 +536,43 @@ struct wired_cmd_repeater_auth_stream_req_out {
+>>   	struct hdcp_port_id	port;
+>>   } __packed;
+>>   
+>> +void
+>> +i915_hdcp_fill_session_in(struct wired_cmd_initiate_hdcp2_session_in *session_init_in,
+>> +			  struct hdcp_port_data *data);
+>> +void
+>> +i915_hdcp_fill_rxcert_in(struct wired_cmd_verify_receiver_cert_in *verify_rxcert_in,
+>> +			 struct hdcp2_ake_send_cert *rx_cert,
+>> +			 struct hdcp_port_data *data);
+>> +void
+>> +i915_hdcp_fill_hprime_in(struct wired_cmd_ake_send_hprime_in *send_hprime_in,
+>> +			 struct hdcp2_ake_send_hprime *rx_hprime,
+>> +			 struct hdcp_port_data *data);
+>> +void
+>> +i915_hdcp_fill_pairing_info_in(struct wired_cmd_ake_send_pairing_info_in *pairing_info_in,
+>> +			       struct hdcp2_ake_send_pairing_info *pairing_info,
+>> +			       struct hdcp_port_data *data);
+>> +void
+>> +i915_hdcp_fill_locality_check_in(struct wired_cmd_init_locality_check_in *lc_init_in,
+>> +				 struct hdcp_port_data *data);
+>> +void
+>> +i915_hdcp_fill_validate_locality_in(struct wired_cmd_validate_locality_in *verify_lprime_in,
+>> +				    struct hdcp2_lc_send_lprime *rx_lprime,
+>> +				    struct hdcp_port_data *data);
+>> +void
+>> +i915_hdcp_fill_session_key_in(struct wired_cmd_get_session_key_in *get_skey_in,
+>> +			      struct hdcp_port_data *data);
+>> +void
+>> +i915_hdcp_fill_repeater_in(struct wired_cmd_verify_repeater_in *verify_repeater_in,
+>> +			   struct hdcp2_rep_send_receiverid_list *rep_topology,
+>> +			   struct hdcp_port_data *data);
+>> +void
+>> +i915_hdcp_fill_auth_stream_req_in(struct wired_cmd_repeater_auth_stream_req_in *verify_mprime_in,
+>> +				  struct hdcp2_rep_stream_ready *stream_ready, ssize_t cmd_size,
+>> +				  struct hdcp_port_data *data);
+>> +void
+>> +i915_hdcp_fill_enable_auth_in(struct wired_cmd_enable_auth_in *enable_auth_in,
+>> +			      struct hdcp_port_data *data);
+>> +void
+>> +i915_hdcp_fill_close_session_in(struct wired_cmd_close_session_in *session_close_in,
+>> +				struct hdcp_port_data *data);
+>>   #endif /* _I915_HDCP_INTERFACE_H_ */
 > 
