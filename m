@@ -2,48 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD8F565ED2C
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Jan 2023 14:37:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5C4965EE7C
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Jan 2023 15:13:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65D2710E0C3;
-	Thu,  5 Jan 2023 13:37:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 187C210E73B;
+	Thu,  5 Jan 2023 14:13:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4050F10E0C3
- for <intel-gfx@lists.freedesktop.org>; Thu,  5 Jan 2023 13:37:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1672925859; x=1704461859;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=RI3ngHDWAFRqq4ViukwbRkC/pfG8/dC7e8VeqBzKwvE=;
- b=C/4/AqQ9lmu4XVfq3xBf/IMv3oZYyi5GdDQnRU27oNuLNmGV3BG8rGQO
- jMeICpYkK53Eb4kCCbVrz4OuuZveSf87E3Jh8qwjKnR55asrXWQMuH1mm
- 55OTMnduXsg9vQJ7cAhM9DAntmQw7YGQQUFUyQ+A+v+O3jcNDtN7sDWC7
- PXH1n99M6S4f9Z/0XYqjMcMizJ2u3XGJtWU0abSkjwHdpzxOnVVMYaZVz
- 8UZNEpTzhYMSbEhZzh9r2oR7hgGWSkSYE572zHaPLVuwz/y8GGG8MF0uh
- RfFKeLsgrDca30PBbB9F5RQ9DirMZPljbJbUbqiXbpOKqtcmcreXKH9vF Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10580"; a="386636175"
-X-IronPort-AV: E=Sophos;i="5.96,303,1665471600"; d="scan'208";a="386636175"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2023 05:37:38 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10580"; a="724057877"
-X-IronPort-AV: E=Sophos;i="5.96,303,1665471600"; d="scan'208";a="724057877"
-Received: from aberglun-mobl.amr.corp.intel.com (HELO gjsousa-mobl2.intel.com)
- ([10.212.45.127])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2023 05:37:37 -0800
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  5 Jan 2023 10:37:01 -0300
-Message-Id: <20230105133701.19556-1-gustavo.sousa@intel.com>
-X-Mailer: git-send-email 2.39.0
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com
+ [IPv6:2a00:1450:4864:20::32e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8536910E73B
+ for <intel-gfx@lists.freedesktop.org>; Thu,  5 Jan 2023 14:13:10 +0000 (UTC)
+Received: by mail-wm1-x32e.google.com with SMTP id
+ ay2-20020a05600c1e0200b003d22e3e796dso1430807wmb.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 05 Jan 2023 06:13:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=in-reply-to:content-disposition:mime-version:references
+ :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=CB2U7ORZQVHJP3U1BCVrtj9HL03d/PHb9pMKz75PlHg=;
+ b=RHHOrw9xp7HL6GUNzWrsj6zyIE9owN/2dNyt3wyevxnWYIZIw5uB2FXvME9IpYI8L1
+ ASkcg+mV17TGOMgvPoOiNCr5CgExiTzd0ues1wdeq871q4vK5ERXVGKu7jx5j6x+aXt6
+ 1ujUsOSxdzLdhEEqSk7VdwVgGvMqGXZoOpEF8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=in-reply-to:content-disposition:mime-version:references
+ :mail-followup-to:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=CB2U7ORZQVHJP3U1BCVrtj9HL03d/PHb9pMKz75PlHg=;
+ b=O/HVnsIWMyGXCCNRk8DDLZMHmGnAHLKkBwSUziwIKCoPmKpFeXtTQeDoacwv21c8W7
+ yFWsReEa2sCHu/aNUxB/DdlmVGE1v3gucWH+PpnCsysOnPvpUfqwps3XlodjBVk9OlyL
+ LDAKRHhQhQiMB0+i8Qqcgwu2rgReg7SEQ7Vl9mW20EFjQGLq/9oHLDLyxLjXTHKxCjrL
+ jVmcWvsMpy8xS4X5p71rSxt6jspkS9276D3KBLWorz94/CMGDecgoj/40ksvWcqaDreu
+ eQZTa48j4heCrIxcTlg2wzfIDAEHne2TnW99UA0RYt+R47tcEGBfo+fgahtJp6j3eXOs
+ p0Pg==
+X-Gm-Message-State: AFqh2koKwvDMeujnvQaUe/ejk4Uvbyi2AUiPKbNCyeido80ZS/18WkEd
+ db75J9/QcNXPikau4YYncuQxRg==
+X-Google-Smtp-Source: AMrXdXvINDy/5jLvnWu/NUbKioDgIWciak2qulB+4kX9Ryqb8u07bvx0IKJl2xqsy1dTv5gzkdF5jA==
+X-Received: by 2002:a05:600c:42d4:b0:3d0:6d39:c62e with SMTP id
+ j20-20020a05600c42d400b003d06d39c62emr37036652wme.12.1672927989063; 
+ Thu, 05 Jan 2023 06:13:09 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id
+ az28-20020a05600c601c00b003cf57329221sm2596986wmb.14.2023.01.05.06.13.07
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 05 Jan 2023 06:13:07 -0800 (PST)
+Date: Thu, 5 Jan 2023 15:13:05 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: David Laight <David.Laight@aculab.com>
+Message-ID: <Y7ba8UlkhjpJI4F0@phenom.ffwll.local>
+Mail-Followup-To: David Laight <David.Laight@aculab.com>,
+ 'Jani Nikula' <jani.nikula@linux.intel.com>,
+ Arnd Bergmann <arnd@arndb.de>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ 'Andrzej Hajda' <andrzej.hajda@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+References: <20221209154843.4162814-1-andrzej.hajda@intel.com>
+ <f58ab17e5c6c4a4e8b0d687b44618c51@AcuMS.aculab.com>
+ <Y7bK8drngH/NIlOa@phenom.ffwll.local> <875ydlw1p4.fsf@intel.com>
+ <733cd0037bd14a269b54d701e1b80323@AcuMS.aculab.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Cover rest of SVG unit MCR
- registers
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <733cd0037bd14a269b54d701e1b80323@AcuMS.aculab.com>
+X-Operating-System: Linux phenom 5.19.0-2-amd64 
+Subject: Re: [Intel-gfx] [PATCH 1/5] linux/minmax.h: add non-atomic version
+ of xchg
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,61 +84,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: 'Andrzej Hajda' <andrzej.hajda@intel.com>, Arnd Bergmann <arnd@arndb.de>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CHICKEN_RASTER_{1,2} got overlooked with the move done in a9e69428b1b4
-("drm/i915: Define MCR registers explicitly"). Registers from the SVG
-unit became multicast as of Xe_HP graphics.
+On Thu, Jan 05, 2023 at 01:34:33PM +0000, David Laight wrote:
+> From: Jani Nikula
+> > Sent: 05 January 2023 13:28
+> > 
+> > On Thu, 05 Jan 2023, Daniel Vetter <daniel@ffwll.ch> wrote:
+> > > On Mon, Dec 12, 2022 at 09:38:12AM +0000, David Laight wrote:
+> > >> From: Andrzej Hajda <andrzej.hajda@intel.com>
+> > >> > Sent: 09 December 2022 15:49
+> > >> >
+> > >> > The pattern of setting variable with new value and returning old
+> > >> > one is very common in kernel. Usually atomicity of the operation
+> > >> > is not required, so xchg seems to be suboptimal and confusing in
+> > >> > such cases. Since name xchg is already in use and __xchg is used
+> > >> > in architecture code, proposition is to name the macro exchange.
+> > >>
+> > >> Dunno, if it is non-atomic then two separate assignment statements
+> > >> is decidedly more obvious and needs less brain cells to process.
+> > >> Otherwise someone will assume 'something clever' is going on
+> > >> and the operation is atomic.
+> > >
+> > > Yes, this also my take. The i915 code that uses this to excess is decidely
+> > > unreadable imo, and the macro should simply be replaced by open-coded
+> > > versions.
+> > >
+> > > Not moved into shared headers where even more people can play funny games
+> > > with it.
+> > 
+> > My stand in i915 has been that the local fetch_and_zero() needs to
+> > go. Either replaced by a common helper in core kernel headers, or open
+> > coded, I personally don't care, but the local version can't stay.
+> > 
+> > My rationale has been that fetch_and_zero() looks atomic and looks like
+> > it comes from shared headers, but it's neither. It's deceptive. It
+> > started small and harmless, but things like this just proliferate and
+> > get copy-pasted all over the place.
 
-BSpec: 66534
-Fixes: a9e69428b1b4 ("drm/i915: Define MCR registers explicitly").
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt_regs.h     | 4 ++--
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
+Yeah the entire "is it atomic or not" is the issue on top here.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-index f8eb807b56f9..570699548c77 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-@@ -407,10 +407,10 @@
- #define GEN9_WM_CHICKEN3			_MMIO(0x5588)
- #define   GEN9_FACTOR_IN_CLR_VAL_HIZ		(1 << 9)
- 
--#define CHICKEN_RASTER_1			_MMIO(0x6204)
-+#define CHICKEN_RASTER_1			MCR_REG(0x6204)
- #define   DIS_SF_ROUND_NEAREST_EVEN		REG_BIT(8)
- 
--#define CHICKEN_RASTER_2			_MMIO(0x6208)
-+#define CHICKEN_RASTER_2			MCR_REG(0x6208)
- #define   TBIMR_FAST_CLIP			REG_BIT(5)
- 
- #define VFLSKPD					MCR_REG(0x62a8)
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index bf84efb3f15f..9a40aa61e86e 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -645,7 +645,7 @@ static void icl_ctx_workarounds_init(struct intel_engine_cs *engine,
- static void dg2_ctx_gt_tuning_init(struct intel_engine_cs *engine,
- 				   struct i915_wa_list *wal)
- {
--	wa_masked_en(wal, CHICKEN_RASTER_2, TBIMR_FAST_CLIP);
-+	wa_mcr_masked_en(wal, CHICKEN_RASTER_2, TBIMR_FAST_CLIP);
- 	wa_mcr_write_clr_set(wal, XEHP_L3SQCREG5, L3_PWM_TIMER_INIT_VAL_MASK,
- 			     REG_FIELD_PREP(L3_PWM_TIMER_INIT_VAL_MASK, 0x7f));
- 	wa_mcr_add(wal,
-@@ -780,7 +780,7 @@ static void dg2_ctx_workarounds_init(struct intel_engine_cs *engine,
- 		wa_masked_en(wal, PSS_MODE2, SCOREBOARD_STALL_FLUSH_CONTROL);
- 
- 	/* Wa_15010599737:dg2 */
--	wa_masked_en(wal, CHICKEN_RASTER_1, DIS_SF_ROUND_NEAREST_EVEN);
-+	wa_mcr_masked_en(wal, CHICKEN_RASTER_1, DIS_SF_ROUND_NEAREST_EVEN);
- 
- 	/* Wa_18019271663:dg2 */
- 	wa_masked_en(wal, CACHE_MODE_1, MSAA_OPTIMIZATION_REDUC_DISABLE);
+> > So here we are, with Andrzej looking to add the common helper. And the
+> > same concerns crop up. What should it be called to make it clear that
+> > it's not atomic? Is that possible?
+> 
+> old_value = read_write(variable, new_value);
+> 
+> But two statements are much clearer.
+
+Yeah this is my point for fetch_and_zero or any of the other proposals.
+We're essentially replacing these two lines:
+
+	var = some->pointer->chase;
+	some->pointer->chase = NULL;
+
+with a macro. C is verbose, and sometimes painfully so, if the pointer
+chase is really to onerous then I think that should be refactored with a
+meaningfully locally name variable, not fancy macros wrapped around to
+golf a few characters away.
+
+But what about swap() you ask? That one needs a temp variable, and it does
+make sense to hide that in a ({}) block in a macro. But for the above two
+lines I really don't see a point outside of obfuscated C contexts.
+-Daniel
 -- 
-2.39.0
-
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
