@@ -2,49 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DA0965E5C1
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Jan 2023 07:58:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7462965E63B
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Jan 2023 08:49:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEEFF10E6B6;
-	Thu,  5 Jan 2023 06:57:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3521C10E6B7;
+	Thu,  5 Jan 2023 07:49:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B6FF10E6B6
- for <intel-gfx@lists.freedesktop.org>; Thu,  5 Jan 2023 06:57:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1672901878; x=1704437878;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=6MJu/ubTk3BJAK/wmGfJTRt0hjjMBkP8YnAp4qf3t9c=;
- b=bmQx6SMTfj+R8TI84I9J/sb63TQFtMOWrVnvd7U7oSI/Zn6T0wrwJOfB
- 639vzgSuvx1frxyulUvp8WlmQiXOr82GgflGxhGd6dSUdeL55qJNnqNGm
- 2BoqBpjBuCqn41FJCZ6nSHwxhkHUIVEUCb+CYf2EukNVr2zGQdA8SD22B
- 9SI0HT76+UakQ+ukOY3squXb5DX8NTPQxqn43FgzM48jnt9yMNnoWg6yH
- +6XWc3BcqQCSolKkkkTzjYFgy19OKrpCh7W9GrGKk5ey0O62W4YmlGSWM
- /WzilQ4BUZNt5sJqf4zCT80vxoLS61YOKAbJ/tafRol/NtSCsAj0BI/EV A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10580"; a="320839997"
-X-IronPort-AV: E=Sophos;i="5.96,302,1665471600"; d="scan'208";a="320839997"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2023 22:57:57 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10580"; a="633054270"
-X-IronPort-AV: E=Sophos;i="5.96,302,1665471600"; d="scan'208";a="633054270"
-Received: from mkhalil-mobl.amr.corp.intel.com (HELO
- jhogande-mobl1.ger.corp.intel.com) ([10.251.220.122])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2023 22:57:54 -0800
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  5 Jan 2023 08:56:37 +0200
-Message-Id: <20230105065637.2063311-1-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com
+ [66.111.4.230])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C6D310E6B7;
+ Thu,  5 Jan 2023 07:49:12 +0000 (UTC)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 189B9581DC0;
+ Thu,  5 Jan 2023 02:49:12 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute4.internal (MEProxy); Thu, 05 Jan 2023 02:49:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-type:date:date:from:from:in-reply-to:message-id
+ :mime-version:reply-to:sender:subject:subject:to:to; s=fm3; t=
+ 1672904952; x=1672912152; bh=jERi6VHhZyEw8Hj9FyQGp/xfIG6K+UHce3C
+ ChzdMIvk=; b=Iww1pA3MGTXWPQ1eTb/OXo4Ny8+eQBU8kyo4RyvZqJqwx/dfesh
+ MkOMW8cWExez8bkjiXCaxGY0r5EJUDfk/cHpkKFMZ9D97nsCX9Ksdjeycw+cc1Ix
+ G16086Rcbu4cuuiZAjJU2bm8V97m482ZLtlbFwtDw+2tbcYAkblgGZsUv0uIIEFk
+ 15uOxWFsa1sB94G94+juba/hTaHAJBB/kAi/jjHFFqgudJUoHv27t2xWFyBkrJ89
+ Pya+42IyA0IR1k1eg0Cba7e2Qv4oqfyWR4WsmzfgKiWu9TfiPYu2N2nIgu7PutbH
+ TI0Ld7OUbk1OJrJOEA9R5OvqEXBCOJZRL5A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+ :feedback-id:from:from:in-reply-to:message-id:mime-version
+ :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1672904952; x=
+ 1672912152; bh=jERi6VHhZyEw8Hj9FyQGp/xfIG6K+UHce3CChzdMIvk=; b=L
+ tQqLQti0J66rBSPfYh88wWmne8DmrdcGQefShGHy+Zyxi/rWfqfQKuk7R96eUX+D
+ XBMSUKXETPCb8uPX9A6L0J27ZOhTpyQFjkc/rh648U3+jAL9oBVC5g7YkBYB5VHy
+ A2UapB1wgyqckjcWbCOPgWQEPsE8HdsDt/2MT7KssGh9nvAtPwb3w1tHqBaxTTQr
+ 2xFxoCutr2xpFmfVm0oNcQgrNLRQvIBA8O5dhoMPNFrEq9zsXu2Zb2eLDavnLUaS
+ zeS8183024EZEfECiUFIcWvxadPyZPdH50kYyMqdQDshi7BZNTZQvF4mFqq1P+Jl
+ dw1sINHv0sVSo8WSEZd6A==
+X-ME-Sender: <xms:94C2Y22mmCpITFoi0l3qd6TcZM-FUsdg-KG3ecytnv4-e2TfJEYyHQ>
+ <xme:94C2Y5Hm9oIYLrwsc1UmbCXw_qQ91z462ry1kl_iDbocKNU5SehlmZVE3Bxe_4uaT
+ Wmv5zxwqHrgI__Mb-k>
+X-ME-Received: <xmr:94C2Y-7JUtn8B1hpv3kJvToZzFt4ZNsDuHiGEKIbvc0T2DXYr6CYBWNRP6J5UMS3MI1p9FTrwxhCAeH3kPBy3I2K_DdLhr9sGC1toBDdQ2Sr9Q>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrjeejgdduudegucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvfevuffkgggtugesghdtreertddtudenucfhrhhomhepofgrgihimhgv
+ ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+ gvrhhnpeekheejgeeuhfethffgheekhedufeduhfejgfehffekudefgedugffhkeefhfev
+ vdenucffohhmrghinhepfhhrvggvuggvshhkthhophdrohhrghenucevlhhushhtvghruf
+ hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdr
+ thgvtghh
+X-ME-Proxy: <xmx:94C2Y30697kFJGAHOu6jutJom5DwozCskSo5WrgeY6EeSvNZn77-jQ>
+ <xmx:94C2Y5H5T9rTLRmaD9RkQwhSodEOCRQO0DkzEP97eeyjt5PHmIjVEA>
+ <xmx:94C2Yw8l2B4ffYmfFCOhPvGvYda4rmwBM0TgBBd5G27gXxwaFLW8yA>
+ <xmx:-IC2Yy17ygS_0cldCUwdO3xSjJVA911pvvuWEe2N6mSTM_yxC2HZFQ>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 5 Jan 2023 02:49:10 -0500 (EST)
+Date: Thu, 5 Jan 2023 08:49:09 +0100
+From: Maxime Ripard <maxime@cerno.tech>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20230105074909.qd2h23hpxac4lxi7@houat>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3] drm/i915/psr: Implement Wa_14015648006
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="jgjy2rtom6zrwpcw"
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,130 +81,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add 4th pipe and extend TGL Wa_16013835468 to support ADLP, MTL and
-DG2 and all TGL steppings.
 
-BSpec: 54369, 55378, 66624
+--jgjy2rtom6zrwpcw
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-v3:
- - commit message modified
-v2:
- - apply for PSR1 as well
- - remove stepping information from comments
+Hi Dave, Daniel,
 
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c | 48 ++++++++++++++----------
- drivers/gpu/drm/i915/i915_reg.h          |  1 +
- 2 files changed, 29 insertions(+), 20 deletions(-)
+Here's this week drm-misc-fixes PR
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index d0d774219cc5..507f810d4a4a 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1112,6 +1112,8 @@ static u32 wa_16013835468_bit_get(struct intel_dp *intel_dp)
- 		return LATENCY_REPORTING_REMOVED_PIPE_B;
- 	case PIPE_C:
- 		return LATENCY_REPORTING_REMOVED_PIPE_C;
-+	case PIPE_D:
-+		return LATENCY_REPORTING_REMOVED_PIPE_D;
- 	default:
- 		MISSING_CASE(intel_dp->psr.pipe);
- 		return 0;
-@@ -1163,6 +1165,23 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
- 			     intel_dp->psr.psr2_sel_fetch_enabled ?
- 			     IGNORE_PSR2_HW_TRACKING : 0);
- 
-+	/*
-+	 * Wa_16013835468
-+	 * Wa_14015648006
-+	 */
-+	if (IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0) ||
-+	    IS_DISPLAY_VER(dev_priv, 12, 13)) {
-+		u16 vtotal, vblank;
-+
-+		vtotal = crtc_state->uapi.adjusted_mode.crtc_vtotal -
-+			crtc_state->uapi.adjusted_mode.crtc_vdisplay;
-+		vblank = crtc_state->uapi.adjusted_mode.crtc_vblank_end -
-+			crtc_state->uapi.adjusted_mode.crtc_vblank_start;
-+		if (vblank > vtotal)
-+			intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1, 0,
-+				     wa_16013835468_bit_get(intel_dp));
-+	}
-+
- 	if (intel_dp->psr.psr2_enabled) {
- 		if (DISPLAY_VER(dev_priv) == 9)
- 			intel_de_rmw(dev_priv, CHICKEN_TRANS(cpu_transcoder), 0,
-@@ -1196,20 +1215,6 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
- 		else if (IS_ALDERLAKE_P(dev_priv))
- 			intel_de_rmw(dev_priv, CLKGATE_DIS_MISC, 0,
- 				     CLKGATE_DIS_MISC_DMASC_GATING_DIS);
--
--		/* Wa_16013835468:tgl[b0+], dg1 */
--		if (IS_TGL_DISPLAY_STEP(dev_priv, STEP_B0, STEP_FOREVER) ||
--		    IS_DG1(dev_priv)) {
--			u16 vtotal, vblank;
--
--			vtotal = crtc_state->uapi.adjusted_mode.crtc_vtotal -
--				 crtc_state->uapi.adjusted_mode.crtc_vdisplay;
--			vblank = crtc_state->uapi.adjusted_mode.crtc_vblank_end -
--				 crtc_state->uapi.adjusted_mode.crtc_vblank_start;
--			if (vblank > vtotal)
--				intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1, 0,
--					     wa_16013835468_bit_get(intel_dp));
--		}
- 	}
- }
- 
-@@ -1362,6 +1367,15 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
- 		intel_de_rmw(dev_priv, CHICKEN_PAR1_1,
- 			     DIS_RAM_BYPASS_PSR2_MAN_TRACK, 0);
- 
-+	/*
-+	 * Wa_16013835468
-+	 * Wa_14015648006
-+	 */
-+	if (IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0) ||
-+	    IS_DISPLAY_VER(dev_priv, 12, 13))
-+		intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1,
-+			     wa_16013835468_bit_get(intel_dp), 0);
-+
- 	if (intel_dp->psr.psr2_enabled) {
- 		/* Wa_16011168373:adl-p */
- 		if (IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
-@@ -1377,12 +1391,6 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
- 		else if (IS_ALDERLAKE_P(dev_priv))
- 			intel_de_rmw(dev_priv, CLKGATE_DIS_MISC,
- 				     CLKGATE_DIS_MISC_DMASC_GATING_DIS, 0);
--
--		/* Wa_16013835468:tgl[b0+], dg1 */
--		if (IS_TGL_DISPLAY_STEP(dev_priv, STEP_B0, STEP_FOREVER) ||
--		    IS_DG1(dev_priv))
--			intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1,
--				     wa_16013835468_bit_get(intel_dp), 0);
- 	}
- 
- 	intel_snps_phy_update_psr_power_state(dev_priv, phy, false);
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 8b2cf980f323..b0b3b511e19f 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -5737,6 +5737,7 @@
- #define  RESET_PCH_HANDSHAKE_ENABLE	REG_BIT(4)
- 
- #define GEN8_CHICKEN_DCPR_1			_MMIO(0x46430)
-+#define   LATENCY_REPORTING_REMOVED_PIPE_D	REG_BIT(31)
- #define   SKL_SELECT_ALTERNATE_DC_EXIT		REG_BIT(30)
- #define   LATENCY_REPORTING_REMOVED_PIPE_C	REG_BIT(25)
- #define   LATENCY_REPORTING_REMOVED_PIPE_B	REG_BIT(24)
--- 
-2.34.1
+Maxime
 
+drm-misc-fixes-2023-01-05:
+Several fixes to fix the error path of dma_buf_export, add a missing
+structure declaration resulting in a compiler warning, fix the GEM
+handle refcounting in panfrost, fix a corrupted image with AFBC on
+meson, a memleak in virtio, improper plane width for imx, and a lockup
+in drm_sched_entity_kill()
+The following changes since commit 88603b6dc419445847923fcb7fe5080067a30f98:
+
+  Linux 6.2-rc2 (2023-01-01 13:53:16 -0800)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2023-01-05
+
+for you to fetch changes up to 69555549cfa42e10f2fdd2699ed4e34d9d4f392b:
+
+  drm/scheduler: Fix lockup in drm_sched_entity_kill() (2023-01-03 14:49:59=
+ +0300)
+
+----------------------------------------------------------------
+Several fixes to fix the error path of dma_buf_export, add a missing
+structure declaration resulting in a compiler warning, fix the GEM
+handle refcounting in panfrost, fix a corrupted image with AFBC on
+meson, a memleak in virtio, improper plane width for imx, and a lockup
+in drm_sched_entity_kill()
+
+----------------------------------------------------------------
+Carlo Caione (1):
+      drm/meson: Reduce the FIFO lines held when AFBC is not used
+
+Christian K=F6nig (1):
+      dma-buf: fix dma_buf_export init order v2
+
+Dmitry Osipenko (1):
+      drm/scheduler: Fix lockup in drm_sched_entity_kill()
+
+Ma Jun (1):
+      drm/plane-helper: Add the missing declaration of drm_atomic_state
+
+Maxime Ripard (1):
+      Merge drm/drm-fixes into drm-misc-fixes
+
+Philipp Zabel (1):
+      drm/imx: ipuv3-plane: Fix overlay plane width
+
+Steven Price (1):
+      drm/panfrost: Fix GEM handle creation ref-counting
+
+Xiu Jianfeng (1):
+      drm/virtio: Fix memory leak in virtio_gpu_object_create()
+
+ drivers/dma-buf/dma-buf-sysfs-stats.c    |  7 +--
+ drivers/dma-buf/dma-buf-sysfs-stats.h    |  4 +-
+ drivers/dma-buf/dma-buf.c                | 82 +++++++++++++++-------------=
+----
+ drivers/gpu/drm/imx/ipuv3-plane.c        | 14 +++---
+ drivers/gpu/drm/meson/meson_viu.c        |  5 +-
+ drivers/gpu/drm/panfrost/panfrost_drv.c  | 27 +++++++----
+ drivers/gpu/drm/panfrost/panfrost_gem.c  | 16 +------
+ drivers/gpu/drm/panfrost/panfrost_gem.h  |  5 +-
+ drivers/gpu/drm/scheduler/sched_entity.c |  2 +-
+ drivers/gpu/drm/scheduler/sched_main.c   |  4 +-
+ drivers/gpu/drm/virtio/virtgpu_object.c  |  6 ++-
+ include/drm/drm_plane_helper.h           |  1 +
+ 12 files changed, 80 insertions(+), 93 deletions(-)
+
+--jgjy2rtom6zrwpcw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCY7aA9QAKCRDj7w1vZxhR
+xYGOAP4tgW1mOHH2FRfU6UOL02qHE5dpFcj1RuOMD2e1vM61LAD/RdOBMVe5mwkb
+sv4ePNgCkBbG0XpIQyz8J9gAPomDNgQ=
+=DTqo
+-----END PGP SIGNATURE-----
+
+--jgjy2rtom6zrwpcw--
