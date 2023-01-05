@@ -2,73 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7462965E63B
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Jan 2023 08:49:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B295665E67A
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Jan 2023 09:13:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3521C10E6B7;
-	Thu,  5 Jan 2023 07:49:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A47A10E6C3;
+	Thu,  5 Jan 2023 08:13:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com
- [66.111.4.230])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C6D310E6B7;
- Thu,  5 Jan 2023 07:49:12 +0000 (UTC)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
- by mailnew.nyi.internal (Postfix) with ESMTP id 189B9581DC0;
- Thu,  5 Jan 2023 02:49:12 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute4.internal (MEProxy); Thu, 05 Jan 2023 02:49:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-type:date:date:from:from:in-reply-to:message-id
- :mime-version:reply-to:sender:subject:subject:to:to; s=fm3; t=
- 1672904952; x=1672912152; bh=jERi6VHhZyEw8Hj9FyQGp/xfIG6K+UHce3C
- ChzdMIvk=; b=Iww1pA3MGTXWPQ1eTb/OXo4Ny8+eQBU8kyo4RyvZqJqwx/dfesh
- MkOMW8cWExez8bkjiXCaxGY0r5EJUDfk/cHpkKFMZ9D97nsCX9Ksdjeycw+cc1Ix
- G16086Rcbu4cuuiZAjJU2bm8V97m482ZLtlbFwtDw+2tbcYAkblgGZsUv0uIIEFk
- 15uOxWFsa1sB94G94+juba/hTaHAJBB/kAi/jjHFFqgudJUoHv27t2xWFyBkrJ89
- Pya+42IyA0IR1k1eg0Cba7e2Qv4oqfyWR4WsmzfgKiWu9TfiPYu2N2nIgu7PutbH
- TI0Ld7OUbk1OJrJOEA9R5OvqEXBCOJZRL5A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
- :feedback-id:from:from:in-reply-to:message-id:mime-version
- :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1672904952; x=
- 1672912152; bh=jERi6VHhZyEw8Hj9FyQGp/xfIG6K+UHce3CChzdMIvk=; b=L
- tQqLQti0J66rBSPfYh88wWmne8DmrdcGQefShGHy+Zyxi/rWfqfQKuk7R96eUX+D
- XBMSUKXETPCb8uPX9A6L0J27ZOhTpyQFjkc/rh648U3+jAL9oBVC5g7YkBYB5VHy
- A2UapB1wgyqckjcWbCOPgWQEPsE8HdsDt/2MT7KssGh9nvAtPwb3w1tHqBaxTTQr
- 2xFxoCutr2xpFmfVm0oNcQgrNLRQvIBA8O5dhoMPNFrEq9zsXu2Zb2eLDavnLUaS
- zeS8183024EZEfECiUFIcWvxadPyZPdH50kYyMqdQDshi7BZNTZQvF4mFqq1P+Jl
- dw1sINHv0sVSo8WSEZd6A==
-X-ME-Sender: <xms:94C2Y22mmCpITFoi0l3qd6TcZM-FUsdg-KG3ecytnv4-e2TfJEYyHQ>
- <xme:94C2Y5Hm9oIYLrwsc1UmbCXw_qQ91z462ry1kl_iDbocKNU5SehlmZVE3Bxe_4uaT
- Wmv5zxwqHrgI__Mb-k>
-X-ME-Received: <xmr:94C2Y-7JUtn8B1hpv3kJvToZzFt4ZNsDuHiGEKIbvc0T2DXYr6CYBWNRP6J5UMS3MI1p9FTrwxhCAeH3kPBy3I2K_DdLhr9sGC1toBDdQ2Sr9Q>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrjeejgdduudegucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvfevuffkgggtugesghdtreertddtudenucfhrhhomhepofgrgihimhgv
- ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
- gvrhhnpeekheejgeeuhfethffgheekhedufeduhfejgfehffekudefgedugffhkeefhfev
- vdenucffohhmrghinhepfhhrvggvuggvshhkthhophdrohhrghenucevlhhushhtvghruf
- hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdr
- thgvtghh
-X-ME-Proxy: <xmx:94C2Y30697kFJGAHOu6jutJom5DwozCskSo5WrgeY6EeSvNZn77-jQ>
- <xmx:94C2Y5H5T9rTLRmaD9RkQwhSodEOCRQO0DkzEP97eeyjt5PHmIjVEA>
- <xmx:94C2Yw8l2B4ffYmfFCOhPvGvYda4rmwBM0TgBBd5G27gXxwaFLW8yA>
- <xmx:-IC2Yy17ygS_0cldCUwdO3xSjJVA911pvvuWEe2N6mSTM_yxC2HZFQ>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 5 Jan 2023 02:49:10 -0500 (EST)
-Date: Thu, 5 Jan 2023 08:49:09 +0100
-From: Maxime Ripard <maxime@cerno.tech>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20230105074909.qd2h23hpxac4lxi7@houat>
+Received: from mail2-relais-roc.national.inria.fr
+ (mail2-relais-roc.national.inria.fr [192.134.164.83])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B3C310E6C1;
+ Thu,  5 Jan 2023 08:13:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=inria.fr; s=dc;
+ h=date:from:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=fzV0HKTUGAzAK8YFWAsxGc2YnLeue6G6Fo1KiDz9FnA=;
+ b=M1m68CEYHog5YQ/a9PchNLN0AlK8Zpc3DIEZYEhBgFGGI364c0m+3acX
+ DtKG3ZTaM4up9xYAGM6WRlp9tw6igobXQJBcg0vtt0MzCpSskx0frIbSf
+ F6z1g4j6bPVOrf8rZjzGYeCibHT6Y8beld2quKQiwo8OY+5LnjNTWf5pL I=;
+Authentication-Results: mail2-relais-roc.national.inria.fr;
+ dkim=none (message not signed) header.i=none;
+ spf=SoftFail smtp.mailfrom=julia.lawall@inria.fr;
+ dmarc=fail (p=none dis=none) d=inria.fr
+X-IronPort-AV: E=Sophos;i="5.96,302,1665439200"; d="scan'208";a="86036273"
+Received: from dt-lawall.paris.inria.fr ([128.93.67.65])
+ by mail2-relais-roc.national.inria.fr with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Jan 2023 09:13:35 +0100
+Date: Thu, 5 Jan 2023 09:13:35 +0100 (CET)
+From: Julia Lawall <julia.lawall@inria.fr>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+In-Reply-To: <Y7XABJ9MWCWO5IUA@intel.com>
+Message-ID: <991ac2b4-f458-f6f2-f494-648ed61efcff@inria.fr>
+References: <Y6qmNW6cOHjGwn03@qemulion> <Y6sn1BmhFJFssW0h@intel.com>
+ <Y6s0FSK9+F+/oKSf@qemulion> <Y6wl9NhYZG5RjJL7@intel.com>
+ <Y7PG5Hx5dDE7aHSx@qemulion> <alpine.DEB.2.22.394.2301041850570.7216@hadrien>
+ <Y7XABJ9MWCWO5IUA@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="jgjy2rtom6zrwpcw"
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+Content-Type: text/plain; charset=US-ASCII
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/fbc: Avoid full proxy f_ops for
+ FBC debug attributes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,99 +53,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: Saurabh Singh Sengar <ssengar@microsoft.com>,
+ Deepak R Varma <drv@mailo.com>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Julia Lawall <Julia.Lawall@lip6.fr>,
+ Nicolai Stange <nicstange@gmail.com>, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Praveen Kumar <kumarpraveen@linux.microsoft.com>,
+ David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+> Hi Julia, thanks for helping here.
+>
+> So, my question is why this
+>
+> make coccicheck M=drivers/gpu/drm/i915/ MODE=context COCCI=./scripts/coccinelle/api/debugfs/debugfs_simple_attr.cocci
+>
+> didn't catch this chunck:
+>
+> -		debugfs_create_file("i915_fbc_false_color", 0644, parent,
+> -				    fbc, &intel_fbc_debugfs_false_color_fops);
+> +		debugfs_create_file_unsafe("i915_fbc_false_color", 0644, parent,
+> +					   fbc, &intel_fbc_debugfs_false_color_fops);
+>
+> When I run it it only catches and replaces this:
+>
+> - DEFINE_SIMPLE_ATTRIBUTE(dsa_fops, dsa_get, dsa_set, dsa_fmt);
+> + DEFINE_DEBUGFS_ATTRIBUTE(dsa_fops, dsa_get, dsa_set, dsa_fmt);
 
---jgjy2rtom6zrwpcw
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+There is something strange in your question.  You have MODE=context but
+you show the output for MODE=patch.  The rule dcf matches a call to
+debugfs_create_file, and the context rule matching DEFINE_SIMPLE_ATTRIBUTE
+is only activated if dcf succeeds.  So when the context rule gives a
+report, there is always a corresponding call to debugfs_create_file in the
+same file, it is just not highlighted.  So the request is that it should
+be highlighted as well?
 
-Hi Dave, Daniel,
+julia
 
-Here's this week drm-misc-fixes PR
-
-Maxime
-
-drm-misc-fixes-2023-01-05:
-Several fixes to fix the error path of dma_buf_export, add a missing
-structure declaration resulting in a compiler warning, fix the GEM
-handle refcounting in panfrost, fix a corrupted image with AFBC on
-meson, a memleak in virtio, improper plane width for imx, and a lockup
-in drm_sched_entity_kill()
-The following changes since commit 88603b6dc419445847923fcb7fe5080067a30f98:
-
-  Linux 6.2-rc2 (2023-01-01 13:53:16 -0800)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2023-01-05
-
-for you to fetch changes up to 69555549cfa42e10f2fdd2699ed4e34d9d4f392b:
-
-  drm/scheduler: Fix lockup in drm_sched_entity_kill() (2023-01-03 14:49:59=
- +0300)
-
-----------------------------------------------------------------
-Several fixes to fix the error path of dma_buf_export, add a missing
-structure declaration resulting in a compiler warning, fix the GEM
-handle refcounting in panfrost, fix a corrupted image with AFBC on
-meson, a memleak in virtio, improper plane width for imx, and a lockup
-in drm_sched_entity_kill()
-
-----------------------------------------------------------------
-Carlo Caione (1):
-      drm/meson: Reduce the FIFO lines held when AFBC is not used
-
-Christian K=F6nig (1):
-      dma-buf: fix dma_buf_export init order v2
-
-Dmitry Osipenko (1):
-      drm/scheduler: Fix lockup in drm_sched_entity_kill()
-
-Ma Jun (1):
-      drm/plane-helper: Add the missing declaration of drm_atomic_state
-
-Maxime Ripard (1):
-      Merge drm/drm-fixes into drm-misc-fixes
-
-Philipp Zabel (1):
-      drm/imx: ipuv3-plane: Fix overlay plane width
-
-Steven Price (1):
-      drm/panfrost: Fix GEM handle creation ref-counting
-
-Xiu Jianfeng (1):
-      drm/virtio: Fix memory leak in virtio_gpu_object_create()
-
- drivers/dma-buf/dma-buf-sysfs-stats.c    |  7 +--
- drivers/dma-buf/dma-buf-sysfs-stats.h    |  4 +-
- drivers/dma-buf/dma-buf.c                | 82 +++++++++++++++-------------=
-----
- drivers/gpu/drm/imx/ipuv3-plane.c        | 14 +++---
- drivers/gpu/drm/meson/meson_viu.c        |  5 +-
- drivers/gpu/drm/panfrost/panfrost_drv.c  | 27 +++++++----
- drivers/gpu/drm/panfrost/panfrost_gem.c  | 16 +------
- drivers/gpu/drm/panfrost/panfrost_gem.h  |  5 +-
- drivers/gpu/drm/scheduler/sched_entity.c |  2 +-
- drivers/gpu/drm/scheduler/sched_main.c   |  4 +-
- drivers/gpu/drm/virtio/virtgpu_object.c  |  6 ++-
- include/drm/drm_plane_helper.h           |  1 +
- 12 files changed, 80 insertions(+), 93 deletions(-)
-
---jgjy2rtom6zrwpcw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCY7aA9QAKCRDj7w1vZxhR
-xYGOAP4tgW1mOHH2FRfU6UOL02qHE5dpFcj1RuOMD2e1vM61LAD/RdOBMVe5mwkb
-sv4ePNgCkBbG0XpIQyz8J9gAPomDNgQ=
-=DTqo
------END PGP SIGNATURE-----
-
---jgjy2rtom6zrwpcw--
+>
+> But looking to the .cocci script or at least to its description,
+> I believe it should catch both cases.
+>
+> But if it is not a bug in the cocci script, then I'd like to hear
+> from Nicolai why. And have this documented in the script.
+>
+> Thanks,
+> Rodrigo.
+>
+> >
+> > julia
+> >
+> >
+> > >
+> > > Thank you,
+> > > ./drv
+> > >
+> > > >
+> > > > >
+> > > > > >
+> > > > > > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > > > > (to both patches, this and the drrs one.
+> > > > > >
+> > > > > > Also, it looks like you could contribute with other 2 patches:
+> > > > > > drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c:64:0-23: WARNING: pxp_terminate_fops should be defined with DEFINE_DEBUGFS_ATTRIBUTE
+> > > > > > drivers/gpu/drm/i915/gvt/debugfs.c:150:0-23: WARNING: vgpu_scan_nonprivbb_fops should be defined with DEFINE_DEBUGFS_ATTRIBUTE
+> > > > >
+> > > > > Yes, these are on my list. Was waiting for a feedback on the first submission
+> > > > > before I send more similar patches.
+> > > > >
+> > > > > Appreciate your time and the feedback.
+> > > > >
+> > > > >
+> > > > > Regards,
+> > > > > ./drv
+> > > > >
+> > > > > >
+> > > > > > >
+> > > > > > > Signed-off-by: Deepak R Varma <drv@mailo.com>
+> > > > > > > ---
+> > > > > > >  drivers/gpu/drm/i915/display/intel_fbc.c | 12 ++++++------
+> > > > > > >  1 file changed, 6 insertions(+), 6 deletions(-)
+> > > > > > >
+> > > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+> > > > > > > index b5ee5ea0d010..4b481e2f908b 100644
+> > > > > > > --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> > > > > > > +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> > > > > > > @@ -1809,10 +1809,10 @@ static int intel_fbc_debugfs_false_color_set(void *data, u64 val)
+> > > > > > >  	return 0;
+> > > > > > >  }
+> > > > > > >
+> > > > > > > -DEFINE_SIMPLE_ATTRIBUTE(intel_fbc_debugfs_false_color_fops,
+> > > > > > > -			intel_fbc_debugfs_false_color_get,
+> > > > > > > -			intel_fbc_debugfs_false_color_set,
+> > > > > > > -			"%llu\n");
+> > > > > > > +DEFINE_DEBUGFS_ATTRIBUTE(intel_fbc_debugfs_false_color_fops,
+> > > > > > > +			 intel_fbc_debugfs_false_color_get,
+> > > > > > > +			 intel_fbc_debugfs_false_color_set,
+> > > > > > > +			 "%llu\n");
+> > > > > > >
+> > > > > > >  static void intel_fbc_debugfs_add(struct intel_fbc *fbc,
+> > > > > > >  				  struct dentry *parent)
+> > > > > > > @@ -1821,8 +1821,8 @@ static void intel_fbc_debugfs_add(struct intel_fbc *fbc,
+> > > > > > >  			    fbc, &intel_fbc_debugfs_status_fops);
+> > > > > > >
+> > > > > > >  	if (fbc->funcs->set_false_color)
+> > > > > > > -		debugfs_create_file("i915_fbc_false_color", 0644, parent,
+> > > > > > > -				    fbc, &intel_fbc_debugfs_false_color_fops);
+> > > > > > > +		debugfs_create_file_unsafe("i915_fbc_false_color", 0644, parent,
+> > > > > > > +					   fbc, &intel_fbc_debugfs_false_color_fops);
+> > > > > > >  }
+> > > > > > >
+> > > > > > >  void intel_fbc_crtc_debugfs_add(struct intel_crtc *crtc)
+> > > > > > > --
+> > > > > > > 2.34.1
+> > > > > > >
+> > > > > > >
+> > > > > > >
+> > > > >
+> > > > >
+> > > >
+> > >
+> > >
+> > >
+>
