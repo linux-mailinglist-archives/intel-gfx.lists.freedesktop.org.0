@@ -2,62 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36D0B65E8A7
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Jan 2023 11:10:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 329CA65EA1B
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Jan 2023 12:44:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9667F10E6E4;
-	Thu,  5 Jan 2023 10:10:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5DDA10E6F2;
+	Thu,  5 Jan 2023 11:44:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com
- [IPv6:2a00:1450:4864:20::435])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4F6510E6E3
- for <intel-gfx@lists.freedesktop.org>; Thu,  5 Jan 2023 10:10:24 +0000 (UTC)
-Received: by mail-wr1-x435.google.com with SMTP id r2so783407wrv.7
- for <intel-gfx@lists.freedesktop.org>; Thu, 05 Jan 2023 02:10:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=4m7Y1s94kgAPUcUdp5h11Z9DHNnKQurlv6ak2yowHjs=;
- b=R0uXYiLwKSXOcR0DKAlH0FMa0APRfzZDFoqhx+0DFVI3zhwAl1pfaR+JtzIAgUfami
- 2GP9dVb/OG2cIn2YhvNrWycWnCMdlqPHNbC1c5yl334O6+TgjdbnZ7UClNb9GwM22eCq
- fL12JAJoTw1cweQyIZCeiaGLDrPL4NU/VG15Q=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=4m7Y1s94kgAPUcUdp5h11Z9DHNnKQurlv6ak2yowHjs=;
- b=MQAPt1l2MVb9sLfLzBFol4M2BhSdQq6IrlaZjNwk4omlsYnL93QxyrKurImsP4uo46
- TktWNcuFS7mAPTq/tojrTAs4wU+/y6Kl97nVD74OHSN5MFjKvPArSyp5Od5/EwOVYJh0
- L9mNkP9AsEA64JpZGaXIi5H/PoOOky06b2QwuO1P9yZ5owDEsIRVxoR8b2EUTKdZL2/H
- hIzkGmQj169I4mjjqNF9wFgdR/r0wDbXX/Y3ypfHC+IkHomXoi41u4kD/18WvtrT8D/A
- XWdXBgHXr1Qlsrp/KdZckKqiBrmwHvhznf/WTm6znff0k9cvv6p9k0OqDYYW+WMnXp8n
- k0sQ==
-X-Gm-Message-State: AFqh2koxtTPGuR1wxMX3WGqoRkKyTFfFZNERsFyORWrHsBmMjzPpkFph
- byDWo+EfrO6VuOn8WPXS2wLE4g==
-X-Google-Smtp-Source: AMrXdXv3rYhOw3jTnPpGDoJn2ZZLNhkkxRPeCO28fLZUCUWTWzVP8qtiGLjbodu5BNhH4JzWDkQCSg==
-X-Received: by 2002:adf:db12:0:b0:242:203c:9ed4 with SMTP id
- s18-20020adfdb12000000b00242203c9ed4mr33125952wri.55.1672913423129; 
- Thu, 05 Jan 2023 02:10:23 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id
- n14-20020adfe34e000000b002366dd0e030sm36410769wrj.68.2023.01.05.02.10.21
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 05 Jan 2023 02:10:22 -0800 (PST)
-Date: Thu, 5 Jan 2023 11:10:19 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Maxime Ripard <maxime@cerno.tech>
-Message-ID: <Y7aiC/5eJBKhDjGx@phenom.ffwll.local>
-References: <20230105074909.qd2h23hpxac4lxi7@houat>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8237210E6FA
+ for <intel-gfx@lists.freedesktop.org>; Thu,  5 Jan 2023 11:44:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1672919048; x=1704455048;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=W7kUp7nShNL0/CIs02hRoUHbw0VI7doOt2H+KLZqVyg=;
+ b=iifWMYl7BoCYDuhjmCaRdvzTlT6GFcydkFU/htHJ4tvp8ywa548/UqX7
+ 9yowEG66rCATNHnMDqFWAKOu1g0KYG0YuiZD4lMvd3sQG9mfuCAcKdHlP
+ m3pXZ3oQEQsCgvWyQk9eue4a/hcMAEB1HkwcJGLVk7U9cOwJNxjWyNqB6
+ 4LOjo/BnVpLMueuklspGViJsTeSFtwfV6+P2SDfg/R4pIRmc5vSeb0hTL
+ Sjxqi6MZPzP9/EeTA9XPz4PR3350Hdn0honHl9wtE9CCtt8O3c8/qntId
+ Mik8py2THLxlHiIjuk31fzyP/AGGflsRofQZj4EA9AFKLRuYW+w0QLJmn A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10580"; a="320891237"
+X-IronPort-AV: E=Sophos;i="5.96,302,1665471600"; d="scan'208";a="320891237"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jan 2023 03:44:06 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10580"; a="744204878"
+X-IronPort-AV: E=Sophos;i="5.96,302,1665471600"; d="scan'208";a="744204878"
+Received: from swathish-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.10.152])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jan 2023 03:44:04 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20221017143038.1748319-3-ankit.k.nautiyal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20221017143038.1748319-1-ankit.k.nautiyal@intel.com>
+ <20221017143038.1748319-3-ankit.k.nautiyal@intel.com>
+Date: Thu, 05 Jan 2023 13:44:01 +0200
+Message-ID: <87k021w6im.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230105074909.qd2h23hpxac4lxi7@houat>
-X-Operating-System: Linux phenom 5.19.0-2-amd64 
-Subject: Re: [Intel-gfx] [PULL] drm-misc-fixes
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/display: Prune Interlace modes
+ for Display >=12
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,91 +60,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
- dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Dave Airlie <airlied@gmail.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 05, 2023 at 08:49:09AM +0100, Maxime Ripard wrote:
-> Hi Dave, Daniel,
-> 
-> Here's this week drm-misc-fixes PR
-> 
-> Maxime
-> 
-> drm-misc-fixes-2023-01-05:
-> Several fixes to fix the error path of dma_buf_export, add a missing
-> structure declaration resulting in a compiler warning, fix the GEM
-> handle refcounting in panfrost, fix a corrupted image with AFBC on
-> meson, a memleak in virtio, improper plane width for imx, and a lockup
-> in drm_sched_entity_kill()
-> The following changes since commit 88603b6dc419445847923fcb7fe5080067a30f98:
-> 
->   Linux 6.2-rc2 (2023-01-01 13:53:16 -0800)
-> 
-> are available in the Git repository at:
-> 
->   git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2023-01-05
-> 
-> for you to fetch changes up to 69555549cfa42e10f2fdd2699ed4e34d9d4f392b:
+On Mon, 17 Oct 2022, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+> Defeature Display Interlace support.
+> Support for interlace modes is removed from Gen 12 onwards.
+> Pruning the interlace modes for HDMI for Display >=12.
+> Bspec: 50490
+>
+> v2: Add check for both DP and HDMI. (Ville)
+> Get rid of redundant check for interlace mode in modevalid. (Ville)
+>
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c   | 4 ++--
+>  drivers/gpu/drm/i915/display/intel_hdmi.c | 8 +++++++-
+>  2 files changed, 9 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 1f83ddf13928..3dc197a45f16 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2032,7 +2032,7 @@ intel_dp_compute_config(struct intel_encoder *encoder,
+>  	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
+>  		return -EINVAL;
+>  
+> -	if (HAS_GMCH(dev_priv) &&
+> +	if ((HAS_GMCH(dev_priv) || DISPLAY_VER(dev_priv) >= 12) &&
 
-Pülled, danke vielmals.
--Daniel
+You could just look at connector->interlace_allowed here to avoid
+duplicating the conditions.
 
-> 
->   drm/scheduler: Fix lockup in drm_sched_entity_kill() (2023-01-03 14:49:59 +0300)
-> 
-> ----------------------------------------------------------------
-> Several fixes to fix the error path of dma_buf_export, add a missing
-> structure declaration resulting in a compiler warning, fix the GEM
-> handle refcounting in panfrost, fix a corrupted image with AFBC on
-> meson, a memleak in virtio, improper plane width for imx, and a lockup
-> in drm_sched_entity_kill()
-> 
-> ----------------------------------------------------------------
-> Carlo Caione (1):
->       drm/meson: Reduce the FIFO lines held when AFBC is not used
-> 
-> Christian König (1):
->       dma-buf: fix dma_buf_export init order v2
-> 
-> Dmitry Osipenko (1):
->       drm/scheduler: Fix lockup in drm_sched_entity_kill()
-> 
-> Ma Jun (1):
->       drm/plane-helper: Add the missing declaration of drm_atomic_state
-> 
-> Maxime Ripard (1):
->       Merge drm/drm-fixes into drm-misc-fixes
-> 
-> Philipp Zabel (1):
->       drm/imx: ipuv3-plane: Fix overlay plane width
-> 
-> Steven Price (1):
->       drm/panfrost: Fix GEM handle creation ref-counting
-> 
-> Xiu Jianfeng (1):
->       drm/virtio: Fix memory leak in virtio_gpu_object_create()
-> 
->  drivers/dma-buf/dma-buf-sysfs-stats.c    |  7 +--
->  drivers/dma-buf/dma-buf-sysfs-stats.h    |  4 +-
->  drivers/dma-buf/dma-buf.c                | 82 +++++++++++++++-----------------
->  drivers/gpu/drm/imx/ipuv3-plane.c        | 14 +++---
->  drivers/gpu/drm/meson/meson_viu.c        |  5 +-
->  drivers/gpu/drm/panfrost/panfrost_drv.c  | 27 +++++++----
->  drivers/gpu/drm/panfrost/panfrost_gem.c  | 16 +------
->  drivers/gpu/drm/panfrost/panfrost_gem.h  |  5 +-
->  drivers/gpu/drm/scheduler/sched_entity.c |  2 +-
->  drivers/gpu/drm/scheduler/sched_main.c   |  4 +-
->  drivers/gpu/drm/virtio/virtgpu_object.c  |  6 ++-
->  include/drm/drm_plane_helper.h           |  1 +
->  12 files changed, 80 insertions(+), 93 deletions(-)
+>  	    adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE)
+>  		return -EINVAL;
+>  
+> @@ -5412,7 +5412,7 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
+>  	drm_connector_init(dev, connector, &intel_dp_connector_funcs, type);
+>  	drm_connector_helper_add(connector, &intel_dp_connector_helper_funcs);
+>  
+> -	if (!HAS_GMCH(dev_priv))
+> +	if (!HAS_GMCH(dev_priv) && DISPLAY_VER(dev_priv) < 12)
+>  		connector->interlace_allowed = true;
+>  
+>  	intel_connector->polled = DRM_CONNECTOR_POLL_HPD;
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> index e21deb6ef7fa..05ab0a4f6d39 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -2244,6 +2244,10 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
+>  	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
+>  		return -EINVAL;
+>  
+> +	if (DISPLAY_VER(dev_priv) >= 12 &&
 
+Same here.
 
+> +	    adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE)
+> +		return -EINVAL;
+> +
+>  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
+>  	pipe_config->has_hdmi_sink = intel_has_hdmi_sink(intel_hdmi,
+>  							 conn_state);
+> @@ -2953,7 +2957,9 @@ void intel_hdmi_init_connector(struct intel_digital_port *dig_port,
+>  				    ddc);
+>  	drm_connector_helper_add(connector, &intel_hdmi_connector_helper_funcs);
+>  
+> -	connector->interlace_allowed = true;
+> +	if (DISPLAY_VER(dev_priv) < 12)
+> +		connector->interlace_allowed = true;
+> +
+>  	connector->stereo_allowed = true;
+>  
+>  	if (DISPLAY_VER(dev_priv) >= 10)
 
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Jani Nikula, Intel Open Source Graphics Center
