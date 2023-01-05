@@ -2,49 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39B8665F03E
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Jan 2023 16:38:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 896DF65F08D
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Jan 2023 16:52:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9641F10E043;
-	Thu,  5 Jan 2023 15:38:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC0C610E11F;
+	Thu,  5 Jan 2023 15:52:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 519CE10E043
- for <intel-gfx@lists.freedesktop.org>; Thu,  5 Jan 2023 15:38:40 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC81B10E11F;
+ Thu,  5 Jan 2023 15:52:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1672933120; x=1704469120;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Pb8afxV4bAlmjOA0dZq/Xwuhat9CaA3Xm7T/+Ng24Is=;
- b=fZbnt7Nsbq1m+yByt8gsqp7CDxmCapo6ACigOGzBIFpm59d7eL9Ix032
- MMtO0LDn1fab3h7CGohNp2W24emsUyZ4QWDCl3fdJ3i7K6SeeUyG/avO7
- VEOLRcux1kTGl8YUvqD0LVoBPXbsra7EH0xfFQijOUMtxGD+NiC0FxPdu
- 0EniMxzTGNqAj//5mP+2bXufj7iAdGK2Pxhx2+C7atC32zmc1k4sEIY6Y
- mN5VmJRWzID7tAjJQtTYE4q86NsAgtiJiuCvok8A4x9euHqEX8IGeF+it
- VKaVn6egoMSv14si+5NJDFzt/qZtGwrBXuMvUepOJC0XrTYdOf/9X5G6r A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10580"; a="320943581"
-X-IronPort-AV: E=Sophos;i="5.96,303,1665471600"; d="scan'208";a="320943581"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2023 07:38:39 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10580"; a="648969665"
-X-IronPort-AV: E=Sophos;i="5.96,303,1665471600"; d="scan'208";a="648969665"
-Received: from nirmoyda-desk.igk.intel.com ([10.102.13.19])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2023 07:38:37 -0800
-From: Nirmoy Das <nirmoy.das@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  5 Jan 2023 16:38:31 +0100
-Message-Id: <20230105153831.28256-1-nirmoy.das@intel.com>
-X-Mailer: git-send-email 2.38.0
+ t=1672933934; x=1704469934;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=07rEmud9u3v4yR1dxZqrmwXHFiO37KqMuantmUAu7Fw=;
+ b=mV8lbSw+TivQZn58on3V+tx6FMXIhU1h191tHXxFPCp6z3Cgwl5420if
+ +EpTo/7+sgVdQC+XZZUXeBBmCqwZfAB4Dr13dyu7lr5Sn4ERMN6Co7/xk
+ AV3vDN3PndDvpzBXxa9TjfI6MG7IRkIOIG1zczpCUqIAlmPVRigrF6j0N
+ zoEld8IQGP+Gc/3JCrxdc/JJ2wzTwfu9QhyGp1s5aBxDisl8TtstL9dzD
+ dbbt7B1ch8M2xi3TBlses9BgeTSxwP40UVXH/2lJV0wfb0i/nL6Cad3lX
+ jPRirpmIZZKCQIspdG2DrFbUhv8qOgjakU0+1qA5wWmmBwpAORXlq6MF4 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10580"; a="349453823"
+X-IronPort-AV: E=Sophos;i="5.96,303,1665471600"; d="scan'208";a="349453823"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jan 2023 07:52:14 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10580"; a="655622313"
+X-IronPort-AV: E=Sophos;i="5.96,303,1665471600"; d="scan'208";a="655622313"
+Received: from dgomm-mobl.ger.corp.intel.com (HELO intel.com) ([10.249.43.18])
+ by orsmga002-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Jan 2023 07:52:08 -0800
+Date: Thu, 5 Jan 2023 16:52:05 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Rob Clark <robdclark@gmail.com>
+Message-ID: <Y7byJa9VZyKO2gnT@ashyti-mobl2.lan>
+References: <20230103234948.1218393-1-robdclark@gmail.com>
 MIME-Version: 1.0
-Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
- 85579 Neubiberg, Germany,
- Commercial Register: Amtsgericht Muenchen HRB 186928 
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Update doc for __intel_wakeref_put()
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230103234948.1218393-1-robdclark@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix potential context UAFs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,42 +56,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: --cc=andi.shyti@linux.intel.com, andrzej.hajda@intel.com,
- chris.p.wilson@intel.com, Nirmoy Das <nirmoy.das@intel.com>
+Cc: Rob Clark <robdclark@chromium.org>,
+ Thomas =?iso-8859-15?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ "open list:INTEL DRM DRIVERS" <intel-gfx@lists.freedesktop.org>,
+ open list <linux-kernel@vger.kernel.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@gmail.com>, katrinzhou <katrinzhou@tencent.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Fix the __intel_wakeref_put() doc to reflect current behaviour.
+Hi Rob,
 
-Fixes: c7302f204490 ("drm/i915: Defer final intel_wakeref_put to process context")
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
----
- drivers/gpu/drm/i915/intel_wakeref.h | 10 ++++------
- 1 file changed, 4 insertions(+), 6 deletions(-)
+On Tue, Jan 03, 2023 at 03:49:46PM -0800, Rob Clark wrote:
+> From: Rob Clark <robdclark@chromium.org>
+> 
+> gem_context_register() makes the context visible to userspace, and which
+> point a separate thread can trigger the I915_GEM_CONTEXT_DESTROY ioctl.
+> So we need to ensure that nothing uses the ctx ptr after this.  And we
+> need to ensure that adding the ctx to the xarray is the *last* thing
+> that gem_context_register() does with the ctx pointer.
+> 
+> Signed-off-by: Rob Clark <robdclark@chromium.org>
 
-diff --git a/drivers/gpu/drm/i915/intel_wakeref.h b/drivers/gpu/drm/i915/intel_wakeref.h
-index 4f4c2e15e736..b5e1c61b5003 100644
---- a/drivers/gpu/drm/i915/intel_wakeref.h
-+++ b/drivers/gpu/drm/i915/intel_wakeref.h
-@@ -135,14 +135,12 @@ intel_wakeref_might_get(struct intel_wakeref *wf)
-  * @flags: control flags
-  *
-  * Release our hold on the wakeref. When there are no more users,
-- * the runtime pm wakeref will be released after the @fn callback is called
-- * underneath the wakeref mutex.
-+ * the runtime pm wakeref will be released after the intel_wakeref_ops->put()
-+ * callback is called underneath the wakeref mutex.
-  *
-- * Note that @fn is allowed to fail, in which case the runtime-pm wakeref
-- * is retained and an error reported.
-+ * Note that intel_wakeref_ops->put() is allowed to fail, in which case the
-+ * runtime-pm wakeref is retained.
-  *
-- * Returns: 0 if the wakeref was released successfully, or a negative error
-- * code otherwise.
-  */
- static inline void
- __intel_wakeref_put(struct intel_wakeref *wf, unsigned long flags)
--- 
-2.38.0
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
+I also agree with Tvrtko that we should add Stable: and Fixes:.
+
+One little thing, "user after free" is clearer that UAF :)
+
+Thanks,
+Andi
+
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_context.c | 24 +++++++++++++++------
+>  1 file changed, 18 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> index 7f2831efc798..6250de9b9196 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> @@ -1688,6 +1688,10 @@ void i915_gem_init__contexts(struct drm_i915_private *i915)
+>  	init_contexts(&i915->gem.contexts);
+>  }
+>  
+> +/*
+> + * Note that this implicitly consumes the ctx reference, by placing
+> + * the ctx in the context_xa.
+> + */
+>  static void gem_context_register(struct i915_gem_context *ctx,
+>  				 struct drm_i915_file_private *fpriv,
+>  				 u32 id)
+> @@ -1703,10 +1707,6 @@ static void gem_context_register(struct i915_gem_context *ctx,
+>  	snprintf(ctx->name, sizeof(ctx->name), "%s[%d]",
+>  		 current->comm, pid_nr(ctx->pid));
+>  
+> -	/* And finally expose ourselves to userspace via the idr */
+> -	old = xa_store(&fpriv->context_xa, id, ctx, GFP_KERNEL);
+> -	WARN_ON(old);
+> -
+>  	spin_lock(&ctx->client->ctx_lock);
+>  	list_add_tail_rcu(&ctx->client_link, &ctx->client->ctx_list);
+>  	spin_unlock(&ctx->client->ctx_lock);
+> @@ -1714,6 +1714,10 @@ static void gem_context_register(struct i915_gem_context *ctx,
+>  	spin_lock(&i915->gem.contexts.lock);
+>  	list_add_tail(&ctx->link, &i915->gem.contexts.list);
+>  	spin_unlock(&i915->gem.contexts.lock);
+> +
+> +	/* And finally expose ourselves to userspace via the idr */
+> +	old = xa_store(&fpriv->context_xa, id, ctx, GFP_KERNEL);
+> +	WARN_ON(old);
+>  }
+>  
+>  int i915_gem_context_open(struct drm_i915_private *i915,
+> @@ -2199,14 +2203,22 @@ finalize_create_context_locked(struct drm_i915_file_private *file_priv,
+>  	if (IS_ERR(ctx))
+>  		return ctx;
+>  
+> +	/*
+> +	 * One for the xarray and one for the caller.  We need to grab
+> +	 * the reference *prior* to making the ctx visble to userspace
+> +	 * in gem_context_register(), as at any point after that
+> +	 * userspace can try to race us with another thread destroying
+> +	 * the context under our feet.
+> +	 */
+> +	i915_gem_context_get(ctx);
+> +
+>  	gem_context_register(ctx, file_priv, id);
+>  
+>  	old = xa_erase(&file_priv->proto_context_xa, id);
+>  	GEM_BUG_ON(old != pc);
+>  	proto_context_close(file_priv->dev_priv, pc);
+>  
+> -	/* One for the xarray and one for the caller */
+> -	return i915_gem_context_get(ctx);
+> +	return ctx;
+>  }
+>  
+>  struct i915_gem_context *
+> -- 
+> 2.38.1
