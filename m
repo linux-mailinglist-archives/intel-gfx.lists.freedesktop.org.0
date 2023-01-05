@@ -2,142 +2,148 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DC4265E25C
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Jan 2023 02:15:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 495A865E228
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Jan 2023 02:05:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CF5E10E48F;
-	Thu,  5 Jan 2023 01:15:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D55410E48C;
+	Thu,  5 Jan 2023 01:05:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38C0910E48C;
- Thu,  5 Jan 2023 01:15:16 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E969310E48C
+ for <intel-gfx@lists.freedesktop.org>; Thu,  5 Jan 2023 01:05:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1672881316; x=1704417316;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- in-reply-to:mime-version;
- bh=CgHiLBRqe5+V4mM6u9+0/Adr+slQVMK84ZykjGXX/eY=;
- b=QWQmckFw54YryhMs3RvW58KNzYkTzjdZpSkN8CWD5i7yu26ojZth/H75
- 6prGFwuwwtkIa3pFbcPgQbMb0dq0d68RJYSnle1OaM8KWqVCgQMuD5bqH
- 1Xwb/1MM6KNUjlETnySlxY5FLBky6oI1r/pfycT4Gkj249wj18KKOodKQ
- lpkiWOnPpHDbhR8o+Qi3vC0Jl6zQvaFgeT/STazNGU3s5Nr4t1b65hpXJ
- 2YEduuCZeTPSpU0bJYdz0HFD/P8S58ocxiIpJtANRhg959cb7jervY22Q
- lel80zaWNb9koFsh8+WXEL6wLywEGrebJ3Hh4f9LiXHIreetja2E/QraH A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10580"; a="320796250"
-X-IronPort-AV: E=Sophos;i="5.96,301,1665471600"; d="scan'208";a="320796250"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2023 17:15:15 -0800
+ t=1672880745; x=1704416745;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=Am4MZUdL0x6yP/QARfffkO6gRofQNKY4PSm1y2f1GtI=;
+ b=YJs6CwUvAaK86EG/WlYskZOue8YjuvHWF7/sbZv1Tf7RUha6tLVIWfHg
+ KSJjwng4MYQ0Oaz8tPVqb70TTccbl0ECTAMpyFyZRLve7XWzTeAPm1G3B
+ DGISNhT86c8+rZOJg7FOukC2OHCrOfLGk4DYzw9vAuN6caFSyTzlo6Bu8
+ LY6nh0HBNYeImjQ7lJIp/67QRgeYoiIb7kRCy/WylxTYxK9VzUWteWjEC
+ TUsBen65YD1UXMg4sA5erUHGcpGbMGRbKA72tp78Zra+vmlIGoDfT67bM
+ j+53F0V1LDMwAdYZpxoKiVTV0Pt7iVaxmdPF4Yc8bE3kDkRpVm6B/Y83B w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10580"; a="322157071"
+X-IronPort-AV: E=Sophos;i="5.96,301,1665471600"; d="scan'208";a="322157071"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2023 17:05:45 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10580"; a="605360971"
-X-IronPort-AV: E=Sophos;i="5.96,301,1665471600"; d="scan'208";a="605360971"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orsmga003.jf.intel.com with ESMTP; 04 Jan 2023 17:15:14 -0800
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6500,9779,10580"; a="779392550"
+X-IronPort-AV: E=Sophos;i="5.96,301,1665471600"; d="scan'208";a="779392550"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga004.jf.intel.com with ESMTP; 04 Jan 2023 17:05:44 -0800
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Wed, 4 Jan 2023 17:15:14 -0800
-Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.1.2507.16; Wed, 4 Jan 2023 17:05:43 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Wed, 4 Jan 2023 17:15:13 -0800
+ 15.1.2507.16; Wed, 4 Jan 2023 17:05:43 -0800
 Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Wed, 4 Jan 2023 17:15:13 -0800
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.102)
+ 15.1.2507.16 via Frontend Transport; Wed, 4 Jan 2023 17:05:43 -0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.172)
  by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Wed, 4 Jan 2023 17:15:13 -0800
+ 15.1.2507.16; Wed, 4 Jan 2023 17:05:43 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PLmTCOd1rvwe9+P1QFAJQtbn8G5mHwjJ65RkaJ4ewgi43jX/tRXHhJVQ3B7dbTFGogop5v3kUJGStuF4lGhpE/6jFcYNOLtEJVw2awefDdgzmyWltb8/cxVyfc0YaajjwzHyO2fXle2PJygjJoZqKnXRVmWvDbwxfv44LAGL4y2YDuYdL0szpyF7wzAzNXDUVY+3MMUyKqX0METFsHnY7UDXy40JRsK6zOhbSR6dzIBEfr6nEhPCg4OLwB7Pwwyp3YlHPX6LStGRijGTkzMdU754wMPCNLPsZHc8p/fMfi8XAZkQA+zvOK6bBQTL/X/G1co2NhkB33deXfDcbUEyDg==
+ b=Utjeqy1RmcLEIpeEEAaQdq0O3ZqL7kD9fQ0qkMKPkykrQ7IaICzbkuQBPyCjmHmWG1Y9ClTK0F1KW1IwmOoQGHlRYVRGQi7nXs4f6nz1gT2+j3YVspj/yHtgJo1JvjiGyr1LzVEMXlcrKn+PmHuZQwU9+wh23qDElI2dU+ZMzb0aDgaUP5eMbExKI+i8xx0RA9INq81E/oBiGuwLo03wSJ01/AU10ujO3BkJbyDP7cjK+heevEWMa69L/9hY7arhZH3wGP4bR76Z+sgVGzp5258ypwvnxzLOjIhwTpfYJeCa4aY1TFGxj6rkCPRrgUvptxp3WvaUM5NV/wImROIwFg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=13LufF/LO4sisMKwWjQGx14KrBlQuPhZE5vdBPIsFgs=;
- b=fzb1k8mFLo+61LEdoz/h4DY86hbxDBr4NveVB2R8EyeTIxjzDqVtCNwHt2S74OVHvWh14ph9mKjiTmAaFNWAM7NxXIWJPWuIyN7f675FPundhV93E027ZxH6UDDLn1ODJWoAu97st6yKXIWDCBuI8a+3EyudXjPk1R0FFfZ4PejF6PdIjfgjeiHtnYbxhP4kmQ58dSbDKdcnY64twiQOlRP5Ub6ae+lQvkPGbLTgwIuhSj4nTU0qby46Cx+/8e1DcV6Dqo4GQoySWkBYK1fPPqDmBULTZEyFk/b3QC/YNeVtN48j+j5o2Xi5gF35IQULAG0obezuSFo3q3ZnE3pipA==
+ bh=498bjSTpfxlKKRITLMJkSb5GbwK27T3Sz60P9Zx7M2E=;
+ b=TYya17O4k7+rd/eUjCp0ekMcGO+QYqHATT753GFDRa8+WrqmMSUrt/BivKH5Yr9SP+hxOKJZIJd5VR+J/uZneCXkpJsWh3jt/f/C+JwFQQG4L4PXNHeJfhAre4TG2bRGyU/b4id1weQuVCQPmOQ1aG4w1xQlhvJTg2MNxYgO0L3uu2Zik8Q169nj5rrNWXzoqB8+dvbGP1YQVSuHYpeg8BUaiTND/49XiitzYnreCWg2fwjkWyoSm1bkLNwUaretWQgJUweQ5U0r6M3jJThPC1gqGZLAVq6TvjMdwfxZ8CCCkpjrZOSccwmW05vfwBEH1EMoc3j9g9KKBHXU/o9w3w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS7PR11MB5966.namprd11.prod.outlook.com (2603:10b6:8:71::6) by
- PH7PR11MB6547.namprd11.prod.outlook.com (2603:10b6:510:211::16) with
- Microsoft SMTP Server (version=TLS1_2,
+Received: from SJ2PR11MB7715.namprd11.prod.outlook.com (2603:10b6:a03:4f4::20)
+ by SA2PR11MB5099.namprd11.prod.outlook.com (2603:10b6:806:f9::21)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.19; Thu, 5 Jan
- 2023 01:15:04 +0000
-Received: from DS7PR11MB5966.namprd11.prod.outlook.com
- ([fe80::bd50:2cf7:f362:3734]) by DS7PR11MB5966.namprd11.prod.outlook.com
- ([fe80::bd50:2cf7:f362:3734%8]) with mapi id 15.20.5944.019; Thu, 5 Jan 2023
- 01:15:04 +0000
-Date: Thu, 5 Jan 2023 08:51:20 +0800
-From: Yan Zhao <yan.y.zhao@intel.com>
-To: Sean Christopherson <seanjc@google.com>
-Message-ID: <Y7YfCKcalLkKnIV+@yzhao56-desk.sh.intel.com>
-References: <20221223005739.1295925-1-seanjc@google.com>
- <20221223005739.1295925-10-seanjc@google.com>
- <Y6vOEjHZhOWulyo1@yzhao56-desk.sh.intel.com>
- <Y7STZZkd3EaRXLTC@google.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <Y7STZZkd3EaRXLTC@google.com>
-X-ClientProxiedBy: SI1PR02CA0047.apcprd02.prod.outlook.com
- (2603:1096:4:1f5::15) To DS7PR11MB5966.namprd11.prod.outlook.com
- (2603:10b6:8:71::6)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB5966:EE_|PH7PR11MB6547:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2d1b4cad-dded-4bdb-3e9d-08daeeba46a4
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: orgsNBEt2Bk3O91FU7SlgXYhHiuJByBk9jZzYDvejKrm7Hi0SrYXFILRsKJd3SyDas2y5AKX1d/VKnPF5/5+jzPmTN8oYJ3iifAhnSCMCruinl8lL4nD2uOG2UGh5MBF4MzWBBoWi0amjhufljxmF/LMXZAXOGmR02nQfw/NglJHqFHr7zfe8OsU840G/xkw3IV7n6NuDPx1ZBSu+jpzy1OTpDA5V0rkm7UQ4DBIq/pC0TAiOpjCqdB4EV1G8rB45wH8D5FHY7gfgG2UhspxjBIlaCwxeYQeTHD28PSVLf36n6DdPho0eOstSY1Dg5hqXIjpZ+J2jz0TSimmHFYTt4z8psd45SINPvF9sha/UP/q8/OMssbmuY0s9SOJdwHPsbLS/rVEBbuz4m4+eA5tX0TfnUJqYN4h8YEYjUvZ+HMcGR50DJP72nzTyZyZ7+nc+eWfSzcxg1Zo0BP7Gd4tlbwPQCwxo4flUbshNJAlZVu2heP+VoqJxC6pwRmcuFyveJMBHeTwPnBH4zzSSQjr2yr9VMejDJLA+O1zpXPBxpV/FAx8YfUEMPSAN4d/qaG4gFd9MaYQDa3EIGdoW8BStp7/Baaj5GnZsss5YNPSmp1FmdUZ5rBpD2YlalGZqmRiY7eNcTL24voztcr0PDQ6mg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR11MB5966.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(346002)(366004)(39860400002)(376002)(136003)(396003)(451199015)(4326008)(8676002)(66556008)(66946007)(41300700001)(54906003)(316002)(66476007)(2906002)(3450700001)(86362001)(82960400001)(5660300002)(38100700002)(6916009)(478600001)(6506007)(6486002)(8936002)(186003)(26005)(83380400001)(6666004)(6512007);
+ 2023 01:05:41 +0000
+Received: from SJ2PR11MB7715.namprd11.prod.outlook.com
+ ([fe80::8de1:bfff:7ac7:b117]) by SJ2PR11MB7715.namprd11.prod.outlook.com
+ ([fe80::8de1:bfff:7ac7:b117%8]) with mapi id 15.20.5944.019; Thu, 5 Jan 2023
+ 01:05:41 +0000
+From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH 1/1] drm/i915: Implement workaround for CDCLK
+ PLL disable/enable
+Thread-Index: AQHY//D6YOCgrj9gQE2GNYbsadLkEK5WTlGAgBcAOgCAAJHXYIAA+7GAgCBnNSA=
+Date: Thu, 5 Jan 2023 01:05:40 +0000
+Message-ID: <SJ2PR11MB7715961C452070D324B95109F8FA9@SJ2PR11MB7715.namprd11.prod.outlook.com>
+References: <20221124103623.13974-1-stanislav.lisovskiy@intel.com>
+ <20221124103623.13974-2-stanislav.lisovskiy@intel.com>
+ <CY4PR1101MB2166A66996BCE28F1B6B70C1F8129@CY4PR1101MB2166.namprd11.prod.outlook.com>
+ <Y5ml/OHxUUU/GzzA@intel.com>
+ <CY4PR1101MB21666C38CA97D519842805DBF8E09@CY4PR1101MB2166.namprd11.prod.outlook.com>
+ <Y5rzdZniS5z5d8Si@intel.com>
+In-Reply-To: <Y5rzdZniS5z5d8Si@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ2PR11MB7715:EE_|SA2PR11MB5099:EE_
+x-ms-office365-filtering-correlation-id: 33134b47-780c-43b3-bb55-08daeeb8f6e9
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 3P5RFgkTryrR4ZTofJekEugO9qFN5tzit3ks5rphAk4rg5oRUlJo7ueysXruzAPgxOvxyvkRK+cdSMEwiNyGitUa1+SI1sxnGwUk2OR788spiM+GzHPBc5JQo+1LyWDCkM7Da6+t5w8LcW6gfYVUzjfsSySAWROZPNZONPli1X49OrTKwZBlppYoDZL0ywLN092D7oaJmX5bz3P2DLpLSajBC9o3OwOVmF/AelT5e4FlNqiWJ56AS7gxh94kSBhoiwS4I/GCwsDdixtKg6P6+azvH8/34BDVbkNExDGgaSCWu/cSb4Ngll3LbSB1CIEDs7V6Qt5RqDVp/tC2Qck/b/JPjLabqG8wqkM75ugNUABrHuIgPOTaBgQVdL4TdqYtBOkrUrqALx3SDAZ+K2Scqcux5bmRPDTArxJyceQsGnISqlmXbyTQKpWL3RWP8aiqbb8DNM16nMTJ8zJMkYWEJt3W00W/sXB9YU/dq3u6W/iu6H2dxkqdUfLtu5f7mFYzLQKSFE9lTKA0U9tGDF83ho16ZCsK3LFPm/oFr4NwQerZszRs8hOBgs2Pp/NTJ9FwzEUlEK9YNOrL5uv++9H0zYPgt8f5sTttal3glrHCdiRJORedy2FK+4e9zs9KX8sgmyVNZ9QsDrCzi639LRNicDVRgu2vT4T06epIz36tcUgb+jQluKAnS9u3UhfOTtU1QuKD5muZ4QXZMpMKbQofFw==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ2PR11MB7715.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(396003)(136003)(346002)(376002)(39860400002)(366004)(451199015)(316002)(41300700001)(8936002)(6862004)(66946007)(5660300002)(52536014)(76116006)(8676002)(54906003)(64756008)(2906002)(66556008)(4326008)(6636002)(53546011)(6506007)(7696005)(71200400001)(66446008)(107886003)(66476007)(478600001)(86362001)(186003)(55016003)(9686003)(26005)(83380400001)(38100700002)(122000001)(38070700005)(82960400001)(33656002);
  DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?E+G25Zj6D3T0pnyc0AxyYRQSh58pGAxreMHtjwNcEuTIrC5bDIWoaempFS56?=
- =?us-ascii?Q?gT7+Wxs2e3oOQRXk89UmUJO68yJIONwQKz6EV8oWMkSbXmqzUHiubFb4qXbE?=
- =?us-ascii?Q?o5GZ4uMhlJgx4wBLXvisA4nLmfNXH3Ol6XwzpDyQo7XOvoCfiL4ke+2zvoz4?=
- =?us-ascii?Q?+Sgk+045eh1FsTcV3W84/YmYeXpQ+8brdbis03UmHeO2YeZBxFzXd80Vmuoo?=
- =?us-ascii?Q?I2NeizwSG4pB5Po7oDth7F+aYsaAuuSvfmr38sIt7I5uEbK/iH73dBNj/1jM?=
- =?us-ascii?Q?/3jLYIZpfo5S0751GDkj++E96UeY2o1Fe24zEsJyTDV7TEp9rdHuiij+8UtP?=
- =?us-ascii?Q?+2K0U0fA7SYCFG40KQKQdKx4dS2R0NOl8vWv9sKZiocdrMrhbAOsTaj97Rg/?=
- =?us-ascii?Q?gShH802Wf1Bv71R0fnjijDcDHsKagX4f3j11E3Mjb94t54xLNelSsKywZAd8?=
- =?us-ascii?Q?vCMa1C+cM51Fym/kXoDVucufRqcgb0epVJkBPsGpqAllNfxfg8pwZ9KHZBn/?=
- =?us-ascii?Q?Zg6rkoguNwTr5hgxla7zU2m2usY+WxEZn8Fr0S93ffOEkECFq5p0/dWPt7Q7?=
- =?us-ascii?Q?ptM/a8exLN0bZ2vKBOl93BRetkP5qcxduwWLKBSHv5DfkyQk1xg07TnAmKlU?=
- =?us-ascii?Q?PuczroridfXhdR7mKA0WNHXv3bWG1blnW3bistMETtXDNFMMl1UTQyggzw9i?=
- =?us-ascii?Q?8mETpgLFQQ9wxmHZ3HstXGSwZSDi6lxzdxVDzMSQ8U8vJ+4jBypQMYWtJM7e?=
- =?us-ascii?Q?TSWbSZ0hwJj/2xLIYroMf8DhlGs5qUZDfXPO/LolJ94DZjsmroJ5+pqAtWEh?=
- =?us-ascii?Q?4/B3SefIMiBiOEA6Wu2dqDPszTWtujvHsgZeKWhesPKTkTi4wPIPOHiHZCuF?=
- =?us-ascii?Q?LHpG7LI/tAd5rf3qHGoNVxKOsKfX4R1bfeanAkRiIP5FJcFS2kIx9RtaW6Ly?=
- =?us-ascii?Q?DBS1vRIOkleyhswDcb06pBZ2DfUSsEW/PmqSYE+sK29SVxt+6pjM5oO99njd?=
- =?us-ascii?Q?q7A0AYQINRYoHJk567S0xqVrcl9OzgDiDoOVxGlrH1FZByfn+MzY8wNrO0pi?=
- =?us-ascii?Q?VZbGNJA5W4zUbOoySJtjDXt2LZjEI3eDYdZshbN1ZNbwG0Vw7uXhte17NMUG?=
- =?us-ascii?Q?3sLBVGQG2bGL3fKJxnb71jzryFcLSEGmj9nvGJdQDcte1gTI7UriI4tf6pM6?=
- =?us-ascii?Q?+4lWGfCvpCBR+nhT6j4g4lVGN3SrgGcBC1IN8NKXEvo4lQ5Oto8fz1m2j9Dx?=
- =?us-ascii?Q?Sk1UXeKMDGWTBP68bSE47hMcdqYQi7OKBZwc7n9XRXx7YAma0pDNQgpQtEjp?=
- =?us-ascii?Q?vKKePYRK8ePlJzDFhnAgs2cjY3SuX5szj31E3H0AcmJByll9rEIB6I2sutFF?=
- =?us-ascii?Q?T05hB5P4KdjdQGPueicgzIRuhh+dHXvZ8vU2MprR/h5dhKT36u61j2RErOLz?=
- =?us-ascii?Q?WRY6fr/GEpftbypeY/KGA8QF6W+DrFpPrtmPsRVsG2auk7w9fA/JKEZCUjZh?=
- =?us-ascii?Q?bCoDzyHTfIiv6nZr1qLNk4Hv0ZcPy5DIEoesj1JwMZ8Q0tsrfVEBtDlwkBMX?=
- =?us-ascii?Q?sPkKWNZ1xQSRTMyFziyx+/NIA9LEn5LGbA7zUnCL?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2d1b4cad-dded-4bdb-3e9d-08daeeba46a4
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB5966.namprd11.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?lxUJ2UmrVkD//JbYgWPA0yhNYkh+aK0zNHkBNDfboFVqXmRMm9fvu0JjowXN?=
+ =?us-ascii?Q?seRKrFBvRAe9Hw8/rsW7qrImJbrAKVMTPoKV/qHoWbf7WkHQE9maM+AGi+AM?=
+ =?us-ascii?Q?jIv8pA0MIo2wgJJhMMhvWaDnNPpTzB0Qi9ZwTTVUgp9E2fj6b1QhKxupctuq?=
+ =?us-ascii?Q?L6bzhrDy2jOY61EhJeldBcg4F1k52H5KbXhUgTkezKfIdQ4lz0FTIRtbbD25?=
+ =?us-ascii?Q?CaNXTGlz/BpBupPIoI7HLP8UjMX31p2IoOKV0AOs+ZPaC/Jec4y94RzG2qgb?=
+ =?us-ascii?Q?kHbwbVsP6fgK3giDRhnsSxwYGmQf5ArsUogRTnPrfi5D5N5W1BwrhWlolSFN?=
+ =?us-ascii?Q?RZTGzV9U8EWa0MXveB7hhaMwTzpYeorkvIWcKJQPooy6/eek2T30I/vEBtLm?=
+ =?us-ascii?Q?7twq32L+AtZGxEEb3A/kL2FVVtMgVuyiUR7RFL72CVTa4SBKgO8uAdzsyJUC?=
+ =?us-ascii?Q?7mhw/LQZ2uH8D+emvaSIYnk52d8azU6hWGWw/a/fXS5uSvg+1q+keN+QPUHH?=
+ =?us-ascii?Q?KOnsKK0pD2zBqYdFRlDHBmb8TtwyqTK8Klu+MzSK/IpbM7lwSgbkMpKvR9nn?=
+ =?us-ascii?Q?blP4a9Xmr9CZW3Nx02Ny24p5aPWrgcgg2E4KgMnatPSYXluOAQXic4NsQb55?=
+ =?us-ascii?Q?1Mr/DNd2MDtm/E9o51R4Or4jrI5PFgErpZKVKmgdHVunejlu2b0vzUf/xl5e?=
+ =?us-ascii?Q?S4ndyLOsp+QO8B3ARplZRLyP8AmjEyXzxtPoX3zaVnyEW9ZIanw3hw0M4e1R?=
+ =?us-ascii?Q?TURctbn43bxvCV+eWg0RlSFYMBDT6SFxhbtTucV4oCGmBxV3hYFCq9heOPU3?=
+ =?us-ascii?Q?bhHfyV9DSn/g+h/gEYmcZXVGtkn53d7rvSefUia85jzth5cBsZSSW1VKwNeb?=
+ =?us-ascii?Q?jgnihvHs6CMbpn4RZHisxySem3pIgcOKurTDkC14h7AnqSi+fD7l6l87MD12?=
+ =?us-ascii?Q?J7XVI7FJj40leSn0CKKOjKLp3TwFiRmH6c1kLVP65dGjCE3bA1zyW80JQk4h?=
+ =?us-ascii?Q?0lGK6CddvrCPlEBILKSZFkP04q0fDrgDLEpx5ZlJtJlZnZrioAapZXZsvP7+?=
+ =?us-ascii?Q?CzjSQg/w2pV2nmZTtM5yJE0KYvaUeVVvv886cmB5NdDoIVAuQayHYZT9UqGj?=
+ =?us-ascii?Q?FsZu2QxcNONfXxlun06VnXYKtObEPv+FzHb03mDKFw9NciLaIMD28RsEgBtB?=
+ =?us-ascii?Q?6cv/mLJm4YESo5GwSMXUYIsazsmqEcV4xWP2nnQ6NBRNaU8bjm1sgxE4Q9BY?=
+ =?us-ascii?Q?tRin/KMWg9m2n42IHZYrl6/8OJ6pSF/GJSjQLEs2DsVna8X+tB72GF7djnL/?=
+ =?us-ascii?Q?RD9G9fCucdSUDYe1D32oS9G8ILzpCpDMl2eHyqU1uS3mU9a0i1aNoo4hk3W+?=
+ =?us-ascii?Q?plbCWkVKpP4RZ5hpSbVynAkUfHEtcZSTplGDVqy7y0m5XzN/tTwafYmgkGpD?=
+ =?us-ascii?Q?DnKEdWRf8WDmtcNf0B9VvtTV9Ji/dwHA134+8c9kWkx7UM1YTnZhYCRhKHhd?=
+ =?us-ascii?Q?uajeXvB8uQL5xLletLbaKSk2DCnnsHfg0bBvqGcSL1fZmf+95ymgVpV5zB7y?=
+ =?us-ascii?Q?cm8tIUPXXJLegbkUqrtIiMsHKZ436Nh1Xdsz8xla?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jan 2023 01:15:04.5186 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: K+HRXSQlEMS8k/8WkwFHdvHWkkDuzo48HS58STnlbFT8z/B+3M/gTJbVQgIvxHAKgJglbaMWAgBw2JNOrF1T3Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6547
+X-MS-Exchange-CrossTenant-AuthSource: SJ2PR11MB7715.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 33134b47-780c-43b3-bb55-08daeeb8f6e9
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Jan 2023 01:05:41.0096 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: lT+5nJh6DnCv6C5LPMfA0hKSoRIcoUbELPw2NEc2pLiE78zyGDWiqlOVhWN4UVHdVBQ1ilO/JrUCwUKCkQokbXv9tlR5MZuBGa2n8K6js0c=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5099
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 09/27] drm/i915/gvt: Protect gfn hash table
- with dedicated mutex
+Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915: Implement workaround for
+ CDCLK PLL disable/enable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,149 +156,214 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Yan Zhao <yan.y.zhao@intel.com>
-Cc: kvm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Ben Gardon <bgardon@google.com>,
- Paolo Bonzini <pbonzini@redhat.com>, intel-gvt-dev@lists.freedesktop.org
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 03, 2023 at 08:43:17PM +0000, Sean Christopherson wrote:
-> On Wed, Dec 28, 2022, Yan Zhao wrote:
-> > On Fri, Dec 23, 2022 at 12:57:21AM +0000, Sean Christopherson wrote:
-> > > Add and use a new mutex, gfn_lock, to protect accesses to the hash table
-> > > used to track which gfns are write-protected when shadowing the guest's
-> > > GTT.  This fixes a bug where kvmgt_page_track_write(), which doesn't hold
-> > > kvm->mmu_lock, could race with intel_gvt_page_track_remove() and trigger
-> > > a use-after-free.
-> > > 
-> > > Fixing kvmgt_page_track_write() by taking kvm->mmu_lock is not an option
-> > > as mmu_lock is a r/w spinlock, and intel_vgpu_page_track_handler() might
-> > > sleep when acquiring vgpu->cache_lock deep down the callstack:
-> > > 
-> > >   intel_vgpu_page_track_handler()
-> > >   |
-> > >   |->  page_track->handler / ppgtt_write_protection_handler()
-> > >        |
-> > >        |-> ppgtt_handle_guest_write_page_table_bytes()
-> > >            |
-> > >            |->  ppgtt_handle_guest_write_page_table()
-> > >                 |
-> > >                 |-> ppgtt_handle_guest_entry_removal()
-> > >                     |
-> > >                     |-> ppgtt_invalidate_pte()
-> > >                         |
-> > >                         |-> intel_gvt_dma_unmap_guest_page()
-> > >                             |
-> > >                             |-> mutex_lock(&vgpu->cache_lock);
-> > > 
-> > This gfn_lock could lead to deadlock in below sequence.
-> > 
-> > (1) kvm_write_track_add_gfn() to GFN 1
-> > (2) kvmgt_page_track_write() for GFN 1
-> > kvmgt_page_track_write()
-> > |
-> > |->mutex_lock(&info->vgpu_lock)
-> > |->intel_vgpu_page_track_handler (as is kvmgt_gfn_is_write_protected)
-> >    |
-> >    |->page_track->handler() (ppgtt_write_protection_handler())
-> >       |	
-> >       |->ppgtt_handle_guest_write_page_table_bytes()
-> >          |
-> >          |->ppgtt_handle_guest_write_page_table()
-> > 	    |
-> > 	    |->ppgtt_handle_guest_entry_add() --> new_present
-> > 	       |
-> > 	       |->ppgtt_populate_spt_by_guest_entry()
-> > 	          |
-> > 		  |->intel_vgpu_enable_page_track() --> for GFN 2
-> > 		     |
-> > 		     |->intel_gvt_page_track_add()
-> > 		        |
-> > 			|->mutex_lock(&info->gfn_lock) ===>deadlock
-> 
-> Or even more simply, 
-> 
->   kvmgt_page_track_write()
->   |
->   -> intel_vgpu_page_track_handler()
->      |
->      -> intel_gvt_page_track_remove()
->
-yes.
-
-> > 
-> > Below fix based on this patch is to reuse vgpu_lock to protect the hash table
-> > info->ptable.
-> > Please check if it's good.
-> > 
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
-> > index b924ed079ad4..526bd973e784 100644
-> > --- a/drivers/gpu/drm/i915/gvt/kvmgt.c
-> > +++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
-> > @@ -364,7 +364,7 @@ __kvmgt_protect_table_find(struct intel_vgpu *info, gfn_t gfn)
-> >  {
-> >         struct kvmgt_pgfn *p, *res = NULL;
-> > 
-> > -       lockdep_assert_held(&info->gfn_lock);
-> > +       lockdep_assert_held(&info->vgpu_lock);
-> > 
-> >         hash_for_each_possible(info->ptable, p, hnode, gfn) {
-> >                 if (gfn == p->gfn) {
-> > @@ -388,7 +388,7 @@ static void kvmgt_protect_table_add(struct intel_vgpu *info, gfn_t gfn)
-> >  {
-> >         struct kvmgt_pgfn *p;
-> > 
-> > -       lockdep_assert_held(&info->gfn_lock);
-> > +       lockdep_assert_held(&info->vgpu_lock);
-> 
-> I'll just delete these assertions, the one in __kvmgt_protect_table_find() should
-> cover everything and is ultimately the assert that matters.
-> 
-> > @@ -1629,12 +1629,11 @@ static void kvmgt_page_track_remove_region(gfn_t gfn, unsigned long nr_pages,
-> >         struct intel_vgpu *info =
-> >                 container_of(node, struct intel_vgpu, track_node);
-> >  
-> > -       mutex_lock(&info->gfn_lock);
-> > +       lockdep_assert_held(&info->vgpu_lock);
-> 
-> This path needs to manually take vgpu_lock as it's called from KVM.  IIRC, this
-> is the main reason I tried adding a new lock.  That and I had a hell of a time
-> figuring out whether or not vgpu_lock would actually be held.
-Right. In the path of kvmgt_page_track_remove_region(),
-mutex_lock(&info->vgpu_lock) and  mutex_unlock(&info->vgpu_lock) are
-required.
-
-static void kvmgt_page_track_remove_region(gfn_t gfn, unsigned long nr_pages,
-                                           struct kvm_page_track_notifier_node *node)
-{
-        unsigned long i;
-        struct intel_vgpu *info =
-                container_of(node, struct intel_vgpu, track_node);
-
-        mutex_lock(&info->vgpu_lock);
-        for (i = 0; i < nr_pages; i++) {
-                if (kvmgt_gfn_is_write_protected(info, gfn + i))
-                        kvmgt_protect_table_del(info, gfn + i);
-        }
-        mutex_unlock(&info->vgpu_lock);
-}
-
-The reason I previously could have lockdep_assert_held(&info->vgpu_lock) passed
-is that I didn't get LOCKDEP configured, so it's basically a void.
-(sorry, though I actually also called mutex_is_locked(&info->vcpu_lock)
-in some paths to check lockdep_assert_held() worked properly. But it's my
-fault not to double check it's compiled correctly).
 
 
-> 
-> Looking at this with fresh eyes, AFAICT intel_vgpu_reset_gtt() is the only other
-> path that can reach __kvmgt_protect_table_find() without holding vgpu_lock, by
-> way of intel_gvt_page_track_remove().  But unless there's magic I'm missing, that's
-> dead code and can simply be deleted.
-Yes, I found intel_vgpu_reset_gtt() has not been called since
-ba25d977571e1551b7032d6104e49efd6f88f8ad.
+> -----Original Message-----
+> From: Lisovskiy, Stanislav <stanislav.lisovskiy@intel.com>
+> Sent: Thursday, December 15, 2022 2:14 AM
+> To: Srivatsa, Anusha <anusha.srivatsa@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org; Nikula, Jani <jani.nikula@intel.com>
+> Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915: Implement workaround for
+> CDCLK PLL disable/enable
+>=20
+> On Wed, Dec 14, 2022 at 09:15:07PM +0200, Srivatsa, Anusha wrote:
+> >
+> >
+> > > -----Original Message-----
+> > > From: Lisovskiy, Stanislav <stanislav.lisovskiy@intel.com>
+> > > Sent: Wednesday, December 14, 2022 2:31 AM
+> > > To: Srivatsa, Anusha <anusha.srivatsa@intel.com>
+> > > Cc: intel-gfx@lists.freedesktop.org; Nikula, Jani
+> > > <jani.nikula@intel.com>
+> > > Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915: Implement workaround
+> > > for CDCLK PLL disable/enable
+> > >
+> > > On Tue, Nov 29, 2022 at 09:19:40PM +0200, Srivatsa, Anusha wrote:
+> > > >
+> > > >
+> > > > > -----Original Message-----
+> > > > > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On
+> > > > > Behalf Of Stanislav Lisovskiy
+> > > > > Sent: Thursday, November 24, 2022 2:36 AM
+> > > > > To: intel-gfx@lists.freedesktop.org
+> > > > > Cc: Nikula, Jani <jani.nikula@intel.com>
+> > > > > Subject: [Intel-gfx] [PATCH 1/1] drm/i915: Implement workaround
+> > > > > for CDCLK PLL disable/enable
+> > > > >
+> > > > > It was reported that we might get a hung and loss of register
+> > > > > access in some cases when CDCLK PLL is disabled and then
+> > > > > enabled, while squashing is enabled.
+> > > > > As a workaround it was proposed by HW team that SW should
+> > > > > disable squashing when CDCLK PLL is being reenabled.
+> > > > >
+> > > > > Signed-off-by: Stanislav Lisovskiy
+> > > > > <stanislav.lisovskiy@intel.com>
+> > > > > ---
+> > > > >  drivers/gpu/drm/i915/display/intel_cdclk.c | 14 ++++++++++++--
+> > > > >  1 file changed, 12 insertions(+), 2 deletions(-)
+> > > > >
+> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > > > > b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > > > > index 0c107a38f9d0..e338f288c9ac 100644
+> > > > > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > > > > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > > > > @@ -1801,6 +1801,13 @@ static bool
+> > > > > cdclk_compute_crawl_and_squash_midpoint(struct
+> drm_i915_private
+> > > *i91
+> > > > >  	return true;
+> > > > >  }
+> > > > >
+> > > > > +static bool pll_enable_wa_needed(struct drm_i915_private
+> > > > > +*dev_priv)
+> > > {
+> > > > > +	return ((IS_DG2(dev_priv) || IS_METEORLAKE(dev_priv))
+> > > > > +		&& dev_priv->display.cdclk.hw.vco > 0
+> > > > > +		&& HAS_CDCLK_SQUASH(dev_priv));
+> > > > Redundant check. If it is MTL or DG2, then it will have
+> > > HAS_CDCLK_SQUASH set to true always. Shouldn't vco be 0 instead of >
+> 0.
+> > > The commit message says the hang can be observed when moving from
+> 0
+> > > to
+> > > > 0 vco.
+> > > >
+> > > > Anusha
+> > >
+> > > Idea was that we probably should bind more to the feature rather
+> > > than platform, I agree checking both "IS_DG2" and if platform has
+> > > squashing is redundant, because then we would have to add each new
+> > > platform manually, so I would leave HAS_CDCLK_SQUASH and then at
+> > > some point just cut off using some INTEL_GEN or other check all the
+> > > new platforms where this is fixed in HW.
+> > >
+> > > Regarding vco, the icl_cdclk_pll_update func works as follows:
+> > >
+> > > if (i915->display.cdclk.hw.vco !=3D 0 &&
+> > >     i915->display.cdclk.hw.vco !=3D vco)
+> > >     icl_cdclk_pll_disable(i915);
+> > >
+> > > if (i915->display.cdclk.hw.vco !=3D vco)
+> > >     icl_cdclk_pll_enable(i915, vco);
+> > >
+> > > 1) if vco changes from zero value(i915->display.cdclk.hw.vco) to
+> > > non-zero value(vco), that means
+> > >    currently squashing is anyway disabled(if vco =3D=3D 0, cdclk is s=
+et to
+> "bypass"
+> > > and squash waveform
+> > >    is 0), so the W/A is not needed.
+> > >
+> > > 2) if vco changes from non-zero value in i915->display.cdclk.hw.vco
+> > > to zero value(vco), we are not
+> > >    going to call icl_cdclk_pll_enable anyway so W/A is also not neede=
+d.
+> > >
+> > > 3) if vco changes from some non-zero value in
+> > > i915->display.cdclk.hw.vco to other non-zero value(vco),
+> > >    which can happen if CDCLK changes, then icl_cdclk_pll_disable(hw
+> > > vco!=3D0 and vco!=3D0) and then
+> > >    icl_cdclk_pll_enable would be called(hw vco is still not equal to =
+vco)
+> > >    So that disabling enabling in between is what we are interested
+> > > and where we should make sure
+> > >    squashing is disabled.
+> > >    BTW I have another question - is this code even correct?
+> > > Shouldn't we avoid disabling/enabling PLL if we have
+> > >    squashing/crawling? As I understood the whole point of having
+> > > swuashing/crawling is avoiding swithing the PLL
+> > >    on and off.
+> > >
+> > Squashing works when we don't need to change the PLL ratio. We fix the
+> PLL ratio to say 307 (this can change from platform to platform). Then
+> squashing can be used to vary frequencies below this. So we set squasher
+> to ffff it will mean highest. We can use squasher to change frequency wit=
+h
+> squash waveform, max being ffff and any value lower will take lower
+> frequencies.
+> > Cdclk Crawling is used when the PLL has to be changed. Eg higher than
+> 307 then we need to update PLL. In that case we first program squashing t=
+o
+> ffff(this will take to 307) n then use crawling to go up to the desired
+> frequency.
+>=20
+> if (HAS_CDCLK_CRAWL(dev_priv) && dev_priv->display.cdclk.hw.vco > 0 &&
+> vco > 0 &&
+>     !cdclk_pll_is_unknown(dev_priv->display.cdclk.hw.vco)) {
+> 	if (dev_priv->display.cdclk.hw.vco !=3D vco)
+> 		adlp_cdclk_pll_crawl(dev_priv, vco);
+> 	} else if (DISPLAY_VER(dev_priv) >=3D 11) {
+> 		if (pll_enable_wa_needed(dev_priv))
+> 			dg2_cdclk_squash_program(dev_priv, 0);
+>=20
+> 		icl_cdclk_pll_update(dev_priv, vco);
+> 	} else
+> 		bxt_cdclk_pll_update(dev_priv, vco);
+>=20
+> I think that condition above will trigger CDCLK crawl whenever vco is not=
+ ~0,
+> CDCLK crawl is supported and both hw.vco and vco are > 0 and vco has to
+> be changed.
 
+Why?
 
+>=20
+> In bxt_set_cdclk which calls _bxt_set_cdclk we calculate the midpoint
+> however I don't see how _bxt_set_cdclk is going to distinguish between
+> crawling and squashing.
 
+We are populating the mid_cdclk_config according to the desired action.
+"/* - If moving to a higher cdclk, the desired action is squashing.
+         * The mid cdclk config should have the new (squash) waveform.
+         * - If moving to a lower cdclk, the desired action is crawling.
+         * The mid cdclk config should have the new vco.
+         */"
+
+Anusha
+> I can see that squash waveform will be returned as 0, if CDCLK is >=3D 30=
+7
+> MHz for MTL for example, or if CDCLK is equal to bypass, however the only
+> way to skip crawling here seems to either have vco =3D=3D ~0(probably aft=
+er hw
+> init) or vco =3D=3D 0, but if vco =3D=3D 0 we are going to then call
+> icl_cdclk_pll_update which might disable pll, if current hw.vco is not 0.
+>=20
+> So what am I missing here?
+>=20
+> Stan
+>=20
+> >
+> > Anusha
+> > > Stan
+> > >
+> > >
+> > > > > +}
+> > > > > +
+> > > > >  static void _bxt_set_cdclk(struct drm_i915_private *dev_priv,
+> > > > >  			   const struct intel_cdclk_config
+> *cdclk_config,
+> > > > >  			   enum pipe pipe)
+> > > > > @@ -1815,9 +1822,12 @@ static void _bxt_set_cdclk(struct
+> > > > > drm_i915_private *dev_priv,
+> > > > >  	    !cdclk_pll_is_unknown(dev_priv->display.cdclk.hw.vco)) {
+> > > > >  		if (dev_priv->display.cdclk.hw.vco !=3D vco)
+> > > > >  			adlp_cdclk_pll_crawl(dev_priv, vco);
+> > > > > -	} else if (DISPLAY_VER(dev_priv) >=3D 11)
+> > > > > +	} else if (DISPLAY_VER(dev_priv) >=3D 11) {
+> > > > > +		if (pll_enable_wa_needed(dev_priv))
+> > > > > +			dg2_cdclk_squash_program(dev_priv, 0);
+> > > > > +
+> > > > >  		icl_cdclk_pll_update(dev_priv, vco);
+> > > > > -	else
+> > > > > +	} else
+> > > > >  		bxt_cdclk_pll_update(dev_priv, vco);
+> > > > >
+> > > > >  	waveform =3D cdclk_squash_waveform(dev_priv, cdclk);
+> > > > > --
+> > > > > 2.37.3
+> > > >
