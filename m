@@ -2,143 +2,154 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBE0E65FA27
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Jan 2023 04:27:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E477965FA8C
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Jan 2023 05:03:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D5A310E82F;
-	Fri,  6 Jan 2023 03:27:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A784710E837;
+	Fri,  6 Jan 2023 04:03:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2479310E82F
- for <intel-gfx@lists.freedesktop.org>; Fri,  6 Jan 2023 03:27:09 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5F8210E837
+ for <intel-gfx@lists.freedesktop.org>; Fri,  6 Jan 2023 04:03:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1672975629; x=1704511629;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=DQjo0UzGT1Mdix8WSBoBBDnU+CvvMoluRQjJUvkjuPQ=;
- b=XfO13E5AUZLQ8ZsuIrVLCj2tj6iZMtxV0Y8SBY/epIKoD/Uvkpt0+d4N
- qLQD41DmaYw+zDQdayU8oSauvHJ79xoz3X+c52ml0f6kZcp/uG6Yokoxy
- 646/54BYQD2pEz4dF0hkoAbUUs59ZW2ZEXZlbchWJuWEryZ20QOZZeBvq
- 4WwQcOohhypmbscJa2AJlcm9SKW++4Rvt5OAuTJDXejiEqdzvPCwxFD6f
- KL+EksA+39ZHgeFymOkIDi1YhE7BigcchC70Nxxekw/WqxluStOre9M2i
- ek/l/th2JucSbnkxF7t10U0WZOut7nHwBGic3mt/StMXZb8z6cqc2SOBy g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10581"; a="302092454"
-X-IronPort-AV: E=Sophos;i="5.96,304,1665471600"; d="scan'208";a="302092454"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2023 19:27:08 -0800
+ t=1672977797; x=1704513797;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ mime-version; bh=nwO3JPRHfzQ0w4IUs14aC2jUNWM/f/GVdAe/3SAI2wA=;
+ b=gVPizO7lYq2aKufidBxSJb68xf51AzdMJLnS14Mrk7gAx++6ebIrATaS
+ NxO8Vr/TzbvfS9PQkD6TAgIfhfKB/6BfULdUit7SMB6UtBQNk8XoPgAhZ
+ 8wcEcom92ZpRGrnaEQPl8epKFmcSbpBjf/X6XGFu4/4Eq5kDGKtWEaTZ5
+ dtB0b+D2lFQwHB7cPgwMwJkBBk0tbn8rXwnrFEE9JYFY2ANnI9XJwQtKO
+ hmBKxbWm7F7DQI0yyWQJHUFZk5k1tuwEwZco4UV0jpejRT4pIBlY+nbZf
+ TEOtwZE6M4D3rdFlEsaRNiLjH7v3NoCzmj9h/uCeSlcx4Ae3WzeXOeEOw Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10581"; a="310187492"
+X-IronPort-AV: E=Sophos;i="5.96,304,1665471600"; 
+ d="scan'208,217";a="310187492"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jan 2023 20:03:17 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10581"; a="829775235"
-X-IronPort-AV: E=Sophos;i="5.96,304,1665471600"; d="scan'208";a="829775235"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga005.jf.intel.com with ESMTP; 05 Jan 2023 19:27:08 -0800
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6500,9779,10581"; a="657771223"
+X-IronPort-AV: E=Sophos;i="5.96,304,1665471600"; 
+ d="scan'208,217";a="657771223"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmsmga007.fm.intel.com with ESMTP; 05 Jan 2023 20:03:17 -0800
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Thu, 5 Jan 2023 19:27:07 -0800
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ 15.1.2507.16; Thu, 5 Jan 2023 20:03:16 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Thu, 5 Jan 2023 19:27:07 -0800
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.46) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.16; Thu, 5 Jan 2023 20:03:15 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Thu, 5 Jan 2023 20:03:15 -0800
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.174)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Thu, 5 Jan 2023 19:27:06 -0800
+ 15.1.2507.16; Thu, 5 Jan 2023 20:03:15 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QlbZRTVbgDdF51iPe0rn2SRZJjZU5T9Y70H6jAA6FhM8HEftDHp5feN1cg7fOQ/ObrbfUjkf8fK3NyEW6IHXpn3u6cNqO5g+nUH7mzGnuN9sazHpBnMy7gKEXMJUlU2xR+fyr/yF6Sf7se/ZE8+XntzsvRwVnVykoK8EPMyX4fhfIx2YDKZ/gGo1hypZsoH5U5bhLOv7gnxl74E5TRZLnjx9HSmVCUx5pPnwT/ppJ8M1pRLHuIORH08PfBc2yAdnOsNXztDCgceMo4LlZdz4aVUoSYYte6Np8kYSEwEj4e0gyNIvLr7eoHsu9HRc2xyGbJXxQCv1ERdZRHdKqyDrHw==
+ b=EE6SbgMaHXDaoc5bFuIecj6bne7kpO1zFmU07V+MM5gv0yqzKY1d/0re3T2q1acZ9He/0HK9Jc7YrN/eSFv7deaWA2PzstjK0ylMEz8EPNK09fAWyktvlMYMtVWyzOUY+65RoqW+pakFxsHdCnjrELXWsGOUcImAjqVPsUfcz8/fSLqA9hHKcAsjsBD+FbQZZFP3BsUgQY7mDsf9t07YS9rQAxd5SzXAFrvJu0jRzbav+1xlm2L1tHVJCz5vco5e6oSgS1IQSmfy7+nXMpolGiH1qX+bU4bqPqYEr3yz9YTm9cvpRXU52Usa6hMxlArDRkSnJu2Gd8Ehgr+S6ZYV7A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cmlqOGinn1ecx+EK92bb/eZ+HJgAYFoqsUZ2CRjBDW0=;
- b=KW4bxXH+EScC58DfH6BP2DUFaFBDXkBdX2M5dzZHYvnCIVHVjuSief04mBiGtjYMHoWy3DgkX7dzxzykMJtlJIoA+qaMMSWywi/o08sK4CPrdzxsVKblzSXP/I0s7AtJ24NjzDTYw1ZK76IHuPKEtyYbxh2AiVea1duT8qbZymbIyfe9t/oLfl+OvaZMrUaTGbwcxcbnctWQ1I0wqzm+HWaCzOyZz44v07jwIENxh6oLIpxTpxvbip3hL1YnFQxJILv/q0pv71Z4Hivl8qOzArfhYokiFDJ/YHQWn8MMw6VMLJc1eTL0h5+/8rW/+UXDZIO7bP0apM1dinexbH9cKQ==
+ bh=S3qh40FDB9SL2+SaSldRZVqcK4MO9Ws4EVWBHKXh/VE=;
+ b=CF+KZID/F0UgQT25OzyE4BuCN1bx+3jAlMzAK+zl98gPyxGGo5Q74szp89QkySPHz0ZaeFF/EKBZjBE7UW5FYCt7Xg/IpaECjekkzpypU1HyuxD2kZLndm1da9QoMYlG7BhRwO8N9VwLXgvQdVyYUAUU6LY66+hZwkb+x45tRnj8TB/Ipy9dKYVjU8qOcrImNnJ8TaE1EG+1TryV4+jJxhe13CqF6EoXsJyFfe0TjTmXY49GUJvAMopD7E6mbqHf3YIZp7RQMHMmAUG1mWe748wJwmDD0t48RGyFSPwVNuNpEsPe4BeohNDB1vHwJnQZSL26OjnAVG8bHHC9Hpn/tA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from DM5PR11MB1739.namprd11.prod.outlook.com (2603:10b6:3:111::22)
- by PH0PR11MB5659.namprd11.prod.outlook.com (2603:10b6:510:ea::6) with
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by BL1PR11MB5320.namprd11.prod.outlook.com (2603:10b6:208:316::13) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.19; Fri, 6 Jan
- 2023 03:27:03 +0000
-Received: from DM5PR11MB1739.namprd11.prod.outlook.com
- ([fe80::ba54:60bd:570f:7547]) by DM5PR11MB1739.namprd11.prod.outlook.com
- ([fe80::ba54:60bd:570f:7547%7]) with mapi id 15.20.5944.019; Fri, 6 Jan 2023
- 03:27:03 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tvrtko.ursulin@linux.intel.com>
-Thread-Topic: [PATCH v5 5/7] drm/i915/hdcp: Fill wired_cmd_in structures at a
- single place
-Thread-Index: AQHZHmz9b4Vl7NoiVEuPmnLQbaWQqq6OCAMAgAAF6gCAABOegIACnjWQ
-Date: Fri, 6 Jan 2023 03:27:03 +0000
-Message-ID: <DM5PR11MB17395635CB309DDDD1D38A52E3FB9@DM5PR11MB1739.namprd11.prod.outlook.com>
-References: <20230102054047.124624-1-suraj.kandpal@intel.com>
- <20230102054047.124624-6-suraj.kandpal@intel.com> <87k022y6af.fsf@intel.com>
- <823d28bf-3bb4-4b97-0821-e920588ffec4@linux.intel.com>
- <Y7ViE+7bkT3DUw2t@intel.com>
-In-Reply-To: <Y7ViE+7bkT3DUw2t@intel.com>
-Accept-Language: en-US
+ 2023 04:03:11 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::6591:f625:d30c:c35e]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::6591:f625:d30c:c35e%7]) with mapi id 15.20.5944.019; Fri, 6 Jan 2023
+ 04:03:11 +0000
+Content-Type: multipart/alternative;
+ boundary="------------f8rbf0IsCVDIV29mj0rHADm4"
+Message-ID: <11ca2641-5dfc-742d-fe84-e5fc5a43bd9d@intel.com>
+Date: Fri, 6 Jan 2023 09:33:00 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+To: <intel-gfx@lists.freedesktop.org>, <lakshminarayana.vudum@intel.com>
+References: <20221017143038.1748319-1-ankit.k.nautiyal@intel.com>
+ <167293819960.9640.17175701131071496979@emeril.freedesktop.org>
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM5PR11MB1739:EE_|PH0PR11MB5659:EE_
-x-ms-office365-filtering-correlation-id: 177267cb-d88e-4467-c927-08daef95e169
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: +8LETYjKk25KqsYR5iDRwz/FDGxO0lFV8adxgAWrwb0LWKid8byyRfWJaNd6JV7Fg7bqaxW9pGoSRoBvYxFormL5Kkae6hF4GKwAsScAIyrm10OiC4XMiVlVRoRKsuzaiWjG1dlh5W6TxN56eL/SvtGKUGicHDgOVb62dcOxqFEJ50LzkXboVguTVb1q9Y3e+G5D3CY7Rmm9AM+4X54eWX5URKo/hBWVrMF0a4RRqK78MWKDeR5otCn9DlCbMdEjtc8Zm0dGo2cW9cuiJQuUp5+YwAgEcTm29MF2jsQqkAFrcP9NTwo6hnOCx4bo+Nxmqmz/xVJmnlXjaWPwP+opZmLC+yl2YOwffWwFdg+dxPTZP/MbZ/UrPd875FRwc+K9jJySuQweoVP3qw5fKENmON3Ukhqj4nPEfwqeqQJu1iePJ+Y1N7fFdZIFsHkGwmK4izFNQ1lgcxwICFgZz/ENbjWjKST0ADB/3es3EhzkDubpVchjqc387PpYT9n7pVrkrERWw+V4HlohVtDZ7iboBk5nF0q4FZbekV4nqvoIWOyEwYZJeo/Ix5zG3dC7oi6QHqJjlqhM4S14Rn7gBfGjzf5U9iN7hmGxqRGkJ1Ny0GaVw+F7tjx90sW3x/A9morzh/XAclR7ydOkxjfrjlifxJF3gB4L2KED+Xm0EMlSrnkte15xwl5zyf8G1fIc9GEuAtM+GjGnL74js0id++oUpw==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM5PR11MB1739.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(136003)(396003)(376002)(39860400002)(346002)(366004)(451199015)(9686003)(26005)(53546011)(33656002)(83380400001)(55016003)(6506007)(186003)(7696005)(38070700005)(122000001)(86362001)(82960400001)(38100700002)(4326008)(8676002)(41300700001)(66899015)(2906002)(5660300002)(8936002)(30864003)(66556008)(52536014)(478600001)(71200400001)(76116006)(66946007)(54906003)(316002)(66476007)(64756008)(66446008)(110136005)(559001)(579004);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?5LlghgCVuDJb7Pu7tcke3QtUZYsyCIblHLx9r8fuwCeeEnc2XTWvEH4pT1WH?=
- =?us-ascii?Q?EOOECdZiPx3hv6GQFdO1+P6nFRqEt1QCynYhzwooTTgoMfsK2GQkXhK3oqiL?=
- =?us-ascii?Q?eWBSp6kM6JdieOsGwCTLF3tobbBUGsVr1OUVAZs85ngdJ+/M9JKOe5/kp0xf?=
- =?us-ascii?Q?WfCRqOJNUlAjnBGpcBjvh+gqBo1P5pM5EqYQwnLyPsI4MyNd+qYKUBR4kIZF?=
- =?us-ascii?Q?5Hm8tQLuSNRM2H3mDo9d0Kb/YIGjGBLGDnheZiqXJpkVdljcMbnvyWPAIUAy?=
- =?us-ascii?Q?+shWJCFSu7+zCFvFEM8/mZVM9AFZUrmPR434WRFUxqEx6Zy0zmKe/nBROeso?=
- =?us-ascii?Q?+D33SQxouY0SaTuhChJC+lrK/DSpqyItvyJLv3ltRCwn5Uj3EoMfsJtYJAkh?=
- =?us-ascii?Q?Jhl3OS3kz+FdZeiTUbT6DxMnbNInv+xNndBGPMrodU/XZLrExpxN8DGoMWOj?=
- =?us-ascii?Q?sw6RopaJnFFoObqUd5G56MuF7+17ssvM/0Bpm7oCVt6pjLtVxDdZJxJZVwth?=
- =?us-ascii?Q?w2RWwMu0zcgVc+4DsbpPTJn5bj8lQSQUymJQuX9MfExRFS9Dmt9eW5S1qWof?=
- =?us-ascii?Q?bWHyl6v69Klz2rvarjUN5+ViIynZWoqdbmvmG/KJUa7TBfDORl2yz8vtn68F?=
- =?us-ascii?Q?RhUdDo9lf2/ZZGEoArDxuvJFLUoImQklIuAI1IbwR60OOY+DhKNDRAqFoVSS?=
- =?us-ascii?Q?T6SpQQsgJJq6ysD0d9Y+QkfdBn5JPZG97UkMbU8hyDk4UVDXHJX8x7hsKdzM?=
- =?us-ascii?Q?9vBfrAOQ6R/SJbS6+4Lk65F1lxyETr2tDjQgKyZv6KAf9bj2CeTSPKY3/wK5?=
- =?us-ascii?Q?lDvTym5z88xx9WeNZWVrBMjjxC7cT1c4daS6aOkhfUtSOEIZn/fQcAij5kKw?=
- =?us-ascii?Q?IO4sT4J++RdnTSQmCBNs+VDcWknmeLnhAac73/B8PRW6EtohJeLkKiHH5sIX?=
- =?us-ascii?Q?GaSizASpby1jTV0CEudNC/NnZUgNlTpJF5NhFgoBwd3aXMgDAwS4l/Y17lJ0?=
- =?us-ascii?Q?FzVLwQfrWgBeOTSaVPSeH4qPihVPyw/1ZsMWyiSyXSFaYvrVxbWwqo251f1i?=
- =?us-ascii?Q?jRYWOn1tg2SNFmbXigvSPSITh5taaeoYUqahN7Ic44GKdJkUX5OwVGctC63W?=
- =?us-ascii?Q?KFvIyaLAGQQPDMGKPCK0rW5khyWg6sHo+XbFaO4leF7buG2INSlGYEabDCy3?=
- =?us-ascii?Q?mZkv+PQ79LqsepBDf2yYWWPWs+WWn9v7LqAhGEfdSm/MnV7kVhJfwBWyfLwW?=
- =?us-ascii?Q?mHQhJDLWYi7hdSASGt4/qOWMuT4GPyjml3OFd1Yk/CEX+GXkiPwZo9sLkvgz?=
- =?us-ascii?Q?GDB63Xs33EODodJWYPuAil+tt0mjdPOylzDEjZVpugJ4pp6j8wRHBVLgP8eJ?=
- =?us-ascii?Q?/pvRaCvjEmYwqmhNPNtNrGDQQmAPHWGiluq+AwRzLwgjnMsC5XFtli2elKrk?=
- =?us-ascii?Q?a0PiR0zUTa2HLdEKcA9G4c0tOFoicmSQvSx866qeTvEtdNNWKDXzL5hisQWN?=
- =?us-ascii?Q?2Pz3pvMHZ/F/ASwnAgaonAGHWWuR+b2yixnOhNw62gLpzOfmDc9tFumFipN+?=
- =?us-ascii?Q?Ts5J6NQVEl2dX6WU1eN2kPqPTO5RMOgIrUikkqiL?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <167293819960.9640.17175701131071496979@emeril.freedesktop.org>
+X-ClientProxiedBy: PN3PR01CA0178.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:be::12) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|BL1PR11MB5320:EE_
+X-MS-Office365-Filtering-Correlation-Id: e054840a-05d4-4586-76e7-08daef9aed71
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: e+HkUrYnkQ0wCfq/1H3Uj1haAfcxjCOblQqKhpPo9U1fFMBmLYmkp4a3ytHa5ztunSYFLsoDsIWcqaJ1foPQ+d3eF/nHBYKAQY1NZ0SYvDzR7HoD9MmPY4ROXaXFsbl7hGEuuc+pP64OnBhqcaRN8J8LL9849P2sXLsOBYZ+5AEb5VBtLMUev1QKT/lGgWIP1pN5Wxsj/deg9AayZ67Xb16vpwEwbFeRLfScNik1mrKg4dpiDYaDc2hyro+l1AQBfztdUZPcnRt54pAKh3/1BHTpDGdIdr1gtGfYyX7Bnxw+Zex0RLluv6dn2X9/nHA2ZGH8wJ1eHdVvyWvyENHBNCZmWKOLa7IX4vbbZcXR/7I8ro2IrlAiP3AEuNTC1BCnyP0gqbxRAPaUQb3fSpqUAsGp2Zk3mrk0zZUdF/PmN3JmpXiuadAIObISdon3dQggtQjoSNwHgUcgWjyO/kN7X3cxc/VDUrph+2T1faVsgQ/Eea9XN6kU+E0py7WC8os0Ik+jPp4rTPHXgodeRcuN+jljJckltNINFnr44eyC6wRag+1fQe+7SNmjo0YOi+txBv9e/9OtStQyUBg/lV7mb/bGbXs2cW9LkSijBkO5y4w/5MT38pUzWDtEsrtzE1rQOXYBGhsJj06GKJ0te79z/mkWea26Ec35d/i+XOSNwlJYnOmPcOzcf5/mU7FA1lAf6+DfETkaU0z/eDKdAtz1JHn/7fnlnuVCPAezTt6cwBSAmy8rttGfjC6v32PTwB8RTgYsieImD48w2I7ZbBJV6A==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(376002)(366004)(136003)(39860400002)(396003)(346002)(451199015)(55236004)(186003)(6512007)(2616005)(82960400001)(26005)(53546011)(166002)(38100700002)(30864003)(31696002)(86362001)(83380400001)(36756003)(21615005)(31686004)(8936002)(5660300002)(41300700001)(66556008)(66946007)(6666004)(478600001)(316002)(66476007)(40265005)(6486002)(6506007)(33964004)(2906002)(966005)(6636002)(43740500002)(45980500001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bEdIU1d0Vk44TUhaNCtSVFJaZ1ZLREt5bTlUdUs5eEhORGN0ZkMzbjlOWVI0?=
+ =?utf-8?B?M1g4dVVsMW90L1c3dXNPZjJYOWhHSjVCNGRINzVUL0tMbWg5U2s3RU0xOFp5?=
+ =?utf-8?B?SHJ4d1RZU1orZ3JsOU42ZTdxczg0WDRqOGVrVVdERVBCc0dBMEFwZ0QxNG90?=
+ =?utf-8?B?eFlQOTNHcE9LMm1EWWlQVklkZ2p4eEZ5OXlMS09MZEZoK1YwSVFjbXJ2WmpD?=
+ =?utf-8?B?M1dTVE8zNHZ3cEI5MWJHM09uZzZIU09TWG83K05mN2wyUWVpNk1iOFRlR3Y1?=
+ =?utf-8?B?LzZhRlpqQk5rWnh4bWdTTUxpNXN1czFMY2xGY2hmWFJwUC9GZWpQZ29DdEFs?=
+ =?utf-8?B?WHgvNm9WY0M4WGRpc3BHT0dsS3hONjRxb2pXa2pqMTdQbE5peFVZL3hkZUdV?=
+ =?utf-8?B?T3E0NmxTaUVvUXRCZkl0MmZHbGR1Yk9uR05pNm8yUm95dlpzMmsxS1B3RU53?=
+ =?utf-8?B?Tnl0cVYremFLSzJ2MHBwR09LeVkwaHhEUmx0ekxXWnVmZmV6Smg5U0dUWDI2?=
+ =?utf-8?B?UDJBclluMlZja29QTTlqSnRoTUJiWUtkVVZqTHBaQlpETkVmanp5L0cycGNF?=
+ =?utf-8?B?YXdsdDQ4L3RHV1hJdlF0VGNIQ2o5RW1wYVFHTGRBR3RCZHlJV2h0a2VlOVJi?=
+ =?utf-8?B?bjlzRUdyOGZYTXE4RHUvVUNNV3VoTWt1RHBEanJZUEtGdC9wMTZuKzQra0Qr?=
+ =?utf-8?B?NVlhZldFMWtUdXJJMkNUVHJTWGJERitXb0xsQmFjb0g0T25SaDhDanBlWldY?=
+ =?utf-8?B?aDdPVzlyQ1lEblJ5M3VxRkpabjJESW9qR0tCVlVib1c5VkVsZGpNTy9kMVRW?=
+ =?utf-8?B?M2tEN1RaUFNxc3BweGlIWld5ZzhiU0ZqMXJjVE9QZWpTR0hqY1p3SDYyYnhU?=
+ =?utf-8?B?OWZzdlFDcy8wSEVkd3RmWVVmU2lUeEtPaDYzMzRDZzE5S2Y1emQxYVZ4VFhx?=
+ =?utf-8?B?NDVzd1pNVUVDZWpJNzdDOWhrdHZySVgzblhtZU9BTEQrNkZMZnpWMlMyVVZJ?=
+ =?utf-8?B?THp5T0tVNEswNGFpanJpUE12dVFDWi9JbUVDdlFWMW5BYkM0d2w3Y2tJVG15?=
+ =?utf-8?B?Q2t1WDRYZGk1VXY0ZkxlS0pNR2VtOUg5OGw1REdMRTk4czYyZkYxVjJTeXUw?=
+ =?utf-8?B?WmR5bk9iMFU1TkVnd1ZBMkdPejVsRy9zRU1WZ0pseHlCMXBPUDlobW9qMjZH?=
+ =?utf-8?B?YnNkcTJIcjU5aEJTdlZ2OXpGM1FsUFlxQUJqQ2tpTVFDVTVRTFNZNk0rdWJ0?=
+ =?utf-8?B?WGFydlJ1ZjZUL0xtYnF2ZzdscVlkM0J4ajNnZi9NOHNJWkNVL29ZSGpjaEZK?=
+ =?utf-8?B?UGR6ZTFIVE9KWXYvK0ZjdVJVbUZmMG1RcC9RN0tZZ25kV2p1aldjclo2ZG9h?=
+ =?utf-8?B?Z0lzT0lCQk0veVZzNjVJWm5OZHlSZVpxWlljZ3gyUENzQkdpd2VyWU53REQx?=
+ =?utf-8?B?bzZoTk1mU0hTRGN3bk1hanhnbGRwM01ObEttQnU0ZitYa2orNG1mNXNBT2o0?=
+ =?utf-8?B?TjdBNWtZc0R6VXoyZkpreHdPY25aTUpzQVJDaXp4clRnOGhtcnhJcEJEMVVO?=
+ =?utf-8?B?MHI1blRGUzV5UGFGWGdWblJzdnQzV3hXUjBBYmFZc3hWUFV2dmsvY3JEUHhz?=
+ =?utf-8?B?Tm9ybmdoSGZuSTBCWG5DeXRPQ3ZZQ2tZV0hibndVWDhKMzlKcU1TUGQ0MmtF?=
+ =?utf-8?B?SWZOWTgrVSs3YnFDazMrTXBQS2hFYW5Wc0h4M01saTlRRjdIRXlMRVRFbEJN?=
+ =?utf-8?B?cjdXZjlqUmMyYWxBYmtuaHorY21adm1pUXYrT0hDS1lJdVpldDlkN0wxRHg1?=
+ =?utf-8?B?eHlPSVd1NGptU2dVemk5ekVieXJOQTR3WFVTRG1aVU1iKytMbWZmbVBiZVcv?=
+ =?utf-8?B?R2hBWEZQZkxUQW0wbFhKRlY4RllOTXNWcGRaTVZnSGwvS3dJUCtudEF0L3U4?=
+ =?utf-8?B?VEwzd25UVjdZUlRUdjMvWjQzOGtEWHlxdVQwcnlTZUpJSFBDZ2lHSHJzd0NN?=
+ =?utf-8?B?K2RNeDNtNVRvMEx5RUZwK01zQkgxVlF1ZTJxN2lJWWl5SWcrU3FJKzlrbVFH?=
+ =?utf-8?B?UlBRWm1WSGNEQlI0aGhLMTJNTC9JT0RYam00djIvQVdWRFEybUVXbnNTZ3Q3?=
+ =?utf-8?B?aCtrY3RRMDMwWlNsMlJHSEtXWkJtRHpWeXZnQ3FXSlJEanN6S3k2OFZVVGhE?=
+ =?utf-8?B?V1E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e054840a-05d4-4586-76e7-08daef9aed71
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM5PR11MB1739.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 177267cb-d88e-4467-c927-08daef95e169
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jan 2023 03:27:03.7005 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 6zIjIqFtrDnL2CKRKAKi8QP4uSMQGQsLH0VwV9NMy3bE5A/EXPgy7we2Bug024iJPSaFi3ztSBydzavlAT8qFg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5659
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jan 2023 04:03:11.7109 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4nXdRdoyT1kWBTsq5h2QF3XLnwqQy5RwM2QH90sEenP5dc1j5mbuFbHUW2khNKmb023NAVkIHAhyEBLpZh0cvbgWkLmhuELROBhPLP1fTb8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5320
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v5 5/7] drm/i915/hdcp: Fill wired_cmd_in
- structures at a single place
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgRGVm?=
+ =?utf-8?q?eature_Interlace_modes_for_Display_=3E=3D_12_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,654 +162,561 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> > On 04/01/2023 09:53, Jani Nikula wrote:
-> > > On Mon, 02 Jan 2023, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> > > > Need to fill wired cmd in structures at a single place as they
-> > > > remain same for both gsc and mei.
-> > >
-> > > I'm still opposed to adding this stuff to i915 and exporting the
-> > > symbols. Seems like it should be a separate component, because this
-> > > is not about i915.
-> > >
-> > > Cc: other maintainers, please chime in.
-> > >
-> > > > --v3
-> > > > -remove inline function from header [Jani]
-> > > >
-> > > > Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> > > > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> > > > ---
-> > > >   drivers/gpu/drm/i915/Makefile              |   1 +
-> > > >   drivers/gpu/drm/i915/i915_hdcp_interface.c | 216
-> +++++++++++++++++++++
-> > > >   drivers/misc/mei/hdcp/mei_hdcp.c           | 153 ++-------------
-> > > >   include/drm/i915_hdcp_interface.h          |  39 ++++
-> > > >   4 files changed, 270 insertions(+), 139 deletions(-)
-> > > >   create mode 100644 drivers/gpu/drm/i915/i915_hdcp_interface.c
-> > > >
-> > > > diff --git a/drivers/gpu/drm/i915/Makefile
-> > > > b/drivers/gpu/drm/i915/Makefile index 461d6b40656d..c6a9826af58d
-> > > > 100644
-> > > > --- a/drivers/gpu/drm/i915/Makefile
-> > > > +++ b/drivers/gpu/drm/i915/Makefile
-> > > > @@ -36,6 +36,7 @@ i915-y +=3D i915_driver.o \
-> > > >   	  i915_drm_client.o \
-> > > >   	  i915_config.o \
-> > > >   	  i915_getparam.o \
-> > > > +	  i915_hdcp_interface.o\
-> > > >   	  i915_ioctl.o \
-> > > >   	  i915_irq.o \
-> > > >   	  i915_mitigations.o \
-> > > > diff --git a/drivers/gpu/drm/i915/i915_hdcp_interface.c
-> > > > b/drivers/gpu/drm/i915/i915_hdcp_interface.c
-> > > > new file mode 100644
-> > > > index 000000000000..e6b787c2fa50
-> > > > --- /dev/null
-> > > > +++ b/drivers/gpu/drm/i915/i915_hdcp_interface.c
-> > > > @@ -0,0 +1,216 @@
-> > > > +// SPDX-License-Identifier: MIT
-> > > > +/*
-> > > > + * Copyright 2022, Intel Corporation.
-> > > > + */
-> > > > +
-> > > > +#include <drm/i915_hdcp_interface.h>
-> > > > +
-> > > > +void
-> > > > +i915_hdcp_fill_session_in(struct wired_cmd_initiate_hdcp2_session_=
-in
-> *session_init_in,
-> > > > +			  struct hdcp_port_data *data) {
-> > > > +	session_init_in->header.api_version =3D HDCP_API_VERSION;
-> > > > +	session_init_in->header.command_id =3D
-> WIRED_INITIATE_HDCP2_SESSION;
-> > > > +	session_init_in->header.status =3D FW_HDCP_STATUS_SUCCESS;
-> > > > +	session_init_in->header.buffer_len =3D
-> > > > +
-> 	WIRED_CMD_BUF_LEN_INITIATE_HDCP2_SESSION_IN;
-> > > > +
-> > > > +	session_init_in->port.integrated_port_type =3D data->port_type;
-> > > > +	session_init_in->port.physical_port =3D (u8)data->hdcp_ddi;
-> > > > +	session_init_in->port.attached_transcoder =3D (u8)data->hdcp_tran=
-scoder;
-> > > > +	session_init_in->protocol =3D data->protocol; }
-> > > > +EXPORT_SYMBOL(i915_hdcp_fill_session_in);
-> >
-> > I am not familiar enough with the problem space but this kind of
-> > trivial exported symbols definitely do not look like the best choice.
-> >
-> > Presumably there are two kernel modules dealing with this HDCP
-> > protocol in which case would creating a kernel module like intel_hdcp,
-> > which would establish the protocol definitions and API to use it. I915
-> > and any other module would then depend on that module and use it.
-> >
-> > Presumably this is what Jani meant actually and that sounds like the
-> > exactly right direction to me. I just don't know enough about the
-> > scope of the protocol to propose anything more specific.
->=20
-> I'm also in favor of the separated module here. Eventually we will have t=
-o use it in
-> the new Xe driver as well.
->=20
->=20
+--------------f8rbf0IsCVDIV29mj0rHADm4
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-In that case ill create a different patch series which uses a different mod=
-ule rather than the
-export symbol method and in this series rever back to how things used to be=
- i.e keeping this
-in the mei_hdcp.c file for now
+Hi Lakshmi,
+
+Below failure is not related to the patch, but due to existing issue : 
+https://gitlab.freedesktop.org/drm/intel/-/issues/6179
+
+
+        Possible regressions
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+      o fi-rkl-11600: NOTRUN -> INCOMPLETE
+        <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html>
+
 
 Regards,
-Suraj Kandpal
 
-> >
-> > Regards,
-> >
-> > Tvrtko
-> >
-> > > > +
-> > > > +void
-> > > > +i915_hdcp_fill_rxcert_in(struct wired_cmd_verify_receiver_cert_in
-> *verify_rxcert_in,
-> > > > +			 struct hdcp2_ake_send_cert *rx_cert,
-> > > > +			 struct hdcp_port_data *data)
-> > > > +{
-> > > > +	verify_rxcert_in->header.api_version =3D HDCP_API_VERSION;
-> > > > +	verify_rxcert_in->header.command_id =3D
-> WIRED_VERIFY_RECEIVER_CERT;
-> > > > +	verify_rxcert_in->header.status =3D FW_HDCP_STATUS_SUCCESS;
-> > > > +	verify_rxcert_in->header.buffer_len =3D
-> > > > +
-> 	WIRED_CMD_BUF_LEN_VERIFY_RECEIVER_CERT_IN;
-> > > > +
-> > > > +	verify_rxcert_in->port.integrated_port_type =3D data->port_type;
-> > > > +	verify_rxcert_in->port.physical_port =3D (u8)data->hdcp_ddi;
-> > > > +	verify_rxcert_in->port.attached_transcoder =3D
-> > > > +(u8)data->hdcp_transcoder;
-> > > > +
-> > > > +	verify_rxcert_in->cert_rx =3D rx_cert->cert_rx;
-> > > > +	memcpy(verify_rxcert_in->r_rx, &rx_cert->r_rx, HDCP_2_2_RRX_LEN);
-> > > > +	memcpy(verify_rxcert_in->rx_caps, rx_cert->rx_caps,
-> > > > +HDCP_2_2_RXCAPS_LEN); } EXPORT_SYMBOL(i915_hdcp_fill_rxcert_in);
-> > > > +
-> > > > +void
-> > > > +i915_hdcp_fill_hprime_in(struct wired_cmd_ake_send_hprime_in
-> *send_hprime_in,
-> > > > +			 struct hdcp2_ake_send_hprime *rx_hprime,
-> > > > +			 struct hdcp_port_data *data)
-> > > > +{
-> > > > +	send_hprime_in->header.api_version =3D HDCP_API_VERSION;
-> > > > +	send_hprime_in->header.command_id =3D WIRED_AKE_SEND_HPRIME;
-> > > > +	send_hprime_in->header.status =3D FW_HDCP_STATUS_SUCCESS;
-> > > > +	send_hprime_in->header.buffer_len =3D
-> > > > +WIRED_CMD_BUF_LEN_AKE_SEND_HPRIME_IN;
-> > > > +
-> > > > +	send_hprime_in->port.integrated_port_type =3D data->port_type;
-> > > > +	send_hprime_in->port.physical_port =3D (u8)data->hdcp_ddi;
-> > > > +	send_hprime_in->port.attached_transcoder =3D
-> > > > +(u8)data->hdcp_transcoder;
-> > > > +
-> > > > +	memcpy(send_hprime_in->h_prime, rx_hprime->h_prime,
-> > > > +	       HDCP_2_2_H_PRIME_LEN);
-> > > > +}
-> > > > +EXPORT_SYMBOL(i915_hdcp_fill_hprime_in);
-> > > > +
-> > > > +void
-> > > > +i915_hdcp_fill_pairing_info_in(struct wired_cmd_ake_send_pairing_i=
-nfo_in
-> *pairing_info_in,
-> > > > +			       struct hdcp2_ake_send_pairing_info *pairing_info,
-> > > > +			       struct hdcp_port_data *data) {
-> > > > +	pairing_info_in->header.api_version =3D HDCP_API_VERSION;
-> > > > +	pairing_info_in->header.command_id =3D
-> WIRED_AKE_SEND_PAIRING_INFO;
-> > > > +	pairing_info_in->header.status =3D FW_HDCP_STATUS_SUCCESS;
-> > > > +	pairing_info_in->header.buffer_len =3D
-> > > > +
-> 	WIRED_CMD_BUF_LEN_SEND_PAIRING_INFO_IN;
-> > > > +
-> > > > +	pairing_info_in->port.integrated_port_type =3D data->port_type;
-> > > > +	pairing_info_in->port.physical_port =3D (u8)data->hdcp_ddi;
-> > > > +	pairing_info_in->port.attached_transcoder =3D
-> > > > +(u8)data->hdcp_transcoder;
-> > > > +
-> > > > +	memcpy(pairing_info_in->e_kh_km, pairing_info->e_kh_km,
-> > > > +	       HDCP_2_2_E_KH_KM_LEN);
-> > > > +}
-> > > > +EXPORT_SYMBOL(i915_hdcp_fill_pairing_info_in);
-> > > > +
-> > > > +void
-> > > > +i915_hdcp_fill_locality_check_in(struct wired_cmd_init_locality_ch=
-eck_in
-> *lc_init_in,
-> > > > +				 struct hdcp_port_data *data) {
-> > > > +	lc_init_in->header.api_version =3D HDCP_API_VERSION;
-> > > > +	lc_init_in->header.command_id =3D WIRED_INIT_LOCALITY_CHECK;
-> > > > +	lc_init_in->header.status =3D FW_HDCP_STATUS_SUCCESS;
-> > > > +	lc_init_in->header.buffer_len =3D
-> > > > +WIRED_CMD_BUF_LEN_INIT_LOCALITY_CHECK_IN;
-> > > > +
-> > > > +	lc_init_in->port.integrated_port_type =3D data->port_type;
-> > > > +	lc_init_in->port.physical_port =3D (u8)data->hdcp_ddi;
-> > > > +	lc_init_in->port.attached_transcoder =3D
-> > > > +(u8)data->hdcp_transcoder; }
-> > > > +EXPORT_SYMBOL(i915_hdcp_fill_locality_check_in);
-> > > > +
-> > > > +void
-> > > > +i915_hdcp_fill_validate_locality_in(struct wired_cmd_validate_loca=
-lity_in
-> *verify_lprime_in,
-> > > > +				    struct hdcp2_lc_send_lprime *rx_lprime,
-> > > > +				    struct hdcp_port_data *data) {
-> > > > +	verify_lprime_in->header.api_version =3D HDCP_API_VERSION;
-> > > > +	verify_lprime_in->header.command_id =3D WIRED_VALIDATE_LOCALITY;
-> > > > +	verify_lprime_in->header.status =3D FW_HDCP_STATUS_SUCCESS;
-> > > > +	verify_lprime_in->header.buffer_len =3D
-> > > > +
-> 	WIRED_CMD_BUF_LEN_VALIDATE_LOCALITY_IN;
-> > > > +
-> > > > +	verify_lprime_in->port.integrated_port_type =3D data->port_type;
-> > > > +	verify_lprime_in->port.physical_port =3D (u8)data->hdcp_ddi;
-> > > > +	verify_lprime_in->port.attached_transcoder =3D
-> > > > +(u8)data->hdcp_transcoder;
-> > > > +
-> > > > +	memcpy(verify_lprime_in->l_prime, rx_lprime->l_prime,
-> > > > +	       HDCP_2_2_L_PRIME_LEN);
-> > > > +}
-> > > > +EXPORT_SYMBOL(i915_hdcp_fill_validate_locality_in);
-> > > > +
-> > > > +void
-> > > > +i915_hdcp_fill_session_key_in(struct wired_cmd_get_session_key_in
-> *get_skey_in,
-> > > > +			      struct hdcp_port_data *data) {
-> > > > +	get_skey_in->header.api_version =3D HDCP_API_VERSION;
-> > > > +	get_skey_in->header.command_id =3D WIRED_GET_SESSION_KEY;
-> > > > +	get_skey_in->header.status =3D FW_HDCP_STATUS_SUCCESS;
-> > > > +	get_skey_in->header.buffer_len =3D
-> > > > +WIRED_CMD_BUF_LEN_GET_SESSION_KEY_IN;
-> > > > +
-> > > > +	get_skey_in->port.integrated_port_type =3D data->port_type;
-> > > > +	get_skey_in->port.physical_port =3D (u8)data->hdcp_ddi;
-> > > > +	get_skey_in->port.attached_transcoder =3D
-> > > > +(u8)data->hdcp_transcoder; }
-> > > > +EXPORT_SYMBOL(i915_hdcp_fill_session_key_in);
-> > > > +
-> > > > +void
-> > > > +i915_hdcp_fill_repeater_in(struct wired_cmd_verify_repeater_in
-> *verify_repeater_in,
-> > > > +			   struct hdcp2_rep_send_receiverid_list *rep_topology,
-> > > > +			   struct hdcp_port_data *data) {
-> > > > +	verify_repeater_in->header.api_version =3D HDCP_API_VERSION;
-> > > > +	verify_repeater_in->header.command_id =3D WIRED_VERIFY_REPEATER;
-> > > > +	verify_repeater_in->header.status =3D FW_HDCP_STATUS_SUCCESS;
-> > > > +	verify_repeater_in->header.buffer_len =3D
-> > > > +				WIRED_CMD_BUF_LEN_VERIFY_REPEATER_IN;
-> > > > +
-> > > > +	verify_repeater_in->port.integrated_port_type =3D data->port_type=
-;
-> > > > +	verify_repeater_in->port.physical_port =3D (u8)data->hdcp_ddi;
-> > > > +	verify_repeater_in->port.attached_transcoder =3D
-> > > > +(u8)data->hdcp_transcoder;
-> > > > +
-> > > > +	memcpy(verify_repeater_in->rx_info, rep_topology->rx_info,
-> > > > +	       HDCP_2_2_RXINFO_LEN);
-> > > > +	memcpy(verify_repeater_in->seq_num_v, rep_topology->seq_num_v,
-> > > > +	       HDCP_2_2_SEQ_NUM_LEN);
-> > > > +	memcpy(verify_repeater_in->v_prime, rep_topology->v_prime,
-> > > > +	       HDCP_2_2_V_PRIME_HALF_LEN);
-> > > > +	memcpy(verify_repeater_in->receiver_ids, rep_topology->receiver_i=
-ds,
-> > > > +	       HDCP_2_2_RECEIVER_IDS_MAX_LEN); }
-> > > > +EXPORT_SYMBOL(i915_hdcp_fill_repeater_in);
-> > > > +
-> > > > +void
-> > > > +i915_hdcp_fill_auth_stream_req_in(struct
-> wired_cmd_repeater_auth_stream_req_in *verify_mprime_in,
-> > > > +				  struct hdcp2_rep_stream_ready
-> *stream_ready, ssize_t cmd_size,
-> > > > +				  struct hdcp_port_data *data) {
-> > > > +	verify_mprime_in->header.api_version =3D HDCP_API_VERSION;
-> > > > +	verify_mprime_in->header.command_id =3D
-> WIRED_REPEATER_AUTH_STREAM_REQ;
-> > > > +	verify_mprime_in->header.status =3D FW_HDCP_STATUS_SUCCESS;
-> > > > +	verify_mprime_in->header.buffer_len =3D cmd_size  -
-> > > > +sizeof(verify_mprime_in->header);
-> > > > +
-> > > > +	verify_mprime_in->port.integrated_port_type =3D data->port_type;
-> > > > +	verify_mprime_in->port.physical_port =3D (u8)data->hdcp_ddi;
-> > > > +	verify_mprime_in->port.attached_transcoder =3D
-> > > > +(u8)data->hdcp_transcoder;
-> > > > +
-> > > > +	memcpy(verify_mprime_in->m_prime, stream_ready->m_prime,
-> HDCP_2_2_MPRIME_LEN);
-> > > > +	drm_hdcp_cpu_to_be24(verify_mprime_in->seq_num_m,
-> > > > +data->seq_num_m);
-> > > > +
-> > > > +	memcpy(verify_mprime_in->streams, data->streams,
-> > > > +	       array_size(data->k, sizeof(*data->streams)));
-> > > > +
-> > > > +	verify_mprime_in->k =3D cpu_to_be16(data->k); }
-> > > > +EXPORT_SYMBOL(i915_hdcp_fill_auth_stream_req_in);
-> > > > +
-> > > > +void
-> > > > +i915_hdcp_fill_enable_auth_in(struct wired_cmd_enable_auth_in
-> *enable_auth_in,
-> > > > +			      struct hdcp_port_data *data) {
-> > > > +	enable_auth_in->header.api_version =3D HDCP_API_VERSION;
-> > > > +	enable_auth_in->header.command_id =3D WIRED_ENABLE_AUTH;
-> > > > +	enable_auth_in->header.status =3D FW_HDCP_STATUS_SUCCESS;
-> > > > +	enable_auth_in->header.buffer_len =3D
-> > > > +WIRED_CMD_BUF_LEN_ENABLE_AUTH_IN;
-> > > > +
-> > > > +	enable_auth_in->port.integrated_port_type =3D data->port_type;
-> > > > +	enable_auth_in->port.physical_port =3D (u8)data->hdcp_ddi;
-> > > > +	enable_auth_in->port.attached_transcoder =3D (u8)data-
-> >hdcp_transcoder;
-> > > > +	enable_auth_in->stream_type =3D data->streams[0].stream_type; }
-> > > > +EXPORT_SYMBOL(i915_hdcp_fill_enable_auth_in);
-> > > > +
-> > > > +void
-> > > > +i915_hdcp_fill_close_session_in(struct wired_cmd_close_session_in
-> *session_close_in,
-> > > > +				struct hdcp_port_data *data)
-> > > > +{
-> > > > +	session_close_in->header.api_version =3D HDCP_API_VERSION;
-> > > > +	session_close_in->header.command_id =3D WIRED_CLOSE_SESSION;
-> > > > +	session_close_in->header.status =3D FW_HDCP_STATUS_SUCCESS;
-> > > > +	session_close_in->header.buffer_len =3D
-> > > > +				WIRED_CMD_BUF_LEN_CLOSE_SESSION_IN;
-> > > > +
-> > > > +	session_close_in->port.integrated_port_type =3D data->port_type;
-> > > > +	session_close_in->port.physical_port =3D (u8)data->hdcp_ddi;
-> > > > +	session_close_in->port.attached_transcoder =3D
-> > > > +(u8)data->hdcp_transcoder; }
-> > > > +EXPORT_SYMBOL(i915_hdcp_fill_close_session_in);
-> > > > +
-> > > > diff --git a/drivers/misc/mei/hdcp/mei_hdcp.c
-> > > > b/drivers/misc/mei/hdcp/mei_hdcp.c
-> > > > index d4faecbbbe76..2cf42e98dfae 100644
-> > > > --- a/drivers/misc/mei/hdcp/mei_hdcp.c
-> > > > +++ b/drivers/misc/mei/hdcp/mei_hdcp.c
-> > > > @@ -50,17 +50,7 @@ mei_hdcp_initiate_session(struct device *dev, st=
-ruct
-> hdcp_port_data *data,
-> > > >   	cldev =3D to_mei_cl_device(dev);
-> > > > -	session_init_in.header.api_version =3D HDCP_API_VERSION;
-> > > > -	session_init_in.header.command_id =3D
-> WIRED_INITIATE_HDCP2_SESSION;
-> > > > -	session_init_in.header.status =3D FW_HDCP_STATUS_SUCCESS;
-> > > > -	session_init_in.header.buffer_len =3D
-> > > > -
-> 	WIRED_CMD_BUF_LEN_INITIATE_HDCP2_SESSION_IN;
-> > > > -
-> > > > -	session_init_in.port.integrated_port_type =3D data->port_type;
-> > > > -	session_init_in.port.physical_port =3D (u8)data->hdcp_ddi;
-> > > > -	session_init_in.port.attached_transcoder =3D (u8)data->hdcp_trans=
-coder;
-> > > > -	session_init_in.protocol =3D data->protocol;
-> > > > -
-> > > > +	i915_hdcp_fill_session_in(&session_init_in, data);
-> > > >   	byte =3D mei_cldev_send(cldev, (u8 *)&session_init_in,
-> > > >   			      sizeof(session_init_in));
-> > > >   	if (byte < 0) {
-> > > > @@ -119,21 +109,7 @@
-> mei_hdcp_verify_receiver_cert_prepare_km(struct device *dev,
-> > > >   		return -EINVAL;
-> > > >   	cldev =3D to_mei_cl_device(dev);
-> > > > -
-> > > > -	verify_rxcert_in.header.api_version =3D HDCP_API_VERSION;
-> > > > -	verify_rxcert_in.header.command_id =3D
-> WIRED_VERIFY_RECEIVER_CERT;
-> > > > -	verify_rxcert_in.header.status =3D FW_HDCP_STATUS_SUCCESS;
-> > > > -	verify_rxcert_in.header.buffer_len =3D
-> > > > -
-> 	WIRED_CMD_BUF_LEN_VERIFY_RECEIVER_CERT_IN;
-> > > > -
-> > > > -	verify_rxcert_in.port.integrated_port_type =3D data->port_type;
-> > > > -	verify_rxcert_in.port.physical_port =3D (u8)data->hdcp_ddi;
-> > > > -	verify_rxcert_in.port.attached_transcoder =3D (u8)data->hdcp_tran=
-scoder;
-> > > > -
-> > > > -	verify_rxcert_in.cert_rx =3D rx_cert->cert_rx;
-> > > > -	memcpy(verify_rxcert_in.r_rx, &rx_cert->r_rx, HDCP_2_2_RRX_LEN);
-> > > > -	memcpy(verify_rxcert_in.rx_caps, rx_cert->rx_caps,
-> HDCP_2_2_RXCAPS_LEN);
-> > > > -
-> > > > +	i915_hdcp_fill_rxcert_in(&verify_rxcert_in, rx_cert, data);
-> > > >   	byte =3D mei_cldev_send(cldev, (u8 *)&verify_rxcert_in,
-> > > >   			      sizeof(verify_rxcert_in));
-> > > >   	if (byte < 0) {
-> > > > @@ -192,18 +168,7 @@ mei_hdcp_verify_hprime(struct device *dev,
-> struct hdcp_port_data *data,
-> > > >   	cldev =3D to_mei_cl_device(dev);
-> > > > -	send_hprime_in.header.api_version =3D HDCP_API_VERSION;
-> > > > -	send_hprime_in.header.command_id =3D WIRED_AKE_SEND_HPRIME;
-> > > > -	send_hprime_in.header.status =3D FW_HDCP_STATUS_SUCCESS;
-> > > > -	send_hprime_in.header.buffer_len =3D
-> WIRED_CMD_BUF_LEN_AKE_SEND_HPRIME_IN;
-> > > > -
-> > > > -	send_hprime_in.port.integrated_port_type =3D data->port_type;
-> > > > -	send_hprime_in.port.physical_port =3D (u8)data->hdcp_ddi;
-> > > > -	send_hprime_in.port.attached_transcoder =3D (u8)data->hdcp_transc=
-oder;
-> > > > -
-> > > > -	memcpy(send_hprime_in.h_prime, rx_hprime->h_prime,
-> > > > -	       HDCP_2_2_H_PRIME_LEN);
-> > > > -
-> > > > +	i915_hdcp_fill_hprime_in(&send_hprime_in, rx_hprime, data);
-> > > >   	byte =3D mei_cldev_send(cldev, (u8 *)&send_hprime_in,
-> > > >   			      sizeof(send_hprime_in));
-> > > >   	if (byte < 0) {
-> > > > @@ -248,20 +213,8 @@ mei_hdcp_store_pairing_info(struct device *dev=
-,
-> struct hdcp_port_data *data,
-> > > >   		return -EINVAL;
-> > > >   	cldev =3D to_mei_cl_device(dev);
-> > > > -
-> > > > -	pairing_info_in.header.api_version =3D HDCP_API_VERSION;
-> > > > -	pairing_info_in.header.command_id =3D
-> WIRED_AKE_SEND_PAIRING_INFO;
-> > > > -	pairing_info_in.header.status =3D FW_HDCP_STATUS_SUCCESS;
-> > > > -	pairing_info_in.header.buffer_len =3D
-> > > > -
-> 	WIRED_CMD_BUF_LEN_SEND_PAIRING_INFO_IN;
-> > > > -
-> > > > -	pairing_info_in.port.integrated_port_type =3D data->port_type;
-> > > > -	pairing_info_in.port.physical_port =3D (u8)data->hdcp_ddi;
-> > > > -	pairing_info_in.port.attached_transcoder =3D (u8)data->hdcp_trans=
-coder;
-> > > > -
-> > > > -	memcpy(pairing_info_in.e_kh_km, pairing_info->e_kh_km,
-> > > > -	       HDCP_2_2_E_KH_KM_LEN);
-> > > > -
-> > > > +	i915_hdcp_fill_pairing_info_in(&pairing_info_in, pairing_info,
-> > > > +				       data);
-> > > >   	byte =3D mei_cldev_send(cldev, (u8 *)&pairing_info_in,
-> > > >   			      sizeof(pairing_info_in));
-> > > >   	if (byte < 0) {
-> > > > @@ -309,15 +262,7 @@ mei_hdcp_initiate_locality_check(struct device
-> *dev,
-> > > >   	cldev =3D to_mei_cl_device(dev);
-> > > > -	lc_init_in.header.api_version =3D HDCP_API_VERSION;
-> > > > -	lc_init_in.header.command_id =3D WIRED_INIT_LOCALITY_CHECK;
-> > > > -	lc_init_in.header.status =3D FW_HDCP_STATUS_SUCCESS;
-> > > > -	lc_init_in.header.buffer_len =3D
-> WIRED_CMD_BUF_LEN_INIT_LOCALITY_CHECK_IN;
-> > > > -
-> > > > -	lc_init_in.port.integrated_port_type =3D data->port_type;
-> > > > -	lc_init_in.port.physical_port =3D (u8)data->hdcp_ddi;
-> > > > -	lc_init_in.port.attached_transcoder =3D (u8)data->hdcp_transcoder=
-;
-> > > > -
-> > > > +	i915_hdcp_fill_locality_check_in(&lc_init_in, data);
-> > > >   	byte =3D mei_cldev_send(cldev, (u8 *)&lc_init_in, sizeof(lc_init=
-_in));
-> > > >   	if (byte < 0) {
-> > > >   		dev_dbg(dev, "mei_cldev_send failed. %zd\n", byte); @@ -
-> 364,19
-> > > > +309,8 @@ mei_hdcp_verify_lprime(struct device *dev, struct
-> hdcp_port_data *data,
-> > > >   	cldev =3D to_mei_cl_device(dev);
-> > > > -	verify_lprime_in.header.api_version =3D HDCP_API_VERSION;
-> > > > -	verify_lprime_in.header.command_id =3D WIRED_VALIDATE_LOCALITY;
-> > > > -	verify_lprime_in.header.status =3D FW_HDCP_STATUS_SUCCESS;
-> > > > -	verify_lprime_in.header.buffer_len =3D
-> > > > -
-> 	WIRED_CMD_BUF_LEN_VALIDATE_LOCALITY_IN;
-> > > > -
-> > > > -	verify_lprime_in.port.integrated_port_type =3D data->port_type;
-> > > > -	verify_lprime_in.port.physical_port =3D (u8)data->hdcp_ddi;
-> > > > -	verify_lprime_in.port.attached_transcoder =3D (u8)data-
-> >hdcp_transcoder;
-> > > > -
-> > > > -	memcpy(verify_lprime_in.l_prime, rx_lprime->l_prime,
-> > > > -	       HDCP_2_2_L_PRIME_LEN);
-> > > > -
-> > > > +	i915_hdcp_fill_validate_locality_in(&verify_lprime_in, rx_lprime,
-> > > > +					    data);
-> > > >   	byte =3D mei_cldev_send(cldev, (u8 *)&verify_lprime_in,
-> > > >   			      sizeof(verify_lprime_in));
-> > > >   	if (byte < 0) {
-> > > > @@ -423,15 +357,7 @@ static int mei_hdcp_get_session_key(struct dev=
-ice
-> *dev,
-> > > >   	cldev =3D to_mei_cl_device(dev);
-> > > > -	get_skey_in.header.api_version =3D HDCP_API_VERSION;
-> > > > -	get_skey_in.header.command_id =3D WIRED_GET_SESSION_KEY;
-> > > > -	get_skey_in.header.status =3D FW_HDCP_STATUS_SUCCESS;
-> > > > -	get_skey_in.header.buffer_len =3D
-> WIRED_CMD_BUF_LEN_GET_SESSION_KEY_IN;
-> > > > -
-> > > > -	get_skey_in.port.integrated_port_type =3D data->port_type;
-> > > > -	get_skey_in.port.physical_port =3D (u8)data->hdcp_ddi;
-> > > > -	get_skey_in.port.attached_transcoder =3D (u8)data->hdcp_transcode=
-r;
-> > > > -
-> > > > +	i915_hdcp_fill_session_key_in(&get_skey_in, data);
-> > > >   	byte =3D mei_cldev_send(cldev, (u8 *)&get_skey_in, sizeof(get_sk=
-ey_in));
-> > > >   	if (byte < 0) {
-> > > >   		dev_dbg(dev, "mei_cldev_send failed. %zd\n", byte); @@ -
-> 487,25
-> > > > +413,7 @@ mei_hdcp_repeater_check_flow_prepare_ack(struct device
-> *dev,
-> > > >   	cldev =3D to_mei_cl_device(dev);
-> > > > -	verify_repeater_in.header.api_version =3D HDCP_API_VERSION;
-> > > > -	verify_repeater_in.header.command_id =3D WIRED_VERIFY_REPEATER;
-> > > > -	verify_repeater_in.header.status =3D FW_HDCP_STATUS_SUCCESS;
-> > > > -	verify_repeater_in.header.buffer_len =3D
-> > > > -
-> 	WIRED_CMD_BUF_LEN_VERIFY_REPEATER_IN;
-> > > > -
-> > > > -	verify_repeater_in.port.integrated_port_type =3D data->port_type;
-> > > > -	verify_repeater_in.port.physical_port =3D (u8)data->hdcp_ddi;
-> > > > -	verify_repeater_in.port.attached_transcoder =3D (u8)data-
-> >hdcp_transcoder;
-> > > > -
-> > > > -	memcpy(verify_repeater_in.rx_info, rep_topology->rx_info,
-> > > > -	       HDCP_2_2_RXINFO_LEN);
-> > > > -	memcpy(verify_repeater_in.seq_num_v, rep_topology->seq_num_v,
-> > > > -	       HDCP_2_2_SEQ_NUM_LEN);
-> > > > -	memcpy(verify_repeater_in.v_prime, rep_topology->v_prime,
-> > > > -	       HDCP_2_2_V_PRIME_HALF_LEN);
-> > > > -	memcpy(verify_repeater_in.receiver_ids, rep_topology->receiver_id=
-s,
-> > > > -	       HDCP_2_2_RECEIVER_IDS_MAX_LEN);
-> > > > -
-> > > > +	i915_hdcp_fill_repeater_in(&verify_repeater_in, rep_topology,
-> > > > +data);
-> > > >   	byte =3D mei_cldev_send(cldev, (u8 *)&verify_repeater_in,
-> > > >   			      sizeof(verify_repeater_in));
-> > > >   	if (byte < 0) {
-> > > > @@ -566,23 +474,8 @@ static int mei_hdcp_verify_mprime(struct devic=
-e
-> *dev,
-> > > >   	if (!verify_mprime_in)
-> > > >   		return -ENOMEM;
-> > > > -	verify_mprime_in->header.api_version =3D HDCP_API_VERSION;
-> > > > -	verify_mprime_in->header.command_id =3D
-> WIRED_REPEATER_AUTH_STREAM_REQ;
-> > > > -	verify_mprime_in->header.status =3D FW_HDCP_STATUS_SUCCESS;
-> > > > -	verify_mprime_in->header.buffer_len =3D cmd_size  -
-> sizeof(verify_mprime_in->header);
-> > > > -
-> > > > -	verify_mprime_in->port.integrated_port_type =3D data->port_type;
-> > > > -	verify_mprime_in->port.physical_port =3D (u8)data->hdcp_ddi;
-> > > > -	verify_mprime_in->port.attached_transcoder =3D (u8)data-
-> >hdcp_transcoder;
-> > > > -
-> > > > -	memcpy(verify_mprime_in->m_prime, stream_ready->m_prime,
-> HDCP_2_2_MPRIME_LEN);
-> > > > -	drm_hdcp_cpu_to_be24(verify_mprime_in->seq_num_m, data-
-> >seq_num_m);
-> > > > -
-> > > > -	memcpy(verify_mprime_in->streams, data->streams,
-> > > > -	       array_size(data->k, sizeof(*data->streams)));
-> > > > -
-> > > > -	verify_mprime_in->k =3D cpu_to_be16(data->k);
-> > > > -
-> > > > +	i915_hdcp_fill_auth_stream_req_in(verify_mprime_in, stream_ready,
-> > > > +					  cmd_size, data);
-> > > >   	byte =3D mei_cldev_send(cldev, (u8 *)verify_mprime_in, cmd_size)=
-;
-> > > >   	kfree(verify_mprime_in);
-> > > >   	if (byte < 0) {
-> > > > @@ -628,16 +521,7 @@ static int mei_hdcp_enable_authentication(stru=
-ct
-> device *dev,
-> > > >   	cldev =3D to_mei_cl_device(dev);
-> > > > -	enable_auth_in.header.api_version =3D HDCP_API_VERSION;
-> > > > -	enable_auth_in.header.command_id =3D WIRED_ENABLE_AUTH;
-> > > > -	enable_auth_in.header.status =3D FW_HDCP_STATUS_SUCCESS;
-> > > > -	enable_auth_in.header.buffer_len =3D
-> WIRED_CMD_BUF_LEN_ENABLE_AUTH_IN;
-> > > > -
-> > > > -	enable_auth_in.port.integrated_port_type =3D data->port_type;
-> > > > -	enable_auth_in.port.physical_port =3D (u8)data->hdcp_ddi;
-> > > > -	enable_auth_in.port.attached_transcoder =3D (u8)data->hdcp_transc=
-oder;
-> > > > -	enable_auth_in.stream_type =3D data->streams[0].stream_type;
-> > > > -
-> > > > +	i915_hdcp_fill_enable_auth_in(&enable_auth_in, data);
-> > > >   	byte =3D mei_cldev_send(cldev, (u8 *)&enable_auth_in,
-> > > >   			      sizeof(enable_auth_in));
-> > > >   	if (byte < 0) {
-> > > > @@ -682,16 +566,7 @@ mei_hdcp_close_session(struct device *dev, str=
-uct
-> hdcp_port_data *data)
-> > > >   	cldev =3D to_mei_cl_device(dev);
-> > > > -	session_close_in.header.api_version =3D HDCP_API_VERSION;
-> > > > -	session_close_in.header.command_id =3D WIRED_CLOSE_SESSION;
-> > > > -	session_close_in.header.status =3D FW_HDCP_STATUS_SUCCESS;
-> > > > -	session_close_in.header.buffer_len =3D
-> > > > -				WIRED_CMD_BUF_LEN_CLOSE_SESSION_IN;
-> > > > -
-> > > > -	session_close_in.port.integrated_port_type =3D data->port_type;
-> > > > -	session_close_in.port.physical_port =3D (u8)data->hdcp_ddi;
-> > > > -	session_close_in.port.attached_transcoder =3D (u8)data-
-> >hdcp_transcoder;
-> > > > -
-> > > > +	i915_hdcp_fill_close_session_in(&session_close_in, data);
-> > > >   	byte =3D mei_cldev_send(cldev, (u8 *)&session_close_in,
-> > > >   			      sizeof(session_close_in));
-> > > >   	if (byte < 0) {
-> > > > diff --git a/include/drm/i915_hdcp_interface.h
-> > > > b/include/drm/i915_hdcp_interface.h
-> > > > index a92925cd1eae..9952bf78d4f7 100644
-> > > > --- a/include/drm/i915_hdcp_interface.h
-> > > > +++ b/include/drm/i915_hdcp_interface.h
-> > > > @@ -536,4 +536,43 @@ struct
-> wired_cmd_repeater_auth_stream_req_out {
-> > > >   	struct hdcp_port_id	port;
-> > > >   } __packed;
-> > > > +void
-> > > > +i915_hdcp_fill_session_in(struct wired_cmd_initiate_hdcp2_session_=
-in
-> *session_init_in,
-> > > > +			  struct hdcp_port_data *data); void
-> > > > +i915_hdcp_fill_rxcert_in(struct wired_cmd_verify_receiver_cert_in
-> *verify_rxcert_in,
-> > > > +			 struct hdcp2_ake_send_cert *rx_cert,
-> > > > +			 struct hdcp_port_data *data); void
-> > > > +i915_hdcp_fill_hprime_in(struct wired_cmd_ake_send_hprime_in
-> *send_hprime_in,
-> > > > +			 struct hdcp2_ake_send_hprime *rx_hprime,
-> > > > +			 struct hdcp_port_data *data); void
-> > > > +i915_hdcp_fill_pairing_info_in(struct wired_cmd_ake_send_pairing_i=
-nfo_in
-> *pairing_info_in,
-> > > > +			       struct hdcp2_ake_send_pairing_info *pairing_info,
-> > > > +			       struct hdcp_port_data *data); void
-> > > > +i915_hdcp_fill_locality_check_in(struct wired_cmd_init_locality_ch=
-eck_in
-> *lc_init_in,
-> > > > +				 struct hdcp_port_data *data); void
-> > > > +i915_hdcp_fill_validate_locality_in(struct wired_cmd_validate_loca=
-lity_in
-> *verify_lprime_in,
-> > > > +				    struct hdcp2_lc_send_lprime *rx_lprime,
-> > > > +				    struct hdcp_port_data *data); void
-> > > > +i915_hdcp_fill_session_key_in(struct wired_cmd_get_session_key_in
-> *get_skey_in,
-> > > > +			      struct hdcp_port_data *data); void
-> > > > +i915_hdcp_fill_repeater_in(struct wired_cmd_verify_repeater_in
-> *verify_repeater_in,
-> > > > +			   struct hdcp2_rep_send_receiverid_list *rep_topology,
-> > > > +			   struct hdcp_port_data *data); void
-> > > > +i915_hdcp_fill_auth_stream_req_in(struct
-> wired_cmd_repeater_auth_stream_req_in *verify_mprime_in,
-> > > > +				  struct hdcp2_rep_stream_ready
-> *stream_ready, ssize_t cmd_size,
-> > > > +				  struct hdcp_port_data *data); void
-> > > > +i915_hdcp_fill_enable_auth_in(struct wired_cmd_enable_auth_in
-> *enable_auth_in,
-> > > > +			      struct hdcp_port_data *data); void
-> > > > +i915_hdcp_fill_close_session_in(struct wired_cmd_close_session_in
-> *session_close_in,
-> > > > +				struct hdcp_port_data *data);
-> > > >   #endif /* _I915_HDCP_INTERFACE_H_ */
-> > >
+Ankit
+
+
+On 1/5/2023 10:33 PM, Patchwork wrote:
+> Project List - Patchwork *Patch Details*
+> *Series:* 	Defeature Interlace modes for Display >= 12 (rev3)
+> *URL:* 	https://patchwork.freedesktop.org/series/109773/
+> *State:* 	failure
+> *Details:* 
+> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/index.html
+>
+>
+>   CI Bug Log - changes from CI_DRM_12548 -> Patchwork_109773v3
+>
+>
+>     Summary
+>
+> *FAILURE*
+>
+> Serious unknown changes coming with Patchwork_109773v3 absolutely need 
+> to be
+> verified manually.
+>
+> If you think the reported changes have nothing to do with the changes
+> introduced in Patchwork_109773v3, please notify your bug team to allow 
+> them
+> to document this new failure mode, which will reduce false positives 
+> in CI.
+>
+> External URL: 
+> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/index.html
+>
+>
+>     Participating hosts (43 -> 42)
+>
+> Additional (2): bat-dg2-11 fi-rkl-11600
+> Missing (3): bat-atsm-1 fi-snb-2520m fi-pnv-d510
+>
+>
+>     Possible new issues
+>
+> Here are the unknown changes that may have been introduced in 
+> Patchwork_109773v3:
+>
+>
+>       IGT changes
+>
+>
+>         Possible regressions
+>
+>   * igt@gem_exec_suspend@basic-s3@smem:
+>       o fi-rkl-11600: NOTRUN -> INCOMPLETE
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html>
+>
+>
+>         Suppressed
+>
+> The following results come from untrusted machines, tests, or statuses.
+> They do not affect the overall result.
+>
+>  *
+>
+>     igt@i915_selftest@live@hangcheck:
+>
+>       o {bat-dg2-8}: PASS
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12548/bat-dg2-8/igt@i915_selftest@live@hangcheck.html>
+>         -> DMESG-FAIL
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/bat-dg2-8/igt@i915_selftest@live@hangcheck.html>
+>  *
+>
+>     igt@i915_suspend@basic-s3-without-i915:
+>
+>       o {bat-adlm-1}: PASS
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12548/bat-adlm-1/igt@i915_suspend@basic-s3-without-i915.html>
+>         -> DMESG-WARN
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/bat-adlm-1/igt@i915_suspend@basic-s3-without-i915.html>
+>         +1 similar issue
+>
+>
+>     Known issues
+>
+> Here are the changes found in Patchwork_109773v3 that come from known 
+> issues:
+>
+>
+>       IGT changes
+>
+>
+>         Issues hit
+>
+>  *
+>
+>     igt@debugfs_test@basic-hwmon:
+>
+>       o fi-rkl-11600: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-11600/igt@debugfs_test@basic-hwmon.html>
+>         (i915#7456 <https://gitlab.freedesktop.org/drm/intel/issues/7456>)
+>  *
+>
+>     igt@gem_huc_copy@huc-copy:
+>
+>       o fi-rkl-11600: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-11600/igt@gem_huc_copy@huc-copy.html>
+>         (i915#2190 <https://gitlab.freedesktop.org/drm/intel/issues/2190>)
+>  *
+>
+>     igt@gem_lmem_swapping@basic:
+>
+>       o fi-rkl-11600: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-11600/igt@gem_lmem_swapping@basic.html>
+>         (i915#4613
+>         <https://gitlab.freedesktop.org/drm/intel/issues/4613>) +3
+>         similar issues
+>  *
+>
+>     igt@gem_tiled_pread_basic:
+>
+>       o fi-rkl-11600: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-11600/igt@gem_tiled_pread_basic.html>
+>         (i915#3282 <https://gitlab.freedesktop.org/drm/intel/issues/3282>)
+>  *
+>
+>     igt@i915_pm_backlight@basic-brightness:
+>
+>       o fi-rkl-11600: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-11600/igt@i915_pm_backlight@basic-brightness.html>
+>         (i915#7561 <https://gitlab.freedesktop.org/drm/intel/issues/7561>)
+>  *
+>
+>     igt@i915_pm_rpm@basic-rte:
+>
+>       o bat-adlp-4: PASS
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12548/bat-adlp-4/igt@i915_pm_rpm@basic-rte.html>
+>         -> DMESG-WARN
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/bat-adlp-4/igt@i915_pm_rpm@basic-rte.html>
+>         (i915#7077 <https://gitlab.freedesktop.org/drm/intel/issues/7077>)
+>  *
+>
+>     igt@i915_suspend@basic-s3-without-i915:
+>
+>       o fi-rkl-11600: NOTRUN -> FAIL
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html>
+>         (fdo#103375 <https://bugs.freedesktop.org/show_bug.cgi?id=103375>)
+>  *
+>
+>     igt@kms_chamelium@hdmi-edid-read:
+>
+>       o fi-rkl-11600: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-11600/igt@kms_chamelium@hdmi-edid-read.html>
+>         (fdo#111827
+>         <https://bugs.freedesktop.org/show_bug.cgi?id=111827>) +7
+>         similar issues
+>  *
+>
+>     igt@kms_cursor_legacy@basic-busy-flip-before-cursor:
+>
+>       o fi-rkl-11600: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-11600/igt@kms_cursor_legacy@basic-busy-flip-before-cursor.html>
+>         (i915#4103 <https://gitlab.freedesktop.org/drm/intel/issues/4103>)
+>  *
+>
+>     igt@kms_force_connector_basic@force-load-detect:
+>
+>       o fi-rkl-11600: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-11600/igt@kms_force_connector_basic@force-load-detect.html>
+>         (fdo#109285
+>         <https://bugs.freedesktop.org/show_bug.cgi?id=109285> /
+>         i915#4098 <https://gitlab.freedesktop.org/drm/intel/issues/4098>)
+>  *
+>
+>     igt@kms_psr@primary_page_flip:
+>
+>       o fi-rkl-11600: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-11600/igt@kms_psr@primary_page_flip.html>
+>         (i915#1072
+>         <https://gitlab.freedesktop.org/drm/intel/issues/1072>) +3
+>         similar issues
+>  *
+>
+>     igt@kms_setmode@basic-clone-single-crtc:
+>
+>       o fi-rkl-11600: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-11600/igt@kms_setmode@basic-clone-single-crtc.html>
+>         (i915#3555
+>         <https://gitlab.freedesktop.org/drm/intel/issues/3555> /
+>         i915#4098 <https://gitlab.freedesktop.org/drm/intel/issues/4098>)
+>  *
+>
+>     igt@prime_vgem@basic-read:
+>
+>       o fi-rkl-11600: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-11600/igt@prime_vgem@basic-read.html>
+>         (fdo#109295
+>         <https://bugs.freedesktop.org/show_bug.cgi?id=109295> /
+>         i915#3291
+>         <https://gitlab.freedesktop.org/drm/intel/issues/3291> /
+>         i915#3708
+>         <https://gitlab.freedesktop.org/drm/intel/issues/3708>) +2
+>         similar issues
+>  *
+>
+>     igt@prime_vgem@basic-userptr:
+>
+>       o fi-rkl-11600: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-11600/igt@prime_vgem@basic-userptr.html>
+>         (fdo#109295
+>         <https://bugs.freedesktop.org/show_bug.cgi?id=109295> /
+>         i915#3301
+>         <https://gitlab.freedesktop.org/drm/intel/issues/3301> /
+>         i915#3708 <https://gitlab.freedesktop.org/drm/intel/issues/3708>)
+>  *
+>
+>     igt@runner@aborted:
+>
+>       o bat-adlp-4: NOTRUN -> FAIL
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/bat-adlp-4/igt@runner@aborted.html>
+>         (i915#4312 <https://gitlab.freedesktop.org/drm/intel/issues/4312>)
+>
+>
+>         Possible fixes
+>
+>  *
+>
+>     igt@i915_selftest@live@gt_heartbeat:
+>
+>       o fi-apl-guc: DMESG-FAIL
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12548/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html>
+>         (i915#5334
+>         <https://gitlab.freedesktop.org/drm/intel/issues/5334>) ->
+>         PASS
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html>
+>  *
+>
+>     igt@i915_selftest@live@migrate:
+>
+>       o {bat-adlp-9}: DMESG-FAIL
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12548/bat-adlp-9/igt@i915_selftest@live@migrate.html>
+>         (i915#7699
+>         <https://gitlab.freedesktop.org/drm/intel/issues/7699>) ->
+>         PASS
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/bat-adlp-9/igt@i915_selftest@live@migrate.html>
+>  *
+>
+>     igt@i915_selftest@live@mman:
+>
+>       o fi-rkl-guc: TIMEOUT
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12548/fi-rkl-guc/igt@i915_selftest@live@mman.html>
+>         (i915#6794
+>         <https://gitlab.freedesktop.org/drm/intel/issues/6794>) ->
+>         PASS
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-guc/igt@i915_selftest@live@mman.html>
+>  *
+>
+>     igt@i915_selftest@live@reset:
+>
+>       o {bat-rpls-1}: DMESG-FAIL
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12548/bat-rpls-1/igt@i915_selftest@live@reset.html>
+>         (i915#4983
+>         <https://gitlab.freedesktop.org/drm/intel/issues/4983>) ->
+>         PASS
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/bat-rpls-1/igt@i915_selftest@live@reset.html>
+>
+> {name}: This element is suppressed. This means it is ignored when 
+> computing
+> the status of the difference (SUCCESS, WARNING, or FAILURE).
+>
+>
+>     Build changes
+>
+>   * Linux: CI_DRM_12548 -> Patchwork_109773v3
+>
+> CI-20190529: 20190529
+> CI_DRM_12548: 6e2f76c3e3ff7aa7be8812900b4b3bf13c056ed0 @ 
+> git://anongit.freedesktop.org/gfx-ci/linux
+> IGT_7110: db10a19b94d1d7ae5ba62eb48d52c47ccb27766f @ 
+> https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+> Patchwork_109773v3: 6e2f76c3e3ff7aa7be8812900b4b3bf13c056ed0 @ 
+> git://anongit.freedesktop.org/gfx-ci/linux
+>
+>
+>       Linux commits
+>
+> 3f296a19e8f4 drm/i915/display: Prune Interlace modes for Display >=12
+> 992979f0f92d drm/i915/display: Drop check for doublescan mode in modevalid
+>
+--------------f8rbf0IsCVDIV29mj0rHADm4
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <p>Hi Lakshmi,</p>
+    <p>Below failure is not related to the patch, but due to existing
+      issue : <a class="moz-txt-link-freetext" href="https://gitlab.freedesktop.org/drm/intel/-/issues/6179">https://gitlab.freedesktop.org/drm/intel/-/issues/6179</a><br>
+    </p>
+    <h4>Possible regressions</h4>
+    <ul>
+      <li>igt@gem_exec_suspend@basic-s3@smem:
+        <ul>
+          <li>fi-rkl-11600: NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a></li>
+        </ul>
+      </li>
+    </ul>
+    <p><br>
+    </p>
+    <p>Regards,</p>
+    <p>Ankit<br>
+    </p>
+    <p><br>
+    </p>
+    <p></p>
+    <div class="moz-cite-prefix">On 1/5/2023 10:33 PM, Patchwork wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:167293819960.9640.17175701131071496979@emeril.freedesktop.org">
+      
+      <title>Project List - Patchwork</title>
+      <style id="css-table-select" type="text/css">td { padding: 2pt; }</style>
+      <b>Patch Details</b>
+      <table>
+        <tbody>
+          <tr>
+            <td><b>Series:</b></td>
+            <td>Defeature Interlace modes for Display &gt;= 12 (rev3)</td>
+          </tr>
+          <tr>
+            <td><b>URL:</b></td>
+            <td><a href="https://patchwork.freedesktop.org/series/109773/" moz-do-not-send="true" class="moz-txt-link-freetext">https://patchwork.freedesktop.org/series/109773/</a></td>
+          </tr>
+          <tr>
+            <td><b>State:</b></td>
+            <td>failure</td>
+          </tr>
+          <tr>
+            <td><b>Details:</b></td>
+            <td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/index.html" moz-do-not-send="true" class="moz-txt-link-freetext">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/index.html</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <h1>CI Bug Log - changes from CI_DRM_12548 -&gt;
+        Patchwork_109773v3</h1>
+      <h2>Summary</h2>
+      <p><strong>FAILURE</strong></p>
+      <p>Serious unknown changes coming with Patchwork_109773v3
+        absolutely need to be<br>
+        verified manually.</p>
+      <p>If you think the reported changes have nothing to do with the
+        changes<br>
+        introduced in Patchwork_109773v3, please notify your bug team to
+        allow them<br>
+        to document this new failure mode, which will reduce false
+        positives in CI.</p>
+      <p>External URL:
+        <a class="moz-txt-link-freetext" href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/index.html</a></p>
+      <h2>Participating hosts (43 -&gt; 42)</h2>
+      <p>Additional (2): bat-dg2-11 fi-rkl-11600 <br>
+        Missing (3): bat-atsm-1 fi-snb-2520m fi-pnv-d510 </p>
+      <h2>Possible new issues</h2>
+      <p>Here are the unknown changes that may have been introduced in
+        Patchwork_109773v3:</p>
+      <h3>IGT changes</h3>
+      <h4>Possible regressions</h4>
+      <ul>
+        <li>igt@gem_exec_suspend@basic-s3@smem:
+          <ul>
+            <li>fi-rkl-11600: NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html" moz-do-not-send="true">INCOMPLETE</a></li>
+          </ul>
+        </li>
+      </ul>
+      <h4>Suppressed</h4>
+      <p>The following results come from untrusted machines, tests, or
+        statuses.<br>
+        They do not affect the overall result.</p>
+      <ul>
+        <li>
+          <p>igt@i915_selftest@live@hangcheck:</p>
+          <ul>
+            <li>{bat-dg2-8}: <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12548/bat-dg2-8/igt@i915_selftest@live@hangcheck.html" moz-do-not-send="true">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/bat-dg2-8/igt@i915_selftest@live@hangcheck.html" moz-do-not-send="true">DMESG-FAIL</a></li>
+          </ul>
+        </li>
+        <li>
+          <p>igt@i915_suspend@basic-s3-without-i915:</p>
+          <ul>
+            <li>{bat-adlm-1}: <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12548/bat-adlm-1/igt@i915_suspend@basic-s3-without-i915.html" moz-do-not-send="true">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/bat-adlm-1/igt@i915_suspend@basic-s3-without-i915.html" moz-do-not-send="true">DMESG-WARN</a> +1 similar issue</li>
+          </ul>
+        </li>
+      </ul>
+      <h2>Known issues</h2>
+      <p>Here are the changes found in Patchwork_109773v3 that come from
+        known issues:</p>
+      <h3>IGT changes</h3>
+      <h4>Issues hit</h4>
+      <ul>
+        <li>
+          <p>igt@debugfs_test@basic-hwmon:</p>
+          <ul>
+            <li>fi-rkl-11600: NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-11600/igt@debugfs_test@basic-hwmon.html" moz-do-not-send="true">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7456" moz-do-not-send="true">i915#7456</a>)</li>
+          </ul>
+        </li>
+        <li>
+          <p>igt@gem_huc_copy@huc-copy:</p>
+          <ul>
+            <li>fi-rkl-11600: NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-11600/igt@gem_huc_copy@huc-copy.html" moz-do-not-send="true">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190" moz-do-not-send="true">i915#2190</a>)</li>
+          </ul>
+        </li>
+        <li>
+          <p>igt@gem_lmem_swapping@basic:</p>
+          <ul>
+            <li>fi-rkl-11600: NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-11600/igt@gem_lmem_swapping@basic.html" moz-do-not-send="true">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613" moz-do-not-send="true">i915#4613</a>) +3 similar issues</li>
+          </ul>
+        </li>
+        <li>
+          <p>igt@gem_tiled_pread_basic:</p>
+          <ul>
+            <li>fi-rkl-11600: NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-11600/igt@gem_tiled_pread_basic.html" moz-do-not-send="true">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3282" moz-do-not-send="true">i915#3282</a>)</li>
+          </ul>
+        </li>
+        <li>
+          <p>igt@i915_pm_backlight@basic-brightness:</p>
+          <ul>
+            <li>fi-rkl-11600: NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-11600/igt@i915_pm_backlight@basic-brightness.html" moz-do-not-send="true">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7561" moz-do-not-send="true">i915#7561</a>)</li>
+          </ul>
+        </li>
+        <li>
+          <p>igt@i915_pm_rpm@basic-rte:</p>
+          <ul>
+            <li>bat-adlp-4: <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12548/bat-adlp-4/igt@i915_pm_rpm@basic-rte.html" moz-do-not-send="true">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/bat-adlp-4/igt@i915_pm_rpm@basic-rte.html" moz-do-not-send="true">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7077" moz-do-not-send="true">i915#7077</a>)</li>
+          </ul>
+        </li>
+        <li>
+          <p>igt@i915_suspend@basic-s3-without-i915:</p>
+          <ul>
+            <li>fi-rkl-11600: NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html" moz-do-not-send="true">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375" moz-do-not-send="true">fdo#103375</a>)</li>
+          </ul>
+        </li>
+        <li>
+          <p>igt@kms_chamelium@hdmi-edid-read:</p>
+          <ul>
+            <li>fi-rkl-11600: NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-11600/igt@kms_chamelium@hdmi-edid-read.html" moz-do-not-send="true">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827" moz-do-not-send="true">fdo#111827</a>) +7 similar issues</li>
+          </ul>
+        </li>
+        <li>
+          <p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor:</p>
+          <ul>
+            <li>fi-rkl-11600: NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-11600/igt@kms_cursor_legacy@basic-busy-flip-before-cursor.html" moz-do-not-send="true">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103" moz-do-not-send="true">i915#4103</a>)</li>
+          </ul>
+        </li>
+        <li>
+          <p>igt@kms_force_connector_basic@force-load-detect:</p>
+          <ul>
+            <li>fi-rkl-11600: NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-11600/igt@kms_force_connector_basic@force-load-detect.html" moz-do-not-send="true">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285" moz-do-not-send="true">fdo#109285</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4098" moz-do-not-send="true">i915#4098</a>)</li>
+          </ul>
+        </li>
+        <li>
+          <p>igt@kms_psr@primary_page_flip:</p>
+          <ul>
+            <li>fi-rkl-11600: NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-11600/igt@kms_psr@primary_page_flip.html" moz-do-not-send="true">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072" moz-do-not-send="true">i915#1072</a>) +3 similar issues</li>
+          </ul>
+        </li>
+        <li>
+          <p>igt@kms_setmode@basic-clone-single-crtc:</p>
+          <ul>
+            <li>fi-rkl-11600: NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-11600/igt@kms_setmode@basic-clone-single-crtc.html" moz-do-not-send="true">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555" moz-do-not-send="true">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4098" moz-do-not-send="true">i915#4098</a>)</li>
+          </ul>
+        </li>
+        <li>
+          <p>igt@prime_vgem@basic-read:</p>
+          <ul>
+            <li>fi-rkl-11600: NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-11600/igt@prime_vgem@basic-read.html" moz-do-not-send="true">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295" moz-do-not-send="true">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3291" moz-do-not-send="true">i915#3291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708" moz-do-not-send="true">i915#3708</a>) +2 similar issues</li>
+          </ul>
+        </li>
+        <li>
+          <p>igt@prime_vgem@basic-userptr:</p>
+          <ul>
+            <li>fi-rkl-11600: NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-11600/igt@prime_vgem@basic-userptr.html" moz-do-not-send="true">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295" moz-do-not-send="true">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3301" moz-do-not-send="true">i915#3301</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708" moz-do-not-send="true">i915#3708</a>)</li>
+          </ul>
+        </li>
+        <li>
+          <p>igt@runner@aborted:</p>
+          <ul>
+            <li>bat-adlp-4: NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/bat-adlp-4/igt@runner@aborted.html" moz-do-not-send="true">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312" moz-do-not-send="true">i915#4312</a>)</li>
+          </ul>
+        </li>
+      </ul>
+      <h4>Possible fixes</h4>
+      <ul>
+        <li>
+          <p>igt@i915_selftest@live@gt_heartbeat:</p>
+          <ul>
+            <li>fi-apl-guc: <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12548/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html" moz-do-not-send="true">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334" moz-do-not-send="true">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html" moz-do-not-send="true">PASS</a></li>
+          </ul>
+        </li>
+        <li>
+          <p>igt@i915_selftest@live@migrate:</p>
+          <ul>
+            <li>{bat-adlp-9}: <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12548/bat-adlp-9/igt@i915_selftest@live@migrate.html" moz-do-not-send="true">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699" moz-do-not-send="true">i915#7699</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/bat-adlp-9/igt@i915_selftest@live@migrate.html" moz-do-not-send="true">PASS</a></li>
+          </ul>
+        </li>
+        <li>
+          <p>igt@i915_selftest@live@mman:</p>
+          <ul>
+            <li>fi-rkl-guc: <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12548/fi-rkl-guc/igt@i915_selftest@live@mman.html" moz-do-not-send="true">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6794" moz-do-not-send="true">i915#6794</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/fi-rkl-guc/igt@i915_selftest@live@mman.html" moz-do-not-send="true">PASS</a></li>
+          </ul>
+        </li>
+        <li>
+          <p>igt@i915_selftest@live@reset:</p>
+          <ul>
+            <li>{bat-rpls-1}: <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12548/bat-rpls-1/igt@i915_selftest@live@reset.html" moz-do-not-send="true">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983" moz-do-not-send="true">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109773v3/bat-rpls-1/igt@i915_selftest@live@reset.html" moz-do-not-send="true">PASS</a></li>
+          </ul>
+        </li>
+      </ul>
+      <p>{name}: This element is suppressed. This means it is ignored
+        when computing<br>
+        the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+      <h2>Build changes</h2>
+      <ul>
+        <li>Linux: CI_DRM_12548 -&gt; Patchwork_109773v3</li>
+      </ul>
+      <p>CI-20190529: 20190529<br>
+        CI_DRM_12548: 6e2f76c3e3ff7aa7be8812900b4b3bf13c056ed0 @
+        git://anongit.freedesktop.org/gfx-ci/linux<br>
+        IGT_7110: db10a19b94d1d7ae5ba62eb48d52c47ccb27766f @
+        <a class="moz-txt-link-freetext" href="https://gitlab.freedesktop.org/drm/igt-gpu-tools.git">https://gitlab.freedesktop.org/drm/igt-gpu-tools.git</a><br>
+        Patchwork_109773v3: 6e2f76c3e3ff7aa7be8812900b4b3bf13c056ed0 @
+        git://anongit.freedesktop.org/gfx-ci/linux</p>
+      <h3>Linux commits</h3>
+      <p>3f296a19e8f4 drm/i915/display: Prune Interlace modes for
+        Display &gt;=12<br>
+        992979f0f92d drm/i915/display: Drop check for doublescan mode in
+        modevalid</p>
+    </blockquote>
+  </body>
+</html>
+
+--------------f8rbf0IsCVDIV29mj0rHADm4--
