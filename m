@@ -1,140 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 690576600EE
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Jan 2023 14:06:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E9196601DF
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Jan 2023 15:15:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5BD610E154;
-	Fri,  6 Jan 2023 13:06:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD1AC10E2AB;
+	Fri,  6 Jan 2023 14:15:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EC6F10E154
- for <intel-gfx@lists.freedesktop.org>; Fri,  6 Jan 2023 13:06:51 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2547E10E2AB;
+ Fri,  6 Jan 2023 14:15:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673010411; x=1704546411;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=9wk1mkXwwMkhkJq6a79qPQftnx7BR9Tn8Hgk4oiZCgM=;
- b=O/FY72iYUAqJ33L0oPgNDZP8N+rCWFfHMLr/Tm7Sjsk2RiAZfj8EQ5GZ
- hAuDUU2qt+h35VONDrQmz2LBoNjzarpzfJJr144tR+ydf0jIWOtxwL7Dm
- f6IgQCDDdxaorRuIIW3Zv4OcoqaVC2kmE9nFxSXCtGkG67ikBqyPIn+Fi
- +H1Gco+QBIDZNax6cASdNEgEMGnrsiz3ctYBGoBG8VOx+e8q8p5ZgCya3
- VhmCWGe/beHLP48sEIieYpWtj9xZe4QUFos5QZwDEOVGtFlAais2exuh1
- cE05lkWn38uKmi+V4m+BGxkDXaAfCzxR1b9PtaNULWNGQ82Zk1M9OVST7 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10581"; a="302837209"
-X-IronPort-AV: E=Sophos;i="5.96,305,1665471600"; d="scan'208";a="302837209"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2023 05:06:50 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10581"; a="984669024"
-X-IronPort-AV: E=Sophos;i="5.96,305,1665471600"; d="scan'208";a="984669024"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga005.fm.intel.com with ESMTP; 06 Jan 2023 05:06:50 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Fri, 6 Jan 2023 05:06:49 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Fri, 6 Jan 2023 05:06:49 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Fri, 6 Jan 2023 05:06:49 -0800
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.43) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Fri, 6 Jan 2023 05:06:48 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eWmS1kSHX0NSqe8FNtgF1F+KYhQ3pXsdKC8a1+F+thjZ1nYnYibPdjpVCPOled4tbFx7kUzAOuV1Pf7+eLYH2qrqjAUVFHLRRppZ7jbZTLv2Bvv4sdC7ypt05RYgaGJpAAaKXhsVC3isPbLOzKRsIZW/v5J2GtzWVR/Tn6Dz5TprwXP6B+oiA3j3oIFmqCDgYg2CK4MS2Iik9j0K0lt72cXPnQRqghZwXG8pC3m9HJ0X4y4uImvII/8cHj3wMLBkne7C37UYLg9ke1paxUfTNSyt2yzKnRq7hydvlyBDrX42lYa1nme8vCRzj50YQLKWtPav0DlpCdjXhd4eRm+vFw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6OTJFA2uc9G5wyLztwXHkimkFieP+nn/LCiwbAjPpDg=;
- b=ldkFtAAkuEHdI/7U/MLTbIdt+I/hbFf3EluwDmWzfj8E8W4rLzFDOZ/hzd4ZehisBXWXbgZ+d7M07gXjXbEIzMLZXIJMpo2bl8zG9YaEHJfSOnvPO2FeMf23hxAs1VGib6JAFmgn01qGKjthgDdcS6dj8yQdSyrWFpTN6rKrSRGM70DxszyF9g3w+Mlf1dX6X2SG5AlHI1z2ivNe1EqL23oAwdCU4d+PW3AL9O0hkpM11y2+uMSObMgpDTUcFq+YHvvuDRIi9/A61dN3NbPPCa+QpWMV8egJ9x1ETTR+P/4RhOsPyxwAr20CmCeMDLYfQWvNF5kQ+Sf622F/XEJ1+Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by SN7PR11MB6774.namprd11.prod.outlook.com (2603:10b6:806:265::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.19; Fri, 6 Jan
- 2023 13:06:47 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::499c:efe3:4397:808]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::499c:efe3:4397:808%8]) with mapi id 15.20.5944.019; Fri, 6 Jan 2023
- 13:06:47 +0000
-Date: Fri, 6 Jan 2023 08:06:42 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-Message-ID: <Y7gc4nf8rJKKHvam@intel.com>
-References: <20230105203843.30663-1-nirmoy.das@intel.com>
- <877cy0g15y.wl-ashutosh.dixit@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <877cy0g15y.wl-ashutosh.dixit@intel.com>
-X-ClientProxiedBy: BYAPR11CA0101.namprd11.prod.outlook.com
- (2603:10b6:a03:f4::42) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+ t=1673014526; x=1704550526;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=7N+cLGRFW0pfMz53YEsqlP/k/O9/e/Y534exQO1aNYo=;
+ b=UKtgeQkq7MiHYpXghEb7WzzDr5vsRICkFBRe0vVzrMDxgOrgafRvpE5i
+ 8/WCMysAO7DXNxdB5Ebb2gBp+jz2MGZ1MaspInjDT2zYylhH+bTq/C8PH
+ ZBVIyZrXs2GKZoTgent0UOfwaTkZaVYnzojtvf4o1rXnWiSxMtkT26WQP
+ 6zLA6B14Gl+sVYhPFzBPhGnG86hCO/VlGnAR9Q9YxANYPkZYiaJaBUI+D
+ smJI7MVveCl+V0UvFm2mJEA4MF6oIfSz8y99k2qmz7d8l/cg9Y18sPMmu
+ xf+C/1NLVMsgqfHYTeJkFk4SJdV/0Ks0UpJIo7m0IJDdvsJa4Jno99QGM w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10582"; a="408734487"
+X-IronPort-AV: E=Sophos;i="5.96,305,1665471600"; d="scan'208";a="408734487"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jan 2023 06:15:25 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10582"; a="798287214"
+X-IronPort-AV: E=Sophos;i="5.96,305,1665471600"; d="scan'208";a="798287214"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.48.92])
+ ([10.252.48.92])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jan 2023 06:15:22 -0800
+Message-ID: <84a4a4c8-0a9f-9b3a-d413-e0bd2ace3f42@linux.intel.com>
+Date: Fri, 6 Jan 2023 15:15:20 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|SN7PR11MB6774:EE_
-X-MS-Office365-Filtering-Correlation-Id: 97ec39e0-42f5-4972-30c7-08daefe6dda1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: /AU3Nx7LO8OVnUtLhK9FhJDj1piyWbr2f+Q+Xq0yYqnmMl7sVoVdMia6O1odvcJiAifwO8FVHWB12xMVprMjdHw/2A9J0+B/L0G1UK2HijIIARGCa4yQS48RKYSCkju0CW+n3qnBMcAjf0Ihw0FcbIY1ySXXJwVnB/KSpFbp3uPHc4PzTO5krdfg+FmX50W6uvplXhfnLNvquSF0c2w2TGdPvtnktTK7kblvbxE//+ednPWJSKXYnm3T/ukJEDlK3LKv1KqG5O1OWbEWOx+zYFwDihMJaA9hXYcUqeoqfsJLwH0uzHkB+9ZQaNfxst97O//cIhqfdP/AWsKYP0Ewpt7Tu/eZ67qBHQbs7eLxNLkEC/IHznOr5WIl6MjtHRXf/ak/1W8W8dN49G+nEXnQQfXisjBsYtdk3tpusdhduPO/4uc7vYBJm/IdErxJSgICznPKPRAyhn865Ibh01HsbQZhxIG84EZ5dRRLpMuaMbmeUPGRSD4zqbEEIrCeKj17YWUbWrYj/g0oWmksGSstl1m1fQWXsoX2JBu32DfsFHWSTgdY31R3nwhVg17piK0CwZBH41H5z1ugHV7faDuD+KfHHSpz9EUHi/h5i6lMQ6DmQzijC1Cbud9+I49SVhGjnFwUoynl3VbDB4yBES15IA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(376002)(366004)(396003)(136003)(346002)(39860400002)(451199015)(6636002)(6512007)(6666004)(316002)(107886003)(26005)(8676002)(37006003)(186003)(478600001)(66946007)(2616005)(66556008)(66476007)(4326008)(6506007)(6486002)(38100700002)(41300700001)(44832011)(83380400001)(6862004)(5660300002)(2906002)(8936002)(86362001)(36756003)(82960400001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?aoNKhfhbKL0Y09LtGcrKt4qHXqj0X6RzZ+g13e+6H3B/uz1YKLi3fm8ra0bv?=
- =?us-ascii?Q?sff4CD4H20KBCTMNXIwR0uAake5qeCdLfjySeFfufEDNiUpJRlqsdrPn3UBG?=
- =?us-ascii?Q?p/iQHvKbFAj9Q748U5gixwA9pacjWGfF/DOoPhjppATruXSl9lcWIQ+7PX+a?=
- =?us-ascii?Q?neRYKuu4U6e3RXbY6ctI1gjmC6pIsaa9vwdTFHwnoytSWOV7OaHMR6j612uO?=
- =?us-ascii?Q?K72m0bszvoTkaYCFnFMThDi+51i8WP3JjUC59pxRzQYRdzq27+ZlVD2XyCrl?=
- =?us-ascii?Q?Tv11RznN92RtoWHaiERev3ZJ6l3VSH8HKiXZMi62m/Hm1Y57BeOWDLalfRxg?=
- =?us-ascii?Q?bigzMAValmXVO1tWL1B+/KeqptYOHlvkwDi4zKgpx5B1cncLFpZdAwWieRKo?=
- =?us-ascii?Q?Ensf53jARHnITGR/kTIPSZvwuG+q2lDap1/lK8mD2tFsE5oAl5L5i6kKOQUt?=
- =?us-ascii?Q?gaP8ozDbkpRBRT0JfqCx9NSBE1+cNOJQcVOv6n97pOndLPrnn8pSrcsjzlmW?=
- =?us-ascii?Q?DoqN6BWquiVMOdRJRoWbwesUgaeSVlcuQ7Q7eWlxGq9g02tw6YQp0O9tCoMQ?=
- =?us-ascii?Q?2b4zFoXs5GDvMlDyRP1SmgIlMtgdvSvVg0ObCqud+8cW/uAlym7T7D7zo2dT?=
- =?us-ascii?Q?pCbrXjp988C3xvifNa4L+0qNRlRHp2KmwjvKg+nayLMCt6YXHo3HA0mjy5u/?=
- =?us-ascii?Q?jA3xqgSEZ4LqRzNz7Qy0n0TPCFxbp+U+k6WBH/7V/cPpIXTaWSv/CyMF05xd?=
- =?us-ascii?Q?QyJ7KpyWPfdMJTGfX9Jw9Il/Oj6AG7mEVgYc2bt37vj8L1W5nbmlvfkkpNWP?=
- =?us-ascii?Q?K4K/lz75nbHlZdjW1t3Kw2EVBtu1utEqUfNNrkQv8k/ByQI9QoVJbVJjIKsm?=
- =?us-ascii?Q?MW7KpoMScLp/yLflkc+kTreXI3xb1K2pYxy1do7m08KdiciQd1814MoaoWfj?=
- =?us-ascii?Q?UIAJmYoFwra+3vQYuYUdYkb1J8eixngPMc1fdSZx/tjHfSTQyDCVkiYa2/cY?=
- =?us-ascii?Q?Wetdg5gaq88vzZBQ0BbxfOeq8T7gRQhyQGtfVitQx1GhpdSQEhD+bSmtCjZO?=
- =?us-ascii?Q?ZizdOfKAmiFPVhPuBWqgejfGsGiRgWoogDdKjqtIqzow2aSP6B4lYsOrMEFC?=
- =?us-ascii?Q?alK7Zo36kerDqprvPyrhfuQNikrp+hmidvYNFaLJsnlpIYkPQFJ+ff4qs5Rg?=
- =?us-ascii?Q?yd7frnZe7A1M4Yk2+DBiUYxk97OPcxqdqUyWTRzERovFV5BbLt+n7WkvAUOr?=
- =?us-ascii?Q?m256DcaiYM3AkQmLi3N2Bn4RR+GCAMfyM8hJ8uEWXVPi6OFgalBKR9EHpj4t?=
- =?us-ascii?Q?bsfJoOqWlSeCBoqmTbBFeb5DI/rDHU2sC0FB6B3y/j4ngMrszwAO0aoK+V78?=
- =?us-ascii?Q?68QtAuxjkxsmfdr2lOVt+r41fp4TKrWuqw0+ewwTXKf4+ua4lu3AFEnNip2I?=
- =?us-ascii?Q?61eep6ijRnrfu4XZkypmi5A9S6t2WrVbA6/xVqmsCTGEB6hegl/PEKsiXyvP?=
- =?us-ascii?Q?dSB7wOVlXaMyasP0+W2Ygx9WvuILG+K2XqWig4TTAk3xcyO8ZHzgJRbX4sXl?=
- =?us-ascii?Q?ZL9b+4OTvDZRjGruottPuySSsJ5k02dngpFdsYvTC19euvY2HbWn9KpU6jR4?=
- =?us-ascii?Q?fA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 97ec39e0-42f5-4972-30c7-08daefe6dda1
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jan 2023 13:06:46.9628 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: utGdKuGSwZdQCulIk1IrkOXlNp1mG5TZnDOiWvDAObtLSHxqYMUkifwzmEeqkp/hq+f+j6FXAlXBs1ilF86H6A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6774
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Update docs in intel_wakeref.h
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Content-Language: en-US
+To: Andrzej Hajda <andrzej.hajda@intel.com>, linux-kernel@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ netdev <netdev@vger.kernel.org>
+References: <20220221232542.1481315-1-andrzej.hajda@intel.com>
+ <20220221232542.1481315-12-andrzej.hajda@intel.com>
+From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
+In-Reply-To: <20220221232542.1481315-12-andrzej.hajda@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v3 11/11] drm/i915: replace Intel internal
+ tracker with kernel core ref_tracker
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,73 +64,714 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, chris.p.wilson@intel.com,
- andrzej.hajda@intel.com, Nirmoy Das <nirmoy.das@intel.com>
+Cc: Jakub Kicinski <kuba@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Dmitry Vyukov <dvyukov@google.com>,
+ Chris Wilson <chris.p.wilson@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 05, 2023 at 12:46:17PM -0800, Dixit, Ashutosh wrote:
-11;rgb:0000/0000/0000> On Thu, 05 Jan 2023 12:38:43 -0800, Nirmoy Das wrote:
-> >
-> > Fix docs for __intel_wakeref_put() and intel_wakeref_get() to
-> > reflect current behaviour.
-> 
-> Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Hi Andrzej,
 
-pushed, thanks for the patch and review
+On 2/22/2022 12:25 AM, Andrzej Hajda wrote:
+> Beside reusing existing code, the main advantage of ref_tracker is
+> tracking per instance of wakeref. It allows also to catch double
+> put.
+> On the other side we lose information about the first acquire and
+> the last release, but the advantages outweigh it.
+>
+> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+> Reviewed-by: Chris Wilson <chris.p.wilson@intel.com>
+> ---
+>   drivers/gpu/drm/i915/Kconfig.debug            |  11 +-
+>   drivers/gpu/drm/i915/Makefile                 |   3 -
+>   .../drm/i915/display/intel_display_power.c    |   2 +-
+>   drivers/gpu/drm/i915/gt/intel_engine_pm.c     |   2 +-
+>   drivers/gpu/drm/i915/gt/intel_gt_pm.c         |   2 +-
+>   drivers/gpu/drm/i915/intel_runtime_pm.c       |  25 +-
+>   drivers/gpu/drm/i915/intel_runtime_pm.h       |   2 +-
+>   drivers/gpu/drm/i915/intel_wakeref.c          |   8 +-
+>   drivers/gpu/drm/i915/intel_wakeref.h          |  72 +++++-
+>   drivers/gpu/drm/i915/intel_wakeref_tracker.c  | 234 ------------------
+>   drivers/gpu/drm/i915/intel_wakeref_tracker.h  |  76 ------
+>   11 files changed, 87 insertions(+), 350 deletions(-)
+>   delete mode 100644 drivers/gpu/drm/i915/intel_wakeref_tracker.c
+>   delete mode 100644 drivers/gpu/drm/i915/intel_wakeref_tracker.h
+>
+> diff --git a/drivers/gpu/drm/i915/Kconfig.debug b/drivers/gpu/drm/i915/Kconfig.debug
+> index 3bdc73f30a9e1..6c57f3e265f20 100644
+> --- a/drivers/gpu/drm/i915/Kconfig.debug
+> +++ b/drivers/gpu/drm/i915/Kconfig.debug
+> @@ -32,6 +32,7 @@ config DRM_I915_DEBUG
+>   	select DEBUG_FS
+>   	select PREEMPT_COUNT
+>   	select I2C_CHARDEV
+> +	select REF_TRACKER
+>   	select STACKDEPOT
+>   	select STACKTRACE
+>   	select DRM_DP_AUX_CHARDEV
+> @@ -46,7 +47,6 @@ config DRM_I915_DEBUG
+>   	select DRM_I915_DEBUG_GEM
+>   	select DRM_I915_DEBUG_GEM_ONCE
+>   	select DRM_I915_DEBUG_MMIO
+> -	select DRM_I915_TRACK_WAKEREF
+>   	select DRM_I915_DEBUG_RUNTIME_PM
+>   	select DRM_I915_DEBUG_WAKEREF
+>   	select DRM_I915_SW_FENCE_DEBUG_OBJECTS
+> @@ -238,18 +238,13 @@ config DRM_I915_DEBUG_VBLANK_EVADE
+>   
+>   	  If in doubt, say "N".
+>   
+> -config DRM_I915_TRACK_WAKEREF
+> -	depends on STACKDEPOT
+> -	depends on STACKTRACE
+> -	bool
+> -
+>   config DRM_I915_DEBUG_RUNTIME_PM
+>   	bool "Enable extra state checking for runtime PM"
+>   	depends on DRM_I915
+>   	default n
+> +	select REF_TRACKER
+>   	select STACKDEPOT
+>   	select STACKTRACE
+> -	select DRM_I915_TRACK_WAKEREF
+>   	help
+>   	  Choose this option to turn on extra state checking for the
+>   	  runtime PM functionality. This may introduce overhead during
+> @@ -263,9 +258,9 @@ config DRM_I915_DEBUG_WAKEREF
+>   	bool "Enable extra tracking for wakerefs"
+>   	depends on DRM_I915
+>   	default n
+> +	select REF_TRACKER
+>   	select STACKDEPOT
+>   	select STACKTRACE
+> -	select DRM_I915_TRACK_WAKEREF
+>   	help
+>   	  Choose this option to turn on extra state checking and usage
+>   	  tracking for the wakerefPM functionality. This may introduce
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index 88a403d3294cb..1f8d71430e2e6 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -76,9 +76,6 @@ i915-$(CONFIG_DEBUG_FS) += \
+>   	display/intel_display_debugfs.o \
+>   	display/intel_pipe_crc.o
+>   
+> -i915-$(CONFIG_DRM_I915_TRACK_WAKEREF) += \
+> -	intel_wakeref_tracker.o
+> -
+>   i915-$(CONFIG_PERF_EVENTS) += i915_pmu.o
+>   
+>   # "Graphics Technology" (aka we talk to the gpu)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> index 9ebae7ac32356..0e1bf724f89b5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -2107,7 +2107,7 @@ print_async_put_domains_state(struct i915_power_domains *power_domains)
+>   						     struct drm_i915_private,
+>   						     power_domains);
+>   
+> -	drm_dbg(&i915->drm, "async_put_wakeref %u\n",
+> +	drm_dbg(&i915->drm, "async_put_wakeref %lu\n",
+>   		power_domains->async_put_wakeref);
+>   
+>   	print_power_domains(power_domains, "async_put_domains[0]",
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> index 52e46e7830ff5..cf8cc348942cb 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> @@ -273,7 +273,7 @@ void intel_engine_init__pm(struct intel_engine_cs *engine)
+>   {
+>   	struct intel_runtime_pm *rpm = engine->uncore->rpm;
+>   
+> -	intel_wakeref_init(&engine->wakeref, rpm, &wf_ops);
+> +	intel_wakeref_init(&engine->wakeref, rpm, &wf_ops, engine->name);
+>   	intel_engine_init_heartbeat(engine);
+>   }
+>   
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+> index 7ee65a93f926f..01a055d0d0989 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+> @@ -129,7 +129,7 @@ static const struct intel_wakeref_ops wf_ops = {
+>   
+>   void intel_gt_pm_init_early(struct intel_gt *gt)
+>   {
+> -	intel_wakeref_init(&gt->wakeref, gt->uncore->rpm, &wf_ops);
+> +	intel_wakeref_init(&gt->wakeref, gt->uncore->rpm, &wf_ops, "GT");
+>   	seqcount_mutex_init(&gt->stats.lock, &gt->wakeref.mutex);
+>   }
+>   
+> diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
+> index 7bd10efa56bf3..18e4b2f169e75 100644
+> --- a/drivers/gpu/drm/i915/intel_runtime_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
+> @@ -54,35 +54,35 @@
+>   
+>   static void init_intel_runtime_pm_wakeref(struct intel_runtime_pm *rpm)
+>   {
+> -	intel_wakeref_tracker_init(&rpm->debug);
+> +	ref_tracker_dir_init(&rpm->debug, INTEL_REFTRACK_DEAD_COUNT, dev_name(rpm->kdev));
+>   }
+>   
+>   static intel_wakeref_t
+>   track_intel_runtime_pm_wakeref(struct intel_runtime_pm *rpm)
+>   {
+> -	if (!rpm->available)
+> +	if (!rpm->available || rpm->no_wakeref_tracking)
+>   		return -1;
+>   
+> -	return intel_wakeref_tracker_add(&rpm->debug);
+> +	return intel_ref_tracker_alloc(&rpm->debug);
+>   }
+>   
+>   static void untrack_intel_runtime_pm_wakeref(struct intel_runtime_pm *rpm,
+>   					     intel_wakeref_t wakeref)
+>   {
+> -	intel_wakeref_tracker_remove(&rpm->debug, wakeref);
+> +	if (!rpm->available || rpm->no_wakeref_tracking)
+> +		return;
+> +
+> +	intel_ref_tracker_free(&rpm->debug, wakeref);
+>   }
+>   
+>   static void untrack_all_intel_runtime_pm_wakerefs(struct intel_runtime_pm *rpm)
+>   {
+> -	struct drm_printer p = drm_debug_printer("i915");
+> -
+> -	intel_wakeref_tracker_reset(&rpm->debug, &p);
+> +	ref_tracker_dir_exit(&rpm->debug);
+>   }
+>   
+>   static noinline void
+>   __intel_wakeref_dec_and_check_tracking(struct intel_runtime_pm *rpm)
+>   {
+> -	struct intel_wakeref_tracker saved;
+>   	unsigned long flags;
+>   
+>   	if (!atomic_dec_and_lock_irqsave(&rpm->wakeref_count,
+> @@ -90,15 +90,8 @@ __intel_wakeref_dec_and_check_tracking(struct intel_runtime_pm *rpm)
+>   					 flags))
+>   		return;
+>   
+> -	saved = __intel_wakeref_tracker_reset(&rpm->debug);
+> +	__ref_tracker_dir_print(&rpm->debug, INTEL_REFTRACK_PRINT_LIMIT);
+>   	spin_unlock_irqrestore(&rpm->debug.lock, flags);
+> -
+> -	if (saved.count) {
+> -		struct drm_printer p = drm_debug_printer("i915");
+> -
+> -		__intel_wakeref_tracker_show(&saved, &p);
+> -		intel_wakeref_tracker_fini(&saved);
+> -	}
+>   }
+>   
+>   void print_intel_runtime_pm_wakeref(struct intel_runtime_pm *rpm,
+> diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.h b/drivers/gpu/drm/i915/intel_runtime_pm.h
+> index 0871fa2176474..db5692f1eb67e 100644
+> --- a/drivers/gpu/drm/i915/intel_runtime_pm.h
+> +++ b/drivers/gpu/drm/i915/intel_runtime_pm.h
+> @@ -61,7 +61,7 @@ struct intel_runtime_pm {
+>   	 * paired rpm_put) we can remove corresponding pairs of and keep
+>   	 * the array trimmed to active wakerefs.
+>   	 */
+> -	struct intel_wakeref_tracker debug;
+> +	struct ref_tracker_dir debug;
+>   #endif
+>   };
+>   
+> diff --git a/drivers/gpu/drm/i915/intel_wakeref.c b/drivers/gpu/drm/i915/intel_wakeref.c
+> index db4887e33ea60..97fe9a0f0adbd 100644
+> --- a/drivers/gpu/drm/i915/intel_wakeref.c
+> +++ b/drivers/gpu/drm/i915/intel_wakeref.c
+> @@ -62,6 +62,9 @@ static void ____intel_wakeref_put_last(struct intel_wakeref *wf)
+>   	if (likely(!wf->ops->put(wf))) {
+>   		rpm_put(wf);
+>   		wake_up_var(&wf->wakeref);
+> +#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_WAKEREF)
+> +		ref_tracker_dir_exit(&wf->debug);
+> +#endif
 
-> 
-> > Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/intel_wakeref.h | 21 ++++++++++-----------
-> >  1 file changed, 10 insertions(+), 11 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/intel_wakeref.h b/drivers/gpu/drm/i915/intel_wakeref.h
-> > index 4f4c2e15e736..71b8a63f6f10 100644
-> > --- a/drivers/gpu/drm/i915/intel_wakeref.h
-> > +++ b/drivers/gpu/drm/i915/intel_wakeref.h
-> > @@ -68,11 +68,12 @@ void __intel_wakeref_put_last(struct intel_wakeref *wf, unsigned long flags);
-> >   * @wf: the wakeref
-> >   *
-> >   * Acquire a hold on the wakeref. The first user to do so, will acquire
-> > - * the runtime pm wakeref and then call the @fn underneath the wakeref
-> > - * mutex.
-> > + * the runtime pm wakeref and then call the intel_wakeref_ops->get()
-> > + * underneath the wakeref mutex.
-> >   *
-> > - * Note that @fn is allowed to fail, in which case the runtime-pm wakeref
-> > - * will be released and the acquisition unwound, and an error reported.
-> > + * Note that intel_wakeref_ops->get() is allowed to fail, in which case
-> > + * the runtime-pm wakeref will be released and the acquisition unwound,
-> > + * and an error reported.
-> >   *
-> >   * Returns: 0 if the wakeref was acquired successfully, or a negative error
-> >   * code otherwise.
-> > @@ -130,19 +131,17 @@ intel_wakeref_might_get(struct intel_wakeref *wf)
-> >  }
-> >
-> >  /**
-> > - * intel_wakeref_put_flags: Release the wakeref
-> > + * __intel_wakeref_put: Release the wakeref
-> >   * @wf: the wakeref
-> >   * @flags: control flags
-> >   *
-> >   * Release our hold on the wakeref. When there are no more users,
-> > - * the runtime pm wakeref will be released after the @fn callback is called
-> > - * underneath the wakeref mutex.
-> > + * the runtime pm wakeref will be released after the intel_wakeref_ops->put()
-> > + * callback is called underneath the wakeref mutex.
-> >   *
-> > - * Note that @fn is allowed to fail, in which case the runtime-pm wakeref
-> > - * is retained and an error reported.
-> > + * Note that intel_wakeref_ops->put() is allowed to fail, in which case the
-> > + * runtime-pm wakeref is retained.
-> >   *
-> > - * Returns: 0 if the wakeref was released successfully, or a negative error
-> > - * code otherwise.
-> >   */
-> >  static inline void
-> >  __intel_wakeref_put(struct intel_wakeref *wf, unsigned long flags)
-> > --
-> > 2.38.0
-> >
+
+This seems is bit too early, we only need this at the end  as you have 
+done with untrack_all_intel_runtime_pm_wakerefs()
+
+otherwise the WARN_ON_ONE(dir->debug) from " ref_tracker: implement 
+use-after-free detection" will
+
+get triggered.
+
+
+Regards,
+
+Nirmoy
+
+>   
+>   	}
+>   
+>   unlock:
+> @@ -96,7 +99,8 @@ static void __intel_wakeref_put_work(struct work_struct *wrk)
+>   void __intel_wakeref_init(struct intel_wakeref *wf,
+>   			  struct intel_runtime_pm *rpm,
+>   			  const struct intel_wakeref_ops *ops,
+> -			  struct intel_wakeref_lockclass *key)
+> +			  struct intel_wakeref_lockclass *key,
+> +			  const char *name)
+>   {
+>   	wf->rpm = rpm;
+>   	wf->ops = ops;
+> @@ -110,7 +114,7 @@ void __intel_wakeref_init(struct intel_wakeref *wf,
+>   			 "wakeref.work", &key->work, 0);
+>   
+>   #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_WAKEREF)
+> -	intel_wakeref_tracker_init(&wf->debug);
+> +	ref_tracker_dir_init(&wf->debug, INTEL_REFTRACK_DEAD_COUNT, name);
+>   #endif
+>   }
+>   
+> diff --git a/drivers/gpu/drm/i915/intel_wakeref.h b/drivers/gpu/drm/i915/intel_wakeref.h
+> index 38439deefc5cc..e0cd78fb60761 100644
+> --- a/drivers/gpu/drm/i915/intel_wakeref.h
+> +++ b/drivers/gpu/drm/i915/intel_wakeref.h
+> @@ -7,17 +7,24 @@
+>   #ifndef INTEL_WAKEREF_H
+>   #define INTEL_WAKEREF_H
+>   
+> +#include <drm/drm_print.h>
+> +
+>   #include <linux/atomic.h>
+>   #include <linux/bitfield.h>
+>   #include <linux/bits.h>
+>   #include <linux/lockdep.h>
+>   #include <linux/mutex.h>
+>   #include <linux/refcount.h>
+> +#include <linux/ref_tracker.h>
+> +#include <linux/slab.h>
+>   #include <linux/stackdepot.h>
+>   #include <linux/timer.h>
+>   #include <linux/workqueue.h>
+>   
+> -#include "intel_wakeref_tracker.h"
+> +typedef unsigned long intel_wakeref_t;
+> +
+> +#define INTEL_REFTRACK_DEAD_COUNT 16
+> +#define INTEL_REFTRACK_PRINT_LIMIT 16
+>   
+>   #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_WAKEREF)
+>   #define INTEL_WAKEREF_BUG_ON(expr) BUG_ON(expr)
+> @@ -45,7 +52,7 @@ struct intel_wakeref {
+>   	struct delayed_work work;
+>   
+>   #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_WAKEREF)
+> -	struct intel_wakeref_tracker debug;
+> +	struct ref_tracker_dir debug;
+>   #endif
+>   };
+>   
+> @@ -57,11 +64,12 @@ struct intel_wakeref_lockclass {
+>   void __intel_wakeref_init(struct intel_wakeref *wf,
+>   			  struct intel_runtime_pm *rpm,
+>   			  const struct intel_wakeref_ops *ops,
+> -			  struct intel_wakeref_lockclass *key);
+> -#define intel_wakeref_init(wf, rpm, ops) do {				\
+> +			  struct intel_wakeref_lockclass *key,
+> +			  const char *name);
+> +#define intel_wakeref_init(wf, rpm, ops, name) do {				\
+>   	static struct intel_wakeref_lockclass __key;			\
+>   									\
+> -	__intel_wakeref_init((wf), (rpm), (ops), &__key);		\
+> +	__intel_wakeref_init((wf), (rpm), (ops), &__key, name);		\
+>   } while (0)
+>   
+>   int __intel_wakeref_get_first(struct intel_wakeref *wf);
+> @@ -266,17 +274,67 @@ __intel_wakeref_defer_park(struct intel_wakeref *wf)
+>    */
+>   int intel_wakeref_wait_for_idle(struct intel_wakeref *wf);
+>   
+> +#define INTEL_WAKEREF_DEF ((intel_wakeref_t)(-1))
+> +
+> +static inline intel_wakeref_t intel_ref_tracker_alloc(struct ref_tracker_dir *dir)
+> +{
+> +	struct ref_tracker *user = NULL;
+> +
+> +	ref_tracker_alloc(dir, &user, GFP_NOWAIT);
+> +
+> +	return (intel_wakeref_t)user ?: INTEL_WAKEREF_DEF;
+> +}
+> +
+> +static inline void intel_ref_tracker_free(struct ref_tracker_dir *dir,
+> +					  intel_wakeref_t handle)
+> +{
+> +	struct ref_tracker *user;
+> +
+> +	user = (handle == INTEL_WAKEREF_DEF) ? NULL : (void *)handle;
+> +
+> +	ref_tracker_free(dir, &user);
+> +}
+> +
+> +static inline void
+> +intel_wakeref_tracker_show(struct ref_tracker_dir *dir,
+> +			   struct drm_printer *p)
+> +{
+> +	const size_t buf_size = PAGE_SIZE;
+> +	char *buf, *sb, *se;
+> +	size_t count;
+> +
+> +	buf = kmalloc(buf_size, GFP_NOWAIT);
+> +	if (!buf)
+> +		return;
+> +
+> +	count = ref_tracker_dir_snprint(dir, buf, buf_size);
+> +	if (!count)
+> +		goto free;
+> +	/* printk does not like big buffers, so we split it */
+> +	for (sb = buf; *sb; sb = se + 1) {
+> +		se = strchrnul(sb, '\n');
+> +		drm_printf(p, "%.*s", (int)(se - sb + 1), sb);
+> +		if (!*se)
+> +			break;
+> +	}
+> +	if (count >= buf_size)
+> +		drm_printf(p, "\n...dropped %zd extra bytes of leak report.\n",
+> +			   count + 1 - buf_size);
+> +free:
+> +	kfree(buf);
+> +}
+> +
+>   #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_WAKEREF)
+>   
+>   static inline intel_wakeref_t intel_wakeref_track(struct intel_wakeref *wf)
+>   {
+> -	return intel_wakeref_tracker_add(&wf->debug);
+> +	return intel_ref_tracker_alloc(&wf->debug);
+>   }
+>   
+>   static inline void intel_wakeref_untrack(struct intel_wakeref *wf,
+>   					 intel_wakeref_t handle)
+>   {
+> -	intel_wakeref_tracker_remove(&wf->debug, handle);
+> +	intel_ref_tracker_free(&wf->debug, handle);
+>   }
+>   
+>   static inline void intel_wakeref_show(struct intel_wakeref *wf,
+> diff --git a/drivers/gpu/drm/i915/intel_wakeref_tracker.c b/drivers/gpu/drm/i915/intel_wakeref_tracker.c
+> deleted file mode 100644
+> index a0bcef13a1085..0000000000000
+> --- a/drivers/gpu/drm/i915/intel_wakeref_tracker.c
+> +++ /dev/null
+> @@ -1,234 +0,0 @@
+> -// SPDX-License-Identifier: MIT
+> -/*
+> - * Copyright © 2021 Intel Corporation
+> - */
+> -
+> -#include <linux/slab.h>
+> -#include <linux/stackdepot.h>
+> -#include <linux/stacktrace.h>
+> -#include <linux/sort.h>
+> -
+> -#include <drm/drm_print.h>
+> -
+> -#include "intel_wakeref.h"
+> -
+> -#define STACKDEPTH 8
+> -
+> -static noinline depot_stack_handle_t __save_depot_stack(void)
+> -{
+> -	unsigned long entries[STACKDEPTH];
+> -	unsigned int n;
+> -
+> -	n = stack_trace_save(entries, ARRAY_SIZE(entries), 1);
+> -	return stack_depot_save(entries, n, GFP_NOWAIT | __GFP_NOWARN);
+> -}
+> -
+> -static void __print_depot_stack(depot_stack_handle_t stack,
+> -				char *buf, int sz, int indent)
+> -{
+> -	unsigned long *entries;
+> -	unsigned int nr_entries;
+> -
+> -	nr_entries = stack_depot_fetch(stack, &entries);
+> -	stack_trace_snprint(buf, sz, entries, nr_entries, indent);
+> -}
+> -
+> -static int cmphandle(const void *_a, const void *_b)
+> -{
+> -	const depot_stack_handle_t * const a = _a, * const b = _b;
+> -
+> -	if (*a < *b)
+> -		return -1;
+> -	else if (*a > *b)
+> -		return 1;
+> -	else
+> -		return 0;
+> -}
+> -
+> -void
+> -__intel_wakeref_tracker_show(const struct intel_wakeref_tracker *w,
+> -			     struct drm_printer *p)
+> -{
+> -	unsigned long i;
+> -	char *buf;
+> -
+> -	buf = kmalloc(PAGE_SIZE, GFP_NOWAIT | __GFP_NOWARN);
+> -	if (!buf)
+> -		return;
+> -
+> -	if (w->last_acquire) {
+> -		__print_depot_stack(w->last_acquire, buf, PAGE_SIZE, 2);
+> -		drm_printf(p, "Wakeref last acquired:\n%s", buf);
+> -	}
+> -
+> -	if (w->last_release) {
+> -		__print_depot_stack(w->last_release, buf, PAGE_SIZE, 2);
+> -		drm_printf(p, "Wakeref last released:\n%s", buf);
+> -	}
+> -
+> -	drm_printf(p, "Wakeref count: %lu\n", w->count);
+> -
+> -	sort(w->owners, w->count, sizeof(*w->owners), cmphandle, NULL);
+> -
+> -	for (i = 0; i < w->count; i++) {
+> -		depot_stack_handle_t stack = w->owners[i];
+> -		unsigned long rep;
+> -
+> -		rep = 1;
+> -		while (i + 1 < w->count && w->owners[i + 1] == stack)
+> -			rep++, i++;
+> -		__print_depot_stack(stack, buf, PAGE_SIZE, 2);
+> -		drm_printf(p, "Wakeref x%lu taken at:\n%s", rep, buf);
+> -	}
+> -
+> -	kfree(buf);
+> -}
+> -
+> -void intel_wakeref_tracker_show(struct intel_wakeref_tracker *w,
+> -				struct drm_printer *p)
+> -{
+> -	struct intel_wakeref_tracker tmp = {};
+> -
+> -	do {
+> -		unsigned long alloc = tmp.count;
+> -		depot_stack_handle_t *s;
+> -
+> -		spin_lock_irq(&w->lock);
+> -		tmp.count = w->count;
+> -		if (tmp.count <= alloc)
+> -			memcpy(tmp.owners, w->owners, tmp.count * sizeof(*s));
+> -		tmp.last_acquire = w->last_acquire;
+> -		tmp.last_release = w->last_release;
+> -		spin_unlock_irq(&w->lock);
+> -		if (tmp.count <= alloc)
+> -			break;
+> -
+> -		s = krealloc(tmp.owners,
+> -			     tmp.count * sizeof(*s),
+> -			     GFP_NOWAIT | __GFP_NOWARN);
+> -		if (!s)
+> -			goto out;
+> -
+> -		tmp.owners = s;
+> -	} while (1);
+> -
+> -	__intel_wakeref_tracker_show(&tmp, p);
+> -
+> -out:
+> -	intel_wakeref_tracker_fini(&tmp);
+> -}
+> -
+> -intel_wakeref_t intel_wakeref_tracker_add(struct intel_wakeref_tracker *w)
+> -{
+> -	depot_stack_handle_t stack, *stacks;
+> -	unsigned long flags;
+> -
+> -	stack = __save_depot_stack();
+> -	if (!stack)
+> -		return -1;
+> -
+> -	spin_lock_irqsave(&w->lock, flags);
+> -
+> -	if (!w->count)
+> -		w->last_acquire = stack;
+> -
+> -	stacks = krealloc(w->owners,
+> -			  (w->count + 1) * sizeof(*stacks),
+> -			  GFP_NOWAIT | __GFP_NOWARN);
+> -	if (stacks) {
+> -		stacks[w->count++] = stack;
+> -		w->owners = stacks;
+> -	} else {
+> -		stack = -1;
+> -	}
+> -
+> -	spin_unlock_irqrestore(&w->lock, flags);
+> -
+> -	return stack;
+> -}
+> -
+> -void intel_wakeref_tracker_remove(struct intel_wakeref_tracker *w,
+> -				  intel_wakeref_t stack)
+> -{
+> -	unsigned long flags, n;
+> -	bool found = false;
+> -
+> -	if (unlikely(stack == -1))
+> -		return;
+> -
+> -	spin_lock_irqsave(&w->lock, flags);
+> -	for (n = w->count; n--; ) {
+> -		if (w->owners[n] == stack) {
+> -			memmove(w->owners + n,
+> -				w->owners + n + 1,
+> -				(--w->count - n) * sizeof(stack));
+> -			found = true;
+> -			break;
+> -		}
+> -	}
+> -	spin_unlock_irqrestore(&w->lock, flags);
+> -
+> -	if (WARN(!found,
+> -		 "Unmatched wakeref %x, tracking %lu\n",
+> -		 stack, w->count)) {
+> -		char *buf;
+> -
+> -		buf = kmalloc(PAGE_SIZE, GFP_NOWAIT | __GFP_NOWARN);
+> -		if (!buf)
+> -			return;
+> -
+> -		__print_depot_stack(stack, buf, PAGE_SIZE, 2);
+> -		pr_err("wakeref %x from\n%s", stack, buf);
+> -
+> -		stack = READ_ONCE(w->last_release);
+> -		if (stack && !w->count) {
+> -			__print_depot_stack(stack, buf, PAGE_SIZE, 2);
+> -			pr_err("wakeref last released at\n%s", buf);
+> -		}
+> -
+> -		kfree(buf);
+> -	}
+> -}
+> -
+> -struct intel_wakeref_tracker
+> -__intel_wakeref_tracker_reset(struct intel_wakeref_tracker *w)
+> -{
+> -	struct intel_wakeref_tracker saved;
+> -
+> -	lockdep_assert_held(&w->lock);
+> -
+> -	saved = *w;
+> -
+> -	w->owners = NULL;
+> -	w->count = 0;
+> -	w->last_release = __save_depot_stack();
+> -
+> -	return saved;
+> -}
+> -
+> -void intel_wakeref_tracker_reset(struct intel_wakeref_tracker *w,
+> -				 struct drm_printer *p)
+> -{
+> -	struct intel_wakeref_tracker tmp;
+> -
+> -	spin_lock_irq(&w->lock);
+> -	tmp = __intel_wakeref_tracker_reset(w);
+> -	spin_unlock_irq(&w->lock);
+> -
+> -	if (tmp.count)
+> -		__intel_wakeref_tracker_show(&tmp, p);
+> -
+> -	intel_wakeref_tracker_fini(&tmp);
+> -}
+> -
+> -void intel_wakeref_tracker_init(struct intel_wakeref_tracker *w)
+> -{
+> -	memset(w, 0, sizeof(*w));
+> -	spin_lock_init(&w->lock);
+> -	stack_depot_init();
+> -}
+> -
+> -void intel_wakeref_tracker_fini(struct intel_wakeref_tracker *w)
+> -{
+> -	kfree(w->owners);
+> -}
+> diff --git a/drivers/gpu/drm/i915/intel_wakeref_tracker.h b/drivers/gpu/drm/i915/intel_wakeref_tracker.h
+> deleted file mode 100644
+> index 61df68e28c0fb..0000000000000
+> --- a/drivers/gpu/drm/i915/intel_wakeref_tracker.h
+> +++ /dev/null
+> @@ -1,76 +0,0 @@
+> -/* SPDX-License-Identifier: MIT */
+> -/*
+> - * Copyright © 2019 Intel Corporation
+> - */
+> -
+> -#ifndef INTEL_WAKEREF_TRACKER_H
+> -#define INTEL_WAKEREF_TRACKER_H
+> -
+> -#include <linux/kconfig.h>
+> -#include <linux/spinlock.h>
+> -#include <linux/stackdepot.h>
+> -
+> -typedef depot_stack_handle_t intel_wakeref_t;
+> -
+> -struct drm_printer;
+> -
+> -struct intel_wakeref_tracker {
+> -	spinlock_t lock;
+> -
+> -	depot_stack_handle_t last_acquire;
+> -	depot_stack_handle_t last_release;
+> -
+> -	depot_stack_handle_t *owners;
+> -	unsigned long count;
+> -};
+> -
+> -#if IS_ENABLED(CONFIG_DRM_I915_TRACK_WAKEREF)
+> -
+> -void intel_wakeref_tracker_init(struct intel_wakeref_tracker *w);
+> -void intel_wakeref_tracker_fini(struct intel_wakeref_tracker *w);
+> -
+> -intel_wakeref_t intel_wakeref_tracker_add(struct intel_wakeref_tracker *w);
+> -void intel_wakeref_tracker_remove(struct intel_wakeref_tracker *w,
+> -			   intel_wakeref_t handle);
+> -
+> -struct intel_wakeref_tracker
+> -__intel_wakeref_tracker_reset(struct intel_wakeref_tracker *w);
+> -void intel_wakeref_tracker_reset(struct intel_wakeref_tracker *w,
+> -				 struct drm_printer *p);
+> -
+> -void __intel_wakeref_tracker_show(const struct intel_wakeref_tracker *w,
+> -				  struct drm_printer *p);
+> -void intel_wakeref_tracker_show(struct intel_wakeref_tracker *w,
+> -				struct drm_printer *p);
+> -
+> -#else
+> -
+> -static inline void intel_wakeref_tracker_init(struct intel_wakeref_tracker *w) {}
+> -static inline void intel_wakeref_tracker_fini(struct intel_wakeref_tracker *w) {}
+> -
+> -static inline intel_wakeref_t
+> -intel_wakeref_tracker_add(struct intel_wakeref_tracker *w)
+> -{
+> -	return -1;
+> -}
+> -
+> -static inline void
+> -intel_wakeref_untrack_remove(struct intel_wakeref_tracker *w, intel_wakeref_t handle) {}
+> -
+> -static inline struct intel_wakeref_tracker
+> -__intel_wakeref_tracker_reset(struct intel_wakeref_tracker *w)
+> -{
+> -	return (struct intel_wakeref_tracker){};
+> -}
+> -
+> -static inline void intel_wakeref_tracker_reset(struct intel_wakeref_tracker *w,
+> -					       struct drm_printer *p)
+> -{
+> -}
+> -
+> -static inline void __intel_wakeref_tracker_show(const struct intel_wakeref_tracker *w, struct drm_printer *p) {}
+> -static inline void intel_wakeref_tracker_show(struct intel_wakeref_tracker *w, struct drm_printer *p) {}
+> -
+> -#endif
+> -
+> -#endif /* INTEL_WAKEREF_TRACKER_H */
