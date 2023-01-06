@@ -2,33 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A809B65FB6B
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Jan 2023 07:25:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20F1A65FDFB
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Jan 2023 10:30:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45E8010E133;
-	Fri,  6 Jan 2023 06:25:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60A0610E845;
+	Fri,  6 Jan 2023 09:30:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 62A3C10E133;
- Fri,  6 Jan 2023 06:25:35 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 49861A7E03;
- Fri,  6 Jan 2023 06:25:35 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8415C10E845;
+ Fri,  6 Jan 2023 09:30:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1672997414; x=1704533414;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=L3XLTnt2PC2phaQBntNILIbKLlk/h/c2gjDwb/kJpOc=;
+ b=eHiyA4p0oVsM9/VudTH8EKBd6MXJxLPJdkuz4aUpDsWtMqJ3zrpbNxGO
+ vWkWix9FTMAuB6fLc3FuntauaYYU9sPsESwFldf81npUW19BTqrL/J8D4
+ dIOhVxITpmb7ZEhjNy/3L6BhUa7nsQXleLC7PfFQu6lAb9Y+Ia9fn0Sgy
+ nSGFY3PS9OvDz25bQmceMyrTBwcaqiah3A3AfBgbmrRksPpFalwAcNp84
+ c5/7GW7vtGZXq86XFvNuBCwpmTG/St/L+qch0m0GN6VJuLbeZZ0xJIMFb
+ C8Jz192x5YloOt24grbTmqbY6ZEXPvwPG9yuELp0vlRAjjUPfBQRT67zd Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10581"; a="310232295"
+X-IronPort-AV: E=Sophos;i="5.96,304,1665471600"; d="scan'208";a="310232295"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jan 2023 01:30:13 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10581"; a="779921070"
+X-IronPort-AV: E=Sophos;i="5.96,304,1665471600"; d="scan'208";a="779921070"
+Received: from joe-255.igk.intel.com (HELO localhost) ([172.22.229.67])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jan 2023 01:30:08 -0800
+Date: Fri, 6 Jan 2023 10:30:06 +0100
+From: Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>
+To: Jiasheng Jiang <jiasheng@iscas.ac.cn>
+Message-ID: <20230106093006.GA1586324@linux.intel.com>
+References: <20230106090934.6348-1-jiasheng@iscas.ac.cn>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Yan Zhao" <yan.y.zhao@intel.com>
-Date: Fri, 06 Jan 2023 06:25:35 -0000
-Message-ID: <167298633529.25043.5516887722445981385@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221223005739.1295925-1-seanjc@google.com>
-In-Reply-To: <20221223005739.1295925-1-seanjc@google.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915/gvt=3A_KVM=3A_KVMGT_fixes_and_page-track_cleanups_=28re?=
- =?utf-8?b?djMp?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230106090934.6348-1-jiasheng@iscas.ac.cn>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add missing check and destroy for
+ alloc_workqueue
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,29 +57,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, lucas.demarchi@intel.com,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, daniel@ffwll.ch,
+ rodrigo.vivi@intel.com, airlied@gmail.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Jan 06, 2023 at 05:09:34PM +0800, Jiasheng Jiang wrote:
+> Add checks for the return value of alloc_workqueue and
+> alloc_ordered_workqueue as they may return NULL pointer and cause NULL
+> pointer dereference.
+> Moreover, destroy them when fails later in order to avoid memory leak.
+> Because in `drivers/gpu/drm/i915/i915_driver.c`, if
+> intel_modeset_init_noirq fails, its workqueues will not be destroyed.
+> 
+> Fixes: c26a058680dc ("drm/i915: Use a high priority wq for nonblocking plane updates")
+> Fixes: 757fffcfdffb ("drm/i915: Put all non-blocking modesets onto an ordered wq")
+> Signed-off-by: Jiasheng Jiang <jiasheng@iscas.ac.cn>
 
-Series: drm/i915/gvt: KVM: KVMGT fixes and page-track cleanups (rev3)
-URL   : https://patchwork.freedesktop.org/series/112196/
-State : failure
+Reviewed-by: Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>
 
-== Summary ==
-
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/112196/revisions/3/mbox/ not applied
-Applying: drm/i915/gvt: Verify pfn is "valid" before dereferencing "struct page"
-Applying: KVM: x86/mmu: Factor out helper to get max mapping size of a memslot
-Applying: drm/i915/gvt: Incorporate KVM memslot info into check for 2MiB GTT entry
-error: sha1 information is lacking or useless (drivers/gpu/drm/i915/gvt/gtt.c).
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0003 drm/i915/gvt: Incorporate KVM memslot info into check for 2MiB GTT entry
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-
-
+>  drivers/gpu/drm/i915/display/intel_display.c | 21 ++++++++++++++++----
+>  1 file changed, 17 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 6c2686ecb62a..58f6840d6bd8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -8655,26 +8655,35 @@ int intel_modeset_init_noirq(struct drm_i915_private *i915)
+>  	intel_dmc_ucode_init(i915);
+>  
+>  	i915->display.wq.modeset = alloc_ordered_workqueue("i915_modeset", 0);
+> +	if (!i915->display.wq.modeset) {
+> +		ret = -ENOMEM;
+> +		goto cleanup_vga_client_pw_domain_dmc;
+> +	}
+> +
+>  	i915->display.wq.flip = alloc_workqueue("i915_flip", WQ_HIGHPRI |
+>  						WQ_UNBOUND, WQ_UNBOUND_MAX_ACTIVE);
+> +	if (!i915->display.wq.flip) {
+> +		ret = -ENOMEM;
+> +		goto cleanup_modeset;
+> +	}
+>  
+>  	intel_mode_config_init(i915);
+>  
+>  	ret = intel_cdclk_init(i915);
+>  	if (ret)
+> -		goto cleanup_vga_client_pw_domain_dmc;
+> +		goto cleanup_flip;
+>  
+>  	ret = intel_color_init(i915);
+>  	if (ret)
+> -		goto cleanup_vga_client_pw_domain_dmc;
+> +		goto cleanup_flip;
+>  
+>  	ret = intel_dbuf_init(i915);
+>  	if (ret)
+> -		goto cleanup_vga_client_pw_domain_dmc;
+> +		goto cleanup_flip;
+>  
+>  	ret = intel_bw_init(i915);
+>  	if (ret)
+> -		goto cleanup_vga_client_pw_domain_dmc;
+> +		goto cleanup_flip;
+>  
+>  	init_llist_head(&i915->display.atomic_helper.free_list);
+>  	INIT_WORK(&i915->display.atomic_helper.free_work,
+> @@ -8686,6 +8695,10 @@ int intel_modeset_init_noirq(struct drm_i915_private *i915)
+>  
+>  	return 0;
+>  
+> +cleanup_flip:
+> +	destroy_workqueue(i915->display.wq.flip);
+> +cleanup_modeset:
+> +	destroy_workqueue(i915->display.wq.modeset);
+>  cleanup_vga_client_pw_domain_dmc:
+>  	intel_dmc_ucode_fini(i915);
+>  	intel_power_domains_driver_remove(i915);
+> -- 
+> 2.25.1
+> 
