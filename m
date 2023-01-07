@@ -1,146 +1,150 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28ADC660A69
-	for <lists+intel-gfx@lfdr.de>; Sat,  7 Jan 2023 00:52:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A29BD660AC4
+	for <lists+intel-gfx@lfdr.de>; Sat,  7 Jan 2023 01:30:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CF8710E2D7;
-	Fri,  6 Jan 2023 23:52:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9DA810E17B;
+	Sat,  7 Jan 2023 00:30:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6A4E10E2D3;
- Fri,  6 Jan 2023 23:52:26 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87A3A10E17B;
+ Sat,  7 Jan 2023 00:30:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673049146; x=1704585146;
+ t=1673051401; x=1704587401;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=p80XEVc+zImWkL4SHwttYFkSNcJ/aSl2NiT7oGrdxcU=;
- b=XAu26kXXhHftNM2PkKf5Gm2RIgPbqCUtOotaObzeR+5TMKlNgnutq5FH
- NdCAVh6hpUTvNSTpa+UWb4CjcgXjGI9A+m1tvmhZTWgtd54Fc1xf32Fcf
- NPAcxC1xG9pqzMHJoC/lZ1LHY+hMQZ8CGFt+Zlsxzwv8n38Zv9x7jJBBF
- 7MHfHGFlyy2YR3bA073atF4w4hxbs6p/IA9p15UgwcXcl3BQfH/Wtn/jL
- JjGEW8AceTQhpecewoct7+e6CNSyYgJr8N5G3JThX/yhsWyHKA+yVyFO4
- L1yzMJacAJTcemKmjRCIfvsUOXyJrJgWbmZL7b3BejMUJyn7jtyI/ti6B Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10582"; a="408836444"
-X-IronPort-AV: E=Sophos;i="5.96,306,1665471600"; d="scan'208";a="408836444"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2023 15:52:26 -0800
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=y/uJaYUick1i5C6LsplHwOwaMHfPz6hlEdzy8/8M0tM=;
+ b=jjbIsRLFazpMuje949+DIKhukPvovWoK6zAKOt4ks9QtfbX8meqdWP1j
+ hxYyxieyroPV6Jbg8lPUn4aM4oVsCKLD2Hypp/r1U6eafwOKpZ+v7VEMB
+ 0Bv0Gkwb1O9ZkWna1BhrqBcYuy7Rq+GhO8LkKvHxcQkIPk53ykuUKSnU2
+ 1XwG/wwI76tTiMhr1dtwKrB26US0sJiPFHCcbMeaZw9zPP3xaD5yq1S+B
+ Qs1K10Oz15P2xpEli0zkXTy0kEKluzOWeP9qB9BVE7Pd+dTBBjBbe4l2L
+ YJhRMvoz9Ghula9/Wimpnc6MuwlL91EcFtqhqxL8RLNNUKe69yErxC7j6 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10582"; a="302291140"
+X-IronPort-AV: E=Sophos;i="5.96,306,1665471600"; d="scan'208";a="302291140"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jan 2023 16:30:01 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10582"; a="719355432"
-X-IronPort-AV: E=Sophos;i="5.96,306,1665471600"; d="scan'208";a="719355432"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga008.fm.intel.com with ESMTP; 06 Jan 2023 15:52:26 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6500,9779,10582"; a="780136462"
+X-IronPort-AV: E=Sophos;i="5.96,306,1665471600"; d="scan'208";a="780136462"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orsmga004.jf.intel.com with ESMTP; 06 Jan 2023 16:30:00 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Fri, 6 Jan 2023 15:52:25 -0800
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.16; Fri, 6 Jan 2023 16:30:00 -0800
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Fri, 6 Jan 2023 15:52:25 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ 15.1.2507.16; Fri, 6 Jan 2023 16:29:59 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Fri, 6 Jan 2023 15:52:25 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.177)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.16 via Frontend Transport; Fri, 6 Jan 2023 16:29:59 -0800
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.46) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Fri, 6 Jan 2023 15:52:24 -0800
+ 15.1.2507.16; Fri, 6 Jan 2023 16:29:59 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AuWkLaXEhCy4XBjDI1ENFFnECGNQKma9TpldL4XM0MVQsTXaDSryBV8/PlRYZasDoPmrru0ZpBWUiqjXvF417r2BC850tJFrMIUc/71n33GA9XSYrZ3GwnNo6IEpimfkdwswtlzr3Ki54vt7ZOZsaVrXJrbezqFDSKxa4xSS9taeFeMw+nJ15Vgh5TjK+kBIlV9L3WhG8UmO1B4lVgs36H2EbMX6EA/KR3I2PazZ3xHT0sWF8AFwfvmkg9TD3Y2V+btP5lwfgeQELVSHdCgl6c+Z5GqLw3nCaEY67kqf1GX4aKp9WBj5sa+/tVIjpSD55janA4w+uyHB8hlSq9ZWow==
+ b=AvU/zQzmzdoAp5pVmIficgTn/8oUVUq9AbtqhYUxrdlL+CvERwzADW2a6TmcOWlKTPYb6p8xSqXyVNqcqSfZkk7w4N3hj5xDH9GDuj6qUCT8AISUj45qLy6IysIdkJEz2yyJAJkQQ+mZem2IBG0N8/i+A5SsD2llgsLnYp438V4GwRGXThpGVylbJKDMIweuSJukKFFca1ffRt+5wuser/wLV6RUwQ5akWPYGcDU4fPT8sDKC40hkKSbYm/AnvvVJGfa6Rzi1Tz/7xbKUCff9Tr8qHYb3i2Q2W/9ZAxCe6lqmEGr2T+xBhij1pRyNsYnk+ySmYZiavmqTLKgSRp4sQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ybcSQ/zfNJ1qni9i3Bjr5sQJG5K+NZIzQs/OKaiFacw=;
- b=Lt8/l37iozMbnpps+VuJLzXtvL+a9ECWeqiLfWsapIMxf3AI6nrob1K7G7Z2fEV1dZ7Gp/zfjdLqtwqR8QRP1Z7cRqCrlLJ4gG0BmiUUzpB8vOoHKHJ2bBytUoPG4bu2EGw9PpnLZqMhVxt8S/07GEF8SZEnEaeAgdw3LKLVZ8Vwhicb/4XnlXwny76o22KAHVV1wQnaiDtJEQ2mwl93D5b3KJfXuFfWRNCaKNGb/tvKji4zlg0cDVtKS272NEc1oiJHBYH+dMldaDUPVvREuDwbLD+K151V3bTHRZZO8Ts9FnRYMJ3vJb7rnl1ei88kDqVz4Bmpoepbeiupa1t7Aw==
+ bh=d9bXTip3gvQNwHqdCiuAb9baqnMzrauYMXBQpGPsVk0=;
+ b=QGNF//+wf6v2fecQOzpSojsqh/BkesYIMCCfErUI/LyriD5Nf/CK5euq+L1O7F5+zm9KTcL5gvf0UFwQ/TDi9Yj6qBckauUsfd17zfZHHbFLP8Q8lJgxG04LdxkIQLTF3ROtZya2oY2QqZ4UeKsz9RikhrCqFVbn/OxFU+NbvRMXcoyJv4GdgoFQMDSPkwCusa+YRiureJWBlcVy+11n8f0ztX0YELGHmomxJibx0EuA2Y7q+54AQBoWcUeB2+Y3ZyUG8gzKDkSH1ONzH7AchL8CwHS6LXkx5FiZLtJ/or6SccnJHWdklsrpLSkx4ta54lAvBFp2xk5i54kd4YAsnA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by SJ0PR11MB5006.namprd11.prod.outlook.com (2603:10b6:a03:2db::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.19; Fri, 6 Jan
- 2023 23:52:22 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::2ceb:afd:8ee7:4cc]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::2ceb:afd:8ee7:4cc%5]) with mapi id 15.20.5944.019; Fri, 6 Jan 2023
- 23:52:22 +0000
-Date: Fri, 6 Jan 2023 23:52:07 +0000
-From: Matthew Brost <matthew.brost@intel.com>
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
+ CY8PR11MB6818.namprd11.prod.outlook.com (2603:10b6:930:62::19) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5944.19; Sat, 7 Jan 2023 00:29:53 +0000
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::68d0:f8e0:eaf3:982e]) by DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::68d0:f8e0:eaf3:982e%8]) with mapi id 15.20.5944.019; Sat, 7 Jan 2023
+ 00:29:52 +0000
+Date: Fri, 6 Jan 2023 16:29:49 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
 To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <Y7i0J3uQ+izOJcEb@DUT025-TGLU.fm.intel.com>
-References: <20221222222127.34560-1-matthew.brost@intel.com>
- <20221222222127.34560-5-matthew.brost@intel.com>
- <20221230112042.2ddd1946@collabora.com>
- <20221230125508.57af8a14@collabora.com>
- <20230102083019.24b99647@collabora.com>
- <7d6df13c-6c2e-d713-edc8-128d6e19f187@linux.intel.com>
- <Y7dEjcuc1arHBTGu@DUT025-TGLU.fm.intel.com>
-Content-Type: text/plain; charset="us-ascii"
+Message-ID: <Y7i8/VH4d2Risa6G@mdroper-desk1.amr.corp.intel.com>
+References: <20221222082557.1364711-1-lucas.demarchi@intel.com>
+ <20221222082557.1364711-2-lucas.demarchi@intel.com>
+ <2cfeee8a-7b7e-c203-37b4-f7a502123a5a@linux.intel.com>
+ <20221222155535.gmih2rurxlo2xuo5@ldmartin-desk2.lan>
+ <4c8ffcd3-259e-f651-6f32-296896d8b4b7@linux.intel.com>
+ <20221223182807.tfyrx2yrjbv4flx7@ldmartin-desk2.lan>
+ <2641f51d-8b79-0d47-90f5-b60e9f6edf33@linux.intel.com>
+ <Y7XUvMUDYEHwX17+@mdroper-desk1.amr.corp.intel.com>
+ <3a5eefc2-aad7-f22e-e54e-6f9af00edb48@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <Y7dEjcuc1arHBTGu@DUT025-TGLU.fm.intel.com>
-X-ClientProxiedBy: BYAPR06CA0066.namprd06.prod.outlook.com
- (2603:10b6:a03:14b::43) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3a5eefc2-aad7-f22e-e54e-6f9af00edb48@linux.intel.com>
+X-ClientProxiedBy: BYAPR06CA0053.namprd06.prod.outlook.com
+ (2603:10b6:a03:14b::30) To DS7PR11MB7859.namprd11.prod.outlook.com
+ (2603:10b6:8:da::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SJ0PR11MB5006:EE_
-X-MS-Office365-Filtering-Correlation-Id: d4b67524-7ef2-4118-ffca-08daf0410dfe
+X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|CY8PR11MB6818:EE_
+X-MS-Office365-Filtering-Correlation-Id: 05cbb425-fe46-4262-6258-08daf0464b29
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: b8nFbNBR4Yjk1lLNz+EUJDUUkO6zSo1FgDzkRoG/ygqkF2vR3IF1abbSGI0y5+sqK3gHiJby24kUgd9YrWWLlV+zRNwag/s1o0NjDbWOPd5fKWl9Z4+CtHz/hTJRWylzE62F8rwXuGlxPX7ZzN7F5KV4IO0eWdGZxrDyTqvFETBMD317O0/obGe5w0B9FCzIxR8206VhDeezoikwpfYrT4XNFBsJW6qEwSFFySL6XeCf2LiwBfm84WYIKWO2CxL+i0p0qbPG1vaQmhNkuid5GMWohjZ2HNXvPuikuAfArRsb5FdI+A1gCZOEGjqJRzW6pA2Np2+3mYSC1hGzmugUyvszU3lqqPrt8Oo33nCJYuwzYCK4sWh1/Tx4T4pTQlrPlGxOOhoebmjWrywln5uf0hRoi/7q0Iiyk0XFU9vIl3yv1V9zMwwVxpLGj1pYZeJ6R2xtAjTEVNAj8sF/AHXf/+sQY1H5iHEUd3v2QZOP2t1LQPlFFKI+QKGBkJHDP5kwP2rWnBOwcGr+BNqodWvADvIRsOLtqO9a395UXId12tqUGWBkzvTucsJ/QheGso89fXXqyl7msndnL+eyLDeHDOehuJZWxu0wJgP+MGxzE04e+xLZvK2PCS8C1h5OIdyn
+X-Microsoft-Antispam-Message-Info: jPVZlmw8M6CVmmpyiblkbVc1C4LB0/RpXjosu+Npf5HTcNA7htyzZZPCbnb6ybcFrU7Hug7ntcjDT1YW+rRiz7GGaK8saDmAVZe1H/xeea4CPUfbQDOcuOBEeCDnHeE3U+M5JVVQo6aMFIRMLiDin7uXjsnGtjilPdyNy16SJw42AmT18qfOB+CKwgXLaymy/vZiYrv+qpKEIPdYbVCCUH/TzYGu6iWKwlk7xDAT6OtbTepRMq7Z4WI+C5pEvAfFYmBBkhHxTqkQ/+l1/NaUljagIDskXFMIskMQ3LIanpeSMQ3Gx+7PEeztwlZaQqE0P1gn9MEXiKLOFqrzMEt9SX+tLgR6NkHYxElltcCvMia4JcPxThjPhAtR2jqcWGFtfAg9sxBmVOWvxj6VOptzmUo0ecRu4faa3NSPOq1V+gWEWD5WWYOoWVI4WwUOfEDsu8M4mCl5iW/3ZZkI3HOHmQZRGuenu6kYb1AN0MLR2KEFtBAiFu1NOjUrPQRk1Yl4mW3gbod1iaCGoPqUyNsZjn7UUhci34WsEG4swZRfbPoIWHq6wuIv3SQT2tLvuxcSR62qc/+4TPBdtLGLOxzWLY3pHqfSWQeU6nvhRG/1DR4OMomr4qYjIEB3Wzpxqo8I4iHzV5SGKlC6m6N2uoNS6A==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(136003)(366004)(346002)(396003)(376002)(39860400002)(451199015)(5660300002)(2906002)(8676002)(44832011)(41300700001)(4326008)(66899015)(8936002)(66556008)(66476007)(66946007)(6916009)(966005)(6486002)(478600001)(316002)(26005)(30864003)(6666004)(186003)(6506007)(6512007)(83380400001)(53546011)(82960400001)(38100700002)(86362001)(67856001);
+ IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(366004)(136003)(376002)(396003)(346002)(39860400002)(451199015)(82960400001)(38100700002)(53546011)(41300700001)(8676002)(66946007)(86362001)(4326008)(66556008)(6916009)(54906003)(66476007)(316002)(5660300002)(2906002)(66574015)(30864003)(8936002)(83380400001)(478600001)(966005)(6512007)(6506007)(26005)(6486002)(6666004)(186003)(66899015)(21314003);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?h5YEnw22naz1SrYk0ySWhLCVxtHq2cJ3L52v/UYI4wogLeuQjKXsp2Egbt8/?=
- =?us-ascii?Q?dmIRIMiZHP9pJUsCc/LubrDRwWDKSRpSIM+x8WrWy6gSAOwmdDGmmfhE5dBv?=
- =?us-ascii?Q?MFn4rSw2S2EdIqhO59p8AxNnroDM8JxKZTPNxPi5jfse9b+4cscv57XPLSVs?=
- =?us-ascii?Q?FqSOWnkz6a7hZ8yNGguesv7EYAMCwnrkg3qG2a45hW1nghrkMHkTyJWwPG/H?=
- =?us-ascii?Q?dVcXmIv6IBj1mZwBnVghfJJ020llr7y+GL9Oyi3YAmobd67Nm94nJVco3X0A?=
- =?us-ascii?Q?SagQdc8eBML8V6ZVkBFXD0nK2/wb1z900cdE2T18T6WkMmVRaHmPLuJ9lyZ+?=
- =?us-ascii?Q?AshNmeQIhswscxIq8WzGfKwxSXQermsJVJMThWX+bDF15TuLz2tYqnxuX6Ix?=
- =?us-ascii?Q?AIwu+ozVcuP/FeBtenaSYHvTl7Zl/5eA9I93GZmthl9Av3fyH+F6tvb3tBO3?=
- =?us-ascii?Q?kfPvPxZqiZw3W+6j1mBF7B5hDbhJRyfGzqLARKHGOV7C+GUkwT4OzvQe0UGJ?=
- =?us-ascii?Q?Wj5ih6WmIJzY3Bz+Iu/syd9dnZkOXiJouO8jGArsTJ32BmIIZ2w5wP8aUBSR?=
- =?us-ascii?Q?do1LfRn/aNO1XTLKjtfN3ZlU8M15mAOUjdg3F/0PbRnSYeCONOxKeUVfFbfZ?=
- =?us-ascii?Q?6Esd6KKtQJAfRqk03sKPuKJHUJtg/sERWNH2CKTa94WLlfR/2NNaCxR/ekU7?=
- =?us-ascii?Q?GqYsRpYYQeo8bZDRI6Aw1ffz38jiByNPllZI3uoLVxi4hHTb0PJWhr8Hc+Ju?=
- =?us-ascii?Q?lIogXub8NlGXb4G33dB1rL6t8nburRoAhjzqglhosCCHBMEbjA1EyZacnHJh?=
- =?us-ascii?Q?6cV/QJ8i2pUw/1gAd1DcA6O2Jjg4tQeUprdnpok0PpakRukn1+aOoP16wM9M?=
- =?us-ascii?Q?Ogd0awKDYiuf41GUuwzR354IPWi8hMFPfuQU+TN8EUQo68qLOmWxwX5waRJ9?=
- =?us-ascii?Q?/82tdtcl4UJBrRqzPUaqFPclxQ0ULaS/uUtNde08i/MBnkRXeRyFJ+9VRBCc?=
- =?us-ascii?Q?zH6rDqqBPGrUpdKwn6dliaOBK1h3gH575lTYbyTX2V+b29UUCAVVBS1x+X5h?=
- =?us-ascii?Q?NuDfvC5AK2qaPqT4UGJ9Tzsa4kS15c0gdEyBCR2r5jxCmSl5rXoNxJI/MKkQ?=
- =?us-ascii?Q?PRvn6Zz39mGymYPMKNxccLL4ltyFBN5U70noxCJhqJZJ904/YTFHLxAUUIh3?=
- =?us-ascii?Q?gWtJUcoRZsnA37+Z/AFq65LI9T2Pf7BsH1WqekuHd6kfEZKGdk6xrTnisgQ0?=
- =?us-ascii?Q?yJPcDiFsj7QnSIiL6P5HAhiRLVDyKC+jpB1zmy3e10kveRHygFOgro/T6q60?=
- =?us-ascii?Q?Dzr8MbVwGRbCEA21pJNtB/MqSHGBlhmRj5eayx/zbdMjpnCX0IdFbtbrfBvB?=
- =?us-ascii?Q?aAntkZv3w47HUN2TDpWyAWsDrGpeGsgSam1ng9sMYCY2fce73QL/ooLuHcFS?=
- =?us-ascii?Q?KpIEPUhymrCo9sV6/3uwuHQL7BHDdlL52S0dP8WFuD+EtXCYAFf78Od4COBu?=
- =?us-ascii?Q?ulKYVH8BPsZ+m32nzkvM+W7rdkb1dIMspdP29gbbEQhSkua5MmZb8tcGbSCh?=
- =?us-ascii?Q?MAmKAejhI5QFmM2whUPTFB4piMkGA+U38dbdAQgZEtptGLEUm5A42A3aJy99?=
- =?us-ascii?Q?MA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d4b67524-7ef2-4118-ffca-08daf0410dfe
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?mYh2L0glA1SWmFC+4fHAwP35vOzbL73Ovfx14BC0bWiGHLQlYTghnFPNNq?=
+ =?iso-8859-1?Q?1H50rUlQsEs+CYryQBKTKdOkfk0KwKMcDO4eGhf27LGbVWcpiuixnS/75c?=
+ =?iso-8859-1?Q?ruWfQ0MEcbMzfZSin9b1Pk8TUad1CDclWNZW2Fa+KPeEMb27XMIBpwo1RL?=
+ =?iso-8859-1?Q?R1wAxlJk8pZbWKkZR76AxJtu/3EzPS8b9KSPf3VPWB9Nh4W9IPpTNWIY0k?=
+ =?iso-8859-1?Q?AZjjXFCQGzhTRuhcSCVMUSSr2jrgNz/ooW7c2KC4zAQJSR02oy3KiouZ/g?=
+ =?iso-8859-1?Q?aN3W7WaVpjiSqzpHTlDLtNo/PC+1Qknh56K8ihGpEQUw7wm9/YQYDKeflW?=
+ =?iso-8859-1?Q?2hTBKRVm/Lj9ZRjs5AO3fFszItd5jxLnGB5jGd0dRE/MXyzJgFedk5JLEw?=
+ =?iso-8859-1?Q?PvZ3p8GnuFzcCvtGzz6wCY6vosRkml2V+NLRLMmGJLis/vjE9iqYughtUw?=
+ =?iso-8859-1?Q?bC5oN/aUk3iCzpdTTrTaneViISGycaqqqzWQ2aQD45MbBHYSUWwfOV6kA6?=
+ =?iso-8859-1?Q?YpAF4owooOLlZrXIBV9f8a2g0nI1r1p9mYuy4OZzX1y8HX6IPr6U8xrdyy?=
+ =?iso-8859-1?Q?+9srJ5IfomUuMmqb/eJz11DbunYozQVVeoDQSsjcR+zEXvWgUJrkm2iLe5?=
+ =?iso-8859-1?Q?lyyucern63PVTLeNAsa9z6+rTGFu/+3KWoh6UCtpAD8dWo+pVyawhL6Ipo?=
+ =?iso-8859-1?Q?YNeahNO0vuyWYA7gtjQ7RM1elpHpfEwhRQwsqUjpfo9oluB6tCqYVb2x74?=
+ =?iso-8859-1?Q?wYr52f3ol3t5VODmqIyDJQRDDvkZCXqTA39t7Ua1/1pSZg1Vv6xEdsy/FT?=
+ =?iso-8859-1?Q?hhQTYYiNniNAS7q1MUoj7aRVUt/7hrhpnA2WNFnFGWy+n14bQ3KGHEhdO9?=
+ =?iso-8859-1?Q?vV7cSXJtzG6vxQ3Hp7jXOXh26y4fock0YVtNNHyUt3O3JhpQ825RrzCPx8?=
+ =?iso-8859-1?Q?Xp5jRO4xaKZfIXEzBjRG415wRJrWlQIjV77Xq+x85o88o9NrRTdS6jVMpb?=
+ =?iso-8859-1?Q?WrnOBsW0YdjfrmzIc2aw1G+qK1b0nSg/cxVWf0pNhRAqKEMMGThynAZEEU?=
+ =?iso-8859-1?Q?F4SSU/1LphbQyH0ULQ1Jauqqu//T3a+dpkdf+NhKPSZYHlrmaQ+1zz9qv5?=
+ =?iso-8859-1?Q?/7pBWH99cPc0tfm63WSuurY0IwC0VBlEOOR/ZVYq8wWYqnEcPDCxnIOerY?=
+ =?iso-8859-1?Q?cPrhhUMAFebboB+nafhSiZ5kNVWVogohRNA3EwzmZEMNAJTmH4vdPiB7e+?=
+ =?iso-8859-1?Q?XUOlzpB5d1Z1eawPDLSCNSxNXS6QfPo6fcubSiN+PZZDZ0F/BdpRSngCgm?=
+ =?iso-8859-1?Q?yxWvALE5bjWAFJ19WqkVZ21gApoY70KLOXxuQcYkjyLklcshl8WWDBU2L7?=
+ =?iso-8859-1?Q?v3tvzDOEGS/DAW3JGBv5ubBU6o3Yg/yjt2QNKdUERgPCAfYRip0aaB5WW7?=
+ =?iso-8859-1?Q?ZPDe7+xvD16LWdPmY4I7QAKaVLbu7PI4gr8DLwiGBPmBjqVWy/OTgRLx4n?=
+ =?iso-8859-1?Q?3RZBsBQygl3j7SLarxFWI2vyMYXhcrQ+7ysIGv15wsR17joA4oOtx5pg3Y?=
+ =?iso-8859-1?Q?aDzpJ8mbDRDC6lQXG/BLXoqBrD5M231ftMfPSCWKyJc9k0pQGIDUwbzvvh?=
+ =?iso-8859-1?Q?Y4wwcYPDMJl6pla/nLitgF9qBDQyuCXILMQqKFA+8HPRHWe0kwCKLYJw?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 05cbb425-fe46-4262-6258-08daf0464b29
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jan 2023 23:52:22.5952 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2023 00:29:52.7602 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hf48Y8QbL2zfLdNXJ0RsL3y0yMS3KsXRPAoTRKq65YTZIQR0msUq7wk636LA2Bzn7G8GXc59vDzmM7AUnn8FmQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5006
+X-MS-Exchange-CrossTenant-UserPrincipalName: NAEyJuAgKGKxVpnG5UHwqwyT48OQ8BEX0etR0juPjNj46vYJzt3AwFuX8abLzlVl4aC9SYfPnpuRnZb0mdk2V4Lb0fTCPu55pDn/xtTl1yA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6818
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [RFC PATCH 04/20] drm/sched: Convert drm scheduler
- to use a work queue rather than kthread
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/gt: Remove platform comments
+ from workarounds
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,224 +157,386 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 05, 2023 at 09:43:41PM +0000, Matthew Brost wrote:
-> On Tue, Jan 03, 2023 at 01:02:15PM +0000, Tvrtko Ursulin wrote:
-> > 
-> > On 02/01/2023 07:30, Boris Brezillon wrote:
-> > > On Fri, 30 Dec 2022 12:55:08 +0100
-> > > Boris Brezillon <boris.brezillon@collabora.com> wrote:
+On Thu, Jan 05, 2023 at 01:35:52PM +0000, Tvrtko Ursulin wrote:
+> 
+> Okay to sum it up below with some final notes..
+> 
+> On 04/01/2023 19:34, Matt Roper wrote:
+> > On Wed, Jan 04, 2023 at 09:58:13AM +0000, Tvrtko Ursulin wrote:
 > > > 
-> > > > On Fri, 30 Dec 2022 11:20:42 +0100
-> > > > Boris Brezillon <boris.brezillon@collabora.com> wrote:
-> > > > 
-> > > > > Hello Matthew,
+> > > On 23/12/2022 18:28, Lucas De Marchi wrote:
+> > > > On Fri, Dec 23, 2022 at 09:02:35AM +0000, Tvrtko Ursulin wrote:
 > > > > > 
-> > > > > On Thu, 22 Dec 2022 14:21:11 -0800
-> > > > > Matthew Brost <matthew.brost@intel.com> wrote:
-> > > > > > In XE, the new Intel GPU driver, a choice has made to have a 1 to 1
-> > > > > > mapping between a drm_gpu_scheduler and drm_sched_entity. At first this
-> > > > > > seems a bit odd but let us explain the reasoning below.
+> > > > > On 22/12/2022 15:55, Lucas De Marchi wrote:
+> > > > > > On Thu, Dec 22, 2022 at 10:27:00AM +0000, Tvrtko Ursulin wrote:
+> > > > > > > 
+> > > > > > > On 22/12/2022 08:25, Lucas De Marchi wrote:
+> > > > > > > > The comments are redundant to the checks being done to apply the
+> > > > > > > > workarounds and very often get outdated as workarounds need to be
+> > > > > > > > extended to new platforms or steppings.  Remove them altogether with
+> > > > > > > > the following matches (platforms extracted from intel_workarounds.c):
+> > > > > > > > 
+> > > > > > > >      find drivers/gpu/drm/i915/gt/ -name '*.c' | xargs sed -i -E \
+> > > > > > > > 's/(Wa.*):(bdw|chv|bxt|glk|skl|kbl|cfl|cfl|whl|cml|aml|chv|cl|bw|ctg|elk|ilk|snb|dg|pvc|g4x|ilk|gen|glk|kbl|cml|glk|kbl|cml|hsw|icl|ehl|ivb|hsw|ivb|vlv|kbl|pvc|rkl|dg|adl|skl|skl|bxt|blk|cfl|cnl|glk|snb|tgl|vlv|xehpsdv).*/\1/'
+> > > > > > > >      find drivers/gpu/drm/i915/gt/ -name '*.c' | xargs sed -i -E \
+> > > > > > > > 's/(Wa.*):(bdw|chv|bxt|glk|skl|kbl|cfl|cfl|whl|cml|aml|chv|cl|bw|ctg|elk|ilk|snb|dg|pvc|g4x|ilk|gen|glk|kbl|cml|glk|kbl|cml|hsw|icl|ehl|ivb|hsw|ivb|vlv|kbl|pvc|rkl|dg|adl|skl|skl|bxt|blk|cfl|cnl|glk|snb|tgl|vlv|xehpsdv).*\*\//\1
+> > > > > > > > 
+> > > > > > > > Same things was executed in the gem directory, omitted
+> > > > > > > > here for brevity.
+> > > > > > > 
+> > > > > > > > There were a few false positives that included the workaround
+> > > > > > > > description. Those were manually patched.
+> > > > > > > 
+> > > > > > > sed -E 's/(Wa[a-zA-Z0-9_]+)[:,]([a-zA-Z0-9,-_\+\[]{2,})/\1/'
 > > > > > > 
-> > > > > > 1. In XE the submission order from multiple drm_sched_entity is not
-> > > > > > guaranteed to be the same completion even if targeting the same hardware
-> > > > > > engine. This is because in XE we have a firmware scheduler, the GuC,
-> > > > > > which allowed to reorder, timeslice, and preempt submissions. If a using
-> > > > > > shared drm_gpu_scheduler across multiple drm_sched_entity, the TDR falls
-> > > > > > apart as the TDR expects submission order == completion order. Using a
-> > > > > > dedicated drm_gpu_scheduler per drm_sched_entity solve this problem.
+> > > > > > then there are false negatives. We have Was in the form
+> > > > > > "Wa_xxx:tgl,dg2, mtl". False positives we can fixup, false negatives
+> > > > > > we simply don't see. After running that in gt/:
+> > > > > > 
+> > > > > > $ git grep ": mtl" -- drivers/gpu/drm/i915/
+> > > > > > drivers/gpu/drm/i915/gt/intel_gt_pm.c:  /* Wa_14017073508: mtl */
+> > > > > > drivers/gpu/drm/i915/gt/intel_gt_pm.c:  /* Wa_14017073508: mtl */
+> > > > > > drivers/gpu/drm/i915/gt/intel_gt_pm.c:  /* Wa_14017073508: mtl */
+> > > > > > drivers/gpu/drm/i915/gt/intel_gt_pm.c:  /* Wa_14017073508: mtl */
+> > > > > > drivers/gpu/drm/i915/gt/uc/intel_guc_rc.c:       * Wa_14017073508: mtl
+> > > > > > drivers/gpu/drm/i915/i915_reg.h:/* Wa_14017210380: mtl */
+> > > > > > 
+> > > > > > I was going with the platform names to avoid the false
+> > > > > > negatives and because I was entertaining the idea of only doing this for
+> > > > > > latest platforms where we do have the "Wa_[[:number:]]" form
+> > > > > > 
+> > > > > > > 
+> > > > > > > Maybe..
+> > > > > > > 
+> > > > > > > Matt recently said he has this worked planned, but more
+> > > > > > > importantly - I gather then that the WA lookup tool
+> > > > > > > definitely does not output these strings?
+> > > > > > 
+> > > > > > Whatever it does it's true only at the time it's called. It
+> > > > > > simply tells what
+> > > > > > are the platforms and steppings the Wa applies to. We can change the
+> > > > > > output to whatever we want, but that is not the point.
+> > > > > > Those comments get stale and bring no real value as they match 1:1
+> > > > > > what the code is supposed to be doing. Several times a patch has to
+> > > > > > update just that comment to "extend a workaround" to a next platform.
+> > > > > > This is not always done, so we get a comment that doesn't match what is
+> > > > > > supposed to be there.
 > > > > > 
-> > > > > Oh, that's interesting. I've been trying to solve the same sort of
-> > > > > issues to support Arm's new Mali GPU which is relying on a FW-assisted
-> > > > > scheduling scheme (you give the FW N streams to execute, and it does
-> > > > > the scheduling between those N command streams, the kernel driver
-> > > > > does timeslice scheduling to update the command streams passed to the
-> > > > > FW). I must admit I gave up on using drm_sched at some point, mostly
-> > > > > because the integration with drm_sched was painful, but also because I
-> > > > > felt trying to bend drm_sched to make it interact with a
-> > > > > timeslice-oriented scheduling model wasn't really future proof. Giving
-> > > > > drm_sched_entity exlusive access to a drm_gpu_scheduler probably might
-> > > > > help for a few things (didn't think it through yet), but I feel it's
-> > > > > coming short on other aspects we have to deal with on Arm GPUs.
+> > > > > Tl;dr; version - lets park this until January and discuss once
+> > > > > everyone is back.
 > > > > 
-> > > > Ok, so I just had a quick look at the Xe driver and how it
-> > > > instantiates the drm_sched_entity and drm_gpu_scheduler, and I think I
-> > > > have a better understanding of how you get away with using drm_sched
-> > > > while still controlling how scheduling is really done. Here
-> > > > drm_gpu_scheduler is just a dummy abstract that let's you use the
-> > > > drm_sched job queuing/dep/tracking mechanism. The whole run-queue
-> > > > selection is dumb because there's only one entity ever bound to the
-> > > > scheduler (the one that's part of the xe_guc_engine object which also
-> > > > contains the drm_gpu_scheduler instance). I guess the main issue we'd
-> > > > have on Arm is the fact that the stream doesn't necessarily get
-> > > > scheduled when ->run_job() is called, it can be placed in the runnable
-> > > > queue and be picked later by the kernel-side scheduler when a FW slot
-> > > > gets released. That can probably be sorted out by manually disabling the
-> > > > job timer and re-enabling it when the stream gets picked by the
-> > > > scheduler. But my main concern remains, we're basically abusing
-> > > > drm_sched here.
+> > > > I'll leave my comment here since I will be out until mid January.
 > > > > 
-> > > > For the Arm driver, that means turning the following sequence
+> > > > > 
+> > > > > Longer version. I've been trying to get us talking about this a
+> > > > > couple times before and I'd really like to close with an explicit
+> > > > > consensus, discussion points addressed instead of skipped and just
+> > > > > moving ahead with patches.
+> > > > > 
+> > > > > References:
+> > > > >   3fcf71b9-337f-6186-7b00-27cbfd116743@linux.intel.com
+> > > > >   Y5j0b/bykbitCa4Q@mdroper-desk1.amr.corp.intel.com
+> > > > > 
+> > > > > So point I wanted to discuss is whether these comments are truly
+> > > > > useless or maybe they can help during review. If the tool can
+> > > > > actually output them then I am leaning towards that they can be.
 > > > > 
-> > > > 1. wait for job deps
-> > > > 2. queue job to ringbuf and push the stream to the runnable
-> > > >     queue (if it wasn't queued already). Wakeup the timeslice scheduler
-> > > >     to re-evaluate (if the stream is not on a FW slot already)
-> > > > 3. stream gets picked by the timeslice scheduler and sent to the FW for
-> > > >     execution
+> > > > I consider "can the tool output xyz?" asking the wrong question.
+> > > > "The tool", which is our own small python script querying a database can
+> > > > output anything like that if we want to. The database has information of
+> > > > what are the platforms/steppings for each the WA is known to be applied
+> > > > *today*. And that can change and do change often, particularly for early
+> > > > steppings and recent platforms.
 > > > > 
-> > > > into
+> > > > > Thought is, when a patch comes for review adding a new platform,
+> > > > > stepping, whatever, to an existing if condition, if it contains the
+> > > > > comments reviewer can more easily spot a hyphotetical logic
+> > > > > inversion error or similar. It is also trivial to check that both
+> > > > > condition and comment have been updated. (So lets not be rash and
+> > > > > remove something maybe useful just because it can go stale *only if*
+> > > > > reviewers are not giving sufficient attention that changes are made
+> > > > > in tandem.)
 > > > > 
-> > > > 1. queue job to entity which takes care of waiting for job deps for
-> > > >     us
-> > > > 2. schedule a drm_sched_main iteration
-> > > > 3. the only available entity is picked, and the first job from this
-> > > >     entity is dequeued. ->run_job() is called: the job is queued to the
-> > > >     ringbuf and the stream is pushed to the runnable queue (if it wasn't
-> > > >     queued already). Wakeup the timeslice scheduler to re-evaluate (if
-> > > >     the stream is not on a FW slot already)
-> > > > 4. stream gets picked by the timeslice scheduler and sent to the FW for
-> > > >     execution
+> > > > I can argue to the other side too. We don't have comments in the kernel
+> > > > like
 > > > > 
-> > > > That's one extra step we don't really need. To sum-up, yes, all the
-> > > > job/entity tracking might be interesting to share/re-use, but I wonder
-> > > > if we couldn't have that without pulling out the scheduling part of
-> > > > drm_sched, or maybe I'm missing something, and there's something in
-> > > > drm_gpu_scheduler you really need.
+> > > >       /* Add 1 to i */
+> > > >       i += 1;
+> > > > 
+> > > > This is exactly what these comments are doing. And they are misleading
 > > > 
-> > > On second thought, that's probably an acceptable overhead (not even
-> > > sure the extra step I was mentioning exists in practice, because dep
-> > > fence signaled state is checked as part of the drm_sched_main
-> > > iteration, so that's basically replacing the worker I schedule to
-> > > check job deps), and I like the idea of being able to re-use drm_sched
-> > > dep-tracking without resorting to invasive changes to the existing
-> > > logic, so I'll probably give it a try.
+> > > I'll file this under "Reductio ad absurdum", kind of. :)
+> > > 
+> > > > and may introduce bugs rather than helping reviewing:
+> > > > 
+> > > >       Wa_12345:tgl[a0,c0)
+> > > >       if (IS_TGL_GRAPHICS_STEP(STEP_A0, STEP_B0)
+> > > > 
+> > > > One might read the comment, skipping over the condition and thinking
+> > > > "ok, we already extended this WA to B* steppings, which doesn't match
+> > > > the code.
+> > > 
+> > > That would be reviewer error to assume B0 is the last B stepping, without
+> > > actually checking. Equally as reviewer error would be to assume any WA
+> > > adding patch is adding the correct conditions, again, without actually
+> > > checking. Which leads me to ...
+> > > 
+> > > > >  From a slightly different angle - do we expect anyone reviewing
+> > > > > workaround patches will cross-check against the tool? Would it be
+> > > > > simpler and more efficient that they could just cross-check against
+> > > > > the comment output from the tool and put into the patch by the
+> > > > > author?
 > > 
-> > I agree with the concerns and think that how Xe proposes to integrate with
-> > drm_sched is a problem, or at least significantly inelegant.
-> >
+> > I think this is the source of the confusion; the comment lines in i915
+> > are not something the 'wa' tool outputs directly; the comments are
+> > written manually by the developer at the same time the code is written;
+> > the wa tool is just a quick python script I wrote one day to dump
+> > database information from the command line and avoid needing to fire up
+> > a web browser and click through a series of slow website links.  Also,
+> > since the wa tool queries internal databases, it spits out a bunch of
+> > Intel-internal terminology that doesn't match the terminology used in
+> > i915 code, and it also includes a bunch of garbage data that needs to be
+> > filtered out (duplicated records, mangled/incomplete records, etc.).
+> > Exactly how things are expressed (platform name like "DG2" or IP name
+> > like "Xe_HPG" also varies from platform to platform according to how the
+> > hardware guys decided to categorize things).
 > 
-> Inelegant is a matter of opinion, I actually rather like this solution.
+> Right, I was going with what AFAIR Lucas wrote earlier in the thread, to
+> paraprhase "tool can be made to output anything we want". Maybe wasn't
+> confusion but misleading would be more obvious. :)
 > 
-> BTW this isn't my design rather this was Jason's idea.
->  
-> > AFAICT it proposes to have 1:1 between *userspace* created contexts (per
-> > context _and_ engine) and drm_sched. I am not sure avoiding invasive changes
-> > to the shared code is in the spirit of the overall idea and instead
-> > opportunity should be used to look at way to refactor/improve drm_sched.
-> >
-> 
-> Yes, it is 1:1 *userspace* engines and drm_sched.
-> 
-> I'm not really prepared to make large changes to DRM scheduler at the
-> moment for Xe as they are not really required nor does Boris seem they
-> will be required for his work either. I am interested to see what Boris
-> comes up with.
-> 
-> > Even on the low level, the idea to replace drm_sched threads with workers
-> > has a few problems.
+> > Since the code and the comments are both something written by hand by
+> > the developer, there's no reason to believe the comments will be more
+> > accurate than the code.  They'll likely be far less accurate since they
+> > can't be tested like the code is, and because the existing codebase is
+> > wildly inconsistent with how we even format/represent them.
 > > 
-> > To start with, the pattern of:
+> > > > 
+> > > > see above. Someone cross-checking the comment is cross-checking the
+> > > > wrong thing. As I said, it happens more on early enabling of a platform.
+> > > 
+> > > ... my point which seems to have been missed by both, well question really,
+> > > do you expect every reviewer to cross-check against the WA database when
+> > > reviewing WA changes? I don't see that was answered.
+> > > 
+> > > I guarantee that it won't happen and people will rubber stamp. So my
+> > > argument was that we could make it both easier for reviewers *and* decrease
+> > > the likelyhood of misses, if we kept platforms designators in comments.
 > > 
-> >   while (not_stopped) {
-> > 	keep picking jobs
-> >   }
+> > Yes, reviewers are absolutely supposed to be checking the stepping
+> > bounds of every workarounds change they review.  That's one of the most
+> > important parts of reviewing a workaround and it should be very quick
+> > and easy to do.  If people are giving rubber stamps without doing that,
+> > then they're not really doing a full review.  But I'm also not aware of
+> > any cases where we're getting rubber stamps; most of the non-comment
+> > review misses we have seem to either come from misunderstanding the
+> > semantics of platforms (especially cases like DG2 where different
+> > G10/G11/G12 variants have different stepping schemes) or technical
+> > misunderstanding of the implementation details (register reset
+> > characteristics, masked vs non-masked registers, context membership,
+> > etc.).
 > > 
-> > Feels fundamentally in disagreement with workers (while obviously fits
-> > perfectly with the current kthread design).
-> >
-> 
-> The while loop breaks and worker exists if no jobs are ready.
-> 
-> > Secondly, it probably demands separate workers (not optional), otherwise
-> > behaviour of shared workqueues has either the potential to explode number
-> > kernel threads anyway, or add latency.
+> > > 
+> > > Yeah it is much easier to rip them out that to find and fix the ones which
+> > > went out of sync but that shouldn't be high on the list of criteria.
+> > > 
+> > > Argument that it is easy to overlook during review that comments and code do
+> > > not match I don't think holds. That describes a very sloppy review. And if
+> > > review is assumed to be that sloppy, do you really trust review to check
+> > > against the WA database?
 > > 
+> > It's the same reason people who write prose can't find their own
+> > spelling/grammer mistakes.  The mistakes are "obvious," but since their
+> > brain already knows what it's "supposed" to say, they just can't see the
+> > error themselves.  Once you've reviewed the code, it just gets really
+> > hard to see where the comment doesn't align, especially for the
+> > workarounds that apply to a bunch of platforms.
 > 
-> Right now the system_unbound_wq is used which does have a limit on the
-> number of threads, right? I do have a FIXME to allow a worker to be
-> passed in similar to TDR.
+> To be pedantic here - that's a writer's handicap - shouldn't be reviewers.
+> But anyway, carrying on.
 > 
-> WRT to latency, the 1:1 ratio could actually have lower latency as 2 GPU
-> schedulers can be pushing jobs into the backend / cleaning up jobs in
-> parallel.
+> > For example, if I'm reviewing a patch that adds:
+> > 
+> >      /* Wa_12345:tgl,dg1[a0],rkl,adls,dg2_g10,dg2_g12[a0..c0) */
+> >      if (IS_TIGERLAKE(i915) || IS_DG1(i915) || IS_ROCKETLAKE(i915) ||
+> >          IS_ALDERLAKE_P(i915) || IS_DG2_G10(i915) ||
+> >          IS_DG2_GRAPHICS_STEP(i915, G12, STEP_A0, STEP_C0))
+> > 
+> > I'm always looking at the code first and comparing that to the
+> > workaround database.  If I then review the comment second, I'm much less
+> > likely to catch the subtle errors (there are two of them in this example
+> > where the code and comment don't match!) because I mentally already know
+> > what the bounds are "supposed" to be and the comment all just kind of
+> > blends together.
+> > 
+> > > 
+> > > So my argument is that it is trivial for reviewers to spot comments and code
+> > > do not match. Trivial and fast. And it's trivial (I hope) for the WA tool to
+> > > output the right format for pasting in comments.
+> > 
+> > Given how much terminology mismatch there is between the internal
+> > database and how we refer to things in i915 code, it's not trivial.
+> > It's also not super easy to even figure out which platforms to include
+> > in the list.  The workaround database is going to include platforms for
+> > which there is no i915 support (e.g., LKF) stuff like CNL (support
+> > already removed from i915), and future/potential platforms we can't talk
+> > about yet, etc.  Finally, when there are duplicated/conflicting records
+> > (because the people inputting the information are just human too), it
+> > takes a bit of human intelligence to read between the lines and figure
+> > out what the reality is supposed to be.
+> > 
+> > Sure, these problems could probably all be solved with enough effort,
+> > but given how often the internal formatting and behavior of the database
+> > itself changes, it would be painful to keep it always working properly.
+> > 
+> > > 
+> > > Those are the points I would like to have explicitly discounted before
+> > > proceeding. Maybe to be even clearer the workflow would be like this:
+> > > 
+> > > Patch author:
+> > > 
+> > > 1. Runs the WA tool for a WA number. Tool outputs text.
+> > > 2. Pastes text verbatim in the comment.
+> > 
+> > This one isn't correct today (and as noted above, not terribly easy to
+> > accomplish).  It's
+> > 
+> >     2.  Developer manually writes code comment based on interpreting wa's
+> >         output.
 > 
+> Given everything above lets say we concluded it is too costly to make the
+> tool output the exact format wanted by i915 and we decide to proceed
+> removing the platform designations. Two final questions.
+> 
+> Question 1)
+> 
+> Is everyone okay to remove from _all_, including old legacy platforms? ROI
+> vs churn considerations? And yes it wouldn't be ideal either to have
+> separate rules with some cutover point like Gen8 maybe.
 
-Thought of one more point here where why in Xe we absolutely want a 1 to
-1 ratio between entity and scheduler - the way we implement timeslicing
-for preempt fences.
+I think we should definitely remove them from anything that has a
+workaround number.  For the really old, pre-number workarounds
+("Wa_SomeCamelCaseName") I don't have a strong feeling either way.
+Since those aren't part of the modern workaround database, they're also
+never going to be updated to add new platforms so if people want to just
+leave them be that's fine with me.  We can see which way Lucas is
+leaning when he gets back.
 
-Let me try to explain.
+> 
+> Question 2)
+> 
+> For Xe you still intend to have it a manual process and not have the tool
+> output the macro section which could be directly pasted in the code? Would
+> ROI of extending the tool be any better with the data-driven design like
+> there?
 
-Preempt fences are implemented via the generic messaging interface [1]
-with suspend / resume messages. If a suspend messages is received to
-soon after calling resume (this is per entity) we simply sleep in the
-suspend call thus giving the entity a timeslice. This completely falls
-apart with a many to 1 relationship as now a entity waiting for a
-timeslice blocks the other entities. Could we work aroudn this, sure but
-just another bunch of code we'd have to add in Xe. Being to freely sleep
-in backend without affecting other entities is really, really nice IMO
-and I bet Xe isn't the only driver that is going to feel this way.
+The full workaround implementation (register offset, register bits,
+etc.) definitely can't be auto-generated by a tool since the workaround
+database itself is just free-form text written by some hardware
+engineer.  There's no standard format they write those in; sometimes
+they give an offset/bit number, sometimes they give a register name and
+we have to look up the offset ourselves, sometimes they just give a
+hyperlink to the bspec page.
 
-Last thing I'll say regardless of how anyone feels about Xe using a 1 to
-1 relationship this patch IMO makes sense as I hope we can all agree a
-workqueue scales better than kthreads.
+Generating the platforms/steppings part of a workaround definition is
+theoretically possible in the same way it would be theoretically
+possible to generate code comments.  But given the realities of the
+internal database (which is something the hardware people control and
+like to frequently refactor) it would be a non-trivial amount of work to
+get to exactly the behavior we want, and our tool would need frequent
+updates to keep up with the kinds of changes the hardware people tend to
+make.  It's something we can consider, but it isn't something we'll be
+able to just whip up in an afternoon like the current tool was.
+
 
 Matt
 
-[1] https://patchwork.freedesktop.org/patch/515857/?series=112189&rev=1 
+> 
+> Regards,
+> 
+> Tvrtko
+> 
+> > 
+> > 
+> > Matt
+> > 
+> > > 3. Adjusts code to match.
+> > > 
+> > > Reviewer:
+> > > 
+> > > 1. Verifies both code and comment were changed.
+> > > 2. Verifies code matches the comment.
+> > > 
+> > > If the counter proposal is, patch author:
+> > > 
+> > > 1. Runs the WA tool for a WA number. Tool outputs text.
+> > > 2. Adjusts code to match.
+> > > 
+> > > Reviewer:
+> > > 
+> > > 1. Runs the WA tool. Tool outputs text.
+> > > 2. Checks patch matchs the WA tool output.
+> > > 
+> > > I will accept it but I strongly believe skipping of step 2 will happen and
+> > > it will be impossible to know. Rubber stamping with the options of
+> > > comments+code at least leaves a trace of comment and code being out of sync.
+> > > 
+> > > > > And point here to stress out is that accidental logic errors (missed
+> > > > > workarounds) can be super expensive to debug in the field. Sometimes
+> > > > > it can literally take _months_ for sporadic and hard to reproduce
+> > > > > issues to get debugged, handed over between the teams, etc. So any
+> > > > > way in which we can influence the likelyhood of that happening is
+> > > > > something to weigh carefully.
+> > > > 
+> > > > yes, that's why I want to remove the comments: from my experience they
+> > > > are more a source of bugs rather than helping.
+> > > > 
+> > > > > Secondary but also important - if i915 is end of line then an extra
+> > > > > why we want to rip out this for ancient platforms. Is the
+> > > > > cost/benefit positive there?
+> > > > 
+> > > > yep, here I agree and was my argument about using the platform names
+> > > > rather than a more "catch all" regex. I think doing this only for tgl+
+> > > > platforms or even dg2+ would be ok.
+> > > 
+> > > Okay this is something to have as a 2nd option indeed. DG2 is out of force
+> > > probe so maybe try with MTL. Although different rules for different
+> > > platforms I don't know if will work in practice. Could be justt too
+> > > complicated to be practical.
+> > > 
+> > > > > As a side note, and going back to the question of what the tool can
+> > > > > output. Long time ago I had an idea where we could improve all this
+> > > > > by making it completely data-driven. Have the WA database inspecting
+> > > > > tool output a table which could be directly pasted into code and
+> > > > > interpreted by i915.
+> > > > > 
+> > > > > For reference look at intel_workarounds_table.h in
+> > > > > https://patchwork.freedesktop.org/patch/399377/?series=83580&rev=3
+> > > > > and see what you thing. That was just a sketch of the idea, not
+> > > > > complete, and yes, i915 end of life point makes it moot.
+> > > > 
+> > > > now that xe is announced I can talk about this part... this was more
+> > > > or less what I implemented in xe: it's a table with
+> > > > "register + condition + action". There are the most common condition
+> > > > checks builtin + a function hook for the more advanced ones. During
+> > > > binding the driver walks the table and coalesces the entries creating
+> > > > a per-register value that can be used at the proper times, depending if
+> > > > they are gt, engine, context workarounds.
+> > > 
+> > > Cool, I support that high level approach.
+> > > 
+> > > Regards,
+> > > 
+> > > Tvrtko
+> > 
 
-> > What would be interesting to learn is whether the option of refactoring
-> > drm_sched to deal with out of order completion was considered and what were
-> > the conclusions.
-> >
-> 
-> I coded this up a while back when trying to convert the i915 to the DRM
-> scheduler it isn't all that hard either. The free flow control on the
-> ring (e.g. set job limit == SIZE OF RING / MAX JOB SIZE) is really what
-> sold me on the this design.
-> 
-> > Second option perhaps to split out the drm_sched code into parts which would
-> > lend themselves more to "pick and choose" of its functionalities.
-> > Specifically, Xe wants frontend dependency tracking, but not any scheduling
-> > really (neither least busy drm_sched, neither FIFO/RQ entity picking), so
-> > even having all these data structures in memory is a waste.
-> > 
-> 
-> I don't think that we are wasting memory is a very good argument for
-> making intrusive changes to the DRM scheduler.
-> 
-> > With the first option then the end result could be drm_sched per engine
-> > class (hardware view), which I think fits with the GuC model. Give all
-> > schedulable contexts (entities) to the GuC and then mostly forget about
-> > them. Timeslicing and re-ordering and all happens transparently to the
-> > kernel from that point until completion.
-> > 
-> 
-> Out-of-order problem still exists here.
-> 
-> > Or with the second option you would build on some smaller refactored
-> > sub-components of drm_sched, by maybe splitting the dependency tracking from
-> > scheduling (RR/FIFO entity picking code).
-> > 
-> > Second option is especially a bit vague and I haven't thought about the
-> > required mechanics, but it just appeared too obvious the proposed design has
-> > a bit too much impedance mismatch.
-> >
-> 
-> IMO ROI on this is low and again lets see what Boris comes up with.
-> 
-> Matt
-> 
-> > Oh and as a side note, when I went into the drm_sched code base to remind
-> > myself how things worked, it is quite easy to find some FIXME comments which
-> > suggest people working on it are unsure of locking desing there and such. So
-> > perhaps that all needs cleanup too, I mean would benefit from
-> > refactoring/improving work as brainstormed above anyway.
-> > 
-> > Regards,
-> > 
-> > Tvrtko
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
