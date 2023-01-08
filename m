@@ -1,44 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5003661177
-	for <lists+intel-gfx@lfdr.de>; Sat,  7 Jan 2023 21:04:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 590CC6614D0
+	for <lists+intel-gfx@lfdr.de>; Sun,  8 Jan 2023 12:31:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EA2310E1C0;
-	Sat,  7 Jan 2023 20:04:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DF9510E191;
+	Sun,  8 Jan 2023 11:31:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from msg-4.mailo.com (msg-4.mailo.com [213.182.54.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16FF710E1BE;
- Sat,  7 Jan 2023 20:04:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailo.com; s=mailo;
- t=1673121832; bh=qvSMD/w2DQNAF9ACqwomgKEylFg7d9LZDFbLkAkAiEM=;
- h=X-EA-Auth:Date:From:To:Cc:Subject:Message-ID:References:
- MIME-Version:Content-Type:In-Reply-To;
- b=fjricY/vc4two4jGlMogMR9BT4DY3F5oI1AWTTzRuMJ9cFzogpuA7rFOni4I1BpSz
- /koZH4GQATaywou+Ntd9FgyuljEpg6oWqyrl1PiduLjyt02W9SFPzEDUs6JF2tNE4G
- ogXF3sPPAsU8JetEjXCMbAdptRpVXk9nEmd/Zy84=
-Received: by b-6.in.mailobj.net [192.168.90.16] with ESMTP
- via ip-206.mailobj.net [213.182.55.206]
- Sat,  7 Jan 2023 21:03:52 +0100 (CET)
-X-EA-Auth: 3CfAlWsYnllX1G5Xz+iwFZSWEvjzz9Hk0nK4oLPYYp4TtmOmNTCnjCKf7MKgCPgnp1UUMLMVXlXiZCm2kh4NwfbxZSA2uh/P
-Date: Sun, 8 Jan 2023 01:33:41 +0530
-From: Deepak R Varma <drv@mailo.com>
-To: Julia Lawall <julia.lawall@inria.fr>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Message-ID: <Y7nQHfbKNmZ1sRbO@ubun2204.myguest.virtualbox.org>
-References: <Y6qmNW6cOHjGwn03@qemulion> <Y6sn1BmhFJFssW0h@intel.com>
- <Y6s0FSK9+F+/oKSf@qemulion> <Y6wl9NhYZG5RjJL7@intel.com>
- <Y7PG5Hx5dDE7aHSx@qemulion>
- <alpine.DEB.2.22.394.2301041850570.7216@hadrien>
- <Y7XABJ9MWCWO5IUA@intel.com>
- <991ac2b4-f458-f6f2-f494-648ed61efcff@inria.fr>
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com
+ [IPv6:2a00:1450:4864:20::136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEF1110E191
+ for <intel-gfx@lists.freedesktop.org>; Sun,  8 Jan 2023 11:31:11 +0000 (UTC)
+Received: by mail-lf1-x136.google.com with SMTP id f34so8752252lfv.10
+ for <intel-gfx@lists.freedesktop.org>; Sun, 08 Jan 2023 03:31:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=jEXTcUgvzJkG0/lLrjMiU5plwxqzf6Cl1cDQFCPJvtY=;
+ b=QXoaYr/j25cl0Z94ZdA71HbvPXbB0NCWqQmmlufiINOKiatET/5WTTAz+HMuVYNTdk
+ tjspVQ42w1NFs0wHP81WIacuYhbRdwvBhRD8lYRrAxlXnF6c+us97fwA+2nmtSiV/32q
+ vGc7lXGAXA6KajUNuEl7zwcRMWNN/t0pQU119bEoFGZSQqJFtDYlIrp67e5EcdPvFGJg
+ JY0xdHQraxYRa0akOfbGaE0RezZM1xVyD/ZlwyiGP584G1syxDSdd78n5cAkPkAO6FPp
+ LKCJrPNtaKnfG1HXN29MFIFvvmRj2m/ZNJSm6ASIJhOSXojkjlwsZDtqQJQgPxr82QRa
+ MI1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=jEXTcUgvzJkG0/lLrjMiU5plwxqzf6Cl1cDQFCPJvtY=;
+ b=VcXjWB/kE0w4GXk3+nV4GJvVxqyvO1UagYvsweO4Fnm9aYPOmciVQCNVPyFvgEmu1z
+ k1/cL+VsRUv1RWFXo/XLlBZPPXfyR7bse/WDnaJEdR8sckSR7Xr0ErNACl7tenYqSM3j
+ u7XyilQYvo8GTt68RFdJBqhq18tdus4U5Vtc4j6WxoKkZq/N4DCCPaqe6r8zsnfNUyF8
+ EvE20+BUbYTuYuaNqag5WgTR6sWQeKhMjWgBapSHIfCSFLNYMAGadpSiufoo3XHKIRww
+ kdQe4U3NBiudB5EDkydVW43P7/8yqXs6kTcphxBvzU8HsUPJl/EM5w3n6XLJRuLDfYUZ
+ nJuQ==
+X-Gm-Message-State: AFqh2ko8YqJnuuv1bUQG4LiSl+HNoiMeV4n+DqmFgpcq5MArckXsj6V3
+ 0bgrSWqTezesaNQW5nTuQqfbEkPiofCrJA==
+X-Google-Smtp-Source: AMrXdXvdejZ6YW+mngHZTTxtqZUuFglsneZxcv03iJZ9ElQSiR3UYf+HjlYXFV8jR9naZSbTB+opsA==
+X-Received: by 2002:a05:6512:2a89:b0:4b9:f5e5:8fbd with SMTP id
+ dt9-20020a0565122a8900b004b9f5e58fbdmr16101760lfb.52.1673177469682; 
+ Sun, 08 Jan 2023 03:31:09 -0800 (PST)
+Received: from jheikkil-mobl.home (77-105-100-22.lpok.fi. [77.105.100.22])
+ by smtp.gmail.com with ESMTPSA id
+ o14-20020ac2494e000000b004cc6ce1de69sm1016217lfi.42.2023.01.08.03.31.08
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 08 Jan 2023 03:31:08 -0800 (PST)
+From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Sun,  8 Jan 2023 13:30:44 +0200
+Message-Id: <20230108113044.3528-1-juhapekka.heikkila@gmail.com>
+X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230104124448.7418-1-juhapekka.heikkila@gmail.com>
+References: <20230104124448.7418-1-juhapekka.heikkila@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <991ac2b4-f458-f6f2-f494-648ed61efcff@inria.fr>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/fbc: Avoid full proxy f_ops for
- FBC debug attributes
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2] drm/i915/display: assume some pixelrate for
+ src smaller than 1
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,53 +72,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Saurabh Singh Sengar <ssengar@microsoft.com>,
- Praveen Kumar <kumarpraveen@linux.microsoft.com>,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Julia Lawall <Julia.Lawall@lip6.fr>, Nicolai Stange <nicstange@gmail.com>,
- Deepak R Varma <drv@mailo.com>, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 05, 2023 at 09:13:35AM +0100, Julia Lawall wrote:
-> > Hi Julia, thanks for helping here.
-> >
-> > So, my question is why this
-> >
-> > make coccicheck M=drivers/gpu/drm/i915/ MODE=context COCCI=./scripts/coccinelle/api/debugfs/debugfs_simple_attr.cocci
-> >
-> > didn't catch this chunck:
-> >
-> > -		debugfs_create_file("i915_fbc_false_color", 0644, parent,
-> > -				    fbc, &intel_fbc_debugfs_false_color_fops);
-> > +		debugfs_create_file_unsafe("i915_fbc_false_color", 0644, parent,
-> > +					   fbc, &intel_fbc_debugfs_false_color_fops);
-> >
-> > When I run it it only catches and replaces this:
-> >
-> > - DEFINE_SIMPLE_ATTRIBUTE(dsa_fops, dsa_get, dsa_set, dsa_fmt);
-> > + DEFINE_DEBUGFS_ATTRIBUTE(dsa_fops, dsa_get, dsa_set, dsa_fmt);
->
-> There is something strange in your question.  You have MODE=context but
-> you show the output for MODE=patch.  The rule dcf matches a call to
-> debugfs_create_file, and the context rule matching DEFINE_SIMPLE_ATTRIBUTE
-> is only activated if dcf succeeds.  So when the context rule gives a
-> report, there is always a corresponding call to debugfs_create_file in the
-> same file, it is just not highlighted.  So the request is that it should
-> be highlighted as well?
+intel_adjusted_rate() didn't take into account src rectangle
+can be less than 1 in with or height.
 
-Hello Rodrigo,
-Not trying to speak for you, but I think Julia's comment appears to be the
-correct interpretation of your observation. Would you mind confirming/clarifying
-and suggest next steps for this proposal?
+Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+---
+ drivers/gpu/drm/i915/display/intel_atomic_plane.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-Thank you,
-./drv
-
->
-> julia
->
-
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+index 10e1fc9d0698..cd24d069b6eb 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+@@ -144,7 +144,7 @@ unsigned int intel_adjusted_rate(const struct drm_rect *src,
+ 				 const struct drm_rect *dst,
+ 				 unsigned int rate)
+ {
+-	unsigned int src_w, src_h, dst_w, dst_h;
++	unsigned int src_w, src_h, dst_w, dst_h, dst_wh;
+ 
+ 	src_w = drm_rect_width(src) >> 16;
+ 	src_h = drm_rect_height(src) >> 16;
+@@ -155,8 +155,10 @@ unsigned int intel_adjusted_rate(const struct drm_rect *src,
+ 	dst_w = min(src_w, dst_w);
+ 	dst_h = min(src_h, dst_h);
+ 
+-	return DIV_ROUND_UP_ULL(mul_u32_u32(rate, src_w * src_h),
+-				dst_w * dst_h);
++	/* in case src contained only fractional part */
++	dst_wh = max(dst_w * dst_h, 1U);
++
++	return DIV_ROUND_UP_ULL(mul_u32_u32(rate, src_w * src_h), dst_wh);
+ }
+ 
+ unsigned int intel_plane_pixel_rate(const struct intel_crtc_state *crtc_state,
+-- 
+2.39.0
 
