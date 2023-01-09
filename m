@@ -2,54 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ACB0662481
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Jan 2023 12:45:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 297CA6624C0
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Jan 2023 12:54:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E418110E3E8;
-	Mon,  9 Jan 2023 11:45:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 856DE10E3ED;
+	Mon,  9 Jan 2023 11:54:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A699B10E3E6
- for <intel-gfx@lists.freedesktop.org>; Mon,  9 Jan 2023 11:45:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673264713; x=1704800713;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=BUUZFONEnjZRBmlgHyStQKAF6NLAfsl7i8ssJvS4O3w=;
- b=lFoUoXV3VAEPiFY5bNSIHCrhYj1GU8mm2Y0JsmkpR7IxYnXY2Yowqn0g
- ZHiyarYBpjAf/UQVdSq8BVc6PrPXQ/RtWy3+6GJHIUCbjtLBkpI0M/mbu
- GnJcE/vGk0JPWGDWB8ebIi8pcJZ8cKFOWXdmGGSHGBGM5aJR2uo0vkF5V
- WCIDRxhQqVqR2k0tTpcJYlkoC6D8NaqVCGZ/Jz6Cbi/mdj2h1I4HQPS7h
- p8uKxst1YoRHOda/JM0FsDrTBuNBkZYLb4kbEeYon7EhGjoe37ynE1h1D
- aDRiLxT0bRwxqcAbpLEO/XUJT24AwP7Wiz8Bwb5bo2WmDoVqlZde5/w7b A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10584"; a="303215056"
-X-IronPort-AV: E=Sophos;i="5.96,311,1665471600"; d="scan'208";a="303215056"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2023 03:45:06 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10584"; a="689008035"
-X-IronPort-AV: E=Sophos;i="5.96,311,1665471600"; d="scan'208";a="689008035"
-Received: from gtmcgeac-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.11.217])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2023 03:45:03 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>
-In-Reply-To: <6d7202a5-c102-9598-a03c-2a404c67d46d@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230105131046.2173431-1-andrzej.hajda@intel.com>
- <20230105131046.2173431-6-andrzej.hajda@intel.com>
- <Y7g/w/DVMOqKRg7H@intel.com>
- <6d7202a5-c102-9598-a03c-2a404c67d46d@intel.com>
-Date: Mon, 09 Jan 2023 13:45:01 +0200
-Message-ID: <87mt6s0w5e.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6782710E3ED;
+ Mon,  9 Jan 2023 11:54:49 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 61AF5A00E6;
+ Mon,  9 Jan 2023 11:54:49 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5831686294541907846=="
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v2 6/9] drm/i915/display/hdmi: use
- intel_de_rmw if possible
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andrzej Hajda" <andrzej.hajda@intel.com>
+Date: Mon, 09 Jan 2023 11:54:49 -0000
+Message-ID: <167326528939.18429.3266538005840011528@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230105131046.2173431-1-andrzej.hajda@intel.com>
+In-Reply-To: <20230105131046.2173431-1-andrzej.hajda@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv2=2C1/9=5D_drm/i915/display/core=3A_use_i?=
+ =?utf-8?q?ntel=5Fde=5Frmw_if_possible_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,145 +41,178 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mateusz.grabski@intel.com, intel-gfx@lists.freedesktop.org,
- michal.czaplinski@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 09 Jan 2023, Andrzej Hajda <andrzej.hajda@intel.com> wrote:
-> On 06.01.2023 16:35, Rodrigo Vivi wrote:
->> On Thu, Jan 05, 2023 at 02:10:43PM +0100, Andrzej Hajda wrote:
->>> The helper makes the code more compact and readable.
->>>
->>> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
->>> ---
->>>   drivers/gpu/drm/i915/display/g4x_hdmi.c   |  8 ++---
->>>   drivers/gpu/drm/i915/display/intel_hdcp.c | 15 ++++-----
->>>   drivers/gpu/drm/i915/display/intel_hdmi.c | 40 +++++++----------------
->>>   3 files changed, 22 insertions(+), 41 deletions(-)
->>>
->
-> (...)
->
->>> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
->>> index efa2da080f62d4..4b09f17aa4b23b 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
->>> @@ -237,15 +237,11 @@ static void g4x_read_infoframe(struct intel_encoder *encoder,
->>>   			       void *frame, ssize_t len)
->>>   {
->>>   	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->>> -	u32 val, *data = frame;
->>> +	u32 *data = frame;
->>>   	int i;
->>>   
->>> -	val = intel_de_read(dev_priv, VIDEO_DIP_CTL);
->>> -
->>> -	val &= ~(VIDEO_DIP_SELECT_MASK | 0xf); /* clear DIP data offset */
->> 
->> A probably good follow-up clean up would be to define the missing masks
->> and remove the hardcoded things like this 0xf.
->> 
->> And also something that I had noticed on the previous patches but I forgot
->> to mention: it would be good as a followup to replace the local value << shift
->> per FIELD_PREP() helpers and remove the shift definitions...
->> 
->> But really nothing related directly with this patch. For this:
->> 
->> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> 
->> Oh, and I also noticed that CI didn't return yet for these patches...
->> https://patchwork.freedesktop.org/series/112438/
->> 
->> a strange delay... I will probably hit the retest if we don't get
->> anything by the end of the day today.
->
-> Thx for reviews.
-> Apparently CI missed this series, I have just hit retest.
+--===============5831686294541907846==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Cc: Michal and Mateusz
+== Series Details ==
 
-This has been happening a lot lately.
+Series: series starting with [v2,1/9] drm/i915/display/core: use intel_de_rmw if possible (rev2)
+URL   : https://patchwork.freedesktop.org/series/112438/
+State : success
 
-BR,
-Jani.
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_12556 -> Patchwork_112438v2
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112438v2/index.html
+
+Participating hosts (39 -> 38)
+------------------------------
+
+  Additional (1): bat-rpls-2 
+  Missing    (2): fi-snb-2520m bat-adlp-4 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_112438v2 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_lrc:
+    - {bat-rpls-1}:       [INCOMPLETE][1] ([i915#4983]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12556/bat-rpls-1/igt@i915_selftest@live@gt_lrc.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112438v2/bat-rpls-1/igt@i915_selftest@live@gt_lrc.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
+  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#4258]: https://gitlab.freedesktop.org/drm/intel/issues/4258
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#6257]: https://gitlab.freedesktop.org/drm/intel/issues/6257
+  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
+  [i915#7359]: https://gitlab.freedesktop.org/drm/intel/issues/7359
+  [i915#7456]: https://gitlab.freedesktop.org/drm/intel/issues/7456
+  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
 
 
->
-> Regards
-> Andrzej
->
->
->> 
->>> -	val |= g4x_infoframe_index(type);
->>> -
->>> -	intel_de_write(dev_priv, VIDEO_DIP_CTL, val);
->>> +	intel_de_rmw(dev_priv, VIDEO_DIP_CTL,
->>> +		     VIDEO_DIP_SELECT_MASK | 0xf, g4x_infoframe_index(type));
->>>   
->>>   	for (i = 0; i < len; i += 4)
->>>   		*data++ = intel_de_read(dev_priv, VIDEO_DIP_DATA);
->>> @@ -313,15 +309,11 @@ static void ibx_read_infoframe(struct intel_encoder *encoder,
->>>   {
->>>   	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->>>   	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
->>> -	u32 val, *data = frame;
->>> +	u32 *data = frame;
->>>   	int i;
->>>   
->>> -	val = intel_de_read(dev_priv, TVIDEO_DIP_CTL(crtc->pipe));
->>> -
->>> -	val &= ~(VIDEO_DIP_SELECT_MASK | 0xf); /* clear DIP data offset */
->>> -	val |= g4x_infoframe_index(type);
->>> -
->>> -	intel_de_write(dev_priv, TVIDEO_DIP_CTL(crtc->pipe), val);
->>> +	intel_de_rmw(dev_priv, TVIDEO_DIP_CTL(crtc->pipe),
->>> +		     VIDEO_DIP_SELECT_MASK | 0xf, g4x_infoframe_index(type));
->>>   
->>>   	for (i = 0; i < len; i += 4)
->>>   		*data++ = intel_de_read(dev_priv, TVIDEO_DIP_DATA(crtc->pipe));
->>> @@ -395,15 +387,11 @@ static void cpt_read_infoframe(struct intel_encoder *encoder,
->>>   {
->>>   	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->>>   	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
->>> -	u32 val, *data = frame;
->>> +	u32 *data = frame;
->>>   	int i;
->>>   
->>> -	val = intel_de_read(dev_priv, TVIDEO_DIP_CTL(crtc->pipe));
->>> -
->>> -	val &= ~(VIDEO_DIP_SELECT_MASK | 0xf); /* clear DIP data offset */
->>> -	val |= g4x_infoframe_index(type);
->>> -
->>> -	intel_de_write(dev_priv, TVIDEO_DIP_CTL(crtc->pipe), val);
->>> +	intel_de_rmw(dev_priv, TVIDEO_DIP_CTL(crtc->pipe),
->>> +		     VIDEO_DIP_SELECT_MASK | 0xf, g4x_infoframe_index(type));
->>>   
->>>   	for (i = 0; i < len; i += 4)
->>>   		*data++ = intel_de_read(dev_priv, TVIDEO_DIP_DATA(crtc->pipe));
->>> @@ -471,15 +459,11 @@ static void vlv_read_infoframe(struct intel_encoder *encoder,
->>>   {
->>>   	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->>>   	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
->>> -	u32 val, *data = frame;
->>> +	u32 *data = frame;
->>>   	int i;
->>>   
->>> -	val = intel_de_read(dev_priv, VLV_TVIDEO_DIP_CTL(crtc->pipe));
->>> -
->>> -	val &= ~(VIDEO_DIP_SELECT_MASK | 0xf); /* clear DIP data offset */
->>> -	val |= g4x_infoframe_index(type);
->>> -
->>> -	intel_de_write(dev_priv, VLV_TVIDEO_DIP_CTL(crtc->pipe), val);
->>> +	intel_de_rmw(dev_priv, VLV_TVIDEO_DIP_CTL(crtc->pipe),
->>> +		     VIDEO_DIP_SELECT_MASK | 0xf, g4x_infoframe_index(type));
->>>   
->>>   	for (i = 0; i < len; i += 4)
->>>   		*data++ = intel_de_read(dev_priv,
->>> -- 
->>> 2.34.1
->>>
->
+Build changes
+-------------
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+  * Linux: CI_DRM_12556 -> Patchwork_112438v2
+
+  CI-20190529: 20190529
+  CI_DRM_12556: ac04152253dccfb02dcedfa0c57443122cf79314 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7110: db10a19b94d1d7ae5ba62eb48d52c47ccb27766f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_112438v2: ac04152253dccfb02dcedfa0c57443122cf79314 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+06c2b65be747 drm/i915/display/misc: use intel_de_rmw if possible
+b5c5ee4a0016 drm/i915/display/interfaces: use intel_de_rmw if possible
+cca98fd0b977 drm/i915/display/panel: use intel_de_rmw if possible in panel related code
+4b2224aafa01 drm/i915/display/hdmi: use intel_de_rmw if possible
+7abd22b21efb drm/i915/display/pch: use intel_de_rmw if possible
+4e8eed12ac14 drm/i915/display/phys: use intel_de_rmw if possible
+a15c0ef6cce2 drm/i915/display/dpll: use intel_de_rmw if possible
+05b4dff11f26 drm/i915/display/power: use intel_de_rmw if possible
+ff0bd552fdd5 drm/i915/display/core: use intel_de_rmw if possible
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112438v2/index.html
+
+--===============5831686294541907846==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v2,1/9] drm/i915/display/core: use intel_de_rmw if possible (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/112438/">https://patchwork.freedesktop.org/series/112438/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112438v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112438v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12556 -&gt; Patchwork_112438v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112438v2/index.html</p>
+<h2>Participating hosts (39 -&gt; 38)</h2>
+<p>Additional (1): bat-rpls-2 <br />
+  Missing    (2): fi-snb-2520m bat-adlp-4 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_112438v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@gt_lrc:<ul>
+<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12556/bat-rpls-1/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112438v2/bat-rpls-1/igt@i915_selftest@live@gt_lrc.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12556 -&gt; Patchwork_112438v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12556: ac04152253dccfb02dcedfa0c57443122cf79314 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7110: db10a19b94d1d7ae5ba62eb48d52c47ccb27766f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_112438v2: ac04152253dccfb02dcedfa0c57443122cf79314 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>06c2b65be747 drm/i915/display/misc: use intel_de_rmw if possible<br />
+b5c5ee4a0016 drm/i915/display/interfaces: use intel_de_rmw if possible<br />
+cca98fd0b977 drm/i915/display/panel: use intel_de_rmw if possible in panel related code<br />
+4b2224aafa01 drm/i915/display/hdmi: use intel_de_rmw if possible<br />
+7abd22b21efb drm/i915/display/pch: use intel_de_rmw if possible<br />
+4e8eed12ac14 drm/i915/display/phys: use intel_de_rmw if possible<br />
+a15c0ef6cce2 drm/i915/display/dpll: use intel_de_rmw if possible<br />
+05b4dff11f26 drm/i915/display/power: use intel_de_rmw if possible<br />
+ff0bd552fdd5 drm/i915/display/core: use intel_de_rmw if possible</p>
+
+</body>
+</html>
+
+--===============5831686294541907846==--
