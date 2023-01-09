@@ -2,26 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A706466252C
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Jan 2023 13:12:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05B80662577
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Jan 2023 13:24:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A312E10E148;
-	Mon,  9 Jan 2023 12:12:57 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 2032 seconds by postgrey-1.36 at gabe;
- Mon, 09 Jan 2023 12:12:54 UTC
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E007210E148
- for <intel-gfx@lists.freedesktop.org>; Mon,  9 Jan 2023 12:12:54 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  9 Jan 2023 13:12:47 +0100
-Message-Id: <20230109121247.154623-1-maarten.lankhorst@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FF7C10E410;
+	Mon,  9 Jan 2023 12:24:56 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAAAA10E410;
+ Mon,  9 Jan 2023 12:24:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1673267094; x=1704803094;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=/aEF7fXBsVDAYeWVnttiUoa/f30ZOZempg9ET9wmVDU=;
+ b=c/C4d8OsA5fhzXub7k6G1SPl/Zlh0ol6cP1znrqov0qvaC4eB1aR4k7n
+ +vKBoHU7+0kppGsrADvhgL3dEuq1x4LT8P2zLL3Q0Wl7VBpccGObbD4CO
+ 5yoHjDVMXBCeGqko2BR1gMAwJKeLbAXe2MvJv5UULOEkcB0lsJbE6kGg4
+ rf/zAKZyxNgAKJVs8xJaGxSAkSskFNxEHzXfcNlHD1deypeGTtShaBq1q
+ 0wcSKCy/h5ZkmFen8UDczY5kIanqVuXE9JhwS32wC6/k0QjS7co/mORsb
+ ErfoqGvVG3fdORvZui/Ryj0DJpahDjfLu/VjBFvH/ebvjgs2tXntTPpb+ Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10584"; a="322936238"
+X-IronPort-AV: E=Sophos;i="5.96,311,1665471600"; d="scan'208";a="322936238"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2023 04:24:54 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10584"; a="687186033"
+X-IronPort-AV: E=Sophos;i="5.96,311,1665471600"; d="scan'208";a="687186033"
+Received: from lherman-mobl.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.213.209.244])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2023 04:24:52 -0800
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Mon,  9 Jan 2023 12:24:42 +0000
+Message-Id: <20230109122442.713861-1-tvrtko.ursulin@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230106103835.640924-1-tvrtko.ursulin@linux.intel.com>
+References: <20230106103835.640924-1-tvrtko.ursulin@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH fixed] drm/i915/display: Enable FBC for fbcon
+Subject: [Intel-gfx] [PATCH v3] drm/i915: Do not cover all future platforms
+ in TLB invalidation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -34,132 +59,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Remove frontbuffer invalidation code from FBC, and just use the dirtyfb
-helper.
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Revert to the original explicit approach and document the reasoning
+behind it.
+
+v2:
+ * DG2 needs to be covered too. (Matt)
+
+v3:
+ * Full version check for Gen12 to avoid catching all future platforms.
+   (Matt)
+
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com> # v1
 ---
- drivers/gpu/drm/i915/display/intel_fbdev.c | 73 +++++-----------------
- 1 file changed, 15 insertions(+), 58 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_gt.c | 17 +++++++++++++++--
+ 1 file changed, 15 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index 03ed4607a46d..d42fa38aec9d 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -40,6 +40,7 @@
- #include <drm/drm_crtc.h>
- #include <drm/drm_fb_helper.h>
- #include <drm/drm_fourcc.h>
-+#include <drm/drm_fbdev_generic.h>
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+index 7eeee5a7cb33..5521fa057aab 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+@@ -1070,10 +1070,23 @@ static void mmio_invalidate_full(struct intel_gt *gt)
+ 	unsigned int num = 0;
+ 	unsigned long flags;
  
- #include "gem/i915_gem_lmem.h"
- 
-@@ -67,70 +68,17 @@ struct intel_fbdev {
- 	struct mutex hpd_lock;
- };
- 
--static struct intel_frontbuffer *to_frontbuffer(struct intel_fbdev *ifbdev)
--{
--	return ifbdev->fb->frontbuffer;
--}
--
--static void intel_fbdev_invalidate(struct intel_fbdev *ifbdev)
--{
--	intel_frontbuffer_invalidate(to_frontbuffer(ifbdev), ORIGIN_CPU);
--}
--
--static int intel_fbdev_set_par(struct fb_info *info)
--{
--	struct drm_fb_helper *fb_helper = info->par;
--	struct intel_fbdev *ifbdev =
--		container_of(fb_helper, struct intel_fbdev, helper);
--	int ret;
--
--	ret = drm_fb_helper_set_par(info);
--	if (ret == 0)
--		intel_fbdev_invalidate(ifbdev);
--
--	return ret;
--}
--
--static int intel_fbdev_blank(int blank, struct fb_info *info)
--{
--	struct drm_fb_helper *fb_helper = info->par;
--	struct intel_fbdev *ifbdev =
--		container_of(fb_helper, struct intel_fbdev, helper);
--	int ret;
--
--	ret = drm_fb_helper_blank(blank, info);
--	if (ret == 0)
--		intel_fbdev_invalidate(ifbdev);
--
--	return ret;
--}
--
--static int intel_fbdev_pan_display(struct fb_var_screeninfo *var,
--				   struct fb_info *info)
--{
--	struct drm_fb_helper *fb_helper = info->par;
--	struct intel_fbdev *ifbdev =
--		container_of(fb_helper, struct intel_fbdev, helper);
--	int ret;
--
--	ret = drm_fb_helper_pan_display(var, info);
--	if (ret == 0)
--		intel_fbdev_invalidate(ifbdev);
--
--	return ret;
--}
--
- static const struct fb_ops intelfb_ops = {
- 	.owner = THIS_MODULE,
- 	DRM_FB_HELPER_DEFAULT_OPS,
--	.fb_set_par = intel_fbdev_set_par,
-+	.fb_set_par = drm_fb_helper_set_par,
- 	.fb_read = drm_fb_helper_cfb_read,
- 	.fb_write = drm_fb_helper_cfb_write,
- 	.fb_fillrect = drm_fb_helper_cfb_fillrect,
- 	.fb_copyarea = drm_fb_helper_cfb_copyarea,
- 	.fb_imageblit = drm_fb_helper_cfb_imageblit,
--	.fb_pan_display = intel_fbdev_pan_display,
--	.fb_blank = intel_fbdev_blank,
-+	.fb_pan_display = drm_fb_helper_pan_display,
-+	.fb_blank = drm_fb_helper_blank,
- };
- 
- static int intelfb_alloc(struct drm_fb_helper *helper,
-@@ -328,8 +276,18 @@ static int intelfb_create(struct drm_fb_helper *helper,
- 	return ret;
- }
- 
-+static int intel_fbdev_fb_dirty(struct drm_fb_helper *helper, struct drm_clip_rect *clip)
-+{
-+	struct intel_fbdev *ifbdev =
-+		container_of(helper, struct intel_fbdev, helper);
-+	struct drm_framebuffer *fb = &ifbdev->fb->base;
+-	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
++	/*
++	 * New platforms should not be added with catch-all-newer (>=)
++	 * condition so that any later platform added triggers the below warning
++	 * and in turn mandates a human cross-check of whether the invalidation
++	 * flows have compatible semantics.
++	 *
++	 * For instance with the 11.00 -> 12.00 transition three out of five
++	 * respective engine registers were moved to masked type. Then after the
++	 * 12.00 -> 12.50 transition multi cast handling is required too.
++	 */
 +
-+	return fb->funcs->dirty(fb, NULL, 0, 0, clip, 1);
-+}
-+
- static const struct drm_fb_helper_funcs intel_fb_helper_funcs = {
- 	.fb_probe = intelfb_create,
-+	.fb_dirty = intel_fbdev_fb_dirty,
- };
- 
- static void intel_fbdev_destroy(struct intel_fbdev *ifbdev)
-@@ -704,8 +662,7 @@ void intel_fbdev_restore_mode(struct drm_device *dev)
- 	if (!ifbdev->vma)
- 		return;
- 
--	if (drm_fb_helper_restore_fbdev_mode_unlocked(&ifbdev->helper) == 0)
--		intel_fbdev_invalidate(ifbdev);
-+	drm_fb_helper_restore_fbdev_mode_unlocked(&ifbdev->helper);
- }
- 
- struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
++	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50) &&
++	    GRAPHICS_VER_FULL(i915) <= IP_VER(12, 55)) {
+ 		regs = NULL;
+ 		num = ARRAY_SIZE(xehp_regs);
+-	} else if (GRAPHICS_VER(i915) == 12) {
++	} else if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 0) ||
++		   GRAPHICS_VER_FULL(i915) == IP_VER(12, 10)) {
+ 		regs = gen12_regs;
+ 		num = ARRAY_SIZE(gen12_regs);
+ 	} else if (GRAPHICS_VER(i915) >= 8 && GRAPHICS_VER(i915) <= 11) {
 -- 
 2.34.1
 
