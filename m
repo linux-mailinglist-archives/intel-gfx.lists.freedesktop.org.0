@@ -2,51 +2,94 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF116663206
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Jan 2023 21:57:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95CF566329F
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Jan 2023 22:19:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFA1410E081;
-	Mon,  9 Jan 2023 20:57:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EACD010E484;
+	Mon,  9 Jan 2023 21:19:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 445A210E073
- for <intel-gfx@lists.freedesktop.org>; Mon,  9 Jan 2023 20:57:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1673297847;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=JxivtNO15kfEhXSMYwuZ/uLbnXccY2i9uozRcRx7JYc=;
- b=DGImgxgr/PC53hsS7rVFVKgVSezQI6Q/nSsImrIZGKPHuXUe46VklSAA38C5cD29lPe4sb
- q2GvUNM8fMBkBmT+8dk6dXRmpPF+LpfHZwW+nWyqOXR8MN6fLYYXyLvPHBj82GkrsUe3yR
- g1Hnvw9imoE/W3OnHBA4RR0j5AWzSis=
-Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
- [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-153-UzuVsKOeMEaDeUoAKvhHjA-1; Mon, 09 Jan 2023 15:57:24 -0500
-X-MC-Unique: UzuVsKOeMEaDeUoAKvhHjA-1
-Received: from smtp.corp.redhat.com (int-mx10.intmail.prod.int.rdu2.redhat.com
- [10.11.54.10])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id DF0E93804066;
- Mon,  9 Jan 2023 20:57:23 +0000 (UTC)
-Received: from shalem.redhat.com (unknown [10.39.192.23])
- by smtp.corp.redhat.com (Postfix) with ESMTP id A6081492B00;
- Mon,  9 Jan 2023 20:57:22 +0000 (UTC)
-From: Hans de Goede <hdegoede@redhat.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- "Rafael J . Wysocki" <rafael@kernel.org>,
- Mika Westerberg <mika.westerberg@linux.intel.com>
-Date: Mon,  9 Jan 2023 21:57:21 +0100
-Message-Id: <20230109205721.60694-1-hdegoede@redhat.com>
+X-Greylist: delayed 704 seconds by postgrey-1.36 at gabe;
+ Mon, 09 Jan 2023 21:19:06 UTC
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
+ [148.163.156.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1595210E484;
+ Mon,  9 Jan 2023 21:19:06 +0000 (UTC)
+Received: from pps.filterd (m0098409.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
+ 309K9mPl026312; Mon, 9 Jan 2023 21:07:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
+ h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=pp1;
+ bh=jgCllVXKBovBeAakrrqrf5mxYMPBZUP00hFtFhdb/mQ=;
+ b=pxgsknqa88806adoXThtybPH0KCeIosY4aVgFPG5StiL6yjUpCY8ixUi3L8cWyItD2ze
+ AGuYVf1s5Pj7Gk+XT2KKIUQjv/UeKUoEXLSmJBv+MHPWPJn1o1ZYxOvqqFObGezCXnJL
+ j/Y5b6fULPr3VGSuCAhCxCTgMUdy+o4GVp1fdXRyGbmZp8j9y32xR7kTIjvDAIclVXS8
+ 37vBz2vJd9tUogRAs3HFzrax7iUyy3elJ5KZbdlEtVdvaYOWGEsEfY3xNFddEVq8JGmS
+ n7OROcA4gJJt/gAo+rBn3yOCNwm/yXRBaCspG15cgO2jjTKmsXkQqwuapQzn0ys2m/Ym Fg== 
+Received: from pps.reinject (localhost [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3myjhtss57-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Mon, 09 Jan 2023 21:07:20 +0000
+Received: from m0098409.ppops.net (m0098409.ppops.net [127.0.0.1])
+ by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 309L0IC0016057;
+ Mon, 9 Jan 2023 21:07:19 GMT
+Received: from ppma02wdc.us.ibm.com (aa.5b.37a9.ip4.static.sl-reverse.com
+ [169.55.91.170])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3myjhtss4c-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Mon, 09 Jan 2023 21:07:19 +0000
+Received: from pps.filterd (ppma02wdc.us.ibm.com [127.0.0.1])
+ by ppma02wdc.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 309IK0VI017937;
+ Mon, 9 Jan 2023 21:07:18 GMT
+Received: from smtprelay07.dal12v.mail.ibm.com ([9.208.130.99])
+ by ppma02wdc.us.ibm.com (PPS) with ESMTPS id 3my0c7p03g-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Mon, 09 Jan 2023 21:07:18 +0000
+Received: from smtpav04.wdc07v.mail.ibm.com (smtpav04.wdc07v.mail.ibm.com
+ [10.39.53.231])
+ by smtprelay07.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 309L7H4038142416
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Mon, 9 Jan 2023 21:07:17 GMT
+Received: from smtpav04.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id EDE6858050;
+ Mon,  9 Jan 2023 21:07:16 +0000 (GMT)
+Received: from smtpav04.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id BBFFA58045;
+ Mon,  9 Jan 2023 21:07:14 +0000 (GMT)
+Received: from [9.160.171.221] (unknown [9.160.171.221])
+ by smtpav04.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+ Mon,  9 Jan 2023 21:07:14 +0000 (GMT)
+Message-ID: <53a8dd61-0f50-da2a-6594-2a5920af3024@linux.ibm.com>
+Date: Mon, 9 Jan 2023 16:07:14 -0500
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.1 on 10.11.54.10
-Subject: [Intel-gfx] [PATCH] ACPI: Fix selecting the wrong ACPI fwnode for
- the iGPU on some Dell laptops
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Content-Language: en-US
+To: Matthew Rosato <mjrosato@linux.ibm.com>, alex.williamson@redhat.com,
+ pbonzini@redhat.com
+References: <20230109201037.33051-1-mjrosato@linux.ibm.com>
+ <20230109201037.33051-2-mjrosato@linux.ibm.com>
+From: Anthony Krowiak <akrowiak@linux.ibm.com>
+In-Reply-To: <20230109201037.33051-2-mjrosato@linux.ibm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: opPe6bdDLiFW0dlDCj2gwRingo5DzijG
+X-Proofpoint-GUID: 9m1l2zTVko2RMlVZbAV7gLXS0gf5YgCr
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2023-01-09_14,2023-01-09_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501
+ impostorscore=0 lowpriorityscore=0 bulkscore=0 adultscore=0 mlxscore=0
+ suspectscore=0 malwarescore=0 clxscore=1011 phishscore=0 mlxlogscore=999
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301090147
+Subject: Re: [Intel-gfx] [PATCH 1/2] KVM: async kvm_destroy_vm for vfio
+ devices
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,113 +102,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Hans de Goede <hdegoede@redhat.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, linux-acpi@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Len Brown <lenb@kernel.org>
+Cc: jjherne@linux.ibm.com, linux-s390@vger.kernel.org, farman@linux.ibm.com,
+ imbrenda@linux.ibm.com, frankja@linux.ibm.com, pmorel@linux.ibm.com,
+ david@redhat.com, intel-gfx@lists.freedesktop.org, cohuck@redhat.com,
+ linux-kernel@vger.kernel.org, pasic@linux.ibm.com, jgg@nvidia.com,
+ kvm@vger.kernel.org, borntraeger@linux.ibm.com,
+ intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The Dell Latitude E6430 both with and without the optional NVidia dGPU
-has a bug in its ACPI tables which is causing Linux to assign the wrong
-ACPI fwnode / companion to the pci_device for the i915 iGPU.
+LGTM
 
-Specifically under the PCI root bridge there are these 2 ACPI Device()s :
+Reviewed-by: Tony Krowiak <akrowiak@linux.ibm.com>
 
- Scope (_SB.PCI0)
- {
-     Device (GFX0)
-     {
-         Name (_ADR, 0x00020000)  // _ADR: Address
-     }
-
-     ...
-
-     Device (VID)
-     {
-         Name (_ADR, 0x00020000)  // _ADR: Address
-         ...
-
-         Method (_DOS, 1, NotSerialized)  // _DOS: Disable Output Switching
-         {
-             VDP8 = Arg0
-             VDP1 (One, VDP8)
-         }
-
-         Method (_DOD, 0, NotSerialized)  // _DOD: Display Output Devices
-         {
-             ...
-         }
-         ...
-     }
- }
-
-The non-functional GFX0 ACPI device is a problem, because this gets
-returned as ACPI companion-device by acpi_find_child_device() for the iGPU.
-
-This is a long standing problem and the i915 driver does use the ACPI
-companion for some things, but works fine without it.
-
-However since commit 63f534b8bad9 ("ACPI: PCI: Rework acpi_get_pci_dev()")
-acpi_get_pci_dev() relies on the physical-node pointer in the acpi_device
-and that is set on the wrong acpi_device because of the wrong
-acpi_find_child_device() return. This breaks the ACPI video code, leading
-to non working backlight control in some cases.
-
-Make find_child_checks() return a higher score for children which have
-pnp-ids set by various scan helpers like acpi_is_video_device(), so
-that it picks the right companion-device.
-
-An alternative approach would be to directly call acpi_is_video_device()
-from find_child_checks() but that would be somewhat computationally
-expensive given that acpi_find_child_device() iterates over all the
-PCI0 children every time it is called.
-
-Fixes: 63f534b8bad9 ("ACPI: PCI: Rework acpi_get_pci_dev()")
-Signed-off-by: Hans de Goede <hdegoede@redhat.com>
----
- drivers/acpi/glue.c | 14 ++++++++++++--
- 1 file changed, 12 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/acpi/glue.c b/drivers/acpi/glue.c
-index 204fe94c7e45..2055dfd7678b 100644
---- a/drivers/acpi/glue.c
-+++ b/drivers/acpi/glue.c
-@@ -75,7 +75,7 @@ static struct acpi_bus_type *acpi_get_bus_type(struct device *dev)
- }
- 
- #define FIND_CHILD_MIN_SCORE	1
--#define FIND_CHILD_MAX_SCORE	2
-+#define FIND_CHILD_MAX_SCORE	3
- 
- static int match_any(struct acpi_device *adev, void *not_used)
- {
-@@ -89,15 +89,25 @@ static bool acpi_dev_has_children(struct acpi_device *adev)
- 
- static int find_child_checks(struct acpi_device *adev, bool check_children)
- {
-+	int score = FIND_CHILD_MIN_SCORE;
- 	unsigned long long sta;
- 	acpi_status status;
- 
- 	if (check_children && !acpi_dev_has_children(adev))
- 		return -ENODEV;
- 
-+	/*
-+	 * For devices without a _STA method, prefer devices without a _HID
-+	 * (which conflicts with having an _ADR) but which have been matched
-+	 * in some other way, like e.g. by acpi_is_video_device() over devices
-+	 * with no ids at all.
-+	 */
-+	if (!adev->pnp.type.platform_id && adev->pnp.type.hardware_id)
-+		score++;
-+
- 	status = acpi_evaluate_integer(adev->handle, "_STA", NULL, &sta);
- 	if (status == AE_NOT_FOUND)
--		return FIND_CHILD_MIN_SCORE;
-+		return score;
- 
- 	if (ACPI_FAILURE(status) || !(sta & ACPI_STA_DEVICE_ENABLED))
- 		return -ENODEV;
--- 
-2.39.0
-
+On 1/9/23 3:10 PM, Matthew Rosato wrote:
+> Currently it is possible that the final put of a KVM reference comes from
+> vfio during its device close operation.  This occurs while the vfio group
+> lock is held; however, if the vfio device is still in the kvm device list,
+> then the following call chain could result in a deadlock:
+>
+> kvm_put_kvm
+>   -> kvm_destroy_vm
+>    -> kvm_destroy_devices
+>     -> kvm_vfio_destroy
+>      -> kvm_vfio_file_set_kvm
+>       -> vfio_file_set_kvm
+>        -> group->group_lock/group_rwsem
+>
+> Avoid this scenario by adding kvm_put_kvm_async which will perform the
+> kvm_destroy_vm asynchronously if the refcount reaches 0.
+>
+> Fixes: 421cfe6596f6 ("vfio: remove VFIO_GROUP_NOTIFY_SET_KVM")
+> Reported-by: Alex Williamson <alex.williamson@redhat.com>
+> Signed-off-by: Matthew Rosato <mjrosato@linux.ibm.com>
+> ---
+>   drivers/gpu/drm/i915/gvt/kvmgt.c  |  6 +++++-
+>   drivers/s390/crypto/vfio_ap_ops.c |  7 ++++++-
+>   include/linux/kvm_host.h          |  3 +++
+>   virt/kvm/kvm_main.c               | 22 ++++++++++++++++++++++
+>   4 files changed, 36 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
+> index 8ae7039b3683..24511c877572 100644
+> --- a/drivers/gpu/drm/i915/gvt/kvmgt.c
+> +++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
+> @@ -703,7 +703,11 @@ static void intel_vgpu_close_device(struct vfio_device *vfio_dev)
+>   
+>   	kvm_page_track_unregister_notifier(vgpu->vfio_device.kvm,
+>   					   &vgpu->track_node);
+> -	kvm_put_kvm(vgpu->vfio_device.kvm);
+> +	/*
+> +	 * Avoid possible deadlock on any currently-held vfio lock by
+> +	 * ensuring the potential kvm_destroy_vm call is done asynchronously
+> +	 */
+> +	kvm_put_kvm_async(vgpu->vfio_device.kvm);
+>   
+>   	kvmgt_protect_table_destroy(vgpu);
+>   	gvt_cache_destroy(vgpu);
+> diff --git a/drivers/s390/crypto/vfio_ap_ops.c b/drivers/s390/crypto/vfio_ap_ops.c
+> index e93bb9c468ce..a37b2baefb36 100644
+> --- a/drivers/s390/crypto/vfio_ap_ops.c
+> +++ b/drivers/s390/crypto/vfio_ap_ops.c
+> @@ -1574,7 +1574,12 @@ static void vfio_ap_mdev_unset_kvm(struct ap_matrix_mdev *matrix_mdev)
+>   
+>   		kvm_arch_crypto_clear_masks(kvm);
+>   		vfio_ap_mdev_reset_queues(&matrix_mdev->qtable);
+> -		kvm_put_kvm(kvm);
+> +		/*
+> +		 * Avoid possible deadlock on any currently-held vfio lock by
+> +		 * ensuring the potential kvm_destroy_vm call is done
+> +		 * asynchronously
+> +		 */
+> +		kvm_put_kvm_async(kvm);
+>   		matrix_mdev->kvm = NULL;
+>   
+>   		release_update_locks_for_kvm(kvm);
+> diff --git a/include/linux/kvm_host.h b/include/linux/kvm_host.h
+> index 4f26b244f6d0..2ef6a5102265 100644
+> --- a/include/linux/kvm_host.h
+> +++ b/include/linux/kvm_host.h
+> @@ -34,6 +34,7 @@
+>   #include <linux/instrumentation.h>
+>   #include <linux/interval_tree.h>
+>   #include <linux/rbtree.h>
+> +#include <linux/workqueue.h>
+>   #include <linux/xarray.h>
+>   #include <asm/signal.h>
+>   
+> @@ -793,6 +794,7 @@ struct kvm {
+>   	struct kvm_stat_data **debugfs_stat_data;
+>   	struct srcu_struct srcu;
+>   	struct srcu_struct irq_srcu;
+> +	struct work_struct async_work;
+>   	pid_t userspace_pid;
+>   	bool override_halt_poll_ns;
+>   	unsigned int max_halt_poll_ns;
+> @@ -963,6 +965,7 @@ void kvm_exit(void);
+>   void kvm_get_kvm(struct kvm *kvm);
+>   bool kvm_get_kvm_safe(struct kvm *kvm);
+>   void kvm_put_kvm(struct kvm *kvm);
+> +void kvm_put_kvm_async(struct kvm *kvm);
+>   bool file_is_kvm(struct file *file);
+>   void kvm_put_kvm_no_destroy(struct kvm *kvm);
+>   
+> diff --git a/virt/kvm/kvm_main.c b/virt/kvm/kvm_main.c
+> index 13e88297f999..fbe8d127028b 100644
+> --- a/virt/kvm/kvm_main.c
+> +++ b/virt/kvm/kvm_main.c
+> @@ -1353,6 +1353,28 @@ void kvm_put_kvm(struct kvm *kvm)
+>   }
+>   EXPORT_SYMBOL_GPL(kvm_put_kvm);
+>   
+> +static void kvm_put_async_fn(struct work_struct *work)
+> +{
+> +	struct kvm *kvm = container_of(work, struct kvm,
+> +				       async_work);
+> +
+> +	kvm_destroy_vm(kvm);
+> +}
+> +
+> +/*
+> + * Put a reference but only destroy the vm asynchronously.  Can be used in
+> + * cases where the caller holds a mutex that could cause deadlock if
+> + * kvm_destroy_vm is triggered
+> + */
+> +void kvm_put_kvm_async(struct kvm *kvm)
+> +{
+> +	if (refcount_dec_and_test(&kvm->users_count)) {
+> +		INIT_WORK(&kvm->async_work, kvm_put_async_fn);
+> +		schedule_work(&kvm->async_work);
+> +	}
+> +}
+> +EXPORT_SYMBOL_GPL(kvm_put_kvm_async);
+> +
+>   /*
+>    * Used to put a reference that was taken on behalf of an object associated
+>    * with a user-visible file descriptor, e.g. a vcpu or device, if installation
