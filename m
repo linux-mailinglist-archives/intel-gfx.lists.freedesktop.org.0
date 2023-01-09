@@ -2,61 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4719662948
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Jan 2023 16:04:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 450A766295C
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Jan 2023 16:08:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BFF110E440;
-	Mon,  9 Jan 2023 15:04:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C73310E44F;
+	Mon,  9 Jan 2023 15:08:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com
- [IPv6:2001:4860:4864:20::2c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E316910E0BA;
- Mon,  9 Jan 2023 15:04:08 +0000 (UTC)
-Received: by mail-oa1-x2c.google.com with SMTP id
- 586e51a60fabf-14ffd3c5b15so8896783fac.3; 
- Mon, 09 Jan 2023 07:04:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=hb6l/3EQCXcQMc9Oj7FE1RlQn9zpzjkC52YbW7YGrj8=;
- b=Hied4hLJvh3RLMwiYkX33n7hp4wHWNoW4vQLKWYeAO4Y7S3IGiBkaoMzESEPLY+I3i
- td6flMNVJ969zSiEOrk2Sz8xgwbOR6eAKPCXf14829qYAM3LYo/iBwMeMyDArBfYxNgI
- eZ+H8GtpeDu74SBK2wSiIVnYNsNcO8df+q9D/tWB75GFf+gnDiULybo3gu+000tsPHCA
- rNp/iyRBSp+pn7TIewHlVrD9MYSKJvnDzNa2pl3PNNnPsbnBefSUdLuLYu+8hDXETYdc
- iwnXbEuOWY7Y3Rj2B5s3fhaKUrb+vIpFH/h3ak4alUNKnVQl1ZXfNS0jyzfZ7aCVrpDl
- n2Cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=hb6l/3EQCXcQMc9Oj7FE1RlQn9zpzjkC52YbW7YGrj8=;
- b=DWOihfAiyAJJQns4FNHPFWsyBhIG8c3bSY6HH+lA8/eV1D2UJJgMZDa512Rse0IdHg
- rqIIm4cGTVP8ymSKL4lqAsSG7KINJy7qn9n8dKAywrLvSkFsVhtheJjbXtuJi05mxw6Q
- EFnLUGUgvdN0H9+6DRGb/gklxX78ChxWltGeJngbB5lknyWRAKM4RSMdkoTgDkrS3bbe
- 1fZfE1ElJpm4OBVQFbzgt/hpqlh31gMlR6zpOG/yw0q6HPEYMtr2jZdZouD05skhMMfP
- xFf++dm34+dYA0ObYXfeN+1apTalAW+5KX+TkzXggjS2woK7lmtZEHCQ92uALobGqZOD
- NFgw==
-X-Gm-Message-State: AFqh2krInqc4LANm4B95hIfBFzWK+heELFV6eJnGTyk1/rsCwm838mBf
- 7Dfj9gDCO+iflDU5gjnBXh7BaD1LZ8QHAKBBKSw=
-X-Google-Smtp-Source: AMrXdXuUBBLeoXIryLLbNKhZB9cwzDxnNAuRunoFD5OIMJKZHirancGnUd8FGm+5nhFGPx2NWLW1OyHHKkhCb5Zp/ss=
-X-Received: by 2002:a05:6870:c59c:b0:150:d9aa:4011 with SMTP id
- ba28-20020a056870c59c00b00150d9aa4011mr1900031oab.96.1673276647911; Mon, 09
- Jan 2023 07:04:07 -0800 (PST)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8224210E440
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 Jan 2023 15:08:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1673276882; x=1704812882;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=2r1pbMUT7WE6PrTuI5R0ue7iKcL/V8PWTpOUyDZbUvc=;
+ b=mdYaHFwf/E5E58bbbtk7uIc6GCUdoNjo/gpG04p2v6FubULl3sMkCXal
+ OhHibtpdZMX1Zeh7Xj8UcLD5pNGvAG2uEHb2fiHfIQOxObrbT1MPj6/dl
+ JpE2aLfndjXJF2RQ/Q7MkgzO1mBmhUig5cqeJtAlSH4Jb9WlTzJBZIJm1
+ 2JQ07ajVnrRMok6XnTsd5h/KnziG10t4AH/y0iEp245oCSwnn9V4I2jxG
+ Aj4QZcfdnN0ael/U+7McjHYsnZSh7Qn2djTCG3b1ipeELiwo5GHj+BrxX
+ 99M4kbZhaBoJ4H9qRHYkcx9JJdq2KVpQaRs6Kl+VE4Ir4KkI+s60oOQWK Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10585"; a="409135028"
+X-IronPort-AV: E=Sophos;i="5.96,311,1665471600"; d="scan'208";a="409135028"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2023 07:06:51 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10585"; a="780710089"
+X-IronPort-AV: E=Sophos;i="5.96,311,1665471600"; d="scan'208";a="780710089"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2023 07:06:49 -0800
+Date: Mon, 9 Jan 2023 17:06:41 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <Y7wtgey35LMnHn4S@intel.com>
+References: <20230102113937.9263-1-stanislav.lisovskiy@intel.com>
+ <Y7RYnHQEFntiPLYV@intel.com>
 MIME-Version: 1.0
-References: <20230107151523.29864-1-Arunpravin.PaneerSelvam@amd.com>
- <8354c408-623a-1fc0-d5e0-201a0bce0309@gmail.com>
-In-Reply-To: <8354c408-623a-1fc0-d5e0-201a0bce0309@gmail.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 9 Jan 2023 10:03:56 -0500
-Message-ID: <CADnq5_OnFGBrkDaeGetCujUA2m1aZ1q+hG2vCAT5cX82U252cg@mail.gmail.com>
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm: Alloc high address for drm buddy
- topdown flag
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y7RYnHQEFntiPLYV@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Implement workaround for DP2 UHBR
+ bandwidth check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,183 +58,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- matthew.auld@intel.com, alexander.deucher@amd.com, christian.koenig@amd.com
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 9, 2023 at 5:13 AM Christian K=C3=B6nig
-<ckoenig.leichtzumerken@gmail.com> wrote:
->
-> Am 07.01.23 um 16:15 schrieb Arunpravin Paneer Selvam:
-> > As we are observing low numbers in viewperf graphics benchmark, we
-> > are strictly not allowing the top down flag enabled allocations
-> > to steal the memory space from cpu visible region.
-> >
-> > The approach is, we are sorting each order list entries in
-> > ascending order and compare the last entry of each order
-> > list in the freelist and return the max block.
-> >
-> > This patch improves the viewperf 3D benchmark scores.
-> >
-> > Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.co=
-m>
->
-> Acked-by: Christian K=C3=B6nig <christian.koenig@amd.com>, but somebody w=
-ith more insight of the drm buddy allocator should take a closer look at th=
-is.
-
-I'm not a drm_buddy expert either, but this patch fixes a lot of
-issues on both dGPUs and APUs:
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
-
->
->
+On Tue, Jan 03, 2023 at 11:32:28AM -0500, Rodrigo Vivi wrote:
+> 
+> on the subject: This is not a hw workaround. Please remove the workaround from
+> the subject and the wrong comment.
+> 
+> "The HSD given is a 'feature' rather than 'bugeco' so no workaround details are
+> present here."
+> 
+> 
+> On Mon, Jan 02, 2023 at 01:39:37PM +0200, Stanislav Lisovskiy wrote:
+> > According to spec, we should check if output_bpp * pixel_rate is less
+> > than DDI clock * 72, if UHBR is used.
+> > 
+> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 > > ---
-> >   drivers/gpu/drm/drm_buddy.c | 81 ++++++++++++++++++++++++------------=
--
-> >   1 file changed, 54 insertions(+), 27 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
-> > index 11bb59399471..50916b2f2fc5 100644
-> > --- a/drivers/gpu/drm/drm_buddy.c
-> > +++ b/drivers/gpu/drm/drm_buddy.c
-> > @@ -38,6 +38,25 @@ static void drm_block_free(struct drm_buddy *mm,
-> >       kmem_cache_free(slab_blocks, block);
-> >   }
-> >
-> > +static void list_insert_sorted(struct drm_buddy *mm,
-> > +                            struct drm_buddy_block *block)
-> > +{
-> > +     struct drm_buddy_block *node;
-> > +     struct list_head *head;
+> >  drivers/gpu/drm/i915/display/intel_dp.c | 11 +++++++++++
+> >  1 file changed, 11 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> > index bf80f296a8fdb..13baf3cb5f934 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -1582,6 +1582,17 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+> >  		drm_dbg_kms(&dev_priv->drm, "DSC: compressed bpp %d slice count %d\n",
+> >  			    pipe_config->dsc.compressed_bpp,
+> >  			    pipe_config->dsc.slice_count);
 > > +
-> > +     head =3D &mm->free_list[drm_buddy_block_order(block)];
-> > +     if (list_empty(head)) {
-> > +             list_add(&block->link, head);
-> > +             return;
-> > +     }
+> > +		/* wa1406899791 */
+> 
+> even if it was a bugeco, the notation doesn't follow the standard.
+> 
+> But anyway, as I pointed out, this is not a workaround so
+> you probably just want a
+> 
+> HSDES: 1406899791
+> BSPEC: 49259
+> 
+> in your commit msg.
+
+Ok, will add this thanks.
+
+> 
+> Also maybe a "Fixes:" tag pointing to the commit that added the sequence
+> but didn't added this part of the sequence?
+> 
+> > +		if (intel_dp_is_uhbr(pipe_config)) {
+> > +			int output_bpp = pipe_config->dsc.compressed_bpp;
 > > +
-> > +     list_for_each_entry(node, head, link)
-> > +             if (drm_buddy_block_offset(block) < drm_buddy_block_offse=
-t(node))
-> > +                     break;
-> > +
-> > +     __list_add(&block->link, node->link.prev, &node->link);
-> > +}
-> > +
-> >   static void mark_allocated(struct drm_buddy_block *block)
-> >   {
-> >       block->header &=3D ~DRM_BUDDY_HEADER_STATE;
-> > @@ -52,8 +71,7 @@ static void mark_free(struct drm_buddy *mm,
-> >       block->header &=3D ~DRM_BUDDY_HEADER_STATE;
-> >       block->header |=3D DRM_BUDDY_FREE;
-> >
-> > -     list_add(&block->link,
-> > -              &mm->free_list[drm_buddy_block_order(block)]);
-> > +     list_insert_sorted(mm, block);
-> >   }
-> >
-> >   static void mark_split(struct drm_buddy_block *block)
-> > @@ -387,20 +405,26 @@ alloc_range_bias(struct drm_buddy *mm,
-> >   }
-> >
-> >   static struct drm_buddy_block *
-> > -get_maxblock(struct list_head *head)
-> > +get_maxblock(struct drm_buddy *mm, unsigned int order)
-> >   {
-> >       struct drm_buddy_block *max_block =3D NULL, *node;
-> > +     unsigned int i;
-> >
-> > -     max_block =3D list_first_entry_or_null(head,
-> > -                                          struct drm_buddy_block,
-> > -                                          link);
-> > -     if (!max_block)
-> > -             return NULL;
-> > +     for (i =3D order; i <=3D mm->max_order; ++i) {
-> > +             if (!list_empty(&mm->free_list[i])) {
-> > +                     node =3D list_last_entry(&mm->free_list[i],
-> > +                                            struct drm_buddy_block,
-> > +                                            link);
-> > +                     if (!max_block) {
-> > +                             max_block =3D node;
-> > +                             continue;
-> > +                     }
-> >
-> > -     list_for_each_entry(node, head, link) {
-> > -             if (drm_buddy_block_offset(node) >
-> > -                 drm_buddy_block_offset(max_block))
-> > -                     max_block =3D node;
-> > +                     if (drm_buddy_block_offset(node) >
-> > +                             drm_buddy_block_offset(max_block)) {
-> > +                             max_block =3D node;
-> > +                     }
-> > +             }
-> >       }
-> >
-> >       return max_block;
-> > @@ -412,20 +436,23 @@ alloc_from_freelist(struct drm_buddy *mm,
-> >                   unsigned long flags)
-> >   {
-> >       struct drm_buddy_block *block =3D NULL;
-> > -     unsigned int i;
-> > +     unsigned int tmp;
-> >       int err;
-> >
-> > -     for (i =3D order; i <=3D mm->max_order; ++i) {
-> > -             if (flags & DRM_BUDDY_TOPDOWN_ALLOCATION) {
-> > -                     block =3D get_maxblock(&mm->free_list[i]);
-> > -                     if (block)
-> > -                             break;
-> > -             } else {
-> > -                     block =3D list_first_entry_or_null(&mm->free_list=
-[i],
-> > -                                                      struct drm_buddy=
-_block,
-> > -                                                      link);
-> > -                     if (block)
-> > -                             break;
-> > +     if (flags & DRM_BUDDY_TOPDOWN_ALLOCATION) {
-> > +             block =3D get_maxblock(mm, order);
-> > +             if (block)
-> > +                     /* Store the obtained block order */
-> > +                     tmp =3D drm_buddy_block_order(block);
-> > +     } else {
-> > +             for (tmp =3D order; tmp <=3D mm->max_order; ++tmp) {
-> > +                     if (!list_empty(&mm->free_list[tmp])) {
-> > +                             block =3D list_last_entry(&mm->free_list[=
-tmp],
-> > +                                                     struct drm_buddy_=
-block,
-> > +                                                     link);
-> > +                             if (block)
-> > +                                     break;
-> > +                     }
-> >               }
-> >       }
-> >
-> > @@ -434,18 +461,18 @@ alloc_from_freelist(struct drm_buddy *mm,
-> >
-> >       BUG_ON(!drm_buddy_block_is_free(block));
-> >
-> > -     while (i !=3D order) {
-> > +     while (tmp !=3D order) {
-> >               err =3D split_block(mm, block);
-> >               if (unlikely(err))
-> >                       goto err_undo;
-> >
-> >               block =3D block->right;
-> > -             i--;
-> > +             tmp--;
-> >       }
-> >       return block;
-> >
-> >   err_undo:
-> > -     if (i !=3D order)
-> > +     if (tmp !=3D order)
-> >               __drm_buddy_free(mm, block);
-> >       return ERR_PTR(err);
-> >   }
->
+> > +			if (output_bpp * adjusted_mode->crtc_clock >=
+> > +			    pipe_config->port_clock * 72) {
+> > +				drm_dbg_kms(&dev_priv->drm, "DP2 UHBR check failed\n");
+> 
+> some probably dummy question:
+> do we need to add a check for the DP 2.0 above as well?
+> or it is unecessary/redundant?
+
+I think this check is more related to hardware limitation, rather than
+DP 2.0 standard. I mean if it was even not DP 2.0, but still UHBR I really doubt
+that this limitation wouldn't be essential still.
+
+Stan
+
+> 
+> > +				return -EINVAL;
+> > +			}
+> > +		}
+> >  	}
+> >  	/*
+> >  	 * VDSC engine operates at 1 Pixel per clock, so if peak pixel rate
+> > -- 
+> > 2.37.3
+> > 
