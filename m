@@ -2,32 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 804BF662683
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Jan 2023 14:08:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 067F966273F
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Jan 2023 14:36:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD92210E428;
-	Mon,  9 Jan 2023 13:08:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18D2C10E156;
+	Mon,  9 Jan 2023 13:36:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9068910E428;
- Mon,  9 Jan 2023 13:08:31 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 880C9AADD6;
- Mon,  9 Jan 2023 13:08:31 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5365167911341656162=="
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F227B10E0A3
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 Jan 2023 13:36:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1673271406; x=1704807406;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=7/kjzh+IPOEoWT9z/vbIqmegz6tSnTcr1G/JeWMpq7g=;
+ b=ZjzrHEpP95bJCxX9mvzVmJJfONzUT2z23Ywwyh0qm1E2tXozAMsK3L5S
+ ecgmiaXoGCcXubpggTaSFtBtvtt9dM5Lu/5GDeli4V2fkWQulE70nPUb2
+ n4U5CnjLXNe0VHo/z6zoJedBpK2ss+s614WNWcVzUsXLuTb66qtzkHfj2
+ uJDK1YRqv54084cfp/IjmFTgdiENgfH+Q0cgnGyDEONMZiclAiC2PmLYo
+ OM5FGhmPLR2atAbGb0ZP4v+DOfxzhOjARtRUJztdjh8LChkoUgUhttoWX
+ uBCGlq+/1rhy1p5+yFPjJpc2LJxCuXOeV+2OA/X8In3zU7WmTlmHJxm+P g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10584"; a="409116058"
+X-IronPort-AV: E=Sophos;i="5.96,311,1665471600"; d="scan'208";a="409116058"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2023 05:36:46 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10584"; a="689028800"
+X-IronPort-AV: E=Sophos;i="5.96,311,1665471600"; d="scan'208";a="689028800"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2023 05:36:45 -0800
+Date: Mon, 9 Jan 2023 15:36:36 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <Y7wYZGjMAMK27SRU@intel.com>
+References: <20230102132306.9663-1-stanislav.lisovskiy@intel.com>
+ <Y7RUWCLR8oxywAzI@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Date: Mon, 09 Jan 2023 13:08:31 -0000
-Message-ID: <167326971151.18427.11898981902375652960@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230109121247.154623-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20230109121247.154623-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/display=3A_Enable_FBC_for_fbcon_=28rev2=29?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y7RUWCLR8oxywAzI@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix timeslots argument for DP DSC
+ SST case
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,178 +58,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5365167911341656162==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, Jan 03, 2023 at 11:14:16AM -0500, Rodrigo Vivi wrote:
+> On Mon, Jan 02, 2023 at 03:23:06PM +0200, Stanislav Lisovskiy wrote:
+> > We now accept timeslots param exactly how the variable
+> > sounds: amount of timeslots, but not ratio timeslots/64.
+> > So for SST case(when we have all timeslots for use), it
+> > should be 64, but not 1.
+> 
+> I noticed that at intel_dp_dsc_get_output_bpp() we have this comment:
+> 
+>          * for SST -> TimeSlotsPerMTP is 1,
+> 
+> and there's a bunch of math used with this timeslots, but none of them
+> is a direct division by 64.
 
-== Series Details ==
+Yep "TimeSlotsPerMTP is 1" already means that this is a ratio. We have 64
+timeslots alltogether and obviously for SST we have all of them.
 
-Series: drm/i915/display: Enable FBC for fbcon (rev2)
-URL   : https://patchwork.freedesktop.org/series/112548/
-State : success
+To be honest that comment above isn't way too informative, I've had to dig
+into the spec and calculate everything by myself before I could figure out
+what is going on here.
 
-== Summary ==
+For the Link Total Bw can be calculated like this:
 
-CI Bug Log - changes from CI_DRM_12556 -> Patchwork_112548v2
-====================================================
+Link Total Bw = link_symbol_clock * lane_count * 8
 
-Summary
--------
+Amount of Bw we need for the current mode is:
 
-  **SUCCESS**
+Required bpp = mode_clock * bpp
 
-  No regressions found.
+For generic MST case, amount BW we have is split to 64 timeslots,
+i.e each 1 timeslot has Bw:
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112548v2/index.html
+1 Timeslot Bw = Link Total Bw / 64 = (link_symbol_clock * lane_count * 8) / 64
 
-Participating hosts (39 -> 38)
-------------------------------
+Given amount if timeslots the bw which we will get is:
 
-  Additional (1): bat-rpls-2 
-  Missing    (2): fi-snb-2520m bat-adlp-4 
+Link Total Bw * (timeslots / 64) =  (link_symbol_clock * lane_count * 8 * timeslots) / 64
 
-Known issues
-------------
+However required Bw is as said above: Required Bw = mode_clock * bpp
 
-  Here are the changes found in Patchwork_112548v2 that come from known issues:
+Thus in order to figure out the max bpp we can afford, we need to solve
+equation:
 
-### IGT changes ###
+Link Total Bw * (timeslots / 64) = mode_clock * bpp
 
-#### Issues hit ####
+i.e bpp = (Link Total Bw * timeslots) / (mode_clock * 64)
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
-    - fi-bsw-n3050:       [PASS][1] -> [FAIL][2] ([i915#6298])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12556/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112548v2/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
+=> bpp = (link_symbol_clock * lane_count * 8 * timeslots) / (mode_clock * 64)
 
-  
-#### Possible fixes ####
+which can be simplified to:
 
-  * igt@i915_selftest@live@gt_lrc:
-    - {bat-rpls-1}:       [INCOMPLETE][3] ([i915#4983]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12556/bat-rpls-1/igt@i915_selftest@live@gt_lrc.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112548v2/bat-rpls-1/igt@i915_selftest@live@gt_lrc.html
+bpp = (link_symbol_clock * lane_count * timeslots) / (mode_clock * 8)
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+In order for this to work timeslots should be actual amount of timeslots
+but not the ratio.
 
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4258]: https://gitlab.freedesktop.org/drm/intel/issues/4258
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
-  [i915#7359]: https://gitlab.freedesktop.org/drm/intel/issues/7359
-  [i915#7456]: https://gitlab.freedesktop.org/drm/intel/issues/7456
-  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
+> 
+> So I wonder if a refactor to reflect the "perMTP" is not needed there.
+> Or the reverse math instead of passing the 64 directly.
+> 
+> > This caused some issues in the tests.
+> 
+> could you also expand on what tests?
+> any "References:" link to cibuglog or so?
 
+Asked from CI, but as I understand quite a lot of tests are affected,
+like _many_ :))
+Will add the link.
 
-Build changes
--------------
+Stan
 
-  * Linux: CI_DRM_12556 -> Patchwork_112548v2
-
-  CI-20190529: 20190529
-  CI_DRM_12556: ac04152253dccfb02dcedfa0c57443122cf79314 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7110: db10a19b94d1d7ae5ba62eb48d52c47ccb27766f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_112548v2: ac04152253dccfb02dcedfa0c57443122cf79314 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-06c3d3b0a848 drm/i915/display: Enable FBC for fbcon
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112548v2/index.html
-
---===============5365167911341656162==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Enable FBC for fbcon (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/112548/">https://patchwork.freedesktop.org/series/112548/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112548v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112548v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12556 -&gt; Patchwork_112548v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112548v2/index.html</p>
-<h2>Participating hosts (39 -&gt; 38)</h2>
-<p>Additional (1): bat-rpls-2 <br />
-  Missing    (2): fi-snb-2520m bat-adlp-4 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_112548v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12556/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112548v2/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@gt_lrc:<ul>
-<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12556/bat-rpls-1/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112548v2/bat-rpls-1/igt@i915_selftest@live@gt_lrc.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12556 -&gt; Patchwork_112548v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12556: ac04152253dccfb02dcedfa0c57443122cf79314 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7110: db10a19b94d1d7ae5ba62eb48d52c47ccb27766f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_112548v2: ac04152253dccfb02dcedfa0c57443122cf79314 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>06c3d3b0a848 drm/i915/display: Enable FBC for fbcon</p>
-
-</body>
-</html>
-
---===============5365167911341656162==--
+> 
+> Oh, any "Fixes:" tag as well?
+> 
+> Thanks for the patch,
+> Rodrigo.
+> 
+> > 
+> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> > index 13baf3cb5f934..362fb394d613c 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -1696,7 +1696,7 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
+> >  			    str_yes_no(ret), str_yes_no(joiner_needs_dsc),
+> >  			    str_yes_no(intel_dp->force_dsc_en));
+> >  		ret = intel_dp_dsc_compute_config(intel_dp, pipe_config,
+> > -						  conn_state, &limits, 1, true);
+> > +						  conn_state, &limits, 64, true);
+> >  		if (ret < 0)
+> >  			return ret;
+> >  	}
+> > -- 
+> > 2.37.3
+> > 
