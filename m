@@ -2,57 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 326B766237D
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Jan 2023 11:51:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E583066239A
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Jan 2023 12:01:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6D9610E069;
-	Mon,  9 Jan 2023 10:51:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D25D010E3D4;
+	Mon,  9 Jan 2023 11:00:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FB9810E069
- for <intel-gfx@lists.freedesktop.org>; Mon,  9 Jan 2023 10:51:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673261474; x=1704797474;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=MnZXbY0ZOOPa8mm+ZF4cWuZdXf1ao+YXUrB/emEoK8o=;
- b=Wt5h5PWjdMTuCr2gc80D+cE4avHTZaD2CcqeSk3yQCoGBpv4lv7oSMXZ
- V4RTn7BlSHq++Tc+sQn3ashvhVNv7phZ6zsNs9IFTQ0nJ3ZdCn8NN3RFC
- FK/kJZbv7qni7VYQks2m1MRsGt50xTsMqGE+a+ispdfwTM/P3f90T9Ihu
- EV9xvn0hdSIe8wZtsktKMv5dL9ABg3FDlWp+gBITMhKNoY7BrLVGRq62x
- VMIIeUlUuOgRar+C70DI5bDr4M2uTDbBZHkt2Rmuf6MAlUbxwhPJknx/D
- 1YTomlEgqileUci+kTKeBijqfU4cZx2t2Jc6hzzC4swekBWBmI2j33rJr g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10584"; a="322920613"
-X-IronPort-AV: E=Sophos;i="5.96,311,1665471600"; d="scan'208";a="322920613"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2023 02:51:13 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10584"; a="649977549"
-X-IronPort-AV: E=Sophos;i="5.96,311,1665471600"; d="scan'208";a="649977549"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.21.126])
- ([10.213.21.126])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2023 02:51:12 -0800
-Message-ID: <6d7202a5-c102-9598-a03c-2a404c67d46d@intel.com>
-Date: Mon, 9 Jan 2023 11:51:10 +0100
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BC2010E069;
+ Mon,  9 Jan 2023 11:00:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=4XpK5g9Y+kZXQ0GvSITDbVziaqIjnjb+5VEzKLqddBI=; b=X0dVreguSudpyy8HK0/ET0cFb2
+ pvxN6Thg/GE7/t7kiK0cIsCAJXzANga+WicZR1EOcXVqSuZJRb1ovLUot/rOm0l2m/tw/WvjDET8n
+ zEtFIgJsFF0EF+kOWCbfjIVQYQK0P1z8cNLuq/+4Bpa1D0wzGfmn2xcWOarmx/Zsycwan/8d/b1dl
+ 94KAPKAmjFTdZQQXjxa3GSgla9JfcVcfRdd1xilv3vxa6Gn+3MFKkm0rlSFYD8XKN17ohFBE1B9vh
+ laqFahqDlbss9MNKd4Nk23s0TSLCULI5jxUVgewyNaBzo9+IfjXxqEgxE3KmwIJ6lcPoPbRD/J3kJ
+ xdsGfbqA==;
+Received: from [187.36.234.139] (helo=bowie..)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1pEpt5-003J8T-6s; Mon, 09 Jan 2023 12:00:19 +0100
+From: =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>
+To: Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Rob Clark <robdclark@gmail.com>,
+ Simon Ser <contact@emersion.fr>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Zack Rusin <zackr@vmware.com>
+Date: Mon,  9 Jan 2023 07:58:03 -0300
+Message-Id: <20230109105807.18172-1-mcanal@igalia.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.6.1
-Content-Language: en-US
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20230105131046.2173431-1-andrzej.hajda@intel.com>
- <20230105131046.2173431-6-andrzej.hajda@intel.com>
- <Y7g/w/DVMOqKRg7H@intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <Y7g/w/DVMOqKRg7H@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2 6/9] drm/i915/display/hdmi: use
- intel_de_rmw if possible
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/5] Check for valid framebuffer's format
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,131 +60,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>,
+ intel-gfx@lists.freedesktop.org,
+ =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>,
+ dri-devel@lists.freedesktop.org, Melissa Wen <mwen@igalia.com>,
+ VMware Graphics Reviewers <linux-graphics-maintainer@vmware.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 06.01.2023 16:35, Rodrigo Vivi wrote:
-> On Thu, Jan 05, 2023 at 02:10:43PM +0100, Andrzej Hajda wrote:
->> The helper makes the code more compact and readable.
->>
->> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
->> ---
->>   drivers/gpu/drm/i915/display/g4x_hdmi.c   |  8 ++---
->>   drivers/gpu/drm/i915/display/intel_hdcp.c | 15 ++++-----
->>   drivers/gpu/drm/i915/display/intel_hdmi.c | 40 +++++++----------------
->>   3 files changed, 22 insertions(+), 41 deletions(-)
->>
+This series is a follow-up of [1] in which I introduced a check for valid
+formats on drm_gem_fb_create(). During the discussion, I realized that would be
+a better idea to put the check inside framebuffer_check() so that it wouldn't
+be needed to hit any driver-specific code path when the check fails. Thanks
+to Daniel, Simon, Rob and Thomas for the insightful discussion!
 
-(...)
+Therefore, add the valid format check inside framebuffer_check() and remove
+the same check from the drivers. Adding the check to framebuffer_check() will
+guarantee that the igt@kms_addfb_basic@addfb25-bad-modifier IGT test passes,
+showing the correct behavior of the check.
 
->> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
->> index efa2da080f62d4..4b09f17aa4b23b 100644
->> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
->> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
->> @@ -237,15 +237,11 @@ static void g4x_read_infoframe(struct intel_encoder *encoder,
->>   			       void *frame, ssize_t len)
->>   {
->>   	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->> -	u32 val, *data = frame;
->> +	u32 *data = frame;
->>   	int i;
->>   
->> -	val = intel_de_read(dev_priv, VIDEO_DIP_CTL);
->> -
->> -	val &= ~(VIDEO_DIP_SELECT_MASK | 0xf); /* clear DIP data offset */
-> 
-> A probably good follow-up clean up would be to define the missing masks
-> and remove the hardcoded things like this 0xf.
-> 
-> And also something that I had noticed on the previous patches but I forgot
-> to mention: it would be good as a followup to replace the local value << shift
-> per FIELD_PREP() helpers and remove the shift definitions...
-> 
-> But really nothing related directly with this patch. For this:
-> 
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> 
-> Oh, and I also noticed that CI didn't return yet for these patches...
-> https://patchwork.freedesktop.org/series/112438/
-> 
-> a strange delay... I will probably hit the retest if we don't get
-> anything by the end of the day today.
+This patchset was tested on i915, amdgpu, and vc4 with the IGT tests.
 
-Thx for reviews.
-Apparently CI missed this series, I have just hit retest.
+[1] https://lore.kernel.org/dri-devel/20230103125322.855089-1-mcanal@igalia.com/T/
 
-Regards
-Andrzej
+Best Regards,
+- Maíra Canal
 
+Maíra Canal (5):
+  drm/framebuffer: Check for valid formats
+  drm/amdgpu: Remove redundant framebuffer format check
+  drm/i915: Remove redundant framebuffer format check
+  drm/vmwgfx: Remove redundant framebuffer format check
+  drm/plane: Unexport drm_any_plane_has_format()
 
-> 
->> -	val |= g4x_infoframe_index(type);
->> -
->> -	intel_de_write(dev_priv, VIDEO_DIP_CTL, val);
->> +	intel_de_rmw(dev_priv, VIDEO_DIP_CTL,
->> +		     VIDEO_DIP_SELECT_MASK | 0xf, g4x_infoframe_index(type));
->>   
->>   	for (i = 0; i < len; i += 4)
->>   		*data++ = intel_de_read(dev_priv, VIDEO_DIP_DATA);
->> @@ -313,15 +309,11 @@ static void ibx_read_infoframe(struct intel_encoder *encoder,
->>   {
->>   	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->>   	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
->> -	u32 val, *data = frame;
->> +	u32 *data = frame;
->>   	int i;
->>   
->> -	val = intel_de_read(dev_priv, TVIDEO_DIP_CTL(crtc->pipe));
->> -
->> -	val &= ~(VIDEO_DIP_SELECT_MASK | 0xf); /* clear DIP data offset */
->> -	val |= g4x_infoframe_index(type);
->> -
->> -	intel_de_write(dev_priv, TVIDEO_DIP_CTL(crtc->pipe), val);
->> +	intel_de_rmw(dev_priv, TVIDEO_DIP_CTL(crtc->pipe),
->> +		     VIDEO_DIP_SELECT_MASK | 0xf, g4x_infoframe_index(type));
->>   
->>   	for (i = 0; i < len; i += 4)
->>   		*data++ = intel_de_read(dev_priv, TVIDEO_DIP_DATA(crtc->pipe));
->> @@ -395,15 +387,11 @@ static void cpt_read_infoframe(struct intel_encoder *encoder,
->>   {
->>   	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->>   	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
->> -	u32 val, *data = frame;
->> +	u32 *data = frame;
->>   	int i;
->>   
->> -	val = intel_de_read(dev_priv, TVIDEO_DIP_CTL(crtc->pipe));
->> -
->> -	val &= ~(VIDEO_DIP_SELECT_MASK | 0xf); /* clear DIP data offset */
->> -	val |= g4x_infoframe_index(type);
->> -
->> -	intel_de_write(dev_priv, TVIDEO_DIP_CTL(crtc->pipe), val);
->> +	intel_de_rmw(dev_priv, TVIDEO_DIP_CTL(crtc->pipe),
->> +		     VIDEO_DIP_SELECT_MASK | 0xf, g4x_infoframe_index(type));
->>   
->>   	for (i = 0; i < len; i += 4)
->>   		*data++ = intel_de_read(dev_priv, TVIDEO_DIP_DATA(crtc->pipe));
->> @@ -471,15 +459,11 @@ static void vlv_read_infoframe(struct intel_encoder *encoder,
->>   {
->>   	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->>   	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
->> -	u32 val, *data = frame;
->> +	u32 *data = frame;
->>   	int i;
->>   
->> -	val = intel_de_read(dev_priv, VLV_TVIDEO_DIP_CTL(crtc->pipe));
->> -
->> -	val &= ~(VIDEO_DIP_SELECT_MASK | 0xf); /* clear DIP data offset */
->> -	val |= g4x_infoframe_index(type);
->> -
->> -	intel_de_write(dev_priv, VLV_TVIDEO_DIP_CTL(crtc->pipe), val);
->> +	intel_de_rmw(dev_priv, VLV_TVIDEO_DIP_CTL(crtc->pipe),
->> +		     VIDEO_DIP_SELECT_MASK | 0xf, g4x_infoframe_index(type));
->>   
->>   	for (i = 0; i < len; i += 4)
->>   		*data++ = intel_de_read(dev_priv,
->> -- 
->> 2.34.1
->>
+ Documentation/gpu/todo.rst                  |  9 ++++-----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.c | 10 ----------
+ drivers/gpu/drm/drm_framebuffer.c           |  8 ++++++++
+ drivers/gpu/drm/drm_plane.c                 |  1 -
+ drivers/gpu/drm/i915/display/intel_fb.c     |  9 ---------
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.c         | 18 ------------------
+ 6 files changed, 12 insertions(+), 43 deletions(-)
+
+-- 
+2.39.0
 
