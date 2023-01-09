@@ -2,142 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2440D662313
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Jan 2023 11:22:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A62CB66227E
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Jan 2023 11:08:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE75710E3C5;
-	Mon,  9 Jan 2023 10:22:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08C6010E39F;
+	Mon,  9 Jan 2023 10:07:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B217510E093;
- Mon,  9 Jan 2023 10:21:59 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 193F010E39F
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 Jan 2023 10:07:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673259719; x=1704795719;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- in-reply-to:mime-version;
- bh=dP5PKW36TfoCDW+euB+Leu/9hWMcDZodzG5CmkWzXpQ=;
- b=kAhayZ1KySsaeVnjzr+XanxG4z83t3lVsr4/O441qctV7W/E4mhoAd0k
- g0XmUCBssCouCigJrEyVxD7kU0dyjwiRDrIm2fxee25IXOSGaxd6sbEd0
- AX9fSsy2e98LRL+04NA1Ckk55dzw+ZEGmq4o+bfpQW/FBluIIgt3nSuax
- WPawnHJXNkbrB5LyNjRu20s4LoqCdHyI53ZIkP0jkDELvPMK5J3fGuNVV
- g/I6vrtQjx94kUxox3c/OEL4WjAIT4XW8t3ABIukXgbZTZpREkW2H62aC
- P2WxywLHZMYn6WTkEy3C3zDAOlw7xCwmNXF27j6eyXfAoHh54RfxYGJ1+ Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10584"; a="385140988"
-X-IronPort-AV: E=Sophos;i="5.96,311,1665471600"; d="scan'208";a="385140988"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2023 02:21:54 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10584"; a="658545023"
-X-IronPort-AV: E=Sophos;i="5.96,311,1665471600"; d="scan'208";a="658545023"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmsmga007.fm.intel.com with ESMTP; 09 Jan 2023 02:21:54 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Mon, 9 Jan 2023 02:21:53 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Mon, 9 Jan 2023 02:21:53 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.172)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Mon, 9 Jan 2023 02:21:52 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MXH4yttQb2YZlrUa+HSYa61MPFRYN+MkXtTNGtuGb2gNEEa3/CEBhQxST2Xy+i+nnANvNGhatUA3Vj7xLIi/Pu6hR+HHEBbSSJP2Z2UHDemkEDoRIjT0OI4NmC+Yr6O1E5YqwRbUCtLi/0rwOveFSuNRspyYlxjatgi+X1SihxxCphPaRGIaZu20tWhf1WKlcVgtFl3GKZHpUqTZUH4Cpb2zNCVbOHowlSn+QWS+uB7bjJB00ogaB9CLpyOLN1aaFRlVEwE5JiemWjgBGarE6DzEETjZ9BGGKXRUxJa8XSRRrmhuIwlrCMa90K2lICsN30wwtz5zgZCns5ahlbeRQw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fhpobEb25S9Am1Kijn4DaEId1uFi1yP3kdxqyHVKyms=;
- b=Fx/qV+LVT2hxjONhPl4G4GyWHfVFiLh98PGSGjU/tjC2xe4NwZiDfaE40oKwrI/H9qJCXuHInMY0ULmndf+4BIsbqZVdhddmxZfBp2X0RGZgczRbBLpzbqh0lSDVDKH++hqLfiV8/moPfzCOl7VdB+OKHnrHN6YZ7c3FUHP8+pFp/1+if+bHHe/wCfOsHrH3w93lHocWm78rG/4Hu31/z0Rm9wwqkjn3wdGkEawzr4c4OislQzER8pYli9+VDbCwT8OQFPcCfBE7vBAl5Rqy+Hx8EO0blmgZmchk4EZH6z+tZCt1nBtK4Bqblgfm74yiN6EsZBVaF5hUVOdQMuQvgw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS7PR11MB5966.namprd11.prod.outlook.com (2603:10b6:8:71::6) by
- PH7PR11MB6748.namprd11.prod.outlook.com (2603:10b6:510:1b6::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5986.18; Mon, 9 Jan 2023 10:21:49 +0000
-Received: from DS7PR11MB5966.namprd11.prod.outlook.com
- ([fe80::bd50:2cf7:f362:3734]) by DS7PR11MB5966.namprd11.prod.outlook.com
- ([fe80::bd50:2cf7:f362:3734%7]) with mapi id 15.20.5986.018; Mon, 9 Jan 2023
- 10:21:49 +0000
-Date: Mon, 9 Jan 2023 17:58:16 +0800
-From: Yan Zhao <yan.y.zhao@intel.com>
-To: Sean Christopherson <seanjc@google.com>
-Message-ID: <Y7vlOCKkJ+QyO3EM@yzhao56-desk.sh.intel.com>
-References: <20221223005739.1295925-1-seanjc@google.com>
- <20221223005739.1295925-4-seanjc@google.com>
- <Y6vXTcxDNovrmeVB@yzhao56-desk.sh.intel.com>
- <Y7SaklDQD0EoIs8l@google.com>
- <Y7Y+759IN2DH5h3h@yzhao56-desk.sh.intel.com>
- <Y7cLkLUMCy+XLRwm@google.com>
- <Y7e3fT8/V2NoXAUP@yzhao56-desk.sh.intel.com>
- <Y7ioYegkgKIH8uJL@google.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <Y7ioYegkgKIH8uJL@google.com>
-X-ClientProxiedBy: SI2PR02CA0007.apcprd02.prod.outlook.com
- (2603:1096:4:194::23) To DS7PR11MB5966.namprd11.prod.outlook.com
- (2603:10b6:8:71::6)
+ t=1673258876; x=1704794876;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=trWoL3mcmMldNs8fEVLjJ5/ilC8jLCoX2HjsmFQqFVM=;
+ b=gIu+bqSreK/4S16VmtuWWpgfcQKLI8erIPpn+7elB94VqSHJw+J4DaBR
+ CAZ1ej4qZ3BbR0r5N/q8Y2laP32bo2dH2gslp5IvROU1NTSlZRidkeLRc
+ u8UJmt0IPMLlpqABdXfZF5X6pZ4ijQ9u+t1h9bpuTxxAIbByzabQCxk83
+ d3E9bK4axaQHCJrayt3HEb48O6NyMlBdYA9G8wqVP12Jh5U8LAGeP1Vh3
+ 1pNvpKt6Z6ryH3SimVgLr6u/ZjeEL5NnzptoFPgtQWdNuUZ8+A/Z3v29x
+ nJCTGSwNfHDL3okojDCD87/AkbujiJ+bnZnE3ee0Ggp57LXHKW+vsAZgR A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10584"; a="350052120"
+X-IronPort-AV: E=Sophos;i="5.96,311,1665471600"; d="scan'208";a="350052120"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2023 02:07:55 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10584"; a="830542473"
+X-IronPort-AV: E=Sophos;i="5.96,311,1665471600"; d="scan'208";a="830542473"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2023 02:07:51 -0800
+Date: Mon, 9 Jan 2023 12:07:43 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
+Message-ID: <Y7vnb0l0YZBQMwui@intel.com>
+References: <20221124103623.13974-1-stanislav.lisovskiy@intel.com>
+ <20221124103623.13974-2-stanislav.lisovskiy@intel.com>
+ <CY4PR1101MB2166A66996BCE28F1B6B70C1F8129@CY4PR1101MB2166.namprd11.prod.outlook.com>
+ <Y5ml/OHxUUU/GzzA@intel.com>
+ <CY4PR1101MB21666C38CA97D519842805DBF8E09@CY4PR1101MB2166.namprd11.prod.outlook.com>
+ <Y5rzdZniS5z5d8Si@intel.com>
+ <SJ2PR11MB7715961C452070D324B95109F8FA9@SJ2PR11MB7715.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB5966:EE_|PH7PR11MB6748:EE_
-X-MS-Office365-Filtering-Correlation-Id: 46d6f725-68d7-4897-9ce5-08daf22b5165
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ZlaGeaAcmrsA+jKxpwG/DuLnON6XUXnNByMzIvWX8xMSkbW6O8qTNLo58ZZ6/veM6hP33+BXGFOB0mpt6gzETpbpbxChbBHjUoBcBzBacEwnjHHSYuDeS3fEsF/YtG/ZCm5QMpzJvEw7QrXwvHZaGJsU+pjf7Z1EOU3uYgVdTn3DBnlC6EJUSfW+AZuSzyFgc5Ph5SHlTe75uYlUrrcmeQzNzIkTFBJPY3nYOEmBLzsYPfCrAZQbgY9l11+yt4AEU2WpF66pvTKUiIw5ORba04edZj4vD+2OD4FUID0YdqDH4GET3Q/STGzDnJrLBHTTSBizFwCGKCaTdEQF5x99WsChXH1Tn7eIxVYqRhMNT91GR5wvsHLpFhbr8SSMZvdcc7PgwxqhyVjgiNMTYd81DbVLfsdPJjdq8fX671n0xX8uXyUUsP4IQJhrbLV/mAORwIm3G/AeXrSqIkxCboos3UEqJFp4FTyw6rhmx3MpddCKI6S7VSqFjf4AawSqDJxhosYj4Y7aRJaOxj+q2l/636X30NGWstSXl9k1tFIuH4OL1h5Cn68hvK4Y4sbRuSR0eGgsZBqNKXwtMRdfI2HnhmmxjjcJ5VNBWgJIN8o1YvqX5LUtd3XAxCnVi3rdzTHlu++37+CyhkdwfVknfA4iraRjNgg+Q0BUyjWRgid3UmWW7ogye3PMk58H5EI4VnlS
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR11MB5966.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(346002)(376002)(136003)(39860400002)(366004)(396003)(451199015)(6506007)(38100700002)(82960400001)(6666004)(3450700001)(2906002)(6486002)(478600001)(26005)(186003)(6512007)(5660300002)(316002)(83380400001)(8936002)(86362001)(41300700001)(66476007)(8676002)(66946007)(66556008)(6916009)(54906003)(4326008)(67856001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?TYO3WTHbBewWiWCKIdn9FGRgxwl4SwWKfTRVbyuatC584Y2R8D/hPJWRggym?=
- =?us-ascii?Q?A6WNsYHX8wcxZFnE3cjhb6taxYnrOZb3c4r+1e0PoEwgAY8VfjghIKBJSG9t?=
- =?us-ascii?Q?0Ou2ChSrVd3laL5xNFbZwhknUdyL/7pUSEbTUPMY6iIO+ehr0S9k6MlQ6qwG?=
- =?us-ascii?Q?CTRkB7lUeWvQwZu0NZniaEqrB22ZTJyO/aZ5xa7ucWx9zyY+m5XB1eLm/+6s?=
- =?us-ascii?Q?f9xtVCqb9+30JxckDiBWscnpPHAJOtd1zmXtuC6Getv8kejInKSwTwCMmlrb?=
- =?us-ascii?Q?3LO37p70h4ySyiGP+E4GKhmS/akWrEtREgkOvHQNCLND3E+mch47hoF1I4L4?=
- =?us-ascii?Q?5sLrwMZ6mwzX1I7vaIiHwte4eCGhq7JnxRvReXis7VXvpMWArs2ydPiT6a4z?=
- =?us-ascii?Q?oUgW15+/EzY6nhLQJO0eMrEAh2de8eCz3nl0ZlPki6tHWzvJbEnsmVNS/b2N?=
- =?us-ascii?Q?10siX4GSv93FLrqCeCVa6q5NLKOcKZtTmGmiJz8bcMiXl8/MUse8+5dXxLWh?=
- =?us-ascii?Q?h2U67z9UhZevUezI6ijoKUDyGhgPmy1k3hWLqCCv34H6bFvQLAUhfoij8iyg?=
- =?us-ascii?Q?O7izxDsfzEfh2/y4Ys7nZPrWeFShnCE/ZHjeCwc1l+DtVoPQfDszt/JZRBWj?=
- =?us-ascii?Q?vHbUjVjFEL3hHLOmVULop8qfbMOpXd1MpyTbI4i302dY/otj81MWDiDrqwfd?=
- =?us-ascii?Q?n2LUo4nk9A6RhrMrJGfmvg0ENj9iH730dyquLfyTMT9/IlQ8nWkTSRJQOgWN?=
- =?us-ascii?Q?efZEM8O0V6jKyYLYrXU7c19BwCwp3fswCbCZjMqBfYN7S1qk0GafEwJNQulU?=
- =?us-ascii?Q?T4ZrFOUMis2N4zlIlNXCV+ll64MMj0RUdoa2wyHN2PnEsGt4ZXfWlj621G6O?=
- =?us-ascii?Q?7u2MM+0PkYlZSOBHzHGJ4/JngkuE7cBabFrKPNAl7TDluKS4WMR5mg+t0BOT?=
- =?us-ascii?Q?otKPVnUT9uRRQRb4eP/KdCfzCUaXAspYt1fhqOhQKnkX2XiCCbT09F+oXRuC?=
- =?us-ascii?Q?qVDESTxgZ9uj4w/ICLfFE8ylxxeq1O7GADzBX/Ra44UdYLILp/ecNRbNirg9?=
- =?us-ascii?Q?uOQ4PWab+JMsSxRGNTavszNMDFMMnF5l5QArIkt3VMH/JTQ7vHa6kkeaBx1l?=
- =?us-ascii?Q?OI/IPJIOVMz5VSrk5DrCEkDTlgum38DAQ2E+g92nP7zrBQxjE2PSaMHkQWeA?=
- =?us-ascii?Q?aqEq7pkVesS2NTnDAxo41cO7XKkMA4jh6/G2vGnXhiCZ628AaG/5Q6BY6U9H?=
- =?us-ascii?Q?6m8EUvEpIOYfPB3Jty2hTiIzE22WNN7TLe+2pfZnLR1Ar9wr1mTjINA/Gr/s?=
- =?us-ascii?Q?rN5N91goSJAeG2am9NBgRMZ4RzkCyhc0TUUj2hrxM0BGuEmyCR4FCflge0BV?=
- =?us-ascii?Q?AVyfX6bB2Eg6p7miIx3SWt0A0N2qlNRJGX11kviwqXs/PKIcRzTFi1jvbhQ0?=
- =?us-ascii?Q?u2B4aRQc6TQapYjcmXbmPx1rmT5iesihE9diKdFsERdlw7PJFciiGECBx7S/?=
- =?us-ascii?Q?yC5d7L74HAQ8zQKBLaAYqoRonvroCcz7pa4MAmV9sR25HLPsBOMcWC6m8Ta+?=
- =?us-ascii?Q?cofpHeehUqKdj6ud4macjXQW/oW2FNziBId8N/3h?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 46d6f725-68d7-4897-9ce5-08daf22b5165
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB5966.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jan 2023 10:21:49.2130 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: tc84UTapZ+5MwSmJ28UdF8B+I9cXyjsX3dF2SjNi+EzGSMqv07zFewmmbyaeWIolOZAQdOV0nH8slV0ksYQ2/Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6748
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 03/27] drm/i915/gvt: Incorporate KVM memslot
- info into check for 2MiB GTT entry
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <SJ2PR11MB7715961C452070D324B95109F8FA9@SJ2PR11MB7715.namprd11.prod.outlook.com>
+Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915: Implement workaround for
+ CDCLK PLL disable/enable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,132 +63,256 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Yan Zhao <yan.y.zhao@intel.com>
-Cc: kvm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Ben Gardon <bgardon@google.com>,
- Paolo Bonzini <pbonzini@redhat.com>, intel-gvt-dev@lists.freedesktop.org
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 06, 2023 at 11:01:53PM +0000, Sean Christopherson wrote:
-> On Fri, Jan 06, 2023, Yan Zhao wrote:
-> > On Thu, Jan 05, 2023 at 05:40:32PM +0000, Sean Christopherson wrote:
-> > > On Thu, Jan 05, 2023, Yan Zhao wrote:
-> > > I'm totally fine if KVMGT's ABI is that VFIO is the source of truth for mappings
-> > > and permissions, and that the only requirement for KVM memslots is that GTT page
-> > > tables need to be visible in KVM's memslots.  But if that's the ABI, then
-> > > intel_gvt_is_valid_gfn() should be probing VFIO, not KVM (commit cc753fbe1ac4
-> > > ("drm/i915/gvt: validate gfn before set shadow page entry").
-> > > 
-> > > In other words, pick either VFIO or KVM.  Checking that X is valid according to
-> > > KVM and then mapping X through VFIO is confusing and makes assumptions about how
-> > > userspace configures KVM and VFIO.  It works because QEMU always configures KVM
-> > > and VFIO as expected, but IMO it's unnecessarily fragile and again confusing for
-> > > unaware readers because the code is technically flawed.
+On Thu, Jan 05, 2023 at 03:05:40AM +0200, Srivatsa, Anusha wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Lisovskiy, Stanislav <stanislav.lisovskiy@intel.com>
+> > Sent: Thursday, December 15, 2022 2:14 AM
+> > To: Srivatsa, Anusha <anusha.srivatsa@intel.com>
+> > Cc: intel-gfx@lists.freedesktop.org; Nikula, Jani <jani.nikula@intel.com>
+> > Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915: Implement workaround for
+> > CDCLK PLL disable/enable
+> > 
+> > On Wed, Dec 14, 2022 at 09:15:07PM +0200, Srivatsa, Anusha wrote:
 > > >
-> > Agreed. 
-> > Then after some further thought, I think maybe we can just remove
-> > intel_gvt_is_valid_gfn() in KVMGT, because
+> > >
+> > > > -----Original Message-----
+> > > > From: Lisovskiy, Stanislav <stanislav.lisovskiy@intel.com>
+> > > > Sent: Wednesday, December 14, 2022 2:31 AM
+> > > > To: Srivatsa, Anusha <anusha.srivatsa@intel.com>
+> > > > Cc: intel-gfx@lists.freedesktop.org; Nikula, Jani
+> > > > <jani.nikula@intel.com>
+> > > > Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915: Implement workaround
+> > > > for CDCLK PLL disable/enable
+> > > >
+> > > > On Tue, Nov 29, 2022 at 09:19:40PM +0200, Srivatsa, Anusha wrote:
+> > > > >
+> > > > >
+> > > > > > -----Original Message-----
+> > > > > > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On
+> > > > > > Behalf Of Stanislav Lisovskiy
+> > > > > > Sent: Thursday, November 24, 2022 2:36 AM
+> > > > > > To: intel-gfx@lists.freedesktop.org
+> > > > > > Cc: Nikula, Jani <jani.nikula@intel.com>
+> > > > > > Subject: [Intel-gfx] [PATCH 1/1] drm/i915: Implement workaround
+> > > > > > for CDCLK PLL disable/enable
+> > > > > >
+> > > > > > It was reported that we might get a hung and loss of register
+> > > > > > access in some cases when CDCLK PLL is disabled and then
+> > > > > > enabled, while squashing is enabled.
+> > > > > > As a workaround it was proposed by HW team that SW should
+> > > > > > disable squashing when CDCLK PLL is being reenabled.
+> > > > > >
+> > > > > > Signed-off-by: Stanislav Lisovskiy
+> > > > > > <stanislav.lisovskiy@intel.com>
+> > > > > > ---
+> > > > > >  drivers/gpu/drm/i915/display/intel_cdclk.c | 14 ++++++++++++--
+> > > > > >  1 file changed, 12 insertions(+), 2 deletions(-)
+> > > > > >
+> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > > > > > b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > > > > > index 0c107a38f9d0..e338f288c9ac 100644
+> > > > > > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > > > > > @@ -1801,6 +1801,13 @@ static bool
+> > > > > > cdclk_compute_crawl_and_squash_midpoint(struct
+> > drm_i915_private
+> > > > *i91
+> > > > > >  	return true;
+> > > > > >  }
+> > > > > >
+> > > > > > +static bool pll_enable_wa_needed(struct drm_i915_private
+> > > > > > +*dev_priv)
+> > > > {
+> > > > > > +	return ((IS_DG2(dev_priv) || IS_METEORLAKE(dev_priv))
+> > > > > > +		&& dev_priv->display.cdclk.hw.vco > 0
+> > > > > > +		&& HAS_CDCLK_SQUASH(dev_priv));
+> > > > > Redundant check. If it is MTL or DG2, then it will have
+> > > > HAS_CDCLK_SQUASH set to true always. Shouldn't vco be 0 instead of >
+> > 0.
+> > > > The commit message says the hang can be observed when moving from
+> > 0
+> > > > to
+> > > > > 0 vco.
+> > > > >
+> > > > > Anusha
+> > > >
+> > > > Idea was that we probably should bind more to the feature rather
+> > > > than platform, I agree checking both "IS_DG2" and if platform has
+> > > > squashing is redundant, because then we would have to add each new
+> > > > platform manually, so I would leave HAS_CDCLK_SQUASH and then at
+> > > > some point just cut off using some INTEL_GEN or other check all the
+> > > > new platforms where this is fixed in HW.
+> > > >
+> > > > Regarding vco, the icl_cdclk_pll_update func works as follows:
+> > > >
+> > > > if (i915->display.cdclk.hw.vco != 0 &&
+> > > >     i915->display.cdclk.hw.vco != vco)
+> > > >     icl_cdclk_pll_disable(i915);
+> > > >
+> > > > if (i915->display.cdclk.hw.vco != vco)
+> > > >     icl_cdclk_pll_enable(i915, vco);
+> > > >
+> > > > 1) if vco changes from zero value(i915->display.cdclk.hw.vco) to
+> > > > non-zero value(vco), that means
+> > > >    currently squashing is anyway disabled(if vco == 0, cdclk is set to
+> > "bypass"
+> > > > and squash waveform
+> > > >    is 0), so the W/A is not needed.
+> > > >
+> > > > 2) if vco changes from non-zero value in i915->display.cdclk.hw.vco
+> > > > to zero value(vco), we are not
+> > > >    going to call icl_cdclk_pll_enable anyway so W/A is also not needed.
+> > > >
+> > > > 3) if vco changes from some non-zero value in
+> > > > i915->display.cdclk.hw.vco to other non-zero value(vco),
+> > > >    which can happen if CDCLK changes, then icl_cdclk_pll_disable(hw
+> > > > vco!=0 and vco!=0) and then
+> > > >    icl_cdclk_pll_enable would be called(hw vco is still not equal to vco)
+> > > >    So that disabling enabling in between is what we are interested
+> > > > and where we should make sure
+> > > >    squashing is disabled.
+> > > >    BTW I have another question - is this code even correct?
+> > > > Shouldn't we avoid disabling/enabling PLL if we have
+> > > >    squashing/crawling? As I understood the whole point of having
+> > > > swuashing/crawling is avoiding swithing the PLL
+> > > >    on and off.
+> > > >
+> > > Squashing works when we don't need to change the PLL ratio. We fix the
+> > PLL ratio to say 307 (this can change from platform to platform). Then
+> > squashing can be used to vary frequencies below this. So we set squasher
+> > to ffff it will mean highest. We can use squasher to change frequency with
+> > squash waveform, max being ffff and any value lower will take lower
+> > frequencies.
+> > > Cdclk Crawling is used when the PLL has to be changed. Eg higher than
+> > 307 then we need to update PLL. In that case we first program squashing to
+> > ffff(this will take to 307) n then use crawling to go up to the desired
+> > frequency.
 > > 
-> > (1) both intel_gvt_is_valid_gfn() in emulate_ggtt_mmio_write() and
-> > ppgtt_populate_spt() are not for page track purpose, but to validate bogus
-> > GFN.
-> > (2) gvt_pin_guest_page() with gfn and size can do the validity checking,
-> > which is called in intel_gvt_dma_map_guest_page(). So, we can move the
-> > mapping of scratch page to the error path after intel_gvt_dma_map_guest_page().
-> 
-> IIUC, that will re-introduce the problem commit cc753fbe1ac4 ("drm/i915/gvt: validate
-> gfn before set shadow page entry") solved by poking into KVM.  Lack of pre-validation
-> means that bogus GFNs will trigger error messages, e.g.
-> 
-> 			gvt_vgpu_err("vfio_pin_pages failed for iova %pad, ret %d\n",
-> 				     &cur_iova, ret);
-> 
-> and
-> 
-> 			gvt_vgpu_err("fail to populate guest ggtt entry\n");
-
-Thanks for pointing it out.
-I checked this commit message and found below original intentions to introduce
-pre-validation:
-   "GVT may receive partial write on one guest PTE update. Validate gfn
-    not to translate incomplete gfn. This avoids some unnecessary error
-    messages incurred by the incomplete gfn translating. Also fix the
-    bug that the whole PPGTT shadow page update is aborted on any invalid
-    gfn entry"
-
-(1) first intention -- unnecessary error message came from GGTT partial write.
-    For guest GGTT writes, the guest calls writeq to an MMIO GPA, which is
-    8 bytes in length, while QEMU splits the MMIO write into 2 4-byte writes.
-    The splitted 2 writes can cause invalid GFN to be found.
-
-    But this partial write issue has been fixed by the two follow-up commits:
-        bc0686ff5fad drm/i915/gvt: support inconsecutive partial gtt entry write
-        510fe10b6180 drm/i915/gvt: fix a bug of partially write ggtt enties
-
-    so pre-validation to reduce noise is not necessary any more here.
-
-(2) the second intention -- "the whole PPGTT shadow page update is aborted on any
-    invalid gfn entry"
-    As PPGTT resides in normal guest RAM and we only treat 8-byte writes
-    as valid page table writes, any invalid GPA found is regarded as
-    an error, either due to guest misbehavior/attack or bug in host
-    shadow code. 
-    So, direct abort looks good too. Like below:
-
-@@ -1340,13 +1338,6 @@ static int ppgtt_populate_spt(struct intel_vgpu_ppgtt_spt *spt)
-                        ppgtt_generate_shadow_entry(&se, s, &ge);
-                        ppgtt_set_shadow_entry(spt, &se, i);
-                } else {
--                       gfn = ops->get_pfn(&ge);
--                       if (!intel_gvt_is_valid_gfn(vgpu, gfn)) {
--                               ops->set_pfn(&se, gvt->gtt.scratch_mfn);
--                               ppgtt_set_shadow_entry(spt, &se, i);
--                               continue;
--                       }
--
-                        ret = ppgtt_populate_shadow_entry(vgpu, spt, i, &ge);
-                        if (ret)
-                                goto fail;
-
-(I actually found that the original code will print "invalid entry type"
-warning which indicates it's broken for a while due to lack of test in
-this invalid gfn path)
-
-
-> One thought would be to turn those printks into tracepoints to eliminate unwanted
-> noise, and to prevent the guest from spamming the host kernel log by programming
-> garbage into the GTT (gvt_vgpu_err() isn't ratelimited).
-As those printks would not happen in normal conditions and printks may have
-some advantages to discover the attack or bug, could we just convert
-gvt_vgpu_err() to be ratelimited ?
-
-Thanks
-Yan
-
-> 
-> > > On a related topic, ppgtt_populate_shadow_entry() should check the validity of the
-> > > gfn.  If I'm reading the code correctly, checking only in ppgtt_populate_spt() fails
-> > > to handle the case where the guest creates a bogus mapping when writing an existing
-> > > GTT PT.
-> > Don't get it here. Could you elaborate more?
-> 
-> AFAICT, KVMGT only pre-validates the GFN on the initial setup, not when the guest
-> modifies a write-tracked entry.  I believe this is a moot point if the pre-validation
-> is removed entirely.
-> 
-> > > 	gfn = pte_ops->get_pfn(ge);
-> > > 	if (!intel_gvt_is_valid_gfn(vgpu, gfn, ge->type))
-> > > 		goto set_shadow_entry;
-> > As KVMGT only tracks PPGTT page table pages, this check here is not for page
-> > track purpose, but to check bogus GFN.
-> > So, Just leave the bogus GFN check to intel_gvt_dma_map_guest_page() through
-> > VFIO is all right.
+> > if (HAS_CDCLK_CRAWL(dev_priv) && dev_priv->display.cdclk.hw.vco > 0 &&
+> > vco > 0 &&
+> >     !cdclk_pll_is_unknown(dev_priv->display.cdclk.hw.vco)) {
+> > 	if (dev_priv->display.cdclk.hw.vco != vco)
+> > 		adlp_cdclk_pll_crawl(dev_priv, vco);
+> > 	} else if (DISPLAY_VER(dev_priv) >= 11) {
+> > 		if (pll_enable_wa_needed(dev_priv))
+> > 			dg2_cdclk_squash_program(dev_priv, 0);
 > > 
-> > On the other hand, for the GFN validity for page track purpose, we can
-> > leave it to kvm_write_track_add_gfn().
+> > 		icl_cdclk_pll_update(dev_priv, vco);
+> > 	} else
+> > 		bxt_cdclk_pll_update(dev_priv, vco);
 > > 
-> > Do you think it's ok?
+> > I think that condition above will trigger CDCLK crawl whenever vco is not ~0,
+> > CDCLK crawl is supported and both hw.vco and vco are > 0 and vco has to
+> > be changed.
 > 
-> Yep, the only hiccup is the gvt_vgpu_err() calls that are guest-triggerable, and
-> converting those to a tracepoint seems like the right answer.
+> Why?
+
+Well... Because that is exactly what this condition does:
+1) !cdclk_pll_is_unknown(dev_priv->display.cdclk.hw.vco) means hw.vco is not ~0
+2) HAS_CDCLK_CRAWL(dev_priv) checks if CDCLK crawl is supported
+3) dev_priv->display.cdclk.hw.vco > 0 && vco > 0 check if both hw.vco and vco are > 0
+4) and if (dev_priv->display.cdclk.hw.vco != vco) checks if new vco is different from hw.vco
+
+Summing all this exactly produces my statement above.
+
+
+> 
+> > 
+> > In bxt_set_cdclk which calls _bxt_set_cdclk we calculate the midpoint
+> > however I don't see how _bxt_set_cdclk is going to distinguish between
+> > crawling and squashing.
+> 
+> We are populating the mid_cdclk_config according to the desired action.
+> "/* - If moving to a higher cdclk, the desired action is squashing.
+>          * The mid cdclk config should have the new (squash) waveform.
+>          * - If moving to a lower cdclk, the desired action is crawling.
+>          * The mid cdclk config should have the new vco.
+>          */"
+> 
+> Anusha
+
+Ok, lets imagine we are moving to a higher CDCLK, lets say from 480000 to
+556800. 
+As you say above desired action is then squashing.
+new_cdclk_config->vco will be then different than current vco, because
+it is calculated as dev_priv->display.cdclk.hw.ref * table[i].ratio and
+ratios for those CDCLK's are different in mtl_cdclk_table.
+However waveforms for those are the same(0x0000 in mtl_cdclk_table) which 
+means cdclk_compute_crawl_and_squash_midpoint will return false.
+Which means we want squash/crawl only. According to your comment above
+we want squash only.
+Then _bxt_set_cdclk gets called from bxt_set_cdclk here, without any midpoint:
+
+} else {
+        _bxt_set_cdclk(dev_priv, cdclk_config, pipe);
+}
+
+In _bxt_set_cdclk we now at the condition:
+
+if (HAS_CDCLK_CRAWL(dev_priv) && dev_priv->display.cdclk.hw.vco > 0 && vco > 0 &&
+            !cdclk_pll_is_unknown(dev_priv->display.cdclk.hw.vco)) {
+        if (dev_priv->display.cdclk.hw.vco != vco)
+
+And _what_ now prevents it not to be always executed? 
+
+Both old and new vco are > 0, HAS_CDCLK_CRAWL is true, hw.vco is not ~0 and
+also obviously dev_priv->display.cdclk.hw.vco != vco is also true.
+
+Then we get adlp_cdclk_pll_crawl always executed here.
+
+So I think what is happening currently is driven by that mtl_cdclk_table
+rather than new cdclk being higher or lower than old cdclk.
+
+adlp_cdclk_pll_crawl will be called whenever vco had changed, regardless
+or whether we want squashing or not.
+
+Stan
+
+
+> > I can see that squash waveform will be returned as 0, if CDCLK is >= 307
+> > MHz for MTL for example, or if CDCLK is equal to bypass, however the only
+> > way to skip crawling here seems to either have vco == ~0(probably after hw
+> > init) or vco == 0, but if vco == 0 we are going to then call
+> > icl_cdclk_pll_update which might disable pll, if current hw.vco is not 0.
+> > 
+> > So what am I missing here?
+> > 
+> > Stan
+> > 
+> > >
+> > > Anusha
+> > > > Stan
+> > > >
+> > > >
+> > > > > > +}
+> > > > > > +
+> > > > > >  static void _bxt_set_cdclk(struct drm_i915_private *dev_priv,
+> > > > > >  			   const struct intel_cdclk_config
+> > *cdclk_config,
+> > > > > >  			   enum pipe pipe)
+> > > > > > @@ -1815,9 +1822,12 @@ static void _bxt_set_cdclk(struct
+> > > > > > drm_i915_private *dev_priv,
+> > > > > >  	    !cdclk_pll_is_unknown(dev_priv->display.cdclk.hw.vco)) {
+> > > > > >  		if (dev_priv->display.cdclk.hw.vco != vco)
+> > > > > >  			adlp_cdclk_pll_crawl(dev_priv, vco);
+> > > > > > -	} else if (DISPLAY_VER(dev_priv) >= 11)
+> > > > > > +	} else if (DISPLAY_VER(dev_priv) >= 11) {
+> > > > > > +		if (pll_enable_wa_needed(dev_priv))
+> > > > > > +			dg2_cdclk_squash_program(dev_priv, 0);
+> > > > > > +
+> > > > > >  		icl_cdclk_pll_update(dev_priv, vco);
+> > > > > > -	else
+> > > > > > +	} else
+> > > > > >  		bxt_cdclk_pll_update(dev_priv, vco);
+> > > > > >
+> > > > > >  	waveform = cdclk_squash_waveform(dev_priv, cdclk);
+> > > > > > --
+> > > > > > 2.37.3
+> > > > >
