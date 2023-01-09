@@ -1,69 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6279C6621C1
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Jan 2023 10:39:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 363876621FC
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Jan 2023 10:47:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8558B10E391;
-	Mon,  9 Jan 2023 09:39:30 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FDB310E391;
- Mon,  9 Jan 2023 09:39:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9097610E39E;
+	Mon,  9 Jan 2023 09:47:19 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E128610E39E
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 Jan 2023 09:47:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673257169; x=1704793169;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=5rVVzSBD1AyB8rNYOEao6ic+WdBoUjtp+v9LVZSHgXo=;
- b=eNQ+XTOwL2wdlL6K3HU/eJxgzH+UlC1EgZam+uDZjasJtp9dR8FvYXDY
- RE1Eezw0++nH8t6L0bDGqcqTXI0KIqLPAluIoco6TvHmsLAGV9XjuXFG9
- VyVDyjWBd0SZz+7A6C08QR+xJN0+44UVP2qqoo0Y6+gJdjZT/dNYvnOYk
- l+RmUqpB7g//5l9rWlmEGXUhwHDnjEetLEL9xNX5r7Hu7ioaCCJUm5vbp
- 3fzUgX3SxluvuhUsdDYnJFoOG1ug4Z2S4arFKH5Kfbq7be1SaT2hIlZp8
- o1ynC6N9YAz/dQzzV2Hn6/hJljcBfdJwHVswZ9fNu3h5ygOIJ5zSweNxc g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10584"; a="322909656"
-X-IronPort-AV: E=Sophos;i="5.96,311,1665471600"; d="scan'208";a="322909656"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2023 01:39:28 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10584"; a="985342024"
-X-IronPort-AV: E=Sophos;i="5.96,311,1665471600"; d="scan'208";a="985342024"
-Received: from lherman-mobl.ger.corp.intel.com (HELO [10.213.209.244])
- ([10.213.209.244])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2023 01:39:27 -0800
-Message-ID: <58691e33-4b69-aa16-42bf-4c2d5ae5b699@linux.intel.com>
-Date: Mon, 9 Jan 2023 09:39:25 +0000
+ t=1673257637; x=1704793637;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=NbS2D3xqUhtYhngafBSOw+m3xuP82FT+beucxKYmEHo=;
+ b=JT4ksSok1yn4YlWySsAS8JUA9zcHDD5KX5Elhz6MznxsHeuX2X9eHMYI
+ V6ZOzHpI8d0zlJgR5pmpg28Lzg7VMbJVaKs4sjHVAjEfpGW7dC43vSmPR
+ 0mR9h6q2zRmW5gn7NxYQ/Pe7agGBMV+ZG6PBoD+NWQgTIVX/zj6nUCit6
+ yuYch3Yd0zQMKrGa12n+Y18OrTBMPdGOLd2bA3K/hVHhSKoeE9w9XSypm
+ g/c60VwULjRTGioHSlAlfb3Fn4cUR7GoNnxdC1jdQEBDBMBotjLnmTXZ6
+ nCxnKWQjtTA+Ts9+fClepJuyQ0UDaRkiv0C8HB0otWzBtJJC7PwmV78cw A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10584"; a="310628163"
+X-IronPort-AV: E=Sophos;i="5.96,311,1665471600"; d="scan'208";a="310628163"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2023 01:47:17 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10584"; a="649968211"
+X-IronPort-AV: E=Sophos;i="5.96,311,1665471600"; d="scan'208";a="649968211"
+Received: from gtmcgeac-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.11.217])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2023 01:47:15 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Manna, Animesh" <animesh.manna@intel.com>, Ville Syrjala
+ <ville.syrjala@linux.intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+In-Reply-To: <PH7PR11MB5981EE9597D82331ABD7472AF9FA9@PH7PR11MB5981.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20221216003810.13338-1-ville.syrjala@linux.intel.com>
+ <20221216003810.13338-12-ville.syrjala@linux.intel.com>
+ <PH7PR11MB5981EE9597D82331ABD7472AF9FA9@PH7PR11MB5981.namprd11.prod.outlook.com>
+Date: Mon, 09 Jan 2023 11:47:13 +0200
+Message-ID: <871qo42g66.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Content-Language: en-US
-To: John Harrison <john.c.harrison@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Intel-GFX@Lists.FreeDesktop.Org
-References: <20221118015858.2548106-1-John.C.Harrison@Intel.com>
- <20221118015858.2548106-5-John.C.Harrison@Intel.com>
- <48f594de-9682-4b60-f934-9420d02b405e@intel.com>
- <dd9559e8-7d65-d7bb-ea1a-d169a1c7eec3@intel.com>
- <4579b7e8-eae7-b760-66aa-b01273d18aab@intel.com>
- <d658f8fa-a063-aa0c-48ff-14f32cb6b339@intel.com>
- <9a5a84be-a5ae-7be2-f522-5e976511e4e1@intel.com>
- <143a660d-de2d-a77a-b490-8ad2add80420@linux.intel.com>
- <dd787d9d-8559-1da4-7e99-2635ef1341a8@intel.com>
- <c5622088-e381-1df4-417d-9b033b0a6afe@linux.intel.com>
- <467f47f4-c30f-16ba-3330-a3d4752366a8@intel.com>
- <f0ebffa1-45b7-d6f9-4341-3fa8aabae3f5@linux.intel.com>
- <127d50a6-b0c4-b87b-ddf5-6bd121d53f3c@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <127d50a6-b0c4-b87b-ddf5-6bd121d53f3c@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2 4/5] drm/i915/guc: Add GuC CT specific
- debug print wrappers
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 11/13] drm/i915/dsb: Add mode DSB opcodes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,51 +62,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, 05 Jan 2023, "Manna, Animesh" <animesh.manna@intel.com> wrote:
+>> -----Original Message-----
+>> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of V=
+ille
+>> Syrjala
+>> Sent: Friday, December 16, 2022 6:08 AM
+>> To: intel-gfx@lists.freedesktop.org
+>> Subject: [Intel-gfx] [PATCH 11/13] drm/i915/dsb: Add mode DSB opcodes
+>>=20
+>> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>>=20
+>> Add all the know DSB instruction opcodes.
+>>=20
+>> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_dsb.c | 8 ++++++++
+>>  1 file changed, 8 insertions(+)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c
+>> b/drivers/gpu/drm/i915/display/intel_dsb.c
+>> index 7c593ec84d41..96bc117fd6a0 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dsb.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+>> @@ -67,8 +67,16 @@ struct intel_dsb {
+>>=20
+>>  /* DSB opcodes. */
+>>  #define DSB_OPCODE_SHIFT		24
+>> +#define DSB_OPCODE_NOOP			0x0
+>>  #define DSB_OPCODE_MMIO_WRITE		0x1
+>> +#define DSB_OPCODE_WAIT_USEC		0x2
+>> +#define DSB_OPCODE_WAIT_LINES		0x3
+>> +#define DSB_OPCODE_WAIT_VBLANKS		0x4
+>> +#define DSB_OPCODE_WAIT_DSL_IN		0x5
+>> +#define DSB_OPCODE_WAIT_DSL_OUT		0x6
+>> +#define DSB_OPCODE_INTERRUPT		0x7
+>>  #define DSB_OPCODE_INDEXED_WRITE	0x9
+>> +#define DSB_OPCODE_POLL			0xA
+>>  #define DSB_BYTE_EN			0xF
+>>  #define DSB_BYTE_EN_SHIFT		20
+>>  #define DSB_REG_VALUE_MASK		0xfffff
+>
+> Not sure if we can check-in the above macros without its usage.
 
-On 06/01/2023 18:57, John Harrison wrote:
-> On 12/6/2022 03:06, Tvrtko Ursulin wrote:
->> On 05/12/2022 18:44, Michal Wajdeczko wrote:
->>> On 05.12.2022 14:16, Tvrtko Ursulin wrote:
->>>> On 02/12/2022 20:14, John Harrison wrote:
->>>> [snip]
->>>>
->>>>> Random meaningless (to me) message that is apparently a display thing:
->>>>> drm_dbg_kms(&dev_priv->drm, "disabling %s\n", pll->info->name);
->>>>> i915 0000:00:02.0: [drm:intel_disable_shared_dpll [i915]] disabling
->>>>> PORT PLL B
->>>>
->>>> Plan is to not touch outside gt/.
-> For some unexplicable reason that means it is almost impossible to see 
-> the actual problems in most CI dmesg logs because they are swamped with 
-> irrelevant display messages that cannot be filtered out. For example, I 
-> recently manually grep'd out all the display spam from a bug report log. 
-> The dmesg file went from 12MB to 700KB. That is a significant problem 
-> that makes bug triage way harder than it needs to be.
+It depends on the case. Here, I think we can and we should.
 
-I didn't get this part, how it would reduce the amount of spam by adding 
-new macros? Anyway, that's something to split out and discuss with 
-display folks.
+BR,
+Jani.
 
->> Maybe as a way forward work could be split? If John wants to deal with 
->> gt_xxx macros, avoid touching GuC (putting his original motivation 
->> aside) and you want to convert the gt/uc folder? Assuming John you are 
->> okay with "GuC:" and "CT:" prefixes.
-> Meaning just repost patch #1 only and expand to more intel_gt_* files? 
-> Sure, if someone will actually reply to that patch with some kind of r-b 
-> first so I know I'm not still wasting my time on a huge re-write that 
-> will to be redone multiple times when someone objects to the use of a 
-> colon or the lack of spaces, braces or whatever.
 
-First patch looks good to me (ack in principle) apart that Michal found 
-one potential null pointer dereference if I understood it right. That 
-other comment about the ratelimited call is maybe okay to leave for 
-later, *if* it will be a single instance, otherwise needs a gt logger as 
-well. I can r-b once you re-send with the first issue fixed.
 
-Regards,
+>
+> Regards,
+> Animesh
+>
+>> --
+>> 2.37.4
+>
 
-Tvrtko
+--=20
+Jani Nikula, Intel Open Source Graphics Center
