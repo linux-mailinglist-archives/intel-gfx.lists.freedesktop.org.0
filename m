@@ -1,50 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45BAD663F4A
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Jan 2023 12:35:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2487663F55
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Jan 2023 12:37:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1857B10E5A0;
-	Tue, 10 Jan 2023 11:35:50 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4294F10E5A0;
- Tue, 10 Jan 2023 11:35:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BEE210E5A4;
+	Tue, 10 Jan 2023 11:37:15 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B756B10E5A4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Jan 2023 11:37:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673350547; x=1704886547;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=NkYnLTAJj/tzOIV/Zb+sAUOE5OSyd2MqX9s6BRrI5PU=;
- b=UCnHLL4upYF3Hkh6yCgxW/uyycy7T8QSWRXU83WuR+nrZ0KHaWPjf3fQ
- foehtE0peM8im/QBT+su6hWoSW5IqqUZ4ZTL1Cg3O+sr7XcBXYQIg4gBg
- 8IhjdlaDTn9yx02kQpRegI2jFQ6pfnQw6rnIbdxW40zST1IZ3TQVJ2Gws
- QHkvPB3V1/0kFA1QEi8//eHQMqB4b1Ey9F1ZfBi8z9GtOgctGii/h26Lg
- 7mDCoXfTGieMlyjEzq3zO+EmxN9ppnTlcDnUIHt8S+GA5GtcgUPx5OxtZ
- whJQvF58AzAzhYlY6+D4JaA8k6f11W6VyRf7C3f1JggC/dKgk0nzcUZVN g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10585"; a="302822264"
-X-IronPort-AV: E=Sophos;i="5.96,315,1665471600"; d="scan'208";a="302822264"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2023 03:35:46 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10585"; a="745745930"
-X-IronPort-AV: E=Sophos;i="5.96,315,1665471600"; d="scan'208";a="745745930"
-Received: from gregoire-mobl3.amr.corp.intel.com (HELO localhost.localdomain)
- ([10.212.88.71])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2023 03:35:45 -0800
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Tue, 10 Jan 2023 11:35:33 +0000
-Message-Id: <20230110113533.744436-1-tvrtko.ursulin@linux.intel.com>
+ t=1673350632; x=1704886632;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=jYnbYMlTdoLfF0BDNzfdcDybLRHnRAuiYXsfXr98HGU=;
+ b=Vhj26rQ8bNvaoU4dazb+XNksKZyMHw0glkPMT3XVFc2OQjit353Zwsim
+ RATYoGYXukBoQnBmN3ses4aiL8n/YHEn84WnubTwRtyDkt2C4TQ8Ehffa
+ IlQTNyCfEgdVEYRAX1tdNFNOwC0f9XRbIm5+pI3bzto1yncImMlHEnYrM
+ Wi2zJyPeb2pDphuBxWszauJADNh9iro+LHETJmcKxG8WtsPSCjLJD9o55
+ Sa4WpFJ+4+npsBtJTfKXIRqsu5BFrAyeZbcIsxREYV+3kXzfBpnwH5L+P
+ fgbBl7Mk9WCsa9+7U8cF0sK5GaujIWXYS57FYxjQLSVFA2i+cK91CdwMm Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10585"; a="320815220"
+X-IronPort-AV: E=Sophos;i="5.96,315,1665471600"; d="scan'208";a="320815220"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2023 03:37:12 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10585"; a="606933794"
+X-IronPort-AV: E=Sophos;i="5.96,315,1665471600"; d="scan'208";a="606933794"
+Received: from lab-ah.igk.intel.com ([10.102.42.211])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2023 03:37:10 -0800
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Date: Tue, 10 Jan 2023 12:36:56 +0100
+Message-Id: <20230110113656.4050491-1-andrzej.hajda@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <Y7xqk3HKlq/50SSD@intel.com>
+References: <Y7xqk3HKlq/50SSD@intel.com>
 MIME-Version: 1.0
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4] drm/i915: Do not cover all future platforms
- in TLB invalidation
+Subject: [Intel-gfx] [PATCH v3] drm/i915/display/misc: use intel_de_rmw if
+ possible
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,66 +59,152 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+The helper makes the code more compact and readable.
 
-Revert to the original explicit approach and document the reasoning
-behind it.
-
-v2:
- * DG2 needs to be covered too. (Matt)
-
-v3:
- * Full version check for Gen12 to avoid catching all future platforms.
-   (Matt)
-
-v4:
- * Be totally explicit on the Gen12 branch. (Andrzej)
-
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com> # v1
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com> # v3
+Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gt.c | 17 +++++++++++++++--
- 1 file changed, 15 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/g4x_dp.c     | 12 ++++--------
+ drivers/gpu/drm/i915/display/intel_drrs.c | 12 +++---------
+ drivers/gpu/drm/i915/display/intel_dvo.c  |  7 ++-----
+ drivers/gpu/drm/i915/display/intel_lvds.c | 12 ++++--------
+ drivers/gpu/drm/i915/display/intel_tv.c   |  6 ++----
+ 5 files changed, 15 insertions(+), 34 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index 7eeee5a7cb33..5721bf85d119 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -1070,10 +1070,23 @@ static void mmio_invalidate_full(struct intel_gt *gt)
- 	unsigned int num = 0;
- 	unsigned long flags;
+diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
+index 24ef36ec2d3d3c..9629b174ec5d2c 100644
+--- a/drivers/gpu/drm/i915/display/g4x_dp.c
++++ b/drivers/gpu/drm/i915/display/g4x_dp.c
+@@ -136,16 +136,12 @@ static void intel_dp_prepare(struct intel_encoder *encoder,
  
--	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
-+	/*
-+	 * New platforms should not be added with catch-all-newer (>=)
-+	 * condition so that any later platform added triggers the below warning
-+	 * and in turn mandates a human cross-check of whether the invalidation
-+	 * flows have compatible semantics.
-+	 *
-+	 * For instance with the 11.00 -> 12.00 transition three out of five
-+	 * respective engine registers were moved to masked type. Then after the
-+	 * 12.00 -> 12.50 transition multi cast handling is required too.
-+	 */
-+
-+	if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 50) ||
-+	    GRAPHICS_VER_FULL(i915) == IP_VER(12, 55)) {
- 		regs = NULL;
- 		num = ARRAY_SIZE(xehp_regs);
--	} else if (GRAPHICS_VER(i915) == 12) {
-+	} else if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 0) ||
-+		   GRAPHICS_VER_FULL(i915) == IP_VER(12, 10)) {
- 		regs = gen12_regs;
- 		num = ARRAY_SIZE(gen12_regs);
- 	} else if (GRAPHICS_VER(i915) >= 8 && GRAPHICS_VER(i915) <= 11) {
+ 		intel_dp->DP |= DP_PIPE_SEL_IVB(crtc->pipe);
+ 	} else if (HAS_PCH_CPT(dev_priv) && port != PORT_A) {
+-		u32 trans_dp;
+-
+ 		intel_dp->DP |= DP_LINK_TRAIN_OFF_CPT;
+ 
+-		trans_dp = intel_de_read(dev_priv, TRANS_DP_CTL(crtc->pipe));
+-		if (drm_dp_enhanced_frame_cap(intel_dp->dpcd))
+-			trans_dp |= TRANS_DP_ENH_FRAMING;
+-		else
+-			trans_dp &= ~TRANS_DP_ENH_FRAMING;
+-		intel_de_write(dev_priv, TRANS_DP_CTL(crtc->pipe), trans_dp);
++		intel_de_rmw(dev_priv, TRANS_DP_CTL(crtc->pipe),
++			     TRANS_DP_ENH_FRAMING,
++			     drm_dp_enhanced_frame_cap(intel_dp->dpcd) ?
++			     TRANS_DP_ENH_FRAMING : 0);
+ 	} else {
+ 		if (IS_G4X(dev_priv) && pipe_config->limited_color_range)
+ 			intel_dp->DP |= DP_COLOR_RANGE_16_235;
+diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c b/drivers/gpu/drm/i915/display/intel_drrs.c
+index 5b9e44443814e9..a52974f5f66042 100644
+--- a/drivers/gpu/drm/i915/display/intel_drrs.c
++++ b/drivers/gpu/drm/i915/display/intel_drrs.c
+@@ -68,21 +68,15 @@ intel_drrs_set_refresh_rate_pipeconf(struct intel_crtc *crtc,
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 	enum transcoder cpu_transcoder = crtc->drrs.cpu_transcoder;
+-	u32 val, bit;
++	u32 bit;
+ 
+ 	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+ 		bit = PIPECONF_REFRESH_RATE_ALT_VLV;
+ 	else
+ 		bit = PIPECONF_REFRESH_RATE_ALT_ILK;
+ 
+-	val = intel_de_read(dev_priv, PIPECONF(cpu_transcoder));
+-
+-	if (refresh_rate == DRRS_REFRESH_RATE_LOW)
+-		val |= bit;
+-	else
+-		val &= ~bit;
+-
+-	intel_de_write(dev_priv, PIPECONF(cpu_transcoder), val);
++	intel_de_rmw(dev_priv, PIPECONF(cpu_transcoder),
++		     bit, refresh_rate == DRRS_REFRESH_RATE_LOW ? bit : 0);
+ }
+ 
+ static void
+diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c b/drivers/gpu/drm/i915/display/intel_dvo.c
+index 4aeae0f3ac9172..77d413781020de 100644
+--- a/drivers/gpu/drm/i915/display/intel_dvo.c
++++ b/drivers/gpu/drm/i915/display/intel_dvo.c
+@@ -444,11 +444,8 @@ static bool intel_dvo_init_dev(struct drm_i915_private *dev_priv,
+ 	 * the clock enabled before we attempt to initialize
+ 	 * the device.
+ 	 */
+-	for_each_pipe(dev_priv, pipe) {
+-		dpll[pipe] = intel_de_read(dev_priv, DPLL(pipe));
+-		intel_de_write(dev_priv, DPLL(pipe),
+-			       dpll[pipe] | DPLL_DVO_2X_MODE);
+-	}
++	for_each_pipe(dev_priv, pipe)
++		dpll[pipe] = intel_de_rmw(dev_priv, DPLL(pipe), 0, DPLL_DVO_2X_MODE);
+ 
+ 	ret = dvo->dev_ops->init(&intel_dvo->dev, i2c);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
+index aecec992cd0d2d..e8f47b7ef87649 100644
+--- a/drivers/gpu/drm/i915/display/intel_lvds.c
++++ b/drivers/gpu/drm/i915/display/intel_lvds.c
+@@ -316,11 +316,9 @@ static void intel_enable_lvds(struct intel_atomic_state *state,
+ 	struct intel_lvds_encoder *lvds_encoder = to_lvds_encoder(encoder);
+ 	struct drm_i915_private *dev_priv = to_i915(dev);
+ 
+-	intel_de_write(dev_priv, lvds_encoder->reg,
+-		       intel_de_read(dev_priv, lvds_encoder->reg) | LVDS_PORT_EN);
++	intel_de_rmw(dev_priv, lvds_encoder->reg, 0, LVDS_PORT_EN);
+ 
+-	intel_de_write(dev_priv, PP_CONTROL(0),
+-		       intel_de_read(dev_priv, PP_CONTROL(0)) | PANEL_POWER_ON);
++	intel_de_rmw(dev_priv, PP_CONTROL(0), 0, PANEL_POWER_ON);
+ 	intel_de_posting_read(dev_priv, lvds_encoder->reg);
+ 
+ 	if (intel_de_wait_for_set(dev_priv, PP_STATUS(0), PP_ON, 5000))
+@@ -338,14 +336,12 @@ static void intel_disable_lvds(struct intel_atomic_state *state,
+ 	struct intel_lvds_encoder *lvds_encoder = to_lvds_encoder(encoder);
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 
+-	intel_de_write(dev_priv, PP_CONTROL(0),
+-		       intel_de_read(dev_priv, PP_CONTROL(0)) & ~PANEL_POWER_ON);
++	intel_de_rmw(dev_priv, PP_CONTROL(0), PANEL_POWER_ON, 0);
+ 	if (intel_de_wait_for_clear(dev_priv, PP_STATUS(0), PP_ON, 1000))
+ 		drm_err(&dev_priv->drm,
+ 			"timed out waiting for panel to power off\n");
+ 
+-	intel_de_write(dev_priv, lvds_encoder->reg,
+-		       intel_de_read(dev_priv, lvds_encoder->reg) & ~LVDS_PORT_EN);
++	intel_de_rmw(dev_priv, lvds_encoder->reg, LVDS_PORT_EN, 0);
+ 	intel_de_posting_read(dev_priv, lvds_encoder->reg);
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_tv.c b/drivers/gpu/drm/i915/display/intel_tv.c
+index b986bf075889a1..3b5ff84dc61582 100644
+--- a/drivers/gpu/drm/i915/display/intel_tv.c
++++ b/drivers/gpu/drm/i915/display/intel_tv.c
+@@ -930,8 +930,7 @@ intel_enable_tv(struct intel_atomic_state *state,
+ 	/* Prevents vblank waits from timing out in intel_tv_detect_type() */
+ 	intel_crtc_wait_for_next_vblank(to_intel_crtc(pipe_config->uapi.crtc));
+ 
+-	intel_de_write(dev_priv, TV_CTL,
+-		       intel_de_read(dev_priv, TV_CTL) | TV_ENC_ENABLE);
++	intel_de_rmw(dev_priv, TV_CTL, 0, TV_ENC_ENABLE);
+ }
+ 
+ static void
+@@ -943,8 +942,7 @@ intel_disable_tv(struct intel_atomic_state *state,
+ 	struct drm_device *dev = encoder->base.dev;
+ 	struct drm_i915_private *dev_priv = to_i915(dev);
+ 
+-	intel_de_write(dev_priv, TV_CTL,
+-		       intel_de_read(dev_priv, TV_CTL) & ~TV_ENC_ENABLE);
++	intel_de_rmw(dev_priv, TV_CTL, TV_ENC_ENABLE, 0);
+ }
+ 
+ static const struct tv_mode *intel_tv_mode_find(const struct drm_connector_state *conn_state)
 -- 
 2.34.1
 
