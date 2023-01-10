@@ -1,60 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7730663D31
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Jan 2023 10:46:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6A5F663D3D
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Jan 2023 10:48:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF3C010E57C;
-	Tue, 10 Jan 2023 09:45:58 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBB2210E584;
- Tue, 10 Jan 2023 09:45:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673343957; x=1704879957;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=vL6NmI6DPN+u687y8bwjoCQfUhP2lvS/jSezIJUycus=;
- b=WuXHcWKU6M4OliACX3M3uO0/+e96nOZCwQP4yXaBaK1qwxvbw/yadYmI
- FptrEK/5q7XrKNWGcduqmNrkvVG6tdkMRs2bEQywWr+OWpXKJ0RVENszj
- Q17zCiMC2HxLosRgtFUqXg8qMJIkfKFU5EcqLugR140TnFeoCdjZ2wqIs
- 2YZpK7HiQlaCT2rwz4p5nVa6saYlhKkcb3qDf/aR63MN+iyY3Uxa3Ah4s
- z2BdF6DRWrlpi0bUxTG04f9lVuqyYI5HYP6eqnirKA+kR7B4sfg8Rc2Be
- ihqBR8U7jKvNMLjCKLpMI3sK81PVhNcjFdchxrNbxt0pDy3dUlAhxmj3x g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10585"; a="302804969"
-X-IronPort-AV: E=Sophos;i="5.96,314,1665471600"; d="scan'208";a="302804969"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2023 01:45:56 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10585"; a="689362617"
-X-IronPort-AV: E=Sophos;i="5.96,314,1665471600"; d="scan'208";a="689362617"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.8.19])
- ([10.213.8.19])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2023 01:45:54 -0800
-Message-ID: <aa55da9e-299b-0e4a-1ced-ff0330593ac5@intel.com>
-Date: Tue, 10 Jan 2023 10:45:52 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4088710E581;
+	Tue, 10 Jan 2023 09:48:31 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4BDF910E580;
+ Tue, 10 Jan 2023 09:48:30 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 43725AADD5;
+ Tue, 10 Jan 2023 09:48:30 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1374276505593883387=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.6.1
-Content-Language: en-US
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20230106103835.640924-1-tvrtko.ursulin@linux.intel.com>
- <20230109122442.713861-1-tvrtko.ursulin@linux.intel.com>
- <ba227180-066a-8e07-9df6-a9d4e6ec2a05@intel.com>
- <6a861c63-39b7-e5e2-b7c5-43cf9b7130f8@linux.intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <6a861c63-39b7-e5e2-b7c5-43cf9b7130f8@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: Do not cover all future
- platforms in TLB invalidation
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Christoph Hellwig" <hch@lst.de>
+Date: Tue, 10 Jan 2023 09:48:30 -0000
+Message-ID: <167334411024.5201.4601557385777569463@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230110091009.474427-1-hch@lst.de>
+In-Reply-To: <20230110091009.474427-1-hch@lst.de>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/4=5D_vfio-mdev=3A_allow_building_the_sam?=
+ =?utf-8?q?ples_into_the_kernel?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,110 +41,194 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============1374276505593883387==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: series starting with [1/4] vfio-mdev: allow building the samples into the kernel
+URL   : https://patchwork.freedesktop.org/series/112602/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_12562 -> Patchwork_112602v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112602v1/index.html
+
+Participating hosts (39 -> 36)
+------------------------------
+
+  Additional (1): fi-pnv-d510 
+  Missing    (4): fi-kbl-soraka fi-rkl-11600 fi-bsw-kefka fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_112602v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-glk-j4005:       [PASS][1] -> [DMESG-FAIL][2] ([i915#5334])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12562/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112602v1/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@workarounds:
+    - fi-rkl-guc:         [PASS][3] -> [INCOMPLETE][4] ([i915#4983])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12562/fi-rkl-guc/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112602v1/fi-rkl-guc/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][5] ([fdo#109271]) +44 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112602v1/fi-pnv-d510/igt@kms_psr@primary_page_flip.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@requests:
+    - {bat-rpls-1}:       [INCOMPLETE][6] ([i915#6257]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12562/bat-rpls-1/igt@i915_selftest@live@requests.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112602v1/bat-rpls-1/igt@i915_selftest@live@requests.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#6257]: https://gitlab.freedesktop.org/drm/intel/issues/6257
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#7625]: https://gitlab.freedesktop.org/drm/intel/issues/7625
+  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
 
 
-On 10.01.2023 10:16, Tvrtko Ursulin wrote:
->
-> On 10/01/2023 08:23, Andrzej Hajda wrote:
->>
->>
->> On 09.01.2023 13:24, Tvrtko Ursulin wrote:
->>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>
->>> Revert to the original explicit approach and document the reasoning
->>> behind it.
->>>
->>> v2:
->>>   * DG2 needs to be covered too. (Matt)
->>>
->>> v3:
->>>   * Full version check for Gen12 to avoid catching all future 
->>> platforms.
->>>     (Matt)
->>>
->>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>> Cc: Matt Roper <matthew.d.roper@intel.com>
->>> Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
->>> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
->>> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com> # v1
->>> ---
->>>   drivers/gpu/drm/i915/gt/intel_gt.c | 17 +++++++++++++++--
->>>   1 file changed, 15 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c 
->>> b/drivers/gpu/drm/i915/gt/intel_gt.c
->>> index 7eeee5a7cb33..5521fa057aab 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
->>> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
->>> @@ -1070,10 +1070,23 @@ static void mmio_invalidate_full(struct 
->>> intel_gt *gt)
->>>       unsigned int num = 0;
->>>       unsigned long flags;
->>> -    if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
->>> +    /*
->>> +     * New platforms should not be added with catch-all-newer (>=)
->>> +     * condition so that any later platform added triggers the 
->>> below warning
->>> +     * and in turn mandates a human cross-check of whether the 
->>> invalidation
->>> +     * flows have compatible semantics.
->>> +     *
->>> +     * For instance with the 11.00 -> 12.00 transition three out of 
->>> five
->>> +     * respective engine registers were moved to masked type. Then 
->>> after the
->>> +     * 12.00 -> 12.50 transition multi cast handling is required too.
->>> +     */
->>> +
->>> +    if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50) &&
->>> +        GRAPHICS_VER_FULL(i915) <= IP_VER(12, 55)) {
->>>           regs = NULL;
->>>           num = ARRAY_SIZE(xehp_regs);
->>> -    } else if (GRAPHICS_VER(i915) == 12) {
->>> +    } else if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 0) ||
->>> +           GRAPHICS_VER_FULL(i915) == IP_VER(12, 10)) {
->>
->> MTL support is lost? IP_VER(12, 70)
->
-> AFAIU Matt says MTL is still incomplete anyway, so that would be added 
-> in an explicit patch here.
+Build changes
+-------------
 
-I've missed this part, sorry for the noise then :)
-And as I see PVC is similar story.
+  * Linux: CI_DRM_12562 -> Patchwork_112602v1
 
->
->> And again it looks for me inconsistent, some unknown platforms are 
->> covered, for example 12.54, some not, for example 12.11.
->
-> .11 and .54 as hypotheticals? You suggest this instead:
->
->     if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 50) ||
->         GRAPHICS_VER_FULL(i915) == IP_VER(12, 55)) {
->         regs = NULL;
->         num = ARRAY_SIZE(xehp_regs);
->     } else if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 0) ||
->            GRAPHICS_VER_FULL(i915) == IP_VER(12, 10)) {
->         regs = gen12_regs;
->         num = ARRAY_SIZE(gen12_regs);
->
-> ?
+  CI-20190529: 20190529
+  CI_DRM_12562: 89adbd3908455888dca4c5c42d0340446e40c28e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7114: 2fd839599a200c089a5c9dbf5048609faf9b8104 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_112602v1: 89adbd3908455888dca4c5c42d0340446e40c28e @ git://anongit.freedesktop.org/gfx-ci/linux
 
-For me this perfectly follows the 'strict' approach :)
 
->
-> It's fine by me if that covers all currently known platforms.
+### Linux commits
 
-My grep in i915_pci.c agrees.
+aa8846676b50 vfio-mdev: remove an non-existing driver from vfio-mediated-device
+0e4c11b9dcc9 vfio-mdev: move the mtty usage documentation
+749b11fe92da vfio-mdev: turn VFIO_MDEV into a selectable symbol
+64e0953903a7 vfio-mdev: allow building the samples into the kernel
 
-Regards
-Andrzej
+== Logs ==
 
->
-> Regards,
->
-> Tvrtko
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112602v1/index.html
 
+--===============1374276505593883387==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/4] vfio-mdev: allow building the samples into the kernel</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/112602/">https://patchwork.freedesktop.org/series/112602/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112602v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112602v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12562 -&gt; Patchwork_112602v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112602v1/index.html</p>
+<h2>Participating hosts (39 -&gt; 36)</h2>
+<p>Additional (1): fi-pnv-d510 <br />
+  Missing    (4): fi-kbl-soraka fi-rkl-11600 fi-bsw-kefka fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_112602v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12562/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112602v1/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12562/fi-rkl-guc/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112602v1/fi-rkl-guc/igt@i915_selftest@live@workarounds.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_page_flip:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112602v1/fi-pnv-d510/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +44 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@requests:<ul>
+<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12562/bat-rpls-1/igt@i915_selftest@live@requests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6257">i915#6257</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112602v1/bat-rpls-1/igt@i915_selftest@live@requests.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12562 -&gt; Patchwork_112602v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12562: 89adbd3908455888dca4c5c42d0340446e40c28e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7114: 2fd839599a200c089a5c9dbf5048609faf9b8104 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_112602v1: 89adbd3908455888dca4c5c42d0340446e40c28e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>aa8846676b50 vfio-mdev: remove an non-existing driver from vfio-mediated-device<br />
+0e4c11b9dcc9 vfio-mdev: move the mtty usage documentation<br />
+749b11fe92da vfio-mdev: turn VFIO_MDEV into a selectable symbol<br />
+64e0953903a7 vfio-mdev: allow building the samples into the kernel</p>
+
+</body>
+</html>
+
+--===============1374276505593883387==--
