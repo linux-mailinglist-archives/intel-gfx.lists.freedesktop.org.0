@@ -1,34 +1,94 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E199664364
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Jan 2023 15:36:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEB1266439D
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Jan 2023 15:50:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14D1B10E0C3;
-	Tue, 10 Jan 2023 14:36:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA2CF10E5D9;
+	Tue, 10 Jan 2023 14:49:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B5BDF10E0C3;
- Tue, 10 Jan 2023 14:36:32 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 87128AADD6;
- Tue, 10 Jan 2023 14:36:32 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1150439478316752169=="
+Received: from mx0a-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
+ [148.163.158.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2161D10E5D9
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Jan 2023 14:49:54 +0000 (UTC)
+Received: from pps.filterd (m0098420.ppops.net [127.0.0.1])
+ by mx0b-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
+ 30ADipNe024684; Tue, 10 Jan 2023 14:49:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
+ h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=pp1;
+ bh=WPPgsTqVXw3MYWcGCbj/p1qXM+CUpnBLnqM1ocA+3LQ=;
+ b=S9lNqo0mPrKZDmiBEfC1yDwHf1DD/vimO1Ta1wWoy46bTFUHoieKCze/h6ba3w0i/M1D
+ jP2w4AtdRzxStWeG7jyTkTZLX9tMgXL6TpiAMUt65AOLjRceux7PU4eUd3LVby4cHy+x
+ wbwYItggB1Y+ARH/yLmg4IkrNhyUKkqH8NHA4jDmFBpPGGkQXkM1+oqBDiQ2VKAs1Cd6
+ rKcZLwLpLtiw/+pcXXAnWi5TaIHBKtaZC2/yaxB+L2uoo5ExcKntcZCoVvjsCLT+OBU/
+ 7R/V1JpmqRY8KOs2Ks7rN9SxH2ygY42wUil4Py6SW7TFloNiY2FPevflPg/IbXAJEbUb 9Q== 
+Received: from pps.reinject (localhost [127.0.0.1])
+ by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3n19649x3g-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Tue, 10 Jan 2023 14:49:49 +0000
+Received: from m0098420.ppops.net (m0098420.ppops.net [127.0.0.1])
+ by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 30AEKGN9018273;
+ Tue, 10 Jan 2023 14:49:48 GMT
+Received: from ppma03wdc.us.ibm.com (ba.79.3fa9.ip4.static.sl-reverse.com
+ [169.63.121.186])
+ by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3n19649x2v-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Tue, 10 Jan 2023 14:49:48 +0000
+Received: from pps.filterd (ppma03wdc.us.ibm.com [127.0.0.1])
+ by ppma03wdc.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 30ACI4pc010657;
+ Tue, 10 Jan 2023 14:49:48 GMT
+Received: from smtprelay05.dal12v.mail.ibm.com ([9.208.130.101])
+ by ppma03wdc.us.ibm.com (PPS) with ESMTPS id 3my0c7a96n-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Tue, 10 Jan 2023 14:49:48 +0000
+Received: from smtpav04.wdc07v.mail.ibm.com (smtpav04.wdc07v.mail.ibm.com
+ [10.39.53.231])
+ by smtprelay05.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 30AEnkcm65732896
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Tue, 10 Jan 2023 14:49:47 GMT
+Received: from smtpav04.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id AB27658050;
+ Tue, 10 Jan 2023 14:49:46 +0000 (GMT)
+Received: from smtpav04.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 813555805E;
+ Tue, 10 Jan 2023 14:49:45 +0000 (GMT)
+Received: from [9.160.171.221] (unknown [9.160.171.221])
+ by smtpav04.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+ Tue, 10 Jan 2023 14:49:45 +0000 (GMT)
+Message-ID: <625de375-562d-3a72-830b-4c4835ab93e6@linux.ibm.com>
+Date: Tue, 10 Jan 2023 09:49:44 -0500
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Tue, 10 Jan 2023 14:36:32 -0000
-Message-ID: <167336139254.5202.3448830434848375691@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230110113533.744436-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20230110113533.744436-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Do_not_cover_all_future_platforms_in_TLB_invalidation_?=
- =?utf-8?b?KHJldjMp?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Content-Language: en-US
+To: Christoph Hellwig <hch@lst.de>,
+ Alex Williamson <alex.williamson@redhat.com>,
+ Kirti Wankhede <kwankhede@nvidia.com>
+References: <20230110091009.474427-1-hch@lst.de>
+ <20230110091009.474427-5-hch@lst.de>
+From: Anthony Krowiak <akrowiak@linux.ibm.com>
+In-Reply-To: <20230110091009.474427-5-hch@lst.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: KanNLKOwomRin1ekOSHGZJTf_TGnxGqB
+X-Proofpoint-ORIG-GUID: CeWU-G6IoEbhfJ0tOVAv6T45AV40UWsq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2023-01-10_06,2023-01-10_03,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0
+ lowpriorityscore=0 clxscore=1015 suspectscore=0 bulkscore=0
+ mlxlogscore=999 adultscore=0 phishscore=0 impostorscore=0 malwarescore=0
+ priorityscore=1501 mlxscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2212070000 definitions=main-2301100090
+Subject: Re: [Intel-gfx] [PATCH 4/4] vfio-mdev: remove an non-existing
+ driver from vfio-mediated-device
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,233 +101,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Jason Herne <jjherne@linux.ibm.com>, linux-s390@vger.kernel.org,
+ kvm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ Halil Pasic <pasic@linux.ibm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1150439478316752169==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+LGTM
 
-== Series Details ==
+Reviewed-by: Tony Krowiak <akrowiak@linux.ibm.com>
 
-Series: drm/i915: Do not cover all future platforms in TLB invalidation (rev3)
-URL   : https://patchwork.freedesktop.org/series/112484/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_12566 -> Patchwork_112484v3
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112484v3/index.html
-
-Participating hosts (42 -> 39)
-------------------------------
-
-  Missing    (3): fi-kbl-soraka fi-snb-2520m fi-pnv-d510 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_112484v3:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_selftest@live@reset:
-    - {bat-rpls-2}:       [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12566/bat-rpls-2/igt@i915_selftest@live@reset.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112484v3/bat-rpls-2/igt@i915_selftest@live@reset.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_112484v3 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@gt_lrc:
-    - fi-rkl-guc:         [PASS][3] -> [INCOMPLETE][4] ([i915#4983])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12566/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112484v3/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - {fi-ehl-2}:         [DMESG-FAIL][5] ([i915#5334]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12566/fi-ehl-2/igt@i915_selftest@live@gt_heartbeat.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112484v3/fi-ehl-2/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@gt_lrc:
-    - {bat-adln-1}:       [INCOMPLETE][7] ([i915#4983] / [i915#7609]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12566/bat-adln-1/igt@i915_selftest@live@gt_lrc.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112484v3/bat-adln-1/igt@i915_selftest@live@gt_lrc.html
-
-  * igt@i915_selftest@live@slpc:
-    - {bat-rpls-1}:       [DMESG-FAIL][9] ([i915#6367]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12566/bat-rpls-1/igt@i915_selftest@live@slpc.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112484v3/bat-rpls-1/igt@i915_selftest@live@slpc.html
-
-  
-#### Warnings ####
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - fi-rkl-11600:       [FAIL][11] ([fdo#103375]) -> [INCOMPLETE][12] ([i915#4817])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12566/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112484v3/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
-  [i915#4817]: https://gitlab.freedesktop.org/drm/intel/issues/4817
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
-  [i915#7609]: https://gitlab.freedesktop.org/drm/intel/issues/7609
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12566 -> Patchwork_112484v3
-
-  CI-20190529: 20190529
-  CI_DRM_12566: bf50c1a489dcc0e8a77211a8145f359c4996a538 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7114: 2fd839599a200c089a5c9dbf5048609faf9b8104 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_112484v3: bf50c1a489dcc0e8a77211a8145f359c4996a538 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-ed809ebb5f30 drm/i915: Do not cover all future platforms in TLB invalidation
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112484v3/index.html
-
---===============1150439478316752169==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Do not cover all future platforms in TLB invalidation (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/112484/">https://patchwork.freedesktop.org/series/112484/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112484v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112484v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12566 -&gt; Patchwork_112484v3</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112484v3/index.html</p>
-<h2>Participating hosts (42 -&gt; 39)</h2>
-<p>Missing    (3): fi-kbl-soraka fi-snb-2520m fi-pnv-d510 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_112484v3:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@i915_selftest@live@reset:<ul>
-<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12566/bat-rpls-2/igt@i915_selftest@live@reset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112484v3/bat-rpls-2/igt@i915_selftest@live@reset.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_112484v3 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@gt_lrc:<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12566/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112484v3/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12566/fi-ehl-2/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112484v3/fi-ehl-2/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>{bat-adln-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12566/bat-adln-1/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7609">i915#7609</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112484v3/bat-adln-1/igt@i915_selftest@live@gt_lrc.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@slpc:</p>
-<ul>
-<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12566/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112484v3/bat-rpls-1/igt@i915_selftest@live@slpc.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_suspend@basic-s3-without-i915:<ul>
-<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12566/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112484v3/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4817">i915#4817</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12566 -&gt; Patchwork_112484v3</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12566: bf50c1a489dcc0e8a77211a8145f359c4996a538 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7114: 2fd839599a200c089a5c9dbf5048609faf9b8104 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_112484v3: bf50c1a489dcc0e8a77211a8145f359c4996a538 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>ed809ebb5f30 drm/i915: Do not cover all future platforms in TLB invalidation</p>
-
-</body>
-</html>
-
---===============1150439478316752169==--
+On 1/10/23 4:10 AM, Christoph Hellwig wrote:
+> The nvidia mdev driver does not actually exist anywhere in the tree.
+>
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
+> ---
+>   Documentation/driver-api/vfio-mediated-device.rst | 8 +-------
+>   1 file changed, 1 insertion(+), 7 deletions(-)
+>
+> diff --git a/Documentation/driver-api/vfio-mediated-device.rst b/Documentation/driver-api/vfio-mediated-device.rst
+> index d4267243b4f525..bbd548b66b4255 100644
+> --- a/Documentation/driver-api/vfio-mediated-device.rst
+> +++ b/Documentation/driver-api/vfio-mediated-device.rst
+> @@ -60,7 +60,7 @@ devices as examples, as these devices are the first devices to use this module::
+>        |   mdev.ko     |
+>        | +-----------+ |  mdev_register_parent() +--------------+
+>        | |           | +<------------------------+              |
+> -     | |           | |                         |  nvidia.ko   |<-> physical
+> +     | |           | |                         | ccw_device.ko|<-> physical
+>        | |           | +------------------------>+              |    device
+>        | |           | |        callbacks        +--------------+
+>        | | Physical  | |
+> @@ -69,12 +69,6 @@ devices as examples, as these devices are the first devices to use this module::
+>        | |           | |                         |  i915.ko     |<-> physical
+>        | |           | +------------------------>+              |    device
+>        | |           | |        callbacks        +--------------+
+> -     | |           | |
+> -     | |           | |  mdev_register_parent() +--------------+
+> -     | |           | +<------------------------+              |
+> -     | |           | |                         | ccw_device.ko|<-> physical
+> -     | |           | +------------------------>+              |    device
+> -     | |           | |        callbacks        +--------------+
+>        | +-----------+ |
+>        +---------------+
+>   
