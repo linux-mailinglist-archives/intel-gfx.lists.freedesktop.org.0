@@ -1,65 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5988A664048
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Jan 2023 13:19:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B13E3664050
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Jan 2023 13:20:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D14310E5AB;
-	Tue, 10 Jan 2023 12:19:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE26110E056;
+	Tue, 10 Jan 2023 12:20:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D44ED10E5AB;
- Tue, 10 Jan 2023 12:19:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673353180; x=1704889180;
- h=message-id:date:mime-version:subject:from:to:cc:
- references:in-reply-to:content-transfer-encoding;
- bh=hMAKru4BErMxJmscpS8U4yfvHGR7TInX+pjKzB6Geb8=;
- b=iWzgDYhdLNxSGG4L9oVQCVwZ1bEhDjQBBHEE+xXS42x2VonI5yhlebXv
- e9tMz4p7Z1qi+Rcr1VP83OqRjMGXbY8FLoyInDchxbdasDaHmiI6fMVZ8
- vR/4LdBHUw06XmBQIs0Tq4me9HF7+LJaFs3bKYwjEZh/Lu3acBWX/GTPS
- 4eu3IVwIAZvf4oZNOAdUpwnLQLsyz5FUu8bvLG+ASNeJSueva/9iIzExP
- pxN/gsbUDiEBM0jHfGR4zVEcwEvdCkNPTKxCB98MXQguXmeIztf/gmVCe
- 2132+Ev4AJ9LNOC1Xc/ZSFg0qaYK+wF77lUr29jPEeHCwEDXFZI492xxP A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10585"; a="323197377"
-X-IronPort-AV: E=Sophos;i="5.96,315,1665471600"; d="scan'208";a="323197377"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2023 04:19:39 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10585"; a="657036601"
-X-IronPort-AV: E=Sophos;i="5.96,315,1665471600"; d="scan'208";a="657036601"
-Received: from gregoire-mobl3.amr.corp.intel.com (HELO [10.212.88.71])
- ([10.212.88.71])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2023 04:19:37 -0800
-Message-ID: <3b1af19f-3500-3be8-9d28-ac7da5b7d728@linux.intel.com>
-Date: Tue, 10 Jan 2023 12:19:35 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C88E510E056;
+ Tue, 10 Jan 2023 12:20:49 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C0E03AA917;
+ Tue, 10 Jan 2023 12:20:49 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5793493728700614021=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Content-Language: en-US
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Jason Ekstrand <jason@jlekstrand.net>
-References: <20221222222127.34560-1-matthew.brost@intel.com>
- <20221222222127.34560-5-matthew.brost@intel.com>
- <20221230112042.2ddd1946@collabora.com>
- <20221230125508.57af8a14@collabora.com>
- <20230102083019.24b99647@collabora.com>
- <7d6df13c-6c2e-d713-edc8-128d6e19f187@linux.intel.com>
- <Y7dEjcuc1arHBTGu@DUT025-TGLU.fm.intel.com>
- <Y7i0J3uQ+izOJcEb@DUT025-TGLU.fm.intel.com>
- <e8c301cb-c7d4-ed54-f3ab-61a5fcc7f940@linux.intel.com>
- <CAOFGe96yeF4SWxvHC5pxyggf=655q7+ZrFS+Zab42F-RE7UK1w@mail.gmail.com>
- <e6512993-5247-a577-abf4-97cdb21358a0@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <e6512993-5247-a577-abf4-97cdb21358a0@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [RFC PATCH 04/20] drm/sched: Convert drm scheduler
- to use a work queue rather than kthread
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Date: Tue, 10 Jan 2023 12:20:49 -0000
+Message-ID: <167335324978.5203.11997452298944394234@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230110105732.1390596-1-suraj.kandpal@intel.com>
+In-Reply-To: <20230110105732.1390596-1-suraj.kandpal@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRW5h?=
+ =?utf-8?q?ble_HDCP2=2Ex_via_GSC_CS_=28rev7=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,118 +40,196 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============5793493728700614021==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 10/01/2023 11:28, Tvrtko Ursulin wrote:
-> 
-> 
-> On 09/01/2023 17:27, Jason Ekstrand wrote:
-> 
-> [snip]
-> 
->>      >>> AFAICT it proposes to have 1:1 between *userspace* created
->>     contexts (per
->>      >>> context _and_ engine) and drm_sched. I am not sure avoiding
->>     invasive changes
->>      >>> to the shared code is in the spirit of the overall idea and 
->> instead
->>      >>> opportunity should be used to look at way to refactor/improve
->>     drm_sched.
->>
->>
->> Maybe?  I'm not convinced that what Xe is doing is an abuse at all or 
->> really needs to drive a re-factor.  (More on that later.)  There's 
->> only one real issue which is that it fires off potentially a lot of 
->> kthreads. Even that's not that bad given that kthreads are pretty 
->> light and you're not likely to have more kthreads than userspace 
->> threads which are much heavier.  Not ideal, but not the end of the 
->> world either.  Definitely something we can/should optimize but if we 
->> went through with Xe without this patch, it would probably be mostly ok.
->>
->>      >> Yes, it is 1:1 *userspace* engines and drm_sched.
->>      >>
->>      >> I'm not really prepared to make large changes to DRM scheduler
->>     at the
->>      >> moment for Xe as they are not really required nor does Boris
->>     seem they
->>      >> will be required for his work either. I am interested to see
->>     what Boris
->>      >> comes up with.
->>      >>
->>      >>> Even on the low level, the idea to replace drm_sched threads
->>     with workers
->>      >>> has a few problems.
->>      >>>
->>      >>> To start with, the pattern of:
->>      >>>
->>      >>>    while (not_stopped) {
->>      >>>     keep picking jobs
->>      >>>    }
->>      >>>
->>      >>> Feels fundamentally in disagreement with workers (while
->>     obviously fits
->>      >>> perfectly with the current kthread design).
->>      >>
->>      >> The while loop breaks and worker exists if no jobs are ready.
->>
->>
->> I'm not very familiar with workqueues. What are you saying would fit 
->> better? One scheduling job per work item rather than one big work item 
->> which handles all available jobs?
-> 
-> Yes and no, it indeed IMO does not fit to have a work item which is 
-> potentially unbound in runtime. But it is a bit moot conceptual mismatch 
-> because it is a worst case / theoretical, and I think due more 
-> fundamental concerns.
-> 
-> If we have to go back to the low level side of things, I've picked this 
-> random spot to consolidate what I have already mentioned and perhaps 
-> expand.
-> 
-> To start with, let me pull out some thoughts from workqueue.rst:
-> 
-> """
-> Generally, work items are not expected to hog a CPU and consume many 
-> cycles. That means maintaining just enough concurrency to prevent work 
-> processing from stalling should be optimal.
-> """
-> 
-> For unbound queues:
-> """
-> The responsibility of regulating concurrency level is on the users.
-> """
-> 
-> Given the unbound queues will be spawned on demand to service all queued 
-> work items (more interesting when mixing up with the system_unbound_wq), 
-> in the proposed design the number of instantiated worker threads does 
-> not correspond to the number of user threads (as you have elsewhere 
-> stated), but pessimistically to the number of active user contexts. That 
-> is the number which drives the maximum number of not-runnable jobs that 
-> can become runnable at once, and hence spawn that many work items, and 
-> in turn unbound worker threads.
-> 
-> Several problems there.
-> 
-> It is fundamentally pointless to have potentially that many more threads 
-> than the number of CPU cores - it simply creates a scheduling storm.
+== Series Details ==
 
-To make matters worse, if I follow the code correctly, all these per 
-user context worker thread / work items end up contending on the same 
-lock or circular buffer, both are one instance per GPU:
+Series: Enable HDCP2.x via GSC CS (rev7)
+URL   : https://patchwork.freedesktop.org/series/111876/
+State : success
 
-guc_engine_run_job
-  -> submit_engine
-     a) wq_item_append
-         -> wq_wait_for_space
-           -> msleep
-     b) xe_guc_ct_send
-         -> guc_ct_send
-           -> mutex_lock(&ct->lock);
-           -> later a potential msleep in h2g_has_room
+== Summary ==
 
-Regards,
+CI Bug Log - changes from CI_DRM_12565 -> Patchwork_111876v7
+====================================================
 
-Tvrtko
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v7/index.html
+
+Participating hosts (41 -> 37)
+------------------------------
+
+  Missing    (4): fi-bsw-kefka bat-rpls-2 fi-rkl-11600 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_111876v7 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [PASS][1] -> [INCOMPLETE][2] ([i915#6972])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12565/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v7/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+
+  * igt@runner@aborted:
+    - fi-bsw-nick:        NOTRUN -> [FAIL][3] ([fdo#109271] / [i915#4312])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v7/fi-bsw-nick/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s0@smem:
+    - {bat-adln-1}:       [DMESG-WARN][4] ([i915#2867]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12565/bat-adln-1/igt@gem_exec_suspend@basic-s0@smem.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v7/bat-adln-1/igt@gem_exec_suspend@basic-s0@smem.html
+
+  * igt@i915_selftest@live@mman:
+    - fi-rkl-guc:         [TIMEOUT][6] ([i915#6794]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12565/fi-rkl-guc/igt@i915_selftest@live@mman.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v7/fi-rkl-guc/igt@i915_selftest@live@mman.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6794]: https://gitlab.freedesktop.org/drm/intel/issues/6794
+  [i915#6972]: https://gitlab.freedesktop.org/drm/intel/issues/6972
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12565 -> Patchwork_111876v7
+
+  CI-20190529: 20190529
+  CI_DRM_12565: 1617f7f4ff6b95ef03d4228bf9f757a6c6488c91 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7114: 2fd839599a200c089a5c9dbf5048609faf9b8104 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_111876v7: 1617f7f4ff6b95ef03d4228bf9f757a6c6488c91 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+02333c7bcc72 drm/i915/mtl: Add HDCP GSC interface
+7ae16f92e896 drm/i915/mtl: Add function to send command to GSC CS
+63e8481a8af7 drm/i915/hdcp: Refactor HDCP API structures
+2316ba5ac066 i915/hdcp: HDCP2.x Refactoring to agnostic hdcp
+b10f954c10e2 drm/i915/hdcp: Keep hdcp agonstic naming convention
+8403ea5b3795 drm/i915/gsc: Create GSC request submission mechanism
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v7/index.html
+
+--===============5793493728700614021==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Enable HDCP2.x via GSC CS (rev7)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/111876/">https://patchwork.freedesktop.org/series/111876/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v7/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v7/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12565 -&gt; Patchwork_111876v7</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v7/index.html</p>
+<h2>Participating hosts (41 -&gt; 37)</h2>
+<p>Missing    (4): fi-bsw-kefka bat-rpls-2 fi-rkl-11600 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_111876v7 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12565/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v7/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6972">i915#6972</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v7/fi-bsw-nick/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s0@smem:</p>
+<ul>
+<li>{bat-adln-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12565/bat-adln-1/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v7/bat-adln-1/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@mman:</p>
+<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12565/fi-rkl-guc/igt@i915_selftest@live@mman.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6794">i915#6794</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111876v7/fi-rkl-guc/igt@i915_selftest@live@mman.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12565 -&gt; Patchwork_111876v7</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12565: 1617f7f4ff6b95ef03d4228bf9f757a6c6488c91 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7114: 2fd839599a200c089a5c9dbf5048609faf9b8104 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_111876v7: 1617f7f4ff6b95ef03d4228bf9f757a6c6488c91 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>02333c7bcc72 drm/i915/mtl: Add HDCP GSC interface<br />
+7ae16f92e896 drm/i915/mtl: Add function to send command to GSC CS<br />
+63e8481a8af7 drm/i915/hdcp: Refactor HDCP API structures<br />
+2316ba5ac066 i915/hdcp: HDCP2.x Refactoring to agnostic hdcp<br />
+b10f954c10e2 drm/i915/hdcp: Keep hdcp agonstic naming convention<br />
+8403ea5b3795 drm/i915/gsc: Create GSC request submission mechanism</p>
+
+</body>
+</html>
+
+--===============5793493728700614021==--
