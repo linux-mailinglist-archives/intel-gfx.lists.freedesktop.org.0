@@ -1,49 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCD9E66408D
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Jan 2023 13:33:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D961D66408F
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Jan 2023 13:33:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9A3510E064;
-	Tue, 10 Jan 2023 12:33:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5609C10E5B2;
+	Tue, 10 Jan 2023 12:33:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3698910E064
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Jan 2023 12:33:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673354022; x=1704890022;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=1i3LbwulTjIHk2SHr5kfCX1anOXxvYuABdjQShR62c0=;
- b=E6iGHbENkOnYcsJwR7YP4yict29ujiZNnjLqrfB4pk5tk5jg9/RV1xRT
- tU8/GNPrv9B6HrofKuFhje7jQNcFRTaKsCPhwHrzZhLqevrb3iocU/Iv5
- 7tOJ3u0yOZrVBAIg6KaP5N7kwykpu314hCtHduwjDqw0s/r0jtLGYTvTC
- Hbkd2rz5bBHm4BcIvdVFH0PXaFZPKciKkJE3QiPd2Eq0AS8TR5eqil7SB
- LhlukXP0Syj6U9HKOSELoGFTJaUaulX98l9lra4zYsvz36IhPAicxLCit
- Fjv942FpiKRRclzR4STXFwAkCekh2QW1Ur/u5tvy2Khmd4I6cDInE3IZK w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10585"; a="321833735"
-X-IronPort-AV: E=Sophos;i="5.96,315,1665471600"; d="scan'208";a="321833735"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2023 04:33:41 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10585"; a="720322418"
-X-IronPort-AV: E=Sophos;i="5.96,315,1665471600"; d="scan'208";a="720322418"
-Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
- ([10.237.72.65])
- by fmsmga008.fm.intel.com with ESMTP; 10 Jan 2023 04:33:40 -0800
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 10 Jan 2023 14:33:38 +0200
-Message-Id: <20230110123338.20196-1-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.37.3
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8829A10E5AB;
+ Tue, 10 Jan 2023 12:33:46 +0000 (UTC)
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: bbrezillon)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 7F6366602D72;
+ Tue, 10 Jan 2023 12:33:44 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1673354024;
+ bh=tQEEGgUywtfM47SU0jVZ/n63JMX3a1YEt0p7stzqRCM=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=YdHDsO1u0s7LjlC6HtEQP7Lk7wBQyRsZlL1PddsAt5f3adLvYn/215GuNk7SsGNi5
+ I7iNY8259ZCMMrGaHq+rbeXblSFj4ezWlEseaCOomt3mG1V50PLlgBLr15GO7f0V/5
+ z+LWYPfqjMEAHgLltBwkgRumlom3mlRMNaIifwLPY7FTWuaH/iSIUkcZzQNjPiOb5/
+ /NEOXDLawz2TCliRfz5RrdHYYtWOeqwnoROKra/FECbpSymJVPq9G43ZW2un1FQm8M
+ Y1jD58EYMk+dZWqTfjHGjuDjziX6R9buWj76VRiaYuI1y4mrVZF1lo8hp69hP8DEED
+ B3rnzxngGZdbA==
+Date: Tue, 10 Jan 2023 13:33:41 +0100
+From: Boris Brezillon <boris.brezillon@collabora.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Message-ID: <20230110133341.2167b900@collabora.com>
+In-Reply-To: <20221222222127.34560-1-matthew.brost@intel.com>
+References: <20221222222127.34560-1-matthew.brost@intel.com>
+Organization: Collabora
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Implement workaround for DP2 UHBR
- bandwidth check
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [RFC PATCH 00/20] Initial Xe driver submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,51 +52,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, Frank Binns <frank.binns@imgtec.com>,
+ Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-According to spec, we should check if output_bpp * pixel_rate is less
-than DDI clock * 72, if UHBR is used.
++Frank, who's also working on the pvr uAPI.
 
-HSDES: 1406899791
-BSPEC: 49259
+Hi,
 
-v2: - Removed wrong comment(Rodrigo Vivi)
-    - Added HSDES to the commit msg(Rodrigo Vivi)
-    - Moved UHBR check to the MST specific code
+On Thu, 22 Dec 2022 14:21:07 -0800
+Matthew Brost <matthew.brost@intel.com> wrote:
 
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 15 ++++++++++++---
- 1 file changed, 12 insertions(+), 3 deletions(-)
+> The code has been organized such that we have all patches that touch areas
+> outside of drm/xe first for review, and then the actual new driver in a separate
+> commit. The code which is outside of drm/xe is included in this RFC while
+> drm/xe is not due to the size of the commit. The drm/xe is code is available in
+> a public repo listed below.
+> 
+> Xe driver commit:
+> https://cgit.freedesktop.org/drm/drm-xe/commit/?h=drm-xe-next&id=9cb016ebbb6a275f57b1cb512b95d5a842391ad7
+> 
+> Xe kernel repo:
+> https://cgit.freedesktop.org/drm/drm-xe/
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 8b0e4defa3f1..1f1f7f5f6501 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -339,10 +339,19 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
- 		ret = intel_dp_dsc_compute_config(intel_dp, pipe_config,
- 						  conn_state, &limits,
- 						  pipe_config->dp_m_n.tu, false);
--	}
-+		if (ret < 0)
-+			return ret;
- 
--	if (ret)
--		return ret;
-+		if (intel_dp_is_uhbr(pipe_config)) {
-+			int output_bpp = pipe_config->dsc.compressed_bpp;
-+
-+			if (output_bpp * adjusted_mode->crtc_clock >=
-+			    pipe_config->port_clock * 72) {
-+				drm_dbg_kms(&dev_priv->drm, "DP2 UHBR check failed\n");
-+				return -EINVAL;
-+			}
-+		}
-+	}
- 
- 	ret = intel_dp_mst_update_slots(encoder, pipe_config, conn_state);
- 	if (ret)
--- 
-2.37.3
+Sorry to hijack this thread, again, but I'm currently working on the
+pancsf uAPI, and I was wondering how DRM maintainers/developers felt
+about the new direction taken by the Xe driver on some aspects of their
+uAPI (to decide if I should copy these patterns or go the old way):
+
+- plan for ioctl extensions through '__u64 extensions;' fields (the
+  vulkan way, basically)
+- turning the GETPARAM in DEV_QUERY which can return more than a 64-bit
+  integer at a time
+- having ioctls taking sub-operations instead of one ioctl per
+  operation (I'm referring to VM_BIND here, which handles map, unmap,
+  restart, ... through a single entry point)
+
+Regards,
+
+Boris
+
+
+
 
