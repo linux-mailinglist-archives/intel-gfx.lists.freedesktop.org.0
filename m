@@ -2,33 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 178FD663DA2
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Jan 2023 11:12:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA83D663E20
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Jan 2023 11:25:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5167B10E589;
-	Tue, 10 Jan 2023 10:12:21 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id E483310E589;
- Tue, 10 Jan 2023 10:12:17 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id DA11AA006C;
- Tue, 10 Jan 2023 10:12:17 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8783756768374943225=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3EAFF10E58F;
+	Tue, 10 Jan 2023 10:25:47 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BDA110E59E;
+ Tue, 10 Jan 2023 10:25:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1673346344; x=1704882344;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=8WwSYgOqg3tpTGHUJn6p9cqlKW6Mh8sJ4ZznLQ6zouI=;
+ b=OgjYMz6bIvYWR3sOhkLnkh1nYhVmeh1I4jAj7so+jVddFt0eJmXYAI5V
+ T0slwHJg6PURlH4tH7T78K5WxeqjVq9mCTMH8rPqbaiQw8gLiK/IKaEZj
+ xYtkb3cNJ+3EeoestkQ1gG2AzdM8/wPtFzrjvRoCXgkB4NPP3Uyu2FegM
+ we9Kn0fqc8KKVsTyVwKaWPoDEWmrTotl8vrivW2d/k1hXUuLHba1ZTtxt
+ R5glHoIYSgkiCVEPpU3igE6yn72pH/xeulqDj0I2AvIbXcM8v1/CZoXUL
+ R9s3Ek6uY4Qhq92sLaRaykVy8JCS5K6t2GFLsDrTQcomG+RqaIcqQcW4y Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10585"; a="303475630"
+X-IronPort-AV: E=Sophos;i="5.96,315,1665471600"; d="scan'208";a="303475630"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2023 02:25:43 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10585"; a="799384111"
+X-IronPort-AV: E=Sophos;i="5.96,315,1665471600"; d="scan'208";a="799384111"
+Received: from whitepau-mobl1.amr.corp.intel.com (HELO intel.com)
+ ([10.252.37.68])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2023 02:25:42 -0800
+Date: Tue, 10 Jan 2023 11:25:38 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: John.C.Harrison@intel.com
+Message-ID: <Y709IqKuIupsGqCS@ashyti-mobl2.lan>
+References: <20230109234824.1198769-1-John.C.Harrison@Intel.com>
+ <20230109234824.1198769-2-John.C.Harrison@Intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Tue, 10 Jan 2023 10:12:17 -0000
-Message-ID: <167334553788.5201.5282851056938562552@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230104153258.453431-1-jani.nikula@intel.com>
-In-Reply-To: <20230104153258.453431-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/display=3A_drop_redundant_display/_from_=23includes_=28re?=
- =?utf-8?b?djUp?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230109234824.1198769-2-John.C.Harrison@Intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 1/1] drm/i915/gt: Start adding module
+ oriented dmesg output
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,177 +59,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel-GFX@lists.freedesktop.org, DRI-Devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8783756768374943225==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi John,
 
-== Series Details ==
+[...]
 
-Series: drm/i915/display: drop redundant display/ from #includes (rev5)
-URL   : https://patchwork.freedesktop.org/series/111803/
-State : success
+> +#define gt_WARN_ON(_gt, _condition) \
+> +	gt_WARN(_gt, _condition, "%s", "gt_WARN_ON(" __stringify(_condition) ")")
+> +
+> +#define gt_WARN_ON_ONCE(_gt, _condition) \
+> +	gt_WARN_ONCE(_gt, _condition, "%s", "gt_WARN_ONCE(" __stringify(_condition) ")")
+> +
+> +#define gt_WARN(_gt, _condition, _fmt, ...) \
+> +	drm_WARN(&(_gt)->i915->drm, _condition, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
+> +
+> +#define gt_WARN_ONCE(_gt, _condition, _fmt, ...) \
+> +	drm_WARN_ONCE(&(_gt)->i915->drm, _condition, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
 
-== Summary ==
+do we need some order here? gt_WARN and gt_WARN_ONCE should go
+before respectively gt_WARN_ON and gt_WARN_ON_ONCE.
 
-CI Bug Log - changes from CI_DRM_12562 -> Patchwork_111803v5
-====================================================
+The rest looks good.
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111803v5/index.html
-
-Participating hosts (39 -> 36)
-------------------------------
-
-  Additional (1): fi-pnv-d510 
-  Missing    (4): fi-kbl-soraka fi-rkl-11600 fi-bsw-kefka fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_111803v5 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-pnv-d510:        NOTRUN -> [FAIL][1] ([i915#7229])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111803v5/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-
-  * igt@kms_psr@primary_page_flip:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][2] ([fdo#109271]) +44 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111803v5/fi-pnv-d510/igt@kms_psr@primary_page_flip.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@requests:
-    - {bat-rpls-1}:       [INCOMPLETE][3] ([i915#6257]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12562/bat-rpls-1/igt@i915_selftest@live@requests.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111803v5/bat-rpls-1/igt@i915_selftest@live@requests.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#6257]: https://gitlab.freedesktop.org/drm/intel/issues/6257
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6687]: https://gitlab.freedesktop.org/drm/intel/issues/6687
-  [i915#7229]: https://gitlab.freedesktop.org/drm/intel/issues/7229
-  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12562 -> Patchwork_111803v5
-
-  CI-20190529: 20190529
-  CI_DRM_12562: 89adbd3908455888dca4c5c42d0340446e40c28e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7114: 2fd839599a200c089a5c9dbf5048609faf9b8104 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_111803v5: 89adbd3908455888dca4c5c42d0340446e40c28e @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-a14f4d3e66ac drm/i915/display: drop redundant display/ from #includes
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111803v5/index.html
-
---===============8783756768374943225==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: drop redundant display/ from #includes (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/111803/">https://patchwork.freedesktop.org/series/111803/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111803v5/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111803v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12562 -&gt; Patchwork_111803v5</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111803v5/index.html</p>
-<h2>Participating hosts (39 -&gt; 36)</h2>
-<p>Additional (1): fi-pnv-d510 <br />
-  Missing    (4): fi-kbl-soraka fi-rkl-11600 fi-bsw-kefka fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_111803v5 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111803v5/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7229">i915#7229</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111803v5/fi-pnv-d510/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +44 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@requests:<ul>
-<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12562/bat-rpls-1/igt@i915_selftest@live@requests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6257">i915#6257</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111803v5/bat-rpls-1/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12562 -&gt; Patchwork_111803v5</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12562: 89adbd3908455888dca4c5c42d0340446e40c28e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7114: 2fd839599a200c089a5c9dbf5048609faf9b8104 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_111803v5: 89adbd3908455888dca4c5c42d0340446e40c28e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>a14f4d3e66ac drm/i915/display: drop redundant display/ from #includes</p>
-
-</body>
-</html>
-
---===============8783756768374943225==--
+Andi
