@@ -2,52 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ACD5663C32
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Jan 2023 10:06:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF648663C51
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Jan 2023 10:10:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCA1010E49C;
-	Tue, 10 Jan 2023 09:06:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FE3910E56C;
+	Tue, 10 Jan 2023 09:10:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3588510E49C
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Jan 2023 09:06:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673341581; x=1704877581;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=mXzuDg3KboZCUlezWny9xpwMJ2yWq40fq5mBr3je7Gg=;
- b=NMjqTGvsdyTT+H2UK5xET9XRwzqZ3BfLs/Q+9Fq3v8xCK8acJZ2qM/Q3
- Rp2Uu8jPDg9G7/1VpaMcbqYOpPMLnD1NK2VNSkwf+4wVd7HHrgXy32nxP
- kFC4Gif/Fk8OD2aDDF5CH2DVhszcTF+WWrjzwKH3uCQ+qOuuezQsPws3M
- lu+j3P7/8S/OWErBgagHuMtUGmQK15x5I6aBjPmDsVq5Xl5nn+sWTIaat
- rNRHz53MVosrokTPKf921+T9SWACx38JFKn8vEVICO0zJGWGUVxU3L3XY
- nQx0s4Gctd46lPnRFJyK5eTGq2Juy37mdkSvwYY9oN4uSdh6r2mYxXVf1 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10585"; a="303462826"
-X-IronPort-AV: E=Sophos;i="5.96,314,1665471600"; d="scan'208";a="303462826"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2023 01:06:20 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10585"; a="799356803"
-X-IronPort-AV: E=Sophos;i="5.96,314,1665471600"; d="scan'208";a="799356803"
-Received: from lmcelwai-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.11.33])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2023 01:06:17 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230107053643.1984045-3-chaitanya.kumar.borah@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230107053643.1984045-1-chaitanya.kumar.borah@intel.com>
- <20230107053643.1984045-3-chaitanya.kumar.borah@intel.com>
-Date: Tue, 10 Jan 2023 11:06:14 +0200
-Message-ID: <875yde21yx.fsf@intel.com>
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:3::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71A8010E56C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Jan 2023 09:10:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ MIME-Version:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
+ Content-ID:Content-Description:In-Reply-To:References;
+ bh=B7sGmSmXqXdck4MSb4UdnDVnJ5cP+hxBfzPSNoLBlas=; b=H++a8/OB8Gph+evoX6G3aPlj1z
+ +i6Vgp0jxN9tIF/xZFKGnKV14cCjfSQIFV1i7lRhSvevb/3EuEoBVyY/u2k58CrZIsKCruEQI+H7m
+ +hFHcoh1JAgVqidnjH9+TITs1EHV6t2Qt7WFLuPO7s2Yf+IYBJdD+n60G1GdUCvb3gsJwMuaDaDt+
+ uDPuiOJnAKxyhYNR2gINgVczKp78Kb+hJ6dioAlD7FFV8JxmN/BbgsjE1z6Z/R4/o43rhk5pXT7Wp
+ /lYhrXoq+5Fv9yKqQ0GWxw5H+cLaq+PYKQLLqgpC9yCeZFBYxwBWXI5ptX6GIkql0ZYc6ops7I5N7
+ RgwlWvpw==;
+Received: from [2001:4bb8:181:656b:cb3a:c552:3fcc:12a6] (helo=localhost)
+ by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1pFAe4-0060ZL-9E; Tue, 10 Jan 2023 09:10:12 +0000
+From: Christoph Hellwig <hch@lst.de>
+To: Alex Williamson <alex.williamson@redhat.com>,
+ Kirti Wankhede <kwankhede@nvidia.com>
+Date: Tue, 10 Jan 2023 10:10:05 +0100
+Message-Id: <20230110091009.474427-1-hch@lst.de>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [RFC 2/2] drm/i915/display: Add 480 MHz CDCLK steps
- for RPL-U
+Content-Transfer-Encoding: 8bit
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
+ bombadil.infradead.org. See http://www.infradead.org/rpr.html
+Subject: [Intel-gfx] misc mdev tidyups
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,72 +49,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: ville.syrjala@intel.com
+Cc: Tony Krowiak <akrowiak@linux.ibm.com>, Jason Herne <jjherne@linux.ibm.com>,
+ kvm@vger.kernel.org, linux-s390@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, Halil Pasic <pasic@linux.ibm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, 07 Jan 2023, Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com> wrote:
-> A new step of 480MHz has been added on SKUs that have a RPL-U
-> device id to support 120Hz displays more efficiently. Use a
-> new quirk to identify the machine for which this change needs
-> to be applied.
->
-> BSpec: 55409
->
-> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_cdclk.c | 23 ++++++++++++++++++++++
->  1 file changed, 23 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> index 0c107a38f9d0..a437ac446871 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -1329,6 +1329,27 @@ static const struct intel_cdclk_vals adlp_cdclk_table[] = {
->  	{}
->  };
->  
-> +static const struct intel_cdclk_vals rplu_cdclk_table[] = {
-> +	{ .refclk = 19200, .cdclk = 172800, .divider = 3, .ratio = 27 },
-> +	{ .refclk = 19200, .cdclk = 192000, .divider = 2, .ratio = 20 },
-> +	{ .refclk = 19200, .cdclk = 480000, .divider = 2, .ratio = 50 },
-> +	{ .refclk = 19200, .cdclk = 556800, .divider = 2, .ratio = 58 },
-> +	{ .refclk = 19200, .cdclk = 652800, .divider = 2, .ratio = 68 },
-> +
-> +	{ .refclk = 24000, .cdclk = 176000, .divider = 3, .ratio = 22 },
-> +	{ .refclk = 24000, .cdclk = 192000, .divider = 2, .ratio = 16 },
-> +	{ .refclk = 24000, .cdclk = 480000, .divider = 2, .ratio = 40 },
-> +	{ .refclk = 24000, .cdclk = 552000, .divider = 2, .ratio = 46 },
-> +	{ .refclk = 24400, .cdclk = 648000, .divider = 2, .ratio = 54 },
-> +
-> +	{ .refclk = 38400, .cdclk = 179200, .divider = 3, .ratio = 14 },
-> +	{ .refclk = 38400, .cdclk = 192000, .divider = 2, .ratio = 10 },
-> +	{ .refclk = 38400, .cdclk = 480000, .divider = 2, .ratio = 25 },
-> +	{ .refclk = 38400, .cdclk = 556800, .divider = 2, .ratio = 29 },
-> +	{ .refclk = 38400, .cdclk = 652800, .divider = 2, .ratio = 34 },
-> +	{}
-> +};
-> +
->  static const struct intel_cdclk_vals dg2_cdclk_table[] = {
->  	{ .refclk = 38400, .cdclk = 163200, .divider = 2, .ratio = 34, .waveform = 0x8888 },
->  	{ .refclk = 38400, .cdclk = 204000, .divider = 2, .ratio = 34, .waveform = 0x9248 },
-> @@ -3353,6 +3374,8 @@ void intel_init_cdclk_hooks(struct drm_i915_private *dev_priv)
->  		/* Wa_22011320316:adl-p[a0] */
->  		if (IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
->  			dev_priv->display.cdclk.table = adlp_a_step_cdclk_table;
+Hi all,
 
-Are RPL-U A0-B0 going to enter this branch? Is this the right thing to
-do?
+this series tidies up the mdev Kconfig interaction and documentation a bit.
 
-BR,
-Jani.
-
-
-> +		else if (IS_ADLP_RPLU(dev_priv))
-> +			dev_priv->display.cdclk.table = rplu_cdclk_table;
->  		else
->  			dev_priv->display.cdclk.table = adlp_cdclk_table;
->  	} else if (IS_ROCKETLAKE(dev_priv)) {
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Diffstat:
+ Documentation/driver-api/vfio-mediated-device.rst |  108 ----------------------
+ Documentation/s390/vfio-ap.rst                    |    1 
+ arch/s390/Kconfig                                 |    6 -
+ arch/s390/configs/debug_defconfig                 |    1 
+ arch/s390/configs/defconfig                       |    1 
+ drivers/gpu/drm/i915/Kconfig                      |    2 
+ drivers/vfio/mdev/Kconfig                         |    8 -
+ samples/Kconfig                                   |   16 +--
+ samples/vfio-mdev/README.rst                      |  100 ++++++++++++++++++++
+ 9 files changed, 115 insertions(+), 128 deletions(-)
