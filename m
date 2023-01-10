@@ -2,57 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE459663AE9
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Jan 2023 09:23:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A35D663B9B
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Jan 2023 09:47:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63EB210E54C;
-	Tue, 10 Jan 2023 08:23:39 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D4B710E548;
- Tue, 10 Jan 2023 08:23:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673339017; x=1704875017;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=YnwMpLTH8VtZZ7XMXcWwqe1wq17GI5tRIh8zor324oE=;
- b=AlOEQvaJrSoUvKgQKj5ZZh4nbFSwAdHgp+RP9TqtE5X1uTU3KPIXkmOk
- +stOWY5OdE+hhhtoxYCsYGCoQnubAehKIfgrXTNMYnQicp5GlWCTKkDqV
- coAWOBSxgNin4TxcfUdl9EKH0sSnzeuzERelJRs7ZFHm5hmkR51WJt/ZO
- LGwkTSTwSF70fhZvBwDuTXyswFRKTFah5p/vEpBADi+Z0piUQ+2GN+5wN
- L3lHvACSnfegCBos+mvZoOBevUCGvDclH5/EHkofwWK3W6q0GWvnyJthW
- 25GefaFCpGKYNfH+WbRgJ9Gi2PthoqEF2sG0yCt9w26mar6GKJDPS38O/ w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10585"; a="385393117"
-X-IronPort-AV: E=Sophos;i="5.96,314,1665471600"; d="scan'208";a="385393117"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2023 00:23:37 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10585"; a="656964699"
-X-IronPort-AV: E=Sophos;i="5.96,314,1665471600"; d="scan'208";a="656964699"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.8.19])
- ([10.213.8.19])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2023 00:23:35 -0800
-Message-ID: <ba227180-066a-8e07-9df6-a9d4e6ec2a05@intel.com>
-Date: Tue, 10 Jan 2023 09:23:33 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id C17B710E56A;
+	Tue, 10 Jan 2023 08:46:56 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from madras.collabora.co.uk (madras.collabora.co.uk
+ [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6E5510E568;
+ Tue, 10 Jan 2023 08:46:52 +0000 (UTC)
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: bbrezillon)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 34DE7660230B;
+ Tue, 10 Jan 2023 08:46:51 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1673340411;
+ bh=1rBIguAwBZLipQS+0jAobczzlOJkiC+LkmNAXLCKRCI=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=bf9tS78PdhUgUdg0MsAOfSAhHTlgSgUH0GkjTfp6A+eU+z0+D+2gXyOWV4Fo/kbMU
+ KhPFN6aHj1Fz/km7fEp8yaPJncyPc7i8tyx/X75NBHEtowE4pqsvJ7GG15b84r3Hvw
+ XItPPyW8MGdj0/+Lu8hyKQzMssv3Nfsond8pRKpa3espHwubkS6K861NjB8x61ypOf
+ jADPyOst8PGLGBFGsO9yX04Yro67fLAbbI7oeCh3calU4GI5Dsu6Q21s/5oGmnOsgY
+ DsznOpiqfPAT6FdMla/z64QpcrRQpBohRKrYvEmevoa44skdaa5Ey5oxhmdvUtnBg0
+ xeip87YJoe7DQ==
+Date: Tue, 10 Jan 2023 09:46:47 +0100
+From: Boris Brezillon <boris.brezillon@collabora.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Message-ID: <20230110094647.5897dbdd@collabora.com>
+In-Reply-To: <Y7x7tSsdgQvZ+JD0@phenom.ffwll.local>
+References: <20221222222127.34560-1-matthew.brost@intel.com>
+ <20221222222127.34560-5-matthew.brost@intel.com>
+ <20221230112042.2ddd1946@collabora.com>
+ <20221230125508.57af8a14@collabora.com>
+ <20230102083019.24b99647@collabora.com>
+ <Y7cns9bpfIslkCPu@DUT025-TGLU.fm.intel.com>
+ <CAOFGe978gae1mN2W_rrgXQm4ioQm73Bkpr-ex2Oa4gtkNzDpcg@mail.gmail.com>
+ <20230109181748.4d73b834@collabora.com>
+ <Y7x7tSsdgQvZ+JD0@phenom.ffwll.local>
+Organization: Collabora
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.6.1
-Content-Language: en-US
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20230106103835.640924-1-tvrtko.ursulin@linux.intel.com>
- <20230109122442.713861-1-tvrtko.ursulin@linux.intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20230109122442.713861-1-tvrtko.ursulin@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: Do not cover all future
- platforms in TLB invalidation
+Subject: Re: [Intel-gfx] [RFC PATCH 04/20] drm/sched: Convert drm scheduler
+ to use a work queue rather than kthread
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,71 +62,196 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Daniel,
 
+On Mon, 9 Jan 2023 21:40:21 +0100
+Daniel Vetter <daniel@ffwll.ch> wrote:
 
-On 09.01.2023 13:24, Tvrtko Ursulin wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->
-> Revert to the original explicit approach and document the reasoning
-> behind it.
->
-> v2:
->   * DG2 needs to be covered too. (Matt)
->
-> v3:
->   * Full version check for Gen12 to avoid catching all future platforms.
->     (Matt)
->
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com> # v1
-> ---
->   drivers/gpu/drm/i915/gt/intel_gt.c | 17 +++++++++++++++--
->   1 file changed, 15 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-> index 7eeee5a7cb33..5521fa057aab 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-> @@ -1070,10 +1070,23 @@ static void mmio_invalidate_full(struct intel_gt *gt)
->   	unsigned int num = 0;
->   	unsigned long flags;
->   
-> -	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
-> +	/*
-> +	 * New platforms should not be added with catch-all-newer (>=)
-> +	 * condition so that any later platform added triggers the below warning
-> +	 * and in turn mandates a human cross-check of whether the invalidation
-> +	 * flows have compatible semantics.
-> +	 *
-> +	 * For instance with the 11.00 -> 12.00 transition three out of five
-> +	 * respective engine registers were moved to masked type. Then after the
-> +	 * 12.00 -> 12.50 transition multi cast handling is required too.
-> +	 */
-> +
-> +	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50) &&
-> +	    GRAPHICS_VER_FULL(i915) <= IP_VER(12, 55)) {
->   		regs = NULL;
->   		num = ARRAY_SIZE(xehp_regs);
-> -	} else if (GRAPHICS_VER(i915) == 12) {
-> +	} else if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 0) ||
-> +		   GRAPHICS_VER_FULL(i915) == IP_VER(12, 10)) {
+> On Mon, Jan 09, 2023 at 06:17:48PM +0100, Boris Brezillon wrote:
+> > Hi Jason,
+> > 
+> > On Mon, 9 Jan 2023 09:45:09 -0600
+> > Jason Ekstrand <jason@jlekstrand.net> wrote:
+> >   
+> > > On Thu, Jan 5, 2023 at 1:40 PM Matthew Brost <matthew.brost@intel.com>
+> > > wrote:
+> > >   
+> > > > On Mon, Jan 02, 2023 at 08:30:19AM +0100, Boris Brezillon wrote:    
+> > > > > On Fri, 30 Dec 2022 12:55:08 +0100
+> > > > > Boris Brezillon <boris.brezillon@collabora.com> wrote:
+> > > > >    
+> > > > > > On Fri, 30 Dec 2022 11:20:42 +0100
+> > > > > > Boris Brezillon <boris.brezillon@collabora.com> wrote:
+> > > > > >    
+> > > > > > > Hello Matthew,
+> > > > > > >
+> > > > > > > On Thu, 22 Dec 2022 14:21:11 -0800
+> > > > > > > Matthew Brost <matthew.brost@intel.com> wrote:
+> > > > > > >    
+> > > > > > > > In XE, the new Intel GPU driver, a choice has made to have a 1 to 1
+> > > > > > > > mapping between a drm_gpu_scheduler and drm_sched_entity. At first    
+> > > > this    
+> > > > > > > > seems a bit odd but let us explain the reasoning below.
+> > > > > > > >
+> > > > > > > > 1. In XE the submission order from multiple drm_sched_entity is not
+> > > > > > > > guaranteed to be the same completion even if targeting the same    
+> > > > hardware    
+> > > > > > > > engine. This is because in XE we have a firmware scheduler, the    
+> > > > GuC,    
+> > > > > > > > which allowed to reorder, timeslice, and preempt submissions. If a    
+> > > > using    
+> > > > > > > > shared drm_gpu_scheduler across multiple drm_sched_entity, the TDR    
+> > > > falls    
+> > > > > > > > apart as the TDR expects submission order == completion order.    
+> > > > Using a    
+> > > > > > > > dedicated drm_gpu_scheduler per drm_sched_entity solve this    
+> > > > problem.    
+> > > > > > >
+> > > > > > > Oh, that's interesting. I've been trying to solve the same sort of
+> > > > > > > issues to support Arm's new Mali GPU which is relying on a    
+> > > > FW-assisted    
+> > > > > > > scheduling scheme (you give the FW N streams to execute, and it does
+> > > > > > > the scheduling between those N command streams, the kernel driver
+> > > > > > > does timeslice scheduling to update the command streams passed to the
+> > > > > > > FW). I must admit I gave up on using drm_sched at some point, mostly
+> > > > > > > because the integration with drm_sched was painful, but also because    
+> > > > I    
+> > > > > > > felt trying to bend drm_sched to make it interact with a
+> > > > > > > timeslice-oriented scheduling model wasn't really future proof.    
+> > > > Giving    
+> > > > > > > drm_sched_entity exlusive access to a drm_gpu_scheduler probably    
+> > > > might    
+> > > > > > > help for a few things (didn't think it through yet), but I feel it's
+> > > > > > > coming short on other aspects we have to deal with on Arm GPUs.    
+> > > > > >
+> > > > > > Ok, so I just had a quick look at the Xe driver and how it
+> > > > > > instantiates the drm_sched_entity and drm_gpu_scheduler, and I think I
+> > > > > > have a better understanding of how you get away with using drm_sched
+> > > > > > while still controlling how scheduling is really done. Here
+> > > > > > drm_gpu_scheduler is just a dummy abstract that let's you use the
+> > > > > > drm_sched job queuing/dep/tracking mechanism. The whole run-queue    
+> > > >
+> > > > You nailed it here, we use the DRM scheduler for queuing jobs,
+> > > > dependency tracking and releasing jobs to be scheduled when dependencies
+> > > > are met, and lastly a tracking mechanism of inflights jobs that need to
+> > > > be cleaned up if an error occurs. It doesn't actually do any scheduling
+> > > > aside from the most basic level of not overflowing the submission ring
+> > > > buffer. In this sense, a 1 to 1 relationship between entity and
+> > > > scheduler fits quite well.
+> > > >    
+> > > 
+> > > Yeah, I think there's an annoying difference between what AMD/NVIDIA/Intel
+> > > want here and what you need for Arm thanks to the number of FW queues
+> > > available. I don't remember the exact number of GuC queues but it's at
+> > > least 1k. This puts it in an entirely different class from what you have on
+> > > Mali. Roughly, there's about three categories here:
+> > > 
+> > >  1. Hardware where the kernel is placing jobs on actual HW rings. This is
+> > > old Mali, Intel Haswell and earlier, and probably a bunch of others.
+> > > (Intel BDW+ with execlists is a weird case that doesn't fit in this
+> > > categorization.)
+> > > 
+> > >  2. Hardware (or firmware) with a very limited number of queues where
+> > > you're going to have to juggle in the kernel in order to run desktop Linux.
+> > > 
+> > >  3. Firmware scheduling with a high queue count. In this case, you don't
+> > > want the kernel scheduling anything. Just throw it at the firmware and let
+> > > it go brrrrr.  If we ever run out of queues (unlikely), the kernel can
+> > > temporarily pause some low-priority contexts and do some juggling or,
+> > > frankly, just fail userspace queue creation and tell the user to close some
+> > > windows.
+> > > 
+> > > The existence of this 2nd class is a bit annoying but it's where we are. I
+> > > think it's worth recognizing that Xe and panfrost are in different places
+> > > here and will require different designs. For Xe, we really are just using
+> > > drm/scheduler as a front-end and the firmware does all the real scheduling.
+> > > 
+> > > How do we deal with class 2? That's an interesting question.  We may
+> > > eventually want to break that off into a separate discussion and not litter
+> > > the Xe thread but let's keep going here for a bit.  I think there are some
+> > > pretty reasonable solutions but they're going to look a bit different.
+> > > 
+> > > The way I did this for Xe with execlists was to keep the 1:1:1 mapping
+> > > between drm_gpu_scheduler, drm_sched_entity, and userspace xe_engine.
+> > > Instead of feeding a GuC ring, though, it would feed a fixed-size execlist
+> > > ring and then there was a tiny kernel which operated entirely in IRQ
+> > > handlers which juggled those execlists by smashing HW registers.  For
+> > > Panfrost, I think we want something slightly different but can borrow some
+> > > ideas here.  In particular, have the schedulers feed kernel-side SW queues
+> > > (they can even be fixed-size if that helps) and then have a kthread which
+> > > juggles those feeds the limited FW queues.  In the case where you have few
+> > > enough active contexts to fit them all in FW, I do think it's best to have
+> > > them all active in FW and let it schedule. But with only 31, you need to be
+> > > able to juggle if you run out.  
+> > 
+> > That's more or less what I do right now, except I don't use the
+> > drm_sched front-end to handle deps or queue jobs (at least not yet). The
+> > kernel-side timeslice-based scheduler juggling with runnable queues
+> > (queues with pending jobs that are not yet resident on a FW slot)
+> > uses a dedicated ordered-workqueue instead of a thread, with scheduler
+> > ticks being handled with a delayed-work (tick happening every X
+> > milliseconds when queues are waiting for a slot). It all seems very
+> > HW/FW-specific though, and I think it's a bit premature to try to
+> > generalize that part, but the dep-tracking logic implemented by
+> > drm_sched looked like something I could easily re-use, hence my
+> > interest in Xe's approach.  
+> 
+> So another option for these few fw queue slots schedulers would be to
+> treat them as vram and enlist ttm.
+> 
+> Well maybe more enlist ttm and less treat them like vram, but ttm can
+> handle idr (or xarray or whatever you want) and then help you with all the
+> pipelining (and the drm_sched then with sorting out dependencies). If you
+> then also preferentially "evict" low-priority queus you pretty much have
+> the perfect thing.
+> 
+> Note that GuC with sriov splits up the id space and together with some
+> restrictions due to multi-engine contexts media needs might also need this
+> all.
+> 
+> If you're balking at the idea of enlisting ttm just for fw queue
+> management, amdgpu has a shoddy version of id allocation for their vm/tlb
+> index allocation. Might be worth it to instead lift that into some sched
+> helper code.
 
-MTL support is lost? IP_VER(12, 70)
+Would you mind pointing me to the amdgpu code you're mentioning here?
+Still have a hard time seeing what TTM has to do with scheduling, but I
+also don't know much about TTM, so I'll keep digging.
 
-And again it looks for me inconsistent, some unknown platforms are 
-covered, for example 12.54, some not, for example 12.11.
+> 
+> Either way there's two imo rather solid approaches available to sort this
+> out. And once you have that, then there shouldn't be any big difference in
+> driver design between fw with defacto unlimited queue ids, and those with
+> severe restrictions in number of queues.
 
-Regards
-Andrzej
+Honestly, I don't think there's much difference between those two cases
+already. There's just a bunch of additional code to schedule queues on
+FW slots for the limited-number-of-FW-slots case, which, right now, is
+driver specific. The job queuing front-end pretty much achieves what
+drm_sched does already: queuing job to entities, checking deps,
+submitting job to HW (in our case, writing to the command stream ring
+buffer). Things start to differ after that point: once a scheduling
+entity has pending jobs, we add it to one of the runnable queues (one
+queue per prio) and kick the kernel-side timeslice-based scheduler to
+re-evaluate, if needed.
 
->   		regs = gen12_regs;
->   		num = ARRAY_SIZE(gen12_regs);
->   	} else if (GRAPHICS_VER(i915) >= 8 && GRAPHICS_VER(i915) <= 11) {
+I'm all for using generic code when it makes sense, even if that means
+adding this common code when it doesn't exists, but I don't want to be
+dragged into some major refactoring that might take years to land.
+Especially if pancsf is the first
+FW-assisted-scheduler-with-few-FW-slot driver.
 
+Here's a link to my WIP branch [1], and here is the scheduler logic
+[2] if you want to have a look. Don't pay too much attention to the
+driver uAPI (it's being redesigned).
+
+Regards,
+
+Boris
+
+[1]https://gitlab.freedesktop.org/bbrezillon/linux/-/tree/pancsf
+[2]https://gitlab.freedesktop.org/bbrezillon/linux/-/blob/pancsf/drivers/gpu/drm/pancsf/pancsf_sched.c
