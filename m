@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12938663C83
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Jan 2023 10:16:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3F84663CD1
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Jan 2023 10:28:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78D2710E56F;
-	Tue, 10 Jan 2023 09:16:18 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E93B210E56C;
- Tue, 10 Jan 2023 09:16:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB55E10E57B;
+	Tue, 10 Jan 2023 09:28:54 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1138A10E576
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Jan 2023 09:28:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673342176; x=1704878176;
+ t=1673342932; x=1704878932;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=RsauyLfYwdVt0ri5iI9mJ0l26Stq6AzKtTh9InExs3k=;
- b=DqePUr8+Vx6tR4amlRDIlmFKMNMr69l+L21MG/BtIYIw5VwuO3oSnSOU
- 3NP884mPEZ/O441mXoWn67q9INIQHDAJEuj9qP16wf5mTMw7Y/SzsBvCb
- AkSRFl1NZ854B1w84LJLCctfEEueOWeLTuwQXGnwDjN4Ilz7aXq2vs6br
- 1jAptWuyn540F2ko0RtmpAMTVrsvMOwap88gJfpd6GQP3+ggUzHkwlLsx
- A1vQIXzyHHzP70s+utTe9iPf6s3UPHbQyyuw3TaAGh77bp7zYgmlXwL2q
- wQWuXQfEh663+Yb2qzd34GccGLziWnf3QCNOHyG5+6IloUvHsc5P+/1js g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10585"; a="324342452"
-X-IronPort-AV: E=Sophos;i="5.96,314,1665471600"; d="scan'208";a="324342452"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2023 01:16:15 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10585"; a="985706783"
-X-IronPort-AV: E=Sophos;i="5.96,314,1665471600"; d="scan'208";a="985706783"
-Received: from gregoire-mobl3.amr.corp.intel.com (HELO [10.212.88.71])
- ([10.212.88.71])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2023 01:16:14 -0800
-Message-ID: <6a861c63-39b7-e5e2-b7c5-43cf9b7130f8@linux.intel.com>
-Date: Tue, 10 Jan 2023 09:16:12 +0000
+ bh=D/xQs5ioKHXRLAKv+ReROJSM/Ya4vbIalgjSWfRXaTc=;
+ b=bSzfnHgstAd027/lNXLP021O5D45lpUme55wIax2MWU6g/I3y3cXG9RZ
+ d6VkmOSQErZBWX4I0UEEmHZnYtCFT/a5T5wQDqJOCKxX28PvRGijflXHX
+ qtchkztCYhxPavSoVIbrCi7zxA3XObgN99drHvqkeKHWG5/3mYG2nwEdb
+ EhC8KvqrnEbAfR+YXiV7TGprD80+ztPf8C2+r72xb0I7l3rqt3zN++3mp
+ 8WwiPZALBdGoP6IyTAtZZJnqMYtlln8qJnzRz2ycHLUGqLtYRbycg4feR
+ ol3nNKofOs9kBfD6Co+++hmSOYQThgfViI3yvewZHNirGj60Zt8BU8h5B Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10585"; a="302801535"
+X-IronPort-AV: E=Sophos;i="5.96,314,1665471600"; d="scan'208";a="302801535"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2023 01:28:51 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10585"; a="745706347"
+X-IronPort-AV: E=Sophos;i="5.96,314,1665471600"; d="scan'208";a="745706347"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.8.19])
+ ([10.213.8.19])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2023 01:28:50 -0800
+Message-ID: <7980c1a0-cfad-f21a-cd81-2b296d8bbe6e@intel.com>
+Date: Tue, 10 Jan 2023 10:28:48 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.6.1
 Content-Language: en-US
-To: Andrzej Hajda <andrzej.hajda@intel.com>, Intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-References: <20230106103835.640924-1-tvrtko.ursulin@linux.intel.com>
- <20230109122442.713861-1-tvrtko.ursulin@linux.intel.com>
- <ba227180-066a-8e07-9df6-a9d4e6ec2a05@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <ba227180-066a-8e07-9df6-a9d4e6ec2a05@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <20230105131046.2173431-1-andrzej.hajda@intel.com>
+ <20230105131046.2173431-9-andrzej.hajda@intel.com>
+ <Y7xqk3HKlq/50SSD@intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <Y7xqk3HKlq/50SSD@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: Do not cover all future
- platforms in TLB invalidation
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v2 9/9] drm/i915/display/misc: use
+ intel_de_rmw if possible
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,91 +65,190 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 10/01/2023 08:23, Andrzej Hajda wrote:
-> 
-> 
-> On 09.01.2023 13:24, Tvrtko Ursulin wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+On 09.01.2023 20:27, Rodrigo Vivi wrote:
+> On Thu, Jan 05, 2023 at 02:10:46PM +0100, Andrzej Hajda wrote:
+>> The helper makes the code more compact and readable.
 >>
->> Revert to the original explicit approach and document the reasoning
->> behind it.
->>
->> v2:
->>   * DG2 needs to be covered too. (Matt)
->>
->> v3:
->>   * Full version check for Gen12 to avoid catching all future platforms.
->>     (Matt)
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Cc: Matt Roper <matthew.d.roper@intel.com>
->> Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
->> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
->> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com> # v1
+>> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
 >> ---
->>   drivers/gpu/drm/i915/gt/intel_gt.c | 17 +++++++++++++++--
->>   1 file changed, 15 insertions(+), 2 deletions(-)
+>>   drivers/gpu/drm/i915/display/g4x_dp.c     | 12 ++++--------
+>>   drivers/gpu/drm/i915/display/intel_drrs.c | 12 +++---------
+>>   drivers/gpu/drm/i915/display/intel_dvo.c  |  7 ++-----
+>>   drivers/gpu/drm/i915/display/intel_lvds.c | 12 ++++--------
+>>   drivers/gpu/drm/i915/display/intel_tv.c   | 18 +++++-------------
+>>   5 files changed, 18 insertions(+), 43 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c 
->> b/drivers/gpu/drm/i915/gt/intel_gt.c
->> index 7eeee5a7cb33..5521fa057aab 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
->> @@ -1070,10 +1070,23 @@ static void mmio_invalidate_full(struct 
->> intel_gt *gt)
->>       unsigned int num = 0;
->>       unsigned long flags;
->> -    if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
->> +    /*
->> +     * New platforms should not be added with catch-all-newer (>=)
->> +     * condition so that any later platform added triggers the below 
->> warning
->> +     * and in turn mandates a human cross-check of whether the 
->> invalidation
->> +     * flows have compatible semantics.
->> +     *
->> +     * For instance with the 11.00 -> 12.00 transition three out of five
->> +     * respective engine registers were moved to masked type. Then 
->> after the
->> +     * 12.00 -> 12.50 transition multi cast handling is required too.
->> +     */
->> +
->> +    if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50) &&
->> +        GRAPHICS_VER_FULL(i915) <= IP_VER(12, 55)) {
->>           regs = NULL;
->>           num = ARRAY_SIZE(xehp_regs);
->> -    } else if (GRAPHICS_VER(i915) == 12) {
->> +    } else if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 0) ||
->> +           GRAPHICS_VER_FULL(i915) == IP_VER(12, 10)) {
+>> diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
+>> index 24ef36ec2d3d3c..9629b174ec5d2c 100644
+>> --- a/drivers/gpu/drm/i915/display/g4x_dp.c
+>> +++ b/drivers/gpu/drm/i915/display/g4x_dp.c
+>> @@ -136,16 +136,12 @@ static void intel_dp_prepare(struct intel_encoder *encoder,
+>>   
+>>   		intel_dp->DP |= DP_PIPE_SEL_IVB(crtc->pipe);
+>>   	} else if (HAS_PCH_CPT(dev_priv) && port != PORT_A) {
+>> -		u32 trans_dp;
+>> -
+>>   		intel_dp->DP |= DP_LINK_TRAIN_OFF_CPT;
+>>   
+>> -		trans_dp = intel_de_read(dev_priv, TRANS_DP_CTL(crtc->pipe));
+>> -		if (drm_dp_enhanced_frame_cap(intel_dp->dpcd))
+>> -			trans_dp |= TRANS_DP_ENH_FRAMING;
+>> -		else
+>> -			trans_dp &= ~TRANS_DP_ENH_FRAMING;
+>> -		intel_de_write(dev_priv, TRANS_DP_CTL(crtc->pipe), trans_dp);
+>> +		intel_de_rmw(dev_priv, TRANS_DP_CTL(crtc->pipe),
+>> +			     TRANS_DP_ENH_FRAMING,
+>> +			     drm_dp_enhanced_frame_cap(intel_dp->dpcd) ?
+>> +			     TRANS_DP_ENH_FRAMING : 0);
+>>   	} else {
+>>   		if (IS_G4X(dev_priv) && pipe_config->limited_color_range)
+>>   			intel_dp->DP |= DP_COLOR_RANGE_16_235;
+>> diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c b/drivers/gpu/drm/i915/display/intel_drrs.c
+>> index 5b9e44443814e9..a52974f5f66042 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_drrs.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_drrs.c
+>> @@ -68,21 +68,15 @@ intel_drrs_set_refresh_rate_pipeconf(struct intel_crtc *crtc,
+>>   {
+>>   	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+>>   	enum transcoder cpu_transcoder = crtc->drrs.cpu_transcoder;
+>> -	u32 val, bit;
+>> +	u32 bit;
+>>   
+>>   	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+>>   		bit = PIPECONF_REFRESH_RATE_ALT_VLV;
+>>   	else
+>>   		bit = PIPECONF_REFRESH_RATE_ALT_ILK;
+>>   
+>> -	val = intel_de_read(dev_priv, PIPECONF(cpu_transcoder));
+>> -
+>> -	if (refresh_rate == DRRS_REFRESH_RATE_LOW)
+>> -		val |= bit;
+>> -	else
+>> -		val &= ~bit;
+>> -
+>> -	intel_de_write(dev_priv, PIPECONF(cpu_transcoder), val);
+>> +	intel_de_rmw(dev_priv, PIPECONF(cpu_transcoder),
+>> +		     bit, refresh_rate == DRRS_REFRESH_RATE_LOW ? bit : 0);
+>>   }
+>>   
+>>   static void
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c b/drivers/gpu/drm/i915/display/intel_dvo.c
+>> index 4aeae0f3ac9172..77d413781020de 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dvo.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dvo.c
+>> @@ -444,11 +444,8 @@ static bool intel_dvo_init_dev(struct drm_i915_private *dev_priv,
+>>   	 * the clock enabled before we attempt to initialize
+>>   	 * the device.
+>>   	 */
+>> -	for_each_pipe(dev_priv, pipe) {
+>> -		dpll[pipe] = intel_de_read(dev_priv, DPLL(pipe));
+>> -		intel_de_write(dev_priv, DPLL(pipe),
+>> -			       dpll[pipe] | DPLL_DVO_2X_MODE);
+>> -	}
+>> +	for_each_pipe(dev_priv, pipe)
+>> +		dpll[pipe] = intel_de_rmw(dev_priv, DPLL(pipe), 0, DPLL_DVO_2X_MODE);
+>>   
+>>   	ret = dvo->dev_ops->init(&intel_dvo->dev, i2c);
+>>   
+>> diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
+>> index aecec992cd0d2d..e8f47b7ef87649 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_lvds.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_lvds.c
+>> @@ -316,11 +316,9 @@ static void intel_enable_lvds(struct intel_atomic_state *state,
+>>   	struct intel_lvds_encoder *lvds_encoder = to_lvds_encoder(encoder);
+>>   	struct drm_i915_private *dev_priv = to_i915(dev);
+>>   
+>> -	intel_de_write(dev_priv, lvds_encoder->reg,
+>> -		       intel_de_read(dev_priv, lvds_encoder->reg) | LVDS_PORT_EN);
+>> +	intel_de_rmw(dev_priv, lvds_encoder->reg, 0, LVDS_PORT_EN);
+>>   
+>> -	intel_de_write(dev_priv, PP_CONTROL(0),
+>> -		       intel_de_read(dev_priv, PP_CONTROL(0)) | PANEL_POWER_ON);
+>> +	intel_de_rmw(dev_priv, PP_CONTROL(0), 0, PANEL_POWER_ON);
+>>   	intel_de_posting_read(dev_priv, lvds_encoder->reg);
+>>   
+>>   	if (intel_de_wait_for_set(dev_priv, PP_STATUS(0), PP_ON, 5000))
+>> @@ -338,14 +336,12 @@ static void intel_disable_lvds(struct intel_atomic_state *state,
+>>   	struct intel_lvds_encoder *lvds_encoder = to_lvds_encoder(encoder);
+>>   	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>>   
+>> -	intel_de_write(dev_priv, PP_CONTROL(0),
+>> -		       intel_de_read(dev_priv, PP_CONTROL(0)) & ~PANEL_POWER_ON);
+>> +	intel_de_rmw(dev_priv, PP_CONTROL(0), PANEL_POWER_ON, 0);
+>>   	if (intel_de_wait_for_clear(dev_priv, PP_STATUS(0), PP_ON, 1000))
+>>   		drm_err(&dev_priv->drm,
+>>   			"timed out waiting for panel to power off\n");
+>>   
+>> -	intel_de_write(dev_priv, lvds_encoder->reg,
+>> -		       intel_de_read(dev_priv, lvds_encoder->reg) & ~LVDS_PORT_EN);
+>> +	intel_de_rmw(dev_priv, lvds_encoder->reg, LVDS_PORT_EN, 0);
+>>   	intel_de_posting_read(dev_priv, lvds_encoder->reg);
+>>   }
+>>   
+>> diff --git a/drivers/gpu/drm/i915/display/intel_tv.c b/drivers/gpu/drm/i915/display/intel_tv.c
+>> index b986bf075889a1..e1b0034db9be66 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_tv.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_tv.c
+>> @@ -930,8 +930,7 @@ intel_enable_tv(struct intel_atomic_state *state,
+>>   	/* Prevents vblank waits from timing out in intel_tv_detect_type() */
+>>   	intel_crtc_wait_for_next_vblank(to_intel_crtc(pipe_config->uapi.crtc));
+>>   
+>> -	intel_de_write(dev_priv, TV_CTL,
+>> -		       intel_de_read(dev_priv, TV_CTL) | TV_ENC_ENABLE);
+>> +	intel_de_rmw(dev_priv, TV_CTL, 0, TV_ENC_ENABLE);
+>>   }
+>>   
+>>   static void
+>> @@ -943,8 +942,7 @@ intel_disable_tv(struct intel_atomic_state *state,
+>>   	struct drm_device *dev = encoder->base.dev;
+>>   	struct drm_i915_private *dev_priv = to_i915(dev);
+>>   
+>> -	intel_de_write(dev_priv, TV_CTL,
+>> -		       intel_de_read(dev_priv, TV_CTL) & ~TV_ENC_ENABLE);
+>> +	intel_de_rmw(dev_priv, TV_CTL, TV_ENC_ENABLE, 0);
+>>   }
+>>   
+>>   static const struct tv_mode *intel_tv_mode_find(const struct drm_connector_state *conn_state)
+>> @@ -1945,15 +1943,9 @@ intel_tv_init(struct drm_i915_private *dev_priv)
+>>   	 * Sanity check the TV output by checking to see if the
+>>   	 * DAC register holds a value
+>>   	 */
+>> -	save_tv_dac = intel_de_read(dev_priv, TV_DAC);
+>> -
+>> -	intel_de_write(dev_priv, TV_DAC, save_tv_dac | TVDAC_STATE_CHG_EN);
+>> -	tv_dac_on = intel_de_read(dev_priv, TV_DAC);
+>> -
+>> -	intel_de_write(dev_priv, TV_DAC, save_tv_dac & ~TVDAC_STATE_CHG_EN);
+>> -	tv_dac_off = intel_de_read(dev_priv, TV_DAC);
+>> -
+>> -	intel_de_write(dev_priv, TV_DAC, save_tv_dac);
+>> +	save_tv_dac = intel_de_rmw(dev_priv, TV_DAC, 0, TVDAC_STATE_CHG_EN);
+>> +	tv_dac_on = intel_de_rmw(dev_priv, TV_DAC, ~0, save_tv_dac & ~TVDAC_STATE_CHG_EN);
+>> +	tv_dac_off = intel_de_rmw(dev_priv, TV_DAC, ~0, save_tv_dac);
 > 
-> MTL support is lost? IP_VER(12, 70)
+> this chunck got me really confused... you are now doing a lot more reads then before.
 
-AFAIU Matt says MTL is still incomplete anyway, so that would be added 
-in an explicit patch here.
+Every read/write is replaced by exactly one rmw, nothing added, simple 
+proof by reading the lines: previously 3 reads, 3 writes, now 3 rmw :)
 
-> And again it looks for me inconsistent, some unknown platforms are 
-> covered, for example 12.54, some not, for example 12.11.
+> I'd say the previous approach is better and more readable than the new one...
 
-.11 and .54 as hypotheticals? You suggest this instead:
+You are right, even if functionally it is the same, the previous code 
+better empahises we check if writes are effective.
+I will send v3 without this chunk.
 
-	if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 50) ||
-	    GRAPHICS_VER_FULL(i915) == IP_VER(12, 55)) {
-		regs = NULL;
-		num = ARRAY_SIZE(xehp_regs);
-	} else if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 0) ||
-		   GRAPHICS_VER_FULL(i915) == IP_VER(12, 10)) {
-		regs = gen12_regs;
-		num = ARRAY_SIZE(gen12_regs);
+Regards
+Andrzej
 
-?
+> 
+>>   
+>>   	/*
+>>   	 * If the register does not hold the state change enable
+>> -- 
+>> 2.34.1
+>>
 
-It's fine by me if that covers all currently known platforms.
-
-Regards,
-
-Tvrtko
