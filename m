@@ -1,26 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32389663F0E
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Jan 2023 12:11:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B56B0663EF5
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Jan 2023 12:07:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D118810E59D;
-	Tue, 10 Jan 2023 11:11:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C372210E597;
+	Tue, 10 Jan 2023 11:07:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mblankhorst.nl (lankhorst.se
- [IPv6:2a02:2308:0:7ec:e79c:4e97:b6c4:f0ae])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7FB310E59D
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Jan 2023 11:11:30 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 10 Jan 2023 11:59:02 +0100
-Message-Id: <20230110105902.279004-1-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EE1410E590;
+ Tue, 10 Jan 2023 11:07:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1673348835; x=1704884835;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=rVhJmEIPGip77/doSmIyFH6N4wuSe2EOVqkHy4zJTJM=;
+ b=Fz7z6D9L7sxNJHo/905AlQU6bncpn7A7DKRIeT94FEsr1nWSvHjebsiY
+ +T5qmC2UB8KBgvmzcI1yN/Ng3og2IKZ/XhvgJG1zwEIb5p9GU4zAAamvI
+ kbtT52cECkz9/ZTxTFdr7XO0SvSgWPGefzXukz/7tYD08ZIKuvWsbzW2u
+ M5vbnK6iUKhU35c8JDII8gNnUOXfsqIiv2G5CXnLqxWPXK6b+rgxsSNUi
+ nWDme6EBCexs4J6xu4TasCfy0XuB3l4wqQtnIQDHkA7BEoeylnYcIH7NK
+ lOdRffNI/5rWV7aiiEIaPsB1ChAT7xFmh4dyKi5NARssmGj3DllDQS6WM Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10585"; a="325123954"
+X-IronPort-AV: E=Sophos;i="5.96,315,1665471600"; d="scan'208";a="325123954"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2023 03:07:12 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10585"; a="745739146"
+X-IronPort-AV: E=Sophos;i="5.96,315,1665471600"; d="scan'208";a="745739146"
+Received: from smile.fi.intel.com ([10.237.72.54])
+ by FMSMGA003.fm.intel.com with ESMTP; 10 Jan 2023 03:07:05 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1pFCT8-006ztV-3A; Tue, 10 Jan 2023 13:07:02 +0200
+Date: Tue, 10 Jan 2023 13:07:02 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>
+Message-ID: <Y71G1tkmUzM4BLxn@smile.fi.intel.com>
+References: <Y7b6/7coJEVlTVxK@phenom.ffwll.local>
+ <20230110105306.3973122-1-andrzej.hajda@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Remove i915_drm_suspend_mode
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230110105306.3973122-1-andrzej.hajda@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: Re: [Intel-gfx] [RFC DO NOT MERGE] treewide: use __xchg in most
+ obvious places
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,126 +62,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Mark Rutland <mark.rutland@arm.com>, linux-ia64@vger.kernel.org,
+ linux-sh@vger.kernel.org, Peter Zijlstra <peterz@infradead.org>,
+ dri-devel@lists.freedesktop.org, linux-mips@vger.kernel.org,
+ sparclinux@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-s390@vger.kernel.org, linux-hexagon@vger.kernel.org,
+ linux-snps-arc@lists.infradead.org, Boqun Feng <boqun.feng@gmail.com>,
+ linux-xtensa@linux-xtensa.org, Arnd Bergmann <arnd@arndb.de>,
+ intel-gfx@lists.freedesktop.org, linux-m68k@lists.linux-m68k.org,
+ openrisc@lists.librecores.org, loongarch@lists.linux.dev,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-arm-kernel@lists.infradead.org,
+ linux-parisc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Daniel Vetter <daniel@ffwll.ch>, linux-alpha@vger.kernel.org,
+ Andrew Morton <akpm@linux-foundation.org>, linuxppc-dev@lists.ozlabs.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-enum i915_drm_suspend_mode suspend_mode is only used in
-intel_display_power, while we only care about whether we perform a
-s2idle. Remove it and use a simple bool.
+On Tue, Jan 10, 2023 at 11:53:06AM +0100, Andrzej Hajda wrote:
+> This patch tries to show usability of __xchg helper.
+> It is not intended to be merged, but I can convert
+> it to proper patchset if necessary.
+> 
+> There are many more places where __xchg can be used.
+> This demo shows the most spectacular cases IMHO:
+> - previous value is returned from function,
+> - temporary variables are in use.
+> 
+> As a result readability is much better and diffstat is quite
+> nice, less local vars to look at.
+> In many cases whole body of functions is replaced
+> with __xchg(ptr, val), so as further refactoring the whole
+> function can be removed and __xchg can be called directly.
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- .../gpu/drm/i915/display/intel_display_power.c   |  8 +++-----
- .../gpu/drm/i915/display/intel_display_power.h   |  3 +--
- drivers/gpu/drm/i915/i915_driver.c               | 16 ++--------------
- drivers/gpu/drm/i915/intel_runtime_pm.h          |  6 ------
- 4 files changed, 6 insertions(+), 27 deletions(-)
+...
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 060e0a2770f7..6ef937afe48e 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -2029,7 +2029,7 @@ void intel_power_domains_disable(struct drm_i915_private *i915)
- /**
-  * intel_power_domains_suspend - suspend power domain state
-  * @i915: i915 device instance
-- * @suspend_mode: specifies the target suspend state (idle, mem, hibernation)
-+ * @s2idle: specifies whether we go to idle, or deeper sleep
-  *
-  * This function prepares the hardware power domain state before entering
-  * system suspend.
-@@ -2037,8 +2037,7 @@ void intel_power_domains_disable(struct drm_i915_private *i915)
-  * It must be called with power domains already disabled (after a call to
-  * intel_power_domains_disable()) and paired with intel_power_domains_resume().
-  */
--void intel_power_domains_suspend(struct drm_i915_private *i915,
--				 enum i915_drm_suspend_mode suspend_mode)
-+void intel_power_domains_suspend(struct drm_i915_private *i915, bool s2idle)
- {
- 	struct i915_power_domains *power_domains = &i915->display.power.domains;
- 	intel_wakeref_t wakeref __maybe_unused =
-@@ -2054,8 +2053,7 @@ void intel_power_domains_suspend(struct drm_i915_private *i915,
- 	 * that would be blocked if the firmware was inactive.
- 	 */
- 	if (!(i915->display.dmc.allowed_dc_mask & DC_STATE_EN_DC9) &&
--	    suspend_mode == I915_DRM_SUSPEND_IDLE &&
--	    intel_dmc_has_payload(i915)) {
-+	    s2idle && intel_dmc_has_payload(i915)) {
- 		intel_display_power_flush_work(i915);
- 		intel_power_domains_verify_state(i915);
- 		return;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-index 6480afcfe0d8..04216be1d6fe 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-@@ -164,8 +164,7 @@ void intel_power_domains_init_hw(struct drm_i915_private *dev_priv, bool resume)
- void intel_power_domains_driver_remove(struct drm_i915_private *dev_priv);
- void intel_power_domains_enable(struct drm_i915_private *dev_priv);
- void intel_power_domains_disable(struct drm_i915_private *dev_priv);
--void intel_power_domains_suspend(struct drm_i915_private *dev_priv,
--				 enum i915_drm_suspend_mode);
-+void intel_power_domains_suspend(struct drm_i915_private *dev_priv, bool s2idle);
- void intel_power_domains_resume(struct drm_i915_private *dev_priv);
- void intel_power_domains_sanitize_state(struct drm_i915_private *dev_priv);
- 
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 9c49cc7a246d..a02dd8e38f2a 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -1232,18 +1232,6 @@ static int i915_drm_suspend(struct drm_device *dev)
- 	return 0;
- }
- 
--static enum i915_drm_suspend_mode
--get_suspend_mode(struct drm_i915_private *dev_priv, bool hibernate)
--{
--	if (hibernate)
--		return I915_DRM_SUSPEND_HIBERNATE;
--
--	if (suspend_to_idle(dev_priv))
--		return I915_DRM_SUSPEND_IDLE;
--
--	return I915_DRM_SUSPEND_MEM;
--}
--
- static int i915_drm_suspend_late(struct drm_device *dev, bool hibernation)
- {
- 	struct drm_i915_private *dev_priv = to_i915(dev);
-@@ -1251,6 +1239,7 @@ static int i915_drm_suspend_late(struct drm_device *dev, bool hibernation)
- 	struct intel_runtime_pm *rpm = &dev_priv->runtime_pm;
- 	struct intel_gt *gt;
- 	int ret, i;
-+	bool s2idle = !hibernation && suspend_to_idle(dev_priv);
- 
- 	disable_rpm_wakeref_asserts(rpm);
- 
-@@ -1259,8 +1248,7 @@ static int i915_drm_suspend_late(struct drm_device *dev, bool hibernation)
- 	for_each_gt(gt, dev_priv, i)
- 		intel_uncore_suspend(gt->uncore);
- 
--	intel_power_domains_suspend(dev_priv,
--				    get_suspend_mode(dev_priv, hibernation));
-+	intel_power_domains_suspend(dev_priv, s2idle);
- 
- 	intel_display_power_suspend_late(dev_priv);
- 
-diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.h b/drivers/gpu/drm/i915/intel_runtime_pm.h
-index d9160e3ff4af..c87ae95bfd18 100644
---- a/drivers/gpu/drm/i915/intel_runtime_pm.h
-+++ b/drivers/gpu/drm/i915/intel_runtime_pm.h
-@@ -16,12 +16,6 @@ struct device;
- struct drm_i915_private;
- struct drm_printer;
- 
--enum i915_drm_suspend_mode {
--	I915_DRM_SUSPEND_IDLE,
--	I915_DRM_SUSPEND_MEM,
--	I915_DRM_SUSPEND_HIBERNATE,
--};
--
- /*
-  * This struct helps tracking the state needed for runtime PM, which puts the
-  * device in PCI D3 state. Notice that when this happens, nothing on the
+>  arch_uretprobe_hijack_return_addr(unsigned long trampoline_vaddr,
+>  				  struct pt_regs *regs)
+>  {
+> -	unsigned long orig_ret_vaddr;
+> -
+> -	orig_ret_vaddr = regs->ARM_lr;
+> -	/* Replace the return addr with trampoline addr */
+> -	regs->ARM_lr = trampoline_vaddr;
+> -	return orig_ret_vaddr;
+> +	return __xchg(&regs->ARM_lr, trampoline_vaddr);
+>  }
+
+If it's not a callback, the entire function can be killed.
+And this is a good example of the function usage.
+OTOH, these places might have a side effect (if it's in deep CPU
+handlers), means we need to do this carefully.
+
+...
+
+>  static inline void *qed_chain_produce(struct qed_chain *p_chain)
+>  {
+> -	void *p_ret = NULL, *p_prod_idx, *p_prod_page_idx;
+> +	void *p_prod_idx, *p_prod_page_idx;
+>  
+>  	if (is_chain_u16(p_chain)) {
+>  		if ((p_chain->u.chain16.prod_idx &
+> @@ -390,11 +391,8 @@ static inline void *qed_chain_produce(struct qed_chain *p_chain)
+>  		p_chain->u.chain32.prod_idx++;
+>  	}
+>  
+> -	p_ret = p_chain->p_prod_elem;
+> -	p_chain->p_prod_elem = (void *)(((u8 *)p_chain->p_prod_elem) +
+> -					p_chain->elem_size);
+> -
+> -	return p_ret;
+> +	return __xchg(&p_chain->p_prod_elem,
+> +		      (void *)(((u8 *)p_chain->p_prod_elem) + p_chain->elem_size));
+
+Wondering if you still need a (void *) casting after the change. Ditto for the
+rest of similar cases.
+
+>  }
+
+...
+
+Btw, is it done by coccinelle? If no, why not providing the script?
+
 -- 
-2.34.1
+With Best Regards,
+Andy Shevchenko
+
 
