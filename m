@@ -2,33 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8066D664536
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Jan 2023 16:45:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C2D666454A
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Jan 2023 16:50:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DE8010E610;
-	Tue, 10 Jan 2023 15:45:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 588D510E5FB;
+	Tue, 10 Jan 2023 15:50:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id C521310E5F8;
- Tue, 10 Jan 2023 15:45:32 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BD223AADE0;
- Tue, 10 Jan 2023 15:45:32 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0262290916841493844=="
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20D3110E02F;
+ Tue, 10 Jan 2023 15:50:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1673365806; x=1704901806;
+ h=message-id:date:mime-version:subject:from:to:references:
+ in-reply-to:content-transfer-encoding;
+ bh=BYIAkkwVnMj+fWHg28sr2xK2lxUDd8uaj2CqeJP+M+Y=;
+ b=FsbfU2Ps5AuTaKpmVdgA/TrGSdAAtFNXBKFTJhs5+jEXdbPP1S5+wDmH
+ cNPTWckjl7mBxEaCS+VuydPw4WUx6sggXNhnISpayr9feuAC8Xnhl0vI6
+ nTsYhK04ogrsRuV3vrLC69ti95Pm98aCv1uiInZocYZudg/DqG60amvb4
+ +4NUVvV2w/ae60w97eTV00n3XIjedVlXR3qzQmeqTe5FVwa1gLe1+Ytyz
+ JnYCEnuiJZPLbyD/RHPSnM/RNjgWl5Aehxb09flw6BlDq+zo/7Prx4Qon
+ TJ+UatPYHXKHnkDyk0mFwnw4c2+WquVE/jqrVzjwl7jyJpC47ym60reqw g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="303541972"
+X-IronPort-AV: E=Sophos;i="5.96,315,1665471600"; d="scan'208";a="303541972"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2023 07:50:05 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="650403772"
+X-IronPort-AV: E=Sophos;i="5.96,315,1665471600"; d="scan'208";a="650403772"
+Received: from ffagan-mobl1.ger.corp.intel.com (HELO [10.252.26.60])
+ ([10.252.26.60])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2023 07:50:03 -0800
+Message-ID: <0bb76c9c-b05c-bfc2-5d39-41b0f0c640bb@intel.com>
+Date: Tue, 10 Jan 2023 15:50:00 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andrzej Hajda" <andrzej.hajda@intel.com>
-Date: Tue, 10 Jan 2023 15:45:32 -0000
-Message-ID: <167336553276.5203.7592745731911143747@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230105131046.2173431-1-andrzej.hajda@intel.com>
-In-Reply-To: <20230105131046.2173431-1-andrzej.hajda@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv2=2C1/9=5D_drm/i915/display/core=3A_use_i?=
- =?utf-8?q?ntel=5Fde=5Frmw_if_possible_=28rev3=29?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.6.0
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, christian.koenig@amd.com,
+ alexander.deucher@amd.com
+References: <20230107151523.29864-1-Arunpravin.PaneerSelvam@amd.com>
+ <8f376efe-e19b-d1d5-031d-35df399bb6cf@intel.com>
+In-Reply-To: <8f376efe-e19b-d1d5-031d-35df399bb6cf@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH] drm: Alloc high address for drm buddy
+ topdown flag
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,261 +65,169 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0262290916841493844==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 10/01/2023 12:02, Matthew Auld wrote:
+> On 07/01/2023 15:15, Arunpravin Paneer Selvam wrote:
+>> As we are observing low numbers in viewperf graphics benchmark, we
+>> are strictly not allowing the top down flag enabled allocations
+>> to steal the memory space from cpu visible region.
+>>
+>> The approach is, we are sorting each order list entries in
+>> ascending order and compare the last entry of each order
+>> list in the freelist and return the max block.
+> 
+> Did you also run the selftests? Does everything still pass and complete 
+> in a reasonable amount of time?
+> 
+>>
+>> This patch improves the viewperf 3D benchmark scores.
+>>
+>> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+>> ---
+>>   drivers/gpu/drm/drm_buddy.c | 81 ++++++++++++++++++++++++-------------
+>>   1 file changed, 54 insertions(+), 27 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+>> index 11bb59399471..50916b2f2fc5 100644
+>> --- a/drivers/gpu/drm/drm_buddy.c
+>> +++ b/drivers/gpu/drm/drm_buddy.c
+>> @@ -38,6 +38,25 @@ static void drm_block_free(struct drm_buddy *mm,
+>>       kmem_cache_free(slab_blocks, block);
+>>   }
+>> +static void list_insert_sorted(struct drm_buddy *mm,
+>> +                   struct drm_buddy_block *block)
+>> +{
+>> +    struct drm_buddy_block *node;
+>> +    struct list_head *head;
+>> +
+>> +    head = &mm->free_list[drm_buddy_block_order(block)];
+>> +    if (list_empty(head)) {
+>> +        list_add(&block->link, head);
+>> +        return;
+>> +    }
+>> +
+>> +    list_for_each_entry(node, head, link)
+>> +        if (drm_buddy_block_offset(block) < 
+>> drm_buddy_block_offset(node))
+>> +            break;
+>> +
+>> +    __list_add(&block->link, node->link.prev, &node->link);
+>> +}
+>> +
+>>   static void mark_allocated(struct drm_buddy_block *block)
+>>   {
+>>       block->header &= ~DRM_BUDDY_HEADER_STATE;
+>> @@ -52,8 +71,7 @@ static void mark_free(struct drm_buddy *mm,
+>>       block->header &= ~DRM_BUDDY_HEADER_STATE;
+>>       block->header |= DRM_BUDDY_FREE;
+>> -    list_add(&block->link,
+>> -         &mm->free_list[drm_buddy_block_order(block)]);
+>> +    list_insert_sorted(mm, block);
+> 
+> One advantage of not sorting is when splitting down a large block. 
+> Previously the most-recently-split would be at the start of the list for 
+> the next order down, where potentially the next allocation could use it. 
+> So perhaps less fragmentation if it's all part of one BO. Otherwise I 
+> don't see any other downsides, other than the extra overhead of sorting.
+> 
+>>   }
+>>   static void mark_split(struct drm_buddy_block *block)
+>> @@ -387,20 +405,26 @@ alloc_range_bias(struct drm_buddy *mm,
+>>   }
+>>   static struct drm_buddy_block *
+>> -get_maxblock(struct list_head *head)
+>> +get_maxblock(struct drm_buddy *mm, unsigned int order)
+>>   {
+>>       struct drm_buddy_block *max_block = NULL, *node;
+>> +    unsigned int i;
+>> -    max_block = list_first_entry_or_null(head,
+>> -                         struct drm_buddy_block,
+>> -                         link);
+>> -    if (!max_block)
+>> -        return NULL;
+>> +    for (i = order; i <= mm->max_order; ++i) {
+>> +        if (!list_empty(&mm->free_list[i])) {
+>> +            node = list_last_entry(&mm->free_list[i],
+>> +                           struct drm_buddy_block,
+>> +                           link);
+>> +            if (!max_block) {
+>> +                max_block = node;
+>> +                continue;
+>> +            }
+>> -    list_for_each_entry(node, head, link) {
+>> -        if (drm_buddy_block_offset(node) >
+>> -            drm_buddy_block_offset(max_block))
+>> -            max_block = node;
+>> +            if (drm_buddy_block_offset(node) >
+>> +                drm_buddy_block_offset(max_block)) {
+> 
+> Formatting doesn't look right here.
+> 
+> Going to test this today with some workloads with small-bar and i915 
+> just to see if this improves/impacts anything for us.
 
-== Series Details ==
+No surprises, and as advertised seems to lead to reduced utilisation of 
+the mappable part for buffers that don't explicitly need it (TOPDOWN). 
+Assuming the selftests are still happy,
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
-Series: series starting with [v2,1/9] drm/i915/display/core: use intel_de_rmw if possible (rev3)
-URL   : https://patchwork.freedesktop.org/series/112438/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_12567 -> Patchwork_112438v3
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_112438v3 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_112438v3, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112438v3/index.html
-
-Participating hosts (41 -> 41)
-------------------------------
-
-  Additional (1): fi-kbl-soraka 
-  Missing    (1): fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_112438v3:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@guc:
-    - fi-kbl-soraka:      NOTRUN -> [INCOMPLETE][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112438v3/fi-kbl-soraka/igt@i915_selftest@live@guc.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_selftest@live@guc:
-    - {bat-rpls-2}:       [PASS][2] -> [DMESG-WARN][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12567/bat-rpls-2/igt@i915_selftest@live@guc.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112438v3/bat-rpls-2/igt@i915_selftest@live@guc.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_112438v3 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][4] ([fdo#109271]) +15 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112438v3/fi-kbl-soraka/igt@gem_exec_gttfill@basic.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][5] ([fdo#109271] / [i915#2190])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112438v3/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][6] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112438v3/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][7] ([i915#5334])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112438v3/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][8] ([i915#1886])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112438v3/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#6257]: https://gitlab.freedesktop.org/drm/intel/issues/6257
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12567 -> Patchwork_112438v3
-
-  CI-20190529: 20190529
-  CI_DRM_12567: a5cd9627b806f2f42bbacbf9649145f3954830d9 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7114: 2fd839599a200c089a5c9dbf5048609faf9b8104 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_112438v3: a5cd9627b806f2f42bbacbf9649145f3954830d9 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-737bb731534e drm/i915/display/misc: use intel_de_rmw if possible
-4219e82d96cf drm/i915/display/interfaces: use intel_de_rmw if possible
-bcb374d246e2 drm/i915/display/panel: use intel_de_rmw if possible in panel related code
-db81cb0d0791 drm/i915/display/hdmi: use intel_de_rmw if possible
-a1b81bc46443 drm/i915/display/pch: use intel_de_rmw if possible
-16d27bbb75d3 drm/i915/display/phys: use intel_de_rmw if possible
-5717847cc9c8 drm/i915/display/dpll: use intel_de_rmw if possible
-ed71f8596212 drm/i915/display/power: use intel_de_rmw if possible
-842075203e0b drm/i915/display/core: use intel_de_rmw if possible
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112438v3/index.html
-
---===============0262290916841493844==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v2,1/9] drm/i915/display/core: use intel_de_rmw if possible (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/112438/">https://patchwork.freedesktop.org/series/112438/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112438v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112438v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12567 -&gt; Patchwork_112438v3</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_112438v3 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_112438v3, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112438v3/index.html</p>
-<h2>Participating hosts (41 -&gt; 41)</h2>
-<p>Additional (1): fi-kbl-soraka <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_112438v3:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live@guc:<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112438v3/fi-kbl-soraka/igt@i915_selftest@live@guc.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@i915_selftest@live@guc:<ul>
-<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12567/bat-rpls-2/igt@i915_selftest@live@guc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112438v3/bat-rpls-2/igt@i915_selftest@live@guc.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_112438v3 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112438v3/fi-kbl-soraka/igt@gem_exec_gttfill@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +15 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112438v3/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112438v3/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112438v3/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112438v3/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12567 -&gt; Patchwork_112438v3</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12567: a5cd9627b806f2f42bbacbf9649145f3954830d9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7114: 2fd839599a200c089a5c9dbf5048609faf9b8104 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_112438v3: a5cd9627b806f2f42bbacbf9649145f3954830d9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>737bb731534e drm/i915/display/misc: use intel_de_rmw if possible<br />
-4219e82d96cf drm/i915/display/interfaces: use intel_de_rmw if possible<br />
-bcb374d246e2 drm/i915/display/panel: use intel_de_rmw if possible in panel related code<br />
-db81cb0d0791 drm/i915/display/hdmi: use intel_de_rmw if possible<br />
-a1b81bc46443 drm/i915/display/pch: use intel_de_rmw if possible<br />
-16d27bbb75d3 drm/i915/display/phys: use intel_de_rmw if possible<br />
-5717847cc9c8 drm/i915/display/dpll: use intel_de_rmw if possible<br />
-ed71f8596212 drm/i915/display/power: use intel_de_rmw if possible<br />
-842075203e0b drm/i915/display/core: use intel_de_rmw if possible</p>
-
-</body>
-</html>
-
---===============0262290916841493844==--
+> 
+>> +                max_block = node;
+>> +            }
+>> +        }
+>>       }
+>>       return max_block;
+>> @@ -412,20 +436,23 @@ alloc_from_freelist(struct drm_buddy *mm,
+>>               unsigned long flags)
+>>   {
+>>       struct drm_buddy_block *block = NULL;
+>> -    unsigned int i;
+>> +    unsigned int tmp;
+>>       int err;
+>> -    for (i = order; i <= mm->max_order; ++i) {
+>> -        if (flags & DRM_BUDDY_TOPDOWN_ALLOCATION) {
+>> -            block = get_maxblock(&mm->free_list[i]);
+>> -            if (block)
+>> -                break;
+>> -        } else {
+>> -            block = list_first_entry_or_null(&mm->free_list[i],
+>> -                             struct drm_buddy_block,
+>> -                             link);
+>> -            if (block)
+>> -                break;
+>> +    if (flags & DRM_BUDDY_TOPDOWN_ALLOCATION) {
+>> +        block = get_maxblock(mm, order);
+>> +        if (block)
+>> +            /* Store the obtained block order */
+>> +            tmp = drm_buddy_block_order(block);
+>> +    } else {
+>> +        for (tmp = order; tmp <= mm->max_order; ++tmp) {
+>> +            if (!list_empty(&mm->free_list[tmp])) {
+>> +                block = list_last_entry(&mm->free_list[tmp],
+>> +                            struct drm_buddy_block,
+>> +                            link);
+>> +                if (block)
+>> +                    break;
+>> +            }
+>>           }
+>>       }
+>> @@ -434,18 +461,18 @@ alloc_from_freelist(struct drm_buddy *mm,
+>>       BUG_ON(!drm_buddy_block_is_free(block));
+>> -    while (i != order) {
+>> +    while (tmp != order) {
+>>           err = split_block(mm, block);
+>>           if (unlikely(err))
+>>               goto err_undo;
+>>           block = block->right;
+>> -        i--;
+>> +        tmp--;
+>>       }
+>>       return block;
+>>   err_undo:
+>> -    if (i != order)
+>> +    if (tmp != order)
+>>           __drm_buddy_free(mm, block);
+>>       return ERR_PTR(err);
+>>   }
