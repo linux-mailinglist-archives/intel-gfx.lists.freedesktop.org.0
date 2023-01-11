@@ -1,59 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5267665F53
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jan 2023 16:41:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 800E4665F5B
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jan 2023 16:41:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED96E10E2B2;
-	Wed, 11 Jan 2023 15:41:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAA4310E76C;
+	Wed, 11 Jan 2023 15:41:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com
- [IPv6:2a00:1450:4864:20::32d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D28EB10E2B2
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Jan 2023 15:41:22 +0000 (UTC)
-Received: by mail-wm1-x32d.google.com with SMTP id
- bg13-20020a05600c3c8d00b003d9712b29d2so14681796wmb.2
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Jan 2023 07:41:22 -0800 (PST)
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com
+ [IPv6:2a00:1450:4864:20::331])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3040210E767
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Jan 2023 15:41:24 +0000 (UTC)
+Received: by mail-wm1-x331.google.com with SMTP id o15so11377780wmr.4
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Jan 2023 07:41:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=OGvydfcnswB5kCTr6pgmQFxcgFjCL3fOh+5DF0n/kHQ=;
- b=MlaP4iz9T5QOEdEs7QRCj0LRht0gbuOE12jC5lqdYaja6OmWEu3x44yTN6+eBPdseA
- ZRP3gRxjIwfx/RvbvL1abOvvxn4IUBTB76ngU0gOrbj6czdukqRxbFjuguKcKlCvBiAi
- OIRDopYxEw1xY1T5KE6yRdOqY5ob94mIqBzMI=
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=94eajVQl3EIphKCpXXhL7CnxhOfjsXCJp+mdLyrDZk0=;
+ b=f7KHQ8uU7yo7cC1q+hRAYyai9jdEOJCO8tU1UcHPeDOQzr3zT9mcNDiHKbkAh9YMdi
+ PcqaMKKeizVMG9LtdqmhoiqGGOE/2lkXWI8gQheuKM7IeiU6H+0SevQsiVwVjpCuYqMs
+ pIc2/KEnN2fQGSipr275BOLjvkdqRmvXH0z6A=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=OGvydfcnswB5kCTr6pgmQFxcgFjCL3fOh+5DF0n/kHQ=;
- b=ut5am0PjWGCPlPlmeQ9tvKIqH/W/rwtyBDATDoC5lQLapzZieVfdp1DyLnZfrqXoYZ
- QG25R2YDqTEEVEkQhabrxMOh/cIP8PPoYBEZ6m5FV61djXlZzli/475wNUylmtosjBnG
- vKoB570ZkSL2JM40IYEWXD8+GsUsl69hr7Be7LAahH9TPDJMS0pcNhOcxeCZOhwjPw1+
- +roO3zVl9CpebjLht60s/UJxsplxYKe9S1+j4/oscaRth1JgFZ5KrbhO9Q4y+bBsAxPZ
- PbT5o1nbojQL8ZakkIGFxxNYlTuH3Sglklk1ZCl0fZbZgrpdKcnRLBNBkseoOeOVZreC
- IDCQ==
-X-Gm-Message-State: AFqh2koeFh8PoY76A/sqHddxPKLk5K4VqGr3EhZl1875EUDu1Hx6iEGY
- WFokh0YrZ+iMoCdUD2G2u51xIQ==
-X-Google-Smtp-Source: AMrXdXvZL6+Fq4x6+s6c1TzAuUbbiOvtCaS9MpQRLMdhQaJKNpbYwvT73xPCftXvxiNmLgwrl3Fc5Q==
-X-Received: by 2002:a05:600c:3482:b0:3d3:4f56:62e1 with SMTP id
- a2-20020a05600c348200b003d34f5662e1mr51193693wmq.27.1673451681375; 
- Wed, 11 Jan 2023 07:41:21 -0800 (PST)
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=94eajVQl3EIphKCpXXhL7CnxhOfjsXCJp+mdLyrDZk0=;
+ b=fd0xzBZ/IytxC0CaBl2wQFs40XPfMithfC6qmtIQ+dwoZgILPaBUeZOCwlBKYjB2F7
+ XCEV7kCMWumKJRgZi6UCPo+naVtUzVhCeZ4LYUnhTiz4WtLlcUe9Mk7DXlDUJRfpuPr2
+ OslBct2n0MCjhgxpQb54zXn11RPwxCokCaYqD481SOqs7fMUvyrDhOQ6UDROdM03B3pg
+ jU8Fg2SXg7eMZJ57mqikzMlC6vn9S72CTd2kIj+s6DziczAubAFBRJXpYl08dLSMe+VH
+ L/YCLKNVSVHdqTWRkdTEcKdBFA/4K39MrrrmTrs0jfdVywFrF+4EnDdMULvblf2GhsPY
+ qzJQ==
+X-Gm-Message-State: AFqh2kp95JZ5yLLKokjdGQGAdQmi0XqkMxTC3yOowbv4zpCJ115i0qvo
+ lAqorpGRDWplBR7m/jQC4DS/CI+qEid+gM1G
+X-Google-Smtp-Source: AMrXdXtf8JLpJynpq+UdfDiN+hQzDfbaEU0ALxQMv3+e3jXFqbhaPY9flDL5OZP4Gg/LNzzywZZOJw==
+X-Received: by 2002:a05:600c:4e4f:b0:3cf:9d32:db67 with SMTP id
+ e15-20020a05600c4e4f00b003cf9d32db67mr52259243wmq.3.1673451682597; 
+ Wed, 11 Jan 2023 07:41:22 -0800 (PST)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
  by smtp.gmail.com with ESMTPSA id
- t9-20020a05600c198900b003d9e74dd9b2sm15936149wmq.9.2023.01.11.07.41.19
+ t9-20020a05600c198900b003d9e74dd9b2sm15936149wmq.9.2023.01.11.07.41.21
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 11 Jan 2023 07:41:20 -0800 (PST)
+ Wed, 11 Jan 2023 07:41:21 -0800 (PST)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Wed, 11 Jan 2023 16:41:02 +0100
-Message-Id: <20230111154112.90575-1-daniel.vetter@ffwll.ch>
+Date: Wed, 11 Jan 2023 16:41:03 +0100
+Message-Id: <20230111154112.90575-2-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230111154112.90575-1-daniel.vetter@ffwll.ch>
+References: <20230111154112.90575-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 01/11] drm/ast: Use
+Subject: [Intel-gfx] [PATCH 02/11] drm/gma500: Use
  drm_aperture_remove_conflicting_pci_framebuffers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,61 +69,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Daniel Vetter <daniel.vetter@intel.com>, Dave Airlie <airlied@redhat.com>,
- Helge Deller <deller@gmx.de>
+ LKML <linux-kernel@vger.kernel.org>, Daniel Vetter <daniel.vetter@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-It's just open coded and matches.
-
-Note that Thomas said that his version apparently failed for some
-reason, but hey maybe we should try again.
+This one nukes all framebuffers, which is a bit much. In reality
+gma500 is igpu and never shipped with anything discrete, so there should
+not be any difference.
 
 Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-Cc: Dave Airlie <airlied@redhat.com>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Javier Martinez Canillas <javierm@redhat.com>
-Cc: Helge Deller <deller@gmx.de>
-Cc: linux-fbdev@vger.kernel.org
 ---
- drivers/gpu/drm/ast/ast_drv.c | 16 +---------------
- 1 file changed, 1 insertion(+), 15 deletions(-)
+ drivers/gpu/drm/gma500/psb_drv.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/ast/ast_drv.c b/drivers/gpu/drm/ast/ast_drv.c
-index 420fc75c240e..3ac24a780f50 100644
---- a/drivers/gpu/drm/ast/ast_drv.c
-+++ b/drivers/gpu/drm/ast/ast_drv.c
-@@ -90,27 +90,13 @@ static const struct pci_device_id ast_pciidlist[] = {
- 
- MODULE_DEVICE_TABLE(pci, ast_pciidlist);
- 
--static int ast_remove_conflicting_framebuffers(struct pci_dev *pdev)
--{
--	bool primary = false;
--	resource_size_t base, size;
--
--	base = pci_resource_start(pdev, 0);
--	size = pci_resource_len(pdev, 0);
--#ifdef CONFIG_X86
--	primary = pdev->resource[PCI_ROM_RESOURCE].flags & IORESOURCE_ROM_SHADOW;
--#endif
--
--	return drm_aperture_remove_conflicting_framebuffers(base, size, primary, &ast_driver);
--}
--
- static int ast_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- {
- 	struct ast_private *ast;
- 	struct drm_device *dev;
- 	int ret;
- 
--	ret = ast_remove_conflicting_framebuffers(pdev);
-+	ret = drm_aperture_remove_conflicting_pci_framebuffers(pdev, &ast_driver);
+diff --git a/drivers/gpu/drm/gma500/psb_drv.c b/drivers/gpu/drm/gma500/psb_drv.c
+index cd9c73f5a64a..9b0daf90dc50 100644
+--- a/drivers/gpu/drm/gma500/psb_drv.c
++++ b/drivers/gpu/drm/gma500/psb_drv.c
+@@ -429,7 +429,7 @@ static int psb_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 	 * TODO: Refactor psb_driver_load() to map vdc_reg earlier. Then we
+ 	 *       might be able to read the framebuffer range from the device.
+ 	 */
+-	ret = drm_aperture_remove_framebuffers(true, &driver);
++	ret = drm_aperture_remove_conflicting_pci_framebuffers(pdev, &driver);
  	if (ret)
  		return ret;
  
