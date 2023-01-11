@@ -1,71 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EC39665E34
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jan 2023 15:43:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D058665E74
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jan 2023 15:54:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2768810E74D;
-	Wed, 11 Jan 2023 14:43:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A436810E74D;
+	Wed, 11 Jan 2023 14:54:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com
- [IPv6:2a00:1450:4864:20::62a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 01D0710E182;
- Wed, 11 Jan 2023 14:43:42 +0000 (UTC)
-Received: by mail-ej1-x62a.google.com with SMTP id ud5so37402864ejc.4;
- Wed, 11 Jan 2023 06:43:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=Ok8admi3adyhkwALbglLAA1T4l19cIQLOajyzL3H8mE=;
- b=JiNOuxajUJUhwnMCMiQ0f9OqsMhfeyTFnac8h1CVe4lFzQoqAqCn7wbUV+O+pBU5On
- RMHNGgN/puTA64Gpg10gD0n05qssLzUWkyvFiItVTdea0ExjqBQy57ZVmlRliMaQ3L3G
- 4q7FXffv0ursFntvelkzRsD59gNKXy/+tMMVfyjccBtlEuo6wI1Qoh4yfUPVrxcCxyBh
- 0hKO8Sbw5NMahyGtsw/GjX/mFhEW8Od8JdqmT+wJ1eqnQ1Nob7eY3k+9pXM3Lj8NY9O1
- HFafgB4W0ehghSKrF3iauDqEzpVapiyOSX8c2IMPVRTju5J/20vFzA5LsxTpn6ARLmKQ
- 1cAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=Ok8admi3adyhkwALbglLAA1T4l19cIQLOajyzL3H8mE=;
- b=v1nDF13/i69oAoEwkttoU45VB3SYIsD2fvImh/jyko6DWkj/sQAWJreNt2OHRVmifC
- ZtOZ89S/IP+Piehz0fEP+KvnSgLCG2ieCWGpLrfpnr+mSV32haxzNnJR2MAlLGD+MPr8
- LZvVAqaRUcjkluCGGmi4xuzsD2UlnUMAOLycY3jLS5wWXhGFpIBryLk2sDOkUIj/dmTU
- oxinosv1jU30GxCH57bmMEdQ8DamGzsw5Msh1uSS+0+FSTuLACUhbvEvXyIDNefH/Qeb
- 4vNQGlGR2JMazmtXqIqXw7CAQ/MKio1DDzJIWFruBd6WLbL+1nGjBG3xeia5lBD9Xhwh
- KGlw==
-X-Gm-Message-State: AFqh2kqiemaDKJitbMsWQpFbQhBykL51Tcxz/58NpxcPh2iBgrBX5+OU
- BpXECeFqEFHqodhWVnXYvPU=
-X-Google-Smtp-Source: AMrXdXuk847iLZxfWmPE30v4dt8D/TNgIApIFCiFxHgwyV34scLZ9216FHv4MIHT7NUcBr2z3IXFYg==
-X-Received: by 2002:a17:907:8744:b0:7c0:dd66:e991 with SMTP id
- qo4-20020a170907874400b007c0dd66e991mr61356624ejc.6.1673448221384; 
- Wed, 11 Jan 2023 06:43:41 -0800 (PST)
-Received: from ?IPV6:2a02:908:1256:79a0:30e7:35f2:6c30:5565?
- ([2a02:908:1256:79a0:30e7:35f2:6c30:5565])
- by smtp.gmail.com with ESMTPSA id
- bk5-20020a170906b0c500b00852e0bbed1dsm2612592ejb.17.2023.01.11.06.43.40
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 11 Jan 2023 06:43:40 -0800 (PST)
-Message-ID: <2b68945e-4001-db29-4421-f1a7266f0d69@gmail.com>
-Date: Wed, 11 Jan 2023 15:43:39 +0100
+X-Greylist: delayed 73476 seconds by postgrey-1.36 at gabe;
+ Wed, 11 Jan 2023 14:54:07 UTC
+Received: from msg-2.mailo.com (msg-2.mailo.com [213.182.54.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBAF710E74D;
+ Wed, 11 Jan 2023 14:54:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailo.com; s=mailo;
+ t=1673448834; bh=a11Jae44KwYy9o132mfW4/D3Q6MsuBCwY//ZPSTrHIE=;
+ h=X-EA-Auth:Date:From:To:Cc:Subject:Message-ID:References:
+ MIME-Version:Content-Type:In-Reply-To;
+ b=DbODQAoQHEZM/a/K4lMO2lGSRed0mwdw/Q3CVDpxU+BhbaswYuKWxAFnSbGbU4Tc5
+ y/2fIb+0O+0MX0uFej35x1bRvj7oRDMYmfNuGSD7V4zUeoKm6cDIrpUj4EGaZs4Ob7
+ TYECBqUpJP5DYqOj9CngNXl088/DL3pt7JOOqzDY=
+Received: by b-5.in.mailobj.net [192.168.90.15] with ESMTP
+ via ip-206.mailobj.net [213.182.55.206]
+ Wed, 11 Jan 2023 15:53:54 +0100 (CET)
+X-EA-Auth: ZaAip+CTSc67ezFnDCoiEjLGiYvViKUlZn4iLe6bFNCGMtOK77A5JE91WLoajOWI0y3PFRk9lHMnGddwMmGr2P7TgjIZ9KEO
+Date: Wed, 11 Jan 2023 20:23:49 +0530
+From: Deepak R Varma <drv@mailo.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <Y77NfeKbLL4s/Ibg@ubun2204.myguest.virtualbox.org>
+References: <cover.1673375066.git.drv@mailo.com>
+ <188df08e0feba0cda2c92145f513dd4e57c6e6cf.1673375066.git.drv@mailo.com>
+ <Y72zVXYLVHXuyK05@intel.com> <Y76JGj0cJpYr6/rv@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Content-Language: en-US
-To: Matthew Auld <matthew.william.auld@gmail.com>
-References: <20230111114256.72669-1-christian.koenig@amd.com>
- <20230111114256.72669-2-christian.koenig@amd.com>
- <CAM0jSHP=LT5mXEFvXWJGPOotgRBBLFe-Pw=4TTHYWo=Maov_uA@mail.gmail.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <CAM0jSHP=LT5mXEFvXWJGPOotgRBBLFe-Pw=4TTHYWo=Maov_uA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/ttm: replace busy placement with
- flags
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y76JGj0cJpYr6/rv@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gvt: Avoid full proxy f_ops
+ for vgpu_status debug attributes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,194 +50,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Praveen Kumar <kumarpraveen@linux.microsoft.com>,
+ intel-gfx@lists.freedesktop.org, Saurabh Singh Sengar <ssengar@microsoft.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 11.01.23 um 14:03 schrieb Matthew Auld:
-> On Wed, 11 Jan 2023 at 11:43, Christian König
-> <ckoenig.leichtzumerken@gmail.com> wrote:
->> Instead of a list of separate busy placement add flags which indicate
->> that a placement should only be used when there is room or if we need to
->> evict.
->>
->> Signed-off-by: Christian König <christian.koenig@amd.com>
->> ---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c |   6 +-
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c    |  11 +-
->>   drivers/gpu/drm/drm_gem_vram_helper.c      |   2 -
->>   drivers/gpu/drm/i915/gem/i915_gem_ttm.c    |  36 +++---
->>   drivers/gpu/drm/nouveau/nouveau_bo.c       |  59 ++++------
->>   drivers/gpu/drm/nouveau/nouveau_bo.h       |   1 -
->>   drivers/gpu/drm/qxl/qxl_object.c           |   2 -
->>   drivers/gpu/drm/qxl/qxl_ttm.c              |   2 -
->>   drivers/gpu/drm/radeon/radeon_object.c     |   2 -
->>   drivers/gpu/drm/radeon/radeon_ttm.c        |   8 +-
->>   drivers/gpu/drm/radeon/radeon_uvd.c        |   1 -
->>   drivers/gpu/drm/ttm/ttm_bo.c               |  21 ++--
->>   drivers/gpu/drm/ttm/ttm_resource.c         |  73 +++----------
->>   drivers/gpu/drm/vmwgfx/vmwgfx_bo.c         |   2 -
->>   drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c | 121 ++++++++++-----------
->>   include/drm/ttm/ttm_placement.h            |  10 +-
->>   include/drm/ttm/ttm_resource.h             |   8 +-
->>   17 files changed, 134 insertions(+), 231 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
->> index 974e85d8b6cc..0995a2f41305 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
->> @@ -201,9 +201,6 @@ void amdgpu_bo_placement_from_domain(struct amdgpu_bo *abo, u32 domain)
->>
->>          placement->num_placement = c;
->>          placement->placement = places;
->> -
->> -       placement->num_busy_placement = c;
->> -       placement->busy_placement = places;
->>   }
->>
->>   /**
->> @@ -1369,8 +1366,7 @@ vm_fault_t amdgpu_bo_fault_reserve_notify(struct ttm_buffer_object *bo)
->>                                          AMDGPU_GEM_DOMAIN_GTT);
->>
->>          /* Avoid costly evictions; only set GTT as a busy placement */
->> -       abo->placement.num_busy_placement = 1;
->> -       abo->placement.busy_placement = &abo->placements[1];
->> +       abo->placements[0].flags |= TTM_PL_FLAG_IDLE;
->>
->>          r = ttm_bo_validate(bo, &abo->placement, &ctx);
->>          if (unlikely(r == -EBUSY || r == -ERESTARTSYS))
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
->> index 677cd7d91687..33cf6e835a68 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
->> @@ -104,23 +104,19 @@ static void amdgpu_evict_flags(struct ttm_buffer_object *bo,
->>          /* Don't handle scatter gather BOs */
->>          if (bo->type == ttm_bo_type_sg) {
->>                  placement->num_placement = 0;
->> -               placement->num_busy_placement = 0;
->>                  return;
->>          }
->>
->>          /* Object isn't an AMDGPU object so ignore */
->>          if (!amdgpu_bo_is_amdgpu_bo(bo)) {
->>                  placement->placement = &placements;
->> -               placement->busy_placement = &placements;
->>                  placement->num_placement = 1;
->> -               placement->num_busy_placement = 1;
->>                  return;
->>          }
->>
->>          abo = ttm_to_amdgpu_bo(bo);
->>          if (abo->flags & AMDGPU_GEM_CREATE_DISCARDABLE) {
->>                  placement->num_placement = 0;
->> -               placement->num_busy_placement = 0;
->>                  return;
->>          }
->>
->> @@ -129,13 +125,13 @@ static void amdgpu_evict_flags(struct ttm_buffer_object *bo,
->>          case AMDGPU_PL_GWS:
->>          case AMDGPU_PL_OA:
->>                  placement->num_placement = 0;
->> -               placement->num_busy_placement = 0;
->>                  return;
->>
->>          case TTM_PL_VRAM:
->>                  if (!adev->mman.buffer_funcs_enabled) {
->>                          /* Move to system memory */
->>                          amdgpu_bo_placement_from_domain(abo, AMDGPU_GEM_DOMAIN_CPU);
->> +
->>                  } else if (!amdgpu_gmc_vram_full_visible(&adev->gmc) &&
->>                             !(abo->flags & AMDGPU_GEM_CREATE_CPU_ACCESS_REQUIRED) &&
->>                             amdgpu_bo_in_cpu_visible_vram(abo)) {
->> @@ -150,8 +146,7 @@ static void amdgpu_evict_flags(struct ttm_buffer_object *bo,
->>                                                          AMDGPU_GEM_DOMAIN_CPU);
->>                          abo->placements[0].fpfn = adev->gmc.visible_vram_size >> PAGE_SHIFT;
->>                          abo->placements[0].lpfn = 0;
->> -                       abo->placement.busy_placement = &abo->placements[1];
->> -                       abo->placement.num_busy_placement = 1;
->> +                       abo->placements[0].flags |= TTM_PL_FLAG_IDLE;
->>                  } else {
->>                          /* Move to GTT memory */
->>                          amdgpu_bo_placement_from_domain(abo, AMDGPU_GEM_DOMAIN_GTT |
->> @@ -923,8 +918,6 @@ int amdgpu_ttm_alloc_gart(struct ttm_buffer_object *bo)
->>          /* allocate GART space */
->>          placement.num_placement = 1;
->>          placement.placement = &placements;
->> -       placement.num_busy_placement = 1;
->> -       placement.busy_placement = &placements;
->>          placements.fpfn = 0;
->>          placements.lpfn = adev->gmc.gart_size >> PAGE_SHIFT;
->>          placements.mem_type = TTM_PL_TT;
->> diff --git a/drivers/gpu/drm/drm_gem_vram_helper.c b/drivers/gpu/drm/drm_gem_vram_helper.c
->> index d40b3edb52d0..f46792b757f9 100644
->> --- a/drivers/gpu/drm/drm_gem_vram_helper.c
->> +++ b/drivers/gpu/drm/drm_gem_vram_helper.c
->> @@ -147,7 +147,6 @@ static void drm_gem_vram_placement(struct drm_gem_vram_object *gbo,
->>                  invariant_flags = TTM_PL_FLAG_TOPDOWN;
->>
->>          gbo->placement.placement = gbo->placements;
->> -       gbo->placement.busy_placement = gbo->placements;
->>
->>          if (pl_flag & DRM_GEM_VRAM_PL_FLAG_VRAM) {
->>                  gbo->placements[c].mem_type = TTM_PL_VRAM;
->> @@ -160,7 +159,6 @@ static void drm_gem_vram_placement(struct drm_gem_vram_object *gbo,
->>          }
->>
->>          gbo->placement.num_placement = c;
->> -       gbo->placement.num_busy_placement = c;
->>
->>          for (i = 0; i < c; ++i) {
->>                  gbo->placements[i].fpfn = 0;
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->> index d409a77449a3..dc483d601cf9 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->> @@ -65,8 +65,6 @@ static const struct ttm_place sys_placement_flags = {
->>   static struct ttm_placement i915_sys_placement = {
->>          .num_placement = 1,
->>          .placement = &sys_placement_flags,
->> -       .num_busy_placement = 1,
->> -       .busy_placement = &sys_placement_flags,
->>   };
->>
->>   /**
->> @@ -154,32 +152,27 @@ i915_ttm_place_from_region(const struct intel_memory_region *mr,
->>
->>   static void
->>   i915_ttm_placement_from_obj(const struct drm_i915_gem_object *obj,
->> -                           struct ttm_place *requested,
->> -                           struct ttm_place *busy,
->> +                           struct ttm_place *places,
->>                              struct ttm_placement *placement)
->>   {
->>          unsigned int num_allowed = obj->mm.n_placements;
->>          unsigned int flags = obj->flags;
->>          unsigned int i;
->>
->> -       placement->num_placement = 1;
->>          i915_ttm_place_from_region(num_allowed ? obj->mm.placements[0] :
->> -                                  obj->mm.region, requested, obj->bo_offset,
->> +                                  obj->mm.region, &places[0], obj->bo_offset,
->>                                     obj->base.size, flags);
-> Do we also need places[0].flags |= TTM_PL_FLAG_IDLE somewhere here?
->
-> Series doesn't seem to apply to drm-tip, so no intel-gfx CI. Would it
-> be possible to have a version that applies to drm-tip, just so we can
-> verify the i915 bits? We could send it to trybot[1] just to get some
-> CI results?
+On Wed, Jan 11, 2023 at 05:02:02AM -0500, Rodrigo Vivi wrote:
+> On Tue, Jan 10, 2023 at 01:49:57PM -0500, Rodrigo Vivi wrote:
+> > On Wed, Jan 11, 2023 at 12:00:12AM +0530, Deepak R Varma wrote:
+> > > Using DEFINE_SIMPLE_ATTRIBUTE macro with the debugfs_create_file()
+> > > function adds the overhead of introducing a proxy file operation
+> > > functions to wrap the original read/write inside file removal protection
+> > > functions. This adds significant overhead in terms of introducing and
+> > > managing the proxy factory file operations structure and function
+> > > wrapping at runtime.
+> > > As a replacement, a combination of DEFINE_DEBUGFS_ATTRIBUTE macro paired
+> > > with debugfs_create_file_unsafe() is suggested to be used instead.  The
+> > > DEFINE_DEBUGFS_ATTRIBUTE utilises debugfs_file_get() and
+> > > debugfs_file_put() wrappers to protect the original read and write
+> > > function calls for the debug attributes. There is no need for any
+> > > runtime proxy file operations to be managed by the debugfs core.
+> > > Following coccicheck make command helped identify this change:
+> > > 
+> > > make coccicheck M=drivers/gpu/drm/i915/ MODE=patch COCCI=./scripts/coccinelle/api/debugfs/debugfs_simple_attr.cocci
+> > > 
+> > > Signed-off-by: Deepak R Varma <drv@mailo.com>
+> > 
+> > I believe these 2 gvt cases could be done in one patch.
+> > But anyways,
+> > 
+> > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > 
+> > for both patches... and will leave these 2 patches for gvt folks
+> > to apply. Unless they ack and I apply in the drm-intel along with the other ones.
+> 
+> Actually, could you please address the checkpatch issues before we can push?
+> Sorry about that, but just noticed now when I was going to push the other ones.
 
-Mpf, I was intentionally waiting with this for another cycle to be able 
-to test it. Can you see why it doesn't apply?
+Hello Rodrigo,
+The checkpatch warning is associated with the long "make coccicheck ..." command
+in the commit message. It is not part of the code, so is should not be carried
+forward into the code base.
+If you still want me to correct it, I will need to split it into two lines which
+I think still violates the commit description guidelines.
 
-Currently "dim rebuild-tip" doesn't work for me because of a conflict in 
-i915_gem_execbuffer.c
+Let me know what you think.
 
-Any idea how to fix this?
+Thank you,
+./drv
 
-Thanks,
-Christian.
+> 
+> > 
+> > > ---
+> > >  drivers/gpu/drm/i915/gvt/debugfs.c | 6 +++---
+> > >  1 file changed, 3 insertions(+), 3 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/gvt/debugfs.c b/drivers/gpu/drm/i915/gvt/debugfs.c
+> > > index 03f081c3d9a4..baccbf1761b7 100644
+> > > --- a/drivers/gpu/drm/i915/gvt/debugfs.c
+> > > +++ b/drivers/gpu/drm/i915/gvt/debugfs.c
+> > > @@ -165,7 +165,7 @@ static int vgpu_status_get(void *data, u64 *val)
+> > >  	return 0;
+> > >  }
+> > >  
+> > > -DEFINE_SIMPLE_ATTRIBUTE(vgpu_status_fops, vgpu_status_get, NULL, "0x%llx\n");
+> > > +DEFINE_DEBUGFS_ATTRIBUTE(vgpu_status_fops, vgpu_status_get, NULL, "0x%llx\n");
+> > >  
+> > >  /**
+> > >   * intel_gvt_debugfs_add_vgpu - register debugfs entries for a vGPU
+> > > @@ -182,8 +182,8 @@ void intel_gvt_debugfs_add_vgpu(struct intel_vgpu *vgpu)
+> > >  			    &vgpu_mmio_diff_fops);
+> > >  	debugfs_create_file_unsafe("scan_nonprivbb", 0644, vgpu->debugfs, vgpu,
+> > >  				   &vgpu_scan_nonprivbb_fops);
+> > > -	debugfs_create_file("status", 0644, vgpu->debugfs, vgpu,
+> > > -			    &vgpu_status_fops);
+> > > +	debugfs_create_file_unsafe("status", 0644, vgpu->debugfs, vgpu,
+> > > +				   &vgpu_status_fops);
+> > >  }
+> > >  
+> > >  /**
+> > > -- 
+> > > 2.34.1
+> > > 
+> > > 
+> > > 
 
-
->
-> [1] https://patchwork.freedesktop.org/project/intel-gfx-trybot/series/?ordering=-last_updated
 
