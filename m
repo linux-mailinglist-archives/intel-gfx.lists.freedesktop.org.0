@@ -1,51 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF866666748
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jan 2023 00:56:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67AF666674A
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jan 2023 00:56:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E72610E83E;
-	Wed, 11 Jan 2023 23:56:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 343EE10E840;
+	Wed, 11 Jan 2023 23:56:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4193910E838
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 406E810E170
  for <intel-gfx@lists.freedesktop.org>; Wed, 11 Jan 2023 23:56:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1673481376; x=1705017376;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=K0ux4J3aJ283Z6NQWZc+KUG7MV9Kn6PfbuHN6h1lPAU=;
- b=K7o2ddZMU1XfkKwWfIQm05aVV+JOKYpH/iYcmLfClncYW4h8U8RzeVU6
- QIdyxMNAEZ/6IBtGMkPHLarKonVYatWnh0iGEbhDx2Y+7ubnb/s/U+VTe
- cmBRc56/9gaDZd+InpkCTtdDNFmUjVNbtzRem8H+B8oTfDIdZjr+yBySr
- MotL2ZqT/H/FH7QEouftvzuSG05tp0aywLsnBenUIN79j0RNE3BZBYywg
- ycC00xTR+u1G8uiNoTh+LGp377JEhxs+Me8zMtfyZjwEJs9oQjW5JeUmU
- 706AxCOhaYYM6Cdd6gdxRvsAYyw/J9Y+MmUQTPI9ftlFnYVgbv4x4hBxu A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="307090900"
-X-IronPort-AV: E=Sophos;i="5.96,318,1665471600"; d="scan'208";a="307090900"
+ bh=x4CXsg5e5UhdGUDOBoMuneXk/sbxN8JXuIaU+8esK4k=;
+ b=aAzZ4zO0qpm0wWQIYiFIy/Xa4glcnXeXhh/6yKwSoZlnvBQOn1SYYedS
+ kL1GaC6aWG02THHFjilC8RdJu9tsYkU3aUSQDdeX2i0iReRfozblQLNQN
+ /oGTPe4tmf0ABN6Y9zsL16+PkgVGjr+IGwSlkt2dPRpLPA/D9HoE/j6Xt
+ T0Msh2A4/4KepDhliA/eXEKfqsbnhGRwbHhl4RqqRncbV+/TqnFlpO/cv
+ +gh1z4BEtL/Ch6yzxbONWDw74QtAhBZ3tVRMwqGAPbXMS3RChs8MssF1o
+ jG8TzzdX5sBYTjrQu0iO/u2zZLtWl62Jb0fNrgDo2fuQphu2xXdkizi/V g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="307090901"
+X-IronPort-AV: E=Sophos;i="5.96,318,1665471600"; d="scan'208";a="307090901"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Jan 2023 15:56:14 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="831486378"
-X-IronPort-AV: E=Sophos;i="5.96,318,1665471600"; d="scan'208";a="831486378"
+X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="831486382"
+X-IronPort-AV: E=Sophos;i="5.96,318,1665471600"; d="scan'208";a="831486382"
 Received: from invictus.jf.intel.com ([10.165.21.134])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Jan 2023 15:56:14 -0800
 From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 11 Jan 2023 15:55:27 -0800
-Message-Id: <20230111235531.3353815-6-radhakrishna.sripada@intel.com>
+Date: Wed, 11 Jan 2023 15:55:28 -0800
+Message-Id: <20230111235531.3353815-7-radhakrishna.sripada@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230111235531.3353815-1-radhakrishna.sripada@intel.com>
 References: <20230111235531.3353815-1-radhakrishna.sripada@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH dii-client 5/9] drm/i915/gt: generate per gt
- debugfs files
+Subject: [Intel-gfx] [PATCH dii-client 6/9] drm/i915/debugfs: Multiplex
+ upper layer interfaces to act on all gt's
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,100 +60,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Andi Shyti <andi.shyti@intel.com>
+From: Andi Shyti <andi.shyti@linux.intel.com>
 
-In the view of multi-gt we want independent per gt debug files.
+Commit 82a149a62b6b5 ('drm/i915/gt: move remaining debugfs
+interfaces into gt') moves gt related debugfs files in the gtX/
+directories to act on specific gt's individually.
 
-In debugfs create gt0/ gt1/ ... gtN/ for gt related files. In
-platforms with 2 gt's, the debugfs would be structured as follows:
+The original files are kept intact in the same location in order
+to not break userspace users. But they were performing only on
+the root tile (tile 0).
 
-/sys/kernel/debug/dri
-                  └── 0
-                      ├── gt0
-                      │   ├── drpc
-                      │   ├── engines
-                      │   ├── forcewake
-                      │   ├── frequency
-                      │   └── rps_boost
-                      └─- gt1
-                      :   ├── drpc
-                      :   ├── engines
-                      :   ├── forcewake
-                          ├── frequency
-                          └── rps_boost
+Add a multiplexing functionality to the higher directories files
+so that they can perform the operations on all the tiles in a
+with a single write.
 
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Signed-off-by: Andi Shyti <andi.shyti@intel.com>
+In the read case they provide an or'ed value amongst the tiles.
+
+Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>
+Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
 Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gt_debugfs.c    | 4 +++-
- drivers/gpu/drm/i915/gt/uc/intel_guc.h        | 2 ++
- drivers/gpu/drm/i915/gt/uc/intel_guc_log.c    | 5 ++++-
- drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.c | 2 ++
- 4 files changed, 11 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/i915_debugfs.c | 38 ++++++++++++++++++++++++++---
+ 1 file changed, 34 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
-index 5fc2df01aa0d..4dc23b8d3aa2 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
-@@ -83,11 +83,13 @@ static void gt_debugfs_register(struct intel_gt *gt, struct dentry *root)
- void intel_gt_debugfs_register(struct intel_gt *gt)
+diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+index a356ca490159..d64e9e3a439d 100644
+--- a/drivers/gpu/drm/i915/i915_debugfs.c
++++ b/drivers/gpu/drm/i915/i915_debugfs.c
+@@ -575,14 +575,36 @@ static int i915_wa_registers(struct seq_file *m, void *unused)
+ static int i915_wedged_get(void *data, u64 *val)
  {
- 	struct dentry *root;
-+	char gtname[4];
+ 	struct drm_i915_private *i915 = data;
++	struct intel_gt *gt;
++	unsigned int i;
  
- 	if (!gt->i915->drm.primary->debugfs_root)
- 		return;
- 
--	root = debugfs_create_dir("gt", gt->i915->drm.primary->debugfs_root);
-+	snprintf(gtname, sizeof(gtname), "gt%u", gt->info.id);
-+	root = debugfs_create_dir(gtname, gt->i915->drm.primary->debugfs_root);
- 	if (IS_ERR(root))
- 		return;
- 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-index bb4dfe707a7d..e46aac1a41e6 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-@@ -42,6 +42,8 @@ struct intel_guc {
- 	/** @capture: the error-state-capture module's data and objects */
- 	struct intel_guc_state_capture *capture;
- 
-+	struct dentry *dbgfs_node;
+-	return intel_gt_debugfs_reset_show(to_gt(i915), val);
++	*val = 0;
 +
- 	/** @sched_engine: Global engine used to submit requests to GuC */
- 	struct i915_sched_engine *sched_engine;
- 	/**
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
-index 68331c538b0a..71b1f23b64c1 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
-@@ -542,8 +542,11 @@ static int guc_log_relay_create(struct intel_guc_log *log)
- 	 */
- 	n_subbufs = 8;
- 
-+	if (!guc->dbgfs_node)
-+		return -ENOENT;
++	for_each_gt(gt, i915, i) {
++		int ret;
++		u64 v;
 +
- 	guc_log_relay_chan = relay_open("guc_log",
--					dev_priv->drm.primary->debugfs_root,
-+					guc->dbgfs_node,
- 					subbuf_size, n_subbufs,
- 					&relay_callbacks, dev_priv);
- 	if (!guc_log_relay_chan) {
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.c
-index 284d6fbc2d08..2f93cc4e408a 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.c
-@@ -54,6 +54,8 @@ void intel_uc_debugfs_register(struct intel_uc *uc, struct dentry *gt_root)
- 	if (IS_ERR(root))
- 		return;
- 
-+	uc->guc.dbgfs_node = root;
++		ret = intel_gt_debugfs_reset_show(gt, &v);
++		if (ret)
++			return ret;
 +
- 	intel_gt_debugfs_register_files(root, files, ARRAY_SIZE(files), uc);
++		/* at least one tile should be wedged */
++		*val |= !!v;
++		if (*val)
++			break;
++	}
++
++	return 0;
+ }
  
- 	intel_guc_debugfs_register(&uc->guc, root);
+ static int i915_wedged_set(void *data, u64 val)
+ {
+ 	struct drm_i915_private *i915 = data;
+-	intel_gt_debugfs_reset_store(to_gt(i915), val);
++	struct intel_gt *gt;
++	unsigned int i;
++
++	for_each_gt(gt, i915, i)
++		intel_gt_debugfs_reset_store(gt, val);
+ 
+ 	return 0;
+ }
+@@ -732,7 +754,11 @@ static int i915_sseu_status(struct seq_file *m, void *unused)
+ static int i915_forcewake_open(struct inode *inode, struct file *file)
+ {
+ 	struct drm_i915_private *i915 = inode->i_private;
+-	intel_gt_pm_debugfs_forcewake_user_open(to_gt(i915));
++	struct intel_gt *gt;
++	unsigned int i;
++
++	for_each_gt(gt, i915, i)
++		intel_gt_pm_debugfs_forcewake_user_open(gt);
+ 
+ 	return 0;
+ }
+@@ -740,7 +766,11 @@ static int i915_forcewake_open(struct inode *inode, struct file *file)
+ static int i915_forcewake_release(struct inode *inode, struct file *file)
+ {
+ 	struct drm_i915_private *i915 = inode->i_private;
+-	intel_gt_pm_debugfs_forcewake_user_release(to_gt(i915));
++	struct intel_gt *gt;
++	unsigned int i;
++
++	for_each_gt(gt, i915, i)
++		intel_gt_pm_debugfs_forcewake_user_release(gt);
+ 
+ 	return 0;
+ }
 -- 
 2.34.1
 
