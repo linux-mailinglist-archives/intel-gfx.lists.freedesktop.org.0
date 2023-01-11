@@ -2,40 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFBED665EAD
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jan 2023 16:04:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61534665EDA
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jan 2023 16:16:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E205810E1A7;
-	Wed, 11 Jan 2023 15:04:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8532310E2B7;
+	Wed, 11 Jan 2023 15:16:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from msg-2.mailo.com (msg-2.mailo.com [213.182.54.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A64A10E1A7;
- Wed, 11 Jan 2023 15:04:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1538C10E2B7;
+ Wed, 11 Jan 2023 15:16:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailo.com; s=mailo;
- t=1673449442; bh=hHfeLLlxtRVc9j6XU7XMcGMbGaTP5MTrvlJVfflhAEg=;
+ t=1673450164; bh=YNrKjl0vmk6HeouqfJhW2pIt2UMY1ihv0siZV1VSDW4=;
  h=X-EA-Auth:Date:From:To:Cc:Subject:Message-ID:References:
  MIME-Version:Content-Type:In-Reply-To;
- b=NaZx9DtpQVdCqYEsczMRdJisFlGeZrkdzSp0EOUWk4MfbjhUHoA2dqqSwwfBdxYST
- 9+zVkykUgmMOIGG8V56XkiXeOr1G/SdUdHi1NCSlD8d5zRWXrpOmEu8UZxE9Todt8t
- e2VCgxIzTTQym8LUdccJGX8kBsLR09yHsnDaxkYg=
-Received: by b-4.in.mailobj.net [192.168.90.14] with ESMTP
+ b=QzmGV9ST6Tx/JWgXbB8PKWucyMsszLwRU2XvicoXikQH70DCNTBrUiYlYAtoJVIrB
+ OC9S6jkF81gEanWwMdznW0t3Ytl9jGtpTwlEcUN4WKMEIy14UTcfH4GteaXNZSt0hJ
+ WmUq/2yjh2K+vmlKWRQO8otcvZTACrCSMdSXjL+s=
+Received: by b-3.in.mailobj.net [192.168.90.13] with ESMTP
  via ip-206.mailobj.net [213.182.55.206]
- Wed, 11 Jan 2023 16:04:02 +0100 (CET)
-X-EA-Auth: NVX+7xJ9Eon+OnT0XqpyiBk4Z23i8U+cXRoqDHDZd43XT5I6Z5b4CuP7iDq4sK+2OoL+o8JAW0IKCNe2bItM/NAV/xBXGGc9
-Date: Wed, 11 Jan 2023 20:33:57 +0530
+ Wed, 11 Jan 2023 16:16:04 +0100 (CET)
+X-EA-Auth: o5gHe/4cJ51Rp5I5pe1ZiHmrLwLGpoGjvlDg5k9FZ2Oo6L8x+3udqTkDD+PZMVM85Ohmp16ZF4lftHRYojd0ulsezvjfq+jV
+Date: Wed, 11 Jan 2023 20:46:00 +0530
 From: Deepak R Varma <drv@mailo.com>
 To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Message-ID: <Y77P3Qt7P9BRMlco@ubun2204.myguest.virtualbox.org>
-References: <cover.1673343994.git.drv@mailo.com>
- <a4200ae1de7324fcddac201009a43571d0a72104.1673343994.git.drv@mailo.com>
- <Y72z1T1bifo3YpSR@intel.com>
+Message-ID: <Y77SsDGaZ8+BjXel@ubun2204.myguest.virtualbox.org>
+References: <cover.1673375066.git.drv@mailo.com>
+ <188df08e0feba0cda2c92145f513dd4e57c6e6cf.1673375066.git.drv@mailo.com>
+ <Y72zVXYLVHXuyK05@intel.com> <Y76JGj0cJpYr6/rv@intel.com>
+ <Y77NfeKbLL4s/Ibg@ubun2204.myguest.virtualbox.org>
+ <Y77O+0uGm1GRZnZd@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Y72z1T1bifo3YpSR@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915/fbc: Avoid full proxy f_ops
- for FBC debug attributes
+In-Reply-To: <Y77O+0uGm1GRZnZd@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gvt: Avoid full proxy f_ops
+ for vgpu_status debug attributes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,96 +50,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Saurabh Singh Sengar <ssengar@microsoft.com>,
- Praveen Kumar <kumarpraveen@linux.microsoft.com>,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- David Airlie <airlied@gmail.com>
+Cc: Praveen Kumar <kumarpraveen@linux.microsoft.com>,
+ intel-gfx@lists.freedesktop.org, Saurabh Singh Sengar <ssengar@microsoft.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 10, 2023 at 01:52:05PM -0500, Rodrigo Vivi wrote:
-> On Tue, Jan 10, 2023 at 11:45:40PM +0530, Deepak R Varma wrote:
-> > Using DEFINE_SIMPLE_ATTRIBUTE macro with the debugfs_create_file()
-> > function adds the overhead of introducing a proxy file operation
-> > functions to wrap the original read/write inside file removal protection
-> > functions. This adds significant overhead in terms of introducing and
-> > managing the proxy factory file operations structure and function
-> > wrapping at runtime.
-> > As a replacement, a combination of DEFINE_DEBUGFS_ATTRIBUTE macro paired
-> > with debugfs_create_file_unsafe() is suggested to be used instead.  The
-> > DEFINE_DEBUGFS_ATTRIBUTE utilises debugfs_file_get() and
-> > debugfs_file_put() wrappers to protect the original read and write
-> > function calls for the debug attributes. There is no need for any
-> > runtime proxy file operations to be managed by the debugfs core.
-> > Following coccicheck make command helped identify this change:
+On Wed, Jan 11, 2023 at 10:00:11AM -0500, Rodrigo Vivi wrote:
+> > > Actually, could you please address the checkpatch issues before we can push?
+> > > Sorry about that, but just noticed now when I was going to push the other ones.
 > > 
-> > make coccicheck M=drivers/gpu/drm/i915/ MODE=patch COCCI=./scripts/coccinelle/api/debugfs/debugfs_simple_attr.cocci
-> > 
-> > Signed-off-by: Deepak R Varma <drv@mailo.com>
+> > Hello Rodrigo,
+> > The checkpatch warning is associated with the long "make coccicheck ..." command
+> > in the commit message. It is not part of the code, so is should not be carried
+> > forward into the code base.
+> > If you still want me to correct it, I will need to split it into two lines which
+> > I think still violates the commit description guidelines.
 > 
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> This part I would just ignore or fix myself while merging. But the next one about
+> the parenthesis alignment need to be fixed in the code so we need another version.
+> Since we try to avoid touching the code between CI and merge.
+
+I am sorry, but I am unable to locate the "second checkpatch complaint" you are
+referring to. I have received only the following from the checkpatch robot:
+
+== Summary ==
+
+Error: dim checkpatch failed
+4c95e9b71212 drm/i915/gvt: Avoid full proxy f_ops for scan_nonprivbb debug attributes
+-:21: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#21:
+make coccicheck M=drivers/gpu/drm/i915/ MODE=patch COCCI=./scripts/coccinelle/api/debugfs/debugfs_simple_attr.cocci
+
+total: 0 errors, 1 warnings, 0 checks, 22 lines checked
+33d68a01cad3 drm/i915/gvt: Avoid full proxy f_ops for vgpu_status debug attributes
+-:21: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#21:
+make coccicheck M=drivers/gpu/drm/i915/ MODE=patch COCCI=./scripts/coccinelle/api/debugfs/debugfs_simple_attr.cocci
+
+total: 0 errors, 1 warnings, 0 checks, 18 lines checked
+
+===============================
+
 > 
-> (Are you planning to send the one for pxp file?)
+> Then, since you need to change that, while changing that, also please break
+> the coccinelle line in the commit msg.
+> 
+> I'd appreciate to have the patch for the pxp as well :)
 
-Hello Rodrigo,
-The pxp file is implemented differently using a common function for another SHOW
-attribute file. I am exploring how to best handle that and would send in a patch
-if feasible. See the simplified code snip below:
+Sure. As mentioned in the other thread, I am looking into it and would submit a
+patch accordingly.
 
-	static const struct intel_gt_debugfs_file files[] = {
-		{ "info", &pxp_info_fops, NULL },
-		{ "terminate_state", &pxp_terminate_fops, NULL },
-	};
-	...
-	intel_gt_debugfs_register_files(root, files, ARRAY_SIZE(files), pxp);
-
-Thank you.
+Thank you,
 ./drv
 
 > 
-> > ---
-> > Changes in v2:
-> >    - Include coccicheck make command in the patch log message for clarity.
-> >      Suggested by Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Thanks a lot,
+> Rodrigo.
+> 
+> 
 > > 
+> > Let me know what you think.
 > > 
-> >  drivers/gpu/drm/i915/display/intel_fbc.c | 12 ++++++------
-> >  1 file changed, 6 insertions(+), 6 deletions(-)
+> > Thank you,
+> > ./drv
 > > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-> > index 5e69d3c11d21..c508dcf415b4 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> > @@ -1807,10 +1807,10 @@ static int intel_fbc_debugfs_false_color_set(void *data, u64 val)
-> >  	return 0;
-> >  }
-> >  
-> > -DEFINE_SIMPLE_ATTRIBUTE(intel_fbc_debugfs_false_color_fops,
-> > -			intel_fbc_debugfs_false_color_get,
-> > -			intel_fbc_debugfs_false_color_set,
-> > -			"%llu\n");
-> > +DEFINE_DEBUGFS_ATTRIBUTE(intel_fbc_debugfs_false_color_fops,
-> > +			 intel_fbc_debugfs_false_color_get,
-> > +			 intel_fbc_debugfs_false_color_set,
-> > +			 "%llu\n");
-> >  
-> >  static void intel_fbc_debugfs_add(struct intel_fbc *fbc,
-> >  				  struct dentry *parent)
-> > @@ -1819,8 +1819,8 @@ static void intel_fbc_debugfs_add(struct intel_fbc *fbc,
-> >  			    fbc, &intel_fbc_debugfs_status_fops);
-> >  
-> >  	if (fbc->funcs->set_false_color)
-> > -		debugfs_create_file("i915_fbc_false_color", 0644, parent,
-> > -				    fbc, &intel_fbc_debugfs_false_color_fops);
-> > +		debugfs_create_file_unsafe("i915_fbc_false_color", 0644, parent,
-> > +					   fbc, &intel_fbc_debugfs_false_color_fops);
-> >  }
-> >  
-> >  void intel_fbc_crtc_debugfs_add(struct intel_crtc *crtc)
-> > -- 
-> > 2.34.1
-> > 
+> > > 
+> > > > 
+> > > > > ---
+> > > > >  drivers/gpu/drm/i915/gvt/debugfs.c | 6 +++---
+> > > > >  1 file changed, 3 insertions(+), 3 deletions(-)
+> > > > > 
+> > > > > diff --git a/drivers/gpu/drm/i915/gvt/debugfs.c b/drivers/gpu/drm/i915/gvt/debugfs.c
+> > > > > index 03f081c3d9a4..baccbf1761b7 100644
+> > > > > --- a/drivers/gpu/drm/i915/gvt/debugfs.c
+> > > > > +++ b/drivers/gpu/drm/i915/gvt/debugfs.c
+> > > > > @@ -165,7 +165,7 @@ static int vgpu_status_get(void *data, u64 *val)
+> > > > >  	return 0;
+> > > > >  }
+> > > > >  
+> > > > > -DEFINE_SIMPLE_ATTRIBUTE(vgpu_status_fops, vgpu_status_get, NULL, "0x%llx\n");
+> > > > > +DEFINE_DEBUGFS_ATTRIBUTE(vgpu_status_fops, vgpu_status_get, NULL, "0x%llx\n");
+> > > > >  
+> > > > >  /**
+> > > > >   * intel_gvt_debugfs_add_vgpu - register debugfs entries for a vGPU
+> > > > > @@ -182,8 +182,8 @@ void intel_gvt_debugfs_add_vgpu(struct intel_vgpu *vgpu)
+> > > > >  			    &vgpu_mmio_diff_fops);
+> > > > >  	debugfs_create_file_unsafe("scan_nonprivbb", 0644, vgpu->debugfs, vgpu,
+> > > > >  				   &vgpu_scan_nonprivbb_fops);
+> > > > > -	debugfs_create_file("status", 0644, vgpu->debugfs, vgpu,
+> > > > > -			    &vgpu_status_fops);
+> > > > > +	debugfs_create_file_unsafe("status", 0644, vgpu->debugfs, vgpu,
+> > > > > +				   &vgpu_status_fops);
+> > > > >  }
+> > > > >  
+> > > > >  /**
+> > > > > -- 
+> > > > > 2.34.1
+> > > > > 
+> > > > > 
+> > > > > 
 > > 
 > > 
 
