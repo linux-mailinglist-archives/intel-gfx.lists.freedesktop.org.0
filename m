@@ -2,75 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6654D6660B3
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jan 2023 17:37:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 68E826660B7
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jan 2023 17:38:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FCB810E78F;
-	Wed, 11 Jan 2023 16:37:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3E3910E793;
+	Wed, 11 Jan 2023 16:38:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com
- [IPv6:2a00:1450:4864:20::436])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D526C10E78F
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Jan 2023 16:37:35 +0000 (UTC)
-Received: by mail-wr1-x436.google.com with SMTP id d17so15653991wrs.2
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Jan 2023 08:37:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:mail-followup-to:message-id:subject:cc:to
- :from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=PNcAm61iAySQJqIY5yrqQqnARMxhOPJyTu3V45Qh3B4=;
- b=Wsf1gzOfYz484Fd8gRg9knlJo6sULkvZmRsR+APG0hxY9wsH9hOqGOtF46uSyZufq8
- Wnyx86Q8KrpuNWQUqQMbL6EbCKdBUNcb5pCsWY2/XQpjo4TITNHONPffVBZn7BgX3pMv
- Hiss/i1f9hT+aZKioam7ZI8XSHp3Ie83nOSSI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:mail-followup-to:message-id:subject:cc:to
- :from:date:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=PNcAm61iAySQJqIY5yrqQqnARMxhOPJyTu3V45Qh3B4=;
- b=YGGtmOCvs+BhQmg9tx+TJ+DXj16niO53X7ZmSPXCXxzKzhAoOoSGF69JnxEzjOFbqp
- zZUlFwCMACpJ9P/Obk57Y2au1qLR8ehm5Y8QRKJhcYTaML+Tf6Js7PUeumW8ThTOYUuv
- Kqf3+11JdXiv+J8pLl9VhmDwkUFd/0mx4vd7QyqHAp//0tydFPbYisScIi9iSTNOl0kD
- 3Hkr01AXAg+eqbx72SbyynboE34VkdIPBh8gnww0jNV4qCqkeNWssWtnU08ZiAXfW149
- 8jtfHVKoceFTEE+E22S1iLQleOX9DeAn2QKQLQCDT5aYS4hEBLF8qIsyF7PU1M51Jz1V
- o2sg==
-X-Gm-Message-State: AFqh2kpPGF3w0JonL4kPl6JJS/NbVnyw7hk+PiA6hwYEU9m4JlqIWWxY
- 3LCoNGlBXEn0r/Y/Ue7ZRwmZVQ==
-X-Google-Smtp-Source: AMrXdXt16zU0EExgUq8c0W1j51fFIxKt69JblEHiwf9Zq+l7bev/4D3WyyD5dTsKur6qsFlRC79pEw==
-X-Received: by 2002:adf:e19a:0:b0:241:fbef:29b5 with SMTP id
- az26-20020adfe19a000000b00241fbef29b5mr64274070wrb.13.1673455054406; 
- Wed, 11 Jan 2023 08:37:34 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id
- t19-20020a0560001a5300b002362f6fcaf5sm14197045wry.48.2023.01.11.08.37.32
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 11 Jan 2023 08:37:33 -0800 (PST)
-Date: Wed, 11 Jan 2023 17:37:31 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <Y77lyzPOUt8JAyPX@phenom.ffwll.local>
-Mail-Followup-To: Thomas Zimmermann <tzimmermann@suse.de>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Aaron Plattner <aplattner@nvidia.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>, stable@vger.kernel.org,
- Javier Martinez Canillas <javierm@redhat.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Sam Ravnborg <sam@ravnborg.org>, Helge Deller <deller@gmx.de>
-References: <20230111154112.90575-1-daniel.vetter@ffwll.ch>
- <20230111154112.90575-11-daniel.vetter@ffwll.ch>
- <2102a618-2d5e-c286-311f-30e4baa4f85b@suse.de>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D209010E793;
+ Wed, 11 Jan 2023 16:38:07 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CACDAA0169;
+ Wed, 11 Jan 2023 16:38:07 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3035674277926227876=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2102a618-2d5e-c286-311f-30e4baa4f85b@suse.de>
-X-Operating-System: Linux phenom 5.19.0-2-amd64 
-Subject: Re: [Intel-gfx] [PATCH 11/11] video/aperture: Only remove sysfb on
- the default vga pci device
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Date: Wed, 11 Jan 2023 16:38:07 -0000
+Message-ID: <167345508782.20084.12697848201614560547@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230111154112.90575-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20230111154112.90575-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B01/11=5D_drm/ast=3A_Use_drm=5Faperture=5Fr?=
+ =?utf-8?q?emove=5Fconflicting=5Fpci=5Fframebuffers?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,105 +41,342 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Aaron Plattner <aplattner@nvidia.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>, stable@vger.kernel.org,
- Javier Martinez Canillas <javierm@redhat.com>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
- Helge Deller <deller@gmx.de>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 11, 2023 at 05:20:00PM +0100, Thomas Zimmermann wrote:
-> Hi
-> 
-> Am 11.01.23 um 16:41 schrieb Daniel Vetter:
-> > This fixes a regression introduced by ee7a69aa38d8 ("fbdev: Disable
-> > sysfb device registration when removing conflicting FBs"), where we
-> > remove the sysfb when loading a driver for an unrelated pci device,
-> > resulting in the user loosing their efifb console or similar.
-> > 
-> > Note that in practice this only is a problem with the nvidia blob,
-> > because that's the only gpu driver people might install which does not
-> > come with an fbdev driver of it's own. For everyone else the real gpu
-> > driver will restor a working console.
-> > 
-> > Also note that in the referenced bug there's confusion that this same
-> > bug also happens on amdgpu. But that was just another amdgpu specific
-> > regression, which just happened to happen at roughly the same time and
-> > with the same user-observable symptons. That bug is fixed now, see
-> > https://bugzilla.kernel.org/show_bug.cgi?id=216331#c15
-> > 
-> > For the above reasons the cc: stable is just notionally, this patch
-> > will need a backport and that's up to nvidia if they care enough.
-> > 
-> > References: https://bugzilla.kernel.org/show_bug.cgi?id=216303#c28
-> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > Cc: Aaron Plattner <aplattner@nvidia.com>
-> > Cc: Javier Martinez Canillas <javierm@redhat.com>
-> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> > Cc: Helge Deller <deller@gmx.de>
-> > Cc: Sam Ravnborg <sam@ravnborg.org>
-> > Cc: Alex Deucher <alexander.deucher@amd.com>
-> > Cc: <stable@vger.kernel.org> # v5.19+ (if someone else does the backport)
-> > ---
-> >   drivers/video/aperture.c | 7 ++++---
-> >   1 file changed, 4 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/drivers/video/aperture.c b/drivers/video/aperture.c
-> > index ba565515480d..a1821d369bb1 100644
-> > --- a/drivers/video/aperture.c
-> > +++ b/drivers/video/aperture.c
-> > @@ -321,15 +321,16 @@ int aperture_remove_conflicting_pci_devices(struct pci_dev *pdev, const char *na
-> >   	primary = pdev == vga_default_device();
-> > +	if (primary)
-> > +		sysfb_disable();
-> > +
-> 
-> There's another sysfb_disable() in aperture_remove_conflicting_devices()
-> without the branch but with a long comment.  I find this slightly confusing.
-> 
-> I'd rather add a branched sysfb_disable() plus the comment  to
-> aperture_detach_devices(). And then add a 'primary' parameter to
-> aperture_detach_devices(). In aperture_remove_conflicting_devices() the
-> parameter would be unconditionally true.
+--===============3035674277926227876==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Yeah I was on the fence, but should be easy to redo with all the prep work
-out of the way. It does mean we call sysfb_disable once for every bar, but
-that shouldn't matter in any reasonable case :-)
--Daniel
+== Series Details ==
 
-> 
-> Best regards
-> Thomas
-> 
-> >   	for (bar = 0; bar < PCI_STD_NUM_BARS; ++bar) {
-> >   		if (!(pci_resource_flags(pdev, bar) & IORESOURCE_MEM))
-> >   			continue;
-> >   		base = pci_resource_start(pdev, bar);
-> >   		size = pci_resource_len(pdev, bar);
-> > -		ret = aperture_remove_conflicting_devices(base, size, name);
-> > -		if (ret)
-> > -			return ret;
-> > +		aperture_detach_devices(base, size);
-> >   	}
-> >   	if (!primary)
-> 
-> -- 
-> Thomas Zimmermann
-> Graphics Driver Developer
-> SUSE Software Solutions Germany GmbH
-> Maxfeldstr. 5, 90409 Nürnberg, Germany
-> (HRB 36809, AG Nürnberg)
-> Geschäftsführer: Ivo Totev
+Series: series starting with [01/11] drm/ast: Use drm_aperture_remove_conflicting_pci_framebuffers
+URL   : https://patchwork.freedesktop.org/series/112678/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_12573 -> Patchwork_112678v1
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_112678v1 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_112678v1, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/index.html
+
+Participating hosts (34 -> 35)
+------------------------------
+
+  Additional (2): fi-kbl-soraka fi-bsw-kefka 
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_112678v1:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12573/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@guc:
+    - fi-kbl-soraka:      NOTRUN -> [INCOMPLETE][3]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/fi-kbl-soraka/igt@i915_selftest@live@guc.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_112678v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#2190])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][5] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-apl-guc:         [PASS][6] -> [DMESG-FAIL][7] ([i915#5334])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12573/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][8] ([i915#1886])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+
+  * igt@kms_chamelium_frames@hdmi-crc-fast:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][9] ([fdo#109271]) +15 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html
+
+  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
+    - fi-rkl-guc:         NOTRUN -> [SKIP][10] ([i915#7828])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/fi-rkl-guc/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
+    - fi-bsw-n3050:       [PASS][11] -> [FAIL][12] ([i915#6298])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12573/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+
+  * igt@prime_vgem@basic-fence-flip:
+    - fi-bsw-kefka:       NOTRUN -> [SKIP][13] ([fdo#109271]) +26 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/fi-bsw-kefka/igt@prime_vgem@basic-fence-flip.html
+
+  * igt@runner@aborted:
+    - fi-bsw-nick:        NOTRUN -> [FAIL][14] ([fdo#109271] / [i915#4312])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/fi-bsw-nick/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@fbdev@eof:
+    - {bat-atsm-1}:       [SKIP][15] ([i915#2582]) -> [PASS][16] +4 similar issues
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12573/bat-atsm-1/igt@fbdev@eof.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/bat-atsm-1/igt@fbdev@eof.html
+
+  * igt@i915_selftest@live@gt_lrc:
+    - fi-rkl-guc:         [INCOMPLETE][17] ([i915#4983]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12573/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
+
+  * igt@i915_selftest@live@migrate:
+    - {bat-atsm-1}:       [DMESG-FAIL][19] ([i915#7699]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12573/bat-atsm-1/igt@i915_selftest@live@migrate.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/bat-atsm-1/igt@i915_selftest@live@migrate.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
+  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
 
 
+Build changes
+-------------
+
+  * Linux: CI_DRM_12573 -> Patchwork_112678v1
+
+  CI-20190529: 20190529
+  CI_DRM_12573: 05a39ecbd04e67fb44442617819fc138eca0ac61 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7116: 79eb8984acd309108be713a8831e60667db67e21 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_112678v1: 05a39ecbd04e67fb44442617819fc138eca0ac61 @ git://anongit.freedesktop.org/gfx-ci/linux
 
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+### Linux commits
+
+cb06aa7312c4 video/aperture: Only remove sysfb on the default vga pci device
+e9aad9aa55b6 video/aperture: Drop primary argument
+cdb4dfc78b85 video/aperture: Move vga handling to pci function
+c321e71fd956 fbdev/hyperv: use pci aperture helpers
+7985c171f29e fbdev/radeon: use pci aperture helpers
+a9a6c5c7a737 staging/lynxfb: Use pci aperture helper
+927128b2acbe video/aperture: Only kick vgacon when the pdev is decoding vga
+d80cfac7c072 video/aperture: use generic code to figure out the vga default device
+c35403b915ac drm/aperture: Remove primary argument
+178222cca8fe drm/gma500: Use drm_aperture_remove_conflicting_pci_framebuffers
+cffab199b6ca drm/ast: Use drm_aperture_remove_conflicting_pci_framebuffers
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/index.html
+
+--===============3035674277926227876==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [01/11] drm/ast: Use drm_aperture_remove_conflicting_pci_framebuffers</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/112678/">https://patchwork.freedesktop.org/series/112678/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12573 -&gt; Patchwork_112678v1</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_112678v1 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_112678v1, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/index.html</p>
+<h2>Participating hosts (34 -&gt; 35)</h2>
+<p>Additional (2): fi-kbl-soraka fi-bsw-kefka <br />
+  Missing    (1): fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_112678v1:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12573/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@guc:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/fi-kbl-soraka/igt@i915_selftest@live@guc.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_112678v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12573/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_frames@hdmi-crc-fast:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +15 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/fi-rkl-guc/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12573/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-flip:</p>
+<ul>
+<li>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/fi-bsw-kefka/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +26 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/fi-bsw-nick/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@fbdev@eof:</p>
+<ul>
+<li>{bat-atsm-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12573/bat-atsm-1/igt@fbdev@eof.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2582">i915#2582</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/bat-atsm-1/igt@fbdev@eof.html">PASS</a> +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_lrc:</p>
+<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12573/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@migrate:</p>
+<ul>
+<li>{bat-atsm-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12573/bat-atsm-1/igt@i915_selftest@live@migrate.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112678v1/bat-atsm-1/igt@i915_selftest@live@migrate.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12573 -&gt; Patchwork_112678v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12573: 05a39ecbd04e67fb44442617819fc138eca0ac61 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7116: 79eb8984acd309108be713a8831e60667db67e21 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_112678v1: 05a39ecbd04e67fb44442617819fc138eca0ac61 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>cb06aa7312c4 video/aperture: Only remove sysfb on the default vga pci device<br />
+e9aad9aa55b6 video/aperture: Drop primary argument<br />
+cdb4dfc78b85 video/aperture: Move vga handling to pci function<br />
+c321e71fd956 fbdev/hyperv: use pci aperture helpers<br />
+7985c171f29e fbdev/radeon: use pci aperture helpers<br />
+a9a6c5c7a737 staging/lynxfb: Use pci aperture helper<br />
+927128b2acbe video/aperture: Only kick vgacon when the pdev is decoding vga<br />
+d80cfac7c072 video/aperture: use generic code to figure out the vga default device<br />
+c35403b915ac drm/aperture: Remove primary argument<br />
+178222cca8fe drm/gma500: Use drm_aperture_remove_conflicting_pci_framebuffers<br />
+cffab199b6ca drm/ast: Use drm_aperture_remove_conflicting_pci_framebuffers</p>
+
+</body>
+</html>
+
+--===============3035674277926227876==--
