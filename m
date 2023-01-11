@@ -1,65 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05D3C666045
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jan 2023 17:20:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C246A66604E
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jan 2023 17:23:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B03910E78C;
-	Wed, 11 Jan 2023 16:20:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04A0410E78C;
+	Wed, 11 Jan 2023 16:23:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A3EEB10E78C;
- Wed, 11 Jan 2023 16:20:04 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id A5CFF4DEB;
- Wed, 11 Jan 2023 16:20:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1673454001; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=58f0LLfbqxSo7X5EEbErmWGaVVMVjGGLJJwU7gW14+w=;
- b=f5EkiFGX6rNk7HoAujbfxpf6UvHaEwcQZ8M7ra5rnWcH3Vp6ykdUNWQHOvkPffgRxgm26H
- m4izapSsbsLyQZ47mQQvTc6DmovgBFWVWt/g81detfu1csmi7dUH+SzWZjTZmeVzPGmN0/
- +BqJD2Sln9h8l8CEv2YTm5IwUl8WBmo=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1673454001;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=58f0LLfbqxSo7X5EEbErmWGaVVMVjGGLJJwU7gW14+w=;
- b=Lhz4WyHUzHXn/WYCX6ZOc05vuE4y7B3wBFa+/p3bzVc4KP8jel1VpOi6sgZ9JVybreIEs6
- 2sT8dR1NoEurX8Cw==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 69C971358A;
- Wed, 11 Jan 2023 16:20:01 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id bGi8GLHhvmOlTwAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Wed, 11 Jan 2023 16:20:01 +0000
-Message-ID: <2102a618-2d5e-c286-311f-30e4baa4f85b@suse.de>
-Date: Wed, 11 Jan 2023 17:20:00 +0100
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B36D10E78C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Jan 2023 16:23:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1673454203; x=1704990203;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=6vzQJ8qlFtQtUhaWoSnMQ6lTHv6TwBLUnewGqoGUnyA=;
+ b=W907dSQw14591Lxye6r3zP8Hey9Be/IIuxq86GxLq4qYjfAI5ICP4DTE
+ SyK7JlqX9pZjs6OU+nS9/lekSWF2faOpMbsHniE4wMTpffsS6bsDtk25H
+ goQpFGqe2tAMMUrhcwY9T81tUtJ/Z2q7t46moOqQVX7HRWXwJounVDkbr
+ 9DA27ejWTeiHuVhevSqZXhrjMXHMvW5XAb5FLENRgIwutL+DGb8jI2o7x
+ HwD3JrjY7n4Bt6F37pwstiDSJoIawL8v/rNBu8CuuVit9RhwPLxUNdFwg
+ 1vIKIaItKRDCat3WRO0dQ42A8+AbLk24eyXKu7bhhsqMgqwNXvRBFQPL3 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="325468730"
+X-IronPort-AV: E=Sophos;i="5.96,317,1665471600"; d="scan'208";a="325468730"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2023 08:23:17 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="607406375"
+X-IronPort-AV: E=Sophos;i="5.96,317,1665471600"; d="scan'208";a="607406375"
+Received: from lab-ah.igk.intel.com ([10.102.42.211])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2023 08:23:15 -0800
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Date: Wed, 11 Jan 2023 17:22:47 +0100
+Message-Id: <20230111162247.2991559-1-andrzej.hajda@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Content-Language: en-US
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-References: <20230111154112.90575-1-daniel.vetter@ffwll.ch>
- <20230111154112.90575-11-daniel.vetter@ffwll.ch>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-In-Reply-To: <20230111154112.90575-11-daniel.vetter@ffwll.ch>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------Ml6ObZcRSbozD0DLMa0dlELb"
-Subject: Re: [Intel-gfx] [PATCH 11/11] video/aperture: Only remove sysfb on
- the default vga pci device
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2] drm/i915: implement async_flip mode per
+ plane tracking
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,120 +58,100 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Aaron Plattner <aplattner@nvidia.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Javier Martinez Canillas <javierm@redhat.com>, stable@vger.kernel.org,
- LKML <linux-kernel@vger.kernel.org>, Alex Deucher <alexander.deucher@amd.com>,
- Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
- Helge Deller <deller@gmx.de>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------Ml6ObZcRSbozD0DLMa0dlELb
-Content-Type: multipart/mixed; boundary="------------Yx1hdsmghhcaCcyvaTGQcYBc";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-Cc: Aaron Plattner <aplattner@nvidia.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>, stable@vger.kernel.org,
- Javier Martinez Canillas <javierm@redhat.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
- Helge Deller <deller@gmx.de>
-Message-ID: <2102a618-2d5e-c286-311f-30e4baa4f85b@suse.de>
-Subject: Re: [PATCH 11/11] video/aperture: Only remove sysfb on the default
- vga pci device
-References: <20230111154112.90575-1-daniel.vetter@ffwll.ch>
- <20230111154112.90575-11-daniel.vetter@ffwll.ch>
-In-Reply-To: <20230111154112.90575-11-daniel.vetter@ffwll.ch>
+Current implementation of async flip w/a relies on assumption that
+previous atomic commit contains valid information if async_flip is still
+enabled on the plane. It is incorrect. If previous commit did not modify
+the plane its state->uapi.async_flip can be false. As a result DMAR/PIPE
+errors can be observed:
+i915 0000:00:02.0: [drm] *ERROR* Fault errors on pipe A: 0x00000080
+i915 0000:00:02.0: [drm] *ERROR* Fault errors on pipe A: 0x00000080
+DMAR: DRHD: handling fault status reg 2
+DMAR: [DMA Read NO_PASID] Request device [00:02.0] fault addr 0x0 [fault reason 0x06] PTE Read access is not set
 
---------------Yx1hdsmghhcaCcyvaTGQcYBc
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+v2: update async_flip_planes in more reliable places (Ville)
 
-SGkNCg0KQW0gMTEuMDEuMjMgdW0gMTY6NDEgc2NocmllYiBEYW5pZWwgVmV0dGVyOg0KPiBU
-aGlzIGZpeGVzIGEgcmVncmVzc2lvbiBpbnRyb2R1Y2VkIGJ5IGVlN2E2OWFhMzhkOCAoImZi
-ZGV2OiBEaXNhYmxlDQo+IHN5c2ZiIGRldmljZSByZWdpc3RyYXRpb24gd2hlbiByZW1vdmlu
-ZyBjb25mbGljdGluZyBGQnMiKSwgd2hlcmUgd2UNCj4gcmVtb3ZlIHRoZSBzeXNmYiB3aGVu
-IGxvYWRpbmcgYSBkcml2ZXIgZm9yIGFuIHVucmVsYXRlZCBwY2kgZGV2aWNlLA0KPiByZXN1
-bHRpbmcgaW4gdGhlIHVzZXIgbG9vc2luZyB0aGVpciBlZmlmYiBjb25zb2xlIG9yIHNpbWls
-YXIuDQo+IA0KPiBOb3RlIHRoYXQgaW4gcHJhY3RpY2UgdGhpcyBvbmx5IGlzIGEgcHJvYmxl
-bSB3aXRoIHRoZSBudmlkaWEgYmxvYiwNCj4gYmVjYXVzZSB0aGF0J3MgdGhlIG9ubHkgZ3B1
-IGRyaXZlciBwZW9wbGUgbWlnaHQgaW5zdGFsbCB3aGljaCBkb2VzIG5vdA0KPiBjb21lIHdp
-dGggYW4gZmJkZXYgZHJpdmVyIG9mIGl0J3Mgb3duLiBGb3IgZXZlcnlvbmUgZWxzZSB0aGUg
-cmVhbCBncHUNCj4gZHJpdmVyIHdpbGwgcmVzdG9yIGEgd29ya2luZyBjb25zb2xlLg0KPiAN
-Cj4gQWxzbyBub3RlIHRoYXQgaW4gdGhlIHJlZmVyZW5jZWQgYnVnIHRoZXJlJ3MgY29uZnVz
-aW9uIHRoYXQgdGhpcyBzYW1lDQo+IGJ1ZyBhbHNvIGhhcHBlbnMgb24gYW1kZ3B1LiBCdXQg
-dGhhdCB3YXMganVzdCBhbm90aGVyIGFtZGdwdSBzcGVjaWZpYw0KPiByZWdyZXNzaW9uLCB3
-aGljaCBqdXN0IGhhcHBlbmVkIHRvIGhhcHBlbiBhdCByb3VnaGx5IHRoZSBzYW1lIHRpbWUg
-YW5kDQo+IHdpdGggdGhlIHNhbWUgdXNlci1vYnNlcnZhYmxlIHN5bXB0b25zLiBUaGF0IGJ1
-ZyBpcyBmaXhlZCBub3csIHNlZQ0KPiBodHRwczovL2J1Z3ppbGxhLmtlcm5lbC5vcmcvc2hv
-d19idWcuY2dpP2lkPTIxNjMzMSNjMTUNCj4gDQo+IEZvciB0aGUgYWJvdmUgcmVhc29ucyB0
-aGUgY2M6IHN0YWJsZSBpcyBqdXN0IG5vdGlvbmFsbHksIHRoaXMgcGF0Y2gNCj4gd2lsbCBu
-ZWVkIGEgYmFja3BvcnQgYW5kIHRoYXQncyB1cCB0byBudmlkaWEgaWYgdGhleSBjYXJlIGVu
-b3VnaC4NCj4gDQo+IFJlZmVyZW5jZXM6IGh0dHBzOi8vYnVnemlsbGEua2VybmVsLm9yZy9z
-aG93X2J1Zy5jZ2k/aWQ9MjE2MzAzI2MyOA0KPiBTaWduZWQtb2ZmLWJ5OiBEYW5pZWwgVmV0
-dGVyIDxkYW5pZWwudmV0dGVyQGludGVsLmNvbT4NCj4gQ2M6IEFhcm9uIFBsYXR0bmVyIDxh
-cGxhdHRuZXJAbnZpZGlhLmNvbT4NCj4gQ2M6IEphdmllciBNYXJ0aW5leiBDYW5pbGxhcyA8
-amF2aWVybUByZWRoYXQuY29tPg0KPiBDYzogVGhvbWFzIFppbW1lcm1hbm4gPHR6aW1tZXJt
-YW5uQHN1c2UuZGU+DQo+IENjOiBIZWxnZSBEZWxsZXIgPGRlbGxlckBnbXguZGU+DQo+IENj
-OiBTYW0gUmF2bmJvcmcgPHNhbUByYXZuYm9yZy5vcmc+DQo+IENjOiBBbGV4IERldWNoZXIg
-PGFsZXhhbmRlci5kZXVjaGVyQGFtZC5jb20+DQo+IENjOiA8c3RhYmxlQHZnZXIua2VybmVs
-Lm9yZz4gIyB2NS4xOSsgKGlmIHNvbWVvbmUgZWxzZSBkb2VzIHRoZSBiYWNrcG9ydCkNCj4g
-LS0tDQo+ICAgZHJpdmVycy92aWRlby9hcGVydHVyZS5jIHwgNyArKysrLS0tDQo+ICAgMSBm
-aWxlIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkNCj4gDQo+IGRp
-ZmYgLS1naXQgYS9kcml2ZXJzL3ZpZGVvL2FwZXJ0dXJlLmMgYi9kcml2ZXJzL3ZpZGVvL2Fw
-ZXJ0dXJlLmMNCj4gaW5kZXggYmE1NjU1MTU0ODBkLi5hMTgyMWQzNjliYjEgMTAwNjQ0DQo+
-IC0tLSBhL2RyaXZlcnMvdmlkZW8vYXBlcnR1cmUuYw0KPiArKysgYi9kcml2ZXJzL3ZpZGVv
-L2FwZXJ0dXJlLmMNCj4gQEAgLTMyMSwxNSArMzIxLDE2IEBAIGludCBhcGVydHVyZV9yZW1v
-dmVfY29uZmxpY3RpbmdfcGNpX2RldmljZXMoc3RydWN0IHBjaV9kZXYgKnBkZXYsIGNvbnN0
-IGNoYXIgKm5hDQo+ICAgDQo+ICAgCXByaW1hcnkgPSBwZGV2ID09IHZnYV9kZWZhdWx0X2Rl
-dmljZSgpOw0KPiAgIA0KPiArCWlmIChwcmltYXJ5KQ0KPiArCQlzeXNmYl9kaXNhYmxlKCk7
-DQo+ICsNCg0KVGhlcmUncyBhbm90aGVyIHN5c2ZiX2Rpc2FibGUoKSBpbiBhcGVydHVyZV9y
-ZW1vdmVfY29uZmxpY3RpbmdfZGV2aWNlcygpIA0Kd2l0aG91dCB0aGUgYnJhbmNoIGJ1dCB3
-aXRoIGEgbG9uZyBjb21tZW50LiAgSSBmaW5kIHRoaXMgc2xpZ2h0bHkgY29uZnVzaW5nLg0K
-DQpJJ2QgcmF0aGVyIGFkZCBhIGJyYW5jaGVkIHN5c2ZiX2Rpc2FibGUoKSBwbHVzIHRoZSBj
-b21tZW50ICB0byANCmFwZXJ0dXJlX2RldGFjaF9kZXZpY2VzKCkuIEFuZCB0aGVuIGFkZCBh
-ICdwcmltYXJ5JyBwYXJhbWV0ZXIgdG8gDQphcGVydHVyZV9kZXRhY2hfZGV2aWNlcygpLiBJ
-biBhcGVydHVyZV9yZW1vdmVfY29uZmxpY3RpbmdfZGV2aWNlcygpIHRoZSANCnBhcmFtZXRl
-ciB3b3VsZCBiZSB1bmNvbmRpdGlvbmFsbHkgdHJ1ZS4NCg0KQmVzdCByZWdhcmRzDQpUaG9t
-YXMNCg0KPiAgIAlmb3IgKGJhciA9IDA7IGJhciA8IFBDSV9TVERfTlVNX0JBUlM7ICsrYmFy
-KSB7DQo+ICAgCQlpZiAoIShwY2lfcmVzb3VyY2VfZmxhZ3MocGRldiwgYmFyKSAmIElPUkVT
-T1VSQ0VfTUVNKSkNCj4gICAJCQljb250aW51ZTsNCj4gICANCj4gICAJCWJhc2UgPSBwY2lf
-cmVzb3VyY2Vfc3RhcnQocGRldiwgYmFyKTsNCj4gICAJCXNpemUgPSBwY2lfcmVzb3VyY2Vf
-bGVuKHBkZXYsIGJhcik7DQo+IC0JCXJldCA9IGFwZXJ0dXJlX3JlbW92ZV9jb25mbGljdGlu
-Z19kZXZpY2VzKGJhc2UsIHNpemUsIG5hbWUpOw0KPiAtCQlpZiAocmV0KQ0KPiAtCQkJcmV0
-dXJuIHJldDsNCj4gKwkJYXBlcnR1cmVfZGV0YWNoX2RldmljZXMoYmFzZSwgc2l6ZSk7DQo+
-ICAgCX0NCj4gICANCj4gICAJaWYgKCFwcmltYXJ5KQ0KDQotLSANClRob21hcyBaaW1tZXJt
-YW5uDQpHcmFwaGljcyBEcml2ZXIgRGV2ZWxvcGVyDQpTVVNFIFNvZnR3YXJlIFNvbHV0aW9u
-cyBHZXJtYW55IEdtYkgNCk1heGZlbGRzdHIuIDUsIDkwNDA5IE7DvHJuYmVyZywgR2VybWFu
-eQ0KKEhSQiAzNjgwOSwgQUcgTsO8cm5iZXJnKQ0KR2VzY2jDpGZ0c2bDvGhyZXI6IEl2byBU
-b3Rldg0K
+Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_atomic_plane.c  | 5 ++++-
+ drivers/gpu/drm/i915/display/intel_display.c       | 7 ++++---
+ drivers/gpu/drm/i915/display/intel_display_types.h | 3 +++
+ 3 files changed, 11 insertions(+), 4 deletions(-)
 
---------------Yx1hdsmghhcaCcyvaTGQcYBc--
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+index 10e1fc9d069827..3f1b1548ede025 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+@@ -362,6 +362,7 @@ void intel_plane_set_invisible(struct intel_crtc_state *crtc_state,
+ 	crtc_state->scaled_planes &= ~BIT(plane->id);
+ 	crtc_state->nv12_planes &= ~BIT(plane->id);
+ 	crtc_state->c8_planes &= ~BIT(plane->id);
++	crtc_state->async_flip_planes &= ~BIT(plane->id);
+ 	crtc_state->data_rate[plane->id] = 0;
+ 	crtc_state->data_rate_y[plane->id] = 0;
+ 	crtc_state->rel_data_rate[plane->id] = 0;
+@@ -581,8 +582,10 @@ static int intel_plane_atomic_calc_changes(const struct intel_crtc_state *old_cr
+ 			 intel_plane_is_scaled(new_plane_state))))
+ 		new_crtc_state->disable_lp_wm = true;
+ 
+-	if (intel_plane_do_async_flip(plane, old_crtc_state, new_crtc_state))
++	if (intel_plane_do_async_flip(plane, old_crtc_state, new_crtc_state)) {
+ 		new_crtc_state->do_async_flip = true;
++		new_crtc_state->async_flip_planes |= BIT(plane->id);
++	}
+ 
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index e75b9b2a0e015a..e1c3b1b0b6a8f1 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -1303,7 +1303,8 @@ static void intel_crtc_async_flip_disable_wa(struct intel_atomic_state *state,
+ 		intel_atomic_get_old_crtc_state(state, crtc);
+ 	const struct intel_crtc_state *new_crtc_state =
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+-	u8 update_planes = new_crtc_state->update_planes;
++	u8 disable_async_flip_planes = old_crtc_state->async_flip_planes &
++				       ~new_crtc_state->async_flip_planes;
+ 	const struct intel_plane_state *old_plane_state;
+ 	struct intel_plane *plane;
+ 	bool need_vbl_wait = false;
+@@ -1312,7 +1313,7 @@ static void intel_crtc_async_flip_disable_wa(struct intel_atomic_state *state,
+ 	for_each_old_intel_plane_in_state(state, plane, old_plane_state, i) {
+ 		if (plane->need_async_flip_disable_wa &&
+ 		    plane->pipe == crtc->pipe &&
+-		    update_planes & BIT(plane->id)) {
++		    disable_async_flip_planes & BIT(plane->id)) {
+ 			/*
+ 			 * Apart from the async flip bit we want to
+ 			 * preserve the old state for the plane.
+@@ -1429,7 +1430,7 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
+ 	 * WA for platforms where async address update enable bit
+ 	 * is double buffered and only latched at start of vblank.
+ 	 */
+-	if (old_crtc_state->uapi.async_flip && !new_crtc_state->uapi.async_flip)
++	if (old_crtc_state->async_flip_planes & ~new_crtc_state->async_flip_planes)
+ 		intel_crtc_async_flip_disable_wa(state, crtc);
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 32e8b2fc3cc642..61b1a0ec3dede1 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1248,6 +1248,9 @@ struct intel_crtc_state {
+ 	/* bitmask of planes that will be updated during the commit */
+ 	u8 update_planes;
+ 
++	/* bitmask of planes with async flip active */
++	u8 async_flip_planes;
++
+ 	u8 framestart_delay; /* 1-4 */
+ 	u8 msa_timing_delay; /* 0-3 */
+ 
+-- 
+2.34.1
 
---------------Ml6ObZcRSbozD0DLMa0dlELb
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmO+4bAFAwAAAAAACgkQlh/E3EQov+A0
-Dg//cjhjyvyNrq1Unm9x1sHYxc3/gIlRODM1tEoT7vAIxsRVimAF4vTjEFoqaD7oZxqeABXOfWUh
-HQu72Jd4pzI/NGWVr+N1I8vFQEa98xdFUaE2t/yGNmGjJMiUQbXjbhjj7UpbyB7dH/XKoamEHjfT
-dbpW2p8TRxbKZzW0lAcQVhwGbn/ad+AEepfrhKzUdU1GxNQKuPr3MiOavtckZ2kfMZ++zpiZeKhr
-4KX4mUj+PWCwaB8Fd/OWGdCk9M8MpomSBvmFWT/1PCOvgXOWbf/0lsX1RomclDg4H/j5aoUC8JD7
-D+Em3WQr231VORCXnAXBv3qNrtBeywGAe0sGMAmzcdX1PUi0wB3jFv+8EZfdNMRchlyjDjtkJ81f
-H+eVVnYKT2IcNg5oTs/Uw/cczQ6oo4djULK8Fa1gqu6o5dl0L5ijlw9Na38I9fEDEa8UXBtjfohV
-96fT+/xQaIiX2iv/2rXkmNzQtcWjl3885Apo4/kp/AEqDdSlhOoSlL6RbzRTxQnFjy8e7sA38WMh
-4aLBJ/r1yR+TY0Irv2z/gEtyKDOaTzkAUp6z1AA5PeKylY6ySOR6YfGrNaI2mOCHMF4QGiMcgFTa
-+2MxZzQOohfmIzBWi+pcWH5lDpYa6DwMtuv8Xv5y+2yCcKavJSsGldKbTTeTLEsneDWqhtAKWA4c
-buU=
-=MQ26
------END PGP SIGNATURE-----
-
---------------Ml6ObZcRSbozD0DLMa0dlELb--
