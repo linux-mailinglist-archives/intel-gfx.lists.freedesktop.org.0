@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 283596653DB
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jan 2023 06:40:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 640976653DC
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jan 2023 06:40:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3172010E6E7;
-	Wed, 11 Jan 2023 05:39:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FB4B10E6E9;
+	Wed, 11 Jan 2023 05:39:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E62A210E6E4
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Jan 2023 05:39:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6DE110E6E7
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Jan 2023 05:39:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673415593; x=1704951593;
+ t=1673415595; x=1704951595;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=RgUtPlJKvNBvYaob7xBuC6CA42eQAvLr42wKf+jHlzw=;
- b=iT9e+PNksdHym6Gh5q2f8tCUw2nRVqZY8P3ifxNQDzrYEOyyR1aK12J8
- iYf5ob4Oe0zXGSb9Iv2/+foYk+cB5wIrpXLCCHBemW5ZlSKm+FH94zWoG
- NocYguphEtEzcrG/3/73KAUf7WwVpcI7tgrmc0rAfz+qtkZXW5M1NEXrt
- 8Iz1s+wuh3e9k3jH3won4F0Ir8Cnr+vJS706/f/3axeC/284aLX8tpf+M
- yUQqxt483bo8NJfXo+3OkuHuelBF+4JXnfP67c5RG11htOpTd5o7DWTU7
- LuLBF8lW3GPyMy28A6Ji321hibqmI1CjSav3qZ1s+F5GRrxefMATiXy6V Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="325341378"
-X-IronPort-AV: E=Sophos;i="5.96,315,1665471600"; d="scan'208";a="325341378"
+ bh=MPXifSRv4PRJx5FWkCt9BpvCYexvX+FVPnOzmp9xrak=;
+ b=dGKSNk/dG3kwZpklbwkY+EFWBDHAd7cX+6V/xXcZM9EYBnkVVzeOviLQ
+ TnSBM8IRc74bAQwdpBQ/rlLws5Aahp33xU+W327ggFcHlRNgKvnJ8Fu4F
+ 9WAd01wI2y5eDEwlHdfsYj+pJREF+FFrhJIHyGGRx1R7SwrOzFY5O1NmN
+ 7FE7r2og1dBownYUKW42b9JidFPtogyR+QKvah8xoMlTcsHnUlUI3A4IN
+ bLiF89grNAZ3l2wolgvDi6KbZP8FTGpBhv1qDE1aFKnAMuEI/JbR1vGT1
+ 1i+e30ppM/MUnu+5z5+2SVu3cYpfZJcPPEFJQnFeoe8wkCJwcnn6An3i8 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="325341385"
+X-IronPort-AV: E=Sophos;i="5.96,315,1665471600"; d="scan'208";a="325341385"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2023 21:39:53 -0800
+ 10 Jan 2023 21:39:55 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="720598376"
-X-IronPort-AV: E=Sophos;i="5.96,315,1665471600"; d="scan'208";a="720598376"
+X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="720598383"
+X-IronPort-AV: E=Sophos;i="5.96,315,1665471600"; d="scan'208";a="720598383"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by fmsmga008.fm.intel.com with ESMTP; 10 Jan 2023 21:39:52 -0800
+ by fmsmga008.fm.intel.com with ESMTP; 10 Jan 2023 21:39:53 -0800
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 11 Jan 2023 11:08:29 +0530
-Message-Id: <20230111053837.1608588-2-suraj.kandpal@intel.com>
+Date: Wed, 11 Jan 2023 11:08:30 +0530
+Message-Id: <20230111053837.1608588-3-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230111053837.1608588-1-suraj.kandpal@intel.com>
 References: <20230111053837.1608588-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v6 1/9] drm/dp_helper: Add helper to check if
- the sink supports given format with DSC
+Subject: [Intel-gfx] [PATCH v6 2/9] drm/i915/dp: Check if DSC supports the
+ given output_format
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,32 +62,68 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-Add helper function to check if the DP sink supports DSC with the given
-output format.
+Go with DSC only if the given output_format is supported.
+
+v2: Use drm helper to get DSC format support for sink.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- include/drm/display/drm_dp_helper.h | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dp.c | 30 +++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
-diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
-index ab55453f2d2c..d529d0254b68 100644
---- a/include/drm/display/drm_dp_helper.h
-+++ b/include/drm/display/drm_dp_helper.h
-@@ -194,6 +194,13 @@ drm_dp_dsc_sink_max_slice_width(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE])
- 		DP_DSC_SLICE_WIDTH_MULTIPLIER;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 30c55f980014..6e531872ff38 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -1483,6 +1483,31 @@ static int intel_dp_dsc_compute_params(struct intel_encoder *encoder,
+ 	return drm_dsc_compute_rc_parameters(vdsc_cfg);
  }
  
-+/* Check if sink supports DSC with given output format */
-+static inline bool
-+drm_dp_dsc_sink_supports_format(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE], u8 output_format)
++static bool intel_dp_dsc_supports_format(struct intel_dp *intel_dp,
++					 enum intel_output_format output_format)
 +{
-+	return dsc_dpcd[DP_DSC_DEC_COLOR_FORMAT_CAP - DP_DSC_SUPPORT] & output_format;
++	u8 sink_dsc_format;
++
++	switch (output_format) {
++	case INTEL_OUTPUT_FORMAT_RGB:
++		sink_dsc_format = DP_DSC_RGB;
++		break;
++	case INTEL_OUTPUT_FORMAT_YCBCR444:
++		sink_dsc_format = DP_DSC_YCbCr444;
++		break;
++	case INTEL_OUTPUT_FORMAT_YCBCR420:
++		if (min(intel_dp_source_dsc_version_minor(intel_dp),
++			intel_dp_sink_dsc_version_minor(intel_dp)) < 2)
++			return false;
++		sink_dsc_format = DP_DSC_YCbCr420_Native;
++		break;
++	default:
++		return false;
++	}
++
++	return drm_dp_dsc_sink_supports_format(intel_dp->dsc_dpcd, sink_dsc_format);
 +}
 +
- /* Forward Error Correction Support on DP 1.4 */
- static inline bool
- drm_dp_sink_supports_fec(const u8 fec_capable)
+ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+ 				struct intel_crtc_state *pipe_config,
+ 				struct drm_connector_state *conn_state,
+@@ -1503,11 +1528,16 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+ 	if (!intel_dp_supports_dsc(intel_dp, pipe_config))
+ 		return -EINVAL;
+ 
++	if (!intel_dp_dsc_supports_format(intel_dp, pipe_config->output_format))
++		return -EINVAL;
++
+ 	if (compute_pipe_bpp)
+ 		pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp, conn_state->max_requested_bpc);
+ 	else
+ 		pipe_bpp = pipe_config->pipe_bpp;
+ 
++	pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp, conn_state->max_requested_bpc);
++
+ 	if (intel_dp->force_dsc_bpc) {
+ 		pipe_bpp = intel_dp->force_dsc_bpc * 3;
+ 		drm_dbg_kms(&dev_priv->drm, "Input DSC BPP forced to %d", pipe_bpp);
 -- 
 2.25.1
 
