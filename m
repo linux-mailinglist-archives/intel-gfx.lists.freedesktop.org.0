@@ -1,63 +1,145 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B18F665EEE
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jan 2023 16:19:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2286665F03
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jan 2023 16:25:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20EEF10E75C;
-	Wed, 11 Jan 2023 15:19:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECD5E10E764;
+	Wed, 11 Jan 2023 15:24:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com
- [IPv6:2a00:1450:4864:20::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42B3610E75C;
- Wed, 11 Jan 2023 15:19:22 +0000 (UTC)
-Received: by mail-lf1-x133.google.com with SMTP id bf43so24042476lfb.6;
- Wed, 11 Jan 2023 07:19:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=62Jo7JKmSp1aIyPRq2hHTN6xUfaS0wnFHCKFd5OQBvU=;
- b=Odg7aV67CgpZsg1dmxVJv1V1/1LvgpldKTNXBbOy0+GcuFiEUTB2ZqOGRp2v/mrJzX
- n+npspTXXQZXgrzJ7RSAWuYXIMdtqieGVi4k05Mre0Fsa/ktlQ2L1K5gp49H9DgKV/Af
- EbFbTsxeMjwWj2uGa9ckjLChW4+x0d1WQ6hRGfC09T8pn0DAd7+iuyZoHJDU5yGDUvG2
- xHYZGu0ZD5g8+aVt7xsaPUROSaMIUkRd4t4Kvlzk3zrcvLZlYHti0kAfLEGSbLLZSoRN
- 0HQnfI8mtZ/RNRqSu/GFLFUSVzOVjSBsnPiDju/QTkh02B4IFm76DD09l1doJzaejFcu
- ATCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=62Jo7JKmSp1aIyPRq2hHTN6xUfaS0wnFHCKFd5OQBvU=;
- b=KA+UJyUT+mJk4JQKgwW8frVWcIDwU3XgeEWay2xfGGHE6Y8Ja7kx8WdxDDI0IUEY6/
- u6j0AYZymDgaQwCLwFoOHJA03RM+mDbVB9HbxivFHCL8BzZx8YAn9dIaAyWROGTC5nT9
- rtWmS1UkuI39XOn9NnKKqT1v+SEWDngZiTyBaEYsG2gQLpfTqi3wPxlTnbM6COeSZNfN
- 2hN+k4kiEQmeKpFK/dMGyK8V0vgUanzopMnaeljgvDaOw5AtSlYGmxKuLk95jBP5BIJX
- d1FJVyseta9AhFIA/5rTzEWzLKCdPyDl+KXzvC/izi6vG21QBe9l/kSqDdaK8+4+GrC3
- 8q4A==
-X-Gm-Message-State: AFqh2kp4+FDKbjVpDCRfV9XwWCm+uHzdooAf35L/afCzj+tPDhY1H+Lu
- n+o/rwvOXy01gPn2EdPd3ylwzDD8OSRXX8g+GFWwohkts7k/bg==
-X-Google-Smtp-Source: AMrXdXsrO2mCMi7KpsYfLa5d8Go7Ggl5PfnG8n1Mi5wC6mgLjWi15GrwksX2c5GFuVL0URJ7X68HX0qIEfjVT9e6WTs=
-X-Received: by 2002:ac2:4c14:0:b0:4b9:f5e5:8fbe with SMTP id
- t20-20020ac24c14000000b004b9f5e58fbemr3756943lfq.604.1673450360271; Wed, 11
- Jan 2023 07:19:20 -0800 (PST)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB0E610E2AB;
+ Wed, 11 Jan 2023 15:24:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1673450689; x=1704986689;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=UYAQLyTzyr4+hanG3m/DwwQ1JXrtbUB18Ltn11rXAnY=;
+ b=GwIIBgoMH0I3Rq7BlthFSTcVTUCosa9XDhQ3DBgfMaCH26Il+p31QyIH
+ jG4JAwIVg7IqgAW+RXDv4xptUxysN8QIlX5x7EXP07d73N8ACojhN1YSN
+ hmVHCUzlutUbYWAUFgQaDsvwGRa/OJZ+dO3ACePyoWNmqLU/qHhQ1+YZL
+ Ke1egAn0PjAZrnksbMZ4ZHNSk17eY8L4buwOYJcQDtZEC9S9DQKiew5OW
+ g6hB1XmKwrMszOyDaeR9cCTz5RW4Dt+SR9ZC6hopBP5MPM66IbVpSRHzV
+ Gl3NVqORrfBexQtmBluX0DNwPTuzDBq8W/5k8dXJnHoYVghhTpfjOFlEF g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="311251354"
+X-IronPort-AV: E=Sophos;i="5.96,317,1665471600"; d="scan'208";a="311251354"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2023 07:24:31 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="986191391"
+X-IronPort-AV: E=Sophos;i="5.96,317,1665471600"; d="scan'208";a="986191391"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga005.fm.intel.com with ESMTP; 11 Jan 2023 07:24:30 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Wed, 11 Jan 2023 07:24:30 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Wed, 11 Jan 2023 07:24:30 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Wed, 11 Jan 2023 07:24:30 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.45) by
+ edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Wed, 11 Jan 2023 07:24:29 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=IPf4mieXoB1L5u/tW+EvD8KdBXiY42HMNTna28LJQ1VB48wafqtVIF4mtp9h9kSXQzdZ0Ti3u0GNkv1WPFLKSVknZ3VGTz+d6Tbh/Zy0/RGWh4dwbMysa0LkOodu1JJ84sJ8RPWgRokU87ubk/DXRBWiNcwlSHmatiqAlbPudGVhZKxcPjGrHMKCE0Ym7LMEp0ot7wGBSqLGi77QOWyjDGo07XAlImAcSlp3vlkVLfk9+zg7cqgRj5Gyts/pr/Zi4w+GQBDPXFQsHAuA4UGZkdudWvZzHqWbbDDXDnprelbvUOvQpZhTXf6r4pGMqapSI/70oyGXLasTHXbj1j20aA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3a/izfeMlaIOgOwA/vigYGgbw57DC5jiJbgGwGDFXMA=;
+ b=Ppg4PVCEhYACq9Vrytfu5+lyud3Zse4OAp4ARsGaOvrJY8R2IvPrraw+diZJ5fCTnfAuFLVBkbAfYPMB0539Dae1odjxN1Eb46OKUFFrlcbZU8eqMs67zk53bU2OawkhmjsxyUByAJf+0cKiPYwg1cbJdHWWhwMVg0oPC4jsFOHntqkWTMkMl7OiNUn7J6R5GLqUAjQRO83YU7Hlpj/dMHGXPrIBvA603updLGht65LIV38JKqU5j5fIeXY4qGcXxJjnN/xETud9Ap26uMo8go50eRZCUIz795OsTKbUYzW/WMme9EYzpaaS8Wfwxb+1EDVh9l+txWJkyUCpE85mmw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by DM6PR11MB4705.namprd11.prod.outlook.com (2603:10b6:5:2a9::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.18; Wed, 11 Jan
+ 2023 15:24:27 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::1818:e39d:454d:a930]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::1818:e39d:454d:a930%4]) with mapi id 15.20.5986.018; Wed, 11 Jan 2023
+ 15:24:27 +0000
+Date: Wed, 11 Jan 2023 10:24:22 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Deepak R Varma <drv@mailo.com>
+Message-ID: <Y77UpjMG9t3SIkMo@intel.com>
+References: <cover.1673375066.git.drv@mailo.com>
+ <188df08e0feba0cda2c92145f513dd4e57c6e6cf.1673375066.git.drv@mailo.com>
+ <Y72zVXYLVHXuyK05@intel.com> <Y76JGj0cJpYr6/rv@intel.com>
+ <Y77NfeKbLL4s/Ibg@ubun2204.myguest.virtualbox.org>
+ <Y77O+0uGm1GRZnZd@intel.com>
+ <Y77SsDGaZ8+BjXel@ubun2204.myguest.virtualbox.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <Y77SsDGaZ8+BjXel@ubun2204.myguest.virtualbox.org>
+X-ClientProxiedBy: BYAPR02CA0030.namprd02.prod.outlook.com
+ (2603:10b6:a02:ee::43) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
-References: <20230111114256.72669-1-christian.koenig@amd.com>
- <20230111114256.72669-2-christian.koenig@amd.com>
- <CAM0jSHP=LT5mXEFvXWJGPOotgRBBLFe-Pw=4TTHYWo=Maov_uA@mail.gmail.com>
- <2b68945e-4001-db29-4421-f1a7266f0d69@gmail.com>
-In-Reply-To: <2b68945e-4001-db29-4421-f1a7266f0d69@gmail.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Wed, 11 Jan 2023 15:18:52 +0000
-Message-ID: <CAM0jSHOEXiQj-9160deCA-AxDjbUUrwYDUit9=yzPCcdLp_Wwg@mail.gmail.com>
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/ttm: replace busy placement with
- flags
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|DM6PR11MB4705:EE_
+X-MS-Office365-Filtering-Correlation-Id: cc848206-8e65-4a3f-2333-08daf3e7ece2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Z8wrtJUY6NzKZItU2gnxdKU+LjLGNxXpbaV167VGWAzZrtigmpNxOblrS+wxO+FUu5/TgHlzMA6g3renQ/naOQIaQpp6KSf2ZL0hmbrGDe7EZn6PoU8g20bf/HMsrOsEMPBqabGSXdxcsrNXoPkTmhBl/jivJd2QZgFBYS+IvlvWlxB0OK0ruZHkfMGX4mj2xdYPRLi6kPjfYEZclnebv9Wde50wi43vOOIir+8MiWkhoWe83wvBukCUED/8j/GhlPi8nri+Hd3id16l82w/mLYGH0rYt+mbmfJRsCQIxb2f4wZbR1fMul9FMua/S9xsmyNI+LrA8AnDfVp0trBDWSC3CBtWeacC/YDOZRszeGDjifstIHP9GG2FbqMiXcvkrpPPKcSf469rvr2cW4sNSobXRbFZt85pNFK8+pSgEDPKIM8lmc8UUa8FTT7ArnCBVD8JklFBlfrdpdpvmLPCmCborVTJmG81D1YA/DrSKDYcbAdt32S7XSwBP6HCi0jIuzPRyO6t+37mXjTDXxmUkqadZnzuBxvNFQhR6aqhCRWbGBnKZGldZaFOIbkQGLkKlsdZt0QWwMz8XhExW1rQowvEhWv3XXPFBJnFt+XEwW6sAEHxkSmPUfQ3UaqO6UW1BoZ1yx7xbTgqxAyleWHb7g==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(136003)(39860400002)(396003)(366004)(376002)(346002)(451199015)(36756003)(26005)(186003)(6666004)(8936002)(6486002)(6512007)(6506007)(2616005)(66946007)(5660300002)(66476007)(66556008)(6916009)(316002)(4326008)(86362001)(38100700002)(82960400001)(478600001)(54906003)(8676002)(41300700001)(83380400001)(44832011)(2906002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?1PsoCFlpjgbVFQ8DpsaEe4ebIDzrpKMGu8PI/AHO4jup9uWcN/3peQ1DPbGj?=
+ =?us-ascii?Q?Mn2I0EYpEYrfIJv2kXxMf3Cl+4/oz0jNiS6CJ/b8rRj/hLqPpRyykllQJttV?=
+ =?us-ascii?Q?0LYtS6TJ/ZvnirFZ/sZpJU9+/RJIE9bJ4C6FwK9dWu0x/P0WG69Q8ErS30Qk?=
+ =?us-ascii?Q?DVeIrVhn1GLCgbDLzSreFD5I2Fh6osBh4MteIXkXs3+2z+9EMVsy4smAtStE?=
+ =?us-ascii?Q?2c8DBJmFx6/KLiGEYKIG3fxTF+FPdRorr+9V32UblY29wKj1L+KWH3fSpDxO?=
+ =?us-ascii?Q?svBbi0dLzSSrUtF29KxxCP0veud4L5HRG6NPFUQpuQCdwYVRnGhyP3RQfWBo?=
+ =?us-ascii?Q?5V0JR+mbZitYuKbt2fNcBAYutOhLRkfzHcp9lUGiClKalS0JAWDcYKjTmXAE?=
+ =?us-ascii?Q?W2KDh3nRDr0l+b2Nsc1VTrlbPIoMBnnxq7V/uTL5i/4G5uX4kcVNy1ZTZQqN?=
+ =?us-ascii?Q?J3Z+U9IGnujGA2CGoVgmgz90M7OgPJg1n+fmB9xP3BCT5Hto1Ar+eV3K8++g?=
+ =?us-ascii?Q?iTnZ4FHi4ZxRCqogv+gfd4asNQo+fO5ptxKshTmOnhD4BOHH5iTEx7QSro+p?=
+ =?us-ascii?Q?W0ceUbhlE9NrGuHTPHS9d9OzlHZJlxTtfW8vTkQSQvPZIKNGrY0/p5CAYokr?=
+ =?us-ascii?Q?6pjAt2sz1A4fRmPvH2ei8+BJICJfZNEEUhU3h8r6TuAJpTJbHrLU8ruHfiyk?=
+ =?us-ascii?Q?UUVVO8dTtLCIzEnGyJFc8iyedEYxhCqW3KmmNFwq8ryEJnZTyBqzl8k2WDuj?=
+ =?us-ascii?Q?YZGe8zX9CPJpb10i5L0ZTT06Qozqe1gh93R+GbWmMnWk6tEexswiOX34o6RX?=
+ =?us-ascii?Q?8woBDGdKUVdXGhT17t89mH5khjaTArt5MXOO7od4Id8xf5BY8AaXgOeWAAbi?=
+ =?us-ascii?Q?ltBgwOD97Ivf9eYRg0n2croB6R7VmxAw4VVuQbIsS5OH6vGojUPjlog+bVq9?=
+ =?us-ascii?Q?mw3qdCxmWj5hX8lyXENUfa/T63RjciphX2eW96ZvD7YtDjMHk0o99lnhqtjb?=
+ =?us-ascii?Q?DGiLyMII/rzel1wMqUFLJIGuAfNRWS+jyf8rtHCQDypBVSEn60ziea0rJU42?=
+ =?us-ascii?Q?t7zTkkQpu57g2URfnlYO9DKM3tyqoGpab7H0pHNmGmfhaDjprGGvQzCND3Uo?=
+ =?us-ascii?Q?OpdotJAQCTuBd8Nkux5XElq4wm0WbvoQpbNh1L1q9P5ihWMIaW9R99CN2RXV?=
+ =?us-ascii?Q?pwess5bMmeyjkE8wSvsbSlpIJuIePz3j4jHpQdq+7LY23DJSOOlnYrUuxr+O?=
+ =?us-ascii?Q?MwVOwwRZ2IjLRGrovLZUJKOAwjnc5nrTbwpPLqozO6PBEAZs8ilCoJ8CldGM?=
+ =?us-ascii?Q?ZWyUCBWV6wzz/gRs3YEmXr3Phxn+NlSHKx3s4s12aN6sGxuHp04N/d4DgTxG?=
+ =?us-ascii?Q?OXT8OfbO0t3HjRDKFWwpVxLRuh/Z/afTCgEFZ6yH9S58kq77I9hSDrB97YSd?=
+ =?us-ascii?Q?4Uj9v6kJ74lNAjYpBo9xYKeel1cpUGcVVN7w/UuPiX6cZn35qGk+4AQD5GlA?=
+ =?us-ascii?Q?0OK2/aL2bS1v0/zsNsvWQ0SGB2P8UtwjOdfR3yb4wHMgB0P0wPFH0k75P81q?=
+ =?us-ascii?Q?OTNwBWgGVbloLMgBo0aZVFJqrvw+QjHg6y6mdtW45MFIAvYlW1R3XG9O1tRK?=
+ =?us-ascii?Q?1w=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: cc848206-8e65-4a3f-2333-08daf3e7ece2
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jan 2023 15:24:27.2336 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: rSloRoZpximqVlu2EOqYhVs1LII4BM85va0x0J48m+V5qblrkP4PuSa2vo+tAzgTmtFyYhbYpk38U5828ZPkxw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4705
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gvt: Avoid full proxy f_ops
+ for vgpu_status debug attributes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,244 +152,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Praveen Kumar <kumarpraveen@linux.microsoft.com>,
+ intel-gfx@lists.freedesktop.org, Saurabh Singh Sengar <ssengar@microsoft.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 11 Jan 2023 at 14:43, Christian K=C3=B6nig
-<ckoenig.leichtzumerken@gmail.com> wrote:
->
-> Am 11.01.23 um 14:03 schrieb Matthew Auld:
-> > On Wed, 11 Jan 2023 at 11:43, Christian K=C3=B6nig
-> > <ckoenig.leichtzumerken@gmail.com> wrote:
-> >> Instead of a list of separate busy placement add flags which indicate
-> >> that a placement should only be used when there is room or if we need =
-to
-> >> evict.
-> >>
-> >> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> >> ---
-> >>   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c |   6 +-
-> >>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c    |  11 +-
-> >>   drivers/gpu/drm/drm_gem_vram_helper.c      |   2 -
-> >>   drivers/gpu/drm/i915/gem/i915_gem_ttm.c    |  36 +++---
-> >>   drivers/gpu/drm/nouveau/nouveau_bo.c       |  59 ++++------
-> >>   drivers/gpu/drm/nouveau/nouveau_bo.h       |   1 -
-> >>   drivers/gpu/drm/qxl/qxl_object.c           |   2 -
-> >>   drivers/gpu/drm/qxl/qxl_ttm.c              |   2 -
-> >>   drivers/gpu/drm/radeon/radeon_object.c     |   2 -
-> >>   drivers/gpu/drm/radeon/radeon_ttm.c        |   8 +-
-> >>   drivers/gpu/drm/radeon/radeon_uvd.c        |   1 -
-> >>   drivers/gpu/drm/ttm/ttm_bo.c               |  21 ++--
-> >>   drivers/gpu/drm/ttm/ttm_resource.c         |  73 +++----------
-> >>   drivers/gpu/drm/vmwgfx/vmwgfx_bo.c         |   2 -
-> >>   drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c | 121 ++++++++++---------=
---
-> >>   include/drm/ttm/ttm_placement.h            |  10 +-
-> >>   include/drm/ttm/ttm_resource.h             |   8 +-
-> >>   17 files changed, 134 insertions(+), 231 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/=
-drm/amd/amdgpu/amdgpu_object.c
-> >> index 974e85d8b6cc..0995a2f41305 100644
-> >> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-> >> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-> >> @@ -201,9 +201,6 @@ void amdgpu_bo_placement_from_domain(struct amdgpu=
-_bo *abo, u32 domain)
-> >>
-> >>          placement->num_placement =3D c;
-> >>          placement->placement =3D places;
-> >> -
-> >> -       placement->num_busy_placement =3D c;
-> >> -       placement->busy_placement =3D places;
-> >>   }
-> >>
-> >>   /**
-> >> @@ -1369,8 +1366,7 @@ vm_fault_t amdgpu_bo_fault_reserve_notify(struct=
- ttm_buffer_object *bo)
-> >>                                          AMDGPU_GEM_DOMAIN_GTT);
-> >>
-> >>          /* Avoid costly evictions; only set GTT as a busy placement *=
-/
-> >> -       abo->placement.num_busy_placement =3D 1;
-> >> -       abo->placement.busy_placement =3D &abo->placements[1];
-> >> +       abo->placements[0].flags |=3D TTM_PL_FLAG_IDLE;
-> >>
-> >>          r =3D ttm_bo_validate(bo, &abo->placement, &ctx);
-> >>          if (unlikely(r =3D=3D -EBUSY || r =3D=3D -ERESTARTSYS))
-> >> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm=
-/amd/amdgpu/amdgpu_ttm.c
-> >> index 677cd7d91687..33cf6e835a68 100644
-> >> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-> >> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-> >> @@ -104,23 +104,19 @@ static void amdgpu_evict_flags(struct ttm_buffer=
-_object *bo,
-> >>          /* Don't handle scatter gather BOs */
-> >>          if (bo->type =3D=3D ttm_bo_type_sg) {
-> >>                  placement->num_placement =3D 0;
-> >> -               placement->num_busy_placement =3D 0;
-> >>                  return;
-> >>          }
-> >>
-> >>          /* Object isn't an AMDGPU object so ignore */
-> >>          if (!amdgpu_bo_is_amdgpu_bo(bo)) {
-> >>                  placement->placement =3D &placements;
-> >> -               placement->busy_placement =3D &placements;
-> >>                  placement->num_placement =3D 1;
-> >> -               placement->num_busy_placement =3D 1;
-> >>                  return;
-> >>          }
-> >>
-> >>          abo =3D ttm_to_amdgpu_bo(bo);
-> >>          if (abo->flags & AMDGPU_GEM_CREATE_DISCARDABLE) {
-> >>                  placement->num_placement =3D 0;
-> >> -               placement->num_busy_placement =3D 0;
-> >>                  return;
-> >>          }
-> >>
-> >> @@ -129,13 +125,13 @@ static void amdgpu_evict_flags(struct ttm_buffer=
-_object *bo,
-> >>          case AMDGPU_PL_GWS:
-> >>          case AMDGPU_PL_OA:
-> >>                  placement->num_placement =3D 0;
-> >> -               placement->num_busy_placement =3D 0;
-> >>                  return;
-> >>
-> >>          case TTM_PL_VRAM:
-> >>                  if (!adev->mman.buffer_funcs_enabled) {
-> >>                          /* Move to system memory */
-> >>                          amdgpu_bo_placement_from_domain(abo, AMDGPU_G=
-EM_DOMAIN_CPU);
-> >> +
-> >>                  } else if (!amdgpu_gmc_vram_full_visible(&adev->gmc) =
-&&
-> >>                             !(abo->flags & AMDGPU_GEM_CREATE_CPU_ACCES=
-S_REQUIRED) &&
-> >>                             amdgpu_bo_in_cpu_visible_vram(abo)) {
-> >> @@ -150,8 +146,7 @@ static void amdgpu_evict_flags(struct ttm_buffer_o=
-bject *bo,
-> >>                                                          AMDGPU_GEM_DO=
-MAIN_CPU);
-> >>                          abo->placements[0].fpfn =3D adev->gmc.visible=
-_vram_size >> PAGE_SHIFT;
-> >>                          abo->placements[0].lpfn =3D 0;
-> >> -                       abo->placement.busy_placement =3D &abo->placem=
-ents[1];
-> >> -                       abo->placement.num_busy_placement =3D 1;
-> >> +                       abo->placements[0].flags |=3D TTM_PL_FLAG_IDLE=
-;
-> >>                  } else {
-> >>                          /* Move to GTT memory */
-> >>                          amdgpu_bo_placement_from_domain(abo, AMDGPU_G=
-EM_DOMAIN_GTT |
-> >> @@ -923,8 +918,6 @@ int amdgpu_ttm_alloc_gart(struct ttm_buffer_object=
- *bo)
-> >>          /* allocate GART space */
-> >>          placement.num_placement =3D 1;
-> >>          placement.placement =3D &placements;
-> >> -       placement.num_busy_placement =3D 1;
-> >> -       placement.busy_placement =3D &placements;
-> >>          placements.fpfn =3D 0;
-> >>          placements.lpfn =3D adev->gmc.gart_size >> PAGE_SHIFT;
-> >>          placements.mem_type =3D TTM_PL_TT;
-> >> diff --git a/drivers/gpu/drm/drm_gem_vram_helper.c b/drivers/gpu/drm/d=
-rm_gem_vram_helper.c
-> >> index d40b3edb52d0..f46792b757f9 100644
-> >> --- a/drivers/gpu/drm/drm_gem_vram_helper.c
-> >> +++ b/drivers/gpu/drm/drm_gem_vram_helper.c
-> >> @@ -147,7 +147,6 @@ static void drm_gem_vram_placement(struct drm_gem_=
-vram_object *gbo,
-> >>                  invariant_flags =3D TTM_PL_FLAG_TOPDOWN;
-> >>
-> >>          gbo->placement.placement =3D gbo->placements;
-> >> -       gbo->placement.busy_placement =3D gbo->placements;
-> >>
-> >>          if (pl_flag & DRM_GEM_VRAM_PL_FLAG_VRAM) {
-> >>                  gbo->placements[c].mem_type =3D TTM_PL_VRAM;
-> >> @@ -160,7 +159,6 @@ static void drm_gem_vram_placement(struct drm_gem_=
-vram_object *gbo,
-> >>          }
-> >>
-> >>          gbo->placement.num_placement =3D c;
-> >> -       gbo->placement.num_busy_placement =3D c;
-> >>
-> >>          for (i =3D 0; i < c; ++i) {
-> >>                  gbo->placements[i].fpfn =3D 0;
-> >> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm=
-/i915/gem/i915_gem_ttm.c
-> >> index d409a77449a3..dc483d601cf9 100644
-> >> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> >> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> >> @@ -65,8 +65,6 @@ static const struct ttm_place sys_placement_flags =
-=3D {
-> >>   static struct ttm_placement i915_sys_placement =3D {
-> >>          .num_placement =3D 1,
-> >>          .placement =3D &sys_placement_flags,
-> >> -       .num_busy_placement =3D 1,
-> >> -       .busy_placement =3D &sys_placement_flags,
-> >>   };
-> >>
-> >>   /**
-> >> @@ -154,32 +152,27 @@ i915_ttm_place_from_region(const struct intel_me=
-mory_region *mr,
-> >>
-> >>   static void
-> >>   i915_ttm_placement_from_obj(const struct drm_i915_gem_object *obj,
-> >> -                           struct ttm_place *requested,
-> >> -                           struct ttm_place *busy,
-> >> +                           struct ttm_place *places,
-> >>                              struct ttm_placement *placement)
-> >>   {
-> >>          unsigned int num_allowed =3D obj->mm.n_placements;
-> >>          unsigned int flags =3D obj->flags;
-> >>          unsigned int i;
-> >>
-> >> -       placement->num_placement =3D 1;
-> >>          i915_ttm_place_from_region(num_allowed ? obj->mm.placements[0=
-] :
-> >> -                                  obj->mm.region, requested, obj->bo_=
-offset,
-> >> +                                  obj->mm.region, &places[0], obj->bo=
-_offset,
-> >>                                     obj->base.size, flags);
-> > Do we also need places[0].flags |=3D TTM_PL_FLAG_IDLE somewhere here?
-> >
-> > Series doesn't seem to apply to drm-tip, so no intel-gfx CI. Would it
-> > be possible to have a version that applies to drm-tip, just so we can
-> > verify the i915 bits? We could send it to trybot[1] just to get some
-> > CI results?
->
-> Mpf, I was intentionally waiting with this for another cycle to be able
-> to test it. Can you see why it doesn't apply?
+On Wed, Jan 11, 2023 at 08:46:00PM +0530, Deepak R Varma wrote:
+> On Wed, Jan 11, 2023 at 10:00:11AM -0500, Rodrigo Vivi wrote:
+> > > > Actually, could you please address the checkpatch issues before we can push?
+> > > > Sorry about that, but just noticed now when I was going to push the other ones.
+> > > 
+> > > Hello Rodrigo,
+> > > The checkpatch warning is associated with the long "make coccicheck ..." command
+> > > in the commit message. It is not part of the code, so is should not be carried
+> > > forward into the code base.
+> > > If you still want me to correct it, I will need to split it into two lines which
+> > > I think still violates the commit description guidelines.
+> > 
+> > This part I would just ignore or fix myself while merging. But the next one about
+> > the parenthesis alignment need to be fixed in the code so we need another version.
+> > Since we try to avoid touching the code between CI and merge.
+> 
+> I am sorry, but I am unable to locate the "second checkpatch complaint" you are
+> referring to. I have received only the following from the checkpatch robot:
+> 
+> == Summary ==
+> 
+> Error: dim checkpatch failed
+> 4c95e9b71212 drm/i915/gvt: Avoid full proxy f_ops for scan_nonprivbb debug attributes
+> -:21: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+> #21:
+> make coccicheck M=drivers/gpu/drm/i915/ MODE=patch COCCI=./scripts/coccinelle/api/debugfs/debugfs_simple_attr.cocci
+> 
+> total: 0 errors, 1 warnings, 0 checks, 22 lines checked
+> 33d68a01cad3 drm/i915/gvt: Avoid full proxy f_ops for vgpu_status debug attributes
+> -:21: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+> #21:
+> make coccicheck M=drivers/gpu/drm/i915/ MODE=patch COCCI=./scripts/coccinelle/api/debugfs/debugfs_simple_attr.cocci
+> 
+> total: 0 errors, 1 warnings, 0 checks, 18 lines checked
+> 
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/112668/revisi=
-ons/1/mbox/
-not applied
-Applying: drm/ttm: prevent moving of pinned BOs
-Applying: drm/ttm: replace busy placement with flags
-error: sha1 information is lacking or useless
-(drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c).
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch=3Ddiff' to see the failed patch
-Patch failed at 0002 drm/ttm: replace busy placement with flags
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+doh, my bad! this gvt patch is indeed right. up to gvt folks to modify this line
+when merging or to ignore...
 
->
-> Currently "dim rebuild-tip" doesn't work for me because of a conflict in
-> i915_gem_execbuffer.c
+The problem I mentioned was in the other series. Sorry for the noise.
 
-Seems to be working now.
+but for the record:
 
->
-> Any idea how to fix this?
->
-> Thanks,
-> Christian.
->
->
-> >
-> > [1] https://patchwork.freedesktop.org/project/intel-gfx-trybot/series/?=
-ordering=3D-last_updated
->
+-:47: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#47: FILE: drivers/gpu/drm/i915/display/intel_drrs.c:386:
++	debugfs_create_file_unsafe("i915_drrs_ctl", 0644, crtc->base.debugfs_entry,
++				    crtc, &intel_drrs_debugfs_ctl_fops);
+
+
+> ===============================
+> 
+> > 
+> > Then, since you need to change that, while changing that, also please break
+> > the coccinelle line in the commit msg.
+> > 
+> > I'd appreciate to have the patch for the pxp as well :)
+> 
+> Sure. As mentioned in the other thread, I am looking into it and would submit a
+> patch accordingly.
+> 
+> Thank you,
+> ./drv
+> 
+> > 
+> > Thanks a lot,
+> > Rodrigo.
+> > 
+> > 
+> > > 
+> > > Let me know what you think.
+> > > 
+> > > Thank you,
+> > > ./drv
+> > > 
+> > > > 
+> > > > > 
+> > > > > > ---
+> > > > > >  drivers/gpu/drm/i915/gvt/debugfs.c | 6 +++---
+> > > > > >  1 file changed, 3 insertions(+), 3 deletions(-)
+> > > > > > 
+> > > > > > diff --git a/drivers/gpu/drm/i915/gvt/debugfs.c b/drivers/gpu/drm/i915/gvt/debugfs.c
+> > > > > > index 03f081c3d9a4..baccbf1761b7 100644
+> > > > > > --- a/drivers/gpu/drm/i915/gvt/debugfs.c
+> > > > > > +++ b/drivers/gpu/drm/i915/gvt/debugfs.c
+> > > > > > @@ -165,7 +165,7 @@ static int vgpu_status_get(void *data, u64 *val)
+> > > > > >  	return 0;
+> > > > > >  }
+> > > > > >  
+> > > > > > -DEFINE_SIMPLE_ATTRIBUTE(vgpu_status_fops, vgpu_status_get, NULL, "0x%llx\n");
+> > > > > > +DEFINE_DEBUGFS_ATTRIBUTE(vgpu_status_fops, vgpu_status_get, NULL, "0x%llx\n");
+> > > > > >  
+> > > > > >  /**
+> > > > > >   * intel_gvt_debugfs_add_vgpu - register debugfs entries for a vGPU
+> > > > > > @@ -182,8 +182,8 @@ void intel_gvt_debugfs_add_vgpu(struct intel_vgpu *vgpu)
+> > > > > >  			    &vgpu_mmio_diff_fops);
+> > > > > >  	debugfs_create_file_unsafe("scan_nonprivbb", 0644, vgpu->debugfs, vgpu,
+> > > > > >  				   &vgpu_scan_nonprivbb_fops);
+> > > > > > -	debugfs_create_file("status", 0644, vgpu->debugfs, vgpu,
+> > > > > > -			    &vgpu_status_fops);
+> > > > > > +	debugfs_create_file_unsafe("status", 0644, vgpu->debugfs, vgpu,
+> > > > > > +				   &vgpu_status_fops);
+> > > > > >  }
+> > > > > >  
+> > > > > >  /**
+> > > > > > -- 
+> > > > > > 2.34.1
+> > > > > > 
+> > > > > > 
+> > > > > > 
+> > > 
+> > > 
+> 
+> 
