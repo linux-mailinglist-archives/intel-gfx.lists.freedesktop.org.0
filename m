@@ -1,50 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D1256650BF
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jan 2023 01:57:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D76486650B5
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jan 2023 01:57:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B40610E6C0;
-	Wed, 11 Jan 2023 00:57:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0706F10E6B7;
+	Wed, 11 Jan 2023 00:56:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D743D10E0F2;
- Wed, 11 Jan 2023 00:56:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EADD10E1CC;
+ Wed, 11 Jan 2023 00:56:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673398614; x=1704934614;
+ t=1673398615; x=1704934615;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=bjajzxiV1GP749/YYSgXBCIV3/yTkJZB5p0e27BI564=;
- b=SK8UzIjOmMqeu6gEIU+zKH5oAlPTuObewRVx10caPMUIcGQ+pnTMVEA8
- SiVj50pL03bsPVdoPZNHSjHy5O5gneDeFNLbhkVuxIgp2nr6koC9f7ffD
- ++zRO9QthGzQRe+2d8+B+tRZriIgHCT2JZKz43yxBlS/j1vO6qw2PcnJC
- XK9ORcJE4FL0BvyfFCUvgVXTuANAemI23ddYX+apE+lxb4jDvoiQ8keWj
- SqeuFBAuGaGNtwpI1syfYoviQbc4wTh3Fq9w50eAiVENOakLfEguwoJp7
- 36WhOi5B6LI2fMZ/QkCSxV5XMnJ9LVrlfMmMU0uJ5g+pyycKQjDSaNYGl Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="325307104"
-X-IronPort-AV: E=Sophos;i="5.96,315,1665471600"; d="scan'208";a="325307104"
+ bh=EU7o66EhOY/FQ0M1O3KOgtl0+2AN8Z8hEnNCAf/cC34=;
+ b=lClh/UHTwnGuvU9oPxWKgYVSEjGG/dD2aLfrxahISQLfQlMUHAMmLMej
+ utZjMp8FtXfJRYt6Q98j7Zs3EQEgRD9cQC1cUGJA+izsYt/DyKrCdt+0u
+ c0y142XVyGKbbLNMitYoiF9P2I4qAtnNdRqKgXk6zkwDNmHAbAcWtdnYQ
+ PG7Nl606lZGKMhyljt1RsZWagaaBD21OagHH59RbJHNMeIdEVr0WQnqtZ
+ xGJA1v4lrbmFHGDoU6/WPYoY76KWJXuwNB2Q+czKVJQqEb0ddaY0hlU6Q
+ MlSxCjoKPZDsjIXI/grx1wujN9/tPL0dtPWC+Ae/CHw200MtQARv31MAs w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="325307107"
+X-IronPort-AV: E=Sophos;i="5.96,315,1665471600"; d="scan'208";a="325307107"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2023 16:56:54 -0800
+ 10 Jan 2023 16:56:55 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="831175673"
-X-IronPort-AV: E=Sophos;i="5.96,315,1665471600"; d="scan'208";a="831175673"
+X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="831175678"
+X-IronPort-AV: E=Sophos;i="5.96,315,1665471600"; d="scan'208";a="831175678"
 Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
  by orsmga005.jf.intel.com with ESMTP; 10 Jan 2023 16:56:54 -0800
 From: Alan Previn <alan.previn.teres.alexis@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 10 Jan 2023 16:56:40 -0800
-Message-Id: <20230111005642.300761-11-alan.previn.teres.alexis@intel.com>
+Date: Tue, 10 Jan 2023 16:56:41 -0800
+Message-Id: <20230111005642.300761-12-alan.previn.teres.alexis@intel.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230111005642.300761-1-alan.previn.teres.alexis@intel.com>
 References: <20230111005642.300761-1-alan.previn.teres.alexis@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Subject: [Intel-gfx] [PATCH 8/9] drm/i915/pxp: On MTL,
- KCR enabling doesn't wait on tee component
+ KCR HW can be enabled instantly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,12 +62,13 @@ Cc: dri-devel@lists.freedesktop.org,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On legacy platforms, KCR HW enabling is done at the time the mei
-component interface is bound. It's also disabled during unbind.
-However, for MTL onwards, we don't depend on the tee-component
-operation before we can start sending GSC-CS firmware messages.
+On legacy platforms, KCR HW enabling is done at the time
+the mei component interface is loaded. It's also disabled
+during unbind. For MTL onwards, we don't need a separate
+component driver to send FW messages via GSC-CS.
 
-Thus, immediately enable KCR HW on PXP's init, fini and resume.
+Thus, immediately enable KCR HW on PXP's init, fini
+and resume.
 
 Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
 ---
