@@ -1,75 +1,81 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12986666103
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jan 2023 17:55:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D9AE666112
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jan 2023 17:58:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0EA810E7A0;
-	Wed, 11 Jan 2023 16:55:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF56210E78F;
+	Wed, 11 Jan 2023 16:58:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com
- [IPv6:2a00:1450:4864:20::331])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CB3A10E7A1
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Jan 2023 16:55:22 +0000 (UTC)
-Received: by mail-wm1-x331.google.com with SMTP id ja17so11556822wmb.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Jan 2023 08:55:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:mail-followup-to:message-id:subject:cc:to
- :from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=wMoQMQhB38nbcNla/KRz3O4QJ9q27t1i15WWEcz2Jmc=;
- b=lTrSYN/ycOKVefSYiUDi6rK+4awRhhWIhuFjdWOga20RotqekO7XjOtokkqEJCvg9v
- Xcn87Ryk2HVfq3p3V9ddCYllP50/GrSiJAeMHykifo1QFmrmYRSphjLsV644SMkKHF7S
- V9yG3sIPpDnILXz/ROfoIYQRSz0/XXefn1bF8=
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F7D710E78F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Jan 2023 16:58:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1673456288;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=7etFesSwsvyBFG9PixPP0WNXA/+GdaIXm+B9o1JCqbU=;
+ b=Yq/2NAhtoMI04oSUyrz2JBnMAbxUFMK1UNgHI5AkjIUSHNvOVQawaRM/tvrT/yO38trFJg
+ jjVzWhcKLVIaezM/qd4TNO2Qlnfke8PVYPpFfrQbK/TLo8FE/MoaOXPuqxiD5mkFNHg8iy
+ 7xyI/iATRL7DCCgeZVEVin8m5xfIzJU=
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
+ [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-576-1Y7gqFo0OdeM4B5Dmcov-w-1; Wed, 11 Jan 2023 11:58:07 -0500
+X-MC-Unique: 1Y7gqFo0OdeM4B5Dmcov-w-1
+Received: by mail-wr1-f69.google.com with SMTP id
+ j18-20020adfb312000000b00293def622d1so2899038wrd.17
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Jan 2023 08:58:07 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:mail-followup-to:message-id:subject:cc:to
- :from:date:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=wMoQMQhB38nbcNla/KRz3O4QJ9q27t1i15WWEcz2Jmc=;
- b=1U+c87pi9ElmzrcR3NWPx6ykAhnw/ifWzGvrs3jmN1W/RzZvh/v1AkJU5TTD3NpMQQ
- kGD2zvY591eJJMErd6m+6zgpr3WE9ptp9ubvUPDOpYQXEchp3LYG8SizITaq4j4VqLpS
- LPMTzDcn9VcrLVSwIBsNvbX/1ncsyD8R2wgjG6Vfp0ogKoseyEGAHztR3NLLfrE41nyS
- XLxjyqrzqVKtuv81n7Q5EmsrU932htTEyZncqJFKgtkQ7CnKAUnIsR4h6sYH/EPvafl8
- 8gudibCBhBDrRU7/EtnvmQWwfwalW9i70AIOqHC4q8DG9uHtEInFF937R/2oMDGRHaNA
- kRVg==
-X-Gm-Message-State: AFqh2kqTI/tzNp5BlkK7Uzo72ABpaOcEmZwnbSE5+vCvh9aRWtxPw4jF
- vZ3Jh6ymilLAy8ZyRHFvn5fGnQ==
-X-Google-Smtp-Source: AMrXdXuH7F9Jvj2+GETMGkAU0b7SbfHCnmR86roP9bKzjfJPv40Q7aMZVHJzMhtfaFtf2sj6v3u0eA==
-X-Received: by 2002:a05:600c:4fcc:b0:3d9:f91c:4bfc with SMTP id
- o12-20020a05600c4fcc00b003d9f91c4bfcmr5276949wmq.31.1673456120900; 
- Wed, 11 Jan 2023 08:55:20 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id
- az28-20020a05600c601c00b003cf57329221sm23259500wmb.14.2023.01.11.08.55.19
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 11 Jan 2023 08:55:19 -0800 (PST)
-Date: Wed, 11 Jan 2023 17:55:18 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <Y77p9rTAX2IG6WaY@phenom.ffwll.local>
-Mail-Followup-To: Thomas Zimmermann <tzimmermann@suse.de>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- linux-fbdev@vger.kernel.org,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Javier Martinez Canillas <javierm@redhat.com>,
- LKML <linux-kernel@vger.kernel.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Helge Deller <deller@gmx.de>
-References: <20230111154112.90575-1-daniel.vetter@ffwll.ch>
- <20230111154112.90575-5-daniel.vetter@ffwll.ch>
- <87119376-2813-f155-a2e1-006ffa382f12@suse.de>
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=7etFesSwsvyBFG9PixPP0WNXA/+GdaIXm+B9o1JCqbU=;
+ b=pCmkok51a3RobhYwWRvHCjbnGp8/0mLkECUlG96vbL5CS9AuKXRehd288nxLjvuOzb
+ WxLL/c9fYW2caYLbcfkDK3NV4gXWFffp8e/BcLcLMrgsJQMTakMpdui7gSIT3vXgxK9J
+ MEx6gtjBryaCyYSAJ0ZNxEvGeJvekdryQp8Hp1X2PMfpQjJNm2mu89Aco2LbOa4hhNsN
+ wdkMOr1wtduV4pH8+9L8BdFHpzpMiWiosXX/sMkEl+tIJc238pPOuptePhnf5W4oHxv9
+ P1KVC+KqTPIeSw9gFZxSc5hD62W9+LalPotC3ev5bMZmBZV+lSnHy72nKz0P6oTovwHI
+ 7cCA==
+X-Gm-Message-State: AFqh2kpiUMDuI05SHQehnicQMJFHlkBazR+RALMYBQ50RRO44QDejd4/
+ 0eL4LO6KePSHn0XMIwYv2NOp5nTdl1TK8vjpS601OFZIp5qCHV4sUtxz3xcwJ3CSEW9u6a2kVJ5
+ B8Ll+3fCbI2o1Z4WEAoCdvBGYEWjY
+X-Received: by 2002:a05:600c:21d9:b0:3d1:d396:1adc with SMTP id
+ x25-20020a05600c21d900b003d1d3961adcmr63929867wmj.14.1673456286295; 
+ Wed, 11 Jan 2023 08:58:06 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXsxjRh5UhyjQkcfJm4bdKJ4BVXP/8uye1XsNO01BkxbdNj4oAF8iB8sLA2+2zHmR/3TIvJT0w==
+X-Received: by 2002:a05:600c:21d9:b0:3d1:d396:1adc with SMTP id
+ x25-20020a05600c21d900b003d1d3961adcmr63929856wmj.14.1673456286106; 
+ Wed, 11 Jan 2023 08:58:06 -0800 (PST)
+Received: from [192.168.1.130] (205.pool92-176-231.dynamic.orange.es.
+ [92.176.231.205]) by smtp.gmail.com with ESMTPSA id
+ t9-20020a05600c198900b003d9e74dd9b2sm16181863wmq.9.2023.01.11.08.58.05
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 11 Jan 2023 08:58:05 -0800 (PST)
+Message-ID: <fb72e067-3f5f-1bac-dc9b-3abd9d7739a2@redhat.com>
+Date: Wed, 11 Jan 2023 17:58:04 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87119376-2813-f155-a2e1-006ffa382f12@suse.de>
-X-Operating-System: Linux phenom 5.19.0-2-amd64 
-Subject: Re: [Intel-gfx] [PATCH 05/11] video/aperture: Only kick vgacon when
- the pdev is decoding vga
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+References: <20230111154112.90575-1-daniel.vetter@ffwll.ch>
+ <20230111154112.90575-11-daniel.vetter@ffwll.ch>
+From: Javier Martinez Canillas <javierm@redhat.com>
+In-Reply-To: <20230111154112.90575-11-daniel.vetter@ffwll.ch>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 11/11] video/aperture: Only remove sysfb on
+ the default vga pci device
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,86 +88,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
+Cc: Aaron Plattner <aplattner@nvidia.com>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Daniel Vetter <daniel.vetter@intel.com>, Helge Deller <deller@gmx.de>
+ LKML <linux-kernel@vger.kernel.org>, stable@vger.kernel.org,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Helge Deller <deller@gmx.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 11, 2023 at 05:03:02PM +0100, Thomas Zimmermann wrote:
-> Hi
-> 
-> Am 11.01.23 um 16:41 schrieb Daniel Vetter:
-> > Otherwise it's bit silly, and we might throw out the driver for the
-> > screen the user is actually looking at. I haven't found a bug report
-> > for this case yet, but we did get bug reports for the analog case
-> > where we're throwing out the efifb driver.
-> > 
-> > References: https://bugzilla.kernel.org/show_bug.cgi?id=216303
-> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> > Cc: Javier Martinez Canillas <javierm@redhat.com>
-> > Cc: Helge Deller <deller@gmx.de>
-> > Cc: linux-fbdev@vger.kernel.org
-> > ---
-> >   drivers/video/aperture.c | 3 +++
-> >   1 file changed, 3 insertions(+)
-> > 
-> > diff --git a/drivers/video/aperture.c b/drivers/video/aperture.c
-> > index 3d8c925c7365..6f351a58f6c6 100644
-> > --- a/drivers/video/aperture.c
-> > +++ b/drivers/video/aperture.c
-> > @@ -341,6 +341,9 @@ int aperture_remove_conflicting_pci_devices(struct pci_dev *pdev, const char *na
-> >   			return ret;
-> >   	}
-> > +	if (!primary)
-> > +		return 0;
-> > +
-> 
-> The original code from fbdev didn't do this, so this code didn't either.
-> 
-> It appears more to be a special case than an early-out branch. So can we
-> write it as
+Hello Daniel,
 
-Yeah I think this was a mistake going way back to when I added this to
-i915 originally. It is a real change, but also I guess the people who have
-machines without efifb or vesafb are ... really not many :-) Iirc you had
-some very funny kernels going way back when vgacon was considered the only
-safe choice to even hit this stuff.
+On 1/11/23 16:41, Daniel Vetter wrote:
+> This fixes a regression introduced by ee7a69aa38d8 ("fbdev: Disable
+> sysfb device registration when removing conflicting FBs"), where we
+> remove the sysfb when loading a driver for an unrelated pci device,
+> resulting in the user loosing their efifb console or similar.
+> 
+> Note that in practice this only is a problem with the nvidia blob,
+> because that's the only gpu driver people might install which does not
+> come with an fbdev driver of it's own. For everyone else the real gpu
+> driver will restor a working console.
 
-> if (primary) {
->   // kick_vgacon
-> }
-
-Yeah, but next patch adds the vga aperture, and then I think it makes a
-bit more sense.
--Daniel
+restore
 
 > 
-> ?
-> 
-> Best regards
-> Thomas
-> 
-> >   	/*
-> >   	 * WARNING: Apparently we must kick fbdev drivers before vgacon,
-> >   	 * otherwise the vga fbdev driver falls over.
-> 
-> -- 
-> Thomas Zimmermann
-> Graphics Driver Developer
-> SUSE Software Solutions Germany GmbH
-> Maxfeldstr. 5, 90409 Nürnberg, Germany
-> (HRB 36809, AG Nürnberg)
-> Geschäftsführer: Ivo Totev
+> Also note that in the referenced bug there's confusion that this same
+> bug also happens on amdgpu. But that was just another amdgpu specific
+> regression, which just happened to happen at roughly the same time and
+> with the same user-observable symptons. That bug is fixed now, see
 
+symptoms
 
+> https://bugzilla.kernel.org/show_bug.cgi?id=216331#c15
+> 
+> For the above reasons the cc: stable is just notionally, this patch
+> will need a backport and that's up to nvidia if they care enough.
+> 
 
+Maybe adding a Fixes: ee7a69aa38d8 tag here too ?
+
+> References: https://bugzilla.kernel.org/show_bug.cgi?id=216303#c28
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Aaron Plattner <aplattner@nvidia.com>
+> Cc: Javier Martinez Canillas <javierm@redhat.com>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Helge Deller <deller@gmx.de>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: <stable@vger.kernel.org> # v5.19+ (if someone else does the backport)
+> ---
+>  drivers/video/aperture.c | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/video/aperture.c b/drivers/video/aperture.c
+> index ba565515480d..a1821d369bb1 100644
+> --- a/drivers/video/aperture.c
+> +++ b/drivers/video/aperture.c
+> @@ -321,15 +321,16 @@ int aperture_remove_conflicting_pci_devices(struct pci_dev *pdev, const char *na
+>  
+>  	primary = pdev == vga_default_device();
+>  
+> +	if (primary)
+> +		sysfb_disable();
+> +
+>  	for (bar = 0; bar < PCI_STD_NUM_BARS; ++bar) {
+>  		if (!(pci_resource_flags(pdev, bar) & IORESOURCE_MEM))
+>  			continue;
+>  
+>  		base = pci_resource_start(pdev, bar);
+>  		size = pci_resource_len(pdev, bar);
+> -		ret = aperture_remove_conflicting_devices(base, size, name);
+> -		if (ret)
+> -			return ret;
+> +		aperture_detach_devices(base, size);
+
+Maybe mention in the commit message that you are doing this change, something like:
+
+"Instead of calling aperture_remove_conflicting_devices() to remove the conflicting
+devices, just call to aperture_detach_devices() to detach the device that matches
+the same PCI BAR / aperture range. Since the former is just a wrapper of the latter
+plus a sysfb_disable() call, and now that's done in this function but only for the
+primary devices"
+
+Patch looks good to me:
+
+Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
 
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Best regards,
+
+Javier Martinez Canillas
+Core Platforms
+Red Hat
+
