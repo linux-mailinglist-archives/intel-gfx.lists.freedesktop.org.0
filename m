@@ -1,65 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6B39666424
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jan 2023 20:55:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3E4E66645A
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jan 2023 21:05:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D90010E7FF;
-	Wed, 11 Jan 2023 19:54:58 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com
- [IPv6:2607:f8b0:4864:20::634])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA3C910E7FA
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Jan 2023 19:54:55 +0000 (UTC)
-Received: by mail-pl1-x634.google.com with SMTP id 17so17951769pll.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Jan 2023 11:54:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=Ee/v08QHfLLFjdeXhNUw+rKnRh9GF2x4adAxhgB0GYM=;
- b=mUty29aJZngvM3haGgNz0VtX+oT1nq5NwGEIr+ywfTh11/SN5fAx8wJb3/AxwaV1IB
- 4fOLCF8Gt45RMnvd0FJPDGVCRtB65sGAnTnl2gvNSr25eaYWay+OCHLe12RQxNxI+uJ7
- 5kYKYjDUcHYnrs6l3M6L1KbEQhYV5D62TF38qCYkTXwjaK+f5NtvUlZlCgscCq8J7O5a
- cFrNZdYpUthCuh4JWxIaHdv6KkGy7YvA0hNl80XsdOfzgo+Wyt1R1n7GaAcPdN90cK1L
- tDvuY4iQ5Oi8XKJAFnLQc0Wu9A0lE/lOWo/eVhjs/O0IKSk8JTk8UHczuiPeZ6NLNiPn
- S1Ug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=Ee/v08QHfLLFjdeXhNUw+rKnRh9GF2x4adAxhgB0GYM=;
- b=f9aVo9zjCPZlV221G0mN22Cq6wxHFpnYkKpDRHVhm4wk7QL0Ag2KKaAvsXVB6L+Sp0
- k/ZbGietfcWvac4AssmLGN+d5vAiYdKsIosWYeFNymYWHFMz7tip2ppLb0dMP8uDaAem
- mqYJJr2g26Z5Jo7soKDIEOZFxAmEMUTSCuXP6iS2hnslDfV5V0ihblsshw3Wco8/T//H
- ZE5IApd4WW29BDkcJxmo8MZv52yFUtgCnDxxULiNVDa7AvUwfLcIUkTzKTn7fgMziVgA
- WSybJkeo0Ake4wSgSvxAHuBdc9H1Hi5tXx0bY3q1HfIqsR1MbsBso0iVLQ5+ZCYBayJ7
- hmYQ==
-X-Gm-Message-State: AFqh2krCNXYnUTn0ieV4BEdIMWQ5kbjnzTG5KkoTOnz9puNEEqAoUhx/
- BzunZL5UsUO6YdNOuA/1yvLvUA==
-X-Google-Smtp-Source: AMrXdXsUGcan4Od1kkbsywDEb3Eqlo0h8a16FR71K8XMA8z2GmZHxW9H5FaMeLYfZPUCz0pASaTbQw==
-X-Received: by 2002:a05:6a20:c527:b0:9d:c38f:9bdd with SMTP id
- gm39-20020a056a20c52700b0009dc38f9bddmr557202pzb.2.1673466895257; 
- Wed, 11 Jan 2023 11:54:55 -0800 (PST)
-Received: from google.com (7.104.168.34.bc.googleusercontent.com.
- [34.168.104.7]) by smtp.gmail.com with ESMTPSA id
- t18-20020a62d152000000b00580f445d1easm10245195pfl.216.2023.01.11.11.54.54
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 11 Jan 2023 11:54:54 -0800 (PST)
-Date: Wed, 11 Jan 2023 19:54:51 +0000
-From: Sean Christopherson <seanjc@google.com>
-To: Matthew Rosato <mjrosato@linux.ibm.com>
-Message-ID: <Y78UCz5oeuntSQtK@google.com>
-References: <20230109201037.33051-1-mjrosato@linux.ibm.com>
- <20230109201037.33051-2-mjrosato@linux.ibm.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC4CB10E804;
+	Wed, 11 Jan 2023 20:05:02 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB04010E7FF;
+ Wed, 11 Jan 2023 20:05:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1673467501; x=1705003501;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ocfx/0JEeIPE+RuLixgmbBr3UJzKdp12keH9kfiTdg0=;
+ b=SbakiqNxYB0NkHExMCpMmgQaPdi0DgH3qVfFsZlmlCYH9jrxTVLdoRm0
+ JGQOS3SQ6xZiCFG+U9jzxaekw3mj1IxzSXqj6lLaVJveJoWiDFFIv6rpS
+ lFXOrYRE8TRGcZ8ePwX553wKgdH9FkfW5IxjZVzRyDrWezbgsiKoK6DX3
+ 2TlZmkj6gy1xpiHtHvoQRxsg15h9cUvc9BZeHrF3Y5uZ4CYrubXfxgSFC
+ 3wTAZ9x5c5OnHeUQ+HdgX8ioAPon1FqCjUT82Vg4SralOAGuVgGZBUfbC
+ AW1Qn6NkbOMzdBqaBM1Xn+oc4krtJV1JldIQ6lBBpHtbRTFFPvWjilnQB A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="307047470"
+X-IronPort-AV: E=Sophos;i="5.96,317,1665471600"; d="scan'208";a="307047470"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2023 12:05:00 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="689878681"
+X-IronPort-AV: E=Sophos;i="5.96,317,1665471600"; d="scan'208";a="689878681"
+Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
+ by orsmga001.jf.intel.com with ESMTP; 11 Jan 2023 12:05:00 -0800
+From: John.C.Harrison@Intel.com
+To: Intel-GFX@Lists.FreeDesktop.Org
+Date: Wed, 11 Jan 2023 12:04:28 -0800
+Message-Id: <20230111200429.2139084-1-John.C.Harrison@Intel.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230109201037.33051-2-mjrosato@linux.ibm.com>
-Subject: Re: [Intel-gfx] [PATCH 1/2] KVM: async kvm_destroy_vm for vfio
- devices
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v4 0/1] Add module oriented dmesg output
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,114 +56,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: akrowiak@linux.ibm.com, jjherne@linux.ibm.com, farman@linux.ibm.com,
- imbrenda@linux.ibm.com, frankja@linux.ibm.com, pmorel@linux.ibm.com,
- david@redhat.com, linux-s390@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- cohuck@redhat.com, linux-kernel@vger.kernel.org, pasic@linux.ibm.com,
- jgg@nvidia.com, kvm@vger.kernel.org, pbonzini@redhat.com,
- borntraeger@linux.ibm.com, intel-gvt-dev@lists.freedesktop.org
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 09, 2023, Matthew Rosato wrote:
-> Currently it is possible that the final put of a KVM reference comes from
-> vfio during its device close operation.  This occurs while the vfio group
-> lock is held; however, if the vfio device is still in the kvm device list,
-> then the following call chain could result in a deadlock:
-> 
-> kvm_put_kvm
->  -> kvm_destroy_vm
->   -> kvm_destroy_devices
->    -> kvm_vfio_destroy
->     -> kvm_vfio_file_set_kvm
->      -> vfio_file_set_kvm
->       -> group->group_lock/group_rwsem
-> 
-> Avoid this scenario by adding kvm_put_kvm_async which will perform the
-> kvm_destroy_vm asynchronously if the refcount reaches 0.
+From: John Harrison <John.C.Harrison@Intel.com>
 
-Something feels off.  If KVM's refcount is 0, then accessing device->group->kvm
-in vfio_device_open() can't happen unless there's a refcounting bug somewhere.
+When trying to analyse bug reports from CI, customers, etc. it can be
+difficult to work out exactly what is happening on which GT in a
+multi-GT system. So add GT oriented debug/error message wrappers. If
+used instead of the drm_ equivalents, you get the same output but with
+a GT# prefix on it.
 
-E.g. if this snippet holds group_lock
+This patch set updates the gt/intel_gt*.c files to use the new helpers
+as a first step. The intention would be to convert all output messages
+throughout the driver as long as they have access to a GT structure.
 
-		mutex_lock(&device->group->group_lock);
-		device->kvm = device->group->kvm;
+v2: Go back to using lower case names, add more wrapper sets (combined
+review feedback). Also, wrap up probe injection and WARN entries.
+v3: Split definitions out to separate header files. Tweak some
+messages. Wrap a couple more functions. (review feedback from Jani and
+Michal W).
+Convert all gt/intel_gt*.c but drop the GuC/HuC/CT files as too much
+bikeshedding about formatting.
+v4: Re-order some macro definitions (Andi S), update (c) date (Tvrtko)
 
-		if (device->ops->open_device) {
-			ret = device->ops->open_device(device);
-			if (ret)
-				goto err_undo_count;
-		}
-		vfio_device_container_register(device);
-		mutex_unlock(&device->group->group_lock);
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-and kvm_vfio_destroy() has already been invoked and is waiting on group_lock in
-vfio_file_set_kvm(), then device->ops->open_device() is being called with a
-non-NULL device->kvm that has kvm->users_count==0.  And intel_vgpu_open_device()
-at least uses kvm_get_kvm(), i.e. assumes kvm->users_count > 0.
 
-If there's no refcounting bug then kvm_vfio_destroy() doesn't need to call
-kvm_vfio_file_set_kvm() since the only way there isn't a refcounting bug is if
-group->kvm is unreachable.  This seems unlikely.
+John Harrison (1):
+  drm/i915/gt: Start adding module oriented dmesg output
 
-Assuming there is indeed a refcounting issue, one solution would be to harden all
-->open_device() implementations to use kvm_get_kvm_safe().  I'd prefer not to have
-to do that since it will complicate those implementations and also requires KVM
-to support an async put.
+ drivers/gpu/drm/i915/gt/intel_gt.c            | 96 +++++++++----------
+ .../gpu/drm/i915/gt/intel_gt_clock_utils.c    |  8 +-
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c        |  9 +-
+ drivers/gpu/drm/i915/gt/intel_gt_mcr.c        |  9 +-
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c         |  9 +-
+ drivers/gpu/drm/i915/gt/intel_gt_print.h      | 51 ++++++++++
+ drivers/gpu/drm/i915/gt/intel_gt_sysfs.c      |  4 +-
+ drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c   | 34 ++-----
+ drivers/gpu/drm/i915/gt/intel_gtt.c           |  7 +-
+ 9 files changed, 129 insertions(+), 98 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/intel_gt_print.h
 
-Rather than force devices to get KVM references, why not handle that in common
-VFIO code and drop KVM refcountin from devices?  Worst case scenario KVM is pinned
-by a device that doesn't need KVM but is in a group associated with KVM.  If that's
-a concern, it seems easy enough to add a flag to vfio_device_ops to enumerate
-whether or not the device depends on KVM.
-
----
- drivers/vfio/vfio_main.c | 15 +++++++++++++--
- 1 file changed, 13 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
-index 6e8804fe0095..fb43212d77a0 100644
---- a/drivers/vfio/vfio_main.c
-+++ b/drivers/vfio/vfio_main.c
-@@ -772,6 +772,13 @@ static struct file *vfio_device_open(struct vfio_device *device)
- 		 * reference and release it during close_device.
- 		 */
- 		mutex_lock(&device->group->group_lock);
-+
-+		if (device->group->kvm &&
-+		    !kvm_get_kvm_safe(device->group->kvm->kvm)) {
-+			ret = -ENODEV;
-+			goto err_undo_count;
-+		}
-+
- 		device->kvm = device->group->kvm;
- 
- 		if (device->ops->open_device) {
-@@ -823,8 +830,10 @@ static struct file *vfio_device_open(struct vfio_device *device)
- err_undo_count:
- 	mutex_unlock(&device->group->group_lock);
- 	device->open_count--;
--	if (device->open_count == 0 && device->kvm)
-+	if (device->open_count == 0 && device->kvm) {
-+		kvm_put_kvm(device->kvm);
- 		device->kvm = NULL;
-+	}
- 	mutex_unlock(&device->dev_set->lock);
- 	module_put(device->dev->driver->owner);
- err_unassign_container:
-@@ -1039,8 +1048,10 @@ static int vfio_device_fops_release(struct inode *inode, struct file *filep)
- 	}
- 	mutex_unlock(&device->group->group_lock);
- 	device->open_count--;
--	if (device->open_count == 0)
-+	if (device->open_count == 0 && device->kvm) {
-+		kvm_put_kvm(device->kvm);
- 		device->kvm = NULL;
-+	}
- 	mutex_unlock(&device->dev_set->lock);
- 
- 	module_put(device->dev->driver->owner);
-
-base-commit: d52444c7a90fc551b4c3b0bda7d3f0b2ca9fc84d
 -- 
+2.39.0
+
