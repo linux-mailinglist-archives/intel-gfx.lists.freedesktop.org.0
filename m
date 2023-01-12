@@ -2,84 +2,150 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DFF8668418
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jan 2023 21:39:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16F4C66841C
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jan 2023 21:40:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B2CC10E919;
-	Thu, 12 Jan 2023 20:38:56 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
- [148.163.156.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3306210E91E;
- Thu, 12 Jan 2023 20:38:53 +0000 (UTC)
-Received: from pps.filterd (m0098404.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
- 30CKZvhP008303; Thu, 12 Jan 2023 20:38:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
- h=from : to : cc : subject
- : date : message-id : mime-version : content-transfer-encoding; s=pp1;
- bh=UdCiGlNJ+LRFp1gVmwoz1AZyKt4og7nqktaY/n5eyh0=;
- b=lWRgnNjeOb0eqTrC14hJSYxXFqOazAscHlr4/PR4MWUZyV9EgUNGVqIsQnN+6JptXb7s
- pRbouktUFoj2WKqa7UNqM1qZVnjbXMLmu3EYGaDrZeqD1ACNA9uxFAQtIP9pFX+zjELx
- sYWm1vVD616dkj9LFkLxptU7DEn8+tHSJcUHdBF+xGEA1oC7b22Y54uu5M8w2TP8CXeZ
- 1yaxIxX3qXurYulKUiIYRea0/9pDjdEukT/woDkqvUALXOwF1WTTKHTxei7GTZUbUqaz
- 2W8QIDyQQrnYlwwVv78NuktjV1WK/Ew+tSomMMpVUuSp+4o8NR6ogPYzx5gqhGG60rfG CA== 
-Received: from pps.reinject (localhost [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3n2s8sr69m-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Thu, 12 Jan 2023 20:38:50 +0000
-Received: from m0098404.ppops.net (m0098404.ppops.net [127.0.0.1])
- by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 30CKZvKe008228;
- Thu, 12 Jan 2023 20:38:49 GMT
-Received: from ppma05wdc.us.ibm.com (1b.90.2fa9.ip4.static.sl-reverse.com
- [169.47.144.27])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3n2s8sr696-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Thu, 12 Jan 2023 20:38:49 +0000
-Received: from pps.filterd (ppma05wdc.us.ibm.com [127.0.0.1])
- by ppma05wdc.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 30CHp5QC004524;
- Thu, 12 Jan 2023 20:38:48 GMT
-Received: from smtprelay06.dal12v.mail.ibm.com ([9.208.130.100])
- by ppma05wdc.us.ibm.com (PPS) with ESMTPS id 3n1kk7kcmm-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Thu, 12 Jan 2023 20:38:48 +0000
-Received: from smtpav04.dal12v.mail.ibm.com (smtpav04.dal12v.mail.ibm.com
- [10.241.53.103])
- by smtprelay06.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 30CKcleT524908
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Thu, 12 Jan 2023 20:38:47 GMT
-Received: from smtpav04.dal12v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 3CACD58056;
- Thu, 12 Jan 2023 20:38:47 +0000 (GMT)
-Received: from smtpav04.dal12v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 755E35804E;
- Thu, 12 Jan 2023 20:38:45 +0000 (GMT)
-Received: from li-2311da4c-2e09-11b2-a85c-c003041e9174.ibm.com.com (unknown
- [9.160.94.233]) by smtpav04.dal12v.mail.ibm.com (Postfix) with ESMTP;
- Thu, 12 Jan 2023 20:38:45 +0000 (GMT)
-From: Matthew Rosato <mjrosato@linux.ibm.com>
-To: alex.williamson@redhat.com, pbonzini@redhat.com
-Date: Thu, 12 Jan 2023 15:38:44 -0500
-Message-Id: <20230112203844.41179-1-mjrosato@linux.ibm.com>
-X-Mailer: git-send-email 2.39.0
-MIME-Version: 1.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4226F10E917;
+	Thu, 12 Jan 2023 20:40:29 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CB8A10E917;
+ Thu, 12 Jan 2023 20:40:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1673556027; x=1705092027;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=yq1LWbdeq4ipzhdxDAN/uyzEl17cl/Rry+yfFFOVHpY=;
+ b=kHadQs+SX2SQGdLkMoJfCTj1ZFItkns+1MVz2g5aSc8Wa8vnuMlbK9Wy
+ mShRTp+xMM+Hy3TBUUlE8ffNO2iO34jVIIm5YKqvnurTwKrE12E4Q8R6h
+ alN9V3XX6jbVIiMub7829lEfFXpRBQt+oNhIqWzdJ/h+PRflICmhBqMxg
+ 72jUUuMA+yfV70k1gMPT1Z14WqxQjhlbCeqz8A1wVfeeEOcxpcV3NnNXb
+ /GpXrsqw3iVyJk0sxGos0bbyjLEy5zSmk654yMnBpTbWUO9qEBpdNkI7o
+ 3/G4Ql0ripctiMGYZKPg3gWb1rpBqmuMgP/m21SH+65G3SXCBEe4v7Gy7 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="386165409"
+X-IronPort-AV: E=Sophos;i="5.97,211,1669104000"; d="scan'208";a="386165409"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2023 12:40:25 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="721240737"
+X-IronPort-AV: E=Sophos;i="5.97,211,1669104000"; d="scan'208";a="721240737"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmsmga008.fm.intel.com with ESMTP; 12 Jan 2023 12:40:25 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Thu, 12 Jan 2023 12:40:25 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Thu, 12 Jan 2023 12:40:25 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.48) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Thu, 12 Jan 2023 12:40:24 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bX8g7XwxjqdlnGOHkLn3gP7bjPJrk5xZ4+Gb1BjuYIymk3QCWdL7sBvuPmj+6yZH5SEtIIuKXLjZfcXap0YDnuPsF8et39abChvsLhXi1Ks2wuFqyuIyHLI0X1QmFQ9awMbuF4fHcMKUdyelK9EhNtliVQaehMTjwo/166k4m2pvFRNZw115pQL3RB7gz17hyIxa44OIm9GTIKNkPVzrGYnOIckvWecHMdGFjLk/Eif3YG56XQhCM9BbUaIDLEXz8yy7XocdAhroTq84NSTZCP4gctE6r/Ap6lBFCJz/NkB3nATtR3tcCwZLy/wqRRjLNZTxQe4FEJNSu92agI/Dvg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=H9TvxMeyo+dlWLoNNUuLWm+vR0nNFNGBN1poDYjSebo=;
+ b=PVmMHGCfGuCvbbG7tDw5kNTV2Q4u0gO2BoPj4eN1WHKHs+tzNwpL+yJBtsAMUHpc5pldabhLLu7u1oRZWpcmsS84Az8JENt64JCcDsln6hAF9FpAoGX8zAO8QbcjWLahc0HMMrPSDPdMhnkrM723iOFpd+dKKVgyW7ddy0bbMrijjOA9hc1HZ4tIZVaPZ1oWX6nXYTP28AAKzWpx7LSBrlmrP2UIecFY/wMnsH9nD8Gqs5dD4DpBUEWID4nGQXbFiImR6cG1KjIVFdOBKgXt+tnV8+HKwIgn5ZLSbrMBdfvmrvKPjFqIaCEhEhomag0OU9HU/QxJptdMyllXBouw8w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BY5PR11MB3911.namprd11.prod.outlook.com (2603:10b6:a03:18d::29)
+ by DM4PR11MB6215.namprd11.prod.outlook.com (2603:10b6:8:a9::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.18; Thu, 12 Jan
+ 2023 20:40:23 +0000
+Received: from BY5PR11MB3911.namprd11.prod.outlook.com
+ ([fe80::ec2f:4a87:326b:2610]) by BY5PR11MB3911.namprd11.prod.outlook.com
+ ([fe80::ec2f:4a87:326b:2610%7]) with mapi id 15.20.5986.018; Thu, 12 Jan 2023
+ 20:40:23 +0000
+Message-ID: <79cd935a-5a7f-b709-ec05-c9cf5801f2dc@intel.com>
+Date: Thu, 12 Jan 2023 12:40:20 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.6.1
+Content-Language: en-GB
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ <Intel-GFX@Lists.FreeDesktop.Org>
+References: <20230112025311.2577084-1-John.C.Harrison@Intel.com>
+ <20230112025311.2577084-2-John.C.Harrison@Intel.com>
+ <f5edb1fa-6aba-1e02-f238-518518337f11@linux.intel.com>
+From: John Harrison <john.c.harrison@intel.com>
+In-Reply-To: <f5edb1fa-6aba-1e02-f238-518518337f11@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: U7gFq-EUrjV2Z9EY4ZwhqzpKbM3o8jrR
-X-Proofpoint-ORIG-GUID: R9uTHkQKN3zdwXH1Q6C-sB7bVKb_RBTZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2023-01-12_12,2023-01-12_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 bulkscore=0
- phishscore=0 adultscore=0 impostorscore=0 malwarescore=0
- lowpriorityscore=0 spamscore=0 suspectscore=0 clxscore=1015
- priorityscore=1501 mlxlogscore=999 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2212070000 definitions=main-2301120146
-Subject: [Intel-gfx] [PATCH v2] vfio: fix potential deadlock on vfio group
- lock
+X-ClientProxiedBy: BYAPR07CA0092.namprd07.prod.outlook.com
+ (2603:10b6:a03:12b::33) To BY5PR11MB3911.namprd11.prod.outlook.com
+ (2603:10b6:a03:18d::29)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BY5PR11MB3911:EE_|DM4PR11MB6215:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7afc89cc-9e49-4327-0b1f-08daf4dd3a38
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: XjcjViucNfF7Qxi98Ki8u0XG1hVoMjYp5mjshp5jbAZFhsujd8DWPoVqoNxWh4mQlQhpR4ebN1gxQHdrzwAqiOPSacY+ockNaT2Kxy5oS0CdGq5mtskYevLPE36vcJN5cw5qa/fZsNIoZtb/UWaRKAPSeuA5a6+llFDu/ccan9E0tZvmsYvJA1cxEKbLLHNrVtrtPXkEWyeAq1/loxBIaZ96XUFIhvhjDky38/UjAbCYFyClqXP7yjahzq9Ap61WBSKVL50Kl7DEfL8bUaHx0/JXKPstfj38GChrcsSkOvfQXthzfi90fF7eE++v+PYXo6rdM+QnvRmwYB9RvQic39Y7Kc2njL5kA7vB4aqgqQBV6YGpb0YM7w4DIxRBcCj8ydG5X8PkLCzcpZ2YyUmbyhB+nxHdfuGD6kODLs4kfdk20LPsfszedrO1yHbD3G2heQsPOK+vaNpYvs7Vx4erig2KDYLM1K8rUbkpxLIBnCog42POMRl9TG3Xe4JVaAnkdlvT27seidK0veWpgZt3t4IOIbA3k4BAXIKoIfQobzFXjXRM2sAyysGCGYxyOZUwj5VFkSVgcsTho2zDtG0zxULoJdtfefaMA9SM6DhSRH3SR7DdJcyfcXcSaJSsIIk8fkrm9SP/y6IIFy1uPoOja6+xSD85WOp/9UFKIAdjawlmopTT39L+78frhMM6KoMSr4i7Jb5zkJGB0VXmWaCP63xMzS/xVej2r+Ek4TbTY8E=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BY5PR11MB3911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(396003)(346002)(39860400002)(136003)(366004)(376002)(451199015)(6506007)(38100700002)(82960400001)(31686004)(53546011)(2906002)(478600001)(6486002)(2616005)(86362001)(26005)(6512007)(186003)(5660300002)(316002)(83380400001)(8936002)(36756003)(8676002)(41300700001)(31696002)(66946007)(66556008)(66476007)(4326008)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VWErRXZENWdWKzRUZ1Y1VkdRNmRhUmZab1Z0c2UySXRkdU85dFVvU3hpNEFn?=
+ =?utf-8?B?dXRUY0t2Wk5ubXBycVBRZ296TVA0YWNEeW0ySFhBbFFlejNOWi9aQ3lLZ29R?=
+ =?utf-8?B?Y0lMbjIwT2UxVFZuV1ZtczZJQWtubmoyd1VPeDBYOS9TbnRQcEI0aXpnVW56?=
+ =?utf-8?B?bEF1MnZkbGpOMldUcDQzZEhkRmpxcHdtTzgvaUJNT0hpR0NIYUpUYzhtTWlL?=
+ =?utf-8?B?SE1DZlk2WXhTS3pVeVFQUTAwOVFBMCtLMkxkL0NBbnZQZWxZZDZhMVY4YXJs?=
+ =?utf-8?B?MStOckN1RWlrOUE3WlhwcWlQT3gxalYyU1JGK2k5cU5RMnJYVEJBTFJkVURO?=
+ =?utf-8?B?NXlRRktML01lZjFjNW9JRlVnbG4ranlZTWkrWGZJRW9kaTQ1NGlPa3BaNTY0?=
+ =?utf-8?B?QkNxR3FpQXp6UHB5QWVKOVJtQm5uYm1pcDVidlJ5WmJsUmUrSS9uLzEwOElo?=
+ =?utf-8?B?OFBxT2hudTBkQjBEZS90bW1rMzJxbHBxTEdXWlVtUEdua0QwQ2MwS09kMFJn?=
+ =?utf-8?B?SjVHNVU4SDM3ZGVwRjR6c2FKZm1hM1o0eXdnTEZlTXNhUm9CbE04QXVHd0x1?=
+ =?utf-8?B?Z01VWklPbzcyaVViUEwwTjBycG5qY3d5NmkzWThsbVNhSEFVYWtUNnhMY3M0?=
+ =?utf-8?B?SUtYZ3dXaG9ZK2Z6b21TTEdReU5NNnNFcHNxVUNOd2d4S0ttQ3JVLzFOVi94?=
+ =?utf-8?B?clVTWXIrd0pESkRkTFphSlNJdzduczk0SXFkQk41R2o1ZjkrbFFZMW1HQkRH?=
+ =?utf-8?B?L0pjSk03TVAybWM5MXpMOUpMZEZWRkdrbzVlRDdjNzRYSm1zS3MwVWw2RXZ0?=
+ =?utf-8?B?ellRTGV3cmpJbUhadU9ZWjJ5dUFKTWdJQmRGSDl2eU5hcEZ6TWVacmo0MXg4?=
+ =?utf-8?B?OU9tOWpQRlFXLzlZbVpJRE9Dby9jWFJ4UEpSQjNNbkQwZFI2YUhBeFZ0UHh6?=
+ =?utf-8?B?K0RtZitpWmlKVzVwMHRDeFZGN1ZBWnB4V0o0U0RtSWF0UmtaY3FQUE51S0lL?=
+ =?utf-8?B?bjN5YnhMSFF5NzN6VitzS1lZRXN3SVoyTkVCMmZPZGNuUmhwanFsaU4wd0FN?=
+ =?utf-8?B?NUoyMWw5MFMranpVT2VLZ1Z5ZVJYMmZ4TjVXR0VzRXhXNkI0NE82am41LzJz?=
+ =?utf-8?B?SU5XY3F5S0szR2RFQUhHYmpiZmhkb0kyRWNqWHBkY29ibmE3c0hsN0RHblEv?=
+ =?utf-8?B?aTJENXJ6SHNWbWF2ZmFKdzN4N09MSjdQRWFRK05UalRMbmhvZHM5d1dOSVVO?=
+ =?utf-8?B?RHNabm4vYVZSRmNSRlpScVI0a3ZEWm0wa0QwZmFaV00rTWNkLzY5ZG1heXE5?=
+ =?utf-8?B?TVhGaVorM0tDRmpNeDBBRVVQQ2RZanF5bklmbm0zTE1OVlBjTndGbmFUMDBZ?=
+ =?utf-8?B?YkVmaHZzV2l2Z3kwSjdjY2p3YWNJMXhQZXhiUW1oOWhPYnUzMXZRV0xhS1Ru?=
+ =?utf-8?B?OXZqZVQzZE95YlhRMksrWHlSNGJOOUNVNUpaM0FBQ1BmYmI0d0FpcmJwTzdJ?=
+ =?utf-8?B?NGN2a1NIa1pwV2FIY0xWMUNwWEdjbmM3M3JjMDB1VUZka2lya3RwY1NBUE90?=
+ =?utf-8?B?ZE9QcFJ2SFplQmxGdzZZK21rYUoxaXRISnRmWXlGTzNPQXI1ODh2MFpHME9y?=
+ =?utf-8?B?WHI3NjBmLzNJSDFrR1R0RXhFV0lFRVBVRlpkZWkwbFJWU2tCS3hUMkN4S3pl?=
+ =?utf-8?B?RmtSOWtqL2JRQ3M0Nk9UWTRLMCs2ZDhqWDY5TGdZTityWEVhWjFsOG42N2pn?=
+ =?utf-8?B?WkJQWFhmVTh5VFVIaGpydDVDbTlzTXR2V1FBK0IxNVlqbng5dzNsT2o4eUo3?=
+ =?utf-8?B?eU02ZEZlblphSEkwVlZVeE9yQjQxTUl2VGovd1pxYzQ2Rnd0cVZIVVpEbkIr?=
+ =?utf-8?B?L3p1VFZkdGpYKzRpcXRWd1gyYXBBZnZ1V2FqdGVmeEtlVThMRDBnMHZyMEpy?=
+ =?utf-8?B?dzB2KzdOc09CbSt5RjdhUWxyTUlNcUR4bm9kSThNT3AwcndnR1ZWNDF5Ny8y?=
+ =?utf-8?B?OG85UGZrQ0xTNCt1V3dNQTdIdTZibXN1citwWnp6RkZMWEJyNS8vRU9YNHVH?=
+ =?utf-8?B?alIwMkNiWUJpeVhTd2llSGh4QzcvaEczRVBjczlXYVp0bGFOVHdSRWZCR0Nu?=
+ =?utf-8?B?dXd4Vng1MFVRTng1eTd4UUlrV2Jud0NkRXdSYkVTQWxqbmtSSk0yaC96VGlx?=
+ =?utf-8?B?Y3c9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7afc89cc-9e49-4327-0b1f-08daf4dd3a38
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3911.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2023 20:40:23.2422 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Q1/zDam8At2vY/hv/cJIbCr+ToFlRY/vyanmORFqrf2F3yjck7Y2u2BMV+8lXOGPx9YrYJqqeZMpJ1EyUjrEyfeUFljU0+XxtxwJQu2Zz7M=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6215
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915: Allow error capture without a
+ request
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,173 +158,217 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: akrowiak@linux.ibm.com, jjherne@linux.ibm.com, farman@linux.ibm.com,
- imbrenda@linux.ibm.com, frankja@linux.ibm.com, pmorel@linux.ibm.com,
- david@redhat.com, seanjc@google.com, intel-gfx@lists.freedesktop.org,
- cohuck@redhat.com, linux-kernel@vger.kernel.org, pasic@linux.ibm.com,
- jgg@nvidia.com, kvm@vger.kernel.org, linux-s390@vger.kernel.org,
- borntraeger@linux.ibm.com, intel-gvt-dev@lists.freedesktop.org
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently it is possible that the final put of a KVM reference comes from
-vfio during its device close operation.  This occurs while the vfio group
-lock is held; however, if the vfio device is still in the kvm device list,
-then the following call chain could result in a deadlock:
+On 1/12/2023 02:01, Tvrtko Ursulin wrote:
+> On 12/01/2023 02:53, John.C.Harrison@Intel.com wrote:
+>> From: John Harrison <John.C.Harrison@Intel.com>
+>>
+>> There was a report of error captures occurring without any hung
+>> context being indicated despite the capture being initiated by a 'hung
+>> context notification' from GuC. The problem was not reproducible.
+>> However, it is possible to happen if the context in question has no
+>> active requests. For example, if the hang was in the context switch
+>> itself then the breadcrumb write would have occurred and the KMD would
+>> see an idle context.
+>>
+>> In the interests of attempting to provide as much information as
+>> possible about a hang, it seems wise to include the engine info
+>> regardless of whether a request was found or not. As opposed to just
+>> prentending there was no hang at all.
+>>
+>> So update the error capture code to always record engine information
+>> if an engine is given. Which means updating record_context() to take a
+>> context instead of a request (which it only ever used to find the
+>> context anyway). And split the request agnostic parts of
+>> intel_engine_coredump_add_request() out into a seaprate function.
+>>
+>> v2: Remove a duplicate 'if' statement (Umesh) and fix a put of a null
+>> pointer.
+>>
+>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+>> Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/i915_gpu_error.c | 61 +++++++++++++++++++--------
+>>   1 file changed, 43 insertions(+), 18 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c 
+>> b/drivers/gpu/drm/i915/i915_gpu_error.c
+>> index 9d5d5a397b64e..bd2cf7d235df0 100644
+>> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+>> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+>> @@ -1370,14 +1370,14 @@ static void engine_record_execlists(struct 
+>> intel_engine_coredump *ee)
+>>   }
+>>     static bool record_context(struct i915_gem_context_coredump *e,
+>> -               const struct i915_request *rq)
+>> +               struct intel_context *ce)
+>>   {
+>>       struct i915_gem_context *ctx;
+>>       struct task_struct *task;
+>>       bool simulated;
+>>         rcu_read_lock();
+>> -    ctx = rcu_dereference(rq->context->gem_context);
+>> +    ctx = rcu_dereference(ce->gem_context);
+>>       if (ctx && !kref_get_unless_zero(&ctx->ref))
+>>           ctx = NULL;
+>>       rcu_read_unlock();
+>> @@ -1396,8 +1396,8 @@ static bool record_context(struct 
+>> i915_gem_context_coredump *e,
+>>       e->guilty = atomic_read(&ctx->guilty_count);
+>>       e->active = atomic_read(&ctx->active_count);
+>>   -    e->total_runtime = 
+>> intel_context_get_total_runtime_ns(rq->context);
+>> -    e->avg_runtime = intel_context_get_avg_runtime_ns(rq->context);
+>> +    e->total_runtime = intel_context_get_total_runtime_ns(ce);
+>> +    e->avg_runtime = intel_context_get_avg_runtime_ns(ce);
+>>         simulated = i915_gem_context_no_error_capture(ctx);
+>>   @@ -1532,15 +1532,37 @@ intel_engine_coredump_alloc(struct 
+>> intel_engine_cs *engine, gfp_t gfp, u32 dump_
+>>       return ee;
+>>   }
+>>   +static struct intel_engine_capture_vma *
+>> +engine_coredump_add_context(struct intel_engine_coredump *ee,
+>> +                struct intel_context *ce,
+>> +                gfp_t gfp)
+>> +{
+>> +    struct intel_engine_capture_vma *vma = NULL;
+>> +
+>> +    ee->simulated |= record_context(&ee->context, ce);
+>> +    if (ee->simulated)
+>> +        return NULL;
+>> +
+>> +    /*
+>> +     * We need to copy these to an anonymous buffer
+>> +     * as the simplest method to avoid being overwritten
+>> +     * by userspace.
+>> +     */
+>> +    vma = capture_vma(vma, ce->ring->vma, "ring", gfp);
+>> +    vma = capture_vma(vma, ce->state, "HW context", gfp);
+>> +
+>> +    return vma;
+>> +}
+>> +
+>>   struct intel_engine_capture_vma *
+>>   intel_engine_coredump_add_request(struct intel_engine_coredump *ee,
+>>                     struct i915_request *rq,
+>>                     gfp_t gfp)
+>>   {
+>> -    struct intel_engine_capture_vma *vma = NULL;
+>> +    struct intel_engine_capture_vma *vma;
+>>   -    ee->simulated |= record_context(&ee->context, rq);
+>> -    if (ee->simulated)
+>> +    vma = engine_coredump_add_context(ee, rq->context, gfp);
+>> +    if (!vma)
+>>           return NULL;
+>>         /*
+>> @@ -1550,8 +1572,6 @@ intel_engine_coredump_add_request(struct 
+>> intel_engine_coredump *ee,
+>>        */
+>>       vma = capture_vma_snapshot(vma, rq->batch_res, gfp, "batch");
+>>       vma = capture_user(vma, rq, gfp);
+>> -    vma = capture_vma(vma, rq->ring->vma, "ring", gfp);
+>> -    vma = capture_vma(vma, rq->context->state, "HW context", gfp);
+>>         ee->rq_head = rq->head;
+>>       ee->rq_post = rq->postfix;
+>> @@ -1608,8 +1628,11 @@ capture_engine(struct intel_engine_cs *engine,
+>>       if (ce) {
+>>           intel_engine_clear_hung_context(engine);
+>>           rq = intel_context_find_active_request(ce);
+>> -        if (!rq || !i915_request_started(rq))
+>> -            goto no_request_capture;
+>> +        if (rq && !i915_request_started(rq)) {
+>> +            drm_info(&engine->gt->i915->drm, "Got hung context on %s 
+>> with no active request!\n",
+>
+> Suggest s/active/started/ since we have both i915_request_active and 
+> i915_request_started, so to align the terminology.
+The message text was based on the intent of the activity not the naming 
+of some internal helper function. Can change it if you really want but 
+"with no started request" just reads like bad English to me. Plus it 
+gets removed in the next patch anyway...
 
-kvm_put_kvm
- -> kvm_destroy_vm
-  -> kvm_destroy_devices
-   -> kvm_vfio_destroy
-    -> kvm_vfio_file_set_kvm
-     -> vfio_file_set_kvm
-      -> group->group_lock/group_rwsem
 
-Avoid this scenario by having vfio core code acquire a KVM reference
-the first time a device is opened and hold that reference until the
-device fd is closed, at a point after the group lock has been released.
+>
+>> +                 engine->name);
+>> +            rq = NULL;
+>> +        }
+>>       } else {
+>>           /*
+>>            * Getting here with GuC enabled means it is a forced error 
+>> capture
+>> @@ -1622,22 +1645,24 @@ capture_engine(struct intel_engine_cs *engine,
+>>                              flags);
+>>           }
+>>       }
+>> -    if (rq)
+>> +    if (rq) {
+>>           rq = i915_request_get_rcu(rq);
+>> +        capture = intel_engine_coredump_add_request(ee, rq, 
+>> ATOMIC_MAYFAIL);
+>> +    } else if (ce) {
+>> +        capture = engine_coredump_add_context(ee, ce, ATOMIC_MAYFAIL);
+>> +    }
+>>   -    if (!rq)
+>> -        goto no_request_capture;
+>> -
+>> -    capture = intel_engine_coredump_add_request(ee, rq, 
+>> ATOMIC_MAYFAIL);
+>>       if (!capture) {
+>> -        i915_request_put(rq);
+>> +        if (rq)
+>> +            i915_request_put(rq);
+>>           goto no_request_capture;
+>>       }
+>>       if (dump_flags & CORE_DUMP_FLAG_IS_GUC_CAPTURE)
+>>           intel_guc_capture_get_matching_node(engine->gt, ee, ce);
+>
+> This step requires non-NULL ce, so if you move it under the "else if 
+> (ce)" above then I *think* exit from the function can be consolidated 
+> to just:
+>
+> if (capture) {
+>     intel_engine_coredump_add_vma(ee, capture, compress);
+>     if (rq)
+>         i915_request_put(rq);
+Is there any reason the rq ref needs to be held during the add_vma call? 
+Can it now just be moved earlier to be:
+     if (rq) {
+         rq = i915_request_get_rcu(rq);
+         capture = intel_engine_coredump_add_request(ee, rq, 
+ATOMIC_MAYFAIL);
+         i915_request_put(rq);
+     }
 
-Fixes: 421cfe6596f6 ("vfio: remove VFIO_GROUP_NOTIFY_SET_KVM")
-Reported-by: Alex Williamson <alex.williamson@redhat.com>
-Signed-off-by: Matthew Rosato <mjrosato@linux.ibm.com>
----
-Changes from v1:
-* Re-write using symbol get logic to get kvm ref during first device
-  open, release the ref during device fd close after group lock is
-  released
-* Drop kvm get/put changes to drivers; now that vfio core holds a
-  kvm ref until sometime after the device_close op is called, it
-  should be fine for drivers to get and put their own references to it.
----
- drivers/vfio/group.c     |  6 ++---
- drivers/vfio/vfio_main.c | 48 +++++++++++++++++++++++++++++++++++++---
- include/linux/vfio.h     |  1 -
- 3 files changed, 48 insertions(+), 7 deletions(-)
+The internals of the request object are only touched in the above 
+_add_request() code. The later _add_vma() call fiddles around with vmas 
+that pulled from the request but the capture_vma code inside 
+_add_request() has already copied everything, hasn't it? Or rather, it 
+has grabbed its own private vma resource locks. So there is no 
+requirement to keep the request itself around still?
 
-diff --git a/drivers/vfio/group.c b/drivers/vfio/group.c
-index bb24b2f0271e..2b0da82f82f4 100644
---- a/drivers/vfio/group.c
-+++ b/drivers/vfio/group.c
-@@ -165,9 +165,9 @@ static int vfio_device_group_open(struct vfio_device *device)
- 	}
- 
- 	/*
--	 * Here we pass the KVM pointer with the group under the lock.  If the
--	 * device driver will use it, it must obtain a reference and release it
--	 * during close_device.
-+	 * Here we pass the KVM pointer with the group under the lock.  A
-+	 * reference will be obtained the first time the device is opened and
-+	 * will be held until the device fd is closed.
- 	 */
- 	ret = vfio_device_open(device, device->group->iommufd,
- 			       device->group->kvm);
-diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
-index 5177bb061b17..c969e2a0ecd3 100644
---- a/drivers/vfio/vfio_main.c
-+++ b/drivers/vfio/vfio_main.c
-@@ -16,6 +16,7 @@
- #include <linux/fs.h>
- #include <linux/idr.h>
- #include <linux/iommu.h>
-+#include <linux/kvm_host.h>
- #include <linux/list.h>
- #include <linux/miscdevice.h>
- #include <linux/module.h>
-@@ -344,6 +345,35 @@ static bool vfio_assert_device_open(struct vfio_device *device)
- 	return !WARN_ON_ONCE(!READ_ONCE(device->open_count));
- }
- 
-+static bool vfio_kvm_get_kvm_safe(struct kvm *kvm)
-+{
-+	bool (*fn)(struct kvm *kvm);
-+	bool ret;
-+
-+	fn = symbol_get(kvm_get_kvm_safe);
-+	if (WARN_ON(!fn))
-+		return false;
-+
-+	ret = fn(kvm);
-+
-+	symbol_put(kvm_get_kvm_safe);
-+
-+	return ret;
-+}
-+
-+static void vfio_kvm_put_kvm(struct kvm *kvm)
-+{
-+	void (*fn)(struct kvm *kvm);
-+
-+	fn = symbol_get(kvm_put_kvm);
-+	if (WARN_ON(!fn))
-+		return;
-+
-+	fn(kvm);
-+
-+	symbol_put(kvm_put_kvm);
-+}
-+
- static int vfio_device_first_open(struct vfio_device *device,
- 				  struct iommufd_ctx *iommufd, struct kvm *kvm)
- {
-@@ -361,16 +391,24 @@ static int vfio_device_first_open(struct vfio_device *device,
- 	if (ret)
- 		goto err_module_put;
- 
-+	if (kvm && !vfio_kvm_get_kvm_safe(kvm)) {
-+		ret = -ENOENT;
-+		goto err_unuse_iommu;
-+	}
- 	device->kvm = kvm;
- 	if (device->ops->open_device) {
- 		ret = device->ops->open_device(device);
- 		if (ret)
--			goto err_unuse_iommu;
-+			goto err_put_kvm;
- 	}
- 	return 0;
- 
-+err_put_kvm:
-+	if (kvm) {
-+		vfio_kvm_put_kvm(kvm);
-+		device->kvm = NULL;
-+	}
- err_unuse_iommu:
--	device->kvm = NULL;
- 	if (iommufd)
- 		vfio_iommufd_unbind(device);
- 	else
-@@ -387,7 +425,6 @@ static void vfio_device_last_close(struct vfio_device *device,
- 
- 	if (device->ops->close_device)
- 		device->ops->close_device(device);
--	device->kvm = NULL;
- 	if (iommufd)
- 		vfio_iommufd_unbind(device);
- 	else
-@@ -465,6 +502,11 @@ static int vfio_device_fops_release(struct inode *inode, struct file *filep)
- 
- 	vfio_device_group_close(device);
- 
-+	if (device->open_count == 0 && device->kvm) {
-+		vfio_kvm_put_kvm(device->kvm);
-+		device->kvm = NULL;
-+	}
-+
- 	vfio_device_put_registration(device);
- 
- 	return 0;
-diff --git a/include/linux/vfio.h b/include/linux/vfio.h
-index 35be78e9ae57..3ff7e9302cc1 100644
---- a/include/linux/vfio.h
-+++ b/include/linux/vfio.h
-@@ -46,7 +46,6 @@ struct vfio_device {
- 	struct vfio_device_set *dev_set;
- 	struct list_head dev_set_list;
- 	unsigned int migration_flags;
--	/* Driver must reference the kvm during open_device or never touch it */
- 	struct kvm *kvm;
- 
- 	/* Members below here are private, not for driver use */
--- 
-2.39.0
+John.
+
+
+> } else {
+>     kfree(ee);
+>     ee = NULL;
+> }
+>
+> return ee;
+>
+> No "if (rq) i915_request_put()" twice, and goto label can be 
+> completely removed.
+>
+> Regards,
+>
+> Tvrtko
+>
+>>         intel_engine_coredump_add_vma(ee, capture, compress);
+>> -    i915_request_put(rq);
+>> +    if (rq)
+>> +        i915_request_put(rq);
+>>         return ee;
 
