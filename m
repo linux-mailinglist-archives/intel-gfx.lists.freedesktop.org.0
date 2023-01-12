@@ -2,55 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96962666D1A
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jan 2023 09:55:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17856666D5F
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jan 2023 10:04:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16D1F10E5AF;
-	Thu, 12 Jan 2023 08:55:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEC0310E89F;
+	Thu, 12 Jan 2023 09:04:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4242010E5AF
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Jan 2023 08:55:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673513739; x=1705049739;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=z+oaEqyyt1NRZRyb2g9WWGXPgTFeK9Un3WJMd1yH82Y=;
- b=G3we3U/MKst7uGQzo9JfYrlvH0ANZd7+NJ527aWpaNkXcOVHy5SpYCoH
- hA6UfF6C6KGkpsT2O8ZpHy37tJzE+DsznkJOCg7IM5KFLfoWRkS/diuJg
- 77VteIdMJMm6lfNHkT+9cVh+ojXEOppltNvgN1qwdAwfOEsrfkOulz/90
- 65COvypyuwoCCgKgNQW+opi0K9SSUKSR1jJ76X9C+gPUSQlux05hCHkkj
- 9PybCdfPZi+3wjMa078wWfZuTWJgAdchuas1nyl48hSU5jg+ywgdCsl9s
- KEJF7pHspdQHE1hqFDg0IZf8DS46vaZkyWeb0JKL8Nhej7Y0kN5OWBbaE Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="303350011"
-X-IronPort-AV: E=Sophos;i="5.96,319,1665471600"; d="scan'208";a="303350011"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2023 00:55:38 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="765526390"
-X-IronPort-AV: E=Sophos;i="5.96,319,1665471600"; d="scan'208";a="765526390"
-Received: from jacton-mobl.ger.corp.intel.com (HELO [10.213.195.171])
- ([10.213.195.171])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2023 00:55:37 -0800
-Message-ID: <cbacd042-83ea-254a-9e41-36acda4d0f8f@linux.intel.com>
-Date: Thu, 12 Jan 2023 08:55:35 +0000
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E9D910E89F;
+ Thu, 12 Jan 2023 09:04:50 +0000 (UTC)
+Received: from imap1.suse-dmz.suse.de (imap1.suse-dmz.suse.de [192.168.254.73])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id BF3C83EDC4;
+ Thu, 12 Jan 2023 09:04:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1673514288; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=EkuVSdUx/J7SLhiWGvBUrdwZ5JZt1D4uguEClk9nFQI=;
+ b=PRukgb+8Apb05zyyzW62LusZIoMFaw55OEPaK6et9zrlTBkoLleRLLSKMmVvh63Wf8Ohzc
+ 86srNWEIsJjgD/FT4oEnnGIS9UZMjBG7aqQOjZ63tkbXvf2c9ChiNgBj3XegjLnu83ySOQ
+ tKjMGJlCRo287ojkrcdsgFp6ZiccXc0=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1673514288;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=EkuVSdUx/J7SLhiWGvBUrdwZ5JZt1D4uguEClk9nFQI=;
+ b=CjYbnxb8U83q59Alkza1BxDX1WEaGPPyIJUzAcSDPS+QVcyobJDsf/XZCU9WM96jI+Iw1a
+ WFjzkUu7jcbbW/AA==
+Received: from imap1.suse-dmz.suse.de (imap1.suse-dmz.suse.de [192.168.254.73])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap1.suse-dmz.suse.de (Postfix) with ESMTPS id A091F13958;
+ Thu, 12 Jan 2023 09:04:48 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap1.suse-dmz.suse.de with ESMTPSA id on5WJjDNv2MLFAAAGKfGzw
+ (envelope-from <tzimmermann@suse.de>); Thu, 12 Jan 2023 09:04:48 +0000
+Message-ID: <bad82927-1c58-4c2a-c265-571e10d1f67d@suse.de>
+Date: Thu, 12 Jan 2023 10:04:48 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
 Content-Language: en-US
-To: FlightlessMango <flightlessmangoyt@gmail.com>,
- intel-gfx@lists.freedesktop.org
-References: <65afb3a4-bdc1-04a8-a2ac-6c561cddd710@gmail.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <65afb3a4-bdc1-04a8-a2ac-6c561cddd710@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [OA][RFC] Exposing low-resolution engine business
- via sysfs
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+References: <20230111154112.90575-1-daniel.vetter@ffwll.ch>
+ <20230111154112.90575-2-daniel.vetter@ffwll.ch>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+In-Reply-To: <20230111154112.90575-2-daniel.vetter@ffwll.ch>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------hDo6iXmy43GQWLBIW0zj0ron"
+Subject: Re: [Intel-gfx] [PATCH 02/11] drm/gma500: Use
+ drm_aperture_remove_conflicting_pci_framebuffers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,78 +72,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Martin Peres <martin.peres@mupuf.org>
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------hDo6iXmy43GQWLBIW0zj0ron
+Content-Type: multipart/mixed; boundary="------------JNlx0yxAHNpyhoEsiGu8QGNp";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>, Daniel Vetter <daniel.vetter@intel.com>
+Message-ID: <bad82927-1c58-4c2a-c265-571e10d1f67d@suse.de>
+Subject: Re: [PATCH 02/11] drm/gma500: Use
+ drm_aperture_remove_conflicting_pci_framebuffers
+References: <20230111154112.90575-1-daniel.vetter@ffwll.ch>
+ <20230111154112.90575-2-daniel.vetter@ffwll.ch>
+In-Reply-To: <20230111154112.90575-2-daniel.vetter@ffwll.ch>
 
-Hi,
+--------------JNlx0yxAHNpyhoEsiGu8QGNp
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-On 12/01/2023 07:50, FlightlessMango wrote:
-> Hi,
-> 
-> I am the developer of MangoHud[1], a Vulkan and OpenGL overlay for 
-> monitoring FPS / temperatures / CPU/GPU load and more.
-> 
-> I would like to add support for i915 (and xe in the future) but I am 
-> currently unable to do this easily because not everything I need is 
-> exposed directly to non-root users. Namely:
-> 
->   * Engine business (RCS)
->   * CPU, iGPU and dGPU power usage
->   * IMC bandwith (nice to have but not mandatory)
-> 
-> This is a problem because it would require us to ship a setuid binary to 
-> poll these metrics for the overlay (we can't run games as root).
-> 
-> For your information, this is Intel-specific as AMD and NVIDIA are 
-> exposing these values directly. I understand the security concerns, but 
-> we are not asking for super precise information (1% accuracy is perfect).
-> 
-> Can we work together on this, what are your thoughts?
+SGkNCg0KQW0gMTEuMDEuMjMgdW0gMTY6NDEgc2NocmllYiBEYW5pZWwgVmV0dGVyOg0KPiBU
+aGlzIG9uZSBudWtlcyBhbGwgZnJhbWVidWZmZXJzLCB3aGljaCBpcyBhIGJpdCBtdWNoLiBJ
+biByZWFsaXR5DQo+IGdtYTUwMCBpcyBpZ3B1IGFuZCBuZXZlciBzaGlwcGVkIHdpdGggYW55
+dGhpbmcgZGlzY3JldGUsIHNvIHRoZXJlIHNob3VsZA0KPiBub3QgYmUgYW55IGRpZmZlcmVu
+Y2UuDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVy
+QGludGVsLmNvbT4NCj4gLS0tDQo+ICAgZHJpdmVycy9ncHUvZHJtL2dtYTUwMC9wc2JfZHJ2
+LmMgfCAyICstDQo+ICAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0
+aW9uKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2dtYTUwMC9wc2Jf
+ZHJ2LmMgYi9kcml2ZXJzL2dwdS9kcm0vZ21hNTAwL3BzYl9kcnYuYw0KPiBpbmRleCBjZDlj
+NzNmNWE2NGEuLjliMGRhZjkwZGM1MCAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJt
+L2dtYTUwMC9wc2JfZHJ2LmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2dtYTUwMC9wc2Jf
+ZHJ2LmMNCj4gQEAgLTQyOSw3ICs0MjksNyBAQCBzdGF0aWMgaW50IHBzYl9wY2lfcHJvYmUo
+c3RydWN0IHBjaV9kZXYgKnBkZXYsIGNvbnN0IHN0cnVjdCBwY2lfZGV2aWNlX2lkICplbnQp
+DQo+ICAgCSAqIFRPRE86IFJlZmFjdG9yIHBzYl9kcml2ZXJfbG9hZCgpIHRvIG1hcCB2ZGNf
+cmVnIGVhcmxpZXIuIFRoZW4gd2UNCj4gICAJICogICAgICAgbWlnaHQgYmUgYWJsZSB0byBy
+ZWFkIHRoZSBmcmFtZWJ1ZmZlciByYW5nZSBmcm9tIHRoZSBkZXZpY2UuDQo+ICAgCSAqLw0K
+PiAtCXJldCA9IGRybV9hcGVydHVyZV9yZW1vdmVfZnJhbWVidWZmZXJzKHRydWUsICZkcml2
+ZXIpOw0KPiArCXJldCA9IGRybV9hcGVydHVyZV9yZW1vdmVfY29uZmxpY3RpbmdfcGNpX2Zy
+YW1lYnVmZmVycyhwZGV2LCAmZHJpdmVyKTsNCg0KVGhpcyBkb2VzIG5vdCB3b3JrLiBUaGUg
+Y29tbWVudCBqdXN0IGFib3ZlIHRoZSBjaGFuZ2VkIGxpbmUgZXhwbGFpbnMgDQp3aHkuIFRo
+ZSBkZXZpY2UgdXNlcyBzaGFyZWQgbWVtb3J5IHNpbWlsYXIgdG8gb3RoZXIgaW50ZWdyYXRl
+ZCBJbnRlbCANCmNoaXBzLiBUaGUgY29uc29sZSBpcyBzb21ld2hlcmUgaW4gYSAxNiBNaUIg
+cmFuZ2UsIHdoaWNoIGhhcyBiZWVuIHN0b2xlbiANCmJ5IHRoZSBCSU9TIGZyb20gbWFpbiBt
+ZW1vcnkuIFRoZXJlJ3Mgb25seSBhIDEgTWlCIG1lbW9yeSByYW5nZSBvbiB0aGUgDQpkZXZp
+Y2UgdG8gcHJvZ3JhbSB0aGUgZGV2aWNlLiBVbmxlc3MgeW91IHdhbnQgdG8gcmVmYWN0b3Ig
+YXMgZGVzY3JpYmVkLCANCnRoaXMgY2FsbCBoYXMgdG8gY292ZXIgdGhlIHdob2xlIG1lbW9y
+eSBmb3Igbm93Lg0KDQpCZXN0IHJlZ2FyZHMNClRob21hcw0KDQo+ICAgCWlmIChyZXQpDQo+
+ICAgCQlyZXR1cm4gcmV0Ow0KPiAgIA0KDQotLSANClRob21hcyBaaW1tZXJtYW5uDQpHcmFw
+aGljcyBEcml2ZXIgRGV2ZWxvcGVyDQpTVVNFIFNvZnR3YXJlIFNvbHV0aW9ucyBHZXJtYW55
+IEdtYkgNCk1heGZlbGRzdHIuIDUsIDkwNDA5IE7DvHJuYmVyZywgR2VybWFueQ0KKEhSQiAz
+NjgwOSwgQUcgTsO8cm5iZXJnKQ0KR2VzY2jDpGZ0c2bDvGhyZXI6IEl2byBUb3Rldg0K
 
-A few angles here. First of all, last time you raised it I think we 
-didn't have per client engine busyness in fdinfo. So *if* you are 
-satisfied with reading client's own busyness you can do it unprivileged 
-via /proc/<pid>|self/fdinfo/<fd>.
+--------------JNlx0yxAHNpyhoEsiGu8QGNp--
 
-Secondly, i915 internal stats, iGPU power usage and IMC are exposed via 
-three separate perf/PMU drivers, of which this team (this mailing) is 
-really responsible for only i915. The access controls for all though are 
-common and provided by the core kernel. See 
-/proc/sys/kernel/perf_event_paranoid and corresponding docs.
+--------------hDo6iXmy43GQWLBIW0zj0ron
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
 
-Long(-ish) time ago we have proposed making the latter a per PMU driver 
-but that did not get any traction in the kernel.
+-----BEGIN PGP SIGNATURE-----
 
-Once you move to dGPU then for power you will get to use hwmon and for 
-that one I am currently not familiar how access control works.
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmO/zTAFAwAAAAAACgkQlh/E3EQov+CF
+JA/9FtF99F1Qfrs4zJiUmZ0vkSf/PsV4p+KQ3Qbw5EJTdyJvrDnys3mdRf07X25nA+LKgP7l/Qlp
+X4eUkuWvENRUwipHAEsq6Ln+NJ1+iId3SYy5As2mc+WY1hXYkBTtcmcn0v4nnDLELTRBPZWIdl/k
+EXBvtmJpgJApjigouBa679WVWMSqiyktsoRvvEM1QLZdPzh8P82QM5ETTtwoQe23iZymnEJPehDv
+JpbZemL7sERh5/xIDnLtI/JMnWjuWFdQBC7lHLPT62BLANKc25eyTjZDV5f1OoYER+u4+halu+c2
+gGqANtrmaASrF2HxiSxCq9HOD8Tyxod7j+5k0v8gMqghEmTHR0TB7nYIP9qPTmfzNL10HrRN+sVP
+zGVx85EDY5GmXbpJxnIQj+GIviLuy+u6ZzbIp6Wvobh8n848Gb+7dp9qoo9GnV0R2xWeg18Qkm3u
+mVZrcJlDGHj8fRmgJ/9wYGiDhJe6doyG+iJJTuQHvuy8jxZ2AWdobmpI3zwJN3YWhMorRbFmAsgH
+5rlEzG0YMwF7wldmuHnLKHk2b3Q3fnJGIFwap9yjeQLQEOW8toqlKKRxayMYYlKsQn/SoSjvB9Bx
+gPrnuwZhau3FBTKoejYGchSxcWxWsxkByZ+m6BC6I/NwYduNZjV5ReftXTOXGnVKZbLq0JB376P6
+Xys=
+=ciL3
+-----END PGP SIGNATURE-----
 
-And finally for the new Xe driver I not aware how it will expose it so I 
-am copying Rodrigo in case he knows.
-
-In summary I personally see these options for what i915 stats are concerned:
-
-1. You go with fdinfo and get what you can.
-
-2. We try to propose per PMU access controls once more.
-
-And then maybe the point below becomes less controversial, unlikely though.
-
-3. You instruct users to configure /proc/sys/kernel/perf_event_paranoid, 
-or convince the distros to setuid your tool, or something along those lines.
-
-Regards,
-
-Tvrtko
-
-> 
-> Thanks for your consideration.
-> 
-> //Simon Hallsten
-> 
-> [1] https://github.com/flightlessmango/MangoHud
-> 
-> 
-> 
+--------------hDo6iXmy43GQWLBIW0zj0ron--
