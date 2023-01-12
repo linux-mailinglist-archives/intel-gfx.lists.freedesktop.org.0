@@ -2,56 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 106DE6678DB
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jan 2023 16:15:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B95676678F9
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jan 2023 16:21:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B238F10E8FA;
-	Thu, 12 Jan 2023 15:15:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2265010E8FA;
+	Thu, 12 Jan 2023 15:21:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EC6C10E8FA;
- Thu, 12 Jan 2023 15:15:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2AE1610E8FA
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Jan 2023 15:21:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673536545; x=1705072545;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=CaqwCJk0BxQLF8PV6fkvnGQ7MUPP8D7L+hjQRSEkPys=;
- b=lGdR43SlwUpjpD8XieB7z/eOW0MPFaJmWf5nPh47qe0zbNDq53gsflhb
- u4UYpYY3tnafPH373ZyDHPPfDlO0mybCa8I8pg+MFkkFQdQwZVKRd2CcR
- nRtp6Ng+xQorQ7eX/3OW+yZIB34Cn1zqLCB+IYkBhnUHK+/JPGjhe2UZg
- eDYvDwWX7JsguET1J279shzJXwJ0jciUvfwUsg8X9h9e3sp6MsK2gtTpB
- mZhJ0pgT7tS3p9qoon5aWhtCr2Ta5eK6HG8EtM/muSS5qJ66itbUXrXWD
- IzrLoGywZOq4va5e9g3DF5+NEVsLKPnQZ4Q8hJQPH+873YtvjzWMQLCJ+ w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="409964149"
-X-IronPort-AV: E=Sophos;i="5.97,211,1669104000"; d="scan'208";a="409964149"
+ t=1673536910; x=1705072910;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=b4Hw3YVwYprw7Fnppy3gXmqY88LXdWvxh7FxaoIEfD0=;
+ b=bZEFz/SfcGYLx2AzGftuug/QzxFptjo24PY4S1I718nDw8SahImyuQ3p
+ 9/HdAymx4lHjP2ubdDDaTogApScwl5CKk3lSIekQYSNrn/geVOfRigVp8
+ 4BulxPYBjK1QxyloH6cGM7zgq/OB25ZkwfXfIBhGLfguwvm7AlIn3ZkRH
+ j7g8TNfSi8L35gqCB1BZTdkT3mDhRY7lpRnjUHEXBqjI3n7feCV4qIQue
+ U6DQsqpEBpzEu+o1Q9O3TjRpDc/yDH6KSd/fOTWAHTQjnc0/z011Uwvf0
+ vjVffbzsAEYBnGVOAWojErDACvG29tp11B+EWBsCjPLCyBb4Xmny+rKI3 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="409965664"
+X-IronPort-AV: E=Sophos;i="5.97,211,1669104000"; d="scan'208";a="409965664"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2023 07:15:44 -0800
+ 12 Jan 2023 07:21:49 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="688354477"
-X-IronPort-AV: E=Sophos;i="5.97,211,1669104000"; d="scan'208";a="688354477"
+X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="688356212"
+X-IronPort-AV: E=Sophos;i="5.97,211,1669104000"; d="scan'208";a="688356212"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
- by orsmga008.jf.intel.com with SMTP; 12 Jan 2023 07:15:37 -0800
+ by orsmga008.jf.intel.com with SMTP; 12 Jan 2023 07:21:46 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 12 Jan 2023 17:15:36 +0200
-Date: Thu, 12 Jan 2023 17:15:36 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: =?iso-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>
-Message-ID: <Y8AkGO/N2z2/XsEz@intel.com>
-References: <20230109105807.18172-1-mcanal@igalia.com>
- <20230109105807.18172-4-mcanal@igalia.com>
- <Y8AAdW2y7zN7DCUZ@intel.com>
- <345279ff-680a-52ac-73ed-29e2ab84f0ae@igalia.com>
+ Thu, 12 Jan 2023 17:21:45 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 12 Jan 2023 17:21:45 +0200
+Message-Id: <20230112152145.1117-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.38.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <345279ff-680a-52ac-73ed-29e2ab84f0ae@igalia.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 3/5] drm/i915: Remove redundant framebuffer
- format check
+Subject: [Intel-gfx] [PATCH] drm/i915: Reject < 1x1 pixel plane source size
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,67 +57,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org,
- =?iso-8859-1?Q?Andr=E9?= Almeida <andrealmeid@igalia.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Simon Ser <contact@emersion.fr>,
- intel-gfx@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
- Melissa Wen <mwen@igalia.com>,
- VMware Graphics Reviewers <linux-graphics-maintainer@vmware.com>,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Zack Rusin <zackr@vmware.com>
+Cc: Drew Davenport <ddavenport@chromium.org>, stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 12, 2023 at 11:07:59AM -0300, MaÌra Canal wrote:
-> Hi,
-> 
-> On 1/12/23 09:43, Ville Syrj‰l‰ wrote:
-> > On Mon, Jan 09, 2023 at 07:58:06AM -0300, MaÌra Canal wrote:
-> >> Now that framebuffer_check() verifies that the format is properly
-> >> supported, there is no need to check it again on i915's inside
-> >> helpers.
-> >>
-> >> Therefore, remove the redundant framebuffer format check from the
-> >> intel_framebuffer_init() function, letting framebuffer_check()
-> >> perform the framebuffer validation.
-> >>
-> >> Signed-off-by: MaÌra Canal <mcanal@igalia.com>
-> >> ---
-> >>   drivers/gpu/drm/i915/display/intel_fb.c | 9 ---------
-> >>   1 file changed, 9 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-> >> index 63137ae5ab21..230b729e42d6 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> >> @@ -1914,15 +1914,6 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
-> >>   		}
-> >>   	}
-> >>   
-> >> -	if (!drm_any_plane_has_format(&dev_priv->drm,
-> >> -				      mode_cmd->pixel_format,
-> >> -				      mode_cmd->modifier[0])) {
-> >> -		drm_dbg_kms(&dev_priv->drm,
-> >> -			    "unsupported pixel format %p4cc / modifier 0x%llx\n",
-> >> -			    &mode_cmd->pixel_format, mode_cmd->modifier[0]);
-> >> -		goto err;
-> >> -	}
-> >> -
-> > 
-> > This doesn't work for the legacy tiling->modifier path.
-> 
-> Do you have any idea on how we could remove drm_any_plane_has_format() from
-> i915? Or is it strictly necessary to validate the modifier in the legacy
-> path?
+From: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
 
-I guess techinically we could skip it by knowing that X-tile is always
-supported. However that may not hold in the future so not a soution I
-really like. Also the drm_any_plane_has_format() call from 
-framebuffer_check() is too early, so instead of checking X-tile
-vs. linear based on the tiling it's going to always assume linear.
+We don't have proper sub-pixel coordinate support (some platforms
+simply can't do it, for others we've not implemented it). This
+can cause us to treat a < 1 pixel source width/height as zero
+which is not valid for the hardware, and can also cause a div
+by zero in some cases.
 
+Refuse < 1x1 plane source size to avoid these problems.
+
+Cc: stable@vger.kernel.org
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Reported-by: Drew Davenport <ddavenport@chromium.org>
+Signed-off-by: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
+---
+The other option would be to clamp the source size to >=1x1 pixels,
+but dunno if that has any real benefits.
+
+ drivers/gpu/drm/i915/display/intel_atomic_plane.c | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+index 10e1fc9d0698..c6e43d684458 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+@@ -921,6 +921,21 @@ int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_state,
+ 	 */
+ 	plane_state->uapi.visible = drm_rect_clip_scaled(src, dst, clip);
+ 
++	/*
++	 * Avoid zero source size when we later
++	 * discard the fractional coords.
++	 *
++	 * FIXME add proper sub-pixel coordinate handling
++	 * for platforms/planes that support it.
++	 */
++	if (plane_state->uapi.visible &&
++	    (drm_rect_width(src) < 0x10000 || drm_rect_height(src) < 0x10000)) {
++		drm_dbg_kms(&i915->drm, "Plane source must be at least 1x1 pixels\n");
++		drm_rect_debug_print("src: ", src, true);
++		drm_rect_debug_print("dst: ", dst, false);
++		return -EINVAL;
++	}
++
+ 	drm_rect_rotate_inv(src, fb->width << 16, fb->height << 16, rotation);
+ 
+ 	if (!can_position && plane_state->uapi.visible &&
 -- 
-Ville Syrj‰l‰
-Intel
+2.38.2
+
