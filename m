@@ -1,110 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 072CA66727A
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jan 2023 13:45:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E66146672A9
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jan 2023 13:56:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBE8010E8DD;
-	Thu, 12 Jan 2023 12:45:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84D3410E8DD;
+	Thu, 12 Jan 2023 12:56:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2051.outbound.protection.outlook.com [40.107.94.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6997810E8DC;
- Thu, 12 Jan 2023 12:45:41 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kOYLFcHowxcle05aQMdUmWU1dDIwb6v945T1uvq0ggNXCi7P5z1A9TQ3Z7QkUAcDng3Ud6PvwNetCdJRWOYdGxCU+FImy32SE+vsLguD026YD8ZaSsuqvamS+kTRSeo88opXgpct2PHQKJoo7BQ9Nct+AzsMI+fFmC9431bu/+QPLX+4yM4X6vwb79nE/8+gh4F7iM2dcwiTxGkldwE/hr6J7eq52rXTy/4MBE7u+1TQwf1jYQGV6QUzavJZJLsQD6Erb5y6XQdx3StmQTJD4rtzhPEJvE7F4bGCjTI263iQ+h7tNf1OTkRYvR6KCnboV5Vll0bRXzoTv82U+QnraA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=w6TpwpFPR7yvYZV+7IuCA2Kf/fjOJsrI8EwxCYjuiaA=;
- b=fPyrRle/ByyjBEwdMrtQ8o0TqC2iG2lX1l0VMXheWruZ1HvXjRUIoWIPXOrGyj2sOTaWuEbUQHj6tZt3l/Oa2ogz+5Z6isKojZ5cPiYJv2vPYfLElhp2vQtQXRLwcFZe2xIN22HyTTUnrwCn5AX19AKDXgSXWVRbAlaIZpnmr+JsPAB9OD8eLuJ6u9aAy3wSNWko4ySrgN/tOyoY3tI5J0h9GWP39VoP4ECOm4InrzSvJQkp+aR6g4/qqOihcnk5ElqzWhu0ILHCYwbm0i4Owv+cd3KFdnTRm02TVT1CJn4qNpzDiHOlLwErh96fC1QNVrqVAdnqhXeUhJ2Jr3fkIA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=w6TpwpFPR7yvYZV+7IuCA2Kf/fjOJsrI8EwxCYjuiaA=;
- b=h1Ayt6+mJXahI5Xkv0nSIfK++5/rnCuh2viWsYn32f4l+eN2eSjGp/FS9a9AfwCktSn90zmxFz9xXPQVnhCxHw1Zb2IxERh2TmeURI0WTYDoqD4bLzG4QrSsj8/hDa3ve0fVsT3bNEGbbpewuCU2fWle+g88t6iPX0mnBRKEDh/lgQuZUiuzjcNW95bTWgn3m7GQDmMlD6J0NpKmeRXGvkg2zpKjw/vKABUzo8UUiTNachPTU7kipnLkUUjT6u+VT5193deP5krowkvVzRmIVUMiWCQt6TEC9Ovz442MDHmSTRr/3geKWr5+2p/wijaJxA+e9YKzOK/LRzXIoxDCKg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
- by DS0PR12MB7653.namprd12.prod.outlook.com (2603:10b6:8:13e::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.18; Thu, 12 Jan
- 2023 12:45:39 +0000
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::f8b0:df13:5f8d:12a]) by LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::f8b0:df13:5f8d:12a%9]) with mapi id 15.20.6002.013; Thu, 12 Jan 2023
- 12:45:39 +0000
-Date: Thu, 12 Jan 2023 08:45:38 -0400
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: Sean Christopherson <seanjc@google.com>
-Message-ID: <Y8AA8r5MzKQIF8I7@nvidia.com>
-References: <20230109201037.33051-1-mjrosato@linux.ibm.com>
- <20230109201037.33051-2-mjrosato@linux.ibm.com>
- <Y78UCz5oeuntSQtK@google.com> <Y78Wk2/P5+gLMdpk@nvidia.com>
- <Y78hzsHiwaFpL60+@google.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y78hzsHiwaFpL60+@google.com>
-X-ClientProxiedBy: MN2PR17CA0029.namprd17.prod.outlook.com
- (2603:10b6:208:15e::42) To LV2PR12MB5869.namprd12.prod.outlook.com
- (2603:10b6:408:176::16)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D64E10E2F9
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Jan 2023 12:56:31 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 312B63F39E;
+ Thu, 12 Jan 2023 12:56:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1673528187; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=xJ3YKy9Mlmh9EFBuctWdWt367RFY/d+HPtgAdoYJC5g=;
+ b=D9LPuXci+YXdWJ1lbkyLv0w1wgs1R4l7oAdNzMmSQrOhKhi2/2pw0CGPRz/FcTM5Qhxeov
+ XRP3BJx0pY7j7r5T6oJi/wwO/YBjON4GRXwidTTH14Os+NpGoSWKWHLbjCZXP/XtcP67O2
+ k2hSU0W9FjHil71qbkkKINUaAaVFI7U=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1673528187;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=xJ3YKy9Mlmh9EFBuctWdWt367RFY/d+HPtgAdoYJC5g=;
+ b=WfkGBg5JYiFbYZxZjlutDgQKGAqLGni+GXL1EuLHrktum3G8GyYbqWyxv8FnFoJSUBURKk
+ Q8xeWoCLPD3lVgBQ==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id EECBC13776;
+ Thu, 12 Jan 2023 12:56:26 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id 0ppVOXoDwGOnVAAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Thu, 12 Jan 2023 12:56:26 +0000
+Date: Thu, 12 Jan 2023 13:56:25 +0100
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <Y8ADeSzZDj+tpibF@linux-uq9g>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|DS0PR12MB7653:EE_
-X-MS-Office365-Filtering-Correlation-Id: 734563cc-8897-432f-bc6d-08daf49ae8d7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: PghqCEpp6bB48sV/220GE7RASbiVpBMHewP9tILCxzi15/5PsNKuzs3ZcFajSf5Dn8JbPNnrSErYqKbva+fEmUIfuAzxQVOBCo9rY43LKFSuKJHOsMzlvSGeSD7yHw49VBLw6crDcmAyrijSYAljINrRTNHMThEKLvyXx7UC1Ek9RDnXuX0TPRHxdZLWVowRBAUgmAddviv6vWr8Z7RauLAViaGpuEWSQrphKLF5tTnWCS23kSEAS1xryOwkPNtfZAs3sdl42Wr3ohbybT98yqe0g2wg3UBrQpoQlY0nxEY3gvqjt//36coZM8hWt4Gy3APdJuTeNsEfON+5TKoCEWIiQ7+DVEc1HGc0+rVh6Imwr4tXMZjEObdiAU4TBe5pffJetGyN3LymjOcHI1vffC0TZqHjVpim4T4Ypa/HxfhDnDI7330LzeympTdgCWzZpAEZe9Sw4UvreRFFHEib9x0xr3i2OyTGN0/VQ+18MDU/y1L8E3MaG5lrmpKizVx2Q3Ls5PotRKu6i32HkcuMT6+TRlmE160Sp6Ak+dP3fl/uOvoQV5EUEdFJukt7DpjAUTCnlJ5HnUq3qbky2YAoBZnoANfHjRSZMXDo5pItLGmcJpUvffLhxqM+AO/4NujtpCjRQ+0XXhyZ3SxVHiu4/g==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(4636009)(376002)(366004)(136003)(346002)(39860400002)(396003)(451199015)(86362001)(36756003)(7416002)(8936002)(6486002)(5660300002)(66946007)(4326008)(41300700001)(83380400001)(6506007)(478600001)(26005)(2616005)(6512007)(186003)(66476007)(6916009)(316002)(8676002)(66556008)(38100700002)(2906002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?54mWQ92qST0akzdhoVEp49BocPKUwZe/Ir7PGl5zkfdFY9oQ8rX7d7CKHl1+?=
- =?us-ascii?Q?0npjt6kRA+5enHLkCTkvNX5xYWCS2MV/S144uNEM8J4kMziAfiZ84GAcPyXK?=
- =?us-ascii?Q?IgzHvOXvIZPDU/zCvFLTfyDupaYLxafk/BwjO8zWWdohDtVnvAAQHD9pwh8i?=
- =?us-ascii?Q?AoIzZ0zzwq2ubX4kDrsAnw9w8y7XdSX0gs/QgoRJrt6FemFu1CmyCVD8LoRq?=
- =?us-ascii?Q?wzpXKfJNR8TDZYLNJhVjWBV7QKo8xjpp4BprRNooOApgk08vKP02T5LU4i1M?=
- =?us-ascii?Q?sasaYiX0ulpmV8BuVrZ/HaG62R72jYOy8X3G+v+K+bHVo1ektiznu0+x+wZw?=
- =?us-ascii?Q?4r2U09ePU82bj5KUWmJe+ZEuw1sqpXhMqrUGz2hB53nRhEkRibOW4hlxWzQn?=
- =?us-ascii?Q?INaExAwS+AG17wMIlRsGtzu+uR6AVxOpF/pEWOiLpbFRdqjbPpzrDoM/W4T5?=
- =?us-ascii?Q?b3k8/BCU7tbSvBlxnPqZHhcO/TkAtOl2sduMxDKgaN4ELnmZvBJmPaSj0BD5?=
- =?us-ascii?Q?7p6X/gTrpZNOcsvAA+84Q+wd5GYLaqf5IuWLm7wX4wN0nqYXtxv56R66539b?=
- =?us-ascii?Q?Un8ZW+oqVw6cUHtL/NqyE1fuvUrHBdtAnNTsi73sC0eFn8M/tCVFf1TZU+dp?=
- =?us-ascii?Q?i4iHkkU82LYvVynUQu8FzNyJt8Gnhvtc+aQT8fg1IDOcshmItM8T22PpdU3G?=
- =?us-ascii?Q?9fPNqRyCxZOl1bogCWsftCfj0l0KDBzoBTIqCCDLuaEe1Ecd+YlQXI6DthXM?=
- =?us-ascii?Q?JneFR2GotFWRtWeOdwYxLz7iE1UvDm7MDti7OkyTgKX9FIhs5UtjinAhSdvE?=
- =?us-ascii?Q?TkY5x+47pIkeo6ieRlkx2DyrX4U+pjlrpYZ6RH5wzL2jKYIRQFF0jrjCw4xO?=
- =?us-ascii?Q?JyYnb7LZcoqXLXjKvgWO5TtANi1vgMo6CY7zQDeMyQFdByVPW1wkXUKXm4Ii?=
- =?us-ascii?Q?4JCzcDvMDlY8RwKXwQAAjHSYkKsc2T2DsyGZt05c9rZ3tlW8G4gTBGIdM7Cd?=
- =?us-ascii?Q?sovScu27S+sE59AIhrazm+jjoV0AjVq3lEvBYHAVjUHDajtpsIJJ2UuZMyr7?=
- =?us-ascii?Q?DnwQ1aTubjWtW1vqOzvu0lHpy7V5/ODzTLAaXiNYTrMJH/nv+ZbkFHPXStfl?=
- =?us-ascii?Q?wsTsKQYYOIoYC6Pq6LNEcXpMHsDQXI/z9cLRuboaDiWak8Me+GcKl2O5/mvW?=
- =?us-ascii?Q?oQFDAZgfBCAjzQGWnXiwGVFJfpPMnVTBeFYnyACWaIuxQ+5j0dEDMIMHddvW?=
- =?us-ascii?Q?OHjq4VurA2X4J2vwi4o4jszYO/Y2AN8vxSdpprE9JdGSALAo3kqdP/vGOFOi?=
- =?us-ascii?Q?joCrjMFUZr3sIE0mk/QohVdcF2O96eunhmhWfL/qDUPnsEvqO9gadlZuOPSf?=
- =?us-ascii?Q?Es7FxHes4RSj8SX3pSrQ27almg88G7Cb2DEEuXJsbNGjuRN+ZwVwR+TnJ+4I?=
- =?us-ascii?Q?vS6tMG45a/j3c9wSJS5RPzqdqkCgZxkpHeGvk2fqDUuDiZgCbMcSIq06KfMV?=
- =?us-ascii?Q?CYyi2umuN1Kq3rzTik5WvM/Wn7cztk1blB40mpGpI6SBReZLbcf+7S1xRXac?=
- =?us-ascii?Q?XaOFypOtYUvA50RLp4tTzT6a5CGnN55V08xx729R?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 734563cc-8897-432f-bc6d-08daf49ae8d7
-X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2023 12:45:39.6189 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2kepHIonZJlzhi2KscXV5i31gjXeKRJLPgJLKW4+QrMDbazXhG0l3jc7LVOhcLhV
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7653
-Subject: Re: [Intel-gfx] [PATCH 1/2] KVM: async kvm_destroy_vm for vfio
- devices
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PULL] drm-misc-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -117,52 +64,324 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: akrowiak@linux.ibm.com, jjherne@linux.ibm.com, farman@linux.ibm.com,
- imbrenda@linux.ibm.com, Matthew Rosato <mjrosato@linux.ibm.com>,
- pmorel@linux.ibm.com, david@redhat.com, linux-s390@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, cohuck@redhat.com,
- linux-kernel@vger.kernel.org, pasic@linux.ibm.com, kvm@vger.kernel.org,
- pbonzini@redhat.com, borntraeger@linux.ibm.com,
- intel-gvt-dev@lists.freedesktop.org, frankja@linux.ibm.com
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 11, 2023 at 08:53:34PM +0000, Sean Christopherson wrote:
-> On Wed, Jan 11, 2023, Jason Gunthorpe wrote:
-> > On Wed, Jan 11, 2023 at 07:54:51PM +0000, Sean Christopherson wrote:
-> > 
-> > > Something feels off.  If KVM's refcount is 0, then accessing device->group->kvm
-> > > in vfio_device_open() can't happen unless there's a refcounting bug somewhere.
-> > 
-> > The problem is in close, not open.
-> 
-> The deadlock problem is, yes.  My point is that if group_lock needs to be taken
-> when nullifying group->kvm during kvm_vfio_destroy(), then there is also a refcounting
-> prolem with respect to open().  If there is no refcounting problem, then nullifying
-> group->kvm during kvm_vfio_destroy() is unnecessary (but again, I doubt this is
-> the case).
+Hi Dave and Daniel,
 
-IIRC the drivers are supposed to use one of the refcount not zero
-incrs to counteract this, but I never checked they do..
+here's the drm-misc-next PR for this week.
 
-Yi is working on a patch to change things so vfio drops the kvm
-pointer when the kvm file closes, not when the reference goes to 0
-to avoid a refcount cycle problem which should also solve that.
+Best regards
+Thomas
 
-> diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
-> index 6e8804fe0095..b3a84d65baa6 100644
-> --- a/drivers/vfio/vfio_main.c
-> +++ b/drivers/vfio/vfio_main.c
-> @@ -772,7 +772,12 @@ static struct file *vfio_device_open(struct vfio_device *device)
->  		 * reference and release it during close_device.
->  		 */
->  		mutex_lock(&device->group->group_lock);
-> -		device->kvm = device->group->kvm;
-> +
-> +		if (device->kvm_ops && device->group->kvm) {
-> +			ret = device->kvm_ops->get_kvm(device->group->kvm);
+drm-misc-next-2023-01-12:
+drm-misc-next for v6.3:
 
-At this point I'd rather just use the symbol get stuff like kvm does
-and call the proper functions.
+UAPI Changes:
 
-Jason
+ * fourcc: Document Open Source user waiver
+
+Cross-subsystem Changes:
+
+ * firmware: fix color-format selection for system framebuffers
+
+Core Changes:
+
+ * format-helper: Add conversion from XRGB8888 to various sysfb formats;
+   Make XRGB8888 the only driver-emulated legacy format
+
+ * fb-helper: Avoid blank consoles from selecting an incorrect color format
+
+ * probe-helper: Enable/disable HPD on connectors plus driver updates
+
+ * Use drm_dbg_ helpers in several places
+
+ * docs: Document defaults for CRTC backgrounds; Document use of drm_minor
+
+Driver Changes:
+
+ * arm/hdlcd: Use new debugfs helpers
+
+ * gud: Use new debugfs helpers
+
+ * panel: Support Visionox VTDR6130 AMOLED DSI; Support Himax HX8394; Convert
+   many drivers to common generic DSI write-sequence helper
+
+ * v3d: Do not opencode drm_gem_object_lookup()
+
+ * vc4: Various HVS an CRTC fixes
+
+ * vkms: Fix SEGFAULT from incorrect GEM-buffer mapping
+
+ * Convert various drivers to i2c probe_new()
+The following changes since commit 2591939e881cf728b6ac45971eeec2f58051c101:
+
+  drm/virtio: Spiff out cmd queue/response traces (2023-01-02 17:51:27 +0300)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2023-01-12
+
+for you to fetch changes up to 6e41acd2e5353c5362e0d5c2f5ba495c54ff555e:
+
+  drm/vkms: reintroduce prepare_fb and cleanup_fb functions (2023-01-12 09:46:19 -0100)
+
+----------------------------------------------------------------
+drm-misc-next for v6.3:
+
+UAPI Changes:
+
+ * fourcc: Document Open Source user waiver
+
+Cross-subsystem Changes:
+
+ * firmware: fix color-format selection for system framebuffers
+
+Core Changes:
+
+ * format-helper: Add conversion from XRGB8888 to various sysfb formats;
+   Make XRGB8888 the only driver-emulated legacy format
+
+ * fb-helper: Avoid blank consoles from selecting an incorrect color format
+
+ * probe-helper: Enable/disable HPD on connectors plus driver updates
+
+ * Use drm_dbg_ helpers in several places
+
+ * docs: Document defaults for CRTC backgrounds; Document use of drm_minor
+
+Driver Changes:
+
+ * arm/hdlcd: Use new debugfs helpers
+
+ * gud: Use new debugfs helpers
+
+ * panel: Support Visionox VTDR6130 AMOLED DSI; Support Himax HX8394; Convert
+   many drivers to common generic DSI write-sequence helper
+
+ * v3d: Do not opencode drm_gem_object_lookup()
+
+ * vc4: Various HVS an CRTC fixes
+
+ * vkms: Fix SEGFAULT from incorrect GEM-buffer mapping
+
+ * Convert various drivers to i2c probe_new()
+
+----------------------------------------------------------------
+Abel Vesa (2):
+      drm/panel-edp: fix name for IVO product id 854b
+      drm/panel-edp: add IVO M133NW4J panel entry
+
+Daniel Vetter (2):
+      drm/fourcc: Document open source user waiver
+      drm: document better that drivers shouldn't use drm_minor directly
+
+Dave Stevenson (12):
+      drm/vc4: hvs: Configure the HVS COB allocations
+      drm/vc4: hvs: Set AXI panic modes
+      drm/vc4: hvs: SCALER_DISPBKGND_AUTOHS is only valid on HVS4
+      drm/vc4: hvs: Correct interrupt masking bit assignment for HVS5
+      drm/vc4: hvs: Support zpos on all planes
+      drm/vc4: hvs: Fix colour order for xRGB1555 on HVS5
+      drm/vc4: hvs: Add DRM 210101010 RGB formats
+      drm/vc4: plane: Allow using 0 as a pixel order value
+      drm/vc4: plane: Omit pixel_order from the hvs_format for hvs5 only formats
+      drm/vc4: plane: Add 3:3:2 and 4:4:4:4 RGB/RGBX/RGBA formats
+      drm/vc4: Add comments for which HVS_PIXEL_ORDER_xxx defines apply
+      drm/vc4: hdmi: Correct interlaced timings again
+
+Dmitry Baryshkov (7):
+      drm/poll-helper: merge drm_kms_helper_poll_disable() and _fini()
+      drm/probe-helper: enable and disable HPD on connectors
+      drm/bridge_connector: rely on drm_kms_helper_poll_* for HPD enablement
+      drm/imx/dcss: stop using drm_bridge_connector_en/disable_hpd()
+      drm/msm/hdmi: stop using drm_bridge_connector_en/disable_hpd()
+      drm/omap: stop using drm_bridge_connector_en/disable_hpd()
+      drm/bridge_connector: drop drm_bridge_connector_en/disable_hpd()
+
+Javier Martinez Canillas (17):
+      drm/mipi-dsi: Fix mipi_dsi_dcs_write_seq() macro definition format
+      drm/mipi-dsi: Add a mipi_dsi_dcs_write_seq() macro
+      dt-bindings: display: Add Himax HX8394 panel controller
+      MAINTAINERS: Add entry for Himax HX8394 panel controller driver
+      drm/panel-asus-z00t-tm5p5-n35596: Drop custom DSI write macros
+      drm/panel-sitronix-st7703: Drop custom DSI write macros
+      drm/panel-leadtek-ltk050h3146w: Drop custom DSI write macro
+      drm/panel-elida-kd35t133: Drop custom DSI write macro
+      drm/panel-boe-bf060y8m-aj0: Drop custom DSI write macro
+      drm/panel-novatek-nt35950: Drop custom DSI write macro
+      drm/panel-jdi-fhd-r63452: Drop custom DSI write macros
+      drm/panel-samsung-s6e88a0-ams452ef01: Drop custom DSI write macro
+      drm/panel-samsung-sofef00: Drop custom DSI write macro
+      drm/panel-sharp-ls060t1sx01: Drop custom DSI write macro
+      drm/panel-mantix-mlaf057we51: Drop custom DSI write macro
+      drm/panel-sony-tulip-truly-nt35521: Drop custom DSI write macro
+      drm/panel-xinpeng-xpp055c272: Drop custom DSI write macro
+
+Kamil Trzciński (1):
+      drm: panel: Add Himax HX8394 panel controller driver
+
+Marek Szyprowski (1):
+      drm/meson: dw-hdmi: Fix devm_regulator_*get_enable*() conversion
+
+Mateusz Kwiatkowski (2):
+      drm/vc4: crtc: Fix timings for VEC modes
+      drm/vc4: vec: Support progressive modes
+
+Maxime Ripard (2):
+      drm/bridge: panel: Prevent ERR_PTR Dereference
+      drm/vc4: hvs: Ignore atomic_flush if we're disabled
+
+Maíra Canal (6):
+      drm/v3d: replace open-coded implementation of drm_gem_object_lookup
+      drm/gud: use new debugfs device-centered functions
+      drm/arm/hdlcd: use new debugfs device-centered functions
+      drm/debugfs: use octal permissions instead of symbolic permissions
+      drm/debugfs: add descriptions to struct parameters
+      drm/vkms: reintroduce prepare_fb and cleanup_fb functions
+
+Neil Armstrong (2):
+      dt-bindings: display: panel: document the Visionox VTDR6130 AMOLED DSI Panel
+      drm/panel: add visionox vtdr6130 DSI panel driver
+
+Sean Paul (1):
+      drm/docs: Explicitly document default CRTC background behavior
+
+Siddh Raman Pant (3):
+      drm: Remove usage of deprecated DRM_DEBUG_PRIME
+      drm/drm_blend: Remove usage of deprecated DRM_DEBUG_ATOMIC
+      drm/drm_lease: Remove usage of deprecated DRM_DEBUG_LEASE
+
+Simon Ser (1):
+      doc: add dma-buf IOCTL code to table
+
+Thomas Zimmermann (14):
+      firmware/sysfb: Fix EFI/VESA format selection
+      drm/format-helper: Comment on RGB888 byte order
+      drm/format-helper: Fix test-input format conversion
+      drm/format-helper: Store RGB565 in little-endian order
+      drm/format-helper: Type fixes in format-helper tests
+      drm/format-helper: Flip src/dst-format branches in blit helper
+      drm/format-helper: Add conversion from XRGB8888 to ARGB8888
+      drm/format-helper: Add conversion from XRGB8888 to ARGB2101010
+      drm/format-helper: Add conversion from XRGB8888 to 15-bit RGB555 formats
+      drm/fh-helper: Split fbdev single-probe helper
+      drm/fb-helper: Fix single-probe color-format selection
+      drm/format-helper: Simplify drm_fb_build_fourcc_list()
+      drm/format-helper: Remove unnecessary conversion helpers
+      drm/fb-helper: Replace bpp/depth parameter by color mode
+
+Tvrtko Ursulin (1):
+      drm: Replace DRM_DEBUG with drm_dbg_core in file and ioctl handling
+
+Uwe Kleine-König (12):
+      drm/mxsfb: improve clk handling for axi clk
+      drm/i2c/ch7006: Convert to i2c's .probe_new()
+      drm/i2c/sil164: Convert to i2c's .probe_new()
+      drm/i2c/tda9950: Convert to i2c's .probe_new()
+      drm/i2c/tda998x: Convert to i2c's .probe_new()
+      drm/panel: olimex-lcd-olinuxino: Convert to i2c's .probe_new()
+      drm/panel: raspberrypi-touchscreen: Convert to i2c's .probe_new()
+      drm: Only select I2C_ALGOBIT for drivers that actually need it
+      MAINTAINERS: drm/hisilicon: Drop Chen Feng
+      drm/vc4: dsi: Drop unused i2c include
+      drm/imx/dcss: Drop if blocks with always false condition
+      drm/imx/dcss: Don't call dev_set_drvdata(..., NULL);
+
+ .../bindings/display/panel/himax,hx8394.yaml       |  76 ++++
+ .../bindings/display/panel/visionox,vtdr6130.yaml  |  53 +++
+ Documentation/userspace-api/ioctl/ioctl-number.rst |   1 +
+ MAINTAINERS                                        |   9 +-
+ drivers/firmware/sysfb_simplefb.c                  |  43 +-
+ drivers/gpu/drm/Kconfig                            |   1 -
+ drivers/gpu/drm/amd/amdgpu/Kconfig                 |   2 +
+ drivers/gpu/drm/arm/hdlcd_drv.c                    |  24 +-
+ drivers/gpu/drm/ast/Kconfig                        |   2 +
+ drivers/gpu/drm/bridge/panel.c                     |   9 +-
+ drivers/gpu/drm/drm_blend.c                        |  13 +-
+ drivers/gpu/drm/drm_bridge_connector.c             |  27 +-
+ drivers/gpu/drm/drm_debugfs.c                      |  12 +-
+ drivers/gpu/drm/drm_fb_helper.c                    | 256 +++++++-----
+ drivers/gpu/drm/drm_file.c                         |  18 +-
+ drivers/gpu/drm/drm_format_helper.c                | 462 +++++++++++++++------
+ drivers/gpu/drm/drm_gem_dma_helper.c               |   4 +-
+ drivers/gpu/drm/drm_gem_shmem_helper.c             |   2 +-
+ drivers/gpu/drm/drm_ioc32.c                        |  13 +-
+ drivers/gpu/drm/drm_ioctl.c                        |  25 +-
+ drivers/gpu/drm/drm_lease.c                        |  64 +--
+ drivers/gpu/drm/drm_plane.c                        |   5 +
+ drivers/gpu/drm/drm_probe_helper.c                 |  40 +-
+ drivers/gpu/drm/gma500/Kconfig                     |   2 +
+ drivers/gpu/drm/gud/gud_drv.c                      |  17 +-
+ drivers/gpu/drm/hisilicon/hibmc/Kconfig            |   2 +
+ drivers/gpu/drm/i2c/ch7006_drv.c                   |   4 +-
+ drivers/gpu/drm/i2c/sil164_drv.c                   |   4 +-
+ drivers/gpu/drm/i2c/tda9950.c                      |   5 +-
+ drivers/gpu/drm/i2c/tda998x_drv.c                  |   4 +-
+ drivers/gpu/drm/i915/Kconfig                       |   2 +
+ drivers/gpu/drm/imx/dcss/dcss-dev.c                |   6 -
+ drivers/gpu/drm/imx/dcss/dcss-drv.c                |   7 -
+ drivers/gpu/drm/imx/dcss/dcss-kms.c                |   2 -
+ drivers/gpu/drm/meson/meson_dw_hdmi.c              |   2 +-
+ drivers/gpu/drm/mgag200/Kconfig                    |   2 +
+ drivers/gpu/drm/msm/hdmi/hdmi.c                    |   2 -
+ drivers/gpu/drm/mxsfb/mxsfb_drv.c                  |  10 +-
+ drivers/gpu/drm/nouveau/Kconfig                    |   2 +
+ drivers/gpu/drm/omapdrm/omap_drv.c                 |  41 --
+ drivers/gpu/drm/panel/Kconfig                      |  20 +
+ drivers/gpu/drm/panel/Makefile                     |   2 +
+ .../gpu/drm/panel/panel-asus-z00t-tm5p5-n35596.c   |  96 ++---
+ drivers/gpu/drm/panel/panel-boe-bf060y8m-aj0.c     |  42 +-
+ drivers/gpu/drm/panel/panel-edp.c                  |   3 +-
+ drivers/gpu/drm/panel/panel-elida-kd35t133.c       |  46 +-
+ drivers/gpu/drm/panel/panel-himax-hx8394.c         | 451 ++++++++++++++++++++
+ drivers/gpu/drm/panel/panel-jdi-fhd-r63452.c       |  58 +--
+ drivers/gpu/drm/panel/panel-leadtek-ltk050h3146w.c | 106 +++--
+ drivers/gpu/drm/panel/panel-mantix-mlaf057we51.c   |  24 +-
+ drivers/gpu/drm/panel/panel-novatek-nt35950.c      |  14 +-
+ drivers/gpu/drm/panel/panel-olimex-lcd-olinuxino.c |   5 +-
+ .../gpu/drm/panel/panel-raspberrypi-touchscreen.c  |   5 +-
+ .../drm/panel/panel-samsung-s6e88a0-ams452ef01.c   |  44 +-
+ drivers/gpu/drm/panel/panel-samsung-sofef00.c      |  24 +-
+ drivers/gpu/drm/panel/panel-sharp-ls060t1sx01.c    |  19 +-
+ drivers/gpu/drm/panel/panel-sitronix-st7703.c      | 341 ++++++++-------
+ .../gpu/drm/panel/panel-sony-tulip-truly-nt35521.c | 398 +++++++++---------
+ drivers/gpu/drm/panel/panel-visionox-vtdr6130.c    | 358 ++++++++++++++++
+ drivers/gpu/drm/panel/panel-xinpeng-xpp055c272.c   | 112 +++--
+ drivers/gpu/drm/radeon/Kconfig                     |   2 +
+ drivers/gpu/drm/tests/drm_format_helper_test.c     | 386 ++++++++++++++++-
+ drivers/gpu/drm/tiny/ofdrm.c                       |  27 +-
+ drivers/gpu/drm/tiny/simpledrm.c                   |  28 +-
+ drivers/gpu/drm/v3d/v3d_gem.c                      |   7 +-
+ drivers/gpu/drm/vc4/vc4_crtc.c                     |  71 ++--
+ drivers/gpu/drm/vc4/vc4_dsi.c                      |   1 -
+ drivers/gpu/drm/vc4/vc4_hdmi.c                     |   5 +-
+ drivers/gpu/drm/vc4/vc4_hvs.c                      | 175 ++++++--
+ drivers/gpu/drm/vc4/vc4_kms.c                      |   1 +
+ drivers/gpu/drm/vc4/vc4_plane.c                    | 139 ++++++-
+ drivers/gpu/drm/vc4/vc4_regs.h                     |  20 +-
+ drivers/gpu/drm/vc4/vc4_vec.c                      |   4 +-
+ drivers/gpu/drm/vkms/vkms_plane.c                  |  36 +-
+ include/drm/drm_bridge_connector.h                 |   2 -
+ include/drm/drm_debugfs.h                          |  18 +
+ include/drm/drm_device.h                           |  17 +-
+ include/drm/drm_format_helper.h                    |  16 +-
+ include/drm/drm_mipi_dsi.h                         |  39 +-
+ include/drm/drm_modeset_helper_vtables.h           |  22 +
+ include/uapi/drm/drm_fourcc.h                      |  12 +
+ 81 files changed, 3120 insertions(+), 1351 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/panel/visionox,vtdr6130.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-himax-hx8394.c
+ create mode 100644 drivers/gpu/drm/panel/panel-visionox-vtdr6130.c
+
+-- 
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 Nürnberg, Germany
+(HRB 36809, AG Nürnberg)
+Geschäftsführer: Felix Imendörffer
