@@ -1,45 +1,74 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 276A56679FB
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jan 2023 16:57:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC3D7667A56
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jan 2023 17:07:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E34E10E1AC;
-	Thu, 12 Jan 2023 15:57:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23B9010E2EA;
+	Thu, 12 Jan 2023 16:07:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 080FC10E1A2;
- Thu, 12 Jan 2023 15:57:01 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 2BBAA62084;
- Thu, 12 Jan 2023 15:57:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE2EBC433F0;
- Thu, 12 Jan 2023 15:56:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1673539019;
- bh=jVnUX1HGL2gh5Pn/FhhNok6HWG0zem3mXf+tFOv4oTo=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=PsM6lFByFZNcJejpqXWxQ75oEuqp47dI16BAXhtaV4bMK8m0zTc57+HOqw8A+Q6gg
- 009T5f+JKmgNaj3O8RJ3a8bT5xdCwqCoANeIvSkhbTiAugRd4qlwZoeibQwDfTCSOo
- KrByOMAJdLwSr+JPfsiY0JmEU7u3QdOqFJ0T3nl+4U+0lATl02LC0tai9IuVzjickU
- qFAZ2kloCjPf1MwMpRJJQ1tlgVq7TYrxACs9af/t4WfIL0NEfrNxJU8Zt2Y4y/Z3FX
- 2ZsmP/C0LDUzgOaQdpvRkox9ItTl5HyZrCqI9UQ8Ok8Ox48EwvAgmuQWstQnbAUjyz
- Bsdofl/i76t0A==
-Date: Thu, 12 Jan 2023 08:56:57 -0700
-From: Nathan Chancellor <nathan@kernel.org>
-To: Jocelyn Falempe <jfalempe@redhat.com>
-Message-ID: <Y8Atycuni0bl8std@dev-arch.thelio-3990X>
-References: <20221013205909.1282545-1-nathan@kernel.org>
- <4dcf830e-62a5-837b-7590-ac5395f84c14@redhat.com>
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com
+ [IPv6:2a00:1450:4864:20::62b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0E1810E2E9;
+ Thu, 12 Jan 2023 16:07:16 +0000 (UTC)
+Received: by mail-ej1-x62b.google.com with SMTP id ss4so38646241ejb.11;
+ Thu, 12 Jan 2023 08:07:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=dHV7iLVeEoxWcipV4xBlnEzvxV/elyHUJdIwSKoRHCg=;
+ b=h85fndVH6GssjgjD1EWJSAtGtoNvTRWquDg+XjFznz4IZV+0QhrcxclYxBoWih+CRy
+ Ji9E72NYMSlxyZ9Rf709uPyvP91NM5m3yjPTuQJF+qdrJpkIaj0J6XSvLuMczeB/6ZKv
+ tLbq7W3yLsG+DPfFRiBAECEgkqj2RCjGxb+j4aFEMlstdg1L1F3DVVEIWd+QsqI9YJVo
+ Jp40O+GLjNxRFFLc9K6fGHnCdL+Wp/zBL8AZcevEYnU/XLZf0PN9kvsNW5e4mI2LIdDc
+ aHqpMus6UfZxJSG4vkc7y/XgLLbZ2U02WebPU4vNXKjZK2ka4B+tUHLGPojh+UVFQNk+
+ w/vA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=dHV7iLVeEoxWcipV4xBlnEzvxV/elyHUJdIwSKoRHCg=;
+ b=uC8SD5FcdAr/14wEROKvksNjMdlgiTTZxA2zmC8XA8XskWMf8OJz42pvh2HvfjwmOh
+ QK3/QhrVh238FgE0P8+q5e+KTMdQXEx9Rzfxztu5193BhfX6Wx1D7vhIrH/ga3MnBXDj
+ LGnTC4Mk6tqwPdh/3Y6CWkO5DsRv9yuvscSdn7avQdjLTvNcyeLr++rB9R6SYPENUnfX
+ ICaMZL27QuG1EHfpBp8sQVLvixQI62x63zALYieQO8dRKV8s0MJQOTpdxczgdvvjj8En
+ /9OSbYDMQqxHlOVvP8YqUpKR44TwV3H7as4h+zSNPID6pBA9iN5QACwnI6n7hIxDa2XX
+ AKnQ==
+X-Gm-Message-State: AFqh2krU0N88gnldnQU98KGQHS74ZRwUUswstxO+IVnSZeXHOJjYLIgR
+ e318IPa/unvdi3l9gJDjkSp0sMu2bJM=
+X-Google-Smtp-Source: AMrXdXsAfvAtKhbGTzhtKdbl+CkInA9t1c+F9Co0spmc/7dopbDjpA8hDeZKuBhwMS6vOKEuFKCoSw==
+X-Received: by 2002:a17:907:c208:b0:84c:e73c:d224 with SMTP id
+ ti8-20020a170907c20800b0084ce73cd224mr28084242ejc.10.1673539635353; 
+ Thu, 12 Jan 2023 08:07:15 -0800 (PST)
+Received: from ?IPV6:2a02:908:1256:79a0:55ec:58c:e8ab:e871?
+ ([2a02:908:1256:79a0:55ec:58c:e8ab:e871])
+ by smtp.gmail.com with ESMTPSA id
+ u10-20020a1709061daa00b0084cc87c03ebsm7537589ejh.110.2023.01.12.08.07.14
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 12 Jan 2023 08:07:14 -0800 (PST)
+Message-ID: <c5630980-283c-a1af-ecde-57433cb86a9d@gmail.com>
+Date: Thu, 12 Jan 2023 17:07:12 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4dcf830e-62a5-837b-7590-ac5395f84c14@redhat.com>
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Fix CFI violations in gt_sysfs
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Content-Language: en-US
+To: Matthew Auld <matthew.william.auld@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>
+References: <20230111114256.72669-1-christian.koenig@amd.com>
+ <20230111114256.72669-2-christian.koenig@amd.com>
+ <CAM0jSHP=LT5mXEFvXWJGPOotgRBBLFe-Pw=4TTHYWo=Maov_uA@mail.gmail.com>
+ <2b68945e-4001-db29-4421-f1a7266f0d69@gmail.com>
+ <CAM0jSHOEXiQj-9160deCA-AxDjbUUrwYDUit9=yzPCcdLp_Wwg@mail.gmail.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <CAM0jSHOEXiQj-9160deCA-AxDjbUUrwYDUit9=yzPCcdLp_Wwg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/ttm: replace busy placement with
+ flags
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,36 +81,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: llvm@lists.linux.dev, Kees Cook <keescook@chromium.org>,
- Tom Rix <trix@redhat.com>, intel-gfx@lists.freedesktop.org,
- Nick Desaulniers <ndesaulniers@google.com>, patches@lists.linux.dev,
- Sami Tolvanen <samitolvanen@google.com>, dri-devel@lists.freedesktop.org,
- Andrzej Hajda <andrzej.hajda@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jocelyn,
+Am 11.01.23 um 16:18 schrieb Matthew Auld:
+> [SNIP]
+>> Currently "dim rebuild-tip" doesn't work for me because of a conflict in
+>> i915_gem_execbuffer.c
+> Seems to be working now.
 
-On Thu, Jan 12, 2023 at 11:08:17AM +0100, Jocelyn Falempe wrote:
-> This patch does also solve a kernel crash when reading
-> /sys/class/drm/card1/gt/gt0/* on a skylake machine:
-> https://bugzilla.redhat.com/show_bug.cgi?id=2154880
+Nope. When I do a fresh install with "drm setup" in a different working 
+directly I run into exactly this problem again.
 
-Interesting, I wonder what aspect of this patch fixes this because I am
-not sure that is an intended consequence of this change but that is
-still good to hear!
+On a different system "drm rebuild-tip" runs perfectly fine, so my 
+educated guess is that some conflict resolution isn't applied on some 
+systems.
 
-For the record, this is commit a8a4f0467d70 ("drm/i915: Fix CFI
-violations in gt_sysfs") in mainline.
+I've seen this phenomena couple of times with drm-tip now, but can't 
+really make sense what's going wrong here. Daniel any idea?
 
-> Do you think it can be backported to stable releases ?
-> Conflicts are trivial on top of v6.0 at least.
+Christian.
 
-I had a report from another user of this crash affecting them with kCFI
-so it is on my TODO to backport it to 6.1 (6.0 just went EOL) but I am
-currently out of the office until next Wednesday so I won't be able to
-get to it until then (as I would like to test the backport on affected
-hardware). If someone wants to beat me to it, I won't complain ;)
+>
+>> Any idea how to fix this?
+>>
+>> Thanks,
+>> Christian.
+>>
+>>
+>>> [1] https://patchwork.freedesktop.org/project/intel-gfx-trybot/series/?ordering=-last_updated
 
-Cheers,
-Nathan
