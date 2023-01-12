@@ -1,33 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 101C96678A1
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jan 2023 16:08:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 106DE6678DB
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jan 2023 16:15:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06BDF10E8FA;
-	Thu, 12 Jan 2023 15:08:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B238F10E8FA;
+	Thu, 12 Jan 2023 15:15:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id EEBF410E8FA;
- Thu, 12 Jan 2023 15:08:16 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E86DCAADE3;
- Thu, 12 Jan 2023 15:08:16 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3627089182713261711=="
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EC6C10E8FA;
+ Thu, 12 Jan 2023 15:15:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1673536545; x=1705072545;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=CaqwCJk0BxQLF8PV6fkvnGQ7MUPP8D7L+hjQRSEkPys=;
+ b=lGdR43SlwUpjpD8XieB7z/eOW0MPFaJmWf5nPh47qe0zbNDq53gsflhb
+ u4UYpYY3tnafPH373ZyDHPPfDlO0mybCa8I8pg+MFkkFQdQwZVKRd2CcR
+ nRtp6Ng+xQorQ7eX/3OW+yZIB34Cn1zqLCB+IYkBhnUHK+/JPGjhe2UZg
+ eDYvDwWX7JsguET1J279shzJXwJ0jciUvfwUsg8X9h9e3sp6MsK2gtTpB
+ mZhJ0pgT7tS3p9qoon5aWhtCr2Ta5eK6HG8EtM/muSS5qJ66itbUXrXWD
+ IzrLoGywZOq4va5e9g3DF5+NEVsLKPnQZ4Q8hJQPH+873YtvjzWMQLCJ+ w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="409964149"
+X-IronPort-AV: E=Sophos;i="5.97,211,1669104000"; d="scan'208";a="409964149"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2023 07:15:44 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="688354477"
+X-IronPort-AV: E=Sophos;i="5.97,211,1669104000"; d="scan'208";a="688354477"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
+ by orsmga008.jf.intel.com with SMTP; 12 Jan 2023 07:15:37 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 12 Jan 2023 17:15:36 +0200
+Date: Thu, 12 Jan 2023 17:15:36 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: =?iso-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>
+Message-ID: <Y8AkGO/N2z2/XsEz@intel.com>
+References: <20230109105807.18172-1-mcanal@igalia.com>
+ <20230109105807.18172-4-mcanal@igalia.com>
+ <Y8AAdW2y7zN7DCUZ@intel.com>
+ <345279ff-680a-52ac-73ed-29e2ab84f0ae@igalia.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arunpravin Paneer Selvam" <arunpravin.paneerselvam@amd.com>
-Date: Thu, 12 Jan 2023 15:08:16 -0000
-Message-ID: <167353609692.2071.14414668222841969660@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230112120027.3072-1-Arunpravin.PaneerSelvam@amd.com>
-In-Reply-To: <20230112120027.3072-1-Arunpravin.PaneerSelvam@amd.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?=3A_Optimize_drm_buddy_top-down_allocation_method?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <345279ff-680a-52ac-73ed-29e2ab84f0ae@igalia.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 3/5] drm/i915: Remove redundant framebuffer
+ format check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,196 +64,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+ =?iso-8859-1?Q?Andr=E9?= Almeida <andrealmeid@igalia.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Simon Ser <contact@emersion.fr>,
+ intel-gfx@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
+ Melissa Wen <mwen@igalia.com>,
+ VMware Graphics Reviewers <linux-graphics-maintainer@vmware.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Zack Rusin <zackr@vmware.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3627089182713261711==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Jan 12, 2023 at 11:07:59AM -0300, Maíra Canal wrote:
+> Hi,
+> 
+> On 1/12/23 09:43, Ville Syrjälä wrote:
+> > On Mon, Jan 09, 2023 at 07:58:06AM -0300, Maíra Canal wrote:
+> >> Now that framebuffer_check() verifies that the format is properly
+> >> supported, there is no need to check it again on i915's inside
+> >> helpers.
+> >>
+> >> Therefore, remove the redundant framebuffer format check from the
+> >> intel_framebuffer_init() function, letting framebuffer_check()
+> >> perform the framebuffer validation.
+> >>
+> >> Signed-off-by: Maíra Canal <mcanal@igalia.com>
+> >> ---
+> >>   drivers/gpu/drm/i915/display/intel_fb.c | 9 ---------
+> >>   1 file changed, 9 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+> >> index 63137ae5ab21..230b729e42d6 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> >> @@ -1914,15 +1914,6 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+> >>   		}
+> >>   	}
+> >>   
+> >> -	if (!drm_any_plane_has_format(&dev_priv->drm,
+> >> -				      mode_cmd->pixel_format,
+> >> -				      mode_cmd->modifier[0])) {
+> >> -		drm_dbg_kms(&dev_priv->drm,
+> >> -			    "unsupported pixel format %p4cc / modifier 0x%llx\n",
+> >> -			    &mode_cmd->pixel_format, mode_cmd->modifier[0]);
+> >> -		goto err;
+> >> -	}
+> >> -
+> > 
+> > This doesn't work for the legacy tiling->modifier path.
+> 
+> Do you have any idea on how we could remove drm_any_plane_has_format() from
+> i915? Or is it strictly necessary to validate the modifier in the legacy
+> path?
 
-== Series Details ==
+I guess techinically we could skip it by knowing that X-tile is always
+supported. However that may not hold in the future so not a soution I
+really like. Also the drm_any_plane_has_format() call from 
+framebuffer_check() is too early, so instead of checking X-tile
+vs. linear based on the tiling it's going to always assume linear.
 
-Series: drm: Optimize drm buddy top-down allocation method
-URL   : https://patchwork.freedesktop.org/series/112733/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_12576 -> Patchwork_112733v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112733v1/index.html
-
-Participating hosts (36 -> 34)
-------------------------------
-
-  Missing    (2): fi-rkl-11600 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_112733v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
-    - fi-rkl-guc:         NOTRUN -> [SKIP][1] ([i915#7828])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112733v1/fi-rkl-guc/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - fi-snb-2600:        NOTRUN -> [SKIP][2] ([fdo#109271])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112733v1/fi-snb-2600/igt@kms_setmode@basic-clone-single-crtc.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-kbl-soraka:      [INCOMPLETE][3] ([i915#7156]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12576/fi-kbl-soraka/igt@i915_selftest@live@execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112733v1/fi-kbl-soraka/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [DMESG-FAIL][5] ([i915#5334]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12576/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112733v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@workarounds:
-    - fi-rkl-guc:         [INCOMPLETE][7] ([i915#4983]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12576/fi-rkl-guc/igt@i915_selftest@live@workarounds.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112733v1/fi-rkl-guc/igt@i915_selftest@live@workarounds.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#7156]: https://gitlab.freedesktop.org/drm/intel/issues/7156
-  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12576 -> Patchwork_112733v1
-
-  CI-20190529: 20190529
-  CI_DRM_12576: accda9eafe3172c182e3a0fb3eec2c99d8966f86 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7117: 67669415954a763e2d1aa1bed6ef3786c0d17807 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_112733v1: accda9eafe3172c182e3a0fb3eec2c99d8966f86 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-8876056a9cf8 drm: Optimize drm buddy top-down allocation method
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112733v1/index.html
-
---===============3627089182713261711==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm: Optimize drm buddy top-down allocation method</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/112733/">https://patchwork.freedesktop.org/series/112733/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112733v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112733v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12576 -&gt; Patchwork_112733v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112733v1/index.html</p>
-<h2>Participating hosts (36 -&gt; 34)</h2>
-<p>Missing    (2): fi-rkl-11600 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_112733v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112733v1/fi-rkl-guc/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112733v1/fi-snb-2600/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12576/fi-kbl-soraka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7156">i915#7156</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112733v1/fi-kbl-soraka/igt@i915_selftest@live@execlists.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12576/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112733v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12576/fi-rkl-guc/igt@i915_selftest@live@workarounds.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112733v1/fi-rkl-guc/igt@i915_selftest@live@workarounds.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12576 -&gt; Patchwork_112733v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12576: accda9eafe3172c182e3a0fb3eec2c99d8966f86 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7117: 67669415954a763e2d1aa1bed6ef3786c0d17807 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_112733v1: accda9eafe3172c182e3a0fb3eec2c99d8966f86 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>8876056a9cf8 drm: Optimize drm buddy top-down allocation method</p>
-
-</body>
-</html>
-
---===============3627089182713261711==--
+-- 
+Ville Syrjälä
+Intel
