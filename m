@@ -1,154 +1,139 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50084667C86
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jan 2023 18:28:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0C46667C8F
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jan 2023 18:33:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0F5510E316;
-	Thu, 12 Jan 2023 17:28:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 696EC10E30C;
+	Thu, 12 Jan 2023 17:33:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1090F10E313;
- Thu, 12 Jan 2023 17:28:33 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E22710E30C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Jan 2023 17:33:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673544513; x=1705080513;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=FkyNocVUsZCXsdDHXsb1cdf+K4Hv5y0cX91FrgZ4UKc=;
- b=MWJOEGh/sgQOBQ9YmQreodYiyN1MIVeejUUKjx0jGdaIdX0+eAUBfjlM
- op81COU5lh08maNtlP5LywPwVcrB1quIP7kQmOX0vycTNrRs/JQVku6QX
- k24i6F9Q/yrJ8r4ZpKtUFLoGevWfR5MR1KARZSa1c9lQFvbLFKCwXwMRy
- +GQKt4veI4pAFYtqJ/PNpg5yQqP00gyHYS4qCT1S3sPFBbmjSrIG4YR6R
- MNCInxRrhZ1iGbVoZup/pTmWyKN9bDNBApodcCYj6JPW9Ssw2eFZsYC7h
- hAczOiVu6GQ5XOV+YDGAOqREuqtXvhXP9SeoTskYkkBlCqKSBwEEAQavU g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="304147967"
-X-IronPort-AV: E=Sophos;i="5.97,211,1669104000"; d="scan'208";a="304147967"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2023 09:28:32 -0800
+ t=1673544788; x=1705080788;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=LyuG6Cp0Yha1NAzJGF9NVZAIi0zKVFsWLe94prauR60=;
+ b=Z8UZ8NPpsfWhYb0Ar4D/NiHdYtL0O048SRIPvRcEPKxpCGjBUaBI0CsP
+ Jmp71h5GpeZLUiqAhKQNpevIeTZ11XsYV8YsjymHrG3plh08qQ6iLF5h5
+ ldUiFiFKjgAkffEz+I+42dWtTSTCBK74SiVqVMtvC4mWLpxV8nfIAmZ25
+ cYSEza5U7Z3RbUsT1O2AX6FFObpBz0ly6LLQ+fW8qHJCZO7Y0Qp8el8Fy
+ Uu3LdMuxssH3RKipBfO+wXVOGgIRt481H3Fy+LAIN1va2LOgo3K4J41aT
+ 4ns8DgRwFvon9M8qBNSMuEnUYAC44F/dEc921nFUlo7fHjm27Cj5cciVb A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="386111568"
+X-IronPort-AV: E=Sophos;i="5.97,211,1669104000"; d="scan'208";a="386111568"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2023 09:32:58 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="651241284"
-X-IronPort-AV: E=Sophos;i="5.97,211,1669104000"; d="scan'208";a="651241284"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orsmga007.jf.intel.com with ESMTP; 12 Jan 2023 09:28:32 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Thu, 12 Jan 2023 09:28:31 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="657897234"
+X-IronPort-AV: E=Sophos;i="5.97,211,1669104000"; d="scan'208";a="657897234"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga002.jf.intel.com with ESMTP; 12 Jan 2023 09:32:58 -0800
 Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Thu, 12 Jan 2023 09:28:31 -0800
+ 15.1.2507.16; Thu, 12 Jan 2023 09:32:57 -0800
 Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Thu, 12 Jan 2023 09:28:31 -0800
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.40) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.16 via Frontend Transport; Thu, 12 Jan 2023 09:32:57 -0800
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.175)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Thu, 12 Jan 2023 09:28:31 -0800
+ 15.1.2507.16; Thu, 12 Jan 2023 09:32:57 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JMBFmlVbcNgYOWPTb8mSJZpgQ8AKarnYAkgIEkfSmkf32AWdNGQbnS1CuL4VtHXr5qv51859z67itTwGrTUkHEU0EoufF6A2OykNc8XF4dS1BQDqPr9eb0cQP9EFrFkZehjdwT15eBsfJf5gGKCKx4yT+Srq/x9CgrCKhMb2XnzmABSPmYiy+K+hnsiM7PqI1IvLKHQP5MEt+HKUIFFrqkcfpDNcxfKhn9xKxKYZyxHbHbffyCRjSJCwYdCQMhg1nX3W0l0npJ7X0HDpg7kDubzBO7xrKb20QZfLn3bLiRpGdXdz4G9dyPuNzameHDW/gbH7Wh+Mf8uL7fL3JbGRfQ==
+ b=KwlxKnNshb0zRx8uBhmcvilj/5UmQE8M/9oKCWVlj0BZj/aRNHXEpfvKavv4SggcVUkg3rXFJqeSVSm2Pb9gS9ojwpj3JKKuFAwR6ONBgVhQFbOIwW2jIW4SX3LjSVjRZiXx6JzbOX5EJOec7T4xFhDX8N/aclFTam+GC1VEIAuq9YaMPcweUz03crl99C5KAYhZq1EN8bBvcXuOMRh1nRdi1d7p6Vnq6mO4DRYZ/JMV3nGfFOwSnlifgogDxBK1M+jRZE1CplqooEVi/M0u2ZiplhW1bx8ykgcR3TcNhV4rC96GJepK5jlpXpkjxlRnmgCLPu23NAuqIU1DFk+Z1A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ac6GLeFEaFlxmeQujZNLFvrdF26SweYLR34RGa/cNM8=;
- b=Kb6eGJarD+49zkEtSw6RP/BiFXFNXva4J9rkTB831zUuZagRjpvo0RxLvhURp75BR3TDgdxGE2CTeDy6RtEf9ATRZuseDjYQ2l4Yc0qCV6dBAheZLgSJ7fJ2bovcpr0vN4gjUkVl6BklqKX8K5Cg1QEajBAMn5hMS3WpLIs6JUnX465b8n+KekZjk5P0LidQjTczohxVizI/oN1sXM9l15XY8p959iv5dv8QvWZwpFfNyxI5RcYJclxjKbHAigmhfSWyRiYJv0NGo50o46phS+6sbItV0k7KWXitRCCNsM0jielekc5+LYCfBjbwwF2zVrEk6omqVOVUH0WuYGvmgQ==
+ bh=i7lRND9mME1TKHnvemiW68Y7tiQ5U5f/v8T2CGunqag=;
+ b=dzrGLVkh1woPR/9r0+KkTf9ZQSXNzaEz38e3CmTmipMOFNVqTlD74pSfa8bjTaFics1Jwk3xYq39+Wj0DbcwF71oQh/DW5dq2fJEPmXlOrNXpYSNv1g0/oUrVYU23nSSKOQlLI4FSCwy+Vmb9aitqFP3AcGnbs++/WSo2rmrxvMaUtv6wL0ajh2Qe7iCBYkY7R//4VnBupxs1NIWWuMU0RGA4xG+XbKXBzoRzqnpDyippXu0jpgM1ISbvdzQK3N+Dl9CF74W9wcGp0sbcwbj6DKWA6X/wMSKKrot/w2r5k4D2f3SOD/nHShH4FEHgWCoBFeqa4f7sD43hWmkW24ynQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5488.namprd11.prod.outlook.com (2603:10b6:5:39d::5) by
- BL3PR11MB6505.namprd11.prod.outlook.com (2603:10b6:208:38c::17) with
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
+ BL3PR11MB6529.namprd11.prod.outlook.com (2603:10b6:208:38c::19) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.18; Thu, 12 Jan
- 2023 17:28:29 +0000
-Received: from DM4PR11MB5488.namprd11.prod.outlook.com
- ([fe80::1209:b438:8e6b:509]) by DM4PR11MB5488.namprd11.prod.outlook.com
- ([fe80::1209:b438:8e6b:509%9]) with mapi id 15.20.5986.018; Thu, 12 Jan 2023
- 17:28:29 +0000
-Message-ID: <e4ff93f1-25ed-5476-e147-d70c93261615@intel.com>
-Date: Thu, 12 Jan 2023 09:28:25 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-To: Alan Previn <alan.previn.teres.alexis@intel.com>,
- <intel-gfx@lists.freedesktop.org>
-References: <20230112003706.950931-1-alan.previn.teres.alexis@intel.com>
- <20230112003706.950931-7-alan.previn.teres.alexis@intel.com>
-Content-Language: en-US
-From: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
-In-Reply-To: <20230112003706.950931-7-alan.previn.teres.alexis@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0P220CA0027.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:a03:41b::18) To DM4PR11MB5488.namprd11.prod.outlook.com
- (2603:10b6:5:39d::5)
+ 2023 17:32:55 +0000
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::68d0:f8e0:eaf3:982e]) by DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::68d0:f8e0:eaf3:982e%9]) with mapi id 15.20.5986.018; Thu, 12 Jan 2023
+ 17:32:55 +0000
+Date: Thu, 12 Jan 2023 09:32:51 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <Y8BEQwBtn305YBzj@mdroper-desk1.amr.corp.intel.com>
+References: <20230112092758.539070-1-chaitanya.kumar.borah@intel.com>
+ <20230112092758.539070-2-chaitanya.kumar.borah@intel.com>
+ <87zgaof20f.fsf@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <87zgaof20f.fsf@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0198.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c3::23) To DS7PR11MB7859.namprd11.prod.outlook.com
+ (2603:10b6:8:da::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5488:EE_|BL3PR11MB6505:EE_
-X-MS-Office365-Filtering-Correlation-Id: 859a83ef-48b5-40c8-d685-08daf4c26b50
+X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|BL3PR11MB6529:EE_
+X-MS-Office365-Filtering-Correlation-Id: 63a75d7a-f6a7-4658-8a74-08daf4c30996
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: iVFJW1zO4cUcx3JVMFz9gkBcM+1Tl3/hveJUflH2kHO6PZGkGE8c0hMgNl2yy+IzYaV0avZmdKpkWuUy1DahqOr4ay7Z3M1QKcOVX+11eaijT9zyppmdmPirNL/MEl9uGVtzkid06z9PJ5hDS2ovJdaGgFlZntMdoDy+cG6OWAgxQ4btRtOsO9YBQZDT0nZpNBP2U3bjBubQNgFz3K5O38dn/XJUSyT8KVffsu2YfpF0mLjrbZcXwJeVmcLEJsfux4zTptbU5L6inerdzlICfONHcPRFwdw0Nqt25UBNm3z3MXuxnzki/B6cblDRxyL2B7L7YJ2AZ/gYYpkF8dJzi9yxpOA4If+5u3saIbynGWs/kfwT/r9eb/jEmuDbKYunOk2VeF+pS9SQ/hD31G99mTGuBvDpcWxwmmVpB3ZRg+i2cOTx48SSXRpyWeCj0BL+K3mDQX7k6AHcbi6XXR/pvB36nhAgdN4MT/Ge1NxvVQu7VB+pbcmo4jK3hc0H7K++tMA6KPKs4VDfiGr65EwNM6LszXvCMIkAG+HeJKmj8W2obLIwhNtwIH0WpMMCrVAy7BpgC7vFevfezO6MoJ4aS48d2rMCAWHwqXwY+c027mLxRoLnxv4Ud7FSupl6VsVIWR1GE1FR/2P5wSbDsK625Al8q8OBJBu9NAm5PF+SI0MNvu9IMEcrJKh5kI1g0jr9pvtAdVPs5pu2pQBk7apFO7agfxaTyAgHjRKzxJ7z+D0=
+X-Microsoft-Antispam-Message-Info: 7x5jp+vj7Cuz2nnALmCoIhNJkiViyqp7gKFQjPXE+6V3v7UHXM5F4RUknmi+nqJ/Lwg9t+kyVB7wRfUH2EBEOGm/k98osJ13fRykYk6Tb3a54EhU7nwl+E/kksa5WrsxbH6QQ9J+eumfM4WUMMD8wWcJCdl1oybC6MAnrELS/wKvlgpmWOiDUg5+qEizAt//on4hti9XxLR4bFoVsxnSmyIteX5HhOr5lI3v05fj9LQhx2rjPBKfr4ptVtNr+ABL9lZuRdhn8rh0235NOE8TwIh2OObxZm8V8t7E1Mv8HEc76xyXOQk1sOXLzvEJdbWwRIQIqKe90om3eObp5fdav22b6E1FuE7XTV8IBLWIG+FDLA3bp3VTkz9oH1YvLxp4bI8jAdlLbwEgafqzt5ZFY7CBY41c4j2VsMjdCR6ZH9SGkD3Bz8E8LSwk1BxFE+ehxfdwW2PtXoejuaJo2hOnBCREpnhfDSGNdHNhbF2lCT7lP/lpAEUQgAhIWzP/pu7gfAncu3SkwHVR7Ho8d29VM4OlV1UsUnE8mkoN82c5eb1SWgX9ZzxGh1K7XuBfN+bPyBtH7lkrLb4GVytcT5oDBfaDU+Y/0xnI50nLVlmJZg4GvF1eHGPdm+lmGYyr516N7MV26vPb0TNd7yNOZ6Sf/g==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5488.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(396003)(366004)(136003)(39860400002)(346002)(376002)(451199015)(26005)(6666004)(36756003)(186003)(8936002)(53546011)(107886003)(6512007)(2616005)(31686004)(6486002)(6506007)(478600001)(66946007)(66556008)(5660300002)(66476007)(316002)(4326008)(31696002)(41300700001)(38100700002)(82960400001)(86362001)(54906003)(8676002)(83380400001)(2906002)(43740500002)(45980500001);
+ IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(396003)(366004)(136003)(39860400002)(346002)(376002)(451199015)(26005)(6666004)(6916009)(186003)(8936002)(6512007)(6486002)(6506007)(478600001)(66946007)(66556008)(5660300002)(66476007)(316002)(4326008)(41300700001)(38100700002)(82960400001)(86362001)(8676002)(83380400001)(2906002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bjlzLzZsMGpHdExNUVN5Mjl4d3I3ZkNWN3dmeko5RE8wbTkza3F2RW96Yk5I?=
- =?utf-8?B?YzFyMTk5VmMzY0FxNEt5RDBySUlISTFNQU9YbXlUa1FuUXk3VjBQemdzbmFN?=
- =?utf-8?B?SVl1S1JSdVdScTl2L2RLS3F3aURGK2tZSTNkS3Q1dmFWQ3lXME91djJXTGdQ?=
- =?utf-8?B?MHNDcXFTLzM0OGFOQTVxK3krRFNUSUJrYnIrdVU3N293STJFVVRNcjU1WnJC?=
- =?utf-8?B?Q0dPRngxaXRWZDhYZ0lNNlV2bDhPenRBUWFjTk9xVXFJQ2pTVTBQK2NZeDRS?=
- =?utf-8?B?ZUM1bjFYT2JjVXl6bmlrMHg0QjhpMVR1eVdhWndzZEVRN3I2YU1EM1k3NzE5?=
- =?utf-8?B?L0Z0VDBzcWtxSTVnQWorV3pNWUwrdW1VdGdPb2FCQW50S0x4REs5cWJUZW96?=
- =?utf-8?B?NWZnV3g4bTA3bHREOG1MUW1SUkUxR0FKazFkZC9qMGN2ZEpRaThuR052bUZU?=
- =?utf-8?B?YW9NLzkvUnJOaGQyYUpGNm9VR2hWMnJjRFN3YWV4dU96MW4vdUl0NWYyOXJ2?=
- =?utf-8?B?dnJMUEJwWlpRVk5meG1YMnJ4YkM2d0M1Vm1aemFMSVU2VFR2UTc5YWRWRW5R?=
- =?utf-8?B?OUcrYnYwS2IzcTJuZmFYczdxK0ZkQUpLQjlVOXJyemhQdHF6U3VWWjFNNU9C?=
- =?utf-8?B?OW0yYm9RQ0ZscnhQU3pTQURIWlNhMVJrQ3N6dUFyckV2dHh4MTlrNUF3UUVy?=
- =?utf-8?B?NlBPcTZXanU5Wk8xdnBVRVI2Yk15KzR6QlpENVpIVmRFMnVNNkMyRzJKajBv?=
- =?utf-8?B?RDczb2cvajVjL2w0ZGwwWjlyMHQ4RXhreUFsaXQ3aWwxVUxISFB6SGwrNjJ6?=
- =?utf-8?B?QmRUMFd0Uk5wdUpUcll1aVErbHVGSWhGdHhxZE5QdDRJalJlNGdVOVRKMHRV?=
- =?utf-8?B?VVVkUWI0WDZ1TkJJMmdpcUJMUzUvbW9zdldTZ01OdjlqdjJzUlBLekZTZEFX?=
- =?utf-8?B?VWZqL1BPL1BEaTJheGoyYnZqSVRaNHNrcGRLWmFrTS91a2lJbmZrQWE1dHRt?=
- =?utf-8?B?Tk5ObDBsV3lsUkZtSFdrY0I5cFlLUlAwTjAxcU5MUnhuVElUcExVaHdlS0py?=
- =?utf-8?B?eHg5QWk1Q1dKdVhhVDhKVzk3ZWNDaXRadmdqNFh6N3d4UGdxTHVCRGh3UnZ2?=
- =?utf-8?B?dURTMXZHYSs0ZTlrNDI0b2FtTWZaWC9vV3R5ekZFYlVkOVlnSWZyWXN2cXBp?=
- =?utf-8?B?dU0rSWVhdTBvZEVETWprcklZOEJueERuUk16d1RmYXBKZXJnMnpuRDJKWlpT?=
- =?utf-8?B?VEtIS3EwWjdobng5c1B2L2g4M2lSRzNiUUlUbFB1VmwyckJJSERsOEM2RnpZ?=
- =?utf-8?B?VHExcnlHR1pCUzBwQktWZHV6dy81NVd5Sk9GOGFKYkQ2M3J4NlhPYU9pdXAz?=
- =?utf-8?B?TEtPRWtzV1hPUTJXejkxTC9QMGovejBsTFgvVks3MG9IR1pGNk11cC9xQmkv?=
- =?utf-8?B?VFRXb3dyWTN1clBIMGg5TXI3TExLdkxhaUZUcG56WitZVUFlYXFEOUY0dXUw?=
- =?utf-8?B?MGNwM2p1QnJ6ajJYSjg4Z0g3VVZMRklsVldTNXVFUnlPQjRWMUV6ZDlVRk5l?=
- =?utf-8?B?ekc4ZGREeHlmT1FMQkloYjdmYlp5NVpkajJtZ3VsRGxscXNpTFYwV1BkYTZZ?=
- =?utf-8?B?NlEwRkJqTUtPTG5FRTlDQ0tsVHYxelNpck1IdlFLVW02RFV5N0VmSmpYZWxI?=
- =?utf-8?B?OE0xNXNLUU02dFNKZnFTdVVTZTVnV2E2UEpWS04wM0I4c3kxREV5OGd6K0Y0?=
- =?utf-8?B?Rnd0MlJIZkY1ekcvenJjNG9jVlRNQjd2dTdEK1V6bHdWM3ZVZ0RKSmhpQ29T?=
- =?utf-8?B?MHVHbXF2dzRoMHI0amFXZEpLRE1QYXBvbXRGMnlERVF6U0hKSmw0cFhkMUJS?=
- =?utf-8?B?a2tKZDh1ZXN3bHVCRjNINnhVSEg0V25mcU82ZWRtWE1hWXF3OVQ1TkYzcGxv?=
- =?utf-8?B?SkJnTFBjbEtRU1FGM2dJb0E5dnJBTE5nTFRnZjh6RksxWXErNXlMSHV4YkNs?=
- =?utf-8?B?M2IrWjVMTG9JQWhienNnSlVhdW5reUN5YkZWMVdnVS9uZlduOStiWU9PdE10?=
- =?utf-8?B?MG01SnA4Sml0YXVrdXdhS0VqRlFRMmdxaXo2WmZGRG1NUGZpTnUybHlkSFVs?=
- =?utf-8?B?YUlrdXZKazY3empwK2UvQVJNVHV6ZEtoK0F3Z2tNSlE0c3lKYU1pWld6TnlC?=
- =?utf-8?B?d0E9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 859a83ef-48b5-40c8-d685-08daf4c26b50
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5488.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?7Hyozj3lQTgknkvOK/vitAT+z0Yl8apXXpkOtxVuTVqa0hZyMZM4fQdD2hOb?=
+ =?us-ascii?Q?E4uIFMlfY4KLWXTsLhtZ4a6AZU/lWxS9RSo5uQ8k+XTxWDYYrgqNQkuM9R1I?=
+ =?us-ascii?Q?oI6GOnATDaIsjQ8Ockcvc66NtldNOmePVrjqazN25j30PWk1GOhWmV6h3GNr?=
+ =?us-ascii?Q?qf49QnkRRPP86EfKiXdEEq9ZyZJkbMkCcq3l2t4qNVCwYP7CagxMXIl8MegF?=
+ =?us-ascii?Q?6mxi6oi3qhcOdjRfvtyyv6Wk+h18w0cVcrhwRe33gsR1VjaoFzqSgLI27MtW?=
+ =?us-ascii?Q?+m2OvXTsFkE7J2CGoHvoawQtcTXukGE8/dYqSki7y0m4qTDPc/rj8Nqoit7a?=
+ =?us-ascii?Q?84cepXm7v3BT4B1tkzLSzoo2+T23G5FSQyMclw3q2SkM+kBMpy+ilfVYRxqD?=
+ =?us-ascii?Q?fsWKV8UE8G9RjzmKjAclP6uAm/GP5tUUCL5XmFaBEvHpEkpXd+Y+4voxAIpu?=
+ =?us-ascii?Q?eQjLrhuXsiL3X3B2zNgZIz3yjPd331V+EPucsLpM7+Sx5VLXBNaSnGWotdjt?=
+ =?us-ascii?Q?yVAxo51k9/w5Xl7kHqRqAnp6916xSwraxFsxaU0N/P2SZAUa9k98rIDCHpus?=
+ =?us-ascii?Q?qwW3d0g130Mq/KTtoQrCCgv3BP2BLEa/1PZ5npORoN4uNXLzQSjuqGvs67It?=
+ =?us-ascii?Q?yKE1dFvOwmesHIAjpxa9HnM7TjNT6jTewggyu+69VE96A/UgRz4bRDH4jEhp?=
+ =?us-ascii?Q?tWL8s1mOed+bhmU6IUuqeA54y2SMTzPny9N3JNa63r7eCCqWI6AZ4eB+DhUw?=
+ =?us-ascii?Q?X6IaTuo2x0AFMSfL9rEYPAaU44JbH2my3JRshoVDYqtmWyt7+uVXH0CCk+kX?=
+ =?us-ascii?Q?4Ki0aNmSdWTBzLnbo8PQqmKz2qYN4t55Od0v3h438T6gxkFyw8QoSGxe3mt8?=
+ =?us-ascii?Q?R3XjZICn9jTSoU8Y992CanY3Ie3XVX1olozjF5ZkRE70J6fwwVDB3r2gsLTH?=
+ =?us-ascii?Q?HiuzcE4x7DzVkXsFEQMg5eDfRrkXXQY9XCtMKkhSrJ/4iAhnSt+t37sPSwGB?=
+ =?us-ascii?Q?dmSPoV/FhOsbrIhZOPfSzjyoNtklZyOHD6FqaJdNmpouXiA2qZUuZaKd1SH/?=
+ =?us-ascii?Q?qgY3thQgYTbPZ+/QH+QbJbCvIunmZoMKFkP+FHnEghazqEijBbWlrzDuOh2m?=
+ =?us-ascii?Q?BzwF4WS1nNeS4wJj84Uyovme7aksT5jtq+wUiLShShmKkStmWyV1JZFLLaGj?=
+ =?us-ascii?Q?LtYeKRe8gvWFIW1e6AsfAqD7Dm8PsFsgZ51cOJLGe5Ig5Fdz9QmMTAzgvCL8?=
+ =?us-ascii?Q?KnXFyN51Rym78444N3M0q8m4VpzVgAfVdkMLSudie9AOt1yIHBNyyNbKeHQM?=
+ =?us-ascii?Q?VEzUVgCJz9KtnPnf2vx8b1A5VsNP6hWsht4K9GVDQrZhKTFRtI3u6oVOleLw?=
+ =?us-ascii?Q?81IYEMbG1GyH9G2zAu2K7kpQoAt0zfiBJaKKfZxkgL+4anfDK3/nIL82YLz2?=
+ =?us-ascii?Q?QEZPJ1pTMjeEhjHpxTKCeRnEpk8E4zUYM+Xy2F1AD2gW2w5XLnh2SKahOUCl?=
+ =?us-ascii?Q?pAHkzMszaZ25/ypkHEjGzBpDSpstC6AIHDcmAAzg06LdzRI8ep4/OURN9Gst?=
+ =?us-ascii?Q?polsykYCtHx+ptnlPpsJIkAx/UrMZoYT0BVANaXNMCYPuOWkFZIEPklE7wUt?=
+ =?us-ascii?Q?lQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 63a75d7a-f6a7-4658-8a74-08daf4c30996
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2023 17:28:29.1076 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2023 17:32:54.4882 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZVPc8kh9UN4RV6rvdcOhYCJX5d9XElWT8a9AUYGX5UcardOs7hzPe0tQYHS2aix2RUcpng5S213Sw94Vbb75yJdNvVl7YyuUoOdFpYlZzjY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR11MB6505
+X-MS-Exchange-CrossTenant-UserPrincipalName: y55/u5UH6+6O7+aoJS98tgEkF2jSIEwhco+C59pNB5xtFKgLVdk8O1Tr0C5IxjlO4Uzv8nSAmF3bQhjMfj70cRTKZvk1N3QCaa9g++cygFk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR11MB6529
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v4 6/6] drm/i915/pxp: Pxp hw init should be
- in resume_complete
+Subject: Re: [Intel-gfx] [RFC v2 1/2] drm/i915: Add sub platform for 480MHz
+ CDCLK step
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,164 +146,149 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Alexander Usyskin <alexander.usyskin@intel.com>,
- dri-devel@lists.freedesktop.org, Rodrigo <rodrigo.vivi@intel.com>,
- Tomas Winkler <tomas.winkler@intel.com>
+Cc: ville.syrjala@intel.com, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, Jan 12, 2023 at 01:03:44PM +0200, Jani Nikula wrote:
+> On Thu, 12 Jan 2023, Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com> wrote:
+> > Add a new sub platform INTEL_SUBPLATFORM_480CDCLK to identify
+> > device ids that need the 480MHz CDCLK step. Separate out RPLU
+> > device ids and add them to both RPL and 480CDCLK subplatforms.
+> >
+> > v2: (Matt)
+> >   - Sort PCI-IDs numerically
+> >   - Name the sub-platform to accurately depict what it is for
+> 
+> Did Matt actually ask you to call it INTEL_SUBPLATFORM_480CDCLK?
+> 
+> Personally, I don't like it, because RPL-U has its own PCI IDs and
+> that's what it's called in the specs. I'd prefer what it was.
+> 
+> (The one outlier is INTEL_SUBPLATFORM_PORTF and I don't like that one
+> either.)
+
+I think initially the plan was to not match RPL-U, but rather to only
+match a specific subset of RPL-U that had this special cdclk (which I
+think was determined by CPU vendor string or something).  If that's no
+longer something we care about, then it probably isn't as important to
+have the more precise subplatform name anymore.
 
 
-On 1/11/2023 4:37 PM, Alan Previn wrote:
-> During suspend flow, i915 currently achors' on the pm_suspend_prepare
-> callback as the location where we quiesce the entire GPU and perform
-> all necessary cleanup in order to go into suspend. PXP is also called
-> during this time to perform the arbitration session teardown (with
-> the assurance no additional GEM IOCTLs will come after that could
-> restart the session).
->
-> However, if other devices or drivers fail their suspend_prepare, the
-> system will not go into suspend and i915 will be expected to resume
-> operation. In this case, we need to re-initialize the PXP hardware
-> and this really should be done within the pm_resume_complete callback
-> which is the correct opposing function in the resume sequence to
-> match pm_suspend_prepare of the suspend sequence.
->
-> Because this callback is the last thing at the end of resuming
-> we expect little to no impact to the rest of the i915 resume sequence
-> with this change.
->
-> Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/intel_gt_pm.h   |  1 +
->   drivers/gpu/drm/i915/i915_driver.c      | 20 ++++++++++++++++++--
->   drivers/gpu/drm/i915/pxp/intel_pxp_pm.c |  2 +-
->   drivers/gpu/drm/i915/pxp/intel_pxp_pm.h |  6 +++---
->   4 files changed, 23 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.h b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
-> index 6c9a46452364..fd1a23621222 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
-> @@ -77,6 +77,7 @@ void intel_gt_pm_fini(struct intel_gt *gt);
->   
->   void intel_gt_suspend_prepare(struct intel_gt *gt);
->   void intel_gt_suspend_late(struct intel_gt *gt);
-> +
->   int intel_gt_resume(struct intel_gt *gt);
->   
->   void intel_gt_runtime_suspend(struct intel_gt *gt);
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index c1e427ba57ae..c3e7c40daaeb 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -1170,6 +1170,13 @@ static bool suspend_to_idle(struct drm_i915_private *dev_priv)
->   	return false;
->   }
->   
-> +static void i915_drm_complete(struct drm_device *dev)
-> +{
-> +	struct drm_i915_private *i915 = to_i915(dev);
-> +
-> +	intel_pxp_resume_complete(i915->pxp);
-> +}
-> +
->   static int i915_drm_prepare(struct drm_device *dev)
->   {
->   	struct drm_i915_private *i915 = to_i915(dev);
-> @@ -1370,8 +1377,6 @@ static int i915_drm_resume(struct drm_device *dev)
->   
->   	i915_gem_resume(dev_priv);
->   
-> -	intel_pxp_resume(dev_priv->pxp);
-> -
->   	intel_modeset_init_hw(dev_priv);
->   	intel_init_clock_gating(dev_priv);
->   	intel_hpd_init(dev_priv);
-> @@ -1484,6 +1489,16 @@ int i915_driver_resume_switcheroo(struct drm_i915_private *i915)
->   	return i915_drm_resume(&i915->drm);
->   }
->   
-> +static void i915_pm_complete(struct device *kdev)
+Matt
 
-nit: this function should probably be moved to after pm_resume to keep 
-the order of the PM functions (currently they're in the order they're 
-called in a full suspend flow)
+> 
+> BR,
+> Jani.
+> 
+> 
+> >   - Make RPL-U part of RPL subplatform
+> >
+> > Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/i915_drv.h          |  2 ++
+> >  drivers/gpu/drm/i915/i915_pci.c          |  1 +
+> >  drivers/gpu/drm/i915/intel_device_info.c |  8 ++++++++
+> >  drivers/gpu/drm/i915/intel_device_info.h |  2 ++
+> >  include/drm/i915_pciids.h                | 11 +++++++----
+> >  5 files changed, 20 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> > index 48fd82722f12..fc5518314598 100644
+> > --- a/drivers/gpu/drm/i915/i915_drv.h
+> > +++ b/drivers/gpu/drm/i915/i915_drv.h
+> > @@ -619,6 +619,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+> >  	IS_SUBPLATFORM(dev_priv, INTEL_ALDERLAKE_P, INTEL_SUBPLATFORM_N)
+> >  #define IS_ADLP_RPLP(dev_priv) \
+> >  	IS_SUBPLATFORM(dev_priv, INTEL_ALDERLAKE_P, INTEL_SUBPLATFORM_RPL)
+> > +#define IS_ADLP_WITH_480CDCLK(dev_priv) \
+> > +	IS_SUBPLATFORM(dev_priv, INTEL_ALDERLAKE_P, INTEL_SUBPLATFORM_480CDCLK)
+> >  #define IS_HSW_EARLY_SDV(dev_priv) (IS_HASWELL(dev_priv) && \
+> >  				    (INTEL_DEVID(dev_priv) & 0xFF00) == 0x0C00)
+> >  #define IS_BDW_ULT(dev_priv) \
+> > diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> > index 6cc65079b18d..e9f3b99b3e00 100644
+> > --- a/drivers/gpu/drm/i915/i915_pci.c
+> > +++ b/drivers/gpu/drm/i915/i915_pci.c
+> > @@ -1234,6 +1234,7 @@ static const struct pci_device_id pciidlist[] = {
+> >  	INTEL_DG1_IDS(&dg1_info),
+> >  	INTEL_RPLS_IDS(&adl_s_info),
+> >  	INTEL_RPLP_IDS(&adl_p_info),
+> > +	INTEL_RPLU_IDS(&adl_p_info),
+> >  	INTEL_DG2_IDS(&dg2_info),
+> >  	INTEL_ATS_M_IDS(&ats_m_info),
+> >  	INTEL_MTL_IDS(&mtl_info),
+> > diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+> > index 849baf6c3b3c..a1732ad519fb 100644
+> > --- a/drivers/gpu/drm/i915/intel_device_info.c
+> > +++ b/drivers/gpu/drm/i915/intel_device_info.c
+> > @@ -199,6 +199,11 @@ static const u16 subplatform_n_ids[] = {
+> >  static const u16 subplatform_rpl_ids[] = {
+> >  	INTEL_RPLS_IDS(0),
+> >  	INTEL_RPLP_IDS(0),
+> > +	INTEL_RPLU_IDS(0)
+> > +};
+> > +
+> > +static const u16 subplatform_480cdclk_ids[] = {
+> > +	INTEL_RPLU_IDS(0),
+> >  };
+> >  
+> >  static const u16 subplatform_g10_ids[] = {
+> > @@ -268,6 +273,9 @@ static void intel_device_info_subplatform_init(struct drm_i915_private *i915)
+> >  	} else if (find_devid(devid, subplatform_rpl_ids,
+> >  			      ARRAY_SIZE(subplatform_rpl_ids))) {
+> >  		mask = BIT(INTEL_SUBPLATFORM_RPL);
+> > +		if (find_devid(devid, subplatform_480cdclk_ids,
+> > +			       ARRAY_SIZE(subplatform_480cdclk_ids)))
+> > +			mask |= BIT(INTEL_SUBPLATFORM_480CDCLK);
+> >  	} else if (find_devid(devid, subplatform_g10_ids,
+> >  			      ARRAY_SIZE(subplatform_g10_ids))) {
+> >  		mask = BIT(INTEL_SUBPLATFORM_G10);
+> > diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+> > index d588e5fd2eea..4f488c900273 100644
+> > --- a/drivers/gpu/drm/i915/intel_device_info.h
+> > +++ b/drivers/gpu/drm/i915/intel_device_info.h
+> > @@ -127,6 +127,8 @@ enum intel_platform {
+> >   * bit set
+> >   */
+> >  #define INTEL_SUBPLATFORM_N    1
+> > +/* Sub Platform with 480MHz CDCLK step */
+> > +#define INTEL_SUBPLATFORM_480CDCLK  2
+> >  
+> >  /* MTL */
+> >  #define INTEL_SUBPLATFORM_M	0
+> > diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
+> > index 4a4c190f7698..758be5fb09a2 100644
+> > --- a/include/drm/i915_pciids.h
+> > +++ b/include/drm/i915_pciids.h
+> > @@ -684,14 +684,17 @@
+> >  	INTEL_VGA_DEVICE(0xA78A, info), \
+> >  	INTEL_VGA_DEVICE(0xA78B, info)
+> >  
+> > +/* RPL-U */
+> > +#define INTEL_RPLU_IDS(info) \
+> > +	INTEL_VGA_DEVICE(0xA721, info), \
+> > +	INTEL_VGA_DEVICE(0xA7A1, info), \
+> > +	INTEL_VGA_DEVICE(0xA7A9, info)
+> > +
+> >  /* RPL-P */
+> >  #define INTEL_RPLP_IDS(info) \
+> >  	INTEL_VGA_DEVICE(0xA720, info), \
+> > -	INTEL_VGA_DEVICE(0xA721, info), \
+> >  	INTEL_VGA_DEVICE(0xA7A0, info), \
+> > -	INTEL_VGA_DEVICE(0xA7A1, info), \
+> > -	INTEL_VGA_DEVICE(0xA7A8, info), \
+> > -	INTEL_VGA_DEVICE(0xA7A9, info)
+> > +	INTEL_VGA_DEVICE(0xA7A8, info)
+> >  
+> >  /* DG2 */
+> >  #define INTEL_DG2_G10_IDS(info) \
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
 
-> +{
-> +	struct drm_i915_private *i915 = kdev_to_i915(kdev);
-> +
-> +	if (!i915)
-> +		dev_err(kdev, "DRM not initialized, aborting suspend.\n");
-
-This is a resume call, so you're not aborting suspend. The other 2 
-resume calls don't check for i915, any reason you have to do so here? 
-Also, any reason not to check for DRM_SWITCH_POWER_OFF ?
-
-Daniele
-
-> +
-> +	i915_drm_complete(&i915->drm);
-> +}
-> +
->   static int i915_pm_prepare(struct device *kdev)
->   {
->   	struct drm_i915_private *i915 = kdev_to_i915(kdev);
-> @@ -1779,6 +1794,7 @@ const struct dev_pm_ops i915_pm_ops = {
->   	 * PMSG_RESUME]
->   	 */
->   	.prepare = i915_pm_prepare,
-> +	.complete = i915_pm_complete,
-
-Same as above, I'd move this to after .resume to keep the call order.
-
-Daniele
-
->   	.suspend = i915_pm_suspend,
->   	.suspend_late = i915_pm_suspend_late,
->   	.resume_early = i915_pm_resume_early,
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
-> index e427464aa131..4f836b317424 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
-> @@ -34,7 +34,7 @@ void intel_pxp_suspend(struct intel_pxp *pxp)
->   	}
->   }
->   
-> -void intel_pxp_resume(struct intel_pxp *pxp)
-> +void intel_pxp_resume_complete(struct intel_pxp *pxp)
->   {
->   	if (!intel_pxp_is_enabled(pxp))
->   		return;
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.h b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
-> index 586be769104f..06b46f535b42 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
-> @@ -11,7 +11,7 @@ struct intel_pxp;
->   #ifdef CONFIG_DRM_I915_PXP
->   void intel_pxp_suspend_prepare(struct intel_pxp *pxp);
->   void intel_pxp_suspend(struct intel_pxp *pxp);
-> -void intel_pxp_resume(struct intel_pxp *pxp);
-> +void intel_pxp_resume_complete(struct intel_pxp *pxp);
->   void intel_pxp_runtime_suspend(struct intel_pxp *pxp);
->   #else
->   static inline void intel_pxp_suspend_prepare(struct intel_pxp *pxp)
-> @@ -22,7 +22,7 @@ static inline void intel_pxp_suspend(struct intel_pxp *pxp)
->   {
->   }
->   
-> -static inline void intel_pxp_resume(struct intel_pxp *pxp)
-> +static inline void intel_pxp_resume_complete(struct intel_pxp *pxp)
->   {
->   }
->   
-> @@ -32,6 +32,6 @@ static inline void intel_pxp_runtime_suspend(struct intel_pxp *pxp)
->   #endif
->   static inline void intel_pxp_runtime_resume(struct intel_pxp *pxp)
->   {
-> -	intel_pxp_resume(pxp);
-> +	intel_pxp_resume_complete(pxp);
->   }
->   #endif /* __INTEL_PXP_PM_H__ */
-
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
