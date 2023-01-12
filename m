@@ -2,143 +2,84 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBEF8666D14
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jan 2023 09:55:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C730F666CC4
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jan 2023 09:44:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 310E810E89F;
-	Thu, 12 Jan 2023 08:55:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31FED10E5CE;
+	Thu, 12 Jan 2023 08:44:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C69310E89D;
- Thu, 12 Jan 2023 08:55:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673513715; x=1705049715;
- h=date:from:to:subject:message-id:reply-to:references:
- in-reply-to:mime-version;
- bh=vmGdStxWSGjX99+ydxshsxKvGBb6U5VPZEgzN42VR8c=;
- b=lnSD6YIFrbqv2gjkJdpN/4JOgW+DHIOfKg5mjQl280rQRAsRvGOLP22R
- A4UGlYDE5TZVq/wfEsRcpcNHRle6WdikUelYJ4o1WgymERVF23fWIkwzc
- H7IVJVmEWwPsLQ/1hnKwVuoeXgh33ATFzu4ypeO28FnItArFlIAIUF8N6
- nxEXabBc1Gs0MrNL0klmCCY4tj/GObUK1ObxgOR35KQuJF4rqCPhgGfCe
- eox9IBIgyzc0BX+9sNHFdEKkn2DtObHX5jeUHaFFFUiDZKW8stWv0P3lb
- CzIycDBzQkLjyopHWEPuQk2HzsJnjYImkYsZ+zKmMqg4o8lH5EQ28unMx A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="304027644"
-X-IronPort-AV: E=Sophos;i="5.96,319,1665471600"; d="scan'208";a="304027644"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2023 00:55:07 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="690048742"
-X-IronPort-AV: E=Sophos;i="5.96,319,1665471600"; d="scan'208";a="690048742"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orsmga001.jf.intel.com with ESMTP; 12 Jan 2023 00:55:07 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Thu, 12 Jan 2023 00:55:07 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Thu, 12 Jan 2023 00:55:07 -0800
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.104)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Thu, 12 Jan 2023 00:55:06 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=k8ex2aaYwSzi5Ly87G1R+GZMfzAPUnNK8iYiMpQKczLfBJCn/EXsoQGa9E6lRhSFkMbw18QoQLIUzpu6q0G6gZeZbOQzhhKq5+Pka1saeN9UkCr4gLkKTDT6sKa+GHCfwojb/PiyfNazxQGW7r0/d+qSMap/+B2Raqh7lDv8jZCOCdOP/Yhj/9dQnwkkHM7VZJ6NZRJYphfokeDR75STRC8w+Q3r8nQCoAx8Tv5tMos/gurFR5zFXP0ada5xCwGqUPnROKut+PfClssivv48gW0/z218/lqOJTLCHQd+0gneXcYw0OxWZmGvZJ/dti4hCb4NIgYmPC8J9cWkyr8Igw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UkzOm0ZW7h4xBHLtH9iyAm4NDZoU3ZHTl8bjpyGoqdw=;
- b=EVf+++6Wv6fqCrX5lHTCvBl77JzwWSjxdf6B5tOHxRxaa6fNdFHtF2SbaB6jWSXvE2NqL246VkdnUpEKNkS/pHjtCfQWgKDDuiPD+s+0mcOzzULjxq6qAeR6PjG7qrPRWA5O8uIxzKp3rR2zKpEcMD8W6266dc5nNz2VKPgINCj2NMqi7FRiWQ/CCwREm7PzSkvp/WmQgYQemAlqtH37i7jptUbltPqw6KiuNMKC93aNN9frMbgbWFaDAtZBT/MC8FXMZB3BRTrIP55fr7ApMB8vabtVQnD8e0oz5CMOrfIRRrdAfkENMAKSuZsUfVMfxgBpx3u6YpoWazQyjQulvA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS7PR11MB5966.namprd11.prod.outlook.com (2603:10b6:8:71::6) by
- SJ0PR11MB5120.namprd11.prod.outlook.com (2603:10b6:a03:2d1::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.18; Thu, 12 Jan
- 2023 08:55:04 +0000
-Received: from DS7PR11MB5966.namprd11.prod.outlook.com
- ([fe80::bd50:2cf7:f362:3734]) by DS7PR11MB5966.namprd11.prod.outlook.com
- ([fe80::bd50:2cf7:f362:3734%8]) with mapi id 15.20.6002.013; Thu, 12 Jan 2023
- 08:55:04 +0000
-Date: Thu, 12 Jan 2023 16:31:34 +0800
-From: Yan Zhao <yan.y.zhao@intel.com>
-To: Sean Christopherson <seanjc@google.com>, <kvm@vger.kernel.org>,
- <intel-gfx@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>, "Zhenyu
- Wang" <zhenyuw@linux.intel.com>, Ben Gardon <bgardon@google.com>, "Paolo
- Bonzini" <pbonzini@redhat.com>, <intel-gvt-dev@lists.freedesktop.org>, "Zhi
- Wang" <zhi.a.wang@intel.com>
-Message-ID: <Y7/FZpizEyIaL+Su@yzhao56-desk.sh.intel.com>
-References: <20221223005739.1295925-1-seanjc@google.com>
- <20221223005739.1295925-4-seanjc@google.com>
- <Y6vXTcxDNovrmeVB@yzhao56-desk.sh.intel.com>
- <Y7SaklDQD0EoIs8l@google.com>
- <Y7Y+759IN2DH5h3h@yzhao56-desk.sh.intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <Y7Y+759IN2DH5h3h@yzhao56-desk.sh.intel.com>
-X-ClientProxiedBy: SG2PR03CA0098.apcprd03.prod.outlook.com
- (2603:1096:4:7c::26) To DS7PR11MB5966.namprd11.prod.outlook.com
- (2603:10b6:8:71::6)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CCD510E5CE
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Jan 2023 08:44:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1673513091;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=5a4BjVGA5+VS7280a0HZ27tLyRrI18llQE1bUBA8/1A=;
+ b=C3l1GUuQQshmNX7JLjxqU4zgH5008d2GCHSnLh0+SjHYdLG5LikAeYNLs6DKTyzVtLBHG5
+ 2qJJyZKesdlWtr/OcSbbpXqSTu2UunxYg5CCgLD2P1AqVmolg5WXXOvDipwCz0727dWW7+
+ zAo+HE6GTJ9RjiubBU94L5UOeidDd04=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-423-vvGXt211MvyWh4Cfdbq6uQ-1; Thu, 12 Jan 2023 03:44:50 -0500
+X-MC-Unique: vvGXt211MvyWh4Cfdbq6uQ-1
+Received: by mail-wm1-f69.google.com with SMTP id
+ bi18-20020a05600c3d9200b003d991844dbcso12127370wmb.4
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Jan 2023 00:44:50 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=5a4BjVGA5+VS7280a0HZ27tLyRrI18llQE1bUBA8/1A=;
+ b=EG7LhN86LkZW8qeOe9y5qFXp0ksWD1722YQ8ezD2d5xWimhI1hhNTUs2P3H99nGaxt
+ uBR3CMnEBBjvbk0oqvUZjvUqCiG7TCips3xuWf23KuI6OVPkfbwJPT0Rn6O3Ylvv+9Qj
+ GW3Z9pyGQzfS11CaWKl670zllqLfpmZQwPEqtBfwii7Jp7hdMRl2IN0VfhIeaXPw2MM/
+ WThUp8KBLEBnTsDBAJNtHRlQ5BMbygsIv5l3qmZ3b6Mid+u4E1PtKfj2Cp0WHQozjsGz
+ GrCNPD2/OdOo342GFSLEtNLJlIWnyYVBsqLenf02l8p+CPRJk/9hevNTsIySV40aXdtt
+ rJJQ==
+X-Gm-Message-State: AFqh2kppFIiJsYlJsSzq2FFGaKxOZiaUnGX5wPsrHZc50xCHgA+VgDKF
+ CPqY/2BEXhM0VTBYVqnsKkRWZLwaSAd+8yfF9YtbIVpayRGTR5DsDb9Og1FSciic0Kcnp/vYidN
+ UzY2HxO7p82UnpjVOEFnrGR7JRiKo
+X-Received: by 2002:a05:6000:705:b0:267:e918:d1e6 with SMTP id
+ bs5-20020a056000070500b00267e918d1e6mr47978590wrb.51.1673513089194; 
+ Thu, 12 Jan 2023 00:44:49 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXsBcz+NOewCErJTagdikvQUga/n6zRME4ChBTvTDSkbfqsCpMEvFJRtoH3xbPIha9jKtsWTZw==
+X-Received: by 2002:a05:6000:705:b0:267:e918:d1e6 with SMTP id
+ bs5-20020a056000070500b00267e918d1e6mr47978578wrb.51.1673513088989; 
+ Thu, 12 Jan 2023 00:44:48 -0800 (PST)
+Received: from [192.168.1.130] (205.pool92-176-231.dynamic.orange.es.
+ [92.176.231.205]) by smtp.gmail.com with ESMTPSA id
+ k9-20020a5d66c9000000b002bdd7ce63b2sm526804wrw.38.2023.01.12.00.44.47
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 12 Jan 2023 00:44:48 -0800 (PST)
+Message-ID: <733eb41e-a296-47bb-ce06-18dff755723c@redhat.com>
+Date: Thu, 12 Jan 2023 09:44:47 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB5966:EE_|SJ0PR11MB5120:EE_
-X-MS-Office365-Filtering-Correlation-Id: 432ede82-7faf-4544-5852-08daf47ab265
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: imcO0uLCIjcZjK8mn12EK2FAHFXnPJld1vIdRKG9Kn5zCx3Av5bYtv18LG+xJxqg4tuJtG/ZFavbPRnl1FGnZWJsvD6++y37m77cxjps7xlOErC06TJEPodMezMHO2aNL32DXhkh1wJdR47atwYIjhNp8M12QozFk2j4s1dWoOJTLvVmti0/9zQTqwKU5NnDVbitHREHEy7/QLpIhzv9FQ7AgzJ+2mEkFhVzpChT0qkaPAQoZ7lZc/wU4lLFQxXzeVkvOgP3v3fveHlkcy+oH2NNmPUOH+WZ8MSWeMDoscWg1mVU1rsyPr7jAIBsr6qLZKcn+LoHk8cNk+eJ6RcTHaW7eo1E6OyvR9es3JVe0KkvZnql04ntuelSgPW7yibDv1D4S6xvhad1iwB/WJccszrvQSZpe1XpUDb0Kk2PmoKm8pFBkSev74ILH5vb/1tDJ4gCWJiK/bvy9ZjCyNh4Fyd9Mt2iSC0nBluDdJW9v5sXs+ftuClLpb91r9U+HhoERPAPdFWQGmN+3FTCY4o7vvKQopKki1GFT8DCcu52KSjhvGZDBKVqf57yccyNwLZWOOgSkrGg3oSrvb8pGzHwN3VHLF37NYTIzoptEW7PFPNADzCKrLdNjknchp3/1n2J
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR11MB5966.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(376002)(346002)(39860400002)(136003)(366004)(396003)(451199015)(26005)(6506007)(6486002)(478600001)(186003)(6512007)(66476007)(66946007)(6666004)(41300700001)(8676002)(110136005)(6636002)(316002)(82960400001)(83380400001)(86362001)(38100700002)(66556008)(3450700001)(8936002)(5660300002)(2906002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?B6R8NXezC8bEDu7gj07TB8c+ZtOuern151OpxogjEtIxWSuem2I8V9jZe1DF?=
- =?us-ascii?Q?L8s5w7JO6IhSRnjoAsaa9yFGPtqkeCblfFsBMElEL5tjg/mKezHCKSUBLUmw?=
- =?us-ascii?Q?ud8RclDs5K5YS60aR9EY6kk58hzdpG9ZFOwy5AVlvavGiJwwJbOYikoC7eNg?=
- =?us-ascii?Q?uoxsqoVRZcIz/8sZ0mc1rMU7UIoLmclZxVDAuffskf+bTDebiRpD+nFTrDI7?=
- =?us-ascii?Q?Xs2sGeEVi+sTBPR+Rcy5WD35fFcesZdrlNSkCY0tqrvRvOvnLitsa678pvut?=
- =?us-ascii?Q?nbPlYqE8sHxDisRkdQfS4+5rS45sdnN88+94GA4eoKvx56yU1p6oTtHG+7fv?=
- =?us-ascii?Q?hdSX5DMbUsdEC3Vip/D9otIME4QlnglgHdHZ9tfmklNigkDg7sOZTNzI1WF6?=
- =?us-ascii?Q?miuOrQdFaX5pfWI22MlehZipoVydHugAIOU9TLxkgPOaZNbFrKkJGxeu0aIF?=
- =?us-ascii?Q?MB311XbKRAe37BJ8fJErokRwRhrcErYTvmuwg+bqvDquy1VERistPSANmtaF?=
- =?us-ascii?Q?9GWa0noJFqRO7fpYeFA8x4dvCNEgyLtkugM3fm/5RbDr10v4iFw3TTbK56e3?=
- =?us-ascii?Q?qvvGcMB55yyNwdhDBFW/oBGmquXr2C/hlT7HdjzhxsMHd2uAbX2Sf1Il/kIl?=
- =?us-ascii?Q?6SGM3Hj0XnBRb8RTrhEqrgQwanmhHURaqOCCaGAd1nLe7ueyq9VhdBRaT2k2?=
- =?us-ascii?Q?3qHzda+eO8ba8DUXlkZk9ycFV/Q3WNMdcH+t1JQRa35p8UF/diUvGR24RB6T?=
- =?us-ascii?Q?LdWnqfwtm2PP20LHNJVkSVvZMm0bJsAETh95Aiigg5APInf/CPbblw2cc/Ij?=
- =?us-ascii?Q?z/AgRqsAKKD5AnE7fqWM0+jeADmKnBnzlr8iltRgJBXB3B0y+HOoX8jHMMUi?=
- =?us-ascii?Q?5jFnH4JzLHmpGhdf2nk2NgVoTqJVePHihe9+XHZQV/E85q9tH4ST8cYgFsuh?=
- =?us-ascii?Q?TOE6crgg4ucGG3xbrq/c2AdyY9mjvDXvBQAC8fi56WA6TG+VYzyXpVmjdmCu?=
- =?us-ascii?Q?XjTWRxkeReFQcpHfRDHrQRa4HLENV+GPGWPQMH2D3rc/80ms9apdOinz7x8b?=
- =?us-ascii?Q?ayzDSVMszHjJf5DE49wn8pqZWavOigaLq8bLekoOqqSCfBkSZCuFVCimCueT?=
- =?us-ascii?Q?QrUCPhECt7hD/IzAyRiyLTquLcZ/UHVsgjxGJJua+fOcG414KQttxky+j6Z9?=
- =?us-ascii?Q?Mkf3ysBT8vopXtW6030/mWXhapttHTISZ+4ft0UnGtuaHkpdXSCXsfguqUZg?=
- =?us-ascii?Q?nBo9Syg5LjgkIddj+KzK0xWj2U8gjZtm4YygL2oTQC+i3VfuHG4wFUU+BZfI?=
- =?us-ascii?Q?zP2QXkFZxfEffzRjVzPt/efM/uW2Ih2Q6/OkD9BRFt/HAxpJz/4FZ9BV/n+n?=
- =?us-ascii?Q?vTUPxmKT4QtRxNC3BnxTFVeqICsK8SkTX3ey/kT32LpuYC+fNE1Jx8tcrkzs?=
- =?us-ascii?Q?oBL/0NSCHkjm485uT0xkytGInZwvdKle5i9AwM2341gex39ksJQUVkiMP8R5?=
- =?us-ascii?Q?4Co3Z1dzX0ZUUIRYNqtog5xC64VWltcbGOX/qTDRLDN1HvNcY1DyC1bnFYnx?=
- =?us-ascii?Q?M0fGUUsB5esURyQe2h7LPgpMb9JhPGUIRdArhqf3?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 432ede82-7faf-4544-5852-08daf47ab265
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB5966.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2023 08:55:04.3927 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: TpmUvJA2hs8vbydJ4JJEbgb7fcrJQAyRd6xDEGzdqiOt0bmhyCsW/Pk6TLVvH4yXLwlyyENNDn0CG9hz78Mzbg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5120
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 03/27] drm/i915/gvt: Incorporate KVM memslot
- info into check for 2MiB GTT entry
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+To: Thomas Zimmermann <tzimmermann@suse.de>,
+ Aaron Plattner <aplattner@nvidia.com>, Daniel Vetter
+ <daniel.vetter@ffwll.ch>, DRI Development <dri-devel@lists.freedesktop.org>
+References: <20230111154112.90575-1-daniel.vetter@ffwll.ch>
+ <20230111154112.90575-11-daniel.vetter@ffwll.ch>
+ <fb72e067-3f5f-1bac-dc9b-3abd9d7739a2@redhat.com>
+ <ad725823-f4ef-904f-c04c-90a6aad43323@nvidia.com>
+ <7b00e592-345f-4dd5-3452-7f6f70fc608a@suse.de>
+From: Javier Martinez Canillas <javierm@redhat.com>
+In-Reply-To: <7b00e592-345f-4dd5-3452-7f6f70fc608a@suse.de>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 11/11] video/aperture: Only remove sysfb on
+ the default vga pci device
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,39 +92,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Yan Zhao <yan.y.zhao@intel.com>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>, stable@vger.kernel.org,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Helge Deller <deller@gmx.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> > > > Note, KVM may also restrict the mapping size for reasons that aren't
-> > > > relevant to KVMGT, e.g. for KVM's iTLB multi-hit workaround or if the gfn
-> > > Will iTLB multi-hit affect DMA?
-> > 
-> > I highly doubt it, I can't imagine an IOMMU would have a dedicated instruction
-> > TLB :-)
-> I can double check it with IOMMU hardware experts.
-> But if DMA would tamper instruction TLB, it should have been reported
-> as an issue with normal VFIO pass-through?
+On 1/12/23 08:55, Thomas Zimmermann wrote:
 
-hi Sean,
-This is the feedback:
+[...]
 
-- CPU Instruction TLB is only filled when CPU fetches an instruction.
-- IOMMU uses IOTLB to cache IOVA translation.
-  A remapping hardware may implement multiple IOTLBs, and some of these may
-  be for special purposes, e.g., only for instruction fetches.
-  There is no way for software to be aware that multiple
-  translations for smaller pages have been used for a large page. If software
-  modifies the paging structures so that the page size used for a 4-KByte range
-  of input-addresses changes, the IOTLBs may subsequently contain multiple
-  translations for the address range (one for each page size).
-  A reference to a input-address in the address range may use any of these
-  translations. Which translation is used may vary from one execution to
-  another, and the choice may be implementation-specific.
-- Theres no similar bug related to DMA requests for instruction fetch hitting
-  multiple IOTLB entries reported in IOMMU side.
-  The X bit in IOMMU paging structure is to be removed in future and is
-  currently always unset.
+>> Thanks Daniel and Javier!
+>>
+>> I wasn't able to reproduce the original problem on my hybrid laptop 
+>> since it refuses to boot with the console on an external display, but I 
+>> was able to reproduce it by switching the configuration around: booting 
+>> with i915.modeset=0 and with an experimental version of nvidia-drm that 
+>> registers a framebuffer console. I verified that loading nvidia-drm 
+> 
+> Thank you for testing.
+> 
+> One thing I'd like to note is that using DRM's fbdev emulation is the 
+> correct way to support a console. Nvidia-drm's current approach of 
+> utilizing efifb is fragile and requires workarounds from distributions 
+> (at least here at SUSE). Steps towards fbdev emulation are much appreciated.
+>
+ 
+I was meaning to mention the same. Fedora also is carrying a workaround just
+for the Nvidia proprietary driver since all other drivers provide a emulated
+fbdev device.
 
-Thanks
-Yan
+So getting this finally fixed will be indeed highly appreciated.
+
+-- 
+Best regards,
+
+Javier Martinez Canillas
+Core Platforms
+Red Hat
+
