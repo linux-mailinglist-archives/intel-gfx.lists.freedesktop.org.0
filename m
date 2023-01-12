@@ -2,84 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C730F666CC4
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jan 2023 09:44:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96962666D1A
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jan 2023 09:55:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31FED10E5CE;
-	Thu, 12 Jan 2023 08:44:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16D1F10E5AF;
+	Thu, 12 Jan 2023 08:55:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CCD510E5CE
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Jan 2023 08:44:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1673513091;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=5a4BjVGA5+VS7280a0HZ27tLyRrI18llQE1bUBA8/1A=;
- b=C3l1GUuQQshmNX7JLjxqU4zgH5008d2GCHSnLh0+SjHYdLG5LikAeYNLs6DKTyzVtLBHG5
- 2qJJyZKesdlWtr/OcSbbpXqSTu2UunxYg5CCgLD2P1AqVmolg5WXXOvDipwCz0727dWW7+
- zAo+HE6GTJ9RjiubBU94L5UOeidDd04=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-423-vvGXt211MvyWh4Cfdbq6uQ-1; Thu, 12 Jan 2023 03:44:50 -0500
-X-MC-Unique: vvGXt211MvyWh4Cfdbq6uQ-1
-Received: by mail-wm1-f69.google.com with SMTP id
- bi18-20020a05600c3d9200b003d991844dbcso12127370wmb.4
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Jan 2023 00:44:50 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=5a4BjVGA5+VS7280a0HZ27tLyRrI18llQE1bUBA8/1A=;
- b=EG7LhN86LkZW8qeOe9y5qFXp0ksWD1722YQ8ezD2d5xWimhI1hhNTUs2P3H99nGaxt
- uBR3CMnEBBjvbk0oqvUZjvUqCiG7TCips3xuWf23KuI6OVPkfbwJPT0Rn6O3Ylvv+9Qj
- GW3Z9pyGQzfS11CaWKl670zllqLfpmZQwPEqtBfwii7Jp7hdMRl2IN0VfhIeaXPw2MM/
- WThUp8KBLEBnTsDBAJNtHRlQ5BMbygsIv5l3qmZ3b6Mid+u4E1PtKfj2Cp0WHQozjsGz
- GrCNPD2/OdOo342GFSLEtNLJlIWnyYVBsqLenf02l8p+CPRJk/9hevNTsIySV40aXdtt
- rJJQ==
-X-Gm-Message-State: AFqh2kppFIiJsYlJsSzq2FFGaKxOZiaUnGX5wPsrHZc50xCHgA+VgDKF
- CPqY/2BEXhM0VTBYVqnsKkRWZLwaSAd+8yfF9YtbIVpayRGTR5DsDb9Og1FSciic0Kcnp/vYidN
- UzY2HxO7p82UnpjVOEFnrGR7JRiKo
-X-Received: by 2002:a05:6000:705:b0:267:e918:d1e6 with SMTP id
- bs5-20020a056000070500b00267e918d1e6mr47978590wrb.51.1673513089194; 
- Thu, 12 Jan 2023 00:44:49 -0800 (PST)
-X-Google-Smtp-Source: AMrXdXsBcz+NOewCErJTagdikvQUga/n6zRME4ChBTvTDSkbfqsCpMEvFJRtoH3xbPIha9jKtsWTZw==
-X-Received: by 2002:a05:6000:705:b0:267:e918:d1e6 with SMTP id
- bs5-20020a056000070500b00267e918d1e6mr47978578wrb.51.1673513088989; 
- Thu, 12 Jan 2023 00:44:48 -0800 (PST)
-Received: from [192.168.1.130] (205.pool92-176-231.dynamic.orange.es.
- [92.176.231.205]) by smtp.gmail.com with ESMTPSA id
- k9-20020a5d66c9000000b002bdd7ce63b2sm526804wrw.38.2023.01.12.00.44.47
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 12 Jan 2023 00:44:48 -0800 (PST)
-Message-ID: <733eb41e-a296-47bb-ce06-18dff755723c@redhat.com>
-Date: Thu, 12 Jan 2023 09:44:47 +0100
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4242010E5AF
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Jan 2023 08:55:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1673513739; x=1705049739;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=z+oaEqyyt1NRZRyb2g9WWGXPgTFeK9Un3WJMd1yH82Y=;
+ b=G3we3U/MKst7uGQzo9JfYrlvH0ANZd7+NJ527aWpaNkXcOVHy5SpYCoH
+ hA6UfF6C6KGkpsT2O8ZpHy37tJzE+DsznkJOCg7IM5KFLfoWRkS/diuJg
+ 77VteIdMJMm6lfNHkT+9cVh+ojXEOppltNvgN1qwdAwfOEsrfkOulz/90
+ 65COvypyuwoCCgKgNQW+opi0K9SSUKSR1jJ76X9C+gPUSQlux05hCHkkj
+ 9PybCdfPZi+3wjMa078wWfZuTWJgAdchuas1nyl48hSU5jg+ywgdCsl9s
+ KEJF7pHspdQHE1hqFDg0IZf8DS46vaZkyWeb0JKL8Nhej7Y0kN5OWBbaE Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="303350011"
+X-IronPort-AV: E=Sophos;i="5.96,319,1665471600"; d="scan'208";a="303350011"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2023 00:55:38 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="765526390"
+X-IronPort-AV: E=Sophos;i="5.96,319,1665471600"; d="scan'208";a="765526390"
+Received: from jacton-mobl.ger.corp.intel.com (HELO [10.213.195.171])
+ ([10.213.195.171])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2023 00:55:37 -0800
+Message-ID: <cbacd042-83ea-254a-9e41-36acda4d0f8f@linux.intel.com>
+Date: Thu, 12 Jan 2023 08:55:35 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-To: Thomas Zimmermann <tzimmermann@suse.de>,
- Aaron Plattner <aplattner@nvidia.com>, Daniel Vetter
- <daniel.vetter@ffwll.ch>, DRI Development <dri-devel@lists.freedesktop.org>
-References: <20230111154112.90575-1-daniel.vetter@ffwll.ch>
- <20230111154112.90575-11-daniel.vetter@ffwll.ch>
- <fb72e067-3f5f-1bac-dc9b-3abd9d7739a2@redhat.com>
- <ad725823-f4ef-904f-c04c-90a6aad43323@nvidia.com>
- <7b00e592-345f-4dd5-3452-7f6f70fc608a@suse.de>
-From: Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <7b00e592-345f-4dd5-3452-7f6f70fc608a@suse.de>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
+ Thunderbird/102.6.1
 Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 11/11] video/aperture: Only remove sysfb on
- the default vga pci device
+To: FlightlessMango <flightlessmangoyt@gmail.com>,
+ intel-gfx@lists.freedesktop.org
+References: <65afb3a4-bdc1-04a8-a2ac-6c561cddd710@gmail.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <65afb3a4-bdc1-04a8-a2ac-6c561cddd710@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [OA][RFC] Exposing low-resolution engine business
+ via sysfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,44 +63,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>, stable@vger.kernel.org,
- Alex Deucher <alexander.deucher@amd.com>,
- Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
- Helge Deller <deller@gmx.de>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Martin Peres <martin.peres@mupuf.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 1/12/23 08:55, Thomas Zimmermann wrote:
 
-[...]
+Hi,
 
->> Thanks Daniel and Javier!
->>
->> I wasn't able to reproduce the original problem on my hybrid laptop 
->> since it refuses to boot with the console on an external display, but I 
->> was able to reproduce it by switching the configuration around: booting 
->> with i915.modeset=0 and with an experimental version of nvidia-drm that 
->> registers a framebuffer console. I verified that loading nvidia-drm 
+On 12/01/2023 07:50, FlightlessMango wrote:
+> Hi,
 > 
-> Thank you for testing.
+> I am the developer of MangoHud[1], a Vulkan and OpenGL overlay for 
+> monitoring FPS / temperatures / CPU/GPU load and more.
 > 
-> One thing I'd like to note is that using DRM's fbdev emulation is the 
-> correct way to support a console. Nvidia-drm's current approach of 
-> utilizing efifb is fragile and requires workarounds from distributions 
-> (at least here at SUSE). Steps towards fbdev emulation are much appreciated.
->
- 
-I was meaning to mention the same. Fedora also is carrying a workaround just
-for the Nvidia proprietary driver since all other drivers provide a emulated
-fbdev device.
+> I would like to add support for i915 (and xe in the future) but I am 
+> currently unable to do this easily because not everything I need is 
+> exposed directly to non-root users. Namely:
+> 
+>   * Engine business (RCS)
+>   * CPU, iGPU and dGPU power usage
+>   * IMC bandwith (nice to have but not mandatory)
+> 
+> This is a problem because it would require us to ship a setuid binary to 
+> poll these metrics for the overlay (we can't run games as root).
+> 
+> For your information, this is Intel-specific as AMD and NVIDIA are 
+> exposing these values directly. I understand the security concerns, but 
+> we are not asking for super precise information (1% accuracy is perfect).
+> 
+> Can we work together on this, what are your thoughts?
 
-So getting this finally fixed will be indeed highly appreciated.
+A few angles here. First of all, last time you raised it I think we 
+didn't have per client engine busyness in fdinfo. So *if* you are 
+satisfied with reading client's own busyness you can do it unprivileged 
+via /proc/<pid>|self/fdinfo/<fd>.
 
--- 
-Best regards,
+Secondly, i915 internal stats, iGPU power usage and IMC are exposed via 
+three separate perf/PMU drivers, of which this team (this mailing) is 
+really responsible for only i915. The access controls for all though are 
+common and provided by the core kernel. See 
+/proc/sys/kernel/perf_event_paranoid and corresponding docs.
 
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+Long(-ish) time ago we have proposed making the latter a per PMU driver 
+but that did not get any traction in the kernel.
 
+Once you move to dGPU then for power you will get to use hwmon and for 
+that one I am currently not familiar how access control works.
+
+And finally for the new Xe driver I not aware how it will expose it so I 
+am copying Rodrigo in case he knows.
+
+In summary I personally see these options for what i915 stats are concerned:
+
+1. You go with fdinfo and get what you can.
+
+2. We try to propose per PMU access controls once more.
+
+And then maybe the point below becomes less controversial, unlikely though.
+
+3. You instruct users to configure /proc/sys/kernel/perf_event_paranoid, 
+or convince the distros to setuid your tool, or something along those lines.
+
+Regards,
+
+Tvrtko
+
+> 
+> Thanks for your consideration.
+> 
+> //Simon Hallsten
+> 
+> [1] https://github.com/flightlessmango/MangoHud
+> 
+> 
+> 
