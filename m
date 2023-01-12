@@ -1,50 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B95676678F9
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jan 2023 16:21:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC742667959
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jan 2023 16:32:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2265010E8FA;
-	Thu, 12 Jan 2023 15:21:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8576010E908;
+	Thu, 12 Jan 2023 15:32:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AE1610E8FA
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Jan 2023 15:21:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673536910; x=1705072910;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=b4Hw3YVwYprw7Fnppy3gXmqY88LXdWvxh7FxaoIEfD0=;
- b=bZEFz/SfcGYLx2AzGftuug/QzxFptjo24PY4S1I718nDw8SahImyuQ3p
- 9/HdAymx4lHjP2ubdDDaTogApScwl5CKk3lSIekQYSNrn/geVOfRigVp8
- 4BulxPYBjK1QxyloH6cGM7zgq/OB25ZkwfXfIBhGLfguwvm7AlIn3ZkRH
- j7g8TNfSi8L35gqCB1BZTdkT3mDhRY7lpRnjUHEXBqjI3n7feCV4qIQue
- U6DQsqpEBpzEu+o1Q9O3TjRpDc/yDH6KSd/fOTWAHTQjnc0/z011Uwvf0
- vjVffbzsAEYBnGVOAWojErDACvG29tp11B+EWBsCjPLCyBb4Xmny+rKI3 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="409965664"
-X-IronPort-AV: E=Sophos;i="5.97,211,1669104000"; d="scan'208";a="409965664"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2023 07:21:49 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="688356212"
-X-IronPort-AV: E=Sophos;i="5.97,211,1669104000"; d="scan'208";a="688356212"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
- by orsmga008.jf.intel.com with SMTP; 12 Jan 2023 07:21:46 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 12 Jan 2023 17:21:45 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 12 Jan 2023 17:21:45 +0200
-Message-Id: <20230112152145.1117-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.38.2
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com
+ [IPv6:2607:f8b0:4864:20::1036])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDFDA10E908
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Jan 2023 15:32:40 +0000 (UTC)
+Received: by mail-pj1-x1036.google.com with SMTP id
+ v13-20020a17090a6b0d00b00219c3be9830so21280513pjj.4
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Jan 2023 07:32:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=GvNRo5TsbXJJ428tB14x7kU1AlvgmP7fU9qmiXnk6oM=;
+ b=QDfSO1Am4vtsGOXiksfoxK4Viyu+BM5hWjfmy9GRQMHJ/moq8SRgAegjQ5J1FyrcBL
+ wvWdJASZ9lw4VrpoxZMt+ciiSm0+o66EesUfyDYAE5E+w/ETxfQv9LywVHA136bEefqn
+ UbjZJLHum5E7V7YubrCr5XvkG2MfY1X/lHhF0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=GvNRo5TsbXJJ428tB14x7kU1AlvgmP7fU9qmiXnk6oM=;
+ b=RTKjA50Ni3yAnXfIn2N9TTbeJA/5rN2NidWQMGMMYHQ7H1Ufo3I6S2D63Dw13Iwd+v
+ +N+YCpXg3OdbYOtdB5wOi7f65G4vnFMfLH9jUmdDO3DLeSdLHMeR1/dGJr901NDVjJnW
+ uA1Mvs+so6lY1KfhLZeGwDIH1zycJm/MASgJ62RyqDLWSIEpG8Rd625CPkbbQ96ohcoB
+ /oGAleW1nVRDl/C0ZmTK5wsn1oTu4vwjc4DgumY98j5JcntKEgKfhjebe2DQTRPJQyGh
+ NXLJKDG1rtPBczg10NNL4eAWVXfJBAMGOpY399nMxwVk9jRVeueIlh4cJKQHI3N7tDnH
+ gytA==
+X-Gm-Message-State: AFqh2kqERZG2JoQrKEZXCdhTIawVyuEr+XKWWf8KFDelS6+m5plwRlsB
+ 9ovHu1bRWmm+ekYK7rf1eHQs6iXcGur2v/gTL/Bh4A==
+X-Google-Smtp-Source: AMrXdXv2MoppONOGqdkEyjBeLdrqw13w0NYOWT7wBhK8e7avYxRNdmcM3IIRBOYC1g+YVx+mjNlKZtZYHggZh7NKnBY=
+X-Received: by 2002:a17:902:b902:b0:190:e27b:b554 with SMTP id
+ bf2-20020a170902b90200b00190e27bb554mr5183912plb.148.1673537560308; Thu, 12
+ Jan 2023 07:32:40 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Reject < 1x1 pixel plane source size
+References: <20230111154112.90575-1-daniel.vetter@ffwll.ch>
+ <20230111154112.90575-2-daniel.vetter@ffwll.ch>
+ <bad82927-1c58-4c2a-c265-571e10d1f67d@suse.de>
+ <Y7/Z5dvADG6AspV3@phenom.ffwll.local>
+ <8a154783-b433-c9b8-bfe5-286dde1258e9@suse.de>
+ <Y7/kw+JdGCHJdptI@phenom.ffwll.local>
+ <c4f8ffde-2226-cc1f-a5a8-d7462b92cb24@suse.de>
+In-Reply-To: <c4f8ffde-2226-cc1f-a5a8-d7462b92cb24@suse.de>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Thu, 12 Jan 2023 16:32:28 +0100
+Message-ID: <CAKMK7uGFHMiAKHMHioUa-Gvc9LhWnCeapzpiWoymiRyBEQG1Xg@mail.gmail.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 02/11] drm/gma500: Use
+ drm_aperture_remove_conflicting_pci_framebuffers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,57 +71,174 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Drew Davenport <ddavenport@chromium.org>, stable@vger.kernel.org
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Thu, 12 Jan 2023 at 13:15, Thomas Zimmermann <tzimmermann@suse.de> wrote=
+:
+>
+> Hi
+>
+> Am 12.01.23 um 11:45 schrieb Daniel Vetter:
+> > On Thu, Jan 12, 2023 at 11:24:13AM +0100, Thomas Zimmermann wrote:
+> >> Hi
+> >>
+> >> Am 12.01.23 um 10:59 schrieb Daniel Vetter:
+> >>> On Thu, Jan 12, 2023 at 10:04:48AM +0100, Thomas Zimmermann wrote:
+> >>>> Hi
+> >>>>
+> >>>> Am 11.01.23 um 16:41 schrieb Daniel Vetter:
+> >>>>> This one nukes all framebuffers, which is a bit much. In reality
+> >>>>> gma500 is igpu and never shipped with anything discrete, so there s=
+hould
+> >>>>> not be any difference.
+> >>>>>
+> >>>>> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> >>>>> ---
+> >>>>>     drivers/gpu/drm/gma500/psb_drv.c | 2 +-
+> >>>>>     1 file changed, 1 insertion(+), 1 deletion(-)
+> >>>>>
+> >>>>> diff --git a/drivers/gpu/drm/gma500/psb_drv.c b/drivers/gpu/drm/gma=
+500/psb_drv.c
+> >>>>> index cd9c73f5a64a..9b0daf90dc50 100644
+> >>>>> --- a/drivers/gpu/drm/gma500/psb_drv.c
+> >>>>> +++ b/drivers/gpu/drm/gma500/psb_drv.c
+> >>>>> @@ -429,7 +429,7 @@ static int psb_pci_probe(struct pci_dev *pdev, =
+const struct pci_device_id *ent)
+> >>>>>            * TODO: Refactor psb_driver_load() to map vdc_reg earlie=
+r. Then we
+> >>>>>            *       might be able to read the framebuffer range from=
+ the device.
+> >>>>>            */
+> >>>>> - ret =3D drm_aperture_remove_framebuffers(true, &driver);
+> >>>>> + ret =3D drm_aperture_remove_conflicting_pci_framebuffers(pdev, &d=
+river);
+> >>>>
+> >>>> This does not work. The comment just above the changed line explains=
+ why.
+> >>>> The device uses shared memory similar to other integrated Intel chip=
+s. The
+> >>>> console is somewhere in a 16 MiB range, which has been stolen by the=
+ BIOS
+> >>>> from main memory. There's only a 1 MiB memory range on the device to=
+ program
+> >>>> the device. Unless you want to refactor as described, this call has =
+to cover
+> >>>> the whole memory for now.
+> >>>
+> >>> Uh. So it's maybe not so pretty, but what if I just call both functio=
+ns?
+> >>
+> >> That's ways more ugly IMHO.
+> >>
+> >>> That way we get the vga handling through the pci one, and the "make s=
+ure
+> >>> there's no fb left" through the other one. Plus comment of course.
+> >>>
+> >>> Otherwise we'd need to somehow keep the vga stuff in the non-pci path=
+s,
+> >>> and that just feels all kinds of wrong to me.
+> >>
+> >> With your patch applied, aperture_detach_devices() does all the work o=
+f
+> >> removing. I'd add the following internal functions:
+> >>
+> >> static void aperture_detach_head(bool is_primary)
+> >> {
+> >>      /*
+> >>       * lengthy comment here
+> >>       */
+> >>      if (is_primary)
+> >>              sysfb_disable()
+> >> }
+> >>
+> >> static void aperture_detach_tail(bool remove_vga)
+> >> {
+> >>      if (remove_vga) {
+> >>              aperture_detach_devices(VGA_PHYS_)
+> >>              vga_remove_vgacon()
+> >>      }
+> >> }
+> >>
+> >> And call both of them at the beginning/end of
+> >> aperture_remove_conflicting_devices() and
+> >> aperture_remove_conflicting_pci_devices().
+> >>
+> >> You'd still need to primary argument to
+> >> aperture_remove_conflicting_devices(), but there will be no code dupli=
+cation
+> >> with the aperture helpers and the purpose of each code fragment will b=
+e
+> >> clearer.
+> >
+> > Yeah I don't want the primary argument. Aside from this one case here i=
+t's
+> > not needed. Also by pushing this special case into the one driver that
+> > needs it we keep it contained, instead of spreading it all around.
+> > Inflicting a parameter on every (and in total we have a lot of callers =
+of
+> > this stuff) just because of gma500 does not seem like a good idea to me=
+.
+>
+> Unfortunately, vgacon and vgaarb require a PCI device. I don't like the
+> proposal, but maybe it's the best for now. So go ahead if you like. I do
+> expect that this needs additional work in future, however.
+>
+> Just some more thoughts.
+>
+> Grep for drm_aperture_remove_framebuffers(). Within DRM there are really
+> just 10 drivers calling this function (vs. 12 callers of
+> drm_aperture_remove_conflicting_pci_framebuffers()). In fbdev, there are
+> many callers of the PCI helper (~40) and apparently only 3 for the
+> non-PCI one. The other drivers are panels, USB, MIPI, etc and don't
+> interact with the system framebuffer. Compared to the overall number of
+> drivers, we have surprisingly few 'traditional graphics cards' in DRM.
 
-We don't have proper sub-pixel coordinate support (some platforms
-simply can't do it, for others we've not implemented it). This
-can cause us to treat a < 1 pixel source width/height as zero
-which is not valid for the hardware, and can also cause a div
-by zero in some cases.
+This is largely historical. fbdev is from the 90s, when we had the
+huge explosion in largely pci graphics cards, because that was the
+place where all the growth and hence drivers were. 80% of these
+companies/chipe all died within a short few years.
 
-Refuse < 1x1 plane source size to avoid these problems.
+kms otoh had the huge growth in the 2010s, where there was the tail
+end of the SoC mobile explosion, so that's where we have tons of
+drivers. If you look at staging there's a pile more fbdev drivers for
+SoC, but many of these never got beyond the "vendor hacked some stuff
+together and shipped it" stage. So that's probably why they lack
+polish like fw -> driver handover (most of these just booted directly
+to the driver in real products).
 
-Cc: stable@vger.kernel.org
-Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Reported-by: Drew Davenport <ddavenport@chromium.org>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
-The other option would be to clamp the source size to >=1x1 pixels,
-but dunno if that has any real benefits.
+> Another thing is that gma500 and the other 9 drivers simply don't bother
+> to get the framebuffer range. They should be reworked to fetch the
+> configured framebuffer from the device and release that region only. The
+> practical impact is close to zero, so it hasn't happened.
 
- drivers/gpu/drm/i915/display/intel_atomic_plane.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+I think that's ok, because trying to figure out the real fb means you
+need fairly complete hw state readout (otherwise there's no
+motivation), and i915 is the only driver that ever really did that.
+Just for fw driver removal "nuke everything" gets the job done.
+-Daniel
 
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index 10e1fc9d0698..c6e43d684458 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -921,6 +921,21 @@ int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_state,
- 	 */
- 	plane_state->uapi.visible = drm_rect_clip_scaled(src, dst, clip);
- 
-+	/*
-+	 * Avoid zero source size when we later
-+	 * discard the fractional coords.
-+	 *
-+	 * FIXME add proper sub-pixel coordinate handling
-+	 * for platforms/planes that support it.
-+	 */
-+	if (plane_state->uapi.visible &&
-+	    (drm_rect_width(src) < 0x10000 || drm_rect_height(src) < 0x10000)) {
-+		drm_dbg_kms(&i915->drm, "Plane source must be at least 1x1 pixels\n");
-+		drm_rect_debug_print("src: ", src, true);
-+		drm_rect_debug_print("dst: ", dst, false);
-+		return -EINVAL;
-+	}
-+
- 	drm_rect_rotate_inv(src, fb->width << 16, fb->height << 16, rotation);
- 
- 	if (!can_position && plane_state->uapi.visible &&
--- 
-2.38.2
+> Best regards
+> Thomas
+>
+>
+> > -Daniel
+>
+> --
+> Thomas Zimmermann
+> Graphics Driver Developer
+> SUSE Software Solutions Germany GmbH
+> Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+> (HRB 36809, AG N=C3=BCrnberg)
+> Gesch=C3=A4ftsf=C3=BChrer: Ivo Totev
 
+
+
+--=20
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
