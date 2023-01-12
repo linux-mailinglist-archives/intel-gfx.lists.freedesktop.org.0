@@ -2,67 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0112666F73
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jan 2023 11:24:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F782666F7C
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jan 2023 11:26:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4354410E18D;
-	Thu, 12 Jan 2023 10:24:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC54B10E8CC;
+	Thu, 12 Jan 2023 10:25:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39B6D10E18D;
- Thu, 12 Jan 2023 10:24:16 +0000 (UTC)
-Received: from imap1.suse-dmz.suse.de (imap1.suse-dmz.suse.de [192.168.254.73])
+Received: from madras.collabora.co.uk (madras.collabora.co.uk
+ [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4D8C10E8CC;
+ Thu, 12 Jan 2023 10:25:57 +0000 (UTC)
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 132F437EE5;
- Thu, 12 Jan 2023 10:24:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1673519054; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=f1K7S+Dbef2e7Z1LDtP00y2aYmviXeaCNz28skMxcd0=;
- b=Rt4ReSjNAZ2kIhuT2FpCMchcAKd/Ks3eF4fNH91l20U4B3u+4ZzbLIGKWa0LiKwvnvHsma
- pJZzn+vPNFwiSv/ypAjW1m0vwbMeU/3iVXLjKl1LCma4jNLRBTLpGoecP+BNGhA0Y3QL05
- 1dmiH5RX42NDq40+xQDlGKpx0J2tCL4=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1673519054;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=f1K7S+Dbef2e7Z1LDtP00y2aYmviXeaCNz28skMxcd0=;
- b=MUOnY49z2Xw+4H9qNdyStJflUh9pj2IPxm4Vrpye3I4fiAHhzXZz6rOK888u/oySVzkCau
- q6vr7ti/JgCphzAg==
-Received: from imap1.suse-dmz.suse.de (imap1.suse-dmz.suse.de [192.168.254.73])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap1.suse-dmz.suse.de (Postfix) with ESMTPS id EB9A6136AE;
- Thu, 12 Jan 2023 10:24:13 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap1.suse-dmz.suse.de with ESMTPSA id +e2SOM3fv2MyMgAAGKfGzw
- (envelope-from <tzimmermann@suse.de>); Thu, 12 Jan 2023 10:24:13 +0000
-Message-ID: <8a154783-b433-c9b8-bfe5-286dde1258e9@suse.de>
-Date: Thu, 12 Jan 2023 11:24:13 +0100
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: bbrezillon)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 4581A6602DAC;
+ Thu, 12 Jan 2023 10:25:56 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1673519156;
+ bh=SsF/Ab3RjR7X7NgncYuA79brGXccaWY1wRBLrsXAyDs=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=W1FfI91TV3+QU35I9NLOGDR3zvDaZwbT1r5L+VXCKUXBpEces+1/8EA2r7FIbx4zH
+ qso5FqbHEZbgkZVSWiXV1c4y8DdOcxMDBUg3PkYnJLJ0pthtv+SqPb+nVO2aCduibt
+ a9/rxJxM8P2lRRQxIadvscPKw+f9TObXGLds68RR3TavVKniYRTRh6cvaCJ6ARoI4N
+ uqsbvATjYUdGX20eAJjr8dknl2I5m4zdYHLruNWn4tgUBWjutLbpgBvVeCLzHtN8/M
+ 1PfFxGixmNMJQRjKXoCrYgdGpu50i4arzg84anwTc6M5JyB7CF9DwzEbbSvBwQNzcG
+ tSK0W5ssgy2HQ==
+Date: Thu, 12 Jan 2023 11:25:53 +0100
+From: Boris Brezillon <boris.brezillon@collabora.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Message-ID: <20230112112553.324ffa05@collabora.com>
+In-Reply-To: <20230112111103.324abb3c@collabora.com>
+References: <20221230112042.2ddd1946@collabora.com>
+ <20221230125508.57af8a14@collabora.com>
+ <20230102083019.24b99647@collabora.com>
+ <Y7cns9bpfIslkCPu@DUT025-TGLU.fm.intel.com>
+ <CAOFGe978gae1mN2W_rrgXQm4ioQm73Bkpr-ex2Oa4gtkNzDpcg@mail.gmail.com>
+ <20230109181748.4d73b834@collabora.com>
+ <Y7x7tSsdgQvZ+JD0@phenom.ffwll.local>
+ <20230110094647.5897dbdd@collabora.com>
+ <CAKMK7uHTGCoW1CEmfk6vTYG-=8FEQg2fUrcKMV80o=iQ6QhUdg@mail.gmail.com>
+ <20230112101053.393e0717@collabora.com>
+ <Y7/Tolh8SGLtybs0@phenom.ffwll.local>
+ <20230112111103.324abb3c@collabora.com>
+Organization: Collabora
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Content-Language: en-US
-To: DRI Development <dri-devel@lists.freedesktop.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>, Daniel Vetter <daniel.vetter@intel.com>
-References: <20230111154112.90575-1-daniel.vetter@ffwll.ch>
- <20230111154112.90575-2-daniel.vetter@ffwll.ch>
- <bad82927-1c58-4c2a-c265-571e10d1f67d@suse.de>
- <Y7/Z5dvADG6AspV3@phenom.ffwll.local>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-In-Reply-To: <Y7/Z5dvADG6AspV3@phenom.ffwll.local>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------5MxemaYPsZ0zHzCVm084PrOY"
-Subject: Re: [Intel-gfx] [PATCH 02/11] drm/gma500: Use
- drm_aperture_remove_conflicting_pci_framebuffers
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [RFC PATCH 04/20] drm/sched: Convert drm scheduler
+ to use a work queue rather than kthread
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,107 +65,310 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------5MxemaYPsZ0zHzCVm084PrOY
-Content-Type: multipart/mixed; boundary="------------p7AmGwSpjIjIUFsgB9Yy8z0w";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: DRI Development <dri-devel@lists.freedesktop.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>, Daniel Vetter <daniel.vetter@intel.com>
-Message-ID: <8a154783-b433-c9b8-bfe5-286dde1258e9@suse.de>
-Subject: Re: [PATCH 02/11] drm/gma500: Use
- drm_aperture_remove_conflicting_pci_framebuffers
-References: <20230111154112.90575-1-daniel.vetter@ffwll.ch>
- <20230111154112.90575-2-daniel.vetter@ffwll.ch>
- <bad82927-1c58-4c2a-c265-571e10d1f67d@suse.de>
- <Y7/Z5dvADG6AspV3@phenom.ffwll.local>
-In-Reply-To: <Y7/Z5dvADG6AspV3@phenom.ffwll.local>
+On Thu, 12 Jan 2023 11:11:03 +0100
+Boris Brezillon <boris.brezillon@collabora.com> wrote:
 
---------------p7AmGwSpjIjIUFsgB9Yy8z0w
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+> On Thu, 12 Jan 2023 10:32:18 +0100
+> Daniel Vetter <daniel@ffwll.ch> wrote:
+> 
+> > On Thu, Jan 12, 2023 at 10:10:53AM +0100, Boris Brezillon wrote:  
+> > > Hi Daniel,
+> > > 
+> > > On Wed, 11 Jan 2023 22:47:02 +0100
+> > > Daniel Vetter <daniel@ffwll.ch> wrote:
+> > >     
+> > > > On Tue, 10 Jan 2023 at 09:46, Boris Brezillon
+> > > > <boris.brezillon@collabora.com> wrote:    
+> > > > >
+> > > > > Hi Daniel,
+> > > > >
+> > > > > On Mon, 9 Jan 2023 21:40:21 +0100
+> > > > > Daniel Vetter <daniel@ffwll.ch> wrote:
+> > > > >      
+> > > > > > On Mon, Jan 09, 2023 at 06:17:48PM +0100, Boris Brezillon wrote:      
+> > > > > > > Hi Jason,
+> > > > > > >
+> > > > > > > On Mon, 9 Jan 2023 09:45:09 -0600
+> > > > > > > Jason Ekstrand <jason@jlekstrand.net> wrote:
+> > > > > > >      
+> > > > > > > > On Thu, Jan 5, 2023 at 1:40 PM Matthew Brost <matthew.brost@intel.com>
+> > > > > > > > wrote:
+> > > > > > > >      
+> > > > > > > > > On Mon, Jan 02, 2023 at 08:30:19AM +0100, Boris Brezillon wrote:      
+> > > > > > > > > > On Fri, 30 Dec 2022 12:55:08 +0100
+> > > > > > > > > > Boris Brezillon <boris.brezillon@collabora.com> wrote:
+> > > > > > > > > >      
+> > > > > > > > > > > On Fri, 30 Dec 2022 11:20:42 +0100
+> > > > > > > > > > > Boris Brezillon <boris.brezillon@collabora.com> wrote:
+> > > > > > > > > > >      
+> > > > > > > > > > > > Hello Matthew,
+> > > > > > > > > > > >
+> > > > > > > > > > > > On Thu, 22 Dec 2022 14:21:11 -0800
+> > > > > > > > > > > > Matthew Brost <matthew.brost@intel.com> wrote:
+> > > > > > > > > > > >      
+> > > > > > > > > > > > > In XE, the new Intel GPU driver, a choice has made to have a 1 to 1
+> > > > > > > > > > > > > mapping between a drm_gpu_scheduler and drm_sched_entity. At first      
+> > > > > > > > > this      
+> > > > > > > > > > > > > seems a bit odd but let us explain the reasoning below.
+> > > > > > > > > > > > >
+> > > > > > > > > > > > > 1. In XE the submission order from multiple drm_sched_entity is not
+> > > > > > > > > > > > > guaranteed to be the same completion even if targeting the same      
+> > > > > > > > > hardware      
+> > > > > > > > > > > > > engine. This is because in XE we have a firmware scheduler, the      
+> > > > > > > > > GuC,      
+> > > > > > > > > > > > > which allowed to reorder, timeslice, and preempt submissions. If a      
+> > > > > > > > > using      
+> > > > > > > > > > > > > shared drm_gpu_scheduler across multiple drm_sched_entity, the TDR      
+> > > > > > > > > falls      
+> > > > > > > > > > > > > apart as the TDR expects submission order == completion order.      
+> > > > > > > > > Using a      
+> > > > > > > > > > > > > dedicated drm_gpu_scheduler per drm_sched_entity solve this      
+> > > > > > > > > problem.      
+> > > > > > > > > > > >
+> > > > > > > > > > > > Oh, that's interesting. I've been trying to solve the same sort of
+> > > > > > > > > > > > issues to support Arm's new Mali GPU which is relying on a      
+> > > > > > > > > FW-assisted      
+> > > > > > > > > > > > scheduling scheme (you give the FW N streams to execute, and it does
+> > > > > > > > > > > > the scheduling between those N command streams, the kernel driver
+> > > > > > > > > > > > does timeslice scheduling to update the command streams passed to the
+> > > > > > > > > > > > FW). I must admit I gave up on using drm_sched at some point, mostly
+> > > > > > > > > > > > because the integration with drm_sched was painful, but also because      
+> > > > > > > > > I      
+> > > > > > > > > > > > felt trying to bend drm_sched to make it interact with a
+> > > > > > > > > > > > timeslice-oriented scheduling model wasn't really future proof.      
+> > > > > > > > > Giving      
+> > > > > > > > > > > > drm_sched_entity exlusive access to a drm_gpu_scheduler probably      
+> > > > > > > > > might      
+> > > > > > > > > > > > help for a few things (didn't think it through yet), but I feel it's
+> > > > > > > > > > > > coming short on other aspects we have to deal with on Arm GPUs.      
+> > > > > > > > > > >
+> > > > > > > > > > > Ok, so I just had a quick look at the Xe driver and how it
+> > > > > > > > > > > instantiates the drm_sched_entity and drm_gpu_scheduler, and I think I
+> > > > > > > > > > > have a better understanding of how you get away with using drm_sched
+> > > > > > > > > > > while still controlling how scheduling is really done. Here
+> > > > > > > > > > > drm_gpu_scheduler is just a dummy abstract that let's you use the
+> > > > > > > > > > > drm_sched job queuing/dep/tracking mechanism. The whole run-queue      
+> > > > > > > > >
+> > > > > > > > > You nailed it here, we use the DRM scheduler for queuing jobs,
+> > > > > > > > > dependency tracking and releasing jobs to be scheduled when dependencies
+> > > > > > > > > are met, and lastly a tracking mechanism of inflights jobs that need to
+> > > > > > > > > be cleaned up if an error occurs. It doesn't actually do any scheduling
+> > > > > > > > > aside from the most basic level of not overflowing the submission ring
+> > > > > > > > > buffer. In this sense, a 1 to 1 relationship between entity and
+> > > > > > > > > scheduler fits quite well.
+> > > > > > > > >      
+> > > > > > > >
+> > > > > > > > Yeah, I think there's an annoying difference between what AMD/NVIDIA/Intel
+> > > > > > > > want here and what you need for Arm thanks to the number of FW queues
+> > > > > > > > available. I don't remember the exact number of GuC queues but it's at
+> > > > > > > > least 1k. This puts it in an entirely different class from what you have on
+> > > > > > > > Mali. Roughly, there's about three categories here:
+> > > > > > > >
+> > > > > > > >  1. Hardware where the kernel is placing jobs on actual HW rings. This is
+> > > > > > > > old Mali, Intel Haswell and earlier, and probably a bunch of others.
+> > > > > > > > (Intel BDW+ with execlists is a weird case that doesn't fit in this
+> > > > > > > > categorization.)
+> > > > > > > >
+> > > > > > > >  2. Hardware (or firmware) with a very limited number of queues where
+> > > > > > > > you're going to have to juggle in the kernel in order to run desktop Linux.
+> > > > > > > >
+> > > > > > > >  3. Firmware scheduling with a high queue count. In this case, you don't
+> > > > > > > > want the kernel scheduling anything. Just throw it at the firmware and let
+> > > > > > > > it go brrrrr.  If we ever run out of queues (unlikely), the kernel can
+> > > > > > > > temporarily pause some low-priority contexts and do some juggling or,
+> > > > > > > > frankly, just fail userspace queue creation and tell the user to close some
+> > > > > > > > windows.
+> > > > > > > >
+> > > > > > > > The existence of this 2nd class is a bit annoying but it's where we are. I
+> > > > > > > > think it's worth recognizing that Xe and panfrost are in different places
+> > > > > > > > here and will require different designs. For Xe, we really are just using
+> > > > > > > > drm/scheduler as a front-end and the firmware does all the real scheduling.
+> > > > > > > >
+> > > > > > > > How do we deal with class 2? That's an interesting question.  We may
+> > > > > > > > eventually want to break that off into a separate discussion and not litter
+> > > > > > > > the Xe thread but let's keep going here for a bit.  I think there are some
+> > > > > > > > pretty reasonable solutions but they're going to look a bit different.
+> > > > > > > >
+> > > > > > > > The way I did this for Xe with execlists was to keep the 1:1:1 mapping
+> > > > > > > > between drm_gpu_scheduler, drm_sched_entity, and userspace xe_engine.
+> > > > > > > > Instead of feeding a GuC ring, though, it would feed a fixed-size execlist
+> > > > > > > > ring and then there was a tiny kernel which operated entirely in IRQ
+> > > > > > > > handlers which juggled those execlists by smashing HW registers.  For
+> > > > > > > > Panfrost, I think we want something slightly different but can borrow some
+> > > > > > > > ideas here.  In particular, have the schedulers feed kernel-side SW queues
+> > > > > > > > (they can even be fixed-size if that helps) and then have a kthread which
+> > > > > > > > juggles those feeds the limited FW queues.  In the case where you have few
+> > > > > > > > enough active contexts to fit them all in FW, I do think it's best to have
+> > > > > > > > them all active in FW and let it schedule. But with only 31, you need to be
+> > > > > > > > able to juggle if you run out.      
+> > > > > > >
+> > > > > > > That's more or less what I do right now, except I don't use the
+> > > > > > > drm_sched front-end to handle deps or queue jobs (at least not yet). The
+> > > > > > > kernel-side timeslice-based scheduler juggling with runnable queues
+> > > > > > > (queues with pending jobs that are not yet resident on a FW slot)
+> > > > > > > uses a dedicated ordered-workqueue instead of a thread, with scheduler
+> > > > > > > ticks being handled with a delayed-work (tick happening every X
+> > > > > > > milliseconds when queues are waiting for a slot). It all seems very
+> > > > > > > HW/FW-specific though, and I think it's a bit premature to try to
+> > > > > > > generalize that part, but the dep-tracking logic implemented by
+> > > > > > > drm_sched looked like something I could easily re-use, hence my
+> > > > > > > interest in Xe's approach.      
+> > > > > >
+> > > > > > So another option for these few fw queue slots schedulers would be to
+> > > > > > treat them as vram and enlist ttm.
+> > > > > >
+> > > > > > Well maybe more enlist ttm and less treat them like vram, but ttm can
+> > > > > > handle idr (or xarray or whatever you want) and then help you with all the
+> > > > > > pipelining (and the drm_sched then with sorting out dependencies). If you
+> > > > > > then also preferentially "evict" low-priority queus you pretty much have
+> > > > > > the perfect thing.
+> > > > > >
+> > > > > > Note that GuC with sriov splits up the id space and together with some
+> > > > > > restrictions due to multi-engine contexts media needs might also need this
+> > > > > > all.
+> > > > > >
+> > > > > > If you're balking at the idea of enlisting ttm just for fw queue
+> > > > > > management, amdgpu has a shoddy version of id allocation for their vm/tlb
+> > > > > > index allocation. Might be worth it to instead lift that into some sched
+> > > > > > helper code.      
+> > > > >
+> > > > > Would you mind pointing me to the amdgpu code you're mentioning here?
+> > > > > Still have a hard time seeing what TTM has to do with scheduling, but I
+> > > > > also don't know much about TTM, so I'll keep digging.      
+> > > > 
+> > > > ttm is about moving stuff in&out of a limited space and gives you some
+> > > > nice tooling for pipelining it all. It doesn't care whether that space
+> > > > is vram or some limited id space. vmwgfx used ttm as an id manager
+> > > > iirc.    
+> > > 
+> > > Ok.
+> > >     
+> > > >     
+> > > > > > Either way there's two imo rather solid approaches available to sort this
+> > > > > > out. And once you have that, then there shouldn't be any big difference in
+> > > > > > driver design between fw with defacto unlimited queue ids, and those with
+> > > > > > severe restrictions in number of queues.      
+> > > > >
+> > > > > Honestly, I don't think there's much difference between those two cases
+> > > > > already. There's just a bunch of additional code to schedule queues on
+> > > > > FW slots for the limited-number-of-FW-slots case, which, right now, is
+> > > > > driver specific. The job queuing front-end pretty much achieves what
+> > > > > drm_sched does already: queuing job to entities, checking deps,
+> > > > > submitting job to HW (in our case, writing to the command stream ring
+> > > > > buffer). Things start to differ after that point: once a scheduling
+> > > > > entity has pending jobs, we add it to one of the runnable queues (one
+> > > > > queue per prio) and kick the kernel-side timeslice-based scheduler to
+> > > > > re-evaluate, if needed.
+> > > > >
+> > > > > I'm all for using generic code when it makes sense, even if that means
+> > > > > adding this common code when it doesn't exists, but I don't want to be
+> > > > > dragged into some major refactoring that might take years to land.
+> > > > > Especially if pancsf is the first
+> > > > > FW-assisted-scheduler-with-few-FW-slot driver.      
+> > > > 
+> > > > I don't see where there's a major refactoring that you're getting dragged into?    
+> > > 
+> > > Oh, no, I'm not saying this is the case just yet, just wanted to make
+> > > sure we're on the same page :-).
+> > >     
+> > > > 
+> > > > Yes there's a huge sprawling discussion right now, but I think that's
+> > > > just largely people getting confused.    
+> > > 
+> > > I definitely am :-).
+> > >     
+> > > > 
+> > > > Wrt the actual id assignment stuff, in amdgpu at least it's few lines
+> > > > of code. See the amdgpu_vmid_grab stuff for the simplest starting
+> > > > point.    
+> > > 
+> > > Ok, thanks for the pointers. I'll have a look and see how I could use
+> > > that. I guess that's about getting access to the FW slots with some
+> > > sort of priority+FIFO ordering guarantees given by TTM. If that's the
+> > > case, I'll have to think about it, because that's a major shift from
+> > > what we're doing now, and I'm afraid this could lead to starving
+> > > non-resident entities if all resident entities keep receiving new jobs
+> > > to execute. Unless we put some sort of barrier when giving access to a
+> > > slot, so we evict the entity when it's done executing the stuff it had
+> > > when it was given access to this slot. But then, again, there are other
+> > > constraints to take into account for the Arm Mali CSF case:
+> > > 
+> > > - it's more efficient to update all FW slots at once, because each
+> > >   update of a slot might require updating priorities of the other slots
+> > >   (FW mandates unique slot priorities, and those priorities depend on
+> > >   the entity priority/queue-ordering)
+> > > - context/FW slot switches have a non-negligible cost (FW needs to
+> > >   suspend the context and save the state every time there such a
+> > >   switch), so, limiting the number of FW slot updates might prove
+> > >   important    
+> > 
+> > I frankly think you're overworrying. When you have 31+ contexts running at
+> > the same time, you have bigger problems. At that point there's two
+> > use-cases:
+> > 1. system is overloaded, the user will reach for reset button anyway
+> > 2. temporary situation, all you have to do is be roughly fair enough to get
+> >    through it before case 1 happens.
+> >  
+> > Trying to write a perfect scheduler for this before we have actual
+> > benchmarks that justify the effort seems like pretty serious overkill.
+> > That's why I think the simplest solution is the one we should have:
+> > 
+> > - drm/sched frontend. If you get into slot exhaustion that alone will
+> >   ensure enough fairness  
+> 
+> We're talking about the CS ring buffer slots here, right?
+> 
+> > 
+> > - LRU list of slots, with dma_fence so you can pipeline/batch up changes
+> >   as needed (but I honestly wouldn't worry about the batching before
+> >   you've shown an actual need for this in some benchmark/workload, even
+> >   piglit shouldn't have this many things running concurrently I think, you
+> >   don't have that many cpu cores). Between drm/sched and the lru you will
+> >   have an emergent scheduler that cycles through all runnable gpu jobs.
+> > 
+> > - If you want to go fancy, have eviction tricks like skipping currently
+> >   still active gpu context with higher priority than the one that you need
+> >   to find a slot for.
+> > 
+> > - You don't need time slicing in this, not even for compute. compute is
+> >   done with preempt context fences, if you give them a minimum scheduling
+> >   quanta you'll have a very basic round robin scheduler as an emergent
+> >   thing.
+> > 
+> > Any workload were it matters will be scheduled by the fw directly, with
+> > drm/sched only being the dma_fence dependcy sorter. My take is that if you
+> > spend more than a hundred or so lines with slot allocation logic
+> > (excluding the hw code to load/unload a slot) you're probably doing some
+> > serious overengineering.  
+> 
+> Let me see if I got this right:
+> 
+> - we still keep a 1:1 drm_gpu_scheduler:drm_sched_entity approach,
+>   where hw_submission_limit == available_slots_in_ring_buf
+> - when ->run_job() is called, we write the RUN_JOB() instruction
+>   sequence to the next available ringbuf slot and queue the entity to
+>   the FW-slot queue
+>   * if a slot is directly available, we program the slot directly
+>   * if no slots are available, but some slots are done with the jobs
+>     they were given (last job fence signaled), we evict the LRU entity
+>     (possibly taking priority into account) and use this slot for the
+>     new entity
+>   * if no slots are available and all currently assigned slots
+>     contain busy entities, we queue the entity to a pending list
+>     (possibly one list per prio)
+> 
+> I'll need to make sure this still works with the concept of group (it's
+> not a single queue we schedule, it's a group of queues, meaning that we
+> have N fences to watch to determine if the slot is busy or not, but
+> that should be okay).
 
-SGkNCg0KQW0gMTIuMDEuMjMgdW0gMTA6NTkgc2NocmllYiBEYW5pZWwgVmV0dGVyOg0KPiBP
-biBUaHUsIEphbiAxMiwgMjAyMyBhdCAxMDowNDo0OEFNICswMTAwLCBUaG9tYXMgWmltbWVy
-bWFubiB3cm90ZToNCj4+IEhpDQo+Pg0KPj4gQW0gMTEuMDEuMjMgdW0gMTY6NDEgc2Nocmll
-YiBEYW5pZWwgVmV0dGVyOg0KPj4+IFRoaXMgb25lIG51a2VzIGFsbCBmcmFtZWJ1ZmZlcnMs
-IHdoaWNoIGlzIGEgYml0IG11Y2guIEluIHJlYWxpdHkNCj4+PiBnbWE1MDAgaXMgaWdwdSBh
-bmQgbmV2ZXIgc2hpcHBlZCB3aXRoIGFueXRoaW5nIGRpc2NyZXRlLCBzbyB0aGVyZSBzaG91
-bGQNCj4+PiBub3QgYmUgYW55IGRpZmZlcmVuY2UuDQo+Pj4NCj4+PiBTaWduZWQtb2ZmLWJ5
-OiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGludGVsLmNvbT4NCj4+PiAtLS0NCj4+
-PiAgICBkcml2ZXJzL2dwdS9kcm0vZ21hNTAwL3BzYl9kcnYuYyB8IDIgKy0NCj4+PiAgICAx
-IGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkNCj4+Pg0KPj4+
-IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vZ21hNTAwL3BzYl9kcnYuYyBiL2RyaXZl
-cnMvZ3B1L2RybS9nbWE1MDAvcHNiX2Rydi5jDQo+Pj4gaW5kZXggY2Q5YzczZjVhNjRhLi45
-YjBkYWY5MGRjNTAgMTAwNjQ0DQo+Pj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2dtYTUwMC9w
-c2JfZHJ2LmMNCj4+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vZ21hNTAwL3BzYl9kcnYuYw0K
-Pj4+IEBAIC00MjksNyArNDI5LDcgQEAgc3RhdGljIGludCBwc2JfcGNpX3Byb2JlKHN0cnVj
-dCBwY2lfZGV2ICpwZGV2LCBjb25zdCBzdHJ1Y3QgcGNpX2RldmljZV9pZCAqZW50KQ0KPj4+
-ICAgIAkgKiBUT0RPOiBSZWZhY3RvciBwc2JfZHJpdmVyX2xvYWQoKSB0byBtYXAgdmRjX3Jl
-ZyBlYXJsaWVyLiBUaGVuIHdlDQo+Pj4gICAgCSAqICAgICAgIG1pZ2h0IGJlIGFibGUgdG8g
-cmVhZCB0aGUgZnJhbWVidWZmZXIgcmFuZ2UgZnJvbSB0aGUgZGV2aWNlLg0KPj4+ICAgIAkg
-Ki8NCj4+PiAtCXJldCA9IGRybV9hcGVydHVyZV9yZW1vdmVfZnJhbWVidWZmZXJzKHRydWUs
-ICZkcml2ZXIpOw0KPj4+ICsJcmV0ID0gZHJtX2FwZXJ0dXJlX3JlbW92ZV9jb25mbGljdGlu
-Z19wY2lfZnJhbWVidWZmZXJzKHBkZXYsICZkcml2ZXIpOw0KPj4NCj4+IFRoaXMgZG9lcyBu
-b3Qgd29yay4gVGhlIGNvbW1lbnQganVzdCBhYm92ZSB0aGUgY2hhbmdlZCBsaW5lIGV4cGxh
-aW5zIHdoeS4NCj4+IFRoZSBkZXZpY2UgdXNlcyBzaGFyZWQgbWVtb3J5IHNpbWlsYXIgdG8g
-b3RoZXIgaW50ZWdyYXRlZCBJbnRlbCBjaGlwcy4gVGhlDQo+PiBjb25zb2xlIGlzIHNvbWV3
-aGVyZSBpbiBhIDE2IE1pQiByYW5nZSwgd2hpY2ggaGFzIGJlZW4gc3RvbGVuIGJ5IHRoZSBC
-SU9TDQo+PiBmcm9tIG1haW4gbWVtb3J5LiBUaGVyZSdzIG9ubHkgYSAxIE1pQiBtZW1vcnkg
-cmFuZ2Ugb24gdGhlIGRldmljZSB0byBwcm9ncmFtDQo+PiB0aGUgZGV2aWNlLiBVbmxlc3Mg
-eW91IHdhbnQgdG8gcmVmYWN0b3IgYXMgZGVzY3JpYmVkLCB0aGlzIGNhbGwgaGFzIHRvIGNv
-dmVyDQo+PiB0aGUgd2hvbGUgbWVtb3J5IGZvciBub3cuDQo+IA0KPiBVaC4gU28gaXQncyBt
-YXliZSBub3Qgc28gcHJldHR5LCBidXQgd2hhdCBpZiBJIGp1c3QgY2FsbCBib3RoIGZ1bmN0
-aW9ucz8NCg0KVGhhdCdzIHdheXMgbW9yZSB1Z2x5IElNSE8uDQoNCj4gVGhhdCB3YXkgd2Ug
-Z2V0IHRoZSB2Z2EgaGFuZGxpbmcgdGhyb3VnaCB0aGUgcGNpIG9uZSwgYW5kIHRoZSAibWFr
-ZSBzdXJlDQo+IHRoZXJlJ3Mgbm8gZmIgbGVmdCIgdGhyb3VnaCB0aGUgb3RoZXIgb25lLiBQ
-bHVzIGNvbW1lbnQgb2YgY291cnNlLg0KPiANCj4gT3RoZXJ3aXNlIHdlJ2QgbmVlZCB0byBz
-b21laG93IGtlZXAgdGhlIHZnYSBzdHVmZiBpbiB0aGUgbm9uLXBjaSBwYXRocywNCj4gYW5k
-IHRoYXQganVzdCBmZWVscyBhbGwga2luZHMgb2Ygd3JvbmcgdG8gbWUuDQoNCldpdGggeW91
-ciBwYXRjaCBhcHBsaWVkLCBhcGVydHVyZV9kZXRhY2hfZGV2aWNlcygpIGRvZXMgYWxsIHRo
-ZSB3b3JrIG9mIA0KcmVtb3ZpbmcuIEknZCBhZGQgdGhlIGZvbGxvd2luZyBpbnRlcm5hbCBm
-dW5jdGlvbnM6DQoNCnN0YXRpYyB2b2lkIGFwZXJ0dXJlX2RldGFjaF9oZWFkKGJvb2wgaXNf
-cHJpbWFyeSkNCnsNCgkvKg0KCSAqIGxlbmd0aHkgY29tbWVudCBoZXJlDQoJICovDQoJaWYg
-KGlzX3ByaW1hcnkpDQoJCXN5c2ZiX2Rpc2FibGUoKQ0KfQ0KDQpzdGF0aWMgdm9pZCBhcGVy
-dHVyZV9kZXRhY2hfdGFpbChib29sIHJlbW92ZV92Z2EpDQp7DQoJaWYgKHJlbW92ZV92Z2Ep
-IHsNCgkJYXBlcnR1cmVfZGV0YWNoX2RldmljZXMoVkdBX1BIWVNfKQ0KCQl2Z2FfcmVtb3Zl
-X3ZnYWNvbigpDQoJfQ0KfQ0KDQpBbmQgY2FsbCBib3RoIG9mIHRoZW0gYXQgdGhlIGJlZ2lu
-bmluZy9lbmQgb2YgDQphcGVydHVyZV9yZW1vdmVfY29uZmxpY3RpbmdfZGV2aWNlcygpIGFu
-ZCANCmFwZXJ0dXJlX3JlbW92ZV9jb25mbGljdGluZ19wY2lfZGV2aWNlcygpLg0KDQpZb3Un
-ZCBzdGlsbCBuZWVkIHRvIHByaW1hcnkgYXJndW1lbnQgdG8gDQphcGVydHVyZV9yZW1vdmVf
-Y29uZmxpY3RpbmdfZGV2aWNlcygpLCBidXQgdGhlcmUgd2lsbCBiZSBubyBjb2RlIA0KZHVw
-bGljYXRpb24gd2l0aCB0aGUgYXBlcnR1cmUgaGVscGVycyBhbmQgdGhlIHB1cnBvc2Ugb2Yg
-ZWFjaCBjb2RlIA0KZnJhZ21lbnQgd2lsbCBiZSBjbGVhcmVyLg0KDQpCZXN0IHJlZ2FyZHMN
-ClRob21hcw0KDQo+IC1EYW5pZWwNCg0KLS0gDQpUaG9tYXMgWmltbWVybWFubg0KR3JhcGhp
-Y3MgRHJpdmVyIERldmVsb3Blcg0KU1VTRSBTb2Z0d2FyZSBTb2x1dGlvbnMgR2VybWFueSBH
-bWJIDQpNYXhmZWxkc3RyLiA1LCA5MDQwOSBOw7xybmJlcmcsIEdlcm1hbnkNCihIUkIgMzY4
-MDksIEFHIE7DvHJuYmVyZykNCkdlc2Now6RmdHNmw7xocmVyOiBJdm8gVG90ZXYNCg==
-
---------------p7AmGwSpjIjIUFsgB9Yy8z0w--
-
---------------5MxemaYPsZ0zHzCVm084PrOY
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmO/380FAwAAAAAACgkQlh/E3EQov+Cj
-iw/9FxhqllgjdEiRBeEtQe3EhqBrwDvigdMou3soOuZRFCN2cDxAQxarBqxawulW8SigwmeRe6Fs
-MQzOhwghtWFYHH6w+Lz573MI97e+i+3uRWmV3/rHDaOzW7uAUz3bxBF4SrXm5eQ87t9SI76DXU0K
-2FHZ4QPNlaKlqLGXQ+Dbb2sc71Om04FZKjp48/Gat7PTMSLKwieKRMJh5qS0BOaRoT9JVKqHV59l
-ufRk2bHLR4Hv6yErDdgVKcxrjW9/dAIJ+47DuqXQchUzJCxOTMXbhtoOoLkwbwQ7Kjaa+sB8ruyk
-5CB/6PccioaNHEtMtTNNJcTSjMo6ow38gTzsKbTiHin/LDBU1WUM8SkjG+rzceiU3jF4nI2prD8B
-NTfiYL1FBmpL30LSPBVNFuRyVev21E7QYHHdENRrprsmGQ+oZ5XXmDNM/DE01JAbH27o2RpBlaru
-121azvtF072Q2rGtVu9otjmpYAhDRBCblBxJf9SBRl1xXxuSVqs2cKP5CIPzZDf3q/u4o2vA3bZP
-qYpLDfp2jZ9FyWhXxkXSDnHa6ic7wZN3lHlWjYdqX6NUMiUfFAVQK67UVFv0LUj/LQxbjEU8MrZ4
-pef2+44LScL3lR+OMNCF68Qh6JKdouHef8NWIsmQK7re/u9+aobzE3/RW3b8dpSi+Bihel5rONNQ
-PgI=
-=r/TG
------END PGP SIGNATURE-----
-
---------------5MxemaYPsZ0zHzCVm084PrOY--
+Oh, there's one other thing I forgot to mention: the FW scheduler is
+not entirely fair, it does take the slot priority (which has to be
+unique across all currently assigned slots) into account when
+scheduling groups. So, ideally, we'd want to rotate group priorities
+when they share the same drm_sched_priority (probably based on the
+position in the LRU).
