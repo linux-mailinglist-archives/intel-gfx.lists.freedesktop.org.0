@@ -1,74 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0ACD06672F0
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jan 2023 14:10:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E668667478
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jan 2023 15:08:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BAAF10E8E5;
-	Thu, 12 Jan 2023 13:10:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6552E10E8FC;
+	Thu, 12 Jan 2023 14:08:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from new2-smtp.messagingengine.com (new2-smtp.messagingengine.com
- [66.111.4.224])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9413A10E8E9;
- Thu, 12 Jan 2023 13:10:02 +0000 (UTC)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
- by mailnew.nyi.internal (Postfix) with ESMTP id 433D8582FF7;
- Thu, 12 Jan 2023 08:09:58 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute1.internal (MEProxy); Thu, 12 Jan 2023 08:09:58 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-type:date:date:from:from:in-reply-to:message-id
- :mime-version:reply-to:sender:subject:subject:to:to; s=fm1; t=
- 1673528998; x=1673536198; bh=8U9zLEHso5Vew1pgYQV+YycbfUU86chqC16
- 4aPfsHhY=; b=DkPcG317dF1G9rsJEO4Gp6qf4TYImB9Ili0/J5/0Ee23L27DNTJ
- AXpQL5EFcA1pzBSQ6BQe/ml3pLhcQpS/tHjIdv9oK9B28sQH2th9b9k5JepL6Ujt
- XgLBe4FRHv8ctLwbO2vOYJeKAVSSN+lWy+YdMmlTLAjzsjdIR931uN4EiT8k/+jM
- cr307MXU2ur5O1xY01eEXFZ4/w4eBd6sMEF5wobh36vW30nVvwX+F8vXJty3aYdt
- DSj06X48yTdp60jSdwVblFvpCGK7lIHwWNps+IIZZwRU1sUFlUnYtS+yjgZbkQuj
- y7+oOsvluFKsmIi9Yw4xJC4tS4QNruvkqxA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
- :feedback-id:from:from:in-reply-to:message-id:mime-version
- :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1673528998; x=
- 1673536198; bh=8U9zLEHso5Vew1pgYQV+YycbfUU86chqC164aPfsHhY=; b=L
- akB3Qj2imZgdYg1GF1WB0EeYa2PMdlNZvQme4QHOdmml7mrtkY8CcBq09+YRN6xE
- XCt/qemEF+ryC49+Lte0oJcWyVAg/VQHGnFI9zZqYfwywIPOhGQFxhy3yYf/mC17
- J2wRZIKMeHRqpSyelOWggawIhFp1lHN3sZwoKVL7EDyeY9bjJhHz9IaqRlgrZsJb
- HdGOTP5qfyMt2IdpUQ2MpI9VoMYjaEh1PvXmcldl1EtdF3BxIdeejMax4GUxGdaA
- ++Bqob2hESxioIiShTjALhZpaOLqRjyO1iswUevFh6ruiQ/o3wwbROfInnfubUoP
- CvweCXvN4ixFhNloOu0Vw==
-X-ME-Sender: <xms:pQbAY7IteW4Q-fOPz9Kn0AktAEO25psjCittc-wjGDEWTKOysr9AFw>
- <xme:pQbAY_J8tKwJTRa_IkKwOZvpfJwTAD3OALDjDAfxYUjXotrG38mYBSnPb8Dp0jkAM
- LDwiT7nI4LEkMPyi3o>
-X-ME-Received: <xmr:pQbAYzv3krPoV_IZEVJ_qM_O1zAIadgJ_GSb_bKbJKwJVuu-7v-32UYDXn5hqtzWaeNBRemQeMoLMLmkems8vLz8e-xllPTrVfa0QNPDK9kClw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrleeigdegkecutefuodetggdotefrodftvf
- curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
- uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
- fjughrpeffhffvvefukfggtggusehgtderredttddunecuhfhrohhmpeforgigihhmvgcu
- tfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvg
- hrnhepkeehjeeguefhtefhgfehkeehudefudfhjefgheffkedufeegudfghfekfefhvedv
- necuffhomhgrihhnpehfrhgvvgguvghskhhtohhprdhorhhgnecuvehluhhsthgvrhfuih
- iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordht
- vggthh
-X-ME-Proxy: <xmx:pQbAY0ay-dikNoHepRZJ1rXB2fmvVi2D4a7l7eazYJ_E2sUDYXPZKw>
- <xmx:pQbAYyaQRwF6yfuCSAoQNxUFKNPpCL4QspAcHxwjGn8xofa_e6wlwg>
- <xmx:pQbAY4Ag6S6xSDhNxL5UbxwQ3_0j-FHB7oy8l_fGPPVHRo-A4GHnTw>
- <xmx:pgbAY_IIYXCFF27PbWOxNi_b2wjKVL0jWxc_V0xexW18wzFLpvXQwA>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 12 Jan 2023 08:09:57 -0500 (EST)
-Date: Thu, 12 Jan 2023 14:09:54 +0100
-From: Maxime Ripard <maxime@cerno.tech>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20230112130954.pxt77g3a7rokha42@houat>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55D6310E8FB;
+ Thu, 12 Jan 2023 14:08:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=/D6SdhmLjn+WtMlBibpCqXPn/3+YjWpn0Sb57xAZI5E=; b=WN/i7uCYXlk0R0iuFEPtyY5xQZ
+ xHJRnf7YD6HrOGeNyX6uY1LVUeffMcUES0Ox8+XR/zam0guSWq5GsY7WZ2tO5pA/kmwcXL7lvONF5
+ C20Qye8N4kdBpbtC9bz6Jxoid8GpnRyCWJ+SuzKniDwyIh1fPQbLNnt6HlgtGreYkDwjq7f7MxT1X
+ fHPlDhcu4rIVMhnBqaG3atcFAfoQ/qzXFZalwQZOlCarGViz1iRgyGJK+bnuPyW4FZ8+IeLzE/wyn
+ WPaGSlpRHbDZJrfvu+3mOaUheY+qmvmxCFQo+xBxiljbo5blG46Qg1EBAc1LmTItGQiNkBUWuuoVH
+ r6xbeEeA==;
+Received: from [187.36.234.139] (helo=[192.168.1.195])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1pFyFT-006M8V-NT; Thu, 12 Jan 2023 15:08:08 +0100
+Message-ID: <345279ff-680a-52ac-73ed-29e2ab84f0ae@igalia.com>
+Date: Thu, 12 Jan 2023 11:07:59 -0300
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="2ivsbvpc53bknku6"
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Content-Language: en-US
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+References: <20230109105807.18172-1-mcanal@igalia.com>
+ <20230109105807.18172-4-mcanal@igalia.com> <Y8AAdW2y7zN7DCUZ@intel.com>
+From: =?UTF-8?Q?Ma=c3=adra_Canal?= <mcanal@igalia.com>
+In-Reply-To: <Y8AAdW2y7zN7DCUZ@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 3/5] drm/i915: Remove redundant framebuffer
+ format check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,97 +56,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+ =?UTF-8?Q?Andr=c3=a9_Almeida?= <andrealmeid@igalia.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Simon Ser <contact@emersion.fr>,
+ intel-gfx@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
+ Melissa Wen <mwen@igalia.com>,
+ VMware Graphics Reviewers <linux-graphics-maintainer@vmware.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Zack Rusin <zackr@vmware.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi,
 
---2ivsbvpc53bknku6
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 1/12/23 09:43, Ville Syrjälä wrote:
+> On Mon, Jan 09, 2023 at 07:58:06AM -0300, Maíra Canal wrote:
+>> Now that framebuffer_check() verifies that the format is properly
+>> supported, there is no need to check it again on i915's inside
+>> helpers.
+>>
+>> Therefore, remove the redundant framebuffer format check from the
+>> intel_framebuffer_init() function, letting framebuffer_check()
+>> perform the framebuffer validation.
+>>
+>> Signed-off-by: Maíra Canal <mcanal@igalia.com>
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_fb.c | 9 ---------
+>>   1 file changed, 9 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+>> index 63137ae5ab21..230b729e42d6 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+>> @@ -1914,15 +1914,6 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+>>   		}
+>>   	}
+>>   
+>> -	if (!drm_any_plane_has_format(&dev_priv->drm,
+>> -				      mode_cmd->pixel_format,
+>> -				      mode_cmd->modifier[0])) {
+>> -		drm_dbg_kms(&dev_priv->drm,
+>> -			    "unsupported pixel format %p4cc / modifier 0x%llx\n",
+>> -			    &mode_cmd->pixel_format, mode_cmd->modifier[0]);
+>> -		goto err;
+>> -	}
+>> -
+> 
+> This doesn't work for the legacy tiling->modifier path.
 
-Hi Dave, Daniel,
+Do you have any idea on how we could remove drm_any_plane_has_format() from
+i915? Or is it strictly necessary to validate the modifier in the legacy
+path?
 
-Here's this week drm-misc-fixes PR
+Best Regards,
+- Maíra Canal
 
-Maxime
-
-drm-misc-fixes-2023-01-12:
-Several fixes for amdgpu (all addressing issues with fences), yet
-another orientation quirk for a Lenovo device, a use-after-free fix for
-virtio, a regression fix in TTM and a performance regression in drm
-buddy.
-The following changes since commit 83e79ae3216c70f2b63c935a4e089d1620e8ef01:
-
-  Merge tag 'drm-misc-fixes-2023-01-05' of git://anongit.freedesktop.org/dr=
-m/drm-misc into drm-fixes (2023-01-05 09:43:37 +0100)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2023-01-12
-
-for you to fetch changes up to 5640e81607152d7f2d2558227c0f6cb78b8f39cf:
-
-  drm: Optimize drm buddy top-down allocation method (2023-01-12 13:50:28 +=
-0100)
-
-----------------------------------------------------------------
-Several fixes for amdgpu (all addressing issues with fences), yet
-another orientation quirk for a Lenovo device, a use-after-free fix for
-virtio, a regression fix in TTM and a performance regression in drm
-buddy.
-
-----------------------------------------------------------------
-Arunpravin Paneer Selvam (1):
-      drm: Optimize drm buddy top-down allocation method
-
-Christian K=F6nig (3):
-      drm/amdgpu: fix another missing fence reference in the CS code
-      drm/amdgpu: fix missing dma_fence_put in error path
-      drm/amdgpu: fix pipeline sync v2
-
-Patrick Thompson (1):
-      drm: Add orientation quirk for Lenovo ideapad D330-10IGL
-
-Rob Clark (1):
-      drm/virtio: Fix GEM handle creation UAF
-
-Thomas Zimmermann (1):
-      drm/nouveau: Remove file nouveau_fbcon.c
-
-Zack Rusin (2):
-      drm/vmwgfx: Remove rcu locks from user resources
-      drm/ttm: Fix a regression causing kernel oops'es
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c         |  51 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_sync.c       |   4 +-
- drivers/gpu/drm/drm_buddy.c                    |  81 ++--
- drivers/gpu/drm/drm_panel_orientation_quirks.c |   6 +
- drivers/gpu/drm/nouveau/nouveau_fbcon.c        | 613 ---------------------=
-----
- drivers/gpu/drm/ttm/ttm_bo_util.c              |   2 +-
- drivers/gpu/drm/virtio/virtgpu_ioctl.c         |  19 +-
- drivers/gpu/drm/vmwgfx/ttm_object.c            |  41 +-
- drivers/gpu/drm/vmwgfx/ttm_object.h            |  14 -
- drivers/gpu/drm/vmwgfx/vmwgfx_bo.c             |  38 --
- drivers/gpu/drm/vmwgfx/vmwgfx_drv.h            |  18 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_execbuf.c        | 176 ++++---
- drivers/gpu/drm/vmwgfx/vmwgfx_resource.c       |  33 --
- 13 files changed, 202 insertions(+), 894 deletions(-)
- delete mode 100644 drivers/gpu/drm/nouveau/nouveau_fbcon.c
-
---2ivsbvpc53bknku6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCY8AGogAKCRDj7w1vZxhR
-xcApAQDxfvcXt7rzX+FDI8o3reFchM6SmpnFU2BmUog+Ln7PTgD/Rcetz5lnFi8m
-ud5SFweGdEinBAX6u/yaUwVb00DZlgE=
-=SnLH
------END PGP SIGNATURE-----
-
---2ivsbvpc53bknku6--
+> 
+>>   	/*
+>>   	 * gen2/3 display engine uses the fence if present,
+>>   	 * so the tiling mode must match the fb modifier exactly.
+>> -- 
+>> 2.39.0
+> 
