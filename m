@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D3E4667E22
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jan 2023 19:28:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B39BD667E25
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jan 2023 19:29:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCED210E325;
-	Thu, 12 Jan 2023 18:28:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBED710E329;
+	Thu, 12 Jan 2023 18:29:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5AB5A10E325;
- Thu, 12 Jan 2023 18:28:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B5C710E329
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Jan 2023 18:29:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673548122; x=1705084122;
+ t=1673548160; x=1705084160;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=4j0IvOvhEOiGfWfzcHNLylre0WIECq8Ql/L2bq6QkgY=;
- b=Bj+RXgQ5uRfoZtYv/CwlomnvpE+wSCqbIngxg+5J6Ts2Xfi2SbCoQIgL
- Ol4EByY5cBN60Y1IQ+3ra23r0JfYdYOMn2D8bCi0iXKAgPL5EY3Yn1n86
- FAgzHQkrREWBf6V8sdXsRto/IycEj3H8bxT6ilf0WnVP3D0sfz/JDuxV4
- p2EPddZHmJSJ37mUIOYq/OTDe7kh4k5VhhutPY+OwVe4i6PWhH2+3FP+c
- I4y8VULVYMTrX8bLHIk1fd12wtXpRUtzLRJTzSPGvI6te+9O4J6HpDVlA
- iyq12kzreVdrrVoZNw12ecJRITOk/fB6C6l84Hss7NKSOGzso16HxTi7e A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="311638061"
-X-IronPort-AV: E=Sophos;i="5.97,211,1669104000"; d="scan'208";a="311638061"
+ bh=J0iL4rgix2mw0Wk4Bh4WpBm6DrHW+PsG8OlOTt+T2Gw=;
+ b=YAeQIcZi2H9GgrwUu57iMr0B7IH2oZsc1Gsbkb4tdmIFpEvNnMSbNnrw
+ zUvpZ/RmZCszIny3viNQWJl6abZpk1l0zwTXrbytBd1CAqU4m9vIQrP5f
+ 2G4J7bOi7COKwADNmxd/XhLfbbVCTYpR+1sIC35JiBm0/bEmvER1OsWx1
+ 8AiNNXGyWHQXPxG3hQn46S5HbdV89fWcJXu1Gn4ETApq6uN5OL9acWPZl
+ REcBxbVCbd5vb7NXdp/3rLHpldMmaC4pdyOI7Qi4QIJe+FxC0kgKRNrzz
+ Oa6gyPo6ZSb6Gtb1helLNzooKVYUxFH6QPOc0uu1InJSAOs9u5OEtj85g w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="311638263"
+X-IronPort-AV: E=Sophos;i="5.97,211,1669104000"; d="scan'208";a="311638263"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2023 10:28:41 -0800
+ 12 Jan 2023 10:29:19 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="688436155"
-X-IronPort-AV: E=Sophos;i="5.97,211,1669104000"; d="scan'208";a="688436155"
+X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="688436443"
+X-IronPort-AV: E=Sophos;i="5.97,211,1669104000"; d="scan'208";a="688436443"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
- by orsmga008.jf.intel.com with SMTP; 12 Jan 2023 10:28:36 -0800
+ by orsmga008.jf.intel.com with SMTP; 12 Jan 2023 10:29:16 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 12 Jan 2023 20:28:35 +0200
-Date: Thu, 12 Jan 2023 20:28:35 +0200
+ Thu, 12 Jan 2023 20:29:15 +0200
+Date: Thu, 12 Jan 2023 20:29:15 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Drew Davenport <ddavenport@chromium.org>
-Message-ID: <Y8BRUwiznxA/tns7@intel.com>
-References: <20221226225246.1.I15dff7bb5a0e485c862eae61a69096caf12ef29f@changeid>
+To: intel-gfx@lists.freedesktop.org
+Message-ID: <Y8BRe4DUUsRou4uN@intel.com>
+References: <20230112152145.1117-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221226225246.1.I15dff7bb5a0e485c862eae61a69096caf12ef29f@changeid>
+In-Reply-To: <20230112152145.1117-1-ville.syrjala@linux.intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Check source height is > 0
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Reject < 1x1 pixel plane source
+ size
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,62 +61,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>,
- Juha-Pekka =?iso-8859-1?Q?Heikkil=E4?= <juha-pekka.heikkila@intel.com>
+Cc: Drew Davenport <ddavenport@chromium.org>, stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Dec 26, 2022 at 10:53:24PM -0700, Drew Davenport wrote:
-> The error message suggests that the height of the src rect must be at
-> least 1. Reject source with height of 0.
+On Thu, Jan 12, 2023 at 05:21:45PM +0200, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
-> Signed-off-by: Drew Davenport <ddavenport@chromium.org>
+> We don't have proper sub-pixel coordinate support (some platforms
+> simply can't do it, for others we've not implemented it). This
+> can cause us to treat a < 1 pixel source width/height as zero
+> which is not valid for the hardware, and can also cause a div
+> by zero in some cases.
 > 
+> Refuse < 1x1 plane source size to avoid these problems.
+> 
+> Cc: stable@vger.kernel.org
+> Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+> Reported-by: Drew Davenport <ddavenport@chromium.org>
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > ---
-> I was investigating some divide-by-zero crash reports on ChromeOS which
-> pointed to the intel_adjusted_rate function. Further prodding showed
-> that I could reproduce this in a simple test program if I made src_h
-> some value less than 1 but greater than 0.
+> The other option would be to clamp the source size to >=1x1 pixels,
+> but dunno if that has any real benefits.
 > 
-> This seemed to be a sensible place to check that the source height is at
-> least 1. I tried to repro this issue on an amd device I had on hand, and
-> the configuration was rejected.
+>  drivers/gpu/drm/i915/display/intel_atomic_plane.c | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
 > 
-> Would it make sense to add a check that source dimensions are at least 1
-> somewhere in core, like in drm_atomic_plane_check? Or is that a valid
-> use case on some devices, and thus any such check should be done on a
-> per-driver basis?
-> 
-> Thanks.
-> 
->  drivers/gpu/drm/i915/display/skl_universal_plane.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> index 4b79c2d2d6177..9b172a1e90deb 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -1627,7 +1627,7 @@ static int skl_check_main_surface(struct intel_plane_state *plane_state)
->  	u32 offset;
->  	int ret;
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> index 10e1fc9d0698..c6e43d684458 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> @@ -921,6 +921,21 @@ int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_state,
+>  	 */
+>  	plane_state->uapi.visible = drm_rect_clip_scaled(src, dst, clip);
 >  
-> -	if (w > max_width || w < min_width || h > max_height) {
-> +	if (w > max_width || w < min_width || h > max_height || h < 1) {
+> +	/*
+> +	 * Avoid zero source size when we later
+> +	 * discard the fractional coords.
+> +	 *
+> +	 * FIXME add proper sub-pixel coordinate handling
+> +	 * for platforms/planes that support it.
+> +	 */
+> +	if (plane_state->uapi.visible &&
+> +	    (drm_rect_width(src) < 0x10000 || drm_rect_height(src) < 0x10000)) {
+> +		drm_dbg_kms(&i915->drm, "Plane source must be at least 1x1 pixels\n");
+> +		drm_rect_debug_print("src: ", src, true);
+> +		drm_rect_debug_print("dst: ", dst, false);
+> +		return -EINVAL;
+> +	}
 
-I liked this one best so pushed to drm-intel-next with cc:stable. Thanks.
+Scratch that. Went with Drew's original patch instead.
 
-In the future we might want to move some of these checks to an earlier
-spot to make sure we don't hit any other weird issues in some other
-code, but for the moment I think this will do.
-
->  		drm_dbg_kms(&dev_priv->drm,
->  			    "requested Y/RGB source size %dx%d outside limits (min: %dx1 max: %dx%d)\n",
->  			    w, h, min_width, max_width, max_height);
+> +
+>  	drm_rect_rotate_inv(src, fb->width << 16, fb->height << 16, rotation);
+>  
+>  	if (!can_position && plane_state->uapi.visible &&
 > -- 
-> 2.39.0.314.g84b9a713c41-goog
+> 2.38.2
 
 -- 
 Ville Syrjälä
