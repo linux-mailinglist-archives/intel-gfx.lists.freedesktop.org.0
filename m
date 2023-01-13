@@ -2,56 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A34056699F4
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Jan 2023 15:21:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 055D8669A83
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Jan 2023 15:35:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1470D10E9FD;
-	Fri, 13 Jan 2023 14:21:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BAD910EA07;
+	Fri, 13 Jan 2023 14:35:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A90F10E9FD;
- Fri, 13 Jan 2023 14:21:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673619681; x=1705155681;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=3okXM4x6oZMOlzLg+ynr2lGRZPjxPP8WQcjMssh0H2w=;
- b=mStp7Wn7HrZwdUTwuMVdVTHWotcITPse/yXf10NKzgxDO8x0lnvqyS61
- EztNEI/8MvZSBFb+Ro6Z7zvrTn8KoMEe5FB+U9ym3HEFagRmG+97GqRtx
- a4kv8wTn46/fPix0qSn8cw/NoMn6vADPNvD6lWrT7GYLGjEjTJ6dOr12L
- hlVJC6+MyRklbpTWK47GdpYTyhMCKbWDXb59M05tipflYT/7UfTr9oOBq
- c5QbncKamywGxP6rJzdMBUxoZUz8Y6CTZTC3u8aRPughwH+u/rFmfYo8y
- JMqLMrF/ha0roygmy3hIXjmHGNGvdMUavGJE3/Apq7ryas/o7iMCyWcQX Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10589"; a="324058919"
-X-IronPort-AV: E=Sophos;i="5.97,214,1669104000"; d="scan'208";a="324058919"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2023 06:21:21 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10589"; a="608180891"
-X-IronPort-AV: E=Sophos;i="5.97,214,1669104000"; d="scan'208";a="608180891"
-Received: from skenned1-mobl.ger.corp.intel.com (HELO [10.213.196.186])
- ([10.213.196.186])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2023 06:21:19 -0800
-Message-ID: <8cccd992-1e5d-7121-c4cb-fb845b33128e@linux.intel.com>
-Date: Fri, 13 Jan 2023 14:21:16 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 75BEC10EA07;
+ Fri, 13 Jan 2023 14:35:02 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 58B6BAADE0;
+ Fri, 13 Jan 2023 14:35:02 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7458844215384162491=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Content-Language: en-US
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>,
- Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-References: <20230113022752.3151066-1-vinay.belgaumkar@intel.com>
- <874jsvazvi.wl-ashutosh.dixit@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <874jsvazvi.wl-ashutosh.dixit@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/mtl: Connect root sysfs entries to
- GT0
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Fri, 13 Jan 2023 14:35:02 -0000
+Message-ID: <167362050233.17532.3280310333417064535@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230113130628.19772-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20230113130628.19772-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Implement_UHBR_bandwidth_check?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,51 +40,175 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Andi Shyti <andi.shyti@intel.com>,
- dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============7458844215384162491==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 13/01/2023 03:15, Dixit, Ashutosh wrote:
-> On Thu, 12 Jan 2023 18:27:52 -0800, Vinay Belgaumkar wrote:
->>
->> Reading current root sysfs entries gives a min/max of all
->> GTs. Updating this so we return default (GT0) values when root
->> level sysfs entries are accessed, instead of min/max for the card.
->> Tests that are not multi GT capable will read incorrect sysfs
->> values without this change on multi-GT platforms like MTL.
->>
->> Fixes: a8a4f0467d70 ("drm/i915: Fix CFI violations in gt_sysfs")
-> 
-> We seem to be proposing to change the previous sysfs ABI with this patch?
-> But even then it doesn't seem correct to use gt0 values for device level
-> sysfs. Actually I received the following comment about using max freq
-> across gt's for device level freq's (gt_act_freq_mhz etc.) from one of our
-> users:
-> 
-> -----
-> On Sun, 06 Nov 2022 08:54:04 -0800, Lawson, Lowren H wrote:
-> 
-> Why show maximum? Wouldn’t average be more accurate to the user experience?
-> 
-> As a user, I expect the ‘card’ frequency to be relatively accurate to the
-> entire card. If I see 1.6GHz, but the card is behaving as if it’s running a
-> 1.0 & 1.6GHz on the different compute tiles, I’m going to see a massive
-> decrease in compute workload performance while at ‘maximum’ frequency.
-> -----
-> 
-> So I am not sure why max/min were previously chosen. Why not the average?
+== Series Details ==
 
-I think we still have time to just either stop exposing the global files 
-on multi-tile platforms (all are under force probe), or return some 
-error from them.
+Series: drm/i915: Implement UHBR bandwidth check
+URL   : https://patchwork.freedesktop.org/series/112806/
+State : success
 
-IMO it's not kernel's job to provide any representation here - be in 
-min, max, sum or average (different "blending" methods were discussed 
-for different files) - all of them have some potential to be misleading 
-from different angles.
+== Summary ==
 
-Regards,
+CI Bug Log - changes from CI_DRM_12582 -> Patchwork_112806v1
+====================================================
 
-Tvrtko
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112806v1/index.html
+
+Participating hosts (44 -> 43)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_112806v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][1] ([fdo#109271]) +1 similar issue
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112806v1/fi-bsw-nick/igt@kms_pipe_crc_basic@suspend-read-crc.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [INCOMPLETE][2] -> [PASS][3]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12582/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112806v1/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@migrate:
+    - {bat-adlp-6}:       [DMESG-FAIL][4] ([i915#7699]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12582/bat-adlp-6/igt@i915_selftest@live@migrate.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112806v1/bat-adlp-6/igt@i915_selftest@live@migrate.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#4258]: https://gitlab.freedesktop.org/drm/intel/issues/4258
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#7359]: https://gitlab.freedesktop.org/drm/intel/issues/7359
+  [i915#7625]: https://gitlab.freedesktop.org/drm/intel/issues/7625
+  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12582 -> Patchwork_112806v1
+
+  CI-20190529: 20190529
+  CI_DRM_12582: 312e96256f0520b8660750dd4fc937f63c2f359e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7119: 1e6d24e6dfa42b22f950f7d5e436b8f9acf8747f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_112806v1: 312e96256f0520b8660750dd4fc937f63c2f359e @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+4a2ff9e802c2 drm/i915: Implement UHBR bandwidth check
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112806v1/index.html
+
+--===============7458844215384162491==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Implement UHBR bandwidth check</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/112806/">https://patchwork.freedesktop.org/series/112806/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112806v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112806v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12582 -&gt; Patchwork_112806v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112806v1/index.html</p>
+<h2>Participating hosts (44 -&gt; 43)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_112806v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_pipe_crc_basic@suspend-read-crc:<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112806v1/fi-bsw-nick/igt@kms_pipe_crc_basic@suspend-read-crc.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12582/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112806v1/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@migrate:</p>
+<ul>
+<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12582/bat-adlp-6/igt@i915_selftest@live@migrate.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112806v1/bat-adlp-6/igt@i915_selftest@live@migrate.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12582 -&gt; Patchwork_112806v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12582: 312e96256f0520b8660750dd4fc937f63c2f359e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7119: 1e6d24e6dfa42b22f950f7d5e436b8f9acf8747f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_112806v1: 312e96256f0520b8660750dd4fc937f63c2f359e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>4a2ff9e802c2 drm/i915: Implement UHBR bandwidth check</p>
+
+</body>
+</html>
+
+--===============7458844215384162491==--
