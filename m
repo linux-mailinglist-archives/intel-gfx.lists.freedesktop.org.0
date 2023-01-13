@@ -1,70 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63D806694FB
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Jan 2023 12:06:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 759ED6695CE
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Jan 2023 12:40:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81E5310E9E2;
-	Fri, 13 Jan 2023 11:06:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FB4D10E9EF;
+	Fri, 13 Jan 2023 11:40:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com
- [IPv6:2a00:1450:4864:20::330])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D64C10E1EA;
- Fri, 13 Jan 2023 11:06:29 +0000 (UTC)
-Received: by mail-wm1-x330.google.com with SMTP id m3so15034055wmq.0;
- Fri, 13 Jan 2023 03:06:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:reply-to:user-agent:mime-version:date
- :message-id:from:to:cc:subject:date:message-id:reply-to;
- bh=baUaOu9qP5RXCY+qNKVUaTtZhgFMNu4zdAgDA96eroc=;
- b=ALtzJ+I3+Muk1YK3hL0wvctWAGMfq3YL1bXKFM4wRo2Xp1DyByr4pYxbEoReVRDhER
- AuTUaPjEBGaNH0keGjK3RmgQzxOJtjdUM8Tw9v8mhOEetCV5G7AREtaasHFibidNcdoz
- GoYgDC1ox99KIxbYC8myPW/LJBNQ4t2FT1/OCDBBuW9CCM3kIcUGaAcwmmbYQ4LzWmEv
- 2TFqePHhKgDJy1/BmLT4Uiczv46mKz5UE49DX2FAnhwklmqSH6W0EuhekQNMTIosWwZG
- ZPT/Po7birPfRabkdf9sk3axZq7i4VAQJhUgbv5KHoXxj+rcwxTKYmzkOrq/wvYuzB8U
- /IYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:reply-to:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=baUaOu9qP5RXCY+qNKVUaTtZhgFMNu4zdAgDA96eroc=;
- b=fzq+WII7jSKtSbFKmqXRcuV43V6aVJ8zLqw72B3CFSJ8k0UBC1bgUSR6hR6DaIS9DL
- BSN/8aARfDunZunwjFIoyK2yzJ2XBQ5BDBQVaHh+Dc8HFlIrRcWW5fJy8zjJm9PQLUbH
- 8g/uSbttz0WkIINoOPXPAzDLu1/gIQvAnJTNGgPi76zh1HCzRbWrhGc/z2wFl9utBTRu
- dF1L0McA4yE0fGA7WdXeWiSZcM0ALCVBZPzief33jEFnSgFlA8j8gRPqUtRTi+9ruu4A
- By7qDbIbJ4e4FZR1u7P7cUXoZdvHQLCtcQQ8NMiX0CSs1t56ICTrlkeTe8d0XAkGgrO9
- qAig==
-X-Gm-Message-State: AFqh2kq66oIsW+zzTkpsr3QQGD6ooSATzn7YJujN2DRnJOdhtJTsyBum
- kwnxblTpQHhdiCPWbkJnDHw=
-X-Google-Smtp-Source: AMrXdXs9NaNsyb4zGRdAf7rmsXjTJE347Gie0wJOE/NQTFjr4ARkg1Igb7ii7i5eTLK0gDgZNJnRuw==
-X-Received: by 2002:a05:600c:3550:b0:3d9:ed30:6a73 with SMTP id
- i16-20020a05600c355000b003d9ed306a73mr15217554wmq.9.1673607987538; 
- Fri, 13 Jan 2023 03:06:27 -0800 (PST)
-Received: from [0.0.0.0] ([134.134.139.85])
- by smtp.googlemail.com with ESMTPSA id
- j18-20020a05600c191200b003d9dee823a3sm26796714wmq.5.2023.01.13.03.06.22
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 13 Jan 2023 03:06:27 -0800 (PST)
-Message-ID: <cb28a1e1-b9fb-a4a2-9b03-47bb34b16aa1@gmail.com>
-Date: Fri, 13 Jan 2023 13:06:18 +0200
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2ADD10E9F0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Jan 2023 11:40:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1673610023; x=1705146023;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=iqGUpffcZq9kygAOBqahNf3As8ovv0GMIH50Yd6Mxos=;
+ b=NT5vFrbtuJOGai7dEYpHBGeD3sN9rB1sur8idjpxJTq4zHqPKMecTDSl
+ onbpdxLp81jGCsyqjwyhrn+hFwf5jOD3ZMycHTSOhXreN5asOx8Jq6gPO
+ hSw9hMgsp2wEl0cIummbKCVoTx2bsyVmX68TuDerTHpvJCFkj1L8JBkxv
+ eL9y/oEhm7p6dz0rVYn44+KCSq1jPO9PFjobEk2uprhZ3BjsGgH2yb+7/
+ 4R6XF78pRjXNvtwPaaOb+fjVZ+/5dg0VHcPKek/G+lWOShoPZ1fJZOwi1
+ 7qomCWwylYYXLmcR8F3X0AP8E7/UmqoEtsrpoAiUus4dERMPmLOBgIvMN Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="351209091"
+X-IronPort-AV: E=Sophos;i="5.97,213,1669104000"; d="scan'208";a="351209091"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2023 03:40:23 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="765990197"
+X-IronPort-AV: E=Sophos;i="5.97,213,1669104000"; d="scan'208";a="765990197"
+Received: from bwerner-mobl.ger.corp.intel.com (HELO kveik.ger.corp.intel.com)
+ ([10.252.39.116])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2023 03:40:19 -0800
+From: Luca Coelho <luciano.coelho@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 13 Jan 2023 13:39:05 +0200
+Message-Id: <20230113113905.130405-1-luciano.coelho@intel.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- Drew Davenport <ddavenport@chromium.org>
-References: <20221226225246.1.I15dff7bb5a0e485c862eae61a69096caf12ef29f@changeid>
- <Y8BRUwiznxA/tns7@intel.com>
-Content-Language: en-US
-From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-In-Reply-To: <Y8BRUwiznxA/tns7@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Check source height is > 0
+Subject: [Intel-gfx] [PATCH v2] drm/i915: update src and dst scaler limits
+ for display ver 12 and 13
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,70 +56,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: juhapekka.heikkila@gmail.com
-Cc: Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- =?UTF-8?Q?Juha-Pekka_Heikkil=c3=a4?= <juha-pekka.heikkila@intel.com>,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 12.1.2023 20.28, Ville Syrjälä wrote:
-> On Mon, Dec 26, 2022 at 10:53:24PM -0700, Drew Davenport wrote:
->> The error message suggests that the height of the src rect must be at
->> least 1. Reject source with height of 0.
->>
->> Signed-off-by: Drew Davenport <ddavenport@chromium.org>
->>
->> ---
->> I was investigating some divide-by-zero crash reports on ChromeOS which
->> pointed to the intel_adjusted_rate function. Further prodding showed
->> that I could reproduce this in a simple test program if I made src_h
->> some value less than 1 but greater than 0.
->>
->> This seemed to be a sensible place to check that the source height is at
->> least 1. I tried to repro this issue on an amd device I had on hand, and
->> the configuration was rejected.
->>
->> Would it make sense to add a check that source dimensions are at least 1
->> somewhere in core, like in drm_atomic_plane_check? Or is that a valid
->> use case on some devices, and thus any such check should be done on a
->> per-driver basis?
->>
->> Thanks.
->>
->>   drivers/gpu/drm/i915/display/skl_universal_plane.c | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
->> index 4b79c2d2d6177..9b172a1e90deb 100644
->> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
->> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
->> @@ -1627,7 +1627,7 @@ static int skl_check_main_surface(struct intel_plane_state *plane_state)
->>   	u32 offset;
->>   	int ret;
->>   
->> -	if (w > max_width || w < min_width || h > max_height) {
->> +	if (w > max_width || w < min_width || h > max_height || h < 1) {
-> 
-> I liked this one best so pushed to drm-intel-next with cc:stable. Thanks.
-> 
-> In the future we might want to move some of these checks to an earlier
-> spot to make sure we don't hit any other weird issues in some other
-> code, but for the moment I think this will do.
-> 
+The bspec has been updated and now display versions 12 and 13 support
+source width up to 5120 pixels, source height up to 8192 lines,
+destination width up to 8192 and destination height up to 8192.
 
-Look ok to me. Tests which I had written to try different ways to cause 
-this issue are now returning einval as expected. I'll polish my igt test 
-for this issue and send it out bit later.
+Update the code accordingly.
 
-/Juha-pekka
+BSpec: 50441
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+---
 
->>   		drm_dbg_kms(&dev_priv->drm,
->>   			    "requested Y/RGB source size %dx%d outside limits (min: %dx1 max: %dx%d)\n",
->>   			    w, h, min_width, max_width, max_height);
->> -- 
->> 2.39.0.314.g84b9a713c41-goog
-> 
+In v2:
+   * Added Bspec tag
+
+
+drivers/gpu/drm/i915/display/skl_scaler.c | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+index 01e881293612..473d53610b92 100644
+--- a/drivers/gpu/drm/i915/display/skl_scaler.c
++++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+@@ -87,6 +87,10 @@ static u16 skl_scaler_calc_phase(int sub, int scale, bool chroma_cosited)
+ #define ICL_MAX_SRC_H 4096
+ #define ICL_MAX_DST_W 5120
+ #define ICL_MAX_DST_H 4096
++#define TGL_MAX_SRC_W 5120
++#define TGL_MAX_SRC_H 8192
++#define TGL_MAX_DST_W 8192
++#define TGL_MAX_DST_H 8192
+ #define MTL_MAX_SRC_W 4096
+ #define MTL_MAX_SRC_H 8192
+ #define MTL_MAX_DST_W 8192
+@@ -173,11 +177,16 @@ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
+ 		max_src_h = SKL_MAX_SRC_H;
+ 		max_dst_w = SKL_MAX_DST_W;
+ 		max_dst_h = SKL_MAX_DST_H;
+-	} else if (DISPLAY_VER(dev_priv) < 14) {
++	} else if (DISPLAY_VER(dev_priv) < 12) {
+ 		max_src_w = ICL_MAX_SRC_W;
+ 		max_src_h = ICL_MAX_SRC_H;
+ 		max_dst_w = ICL_MAX_DST_W;
+ 		max_dst_h = ICL_MAX_DST_H;
++	} else if (DISPLAY_VER(dev_priv) < 14) {
++		max_src_w = TGL_MAX_SRC_W;
++		max_src_h = TGL_MAX_SRC_H;
++		max_dst_w = TGL_MAX_DST_W;
++		max_dst_h = TGL_MAX_DST_H;
+ 	} else {
+ 		max_src_w = MTL_MAX_SRC_W;
+ 		max_src_h = MTL_MAX_SRC_H;
+-- 
+2.39.0
 
