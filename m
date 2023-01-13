@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB5446692CB
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Jan 2023 10:22:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0704A66934A
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Jan 2023 10:51:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 547EA10E9CE;
-	Fri, 13 Jan 2023 09:22:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF0BA89B78;
+	Fri, 13 Jan 2023 09:51:09 +0000 (UTC)
 X-Original-To: Intel-GFX@lists.freedesktop.org
 Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F32BF10E9CD;
- Fri, 13 Jan 2023 09:22:10 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B14510E0D5;
+ Fri, 13 Jan 2023 09:51:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673601731; x=1705137731;
+ t=1673603468; x=1705139468;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=5gWSxFpfAL+lScOpF9Y5rkNagHoRgwXHDzWEIKsfyrM=;
- b=Cn8PDp5r7eXjk4zD8Hay8fzDu+QgKPM6AVjN8+yR7ta7mhKWfLHapf3t
- xJ4lkBLXBCjtGNRxBjdDK1aB6SfDm9Qaci2oiDWjsm4enO7kQu6qw5BED
- lbUuThbMxucb6D8TzC90rR44AgsqXcwKCZhKyyUFR0c70uP6zb76A2BLh
- QoE48cXXWT5GDy4RCwJItL8wGFTUNKGeVwuZHhuEDsGyrTgTVfe8e5Sto
- 6LLqxHdoiM6BNWwPt/kSaSilvu+yNZtK+JwLtNfRdCZ7QMhZlV8WXKcPK
- 1bd9geV72DulGt0FK5OXQ1aiytjlMq9FsRdRbQsHmo3qq9o6Lh7xnY8ik Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="324014715"
-X-IronPort-AV: E=Sophos;i="5.97,213,1669104000"; d="scan'208";a="324014715"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2023 01:22:08 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="658169394"
-X-IronPort-AV: E=Sophos;i="5.97,213,1669104000"; d="scan'208";a="658169394"
+ bh=nawlYJu4xtSfdsFWLw++xPorgkOS0x6Fv+3xZGWqQyA=;
+ b=IajBvn5koyp9saQpMOikSkDs1T9/kbKAcCgr3hxTLyd+ktQj8VU+mcKa
+ y32qmyTe8KvLAid0cOA7vCI6Ku/RS8zhHBGJKM6nwtgW9rq/c8+2Pn2jK
+ ZI8XnWe15Yq9qPKEz5KxbH/t2rMjkNyyPDxtzCiBdrzQevLneWoVXvA8/
+ ph+FleO/nu0IAXoErigDYTAG3M4s80P6/Z+qxT0Xl/Apj/7utlWX6yOq9
+ m5QoiGfQ3i2eQe9Bjk4t4e482/1w34ItGpjfCFAZfM3ShNgVXO4KC19bM
+ bnGfcOWjLH1DSAoGJsWMd2VluuQqm6eya4MNQeMSm5BNxltc79YwZJKqr A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="326015532"
+X-IronPort-AV: E=Sophos;i="5.97,213,1669104000"; d="scan'208";a="326015532"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2023 01:51:07 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="721464763"
+X-IronPort-AV: E=Sophos;i="5.97,213,1669104000"; d="scan'208";a="721464763"
 Received: from skenned1-mobl.ger.corp.intel.com (HELO [10.213.196.186])
  ([10.213.196.186])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2023 01:22:06 -0800
-Message-ID: <ed669153-0c07-dfdd-58c9-8146ed966366@linux.intel.com>
-Date: Fri, 13 Jan 2023 09:22:04 +0000
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2023 01:51:06 -0800
+Message-ID: <4acf4db5-97e9-34dc-2b89-517296ce4c3c@linux.intel.com>
+Date: Fri, 13 Jan 2023 09:51:04 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
 Content-Language: en-US
 To: John Harrison <john.c.harrison@intel.com>, Intel-GFX@Lists.FreeDesktop.Org
 References: <20230112025311.2577084-1-John.C.Harrison@Intel.com>
- <20230112025311.2577084-4-John.C.Harrison@Intel.com>
- <393edad8-fa78-4b28-46ac-86da56d03de0@linux.intel.com>
- <8531ce98-78af-d818-b5bb-0af753a026d3@intel.com>
+ <20230112025311.2577084-2-John.C.Harrison@Intel.com>
+ <f5edb1fa-6aba-1e02-f238-518518337f11@linux.intel.com>
+ <79cd935a-5a7f-b709-ec05-c9cf5801f2dc@intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <8531ce98-78af-d818-b5bb-0af753a026d3@intel.com>
+In-Reply-To: <79cd935a-5a7f-b709-ec05-c9cf5801f2dc@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/guc: Look for a guilty context
- when an engine reset fails
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915: Allow error capture without a
+ request
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,110 +65,230 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Cc: Thomas Hellstrom <thomas.hellstrom@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 12/01/2023 20:59, John Harrison wrote:
-> On 1/12/2023 02:15, Tvrtko Ursulin wrote:
+On 12/01/2023 20:40, John Harrison wrote:
+> On 1/12/2023 02:01, Tvrtko Ursulin wrote:
 >> On 12/01/2023 02:53, John.C.Harrison@Intel.com wrote:
 >>> From: John Harrison <John.C.Harrison@Intel.com>
 >>>
->>> Engine resets are supposed to never fail. But in the case when one
->>> does (due to unknown reasons that normally come down to a missing
->>> w/a), it is useful to get as much information out of the system as
->>> possible. Given that the GuC effectively dies on such a situation, it
->>> is not possible to get a guilty context notification back. So do a
->>> manual search instead. Given that GuC is dead, this is safe because
->>> GuC won't be changing the engine state asynchronously.
+>>> There was a report of error captures occurring without any hung
+>>> context being indicated despite the capture being initiated by a 'hung
+>>> context notification' from GuC. The problem was not reproducible.
+>>> However, it is possible to happen if the context in question has no
+>>> active requests. For example, if the hang was in the context switch
+>>> itself then the breadcrumb write would have occurred and the KMD would
+>>> see an idle context.
+>>>
+>>> In the interests of attempting to provide as much information as
+>>> possible about a hang, it seems wise to include the engine info
+>>> regardless of whether a request was found or not. As opposed to just
+>>> prentending there was no hang at all.
+>>>
+>>> So update the error capture code to always record engine information
+>>> if an engine is given. Which means updating record_context() to take a
+>>> context instead of a request (which it only ever used to find the
+>>> context anyway). And split the request agnostic parts of
+>>> intel_engine_coredump_add_request() out into a seaprate function.
+>>>
+>>> v2: Remove a duplicate 'if' statement (Umesh) and fix a put of a null
+>>> pointer.
 >>>
 >>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+>>> Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 >>> ---
->>>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c   | 17 +++++++++++++++--
->>>   1 file changed, 15 insertions(+), 2 deletions(-)
+>>>   drivers/gpu/drm/i915/i915_gpu_error.c | 61 +++++++++++++++++++--------
+>>>   1 file changed, 43 insertions(+), 18 deletions(-)
 >>>
->>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
->>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>> index b436dd7f12e42..99d09e3394597 100644
->>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>> @@ -4754,11 +4754,24 @@ static void reset_fail_worker_func(struct 
->>> work_struct *w)
->>>       guc->submission_state.reset_fail_mask = 0;
->>>       spin_unlock_irqrestore(&guc->submission_state.lock, flags);
->>>   -    if (likely(reset_fail_mask))
->>> +    if (likely(reset_fail_mask)) {
->>> +        struct intel_engine_cs *engine;
->>> +        enum intel_engine_id id;
->>> +
->>> +        /*
->>> +         * GuC is toast at this point - it dead loops after sending 
->>> the failed
->>> +         * reset notification. So need to manually determine the 
->>> guilty context.
->>> +         * Note that it should be safe/reliable to do this here 
->>> because the GuC
->>> +         * is toast and will not be scheduling behind the KMD's back.
->>> +         */
->>> +        for_each_engine_masked(engine, gt, reset_fail_mask, id)
->>> +            intel_guc_find_hung_context(engine);
->>> +
->>>           intel_gt_handle_error(gt, reset_fail_mask,
->>>                         I915_ERROR_CAPTURE,
->>> -                      "GuC failed to reset engine mask=0x%x\n",
->>> +                      "GuC failed to reset engine mask=0x%x",
->>>                         reset_fail_mask);
->>> +    }
+>>> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c 
+>>> b/drivers/gpu/drm/i915/i915_gpu_error.c
+>>> index 9d5d5a397b64e..bd2cf7d235df0 100644
+>>> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+>>> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+>>> @@ -1370,14 +1370,14 @@ static void engine_record_execlists(struct 
+>>> intel_engine_coredump *ee)
 >>>   }
->>>     int intel_guc_engine_failure_process_msg(struct intel_guc *guc,
+>>>     static bool record_context(struct i915_gem_context_coredump *e,
+>>> -               const struct i915_request *rq)
+>>> +               struct intel_context *ce)
+>>>   {
+>>>       struct i915_gem_context *ctx;
+>>>       struct task_struct *task;
+>>>       bool simulated;
+>>>         rcu_read_lock();
+>>> -    ctx = rcu_dereference(rq->context->gem_context);
+>>> +    ctx = rcu_dereference(ce->gem_context);
+>>>       if (ctx && !kref_get_unless_zero(&ctx->ref))
+>>>           ctx = NULL;
+>>>       rcu_read_unlock();
+>>> @@ -1396,8 +1396,8 @@ static bool record_context(struct 
+>>> i915_gem_context_coredump *e,
+>>>       e->guilty = atomic_read(&ctx->guilty_count);
+>>>       e->active = atomic_read(&ctx->active_count);
+>>>   -    e->total_runtime = 
+>>> intel_context_get_total_runtime_ns(rq->context);
+>>> -    e->avg_runtime = intel_context_get_avg_runtime_ns(rq->context);
+>>> +    e->total_runtime = intel_context_get_total_runtime_ns(ce);
+>>> +    e->avg_runtime = intel_context_get_avg_runtime_ns(ce);
+>>>         simulated = i915_gem_context_no_error_capture(ctx);
+>>>   @@ -1532,15 +1532,37 @@ intel_engine_coredump_alloc(struct 
+>>> intel_engine_cs *engine, gfp_t gfp, u32 dump_
+>>>       return ee;
+>>>   }
+>>>   +static struct intel_engine_capture_vma *
+>>> +engine_coredump_add_context(struct intel_engine_coredump *ee,
+>>> +                struct intel_context *ce,
+>>> +                gfp_t gfp)
+>>> +{
+>>> +    struct intel_engine_capture_vma *vma = NULL;
+>>> +
+>>> +    ee->simulated |= record_context(&ee->context, ce);
+>>> +    if (ee->simulated)
+>>> +        return NULL;
+>>> +
+>>> +    /*
+>>> +     * We need to copy these to an anonymous buffer
+>>> +     * as the simplest method to avoid being overwritten
+>>> +     * by userspace.
+>>> +     */
+>>> +    vma = capture_vma(vma, ce->ring->vma, "ring", gfp);
+>>> +    vma = capture_vma(vma, ce->state, "HW context", gfp);
+>>> +
+>>> +    return vma;
+>>> +}
+>>> +
+>>>   struct intel_engine_capture_vma *
+>>>   intel_engine_coredump_add_request(struct intel_engine_coredump *ee,
+>>>                     struct i915_request *rq,
+>>>                     gfp_t gfp)
+>>>   {
+>>> -    struct intel_engine_capture_vma *vma = NULL;
+>>> +    struct intel_engine_capture_vma *vma;
+>>>   -    ee->simulated |= record_context(&ee->context, rq);
+>>> -    if (ee->simulated)
+>>> +    vma = engine_coredump_add_context(ee, rq->context, gfp);
+>>> +    if (!vma)
+>>>           return NULL;
+>>>         /*
+>>> @@ -1550,8 +1572,6 @@ intel_engine_coredump_add_request(struct 
+>>> intel_engine_coredump *ee,
+>>>        */
+>>>       vma = capture_vma_snapshot(vma, rq->batch_res, gfp, "batch");
+>>>       vma = capture_user(vma, rq, gfp);
+>>> -    vma = capture_vma(vma, rq->ring->vma, "ring", gfp);
+>>> -    vma = capture_vma(vma, rq->context->state, "HW context", gfp);
+>>>         ee->rq_head = rq->head;
+>>>       ee->rq_post = rq->postfix;
+>>> @@ -1608,8 +1628,11 @@ capture_engine(struct intel_engine_cs *engine,
+>>>       if (ce) {
+>>>           intel_engine_clear_hung_context(engine);
+>>>           rq = intel_context_find_active_request(ce);
+>>> -        if (!rq || !i915_request_started(rq))
+>>> -            goto no_request_capture;
+>>> +        if (rq && !i915_request_started(rq)) {
+>>> +            drm_info(&engine->gt->i915->drm, "Got hung context on %s 
+>>> with no active request!\n",
 >>
->> This one I don't feel "at home" enough to r-b. Just a question - can 
->> we be sure at this point that GuC is 100% stuck and there isn't a 
->> chance it somehow comes alive and starts running in parallel (being 
->> driven in parallel by a different "thread" in i915), interfering with 
->> the assumption made in the comment?
-> The GuC API definition for the engine reset failure notification is that 
-> GuC will dead loop itself after sending - to quote "This is a 
-> catastrophic failure that requires a full GT reset, or FLR to recover.". 
-> So yes, GuC is 100% stuck and is not going to self recover. Guaranteed. 
-> If that changes in the future then that would be a backwards breaking 
-> API change and would require a corresponding driver update to go with 
-> supporting the new GuC firmware version.
+>> Suggest s/active/started/ since we have both i915_request_active and 
+>> i915_request_started, so to align the terminology.
+> The message text was based on the intent of the activity not the naming 
+> of some internal helper function. Can change it if you really want but 
+> "with no started request" just reads like bad English to me. Plus it 
+> gets removed in the next patch anyway...
 > 
-> There is the potential for a GT reset to maybe occur in parallel and 
-> resurrect the GuC that way. Not sure how that could happen though. The 
-> heartbeat timeout is significantly longer than the GuC's pre-emption 
-> timeout + engine reset timeout. That just leaves manual resets from the 
-> user or maybe from a selftest. If the user is manually poking reset 
-> debugfs files then it is already known that all bets are off in terms of 
-> getting an accurate error capture. And if a selftest is triggering GT 
-> resets in parallel with engine resets then either it is a broken test or 
-> it is attempting to test an evil corner case in which it is expected 
-> that error capture results will be unreliable. Having said all that, 
-> given that the submission_state lock is held here, such a GT reset would 
-> not get very far in bring the GuC back up anyway. Certainly, it would 
-> not be able to get as far as submitting new work and thus potentially 
-> changing the engine state.
 > 
-> So yes, if multiple impossible events occur back to back then the error 
-> capture may be wonky. Where wonky means a potentially innocent 
-> context/request gets blamed for breaking the hardware. Oh dear. I can 
-> live with that.
+>>
+>>> +                 engine->name);
+>>> +            rq = NULL;
+>>> +        }
+>>>       } else {
+>>>           /*
+>>>            * Getting here with GuC enabled means it is a forced error 
+>>> capture
+>>> @@ -1622,22 +1645,24 @@ capture_engine(struct intel_engine_cs *engine,
+>>>                              flags);
+>>>           }
+>>>       }
+>>> -    if (rq)
+>>> +    if (rq) {
+>>>           rq = i915_request_get_rcu(rq);
+>>> +        capture = intel_engine_coredump_add_request(ee, rq, 
+>>> ATOMIC_MAYFAIL);
+>>> +    } else if (ce) {
+>>> +        capture = engine_coredump_add_context(ee, ce, ATOMIC_MAYFAIL);
+>>> +    }
+>>>   -    if (!rq)
+>>> -        goto no_request_capture;
+>>> -
+>>> -    capture = intel_engine_coredump_add_request(ee, rq, 
+>>> ATOMIC_MAYFAIL);
+>>>       if (!capture) {
+>>> -        i915_request_put(rq);
+>>> +        if (rq)
+>>> +            i915_request_put(rq);
+>>>           goto no_request_capture;
+>>>       }
+>>>       if (dump_flags & CORE_DUMP_FLAG_IS_GUC_CAPTURE)
+>>>           intel_guc_capture_get_matching_node(engine->gt, ee, ce);
+>>
+>> This step requires non-NULL ce, so if you move it under the "else if 
+>> (ce)" above then I *think* exit from the function can be consolidated 
+>> to just:
+>>
+>> if (capture) {
+>>     intel_engine_coredump_add_vma(ee, capture, compress);
+>>     if (rq)
+>>         i915_request_put(rq);
+> Is there any reason the rq ref needs to be held during the add_vma call? 
+> Can it now just be moved earlier to be:
+>      if (rq) {
+>          rq = i915_request_get_rcu(rq);
+>          capture = intel_engine_coredump_add_request(ee, rq, 
+> ATOMIC_MAYFAIL);
+>          i915_request_put(rq);
+>      }
+> 
+> The internals of the request object are only touched in the above 
+> _add_request() code. The later _add_vma() call fiddles around with vmas 
+> that pulled from the request but the capture_vma code inside 
+> _add_request() has already copied everything, hasn't it? Or rather, it 
+> has grabbed its own private vma resource locks. So there is no 
+> requirement to keep the request itself around still?
 
-Okay, so I was triggered by the "safe/reliable" qualification from the 
-comment. I agree "reliable" does not have to be and was mostly worried 
-about the "safe" part.
-
- From what you explain if short heartbeat, or manual reset invocation, 
-could actually mess up any of the data structures which added 
-intel_guc_find_hung_context walks and so crash the kernel.
-
-Looking inside, there is some lock dropping going on (and undocumented 
-irqsave games), and walking the list while unlocked. So whether or not 
-that can go bang if a full reset happens in parallel and re-activates 
-the normal driver flows.
+Don't know.. it is a question if changes from 60dc43d1190d ("drm/i915: 
+Use struct vma_resource instead of struct vma_snapshot") removed the 
+need for holding the rq reference that "long" I guess? Adding Thomas and 
+Matt to perhaps comment.
 
 Regards,
 
 Tvrtko
+
+
+> John.
+> 
+> 
+>> } else {
+>>     kfree(ee);
+>>     ee = NULL;
+>> }
+>>
+>> return ee;
+>>
+>> No "if (rq) i915_request_put()" twice, and goto label can be 
+>> completely removed.
+>>
+>> Regards,
+>>
+>> Tvrtko
+>>
+>>>         intel_engine_coredump_add_vma(ee, capture, compress);
+>>> -    i915_request_put(rq);
+>>> +    if (rq)
+>>> +        i915_request_put(rq);
+>>>         return ee;
+> 
