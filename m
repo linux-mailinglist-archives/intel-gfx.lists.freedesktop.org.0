@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E62966925D
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Jan 2023 10:10:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB5446692CB
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Jan 2023 10:22:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3744F10E9C7;
-	Fri, 13 Jan 2023 09:10:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 547EA10E9CE;
+	Fri, 13 Jan 2023 09:22:14 +0000 (UTC)
 X-Original-To: Intel-GFX@lists.freedesktop.org
 Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47DA5892FD;
- Fri, 13 Jan 2023 09:10:28 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F32BF10E9CD;
+ Fri, 13 Jan 2023 09:22:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673601028; x=1705137028;
+ t=1673601731; x=1705137731;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=fOr/1I3YrmbIYI4Sfb7dAxCfX7zx4hRXlIEK9Ij1POQ=;
- b=g6V7otvdRYSA0BjEUhK9fc5Ia83B+xFUvifCLRHHnzCYqFrLAbd5ycN1
- OdyTvydldWfAPzwfjhAT1eBCCFwMrN70peoF30yh4CwUchC4XgG9e2XNi
- gkZvfvloxyh8VmJ+EzySwIDd7kTpEMzojub3JIWPpfX6vhhmY3QnYocT5
- ApkI5YkB5ZrNOiuyeq0eFzDasyAUnD0GH3NRia3ljS827LP7YCokE40S+
- gORXS5vgFL9hIYxF7o0wEwvFq5DzdYx7FirbZyFhHSGyp3IKYcNw0NiYu
- D+kZApdIG5jgzNg4BxkcSO5seo405glDHOyv+v4MMqx+OjlD6JJ5NUUxJ Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="321648311"
-X-IronPort-AV: E=Sophos;i="5.97,213,1669104000"; d="scan'208";a="321648311"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2023 01:10:25 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="660144975"
-X-IronPort-AV: E=Sophos;i="5.97,213,1669104000"; d="scan'208";a="660144975"
+ bh=5gWSxFpfAL+lScOpF9Y5rkNagHoRgwXHDzWEIKsfyrM=;
+ b=Cn8PDp5r7eXjk4zD8Hay8fzDu+QgKPM6AVjN8+yR7ta7mhKWfLHapf3t
+ xJ4lkBLXBCjtGNRxBjdDK1aB6SfDm9Qaci2oiDWjsm4enO7kQu6qw5BED
+ lbUuThbMxucb6D8TzC90rR44AgsqXcwKCZhKyyUFR0c70uP6zb76A2BLh
+ QoE48cXXWT5GDy4RCwJItL8wGFTUNKGeVwuZHhuEDsGyrTgTVfe8e5Sto
+ 6LLqxHdoiM6BNWwPt/kSaSilvu+yNZtK+JwLtNfRdCZ7QMhZlV8WXKcPK
+ 1bd9geV72DulGt0FK5OXQ1aiytjlMq9FsRdRbQsHmo3qq9o6Lh7xnY8ik Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="324014715"
+X-IronPort-AV: E=Sophos;i="5.97,213,1669104000"; d="scan'208";a="324014715"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2023 01:22:08 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="658169394"
+X-IronPort-AV: E=Sophos;i="5.97,213,1669104000"; d="scan'208";a="658169394"
 Received: from skenned1-mobl.ger.corp.intel.com (HELO [10.213.196.186])
  ([10.213.196.186])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2023 01:10:24 -0800
-Message-ID: <e532ffc2-09a5-126d-f4e4-e5e2a503a5fa@linux.intel.com>
-Date: Fri, 13 Jan 2023 09:10:22 +0000
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2023 01:22:06 -0800
+Message-ID: <ed669153-0c07-dfdd-58c9-8146ed966366@linux.intel.com>
+Date: Fri, 13 Jan 2023 09:22:04 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
 Content-Language: en-US
 To: John Harrison <john.c.harrison@intel.com>, Intel-GFX@Lists.FreeDesktop.Org
 References: <20230112025311.2577084-1-John.C.Harrison@Intel.com>
- <20230112025311.2577084-3-John.C.Harrison@Intel.com>
- <dab002d8-75f7-d8b5-d0a0-a6a21ec724b0@linux.intel.com>
- <5a8be54d-9627-3d60-b6b0-22f3732e6962@intel.com>
+ <20230112025311.2577084-4-John.C.Harrison@Intel.com>
+ <393edad8-fa78-4b28-46ac-86da56d03de0@linux.intel.com>
+ <8531ce98-78af-d818-b5bb-0af753a026d3@intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <5a8be54d-9627-3d60-b6b0-22f3732e6962@intel.com>
+In-Reply-To: <8531ce98-78af-d818-b5bb-0af753a026d3@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915: Allow error capture of a
- pending request
+Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/guc: Look for a guilty context
+ when an engine reset fails
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,86 +70,105 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 12/01/2023 20:46, John Harrison wrote:
-> On 1/12/2023 02:06, Tvrtko Ursulin wrote:
+On 12/01/2023 20:59, John Harrison wrote:
+> On 1/12/2023 02:15, Tvrtko Ursulin wrote:
 >> On 12/01/2023 02:53, John.C.Harrison@Intel.com wrote:
 >>> From: John Harrison <John.C.Harrison@Intel.com>
 >>>
->>> A hang situation has been observed where the only requests on the
->>> context were either completed or not yet started according to the
->>> breaadcrumbs. However, the register state claimed a batch was (maybe)
->>> in progress. So, allow capture of the pending request on the grounds
->>> that this might be better than nothing.
+>>> Engine resets are supposed to never fail. But in the case when one
+>>> does (due to unknown reasons that normally come down to a missing
+>>> w/a), it is useful to get as much information out of the system as
+>>> possible. Given that the GuC effectively dies on such a situation, it
+>>> is not possible to get a guilty context notification back. So do a
+>>> manual search instead. Given that GuC is dead, this is safe because
+>>> GuC won't be changing the engine state asynchronously.
 >>>
 >>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 >>> ---
->>>   drivers/gpu/drm/i915/i915_gpu_error.c | 8 +++-----
->>>   1 file changed, 3 insertions(+), 5 deletions(-)
+>>>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c   | 17 +++++++++++++++--
+>>>   1 file changed, 15 insertions(+), 2 deletions(-)
 >>>
->>> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c 
->>> b/drivers/gpu/drm/i915/i915_gpu_error.c
->>> index bd2cf7d235df0..2e338a9667a4b 100644
->>> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
->>> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
->>> @@ -1628,11 +1628,9 @@ capture_engine(struct intel_engine_cs *engine,
->>>       if (ce) {
->>>           intel_engine_clear_hung_context(engine);
->>>           rq = intel_context_find_active_request(ce);
->>> -        if (rq && !i915_request_started(rq)) {
->>> -            drm_info(&engine->gt->i915->drm, "Got hung context on %s 
->>> with no active request!\n",
->>> -                 engine->name);
->>> -            rq = NULL;
->>> -        }
->>> +        if (rq && !i915_request_started(rq))
->>> +            drm_info(&engine->gt->i915->drm, "Confused - active 
->>> request not yet started: %lld:%lld, ce = 0x%04X/%s!\n",
->>> +                 rq->fence.context, rq->fence.seqno, ce->guc_id.id, 
->>> engine->name);
+>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
+>>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>> index b436dd7f12e42..99d09e3394597 100644
+>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>> @@ -4754,11 +4754,24 @@ static void reset_fail_worker_func(struct 
+>>> work_struct *w)
+>>>       guc->submission_state.reset_fail_mask = 0;
+>>>       spin_unlock_irqrestore(&guc->submission_state.lock, flags);
+>>>   -    if (likely(reset_fail_mask))
+>>> +    if (likely(reset_fail_mask)) {
+>>> +        struct intel_engine_cs *engine;
+>>> +        enum intel_engine_id id;
+>>> +
+>>> +        /*
+>>> +         * GuC is toast at this point - it dead loops after sending 
+>>> the failed
+>>> +         * reset notification. So need to manually determine the 
+>>> guilty context.
+>>> +         * Note that it should be safe/reliable to do this here 
+>>> because the GuC
+>>> +         * is toast and will not be scheduling behind the KMD's back.
+>>> +         */
+>>> +        for_each_engine_masked(engine, gt, reset_fail_mask, id)
+>>> +            intel_guc_find_hung_context(engine);
+>>> +
+>>>           intel_gt_handle_error(gt, reset_fail_mask,
+>>>                         I915_ERROR_CAPTURE,
+>>> -                      "GuC failed to reset engine mask=0x%x\n",
+>>> +                      "GuC failed to reset engine mask=0x%x",
+>>>                         reset_fail_mask);
+>>> +    }
+>>>   }
+>>>     int intel_guc_engine_failure_process_msg(struct intel_guc *guc,
 >>
->> Ah you change active to started in this patch! :)
-> Yeah, I'm wanting to keep these two patches separate. This one is a more 
-> questionable change in actual behaviour. The previous patch just allows 
-> capturing the context when the request has been rejected. Whereas this 
-> one changes the request acceptance criteria. With the potential to start 
-> blaming innocent requests. It seems plausible to me, especially with the 
-> warning message. We know the context owning the request is guilty so why 
-> wouldn't we blame that request just because the tracking is off (maybe 
-> due to some driver bug). But I could see someone objecting on grounds of 
-> being super strict about who/what gets blamed for a hang and either 
-> nacks or maybe wants this change reverted some time later.
+>> This one I don't feel "at home" enough to r-b. Just a question - can 
+>> we be sure at this point that GuC is 100% stuck and there isn't a 
+>> chance it somehow comes alive and starts running in parallel (being 
+>> driven in parallel by a different "thread" in i915), interfering with 
+>> the assumption made in the comment?
+> The GuC API definition for the engine reset failure notification is that 
+> GuC will dead loop itself after sending - to quote "This is a 
+> catastrophic failure that requires a full GT reset, or FLR to recover.". 
+> So yes, GuC is 100% stuck and is not going to self recover. Guaranteed. 
+> If that changes in the future then that would be a backwards breaking 
+> API change and would require a corresponding driver update to go with 
+> supporting the new GuC firmware version.
 > 
->>
->> I suggest no "ce" in user visible messages and maybe stick with the 
->> convention grep suggest is already established:
->>
->> "Hung context with active request %lld:%lld [0x%04X] not started!"
->>
-> Are you also meaning to drop the engine name? I think it is important to 
-> keep the '%s' in there somewhere.
+> There is the potential for a GT reset to maybe occur in parallel and 
+> resurrect the GuC that way. Not sure how that could happen though. The 
+> heartbeat timeout is significantly longer than the GuC's pre-emption 
+> timeout + engine reset timeout. That just leaves manual resets from the 
+> user or maybe from a selftest. If the user is manually poking reset 
+> debugfs files then it is already known that all bets are off in terms of 
+> getting an accurate error capture. And if a selftest is triggering GT 
+> resets in parallel with engine resets then either it is a broken test or 
+> it is attempting to test an evil corner case in which it is expected 
+> that error capture results will be unreliable. Having said all that, 
+> given that the submission_state lock is held here, such a GT reset would 
+> not get very far in bring the GuC back up anyway. Certainly, it would 
+> not be able to get as far as submitting new work and thus potentially 
+> changing the engine state.
+> 
+> So yes, if multiple impossible events occur back to back then the error 
+> capture may be wonky. Where wonky means a potentially innocent 
+> context/request gets blamed for breaking the hardware. Oh dear. I can 
+> live with that.
 
-No sorry, just an oversight.
+Okay, so I was triggered by the "safe/reliable" qualification from the 
+comment. I agree "reliable" does not have to be and was mostly worried 
+about the "safe" part.
 
-"Hung context on %s with active request %lld:%lld [0x%04X] not started!"
+ From what you explain if short heartbeat, or manual reset invocation, 
+could actually mess up any of the data structures which added 
+intel_guc_find_hung_context walks and so crash the kernel.
 
-Doesn't have to be exactly that, only trying to illustrate what style 
-looks better to me when user facing - not mentioning confusing and fewer 
-special characters.
+Looking inside, there is some lock dropping going on (and undocumented 
+irqsave games), and walking the list while unlocked. So whether or not 
+that can go bang if a full reset happens in parallel and re-activates 
+the normal driver flows.
 
 Regards,
 
 Tvrtko
-
-> 
-> John.
-> 
-> 
->> Regards,
->>
->> Tvrtko
->>
->>>       } else {
->>>           /*
->>>            * Getting here with GuC enabled means it is a forced error 
->>> capture
-> 
