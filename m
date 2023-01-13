@@ -2,48 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 759ED6695CE
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Jan 2023 12:40:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D30F46695D9
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Jan 2023 12:49:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FB4D10E9EF;
-	Fri, 13 Jan 2023 11:40:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0ED1310E9F2;
+	Fri, 13 Jan 2023 11:49:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2ADD10E9F0
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Jan 2023 11:40:23 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3695B10E9F0;
+ Fri, 13 Jan 2023 11:49:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673610023; x=1705146023;
+ t=1673610560; x=1705146560;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=iqGUpffcZq9kygAOBqahNf3As8ovv0GMIH50Yd6Mxos=;
- b=NT5vFrbtuJOGai7dEYpHBGeD3sN9rB1sur8idjpxJTq4zHqPKMecTDSl
- onbpdxLp81jGCsyqjwyhrn+hFwf5jOD3ZMycHTSOhXreN5asOx8Jq6gPO
- hSw9hMgsp2wEl0cIummbKCVoTx2bsyVmX68TuDerTHpvJCFkj1L8JBkxv
- eL9y/oEhm7p6dz0rVYn44+KCSq1jPO9PFjobEk2uprhZ3BjsGgH2yb+7/
- 4R6XF78pRjXNvtwPaaOb+fjVZ+/5dg0VHcPKek/G+lWOShoPZ1fJZOwi1
- 7qomCWwylYYXLmcR8F3X0AP8E7/UmqoEtsrpoAiUus4dERMPmLOBgIvMN Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="351209091"
-X-IronPort-AV: E=Sophos;i="5.97,213,1669104000"; d="scan'208";a="351209091"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2023 03:40:23 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="765990197"
-X-IronPort-AV: E=Sophos;i="5.97,213,1669104000"; d="scan'208";a="765990197"
-Received: from bwerner-mobl.ger.corp.intel.com (HELO kveik.ger.corp.intel.com)
- ([10.252.39.116])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2023 03:40:19 -0800
-From: Luca Coelho <luciano.coelho@intel.com>
+ bh=iJ3BteWUUY/wPfUSG0fIzGSR5XJxDaCLpZqayQBBMIE=;
+ b=a9El6NQ0aMj7vg9otg/SP762Y6zL3GBEXuKwNglT7Ev+c94YWaC6HwfL
+ WG2OxNCf0LCfOLdG8JpoGc8mpNxtLllaF/FfVBkt3JlWV2ZHflq5holfK
+ RqKo4ejO7+MEeixzQnJn9oU5+aKCvBFULE+TX84Eu+yxILiI5iGTEbVZ0
+ GDcpSMH830LelFjdqNnlKCJWoHs3klzUa8n6C9zC3lVaq60I+O7kxEse+
+ 6FJCpSCokeTpljtKm3mz1mM9TgBIKIaJOqPM8D+3s7tMvO7zNbdZX2rjA
+ tzYQFF3fQKJYSptR2EO096PpB5JrRJkF+0h6oB44SoLUvXtpp3OiJMDJv w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="326031852"
+X-IronPort-AV: E=Sophos;i="5.97,213,1669104000"; d="scan'208";a="326031852"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2023 03:49:19 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="726675325"
+X-IronPort-AV: E=Sophos;i="5.97,213,1669104000"; d="scan'208";a="726675325"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.42.231])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2023 03:49:17 -0800
+From: Nirmoy Das <nirmoy.das@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 13 Jan 2023 13:39:05 +0200
-Message-Id: <20230113113905.130405-1-luciano.coelho@intel.com>
+Date: Fri, 13 Jan 2023 12:49:03 +0100
+Message-Id: <20230113114903.7824-1-nirmoy.das@intel.com>
 X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany,
+ Commercial Register: Amtsgericht Muenchen HRB 186928 
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] drm/i915: update src and dst scaler limits
- for display ver 12 and 13
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Unwind hugepages to drop
+ wakeref on error
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,60 +58,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Nirmoy Das <nirmoy.das@intel.com>, chris.p.wilson@linux.intel.com,
+ matthew.auld@intel.com, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The bspec has been updated and now display versions 12 and 13 support
-source width up to 5120 pixels, source height up to 8192 lines,
-destination width up to 8192 and destination height up to 8192.
+From: Chris Wilson <chris.p.wilson@linux.intel.com>
 
-Update the code accordingly.
+Make sure that upon error after we have acquired the wakeref we do
+release it again.
 
-BSpec: 50441
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+Signed-off-by: Chris Wilson <chris.p.wilson@linux.intel.com>
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 ---
+ drivers/gpu/drm/i915/gem/selftests/huge_pages.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-In v2:
-   * Added Bspec tag
-
-
-drivers/gpu/drm/i915/display/skl_scaler.c | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-index 01e881293612..473d53610b92 100644
---- a/drivers/gpu/drm/i915/display/skl_scaler.c
-+++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-@@ -87,6 +87,10 @@ static u16 skl_scaler_calc_phase(int sub, int scale, bool chroma_cosited)
- #define ICL_MAX_SRC_H 4096
- #define ICL_MAX_DST_W 5120
- #define ICL_MAX_DST_H 4096
-+#define TGL_MAX_SRC_W 5120
-+#define TGL_MAX_SRC_H 8192
-+#define TGL_MAX_DST_W 8192
-+#define TGL_MAX_DST_H 8192
- #define MTL_MAX_SRC_W 4096
- #define MTL_MAX_SRC_H 8192
- #define MTL_MAX_DST_W 8192
-@@ -173,11 +177,16 @@ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
- 		max_src_h = SKL_MAX_SRC_H;
- 		max_dst_w = SKL_MAX_DST_W;
- 		max_dst_h = SKL_MAX_DST_H;
--	} else if (DISPLAY_VER(dev_priv) < 14) {
-+	} else if (DISPLAY_VER(dev_priv) < 12) {
- 		max_src_w = ICL_MAX_SRC_W;
- 		max_src_h = ICL_MAX_SRC_H;
- 		max_dst_w = ICL_MAX_DST_W;
- 		max_dst_h = ICL_MAX_DST_H;
-+	} else if (DISPLAY_VER(dev_priv) < 14) {
-+		max_src_w = TGL_MAX_SRC_W;
-+		max_src_h = TGL_MAX_SRC_H;
-+		max_dst_w = TGL_MAX_DST_W;
-+		max_dst_h = TGL_MAX_DST_H;
- 	} else {
- 		max_src_w = MTL_MAX_SRC_W;
- 		max_src_h = MTL_MAX_SRC_H;
+diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+index c281b0ec9e05..295d6f2cc4ff 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
++++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+@@ -1855,7 +1855,7 @@ static int igt_shrink_thp(void *arg)
+ 			I915_SHRINK_ACTIVE);
+ 	i915_vma_unpin(vma);
+ 	if (err)
+-		goto out_put;
++		goto out_wf;
+ 
+ 	/*
+ 	 * Now that the pages are *unpinned* shrinking should invoke
+@@ -1871,7 +1871,7 @@ static int igt_shrink_thp(void *arg)
+ 		pr_err("unexpected pages mismatch, should_swap=%s\n",
+ 		       str_yes_no(should_swap));
+ 		err = -EINVAL;
+-		goto out_put;
++		goto out_wf;
+ 	}
+ 
+ 	if (should_swap == (obj->mm.page_sizes.sg || obj->mm.page_sizes.phys)) {
+@@ -1883,7 +1883,7 @@ static int igt_shrink_thp(void *arg)
+ 
+ 	err = i915_vma_pin(vma, 0, 0, flags);
+ 	if (err)
+-		goto out_put;
++		goto out_wf;
+ 
+ 	while (n--) {
+ 		err = cpu_check(obj, n, 0xdeadbeaf);
 -- 
 2.39.0
 
