@@ -2,80 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0683C668FF7
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Jan 2023 09:03:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB263669085
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Jan 2023 09:19:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0D4210E9A5;
-	Fri, 13 Jan 2023 08:03:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB8A510E1E4;
+	Fri, 13 Jan 2023 08:19:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D1E010E9A3
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Jan 2023 08:03:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1673596990;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=11A68i/ujjvlvNOTfu4F5ZXcyPx1UEmLo0fXGnHQZCM=;
- b=fMBJiTWycdwHuq0qkh8vxiwrI8ev5QebDUv6qsJyxf99cc9JQpSwQ/jLD19SrIkNq+oJ4i
- +SRIz3L0EylSeLdzp1TLuKBi9Vh57KNP9BBmdhq9OWIt5zyBndZassuSbtEPEqUsaLBXwt
- Q/UZAvzNV8u86jwqhQxlAfbQg4ceLvc=
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
- [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-288-pXUsIYCYNeq-vekgb3vmag-1; Fri, 13 Jan 2023 03:03:08 -0500
-X-MC-Unique: pXUsIYCYNeq-vekgb3vmag-1
-Received: by mail-wr1-f69.google.com with SMTP id
- d27-20020adfa35b000000b002bc813ba677so2830054wrb.6
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Jan 2023 00:03:08 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=11A68i/ujjvlvNOTfu4F5ZXcyPx1UEmLo0fXGnHQZCM=;
- b=MwCRjDI4bM7of834aCuhFupTrB/A63yGsjVjZNqKKtqTvkIX59vH7O6skAy+BEMxw/
- aYPMkHiA7FiLw6X65efmGFixwenRYs5AXZCAX9AbxW8cWTtuuJtTtfVDc+kWlD/9GYZL
- ihI0XNTucZCoCg5XqPyBBnay6rCWjTJJvUPySRrps01sM1izxA50O/6mGT2fMyNgKwdj
- zY5hReTTC3LFvUSTrrG3PHRzqoxwMkTPfkkpv5LU4153zlCEhZvh4Gi93mvghrYFItZe
- o7Z4q3KEEP3q5IPli3RjpHsH0m0vP6QlgqRPW85awHBCk8aiHZ3cQhyQus5x+Rp3FPeq
- bydw==
-X-Gm-Message-State: AFqh2krDOK5AZtcHQBEZ7EzMVubEez1pMWM7sV8tkQ5blTy7B1N3AkVF
- VATjCJqNHECUW/lQ4GjsaYPmsGqMZ22lbpDU+Zir+543sSB4bZR/7JV3hxZL+AE/XSfZK4Z8HL7
- wExdRny1x2kyrfVSSgxhe0nQNQaZR
-X-Received: by 2002:a05:600c:5128:b0:3c6:e62e:2e67 with SMTP id
- o40-20020a05600c512800b003c6e62e2e67mr58697253wms.2.1673596987504; 
- Fri, 13 Jan 2023 00:03:07 -0800 (PST)
-X-Google-Smtp-Source: AMrXdXvVwsf1Jjnk65GgTwR1x8Y5bh32fZraLo5RnjXtvxHHUeem4xVwqG2giy3CQPNe9luzSHMqkw==
-X-Received: by 2002:a05:600c:5128:b0:3c6:e62e:2e67 with SMTP id
- o40-20020a05600c512800b003c6e62e2e67mr58697233wms.2.1673596987293; 
- Fri, 13 Jan 2023 00:03:07 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:c:37e0:38da:a7d9:7cc9:db3e?
- ([2a01:e0a:c:37e0:38da:a7d9:7cc9:db3e])
- by smtp.gmail.com with ESMTPSA id
- n7-20020a05600c4f8700b003c6bd12ac27sm27381636wmq.37.2023.01.13.00.03.06
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 13 Jan 2023 00:03:06 -0800 (PST)
-Message-ID: <e54977a6-d767-7ea4-5259-d9735e5a68e9@redhat.com>
-Date: Fri, 13 Jan 2023 09:03:05 +0100
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE19510E1E4;
+ Fri, 13 Jan 2023 08:19:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1673597959; x=1705133959;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=iT7RmMd1fDEijKpINqKWhxuTMZMzCaiWAJyZGjz4Tf4=;
+ b=fqbLqeO7FcVG3m6jYZ7oW/2ywUp85oS1GV8VkVKajKlYgRmcn/IqRsJl
+ Y9E3zyKMn3D175/Yl5F8mFWvFWjQhOS42ZbmwDIj3Rn2gT1U/437334Kw
+ HbZAVz5kNmFL0OtUP3c3a465qjjimpFPtZk+f0FNG2is8cGVpCOe0iuZa
+ aqfFuNsO6Z+9IFxK4xdvFIYNByXT9wi+d+0kZdVtkxKMOFP1h2GLY8lZz
+ /IAuCUtVaQ8dtvetzQ3umuh6fmTGEclvIDMQPAQyd/2Ynvt31wOH/nhRL
+ +EKMPYUybxezALn3aKYUsIoT+AD3ZN7yTU4+BYMprmc80U4uBJ2oO9pGE Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="324004978"
+X-IronPort-AV: E=Sophos;i="5.97,213,1669104000"; d="scan'208";a="324004978"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2023 00:19:19 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="782076465"
+X-IronPort-AV: E=Sophos;i="5.97,213,1669104000"; d="scan'208";a="782076465"
+Received: from cbyrne6-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.252.27.177])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2023 00:19:17 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Arun R Murthy <arun.r.murthy@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+In-Reply-To: <20230113043653.795183-2-arun.r.murthy@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230113043653.795183-1-arun.r.murthy@intel.com>
+ <20230113043653.795183-2-arun.r.murthy@intel.com>
+Date: Fri, 13 Jan 2023 10:19:14 +0200
+Message-ID: <87mt6mg83h.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-To: Nathan Chancellor <nathan@kernel.org>
-References: <20221013205909.1282545-1-nathan@kernel.org>
- <4dcf830e-62a5-837b-7590-ac5395f84c14@redhat.com>
- <Y8Atycuni0bl8std@dev-arch.thelio-3990X>
-From: Jocelyn Falempe <jfalempe@redhat.com>
-In-Reply-To: <Y8Atycuni0bl8std@dev-arch.thelio-3990X>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Fix CFI violations in gt_sysfs
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 2/2] i915/display/dp: SDP CRC16 for 128b132b
+ link layer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,51 +60,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: llvm@lists.linux.dev, Kees Cook <keescook@chromium.org>,
- Tom Rix <trix@redhat.com>, intel-gfx@lists.freedesktop.org,
- Nick Desaulniers <ndesaulniers@google.com>, patches@lists.linux.dev,
- Sami Tolvanen <samitolvanen@google.com>, dri-devel@lists.freedesktop.org,
- Andrzej Hajda <andrzej.hajda@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 12/01/2023 16:56, Nathan Chancellor wrote:
-> Hi Jocelyn,
-> 
-> On Thu, Jan 12, 2023 at 11:08:17AM +0100, Jocelyn Falempe wrote:
->> This patch does also solve a kernel crash when reading
->> /sys/class/drm/card1/gt/gt0/* on a skylake machine:
->> https://bugzilla.redhat.com/show_bug.cgi?id=2154880
-> 
-> Interesting, I wonder what aspect of this patch fixes this because I am
-> not sure that is an intended consequence of this change but that is
-> still good to hear!
+On Fri, 13 Jan 2023, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+> Enable SDP error detection configuration, this will set CRC16 in
+> 128b/132b link layer.
+> For DISPLAY13 a hardware bit31 in register VIDEO_DIP_CTL is added to
+> enable/disable SDP CRC applicable for DP2.0 only, but the default value
+> of this bit will enable CRC16 in 128b/132b hence skipping this write.
+> Corrective actions on SDP corruption is yet to be defined.
+>
+> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 13 +++++++++++++
+>  drivers/gpu/drm/i915/i915_reg.h         |  1 +
+>  2 files changed, 14 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 30c55f980014..6096825a27ca 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -133,6 +133,7 @@ static void intel_dp_set_default_sink_rates(struct intel_dp *intel_dp)
+>  /* update sink rates from dpcd */
+>  static void intel_dp_set_dpcd_sink_rates(struct intel_dp *intel_dp)
 
-I wasn't able to find the root cause, but basically the kobj pointer 
-given in the sysfs callback, is not the good one on this machine, so it 
-either return garbage or crash.
-By chance I found this patch, tried it, and it solves the issue.
-> 
-> For the record, this is commit a8a4f0467d70 ("drm/i915: Fix CFI
-> violations in gt_sysfs") in mainline.
-> 
->> Do you think it can be backported to stable releases ?
->> Conflicts are trivial on top of v6.0 at least.
-> 
-> I had a report from another user of this crash affecting them with kCFI
-> so it is on my TODO to backport it to 6.1 (6.0 just went EOL) but I am
-> currently out of the office until next Wednesday so I won't be able to
-> get to it until then (as I would like to test the backport on affected
-> hardware). If someone wants to beat me to it, I won't complain ;)
+Based on the function name and comment, this function updates the
+driver's idea of what rates the sink supports. A quick look at the code
+confirms this.
 
-Thanks for taking care of it, I will wait next week then.
+It should be clear that this is not the place to add unrelated DPCD
+writes.
 
-> 
-> Cheers,
-> Nathan
-> 
+>  {
+> +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+>  	static const int dp_rates[] = {
+>  		162000, 270000, 540000, 810000
+>  	};
+> @@ -196,6 +197,18 @@ static void intel_dp_set_dpcd_sink_rates(struct intel_dp *intel_dp)
+>  			intel_dp->sink_rates[i++] = 1350000;
+>  		if (uhbr_rates & DP_UHBR20)
+>  			intel_dp->sink_rates[i++] = 2000000;
+> +
+> +		/* DP v2.0 SCR on SDP CRC16 for 128b/132b Link Layer */
+> +		if (HAS_DP20(i915))
+> +			drm_dp_dpcd_writeb(&intel_dp->aux,
+> +					   DP_SDP_ERROR_DETECTION,
+> +					   DP_SDP_CRC16_128B132B_EN);
+
+HAS_DP20() means the source has DP 2.0 support.
+
+We're in a branch where we can assume the sink also has DP 2.0
+support. But at this point we're not sure we'll be using 128b/132b at
+all.
+
+I did not look this up in the spec, but I assume this bit is only
+supposed to be set when we're actually using a 128b/132b link?
+
+In which case, this should probably be enabled at some point when we're
+enabling a 128b/132b link, and at that time the check to use is
+intel_dp_is_uhbr(). UHBR and 128b/132b go hand-in-hand, and we won't use
+UHBR unless both source and sink support it.
+
+> +		/*
+> +		 * VIDEO_DIP_CTL register bit 31 should be set to '0' to not
+> +		 * disable SDP CRC. This is applicable for DISPLAY 13. Default
+> +		 * value of bit 31 is '0' hence discarging the write
+> +		 */
+> +		/* TODO: Corrective actions on SDP corruption yet to be defined */
+
+The above might belong in the commit message, but I'm not sure about
+their usefulness as comments.
+
+>  	}
+>  
+>  	intel_dp->num_sink_rates = i;
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 8b2cf980f323..77e265f59978 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -2674,6 +2674,7 @@
+>  #define   VIDEO_DIP_FREQ_2VSYNC		(2 << 16)
+>  #define   VIDEO_DIP_FREQ_MASK		(3 << 16)
+>  /* HSW and later: */
+> +#define	  VIDEO_DISABLE_SDP_CRC		(1 << 31)
+
+Please read the comment at the top of the file.
+
+>  #define   VIDEO_DIP_ENABLE_DRM_GLK	(1 << 28)
+>  #define   PSR_VSC_BIT_7_SET		(1 << 27)
+>  #define   VSC_SELECT_MASK		(0x3 << 25)
 
 -- 
-
-Jocelyn
-
+Jani Nikula, Intel Open Source Graphics Center
