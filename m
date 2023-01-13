@@ -1,53 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB263669085
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Jan 2023 09:19:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E62966925D
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Jan 2023 10:10:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB8A510E1E4;
-	Fri, 13 Jan 2023 08:19:21 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE19510E1E4;
- Fri, 13 Jan 2023 08:19:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3744F10E9C7;
+	Fri, 13 Jan 2023 09:10:30 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47DA5892FD;
+ Fri, 13 Jan 2023 09:10:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673597959; x=1705133959;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=iT7RmMd1fDEijKpINqKWhxuTMZMzCaiWAJyZGjz4Tf4=;
- b=fqbLqeO7FcVG3m6jYZ7oW/2ywUp85oS1GV8VkVKajKlYgRmcn/IqRsJl
- Y9E3zyKMn3D175/Yl5F8mFWvFWjQhOS42ZbmwDIj3Rn2gT1U/437334Kw
- HbZAVz5kNmFL0OtUP3c3a465qjjimpFPtZk+f0FNG2is8cGVpCOe0iuZa
- aqfFuNsO6Z+9IFxK4xdvFIYNByXT9wi+d+0kZdVtkxKMOFP1h2GLY8lZz
- /IAuCUtVaQ8dtvetzQ3umuh6fmTGEclvIDMQPAQyd/2Ynvt31wOH/nhRL
- +EKMPYUybxezALn3aKYUsIoT+AD3ZN7yTU4+BYMprmc80U4uBJ2oO9pGE Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="324004978"
-X-IronPort-AV: E=Sophos;i="5.97,213,1669104000"; d="scan'208";a="324004978"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2023 00:19:19 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="782076465"
-X-IronPort-AV: E=Sophos;i="5.97,213,1669104000"; d="scan'208";a="782076465"
-Received: from cbyrne6-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.252.27.177])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2023 00:19:17 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-In-Reply-To: <20230113043653.795183-2-arun.r.murthy@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230113043653.795183-1-arun.r.murthy@intel.com>
- <20230113043653.795183-2-arun.r.murthy@intel.com>
-Date: Fri, 13 Jan 2023 10:19:14 +0200
-Message-ID: <87mt6mg83h.fsf@intel.com>
+ t=1673601028; x=1705137028;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=fOr/1I3YrmbIYI4Sfb7dAxCfX7zx4hRXlIEK9Ij1POQ=;
+ b=g6V7otvdRYSA0BjEUhK9fc5Ia83B+xFUvifCLRHHnzCYqFrLAbd5ycN1
+ OdyTvydldWfAPzwfjhAT1eBCCFwMrN70peoF30yh4CwUchC4XgG9e2XNi
+ gkZvfvloxyh8VmJ+EzySwIDd7kTpEMzojub3JIWPpfX6vhhmY3QnYocT5
+ ApkI5YkB5ZrNOiuyeq0eFzDasyAUnD0GH3NRia3ljS827LP7YCokE40S+
+ gORXS5vgFL9hIYxF7o0wEwvFq5DzdYx7FirbZyFhHSGyp3IKYcNw0NiYu
+ D+kZApdIG5jgzNg4BxkcSO5seo405glDHOyv+v4MMqx+OjlD6JJ5NUUxJ Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="321648311"
+X-IronPort-AV: E=Sophos;i="5.97,213,1669104000"; d="scan'208";a="321648311"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2023 01:10:25 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="660144975"
+X-IronPort-AV: E=Sophos;i="5.97,213,1669104000"; d="scan'208";a="660144975"
+Received: from skenned1-mobl.ger.corp.intel.com (HELO [10.213.196.186])
+ ([10.213.196.186])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2023 01:10:24 -0800
+Message-ID: <e532ffc2-09a5-126d-f4e4-e5e2a503a5fa@linux.intel.com>
+Date: Fri, 13 Jan 2023 09:10:22 +0000
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 2/2] i915/display/dp: SDP CRC16 for 128b132b
- link layer
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Content-Language: en-US
+To: John Harrison <john.c.harrison@intel.com>, Intel-GFX@Lists.FreeDesktop.Org
+References: <20230112025311.2577084-1-John.C.Harrison@Intel.com>
+ <20230112025311.2577084-3-John.C.Harrison@Intel.com>
+ <dab002d8-75f7-d8b5-d0a0-a6a21ec724b0@linux.intel.com>
+ <5a8be54d-9627-3d60-b6b0-22f3732e6962@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <5a8be54d-9627-3d60-b6b0-22f3732e6962@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915: Allow error capture of a
+ pending request
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,96 +65,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 13 Jan 2023, Arun R Murthy <arun.r.murthy@intel.com> wrote:
-> Enable SDP error detection configuration, this will set CRC16 in
-> 128b/132b link layer.
-> For DISPLAY13 a hardware bit31 in register VIDEO_DIP_CTL is added to
-> enable/disable SDP CRC applicable for DP2.0 only, but the default value
-> of this bit will enable CRC16 in 128b/132b hence skipping this write.
-> Corrective actions on SDP corruption is yet to be defined.
->
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 13 +++++++++++++
->  drivers/gpu/drm/i915/i915_reg.h         |  1 +
->  2 files changed, 14 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 30c55f980014..6096825a27ca 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -133,6 +133,7 @@ static void intel_dp_set_default_sink_rates(struct intel_dp *intel_dp)
->  /* update sink rates from dpcd */
->  static void intel_dp_set_dpcd_sink_rates(struct intel_dp *intel_dp)
 
-Based on the function name and comment, this function updates the
-driver's idea of what rates the sink supports. A quick look at the code
-confirms this.
+On 12/01/2023 20:46, John Harrison wrote:
+> On 1/12/2023 02:06, Tvrtko Ursulin wrote:
+>> On 12/01/2023 02:53, John.C.Harrison@Intel.com wrote:
+>>> From: John Harrison <John.C.Harrison@Intel.com>
+>>>
+>>> A hang situation has been observed where the only requests on the
+>>> context were either completed or not yet started according to the
+>>> breaadcrumbs. However, the register state claimed a batch was (maybe)
+>>> in progress. So, allow capture of the pending request on the grounds
+>>> that this might be better than nothing.
+>>>
+>>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+>>> ---
+>>>   drivers/gpu/drm/i915/i915_gpu_error.c | 8 +++-----
+>>>   1 file changed, 3 insertions(+), 5 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c 
+>>> b/drivers/gpu/drm/i915/i915_gpu_error.c
+>>> index bd2cf7d235df0..2e338a9667a4b 100644
+>>> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+>>> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+>>> @@ -1628,11 +1628,9 @@ capture_engine(struct intel_engine_cs *engine,
+>>>       if (ce) {
+>>>           intel_engine_clear_hung_context(engine);
+>>>           rq = intel_context_find_active_request(ce);
+>>> -        if (rq && !i915_request_started(rq)) {
+>>> -            drm_info(&engine->gt->i915->drm, "Got hung context on %s 
+>>> with no active request!\n",
+>>> -                 engine->name);
+>>> -            rq = NULL;
+>>> -        }
+>>> +        if (rq && !i915_request_started(rq))
+>>> +            drm_info(&engine->gt->i915->drm, "Confused - active 
+>>> request not yet started: %lld:%lld, ce = 0x%04X/%s!\n",
+>>> +                 rq->fence.context, rq->fence.seqno, ce->guc_id.id, 
+>>> engine->name);
+>>
+>> Ah you change active to started in this patch! :)
+> Yeah, I'm wanting to keep these two patches separate. This one is a more 
+> questionable change in actual behaviour. The previous patch just allows 
+> capturing the context when the request has been rejected. Whereas this 
+> one changes the request acceptance criteria. With the potential to start 
+> blaming innocent requests. It seems plausible to me, especially with the 
+> warning message. We know the context owning the request is guilty so why 
+> wouldn't we blame that request just because the tracking is off (maybe 
+> due to some driver bug). But I could see someone objecting on grounds of 
+> being super strict about who/what gets blamed for a hang and either 
+> nacks or maybe wants this change reverted some time later.
+> 
+>>
+>> I suggest no "ce" in user visible messages and maybe stick with the 
+>> convention grep suggest is already established:
+>>
+>> "Hung context with active request %lld:%lld [0x%04X] not started!"
+>>
+> Are you also meaning to drop the engine name? I think it is important to 
+> keep the '%s' in there somewhere.
 
-It should be clear that this is not the place to add unrelated DPCD
-writes.
+No sorry, just an oversight.
 
->  {
-> +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
->  	static const int dp_rates[] = {
->  		162000, 270000, 540000, 810000
->  	};
-> @@ -196,6 +197,18 @@ static void intel_dp_set_dpcd_sink_rates(struct intel_dp *intel_dp)
->  			intel_dp->sink_rates[i++] = 1350000;
->  		if (uhbr_rates & DP_UHBR20)
->  			intel_dp->sink_rates[i++] = 2000000;
-> +
-> +		/* DP v2.0 SCR on SDP CRC16 for 128b/132b Link Layer */
-> +		if (HAS_DP20(i915))
-> +			drm_dp_dpcd_writeb(&intel_dp->aux,
-> +					   DP_SDP_ERROR_DETECTION,
-> +					   DP_SDP_CRC16_128B132B_EN);
+"Hung context on %s with active request %lld:%lld [0x%04X] not started!"
 
-HAS_DP20() means the source has DP 2.0 support.
+Doesn't have to be exactly that, only trying to illustrate what style 
+looks better to me when user facing - not mentioning confusing and fewer 
+special characters.
 
-We're in a branch where we can assume the sink also has DP 2.0
-support. But at this point we're not sure we'll be using 128b/132b at
-all.
+Regards,
 
-I did not look this up in the spec, but I assume this bit is only
-supposed to be set when we're actually using a 128b/132b link?
+Tvrtko
 
-In which case, this should probably be enabled at some point when we're
-enabling a 128b/132b link, and at that time the check to use is
-intel_dp_is_uhbr(). UHBR and 128b/132b go hand-in-hand, and we won't use
-UHBR unless both source and sink support it.
-
-> +		/*
-> +		 * VIDEO_DIP_CTL register bit 31 should be set to '0' to not
-> +		 * disable SDP CRC. This is applicable for DISPLAY 13. Default
-> +		 * value of bit 31 is '0' hence discarging the write
-> +		 */
-> +		/* TODO: Corrective actions on SDP corruption yet to be defined */
-
-The above might belong in the commit message, but I'm not sure about
-their usefulness as comments.
-
->  	}
->  
->  	intel_dp->num_sink_rates = i;
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 8b2cf980f323..77e265f59978 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -2674,6 +2674,7 @@
->  #define   VIDEO_DIP_FREQ_2VSYNC		(2 << 16)
->  #define   VIDEO_DIP_FREQ_MASK		(3 << 16)
->  /* HSW and later: */
-> +#define	  VIDEO_DISABLE_SDP_CRC		(1 << 31)
-
-Please read the comment at the top of the file.
-
->  #define   VIDEO_DIP_ENABLE_DRM_GLK	(1 << 28)
->  #define   PSR_VSC_BIT_7_SET		(1 << 27)
->  #define   VSC_SELECT_MASK		(0x3 << 25)
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+> 
+> John.
+> 
+> 
+>> Regards,
+>>
+>> Tvrtko
+>>
+>>>       } else {
+>>>           /*
+>>>            * Getting here with GuC enabled means it is a forced error 
+>>> capture
+> 
