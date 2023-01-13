@@ -2,32 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 055D8669A83
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Jan 2023 15:35:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F2EA669AA9
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Jan 2023 15:38:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BAD910EA07;
-	Fri, 13 Jan 2023 14:35:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40F5F10EA12;
+	Fri, 13 Jan 2023 14:38:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 75BEC10EA07;
- Fri, 13 Jan 2023 14:35:02 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 58B6BAADE0;
- Fri, 13 Jan 2023 14:35:02 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7458844215384162491=="
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E3A810EA17
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Jan 2023 14:38:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1673620683; x=1705156683;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=/SYEAk0wSDrhOBXjBUTh+ine4gwPNeorZq76BQoeIaY=;
+ b=QMnxQIibtYOdiWprGr2wY15tCMZRDoljfIM83iC+SZA17D8hOE84lcEx
+ XTBPsjHkT0W7A0pKC+otkNS+kFZWXhGkaCCnm2H7/oQYhN9h2DaC50hP2
+ MIiJV1OiE7YMtfKTKG8iK9qv1v0J80g5TeFfApqkemuWpF4qZgFAzVH/1
+ /lj07BsdAYaGzSaHmQCshAnvwTb3H2S6eHVrBSzyib7XO12dFFQh3JFIo
+ q546+aUO06bmvZnefVik7w3Z/nTd3iQiNzSIP6aywhA+df2HL81owuty6
+ G800TR8ii+bvz5YQJziy5mY1qpb+pLziYVzTQ8/q0dNh9NIy9UdcMxxyF A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10589"; a="326059513"
+X-IronPort-AV: E=Sophos;i="5.97,214,1669104000"; d="scan'208";a="326059513"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2023 06:38:02 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10589"; a="746953654"
+X-IronPort-AV: E=Sophos;i="5.97,214,1669104000"; d="scan'208";a="746953654"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
+ by FMSMGA003.fm.intel.com with SMTP; 13 Jan 2023 06:37:59 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 13 Jan 2023 16:37:59 +0200
+Date: Fri, 13 Jan 2023 16:37:59 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Manna, Animesh" <animesh.manna@intel.com>
+Message-ID: <Y8FsxxcUzbzP+oYQ@intel.com>
+References: <20221216003810.13338-1-ville.syrjala@linux.intel.com>
+ <20221216003810.13338-13-ville.syrjala@linux.intel.com>
+ <PH7PR11MB598138788677D56556772AFFF9FC9@PH7PR11MB5981.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Fri, 13 Jan 2023 14:35:02 -0000
-Message-ID: <167362050233.17532.3280310333417064535@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230113130628.19772-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20230113130628.19772-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Implement_UHBR_bandwidth_check?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <PH7PR11MB598138788677D56556772AFFF9FC9@PH7PR11MB5981.namprd11.prod.outlook.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 12/13] drm/i915/dsb: Define more DSB
+ registers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,175 +63,131 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7458844215384162491==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, Jan 11, 2023 at 03:59:14PM +0000, Manna, Animesh wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ville
+> > Syrjala
+> > Sent: Friday, December 16, 2022 6:08 AM
+> > To: intel-gfx@lists.freedesktop.org
+> > Subject: [Intel-gfx] [PATCH 12/13] drm/i915/dsb: Define more DSB registers
+> > 
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > 
+> > Add definitions for more DSB registers. Less annoying spec trawling when
+> > working on the DSB code.
+> > 
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/i915_reg.h | 50 +++++++++++++++++++++++++++++++-
+> > -
+> >  1 file changed, 48 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/i915_reg.h
+> > b/drivers/gpu/drm/i915/i915_reg.h index ed989e749635..3b0d07880c30
+> > 100644
+> > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > @@ -8103,8 +8103,54 @@ enum skl_power_gate {
+> >  #define DSB_HEAD(pipe, id)		_MMIO(DSBSL_INSTANCE(pipe, id) +
+> > 0x0)
+> >  #define DSB_TAIL(pipe, id)		_MMIO(DSBSL_INSTANCE(pipe, id) +
+> > 0x4)
+> >  #define DSB_CTRL(pipe, id)		_MMIO(DSBSL_INSTANCE(pipe, id) +
+> > 0x8)
+> > -#define   DSB_ENABLE			(1 << 31)
+> > -#define   DSB_STATUS_BUSY		(1 << 0)
+> > +#define   DSB_ENABLE			REG_BIT(31)
+> > +#define   DSB_BUF_REITERATE		REG_BIT(29)
+> > +#define   DSB_WAIT_FOR_VBLANK		REG_BIT(28)
+> > +#define   DSB_WAIT_FOR_LINE_IN		REG_BIT(27)
+> > +#define   DSB_HALT			REG_BIT(16)
+> > +#define   DSB_NON_POSTED		REG_BIT(8)
+> > +#define   DSB_STATUS_BUSY		REG_BIT(0)
+> > +#define DSB_MMIOCTRL(pipe, id)
+> > 	_MMIO(DSBSL_INSTANCE(pipe, id) + 0xc)
+> > +#define   DSB_MMIO_DEAD_CLOCKS_ENABLE	REG_BIT(31)
+> 
+> As per bpsec the programming of the above bit may not be needed for latest platforms as it is taken care in h/w. Do we have any plan to use it for older platform. 
+> 
+> > +#define   DSB_MMIO_DEAD_CLOCKS_COUNT_MASK	REG_GENMASK(15, 8)
+> > +#define   DSB_MMIO_DEAD_CLOCKS_COUNT(x)
+> > 	REG_FIELD_PREP(DSB_MMIO_DEAD_CLOCK_COUNT_MASK, (x))
+> > +#define   DSB_MMIO_CYCLES_MASK		REG_GENMASK(7, 0)
+> > +#define   DSB_MMIO_CYCLES(x)
+> > 	REG_FIELD_PREP(DSB_MMIO_CYCLES_MASK, (x))
+> > +#define DSB_POLLFUNC(pipe, id)
+> > 	_MMIO(DSBSL_INSTANCE(pipe, id) + 0x10)> +#define   DSB_POLL_ENABLE		REG_BIT(31)
+> > +#define   DSB_POLL_WAIT_MASK		REG_GENMASK(30, 23)
+> > +#define   DSB_POLL_WAIT(x)
+> > 	REG_FIELD_PREP(DSB_POLL_WAIT_MASK, (x)) /* usec */
+> > +#define   DSB_POLL_COUNT_MASK		REG_GENMASK(22, 15)
+> > +#define   DSB_POLL_COUNT(x)
+> > 	REG_FIELD_PREP(DSB_POLL_COUNT_MASK, (x))
+> > +#define DSB_DEBUG(pipe, id)		_MMIO(DSBSL_INSTANCE(pipe, id) +
+> > 0x14)
+> 
+> I can not see any usage of this register. All bits are mentioned spare in bpsec.
+> 
+> > +#define DSB_POLLMASK(pipe, id)
+> > 	_MMIO(DSBSL_INSTANCE(pipe, id) + 0x1c)
+> > +#define DSB_STATUS(pipe, id)		_MMIO(DSBSL_INSTANCE(pipe, id) +
+> > 0x24)
+> 
+> Do we have any plan to check the dsb engine internal details in kernel? Not sure if DSB_STATUS will be needed any time until there is a need to debug the h/w if it is malfunctioning. 
+> 
+> > +#define DSB_INTERRUPT(pipe, id)
+> > 	_MMIO(DSBSL_INSTANCE(pipe, id) + 0x28)
+> > +#define   DSB_ATS_FAULT_INT_EN		REG_BIT(20)
+> > +#define   DSB_GTT_FAULT_INT_EN		REG_BIT(19)
+> > +#define   DSB_RSPTIMEOUT_INT_EN		REG_BIT(18)
+> > +#define   DSB_POLL_ERR_INT_EN		REG_BIT(17)
+> > +#define   DSB_PROG_INT_EN		REG_BIT(16)
+> > +#define   DSB_ATS_FAULT_INT_STATUS	REG_BIT(4)
+> > +#define   DSB_GTT_FAULT_INT_STATUS	REG_BIT(3)
+> > +#define   DSB_RSPTIMEOUT_INT_STATUS	REG_BIT(2)
+> > +#define   DSB_POLL_ERR_INT_STATUS	REG_BIT(1)
+> > +#define   DSB_PROG_INT_STATUS		REG_BIT(0)
+> > +#define DSB_CURRENT_HEAD(pipe, id)
+> > 	_MMIO(DSBSL_INSTANCE(pipe, id) + 0x2c)
+> > +#define DSB_RM_TIMEOUT(pipe, id)	_MMIO(DSBSL_INSTANCE(pipe, id) +
+> > 0x30)
+> > +#define   DSB_RM_CLAIM_TIMEOUT		REG_BIT(31)
+> > +#define   DSB_RM_READY_TIMEOUT		REG_BIT(30)
+> > +#define   DSB_RM_CLAIM_TIMEOUT_COUNT_MASK	REG_GENMASK(23,
+> > 16)
+> > +#define   DSB_RM_CLAIM_TIMEOUT_COUNT(x)
+> > 	REG_FIELD_PREP(DSB_RM_CLAIM_TIMEOUT_COUNT_MASK, (x)) /*
+> > clocks */
+> > +#define   DSB_RM_READY_TIMEOUT_VALUE_MASK	REG_GENMASK(15, 0)
+> > +#define   DSB_RM_READY_TIMEOUT_VALUE(x)
+> > 	REG_FIELD_PREP(DSB_RM_READY_TIMEOUT_VALUE, (x)) /* usec */
+> > +#define DSB_RMTIMEOUTREG_CAPTURE(pipe, id)
+> > 	_MMIO(DSBSL_INSTANCE(pipe, id) + 0x34)
+> > +#define DSB_PMCTRL(pipe, id)
+> > 	_MMIO(DSBSL_INSTANCE(pipe, id) + 0x38)
+> > +#define DSB_PMCTRL_2(pipe, id)
+> > 	_MMIO(DSBSL_INSTANCE(pipe, id) + 0x3c)
+> > +#define DSB_PF_LN_LOWER(pipe, id)	_MMIO(DSBSL_INSTANCE(pipe, id) +
+> > 0x40)
+> > +#define DSB_PF_LN_UPPER(pipe, id)	_MMIO(DSBSL_INSTANCE(pipe, id) +
+> > 0x44)
+> > +#define DSB_BUFRPT_CNT(pipe, id)	_MMIO(DSBSL_INSTANCE(pipe, id) +
+> > 0x48)
+> > +#define DSB_CHICKEN(pipe, id)
+> > 	_MMIO(DSBSL_INSTANCE(pipe, id) + 0xf0)
+> 
+> I can understand instead of referring bspec all the above DSB registers are added without its usage and future patch will use it.
+> Can we add a FIXME tag to remove unwanted DSB register definition once we achieve our target.
 
-== Series Details ==
+We're not going to remove them. I'm not going to be wasting my
+time trawling bspec every time I need to poke at some DSB register.
 
-Series: drm/i915: Implement UHBR bandwidth check
-URL   : https://patchwork.freedesktop.org/series/112806/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_12582 -> Patchwork_112806v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112806v1/index.html
-
-Participating hosts (44 -> 43)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_112806v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc:
-    - fi-bsw-nick:        NOTRUN -> [SKIP][1] ([fdo#109271]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112806v1/fi-bsw-nick/igt@kms_pipe_crc_basic@suspend-read-crc.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-nick:        [INCOMPLETE][2] -> [PASS][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12582/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112806v1/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@migrate:
-    - {bat-adlp-6}:       [DMESG-FAIL][4] ([i915#7699]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12582/bat-adlp-6/igt@i915_selftest@live@migrate.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112806v1/bat-adlp-6/igt@i915_selftest@live@migrate.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#4258]: https://gitlab.freedesktop.org/drm/intel/issues/4258
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#7359]: https://gitlab.freedesktop.org/drm/intel/issues/7359
-  [i915#7625]: https://gitlab.freedesktop.org/drm/intel/issues/7625
-  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12582 -> Patchwork_112806v1
-
-  CI-20190529: 20190529
-  CI_DRM_12582: 312e96256f0520b8660750dd4fc937f63c2f359e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7119: 1e6d24e6dfa42b22f950f7d5e436b8f9acf8747f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_112806v1: 312e96256f0520b8660750dd4fc937f63c2f359e @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-4a2ff9e802c2 drm/i915: Implement UHBR bandwidth check
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112806v1/index.html
-
---===============7458844215384162491==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Implement UHBR bandwidth check</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/112806/">https://patchwork.freedesktop.org/series/112806/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112806v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112806v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12582 -&gt; Patchwork_112806v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112806v1/index.html</p>
-<h2>Participating hosts (44 -&gt; 43)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_112806v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_pipe_crc_basic@suspend-read-crc:<ul>
-<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112806v1/fi-bsw-nick/igt@kms_pipe_crc_basic@suspend-read-crc.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12582/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112806v1/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@migrate:</p>
-<ul>
-<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12582/bat-adlp-6/igt@i915_selftest@live@migrate.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112806v1/bat-adlp-6/igt@i915_selftest@live@migrate.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12582 -&gt; Patchwork_112806v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12582: 312e96256f0520b8660750dd4fc937f63c2f359e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7119: 1e6d24e6dfa42b22f950f7d5e436b8f9acf8747f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_112806v1: 312e96256f0520b8660750dd4fc937f63c2f359e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>4a2ff9e802c2 drm/i915: Implement UHBR bandwidth check</p>
-
-</body>
-</html>
-
---===============7458844215384162491==--
+-- 
+Ville Syrjälä
+Intel
