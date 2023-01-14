@@ -2,84 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04CC766A75B
-	for <lists+intel-gfx@lfdr.de>; Sat, 14 Jan 2023 01:04:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 154B766A803
+	for <lists+intel-gfx@lfdr.de>; Sat, 14 Jan 2023 02:12:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D28D510EB01;
-	Sat, 14 Jan 2023 00:04:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C8FF10E228;
+	Sat, 14 Jan 2023 01:12:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
- [148.163.156.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED7C810E241;
- Sat, 14 Jan 2023 00:04:02 +0000 (UTC)
-Received: from pps.filterd (m0098399.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
- 30DNt0S9021145; Sat, 14 Jan 2023 00:04:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
- h=from : to : cc : subject
- : date : message-id : mime-version : content-transfer-encoding; s=pp1;
- bh=pebRGAVC+dkDU7+HrWNEdoGsEveXfipktrtq3c/Wv18=;
- b=YT27CmBXcSKrSTnkpIpasUbNBf/ARWi7vvPKktjevB9qhrsJmt0tAGwCf60f/LQUB0gD
- UYLOTWeX9hTlqXwjIdAQbwIJ8AD1FPfHhWQoHVy7UlmXwl4p56eVn2At1LFnbXr5Ps2V
- xMddkLGVm2HOxSLIIv2USYwBuoQrxPfRxTigW6gXovuHymT9Mh1uTHLaOTLu//+PU1V7
- J/F85+xuCep8qSBUsgqizeUrtoAErJ0QxGs+cVYSw007Z+hpFMwRpIPhQcjeDgFelT24
- adwLi0M9193k1/mvEbFWAai60rwM8ucTucmXQvkEaSV3ryosFecjg0SAGkf5ahVpbc4C hQ== 
-Received: from pps.reinject (localhost [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3n3hd2856y-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Sat, 14 Jan 2023 00:04:00 +0000
-Received: from m0098399.ppops.net (m0098399.ppops.net [127.0.0.1])
- by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 30E00IXs003434;
- Sat, 14 Jan 2023 00:03:59 GMT
-Received: from ppma04wdc.us.ibm.com (1a.90.2fa9.ip4.static.sl-reverse.com
- [169.47.144.26])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3n3hd2856e-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Sat, 14 Jan 2023 00:03:59 +0000
-Received: from pps.filterd (ppma04wdc.us.ibm.com [127.0.0.1])
- by ppma04wdc.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 30DNElU6001732;
- Sat, 14 Jan 2023 00:03:58 GMT
-Received: from smtprelay07.dal12v.mail.ibm.com ([9.208.130.99])
- by ppma04wdc.us.ibm.com (PPS) with ESMTPS id 3n1kmatkg0-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Sat, 14 Jan 2023 00:03:58 +0000
-Received: from smtpav06.dal12v.mail.ibm.com (smtpav06.dal12v.mail.ibm.com
- [10.241.53.105])
- by smtprelay07.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 30E03vAI32899818
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Sat, 14 Jan 2023 00:03:57 GMT
-Received: from smtpav06.dal12v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 0EF9958059;
- Sat, 14 Jan 2023 00:03:57 +0000 (GMT)
-Received: from smtpav06.dal12v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 41EF658055;
- Sat, 14 Jan 2023 00:03:53 +0000 (GMT)
-Received: from li-2311da4c-2e09-11b2-a85c-c003041e9174.ibm.com.com (unknown
- [9.65.223.110]) by smtpav06.dal12v.mail.ibm.com (Postfix) with ESMTP;
- Sat, 14 Jan 2023 00:03:53 +0000 (GMT)
-From: Matthew Rosato <mjrosato@linux.ibm.com>
-To: alex.williamson@redhat.com, pbonzini@redhat.com
-Date: Fri, 13 Jan 2023 19:03:51 -0500
-Message-Id: <20230114000351.115444-1-mjrosato@linux.ibm.com>
-X-Mailer: git-send-email 2.39.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C20EE10E054;
+ Sat, 14 Jan 2023 01:12:10 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 40058A73C7;
+ Sat, 14 Jan 2023 01:12:10 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0782610949439243287=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: 0edGTxN3xbEPbpEK0r8yN8pop-E30Ibp
-X-Proofpoint-GUID: HyJxKZ6KO3NbcwfPqy5FjSLyQ5jtSjtI
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-13_11,2023-01-13_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 clxscore=1015
- mlxscore=0 phishscore=0 bulkscore=0 spamscore=0 suspectscore=0
- priorityscore=1501 mlxlogscore=999 malwarescore=0 lowpriorityscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2301130161
-Subject: [Intel-gfx] [PATCH v4] vfio: fix potential deadlock on vfio group
- lock
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Rosato" <mjrosato@linux.ibm.com>
+Date: Sat, 14 Jan 2023 01:12:10 -0000
+Message-ID: <167365873022.1045.2987703615576876207@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230114000351.115444-1-mjrosato@linux.ibm.com>
+In-Reply-To: <20230114000351.115444-1-mjrosato@linux.ibm.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgdmZp?=
+ =?utf-8?q?o=3A_fix_potential_deadlock_on_vfio_group_lock_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,251 +40,254 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: akrowiak@linux.ibm.com, jjherne@linux.ibm.com, farman@linux.ibm.com,
- imbrenda@linux.ibm.com, frankja@linux.ibm.com, pmorel@linux.ibm.com,
- david@redhat.com, seanjc@google.com, intel-gfx@lists.freedesktop.org,
- cohuck@redhat.com, linux-kernel@vger.kernel.org, pasic@linux.ibm.com,
- jgg@nvidia.com, kvm@vger.kernel.org, linux-s390@vger.kernel.org,
- borntraeger@linux.ibm.com, intel-gvt-dev@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently it is possible that the final put of a KVM reference comes from
-vfio during its device close operation.  This occurs while the vfio group
-lock is held; however, if the vfio device is still in the kvm device list,
-then the following call chain could result in a deadlock:
+--===============0782610949439243287==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-kvm_put_kvm
- -> kvm_destroy_vm
-  -> kvm_destroy_devices
-   -> kvm_vfio_destroy
-    -> kvm_vfio_file_set_kvm
-     -> vfio_file_set_kvm
-      -> group->group_lock/group_rwsem
+== Series Details ==
 
-Avoid this scenario by having vfio core code acquire a KVM reference
-the first time a device is opened and hold that reference until right
-after the group lock is released after the last device is closed.
+Series: vfio: fix potential deadlock on vfio group lock (rev3)
+URL   : https://patchwork.freedesktop.org/series/112759/
+State : success
 
-Fixes: 421cfe6596f6 ("vfio: remove VFIO_GROUP_NOTIFY_SET_KVM")
-Reported-by: Alex Williamson <alex.williamson@redhat.com>
-Signed-off-by: Matthew Rosato <mjrosato@linux.ibm.com>
----
-Changes from v3:
-* Can't check for open_count after the group lock has been dropped because
-  it would be possible for the count to change again once the group lock
-  is dropped (Jason)
-  Solve this by stashing a copy of the kvm and put_kvm while the group
-  lock is held, nullifying the device copies of these in device_close()
-  as soon as the open_count reaches 0, and then checking to see if the
-  device->kvm changed before dropping the group lock.  If it changed
-  during close, we can drop the reference using the stashed kvm and put
-  function after dropping the group lock.
+== Summary ==
 
-Changes from v2:
-* Re-arrange vfio_kvm_set_kvm_safe error path to still trigger
-  device_open with device->kvm=NULL (Alex)
-* get device->dev_set->lock when checking device->open_count (Alex)
-* but don't hold it over the kvm_put_kvm (Jason)
-* get kvm_put symbol upfront and stash it in device until close (Jason)
-* check CONFIG_HAVE_KVM to avoid build errors on architectures without
-  KVM support
+CI Bug Log - changes from CI_DRM_12585 -> Patchwork_112759v3
+====================================================
 
-Changes from v1:
-* Re-write using symbol get logic to get kvm ref during first device
-  open, release the ref during device fd close after group lock is
-  released
-* Drop kvm get/put changes to drivers; now that vfio core holds a
-  kvm ref until sometime after the device_close op is called, it
-  should be fine for drivers to get and put their own references to it.
----
- drivers/vfio/group.c     | 23 +++++++++++++--
- drivers/vfio/vfio.h      |  9 ++++++
- drivers/vfio/vfio_main.c | 61 +++++++++++++++++++++++++++++++++++++---
- include/linux/vfio.h     |  2 +-
- 4 files changed, 87 insertions(+), 8 deletions(-)
+Summary
+-------
 
-diff --git a/drivers/vfio/group.c b/drivers/vfio/group.c
-index bb24b2f0271e..b396c17d7390 100644
---- a/drivers/vfio/group.c
-+++ b/drivers/vfio/group.c
-@@ -165,9 +165,9 @@ static int vfio_device_group_open(struct vfio_device *device)
- 	}
- 
- 	/*
--	 * Here we pass the KVM pointer with the group under the lock.  If the
--	 * device driver will use it, it must obtain a reference and release it
--	 * during close_device.
-+	 * Here we pass the KVM pointer with the group under the lock.  A
-+	 * reference will be obtained the first time the device is opened and
-+	 * will be held until the open_count reaches 0.
- 	 */
- 	ret = vfio_device_open(device, device->group->iommufd,
- 			       device->group->kvm);
-@@ -179,9 +179,26 @@ static int vfio_device_group_open(struct vfio_device *device)
- 
- void vfio_device_group_close(struct vfio_device *device)
- {
-+	void (*put_kvm)(struct kvm *kvm);
-+	struct kvm *kvm;
-+
- 	mutex_lock(&device->group->group_lock);
-+	kvm = device->kvm;
-+	put_kvm = device->put_kvm;
- 	vfio_device_close(device, device->group->iommufd);
-+	if (kvm == device->kvm)
-+		kvm = NULL;
- 	mutex_unlock(&device->group->group_lock);
-+
-+	/*
-+	 * The last kvm reference will trigger kvm_destroy_vm, which can in
-+	 * turn re-enter vfio and attempt to acquire the group lock.  Therefore
-+	 * we get a copy of the kvm pointer and the put function under the
-+	 * group lock but wait to put that reference until after releasing the
-+	 * lock.
-+	 */
-+	if (kvm)
-+		vfio_kvm_put_kvm(put_kvm, kvm);
- }
- 
- static struct file *vfio_device_open_file(struct vfio_device *device)
-diff --git a/drivers/vfio/vfio.h b/drivers/vfio/vfio.h
-index f8219a438bfb..08a5a23d6fef 100644
---- a/drivers/vfio/vfio.h
-+++ b/drivers/vfio/vfio.h
-@@ -251,4 +251,13 @@ extern bool vfio_noiommu __read_mostly;
- enum { vfio_noiommu = false };
- #endif
- 
-+#ifdef CONFIG_HAVE_KVM
-+void vfio_kvm_put_kvm(void (*put)(struct kvm *kvm), struct kvm *kvm);
-+#else
-+static inline void vfio_kvm_put_kvm(void (*put)(struct kvm *kvm),
-+				    struct kvm *kvm)
-+{
-+}
-+#endif
-+
- #endif
-diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
-index 5177bb061b17..c6bb07af46b8 100644
---- a/drivers/vfio/vfio_main.c
-+++ b/drivers/vfio/vfio_main.c
-@@ -16,6 +16,9 @@
- #include <linux/fs.h>
- #include <linux/idr.h>
- #include <linux/iommu.h>
-+#ifdef CONFIG_HAVE_KVM
-+#include <linux/kvm_host.h>
-+#endif
- #include <linux/list.h>
- #include <linux/miscdevice.h>
- #include <linux/module.h>
-@@ -344,6 +347,49 @@ static bool vfio_assert_device_open(struct vfio_device *device)
- 	return !WARN_ON_ONCE(!READ_ONCE(device->open_count));
- }
- 
-+#ifdef CONFIG_HAVE_KVM
-+static bool vfio_kvm_get_kvm_safe(struct vfio_device *device, struct kvm *kvm)
-+{
-+	void (*pfn)(struct kvm *kvm);
-+	bool (*fn)(struct kvm *kvm);
-+	bool ret;
-+
-+	pfn = symbol_get(kvm_put_kvm);
-+	if (WARN_ON(!pfn))
-+		return false;
-+
-+	fn = symbol_get(kvm_get_kvm_safe);
-+	if (WARN_ON(!fn)) {
-+		symbol_put(kvm_put_kvm);
-+		return false;
-+	}
-+
-+	ret = fn(kvm);
-+	if (ret)
-+		device->put_kvm = pfn;
-+	else
-+		symbol_put(kvm_put_kvm);
-+
-+	symbol_put(kvm_get_kvm_safe);
-+
-+	return ret;
-+}
-+
-+void vfio_kvm_put_kvm(void (*put)(struct kvm *kvm), struct kvm *kvm)
-+{
-+	if (WARN_ON(!put))
-+		return;
-+
-+	put(kvm);
-+	symbol_put(kvm_put_kvm);
-+}
-+#else
-+static bool vfio_kvm_get_kvm_safe(struct vfio_device *device, struct kvm *kvm)
-+{
-+	return false;
-+}
-+#endif
-+
- static int vfio_device_first_open(struct vfio_device *device,
- 				  struct iommufd_ctx *iommufd, struct kvm *kvm)
- {
-@@ -361,16 +407,22 @@ static int vfio_device_first_open(struct vfio_device *device,
- 	if (ret)
- 		goto err_module_put;
- 
--	device->kvm = kvm;
-+	if (kvm && vfio_kvm_get_kvm_safe(device, kvm))
-+		device->kvm = kvm;
-+
- 	if (device->ops->open_device) {
- 		ret = device->ops->open_device(device);
- 		if (ret)
--			goto err_unuse_iommu;
-+			goto err_put_kvm;
- 	}
- 	return 0;
- 
--err_unuse_iommu:
--	device->kvm = NULL;
-+err_put_kvm:
-+	if (device->kvm) {
-+		vfio_kvm_put_kvm(device->put_kvm, device->kvm);
-+		device->put_kvm = NULL;
-+		device->kvm = NULL;
-+	}
- 	if (iommufd)
- 		vfio_iommufd_unbind(device);
- 	else
-@@ -388,6 +440,7 @@ static void vfio_device_last_close(struct vfio_device *device,
- 	if (device->ops->close_device)
- 		device->ops->close_device(device);
- 	device->kvm = NULL;
-+	device->put_kvm = NULL;
- 	if (iommufd)
- 		vfio_iommufd_unbind(device);
- 	else
-diff --git a/include/linux/vfio.h b/include/linux/vfio.h
-index 35be78e9ae57..87ff862ff555 100644
---- a/include/linux/vfio.h
-+++ b/include/linux/vfio.h
-@@ -46,7 +46,6 @@ struct vfio_device {
- 	struct vfio_device_set *dev_set;
- 	struct list_head dev_set_list;
- 	unsigned int migration_flags;
--	/* Driver must reference the kvm during open_device or never touch it */
- 	struct kvm *kvm;
- 
- 	/* Members below here are private, not for driver use */
-@@ -58,6 +57,7 @@ struct vfio_device {
- 	struct list_head group_next;
- 	struct list_head iommu_entry;
- 	struct iommufd_access *iommufd_access;
-+	void (*put_kvm)(struct kvm *kvm);
- #if IS_ENABLED(CONFIG_IOMMUFD)
- 	struct iommufd_device *iommufd_device;
- 	struct iommufd_ctx *iommufd_ictx;
--- 
-2.39.0
+  **SUCCESS**
 
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112759v3/index.html
+
+Participating hosts (44 -> 43)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_112759v3:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@gem_exec_suspend@basic-s0@smem:
+    - {bat-adlm-1}:       [PASS][1] -> [DMESG-WARN][2] +1 similar issue
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12585/bat-adlm-1/igt@gem_exec_suspend@basic-s0@smem.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112759v3/bat-adlm-1/igt@gem_exec_suspend@basic-s0@smem.html
+
+  * igt@i915_selftest@live@gt_mocs:
+    - {bat-rpls-2}:       [PASS][3] -> [DMESG-FAIL][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12585/bat-rpls-2/igt@i915_selftest@live@gt_mocs.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112759v3/bat-rpls-2/igt@i915_selftest@live@gt_mocs.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_112759v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-kbl-soraka:      [PASS][5] -> [INCOMPLETE][6] ([i915#7156])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12585/fi-kbl-soraka/igt@i915_selftest@live@execlists.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112759v3/fi-kbl-soraka/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@gt_lrc:
+    - fi-rkl-guc:         [PASS][7] -> [INCOMPLETE][8] ([i915#4983])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12585/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112759v3/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic:
+    - fi-bsw-kefka:       [PASS][9] -> [FAIL][10] ([i915#2346])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12585/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112759v3/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_pm:
+    - {bat-rpls-2}:       [DMESG-FAIL][11] ([i915#4258]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12585/bat-rpls-2/igt@i915_selftest@live@gt_pm.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112759v3/bat-rpls-2/igt@i915_selftest@live@gt_pm.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - {bat-dg2-11}:       [INCOMPLETE][13] ([i915#7834]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12585/bat-dg2-11/igt@i915_selftest@live@hangcheck.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112759v3/bat-dg2-11/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@requests:
+    - {bat-rpls-1}:       [INCOMPLETE][15] ([i915#6257]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12585/bat-rpls-1/igt@i915_selftest@live@requests.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112759v3/bat-rpls-1/igt@i915_selftest@live@requests.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#2346]: https://gitlab.freedesktop.org/drm/intel/issues/2346
+  [i915#4258]: https://gitlab.freedesktop.org/drm/intel/issues/4258
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#6257]: https://gitlab.freedesktop.org/drm/intel/issues/6257
+  [i915#7156]: https://gitlab.freedesktop.org/drm/intel/issues/7156
+  [i915#7625]: https://gitlab.freedesktop.org/drm/intel/issues/7625
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+  [i915#7834]: https://gitlab.freedesktop.org/drm/intel/issues/7834
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12585 -> Patchwork_112759v3
+
+  CI-20190529: 20190529
+  CI_DRM_12585: 68d139b609a97a83e7c231189d4864aba4e1679b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7119: 1e6d24e6dfa42b22f950f7d5e436b8f9acf8747f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_112759v3: 68d139b609a97a83e7c231189d4864aba4e1679b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+2806b1096ec5 vfio: fix potential deadlock on vfio group lock
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112759v3/index.html
+
+--===============0782610949439243287==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>vfio: fix potential deadlock on vfio group lock (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/112759/">https://patchwork.freedesktop.org/series/112759/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112759v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112759v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12585 -&gt; Patchwork_112759v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112759v3/index.html</p>
+<h2>Participating hosts (44 -&gt; 43)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_112759v3:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s0@smem:</p>
+<ul>
+<li>{bat-adlm-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12585/bat-adlm-1/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112759v3/bat-adlm-1/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_mocs:</p>
+<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12585/bat-rpls-2/igt@i915_selftest@live@gt_mocs.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112759v3/bat-rpls-2/igt@i915_selftest@live@gt_mocs.html">DMESG-FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_112759v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12585/fi-kbl-soraka/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112759v3/fi-kbl-soraka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7156">i915#7156</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_lrc:</p>
+<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12585/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112759v3/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12585/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112759v3/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2346</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12585/bat-rpls-2/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4258">i915#4258</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112759v3/bat-rpls-2/igt@i915_selftest@live@gt_pm.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>{bat-dg2-11}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12585/bat-dg2-11/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7834">i915#7834</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112759v3/bat-dg2-11/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12585/bat-rpls-1/igt@i915_selftest@live@requests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6257">i915#6257</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112759v3/bat-rpls-1/igt@i915_selftest@live@requests.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12585 -&gt; Patchwork_112759v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12585: 68d139b609a97a83e7c231189d4864aba4e1679b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7119: 1e6d24e6dfa42b22f950f7d5e436b8f9acf8747f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_112759v3: 68d139b609a97a83e7c231189d4864aba4e1679b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>2806b1096ec5 vfio: fix potential deadlock on vfio group lock</p>
+
+</body>
+</html>
+
+--===============0782610949439243287==--
