@@ -1,44 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E728D66BE5C
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Jan 2023 13:56:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28BE566BE5D
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Jan 2023 13:56:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5148E10E072;
-	Mon, 16 Jan 2023 12:56:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 880F310E3FC;
+	Mon, 16 Jan 2023 12:56:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24B9D10E298
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Jan 2023 12:56:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7406B10E3FC
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Jan 2023 12:56:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673873793; x=1705409793;
+ t=1673873797; x=1705409797;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=NQ3F8lZhvMvBtY07aite49zJnhXgCjjQWhnPVnBuvqs=;
- b=D61x3AeEVv+lIsf76Jo6tyfach8L6ltN3caAwsq9dJH0ELjuj7Jj2htt
- u9qvUgtlskluTPKezbxu9zfUejWL3F2Us58cXJuW4GEMCGKCjJIFHXfPT
- 9h0XcVFsktPCVn6HI3teo0j8mE7wKJ9WqUovvftNJaTRM66zLgr/TSYN3
- TcYS7pfnyIAPtH3T15AiddbFixsUAExp0/P4pNUjscMZRGVATn8JdrOSG
- XOuo+UUcYNYSnk324TTPdTi2cAF1VkJ3uScIJ6omXMVfdLSQCCoH4MAwz
- 5yjzm3NOZ38faMi5Vs/U3TS+oPWm+sYkaX5eiAAQ/dui3X2zR/mkPNSmv Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10591"; a="386800009"
-X-IronPort-AV: E=Sophos;i="5.97,221,1669104000"; d="scan'208";a="386800009"
+ bh=ZHYvFjBmUS22He9wffWC/G4dIBcfuubj3T+QgAv20kQ=;
+ b=NuD0SziosWBBlu/fA3SQZcaefoSMLMBgCpo/X6Vp03Bwpjkd95Es4BVz
+ ePTbPKKz9nWLlcBN2mDZubXFBy16HjJQxuvD3N61hy83k12WbvygsTwm1
+ u92tx6iMrCCrFN1ZrMxzgLi54W/33we2leakNV7huavnrPlWCbvcQI+4L
+ +YD3Ts8DzMMyOMwncAvqyaRAhyBlTR1zbhqEUzkN+YAiE/4mefmBAsD+n
+ 4lAmBS4DGSIUziqKxZ0yB8joCFAsTYaAwjkJQeOFJCM6csT/7uC/EUpk0
+ 2kfVO7+3hilvOtOtjA6XvVCWc1qGmOtKX/5sF7ucPiBBjVsKuXgLl6MHR A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10591"; a="386800024"
+X-IronPort-AV: E=Sophos;i="5.97,221,1669104000"; d="scan'208";a="386800024"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2023 04:56:32 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10591"; a="904320307"
-X-IronPort-AV: E=Sophos;i="5.97,221,1669104000"; d="scan'208";a="904320307"
+ 16 Jan 2023 04:56:37 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10591"; a="904320313"
+X-IronPort-AV: E=Sophos;i="5.97,221,1669104000"; d="scan'208";a="904320313"
 Received: from amakarev-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.252.13.137])
  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2023 04:56:31 -0800
+ 16 Jan 2023 04:56:35 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 16 Jan 2023 14:56:14 +0200
-Message-Id: <bf26763caaad25f3dfcf6f8e468421f93fb99646.1673873708.git.jani.nikula@intel.com>
+Date: Mon, 16 Jan 2023 14:56:15 +0200
+Message-Id: <ecfac5ebddcb46be1ddf2e34e52648fbf9fa4ca6.1673873708.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1673873708.git.jani.nikula@intel.com>
 References: <cover.1673873708.git.jani.nikula@intel.com>
@@ -46,8 +46,7 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 3/5] drm/i915/display: use common function
- for checking scanline is moving
+Subject: [Intel-gfx] [PATCH v2 4/5] drm/i915/vblank: use intel_de_read()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,52 +63,28 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-cpt_verify_modeset() is roughly the same as
-intel_wait_for_pipe_scanline_moving(). Assume it's close enough.
+Use the intel_de_* functions for display registers.
 
 Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 18 +-----------------
- 1 file changed, 1 insertion(+), 17 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vblank.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index b5c0ab0f5e51..9b73663a0499 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1060,22 +1060,6 @@ intel_get_crtc_new_encoder(const struct intel_atomic_state *state,
- 	return encoder;
+diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+index bc792b363ffc..b2d4d289aaa7 100644
+--- a/drivers/gpu/drm/i915/display/intel_vblank.c
++++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+@@ -137,7 +137,7 @@ u32 g4x_get_vblank_counter(struct drm_crtc *crtc)
+ 	if (!vblank->max_vblank_count)
+ 		return 0;
+ 
+-	return intel_uncore_read(&dev_priv->uncore, PIPE_FRMCOUNT_G4X(pipe));
++	return intel_de_read(dev_priv, PIPE_FRMCOUNT_G4X(pipe));
  }
  
--static void cpt_verify_modeset(struct drm_i915_private *dev_priv,
--			       enum pipe pipe)
--{
--	i915_reg_t dslreg = PIPEDSL(pipe);
--	u32 temp;
--
--	temp = intel_de_read(dev_priv, dslreg);
--	udelay(500);
--	if (wait_for(intel_de_read(dev_priv, dslreg) != temp, 5)) {
--		if (wait_for(intel_de_read(dev_priv, dslreg) != temp, 5))
--			drm_err(&dev_priv->drm,
--				"mode set failed: pipe %c stuck\n",
--				pipe_name(pipe));
--	}
--}
--
- static void ilk_pfit_enable(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-@@ -1770,7 +1754,7 @@ static void ilk_crtc_enable(struct intel_atomic_state *state,
- 	intel_encoders_enable(state, crtc);
- 
- 	if (HAS_PCH_CPT(dev_priv))
--		cpt_verify_modeset(dev_priv, pipe);
-+		intel_wait_for_pipe_scanline_moving(crtc);
- 
- 	/*
- 	 * Must wait for vblank to avoid spurious PCH FIFO underruns.
+ static u32 intel_crtc_scanlines_since_frame_timestamp(struct intel_crtc *crtc)
 -- 
 2.34.1
 
