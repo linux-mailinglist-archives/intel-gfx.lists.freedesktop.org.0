@@ -2,32 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7D9666BD84
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Jan 2023 13:11:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD4A566BD8A
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Jan 2023 13:13:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3501010E3DF;
-	Mon, 16 Jan 2023 12:11:14 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1531110E3DF;
- Mon, 16 Jan 2023 12:11:12 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0D5F7AADDC;
- Mon, 16 Jan 2023 12:11:12 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9081082136418624969=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6774E10E3EB;
+	Mon, 16 Jan 2023 12:13:52 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD50910E3E4;
+ Mon, 16 Jan 2023 12:13:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1673871229; x=1705407229;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=dI4GVyx8abhG2prM4hLi5Jb7TbmPXD8Wbcovo3mmijQ=;
+ b=hOvI8seNJ58tqmrIFCjnLfNMSNzFMFFWoQB9quH5FsWpCBVD1X8Hc9mn
+ Rnb8vqfscoe5bFdewyIsl3o1wil55e6wnUCXfbxhuKCfiBxMXR4/tebGK
+ it3uHbPzLbARLpfoxxPFh+YnzvjXUtEPKUgqHfZrQaK5KZerI/N1OnFKc
+ zQZd+Q94wThQFGqPhLjEfkm6HQGLOQvppHut0lt9SK1Dek1RqMfgb5JA3
+ gyZTdMhjUmM9Zv+8I3VjqAuf+Zt0/zxwJHMbgt5YEo8m8gaMBahbw4P27
+ en/Ia6QP+wiDXku21e9Uvp35e8zxz5ZBd0z7YBnKlLMMjEnHfdmUXZf+E Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10591"; a="323150262"
+X-IronPort-AV: E=Sophos;i="5.97,220,1669104000"; d="scan'208";a="323150262"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2023 04:13:49 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10591"; a="689465954"
+X-IronPort-AV: E=Sophos;i="5.97,220,1669104000"; d="scan'208";a="689465954"
+Received: from hgacquin-mobl1.ger.corp.intel.com (HELO [10.213.212.173])
+ ([10.213.212.173])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2023 04:13:47 -0800
+Message-ID: <3ed42f96-8965-7872-709d-2daa6c48dcb9@linux.intel.com>
+Date: Mon, 16 Jan 2023 12:13:44 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Mon, 16 Jan 2023 12:11:12 -0000
-Message-ID: <167387107204.6371.3589985576982144197@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230116111937.875-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20230116111937.875-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgV2Ug?=
- =?utf-8?q?need_to_have_additional_checks_for_DP_MST_UHBR?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Content-Language: en-US
+To: "Hellstrom, Thomas" <thomas.hellstrom@intel.com>,
+ "Harrison, John C" <john.c.harrison@intel.com>,
+ "Intel-GFX@Lists.FreeDesktop.Org" <Intel-GFX@Lists.FreeDesktop.Org>
+References: <20230112025311.2577084-1-John.C.Harrison@Intel.com>
+ <20230112025311.2577084-2-John.C.Harrison@Intel.com>
+ <f5edb1fa-6aba-1e02-f238-518518337f11@linux.intel.com>
+ <79cd935a-5a7f-b709-ec05-c9cf5801f2dc@intel.com>
+ <4acf4db5-97e9-34dc-2b89-517296ce4c3c@linux.intel.com>
+ <7316954666eecb39aef79067bc590e58bee48389.camel@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <7316954666eecb39aef79067bc590e58bee48389.camel@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915: Allow error capture without a
+ request
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,269 +69,305 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "Auld, Matthew" <matthew.auld@intel.com>,
+ "DRI-Devel@Lists.FreeDesktop.Org" <DRI-Devel@Lists.FreeDesktop.Org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============9081082136418624969==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 13/01/2023 17:46, Hellstrom, Thomas wrote:
+> On Fri, 2023-01-13 at 09:51 +0000, Tvrtko Ursulin wrote:
+>>
+>> On 12/01/2023 20:40, John Harrison wrote:
+>>> On 1/12/2023 02:01, Tvrtko Ursulin wrote:
+>>>> On 12/01/2023 02:53, John.C.Harrison@Intel.com wrote:
+>>>>> From: John Harrison <John.C.Harrison@Intel.com>
+>>>>>
+>>>>> There was a report of error captures occurring without any hung
+>>>>> context being indicated despite the capture being initiated by
+>>>>> a 'hung
+>>>>> context notification' from GuC. The problem was not
+>>>>> reproducible.
+>>>>> However, it is possible to happen if the context in question
+>>>>> has no
+>>>>> active requests. For example, if the hang was in the context
+>>>>> switch
+>>>>> itself then the breadcrumb write would have occurred and the
+>>>>> KMD would
+>>>>> see an idle context.
+>>>>>
+>>>>> In the interests of attempting to provide as much information
+>>>>> as
+>>>>> possible about a hang, it seems wise to include the engine info
+>>>>> regardless of whether a request was found or not. As opposed to
+>>>>> just
+>>>>> prentending there was no hang at all.
+>>>>>
+>>>>> So update the error capture code to always record engine
+>>>>> information
+>>>>> if an engine is given. Which means updating record_context() to
+>>>>> take a
+>>>>> context instead of a request (which it only ever used to find
+>>>>> the
+>>>>> context anyway). And split the request agnostic parts of
+>>>>> intel_engine_coredump_add_request() out into a seaprate
+>>>>> function.
+>>>>>
+>>>>> v2: Remove a duplicate 'if' statement (Umesh) and fix a put of
+>>>>> a null
+>>>>> pointer.
+>>>>>
+>>>>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+>>>>> Reviewed-by: Umesh Nerlige Ramappa
+>>>>> <umesh.nerlige.ramappa@intel.com>
+>>>>> ---
+>>>>>    drivers/gpu/drm/i915/i915_gpu_error.c | 61
+>>>>> +++++++++++++++++++--------
+>>>>>    1 file changed, 43 insertions(+), 18 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c
+>>>>> b/drivers/gpu/drm/i915/i915_gpu_error.c
+>>>>> index 9d5d5a397b64e..bd2cf7d235df0 100644
+>>>>> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+>>>>> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+>>>>> @@ -1370,14 +1370,14 @@ static void
+>>>>> engine_record_execlists(struct
+>>>>> intel_engine_coredump *ee)
+>>>>>    }
+>>>>>      static bool record_context(struct i915_gem_context_coredump
+>>>>> *e,
+>>>>> -               const struct i915_request *rq)
+>>>>> +               struct intel_context *ce)
+>>>>>    {
+>>>>>        struct i915_gem_context *ctx;
+>>>>>        struct task_struct *task;
+>>>>>        bool simulated;
+>>>>>          rcu_read_lock();
+>>>>> -    ctx = rcu_dereference(rq->context->gem_context);
+>>>>> +    ctx = rcu_dereference(ce->gem_context);
+>>>>>        if (ctx && !kref_get_unless_zero(&ctx->ref))
+>>>>>            ctx = NULL;
+>>>>>        rcu_read_unlock();
+>>>>> @@ -1396,8 +1396,8 @@ static bool record_context(struct
+>>>>> i915_gem_context_coredump *e,
+>>>>>        e->guilty = atomic_read(&ctx->guilty_count);
+>>>>>        e->active = atomic_read(&ctx->active_count);
+>>>>>    -    e->total_runtime =
+>>>>> intel_context_get_total_runtime_ns(rq->context);
+>>>>> -    e->avg_runtime = intel_context_get_avg_runtime_ns(rq-
+>>>>>> context);
+>>>>> +    e->total_runtime = intel_context_get_total_runtime_ns(ce);
+>>>>> +    e->avg_runtime = intel_context_get_avg_runtime_ns(ce);
+>>>>>          simulated = i915_gem_context_no_error_capture(ctx);
+>>>>>    @@ -1532,15 +1532,37 @@ intel_engine_coredump_alloc(struct
+>>>>> intel_engine_cs *engine, gfp_t gfp, u32 dump_
+>>>>>        return ee;
+>>>>>    }
+>>>>>    +static struct intel_engine_capture_vma *
+>>>>> +engine_coredump_add_context(struct intel_engine_coredump *ee,
+>>>>> +                struct intel_context *ce,
+>>>>> +                gfp_t gfp)
+>>>>> +{
+>>>>> +    struct intel_engine_capture_vma *vma = NULL;
+>>>>> +
+>>>>> +    ee->simulated |= record_context(&ee->context, ce);
+>>>>> +    if (ee->simulated)
+>>>>> +        return NULL;
+>>>>> +
+>>>>> +    /*
+>>>>> +     * We need to copy these to an anonymous buffer
+>>>>> +     * as the simplest method to avoid being overwritten
+>>>>> +     * by userspace.
+>>>>> +     */
+>>>>> +    vma = capture_vma(vma, ce->ring->vma, "ring", gfp);
+>>>>> +    vma = capture_vma(vma, ce->state, "HW context", gfp);
+>>>>> +
+>>>>> +    return vma;
+>>>>> +}
+>>>>> +
+>>>>>    struct intel_engine_capture_vma *
+>>>>>    intel_engine_coredump_add_request(struct
+>>>>> intel_engine_coredump *ee,
+>>>>>                      struct i915_request *rq,
+>>>>>                      gfp_t gfp)
+>>>>>    {
+>>>>> -    struct intel_engine_capture_vma *vma = NULL;
+>>>>> +    struct intel_engine_capture_vma *vma;
+>>>>>    -    ee->simulated |= record_context(&ee->context, rq);
+>>>>> -    if (ee->simulated)
+>>>>> +    vma = engine_coredump_add_context(ee, rq->context, gfp);
+>>>>> +    if (!vma)
+>>>>>            return NULL;
+>>>>>          /*
+>>>>> @@ -1550,8 +1572,6 @@ intel_engine_coredump_add_request(struct
+>>>>> intel_engine_coredump *ee,
+>>>>>         */
+>>>>>        vma = capture_vma_snapshot(vma, rq->batch_res, gfp,
+>>>>> "batch");
+>>>>>        vma = capture_user(vma, rq, gfp);
+>>>>> -    vma = capture_vma(vma, rq->ring->vma, "ring", gfp);
+>>>>> -    vma = capture_vma(vma, rq->context->state, "HW context",
+>>>>> gfp);
+>>>>>          ee->rq_head = rq->head;
+>>>>>        ee->rq_post = rq->postfix;
+>>>>> @@ -1608,8 +1628,11 @@ capture_engine(struct intel_engine_cs
+>>>>> *engine,
+>>>>>        if (ce) {
+>>>>>            intel_engine_clear_hung_context(engine);
+>>>>>            rq = intel_context_find_active_request(ce);
+>>>>> -        if (!rq || !i915_request_started(rq))
+>>>>> -            goto no_request_capture;
+>>>>> +        if (rq && !i915_request_started(rq)) {
+>>>>> +            drm_info(&engine->gt->i915->drm, "Got hung context
+>>>>> on %s
+>>>>> with no active request!\n",
+>>>>
+>>>> Suggest s/active/started/ since we have both i915_request_active
+>>>> and
+>>>> i915_request_started, so to align the terminology.
+>>> The message text was based on the intent of the activity not the
+>>> naming
+>>> of some internal helper function. Can change it if you really want
+>>> but
+>>> "with no started request" just reads like bad English to me. Plus
+>>> it
+>>> gets removed in the next patch anyway...
+>>>
+>>>
+>>>>
+>>>>> +                 engine->name);
+>>>>> +            rq = NULL;
+>>>>> +        }
+>>>>>        } else {
+>>>>>            /*
+>>>>>             * Getting here with GuC enabled means it is a forced
+>>>>> error
+>>>>> capture
+>>>>> @@ -1622,22 +1645,24 @@ capture_engine(struct intel_engine_cs
+>>>>> *engine,
+>>>>>                               flags);
+>>>>>            }
+>>>>>        }
+>>>>> -    if (rq)
+>>>>> +    if (rq) {
+>>>>>            rq = i915_request_get_rcu(rq);
+>>>>> +        capture = intel_engine_coredump_add_request(ee, rq,
+>>>>> ATOMIC_MAYFAIL);
+>>>>> +    } else if (ce) {
+>>>>> +        capture = engine_coredump_add_context(ee, ce,
+>>>>> ATOMIC_MAYFAIL);
+>>>>> +    }
+>>>>>    -    if (!rq)
+>>>>> -        goto no_request_capture;
+>>>>> -
+>>>>> -    capture = intel_engine_coredump_add_request(ee, rq,
+>>>>> ATOMIC_MAYFAIL);
+>>>>>        if (!capture) {
+>>>>> -        i915_request_put(rq);
+>>>>> +        if (rq)
+>>>>> +            i915_request_put(rq);
+>>>>>            goto no_request_capture;
+>>>>>        }
+>>>>>        if (dump_flags & CORE_DUMP_FLAG_IS_GUC_CAPTURE)
+>>>>>            intel_guc_capture_get_matching_node(engine->gt, ee,
+>>>>> ce);
+>>>>
+>>>> This step requires non-NULL ce, so if you move it under the "else
+>>>> if
+>>>> (ce)" above then I *think* exit from the function can be
+>>>> consolidated
+>>>> to just:
+>>>>
+>>>> if (capture) {
+>>>>      intel_engine_coredump_add_vma(ee, capture, compress);
+>>>>      if (rq)
+>>>>          i915_request_put(rq);
+>>> Is there any reason the rq ref needs to be held during the add_vma
+>>> call?
+>>> Can it now just be moved earlier to be:
+>>>       if (rq) {
+>>>           rq = i915_request_get_rcu(rq);
+>>>           capture = intel_engine_coredump_add_request(ee, rq,
+>>> ATOMIC_MAYFAIL);
+>>>           i915_request_put(rq);
+>>>       }
+>>>
+>>> The internals of the request object are only touched in the above
+>>> _add_request() code. The later _add_vma() call fiddles around with
+>>> vmas
+>>> that pulled from the request but the capture_vma code inside
+>>> _add_request() has already copied everything, hasn't it? Or rather,
+>>> it
+>>> has grabbed its own private vma resource locks. So there is no
+>>> requirement to keep the request itself around still?
+> 
+> That sounds correct. It was some time ago since I worked with this code
+> but when i started IIRC KASAN told me the request along with the whole
+> capture list could disappear under us due to a parallel capture.
+> 
+> So the request reference added then might cover a bit too much now that
+> we also hold references on vma resources, which it looks like we do in
+> intel_engine_coredump_add_vma().
 
-Series: We need to have additional checks for DP MST UHBR
-URL   : https://patchwork.freedesktop.org/series/112876/
-State : success
+If you are not sure maybe just should leave the reference covering as it 
+does? I don't think there is any harm in covering too much. Whether or 
+not it is immediately released after the call to 
+intel_engine_coredump_add_request(), or at the exit of capture_engine() 
+I mean, we can skip that clean up if in doubt.
 
-== Summary ==
+> Another thing which is crappy with the current error capture code is
+> that the request capture list needs to be freed with the request and
+> not when the request signals (We can't block request signalling in the
+> capture code to keep the capture list around). There might be many
+> signaled requests hanging around in non-pruned dma_resv objects and
+> thus many unused capture lists with many unused vma resources. :/
 
-CI Bug Log - changes from CI_DRM_12586 -> Patchwork_112876v1
-====================================================
+This last part sounds vaguely familiar - is it really a problem with the 
+error capture code and it wasn't some other refactoring which removed 
+the pruning of signaled fences from dma_resv?
 
-Summary
--------
+Regards,
 
-  **SUCCESS**
+Tvrtko
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v1/index.html
-
-Participating hosts (44 -> 41)
-------------------------------
-
-  Missing    (3): fi-rkl-11600 bat-atsm-1 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_112876v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@fbdev@write:
-    - fi-blb-e6850:       [PASS][1] -> [SKIP][2] ([fdo#109271]) +4 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12586/fi-blb-e6850/igt@fbdev@write.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v1/fi-blb-e6850/igt@fbdev@write.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-n3050:       [PASS][3] -> [INCOMPLETE][4] ([i915#6972])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12586/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v1/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-
-  * igt@runner@aborted:
-    - fi-bsw-n3050:       NOTRUN -> [FAIL][5] ([fdo#109271] / [i915#4312])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v1/fi-bsw-n3050/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-pnv-d510:        [FAIL][6] ([i915#7229]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12586/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - {bat-rplp-1}:       [DMESG-WARN][8] -> [PASS][9] +5 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12586/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v1/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - {bat-rplp-1}:       [SKIP][10] -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12586/bat-rplp-1/igt@i915_pm_rpm@module-reload.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v1/bat-rplp-1/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-adl-ddr5:        [DMESG-WARN][12] ([i915#5591]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12586/fi-adl-ddr5/igt@i915_selftest@live@hangcheck.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v1/fi-adl-ddr5/igt@i915_selftest@live@hangcheck.html
-    - {bat-dg2-11}:       [INCOMPLETE][14] ([i915#7834]) -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12586/bat-dg2-11/igt@i915_selftest@live@hangcheck.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v1/bat-dg2-11/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@requests:
-    - {bat-rpls-1}:       [INCOMPLETE][16] ([i915#4983] / [i915#6257]) -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12586/bat-rpls-1/igt@i915_selftest@live@requests.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v1/bat-rpls-1/igt@i915_selftest@live@requests.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - fi-apl-guc:         [DMESG-WARN][18] ([i915#1982]) -> [PASS][19]
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12586/fi-apl-guc/igt@i915_suspend@basic-s3-without-i915.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v1/fi-apl-guc/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic:
-    - fi-bsw-kefka:       [FAIL][20] ([i915#2346]) -> [PASS][21]
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12586/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2346]: https://gitlab.freedesktop.org/drm/intel/issues/2346
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5591]: https://gitlab.freedesktop.org/drm/intel/issues/5591
-  [i915#6257]: https://gitlab.freedesktop.org/drm/intel/issues/6257
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6972]: https://gitlab.freedesktop.org/drm/intel/issues/6972
-  [i915#7229]: https://gitlab.freedesktop.org/drm/intel/issues/7229
-  [i915#7625]: https://gitlab.freedesktop.org/drm/intel/issues/7625
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-  [i915#7834]: https://gitlab.freedesktop.org/drm/intel/issues/7834
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12586 -> Patchwork_112876v1
-
-  CI-20190529: 20190529
-  CI_DRM_12586: fa21fb1326b89fe3d376d82a6ce95d7cf0bcefb1 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7119: 1e6d24e6dfa42b22f950f7d5e436b8f9acf8747f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_112876v1: fa21fb1326b89fe3d376d82a6ce95d7cf0bcefb1 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-fc1ec7133c92 drm/i915: Implement UHBR bandwidth check
-481c6c5a96b2 drm/i915: Add generic constraint checker when determining DP MST DSC bpp
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v1/index.html
-
---===============9081082136418624969==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>We need to have additional checks for DP MST UHBR</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/112876/">https://patchwork.freedesktop.org/series/112876/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12586 -&gt; Patchwork_112876v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v1/index.html</p>
-<h2>Participating hosts (44 -&gt; 41)</h2>
-<p>Missing    (3): fi-rkl-11600 bat-atsm-1 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_112876v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@write:</p>
-<ul>
-<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12586/fi-blb-e6850/igt@fbdev@write.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v1/fi-blb-e6850/igt@fbdev@write.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +4 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12586/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v1/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6972">i915#6972</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v1/fi-bsw-n3050/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12586/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7229">i915#7229</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>{bat-rplp-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12586/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v1/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a> +5 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>{bat-rplp-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12586/bat-rplp-1/igt@i915_pm_rpm@module-reload.html">SKIP</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v1/bat-rplp-1/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>
-<p>fi-adl-ddr5:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12586/fi-adl-ddr5/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5591">i915#5591</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v1/fi-adl-ddr5/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
-</li>
-<li>
-<p>{bat-dg2-11}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12586/bat-dg2-11/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7834">i915#7834</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v1/bat-dg2-11/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12586/bat-rpls-1/igt@i915_selftest@live@requests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6257">i915#6257</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v1/bat-rpls-1/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12586/fi-apl-guc/igt@i915_suspend@basic-s3-without-i915.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v1/fi-apl-guc/igt@i915_suspend@basic-s3-without-i915.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12586/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2346</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12586 -&gt; Patchwork_112876v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12586: fa21fb1326b89fe3d376d82a6ce95d7cf0bcefb1 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7119: 1e6d24e6dfa42b22f950f7d5e436b8f9acf8747f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_112876v1: fa21fb1326b89fe3d376d82a6ce95d7cf0bcefb1 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>fc1ec7133c92 drm/i915: Implement UHBR bandwidth check<br />
-481c6c5a96b2 drm/i915: Add generic constraint checker when determining DP MST DSC bpp</p>
-
-</body>
-</html>
-
---===============9081082136418624969==--
+> 
+> /Thomas
+> 
+> 
+>>
+>> Don't know.. it is a question if changes from 60dc43d1190d
+>> ("drm/i915:
+>> Use struct vma_resource instead of struct vma_snapshot") removed the
+>> need for holding the rq reference that "long" I guess? Adding Thomas
+>> and
+>> Matt to perhaps comment.
+>>
+>> Regards,
+>>
+>> Tvrtko
+>>
+>>
+>>> John.
+>>>
+>>>
+>>>> } else {
+>>>>      kfree(ee);
+>>>>      ee = NULL;
+>>>> }
+>>>>
+>>>> return ee;
+>>>>
+>>>> No "if (rq) i915_request_put()" twice, and goto label can be
+>>>> completely removed.
+>>>>
+>>>> Regards,
+>>>>
+>>>> Tvrtko
+>>>>
+>>>>>          intel_engine_coredump_add_vma(ee, capture, compress);
+>>>>> -    i915_request_put(rq);
+>>>>> +    if (rq)
+>>>>> +        i915_request_put(rq);
+>>>>>          return ee;
+>>>
+> 
