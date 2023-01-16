@@ -1,51 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28E9066BCBA
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Jan 2023 12:19:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29D6366BCC4
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Jan 2023 12:21:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61A5110E3D1;
-	Mon, 16 Jan 2023 11:19:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 296E810E3CD;
+	Mon, 16 Jan 2023 11:21:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4195710E3D0
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Jan 2023 11:19:47 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43E6010E3CC;
+ Mon, 16 Jan 2023 11:21:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673867987; x=1705403987;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=+rBPT8mOpgdo2Gg59VPIJxhDAnliMycqKtEboW8HMpc=;
- b=AwxvWTowQ+Gyuy4kcHFN51KUv6DgyBY0okhhcJdwlxs+eCB5m2GFbvhS
- H0E9cspvAFnhDUSXHPCniXSOdHyuKCvMQH4yMcywWqCK1UTUx5KvNNyRL
- FDWztz06WhsW3+fyDPl7HX9tLVSz2D5mNQKas9cmVkRxt/2rOo4l7VAhG
- hhr0RPepIfyv/iyTNk3TGUTKyYwbB9pwi33uIV98Mzs25f96auky9nl+8
- 3uMAWvCB5X2859byhjbOVwVJY8WOzLYmaRs7lyL/5D5j28NREGSDb8l/x
- 0g4oXcKWA2JohQEXtND3bxLuIrq/KDQKTDHAUuiiKsKolvulcr4Z8tw8C Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10591"; a="386785797"
-X-IronPort-AV: E=Sophos;i="5.97,220,1669104000"; d="scan'208";a="386785797"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2023 03:19:47 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10591"; a="689459340"
-X-IronPort-AV: E=Sophos;i="5.97,220,1669104000"; d="scan'208";a="689459340"
-Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
- ([10.237.72.65])
- by orsmga008.jf.intel.com with ESMTP; 16 Jan 2023 03:19:42 -0800
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 16 Jan 2023 13:19:37 +0200
-Message-Id: <20230116111937.875-3-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20230116111937.875-1-stanislav.lisovskiy@intel.com>
-References: <20230116111937.875-1-stanislav.lisovskiy@intel.com>
+ t=1673868092; x=1705404092;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=+cODhuFky0xvAVI1YBOLUwLffLhd0hai1D7NWLccOEw=;
+ b=mXB3L2SWLRRWG/3Wp7pbNc56bkv2Xe5ZM9MUp+2A2LHw0e5KqcZ4/qpI
+ BZl9G+QfPt5wy/57feEfqcp3klIdfrc6k6PbUl1FhLXKL2aDRrChIAXD2
+ l8Ijng7oD72k+fbx8AFqMWO03+vI7VwSgKsPd2Yx7j/CPn+lMGU5sIapG
+ KWgLk16DKB8YN9z7p3s4mwExFseWyc2r00aaP/t7w+GEU5xAEZpasWLG2
+ KWVwkvmmw+I1ECSuaCygThLsSs5vRIxTXP1hTKor+7WAiffR8PWg9LjPT
+ 0KlLi6AMdtGDBxDI3HzNveDfNjfKLuYDV8zvGGnafmaMEgJnrag1MSQ4/ A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10591"; a="323142170"
+X-IronPort-AV: E=Sophos;i="5.97,220,1669104000"; d="scan'208";a="323142170"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2023 03:21:31 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10591"; a="608873612"
+X-IronPort-AV: E=Sophos;i="5.97,220,1669104000"; d="scan'208";a="608873612"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.26.210])
+ ([10.213.26.210])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2023 03:21:29 -0800
+Message-ID: <29cd1dfc-13e9-e51d-4059-868ecbff4393@intel.com>
+Date: Mon, 16 Jan 2023 12:21:26 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Implement UHBR bandwidth check
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.6.1
+Content-Language: en-US
+To: Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20230113114903.7824-1-nirmoy.das@intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20230113114903.7824-1-nirmoy.das@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Unwind hugepages to
+ drop wakeref on error
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,57 +63,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: chris.p.wilson@linux.intel.com, matthew.auld@intel.com,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-According to spec, we should check if output_bpp * pixel_rate is less
-than DDI clock * 72, if UHBR is used.
+On 13.01.2023 12:49, Nirmoy Das wrote:
+> From: Chris Wilson <chris.p.wilson@linux.intel.com>
+> 
+> Make sure that upon error after we have acquired the wakeref we do
+> release it again.
+> 
+> Signed-off-by: Chris Wilson <chris.p.wilson@linux.intel.com>
+> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 
-HSDES: 1406899791
-BSPEC: 49259
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-v2: - Removed wrong comment(Rodrigo Vivi)
-    - Added HSDES to the commit msg(Rodrigo Vivi)
-    - Moved UHBR check to the MST specific code
+Regards
+Andrzej
 
-v3: - Changed commit subject(Rodrigo Vivi)
-    - Fixed the error message if check fails(Rodrigo Vivi)
-
-v4: - Move UHBR check to new helper function
-    - Now both for non-DSC/DSC we use that new check as
-      one of the constraints, when figuring out output bpp
-      to be used(Ville Syrjälä)
-
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index e3e7c305fece..b95051fed23d 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -47,8 +47,19 @@
- 
- static int intel_dp_mst_check_constraints(struct drm_i915_private *i915, int bpp,
- 					  const struct drm_display_mode *adjusted_mode,
--					  struct intel_crtc_state *crtc_state)
-+					  struct intel_crtc_state *pipe_config)
- {
-+	if (intel_dp_is_uhbr(pipe_config)) {
-+		int output_bpp = bpp;
-+
-+		if (output_bpp * adjusted_mode->crtc_clock >=
-+		    pipe_config->port_clock * 72) {
-+			drm_dbg_kms(&i915->drm, "UHBR check failed(required bw %d available %d)\n",
-+				    output_bpp * adjusted_mode->crtc_clock, pipe_config->port_clock * 72);
-+			return -EINVAL;
-+		}
-+	}
-+
- 	return 0;
- }
- 
--- 
-2.37.3
+> ---
+>   drivers/gpu/drm/i915/gem/selftests/huge_pages.c | 6 +++---
+>   1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+> index c281b0ec9e05..295d6f2cc4ff 100644
+> --- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+> +++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+> @@ -1855,7 +1855,7 @@ static int igt_shrink_thp(void *arg)
+>   			I915_SHRINK_ACTIVE);
+>   	i915_vma_unpin(vma);
+>   	if (err)
+> -		goto out_put;
+> +		goto out_wf;
+>   
+>   	/*
+>   	 * Now that the pages are *unpinned* shrinking should invoke
+> @@ -1871,7 +1871,7 @@ static int igt_shrink_thp(void *arg)
+>   		pr_err("unexpected pages mismatch, should_swap=%s\n",
+>   		       str_yes_no(should_swap));
+>   		err = -EINVAL;
+> -		goto out_put;
+> +		goto out_wf;
+>   	}
+>   
+>   	if (should_swap == (obj->mm.page_sizes.sg || obj->mm.page_sizes.phys)) {
+> @@ -1883,7 +1883,7 @@ static int igt_shrink_thp(void *arg)
+>   
+>   	err = i915_vma_pin(vma, 0, 0, flags);
+>   	if (err)
+> -		goto out_put;
+> +		goto out_wf;
+>   
+>   	while (n--) {
+>   		err = cpu_check(obj, n, 0xdeadbeaf);
 
