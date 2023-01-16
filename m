@@ -2,64 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A61E466BA84
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Jan 2023 10:36:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73D1E66BB31
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Jan 2023 11:06:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 537FF10E2AA;
-	Mon, 16 Jan 2023 09:36:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC40B10E2BC;
+	Mon, 16 Jan 2023 10:06:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3EC210E2A5;
- Mon, 16 Jan 2023 09:36:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.de; s=s31663417;
- t=1673861767; bh=wnOHpBayjdNSjw+eUV3MCoIeItj+WtT29KKObbgNH18=;
- h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:In-Reply-To;
- b=NSfx8Dl/wEgIyRrR0lcjIoZ2+gQioo4GdYXZkaOt2SZ3INu5zv6Y/9o8PVdWYeZqR
- QNGn2DEv3OmXbsz/w3tvJWMHONjbZHsP3G8pjogqQPAqlgq+LZCqqIyhJAN9vQxYi/
- TTf1oXWyOJJg5Jtw4O/rysQc1v+GF13XVONMtp3Nua6R3avP0Qg5toxTZAmfmdXaX3
- waz1MU7k/3oAEm4Y4i8lS0UfTcafirk3DTeS2iuo2/WnWwb79WkUFzb/ZBwtOosEZj
- xMtgyLwB0YXxPfnekHlZ3Z9Kf8dhuyG2VjP2OCin+PHLchWkLTvLasF8ABFw4kX0g2
- QEt3dzz2Bvlbw==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.151.61] ([109.43.179.224]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1N8XPn-1odhjS1vbV-014QUC; Mon, 16
- Jan 2023 10:36:07 +0100
-Message-ID: <7c2d45e5-8f16-83b2-93ce-87b456c53b52@gmx.de>
-Date: Mon, 16 Jan 2023 10:36:05 +0100
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com
+ [209.85.160.175])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D996810E0FF;
+ Mon, 16 Jan 2023 10:06:04 +0000 (UTC)
+Received: by mail-qt1-f175.google.com with SMTP id o5so3223299qtr.11;
+ Mon, 16 Jan 2023 02:06:04 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=ZcfbiaOtd0rIUu3J0LzMQ7r+7EcuQP5IsDRStK58JTY=;
+ b=MRFq8jog6K+m3QygukJB6P9m+c7DNGO5Dc0KhaQ0hqsOFPwfCfp1GA15TCZCr9Qng2
+ 2SwOvIJCWk9BRmmi3y7FLWSB//KapQ8rvOwKmh4WIXE5smEUnYIwNeUyG6uxPtg2PSLp
+ 5VmmLpynPG9EaRZRgi4B+OelwOPepQs2gvT8rBsZtSBZIBg3yw2RwelPGPg9SkxUJzts
+ jpFzt/RkhWb4p7CaGKIsGwTp1BGIKNXoEGkQr4s5mz7vY3R2OvXiW3vrE41wzVbxQCg4
+ Wp5Bdmna/PcU3tkmeQgXtz/1UDOPLZyjpDjz0a20d0Ob1uHcmhP0CtEu9l1xWr5/UAyG
+ YITw==
+X-Gm-Message-State: AFqh2kooV+4xlArH/dFQAd8K0cAhHpj0CdiJTNGCkwj6yk/xP7QjWQ17
+ PmE2xYH/pt0p/KyRFBFUScZWslJRhjxMnA==
+X-Google-Smtp-Source: AMrXdXt5Lf3AfHmY3lXvdrJM3vtCiJIJ6ksC78StyWcKRjh93tcA8NATIFaXb90z4+h8s3x3CawEcQ==
+X-Received: by 2002:a05:622a:400e:b0:3ab:af8e:64e6 with SMTP id
+ cf14-20020a05622a400e00b003abaf8e64e6mr80983152qtb.67.1673863563649; 
+ Mon, 16 Jan 2023 02:06:03 -0800 (PST)
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com.
+ [209.85.219.178]) by smtp.gmail.com with ESMTPSA id
+ d5-20020ac851c5000000b003afbf704c7csm8752472qtn.24.2023.01.16.02.06.03
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 16 Jan 2023 02:06:03 -0800 (PST)
+Received: by mail-yb1-f178.google.com with SMTP id v19so23781317ybv.1;
+ Mon, 16 Jan 2023 02:06:03 -0800 (PST)
+X-Received: by 2002:a25:46c6:0:b0:7b8:a0b8:f7ec with SMTP id
+ t189-20020a2546c6000000b007b8a0b8f7ecmr4703291yba.36.1673863245804; Mon, 16
+ Jan 2023 02:00:45 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-To: Stephen Rothwell <sfr@canb.auug.org.au>,
- Daniel Vetter <daniel.vetter@ffwll.ch>
-References: <20230116115440.3f1909cd@canb.auug.org.au>
-Content-Language: en-US
-From: Helge Deller <deller@gmx.de>
-In-Reply-To: <20230116115440.3f1909cd@canb.auug.org.au>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:xA0svzfJeflX86rbfoatcczhHIIJk14fm6BDqRMBweC4tHBj+xI
- rguCwLMLkg/Dti7PO2lt61M72WAmQkS1veipCs2sT2tXF50/j71RCda0GLxqM4RqNmq4rwt
- onxH1WflPzvJkQm/GcvynAN21l0DPhdIo3ssqh+IzHHFPXoNyx3w3I2MjIJT/qeguil2NEz
- hb1ToK3uFt5czFm5P26rw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:k89X/3EyuLs=;g1bkkxWspCpYG57AuM4VeRimN4z
- ezB7wSI6jDg08BcB6gbCb7IFTL/5VQXLsoEc52FXl1CUtYylgCgQG6h0/fsgDaU+Mk7x6hvAM
- h+hoKyfY5r9xDqV0vHXyrH5hvZppQ0e1W/1R11DNZivpMIutj+C1SRh/8Ck22cDutidkA4f4v
- BU4QZIFVtgwBQ6OfEyernNiIJk1DZ3tbRpnHy7b9n9lZXB+L9CICCX9NWCOGraTxe5rl1Mnzu
- LThv7ToYMMG1Pdft3L1FbsidYy12beDqw6tsZ/OYz1q+IZY2A9rhBIT8EJlCsgno1hKto/ICy
- 63TAZfGVlcRbQ3dcZfKJfeU0vxY6dMXc5M8tMRGMCjB5sjtz/lkfJUSColVdLB8mG+mTouieH
- 6NQpK2/OEmPJRYDJHihgtreIs/U6YUyyjyw3PahEJbAFhqAGWl8BZqF5EhqTMUn/7aac/7yMB
- zgykOQegOPMj8zmB4Bkmz0hqMxjUkRN+IsVIR3Ug4HafcJILz0QAPcd5zJwn7SGAwMYTUgMBz
- RG2W7pcLSak1Qx0NeoY9n4vmxc304QoQYzfn2PIK4QNRSa98lwzdIpJ3OOt8NUGtSqy5PBMIj
- +PHeMimDGxhjtTeBkxWOX/9/TXbhuWJmn8SrxOP9IkdMDgTv05Ie02knvAvsCDjedtOwts6/C
- LToJ99CyQqrBquHVmCrtoARUSopVrvNjgGuTbCzNIuXpLZFLDniRmSOXzaMpmBv0T3A46Ybkm
- tHJBzjo9kuZW5HvAh88dct0WI22xmvo8yBp2Uf/yWuB9TbJ7Q3/yhwO87Ry3sjc+sNB9IPdcj
- ICnUeNi9avC718Vb2cFp/1DCSiEn2eYLi/ACaBvJoRZneYM8/zUKKDGzzuTAt2k3wAwifQbtQ
- WWDCuQ3S7Rnm/4y6lpQzevW1lrjM5O3iHtGstwg6vQwQvW1q9MBMpWSd3r6gbthn0+uQClPaf
- bZBnczip6/lgZQog2ZUJZdFL7mA=
-Subject: Re: [Intel-gfx] linux-next: manual merge of the fbdev tree with the
- drm-misc tree
+References: <Y7P9IcR7/jgYWMcq@osiris>
+ <20230105095426.2163354-1-andrzej.hajda@intel.com>
+In-Reply-To: <20230105095426.2163354-1-andrzej.hajda@intel.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 16 Jan 2023 11:00:33 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUhPjya8zWMxEN8U8pjf4M2u_+HOfxQ2NP1XOcX9EpAKg@mail.gmail.com>
+Message-ID: <CAMuHMdUhPjya8zWMxEN8U8pjf4M2u_+HOfxQ2NP1XOcX9EpAKg@mail.gmail.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH v4] arch: rename all internal names __xchg
+ to __arch_xchg
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,37 +67,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kees Cook <keescook@chromium.org>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Mark Rutland <mark.rutland@arm.com>, linux-ia64@vger.kernel.org,
+ linux-sh@vger.kernel.org, Peter Zijlstra <peterz@infradead.org>,
+ dri-devel@lists.freedesktop.org, linux-mips@vger.kernel.org,
+ Heiko Carstens <hca@linux.ibm.com>, sparclinux@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
+ linux-hexagon@vger.kernel.org, linux-snps-arc@lists.infradead.org,
+ Boqun Feng <boqun.feng@gmail.com>, linux-xtensa@linux-xtensa.org,
+ Arnd Bergmann <arnd@arndb.de>, intel-gfx@lists.freedesktop.org,
+ linux-m68k@lists.linux-m68k.org, openrisc@lists.librecores.org,
+ loongarch@lists.linux.dev, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ linux-arm-kernel@lists.infradead.org, linux-parisc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-alpha@vger.kernel.org,
+ Andrew Morton <akpm@linux-foundation.org>, linuxppc-dev@lists.ozlabs.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 1/16/23 01:54, Stephen Rothwell wrote:
-> Hi all,
+On Thu, Jan 5, 2023 at 10:54 AM Andrzej Hajda <andrzej.hajda@intel.com> wrote:
+> __xchg will be used for non-atomic xchg macro.
 >
-> Today's linux-next merge of the fbdev tree got a conflict in:
->
->    include/linux/fb.h
->
-> between commit:
->
->    5b6373de4351 ("drm/fbdev: Remove aperture handling and FBINFO_MISC_FI=
-RMWARE")
->
-> from the drm-misc tree and commit:
->
->    72ac3535c2c5 ("fbdev: fb.h: Replace 0-length array with flexible arra=
-y")
->
-> from the fbdev tree.
+> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+> Reviewed-by: Arnd Bergmann <arnd@arndb.de>
+> ---
+> v2: squashed all arch patches into one
+> v3: fixed alpha/xchg_local, thx to lkp@intel.com
+> v4: adjusted indentation (Heiko)
 
-I've dropped the offending patch from the fbdev git tree, so it should
-be resolved now.
+>  arch/m68k/include/asm/cmpxchg.h      |  6 +++---
 
-Thanks!
-Helge
+Acked-by: Geert Uytterhoeven <geert@linux-m68k.org> [m68k]
 
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
