@@ -2,56 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDABC66CFC7
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Jan 2023 20:49:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 124C166CFC5
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Jan 2023 20:49:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8ABF710E4A9;
-	Mon, 16 Jan 2023 19:49:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 861A910E4A7;
+	Mon, 16 Jan 2023 19:49:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FE6510E4A8;
- Mon, 16 Jan 2023 19:49:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673898574; x=1705434574;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=UjjYcIIEs2sCU+6v6CismVdmMA3nx+5If64m+vcvtU4=;
- b=Sd5HcPqfU/Ffm+tTL+hUvlk1ZlO/kYxcBRFrQA8/78BOaqsY7k/jjwQm
- dN9KrgVYXvzCrr664J1LCPjaXOTbYQk+RPBO36yq/E9hxozhlbF2jmwBE
- 2I1sdAGnfhg7PQzIMFYzC0WhJxo+euM98T+FEEoubXB6GXnzqTUnQaYeM
- lM3m/TrkX15liIFUyVTHEfEV9gb/Dy4I1C5ODJF3YdjbGpP/jzkuLxhpj
- OeSErJHI4zZBPKlq/8CP/+5jM7fe23/+rk/s38SXAsToR3lmDIR9LUDP+
- lFR2SuiLNk8V+jwV8AMmkEkirg3vwueCtZeuJcQeiHcnQO1angnkG3/wG w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="326606562"
-X-IronPort-AV: E=Sophos;i="5.97,221,1669104000"; d="scan'208";a="326606562"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2023 11:49:33 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="767019045"
-X-IronPort-AV: E=Sophos;i="5.97,221,1669104000"; d="scan'208";a="767019045"
-Received: from rhormila-mobl2.ger.corp.intel.com (HELO intel.com)
- ([10.251.222.100])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2023 11:49:30 -0800
-Date: Mon, 16 Jan 2023 20:49:27 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>
-Message-ID: <Y8WqRz7H+Z4hQfDN@ashyti-mobl2.lan>
-References: <20230113022752.3151066-1-vinay.belgaumkar@intel.com>
- <874jsvazvi.wl-ashutosh.dixit@intel.com>
- <db1160e1-cfc1-08d0-08b7-84909608b465@intel.com>
- <87358faw34.wl-ashutosh.dixit@intel.com>
- <82e45200-8a95-ec9a-6dba-766f6c23c7fd@intel.com>
- <Y8Wea4b+mot7oVrB@ashyti-mobl2.lan>
- <3c193ee6-b1cf-52dc-531c-804f8cbe1e4d@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 89C7A10E4A7;
+ Mon, 16 Jan 2023 19:49:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 82A43A00E8;
+ Mon, 16 Jan 2023 19:49:33 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0299252170505259340=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <3c193ee6-b1cf-52dc-531c-804f8cbe1e4d@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/mtl: Connect root sysfs entries to
- GT0
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Mon, 16 Jan 2023 19:49:33 -0000
+Message-ID: <167389857350.6371.9852741720396546387@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230116164644.1752009-1-jani.nikula@intel.com>
+In-Reply-To: <20230116164644.1752009-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_add_intel=5Fdisplay=5Flimits=2Eh_for_key_enums?=
+ =?utf-8?q?_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,76 +41,191 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Vinay,
+--===============0299252170505259340==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jan 16, 2023 at 11:35:41AM -0800, Belgaumkar, Vinay wrote:
-> 
-> On 1/16/2023 10:58 AM, Andi Shyti wrote:
-> > Hi,
-> > 
-> > On Thu, Jan 12, 2023 at 08:48:11PM -0800, Belgaumkar, Vinay wrote:
-> > > On 1/12/2023 8:37 PM, Dixit, Ashutosh wrote:
-> > > > On Thu, 12 Jan 2023 20:26:34 -0800, Belgaumkar, Vinay wrote:
-> > > > > I think the ABI was changed by the patch mentioned in the commit
-> > > > > (a8a4f0467d70).
-> > > > The ABI was originally changed in 80cf8af17af04 and 56a709cf77468.
-> > In theory the ABI has never changed, we just needed to agree once
-> > and for all what to do when reading the upper level interface.
-> > There has never been a previous multitile specification before
-> > this change.
-> > 
-> > There have been long and exhaustive discussions on what to do and
-> > the decision is that in some cases we show the average, in others
-> > the maximum. Never the GT0, though.
-> > 
-> > > Yes, you are right. @Andi, did we have a plan to update the IGT tests that
-> > > use these interfaces to properly refer to the per GT entries as well? They
-> > > now receive average values instead of absolute, hence will fail on a
-> > > multi-GT device.
-> > I don't know what's the plan for igt's.
-> > 
-> > Which tests are failing? I think we shouldn't be using the upper
-> > level interfaces at all in IGT's. Previously there has been an
-> > error printed on dmesg when this was happening. The error has
-> > been removed in order to set the ABI as agreed above.
-> 
-> Tests like perf_mu and gem_ctx_freq will fail as they read upper level sysfs
-> entries and expect them to change as per the test. I think this includes all
-> of the tests that read RC6 or Trubo related sysfs entries for that matter.
+== Series Details ==
 
-First of all I hope we are talking about multitile machines. In
-a single tile we shouldn't see any difference. If there is, then
-there is a bug.
+Series: drm/i915/display: add intel_display_limits.h for key enums (rev3)
+URL   : https://patchwork.freedesktop.org/series/111334/
+State : success
 
-I think the tests need to be updated. In a multitile card we have
-decided that reading from the upper interfaces would provide a
-somehow meaningful value for all the GTs. It's like asking "what
-is the RC6 for all the GTs in one number?" or "what is the
-frequency for all the GTs in one single frequency?". Providing
-the value of GT0 is misleading and with Joonas we agreed that RC6
-would provide the average, while the frequencies would provide
-the maximum. This when reading.
+== Summary ==
 
-When writing, instead, the command sent to the upper layers
-applies to all the GTs.
+CI Bug Log - changes from CI_DRM_12588 -> Patchwork_111334v3
+====================================================
 
-The original approach was to mark the upper interfaces as
-deprecated, for this reason I added initially an error message in
-order to avoid confusion and force IGTs to update. But the error
-message was removed and meanwhile we agreed to give some meaning
-to the upper interfaces.
+Summary
+-------
 
-Do you need help with updating the IGTs?
+  **SUCCESS**
 
-Andi
+  No regressions found.
 
-> Thanks,
-> 
-> Vinay.
-> 
-> > 
-> > Andi
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111334v3/index.html
+
+Participating hosts (45 -> 43)
+------------------------------
+
+  Missing    (2): fi-kbl-soraka fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_111334v3 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@basic-rte:
+    - {bat-adln-1}:       [DMESG-WARN][1] ([i915#7077]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12588/bat-adln-1/igt@i915_pm_rpm@basic-rte.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111334v3/bat-adln-1/igt@i915_pm_rpm@basic-rte.html
+
+  * igt@i915_selftest@live@migrate:
+    - {bat-dg2-11}:       [DMESG-FAIL][3] -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12588/bat-dg2-11/igt@i915_selftest@live@migrate.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111334v3/bat-dg2-11/igt@i915_selftest@live@migrate.html
+
+  * igt@i915_selftest@live@reset:
+    - {bat-rpls-1}:       [DMESG-FAIL][5] ([i915#4983]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12588/bat-rpls-1/igt@i915_selftest@live@reset.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111334v3/bat-rpls-1/igt@i915_selftest@live@reset.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-lvds-1:
+    - fi-ctg-p8600:       [FAIL][7] ([fdo#103375]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12588/fi-ctg-p8600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-lvds-1.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111334v3/fi-ctg-p8600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-lvds-1.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
+  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
+  [i915#7077]: https://gitlab.freedesktop.org/drm/intel/issues/7077
+  [i915#7359]: https://gitlab.freedesktop.org/drm/intel/issues/7359
+  [i915#7625]: https://gitlab.freedesktop.org/drm/intel/issues/7625
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+  [i915#7834]: https://gitlab.freedesktop.org/drm/intel/issues/7834
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12588 -> Patchwork_111334v3
+
+  CI-20190529: 20190529
+  CI_DRM_12588: 4289f17cae840c77e9d314330a635cebe762a735 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7120: dffabf00c79c55e0ae23b75d0a7922d55251ee5e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_111334v3: 4289f17cae840c77e9d314330a635cebe762a735 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+56b675c32fe4 drm/i915/display: add intel_display_limits.h for key enums
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111334v3/index.html
+
+--===============0299252170505259340==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: add intel_display_limits.h for key enums (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/111334/">https://patchwork.freedesktop.org/series/111334/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111334v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111334v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12588 -&gt; Patchwork_111334v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111334v3/index.html</p>
+<h2>Participating hosts (45 -&gt; 43)</h2>
+<p>Missing    (2): fi-kbl-soraka fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_111334v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@basic-rte:</p>
+<ul>
+<li>{bat-adln-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12588/bat-adln-1/igt@i915_pm_rpm@basic-rte.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7077">i915#7077</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111334v3/bat-adln-1/igt@i915_pm_rpm@basic-rte.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@migrate:</p>
+<ul>
+<li>{bat-dg2-11}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12588/bat-dg2-11/igt@i915_selftest@live@migrate.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111334v3/bat-dg2-11/igt@i915_selftest@live@migrate.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@reset:</p>
+<ul>
+<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12588/bat-rpls-1/igt@i915_selftest@live@reset.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111334v3/bat-rpls-1/igt@i915_selftest@live@reset.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-lvds-1:</p>
+<ul>
+<li>fi-ctg-p8600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12588/fi-ctg-p8600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-lvds-1.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_111334v3/fi-ctg-p8600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-lvds-1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12588 -&gt; Patchwork_111334v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12588: 4289f17cae840c77e9d314330a635cebe762a735 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7120: dffabf00c79c55e0ae23b75d0a7922d55251ee5e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_111334v3: 4289f17cae840c77e9d314330a635cebe762a735 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>56b675c32fe4 drm/i915/display: add intel_display_limits.h for key enums</p>
+
+</body>
+</html>
+
+--===============0299252170505259340==--
