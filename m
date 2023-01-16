@@ -2,54 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48CB266B71B
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Jan 2023 07:05:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83EA466B769
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Jan 2023 07:25:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F293710E183;
-	Mon, 16 Jan 2023 06:05:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69BED10E16C;
+	Mon, 16 Jan 2023 06:25:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 575D810E16C;
- Mon, 16 Jan 2023 06:05:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673849141; x=1705385141;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=3DzfFkJlxyL6+WAZYtHcFZtPqjNL1ubLVlcCB3tZvjw=;
- b=R/cVY+IU6lJklO/4PtJYwQmRV1UO34ybI5J54vSq/Rvim2plgEd0vzVC
- OAQWpZ3/mAorqvIvzI6OyvNjv8LIr4mVptV+91M13MgR2Da9xKMKD2KaF
- 6+jp/8JtQaIzIaBVTVXC8cDEKssTZCNOpVtxwRINJ786w3ceC/nJ3N9AF
- ZifuofnJE93uBKtF6DOg5RZogtJC7ZsQjXEIh+zjnmC1Rod1z7fCqG6Yr
- FQQNmvChVKU7AFPU4B39EexveDRTLYR4AkFaAjYpNU8DpVBDEqFjyrEEd
- RdsooJywtxzmZtUeMqXWvMRD8R+xLGjWDrFC9Z3psX2Pv2dfVDJ/267ZQ A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10591"; a="324451207"
-X-IronPort-AV: E=Sophos;i="5.97,220,1669104000"; 
- d="asc'?scan'208";a="324451207"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2023 22:05:40 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10591"; a="722185818"
-X-IronPort-AV: E=Sophos;i="5.97,220,1669104000"; 
- d="asc'?scan'208";a="722185818"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.159.108])
- by fmsmga008.fm.intel.com with ESMTP; 15 Jan 2023 22:05:36 -0800
-Date: Mon, 16 Jan 2023 13:44:46 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Message-ID: <Y8TkTi+/GQwhiMvO@zhen-hp.sh.intel.com>
-References: <cover.1673375066.git.drv@mailo.com>
- <188df08e0feba0cda2c92145f513dd4e57c6e6cf.1673375066.git.drv@mailo.com>
- <Y72zVXYLVHXuyK05@intel.com>
+Received: from domac.alu.hr (domac.alu.unizg.hr [161.53.235.3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 243E710E16C
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Jan 2023 06:25:37 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by domac.alu.hr (Postfix) with ESMTP id 0A108604F9;
+ Mon, 16 Jan 2023 07:25:31 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=alu.unizg.hr; s=mail;
+ t=1673850331; bh=4fyHc5VOsAd1432QK4qzvuO7WekTB/cFYJQKucHWvx4=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=dQujljGnKPVXpBXow3AzaNtOWQzeQHTipo3m/9Qn2eavQD03LN3Jy0Ks5LEtYd8NG
+ d5bHIGu1Ua+dLFb1sbCnKKv3Vav5ngRWYyWNsjvvVR1Snqi2IKy2jTU9oQNkKOnUY6
+ Opee4OSLG7KSvHOXWsdFnn3/Xf+wSELYAc7zONIvT0w+SPeV5BoQpxJstye/Z5r5ol
+ Tw3uG83cGbpUfKKhTvyTymkAIEdbyMmGexmFzN2fYaO6uIgmGWPGtJhCTGjaI6iURC
+ co9bIf2ekcBdrUMyrdgREuQ0Fej/MHYWEgNxY1CX89denzUPKSbBXjFKSvIf3c0HNT
+ ae7Rp9hKw+yRw==
+X-Virus-Scanned: Debian amavisd-new at domac.alu.hr
+Received: from domac.alu.hr ([127.0.0.1])
+ by localhost (domac.alu.hr [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 0HF83dSFYgza; Mon, 16 Jan 2023 07:25:28 +0100 (CET)
+Received: from [193.198.186.200] (pc-mtodorov.slava.alu.hr [193.198.186.200])
+ by domac.alu.hr (Postfix) with ESMTPSA id D726A604F3;
+ Mon, 16 Jan 2023 07:25:27 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=alu.unizg.hr; s=mail;
+ t=1673850328; bh=4fyHc5VOsAd1432QK4qzvuO7WekTB/cFYJQKucHWvx4=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=UYe0RUiZKBhIFc5CKLM5dzC04dG+P1VPNX+uL5sw6RH1MFmxiUB55Tzia7VWHEycq
+ TqsBDt/SGgrob9260TAsU9oUjFtxIcSru+rMnObc3h57Cwpq+k4Lhyg+R+XO2Sz5FD
+ ZmZRoWZd67GdHMfi9Wmud1q2lY4gQXIZI9kRR5dBaoTfEL8k9L1Ds/F6/b6Y9dVXBb
+ YGgKCXhH7+r+DSkjOL+gAZ2iz9MjIFV9N3zwIB5MccUqr4ZCnpD6xO32DUV2XfTZgD
+ 0NXidwgeA4XxeMpkUm4MJM0fDwo8Ckrqr8wf1JScwCfYV45XfIeVwtiGWSN9pWfm/a
+ YPy9+muGth+Ig==
+Message-ID: <88aefaa2-8979-12e6-ee1e-5f770ccecaf7@alu.unizg.hr>
+Date: Mon, 16 Jan 2023 07:25:20 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
- protocol="application/pgp-signature"; boundary="MccZDuc/f2Etrv5V"
-Content-Disposition: inline
-In-Reply-To: <Y72zVXYLVHXuyK05@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gvt: Avoid full proxy f_ops
- for vgpu_status debug attributes
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ srinivas pandruvada <srinivas.pandruvada@linux.intel.com>,
+ LKML <linux-kernel@vger.kernel.org>, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <f849cc70-b21f-6476-ba26-08989d1243c2@alu.unizg.hr>
+ <05424a5351a847786377a548dba0759917d8046c.camel@linux.intel.com>
+ <15ef1bb9-7312-5d98-8bf0-0af1a37cfd2a@linux.intel.com>
+ <619bdecc-cf87-60a4-f50d-836f4c073ea7@alu.unizg.hr>
+ <8e080674-36ab-9260-046e-f4e3c931a3b9@alu.unizg.hr>
+ <96661293-32d7-0bb4-fb0e-28086eaaecc3@linux.intel.com>
+ <edab9da6-df81-7167-acdd-f2ea22c7ed90@alu.unizg.hr>
+ <9c86dff0-e7f4-60b9-ed3e-6ad51cacaa01@linux.intel.com>
+Content-Language: en-US, hr
+From: Mirsad Todorovac <mirsad.todorovac@alu.unizg.hr>
+In-Reply-To: <9c86dff0-e7f4-60b9-ed3e-6ad51cacaa01@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] LOOKS GOOD: Possible regression in drm/i915 driver:
+ memleak
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,105 +76,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: Saurabh Singh Sengar <ssengar@microsoft.com>,
- dri-devel@lists.freedesktop.org, Deepak R Varma <drv@mailo.com>,
- intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Praveen Kumar <kumarpraveen@linux.microsoft.com>,
- Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>
+Cc: intel-gfx@lists.freedesktop.org,
+ Thorsten Leemhuis <regressions@leemhuis.info>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
---MccZDuc/f2Etrv5V
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On 2023.01.10 13:49:57 -0500, Rodrigo Vivi wrote:
-> On Wed, Jan 11, 2023 at 12:00:12AM +0530, Deepak R Varma wrote:
-> > Using DEFINE_SIMPLE_ATTRIBUTE macro with the debugfs_create_file()
-> > function adds the overhead of introducing a proxy file operation
-> > functions to wrap the original read/write inside file removal protection
-> > functions. This adds significant overhead in terms of introducing and
-> > managing the proxy factory file operations structure and function
-> > wrapping at runtime.
-> > As a replacement, a combination of DEFINE_DEBUGFS_ATTRIBUTE macro paired
-> > with debugfs_create_file_unsafe() is suggested to be used instead.  The
-> > DEFINE_DEBUGFS_ATTRIBUTE utilises debugfs_file_get() and
-> > debugfs_file_put() wrappers to protect the original read and write
-> > function calls for the debug attributes. There is no need for any
-> > runtime proxy file operations to be managed by the debugfs core.
-> > Following coccicheck make command helped identify this change:
-> >=20
-> > make coccicheck M=3Ddrivers/gpu/drm/i915/ MODE=3Dpatch COCCI=3D./script=
-s/coccinelle/api/debugfs/debugfs_simple_attr.cocci
-> >=20
-> > Signed-off-by: Deepak R Varma <drv@mailo.com>
->=20
-> I believe these 2 gvt cases could be done in one patch.
-> But anyways,
->=20
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
->=20
-> for both patches... and will leave these 2 patches for gvt folks
-> to apply. Unless they ack and I apply in the drm-intel along with the oth=
-er ones.
->
+On 1/9/23 16:00, Tvrtko Ursulin wrote:
+> 
+> On 25/12/2022 22:48, Mirsad Goran Todorovac wrote:
+>> On 22. 12. 2022. 09:04, Tvrtko Ursulin wrote:
+>>>
+>>> In the meantime definitely thanks a lot for testing this quickly and reporting back!
+>>
+>> Don't think much of it - anyone with CONFIG_KMEMLEAK enabled could have caught this bug.
+>>
+>> I was surprised that you found the fix in less than an hour without me having to bisect :)
+> 
+> Fix sadly has a problem handling shared buffers so different version will hopefully appear soon.
 
-yeah, they're fine with me, feel free to apply them directly.
+Bummer.
 
-Acked-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+Ready to test the new version in the same environment.
 
-thanks!
+-- 
+Mirsad Goran Todorovac
+Sistem inženjer
+Grafički fakultet | Akademija likovnih umjetnosti
+Sveučilište u Zagrebu
 
-> > ---
-> >  drivers/gpu/drm/i915/gvt/debugfs.c | 6 +++---
-> >  1 file changed, 3 insertions(+), 3 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/i915/gvt/debugfs.c b/drivers/gpu/drm/i915/=
-gvt/debugfs.c
-> > index 03f081c3d9a4..baccbf1761b7 100644
-> > --- a/drivers/gpu/drm/i915/gvt/debugfs.c
-> > +++ b/drivers/gpu/drm/i915/gvt/debugfs.c
-> > @@ -165,7 +165,7 @@ static int vgpu_status_get(void *data, u64 *val)
-> >  	return 0;
-> >  }
-> > =20
-> > -DEFINE_SIMPLE_ATTRIBUTE(vgpu_status_fops, vgpu_status_get, NULL, "0x%l=
-lx\n");
-> > +DEFINE_DEBUGFS_ATTRIBUTE(vgpu_status_fops, vgpu_status_get, NULL, "0x%=
-llx\n");
-> > =20
-> >  /**
-> >   * intel_gvt_debugfs_add_vgpu - register debugfs entries for a vGPU
-> > @@ -182,8 +182,8 @@ void intel_gvt_debugfs_add_vgpu(struct intel_vgpu *=
-vgpu)
-> >  			    &vgpu_mmio_diff_fops);
-> >  	debugfs_create_file_unsafe("scan_nonprivbb", 0644, vgpu->debugfs, vgp=
-u,
-> >  				   &vgpu_scan_nonprivbb_fops);
-> > -	debugfs_create_file("status", 0644, vgpu->debugfs, vgpu,
-> > -			    &vgpu_status_fops);
-> > +	debugfs_create_file_unsafe("status", 0644, vgpu->debugfs, vgpu,
-> > +				   &vgpu_status_fops);
-> >  }
-> > =20
-> >  /**
-> > --=20
-> > 2.34.1
-> >=20
-> >=20
-> >=20
-
---MccZDuc/f2Etrv5V
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCY8TkSQAKCRCxBBozTXgY
-J3FGAJ4wFe9wnMtxUPhaCOCDkSZhBAzzgQCglj/FAfmvPCFfTpHDMapaW6QFeTY=
-=AIVR
------END PGP SIGNATURE-----
-
---MccZDuc/f2Etrv5V--
+System engineer
+Faculty of Graphic Arts | Academy of Fine Arts
+University of Zagreb, Republic of Croatia
