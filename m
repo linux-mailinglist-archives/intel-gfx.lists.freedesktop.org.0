@@ -2,59 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73D1E66BB31
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Jan 2023 11:06:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B46C766BCAF
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Jan 2023 12:19:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC40B10E2BC;
-	Mon, 16 Jan 2023 10:06:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01CB710E3CC;
+	Mon, 16 Jan 2023 11:19:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com
- [209.85.160.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D996810E0FF;
- Mon, 16 Jan 2023 10:06:04 +0000 (UTC)
-Received: by mail-qt1-f175.google.com with SMTP id o5so3223299qtr.11;
- Mon, 16 Jan 2023 02:06:04 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=ZcfbiaOtd0rIUu3J0LzMQ7r+7EcuQP5IsDRStK58JTY=;
- b=MRFq8jog6K+m3QygukJB6P9m+c7DNGO5Dc0KhaQ0hqsOFPwfCfp1GA15TCZCr9Qng2
- 2SwOvIJCWk9BRmmi3y7FLWSB//KapQ8rvOwKmh4WIXE5smEUnYIwNeUyG6uxPtg2PSLp
- 5VmmLpynPG9EaRZRgi4B+OelwOPepQs2gvT8rBsZtSBZIBg3yw2RwelPGPg9SkxUJzts
- jpFzt/RkhWb4p7CaGKIsGwTp1BGIKNXoEGkQr4s5mz7vY3R2OvXiW3vrE41wzVbxQCg4
- Wp5Bdmna/PcU3tkmeQgXtz/1UDOPLZyjpDjz0a20d0Ob1uHcmhP0CtEu9l1xWr5/UAyG
- YITw==
-X-Gm-Message-State: AFqh2kooV+4xlArH/dFQAd8K0cAhHpj0CdiJTNGCkwj6yk/xP7QjWQ17
- PmE2xYH/pt0p/KyRFBFUScZWslJRhjxMnA==
-X-Google-Smtp-Source: AMrXdXt5Lf3AfHmY3lXvdrJM3vtCiJIJ6ksC78StyWcKRjh93tcA8NATIFaXb90z4+h8s3x3CawEcQ==
-X-Received: by 2002:a05:622a:400e:b0:3ab:af8e:64e6 with SMTP id
- cf14-20020a05622a400e00b003abaf8e64e6mr80983152qtb.67.1673863563649; 
- Mon, 16 Jan 2023 02:06:03 -0800 (PST)
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com.
- [209.85.219.178]) by smtp.gmail.com with ESMTPSA id
- d5-20020ac851c5000000b003afbf704c7csm8752472qtn.24.2023.01.16.02.06.03
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 16 Jan 2023 02:06:03 -0800 (PST)
-Received: by mail-yb1-f178.google.com with SMTP id v19so23781317ybv.1;
- Mon, 16 Jan 2023 02:06:03 -0800 (PST)
-X-Received: by 2002:a25:46c6:0:b0:7b8:a0b8:f7ec with SMTP id
- t189-20020a2546c6000000b007b8a0b8f7ecmr4703291yba.36.1673863245804; Mon, 16
- Jan 2023 02:00:45 -0800 (PST)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D515410E3CC
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Jan 2023 11:19:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1673867980; x=1705403980;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=uBEl5oRupbfA0VyNcIU/qVBLZaV4Uj2WZoQBv91g+WY=;
+ b=AKqEkr+RvdIthZPfVz3+3RQrzZ2r3VFVv0fROctSbm25NnPuZYW85ATS
+ HkRFExhTc31JlMASwjkFDhv613NpEN+COaDW81ORt3Nmv7vLk70QxyXXS
+ 3Fl5d5oiFXd1WV3kIrWsQhLKHt1u3akNdzsvxtLKrxaN0HEuWTBQeoLiT
+ U4C/QGLA4Q0v3F2zzDAnO2TjdoTluHUEeeTjqcXUJAO71E0PM3fPbd2q8
+ Pd/J77kU/AS1xb5sS3KzA7b7N5H4DKCS4LjIxcd+1etULqW7I9NnARCt8
+ ASNwRZ+/myKVltdzjaeF6cpqU31R3MXUETAi9sY1jTfJGf8qiegrmDnJM A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10591"; a="386785788"
+X-IronPort-AV: E=Sophos;i="5.97,220,1669104000"; d="scan'208";a="386785788"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2023 03:19:40 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10591"; a="689459326"
+X-IronPort-AV: E=Sophos;i="5.97,220,1669104000"; d="scan'208";a="689459326"
+Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
+ ([10.237.72.65])
+ by orsmga008.jf.intel.com with ESMTP; 16 Jan 2023 03:19:38 -0800
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 16 Jan 2023 13:19:35 +0200
+Message-Id: <20230116111937.875-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-References: <Y7P9IcR7/jgYWMcq@osiris>
- <20230105095426.2163354-1-andrzej.hajda@intel.com>
-In-Reply-To: <20230105095426.2163354-1-andrzej.hajda@intel.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 16 Jan 2023 11:00:33 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUhPjya8zWMxEN8U8pjf4M2u_+HOfxQ2NP1XOcX9EpAKg@mail.gmail.com>
-Message-ID: <CAMuHMdUhPjya8zWMxEN8U8pjf4M2u_+HOfxQ2NP1XOcX9EpAKg@mail.gmail.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH v4] arch: rename all internal names __xchg
- to __arch_xchg
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/2] We need to have additional checks for DP
+ MST UHBR
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,44 +56,22 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, linux-ia64@vger.kernel.org,
- linux-sh@vger.kernel.org, Peter Zijlstra <peterz@infradead.org>,
- dri-devel@lists.freedesktop.org, linux-mips@vger.kernel.org,
- Heiko Carstens <hca@linux.ibm.com>, sparclinux@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
- linux-hexagon@vger.kernel.org, linux-snps-arc@lists.infradead.org,
- Boqun Feng <boqun.feng@gmail.com>, linux-xtensa@linux-xtensa.org,
- Arnd Bergmann <arnd@arndb.de>, intel-gfx@lists.freedesktop.org,
- linux-m68k@lists.linux-m68k.org, openrisc@lists.librecores.org,
- loongarch@lists.linux.dev, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- linux-arm-kernel@lists.infradead.org, linux-parisc@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-alpha@vger.kernel.org,
- Andrew Morton <akpm@linux-foundation.org>, linuxppc-dev@lists.ozlabs.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 5, 2023 at 10:54 AM Andrzej Hajda <andrzej.hajda@intel.com> wrote:
-> __xchg will be used for non-atomic xchg macro.
->
-> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
-> Reviewed-by: Arnd Bergmann <arnd@arndb.de>
-> ---
-> v2: squashed all arch patches into one
-> v3: fixed alpha/xchg_local, thx to lkp@intel.com
-> v4: adjusted indentation (Heiko)
+According to BSpec UHBR might hit hw limitation which must be checked.
+So this series adds first some generic checker function, which might
+be used to add this or similar checks in future, then we introduce
+that particular UHBR check.
 
->  arch/m68k/include/asm/cmpxchg.h      |  6 +++---
+Stanislav Lisovskiy (2):
+  drm/i915: Add generic constraint checker when determining DP MST DSC
+    bpp
+  drm/i915: Implement UHBR bandwidth check
 
-Acked-by: Geert Uytterhoeven <geert@linux-m68k.org> [m68k]
+ drivers/gpu/drm/i915/display/intel_dp_mst.c | 26 +++++++++++++++++++--
+ 1 file changed, 24 insertions(+), 2 deletions(-)
 
-Gr{oetje,eeting}s,
+-- 
+2.37.3
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
