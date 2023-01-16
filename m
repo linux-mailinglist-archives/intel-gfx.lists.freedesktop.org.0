@@ -2,41 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0C9C66B51A
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Jan 2023 01:54:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48CB266B71B
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Jan 2023 07:05:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B559C10E12E;
-	Mon, 16 Jan 2023 00:54:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F293710E183;
+	Mon, 16 Jan 2023 06:05:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F224A10E0C8;
- Mon, 16 Jan 2023 00:54:43 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4NwD7k0tyQz4x1N;
- Mon, 16 Jan 2023 11:54:41 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1673830482;
- bh=EBOGXbwcbb87Bkp7IUfdt93GV/AbQEitRGQA5HtmKFU=;
- h=Date:From:To:Cc:Subject:From;
- b=oJ5HwAS6D8VskXVQyfXHC9iSwWR/ng1ZsGp98X9D41XHaL0kNmJBoosp4LauIVKe5
- /Odr3TLjuztOGG9/ppHwpCCK1ctwA7JUgr3f+85q4WIpXUysNhl0rA1wOFnTpriPRV
- m4yEIzW1mfHIkx8Zcvk7BNZAkEOOdlYdnCJrJPOF0atyWylcMFoOX1pwBQuye+j7DS
- 9HkNFHzQsVFjw8/OhL783hTz2BJdnPcckqnr5QyFCfd2owobJhzFkMPbXsztoWOz6Z
- q1eioKhMzMUz/KFWhA/xQv+6x3s8utsE3iGrGTWEizcthGgnJeDQbcHdRPmLFDGa9r
- wCTJ2BS//OKDg==
-Date: Mon, 16 Jan 2023 11:54:40 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Helge Deller <deller@gmx.de>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20230116115440.3f1909cd@canb.auug.org.au>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 575D810E16C;
+ Mon, 16 Jan 2023 06:05:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1673849141; x=1705385141;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=3DzfFkJlxyL6+WAZYtHcFZtPqjNL1ubLVlcCB3tZvjw=;
+ b=R/cVY+IU6lJklO/4PtJYwQmRV1UO34ybI5J54vSq/Rvim2plgEd0vzVC
+ OAQWpZ3/mAorqvIvzI6OyvNjv8LIr4mVptV+91M13MgR2Da9xKMKD2KaF
+ 6+jp/8JtQaIzIaBVTVXC8cDEKssTZCNOpVtxwRINJ786w3ceC/nJ3N9AF
+ ZifuofnJE93uBKtF6DOg5RZogtJC7ZsQjXEIh+zjnmC1Rod1z7fCqG6Yr
+ FQQNmvChVKU7AFPU4B39EexveDRTLYR4AkFaAjYpNU8DpVBDEqFjyrEEd
+ RdsooJywtxzmZtUeMqXWvMRD8R+xLGjWDrFC9Z3psX2Pv2dfVDJ/267ZQ A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10591"; a="324451207"
+X-IronPort-AV: E=Sophos;i="5.97,220,1669104000"; 
+ d="asc'?scan'208";a="324451207"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2023 22:05:40 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10591"; a="722185818"
+X-IronPort-AV: E=Sophos;i="5.97,220,1669104000"; 
+ d="asc'?scan'208";a="722185818"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.159.108])
+ by fmsmga008.fm.intel.com with ESMTP; 15 Jan 2023 22:05:36 -0800
+Date: Mon, 16 Jan 2023 13:44:46 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <Y8TkTi+/GQwhiMvO@zhen-hp.sh.intel.com>
+References: <cover.1673375066.git.drv@mailo.com>
+ <188df08e0feba0cda2c92145f513dd4e57c6e6cf.1673375066.git.drv@mailo.com>
+ <Y72zVXYLVHXuyK05@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/4891LzL3eq9V4IvMn8hdC4+";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-Subject: [Intel-gfx] linux-next: manual merge of the fbdev tree with the
- drm-misc tree
+Content-Type: multipart/signed; micalg=pgp-sha1;
+ protocol="application/pgp-signature"; boundary="MccZDuc/f2Etrv5V"
+Content-Disposition: inline
+In-Reply-To: <Y72zVXYLVHXuyK05@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gvt: Avoid full proxy f_ops
+ for vgpu_status debug attributes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,61 +62,105 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kees Cook <keescook@chromium.org>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: Saurabh Singh Sengar <ssengar@microsoft.com>,
+ dri-devel@lists.freedesktop.org, Deepak R Varma <drv@mailo.com>,
+ intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Praveen Kumar <kumarpraveen@linux.microsoft.com>,
+ Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/4891LzL3eq9V4IvMn8hdC4+
-Content-Type: text/plain; charset=US-ASCII
+
+--MccZDuc/f2Etrv5V
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
+On 2023.01.10 13:49:57 -0500, Rodrigo Vivi wrote:
+> On Wed, Jan 11, 2023 at 12:00:12AM +0530, Deepak R Varma wrote:
+> > Using DEFINE_SIMPLE_ATTRIBUTE macro with the debugfs_create_file()
+> > function adds the overhead of introducing a proxy file operation
+> > functions to wrap the original read/write inside file removal protection
+> > functions. This adds significant overhead in terms of introducing and
+> > managing the proxy factory file operations structure and function
+> > wrapping at runtime.
+> > As a replacement, a combination of DEFINE_DEBUGFS_ATTRIBUTE macro paired
+> > with debugfs_create_file_unsafe() is suggested to be used instead.  The
+> > DEFINE_DEBUGFS_ATTRIBUTE utilises debugfs_file_get() and
+> > debugfs_file_put() wrappers to protect the original read and write
+> > function calls for the debug attributes. There is no need for any
+> > runtime proxy file operations to be managed by the debugfs core.
+> > Following coccicheck make command helped identify this change:
+> >=20
+> > make coccicheck M=3Ddrivers/gpu/drm/i915/ MODE=3Dpatch COCCI=3D./script=
+s/coccinelle/api/debugfs/debugfs_simple_attr.cocci
+> >=20
+> > Signed-off-by: Deepak R Varma <drv@mailo.com>
+>=20
+> I believe these 2 gvt cases could be done in one patch.
+> But anyways,
+>=20
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>=20
+> for both patches... and will leave these 2 patches for gvt folks
+> to apply. Unless they ack and I apply in the drm-intel along with the oth=
+er ones.
+>
 
-Today's linux-next merge of the fbdev tree got a conflict in:
+yeah, they're fine with me, feel free to apply them directly.
 
-  include/linux/fb.h
+Acked-by: Zhenyu Wang <zhenyuw@linux.intel.com>
 
-between commit:
+thanks!
 
-  5b6373de4351 ("drm/fbdev: Remove aperture handling and FBINFO_MISC_FIRMWA=
-RE")
+> > ---
+> >  drivers/gpu/drm/i915/gvt/debugfs.c | 6 +++---
+> >  1 file changed, 3 insertions(+), 3 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/i915/gvt/debugfs.c b/drivers/gpu/drm/i915/=
+gvt/debugfs.c
+> > index 03f081c3d9a4..baccbf1761b7 100644
+> > --- a/drivers/gpu/drm/i915/gvt/debugfs.c
+> > +++ b/drivers/gpu/drm/i915/gvt/debugfs.c
+> > @@ -165,7 +165,7 @@ static int vgpu_status_get(void *data, u64 *val)
+> >  	return 0;
+> >  }
+> > =20
+> > -DEFINE_SIMPLE_ATTRIBUTE(vgpu_status_fops, vgpu_status_get, NULL, "0x%l=
+lx\n");
+> > +DEFINE_DEBUGFS_ATTRIBUTE(vgpu_status_fops, vgpu_status_get, NULL, "0x%=
+llx\n");
+> > =20
+> >  /**
+> >   * intel_gvt_debugfs_add_vgpu - register debugfs entries for a vGPU
+> > @@ -182,8 +182,8 @@ void intel_gvt_debugfs_add_vgpu(struct intel_vgpu *=
+vgpu)
+> >  			    &vgpu_mmio_diff_fops);
+> >  	debugfs_create_file_unsafe("scan_nonprivbb", 0644, vgpu->debugfs, vgp=
+u,
+> >  				   &vgpu_scan_nonprivbb_fops);
+> > -	debugfs_create_file("status", 0644, vgpu->debugfs, vgpu,
+> > -			    &vgpu_status_fops);
+> > +	debugfs_create_file_unsafe("status", 0644, vgpu->debugfs, vgpu,
+> > +				   &vgpu_status_fops);
+> >  }
+> > =20
+> >  /**
+> > --=20
+> > 2.34.1
+> >=20
+> >=20
+> >=20
 
-from the drm-misc tree and commit:
-
-  72ac3535c2c5 ("fbdev: fb.h: Replace 0-length array with flexible array")
-
-from the fbdev tree.
-
-I fixed it up (I just used the former version) and can carry the fix as
-necessary. This is now fixed as far as linux-next is concerned, but any
-non trivial conflicts should be mentioned to your upstream maintainer
-when your tree is submitted for merging.  You may also want to consider
-cooperating with the maintainer of the conflicting tree to minimise any
-particularly complex conflicts.
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/4891LzL3eq9V4IvMn8hdC4+
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+--MccZDuc/f2Etrv5V
+Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmPEoFAACgkQAVBC80lX
-0GwwrAf/VA6njrNk/Uny48sFLu68N7KA/wk8F+LOOsqSaxr8SOzUmTPpvqt/PTWE
-z3An1Zji4W/3xtyQfqgi7QzYLosWd4lKkBHvNwvGmdYopxSR10DbGetPVwZV1zPN
-GV3W5yKWRH/Rn5LiZwnDcwRJ/QqNjjUzSYpF98tKOMiqseWV2VxdPNs3W3Np9czM
-cszbizauJXQy/AMssUu0Cv5OYcs6ALvK0WRrQyQHBl99V2w9zJi7q5j8BfGIcfUO
-KafAjIOE27a0BUOzg2gluGBvrNOHAV2Th5Hjv9+Rfhu/C66iSjcwXmzWyxd+kTu/
-ZBXkHKYcVCwbal4pmWUxg48Qh10KIw==
-=+9UO
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCY8TkSQAKCRCxBBozTXgY
+J3FGAJ4wFe9wnMtxUPhaCOCDkSZhBAzzgQCglj/FAfmvPCFfTpHDMapaW6QFeTY=
+=AIVR
 -----END PGP SIGNATURE-----
 
---Sig_/4891LzL3eq9V4IvMn8hdC4+--
+--MccZDuc/f2Etrv5V--
