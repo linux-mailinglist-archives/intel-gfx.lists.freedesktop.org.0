@@ -2,50 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1699066E305
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Jan 2023 17:04:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E07C966E313
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Jan 2023 17:06:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 630AF10E57D;
-	Tue, 17 Jan 2023 16:04:54 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21A3910E57D;
- Tue, 17 Jan 2023 16:04:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A99E10E57F;
+	Tue, 17 Jan 2023 16:06:39 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57F8A10E2EE;
+ Tue, 17 Jan 2023 16:06:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673971492; x=1705507492;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=83QUm+B1soJY7/5R+o87e442WuYAgBdKXUVW9VPPJwY=;
- b=IubsWkpoktWBNxNWo8Q20thw0LC165CNAyzo7Oolz9r+RtyZIgAjm3Rp
- A/KNXhaa+IEwcTMt5Ph+RxLkBkgsEQZY9LVP3tYJxmTFH/aLk88lXdWnt
- aFtxpoz1uPdcB4ouCvVb7boRTeDp7yz3qtCWa3OfyL3MqBKtYNQlJ3nGJ
- hmC67UgXtRZghYLUei/7ZifIEYnggj8toKfMSOwe4PP5alA9kxuXsqbBq
- 8qnV9g5hcBbyOUZcFx2FQQ352MwtCF5o1BYUroOLBp46aa6EV7XzLXvI8
- /SebZ+j30dkD1d3Jsvwwu9gZjHcHjt04nFfviYG1V2k9Nmx8AeVxDu4gp Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="323427600"
-X-IronPort-AV: E=Sophos;i="5.97,224,1669104000"; d="scan'208";a="323427600"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2023 08:03:20 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="904695680"
-X-IronPort-AV: E=Sophos;i="5.97,224,1669104000"; d="scan'208";a="904695680"
-Received: from joe-255.igk.intel.com (HELO localhost) ([10.91.220.57])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2023 08:03:13 -0800
-Date: Tue, 17 Jan 2023 17:03:11 +0100
-From: Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <20230117160311.GA15842@linux.intel.com>
-References: <20230112165609.1083270-1-tvrtko.ursulin@linux.intel.com>
- <20230112165609.1083270-5-tvrtko.ursulin@linux.intel.com>
+ t=1673971595; x=1705507595;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to;
+ bh=wCGKjItQYcTzbCx034yZc62DBLBpIa//43sovUibnR8=;
+ b=W8o6Zd0LBEQO7zd6btMloEZyw3YhOUPfi7FunTn9RqRztd0i1VoT7GLG
+ 5CHlvjB/jjMWJ794DLhROD6Z/xBtuD3rPUNOQ1/ZnUFueGYR6AbuwLpXG
+ zhbFSoKSQYzT2nLmgv14COvm7Dmcc4k/gOQjIVN0qbQJ+W4MBZc4koRHS
+ QxZY259/Zf/etp2M0UlZbh7eLTK+qMJZEdzR5lti+GlQA0bWePZ9WyIY6
+ NfTrYwzsESOyPegDL2b5k2wlWruaqjgt6CUnquGhLjtt8dRJ5RXXwUUEn
+ 8ouHh7yMZRdgbZ/WOmxivaZpV/e/E8aD96JUBqUqiLdNNPvy3IeaIf2MF Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="322421691"
+X-IronPort-AV: E=Sophos;i="5.97,224,1669104000"; 
+ d="scan'208,217";a="322421691"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2023 08:06:00 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="833221153"
+X-IronPort-AV: E=Sophos;i="5.97,224,1669104000"; 
+ d="scan'208,217";a="833221153"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.251.222.166])
+ ([10.251.222.166])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2023 08:05:58 -0800
+Content-Type: multipart/alternative;
+ boundary="------------HhGYSLWyvs0zrVGzvNbFCAvy"
+Message-ID: <56b0492f-b0f4-54b3-a0b9-fb0d43198170@linux.intel.com>
+Date: Tue, 17 Jan 2023 17:05:56 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230112165609.1083270-5-tvrtko.ursulin@linux.intel.com>
-Subject: Re: [Intel-gfx] [RFC 04/12] drm/cgroup: Track clients per owning
- process
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Content-Language: en-US
+To: Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20230117123234.26487-1-nirmoy.das@intel.com>
+From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
+In-Reply-To: <20230117123234.26487-1-nirmoy.das@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/selftests: Unwind hugepages to
+ drop wakeref on error
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,65 +63,143 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>, cgroups@vger.kernel.org,
- Dave Airlie <airlied@redhat.com>, Kenny.Ho@amd.com,
- Intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, "T . J . Mercier" <tjmercier@google.com>,
- Johannes Weiner <hannes@cmpxchg.org>, Zefan Li <lizefan.x@bytedance.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, Tejun Heo <tj@kernel.org>,
- =?iso-8859-1?Q?St=E9phane?= Marchesin <marcheu@chromium.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, chris.p.wilson@linux.intel.com,
+ dri-devel@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi
+This is a multi-part message in MIME format.
+--------------HhGYSLWyvs0zrVGzvNbFCAvy
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jan 12, 2023 at 04:56:01PM +0000, Tvrtko Ursulin wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> To enable propagation of settings from the cgroup drm controller to drm we
-> need to start tracking which processes own which drm clients.
-> 
-> Implement that by tracking the struct pid pointer of the owning process in
-> a new XArray, pointing to a structure containing a list of associated
-> struct drm_file pointers.
-> 
-> Clients are added and removed under the filelist mutex and RCU list
-> operations are used below it to allow for lockless lookup.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+|Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>|
 
-<snip>
+On 1/17/2023 1:32 PM, Nirmoy Das wrote:
+> From: Chris Wilson<chris.p.wilson@linux.intel.com>
+>
+> Make sure that upon error after we have acquired the wakeref we do
+> release it again.
+>
+> v2: add another missing "goto out_wf"(Andi).
+>
+> Fixes: 027c38b4121e ("drm/i915/selftests: Grab the runtime pm in shrink_thp")
+> Cc: Andi Shyti<andi.shyti@linux.intel.com>
+> Reviewed-by: Matthew Auld<matthew.auld@intel.com>
+> Reviewed-by: Andrzej Hajda<andrzej.hajda@intel.com>
+> Signed-off-by: Chris Wilson<chris.p.wilson@linux.intel.com>
+> Signed-off-by: Nirmoy Das<nirmoy.das@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gem/selftests/huge_pages.c | 8 ++++----
+>   1 file changed, 4 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+> index c281b0ec9e05..defece0bcb81 100644
+> --- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+> +++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+> @@ -1855,7 +1855,7 @@ static int igt_shrink_thp(void *arg)
+>   			I915_SHRINK_ACTIVE);
+>   	i915_vma_unpin(vma);
+>   	if (err)
+> -		goto out_put;
+> +		goto out_wf;
+>   
+>   	/*
+>   	 * Now that the pages are *unpinned* shrinking should invoke
+> @@ -1871,19 +1871,19 @@ static int igt_shrink_thp(void *arg)
+>   		pr_err("unexpected pages mismatch, should_swap=%s\n",
+>   		       str_yes_no(should_swap));
+>   		err = -EINVAL;
+> -		goto out_put;
+> +		goto out_wf;
+>   	}
+>   
+>   	if (should_swap == (obj->mm.page_sizes.sg || obj->mm.page_sizes.phys)) {
+>   		pr_err("unexpected residual page-size bits, should_swap=%s\n",
+>   		       str_yes_no(should_swap));
+>   		err = -EINVAL;
+> -		goto out_put;
+> +		goto out_wf;
+>   	}
+>   
+>   	err = i915_vma_pin(vma, 0, 0, flags);
+>   	if (err)
+> -		goto out_put;
+> +		goto out_wf;
+>   
+>   	while (n--) {
+>   		err = cpu_check(obj, n, 0xdeadbeaf);
+--------------HhGYSLWyvs0zrVGzvNbFCAvy
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-> +int drm_clients_open(struct drm_file *file_priv)
-> +{
-> +	struct drm_device *dev = file_priv->minor->dev;
-> +	struct drm_pid_clients *clients;
-> +	bool new_client = false;
-> +	unsigned long pid;
-> +
-> +	lockdep_assert_held(&dev->filelist_mutex);
-> +
-> +	pid = (unsigned long)rcu_access_pointer(file_priv->pid);
-> +	clients = xa_load(&drm_pid_clients, pid);
-> +	if (!clients) {
-> +		clients = __alloc_clients();
-> +		if (!clients)
-> +			return -ENOMEM;
-> +		new_client = true;
-> +	}
-> +	atomic_inc(&clients->num);
-> +	list_add_tail_rcu(&file_priv->clink, &clients->file_list);
-> +	if (new_client) {
-> +		void *xret;
-> +
-> +		xret = xa_store(&drm_pid_clients, pid, clients, GFP_KERNEL);
-> +		if (xa_err(xret)) {
-> +			list_del_init(&file_priv->clink);
-> +			kfree(clients);
-> +			return PTR_ERR(clients);
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <pre class="moz-quote-pre" wrap=""><code style="padding: 0px; tab-size: 8;" class="hljs diff language-diff">Reviewed-by: Nirmoy Das <a class="moz-txt-link-rfc2396E" href="mailto:nirmoy.das@intel.com">&lt;nirmoy.das@intel.com&gt;</a></code></pre>
+    <p></p>
+    <div class="moz-cite-prefix">On 1/17/2023 1:32 PM, Nirmoy Das wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:20230117123234.26487-1-nirmoy.das@intel.com">
+      <pre class="moz-quote-pre" wrap="">From: Chris Wilson <a class="moz-txt-link-rfc2396E" href="mailto:chris.p.wilson@linux.intel.com">&lt;chris.p.wilson@linux.intel.com&gt;</a>
 
-This looks incorrect, rather xa_err(xret) should be returned.
+Make sure that upon error after we have acquired the wakeref we do
+release it again.
 
-Regards
-Stanislaw
+v2: add another missing "goto out_wf"(Andi).
+
+Fixes: 027c38b4121e ("drm/i915/selftests: Grab the runtime pm in shrink_thp")
+Cc: Andi Shyti <a class="moz-txt-link-rfc2396E" href="mailto:andi.shyti@linux.intel.com">&lt;andi.shyti@linux.intel.com&gt;</a>
+Reviewed-by: Matthew Auld <a class="moz-txt-link-rfc2396E" href="mailto:matthew.auld@intel.com">&lt;matthew.auld@intel.com&gt;</a>
+Reviewed-by: Andrzej Hajda <a class="moz-txt-link-rfc2396E" href="mailto:andrzej.hajda@intel.com">&lt;andrzej.hajda@intel.com&gt;</a>
+Signed-off-by: Chris Wilson <a class="moz-txt-link-rfc2396E" href="mailto:chris.p.wilson@linux.intel.com">&lt;chris.p.wilson@linux.intel.com&gt;</a>
+Signed-off-by: Nirmoy Das <a class="moz-txt-link-rfc2396E" href="mailto:nirmoy.das@intel.com">&lt;nirmoy.das@intel.com&gt;</a>
+---
+ drivers/gpu/drm/i915/gem/selftests/huge_pages.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+index c281b0ec9e05..defece0bcb81 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
++++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+@@ -1855,7 +1855,7 @@ static int igt_shrink_thp(void *arg)
+ 			I915_SHRINK_ACTIVE);
+ 	i915_vma_unpin(vma);
+ 	if (err)
+-		goto out_put;
++		goto out_wf;
+ 
+ 	/*
+ 	 * Now that the pages are *unpinned* shrinking should invoke
+@@ -1871,19 +1871,19 @@ static int igt_shrink_thp(void *arg)
+ 		pr_err("unexpected pages mismatch, should_swap=%s\n",
+ 		       str_yes_no(should_swap));
+ 		err = -EINVAL;
+-		goto out_put;
++		goto out_wf;
+ 	}
+ 
+ 	if (should_swap == (obj-&gt;mm.page_sizes.sg || obj-&gt;mm.page_sizes.phys)) {
+ 		pr_err("unexpected residual page-size bits, should_swap=%s\n",
+ 		       str_yes_no(should_swap));
+ 		err = -EINVAL;
+-		goto out_put;
++		goto out_wf;
+ 	}
+ 
+ 	err = i915_vma_pin(vma, 0, 0, flags);
+ 	if (err)
+-		goto out_put;
++		goto out_wf;
+ 
+ 	while (n--) {
+ 		err = cpu_check(obj, n, 0xdeadbeaf);
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------HhGYSLWyvs0zrVGzvNbFCAvy--
