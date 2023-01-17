@@ -1,50 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C41166E0FC
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Jan 2023 15:39:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19DA266E0FD
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Jan 2023 15:40:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A591910E54D;
-	Tue, 17 Jan 2023 14:39:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BCB310E550;
+	Tue, 17 Jan 2023 14:39:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00F3910E54D
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Jan 2023 14:39:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EAE010E54E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Jan 2023 14:39:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673966393; x=1705502393;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=71ekr/OA+gfB8h/KGJeg85zJFw1RLtIQUVWhvTyPqNE=;
- b=ctA+BxEA77OSkGjwFmMZY/TF5wm+hLWhSQs0vDSmw3u1h9FG11iXSJ3H
- quiIhS0RgCPT/HC8SuX/sL3G3vLlwdVDisw+/zNZ2AmFy9BU//MLU0Ivi
- smZCVAB78XHHAX7ediCtJl5f4P7zLZhiTHWuiwiqLAf7j/5cY3/5wFXAj
- x/BqWQ8tWb9QckVMvB4bna3BzzLLgmU/pJEoBQpbpuS+7Gni4AvsITV1S
- +Cc5yXG83lS8+xGMHXdO+sRadOQnJH4I93XzvfHvK1jBS3o+9BRSW5NHI
- sqWg1074EDKkziug5PY1WUa4RI2VeVnR3vFNMx92sfue1zdfHCaufn6wC g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="326777841"
-X-IronPort-AV: E=Sophos;i="5.97,224,1669104000"; d="scan'208";a="326777841"
+ t=1673966396; x=1705502396;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=2i+qhKCyE9PwozmAD2wFwuGY157hIYijVP+Iah4HxUI=;
+ b=KseW/KsdVaZql3M0KkX/180Jd1sxl4AUq0eLbZKDzsyONWXI1ZodlUgP
+ REN8dWu97HhkobDb6hZmXXgWLsaNKMRdbSxZEnH+LduUyUu7X474BHoP8
+ pB3s9E66DX9K+jLkIVi/O2SfLRZUGt0MPZdqHU79sgIfnVpEMKngYXIV0
+ q/at+ffLB9X7CtKWuZ2w2pWSjZRXuT2h3l7DfY+HCbfB8lXoUI+7ihxax
+ 09NtKFraiWZWwPK8lkAmDsE70tW+KFjAbftUvThEIz3ycsKCQi3Bzl2Gw
+ GDYb2iIJqxvcEUFKXMDc6hbT2Ng4sJ1EI/d7vUSrrKvYKCtQb8kcfLGuO A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="326777854"
+X-IronPort-AV: E=Sophos;i="5.97,224,1669104000"; d="scan'208";a="326777854"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2023 06:39:52 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="904672770"
-X-IronPort-AV: E=Sophos;i="5.97,224,1669104000"; d="scan'208";a="904672770"
+ 17 Jan 2023 06:39:56 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="904672810"
+X-IronPort-AV: E=Sophos;i="5.97,224,1669104000"; d="scan'208";a="904672810"
 Received: from vishvend-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.252.14.88])
  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2023 06:39:50 -0800
+ 17 Jan 2023 06:39:53 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 17 Jan 2023 16:39:44 +0200
-Message-Id: <20230117143946.2426043-1-jani.nikula@intel.com>
+Date: Tue, 17 Jan 2023 16:39:45 +0200
+Message-Id: <20230117143946.2426043-2-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230117143946.2426043-1-jani.nikula@intel.com>
+References: <20230117143946.2426043-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/3] drm/i915: move snps_phy_failed_calibration
- to display sub-struct under snps
+Subject: [Intel-gfx] [PATCH 2/3] drm/i915: move pch_ssc_use to display
+ sub-struct under dpll
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,74 +68,97 @@ sub-struct.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c          | 2 +-
- drivers/gpu/drm/i915/display/intel_display_core.h | 8 ++++++++
- drivers/gpu/drm/i915/display/intel_snps_phy.c     | 2 +-
- drivers/gpu/drm/i915/i915_drv.h                   | 6 ------
- 4 files changed, 10 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_core.h |  5 +++++
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c     |  4 ++--
+ drivers/gpu/drm/i915/display/intel_pch_refclk.c   | 10 +++++-----
+ drivers/gpu/drm/i915/i915_drv.h                   |  2 --
+ 4 files changed, 12 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 1f5a471a0adf..0034a43f56e5 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -4323,7 +4323,7 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
- 	}
- 
- 	if (intel_phy_is_snps(dev_priv, phy) &&
--	    dev_priv->snps_phy_failed_calibration & BIT(phy)) {
-+	    dev_priv->display.snps.phy_failed_calibration & BIT(phy)) {
- 		drm_dbg_kms(&dev_priv->drm,
- 			    "SNPS PHY %c failed to calibrate, proceeding anyway\n",
- 			    phy_name(phy));
 diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index 57ddce3ba02b..2e85dd0ef4b5 100644
+index 2e85dd0ef4b5..c0eb753112d5 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_core.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -428,6 +428,14 @@ struct intel_display {
- 		u32 block_time_us;
- 	} sagv;
- 
-+	struct {
-+		/*
-+		 * DG2: Mask of PHYs that were not calibrated by the firmware
-+		 * and should not be used.
-+		 */
-+		u8 phy_failed_calibration;
-+	} snps;
+@@ -122,6 +122,11 @@ struct intel_dpll {
+ 		int nssc;
+ 		int ssc;
+ 	} ref_clks;
 +
- 	struct {
- 		/* ordered wq for modesets */
- 		struct workqueue_struct *modeset;
-diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/drm/i915/display/intel_snps_phy.c
-index 9494cfd45519..c65c771f5c46 100644
---- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
-@@ -40,7 +40,7 @@ void intel_snps_phy_wait_for_calibration(struct drm_i915_private *i915)
- 		 */
- 		if (intel_de_wait_for_clear(i915, DG2_PHY_MISC(phy),
- 					    DG2_PHY_DP_TX_ACK_MASK, 25))
--			i915->snps_phy_failed_calibration |= BIT(phy);
-+			i915->display.snps.phy_failed_calibration |= BIT(phy);
- 	}
++	/*
++	 * Bitmask of PLLs using the PCH SSC, indexed using enum intel_dpll_id.
++	 */
++	u8 pch_ssc_use;
+ };
+ 
+ struct intel_frontbuffer_tracking {
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index 1974eb580ed1..380368eff31a 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -618,7 +618,7 @@ static void hsw_ddi_wrpll_disable(struct drm_i915_private *dev_priv,
+ 	 * Try to set up the PCH reference clock once all DPLLs
+ 	 * that depend on it have been shut down.
+ 	 */
+-	if (dev_priv->pch_ssc_use & BIT(id))
++	if (dev_priv->display.dpll.pch_ssc_use & BIT(id))
+ 		intel_init_pch_refclk(dev_priv);
  }
  
+@@ -636,7 +636,7 @@ static void hsw_ddi_spll_disable(struct drm_i915_private *dev_priv,
+ 	 * Try to set up the PCH reference clock once all DPLLs
+ 	 * that depend on it have been shut down.
+ 	 */
+-	if (dev_priv->pch_ssc_use & BIT(id))
++	if (dev_priv->display.dpll.pch_ssc_use & BIT(id))
+ 		intel_init_pch_refclk(dev_priv);
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_pch_refclk.c b/drivers/gpu/drm/i915/display/intel_pch_refclk.c
+index 08a94365b7d1..3657b2940702 100644
+--- a/drivers/gpu/drm/i915/display/intel_pch_refclk.c
++++ b/drivers/gpu/drm/i915/display/intel_pch_refclk.c
+@@ -467,24 +467,24 @@ static void lpt_init_pch_refclk(struct drm_i915_private *dev_priv)
+ 	 * clock hierarchy. That would also allow us to do
+ 	 * clock bending finally.
+ 	 */
+-	dev_priv->pch_ssc_use = 0;
++	dev_priv->display.dpll.pch_ssc_use = 0;
+ 
+ 	if (spll_uses_pch_ssc(dev_priv)) {
+ 		drm_dbg_kms(&dev_priv->drm, "SPLL using PCH SSC\n");
+-		dev_priv->pch_ssc_use |= BIT(DPLL_ID_SPLL);
++		dev_priv->display.dpll.pch_ssc_use |= BIT(DPLL_ID_SPLL);
+ 	}
+ 
+ 	if (wrpll_uses_pch_ssc(dev_priv, DPLL_ID_WRPLL1)) {
+ 		drm_dbg_kms(&dev_priv->drm, "WRPLL1 using PCH SSC\n");
+-		dev_priv->pch_ssc_use |= BIT(DPLL_ID_WRPLL1);
++		dev_priv->display.dpll.pch_ssc_use |= BIT(DPLL_ID_WRPLL1);
+ 	}
+ 
+ 	if (wrpll_uses_pch_ssc(dev_priv, DPLL_ID_WRPLL2)) {
+ 		drm_dbg_kms(&dev_priv->drm, "WRPLL2 using PCH SSC\n");
+-		dev_priv->pch_ssc_use |= BIT(DPLL_ID_WRPLL2);
++		dev_priv->display.dpll.pch_ssc_use |= BIT(DPLL_ID_WRPLL2);
+ 	}
+ 
+-	if (dev_priv->pch_ssc_use)
++	if (dev_priv->display.dpll.pch_ssc_use)
+ 		return;
+ 
+ 	if (has_fdi) {
 diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 48fd82722f12..33da0f867a93 100644
+index 33da0f867a93..9ac80a45362f 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -375,12 +375,6 @@ struct drm_i915_private {
+@@ -368,8 +368,6 @@ struct drm_i915_private {
  
- 	bool irq_enabled;
+ 	struct intel_pxp *pxp;
  
--	/*
--	 * DG2: Mask of PHYs that were not calibrated by the firmware
--	 * and should not be used.
--	 */
--	u8 snps_phy_failed_calibration;
+-	u8 pch_ssc_use;
 -
- 	struct i915_pmu pmu;
+ 	/* For i915gm/i945gm vblank irq workaround */
+ 	u8 vblank_enabled;
  
- 	struct i915_drm_clients clients;
 -- 
 2.34.1
 
