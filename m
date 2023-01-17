@@ -1,44 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2981A66E80B
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Jan 2023 21:56:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C441566E822
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Jan 2023 22:05:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 458DC10E350;
-	Tue, 17 Jan 2023 20:56:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBD7F10E1C0;
+	Tue, 17 Jan 2023 21:05:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE74E10E1BF;
- Tue, 17 Jan 2023 20:56:28 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4NxLlp56Rcz4xMx;
- Wed, 18 Jan 2023 07:56:22 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1673988983;
- bh=JURaEdE8CMeLGxxVxQfYP3YHQFwTCFjuZtmFFKcP1SY=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=HFmgvjCT4hnwui+3XW3WWuRB/ZIVIC+IvKxZIORl3JzW7D3Dm+e/f2BbxlzOit7dB
- aYa2A0tj4hieeB1cVpYvFKoi1ym6wqlZUF2HWC9ki0DiKX+S4jU3zgkfGTrZO/UJQF
- 0p3veyIeqJAofiIQ5NOl+UyqPKCfrNBaB7qMPitdxe6qQjN7XrF1z+B8GXWnHebQ0a
- WSXmBGIgSkmVJBThKSpi5pK8pMTkNyQM7xF52KYxs5hxI+J3lB1ODjitcrpwpVHEtj
- mXqJkhe0LPCrOU4kVHGLb6XY3V014E2Mk/8BTy3uY9/98xV3kXR0i3Ui1jyY9xgmxc
- vF6QTl2YiFpdw==
-Date: Wed, 18 Jan 2023 07:56:20 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Karol Herbst <kherbst@redhat.com>
-Message-ID: <20230118075620.60250ca2@canb.auug.org.au>
-In-Reply-To: <CACO55ttvqwnmGS=4gig-AOy+67bDesdj2S9HDJ3hS=uyN0NGOQ@mail.gmail.com>
-References: <20230117150212.3d8ee843@canb.auug.org.au>
- <CACO55ttvqwnmGS=4gig-AOy+67bDesdj2S9HDJ3hS=uyN0NGOQ@mail.gmail.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 85F2F10E1C0;
+ Tue, 17 Jan 2023 21:05:47 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 80AB1A00E6;
+ Tue, 17 Jan 2023 21:05:47 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/roh3be+LjwRG1po+YE_hoN2";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-Subject: Re: [Intel-gfx] linux-next: duplicate patch in the kspp tree
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arnd Bergmann" <arnd@kernel.org>
+Date: Tue, 17 Jan 2023 21:05:47 -0000
+Message-ID: <167398954750.21230.7075974247217713569@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230117163743.1003219-1-arnd@kernel.org>
+In-Reply-To: <20230117163743.1003219-1-arnd@kernel.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/selftest=3A_fix_intel=5Fselftest=5Fmodify=5Fpolicy?=
+ =?utf-8?q?_argument_types?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,70 +41,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kees Cook <keescook@chromium.org>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/roh3be+LjwRG1po+YE_hoN2
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+== Series Details ==
 
-Hi Karol,
+Series: drm/i915/selftest: fix intel_selftest_modify_policy argument types
+URL   : https://patchwork.freedesktop.org/series/112938/
+State : warning
 
-On Tue, 17 Jan 2023 14:52:12 +0100 Karol Herbst <kherbst@redhat.com> wrote:
->
-> On Tue, Jan 17, 2023 at 5:02 AM Stephen Rothwell <sfr@canb.auug.org.au> w=
-rote:
-> >
-> > The following commit is also in the drm-misc tree as a different commit
-> > (but the same patch):
-> >
-> >   06b19f46455c ("drm/nouveau/fb/ga102: Replace zero-length array of tra=
-iling structs with flex-array")
-> > =20
->=20
-> which branch? Because I just fetched the remote and don't have this
-> commit in my local repo
+== Summary ==
 
-That was from
-git://git.kernel.org/pub/scm/linux/kernel/git/kees/linux.git (branch
-for-next/kspp) yesterday.  It was the top commit in that branch.  It is
-still there today (I am not saying it should not be).
+Error: dim checkpatch failed
+ef0c87e4b866 drm/i915/selftest: fix intel_selftest_modify_policy argument types
+-:13: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#13: 
+In file included from drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.c:11:
 
-> > This is commit
-> >
-> >   54d47689c6e3 ("drm/nouveau/fb/ga102: Replace zero-length array of tra=
-iling structs with flex-array")
-> >
-> > in the drm-misc tree.
+total: 0 errors, 1 warnings, 0 checks, 9 lines checked
 
-That was from git://anongit.freedesktop.org/drm/drm-misc (branch
-for-linux-next) yesterday.  It was the top commit in that branch.  It
-is still there today (again, I am not saying it should not be) but the
-branch has moved on.
 
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/roh3be+LjwRG1po+YE_hoN2
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmPHC3QACgkQAVBC80lX
-0GzxyAf9FiQpvKWIWXkG5ENB8aCFwuWvd/MajLzDeMrtpfRzTMdkzo6kA5CM4Axq
-r1sYV2d/rY305uM6Wt3t32Fo/nzKZubPR1AjaGgXhXXqCgHjDmFDR/h2P1YR9Rxv
-6/kauy8dJ5HacdmR9mFvz9fSjWAzwKITyzCF/njYxnRiUGUGTYt0AQd0g+0Iuv8q
-4AlvdN/bue/gqHbrgLbg+crMxEZ/PVz/fJrL4eLi72Zst1lBomuoaOGzwyzd6sqt
-E63o5dyUu21n2ABGNgHKUi9mcKlI419DYWPxlR55O3dHnLLaISFJj9y1Rti9psT4
-ABukiUOMWYiUbODihnq6hhApP4aopQ==
-=pYPj
------END PGP SIGNATURE-----
-
---Sig_/roh3be+LjwRG1po+YE_hoN2--
