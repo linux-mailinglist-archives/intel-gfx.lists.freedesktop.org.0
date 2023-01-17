@@ -2,40 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9965866D53B
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Jan 2023 05:02:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2975466D710
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Jan 2023 08:42:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B9C710E17B;
-	Tue, 17 Jan 2023 04:02:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EED6C10E2D7;
+	Tue, 17 Jan 2023 07:42:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B18BC10E17B;
- Tue, 17 Jan 2023 04:02:23 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4NwwFd1wkYz4xG5;
- Tue, 17 Jan 2023 15:02:13 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1673928138;
- bh=2qpPai3BgTFTEZX1KZ0Zi6XZsGeUp/ttq0RbwfUGf3M=;
- h=Date:From:To:Cc:Subject:From;
- b=kYjpzomioue+iEV3NtalCMmH/3FnOSdNAsrVYrYwHuMC0jnk7bwQhlswVInyEx+mm
- YIcJ/TJ84C6EPtvSnUNVQl4izfXSZsPHpktVxisi31TA8nJamWK1BXAUref1g12lDo
- 62J5bXijW2X3pr33PSE5WxZbJtPpQvuW07nDlKS5Z/hE/XoBSmlDC/2K+Znes23d0K
- eS7EME18sPiKCJSjwk1TcumvVFHYhmBiysuP05EGKDwQAPDI+D7HPkRuF3rL6y23gn
- O6x7bSu5ez1iYs13UnUwvB1tgnWJJ+JrIZVSqacEzYZE+0WxbUhcjgqXWjtuMQJUGJ
- BNkTEjhnmQBMg==
-Date: Tue, 17 Jan 2023 15:02:12 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Kees Cook <keescook@chromium.org>
-Message-ID: <20230117150212.3d8ee843@canb.auug.org.au>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D099010E0D1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Jan 2023 07:42:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1673941340; x=1705477340;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=R9Vjb5OdAnwGtvihwsTLrsZuwPPTGUW1dd0KqgSF5G4=;
+ b=LZifj9U+yDDsPiOypKbn7hrbQP4KtTmedwa4PfLLM09h/U2YTET1j0Wh
+ iRvtNEtTlLmFtIiEfiCkklZhQwFhOhYFZvQC3QZd7EKIAzx6j0FUotaIK
+ y+rYePq/8NoWaeuIhOd9evqHXtumTplGPjBEpCLXcCWKPNiini697MqsY
+ I+XosLB4yYRIIXI7qWWqDOhpBPWFDZSyUPO/zSoWormmrqL0tYT1VEUC1
+ JNGM4LZL/m/93NmqxBwU7nfRzvyRWEO4K7GLbDBCUi+PmdleDezImCmHm
+ t7dE4SuPTIEyJR0mTqZ6UItoK/0mJsnfO8Fs9fE5jSK5ta+Pmk3FusfJO A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="308195319"
+X-IronPort-AV: E=Sophos;i="5.97,222,1669104000"; d="scan'208";a="308195319"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2023 23:42:20 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="661199784"
+X-IronPort-AV: E=Sophos;i="5.97,222,1669104000"; d="scan'208";a="661199784"
+Received: from chaitanya.iind.intel.com ([10.190.239.113])
+ by fmsmga007.fm.intel.com with ESMTP; 16 Jan 2023 23:42:17 -0800
+From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 17 Jan 2023 13:12:09 +0530
+Message-Id: <20230117074211.952125-1-chaitanya.kumar.borah@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/lMsSSd.Bnty+VoZEgKzKb3T";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-Subject: [Intel-gfx] linux-next: duplicate patch in the kspp tree
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [RFC 0/2] Add new CDCLK step for RPL-U
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,51 +54,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Karol Herbst <kherbst@redhat.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>
+Cc: ville.syrjala@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/lMsSSd.Bnty+VoZEgKzKb3T
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+A new step of 480MHz has been added on SKUs that have an RPL-U
+device id. This particular step is to support 120Hz panels
+more efficiently.
 
-Hi all,
+This patchset adds a new table to include this new CDCLK
+step. Details can be found in BSpec entry 55409.
 
-The following commit is also in the drm-misc tree as a different commit
-(but the same patch):
+Create a new sub-platform to identify RPL-U which will enable
+us to make the differentiation during CDCLK initialization.
 
-  06b19f46455c ("drm/nouveau/fb/ga102: Replace zero-length array of trailin=
-g structs with flex-array")
+Furthermore, we need to make a distinction between ES (Engineering
+Sample) and QS (Quality Sample) parts as this change comes only
+to QS parts. This version of the patch does not include this change
+as we are yet to make a decision if this particular part needs
+to be upstreamed.(see comments on revision 2)
 
-This is commit
+Chaitanya Kumar Borah (2):
+  drm/i915: Add RPL-U sub platform
+  drm/i915/display: Add 480 MHz CDCLK steps for RPL-U
 
-  54d47689c6e3 ("drm/nouveau/fb/ga102: Replace zero-length array of trailin=
-g structs with flex-array")
+ drivers/gpu/drm/i915/display/intel_cdclk.c | 27 ++++++++++++++++++++++
+ drivers/gpu/drm/i915/i915_drv.h            |  2 ++
+ drivers/gpu/drm/i915/i915_pci.c            |  1 +
+ drivers/gpu/drm/i915/intel_device_info.c   |  8 +++++++
+ drivers/gpu/drm/i915/intel_device_info.h   |  2 ++
+ include/drm/i915_pciids.h                  | 11 +++++----
+ 6 files changed, 47 insertions(+), 4 deletions(-)
 
-in the drm-misc tree.
+-- 
+2.25.1
 
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/lMsSSd.Bnty+VoZEgKzKb3T
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmPGHcQACgkQAVBC80lX
-0GxjOQf9GO7ydxY4+ty1jB0BbyM2nHdEYNJViyXF2DraiqxraNEJ8Dqo2P5joFN5
-SUUEVbHKX6aXhs6EcsZ+nPwangDzZ3/XwmeYzGZUrtbP8qEQyqBlvCoEaNxLUoRY
-qt5eg48H2lr0CEPQxg1ZKDwSWVyLNhuXoJwydc7GVdoI5juQtRS0u+LxzbZ9VJ/4
-DfzVe0ddRH991YNnpeq/HgIFa3blY8uDNRq4ApbFfCsqDU777xvEp4LBuICDBG/N
-dh8Wm55SDjQWyBt/5t4kgivGniMxgLoFcEfgOmbtnX6ssy+PUCSeKgH2UWc4h17p
-AuJexnI/tmUpqv/BzjovV1WObOUxLw==
-=Wu9q
------END PGP SIGNATURE-----
-
---Sig_/lMsSSd.Bnty+VoZEgKzKb3T--
