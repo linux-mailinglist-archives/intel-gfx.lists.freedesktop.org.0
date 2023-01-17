@@ -1,62 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C84266E3D3
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Jan 2023 17:41:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB06566E4DF
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Jan 2023 18:26:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBFD510E1B3;
-	Tue, 17 Jan 2023 16:41:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B501F10E1B2;
+	Tue, 17 Jan 2023 17:26:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com
- [IPv6:2a00:1450:4864:20::62a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7993A10E2EC
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Jan 2023 16:41:09 +0000 (UTC)
-Received: by mail-ej1-x62a.google.com with SMTP id hw16so64853053ejc.10
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Jan 2023 08:41:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jlekstrand-net.20210112.gappssmtp.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=+R+JxyO1aeyP9UIcWUVYDO2PkFd86y9+Q/RMd9odxaU=;
- b=0HEFqrRd8RZEqwGvtZO4h0a134+uV7feWTbCj0vDez8lC6w4gZ7hCvAv7TqT7LXV0g
- 2Sm24Bxul5vIeMTzeu2Ayw4wSLeFeIHkrLzcI82DjrfErL2uYikuYdHq3Uhp9YjFkEyC
- 9vKan8SdeS35Vo2erhgkcTS7bRrMZB3z7BDbpfZIys4IAxK20iBphHTddB3Bay78Gbgl
- iMXveWMYFwq4tKO2zkvOF2TXQAtitJupejS6IF9ws2OcsBNU+jgWLJF+DhgJSuEnnXsp
- j9boyYghnBrQtTBUG8lQIf66+BJBRYoryMc849e+t3Uqgl7QtFlJEhD6ga5U+tfFpiw4
- TeoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=+R+JxyO1aeyP9UIcWUVYDO2PkFd86y9+Q/RMd9odxaU=;
- b=gRKEdVXLhs9rCptxtpri4yG3kv0Kub3INimlWDipDsgbGfFfV/zOgnJIWZ0D5QwZPL
- L2NzrEI46Yhzfwiywj2n2aVQnRakWNTX8ffd29e36+KU+/mkXREPDXOEIr3Nyyc0mOhD
- X+EiPEBY9zSa3Wwpgbvgk1bZ2AumFu4QpQVOAL3Hr5iXIdg4PFlHbaY0H+c2Rcv6adz/
- 9szWta9kLkvSAy9z3ZiW66bHKnyaticBV1UiRsajiLvJY6+TJvVZnp9AiqXMs++1qvA4
- Mz0jD+2NXN21Cz5LoMADqoJVnzbpJzjgCoNDRH21gvZxoQznb45uHol+D52DIBvtD8h3
- ze/Q==
-X-Gm-Message-State: AFqh2kq0Jlt57Od/OLvaPLfJa6Zy5PCtQepwpBteJ/OzJkylmLl3jSIq
- tWSEsl81Y+cXbnzJklFjHpxgTSDGIZ5TvFkBpXt47g==
-X-Google-Smtp-Source: AMrXdXvQ4QxA1+hZ4+baCIFMLvOJHS3L3tZlGSBLuBmOD1F3qpglmCC0haQO39Xdkj/7EtpGmFZ0W1qV0VEVDi9B+g8=
-X-Received: by 2002:a17:907:c243:b0:7c0:e391:c548 with SMTP id
- tj3-20020a170907c24300b007c0e391c548mr451276ejc.18.1673973667784; Tue, 17 Jan
- 2023 08:41:07 -0800 (PST)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A6C9510E1B2;
+ Tue, 17 Jan 2023 17:26:37 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9DB9CA00CC;
+ Tue, 17 Jan 2023 17:26:37 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6049892708203380743=="
 MIME-Version: 1.0
-References: <20221222222127.34560-1-matthew.brost@intel.com>
- <cd0e2491-92d4-58df-628b-985768472157@linux.intel.com>
- <Y7dA3cfSfKDuGkXZ@DUT025-TGLU.fm.intel.com>
- <20230112095425.77a3jhyoipvqtc3o@ldmartin-desk2>
- <Y8A/EI/23Ng+MCaC@DUT025-TGLU.fm.intel.com>
-In-Reply-To: <Y8A/EI/23Ng+MCaC@DUT025-TGLU.fm.intel.com>
-From: Jason Ekstrand <jason@jlekstrand.net>
-Date: Tue, 17 Jan 2023 10:40:55 -0600
-Message-ID: <CAOFGe95-g4fswTee7HW2sFcxicVeiBZgFRb5OH7=zahjK-0CQg@mail.gmail.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Content-Type: multipart/alternative; boundary="000000000000d503bf05f2785dad"
-Subject: Re: [Intel-gfx] [RFC PATCH 00/20] Initial Xe driver submission
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Tue, 17 Jan 2023 17:26:37 -0000
+Message-ID: <167397639761.21230.74250892546010853@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230117123856.2271720-1-jani.nikula@intel.com>
+In-Reply-To: <20230117123856.2271720-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_remove_a_couple_of_superfluous_i915=5Fdrm=2Eh_includes?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,358 +40,232 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---000000000000d503bf05f2785dad
-Content-Type: text/plain; charset="UTF-8"
+--===============6049892708203380743==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jan 12, 2023 at 11:17 AM Matthew Brost <matthew.brost@intel.com>
-wrote:
+== Series Details ==
 
-> On Thu, Jan 12, 2023 at 10:54:25AM +0100, Lucas De Marchi wrote:
-> > On Thu, Jan 05, 2023 at 09:27:57PM +0000, Matthew Brost wrote:
-> > > On Tue, Jan 03, 2023 at 12:21:08PM +0000, Tvrtko Ursulin wrote:
-> > > >
-> > > > On 22/12/2022 22:21, Matthew Brost wrote:
-> > > > > Hello,
-> > > > >
-> > > > > This is a submission for Xe, a new driver for Intel GPUs that
-> supports both
-> > > > > integrated and discrete platforms starting with Tiger Lake (first
-> platform with
-> > > > > Intel Xe Architecture). The intention of this new driver is to
-> have a fresh base
-> > > > > to work from that is unencumbered by older platforms, whilst also
-> taking the
-> > > > > opportunity to rearchitect our driver to increase sharing across
-> the drm
-> > > > > subsystem, both leveraging and allowing us to contribute more
-> towards other
-> > > > > shared components like TTM and drm/scheduler. The memory model is
-> based on VM
-> > > > > bind which is similar to the i915 implementation. Likewise the
-> execbuf
-> > > > > implementation for Xe is very similar to execbuf3 in the i915 [1].
-> > > > >
-> > > > > The code is at a stage where it is already functional and has
-> experimental
-> > > > > support for multiple platforms starting from Tiger Lake, with
-> initial support
-> > > > > implemented in Mesa (for Iris and Anv, our OpenGL and Vulkan
-> drivers), as well
-> > > > > as in NEO (for OpenCL and Level0). A Mesa MR has been posted [2]
-> and NEO
-> > > > > implementation will be released publicly early next year. We also
-> have a suite
-> > > > > of IGTs for XE that will appear on the IGT list shortly.
-> > > > >
-> > > > > It has been built with the assumption of supporting multiple
-> architectures from
-> > > > > the get-go, right now with tests running both on X86 and ARM
-> hosts. And we
-> > > > > intend to continue working on it and improving on it as part of
-> the kernel
-> > > > > community upstream.
-> > > > >
-> > > > > The new Xe driver leverages a lot from i915 and work on i915
-> continues as we
-> > > > > ready Xe for production throughout 2023.
-> > > > >
-> > > > > As for display, the intent is to share the display code with the
-> i915 driver so
-> > > > > that there is maximum reuse there. Currently this is being done by
-> compiling the
-> > > > > display code twice, but alternatives to that are under
-> consideration and we want
-> > > > > to have more discussion on what the best final solution will look
-> like over the
-> > > > > next few months. Right now, work is ongoing in refactoring the
-> display codebase
-> > > > > to remove as much as possible any unnecessary dependencies on i915
-> specific data
-> > > > > structures there..
-> > > > >
-> > > > > We currently have 2 submission backends, execlists and GuC. The
-> execlist is
-> > > > > meant mostly for testing and is not fully functional while GuC
-> backend is fully
-> > > > > functional. As with the i915 and GuC submission, in Xe the GuC
-> firmware is
-> > > > > required and should be placed in /lib/firmware/xe.
-> > > >
-> > > > What is the plan going forward for the execlists backend? I think it
-> would
-> > > > be preferable to not upstream something semi-functional and so to
-> carry
-> > > > technical debt in the brand new code base, from the very start. If
-> it is for
-> > > > Tigerlake, which is the starting platform for Xe, could it be made
-> GuC only
-> > > > Tigerlake for instance?
-> > > >
-> > >
-> > > A little background here. In the original PoC written by Jason and
-> Dave,
-> > > the execlist backend was the only one present and it was in
-> semi-working
-> > > state. As soon as myself and a few others started working on Xe we went
-> > > full in a on the GuC backend. We left the execlist backend basically in
-> > > the state it was in. We left it in place for 2 reasons.
-> > >
-> > > 1. Having 2 backends from the start ensured we layered our code
-> > > correctly. The layer was a complete disaster in the i915 so we really
-> > > wanted to avoid that.
-> > > 2. The thought was it might be needed for early product bring up one
-> > > day.
-> > >
-> > > As I think about this a bit more, we likely just delete execlist
-> backend
-> > > before merging this upstream and perhaps just carry 1 large patch
-> > > internally with this implementation that we can use as needed. Final
-> > > decession TDB though.
-> >
-> > but that might regress after some time on "let's keep 2 backends so we
-> > layer the code correctly". Leaving the additional backend behind
-> > CONFIG_BROKEN or XE_EXPERIMENTAL, or something like that, not
-> > enabled by distros, but enabled in CI would be a good idea IMO.
-> >
-> > Carrying a large patch out of tree would make things harder for new
-> > platforms. A perfect backend split would make it possible, but like I
-> > said, we are likely not to have it if we delete the second backend.
-> >
->
-> Good points here Lucas. One thing that we absolutely have wrong is
-> falling back to execlists if GuC firmware is missing. We def should not
-> be doing that as it creates confusion.
->
+Series: drm/i915: remove a couple of superfluous i915_drm.h includes
+URL   : https://patchwork.freedesktop.org/series/112931/
+State : success
 
-Yeah, we certainly shouldn't be falling back on it silently. That's a
-recipe for disaster. If it stays, it should be behind a config option
-that's clearly labeled as broken or not intended for production use. If
-someone is a zero-firmware purist and wants to enable it and accept the
-brokenness, that's their choice.
+== Summary ==
 
-I'm not especially attached to the execlist back-end so I'm not going to
-insist on anything here RE keeping it.
+CI Bug Log - changes from CI_DRM_12592 -> Patchwork_112931v1
+====================================================
 
-There is more to me starting with execlists than avoiding GuC, though. One
-of the reasons I did it was to prove that the same core Xe scheduling model
-[3] doesn't depend on firmware. As long as your hardware has some ability
-to juggle independent per-context rings, you can get the same separation
-and it makes everything cleaner. If this is the direction things are headed
-(and I really think it is; I need to blog about it), being able to do the
-Xe model on more primitive hardware which lacks competent firmware-based
-submission is important. I wanted to prototype that to show that it could
-be done.
+Summary
+-------
 
-I also kinda wanted to prove that execlists didn't have to be horrible like
-in i915. You know, for funzies....
+  **SUCCESS**
 
---Jason
+  No regressions found.
 
-[3]:
-https://lists.freedesktop.org/archives/dri-devel/2023-January/386381.html
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112931v1/index.html
+
+Participating hosts (44 -> 42)
+------------------------------
+
+  Missing    (2): fi-bsw-kefka fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_112931v1:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_selftest@live@hangcheck:
+    - {bat-adlp-6}:       [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12592/bat-adlp-6/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112931v1/bat-adlp-6/igt@i915_selftest@live@hangcheck.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_112931v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@runner@aborted:
+    - fi-cfl-8109u:       NOTRUN -> [FAIL][3] ([i915#4312])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112931v1/fi-cfl-8109u/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@load:
+    - {bat-dg2-8}:        [FAIL][4] -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12592/bat-dg2-8/igt@i915_module_load@load.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112931v1/bat-dg2-8/igt@i915_module_load@load.html
+
+  * igt@i915_selftest@live@guc:
+    - {bat-rpls-2}:       [DMESG-WARN][6] ([i915#7852]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12592/bat-rpls-2/igt@i915_selftest@live@guc.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112931v1/bat-rpls-2/igt@i915_selftest@live@guc.html
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - {bat-adlm-1}:       [DMESG-WARN][8] -> [PASS][9] +1 similar issue
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12592/bat-adlm-1/igt@i915_suspend@basic-s3-without-i915.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112931v1/bat-adlm-1/igt@i915_suspend@basic-s3-without-i915.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
+  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
+  [i915#4873]: https://gitlab.freedesktop.org/drm/intel/issues/4873
+  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
+  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
+  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
+  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
+  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+  [i915#7852]: https://gitlab.freedesktop.org/drm/intel/issues/7852
 
 
+Build changes
+-------------
 
-> I kinda like the idea hiding it behind a config option + module
-> parameter to use the backend so you really, really need to try to be
-> able to use it + with this in the code it make us disciplined in our
-> layering. At some point we will likely another supported backend and at
-> that point we may decide to delete this backend.
->
-> Matt
->
-> > Lucas De Marchi
-> >
-> > >
-> > > Matt
-> > >
-> > > > Regards,
-> > > >
-> > > > Tvrtko
->
+  * Linux: CI_DRM_12592 -> Patchwork_112931v1
 
---000000000000d503bf05f2785dad
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+  CI-20190529: 20190529
+  CI_DRM_12592: aa316f18737ff65f416f94aa98ed38d6a073582c @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7121: aa16e81259f59734230d441905b9d0f605e4a4b5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_112931v1: aa316f18737ff65f416f94aa98ed38d6a073582c @ git://anongit.freedesktop.org/gfx-ci/linux
 
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Thu, Jan 12, 2023 at 11:17 AM Matthew Brost &lt;<a href=3D"mailto=
-:matthew.brost@intel.com">matthew.brost@intel.com</a>&gt; wrote:<br></div><=
-blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
-eft:1px solid rgb(204,204,204);padding-left:1ex">On Thu, Jan 12, 2023 at 10=
-:54:25AM +0100, Lucas De Marchi wrote:<br>
-&gt; On Thu, Jan 05, 2023 at 09:27:57PM +0000, Matthew Brost wrote:<br>
-&gt; &gt; On Tue, Jan 03, 2023 at 12:21:08PM +0000, Tvrtko Ursulin wrote:<b=
-r>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; On 22/12/2022 22:21, Matthew Brost wrote:<br>
-&gt; &gt; &gt; &gt; Hello,<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; This is a submission for Xe, a new driver for Intel GPU=
-s that supports both<br>
-&gt; &gt; &gt; &gt; integrated and discrete platforms starting with Tiger L=
-ake (first platform with<br>
-&gt; &gt; &gt; &gt; Intel Xe Architecture). The intention of this new drive=
-r is to have a fresh base<br>
-&gt; &gt; &gt; &gt; to work from that is unencumbered by older platforms, w=
-hilst also taking the<br>
-&gt; &gt; &gt; &gt; opportunity to rearchitect our driver to increase shari=
-ng across the drm<br>
-&gt; &gt; &gt; &gt; subsystem, both leveraging and allowing us to contribut=
-e more towards other<br>
-&gt; &gt; &gt; &gt; shared components like TTM and drm/scheduler. The memor=
-y model is based on VM<br>
-&gt; &gt; &gt; &gt; bind which is similar to the i915 implementation. Likew=
-ise the execbuf<br>
-&gt; &gt; &gt; &gt; implementation for Xe is very similar to execbuf3 in th=
-e i915 [1].<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; The code is at a stage where it is already functional a=
-nd has experimental<br>
-&gt; &gt; &gt; &gt; support for multiple platforms starting from Tiger Lake=
-, with initial support<br>
-&gt; &gt; &gt; &gt; implemented in Mesa (for Iris and Anv, our OpenGL and V=
-ulkan drivers), as well<br>
-&gt; &gt; &gt; &gt; as in NEO (for OpenCL and Level0). A Mesa MR has been p=
-osted [2] and NEO<br>
-&gt; &gt; &gt; &gt; implementation will be released publicly early next yea=
-r. We also have a suite<br>
-&gt; &gt; &gt; &gt; of IGTs for XE that will appear on the IGT list shortly=
-.<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; It has been built with the assumption of supporting mul=
-tiple architectures from<br>
-&gt; &gt; &gt; &gt; the get-go, right now with tests running both on X86 an=
-d ARM hosts. And we<br>
-&gt; &gt; &gt; &gt; intend to continue working on it and improving on it as=
- part of the kernel<br>
-&gt; &gt; &gt; &gt; community upstream.<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; The new Xe driver leverages a lot from i915 and work on=
- i915 continues as we<br>
-&gt; &gt; &gt; &gt; ready Xe for production throughout 2023.<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; As for display, the intent is to share the display code=
- with the i915 driver so<br>
-&gt; &gt; &gt; &gt; that there is maximum reuse there. Currently this is be=
-ing done by compiling the<br>
-&gt; &gt; &gt; &gt; display code twice, but alternatives to that are under =
-consideration and we want<br>
-&gt; &gt; &gt; &gt; to have more discussion on what the best final solution=
- will look like over the<br>
-&gt; &gt; &gt; &gt; next few months. Right now, work is ongoing in refactor=
-ing the display codebase<br>
-&gt; &gt; &gt; &gt; to remove as much as possible any unnecessary dependenc=
-ies on i915 specific data<br>
-&gt; &gt; &gt; &gt; structures there..<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; We currently have 2 submission backends, execlists and =
-GuC. The execlist is<br>
-&gt; &gt; &gt; &gt; meant mostly for testing and is not fully functional wh=
-ile GuC backend is fully<br>
-&gt; &gt; &gt; &gt; functional. As with the i915 and GuC submission, in Xe =
-the GuC firmware is<br>
-&gt; &gt; &gt; &gt; required and should be placed in /lib/firmware/xe.<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; What is the plan going forward for the execlists backend? I =
-think it would<br>
-&gt; &gt; &gt; be preferable to not upstream something semi-functional and =
-so to carry<br>
-&gt; &gt; &gt; technical debt in the brand new code base, from the very sta=
-rt. If it is for<br>
-&gt; &gt; &gt; Tigerlake, which is the starting platform for Xe, could it b=
-e made GuC only<br>
-&gt; &gt; &gt; Tigerlake for instance?<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; <br>
-&gt; &gt; A little background here. In the original PoC written by Jason an=
-d Dave,<br>
-&gt; &gt; the execlist backend was the only one present and it was in semi-=
-working<br>
-&gt; &gt; state. As soon as myself and a few others started working on Xe w=
-e went<br>
-&gt; &gt; full in a on the GuC backend. We left the execlist backend basica=
-lly in<br>
-&gt; &gt; the state it was in. We left it in place for 2 reasons.<br>
-&gt; &gt; <br>
-&gt; &gt; 1. Having 2 backends from the start ensured we layered our code<b=
-r>
-&gt; &gt; correctly. The layer was a complete disaster in the i915 so we re=
-ally<br>
-&gt; &gt; wanted to avoid that.<br>
-&gt; &gt; 2. The thought was it might be needed for early product bring up =
-one<br>
-&gt; &gt; day.<br>
-&gt; &gt; <br>
-&gt; &gt; As I think about this a bit more, we likely just delete execlist =
-backend<br>
-&gt; &gt; before merging this upstream and perhaps just carry 1 large patch=
-<br>
-&gt; &gt; internally with this implementation that we can use as needed. Fi=
-nal<br>
-&gt; &gt; decession TDB though.<br>
-&gt; <br>
-&gt; but that might regress after some time on &quot;let&#39;s keep 2 backe=
-nds so we<br>
-&gt; layer the code correctly&quot;. Leaving the additional backend behind<=
-br>
-&gt; CONFIG_BROKEN or XE_EXPERIMENTAL, or something like that, not<br>
-&gt; enabled by distros, but enabled in CI would be a good idea IMO.<br>
-&gt; <br>
-&gt; Carrying a large patch out of tree would make things harder for new<br=
->
-&gt; platforms. A perfect backend split would make it possible, but like I<=
-br>
-&gt; said, we are likely not to have it if we delete the second backend.<br=
->
-&gt; <br>
-<br>
-Good points here Lucas. One thing that we absolutely have wrong is<br>
-falling back to execlists if GuC firmware is missing. We def should not<br>
-be doing that as it creates confusion.<br></blockquote><div><br></div><div>=
-Yeah, we certainly shouldn&#39;t be falling back on it silently. That&#39;s=
- a recipe for disaster. If it stays, it should be behind a config option th=
-at&#39;s clearly labeled as broken or not intended for production use. If s=
-omeone is a zero-firmware purist and wants to enable it and accept the brok=
-enness, that&#39;s their choice.</div><div><br></div><div>I&#39;m not espec=
-ially attached to the execlist back-end so I&#39;m not going to insist on a=
-nything here RE keeping it.</div><div><br></div><div>There is more to me st=
-arting with execlists than avoiding GuC, though. One of the reasons I did i=
-t was to prove that the same core Xe scheduling model [3] doesn&#39;t depen=
-d on firmware. As long as your hardware has some ability to juggle independ=
-ent per-context rings, you can get the same separation and it makes everyth=
-ing cleaner. If this is the direction things are headed (and I really think=
- it is; I need to blog about it), being able to do the Xe model on more pri=
-mitive hardware which lacks competent firmware-based submission is importan=
-t. I wanted to prototype that to show that it could be done.</div><div><br>=
-</div><div>I also kinda wanted to prove that execlists didn&#39;t have to b=
-e horrible like in i915. You know, for funzies....</div><div><br></div><div=
->--Jason</div><div><br></div><div>[3]: <a href=3D"https://lists.freedesktop=
-.org/archives/dri-devel/2023-January/386381.html">https://lists.freedesktop=
-.org/archives/dri-devel/2023-January/386381.html</a></div><div><br></div><d=
-iv>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
-x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-I kinda like the idea hiding it behind a config option + module<br>
-parameter to use the backend so you really, really need to try to be<br>
-able to use it + with this in the code it make us disciplined in our<br>
-layering. At some point we will likely another supported backend and at<br>
-that point we may decide to delete this backend.<br>
-<br>
-Matt<br>
-<br>
-&gt; Lucas De Marchi<br>
-&gt; <br>
-&gt; &gt; <br>
-&gt; &gt; Matt<br>
-&gt; &gt; <br>
-&gt; &gt; &gt; Regards,<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; Tvrtko<br>
-</blockquote></div></div>
 
---000000000000d503bf05f2785dad--
+### Linux commits
+
+fefdb4290c7b drm/i915: remove a couple of superfluous i915_drm.h includes
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112931v1/index.html
+
+--===============6049892708203380743==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: remove a couple of superfluous i915_drm.h includes</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/112931/">https://patchwork.freedesktop.org/series/112931/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112931v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112931v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12592 -&gt; Patchwork_112931v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112931v1/index.html</p>
+<h2>Participating hosts (44 -&gt; 42)</h2>
+<p>Missing    (2): fi-bsw-kefka fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_112931v1:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12592/bat-adlp-6/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112931v1/bat-adlp-6/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_112931v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@runner@aborted:<ul>
+<li>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112931v1/fi-cfl-8109u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_module_load@load:</p>
+<ul>
+<li>{bat-dg2-8}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12592/bat-dg2-8/igt@i915_module_load@load.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112931v1/bat-dg2-8/igt@i915_module_load@load.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@guc:</p>
+<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12592/bat-rpls-2/igt@i915_selftest@live@guc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7852">i915#7852</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112931v1/bat-rpls-2/igt@i915_selftest@live@guc.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<ul>
+<li>{bat-adlm-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12592/bat-adlm-1/igt@i915_suspend@basic-s3-without-i915.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112931v1/bat-adlm-1/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12592 -&gt; Patchwork_112931v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12592: aa316f18737ff65f416f94aa98ed38d6a073582c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7121: aa16e81259f59734230d441905b9d0f605e4a4b5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_112931v1: aa316f18737ff65f416f94aa98ed38d6a073582c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>fefdb4290c7b drm/i915: remove a couple of superfluous i915_drm.h includes</p>
+
+</body>
+</html>
+
+--===============6049892708203380743==--
