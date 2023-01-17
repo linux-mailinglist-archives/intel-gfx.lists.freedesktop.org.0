@@ -1,139 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39FB366E552
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Jan 2023 18:53:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6865866E562
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Jan 2023 18:56:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76C1210E310;
-	Tue, 17 Jan 2023 17:53:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A275010E300;
+	Tue, 17 Jan 2023 17:56:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7288910E314
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Jan 2023 17:53:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673978022; x=1705514022;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=bp4NOx11DPE29QCShhjuP10CNeWBn0SIeMXOvspgcgs=;
- b=D1lJTPQcs5c1JGgKWLtL2cSv5AVibUaKJxpDjH4L8uny0WKlWqADICFK
- z1fX9AHVXWuZae+E1zJJvPpVoszM1pJ3iD3MiUdLKTOdQJmjqdHgAcKAI
- WjCEIgJvx5nI4YrlJiXlwAQVuci/Rxw9O+qhUAoMeo/+xi2N1JYtb90We
- gV98+LaiLTOPfdwknRoVRJRTEsy8CFK0BMVswIy98aPT6v0I0yoleV8h6
- XYEC9Y2PWswUWnXDJsnAq3Pwo29jQIP44Jy2pdfI1n0VuCS/S5wwO6ePb
- x6CVNTeR+KaLnnNiHCJoRJ0oxBaRmb7cvohSia2dnIKWW30HlcuR0XU5s g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="326040843"
-X-IronPort-AV: E=Sophos;i="5.97,224,1669104000"; d="scan'208";a="326040843"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2023 09:53:41 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="722752984"
-X-IronPort-AV: E=Sophos;i="5.97,224,1669104000"; d="scan'208";a="722752984"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmsmga008.fm.intel.com with ESMTP; 17 Jan 2023 09:53:41 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Tue, 17 Jan 2023 09:53:41 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Tue, 17 Jan 2023 09:53:41 -0800
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Tue, 17 Jan 2023 09:53:39 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JmCGOltrVadX+ar24ixb5G9YKZTWsL7JnlsWJGnyNdRbmmwXcANa5er/RF6P4D0oLESwUZWehjgqpsICHs1g5UzOxQPbXCXWNcJVeoIgTPQH2OxdB9G4MOiJJDZWetnsd3iymOkBeL3WD43FyIF0Gb1ADMmbyZIbcyd9JvN3AcLJPkaNSOF3eCMBUKsHIg0wI5An0kSWf03WnEBeQn3ppli5m4qdOxuIao8KSJH1OdSpZxV5wpRx7OYnJj4fn8wEl/CGsbAN+SMWo64bPFBrYjqfJ8cGR+5q364AJfOwmQNYutBPjAXr0BXeAxnwIxFcHvBHwuK5SWuebwK6JdnPkg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oYwQa/gaaNQQQsXO6enAuvvLk1yUJIydW64jVIvk+x4=;
- b=IyzgO8XXhVEmTcSTn/ZliYYtfwUOu298gs7RSNNc5hnqAGqN6TKQb+acQVUDjgCGX3XJjyiIoL8Dl6qy0CXPVjMPhamRLU1/kBz4r3iFGwRkeTu1CJbBm1skusyjzR48vuHC2UfwaPkBm0uF5QWnDFOz7DZx63hYtZ74X7W56LNOBPasbjwWRiwNxM3aGNsMGgP+USHDuOExsMeb9yXLikG31x86w9IgCwA4nRmpubiqruoK4p6wWXLodBzdgg35jJ0RNvLEOS3hJYqWyOHRQowdV4DmYssu3EYDa/QBK3yrf2kfv9s5cXsQ7bmSciir7EjBRPlTwPws7zHv+sIVAA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by SA1PR11MB6686.namprd11.prod.outlook.com (2603:10b6:806:259::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.23; Tue, 17 Jan
- 2023 17:53:37 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::1818:e39d:454d:a930]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::1818:e39d:454d:a930%4]) with mapi id 15.20.5986.018; Tue, 17 Jan 2023
- 17:53:37 +0000
-Date: Tue, 17 Jan 2023 12:53:33 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <Y8bgndYojVvvfq7P@intel.com>
-References: <20230116164644.1752009-1-jani.nikula@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230116164644.1752009-1-jani.nikula@intel.com>
-X-ClientProxiedBy: BY5PR17CA0070.namprd17.prod.outlook.com
- (2603:10b6:a03:167::47) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9B0D610E300;
+ Tue, 17 Jan 2023 17:56:32 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 90EBEAADDC;
+ Tue, 17 Jan 2023 17:56:32 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8556579292193897536=="
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|SA1PR11MB6686:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2685f146-08dd-4845-2046-08daf8b3c242
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: kAKYUOn4kEFqISOoeoh+LCU0q358Vi45Rr0rC2xfzBNTP9OeI4JGoExNFBuxR0fgvY1CrcXlwe5R5ByAYxm+/ox+7DuxbrNh2BHQWcnXfpzlDCZjJYvzZqyBMySweV9UC30CliYS1DeeJ+HGj+s6R0qYnMnowR8/+2ch5TadjnbsiHED6qYwQ8LHh8UyoNE4B0DwKNds7FEVNrCmI8WWly7BuiZHflDL5TX0AA5gtq96JM5KvhcawUr81wnYJudSB/JBrMRvldlsxrcRq8RpZj1JtLm6RWqTsA2i+o74pgK+7XE4a6KlxiqLeNZ9PK07n02U0VfsAENFdx07xdojQ1rrdAfkWprwIEeILEjKQeD26qCF56JThN3VU7x1Gr1ryHyLt4sCgAZeb3ac+Ur5Ae2cUfRg1tS65qcm2FfnFlphkd/RE+VO2ICbrY6QmsV1ksBqd8deSPBWDXYrozbOYDWYZ2XsP7qGt0C1DHkPtodlTN79FveH1cPi8LIJpJaK7bDm2NQErwg+C7lITdPS+2gfobKjmz8tejNyCCT0/cncsVAkoZk1mT/aG4T25sPquztxbIzpAcGnVtUS8e+bEpFCwYONybBWsZRiwMJ/o+oKWqHh33odA9dmcgLs2uLTp2qcvpg5a+hM3jSY2qi0qA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(366004)(136003)(39860400002)(376002)(396003)(346002)(451199015)(36756003)(478600001)(6486002)(6512007)(6636002)(6506007)(6666004)(44832011)(26005)(41300700001)(2906002)(30864003)(6862004)(316002)(37006003)(5660300002)(19627235002)(8936002)(66556008)(8676002)(4326008)(66946007)(66476007)(2616005)(186003)(38100700002)(82960400001)(86362001)(83380400001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?iQcP31rNkZwz4goI4s0A4hYj165l3dio3AZDOqFeuyCtYPrEaLudvwp4gZ?=
- =?iso-8859-1?Q?p4j2JnSUHq1+R6h+CTllA0PVpkZcO6WXQF+evJzNj5jq3JAO4j0BFSE39j?=
- =?iso-8859-1?Q?p3Vppkvfsltnvh38ZJbd9h9D3DbRl9wXJ9ZnFLR7I0jqqUhAIWGGlOYERB?=
- =?iso-8859-1?Q?iZO6whRTrKACzw6Tia7fWT/gQYolwderbsFpDFIcGvV0plZjy2lcWpFV0I?=
- =?iso-8859-1?Q?iKr6civB1jrtwqQQLfQGfbIGdInuFxGVc+jfmo8mKu0Qzd80/EaGCdmnXg?=
- =?iso-8859-1?Q?tbc5sFoqeIeF+CJ11KUAQfusAtTUAsdPyiOGK6N1c6nGZCR4Kg/8gUhRg2?=
- =?iso-8859-1?Q?YgBEZSwcOz1FDk7m+U4LW0S8Tl++Evxuz0yeVHrNxB59kONgshpBALjyI2?=
- =?iso-8859-1?Q?BS8EKTrHFeL22ztxzfWhdD22mZZEmG1g+3OqgEBw1DrHZmTylZk8V2HJ7+?=
- =?iso-8859-1?Q?WufUCo+KZC1t3Mgc/+qAdWvqgZYRBTtEJlHIWrm0cmnIHmVF3oTm9x6N5u?=
- =?iso-8859-1?Q?mZeoP8W22gfj0E8fWBtWfsPb5cc47Bz10qq8JHoj3OvBVDuVTm77fonNHP?=
- =?iso-8859-1?Q?VVE5U7VnzR78PInMGR4+LAgnCbQRNMT+oY0UPgAtU6r4DS9t6rZi2lS43J?=
- =?iso-8859-1?Q?iZfPWowJc2Gls3JVJ4BeFAzUITOgjr/sCpYKVWTiln/HwKZxbH/8UiAQHe?=
- =?iso-8859-1?Q?UdeQrJBtTBJq/WuG6ojknp12DMQsFzgcFT8mhphzJuAwfDOengY0MhC+89?=
- =?iso-8859-1?Q?aFZ5/khhBSOd3m5BJLFwHBAcfRQ886EOet6HBNAQ/VINi6Cz7NNY81TPyu?=
- =?iso-8859-1?Q?Wto0G2GboK2QmZR+gsOS+PJZNLyns/3uIso8VWx61ysOOak7ec4a2/Zhv0?=
- =?iso-8859-1?Q?IkbrhlINQuZOdo1lvJGriAKkLBsUaeNuCDRpGLknw+zepMRF4ZuWdWiZUZ?=
- =?iso-8859-1?Q?wBG49+tcihAE6AtfJcZqXtxfyGGHwyM75CgrB5IFaH3eNGZwPSynSXeKoz?=
- =?iso-8859-1?Q?pQGfmr/ULQ6hiP6n9268Oo3/VyU6ullKGzV4PAr8UGHpViKm1TAcII2JxA?=
- =?iso-8859-1?Q?p8mPeAeMZnvNjaiQD/0ieKxY+gtH8W7+LolnumHHMeJQ8jHY48l4uB4lON?=
- =?iso-8859-1?Q?0+CzVl8FMg0rO6WmNCMgZlypwTNQ7iPJNaJLsgKJduuA6iNrQP3C3lfyX5?=
- =?iso-8859-1?Q?jCDD7JozDB24HZ9mTQ43DugYogNwnbKDiu4c1ZoCYF9Ur7RVk3A+Fx2koF?=
- =?iso-8859-1?Q?w/KaYOz3HnPiNvSeZOuEIH7OV4/IRy9r8HIFcNfana65QlXDZLM1+QEoQf?=
- =?iso-8859-1?Q?dHGXTsDTSGNXrIIVCMEMDkcMH1I9Rui63u7JWiqMAIRLNmkK5VVSfr1VVJ?=
- =?iso-8859-1?Q?kCPS+/sC84tfKmNeYu/AR2iert/YC7mFum9pqSzcGU3yRVGxKU6iiTe1mP?=
- =?iso-8859-1?Q?Bm9TIVa+2PDO5d+X5jZRaz4q8zKr3Rq8SsUOanmhRX+DetPtORz0oweizm?=
- =?iso-8859-1?Q?b9PPYnKS9d6qawJa2u5h0zJgNv86nHuZlhZMoDn9/W+BrnokxvBWgmmVCR?=
- =?iso-8859-1?Q?EmsCDatfLY50AQWDfxUCmcJW7GD47YlHap0yQIG0aqb7GHpEFZHmIGG4b0?=
- =?iso-8859-1?Q?g00OwREgGij7fR7+fP4KKUw5lI1++K4PXYDoJNJIOvJqAk5CqekKeFXQ?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2685f146-08dd-4845-2046-08daf8b3c242
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jan 2023 17:53:37.3918 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Bm14g0AhYY9aLeJu2oPcjHExrgIaG+kQNaK0luQt9YhkFW8J1O2Oz53jh4eYNFcenig2JOH3+icrVghOH86Kng==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6686
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: add
- intel_display_limits.h for key enums
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Tue, 17 Jan 2023 17:56:32 -0000
+Message-ID: <167397819255.21231.15565764804773020506@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1673958757.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1673958757.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_GMCH_refactoring_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,654 +40,384 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 16, 2023 at 06:46:44PM +0200, Jani Nikula wrote:
-> Move a handful of key enums to a new file intel_display_limits.h. These
-> are the enum types, and the MAX/NUM enumerations within them, that are
-> used in other headers. Otherwise, there's no common theme between them.
-> 
-> Replace intel_display.h include with intel_display_limit.h where
-> relevant, and add the intel_display.h include directly in the .c files
-> where needed.
-> 
-> Since intel_display.h is used almost everywhere in display/, include it
-> from intel_display_types.h to avoid massive changes across the
-> board. There are very few files that would need intel_display_types.h
-> but not intel_display.h so this is neglible, and further cleanup between
-> these headers can be left for the future.
-> 
-> Overall this change drops the direct and indirect dependencies on
-> intel_display.h from about 300 to about 100 compilation units, because
-> we can drop the include from i915_drv.h.
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+--===============8556579292193897536==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+== Series Details ==
 
-> 
-> ---
-> 
-> N.b. intel_display_limits.h is not a great name. I was hoping it was
-> only needed for the MAX/NUM enumerations such as I915_MAX_PIPES but
-> there are a number of headers that use the types for struct members as
-> well. intel_display_enums.h sounds too generic too. Suggestions?
-> ---
->  drivers/gpu/drm/i915/display/intel_bw.h       |   2 +-
->  drivers/gpu/drm/i915/display/intel_cdclk.h    |   2 +-
->  drivers/gpu/drm/i915/display/intel_display.h  | 115 +---------------
->  .../gpu/drm/i915/display/intel_display_core.h |   2 +-
->  .../drm/i915/display/intel_display_limits.h   | 124 ++++++++++++++++++
->  .../i915/display/intel_display_power_map.c    |   1 +
->  .../drm/i915/display/intel_display_types.h    |   1 +
->  drivers/gpu/drm/i915/display/intel_dvo_dev.h  |   2 +-
->  drivers/gpu/drm/i915/display/skl_watermark.h  |   2 +-
->  drivers/gpu/drm/i915/gem/i915_gem_create.c    |   1 +
->  drivers/gpu/drm/i915/gem/i915_gem_domain.c    |   1 +
->  drivers/gpu/drm/i915/gt/intel_ggtt.c          |   1 +
->  drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c  |   1 +
->  drivers/gpu/drm/i915/gt/intel_rps.c           |   1 +
->  drivers/gpu/drm/i915/gvt/cmd_parser.c         |   1 +
->  drivers/gpu/drm/i915/gvt/display.c            |   1 +
->  drivers/gpu/drm/i915/gvt/fb_decoder.h         |   2 +-
->  drivers/gpu/drm/i915/i915_drv.h               |   2 +-
->  drivers/gpu/drm/i915/i915_pci.c               |   1 +
->  drivers/gpu/drm/i915/i915_vma.c               |   1 +
->  drivers/gpu/drm/i915/intel_device_info.c      |   1 +
->  drivers/gpu/drm/i915/intel_device_info.h      |   2 +-
->  drivers/gpu/drm/i915/intel_gvt_mmio_table.c   |   1 +
->  drivers/gpu/drm/i915/intel_pm.c               |   1 +
->  drivers/gpu/drm/i915/intel_pm_types.h         |   2 +-
->  drivers/gpu/drm/i915/vlv_sideband.c           |   1 +
->  26 files changed, 149 insertions(+), 123 deletions(-)
->  create mode 100644 drivers/gpu/drm/i915/display/intel_display_limits.h
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i915/display/intel_bw.h
-> index cb7ee3a24a58..f20292143745 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bw.h
-> +++ b/drivers/gpu/drm/i915/display/intel_bw.h
-> @@ -8,7 +8,7 @@
->  
->  #include <drm/drm_atomic.h>
->  
-> -#include "intel_display.h"
-> +#include "intel_display_limits.h"
->  #include "intel_display_power.h"
->  #include "intel_global_state.h"
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
-> index c674879a84a5..51e2f6a11ce4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.h
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
-> @@ -8,7 +8,7 @@
->  
->  #include <linux/types.h>
->  
-> -#include "intel_display.h"
-> +#include "intel_display_limits.h"
->  #include "intel_global_state.h"
->  
->  struct drm_i915_private;
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-> index ef73730f32b0..cb6f520cc575 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> @@ -28,6 +28,7 @@
->  #include <drm/drm_util.h>
->  
->  #include "i915_reg_defs.h"
-> +#include "intel_display_limits.h"
->  
->  enum drm_scaling_filter;
->  struct dpll;
-> @@ -62,51 +63,9 @@ struct intel_remapped_info;
->  struct intel_rotation_info;
->  struct pci_dev;
->  
-> -/*
-> - * Keep the pipe enum values fixed: the code assumes that PIPE_A=0, the
-> - * rest have consecutive values and match the enum values of transcoders
-> - * with a 1:1 transcoder -> pipe mapping.
-> - */
-> -enum pipe {
-> -	INVALID_PIPE = -1,
-> -
-> -	PIPE_A = 0,
-> -	PIPE_B,
-> -	PIPE_C,
-> -	PIPE_D,
-> -	_PIPE_EDP,
-> -
-> -	I915_MAX_PIPES = _PIPE_EDP
-> -};
->  
->  #define pipe_name(p) ((p) + 'A')
->  
-> -enum transcoder {
-> -	INVALID_TRANSCODER = -1,
-> -	/*
-> -	 * The following transcoders have a 1:1 transcoder -> pipe mapping,
-> -	 * keep their values fixed: the code assumes that TRANSCODER_A=0, the
-> -	 * rest have consecutive values and match the enum values of the pipes
-> -	 * they map to.
-> -	 */
-> -	TRANSCODER_A = PIPE_A,
-> -	TRANSCODER_B = PIPE_B,
-> -	TRANSCODER_C = PIPE_C,
-> -	TRANSCODER_D = PIPE_D,
-> -
-> -	/*
-> -	 * The following transcoders can map to any pipe, their enum value
-> -	 * doesn't need to stay fixed.
-> -	 */
-> -	TRANSCODER_EDP,
-> -	TRANSCODER_DSI_0,
-> -	TRANSCODER_DSI_1,
-> -	TRANSCODER_DSI_A = TRANSCODER_DSI_0,	/* legacy DSI */
-> -	TRANSCODER_DSI_C = TRANSCODER_DSI_1,	/* legacy DSI */
-> -
-> -	I915_MAX_TRANSCODERS
-> -};
-> -
->  static inline const char *transcoder_name(enum transcoder transcoder)
->  {
->  	switch (transcoder) {
-> @@ -147,29 +106,6 @@ enum i9xx_plane_id {
->  #define plane_name(p) ((p) + 'A')
->  #define sprite_name(p, s) ((p) * RUNTIME_INFO(dev_priv)->num_sprites[(p)] + (s) + 'A')
->  
-> -/*
-> - * Per-pipe plane identifier.
-> - * I915_MAX_PLANES in the enum below is the maximum (across all platforms)
-> - * number of planes per CRTC.  Not all platforms really have this many planes,
-> - * which means some arrays of size I915_MAX_PLANES may have unused entries
-> - * between the topmost sprite plane and the cursor plane.
-> - *
-> - * This is expected to be passed to various register macros
-> - * (eg. PLANE_CTL(), PS_PLANE_SEL(), etc.) so adjust with care.
-> - */
-> -enum plane_id {
-> -	PLANE_PRIMARY,
-> -	PLANE_SPRITE0,
-> -	PLANE_SPRITE1,
-> -	PLANE_SPRITE2,
-> -	PLANE_SPRITE3,
-> -	PLANE_SPRITE4,
-> -	PLANE_SPRITE5,
-> -	PLANE_CURSOR,
-> -
-> -	I915_MAX_PLANES,
-> -};
-> -
->  #define for_each_plane_id_on_crtc(__crtc, __p) \
->  	for ((__p) = PLANE_PRIMARY; (__p) < I915_MAX_PLANES; (__p)++) \
->  		for_each_if((__crtc)->plane_ids_mask & BIT(__p))
-> @@ -182,34 +118,6 @@ enum plane_id {
->  	for_each_dbuf_slice((__dev_priv), (__slice)) \
->  		for_each_if((__mask) & BIT(__slice))
->  
-> -enum port {
-> -	PORT_NONE = -1,
-> -
-> -	PORT_A = 0,
-> -	PORT_B,
-> -	PORT_C,
-> -	PORT_D,
-> -	PORT_E,
-> -	PORT_F,
-> -	PORT_G,
-> -	PORT_H,
-> -	PORT_I,
-> -
-> -	/* tgl+ */
-> -	PORT_TC1 = PORT_D,
-> -	PORT_TC2,
-> -	PORT_TC3,
-> -	PORT_TC4,
-> -	PORT_TC5,
-> -	PORT_TC6,
-> -
-> -	/* XE_LPD repositions D/E offsets and bitfields */
-> -	PORT_D_XELPD = PORT_TC5,
-> -	PORT_E_XELPD,
-> -
-> -	I915_MAX_PORTS
-> -};
-> -
->  #define port_name(p) ((p) + 'A')
->  
->  /*
-> @@ -312,27 +220,6 @@ enum phy_fia {
->  	FIA3,
->  };
->  
-> -enum hpd_pin {
-> -	HPD_NONE = 0,
-> -	HPD_TV = HPD_NONE,     /* TV is known to be unreliable */
-> -	HPD_CRT,
-> -	HPD_SDVO_B,
-> -	HPD_SDVO_C,
-> -	HPD_PORT_A,
-> -	HPD_PORT_B,
-> -	HPD_PORT_C,
-> -	HPD_PORT_D,
-> -	HPD_PORT_E,
-> -	HPD_PORT_TC1,
-> -	HPD_PORT_TC2,
-> -	HPD_PORT_TC3,
-> -	HPD_PORT_TC4,
-> -	HPD_PORT_TC5,
-> -	HPD_PORT_TC6,
-> -
-> -	HPD_NUM_PINS
-> -};
-> -
->  #define for_each_hpd_pin(__pin) \
->  	for ((__pin) = (HPD_NONE + 1); (__pin) < HPD_NUM_PINS; (__pin)++)
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-> index 57ddce3ba02b..1d5d9d56fb3f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-> @@ -17,7 +17,7 @@
->  #include <drm/drm_modeset_lock.h>
->  
->  #include "intel_cdclk.h"
-> -#include "intel_display.h"
-> +#include "intel_display_limits.h"
->  #include "intel_display_power.h"
->  #include "intel_dmc.h"
->  #include "intel_dpll_mgr.h"
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_limits.h b/drivers/gpu/drm/i915/display/intel_display_limits.h
-> new file mode 100644
-> index 000000000000..5126d0b5ae5d
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/display/intel_display_limits.h
-> @@ -0,0 +1,124 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2022 Intel Corporation
-> + */
-> +
-> +#ifndef __INTEL_DISPLAY_LIMITS_H__
-> +#define __INTEL_DISPLAY_LIMITS_H__
-> +
-> +/*
-> + * Keep the pipe enum values fixed: the code assumes that PIPE_A=0, the
-> + * rest have consecutive values and match the enum values of transcoders
-> + * with a 1:1 transcoder -> pipe mapping.
-> + */
-> +enum pipe {
-> +	INVALID_PIPE = -1,
-> +
-> +	PIPE_A = 0,
-> +	PIPE_B,
-> +	PIPE_C,
-> +	PIPE_D,
-> +	_PIPE_EDP,
-> +
-> +	I915_MAX_PIPES = _PIPE_EDP
-> +};
-> +
-> +enum transcoder {
-> +	INVALID_TRANSCODER = -1,
-> +	/*
-> +	 * The following transcoders have a 1:1 transcoder -> pipe mapping,
-> +	 * keep their values fixed: the code assumes that TRANSCODER_A=0, the
-> +	 * rest have consecutive values and match the enum values of the pipes
-> +	 * they map to.
-> +	 */
-> +	TRANSCODER_A = PIPE_A,
-> +	TRANSCODER_B = PIPE_B,
-> +	TRANSCODER_C = PIPE_C,
-> +	TRANSCODER_D = PIPE_D,
-> +
-> +	/*
-> +	 * The following transcoders can map to any pipe, their enum value
-> +	 * doesn't need to stay fixed.
-> +	 */
-> +	TRANSCODER_EDP,
-> +	TRANSCODER_DSI_0,
-> +	TRANSCODER_DSI_1,
-> +	TRANSCODER_DSI_A = TRANSCODER_DSI_0,	/* legacy DSI */
-> +	TRANSCODER_DSI_C = TRANSCODER_DSI_1,	/* legacy DSI */
-> +
-> +	I915_MAX_TRANSCODERS
-> +};
-> +
-> +/*
-> + * Per-pipe plane identifier.
-> + * I915_MAX_PLANES in the enum below is the maximum (across all platforms)
-> + * number of planes per CRTC.  Not all platforms really have this many planes,
-> + * which means some arrays of size I915_MAX_PLANES may have unused entries
-> + * between the topmost sprite plane and the cursor plane.
-> + *
-> + * This is expected to be passed to various register macros
-> + * (eg. PLANE_CTL(), PS_PLANE_SEL(), etc.) so adjust with care.
-> + */
-> +enum plane_id {
-> +	PLANE_PRIMARY,
-> +	PLANE_SPRITE0,
-> +	PLANE_SPRITE1,
-> +	PLANE_SPRITE2,
-> +	PLANE_SPRITE3,
-> +	PLANE_SPRITE4,
-> +	PLANE_SPRITE5,
-> +	PLANE_CURSOR,
-> +
-> +	I915_MAX_PLANES,
-> +};
-> +
-> +enum port {
-> +	PORT_NONE = -1,
-> +
-> +	PORT_A = 0,
-> +	PORT_B,
-> +	PORT_C,
-> +	PORT_D,
-> +	PORT_E,
-> +	PORT_F,
-> +	PORT_G,
-> +	PORT_H,
-> +	PORT_I,
-> +
-> +	/* tgl+ */
-> +	PORT_TC1 = PORT_D,
-> +	PORT_TC2,
-> +	PORT_TC3,
-> +	PORT_TC4,
-> +	PORT_TC5,
-> +	PORT_TC6,
-> +
-> +	/* XE_LPD repositions D/E offsets and bitfields */
-> +	PORT_D_XELPD = PORT_TC5,
-> +	PORT_E_XELPD,
-> +
-> +	I915_MAX_PORTS
-> +};
-> +
-> +enum hpd_pin {
-> +	HPD_NONE = 0,
-> +	HPD_TV = HPD_NONE,     /* TV is known to be unreliable */
-> +	HPD_CRT,
-> +	HPD_SDVO_B,
-> +	HPD_SDVO_C,
-> +	HPD_PORT_A,
-> +	HPD_PORT_B,
-> +	HPD_PORT_C,
-> +	HPD_PORT_D,
-> +	HPD_PORT_E,
-> +	HPD_PORT_TC1,
-> +	HPD_PORT_TC2,
-> +	HPD_PORT_TC3,
-> +	HPD_PORT_TC4,
-> +	HPD_PORT_TC5,
-> +	HPD_PORT_TC6,
-> +
-> +	HPD_NUM_PINS
-> +};
-> +
-> +#endif /* __INTEL_DISPLAY_LIMITS_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-> index f5d66ca85b19..6645eb1911d8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-> @@ -10,6 +10,7 @@
->  
->  #include "intel_display_power_map.h"
->  #include "intel_display_power_well.h"
-> +#include "intel_display_types.h"
->  
->  #define __LIST_INLINE_ELEMS(__elem_type, ...) \
->  	((__elem_type[]) { __VA_ARGS__ })
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 32e8b2fc3cc6..8f3d5d02e207 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -50,6 +50,7 @@
->  #include "i915_vma_types.h"
->  #include "intel_bios.h"
->  #include "intel_display.h"
-> +#include "intel_display_limits.h"
->  #include "intel_display_power.h"
->  #include "intel_dpll_mgr.h"
->  #include "intel_pm_types.h"
-> diff --git a/drivers/gpu/drm/i915/display/intel_dvo_dev.h b/drivers/gpu/drm/i915/display/intel_dvo_dev.h
-> index ea8eb7dcee38..f7e98e1c6470 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dvo_dev.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dvo_dev.h
-> @@ -25,7 +25,7 @@
->  
->  #include "i915_reg_defs.h"
->  
-> -#include "intel_display.h"
-> +#include "intel_display_limits.h"
->  
->  enum drm_connector_status;
->  struct drm_display_mode;
-> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.h b/drivers/gpu/drm/i915/display/skl_watermark.h
-> index 7a5a4e67cd73..37954c472070 100644
-> --- a/drivers/gpu/drm/i915/display/skl_watermark.h
-> +++ b/drivers/gpu/drm/i915/display/skl_watermark.h
-> @@ -8,7 +8,7 @@
->  
->  #include <linux/types.h>
->  
-> -#include "intel_display.h"
-> +#include "intel_display_limits.h"
->  #include "intel_global_state.h"
->  #include "intel_pm_types.h"
->  
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c b/drivers/gpu/drm/i915/gem/i915_gem_create.c
-> index 005a7f842784..e76c9703680e 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
-> @@ -5,6 +5,7 @@
->  
->  #include <drm/drm_fourcc.h>
->  
-> +#include "display/intel_display.h"
->  #include "gem/i915_gem_ioctls.h"
->  #include "gem/i915_gem_lmem.h"
->  #include "gem/i915_gem_region.h"
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_domain.c b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-> index 9969e687ad85..497de40b8e68 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-> @@ -4,6 +4,7 @@
->   * Copyright © 2014-2016 Intel Corporation
->   */
->  
-> +#include "display/intel_display.h"
->  #include "display/intel_frontbuffer.h"
->  #include "gt/intel_gt.h"
->  
-> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> index 0c7fe360f873..b2f3f49f418f 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> @@ -12,6 +12,7 @@
->  #include <drm/i915_drm.h>
->  #include <drm/intel-gtt.h>
->  
-> +#include "display/intel_display.h"
->  #include "gem/i915_gem_lmem.h"
->  
->  #include "intel_ggtt_gmch.h"
-> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
-> index 7ac8ed13e1fe..37d0b0fe791d 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
-> @@ -5,6 +5,7 @@
->  
->  #include <linux/highmem.h>
->  
-> +#include "display/intel_display.h"
->  #include "i915_drv.h"
->  #include "i915_reg.h"
->  #include "i915_scatterlist.h"
-> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-> index 9ad3bc7201cb..f5d7b5126433 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_rps.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-> @@ -7,6 +7,7 @@
->  
->  #include <drm/i915_drm.h>
->  
-> +#include "display/intel_display.h"
->  #include "i915_drv.h"
->  #include "i915_irq.h"
->  #include "intel_breadcrumbs.h"
-> diff --git a/drivers/gpu/drm/i915/gvt/cmd_parser.c b/drivers/gpu/drm/i915/gvt/cmd_parser.c
-> index 0ebf5fbf0e39..3c4ae1da0d41 100644
-> --- a/drivers/gpu/drm/i915/gvt/cmd_parser.c
-> +++ b/drivers/gpu/drm/i915/gvt/cmd_parser.c
-> @@ -49,6 +49,7 @@
->  #include "i915_pvinfo.h"
->  #include "trace.h"
->  
-> +#include "display/intel_display.h"
->  #include "gem/i915_gem_context.h"
->  #include "gem/i915_gem_pm.h"
->  #include "gt/intel_context.h"
-> diff --git a/drivers/gpu/drm/i915/gvt/display.c b/drivers/gpu/drm/i915/gvt/display.c
-> index c033249e73f4..4d898b14de93 100644
-> --- a/drivers/gpu/drm/i915/gvt/display.c
-> +++ b/drivers/gpu/drm/i915/gvt/display.c
-> @@ -36,6 +36,7 @@
->  #include "i915_reg.h"
->  #include "gvt.h"
->  
-> +#include "display/intel_display.h"
->  #include "display/intel_dpio_phy.h"
->  
->  static int get_edp_pipe(struct intel_vgpu *vgpu)
-> diff --git a/drivers/gpu/drm/i915/gvt/fb_decoder.h b/drivers/gpu/drm/i915/gvt/fb_decoder.h
-> index 0daa3931aef7..4eff44194439 100644
-> --- a/drivers/gpu/drm/i915/gvt/fb_decoder.h
-> +++ b/drivers/gpu/drm/i915/gvt/fb_decoder.h
-> @@ -38,7 +38,7 @@
->  
->  #include <linux/types.h>
->  
-> -#include "display/intel_display.h"
-> +#include "display/intel_display_limits.h"
->  
->  struct intel_vgpu;
->  
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 48fd82722f12..aa7901bf484f 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -36,7 +36,7 @@
->  
->  #include <drm/ttm/ttm_device.h>
->  
-> -#include "display/intel_display.h"
-> +#include "display/intel_display_limits.h"
->  #include "display/intel_display_core.h"
->  
->  #include "gem/i915_gem_context_types.h"
-> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-> index bc1af7e8f398..c69637bf0ad7 100644
-> --- a/drivers/gpu/drm/i915/i915_pci.c
-> +++ b/drivers/gpu/drm/i915/i915_pci.c
-> @@ -26,6 +26,7 @@
->  #include <drm/drm_drv.h>
->  #include <drm/i915_pciids.h>
->  
-> +#include "display/intel_display.h"
->  #include "gt/intel_gt_regs.h"
->  #include "gt/intel_sa_media.h"
->  
-> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-> index 5272e2be990e..f51fd9fd4c89 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.c
-> +++ b/drivers/gpu/drm/i915/i915_vma.c
-> @@ -26,6 +26,7 @@
->  #include <linux/dma-fence-array.h>
->  #include <drm/drm_gem.h>
->  
-> +#include "display/intel_display.h"
->  #include "display/intel_frontbuffer.h"
->  #include "gem/i915_gem_lmem.h"
->  #include "gem/i915_gem_tiling.h"
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-> index 05e90d09b208..98769e5f2c3d 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.c
-> +++ b/drivers/gpu/drm/i915/intel_device_info.c
-> @@ -29,6 +29,7 @@
->  
->  #include "display/intel_cdclk.h"
->  #include "display/intel_de.h"
-> +#include "display/intel_display.h"
->  #include "gt/intel_gt_regs.h"
->  #include "i915_drv.h"
->  #include "i915_reg.h"
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-> index d588e5fd2eea..80bda653d61b 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.h
-> +++ b/drivers/gpu/drm/i915/intel_device_info.h
-> @@ -29,7 +29,7 @@
->  
->  #include "intel_step.h"
->  
-> -#include "display/intel_display.h"
-> +#include "display/intel_display_limits.h"
->  
->  #include "gt/intel_engine_types.h"
->  #include "gt/intel_context_types.h"
-> diff --git a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-> index ce6b3c3b636a..1f4805aa2b08 100644
-> --- a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-> +++ b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-> @@ -5,6 +5,7 @@
->  
->  #include "display/intel_audio_regs.h"
->  #include "display/intel_backlight_regs.h"
-> +#include "display/intel_display_types.h"
->  #include "display/intel_dmc_regs.h"
->  #include "display/intel_dpio_phy.h"
->  #include "display/vlv_dsi_pll_regs.h"
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-> index 73c88b1c9545..3fc65bd12cc1 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -26,6 +26,7 @@
->   */
->  
->  #include "display/intel_de.h"
-> +#include "display/intel_display.h"
->  #include "display/intel_display_trace.h"
->  #include "display/skl_watermark.h"
->  
-> diff --git a/drivers/gpu/drm/i915/intel_pm_types.h b/drivers/gpu/drm/i915/intel_pm_types.h
-> index 211632f58751..93152537b420 100644
-> --- a/drivers/gpu/drm/i915/intel_pm_types.h
-> +++ b/drivers/gpu/drm/i915/intel_pm_types.h
-> @@ -8,7 +8,7 @@
->  
->  #include <linux/types.h>
->  
-> -#include "display/intel_display.h"
-> +#include "display/intel_display_limits.h"
->  
->  enum intel_ddb_partitioning {
->  	INTEL_DDB_PART_1_2,
-> diff --git a/drivers/gpu/drm/i915/vlv_sideband.c b/drivers/gpu/drm/i915/vlv_sideband.c
-> index 6eea6e1a99c0..b98dec3ad817 100644
-> --- a/drivers/gpu/drm/i915/vlv_sideband.c
-> +++ b/drivers/gpu/drm/i915/vlv_sideband.c
-> @@ -9,6 +9,7 @@
->  #include "vlv_sideband.h"
->  
->  #include "display/intel_dpio_phy.h"
-> +#include "display/intel_display_types.h"
->  
->  /*
->   * IOSF sideband, see VLV2_SidebandMsg_HAS.docx and
-> -- 
-> 2.34.1
-> 
+Series: drm/i915: GMCH refactoring (rev2)
+URL   : https://patchwork.freedesktop.org/series/112929/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_12592 -> Patchwork_112929v2
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/index.html
+
+Participating hosts (44 -> 44)
+------------------------------
+
+  Additional (1): fi-rkl-11600 
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_112929v2:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@gem_exec_suspend@basic-s0@smem:
+    - {bat-rpls-1}:       [DMESG-WARN][1] ([i915#7625]) -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12592/bat-rpls-1/igt@gem_exec_suspend@basic-s0@smem.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/bat-rpls-1/igt@gem_exec_suspend@basic-s0@smem.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_112929v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@debugfs_test@basic-hwmon:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][3] ([i915#7456])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/fi-rkl-11600/igt@debugfs_test@basic-hwmon.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][4] ([i915#2190])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/fi-rkl-11600/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][5] ([i915#4613]) +3 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/fi-rkl-11600/igt@gem_lmem_swapping@basic.html
+
+  * igt@gem_tiled_pread_basic:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][6] ([i915#3282])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/fi-rkl-11600/igt@gem_tiled_pread_basic.html
+
+  * igt@i915_pm_backlight@basic-brightness:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][7] ([i915#7561])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/fi-rkl-11600/igt@i915_pm_backlight@basic-brightness.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-apl-guc:         [PASS][8] -> [DMESG-FAIL][9] ([i915#5334])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12592/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - fi-rkl-11600:       NOTRUN -> [INCOMPLETE][10] ([i915#4817])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
+
+  * igt@kms_chamelium_hpd@dp-hpd-fast:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][11] ([i915#7828]) +7 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/fi-rkl-11600/igt@kms_chamelium_hpd@dp-hpd-fast.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][12] ([i915#4103])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/fi-rkl-11600/igt@kms_cursor_legacy@basic-busy-flip-before-cursor.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][13] ([fdo#109285] / [i915#4098])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/fi-rkl-11600/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][14] ([i915#1072]) +3 similar issues
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/fi-rkl-11600/igt@kms_psr@primary_page_flip.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][15] ([i915#3555] / [i915#4098])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/fi-rkl-11600/igt@kms_setmode@basic-clone-single-crtc.html
+
+  * igt@prime_vgem@basic-read:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][16] ([fdo#109295] / [i915#3291] / [i915#3708]) +2 similar issues
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/fi-rkl-11600/igt@prime_vgem@basic-read.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-rkl-11600:       NOTRUN -> [SKIP][17] ([fdo#109295] / [i915#3301] / [i915#3708])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/fi-rkl-11600/igt@prime_vgem@basic-userptr.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@load:
+    - {bat-dg2-8}:        [FAIL][18] -> [PASS][19]
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12592/bat-dg2-8/igt@i915_module_load@load.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/bat-dg2-8/igt@i915_module_load@load.html
+
+  * igt@i915_selftest@live@slpc:
+    - {bat-rpls-1}:       [DMESG-FAIL][20] ([i915#6367]) -> [PASS][21]
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12592/bat-rpls-1/igt@i915_selftest@live@slpc.html
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/bat-rpls-1/igt@i915_selftest@live@slpc.html
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - {bat-adlm-1}:       [DMESG-WARN][22] -> [PASS][23] +1 similar issue
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12592/bat-adlm-1/igt@i915_suspend@basic-s3-without-i915.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/bat-adlm-1/igt@i915_suspend@basic-s3-without-i915.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#4098]: https://gitlab.freedesktop.org/drm/intel/issues/4098
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
+  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4817]: https://gitlab.freedesktop.org/drm/intel/issues/4817
+  [i915#4873]: https://gitlab.freedesktop.org/drm/intel/issues/4873
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
+  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
+  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
+  [i915#7456]: https://gitlab.freedesktop.org/drm/intel/issues/7456
+  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
+  [i915#7625]: https://gitlab.freedesktop.org/drm/intel/issues/7625
+  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12592 -> Patchwork_112929v2
+
+  CI-20190529: 20190529
+  CI_DRM_12592: aa316f18737ff65f416f94aa98ed38d6a073582c @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7121: aa16e81259f59734230d441905b9d0f605e4a4b5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_112929v2: aa316f18737ff65f416f94aa98ed38d6a073582c @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+5f652488403d drm/i915/gmch: move VGA set state to GMCH code
+4f7c67b69def drm/i915/gmch: mass rename dev_priv to i915
+089e79b579f8 drm/i915/gmch: split out soc/intel_gmch
+2feda9a33755 drm/i915: add gmch substruct to struct drm_i915_private
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/index.html
+
+--===============8556579292193897536==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: GMCH refactoring (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/112929/">https://patchwork.freedesktop.org/series/112929/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12592 -&gt; Patchwork_112929v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/index.html</p>
+<h2>Participating hosts (44 -&gt; 44)</h2>
+<p>Additional (1): fi-rkl-11600 <br />
+  Missing    (1): fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_112929v2:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@gem_exec_suspend@basic-s0@smem:<ul>
+<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12592/bat-rpls-1/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7625">i915#7625</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/bat-rpls-1/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_112929v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@debugfs_test@basic-hwmon:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/fi-rkl-11600/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7456">i915#7456</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/fi-rkl-11600/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/fi-rkl-11600/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_pread_basic:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/fi-rkl-11600/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3282">i915#3282</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_backlight@basic-brightness:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/fi-rkl-11600/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7561">i915#7561</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12592/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4817">i915#4817</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_hpd@dp-hpd-fast:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/fi-rkl-11600/igt@kms_chamelium_hpd@dp-hpd-fast.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>) +7 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/fi-rkl-11600/igt@kms_cursor_legacy@basic-busy-flip-before-cursor.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/fi-rkl-11600/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4098">i915#4098</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_page_flip:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/fi-rkl-11600/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/fi-rkl-11600/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4098">i915#4098</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-read:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/fi-rkl-11600/igt@prime_vgem@basic-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3291">i915#3291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/fi-rkl-11600/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_module_load@load:</p>
+<ul>
+<li>{bat-dg2-8}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12592/bat-dg2-8/igt@i915_module_load@load.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/bat-dg2-8/igt@i915_module_load@load.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@slpc:</p>
+<ul>
+<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12592/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/bat-rpls-1/igt@i915_selftest@live@slpc.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<ul>
+<li>{bat-adlm-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12592/bat-adlm-1/igt@i915_suspend@basic-s3-without-i915.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112929v2/bat-adlm-1/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12592 -&gt; Patchwork_112929v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12592: aa316f18737ff65f416f94aa98ed38d6a073582c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7121: aa16e81259f59734230d441905b9d0f605e4a4b5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_112929v2: aa316f18737ff65f416f94aa98ed38d6a073582c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>5f652488403d drm/i915/gmch: move VGA set state to GMCH code<br />
+4f7c67b69def drm/i915/gmch: mass rename dev_priv to i915<br />
+089e79b579f8 drm/i915/gmch: split out soc/intel_gmch<br />
+2feda9a33755 drm/i915: add gmch substruct to struct drm_i915_private</p>
+
+</body>
+</html>
+
+--===============8556579292193897536==--
