@@ -1,58 +1,136 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 521CD66E32B
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Jan 2023 17:12:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABE7F66E336
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Jan 2023 17:14:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 341B610E57D;
-	Tue, 17 Jan 2023 16:12:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0134910E194;
+	Tue, 17 Jan 2023 16:14:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com
- [IPv6:2a00:1450:4864:20::52e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F33E310E578
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Jan 2023 16:12:43 +0000 (UTC)
-Received: by mail-ed1-x52e.google.com with SMTP id b4so26258346edf.0
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Jan 2023 08:12:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jlekstrand-net.20210112.gappssmtp.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=i7mDOxAjSFUe2nD/WdjW//2gllqVfjGFZtHzqP1qrPU=;
- b=ARsk4YyzH1XWOcW9foVQhxSLwjekEwFi0CU4BS2ljwand1+NidUGVxZk4hVs6AVCwK
- rT2JX8JwNldJu4mnud2UIjOIhjA93uCOOaEmpBMudj/yZegoBF44shTDNxxFMzQypwPI
- jqDVyZFCbQCtwtD+N+xoQyt9/9U2tZbafiKEFGK2t8/eTiy9Y5Hq1CAO+HcM5DfVPzkW
- hzpm12XoUnmDrbo78sYqGwHy2ZLVt3nHxP3bgdEASrNrNwJH4THmjlmjhFBsoYYWXoAS
- y5qQ3hIX4fxgttWwCxGFVd/ImzPpcdNyHVfnjM2rY54ex9gkKGefhzK5OrioNcu1+PuB
- dqSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=i7mDOxAjSFUe2nD/WdjW//2gllqVfjGFZtHzqP1qrPU=;
- b=1tbnqBvdEAu2qKICBEjXYby9Qy3HWMd3IWAubULMsDODht92MHCioVRGslvN1f5HkV
- pzilIeXBgYfZag4d38MQUazR8TsDhzjWRU0Bh2n9TfEGWLa6cTNQeVVMu7d+dX0fQP1V
- NhZxodFLLM76v12H4fgKUDEeUEAtW8S7NfzzsVmzwPnTIhqhQLJ7JQaGgR35cE4HVDMQ
- pabkwdqWzd0V1cF7njAjQfzrKD5sCdBJsxxt6fi8jr9skgRoHejXbko/R9d+BjgoD+ha
- Qk9NrYTKnA2RXJ44ItIiDkfuKTYuGvoYZ78oU2RW6G+uKSUEdJLJKye/W8LYEaZXlLLX
- kTzw==
-X-Gm-Message-State: AFqh2kraQ/rLSy3I45oPYeoHhutw65fn0ZA1GwAOVPqXzjuUMoPv07kF
- TBREiO+CxlPFkRKQoElvN4W2IrcmRl2DIRS5aeYj7w==
-X-Google-Smtp-Source: AMrXdXulPTqjnGklVa3vnH/aGMk9K3TaftZdK+rt0VPGq/2xrDU6H8E5IidrAsaVs+N6KSQ0qaBmjuSbcht321x/rAA=
-X-Received: by 2002:a05:6402:414f:b0:49d:f456:7969 with SMTP id
- x15-20020a056402414f00b0049df4567969mr309746eda.329.1673971962345; Tue, 17
- Jan 2023 08:12:42 -0800 (PST)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81D8310E194
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Jan 2023 16:14:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1673972054; x=1705508054;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=gIcREShoz8XYYbmE2wYPNfJbtpJQuPfVxi0qUwA0iJ4=;
+ b=AfMzNLVgdSoj5PANblZDzD6rg+ARWIKIVeqg5aQn0hpbukWRG3RHtsJL
+ bI87i8hQB1yaDkCV8SVmnAEB8PATQbwcuW6cxRChYqteFtO89WK8L8dK4
+ YjXHORqJ9XUAhWWj8fJszPN3koTE3nzXsmuoknbgu016Fb8zHeD/PIW6w
+ H1x/rJXikWnSNPZfzThSD0Uy/qMjrFz6nkhA7jUurI35bipGuanCSVSqk
+ HlCu/97F/EHrAhzfJJ3lONUvlyHoy15KjdUUEKG/uBqk9DAldPzly2EeU
+ 8SJ/+HxOXqha5j0yQheiOdcgIYtprAmw+HDIfMNTeKnq7RGavIeeDGiwK w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="326809097"
+X-IronPort-AV: E=Sophos;i="5.97,224,1669104000"; d="scan'208";a="326809097"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2023 08:14:13 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="801785797"
+X-IronPort-AV: E=Sophos;i="5.97,224,1669104000"; d="scan'208";a="801785797"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga001.fm.intel.com with ESMTP; 17 Jan 2023 08:14:13 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Tue, 17 Jan 2023 08:14:13 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Tue, 17 Jan 2023 08:14:13 -0800
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.172)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Tue, 17 Jan 2023 08:14:13 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fKOHQXSyLJ2G9NIPnV/e0x9qqJcx41AlUleAXHXAtX41aNihHXeacVYQZV9zt0Itw/cBSlbxDxIBs8JBqScbgPHB7Dnjj4I/S2NyAMfiyz7Fi4zQZJ3siU4O76NIuHCTe9OtzXIBxyURZyFagyjzMJAKRgeu0B85ooziHvOdmw+RjDt9mwjPtRH9EfsAWUwbYO3wF8rRxWvrSGI6+aCa//01K4OKIXBVJPPSaW07mwCtGEIFICg7WHZ5RPL0PJKgvZWbHAuVqKld9PWnHYOrQ48HjJk8gCRcfL/PBeQUNoRudfRKrQRWZdrGgDWFxCBq/zpnhycLx0UKSCwJCLlFig==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NJp8g7IxvQhkWYVkeBFSjcpVX9q0ttVpF+XfbZE3Ik4=;
+ b=THwu5UqO/oc6CWLDbK71VN0C9+QEuYgUCP4VGJGbmIqhxuJKW8IlpCav8+JGNtf2uyWvxxxHXA6sRXDaE9apUFQJ/iWWj2e3KKmKX8W/fqPxQ/EYWqO6XuS5sm9HSSLuij5PAB1Y7s41cNN2P2lqOLynBdoUWqH1zdTV4ntI3UXhnymC+QlhiyTymkC6cIdET9Qq+sLHF9t5hLzgr5he6H5+B5tz488tJ1FnqCIs8iAIRPGZBjkM63nIJhsxat00BFxii2gG2/IPfWuI93ldpBP+rdsdPq3BCiivUP3olDPZ3SUukFn7HYArtbFBukQaq9TgNNImSqX02GTTkHJl6Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by IA1PR11MB6394.namprd11.prod.outlook.com (2603:10b6:208:3ad::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.23; Tue, 17 Jan
+ 2023 16:14:09 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::1818:e39d:454d:a930]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::1818:e39d:454d:a930%4]) with mapi id 15.20.5986.018; Tue, 17 Jan 2023
+ 16:14:09 +0000
+Date: Tue, 17 Jan 2023 11:14:05 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <Y8bJTQ4mVUGSvct3@intel.com>
+References: <cover.1673958757.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <cover.1673958757.git.jani.nikula@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0214.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c1::9) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
-References: <20221222222127.34560-1-matthew.brost@intel.com>
-In-Reply-To: <20221222222127.34560-1-matthew.brost@intel.com>
-From: Jason Ekstrand <jason@jlekstrand.net>
-Date: Tue, 17 Jan 2023 10:12:30 -0600
-Message-ID: <CAOFGe96d4BFMhGrBmNhu78VzQTgdwCCAKhe424LbXnBT5R528w@mail.gmail.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Content-Type: multipart/alternative; boundary="0000000000002e13af05f277f8a7"
-Subject: Re: [Intel-gfx] [RFC PATCH 00/20] Initial Xe driver submission
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|IA1PR11MB6394:EE_
+X-MS-Office365-Filtering-Correlation-Id: f6a1e2dc-0488-41f9-5267-08daf8a5dd18
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: CVeIuz+9RWb8AX/pjjV9P4A9D7B65VDYhZRExQL2uEo5Sqv8epiYUp9TUt8WNzI5dCQsOI9w5BOW2DlGVzcC6kzQGujlSk6x4Wwr9Ta/2lR5cI1tq3/60mSOil+273Cop2YsrrjBalzSTyWvwH/jRojE0XGj8rCmzYLQgEWoxZH2eIO04QPGX/eR7l8Eqz3e/09QSlbKng/FesZ8VCHsFcOpJjBwsayXVCGKMs2eq5/STWrEY02y7oOKePVJOjVcHf43MLK2o4LaZVkObDlyhLEvDegjjkQNIYseZxky7TH7+QfHPJWIBFcp5c3KrJcCcROUKCDrq4STiPfZsy9aFj0dlQ/B+AJzybBSMkfVGsmqmB7jyM+WPefxYWjwQx1YiweROR3lugeikUDEsaqpbUJrq6pl6wkLVnqEMUfsw+bk8hRr2nrpYTT3nuTSj/DSqeUBmNt6dxYL5huVkuXmsHxsQM2ZzPwvKNeSObFt+eps5PmagHb5Rz7ClMprbJlQUP4fzsjWM+gzqxJjHqvV0pUsoBovkgmvjv4TAOPjL3XnqNCsDsk4vHOIVho4Ch5ntYDNCUcfdv307oabxapCdkDEF1nBYRVbv95f5sUQQ7aVRjM0ZZlJkxsrUOtZSVlyeIFQi2DW+q8rrFaQ4geLjg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(346002)(136003)(396003)(366004)(376002)(39860400002)(451199015)(86362001)(2906002)(36756003)(6506007)(6666004)(478600001)(2616005)(6486002)(83380400001)(186003)(6512007)(26005)(41300700001)(8676002)(4326008)(66556008)(66946007)(5660300002)(66476007)(38100700002)(6862004)(37006003)(8936002)(44832011)(6636002)(316002)(82960400001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?EcipcGctQ/zC4htcFZczJtBRSqtQHH32DZ69bKyJsWGalCyqnSq5WnW2swAG?=
+ =?us-ascii?Q?IdpPgCfhQBi4/IyMwUV4CYZ50oY0uqFgLTpxGlQlpuhTzgQjFmfvDM8Dtdyr?=
+ =?us-ascii?Q?R2KGa7EAeEVLQdT00KFv+ctRA8cZI32yxw3haYkmQYZcXuL8FR5zJgFAsMDw?=
+ =?us-ascii?Q?CrfmyQukVK3wKQXX5kE6RjBnzvr+FQWb5MEreeOLvpIWJ43IbTUQE3Jdgqr7?=
+ =?us-ascii?Q?dOwTGSYVAP8byYjh9nfnU2jMr7f0uIwUKK/oldwCRV2LnUVIPzP1XR2Tvl4z?=
+ =?us-ascii?Q?qbHxEYblqbx1smyreSe4lvmo2Q4lUg5Sp67YjLZJ3mz1KgojmQhloJhwVp20?=
+ =?us-ascii?Q?xcK+YjRG/UKKVZUmYUwPgr5mt8oa9cc98qEQPJdQZSATdMc4oC8ZuFmqb9CD?=
+ =?us-ascii?Q?QLeF6opoy/rNWVcuNDG9Ufam7T93J7Zmk7R5sGWaZlZtcznXumIp+akGM7nj?=
+ =?us-ascii?Q?wTALCDerqb4etIl6qQkYAtLS+ddXg2RubDorIIp4QX7ku+pPgBT4/AXkyHZX?=
+ =?us-ascii?Q?f2KZAE9KFZn/Oo+xt6Fst7pT1HBTKLGl79R8uXUMz5R7/90qZFJitfaTjFJq?=
+ =?us-ascii?Q?o1EPWNJasaSMj/qSgtwJi0R7JvmF7XOzqnIUIdrhuYvpHXpdtdgd4E5v87uy?=
+ =?us-ascii?Q?GXsHscJVpgQodW4VHPFwmbyYl7QwfbjlUlAAeAmtqBN4BYxjA36k6cTSQdLo?=
+ =?us-ascii?Q?Jhuo4yA6hVRK5fZJQkD7itxAtsNSop7U8fDpnG/EAH5clsfQfRm7jb+gN+3I?=
+ =?us-ascii?Q?QA+WCWUzO52utefOQiRdtWQFT39d62vsM7d+GZutFIo1qQRgk8zxoPKe2vwA?=
+ =?us-ascii?Q?BTMA6balCIl4l0FoUK4X5TZMLIPXZWRKDu6ojoxIZ6IOvxSNOlOCh8lcFKps?=
+ =?us-ascii?Q?umWImW4wiJtljfE+9rvOPRr+grBXOzEuXDxrKZvUPRWRtMZ4mGzX/jzoX0f8?=
+ =?us-ascii?Q?Ox0QqhfDQoQcBubDIRSVw4hi6KfZC2DC5YsrgqzGrRFblpn0nTQUMPBOiJx5?=
+ =?us-ascii?Q?dIQvl10DjSjbzfjCwS66GGo5kzmtgVakDTkMkg6/gMlxbH91GSyvAULRHr/7?=
+ =?us-ascii?Q?XEYSbHq1NVq1QkAbLM96hYCLo8pFElDdfyo0t83eJ0e6QZ8kNNgrmVZ7oBEM?=
+ =?us-ascii?Q?ZUNY7Udz3BsgoFAHvB2/w3LCKlzaaGrEJCz8GxGAEE3+E9e97Qt0kmG3RN0K?=
+ =?us-ascii?Q?ZZOvGCuO2ll8Q9qv+4ltsfVeNQtKavHh+C41YBrJEOFxdXQV0TqA0es4H2ZX?=
+ =?us-ascii?Q?36goftrLIDzlp1EvWt7dIpQeamCFPclD/C0sVgBGaxHWI+5Css6rLk9tXk36?=
+ =?us-ascii?Q?8KhUvs2+PAFFN9/xkM4NPmv2KfuwKW2j7lcFI/SRfE7JaGxi/qFJ9rmYCZl4?=
+ =?us-ascii?Q?900425pJuzNIhMBkn8wEiPiFOji8u7QdbBfGaZYkv7MnvcnwvUiHnbJXHYRK?=
+ =?us-ascii?Q?G4HcAvzVbGmCPVTvEPr6uEq2ZNIJzk4ALL2kGZGjVJpdiOTDMLrj5IPqyST7?=
+ =?us-ascii?Q?c/iSc7aCKC+tC2+ZlHeOQ3Gdi+U6HZUMhfGRhYKZOAMLE300g22WRVIY7BDK?=
+ =?us-ascii?Q?gIOv8GzFIC/Cm3dEqcb9ZTCrJ1vUBcJqBbY92bneI9FAz16ZAjD4+T6Q664C?=
+ =?us-ascii?Q?rQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: f6a1e2dc-0488-41f9-5267-08daf8a5dd18
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jan 2023 16:14:09.6496 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8EiUYj+2DxUW/z5iDtRW7zGJntT5x4no2tylqyfuwcXWcGq5sp0T//R6IIO3zTrqEQLoN1ig3wdyxmy8XGb+gA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6394
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 0/4] drm/i915: GMCH refactoring
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,614 +143,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---0000000000002e13af05f277f8a7
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Tue, Jan 17, 2023 at 02:33:05PM +0200, Jani Nikula wrote:
+> Let's see if this sticks.
 
-On Thu, Dec 22, 2022 at 4:29 PM Matthew Brost <matthew.brost@intel.com>
-wrote:
+Suddenly all of these 'bridge_dev' makes some sense to me.
 
-> Hello,
->
-> This is a submission for Xe, a new driver for Intel GPUs that supports bo=
-th
-> integrated and discrete platforms starting with Tiger Lake (first platfor=
-m
-> with
-> Intel Xe Architecture). The intention of this new driver is to have a
-> fresh base
-> to work from that is unencumbered by older platforms, whilst also taking
-> the
-> opportunity to rearchitect our driver to increase sharing across the drm
-> subsystem, both leveraging and allowing us to contribute more towards oth=
-er
-> shared components like TTM and drm/scheduler. The memory model is based o=
-n
-> VM
-> bind which is similar to the i915 implementation. Likewise the execbuf
-> implementation for Xe is very similar to execbuf3 in the i915 [1].
->
-> The code is at a stage where it is already functional and has experimenta=
-l
-> support for multiple platforms starting from Tiger Lake, with initial
-> support
-> implemented in Mesa (for Iris and Anv, our OpenGL and Vulkan drivers), as
-> well
-> as in NEO (for OpenCL and Level0). A Mesa MR has been posted [2] and NEO
-> implementation will be released publicly early next year. We also have a
-> suite
-> of IGTs for XE that will appear on the IGT list shortly.
->
-> It has been built with the assumption of supporting multiple architecture=
-s
-> from
-> the get-go, right now with tests running both on X86 and ARM hosts. And w=
-e
-> intend to continue working on it and improving on it as part of the kerne=
-l
-> community upstream.
->
-> The new Xe driver leverages a lot from i915 and work on i915 continues as
-> we
-> ready Xe for production throughout 2023.
->
-> As for display, the intent is to share the display code with the i915
-> driver so
-> that there is maximum reuse there. Currently this is being done by
-> compiling the
-> display code twice, but alternatives to that are under consideration and
-> we want
-> to have more discussion on what the best final solution will look like
-> over the
-> next few months. Right now, work is ongoing in refactoring the display
-> codebase
-> to remove as much as possible any unnecessary dependencies on i915
-> specific data
-> structures there..
->
-> We currently have 2 submission backends, execlists and GuC. The execlist =
-is
-> meant mostly for testing and is not fully functional while GuC backend is
-> fully
-> functional. As with the i915 and GuC submission, in Xe the GuC firmware i=
-s
-> required and should be placed in /lib/firmware/xe.
->
-> The GuC firmware can be found in the below location:
->
-> https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.g=
-it/tree/i915
->
-> The easiest way to setup firmware is:
-> cp -r /lib/firmware/i915 /lib/firmware/xe
->
-> The code has been organized such that we have all patches that touch area=
-s
-> outside of drm/xe first for review, and then the actual new driver in a
-> separate
-> commit. The code which is outside of drm/xe is included in this RFC while
-> drm/xe is not due to the size of the commit. The drm/xe is code is
-> available in
-> a public repo listed below.
->
-> Xe driver commit:
->
-> https://cgit.freedesktop.org/drm/drm-xe/commit/?h=3Ddrm-xe-next&id=3D9cb0=
-16ebbb6a275f57b1cb512b95d5a842391ad7
+I believe we could enjoy the refactor here and add some documentation
+about this... at least the name Graphics Memory Controller Hub name...
+
+I also wonder if we should make this a child device now that it is
+really organized...
+
+But anyway, everything can be a follow up, the current refactor
+is already a very good clean up step, so for the series:
 
 
-Drive-by comment here because I don't see any actual xe patches on the list=
-:
-
-You probably want to drop DRM_XE_SYNC_DMA_BUF from the uAPI.  Now that
-we've landed the new dma-buf ioctls for sync_file import/export, there's
-really no reason to have it as part of submit.  Dropping it should also
-make locking a tiny bit easier.
-
---Jason
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
 
-
-> Xe kernel repo:
-> https://cgit.freedesktop.org/drm/drm-xe/
->
-> There's a lot of work still to happen on Xe but we're very excited about
-> it and
-> wanted to share it early and welcome feedback and discussion.
->
-> Cheers,
-> Matthew Brost
->
-> [1] https://patchwork.freedesktop.org/series/105879/
-> [2] https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/20418
->
-> Maarten Lankhorst (12):
->   drm/amd: Convert amdgpu to use suballocation helper.
->   drm/radeon: Use the drm suballocation manager implementation.
->   drm/i915: Remove gem and overlay frontbuffer tracking
->   drm/i915/display: Neuter frontbuffer tracking harder
->   drm/i915/display: Add more macros to remove all direct calls to uncore
->   drm/i915/display: Remove all uncore mmio accesses in favor of intel_de
->   drm/i915: Rename find_section to find_bdb_section
->   drm/i915/regs: Set DISPLAY_MMIO_BASE to 0 for xe
->   drm/i915/display: Fix a use-after-free when intel_edp_init_connector
->     fails
->   drm/i915/display: Remaining changes to make xe compile
->   sound/hda: Allow XE as i915 replacement for sound
->   mei/hdcp: Also enable for XE
->
-> Matthew Brost (5):
->   drm/sched: Convert drm scheduler to use a work queue rather than
->     kthread
->   drm/sched: Add generic scheduler message interface
->   drm/sched: Start run wq before TDR in drm_sched_start
->   drm/sched: Submit job before starting TDR
->   drm/sched: Add helper to set TDR timeout
->
-> Thomas Hellstr=C3=B6m (3):
->   drm/suballoc: Introduce a generic suballocation manager
->   drm: Add a gpu page-table walker helper
->   drm/ttm: Don't print error message if eviction was interrupted
->
->  drivers/gpu/drm/Kconfig                       |   5 +
->  drivers/gpu/drm/Makefile                      |   4 +
->  drivers/gpu/drm/amd/amdgpu/Kconfig            |   1 +
->  drivers/gpu/drm/amd/amdgpu/amdgpu.h           |  26 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c   |  14 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    |  12 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c        |   5 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_object.h    |  23 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h      |   3 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_sa.c        | 320 +-----------------
->  drivers/gpu/drm/drm_pt_walk.c                 | 159 +++++++++
->  drivers/gpu/drm/drm_suballoc.c                | 301 ++++++++++++++++
->  drivers/gpu/drm/i915/Makefile                 |   2 +-
->  drivers/gpu/drm/i915/display/hsw_ips.c        |   7 +-
->  drivers/gpu/drm/i915/display/i9xx_plane.c     |   1 +
->  drivers/gpu/drm/i915/display/intel_atomic.c   |   2 +
->  .../gpu/drm/i915/display/intel_atomic_plane.c |  25 +-
->  .../gpu/drm/i915/display/intel_backlight.c    |   2 +-
->  drivers/gpu/drm/i915/display/intel_bios.c     |  71 ++--
->  drivers/gpu/drm/i915/display/intel_bw.c       |  36 +-
->  drivers/gpu/drm/i915/display/intel_cdclk.c    |  68 ++--
->  drivers/gpu/drm/i915/display/intel_color.c    |   1 +
->  drivers/gpu/drm/i915/display/intel_crtc.c     |  14 +-
->  drivers/gpu/drm/i915/display/intel_cursor.c   |  14 +-
->  drivers/gpu/drm/i915/display/intel_de.h       |  38 +++
->  drivers/gpu/drm/i915/display/intel_display.c  | 155 +++++++--
->  drivers/gpu/drm/i915/display/intel_display.h  |   9 +-
->  .../gpu/drm/i915/display/intel_display_core.h |   5 +-
->  .../drm/i915/display/intel_display_debugfs.c  |   8 +
->  .../drm/i915/display/intel_display_power.c    |  40 ++-
->  .../drm/i915/display/intel_display_power.h    |   6 +
->  .../i915/display/intel_display_power_map.c    |   7 +
->  .../i915/display/intel_display_power_well.c   |  24 +-
->  .../drm/i915/display/intel_display_reg_defs.h |   4 +
->  .../drm/i915/display/intel_display_trace.h    |   6 +
->  .../drm/i915/display/intel_display_types.h    |  32 +-
->  drivers/gpu/drm/i915/display/intel_dmc.c      |  17 +-
->  drivers/gpu/drm/i915/display/intel_dp.c       |  11 +-
->  drivers/gpu/drm/i915/display/intel_dp_aux.c   |   6 +
->  drivers/gpu/drm/i915/display/intel_dpio_phy.c |   9 +-
->  drivers/gpu/drm/i915/display/intel_dpio_phy.h |  15 +
->  drivers/gpu/drm/i915/display/intel_dpll.c     |   8 +-
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c |   4 +
->  drivers/gpu/drm/i915/display/intel_drrs.c     |   1 +
->  drivers/gpu/drm/i915/display/intel_dsb.c      | 124 +++++--
->  drivers/gpu/drm/i915/display/intel_dsi_vbt.c  |  26 +-
->  drivers/gpu/drm/i915/display/intel_fb.c       | 108 ++++--
->  drivers/gpu/drm/i915/display/intel_fb_pin.c   |   6 -
->  drivers/gpu/drm/i915/display/intel_fbc.c      |  49 ++-
->  drivers/gpu/drm/i915/display/intel_fbdev.c    | 108 +++++-
->  .../gpu/drm/i915/display/intel_frontbuffer.c  | 103 +-----
->  .../gpu/drm/i915/display/intel_frontbuffer.h  |  67 +---
->  drivers/gpu/drm/i915/display/intel_gmbus.c    |   2 +-
->  drivers/gpu/drm/i915/display/intel_hdcp.c     |   9 +-
->  drivers/gpu/drm/i915/display/intel_hdmi.c     |   1 -
->  .../gpu/drm/i915/display/intel_lpe_audio.h    |   8 +
->  .../drm/i915/display/intel_modeset_setup.c    |  11 +-
->  drivers/gpu/drm/i915/display/intel_opregion.c |   2 +-
->  drivers/gpu/drm/i915/display/intel_overlay.c  |  14 -
->  .../gpu/drm/i915/display/intel_pch_display.h  |  16 +
->  .../gpu/drm/i915/display/intel_pch_refclk.h   |   8 +
->  drivers/gpu/drm/i915/display/intel_pipe_crc.c |   1 +
->  .../drm/i915/display/intel_plane_initial.c    |   3 +-
->  drivers/gpu/drm/i915/display/intel_psr.c      |   1 +
->  drivers/gpu/drm/i915/display/intel_sprite.c   |  21 ++
->  drivers/gpu/drm/i915/display/intel_vbt_defs.h |   2 +-
->  drivers/gpu/drm/i915/display/intel_vga.c      |   5 +
->  drivers/gpu/drm/i915/display/skl_scaler.c     |   2 +
->  .../drm/i915/display/skl_universal_plane.c    |  52 ++-
->  drivers/gpu/drm/i915/display/skl_watermark.c  |  25 +-
->  drivers/gpu/drm/i915/gem/i915_gem_clflush.c   |   4 -
->  drivers/gpu/drm/i915/gem/i915_gem_domain.c    |   7 -
->  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |   2 -
->  drivers/gpu/drm/i915/gem/i915_gem_object.c    |  25 --
->  drivers/gpu/drm/i915/gem/i915_gem_object.h    |  22 --
->  drivers/gpu/drm/i915/gem/i915_gem_phys.c      |   4 -
->  drivers/gpu/drm/i915/gt/intel_gt_regs.h       |   3 +-
->  drivers/gpu/drm/i915/i915_driver.c            |   1 +
->  drivers/gpu/drm/i915/i915_gem.c               |   8 -
->  drivers/gpu/drm/i915/i915_gem_gtt.c           |   1 -
->  drivers/gpu/drm/i915/i915_reg_defs.h          |   8 +
->  drivers/gpu/drm/i915/i915_vma.c               |  12 -
->  drivers/gpu/drm/radeon/radeon.h               |  55 +--
->  drivers/gpu/drm/radeon/radeon_ib.c            |  12 +-
->  drivers/gpu/drm/radeon/radeon_object.h        |  25 +-
->  drivers/gpu/drm/radeon/radeon_sa.c            | 314 ++---------------
->  drivers/gpu/drm/radeon/radeon_semaphore.c     |   6 +-
->  drivers/gpu/drm/scheduler/sched_main.c        | 182 +++++++---
->  drivers/gpu/drm/ttm/ttm_bo.c                  |   3 +-
->  drivers/misc/mei/hdcp/Kconfig                 |   2 +-
->  drivers/misc/mei/hdcp/mei_hdcp.c              |   3 +-
->  include/drm/drm_pt_walk.h                     | 161 +++++++++
->  include/drm/drm_suballoc.h                    | 112 ++++++
->  include/drm/gpu_scheduler.h                   |  41 ++-
->  sound/hda/hdac_i915.c                         |  17 +-
->  sound/pci/hda/hda_intel.c                     |  56 +--
->  sound/soc/intel/avs/core.c                    |  13 +-
->  sound/soc/sof/intel/hda.c                     |   7 +-
->  98 files changed, 2076 insertions(+), 1325 deletions(-)
->  create mode 100644 drivers/gpu/drm/drm_pt_walk.c
->  create mode 100644 drivers/gpu/drm/drm_suballoc.c
->  create mode 100644 include/drm/drm_pt_walk.h
->  create mode 100644 include/drm/drm_suballoc.h
->
-> --
-> 2.37.3
->
->
-
---0000000000002e13af05f277f8a7
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Thu, Dec 22, 2022 at 4:29 PM Matthew Brost &lt;<a href=3D"mailto:=
-matthew.brost@intel.com">matthew.brost@intel.com</a>&gt; wrote:<br></div><b=
-lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
-ft:1px solid rgb(204,204,204);padding-left:1ex">Hello,<br>
-<br>
-This is a submission for Xe, a new driver for Intel GPUs that supports both=
-<br>
-integrated and discrete platforms starting with Tiger Lake (first platform =
-with<br>
-Intel Xe Architecture). The intention of this new driver is to have a fresh=
- base<br>
-to work from that is unencumbered by older platforms, whilst also taking th=
-e<br>
-opportunity to rearchitect our driver to increase sharing across the drm<br=
->
-subsystem, both leveraging and allowing us to contribute more towards other=
-<br>
-shared components like TTM and drm/scheduler. The memory model is based on =
-VM<br>
-bind which is similar to the i915 implementation. Likewise the execbuf<br>
-implementation for Xe is very similar to execbuf3 in the i915 [1].<br>
-<br>
-The code is at a stage where it is already functional and has experimental<=
-br>
-support for multiple platforms starting from Tiger Lake, with initial suppo=
-rt<br>
-implemented in Mesa (for Iris and Anv, our OpenGL and Vulkan drivers), as w=
-ell<br>
-as in NEO (for OpenCL and Level0). A Mesa MR has been posted [2] and NEO<br=
->
-implementation will be released publicly early next year. We also have a su=
-ite<br>
-of IGTs for XE that will appear on the IGT list shortly.<br>
-<br>
-It has been built with the assumption of supporting multiple architectures =
-from<br>
-the get-go, right now with tests running both on X86 and ARM hosts. And we<=
-br>
-intend to continue working on it and improving on it as part of the kernel<=
-br>
-community upstream.<br>
-<br>
-The new Xe driver leverages a lot from i915 and work on i915 continues as w=
-e<br>
-ready Xe for production throughout 2023.<br>
-<br>
-As for display, the intent is to share the display code with the i915 drive=
-r so<br>
-that there is maximum reuse there. Currently this is being done by compilin=
-g the<br>
-display code twice, but alternatives to that are under consideration and we=
- want<br>
-to have more discussion on what the best final solution will look like over=
- the<br>
-next few months. Right now, work is ongoing in refactoring the display code=
-base<br>
-to remove as much as possible any unnecessary dependencies on i915 specific=
- data<br>
-structures there..<br>
-<br>
-We currently have 2 submission backends, execlists and GuC. The execlist is=
-<br>
-meant mostly for testing and is not fully functional while GuC backend is f=
-ully<br>
-functional. As with the i915 and GuC submission, in Xe the GuC firmware is<=
-br>
-required and should be placed in /lib/firmware/xe.<br>
-<br>
-The GuC firmware can be found in the below location:<br>
-<a href=3D"https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-f=
-irmware.git/tree/i915" rel=3D"noreferrer" target=3D"_blank">https://git.ker=
-nel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/i915</a><=
-br>
-<br>
-The easiest way to setup firmware is:<br>
-cp -r /lib/firmware/i915 /lib/firmware/xe<br>
-<br>
-The code has been organized such that we have all patches that touch areas<=
-br>
-outside of drm/xe first for review, and then the actual new driver in a sep=
-arate<br>
-commit. The code which is outside of drm/xe is included in this RFC while<b=
-r>
-drm/xe is not due to the size of the commit. The drm/xe is code is availabl=
-e in<br>
-a public repo listed below.<br>
-<br>
-Xe driver commit:<br>
-<a href=3D"https://cgit.freedesktop.org/drm/drm-xe/commit/?h=3Ddrm-xe-next&=
-amp;id=3D9cb016ebbb6a275f57b1cb512b95d5a842391ad7" rel=3D"noreferrer" targe=
-t=3D"_blank">https://cgit.freedesktop.org/drm/drm-xe/commit/?h=3Ddrm-xe-nex=
-t&amp;id=3D9cb016ebbb6a275f57b1cb512b95d5a842391ad7</a></blockquote><div><b=
-r></div><div>Drive-by comment here because I don&#39;t see any actual xe pa=
-tches on the list:</div><div><br></div><div>You probably want to drop DRM_X=
-E_SYNC_DMA_BUF from the uAPI.=C2=A0 Now that we&#39;ve landed the new dma-b=
-uf ioctls for sync_file import/export, there&#39;s really no reason to have=
- it as part of submit.=C2=A0 Dropping it should also make locking a tiny bi=
-t easier.</div><div><br></div><div>--Jason</div><div><br></div><div>=C2=A0<=
-br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
-x;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-Xe kernel repo:<br>
-<a href=3D"https://cgit.freedesktop.org/drm/drm-xe/" rel=3D"noreferrer" tar=
-get=3D"_blank">https://cgit.freedesktop.org/drm/drm-xe/</a><br>
-<br>
-There&#39;s a lot of work still to happen on Xe but we&#39;re very excited =
-about it and<br>
-wanted to share it early and welcome feedback and discussion.<br>
-<br>
-Cheers,<br>
-Matthew Brost<br>
-<br>
-[1] <a href=3D"https://patchwork.freedesktop.org/series/105879/" rel=3D"nor=
-eferrer" target=3D"_blank">https://patchwork.freedesktop.org/series/105879/=
-</a><br>
-[2] <a href=3D"https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/20=
-418" rel=3D"noreferrer" target=3D"_blank">https://gitlab.freedesktop.org/me=
-sa/mesa/-/merge_requests/20418</a><br>
-<br>
-Maarten Lankhorst (12):<br>
-=C2=A0 drm/amd: Convert amdgpu to use suballocation helper.<br>
-=C2=A0 drm/radeon: Use the drm suballocation manager implementation.<br>
-=C2=A0 drm/i915: Remove gem and overlay frontbuffer tracking<br>
-=C2=A0 drm/i915/display: Neuter frontbuffer tracking harder<br>
-=C2=A0 drm/i915/display: Add more macros to remove all direct calls to unco=
-re<br>
-=C2=A0 drm/i915/display: Remove all uncore mmio accesses in favor of intel_=
-de<br>
-=C2=A0 drm/i915: Rename find_section to find_bdb_section<br>
-=C2=A0 drm/i915/regs: Set DISPLAY_MMIO_BASE to 0 for xe<br>
-=C2=A0 drm/i915/display: Fix a use-after-free when intel_edp_init_connector=
-<br>
-=C2=A0 =C2=A0 fails<br>
-=C2=A0 drm/i915/display: Remaining changes to make xe compile<br>
-=C2=A0 sound/hda: Allow XE as i915 replacement for sound<br>
-=C2=A0 mei/hdcp: Also enable for XE<br>
-<br>
-Matthew Brost (5):<br>
-=C2=A0 drm/sched: Convert drm scheduler to use a work queue rather than<br>
-=C2=A0 =C2=A0 kthread<br>
-=C2=A0 drm/sched: Add generic scheduler message interface<br>
-=C2=A0 drm/sched: Start run wq before TDR in drm_sched_start<br>
-=C2=A0 drm/sched: Submit job before starting TDR<br>
-=C2=A0 drm/sched: Add helper to set TDR timeout<br>
-<br>
-Thomas Hellstr=C3=B6m (3):<br>
-=C2=A0 drm/suballoc: Introduce a generic suballocation manager<br>
-=C2=A0 drm: Add a gpu page-table walker helper<br>
-=C2=A0 drm/ttm: Don&#39;t print error message if eviction was interrupted<b=
-r>
-<br>
-=C2=A0drivers/gpu/drm/Kconfig=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A05 +<br>
-=C2=A0drivers/gpu/drm/Makefile=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=A0 =C2=A04 +<br>
-=C2=A0drivers/gpu/drm/amd/amdgpu/Kconfig=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 |=C2=A0 =C2=A01 +<br>
-=C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu.h=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0|=C2=A0 26 +-<br>
-=C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c=C2=A0 =C2=A0|=C2=A0 14 +-=
-<br>
-=C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_device.c=C2=A0 =C2=A0 |=C2=A0 12 +-=
-<br>
-=C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 |=
-=C2=A0 =C2=A05 +-<br>
-=C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_object.h=C2=A0 =C2=A0 |=C2=A0 23 +-=
-<br>
-=C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h=C2=A0 =C2=A0 =C2=A0 |=C2=A0 =
-=C2=A03 +-<br>
-=C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_sa.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 | 3=
-20 +-----------------<br>
-=C2=A0drivers/gpu/drm/drm_pt_walk.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0| 159 +++++++++<br>
-=C2=A0drivers/gpu/drm/drm_suballoc.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 | 301 ++++++++++++++++<br>
-=C2=A0drivers/gpu/drm/i915/Makefile=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A02 +-<br>
-=C2=A0drivers/gpu/drm/i915/display/hsw_ips.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 |=
-=C2=A0 =C2=A07 +-<br>
-=C2=A0drivers/gpu/drm/i915/display/i9xx_plane.c=C2=A0 =C2=A0 =C2=A0|=C2=A0 =
-=C2=A01 +<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_atomic.c=C2=A0 =C2=A0|=C2=A0 =C2=
-=A02 +<br>
-=C2=A0.../gpu/drm/i915/display/intel_atomic_plane.c |=C2=A0 25 +-<br>
-=C2=A0.../gpu/drm/i915/display/intel_backlight.c=C2=A0 =C2=A0 |=C2=A0 =C2=
-=A02 +-<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_bios.c=C2=A0 =C2=A0 =C2=A0|=C2=A0 =
-71 ++--<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_bw.c=C2=A0 =C2=A0 =C2=A0 =C2=A0|=
-=C2=A0 36 +-<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_cdclk.c=C2=A0 =C2=A0 |=C2=A0 68 ++=
---<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_color.c=C2=A0 =C2=A0 |=C2=A0 =C2=
-=A01 +<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_crtc.c=C2=A0 =C2=A0 =C2=A0|=C2=A0 =
-14 +-<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_cursor.c=C2=A0 =C2=A0|=C2=A0 14 +-=
-<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_de.h=C2=A0 =C2=A0 =C2=A0 =C2=A0|=
-=C2=A0 38 +++<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_display.c=C2=A0 | 155 +++++++--<br=
->
-=C2=A0drivers/gpu/drm/i915/display/intel_display.h=C2=A0 |=C2=A0 =C2=A09 +-=
-<br>
-=C2=A0.../gpu/drm/i915/display/intel_display_core.h |=C2=A0 =C2=A05 +-<br>
-=C2=A0.../drm/i915/display/intel_display_debugfs.c=C2=A0 |=C2=A0 =C2=A08 +<=
-br>
-=C2=A0.../drm/i915/display/intel_display_power.c=C2=A0 =C2=A0 |=C2=A0 40 ++=
--<br>
-=C2=A0.../drm/i915/display/intel_display_power.h=C2=A0 =C2=A0 |=C2=A0 =C2=
-=A06 +<br>
-=C2=A0.../i915/display/intel_display_power_map.c=C2=A0 =C2=A0 |=C2=A0 =C2=
-=A07 +<br>
-=C2=A0.../i915/display/intel_display_power_well.c=C2=A0 =C2=A0|=C2=A0 24 +-=
-<br>
-=C2=A0.../drm/i915/display/intel_display_reg_defs.h |=C2=A0 =C2=A04 +<br>
-=C2=A0.../drm/i915/display/intel_display_trace.h=C2=A0 =C2=A0 |=C2=A0 =C2=
-=A06 +<br>
-=C2=A0.../drm/i915/display/intel_display_types.h=C2=A0 =C2=A0 |=C2=A0 32 +-=
-<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_dmc.c=C2=A0 =C2=A0 =C2=A0 |=C2=A0 =
-17 +-<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_dp.c=C2=A0 =C2=A0 =C2=A0 =C2=A0|=
-=C2=A0 11 +-<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_dp_aux.c=C2=A0 =C2=A0|=C2=A0 =C2=
-=A06 +<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_dpio_phy.c |=C2=A0 =C2=A09 +-<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_dpio_phy.h |=C2=A0 15 +<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_dpll.c=C2=A0 =C2=A0 =C2=A0|=C2=A0 =
-=C2=A08 +-<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_dpll_mgr.c |=C2=A0 =C2=A04 +<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_drrs.c=C2=A0 =C2=A0 =C2=A0|=C2=A0 =
-=C2=A01 +<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_dsb.c=C2=A0 =C2=A0 =C2=A0 | 124 ++=
-+++--<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_dsi_vbt.c=C2=A0 |=C2=A0 26 +-<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_fb.c=C2=A0 =C2=A0 =C2=A0 =C2=A0| 1=
-08 ++++--<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_fb_pin.c=C2=A0 =C2=A0|=C2=A0 =C2=
-=A06 -<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_fbc.c=C2=A0 =C2=A0 =C2=A0 |=C2=A0 =
-49 ++-<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_fbdev.c=C2=A0 =C2=A0 | 108 +++++-<=
-br>
-=C2=A0.../gpu/drm/i915/display/intel_frontbuffer.c=C2=A0 | 103 +-----<br>
-=C2=A0.../gpu/drm/i915/display/intel_frontbuffer.h=C2=A0 |=C2=A0 67 +---<br=
->
-=C2=A0drivers/gpu/drm/i915/display/intel_gmbus.c=C2=A0 =C2=A0 |=C2=A0 =C2=
-=A02 +-<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_hdcp.c=C2=A0 =C2=A0 =C2=A0|=C2=A0 =
-=C2=A09 +-<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_hdmi.c=C2=A0 =C2=A0 =C2=A0|=C2=A0 =
-=C2=A01 -<br>
-=C2=A0.../gpu/drm/i915/display/intel_lpe_audio.h=C2=A0 =C2=A0 |=C2=A0 =C2=
-=A08 +<br>
-=C2=A0.../drm/i915/display/intel_modeset_setup.c=C2=A0 =C2=A0 |=C2=A0 11 +-=
-<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_opregion.c |=C2=A0 =C2=A02 +-<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_overlay.c=C2=A0 |=C2=A0 14 -<br>
-=C2=A0.../gpu/drm/i915/display/intel_pch_display.h=C2=A0 |=C2=A0 16 +<br>
-=C2=A0.../gpu/drm/i915/display/intel_pch_refclk.h=C2=A0 =C2=A0|=C2=A0 =C2=
-=A08 +<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_pipe_crc.c |=C2=A0 =C2=A01 +<br>
-=C2=A0.../drm/i915/display/intel_plane_initial.c=C2=A0 =C2=A0 |=C2=A0 =C2=
-=A03 +-<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_psr.c=C2=A0 =C2=A0 =C2=A0 |=C2=A0 =
-=C2=A01 +<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_sprite.c=C2=A0 =C2=A0|=C2=A0 21 ++=
-<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_vbt_defs.h |=C2=A0 =C2=A02 +-<br>
-=C2=A0drivers/gpu/drm/i915/display/intel_vga.c=C2=A0 =C2=A0 =C2=A0 |=C2=A0 =
-=C2=A05 +<br>
-=C2=A0drivers/gpu/drm/i915/display/skl_scaler.c=C2=A0 =C2=A0 =C2=A0|=C2=A0 =
-=C2=A02 +<br>
-=C2=A0.../drm/i915/display/skl_universal_plane.c=C2=A0 =C2=A0 |=C2=A0 52 ++=
--<br>
-=C2=A0drivers/gpu/drm/i915/display/skl_watermark.c=C2=A0 |=C2=A0 25 +-<br>
-=C2=A0drivers/gpu/drm/i915/gem/i915_gem_clflush.c=C2=A0 =C2=A0|=C2=A0 =C2=
-=A04 -<br>
-=C2=A0drivers/gpu/drm/i915/gem/i915_gem_domain.c=C2=A0 =C2=A0 |=C2=A0 =C2=
-=A07 -<br>
-=C2=A0.../gpu/drm/i915/gem/i915_gem_execbuffer.c=C2=A0 =C2=A0 |=C2=A0 =C2=
-=A02 -<br>
-=C2=A0drivers/gpu/drm/i915/gem/i915_gem_object.c=C2=A0 =C2=A0 |=C2=A0 25 --=
-<br>
-=C2=A0drivers/gpu/drm/i915/gem/i915_gem_object.h=C2=A0 =C2=A0 |=C2=A0 22 --=
-<br>
-=C2=A0drivers/gpu/drm/i915/gem/i915_gem_phys.c=C2=A0 =C2=A0 =C2=A0 |=C2=A0 =
-=C2=A04 -<br>
-=C2=A0drivers/gpu/drm/i915/gt/intel_gt_regs.h=C2=A0 =C2=A0 =C2=A0 =C2=A0|=
-=C2=A0 =C2=A03 +-<br>
-=C2=A0drivers/gpu/drm/i915/i915_driver.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 |=C2=A0 =C2=A01 +<br>
-=C2=A0drivers/gpu/drm/i915/i915_gem.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A08 -<br>
-=C2=A0drivers/gpu/drm/i915/i915_gem_gtt.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0|=C2=A0 =C2=A01 -<br>
-=C2=A0drivers/gpu/drm/i915/i915_reg_defs.h=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 |=C2=A0 =C2=A08 +<br>
-=C2=A0drivers/gpu/drm/i915/i915_vma.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0|=C2=A0 12 -<br>
-=C2=A0drivers/gpu/drm/radeon/radeon.h=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0|=C2=A0 55 +--<br>
-=C2=A0drivers/gpu/drm/radeon/radeon_ib.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 |=C2=A0 12 +-<br>
-=C2=A0drivers/gpu/drm/radeon/radeon_object.h=C2=A0 =C2=A0 =C2=A0 =C2=A0 |=
-=C2=A0 25 +-<br>
-=C2=A0drivers/gpu/drm/radeon/radeon_sa.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 | 314 ++---------------<br>
-=C2=A0drivers/gpu/drm/radeon/radeon_semaphore.c=C2=A0 =C2=A0 =C2=A0|=C2=A0 =
-=C2=A06 +-<br>
-=C2=A0drivers/gpu/drm/scheduler/sched_main.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 | 1=
-82 +++++++---<br>
-=C2=A0drivers/gpu/drm/ttm/ttm_bo.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 |=C2=A0 =C2=A03 +-<br>
-=C2=A0drivers/misc/mei/hdcp/Kconfig=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A02 +-<br>
-=C2=A0drivers/misc/mei/hdcp/mei_hdcp.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 |=C2=A0 =C2=A03 +-<br>
-=C2=A0include/drm/drm_pt_walk.h=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 161 +++++++++<br>
-=C2=A0include/drm/drm_suballoc.h=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 | 112 ++++++<br>
-=C2=A0include/drm/gpu_scheduler.h=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 41 ++-<br>
-=C2=A0sound/hda/hdac_i915.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 17 +-<br>
-=C2=A0sound/pci/hda/hda_intel.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 56 +--<br>
-=C2=A0sound/soc/intel/avs/core.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=A0 13 +-<br>
-=C2=A0sound/soc/sof/intel/hda.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A07 +-<br>
-=C2=A098 files changed, 2076 insertions(+), 1325 deletions(-)<br>
-=C2=A0create mode 100644 drivers/gpu/drm/drm_pt_walk.c<br>
-=C2=A0create mode 100644 drivers/gpu/drm/drm_suballoc.c<br>
-=C2=A0create mode 100644 include/drm/drm_pt_walk.h<br>
-=C2=A0create mode 100644 include/drm/drm_suballoc.h<br>
-<br>
--- <br>
-2.37.3<br>
-<br>
-</blockquote></div></div>
-
---0000000000002e13af05f277f8a7--
+> 
+> Jani Nikula (4):
+>   drm/i915: add gmch substruct to struct drm_i915_private
+>   drm/i915/gmch: split out soc/intel_gmch
+>   drm/i915/gmch: mass rename dev_priv to i915
+>   drm/i915/gmch: move VGA set state to GMCH code
+> 
+>  drivers/gpu/drm/i915/Makefile             |   1 +
+>  drivers/gpu/drm/i915/display/intel_vga.c  |  32 +---
+>  drivers/gpu/drm/i915/gt/intel_ggtt_gmch.c |   2 +-
+>  drivers/gpu/drm/i915/i915_driver.c        | 145 +-----------------
+>  drivers/gpu/drm/i915/i915_drv.h           |  10 +-
+>  drivers/gpu/drm/i915/soc/intel_gmch.c     | 171 ++++++++++++++++++++++
+>  drivers/gpu/drm/i915/soc/intel_gmch.h     |  18 +++
+>  7 files changed, 204 insertions(+), 175 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/soc/intel_gmch.c
+>  create mode 100644 drivers/gpu/drm/i915/soc/intel_gmch.h
+> 
+> -- 
+> 2.34.1
+> 
