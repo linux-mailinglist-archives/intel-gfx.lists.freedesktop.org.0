@@ -1,57 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90C9166E385
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Jan 2023 17:25:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6910566E3BD
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Jan 2023 17:38:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2BA310E1A1;
-	Tue, 17 Jan 2023 16:25:39 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D9F010E1B3;
- Tue, 17 Jan 2023 16:25:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673972737; x=1705508737;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=HxFIc/F4tODmGWHQvVFrU/McHRhB0/99ZlsYIwoeLug=;
- b=Zm7qUylfsx5griY8YzThxM32K11zvvoDEfu2azG7QY3Oj+w2QyLhKitp
- ejIeaPNpiggmYVXpQ5mySVVgGOYg1fFPkytHNU4oVfPqVj9vQgK8x2NtX
- JT3XBVrohK0pBbOQ9x3+vIka73CL+G+yP5HI5EpkNjgs961Pl5bSRHYUK
- 0v6WSuNKAFc7u1kTvTXWpka6zFjvKerGI/8RxveBN/k/xcQ2/nUN0O+4l
- YLtYbZkZClndfk6v/WLe3a8Z6DGgeax1okNE2zXKzbsUL7D3b3AP3BCxE
- WlZo+Yp4G1VfdZ4vNBkY6YF5LE/3V8LTkYC6zQl5fioPjck0DY+nCmX0m g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="410977287"
-X-IronPort-AV: E=Sophos;i="5.97,224,1669104000"; d="scan'208";a="410977287"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2023 08:25:15 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="833230009"
-X-IronPort-AV: E=Sophos;i="5.97,224,1669104000"; d="scan'208";a="833230009"
-Received: from rdaly-mobl.ger.corp.intel.com (HELO [10.213.212.83])
- ([10.213.212.83])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2023 08:25:11 -0800
-Message-ID: <db60bb1d-51b6-6830-5a4c-100ba38a2dbc@linux.intel.com>
-Date: Tue, 17 Jan 2023 16:25:09 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0ED4710E1B3;
+	Tue, 17 Jan 2023 16:37:55 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC63110E1A2;
+ Tue, 17 Jan 2023 16:37:51 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 99D18B815E9;
+ Tue, 17 Jan 2023 16:37:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6253C433D2;
+ Tue, 17 Jan 2023 16:37:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1673973469;
+ bh=eW6//3cViUuJfCKFm7UUOh5i0BW9IwBnC51sdT2hYj4=;
+ h=From:To:Cc:Subject:Date:From;
+ b=uOEqgQbh+YGTEHnq3WnnzljRLzzHKWAdHf9R8kD9AgfcQvtZcVr8dSl7NgEzcffJR
+ ppjbOgDJARB8Gd6orJYPTBgDVI+30vEM0QLtW/Eh1niGNoMF+JLUc0adNFLC9KeIC/
+ NXbncMuURU5FhjdtfBkcn9t55Qmfw+mUu0ZFFBsRX9Tqjt7D4Du5MWG5bDnJ3M2DaQ
+ PcNP2uFNO/YNsC87NoG1lMG4Au3JeBw0nL3oEpwklhOaE1rdiEhhLAl+QjBH84CHSb
+ sIMC4Cw5gfC3D59JC+OGZ2zUwQyDLjbh0UyZxgX0+6MGG3hKADBz7EKd4H78lBEzwH
+ foY8mSuQ/oToQ==
+From: Arnd Bergmann <arnd@kernel.org>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Date: Tue, 17 Jan 2023 17:37:29 +0100
+Message-Id: <20230117163743.1003219-1-arnd@kernel.org>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Content-Language: en-US
-To: Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>
-References: <20230112165609.1083270-1-tvrtko.ursulin@linux.intel.com>
- <20230112165609.1083270-5-tvrtko.ursulin@linux.intel.com>
- <20230117160311.GA15842@linux.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20230117160311.GA15842@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [RFC 04/12] drm/cgroup: Track clients per owning
- process
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/selftest: fix
+ intel_selftest_modify_policy argument types
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,71 +53,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>, cgroups@vger.kernel.org,
- Dave Airlie <airlied@redhat.com>, Kenny.Ho@amd.com,
- Intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, "T . J . Mercier" <tjmercier@google.com>,
- Johannes Weiner <hannes@cmpxchg.org>, Zefan Li <lizefan.x@bytedance.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, Tejun Heo <tj@kernel.org>,
- =?UTF-8?Q?St=c3=a9phane_Marchesin?= <marcheu@chromium.org>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Cc: Arnd Bergmann <arnd@arndb.de>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+From: Arnd Bergmann <arnd@arndb.de>
 
-On 17/01/2023 16:03, Stanislaw Gruszka wrote:
-> Hi
-> 
-> On Thu, Jan 12, 2023 at 04:56:01PM +0000, Tvrtko Ursulin wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> To enable propagation of settings from the cgroup drm controller to drm we
->> need to start tracking which processes own which drm clients.
->>
->> Implement that by tracking the struct pid pointer of the owning process in
->> a new XArray, pointing to a structure containing a list of associated
->> struct drm_file pointers.
->>
->> Clients are added and removed under the filelist mutex and RCU list
->> operations are used below it to allow for lockless lookup.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> <snip>
-> 
->> +int drm_clients_open(struct drm_file *file_priv)
->> +{
->> +	struct drm_device *dev = file_priv->minor->dev;
->> +	struct drm_pid_clients *clients;
->> +	bool new_client = false;
->> +	unsigned long pid;
->> +
->> +	lockdep_assert_held(&dev->filelist_mutex);
->> +
->> +	pid = (unsigned long)rcu_access_pointer(file_priv->pid);
->> +	clients = xa_load(&drm_pid_clients, pid);
->> +	if (!clients) {
->> +		clients = __alloc_clients();
->> +		if (!clients)
->> +			return -ENOMEM;
->> +		new_client = true;
->> +	}
->> +	atomic_inc(&clients->num);
->> +	list_add_tail_rcu(&file_priv->clink, &clients->file_list);
->> +	if (new_client) {
->> +		void *xret;
->> +
->> +		xret = xa_store(&drm_pid_clients, pid, clients, GFP_KERNEL);
->> +		if (xa_err(xret)) {
->> +			list_del_init(&file_priv->clink);
->> +			kfree(clients);
->> +			return PTR_ERR(clients);
-> 
-> This looks incorrect, rather xa_err(xret) should be returned.
+The definition of intel_selftest_modify_policy() does not match the
+declaration, as gcc-13 points out:
 
-Thanks, looks like a copy & paste error. Noted to correct before next 
-public post.
+drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.c:29:5: error: conflicting types for 'intel_selftest_modify_policy' due to enum/integer mismatch; have 'int(struct intel_engine_cs *, struct intel_selftest_saved_policy *, u32)' {aka 'int(struct intel_engine_cs *, struct intel_selftest_saved_policy *, unsigned int)'} [-Werror=enum-int-mismatch]
+   29 | int intel_selftest_modify_policy(struct intel_engine_cs *engine,
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.c:11:
+drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.h:28:5: note: previous declaration of 'intel_selftest_modify_policy' with type 'int(struct intel_engine_cs *, struct intel_selftest_saved_policy *, enum selftest_scheduler_modify)'
+   28 | int intel_selftest_modify_policy(struct intel_engine_cs *engine,
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Regards,
+Change the type in the definition to match.
 
-Tvrtko
+Fixes: 617e87c05c72 ("drm/i915/selftest: Fix hangcheck self test for GuC submission")
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+---
+ drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.c b/drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.c
+index 310fb83c527e..2990dd4d4a0d 100644
+--- a/drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.c
++++ b/drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.c
+@@ -28,8 +28,7 @@ struct intel_engine_cs *intel_selftest_find_any_engine(struct intel_gt *gt)
+ 
+ int intel_selftest_modify_policy(struct intel_engine_cs *engine,
+ 				 struct intel_selftest_saved_policy *saved,
+-				 u32 modify_type)
+-
++				 enum selftest_scheduler_modify modify_type)
+ {
+ 	int err;
+ 
+-- 
+2.39.0
+
