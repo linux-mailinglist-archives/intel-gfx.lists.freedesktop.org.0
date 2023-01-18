@@ -2,32 +2,94 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93E94671FE4
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Jan 2023 15:40:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DAF54672053
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Jan 2023 15:55:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0712E10E6F6;
-	Wed, 18 Jan 2023 14:40:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F76510E6F6;
+	Wed, 18 Jan 2023 14:55:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4D09A10E766;
- Wed, 18 Jan 2023 14:40:40 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4680DA00CC;
- Wed, 18 Jan 2023 14:40:40 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7990954618226708985=="
+Received: from mx0a-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
+ [148.163.158.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3148B10E6F6;
+ Wed, 18 Jan 2023 14:55:48 +0000 (UTC)
+Received: from pps.filterd (m0098416.ppops.net [127.0.0.1])
+ by mx0b-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
+ 30IDKcQY027120; Wed, 18 Jan 2023 14:55:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
+ h=message-id : date :
+ subject : to : cc : references : from : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=pp1;
+ bh=/asgtMy/qhWFY2TxHCd85ee3a9Lem+Noi/OHiwyhihU=;
+ b=OdH3NOykV8G0o/SZKaiUxLOSFcaNT5x//YXBz32ZNiOA3blUq1AgBdH6vwSEs8zHW+BD
+ 4kk1YfzfS4M+LF0aXhEf4t1xY00kdiWBgVPMB/elluMSnc7VsC/oXLwiYyROgzBlJpb7
+ QgcHERvG/utRVZhIJ1/9hEUAiGlDUyg02XEZF6WA/9jAw+UXBz5c1MknacGlBoxBF8BP
+ +gwUYCgPwFFfdCVlyiARmTeGFgcnVhYdCd9eQxc6kjUUJOWGHZc/qYADvQ6rHYrG0wFJ
+ dAkycZVl1Sgb3rQ92R5dRDwZB61VQNZoyuN6hxfUHwuPXeR7s/ZbLWtD43opjt/7/bvf qQ== 
+Received: from pps.reinject (localhost [127.0.0.1])
+ by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3n6f91wtvx-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Wed, 18 Jan 2023 14:55:44 +0000
+Received: from m0098416.ppops.net (m0098416.ppops.net [127.0.0.1])
+ by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 30IE0Tbh022576;
+ Wed, 18 Jan 2023 14:55:43 GMT
+Received: from ppma02dal.us.ibm.com (a.bd.3ea9.ip4.static.sl-reverse.com
+ [169.62.189.10])
+ by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3n6f91wtvp-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Wed, 18 Jan 2023 14:55:43 +0000
+Received: from pps.filterd (ppma02dal.us.ibm.com [127.0.0.1])
+ by ppma02dal.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 30ICc6Ua005708;
+ Wed, 18 Jan 2023 14:55:42 GMT
+Received: from smtprelay07.dal12v.mail.ibm.com ([9.208.130.99])
+ by ppma02dal.us.ibm.com (PPS) with ESMTPS id 3n3m17nrtm-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Wed, 18 Jan 2023 14:55:42 +0000
+Received: from smtpav03.dal12v.mail.ibm.com (smtpav03.dal12v.mail.ibm.com
+ [10.241.53.102])
+ by smtprelay07.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 30IEtfje29622842
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Wed, 18 Jan 2023 14:55:41 GMT
+Received: from smtpav03.dal12v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 2463D58056;
+ Wed, 18 Jan 2023 14:55:41 +0000 (GMT)
+Received: from smtpav03.dal12v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 9D2485803F;
+ Wed, 18 Jan 2023 14:55:39 +0000 (GMT)
+Received: from [9.60.89.243] (unknown [9.60.89.243])
+ by smtpav03.dal12v.mail.ibm.com (Postfix) with ESMTP;
+ Wed, 18 Jan 2023 14:55:39 +0000 (GMT)
+Message-ID: <b5a7efc9-7cfa-3314-fe36-b8da4a25265d@linux.ibm.com>
+Date: Wed, 18 Jan 2023 09:55:39 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Content-Language: en-US
+To: "Tian, Kevin" <kevin.tian@intel.com>,
+ Alex Williamson <alex.williamson@redhat.com>
+References: <20230114000351.115444-1-mjrosato@linux.ibm.com>
+ <20230117142252.70cc85c7.alex.williamson@redhat.com>
+ <BN9PR11MB52763D861C254248FD33F65C8CC79@BN9PR11MB5276.namprd11.prod.outlook.com>
+From: Matthew Rosato <mjrosato@linux.ibm.com>
+In-Reply-To: <BN9PR11MB52763D861C254248FD33F65C8CC79@BN9PR11MB5276.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: TfmjtY4Qpflu2Wdc05rgEibVTFbw_JpY
+X-Proofpoint-ORIG-GUID: 1ul9rd7a7oGMvAucLJJS3iFU0CRQHuJl
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-UnRewURL: 0 URL was un-rewritten
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Wed, 18 Jan 2023 14:40:40 -0000
-Message-ID: <167405284026.3602.3342419183996876949@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230118115749.3293888-1-jani.nikula@intel.com>
-In-Reply-To: <20230118115749.3293888-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_hide_mkwrite=5Fdevice=5Finfo=28=29_better?=
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-18_05,2023-01-18_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 phishscore=0
+ adultscore=0 clxscore=1015 impostorscore=0 malwarescore=0 mlxlogscore=999
+ bulkscore=0 spamscore=0 priorityscore=1501 lowpriorityscore=0 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
+ definitions=main-2301180124
+Subject: Re: [Intel-gfx] [PATCH v4] vfio: fix potential deadlock on vfio
+ group lock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,199 +102,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "akrowiak@linux.ibm.com" <akrowiak@linux.ibm.com>,
+ "jjherne@linux.ibm.com" <jjherne@linux.ibm.com>,
+ "farman@linux.ibm.com" <farman@linux.ibm.com>,
+ "borntraeger@linux.ibm.com" <borntraeger@linux.ibm.com>,
+ "frankja@linux.ibm.com" <frankja@linux.ibm.com>,
+ "pmorel@linux.ibm.com" <pmorel@linux.ibm.com>,
+ "david@redhat.com" <david@redhat.com>, "Christopherson, ,
+ Sean" <seanjc@google.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "pasic@linux.ibm.com" <pasic@linux.ibm.com>, "Liu, Yi L" <yi.l.liu@intel.com>,
+ "jgg@nvidia.com" <jgg@nvidia.com>, "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "pbonzini@redhat.com" <pbonzini@redhat.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "imbrenda@linux.ibm.com" <imbrenda@linux.ibm.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7990954618226708985==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 1/18/23 4:03 AM, Tian, Kevin wrote:
+>> From: Alex Williamson
+>> Sent: Wednesday, January 18, 2023 5:23 AM
+>>
+>> On Fri, 13 Jan 2023 19:03:51 -0500
+>> Matthew Rosato <mjrosato@linux.ibm.com> wrote:
+>>
+>>>  void vfio_device_group_close(struct vfio_device *device)
+>>>  {
+>>> +	void (*put_kvm)(struct kvm *kvm);
+>>> +	struct kvm *kvm;
+>>> +
+>>>  	mutex_lock(&device->group->group_lock);
+>>> +	kvm = device->kvm;
+>>> +	put_kvm = device->put_kvm;
+>>>  	vfio_device_close(device, device->group->iommufd);
+>>> +	if (kvm == device->kvm)
+>>> +		kvm = NULL;
+>>
+>> Hmm, so we're using whether the device->kvm pointer gets cleared in
+>> last_close to detect whether we should put the kvm reference.  That's a
+>> bit obscure.  Our get and put is also asymmetric.
+>>
+>> Did we decide that we couldn't do this via a schedule_work() from the
+>> last_close function, ie. implementing our own version of an async put?
+>> It seems like that potentially has a cleaner implementation, symmetric
+>> call points, handling all the storing and clearing of kvm related
+>> pointers within the get/put wrappers, passing only a vfio_device to the
+>> put wrapper, using the "vfio_device_" prefix for both.  Potentially
+>> we'd just want an unconditional flush outside of lock here for
+>> deterministic release.
+>>
+>> What's the downside?  Thanks,
+>>
+> 
+> btw I guess this can be also fixed by Yi's work here:
+> 
+> https://lore.kernel.org/kvm/20230117134942.101112-6-yi.l.liu@intel.com/
+> 
+> with set_kvm(NULL) moved to the release callback of kvm_vfio device,
+> such circular lock dependency can be avoided too.
 
-== Series Details ==
+Oh, interesting...  It seems to me that this would eliminate the reported call chain altogether:
 
-Series: drm/i915: hide mkwrite_device_info() better
-URL   : https://patchwork.freedesktop.org/series/113017/
-State : success
+kvm_put_kvm
+ -> kvm_destroy_vm
+  -> kvm_destroy_devices
+   -> kvm_vfio_destroy (starting here -- this would no longer be executed)
+    -> kvm_vfio_file_set_kvm
+     -> vfio_file_set_kvm
+      -> group->group_lock/group_rwsem
 
-== Summary ==
+because kvm_destroy_devices now can't end up calling kvm_vfio_destroy and friends, it won't try and acquire the group lock a 2nd time making a kvm_put_kvm while the group lock is held OK to do.  The vfio_file_set_kvm call will now always come from a separate thread of execution, kvm_vfio_group_add, kvm_vfio_group_del or the release thread:
 
-CI Bug Log - changes from CI_DRM_12599 -> Patchwork_113017v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113017v1/index.html
-
-Participating hosts (44 -> 42)
-------------------------------
-
-  Missing    (2): bat-dg2-oem1 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_113017v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@load:
-    - fi-ctg-p8600:       [PASS][1] -> [DMESG-WARN][2] ([i915#6020])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12599/fi-ctg-p8600/igt@i915_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113017v1/fi-ctg-p8600/igt@i915_module_load@load.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
-    - fi-bsw-n3050:       [PASS][3] -> [FAIL][4] ([i915#6298])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12599/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113017v1/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
-    - fi-bsw-kefka:       [PASS][5] -> [FAIL][6] ([i915#6298])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12599/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113017v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@requests:
-    - {bat-rpls-2}:       [INCOMPLETE][7] ([i915#4983] / [i915#6257]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12599/bat-rpls-2/igt@i915_selftest@live@requests.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113017v1/bat-rpls-2/igt@i915_selftest@live@requests.html
-
-  * igt@i915_selftest@live@slpc:
-    - {bat-rplp-1}:       [DMESG-FAIL][9] ([i915#6367]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12599/bat-rplp-1/igt@i915_selftest@live@slpc.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113017v1/bat-rplp-1/igt@i915_selftest@live@slpc.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#6020]: https://gitlab.freedesktop.org/drm/intel/issues/6020
-  [i915#6257]: https://gitlab.freedesktop.org/drm/intel/issues/6257
-  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12599 -> Patchwork_113017v1
-
-  CI-20190529: 20190529
-  CI_DRM_12599: 52aad5ad870672dc91502248cb7c76202d02dafc @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7121: aa16e81259f59734230d441905b9d0f605e4a4b5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_113017v1: 52aad5ad870672dc91502248cb7c76202d02dafc @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-85bb760e9aad drm/i915: hide mkwrite_device_info() better
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113017v1/index.html
-
---===============7990954618226708985==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: hide mkwrite_device_info() better</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/113017/">https://patchwork.freedesktop.org/series/113017/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113017v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113017v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12599 -&gt; Patchwork_113017v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113017v1/index.html</p>
-<h2>Participating hosts (44 -&gt; 42)</h2>
-<p>Missing    (2): bat-dg2-oem1 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_113017v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>fi-ctg-p8600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12599/fi-ctg-p8600/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113017v1/fi-ctg-p8600/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6020">i915#6020</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12599/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113017v1/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12599/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113017v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12599/bat-rpls-2/igt@i915_selftest@live@requests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6257">i915#6257</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113017v1/bat-rpls-2/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@slpc:</p>
-<ul>
-<li>{bat-rplp-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12599/bat-rplp-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113017v1/bat-rplp-1/igt@i915_selftest@live@slpc.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12599 -&gt; Patchwork_113017v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12599: 52aad5ad870672dc91502248cb7c76202d02dafc @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7121: aa16e81259f59734230d441905b9d0f605e4a4b5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_113017v1: 52aad5ad870672dc91502248cb7c76202d02dafc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>85bb760e9aad drm/i915: hide mkwrite_device_info() better</p>
-
-</body>
-</html>
-
---===============7990954618226708985==--
+kvm_device_release (where the group->group_lock would not be held since vfio does not trigger closing of the kvm fd)
+ -> kvm_vfio_destroy (or, kvm_vfio_release)
+  -> kvm_vfio_file_set_kvm
+   -> vfio_file_set_kvm
+    -> group->group_lock/group_rwsem
