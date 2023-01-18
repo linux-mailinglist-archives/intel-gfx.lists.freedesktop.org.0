@@ -2,51 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 096A56720F8
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Jan 2023 16:19:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35E7E6720F7
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Jan 2023 16:18:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3638310E76D;
-	Wed, 18 Jan 2023 15:18:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DFFA10E76B;
+	Wed, 18 Jan 2023 15:18:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC98010E76B
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Jan 2023 15:18:51 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C226410E76B;
+ Wed, 18 Jan 2023 15:18:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674055131; x=1705591131;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=42tTBEJvgPQVns0jeSt9yU4SbadQlpWz8XH8WAs1Czo=;
- b=Q+1NU9VMQfoljB8e8woZ3bu+IyBcP9diQuRiGJWE5UamriEs8xcCWi0B
- j7JshW3siqInUSQpxVEGbgUUHy3ra4dtFfgW9u0jvRxgasIFnEUwXsPov
- +k6d9gnckZTmzGTMy5Z45hOLx1KtpdUOa+MY+F4bey23FU3kuAHKBTkzs
- 7MIel5L90HfjlaQrVjIgJLTzipN/vZ5UKs92ZD5oTYD2dA1BEo2cwYBvM
- tWHl3E/WogHjYKIWdiSkFFqBXB8CBs+gl1fBRr9p2E56+8gCbFx8mxagJ
- bgRnGT2Y0989JQWGNcgTJ4uNL8Vciljr+QNg3ag1IgWwvNCwSCgYb/CS0 w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="389502536"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="389502536"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2023 07:18:17 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="652980499"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="652980499"
-Received: from kozlovdm-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.252.28.132])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2023 07:18:16 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 18 Jan 2023 17:18:00 +0200
-Message-Id: <20230118151800.3669913-4-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230118151800.3669913-1-jani.nikula@intel.com>
-References: <20230118151800.3669913-1-jani.nikula@intel.com>
+ t=1674055132; x=1705591132;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=20H7Om82F7MOSKcLF/cfzUH1vbKRnqq8dlc/4ggLgbY=;
+ b=OKzwxeW2S/ksEDy3UG0FtchisZCv6GOSsQlALXN6Uf7ASLiFtqUwK2Xf
+ 4hVTiRT52rZoffHvQlrBRETNcpE5Hj75+mQJ1h8ctUAbLSBnv+npiqvE1
+ W43HxY9kjHGoQUzJP1OCiSvRlBlrgfguuEiSs9zFC7NU2FlVx1hFUutfj
+ 888pB+tUtsdkmNIyhYQ1VFT9jUxXTldYX8JB/1lMs0UV8Frd028umeYTq
+ xjM0ovUMgQzx+lnD2lkYhPWzGT4YMYOVV0Kn1SaZqADelRnQDxyN3bCaB
+ HJu2C1FUfVNqRuZiFdjtDHY/8XWKRheYuYHcCeO7N4i+WKE8HPDVxsUN9 g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="387353288"
+X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="387353288"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2023 07:18:52 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="690226951"
+X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="690226951"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
+ by orsmga008.jf.intel.com with SMTP; 18 Jan 2023 07:18:49 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 18 Jan 2023 17:18:49 +0200
+Date: Wed, 18 Jan 2023 17:18:49 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <Y8gN2ZrovuJQqUG0@intel.com>
+References: <cover.1672826282.git.jani.nikula@intel.com>
+ <775124fd07a5b7892e869becc3dd8dadb328ae5f.1672826282.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915/params: use generics for parameter
- debugfs file creation
+In-Reply-To: <775124fd07a5b7892e869becc3dd8dadb328ae5f.1672826282.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v7 05/22] drm/edid: use VIC in AVI infoframe
+ if sink lists it in CTA VDB
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,68 +62,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: intel-gfx@lists.freedesktop.org, William Tseng <william.tseng@intel.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Replace the __builtin_strcmp() if ladder with generics.
+On Wed, Jan 04, 2023 at 12:05:20PM +0200, Jani Nikula wrote:
+> Apparently there are HDMI 1.4 compatible displays out there that support
+> VICs from specs later than CTA-861-D, i.e. VIC > 64, although HDMI 1.4
+> references CTA-861-D only.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/i915_debugfs_params.c | 33 ++++++++--------------
- 1 file changed, 11 insertions(+), 22 deletions(-)
+Not 100% this is a real issue or not. IIRC we decided to 
+play it safe regardless.
 
-diff --git a/drivers/gpu/drm/i915/i915_debugfs_params.c b/drivers/gpu/drm/i915/i915_debugfs_params.c
-index 783c8676eee2..614bde321589 100644
---- a/drivers/gpu/drm/i915/i915_debugfs_params.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs_params.c
-@@ -230,27 +230,16 @@ i915_debugfs_create_charp(const char *name, umode_t mode,
- 				   &i915_param_charp_fops);
- }
- 
--static __always_inline void
--_i915_param_create_file(struct dentry *parent, const char *name,
--			const char *type, int mode, void *value)
--{
--	if (!mode)
--		return;
--
--	if (!__builtin_strcmp(type, "bool"))
--		debugfs_create_bool(name, mode, parent, value);
--	else if (!__builtin_strcmp(type, "int"))
--		i915_debugfs_create_int(name, mode, parent, value);
--	else if (!__builtin_strcmp(type, "unsigned int"))
--		i915_debugfs_create_uint(name, mode, parent, value);
--	else if (!__builtin_strcmp(type, "unsigned long"))
--		debugfs_create_ulong(name, mode, parent, value);
--	else if (!__builtin_strcmp(type, "char *"))
--		i915_debugfs_create_charp(name, mode, parent, value);
--	else
--		WARN(1, "no debugfs fops defined for param type %s (i915.%s)\n",
--		     type, name);
--}
-+#define _i915_param_create_file(parent, name, mode, valp)		\
-+	do {								\
-+		if (mode)						\
-+			_Generic(valp,					\
-+				 bool *: debugfs_create_bool,		\
-+				 int *: i915_debugfs_create_int,	\
-+				 unsigned int *: i915_debugfs_create_uint, \
-+				 unsigned long *: debugfs_create_ulong,	\
-+				 char **: i915_debugfs_create_charp)(name, mode, parent, valp); \
-+	} while(0)
- 
- /* add a subdirectory with files for each i915 param */
- struct dentry *i915_debugfs_params(struct drm_i915_private *i915)
-@@ -269,7 +258,7 @@ struct dentry *i915_debugfs_params(struct drm_i915_private *i915)
- 	 * just let the generic create file fail silently with -EEXIST.
- 	 */
- 
--#define REGISTER(T, x, unused, mode, ...) _i915_param_create_file(dir, #x, #T, mode, &params->x);
-+#define REGISTER(T, x, unused, mode, ...) _i915_param_create_file(dir, #x, mode, &params->x);
- 	I915_PARAMS_FOR_EACH(REGISTER);
- #undef REGISTER
- 
+However later CTA specs do clarify the handling of VIC >=128 which
+apparently are known to have issues, and we're even supposed to
+use the presence of such SVDs to determine which version of the
+AVI infoframe to transmit. Currently we don't handle that stuff
+correctly, but looks like it'll be much easier to remedy now.
+
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+> 
+> We try to avoid using VICs from the later specs in the AVI infoframes to
+> avoid upsetting sinks that conform to earlier specs.
+> 
+> However, it seems reasonable to do this when the sink claims it supports
+> the VIC. With the pre-parsed list of VICs handy, this is now trivial.
+> 
+> References: https://gitlab.freedesktop.org/drm/intel/-/issues/6153
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Cc: William Tseng <william.tseng@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/drm_edid.c | 22 +++++++++++++++++++++-
+>  1 file changed, 21 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+> index 7f0386175230..3dfcd6450f10 100644
+> --- a/drivers/gpu/drm/drm_edid.c
+> +++ b/drivers/gpu/drm/drm_edid.c
+> @@ -5864,6 +5864,22 @@ static void parse_cta_vdb(struct drm_connector *connector, const struct cea_db *
+>  	}
+>  }
+>  
+> +static bool cta_vdb_has_vic(const struct drm_connector *connector, u8 vic)
+> +{
+> +	const struct drm_display_info *info = &connector->display_info;
+> +	int i;
+> +
+> +	if (!vic || !info->vics)
+> +		return false;
+> +
+> +	for (i = 0; i < info->vics_len; i++) {
+> +		if (info->vics[i] == vic)
+> +			return true;
+> +	}
+> +
+> +	return false;
+> +}
+> +
+>  static void drm_parse_vcdb(struct drm_connector *connector, const u8 *db)
+>  {
+>  	struct drm_display_info *info = &connector->display_info;
+> @@ -6909,10 +6925,14 @@ static u8 drm_mode_cea_vic(const struct drm_connector *connector,
+>   *
+>   * HDMI 1.4 (CTA-861-D) VIC range: [1..64]
+>   * HDMI 2.0 (CTA-861-F) VIC range: [1..107]
+> + *
+> + * If the sink lists the VIC in CTA VDB, assume it's fine, regardless of HDMI
+> + * version.
+>   */
+>  static u8 vic_for_avi_infoframe(const struct drm_connector *connector, u8 vic)
+>  {
+> -	if (!is_hdmi2_sink(connector) && vic > 64)
+> +	if (!is_hdmi2_sink(connector) && vic > 64 &&
+> +	    !cta_vdb_has_vic(connector, vic))
+>  		return 0;
+>  
+>  	return vic;
+> -- 
+> 2.34.1
+
 -- 
-2.34.1
-
+Ville Syrjälä
+Intel
