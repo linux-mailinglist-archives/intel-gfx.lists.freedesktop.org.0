@@ -1,55 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91F226720D0
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Jan 2023 16:12:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33B6767210E
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Jan 2023 16:20:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77B7010E76A;
-	Wed, 18 Jan 2023 15:12:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7733110E76B;
+	Wed, 18 Jan 2023 15:20:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4953110E76A;
- Wed, 18 Jan 2023 15:12:26 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B95110E76B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Jan 2023 15:20:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674054746; x=1705590746;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=8qnR5rybSa915P4QDWXvqsyBKlHVRhV6SdmThr59Oto=;
- b=JrW2tks3MqhfTblXmXGUyd2P0DhRn4da6RM77URS+XnX7xReVx0Jx7ZZ
- YgDploFESTt/4+Zl/cvXyxf6k9RnBM0YIqCo0GG9qbRN+aaO5KS6+SbHI
- u4c0q88xPcffAmew/IysMhMns6sjOdQar2aMVnaoxAhCKUubtGk3FEGZR
- PXl+4GSQrIL83bSuUZj0/XNQG68WjJQlMFy29c/cYNceEiS6h7JaZyHhq
- w8wjN422laBI4q0ky74JkRvFa8bOokIfLj/daMZAySstbE4PWEdWpNlr+
- NjVunW6mt8ppuOkApqGvz0S7/A1GjXcD1jdA+9rMSHdnsbrHnNieLpBOl Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="387351256"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="387351256"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2023 07:12:25 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="690226217"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="690226217"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
- by orsmga008.jf.intel.com with SMTP; 18 Jan 2023 07:12:23 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 18 Jan 2023 17:12:22 +0200
-Date: Wed, 18 Jan 2023 17:12:22 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <Y8gMVp968R+yCcaP@intel.com>
-References: <cover.1672826282.git.jani.nikula@intel.com>
- <7989b2b37837be68953c5d20afd3e93762bfd626.1672826282.git.jani.nikula@intel.com>
+ t=1674055231; x=1705591231;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=vPTt/S8wBsK1jNqUOXvJ4EZdyXE/2R7FLmX2DyZvo4U=;
+ b=Vj+UpWJRbpoQfddybI1HO1YmNLVil9WvAbz+BkbUgMfIn7X0tdt9afkU
+ djNofcwTRKTZOV9H2MDkr5hdKhaCl+LMlPt5aK5cihHC2HVowZYkxo+9W
+ d+cvjLOCoFVVIkF9TuqRntTyRnhWkV+e/RhbCOtfFW2GJnTcZQ/+0SQtw
+ 4r9unlMER/jdwDfouz+vThE5t2dFIszGCim4dcqfaQIkiwfCn57DCrfxm
+ RE4cgw489LWFe1vzbsGtD6IFySdfprjQNBV+CK47v6pKUNbvFixvAajIT
+ O07xQDjr6adN2JsdYKvIxz+7sEUGOFLM2wPIwVV+jDLjHg5Nbn9U0Zio5 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="352254022"
+X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="352254022"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2023 07:18:06 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="637322572"
+X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="637322572"
+Received: from kozlovdm-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.252.28.132])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2023 07:18:04 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 18 Jan 2023 17:17:57 +0200
+Message-Id: <20230118151800.3669913-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <7989b2b37837be68953c5d20afd3e93762bfd626.1672826282.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v7 03/22] drm/edid: parse VICs from CTA VDB
- early
+Subject: [Intel-gfx] [PATCH 1/4] drm/i915/params: use generics for parameter
+ printing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,127 +57,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 04, 2023 at 12:05:18PM +0200, Jani Nikula wrote:
-> A number of places need access to the VICs. Just parse them early for
-> easy access. Gracefully handle multiple CTA VDBs. It's unlikely to have
-> more than one, but the CTA-861 references "Video Data Block(s)", so err
-> on the safe side.
-> 
-> Start parsing them now, convert users in follow-up to have fewer moving
-> parts in one go.
-> 
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Replace the __builtin_strcmp() if ladder with generics.
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/i915_params.c | 55 +++++++++++++++++++-----------
+ 1 file changed, 36 insertions(+), 19 deletions(-)
 
-> ---
->  drivers/gpu/drm/drm_connector.c |  1 +
->  drivers/gpu/drm/drm_edid.c      | 36 +++++++++++++++++++++++++++++++++
->  include/drm/drm_connector.h     | 10 +++++++++
->  3 files changed, 47 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-> index 8d92777e57dd..21b3df75ab8c 100644
-> --- a/drivers/gpu/drm/drm_connector.c
-> +++ b/drivers/gpu/drm/drm_connector.c
-> @@ -565,6 +565,7 @@ void drm_connector_cleanup(struct drm_connector *connector)
->  	ida_free(&dev->mode_config.connector_ida, connector->index);
->  
->  	kfree(connector->display_info.bus_formats);
-> +	kfree(connector->display_info.vics);
->  	drm_mode_object_unregister(dev, &connector->base);
->  	kfree(connector->name);
->  	connector->name = NULL;
-> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index b94adb9bbefb..90846dc69061 100644
-> --- a/drivers/gpu/drm/drm_edid.c
-> +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -5862,6 +5862,36 @@ drm_default_rgb_quant_range(const struct drm_display_mode *mode)
->  }
->  EXPORT_SYMBOL(drm_default_rgb_quant_range);
->  
-> +/* CTA-861 Video Data Block (CTA VDB) */
-> +static void parse_cta_vdb(struct drm_connector *connector, const struct cea_db *db)
-> +{
-> +	struct drm_display_info *info = &connector->display_info;
-> +	int i, vic_index, len = cea_db_payload_len(db);
-> +	const u8 *svds = cea_db_data(db);
-> +	u8 *vics;
-> +
-> +	if (!len)
-> +		return;
-> +
-> +	/* Gracefully handle multiple VDBs, however unlikely that is */
-> +	vics = krealloc(info->vics, info->vics_len + len, GFP_KERNEL);
-> +	if (!vics)
-> +		return;
-> +
-> +	vic_index = info->vics_len;
-> +	info->vics_len += len;
-> +	info->vics = vics;
-> +
-> +	for (i = 0; i < len; i++) {
-> +		u8 vic = svd_to_vic(svds[i]);
-> +
-> +		if (!drm_valid_cea_vic(vic))
-> +			vic = 0;
-> +
-> +		info->vics[vic_index++] = vic;
-> +	}
-> +}
-> +
->  static void drm_parse_vcdb(struct drm_connector *connector, const u8 *db)
->  {
->  	struct drm_display_info *info = &connector->display_info;
-> @@ -6205,6 +6235,8 @@ static void drm_parse_cea_ext(struct drm_connector *connector,
->  			drm_parse_vcdb(connector, data);
->  		else if (cea_db_is_hdmi_hdr_metadata_block(db))
->  			drm_parse_hdr_metadata_block(connector, data);
-> +		else if (cea_db_tag(db) == CTA_DB_VIDEO)
-> +			parse_cta_vdb(connector, db);
->  	}
->  	cea_db_iter_end(&iter);
->  }
-> @@ -6372,6 +6404,10 @@ static void drm_reset_display_info(struct drm_connector *connector)
->  	info->mso_stream_count = 0;
->  	info->mso_pixel_overlap = 0;
->  	info->max_dsc_bpp = 0;
-> +
-> +	kfree(info->vics);
-> +	info->vics = NULL;
-> +	info->vics_len = 0;
->  }
->  
->  static u32 update_display_info(struct drm_connector *connector,
-> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-> index 9037f1317aee..d97ed06d5837 100644
-> --- a/include/drm/drm_connector.h
-> +++ b/include/drm/drm_connector.h
-> @@ -721,6 +721,16 @@ struct drm_display_info {
->  	 * monitor's default value is used instead.
->  	 */
->  	u32 max_dsc_bpp;
-> +
-> +	/**
-> +	 * @vics: Array of vics_len VICs. Internal to EDID parsing.
-> +	 */
-> +	u8 *vics;
-> +
-> +	/**
-> +	 * @vics_len: Number of elements in vics. Internal to EDID parsing.
-> +	 */
-> +	int vics_len;
->  };
->  
->  int drm_display_info_set_bus_formats(struct drm_display_info *info,
-> -- 
-> 2.34.1
-
+diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
+index d634bd3f641a..6482e878f31e 100644
+--- a/drivers/gpu/drm/i915/i915_params.c
++++ b/drivers/gpu/drm/i915/i915_params.c
+@@ -222,27 +222,44 @@ i915_param_named_unsafe(lmem_size, uint, 0400,
+ i915_param_named_unsafe(lmem_bar_size, uint, 0400,
+ 			"Set the lmem bar size(in MiB).");
+ 
+-static __always_inline void _print_param(struct drm_printer *p,
+-					 const char *name,
+-					 const char *type,
+-					 const void *x)
++static void _param_print_bool(struct drm_printer *p, const char *name,
++			      bool val)
+ {
+-	if (!__builtin_strcmp(type, "bool"))
+-		drm_printf(p, "i915.%s=%s\n", name,
+-			   str_yes_no(*(const bool *)x));
+-	else if (!__builtin_strcmp(type, "int"))
+-		drm_printf(p, "i915.%s=%d\n", name, *(const int *)x);
+-	else if (!__builtin_strcmp(type, "unsigned int"))
+-		drm_printf(p, "i915.%s=%u\n", name, *(const unsigned int *)x);
+-	else if (!__builtin_strcmp(type, "unsigned long"))
+-		drm_printf(p, "i915.%s=%lu\n", name, *(const unsigned long *)x);
+-	else if (!__builtin_strcmp(type, "char *"))
+-		drm_printf(p, "i915.%s=%s\n", name, *(const char **)x);
+-	else
+-		WARN_ONCE(1, "no printer defined for param type %s (i915.%s)\n",
+-			  type, name);
++	drm_printf(p, "i915.%s=%s\n", name, str_yes_no(val));
+ }
+ 
++static void _param_print_int(struct drm_printer *p, const char *name,
++			     int val)
++{
++	drm_printf(p, "i915.%s=%d\n", name, val);
++}
++
++static void _param_print_uint(struct drm_printer *p, const char *name,
++			      unsigned int val)
++{
++	drm_printf(p, "i915.%s=%u\n", name, val);
++}
++
++static void _param_print_ulong(struct drm_printer *p, const char *name,
++			       unsigned long val)
++{
++	drm_printf(p, "i915.%s=%lu\n", name, val);
++}
++
++static void _param_print_charp(struct drm_printer *p, const char *name,
++			       const char *val)
++{
++	drm_printf(p, "i915.%s=%s\n", name, val);
++}
++
++#define _param_print(p, name, val)				\
++	_Generic(val,						\
++		 bool: _param_print_bool,			\
++		 int: _param_print_int,				\
++		 unsigned int: _param_print_uint,		\
++		 unsigned long: _param_print_ulong,		\
++		 char *: _param_print_charp)(p, name, val)
++
+ /**
+  * i915_params_dump - dump i915 modparams
+  * @params: i915 modparams
+@@ -252,7 +269,7 @@ static __always_inline void _print_param(struct drm_printer *p,
+  */
+ void i915_params_dump(const struct i915_params *params, struct drm_printer *p)
+ {
+-#define PRINT(T, x, ...) _print_param(p, #x, #T, &params->x);
++#define PRINT(T, x, ...) _param_print(p, #x, params->x);
+ 	I915_PARAMS_FOR_EACH(PRINT);
+ #undef PRINT
+ }
 -- 
-Ville Syrjälä
-Intel
+2.34.1
+
