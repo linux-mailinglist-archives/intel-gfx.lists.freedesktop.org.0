@@ -1,53 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9430E672347
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Jan 2023 17:31:10 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD968672348
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Jan 2023 17:31:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9459710E798;
-	Wed, 18 Jan 2023 16:31:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55A1710E79B;
+	Wed, 18 Jan 2023 16:31:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA8C510E795
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Jan 2023 16:30:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A28910E795
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Jan 2023 16:30:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674059456; x=1705595456;
+ t=1674059459; x=1705595459;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=66UBW/BuwFZPnxDxtfiXoqjyNcWEFOcfMDMFIQ4jdl4=;
- b=I7fSvYkaa56xl8U2KkXp+uyA0aeeB0Gpd67DqAZTsRk2ixFaxxDR2uk1
- 30tGHRKyvigXpGWBOAogcZefbKXJXSpQ4QFxLzunxAMGbY7DjyD7iD2uY
- ocIXKh9r2eyEL84f9dGsE6zA03qBWpj0Gjt3TAC0X8KeYbv4TsYZ/5lba
- X9j3hdzxINPj1WzgE2xusdvrlHztrVxCxCwtrHvenib+xwboXJivD+/yT
- HokvoiHFemY8LeHEdoMTOm7zexhcq9MVMFqULUC6MQjFvFcP3gg9nkSOK
- 9vnegRs6lqBT6vvzL4Uf7/FND2TTZMBaQnlKFi0HMbEHoEGaFuZiTZnIP Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="326289770"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="326289770"
+ bh=8Hthh15Zt84gTQn2zcH5t96f6sKdD6zPBXlJnBp0asI=;
+ b=jycR4uZ60xtLNbThiVKF03N+CrMuYWdy9wzVRK41DZNaGNPRCQJvvkhq
+ gQfby6drKEAVeYmYzsbgBNODcrXF1WCPcfrEQjbLf3b28IcvT3oMr732y
+ VVDkNNsbYYtfOUa/9a1TfU94Ddtcdj6KlT6Mb5txve3+P8IuNPkJq/2tF
+ MgawWAHU7GNtGS06nhiTr3WPWGHGH5EKf0G9zItCrwKaBz/A+d3UzIr1p
+ /Md2Dpm+Nb2jET3/KfwrvwLuxyE36o80ZkL17Chw2wKkjrk+E69nwLdwX
+ rAYwmRWrW6AZGXBTcrn4+d3fYATS6rszIRE8icW6s5zlRP9qB/uWOvpDE Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="326289800"
+X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="326289800"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2023 08:30:52 -0800
+ 18 Jan 2023 08:30:55 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="692060432"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="692060432"
+X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="692060440"
+X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="692060440"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
- by orsmga001.jf.intel.com with SMTP; 18 Jan 2023 08:30:50 -0800
+ by orsmga001.jf.intel.com with SMTP; 18 Jan 2023 08:30:53 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 18 Jan 2023 18:30:49 +0200
+ Wed, 18 Jan 2023 18:30:52 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 18 Jan 2023 18:30:30 +0200
-Message-Id: <20230118163040.29808-4-ville.syrjala@linux.intel.com>
+Date: Wed, 18 Jan 2023 18:30:31 +0200
+Message-Id: <20230118163040.29808-5-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.38.2
 In-Reply-To: <20230118163040.29808-1-ville.syrjala@linux.intel.com>
 References: <20230118163040.29808-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 03/13] drm/i915/dsb: Split intel_dsb_wait() from
- intel_dsb_commit()
+Subject: [Intel-gfx] [PATCH 04/13] drm/i915/dsb: Introduce intel_dsb_finish()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,80 +64,79 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Starting the DSB execution vs. waiting for it stop are two
-totally different things. Split intel_dsb_wait() from
-intel_dsb_commit() so that we can eventually allow the DSB
-to execute asynchronously.
+Introduce a function to emits whatever commands we need
+at the end of the DSB command buffer. For the moment we
+only do the tail cacheline alignment there, but eventually
+we might want eg. emit an interrupt.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_color.c |  4 +++-
- drivers/gpu/drm/i915/display/intel_dsb.c   | 11 +++++++++--
+ drivers/gpu/drm/i915/display/intel_color.c |  1 +
+ drivers/gpu/drm/i915/display/intel_dsb.c   | 11 +++++++----
  drivers/gpu/drm/i915/display/intel_dsb.h   |  1 +
- 3 files changed, 13 insertions(+), 3 deletions(-)
+ 3 files changed, 9 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index 8d97c299e657..5d99913429b9 100644
+index 5d99913429b9..6d6d300fa2df 100644
 --- a/drivers/gpu/drm/i915/display/intel_color.c
 +++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -1256,8 +1256,10 @@ static void icl_load_luts(const struct intel_crtc_state *crtc_state)
- 		break;
+@@ -1257,6 +1257,7 @@ static void icl_load_luts(const struct intel_crtc_state *crtc_state)
  	}
  
--	if (crtc_state->dsb)
-+	if (crtc_state->dsb) {
+ 	if (crtc_state->dsb) {
++		intel_dsb_finish(crtc_state->dsb);
  		intel_dsb_commit(crtc_state->dsb);
-+		intel_dsb_wait(crtc_state->dsb);
-+	}
- }
- 
- static u32 chv_cgm_degamma_ldw(const struct drm_color_lut *color)
+ 		intel_dsb_wait(crtc_state->dsb);
+ 	}
 diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index f41146fc84d7..0b2faa33f204 100644
+index 0b2faa33f204..9e25b1345927 100644
 --- a/drivers/gpu/drm/i915/display/intel_dsb.c
 +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -235,7 +235,7 @@ void intel_dsb_commit(struct intel_dsb *dsb)
- 	if (is_dsb_busy(dev_priv, pipe, dsb->id)) {
- 		drm_err(&dev_priv->drm, "[CRTC:%d:%s] DSB %d is busy\n",
- 			crtc->base.base.id, crtc->base.name, dsb->id);
--		goto reset;
-+		return;
+@@ -199,7 +199,7 @@ void intel_dsb_reg_write(struct intel_dsb *dsb,
  	}
+ }
  
- 	intel_de_write(dev_priv, DSB_CTRL(pipe, dsb->id),
-@@ -249,13 +249,20 @@ void intel_dsb_commit(struct intel_dsb *dsb)
- 		    "DSB execution started - head 0x%x, tail 0x%x\n",
- 		    i915_ggtt_offset(dsb->vma),
- 		    i915_ggtt_offset(dsb->vma) + tail);
+-static u32 intel_dsb_align_tail(struct intel_dsb *dsb)
++static void intel_dsb_align_tail(struct intel_dsb *dsb)
+ {
+ 	u32 aligned_tail, tail;
+ 
+@@ -211,8 +211,11 @@ static u32 intel_dsb_align_tail(struct intel_dsb *dsb)
+ 		       aligned_tail - tail);
+ 
+ 	dsb->free_pos = aligned_tail / 4;
 +}
-+
-+void intel_dsb_wait(struct intel_dsb *dsb)
+ 
+-	return aligned_tail;
++void intel_dsb_finish(struct intel_dsb *dsb)
 +{
-+	struct intel_crtc *crtc = dsb->crtc;
-+	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	enum pipe pipe = crtc->pipe;
++	intel_dsb_align_tail(dsb);
+ }
  
- 	if (wait_for(!is_dsb_busy(dev_priv, pipe, dsb->id), 1))
- 		drm_err(&dev_priv->drm,
- 			"[CRTC:%d:%s] DSB %d timed out waiting for idle\n",
- 			crtc->base.base.id, crtc->base.name, dsb->id);
+ /**
+@@ -228,8 +231,8 @@ void intel_dsb_commit(struct intel_dsb *dsb)
+ 	enum pipe pipe = crtc->pipe;
+ 	u32 tail;
  
--reset:
-+	/* Attempt to reset it */
- 	dsb->free_pos = 0;
- 	dsb->ins_start_offset = 0;
- 	intel_de_write(dev_priv, DSB_CTRL(pipe, dsb->id), 0);
+-	tail = intel_dsb_align_tail(dsb);
+-	if (tail == 0)
++	tail = dsb->free_pos * 4;
++	if (drm_WARN_ON(&dev_priv->drm, !IS_ALIGNED(tail, CACHELINE_BYTES)))
+ 		return;
+ 
+ 	if (is_dsb_busy(dev_priv, pipe, dsb->id)) {
 diff --git a/drivers/gpu/drm/i915/display/intel_dsb.h b/drivers/gpu/drm/i915/display/intel_dsb.h
-index 05c221b6d0a4..7999199c2464 100644
+index 7999199c2464..6b22499e8a5d 100644
 --- a/drivers/gpu/drm/i915/display/intel_dsb.h
 +++ b/drivers/gpu/drm/i915/display/intel_dsb.h
-@@ -19,5 +19,6 @@ void intel_dsb_cleanup(struct intel_dsb *dsb);
+@@ -15,6 +15,7 @@ struct intel_dsb;
+ 
+ struct intel_dsb *intel_dsb_prepare(struct intel_crtc *crtc,
+ 				    unsigned int max_cmds);
++void intel_dsb_finish(struct intel_dsb *dsb);
+ void intel_dsb_cleanup(struct intel_dsb *dsb);
  void intel_dsb_reg_write(struct intel_dsb *dsb,
  			 i915_reg_t reg, u32 val);
- void intel_dsb_commit(struct intel_dsb *dsb);
-+void intel_dsb_wait(struct intel_dsb *dsb);
- 
- #endif
 -- 
 2.38.2
 
