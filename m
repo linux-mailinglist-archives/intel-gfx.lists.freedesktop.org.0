@@ -1,57 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9561D671DF2
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Jan 2023 14:34:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D6A6671EDD
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Jan 2023 15:06:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9F7110E74E;
-	Wed, 18 Jan 2023 13:34:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAB4A10E753;
+	Wed, 18 Jan 2023 14:05:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FE7D10E74D;
- Wed, 18 Jan 2023 13:34:11 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E3CD10E752
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Jan 2023 14:05:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674048851; x=1705584851;
- h=message-id:date:mime-version:subject:from:to:cc:
- references:in-reply-to:content-transfer-encoding;
- bh=Nx2w6JKk6Nka1aBkC3Nx/cCXJR0dEv9EeYFmqbsME3s=;
- b=CDn+y3hij852HPUj0Bt3zyVA0CAKTwUIz3uMFf+I+yV4mXVEx/KcOfGP
- r/bKYzvz3VgSzraNsP6IO5rfnbf/uIeb8lfRUOP11jGDE/ymexdUW6aL5
- R1ti/sYYFi5y0a+cDk7V+dVBp7aAIGqZ9+reBPdp9BD8IMLIJgH8dvlmx
- FACgbYdS61hQTqEwlQcexL6y7tc3XEaVD9V9m+KfdbiyzpgVsMC/AiXFz
- hxZfrg8WbzKAK5NrPPyPc3dK2MyKHrHupJGmg8fRuqHZHWxuZEcOB4E+H
- Sl4mwQ7ZSw13WrbVzg6uZu8py24ylvc8GI4dpiI/ZLYGG8hRnvyH9bDnc Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="312860594"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="312860594"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2023 05:34:11 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="652940800"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="652940800"
-Received: from llvincen-mobl.ger.corp.intel.com (HELO [10.213.215.37])
- ([10.213.215.37])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2023 05:34:08 -0800
-Message-ID: <693e4b42-3883-8a6a-5181-0357e4b88767@linux.intel.com>
-Date: Wed, 18 Jan 2023 13:34:07 +0000
+ t=1674050757; x=1705586757;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=Fkggu60tmfp3yXQTsj9hMPmjZeGvql3ExYJ9oEUGw1w=;
+ b=N+oum4g28e+XXN5dud0MLMSyNystLboefr3IY+0P76RMWQ+9Vc7n8Q0Z
+ sHS1K9uEw2X1+MhcInPxfxB+hngc5NZixnDv3C7f5gtRuNuxvYLGZtrVG
+ JGTqkr7+gFR/3oG4c5uHgYTqBtDVLXyR685kwTOVcFGTevK4xGd9UPHb+
+ uOOmf8VwNSaposJwSMr3AQbvu/bJ26tvvmvCk3OEkHOTVp9Bqt5ryvX9e
+ +3fWD8GtvW5pp6xgIbvoc7fsBjfIwBdqRN6SgEaqMdkGukusiRCK7sfVV
+ jCtnRfsaB1HXclUNsnQR9qMDVU9Y2Jx/1Er57Gpgop0i7cKdImPRm3G4S A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="411225330"
+X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="411225330"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2023 06:05:57 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="728211030"
+X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="728211030"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.41.107])
+ ([10.252.41.107])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2023 06:05:56 -0800
+Message-ID: <1f0c6c82-fa34-6802-dc0b-34142dda1e79@linux.intel.com>
+Date: Wed, 18 Jan 2023 15:05:53 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
 Content-Language: en-US
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- dri-devel@lists.freedesktop.org
-References: <20230117175236.22317-1-nirmoy.das@intel.com>
- <10d6fd71-7c03-a820-c984-7466b0aad044@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <10d6fd71-7c03-a820-c984-7466b0aad044@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20230118131538.3558599-1-jani.nikula@intel.com>
+ <20230118131538.3558599-5-jani.nikula@intel.com>
+From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
+In-Reply-To: <20230118131538.3558599-5-jani.nikula@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/drm_vma_manager: Add
- drm_vma_node_allow_once()
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 5/7] drm/i915: move I915_GEM_GPU_DOMAINS to
+ i915_gem.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,181 +62,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris.p.wilson@intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
 
-On 18/01/2023 13:19, Tvrtko Ursulin wrote:
-> 
-> Hi Dave & Daniel,
-> 
-> On 17/01/2023 17:52, Nirmoy Das wrote:
->> Currently there is no easy way for a drm driver to safely check and allow
->> drm_vma_offset_node for a drm file just once. Allow drm drivers to call
->> non-refcounted version of drm_vma_node_allow() so that a driver doesn't
->> need to keep track of each drm_vma_node_allow() to call subsequent
->> drm_vma_node_revoke() to prevent memory leak.
->>
->> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->> Cc: Maxime Ripard <mripard@kernel.org>
->> Cc: Thomas Zimmermann <tzimmermann@suse.de>
->> Cc: David Airlie <airlied@gmail.com>
->> Cc: Daniel Vetter <daniel@ffwll.ch>
->> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
->> Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> 
-> Okay to take this via drm-intel?
+For rest of the series Acked-by: Nirmoy Das <nirmoy.das@intel.com>
 
-Or both patches via drm-misc-fixes so that we avoid drm-intel fixes flow?
 
-Regards,
+Thanks,
 
-Tvrtko
+Nirmoy
 
-> Do we need an additional r-b from the DRM core side?
-> 
-> Regards,
-> 
-> Tvrtko
-> 
->> Suggested-by: Chris Wilson <chris.p.wilson@intel.com>
->> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
->> ---
->>   drivers/gpu/drm/drm_vma_manager.c | 76 ++++++++++++++++++++++---------
->>   include/drm/drm_vma_manager.h     |  1 +
->>   2 files changed, 55 insertions(+), 22 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/drm_vma_manager.c 
->> b/drivers/gpu/drm/drm_vma_manager.c
->> index 7de37f8c68fd..83229a031af0 100644
->> --- a/drivers/gpu/drm/drm_vma_manager.c
->> +++ b/drivers/gpu/drm/drm_vma_manager.c
->> @@ -240,27 +240,8 @@ void drm_vma_offset_remove(struct 
->> drm_vma_offset_manager *mgr,
->>   }
->>   EXPORT_SYMBOL(drm_vma_offset_remove);
->> -/**
->> - * drm_vma_node_allow - Add open-file to list of allowed users
->> - * @node: Node to modify
->> - * @tag: Tag of file to remove
->> - *
->> - * Add @tag to the list of allowed open-files for this node. If @tag is
->> - * already on this list, the ref-count is incremented.
->> - *
->> - * The list of allowed-users is preserved across drm_vma_offset_add() 
->> and
->> - * drm_vma_offset_remove() calls. You may even call it if the node is 
->> currently
->> - * not added to any offset-manager.
->> - *
->> - * You must remove all open-files the same number of times as you 
->> added them
->> - * before destroying the node. Otherwise, you will leak memory.
->> - *
->> - * This is locked against concurrent access internally.
->> - *
->> - * RETURNS:
->> - * 0 on success, negative error code on internal failure (out-of-mem)
->> - */
->> -int drm_vma_node_allow(struct drm_vma_offset_node *node, struct 
->> drm_file *tag)
->> +static int vma_node_allow(struct drm_vma_offset_node *node,
->> +              struct drm_file *tag, bool ref_counted)
->>   {
->>       struct rb_node **iter;
->>       struct rb_node *parent = NULL;
->> @@ -282,7 +263,8 @@ int drm_vma_node_allow(struct drm_vma_offset_node 
->> *node, struct drm_file *tag)
->>           entry = rb_entry(*iter, struct drm_vma_offset_file, vm_rb);
->>           if (tag == entry->vm_tag) {
->> -            entry->vm_count++;
->> +            if (ref_counted)
->> +                entry->vm_count++;
->>               goto unlock;
->>           } else if (tag > entry->vm_tag) {
->>               iter = &(*iter)->rb_right;
->> @@ -307,8 +289,58 @@ int drm_vma_node_allow(struct drm_vma_offset_node 
->> *node, struct drm_file *tag)
->>       kfree(new);
->>       return ret;
->>   }
->> +
->> +/**
->> + * drm_vma_node_allow - Add open-file to list of allowed users
->> + * @node: Node to modify
->> + * @tag: Tag of file to remove
->> + *
->> + * Add @tag to the list of allowed open-files for this node. If @tag is
->> + * already on this list, the ref-count is incremented.
->> + *
->> + * The list of allowed-users is preserved across drm_vma_offset_add() 
->> and
->> + * drm_vma_offset_remove() calls. You may even call it if the node is 
->> currently
->> + * not added to any offset-manager.
->> + *
->> + * You must remove all open-files the same number of times as you 
->> added them
->> + * before destroying the node. Otherwise, you will leak memory.
->> + *
->> + * This is locked against concurrent access internally.
->> + *
->> + * RETURNS:
->> + * 0 on success, negative error code on internal failure (out-of-mem)
->> + */
->> +int drm_vma_node_allow(struct drm_vma_offset_node *node, struct 
->> drm_file *tag)
->> +{
->> +    return vma_node_allow(node, tag, true);
->> +}
->>   EXPORT_SYMBOL(drm_vma_node_allow);
->> +/**
->> + * drm_vma_node_allow_once - Add open-file to list of allowed users
->> + * @node: Node to modify
->> + * @tag: Tag of file to remove
->> + *
->> + * Add @tag to the list of allowed open-files for this node.
->> + *
->> + * The list of allowed-users is preserved across drm_vma_offset_add() 
->> and
->> + * drm_vma_offset_remove() calls. You may even call it if the node is 
->> currently
->> + * not added to any offset-manager.
->> + *
->> + * This is not ref-counted unlike drm_vma_node_allow() hence 
->> drm_vma_node_revoke()
->> + * should only be called once after this.
->> + *
->> + * This is locked against concurrent access internally.
->> + *
->> + * RETURNS:
->> + * 0 on success, negative error code on internal failure (out-of-mem)
->> + */
->> +int drm_vma_node_allow_once(struct drm_vma_offset_node *node, struct 
->> drm_file *tag)
->> +{
->> +    return vma_node_allow(node, tag, false);
->> +}
->> +EXPORT_SYMBOL(drm_vma_node_allow_once);
->> +
->>   /**
->>    * drm_vma_node_revoke - Remove open-file from list of allowed users
->>    * @node: Node to modify
->> diff --git a/include/drm/drm_vma_manager.h 
->> b/include/drm/drm_vma_manager.h
->> index 4f8c35206f7c..6c2a2f21dbf0 100644
->> --- a/include/drm/drm_vma_manager.h
->> +++ b/include/drm/drm_vma_manager.h
->> @@ -74,6 +74,7 @@ void drm_vma_offset_remove(struct 
->> drm_vma_offset_manager *mgr,
->>                  struct drm_vma_offset_node *node);
->>   int drm_vma_node_allow(struct drm_vma_offset_node *node, struct 
->> drm_file *tag);
->> +int drm_vma_node_allow_once(struct drm_vma_offset_node *node, struct 
->> drm_file *tag);
->>   void drm_vma_node_revoke(struct drm_vma_offset_node *node,
->>                struct drm_file *tag);
->>   bool drm_vma_node_is_allowed(struct drm_vma_offset_node *node,
+On 1/18/2023 2:15 PM, Jani Nikula wrote:
+> Declutter i915_drv.h.
+>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>   drivers/gpu/drm/i915/i915_drv.h | 7 -------
+>   drivers/gpu/drm/i915/i915_gem.h | 7 +++++++
+>   2 files changed, 7 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 73ce5447cae8..eed552e507dc 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -68,13 +68,6 @@ struct drm_i915_clock_gating_funcs;
+>   struct vlv_s0ix_state;
+>   struct intel_pxp;
+>   
+> -#define I915_GEM_GPU_DOMAINS \
+> -	(I915_GEM_DOMAIN_RENDER | \
+> -	 I915_GEM_DOMAIN_SAMPLER | \
+> -	 I915_GEM_DOMAIN_COMMAND | \
+> -	 I915_GEM_DOMAIN_INSTRUCTION | \
+> -	 I915_GEM_DOMAIN_VERTEX)
+> -
+>   #define I915_COLOR_UNEVICTABLE (-1) /* a non-vma sharing the address space */
+>   
+>   #define GEM_QUIRK_PIN_SWIZZLED_PAGES	BIT(0)
+> diff --git a/drivers/gpu/drm/i915/i915_gem.h b/drivers/gpu/drm/i915/i915_gem.h
+> index a5cdf6662d01..82e9d289398c 100644
+> --- a/drivers/gpu/drm/i915/i915_gem.h
+> +++ b/drivers/gpu/drm/i915/i915_gem.h
+> @@ -39,6 +39,13 @@ struct i915_gem_ww_ctx;
+>   struct i915_gtt_view;
+>   struct i915_vma;
+>   
+> +#define I915_GEM_GPU_DOMAINS	       \
+> +	(I915_GEM_DOMAIN_RENDER |      \
+> +	 I915_GEM_DOMAIN_SAMPLER |     \
+> +	 I915_GEM_DOMAIN_COMMAND |     \
+> +	 I915_GEM_DOMAIN_INSTRUCTION | \
+> +	 I915_GEM_DOMAIN_VERTEX)
+> +
+>   void i915_gem_init_early(struct drm_i915_private *i915);
+>   void i915_gem_cleanup_early(struct drm_i915_private *i915);
+>   
