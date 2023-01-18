@@ -1,56 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 382B5671D82
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Jan 2023 14:19:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0247671DB5
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Jan 2023 14:27:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0882010E748;
-	Wed, 18 Jan 2023 13:19:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B636710E74D;
+	Wed, 18 Jan 2023 13:27:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A240D10E746;
- Wed, 18 Jan 2023 13:19:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674047964; x=1705583964;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=kzLml9umll/jySx2BG9X7bAHoHA4VT9Pp+QU8OB+mAA=;
- b=UVl4G2O1QkAY65fIK8kow6YdBEb0BsbnBjdD+J6R5IhWY8bqjyQz6kJh
- wj1M+6jqrGiLuR5ZbuPowwOvcDBxzZiibTAv7xWfTV0lPFmQRV4MRoYEX
- xa4YXnjFLI9SQQpOLGodiiizP9kTQKgdYo2vNc2vyJifR88EdA1IZpWIy
- vHz+ry2pMBjAb9tllpkGhuy7H2MkZrIjOfX4Me5DaDYVI5OMkcHwGesXu
- vxyX1WBcvLSzdqoq8+8cQex3yxrfV9F/4vfuHwavAlMwD8K3MhtwmiDJA
- TPo7FV+qsAbh1ypJCj3Gf/hWME24DWj+NX5gi/mtz8VJWt8LdCGN54tiX g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="322668441"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="322668441"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2023 05:19:24 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="767735729"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="767735729"
-Received: from llvincen-mobl.ger.corp.intel.com (HELO [10.213.215.37])
- ([10.213.215.37])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2023 05:19:21 -0800
-Message-ID: <10d6fd71-7c03-a820-c984-7466b0aad044@linux.intel.com>
-Date: Wed, 18 Jan 2023 13:19:18 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C7A3F10E74D;
+ Wed, 18 Jan 2023 13:27:15 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C25E6A0BCB;
+ Wed, 18 Jan 2023 13:27:15 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1309013041085610123=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Content-Language: en-US
-To: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- dri-devel@lists.freedesktop.org
-References: <20230117175236.22317-1-nirmoy.das@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20230117175236.22317-1-nirmoy.das@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/drm_vma_manager: Add
- drm_vma_node_allow_once()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>
+Date: Wed, 18 Jan 2023 13:27:15 -0000
+Message-ID: <167404843576.3599.6062744184232931484@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230117233905.1662645-1-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230117233905.1662645-1-dmitry.baryshkov@linaro.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/probe=5Fhelper=3A_sort_out_poll=5Frunning_vs_poll=5Fenabled?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,157 +40,171 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris.p.wilson@intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Nirmoy Das <nirmoy.das@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============1309013041085610123==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Hi Dave & Daniel,
+== Series Details ==
 
-On 17/01/2023 17:52, Nirmoy Das wrote:
-> Currently there is no easy way for a drm driver to safely check and allow
-> drm_vma_offset_node for a drm file just once. Allow drm drivers to call
-> non-refcounted version of drm_vma_node_allow() so that a driver doesn't
-> need to keep track of each drm_vma_node_allow() to call subsequent
-> drm_vma_node_revoke() to prevent memory leak.
-> 
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+Series: drm/probe_helper: sort out poll_running vs poll_enabled
+URL   : https://patchwork.freedesktop.org/series/113011/
+State : success
 
-Okay to take this via drm-intel?
+== Summary ==
 
-Do we need an additional r-b from the DRM core side?
+CI Bug Log - changes from CI_DRM_12599 -> Patchwork_113011v1
+====================================================
 
-Regards,
+Summary
+-------
 
-Tvrtko
+  **SUCCESS**
 
-> Suggested-by: Chris Wilson <chris.p.wilson@intel.com>
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-> ---
->   drivers/gpu/drm/drm_vma_manager.c | 76 ++++++++++++++++++++++---------
->   include/drm/drm_vma_manager.h     |  1 +
->   2 files changed, 55 insertions(+), 22 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_vma_manager.c b/drivers/gpu/drm/drm_vma_manager.c
-> index 7de37f8c68fd..83229a031af0 100644
-> --- a/drivers/gpu/drm/drm_vma_manager.c
-> +++ b/drivers/gpu/drm/drm_vma_manager.c
-> @@ -240,27 +240,8 @@ void drm_vma_offset_remove(struct drm_vma_offset_manager *mgr,
->   }
->   EXPORT_SYMBOL(drm_vma_offset_remove);
->   
-> -/**
-> - * drm_vma_node_allow - Add open-file to list of allowed users
-> - * @node: Node to modify
-> - * @tag: Tag of file to remove
-> - *
-> - * Add @tag to the list of allowed open-files for this node. If @tag is
-> - * already on this list, the ref-count is incremented.
-> - *
-> - * The list of allowed-users is preserved across drm_vma_offset_add() and
-> - * drm_vma_offset_remove() calls. You may even call it if the node is currently
-> - * not added to any offset-manager.
-> - *
-> - * You must remove all open-files the same number of times as you added them
-> - * before destroying the node. Otherwise, you will leak memory.
-> - *
-> - * This is locked against concurrent access internally.
-> - *
-> - * RETURNS:
-> - * 0 on success, negative error code on internal failure (out-of-mem)
-> - */
-> -int drm_vma_node_allow(struct drm_vma_offset_node *node, struct drm_file *tag)
-> +static int vma_node_allow(struct drm_vma_offset_node *node,
-> +			  struct drm_file *tag, bool ref_counted)
->   {
->   	struct rb_node **iter;
->   	struct rb_node *parent = NULL;
-> @@ -282,7 +263,8 @@ int drm_vma_node_allow(struct drm_vma_offset_node *node, struct drm_file *tag)
->   		entry = rb_entry(*iter, struct drm_vma_offset_file, vm_rb);
->   
->   		if (tag == entry->vm_tag) {
-> -			entry->vm_count++;
-> +			if (ref_counted)
-> +				entry->vm_count++;
->   			goto unlock;
->   		} else if (tag > entry->vm_tag) {
->   			iter = &(*iter)->rb_right;
-> @@ -307,8 +289,58 @@ int drm_vma_node_allow(struct drm_vma_offset_node *node, struct drm_file *tag)
->   	kfree(new);
->   	return ret;
->   }
-> +
-> +/**
-> + * drm_vma_node_allow - Add open-file to list of allowed users
-> + * @node: Node to modify
-> + * @tag: Tag of file to remove
-> + *
-> + * Add @tag to the list of allowed open-files for this node. If @tag is
-> + * already on this list, the ref-count is incremented.
-> + *
-> + * The list of allowed-users is preserved across drm_vma_offset_add() and
-> + * drm_vma_offset_remove() calls. You may even call it if the node is currently
-> + * not added to any offset-manager.
-> + *
-> + * You must remove all open-files the same number of times as you added them
-> + * before destroying the node. Otherwise, you will leak memory.
-> + *
-> + * This is locked against concurrent access internally.
-> + *
-> + * RETURNS:
-> + * 0 on success, negative error code on internal failure (out-of-mem)
-> + */
-> +int drm_vma_node_allow(struct drm_vma_offset_node *node, struct drm_file *tag)
-> +{
-> +	return vma_node_allow(node, tag, true);
-> +}
->   EXPORT_SYMBOL(drm_vma_node_allow);
->   
-> +/**
-> + * drm_vma_node_allow_once - Add open-file to list of allowed users
-> + * @node: Node to modify
-> + * @tag: Tag of file to remove
-> + *
-> + * Add @tag to the list of allowed open-files for this node.
-> + *
-> + * The list of allowed-users is preserved across drm_vma_offset_add() and
-> + * drm_vma_offset_remove() calls. You may even call it if the node is currently
-> + * not added to any offset-manager.
-> + *
-> + * This is not ref-counted unlike drm_vma_node_allow() hence drm_vma_node_revoke()
-> + * should only be called once after this.
-> + *
-> + * This is locked against concurrent access internally.
-> + *
-> + * RETURNS:
-> + * 0 on success, negative error code on internal failure (out-of-mem)
-> + */
-> +int drm_vma_node_allow_once(struct drm_vma_offset_node *node, struct drm_file *tag)
-> +{
-> +	return vma_node_allow(node, tag, false);
-> +}
-> +EXPORT_SYMBOL(drm_vma_node_allow_once);
-> +
->   /**
->    * drm_vma_node_revoke - Remove open-file from list of allowed users
->    * @node: Node to modify
-> diff --git a/include/drm/drm_vma_manager.h b/include/drm/drm_vma_manager.h
-> index 4f8c35206f7c..6c2a2f21dbf0 100644
-> --- a/include/drm/drm_vma_manager.h
-> +++ b/include/drm/drm_vma_manager.h
-> @@ -74,6 +74,7 @@ void drm_vma_offset_remove(struct drm_vma_offset_manager *mgr,
->   			   struct drm_vma_offset_node *node);
->   
->   int drm_vma_node_allow(struct drm_vma_offset_node *node, struct drm_file *tag);
-> +int drm_vma_node_allow_once(struct drm_vma_offset_node *node, struct drm_file *tag);
->   void drm_vma_node_revoke(struct drm_vma_offset_node *node,
->   			 struct drm_file *tag);
->   bool drm_vma_node_is_allowed(struct drm_vma_offset_node *node,
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113011v1/index.html
+
+Participating hosts (44 -> 43)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_113011v1 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@gem_exec_gttfill@basic:
+    - fi-pnv-d510:        [FAIL][1] ([i915#7229]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12599/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113011v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+
+  * igt@i915_selftest@live@requests:
+    - {bat-rpls-2}:       [INCOMPLETE][3] ([i915#4983] / [i915#6257]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12599/bat-rpls-2/igt@i915_selftest@live@requests.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113011v1/bat-rpls-2/igt@i915_selftest@live@requests.html
+
+  * igt@i915_selftest@live@slpc:
+    - {bat-rplp-1}:       [DMESG-FAIL][5] ([i915#6367]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12599/bat-rplp-1/igt@i915_selftest@live@slpc.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113011v1/bat-rplp-1/igt@i915_selftest@live@slpc.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
+  [i915#4258]: https://gitlab.freedesktop.org/drm/intel/issues/4258
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#6257]: https://gitlab.freedesktop.org/drm/intel/issues/6257
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#7229]: https://gitlab.freedesktop.org/drm/intel/issues/7229
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12599 -> Patchwork_113011v1
+
+  CI-20190529: 20190529
+  CI_DRM_12599: 52aad5ad870672dc91502248cb7c76202d02dafc @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7121: aa16e81259f59734230d441905b9d0f605e4a4b5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_113011v1: 52aad5ad870672dc91502248cb7c76202d02dafc @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+49eeca037178 drm/probe_helper: sort out poll_running vs poll_enabled
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113011v1/index.html
+
+--===============1309013041085610123==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/probe_helper: sort out poll_running vs poll_enabled</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/113011/">https://patchwork.freedesktop.org/series/113011/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113011v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113011v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12599 -&gt; Patchwork_113011v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113011v1/index.html</p>
+<h2>Participating hosts (44 -&gt; 43)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_113011v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_gttfill@basic:</p>
+<ul>
+<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12599/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7229">i915#7229</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113011v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12599/bat-rpls-2/igt@i915_selftest@live@requests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6257">i915#6257</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113011v1/bat-rpls-2/igt@i915_selftest@live@requests.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@slpc:</p>
+<ul>
+<li>{bat-rplp-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12599/bat-rplp-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113011v1/bat-rplp-1/igt@i915_selftest@live@slpc.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12599 -&gt; Patchwork_113011v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12599: 52aad5ad870672dc91502248cb7c76202d02dafc @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7121: aa16e81259f59734230d441905b9d0f605e4a4b5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_113011v1: 52aad5ad870672dc91502248cb7c76202d02dafc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>49eeca037178 drm/probe_helper: sort out poll_running vs poll_enabled</p>
+
+</body>
+</html>
+
+--===============1309013041085610123==--
