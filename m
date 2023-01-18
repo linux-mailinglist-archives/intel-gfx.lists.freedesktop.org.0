@@ -1,58 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1ACF672166
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Jan 2023 16:35:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B87B672188
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Jan 2023 16:41:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 175D910E773;
-	Wed, 18 Jan 2023 15:35:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDA4410E776;
+	Wed, 18 Jan 2023 15:41:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B89B210E76C;
- Wed, 18 Jan 2023 15:35:48 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE13E10E76E;
+ Wed, 18 Jan 2023 15:41:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674056149; x=1705592149;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=V+7w/6DVh6oOTj/5Q6BI82PHATnPnRgB/JN4Ard83Dk=;
- b=Gz57egnTY6YYvqlojEwpjGrMBhV4JoVeqKWN6u8gYUt037QbG2cfm5L4
- GnscKpY2cJlEC+u0BFtiv5lTlyH05XcpZeIGFBtX3mWP5QgiAVrijE7H0
- yBRkLQsBmy7y396IZuGRu0Qz/89PlSDT9PHKJDoYna47pdBzTi3aL6KQH
- HdQPVFUsdVwDoKmTwZ/gHuwg55DllH6h8lTEFSJgyQIbrji8tBzrmVZEm
- lVQ2QCb8uEJvcp1+GlGS5aOJzQ/OYg+65HXarOgZbUt92144zIdo6oq66
- MsPYvODbjMjuNlfX8veHhn4BA77mS/+JPU13yj6/ufzu5hdD/ElZyMC83 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="305381645"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="305381645"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2023 07:35:47 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="833614590"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="833614590"
-Received: from lab-ah.igk.intel.com ([10.102.42.211])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2023 07:35:41 -0800
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-To: linux-alpha@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-snps-arc@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-hexagon@vger.kernel.org, linux-ia64@vger.kernel.org,
- loongarch@lists.linux.dev, linux-m68k@lists.linux-m68k.org,
- linux-mips@vger.kernel.org, openrisc@lists.librecores.org,
- linux-parisc@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
- linux-sh@vger.kernel.org, sparclinux@vger.kernel.org,
- linux-xtensa@linux-xtensa.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Date: Wed, 18 Jan 2023 16:35:22 +0100
-Message-Id: <20230118153529.57695-1-andrzej.hajda@intel.com>
-X-Mailer: git-send-email 2.34.1
+ t=1674056471; x=1705592471;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=SxtG2gyel1mvg//mOJI9CRFqYiLMBMT1Rr2aAUB6AtY=;
+ b=H4A3nmprKyhqhImowbGluryFWc7A9dBaJO11bNm6I6nvw/n2HuMBUnIV
+ zlCcoSBULXmIJt72zdNPog13fI2L5zLYhsQVTsJUFHkCrbNUYJScffIP5
+ vf3B3Fo5BdVb2Gv1zYf99Mp7plI8PabG3ZPIOX9Q5PHhTjtr80hXcai8x
+ sjvMq85yZP4dVEBftK1dWRc2+4zjcT8zyG+vh4L5cM2lh8IcixJiGDf5P
+ BlKUS6i8Zl42R7fdFRPDcq3rmj+zTnNm3n9/X6zrQl3rRPzMV4AYOd8E4
+ P2Zkpiqa9q2spmPXVWiWGZthh07sNpY1hgKQE/K18TNLK8Sbf7CE9kSz3 g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="387359894"
+X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="387359894"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2023 07:41:11 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="690230758"
+X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="690230758"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
+ by orsmga008.jf.intel.com with SMTP; 18 Jan 2023 07:41:08 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 18 Jan 2023 17:41:07 +0200
+Date: Wed, 18 Jan 2023 17:41:07 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <Y8gTE05TMrsEfND6@intel.com>
+References: <cover.1672826282.git.jani.nikula@intel.com>
+ <80426772a2d2e17bebf6f58d99b7d0cf6260c2d6.1672826282.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v5 0/7] Introduce __xchg, non-atomic xchg
+In-Reply-To: <80426772a2d2e17bebf6f58d99b7d0cf6260c2d6.1672826282.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v7 09/22] drm/edid: fix and clarify HDMI
+ VSDB audio latency parsing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,123 +62,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, Arnd Bergmann <arnd@arndb.de>,
- Peter Zijlstra <peterz@infradead.org>, Boqun Feng <boqun.feng@gmail.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi all,
+On Wed, Jan 04, 2023 at 12:05:24PM +0200, Jani Nikula wrote:
+> Add helpers for Latency_Fields_Present and I_Latency_Fields_Present
+> bits, and fix the parsing:
+> 
+> - Respect specification regarding "I_Latency_Fields_Present shall be
+>   zero if Latency_Fields_Present is zero".
+> 
+> - Don't claim latency fields are present if the data block isn't big
+>   enough to hold them.
+> 
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-The helper is tiny and there are advices we can live without it, so
-I want to present few arguments why it would be good to have it:
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-1. Code readability/simplification/number of lines:
-  - decreases number of lines,
-  - it often eliminates local variables,
-  - for real examples see patches 3+.
-
-2. Presence of similar helpers in other somehow related languages/libs:
-
-a) Rust[1]: 'replace' from std::mem module, there is also 'take'
-    helper (__xchg(&x, 0)), which is the same as private helper in
-    i915 - fetch_and_zero, see latest patch.
-b) C++ [2]: 'exchange' from utility header.
-
-If the idea is OK there are still 2 questions to answer:
-
-1. Name of the helper, __xchg follows kernel conventions,
-    but for me Rust names are also OK.
-2. Where to put the helper:
-a) as in this patchset include/linux/non-atomic/xchg.h,
-    proposed by Andy Shevchenko,
-b) include/linux/utils.h ? any better name? Some kind
-    of container for simple helpers.
-
-All __xchg conversions were performed using cocci script,
-then manually adjusted if necessary.
-
-There is lot of places it can be used in, I have just chosen
-some of them. I can provide cocci script to detect others (not all),
-if necessary.
-
-Changes:
-v2: squashed all __xchg -> __arch_xchg t one patch (Arnd)
-v3: fixed alpha/xchg_local (lkp@intel.com)
-v4: adjusted indentation (Heiko)
-v5: added more __xchg conversions - patches 3-6, added tags
-
-[1]: https://doc.rust-lang.org/std/mem/index.html
-[2]: https://en.cppreference.com/w/cpp/header/utility
-
-Regards
-Andrzej
-
-Andrzej Hajda (7):
-  arch: rename all internal names __xchg to __arch_xchg
-  linux/include: add non-atomic version of xchg
-  arch/*/uprobes: simplify arch_uretprobe_hijack_return_addr
-  llist: simplify __llist_del_all
-  io_uring: use __xchg if possible
-  qed: use __xchg if possible
-  drm/i915/gt: use __xchg instead of internal helper
-
- arch/alpha/include/asm/cmpxchg.h              | 10 +++++-----
- arch/arc/include/asm/cmpxchg.h                |  4 ++--
- arch/arm/include/asm/cmpxchg.h                |  7 ++++---
- arch/arm/probes/uprobes/core.c                |  8 ++------
- arch/arm64/include/asm/cmpxchg.h              |  7 +++----
- arch/arm64/kernel/probes/uprobes.c            |  9 ++-------
- arch/csky/kernel/probes/uprobes.c             |  9 ++-------
- arch/hexagon/include/asm/cmpxchg.h            | 10 +++++-----
- arch/ia64/include/asm/cmpxchg.h               |  2 +-
- arch/ia64/include/uapi/asm/cmpxchg.h          |  4 ++--
- arch/loongarch/include/asm/cmpxchg.h          |  4 ++--
- arch/m68k/include/asm/cmpxchg.h               |  6 +++---
- arch/mips/include/asm/cmpxchg.h               |  4 ++--
- arch/mips/kernel/uprobes.c                    | 10 ++--------
- arch/openrisc/include/asm/cmpxchg.h           | 10 +++++-----
- arch/parisc/include/asm/cmpxchg.h             |  4 ++--
- arch/powerpc/include/asm/cmpxchg.h            |  4 ++--
- arch/powerpc/kernel/uprobes.c                 | 10 ++--------
- arch/riscv/include/asm/atomic.h               |  2 +-
- arch/riscv/include/asm/cmpxchg.h              |  4 ++--
- arch/riscv/kernel/probes/uprobes.c            |  9 ++-------
- arch/s390/include/asm/cmpxchg.h               |  8 ++++----
- arch/s390/kernel/uprobes.c                    |  7 ++-----
- arch/sh/include/asm/cmpxchg.h                 |  4 ++--
- arch/sparc/include/asm/cmpxchg_32.h           |  4 ++--
- arch/sparc/include/asm/cmpxchg_64.h           |  6 +++---
- arch/sparc/kernel/uprobes.c                   |  7 ++-----
- arch/xtensa/include/asm/cmpxchg.h             |  4 ++--
- drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  2 +-
- .../gpu/drm/i915/gt/intel_engine_heartbeat.c  |  4 ++--
- .../drm/i915/gt/intel_execlists_submission.c  |  4 ++--
- drivers/gpu/drm/i915/gt/intel_ggtt.c          |  4 ++--
- drivers/gpu/drm/i915/gt/intel_gsc.c           |  2 +-
- drivers/gpu/drm/i915/gt/intel_gt.c            |  4 ++--
- drivers/gpu/drm/i915/gt/intel_gt_pm.c         |  2 +-
- drivers/gpu/drm/i915/gt/intel_lrc.c           |  6 +++---
- drivers/gpu/drm/i915/gt/intel_migrate.c       |  2 +-
- drivers/gpu/drm/i915/gt/intel_rc6.c           |  2 +-
- drivers/gpu/drm/i915/gt/intel_rps.c           |  2 +-
- drivers/gpu/drm/i915/gt/selftest_context.c    |  2 +-
- .../drm/i915/gt/selftest_ring_submission.c    |  2 +-
- drivers/gpu/drm/i915/gt/selftest_timeline.c   |  2 +-
- drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.c     |  2 +-
- drivers/gpu/drm/i915/gt/uc/intel_uc.c         |  2 +-
- drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      |  2 +-
- drivers/gpu/drm/i915/i915_utils.h             |  1 +
- include/linux/llist.h                         |  6 ++----
- include/linux/non-atomic/xchg.h               | 19 +++++++++++++++++++
- include/linux/qed/qed_chain.h                 | 19 +++++++------------
- io_uring/io_uring.c                           |  7 ++-----
- io_uring/slist.h                              |  6 ++----
- 51 files changed, 126 insertions(+), 155 deletions(-)
- create mode 100644 include/linux/non-atomic/xchg.h
+> ---
+>  drivers/gpu/drm/drm_edid.c | 27 +++++++++++++++++++--------
+>  1 file changed, 19 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+> index 076ba125c38d..847076b29594 100644
+> --- a/drivers/gpu/drm/drm_edid.c
+> +++ b/drivers/gpu/drm/drm_edid.c
+> @@ -4685,6 +4685,16 @@ static int add_3d_struct_modes(struct drm_connector *connector, u16 structure,
+>  	return modes;
+>  }
+>  
+> +static bool hdmi_vsdb_latency_present(const u8 *db)
+> +{
+> +	return db[8] & BIT(7);
+> +}
+> +
+> +static bool hdmi_vsdb_i_latency_present(const u8 *db)
+> +{
+> +	return hdmi_vsdb_latency_present(db) && db[8] & BIT(6);
+> +}
+> +
+>  /*
+>   * do_hdmi_vsdb_modes - Parse the HDMI Vendor Specific data block
+>   * @connector: connector corresponding to the HDMI sink
+> @@ -5357,6 +5367,7 @@ drm_parse_hdr_metadata_block(struct drm_connector *connector, const u8 *db)
+>  	}
+>  }
+>  
+> +/* HDMI Vendor-Specific Data Block (HDMI VSDB, H14b-VSDB) */
+>  static void
+>  drm_parse_hdmi_vsdb_audio(struct drm_connector *connector, const u8 *db)
+>  {
+> @@ -5364,18 +5375,18 @@ drm_parse_hdmi_vsdb_audio(struct drm_connector *connector, const u8 *db)
+>  
+>  	if (len >= 6 && (db[6] & (1 << 7)))
+>  		connector->eld[DRM_ELD_SAD_COUNT_CONN_TYPE] |= DRM_ELD_SUPPORTS_AI;
+> -	if (len >= 8) {
+> -		connector->latency_present[0] = db[8] >> 7;
+> -		connector->latency_present[1] = (db[8] >> 6) & 1;
+> -	}
+> -	if (len >= 9)
+> +
+> +	if (len >= 10 && hdmi_vsdb_latency_present(db)) {
+> +		connector->latency_present[0] = true;
+>  		connector->video_latency[0] = db[9];
+> -	if (len >= 10)
+>  		connector->audio_latency[0] = db[10];
+> -	if (len >= 11)
+> +	}
+> +
+> +	if (len >= 12 && hdmi_vsdb_i_latency_present(db)) {
+> +		connector->latency_present[1] = true;
+>  		connector->video_latency[1] = db[11];
+> -	if (len >= 12)
+>  		connector->audio_latency[1] = db[12];
+> +	}
+>  
+>  	drm_dbg_kms(connector->dev,
+>  		    "[CONNECTOR:%d:%s] HDMI: latency present %d %d, video latency %d %d, audio latency %d %d\n",
+> -- 
+> 2.34.1
 
 -- 
-2.34.1
-
+Ville Syrjälä
+Intel
