@@ -2,94 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAF54672053
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Jan 2023 15:55:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AEFC2672056
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Jan 2023 15:56:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F76510E6F6;
-	Wed, 18 Jan 2023 14:55:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2449610E762;
+	Wed, 18 Jan 2023 14:56:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0a-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
- [148.163.158.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3148B10E6F6;
- Wed, 18 Jan 2023 14:55:48 +0000 (UTC)
-Received: from pps.filterd (m0098416.ppops.net [127.0.0.1])
- by mx0b-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
- 30IDKcQY027120; Wed, 18 Jan 2023 14:55:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
- h=message-id : date :
- subject : to : cc : references : from : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=pp1;
- bh=/asgtMy/qhWFY2TxHCd85ee3a9Lem+Noi/OHiwyhihU=;
- b=OdH3NOykV8G0o/SZKaiUxLOSFcaNT5x//YXBz32ZNiOA3blUq1AgBdH6vwSEs8zHW+BD
- 4kk1YfzfS4M+LF0aXhEf4t1xY00kdiWBgVPMB/elluMSnc7VsC/oXLwiYyROgzBlJpb7
- QgcHERvG/utRVZhIJ1/9hEUAiGlDUyg02XEZF6WA/9jAw+UXBz5c1MknacGlBoxBF8BP
- +gwUYCgPwFFfdCVlyiARmTeGFgcnVhYdCd9eQxc6kjUUJOWGHZc/qYADvQ6rHYrG0wFJ
- dAkycZVl1Sgb3rQ92R5dRDwZB61VQNZoyuN6hxfUHwuPXeR7s/ZbLWtD43opjt/7/bvf qQ== 
-Received: from pps.reinject (localhost [127.0.0.1])
- by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3n6f91wtvx-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 18 Jan 2023 14:55:44 +0000
-Received: from m0098416.ppops.net (m0098416.ppops.net [127.0.0.1])
- by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 30IE0Tbh022576;
- Wed, 18 Jan 2023 14:55:43 GMT
-Received: from ppma02dal.us.ibm.com (a.bd.3ea9.ip4.static.sl-reverse.com
- [169.62.189.10])
- by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3n6f91wtvp-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 18 Jan 2023 14:55:43 +0000
-Received: from pps.filterd (ppma02dal.us.ibm.com [127.0.0.1])
- by ppma02dal.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 30ICc6Ua005708;
- Wed, 18 Jan 2023 14:55:42 GMT
-Received: from smtprelay07.dal12v.mail.ibm.com ([9.208.130.99])
- by ppma02dal.us.ibm.com (PPS) with ESMTPS id 3n3m17nrtm-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 18 Jan 2023 14:55:42 +0000
-Received: from smtpav03.dal12v.mail.ibm.com (smtpav03.dal12v.mail.ibm.com
- [10.241.53.102])
- by smtprelay07.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 30IEtfje29622842
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Wed, 18 Jan 2023 14:55:41 GMT
-Received: from smtpav03.dal12v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 2463D58056;
- Wed, 18 Jan 2023 14:55:41 +0000 (GMT)
-Received: from smtpav03.dal12v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 9D2485803F;
- Wed, 18 Jan 2023 14:55:39 +0000 (GMT)
-Received: from [9.60.89.243] (unknown [9.60.89.243])
- by smtpav03.dal12v.mail.ibm.com (Postfix) with ESMTP;
- Wed, 18 Jan 2023 14:55:39 +0000 (GMT)
-Message-ID: <b5a7efc9-7cfa-3314-fe36-b8da4a25265d@linux.ibm.com>
-Date: Wed, 18 Jan 2023 09:55:39 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Content-Language: en-US
-To: "Tian, Kevin" <kevin.tian@intel.com>,
- Alex Williamson <alex.williamson@redhat.com>
-References: <20230114000351.115444-1-mjrosato@linux.ibm.com>
- <20230117142252.70cc85c7.alex.williamson@redhat.com>
- <BN9PR11MB52763D861C254248FD33F65C8CC79@BN9PR11MB5276.namprd11.prod.outlook.com>
-From: Matthew Rosato <mjrosato@linux.ibm.com>
-In-Reply-To: <BN9PR11MB52763D861C254248FD33F65C8CC79@BN9PR11MB5276.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: TfmjtY4Qpflu2Wdc05rgEibVTFbw_JpY
-X-Proofpoint-ORIG-GUID: 1ul9rd7a7oGMvAucLJJS3iFU0CRQHuJl
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-UnRewURL: 0 URL was un-rewritten
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2184B10E761;
+ Wed, 18 Jan 2023 14:56:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1674053790; x=1705589790;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=ppacL10B9CJfkWOwyfu1rpq320E1fOqJoAOs49v3lp4=;
+ b=DZKHSRoPtk0rJfcmlc/sAHJVcMyLw18WlTgVgjOwvh4M1X2FVYhMdy8j
+ EOJOOXfjAmKhwZBVxevoNtC5HkwwnB7lRvAkvFAIkZ7eMUwoF9i5zj14f
+ g8M+46hzRd8PC1bMiQJDkci0HP6xp7tBHmnGHszSOKrXwAIMSp8JNdKKi
+ yFFDdMBMrC+tWhgtoBIpMeKSwvbMaXvAz9sUbaGmAMWzFB8svx1D3zCQ5
+ zKjMWZemBFqL7ocHC0ZBxLQbFFK5sRcRDjU8R4czV27QZB9erg2TShtcp
+ JNjlz+M6zlExoZ+6J4etjG/f+aqCOes4z3F5f7W2uhkY+v/yG+oUazzUh g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="327072748"
+X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="327072748"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2023 06:56:29 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="637318168"
+X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="637318168"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
+ by orsmga006.jf.intel.com with SMTP; 18 Jan 2023 06:56:26 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 18 Jan 2023 16:56:26 +0200
+Date: Wed, 18 Jan 2023 16:56:26 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <Y8gImnTq8+e/Gt95@intel.com>
+References: <cover.1672826282.git.jani.nikula@intel.com>
+ <c3e78cc6d01ed237f71ad0038826b08d83d75eef.1672826282.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-18_05,2023-01-18_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 phishscore=0
- adultscore=0 clxscore=1015 impostorscore=0 malwarescore=0 mlxlogscore=999
- bulkscore=0 spamscore=0 priorityscore=1501 lowpriorityscore=0 mlxscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
- definitions=main-2301180124
-Subject: Re: [Intel-gfx] [PATCH v4] vfio: fix potential deadlock on vfio
- group lock
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <c3e78cc6d01ed237f71ad0038826b08d83d75eef.1672826282.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v7 01/22] drm/edid: fix AVI infoframe aspect
+ ratio handling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,82 +62,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "akrowiak@linux.ibm.com" <akrowiak@linux.ibm.com>,
- "jjherne@linux.ibm.com" <jjherne@linux.ibm.com>,
- "farman@linux.ibm.com" <farman@linux.ibm.com>,
- "borntraeger@linux.ibm.com" <borntraeger@linux.ibm.com>,
- "frankja@linux.ibm.com" <frankja@linux.ibm.com>,
- "pmorel@linux.ibm.com" <pmorel@linux.ibm.com>,
- "david@redhat.com" <david@redhat.com>, "Christopherson, ,
- Sean" <seanjc@google.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "pasic@linux.ibm.com" <pasic@linux.ibm.com>, "Liu, Yi L" <yi.l.liu@intel.com>,
- "jgg@nvidia.com" <jgg@nvidia.com>, "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "pbonzini@redhat.com" <pbonzini@redhat.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "imbrenda@linux.ibm.com" <imbrenda@linux.ibm.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>
+Cc: stable@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ William Tseng <william.tseng@intel.com>, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 1/18/23 4:03 AM, Tian, Kevin wrote:
->> From: Alex Williamson
->> Sent: Wednesday, January 18, 2023 5:23 AM
->>
->> On Fri, 13 Jan 2023 19:03:51 -0500
->> Matthew Rosato <mjrosato@linux.ibm.com> wrote:
->>
->>>  void vfio_device_group_close(struct vfio_device *device)
->>>  {
->>> +	void (*put_kvm)(struct kvm *kvm);
->>> +	struct kvm *kvm;
->>> +
->>>  	mutex_lock(&device->group->group_lock);
->>> +	kvm = device->kvm;
->>> +	put_kvm = device->put_kvm;
->>>  	vfio_device_close(device, device->group->iommufd);
->>> +	if (kvm == device->kvm)
->>> +		kvm = NULL;
->>
->> Hmm, so we're using whether the device->kvm pointer gets cleared in
->> last_close to detect whether we should put the kvm reference.  That's a
->> bit obscure.  Our get and put is also asymmetric.
->>
->> Did we decide that we couldn't do this via a schedule_work() from the
->> last_close function, ie. implementing our own version of an async put?
->> It seems like that potentially has a cleaner implementation, symmetric
->> call points, handling all the storing and clearing of kvm related
->> pointers within the get/put wrappers, passing only a vfio_device to the
->> put wrapper, using the "vfio_device_" prefix for both.  Potentially
->> we'd just want an unconditional flush outside of lock here for
->> deterministic release.
->>
->> What's the downside?  Thanks,
->>
+On Wed, Jan 04, 2023 at 12:05:16PM +0200, Jani Nikula wrote:
+> We try to avoid sending VICs defined in the later specs in AVI
+> infoframes to sinks that conform to the earlier specs, to not upset
+> them, and use 0 for the VIC instead. However, we do this detection and
+> conversion to 0 too early, as we'll need the actual VIC to figure out
+> the aspect ratio.
 > 
-> btw I guess this can be also fixed by Yi's work here:
+> In particular, for a mode with 64:27 aspect ratio, 0 for VIC fails the
+> AVI infoframe generation altogether with -EINVAL.
 > 
-> https://lore.kernel.org/kvm/20230117134942.101112-6-yi.l.liu@intel.com/
+> Separate the VIC lookup from the "filtering", and postpone the
+> filtering, to use the proper VIC for aspect ratio handling, and the 0
+> VIC for the infoframe video code as needed.
 > 
-> with set_kvm(NULL) moved to the release callback of kvm_vfio device,
-> such circular lock dependency can be avoided too.
+> Reported-by: William Tseng <william.tseng@intel.com>
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6153
+> References: https://lore.kernel.org/r/20220920062316.43162-1-william.tseng@intel.com
+> Cc: <stable@vger.kernel.org>
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Oh, interesting...  It seems to me that this would eliminate the reported call chain altogether:
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-kvm_put_kvm
- -> kvm_destroy_vm
-  -> kvm_destroy_devices
-   -> kvm_vfio_destroy (starting here -- this would no longer be executed)
-    -> kvm_vfio_file_set_kvm
-     -> vfio_file_set_kvm
-      -> group->group_lock/group_rwsem
+> ---
+>  drivers/gpu/drm/drm_edid.c | 21 ++++++++++++---------
+>  1 file changed, 12 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+> index 3841aba17abd..23f7146e6a9b 100644
+> --- a/drivers/gpu/drm/drm_edid.c
+> +++ b/drivers/gpu/drm/drm_edid.c
+> @@ -6885,8 +6885,6 @@ static u8 drm_mode_hdmi_vic(const struct drm_connector *connector,
+>  static u8 drm_mode_cea_vic(const struct drm_connector *connector,
+>  			   const struct drm_display_mode *mode)
+>  {
+> -	u8 vic;
+> -
+>  	/*
+>  	 * HDMI spec says if a mode is found in HDMI 1.4b 4K modes
+>  	 * we should send its VIC in vendor infoframes, else send the
+> @@ -6896,13 +6894,18 @@ static u8 drm_mode_cea_vic(const struct drm_connector *connector,
+>  	if (drm_mode_hdmi_vic(connector, mode))
+>  		return 0;
+>  
+> -	vic = drm_match_cea_mode(mode);
+> +	return drm_match_cea_mode(mode);
+> +}
+>  
+> -	/*
+> -	 * HDMI 1.4 VIC range: 1 <= VIC <= 64 (CEA-861-D) but
+> -	 * HDMI 2.0 VIC range: 1 <= VIC <= 107 (CEA-861-F). So we
+> -	 * have to make sure we dont break HDMI 1.4 sinks.
+> -	 */
+> +/*
+> + * Avoid sending VICs defined in HDMI 2.0 in AVI infoframes to sinks that
+> + * conform to HDMI 1.4.
+> + *
+> + * HDMI 1.4 (CTA-861-D) VIC range: [1..64]
+> + * HDMI 2.0 (CTA-861-F) VIC range: [1..107]
+> + */
+> +static u8 vic_for_avi_infoframe(const struct drm_connector *connector, u8 vic)
+> +{
+>  	if (!is_hdmi2_sink(connector) && vic > 64)
+>  		return 0;
+>  
+> @@ -6978,7 +6981,7 @@ drm_hdmi_avi_infoframe_from_display_mode(struct hdmi_avi_infoframe *frame,
+>  		picture_aspect = HDMI_PICTURE_ASPECT_NONE;
+>  	}
+>  
+> -	frame->video_code = vic;
+> +	frame->video_code = vic_for_avi_infoframe(connector, vic);
+>  	frame->picture_aspect = picture_aspect;
+>  	frame->active_aspect = HDMI_ACTIVE_ASPECT_PICTURE;
+>  	frame->scan_mode = HDMI_SCAN_MODE_UNDERSCAN;
+> -- 
+> 2.34.1
 
-because kvm_destroy_devices now can't end up calling kvm_vfio_destroy and friends, it won't try and acquire the group lock a 2nd time making a kvm_put_kvm while the group lock is held OK to do.  The vfio_file_set_kvm call will now always come from a separate thread of execution, kvm_vfio_group_add, kvm_vfio_group_del or the release thread:
-
-kvm_device_release (where the group->group_lock would not be held since vfio does not trigger closing of the kvm fd)
- -> kvm_vfio_destroy (or, kvm_vfio_release)
-  -> kvm_vfio_file_set_kvm
-   -> vfio_file_set_kvm
-    -> group->group_lock/group_rwsem
+-- 
+Ville Syrjälä
+Intel
