@@ -1,55 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA3966722C3
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Jan 2023 17:15:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B0276722ED
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Jan 2023 17:23:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57A9E10E775;
-	Wed, 18 Jan 2023 16:15:41 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B152510E775;
- Wed, 18 Jan 2023 16:15:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D58310E792;
+	Wed, 18 Jan 2023 16:23:13 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05DDF10E792;
+ Wed, 18 Jan 2023 16:23:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674058539; x=1705594539;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=o48YeKxucyzC6tpr2gbeZur+i3oyufCeS+2xn1C+Kk0=;
- b=hXIJQLZlGo2tVrl8jYVFtJrVUrOi8/9Lq+J5vEHZZPtA6sA5aDpnUhjQ
- gYRZQEkfx2YSwZ4AYdYe7Rsk+EkwhiUclhYXqpONs4xjcyAAt3sCCVDlm
- bgPYQxo99+ocoT8w8ty7Zjp3o1CRhzDfQJDlLBu6j7rSdlBnfzr5rGNPd
- YQTR+hXkdBDDidt4NTLsgg/fY1k0tYAAOS/g8GLUnsoXDU4Z1KRMNwvkC
- hcJBnuTA/G9ZivUQ5R2bXhplGcPbWvXq699rMNRZd7B5VYPTkzCWVG3sN
- XMFUJ2UBJlxjArqNoKVLjl+1Ziny7arRvj4crb72la4CbZks1aPbbuDc+ A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="326285177"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="326285177"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2023 08:15:12 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="692056140"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="692056140"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
- by orsmga001.jf.intel.com with SMTP; 18 Jan 2023 08:15:10 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 18 Jan 2023 18:15:09 +0200
-Date: Wed, 18 Jan 2023 18:15:09 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <Y8gbDbJRFFt969G6@intel.com>
-References: <cover.1672826282.git.jani.nikula@intel.com>
- <8997e0fa3b0fd03c920e72d1dff24c0d96ff4dd0.1672826282.git.jani.nikula@intel.com>
+ t=1674058990; x=1705594990;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=9Fi480uzS5oBGcDSvrekY97oLJsbYkd3EZfuIFpLe2U=;
+ b=IVJDYp3WmwYjaIbPaCbspXRiM0LXxSWK6rOoAqaXjq7cJDK7vkUbWN97
+ H0O5YzZo6ReP0oCZZhl5SuPa3evqOpLUuFga1xPXW4KHQ3uHp67gvIqR7
+ zPF7Dbltye4rfM/r9bJlcl734h/4ylbIUrBq+gjs3lxdMWqPR7FTuapc/
+ P+vbSxLbfcXTJiszD3h8suavSP5X+5pSVDYE+cREKeqSwbHRU98XonUeG
+ V8CLTq4znMlcfricnjgGIiDwEIyKuvWNZfyns6oktnJeZlIquE7vjeo7A
+ 9QONp8A+59R6y/25xHn8gGSeMceqh/ipGU7YJORCg+gJZgQizIEXK9fFO Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="312899539"
+X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="312899539"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2023 08:22:36 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="988612254"
+X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="988612254"
+Received: from llvincen-mobl.ger.corp.intel.com (HELO [10.213.215.37])
+ ([10.213.215.37])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2023 08:22:31 -0800
+Message-ID: <f2c7519b-9a6b-e750-e64c-c1d38720391d@linux.intel.com>
+Date: Wed, 18 Jan 2023 16:22:29 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8997e0fa3b0fd03c920e72d1dff24c0d96ff4dd0.1672826282.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v7 15/22] drm/edid: move EDID BPC quirk
- application to update_display_info()
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Content-Language: en-US
+To: John.C.Harrison@Intel.com, Intel-GFX@Lists.FreeDesktop.Org
+References: <20230117213630.2897570-1-John.C.Harrison@Intel.com>
+ <20230117213630.2897570-2-John.C.Harrison@Intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20230117213630.2897570-2-John.C.Harrison@Intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v2 1/5] drm/i915: Fix request locking during
+ error capture & debugfs dump
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,76 +63,190 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Michael Cheng <michael.cheng@intel.com>,
+ Alan Previn <alan.previn.teres.alexis@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>, DRI-Devel@Lists.FreeDesktop.Org,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 04, 2023 at 12:05:30PM +0200, Jani Nikula wrote:
-> The BPC quirks are closer to home in update_display_info().
+
+On 17/01/2023 21:36, John.C.Harrison@Intel.com wrote:
+> From: John Harrison <John.C.Harrison@Intel.com>
 > 
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-
+> When GuC support was added to error capture, the locking around the
+> request object was broken. Fix it up.
+> 
+> The context based search manages the spinlocking around the search
+> internally. So it needs to grab the reference count internally as
+> well. The execlist only request based search relies on external
+> locking, so it needs an external reference count. So no change to that
+> code itself but the context version does change.
+> 
+> The only other caller is the code for dumping engine state to debugfs.
+> That code wasn't previously getting an explicit reference at all as it
+> does everything while holding the execlist specific spinlock. So that
+> needs updaing as well as that spinlock doesn't help when using GuC
+> submission. Rather than trying to conditionally get/put depending on
+> submission model, just change it to always do the get/put.
+> 
+> In addition, intel_guc_find_hung_context() was not acquiring the
+> correct spinlock before searching the request list. So fix that up too.
+> 
+> Fixes: dc0dad365c5e ("drm/i915/guc: Fix for error capture after full GPU reset
+> with GuC")
+> Fixes: 573ba126aef3 ("drm/i915/guc: Capture error state on context reset")
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: John Harrison <John.C.Harrison@Intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+> Cc: Michael Cheng <michael.cheng@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+> Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+> Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+> Cc: Bruce Chang <yu.bruce.chang@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org
+> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 > ---
->  drivers/gpu/drm/drm_edid.c | 26 +++++++++++++-------------
->  1 file changed, 13 insertions(+), 13 deletions(-)
+>   drivers/gpu/drm/i915/gt/intel_context.c           |  1 +
+>   drivers/gpu/drm/i915/gt/intel_engine_cs.c         |  7 ++++++-
+>   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 11 +++++++++++
+>   drivers/gpu/drm/i915/i915_gpu_error.c             |  5 ++---
+>   4 files changed, 20 insertions(+), 4 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index 810a5fca398a..5881df5bddb9 100644
-> --- a/drivers/gpu/drm/drm_edid.c
-> +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -6555,6 +6555,18 @@ static void update_display_info(struct drm_connector *connector,
->  	if (info->quirks & EDID_QUIRK_CAP_DSC_15BPP)
->  		info->max_dsc_bpp = 15;
->  
-> +	if (info->quirks & EDID_QUIRK_FORCE_6BPC)
-> +		info->bpc = 6;
-> +
-> +	if (info->quirks & EDID_QUIRK_FORCE_8BPC)
-> +		info->bpc = 8;
-> +
-> +	if (info->quirks & EDID_QUIRK_FORCE_10BPC)
-> +		info->bpc = 10;
-> +
-> +	if (info->quirks & EDID_QUIRK_FORCE_12BPC)
-> +		info->bpc = 12;
-> +
->  	/* Depends on info->cea_rev set by drm_parse_cea_ext() above */
->  	drm_edid_to_eld(connector, drm_edid);
->  }
-> @@ -6654,7 +6666,7 @@ static int add_displayid_detailed_modes(struct drm_connector *connector,
->  static int _drm_edid_connector_update(struct drm_connector *connector,
->  				      const struct drm_edid *drm_edid)
->  {
-> -	struct drm_display_info *info = &connector->display_info;
-> +	const struct drm_display_info *info = &connector->display_info;
->  	int num_modes = 0;
->  
->  	/*
-> @@ -6694,18 +6706,6 @@ static int _drm_edid_connector_update(struct drm_connector *connector,
->  	if (info->quirks & (EDID_QUIRK_PREFER_LARGE_60 | EDID_QUIRK_PREFER_LARGE_75))
->  		edid_fixup_preferred(connector);
->  
-> -	if (info->quirks & EDID_QUIRK_FORCE_6BPC)
-> -		info->bpc = 6;
-> -
-> -	if (info->quirks & EDID_QUIRK_FORCE_8BPC)
-> -		info->bpc = 8;
-> -
-> -	if (info->quirks & EDID_QUIRK_FORCE_10BPC)
-> -		info->bpc = 10;
-> -
-> -	if (info->quirks & EDID_QUIRK_FORCE_12BPC)
-> -		info->bpc = 12;
-> -
->  	return num_modes;
->  }
->  
-> -- 
-> 2.34.1
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+> index e94365b08f1ef..df64cf1954c1d 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+> @@ -552,6 +552,7 @@ struct i915_request *intel_context_find_active_request(struct intel_context *ce)
+>   
+>   		active = rq;
+>   	}
+> +	active = i915_request_get_rcu(active);
+>   	spin_unlock_irqrestore(&parent->guc_state.lock, flags);
+>   
+>   	return active;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> index 922f1bb22dc68..517d1fb7ae333 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> @@ -2236,10 +2236,13 @@ static void engine_dump_active_requests(struct intel_engine_cs *engine, struct d
+>   	guc = intel_uc_uses_guc_submission(&engine->gt->uc);
+>   	if (guc) {
+>   		ce = intel_engine_get_hung_context(engine);
+> -		if (ce)
+> +		if (ce) {
+> +			/* This will reference count the request (if found) */
+>   			hung_rq = intel_context_find_active_request(ce);
+> +		}
+>   	} else {
+>   		hung_rq = intel_engine_execlist_find_hung_request(engine);
+> +		hung_rq = i915_request_get_rcu(hung_rq);
 
--- 
-Ville Syrjälä
-Intel
+Looks like intel_engine_execlist_find_hung_request can return NULL which 
+i915_request_get_rcu will not handle.
+
+Maybe it would come up simpler if intel_context_find_active_request 
+wouldn't be getting the reference and then you can get one here at a 
+single place for both branches?
+
+>   	}
+>   
+>   	if (hung_rq)
+> @@ -2250,6 +2253,8 @@ static void engine_dump_active_requests(struct intel_engine_cs *engine, struct d
+>   	else
+>   		intel_engine_dump_active_requests(&engine->sched_engine->requests,
+>   						  hung_rq, m);
+> +	if (hung_rq)
+> +		i915_request_put(hung_rq);
+>   }
+>   
+>   void intel_engine_dump(struct intel_engine_cs *engine,
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> index b436dd7f12e42..3b34a82d692be 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> @@ -4820,6 +4820,8 @@ void intel_guc_find_hung_context(struct intel_engine_cs *engine)
+>   
+>   	xa_lock_irqsave(&guc->context_lookup, flags);
+>   	xa_for_each(&guc->context_lookup, index, ce) {
+> +		bool found;
+> +
+>   		if (!kref_get_unless_zero(&ce->ref))
+>   			continue;
+>   
+> @@ -4836,10 +4838,18 @@ void intel_guc_find_hung_context(struct intel_engine_cs *engine)
+>   				goto next;
+>   		}
+>   
+> +		found = false;
+> +		spin_lock(&ce->guc_state.lock);
+>   		list_for_each_entry(rq, &ce->guc_state.requests, sched.link) {
+>   			if (i915_test_request_state(rq) != I915_REQUEST_ACTIVE)
+>   				continue;
+>   
+> +			found = true;
+> +			break;
+> +		}
+> +		spin_unlock(&ce->guc_state.lock);
+> +
+> +		if (found) {
+>   			intel_engine_set_hung_context(engine, ce);
+>   
+>   			/* Can only cope with one hang at a time... */
+> @@ -4847,6 +4857,7 @@ void intel_guc_find_hung_context(struct intel_engine_cs *engine)
+>   			xa_lock(&guc->context_lookup);
+>   			goto done;
+>   		}
+> +
+>   next:
+>   		intel_context_put(ce);
+>   		xa_lock(&guc->context_lookup);
+
+This hunk I have to leave for someone who know the GuC backend well.
+
+Regards,
+
+Tvrtko
+
+> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+> index 9d5d5a397b64e..4107a0dfcca7d 100644
+> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+> @@ -1607,6 +1607,7 @@ capture_engine(struct intel_engine_cs *engine,
+>   	ce = intel_engine_get_hung_context(engine);
+>   	if (ce) {
+>   		intel_engine_clear_hung_context(engine);
+> +		/* This will reference count the request (if found) */
+>   		rq = intel_context_find_active_request(ce);
+>   		if (!rq || !i915_request_started(rq))
+>   			goto no_request_capture;
+> @@ -1618,13 +1619,11 @@ capture_engine(struct intel_engine_cs *engine,
+>   		if (!intel_uc_uses_guc_submission(&engine->gt->uc)) {
+>   			spin_lock_irqsave(&engine->sched_engine->lock, flags);
+>   			rq = intel_engine_execlist_find_hung_request(engine);
+> +			rq = i915_request_get_rcu(rq);
+>   			spin_unlock_irqrestore(&engine->sched_engine->lock,
+>   					       flags);
+>   		}
+>   	}
+> -	if (rq)
+> -		rq = i915_request_get_rcu(rq);
+> -
+>   	if (!rq)
+>   		goto no_request_capture;
+>   
