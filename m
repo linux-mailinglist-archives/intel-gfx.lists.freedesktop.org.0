@@ -1,53 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEF77672869
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Jan 2023 20:31:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D05E672934
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Jan 2023 21:23:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D82E10E811;
-	Wed, 18 Jan 2023 19:31:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D606510E828;
+	Wed, 18 Jan 2023 20:23:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B973210E822
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Jan 2023 19:31:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674070294; x=1705606294;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=5FwIg3pFMAm3QFQN58qb8Xad+sJgzKrFwmK8+nOiB5U=;
- b=iL6KvimtFRteToanhsGkU/+nJBkMzYc0f9JeVd2Bq1x7F3/jLvhYh0bz
- pEpKBtK9W3QTEvsKLyeT0tBzqKfiN2fn4UXA17ZoQv4ty6XZz+Nfno925
- aCpg/ZE6zqSB5DkknxPPP5WM1YVW/qlFhLKp6cvxfGzci1voHIl9IMCPh
- +aYBA9F6LVqynLFVIrj3+s6zGh+U9LEA2IxVvMMqmlfkSYjDH2OjmXOfV
- sb//X7AG85/AsuRU1GG7oINylr7qMVH22xSmM+BWJV9XcHV2qcYM0yzRw
- w0bmrtd8kdVD9rtikUK86xXWa+55gP+u9+6kDTNc9/dPnGEFJREJtqzMy w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="312957354"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="312957354"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2023 11:31:34 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="767886810"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="767886810"
-Received: from eliteleevi.tm.intel.com ([10.237.54.20])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2023 11:31:32 -0800
-Date: Wed, 18 Jan 2023 21:30:21 +0200 (EET)
-From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-X-X-Sender: kvehmane@eliteleevi.tm.intel.com
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-In-Reply-To: <20221108151839.31567-1-ville.syrjala@linux.intel.com>
-Message-ID: <alpine.DEB.2.22.394.2301182125120.3532114@eliteleevi.tm.intel.com>
-References: <20221108151839.31567-1-ville.syrjala@linux.intel.com>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7 02160 Espoo
+Received: from msg-2.mailo.com (msg-2.mailo.com [213.182.54.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A37B210E029;
+ Wed, 18 Jan 2023 20:23:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailo.com; s=mailo;
+ t=1674073393; bh=Q7RlEaXnEqFwS+6rzjpHzGGEkndrB2oRtxww9YVShds=;
+ h=X-EA-Auth:Date:From:To:Cc:Subject:Message-ID:MIME-Version:
+ Content-Type;
+ b=n4ZGttawAHvU+kKNEXJmVo4kpmwLy1iWS4BTcFlEPCl+hd0lPTOxGbbFKxrJQOhpa
+ V2U8kWqW+c+Vc7u0MmR0RqwkXEvwQvr5iP6eAtGCuRELu8nLKOHGvfSI0kR7J7J0UD
+ dPMSrwtWERQ72yGh6ET0fbHadmoYQtIrYrZcv714=
+Received: by b-6.in.mailobj.net [192.168.90.16] with ESMTP
+ via ip-206.mailobj.net [213.182.55.206]
+ Wed, 18 Jan 2023 21:23:13 +0100 (CET)
+X-EA-Auth: rt16gkipC8f0Y+X3/lLm2PRNoHDAozsEuaaEmgxjkK3S+royuqWHBe42Ov9MyTNsYUoydczrlMr84oArRF+WkOASpSQ3shXh
+Date: Thu, 19 Jan 2023 01:53:07 +0530
+From: Deepak R Varma <drv@mailo.com>
+To: Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.a.wang@intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gvt-dev@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Message-ID: <Y8hVK6wuqm50iADP@ubun2204.myguest.virtualbox.org>
 MIME-Version: 1.0
-Content-Type: multipart/mixed;
- boundary="-318106570-1882801203-1674070243=:3532114"
-Subject: Re: [Intel-gfx] [PATCH v2 00/15] drm/i915: ELD precompute and
- readout
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Subject: [Intel-gfx] [PATCH v2] drm/i915/gvt: Avoid full proxy f_ops for
+ debugfs attributes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,36 +52,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Takashi Iwai <tiwai@suse.de>, intel-gfx@lists.freedesktop.org
+Cc: Praveen Kumar <kumarpraveen@linux.microsoft.com>,
+ Saurabh Singh Sengar <ssengar@microsoft.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+Using DEFINE_SIMPLE_ATTRIBUTE macro with the debugfs_create_file()
+function adds the overhead of introducing a proxy file operation
+functions to wrap the original read/write inside file removal protection
+functions. This adds significant overhead in terms of introducing and
+managing the proxy factory file operations structure and function
+wrapping at runtime.
+As a replacement, a combination of DEFINE_DEBUGFS_ATTRIBUTE macro paired
+with debugfs_create_file_unsafe() is suggested to be used instead.  The
+DEFINE_DEBUGFS_ATTRIBUTE utilises debugfs_file_get() and
+debugfs_file_put() wrappers to protect the original read and write
+function calls for the debug attributes. There is no need for any
+runtime proxy file operations to be managed by the debugfs core.
+Following coccicheck make command helped identify this change:
 
----318106570-1882801203-1674070243=:3532114
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+make coccicheck M=drivers/gpu/drm/i915/ MODE=patch COCCI=./scripts/coccinelle/api/debugfs/debugfs_simple_attr.cocci
 
-Hi,
+Signed-off-by: Deepak R Varma <drv@mailo.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Acked-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+---
+Changes in v2:
+   - Following changes as suggested by Rodrigo Vivi <rodrigo.vivi@intel.com>
+      - Combine 2 patch series in a single patch 
+      - Base the patch on the i915/gvt to avoid conflicts
 
-On Tue, 8 Nov 2022, Ville Syrjala wrote:
 
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> Second attempt at ELD precompute + readout.
-> 
-> v2:
-> - get rid of the hw ELD buffer entirely on !g4x
-> - actually use the precomputed ELD in acomp .get_eld()
-> - more cleanups/etc. here and there
+ drivers/gpu/drm/i915/gvt/debugfs.c | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-sorry for the long delay. The question whether there are any 
-side-effects in not writing the ELD buffer, is still a slight
-concern, but tests seem to be passing, so seems we are good.
+diff --git a/drivers/gpu/drm/i915/gvt/debugfs.c b/drivers/gpu/drm/i915/gvt/debugfs.c
+index 0616b73175f3..baccbf1761b7 100644
+--- a/drivers/gpu/drm/i915/gvt/debugfs.c
++++ b/drivers/gpu/drm/i915/gvt/debugfs.c
+@@ -147,9 +147,9 @@ vgpu_scan_nonprivbb_set(void *data, u64 val)
+ 	return 0;
+ }
+ 
+-DEFINE_SIMPLE_ATTRIBUTE(vgpu_scan_nonprivbb_fops,
+-			vgpu_scan_nonprivbb_get, vgpu_scan_nonprivbb_set,
+-			"0x%llx\n");
++DEFINE_DEBUGFS_ATTRIBUTE(vgpu_scan_nonprivbb_fops,
++			 vgpu_scan_nonprivbb_get, vgpu_scan_nonprivbb_set,
++			 "0x%llx\n");
+ 
+ static int vgpu_status_get(void *data, u64 *val)
+ {
+@@ -165,7 +165,7 @@ static int vgpu_status_get(void *data, u64 *val)
+ 	return 0;
+ }
+ 
+-DEFINE_SIMPLE_ATTRIBUTE(vgpu_status_fops, vgpu_status_get, NULL, "0x%llx\n");
++DEFINE_DEBUGFS_ATTRIBUTE(vgpu_status_fops, vgpu_status_get, NULL, "0x%llx\n");
+ 
+ /**
+  * intel_gvt_debugfs_add_vgpu - register debugfs entries for a vGPU
+@@ -180,10 +180,10 @@ void intel_gvt_debugfs_add_vgpu(struct intel_vgpu *vgpu)
+ 
+ 	debugfs_create_file("mmio_diff", 0444, vgpu->debugfs, vgpu,
+ 			    &vgpu_mmio_diff_fops);
+-	debugfs_create_file("scan_nonprivbb", 0644, vgpu->debugfs, vgpu,
+-			    &vgpu_scan_nonprivbb_fops);
+-	debugfs_create_file("status", 0644, vgpu->debugfs, vgpu,
+-			    &vgpu_status_fops);
++	debugfs_create_file_unsafe("scan_nonprivbb", 0644, vgpu->debugfs, vgpu,
++				   &vgpu_scan_nonprivbb_fops);
++	debugfs_create_file_unsafe("status", 0644, vgpu->debugfs, vgpu,
++				   &vgpu_status_fops);
+ }
+ 
+ /**
+-- 
+2.34.1
 
-For the series:
-Reviewed-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
 
-Br, Kai
----318106570-1882801203-1674070243=:3532114--
+
