@@ -2,54 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B7BC6717C9
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Jan 2023 10:33:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 021C66717E5
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Jan 2023 10:37:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E17410E6EE;
-	Wed, 18 Jan 2023 09:33:16 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4753410E6D7;
- Wed, 18 Jan 2023 09:33:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674034394; x=1705570394;
- h=message-id:date:mime-version:subject:to:references:cc:
- from:in-reply-to:content-transfer-encoding;
- bh=UXE21Lzb9z9KCRXkabk714xRMk7rMEv08qmcXHRP00U=;
- b=duvJpI/R1zC97elrgnUsjN5SIOIJEw9d1JfdMMhol21MXPomCExWsf9C
- R1ZVpPEq+/mZD5j+YZwzMktvQ+pRg7OPyvstYTv+UQI8Iio+pzxWrzpJV
- 3CUcPht3jpsFEv7yOoHgAL5oXKek7OC3M3cwDBbah2gJ2hvJqjrhjQ0UJ
- xYmSwL8RU6uDUZsFkq/NAUCsIXfRIhZcQuPHUERSxON7jtPHH7zelzf4b
- NJl6E0ouHKFFePfDS5GgQPvlspcBmUlP1Hx/hEZECVdqk9oHmLNoqvMz8
- gtLvlMm6UfcKmvQGYrQBqYptZmIK562sta0qjWX/g9EylIxzx/TvQ2kKe A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="322630683"
-X-IronPort-AV: E=Sophos;i="5.97,224,1669104000"; d="scan'208";a="322630683"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2023 01:33:13 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="728122320"
-X-IronPort-AV: E=Sophos;i="5.97,224,1669104000"; d="scan'208";a="728122320"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.41.107])
- ([10.252.41.107])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2023 01:33:12 -0800
-Message-ID: <a369e472-6f67-0013-8ab1-246493a45e29@linux.intel.com>
-Date: Wed, 18 Jan 2023 10:33:10 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9B6B10E1E4;
+	Wed, 18 Jan 2023 09:37:52 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 24E6A10E1F5;
+ Wed, 18 Jan 2023 09:37:51 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1F280AADD6;
+ Wed, 18 Jan 2023 09:37:51 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3033115762338769432=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Content-Language: en-US
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- igt-dev@lists.freedesktop.org, Intel-gfx@lists.freedesktop.org
-References: <20221222100403.256775-1-tvrtko.ursulin@linux.intel.com>
-From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
-In-Reply-To: <20221222100403.256775-1-tvrtko.ursulin@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] tests/gem_mmap_gtt: add
- test mmap_closed_bo
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Date: Wed, 18 Jan 2023 09:37:51 -0000
+Message-ID: <167403467109.3599.17969802063359359419@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230118085200.1017626-1-jouni.hogander@intel.com>
+In-Reply-To: <20230118085200.1017626-1-jouni.hogander@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/psr=3A_PSR_related_workarounds?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,106 +40,175 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============3033115762338769432==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 12/22/2022 11:04 AM, Tvrtko Ursulin wrote:
-> From: Chuansheng Liu <chuansheng.liu@intel.com>
->
-> Recently we figured out one memory leak in i915 driver when running
-> below alike test:
->
-> create_bo
-> gem_mmap_gtt bo
-> gem_mmap_gtt bo twice
-> close_bo
->
-> then the memory leak is detected. More details can be referred in
-> https://patchwork.freedesktop.org/patch/475802/?series=100532&rev=2
->
-> For detecting such issue, this test case mmap_closed_bo is created,
-> it will close the bo with keeping one mmap, then second mmap the bo,
-> in normal situation, we expect second mmap failure with EACCESS. But
-> it will succeed if driver has the vm_node allowance leak.
->
-> V2: (Tvrtko) some variable placement and comments tuning.
-> V3: (Tvrtko) Using igt_drop_caches_set(fd, DROP_FREED) directly.
-> v4: [tursulin] Fixed a conflict, added igt_describe.
->
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Signed-off-by: Chuansheng Liu <chuansheng.liu@intel.com>
-> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
-> ---
->   tests/i915/gem_mmap_gtt.c | 49 +++++++++++++++++++++++++++++++++++++++
->   1 file changed, 49 insertions(+)
->
-> diff --git a/tests/i915/gem_mmap_gtt.c b/tests/i915/gem_mmap_gtt.c
-> index c14ab50eeee7..68f5e8412af6 100644
-> --- a/tests/i915/gem_mmap_gtt.c
-> +++ b/tests/i915/gem_mmap_gtt.c
-> @@ -320,6 +320,52 @@ test_wc(int fd)
->   		     5*gtt_writes/256., 5*cpu_writes/256.);
->   }
->   
-> +static void mmap_closed_bo(int fd)
-> +{
-> +	int loop = 0;
-> +
-> +	while (loop++ < 2) {
-> +		struct drm_i915_gem_mmap_gtt mmap_arg;
-> +		void *p1, *p2;
-> +		int i = loop;
-> +
-> +		memset(&mmap_arg, 0, sizeof(mmap_arg));
-> +		mmap_arg.handle = gem_create(fd, OBJECT_SIZE);
-> +		igt_assert(mmap_arg.handle);
-> +
-> +		while (i--) {
-> +			/*
-> +			 * Get mmap offset by calling GEM_MMAP_GTT one or multiple times in
-> +			 * order to try to provoke a memory leak in the driver.
-> +			 */
-> +			do_ioctl(fd, DRM_IOCTL_I915_GEM_MMAP_GTT, &mmap_arg);
-> +		}
-> +
-> +		p1 = mmap64(0, OBJECT_SIZE, PROT_READ | PROT_WRITE,
-> +			MAP_SHARED, fd, mmap_arg.offset);
-> +		igt_assert(p1 != MAP_FAILED);
-> +
-> +		gem_close(fd, mmap_arg.handle);
-> +
-> +		/*
-> +		 * Drop the freed objects for consistent 2nd mmap result.
-> +		 */
-> +		igt_drop_caches_set(fd, DROP_FREED);
-> +
-> +		p2 = mmap64(0, OBJECT_SIZE, PROT_READ | PROT_WRITE,
-> +			MAP_SHARED, fd, mmap_arg.offset);
-> +
-> +		munmap(p1, OBJECT_SIZE);
-> +
-> +		/*
-> +		 * we expect mmapping p2 would fail, otherwise the driver
-> +		 * may not clean up the allowance of vm_node, it would
-> +		 * cause memory leak.
-> +		 */
-> +		igt_assert(p2 == MAP_FAILED);
-> +	}
-> +}
-> +
->   static int mmap_gtt_version(int i915)
->   {
->   	int val = 0;
-> @@ -1315,6 +1361,9 @@ igt_main
->   		     "writes into it from another GTT mmapped.");
->   	igt_subtest("basic-write-gtt")
->   		test_write_gtt(fd);
-> +	igt_describe("Check mmap of a closed handle is rejected.");
-> +	igt_subtest("mmap-closed-bo")
-> +		mmap_closed_bo(fd);
->   	igt_describe("Inspect a GTT mmap using ptrace().");
->   	igt_subtest("ptrace")
->   		test_ptrace(fd);
+== Series Details ==
+
+Series: drm/i915/psr: PSR related workarounds
+URL   : https://patchwork.freedesktop.org/series/113002/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_12597 -> Patchwork_113002v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113002v1/index.html
+
+Participating hosts (43 -> 42)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_113002v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_gttfill@basic:
+    - fi-pnv-d510:        [PASS][1] -> [FAIL][2] ([i915#7229])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12597/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113002v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+
+  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
+    - fi-rkl-guc:         NOTRUN -> [SKIP][3] ([i915#7828])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113002v1/fi-rkl-guc/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_mocs:
+    - fi-rkl-guc:         [INCOMPLETE][4] ([i915#4983]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12597/fi-rkl-guc/igt@i915_selftest@live@gt_mocs.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113002v1/fi-rkl-guc/igt@i915_selftest@live@gt_mocs.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
+  [i915#7229]: https://gitlab.freedesktop.org/drm/intel/issues/7229
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12597 -> Patchwork_113002v1
+
+  CI-20190529: 20190529
+  CI_DRM_12597: 9dd8764b4a8177899fed9efdfdb536366c99947d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7121: aa16e81259f59734230d441905b9d0f605e4a4b5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_113002v1: 9dd8764b4a8177899fed9efdfdb536366c99947d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+983d713a9cbc drm/i915/mtl: Apply Wa_14013475917 for all MTL steppings
+f3313f1017a9 drm/i915/psr: Implement Wa_14014971492
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113002v1/index.html
+
+--===============3033115762338769432==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/psr: PSR related workarounds</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/113002/">https://patchwork.freedesktop.org/series/113002/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113002v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113002v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12597 -&gt; Patchwork_113002v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113002v1/index.html</p>
+<h2>Participating hosts (43 -&gt; 42)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_113002v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_gttfill@basic:</p>
+<ul>
+<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12597/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113002v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7229">i915#7229</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113002v1/fi-rkl-guc/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@gt_mocs:<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12597/fi-rkl-guc/igt@i915_selftest@live@gt_mocs.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113002v1/fi-rkl-guc/igt@i915_selftest@live@gt_mocs.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12597 -&gt; Patchwork_113002v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12597: 9dd8764b4a8177899fed9efdfdb536366c99947d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7121: aa16e81259f59734230d441905b9d0f605e4a4b5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_113002v1: 9dd8764b4a8177899fed9efdfdb536366c99947d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>983d713a9cbc drm/i915/mtl: Apply Wa_14013475917 for all MTL steppings<br />
+f3313f1017a9 drm/i915/psr: Implement Wa_14014971492</p>
+
+</body>
+</html>
+
+--===============3033115762338769432==--
