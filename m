@@ -1,145 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 246F7671AEC
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Jan 2023 12:43:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE04E671B4B
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Jan 2023 12:58:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FBE610E71C;
-	Wed, 18 Jan 2023 11:43:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C484210E1C5;
+	Wed, 18 Jan 2023 11:57:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0D1710E71B;
- Wed, 18 Jan 2023 11:43:29 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D9E710E1C5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Jan 2023 11:57:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674042209; x=1705578209;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=ow9LInJgHpbam7zLWmr+IbuLwofMiv4bK69PWyZI5oY=;
- b=NiIFKNqxA//liukfMvXAelvEinmqtPLsBUhbqcZjiIjdxwjWovbPypWJ
- QQ8hWWVrvXz3UUBTrvLvBTPTgjOCa+zpJRcm1BROCB5URKAYvxlEEJMNr
- rg5TYyM1wjzyQ1QSCRb00pdOSzbzxho0760B6okQQUnFENc5FLlfgFF0a
- 7d0drGbrd+mDgLs2/jA5UMyCou21HlDW8+gWzS5Hz+j7acYYBPJ04ZVQQ
- Ysn1hIKgQaXjPXxkOqpKXXNqOPFOs2cne7tXuc/N+Bfuk7AcTWAKqx2E3
- IXdmLikMIeSaEllV0qOa2QGVWaEqm/JgrxwDXHFMKGMbh/06wYVWNgkwd g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="325016348"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="325016348"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2023 03:43:29 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="833544339"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="833544339"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga005.jf.intel.com with ESMTP; 18 Jan 2023 03:43:29 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Wed, 18 Jan 2023 03:43:28 -0800
-Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Wed, 18 Jan 2023 03:43:28 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Wed, 18 Jan 2023 03:43:28 -0800
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.171)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Wed, 18 Jan 2023 03:43:28 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=knfBk6gJ0kGbBfJwMDzFKq8oWzYowrqb8g9E9v10NzM/KjHSEPqr55tdbAAvA9yG6edyeKJDVMla7FA/GVboI5462C0ilaC4rLQLOR2QszpTqGxqlwSThuHTccuzfjzrSyG9mg83ZqpqYxdJEonCU2lc+gKTv48/KB+kua5vGbcHYrV2YTqv1GtlgBnrUQ/LF9XEE7IhTgpwOOKa+PO1+pdFs8qO2NKWzV9V60putLYKWXLWTjOAfjm2e8V7AbMjw7q/LFi+L5My3hNOwU9iQ7sHebuJMTIpWMOwlWTimK154dQeMMWDwRG1kF/AHFRaGuksn5kR2JlT1OywI/HLdg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WCm5EHigI8q8M86rKx5ivuvIUKA1LVeCRA6OpqqkUVE=;
- b=E2XC5aBIIsVEZcQOfadBeU644xV316y1+TUsmYqcFj60UPwMammBKG6kNdtEXdpDMUwMy3L6EZ+4PFdvsq3AqJnSY8AYjoTWKfyBuBNlQTthqOv/TidlUR4umX4iWB78q21ZzszmCgn3CQopMSIjwGVKnYd8noYiAGh76VYexHTyf+3zRf90uxQXCz5+2d5nuANNk1Q3ofZfPw0mz4l367rmsK3PMJlp7L1+qJIomXxyhBP5uKWkz3/KVELOKZD9Uyj0qI0UI2ctuE5XB+XFA5I9bRpRcv7uBpIdD+G/5LOwa2D7n0A7GjF1amcCTOsQkKroO/PjebdcjBvPFKgw2Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from BY5PR11MB4086.namprd11.prod.outlook.com (2603:10b6:a03:187::26)
- by PH0PR11MB4774.namprd11.prod.outlook.com (2603:10b6:510:40::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.24; Wed, 18 Jan
- 2023 11:43:26 +0000
-Received: from BY5PR11MB4086.namprd11.prod.outlook.com
- ([fe80::aaa1:ed2f:3371:a1af]) by BY5PR11MB4086.namprd11.prod.outlook.com
- ([fe80::aaa1:ed2f:3371:a1af%3]) with mapi id 15.20.5986.023; Wed, 18 Jan 2023
- 11:43:26 +0000
-From: "Winkler, Tomas" <tomas.winkler@intel.com>
-To: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v5 3/6] mei: clean pending read with vtag on bus
-Thread-Index: AQHZJu0DLN1sBzxPQEmeCP1uR/WhtK6kFjEw
-Date: Wed, 18 Jan 2023 11:43:26 +0000
-Message-ID: <BY5PR11MB40865F34863C4C087BBA00B3E5C79@BY5PR11MB4086.namprd11.prod.outlook.com>
-References: <20230113011850.1463965-1-alan.previn.teres.alexis@intel.com>
- <20230113011850.1463965-4-alan.previn.teres.alexis@intel.com>
-In-Reply-To: <20230113011850.1463965-4-alan.previn.teres.alexis@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BY5PR11MB4086:EE_|PH0PR11MB4774:EE_
-x-ms-office365-filtering-correlation-id: e560881a-e2c6-40b2-50d8-08daf9493652
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: dqjd8XEN2dqYMllHy/v9jWEkr5VVbkyE9VqPSo6imnYuR4qar62m295ltzyXFmtIjuTyihU/BCDpGH0SRnE5zihqx4ynSwxqITezlrtgcyzL5LeEFxRY8LywgnXAr0WBE2dTOaEPb+tbUsJegvs7nkit8iYvU15rSDeaGdLpjazu2K8D6jLcfEF/Uu+JlP+a9zZLWBeAmBM0Xvc3zuY5LoZ9pxkV3gA1j9dxz56M+5mP7NU4DhR2YHB9IESEUce0i+V/RmGiQVMg7tRPu9DhCo2l3X9gCj3xkox3GKOyM48dbDp8H034uJSmYutFQzkRwd7/A1u45ZlV4xKoGxi/BI+0PmN+NnJ/oMljEqOibzeC+9MtAveMFRCtmaJ11El01UMDgTxbdYNg7H67WEIwYjtZDZ3kmNikKjRHDGNDc+aANKMtSCavbTozit+ooK9N47rbIVNfxewqKN4onEQAO76IZYzDmRBkhzGlvYqqZZGD/ORIIcfcqR7/8lncLfhsvnGewBz90728vdtThuQp9LBzu4FHYoHUwLC36VDXvsK7DO9RrvYxDYptwql0FSqO05ah5SNBhL/UIZxWgX7hVpRQTGeMT8ok/sT6JwFktKqFduDPxczvtoVm5K5zImSbUXIPYQAPrfHGY8zh1rdfAuTlTXebT9xUD5cKax0BqLczTt+Gwj81zpHQkJmMBXs6quoJtZK8oJDOO8XopdT8xQ==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BY5PR11MB4086.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(396003)(376002)(39860400002)(346002)(366004)(136003)(451199015)(82960400001)(76116006)(316002)(122000001)(38100700002)(66476007)(86362001)(38070700005)(33656002)(2906002)(5660300002)(8936002)(52536014)(55016003)(66946007)(66556008)(66446008)(64756008)(4326008)(8676002)(41300700001)(26005)(9686003)(186003)(83380400001)(7696005)(71200400001)(54906003)(107886003)(110136005)(6506007)(478600001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?xx3qkFEBFFbgr1JcuZuXIalGlco2HRGQ3p7+S+n9mBwtgU6ZZEK09idMfw+V?=
- =?us-ascii?Q?JkIBcliW4bsjJsGNB7adkMlYZAwHjPcyA5PMF7JMUKituCfUlWXfjlnGVA+4?=
- =?us-ascii?Q?KNYkxB8ECYCPMZCLi3dX+avN61sQ/5PtKeMnwhvZE697pWbvF8NG1nZeHAkX?=
- =?us-ascii?Q?BHZ7ncEVdSC0eSOZpYW9Me+nJuM/EjSz6udekJzinrPNJYAVu6hVraKEJpm4?=
- =?us-ascii?Q?M64tQREFBRVET3xBN5PJBOSrWBq1+TaxZfC4MylYTuzZYdeAXhMYtk96cIHx?=
- =?us-ascii?Q?dPQl2EV/EVHW606vCbaA376QLA1iybp21dtInDa04iitao3us+sXMengOfn+?=
- =?us-ascii?Q?YNb7gJ5SaEILpwi2ZTahHTTM9oSgLc+GDbT49HqpLBQPyHO5wJb+UuVYZFp/?=
- =?us-ascii?Q?tgfwFJNUO3zkW8qXFO+hvTa8Xwdw0Ahp0EhsPQgKpS4YwXQMbiqnU/1dDCwb?=
- =?us-ascii?Q?29I8zB+6R2x6roicj7kVGSBh+2aj3sg0bxIgFjcFMxfN6pCca9WJkmkBMO9G?=
- =?us-ascii?Q?chsc6OQKTOU5Y+fduQ/OSH7TggoMLtTkBjvL30scPiugErFWkdlsvw/S6O3z?=
- =?us-ascii?Q?mN9WUj0ioQ5bDGAMZX5LGSD30z2e/8QV20R4XOETz34EziCBRWDFMnBZqlH9?=
- =?us-ascii?Q?WUetgKKC2go4XghvNYN7VhDnBQwnXUeIzlY76Q6u3XNPMnAKUDqDgY6Qz2qe?=
- =?us-ascii?Q?7iAtuR20x3w2gDlbjP8WwmRe+Ssz7jAj0bZgpSiiG6QC4Y+U7aSqXlDH6t1l?=
- =?us-ascii?Q?MyYK89ZDaas27FJqlMC6o1s/UxqBhyBFOfNlCu9EHjHSSfxumms94MHa+TnU?=
- =?us-ascii?Q?Zx6RArOcWLK5R6jIZwZEohTKKxZi+Vl8wcge0QGDL2+PIDdiqRWJk5EeIlG5?=
- =?us-ascii?Q?KyybGi+QEUuUiMDT2QQLtUmyo6d8oCwDVUJsyHcIcm5NGJDjNKhQx4WngcvH?=
- =?us-ascii?Q?PQgWDeTrYFqQ+uCm1WFMSJg8cz8ti2GEY/IWj+xjv98kI6VTwjXrBN26fqfw?=
- =?us-ascii?Q?iIWMF8LZoluv7gbQOWKeXcj7W0i+fjzTxZDCOm6M+3ocPxqVe8D2hsl1iarT?=
- =?us-ascii?Q?0TmWbTDbv8np/eURbuZYy5eUccklwShhgpQT7JDptcnbmz4tg/HQYFIVmkEJ?=
- =?us-ascii?Q?3FWxbmMI/5oF6C/nF5qVT9dIwjMZThbEhnFr8/vPR4rrzAGTiyqHOMN/ynvT?=
- =?us-ascii?Q?8uiTeMv9VqgZUC1F/PCu1hc1eT4gvvfOsW1tturWw69/jvW8Ivg/NyPtr0Xz?=
- =?us-ascii?Q?gpMKHHE7jEs9OcH0UuOjdHfrj1NbpJGY1GGtH6LkV2YI5e3JBvLD0/xf04oo?=
- =?us-ascii?Q?xAGKE2ZhdoRM+siKTENSuxcrhU1VM88MG0sMZK0KBg2No8CZamDDpJb1whuN?=
- =?us-ascii?Q?YXa6SSRc3PWKSiuS76ZOnIuwL3tD+qOEKriL58jgwni9DSyQkjFJFchqO49A?=
- =?us-ascii?Q?eJekZh069KnjmurG5i6Y6T/gJN+75xQ67OjC/NmLxtX5+6us+5HaoRFcAcTo?=
- =?us-ascii?Q?RBMKzl+R2tYmb/u4Iq4F2jKMiBAwM6rfJ7h7XDQULdpGy59ZZ25vutkaGnLW?=
- =?us-ascii?Q?9CTGXCiA3TJ6f66UEljA8wo+F996faMqT4yGdh0n9sLI4eGEcGBmMhf1UQOf?=
- =?us-ascii?Q?ug=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ t=1674043075; x=1705579075;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=wAs59py09S+fqp+sw92zzCfa3pwurGdruhg0CCjo7K0=;
+ b=UwMpw9ErtUo85ebTyyHjEejWBBl7hqP2nIA3nJc4zIzgeMqZkoNx8ONa
+ f4QaTmC1VBulUBWa+/1mMLWg6ZfWHSpKVV+pq9wQNRJR9uzW45/4khh3E
+ N+SFlehbAvwVdFKeB5jqPrQxPAUeAg6ur/mS98+L51QL6Xc7RJuZWHKJe
+ dntRSL224wwYqxPH60sQBLD171WEwYTMPls+xSFRCY5zZPldkhORzZ+sb
+ uA7ZCQnGIKYbimktnhUGtIEEIIFxTfQ0Kwc/MNk8nRyCpaynIVFBXfiSk
+ kVvUO3Sl5MGI8lMDL5k52p/3IZIhG3sbknzLZVMA82CvqyBrOk80wYSrr g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="304646983"
+X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="304646983"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2023 03:57:54 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="723054103"
+X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="723054103"
+Received: from kozlovdm-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.252.28.132])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2023 03:57:53 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 18 Jan 2023 13:57:49 +0200
+Message-Id: <20230118115749.3293888-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB4086.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e560881a-e2c6-40b2-50d8-08daf9493652
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Jan 2023 11:43:26.5014 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: epqte0tonCNZNzix8Ta3835EmSiIvoT1oG5WLwKZm24k2Js5Up8VetZCSlpUO/Tw44egCUgNmyFuk9fF0i1msg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4774
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v5 3/6] mei: clean pending read with vtag on
- bus
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: hide mkwrite_device_info() better
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,45 +56,141 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Usyskin,
- Alexander" <alexander.usyskin@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Vivi, 
- Rodrigo" <rodrigo.vivi@intel.com>
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+The goal has been to just make device info a pointer to static const
+data, i.e. the static const structs in i915_pci.c. See [1]. However,
+there were issues with intel_device_info_runtime_init() clearing the
+display sub-struct of device info on the !HAS_DISPLAY() path, which
+consequently disables a lot of display functionality, like it
+should. Looks like we'd have to cover all those paths, and maybe
+sprinkle HAS_DISPLAY() checks in them, which we haven't gotten around
+to.
 
->=20
-> From: Alexander Usyskin <alexander.usyskin@intel.com>
->=20
-> Client on bus have only one vtag map slot and should disregard the vtag
-> value when cleaning pending read flag.
-> Fixes read flow control message unexpectedly generated when clent on bus
-> send messages with different vtags.
->=20
-> Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
-> Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
-Reviewed-by: Tomas Winkler <tomas.winkler@intel.com>
-> ---
->  drivers/misc/mei/client.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/misc/mei/client.c b/drivers/misc/mei/client.c index
-> 9ddb854b8155..5c19097266fe 100644
-> --- a/drivers/misc/mei/client.c
-> +++ b/drivers/misc/mei/client.c
-> @@ -1343,7 +1343,9 @@ static void mei_cl_reset_read_by_vtag(const struct
-> mei_cl *cl, u8 vtag)
->  	struct mei_cl_vtag *vtag_l;
->=20
->  	list_for_each_entry(vtag_l, &cl->vtag_map, list) {
-> -		if (vtag_l->vtag =3D=3D vtag) {
-> +		/* The client on bus has one fixed vtag map */
-> +		if ((cl->cldev && mei_cldev_enabled(cl->cldev)) ||
-> +		    vtag_l->vtag =3D=3D vtag) {
->  			vtag_l->pending_read =3D false;
->  			break;
->  		}
-> --
-> 2.39.0
+In the mean time, hide mkwrite_device_info() better within
+intel_device_info.c by adding a intel_device_info_driver_create() for
+the very early initialization of the device info and initial runtime
+info. This also lets us declutter i915_drv.h a bit, and stops promoting
+mkwrite_device_info() as something that could be used.
+
+[1] https://lore.kernel.org/r/a0422f0a8ac055f65b7922bcd3119b180a41e79e.1655712106.git.jani.nikula@intel.com
+
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/i915_driver.c       | 12 ++--------
+ drivers/gpu/drm/i915/i915_drv.h          |  7 ------
+ drivers/gpu/drm/i915/intel_device_info.c | 29 ++++++++++++++++++++++++
+ drivers/gpu/drm/i915/intel_device_info.h |  2 ++
+ 4 files changed, 33 insertions(+), 17 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index c1e427ba57ae..e8f84789a9af 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -851,8 +851,6 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
+ {
+ 	const struct intel_device_info *match_info =
+ 		(struct intel_device_info *)ent->driver_data;
+-	struct intel_device_info *device_info;
+-	struct intel_runtime_info *runtime;
+ 	struct drm_i915_private *i915;
+ 
+ 	i915 = devm_drm_dev_alloc(&pdev->dev, &i915_drm_driver,
+@@ -865,14 +863,8 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 	/* Device parameters start as a copy of module parameters. */
+ 	i915_params_copy(&i915->params, &i915_modparams);
+ 
+-	/* Setup the write-once "constant" device info */
+-	device_info = mkwrite_device_info(i915);
+-	memcpy(device_info, match_info, sizeof(*device_info));
+-
+-	/* Initialize initial runtime info from static const data and pdev. */
+-	runtime = RUNTIME_INFO(i915);
+-	memcpy(runtime, &INTEL_INFO(i915)->__runtime, sizeof(*runtime));
+-	runtime->device_id = pdev->device;
++	/* Set up device info and initial runtime info. */
++	intel_device_info_driver_create(i915, pdev->device, match_info);
+ 
+ 	return i915;
+ }
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 2ed3cb7e38d7..8ef044308ce4 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -965,11 +965,4 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ #define HAS_LMEMBAR_SMEM_STOLEN(i915) (!HAS_LMEM(i915) && \
+ 				       GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70))
+ 
+-/* intel_device_info.c */
+-static inline struct intel_device_info *
+-mkwrite_device_info(struct drm_i915_private *dev_priv)
+-{
+-	return (struct intel_device_info *)INTEL_INFO(dev_priv);
+-}
+-
+ #endif
+diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+index 05e90d09b208..7fa7ed6b3f70 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.c
++++ b/drivers/gpu/drm/i915/intel_device_info.c
+@@ -368,6 +368,13 @@ void intel_device_info_runtime_init_early(struct drm_i915_private *i915)
+ 	intel_device_info_subplatform_init(i915);
+ }
+ 
++/* FIXME: Remove this, and make device info a const pointer to rodata. */
++static struct intel_device_info *
++mkwrite_device_info(struct drm_i915_private *i915)
++{
++	return (struct intel_device_info *)INTEL_INFO(i915);
++}
++
+ /**
+  * intel_device_info_runtime_init - initialize runtime info
+  * @dev_priv: the i915 device
+@@ -529,6 +536,28 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+ 		dev_priv->drm.driver_features &= ~DRIVER_ATOMIC;
+ }
+ 
++/*
++ * Set up device info and initial runtime info at driver create.
++ *
++ * Note: i915 is only an allocated blob of memory at this point.
++ */
++void intel_device_info_driver_create(struct drm_i915_private *i915,
++				     u16 device_id,
++				     const struct intel_device_info *match_info)
++{
++	struct intel_device_info *info;
++	struct intel_runtime_info *runtime;
++
++	/* Setup the write-once "constant" device info */
++	info = mkwrite_device_info(i915);
++	memcpy(info, match_info, sizeof(*info));
++
++	/* Initialize initial runtime info from static const data and pdev. */
++	runtime = RUNTIME_INFO(i915);
++	memcpy(runtime, &INTEL_INFO(i915)->__runtime, sizeof(*runtime));
++	runtime->device_id = device_id;
++}
++
+ void intel_driver_caps_print(const struct intel_driver_caps *caps,
+ 			     struct drm_printer *p)
+ {
+diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+index d588e5fd2eea..c6e1d5eba0c2 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.h
++++ b/drivers/gpu/drm/i915/intel_device_info.h
+@@ -316,6 +316,8 @@ struct intel_driver_caps {
+ 
+ const char *intel_platform_name(enum intel_platform platform);
+ 
++void intel_device_info_driver_create(struct drm_i915_private *i915, u16 device_id,
++				     const struct intel_device_info *match_info);
+ void intel_device_info_runtime_init_early(struct drm_i915_private *dev_priv);
+ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv);
+ 
+-- 
+2.34.1
 
