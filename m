@@ -2,54 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65139672155
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Jan 2023 16:33:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1ACF672166
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Jan 2023 16:35:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56A0710E1ED;
-	Wed, 18 Jan 2023 15:32:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 175D910E773;
+	Wed, 18 Jan 2023 15:35:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20D7710E191;
- Wed, 18 Jan 2023 15:32:54 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B89B210E76C;
+ Wed, 18 Jan 2023 15:35:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674055974; x=1705591974;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=QvVsZWj7d1SQmyC3akP+bn+90nFoRa1MDp9LhfhHLmw=;
- b=c1refoQQTYj+Ncz+pSuiJ7bmqQZllWjCEF1HwQeBmjnpokpniCylsK0p
- Yoc7BdqWcJ0SqXGV0y/f/c+zhAvMLUR51jZTlvbaJl4XU6T/ONX+QdQJw
- xFJNa/38H/h9J5mACA+gif7ldfnOmvCu8s6hg5aHLPacqDPU5hg0wIK2E
- iGy8TthEyNaUaZrmR0deihNyvSurwpVdRLxV/eYq9R/IpfKkpcSdc2wTC
- HJu2f15U2Wdra7rRvZviQOR+z0gNOIl9hljvHKbMo2QREQXVn454C1gZ9
- rKRF9n7M0rg3KlAb+BwvL2PlyDVxcB6FDGlfMpHWATWlCnKkZx4QpvPtv g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="387357465"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="387357465"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2023 07:32:45 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="690229569"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="690229569"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
- by orsmga008.jf.intel.com with SMTP; 18 Jan 2023 07:32:42 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 18 Jan 2023 17:32:42 +0200
-Date: Wed, 18 Jan 2023 17:32:42 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <Y8gRGmldy0Kh+LRK@intel.com>
-References: <cover.1672826282.git.jani.nikula@intel.com>
- <3bc5fe6650a6ce4249803f7192096764ea724e05.1672826282.git.jani.nikula@intel.com>
+ t=1674056149; x=1705592149;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=V+7w/6DVh6oOTj/5Q6BI82PHATnPnRgB/JN4Ard83Dk=;
+ b=Gz57egnTY6YYvqlojEwpjGrMBhV4JoVeqKWN6u8gYUt037QbG2cfm5L4
+ GnscKpY2cJlEC+u0BFtiv5lTlyH05XcpZeIGFBtX3mWP5QgiAVrijE7H0
+ yBRkLQsBmy7y396IZuGRu0Qz/89PlSDT9PHKJDoYna47pdBzTi3aL6KQH
+ HdQPVFUsdVwDoKmTwZ/gHuwg55DllH6h8lTEFSJgyQIbrji8tBzrmVZEm
+ lVQ2QCb8uEJvcp1+GlGS5aOJzQ/OYg+65HXarOgZbUt92144zIdo6oq66
+ MsPYvODbjMjuNlfX8veHhn4BA77mS/+JPU13yj6/ufzu5hdD/ElZyMC83 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="305381645"
+X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="305381645"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2023 07:35:47 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="833614590"
+X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="833614590"
+Received: from lab-ah.igk.intel.com ([10.102.42.211])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2023 07:35:41 -0800
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+To: linux-alpha@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-snps-arc@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-hexagon@vger.kernel.org, linux-ia64@vger.kernel.org,
+ loongarch@lists.linux.dev, linux-m68k@lists.linux-m68k.org,
+ linux-mips@vger.kernel.org, openrisc@lists.librecores.org,
+ linux-parisc@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
+ linux-sh@vger.kernel.org, sparclinux@vger.kernel.org,
+ linux-xtensa@linux-xtensa.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Date: Wed, 18 Jan 2023 16:35:22 +0100
+Message-Id: <20230118153529.57695-1-andrzej.hajda@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <3bc5fe6650a6ce4249803f7192096764ea724e05.1672826282.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v7 08/22] drm/edid: split CTA Y420VDB info
- and mode parsing
+Subject: [Intel-gfx] [PATCH v5 0/7] Introduce __xchg, non-atomic xchg
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,100 +65,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Mark Rutland <mark.rutland@arm.com>, Arnd Bergmann <arnd@arndb.de>,
+ Peter Zijlstra <peterz@infradead.org>, Boqun Feng <boqun.feng@gmail.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 04, 2023 at 12:05:23PM +0200, Jani Nikula wrote:
-> Separate the parsing of display info and modes from the CTA
-> Y420VDB. This is prerequisite work for overall better separation of the
-> two parsing steps.
-> 
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/drm_edid.c | 29 +++++++++++++++++++++++------
->  1 file changed, 23 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index ead7a4ce0422..076ba125c38d 100644
-> --- a/drivers/gpu/drm/drm_edid.c
-> +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -4497,10 +4497,8 @@ drm_display_mode_from_vic_index(struct drm_connector *connector, int vic_index)
->  static int do_y420vdb_modes(struct drm_connector *connector,
->  			    const u8 *svds, u8 svds_len)
->  {
-> -	int modes = 0, i;
->  	struct drm_device *dev = connector->dev;
-> -	struct drm_display_info *info = &connector->display_info;
-> -	struct drm_hdmi_info *hdmi = &info->hdmi;
-> +	int modes = 0, i;
->  
->  	for (i = 0; i < svds_len; i++) {
->  		u8 vic = svd_to_vic(svds[i]);
-> @@ -4512,13 +4510,10 @@ static int do_y420vdb_modes(struct drm_connector *connector,
->  		newmode = drm_mode_duplicate(dev, cea_mode_for_vic(vic));
->  		if (!newmode)
->  			break;
-> -		bitmap_set(hdmi->y420_vdb_modes, vic, 1);
->  		drm_mode_probed_add(connector, newmode);
->  		modes++;
->  	}
->  
-> -	if (modes > 0)
-> -		info->color_formats |= DRM_COLOR_FORMAT_YCBCR420;
->  	return modes;
->  }
->  
-> @@ -5876,6 +5871,26 @@ static bool cta_vdb_has_vic(const struct drm_connector *connector, u8 vic)
->  	return false;
->  }
->  
-> +/* CTA-861-H YCbCr 4:2:0 Video Data Block (CTA Y420VDB) */
-> +static void parse_cta_y420vdb(struct drm_connector *connector,
-> +			      const struct cea_db *db)
-> +{
-> +	struct drm_display_info *info = &connector->display_info;
-> +	struct drm_hdmi_info *hdmi = &info->hdmi;
-> +	const u8 *svds = cea_db_data(db) + 1;
+Hi all,
 
-Sidenote: I wonder if we should abstract the payload handling
-better for blocks using extended tag codes...
+The helper is tiny and there are advices we can live without it, so
+I want to present few arguments why it would be good to have it:
 
-> +	int i;
-> +
-> +	for (i = 0; i < cea_db_payload_len(db) - 1; i++) {
-> +		u8 vic = svd_to_vic(svds[i]);
-> +
-> +		if (!drm_valid_cea_vic(vic))
-> +			continue;
-> +
-> +		bitmap_set(hdmi->y420_vdb_modes, vic, 1);
+1. Code readability/simplification/number of lines:
+  - decreases number of lines,
+  - it often eliminates local variables,
+  - for real examples see patches 3+.
 
-I'm thinking we should probably also add these to the vic list.
-But I suppose we can take care of that with a separate patch.
+2. Presence of similar helpers in other somehow related languages/libs:
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+a) Rust[1]: 'replace' from std::mem module, there is also 'take'
+    helper (__xchg(&x, 0)), which is the same as private helper in
+    i915 - fetch_and_zero, see latest patch.
+b) C++ [2]: 'exchange' from utility header.
 
-> +		info->color_formats |= DRM_COLOR_FORMAT_YCBCR420;
-> +	}
-> +}
-> +
->  static void drm_parse_vcdb(struct drm_connector *connector, const u8 *db)
->  {
->  	struct drm_display_info *info = &connector->display_info;
-> @@ -6216,6 +6231,8 @@ static void drm_parse_cea_ext(struct drm_connector *connector,
->  			drm_parse_microsoft_vsdb(connector, data);
->  		else if (cea_db_is_y420cmdb(db))
->  			parse_cta_y420cmdb(connector, db, &y420cmdb_map);
-> +		else if (cea_db_is_y420vdb(db))
-> +			parse_cta_y420vdb(connector, db);
->  		else if (cea_db_is_vcdb(db))
->  			drm_parse_vcdb(connector, data);
->  		else if (cea_db_is_hdmi_hdr_metadata_block(db))
-> -- 
-> 2.34.1
+If the idea is OK there are still 2 questions to answer:
+
+1. Name of the helper, __xchg follows kernel conventions,
+    but for me Rust names are also OK.
+2. Where to put the helper:
+a) as in this patchset include/linux/non-atomic/xchg.h,
+    proposed by Andy Shevchenko,
+b) include/linux/utils.h ? any better name? Some kind
+    of container for simple helpers.
+
+All __xchg conversions were performed using cocci script,
+then manually adjusted if necessary.
+
+There is lot of places it can be used in, I have just chosen
+some of them. I can provide cocci script to detect others (not all),
+if necessary.
+
+Changes:
+v2: squashed all __xchg -> __arch_xchg t one patch (Arnd)
+v3: fixed alpha/xchg_local (lkp@intel.com)
+v4: adjusted indentation (Heiko)
+v5: added more __xchg conversions - patches 3-6, added tags
+
+[1]: https://doc.rust-lang.org/std/mem/index.html
+[2]: https://en.cppreference.com/w/cpp/header/utility
+
+Regards
+Andrzej
+
+Andrzej Hajda (7):
+  arch: rename all internal names __xchg to __arch_xchg
+  linux/include: add non-atomic version of xchg
+  arch/*/uprobes: simplify arch_uretprobe_hijack_return_addr
+  llist: simplify __llist_del_all
+  io_uring: use __xchg if possible
+  qed: use __xchg if possible
+  drm/i915/gt: use __xchg instead of internal helper
+
+ arch/alpha/include/asm/cmpxchg.h              | 10 +++++-----
+ arch/arc/include/asm/cmpxchg.h                |  4 ++--
+ arch/arm/include/asm/cmpxchg.h                |  7 ++++---
+ arch/arm/probes/uprobes/core.c                |  8 ++------
+ arch/arm64/include/asm/cmpxchg.h              |  7 +++----
+ arch/arm64/kernel/probes/uprobes.c            |  9 ++-------
+ arch/csky/kernel/probes/uprobes.c             |  9 ++-------
+ arch/hexagon/include/asm/cmpxchg.h            | 10 +++++-----
+ arch/ia64/include/asm/cmpxchg.h               |  2 +-
+ arch/ia64/include/uapi/asm/cmpxchg.h          |  4 ++--
+ arch/loongarch/include/asm/cmpxchg.h          |  4 ++--
+ arch/m68k/include/asm/cmpxchg.h               |  6 +++---
+ arch/mips/include/asm/cmpxchg.h               |  4 ++--
+ arch/mips/kernel/uprobes.c                    | 10 ++--------
+ arch/openrisc/include/asm/cmpxchg.h           | 10 +++++-----
+ arch/parisc/include/asm/cmpxchg.h             |  4 ++--
+ arch/powerpc/include/asm/cmpxchg.h            |  4 ++--
+ arch/powerpc/kernel/uprobes.c                 | 10 ++--------
+ arch/riscv/include/asm/atomic.h               |  2 +-
+ arch/riscv/include/asm/cmpxchg.h              |  4 ++--
+ arch/riscv/kernel/probes/uprobes.c            |  9 ++-------
+ arch/s390/include/asm/cmpxchg.h               |  8 ++++----
+ arch/s390/kernel/uprobes.c                    |  7 ++-----
+ arch/sh/include/asm/cmpxchg.h                 |  4 ++--
+ arch/sparc/include/asm/cmpxchg_32.h           |  4 ++--
+ arch/sparc/include/asm/cmpxchg_64.h           |  6 +++---
+ arch/sparc/kernel/uprobes.c                   |  7 ++-----
+ arch/xtensa/include/asm/cmpxchg.h             |  4 ++--
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  2 +-
+ .../gpu/drm/i915/gt/intel_engine_heartbeat.c  |  4 ++--
+ .../drm/i915/gt/intel_execlists_submission.c  |  4 ++--
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          |  4 ++--
+ drivers/gpu/drm/i915/gt/intel_gsc.c           |  2 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c            |  4 ++--
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c         |  2 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c           |  6 +++---
+ drivers/gpu/drm/i915/gt/intel_migrate.c       |  2 +-
+ drivers/gpu/drm/i915/gt/intel_rc6.c           |  2 +-
+ drivers/gpu/drm/i915/gt/intel_rps.c           |  2 +-
+ drivers/gpu/drm/i915/gt/selftest_context.c    |  2 +-
+ .../drm/i915/gt/selftest_ring_submission.c    |  2 +-
+ drivers/gpu/drm/i915/gt/selftest_timeline.c   |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.c     |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c         |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      |  2 +-
+ drivers/gpu/drm/i915/i915_utils.h             |  1 +
+ include/linux/llist.h                         |  6 ++----
+ include/linux/non-atomic/xchg.h               | 19 +++++++++++++++++++
+ include/linux/qed/qed_chain.h                 | 19 +++++++------------
+ io_uring/io_uring.c                           |  7 ++-----
+ io_uring/slist.h                              |  6 ++----
+ 51 files changed, 126 insertions(+), 155 deletions(-)
+ create mode 100644 include/linux/non-atomic/xchg.h
 
 -- 
-Ville Syrjälä
-Intel
+2.34.1
+
