@@ -1,53 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9ECC9671951
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Jan 2023 11:42:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCF756719B1
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Jan 2023 11:53:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 779D010E655;
-	Wed, 18 Jan 2023 10:42:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C421C10E671;
+	Wed, 18 Jan 2023 10:53:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CC7810E655
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Jan 2023 10:42:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674038528; x=1705574528;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=xvodOCJxgWPvu/nl5EHmNEZq1HIM7DW/oYK/j1h/8+k=;
- b=jmK3+QmmeCDJWZ7/P34NcEvVBaOuyrlNw4Nkx10Hjpk74kZgA0ib/pQX
- sqgKDTqFjimi0z1+Ehw/wj934c8t3REqVFdOCQrlsbDTIXFcoCmzSerxL
- GnVuNQ9KN+UGMpGloq8hr7X4AvmWQU8wQ4txQoj6BvP9iDV3R8zC2I7qS
- 2SHsE99aGDsf+Kr2RfP1gkum7qJRUedA3bZnhwzMISxO559XGIRNo6dP8
- Z9ah20gPSCUce/nU/uToVb2gM7G3dNA4tYqM/gn8h+MTm7N6xo+leJITy
- RECvPfz9qWDC4rEkODYtWsniHLaRovKdhvZAsifUSa6sFjECm2Sxp510y A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="389454472"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="389454472"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2023 02:42:07 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="659747836"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="659747836"
-Received: from kozlovdm-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.252.28.132])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2023 02:42:06 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-In-Reply-To: <Y8bFeLgIe/KYzImi@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230117143946.2426043-1-jani.nikula@intel.com>
- <20230117143946.2426043-3-jani.nikula@intel.com>
- <Y8bFeLgIe/KYzImi@intel.com>
-Date: Wed, 18 Jan 2023 12:42:03 +0200
-Message-ID: <87k01kcef8.fsf@intel.com>
+Received: from domac.alu.hr (domac.alu.unizg.hr [161.53.235.3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F28810E671;
+ Wed, 18 Jan 2023 10:53:32 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by domac.alu.hr (Postfix) with ESMTP id F0B6F604E2;
+ Wed, 18 Jan 2023 11:53:29 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=alu.unizg.hr; s=mail;
+ t=1674039209; bh=Y8U46iHUlsWRZw/W7Ot7mfmizG2Wy/5dkEMbi5KBhAU=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=GE1+lFYxNKVtVTBqqZD5Rci0ZaohtxgKWaORsqVNOEe1oFpMxjkZZC5GUZr9bV1oE
+ qTc0/3TZd/oLGtz5wSXXKRpJRWKvtp5Z63wFQNbX/7UCs43HFgpo979KjfpDtDR9c2
+ DeMJ6scCDAlRUl9aoCCeFsGpt+wKwUHnarwjdJNHoD5js8DbGeGXtCZjus9Cjajuvq
+ /Zax8a90+TH6kIOd8vZU7oz6zmKHuGX3S40jHF+UlLiSmSxj7KuA5fLZ4CoY2OyZkZ
+ 69smeTqFF1uf/7+oSIUBVpFLsMQ5t4yF7dTSUQNj/14mBNmYrAk93MICSD8EnQE9mP
+ Q80Izv9q+1bLw==
+X-Virus-Scanned: Debian amavisd-new at domac.alu.hr
+Received: from domac.alu.hr ([127.0.0.1])
+ by localhost (domac.alu.hr [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id TfQhV-gTSoBx; Wed, 18 Jan 2023 11:53:27 +0100 (CET)
+Received: from [193.198.186.200] (pc-mtodorov.slava.alu.hr [193.198.186.200])
+ by domac.alu.hr (Postfix) with ESMTPSA id 41391604E0;
+ Wed, 18 Jan 2023 11:53:27 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=alu.unizg.hr; s=mail;
+ t=1674039207; bh=Y8U46iHUlsWRZw/W7Ot7mfmizG2Wy/5dkEMbi5KBhAU=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=zO8AnTEqgWVC/eGwoZ6IEs8yuoFh9uLbSLIdOOsLWZW/Rpk+7cguNQ21URsQXM8s9
+ eRfHZ8O5hl8F8GihnEh7tQeuUyTed/I/vXov8FDFhTz+esVDkH1+pVtnhwxlLgmmJL
+ DFcpD3n+DTxFQGoRsZsrRKlGGFcATgWynGGQRfvFUEabAyz5hdNk/wqTfltqzap2C0
+ JxzX1jLXFY1aQa150/WQBrHo3PAmIeIjMWyQmkWKZGKPJ95PhJno0Hw5QQ9ZDXNfsl
+ p2uaRwcmSDpKPjVG0WJOM+ncD10NHCuvGjUpH4NXj2lBhUqd0CA2hxJjLxjqmA+RUI
+ YhptPlkLRo9Dg==
+Message-ID: <f1c7f3e5-8585-d8e2-a666-6e18d3f69ed5@alu.unizg.hr>
+Date: Wed, 18 Jan 2023 11:53:27 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: move chv_dpll_md and
- bxt_phy_grc to display sub-struct under state
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Content-Language: en-US, hr
+To: "Das, Nirmoy" <nirmoy.das@linux.intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20230117175236.22317-1-nirmoy.das@intel.com>
+ <20230117175236.22317-2-nirmoy.das@intel.com>
+ <8e517b87-b626-b488-0daa-88897c9ed90a@linux.intel.com>
+ <c7986b6f-f5f2-52a8-c109-6fb25762a30b@alu.unizg.hr>
+ <48974dd7-1449-3f9f-24c1-5071e73dd807@linux.intel.com>
+From: Mirsad Todorovac <mirsad.todorovac@alu.unizg.hr>
+In-Reply-To: <48974dd7-1449-3f9f-24c1-5071e73dd807@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Fix a memory leak with reused
+ mmap_offset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,140 +72,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 17 Jan 2023, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Tue, Jan 17, 2023 at 04:39:46PM +0200, Jani Nikula wrote:
->> Move the display related members to the struct drm_i915_private display
->> sub-struct. Put them under "state", as they are related to storing
->> values that aren't readable from the hardware, to appease the state
->> checker.
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> For the series:
->
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Hi,
 
-Thanks, pushed to drm-intel-next!
+On 1/18/23 11:39, Das, Nirmoy wrote:
+> 
+> On 1/18/2023 11:26 AM, Mirsad Todorovac wrote:
+>> Hi,
+>>
+>> On 1/18/23 10:19, Tvrtko Ursulin wrote:
+>>
+>>> Thanks for working on this, it looks good to me and it aligns with how i915 uses the facility.
+>>>
+>>> Copying Mirsad who reported the issue in case he is still happy to give it a quick test. Mirsad, I don't know if you are 
+>>> subscribed to one of the two mailing lists where series was posted. In case not, you can grab both patches from 
+>>> https://patchwork.freedesktop.org/series/112952/.
+>>>
+>>> Nirmoy - we also have an IGT written by Chuansheng - https://patchwork.freedesktop.org/patch/515720/?series=101035&rev=4. A more 
+>>> generic one could be placed in gem_mmap_offset test but this one works too in my testing and is IMO better than nothing.
+>>>
+>>> Finally, let me add some tags below:
+>>>
+>>> On 17/01/2023 17:52, Nirmoy Das wrote:
+>>>> drm_vma_node_allow() and drm_vma_node_revoke() should be called in
+>>>> balanced pairs. We call drm_vma_node_allow() once per-file everytime a
+>>>> user calls mmap_offset, but only call drm_vma_node_revoke once per-file
+>>>> on each mmap_offset. As the mmap_offset is reused by the client, the
+>>>> per-file vm_count may remain non-zero and the rbtree leaked.
+>>>>
+>>>> Call drm_vma_node_allow_once() instead to prevent that memory leak.
+>>>>
+>>>> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+>>>> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+>>>
+>>> Fixes: 786555987207 ("drm/i915/gem: Store mmap_offsets in an rbtree rather than a plain list")
+>>> Reported-by: Chuansheng Liu <chuansheng.liu@intel.com>
+>>> Reported-by: Mirsad Todorovac <mirsad.todorovac@alu.unizg.hr>
+>>> Cc: <stable@vger.kernel.org> # v5.7+
+>>> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>
+>>> Regards,
+>>>
+>>> Tvrtko
+>>>
+>>>>
+>>>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+>>>> ---
+>>>>   drivers/gpu/drm/i915/gem/i915_gem_mman.c | 2 +-
+>>>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+>>>> index 4f69bff63068..2aac6bf78740 100644
+>>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+>>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+>>>> @@ -697,7 +697,7 @@ mmap_offset_attach(struct drm_i915_gem_object *obj,
+>>>>       GEM_BUG_ON(lookup_mmo(obj, mmap_type) != mmo);
+>>>>   out:
+>>>>       if (file)
+>>>> -        drm_vma_node_allow(&mmo->vma_node, file);
+>>>> +        drm_vma_node_allow_once(&mmo->vma_node, file);
+>>>>       return mmo;
+>>>>   err:
+>>
+>> The drm/i915 patch seems OK and there are currently no memory leaks as of
+>> reported by /sys/kernel/debug/kmemleak under the same Chrome load that triggered
+>> the initial bug ...
+> 
+> 
+> Thanks, Mirsad for quickly checking this!
 
-BR,
-Jani.
+There was no problem, Nirmoy, everything applied neatly :)
 
->
->> ---
->>  drivers/gpu/drm/i915/display/intel_display.c      |  2 +-
->>  drivers/gpu/drm/i915/display/intel_display_core.h | 10 ++++++++++
->>  drivers/gpu/drm/i915/display/intel_dpio_phy.c     |  9 +++++----
->>  drivers/gpu/drm/i915/display/intel_dpll.c         |  2 +-
->>  drivers/gpu/drm/i915/i915_drv.h                   |  8 --------
->>  5 files changed, 17 insertions(+), 14 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
->> index 734e8e613f8e..419537a79255 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->> @@ -3291,7 +3291,7 @@ static bool i9xx_get_pipe_config(struct intel_crtc *crtc,
->>  	if (DISPLAY_VER(dev_priv) >= 4) {
->>  		/* No way to read it out on pipes B and C */
->>  		if (IS_CHERRYVIEW(dev_priv) && crtc->pipe != PIPE_A)
->> -			tmp = dev_priv->chv_dpll_md[crtc->pipe];
->> +			tmp = dev_priv->display.state.chv_dpll_md[crtc->pipe];
->>  		else
->>  			tmp = intel_de_read(dev_priv, DPLL_MD(crtc->pipe));
->>  		pipe_config->pixel_multiplier =
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
->> index c0eb753112d5..24c792d44b8f 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
->> @@ -441,6 +441,16 @@ struct intel_display {
->>  		u8 phy_failed_calibration;
->>  	} snps;
->>  
->> +	struct {
->> +		/*
->> +		 * Shadows for CHV DPLL_MD regs to keep the state
->> +		 * checker somewhat working in the presence hardware
->> +		 * crappiness (can't read out DPLL_MD for pipes B & C).
->> +		 */
->> +		u32 chv_dpll_md[I915_MAX_PIPES];
->> +		u32 bxt_phy_grc;
->> +	} state;
->> +
->>  	struct {
->>  		/* ordered wq for modesets */
->>  		struct workqueue_struct *modeset;
->> diff --git a/drivers/gpu/drm/i915/display/intel_dpio_phy.c b/drivers/gpu/drm/i915/display/intel_dpio_phy.c
->> index 7eb7440b3180..565c06de2432 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dpio_phy.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dpio_phy.c
->> @@ -376,7 +376,7 @@ static void _bxt_ddi_phy_init(struct drm_i915_private *dev_priv,
->>  	if (bxt_ddi_phy_is_enabled(dev_priv, phy)) {
->>  		/* Still read out the GRC value for state verification */
->>  		if (phy_info->rcomp_phy != -1)
->> -			dev_priv->bxt_phy_grc = bxt_get_grc(dev_priv, phy);
->> +			dev_priv->display.state.bxt_phy_grc = bxt_get_grc(dev_priv, phy);
->>  
->>  		if (bxt_ddi_phy_verify_state(dev_priv, phy)) {
->>  			drm_dbg(&dev_priv->drm, "DDI PHY %d already enabled, "
->> @@ -442,8 +442,9 @@ static void _bxt_ddi_phy_init(struct drm_i915_private *dev_priv,
->>  		 * the corresponding calibrated value from PHY1, and disable
->>  		 * the automatic calibration on PHY0.
->>  		 */
->> -		val = dev_priv->bxt_phy_grc = bxt_get_grc(dev_priv,
->> -							  phy_info->rcomp_phy);
->> +		val = bxt_get_grc(dev_priv, phy_info->rcomp_phy);
->> +		dev_priv->display.state.bxt_phy_grc = val;
->> +
->>  		grc_code = val << GRC_CODE_FAST_SHIFT |
->>  			   val << GRC_CODE_SLOW_SHIFT |
->>  			   val;
->> @@ -568,7 +569,7 @@ bool bxt_ddi_phy_verify_state(struct drm_i915_private *dev_priv,
->>  			   "BXT_PORT_CL2CM_DW6(%d)", phy);
->>  
->>  	if (phy_info->rcomp_phy != -1) {
->> -		u32 grc_code = dev_priv->bxt_phy_grc;
->> +		u32 grc_code = dev_priv->display.state.bxt_phy_grc;
->>  
->>  		grc_code = grc_code << GRC_CODE_FAST_SHIFT |
->>  			   grc_code << GRC_CODE_SLOW_SHIFT |
->> diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
->> index c236aafe9be0..4e9c18be7e1f 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dpll.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dpll.c
->> @@ -1910,7 +1910,7 @@ void chv_enable_pll(const struct intel_crtc_state *crtc_state)
->>  		intel_de_write(dev_priv, DPLL_MD(PIPE_B),
->>  			       crtc_state->dpll_hw_state.dpll_md);
->>  		intel_de_write(dev_priv, CBR4_VLV, 0);
->> -		dev_priv->chv_dpll_md[pipe] = crtc_state->dpll_hw_state.dpll_md;
->> +		dev_priv->display.state.chv_dpll_md[pipe] = crtc_state->dpll_hw_state.dpll_md;
->>  
->>  		/*
->>  		 * DPLLB VGA mode also seems to cause problems.
->> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
->> index 9ac80a45362f..e631373cc1dc 100644
->> --- a/drivers/gpu/drm/i915/i915_drv.h
->> +++ b/drivers/gpu/drm/i915/i915_drv.h
->> @@ -300,14 +300,6 @@ struct drm_i915_private {
->>  
->>  	struct i915_gpu_error gpu_error;
->>  
->> -	/*
->> -	 * Shadows for CHV DPLL_MD regs to keep the state
->> -	 * checker somewhat working in the presence hardware
->> -	 * crappiness (can't read out DPLL_MD for pipes B & C).
->> -	 */
->> -	u32 chv_dpll_md[I915_MAX_PIPES];
->> -	u32 bxt_phy_grc;
->> -
->>  	u32 suspend_count;
->>  	struct i915_suspend_saved_registers regfile;
->>  	struct vlv_s0ix_state *vlv_s0ix_state;
->> -- 
->> 2.34.1
->> 
+Regards,
+Mirsad
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+Mirsad Goran Todorovac
+Sistem inženjer
+Grafički fakultet | Akademija likovnih umjetnosti
+Sveučilište u Zagrebu
+
+System engineer
+Faculty of Graphic Arts | Academy of Fine Arts
+University of Zagreb, Republic of Croatia
