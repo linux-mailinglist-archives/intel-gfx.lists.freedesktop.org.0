@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BC6B672349
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Jan 2023 17:31:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D735567234E
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Jan 2023 17:31:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1439810E79C;
-	Wed, 18 Jan 2023 16:31:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E263610E7A4;
+	Wed, 18 Jan 2023 16:31:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF6C510E798
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Jan 2023 16:31:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D1AE10E79A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Jan 2023 16:31:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674059460; x=1705595460;
+ t=1674059462; x=1705595462;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=98KJ6C2rsqcfjjXBbKoupzjuJQsK2AcZoaYVmw4Rrd0=;
- b=AtRg69oqcP10Ww6EXvb0m9381FXpPad/UDqlJ4QJ9Snla6soAUxSc8UM
- UJ9gChhYHGRRSar8GUWC/RmBM/4OxFyGKy97u4dJMlzKTdRB9zC56IRa5
- 3k/+O3QFTf9Gna/tR9O2g78o6SizsoeR7qVdoGBNw10hTPzGheSbnFTCY
- TUQ1yhuKPPnUYKZ6KXw1Ij8oEmqOehmJoaWnrhd4XCMDXE2Bue0TsT5KK
- EJGDV+pGhF8I5+qgE1dTiZ4I2pJeB0R7uEwssnSd1qpNw5CZ2Qg2/EVK8
- Mp8Do16IHUkyFU/0PJUvGpobjHaeDkHtQdtrwbAROtHn7SjfAwn6W3jJg w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="326289817"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="326289817"
+ bh=QUaTaO5tgKY73YqljWnj+cvBz85Fht36TuTx2TWpSok=;
+ b=XpO7Jb2nyllfRiahQIFITH+msc+WGiLujafK732r0+GoZYB6Jx0mrERo
+ gFxQythKuHGgN9HupErQotgMvnq0DGE5xx/Q4jbgZaSMa9d8aQNM/tF9N
+ dzPim+BHaAd9NeaCZK3TPp+KKZlfV+WeJOCes0ZgjoFAUveGEUP3eK0gd
+ WPl5HITm622RHvyuzt2r8dlNYWlgUovmqzjfQXzojXI7GqMxXknm2OU9F
+ q42uSx8dQxZmRJkHqkJA8Vy1CUz099Pyv80ZAgYeX6dg36i/eq/rFibk7
+ A+SY+TBj1sfmgImpQFWwLErLcHmHVuZLR1eSR1E/4myp7mEtvKM4scSwM g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="326289828"
+X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="326289828"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2023 08:30:58 -0800
+ 18 Jan 2023 08:31:01 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="692060446"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="692060446"
+X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="692060447"
+X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="692060447"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
- by orsmga001.jf.intel.com with SMTP; 18 Jan 2023 08:30:56 -0800
+ by orsmga001.jf.intel.com with SMTP; 18 Jan 2023 08:30:59 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 18 Jan 2023 18:30:55 +0200
+ Wed, 18 Jan 2023 18:30:58 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 18 Jan 2023 18:30:32 +0200
-Message-Id: <20230118163040.29808-6-ville.syrjala@linux.intel.com>
+Date: Wed, 18 Jan 2023 18:30:33 +0200
+Message-Id: <20230118163040.29808-7-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.38.2
 In-Reply-To: <20230118163040.29808-1-ville.syrjala@linux.intel.com>
 References: <20230118163040.29808-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 05/13] drm/i915/dsb: Dump the DSB command buffer
- when DSB fails
+Subject: [Intel-gfx] [PATCH 06/13] drm/i915/dsb: Allow vblank synchronized
+ DSB execution
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,66 +65,68 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Dump the full DSB command buffers and head/tail pointers if the
-the DSB hasn't completed its job in time.
+Allow the caller to ask for the DSB commands to execute
+during vblank.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dsb.c | 33 +++++++++++++++++++++---
- 1 file changed, 30 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_color.c | 2 +-
+ drivers/gpu/drm/i915/display/intel_dsb.c   | 4 +++-
+ drivers/gpu/drm/i915/display/intel_dsb.h   | 3 ++-
+ 3 files changed, 6 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+index 6d6d300fa2df..162d671182e3 100644
+--- a/drivers/gpu/drm/i915/display/intel_color.c
++++ b/drivers/gpu/drm/i915/display/intel_color.c
+@@ -1258,7 +1258,7 @@ static void icl_load_luts(const struct intel_crtc_state *crtc_state)
+ 
+ 	if (crtc_state->dsb) {
+ 		intel_dsb_finish(crtc_state->dsb);
+-		intel_dsb_commit(crtc_state->dsb);
++		intel_dsb_commit(crtc_state->dsb, false);
+ 		intel_dsb_wait(crtc_state->dsb);
+ 	}
+ }
 diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index 9e25b1345927..f454329b6901 100644
+index f454329b6901..43679090eceb 100644
 --- a/drivers/gpu/drm/i915/display/intel_dsb.c
 +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -92,6 +92,22 @@ static bool assert_dsb_has_room(struct intel_dsb *dsb)
- 			 crtc->base.base.id, crtc->base.name, dsb->id);
- }
- 
-+static void intel_dsb_dump(struct intel_dsb *dsb)
-+{
-+	struct intel_crtc *crtc = dsb->crtc;
-+	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-+	const u32 *buf = dsb->cmd_buf;
-+	int i;
-+
-+	drm_dbg_kms(&i915->drm, "[CRTC:%d:%s] DSB %d commands {\n",
-+		    crtc->base.base.id, crtc->base.name, dsb->id);
-+	for (i = 0; i < ALIGN(dsb->free_pos, 64 / 4); i += 4)
-+		drm_dbg_kms(&i915->drm,
-+			    " 0x%08x: 0x%08x 0x%08x 0x%08x 0x%08x\n",
-+			    i * 4, buf[i], buf[i+1], buf[i+2], buf[i+3]);
-+	drm_dbg_kms(&i915->drm, "}\n");
-+}
-+
- static bool is_dsb_busy(struct drm_i915_private *i915, enum pipe pipe,
- 			enum dsb_id id)
+@@ -237,10 +237,11 @@ void intel_dsb_finish(struct intel_dsb *dsb)
+ /**
+  * intel_dsb_commit() - Trigger workload execution of DSB.
+  * @dsb: DSB context
++ * @wait_for_vblank: wait for vblank before executing
+  *
+  * This function is used to do actual write to hardware using DSB.
+  */
+-void intel_dsb_commit(struct intel_dsb *dsb)
++void intel_dsb_commit(struct intel_dsb *dsb, bool wait_for_vblank)
  {
-@@ -260,10 +276,21 @@ void intel_dsb_wait(struct intel_dsb *dsb)
+ 	struct intel_crtc *crtc = dsb->crtc;
  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	enum pipe pipe = crtc->pipe;
+@@ -258,6 +259,7 @@ void intel_dsb_commit(struct intel_dsb *dsb)
+ 	}
  
--	if (wait_for(!is_dsb_busy(dev_priv, pipe, dsb->id), 1))
-+	if (wait_for(!is_dsb_busy(dev_priv, pipe, dsb->id), 1)) {
-+		u32 offset = i915_ggtt_offset(dsb->vma);
-+
-+		intel_de_write(dev_priv, DSB_CTRL(pipe, dsb->id),
-+			       DSB_ENABLE | DSB_HALT);
-+
- 		drm_err(&dev_priv->drm,
--			"[CRTC:%d:%s] DSB %d timed out waiting for idle\n",
--			crtc->base.base.id, crtc->base.name, dsb->id);
-+			"[CRTC:%d:%s] DSB %d timed out waiting for idle (current head=0x%x, head=0x%x, tail=0x%x)\n",
-+			crtc->base.base.id, crtc->base.name, dsb->id,
-+			intel_de_read(dev_priv, DSB_CURRENT_HEAD(pipe, dsb->id)) - offset,
-+			intel_de_read(dev_priv, DSB_HEAD(pipe, dsb->id)) - offset,
-+			intel_de_read(dev_priv, DSB_TAIL(pipe, dsb->id)) - offset);
-+
-+		intel_dsb_dump(dsb);
-+	}
+ 	intel_de_write(dev_priv, DSB_CTRL(pipe, dsb->id),
++		       (wait_for_vblank ? DSB_WAIT_FOR_VBLANK : 0) |
+ 		       DSB_ENABLE);
+ 	intel_de_write(dev_priv, DSB_HEAD(pipe, dsb->id),
+ 		       i915_ggtt_offset(dsb->vma));
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.h b/drivers/gpu/drm/i915/display/intel_dsb.h
+index 6b22499e8a5d..b8148b47022d 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.h
++++ b/drivers/gpu/drm/i915/display/intel_dsb.h
+@@ -19,7 +19,8 @@ void intel_dsb_finish(struct intel_dsb *dsb);
+ void intel_dsb_cleanup(struct intel_dsb *dsb);
+ void intel_dsb_reg_write(struct intel_dsb *dsb,
+ 			 i915_reg_t reg, u32 val);
+-void intel_dsb_commit(struct intel_dsb *dsb);
++void intel_dsb_commit(struct intel_dsb *dsb,
++		      bool wait_for_vblank);
+ void intel_dsb_wait(struct intel_dsb *dsb);
  
- 	/* Attempt to reset it */
- 	dsb->free_pos = 0;
+ #endif
 -- 
 2.38.2
 
