@@ -2,79 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEF8E672E38
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Jan 2023 02:33:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C91AC672E5A
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Jan 2023 02:39:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8710F10E88A;
-	Thu, 19 Jan 2023 01:33:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7CE710E886;
+	Thu, 19 Jan 2023 01:39:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
- [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 441F110E87F;
- Thu, 19 Jan 2023 01:33:26 +0000 (UTC)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
- 30J0gaEZ032172; Thu, 19 Jan 2023 01:32:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com;
- h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=55EcYJzI7tOUlGzXMatbAr1vmYRJdtUaIfzjiWkk3WI=;
- b=PJzSQQzBi58a1BHka2NorPWvuXAq1bPwtnumU4Mi+I5ehTLmQv2qvRzMkHZH6E86hYEr
- 375pdcBJ8+87RefHJe2ilGzRtjEG2CbdwJ35glXylTBZ/BZo7iGZHZJ8J4/a9fG394A4
- 4z+7w2iVCyGo+sX2XYvlhbOTF9fsallcZXuvbAk1sAyNph4eCPkbkbDyxGa7s0tCGZoh
- cLn22d1JF1TEb26kmoTqPcWSmMJDsT0eb9KbnZ0P+dONRWv5YsptxuV51W8+UXfI1wB5
- yzuwrnqtY/UKuxsq8J8rMbTRavqlqBKsCoAabVTXe4ADcsk9aKYQlEyesWHGg9dH/+pY UQ== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com
- [129.46.96.20])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n6e4r1tna-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Thu, 19 Jan 2023 01:32:46 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
- [10.47.209.196])
- by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30J1WjbE005088
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Thu, 19 Jan 2023 01:32:45 GMT
-Received: from [10.110.108.90] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Wed, 18 Jan
- 2023 17:32:43 -0800
-Message-ID: <3bbd070a-6739-db35-79a4-141f738b2d8c@quicinc.com>
-Date: Wed, 18 Jan 2023 17:32:41 -0800
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0225110E886;
+ Thu, 19 Jan 2023 01:39:54 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id F4096A47DF;
+ Thu, 19 Jan 2023 01:39:53 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.2
-Content-Language: en-US
-To: Mark Yacoub <markyacoub@chromium.org>, <quic_khsieh@quicinc.com>,
- <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
- <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <intel-gfx@lists.freedesktop.org>
-References: <20230118193015.911074-1-markyacoub@google.com>
- <20230118193015.911074-10-markyacoub@google.com>
-From: Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <20230118193015.911074-10-markyacoub@google.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
- signatures=585085
-X-Proofpoint-GUID: FYA6rF3trF_wnu1RPW7rw9u1Syspf478
-X-Proofpoint-ORIG-GUID: FYA6rF3trF_wnu1RPW7rw9u1Syspf478
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-18_05,2023-01-18_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501
- lowpriorityscore=0 malwarescore=0 mlxlogscore=999 adultscore=0 spamscore=0
- phishscore=0 impostorscore=0 clxscore=1011 suspectscore=0 mlxscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2301190008
-Subject: Re: [Intel-gfx] [PATCH v6 09/10] arm64: dts: qcom: sc7180: Add
- support for HDCP in dp-controller
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Thu, 19 Jan 2023 01:39:53 -0000
+Message-ID: <167409239399.24699.9723480872691738124@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230118131538.3558599-1-jani.nikula@intel.com>
+In-Reply-To: <20230118131538.3558599-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/7=5D_drm/i915=3A_add_i915=5Fconfi?=
+ =?utf-8?q?g=2Eh_and_move_relevant_declarations_there_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,77 +41,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: quic_sbillaka@quicinc.com, konrad.dybcio@somainline.org,
- bjorn.andersson@linaro.org, krzysztof.kozlowski+dt@linaro.org,
- airlied@gmail.com, hbh25y@gmail.com, marex@denx.de, abhinavk@codeaurora.org,
- javierm@redhat.com, agross@kernel.org, quic_jesszhan@quicinc.com,
- daniel@ffwll.ch, lucas.demarchi@intel.com, swboyd@chromium.org,
- robh+dt@kernel.org, christophe.jaillet@wanadoo.fr, maxime@cerno.tech,
- rodrigo.vivi@intel.com, johan+linaro@kernel.org, andersson@kernel.org,
- dianders@chromium.org, tzimmermann@suse.de, dmitry.baryshkov@linaro.org,
- seanpaul@chromium.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Mark
+== Series Details ==
 
-On 1/18/2023 11:30 AM, Mark Yacoub wrote:
-> From: Sean Paul <seanpaul@chromium.org>
-> 
-> This patch adds the register ranges required for HDCP key injection and
-> HDCP TrustZone interaction as described in the dt-bindings for the
-> sc7180 dp controller. Now that these are supported, change the
-> compatible string to "dp-hdcp".
-> 
-> Signed-off-by: Sean Paul <seanpaul@chromium.org>
-> Signed-off-by: Mark Yacoub <markyacoub@chromium.org>
-> Link: https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-15-sean@poorly.run #v1
-> Link: https://patchwork.freedesktop.org/patch/msgid/20210915203834.1439-14-sean@poorly.run #v2
-> Link: https://patchwork.freedesktop.org/patch/msgid/20211001151145.55916-14-sean@poorly.run #v3
-> Link: https://patchwork.freedesktop.org/patch/msgid/20211105030434.2828845-14-sean@poorly.run #v4
-> Link: https://patchwork.freedesktop.org/patch/msgid/20220411204741.1074308-10-sean@poorly.run #v5
-> 
-> Changes in v3:
-> -Split off into a new patch containing just the dts change (Stephen)
-> -Add hdcp compatible string (Stephen)
-> Changes in v4:
-> -Rebase on Bjorn's multi-dp patchset
-> Changes in v5:
-> -Put the tz register offsets in trogdor dtsi (Rob C)
-> Changes in v6:
-> -Rebased: Removed modifications in sc7180.dtsi as it's already upstream
-> 
-> ---
->   arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 8 ++++++++
->   1 file changed, 8 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> index 178efaaa89ec..6f6fe5cb6563 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> @@ -817,6 +817,14 @@ &mdss_dp {
->   	pinctrl-names = "default";
->   	pinctrl-0 = <&dp_hot_plug_det>;
->   	data-lanes = <0 1>;
-> +
-> +	reg = <0 0x0ae90000 0 0x200>,
-> +	      <0 0x0ae90200 0 0x200>,
-> +	      <0 0x0ae90400 0 0xc00>,
-> +	      <0 0x0ae91000 0 0x400>,
-> +	      <0 0x0ae91400 0 0x400>,
-> +	      <0 0x0aed1000 0 0x175>,
-> +	      <0 0x0aee1000 0 0x2c>;
->   };
+Series: series starting with [1/7] drm/i915: add i915_config.h and move relevant declarations there (rev2)
+URL   : https://patchwork.freedesktop.org/series/113025/
+State : warning
 
-Can you pls point me to which tree you rebased this on top of?
+== Summary ==
 
-The mdss_dp node looks different here: 
-https://gitlab.com/linux-kernel/linux-next/-/blob/master/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi#L815
+Error: dim checkpatch failed
+c1c34828b1db drm/i915: add i915_config.h and move relevant declarations there
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:54: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#54: 
+new file mode 100644
 
-For the TZ regs the second entry is fine but any reason for the size of 
-the first register space to be 0x175 instead of 0x174?
+total: 0 errors, 1 warnings, 0 checks, 70 lines checked
+de2ea5327803 drm/i915: move I915_IDLE_ENGINES_TIMEOUT next to its only user
+27b0514e9629 drm/i915: drop a number of unnecessary forward declarations
+cd6fd88889c8 drm/i915: move a few HAS_ macros closer to their place
+-:40: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#40: FILE: drivers/gpu/drm/i915/i915_drv.h:858:
++#define HAS_HW_SAGV_WM(i915) (DISPLAY_VER(i915) >= 13 && !IS_DGFX(i915))
+
+total: 0 errors, 0 warnings, 1 checks, 26 lines checked
+6fe8a8d5b049 drm/i915: move I915_GEM_GPU_DOMAINS to i915_gem.h
+dec07302761a drm/i915: move I915_COLOR_UNEVICTABLE to i915_gem_gtt.h
+26a5c2b7cee3 drm/i915: move GT_FREQUENCY_MULTIPLIER and GEN9_FREQ_SCALER to intel_rps.h
 
 
-
->   
->   &pm6150_adc {
