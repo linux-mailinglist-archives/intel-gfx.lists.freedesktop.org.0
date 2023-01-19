@@ -2,139 +2,140 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9BAA6742BD
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Jan 2023 20:25:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C7106742CE
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Jan 2023 20:28:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8416B10E9D3;
-	Thu, 19 Jan 2023 19:25:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24B5210E9DD;
+	Thu, 19 Jan 2023 19:28:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC54010E9DD;
- Thu, 19 Jan 2023 19:25:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B4FF10E9D3;
+ Thu, 19 Jan 2023 19:28:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674156324; x=1705692324;
+ t=1674156495; x=1705692495;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=yuFIGACSKXtJDitISqiX0QBlPs7R8mRIbREkZlGEazk=;
- b=X9zxZLVz1/L81R9ZIbHdcv/5NfydUmSdwQvMa0WO5nAsfmIGtiy6qUV4
- Qk3GNiRsp6RtmolXa6OC3JMgJTabBn6MK80OOeW+YfwRDjFlzBEwxwaGi
- ZjijXxhzVE5OUfvKVMMbrKOLFifK8Rxy/zdSQtDW6q9sEHSArJsVYLPZf
- IEiqU4fJkE7cwkZXh8nPDmbQcmDNI9lA0/veCqDWw9VK28/nISVdQ7w/d
- 8wTsS/SogPA288fJ2i4KWvwhDAhRShrq5HUPYZ5oocumcM9W5XB/fGRJ6
- iCdDLyF8GY2//6zqyzAQfsG/v3MtPB9mHCouY4BtWv36gyzAKWsQaNM8h w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="326674891"
-X-IronPort-AV: E=Sophos;i="5.97,229,1669104000"; d="scan'208";a="326674891"
+ bh=2bUFkMRph/ZL5c0w2KjKw5WCI2xJEuIQQKTe6ngZMTo=;
+ b=d8mjNNiB/rjU4img8qctNaSlpV0PL8vPiXbOMO3hXs2T6OohepalI6BN
+ szU4+pBlNmRtf9MoGMC2hqEq/3hqvQ5v94dvrU7rHm+6Idm7wYxA3pyyY
+ eE930g51BJmbEoKYUIiWeSHP0yM8CwYi1w4QjKj1X0uPhDVvFkF71TyFx
+ MzSRJepDpI/y3qLGMoDmu6DfJe9PAlH5TIKYovCeuyB7Q6v6fWiU6zbgV
+ bh+wEVMLF328H9R/OP2mvwNCUouw+pX8WWFNPAxNrioUDoKkeKFp90IH+
+ SZIqbkkpbv0zvQzNU9s2p8mkbjcENsoMP510/NSO/8NmWtl93xUtHMxts Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="326675906"
+X-IronPort-AV: E=Sophos;i="5.97,229,1669104000"; d="scan'208";a="326675906"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2023 11:25:23 -0800
+ 19 Jan 2023 11:28:14 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="784180999"
-X-IronPort-AV: E=Sophos;i="5.97,229,1669104000"; d="scan'208";a="784180999"
+X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="784181873"
+X-IronPort-AV: E=Sophos;i="5.97,229,1669104000"; d="scan'208";a="784181873"
 Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga004.jf.intel.com with ESMTP; 19 Jan 2023 11:25:23 -0800
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ by orsmga004.jf.intel.com with ESMTP; 19 Jan 2023 11:28:14 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
  fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Thu, 19 Jan 2023 11:25:23 -0800
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.1.2507.16; Thu, 19 Jan 2023 11:28:14 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Thu, 19 Jan 2023 11:25:22 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ 15.1.2507.16; Thu, 19 Jan 2023 11:28:13 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Thu, 19 Jan 2023 11:25:22 -0800
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.104)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.16 via Frontend Transport; Thu, 19 Jan 2023 11:28:13 -0800
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Thu, 19 Jan 2023 11:25:21 -0800
+ 15.1.2507.16; Thu, 19 Jan 2023 11:28:13 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=e6rAdg/0hErEjtvwTJ6d/x+TsNkEtuXIJOJP/jh2n0s5919nfuV7FMZRJErJAb/YgEc0Md+nx3x8cWMLl4/+M9JC64MGZqwprEzi0hzUE3meeq51rlM7+UL3+RoKYEfUZphbf2WpcURP5CvJ1IDb76gaieGf+303jffVGdtQ0JLWo7U1rprq0LapHkYLfM4D8uEQkUSL+eNUesYxDggSCwM+/0B0//RiSiSQLhmTMxw2skeCqeiKVxw2fsj+2kxEn2EkjysaAj8/cSWSq5q9h9mOB+mBotkYNtmDtT63EGxqfbehJXykKCotMZtpzTveA81IJANT/kEG9qduoPK5Vw==
+ b=NjuJD9bgLKyxQ8RWAg6x6CFqin1E0IH0aDR9nWJRtUWk1QtKTBf//OxYn4bFRL8PgTA5zocPilS3UkUHDK6S/jt6CI1p7eqj1vBDibFfwLShAInIxDDeuJzYDVSCfErUim3yghvXI/jFoc7Hkfa3OxHpxwzCT4ECrJ+8SMcPNIjGO5rtfzBytprpbHd0DN7UrsOevs89iwgeVzY2bvPnEOeIUL+4ned0HkaPFJX1P/wl/L+eoaYUDgWCbLkaEGA7niTOqjd2EgMEaQcWXpGdZhxF0G764Hsbrvdz4PR5v6K4KqOGAGN/dtEUbnBo5ROK5wd4zuCL9ot46tDpX4jSVA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pf4UH3/LdFoAZahKCADYa47XOy5RZWdI9PWgUUw5Sy8=;
- b=eDV+VDHo65ZI9p0Jlz3VdPsAFUgcaWaas5LmO6G/rRi2+pVKT53mZz7duNoJdm+x5+TLM6KVNpc9UCeikAR1YRbNi9sHtgfn1xYwHRdRt9q0wOLp7iEgxIeyP+HcuD2Vw/gTiknL2poznmYnwhfKkDkMq6fZ/SQSmULDuMEMBw2yG8QMDNneM8uDCvPVzqnuUH16sOo5/Rg9NdXc3523Kxkp2e1PljVxJDn4He7ovpdKFYAIXizMwjdhOD3rwqzPQPh0UM46fKnDshCP7VQap0Ejjv7ztO8qOMpZwRti8y9mQWCFbkPsCGn1gcm1kNbQwRpJrNP6MbYH40BoMKwddQ==
+ bh=IwDeXZ8wGHd/0NzQAwXIId06ZiGYn/lXyCjg8cvpaRI=;
+ b=QNppYOdfulEWRMqaNYzV/holiu5dVvP43TimZNl+Q7/xomPh4Evelz4Mt17rlMBbVPWFuw/2WTmpiD8UM4wDj1M+PEf+gDy1bD/MIp85YVj7SfqHaDB6Hnt93bmDzA+9W7MO29nOHbCaN+nQWag3whTmA+1UJOg9COLIpOyh4hS+hAJTmx9a7R8G1aiuHHpAETGAadJiT02sFE8gTVhezjfJlsFCSX/o2cGdUIHDOjsnBXEsKl6iM5kAbMn0MFkWPXPWks+f35zKfpehHkEnkbI1WJDHVsCAix06MKQ7BHmIW7JF0GCtTna5bqLaMxmcsPlo6ZJZkNJSVUNgsDrW9A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by MW5PR11MB5884.namprd11.prod.outlook.com (2603:10b6:303:1a0::16)
+ by IA1PR11MB8176.namprd11.prod.outlook.com (2603:10b6:208:452::7)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.13; Thu, 19 Jan
- 2023 19:25:17 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.24; Thu, 19 Jan
+ 2023 19:28:11 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::1818:e39d:454d:a930]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::1818:e39d:454d:a930%4]) with mapi id 15.20.6002.025; Thu, 19 Jan 2023
- 19:25:17 +0000
-Date: Thu, 19 Jan 2023 14:25:12 -0500
+ 19:28:11 +0000
+Date: Thu, 19 Jan 2023 14:28:06 -0500
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: Alan Previn <alan.previn.teres.alexis@intel.com>
-Message-ID: <Y8mZGMjjlTW3U0jA@intel.com>
+Message-ID: <Y8mZxg0FvcGWy9RV@intel.com>
 References: <20230113011850.1463965-1-alan.previn.teres.alexis@intel.com>
- <20230113011850.1463965-3-alan.previn.teres.alexis@intel.com>
+ <20230113011850.1463965-5-alan.previn.teres.alexis@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20230113011850.1463965-3-alan.previn.teres.alexis@intel.com>
-X-ClientProxiedBy: BYAPR05CA0011.namprd05.prod.outlook.com
- (2603:10b6:a03:c0::24) To MN0PR11MB6059.namprd11.prod.outlook.com
+In-Reply-To: <20230113011850.1463965-5-alan.previn.teres.alexis@intel.com>
+X-ClientProxiedBy: BY3PR05CA0003.namprd05.prod.outlook.com
+ (2603:10b6:a03:254::8) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|MW5PR11MB5884:EE_
-X-MS-Office365-Filtering-Correlation-Id: e4a6b165-98cb-4cb1-2f41-08dafa52e556
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|IA1PR11MB8176:EE_
+X-MS-Office365-Filtering-Correlation-Id: d1baffb5-816e-47c2-5140-08dafa534ce4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ONxT7Hi1e0JYadO5FsqYBXXtRbmlwwWPz5U3lTKEgOR1YmBsYds62V+7Lbih1QqiMiP5PJiJNKe71Udh6L0uq1+gDy3WJevx8TMXQqOGKgy+ySzVdoPOjpIfYhr0kRdpTY9YZDXXUHWUsS6ft0Im0AsgtgGbbZf9JRepNkr9tiOO9XEV6z1ZQf2d1+WQQ2cvR3kiF4MJHfBOE6JSOO1K6KYiPKHNo9XEkVNQHm0ABK5bXWZ7B5Rn5HoGdQo3+p2E5nO9wHbI+R9hJXXU2dO8eGg+4tJASrzLEGi+mEv3D0fYD3PDsOspvlY8AdaEmfJZTzBXAuX3UG3OE//8NHcJnozNZOC/DQQS8rJKleM3CFp5RmXz3DzUhq0tXaD7AQLLCQCvxl5oH7RpjOjCXJzAMY724dnBA7VaCKSMFDwef5mSxT5Zv4Ll796dHUOaRKgN1q7ha1N6qps01ySOGOi0vWi8crsY44JqGpffvUy47wXqHSD5A2j93koA/dhaljxXDX6jtInBWF3vI6muvUGAMlQehgDSSbMWbgdgnb2yU1Myz2csRa612fZhYSIiTRj03DWmFhMcsrRkgTE6tM1ldoIM/UzCBpUHv1dP9yev6egnw7EsnHJENDqy/gVjO75y8Ed79BqZ1pXgUzMNYJGp7Q==
+X-Microsoft-Antispam-Message-Info: uYy0OKsfHaVw+JVYtp1ltDKHYiFFVGrSX3Dm89Z+nbeF/IP2oHfHiu2aZPI15UYCy76yv8wXp/QuwWxAe9UcEkjXG9O0TMfesG1pXDHoXc2/OCpNQxaxsLK9jIuZh38OWmEVLL+yBZ2VUO8Le+JffoE+5ltYJhwZ3qY14cGACqVDYphpz32sd8488JCRxMI8RtUoIiCNo7Cy6uY0koHj2/l0dgmRGF4HG8LGq7nSwlRqk8ampw4OE8y9CNrvbu/gk+miaP4Us8NOq79JxJwrmhHNBkzjPxtbrB9gc9xZTmbKZlA053rNXzLimo1xYUJbktxjozfYZucDtfvkzD95+KRaXRl+jorm2ETofKIltUschv2VIsV/7sAD2LRyp5rZp2XQloNuRumpu/FsfduiHb7oS3wS6Yb+bI/cltVW7o6avzu6SSJdN80SHm0D5TNlE+4udp798JRZJWMmbK4KbvteJojU9UYYyl0jFUh09XBmdBdigiO6w8UnYRr3zU9kJD/yEjl6Rb3TMZCagWWeG3Y+nWOm7xU/s3lmjFpbBa25xRr6MZ962Xy0rp4sUK/0fRuGOFAuFwlvk6xGJUZoVH8Hgih4ld9Un0mhlvIsS9kFWTRdEMPSVTTN1gdAk0uEfNpC5FRe5cbzNwG5jhmCMA==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(376002)(396003)(346002)(366004)(39860400002)(136003)(451199015)(83380400001)(6512007)(54906003)(6486002)(6636002)(478600001)(82960400001)(36756003)(38100700002)(66946007)(186003)(2616005)(86362001)(107886003)(41300700001)(66556008)(6506007)(26005)(44832011)(2906002)(6862004)(4326008)(6666004)(5660300002)(8676002)(8936002)(37006003)(66476007)(316002);
+ SFS:(13230022)(136003)(396003)(39860400002)(376002)(346002)(366004)(451199015)(82960400001)(38100700002)(66556008)(66476007)(66946007)(44832011)(2906002)(6862004)(8936002)(5660300002)(478600001)(6506007)(8676002)(4326008)(41300700001)(2616005)(26005)(54906003)(186003)(6512007)(83380400001)(316002)(6666004)(37006003)(107886003)(6636002)(36756003)(6486002)(86362001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?8BtrbH9d6u6T0BxcQ4YwEpuOWIKt8LrJDrR8x59hxTQZmxSv0QZixGgs4olX?=
- =?us-ascii?Q?CxNuF490LpOZMvWXJnb5aL53I3JrJvhnyIoqXXx6IHFACU2fwhL9I8xI6TAa?=
- =?us-ascii?Q?ArXAD6euw2XNySbgVPP9Gs1p/ltFoWiJeoMfmnc7byfLI5q2ybJvYPeDVYWJ?=
- =?us-ascii?Q?f1Zzz32RCsuvPzePkU7zH07o1KxNJBDthlmcGmJXYSQYGHUZvPTpY0eIVSnL?=
- =?us-ascii?Q?nYli/z+0pqexIOF95pT2MEhN0s3hbOju6yvJPfBf3Jv5MoeMceeGeiXrpIBi?=
- =?us-ascii?Q?JzNlIYL2CsR5FYJ2KSnwY8tc0LVusS9VUGmkk5IH0vOv2fe6qfqzm4Cmp5if?=
- =?us-ascii?Q?dIvRZaidq8slQaYvkvD655ggcaP/2U+HTR2lzlyQ9RjRI6Z9CBWTFJxno3XM?=
- =?us-ascii?Q?yzPbViL5PezJ82qDe2nJFhvfZccwP1H0LN2tKBA7PuToHHtlxysxIHuOSHai?=
- =?us-ascii?Q?H9gVXSB7vjoPwkUeMXCUp+HEsyek8RE0gRM7XiIlsQvzisrkeEM3ixcgio92?=
- =?us-ascii?Q?Bldlik2Bv9zha9JZ7sutJixrZagdZmkq7gR4XSQ7QxjRTLfMMnRaLDMQFjxj?=
- =?us-ascii?Q?r3LRVXcVz6GPek7dMryx0tq8GqMLCSWoWjsV6OiFmys2E4tAj9ath/uyp5R1?=
- =?us-ascii?Q?Eesk5FmNPZiONAkwdFKzHOtfxCeUr285945jbtM59cCtlXU51/BVBN81yNpx?=
- =?us-ascii?Q?JPluDpmT7KZRHovZ+5aCUYXO/56fBIW/Kis55ERFRlVL8++M3fL7Nfm0jyc5?=
- =?us-ascii?Q?H4GYcAyzg8CLZNZNKTQZ2yUfioWHpMPoYDrFf3KSYtmmUu0VLRTBJDpRvNJ/?=
- =?us-ascii?Q?wDZ/UV0EX4qQxbY+KIsWs/0cDpS5omVVHBITrzsZ4+H5vs/BUnv967Ul33WZ?=
- =?us-ascii?Q?nC85p7B/KfoQLqM3YEGz9Y67aUmd2AtT8HDM7/U5IZRMCLiA3petSOQKcQZd?=
- =?us-ascii?Q?hsQ9MyidAiMv41EmyZQ403GfwZOgXPXP7h3Md1Ujq9rtDkOKnekaUSqmgsQ6?=
- =?us-ascii?Q?B7TN85jdomlw8f2+PkoDp4q969q/Bsdxcm8SpI/y/hhKLDDc2D7De9oRqMGg?=
- =?us-ascii?Q?FeyxgLu3zSbabjd3G4Bj7mWXIhmKc4r1ban7ZWGf1qeb3dMVp+mZmIeu+xhR?=
- =?us-ascii?Q?LoGrLFB5gmPwKQlxpXat1elnA43MGRhxDopJUPikycNW5/oD/NZIJpGVGXb3?=
- =?us-ascii?Q?B8rme6nhWxSM+RdJS9vbHsUEjDfHscqKRvFSr3bQqlhwU60gHcAtMBldiNJy?=
- =?us-ascii?Q?H6+92uwhOtOD/j1mDcSAA0qllS1dwlwDIXbqTGmf62tzzV5ZtlV2ZK2W7Aak?=
- =?us-ascii?Q?d1GrlCrsYxVs7uJyVbgu9Hz5EFqZpO9GEHrmfOeHwign9oX45ezZxcjZyvZa?=
- =?us-ascii?Q?4s0ucfGJefrTHtH5TcNdYFW37QTqvKRA19wjFaO8d1ncuCzVWItsajoEka7I?=
- =?us-ascii?Q?gI3bveMmW+WL2Lx2EQkp0QJdXKX45m918Zh4x3reN4PFzneVXfyLN7vAB4Oo?=
- =?us-ascii?Q?uK02gSDp59hBAcOUuJ5HRkEGoXTRWTSU+35mSS/lHt+25xIuT71etvYgEkiv?=
- =?us-ascii?Q?LdxxgQfKUNQcokefog6MBytbw1A7jJ9+E5KJjGms?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: e4a6b165-98cb-4cb1-2f41-08dafa52e556
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?9wWpL/mcJVpDO9v/houFrIqjXZWp2f0QyCObuFOz25o6/4MqLHnI/Q6IEWFQ?=
+ =?us-ascii?Q?zuPDgC2cyeSgTHkWkO/DPthVd9Z/kXMZoS6o0dWZB3K3Kvo4suSiAGSaiAiR?=
+ =?us-ascii?Q?G1vz8EQ+N+C7l2zFetgjmDTexyjGko1saLs8Ta2GIJTcc+Q8TPMxdo0XC3hE?=
+ =?us-ascii?Q?jRk63b/lD7oC3ESZgYELiDHDEiIdaAI727CU7q1DxgnVDjK0Ie8sKV3SR6sc?=
+ =?us-ascii?Q?bJ+xbh4Rdqmr3Ow1nsI0ydpvSfjGuxGaos9QkPFq/200Gu0Uc4GTPsKaWoxw?=
+ =?us-ascii?Q?9/dkBEXuXyZop3xVQp96fhD2j9QgSKYtBNIEO/cyDlzqZOdGdBY0br8QHvi0?=
+ =?us-ascii?Q?Hag8NM5sr9tF89eo/eTGPKKo6E32hImlCV0f3HvGH+fPrBXqWb9ifAm5NG3s?=
+ =?us-ascii?Q?d8WLtwg04QaXZ2NL3BKN2VC4reGyz3WgPzw26yyaqrLB7apwcHljktBe4VE0?=
+ =?us-ascii?Q?ImvWdqT+SmHrNZoipMyoDifPBEVksIBbe8Nl9P1bWL1gjbdLGxnYjgC3gQK2?=
+ =?us-ascii?Q?ccVPJbhHHHCeKrkvuMMn3j3yOI/BfYZ5m9yE/l0cdFY5dxb8X7741swLiNr/?=
+ =?us-ascii?Q?L+zXv+x+6eSCjoEI7CcAL2cIFfHtIfSzUyYxlXd+m7vm6qPxu3D6yjVQUqr0?=
+ =?us-ascii?Q?4JMI/BuiwBGXE1OW6IB3kVcXuiHu09VhaOdFgRaPq2svvvZXrS3LV6OxckNl?=
+ =?us-ascii?Q?nhbWPCmJfY2yfeeynLqftXb4R61ATjBHn3e/NWHZBIpoAX69DaO9fdp5ePkG?=
+ =?us-ascii?Q?uH+bhbwYn6hP/tC9u/e3kKxSBONWYaxm3BMxJFyZ4cICR6wVI3qjeWFuT+Jw?=
+ =?us-ascii?Q?hF1i0+E2zXd6Xqn8f0meuwPFnzGgCz9SFwtctYnFoKLV/eVkeiuk2MgLCtI2?=
+ =?us-ascii?Q?t68ifRWdlnZr0nS5f+UiQDgUplfFHkLRmNdrPdGKZNeA4J3gkPz16W/+Mau1?=
+ =?us-ascii?Q?2l8Bs1JAEaw/IlTKt43xFBcZeXswuKdx9mUtiXmjZPOLd1J0xhaXcoEzicv0?=
+ =?us-ascii?Q?qYx68GqGLoWZitR79SJAAHOF/u9GXRer+8UEjbI0FhXYYfSQAyCCViCkZuQN?=
+ =?us-ascii?Q?Yxbqj5GP8/Cdxb9QC+GH7Apx4Ss6D5xgDvtj4YMGIqTAe/X4bA1fUeDH6TN6?=
+ =?us-ascii?Q?mFMWmQgOuNZ6BiVQwTGlHrF+MK+UFO2yA9AVEhjXPqM60W1FntA5JmoA4FRV?=
+ =?us-ascii?Q?ocB/3twQzaS6fahH1xXGzwh3YcybU0+NUcQsXD1cIeuuaVOFRhS3WiD0CUUI?=
+ =?us-ascii?Q?U4jPQ3Qmv/Wlo218vRIrvGeVvm5HwxTgLqtayHV46xjEytxg4kkQ+EmlvWOk?=
+ =?us-ascii?Q?AiHPtWftRmhZSjKxS4Eh5G6nzR2FkaaqwBgdPVzeLYz+rvDrANkBfpLmAyPU?=
+ =?us-ascii?Q?hPZeLN/VEQ3RKe7vefBe2OjR1Rdo9u8HLt3n5b3xIGKngZbSgu2MoUURqYb6?=
+ =?us-ascii?Q?fogFK1QzzDG082UPc/ohhwLxCHzPx4RCpqNjeeE1xhbhtZEmpSNm9G/bUD8J?=
+ =?us-ascii?Q?hRN722paK7Yb3C/nz7QAhR38zw088IK60hQO15wnyAKCwZAnLIQHpNaFk0aK?=
+ =?us-ascii?Q?LwsnnFS7CkiUPPF4lguaInchPh4Zkkb2Jpfj5en7+Wgvamfwx2VALM8vjn2s?=
+ =?us-ascii?Q?5w=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: d1baffb5-816e-47c2-5140-08dafa534ce4
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2023 19:25:17.1988 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2023 19:28:10.9981 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mBNpw3lUK5guYF9uLzB2VvcNRYRduePBlck0r2IGseqYd4C9An8+36E05mVKYgEoNBJUSWRzsZzo+FN/CfS5PQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR11MB5884
+X-MS-Exchange-CrossTenant-UserPrincipalName: WaQ8R6YjTcm/msX8o6+l/vSxvjj0A0Hv242DkhkjIjd9sJIxvG32Dj1fcZaHyk/m5mA/e7pHCBo9CByBJStsRg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB8176
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v5 2/6] drm/i915/pxp: add device link
- between i915 and mei_pxp
+Subject: Re: [Intel-gfx] [PATCH v5 4/6] drm/i915/pxp: Invalidate all PXP fw
+ sessions during teardown
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,87 +156,146 @@ Cc: Greg
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 12, 2023 at 05:18:46PM -0800, Alan Previn wrote:
-> From: Alexander Usyskin <alexander.usyskin@intel.com>
+On Thu, Jan 12, 2023 at 05:18:48PM -0800, Alan Previn wrote:
+> A gap was recently discovered where if an application did not
+> invalidate all of the stream keys (intentionally or not), and the
+> driver did a full PXP global teardown on the GT subsystem, we
+> find that future session creation would fail on the security
+> firmware's side of the equation. i915 is the entity that needs
+> ensure the sessions' state across both iGT and security firmware
+> are at a known clean point when performing a full global teardown.
 > 
-> Add device link with i915 as consumer and mei_pxp as supplier
-> to ensure proper ordering of power flows.
+> Architecturally speaking, i915 should inspect all active sessions
+> and submit the invalidate-stream-key PXP command to the security
+> firmware for each of them. However, for the upstream i915 driver
+> we only support the arbitration session that can be created
+> so that will be the only session we will cleanup.
 > 
-> V2: condition on absence of heci_pxp to filter out DG
-> 
-> Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
 > Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+> Reviewed-by: Juston Li <justonli@chromium.org>
+
+Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > ---
->  drivers/gpu/drm/i915/pxp/intel_pxp_tee.c | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  drivers/gpu/drm/i915/pxp/intel_pxp.h          |  1 +
+>  .../drm/i915/pxp/intel_pxp_cmd_interface_42.h | 15 ++++++++
+>  .../i915/pxp/intel_pxp_cmd_interface_cmn.h    |  3 ++
+>  drivers/gpu/drm/i915/pxp/intel_pxp_session.c  |  2 ++
+>  drivers/gpu/drm/i915/pxp/intel_pxp_tee.c      | 35 +++++++++++++++++++
+>  5 files changed, 56 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> index d50354bfb993..bef6d7f8ac55 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> @@ -127,6 +127,10 @@ static int i915_pxp_tee_component_bind(struct device *i915_kdev,
->  	intel_wakeref_t wakeref;
->  	int ret = 0;
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+> index 04440fada711..9658d3005222 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.h
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+> @@ -24,6 +24,7 @@ void intel_pxp_init_hw(struct intel_pxp *pxp);
+>  void intel_pxp_fini_hw(struct intel_pxp *pxp);
 >  
-> +	if (!HAS_HECI_PXP(i915) &&
-> +	    drm_WARN_ON(&i915->drm, !device_link_add(i915_kdev, tee_kdev,
-
-I don't like the action here hidden behind the drm_WARN_ON.
-Please notice that almost every use of this and other helpers like
-this expect the param as a failure. Not an actual action. So,
-most of lazy readers like me might ignore that the main function
-is actually a param inside  this warn condition.
-
-We should probably stash the link as well...
-
-pxp->dev_link = device_link_add(i915_kdev, tee_kdev,...);
-
-so in the end below, instead of checking the HAS_HECI_PXP again
-and use the remove version you check the dev_link and use the del
-function.
-
-something like:
-
-if (pxp->dev_link)
-   device_link_del(pxp->dev_link);
-
-Also, do you really need the WARN to see the stack when this happens
-or you already know the callers?
-Why not a simple drm_error msg?
-
-if (!HAS_HECI_PXP(i915) {
-	pxp->dev_link = device_link_add(i915_kdev, tee_kdev,...);
-	if (!pxp->dev_link) {
-	   drm_error();
-	   return -ESOMETHING;
-
->  DL_FLAG_STATELESS)))
-
-do we need the RPM in sync as well?
-I mean:
-
-DL_FLAG_STATELESS | DL_FLAG_PM_RUNTIME)))
-
-?
-
-> +		return -ENOMEM;
-
-why ENOMEM?
-
+>  void intel_pxp_mark_termination_in_progress(struct intel_pxp *pxp);
+> +void intel_pxp_tee_end_arb_fw_session(struct intel_pxp *pxp, u32 arb_session_id);
+>  
+>  int intel_pxp_start(struct intel_pxp *pxp);
+>  
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_42.h b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_42.h
+> index 739f9072fa5f..26f7d9f01bf3 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_42.h
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_42.h
+> @@ -12,6 +12,9 @@
+>  /* PXP-Opcode for Init Session */
+>  #define PXP42_CMDID_INIT_SESSION 0x1e
+>  
+> +/* PXP-Opcode for Invalidate Stream Key */
+> +#define PXP42_CMDID_INVALIDATE_STREAM_KEY 0x00000007
 > +
->  	mutex_lock(&pxp->tee_mutex);
->  	pxp->pxp_component = data;
->  	pxp->pxp_component->tee_dev = tee_kdev;
-> @@ -169,6 +173,9 @@ static void i915_pxp_tee_component_unbind(struct device *i915_kdev,
->  	mutex_lock(&pxp->tee_mutex);
->  	pxp->pxp_component = NULL;
->  	mutex_unlock(&pxp->tee_mutex);
+>  /* PXP-Input-Packet: Init Session (Arb-Session) */
+>  struct pxp42_create_arb_in {
+>  	struct pxp_cmd_header header;
+> @@ -25,4 +28,16 @@ struct pxp42_create_arb_out {
+>  	struct pxp_cmd_header header;
+>  } __packed;
+>  
+> +/* PXP-Input-Packet: Invalidate Stream Key */
+> +struct pxp42_inv_stream_key_in {
+> +	struct pxp_cmd_header header;
+> +	u32 rsvd[3];
+> +} __packed;
 > +
-> +	if (!HAS_HECI_PXP(i915))
-> +		device_link_remove(i915_kdev, tee_kdev);
+> +/* PXP-Output-Packet: Invalidate Stream Key */
+> +struct pxp42_inv_stream_key_out {
+> +	struct pxp_cmd_header header;
+> +	u32 rsvd;
+> +} __packed;
+> +
+>  #endif /* __INTEL_PXP_FW_INTERFACE_42_H__ */
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_cmn.h b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_cmn.h
+> index c2f23394f9b8..69e34ec49e78 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_cmn.h
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_cmn.h
+> @@ -27,6 +27,9 @@ struct pxp_cmd_header {
+>  	union {
+>  		u32 status; /* out */
+>  		u32 stream_id; /* in */
+> +#define PXP_CMDHDR_EXTDATA_SESSION_VALID GENMASK(0, 0)
+> +#define PXP_CMDHDR_EXTDATA_APP_TYPE GENMASK(1, 1)
+> +#define PXP_CMDHDR_EXTDATA_SESSION_ID GENMASK(17, 2)
+>  	};
+>  	/* Length of the message (excluding the header) */
+>  	u32 buffer_len;
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_session.c b/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
+> index ae413580b81a..74ed7e16e481 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
+> @@ -110,6 +110,8 @@ static int pxp_terminate_arb_session_and_global(struct intel_pxp *pxp)
+>  
+>  	intel_uncore_write(gt->uncore, PXP_GLOBAL_TERMINATE, 1);
+>  
+> +	intel_pxp_tee_end_arb_fw_session(pxp, ARB_SESSION);
+> +
+>  	return ret;
 >  }
 >  
->  static const struct component_ops i915_pxp_tee_component_ops = {
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+> index bef6d7f8ac55..9e247f38f3bd 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+> @@ -311,3 +311,38 @@ int intel_pxp_tee_cmd_create_arb_session(struct intel_pxp *pxp,
+>  
+>  	return ret;
+>  }
+> +
+> +void intel_pxp_tee_end_arb_fw_session(struct intel_pxp *pxp, u32 session_id)
+> +{
+> +	struct drm_i915_private *i915 = pxp->ctrl_gt->i915;
+> +	struct pxp42_inv_stream_key_in msg_in = {0};
+> +	struct pxp42_inv_stream_key_out msg_out = {0};
+> +	int ret, trials = 0;
+> +
+> +try_again:
+> +	memset(&msg_in, 0, sizeof(msg_in));
+> +	memset(&msg_out, 0, sizeof(msg_out));
+> +	msg_in.header.api_version = PXP_APIVER(4, 2);
+> +	msg_in.header.command_id = PXP42_CMDID_INVALIDATE_STREAM_KEY;
+> +	msg_in.header.buffer_len = sizeof(msg_in) - sizeof(msg_in.header);
+> +
+> +	msg_in.header.stream_id = FIELD_PREP(PXP_CMDHDR_EXTDATA_SESSION_VALID, 1);
+> +	msg_in.header.stream_id |= FIELD_PREP(PXP_CMDHDR_EXTDATA_APP_TYPE, 0);
+> +	msg_in.header.stream_id |= FIELD_PREP(PXP_CMDHDR_EXTDATA_SESSION_ID, session_id);
+> +
+> +	ret = intel_pxp_tee_io_message(pxp,
+> +				       &msg_in, sizeof(msg_in),
+> +				       &msg_out, sizeof(msg_out),
+> +				       NULL);
+> +
+> +	/* Cleanup coherency between GT and Firmware is critical, so try again if it fails */
+> +	if ((ret || msg_out.header.status != 0x0) && ++trials < 3)
+> +		goto try_again;
+> +
+> +	if (ret)
+> +		drm_err(&i915->drm, "Failed to send tee msg for inv-stream-key-%d, ret=[%d]\n",
+> +			session_id, ret);
+> +	else if (msg_out.header.status != 0x0)
+> +		drm_warn(&i915->drm, "PXP firmware failed inv-stream-key-%d with status 0x%08x\n",
+> +			 session_id, msg_out.header.status);
+> +}
 > -- 
 > 2.39.0
 > 
