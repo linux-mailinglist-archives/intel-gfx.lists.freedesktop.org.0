@@ -2,148 +2,145 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8061673163
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Jan 2023 06:50:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 212AA6731B2
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Jan 2023 07:19:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D413A10E8AC;
-	Thu, 19 Jan 2023 05:50:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DF3010E8AE;
+	Thu, 19 Jan 2023 06:19:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF3DC10E8AC;
- Thu, 19 Jan 2023 05:50:46 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6CBE10E8AC;
+ Thu, 19 Jan 2023 06:19:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674107446; x=1705643446;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- in-reply-to:mime-version;
- bh=e58AN/9Gi0OzWoWVvKqxjbxuZ51lvoME9LuHAv0/XwU=;
- b=jH6vCdfsPgaU9jMN6CeKZIh5EhsVDbA5z+By0ss0s5wbYk7mRpO7tALa
- bG0bDd7JkgRKjBVapP/ADJDOuyIIA+PlCld/fUee5dVH3Uauti2VIwnEQ
- gKNDFP+n608jAcMkVnoQvlp+UvR58ni2sdTpZdgSZuyaU24Y+mKRFpxa5
- rN54Ho+j5XmCQ55rf2dvicJHiBtqZsCiLPsP/VwWSUnowUpjoNIydXCq1
- SF+y/o0WySxz8Fp4IbGpXLAGH1/T1p12kDGFAC4hs8ttHypztrfsjt7pD
- feqqGbSMFMrzh4Ml0mlhjLMhms6PEFWFhOV2lQE85OM/idH2VXwizSgkA Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="411443390"
-X-IronPort-AV: E=Sophos;i="5.97,228,1669104000"; d="scan'208";a="411443390"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2023 21:50:46 -0800
+ t=1674109159; x=1705645159;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=7kx5toGXWibuWb8z7db839CejYTBtKKdiYAUt5wpLXk=;
+ b=jI5s32zGreY4Trf4A8geFhPBxl9j+V3dwWtNvjpzyZ5LHB4zs15asnaJ
+ 2PiY6/JdMkXFp43G6qv/SQNmUDsEiiOtD8jjbcAUq9Wk2WM8Ls1sQ255t
+ MN04OHTcP3kNhBGcFbZqZkzMREQia7J0oSEOzrVw+IFUkq9lNUXBsP3eQ
+ GuRap7B3sustfaXfw+CM2GMiaWahOqpZFNoj4B7xs8D60vpxV0IucbyWM
+ i85LYY8Iz+9ARCWa40RU/azY8goXy7iozu8Xe3AJ7YpoEJcmwpivoM7/P
+ 7K9SgNnHtYgwcHyZbU5adQgheNFql105CiRAoXlbGzdsfn8RSC1n8a0Au g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="304893215"
+X-IronPort-AV: E=Sophos;i="5.97,228,1669104000"; d="scan'208";a="304893215"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2023 22:19:19 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="748769786"
-X-IronPort-AV: E=Sophos;i="5.97,228,1669104000"; d="scan'208";a="748769786"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by FMSMGA003.fm.intel.com with ESMTP; 18 Jan 2023 21:50:46 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="783948906"
+X-IronPort-AV: E=Sophos;i="5.97,228,1669104000"; d="scan'208";a="783948906"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orsmga004.jf.intel.com with ESMTP; 18 Jan 2023 22:19:17 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Wed, 18 Jan 2023 21:50:45 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.16; Wed, 18 Jan 2023 22:19:17 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Wed, 18 Jan 2023 21:50:45 -0800
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.16; Wed, 18 Jan 2023 22:19:16 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Wed, 18 Jan 2023 21:50:45 -0800
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.177)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.16 via Frontend Transport; Wed, 18 Jan 2023 22:19:16 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.49) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Wed, 18 Jan 2023 21:50:45 -0800
+ 15.1.2507.16; Wed, 18 Jan 2023 22:19:16 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BIY7YHL+HZ5rM3hTUlODhWT+PrffRV/9OiTO5ThbXBXMxUib+dlcDiYjVjbzVn9eVtcPr+9lJgkZS9k/iykYatYY6kkCf5FIn4RmtmoobVoeM54SydeoULx9d2stRvF59Ebfx+COIRhEje6tQk9g9yAYQ48xq2a+MXBoAqxJ5rM2yj2bpQyfQ8jlWQF97vfaUJSb7Pp0n5WSVIvyRs2wCWRhhp+KyAAJmgAt3tnVbCZpPcZa9gCxT3vcCPqGDzfSK7mPh4O3cksaGOoKALDVuBgytXDU24rI55EbxfJtvLXXSVVggJdXIikHcr08+N1+Ch+mY/XRUSKrZOTzw683Yw==
+ b=buTbHDu13xoGQ/tKHWnjdeqN6CHuAuYNFR0OEVdxMTWiLJlTWzAVE5oCUcUr38SLBg+GbSMURHkjB4dBv354QwyyeN5VCf4i8vtNAzyZ3/C167gKJVPjT3w5eW0CKdZrEiW1YwNIOJZgZWx3lpMoKgXkxou6gcBVfsEZD+YPMyyOn8yJXrIf7YsLkEenNI4llzPF0pLNYhcyR4nmxHNInQDMVUzI5b/PSXeWOql7xuYZdJZOf5yDclwSC3zV6Ukq2fuS9VQHSd4XRhFrk49iKstZzXTO2w8mUNwvvma9DxebyAj8nMUooJ9GJQyXlj+qvh5zzAPIfJw5y4NT9IVsBQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CeVnGnefZdJMJTuNOYCwmbAyhYPaTwrILDew33NzYRo=;
- b=UwpdwgyeVXejEQVoehAodOu7yjCPJjL5abQ6mJLML7lhNcITa2gF3zc7QY127SthQ4K3jwBh60jrSUYQbJFk5vYh/A93AXLHA4F1FrppFP239DzV/JT2r/BpbAsot0QoN8M0ciiq8+lYH0tA5ItP93AiOlqWtc+dLhvcfzuU/3Mh9G6TZPE/IQ0klY6i1U3kZ/l9RuQzzuUVVcrOIYqHWFOSXEIhqxqa/2g6x41hf/RWgXkZWQJs6lb1CwdcmHNyeNvpMpnf5dCmtlALwC7oZceHsApLGLvEwtiqXrvDQrG6m9PgVfDfAymQVKvucBoUQrstTSQiqZTiaFcxN8ugaw==
+ bh=AAp+mEBbmNQo7a3zwkVLLta7pMEzSp+fkKr6prk0ReM=;
+ b=QE/iUetlibFVPZNPJpUMq9j8J+GL0mitzO82pie6l5zPmth4ws85wPLh9eYH7MT6aJEiKvUPZZUw0XyPrFOC/v0/8p7q2AlvgoaVzENxCjGFkdIWBVgjsdhK+n09kTOISqLTcvxZ12Zmb0Xx9pPEicGKzAENZHibL0P7UuuJ8TmcDj17Uf+tABBJohKh6/WxRADS8rn5LT300lG2/xXlgyYMevmWp6pQ9zQ/Cs+V3xZiZJJLrrNwt335R8YjwuU6AWUlZCAAvuGA1ZH6bhOueGDrpNzdfk9awODc36Rtrj1rI3jkmsj5jfkD1/goN0+8w3eKj2fesPhbsUS2pE2FKA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
+Received: from BL0PR11MB3170.namprd11.prod.outlook.com (2603:10b6:208:64::10)
+ by DM6PR11MB4673.namprd11.prod.outlook.com (2603:10b6:5:2a4::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.24; Thu, 19 Jan
+ 2023 06:19:14 +0000
+Received: from BL0PR11MB3170.namprd11.prod.outlook.com
+ ([fe80::e573:309f:67c9:29fa]) by BL0PR11MB3170.namprd11.prod.outlook.com
+ ([fe80::e573:309f:67c9:29fa%4]) with mapi id 15.20.6002.013; Thu, 19 Jan 2023
+ 06:19:14 +0000
+From: "Murthy, Arun R" <arun.r.murthy@intel.com>
+To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>
+Thread-Topic: [PATCH 2/2] i915/display/dp: SDP CRC16 for 128b132b link layer
+Thread-Index: AQHZJwl1supyNcNYy0ifJ1b8cnACQq6cAV4AgAlKRbA=
+Date: Thu, 19 Jan 2023 06:19:13 +0000
+Message-ID: <BL0PR11MB31707335E09322583282401BBAC49@BL0PR11MB3170.namprd11.prod.outlook.com>
+References: <20230113043653.795183-1-arun.r.murthy@intel.com>
+ <20230113043653.795183-2-arun.r.murthy@intel.com> <87mt6mg83h.fsf@intel.com>
+In-Reply-To: <87mt6mg83h.fsf@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS7PR11MB5966.namprd11.prod.outlook.com (2603:10b6:8:71::6) by
- CY8PR11MB6889.namprd11.prod.outlook.com (2603:10b6:930:5e::9) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6002.24; Thu, 19 Jan 2023 05:50:37 +0000
-Received: from DS7PR11MB5966.namprd11.prod.outlook.com
- ([fe80::bd50:2cf7:f362:3734]) by DS7PR11MB5966.namprd11.prod.outlook.com
- ([fe80::bd50:2cf7:f362:3734%8]) with mapi id 15.20.6002.013; Thu, 19 Jan 2023
- 05:50:37 +0000
-Date: Thu, 19 Jan 2023 13:26:58 +0800
-From: Yan Zhao <yan.y.zhao@intel.com>
-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Message-ID: <Y8jUom2voLubfqxE@yzhao56-desk.sh.intel.com>
-References: <20221223005739.1295925-4-seanjc@google.com>
- <Y6vXTcxDNovrmeVB@yzhao56-desk.sh.intel.com>
- <Y7SaklDQD0EoIs8l@google.com>
- <Y7Y+759IN2DH5h3h@yzhao56-desk.sh.intel.com>
- <Y7cLkLUMCy+XLRwm@google.com>
- <Y7e3fT8/V2NoXAUP@yzhao56-desk.sh.intel.com>
- <Y7ioYegkgKIH8uJL@google.com>
- <Y7vlOCKkJ+QyO3EM@yzhao56-desk.sh.intel.com>
- <Y773+EB35bAchVTC@google.com>
- <Y8ix4lqk8QYH4g3h@zhen-hp.sh.intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <Y8ix4lqk8QYH4g3h@zhen-hp.sh.intel.com>
-X-ClientProxiedBy: KL1PR01CA0131.apcprd01.prod.exchangelabs.com
- (2603:1096:820:4::23) To DS7PR11MB5966.namprd11.prod.outlook.com
- (2603:10b6:8:71::6)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB5966:EE_|CY8PR11MB6889:EE_
-X-MS-Office365-Filtering-Correlation-Id: d88bc70d-b018-40f1-e5bd-08daf9e1168e
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: CHeaB/hpEOn4Vb+SnpJTPTRhnkn2ZYgutinqmGPniwpGwiuAK3qqHXxU/NHQUD5aN/wfFU8QaUeED/MbEd2DD+Lfu8df+Tk2RsChPKEOHkB/3N0D0jD03IlQnkEIkhKBjMRqxsjyhfr4K6sgk4J8i1al+OX1cf/2mx8doc3l4cjTDGElJxdNaVbRaXooWHLOXLTuxZkUjj3WKB2/aqH/BBAPW9KxayV3zZcLGoFqdvcvkI+ABsrlDJO5RC3b+6fuoDcehXx6wb32712yZ8WGUfaiE4EwjHn3QET10w20hNOohJuK2HWpqT1cID7D/ldx20zLRhNcbYU+4hTvP1P+AC9FwnDJ8ylW8WnZRUPI+RxCkh9z7IwxQpWpWn7pnEn2cznU57jepcs6jVE3+Sqjq43298EYFPwSUcyJfTugWW1CrRq9qkBsj4ciIwkO6jiZ6bInkDRJ8/xhj2cuNkOoHlDq73d60HhxYRhD3AFohIxUEHcYmD4Uyg82KlHhfYghnTvSv68Y5VdMBvW7hc7qsy9mt8MwEbEzAHq626WVcRzf+D1rg9fdSH9BZfVKP7X3gPvkMAAwPrmD8gLrtXetLGUpDGiMCos2Da5n0OcVNdCpfE+EinKQfTQnGQKuaF1G
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR11MB5966.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(346002)(396003)(366004)(39860400002)(136003)(376002)(451199015)(66476007)(82960400001)(38100700002)(86362001)(8936002)(5660300002)(3450700001)(2906002)(66946007)(66556008)(4326008)(8676002)(6916009)(41300700001)(26005)(186003)(83380400001)(6512007)(53546011)(316002)(54906003)(6666004)(478600001)(6486002)(6506007);
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BL0PR11MB3170:EE_|DM6PR11MB4673:EE_
+x-ms-office365-filtering-correlation-id: 5d020090-d7e7-4023-43b4-08daf9e515ef
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: jTOzKVh2PrT3eXzTfGRevSPl6XZMN5PeF5KZ6d8Lpfj2twfImwZB/aqQDotY2NKF7A7L4ByhohdNj1/ZRgfEYq3H9vhthYUSxotUSunasjRDuXt+DEY6KwaI5huT43O8H55F2V1HyYcvF5oqnTc6QrZNL3MqWmsMMZWmwNZ86gLHX1TF+BMoSVRC5KK+9go7NfY9zaehw2uTmyb40UcKteJ+1MTLGrOKthMGcVBLKRRbjCENPCJYFNjsr7m84Iw0S2cQJlPnPbhufF4byX7nVlWXIWzYv3dZJhKhAA6P9UptWaSuxksv4Z/n/0a4y44OienU/4Q1QomLZVsORpfBIiOi/j4Fqw5JlswcpBpvpao7/XAy3FBD7iJYlGmsdOu3quuPMje5sbW5tHka+va1jrqIRHgfS5rfVLslco3U28MSkHs6ijCXPwUC/Ezfa57S0Qf1o+jgrdS4QlaYpts5peAgdODqs7zhxxNwo2PDUDbTi4Z+ZmVLzi9BQQK20OO1LbL+euYj6PTLdqOC22MKKqpHnFC/KgiPw0/d0rY+OSPDvxb9F+K36USqUllJiU9AFOuI2ni9TQJ6GpKIFiWAZOeGWX2zg7yBDtIISmYMURSt/0fFKBcw5y5pepZGyWup1e4K3k/3H3huv2uqFrCVPTEFRP04hNrT7o4IQP2OKCO24JMIZFNZFff6pFZ/l8AsUda1NcJT2mTI7r73KgbnaA==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL0PR11MB3170.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(346002)(396003)(366004)(136003)(39860400002)(376002)(451199015)(38070700005)(33656002)(66946007)(2906002)(55016003)(450100002)(66556008)(52536014)(8936002)(76116006)(5660300002)(66476007)(82960400001)(38100700002)(122000001)(71200400001)(110136005)(55236004)(53546011)(7696005)(316002)(6506007)(86362001)(478600001)(41300700001)(64756008)(8676002)(186003)(66446008)(83380400001)(26005)(9686003);
  DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?5iU78KU8GZROZHhTd/CU/o2R3M9SMbxlZOTmbL7coS/ehkKFR+YAqxH9dVpS?=
- =?us-ascii?Q?iSuWmJVwHKmSXs27KJi13i+aPfgKcY5sEL/klNDOpZ/739g/nQqNm+m3OLz2?=
- =?us-ascii?Q?zucV9AbHG/uYuX460FcFdWWG+xBvdo1iWGbprdBjbcPx9YK9yUJuvXGfe85j?=
- =?us-ascii?Q?hncxNGamYaXfHp+Eo+6b/4wVw/NqlT1M+g1F13cLbHONeMQPx1CCEXSRnvvF?=
- =?us-ascii?Q?UKloJmLgupG8wYw06wsi3vI6UvDEzN4zlyfpQSMrpV/sfmj3szSJFzY8lhNg?=
- =?us-ascii?Q?chUc6ZrAgS9Xv/9MH9wTNdQikUrC4Cq9VVvW8rW2vi7jTl4E6VHGr+anWtPD?=
- =?us-ascii?Q?yFodcwZ9/lPseQ1E9gkKaRwQw5DHX8uCWJNmrqhEAg8kEjFdy3rRb9YOiFSz?=
- =?us-ascii?Q?A7aRgP2pSifCP+uikUojPKVWnoIuUIoGJbR10cTJD9TJwXQX4CKaD9y5rfgu?=
- =?us-ascii?Q?qS/1eMzmJwqqQs9m+wAQHmXmXz/3lUp/bKJfKlVqAOLFgS9pFzMKTIwP79ue?=
- =?us-ascii?Q?xyD0UX5LhNJnOPsmmV7GgnAWIbKZwidjayz6+S9vbgtAbNnvADLr5txxUJyh?=
- =?us-ascii?Q?Fkz0HrSzePtOMmPtaT7gMD2Hd2Ek01bkpX6tiC67fZBKMxLaqYhnmWaqutaW?=
- =?us-ascii?Q?1g27zfzutM4gBxR0f2UKk9W4bbE0OoVKHzU5OWkzKs1km//KE/ibbmt8SRZL?=
- =?us-ascii?Q?H5gQf0y4BSxdqIqs3NWwxGEqvBLVCtaCFJY4eoGv/ICanczRCRN37g/fDWK6?=
- =?us-ascii?Q?KHorI8zA7eU35LkKypncvkDpC8ZBdxLO4cb9pvGav35TDqcjqwylo6yq9oH9?=
- =?us-ascii?Q?P0RXPdE+bwlzKbw6zPRCJs7hEFyMjzJvwiZp78CMCB8IBZ8n+3UyItCLXWL6?=
- =?us-ascii?Q?CdF4h1y+okqpoh9ysWbUJp9zpbaVkn2CGX0ljn/OGDWQ3he3NZT+I5iuqoIS?=
- =?us-ascii?Q?52nSbonELIAYs+a7it6oalqimi8ets1pVcnEonACXG2KPjp4v5shLPxPi38Y?=
- =?us-ascii?Q?Ld9xbEcBi7p4LSB5hSnGy/ICaWQicKM4aEg8fK1NFLD4fR9/OXOhO/oaAu7G?=
- =?us-ascii?Q?LvR3VyyZ3AG3DiqX05bpcXCG4v9LFDCt/vgeSTQWTz5bT8hGk5zEr9B4S+WD?=
- =?us-ascii?Q?KuNYLw1VoRxDrxQXYkX3KtqaswnCZ7V64v7EK6Inr6P5REkeR0b9IEduYYhK?=
- =?us-ascii?Q?lvNYTotiYTH+Wy+/rts3dKd4evXXzXU16/hCMJmmt8bnUZzr4dpYZlt6uUen?=
- =?us-ascii?Q?dsi4X3qOPIaJhPAjeGXJHEy5grqASEuiXMJt6926TBzMOBn37Fb8bAm+qRSd?=
- =?us-ascii?Q?sJpd7KeudWbrRNo765eeXZTEp8xOFhU3LZCNKSkDsd+t2iJ2G6TlgpnXH0oN?=
- =?us-ascii?Q?uWOCN2HLeNs11XDQ0zS5MREeKgpiow8mww7LBHLAvtzdGmz56j8lLfbV0weq?=
- =?us-ascii?Q?kzcT5GQ7nQ9EeoOYzt0m/D9zsBaRpLKMyNeGU57cqj0jjcxv15j4YaqbrmED?=
- =?us-ascii?Q?TO9JgZUe4rKsPt9mcuNa4ERayIY7EWryxnznXrcvlVpmxYyK1Qx7+KhccTAP?=
- =?us-ascii?Q?RZ1l4q8FZE2Li/dncPK7DjTPwlmmslspEC2At1nx?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d88bc70d-b018-40f1-e5bd-08daf9e1168e
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB5966.namprd11.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?WfUebNxSKMJuxoMvIITU7ItymcmAaj/Jou1yhm/SjraQfBlHP9CLFDCEXDrQ?=
+ =?us-ascii?Q?kuny6WNpR85x8ipxm51IQ4xjliNLQTcll9DAuirMz9BSnclKkwbHeKzkbW2C?=
+ =?us-ascii?Q?NRjM8RKqGjW+QBlzY+19e7ClgAW7TiNo0SGkFO0InfontCzg6XM3NvmmeD5s?=
+ =?us-ascii?Q?KCBBz6xFAHiQAiAvUk3DqXNfXvuOTAd55I8PhIFKxzeiZdTQdPArZsAekXi5?=
+ =?us-ascii?Q?wJCRdgiYorBNRWyWcVF0yxZCD0qCOBQ/r7mOfvIfGoE2tJZoyr4sZj39qyX9?=
+ =?us-ascii?Q?Z8N610UXCYtpPy82tA3xKlfI+YIFBPN2pNBhcAbqC8iWMYtROEVHONHhsV74?=
+ =?us-ascii?Q?LqKrfuYfDUtgxVhQgtswsR24kbjVMIWJRy656LR2ALKD0vI9cguoE6UIe+7N?=
+ =?us-ascii?Q?wPHwSfJN/ESDVK6xaG174DDlfJdOVDYryBdk8/2BtVQRCMhBRV9RymFNUMkR?=
+ =?us-ascii?Q?AMj/+MwhgP31g7PeHVi5M/B0iouAjEQTCf0dEN5kJvWn459w7cEvL77Xx8qv?=
+ =?us-ascii?Q?YXj+U5L8rfxEOPJNR08bIgcJTMCjXnlYy/CTaOyv1G4E98UAerk9C35Wxinl?=
+ =?us-ascii?Q?fS79Cqk2LkOugbuVX0bZtKYeiXd9aOnPC1dHeZkeGHVwm/1QhITjY7pZ0uIj?=
+ =?us-ascii?Q?gFzlu/Cdxs6SA2YuchlH6cOx5TogA5HIqzBCs4s2WLU11GzNbNUJyr5Un22w?=
+ =?us-ascii?Q?ClVeqKza2cPNwX53lpObNTo5rIwyCIjDnocUryE+tELkNiC8r9x8lwhmQyHi?=
+ =?us-ascii?Q?0k9FumPSnG+oRaS/+pdrxrwVwQgOT+z646jLAeWP8tKnLyAduFYiZ/94680C?=
+ =?us-ascii?Q?9D6qH5Hqq1Xp6jLZ+/c67FC5bXDKHoWjL9vnSaEyw5s1EAuPwbWXFviLMmsR?=
+ =?us-ascii?Q?o0HCJWgIGSdfrLF0TFtFxbN9973WJAvySkwUnJuj5/X8M7GF8QyIdB7NXQfX?=
+ =?us-ascii?Q?x84bdh0O0xd+HBWnOR2qjSii0LktfflYNwGwJucirP5mmC0nD+Fjo/xGJT/c?=
+ =?us-ascii?Q?MxyLI8Jr11wYEQmRkk1/mILwGeYlKg+oC5yci3FbRp8RtfN16L5G6UEK0cf8?=
+ =?us-ascii?Q?wfc+EBHuh8nM34rUI7rdM5EqhzQ5oCTbR0dVHTVqPMS+J7aK1MTaMfGpbxjg?=
+ =?us-ascii?Q?LVbfqAy15oZNAM+tDP85TR64diccpUHvHUm40QilFen8am2pAoK+rZmzT1y1?=
+ =?us-ascii?Q?9n5jxWtN1x7Qa998BvHpgU3kvdNDRh3mdgz7yRzzDt/yIxr/AK3qHp/mV+LC?=
+ =?us-ascii?Q?RLNHDslCynYenREuLzFv2E9S3Xgr/158UDCNVWhBWqBkq/GqxGtDf1ZEsVmT?=
+ =?us-ascii?Q?uHI+KlXUmzXlKf7R23cvTL3VsycekSgKtJaPmSLTNztt8EyCe+nSraxDrtqZ?=
+ =?us-ascii?Q?nho0rAtC3+4C+lFR1UCy4nggOokhwmQjnuG/N1mkN3bhLBnr3kdXDJqsvReu?=
+ =?us-ascii?Q?aSL358rRzpAM6kEfSmTGcTSr3qjHdA/AnZtyokfuPVhCDghusUdZS/dwTDLP?=
+ =?us-ascii?Q?8s8wuqmINWaKMKuOpOVBYapUSgTOB1S0FpJsozm4bhd4xE11hQ6woPcjEIvn?=
+ =?us-ascii?Q?JoeA/1NtRohusS7ksNb/zH2NwrcDinEqDmHh6jW3?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2023 05:50:36.9798 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +goYUEF7Mb9q5S1cFYAKaZRSa8YY1AZfoQsJfUYWyxvNrsVPxG9L8ZVV5ZUNaqXvs5mu2XtKMQq+sMuBYI6cMQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6889
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR11MB3170.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5d020090-d7e7-4023-43b4-08daf9e515ef
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jan 2023 06:19:13.6550 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: VaFX+9np/7vPKckgiydYYMRvVq20V8byg4pqb87PonoI5+us9EZzofknYaOl3BG2qgWp0vLrgr+39TFZkUdR8Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4673
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 03/27] drm/i915/gvt: Incorporate KVM memslot
- info into check for 2MiB GTT entry
+Subject: Re: [Intel-gfx] [PATCH 2/2] i915/display/dp: SDP CRC16 for 128b132b
+ link layer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,197 +153,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Yan Zhao <yan.y.zhao@intel.com>
-Cc: kvm@vger.kernel.org, Sean Christopherson <seanjc@google.com>,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Ben Gardon <bgardon@google.com>, Paolo Bonzini <pbonzini@redhat.com>,
- intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 19, 2023 at 10:58:42AM +0800, Zhenyu Wang wrote:
-> On 2023.01.11 17:55:04 +0000, Sean Christopherson wrote:
-> > On Mon, Jan 09, 2023, Yan Zhao wrote:
-> > > On Fri, Jan 06, 2023 at 11:01:53PM +0000, Sean Christopherson wrote:
-> > > > On Fri, Jan 06, 2023, Yan Zhao wrote:
-> > > > > On Thu, Jan 05, 2023 at 05:40:32PM +0000, Sean Christopherson wrote:
-> > > > > > On Thu, Jan 05, 2023, Yan Zhao wrote:
-> > > > > > I'm totally fine if KVMGT's ABI is that VFIO is the source of truth for mappings
-> > > > > > and permissions, and that the only requirement for KVM memslots is that GTT page
-> > > > > > tables need to be visible in KVM's memslots.  But if that's the ABI, then
-> > > > > > intel_gvt_is_valid_gfn() should be probing VFIO, not KVM (commit cc753fbe1ac4
-> > > > > > ("drm/i915/gvt: validate gfn before set shadow page entry").
-> > > > > > 
-> > > > > > In other words, pick either VFIO or KVM.  Checking that X is valid according to
-> > > > > > KVM and then mapping X through VFIO is confusing and makes assumptions about how
-> > > > > > userspace configures KVM and VFIO.  It works because QEMU always configures KVM
-> > > > > > and VFIO as expected, but IMO it's unnecessarily fragile and again confusing for
-> > > > > > unaware readers because the code is technically flawed.
-> > > > > >
-> > > > > Agreed. 
-> > > > > Then after some further thought, I think maybe we can just remove
-> > > > > intel_gvt_is_valid_gfn() in KVMGT, because
-> > > > > 
-> > > > > (1) both intel_gvt_is_valid_gfn() in emulate_ggtt_mmio_write() and
-> > > > > ppgtt_populate_spt() are not for page track purpose, but to validate bogus
-> > > > > GFN.
-> > > > > (2) gvt_pin_guest_page() with gfn and size can do the validity checking,
-> > > > > which is called in intel_gvt_dma_map_guest_page(). So, we can move the
-> > > > > mapping of scratch page to the error path after intel_gvt_dma_map_guest_page().
-> > > > 
-> > > > IIUC, that will re-introduce the problem commit cc753fbe1ac4 ("drm/i915/gvt: validate
-> > > > gfn before set shadow page entry") solved by poking into KVM.  Lack of pre-validation
-> > > > means that bogus GFNs will trigger error messages, e.g.
-> > > > 
-> > > > 			gvt_vgpu_err("vfio_pin_pages failed for iova %pad, ret %d\n",
-> > > > 				     &cur_iova, ret);
-> > > > 
-> > > > and
-> > > > 
-> > > > 			gvt_vgpu_err("fail to populate guest ggtt entry\n");
-> > > 
-> > > Thanks for pointing it out.
-> > > I checked this commit message and found below original intentions to introduce
-> > > pre-validation:
-> > 
-> > ...
-> > 
-> > > (I actually found that the original code will print "invalid entry type"
-> > > warning which indicates it's broken for a while due to lack of test in
-> > > this invalid gfn path)
-> > > 
-> > > 
-> > > > One thought would be to turn those printks into tracepoints to eliminate unwanted
-> > > > noise, and to prevent the guest from spamming the host kernel log by programming
-> > > > garbage into the GTT (gvt_vgpu_err() isn't ratelimited).
-> > > As those printks would not happen in normal conditions and printks may have
-> > > some advantages to discover the attack or bug, could we just convert
-> > > gvt_vgpu_err() to be ratelimited ?
-> > 
-> > That's ultimately a decision that needs to be made by the GVT maintainers, as the
-> > answer depends on the use case.  E.g. if most users of KVMGT run a single VM and
-> > the guest user is also the host admin, then pr_err_ratelimited() is likely an
-> > acceptable/preferable choice as there's a decent chance a human will see the errors
-> > in the host kernel logs and be able to take action.
-> > 
-> > But if there's unlikely to be a human monitoring the host logs, and/or the guest
-> > user is unrelated to the host admin, then a ratelimited printk() is less useful.
-> > E.g. if there's no one monitoring the logs, then losing messages due to
-> > ratelimiting provides a worse debug experience overall than having to manually
-> > enable tracepoints.   And if there may be many tens of VMs (seems unlikely?), then
-> > ratelimited printk() is even less useful because errors for a specific VM may be
-> > lost, i.e. the printk() can't be relied upon in any way to detect issues.
-> > 
-> > FWIW, in KVM proper, use of printk() to capture guest "errors" is strongly discourage
-> > for exactly these reasons.
-> 
-> Current KVMGT usage is mostly in controlled mode, either user is own host admin,
-> or host admin would pre-configure specific limited number of VMs for KVMGT use.
-> I think printk on error should be fine, we don't need rate limit, and adding
-> extra trace monitor for admin might not be necessary. So I'm towards to keep to
-> use current error message.
-> 
+> -----Original Message-----
+> From: Nikula, Jani <jani.nikula@intel.com>
+> Sent: Friday, January 13, 2023 1:49 PM
+> To: Murthy, Arun R <arun.r.murthy@intel.com>; intel-
+> gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org
+> Cc: Murthy, Arun R <arun.r.murthy@intel.com>
+> Subject: Re: [PATCH 2/2] i915/display/dp: SDP CRC16 for 128b132b link lay=
+er
+>=20
+> On Fri, 13 Jan 2023, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+> > Enable SDP error detection configuration, this will set CRC16 in
+> > 128b/132b link layer.
+> > For DISPLAY13 a hardware bit31 in register VIDEO_DIP_CTL is added to
+> > enable/disable SDP CRC applicable for DP2.0 only, but the default
+> > value of this bit will enable CRC16 in 128b/132b hence skipping this wr=
+ite.
+> > Corrective actions on SDP corruption is yet to be defined.
+> >
+> > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp.c | 13 +++++++++++++
+> >  drivers/gpu/drm/i915/i915_reg.h         |  1 +
+> >  2 files changed, 14 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+> > b/drivers/gpu/drm/i915/display/intel_dp.c
+> > index 30c55f980014..6096825a27ca 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -133,6 +133,7 @@ static void intel_dp_set_default_sink_rates(struct
+> > intel_dp *intel_dp)
+> >  /* update sink rates from dpcd */
+> >  static void intel_dp_set_dpcd_sink_rates(struct intel_dp *intel_dp)
+>=20
+> Based on the function name and comment, this function updates the driver'=
+s
+> idea of what rates the sink supports. A quick look at the code confirms t=
+his.
+>=20
+> It should be clear that this is not the place to add unrelated DPCD write=
+s.
+>=20
+> >  {
+> > +	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
+> >  	static const int dp_rates[] =3D {
+> >  		162000, 270000, 540000, 810000
+> >  	};
+> > @@ -196,6 +197,18 @@ static void intel_dp_set_dpcd_sink_rates(struct
+> intel_dp *intel_dp)
+> >  			intel_dp->sink_rates[i++] =3D 1350000;
+> >  		if (uhbr_rates & DP_UHBR20)
+> >  			intel_dp->sink_rates[i++] =3D 2000000;
+> > +
+> > +		/* DP v2.0 SCR on SDP CRC16 for 128b/132b Link Layer */
+> > +		if (HAS_DP20(i915))
+> > +			drm_dp_dpcd_writeb(&intel_dp->aux,
+> > +					   DP_SDP_ERROR_DETECTION,
+> > +					   DP_SDP_CRC16_128B132B_EN);
+>=20
+> HAS_DP20() means the source has DP 2.0 support.
+>=20
+> We're in a branch where we can assume the sink also has DP 2.0 support.
+> But at this point we're not sure we'll be using 128b/132b at all.
+>=20
+> I did not look this up in the spec, but I assume this bit is only suppose=
+d to be
+> set when we're actually using a 128b/132b link?
+Yes.
 
-Thanks, Sean and Zhenyu.
-So, could I just post the final fix as below?
-And, Sean, would you like to include it in this series or should I send it out
-first?
+>=20
+> In which case, this should probably be enabled at some point when we're
+> enabling a 128b/132b link, and at that time the check to use is
+> intel_dp_is_uhbr(). UHBR and 128b/132b go hand-in-hand, and we won't use
+> UHBR unless both source and sink support it.
+Updated and also moved this part under link training init.
 
-From dcc931011da3712333f61684ebb20765dbf2fb46 Mon Sep 17 00:00:00 2001
-From: Yan Zhao <yan.y.zhao@intel.com>
-Date: Thu, 19 Jan 2023 11:15:54 +0800
-Subject: [PATCH] drm/i915/gvt: remove interface intel_gvt_is_valid_gfn
+>=20
+> > +		/*
+> > +		 * VIDEO_DIP_CTL register bit 31 should be set to '0' to not
+> > +		 * disable SDP CRC. This is applicable for DISPLAY 13. Default
+> > +		 * value of bit 31 is '0' hence discarging the write
+> > +		 */
+> > +		/* TODO: Corrective actions on SDP corruption yet to be
+> defined */
+>=20
+> The above might belong in the commit message, but I'm not sure about thei=
+r
+> usefulness as comments.
+This comment is just to ensure we keep track on what has to be done on erro=
+r.
 
-Currently intel_gvt_is_valid_gfn() is called in two places:
-(1) shadowing guest GGTT entry
-(2) shadowing guest PPGTT leaf entry,
-which was introduced in commit cc753fbe1ac4
-("drm/i915/gvt: validate gfn before set shadow page entry").
+>=20
+> >  	}
+> >
+> >  	intel_dp->num_sink_rates =3D i;
+> > diff --git a/drivers/gpu/drm/i915/i915_reg.h
+> > b/drivers/gpu/drm/i915/i915_reg.h index 8b2cf980f323..77e265f59978
+> > 100644
+> > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > @@ -2674,6 +2674,7 @@
+> >  #define   VIDEO_DIP_FREQ_2VSYNC		(2 << 16)
+> >  #define   VIDEO_DIP_FREQ_MASK		(3 << 16)
+> >  /* HSW and later: */
+> > +#define	  VIDEO_DISABLE_SDP_CRC		(1 << 31)
+>=20
+> Please read the comment at the top of the file.
 
-However, now it's not necessary to call this interface any more, because
-a. GGTT partial write issue has been fixed by
-   commit bc0686ff5fad
-   ("drm/i915/gvt: support inconsecutive partial gtt entry write")
-   commit 510fe10b6180
-   ("drm/i915/gvt: fix a bug of partially write ggtt enties")
-b. PPGTT resides in normal guest RAM and we only treat 8-byte writes
-   as valid page table writes. Any invalid GPA found is regarded as
-   an error, either due to guest misbehavior/attack or bug in host
-   shadow code.
-   So,rather than do GFN pre-checking and replace invalid GFNs with
-   scratch GFN and continue silently, just remove the pre-checking and
-   abort PPGTT shadowing on error detected.
-c. GFN validity check is still performed in
-   intel_gvt_dma_map_guest_page() --> gvt_pin_guest_page().
-   It's more desirable to call VFIO interface to do both validity check
-   and mapping.
-   Calling intel_gvt_is_valid_gfn() to do GFN validity check from KVM side
-   while later mapping the GFN through VFIO interface is unnecessarily
-   fragile and confusing for unaware readers.
+Will remove this, as for now we are not using this and will add this once t=
+he corrective actions are added.
 
-Signed-off-by: Yan Zhao <yan.y.zhao@intel.com>
----
- drivers/gpu/drm/i915/gvt/gtt.c | 31 -------------------------------
- 1 file changed, 31 deletions(-)
+Thanks and Regards,
+Arun R Murthy
+--------------------
 
-diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/gtt.c
-index 445afecbe7ae..9b6c2ca1ee16 100644
---- a/drivers/gpu/drm/i915/gvt/gtt.c
-+++ b/drivers/gpu/drm/i915/gvt/gtt.c
-@@ -49,22 +49,6 @@
- static bool enable_out_of_sync = false;
- static int preallocated_oos_pages = 8192;
-
--static bool intel_gvt_is_valid_gfn(struct intel_vgpu *vgpu, unsigned long gfn)
--{
--       struct kvm *kvm = vgpu->vfio_device.kvm;
--       int idx;
--       bool ret;
--
--       if (!vgpu->attached)
--               return false;
--
--       idx = srcu_read_lock(&kvm->srcu);
--       ret = kvm_is_visible_gfn(kvm, gfn);
--       srcu_read_unlock(&kvm->srcu, idx);
--
--       return ret;
--}
--
- /*
-  * validate a gm address and related range size,
-  * translate it to host gm address
-
-@@ -1345,13 +1329,6 @@ static int ppgtt_populate_spt(struct intel_vgpu_ppgtt_spt *spt)
-                        ppgtt_generate_shadow_entry(&se, s, &ge);
-                        ppgtt_set_shadow_entry(spt, &se, i);
-                } else {
--                       gfn = ops->get_pfn(&ge);
--                       if (!intel_gvt_is_valid_gfn(vgpu, gfn)) {
--                               ops->set_pfn(&se, gvt->gtt.scratch_mfn);
--                               ppgtt_set_shadow_entry(spt, &se, i);
--                               continue;
--                       }
--
-                        ret = ppgtt_populate_shadow_entry(vgpu, spt, i, &ge);
-                        if (ret)
-                                goto fail;
-@@ -2326,14 +2303,6 @@ static int emulate_ggtt_mmio_write(struct intel_vgpu *vgpu, unsigned int off,
-                m.val64 = e.val64;
-                m.type = e.type;
-
--               /* one PTE update may be issued in multiple writes and the
--                * first write may not construct a valid gfn
--                */
--               if (!intel_gvt_is_valid_gfn(vgpu, gfn)) {
--                       ops->set_pfn(&m, gvt->gtt.scratch_mfn);
--                       goto out;
--               }
--
-                ret = intel_gvt_dma_map_guest_page(vgpu, gfn, PAGE_SIZE,
-                                                   &dma_addr);
-                if (ret) {
---
-2.17.1
-
-
+>=20
+> >  #define   VIDEO_DIP_ENABLE_DRM_GLK	(1 << 28)
+> >  #define   PSR_VSC_BIT_7_SET		(1 << 27)
+> >  #define   VSC_SELECT_MASK		(0x3 << 25)
+>=20
+> --
+> Jani Nikula, Intel Open Source Graphics Center
