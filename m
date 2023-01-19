@@ -1,52 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDD09673DD8
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Jan 2023 16:46:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7FA3673DEB
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Jan 2023 16:49:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 102FF10E991;
-	Thu, 19 Jan 2023 15:46:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F89610E992;
+	Thu, 19 Jan 2023 15:49:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 668CD10E990;
- Thu, 19 Jan 2023 15:46:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674143197; x=1705679197;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=P8EZTaglYNl9iHhKLUXYvrIHXSliZpOQLa33fyK/Uj4=;
- b=lptUjfeH4SSjponDajDi+AnvQdd48yOiBxli+pg2xhbHc9WAiwCttqq8
- Zm/mH8b37c1fs2JztcxeTb1Biu2IGJAgwQ/dIKPWudXvigoTPdwNuV3KU
- aPO6pWCkRZA7G+p5jpG6vWpVSWS5AZQBdM41JhojnRHIA/oRKMS7aODKG
- zn0HAnZmPZMrBo0b6+M8UPlIYtT61fFJRwPnMOHMStTtUVLxrV33Vg6da
- c6i6C5RWXlpTmXAtn2o3gFlGCXO+TzqsGFe5VtW+FyB0A3gw9l7/A8R81
- 8Mg4qVHnE4uNofVOqxB7SfCjRF6kiYBUIzkk6qL+XDW/Q9mqSy34jvEYv A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="326599838"
-X-IronPort-AV: E=Sophos;i="5.97,229,1669104000"; d="scan'208";a="326599838"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2023 07:46:36 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="660242626"
-X-IronPort-AV: E=Sophos;i="5.97,229,1669104000"; d="scan'208";a="660242626"
-Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.157])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2023 07:46:34 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>,
-	dri-devel@lists.freedesktop.org
-Date: Thu, 19 Jan 2023 17:46:28 +0200
-Message-Id: <20230119154628.953419-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <7c912a01272a6203673c04eec13158051aafc7dd.1672826282.git.jani.nikula@intel.com>
-References: <7c912a01272a6203673c04eec13158051aafc7dd.1672826282.git.jani.nikula@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D94AE10E992;
+ Thu, 19 Jan 2023 15:49:43 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D3B4CA47DF;
+ Thu, 19 Jan 2023 15:49:43 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/edid: split HDMI VSDB info and mode parsing
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Thu, 19 Jan 2023 15:49:43 -0000
+Message-ID: <167414338386.24698.8135123383715154353@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1672826282.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1672826282.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/edid=3A_info_=26_modes_parsing_and_drm=5Fedid_refactors_=28r?=
+ =?utf-8?q?ev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,78 +41,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Separate the parsing of display info and modes from the HDMI VSDB. This
-is prerequisite work for overall better separation of the two parsing
-steps.
+== Series Details ==
 
-The info parsing is about figuring out whether the sink supports HDMI
-infoframes. Since they were added in HDMI 1.4, assume the sink supports
-HDMI infoframes if it has the HDMI_Video_present bit set (introduced in
-HDMI 1.4). For details, see commit f1781e9bb2dd ("drm/edid: Allow HDMI
-infoframe without VIC or S3D").
+Series: drm/edid: info & modes parsing and drm_edid refactors (rev2)
+URL   : https://patchwork.freedesktop.org/series/112392/
+State : failure
 
-The logic is not exactly the same, but since it was somewhat heuristic
-to begin with, assume this is close enough.
+== Summary ==
 
-v2:
-- Simplify to only check HDMI_Video_present bit (Ville)
-- Drop cea_db_raw_size() helper (Ville)
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/112392/revisions/2/mbox/ not applied
+Applying: drm/edid: fix AVI infoframe aspect ratio handling
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/drm_edid.c
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/gpu/drm/drm_edid.c
+CONFLICT (content): Merge conflict in drivers/gpu/drm/drm_edid.c
+error: Failed to merge in the changes.
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0001 drm/edid: fix AVI infoframe aspect ratio handling
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/drm_edid.c | 13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-index e8b67f3f5c91..ee453e39562a 100644
---- a/drivers/gpu/drm/drm_edid.c
-+++ b/drivers/gpu/drm/drm_edid.c
-@@ -4713,7 +4713,6 @@ static int hdmi_vsdb_latency_length(const u8 *db)
- static int
- do_hdmi_vsdb_modes(struct drm_connector *connector, const u8 *db, u8 len)
- {
--	struct drm_display_info *info = &connector->display_info;
- 	int modes = 0, offset = 0, i, multi_present = 0, multi_len;
- 	u8 vic_len, hdmi_3d_len = 0;
- 	u16 mask;
-@@ -4831,8 +4830,6 @@ do_hdmi_vsdb_modes(struct drm_connector *connector, const u8 *db, u8 len)
- 	}
- 
- out:
--	if (modes > 0)
--		info->has_hdmi_infoframe = true;
- 	return modes;
- }
- 
-@@ -6153,6 +6150,7 @@ static void drm_parse_hdmi_deep_color_info(struct drm_connector *connector,
- 	}
- }
- 
-+/* HDMI Vendor-Specific Data Block (HDMI VSDB, H14b-VSDB) */
- static void
- drm_parse_hdmi_vsdb_video(struct drm_connector *connector, const u8 *db)
- {
-@@ -6166,6 +6164,15 @@ drm_parse_hdmi_vsdb_video(struct drm_connector *connector, const u8 *db)
- 	if (len >= 7)
- 		info->max_tmds_clock = db[7] * 5000;
- 
-+	/*
-+	 * Try to infer whether the sink supports HDMI infoframes.
-+	 *
-+	 * HDMI infoframe support was first added in HDMI 1.4. Assume the sink
-+	 * supports infoframes if HDMI_Video_present is set.
-+	 */
-+	if (len >= 8 && db[8] & BIT(5))
-+		info->has_hdmi_infoframe = true;
-+
- 	drm_dbg_kms(connector->dev, "[CONNECTOR:%d:%s] HDMI: DVI dual %d, max TMDS clock %d kHz\n",
- 		    connector->base.id, connector->name,
- 		    info->dvi_dual, info->max_tmds_clock);
--- 
-2.34.1
 
