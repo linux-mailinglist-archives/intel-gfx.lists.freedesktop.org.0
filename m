@@ -2,33 +2,77 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A22B673908
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Jan 2023 13:57:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A7B8673A12
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Jan 2023 14:26:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4472210E242;
-	Thu, 19 Jan 2023 12:57:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5F6110E92B;
+	Thu, 19 Jan 2023 13:26:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4E12410E91F;
- Thu, 19 Jan 2023 12:57:31 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 436E5A47DF;
- Thu, 19 Jan 2023 12:57:31 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com
+ [64.147.123.25])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4381110E92B;
+ Thu, 19 Jan 2023 13:26:19 +0000 (UTC)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+ by mailout.west.internal (Postfix) with ESMTP id 83C973200995;
+ Thu, 19 Jan 2023 08:26:15 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute3.internal (MEProxy); Thu, 19 Jan 2023 08:26:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-transfer-encoding:content-type:date:date:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:sender:subject:subject:to:to; s=fm1; t=1674134775; x=
+ 1674221175; bh=Ge6AXz0IkBOoUK6IsNSpF6xnWknO8KEpb5p3HGJKSp4=; b=r
+ +p3YPLicjauQQkS6jFy074V3rahxv/RyUuwD2ZaiLnDC3/RMgpySDZM/g0S9eQ1y
+ TdbOhdhXWnCtrdDeyfxE329+lHnXwVmo7IG4fDF2RTkBnHArM56FnL+gPABq/qaf
+ JX+srhmS/98sEmMg6o9VBPTjiK1V8ls0TA75b/9HAf9xY6gKhsViT0i4cFXwsuss
+ TJYlwNFkpYzAYmTVcyYl3XNAXuKSpgOCUNuYwgX0JVy2EvFI25ZUPTlyivc53anH
+ /3yjanuHaaNmoPzbkwr4bjSHWQiBPeZ7psvvBRerJOxVuvBwOGMcbfwNKZOWAIDK
+ EGFLpqEA0if+N4DO9Ijyw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:date:date:feedback-id:feedback-id:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1674134775; x=
+ 1674221175; bh=Ge6AXz0IkBOoUK6IsNSpF6xnWknO8KEpb5p3HGJKSp4=; b=e
+ f1Cu+ddqmkYINnY5rLwhijPgjrsmFGoV4cug8l1bJXfq+GGI89zFPAufnGiH1W0u
+ IrLHScTQAb4e5LaABzjNdwFX2v7D0nzi6W3wRDVH9hGP5snGdPW+egt5lTBCPWKh
+ xnD4dkm7koux+RJDV8uVhlkqGMSdzbnWj3i4TVNRqOQ7SU7hx3jphL5AOYLwZ3Du
+ KzpUmXuY3ayhsGJi+jhUAvD+RIhaETO8J32uhofW5bylHh31mh2xFwlQfFvCWvNN
+ AQJYYhDTZoHuCywza3ElQ+4ODJFskr8lG4k5N0MXkp9vMkHn2CzZvjPDz91EmdNP
+ 8VHcBdz394Im+XZfVdumw==
+X-ME-Sender: <xms:9kTJY9HL_Kxpd7o0Wo5seMpLFZGyeuhHCedbhmYmip4WClNHd9a6_Q>
+ <xme:9kTJYyWqYjFcdQq1h091RpAkScuMdcWgrNFBs1gzpku-JfY5e8P4dGBxCUCJMq_QS
+ 2_MJw9gbuu-SlUIhJo>
+X-ME-Received: <xmr:9kTJY_IHXJNm3oqprj6jMlWu8qRoAAzH1CieGBNYRkttSyfIoXvGhFfF4IIpwjr4I2MuwKkMCawbhfMAIKap0I3L0mweXKIGp5VP84DZi7oB2w>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedruddutddgheefucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhephffvvegjfhfukfffgggtgffosehtjeertdertdejnecuhfhrohhmpeforgig
+ ihhmvgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrf
+ grthhtvghrnhepleeifffgvdetjeejueejieehuedvteeigeehtefhhfeifeegleekudek
+ teegueffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+ epmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:9kTJYzE6TuHHGdLJqrOU0ff_seQWjmXo22fcaEX_pdbVgAGZK5Pr2Q>
+ <xmx:9kTJYzWRBpb9WCWERImmc9EdOXVr8YmuS1JsNOWYRb0N14wIM0O1jg>
+ <xmx:9kTJY-MNBBu5eeAulYyAFPgpUFHu37V21r7U_gi1PxDifJXLS_T4MA>
+ <xmx:90TJY0uHmkdJxRqC45cm5HiC9MFOkqyeMREZYOvqKp5CGJrVYIHOOQ>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 19 Jan 2023 08:26:13 -0500 (EST)
+From: Maxime Ripard <maxime@cerno.tech>
+To: intel-gfx@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>
+In-Reply-To: <20230117175236.22317-1-nirmoy.das@intel.com>
+References: <20230117175236.22317-1-nirmoy.das@intel.com>
+Message-Id: <167413471736.3247301.2506243938133853546.b4-ty@cerno.tech>
+Date: Thu, 19 Jan 2023 14:25:17 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arun R Murthy" <arun.r.murthy@intel.com>
-Date: Thu, 19 Jan 2023 12:57:31 -0000
-Message-ID: <167413305127.24701.9339976076335222994@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230113043653.795183-1-arun.r.murthy@intel.com>
-In-Reply-To: <20230113043653.795183-1-arun.r.murthy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
- =?utf-8?q?eries_starting_with_=5BPATCHv2=2C2/2=5D_i915/display/dp=3A_SDP_?=
- =?utf-8?q?CRC16_for_128b132b_link_layer_=28rev3=29?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.11.2
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/drm_vma_manager: Add
+ drm_vma_node_allow_once()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,36 +85,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris.p.wilson@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, 17 Jan 2023 18:52:35 +0100, Nirmoy Das wrote:
+> Currently there is no easy way for a drm driver to safely check and allow
+> drm_vma_offset_node for a drm file just once. Allow drm drivers to call
+> non-refcounted version of drm_vma_node_allow() so that a driver doesn't
+> need to keep track of each drm_vma_node_allow() to call subsequent
+> drm_vma_node_revoke() to prevent memory leak.
+> 
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> 
+> [...]
 
-Series: series starting with [PATCHv2,2/2] i915/display/dp: SDP CRC16 for 128b132b link layer (rev3)
-URL   : https://patchwork.freedesktop.org/series/112774/
-State : failure
+Applied to drm/drm-misc (drm-misc-fixes).
 
-== Summary ==
-
-Error: make failed
-  CALL    scripts/checksyscalls.sh
-  DESCEND objtool
-  CC [M]  drivers/gpu/drm/i915/display/intel_dp.o
-drivers/gpu/drm/i915/display/intel_dp.c: In function ‘intel_dp_set_dpcd_sink_rates’:
-drivers/gpu/drm/i915/display/intel_dp.c:204:9: error: ‘DP_SDP_ERROR_DETECTION’ undeclared (first use in this function)
-  204 |         DP_SDP_ERROR_DETECTION,
-      |         ^~~~~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/display/intel_dp.c:204:9: note: each undeclared identifier is reported only once for each function it appears in
-drivers/gpu/drm/i915/display/intel_dp.c:205:9: error: ‘DP_SDP_CRC16_128B132B_EN’ undeclared (first use in this function)
-  205 |         DP_SDP_CRC16_128B132B_EN);
-      |         ^~~~~~~~~~~~~~~~~~~~~~~~
-make[5]: *** [scripts/Makefile.build:252: drivers/gpu/drm/i915/display/intel_dp.o] Error 1
-make[4]: *** [scripts/Makefile.build:504: drivers/gpu/drm/i915] Error 2
-make[3]: *** [scripts/Makefile.build:504: drivers/gpu/drm] Error 2
-make[2]: *** [scripts/Makefile.build:504: drivers/gpu] Error 2
-make[1]: *** [scripts/Makefile.build:504: drivers] Error 2
-make: *** [Makefile:2008: .] Error 2
-
-
+Thanks!
+Maxime
