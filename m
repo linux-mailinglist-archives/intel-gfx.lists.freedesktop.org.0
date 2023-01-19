@@ -2,43 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F5C9672DE0
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Jan 2023 02:13:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 032BC672DE7
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Jan 2023 02:14:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A4A910E21E;
-	Thu, 19 Jan 2023 01:13:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66C9210E224;
+	Thu, 19 Jan 2023 01:14:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (mail.ozlabs.org
- [IPv6:2404:9400:2221:ea00::3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9C1510E21E;
- Thu, 19 Jan 2023 01:13:16 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4Ny4Pc5V6hz4xN4;
- Thu, 19 Jan 2023 12:13:08 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1674090789;
- bh=38gPF9WCNIwlhkWACirRWDyLEnGY8N9VoQR90tcBLPk=;
- h=Date:From:To:Cc:Subject:From;
- b=O41Z/jl7V5AgTg3n9R89wwqYHhQ9FBmo8jn4bbdq+gNvn9l8LLXZtDBUuK/qEDKm0
- fEu/SDHgizpb6gt7U+H5uL/bqEjlV/5OtR/ru/gFZV8vJ+9BgZGrdfClFJzp9tBzK0
- K2dylru46iFKsrsLaRZIljFdFLAKyk2Hu80pag74XGEydZjo8ssmHaySWGNCkKzxRc
- 7bzNiUapvHuBqbZCZH8blOSqpawUw871sW/U1m4gYpbuOCkufbrNZbBXBxwSaBYAw6
- rRhVPec2HTD4E7VkptANc5f1VzfczIUuX6WoBrkMQdG6lKZkEqnn7ne0QBW1FbJgmT
- x0kvLn+5rwxSw==
-Date: Thu, 19 Jan 2023 12:13:07 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
-Message-ID: <20230119121307.4366ac4e@canb.auug.org.au>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DBCBB10E224;
+ Thu, 19 Jan 2023 01:14:00 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3BA5DAADD6;
+ Thu, 19 Jan 2023 01:14:00 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/0hwf36qt=q.5jX13Fkq2FrR";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-Subject: [Intel-gfx] linux-next: manual merge of the drm-misc tree with
- Linus' tree
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Deepak R Varma" <drv@mailo.com>
+Date: Thu, 19 Jan 2023 01:14:00 -0000
+Message-ID: <167409084024.24699.5560418770368501757@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <Y8hVK6wuqm50iADP@ubun2204.myguest.virtualbox.org>
+In-Reply-To: <Y8hVK6wuqm50iADP@ubun2204.myguest.virtualbox.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/gvt=3A_Avoid_full_proxy_f=5Fops_for_debugfs_attrib?=
+ =?utf-8?q?utes?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,92 +41,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Zack Rusin <zackr@vmware.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/0hwf36qt=q.5jX13Fkq2FrR
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+== Series Details ==
 
-Hi all,
+Series: drm/i915/gvt: Avoid full proxy f_ops for debugfs attributes
+URL   : https://patchwork.freedesktop.org/series/113059/
+State : warning
 
-Today's linux-next merge of the drm-misc tree got a conflict in:
+== Summary ==
 
-  drivers/gpu/drm/vmwgfx/ttm_object.h
+Error: dim checkpatch failed
+0a2fe8a8a5a3 drm/i915/gvt: Avoid full proxy f_ops for debugfs attributes
+-:20: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#20: 
+make coccicheck M=drivers/gpu/drm/i915/ MODE=patch COCCI=./scripts/coccinelle/api/debugfs/debugfs_simple_attr.cocci
 
-between commit:
+total: 0 errors, 1 warnings, 0 checks, 34 lines checked
 
-  a309c7194e8a ("drm/vmwgfx: Remove rcu locks from user resources")
 
-from Linus' tree and commit:
-
-  13acb368bf02 ("drm/ttm/vmwgfx: move ttm_bo_wait into VMWGFX")
-
-from the drm-misc tree.
-
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
-
---=20
-Cheers,
-Stephen Rothwell
-
-diff --cc drivers/gpu/drm/vmwgfx/ttm_object.h
-index 8098a3846bae,95a9679f9d39..000000000000
---- a/drivers/gpu/drm/vmwgfx/ttm_object.h
-+++ b/drivers/gpu/drm/vmwgfx/ttm_object.h
-@@@ -307,4 -309,27 +309,12 @@@ extern int ttm_prime_handle_to_fd(struc
-  #define ttm_prime_object_kfree(__obj, __prime)		\
-  	kfree_rcu(__obj, __prime.base.rhead)
- =20
- -struct ttm_base_object *
- -ttm_base_object_noref_lookup(struct ttm_object_file *tfile, uint64_t key);
- -
- -/**
- - * ttm_base_object_noref_release - release a base object pointer looked up
- - * without reference
- - *
- - * Releases a base object pointer looked up with ttm_base_object_noref_lo=
-okup().
- - */
- -static inline void ttm_base_object_noref_release(void)
- -{
- -	__acquire(RCU);
- -	rcu_read_unlock();
- -}
- -
-+ static inline int ttm_bo_wait(struct ttm_buffer_object *bo, bool intr,
-+ 			      bool no_wait)
-+ {
-+ 	struct ttm_operation_ctx ctx =3D { intr, no_wait };
-+=20
-+ 	return ttm_bo_wait_ctx(bo, &ctx);
-+ }
-+=20
-  #endif
-
---Sig_/0hwf36qt=q.5jX13Fkq2FrR
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmPImSMACgkQAVBC80lX
-0GzCQAf/fIL3znz6gmPHSw9S8jB8gAKcOvfDx0QLArZSqxKxRDe+Oj0DkYOA7e2L
-mBvET7giBmk9c2WcmTWv5vrHqSN3hNaXWySj0f3EzJd7PTkfigxKd4EOJEJOHnOz
-tB8P0T/gykg2kJoGPQ10/FHd9d19Wx7r1rB5Wd7Lw3r8YHmudkKiDii89EH7aYX+
-RZ8gD919W10NfaeKFjU7Ea6vkL+bIezQB28GOZFqXNSXupsI12BI+C1ivr17HSQD
-fqgH49OfuOR7xkWUiT+YVJnWaXq+oYSACTxFJtYTIFfmEDYJUGnxhiMHP1uy99sD
-xk19NQbhmoshnAiLvBexpnMB+yGS/g==
-=IJWR
------END PGP SIGNATURE-----
-
---Sig_/0hwf36qt=q.5jX13Fkq2FrR--
