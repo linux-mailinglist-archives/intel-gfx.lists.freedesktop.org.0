@@ -2,54 +2,118 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43AEC673D60
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Jan 2023 16:21:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F9CF673D96
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Jan 2023 16:35:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C83310E97C;
-	Thu, 19 Jan 2023 15:21:12 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1F6B10E97A;
- Thu, 19 Jan 2023 15:21:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674141668; x=1705677668;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=4dB+bt3aRHg6hYiUPg05BOd4Z/eqHo3Wst37KVXzPBM=;
- b=Obk4LS7w3b/7TvtSFIhdN/cq2RNhNjEkcj5cdEsX9h+Qyii4/5MjQtAP
- oeXBTMrvsqoNrORtt/69nYtBg4TQP0EAH/GnCO9Lfgci5f8xvSBHpNG8O
- EN7RjVKlV50iCleBTBMZpmUGER9GV4LU2FhbhtfMMwLS6o9FELdPCrb9d
- tDquMeLH8N2MphR3kPq7XBWdVGc713AzbakIwpjID9Lj2fqgYtOAvKGhD
- 4hiCBdrnMHwehXDNzJJN3tIfd6+wQ50EGyzFaVn+9XaB393o/1IXdpvU6
- Bb0ono3D5e3gs+TCCcfgbkmDPJryXYIEgMltFpoCxvof84Yv0QoZmjZ11 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="322998701"
-X-IronPort-AV: E=Sophos;i="5.97,229,1669104000"; d="scan'208";a="322998701"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2023 07:16:44 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="653411322"
-X-IronPort-AV: E=Sophos;i="5.97,229,1669104000"; d="scan'208";a="653411322"
-Received: from smile.fi.intel.com ([10.237.72.54])
- by orsmga007.jf.intel.com with ESMTP; 19 Jan 2023 07:16:39 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1pIWeb-00Bizh-39; Thu, 19 Jan 2023 17:16:37 +0200
-Date: Thu, 19 Jan 2023 17:16:37 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: John.C.Harrison@intel.com
-Message-ID: <Y8le1Z1nfSR2QWrg@smile.fi.intel.com>
-References: <20230119065000.1661857-1-John.C.Harrison@Intel.com>
- <20230119065000.1661857-2-John.C.Harrison@Intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9397A10E08A;
+	Thu, 19 Jan 2023 15:35:08 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2060.outbound.protection.outlook.com [40.107.93.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2FD610E08A;
+ Thu, 19 Jan 2023 15:35:06 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=llG0H+JjX4MdlJhw23KQ5FzHrMArgmNXbuJhMfFHAbiqGF9VtGJUyhEO9yoMwabbTK98rLqb31bmhSC0G8454/m02gxMwj8+4hNmyOSGQCpA94/aCIjebr9pj/OZDkr2t+l7W0QI6yc8M04w/H3P7qaordXZKrX36JQV2diBVh8PWZyrr9xjofszhYFmlntb6Zza1Ogdv4/792N8vEuHaSAeBhivmTWw+K4iHzYr5EsFQLfX9ERfaAhaIBBRixFS3w+fcmJnB6imYPS8g+O9g+ZjOgqCPfdMtprBMAyXjCnwlVe7uUQR3k2jHU6XhoxYWptkB1md5zLZCmCTqCgcCQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uE5P/oH/crPe5G6rQ/T6cpMHuJytU9SbtlZPSgjEk+M=;
+ b=OCWsZW823PGE8GrLDHQJEysye3U5056mtZK+Lg4YT+3BNl11dILEqPdl9/vPWPTwNiYYyM1cmj+oReIk/IVe97jms6tFIm9jfFTdzYwAZD7BLWicfM8xU5lAqB6Fr2m8PByVtqPZLTz2mhHubAF3CiYCea13nWstPCG12q8BHtECaGwBGF8Y+QBPeXD6CgjLbGNEi5S03qsceoFTFUMjoZRLjTvAhPYktILXEYU+OQPGSxkJIA6N/Nb55eIHRn0xFhtYVWoXDB8AK3ciGhd90u4lFLn33X8jlUjyUETxQ2AkSUjMgXXn99Lhh9wMRIPUord/6kNj4b8Qs+KmLs3gDQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uE5P/oH/crPe5G6rQ/T6cpMHuJytU9SbtlZPSgjEk+M=;
+ b=PaTnP04iBaNP2Zz/cUTa3zGleJ+yaQ0H7ky/WfocWUsbZlXJONJUB0x1Rdb2sS5zoNC8yM3wJvW6MhxL/PA7vVg+W1x/D2dWFXGUyEajSMNQaSBpvT+1AncaPX7lWOFAv3TgTwyQet/+/xNtx7zqeBdJ7kjqKzB9GXEpo1mXW8U=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from CO6PR12MB5427.namprd12.prod.outlook.com (2603:10b6:5:358::13)
+ by DM8PR12MB5447.namprd12.prod.outlook.com (2603:10b6:8:36::7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6002.24; Thu, 19 Jan 2023 15:35:05 +0000
+Received: from CO6PR12MB5427.namprd12.prod.outlook.com
+ ([fe80::152b:e615:3d60:2bf0]) by CO6PR12MB5427.namprd12.prod.outlook.com
+ ([fe80::152b:e615:3d60:2bf0%5]) with mapi id 15.20.6002.025; Thu, 19 Jan 2023
+ 15:35:04 +0000
+Message-ID: <12bb8690-19a9-dd36-fe05-901e5e889f30@amd.com>
+Date: Thu, 19 Jan 2023 10:35:02 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Content-Language: en-US
+To: Arun R Murthy <arun.r.murthy@intel.com>, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, jani.nikula@intel.com
+References: <20230113043653.795183-1-arun.r.murthy@intel.com>
+ <20230119114707.1425501-1-arun.r.murthy@intel.com>
+From: Harry Wentland <harry.wentland@amd.com>
+In-Reply-To: <20230119114707.1425501-1-arun.r.murthy@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: YT4PR01CA0059.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:111::9) To CO6PR12MB5427.namprd12.prod.outlook.com
+ (2603:10b6:5:358::13)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230119065000.1661857-2-John.C.Harrison@Intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: Re: [Intel-gfx] [PATCH v3 1/6] drm/i915: Fix request locking during
- error capture & debugfs dump
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO6PR12MB5427:EE_|DM8PR12MB5447:EE_
+X-MS-Office365-Filtering-Correlation-Id: fe9c8db1-7b9b-4237-c541-08dafa32bca8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 0VdCqk6Cm+Ww7qD0rLdPnt6BTuSiDBiuVJopkNfO+dgHP3Xlt7pe2cMQSbf0QL/uMgqko31oQEUEFaaX02xF2K/BYF6rh2j4YkAh9mlS0ydJtly5PRvzfNhNIjbdZw8F2P3vh+l0xtl3u9NYk6blQkz6OLBaxFnYUmermRy2W97faAX3Wl6yRzrKdFfs2kGecSGkTd26lQPs3VvhFt6DRoTdVM6OUuwmGtoqPTsEMkHCqbgGZkepdp0nzJ9o2Kfpult4qtXtfWo2Yrf9POEToDTo8eogAMalOnE0Q7Kpx7nIjyvN+OtXTj0XcAHQ1mfpo37T6LOXOEXMYH3U8pbbwexGuH0/VpAZrXI3DM0gEUGz4BiLJNKde8b8bpf2ALJJge8mpIMNwDVy98h4wQp0/HtLEv3NyugjCYhfL2VrWdXjc/f1jXNq9syvuqN+YCyAecPJM2ZLS27ivdKCnfxcvSZqOA9La8HWS1mYVnl1NuSIo1S0bUrnMt8q/Frggp7vlLYywgpHSI5jp2PzBcD2LlAWOzf1VoIBE3fbUZEQCZcQt4ElDOXY7gm54Q7Vpu3VcnBjp7WO7zk6N1k3yePBq6mj6DBmM58Wi7ve3MGBYslD1k3Lh68Ax0COg/yjJBLQzvSV8e62MT2vQih4knSPnQ+SUDbs+q+dhitSFILYfhQXoGFX+Oa4BMMt+i3N+DCz6oXy/99gHvi5IqonQBm9agxqpsGThacgwOtW1W+DLOY=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CO6PR12MB5427.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(4636009)(396003)(376002)(136003)(366004)(346002)(39860400002)(451199015)(31686004)(66946007)(44832011)(4744005)(66556008)(8936002)(2906002)(5660300002)(66476007)(31696002)(38100700002)(53546011)(316002)(6506007)(86362001)(6486002)(478600001)(36756003)(41300700001)(8676002)(186003)(6512007)(83380400001)(2616005)(26005)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bzhQUUlRUDlpcXBHR085NGMwcExONk9hMzl0Zmw0aytXZG1mMUNXUCtUSHpP?=
+ =?utf-8?B?UjUvaXhwSDJQTGU1dnZWbW1HMEVYWER2WnkvY0FLbDc5R3FRU1VoS0tzaUpy?=
+ =?utf-8?B?L0FOaWFjelF3NE9MTFd6a2d5eTM2cUhLUnB5SjRoU0VwTmRhdjFKMzFnbEE0?=
+ =?utf-8?B?M1phTStoSGJmeWU5cDlHSzQyenQvL1Q5bWVRWTBoZGQ1QzZQWkVCcEtxZjg3?=
+ =?utf-8?B?amMvY0g2Z1JqbWIxcm9kdU5HMVdBSWVFTVlDVXlIZDd2Ny9Sd2VzSXJCNXQw?=
+ =?utf-8?B?OVJ4cEYzbjFZMXN3UFdwbFhJcmgwVDcydStOMzEyUXlIeGZXVlpFeVNTV3cz?=
+ =?utf-8?B?Vys2Y2ltUExvY2prcFlrUE5oSkNqOFEvMWJuL01rQnRmQ1ZKQkM3eW1tbks1?=
+ =?utf-8?B?NURoTnZMRjJiMjF1NlJ3UGQ4TXJvK2wycXZydzA0Q3NLQi9uQXZJbmFWdGRs?=
+ =?utf-8?B?dUc4V1l1c1FnK3pxQ0p2U3E1bzVJMnpDQU9oMHNIb3lmdW1hUHVncEl6clJv?=
+ =?utf-8?B?dG8yOUhzMmk5WDlGNUcwRHYvUWZxUmloMlVnVEZITFNUQ09VT0NuK21SQWNu?=
+ =?utf-8?B?ZUpicmlMeWtxK0pYbGNNc3ZZV2M0dXl4UEcxNEhyT2FvOHVrdTRMWmhwQkZy?=
+ =?utf-8?B?enNUZ2FrWFFnRXZUWFZHaEcrYW9uWHVWTGlzcTJhTm53NXJTa2xUcllSa29s?=
+ =?utf-8?B?dWF6dFVpZGVyUGpUN1ZZWjJINVhiVUlNb1BkeUN1Qm5ZdTlmOVVmcHZNRDNo?=
+ =?utf-8?B?cWZsYjZKRDRabm05dmswb24yN3I5MWdvMjlaSHRiMnN2b0wrKys5YVVTK0J2?=
+ =?utf-8?B?bTZ6bDhpYXpIRi9XVmRSVm1MSU5Yb2VFejREQXI5dkNTb1lGU3R6eGpLS3Zp?=
+ =?utf-8?B?b0k3UGhZbjRvZU8xZGJkL09wUEhQMGlXWkFWSnJ3Zit6RmFWSTlmMERGV0J3?=
+ =?utf-8?B?UlVJT2NzRExiei9XVFZ5MGczSVMyTXFVU2ZRL2lhU01kVTZidmx5WmJtMy9W?=
+ =?utf-8?B?OWZYN1NxRlRlcHoxZEpjS1hhdFgraUZZQ1NsTHZZeHgweS8rajBEbzJYQ2p4?=
+ =?utf-8?B?QjF4VGJsZnNtenhxempybkFLcE5RQ3FmZ1JWcXYxNzlDQ0k1Nmd5ak5TSXk4?=
+ =?utf-8?B?UUhjdWZtdklGVXdFbjNkd09oRGhyQVp0aG5HbmJZTVM5dUV6c3dYdXF0UWFw?=
+ =?utf-8?B?cFk3eUVCWlRWQ2JSRWRnbk9tcUNjRUdscDJGcHMycmRRcmx0T0RPem9RWmFG?=
+ =?utf-8?B?ZG42WU84R3V0ZUFSdnlQcHRVZ0RucFp0N29QQVd1RDVuSE9HdmRKM29rTWxD?=
+ =?utf-8?B?MFZINWtYVk9TV2x4U2RBb0lubnArdEl1SkxYQkdTYlhyRW5WTS9VU0l2Y1BL?=
+ =?utf-8?B?bkRPVDVmYnNTaUpJVVZlWDVYTHZVeEh4QlRKR29maEpPL2lhMllVVFVPTURR?=
+ =?utf-8?B?MUl5amZ0ZFh1UGpxMFUwQmRGSWFIQXREQkxrYURFWW5oRUZuUEdzWlZiQXBi?=
+ =?utf-8?B?RmJaR05SNGtFME0ycWV4a081Y3Z1MHVZQnNFWE1kYTFGVUd6VmNzamFFcFpw?=
+ =?utf-8?B?ckV3aEdJMm9tSkVERzFvTC9aTjNJbVBnR1VNdlY5bFBPcmFZTVFKb251SnEx?=
+ =?utf-8?B?Q0swUk1SQnNBMlNqa1pMY1RSSjZNZ0ZLNFY5VVNKQ3RUeGUzWVIxUW5UaWFh?=
+ =?utf-8?B?bmFFK1FXSUdQQmdvTk5HRk1mRm1PTFd6MTdQOXZJL3ppNkRpZFpUWWxPMlk3?=
+ =?utf-8?B?OUxmM29YY0l0anN2MW1ZV2lIckYwYlFRL09NTllqd1JsK2tGTjk3SSs2OWZk?=
+ =?utf-8?B?V0xDQlB1a3BjSTNBM3d1VkhTcUVJeWlUN0l5SndGcWZJRVVRZlkzcmwwYndl?=
+ =?utf-8?B?QkswMW1qRFhudGc2MjJnWWZPSmtHbm9rQng3a1ZrR2FIVUNoVmp3dWhIcHpx?=
+ =?utf-8?B?QWgyaUVqUzlaN3R2NlUzSHRzUnlvSWQ5YjBSczZ2SzBMTEoyZm9DSGVIUU1u?=
+ =?utf-8?B?NUNMMThlSTNPTGJZeHRnc2traHM2WVpOQksrSk1IZlVRempBQXBoZVpSUk1Z?=
+ =?utf-8?B?YTVPSUNZK1ptemNMMjNWY25FM0NNSjQyOC9aT2tyc2IvU3RFTE4rYjdZK1Qx?=
+ =?utf-8?Q?WusOflIn594CIDp6dzlCBAg1n?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fe9c8db1-7b9b-4237-c541-08dafa32bca8
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5427.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2023 15:35:04.8707 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: dEHCDetItYr5PGyc8NMB986ZdJDauxSBn7qPC9ZcPRMgXomhZ9wwAwM+U06TGdrO5v1/Gl9/1EmiikZFJ7RwZw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR12MB5447
+Subject: Re: [Intel-gfx] [PATCHv2 1/2] drm: Add SDP Error Detection
+ Configuration Register
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,73 +126,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Michael Cheng <michael.cheng@intel.com>,
- Alan Previn <alan.previn.teres.alexis@intel.com>,
- Intel-GFX@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- DRI-Devel@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>,
- Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 18, 2023 at 10:49:55PM -0800, John.C.Harrison@Intel.com wrote:
-> From: John Harrison <John.C.Harrison@Intel.com>
+On 1/19/23 06:47, Arun R Murthy wrote:
+> DP2.0 E11 defines a new register to facilitate SDP error detection by a
+> 128B/132B capable DPRX device.
 > 
-> When GuC support was added to error capture, the locking around the
-> request object was broken. Fix it up.
+> v2: Update the macro name to reflect the DP spec(Harry)
 > 
-> The context based search manages the spinlocking around the search
-> internally. So it needs to grab the reference count internally as
-> well. The execlist only request based search relies on external
-> locking, so it needs an external reference count but within the
-> spinlock not outside it.
-> 
-> The only other caller of the context based search is the code for
-> dumping engine state to debugfs. That code wasn't previously getting
-> an explicit reference at all as it does everything while holding the
-> execlist specific spinlock. So, that needs updaing as well as that
-> spinlock doesn't help when using GuC submission. Rather than trying to
-> conditionally get/put depending on submission model, just change it to
-> always do the get/put.
-> 
-> In addition, intel_guc_find_hung_context() was not acquiring the
-> correct spinlock before searching the request list. So fix that up
-> too. While at it, add some extra whitespace padding for readability.
+> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 
-...
+Reviewed-by: Harry Wentland <harry.wentland@amd.com>
 
-> +		found = false;
-> +		spin_lock(&ce->guc_state.lock);
->  		list_for_each_entry(rq, &ce->guc_state.requests, sched.link) {
->  			if (i915_test_request_state(rq) != I915_REQUEST_ACTIVE)
->  				continue;
+Harry
+
+> ---
+>  include/drm/display/drm_dp.h | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
+> index 632376c291db..358db4a9f167 100644
+> --- a/include/drm/display/drm_dp.h
+> +++ b/include/drm/display/drm_dp.h
+> @@ -692,6 +692,9 @@
+>  # define DP_FEC_LANE_2_SELECT		    (2 << 4)
+>  # define DP_FEC_LANE_3_SELECT		    (3 << 4)
 >  
-> +			found = true;
-> +			break;
-> +		}
-
-This can be combined to (see also below)
-
-		list_for_each_entry(rq, &ce->guc_state.requests, sched.link) {
-			if (i915_test_request_state(rq) == I915_REQUEST_ACTIVE)
-				break;
-		}
-
-> +		spin_unlock(&ce->guc_state.lock);
-
-Instead of 'found' you can check the current entry pointer
-
-		if (!list_entry_is_head(...))
-
-And because requests can only be messed up with the guc_state itself, I think
-you don't need to perform the above check under spinlock, so it's safe.
-
-> +		if (found) {
->  			intel_engine_set_hung_context(engine, ce);
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+> +#define DP_SDP_ERROR_DETECTION_CONFIGURATION	0x121	/* DP 2.0 E11 */
+> +#define DP_SDP_CRC16_128B132B_EN		BIT(0)
+> +
+>  #define DP_AUX_FRAME_SYNC_VALUE		    0x15c   /* eDP 1.4 */
+>  # define DP_AUX_FRAME_SYNC_VALID	    (1 << 0)
+>  
 
