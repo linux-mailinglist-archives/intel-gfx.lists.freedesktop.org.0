@@ -1,52 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC80D673778
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Jan 2023 12:52:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 747F767380D
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Jan 2023 13:16:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86C9210E91B;
-	Thu, 19 Jan 2023 11:52:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56BC810E0B6;
+	Thu, 19 Jan 2023 12:16:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C36B610E915;
- Thu, 19 Jan 2023 11:52:40 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E054010E079;
+ Thu, 19 Jan 2023 12:16:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674129160; x=1705665160;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=trNCxGnSP4ZToFQVZRvV2mLowfUfMjvj7+tgltCb35Q=;
- b=Jt8gkmP7iie3+QR/qQAjQL2Am3dQ/zQM4MhR70LKgLqhbuUpQLBGeDYH
- MSfqFs1X6aZcAvYAbBCTCN96oOq41lqvph03dNAqR/gIu9TxDGU3afvP2
- UyNiQy9czhxejpgkrt98mT3bRifGP5Gw8mWx157/bfc/XIKueVWi34Fgm
- rm/JOJxV2x8hAFj3YJbYrb1HY+/cA5CZITVwZ5owWJ6KVBAQQ/XZvRWoz
- 7VX5b81K5B0KVsqZHlWagH1qpMsSYCt17h7w8Oa5Rf9tuFO+lFo1mq8Pa
- Ik+EF7Myh7YAYwAP/X+x38ccnxwkvEUVg+18wG8hbf5QUJB+lW+RK7Y5x g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="305636627"
-X-IronPort-AV: E=Sophos;i="5.97,229,1669104000"; d="scan'208";a="305636627"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2023 03:52:39 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="692392485"
-X-IronPort-AV: E=Sophos;i="5.97,229,1669104000"; d="scan'208";a="692392485"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orsmga001.jf.intel.com with ESMTP; 19 Jan 2023 03:52:38 -0800
-From: Arun R Murthy <arun.r.murthy@intel.com>
-To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- jani.nikula@intel.com
-Date: Thu, 19 Jan 2023 17:17:07 +0530
-Message-Id: <20230119114707.1425501-2-arun.r.murthy@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230119114707.1425501-1-arun.r.murthy@intel.com>
-References: <20230113043653.795183-1-arun.r.murthy@intel.com>
- <20230119114707.1425501-1-arun.r.murthy@intel.com>
+ t=1674130576; x=1705666576;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=J7hrDBsEm68K3bgk2iI4dXz1bDO1pEW+8WU+BZxubcU=;
+ b=XR7ZBd6p7JYajTFVwjhbLQ994jp8xGAqS9EV8hWK2iaU72tmVuxwxbIO
+ z85YoVyqTt5e67EUX9dFGbcbRt0hRQ7x8bsrs/VpS4YsQx8yZ48jP+XcP
+ AY0Bu/N2fS/v1rVK50sG3ht5Rr72B51sTfp8P4XtrI0Jd7YZJ44bwI9XB
+ wyaAMdBokSvUb50sfkFtOOmgRI5m1/mBrIfk0sJ+e+fH3/1pje9p1MbEG
+ P/tZxFEqafmyFM8+T7qMELVhaYsI4wCrtXdLUt9mjGBIPtKUYF5/mnLaM
+ VTL4YygjTxrfbN+bDeLsw3yeHMSawjaAJNIloVn0mQjEIYP9IoO7wbes0 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="308826958"
+X-IronPort-AV: E=Sophos;i="5.97,229,1669104000"; d="scan'208";a="308826958"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2023 04:16:16 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="748900839"
+X-IronPort-AV: E=Sophos;i="5.97,229,1669104000"; d="scan'208";a="748900839"
+Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.157])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2023 04:16:14 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <Y8gbDbJRFFt969G6@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1672826282.git.jani.nikula@intel.com>
+ <8997e0fa3b0fd03c920e72d1dff24c0d96ff4dd0.1672826282.git.jani.nikula@intel.com>
+ <Y8gbDbJRFFt969G6@intel.com>
+Date: Thu, 19 Jan 2023 14:16:11 +0200
+Message-ID: <87h6wmafec.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCHv2 2/2] i915/display/dp: SDP CRC16 for 128b132b
- link layer
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v7 15/22] drm/edid: move EDID BPC quirk
+ application to update_display_info()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,45 +60,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Enable SDP error detection configuration, this will set CRC16 in
-128b/132b link layer.
-For Display version 13 a hardware bit31 in register VIDEO_DIP_CTL is
-added to enable/disable SDP CRC applicable for DP2.0 only, but the
-default value of this bit will enable CRC16 in 128b/132b hence
-skipping this write.
-Corrective actions on SDP corruption is yet to be defined.
+On Wed, 18 Jan 2023, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Wed, Jan 04, 2023 at 12:05:30PM +0200, Jani Nikula wrote:
+>> The BPC quirks are closer to home in update_display_info().
+>>=20
+>> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-v2: Moved the CRC enable to link training init(Jani N)
+Thanks, also pushed patches 12-15 because they don't depend on patch 11.
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- .../gpu/drm/i915/display/intel_dp_link_training.c    | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+BR,
+Jani.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index 3d3efcf02011..7064e465423b 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -1453,4 +1453,16 @@ void intel_dp_start_link_train(struct intel_dp *intel_dp,
- 
- 	if (!passed)
- 		intel_dp_schedule_fallback_link_training(intel_dp, crtc_state);
-+
-+	/* DP v2.0 SCR on SDP CRC16 for 128b/132b Link Layer */
-+	if (intel_dp_is_uhbr(crtc_state) && passed)
-+		drm_dp_dpcd_writeb(&intel_dp->aux,
-+				   DP_SDP_ERROR_DETECTION_CONFIGURATION,
-+				   DP_SDP_CRC16_128B132B_EN);
-+		/*
-+		 * VIDEO_DIP_CTL register bit 31 should be set to '0' to not
-+		 * disable SDP CRC. This is applicable for Display version 13.
-+		 * Default value of bit 31 is '0' hence discarding the write
-+		 */
-+		/* TODO: Corrective actions on SDP corruption yet to be defined */
- }
--- 
-2.25.1
+>
+>> ---
+>>  drivers/gpu/drm/drm_edid.c | 26 +++++++++++++-------------
+>>  1 file changed, 13 insertions(+), 13 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+>> index 810a5fca398a..5881df5bddb9 100644
+>> --- a/drivers/gpu/drm/drm_edid.c
+>> +++ b/drivers/gpu/drm/drm_edid.c
+>> @@ -6555,6 +6555,18 @@ static void update_display_info(struct drm_connec=
+tor *connector,
+>>  	if (info->quirks & EDID_QUIRK_CAP_DSC_15BPP)
+>>  		info->max_dsc_bpp =3D 15;
+>>=20=20
+>> +	if (info->quirks & EDID_QUIRK_FORCE_6BPC)
+>> +		info->bpc =3D 6;
+>> +
+>> +	if (info->quirks & EDID_QUIRK_FORCE_8BPC)
+>> +		info->bpc =3D 8;
+>> +
+>> +	if (info->quirks & EDID_QUIRK_FORCE_10BPC)
+>> +		info->bpc =3D 10;
+>> +
+>> +	if (info->quirks & EDID_QUIRK_FORCE_12BPC)
+>> +		info->bpc =3D 12;
+>> +
+>>  	/* Depends on info->cea_rev set by drm_parse_cea_ext() above */
+>>  	drm_edid_to_eld(connector, drm_edid);
+>>  }
+>> @@ -6654,7 +6666,7 @@ static int add_displayid_detailed_modes(struct drm=
+_connector *connector,
+>>  static int _drm_edid_connector_update(struct drm_connector *connector,
+>>  				      const struct drm_edid *drm_edid)
+>>  {
+>> -	struct drm_display_info *info =3D &connector->display_info;
+>> +	const struct drm_display_info *info =3D &connector->display_info;
+>>  	int num_modes =3D 0;
+>>=20=20
+>>  	/*
+>> @@ -6694,18 +6706,6 @@ static int _drm_edid_connector_update(struct drm_=
+connector *connector,
+>>  	if (info->quirks & (EDID_QUIRK_PREFER_LARGE_60 | EDID_QUIRK_PREFER_LAR=
+GE_75))
+>>  		edid_fixup_preferred(connector);
+>>=20=20
+>> -	if (info->quirks & EDID_QUIRK_FORCE_6BPC)
+>> -		info->bpc =3D 6;
+>> -
+>> -	if (info->quirks & EDID_QUIRK_FORCE_8BPC)
+>> -		info->bpc =3D 8;
+>> -
+>> -	if (info->quirks & EDID_QUIRK_FORCE_10BPC)
+>> -		info->bpc =3D 10;
+>> -
+>> -	if (info->quirks & EDID_QUIRK_FORCE_12BPC)
+>> -		info->bpc =3D 12;
+>> -
+>>  	return num_modes;
+>>  }
+>>=20=20
+>> --=20
+>> 2.34.1
 
+--=20
+Jani Nikula, Intel Open Source Graphics Center
