@@ -2,140 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E4FF675C8C
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Jan 2023 19:17:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 630A9675D05
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Jan 2023 19:48:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7676A10E043;
-	Fri, 20 Jan 2023 18:17:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B50510EAF1;
+	Fri, 20 Jan 2023 18:48:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF67E10E043
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Jan 2023 18:17:19 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D84510EAF0;
+ Fri, 20 Jan 2023 18:48:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674238639; x=1705774639;
+ t=1674240521; x=1705776521;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=XR50AmYQgIzXOvK8x2HUTUaMHTjgj3vhzL+adCt5yD4=;
- b=WdHBS2Z0YSRFi+04lORc8aByQlT9FbtkjtPp+d8THm/D3LK461LLyCHB
- g9kQ3C7A7xwcTckYKWOE8Lnx//0jRG2uFjfnLgpcugc3RE6NCNkZG/j3Z
- weHJ7u6/IPdAStcbhpw8PVt3sALbeAlpPOcEjUQtfiiTm+RGQ12JqPw5M
- e4VFMah73NTcC1ITKeJM44s0ehc0kZRL2CxxuxgsBV5GliXGuE+qXWQXO
- fZGZrgWURx4OedGwptU7Pwh5CrzKnb4DN2LGeFBtcqbo9uH7atj0ixUOn
- /VPuS871dAMWCgUB1glGQpXhiek8DEPQ8rYT6FAFCoxK8EyfGMb7pb9wz Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10596"; a="313536609"
-X-IronPort-AV: E=Sophos;i="5.97,233,1669104000"; d="scan'208";a="313536609"
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=OdjJcQwGmTIf5NzXXX1ypEIX3WltCCDVvqj+IE3cSYk=;
+ b=ETkjsgSKHyUm2UxSDr5Q/NBCkKePGmJhJ6GeNWwQSCpap9kLmhqfGv37
+ NkWIjyEPHU4UoujNAai/oE/6HMHZF8awIMTBF/E0cS+vmTXjqTL5GFpOL
+ lk16axkhosh5LnaftWk6W+j6O2rdzdPJFpWUBKubaZuX8/TIHW2MYPKYC
+ BTHiOSx+M+od3myHHxuOWFcS4yMR998GBEZgPlIAkEFryvJBL/uXKVMj9
+ 1wLu99jXB47k16THAhLKhXSPhh6sfBSyIF5EZA1KbSqp1iXjB/CEgc2zr
+ gG78Td8pUfTBphLCktqAIYV37gGvom8HrjOsuWzo1eH0TlWVCRYrP0Kte g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10596"; a="352915367"
+X-IronPort-AV: E=Sophos;i="5.97,233,1669104000"; d="scan'208";a="352915367"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2023 10:17:19 -0800
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2023 10:48:41 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10596"; a="724036189"
-X-IronPort-AV: E=Sophos;i="5.97,232,1669104000"; d="scan'208";a="724036189"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga008.fm.intel.com with ESMTP; 20 Jan 2023 10:17:17 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Fri, 20 Jan 2023 10:17:17 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Fri, 20 Jan 2023 10:17:17 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Fri, 20 Jan 2023 10:17:17 -0800
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.100)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Fri, 20 Jan 2023 10:17:16 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ke0qudvlSl82J43D8BfJs4pzu3AQqQe2SrTQ0vH3iiNyq7COHCtkD5elJ2Y3/0kApZnx3OOIwceNQFoDWQFclWavfQaWbsKCMVLifld088Fg15EiU9Cd0iBNkGTlSvviXaFkZv7+qWpauloHGJcLhsWjnl5f63em8Q5McqfXb2QjKNkLfOmcTAb19t/mM7b8eQfgZK/NyZW0CuhulDnVEJMBMg1chlIGHYDofdeG6BhVj0VD3lbZa8Wjc7A1G0amf17UxCiT+htd4zaitJS8M6Wv2hS+IGmiL0lpVilQCCaBq3/8ifkQxPHml+y97/ET0tGynUNVYxOVYlnNjk4ElA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mwMhS92LPpAsZoQFBcXAPN8o5EkS3ejq77hSSg5yHSE=;
- b=XGiaNLu+gpaP6WBCQ9ayufVAiQnmO/qvwhmTqZ0u5V5dJANN8ps1Py9pBCpBf4AIyvOsYaP7U7ZfPi4r4vB5zz+7yLnGdpzDbaChwxLpoEoft+UlnD7fSjKx7yNudMZWx3TVHs0CjfWznBeCj23LusSS0rjOmwpRE8SVLtWcw/enKZWR1PWSbxtwPl0jYRDFLXrespNCbvGw0/1wxg2HfRdAVcsEw3MR7hlsif/63setD/6J82HE9EktkxftCCe14LTLGMJpd3oA8T1Ikq+TBgLKxNQGIOHzMr+uGy7yZ5iFtgEGOgIuJQbtcGsnnCSANueEXhO2lpRdYmMWmIim+w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BN8PR11MB3556.namprd11.prod.outlook.com (2603:10b6:408:8d::31)
- by DM6PR11MB4579.namprd11.prod.outlook.com (2603:10b6:5:2ab::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.24; Fri, 20 Jan
- 2023 18:17:14 +0000
-Received: from BN8PR11MB3556.namprd11.prod.outlook.com
- ([fe80::993c:13fc:ebc9:7168]) by BN8PR11MB3556.namprd11.prod.outlook.com
- ([fe80::993c:13fc:ebc9:7168%4]) with mapi id 15.20.6002.013; Fri, 20 Jan 2023
- 18:17:14 +0000
-Date: Fri, 20 Jan 2023 15:17:01 -0300
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20230120181701.5mt6nxio2ppgsmxl@gjsousa-mobl2>
-References: <20230120160615.80554-1-gustavo.sousa@intel.com>
- <Y8q9nJ+qgMqtVKzb@mdroper-desk1.amr.corp.intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <Y8q9nJ+qgMqtVKzb@mdroper-desk1.amr.corp.intel.com>
-X-ClientProxiedBy: SJ0PR03CA0371.namprd03.prod.outlook.com
- (2603:10b6:a03:3a1::16) To BN8PR11MB3556.namprd11.prod.outlook.com
- (2603:10b6:408:8d::31)
+X-IronPort-AV: E=McAfee;i="6500,9779,10596"; a="724049995"
+X-IronPort-AV: E=Sophos;i="5.97,233,1669104000"; d="scan'208";a="724049995"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
+ by fmsmga008.fm.intel.com with SMTP; 20 Jan 2023 10:48:38 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 20 Jan 2023 20:48:37 +0200
+Date: Fri, 20 Jan 2023 20:48:37 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <Y8riBdt+O6zDVlFz@intel.com>
+References: <cover.1674144945.git.jani.nikula@intel.com>
+ <b58b4c5ea31943e6c816ba0f6f4efa48bd9e5ab6.1674144945.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8PR11MB3556:EE_|DM6PR11MB4579:EE_
-X-MS-Office365-Filtering-Correlation-Id: 30e7a941-7691-4017-f82e-08dafb128e4e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: E7LUqbm5EnVoIorVDrX1Fel36XLxF+PBrv1r/+cZbkiLjcHRHY4EVC4BKThRR5vFj9Mdu/2cmaU6rcMnm3UjD3RK2iwOn1NDJDIq7fZ3i43TYXO4I+3vDIpdIEVn5KZfDRmE/0o2r2WiGBaVeBHBSXCEx0ecgrEHT9bgCzbaAzpmEESUj9r5o8uGOI1CiK9idjCn7b0VJzaxp0RVVe3qd8e34XvqbI/yTNQP8MFlaRnRwQQGD1sWfHG0ZHgdCu1VQPZVXbN829g4PX0H/hYimHOLPBGiKXCE5vSb04cDKpRUYU4NiNaiMmx9upUV2cZzvr4iNSPT/NYsDQkOOK6kVQwZgypq44QnlC3jQiZ9ovzwTbXS/BCjVhWl6APQSMeOtc0jax1EYoXKH3DECije6S+7KGzSOnDio1uJUO077eNfR46aAreX4STsh64yVzjqDRy7Tkrl3K5XwrchBF7nrkq1DlSYk37hCnnx85Bkq6N9Ihol7QYdHtUgOYY/RIFG7J5byODMF0Z0KMuXrDfKcSe54Fh/T1YD3LcHxbcwxDL2F7jv7X5C0xm6wrYmNA7aKKtRdPPpPqwZP8ZMs0Lf1tW32RASaj3A1uwlrtxpaNkNyHQQH7lDXkpUle50T4DwjfMZApdm3NWjfBwLFl92+Q==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR11MB3556.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(7916004)(136003)(376002)(396003)(39860400002)(366004)(346002)(451199015)(33716001)(6486002)(1076003)(478600001)(86362001)(5660300002)(8936002)(41300700001)(6862004)(66556008)(82960400001)(2906002)(66476007)(66946007)(4326008)(8676002)(83380400001)(38100700002)(44832011)(9686003)(6512007)(26005)(6666004)(6636002)(6506007)(107886003)(186003)(316002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?fNVxPEFKKTHIId80pwo8j91lZ4j4OQ0U7jTf7Z056kq2BqxSsG4/unr1h2WF?=
- =?us-ascii?Q?VGpa+vIUNIU8/AT7tuvQrAVrGJrKnEE9pVMk2/W6PqZojIqtE8DPDzJXf/F0?=
- =?us-ascii?Q?QZOt+yHU7DIGgFkddwi/RRZcCClmwZE9RFcQxeHwwIW1rGo50TbZ0GEyIkXB?=
- =?us-ascii?Q?PtXbyAq8yB4Fp9OCqB+vvGMKlIex/OtuYV0+RqoMM/JV9GcuhwcFB05sxBtv?=
- =?us-ascii?Q?Tajyo+fGQIdwsycBQjwpTJ6tyzPar9WTRTulKnOnC1lK9lBKfYDwbAfymX4F?=
- =?us-ascii?Q?uZ5tU/RBcQGY20gfaDL62KjxjYg8oPnZN8lFehfv36EKZFjKAqxh4Qvh9bhX?=
- =?us-ascii?Q?gGgkXpdCpNiwG/cLonv1lvPOPzpX38L92dY6V1fSNb8z9Mad+hIpe/SYnwmw?=
- =?us-ascii?Q?WZ1zaqerTHw1Wy5ljj66/FHHhHi8qdY/0jPgOIkRViYC218vYlBnqF4kWOUu?=
- =?us-ascii?Q?lMZPhl2KCmPtYaCSWaemQiC1lp5qz4cehCOAJ/gUC72egWnhJ7qa1TnzZ88x?=
- =?us-ascii?Q?rtoNLPdb+69JE7TBAdF9CM8+VZV/6ErfoAPjieLwYVYBYiQpvR1Pqvr11JDt?=
- =?us-ascii?Q?JcZ4Qa46FR1c0bXs5WKLnCHjxlfaoYBa3vnFfWOeQlC0xlGeFppaZgYvKmEZ?=
- =?us-ascii?Q?dRJuHFzZxo6xr82Xed/X0mBlLQN4+nYeJ5nyBU9JsbQsLMr7HW9iLIB8Hjhz?=
- =?us-ascii?Q?wqrzgrellfy7Er506fDuvaCmy2EB19dpoDXS8SYyKlJRG1t2iP22yD0JW1W1?=
- =?us-ascii?Q?buSEHUvu/JNPRKLoZrrWC/jQwSCU8NkUPeIFid4j6GaxmFjJ+LOiEf/IntT4?=
- =?us-ascii?Q?UdUJpgK4S0QfIFOu75l6j2sN6SGj2o+ECC2hfIgrRIRMQf5cfR+c93JLh5EA?=
- =?us-ascii?Q?byTgEelcCiN6t8pPC5Cs2RfD1NI+7132cgo8g864Y1LfjmcyTJEDpXjVitqC?=
- =?us-ascii?Q?X4V9YnzZuBf/ideeWU93tSH0wX/6rBfsZ/wfYUVQBYXeTGJ5eL1gpVEKuzwf?=
- =?us-ascii?Q?ywR/R7o7ODJkS6RCv0cj055OoOXEg4fFLXSJrLs4FEcE7fPj2TQnJt5T9stV?=
- =?us-ascii?Q?OPA47OlEo7Rn9tjY7cVoTOQkg7TI4WJiRsN0BADUzNDrBQFf/ivCwbj1BSFo?=
- =?us-ascii?Q?XTSaJw2n4oImv/c62AcqvxZeYvGOXdMtqrW4nPSRKHwpIjjO+j5br8mHx0sv?=
- =?us-ascii?Q?JLldtjU8Cy2LGawb2nYX2VWCWwUtV506lTgiwJqXvrNcuEeb9Pezo9+LqZ2Y?=
- =?us-ascii?Q?Ipl9A1Xc7vbNoxLn5Fy2q8UXxMHwsEsas28qDXFMOe46UKttjIDuYnPiVhLO?=
- =?us-ascii?Q?NUOtCPpdJE8zwTHei8Ep7fUukjji6ruQd40bBxyYXvMMVXI+DkY66RBKcAwV?=
- =?us-ascii?Q?3sepra0NJgD93A0hOHPNCBrdDrzvkdPjOb62UqBtVk1E+Os0CZqHYDbeYtyH?=
- =?us-ascii?Q?Ev36Zr3pxWOQQdB48Z/z6EG//29j57xA56Uq2glhSqTxVS/RB7y6Y2gcFai9?=
- =?us-ascii?Q?L/+aIOLmZa4YSC6qrSAyE1TL6ZhCfzJrp85O/eeYpRpEY2q7UMHGhREOkpSG?=
- =?us-ascii?Q?9AmF6s2u7AsNEjv+hdpRyCsReWnM2Rs9B2XBMScAE1FbYToAJLKCX+DnQjiK?=
- =?us-ascii?Q?4w=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 30e7a941-7691-4017-f82e-08dafb128e4e
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR11MB3556.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2023 18:17:14.3432 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 5orDY42kdMFMusVzGXP282DDdPHbbbkUnNFP4r7/b+MuPIsYz7byjUE3MXeqIA0mzpnc2vWf1DUaeqwUSQF9IQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4579
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Convert PSS_MODE2 to multicast
- register
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <b58b4c5ea31943e6c816ba0f6f4efa48bd9e5ab6.1674144945.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v8 5/8] drm/i915/edid: convert DP,
+ HDMI and LVDS to drm_edid
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,81 +62,408 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 20, 2023 at 08:13:16AM -0800, Matt Roper wrote:
-> On Fri, Jan 20, 2023 at 01:06:15PM -0300, Gustavo Sousa wrote:
-> > That register became a multicast register as of Xe_HP and it is
-> > currently used only for DG2. Use a proper prefix since there could be
-> > usage of the same register for previous platforms in the future, which
-> > would require a different definition (i.e. using _MMIO).
+On Thu, Jan 19, 2023 at 06:18:58PM +0200, Jani Nikula wrote:
+> Convert all the connectors that use cached connector edid and
+> detect_edid to drm_edid.
 > 
-> It might be worth including a quick note here that this oversight
-> doesn't actually cause any functional problems on DG2 because the
-> workaround-only usage of the register will still wind up happening in a
-> multicast manner regardless.  The fix is mostly just for consistency and
-> future-proofing the code.
+> Since drm_get_edid() calls drm_connector_update_edid_property() while
+> drm_edid_read*() do not, we need to call drm_edid_connector_update()
+> separately, in part due to the EDID caching behaviour in HDMI and
+> DP. Especially DP depends on the details parsed from EDID. (The big
+> behavioural change conflating EDID reading with parsing and property
+> update was done in commit 5186421cbfe2 ("drm: Introduce epoch counter to
+> drm_connector"))
 > 
-> Aside from that,
+> v6: Rebase on drm_edid_connector_add_modes()
 > 
-> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+> v5: Fix potential uninitialized var use (kernel test robot <lkp@intel.com>)
+> 
+> v4: Call drm_edid_connector_update() after reading HDMI/DP EDID
+> 
+> v3: Don't leak vga switcheroo EDID in LVDS init (Ville)
+> 
+> v2: Don't leak opregion fallback EDID (Ville)
+> 
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  .../gpu/drm/i915/display/intel_connector.c    |  4 +-
+>  .../drm/i915/display/intel_display_types.h    |  4 +-
+>  drivers/gpu/drm/i915/display/intel_dp.c       | 83 +++++++++++--------
+>  drivers/gpu/drm/i915/display/intel_hdmi.c     | 28 ++++---
+>  drivers/gpu/drm/i915/display/intel_lvds.c     | 46 ++++++----
+>  5 files changed, 96 insertions(+), 69 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_connector.c b/drivers/gpu/drm/i915/display/intel_connector.c
+> index 562da3b741e2..4814d4e2f7f9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_connector.c
+> +++ b/drivers/gpu/drm/i915/display/intel_connector.c
+> @@ -95,12 +95,12 @@ void intel_connector_destroy(struct drm_connector *connector)
+>  {
+>  	struct intel_connector *intel_connector = to_intel_connector(connector);
+>  
+> -	kfree(intel_connector->detect_edid);
+> +	drm_edid_free(intel_connector->detect_edid);
+>  
+>  	intel_hdcp_cleanup(intel_connector);
+>  
+>  	if (!IS_ERR_OR_NULL(intel_connector->edid))
+> -		kfree(intel_connector->edid);
+> +		drm_edid_free(intel_connector->edid);
+>  
+>  	intel_panel_fini(intel_connector);
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 32e8b2fc3cc6..34dc850340b8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -592,8 +592,8 @@ struct intel_connector {
+>  	struct intel_panel panel;
+>  
+>  	/* Cached EDID for eDP and LVDS. May hold ERR_PTR for invalid EDID. */
+> -	struct edid *edid;
+> -	struct edid *detect_edid;
+> +	const struct drm_edid *edid;
+> +	const struct drm_edid *detect_edid;
+>  
+>  	/* Number of times hotplug detection was tried after an HPD interrupt */
+>  	int hotplug_retries;
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 80d95cec8f9d..cd7fae1b7543 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -3648,12 +3648,11 @@ static u8 intel_dp_autotest_edid(struct intel_dp *intel_dp)
+>  				    intel_dp->aux.i2c_defer_count);
+>  		intel_dp->compliance.test_data.edid = INTEL_DP_RESOLUTION_FAILSAFE;
+>  	} else {
+> -		struct edid *block = intel_connector->detect_edid;
+> +		/* FIXME: Get rid of drm_edid_raw() */
+> +		const struct edid *block = drm_edid_raw(intel_connector->detect_edid);
+>  
+> -		/* We have to write the checksum
+> -		 * of the last block read
+> -		 */
+> -		block += intel_connector->detect_edid->extensions;
+> +		/* We have to write the checksum of the last block read */
+> +		block += block->extensions;
+>  
+>  		if (drm_dp_dpcd_writeb(&intel_dp->aux, DP_TEST_EDID_CHECKSUM,
+>  				       block->checksum) <= 0)
+> @@ -4475,7 +4474,7 @@ bool intel_digital_port_connected(struct intel_encoder *encoder)
+>  	return is_connected;
+>  }
+>  
+> -static struct edid *
+> +static const struct drm_edid *
+>  intel_dp_get_edid(struct intel_dp *intel_dp)
+>  {
+>  	struct intel_connector *intel_connector = intel_dp->attached_connector;
+> @@ -4486,18 +4485,22 @@ intel_dp_get_edid(struct intel_dp *intel_dp)
+>  		if (IS_ERR(intel_connector->edid))
+>  			return NULL;
+>  
+> -		return drm_edid_duplicate(intel_connector->edid);
+> +		return drm_edid_dup(intel_connector->edid);
+>  	} else
+> -		return drm_get_edid(&intel_connector->base,
+> -				    &intel_dp->aux.ddc);
+> +		return drm_edid_read_ddc(&intel_connector->base,
+> +					 &intel_dp->aux.ddc);
+>  }
+>  
+>  static void
+>  intel_dp_update_dfp(struct intel_dp *intel_dp,
+> -		    const struct edid *edid)
+> +		    const struct drm_edid *drm_edid)
+>  {
+>  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+>  	struct intel_connector *connector = intel_dp->attached_connector;
+> +	const struct edid *edid;
+> +
+> +	/* FIXME: Get rid of drm_edid_raw() */
+> +	edid = drm_edid_raw(drm_edid);
+>  
+>  	intel_dp->dfp.max_bpc =
+>  		drm_dp_downstream_max_bpc(intel_dp->dpcd,
+> @@ -4597,21 +4600,27 @@ intel_dp_set_edid(struct intel_dp *intel_dp)
+>  {
+>  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+>  	struct intel_connector *connector = intel_dp->attached_connector;
+> -	struct edid *edid;
+> +	const struct drm_edid *drm_edid;
+> +	const struct edid *edid;
+>  	bool vrr_capable;
+>  
+>  	intel_dp_unset_edid(intel_dp);
+> -	edid = intel_dp_get_edid(intel_dp);
+> -	connector->detect_edid = edid;
+> +	drm_edid = intel_dp_get_edid(intel_dp);
+> +	connector->detect_edid = drm_edid;
+> +
+> +	/* Below we depend on display info having been updated */
+> +	drm_edid_connector_update(&connector->base, drm_edid);
+>  
+>  	vrr_capable = intel_vrr_is_capable(connector);
+>  	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] VRR capable: %s\n",
+>  		    connector->base.base.id, connector->base.name, str_yes_no(vrr_capable));
+>  	drm_connector_set_vrr_capable_property(&connector->base, vrr_capable);
+>  
+> -	intel_dp_update_dfp(intel_dp, edid);
+> +	intel_dp_update_dfp(intel_dp, drm_edid);
+>  	intel_dp_update_420(intel_dp);
+>  
+> +	/* FIXME: Get rid of drm_edid_raw() */
+> +	edid = drm_edid_raw(drm_edid);
+>  	if (edid && edid->input & DRM_EDID_INPUT_DIGITAL) {
+>  		intel_dp->has_hdmi_sink = drm_detect_hdmi_monitor(edid);
+>  		intel_dp->has_audio = drm_detect_monitor_audio(edid);
+> @@ -4626,7 +4635,7 @@ intel_dp_unset_edid(struct intel_dp *intel_dp)
+>  	struct intel_connector *connector = intel_dp->attached_connector;
+>  
+>  	drm_dp_cec_unset_edid(&intel_dp->aux);
+> -	kfree(connector->detect_edid);
+> +	drm_edid_free(connector->detect_edid);
+>  	connector->detect_edid = NULL;
+>  
+>  	intel_dp->has_hdmi_sink = false;
+> @@ -4790,12 +4799,10 @@ intel_dp_force(struct drm_connector *connector)
+>  static int intel_dp_get_modes(struct drm_connector *connector)
+>  {
+>  	struct intel_connector *intel_connector = to_intel_connector(connector);
+> -	struct edid *edid;
+> -	int num_modes = 0;
+> +	int num_modes;
+>  
+> -	edid = intel_connector->detect_edid;
+> -	if (edid)
+> -		num_modes = intel_connector_update_modes(connector, edid);
+> +	/* drm_edid_connector_update() done in ->detect() or ->force() */
+> +	num_modes = drm_edid_connector_add_modes(connector);
+>  
+>  	/* Also add fixed mode, which may or may not be present in EDID */
+>  	if (intel_dp_is_edp(intel_attached_dp(intel_connector)))
+> @@ -4804,7 +4811,7 @@ static int intel_dp_get_modes(struct drm_connector *connector)
+>  	if (num_modes)
+>  		return num_modes;
+>  
+> -	if (!edid) {
+> +	if (!intel_connector->detect_edid) {
+>  		struct intel_dp *intel_dp = intel_attached_dp(intel_connector);
+>  		struct drm_display_mode *mode;
+>  
+> @@ -5240,7 +5247,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+>  	struct drm_display_mode *fixed_mode;
+>  	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+>  	bool has_dpcd;
+> -	struct edid *edid;
+> +	const struct drm_edid *drm_edid;
+>  
+>  	if (!intel_dp_is_edp(intel_dp))
+>  		return true;
+> @@ -5287,29 +5294,35 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+>  	}
+>  
+>  	mutex_lock(&dev_priv->drm.mode_config.mutex);
+> -	edid = drm_get_edid(connector, &intel_dp->aux.ddc);
+> -	if (!edid) {
+> +	drm_edid = drm_edid_read_ddc(connector, &intel_dp->aux.ddc);
+> +	if (!drm_edid) {
+> +		const struct edid *edid;
+> +
+>  		/* Fallback to EDID from ACPI OpRegion, if any */
+> +		/* FIXME: Make intel_opregion_get_edid() return drm_edid */
+>  		edid = intel_opregion_get_edid(intel_connector);
+> -		if (edid)
+> +		if (edid) {
+> +			drm_edid = drm_edid_alloc(edid, (edid->extensions + 1) * EDID_LENGTH);
+>  			drm_dbg_kms(&dev_priv->drm,
+>  				    "[CONNECTOR:%d:%s] Using OpRegion EDID\n",
+>  				    connector->base.id, connector->name);
+> -	}
+> -	if (edid) {
+> -		if (drm_add_edid_modes(connector, edid)) {
+> -			drm_connector_update_edid_property(connector, edid);
+> -		} else {
+>  			kfree(edid);
+> -			edid = ERR_PTR(-EINVAL);
+> +		}
+> +	}
+> +	if (drm_edid) {
+> +		if (drm_edid_connector_update(connector, drm_edid) ||
+> +		    !drm_edid_connector_add_modes(connector)) {
+> +			drm_edid_connector_update(connector, NULL);
+> +			drm_edid_free(drm_edid);
+> +			drm_edid = ERR_PTR(-EINVAL);
+>  		}
+>  	} else {
+> -		edid = ERR_PTR(-ENOENT);
+> +		drm_edid = ERR_PTR(-ENOENT);
+>  	}
+> -	intel_connector->edid = edid;
+> +	intel_connector->edid = drm_edid;
+>  
+> -	intel_bios_init_panel_late(dev_priv, &intel_connector->panel,
+> -				   encoder->devdata, IS_ERR(edid) ? NULL : edid);
+> +	intel_bios_init_panel_late(dev_priv, &intel_connector->panel, encoder->devdata,
+> +				   IS_ERR_OR_NULL(drm_edid) ? NULL : drm_edid_raw(drm_edid));
+>  
+>  	intel_panel_add_edid_fixed_modes(intel_connector, true);
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> index 6a2ee342eab5..3431193f0b47 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -2360,7 +2360,7 @@ intel_hdmi_unset_edid(struct drm_connector *connector)
+>  	intel_hdmi->dp_dual_mode.type = DRM_DP_DUAL_MODE_NONE;
+>  	intel_hdmi->dp_dual_mode.max_tmds_clock = 0;
+>  
+> -	kfree(to_intel_connector(connector)->detect_edid);
+> +	drm_edid_free(to_intel_connector(connector)->detect_edid);
+>  	to_intel_connector(connector)->detect_edid = NULL;
+>  }
+>  
+> @@ -2421,7 +2421,8 @@ intel_hdmi_set_edid(struct drm_connector *connector)
+>  	struct drm_i915_private *dev_priv = to_i915(connector->dev);
+>  	struct intel_hdmi *intel_hdmi = intel_attached_hdmi(to_intel_connector(connector));
+>  	intel_wakeref_t wakeref;
+> -	struct edid *edid;
+> +	const struct drm_edid *drm_edid;
+> +	const struct edid *edid;
+>  	bool connected = false;
+>  	struct i2c_adapter *i2c;
+>  
+> @@ -2429,17 +2430,23 @@ intel_hdmi_set_edid(struct drm_connector *connector)
+>  
+>  	i2c = intel_gmbus_get_adapter(dev_priv, intel_hdmi->ddc_bus);
+>  
+> -	edid = drm_get_edid(connector, i2c);
+> +	drm_edid = drm_edid_read_ddc(connector, i2c);
+>  
+> -	if (!edid && !intel_gmbus_is_forced_bit(i2c)) {
+> +	if (!drm_edid && !intel_gmbus_is_forced_bit(i2c)) {
+>  		drm_dbg_kms(&dev_priv->drm,
+>  			    "HDMI GMBUS EDID read failed, retry using GPIO bit-banging\n");
+>  		intel_gmbus_force_bit(i2c, true);
+> -		edid = drm_get_edid(connector, i2c);
+> +		drm_edid = drm_edid_read_ddc(connector, i2c);
+>  		intel_gmbus_force_bit(i2c, false);
+>  	}
+>  
+> -	to_intel_connector(connector)->detect_edid = edid;
+> +	/* Below we depend on display info having been updated */
+> +	drm_edid_connector_update(connector, drm_edid);
+> +
+> +	to_intel_connector(connector)->detect_edid = drm_edid;
+> +
+> +	/* FIXME: Get rid of drm_edid_raw() */
+> +	edid = drm_edid_raw(drm_edid);
+>  	if (edid && edid->input & DRM_EDID_INPUT_DIGITAL) {
+>  		intel_hdmi->has_audio = drm_detect_monitor_audio(edid);
+>  		intel_hdmi->has_hdmi_sink = drm_detect_hdmi_monitor(edid);
+> @@ -2515,13 +2522,8 @@ intel_hdmi_force(struct drm_connector *connector)
+>  
+>  static int intel_hdmi_get_modes(struct drm_connector *connector)
+>  {
+> -	struct edid *edid;
+> -
+> -	edid = to_intel_connector(connector)->detect_edid;
+> -	if (edid == NULL)
+> -		return 0;
+> -
+> -	return intel_connector_update_modes(connector, edid);
+> +	/* drm_edid_connector_update() done in ->detect() or ->force() */
+> +	return drm_edid_connector_add_modes(connector);
+>  }
+>  
+>  static struct i2c_adapter *
+> diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
+> index aecec992cd0d..6a98787edf48 100644
+> --- a/drivers/gpu/drm/i915/display/intel_lvds.c
+> +++ b/drivers/gpu/drm/i915/display/intel_lvds.c
+> @@ -479,8 +479,11 @@ static int intel_lvds_get_modes(struct drm_connector *connector)
+>  	struct intel_connector *intel_connector = to_intel_connector(connector);
+>  
+>  	/* use cached edid if we have one */
+> -	if (!IS_ERR_OR_NULL(intel_connector->edid))
+> -		return drm_add_edid_modes(connector, intel_connector->edid);
+> +	if (!IS_ERR_OR_NULL(intel_connector->edid)) {
+> +		drm_edid_connector_update(connector, intel_connector->edid);
 
-Thanks for the review, Matt! Just sent a v2.
+Isn't this update redundant?
 
-> 
-> > 
-> > Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-> > Cc: Matt Roper <matthew.d.roper@intel.com>
-> > Cc: Matthew Atwood <matthew.s.atwood@intel.com>
-> > Fixes: 468a4e630c7d ("drm/i915/dg2: Introduce Wa_18018764978")
-> > ---
-> >  drivers/gpu/drm/i915/gt/intel_gt_regs.h     | 2 +-
-> >  drivers/gpu/drm/i915/gt/intel_workarounds.c | 4 ++--
-> >  2 files changed, 3 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> > index 4a4bab261e66..2727645864db 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> > +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> > @@ -464,7 +464,7 @@
-> >  #define GEN8_L3CNTLREG				_MMIO(0x7034)
-> >  #define   GEN8_ERRDETBCTRL			(1 << 9)
-> >  
-> > -#define PSS_MODE2				_MMIO(0x703c)
-> > +#define XEHP_PSS_MODE2				MCR_REG(0x703c)
-> >  #define   SCOREBOARD_STALL_FLUSH_CONTROL	REG_BIT(5)
-> >  
-> >  #define GEN7_SC_INSTDONE			_MMIO(0x7100)
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > index 918a271447e2..4efc1a532982 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > @@ -793,7 +793,7 @@ static void dg2_ctx_workarounds_init(struct intel_engine_cs *engine,
-> >  	/* Wa_18018764978:dg2 */
-> >  	if (IS_DG2_GRAPHICS_STEP(engine->i915, G10, STEP_C0, STEP_FOREVER) ||
-> >  	    IS_DG2_G11(engine->i915) || IS_DG2_G12(engine->i915))
-> > -		wa_masked_en(wal, PSS_MODE2, SCOREBOARD_STALL_FLUSH_CONTROL);
-> > +		wa_mcr_masked_en(wal, XEHP_PSS_MODE2, SCOREBOARD_STALL_FLUSH_CONTROL);
-> >  
-> >  	/* Wa_15010599737:dg2 */
-> >  	wa_mcr_masked_en(wal, CHICKEN_RASTER_1, DIS_SF_ROUND_NEAREST_EVEN);
-> > @@ -821,7 +821,7 @@ static void mtl_ctx_workarounds_init(struct intel_engine_cs *engine,
-> >  		wa_mcr_masked_en(wal, VFLSKPD, VF_PREFETCH_TLB_DIS);
-> >  
-> >  		/* Wa_18018764978 */
-> > -		wa_masked_en(wal, PSS_MODE2, SCOREBOARD_STALL_FLUSH_CONTROL);
-> > +		wa_mcr_masked_en(wal, XEHP_PSS_MODE2, SCOREBOARD_STALL_FLUSH_CONTROL);
-> >  	}
-> >  
-> >  	/* Wa_18019271663 */
-> > -- 
-> > 2.39.0
-> > 
-> 
+> +
+> +		return drm_edid_connector_add_modes(connector);
+> +	}
+>  
+>  	return intel_panel_get_modes(intel_connector);
+>  }
+> @@ -834,7 +837,7 @@ void intel_lvds_init(struct drm_i915_private *dev_priv)
+>  	struct intel_connector *intel_connector;
+>  	struct drm_connector *connector;
+>  	struct drm_encoder *encoder;
+> -	struct edid *edid;
+> +	const struct drm_edid *drm_edid;
+>  	i915_reg_t lvds_reg;
+>  	u32 lvds;
+>  	u8 pin;
+> @@ -945,27 +948,36 @@ void intel_lvds_init(struct drm_i915_private *dev_priv)
+>  	 * preferred mode is the right one.
+>  	 */
+>  	mutex_lock(&dev_priv->drm.mode_config.mutex);
+> -	if (vga_switcheroo_handler_flags() & VGA_SWITCHEROO_CAN_SWITCH_DDC)
+> +	if (vga_switcheroo_handler_flags() & VGA_SWITCHEROO_CAN_SWITCH_DDC) {
+> +		const struct edid *edid;
+> +
+> +		/* FIXME: Make drm_get_edid_switcheroo() return drm_edid */
+>  		edid = drm_get_edid_switcheroo(connector,
+> -				    intel_gmbus_get_adapter(dev_priv, pin));
+> -	else
+> -		edid = drm_get_edid(connector,
+> -				    intel_gmbus_get_adapter(dev_priv, pin));
+> -	if (edid) {
+> -		if (drm_add_edid_modes(connector, edid)) {
+> -			drm_connector_update_edid_property(connector,
+> -								edid);
+> -		} else {
+> +					       intel_gmbus_get_adapter(dev_priv, pin));
+> +		if (edid) {
+> +			drm_edid = drm_edid_alloc(edid, (edid->extensions + 1) * EDID_LENGTH);
+>  			kfree(edid);
+> -			edid = ERR_PTR(-EINVAL);
+> +		} else {
+> +			drm_edid = NULL;
+> +		}
+> +	} else {
+> +		drm_edid = drm_edid_read_ddc(connector,
+> +					     intel_gmbus_get_adapter(dev_priv, pin));
+> +	}
+> +	if (drm_edid) {
+> +		if (drm_edid_connector_update(connector, drm_edid) ||
+> +		    !drm_edid_connector_add_modes(connector)) {
+> +			drm_edid_connector_update(connector, NULL);
+> +			drm_edid_free(drm_edid);
+> +			drm_edid = ERR_PTR(-EINVAL);
+>  		}
+>  	} else {
+> -		edid = ERR_PTR(-ENOENT);
+> +		drm_edid = ERR_PTR(-ENOENT);
+>  	}
+> -	intel_connector->edid = edid;
+> +	intel_connector->edid = drm_edid;
+>  
+>  	intel_bios_init_panel_late(dev_priv, &intel_connector->panel, NULL,
+> -				   IS_ERR(edid) ? NULL : edid);
+> +				   IS_ERR_OR_NULL(drm_edid) ? NULL : drm_edid_raw(drm_edid));
+>  
+>  	/* Try EDID first */
+>  	intel_panel_add_edid_fixed_modes(intel_connector, true);
 > -- 
-> Matt Roper
-> Graphics Software Engineer
-> Linux GPU Platform Enablement
-> Intel Corporation
+> 2.34.1
+
+-- 
+Ville Syrjälä
+Intel
