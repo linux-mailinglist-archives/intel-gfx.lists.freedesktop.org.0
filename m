@@ -1,66 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 258DC675946
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Jan 2023 16:55:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A71F675982
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Jan 2023 17:07:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B52410EAAE;
-	Fri, 20 Jan 2023 15:55:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F12D10EAA5;
+	Fri, 20 Jan 2023 16:07:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com
- [IPv6:2607:f8b0:4864:20::82b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A51610E090
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Jan 2023 15:55:00 +0000 (UTC)
-Received: by mail-qt1-x82b.google.com with SMTP id q15so4482839qtn.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Jan 2023 07:55:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=cIZBov414cRAviPU8wwR8NqtPTpO7JU2x/UOZjpaEK8=;
- b=I+/367Wr7qAl4QZ19Xa8tMaf6OqBl6nT+owiFtMqLB3/Pk1nuu/DhyGmoEK7Lb+cBd
- //6UGaGGTvOGvzJ/mWDIIYHpM5WkOc2aTbH28Z5mpomge2PFcZWk0jPPE8ng1P9KJICw
- kYEMN9hgS7OBMWqEVVXpEj+uPpGaVXdsBHwT1L5aA7FsjQPf0Z3TStJ+iaepVd5A72HF
- wvf5b52cvYfFrjB5l0ouephNq/+wZXsmyY1xI7jEACR3zpiFVnJGl1fUMjGlE8xgQr2+
- 9GwZy1WuKMfqeSoyDSpeMrCnVUYV9UONb7Y8Ru7Xa3AMfHs1LyJSouAVHeWITYRdqKw5
- NHYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=cIZBov414cRAviPU8wwR8NqtPTpO7JU2x/UOZjpaEK8=;
- b=MUlkHiikqTlY0W5P1GTRFIPCRK1SKpN64pWvTaP7K5IdCTTHd9oJ5peNJIqUr8xnxf
- 4X/0uDRPlNo2Iedyh1GR0wOP9Yw9XFylPT0/pDcMrG5A1J9S+00BNWyuDgrAiffP5tsC
- n2bw+gpTbMcyWUzcvqbHw9AuMrZN74w4Z6NwyGVq7znNMkgAyxpl5IbIOksKDKKmJm5k
- ptfmK5I8EKDrde0GNqkoWJ4Wqbekc7nJ1gwYjf0/JAdU5T2hqjoDSOHlex2U9iRK7fGC
- Wc0gKemkYiZfuczYiqTeGYIFffuKUsM6cxe5dqz9B08T/azpaQi09oKYqA9QiJQuFY/X
- gagw==
-X-Gm-Message-State: AFqh2krbE0NLN7b7duMsDMumr0tmEPMrQlbcD9juGm7+YtJsuoFsEAzn
- N2mku2Ee0pts0C82pjKuHrmPdg==
-X-Google-Smtp-Source: AMrXdXsjEvmwrWcwoIJKQJn80PQaEbBtBLRSxwKE/E0XlC2LInWRVyvOb56cD5VovaJaFNuBUXq/4w==
-X-Received: by 2002:ac8:7ed1:0:b0:3ab:5a62:453b with SMTP id
- x17-20020ac87ed1000000b003ab5a62453bmr21415426qtj.53.1674230099206; 
- Fri, 20 Jan 2023 07:54:59 -0800 (PST)
-Received: from localhost (200.234.86.34.bc.googleusercontent.com.
- [34.86.234.200]) by smtp.gmail.com with ESMTPSA id
- g19-20020a05620a40d300b006cec8001bf4sm26567015qko.26.2023.01.20.07.54.58
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 20 Jan 2023 07:54:58 -0800 (PST)
-Date: Fri, 20 Jan 2023 15:54:57 +0000
-From: Sean Paul <sean@poorly.run>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Message-ID: <Y8q5UfpIg0+qnAuG@art_vandelay>
-References: <20230118193015.911074-1-markyacoub@google.com>
- <20230118193015.911074-10-markyacoub@google.com>
- <aee03688-54b6-ed9f-e32c-b46e31d72198@linaro.org>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 496DF10EAA5
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Jan 2023 16:07:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1674230834; x=1705766834;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=hFfjmKpSBUPJWxblRRX/wHdWNKZ03u8kMUzPOc2z8KY=;
+ b=H0ux0t/IpaM4xtfA07pqeh4sRPQAg1WsTd41tES30M+UCrJ+QMOda4yJ
+ JyT84KvAP8obQTjo3DRpAj6MTHcT5PV5Qz3s7PvT1h5BcO+2N+uIRap7Z
+ 0EeAK8JaC+tFrgcdrSgzlxPSXrsfaw+GRWW/m1mjktv2tEVeGtDrwDqad
+ LOEFHaMDe4ZrAhmrkb0+jl8c7L4YuwjEFDJLpgxhjfOr1wN9pJ8DsGN/F
+ 7ZY3HOwl9fgD6+oZjQboweV2xk0xo4F0Rc6d+9VX9Nt+1thHwp38+PKRZ
+ ncJyZleLEsaj9ooaIds5W+lmsTtmFdYHwUHhKGw9dt88SKhIVSNIO2Y6B w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10596"; a="305976585"
+X-IronPort-AV: E=Sophos;i="5.97,232,1669104000"; d="scan'208";a="305976585"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2023 08:06:56 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10596"; a="662585802"
+X-IronPort-AV: E=Sophos;i="5.97,232,1669104000"; d="scan'208";a="662585802"
+Received: from wbadr-mobl.amr.corp.intel.com (HELO gjsousa-mobl2.intel.com)
+ ([10.209.157.178])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2023 08:06:55 -0800
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 20 Jan 2023 13:06:15 -0300
+Message-Id: <20230120160615.80554-1-gustavo.sousa@intel.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aee03688-54b6-ed9f-e32c-b46e31d72198@linaro.org>
-Subject: Re: [Intel-gfx] [PATCH v6 09/10] arm64: dts: qcom: sc7180: Add
- support for HDCP in dp-controller
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Convert PSS_MODE2 to multicast
+ register
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,85 +56,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: quic_sbillaka@quicinc.com, konrad.dybcio@somainline.org,
- dri-devel@lists.freedesktop.org, dianders@chromium.org,
- krzysztof.kozlowski+dt@linaro.org, airlied@gmail.com, hbh25y@gmail.com,
- marex@denx.de, abhinavk@codeaurora.org, javierm@redhat.com,
- quic_khsieh@quicinc.com, agross@kernel.org, quic_jesszhan@quicinc.com,
- devicetree@vger.kernel.org, tzimmermann@suse.de, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, lucas.demarchi@intel.com,
- quic_abhinavk@quicinc.com, swboyd@chromium.org, robh+dt@kernel.org,
- christophe.jaillet@wanadoo.fr, rodrigo.vivi@intel.com,
- bjorn.andersson@linaro.org, johan+linaro@kernel.org,
- Mark Yacoub <markyacoub@chromium.org>, andersson@kernel.org,
- linux-kernel@vger.kernel.org, daniel@ffwll.ch, dmitry.baryshkov@linaro.org,
- seanpaul@chromium.org, freedreno@lists.freedesktop.org, maxime@cerno.tech
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 19, 2023 at 11:35:32AM +0100, Krzysztof Kozlowski wrote:
-> On 18/01/2023 20:30, Mark Yacoub wrote:
-> > From: Sean Paul <seanpaul@chromium.org>
-> > 
-> > This patch adds the register ranges required for HDCP key injection and
-> 
-> Do not use "This commit/patch".
-> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-> 
-> This applies to all your patches. Fix it everywhere.
+That register became a multicast register as of Xe_HP and it is
+currently used only for DG2. Use a proper prefix since there could be
+usage of the same register for previous platforms in the future, which
+would require a different definition (i.e. using _MMIO).
 
-My goodness, this is peak bikeshedding. Surely we have better things to do with
-our time?
+Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Matthew Atwood <matthew.s.atwood@intel.com>
+Fixes: 468a4e630c7d ("drm/i915/dg2: Introduce Wa_18018764978")
+---
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h     | 2 +-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-> 
-> > HDCP TrustZone interaction as described in the dt-bindings for the
-> > sc7180 dp controller. Now that these are supported, change the
-> > compatible string to "dp-hdcp".
-> 
-> What does it mean? Where do you do it?
-> 
-> > 
-> > Signed-off-by: Sean Paul <seanpaul@chromium.org>
-> > Signed-off-by: Mark Yacoub <markyacoub@chromium.org>
-> > Link: https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-15-sean@poorly.run #v1
-> > Link: https://patchwork.freedesktop.org/patch/msgid/20210915203834.1439-14-sean@poorly.run #v2
-> > Link: https://patchwork.freedesktop.org/patch/msgid/20211001151145.55916-14-sean@poorly.run #v3
-> > Link: https://patchwork.freedesktop.org/patch/msgid/20211105030434.2828845-14-sean@poorly.run #v4
-> > Link: https://patchwork.freedesktop.org/patch/msgid/20220411204741.1074308-10-sean@poorly.run #v5
-> 
-> Drop the links.
-
-Why? I've always done this, it seems helpful to me?
-
-> 
-> > 
-> > Changes in v3:
-> > -Split off into a new patch containing just the dts change (Stephen)
-> > -Add hdcp compatible string (Stephen)
-> > Changes in v4:
-> > -Rebase on Bjorn's multi-dp patchset
-> > Changes in v5:
-> > -Put the tz register offsets in trogdor dtsi (Rob C)
-> > Changes in v6:
-> > -Rebased: Removed modifications in sc7180.dtsi as it's already upstream
-> > 
-> > ---
-> 
-> Changelog after --- .
-
-It's common practice in drm subsystem to include this in the commit message.
-
-Sean
-
-
-> 
-> >  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> > 
-> 
-> Best regards,
-> Krzysztof
-> 
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+index 4a4bab261e66..2727645864db 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+@@ -464,7 +464,7 @@
+ #define GEN8_L3CNTLREG				_MMIO(0x7034)
+ #define   GEN8_ERRDETBCTRL			(1 << 9)
+ 
+-#define PSS_MODE2				_MMIO(0x703c)
++#define XEHP_PSS_MODE2				MCR_REG(0x703c)
+ #define   SCOREBOARD_STALL_FLUSH_CONTROL	REG_BIT(5)
+ 
+ #define GEN7_SC_INSTDONE			_MMIO(0x7100)
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 918a271447e2..4efc1a532982 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -793,7 +793,7 @@ static void dg2_ctx_workarounds_init(struct intel_engine_cs *engine,
+ 	/* Wa_18018764978:dg2 */
+ 	if (IS_DG2_GRAPHICS_STEP(engine->i915, G10, STEP_C0, STEP_FOREVER) ||
+ 	    IS_DG2_G11(engine->i915) || IS_DG2_G12(engine->i915))
+-		wa_masked_en(wal, PSS_MODE2, SCOREBOARD_STALL_FLUSH_CONTROL);
++		wa_mcr_masked_en(wal, XEHP_PSS_MODE2, SCOREBOARD_STALL_FLUSH_CONTROL);
+ 
+ 	/* Wa_15010599737:dg2 */
+ 	wa_mcr_masked_en(wal, CHICKEN_RASTER_1, DIS_SF_ROUND_NEAREST_EVEN);
+@@ -821,7 +821,7 @@ static void mtl_ctx_workarounds_init(struct intel_engine_cs *engine,
+ 		wa_mcr_masked_en(wal, VFLSKPD, VF_PREFETCH_TLB_DIS);
+ 
+ 		/* Wa_18018764978 */
+-		wa_masked_en(wal, PSS_MODE2, SCOREBOARD_STALL_FLUSH_CONTROL);
++		wa_mcr_masked_en(wal, XEHP_PSS_MODE2, SCOREBOARD_STALL_FLUSH_CONTROL);
+ 	}
+ 
+ 	/* Wa_18019271663 */
 -- 
-Sean Paul, Software Engineer, Google / Chromium OS
+2.39.0
+
