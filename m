@@ -1,33 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0957067582C
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Jan 2023 16:10:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12DD96758A1
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Jan 2023 16:33:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 576AC10E0F4;
-	Fri, 20 Jan 2023 15:10:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2E8910E375;
+	Fri, 20 Jan 2023 15:32:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id AE5C210E0F4;
- Fri, 20 Jan 2023 15:10:14 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8275AAADE0;
- Fri, 20 Jan 2023 15:10:14 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5738719708255282882=="
+Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com
+ [IPv6:2607:f8b0:4864:20::112d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B774E10E375
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Jan 2023 15:32:49 +0000 (UTC)
+Received: by mail-yw1-x112d.google.com with SMTP id
+ 00721157ae682-4c131bede4bso77336247b3.5
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Jan 2023 07:32:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=9IPtDJM5M6jGN6qD0tP24K72UIm4iRXYGKWNFo7x72g=;
+ b=SPoq6nBK/JeShjz0kPsSHbBdOJtV/AmVLorEPqTuGDzC70Ow5DX8doU0rsRDKCcTD1
+ Jltcq/okn/fjqBisJ9sE69yh3amFyHgGDIqt3YyHdPR0N6qepAWxsS2OMETpUksYGV1S
+ kwvgHr7iyU+Zf8HqHBuJwD0xp+BnLHmYnP0u3hdglzpy03kUEls0HWOct6IEtaAqANmb
+ Q+V1t217x323JxoCLe6IfUbqtk4A/Ytth5Y1OutLyazCII9UdOCnZNL5iFxHvuAhrIPK
+ 3bwvEBE3iFXfMvlRByIuUpVcNW3pdXTUVnZ8yCJLWxGQb/RIggDxCRemoyzqpl81n21X
+ kMFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=9IPtDJM5M6jGN6qD0tP24K72UIm4iRXYGKWNFo7x72g=;
+ b=LA/sGCsBibTWDABfAZSCcuSdf2cLFjt1UC95izU1vw4ZcYp2yo5muxj3BN2Johpp8M
+ zIC817qqqtePgJSyJBBXeLokxJy3vIgMdz1K0/5vOXoYczbj8qvMbrIosykgrA7EBKUb
+ mdX9hWVJAfsoOax8XickB88bGza5vr2OdHOZZCrKKuPQMMDTJrXPYsfoHxs2otAyrrd7
+ /N7CH7k43RRgL1nj8p4ku2VJe0RY5niBuQvZcJRuZ9vyasttcR7c75b3VnpHoSS1GNJQ
+ b3jEoehkHqeZIMke75oJne/DIQHenZRJ0O653dBW8RaUCFpm7vl8XZ5Rp58gA0AzMO/Y
+ cDVQ==
+X-Gm-Message-State: AFqh2kpqFuoZb76iH1RS8dN4ZTZtnZZG1cOqA8I1ZC5WqZlu/wuliXSK
+ PGzGosiOnRTxs/IKg56t5t5g0g==
+X-Google-Smtp-Source: AMrXdXtru88v2k61i9cQGS6ax35vAmCsXdW2DZPSz/qrSHebfuajOctI7UdN7zUMawsmB7qZX4N0+w==
+X-Received: by 2002:a0d:d610:0:b0:3af:2118:fc34 with SMTP id
+ y16-20020a0dd610000000b003af2118fc34mr11723672ywd.34.1674228768750; 
+ Fri, 20 Jan 2023 07:32:48 -0800 (PST)
+Received: from localhost (200.234.86.34.bc.googleusercontent.com.
+ [34.86.234.200]) by smtp.gmail.com with ESMTPSA id
+ j20-20020a05620a289400b006fed58fc1a3sm26448188qkp.119.2023.01.20.07.32.47
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 20 Jan 2023 07:32:47 -0800 (PST)
+Date: Fri, 20 Jan 2023 15:32:47 +0000
+From: Sean Paul <sean@poorly.run>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Message-ID: <Y8q0H7SiDkdfmyXP@art_vandelay>
+References: <20230118193015.911074-1-markyacoub@google.com>
+ <20230118193015.911074-2-markyacoub@google.com>
+ <67170ce0-8622-8b35-e73a-7d873b7a3b8b@linaro.org>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Date: Fri, 20 Jan 2023 15:10:14 -0000
-Message-ID: <167422741452.22912.251624085735278198@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230120110658.1083757-1-rodrigo.vivi@intel.com>
-In-Reply-To: <20230120110658.1083757-1-rodrigo.vivi@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/debugfs=3A_Get_rid_of_single_use_macros=2E?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <67170ce0-8622-8b35-e73a-7d873b7a3b8b@linaro.org>
+Subject: Re: [Intel-gfx] [PATCH v6 01/10] drm/hdcp: Add
+ drm_hdcp_atomic_check()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,244 +74,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: quic_sbillaka@quicinc.com, konrad.dybcio@somainline.org,
+ dri-devel@lists.freedesktop.org, dianders@chromium.org,
+ krzysztof.kozlowski+dt@linaro.org, airlied@gmail.com, hbh25y@gmail.com,
+ marex@denx.de, abhinavk@codeaurora.org, javierm@redhat.com,
+ quic_khsieh@quicinc.com, agross@kernel.org, quic_jesszhan@quicinc.com,
+ devicetree@vger.kernel.org, tzimmermann@suse.de,
+ Jani Nikula <jani.nikula@intel.com>, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, lucas.demarchi@intel.com,
+ quic_abhinavk@quicinc.com, swboyd@chromium.org, robh+dt@kernel.org,
+ christophe.jaillet@wanadoo.fr, rodrigo.vivi@intel.com,
+ bjorn.andersson@linaro.org, johan+linaro@kernel.org,
+ Mark Yacoub <markyacoub@chromium.org>, andersson@kernel.org,
+ linux-kernel@vger.kernel.org, daniel@ffwll.ch, dmitry.baryshkov@linaro.org,
+ seanpaul@chromium.org, freedreno@lists.freedesktop.org, maxime@cerno.tech
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5738719708255282882==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Jan 19, 2023 at 11:37:52AM +0100, Krzysztof Kozlowski wrote:
+> On 18/01/2023 20:30, Mark Yacoub wrote:
+> > From: Sean Paul <seanpaul@chromium.org>
+> > 
+> > This patch moves the hdcp atomic check from i915 to drm_hdcp so other
+> > drivers can use it. No functional changes, just cleaned up some of the
+> > code when moving it over.
+> > 
+> > Acked-by: Jani Nikula <jani.nikula@intel.com>
+> > Acked-by: Jani Nikula <jani.nikula@intel.com>
+> > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > Reviewed-by: Abhinav Kumar <abhinavk@codeaurora.org>
+> > Signed-off-by: Sean Paul <seanpaul@chromium.org>
+> > Signed-off-by: Mark Yacoub <markyacoub@chromium.org>
+> > Link: https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-2-sean@poorly.run #v1
+> > Link: https://patchwork.freedesktop.org/patch/msgid/20210915203834.1439-2-sean@poorly.run #v2
+> > Link: https://patchwork.freedesktop.org/patch/msgid/20211001151145.55916-2-sean@poorly.run #v3
+> > Link: https://patchwork.freedesktop.org/patch/msgid/20211105030434.2828845-2-sean@poorly.run #v4
+> > Link: https://patchwork.freedesktop.org/patch/msgid/20220411204741.1074308-2-sean@poorly.run #v5
+> 
+> It seems all your previous versions were sent not to correct people and
+> lists. Therefore we see it for the first time even though it is v6! 
 
-== Series Details ==
+Hi Krzysztof,
+Thanks for your review comments.
 
-Series: drm/i915/debugfs: Get rid of single use macros.
-URL   : https://patchwork.freedesktop.org/series/113147/
-State : success
+Here are the addresses the last version was sent to, who is missing?
 
-== Summary ==
+To: dri-devel@lists.freedesktop.org, 
+    jani.nikula@intel.com,
+    intel-gfx@lists.freedesktop.org,
+    freedreno@lists.freedesktop.org,
+    rodrigo.vivi@intel.com
+Cc: bjorn.andersson@linaro.org, 
+    swboyd@chromium.org,
+    abhinavk@codeaurora.org,
+    markyacoub@chromium.org,
+    Sean Paul <seanpaul@chromium.org>,
+    Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+    Maxime Ripard <mripard@kernel.org>,
+    Thomas Zimmermann <tzimmermann@suse.de>,
+    David Airlie <airlied@linux.ie>,
+    Daniel Vetter <daniel@ffwll.ch>,
+    Jani Nikula <jani.nikula@linux.intel.com>,
+    Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+    Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 
-CI Bug Log - changes from CI_DRM_12617 -> Patchwork_113147v1
-====================================================
+> It's
+> not the first such weird CC list in chromium, so maybe your
+> organisational process could be improved? Not only for you but for
+> colleagues as well, so you all start using get_maintainers.pl on newest
+> kernel (not something ancient)?
 
-Summary
--------
+I can't really speak for others, but I use MAINTAINERS from drm-tip. The 
+previous patch sets were sent before 24df12013853 ("MAINTAINERS: Add 
+Dmitry as MSM DRM driver co-maintainer"), which might explain why you think
+there are absences?
 
-  **SUCCESS**
+Thanks again,
 
-  No regressions found.
+Sean
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113147v1/index.html
+> 
+> Best regards,
+> Krzysztof
+> 
 
-Participating hosts (35 -> 33)
-------------------------------
-
-  Additional (2): bat-adls-5 fi-pnv-d510 
-  Missing    (4): fi-bsw-kefka bat-rpls-2 fi-rkl-11600 fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_113147v1:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_selftest@live@requests:
-    - {bat-adlm-1}:       [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12617/bat-adlm-1/igt@i915_selftest@live@requests.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113147v1/bat-adlm-1/igt@i915_selftest@live@requests.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_113147v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
-    - fi-bsw-n3050:       NOTRUN -> [SKIP][3] ([fdo#109271])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113147v1/fi-bsw-n3050/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-
-  * igt@kms_psr@primary_page_flip:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][4] ([fdo#109271]) +44 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113147v1/fi-pnv-d510/igt@kms_psr@primary_page_flip.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@basic-rte:
-    - {bat-adlp-6}:       [DMESG-WARN][5] ([i915#7077]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12617/bat-adlp-6/igt@i915_pm_rpm@basic-rte.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113147v1/bat-adlp-6/igt@i915_pm_rpm@basic-rte.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-n3050:       [INCOMPLETE][7] ([i915#6972]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12617/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113147v1/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [DMESG-FAIL][9] ([i915#5334]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12617/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113147v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4258]: https://gitlab.freedesktop.org/drm/intel/issues/4258
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4817]: https://gitlab.freedesktop.org/drm/intel/issues/4817
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#5591]: https://gitlab.freedesktop.org/drm/intel/issues/5591
-  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
-  [i915#6972]: https://gitlab.freedesktop.org/drm/intel/issues/6972
-  [i915#7077]: https://gitlab.freedesktop.org/drm/intel/issues/7077
-  [i915#7443]: https://gitlab.freedesktop.org/drm/intel/issues/7443
-  [i915#7456]: https://gitlab.freedesktop.org/drm/intel/issues/7456
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12617 -> Patchwork_113147v1
-
-  CI-20190529: 20190529
-  CI_DRM_12617: 328799697aa88d6f14c6a7267e5aefc9129725de @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7128: be755d8bfee83a21448e58217edea2b615eef1a3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_113147v1: 328799697aa88d6f14c6a7267e5aefc9129725de @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-af432e5910ce drm/i915/debugfs: Get rid of single use macros.
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113147v1/index.html
-
---===============5738719708255282882==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/debugfs: Get rid of single use macros.</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/113147/">https://patchwork.freedesktop.org/series/113147/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113147v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113147v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12617 -&gt; Patchwork_113147v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113147v1/index.html</p>
-<h2>Participating hosts (35 -&gt; 33)</h2>
-<p>Additional (2): bat-adls-5 fi-pnv-d510 <br />
-  Missing    (4): fi-bsw-kefka bat-rpls-2 fi-rkl-11600 fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_113147v1:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@i915_selftest@live@requests:<ul>
-<li>{bat-adlm-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12617/bat-adlm-1/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113147v1/bat-adlm-1/igt@i915_selftest@live@requests.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_113147v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113147v1/fi-bsw-n3050/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113147v1/fi-pnv-d510/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +44 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@basic-rte:</p>
-<ul>
-<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12617/bat-adlp-6/igt@i915_pm_rpm@basic-rte.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7077">i915#7077</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113147v1/bat-adlp-6/igt@i915_pm_rpm@basic-rte.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12617/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6972">i915#6972</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113147v1/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12617/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113147v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12617 -&gt; Patchwork_113147v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12617: 328799697aa88d6f14c6a7267e5aefc9129725de @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7128: be755d8bfee83a21448e58217edea2b615eef1a3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_113147v1: 328799697aa88d6f14c6a7267e5aefc9129725de @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>af432e5910ce drm/i915/debugfs: Get rid of single use macros.</p>
-
-</body>
-</html>
-
---===============5738719708255282882==--
+-- 
+Sean Paul, Software Engineer, Google / Chromium OS
