@@ -1,34 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27024674D06
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Jan 2023 07:08:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23471674D48
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Jan 2023 07:21:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76CC510EA4E;
-	Fri, 20 Jan 2023 06:08:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFDEB10EA03;
+	Fri, 20 Jan 2023 06:21:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 399DE10EA4E;
- Fri, 20 Jan 2023 06:08:35 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 32B9EAAA91;
- Fri, 20 Jan 2023 06:08:35 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1FC710EA52;
+ Fri, 20 Jan 2023 06:21:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1674195705; x=1705731705;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=hpb6fhHsC6I9pMZPiNy984MUjJoy1J2xsTXCyptZXFw=;
+ b=VP7jUMD7/9ejhbLZLa9jsOiKI4rsx/ugJh3IOdpMrzh5rqOy/63KdCOW
+ R4eBk1Holn2P4GLarZ/gtGZUYlTMcpXWvAi54EMHLWqg/qio5DKxo0DzS
+ s2yW2c4L7f4XIWD6QyWGwfCQMdlzeMZAT+4CyU67bQuRx1yvFmnJuiftv
+ TXTwZqfCzU0mf5PfHEDVBwhUjR8Z5VCLRUSFH/9JPysgt63yT1H6mpwhW
+ E5md0BfcLv+82lp7o/kS9gxwjnUbPd2/VfEfmNYufi8/WLUpnn2PUSVE+
+ A3ONvm43HI3sJoA9nyKEDav7tN77ZjGn/jhmth4n3MaGbn6sNz/VrPleP Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="390030160"
+X-IronPort-AV: E=Sophos;i="5.97,231,1669104000"; d="scan'208";a="390030160"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2023 22:21:32 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="729021167"
+X-IronPort-AV: E=Sophos;i="5.97,231,1669104000"; d="scan'208";a="729021167"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by fmsmga004.fm.intel.com with ESMTP; 19 Jan 2023 22:21:30 -0800
+From: Arun R Murthy <arun.r.murthy@intel.com>
+To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ jani.nikula@intel.com
+Date: Fri, 20 Jan 2023 11:45:58 +0530
+Message-Id: <20230120061600.1451088-1-arun.r.murthy@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arun R Murthy" <arun.r.murthy@intel.com>
-Date: Fri, 20 Jan 2023 06:08:35 -0000
-Message-ID: <167419491517.22913.5708096240449321248@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230113043653.795183-1-arun.r.murthy@intel.com>
-In-Reply-To: <20230113043653.795183-1-arun.r.murthy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
- =?utf-8?q?eries_starting_with_=5BRESEND=2CPATCHv2=2C2/2=5D_i915/display/d?=
- =?utf-8?q?p=3A_SDP_CRC16_for_128b132b_link_layer_=28rev5=29?=
+Subject: [Intel-gfx] [PATCHv2 0/2] DP2.0 SDP CRC16 for 128/132b link layer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,36 +55,19 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+*** BLURB HERE ***
 
-Series: series starting with [RESEND,PATCHv2,2/2] i915/display/dp: SDP CRC16 for 128b132b link layer (rev5)
-URL   : https://patchwork.freedesktop.org/series/112774/
-State : failure
+Arun R Murthy (2):
+  drm: Add SDP Error Detection Configuration Register
+  i915/display/dp: SDP CRC16 for 128b132b link layer
 
-== Summary ==
+ .../gpu/drm/i915/display/intel_dp_link_training.c    | 12 ++++++++++++
+ include/drm/display/drm_dp.h                         |  3 +++
+ 2 files changed, 15 insertions(+)
 
-Error: make failed
-  CALL    scripts/checksyscalls.sh
-  DESCEND objtool
-  CC [M]  drivers/gpu/drm/i915/display/intel_dp.o
-drivers/gpu/drm/i915/display/intel_dp.c: In function ‘intel_dp_set_dpcd_sink_rates’:
-drivers/gpu/drm/i915/display/intel_dp.c:204:9: error: ‘DP_SDP_ERROR_DETECTION’ undeclared (first use in this function)
-  204 |         DP_SDP_ERROR_DETECTION,
-      |         ^~~~~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/display/intel_dp.c:204:9: note: each undeclared identifier is reported only once for each function it appears in
-drivers/gpu/drm/i915/display/intel_dp.c:205:9: error: ‘DP_SDP_CRC16_128B132B_EN’ undeclared (first use in this function)
-  205 |         DP_SDP_CRC16_128B132B_EN);
-      |         ^~~~~~~~~~~~~~~~~~~~~~~~
-make[5]: *** [scripts/Makefile.build:252: drivers/gpu/drm/i915/display/intel_dp.o] Error 1
-make[4]: *** [scripts/Makefile.build:504: drivers/gpu/drm/i915] Error 2
-make[3]: *** [scripts/Makefile.build:504: drivers/gpu/drm] Error 2
-make[2]: *** [scripts/Makefile.build:504: drivers/gpu] Error 2
-make[1]: *** [scripts/Makefile.build:504: drivers] Error 2
-make: *** [Makefile:2008: .] Error 2
-
+-- 
+2.25.1
 
