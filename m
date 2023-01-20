@@ -1,51 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58AC0674CFC
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Jan 2023 07:04:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D3E5674CFE
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Jan 2023 07:05:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90BE610EA49;
-	Fri, 20 Jan 2023 06:04:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B234810EA4D;
+	Fri, 20 Jan 2023 06:04:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F183210EA49;
- Fri, 20 Jan 2023 06:04:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41DC410EA49;
+ Fri, 20 Jan 2023 06:04:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674194684; x=1705730684;
+ t=1674194685; x=1705730685;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=AASS0FwnVNe/OPJgQFOtVGbVsH7cgW31yZ998Bbq/EI=;
- b=U7reOrVpObiyYul9SZAksZdDXSbzFKp4S7QiUnFRrTLxB5PwIbmG+WLD
- RtqS6RzgOgQIpCHFzZPGPM8DSg+fXNGScQKeaH+TIJrfBrRbid6bGehOy
- 8YYcPk99w5ZyhGjmwHt+YfBE3t6kvILFtLUBe+ZTzQfJa6tsYMnRrsjDT
- rtMqERWwxJE7HwbPJL6LJl5XvXqQ+vlCGqE3s1IKiSxaRBzSiiUiCVnvO
- vnCP8dvJyVR2jL3WCP8oCvStZUyVb0xdT+FG/A4rCk8LeAXYwR+w4BN8d
- aUr+x6Oi/QfQfIbgh1jENtHo7lEuIQ996cbFyC/YQE6tacIrLkDDiT7Ei Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="305880035"
-X-IronPort-AV: E=Sophos;i="5.97,231,1669104000"; d="scan'208";a="305880035"
+ bh=trNCxGnSP4ZToFQVZRvV2mLowfUfMjvj7+tgltCb35Q=;
+ b=MynkQOruHekU+tn2NESyM3HHGpVgSaktLiabrB17ETWnoWCRg5skqQVf
+ zuIOUa/0lSkziZa9sI1W9AVrkzS6F/ykyoPIhdbn2yk73ZeuqipNiG4u2
+ ap8CvOMUAKQwVLZUuG2tPZKlGvZBUuQ2iV3PZiilgtRE/ZLPzqdWJ0m5X
+ YRB2ao5FjaLtQSTilkQqG5gAVubFUhJhF4+JNbuh8bOYHfjio85qRTSCg
+ nTcyJxn1F4hmEom1mzmdbgdOYhJRxK/nIUpNkz3ws5zOpfVeUuZakwtwe
+ 1vZo0YTVMMSEL0SIqm9mKg+qWSRQN/iPZDJ0kHiM61f6FP9bzRW4/Wt7v g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="305880040"
+X-IronPort-AV: E=Sophos;i="5.97,231,1669104000"; d="scan'208";a="305880040"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2023 22:04:43 -0800
+ 19 Jan 2023 22:04:45 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="784408771"
-X-IronPort-AV: E=Sophos;i="5.97,231,1669104000"; d="scan'208";a="784408771"
+X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="784408782"
+X-IronPort-AV: E=Sophos;i="5.97,231,1669104000"; d="scan'208";a="784408782"
 Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orsmga004.jf.intel.com with ESMTP; 19 Jan 2023 22:04:41 -0800
+ by orsmga004.jf.intel.com with ESMTP; 19 Jan 2023 22:04:43 -0800
 From: Arun R Murthy <arun.r.murthy@intel.com>
 To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  jani.nikula@intel.com
-Date: Fri, 20 Jan 2023 11:29:11 +0530
-Message-Id: <20230120055912.1450647-1-arun.r.murthy@intel.com>
+Date: Fri, 20 Jan 2023 11:29:12 +0530
+Message-Id: <20230120055912.1450647-2-arun.r.murthy@intel.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230113043653.795183-1-arun.r.murthy@intel.com>
+In-Reply-To: <20230120055912.1450647-1-arun.r.murthy@intel.com>
 References: <20230113043653.795183-1-arun.r.murthy@intel.com>
+ <20230120055912.1450647-1-arun.r.murthy@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCHv2 1/2] drm: Add SDP Error Detection
- Configuration Register
+Subject: [Intel-gfx] [RESEND PATCHv2 2/2] i915/display/dp: SDP CRC16 for
+ 128b132b link layer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,35 +59,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Harry Wentland <harry.wentland@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DP2.0 E11 defines a new register to facilitate SDP error detection by a
-128B/132B capable DPRX device.
+Enable SDP error detection configuration, this will set CRC16 in
+128b/132b link layer.
+For Display version 13 a hardware bit31 in register VIDEO_DIP_CTL is
+added to enable/disable SDP CRC applicable for DP2.0 only, but the
+default value of this bit will enable CRC16 in 128b/132b hence
+skipping this write.
+Corrective actions on SDP corruption is yet to be defined.
 
-v2: Update the macro name to reflect the DP spec(Harry)
+v2: Moved the CRC enable to link training init(Jani N)
 
 Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-Reviewed-by: Harry Wentland <harry.wentland@amd.com>
 ---
- include/drm/display/drm_dp.h | 3 +++
- 1 file changed, 3 insertions(+)
+ .../gpu/drm/i915/display/intel_dp_link_training.c    | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
-index 632376c291db..358db4a9f167 100644
---- a/include/drm/display/drm_dp.h
-+++ b/include/drm/display/drm_dp.h
-@@ -692,6 +692,9 @@
- # define DP_FEC_LANE_2_SELECT		    (2 << 4)
- # define DP_FEC_LANE_3_SELECT		    (3 << 4)
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+index 3d3efcf02011..7064e465423b 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+@@ -1453,4 +1453,16 @@ void intel_dp_start_link_train(struct intel_dp *intel_dp,
  
-+#define DP_SDP_ERROR_DETECTION_CONFIGURATION	0x121	/* DP 2.0 E11 */
-+#define DP_SDP_CRC16_128B132B_EN		BIT(0)
+ 	if (!passed)
+ 		intel_dp_schedule_fallback_link_training(intel_dp, crtc_state);
 +
- #define DP_AUX_FRAME_SYNC_VALUE		    0x15c   /* eDP 1.4 */
- # define DP_AUX_FRAME_SYNC_VALID	    (1 << 0)
- 
++	/* DP v2.0 SCR on SDP CRC16 for 128b/132b Link Layer */
++	if (intel_dp_is_uhbr(crtc_state) && passed)
++		drm_dp_dpcd_writeb(&intel_dp->aux,
++				   DP_SDP_ERROR_DETECTION_CONFIGURATION,
++				   DP_SDP_CRC16_128B132B_EN);
++		/*
++		 * VIDEO_DIP_CTL register bit 31 should be set to '0' to not
++		 * disable SDP CRC. This is applicable for Display version 13.
++		 * Default value of bit 31 is '0' hence discarding the write
++		 */
++		/* TODO: Corrective actions on SDP corruption yet to be defined */
+ }
 -- 
 2.25.1
 
