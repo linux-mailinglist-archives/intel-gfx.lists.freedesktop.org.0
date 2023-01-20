@@ -2,32 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7010675E2E
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Jan 2023 20:37:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64302675E66
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Jan 2023 20:49:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5ABDF10EAF6;
-	Fri, 20 Jan 2023 19:37:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09F5B10E139;
+	Fri, 20 Jan 2023 19:49:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id EC05B10EAF6;
- Fri, 20 Jan 2023 19:37:10 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E5995AADDC;
- Fri, 20 Jan 2023 19:37:10 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46CB810E139;
+ Fri, 20 Jan 2023 19:49:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1674244162; x=1705780162;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=LkaUdd4OdIGIWum9Mt3m0Zi5T8RTEMrbZghJ58jlido=;
+ b=ViQcXzWUZFmljH1+ngm+NK3TxWQ0/SuO6Nc5xmWU66ghzCpZbn9F7iBB
+ dgw6gV1PTZ9FPkgncgrDwsOPPdz7U7lyHc34+psTg0YInNNK54wq9/uOt
+ A/Dg/tmdhFNoia/BZPap8NWAvrtGavGJH1E+wPgl/38HSrVD82LQ5FJOy
+ dGMmF3+U25Tl+2l69KEVhTlG2sGtBRcGCfYzSWG2I71wOanVJ965aMRIK
+ sDSWng+A0Q8lbwl+X9lX8C2DrVlqfuBoHmrihRaZxEg7Y6En0w9TdGKQh
+ S4H3mkm3AvlVvGKnOzVjFs7Iv4JaTwgBWaW/FEY4Z5G2YdJi060VDixMB A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10596"; a="324363974"
+X-IronPort-AV: E=Sophos;i="5.97,233,1669104000"; d="scan'208";a="324363974"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2023 11:49:21 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10596"; a="906072162"
+X-IronPort-AV: E=Sophos;i="5.97,233,1669104000"; d="scan'208";a="906072162"
+Received: from lkp-server01.sh.intel.com (HELO 5646d64e7320) ([10.239.97.150])
+ by fmsmga006.fm.intel.com with ESMTP; 20 Jan 2023 11:49:19 -0800
+Received: from kbuild by 5646d64e7320 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1pIxO3-0002rK-05;
+ Fri, 20 Jan 2023 19:49:19 +0000
+Date: Sat, 21 Jan 2023 03:49:14 +0800
+From: kernel test robot <lkp@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Message-ID: <202301210330.zvfxkqjp-lkp@intel.com>
+References: <20230120164050.1765-5-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Date: Fri, 20 Jan 2023 19:37:10 -0000
-Message-ID: <167424343093.22910.9479799933877772328@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230120164050.1765-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20230120164050.1765-1-michal.wajdeczko@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_GuC_oriented_print_macros?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230120164050.1765-5-michal.wajdeczko@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 4/8] drm/i915/guc: Update GuC messages in
+ intel_guc_ct.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,36 +61,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Michal,
 
-Series: GuC oriented print macros
-URL   : https://patchwork.freedesktop.org/series/113162/
-State : warning
+Thank you for the patch! Perhaps something to improve:
 
-== Summary ==
+[auto build test WARNING on drm-tip/drm-tip]
 
-Error: dim checkpatch failed
-b54a9b032bdb drm/i915/guc: Add GuC oriented print macros
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:17: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#17: 
-new file mode 100644
+url:    https://github.com/intel-lab-lkp/linux/commits/Michal-Wajdeczko/drm-i915-guc-Add-GuC-oriented-print-macros/20230121-004232
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+patch link:    https://lore.kernel.org/r/20230120164050.1765-5-michal.wajdeczko%40intel.com
+patch subject: [PATCH 4/8] drm/i915/guc: Update GuC messages in intel_guc_ct.c
+config: i386-randconfig-a004 (https://download.01.org/0day-ci/archive/20230121/202301210330.zvfxkqjp-lkp@intel.com/config)
+compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/e3ee219e703a4153b750288ac3e28cd2ea4130c1
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Michal-Wajdeczko/drm-i915-guc-Add-GuC-oriented-print-macros/20230121-004232
+        git checkout e3ee219e703a4153b750288ac3e28cd2ea4130c1
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/gpu/drm/i915/
 
-total: 0 errors, 1 warnings, 0 checks, 48 lines checked
-abf8a7a2bd04 drm/i915/guc: Update GuC messages in intel_guc.c
-ef22893e1a38 drm/i915/guc: Update GuC messages in intel_guc_ads.c
-5bc4c51849e5 drm/i915/guc: Update GuC messages in intel_guc_ct.c
-817341aa24e6 drm/i915/guc: Update GuC messages in intel_guc_fw.c
-0211cb927751 drm/i915/guc: Update GuC messages in intel_guc_log.c
-0643c8385f5b drm/i915/guc: Update GuC messages in intel_guc_submission.c
-972bd4630444 drm/i915/guc: Update GT/GuC messages in intel_uc.c
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c:27:40: warning: unused function 'ct_to_i915' [-Wunused-function]
+   static inline struct drm_i915_private *ct_to_i915(struct intel_guc_ct *ct)
+                                          ^
+   1 warning generated.
 
 
+vim +/ct_to_i915 +27 drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+
+6fb086e5e6ba82d Daniele Ceraolo Spurio 2021-06-02  26  
+6fb086e5e6ba82d Daniele Ceraolo Spurio 2021-06-02 @27  static inline struct drm_i915_private *ct_to_i915(struct intel_guc_ct *ct)
+6fb086e5e6ba82d Daniele Ceraolo Spurio 2021-06-02  28  {
+6fb086e5e6ba82d Daniele Ceraolo Spurio 2021-06-02  29  	return ct_to_gt(ct)->i915;
+6fb086e5e6ba82d Daniele Ceraolo Spurio 2021-06-02  30  }
+6fb086e5e6ba82d Daniele Ceraolo Spurio 2021-06-02  31  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
