@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78CC5675F63
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Jan 2023 22:04:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C62CA675F8A
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Jan 2023 22:17:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08FE210E3A8;
-	Fri, 20 Jan 2023 21:04:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 062D810E1FF;
+	Fri, 20 Jan 2023 21:17:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 48E9810E3A8;
- Fri, 20 Jan 2023 21:04:45 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4037310E1FF;
+ Fri, 20 Jan 2023 21:17:12 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4169AAADDC;
- Fri, 20 Jan 2023 21:04:45 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by emeril.freedesktop.org (Postfix) with ESMTP id 37AB6AADD2;
+ Fri, 20 Jan 2023 21:17:12 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3699642569071263669=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Fri, 20 Jan 2023 21:04:45 -0000
-Message-ID: <167424868523.22913.5704015126061125508@emeril.freedesktop.org>
+Date: Fri, 20 Jan 2023 21:17:12 -0000
+Message-ID: <167424943221.22910.17299305567149928443@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230120193457.3295977-1-lucas.demarchi@intel.com>
 In-Reply-To: <20230120193457.3295977-1-lucas.demarchi@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Add_=5FPICK=5FEVEN=5F2RANGES?=
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQWRk?=
+ =?utf-8?q?_=5FPICK=5FEVEN=5F2RANGES?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,60 +45,280 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============3699642569071263669==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: Add _PICK_EVEN_2RANGES
 URL   : https://patchwork.freedesktop.org/series/113177/
-State : warning
+State : success
 
 == Summary ==
 
-Error: dim checkpatch failed
-1158a61386b5 drm/i915: Add _PICK_EVEN_2RANGES()
--:55: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__index' - possible side-effects?
-#55: FILE: drivers/gpu/drm/i915/i915_reg_defs.h:145:
-+#define _PICK_EVEN_2RANGES(__index, __c_index, __a, __b, __c, __d)		\
-+	(BUILD_BUG_ON_ZERO(!__is_constexpr(__c_index)) +			\
-+	 ((__index) < (__c_index) ? _PICK_EVEN(__index, __a, __b) :		\
-+				   _PICK_EVEN((__index) - (__c_index), __c, __d)))
+CI Bug Log - changes from CI_DRM_12618 -> Patchwork_113177v1
+====================================================
 
--:55: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__c_index' - possible side-effects?
-#55: FILE: drivers/gpu/drm/i915/i915_reg_defs.h:145:
-+#define _PICK_EVEN_2RANGES(__index, __c_index, __a, __b, __c, __d)		\
-+	(BUILD_BUG_ON_ZERO(!__is_constexpr(__c_index)) +			\
-+	 ((__index) < (__c_index) ? _PICK_EVEN(__index, __a, __b) :		\
-+				   _PICK_EVEN((__index) - (__c_index), __c, __d)))
+Summary
+-------
 
-total: 0 errors, 0 warnings, 2 checks, 34 lines checked
-a0415313f5fb drm/i915: Fix coding style on DPLL*_ENABLE defines
-96b62304aa0f drm/i915: Convert pll macros to _PICK_EVEN_2RANGES
--:11: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#11: 
-	4027456  185703    6984 4220143  4064ef build64/drivers/gpu/drm/i915/i915.o.old
+  **SUCCESS**
 
-total: 0 errors, 1 warnings, 0 checks, 106 lines checked
-cabcdfc08547 drm/i915: Replace _MMIO_PHY3() with _PICK_EVEN_2RANGES()
--:11: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#11: 
-	4026997  185703    6984 4219684  406324 build64/drivers/gpu/drm/i915/i915.o.old
+  No regressions found.
 
-total: 0 errors, 1 warnings, 0 checks, 42 lines checked
-78f1ef0205b6 drm/i915: Convert PIPE3/PORT3 to _PICK_EVEN_2RANGES()
--:11: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#11: 
-	4026288  185703    6984 4218975  40605f build64/drivers/gpu/drm/i915/i915.o.old
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113177v1/index.html
 
--:35: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'a' - possible side-effects?
-#35: FILE: drivers/gpu/drm/i915/display/intel_display_reg_defs.h:32:
-+#define _MMIO_PIPE3(pipe, a, b, c)	_MMIO(_PICK_EVEN_2RANGES(pipe, 1, a, a, b, c))
+Participating hosts (36 -> 35)
+------------------------------
 
--:36: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'a' - possible side-effects?
-#36: FILE: drivers/gpu/drm/i915/display/intel_display_reg_defs.h:33:
-+#define _MMIO_PORT3(pipe, a, b, c)	_MMIO(_PICK_EVEN_2RANGES(pipe, 1, a, a, b, c))
+  Additional (1): fi-bsw-kefka 
+  Missing    (2): fi-rkl-11600 fi-snb-2520m 
 
-total: 0 errors, 1 warnings, 2 checks, 18 lines checked
-0fce45deb660 drm/i915: Convert _FIA() to _PICK_EVEN_2RANGES()
-14144930cc2a drm/i915: Convert MBUS_ABOX_CTL() to _PICK_EVEN_2RANGES()
-43ff8ea467c8 drm/i915: Convert PALETTE() to _PICK_EVEN_2RANGES()
+Known issues
+------------
+
+  Here are the changes found in Patchwork_113177v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_gttfill@basic:
+    - fi-pnv-d510:        [PASS][1] -> [FAIL][2] ([i915#7229])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12618/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113177v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+
+  * igt@i915_module_load@load:
+    - fi-ctg-p8600:       [PASS][3] -> [DMESG-WARN][4] ([i915#6020])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12618/fi-ctg-p8600/igt@i915_module_load@load.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113177v1/fi-ctg-p8600/igt@i915_module_load@load.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg1-5:          [PASS][5] -> [INCOMPLETE][6] ([i915#4983])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12618/bat-dg1-5/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113177v1/bat-dg1-5/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
+    - fi-bsw-n3050:       [PASS][7] -> [FAIL][8] ([i915#6298])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12618/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113177v1/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-lvds-1:
+    - fi-ctg-p8600:       [PASS][9] -> [FAIL][10] ([fdo#103375])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12618/fi-ctg-p8600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-lvds-1.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113177v1/fi-ctg-p8600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-lvds-1.html
+
+  * igt@prime_vgem@basic-fence-flip:
+    - fi-bsw-kefka:       NOTRUN -> [SKIP][11] ([fdo#109271]) +26 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113177v1/fi-bsw-kefka/igt@prime_vgem@basic-fence-flip.html
+
+  * igt@runner@aborted:
+    - bat-dg1-5:          NOTRUN -> [FAIL][12] ([i915#4312])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113177v1/bat-dg1-5/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - {bat-jsl-1}:        [DMESG-FAIL][13] ([i915#5334]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12618/bat-jsl-1/igt@i915_selftest@live@gt_heartbeat.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113177v1/bat-jsl-1/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - {bat-rpls-2}:       [DMESG-FAIL][15] ([i915#4258]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12618/bat-rpls-2/igt@i915_selftest@live@gt_pm.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113177v1/bat-rpls-2/igt@i915_selftest@live@gt_pm.html
+
+  * igt@i915_selftest@live@slpc:
+    - {bat-rpls-1}:       [DMESG-FAIL][17] ([i915#6367]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12618/bat-rpls-1/igt@i915_selftest@live@slpc.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113177v1/bat-rpls-1/igt@i915_selftest@live@slpc.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
+    - fi-bsw-n3050:       [FAIL][19] ([i915#6298]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12618/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113177v1/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#4258]: https://gitlab.freedesktop.org/drm/intel/issues/4258
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4817]: https://gitlab.freedesktop.org/drm/intel/issues/4817
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#5591]: https://gitlab.freedesktop.org/drm/intel/issues/5591
+  [i915#6020]: https://gitlab.freedesktop.org/drm/intel/issues/6020
+  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#7229]: https://gitlab.freedesktop.org/drm/intel/issues/7229
+  [i915#7443]: https://gitlab.freedesktop.org/drm/intel/issues/7443
 
 
+Build changes
+-------------
+
+  * Linux: CI_DRM_12618 -> Patchwork_113177v1
+
+  CI-20190529: 20190529
+  CI_DRM_12618: 7ba8ff20ba23bc940e928ffe3a9054225fff418e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7129: 7816773163a1b0d248dd9dd34d14e632ad8903be @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_113177v1: 7ba8ff20ba23bc940e928ffe3a9054225fff418e @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+34ad2dbae567 drm/i915: Convert PALETTE() to _PICK_EVEN_2RANGES()
+23e47c47f6d1 drm/i915: Convert MBUS_ABOX_CTL() to _PICK_EVEN_2RANGES()
+684e8f62f7a4 drm/i915: Convert _FIA() to _PICK_EVEN_2RANGES()
+0f06420e937c drm/i915: Convert PIPE3/PORT3 to _PICK_EVEN_2RANGES()
+c5283d408429 drm/i915: Replace _MMIO_PHY3() with _PICK_EVEN_2RANGES()
+4a14e42776a1 drm/i915: Convert pll macros to _PICK_EVEN_2RANGES
+526e9e6a8927 drm/i915: Fix coding style on DPLL*_ENABLE defines
+f4d3551678c3 drm/i915: Add _PICK_EVEN_2RANGES()
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113177v1/index.html
+
+--===============3699642569071263669==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add _PICK_EVEN_2RANGES</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/113177/">https://patchwork.freedesktop.org/series/113177/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113177v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113177v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12618 -&gt; Patchwork_113177v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113177v1/index.html</p>
+<h2>Participating hosts (36 -&gt; 35)</h2>
+<p>Additional (1): fi-bsw-kefka <br />
+  Missing    (2): fi-rkl-11600 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_113177v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_gttfill@basic:</p>
+<ul>
+<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12618/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113177v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7229">i915#7229</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@load:</p>
+<ul>
+<li>fi-ctg-p8600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12618/fi-ctg-p8600/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113177v1/fi-ctg-p8600/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6020">i915#6020</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12618/bat-dg1-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113177v1/bat-dg1-5/igt@i915_selftest@live@workarounds.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12618/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113177v1/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-lvds-1:</p>
+<ul>
+<li>fi-ctg-p8600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12618/fi-ctg-p8600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-lvds-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113177v1/fi-ctg-p8600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-lvds-1.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-flip:</p>
+<ul>
+<li>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113177v1/fi-bsw-kefka/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +26 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113177v1/bat-dg1-5/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>{bat-jsl-1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12618/bat-jsl-1/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113177v1/bat-jsl-1/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12618/bat-rpls-2/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4258">i915#4258</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113177v1/bat-rpls-2/igt@i915_selftest@live@gt_pm.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@slpc:</p>
+<ul>
+<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12618/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113177v1/bat-rpls-1/igt@i915_selftest@live@slpc.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12618/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113177v1/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12618 -&gt; Patchwork_113177v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12618: 7ba8ff20ba23bc940e928ffe3a9054225fff418e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7129: 7816773163a1b0d248dd9dd34d14e632ad8903be @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_113177v1: 7ba8ff20ba23bc940e928ffe3a9054225fff418e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>34ad2dbae567 drm/i915: Convert PALETTE() to _PICK_EVEN_2RANGES()<br />
+23e47c47f6d1 drm/i915: Convert MBUS_ABOX_CTL() to _PICK_EVEN_2RANGES()<br />
+684e8f62f7a4 drm/i915: Convert _FIA() to _PICK_EVEN_2RANGES()<br />
+0f06420e937c drm/i915: Convert PIPE3/PORT3 to _PICK_EVEN_2RANGES()<br />
+c5283d408429 drm/i915: Replace _MMIO_PHY3() with _PICK_EVEN_2RANGES()<br />
+4a14e42776a1 drm/i915: Convert pll macros to _PICK_EVEN_2RANGES<br />
+526e9e6a8927 drm/i915: Fix coding style on DPLL*_ENABLE defines<br />
+f4d3551678c3 drm/i915: Add _PICK_EVEN_2RANGES()</p>
+
+</body>
+</html>
+
+--===============3699642569071263669==--
