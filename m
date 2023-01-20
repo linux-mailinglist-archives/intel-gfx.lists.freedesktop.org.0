@@ -1,48 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23471674D48
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Jan 2023 07:21:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB474674D4D
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Jan 2023 07:22:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFDEB10EA03;
-	Fri, 20 Jan 2023 06:21:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DF1F10EA55;
+	Fri, 20 Jan 2023 06:21:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1FC710EA52;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D12A10EA03;
  Fri, 20 Jan 2023 06:21:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1674195705; x=1705731705;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=hpb6fhHsC6I9pMZPiNy984MUjJoy1J2xsTXCyptZXFw=;
- b=VP7jUMD7/9ejhbLZLa9jsOiKI4rsx/ugJh3IOdpMrzh5rqOy/63KdCOW
- R4eBk1Holn2P4GLarZ/gtGZUYlTMcpXWvAi54EMHLWqg/qio5DKxo0DzS
- s2yW2c4L7f4XIWD6QyWGwfCQMdlzeMZAT+4CyU67bQuRx1yvFmnJuiftv
- TXTwZqfCzU0mf5PfHEDVBwhUjR8Z5VCLRUSFH/9JPysgt63yT1H6mpwhW
- E5md0BfcLv+82lp7o/kS9gxwjnUbPd2/VfEfmNYufi8/WLUpnn2PUSVE+
- A3ONvm43HI3sJoA9nyKEDav7tN77ZjGn/jhmth4n3MaGbn6sNz/VrPleP Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="390030160"
-X-IronPort-AV: E=Sophos;i="5.97,231,1669104000"; d="scan'208";a="390030160"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=AASS0FwnVNe/OPJgQFOtVGbVsH7cgW31yZ998Bbq/EI=;
+ b=MtWYklPRfcTTDGfROoN7euWz7Al5A2kb3Zy5USxOmOlfCoCQe9yRPtrI
+ Hy0SG/dw4q2Y6LDlK6QSamZFZTlgW35/Q5IfUJ6UdXTQt5PplhyHq2sA2
+ eIctcXltzbSudRDCWqrIwoc0V1XkgPZVq+zJPmYfXI3IPvAX+xS/D47hi
+ T5DlGCOEVZdr8DSnFrIik1lZHW5nTG3jhddzig9krSQeEkY4DsPw3DhSJ
+ KsuDOB1DDktjOgOGo+aHNxZ1LWxEg5ofDym9zJSiyN0Bc8Qzqhttq3c8D
+ J/fiPjivcx9675VTkmkzNVc2KBLEyGpE/b8854XXMrt44f7GmEMrvyY1t g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="390030165"
+X-IronPort-AV: E=Sophos;i="5.97,231,1669104000"; d="scan'208";a="390030165"
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2023 22:21:32 -0800
+ 19 Jan 2023 22:21:33 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="729021167"
-X-IronPort-AV: E=Sophos;i="5.97,231,1669104000"; d="scan'208";a="729021167"
+X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="729021177"
+X-IronPort-AV: E=Sophos;i="5.97,231,1669104000"; d="scan'208";a="729021177"
 Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by fmsmga004.fm.intel.com with ESMTP; 19 Jan 2023 22:21:30 -0800
+ by fmsmga004.fm.intel.com with ESMTP; 19 Jan 2023 22:21:32 -0800
 From: Arun R Murthy <arun.r.murthy@intel.com>
 To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  jani.nikula@intel.com
-Date: Fri, 20 Jan 2023 11:45:58 +0530
-Message-Id: <20230120061600.1451088-1-arun.r.murthy@intel.com>
+Date: Fri, 20 Jan 2023 11:45:59 +0530
+Message-Id: <20230120061600.1451088-2-arun.r.murthy@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230120061600.1451088-1-arun.r.murthy@intel.com>
+References: <20230120061600.1451088-1-arun.r.murthy@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCHv2 0/2] DP2.0 SDP CRC16 for 128/132b link layer
+Subject: [Intel-gfx] [RESEND PATCHv2 1/2] drm: Add SDP Error Detection
+ Configuration Register
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,19 +58,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Harry Wentland <harry.wentland@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-*** BLURB HERE ***
+DP2.0 E11 defines a new register to facilitate SDP error detection by a
+128B/132B capable DPRX device.
 
-Arun R Murthy (2):
-  drm: Add SDP Error Detection Configuration Register
-  i915/display/dp: SDP CRC16 for 128b132b link layer
+v2: Update the macro name to reflect the DP spec(Harry)
 
- .../gpu/drm/i915/display/intel_dp_link_training.c    | 12 ++++++++++++
- include/drm/display/drm_dp.h                         |  3 +++
- 2 files changed, 15 insertions(+)
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+Reviewed-by: Harry Wentland <harry.wentland@amd.com>
+---
+ include/drm/display/drm_dp.h | 3 +++
+ 1 file changed, 3 insertions(+)
 
+diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
+index 632376c291db..358db4a9f167 100644
+--- a/include/drm/display/drm_dp.h
++++ b/include/drm/display/drm_dp.h
+@@ -692,6 +692,9 @@
+ # define DP_FEC_LANE_2_SELECT		    (2 << 4)
+ # define DP_FEC_LANE_3_SELECT		    (3 << 4)
+ 
++#define DP_SDP_ERROR_DETECTION_CONFIGURATION	0x121	/* DP 2.0 E11 */
++#define DP_SDP_CRC16_128B132B_EN		BIT(0)
++
+ #define DP_AUX_FRAME_SYNC_VALUE		    0x15c   /* eDP 1.4 */
+ # define DP_AUX_FRAME_SYNC_VALID	    (1 << 0)
+ 
 -- 
 2.25.1
 
