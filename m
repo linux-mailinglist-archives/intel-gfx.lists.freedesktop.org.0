@@ -1,67 +1,95 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12DD96758A1
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Jan 2023 16:33:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 044976758FC
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Jan 2023 16:45:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2E8910E375;
-	Fri, 20 Jan 2023 15:32:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23B7010EA94;
+	Fri, 20 Jan 2023 15:45:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com
- [IPv6:2607:f8b0:4864:20::112d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B774E10E375
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Jan 2023 15:32:49 +0000 (UTC)
-Received: by mail-yw1-x112d.google.com with SMTP id
- 00721157ae682-4c131bede4bso77336247b3.5
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Jan 2023 07:32:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=9IPtDJM5M6jGN6qD0tP24K72UIm4iRXYGKWNFo7x72g=;
- b=SPoq6nBK/JeShjz0kPsSHbBdOJtV/AmVLorEPqTuGDzC70Ow5DX8doU0rsRDKCcTD1
- Jltcq/okn/fjqBisJ9sE69yh3amFyHgGDIqt3YyHdPR0N6qepAWxsS2OMETpUksYGV1S
- kwvgHr7iyU+Zf8HqHBuJwD0xp+BnLHmYnP0u3hdglzpy03kUEls0HWOct6IEtaAqANmb
- Q+V1t217x323JxoCLe6IfUbqtk4A/Ytth5Y1OutLyazCII9UdOCnZNL5iFxHvuAhrIPK
- 3bwvEBE3iFXfMvlRByIuUpVcNW3pdXTUVnZ8yCJLWxGQb/RIggDxCRemoyzqpl81n21X
- kMFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=9IPtDJM5M6jGN6qD0tP24K72UIm4iRXYGKWNFo7x72g=;
- b=LA/sGCsBibTWDABfAZSCcuSdf2cLFjt1UC95izU1vw4ZcYp2yo5muxj3BN2Johpp8M
- zIC817qqqtePgJSyJBBXeLokxJy3vIgMdz1K0/5vOXoYczbj8qvMbrIosykgrA7EBKUb
- mdX9hWVJAfsoOax8XickB88bGza5vr2OdHOZZCrKKuPQMMDTJrXPYsfoHxs2otAyrrd7
- /N7CH7k43RRgL1nj8p4ku2VJe0RY5niBuQvZcJRuZ9vyasttcR7c75b3VnpHoSS1GNJQ
- b3jEoehkHqeZIMke75oJne/DIQHenZRJ0O653dBW8RaUCFpm7vl8XZ5Rp58gA0AzMO/Y
- cDVQ==
-X-Gm-Message-State: AFqh2kpqFuoZb76iH1RS8dN4ZTZtnZZG1cOqA8I1ZC5WqZlu/wuliXSK
- PGzGosiOnRTxs/IKg56t5t5g0g==
-X-Google-Smtp-Source: AMrXdXtru88v2k61i9cQGS6ax35vAmCsXdW2DZPSz/qrSHebfuajOctI7UdN7zUMawsmB7qZX4N0+w==
-X-Received: by 2002:a0d:d610:0:b0:3af:2118:fc34 with SMTP id
- y16-20020a0dd610000000b003af2118fc34mr11723672ywd.34.1674228768750; 
- Fri, 20 Jan 2023 07:32:48 -0800 (PST)
-Received: from localhost (200.234.86.34.bc.googleusercontent.com.
- [34.86.234.200]) by smtp.gmail.com with ESMTPSA id
- j20-20020a05620a289400b006fed58fc1a3sm26448188qkp.119.2023.01.20.07.32.47
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 20 Jan 2023 07:32:47 -0800 (PST)
-Date: Fri, 20 Jan 2023 15:32:47 +0000
-From: Sean Paul <sean@poorly.run>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Message-ID: <Y8q0H7SiDkdfmyXP@art_vandelay>
-References: <20230118193015.911074-1-markyacoub@google.com>
- <20230118193015.911074-2-markyacoub@google.com>
- <67170ce0-8622-8b35-e73a-7d873b7a3b8b@linaro.org>
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
+ [148.163.158.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2A0F10EA93;
+ Fri, 20 Jan 2023 15:45:50 +0000 (UTC)
+Received: from pps.filterd (m0098421.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
+ 30KEN79w023320; Fri, 20 Jan 2023 15:45:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
+ h=message-id : date :
+ subject : to : cc : references : from : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=pp1;
+ bh=jP4jR2i0Vx3/CXZzjbOxmRNKOfuz0Kxez96Br8vVvcU=;
+ b=QexltucWRcI0Yj7UTKuFqL4FmFx7fY41OWHAzclFDfxLerjh/pugkE7wG370ctFRF7GV
+ Hxa3mgTgsU7YyReednEWeampn4jkQp3P3Gw18P8ffh9TnkRMokUtWqp1PUPAd+9luErz
+ 79ONCrvcAUGxdhlhO2TUz1XqZsoCCDgo66HqYdIZ1TtumeIUVETsVbrO2hM0uhd1pWm7
+ SNOFBXUbvdYmhlMzIw5Op1qgyYdFLG+fgqjnOjy/8LBMBj3dEi75om4mT1WhFmraVFZ1
+ vFWf0YO3bKVswbtgyN7DDkk2DGspGZDo5atyLmb5NsEMdjXz0b+6S8/A6osQZ2hOXT2J iA== 
+Received: from pps.reinject (localhost [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3n7tsbn9sn-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 20 Jan 2023 15:45:46 +0000
+Received: from m0098421.ppops.net (m0098421.ppops.net [127.0.0.1])
+ by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 30KFBRG0028162;
+ Fri, 20 Jan 2023 15:45:45 GMT
+Received: from ppma05wdc.us.ibm.com (1b.90.2fa9.ip4.static.sl-reverse.com
+ [169.47.144.27])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3n7tsbn9s9-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 20 Jan 2023 15:45:45 +0000
+Received: from pps.filterd (ppma05wdc.us.ibm.com [127.0.0.1])
+ by ppma05wdc.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 30KCuOeE024991;
+ Fri, 20 Jan 2023 15:45:44 GMT
+Received: from smtprelay04.dal12v.mail.ibm.com ([9.208.130.102])
+ by ppma05wdc.us.ibm.com (PPS) with ESMTPS id 3n3m182yj1-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 20 Jan 2023 15:45:44 +0000
+Received: from smtpav03.wdc07v.mail.ibm.com (smtpav03.wdc07v.mail.ibm.com
+ [10.39.53.230])
+ by smtprelay04.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 30KFjhHC8782464
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Fri, 20 Jan 2023 15:45:43 GMT
+Received: from smtpav03.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 663475805F;
+ Fri, 20 Jan 2023 15:45:43 +0000 (GMT)
+Received: from smtpav03.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 01FE95805C;
+ Fri, 20 Jan 2023 15:45:41 +0000 (GMT)
+Received: from [9.160.87.67] (unknown [9.160.87.67])
+ by smtpav03.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+ Fri, 20 Jan 2023 15:45:40 +0000 (GMT)
+Message-ID: <6eff63d8-d825-aecd-12b5-e8dbf55f4372@linux.ibm.com>
+Date: Fri, 20 Jan 2023 10:45:40 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Content-Language: en-US
+To: "Liu, Yi L" <yi.l.liu@intel.com>,
+ "alex.williamson@redhat.com" <alex.williamson@redhat.com>,
+ "pbonzini@redhat.com" <pbonzini@redhat.com>
+References: <20230120150528.471752-1-yi.l.liu@intel.com>
+ <DS0PR11MB7529B08476DF1764F1B6C007C3C59@DS0PR11MB7529.namprd11.prod.outlook.com>
+From: Matthew Rosato <mjrosato@linux.ibm.com>
+In-Reply-To: <DS0PR11MB7529B08476DF1764F1B6C007C3C59@DS0PR11MB7529.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: F9NWpvszn4K81JkqFp2jJcB3Ow5IH-ax
+X-Proofpoint-ORIG-GUID: J8JVlc_KWGK9Nyn4DQKTYEuioeLy0duP
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-UnRewURL: 0 URL was un-rewritten
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <67170ce0-8622-8b35-e73a-7d873b7a3b8b@linaro.org>
-Subject: Re: [Intel-gfx] [PATCH v6 01/10] drm/hdcp: Add
- drm_hdcp_atomic_check()
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-20_09,2023-01-20_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 mlxlogscore=999
+ bulkscore=0 adultscore=0 clxscore=1015 mlxscore=0 priorityscore=1501
+ lowpriorityscore=0 spamscore=0 suspectscore=0 impostorscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301200148
+Subject: Re: [Intel-gfx] [PATCH] kvm/vfio: Fix potential deadlock on vfio
+ group_lock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,89 +102,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: quic_sbillaka@quicinc.com, konrad.dybcio@somainline.org,
- dri-devel@lists.freedesktop.org, dianders@chromium.org,
- krzysztof.kozlowski+dt@linaro.org, airlied@gmail.com, hbh25y@gmail.com,
- marex@denx.de, abhinavk@codeaurora.org, javierm@redhat.com,
- quic_khsieh@quicinc.com, agross@kernel.org, quic_jesszhan@quicinc.com,
- devicetree@vger.kernel.org, tzimmermann@suse.de,
- Jani Nikula <jani.nikula@intel.com>, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, lucas.demarchi@intel.com,
- quic_abhinavk@quicinc.com, swboyd@chromium.org, robh+dt@kernel.org,
- christophe.jaillet@wanadoo.fr, rodrigo.vivi@intel.com,
- bjorn.andersson@linaro.org, johan+linaro@kernel.org,
- Mark Yacoub <markyacoub@chromium.org>, andersson@kernel.org,
- linux-kernel@vger.kernel.org, daniel@ffwll.ch, dmitry.baryshkov@linaro.org,
- seanpaul@chromium.org, freedreno@lists.freedesktop.org, maxime@cerno.tech
+Cc: "akrowiak@linux.ibm.com" <akrowiak@linux.ibm.com>,
+ "jjherne@linux.ibm.com" <jjherne@linux.ibm.com>,
+ "imbrenda@linux.ibm.com" <imbrenda@linux.ibm.com>,
+ "frankja@linux.ibm.com" <frankja@linux.ibm.com>,
+ "pmorel@linux.ibm.com" <pmorel@linux.ibm.com>,
+ "david@redhat.com" <david@redhat.com>, "Christopherson, ,
+ Sean" <seanjc@google.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "farman@linux.ibm.com" <farman@linux.ibm.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "pasic@linux.ibm.com" <pasic@linux.ibm.com>, "jgg@nvidia.com" <jgg@nvidia.com>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "borntraeger@linux.ibm.com" <borntraeger@linux.ibm.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 19, 2023 at 11:37:52AM +0100, Krzysztof Kozlowski wrote:
-> On 18/01/2023 20:30, Mark Yacoub wrote:
-> > From: Sean Paul <seanpaul@chromium.org>
-> > 
-> > This patch moves the hdcp atomic check from i915 to drm_hdcp so other
-> > drivers can use it. No functional changes, just cleaned up some of the
-> > code when moving it over.
-> > 
-> > Acked-by: Jani Nikula <jani.nikula@intel.com>
-> > Acked-by: Jani Nikula <jani.nikula@intel.com>
-> > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > Reviewed-by: Abhinav Kumar <abhinavk@codeaurora.org>
-> > Signed-off-by: Sean Paul <seanpaul@chromium.org>
-> > Signed-off-by: Mark Yacoub <markyacoub@chromium.org>
-> > Link: https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-2-sean@poorly.run #v1
-> > Link: https://patchwork.freedesktop.org/patch/msgid/20210915203834.1439-2-sean@poorly.run #v2
-> > Link: https://patchwork.freedesktop.org/patch/msgid/20211001151145.55916-2-sean@poorly.run #v3
-> > Link: https://patchwork.freedesktop.org/patch/msgid/20211105030434.2828845-2-sean@poorly.run #v4
-> > Link: https://patchwork.freedesktop.org/patch/msgid/20220411204741.1074308-2-sean@poorly.run #v5
+On 1/20/23 10:08 AM, Liu, Yi L wrote:
+>> From: Liu, Yi L <yi.l.liu@intel.com>
+>> Sent: Friday, January 20, 2023 11:05 PM
+>>
+>> Currently it is possible that the final put of a KVM reference comes from
+>> vfio during its device close operation.  This occurs while the vfio group
+>> lock is held; however, if the vfio device is still in the kvm device list,
+>> then the following call chain could result in a deadlock:
+>>
+>> VFIO holds group->group_lock/group_rwsem
+>>   -> kvm_put_kvm
+>>    -> kvm_destroy_vm
+>>     -> kvm_destroy_devices
+>>      -> kvm_vfio_destroy
+>>       -> kvm_vfio_file_set_kvm
+>>        -> vfio_file_set_kvm
+>>         -> try to hold group->group_lock/group_rwsem
+>>
+>> The key function is the kvm_destroy_devices() which triggers destroy cb
+>> of kvm_device_ops. It calls back to vfio and try to hold group_lock. So
+>> if this path doesn't call back to vfio, this dead lock would be fixed.
+>> Actually, there is a way for it. KVM provides another point to free the
+>> kvm-vfio device which is the point when the device file descriptor is
+>> closed. This can be achieved by providing the release cb instead of the
+>> destroy cb. Also rename kvm_vfio_destroy() to be kvm_vfio_release().
+>>
+>> 	/*
+>> 	 * Destroy is responsible for freeing dev.
+>> 	 *
+>> 	 * Destroy may be called before or after destructors are called
+>> 	 * on emulated I/O regions, depending on whether a reference is
+>> 	 * held by a vcpu or other kvm component that gets destroyed
+>> 	 * after the emulated I/O.
+>> 	 */
+>> 	void (*destroy)(struct kvm_device *dev);
+>>
+>> 	/*
+>> 	 * Release is an alternative method to free the device. It is
+>> 	 * called when the device file descriptor is closed. Once
+>> 	 * release is called, the destroy method will not be called
+>> 	 * anymore as the device is removed from the device list of
+>> 	 * the VM. kvm->lock is held.
+>> 	 */
+>> 	void (*release)(struct kvm_device *dev);
+>>
+>> Fixes: 421cfe6596f6 ("vfio: remove VFIO_GROUP_NOTIFY_SET_KVM")
+>> Reported-by: Alex Williamson <alex.williamson@redhat.com>
+>> Suggested-by: Kevin Tian <kevin.tian@intel.com>
+>> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+>> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
 > 
-> It seems all your previous versions were sent not to correct people and
-> lists. Therefore we see it for the first time even though it is v6! 
-
-Hi Krzysztof,
-Thanks for your review comments.
-
-Here are the addresses the last version was sent to, who is missing?
-
-To: dri-devel@lists.freedesktop.org, 
-    jani.nikula@intel.com,
-    intel-gfx@lists.freedesktop.org,
-    freedreno@lists.freedesktop.org,
-    rodrigo.vivi@intel.com
-Cc: bjorn.andersson@linaro.org, 
-    swboyd@chromium.org,
-    abhinavk@codeaurora.org,
-    markyacoub@chromium.org,
-    Sean Paul <seanpaul@chromium.org>,
-    Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-    Maxime Ripard <mripard@kernel.org>,
-    Thomas Zimmermann <tzimmermann@suse.de>,
-    David Airlie <airlied@linux.ie>,
-    Daniel Vetter <daniel@ffwll.ch>,
-    Jani Nikula <jani.nikula@linux.intel.com>,
-    Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
-    Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-
-> It's
-> not the first such weird CC list in chromium, so maybe your
-> organisational process could be improved? Not only for you but for
-> colleagues as well, so you all start using get_maintainers.pl on newest
-> kernel (not something ancient)?
-
-I can't really speak for others, but I use MAINTAINERS from drm-tip. The 
-previous patch sets were sent before 24df12013853 ("MAINTAINERS: Add 
-Dmitry as MSM DRM driver co-maintainer"), which might explain why you think
-there are absences?
-
-Thanks again,
-
-Sean
-
-> 
-> Best regards,
-> Krzysztof
+> More background can be found in Mathew's work.
+> https://lore.kernel.org/kvm/20230114000351.115444-1-mjrosato@linux.ibm.com/T/#u
 > 
 
--- 
-Sean Paul, Software Engineer, Google / Chromium OS
+Thanks Yi.
+
+Reviewed-by: Matthew Rosato <mjrosato@linux.ibm.com>
+
+One small nit:  There is a comment at the very end of kvm_vfio_release on the kfree(dev) that still references .destroy, this should be updated to .release
+
+
+
