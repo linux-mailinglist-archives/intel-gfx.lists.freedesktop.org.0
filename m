@@ -2,54 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFFA467572C
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Jan 2023 15:29:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BE80675816
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Jan 2023 16:05:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D592010E033;
-	Fri, 20 Jan 2023 14:29:48 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85A3310E107;
+	Fri, 20 Jan 2023 15:05:34 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9356610E033;
- Fri, 20 Jan 2023 14:29:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE7B110E0F4;
+ Fri, 20 Jan 2023 15:05:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674224987; x=1705760987;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=+ECmdq9y8d3BHEOsdCzMZUdA7f5uVa/5t9H5/xOx9UQ=;
- b=Sqtvc7k73lS2BgdX5npiEWgzl7rYabUo0gaNJLXqRF2DwoMRrIme5eoT
- p0ZNS1oPQRQLtadKu++o/euOYbY3cjL/2tUz1gO5ATxi6TgAKAYtt8nQt
- zgoIwDcbv/BxQZB2pbpU9MseixmgM3Ov2KQcStc8am2eYixVbaw3n7mx4
- AHnRZSo6SWH8IjJj43N5i1b8Ke8Y/8JP+vItF9uKLdD2mj7ASMDyzfQAZ
- prwTiV7/kZ495zvfDOkaEjqyTOQuQ+y6yNXXgu3t2uVnM9KrqxwJUeaFs
- GtNRhWU4Wa97orPD0ani+UYOaBeksGp+oTlgsX9DFWYiUu2stwYD3y7w+ A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="309162907"
-X-IronPort-AV: E=Sophos;i="5.97,232,1669104000"; d="scan'208";a="309162907"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ t=1674227132; x=1705763132;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Zn183ElO1bl64Y4pVPfF7h7rDHD+/IuJAJiKiAAXWvc=;
+ b=N5NkUJOGB7Apuh8+vscREZMUZPeP95xuud50bxxR2YGavx1R5fKKp18g
+ Edzy4cTtXgLqhgUYVsiHYWChS/5OY5r2o3783HdrMIwne4qWKI58gNLgh
+ 2kEpkmfCimuXIkwO4il7XICjEFKMBxZqa8FtgJjPH/OspjgfYIZfwC+Q3
+ rkO3cyoF1jOkuZa8D/T/vuZ1NyeFgf+XCD1Lbl2Tly1Ru3fhhtRPWov2n
+ en/+GlZh4lsuTJ0tK2FsWjostaRIm3hDc2D3z78lr5EZxn03MFP+ZHZzc
+ byczyfl+zcKPGdQPF4AIxkpJnKeuLC7+H4XoUlNEybTLjNlYTHNOUW1+M g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="309169483"
+X-IronPort-AV: E=Sophos;i="5.97,232,1669104000"; d="scan'208";a="309169483"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2023 06:29:47 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="692874158"
-X-IronPort-AV: E=Sophos;i="5.97,232,1669104000"; d="scan'208";a="692874158"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.251.222.253])
- ([10.251.222.253])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2023 06:29:45 -0800
-Message-ID: <46f7db49-eb5c-515f-b450-75cac53d770e@linux.intel.com>
-Date: Fri, 20 Jan 2023 15:29:43 +0100
+ 20 Jan 2023 07:05:31 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="784532388"
+X-IronPort-AV: E=Sophos;i="5.97,232,1669104000"; d="scan'208";a="784532388"
+Received: from 984fee00a4c6.jf.intel.com ([10.165.58.231])
+ by orsmga004.jf.intel.com with ESMTP; 20 Jan 2023 07:05:30 -0800
+From: Yi Liu <yi.l.liu@intel.com>
+To: alex.williamson@redhat.com,
+	pbonzini@redhat.com,
+	mjrosato@linux.ibm.com
+Date: Fri, 20 Jan 2023 07:05:28 -0800
+Message-Id: <20230120150528.471752-1-yi.l.liu@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Content-Language: en-US
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- igt-dev@lists.freedesktop.org, Intel-gfx@lists.freedesktop.org
-References: <20230119155428.3260937-1-tvrtko.ursulin@linux.intel.com>
-From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
-In-Reply-To: <20230119155428.3260937-1-tvrtko.ursulin@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH i-g-t] intel_gpu_top: Fix cleanup on old
- kernels / unsupported GPU
+Subject: [Intel-gfx] [PATCH] kvm/vfio: Fix potential deadlock on vfio
+ group_lock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,72 +57,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: akrowiak@linux.ibm.com, jjherne@linux.ibm.com, yi.l.liu@intel.com,
+ frankja@linux.ibm.com, pmorel@linux.ibm.com, david@redhat.com,
+ imbrenda@linux.ibm.com, seanjc@google.com, intel-gfx@lists.freedesktop.org,
+ cohuck@redhat.com, farman@linux.ibm.com, linux-kernel@vger.kernel.org,
+ pasic@linux.ibm.com, jgg@nvidia.com, kvm@vger.kernel.org,
+ linux-s390@vger.kernel.org, borntraeger@linux.ibm.com,
+ intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Tvrtko,
+Currently it is possible that the final put of a KVM reference comes from
+vfio during its device close operation.  This occurs while the vfio group
+lock is held; however, if the vfio device is still in the kvm device list,
+then the following call chain could result in a deadlock:
 
-On 1/19/2023 4:54 PM, Tvrtko Ursulin wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->
-> Avoid trying to dereference null engines on exit when there are either
-> none which are supported, or kernel does not have i915 PMU support.
->
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->   tools/intel_gpu_top.c | 10 +++++++---
->   1 file changed, 7 insertions(+), 3 deletions(-)
->
-> diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
-> index 7aa233570463..517dc2995d26 100644
-> --- a/tools/intel_gpu_top.c
-> +++ b/tools/intel_gpu_top.c
-> @@ -448,6 +448,9 @@ static void free_engines(struct engines *engines)
->   	};
->   	unsigned int i;
->   
-> +	if (!engines)
-> +		return;
-> +
+VFIO holds group->group_lock/group_rwsem
+  -> kvm_put_kvm
+   -> kvm_destroy_vm
+    -> kvm_destroy_devices
+     -> kvm_vfio_destroy
+      -> kvm_vfio_file_set_kvm
+       -> vfio_file_set_kvm
+        -> try to hold group->group_lock/group_rwsem
 
+The key function is the kvm_destroy_devices() which triggers destroy cb
+of kvm_device_ops. It calls back to vfio and try to hold group_lock. So
+if this path doesn't call back to vfio, this dead lock would be fixed.
+Actually, there is a way for it. KVM provides another point to free the
+kvm-vfio device which is the point when the device file descriptor is
+closed. This can be achieved by providing the release cb instead of the
+destroy cb. Also rename kvm_vfio_destroy() to be kvm_vfio_release().
 
-This check should happen before the  struct pmu_counter free_list 
-generation.
+	/*
+	 * Destroy is responsible for freeing dev.
+	 *
+	 * Destroy may be called before or after destructors are called
+	 * on emulated I/O regions, depending on whether a reference is
+	 * held by a vcpu or other kvm component that gets destroyed
+	 * after the emulated I/O.
+	 */
+	void (*destroy)(struct kvm_device *dev);
 
+	/*
+	 * Release is an alternative method to free the device. It is
+	 * called when the device file descriptor is closed. Once
+	 * release is called, the destroy method will not be called
+	 * anymore as the device is removed from the device list of
+	 * the VM. kvm->lock is held.
+	 */
+	void (*release)(struct kvm_device *dev);
 
-Regards,
+Fixes: 421cfe6596f6 ("vfio: remove VFIO_GROUP_NOTIFY_SET_KVM")
+Reported-by: Alex Williamson <alex.williamson@redhat.com>
+Suggested-by: Kevin Tian <kevin.tian@intel.com>
+Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+Signed-off-by: Yi Liu <yi.l.liu@intel.com>
+---
+ virt/kvm/vfio.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Nirmoy
+diff --git a/virt/kvm/vfio.c b/virt/kvm/vfio.c
+index 495ceabffe88..e94f3ea718e5 100644
+--- a/virt/kvm/vfio.c
++++ b/virt/kvm/vfio.c
+@@ -336,7 +336,7 @@ static int kvm_vfio_has_attr(struct kvm_device *dev,
+ 	return -ENXIO;
+ }
+ 
+-static void kvm_vfio_destroy(struct kvm_device *dev)
++static void kvm_vfio_release(struct kvm_device *dev)
+ {
+ 	struct kvm_vfio *kv = dev->private;
+ 	struct kvm_vfio_group *kvg, *tmp;
+@@ -363,7 +363,7 @@ static int kvm_vfio_create(struct kvm_device *dev, u32 type);
+ static struct kvm_device_ops kvm_vfio_ops = {
+ 	.name = "kvm-vfio",
+ 	.create = kvm_vfio_create,
+-	.destroy = kvm_vfio_destroy,
++	.release = kvm_vfio_release,
+ 	.set_attr = kvm_vfio_set_attr,
+ 	.has_attr = kvm_vfio_has_attr,
+ };
+-- 
+2.34.1
 
->   	for (pmu = &free_list[0]; *pmu; pmu++) {
->   		if ((*pmu)->present)
->   			free((char *)(*pmu)->units);
-> @@ -2568,7 +2571,7 @@ int main(int argc, char **argv)
->   			"Failed to detect engines! (%s)\n(Kernel 4.16 or newer is required for i915 PMU support.)\n",
->   			strerror(errno));
->   		ret = EXIT_FAILURE;
-> -		goto err;
-> +		goto err_engines;
->   	}
->   
->   	ret = pmu_init(engines);
-> @@ -2585,7 +2588,7 @@ int main(int argc, char **argv)
->   "More information can be found at 'Perf events and tool security' document:\n"
->   "https://www.kernel.org/doc/html/latest/admin-guide/perf-security.html\n");
->   		ret = EXIT_FAILURE;
-> -		goto err;
-> +		goto err_pmu;
->   	}
->   
->   	ret = EXIT_SUCCESS;
-> @@ -2699,8 +2702,9 @@ int main(int argc, char **argv)
->   		free_clients(clients);
->   
->   	free(codename);
-> -err:
-> +err_pmu:
->   	free_engines(engines);
-> +err_engines:
->   	free(pmu_device);
->   exit:
->   	igt_devices_free();
