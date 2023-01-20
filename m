@@ -1,52 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D3E5674CFE
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Jan 2023 07:05:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27024674D06
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Jan 2023 07:08:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B234810EA4D;
-	Fri, 20 Jan 2023 06:04:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76CC510EA4E;
+	Fri, 20 Jan 2023 06:08:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41DC410EA49;
- Fri, 20 Jan 2023 06:04:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674194685; x=1705730685;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=trNCxGnSP4ZToFQVZRvV2mLowfUfMjvj7+tgltCb35Q=;
- b=MynkQOruHekU+tn2NESyM3HHGpVgSaktLiabrB17ETWnoWCRg5skqQVf
- zuIOUa/0lSkziZa9sI1W9AVrkzS6F/ykyoPIhdbn2yk73ZeuqipNiG4u2
- ap8CvOMUAKQwVLZUuG2tPZKlGvZBUuQ2iV3PZiilgtRE/ZLPzqdWJ0m5X
- YRB2ao5FjaLtQSTilkQqG5gAVubFUhJhF4+JNbuh8bOYHfjio85qRTSCg
- nTcyJxn1F4hmEom1mzmdbgdOYhJRxK/nIUpNkz3ws5zOpfVeUuZakwtwe
- 1vZo0YTVMMSEL0SIqm9mKg+qWSRQN/iPZDJ0kHiM61f6FP9bzRW4/Wt7v g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="305880040"
-X-IronPort-AV: E=Sophos;i="5.97,231,1669104000"; d="scan'208";a="305880040"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2023 22:04:45 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="784408782"
-X-IronPort-AV: E=Sophos;i="5.97,231,1669104000"; d="scan'208";a="784408782"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orsmga004.jf.intel.com with ESMTP; 19 Jan 2023 22:04:43 -0800
-From: Arun R Murthy <arun.r.murthy@intel.com>
-To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- jani.nikula@intel.com
-Date: Fri, 20 Jan 2023 11:29:12 +0530
-Message-Id: <20230120055912.1450647-2-arun.r.murthy@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230120055912.1450647-1-arun.r.murthy@intel.com>
-References: <20230113043653.795183-1-arun.r.murthy@intel.com>
- <20230120055912.1450647-1-arun.r.murthy@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 399DE10EA4E;
+ Fri, 20 Jan 2023 06:08:35 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 32B9EAAA91;
+ Fri, 20 Jan 2023 06:08:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RESEND PATCHv2 2/2] i915/display/dp: SDP CRC16 for
- 128b132b link layer
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
+Date: Fri, 20 Jan 2023 06:08:35 -0000
+Message-ID: <167419491517.22913.5708096240449321248@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230113043653.795183-1-arun.r.murthy@intel.com>
+In-Reply-To: <20230113043653.795183-1-arun.r.murthy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
+ =?utf-8?q?eries_starting_with_=5BRESEND=2CPATCHv2=2C2/2=5D_i915/display/d?=
+ =?utf-8?q?p=3A_SDP_CRC16_for_128b132b_link_layer_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,45 +41,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Enable SDP error detection configuration, this will set CRC16 in
-128b/132b link layer.
-For Display version 13 a hardware bit31 in register VIDEO_DIP_CTL is
-added to enable/disable SDP CRC applicable for DP2.0 only, but the
-default value of this bit will enable CRC16 in 128b/132b hence
-skipping this write.
-Corrective actions on SDP corruption is yet to be defined.
+== Series Details ==
 
-v2: Moved the CRC enable to link training init(Jani N)
+Series: series starting with [RESEND,PATCHv2,2/2] i915/display/dp: SDP CRC16 for 128b132b link layer (rev5)
+URL   : https://patchwork.freedesktop.org/series/112774/
+State : failure
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- .../gpu/drm/i915/display/intel_dp_link_training.c    | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index 3d3efcf02011..7064e465423b 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -1453,4 +1453,16 @@ void intel_dp_start_link_train(struct intel_dp *intel_dp,
- 
- 	if (!passed)
- 		intel_dp_schedule_fallback_link_training(intel_dp, crtc_state);
-+
-+	/* DP v2.0 SCR on SDP CRC16 for 128b/132b Link Layer */
-+	if (intel_dp_is_uhbr(crtc_state) && passed)
-+		drm_dp_dpcd_writeb(&intel_dp->aux,
-+				   DP_SDP_ERROR_DETECTION_CONFIGURATION,
-+				   DP_SDP_CRC16_128B132B_EN);
-+		/*
-+		 * VIDEO_DIP_CTL register bit 31 should be set to '0' to not
-+		 * disable SDP CRC. This is applicable for Display version 13.
-+		 * Default value of bit 31 is '0' hence discarding the write
-+		 */
-+		/* TODO: Corrective actions on SDP corruption yet to be defined */
- }
--- 
-2.25.1
+Error: make failed
+  CALL    scripts/checksyscalls.sh
+  DESCEND objtool
+  CC [M]  drivers/gpu/drm/i915/display/intel_dp.o
+drivers/gpu/drm/i915/display/intel_dp.c: In function ‘intel_dp_set_dpcd_sink_rates’:
+drivers/gpu/drm/i915/display/intel_dp.c:204:9: error: ‘DP_SDP_ERROR_DETECTION’ undeclared (first use in this function)
+  204 |         DP_SDP_ERROR_DETECTION,
+      |         ^~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/i915/display/intel_dp.c:204:9: note: each undeclared identifier is reported only once for each function it appears in
+drivers/gpu/drm/i915/display/intel_dp.c:205:9: error: ‘DP_SDP_CRC16_128B132B_EN’ undeclared (first use in this function)
+  205 |         DP_SDP_CRC16_128B132B_EN);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~
+make[5]: *** [scripts/Makefile.build:252: drivers/gpu/drm/i915/display/intel_dp.o] Error 1
+make[4]: *** [scripts/Makefile.build:504: drivers/gpu/drm/i915] Error 2
+make[3]: *** [scripts/Makefile.build:504: drivers/gpu/drm] Error 2
+make[2]: *** [scripts/Makefile.build:504: drivers/gpu] Error 2
+make[1]: *** [scripts/Makefile.build:504: drivers] Error 2
+make: *** [Makefile:2008: .] Error 2
+
 
