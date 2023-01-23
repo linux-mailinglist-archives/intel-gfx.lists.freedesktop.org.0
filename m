@@ -1,53 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5807767780A
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Jan 2023 10:59:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08A1267784E
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Jan 2023 11:06:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2424410E21D;
-	Mon, 23 Jan 2023 09:59:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02FCC89089;
+	Mon, 23 Jan 2023 10:06:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA65610E210;
- Mon, 23 Jan 2023 09:59:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674467987; x=1706003987;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=ePDWwgcnlNm7XgLa0k+WDGWgsGFUAD6LL0d9v4m8XAE=;
- b=RGJ43OH7TsQLzHYTXy8y9sNhp/a2Dz8DDfQh2epjeUm4wqKA5OPYp1jB
- RtWxS9/6neCcG0Jxemx0USQ7yX4a1i7o5pRB4J4gKSx5Ynt+9KDsgimCS
- 1+mnEr8J2nF0P4QfCJ2JKCd1odzk3FO7E5GgVl9vNBcrkW4eEShhHN0/m
- F5ErWQCbhsx0XiALQFsXEtYp4/TK3Wa+TVniZsX1AO894+iJdVNeIWBhG
- 1Ty/IS6RW5lkRfsKEJth/iDti0w7tM3BFPoHAYAH8h39b0cUnmnnVClvD
- tvcKshdBdcsVNRCGkcA1qt0Dv6l1fW599Jdq/1YfCNTNsdVGpmWRM+3d2 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10598"; a="326040460"
-X-IronPort-AV: E=Sophos;i="5.97,239,1669104000"; d="scan'208";a="326040460"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2023 01:59:47 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10598"; a="835412129"
-X-IronPort-AV: E=Sophos;i="5.97,239,1669104000"; d="scan'208";a="835412129"
-Received: from possola-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.57.125])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2023 01:59:45 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-In-Reply-To: <712cc299afe33d8f6279a15d5b0117aeeab88bb4.1674144945.git.jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1674144945.git.jani.nikula@intel.com>
- <712cc299afe33d8f6279a15d5b0117aeeab88bb4.1674144945.git.jani.nikula@intel.com>
-Date: Mon, 23 Jan 2023 11:59:43 +0200
-Message-ID: <87r0vl8tbk.fsf@intel.com>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 494F1882D0;
+ Mon, 23 Jan 2023 10:06:04 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 08ED334211;
+ Mon, 23 Jan 2023 10:06:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1674468363; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=zvbfFxmPA6MckGsa12w4Fd8iWOMpJ3cRPXUsw4iIFlE=;
+ b=hnx13NtxzNm1St8ipbiG73i6D7suAB2xOt8zRS7nVB69ksjHiMHL25Q0pxRnnbNqOza/V1
+ oXY/KmiKYhbwQHSeDvZ+uJ5z/ZCBPW1SXEFs64XCNW1mxEnRWgSwAMDQ6uAAWyotEizlA0
+ hyAeowqfZwQqI4LT+znkkDhO8Z6+fl0=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1674468363;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=zvbfFxmPA6MckGsa12w4Fd8iWOMpJ3cRPXUsw4iIFlE=;
+ b=zzKj3UI4WR5ICeAArZmfACKc11DAuP7TD0zJfbZGYG5byVInNlwnlYmH/cP98v1w34uLiQ
+ 3n6CZISuR2ebLNCg==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id B9860134F5;
+ Mon, 23 Jan 2023 10:06:02 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id o3VQLApczmO+DwAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Mon, 23 Jan 2023 10:06:02 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: airlied@gmail.com, daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, javierm@redhat.com
+Date: Mon, 23 Jan 2023 11:05:49 +0100
+Message-Id: <20230123100559.12351-1-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v8 4/8] drm/edid: remove redundant
- _drm_connector_update_edid_property()
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 00/10] drm/fb-helper: Various cleanups
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,71 +62,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ linux-tegra@vger.kernel.org, freedreno@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 19 Jan 2023, Jani Nikula <jani.nikula@intel.com> wrote:
-> Realize that drm_edid_connector_update() and
-> _drm_connector_update_edid_property() are now the same thing. Drop the
-> latter.
->
-> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Add various cleanups and changes to DRM's fbdev helpers and the
+generic fbdev emulation. There's no clear theme here, just lots
+of small things that need to be updated.
+ 
+In the end, the code will better reflect which parts are in the 
+DRM client, which is fbdev emulation, and which are shared fbdev
+helpers.
 
-Thanks for the reviews, pushed 1-4 to drm-misc-next.
+Thomas Zimmermann (10):
+  drm/client: Test for connectors before sending hotplug event
+  drm/client: Add hotplug_failed flag
+  drm/fb-helper: Introduce drm_fb_helper_unprepare()
+  drm/fbdev-generic: Initialize fb-helper structure in generic setup
+  drm/fb-helper: Remove preferred_bpp parameter from fbdev internals
+  drm/fb-helper: Initialize fb-helper's preferred BPP in prepare
+    function
+  drm/fbdev-generic: Minimize hotplug error handling
+  drm/fbdev-generic: Minimize client unregistering
+  drm/fbdev-generic: Inline clean-up helpers into drm_fbdev_fb_destroy()
+  drm/fbdev-generic: Rename struct fb_info 'fbi' to 'info'
 
-BR,
-Jani.
+ drivers/gpu/drm/armada/armada_fbdev.c      |   4 +-
+ drivers/gpu/drm/drm_client.c               |  10 ++
+ drivers/gpu/drm/drm_fb_helper.c            |  58 ++++++---
+ drivers/gpu/drm/drm_fbdev_generic.c        | 129 ++++++++-------------
+ drivers/gpu/drm/exynos/exynos_drm_fbdev.c  |   4 +-
+ drivers/gpu/drm/gma500/framebuffer.c       |   4 +-
+ drivers/gpu/drm/i915/display/intel_fbdev.c |  11 +-
+ drivers/gpu/drm/msm/msm_fbdev.c            |   4 +-
+ drivers/gpu/drm/omapdrm/omap_fbdev.c       |   4 +-
+ drivers/gpu/drm/radeon/radeon_fb.c         |   4 +-
+ drivers/gpu/drm/tegra/fb.c                 |   7 +-
+ include/drm/drm_client.h                   |   8 ++
+ include/drm/drm_fb_helper.h                |   7 +-
+ 13 files changed, 133 insertions(+), 121 deletions(-)
 
 
-> ---
->  drivers/gpu/drm/drm_edid.c | 21 +--------------------
->  1 file changed, 1 insertion(+), 20 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index d0c21d27b978..3d0a4da661bc 100644
-> --- a/drivers/gpu/drm/drm_edid.c
-> +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -6784,24 +6784,6 @@ int drm_edid_connector_add_modes(struct drm_connec=
-tor *connector)
->  }
->  EXPORT_SYMBOL(drm_edid_connector_add_modes);
->=20=20
-> -static int _drm_connector_update_edid_property(struct drm_connector *con=
-nector,
-> -					       const struct drm_edid *drm_edid)
-> -{
-> -	/*
-> -	 * Set the display info, using edid if available, otherwise resetting
-> -	 * the values to defaults. This duplicates the work done in
-> -	 * drm_add_edid_modes, but that function is not consistently called
-> -	 * before this one in all drivers and the computation is cheap enough
-> -	 * that it seems better to duplicate it rather than attempt to ensure
-> -	 * some arbitrary ordering of calls.
-> -	 */
-> -	update_display_info(connector, drm_edid);
-> -
-> -	_drm_update_tile_info(connector, drm_edid);
-> -
-> -	return _drm_edid_connector_property_update(connector, drm_edid);
-> -}
-> -
->  /**
->   * drm_connector_update_edid_property - update the edid property of a co=
-nnector
->   * @connector: drm connector
-> @@ -6823,8 +6805,7 @@ int drm_connector_update_edid_property(struct drm_c=
-onnector *connector,
->  {
->  	struct drm_edid drm_edid;
->=20=20
-> -	return _drm_connector_update_edid_property(connector,
-> -						   drm_edid_legacy_init(&drm_edid, edid));
-> +	return drm_edid_connector_update(connector, drm_edid_legacy_init(&drm_e=
-did, edid));
->  }
->  EXPORT_SYMBOL(drm_connector_update_edid_property);
+base-commit: 7d3e7f64a42d66ba8da6e7b66a8d85457ef84570
+prerequisite-patch-id: 0aa359f6144c4015c140c8a6750be19099c676fb
+prerequisite-patch-id: c67e5d886a47b7d0266d81100837557fda34cb24
+prerequisite-patch-id: 3f204510fcbf9530d6540bd8e6128cce598988b6
+-- 
+2.39.0
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
