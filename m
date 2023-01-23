@@ -2,149 +2,153 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E4AC678BEC
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jan 2023 00:19:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E54D3678C03
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jan 2023 00:28:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB43710E062;
-	Mon, 23 Jan 2023 23:19:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E94FF10E03C;
+	Mon, 23 Jan 2023 23:28:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B5CF10E062;
- Mon, 23 Jan 2023 23:19:22 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18D1310E03C;
+ Mon, 23 Jan 2023 23:28:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674515962; x=1706051962;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=XDqFDfwZPfRl0acsFR8Z/N4hXvtuP7ErQ93c4APf/3s=;
- b=L8HMJbVUtwBBvWnWIoATUUj30SSRtSRElHrmjaC470VwTES0cJc6WAmD
- reI8HDqZphdfECYWNEOTngdY02R/3Y+AVw6/Sw+DdvChrYXcKa3Kq9ubc
- I0BA+Nl8ugMljAtKuvMghzZcLJTzr5dbX+PUS2J3fp30Iep9QdrVnzfT7
- tUGVhBP8SAbCzntQn6YkV9qVjgslUv0n7K3sE76AHC5YYHYR78RFH6nxz
- QSat/yKfULIiRYuGhN4sMiSUtdoTLMWRHIJT50S+UM0o/aya5gW0t/DbZ
- NW4Qspvc3AiL7/KsyeOEjf0lAliHZhy3jV/dnc3JM3CMccqWezzwnjgHN w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="305847186"
-X-IronPort-AV: E=Sophos;i="5.97,240,1669104000"; d="scan'208";a="305847186"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2023 15:19:21 -0800
+ t=1674516485; x=1706052485;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=vmdB9xe236zjW7GZE8k9diVRnbglAk9KKhJDGxq4tqA=;
+ b=UUXNBtWE8D/gPEfyP3sMIZfcjQN3tEiMPHrrmJPeR/Sag+n2xX9DY61L
+ 4cQf+J/pNbplgJTNaSc1gE+Ziur00j8rO1ZVA2aFN6EP0n2vScH97fq4y
+ wiEEbP15ZucWpFGiTk3juph8y5u+9qby+5IEGe8MpmWETNoJLvksZwNIp
+ YphxVdU6X9478QvqEePTWu3E225+G3uu0cD8RTXsyydQWHoXgKv1+GefB
+ 8UZOczeqyTsT0eIKGl5COsXhYlkL1HtmGqZS2CbZ/W6EwcCXZlKq5XSfj
+ Cp+vlG1uysZfFMqUFqkzf7QBKqn7nyDqHgDUuQtZc87PRRQabFejvf2v8 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="326220700"
+X-IronPort-AV: E=Sophos;i="5.97,240,1669104000"; d="scan'208";a="326220700"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2023 15:28:03 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="804371011"
-X-IronPort-AV: E=Sophos;i="5.97,240,1669104000"; d="scan'208";a="804371011"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga001.fm.intel.com with ESMTP; 23 Jan 2023 15:19:21 -0800
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="661910139"
+X-IronPort-AV: E=Sophos;i="5.97,240,1669104000"; d="scan'208";a="661910139"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga002.jf.intel.com with ESMTP; 23 Jan 2023 15:28:03 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Mon, 23 Jan 2023 15:19:20 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ 15.1.2507.16; Mon, 23 Jan 2023 15:28:02 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Mon, 23 Jan 2023 15:19:20 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.107)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.16; Mon, 23 Jan 2023 15:28:02 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Mon, 23 Jan 2023 15:28:02 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.103)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Mon, 23 Jan 2023 15:19:20 -0800
+ 15.1.2507.16; Mon, 23 Jan 2023 15:27:58 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hre0SuIsLg2W0J6aKxSR8Pj/wgbBfdYj4y/qXrtF6dJoXAev0MZnXAHTdMlQKJrngIPlFZXQ39LRvTslPf3KFrolnYP9OiE3SeAz0yicfzu4MOgQW2WYwsD0flIpWEXpytOspYeF11e7gDQ+T7eZAxvzu1JZks6A8i0XoI2PNUbvx/HVksPRLnnHRbuVUthiGCIyQEZ8+NpfanMAtf8/xb8hpmysHZ/2m5rWPFiKQYqMz4sEBko8e/TUeMhQfQxr5U/nn4w92lYEq+7BJKA0tI0Xq9BKPgEyrrmNB+YRJDFJlgJvzCa06+lOTpLr2jSb7MIbEGUyR02HrOd0ejSovw==
+ b=kjzo82EPKHpSzpaakNXIS20VJuiwuHzSvHzbOaMPpi8G7sT9/mlha1EMVJ4vIY5inIh1PgC2SoqqcoQbUe0s//YIKl244i8EZTwyrtTa51JsxHl3E904cOoCzgwO8sRMSGzVuq66YoDhScT/ZsSQLX7iGCyBlJY2MzVQemTAAjTdveqXFkCyprP9Ct8wl4eK7uzh6kRQy3sL/DXFgSk7EYaDt5QeVnWzVHT8sMh/BkFviVvoR6hHRsm19+ydZgjM97Aih/rOSIy7hxk3uTY1o5K48ky6qmoonLGmdg0xAMC3HziZUNMHttdhfzh0TdGPfzZrtS6MdkH80SF0IDBuJA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YHzIMk+fPjlCUj2CqgK3dfa0EhkZrQ/bOacerWT6M3o=;
- b=B4qVCEdsKwWUnqqDquaqrFeMPB5JnSpmXA2imZ5tk5Ur7gc1las38c9e6HP6P9mtir4Np0MYjjhP1gLV/WW3UjJt4/7ohB1Fak21hZ6w8mAdqA/5Bms1/kP6xKEk08bd0kupmBDL4y8Je/VL9uaz0pSwn6oLTCjkzwCROgaVaNxZuShxSmam1g598Q6jMcZKWJrJi4a2KWypuZZG+ifOlooGmy5vYTwf01NLf9ttJGPk+yJe7buGUEHvovRPPiUrBp1ROhHCH9UXdv8Vvm0mFLN6RCVpEF1bRFm5j5THiCrvSdlw4tqAdZHur9Bdi+dFChv6s7GVtxXBI+Y7iaAQYw==
+ bh=mlRMfdpCc7ratKoNnpimRQXYWYGiFT2ZrRfBAPmA0/8=;
+ b=IDJmde2PnlklXyXCRa6g0RIq4ZfejHZki2OunfBw5r+3CiHsYHcPKmDcBjGI/dHS69sZZdiU5QhUjBJZ48Cfw7JZ4wx77hiritXZ/Ab8bf+HDtIyRSN4RLDfMJi2NXHU5V9LUrTdqXykYf8fu+q63FPQbfW8Nag/aJ/C/cDvZEvOCbPhL7douKPV1FlO+Tnahm4jyOUVPHulEBN/vwWl2jLPI4Kte4fX9udqpfemc7icRe9vuLg1To7vYXz0PlPmPmFJVU60iCBqLChyf8Nq+xmXbIOzB3KghbXXW5uWoe4Rc28JeqdYpYbjNYMBbFxWx/mpvkU4F2gKBQ8/zKboJA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from BY5PR11MB3911.namprd11.prod.outlook.com (2603:10b6:a03:18d::29)
- by BN9PR11MB5260.namprd11.prod.outlook.com (2603:10b6:408:135::9)
+ by PH0PR11MB5208.namprd11.prod.outlook.com (2603:10b6:510:3b::16)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Mon, 23 Jan
- 2023 23:19:13 +0000
+ 2023 23:27:56 +0000
 Received: from BY5PR11MB3911.namprd11.prod.outlook.com
  ([fe80::81f2:9a76:638:28eb]) by BY5PR11MB3911.namprd11.prod.outlook.com
  ([fe80::81f2:9a76:638:28eb%2]) with mapi id 15.20.6002.033; Mon, 23 Jan 2023
- 23:19:13 +0000
-Message-ID: <d23dea31-3a67-882a-96fb-6b48605038f3@intel.com>
-Date: Mon, 23 Jan 2023 15:19:10 -0800
+ 23:27:56 +0000
+Message-ID: <a2530bef-9c49-45cd-8849-50ea9f97b0f7@intel.com>
+Date: Mon, 23 Jan 2023 15:27:54 -0800
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Firefox/102.0 Thunderbird/102.6.1
 Content-Language: en-GB
 To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
 References: <20230120164050.1765-1-michal.wajdeczko@intel.com>
- <20230120164050.1765-9-michal.wajdeczko@intel.com>
+ <20230120164050.1765-2-michal.wajdeczko@intel.com>
 From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <20230120164050.1765-9-michal.wajdeczko@intel.com>
+In-Reply-To: <20230120164050.1765-2-michal.wajdeczko@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BYAPR06CA0040.namprd06.prod.outlook.com
- (2603:10b6:a03:14b::17) To BY5PR11MB3911.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: BYAPR06CA0066.namprd06.prod.outlook.com
+ (2603:10b6:a03:14b::43) To BY5PR11MB3911.namprd11.prod.outlook.com
  (2603:10b6:a03:18d::29)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BY5PR11MB3911:EE_|BN9PR11MB5260:EE_
-X-MS-Office365-Filtering-Correlation-Id: a82b67a5-7a25-4707-6353-08dafd983d41
+X-MS-TrafficTypeDiagnostic: BY5PR11MB3911:EE_|PH0PR11MB5208:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4ead15c6-7b3b-4058-cc98-08dafd997550
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: viFTPxaZNosgCJ4dXQluyl4Y2v+FBoYKeZrJg9ts+53tWotYUuayF4xE+DewANCBHWLgAPmmvnw65K5ZH2HZd3LybnsPOVFvstHDnuk2nIpvEoCe9i3vzKv3BsuMLNmp/lC3uQjVR+GtDGugU8xZmeoNkAbdUEnirXd3l9imd78NXxMDFr4OmaNqGM7wpitnzmhrQdNy6dAxB7jEoHu/Sbuz2IwOF8o8/8BMnpn/EGn0BoyF+/PitbIhyQYQZ0s/B4ephJ3QHq1ZlA2oM2QvAvS1Hp8jSNtjEL8bLk8+j/LjXe4E1XrI1TKahwT16vmKog6ULedluLTauDS4eXxtx0404OUYr0WQ70Z5hFFsjv80JT4zl3aIrmSfFheAwPspXPplZdWn+vwown0YFhiN+lQcyj63EZNylEOk0tGvJHihwFjxAaBzedBeaBEXymMuciX5Wj0SLSDhfZyJ0jEPUznDREcJERPdGNktAr0fliVWbs7QAs1yOW82tmM61HP5ckbTZiYBg5VAi1pClQNhF31VTFWcmpwYUR/YbQMgYiqldQj+4DXrq6pyNZw83oBQCZO7C6qkLGcUja6q9AA1IZ2vZEuX/aockEQntzW9+uoHwjfDm2UkRNMYboWtYeC/9bXa0n7tOGAkTjOHvFRi+qoXsL1hNjh7rnNmfBapSNFFbgN0LzHvLQWGDJFGkTo4x1OVaX1wgl3jLAy/IRMHBThd7ARxxINhgEaOk1EvQ7U=
+X-Microsoft-Antispam-Message-Info: woFRY74f726di0wGVl5X2DgvRGHkxGh9BcTpT76JL8utW996xlPpz1A4KznEnKHF1M4j/CIjV8F1xT+guxvN9JPIDeqQvIONOg05lGdl4v4KM7xYBhLRjqnCB4RcWmUiDv3kC7J4pqn7m2FzYRouPB96JUsqtIyZGCVnb53vxESJwPLuIULelvHc/7w/L19NSZTAzRYAnq2vhSGfqKX7fH7zUSp0QieNkzkmkbHn2f6w/lUdKajcEXAwXR0BITm41QKpvU0LcR/F14CZOhaR+CHCUaKviio3k8IWNyklx0Ylu2fFchRAXB+yxALXplK9uTa04Xq7+9Tb/QYnqMLqjb0WdATeEhBJON5yzHEvLxYtf2jsU4CbLojH23RebPEGdJJdMhggMMFEfkLxYdMnwcjNT/2HrLJnmSikuRHmeVcCdupfR21Rrr/YLjR76k8XcXtilUjCLU4Lsk11un69ZQHq4+IONgx+pk6msTYHBz6LPjeEd91jr2H8rMXmTpiFOiXLgFADvTz4EVdOxQwcuTFdIosiwOn+8UOb4mEuxIn+aQqfqh+/ewRBQvrDila5L7VXMzORhbs9o4jT5xkwrv4GAe/xRSp9f7vTmxVv0AE5UPj9/hGg1sFWQWRWN1atBOG4eSWkDYHq74S8Y7bwTT4+y6txfj0xgmxlkZWEabhh7of6Ep57/KkuYFc1qZ4iRQ9H1BnJEQZLGpPT7hw+wbJhJTv15LquJiPEouHs4fk=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BY5PR11MB3911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(366004)(376002)(346002)(39860400002)(136003)(396003)(451199015)(36756003)(86362001)(2906002)(5660300002)(38100700002)(82960400001)(83380400001)(8936002)(41300700001)(31696002)(66476007)(15650500001)(6486002)(450100002)(478600001)(31686004)(6506007)(53546011)(6512007)(8676002)(186003)(26005)(2616005)(316002)(66946007)(66556008)(45980500001)(43740500002);
+ SFS:(13230022)(366004)(376002)(346002)(396003)(39860400002)(136003)(451199015)(36756003)(86362001)(38100700002)(2906002)(82960400001)(4326008)(5660300002)(8936002)(41300700001)(83380400001)(31696002)(478600001)(6486002)(31686004)(450100002)(53546011)(8676002)(26005)(6506007)(6512007)(186003)(66946007)(66556008)(66476007)(2616005)(316002)(107886003)(45980500001)(43740500002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WmF6OWtCWXpPRGxENGtUcTNZYTVocFNFSk5HeXRCdHdwdGZmVE95d2JzVUQ1?=
- =?utf-8?B?Smp4b21HWndFZStoUzgrMDhPRldoYWIwWlpXVGhjeFVxZFMybGRRclZ5YnBi?=
- =?utf-8?B?RVN0RVZ2OXN4RU50ZEw0Z0xzbU5XOFgwS2hTcWNhUE5qUDFZNlE1ZkZpRzdX?=
- =?utf-8?B?YkRpcGpUdEhVK2lzclNyTEs2NTZIV0ltWUFMYXBnSWtjUmU1QmNNeTBpajZO?=
- =?utf-8?B?dkpydmovTmQ0NW0wb1V3TGNtaDNRTU0zcHhIS0pIemxrdFIyOGJubE9aWTRu?=
- =?utf-8?B?b1RMSVMyUEdxY1BOL0kxK0krd3dFczFDa0s4QVRXN2UyNW1jckdxNVFNcWVR?=
- =?utf-8?B?cldWdkFDaTZPc2dWdkxWTjFsUXNGYjVNWFdnR2hZZFBkUU5MOE1LcktwY3c3?=
- =?utf-8?B?MmdNM1cyeDhmYzkzNXo3a1Z2YXZ4TEl2eGJLVGNHRjhWczZ0NHdiTjNocUhk?=
- =?utf-8?B?QkZueW42QStYYVBjQWNZeXZpMnoxa0w2bDhaVEJYaDFJYk1pZy9PdkE1cUg3?=
- =?utf-8?B?WmRrdHoreWoxWEZuZytoZWQwVFdqSGRheXhVTmNsVjE2OGF1K2xHRUV5bzh0?=
- =?utf-8?B?YjhtTE1kOHV5V2F0cDdUbEJRcWxGbUxtUHZpalhqcFdGL3AzeGVkbDQycTU4?=
- =?utf-8?B?ZjlBSm1CbnN6ZENrZFhmUTl4cFlZN21qSktCU296RFdRYnB3TkJGQ05PcG1p?=
- =?utf-8?B?cUFHVEdPQkl6ODZYczR5YkZER0FqOFZjcmN0cFFLcTl4MXZ2R0oyQndQcEdp?=
- =?utf-8?B?WS9QVDdIMjNoL2FJdzBVSG50Y0RBYVNlOEQxeHkyTmpxZ3A2cmZhUklRd2Vh?=
- =?utf-8?B?RjlJaG9vQmhSZ0JSVi92QmRRVDN5cXhHS1Y5ZXgxYXB3bG1nN2VzVUhqcHlH?=
- =?utf-8?B?REFQbTUvSCt2OG5xTWswZ3A4RitucWwrRmowNllpeTNUdmVueHBzK0RGTW1N?=
- =?utf-8?B?YmE4OTg1TUhROVZCanptbDNIOUZPZWMybjYxUDZFcllEYUJXUDl1aUtodFI5?=
- =?utf-8?B?VjVJVTlPbWRkZUFMN2V1NU1XSkxUZm9PeDhIVnB5T3VadTNTVmhGajJsR3lE?=
- =?utf-8?B?Z1c0bm0vVEorQWJ3dmk5QkY2cFFPNDVjRmZSaGs4dGNhZ2taWHRtVktlTVlv?=
- =?utf-8?B?WFk1OTY1RXlkeHRjZTJOU1ZNQ1lwdXVKZjVjZjh6cFgrdFdPREg4V3c4TzQv?=
- =?utf-8?B?SGFwOGJEWGFkamw4UFNOeFpKMHl4cjJsTmhnZWpwL0F6MWxKOVhMWjQ1MGZU?=
- =?utf-8?B?TGRaektKSm1qVkc4T3lVZ0FPNVFUNm53dDRKVUdmT3J1Z2JqQWpiSDNnLzBM?=
- =?utf-8?B?MVE5RXZXY3o1VjRMVExvUWxCcFJwZmJHcmJjaTZqRUIyU3lOUks4ZU1ramFk?=
- =?utf-8?B?Q2RUcURsU01mdlF1R3dvNTVKTVRxUEt0RllNRmdzaDA5NDk5dHhhU1ZNcHpx?=
- =?utf-8?B?YTRNWGhDTC9RMlI2UkNGNk9WUklJeFNVK2xpeHNXMGRjYzB4d3Z2RjRYWGZm?=
- =?utf-8?B?azY4bElXMGs5TnFJTDZqeW12YnVaRDlZV29GSHpSdytFalNlZEE0NDI1WDFu?=
- =?utf-8?B?UjNOYm9GdGF1UVJvV09laVZ0RGV2b09Lam8xQmIxUk9UdzIwVmYzeSt4TENy?=
- =?utf-8?B?bzMxdzJDazRPeSs0WlRsVVMzajVCeEw4V1BQTGNvUzF0alBGbytLRTQ3MmNk?=
- =?utf-8?B?RE5XZXVTTFhFa3JUNGx1SHBRU1F6TFBCTHJWeW8rRFE5TzdsZFJudnVueHlZ?=
- =?utf-8?B?V1FDV3k4ZkVtVU43UFZKRHdtdjRtL28va3hIVUxJa2tSaThOSmkwczFDUFl6?=
- =?utf-8?B?KzRERGV2c1N1MXY4NFFjVllpVU5tb21OL0lmdlU1SlhQeDVmWlgvMUFqZElj?=
- =?utf-8?B?c0s4UExGclIrUkhEOXE0dFlUTXVhTWxxUHVndTRlbzYxbk5hQ3F6d05IMWt4?=
- =?utf-8?B?ZmRFVnpscFIxRitqaXJJZjFRdytKa2VqREVWWXo5OTE5U2QxWVZHNEVQeGhy?=
- =?utf-8?B?eEZLRkQwcnByRnNGWmZ1VS92V1hYU3BaUmdmb0ttckdpME4yOG9YbE55WTI5?=
- =?utf-8?B?dzlVTTV6K0pvM0NzY2Y3WnVRMlJQQ2V3L25pNVZUSG16NlBnRjdIK0JWVklF?=
- =?utf-8?B?QVQxem1QZ0E1VVUrWXM2bWNaY3UzeG1PbklaM2xleXlEYlkyYW83TENrQlJh?=
- =?utf-8?B?VkE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: a82b67a5-7a25-4707-6353-08dafd983d41
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dnVJMkV3MU84aHFXdHZSRitrYkUyT0VPbnk0aEcxdzJlL0NhNmVzQkpwUTla?=
+ =?utf-8?B?MmllQ1JzY1FyZEhGVURlRGZLS1ZXakFENy9LelIzcnFIckNCS1ZYTjVTK21l?=
+ =?utf-8?B?M29sTCt6UVpIY1JOazVFay9jcURwZHZpRUFuMXFDMUUxUmpSNVA1U2tPL3A3?=
+ =?utf-8?B?bHJOdndCdkIvY0JDTDVzK1M2OTRES3hVZ0ZFd3g3S203NVFmenA3cHZSUTFW?=
+ =?utf-8?B?ajNSeER0NDltYjVJcTgyN3NnOGZETnlJdGRMOERBVzRvQVJNWkhrOHhkaGlZ?=
+ =?utf-8?B?Kzk1Z0dXaXo3ckMrM09uL1EvVy90Q3ZnSjVOT0cxN3hOZ1dqK2VicXlYa2dL?=
+ =?utf-8?B?T0dmRnZrem1sOTNxNHBiNVo0YU9kRG14SFI3YklHNXcweGJCQkNGTXd1dGVj?=
+ =?utf-8?B?d1JZOXdyL1pMUlVtS0JhbE81YTJFL0FGdklPd2g0QmdnWGFaK3dlZ3A3WVc2?=
+ =?utf-8?B?akJiVVBQYWsrOXl0UlNIM1FUWm9HV3RkNElTcHhZeFQyNFg3K3RST2JrS0dD?=
+ =?utf-8?B?L1IvV2IyUW0reENycU81U3hieUQ0dXM0YldxMDkrVGdmU2twMXd5aE9vU3A0?=
+ =?utf-8?B?ZUtwcWNwU2t5Q0xLVjFLTDRYNWswS0tyM0E3SW8yZWRwM1VTZldJK1FpZ2Yz?=
+ =?utf-8?B?K21BRmdyN0hhRDFwa1AzTjRIUkY5ZDlvcVl2d1hRRlBxa1VDWHhiZS9RMTNk?=
+ =?utf-8?B?MUtHWjRvdkwrZXhjbmtUNHZTbEJnSXEzeThPSkd0ektTTTM2Wkg5c3dRQTUy?=
+ =?utf-8?B?ekdBdVRoci9sdWxwS09SV092VzhWVVlHQVdUa29razQzVVN4N1lWTitJaHVn?=
+ =?utf-8?B?K2QvRVJwZXZhSTlwTktlaldFdU45dHN4TXJkTC83RTdFdXhLTWJUNVh3WWhX?=
+ =?utf-8?B?Sm00REduTi9EcDgvRnkyTVl5a3ZUeit6MCsyV0hSSTJmOXlNMmdxS2RIOTJh?=
+ =?utf-8?B?WjJETzlpbUc2YlJTajM0VWluVExaaGFRVUQrLzBJbExOaG5tb3FYdVd3bmtR?=
+ =?utf-8?B?U3phV1ZyT09NaXFxRnZFUjAyMFBSRVowYlZtZTMwaUROV01PMHdLVDViQVpQ?=
+ =?utf-8?B?VDNJZVR0WmNlNE4reExBZ29vNGltOUtrMVlzMDV4Nm9mUnFEQTFmejY4N1JQ?=
+ =?utf-8?B?c3Q5ZUIzRFBCTzd3MlkzMWhuTlJtL2ppV1FFU0wwUUNSWnBnVjhKOWt5cFcz?=
+ =?utf-8?B?RzBwZXpacEdaek9kL3FYNFNTTFhFVmY5WUNhR0FZbldtMStxb3BYZHMrSk9m?=
+ =?utf-8?B?L2QrWmlYRDFSSUsyWUJ6NDVteXJ0Y3U3M0RBMm9yOXhydlp4djdMVVRKU0NT?=
+ =?utf-8?B?cURuWmlzdHprWkJOaG5zOTdXYVlGcGNKSldTMks0T3ZCcTZ5RlpqMUJZdzdL?=
+ =?utf-8?B?dDEwbGV3WlpmVk9tMHg3QmFJejVMTTNRNVlkdE0yWkhNTmtKL0p0MGhlcjhX?=
+ =?utf-8?B?MHBLajE5Ly9uVzIxcFBCbm53eXpmS1NNMko3aTlTekV3MllKOUxLSjZET1px?=
+ =?utf-8?B?R3JPQzBLZHFKTmp2SG1aRS9IclQwV1NsaXFXYlVJSDdvbE5GUFQwK3Y0TG5P?=
+ =?utf-8?B?MnFMS1hPMVpSV2t1eno4QVdhMHNqV3MwTnRWZ1lzbXkyT3ZSZUVvbTE2enZI?=
+ =?utf-8?B?K1ZnbUVHc3NSVGRCdCtjeVZkWlJjbVYzckhLVytxQjVxT0FvTjNNTVpNNlVt?=
+ =?utf-8?B?cEhlVUJqUnc3bzNselFITWxkekJDUGtjUWgvdzJ6YTcwQTlHTjFndnlKVmFJ?=
+ =?utf-8?B?aFoxdTV0dkF0Q001RHBxcVlLczFQTHpIWlZoMFphcENTek1HMW1DSUFTMTBz?=
+ =?utf-8?B?RmVwSzJJb2FKVDE4enFDN1Fqc21WQVBya1NwRWpqRlVYMTcralI0Vk9tVGh4?=
+ =?utf-8?B?aE5LVVFNSjhHcVl4bzBHelRCb1lHWW5FSnB2NTNyYlo2R2p4c0tEd0FtZVpK?=
+ =?utf-8?B?QndGZG4xSlJhWDMrQ0tkb2ROT1NTWjdwMy9vRlQxaGVMYzI2aFpmQ3NaeTJR?=
+ =?utf-8?B?UVc5UDk1K0k5RTRPNTM0QlkyeFNVaVVTdEx5R2dVWElxVHVmZ2F4cTFNWVkz?=
+ =?utf-8?B?SmxwV0RGM2IwSU5iRzgzNFFyZG1mZTFxdEc5ZEZqM0wrN3N1SFk4azhDWHVa?=
+ =?utf-8?B?TWpPWWh0UVkwNk1LajdyZzloUXFmRDZtaEpwSktFL3RpZTJsUC9SL3JDb2ps?=
+ =?utf-8?B?dWc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4ead15c6-7b3b-4058-cc98-08dafd997550
 X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3911.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2023 23:19:13.2773 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2023 23:27:56.7962 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 79CF13kcBSDE1g338hPVZtpQlR23A6Cgp/R7KQIjOQLGEKRnxeEpuugfvNdzQpBNA4gGhshnhypzk8gXsUtn9xJWXBjVgBWW+SaISvUB6zE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR11MB5260
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8Rr5LE4eeDAgsoNZpoYcfCEp6m/W8kCgpuc+PkK+k3biu339qoYH4vecro3vuoir4YjSBDXcM0Mcp9RouXf4+5Djr1kSkpwitNGg/Kf5EAo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5208
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 8/8] drm/i915/guc: Update GT/GuC messages in
- intel_uc.c
+Subject: Re: [Intel-gfx] [PATCH 1/8] drm/i915/guc: Add GuC oriented print
+ macros
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,225 +165,78 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On 1/20/2023 08:40, Michal Wajdeczko wrote:
-> Use new macros to have common prefix that also include GT#.
+> While we do have GT oriented print macros, add few more GuC
+> specific to have common look and feel across all messages
+> related to the GuC and to avoid chasing the gt pointer.
+>
+> We will use these macros shortly in upcoming patches.
 >
 > Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 > Cc: John Harrison <John.C.Harrison@Intel.com>
 > ---
->   drivers/gpu/drm/i915/gt/uc/intel_uc.c | 74 +++++++++++++--------------
->   1 file changed, 36 insertions(+), 38 deletions(-)
+>   drivers/gpu/drm/i915/gt/uc/intel_guc_print.h | 48 ++++++++++++++++++++
+>   1 file changed, 48 insertions(+)
+>   create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_print.h
 >
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> index 9a8a1abf71d7..e94f0d7119c4 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> @@ -6,11 +6,13 @@
->   #include <linux/string_helpers.h>
->   
->   #include "gt/intel_gt.h"
-> +#include "gt/intel_gt_print.h"
->   #include "gt/intel_reset.h"
->   #include "intel_gsc_fw.h"
->   #include "intel_gsc_uc.h"
->   #include "intel_guc.h"
->   #include "intel_guc_ads.h"
-> +#include "intel_guc_print.h"
->   #include "intel_guc_submission.h"
->   #include "gt/intel_rps.h"
->   #include "intel_uc.h"
-> @@ -67,14 +69,14 @@ static int __intel_uc_reset_hw(struct intel_uc *uc)
->   
->   	ret = intel_reset_guc(gt);
->   	if (ret) {
-> -		DRM_ERROR("Failed to reset GuC, ret = %d\n", ret);
-> +		gt_err(gt, "Failed to reset GuC, ret = %d\n", ret);
->   		return ret;
->   	}
->   
->   	guc_status = intel_uncore_read(gt->uncore, GUC_STATUS);
-> -	WARN(!(guc_status & GS_MIA_IN_RESET),
-> -	     "GuC status: 0x%x, MIA core expected to be in reset\n",
-> -	     guc_status);
-> +	gt_WARN(gt, !(guc_status & GS_MIA_IN_RESET),
-> +		"GuC status: 0x%x, MIA core expected to be in reset\n",
-> +		guc_status);
->   
->   	return ret;
->   }
-> @@ -252,15 +254,13 @@ static int guc_enable_communication(struct intel_guc *guc)
->   	intel_guc_ct_event_handler(&guc->ct);
->   	spin_unlock_irq(gt->irq_lock);
->   
-> -	drm_dbg(&i915->drm, "GuC communication enabled\n");
-> +	guc_dbg(guc, "communication enabled\n");
->   
->   	return 0;
->   }
->   
->   static void guc_disable_communication(struct intel_guc *guc)
->   {
-> -	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
-> -
->   	/*
->   	 * Events generated during or after CT disable are logged by guc in
->   	 * via mmio. Make sure the register is clear before disabling CT since
-> @@ -280,11 +280,12 @@ static void guc_disable_communication(struct intel_guc *guc)
->   	 */
->   	guc_get_mmio_msg(guc);
->   
-> -	drm_dbg(&i915->drm, "GuC communication disabled\n");
-> +	guc_dbg(guc, "communication disabled\n");
->   }
->   
->   static void __uc_fetch_firmwares(struct intel_uc *uc)
->   {
-> +	struct intel_gt *gt = uc_to_gt(uc);
->   	int err;
->   
->   	GEM_BUG_ON(!intel_uc_wants_guc(uc));
-> @@ -293,15 +294,13 @@ static void __uc_fetch_firmwares(struct intel_uc *uc)
->   	if (err) {
->   		/* Make sure we transition out of transient "SELECTED" state */
->   		if (intel_uc_wants_huc(uc)) {
-> -			drm_dbg(&uc_to_gt(uc)->i915->drm,
-> -				"Failed to fetch GuC: %d disabling HuC\n", err);
-> +			gt_dbg(gt, "Failed to fetch GuC fw (%pe) disabling HuC\n", ERR_PTR(err));
->   			intel_uc_fw_change_status(&uc->huc.fw,
->   						  INTEL_UC_FIRMWARE_ERROR);
->   		}
->   
->   		if (intel_uc_wants_gsc_uc(uc)) {
-> -			drm_dbg(&uc_to_gt(uc)->i915->drm,
-> -				"Failed to fetch GuC: %d disabling GSC\n", err);
-> +			gt_dbg(gt, "Failed to fetch GuC fw (%pe) disabling GSC\n", ERR_PTR(err));
->   			intel_uc_fw_change_status(&uc->gsc.fw,
->   						  INTEL_UC_FIRMWARE_ERROR);
->   		}
-> @@ -382,7 +381,7 @@ static int uc_init_wopcm(struct intel_uc *uc)
->   	int err;
->   
->   	if (unlikely(!base || !size)) {
-> -		i915_probe_error(gt->i915, "Unsuccessful WOPCM partitioning\n");
-> +		gt_probe_error(gt, "Unsuccessful WOPCM partitioning\n");
->   		return -E2BIG;
->   	}
->   
-> @@ -413,13 +412,13 @@ static int uc_init_wopcm(struct intel_uc *uc)
->   	return 0;
->   
->   err_out:
-> -	i915_probe_error(gt->i915, "Failed to init uC WOPCM registers!\n");
-> -	i915_probe_error(gt->i915, "%s(%#x)=%#x\n", "DMA_GUC_WOPCM_OFFSET",
-> -			 i915_mmio_reg_offset(DMA_GUC_WOPCM_OFFSET),
-> -			 intel_uncore_read(uncore, DMA_GUC_WOPCM_OFFSET));
-> -	i915_probe_error(gt->i915, "%s(%#x)=%#x\n", "GUC_WOPCM_SIZE",
-> -			 i915_mmio_reg_offset(GUC_WOPCM_SIZE),
-> -			 intel_uncore_read(uncore, GUC_WOPCM_SIZE));
-> +	gt_probe_error(gt, "Failed to init uC WOPCM registers!\n");
-> +	gt_probe_error(gt, "%s(%#x)=%#x\n", "DMA_GUC_WOPCM_OFFSET",
-> +		       i915_mmio_reg_offset(DMA_GUC_WOPCM_OFFSET),
-> +		       intel_uncore_read(uncore, DMA_GUC_WOPCM_OFFSET));
-> +	gt_probe_error(gt, "%s(%#x)=%#x\n", "GUC_WOPCM_SIZE",
-> +		       i915_mmio_reg_offset(GUC_WOPCM_SIZE),
-> +		       intel_uncore_read(uncore, GUC_WOPCM_SIZE));
->   
->   	return err;
->   }
-> @@ -451,18 +450,17 @@ static int __uc_check_hw(struct intel_uc *uc)
->   
->   static void print_fw_ver(struct intel_uc *uc, struct intel_uc_fw *fw)
->   {
-> -	struct drm_i915_private *i915 = uc_to_gt(uc)->i915;
-> -
-> -	drm_info(&i915->drm, "%s firmware %s version %u.%u.%u\n",
-> -		 intel_uc_fw_type_repr(fw->type), fw->file_selected.path,
-> -		 fw->file_selected.ver.major,
-> -		 fw->file_selected.ver.minor,
-> -		 fw->file_selected.ver.patch);
-> +	gt_info(uc_to_gt(uc), "%s firmware %s version %u.%u.%u\n",
-Given that this function does not use 'uc' except to convert to 'gt' and 
-the caller already has a local 'gt', could just pass the gt in directly 
-and avoid the conversion.
-
-> +		intel_uc_fw_type_repr(fw->type), fw->file_selected.path,
-> +		fw->file_selected.ver.major,
-> +		fw->file_selected.ver.minor,
-> +		fw->file_selected.ver.patch);
->   }
->   
->   static int __uc_init_hw(struct intel_uc *uc)
->   {
-> -	struct drm_i915_private *i915 = uc_to_gt(uc)->i915;
-> +	struct intel_gt *gt = uc_to_gt(uc);
-> +	struct drm_i915_private *i915 = gt->i915;
->   	struct intel_guc *guc = &uc->guc;
->   	struct intel_huc *huc = &uc->huc;
->   	int ret, attempts;
-> @@ -514,8 +512,8 @@ static int __uc_init_hw(struct intel_uc *uc)
->   		if (ret == 0)
->   			break;
->   
-> -		DRM_DEBUG_DRIVER("GuC fw load failed: %d; will reset and "
-> -				 "retry %d more time(s)\n", ret, attempts);
-> +		gt_dbg(gt, "GuC fw load failed (%pe) will reset and retry %d more time(s)\n",
-> +		       ERR_PTR(ret), attempts);
->   	}
->   
->   	/* Did we succeded or run out of retries? */
-> @@ -551,10 +549,10 @@ static int __uc_init_hw(struct intel_uc *uc)
->   
->   	intel_gsc_uc_load_start(&uc->gsc);
->   
-> -	drm_info(&i915->drm, "GuC submission %s\n",
-> -		 str_enabled_disabled(intel_uc_uses_guc_submission(uc)));
-> -	drm_info(&i915->drm, "GuC SLPC %s\n",
-> -		 str_enabled_disabled(intel_uc_uses_guc_slpc(uc)));
-> +	gt_info(gt, "GuC submission %s\n",
-> +		str_enabled_disabled(intel_uc_uses_guc_submission(uc)));
-> +	gt_info(gt, "GuC SLPC %s\n",
-> +		str_enabled_disabled(intel_uc_uses_guc_slpc(uc)));
->   
->   	return 0;
->   
-> @@ -572,12 +570,12 @@ static int __uc_init_hw(struct intel_uc *uc)
->   	__uc_sanitize(uc);
->   
->   	if (!ret) {
-> -		drm_notice(&i915->drm, "GuC is uninitialized\n");
-> +		gt_notice(gt, "GuC is uninitialized\n");
->   		/* We want to run without GuC submission */
->   		return 0;
->   	}
->   
-> -	i915_probe_error(i915, "GuC initialization failed %d\n", ret);
-> +	gt_probe_error(gt, "GuC initialization failed %pe\n", ERR_PTR(ret));
->   
->   	/* We want to keep KMS alive */
->   	return -EIO;
-> @@ -690,7 +688,7 @@ void intel_uc_suspend(struct intel_uc *uc)
->   	with_intel_runtime_pm(&uc_to_gt(uc)->i915->runtime_pm, wakeref) {
->   		err = intel_guc_suspend(guc);
->   		if (err)
-> -			DRM_DEBUG_DRIVER("Failed to suspend GuC, err=%d", err);
-> +			gt_dbg(uc_to_gt(uc), "Failed to suspend GuC, %pe", ERR_PTR(err));
-May be worth adding a local gt given that the above conversion is now 
-being repeated?
-
->   	}
->   }
->   
-> @@ -718,7 +716,7 @@ static int __uc_resume(struct intel_uc *uc, bool enable_communication)
->   
->   	err = intel_guc_resume(guc);
->   	if (err) {
-> -		DRM_DEBUG_DRIVER("Failed to resume GuC, err=%d", err);
-> +		gt_dbg(gt, "Failed to resume GuC, %pe", ERR_PTR(err));
-This could be a guc_dbg("Failed to resume: %pe") given that there is 
-evidently a 'guc' locally available from the function call just above.
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_print.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_print.h
+> new file mode 100644
+> index 000000000000..e75989d4ba06
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_print.h
+> @@ -0,0 +1,48 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2023 Intel Corporation
+> + */
+> +
+> +#ifndef __INTEL_GUC_PRINT__
+> +#define __INTEL_GUC_PRINT__
+> +
+> +#include "gt/intel_gt.h"
+This necessary only for the guc_to_gt() accessor? Hmm. Maybe it is worth 
+moving that to intel_guc.h? I know Jani for one would like to see all of 
+that cleaned up. But maybe that's a follow up patch.
 
 John.
 
->   		return err;
->   	}
->   
+> +#include "gt/intel_gt_print.h"
+> +
+> +#define guc_printk(_guc, _level, _fmt, ...) \
+> +	gt_##_level(guc_to_gt(_guc), "GUC: " _fmt, ##__VA_ARGS__)
+> +
+> +#define guc_err(_guc, _fmt, ...) \
+> +	guc_printk((_guc), err, _fmt, ##__VA_ARGS__)
+> +
+> +#define guc_warn(_guc, _fmt, ...) \
+> +	guc_printk((_guc), warn, _fmt, ##__VA_ARGS__)
+> +
+> +#define guc_notice(_guc, _fmt, ...) \
+> +	guc_printk((_guc), notice, _fmt, ##__VA_ARGS__)
+> +
+> +#define guc_info(_guc, _fmt, ...) \
+> +	guc_printk((_guc), info, _fmt, ##__VA_ARGS__)
+> +
+> +#define guc_dbg(_guc, _fmt, ...) \
+> +	guc_printk((_guc), dbg, _fmt, ##__VA_ARGS__)
+> +
+> +#define guc_err_ratelimited(_guc, _fmt, ...) \
+> +	guc_printk((_guc), err_ratelimited, _fmt, ##__VA_ARGS__)
+> +
+> +#define guc_probe_error(_guc, _fmt, ...) \
+> +	guc_printk((_guc), probe_error, _fmt, ##__VA_ARGS__)
+> +
+> +#define guc_WARN(_guc, _cond, _fmt, ...) \
+> +	gt_WARN(guc_to_gt(_guc), _cond, "GUC: " _fmt, ##__VA_ARGS__)
+> +
+> +#define guc_WARN_ONCE(_guc, _cond, _fmt, ...) \
+> +	gt_WARN_ONCE(guc_to_gt(_guc), _cond, "GUC: " _fmt, ##__VA_ARGS__)
+> +
+> +#define guc_WARN_ON(_guc, _cond) \
+> +	gt_WARN(guc_to_gt(_guc), _cond, "%s(%s)", "guc_WARN_ON", __stringify(_cond))
+> +
+> +#define guc_WARN_ON_ONCE(_guc, _cond) \
+> +	gt_WARN_ONCE(guc_to_gt(_guc), _cond, "%s(%s)", "guc_WARN_ON_ONCE", __stringify(_cond))
+> +
+> +#endif /* __INTEL_GUC_PRINT__ */
 
