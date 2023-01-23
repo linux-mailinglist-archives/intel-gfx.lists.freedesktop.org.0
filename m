@@ -1,53 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CDB6687FEF
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 15:24:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFD99688012
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 15:27:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BB6910E564;
-	Thu,  2 Feb 2023 14:24:54 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF51010E4D6;
- Mon, 23 Jan 2023 15:42:42 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 78F42339C7;
- Mon, 23 Jan 2023 15:42:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
- t=1674488561; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=55apZeYnu6RO07C6lWHKMqZeQ9QD+dZi2oV45IYgqR8=;
- b=NwZHaPnSdW0sTqWIpW2Ep2zUuQal9AFNwBLp9xUmbUjAfDGelZ/xsCQDuUGJM72HmTIzWD
- OVGHfd0I8eI2RL5CanevYwNgICrTG+L9yMtGcFVikSQMyfesIE/B6sHkF1jegMTYHs7TtI
- KIBufBqOPxkvvdIyiJwOXwaUEQXgNhs=
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 236FB1357F;
- Mon, 23 Jan 2023 15:42:41 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id Gh6oB/GqzmNMXgAAMHmgww
- (envelope-from <mkoutny@suse.com>); Mon, 23 Jan 2023 15:42:41 +0000
-Date: Mon, 23 Jan 2023 16:42:39 +0100
-From: Michal =?iso-8859-1?Q?Koutn=FD?= <mkoutny@suse.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <20230123154239.GA24348@blackbody.suse.cz>
-References: <20230112165609.1083270-1-tvrtko.ursulin@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3298F10E555;
+	Thu,  2 Feb 2023 14:27:04 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from outpost1.zedat.fu-berlin.de (outpost1.zedat.fu-berlin.de
+ [130.133.4.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCD4410E4E1;
+ Mon, 23 Jan 2023 15:48:52 +0000 (UTC)
+Received: from inpost2.zedat.fu-berlin.de ([130.133.4.69])
+ by outpost.zedat.fu-berlin.de (Exim 4.95) with esmtps (TLS1.3)
+ tls TLS_AES_256_GCM_SHA384
+ (envelope-from <glaubitz@zedat.fu-berlin.de>)
+ id 1pJz3x-002k25-LW; Mon, 23 Jan 2023 16:48:49 +0100
+Received: from dynamic-077-011-154-164.77.11.pool.telefonica.de
+ ([77.11.154.164] helo=[192.168.1.11])
+ by inpost2.zedat.fu-berlin.de (Exim 4.95) with esmtpsa (TLS1.3)
+ tls TLS_AES_128_GCM_SHA256
+ (envelope-from <glaubitz@physik.fu-berlin.de>)
+ id 1pJz3x-003jRs-FI; Mon, 23 Jan 2023 16:48:49 +0100
+Message-ID: <acf90cab-49e3-2afd-5062-9996ba3dfbbf@physik.fu-berlin.de>
+Date: Mon, 23 Jan 2023 16:48:48 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature"; boundary="sdtB3X0nJg68CQEu"
-Content-Disposition: inline
-In-Reply-To: <20230112165609.1083270-1-tvrtko.ursulin@linux.intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Mailman-Approved-At: Thu, 02 Feb 2023 14:24:11 +0000
-Subject: Re: [Intel-gfx] [RFC v3 00/12] DRM scheduling cgroup controller
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Content-Language: en-US
+To: Thomas Zimmermann <tzimmermann@suse.de>
+References: <Y8kDk5YX7Yz3eRhM@linux-uq9g>
+ <0df23fe5-40cb-c5f3-33e1-da57a7b23808@physik.fu-berlin.de>
+ <43ed96bc-5a70-ba61-1959-fcb2fe86387e@suse.de>
+ <3c426ff9-e2de-86ee-6b49-443fea3437ff@physik.fu-berlin.de>
+ <d2345ff2-3fc3-1a44-6ace-d05a29feb5b3@suse.de>
+From: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
+In-Reply-To: <d2345ff2-3fc3-1a44-6ace-d05a29feb5b3@suse.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Original-Sender: glaubitz@physik.fu-berlin.de
+X-Originating-IP: 77.11.154.164
+X-Mailman-Approved-At: Thu, 02 Feb 2023 14:24:10 +0000
+Subject: Re: [Intel-gfx] [PULL] drm-misc-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,97 +56,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>, Kenny.Ho@amd.com,
- Dave Airlie <airlied@redhat.com>,
- =?iso-8859-1?Q?St=E9phane?= Marchesin <marcheu@chromium.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, Intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>,
- Tejun Heo <tj@kernel.org>, cgroups@vger.kernel.org,
- "T . J . Mercier" <tjmercier@google.com>
+Cc: dim-tools@lists.freedesktop.org, daniel.vetter@ffwll.ch,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Thomas!
 
---sdtB3X0nJg68CQEu
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 1/23/23 16:35, Thomas Zimmermann wrote:
+>>> The only thing that is not supported any longer is hardware-accelerated 3d rendering.
+>>> However, this has not worked anyway, as Mesa has dropped support for those chips a long
+>>> time ago.
+>>
+>> Correct me if I'm wrong, but I thought that's what Mesa Classic was forked off for?
+> 
+> AFAIK Mesa classic is for old radeon, i915 and old nouveau code. The so-called amber branch:
+> 
+>   https://docs.mesa3d.org/amber.html
+> 
+> But the removed code is for even older hardware.
+> 
+>   https://docs.mesa3d.org/systems.html#deprecated-systems-and-drivers
 
-Hello Tvrtko.
+OK, thanks a lot for the clarification!
 
-Interesting work.
+I'm glad the 2D drivers will still work and it seems that news article on Phoronix [1] is
+a little misleading as from reading the it, it seems that driver support for the afore-
+mentioned hardware is dropped completely which is it not the case.
 
-On Thu, Jan 12, 2023 at 04:55:57PM +0000, Tvrtko Ursulin <tvrtko.ursulin@li=
-nux.intel.com> wrote:
-> Because of the heterogenous hardware and driver DRM capabilities, soft li=
-mits
-> are implemented as a loose co-operative (bi-directional) interface betwee=
-n the
-> controller and DRM core.
+Thanks,
+Adrian
 
-IIUC, this periodic scanning, calculating and applying could be partly
-implemented with userspace utilities. (As you write, these limits are
-best effort only, so it sounds to me such a total implementation is
-unnecessary.)
+> [1] https://www.phoronix.com/news/Linux-6.3-Dropping-Old-DRM
 
-I think a better approach would be to avoid the async querying and
-instead require implementing explicit foo_charge_time(client, dur) API
-(similar to how other controllers achieve this).
-Your argument is the heterogenity of devices -- does it mean there are
-devices/drivers that can't implement such a synchronous charging?=20
+-- 
+  .''`.  John Paul Adrian Glaubitz
+: :' :  Debian Developer
+`. `'   Physicist
+   `-    GPG: 62FF 8A75 84E0 2956 9546  0006 7426 3B37 F5B5 F913
 
-> DRM core provides an API to query per process GPU utilization and 2nd API=
- to
-> receive notification from the cgroup controller when the group enters or =
-exits
-> the over budget condition.
-
-The return value of foo_charge_time() would substitute such a
-notification synchronously. (By extension all clients in an affected
-cgroup could be notified to achieve some broader actions.)
-
-> Individual DRM drivers which implement the interface are expected to act =
-on this
-> in the best-effort manner only. There are no guarantees that the soft lim=
-its
-> will be respected.
-
-Back to original concern -- must all code reside in the kernel when it's
-essentially advisory resource control?
-
->  * DRM core is required to track all DRM clients belonging to processes s=
-o it
->    can answer when asked how much GPU time is a process using.
->  [...]
->  * Individual drivers need to implement two similar hooks, but which work=
- for
->    a single DRM client. Over budget callback and GPU utilisation query.
-
-This information is eventually aggregated for each process in a cgroup.
-(And the action is carried on a single client, not a process.)
-The per-process tracking seems like an additional indirection.
-Could be the clients associated directly with DRM cgroup? [1]
-
-
-Regards,
-Michal
-
-[1] I understand the sending a fd of a client is a regular operation, so
-    I'm not sure how cross-cg migrations would have to be handled in any
-    case.
-
---sdtB3X0nJg68CQEu
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iHUEARYIAB0WIQTrXXag4J0QvXXBmkMkDQmsBEOquQUCY86q5AAKCRAkDQmsBEOq
-ueEGAQDI5fZQTAIasuzhXqvhso/sSZM6kjJABNN/jGexID1/AgEA7ESyKCV82koM
-JsjtlGG3kRl/Y0LhTvA4J7akVFgGdQo=
-=vAYz
------END PGP SIGNATURE-----
-
---sdtB3X0nJg68CQEu--
