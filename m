@@ -2,53 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3C7D678257
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Jan 2023 17:57:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2940A6782DF
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Jan 2023 18:19:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DD1210E50E;
-	Mon, 23 Jan 2023 16:56:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 373BB10E518;
+	Mon, 23 Jan 2023 17:19:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76CB710E50E;
- Mon, 23 Jan 2023 16:56:57 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 362FC10E518;
+ Mon, 23 Jan 2023 17:19:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674493017; x=1706029017;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=vdG2LRYEzwMOvj9iyM2asicTeJVJUO1nFbPkAsUJrec=;
- b=XR/ckRp+zXtUpQz8h/jbnajWUXPCmT+kFGwZwzvpsbzvdUs9s0Q9SifL
- bTHXEgrV86oznCS8QNooeHSDWltJio92D2JjcmODZZrDXXjU+ZNe1DJzd
- cei9sawdKEo5rM997zX6FKBQ3QxYWniKVsEIajoEMkre2L5Sja3wXNYx9
- zs7LzXem46LNh2wQjh4V8Zy8u2CAXLPwe8h7Rx3K4fnL9fkfncAItEP3H
- Y6sYdP2PaygM9YYJXhOQg283CWfAAncLdAf/QY889mM0Ve+pGMY2fkNrv
- oVC6f/lFuyX7qJxC+mL684UzXh6NrbE0DNPjDcybw+094CR0EeX+bjn8R w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="388440574"
-X-IronPort-AV: E=Sophos;i="5.97,240,1669104000"; d="scan'208";a="388440574"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2023 08:56:53 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="730342577"
-X-IronPort-AV: E=Sophos;i="5.97,240,1669104000"; d="scan'208";a="730342577"
-Received: from bridge4x-mobl.ger.corp.intel.com (HELO [10.213.214.72])
- ([10.213.214.72])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2023 08:56:49 -0800
-Message-ID: <f24be4ca-edde-819a-5bcc-070e0d2e23d1@linux.intel.com>
-Date: Mon, 23 Jan 2023 16:56:47 +0000
+ t=1674494384; x=1706030384;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=FYlTUJia2PPRqzLHgZoAan+KxnPulykiLoi1lyWnpoM=;
+ b=jP8WhLONgBIoPxRHSR07TEgOljj2xBJt25xWTXcRVqCMkiA/uFowM4n1
+ WuYwg0X1ISLhD/GfqPMNKVpPLOvQit4J+BWzirt9PaXwJPjLRzJM3tqmc
+ 6O9ePdOwX6dq1r9ZYTU6zvb9oQvWXiuEYAUAd+EuycuN+5erlMQKisOrR
+ 2hmiQa9Y8KDPaVgjNCA7577jLys1315yW1Oh9mOhrHpd+NZtTkv5j/8u/
+ 7M8/Sks9W/wS0ibu8eTKkzSSsF0g1roAKY5WPwn/dRmhSYvLRwOg0CV7e
+ O952blHRsQMWuFDzmehRpBU+O8rWwrdoZyUSevlASGe7Ii07MVTiGXMzu g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="328185707"
+X-IronPort-AV: E=Sophos;i="5.97,240,1669104000"; d="scan'208";a="328185707"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2023 09:16:17 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="639264909"
+X-IronPort-AV: E=Sophos;i="5.97,240,1669104000"; d="scan'208";a="639264909"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2023 09:16:16 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Mon, 23 Jan 2023 09:15:56 -0800
+Message-Id: <20230123171556.3322164-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230120193457.3295977-2-lucas.demarchi@intel.com>
+References: <20230120193457.3295977-2-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Content-Language: en-US
-To: Rob Clark <robdclark@gmail.com>, dri-devel@lists.freedesktop.org
-References: <20230119173321.2825472-1-robdclark@gmail.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20230119173321.2825472-1-robdclark@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Avoid potential vm use-after-free
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2.1] drm/i915: Add _PICK_EVEN_2RANGES()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,69 +57,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, open list <linux-kernel@vger.kernel.org>,
- Chris Wilson <chris@chris-wilson.co.uk>, Matthew Auld <matthew.auld@intel.com>,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>, katrinzhou <katrinzhou@tencent.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+It's a constant pattern in the driver to need to use 2 ranges of MMIOs
+based on port, phy, pll, etc. When that happens, instead of using
+_PICK_EVEN(), _PICK() needs to be used.  Using _PICK() is discouraged
+due to some reasons like:
 
-+ some more people based on e1a7ab4fca0c
+1) It increases the code size since the array is declared
+   in each call site
+2) Developers need to be careful not to incur an
+   out-of-bounds array access
+3) Developers need to be careful that the indexes match the
+   table. For that it may be that the table needs to contain
+   holes, making (1) even worse.
 
-On 19/01/2023 17:32, Rob Clark wrote:
-> From: Rob Clark <robdclark@chromium.org>
-> 
-> Adding the vm to the vm_xa table makes it visible to userspace, which
-> could try to race with us to close the vm.  So we need to take our extra
-> reference before putting it in the table.
-> 
-> Signed-off-by: Rob Clark <robdclark@chromium.org>
-> ---
-> Note, you could list commit e1a7ab4fca0c ("drm/i915: Remove the vm open
-> count") as the "fixed" commit, but really the issue seems to go back
-> much further (with the fix needing some backporting in the process).
+Add a variant of _PICK_EVEN() that works with 2 ranges and selects which
+one to use depending on the index value.
 
-It would probably be rather essential to identify the correct Fixes: tag.
+v2: Fix the address expansion in the  example (Anusha)
 
-Since Thomas, Matt and Niranjana you were directly involved in the patch 
-which changed significantly how this works, perhaps there is something 
-still somewhat easily retrievable from your memory lanes to help with this?
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/i915/i915_reg_defs.h | 28 ++++++++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
 
-Regards,
+diff --git a/drivers/gpu/drm/i915/i915_reg_defs.h b/drivers/gpu/drm/i915/i915_reg_defs.h
+index be43580a6979..bab6a9ec2ddd 100644
+--- a/drivers/gpu/drm/i915/i915_reg_defs.h
++++ b/drivers/gpu/drm/i915/i915_reg_defs.h
+@@ -119,6 +119,34 @@
+  */
+ #define _PICK_EVEN(__index, __a, __b) ((__a) + (__index) * ((__b) - (__a)))
+ 
++/*
++ * Like _PICK_EVEN(), but supports 2 ranges of evenly spaced address offsets.
++ * The first range is used for indexes below @__c_index, and the second
++ * range is used for anything above it. Example::
++ *
++ * #define _FOO_A			0xf000
++ * #define _FOO_B			0xf004
++ * #define _FOO_C			0xf008
++ * #define _SUPER_FOO_A			0xa000
++ * #define _SUPER_FOO_B			0xa100
++ * #define FOO(x)			_MMIO(_PICK_EVEN_RANGES(x, 3,		\
++ *					      _FOO_A, _FOO_B,			\
++ *					      _SUPER_FOO_A, _SUPER_FOO_B))
++ *
++ * This expands to:
++ *	0: 0xf000,
++ *	1: 0xf004,
++ *	2: 0xf008,
++ *	3: 0xa000,
++ *	4: 0xa100,
++ *	5: 0xa200,
++ *	...
++ */
++#define _PICK_EVEN_2RANGES(__index, __c_index, __a, __b, __c, __d)		\
++	(BUILD_BUG_ON_ZERO(!__is_constexpr(__c_index)) +			\
++	 ((__index) < (__c_index) ? _PICK_EVEN(__index, __a, __b) :		\
++				   _PICK_EVEN((__index) - (__c_index), __c, __d)))
++
+ /*
+  * Given the arbitrary numbers in varargs, pick the 0-based __index'th number.
+  *
+-- 
+2.39.0
 
-Tvrtko
-
-> 
->   drivers/gpu/drm/i915/gem/i915_gem_context.c | 14 +++++++++++---
->   1 file changed, 11 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> index 6250de9b9196..e4b78ab4773b 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> @@ -1861,11 +1861,19 @@ static int get_ppgtt(struct drm_i915_file_private *file_priv,
->   	vm = ctx->vm;
->   	GEM_BUG_ON(!vm);
->   
-> +	/*
-> +	 * Get a reference for the allocated handle.  Once the handle is
-> +	 * visible in the vm_xa table, userspace could try to close it
-> +	 * from under our feet, so we need to hold the extra reference
-> +	 * first.
-> +	 */
-> +	i915_vm_get(vm);
-> +
->   	err = xa_alloc(&file_priv->vm_xa, &id, vm, xa_limit_32b, GFP_KERNEL);
-> -	if (err)
-> +	if (err) {
-> +		i915_vm_put(vm);
->   		return err;
-> -
-> -	i915_vm_get(vm);
-> +	}
->   
->   	GEM_BUG_ON(id == 0); /* reserved for invalid/unassigned ppgtt */
->   	args->value = id;
