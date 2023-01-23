@@ -2,49 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62E50677954
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Jan 2023 11:39:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 38526677992
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Jan 2023 11:49:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7D8E10E1E4;
-	Mon, 23 Jan 2023 10:39:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 229DA10E33C;
+	Mon, 23 Jan 2023 10:49:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63FA610E1E4;
- Mon, 23 Jan 2023 10:39:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674470364; x=1706006364;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=EGqbAfIrXtCj5PfIpsjX+FESl8AmgsjG+mIlk/j22lM=;
- b=OXrX0eSL4aS1/U2q/PVzhrmd1Vw5vE3aZI7zZV4YAYw2vLjrQApN/Pjg
- PmcLQn4Sqj2fLTzGE6REJL71dVa4267+LRGfVdLdkvu2+3f0ncSJ9BXcC
- DBtFF6ylSJeI56sKG45pIzR0h6O/S5NUOPHr0ygjAIpWW4qnTpS7A1NlR
- szAA9G6BzkhH2FQF8sLcIjbIwJUVL/Dvtp3H3V2m3xBbFcAx99H+1da9i
- 6wFTbHnaiCpC8AqZWsIJdxv4RBQQ3aL5rTqcETlCgs0tuQpKWFlv11xqS
- Ev5qJyzEW9B3bPgFKTwO3Fd74tQ7QbB07jTslcUpcSkdh+x2NB9h3j7lI Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10598"; a="328099819"
-X-IronPort-AV: E=Sophos;i="5.97,239,1669104000"; d="scan'208";a="328099819"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2023 02:39:23 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10598"; a="654854612"
-X-IronPort-AV: E=Sophos;i="5.97,239,1669104000"; d="scan'208";a="654854612"
-Received: from possola-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.57.125])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2023 02:39:16 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230120193457.3295977-1-lucas.demarchi@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230120193457.3295977-1-lucas.demarchi@intel.com>
-Date: Mon, 23 Jan 2023 12:39:13 +0200
-Message-ID: <87ilgx8rhq.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DCD3910E1E4;
+ Mon, 23 Jan 2023 10:49:13 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D43A5AADE4;
+ Mon, 23 Jan 2023 10:49:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v2 0/8] Add _PICK_EVEN_2RANGES
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Thomas Zimmermann" <tzimmermann@suse.de>
+Date: Mon, 23 Jan 2023 10:49:13 -0000
+Message-ID: <167447095384.345.17029215165677526238@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230123100559.12351-1-tzimmermann@suse.de>
+In-Reply-To: <20230123100559.12351-1-tzimmermann@suse.de>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/fb-helper=3A_Various_cleanups?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,49 +40,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 20 Jan 2023, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> Add a new macro, _PICK_EVEN_2RANGES, that supports using 2 address
-> ranges. This can be considered a v2 of
-> https://patchwork.freedesktop.org/series/109606/
->
-> I think I converted all the _PICK() uses that could be easily done
-> without making it much harder to read. We do have some cases of 3
-> ranges: I left those alone.
->
-> As commented in the original series and like Jani I think we may need
-> something else to cover all the use cases in future. Right now I don't
-> think we have a good alternative though. This new macro both improves
-> the current code and can be used for cases the ranges change in new
-> platforms, so I think it's good enough.  In future I think just saving
-> the reg during initialization and using different functions if the
-> bitfields change may be an alternative.
+== Series Details ==
 
-Did not review, but on the approach,
+Series: drm/fb-helper: Various cleanups
+URL   : https://patchwork.freedesktop.org/series/113220/
+State : warning
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+== Summary ==
 
->
-> This was lightly tested on ADL-S and DG2.
->
-> Lucas De Marchi (8):
->   drm/i915: Add _PICK_EVEN_2RANGES()
->   drm/i915: Fix coding style on DPLL*_ENABLE defines
->   drm/i915: Convert pll macros to _PICK_EVEN_2RANGES
->   drm/i915: Replace _MMIO_PHY3() with _PICK_EVEN_2RANGES()
->   drm/i915: Convert PIPE3/PORT3 to _PICK_EVEN_2RANGES()
->   drm/i915: Convert _FIA() to _PICK_EVEN_2RANGES()
->   drm/i915: Convert MBUS_ABOX_CTL() to _PICK_EVEN_2RANGES()
->   drm/i915: Convert PALETTE() to _PICK_EVEN_2RANGES()
->
->  .../drm/i915/display/intel_display_reg_defs.h |  10 +-
->  .../gpu/drm/i915/display/intel_mg_phy_regs.h  |   4 +-
->  drivers/gpu/drm/i915/i915_reg.h               | 106 +++++++++---------
->  drivers/gpu/drm/i915/i915_reg_defs.h          |  28 +++++
->  4 files changed, 89 insertions(+), 59 deletions(-)
+Error: dim checkpatch failed
+5ab0ea975cf6 drm/client: Test for connectors before sending hotplug event
+375ab6efdb6e drm/client: Add hotplug_failed flag
+cd08e72eef2b drm/fb-helper: Introduce drm_fb_helper_unprepare()
+-:59: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#59: FILE: include/drm/drm_fb_helper.h:299:
+ }
++void drm_fb_helper_unprepare(struct drm_fb_helper *fb_helper)
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+total: 0 errors, 0 warnings, 1 checks, 42 lines checked
+15f07c8dbc87 drm/fbdev-generic: Initialize fb-helper structure in generic setup
+62b277b14ac0 drm/fb-helper: Remove preferred_bpp parameter from fbdev internals
+a60df8b21d68 drm/fb-helper: Initialize fb-helper's preferred BPP in prepare function
+001d97408c83 drm/fbdev-generic: Minimize hotplug error handling
+e30390bb2278 drm/fbdev-generic: Minimize client unregistering
+6fd2dcb41557 drm/fbdev-generic: Inline clean-up helpers into drm_fbdev_fb_destroy()
+27813d7a17b0 drm/fbdev-generic: Rename struct fb_info 'fbi' to 'info'
+
+
