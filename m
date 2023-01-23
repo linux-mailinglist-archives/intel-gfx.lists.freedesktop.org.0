@@ -1,66 +1,143 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 648B1677C73
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Jan 2023 14:29:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66CD2677E10
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Jan 2023 15:31:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58B4410E491;
-	Mon, 23 Jan 2023 13:29:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D51BA10E4AB;
+	Mon, 23 Jan 2023 14:31:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA09010E491
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Jan 2023 13:29:46 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 83F2522CEC;
- Mon, 23 Jan 2023 13:29:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1674480585; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=1I5qko490BLRoDlSVQhuyQMO4SIym7YcCKvMyxccxSw=;
- b=BOHM8BZ71CdZ8QjJDizKfEdpqCEwPtUdAszrLC7MiGbtnIKDyAYeOuWp9fiw81S5G1NORy
- 8ksDJWNIBdaVuWt5xHDl55gKU6v5g28xpPXhlEEuNEhpZ6r89FvGkmWNygpb0KszX+YzP3
- x38Eyqlku0y3s49k1rD3IT/O19eyeHA=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1674480585;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=1I5qko490BLRoDlSVQhuyQMO4SIym7YcCKvMyxccxSw=;
- b=tj6kX3UCUPAKzCFxu1pS3D8ANmwJ2Bp62EN4KPZCUHsDo6bElMBCf3t3fJXljgWzS8JgWD
- U6D6MVerNQLVrgBQ==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 60AAB1357F;
- Mon, 23 Jan 2023 13:29:45 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id 0d5UFsmLzmOpDQAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Mon, 23 Jan 2023 13:29:45 +0000
-Message-ID: <8dbd8df1-5b20-7b41-54d6-363a0177af55@suse.de>
-Date: Mon, 23 Jan 2023 14:29:44 +0100
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEEC410E4AB;
+ Mon, 23 Jan 2023 14:31:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1674484289; x=1706020289;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=88KIuvQPzsamoShe6JJz5vCULvS5CdazkolZqX7zGKE=;
+ b=NwdzHubzfMd74m0B9yJjIh/CJ+QvRPkYAC9urxCB/4riXagG2cq78dzC
+ EqglLCirnXbcYvJt4Hu9GRaOfQr21nywT1nBjFazuQ/xbu7w7AuovqvHW
+ l5u8VljRSLeptnADMWO/D/guT+gjP2PHO/Ct8gyGkShVWmWCOLiTPqBDK
+ JM2JY1Kne07dr28xbU2yemm5C8DHWUn1nFCHbxIuYIx6C7DPng1F7AUHD
+ GfZJyEkXJFVt4odHXnG5sCE1eEsFlJky4T6pikiqp3LtVVEOcoKRdnvvL
+ DZ4qHP220Z3x7qG5CdM9fSzhtqXTfJLNjkaYSPxbvEzvT04fkHMHOSoUq A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10598"; a="313944528"
+X-IronPort-AV: E=Sophos;i="5.97,239,1669104000"; d="scan'208";a="313944528"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2023 06:31:28 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10598"; a="907042509"
+X-IronPort-AV: E=Sophos;i="5.97,239,1669104000"; d="scan'208";a="907042509"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga006.fm.intel.com with ESMTP; 23 Jan 2023 06:31:28 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Mon, 23 Jan 2023 06:31:27 -0800
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Mon, 23 Jan 2023 06:31:26 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Mon, 23 Jan 2023 06:31:26 -0800
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.168)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Mon, 23 Jan 2023 06:31:25 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=U5bfFA2Qx/3kGULwUv3Wg6LOBS00YbPpS+RiwPP3GKxzQhlddeezztyE4Y3fb8o8wyhCunwXaWHJtOhP9HutCleAQUnm8B72VDxir93Age6qhQf29Gpav5cM33E1pGeOVqYhf9Hb4lwmZtITy2NpNSa/ZzSNqbN0mLC3xNDwoYjBLxT5lAxN/WHGLPFgoS/t2Gy/QkkR1eFBVK7ssFNdp9/6OLufl5Lh8DUySFPWU+Ph6VxQML59bcXF/tNX6dIqYnvS98e/UqkvZSamvsWwszRLwxWwmh1weETdvNwu5W3o/x29BNN1juyYzMj3AGP4Uu2k81euTQ6/SJ8aS3MSHw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nIf4T223K6XxigwvRtgnH2DNgRMonl5F+XskEcC8gM0=;
+ b=Q5VWz6BP1ZSvAcNXoY+DHbUPr7CJx1I9o2pj0qK/nNwz3cS2GCe2hUABTaQe3MF3b4bN/lFl+XWifw8DuhGFYHnD2tULK0hMfvTEK3INxVCTgN766wY6OV28GRKn81MAX/GOSzFrCyjKGK8IheWLanjFnKpYImPrgvfAAi1U0azBwLnNGHAcPy5fKrHP8oqpR+HdHTk/kVKDGvkJPBqF2OEpHCFyaK1YQHUXulDcpdjLY3/he0bWF42OyNopvvsGmW2H0gmodthFH9BngJsvuSc8RCyz/qOrTW/dOO+pT/qx3nXlAtwm9dBAsBURj6ii2ZYFmaOavsNugUe/tWHl9Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by DS7PR11MB7740.namprd11.prod.outlook.com (2603:10b6:8:e0::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Mon, 23 Jan
+ 2023 14:31:23 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::1818:e39d:454d:a930]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::1818:e39d:454d:a930%4]) with mapi id 15.20.6002.033; Mon, 23 Jan 2023
+ 14:31:23 +0000
+Date: Mon, 23 Jan 2023 09:31:18 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: "Usyskin, Alexander" <alexander.usyskin@intel.com>
+Message-ID: <Y86aNv0G6qC+DNHx@intel.com>
+References: <20230113011850.1463965-1-alan.previn.teres.alexis@intel.com>
+ <20230113011850.1463965-3-alan.previn.teres.alexis@intel.com>
+ <Y8mZGMjjlTW3U0jA@intel.com>
+ <CY5PR11MB63660409E141F1D0E65A9B95EDCB9@CY5PR11MB6366.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <CY5PR11MB63660409E141F1D0E65A9B95EDCB9@CY5PR11MB6366.namprd11.prod.outlook.com>
+X-ClientProxiedBy: BYAPR07CA0044.namprd07.prod.outlook.com
+ (2603:10b6:a03:60::21) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Content-Language: en-US
-To: "Hogander, Jouni" <jouni.hogander@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-References: <20230123074437.475103-1-jouni.hogander@intel.com>
- <7ee0c0c6-2620-38a6-76da-07c792950dd4@suse.de>
- <654a535c8399ba0aefb27773b7c3fbf926d3c9dc.camel@intel.com>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-In-Reply-To: <654a535c8399ba0aefb27773b7c3fbf926d3c9dc.camel@intel.com>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------pZK7qORAeFptzyuKT70SUvqq"
-Subject: Re: [Intel-gfx] [PATCH v4] drm/i915/fbdev: Implement fb_dirty for
- intel custom fb helper
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|DS7PR11MB7740:EE_
+X-MS-Office365-Filtering-Correlation-Id: d4812e9f-6822-4357-68ca-08dafd4e8096
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: U9v8e1SbHKlH6SP+RFWEEy1978ZghXL/+LSBpCH2bfSViEn/Ry0txTrMHGCo1DHb1cuaBXqYbGZMSSQl7JzNPgW5HTOVrg8i76YfpbpQdSjUiKufaHDsFMCYZupgr2Utr3BUCbN3r125EmPjl7TO9gWvb/IIUAMuo+X/058nALoZ5nmu8giPq9MPFU01BZRPIysmLgBCBPPYto6/JGqpNdJJXjShgwqKiCwrunP8Y5l2GUyNggIWWVDdBVUULiL2tdAG1nNq4AaN3ygY8B94ZK8QBqRohjen3YgkenqHGKBnVGMclKgG9oLRZ80s/VODfL6qv308ZcOwMXHHdznQoGP19u6h1CmAoW0RRPXuLHhzpYTcmcwrhMetrXtTTjLP7ws4jLfGc3mzF0puAm0iU44qFU/KSRUPWP60+GU1pEPzGOvjk8MKUogmcJ8aJvk7J5H/jVcGzpp/+IF8MTnf1eiwalLH/TrQJmyIlUXQpUqpowuwT6aBbWdRDdnXlDfRGsd+yGFewcvBo4GluwAvr6+OPWK/bXN8VC08zQ1LPwY0DLD04ahb9k+v1dtXUW+uHhJEzeJbnr8XY2PyQehqJ2cRnNyAy/4YGbmzLTVLh2NSTfLw+SGwIkfINhKADJBs11H05px7o2TOS/j6TMWCgnWg0bT/owG4DZHI0JPmZacGezfwnd+wCRssgYJ3Mn6J
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(376002)(39860400002)(396003)(136003)(366004)(346002)(451199015)(478600001)(82960400001)(6486002)(38100700002)(6666004)(36756003)(6506007)(6512007)(86362001)(26005)(186003)(8676002)(4326008)(66476007)(37006003)(66946007)(66556008)(316002)(83380400001)(41300700001)(2616005)(54906003)(6636002)(2906002)(5660300002)(8936002)(6862004)(44832011)(67856001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Enbh8EYVBrlWJt5CswTRtCgK63OAd/fXMIO/rdQzTegE/meSHsfo7cIJn/Yh?=
+ =?us-ascii?Q?qCRpbMFh80uw1ZgWbdbOKwgFVe4ta4BcenhekjyYsFnLZe0eJ58MOwpNk3nh?=
+ =?us-ascii?Q?Y1sMBiqMYVbC2dVxjSBVoG9008jryllXDXfqYi8+6V6NNb+yFdB82XeVLlXQ?=
+ =?us-ascii?Q?k9Rjyd659sx2ysazAnWlUHEksP037vU8LQdEVC9JFqmOwXTgTAQXAg4FXk+n?=
+ =?us-ascii?Q?ufZTTXCpwzHThuxLMBo/yxlIromELZ2+or/fgIgIgF1nOfCOBZd1yK7pZyeh?=
+ =?us-ascii?Q?i1ZEvzvxHVjLmTC+yvQ4RoPB3fZbIdftRCDlRk4Y/32orxC6sYHpR0lLGg3Z?=
+ =?us-ascii?Q?pV1raMIs3NgJwpmqL9pIM7bZhZ57FvChBFH44ZHtLDY/e/iURMQaPTrj3K15?=
+ =?us-ascii?Q?hxwcjBBTfSoFkdhjoa/DZLVYFxvmG6djUShTKxBGpNTxVgIW5yGuHDe2hhTY?=
+ =?us-ascii?Q?akyfdAquSSR7FogZIlQQfqho4XVD97ZB2OEAoDB8ByOKu0HUykq0qihOalsv?=
+ =?us-ascii?Q?4Qq4ZJe2e4ULu7MBoLAeRar86efjQ28k8sXdf1Z36Fouqpc7A7Sxq6ZRHP3R?=
+ =?us-ascii?Q?n4zvTcIpIGg3aM2Jg3Pwn3+m4BOQuc6R86LigSfHMrSTUVrwA/N4LjG8hler?=
+ =?us-ascii?Q?6Mzl3TnrRTVAk6Od96a+MIuvBYArgWnSZm/lJABhVlr4oRg3bRphMJUwxaPd?=
+ =?us-ascii?Q?0yFfBLxvxeFP2OQtd3jQUJLM6DuTUXmg2w903s/7zkbpDC7QoqAeJ0xoaCM3?=
+ =?us-ascii?Q?FybewOrJI4LcyP01Bj9CnU0hmUsNrTyBUPT6Wdl+nnxdVHYMGRyvTOPJegLX?=
+ =?us-ascii?Q?+KOJhK/3ApNLOo9FilyfRnejUGA/LUSt+/R87SzrDAayGS7Cs91y2ZBgilsX?=
+ =?us-ascii?Q?ZAXkkg4gBJs3zlpAN3EjTF+SSfYbQWFtbSj+K/QaZyGMuXhvVtj1EZtS5tdS?=
+ =?us-ascii?Q?47GCCq5zKe9oThCc5xKkb7yHrhWu5OkI91pSSJacuq6DQi5xM19/5MW4aM1T?=
+ =?us-ascii?Q?si+ZydS9fCrCI29D+5ypeCNiR+TofYCUBNMRmqQ/HwlYzLgnhUAx26XDXe4O?=
+ =?us-ascii?Q?TV7TZ8lW8nlGjCKXcQqFOg2NAUrPVbfaNpBInc14D6ZVs6JaoDsJVZh5uH6i?=
+ =?us-ascii?Q?5n1ERGnE5UiGLs+/6t5iqIlZdZmxY/lE1onwYX1J9Eey9vyDlSRWlH9D9/Ox?=
+ =?us-ascii?Q?tz7MtTtwlxNEIJjAX9yqvmcSh4zP7iwMnHsuewFRO+CvHmuYFPIYBLmVTo4F?=
+ =?us-ascii?Q?4bFsaFuFJ5+VPdHCIiisLcdIS/VmDF/rWTMxDR2365ySKR3RqOmBfDJyBhMX?=
+ =?us-ascii?Q?eOhG9ZWEIXZ60Ts9PcaYMQTHWcBWvSyuNTgYtYfHp9q80Mkngp8GWxhflLUn?=
+ =?us-ascii?Q?yYP7yMbQ0F71rCcXQlxUwCq+T92HjWFgRbmGTfMU21+1QykUQG5ZnSMPmekc?=
+ =?us-ascii?Q?N8czg7moQl/xDzLb5ZPDl/YK2idf0uKTx88m/cvNsqNkHGK3nP0bxOXUkWUg?=
+ =?us-ascii?Q?rPl6N1qFcZg/E7cLi2Mqkiml6F2HicqJuRxMDZVpf/Exqfz6e+RYOuv0qn0o?=
+ =?us-ascii?Q?jxqViPj1EDAlmiC7hddbxpxI6UX3TMYNihMidJUxBWs7Tqpv2IwGgsoP3I9s?=
+ =?us-ascii?Q?KA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: d4812e9f-6822-4357-68ca-08dafd4e8096
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2023 14:31:23.6582 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: PMseP4lLNYFj8mTcz6mJgrouhdxQQBnoALPtfNgLuTx22W6pB+6jp1o1b3vDKSpjOXZ5uQC0Pz+dlA4ioH+btA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB7740
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v5 2/6] drm/i915/pxp: add device link
+ between i915 and mei_pxp
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,126 +150,112 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>
+Cc: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "Vivi@freedesktop.org" <Vivi@freedesktop.org>, "Winkler,
+ Tomas" <tomas.winkler@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------pZK7qORAeFptzyuKT70SUvqq
-Content-Type: multipart/mixed; boundary="------------ZJbCY0soqlKd5DaXHNi4IVeB";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Cc: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
- "Nikula, Jani" <jani.nikula@intel.com>
-Message-ID: <8dbd8df1-5b20-7b41-54d6-363a0177af55@suse.de>
-Subject: Re: [PATCH v4] drm/i915/fbdev: Implement fb_dirty for intel custom fb
- helper
-References: <20230123074437.475103-1-jouni.hogander@intel.com>
- <7ee0c0c6-2620-38a6-76da-07c792950dd4@suse.de>
- <654a535c8399ba0aefb27773b7c3fbf926d3c9dc.camel@intel.com>
-In-Reply-To: <654a535c8399ba0aefb27773b7c3fbf926d3c9dc.camel@intel.com>
+On Sun, Jan 22, 2023 at 06:57:24AM +0000, Usyskin, Alexander wrote:
+> > > diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+> > b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+> > > index d50354bfb993..bef6d7f8ac55 100644
+> > > --- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+> > > +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+> > > @@ -127,6 +127,10 @@ static int i915_pxp_tee_component_bind(struct
+> > device *i915_kdev,
+> > >  	intel_wakeref_t wakeref;
+> > >  	int ret = 0;
+> > >
+> > > +	if (!HAS_HECI_PXP(i915) &&
+> > > +	    drm_WARN_ON(&i915->drm, !device_link_add(i915_kdev,
+> > tee_kdev,
+> > 
+> > I don't like the action here hidden behind the drm_WARN_ON.
+> > Please notice that almost every use of this and other helpers like
+> > this expect the param as a failure. Not an actual action. So,
+> > most of lazy readers like me might ignore that the main function
+> > is actually a param inside  this warn condition.
+> > 
+> Honestly, copy-pasted from drivers/gpu/drm/i915/display/intel_audio.c +1266
+> I don't have deep knowledge of drm macros, so thought this should be ok.
+> Can make it any other form that acceptable in drm tree...
 
---------------ZJbCY0soqlKd5DaXHNi4IVeB
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+something like I suggested in my previous reply please.
 
-SGkNCg0KQW0gMjMuMDEuMjMgdW0gMTM6MjAgc2NocmllYiBIb2dhbmRlciwgSm91bmk6DQo+
-IE9uIE1vbiwgMjAyMy0wMS0yMyBhdCAxMjozOCArMDEwMCwgVGhvbWFzIFppbW1lcm1hbm4g
-d3JvdGU6DQo+PiBIaQ0KPj4NCj4+IEFtIDIzLjAxLjIzIHVtIDA4OjQ0IHNjaHJpZWIgSm91
-bmkgSMO2Z2FuZGVyOg0KPj4+IEFmdGVyIGRpc2Nvbm5lY3RpbmcgZGFtYWdlIHdvcmtlciBm
-cm9tIHVwZGF0ZSBsb2dpYyBpdCdzIGxlZnQgdG8NCj4+PiBmYmRldg0KPj4+IGVtdWxhdGlv
-biBpbXBsZW1lbnRhdGlvbiB0byBoYXZlIGZiX2RpcnR5IGZ1bmN0aW9uLiBDdXJyZW50bHkg
-aW50ZWwNCj4+PiBmYmRldiBkb2Vzbid0IGhhdmUgaXQuIFRoaXMgaXMgY2F1c2luZyBwcm9i
-bGVtcyB0byBmZWF0dXJlcyAoUFNSLA0KPj4+IEZCQywNCj4+PiBEUlJTKSByZWx5aW5nIG9u
-IGRpcnR5IGNhbGxiYWNrLg0KPj4+DQo+Pj4gSW1wbGVtZW50IHNpbXBsZSBmYl9kaXJ0eSBj
-YWxsYmFjayB0byBkZWxpdmVyIG5vdGlmaWNhdGlvbnMgYWJvdXQNCj4+PiB1cGRhdGVzDQo+
-Pj4gaW4gZmIgY29uc29sZS4NCj4+Pg0KPj4+IHY0OiBBZGQgcHJvcGVyIEZpeGVzIHRhZyBh
-bmQgbW9kaWZ5IGNvbW1pdCBtZXNzYWdlDQo+Pj4gdjM6IENoZWNrIGRhbWFnZSBjbGlwDQo+
-Pj4gdjI6IEltcHJvdmVkIGNvbW1pdCBtZXNzYWdlIGFuZCBhZGRlZCBGaXhlcyB0YWcNCj4+
-Pg0KPj4+IEZpeGVzOiBmMjMxYWY0OThjMjkgKCJkcm0vZmItaGVscGVyOiBEaXNjb25uZWN0
-IGRhbWFnZSB3b3JrZXIgZnJvbQ0KPj4+IHVwZGF0ZSBsb2dpYyIpDQo+Pj4gQ2M6IFZpbGxl
-IFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+DQo+Pj4gQ2M6IFRo
-b21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPg0KPj4+IENjOiBKYW5pIE5p
-a3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPg0KPj4+IFNpZ25lZC1vZmYtYnk6IEpvdW5p
-IEjDtmdhbmRlciA8am91bmkuaG9nYW5kZXJAaW50ZWwuY29tPg0KPj4+IC0tLQ0KPj4+ICDC
-oCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiZGV2LmMgfCAxMiArKysr
-KysrKysrKysNCj4+PiAgwqAgMSBmaWxlIGNoYW5nZWQsIDEyIGluc2VydGlvbnMoKykNCj4+
-Pg0KPj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2ZiZGV2LmMNCj4+PiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJk
-ZXYuYw0KPj4+IGluZGV4IDE5ZjNiNWQ5MmE1NS4uZDM5ZGI4MDUwYzY5IDEwMDY0NA0KPj4+
-IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJkZXYuYw0KPj4+
-ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJkZXYuYw0KPj4+
-IEBAIC0zMjEsOCArMzIxLDIwIEBAIHN0YXRpYyBpbnQgaW50ZWxmYl9jcmVhdGUoc3RydWN0
-IGRybV9mYl9oZWxwZXINCj4+PiAqaGVscGVyLA0KPj4+ICDCoMKgwqDCoMKgwqDCoMKgcmV0
-dXJuIHJldDsNCj4+PiAgwqAgfQ0KPj4+ICAgIA0KPj4+ICtzdGF0aWMgaW50IGludGVsZmJf
-ZGlydHkoc3RydWN0IGRybV9mYl9oZWxwZXIgKmhlbHBlciwgc3RydWN0DQo+Pj4gZHJtX2Ns
-aXBfcmVjdCAqY2xpcCkNCj4+PiArew0KPj4+ICvCoMKgwqDCoMKgwqDCoGlmICghKGNsaXAt
-PngxIDwgY2xpcC0+eDIgJiYgY2xpcC0+eTEgPCBjbGlwLT55MikpDQo+Pj4gK8KgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJldHVybiAwOw0KPj4+ICsNCj4+PiArwqDCoMKgwqDC
-oMKgwqBpZiAoaGVscGVyLT5mYi0+ZnVuY3MtPmRpcnR5KQ0KPj4+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gaGVscGVyLT5mYi0+ZnVuY3MtPmRpcnR5KGhlbHBl
-ci0+ZmIsIE5VTEwsDQo+Pj4gMCwgMCwgY2xpcCwgMSk7DQo+Pg0KPj4gRGlkbid0IEkgbmFj
-ayB0aGlzIGFwcHJvYWNoIGFscmVhZHk/IFlvdSBzaG91bGRuJ3Qgc2V0IGZiX2RpcnR5LiBU
-aGUNCj4+IGJldHRlciBzb2x1dGlvbiB3YXMgdG8gaW1wbGVtZW50IGk5MTUtc3BlY2lmaWMg
-aGVscGVycyBmb3Igd3JpdGUsDQo+PiBmaWxsYXJlYSwgY29weWFyZWEgYW5kIGJsaXQuIFRo
-b3NlIHNob3VsZCBjYWxsIGludGVsZmJfZGlydHkoKQ0KPj4gZGlyZWN0bHkNCj4+IGFmdGVy
-IHBlcmZvcm1pbmcgdGhlIG91dHB1dC7CoCBBbmQgSUlSQyB5b3UgYWxyZWFkeSBpbXBsZW1l
-bnRlZCB0aGlzLg0KPiANCj4gSSBoYXZlIGltcGxlbWVudGVkIHN1Y2ggdGhpbmcuIEkgZGlk
-bid0IHRvb2sgaXQgYXMgYSBuYWNrIGJhY2sgdGhlbi4NCj4gTGFzdCBjb21tZW50IGZyb20g
-eW91IHdhczoNCj4gDQo+ICJpZiB5b3UgZ28gd2l0aCBmYl9kaXJ0eSwgcGxlYXNlIGltcGxl
-bWVudCB0aGUgY2xpcHBpbmcNCj4gdGVzdCBpbiB5b3VyIGNhbGxiYWNrLiINCj4gDQo+IGFu
-ZCB2MyB3YXMgcHJlcGFyZWQgdG8gYWRkcmVzcyB0aGF0IGNvbW1lbnQuwqBNeSB0aGlua2lu
-ZyB3YXMgdGhhdCB0aGlzDQo+IGlzIG9ubHkgZm9yIGZiIGNvbnNvbGUsIGJ1dCBWaWxsZSBT
-eXJqw6Rsw6QgY29tbWVudGVkIHRoYXQgdGhlcmUgaXMgbW9yZQ0KPiB0aGFuIGNvbnNvbGUg
-c28gSSBzdGlja2VkIGluIHRoaXMgYXBwcm9hY2guDQo+IA0KPiBTbyB5b3UgdGhpbmsgSSBz
-aG91bGQganVzdCBkcm9wIGlkZWEgb2Ygc2V0dGluZyBkaXJ0eSBjYWxsYmFjayBhbmQNCj4g
-aW1wbGVtZW50IHRob3NlIGk5MTUtc3BlY2lmaWMgaGVscGVycz8NCg0KQWggT0ssIHNvIEkg
-cmVtZW1iZXJlZCBpbmNvcnJlY3RseS4NCg0KQSBmZXcgdGhpbmdzIGhhdmUgY2hhbmdlZCBz
-aW5jZSBteSBvcmlnaW5hbCBjb21tZW50IGFuZCBJIHdvcmtlZCBvbiANCmZiZGV2IGhlbHBl
-ciBhIGJpdC4gIFRoZSB0aGluZyBpcyB0aGF0IGZiX2RpcnR5IHdpbGwgbGlrZWx5IGdvIGF3
-YXkgYXQgDQpzb21lIHBvaW50ICh0b2dldGhlciB3aXRoIHRoZSByZXN0IG9mIGRybV9mYl9o
-ZWxwZXJfZnVuY3MpLiBJT1cgYXQgc29tZSANCnBvaW50LCB5b3UnbGwgbmVlZCB0aG9zZSBp
-OTE1IGZ1bmN0aW9ucyBhbnl3YXlzLiBOb3QgdXNpbmcgZmJfZGlydHkgbm93IA0Kd2lsbCBz
-YWZlIHRoYXQgd29yayBsYXRlciBvbi4NCg0KQmVzdCByZWdhcmRzDQpUaG9tYXMNCg0KPiAN
-Cj4+DQo+PiBCZXN0IHJlZ2FyZHMNCj4+IFRob21hcw0KPj4NCj4+PiArDQo+Pj4gK8KgwqDC
-oMKgwqDCoMKgcmV0dXJuIDA7DQo+Pj4gK30NCj4+PiArDQo+Pj4gIMKgIHN0YXRpYyBjb25z
-dCBzdHJ1Y3QgZHJtX2ZiX2hlbHBlcl9mdW5jcyBpbnRlbF9mYl9oZWxwZXJfZnVuY3MgPSB7
-DQo+Pj4gIMKgwqDCoMKgwqDCoMKgwqAuZmJfcHJvYmUgPSBpbnRlbGZiX2NyZWF0ZSwNCj4+
-PiArwqDCoMKgwqDCoMKgwqAuZmJfZGlydHkgPSBpbnRlbGZiX2RpcnR5LA0KPj4+ICDCoCB9
-Ow0KPj4+ICAgIA0KPj4+ICDCoCBzdGF0aWMgdm9pZCBpbnRlbF9mYmRldl9kZXN0cm95KHN0
-cnVjdCBpbnRlbF9mYmRldiAqaWZiZGV2KQ0KPj4NCj4+IC0tIA0KPj4gVGhvbWFzIFppbW1l
-cm1hbm4NCj4+IEdyYXBoaWNzIERyaXZlciBEZXZlbG9wZXINCj4+IFNVU0UgU29mdHdhcmUg
-U29sdXRpb25zIEdlcm1hbnkgR21iSA0KPj4gTWF4ZmVsZHN0ci4gNSwgOTA0MDkgTsO8cm5i
-ZXJnLCBHZXJtYW55DQo+PiAoSFJCIDM2ODA5LCBBRyBOw7xybmJlcmcpDQo+PiBHZXNjaMOk
-ZnRzZsO8aHJlcjogSXZvIFRvdGV2DQo+IA0KDQotLSANClRob21hcyBaaW1tZXJtYW5uDQpH
-cmFwaGljcyBEcml2ZXIgRGV2ZWxvcGVyDQpTVVNFIFNvZnR3YXJlIFNvbHV0aW9ucyBHZXJt
-YW55IEdtYkgNCk1heGZlbGRzdHIuIDUsIDkwNDA5IE7DvHJuYmVyZywgR2VybWFueQ0KKEhS
-QiAzNjgwOSwgQUcgTsO8cm5iZXJnKQ0KR2VzY2jDpGZ0c2bDvGhyZXI6IEl2byBUb3Rldg0K
+> 
+> > We should probably stash the link as well...
+> > 
+> > pxp->dev_link = device_link_add(i915_kdev, tee_kdev,...);
+> > 
+> > so in the end below, instead of checking the HAS_HECI_PXP again
+> > and use the remove version you check the dev_link and use the del
+> > function.
+> > 
+> > something like:
+> > 
+> > if (pxp->dev_link)
+> >    device_link_del(pxp->dev_link);
+> > 
+> Not sure that this simplification warrants additional clutter in struct.
+> 
+> > Also, do you really need the WARN to see the stack when this happens
+> > or you already know the callers?
+> > Why not a simple drm_error msg?
+> > 
+> > if (!HAS_HECI_PXP(i915) {
+> > 	pxp->dev_link = device_link_add(i915_kdev, tee_kdev,...);
+> > 	if (!pxp->dev_link) {
+> > 	   drm_error();
+> > 	   return -ESOMETHING;
+> > 
+> > >  DL_FLAG_STATELESS)))
+> > 
+> > do we need the RPM in sync as well?
+> > I mean:
+> > 
+> > DL_FLAG_STATELESS | DL_FLAG_PM_RUNTIME)))
+> > 
+> > ?
+> 
+> No, the mei device should not be active all the time when i915 is active, only when pxp requires it.
 
+okay then
 
---------------ZJbCY0soqlKd5DaXHNi4IVeB--
+> 
+> > 
+> > > +		return -ENOMEM;
+> > 
+> > why ENOMEM?
+> Copy-paste from i915 audio.
 
---------------pZK7qORAeFptzyuKT70SUvqq
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
+It doesn't make sense to me.
+Looking to other derivers -ENODEV or -EINVAL seems to be
+the most used choices...
 
------BEGIN PGP SIGNATURE-----
+looking to the error codes probably ECHILD would make sense
+but no one is using it... so let's stay with ENODEV?!
 
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmPOi8gFAwAAAAAACgkQlh/E3EQov+BA
-xg//YUAiWgLa1E2EV3xNBpr1mB3LpGZks1kocQIMsdxGC6fdU4bZQYcbZxyjmhW/625SCz8V8Hdh
-deLcVUAZ5x1255JAZScURxR5+CmQEwIlBSjxvxg8Zd+tJAH8U/hcIh1qEsb0WgS+k/cPdyouc3RB
-/wEQ1ed/NDzk30HrBlGALs1KV3QfKc6ciCOcrqYe52BcQdJ7vK4EmIjmo7zte5ljQi6gwI95LmT1
-cb3mGTlZKkmpSMUBQz/Mt+E1EhUKqY2D5VuHiDvC0OwJLEunk9Zytrjgvhqgj2s0VLFKpGy9M44m
-kxo5k9okbr99VYwcXlT7XebJvPiQCKoYEQsdIBGASHa39MdiLwjGBi+mT6ZUBaicNfkYSGZFRSLP
-r3LMBCV0Il+KqFMuwgj8VmOWFjQrXZVD5rIoUZeryQAfRI8icoOdX/ECUMERGx0NpYPAOzx28LMf
-qfElXuSwNOuJzxMX/d9m7akoCIN7sKFqroCoP9Nie/e9Q5X24HQxjId6VnB+SEKU/ADrZ8ClnUD4
-pTruZAgc8kpupZPnprXCgGkHiWdpEaww8iXj9d8eurXEhTp0BS1wM6D5Q0mutOg21hCuVXc8ODwp
-9FDjum+2DP3RkCgO1L+sFEEAxKaSyfLYODCDgke6zAFcUAN4dGvRLaMB2mCJck+luI15yyHG2nPq
-l1o=
-=pYxs
------END PGP SIGNATURE-----
-
---------------pZK7qORAeFptzyuKT70SUvqq--
+> 
+> > 
+> > > +
+> > >  	mutex_lock(&pxp->tee_mutex);
+> > >  	pxp->pxp_component = data;
+> > >  	pxp->pxp_component->tee_dev = tee_kdev;
+> > > @@ -169,6 +173,9 @@ static void i915_pxp_tee_component_unbind(struct
+> > device *i915_kdev,
+> > >  	mutex_lock(&pxp->tee_mutex);
+> > >  	pxp->pxp_component = NULL;
+> > >  	mutex_unlock(&pxp->tee_mutex);
+> > > +
+> > > +	if (!HAS_HECI_PXP(i915))
+> > > +		device_link_remove(i915_kdev, tee_kdev);
+> > >  }
+> > >
+> > >  static const struct component_ops i915_pxp_tee_component_ops = {
+> > > --
+> > > 2.39.0
+> > >
