@@ -1,54 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D0976778DC
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Jan 2023 11:15:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A12EC67791B
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Jan 2023 11:24:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D05EA10E338;
-	Mon, 23 Jan 2023 10:15:10 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82CC910E338;
- Mon, 23 Jan 2023 10:15:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DF4F10E1E4;
+	Mon, 23 Jan 2023 10:24:21 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C516B10E1C7;
+ Mon, 23 Jan 2023 10:24:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674468909; x=1706004909;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=R7TjPoZS7bYWLfmGcXeg4TEAsY/s78qaT2VAILgGV7c=;
- b=UOnKIrgzLvEQResEGw0FgSVq8npr0+9IF+icV4An2BfIstsaWmiS0v5T
- Kj52VMux3+IAoOw8G+r24Fbja0e5rJHOLY/FWA8LbGfFgcj0XIPbQ+Qap
- b1S7PHb08YF9g6ZNnU5OAMb3rnn2wK7L4i9tWCL+oSjxY6Iqracm+y3tt
- S76+hbcaPaLCHPZves31XeDJDukscybxI6X9R3WBkbmMzhyh38jXBDAwD
- Cpwhv6kFkBb+xxypWR8Nik6z5Oe698tpzPzJHQhOMYzkUJkXuSZMgVm0+
- eFiCgYoiRk7gWysGpcS5dZAAw7m1bqhbZZ+gjlvDNoGXKwtPPk1RnS0mL w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10598"; a="390511844"
-X-IronPort-AV: E=Sophos;i="5.97,239,1669104000"; d="scan'208";a="390511844"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2023 02:15:08 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10598"; a="730127102"
-X-IronPort-AV: E=Sophos;i="5.97,239,1669104000"; d="scan'208";a="730127102"
-Received: from possola-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.57.125])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2023 02:15:07 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-In-Reply-To: <Y8riBdt+O6zDVlFz@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1674144945.git.jani.nikula@intel.com>
- <b58b4c5ea31943e6c816ba0f6f4efa48bd9e5ab6.1674144945.git.jani.nikula@intel.com>
- <Y8riBdt+O6zDVlFz@intel.com>
-Date: Mon, 23 Jan 2023 12:15:04 +0200
-Message-ID: <87o7qp8slz.fsf@intel.com>
+ t=1674469459; x=1706005459;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=INyLX+xNNroZU0it3wu5ecYnBMXDw3tBjXi3TBCfHgU=;
+ b=Nl/2ux7j6DUXK/n7Q4BapwjVk1hj/IjYKMYZhgd8aGCbg7ML3UoGF4yO
+ Kj91vDUpMmSzmIuyIJ9QZdupYBhaI9WhubfaSeknz2YKpWpjWWF8HZzei
+ 8qHs8q60GnB1BPJF5rvuTE+fOGNsKDeYfgyM2T4zAFaOYG3C4qUOgjYoA
+ XoY3tKbf+a4srEvz+qVWM8zmgD2+nHePnt3v6Fl4PyjmgvxAgSI1NafDh
+ ttBoD9SWZbOb43at5s4liPQcc3AfFpF9extNX7go9G+HU3jyir5fttz74
+ VlZyJbeQ8+m0aravz/Dof+x5IPfA+DaIPqm74+vjKjWdt9f+akj3hTTTj Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10598"; a="326045596"
+X-IronPort-AV: E=Sophos;i="5.97,239,1669104000"; d="scan'208";a="326045596"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2023 02:24:19 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10598"; a="611497277"
+X-IronPort-AV: E=Sophos;i="5.97,239,1669104000"; d="scan'208";a="611497277"
+Received: from bridge4x-mobl.ger.corp.intel.com (HELO [10.213.214.72])
+ ([10.213.214.72])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2023 02:24:17 -0800
+Message-ID: <3d3c7982-5ad3-d5a7-0574-ec1b9848dd2a@linux.intel.com>
+Date: Mon, 23 Jan 2023 10:24:07 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v8 5/8] drm/i915/edid: convert DP,
- HDMI and LVDS to drm_edid
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Content-Language: en-US
+To: "Das, Nirmoy" <nirmoy.das@linux.intel.com>,
+ igt-dev@lists.freedesktop.org, Intel-gfx@lists.freedesktop.org
+References: <20230119155428.3260937-1-tvrtko.ursulin@linux.intel.com>
+ <46f7db49-eb5c-515f-b450-75cac53d770e@linux.intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <46f7db49-eb5c-515f-b450-75cac53d770e@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH i-g-t] intel_gpu_top: Fix cleanup on old
+ kernels / unsupported GPU
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,113 +64,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 20 Jan 2023, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Thu, Jan 19, 2023 at 06:18:58PM +0200, Jani Nikula wrote:
->> diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm=
-/i915/display/intel_lvds.c
->> index aecec992cd0d..6a98787edf48 100644
->> --- a/drivers/gpu/drm/i915/display/intel_lvds.c
->> +++ b/drivers/gpu/drm/i915/display/intel_lvds.c
->> @@ -479,8 +479,11 @@ static int intel_lvds_get_modes(struct drm_connecto=
-r *connector)
->>  	struct intel_connector *intel_connector =3D to_intel_connector(connect=
-or);
->>=20=20
->>  	/* use cached edid if we have one */
->> -	if (!IS_ERR_OR_NULL(intel_connector->edid))
->> -		return drm_add_edid_modes(connector, intel_connector->edid);
->> +	if (!IS_ERR_OR_NULL(intel_connector->edid)) {
->> +		drm_edid_connector_update(connector, intel_connector->edid);
->
-> Isn't this update redundant?
 
-Maybe far fetched, but if the user does connector force disable via
-debugfs, drm_helper_probe_single_connector_modes() will clear the EDID
-property and display info. And after that, nobody's going to do the
-connector update again unless we do it here.
-
-BR,
-Jani.
-
-
-
->
+On 20/01/2023 14:29, Das, Nirmoy wrote:
+> Hi Tvrtko,
+> 
+> On 1/19/2023 4:54 PM, Tvrtko Ursulin wrote:
+>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>
+>> Avoid trying to dereference null engines on exit when there are either
+>> none which are supported, or kernel does not have i915 PMU support.
+>>
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>> ---
+>>   tools/intel_gpu_top.c | 10 +++++++---
+>>   1 file changed, 7 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
+>> index 7aa233570463..517dc2995d26 100644
+>> --- a/tools/intel_gpu_top.c
+>> +++ b/tools/intel_gpu_top.c
+>> @@ -448,6 +448,9 @@ static void free_engines(struct engines *engines)
+>>       };
+>>       unsigned int i;
+>> +    if (!engines)
+>> +        return;
 >> +
->> +		return drm_edid_connector_add_modes(connector);
->> +	}
->>=20=20
->>  	return intel_panel_get_modes(intel_connector);
->>  }
->> @@ -834,7 +837,7 @@ void intel_lvds_init(struct drm_i915_private *dev_pr=
-iv)
->>  	struct intel_connector *intel_connector;
->>  	struct drm_connector *connector;
->>  	struct drm_encoder *encoder;
->> -	struct edid *edid;
->> +	const struct drm_edid *drm_edid;
->>  	i915_reg_t lvds_reg;
->>  	u32 lvds;
->>  	u8 pin;
->> @@ -945,27 +948,36 @@ void intel_lvds_init(struct drm_i915_private *dev_=
-priv)
->>  	 * preferred mode is the right one.
->>  	 */
->>  	mutex_lock(&dev_priv->drm.mode_config.mutex);
->> -	if (vga_switcheroo_handler_flags() & VGA_SWITCHEROO_CAN_SWITCH_DDC)
->> +	if (vga_switcheroo_handler_flags() & VGA_SWITCHEROO_CAN_SWITCH_DDC) {
->> +		const struct edid *edid;
->> +
->> +		/* FIXME: Make drm_get_edid_switcheroo() return drm_edid */
->>  		edid =3D drm_get_edid_switcheroo(connector,
->> -				    intel_gmbus_get_adapter(dev_priv, pin));
->> -	else
->> -		edid =3D drm_get_edid(connector,
->> -				    intel_gmbus_get_adapter(dev_priv, pin));
->> -	if (edid) {
->> -		if (drm_add_edid_modes(connector, edid)) {
->> -			drm_connector_update_edid_property(connector,
->> -								edid);
->> -		} else {
->> +					       intel_gmbus_get_adapter(dev_priv, pin));
->> +		if (edid) {
->> +			drm_edid =3D drm_edid_alloc(edid, (edid->extensions + 1) * EDID_LENG=
-TH);
->>  			kfree(edid);
->> -			edid =3D ERR_PTR(-EINVAL);
->> +		} else {
->> +			drm_edid =3D NULL;
->> +		}
->> +	} else {
->> +		drm_edid =3D drm_edid_read_ddc(connector,
->> +					     intel_gmbus_get_adapter(dev_priv, pin));
->> +	}
->> +	if (drm_edid) {
->> +		if (drm_edid_connector_update(connector, drm_edid) ||
->> +		    !drm_edid_connector_add_modes(connector)) {
->> +			drm_edid_connector_update(connector, NULL);
->> +			drm_edid_free(drm_edid);
->> +			drm_edid =3D ERR_PTR(-EINVAL);
->>  		}
->>  	} else {
->> -		edid =3D ERR_PTR(-ENOENT);
->> +		drm_edid =3D ERR_PTR(-ENOENT);
->>  	}
->> -	intel_connector->edid =3D edid;
->> +	intel_connector->edid =3D drm_edid;
->>=20=20
->>  	intel_bios_init_panel_late(dev_priv, &intel_connector->panel, NULL,
->> -				   IS_ERR(edid) ? NULL : edid);
->> +				   IS_ERR_OR_NULL(drm_edid) ? NULL : drm_edid_raw(drm_edid));
->>=20=20
->>  	/* Try EDID first */
->>  	intel_panel_add_edid_fixed_modes(intel_connector, true);
->> --=20
->> 2.34.1
+> 
+> 
+> This check should happen before the  struct pmu_counter free_list 
+> generation.
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+I could, but it doesn't have to, not sure what reasons for should you 
+have in mind?
+
+Regards,
+
+Tvrtko
+
+> 
+> Regards,
+> 
+> Nirmoy
+> 
+>>       for (pmu = &free_list[0]; *pmu; pmu++) {
+>>           if ((*pmu)->present)
+>>               free((char *)(*pmu)->units);
+>> @@ -2568,7 +2571,7 @@ int main(int argc, char **argv)
+>>               "Failed to detect engines! (%s)\n(Kernel 4.16 or newer 
+>> is required for i915 PMU support.)\n",
+>>               strerror(errno));
+>>           ret = EXIT_FAILURE;
+>> -        goto err;
+>> +        goto err_engines;
+>>       }
+>>       ret = pmu_init(engines);
+>> @@ -2585,7 +2588,7 @@ int main(int argc, char **argv)
+>>   "More information can be found at 'Perf events and tool security' 
+>> document:\n"
+>>   
+>> "https://www.kernel.org/doc/html/latest/admin-guide/perf-security.html\n");
+>>           ret = EXIT_FAILURE;
+>> -        goto err;
+>> +        goto err_pmu;
+>>       }
+>>       ret = EXIT_SUCCESS;
+>> @@ -2699,8 +2702,9 @@ int main(int argc, char **argv)
+>>           free_clients(clients);
+>>       free(codename);
+>> -err:
+>> +err_pmu:
+>>       free_engines(engines);
+>> +err_engines:
+>>       free(pmu_device);
+>>   exit:
+>>       igt_devices_free();
