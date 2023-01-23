@@ -2,62 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1FA1677EE1
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Jan 2023 16:13:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96011677FC3
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Jan 2023 16:30:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 005CE10E4BF;
-	Mon, 23 Jan 2023 15:13:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BAC010E4CC;
+	Mon, 23 Jan 2023 15:29:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3240510E4B5;
- Mon, 23 Jan 2023 15:13:05 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id EAC6A1F385;
- Mon, 23 Jan 2023 15:13:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1674486783; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=Y7s2k4nVNeYZVfQtixF4ifDGsZIN+ioW8psQX99vQZg=;
- b=wSSaF37CvNUxCx4zqI+4pGb8EpNmhdrc9hikvBW5pPuCEgOO87WA63KSCJQr8hkn2PiOV+
- E6DGg+pSiQRO/Lt/eIf8F07Q87p+j+1NEw3dpZ5J11jx0c1HNDDArg7slxGRCIOt7cypm/
- 9Is22il8o0kViJ8nyWrZR6Ms4IyxzZQ=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1674486783;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=Y7s2k4nVNeYZVfQtixF4ifDGsZIN+ioW8psQX99vQZg=;
- b=ebf58eVw2E4KRO4im7ugdF+1g3t+j6gsvCzPOigl9KuSomPwKdvVh3ID+i9HFHS1+OnAjB
- emRqPuJa1QU+1nAg==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id BC05B1357F;
- Mon, 23 Jan 2023 15:13:03 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id e4TVLP+jzmOVTQAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Mon, 23 Jan 2023 15:13:03 +0000
-Message-ID: <43ed96bc-5a70-ba61-1959-fcb2fe86387e@suse.de>
-Date: Mon, 23 Jan 2023 16:13:03 +0100
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F7E610E4CC
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Jan 2023 15:29:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1674487796; x=1706023796;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=fna23Mxzq17wEvR+a+/53JyMvWGZ5IFPKP83XXuKTuQ=;
+ b=H1F6Qmeaj+7mShTfu92ZD3/dU+T8lUuPOZVBpgz4XJBpuHlJWu0EidI3
+ f1Mov2cdm8Aiw/iTNNkJ/IRISg98Ma+HUiYbVDQfAzjkpygz9QjnHLHbz
+ BtRQHVppVXZsPIRIg+itLFpicXuncoF1v1HNivnWbKe6dvYBz6Y1zuW5J
+ 9mznJZNF7cjrvE6HPElzKmUvsAvkBg7l2oAOyA8YVmaNxYfZTaRIExh27
+ tM8cE95EWDW8T2rGgXJTSQJ9rxEZ+iVY+sjzQ1JjT/Hp/vB9Qk4WHxAh4
+ 1Z6qnYee3S3QsvGlqjf4w95N7Xl0/YDDZ/QXxOybGkGcsQwBUxbJ7xoO2 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="327325553"
+X-IronPort-AV: E=Sophos;i="5.97,239,1669104000"; d="scan'208";a="327325553"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2023 07:29:55 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="661730707"
+X-IronPort-AV: E=Sophos;i="5.97,239,1669104000"; d="scan'208";a="661730707"
+Received: from dut-internal-9dd7.jf.intel.com ([10.24.14.53])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2023 07:29:54 -0800
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 23 Jan 2023 07:25:23 -0800
+Message-Id: <20230123152523.1537564-1-jonathan.cavitt@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Content-Language: en-US
-To: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
-References: <Y8kDk5YX7Yz3eRhM@linux-uq9g>
- <0df23fe5-40cb-c5f3-33e1-da57a7b23808@physik.fu-berlin.de>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-In-Reply-To: <0df23fe5-40cb-c5f3-33e1-da57a7b23808@physik.fu-berlin.de>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------bmFixg2Fd3puNibEx0JtuBMA"
-Subject: Re: [Intel-gfx] [PULL] drm-misc-next
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: Use uabi engines for the default
+ engine map
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,73 +55,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, daniel.vetter@ffwll.ch,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- rodrigo.vivi@intel.com
+Cc: jonathan.cavitt@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------bmFixg2Fd3puNibEx0JtuBMA
-Content-Type: multipart/mixed; boundary="------------nYVfY8g1R5sxzzbIFUoizS98";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
-Cc: tvrtko.ursulin@linux.intel.com, dim-tools@lists.freedesktop.org,
- daniel.vetter@ffwll.ch, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, rodrigo.vivi@intel.com
-Message-ID: <43ed96bc-5a70-ba61-1959-fcb2fe86387e@suse.de>
-Subject: Re: [PULL] drm-misc-next
-References: <Y8kDk5YX7Yz3eRhM@linux-uq9g>
- <0df23fe5-40cb-c5f3-33e1-da57a7b23808@physik.fu-berlin.de>
-In-Reply-To: <0df23fe5-40cb-c5f3-33e1-da57a7b23808@physik.fu-berlin.de>
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
---------------nYVfY8g1R5sxzzbIFUoizS98
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+Default engine map is exactly about uabi engines so no excuse not to use
+the appropriate iterator to populate it.
 
-SGkNCg0KQW0gMjMuMDEuMjMgdW0gMTY6MDAgc2NocmllYiBKb2huIFBhdWwgQWRyaWFuIEds
-YXViaXR6Og0KPiBIaSBUaG9tYXMhDQo+IA0KPj4gRHJpdmVyIENoYW5nZXM6DQo+Pg0KPj4g
-wqAqIFJlbW92ZSBvYnNvbGV0ZSBkcml2ZXJzIGZvciB1c2Vyc3BhY2UgbW9kZXNldHRpbmcg
-aTgxMCwgbWdhLCByMTI4LA0KPj4gwqDCoCBzYXZhZ2UsIHNpcywgdGRmeCwgdmlhDQo+IA0K
-PiBJcyB0aGUgUmFnZSAxMjggR1BVIHN0aWxsIHN1cHBvcnRlZCB2aWEgdGhlIGdlbmVyaWMg
-bW9kZXNldHRpbmcgZHJpdmVyPw0KPiANCj4gSSdtIGFza2luZyBiZWNhdXNlLCB3ZSdyZSBz
-dGlsbCBzdXBwb3J0aW5nIFBvd2VyTWFjcyBpbiBEZWJpYW4gUG9ydHMgb2YgDQo+IHdoaWNo
-DQo+IHNvbWUgb2YgdGhvc2UgYXJlIHNwb3J0aW5nIGEgUmFnZSAxMjggR1BVLiBTaW1pbGFy
-IHF1ZXN0aW9uIGFwcGxpZXMgdG8gdGhlDQo+IGk4MTAgR1BVIHVzZWQgaW4gc29tZSBvbGQg
-VGhpbmtQYWRzLCBmb3IgZXhhbXBsZS4NCg0KWWVzLCBhbGwgb2YgdGhvc2UgY2hpcHMgYXJl
-IHN0aWxsIHN1cHBvcnRlZCBieSB0aGUgZ2VuZXJpYyBtb2Rlc2V0dGluZyANCmRyaXZlcnMg
-YW5kIGV2ZW4gdGhlIG9sZCB1c2Vyc3BhY2UgWG9yZyBkcml2ZXJzLiBUaGUgb25seSB0aGlu
-ZyB0aGF0IGlzIA0Kbm90IHN1cHBvcnRlZCBhbnkgbG9uZ2VyIGlzIGhhcmR3YXJlLWFjY2Vs
-ZXJhdGVkIDNkIHJlbmRlcmluZy4gSG93ZXZlciwgDQp0aGlzIGhhcyBub3Qgd29ya2VkIGFu
-eXdheSwgYXMgTWVzYSBoYXMgZHJvcHBlZCBzdXBwb3J0IGZvciB0aG9zZSBjaGlwcyANCmEg
-bG9uZyB0aW1lIGFnby4NCg0KQmVzdCByZWdhcmRzDQpUaG9tYXMNCg0KPiANCj4gVGhhbmtz
-LA0KPiBBZHJpYW4NCj4gDQoNCi0tIA0KVGhvbWFzIFppbW1lcm1hbm4NCkdyYXBoaWNzIERy
-aXZlciBEZXZlbG9wZXINClNVU0UgU29mdHdhcmUgU29sdXRpb25zIEdlcm1hbnkgR21iSA0K
-TWF4ZmVsZHN0ci4gNSwgOTA0MDkgTsO8cm5iZXJnLCBHZXJtYW55DQooSFJCIDM2ODA5LCBB
-RyBOw7xybmJlcmcpDQpHZXNjaMOkZnRzZsO8aHJlcjogSXZvIFRvdGV2DQo=
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_context.c | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
 
---------------nYVfY8g1R5sxzzbIFUoizS98--
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index 454e73a433c8..42a39e103d7c 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -1096,16 +1096,15 @@ static struct i915_gem_engines *alloc_engines(unsigned int count)
+ static struct i915_gem_engines *default_engines(struct i915_gem_context *ctx,
+ 						struct intel_sseu rcs_sseu)
+ {
+-	const struct intel_gt *gt = to_gt(ctx->i915);
++	const unsigned int max = I915_NUM_ENGINES;
+ 	struct intel_engine_cs *engine;
+ 	struct i915_gem_engines *e, *err;
+-	enum intel_engine_id id;
+ 
+-	e = alloc_engines(I915_NUM_ENGINES);
++	e = alloc_engines(max);
+ 	if (!e)
+ 		return ERR_PTR(-ENOMEM);
+ 
+-	for_each_engine(engine, gt, id) {
++	for_each_uabi_engine(engine, ctx->i915) {
+ 		struct intel_context *ce;
+ 		struct intel_sseu sseu = {};
+ 		int ret;
+@@ -1113,7 +1112,7 @@ static struct i915_gem_engines *default_engines(struct i915_gem_context *ctx,
+ 		if (engine->legacy_idx == INVALID_ENGINE)
+ 			continue;
+ 
+-		GEM_BUG_ON(engine->legacy_idx >= I915_NUM_ENGINES);
++		GEM_BUG_ON(engine->legacy_idx >= max);
+ 		GEM_BUG_ON(e->engines[engine->legacy_idx]);
+ 
+ 		ce = intel_context_create(engine);
+-- 
+2.25.1
 
---------------bmFixg2Fd3puNibEx0JtuBMA
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmPOo/8FAwAAAAAACgkQlh/E3EQov+AO
-0A/+MMA6ljscgMoBsCtXdVeLO51P4Tcc6qNn0HkmDCh5h+3ZpTaLSPqwTQaysL1SuxjdrXJqm37g
-RRQ44SmCrdfclK8lgqNnJThK7GwrSUmxBJTztVHoMFlD6qltblkNGujlAPvDqIglSioxTmYEQghk
-2M4O3P0/NM1Zyxu1ApOk6B9xJmjo90jFpnf7zJdzq8m9DcyzPRzyemyd2TsCiqo2CGo2ZHUOXoQZ
-uPawqWkEiQ0qIXPWTUyuztbfVjMEk8Rp1/gIc21Ty9LS/brXc06OSfS2ebGeNJpPNJizetF/J+vE
-ttVGgaR/IsQBBlqTe6CqoS+ythcTSolzwbRgyiKIu4ZwAP9FOlADs87WU7zcoEjPZl5NS7XdLCUb
-wJn2GSzNU51lX/0Jy7qKIK43WyYs/ARxvGz1MCKNhcBjo/WpkgNamycrwNx81kBNXjGHSt2IB3bD
-olmEUcVNC6WrjZFNAePkEl3fWWkiDzfJWS/A0e0YHqfQtwxGG6oTAGct+kcPB5eqICQnQlazIaNU
-xeoItRh71q+rExMC+lyEPyJsgO0HGwVhkbMjC+v3FW8vYenFFkSaOAGDjsu5InR6MXHY2ZD778s3
-LDneOY4snyDkIZel6J4HLWKvVsDx9NZIZCANEIclA8+No9L3rTqeXD3TI2+nMIsAYilVJgW4U2Uz
-I4k=
-=zevA
------END PGP SIGNATURE-----
-
---------------bmFixg2Fd3puNibEx0JtuBMA--
