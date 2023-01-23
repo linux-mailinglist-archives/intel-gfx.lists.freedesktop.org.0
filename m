@@ -1,51 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB683687E35
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 14:03:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31BC7687FF6
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 15:25:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA95F10E15E;
-	Thu,  2 Feb 2023 13:02:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A09F10E56F;
+	Thu,  2 Feb 2023 14:24:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 967B410E15E
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Feb 2023 13:02:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675342977; x=1706878977;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=859V2ohSLvxMzsREYSprDffhYR63sHAFEd6HuYsJm2s=;
- b=Cmdr2gqlg2dorynlhwiadsLpLJoOM3bAGC28SDi6OHm4A12oY5spRqMv
- SFalwHFfJQgMUQCbZyEcwGfWOHOlD6W8T6LUZ34z84RkckhxR6FFJ7NjT
- hr7xdSNBdLdiNukk3zKIBBbvHv/9gQ8HSIMEmo90S11FoCJeJA2zVKrb3
- wKUxOTAaI99rrm+nSd4jaLkQp/3OP7yO0wmKnrTRpnaYKknq1TqgCvfUC
- 5fFvFKekjT8CxBDO6DlDfe4qNnfBJkRlyCObSGU9IS5e3wH6msRBaPpHE
- Z9yAq6jyjpa9GPs9jbVBBOX0bQGGsEJojQLoblbfIK9gJ17eXdN/R0ZCf Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="329727020"
-X-IronPort-AV: E=Sophos;i="5.97,267,1669104000"; d="scan'208";a="329727020"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2023 05:02:56 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="994096830"
-X-IronPort-AV: E=Sophos;i="5.97,267,1669104000"; d="scan'208";a="994096830"
-Received: from skopplex-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.34.132])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2023 05:02:55 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230202114613.3177235-2-suraj.kandpal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230202114613.3177235-1-suraj.kandpal@intel.com>
- <20230202114613.3177235-2-suraj.kandpal@intel.com>
-Date: Thu, 02 Feb 2023 15:02:53 +0200
-Message-ID: <87fsbo1apu.fsf@intel.com>
+X-Greylist: delayed 416 seconds by postgrey-1.36 at gabe;
+ Mon, 23 Jan 2023 15:07:58 UTC
+Received: from outpost1.zedat.fu-berlin.de (outpost1.zedat.fu-berlin.de
+ [130.133.4.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 674B010E101;
+ Mon, 23 Jan 2023 15:07:58 +0000 (UTC)
+Received: from inpost2.zedat.fu-berlin.de ([130.133.4.69])
+ by outpost.zedat.fu-berlin.de (Exim 4.95) with esmtps (TLS1.3)
+ tls TLS_AES_256_GCM_SHA384
+ (envelope-from <glaubitz@zedat.fu-berlin.de>)
+ id 1pJyJe-002Q3h-3t; Mon, 23 Jan 2023 16:00:58 +0100
+Received: from dynamic-077-011-154-164.77.11.pool.telefonica.de
+ ([77.11.154.164] helo=[192.168.1.11])
+ by inpost2.zedat.fu-berlin.de (Exim 4.95) with esmtpsa (TLS1.3)
+ tls TLS_AES_128_GCM_SHA256
+ (envelope-from <glaubitz@physik.fu-berlin.de>)
+ id 1pJyJd-003c9q-Tj; Mon, 23 Jan 2023 16:00:58 +0100
+Message-ID: <0df23fe5-40cb-c5f3-33e1-da57a7b23808@physik.fu-berlin.de>
+Date: Mon, 23 Jan 2023 16:00:56 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915/dp: Fix logic to fetch
- slice_height
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+To: tzimmermann@suse.de
+References: <Y8kDk5YX7Yz3eRhM@linux-uq9g>
+Content-Language: en-US
+From: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
+In-Reply-To: <Y8kDk5YX7Yz3eRhM@linux-uq9g>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Original-Sender: glaubitz@physik.fu-berlin.de
+X-Originating-IP: 77.11.154.164
+X-Mailman-Approved-At: Thu, 02 Feb 2023 14:24:10 +0000
+Subject: Re: [Intel-gfx] [PULL] drm-misc-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,96 +54,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dim-tools@lists.freedesktop.org, daniel.vetter@ffwll.ch,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ rodrigo.vivi@intel.com, airlied@gmail.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 02 Feb 2023, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> According to Bpec: 49259 VDSC spec implies that 108 lines is an optimal
-> slice height, but any size can be used as long as vertical active
-> integer multiple and maximum vertical slice count requirements are met.
+Hi Thomas!
 
-The commit message and subject should really indicate that this
-increases the slice height considerably. It's a 13.5x increase at a
-minimum, could be much more. Seems misleading to call it "fix logic", as
-if there's a small issue somewhere.
+> Driver Changes:
+> 
+>  * Remove obsolete drivers for userspace modesetting i810, mga, r128,
+>    savage, sis, tdfx, via
 
-Bspec references should be here:
+Is the Rage 128 GPU still supported via the generic modesetting driver?
 
-Bspec: 49259
-> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Cc: Swati Sharma <swati2.sharma@intel.com>
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 62cbab7402e9..7bd2e56ef0fa 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1415,6 +1415,22 @@ static int intel_dp_sink_dsc_version_minor(struct intel_dp *intel_dp)
->  		DP_DSC_MINOR_SHIFT;
->  }
->  
-> +static int intel_dp_get_slice_height(int vactive)
+I'm asking because, we're still supporting PowerMacs in Debian Ports of which
+some of those are sporting a Rage 128 GPU. Similar question applies to the
+i810 GPU used in some old ThinkPads, for example.
 
-intel_dp_dsc_get_slice_height
-
-> +{
-> +	int slice_height;
-> +
-> +	/*
-> +	 * VDSC spec implies that 108 lines is an optimal slice height,
-
-Please be more specific with spec references than vague "VSDC
-spec". Spec version is required at a minimum. Section and section title
-are a nice bonus.
-
-> +	 * but any size can be used as long as vertical active integer
-> +	 * multiple and maximum vertical slice count requirements are met.
-> +	 */
-> +	for (slice_height = 108; slice_height <= vactive; slice_height += 2)
-
-Where does it say 108 is a minimum, and you should go up only...?
-
-> +		if (!(vactive % slice_height))
-
-Matter of taste, but please use (vactive % slice_height == 0) for
-clarity on computations like this.
-
-> +			return slice_height;
-> +
-> +	return 0;
-
-I guess it's unlikely we ever hit here, but you could have the old code
-as fallback and never return 0. Because you don't check for 0 in the
-caller anyway.
-
-Also makes me wonder why we have intel_hdmi_dsc_get_slice_height()
-separately, with almost identical implementation. Maybe we should
-consolidate.
-
-> +}
-> +
->  static int intel_dp_dsc_compute_params(struct intel_encoder *encoder,
->  				       struct intel_crtc_state *crtc_state)
->  {
-> @@ -1433,17 +1449,7 @@ static int intel_dp_dsc_compute_params(struct intel_encoder *encoder,
->  	vdsc_cfg->rc_model_size = DSC_RC_MODEL_SIZE_CONST;
->  	vdsc_cfg->pic_height = crtc_state->hw.adjusted_mode.crtc_vdisplay;
->  
-> -	/*
-> -	 * Slice Height of 8 works for all currently available panels. So start
-> -	 * with that if pic_height is an integral multiple of 8. Eventually add
-> -	 * logic to try multiple slice heights.
-> -	 */
-> -	if (vdsc_cfg->pic_height % 8 == 0)
-> -		vdsc_cfg->slice_height = 8;
-> -	else if (vdsc_cfg->pic_height % 4 == 0)
-> -		vdsc_cfg->slice_height = 4;
-> -	else
-> -		vdsc_cfg->slice_height = 2;
-> +	vdsc_cfg->slice_height = intel_dp_get_slice_height(vdsc_cfg->pic_height);
->  
->  	ret = intel_dsc_compute_params(crtc_state);
->  	if (ret)
+Thanks,
+Adrian
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+  .''`.  John Paul Adrian Glaubitz
+: :' :  Debian Developer
+`. `'   Physicist
+   `-    GPG: 62FF 8A75 84E0 2956 9546  0006 7426 3B37 F5B5 F913
+
