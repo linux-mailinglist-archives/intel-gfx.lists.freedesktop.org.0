@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A071167861F
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Jan 2023 20:19:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C6ED678643
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Jan 2023 20:27:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4DBF10E1FD;
-	Mon, 23 Jan 2023 19:19:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE34210E07D;
+	Mon, 23 Jan 2023 19:27:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B813E10E1FD;
- Mon, 23 Jan 2023 19:19:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1901510E07D;
+ Mon, 23 Jan 2023 19:27:14 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AE70BAADE4;
- Mon, 23 Jan 2023 19:19:35 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8855088690698394090=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 119F0A00CC;
+ Mon, 23 Jan 2023 19:27:14 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Mon, 23 Jan 2023 19:19:35 -0000
-Message-ID: <167450157570.346.13763104447112347905@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Mon, 23 Jan 2023 19:27:14 -0000
+Message-ID: <167450203403.348.7068070607584415692@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230123152523.1537564-1-jonathan.cavitt@intel.com>
-In-Reply-To: <20230123152523.1537564-1-jonathan.cavitt@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Use_uabi_engines_for_the_default_engine_map_=28rev3=29?=
+References: <20230120193457.3295977-1-lucas.demarchi@intel.com>
+In-Reply-To: <20230120193457.3295977-1-lucas.demarchi@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Add_=5FPICK=5FEVEN=5F2RANGES_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,271 +45,60 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8855088690698394090==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915: Use uabi engines for the default engine map (rev3)
-URL   : https://patchwork.freedesktop.org/series/68395/
-State : success
+Series: Add _PICK_EVEN_2RANGES (rev2)
+URL   : https://patchwork.freedesktop.org/series/113177/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_12624 -> Patchwork_68395v3
-====================================================
+Error: dim checkpatch failed
+7b9046444db2 drm/i915: Add _PICK_EVEN_2RANGES()
+-:58: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__index' - possible side-effects?
+#58: FILE: drivers/gpu/drm/i915/i915_reg_defs.h:145:
++#define _PICK_EVEN_2RANGES(__index, __c_index, __a, __b, __c, __d)		\
++	(BUILD_BUG_ON_ZERO(!__is_constexpr(__c_index)) +			\
++	 ((__index) < (__c_index) ? _PICK_EVEN(__index, __a, __b) :		\
++				   _PICK_EVEN((__index) - (__c_index), __c, __d)))
 
-Summary
--------
+-:58: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__c_index' - possible side-effects?
+#58: FILE: drivers/gpu/drm/i915/i915_reg_defs.h:145:
++#define _PICK_EVEN_2RANGES(__index, __c_index, __a, __b, __c, __d)		\
++	(BUILD_BUG_ON_ZERO(!__is_constexpr(__c_index)) +			\
++	 ((__index) < (__c_index) ? _PICK_EVEN(__index, __a, __b) :		\
++				   _PICK_EVEN((__index) - (__c_index), __c, __d)))
 
-  **SUCCESS**
+total: 0 errors, 0 warnings, 2 checks, 34 lines checked
+ceebaa623fa3 drm/i915: Fix coding style on DPLL*_ENABLE defines
+3cd72fb54cf9 drm/i915: Convert pll macros to _PICK_EVEN_2RANGES
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#11: 
+	4027456  185703    6984 4220143  4064ef build64/drivers/gpu/drm/i915/i915.o.old
 
-  No regressions found.
+total: 0 errors, 1 warnings, 0 checks, 106 lines checked
+ee6f334b5960 drm/i915: Replace _MMIO_PHY3() with _PICK_EVEN_2RANGES()
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#11: 
+	4026997  185703    6984 4219684  406324 build64/drivers/gpu/drm/i915/i915.o.old
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_68395v3/index.html
+total: 0 errors, 1 warnings, 0 checks, 42 lines checked
+032484a878c9 drm/i915: Convert PIPE3/PORT3 to _PICK_EVEN_2RANGES()
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#11: 
+	4026288  185703    6984 4218975  40605f build64/drivers/gpu/drm/i915/i915.o.old
 
-Participating hosts (38 -> 38)
-------------------------------
+-:36: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'a' - possible side-effects?
+#36: FILE: drivers/gpu/drm/i915/display/intel_display_reg_defs.h:32:
++#define _MMIO_PIPE3(pipe, a, b, c)	_MMIO(_PICK_EVEN_2RANGES(pipe, 1, a, a, b, c))
 
-  Additional (2): fi-kbl-soraka fi-pnv-d510 
-  Missing    (2): fi-ilk-650 fi-snb-2520m 
+-:37: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'a' - possible side-effects?
+#37: FILE: drivers/gpu/drm/i915/display/intel_display_reg_defs.h:33:
++#define _MMIO_PORT3(pipe, a, b, c)	_MMIO(_PICK_EVEN_2RANGES(pipe, 1, a, a, b, c))
 
-Known issues
-------------
-
-  Here are the changes found in Patchwork_68395v3 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-pnv-d510:        NOTRUN -> [FAIL][1] ([i915#7229])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_68395v3/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#2190])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_68395v3/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_68395v3/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [PASS][4] -> [DMESG-FAIL][5] ([i915#5334])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12624/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_68395v3/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][6] ([i915#1886])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_68395v3/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-
-  * igt@i915_selftest@live@guc:
-    - fi-kbl-soraka:      NOTRUN -> [INCOMPLETE][7] ([i915#7913])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_68395v3/fi-kbl-soraka/igt@i915_selftest@live@guc.html
-
-  * igt@kms_chamelium_frames@hdmi-crc-fast:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][8] ([fdo#109271]) +15 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_68395v3/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html
-
-  * igt@kms_psr@primary_page_flip:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][9] ([fdo#109271]) +44 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_68395v3/fi-pnv-d510/igt@kms_psr@primary_page_flip.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_mocs:
-    - {bat-rpls-1}:       [DMESG-FAIL][10] ([i915#7059]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12624/bat-rpls-1/igt@i915_selftest@live@gt_mocs.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_68395v3/bat-rpls-1/igt@i915_selftest@live@gt_mocs.html
-
-  * igt@i915_selftest@live@requests:
-    - {bat-rpls-2}:       [INCOMPLETE][12] ([i915#6257]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12624/bat-rpls-2/igt@i915_selftest@live@requests.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_68395v3/bat-rpls-2/igt@i915_selftest@live@requests.html
-    - {bat-rpls-1}:       [INCOMPLETE][14] ([i915#4983]) -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12624/bat-rpls-1/igt@i915_selftest@live@requests.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_68395v3/bat-rpls-1/igt@i915_selftest@live@requests.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
-    - fi-bsw-kefka:       [FAIL][16] ([i915#6298]) -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12624/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_68395v3/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#6257]: https://gitlab.freedesktop.org/drm/intel/issues/6257
-  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#7059]: https://gitlab.freedesktop.org/drm/intel/issues/7059
-  [i915#7229]: https://gitlab.freedesktop.org/drm/intel/issues/7229
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+total: 0 errors, 1 warnings, 2 checks, 18 lines checked
+63cd3e50d93a drm/i915: Convert _FIA() to _PICK_EVEN_2RANGES()
+377d7638eb55 drm/i915: Convert MBUS_ABOX_CTL() to _PICK_EVEN_2RANGES()
+9a055281abe7 drm/i915: Convert PALETTE() to _PICK_EVEN_2RANGES()
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_12624 -> Patchwork_68395v3
-
-  CI-20190529: 20190529
-  CI_DRM_12624: 18fa3d2237f6df82980349f6bef5281096dfc91d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7134: 61b8c0a0c8a9611c47749c0b1a262843892cccd7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_68395v3: 18fa3d2237f6df82980349f6bef5281096dfc91d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-b750c3640981 drm/i915: Use uabi engines for the default engine map
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_68395v3/index.html
-
---===============8855088690698394090==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Use uabi engines for the default engine map (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/68395/">https://patchwork.freedesktop.org/series/68395/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_68395v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_68395v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12624 -&gt; Patchwork_68395v3</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_68395v3/index.html</p>
-<h2>Participating hosts (38 -&gt; 38)</h2>
-<p>Additional (2): fi-kbl-soraka fi-pnv-d510 <br />
-  Missing    (2): fi-ilk-650 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_68395v3 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_68395v3/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7229">i915#7229</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_68395v3/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_68395v3/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12624/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_68395v3/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_68395v3/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@guc:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_68395v3/fi-kbl-soraka/igt@i915_selftest@live@guc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_frames@hdmi-crc-fast:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_68395v3/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +15 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_68395v3/fi-pnv-d510/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +44 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_mocs:</p>
-<ul>
-<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12624/bat-rpls-1/igt@i915_selftest@live@gt_mocs.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7059">i915#7059</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_68395v3/bat-rpls-1/igt@i915_selftest@live@gt_mocs.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>
-<p>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12624/bat-rpls-2/igt@i915_selftest@live@requests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6257">i915#6257</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_68395v3/bat-rpls-2/igt@i915_selftest@live@requests.html">PASS</a></p>
-</li>
-<li>
-<p>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12624/bat-rpls-1/igt@i915_selftest@live@requests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_68395v3/bat-rpls-1/igt@i915_selftest@live@requests.html">PASS</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12624/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_68395v3/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12624 -&gt; Patchwork_68395v3</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12624: 18fa3d2237f6df82980349f6bef5281096dfc91d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7134: 61b8c0a0c8a9611c47749c0b1a262843892cccd7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_68395v3: 18fa3d2237f6df82980349f6bef5281096dfc91d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>b750c3640981 drm/i915: Use uabi engines for the default engine map</p>
-
-</body>
-</html>
-
---===============8855088690698394090==--
