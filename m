@@ -2,33 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56FE667979C
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jan 2023 13:19:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F0CF679804
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jan 2023 13:27:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDA2010E674;
-	Tue, 24 Jan 2023 12:19:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C814B10E06C;
+	Tue, 24 Jan 2023 12:27:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id BFED410E674;
- Tue, 24 Jan 2023 12:19:02 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B8D34AADE4;
- Tue, 24 Jan 2023 12:19:02 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5608244541179957112=="
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1A3F10E062;
+ Tue, 24 Jan 2023 12:27:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1674563224; x=1706099224;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=Z3Dx3gBnEObZB0hnHZv+e1Wl3zLmeyqgQt9ooQNjwho=;
+ b=V2te0Egt2zx/BimNAQj2wKP53nIMpEq8mZQkQ8UxX1zhEjegOwxeh651
+ +r38boeArCgQE8afz9Fz3h5MC3+5IpY4Y5JIuQkpb/ByeCh/Sk9FcnIqP
+ /SXtJ5Q0mji3Ca4dmLnSLrtBuWJBFHjJNIEaLKZ0jHvyj56Aub8/rQeWM
+ aTuKNwPEykYTig0DGQji//gU68whfQYp8y9adsvWcrXtwuP7swjJ85mtl
+ E2/f8U56t8E11eM1be+z/5s0Gg26XDYeaTUKzgDg3untDR02sgcYj2alL
+ +6aNsuy/vWphnYRwiLP+SxnUmhP0ehTsGsGK7UhgI2U415h8QBxUdAmFv A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="388628911"
+X-IronPort-AV: E=Sophos;i="5.97,242,1669104000"; d="scan'208";a="388628911"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2023 04:27:02 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="655403204"
+X-IronPort-AV: E=Sophos;i="5.97,242,1669104000"; d="scan'208";a="655403204"
+Received: from lkp-server01.sh.intel.com (HELO 5646d64e7320) ([10.239.97.150])
+ by orsmga007.jf.intel.com with ESMTP; 24 Jan 2023 04:26:55 -0800
+Received: from kbuild by 5646d64e7320 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1pKIO6-0006S8-32;
+ Tue, 24 Jan 2023 12:26:54 +0000
+Date: Tue, 24 Jan 2023 20:26:48 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
+Message-ID: <202301242049.eKzx7RzZ-lkp@intel.com>
+References: <20230124094154.2282778-3-jani.nikula@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Tue, 24 Jan 2023 12:19:02 -0000
-Message-ID: <167456274272.17485.12153110982472522617@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230124094154.2282778-1-jani.nikula@intel.com>
-In-Reply-To: <20230124094154.2282778-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/edid=3A_reverse_display_info_pr?=
- =?utf-8?q?eserve/clear_logic=2C_defaulting_to_clear?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230124094154.2282778-3-jani.nikula@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/connector: move ELD and video/audio
+ latencies to display info
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,205 +60,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Pan@freedesktop.org, Emma Anholt <emma@anholt.net>,
+ amd-gfx@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Alain Volmat <alain.volmat@foss.st.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
+ jani.nikula@intel.com, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Maxime Ripard <mripard@kernel.org>, Inki Dae <inki.dae@samsung.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ linux-mediatek@lists.infradead.org, oe-kbuild-all@lists.linux.dev,
+ Neil Armstrong <neil.armstrong@linaro.org>, Xinhui <Xinhui.Pan@amd.com>,
+ Seung-Woo Kim <sw0312.kim@samsung.com>, Robert Foss <robert.foss@linaro.org>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Alex Deucher <alexander.deucher@amd.com>, freedreno@lists.freedesktop.org,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5608244541179957112==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Jani,
 
-== Series Details ==
+I love your patch! Yet something to improve:
 
-Series: series starting with [1/3] drm/edid: reverse display info preserve/clear logic, defaulting to clear
-URL   : https://patchwork.freedesktop.org/series/113256/
-State : success
+[auto build test ERROR on drm-tip/drm-tip]
 
-== Summary ==
+url:    https://github.com/intel-lab-lkp/linux/commits/Jani-Nikula/drm-connector-move-HDR-sink-metadata-to-display-info/20230124-174322
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+patch link:    https://lore.kernel.org/r/20230124094154.2282778-3-jani.nikula%40intel.com
+patch subject: [Intel-gfx] [PATCH 3/3] drm/connector: move ELD and video/audio latencies to display info
+config: arm-defconfig (https://download.01.org/0day-ci/archive/20230124/202301242049.eKzx7RzZ-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/1e92b5478cfc1b0df66153652111117e9548b0d5
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Jani-Nikula/drm-connector-move-HDR-sink-metadata-to-display-info/20230124-174322
+        git checkout 1e92b5478cfc1b0df66153652111117e9548b0d5
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash drivers/gpu/
 
-CI Bug Log - changes from CI_DRM_12627 -> Patchwork_113256v1
-====================================================
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
 
-Summary
--------
+All errors (new ones prefixed by >>):
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113256v1/index.html
-
-Participating hosts (41 -> 39)
-------------------------------
-
-  Missing    (2): fi-kbl-soraka fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_113256v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-pnv-d510:        [PASS][1] -> [FAIL][2] ([i915#7229])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12627/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113256v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@guc:
-    - {bat-rpls-2}:       [DMESG-WARN][3] ([i915#7852]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12627/bat-rpls-2/igt@i915_selftest@live@guc.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113256v1/bat-rpls-2/igt@i915_selftest@live@guc.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - {bat-dg1-7}:        [INCOMPLETE][5] ([i915#4983]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12627/bat-dg1-7/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113256v1/bat-dg1-7/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@migrate:
-    - {bat-dg2-11}:       [DMESG-WARN][7] ([i915#7699]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12627/bat-dg2-11/igt@i915_selftest@live@migrate.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113256v1/bat-dg2-11/igt@i915_selftest@live@migrate.html
-
-  * igt@i915_selftest@live@reset:
-    - {bat-rpls-1}:       [DMESG-FAIL][9] ([i915#4983]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12627/bat-rpls-1/igt@i915_selftest@live@reset.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113256v1/bat-rpls-1/igt@i915_selftest@live@reset.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#4078]: https://gitlab.freedesktop.org/drm/intel/issues/4078
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#7229]: https://gitlab.freedesktop.org/drm/intel/issues/7229
-  [i915#7359]: https://gitlab.freedesktop.org/drm/intel/issues/7359
-  [i915#7625]: https://gitlab.freedesktop.org/drm/intel/issues/7625
-  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-  [i915#7852]: https://gitlab.freedesktop.org/drm/intel/issues/7852
+   drivers/gpu/drm/tegra/hdmi.c: In function 'tegra_hdmi_write_eld':
+>> drivers/gpu/drm/tegra/hdmi.c:620:60: error: 'struct drm_connector' has no member named 'eld'
+     620 |         size_t length = drm_eld_size(hdmi->output.connector.eld), i;
+         |                                                            ^
+   drivers/gpu/drm/tegra/hdmi.c:624:72: error: 'struct drm_connector' has no member named 'eld'
+     624 |                 tegra_hdmi_writel(hdmi, i << 8 | hdmi->output.connector.eld[i],
+         |                                                                        ^
+--
+   drivers/gpu/drm/tegra/sor.c: In function 'tegra_sor_write_eld':
+>> drivers/gpu/drm/tegra/sor.c:1951:59: error: 'struct drm_connector' has no member named 'eld'
+    1951 |         size_t length = drm_eld_size(sor->output.connector.eld), i;
+         |                                                           ^
+   drivers/gpu/drm/tegra/sor.c:1954:69: error: 'struct drm_connector' has no member named 'eld'
+    1954 |                 tegra_sor_writel(sor, i << 8 | sor->output.connector.eld[i],
+         |                                                                     ^
 
 
-Build changes
--------------
+vim +620 drivers/gpu/drm/tegra/hdmi.c
 
-  * Linux: CI_DRM_12627 -> Patchwork_113256v1
+edec4af4c3d6d2 Thierry Reding 2012-11-15  617  
+5234549b93aa2a Thierry Reding 2015-08-07  618  static void tegra_hdmi_write_eld(struct tegra_hdmi *hdmi)
+5234549b93aa2a Thierry Reding 2015-08-07  619  {
+5234549b93aa2a Thierry Reding 2015-08-07 @620  	size_t length = drm_eld_size(hdmi->output.connector.eld), i;
+5234549b93aa2a Thierry Reding 2015-08-07  621  	u32 value;
+edec4af4c3d6d2 Thierry Reding 2012-11-15  622  
+5234549b93aa2a Thierry Reding 2015-08-07  623  	for (i = 0; i < length; i++)
+5234549b93aa2a Thierry Reding 2015-08-07  624  		tegra_hdmi_writel(hdmi, i << 8 | hdmi->output.connector.eld[i],
+5234549b93aa2a Thierry Reding 2015-08-07  625  				  HDMI_NV_PDISP_SOR_AUDIO_HDA_ELD_BUFWR);
+edec4af4c3d6d2 Thierry Reding 2012-11-15  626  
+5234549b93aa2a Thierry Reding 2015-08-07  627  	/*
+5234549b93aa2a Thierry Reding 2015-08-07  628  	 * The HDA codec will always report an ELD buffer size of 96 bytes and
+5234549b93aa2a Thierry Reding 2015-08-07  629  	 * the HDA codec driver will check that each byte read from the buffer
+5234549b93aa2a Thierry Reding 2015-08-07  630  	 * is valid. Therefore every byte must be written, even if no 96 bytes
+5234549b93aa2a Thierry Reding 2015-08-07  631  	 * were parsed from EDID.
+5234549b93aa2a Thierry Reding 2015-08-07  632  	 */
+5234549b93aa2a Thierry Reding 2015-08-07  633  	for (i = length; i < HDMI_ELD_BUFFER_SIZE; i++)
+5234549b93aa2a Thierry Reding 2015-08-07  634  		tegra_hdmi_writel(hdmi, i << 8 | 0,
+5234549b93aa2a Thierry Reding 2015-08-07  635  				  HDMI_NV_PDISP_SOR_AUDIO_HDA_ELD_BUFWR);
+5234549b93aa2a Thierry Reding 2015-08-07  636  
+5234549b93aa2a Thierry Reding 2015-08-07  637  	value = SOR_AUDIO_HDA_PRESENSE_VALID | SOR_AUDIO_HDA_PRESENSE_PRESENT;
+5234549b93aa2a Thierry Reding 2015-08-07  638  	tegra_hdmi_writel(hdmi, value, HDMI_NV_PDISP_SOR_AUDIO_HDA_PRESENSE);
+edec4af4c3d6d2 Thierry Reding 2012-11-15  639  }
+edec4af4c3d6d2 Thierry Reding 2012-11-15  640  
 
-  CI-20190529: 20190529
-  CI_DRM_12627: a89114c496133077159d90f4ffc0ab3a5e6e89c0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7136: 31b6af91747ad8c705399c9006cdb81cb1864146 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_113256v1: a89114c496133077159d90f4ffc0ab3a5e6e89c0 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-b65b2b13e778 drm/connector: move ELD and video/audio latencies to display info
-508746392003 drm/connector: move HDR sink metadata to display info
-c0a969b6932d drm/edid: reverse display info preserve/clear logic, defaulting to clear
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113256v1/index.html
-
---===============5608244541179957112==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/3] drm/edid: reverse display info preserve/clear logic, defaulting to clear</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/113256/">https://patchwork.freedesktop.org/series/113256/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113256v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113256v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12627 -&gt; Patchwork_113256v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113256v1/index.html</p>
-<h2>Participating hosts (41 -&gt; 39)</h2>
-<p>Missing    (2): fi-kbl-soraka fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_113256v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@gem_exec_gttfill@basic:<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12627/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113256v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7229">i915#7229</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@guc:</p>
-<ul>
-<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12627/bat-rpls-2/igt@i915_selftest@live@guc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7852">i915#7852</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113256v1/bat-rpls-2/igt@i915_selftest@live@guc.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>{bat-dg1-7}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12627/bat-dg1-7/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113256v1/bat-dg1-7/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@migrate:</p>
-<ul>
-<li>{bat-dg2-11}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12627/bat-dg2-11/igt@i915_selftest@live@migrate.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113256v1/bat-dg2-11/igt@i915_selftest@live@migrate.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@reset:</p>
-<ul>
-<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12627/bat-rpls-1/igt@i915_selftest@live@reset.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113256v1/bat-rpls-1/igt@i915_selftest@live@reset.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12627 -&gt; Patchwork_113256v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12627: a89114c496133077159d90f4ffc0ab3a5e6e89c0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7136: 31b6af91747ad8c705399c9006cdb81cb1864146 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_113256v1: a89114c496133077159d90f4ffc0ab3a5e6e89c0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>b65b2b13e778 drm/connector: move ELD and video/audio latencies to display info<br />
-508746392003 drm/connector: move HDR sink metadata to display info<br />
-c0a969b6932d drm/edid: reverse display info preserve/clear logic, defaulting to clear</p>
-
-</body>
-</html>
-
---===============5608244541179957112==--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
