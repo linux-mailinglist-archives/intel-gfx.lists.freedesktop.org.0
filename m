@@ -2,153 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0542679527
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jan 2023 11:28:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BAB067957C
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jan 2023 11:41:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CC2E10E65D;
-	Tue, 24 Jan 2023 10:28:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A798C10E65F;
+	Tue, 24 Jan 2023 10:41:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04C5010E65D
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Jan 2023 10:28:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674556097; x=1706092097;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=mznZzH3lFy34ZlZul7zxZDPuZlqGKexrhzHx4bdr0xE=;
- b=Ow5XSxDMsBdFhHDWqUlP/OOK/gRfP4sTBoFjgEDUyRcaV8m+PuCrvFHB
- YdUpnsFlG5tqecC6eSmHpi4jI41s7SYB3dtufzyJ1jLcjxJVHJnc/0tag
- TZ+1hLGGk9FNY1iZv6mmsajxqBmxsuOubYGc/8japgRSDE7ZpZxH6EUcN
- 1ayO5X4NufI9V4I3tU/Fv1cPU+uBUXkwNLJhGrvpqp3/jLdK+clpkOHnU
- +nFYm/szy78OD6s3zDI560ccYe4aJruBStkRmqEmR3w2h+KC0TFnREYla
- EQcvKkjtF2pKBIN3jZ241/OOLEe05coJngkTz9k8Vj0CWMuMIEuPSxWdy A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="323958466"
-X-IronPort-AV: E=Sophos;i="5.97,242,1669104000"; d="scan'208";a="323958466"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2023 02:28:16 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="694284408"
-X-IronPort-AV: E=Sophos;i="5.97,242,1669104000"; d="scan'208";a="694284408"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orsmga001.jf.intel.com with ESMTP; 24 Jan 2023 02:28:16 -0800
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Tue, 24 Jan 2023 02:28:15 -0800
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Tue, 24 Jan 2023 02:28:15 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Tue, 24 Jan 2023 02:28:15 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.100)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Tue, 24 Jan 2023 02:28:14 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bQWHaJPkgYrZZ9Gr92CGExFLyP5fiD7aBzk8T9/xFUks6RFOMwAX24ERdDJNKlZSH3suEn3XiAC63aD/38o+dNpt0PoMggGDOUbN1x2nm8KowZBmv3Z7XJgkJ6FHUXjeCTFhP/Eg6sZINtGImmvuDJQEO3icZFcIwrM8mbA2SmDc6Mx2EVbiS69fKNukTjO9aba8p6ivwx73vozV04SLZbA92xosktkRJlHimPq4WOmFdJa+qaeQdeNXEVABiENHh3Zo2QT0/gAIjiEgyuz0VTIuQ1Tof3RcdY7V/OkTVdm6Nph6Foi9c6OgerYAOm9XxwRf2ryNhRiJxu0rvCuyEQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mznZzH3lFy34ZlZul7zxZDPuZlqGKexrhzHx4bdr0xE=;
- b=HGpVdGFhS6Q6Wul5Q32PX+Jvnt2Vz2Fxxf/rE6H+/isJzOwFDUNFRv58v9j8ZPGBnO53olOmXeM0TG2d0QBbX7BQyM9KeQgLMRrXk6lQHLKSTTLVCcFLJgUj8vR5xw/ZlzBPqCOAFJzR7UZCscJGT6TSBngMwYiwvDgBAGGv2XOjbL6/7YhRbHjSuGw6/z9uz3OHAJGL5nyKqetWyAiBE49VDlp4HZpqguJLR8X43JywHzO/2deJOAe5Q6TrSAQFq6QfJrVQmpmVBovNvadvuwAZ9Dg8Zqx0z/mdtM/BfbMOwUWM0M8LV9IEVB1sJVHJ574x7kK0MuP8MfCvWfmzJQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB6019.namprd11.prod.outlook.com (2603:10b6:8:60::5) by
- MW4PR11MB6690.namprd11.prod.outlook.com (2603:10b6:303:1e8::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Tue, 24 Jan
- 2023 10:28:13 +0000
-Received: from DM4PR11MB6019.namprd11.prod.outlook.com
- ([fe80::1a7c:e221:1ca2:f43]) by DM4PR11MB6019.namprd11.prod.outlook.com
- ([fe80::1a7c:e221:1ca2:f43%8]) with mapi id 15.20.6002.033; Tue, 24 Jan 2023
- 10:28:12 +0000
-From: "Hogander, Jouni" <jouni.hogander@intel.com>
-To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH 1/2] drm/i915/psr: Implement Wa_14014971492
-Thread-Index: AQHZKxpByO5MPGh0k0G8nCAmQxnW5K6shSkAgADhwIA=
-Date: Tue, 24 Jan 2023 10:28:12 +0000
-Message-ID: <5de5094e9391383c6e48238c1d305990315d5fe8.camel@intel.com>
-References: <20230118085200.1017626-1-jouni.hogander@intel.com>
- <20230118085200.1017626-2-jouni.hogander@intel.com>
- <Y871XHPdvWA4BhzW@intel.com>
-In-Reply-To: <Y871XHPdvWA4BhzW@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB6019:EE_|MW4PR11MB6690:EE_
-x-ms-office365-filtering-correlation-id: 4af37b4e-c725-4194-93f3-08dafdf5b261
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: OmGhEDCqHxN+QOgSA0J0i2VaZwgg3nNL/H5zW/S9hP8v/fOU7jVjdqRF9RjkmIieJhMHKdb1yex6LaieG9lIZN6ISBDHGu9qfJvl1J9OsFuNcLTeTJvXwzzIvf/f4yjyCOjmPGZ0t6HOONl0SzRq1rmGavqzhzqw1kJKmEGQxckh+zznF1+UdaA5WIdgkW9DNeSjEkbuyAdjPoKhgIwmfRlcBjljusUmAo8LNPEhaoxwedzBEI7krmnOHz37oGtQB0ZUEuVd16kyeS97vXbBLyGt6ej77vUD1yjGo5VvRuVmJ9KwvKSY7LpYQQv8r2UQKP65nCWhOUqBzV+JQpADcJCOK+/TKEDNjl53g+rWNKLP3yaSp5LNDH7hgeIPOupmNXsw0iytY05+83/9oWkozkxvSApsxSCBB7sObsDw/k6HP5TM5gIiSV8ksq5rSjxQ8OXKoUWC5ZLO+sPYPh3BXnppq0bCCxNXMi7Jo9nxGX+Emp8rqZBlGr+IuCyr0O189tq2VMXcM75VKRQ36+W9QBXKE7d4K9/STOW3FLz1bl795yxLWmZPwr/QiX6xlxS5mucLWipnM3GlwLPAjbmF7ygUgcWwTS9KbfCZNs9Z41fjWtW0XZv3jmx+31SVcMmz0fQIO4TRnMskq+c8/Sj5yEKQfse7ywiH9MsQwH9MsXF2ZJWbrWO3qvtw1lTejDecY+IpCWOEsC8ZkvQwyTfmuA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB6019.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(136003)(376002)(396003)(39860400002)(346002)(366004)(451199015)(38070700005)(2616005)(82960400001)(2906002)(38100700002)(8936002)(122000001)(6862004)(5660300002)(41300700001)(66556008)(66446008)(66476007)(64756008)(4326008)(8676002)(86362001)(91956017)(6506007)(36756003)(66946007)(66574015)(316002)(76116006)(37006003)(6636002)(6486002)(478600001)(83380400001)(71200400001)(26005)(186003)(6512007);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?WE44dUxEaEVwbGhhWjljTlZYRWFiS29KbUh0VElzaDY3SWtISkVJbEJsNE1H?=
- =?utf-8?B?NittenNkdUs1VWtnNWtEMXBsU05KL2lnSzhkTFBxVG8zTUtPUXRNN2ErbUtS?=
- =?utf-8?B?VXhlU3UxRXM1cUhOTFpDZjFScHdtSzFSblJtUXRnV2xoZFUyclZrQnpjOUFK?=
- =?utf-8?B?SkhZOSswQnd6K1YxSTFuR21EbGVWRWw4TnJaZ0p1bTBNREc2Q3lNTnF0WS9a?=
- =?utf-8?B?M3R6ckR1aTNIdVhIUkprdS9iL3I1S1RoclNSMUY2LzBFU0FwKzdzTkRFR1Rk?=
- =?utf-8?B?c1RxbUlYZUp6cEJka21BSHpkUkt6dEF6Yld2NTA4U0pUbkZNT3JvZ09mc0Rn?=
- =?utf-8?B?MW1wblE1VDVKeUFsaTlIU3pjZ1JTUGx0UTlEaVVHQktJVlJacjEzdHp1M1Vz?=
- =?utf-8?B?eEwzYU9aa1lOem1yTEt5Nm1RalBxVm5pYncyOWNpZEVnVkJKUy9uc0ZWVlIw?=
- =?utf-8?B?d2svNk9xL2FXVnV5SXNGMDNTUnM3WWZJQVpNdXZBaURHdVNERDdaY2w2RWha?=
- =?utf-8?B?OTVCMG5udTN1QVI2dlhESXF1YS9PWjBMTDRDS2dXMHZuOHNEQmtLU3pXS2x6?=
- =?utf-8?B?VlFnOEYrck9sWlRzQ1A0eVAwVFhsdHpwcUxINHN6dDdNWVZkaEdvVjlQK09q?=
- =?utf-8?B?Z2hKQXVvelJjV1BUM2pxSFY1YjV1S2p1UGNJZXoyN0M2SVA4Wkd4SVRGSWhz?=
- =?utf-8?B?TzZncnhjZENpL3Y3K0ZRMHZodC9nNmVQbXUwSHd3NVdDUTJBNms4aFJkY25I?=
- =?utf-8?B?b0lqOHV6ZzVyTEJtQTlBZUlrZlVYWFRwRjRkNDZGNGhnQllScVdPMk1YSWRB?=
- =?utf-8?B?S1pYWkpRUEFGUFI4NXVEcHNBUkk2ZVBtNC9BUktaNUFxQlUvU2pxMzgrZklw?=
- =?utf-8?B?dXlRRUhsTElUaDV6SDhlaVNlTm44S0xkdm8zNGlPd0VFYk5sandvaFA0dmVn?=
- =?utf-8?B?QitDVTZuNzNBUkFhQzJIVWdBd2VLelh4RTFzSWZHcEZCQis2Y3FuYTZROHo5?=
- =?utf-8?B?SU1raEhTSG5pU2U3cVFIQ0FuaHV4Y0ZUbjZoQ2FlVGtuV3lHRTYyWUp2ZTdO?=
- =?utf-8?B?eDhibzNoaS9LR3NkTVZzVFZ0emthTkRmY3UwS210WXREcWNPN0IvbGJGeDZ5?=
- =?utf-8?B?U2Y2NGdYSjdsNktJeVYrRVdBRHRNYmErcGZaeklPUGZNR0FZWGpObFdkZDhz?=
- =?utf-8?B?V0tOWThMdlphRllhTXFvdUNQTWY0MXgxQlN6QlVvdjFQUWk5OEw1VjNjVmNZ?=
- =?utf-8?B?OERuSTFpeWlSSDNmeHI1QjNPWHlodFZEV2VCZ2gzbEZkaDlDaHNadVlSVFRu?=
- =?utf-8?B?SkxqR2U4WXRIczZJTTg5Z09BdzBBdXBDZlU2WkpaUzJNZTZseW5rdlNJZW05?=
- =?utf-8?B?TTBEbk5aNTZsRE1GcHpjRHFnSmNJTWpZbmduUTU4cGpaMmVPa1hScVZMclJr?=
- =?utf-8?B?RXhnWkFCU1pyendicGRNdnBXMk9wOHZtY294ZEtkaDJLb2JjdXNpUTlCTXJt?=
- =?utf-8?B?MTBLN21oMWpxMXhWdStKWXlCdm5YMjg2SmZIWmhrREs3aXUyZUh5M2FSZERF?=
- =?utf-8?B?OElnT0NJZXFqRkxQQU8xdHZxTVFhNGI2bk1Qcjd0YTNlVGtJQks2N2FBcXFO?=
- =?utf-8?B?UThEVUlBVGZYYVdNS05DWVdDb2tIMWJTQnVRUW45VFFNWEc5M1NwQnQxUE80?=
- =?utf-8?B?STNMUU9OSmFCWDdiZG1adldkbHFCeDF3WjV5L2s4MGY5bHBWbTBpbG5EOGlh?=
- =?utf-8?B?aUpTbWkwdlZJQ2xWODN6ZU9OUk5uLzRZVnJRd0NQK3B1bXExQ0hXR09Pa1pC?=
- =?utf-8?B?VjJTK0dVdUROUkEwcTdkTjY1KzlyKytMMWZwSDF3dlo4VTU2TXkzcUdhVXcy?=
- =?utf-8?B?ZlMrY1FVN2wzMG1zZlQ1c2dKNzJGRmFUWXUySDV0SnJlblViNSs5RUR2TlJO?=
- =?utf-8?B?QjJhUXBXeWM0Qk9tcTdwRHFWRnVYRWFHbkZaT1ZJcC9weWJlMERvd3NJY1A1?=
- =?utf-8?B?SzdYY0tScUVLZjYyTkZRbFZyWFRrcjBjWkdVTzgwNWhhSXV2ak9FL0FObXg1?=
- =?utf-8?B?ditHbzV5QWRtTGlaUjlsZjdPTGYyWllnRFJUU3V5QnJPaWVXUVFFem50ZHF5?=
- =?utf-8?B?NVdITi9tOHdSSWpCZ2VYd09DK1M3UFUzOHBhbThOTENwRysvb3VYMnpvdHFI?=
- =?utf-8?B?bFE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <15CC345517401D40BEA0D3BB81905C05@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com
+ [IPv6:2a00:1450:4864:20::52a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D897D10E65E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Jan 2023 10:41:29 +0000 (UTC)
+Received: by mail-ed1-x52a.google.com with SMTP id k20so640146edj.7
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Jan 2023 02:41:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=VBtPR9EV/j1GDMMuetVOwTWuaVWVAI+3JPenaJaxtxI=;
+ b=hvyC62NqSJNFOZ7SdaJ+aNb2KfMRE6SnKRhxKL4cTOO0pjJitKXARfQFt3gReOEZeN
+ XfEOkXkHa6CO4qutf0yvdzvZ9IU7ZDVam19i+HHYpEbHnOcfE6Q3nysBeJBmR8Ps6PxQ
+ q3Id0zcJPlD/EFUSdHLB1/MekKdjHUOcFzprIsFxofcgArOv0RKxb6bhsfPanxhwz9Xa
+ S+rFvxSTVLKL/w/34d70rgYuamcqwa/L+fysopgoPITNp8mqYwfxo47wU+48v33qICGd
+ bTeL79pwYsPvTaCHfyQTPUbohfcczgBcct3a1zXDnSP823q4BTWcsphKMhp6Tpno1bJ5
+ nFNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=VBtPR9EV/j1GDMMuetVOwTWuaVWVAI+3JPenaJaxtxI=;
+ b=VapYkjCVhfvlJ7s/iZnYOt/J5K+saVf+efvAjbwyuo0szc6x/bXptMIOzW6eHsaNQj
+ RLUWIdZ6S0k4r0tFB2Yji4hp8WM1m9NnRSus20+LatVyCiXxvjMdSk2wia8c/ppBTjfB
+ 3JKG+BTq6GiHGUF0fuD8K7E3QPhAzMsmYHCtaLvmOpWaBbAGG0cqJy9MBXiA547epYgc
+ cxStE7oZlmOmcnhwrzNYhQapp21AbY4r09HBDstA0gJR2tUOX50pSD7rNqG8WrVTUmMQ
+ bJ0btqL3dC6wjhpaIfxnQvlrIxe9USdFnw57beOZPpQ6lryI9xb+lsNZN0B/9WS3ASqh
+ XtCw==
+X-Gm-Message-State: AFqh2krND85YfNvLbAGFGc8In1hKntw65tw4LwXVQ9ct5eoPnWTCsaBo
+ SIUsKTyRSF0AHLAGAO/ZGsPkIg==
+X-Google-Smtp-Source: AMrXdXui6jaXhAJec9B2Gka/8KcTK+QTCZPselVD9fWoQutt+zyCBEtqtmCVFohugnIS4Dy4j/VNzA==
+X-Received: by 2002:a05:6402:4025:b0:49b:67c3:39ae with SMTP id
+ d37-20020a056402402500b0049b67c339aemr34690041eda.33.1674556888131; 
+ Tue, 24 Jan 2023 02:41:28 -0800 (PST)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5?
+ (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+ by smtp.gmail.com with ESMTPSA id
+ qx24-20020a170906fcd800b007aece68483csm701795ejb.193.2023.01.24.02.41.26
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 24 Jan 2023 02:41:27 -0800 (PST)
+Message-ID: <e9ebf14a-668e-9e3a-cf51-309db4e4848e@linaro.org>
+Date: Tue, 24 Jan 2023 12:41:26 +0200
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6019.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4af37b4e-c725-4194-93f3-08dafdf5b261
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Jan 2023 10:28:12.7588 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Ot4HS9poAMBg28OQiAOjP9W+1VbGphqyd5Oz1Ydjqe8WjTX5d/6/orTz+CryqY+4tmx1TRgzN8XfjXQU2ksrOn6mWUfnm2A8jz89mXRoNv0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6690
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/psr: Implement Wa_14014971492
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Content-Language: en-GB
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+References: <20230117233905.1662645-1-dmitry.baryshkov@linaro.org>
+ <Y8rDyk6VNdqlKUn4@pendragon.ideasonboard.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <Y8rDyk6VNdqlKUn4@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v2] drm/probe_helper: sort out poll_running
+ vs poll_enabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,40 +77,140 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, freedreno@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
+ Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Chen-Yu Tsai <wenst@chromium.org>,
+ David Airlie <airlied@gmail.com>, Marek Szyprowski <m.szyprowski@samsung.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAyMDIzLTAxLTIzIGF0IDE2OjAwIC0wNTAwLCBSb2RyaWdvIFZpdmkgd3JvdGU6DQo+
-IE9uIFdlZCwgSmFuIDE4LCAyMDIzIGF0IDEwOjUxOjU5QU0gKzAyMDAsIEpvdW5pIEjDtmdhbmRl
-ciB3cm90ZToNCj4gPiBJbXBsZW1lbnQgV2FfMTQwMTQ5NzE0OTIgYW5kIGFwcGx5IGl0IGZvciBh
-ZmZlY3RlZCBwbGF0Zm9ybXMuDQo+ID4gDQo+ID4gQnNwZWM6IDUyODkwLCA1NDM2OSwgNTUzNzgs
-IDY2NjI0DQo+ID4gDQo+ID4gQ2M6IE1pa2EgS2Fob2xhIDxtaWthLmthaG9sYUBpbnRlbC5jb20+
-DQo+ID4gQ2M6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPg0K
-PiA+IFNpZ25lZC1vZmYtYnk6IEpvdW5pIEjDtmdhbmRlciA8am91bmkuaG9nYW5kZXJAaW50ZWwu
-Y29tPg0KPiA+IC0tLQ0KPiA+IMKgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9w
-c3IuYyB8IDUgKysrKysNCj4gPiDCoDEgZmlsZSBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKykNCj4g
-PiANCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9w
-c3IuYw0KPiA+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KPiA+
-IGluZGV4IDdkNGExNWEyODNhMC4uMjQ5MDBhNzkwNTA4IDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMNCj4gPiArKysgYi9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+ID4gQEAgLTE4NDIsNiArMTg0MiwxMSBA
-QCBpbnQgaW50ZWxfcHNyMl9zZWxfZmV0Y2hfdXBkYXRlKHN0cnVjdA0KPiA+IGludGVsX2F0b21p
-Y19zdGF0ZSAqc3RhdGUsDQo+ID4gwqDCoMKgwqDCoMKgwqDCoGlmIChmdWxsX3VwZGF0ZSkNCj4g
-PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGdvdG8gc2tpcF9zZWxfZmV0Y2hfc2V0
-X2xvb3A7DQo+ID4gwqANCj4gPiArwqDCoMKgwqDCoMKgwqAvKiBXYV8xNDAxNDk3MTQ5MiAqLw0K
-PiA+ICvCoMKgwqDCoMKgwqDCoGlmICgoSVNfTVRMX0RJU1BMQVlfU1RFUChkZXZfcHJpdiwgU1RF
-UF9BMCwgU1RFUF9CMCkgfHwNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBJU19ESVNQTEFZ
-X1ZFUihkZXZfcHJpdiwgMTIsIDEzKSkNCj4gDQo+IFRoaXMgaXMgbm90IHRydWUuDQo+IA0KPiBU
-aGlzIGxpbmVhZ2UgbnVtYmVyIHNob3dzIGFzIG5vdCBuZWVkZWQgZm9yIG1vc3Qgb2YgcGxhdGZv
-cm1zIHdpdGgNCj4gdGhlIGRpc3BsYXkgdmVyc2lvbiAxMi4NCj4geW91IHNob3VsZCBvbmx5IGhh
-dmUgVEdMIGFuZCBBREwtUCBoZXJlLCBiZXNpZGVzIHRoZSBNVEwgb25lLi4uDQo+IA0KPiBXaGlj
-aCwgYnR3LCB3aHkgd2UgaGF2ZSBhIE1UTF9ESVNQTEFZIG1hY3JvIGluc3RlYWQgb2YgdXNpbmcg
-dGhlDQo+IGRpc3BsYXkNCj4gdmVyc2lvbiA6JyggDQoNClRoYW5rIHlvdSBmb3IgY2hlY2tpbmcg
-bXkgcGF0Y2guIFNlbnQgbmV3IHZlcnNpb24gYWRkcmVzc2luZyB0aGlzLg0KDQo+IA0KPiAmJiBj
-cnRjX3N0YXRlLT5zcGxpdHRlci5lbmFibGUpDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoHBpcGVfY2xpcC55MSA9IDA7DQo+ID4gKw0KPiA+IMKgwqDCoMKgwqDCoMKgwqByZXQg
-PSBkcm1fYXRvbWljX2FkZF9hZmZlY3RlZF9wbGFuZXMoJnN0YXRlLT5iYXNlLCAmY3J0Yy0NCj4g
-PiA+YmFzZSk7DQo+ID4gwqDCoMKgwqDCoMKgwqDCoGlmIChyZXQpDQo+ID4gwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gcmV0Ow0KPiA+IC0tIA0KPiA+IDIuMzQuMQ0KPiA+
-IA0KDQo=
+On 20/01/2023 18:39, Laurent Pinchart wrote:
+> Hi Dmitry,
+> 
+> Thank you for the patch.
+> 
+> On Wed, Jan 18, 2023 at 01:39:05AM +0200, Dmitry Baryshkov wrote:
+>> There are two flags attemting to guard connector polling:
+>> poll_enabled and poll_running. While poll_enabled semantics is clearly
+>> defined and fully adhered (mark that drm_kms_helper_poll_init() was
+>> called and not finalized by the _fini() call), the poll_running flag
+>> doesn't have such clearliness.
+>>
+>> This flag is used only in drm_helper_probe_single_connector_modes() to
+>> guard calling of drm_kms_helper_poll_enable, it doesn't guard the
+>> drm_kms_helper_poll_fini(), etc. Change it to only be set if the polling
+>> is actually running. Tie HPD enablement to this flag.
+>>
+>> This fixes the following warning reported after merging the HPD series:
+>>
+>> Hot plug detection already enabled
+>> WARNING: CPU: 2 PID: 9 at drivers/gpu/drm/drm_bridge.c:1257 drm_bridge_hpd_enable+0x94/0x9c [drm]
+>> Modules linked in: videobuf2_memops snd_soc_simple_card snd_soc_simple_card_utils fsl_imx8_ddr_perf videobuf2_common snd_soc_imx_spdif adv7511 etnaviv imx8m_ddrc imx_dcss mc cec nwl_dsi gov
+>> CPU: 2 PID: 9 Comm: kworker/u8:0 Not tainted 6.2.0-rc2-15208-g25b283acd578 #6
+>> Hardware name: NXP i.MX8MQ EVK (DT)
+>> Workqueue: events_unbound deferred_probe_work_func
+>> pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+>> pc : drm_bridge_hpd_enable+0x94/0x9c [drm]
+>> lr : drm_bridge_hpd_enable+0x94/0x9c [drm]
+>> sp : ffff800009ef3740
+>> x29: ffff800009ef3740 x28: ffff000009331f00 x27: 0000000000001000
+>> x26: 0000000000000020 x25: ffff800001148ed8 x24: ffff00000a8fe000
+>> x23: 00000000fffffffd x22: ffff000005086348 x21: ffff800001133ee0
+>> x20: ffff00000550d800 x19: ffff000005086288 x18: 0000000000000006
+>> x17: 0000000000000000 x16: ffff8000096ef008 x15: 97ffff2891004260
+>> x14: 2a1403e194000000 x13: 97ffff2891004260 x12: 2a1403e194000000
+>> x11: 7100385f29400801 x10: 0000000000000aa0 x9 : ffff800008112744
+>> x8 : ffff000000250b00 x7 : 0000000000000003 x6 : 0000000000000011
+>> x5 : 0000000000000000 x4 : ffff0000bd986a48 x3 : 0000000000000001
+>> x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffff000000250000
+>> Call trace:
+>>   drm_bridge_hpd_enable+0x94/0x9c [drm]
+>>   drm_bridge_connector_enable_hpd+0x2c/0x3c [drm_kms_helper]
+>>   drm_kms_helper_poll_enable+0x94/0x10c [drm_kms_helper]
+>>   drm_helper_probe_single_connector_modes+0x1a8/0x510 [drm_kms_helper]
+>>   drm_client_modeset_probe+0x204/0x1190 [drm]
+>>   __drm_fb_helper_initial_config_and_unlock+0x5c/0x4a4 [drm_kms_helper]
+>>   drm_fb_helper_initial_config+0x54/0x6c [drm_kms_helper]
+>>   drm_fbdev_client_hotplug+0xd0/0x140 [drm_kms_helper]
+>>   drm_fbdev_generic_setup+0x90/0x154 [drm_kms_helper]
+>>   dcss_kms_attach+0x1c8/0x254 [imx_dcss]
+>>   dcss_drv_platform_probe+0x90/0xfc [imx_dcss]
+>>   platform_probe+0x70/0xcc
+>>   really_probe+0xc4/0x2e0
+>>   __driver_probe_device+0x80/0xf0
+>>   driver_probe_device+0xe0/0x164
+>>   __device_attach_driver+0xc0/0x13c
+>>   bus_for_each_drv+0x84/0xe0
+>>   __device_attach+0xa4/0x1a0
+>>   device_initial_probe+0x1c/0x30
+>>   bus_probe_device+0xa4/0xb0
+>>   deferred_probe_work_func+0x90/0xd0
+>>   process_one_work+0x200/0x474
+>>   worker_thread+0x74/0x43c
+>>   kthread+0xfc/0x110
+>>   ret_from_fork+0x10/0x20
+>> ---[ end trace 0000000000000000 ]---
+>>
+>> Reported-by: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+>> Fixes: c8268795c9a9 ("drm/probe-helper: enable and disable HPD on connectors")
+>> Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
+>> Tested-by: Chen-Yu Tsai <wenst@chromium.org>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> 
+> This fixes the issue on my Renesas boards.
+> 
+> Tested-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> 
+> Please see below for a few comments.
+> 
+
+[skipped two small comments, will fix them in v3]
+
+
+>> @@ -886,7 +897,12 @@ EXPORT_SYMBOL(drm_kms_helper_poll_init);
+>>    */
+>>   void drm_kms_helper_poll_fini(struct drm_device *dev)
+>>   {
+>> -	drm_kms_helper_poll_disable_fini(dev, true);
+>> +	if (!dev->mode_config.poll_enabled)
+>> +		return;
+>> +
+>> +	drm_kms_helper_poll_disable(dev);
+>> +
+>> +	dev->mode_config.poll_enabled = false;
+> 
+> The fact that poll_enabled guard init/fini and poll_running guards
+> enable/disable is confusing :-S It would be nice if the poll_enable flag
+> matched the enable/disable function names. One option could be
+> 
+> - drm_kms_helper_poll_enable() -> drm_kms_helper_poll_resume()
+> - drm_kms_helper_poll_disable() -> drm_kms_helper_poll_suspend()
+> - drm_kms_helper_poll_init() -> drm_kms_helper_poll_enable()
+> - drm_kms_helper_poll_fini() -> drm_kms_helper_poll_disable()
+> 
+> This would align quite well with intended usage in drivers I think, the
+> current enable/disable functions are documented as being used by drivers
+> for suspend/resume, and the init()/fini() functions are documented as
+> "init and enable" and "disable and cleanup".
+> 
+> This isn't a candidate for this patch of course, it can be done on top.
+
+Yes, but I'd extremely dislike renaming a function to use the name of 
+the function that existed previously. It can lead to very confusing issue.
+
+What do you think about keeping poll_init()/_fini() as is, reaming 
+dev->mode_config.poll_enabled to poll_initialized, and renaming 
+poll_enable()/disable() to suspend()/resume() as you suggested?
+
+> 
+>>   }
+>>   EXPORT_SYMBOL(drm_kms_helper_poll_fini);
+>>   
+> 
+
+-- 
+With best wishes
+Dmitry
+
