@@ -2,49 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88BC767A45A
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jan 2023 21:54:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B875E67A559
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jan 2023 23:05:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CECFA10E23F;
-	Tue, 24 Jan 2023 20:54:41 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAF3010E240;
- Tue, 24 Jan 2023 20:54:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674593678; x=1706129678;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=5j0+g/LroQZGYQ+FrfFyIceR7fqpTtXGFGxycVb6rk4=;
- b=AZ2CcUx7vfEOSBRYWrmiigT9mhRYhl0MW5w59oFCrqBRU3YaoULFIBJt
- OOsZTnrrXrSyaFwChzByQI+6zQ3C1csfarusAiILvPeEne9C4C1Jsk9iU
- HvV47BZBYOkpig6IxduA6sPPVhFCBG2++UixFzDI5iYlGgo8NMUfQPa35
- HYXXBPrq3bq61Dtse183BZbfQp171nKBQQCg7wVQ/9mBYn2J3NSmfSb9e
- ZEPURXCmvphDKd6dFYjIVBpJ8WDqII2WgUM8XAhkhx438NdgLoZfoauRS
- oFrC96NqTLa6QFGlvGTOoI0M2vZF//NmG+9AqzFNrVX2sLT6YyeHMfIGV A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10600"; a="326436202"
-X-IronPort-AV: E=Sophos;i="5.97,243,1669104000"; d="scan'208";a="326436202"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2023 12:54:37 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10600"; a="907649840"
-X-IronPort-AV: E=Sophos;i="5.97,243,1669104000"; d="scan'208";a="907649840"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by fmsmga006.fm.intel.com with ESMTP; 24 Jan 2023 12:54:36 -0800
-From: John.C.Harrison@Intel.com
-To: Intel-GFX@Lists.FreeDesktop.Org
-Date: Tue, 24 Jan 2023 12:54:26 -0800
-Message-Id: <20230124205426.1444686-1-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.39.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7659E10E262;
+	Tue, 24 Jan 2023 22:05:07 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1707810E262;
+ Tue, 24 Jan 2023 22:05:06 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0245BAA914;
+ Tue, 24 Jan 2023 22:05:05 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7478892056260089558=="
 MIME-Version: 1.0
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4] drm/i915/uncore: Use GT message helpers in
- uncore
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
+Date: Tue, 24 Jan 2023 22:05:05 -0000
+Message-ID: <167459790598.17487.9221631158669595893@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230124142212.18498-1-nirmoy.das@intel.com>
+In-Reply-To: <20230124142212.18498-1-nirmoy.das@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/xehpsdv/selftests=3A_Flush_all_tiles_on_test_exit?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,391 +40,224 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+--===============7478892056260089558==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Uncore is really part of the GT. So use the GT specific debug/error
-message helpers so as to get the GT index in the prints.
+== Series Details ==
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
----
- drivers/gpu/drm/i915/intel_uncore.c | 133 +++++++++++++---------------
- 1 file changed, 63 insertions(+), 70 deletions(-)
+Series: drm/i915/xehpsdv/selftests: Flush all tiles on test exit
+URL   : https://patchwork.freedesktop.org/series/113279/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
-index 8dee9e62a73ee..4e357477c6592 100644
---- a/drivers/gpu/drm/i915/intel_uncore.c
-+++ b/drivers/gpu/drm/i915/intel_uncore.c
-@@ -25,6 +25,7 @@
- #include <linux/pm_runtime.h>
- 
- #include "gt/intel_engine_regs.h"
-+#include "gt/intel_gt_print.h"
- #include "gt/intel_gt_regs.h"
- 
- #include "i915_drv.h"
-@@ -83,8 +84,7 @@ static void mmio_debug_resume(struct intel_uncore *uncore)
- 		uncore->debug->unclaimed_mmio_check = uncore->debug->saved_mmio_check;
- 
- 	if (check_for_unclaimed_mmio(uncore))
--		drm_info(&uncore->i915->drm,
--			 "Invalid mmio detected during user access\n");
-+		gt_info(uncore->gt, "Invalid mmio detected during user access\n");
- 
- 	spin_unlock(&uncore->debug->lock);
- }
-@@ -179,9 +179,9 @@ static inline void
- fw_domain_wait_ack_clear(const struct intel_uncore_forcewake_domain *d)
- {
- 	if (wait_ack_clear(d, FORCEWAKE_KERNEL)) {
--		drm_err(&d->uncore->i915->drm,
--			"%s: timed out waiting for forcewake ack to clear.\n",
--			intel_uncore_forcewake_domain_to_str(d->id));
-+		gt_err(d->uncore->gt,
-+		       "%s: timed out waiting for forcewake ack to clear.\n",
-+		       intel_uncore_forcewake_domain_to_str(d->id));
- 		add_taint_for_CI(d->uncore->i915, TAINT_WARN); /* CI now unreliable */
- 	}
- }
-@@ -228,12 +228,11 @@ fw_domain_wait_ack_with_fallback(const struct intel_uncore_forcewake_domain *d,
- 		fw_clear(d, FORCEWAKE_KERNEL_FALLBACK);
- 	} while (!ack_detected && pass++ < 10);
- 
--	drm_dbg(&d->uncore->i915->drm,
--		"%s had to use fallback to %s ack, 0x%x (passes %u)\n",
--		intel_uncore_forcewake_domain_to_str(d->id),
--		type == ACK_SET ? "set" : "clear",
--		fw_ack(d),
--		pass);
-+	gt_dbg(d->uncore->gt, "%s had to use fallback to %s ack, 0x%x (passes %u)\n",
-+	       intel_uncore_forcewake_domain_to_str(d->id),
-+	       type == ACK_SET ? "set" : "clear",
-+	       fw_ack(d),
-+	       pass);
- 
- 	return ack_detected ? 0 : -ETIMEDOUT;
- }
-@@ -258,9 +257,8 @@ static inline void
- fw_domain_wait_ack_set(const struct intel_uncore_forcewake_domain *d)
- {
- 	if (wait_ack_set(d, FORCEWAKE_KERNEL)) {
--		drm_err(&d->uncore->i915->drm,
--			"%s: timed out waiting for forcewake ack request.\n",
--			intel_uncore_forcewake_domain_to_str(d->id));
-+		gt_err(d->uncore->gt, "%s: timed out waiting for forcewake ack request.\n",
-+		       intel_uncore_forcewake_domain_to_str(d->id));
- 		add_taint_for_CI(d->uncore->i915, TAINT_WARN); /* CI now unreliable */
- 	}
- }
-@@ -366,9 +364,9 @@ static void __gen6_gt_wait_for_thread_c0(struct intel_uncore *uncore)
- 	 * w/a for a sporadic read returning 0 by waiting for the GT
- 	 * thread to wake up.
- 	 */
--	drm_WARN_ONCE(&uncore->i915->drm,
--		      wait_for_atomic_us(gt_thread_status(uncore) == 0, 5000),
--		      "GT thread status wait timed out\n");
-+	gt_WARN_ONCE(uncore->gt,
-+		     wait_for_atomic_us(gt_thread_status(uncore) == 0, 5000),
-+		     "GT thread status wait timed out\n");
- }
- 
- static void fw_domains_get_with_thread_status(struct intel_uncore *uncore,
-@@ -402,8 +400,7 @@ static void __gen6_gt_wait_for_fifo(struct intel_uncore *uncore)
- 		if (wait_for_atomic((n = fifo_free_entries(uncore)) >
- 				    GT_FIFO_NUM_RESERVED_ENTRIES,
- 				    GT_FIFO_TIMEOUT_MS)) {
--			drm_dbg(&uncore->i915->drm,
--				"GT_FIFO timeout, entries: %u\n", n);
-+			gt_dbg(uncore->gt, "GT_FIFO timeout, entries: %u\n", n);
- 			return;
- 		}
- 	}
-@@ -476,7 +473,7 @@ intel_uncore_forcewake_reset(struct intel_uncore *uncore)
- 			break;
- 
- 		if (--retry_count == 0) {
--			drm_err(&uncore->i915->drm, "Timed out waiting for forcewake timers to finish\n");
-+			gt_err(uncore->gt, "Timed out waiting for forcewake timers to finish\n");
- 			break;
- 		}
- 
-@@ -484,7 +481,7 @@ intel_uncore_forcewake_reset(struct intel_uncore *uncore)
- 		cond_resched();
- 	}
- 
--	drm_WARN_ON(&uncore->i915->drm, active_domains);
-+	gt_WARN_ON(uncore->gt, active_domains);
- 
- 	fw = uncore->fw_domains_active;
- 	if (fw)
-@@ -520,8 +517,7 @@ fpga_check_for_unclaimed_mmio(struct intel_uncore *uncore)
- 	 * to recognize when MMIO accesses are just busted.
- 	 */
- 	if (unlikely(dbg == ~0))
--		drm_err(&uncore->i915->drm,
--			"Lost access to MMIO BAR; all registers now read back as 0xFFFFFFFF!\n");
-+		gt_err(uncore->gt, "Lost access to MMIO BAR; all registers now read back as 0xFFFFFFFF!\n");
- 
- 	__raw_uncore_write32(uncore, FPGA_DBG, FPGA_DBG_RM_NOCLAIM);
- 
-@@ -550,7 +546,7 @@ gen6_check_for_fifo_debug(struct intel_uncore *uncore)
- 	fifodbg = __raw_uncore_read32(uncore, GTFIFODBG);
- 
- 	if (unlikely(fifodbg)) {
--		drm_dbg(&uncore->i915->drm, "GTFIFODBG = 0x08%x\n", fifodbg);
-+		gt_dbg(uncore->gt, "GTFIFODBG = 0x08%x\n", fifodbg);
- 		__raw_uncore_write32(uncore, GTFIFODBG, fifodbg);
- 	}
- 
-@@ -622,7 +618,7 @@ void intel_uncore_resume_early(struct intel_uncore *uncore)
- 	unsigned int restore_forcewake;
- 
- 	if (intel_uncore_unclaimed_mmio(uncore))
--		drm_dbg(&uncore->i915->drm, "unclaimed mmio detected on resume, clearing\n");
-+		gt_dbg(uncore->gt, "unclaimed mmio detected on resume, clearing\n");
- 
- 	if (!intel_uncore_has_forcewake(uncore))
- 		return;
-@@ -847,9 +843,9 @@ void assert_forcewakes_inactive(struct intel_uncore *uncore)
- 	if (!uncore->fw_get_funcs)
- 		return;
- 
--	drm_WARN(&uncore->i915->drm, uncore->fw_domains_active,
--		 "Expected all fw_domains to be inactive, but %08x are still on\n",
--		 uncore->fw_domains_active);
-+	gt_WARN(uncore->gt, uncore->fw_domains_active,
-+		"Expected all fw_domains to be inactive, but %08x are still on\n",
-+		uncore->fw_domains_active);
- }
- 
- void assert_forcewakes_active(struct intel_uncore *uncore,
-@@ -869,9 +865,9 @@ void assert_forcewakes_active(struct intel_uncore *uncore,
- 	assert_rpm_wakelock_held(uncore->rpm);
- 
- 	fw_domains &= uncore->fw_domains;
--	drm_WARN(&uncore->i915->drm, fw_domains & ~uncore->fw_domains_active,
--		 "Expected %08x fw_domains to be active, but %08x are off\n",
--		 fw_domains, fw_domains & ~uncore->fw_domains_active);
-+	gt_WARN(uncore->gt, fw_domains & ~uncore->fw_domains_active,
-+		"Expected %08x fw_domains to be active, but %08x are off\n",
-+		fw_domains, fw_domains & ~uncore->fw_domains_active);
- 
- 	/*
- 	 * Check that the caller has an explicit wakeref and we don't mistake
-@@ -884,9 +880,9 @@ void assert_forcewakes_active(struct intel_uncore *uncore,
- 		if (uncore->fw_domains_timer & domain->mask)
- 			expect++; /* pending automatic release */
- 
--		if (drm_WARN(&uncore->i915->drm, actual < expect,
--			     "Expected domain %d to be held awake by caller, count=%d\n",
--			     domain->id, actual))
-+		if (gt_WARN(uncore->gt, actual < expect,
-+			    "Expected domain %d to be held awake by caller, count=%d\n",
-+			    domain->id, actual))
- 			break;
- 	}
- 
-@@ -955,9 +951,9 @@ find_fw_domain(struct intel_uncore *uncore, u32 offset)
- 	if (entry->domains == FORCEWAKE_ALL)
- 		return uncore->fw_domains;
- 
--	drm_WARN(&uncore->i915->drm, entry->domains & ~uncore->fw_domains,
--		 "Uninitialized forcewake domain(s) 0x%x accessed at 0x%x\n",
--		 entry->domains & ~uncore->fw_domains, offset);
-+	gt_WARN(uncore->gt, entry->domains & ~uncore->fw_domains,
-+		"Uninitialized forcewake domain(s) 0x%x accessed at 0x%x\n",
-+		entry->domains & ~uncore->fw_domains, offset);
- 
- 	return entry->domains;
- }
-@@ -1190,7 +1186,7 @@ static int mmio_range_cmp(u32 key, const struct i915_range *range)
- 
- static bool is_shadowed(struct intel_uncore *uncore, u32 offset)
- {
--	if (drm_WARN_ON(&uncore->i915->drm, !uncore->shadowed_reg_table))
-+	if (gt_WARN_ON(uncore->gt, !uncore->shadowed_reg_table))
- 		return false;
- 
- 	if (IS_GSI_REG(offset))
-@@ -1898,11 +1894,11 @@ __unclaimed_reg_debug(struct intel_uncore *uncore,
- 		      const i915_reg_t reg,
- 		      const bool read)
- {
--	if (drm_WARN(&uncore->i915->drm,
--		     check_for_unclaimed_mmio(uncore),
--		     "Unclaimed %s register 0x%x\n",
--		     read ? "read from" : "write to",
--		     i915_mmio_reg_offset(reg)))
-+	if (gt_WARN(uncore->gt,
-+		    check_for_unclaimed_mmio(uncore),
-+		    "Unclaimed %s register 0x%x\n",
-+		    read ? "read from" : "write to",
-+		    i915_mmio_reg_offset(reg)))
- 		/* Only report the first N failures */
- 		uncore->i915->params.mmio_debug--;
- }
-@@ -1913,10 +1909,10 @@ __unclaimed_previous_reg_debug(struct intel_uncore *uncore,
- 			       const bool read)
- {
- 	if (check_for_unclaimed_mmio(uncore))
--		drm_dbg(&uncore->i915->drm,
--			"Unclaimed access detected before %s register 0x%x\n",
--			read ? "read from" : "write to",
--			i915_mmio_reg_offset(reg));
-+		gt_dbg(uncore->gt,
-+		       "Unclaimed access detected before %s register 0x%x\n",
-+		       read ? "read from" : "write to",
-+		       i915_mmio_reg_offset(reg));
- }
- 
- static inline void
-@@ -2201,8 +2197,8 @@ static int __fw_domain_init(struct intel_uncore *uncore,
- 	if (!d)
- 		return -ENOMEM;
- 
--	drm_WARN_ON(&uncore->i915->drm, !i915_mmio_reg_valid(reg_set));
--	drm_WARN_ON(&uncore->i915->drm, !i915_mmio_reg_valid(reg_ack));
-+	gt_WARN_ON(uncore->gt, !i915_mmio_reg_valid(reg_set));
-+	gt_WARN_ON(uncore->gt, !i915_mmio_reg_valid(reg_ack));
- 
- 	d->uncore = uncore;
- 	d->wake_count = 0;
-@@ -2254,8 +2250,8 @@ static void fw_domain_fini(struct intel_uncore *uncore,
- 		return;
- 
- 	uncore->fw_domains &= ~BIT(domain_id);
--	drm_WARN_ON(&uncore->i915->drm, d->wake_count);
--	drm_WARN_ON(&uncore->i915->drm, hrtimer_cancel(&d->timer));
-+	gt_WARN_ON(uncore->gt, d->wake_count);
-+	gt_WARN_ON(uncore->gt, hrtimer_cancel(&d->timer));
- 	kfree(d);
- }
- 
-@@ -2388,8 +2384,8 @@ static int intel_uncore_fw_domains_init(struct intel_uncore *uncore)
- 		spin_unlock_irq(&uncore->lock);
- 
- 		if (!(ecobus & FORCEWAKE_MT_ENABLE)) {
--			drm_info(&i915->drm, "No MT forcewake available on Ivybridge, this can result in issues\n");
--			drm_info(&i915->drm, "when using vblank-synced partial screen updates.\n");
-+			gt_info(uncore->gt, "No MT forcewake available on Ivybridge, this can result in issues\n");
-+			gt_info(uncore->gt, "when using vblank-synced partial screen updates.\n");
- 			fw_domain_fini(uncore, FW_DOMAIN_ID_RENDER);
- 			fw_domain_init(uncore, FW_DOMAIN_ID_RENDER,
- 				       FORCEWAKE, FORCEWAKE_ACK);
-@@ -2403,7 +2399,7 @@ static int intel_uncore_fw_domains_init(struct intel_uncore *uncore)
- #undef fw_domain_init
- 
- 	/* All future platforms are expected to require complex power gating */
--	drm_WARN_ON(&i915->drm, !ret && uncore->fw_domains == 0);
-+	gt_WARN_ON(uncore->gt, !ret && uncore->fw_domains == 0);
- 
- out:
- 	if (ret)
-@@ -2487,7 +2483,7 @@ int intel_uncore_setup_mmio(struct intel_uncore *uncore, phys_addr_t phys_addr)
- 
- 	uncore->regs = ioremap(phys_addr, mmio_size);
- 	if (uncore->regs == NULL) {
--		drm_err(&i915->drm, "failed to map registers\n");
-+		gt_err(uncore->gt, "failed to map registers\n");
- 		return -EIO;
- 	}
- 
-@@ -2615,7 +2611,7 @@ int intel_uncore_init_mmio(struct intel_uncore *uncore)
- 	 */
- 	if (IS_DGFX(i915) &&
- 	    !(__raw_uncore_read32(uncore, GU_CNTL) & LMEM_INIT)) {
--		drm_err(&i915->drm, "LMEM not initialized by firmware\n");
-+		gt_err(uncore->gt, "LMEM not initialized by firmware\n");
- 		return -ENODEV;
- 	}
- 
-@@ -2646,7 +2642,7 @@ int intel_uncore_init_mmio(struct intel_uncore *uncore)
- 
- 	/* clear out unclaimed reg detection bit */
- 	if (intel_uncore_unclaimed_mmio(uncore))
--		drm_dbg(&i915->drm, "unclaimed mmio detected on uncore init, clearing\n");
-+		gt_dbg(uncore->gt, "unclaimed mmio detected on uncore init, clearing\n");
- 
- 	return 0;
- }
-@@ -2721,11 +2717,10 @@ void intel_uncore_prune_engine_fw_domains(struct intel_uncore *uncore,
-  */
- static void driver_initiated_flr(struct intel_uncore *uncore)
- {
--	struct drm_i915_private *i915 = uncore->i915;
- 	const unsigned int flr_timeout_ms = 3000; /* specs recommend a 3s wait */
- 	int ret;
- 
--	drm_dbg(&i915->drm, "Triggering Driver-FLR\n");
-+	gt_dbg(uncore->gt, "Triggering Driver-FLR\n");
- 
- 	/*
- 	 * Make sure any pending FLR requests have cleared by waiting for the
-@@ -2738,9 +2733,7 @@ static void driver_initiated_flr(struct intel_uncore *uncore)
- 	 */
- 	ret = intel_wait_for_register_fw(uncore, GU_CNTL, DRIVERFLR, 0, flr_timeout_ms);
- 	if (ret) {
--		drm_err(&i915->drm,
--			"Failed to wait for Driver-FLR bit to clear! %d\n",
--			ret);
-+		gt_err(uncore->gt, "Failed to wait for Driver-FLR bit to clear! %d\n", ret);
- 		return;
- 	}
- 	intel_uncore_write_fw(uncore, GU_DEBUG, DRIVERFLR_STATUS);
-@@ -2752,7 +2745,7 @@ static void driver_initiated_flr(struct intel_uncore *uncore)
- 					 DRIVERFLR_STATUS, DRIVERFLR_STATUS,
- 					 flr_timeout_ms);
- 	if (ret) {
--		drm_err(&i915->drm, "wait for Driver-FLR completion failed! %d\n", ret);
-+		gt_err(uncore->gt, "wait for Driver-FLR completion failed! %d\n", ret);
- 		return;
- 	}
- 
-@@ -2911,7 +2904,7 @@ intel_uncore_arm_unclaimed_mmio_detection(struct intel_uncore *uncore)
- {
- 	bool ret = false;
- 
--	if (drm_WARN_ON(&uncore->i915->drm, !uncore->debug))
-+	if (gt_WARN_ON(uncore->gt, !uncore->debug))
- 		return false;
- 
- 	spin_lock_irq(&uncore->debug->lock);
-@@ -2921,10 +2914,10 @@ intel_uncore_arm_unclaimed_mmio_detection(struct intel_uncore *uncore)
- 
- 	if (unlikely(check_for_unclaimed_mmio(uncore))) {
- 		if (!uncore->i915->params.mmio_debug) {
--			drm_dbg(&uncore->i915->drm,
--				"Unclaimed register detected, "
--				"enabling oneshot unclaimed register reporting. "
--				"Please use i915.mmio_debug=N for more information.\n");
-+			gt_dbg(uncore->gt,
-+			       "Unclaimed register detected, "
-+			       "enabling oneshot unclaimed register reporting. "
-+			       "Please use i915.mmio_debug=N for more information.\n");
- 			uncore->i915->params.mmio_debug++;
- 		}
- 		uncore->debug->unclaimed_mmio_check--;
-@@ -2957,7 +2950,7 @@ intel_uncore_forcewake_for_reg(struct intel_uncore *uncore,
- {
- 	enum forcewake_domains fw_domains = 0;
- 
--	drm_WARN_ON(&uncore->i915->drm, !op);
-+	gt_WARN_ON(uncore->gt, !op);
- 
- 	if (!intel_uncore_has_forcewake(uncore))
- 		return 0;
-@@ -2968,7 +2961,7 @@ intel_uncore_forcewake_for_reg(struct intel_uncore *uncore,
- 	if (op & FW_REG_WRITE)
- 		fw_domains |= uncore->funcs.write_fw_domains(uncore, reg);
- 
--	drm_WARN_ON(&uncore->i915->drm, fw_domains & ~uncore->fw_domains);
-+	gt_WARN_ON(uncore->gt, fw_domains & ~uncore->fw_domains);
- 
- 	return fw_domains;
- }
--- 
-2.39.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_12630 -> Patchwork_113279v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113279v1/index.html
+
+Participating hosts (36 -> 37)
+------------------------------
+
+  Additional (2): fi-bsw-kefka fi-hsw-4770 
+  Missing    (1): fi-rkl-11600 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_113279v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-kbl-soraka:      [PASS][1] -> [INCOMPLETE][2] ([i915#7156])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12630/fi-kbl-soraka/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113279v1/fi-kbl-soraka/igt@i915_selftest@live@execlists.html
+
+  * igt@kms_chamelium_frames@hdmi-crc-fast:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][3] ([fdo#109271]) +20 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113279v1/fi-hsw-4770/igt@kms_chamelium_frames@hdmi-crc-fast.html
+
+  * igt@kms_psr@sprite_plane_onoff:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#1072]) +3 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113279v1/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html
+
+  * igt@prime_vgem@basic-fence-flip:
+    - fi-bsw-kefka:       NOTRUN -> [SKIP][5] ([fdo#109271]) +26 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113279v1/fi-bsw-kefka/igt@prime_vgem@basic-fence-flip.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-kbl-soraka:      [DMESG-FAIL][6] ([i915#5334] / [i915#7872]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12630/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113279v1/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - {bat-rpls-2}:       [DMESG-FAIL][8] ([i915#4258]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12630/bat-rpls-2/igt@i915_selftest@live@gt_pm.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113279v1/bat-rpls-2/igt@i915_selftest@live@gt_pm.html
+
+  * igt@i915_selftest@live@requests:
+    - {bat-rpls-1}:       [INCOMPLETE][10] ([i915#4983] / [i915#6257]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12630/bat-rpls-1/igt@i915_selftest@live@requests.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113279v1/bat-rpls-1/igt@i915_selftest@live@requests.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#4258]: https://gitlab.freedesktop.org/drm/intel/issues/4258
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#6257]: https://gitlab.freedesktop.org/drm/intel/issues/6257
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#7156]: https://gitlab.freedesktop.org/drm/intel/issues/7156
+  [i915#7625]: https://gitlab.freedesktop.org/drm/intel/issues/7625
+  [i915#7872]: https://gitlab.freedesktop.org/drm/intel/issues/7872
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12630 -> Patchwork_113279v1
+
+  CI-20190529: 20190529
+  CI_DRM_12630: 49bd4c650125827fdfc0bc1d319d10da87aedf95 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7136: 31b6af91747ad8c705399c9006cdb81cb1864146 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_113279v1: 49bd4c650125827fdfc0bc1d319d10da87aedf95 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+84d9fc7ce776 drm/i915/xehpsdv/selftests: Flush all tiles on test exit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113279v1/index.html
+
+--===============7478892056260089558==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/xehpsdv/selftests: Flush all tiles on test exit</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/113279/">https://patchwork.freedesktop.org/series/113279/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113279v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113279v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12630 -&gt; Patchwork_113279v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113279v1/index.html</p>
+<h2>Participating hosts (36 -&gt; 37)</h2>
+<p>Additional (2): fi-bsw-kefka fi-hsw-4770 <br />
+  Missing    (1): fi-rkl-11600 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_113279v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12630/fi-kbl-soraka/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113279v1/fi-kbl-soraka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7156">i915#7156</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_frames@hdmi-crc-fast:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113279v1/fi-hsw-4770/igt@kms_chamelium_frames@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +20 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@sprite_plane_onoff:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113279v1/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-flip:</p>
+<ul>
+<li>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113279v1/fi-bsw-kefka/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +26 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12630/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7872">i915#7872</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113279v1/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12630/bat-rpls-2/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4258">i915#4258</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113279v1/bat-rpls-2/igt@i915_selftest@live@gt_pm.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12630/bat-rpls-1/igt@i915_selftest@live@requests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6257">i915#6257</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113279v1/bat-rpls-1/igt@i915_selftest@live@requests.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12630 -&gt; Patchwork_113279v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12630: 49bd4c650125827fdfc0bc1d319d10da87aedf95 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7136: 31b6af91747ad8c705399c9006cdb81cb1864146 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_113279v1: 49bd4c650125827fdfc0bc1d319d10da87aedf95 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>84d9fc7ce776 drm/i915/xehpsdv/selftests: Flush all tiles on test exit</p>
+
+</body>
+</html>
+
+--===============7478892056260089558==--
