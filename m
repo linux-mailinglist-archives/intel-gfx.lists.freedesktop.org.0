@@ -1,53 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F0CF679804
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jan 2023 13:27:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 995FA67980A
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jan 2023 13:27:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C814B10E06C;
-	Tue, 24 Jan 2023 12:27:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E3EB10E061;
+	Tue, 24 Jan 2023 12:27:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1A3F10E062;
- Tue, 24 Jan 2023 12:27:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674563224; x=1706099224;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=Z3Dx3gBnEObZB0hnHZv+e1Wl3zLmeyqgQt9ooQNjwho=;
- b=V2te0Egt2zx/BimNAQj2wKP53nIMpEq8mZQkQ8UxX1zhEjegOwxeh651
- +r38boeArCgQE8afz9Fz3h5MC3+5IpY4Y5JIuQkpb/ByeCh/Sk9FcnIqP
- /SXtJ5Q0mji3Ca4dmLnSLrtBuWJBFHjJNIEaLKZ0jHvyj56Aub8/rQeWM
- aTuKNwPEykYTig0DGQji//gU68whfQYp8y9adsvWcrXtwuP7swjJ85mtl
- E2/f8U56t8E11eM1be+z/5s0Gg26XDYeaTUKzgDg3untDR02sgcYj2alL
- +6aNsuy/vWphnYRwiLP+SxnUmhP0ehTsGsGK7UhgI2U415h8QBxUdAmFv A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="388628911"
-X-IronPort-AV: E=Sophos;i="5.97,242,1669104000"; d="scan'208";a="388628911"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2023 04:27:02 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="655403204"
-X-IronPort-AV: E=Sophos;i="5.97,242,1669104000"; d="scan'208";a="655403204"
-Received: from lkp-server01.sh.intel.com (HELO 5646d64e7320) ([10.239.97.150])
- by orsmga007.jf.intel.com with ESMTP; 24 Jan 2023 04:26:55 -0800
-Received: from kbuild by 5646d64e7320 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1pKIO6-0006S8-32;
- Tue, 24 Jan 2023 12:26:54 +0000
-Date: Tue, 24 Jan 2023 20:26:48 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
-Message-ID: <202301242049.eKzx7RzZ-lkp@intel.com>
-References: <20230124094154.2282778-3-jani.nikula@intel.com>
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88B6310E061
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Jan 2023 12:27:34 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 46F411FE22;
+ Tue, 24 Jan 2023 12:27:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1674563253; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=5XPvsGo29ax2BaqgHvqjhFRFUNYBX6E4iFNCroXHkjI=;
+ b=XznwPQvE43aVjaKnEmmUJ9TOWkVcu3DYG3Jxff58uGzsmzIkGHMmzmBcIwq/2hnYNacj+v
+ 9Q/amPhNlYxK1QaxSpQkmG3BWBCW3jjPXP6eoDN9N5x4iviZMqEVEcsSDH/RrbG6Wn1iof
+ XNzrAmmDxzDWmJ0n9PPfBQh/ZBX9stA=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1674563253;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=5XPvsGo29ax2BaqgHvqjhFRFUNYBX6E4iFNCroXHkjI=;
+ b=3n9N9G+bvKDmvD2v4ej//P/iUpzKRkLXUqqXgnAAy9KqISaeUbxCehN9VekT9F/O0NYSV8
+ aqYUteKT9HI14cAg==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 2B1B2139FB;
+ Tue, 24 Jan 2023 12:27:33 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id vLx/CbXOz2O4PQAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Tue, 24 Jan 2023 12:27:33 +0000
+Message-ID: <7f8b8d4d-b122-bff7-a458-985061bf1b4c@suse.de>
+Date: Tue, 24 Jan 2023 13:27:32 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230124094154.2282778-3-jani.nikula@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/connector: move ELD and video/audio
- latencies to display info
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Content-Language: en-US
+To: =?UTF-8?Q?Jouni_H=c3=b6gander?= <jouni.hogander@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20230124091046.2500682-1-jouni.hogander@intel.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+In-Reply-To: <20230124091046.2500682-1-jouni.hogander@intel.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------uZILRyQfGUG0fUIbd4c27Tqy"
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/fbdev: Implement wrappers for
+ callbacks used by fbcon
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,99 +71,121 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Pan@freedesktop.org, Emma Anholt <emma@anholt.net>,
- amd-gfx@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Alain Volmat <alain.volmat@foss.st.com>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
- jani.nikula@intel.com, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Maxime Ripard <mripard@kernel.org>, Inki Dae <inki.dae@samsung.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- linux-mediatek@lists.infradead.org, oe-kbuild-all@lists.linux.dev,
- Neil Armstrong <neil.armstrong@linaro.org>, Xinhui <Xinhui.Pan@amd.com>,
- Seung-Woo Kim <sw0312.kim@samsung.com>, Robert Foss <robert.foss@linaro.org>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Alex Deucher <alexander.deucher@amd.com>, freedreno@lists.freedesktop.org,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jani,
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------uZILRyQfGUG0fUIbd4c27Tqy
+Content-Type: multipart/mixed; boundary="------------0jBvpiV0eNv2SJdBb00Rtkmd";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: =?UTF-8?Q?Jouni_H=c3=b6gander?= <jouni.hogander@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Jani Nikula <jani.nikula@intel.com>
+Message-ID: <7f8b8d4d-b122-bff7-a458-985061bf1b4c@suse.de>
+Subject: Re: [PATCH] drm/i915/fbdev: Implement wrappers for callbacks used by
+ fbcon
+References: <20230124091046.2500682-1-jouni.hogander@intel.com>
+In-Reply-To: <20230124091046.2500682-1-jouni.hogander@intel.com>
 
-I love your patch! Yet something to improve:
+--------------0jBvpiV0eNv2SJdBb00Rtkmd
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-[auto build test ERROR on drm-tip/drm-tip]
+SGkNCg0KQW0gMjQuMDEuMjMgdW0gMTA6MTAgc2NocmllYiBKb3VuaSBIw7ZnYW5kZXI6DQo+
+IEFmdGVyIGRpc2Nvbm5lY3RpbmcgZGFtYWdlIHdvcmtlciBmcm9tIHVwZGF0ZSBsb2dpYyBv
+dXIgZGlydHkgY2FsbGJhY2sNCj4gaXMgbm90IGNhbGxlZCBvbiBmYmNvbiBldmVudHMuIFRo
+aXMgaXMgY2F1c2luZyBwcm9ibGVtcyB0byBmZWF0dXJlcw0KPiAoUFNSLCBGQkMsIERSUlMp
+IHJlbHlpbmcgb24gZGlydHkgY2FsbGJhY2sgZ2V0dGluZyBjYWxsZWQgYW5kIGJyZWFraW5n
+DQo+IGZiIGNvbnNvbGUgd2hlbiB0aGVzZSBmZWF0dXJlcyBhcmUgaW4gdXNlLg0KPiANCj4g
+SW1wbGVtZW50IHdyYXBwZXJzIGZvciBjYWxsYmFja3MgdXNlZCBieSBmYmNvbiBhbmQgY2Fs
+bCBvdXIgZGlydHkNCj4gY2FsbGJhY2sgaW4gdGhvc2UuDQo+IA0KPiBGaXhlczogZjIzMWFm
+NDk4YzI5ICgiZHJtL2ZiLWhlbHBlcjogRGlzY29ubmVjdCBkYW1hZ2Ugd29ya2VyIGZyb20g
+dXBkYXRlIGxvZ2ljIikNCj4gQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
+aW51eC5pbnRlbC5jb20+DQo+IENjOiBUaG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5A
+c3VzZS5kZT4NCj4gQ2M6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+DQo+
+IFNpZ25lZC1vZmYtYnk6IEpvdW5pIEjDtmdhbmRlciA8am91bmkuaG9nYW5kZXJAaW50ZWwu
+Y29tPg0KDQpUaGlzIGlzIHRoZSBiZXR0ZXIgc29sdXRpb24gd3J0IHdoYXQgZmJkZXYgd2Fu
+dHMuDQoNCkFja2VkLWJ5OiBUaG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5Ac3VzZS5k
+ZT4NCg0KQmVzdCByZWdhcmRzDQpUaG9tYXMNCg0KPiAtLS0NCj4gICBkcml2ZXJzL2dwdS9k
+cm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiZGV2LmMgfCA1MyArKysrKysrKysrKysrKysrKysr
+Ky0tDQo+ICAgMSBmaWxlIGNoYW5nZWQsIDQ5IGluc2VydGlvbnMoKyksIDQgZGVsZXRpb25z
+KC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9mYmRldi5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmRl
+di5jDQo+IGluZGV4IDE5ZjNiNWQ5MmE1NS4uYjE2NTM2MjQ1NTJlIDEwMDY0NA0KPiAtLS0g
+YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiZGV2LmMNCj4gKysrIGIv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmRldi5jDQo+IEBAIC03Nyw2
+ICs3NywxOCBAQCBzdGF0aWMgdm9pZCBpbnRlbF9mYmRldl9pbnZhbGlkYXRlKHN0cnVjdCBp
+bnRlbF9mYmRldiAqaWZiZGV2KQ0KPiAgIAlpbnRlbF9mcm9udGJ1ZmZlcl9pbnZhbGlkYXRl
+KHRvX2Zyb250YnVmZmVyKGlmYmRldiksIE9SSUdJTl9DUFUpOw0KPiAgIH0NCj4gICANCj4g
+K3N0YXRpYyB2b2lkIGludGVsX2ZiZGV2X2RpcnR5KHN0cnVjdCBmYl9pbmZvICppbmZvKQ0K
+PiArew0KPiArCXN0cnVjdCBkcm1fZmJfaGVscGVyICpoZWxwZXIgPSBpbmZvLT5wYXI7DQo+
+ICsNCj4gKwkvKg0KPiArCSAqIEludGVsX2ZiIGRpcnR5IGltcGxlbWVudGF0aW9uIGRvZXNu
+J3QgdXNlIGRhbWFnZSBjbGlwcyAtPg0KPiArCSAqIG5vIG5lZWQgdG8gcGFzcyB0aGVtIGhl
+cmUNCj4gKwkgKi8NCj4gKwlpZiAoaGVscGVyLT5mYi0+ZnVuY3MtPmRpcnR5KQ0KPiArCQlo
+ZWxwZXItPmZiLT5mdW5jcy0+ZGlydHkoaGVscGVyLT5mYiwgTlVMTCwgMCwgMCwgTlVMTCwg
+MCk7DQo+ICt9DQo+ICsNCj4gICBzdGF0aWMgaW50IGludGVsX2ZiZGV2X3NldF9wYXIoc3Ry
+dWN0IGZiX2luZm8gKmluZm8pDQo+ICAgew0KPiAgIAlzdHJ1Y3QgZHJtX2ZiX2hlbHBlciAq
+ZmJfaGVscGVyID0gaW5mby0+cGFyOw0KPiBAQCAtOTEsNiArMTAzLDM5IEBAIHN0YXRpYyBp
+bnQgaW50ZWxfZmJkZXZfc2V0X3BhcihzdHJ1Y3QgZmJfaW5mbyAqaW5mbykNCj4gICAJcmV0
+dXJuIHJldDsNCj4gICB9DQo+ICAgDQo+ICtzdGF0aWMgc3NpemVfdCBpbnRlbF9mYmRldl93
+cml0ZShzdHJ1Y3QgZmJfaW5mbyAqaW5mbywgY29uc3QgY2hhciBfX3VzZXIgKmJ1ZiwNCj4g
+KwkJCQkgc2l6ZV90IGNvdW50LCBsb2ZmX3QgKnBwb3MpDQo+ICt7DQo+ICsJaW50IHJldDsN
+Cj4gKw0KPiArCXJldCA9IGRybV9mYl9oZWxwZXJfY2ZiX3dyaXRlKGluZm8sIGJ1ZiwgY291
+bnQsIHBwb3MpOw0KPiArCWlmIChyZXQgPiAwKQ0KPiArCQlpbnRlbF9mYmRldl9kaXJ0eShp
+bmZvKTsNCj4gKw0KPiArCXJldHVybiByZXQ7DQo+ICt9DQo+ICsNCj4gK3N0YXRpYyB2b2lk
+IGludGVsX2ZiZGV2X2ZpbGxyZWN0KHN0cnVjdCBmYl9pbmZvICppbmZvLA0KPiArCQkJCSAg
+Y29uc3Qgc3RydWN0IGZiX2ZpbGxyZWN0ICpyZWN0KQ0KPiArew0KPiArCWRybV9mYl9oZWxw
+ZXJfY2ZiX2ZpbGxyZWN0KGluZm8sIHJlY3QpOw0KPiArCWludGVsX2ZiZGV2X2RpcnR5KGlu
+Zm8pOw0KPiArfQ0KPiArDQo+ICtzdGF0aWMgdm9pZCBpbnRlbF9mYmRldl9jb3B5YXJlYShz
+dHJ1Y3QgZmJfaW5mbyAqaW5mbywNCj4gKwkJCQkgIGNvbnN0IHN0cnVjdCBmYl9jb3B5YXJl
+YSAqYXJlYSkNCj4gK3sNCj4gKwlkcm1fZmJfaGVscGVyX2NmYl9jb3B5YXJlYShpbmZvLCBh
+cmVhKTsNCj4gKwlpbnRlbF9mYmRldl9kaXJ0eShpbmZvKTsNCj4gK30NCj4gKw0KPiArc3Rh
+dGljIHZvaWQgaW50ZWxfZmJkZXZfaW1hZ2VibGl0KHN0cnVjdCBmYl9pbmZvICppbmZvLA0K
+PiArCQkJCSBjb25zdCBzdHJ1Y3QgZmJfaW1hZ2UgKmltYWdlKQ0KPiArew0KPiArCWRybV9m
+Yl9oZWxwZXJfY2ZiX2ltYWdlYmxpdChpbmZvLCBpbWFnZSk7DQo+ICsJaW50ZWxfZmJkZXZf
+ZGlydHkoaW5mbyk7DQo+ICt9DQo+ICsNCj4gICBzdGF0aWMgaW50IGludGVsX2ZiZGV2X2Js
+YW5rKGludCBibGFuaywgc3RydWN0IGZiX2luZm8gKmluZm8pDQo+ICAgew0KPiAgIAlzdHJ1
+Y3QgZHJtX2ZiX2hlbHBlciAqZmJfaGVscGVyID0gaW5mby0+cGFyOw0KPiBAQCAtMTI1LDEw
+ICsxNzAsMTAgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBmYl9vcHMgaW50ZWxmYl9vcHMgPSB7
+DQo+ICAgCURSTV9GQl9IRUxQRVJfREVGQVVMVF9PUFMsDQo+ICAgCS5mYl9zZXRfcGFyID0g
+aW50ZWxfZmJkZXZfc2V0X3BhciwNCj4gICAJLmZiX3JlYWQgPSBkcm1fZmJfaGVscGVyX2Nm
+Yl9yZWFkLA0KPiAtCS5mYl93cml0ZSA9IGRybV9mYl9oZWxwZXJfY2ZiX3dyaXRlLA0KPiAt
+CS5mYl9maWxscmVjdCA9IGRybV9mYl9oZWxwZXJfY2ZiX2ZpbGxyZWN0LA0KPiAtCS5mYl9j
+b3B5YXJlYSA9IGRybV9mYl9oZWxwZXJfY2ZiX2NvcHlhcmVhLA0KPiAtCS5mYl9pbWFnZWJs
+aXQgPSBkcm1fZmJfaGVscGVyX2NmYl9pbWFnZWJsaXQsDQo+ICsJLmZiX3dyaXRlID0gaW50
+ZWxfZmJkZXZfd3JpdGUsDQo+ICsJLmZiX2ZpbGxyZWN0ID0gaW50ZWxfZmJkZXZfZmlsbHJl
+Y3QsDQo+ICsJLmZiX2NvcHlhcmVhID0gaW50ZWxfZmJkZXZfY29weWFyZWEsDQo+ICsJLmZi
+X2ltYWdlYmxpdCA9IGludGVsX2ZiZGV2X2ltYWdlYmxpdCwNCj4gICAJLmZiX3Bhbl9kaXNw
+bGF5ID0gaW50ZWxfZmJkZXZfcGFuX2Rpc3BsYXksDQo+ICAgCS5mYl9ibGFuayA9IGludGVs
+X2ZiZGV2X2JsYW5rLA0KPiAgIH07DQoNCi0tIA0KVGhvbWFzIFppbW1lcm1hbm4NCkdyYXBo
+aWNzIERyaXZlciBEZXZlbG9wZXINClNVU0UgU29mdHdhcmUgU29sdXRpb25zIEdlcm1hbnkg
+R21iSA0KTWF4ZmVsZHN0ci4gNSwgOTA0MDkgTsO8cm5iZXJnLCBHZXJtYW55DQooSFJCIDM2
+ODA5LCBBRyBOw7xybmJlcmcpDQpHZXNjaMOkZnRzZsO8aHJlcjogSXZvIFRvdGV2DQo=
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jani-Nikula/drm-connector-move-HDR-sink-metadata-to-display-info/20230124-174322
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-patch link:    https://lore.kernel.org/r/20230124094154.2282778-3-jani.nikula%40intel.com
-patch subject: [Intel-gfx] [PATCH 3/3] drm/connector: move ELD and video/audio latencies to display info
-config: arm-defconfig (https://download.01.org/0day-ci/archive/20230124/202301242049.eKzx7RzZ-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/1e92b5478cfc1b0df66153652111117e9548b0d5
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Jani-Nikula/drm-connector-move-HDR-sink-metadata-to-display-info/20230124-174322
-        git checkout 1e92b5478cfc1b0df66153652111117e9548b0d5
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash drivers/gpu/
+--------------0jBvpiV0eNv2SJdBb00Rtkmd--
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
+--------------uZILRyQfGUG0fUIbd4c27Tqy
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
 
-All errors (new ones prefixed by >>):
+-----BEGIN PGP SIGNATURE-----
 
-   drivers/gpu/drm/tegra/hdmi.c: In function 'tegra_hdmi_write_eld':
->> drivers/gpu/drm/tegra/hdmi.c:620:60: error: 'struct drm_connector' has no member named 'eld'
-     620 |         size_t length = drm_eld_size(hdmi->output.connector.eld), i;
-         |                                                            ^
-   drivers/gpu/drm/tegra/hdmi.c:624:72: error: 'struct drm_connector' has no member named 'eld'
-     624 |                 tegra_hdmi_writel(hdmi, i << 8 | hdmi->output.connector.eld[i],
-         |                                                                        ^
---
-   drivers/gpu/drm/tegra/sor.c: In function 'tegra_sor_write_eld':
->> drivers/gpu/drm/tegra/sor.c:1951:59: error: 'struct drm_connector' has no member named 'eld'
-    1951 |         size_t length = drm_eld_size(sor->output.connector.eld), i;
-         |                                                           ^
-   drivers/gpu/drm/tegra/sor.c:1954:69: error: 'struct drm_connector' has no member named 'eld'
-    1954 |                 tegra_sor_writel(sor, i << 8 | sor->output.connector.eld[i],
-         |                                                                     ^
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmPPzrQFAwAAAAAACgkQlh/E3EQov+B5
+BxAAkRymQvMZ38+0M4x43v6yM16Ux38WEosi8G1JUcZdUmohXjnLnWy1XYEBgKPrP+lHn5zyJtvB
+KodSr5TZ91n1qwN2nJiNxFouz7U1yIGQFMLp4tjRE8c705g2NdvKRDFQgBtRbXMIm6lfoyBhN++Z
+x63UWGxKjblK5V8IM3c1XP+SyO+4/HK+kpuCThZcs6/3T8E2/XPcY97Cud0VPMW+LexV6vXhrnq0
+6mS70FiQzW7lgKRxgLRskLEZViWKlnrLu7mSkM+zN1xXgpmRiF7hOUkLNeQFjAeWSBHANf5AkDOb
+ZsFfqCPp3ImHWoOfSnbdl8lCVtHq2CYI51E0292mTDnhabZ+t4Z30mGZSkqjqkHMtAfkUPURnODB
+eBsPFhkR7Fe9IlM+FP2TX5l78YwuGembQL8fUUESTm7iJkzE1jxIYE3P7OQ02TtwQy15J3uDZCuD
+8eKwM63MRAz7uGABq3tYwHlHCzWRu7jTg7d6IbRphxG53x77Bbs35QNPk0fOJA1hGz5Kax3FpJws
+VQZ6QpO5Z3NxqE7vZ4HNwdPlj8SUSJJTPMsE2tBWV+qkjYYLz+anwBMFQLN1wx0CDRn/GKEjKDF2
+asA52PqbVlMGLyCjYRkeK8B8XZs5zxJQipAvzbd1n0LFsEeMiq02Akli6xkKVQvc3ZLz3V5xTuvl
+JWs=
+=9bMk
+-----END PGP SIGNATURE-----
 
-
-vim +620 drivers/gpu/drm/tegra/hdmi.c
-
-edec4af4c3d6d2 Thierry Reding 2012-11-15  617  
-5234549b93aa2a Thierry Reding 2015-08-07  618  static void tegra_hdmi_write_eld(struct tegra_hdmi *hdmi)
-5234549b93aa2a Thierry Reding 2015-08-07  619  {
-5234549b93aa2a Thierry Reding 2015-08-07 @620  	size_t length = drm_eld_size(hdmi->output.connector.eld), i;
-5234549b93aa2a Thierry Reding 2015-08-07  621  	u32 value;
-edec4af4c3d6d2 Thierry Reding 2012-11-15  622  
-5234549b93aa2a Thierry Reding 2015-08-07  623  	for (i = 0; i < length; i++)
-5234549b93aa2a Thierry Reding 2015-08-07  624  		tegra_hdmi_writel(hdmi, i << 8 | hdmi->output.connector.eld[i],
-5234549b93aa2a Thierry Reding 2015-08-07  625  				  HDMI_NV_PDISP_SOR_AUDIO_HDA_ELD_BUFWR);
-edec4af4c3d6d2 Thierry Reding 2012-11-15  626  
-5234549b93aa2a Thierry Reding 2015-08-07  627  	/*
-5234549b93aa2a Thierry Reding 2015-08-07  628  	 * The HDA codec will always report an ELD buffer size of 96 bytes and
-5234549b93aa2a Thierry Reding 2015-08-07  629  	 * the HDA codec driver will check that each byte read from the buffer
-5234549b93aa2a Thierry Reding 2015-08-07  630  	 * is valid. Therefore every byte must be written, even if no 96 bytes
-5234549b93aa2a Thierry Reding 2015-08-07  631  	 * were parsed from EDID.
-5234549b93aa2a Thierry Reding 2015-08-07  632  	 */
-5234549b93aa2a Thierry Reding 2015-08-07  633  	for (i = length; i < HDMI_ELD_BUFFER_SIZE; i++)
-5234549b93aa2a Thierry Reding 2015-08-07  634  		tegra_hdmi_writel(hdmi, i << 8 | 0,
-5234549b93aa2a Thierry Reding 2015-08-07  635  				  HDMI_NV_PDISP_SOR_AUDIO_HDA_ELD_BUFWR);
-5234549b93aa2a Thierry Reding 2015-08-07  636  
-5234549b93aa2a Thierry Reding 2015-08-07  637  	value = SOR_AUDIO_HDA_PRESENSE_VALID | SOR_AUDIO_HDA_PRESENSE_PRESENT;
-5234549b93aa2a Thierry Reding 2015-08-07  638  	tegra_hdmi_writel(hdmi, value, HDMI_NV_PDISP_SOR_AUDIO_HDA_PRESENSE);
-edec4af4c3d6d2 Thierry Reding 2012-11-15  639  }
-edec4af4c3d6d2 Thierry Reding 2012-11-15  640  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+--------------uZILRyQfGUG0fUIbd4c27Tqy--
