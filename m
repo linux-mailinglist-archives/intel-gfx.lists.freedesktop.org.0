@@ -1,61 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DB796794DC
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jan 2023 11:13:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A40C6794F1
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jan 2023 11:13:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62E8110E652;
-	Tue, 24 Jan 2023 10:13:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C958310E651;
+	Tue, 24 Jan 2023 10:13:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com
- [IPv6:2a00:1450:4864:20::132])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E10310E64D;
- Tue, 24 Jan 2023 10:13:05 +0000 (UTC)
-Received: by mail-lf1-x132.google.com with SMTP id a11so22709080lfg.0;
- Tue, 24 Jan 2023 02:13:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=KRbgGSdgZ3lb++t/ReqPAt68S5TzAu/XL1224BG2lP8=;
- b=pwHMx1Albnv2+e5ygLt/xyUxjQOnzSAoibduR35+MBbXJ3naQ5qkAxT9nh63umBDn9
- jnlSP7WKSbGV+ESOL0baF6d9fgmqorvDCgVwKwD1Qw9y9V4FRnVRrIv2LDipZK9NCYgq
- bC2BbUjUs0tDa4w0hMtVMZGjlyOURKsvSUZCLTYy6divJIDwxv3onOAfUnPNWBlT5mq3
- xwovsnR2HsBSUcReDsuAUtHi8V3vRBoCcHrOSnC36pGmI7WCqGRcmDty+JD7fGubvWNu
- T66PsRB64J458JFU1RkoP1i0dKDLJl+xbtkhT+6ZNwGgVr7M69LOgEu75/piLN1Qi8f/
- CWow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=KRbgGSdgZ3lb++t/ReqPAt68S5TzAu/XL1224BG2lP8=;
- b=JbjI59aoPSXfUaXMhI8D1G/JV1EBsl3dZvzJ2J2e4I7roeuJkcmPAS0xC2Xd9OAgtN
- KMEcsrLw9kwKjxczE5Frq9qcOhlv+D4H0f8USIIi5o0wUI8ZCKFbMDIBBZI6xie6ICht
- fO7KRhLprdL7ASG2wAdVcCFi1Phu2x4opiB3q1w5i186iLbGOoFTBgXqGfg3OlheApop
- OhItRIxDompnE144DfJdhxjvRXi9GH3FQUdZ+T+mGTv39BCJ53U1IrYPp8GwfXkW+IXR
- WFYdVYs4hJRQSh4WKC9/MI58Bk6c+hSW4pdahe+4HH485Ut9u1oOAxWA3QTgUt5/abtA
- FnVg==
-X-Gm-Message-State: AFqh2ko4RUy2RXeofXEQVkZRbuL52MQgjsAtzyHssd/t80tk7svDZ1zn
- ZQfcBnO0ZTc+ZUGi3MHpYty9yTx5mnS+XTDi708=
-X-Google-Smtp-Source: AMrXdXsXwfcKGDrqQg9jgHUwWXPbhgm71xYVzD4ZeL8ZlUSCqnsMJ2rvopWV4jnf4wPqpXHgrvpsQxBRvW5QjNRZFBI=
-X-Received: by 2002:a05:6512:1102:b0:4d5:8306:34fa with SMTP id
- l2-20020a056512110200b004d5830634famr1231735lfg.469.1674555183625; Tue, 24
- Jan 2023 02:13:03 -0800 (PST)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2439E10E651;
+ Tue, 24 Jan 2023 10:13:44 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1D028A00E8;
+ Tue, 24 Jan 2023 10:13:44 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0374059249141798375=="
 MIME-Version: 1.0
-References: <20230111114256.72669-1-christian.koenig@amd.com>
- <CAM0jSHP7bRn05sWrwHriLeaQifNuqO77UPFsWg0MrW5dCeZphQ@mail.gmail.com>
- <f25004e8-ec4e-d9d7-3b8c-6115cf6692a1@gmail.com>
-In-Reply-To: <f25004e8-ec4e-d9d7-3b8c-6115cf6692a1@gmail.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Tue, 24 Jan 2023 10:12:35 +0000
-Message-ID: <CAM0jSHPth9eXy7tXr3F798xzxsfhq1zBvyr2WUvq0Zjt=9CejA@mail.gmail.com>
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/ttm: prevent moving of pinned BOs
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Date: Tue, 24 Jan 2023 10:13:44 -0000
+Message-ID: <167455522411.17487.545353434085602634@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230124091046.2500682-1-jouni.hogander@intel.com>
+In-Reply-To: <20230124091046.2500682-1-jouni.hogander@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/fbdev=3A_Implement_wrappers_for_callbacks_used_by_fbcon?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,211 +40,307 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 24 Jan 2023 at 09:51, Christian K=C3=B6nig
-<ckoenig.leichtzumerken@gmail.com> wrote:
->
-> Am 11.01.23 um 14:17 schrieb Matthew Auld:
-> > On Wed, 11 Jan 2023 at 11:43, Christian K=C3=B6nig
-> > <ckoenig.leichtzumerken@gmail.com> wrote:
-> >> We have checks for this in the individual drivers move callback, but
-> >> it's probably better to generally forbit that on a higher level.
-> >>
-> >> Also stops exporting ttm_resource_compat() since that's not necessary
-> >> any more after removing the extra checks in vmwgfx.
-> >>
-> >> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> >> ---
-> >>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c |  4 ----
-> >>   drivers/gpu/drm/nouveau/nouveau_bo.c    |  3 ---
-> >>   drivers/gpu/drm/radeon/radeon_ttm.c     |  4 ----
-> >>   drivers/gpu/drm/ttm/ttm_bo.c            | 20 ++++++++++++--------
-> >>   drivers/gpu/drm/ttm/ttm_resource.c      |  1 -
-> >>   drivers/gpu/drm/vmwgfx/vmwgfx_bo.c      | 19 ++-----------------
-> >>   6 files changed, 14 insertions(+), 37 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm=
-/amd/amdgpu/amdgpu_ttm.c
-> >> index 068c2d8495fd..677cd7d91687 100644
-> >> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-> >> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-> >> @@ -466,11 +466,7 @@ static int amdgpu_bo_move(struct ttm_buffer_objec=
-t *bo, bool evict,
-> >>                          return r;
-> >>          }
-> >>
-> >> -       /* Can't move a pinned BO */
-> >>          abo =3D ttm_to_amdgpu_bo(bo);
-> >> -       if (WARN_ON_ONCE(abo->tbo.pin_count > 0))
-> >> -               return -EINVAL;
-> >> -
-> >>          adev =3D amdgpu_ttm_adev(bo->bdev);
-> >>
-> >>          if (!old_mem || (old_mem->mem_type =3D=3D TTM_PL_SYSTEM &&
-> >> diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/no=
-uveau/nouveau_bo.c
-> >> index 288eebc70a67..c2ec91cc845d 100644
-> >> --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-> >> +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-> >> @@ -1015,9 +1015,6 @@ nouveau_bo_move(struct ttm_buffer_object *bo, bo=
-ol evict,
-> >>          if (ret)
-> >>                  goto out_ntfy;
-> >>
-> >> -       if (nvbo->bo.pin_count)
-> >> -               NV_WARN(drm, "Moving pinned object %p!\n", nvbo);
-> >> -
-> >>          if (drm->client.device.info.family < NV_DEVICE_INFO_V0_TESLA)=
- {
-> >>                  ret =3D nouveau_bo_vm_bind(bo, new_reg, &new_tile);
-> >>                  if (ret)
-> >> diff --git a/drivers/gpu/drm/radeon/radeon_ttm.c b/drivers/gpu/drm/rad=
-eon/radeon_ttm.c
-> >> index 1e8e287e113c..67075c85f847 100644
-> >> --- a/drivers/gpu/drm/radeon/radeon_ttm.c
-> >> +++ b/drivers/gpu/drm/radeon/radeon_ttm.c
-> >> @@ -211,11 +211,7 @@ static int radeon_bo_move(struct ttm_buffer_objec=
-t *bo, bool evict,
-> >>          if (r)
-> >>                  return r;
-> >>
-> >> -       /* Can't move a pinned BO */
-> >>          rbo =3D container_of(bo, struct radeon_bo, tbo);
-> >> -       if (WARN_ON_ONCE(rbo->tbo.pin_count > 0))
-> >> -               return -EINVAL;
-> >> -
-> >>          rdev =3D radeon_get_rdev(bo->bdev);
-> >>          if (old_mem->mem_type =3D=3D TTM_PL_SYSTEM && bo->ttm =3D=3D =
-NULL) {
-> >>                  ttm_bo_move_null(bo, new_mem);
-> >> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo=
-.c
-> >> index 326a3d13a829..9baccb2f6e99 100644
-> >> --- a/drivers/gpu/drm/ttm/ttm_bo.c
-> >> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
-> >> @@ -894,14 +894,18 @@ int ttm_bo_validate(struct ttm_buffer_object *bo=
-,
-> >>          if (!placement->num_placement && !placement->num_busy_placeme=
-nt)
-> >>                  return ttm_bo_pipeline_gutting(bo);
-> >>
-> >> -       /*
-> >> -        * Check whether we need to move buffer.
-> >> -        */
-> >> -       if (!bo->resource || !ttm_resource_compat(bo->resource, placem=
-ent)) {
-> >> -               ret =3D ttm_bo_move_buffer(bo, placement, ctx);
-> >> -               if (ret)
-> >> -                       return ret;
-> >> -       }
-> >> +       /* Check whether we need to move buffer. */
-> >> +       if (bo->resource && ttm_resource_compat(bo->resource, placemen=
-t))
-> >> +               return 0;
-> > Note this now skips the tt create below (intentional?). I think i915
-> > needed that, since it creates a dummy system resource initially for
-> > all objects, and then relies on ZERO_ALLOC being set for certain
-> > objects to know if the memory needs to be cleared or not when later
-> > doing the dummy -> vram. Thoughts?
->
-> That's unproblematic. On initial allocation bo->resource is NULL so we
-> never branch out here.
+--===============0374059249141798375==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Here is what I see in drm-tip, when first creating an object with ttm:
+== Series Details ==
 
-ttm_bo_init_reserved() -> ttm_resource_alloc(PL_SYSTEM, &bo->resource)
--> ttm_bo_validate()
+Series: drm/i915/fbdev: Implement wrappers for callbacks used by fbcon
+URL   : https://patchwork.freedesktop.org/series/113255/
+State : success
 
-So bo->resource is for sure not NULL on initial allocation, and is
-pointing to PL_SYSTEM. And in i915 we initially stuff everything into
-SYSTEM as a dummy placement.
+== Summary ==
 
-IIRC you had a series that tried to address that (allowing NULL
-resource or so), but it never landed:
-https://patchwork.freedesktop.org/patch/500698/?series=3D107680&rev=3D2
+CI Bug Log - changes from CI_DRM_12626 -> Patchwork_113255v1
+====================================================
 
->
-> Christian.
->
-> >
-> >> +
-> >> +       /* Moving of pinned BOs is forbidden */
-> >> +       if (bo->pin_count)
-> >> +               return -EINVAL;
-> >> +
-> >> +       ret =3D ttm_bo_move_buffer(bo, placement, ctx);
-> >> +       if (ret)
-> >> +               return ret;
-> >> +
-> >>          /*
-> >>           * We might need to add a TTM.
-> >>           */
-> >> diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/=
-ttm_resource.c
-> >> index b8a826a24fb2..7333f7a87a2f 100644
-> >> --- a/drivers/gpu/drm/ttm/ttm_resource.c
-> >> +++ b/drivers/gpu/drm/ttm/ttm_resource.c
-> >> @@ -361,7 +361,6 @@ bool ttm_resource_compat(struct ttm_resource *res,
-> >>
-> >>          return false;
-> >>   }
-> >> -EXPORT_SYMBOL(ttm_resource_compat);
-> >>
-> >>   void ttm_resource_set_bo(struct ttm_resource *res,
-> >>                           struct ttm_buffer_object *bo)
-> >> diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_bo.c b/drivers/gpu/drm/vmwg=
-fx/vmwgfx_bo.c
-> >> index 321c551784a1..dbcef460c452 100644
-> >> --- a/drivers/gpu/drm/vmwgfx/vmwgfx_bo.c
-> >> +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_bo.c
-> >> @@ -87,12 +87,7 @@ int vmw_bo_pin_in_placement(struct vmw_private *dev=
-_priv,
-> >>          if (unlikely(ret !=3D 0))
-> >>                  goto err;
-> >>
-> >> -       if (buf->base.pin_count > 0)
-> >> -               ret =3D ttm_resource_compat(bo->resource, placement)
-> >> -                       ? 0 : -EINVAL;
-> >> -       else
-> >> -               ret =3D ttm_bo_validate(bo, placement, &ctx);
-> >> -
-> >> +       ret =3D ttm_bo_validate(bo, placement, &ctx);
-> >>          if (!ret)
-> >>                  vmw_bo_pin_reserved(buf, true);
-> >>
-> >> @@ -128,12 +123,6 @@ int vmw_bo_pin_in_vram_or_gmr(struct vmw_private =
-*dev_priv,
-> >>          if (unlikely(ret !=3D 0))
-> >>                  goto err;
-> >>
-> >> -       if (buf->base.pin_count > 0) {
-> >> -               ret =3D ttm_resource_compat(bo->resource, &vmw_vram_gm=
-r_placement)
-> >> -                       ? 0 : -EINVAL;
-> >> -               goto out_unreserve;
-> >> -       }
-> >> -
-> >>          ret =3D ttm_bo_validate(bo, &vmw_vram_gmr_placement, &ctx);
-> >>          if (likely(ret =3D=3D 0) || ret =3D=3D -ERESTARTSYS)
-> >>                  goto out_unreserve;
-> >> @@ -218,11 +207,7 @@ int vmw_bo_pin_in_start_of_vram(struct vmw_privat=
-e *dev_priv,
-> >>                  (void) ttm_bo_validate(bo, &vmw_sys_placement, &ctx);
-> >>          }
-> >>
-> >> -       if (buf->base.pin_count > 0)
-> >> -               ret =3D ttm_resource_compat(bo->resource, &placement)
-> >> -                       ? 0 : -EINVAL;
-> >> -       else
-> >> -               ret =3D ttm_bo_validate(bo, &placement, &ctx);
-> >> +       ret =3D ttm_bo_validate(bo, &placement, &ctx);
-> >>
-> >>          /* For some reason we didn't end up at the start of vram */
-> >>          WARN_ON(ret =3D=3D 0 && bo->resource->start !=3D 0);
-> >> --
-> >> 2.34.1
-> >>
->
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113255v1/index.html
+
+Participating hosts (39 -> 39)
+------------------------------
+
+  Additional (1): fi-bsw-kefka 
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_113255v1:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_module_load@load:
+    - {bat-dg2-9}:        [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12626/bat-dg2-9/igt@i915_module_load@load.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113255v1/bat-dg2-9/igt@i915_module_load@load.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_113255v1 that come from known issues:
+
+### CI changes ###
+
+#### Possible fixes ####
+
+  * boot:
+    - fi-ivb-3770:        [FAIL][3] -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12626/fi-ivb-3770/boot.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113255v1/fi-ivb-3770/boot.html
+
+  
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-kbl-soraka:      [PASS][5] -> [DMESG-FAIL][6] ([i915#5334] / [i915#7872])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12626/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113255v1/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@guc_multi_lrc:
+    - fi-kbl-soraka:      NOTRUN -> [INCOMPLETE][7] ([i915#7640])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113255v1/fi-kbl-soraka/igt@i915_selftest@live@guc_multi_lrc.html
+
+  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][8] ([fdo#109271])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113255v1/fi-bsw-n3050/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
+
+  * igt@kms_psr@cursor_plane_move:
+    - fi-ivb-3770:        NOTRUN -> [SKIP][9] ([fdo#109271]) +27 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113255v1/fi-ivb-3770/igt@kms_psr@cursor_plane_move.html
+
+  * igt@prime_vgem@basic-fence-flip:
+    - fi-bsw-kefka:       NOTRUN -> [SKIP][10] ([fdo#109271]) +26 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113255v1/fi-bsw-kefka/igt@prime_vgem@basic-fence-flip.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-n3050:       [INCOMPLETE][11] ([i915#6972] / [i915#7911]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12626/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113255v1/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@requests:
+    - fi-kbl-soraka:      [INCOMPLETE][13] ([i915#7640] / [i915#7913]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12626/fi-kbl-soraka/igt@i915_selftest@live@requests.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113255v1/fi-kbl-soraka/igt@i915_selftest@live@requests.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
+    - fi-bsw-n3050:       [FAIL][15] ([i915#6298]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12626/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113255v1/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-lvds-1:
+    - fi-ctg-p8600:       [FAIL][17] ([fdo#103375]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12626/fi-ctg-p8600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-lvds-1.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113255v1/fi-ctg-p8600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-lvds-1.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-edp-1:
+    - {bat-rplp-1}:       [DMESG-WARN][19] -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12626/bat-rplp-1/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-edp-1.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113255v1/bat-rplp-1/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-edp-1.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6972]: https://gitlab.freedesktop.org/drm/intel/issues/6972
+  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
+  [i915#7640]: https://gitlab.freedesktop.org/drm/intel/issues/7640
+  [i915#7872]: https://gitlab.freedesktop.org/drm/intel/issues/7872
+  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
+  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12626 -> Patchwork_113255v1
+
+  CI-20190529: 20190529
+  CI_DRM_12626: 988d30aa3f46a9f8788c7c73ec3c6f6e01483814 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7135: bdc7733ff5a74d400812b7c8c30bd19577d9701c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_113255v1: 988d30aa3f46a9f8788c7c73ec3c6f6e01483814 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+f8e3a487363c drm/i915/fbdev: Implement wrappers for callbacks used by fbcon
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113255v1/index.html
+
+--===============0374059249141798375==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/fbdev: Implement wrappers for callbacks used by fbcon</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/113255/">https://patchwork.freedesktop.org/series/113255/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113255v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113255v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12626 -&gt; Patchwork_113255v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113255v1/index.html</p>
+<h2>Participating hosts (39 -&gt; 39)</h2>
+<p>Additional (1): fi-bsw-kefka <br />
+  Missing    (1): fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_113255v1:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@i915_module_load@load:<ul>
+<li>{bat-dg2-9}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12626/bat-dg2-9/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113255v1/bat-dg2-9/igt@i915_module_load@load.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_113255v1 that come from known issues:</p>
+<h3>CI changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>boot:<ul>
+<li>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12626/fi-ivb-3770/boot.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113255v1/fi-ivb-3770/boot.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12626/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113255v1/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7872">i915#7872</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@guc_multi_lrc:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113255v1/fi-kbl-soraka/igt@i915_selftest@live@guc_multi_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7640">i915#7640</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113255v1/fi-bsw-n3050/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@cursor_plane_move:</p>
+<ul>
+<li>fi-ivb-3770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113255v1/fi-ivb-3770/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-flip:</p>
+<ul>
+<li>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113255v1/fi-bsw-kefka/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +26 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12626/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6972">i915#6972</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113255v1/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12626/fi-kbl-soraka/igt@i915_selftest@live@requests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7640">i915#7640</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113255v1/fi-kbl-soraka/igt@i915_selftest@live@requests.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12626/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113255v1/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-lvds-1:</p>
+<ul>
+<li>fi-ctg-p8600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12626/fi-ctg-p8600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-lvds-1.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113255v1/fi-ctg-p8600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-lvds-1.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-edp-1:</p>
+<ul>
+<li>{bat-rplp-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12626/bat-rplp-1/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-edp-1.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113255v1/bat-rplp-1/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-edp-1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12626 -&gt; Patchwork_113255v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12626: 988d30aa3f46a9f8788c7c73ec3c6f6e01483814 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7135: bdc7733ff5a74d400812b7c8c30bd19577d9701c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_113255v1: 988d30aa3f46a9f8788c7c73ec3c6f6e01483814 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>f8e3a487363c drm/i915/fbdev: Implement wrappers for callbacks used by fbcon</p>
+
+</body>
+</html>
+
+--===============0374059249141798375==--
