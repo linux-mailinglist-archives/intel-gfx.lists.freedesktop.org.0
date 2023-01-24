@@ -1,150 +1,154 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E789E678F39
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jan 2023 05:19:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6405F678F55
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jan 2023 05:37:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBAC110E228;
-	Tue, 24 Jan 2023 04:19:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41B4910E228;
+	Tue, 24 Jan 2023 04:37:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C721C10E228
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Jan 2023 04:19:42 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41FFA10E228
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Jan 2023 04:37:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674533982; x=1706069982;
+ t=1674535054; x=1706071054;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=Y6kWEOO6yD+pGmEwngD3G+WhfdCWE3ZXXci+UVg71Ek=;
- b=VRE3VS0+isi2bDTXzcCKaLkau48fcevUc+RgkqFnzp7FJH30SYWeVY56
- xmDb2rEZnQXO9GQ4Jf+YYJ9XIzYW8G3DIUQDSu8MA7jEJvQiSjCk5Xyjt
- zUdL0PPbMYyZ1pk//sbPG6vpDvCZNacf9qwAeGy/0NIBhF1SyWGgbaFNi
- SbKzKUyFCsPsh8zYd+WzLtDPCovyZOdNhmKsA4/UoiGzSioo/DdQeh615
- xZG3lDOhHOD5DlW2dyAe8OC6THhZPgEp1p3ZrBov9Or67brlBeeKIg7Fb
- SDLrp64EEmnGY2sgolAs3mcdxwzm8yIZjx/BilIHn6mU4Uof61JojGwKb Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="328312960"
-X-IronPort-AV: E=Sophos;i="5.97,241,1669104000"; d="scan'208";a="328312960"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2023 20:19:42 -0800
+ bh=q11FWW3qAXHuK1H6eH/niZaQRk04wtGvC1YbXe9dlnk=;
+ b=djxUv6EXfEuS5hq27sdMpsh7qp+mUqXKNxu//qg7sBHo2vb56DaX7eHZ
+ 5SuHgKtRtffKdejmxu13JFRj1No48osKGIT1QFIIaJw33MZCWhR8/icbj
+ iW1KJc7lZ9a8/mn2PXOtP7tqAWeKV5D3SQP0ASWroyR1hFejJGXz+SaAE
+ 17rYIZxOPOPZNdTTZ9FHspRlTvM++vQF3mrI1yJc8HRWilkyn48Z8oMcs
+ Inc4Gc8oLdwNf0aXlLjwtisUZF/BmV/afDLgOD2LRozrTIuAB2tMv1kWI
+ AO2v6UOQVt/OYwzjAKwgoi8E/sA/uzIlfsv+AIn1OaI9TjlPtwWSgIFfJ w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="326261672"
+X-IronPort-AV: E=Sophos;i="5.97,241,1669104000"; d="scan'208";a="326261672"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2023 20:37:32 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="663933386"
-X-IronPort-AV: E=Sophos;i="5.97,241,1669104000"; d="scan'208";a="663933386"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmsmga007.fm.intel.com with ESMTP; 23 Jan 2023 20:19:41 -0800
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="661986209"
+X-IronPort-AV: E=Sophos;i="5.97,241,1669104000"; d="scan'208";a="661986209"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga002.jf.intel.com with ESMTP; 23 Jan 2023 20:37:31 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Mon, 23 Jan 2023 20:19:41 -0800
+ 15.1.2507.16; Mon, 23 Jan 2023 20:37:31 -0800
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Mon, 23 Jan 2023 20:37:30 -0800
 Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Mon, 23 Jan 2023 20:19:41 -0800
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
+ 15.1.2507.16 via Frontend Transport; Mon, 23 Jan 2023 20:37:30 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.104)
  by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Mon, 23 Jan 2023 20:19:41 -0800
+ 15.1.2507.16; Mon, 23 Jan 2023 20:37:30 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ef201S+JpOd1+coaVmeYN7xb/r+NNY2iX0lGXjpsJf+O55+Yt5rZ/kiWhmGr46SQwHHRBWv3oR3LteIW8KdPNkw8qhEZdU94ymqEoNgkU5dP17SyhoaUBR7MfN8NhU6XffNnhFu7Cns/5zZI8NVvIkIMXfAxdTtvxw+Swnw/M0DJMmV0POfr3G74oCeHLSxmpEXu407lhucZYIsCNN8A5HgqzQtIFAmVi00A+jikitT/gIYyn+pXjXVDl60fO3sfFCz7w70aX9Qz+v95sY08Xn1UG0n+pRUHrlZBTIT3cl09/bWutyebwj9NZpzsP3kd3mfrRmS4UZcLsoQc+II3tQ==
+ b=ByDHX1gRqfx1/gPD6liAEGyMibBr4fiZIymM9jhXAhIFOfarEer/ekqrj4i0ELlXqnYenIKGxleVUODjly3YH6ihcA1Llaj7BkkX4ETvx7dZIEeA+l3ruPaI20jr82ka3LA5ULlQoixdo+jFW2FAX6s1syJg2vKB+N7n2cfUazpx9yIygNi8ZJURxGj0fu4tqqR7+D5I4mcureW1USZJgOJPvNdCjBNahNveaCV+cRbezcC0F+3jBlg7gHtSki3hiTz2HDoJgx4EX/UjlaP4S+lRCHx+Vg1aMAgfpI7RDvcphYpsAWxA6j1t/pcmBQdeKfp9WaliWUHSqaVgY1cHpg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PNoUjB8m0p+fgH/WjTL9sntZlgIEBnJwmoNB28R0J5c=;
- b=KZwHkMS7qIDstsNkkwvHZnus8MEdLqhhqEAWTFU7fJrA4UatLCLhfiasDsTjmQfmno1EkKq5HHlYmqFqqEbgC4SH8HJi8Q7n11QbqsqokKKe9adCZrbS4IAuvrholhyGO1PrzxHGpRDbwAeu3oHLtHCRmakxYjoLXx9g+3qtR8KxVi6WBfR/NtMuew34qA+BxnC+ApbLWyYXrhXlEkw/T1BcBP+uOk90lMKES4s/bge8digfphi/rsWMyxCEeXlrRwJWnMNr4ya2AKCjl68qCkRLVks7BXwbgC9O+quwDpse0Db5wfUGw0Hbu76zCsTKnBBr7yNo7yBT7KoNiFGCGw==
+ bh=Znm3bX2yHvEjbIZjSLWAxYC1gFtbff6nhlUgNKe2o4g=;
+ b=MMY9haxwqy9XpmX/laC+GuBXDXFAKiZ0/z9hXQv7rXCgjJodqTWSPJW8Octu00DLJJE2kh9qdmallbg21xlC4I1BXYXfwEK/AqsuZ7tvDAFK0I0yQ9T8fEQBqoIv49134uknl224CMsaLXbfmD8lBPiWIpCaH00ee38q2fzMVt9WX1ePUcABR9G13fEfw/uYisNDaI1X/psjrJqepWpTlwkhMqcEOokzvr4nsPDjqljfYN+xT2K7Mek3aPICzIcPm3RVwuzKbq43SU6LJq2AQdzGVlGxVKWbYxTUqFEIHQ6MUt2rUNXYCJnPzWqdfTRYIgqz2eIzX2PM8hw6ZXtvdA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by PH7PR11MB7986.namprd11.prod.outlook.com (2603:10b6:510:241::12) with
+ by CH0PR11MB8191.namprd11.prod.outlook.com (2603:10b6:610:181::14) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Tue, 24 Jan
- 2023 04:19:39 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.27; Tue, 24 Jan
+ 2023 04:37:28 +0000
 Received: from DM4PR11MB5341.namprd11.prod.outlook.com
  ([fe80::3998:4e46:9501:2786]) by DM4PR11MB5341.namprd11.prod.outlook.com
  ([fe80::3998:4e46:9501:2786%9]) with mapi id 15.20.6002.033; Tue, 24 Jan 2023
- 04:19:39 +0000
-Message-ID: <f61b81c2-c8c9-7fa5-dfb7-c90cebb1bfa6@intel.com>
-Date: Tue, 24 Jan 2023 09:49:27 +0530
+ 04:37:28 +0000
+Message-ID: <8d394c8a-9d63-5a0f-ebc1-158d5f7ef6a8@intel.com>
+Date: Tue, 24 Jan 2023 10:07:16 +0530
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
+Content-Language: en-US
 To: Suraj Kandpal <suraj.kandpal@intel.com>, <intel-gfx@lists.freedesktop.org>
 References: <20230110105732.1390596-1-suraj.kandpal@intel.com>
- <20230110105732.1390596-4-suraj.kandpal@intel.com>
-Content-Language: en-US
+ <20230110105732.1390596-5-suraj.kandpal@intel.com>
 From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <20230110105732.1390596-4-suraj.kandpal@intel.com>
+In-Reply-To: <20230110105732.1390596-5-suraj.kandpal@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN3PR01CA0055.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:99::10) To DM4PR11MB5341.namprd11.prod.outlook.com
+X-ClientProxiedBy: PN2PR01CA0137.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:6::22) To DM4PR11MB5341.namprd11.prod.outlook.com
  (2603:10b6:5:390::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|PH7PR11MB7986:EE_
-X-MS-Office365-Filtering-Correlation-Id: a3878744-c67c-4aab-59b0-08dafdc2355a
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|CH0PR11MB8191:EE_
+X-MS-Office365-Filtering-Correlation-Id: f6dc4684-1884-4767-c33c-08dafdc4b25b
 X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: dUJSE+U00hOO9xZAcBngKmVN6cmB05g6ttrh1beNsEZ5XtIB+wI9f0nMUjDWz3D9UMdzc19wCue0M6ck8z+a7cbwCEFgcPDEp7xtfgnNGNghPsqRt8C9QX5LAob8iFJMmHF3PT8NBcL40fZlnFxkgFU2FnX4FFNHGYbygrTZ3uEtX9aTWKUOJDeXH2q1UIAyMP9yS0AQVXIT6ziovujUKyrObWoxxpXvUsm8RBn/L+SkluDDdDSE/j2SDS3DI30r5WKfuFm0Cs10udpRXp3jkVW6EO6f+isPUy19ixnCa73WboMeU2Fynk2BZYdg24Mdo9MqYg3iHdlWUL/l0uDFKQwYhDgufmbiGCsPCqlUx39GRAXFHqCxMQ0LXt1d10uTy6VFS0bHdX21nSU03rp7ydU0MszlhxVvMfvNdWEel9IUH8RTOyqwFyW/IHpf7O/i7gTEwmb5E6rEZvhGq/n06y79g9ykWhWDAfq965UcmLAYUvXcUoh/vwxaG77tpICcrbQX1Bx2G59hxB4dJbTlqN2ujLCayjdZCelr4f/f4u1qW5WzQGRutE4m3zgsCUOUbWHYJ5DG4fRC9DQIUl48jKJwqHtRJ2L/HW2mNDJ5vgyQeWup6wPvqNeRjomOpkyUTq0b0Bxq2oCog14/8W0XhMQrq8yHfhQTer6tPezfvLLafZ+IQGTZAlTD3MZFum/mPjTygJUezHHjC9esAouD7vjZlJhloF+dqC4sTANjUfc=
+X-Microsoft-Antispam-Message-Info: yN1g1/Zl9O7k9mhdT5zOQcIGW/u1vNUNHxJN+ttDdtEgoaCw2pBLIENmgZcAUZJHjgV5gFwq3pt2a427/454RuOvxt+jDraPWAt1OgveUtz0noHBplG3xb9neUtbD60ktxUBq1JB7mBVLS09FaEHiiChGcgvq/zaQ3MzqJadtWZDabU4sU6e1yYzjENf2dp9iMmIu0QxrDI5eEkEjhtmamFgX/jioQTTymqgHD/Z5LSFqfxqy0v3mTUwrRv6AiSqFk38KLYqf8GMBfHkZFtmz1reWnUxWxaeEgS2vBLDWuFitEHJEp0y4BU1yGvbdBaxwbV2KZnXFu3Ly1W/BwlLgM1KsKb1n5bRM23ZSnW6MLHbO6Z55XuZEjtmpK00CErCtdLnQfuKbBQtFnTIg4PSFDDyzu85uY1pfu9NFth28uSoZLMLyocHgB3lq48XcBPbsJC8l9y93Bh4qzw4D6wQPDmgK1YjF4rfFTpCVOlv2dKnEwo/bhbBe45uS+97l3MjhFI/zDVPL3qTkV6QvfTPR8wk4tqZVzgkJtxA+0giRjjy8jNLA5hE2fqd0nECqoxpRepNMqQxkVeIi4v/wNSoiwwSRCTvEksYnA8tiYfWyrs7rxKKID4KvLed7CZd0FBjRmm0hg5FIeEeTeBGjvMs0ArMU+pREYM3A76wpm5ztwGdmYm3/mHqLfiyURRwC83835q2UmBIJfkwZcSKxMzFI2NG8CYN2xceVpBIDE6Zrgs=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(366004)(346002)(39860400002)(396003)(376002)(136003)(451199015)(36756003)(86362001)(2906002)(82960400001)(5660300002)(8936002)(41300700001)(4326008)(83380400001)(31696002)(38100700002)(478600001)(6486002)(31686004)(8676002)(26005)(6506007)(6512007)(186003)(55236004)(53546011)(66556008)(54906003)(66946007)(2616005)(66476007)(316002)(6666004)(107886003)(45980500001)(43740500002);
+ SFS:(13230022)(396003)(346002)(366004)(136003)(376002)(39860400002)(451199015)(26005)(186003)(2906002)(6512007)(2616005)(36756003)(55236004)(54906003)(6486002)(316002)(38100700002)(53546011)(478600001)(107886003)(6666004)(83380400001)(6506007)(31696002)(86362001)(41300700001)(4326008)(30864003)(82960400001)(8936002)(31686004)(5660300002)(66476007)(66946007)(66556008)(8676002)(43740500002)(45980500001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bUVxVlVGSS9HNm13Z1VwaGpCM1kzd1NjbUFhS1Nlb2xlWGpnNXpGVzFmRVB3?=
- =?utf-8?B?UzY0enZ4MUE2eU0wZ1ovRkQ4S0hIdVgyZ245ZC9hVnEza1Q0ZHNXL1V4eGVR?=
- =?utf-8?B?Y2V4anZJQ3lPWmN1R3h4Y2U1MlFSNS9Hamp2ZDRqNHZGb3hrZEgyQXZUK2l3?=
- =?utf-8?B?NG9zblBMaVpPTFZka01jdlRMeFBvcGVTRnJsYjE4TGltaHpDSXc1NUs4R251?=
- =?utf-8?B?MTlLVDdpbDcwdTRnOUZud2diNzdkUGZIMXV4NURHR3d1b2wwZStPMjVOUXAz?=
- =?utf-8?B?TTEwRG10K3lWSUdPUWNjSERqVmJIQmd3YnI5ejVDdC9OT0M1WmlKTHZpTWQ2?=
- =?utf-8?B?c2hOUUlONExlS1N6YlQ2TGZOUWM4NWdBdGxXdHMwQWtqQWN3Y1pKZ25pVlN1?=
- =?utf-8?B?SzdPNmNKR0plb21Ra3lJZno3WndnVTFHR0k2ekp6aU9HeTVRK2dBbEtkY0hR?=
- =?utf-8?B?MnRZcndTeGV2WUQrSUpDOWg2RWtZcUpBZElXUisxZWNwRDFJdUdWRk1NY3Ex?=
- =?utf-8?B?UDZBQ1lPWEJ4dEF3OEVUdUpOZUZxSGxadWt5c3k1bG1LOWVmdWJEZXZyQnBz?=
- =?utf-8?B?MGJYV09XRWJ3RjV0UWowdW1WR1VmOTdrdmhrT3d3dWtRY1JLcTNwZXZsVDdN?=
- =?utf-8?B?VWZzbkp3L3JWR0txTG93elludUV0dm5yOFFqK1g1bWUrMUhUVktOYTl3Q21o?=
- =?utf-8?B?SUJ3UHlWdnJRVnJpY2loMWc4MXdsc0dKT0lmb0QvcmNlS053TzNXaHFmenlt?=
- =?utf-8?B?Q1hpWEZSbGxSQkxnakUwRDlRWTFFU3VXbHcrdVd0dUQyNkljR2NNYnE1TWUv?=
- =?utf-8?B?U2twcDU5UXo0N1RmSi9XcWd3S252R0Q5VkM1M1lSNTNtbi92K2ZqU1lkYXRH?=
- =?utf-8?B?Z1k1UzNzU3lZYitibkdIVnE0K3RaODZJZG0zeGFpblRxM0FDRDNmcUx2UFg5?=
- =?utf-8?B?WC9XdHZGVXdYWEhZTHo3U2VUQXRIWUV0N01URzA2cW4yQXY1QjY1MXRkRW1X?=
- =?utf-8?B?Z1pCcGdPZ2RxZTlrdXhtNDB3SjJQWUNmWUNkT2FlNmk0R09hSXJLT2s3OEhO?=
- =?utf-8?B?SzR5OUt1ejR1aFovK2ZNR1VyRk9qR2ZsU1NoVHFOa09hbFNnSW55VDFabTRz?=
- =?utf-8?B?QWRtaHAwOXRtUCtPaXMzNTlCK2VwVXMrQW1QZXdnaFFVQ1ZrOUttVGlWYVZM?=
- =?utf-8?B?LzdoRlc1UFJJRHFtNVZ1bENZYmF2QnFjMCs4WnBvTkdvdlpIYlFYUnBGcU9u?=
- =?utf-8?B?UWliM2U3eThYTEF6VFpRRWxNcVpiQ3Z3eDNqKys1NnVtMjdZRHNRWG1Ua01S?=
- =?utf-8?B?Z3QyMTNUUXo5OTVJTjEvRlNHMERzWENxM3Z2QVl0WjJxdzlVUkxUcHc3NW5D?=
- =?utf-8?B?UzhjYlNvY2lKditlRFZDbXJ5azZaZEZXeFBTb0wra1c5Mlg5V1Q0MmQwS0tF?=
- =?utf-8?B?NS9kUFp3a1VicnZFRGZpVXBpR004UUo1RDNPL1R3S3dTWkJENkVzVk1BOTE3?=
- =?utf-8?B?NldwazlyUG5SMVRmZS9iVHo0bWdMa1kyaEpONVlKSVkvc0k0WWE4U1VBNlBh?=
- =?utf-8?B?L3RBMFFIQlBMVmRrLzFrSjB2UTMrQS9KVUJicWlsZWcyWmtXNVZ1OVNsZWtX?=
- =?utf-8?B?ZGJKZjVCZ1BCTVVMUk9qekNDT2p4N05sc2pGcUx5ZFlVUGZaSHNiaG5XQ1RY?=
- =?utf-8?B?Ym85bnlCRHZrbmRoNkg4cWpZeVFJVm5GS1N0cmYxbWJveUlUazhva0RFdjlP?=
- =?utf-8?B?aC8rMzRJci9WeStVOVZZODNBdGQ0cUtFaEhqMlFUejNJaFRsd1l1VkpiRWcv?=
- =?utf-8?B?Q2tKY3h0L2tJQ3lYWVB4RG9INytPOGR4cHBvK1pqeDFQRHAwZHpSU3ZLYXRH?=
- =?utf-8?B?TWhmM1U5ajQ4ZXQyUE10K01LdmR4a3BERjBKRHNwL0pUZUh3c2ZZQy9Vamlh?=
- =?utf-8?B?QTRlVVZ2RFZhOVE0b0RwRTJubGN2cXJvOGVjOVZXb2hLQWVseDNvVnVhTDJ6?=
- =?utf-8?B?SG1Lc2RWdXpsMzVXVENRYWdjZUdvOEV1ZjBRUWNwWFhoSXRkaWlodHpzRU1Y?=
- =?utf-8?B?elNjZk1WVUN6TzVXQ0RqbWh1eHkxSHNVaXkwUGJGV1VUVTd6dUE1OVA4Z2Z1?=
- =?utf-8?B?VnFuVmVkcGtSa2JpczBQMGVaYUo5U0ZhNnFJOTlDQjBreUNTSzU1cERRdFZB?=
- =?utf-8?B?YXc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: a3878744-c67c-4aab-59b0-08dafdc2355a
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bDhFTlRYSjlSUmN5U2RwWnQ5cmh5bWEvb0MrUUpPcnBsSmJjclZZaE9sNkJ4?=
+ =?utf-8?B?emRWSlFXb1B3bWxnVG9seHZIT1AvbXZtWDdNN0tRcVlxc3laYytTZGhZKzlE?=
+ =?utf-8?B?NXIreldJWU9iZ1h5MHRORVFIT2ZML0FQNmplWGYzc05nNDliMnNEN3BYUTR4?=
+ =?utf-8?B?eWpFcUljVFZlY0p5RlY0MzdDT1RqQ2JaM05YQ3lWOTVZS2RrRTNqV2xVMjQ1?=
+ =?utf-8?B?UlBONXBCcGRwcGNBSzFob0E0SU9oYkQybXVwamg3R3pMQWNqMFFmczZlYk1i?=
+ =?utf-8?B?NGVmUDJLZGJyZ3A4TDJrVWFick83NXdOL0hGOVBVMEtwRC9IVXJpM2FtZ2wv?=
+ =?utf-8?B?WHZ0WWhraE9hSlYrSlo1NVJqQWJaSG1ocFRhY21LY0ptWFN4WlowenlaRUdH?=
+ =?utf-8?B?QS9nVFIrb0lUbkVmOUdtK0N2eXhTbmIrTnp1anJwLytFQVl2SXVKRzNVRHhu?=
+ =?utf-8?B?MC9vTEFSOXAxelpnU3JsZlhRMm1rcSs0czhMR2xPY3lFOXgxWTB6SEthMnFv?=
+ =?utf-8?B?bkw4MHoyZFBjcjBjbEVBeTM2bzZxcDJrbGp4QVBETlJmMnFtVWlDdkRkbkkr?=
+ =?utf-8?B?Rm8wemNzZ1FtUnpDNW8zVWU4cXlLQndDb2JsR2oxVDU4eUF1ZzN6ZjhmUVRo?=
+ =?utf-8?B?WlEyOTBobklvZi85MUluWi9wbklGNFRJWmZqcnNJbklUSnpvelU4ZVU0Q3Bv?=
+ =?utf-8?B?YUozb2xnMEx4SlpJWm41T0hhSm9qL0dlTzdSNnUrQjE3TWdKQnliZ1dwUWF4?=
+ =?utf-8?B?M041aC9CY0VDYTRHc3piNzloS3RGbjRXeFJ0WERER0VlTzBnZTJnVzd0clo3?=
+ =?utf-8?B?U2hKdFJzbmU5c3BBNEVqMVpORURuck1wT2tTMzJHa2lwZFN2RlhNd3A5bys4?=
+ =?utf-8?B?VWpraVhHaVhTaVB2UzFlTnV3VzdvdzZXZE1MRHhPRjQ0NUJPOWgxR3VzVUk0?=
+ =?utf-8?B?aDkrYnc3ZHlodGl1SjZHSTNzbDNHSGswRnl4TXRxQjdzWlpiekk2SDliNUJ4?=
+ =?utf-8?B?TnZPRFMvME5RK01qcTlobkQrU21VRDBNRTBqNXZCanpXN2FlZlhmeTd5bm9l?=
+ =?utf-8?B?U1plb1ZyVVVabEFBQStNOWN0QkZ1YlA0WnZwdjZ5UEVuZXQ5amc5ZTlhK0sx?=
+ =?utf-8?B?UXNqMS85VDV2Y3gxWGExTUFyRU5SQ1d6MDZZMHc4L2xXa0pWNkNuOVZTOFJS?=
+ =?utf-8?B?VXNKdnV6ME8zQ2JCbzJZMVFFSDcyT2tHM0lYdTd6dGFDVUFGQUI2bS9EMHBT?=
+ =?utf-8?B?TXM3ay9PME9Fd29YcWRiN05mTmQ0M0tBNkQvd0s2ZzFKL0VydmVnR3U4MTRR?=
+ =?utf-8?B?Y1oycUxmczNRUkFUQ1lQNmhqQUNyRndlY1ZVeW8vQlFlN3ZKR3kvdzUyTWdY?=
+ =?utf-8?B?dXR2TGNRSE1Nc1VsTHBwRVpxRGpnbjBDcWxIMzVmR1V2K2pxNUdjNG5JUXhZ?=
+ =?utf-8?B?WGRvUlQ1ajlUK2VNZVFkV2JSYy83L1FOMUNrSm5GeHdyT213Z2tpOFFBUmpM?=
+ =?utf-8?B?UVVBdzJyOFRSTWdpWWh3Tlc5akRidWtUOGROMmpJUTFzMVJRV0RDMXJvdkkx?=
+ =?utf-8?B?VTZIekRXTmw3NHJzMG83cGhNOE51RUJTTHlLeEgreEhnY2RxdnVYZlcxaUI2?=
+ =?utf-8?B?K0EvS2Z6MmZ5anJ1NkJSTWRFNUNDaFdIYXhnemZJKzJueEljK3oxNzlJWTFa?=
+ =?utf-8?B?eG5YckpxMXJLT1pzSE5wR2NNWis4cG1mTkRvQTNNVzNSMitiY2NVR0NnMHJy?=
+ =?utf-8?B?SXRMSkpUQlRtREVnWGJmQnhycmUwZW9veGpVK2NGNU5ZZ25kRy9SN2dmaVZT?=
+ =?utf-8?B?cGk5VDd6cEZUUVRFblJmT1FjbURGL2IzeURvb29lYWlPZ09Vakl2QzF5Q0lj?=
+ =?utf-8?B?d0xmaGY4L2lEL0NDaWhPd0NVK1NLUzd4blZKVTlCUHFMQzZ0eXVxbldQcThH?=
+ =?utf-8?B?eGg1c0lLaC9FQlJIeGRTbFA4NVB3NERnYTlBSSt6UE9jOVFva3dXNGdUMTZ1?=
+ =?utf-8?B?alhsNlB2V1lWdTVCKzVCaHZnUUNNUEF5UjdOTnlQOThtaHc1dWhUdlZWbFp3?=
+ =?utf-8?B?QSttZjA3Tmg1MDZ6SDZDeXJTbG9HN1VvZW44WEw3bGg4NzVMNXRDcFN2ZTBP?=
+ =?utf-8?B?MmxXYStuVVBDMkswTEdnSXFhVmE3ZzRpanExUGVRMHpNbkpvbDAxdTlTU0ho?=
+ =?utf-8?B?b3c9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: f6dc4684-1884-4767-c33c-08dafdc4b25b
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jan 2023 04:19:39.1941 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jan 2023 04:37:27.8340 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cwzkYuAPTOrVjVs3tA5iL+fJOl4HKTkvT31OwU6lkSeDQ6BDZX24RcEXWT8D0e4vnIyHBOdjtk08H4ylP/+UEqZyTtNMjiQkZI24L5FZBtU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7986
+X-MS-Exchange-CrossTenant-UserPrincipalName: +EX0mQoqNEyBqwOunVTSZ3mpP3r+C0HqEni3zBABzZ18EIYTShtoN9FJBOJccFu8ppYiVCdwS0xTy6zF+Y3gmIfzNKy7U6Z2zX26eTQvTj8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB8191
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v7 3/6] i915/hdcp: HDCP2.x Refactoring to
- agnostic hdcp
+Subject: Re: [Intel-gfx] [PATCH v7 4/6] drm/i915/hdcp: Refactor HDCP API
+ structures
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -168,19 +172,10 @@ Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
 
 On 1/10/2023 4:27 PM, Suraj Kandpal wrote:
-> As now we have more then one type of content protection
-> secrity firmware. Let change the i915_cp_fw_hdcp_interface.h
-> header naming convention to suit generic f/w type.
-> %s/MEI_/HDCP_
-> %s/mei_dev/hdcp_dev
->
-> As interface to CP FW can be either a non i915 component or
-> i915 intergral component, change structure name Accordingly.
-> %s/i915_hdcp_comp_master/i915_hdcp_master
-> %s/i915_hdcp_component_ops/i915_hdcp_ops
->
-> --v3
-> -Changing names to drop cp_fw to make naming more agnostic[Jani]
+> It requires to move intel specific HDCP API structures to
+> i915_cp_fw_hdcp_interface.h from driver/misc/mei/hdcp/mei_hdcp.h
+> so that any content protection fw interfaces can use these
+> structures.
 >
 > Cc: Tomas Winkler <tomas.winkler@intel.com>
 > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
@@ -189,41 +184,937 @@ On 1/10/2023 4:27 PM, Suraj Kandpal wrote:
 > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
 > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 > ---
->   drivers/gpu/drm/i915/display/intel_display_core.h | 1 +
->   drivers/gpu/drm/i915/display/intel_hdcp.c         | 4 ++--
->   2 files changed, 3 insertions(+), 2 deletions(-)
+>   drivers/misc/mei/hdcp/mei_hdcp.c  |  44 ++--
+>   drivers/misc/mei/hdcp/mei_hdcp.h  | 354 -----------------------------
+>   include/drm/i915_hdcp_interface.h | 355 ++++++++++++++++++++++++++++++
+>   3 files changed, 377 insertions(+), 376 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-> index de71ff6ad80a..132e9134ba05 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-> @@ -15,6 +15,7 @@
+> diff --git a/drivers/misc/mei/hdcp/mei_hdcp.c b/drivers/misc/mei/hdcp/mei_hdcp.c
+> index 0ff0bd07e385..d4faecbbbe76 100644
+> --- a/drivers/misc/mei/hdcp/mei_hdcp.c
+> +++ b/drivers/misc/mei/hdcp/mei_hdcp.c
+> @@ -52,7 +52,7 @@ mei_hdcp_initiate_session(struct device *dev, struct hdcp_port_data *data,
 >   
->   #include <drm/drm_connector.h>
->   #include <drm/drm_modeset_lock.h>
-> +#include <drm/i915_hdcp_interface.h>
+>   	session_init_in.header.api_version = HDCP_API_VERSION;
+>   	session_init_in.header.command_id = WIRED_INITIATE_HDCP2_SESSION;
+> -	session_init_in.header.status = ME_HDCP_STATUS_SUCCESS;
+> +	session_init_in.header.status = FW_HDCP_STATUS_SUCCESS;
+>   	session_init_in.header.buffer_len =
+>   				WIRED_CMD_BUF_LEN_INITIATE_HDCP2_SESSION_IN;
 >   
->   #include "intel_cdclk.h"
->   #include "intel_display.h"
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index 262c76f21801..0d6aed1eb171 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -1409,7 +1409,7 @@ static int hdcp2_authenticate_port(struct intel_connector *connector)
->   	return ret;
->   }
+> @@ -75,7 +75,7 @@ mei_hdcp_initiate_session(struct device *dev, struct hdcp_port_data *data,
+>   		return byte;
+>   	}
 >   
-> -static int hdcp2_close_mei_session(struct intel_connector *connector)
-> +static int hdcp2_close_session(struct intel_connector *connector)
->   {
->   	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
->   	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
-> @@ -1433,7 +1433,7 @@ static int hdcp2_close_mei_session(struct intel_connector *connector)
+> -	if (session_init_out.header.status != ME_HDCP_STATUS_SUCCESS) {
+> +	if (session_init_out.header.status != FW_HDCP_STATUS_SUCCESS) {
+>   		dev_dbg(dev, "ME cmd 0x%08X Failed. Status: 0x%X\n",
+>   			WIRED_INITIATE_HDCP2_SESSION,
+>   			session_init_out.header.status);
+> @@ -122,7 +122,7 @@ mei_hdcp_verify_receiver_cert_prepare_km(struct device *dev,
 >   
->   static int hdcp2_deauthenticate_port(struct intel_connector *connector)
->   {
-> -	return hdcp2_close_mei_session(connector);
-> +	return hdcp2_close_session(connector);
->   }
+>   	verify_rxcert_in.header.api_version = HDCP_API_VERSION;
+>   	verify_rxcert_in.header.command_id = WIRED_VERIFY_RECEIVER_CERT;
+> -	verify_rxcert_in.header.status = ME_HDCP_STATUS_SUCCESS;
+> +	verify_rxcert_in.header.status = FW_HDCP_STATUS_SUCCESS;
+>   	verify_rxcert_in.header.buffer_len =
+>   				WIRED_CMD_BUF_LEN_VERIFY_RECEIVER_CERT_IN;
 >   
->   /* Authentication flow starts from here */
+> @@ -148,7 +148,7 @@ mei_hdcp_verify_receiver_cert_prepare_km(struct device *dev,
+>   		return byte;
+>   	}
+>   
+> -	if (verify_rxcert_out.header.status != ME_HDCP_STATUS_SUCCESS) {
+> +	if (verify_rxcert_out.header.status != FW_HDCP_STATUS_SUCCESS) {
+>   		dev_dbg(dev, "ME cmd 0x%08X Failed. Status: 0x%X\n",
+>   			WIRED_VERIFY_RECEIVER_CERT,
+>   			verify_rxcert_out.header.status);
+> @@ -194,7 +194,7 @@ mei_hdcp_verify_hprime(struct device *dev, struct hdcp_port_data *data,
+>   
+>   	send_hprime_in.header.api_version = HDCP_API_VERSION;
+>   	send_hprime_in.header.command_id = WIRED_AKE_SEND_HPRIME;
+> -	send_hprime_in.header.status = ME_HDCP_STATUS_SUCCESS;
+> +	send_hprime_in.header.status = FW_HDCP_STATUS_SUCCESS;
+>   	send_hprime_in.header.buffer_len = WIRED_CMD_BUF_LEN_AKE_SEND_HPRIME_IN;
+>   
+>   	send_hprime_in.port.integrated_port_type = data->port_type;
+> @@ -218,7 +218,7 @@ mei_hdcp_verify_hprime(struct device *dev, struct hdcp_port_data *data,
+>   		return byte;
+>   	}
+>   
+> -	if (send_hprime_out.header.status != ME_HDCP_STATUS_SUCCESS) {
+> +	if (send_hprime_out.header.status != FW_HDCP_STATUS_SUCCESS) {
+>   		dev_dbg(dev, "ME cmd 0x%08X Failed. Status: 0x%X\n",
+>   			WIRED_AKE_SEND_HPRIME, send_hprime_out.header.status);
+>   		return -EIO;
+> @@ -251,7 +251,7 @@ mei_hdcp_store_pairing_info(struct device *dev, struct hdcp_port_data *data,
+>   
+>   	pairing_info_in.header.api_version = HDCP_API_VERSION;
+>   	pairing_info_in.header.command_id = WIRED_AKE_SEND_PAIRING_INFO;
+> -	pairing_info_in.header.status = ME_HDCP_STATUS_SUCCESS;
+> +	pairing_info_in.header.status = FW_HDCP_STATUS_SUCCESS;
+>   	pairing_info_in.header.buffer_len =
+>   					WIRED_CMD_BUF_LEN_SEND_PAIRING_INFO_IN;
+>   
+> @@ -276,7 +276,7 @@ mei_hdcp_store_pairing_info(struct device *dev, struct hdcp_port_data *data,
+>   		return byte;
+>   	}
+>   
+> -	if (pairing_info_out.header.status != ME_HDCP_STATUS_SUCCESS) {
+> +	if (pairing_info_out.header.status != FW_HDCP_STATUS_SUCCESS) {
+>   		dev_dbg(dev, "ME cmd 0x%08X failed. Status: 0x%X\n",
+>   			WIRED_AKE_SEND_PAIRING_INFO,
+>   			pairing_info_out.header.status);
+> @@ -311,7 +311,7 @@ mei_hdcp_initiate_locality_check(struct device *dev,
+>   
+>   	lc_init_in.header.api_version = HDCP_API_VERSION;
+>   	lc_init_in.header.command_id = WIRED_INIT_LOCALITY_CHECK;
+> -	lc_init_in.header.status = ME_HDCP_STATUS_SUCCESS;
+> +	lc_init_in.header.status = FW_HDCP_STATUS_SUCCESS;
+>   	lc_init_in.header.buffer_len = WIRED_CMD_BUF_LEN_INIT_LOCALITY_CHECK_IN;
+>   
+>   	lc_init_in.port.integrated_port_type = data->port_type;
+> @@ -330,7 +330,7 @@ mei_hdcp_initiate_locality_check(struct device *dev,
+>   		return byte;
+>   	}
+>   
+> -	if (lc_init_out.header.status != ME_HDCP_STATUS_SUCCESS) {
+> +	if (lc_init_out.header.status != FW_HDCP_STATUS_SUCCESS) {
+>   		dev_dbg(dev, "ME cmd 0x%08X Failed. status: 0x%X\n",
+>   			WIRED_INIT_LOCALITY_CHECK, lc_init_out.header.status);
+>   		return -EIO;
+> @@ -366,7 +366,7 @@ mei_hdcp_verify_lprime(struct device *dev, struct hdcp_port_data *data,
+>   
+>   	verify_lprime_in.header.api_version = HDCP_API_VERSION;
+>   	verify_lprime_in.header.command_id = WIRED_VALIDATE_LOCALITY;
+> -	verify_lprime_in.header.status = ME_HDCP_STATUS_SUCCESS;
+> +	verify_lprime_in.header.status = FW_HDCP_STATUS_SUCCESS;
+>   	verify_lprime_in.header.buffer_len =
+>   					WIRED_CMD_BUF_LEN_VALIDATE_LOCALITY_IN;
+>   
+> @@ -391,7 +391,7 @@ mei_hdcp_verify_lprime(struct device *dev, struct hdcp_port_data *data,
+>   		return byte;
+>   	}
+>   
+> -	if (verify_lprime_out.header.status != ME_HDCP_STATUS_SUCCESS) {
+> +	if (verify_lprime_out.header.status != FW_HDCP_STATUS_SUCCESS) {
+>   		dev_dbg(dev, "ME cmd 0x%08X failed. status: 0x%X\n",
+>   			WIRED_VALIDATE_LOCALITY,
+>   			verify_lprime_out.header.status);
+> @@ -425,7 +425,7 @@ static int mei_hdcp_get_session_key(struct device *dev,
+>   
+>   	get_skey_in.header.api_version = HDCP_API_VERSION;
+>   	get_skey_in.header.command_id = WIRED_GET_SESSION_KEY;
+> -	get_skey_in.header.status = ME_HDCP_STATUS_SUCCESS;
+> +	get_skey_in.header.status = FW_HDCP_STATUS_SUCCESS;
+>   	get_skey_in.header.buffer_len = WIRED_CMD_BUF_LEN_GET_SESSION_KEY_IN;
+>   
+>   	get_skey_in.port.integrated_port_type = data->port_type;
+> @@ -445,7 +445,7 @@ static int mei_hdcp_get_session_key(struct device *dev,
+>   		return byte;
+>   	}
+>   
+> -	if (get_skey_out.header.status != ME_HDCP_STATUS_SUCCESS) {
+> +	if (get_skey_out.header.status != FW_HDCP_STATUS_SUCCESS) {
+>   		dev_dbg(dev, "ME cmd 0x%08X failed. status: 0x%X\n",
+>   			WIRED_GET_SESSION_KEY, get_skey_out.header.status);
+>   		return -EIO;
+> @@ -489,7 +489,7 @@ mei_hdcp_repeater_check_flow_prepare_ack(struct device *dev,
+>   
+>   	verify_repeater_in.header.api_version = HDCP_API_VERSION;
+>   	verify_repeater_in.header.command_id = WIRED_VERIFY_REPEATER;
+> -	verify_repeater_in.header.status = ME_HDCP_STATUS_SUCCESS;
+> +	verify_repeater_in.header.status = FW_HDCP_STATUS_SUCCESS;
+>   	verify_repeater_in.header.buffer_len =
+>   					WIRED_CMD_BUF_LEN_VERIFY_REPEATER_IN;
+>   
+> @@ -520,7 +520,7 @@ mei_hdcp_repeater_check_flow_prepare_ack(struct device *dev,
+>   		return byte;
+>   	}
+>   
+> -	if (verify_repeater_out.header.status != ME_HDCP_STATUS_SUCCESS) {
+> +	if (verify_repeater_out.header.status != FW_HDCP_STATUS_SUCCESS) {
+>   		dev_dbg(dev, "ME cmd 0x%08X failed. status: 0x%X\n",
+>   			WIRED_VERIFY_REPEATER,
+>   			verify_repeater_out.header.status);
+> @@ -568,7 +568,7 @@ static int mei_hdcp_verify_mprime(struct device *dev,
+>   
+>   	verify_mprime_in->header.api_version = HDCP_API_VERSION;
+>   	verify_mprime_in->header.command_id = WIRED_REPEATER_AUTH_STREAM_REQ;
+> -	verify_mprime_in->header.status = ME_HDCP_STATUS_SUCCESS;
+> +	verify_mprime_in->header.status = FW_HDCP_STATUS_SUCCESS;
+>   	verify_mprime_in->header.buffer_len = cmd_size  - sizeof(verify_mprime_in->header);
+>   
+>   	verify_mprime_in->port.integrated_port_type = data->port_type;
+> @@ -597,7 +597,7 @@ static int mei_hdcp_verify_mprime(struct device *dev,
+>   		return byte;
+>   	}
+>   
+> -	if (verify_mprime_out.header.status != ME_HDCP_STATUS_SUCCESS) {
+> +	if (verify_mprime_out.header.status != FW_HDCP_STATUS_SUCCESS) {
+>   		dev_dbg(dev, "ME cmd 0x%08X failed. status: 0x%X\n",
+>   			WIRED_REPEATER_AUTH_STREAM_REQ,
+>   			verify_mprime_out.header.status);
+> @@ -630,7 +630,7 @@ static int mei_hdcp_enable_authentication(struct device *dev,
+>   
+>   	enable_auth_in.header.api_version = HDCP_API_VERSION;
+>   	enable_auth_in.header.command_id = WIRED_ENABLE_AUTH;
+> -	enable_auth_in.header.status = ME_HDCP_STATUS_SUCCESS;
+> +	enable_auth_in.header.status = FW_HDCP_STATUS_SUCCESS;
+>   	enable_auth_in.header.buffer_len = WIRED_CMD_BUF_LEN_ENABLE_AUTH_IN;
+>   
+>   	enable_auth_in.port.integrated_port_type = data->port_type;
+> @@ -652,7 +652,7 @@ static int mei_hdcp_enable_authentication(struct device *dev,
+>   		return byte;
+>   	}
+>   
+> -	if (enable_auth_out.header.status != ME_HDCP_STATUS_SUCCESS) {
+> +	if (enable_auth_out.header.status != FW_HDCP_STATUS_SUCCESS) {
+>   		dev_dbg(dev, "ME cmd 0x%08X failed. status: 0x%X\n",
+>   			WIRED_ENABLE_AUTH, enable_auth_out.header.status);
+>   		return -EIO;
+> @@ -684,7 +684,7 @@ mei_hdcp_close_session(struct device *dev, struct hdcp_port_data *data)
+>   
+>   	session_close_in.header.api_version = HDCP_API_VERSION;
+>   	session_close_in.header.command_id = WIRED_CLOSE_SESSION;
+> -	session_close_in.header.status = ME_HDCP_STATUS_SUCCESS;
+> +	session_close_in.header.status = FW_HDCP_STATUS_SUCCESS;
+>   	session_close_in.header.buffer_len =
+>   				WIRED_CMD_BUF_LEN_CLOSE_SESSION_IN;
+>   
+> @@ -706,7 +706,7 @@ mei_hdcp_close_session(struct device *dev, struct hdcp_port_data *data)
+>   		return byte;
+>   	}
+>   
+> -	if (session_close_out.header.status != ME_HDCP_STATUS_SUCCESS) {
+> +	if (session_close_out.header.status != FW_HDCP_STATUS_SUCCESS) {
+>   		dev_dbg(dev, "Session Close Failed. status: 0x%X\n",
+>   			session_close_out.header.status);
+>   		return -EIO;
+> diff --git a/drivers/misc/mei/hdcp/mei_hdcp.h b/drivers/misc/mei/hdcp/mei_hdcp.h
+> index ca09c8f83d6b..0683d83ec17a 100644
+> --- a/drivers/misc/mei/hdcp/mei_hdcp.h
+> +++ b/drivers/misc/mei/hdcp/mei_hdcp.h
+> @@ -11,358 +11,4 @@
+>   
+>   #include <drm/display/drm_hdcp.h>
+>   
+> -/* me_hdcp_status: Enumeration of all HDCP Status Codes */
+> -enum me_hdcp_status {
+> -	ME_HDCP_STATUS_SUCCESS			= 0x0000,
+> -
+> -	/* WiDi Generic Status Codes */
+> -	ME_HDCP_STATUS_INTERNAL_ERROR		= 0x1000,
+> -	ME_HDCP_STATUS_UNKNOWN_ERROR		= 0x1001,
+> -	ME_HDCP_STATUS_INCORRECT_API_VERSION	= 0x1002,
+> -	ME_HDCP_STATUS_INVALID_FUNCTION		= 0x1003,
+> -	ME_HDCP_STATUS_INVALID_BUFFER_LENGTH	= 0x1004,
+> -	ME_HDCP_STATUS_INVALID_PARAMS		= 0x1005,
+> -	ME_HDCP_STATUS_AUTHENTICATION_FAILED	= 0x1006,
+> -
+> -	/* WiDi Status Codes */
+> -	ME_HDCP_INVALID_SESSION_STATE		= 0x6000,
+> -	ME_HDCP_SRM_FRAGMENT_UNEXPECTED		= 0x6001,
+> -	ME_HDCP_SRM_INVALID_LENGTH		= 0x6002,
+> -	ME_HDCP_SRM_FRAGMENT_OFFSET_INVALID	= 0x6003,
+> -	ME_HDCP_SRM_VERIFICATION_FAILED		= 0x6004,
+> -	ME_HDCP_SRM_VERSION_TOO_OLD		= 0x6005,
+> -	ME_HDCP_RX_CERT_VERIFICATION_FAILED	= 0x6006,
+> -	ME_HDCP_RX_REVOKED			= 0x6007,
+> -	ME_HDCP_H_VERIFICATION_FAILED		= 0x6008,
+> -	ME_HDCP_REPEATER_CHECK_UNEXPECTED	= 0x6009,
+> -	ME_HDCP_TOPOLOGY_MAX_EXCEEDED		= 0x600A,
+> -	ME_HDCP_V_VERIFICATION_FAILED		= 0x600B,
+> -	ME_HDCP_L_VERIFICATION_FAILED		= 0x600C,
+> -	ME_HDCP_STREAM_KEY_ALLOC_FAILED		= 0x600D,
+> -	ME_HDCP_BASE_KEY_RESET_FAILED		= 0x600E,
+> -	ME_HDCP_NONCE_GENERATION_FAILED		= 0x600F,
+> -	ME_HDCP_STATUS_INVALID_E_KEY_STATE	= 0x6010,
+> -	ME_HDCP_STATUS_INVALID_CS_ICV		= 0x6011,
+> -	ME_HDCP_STATUS_INVALID_KB_KEY_STATE	= 0x6012,
+> -	ME_HDCP_STATUS_INVALID_PAVP_MODE_ICV	= 0x6013,
+> -	ME_HDCP_STATUS_INVALID_PAVP_MODE	= 0x6014,
+> -	ME_HDCP_STATUS_LC_MAX_ATTEMPTS		= 0x6015,
+> -
+> -	/* New status for HDCP 2.1 */
+> -	ME_HDCP_STATUS_MISMATCH_IN_M		= 0x6016,
+> -
+> -	/* New status code for HDCP 2.2 Rx */
+> -	ME_HDCP_STATUS_RX_PROV_NOT_ALLOWED	= 0x6017,
+> -	ME_HDCP_STATUS_RX_PROV_WRONG_SUBJECT	= 0x6018,
+> -	ME_HDCP_RX_NEEDS_PROVISIONING		= 0x6019,
+> -	ME_HDCP_BKSV_ICV_AUTH_FAILED		= 0x6020,
+> -	ME_HDCP_STATUS_INVALID_STREAM_ID	= 0x6021,
+> -	ME_HDCP_STATUS_CHAIN_NOT_INITIALIZED	= 0x6022,
+> -	ME_HDCP_FAIL_NOT_EXPECTED		= 0x6023,
+> -	ME_HDCP_FAIL_HDCP_OFF			= 0x6024,
+> -	ME_HDCP_FAIL_INVALID_PAVP_MEMORY_MODE	= 0x6025,
+> -	ME_HDCP_FAIL_AES_ECB_FAILURE		= 0x6026,
+> -	ME_HDCP_FEATURE_NOT_SUPPORTED		= 0x6027,
+> -	ME_HDCP_DMA_READ_ERROR			= 0x6028,
+> -	ME_HDCP_DMA_WRITE_ERROR			= 0x6029,
+> -	ME_HDCP_FAIL_INVALID_PACKET_SIZE	= 0x6030,
+> -	ME_HDCP_H264_PARSING_ERROR		= 0x6031,
+> -	ME_HDCP_HDCP2_ERRATA_VIDEO_VIOLATION	= 0x6032,
+> -	ME_HDCP_HDCP2_ERRATA_AUDIO_VIOLATION	= 0x6033,
+> -	ME_HDCP_TX_ACTIVE_ERROR			= 0x6034,
+> -	ME_HDCP_MODE_CHANGE_ERROR		= 0x6035,
+> -	ME_HDCP_STREAM_TYPE_ERROR		= 0x6036,
+> -	ME_HDCP_STREAM_MANAGE_NOT_POSSIBLE	= 0x6037,
+> -
+> -	ME_HDCP_STATUS_PORT_INVALID_COMMAND	= 0x6038,
+> -	ME_HDCP_STATUS_UNSUPPORTED_PROTOCOL	= 0x6039,
+> -	ME_HDCP_STATUS_INVALID_PORT_INDEX	= 0x603a,
+> -	ME_HDCP_STATUS_TX_AUTH_NEEDED		= 0x603b,
+> -	ME_HDCP_STATUS_NOT_INTEGRATED_PORT	= 0x603c,
+> -	ME_HDCP_STATUS_SESSION_MAX_REACHED	= 0x603d,
+> -
+> -	/* hdcp capable bit is not set in rx_caps(error is unique to DP) */
+> -	ME_HDCP_STATUS_NOT_HDCP_CAPABLE		= 0x6041,
+> -
+> -	ME_HDCP_STATUS_INVALID_STREAM_COUNT	= 0x6042,
+> -};
+> -
+> -#define HDCP_API_VERSION				0x00010000
+> -
+> -#define HDCP_M_LEN					16
+> -#define HDCP_KH_LEN					16
+> -
+> -/* Payload Buffer size(Excluding Header) for CMDs and corresponding response */
+> -/* Wired_Tx_AKE  */
+> -#define	WIRED_CMD_BUF_LEN_INITIATE_HDCP2_SESSION_IN	(4 + 1)
+> -#define	WIRED_CMD_BUF_LEN_INITIATE_HDCP2_SESSION_OUT	(4 + 8 + 3)
+> -
+> -#define	WIRED_CMD_BUF_LEN_VERIFY_RECEIVER_CERT_IN	(4 + 522 + 8 + 3)
+> -#define	WIRED_CMD_BUF_LEN_VERIFY_RECEIVER_CERT_MIN_OUT	(4 + 1 + 3 + 16 + 16)
+> -#define	WIRED_CMD_BUF_LEN_VERIFY_RECEIVER_CERT_MAX_OUT	(4 + 1 + 3 + 128)
+> -
+> -#define	WIRED_CMD_BUF_LEN_AKE_SEND_HPRIME_IN		(4 + 32)
+> -#define	WIRED_CMD_BUF_LEN_AKE_SEND_HPRIME_OUT		(4)
+> -
+> -#define	WIRED_CMD_BUF_LEN_SEND_PAIRING_INFO_IN		(4 + 16)
+> -#define	WIRED_CMD_BUF_LEN_SEND_PAIRING_INFO_OUT		(4)
+> -
+> -#define	WIRED_CMD_BUF_LEN_CLOSE_SESSION_IN		(4)
+> -#define	WIRED_CMD_BUF_LEN_CLOSE_SESSION_OUT		(4)
+> -
+> -/* Wired_Tx_LC */
+> -#define	WIRED_CMD_BUF_LEN_INIT_LOCALITY_CHECK_IN	(4)
+> -#define	WIRED_CMD_BUF_LEN_INIT_LOCALITY_CHECK_OUT	(4 + 8)
+> -
+> -#define	WIRED_CMD_BUF_LEN_VALIDATE_LOCALITY_IN		(4 + 32)
+> -#define	WIRED_CMD_BUF_LEN_VALIDATE_LOCALITY_OUT		(4)
+> -
+> -/* Wired_Tx_SKE */
+> -#define	WIRED_CMD_BUF_LEN_GET_SESSION_KEY_IN		(4)
+> -#define	WIRED_CMD_BUF_LEN_GET_SESSION_KEY_OUT		(4 + 16 + 8)
+> -
+> -/* Wired_Tx_SKE */
+> -#define	WIRED_CMD_BUF_LEN_ENABLE_AUTH_IN		(4 + 1)
+> -#define	WIRED_CMD_BUF_LEN_ENABLE_AUTH_OUT		(4)
+> -
+> -/* Wired_Tx_Repeater */
+> -#define	WIRED_CMD_BUF_LEN_VERIFY_REPEATER_IN		(4 + 2 + 3 + 16 + 155)
+> -#define	WIRED_CMD_BUF_LEN_VERIFY_REPEATER_OUT		(4 + 1 + 16)
+> -
+> -#define	WIRED_CMD_BUF_LEN_REPEATER_AUTH_STREAM_REQ_MIN_IN	(4 + 3 + \
+> -								32 + 2 + 2)
+> -
+> -#define	WIRED_CMD_BUF_LEN_REPEATER_AUTH_STREAM_REQ_OUT		(4)
+> -
+> -/* hdcp_command_id: Enumeration of all WIRED HDCP Command IDs */
+> -enum hdcp_command_id {
+> -	_WIDI_COMMAND_BASE		= 0x00030000,
+> -	WIDI_INITIATE_HDCP2_SESSION	= _WIDI_COMMAND_BASE,
+> -	HDCP_GET_SRM_STATUS,
+> -	HDCP_SEND_SRM_FRAGMENT,
+> -
+> -	/* The wired HDCP Tx commands */
+> -	_WIRED_COMMAND_BASE		= 0x00031000,
+> -	WIRED_INITIATE_HDCP2_SESSION	= _WIRED_COMMAND_BASE,
+> -	WIRED_VERIFY_RECEIVER_CERT,
+> -	WIRED_AKE_SEND_HPRIME,
+> -	WIRED_AKE_SEND_PAIRING_INFO,
+> -	WIRED_INIT_LOCALITY_CHECK,
+> -	WIRED_VALIDATE_LOCALITY,
+> -	WIRED_GET_SESSION_KEY,
+> -	WIRED_ENABLE_AUTH,
+> -	WIRED_VERIFY_REPEATER,
+> -	WIRED_REPEATER_AUTH_STREAM_REQ,
+> -	WIRED_CLOSE_SESSION,
+> -
+> -	_WIRED_COMMANDS_COUNT,
+> -};
+> -
+> -union encrypted_buff {
+> -	u8		e_kpub_km[HDCP_2_2_E_KPUB_KM_LEN];
+> -	u8		e_kh_km_m[HDCP_2_2_E_KH_KM_M_LEN];
+> -	struct {
+> -		u8	e_kh_km[HDCP_KH_LEN];
+> -		u8	m[HDCP_M_LEN];
+> -	} __packed;
+> -};
+> -
+> -/* HDCP HECI message header. All header values are little endian. */
+> -struct hdcp_cmd_header {
+> -	u32			api_version;
+> -	u32			command_id;
+> -	enum me_hdcp_status	status;
+> -	/* Length of the HECI message (excluding the header) */
+> -	u32			buffer_len;
+> -} __packed;
+> -
+> -/* Empty command request or response. No data follows the header. */
+> -struct hdcp_cmd_no_data {
+> -	struct hdcp_cmd_header header;
+> -} __packed;
+> -
+> -/* Uniquely identifies the hdcp port being addressed for a given command. */
+> -struct hdcp_port_id {
+> -	u8	integrated_port_type;
+> -	/* physical_port is used until Gen11.5. Must be zero for Gen11.5+ */
+> -	u8	physical_port;
+> -	/* attached_transcoder is for Gen11.5+. Set to zero for <Gen11.5 */
+> -	u8	attached_transcoder;
+> -	u8	reserved;
+> -} __packed;
+> -
+> -/*
+> - * Data structures for integrated wired HDCP2 Tx in
+> - * support of the AKE protocol
+> - */
+> -/* HECI struct for integrated wired HDCP Tx session initiation. */
+> -struct wired_cmd_initiate_hdcp2_session_in {
+> -	struct hdcp_cmd_header	header;
+> -	struct hdcp_port_id	port;
+> -	u8			protocol; /* for HDMI vs DP */
+> -} __packed;
+> -
+> -struct wired_cmd_initiate_hdcp2_session_out {
+> -	struct hdcp_cmd_header	header;
+> -	struct hdcp_port_id	port;
+> -	u8			r_tx[HDCP_2_2_RTX_LEN];
+> -	struct hdcp2_tx_caps	tx_caps;
+> -} __packed;
+> -
+> -/* HECI struct for ending an integrated wired HDCP Tx session. */
+> -struct wired_cmd_close_session_in {
+> -	struct hdcp_cmd_header	header;
+> -	struct hdcp_port_id	port;
+> -} __packed;
+> -
+> -struct wired_cmd_close_session_out {
+> -	struct hdcp_cmd_header	header;
+> -	struct hdcp_port_id	port;
+> -} __packed;
+> -
+> -/* HECI struct for integrated wired HDCP Tx Rx Cert verification. */
+> -struct wired_cmd_verify_receiver_cert_in {
+> -	struct hdcp_cmd_header	header;
+> -	struct hdcp_port_id	port;
+> -	struct hdcp2_cert_rx	cert_rx;
+> -	u8			r_rx[HDCP_2_2_RRX_LEN];
+> -	u8			rx_caps[HDCP_2_2_RXCAPS_LEN];
+> -} __packed;
+> -
+> -struct wired_cmd_verify_receiver_cert_out {
+> -	struct hdcp_cmd_header	header;
+> -	struct hdcp_port_id	port;
+> -	u8			km_stored;
+> -	u8			reserved[3];
+> -	union encrypted_buff	ekm_buff;
+> -} __packed;
+> -
+> -/* HECI struct for verification of Rx's Hprime in a HDCP Tx session */
+> -struct wired_cmd_ake_send_hprime_in {
+> -	struct hdcp_cmd_header	header;
+> -	struct hdcp_port_id	port;
+> -	u8			h_prime[HDCP_2_2_H_PRIME_LEN];
+> -} __packed;
+> -
+> -struct wired_cmd_ake_send_hprime_out {
+> -	struct hdcp_cmd_header	header;
+> -	struct hdcp_port_id	port;
+> -} __packed;
+> -
+> -/*
+> - * HECI struct for sending in AKE pairing data generated by the Rx in an
+> - * integrated wired HDCP Tx session.
+> - */
+> -struct wired_cmd_ake_send_pairing_info_in {
+> -	struct hdcp_cmd_header	header;
+> -	struct hdcp_port_id	port;
+> -	u8			e_kh_km[HDCP_2_2_E_KH_KM_LEN];
+> -} __packed;
+> -
+> -struct wired_cmd_ake_send_pairing_info_out {
+> -	struct hdcp_cmd_header	header;
+> -	struct hdcp_port_id	port;
+> -} __packed;
+> -
+> -/* Data structures for integrated wired HDCP2 Tx in support of the LC protocol*/
+> -/*
+> - * HECI struct for initiating locality check with an
+> - * integrated wired HDCP Tx session.
+> - */
+> -struct wired_cmd_init_locality_check_in {
+> -	struct hdcp_cmd_header	header;
+> -	struct hdcp_port_id	port;
+> -} __packed;
+> -
+> -struct wired_cmd_init_locality_check_out {
+> -	struct hdcp_cmd_header	header;
+> -	struct hdcp_port_id	port;
+> -	u8			r_n[HDCP_2_2_RN_LEN];
+> -} __packed;
+> -
+> -/*
+> - * HECI struct for validating an Rx's LPrime value in an
+> - * integrated wired HDCP Tx session.
+> - */
+> -struct wired_cmd_validate_locality_in {
+> -	struct hdcp_cmd_header	header;
+> -	struct hdcp_port_id	port;
+> -	u8			l_prime[HDCP_2_2_L_PRIME_LEN];
+> -} __packed;
+> -
+> -struct wired_cmd_validate_locality_out {
+> -	struct hdcp_cmd_header	header;
+> -	struct hdcp_port_id	port;
+> -} __packed;
+> -
+> -/*
+> - * Data structures for integrated wired HDCP2 Tx in support of the
+> - * SKE protocol
+> - */
+> -/* HECI struct for creating session key */
+> -struct wired_cmd_get_session_key_in {
+> -	struct hdcp_cmd_header	header;
+> -	struct hdcp_port_id	port;
+> -} __packed;
+> -
+> -struct wired_cmd_get_session_key_out {
+> -	struct hdcp_cmd_header	header;
+> -	struct hdcp_port_id	port;
+> -	u8			e_dkey_ks[HDCP_2_2_E_DKEY_KS_LEN];
+> -	u8			r_iv[HDCP_2_2_RIV_LEN];
+> -} __packed;
+> -
+> -/* HECI struct for the Tx enable authentication command */
+> -struct wired_cmd_enable_auth_in {
+> -	struct hdcp_cmd_header	header;
+> -	struct hdcp_port_id	port;
+> -	u8			stream_type;
+> -} __packed;
+> -
+> -struct wired_cmd_enable_auth_out {
+> -	struct hdcp_cmd_header	header;
+> -	struct hdcp_port_id	port;
+> -} __packed;
+> -
+> -/*
+> - * Data structures for integrated wired HDCP2 Tx in support of
+> - * the repeater protocols
+> - */
+> -/*
+> - * HECI struct for verifying the downstream repeater's HDCP topology in an
+> - * integrated wired HDCP Tx session.
+> - */
+> -struct wired_cmd_verify_repeater_in {
+> -	struct hdcp_cmd_header	header;
+> -	struct hdcp_port_id	port;
+> -	u8			rx_info[HDCP_2_2_RXINFO_LEN];
+> -	u8			seq_num_v[HDCP_2_2_SEQ_NUM_LEN];
+> -	u8			v_prime[HDCP_2_2_V_PRIME_HALF_LEN];
+> -	u8			receiver_ids[HDCP_2_2_RECEIVER_IDS_MAX_LEN];
+> -} __packed;
+> -
+> -struct wired_cmd_verify_repeater_out {
+> -	struct hdcp_cmd_header	header;
+> -	struct hdcp_port_id	port;
+> -	u8			content_type_supported;
+> -	u8			v[HDCP_2_2_V_PRIME_HALF_LEN];
+> -} __packed;
+> -
+> -/*
+> - * HECI struct in support of stream management in an
+> - * integrated wired HDCP Tx session.
+> - */
+> -struct wired_cmd_repeater_auth_stream_req_in {
+> -	struct hdcp_cmd_header		header;
+> -	struct hdcp_port_id		port;
+> -	u8				seq_num_m[HDCP_2_2_SEQ_NUM_LEN];
+> -	u8				m_prime[HDCP_2_2_MPRIME_LEN];
+> -	__be16				k;
+> -	struct hdcp2_streamid_type	streams[];
+> -} __packed;
+> -
+> -struct wired_cmd_repeater_auth_stream_req_out {
+> -	struct hdcp_cmd_header	header;
+> -	struct hdcp_port_id	port;
+> -} __packed;
+>   #endif /* __MEI_HDCP_H__ */
+> diff --git a/include/drm/i915_hdcp_interface.h b/include/drm/i915_hdcp_interface.h
+> index d24f6726e50c..a92925cd1eae 100644
+> --- a/include/drm/i915_hdcp_interface.h
+> +++ b/include/drm/i915_hdcp_interface.h
+> @@ -181,4 +181,359 @@ struct i915_hdcp_master {
+>   	struct mutex mutex;
+>   };
+>   
+> +/* fw_hdcp_status: Enumeration of all HDCP Status Codes */
+> +enum fw_hdcp_status {
+> +	FW_HDCP_STATUS_SUCCESS			= 0x0000,
+> +
+> +	/* WiDi Generic Status Codes */
+> +	FW_HDCP_STATUS_INTERNAL_ERROR		= 0x1000,
+> +	FW_HDCP_STATUS_UNKNOWN_ERROR		= 0x1001,
+> +	FW_HDCP_STATUS_INCORRECT_API_VERSION	= 0x1002,
+> +	FW_HDCP_STATUS_INVALID_FUNCTION		= 0x1003,
+> +	FW_HDCP_STATUS_INVALID_BUFFER_LENGTH	= 0x1004,
+> +	FW_HDCP_STATUS_INVALID_PARAMS		= 0x1005,
+> +	FW_HDCP_STATUS_AUTHENTICATION_FAILED	= 0x1006,
+> +
+> +	/* WiDi Status Codes */
+> +	FW_HDCP_INVALID_SESSION_STATE		= 0x6000,
+> +	FW_HDCP_SRM_FRAGMENT_UNEXPECTED		= 0x6001,
+> +	FW_HDCP_SRM_INVALID_LENGTH		= 0x6002,
+> +	FW_HDCP_SRM_FRAGMENT_OFFSET_INVALID	= 0x6003,
+> +	FW_HDCP_SRM_VERIFICATION_FAILED		= 0x6004,
+> +	FW_HDCP_SRM_VERSION_TOO_OLD		= 0x6005,
+> +	FW_HDCP_RX_CERT_VERIFICATION_FAILED	= 0x6006,
+> +	FW_HDCP_RX_REVOKED			= 0x6007,
+> +	FW_HDCP_H_VERIFICATION_FAILED		= 0x6008,
+> +	FW_HDCP_REPEATER_CHECK_UNEXPECTED	= 0x6009,
+> +	FW_HDCP_TOPOLOGY_MAX_EXCEEDED		= 0x600A,
+> +	FW_HDCP_V_VERIFICATION_FAILED		= 0x600B,
+> +	FW_HDCP_L_VERIFICATION_FAILED		= 0x600C,
+> +	FW_HDCP_STREAM_KEY_ALLOC_FAILED		= 0x600D,
+> +	FW_HDCP_BASE_KEY_RESET_FAILED		= 0x600E,
+> +	FW_HDCP_NONCE_GENERATION_FAILED		= 0x600F,
+> +	FW_HDCP_STATUS_INVALID_E_KEY_STATE	= 0x6010,
+> +	FW_HDCP_STATUS_INVALID_CS_ICV		= 0x6011,
+> +	FW_HDCP_STATUS_INVALID_KB_KEY_STATE	= 0x6012,
+> +	FW_HDCP_STATUS_INVALID_PAVP_MODE_ICV	= 0x6013,
+> +	FW_HDCP_STATUS_INVALID_PAVP_MODE	= 0x6014,
+> +	FW_HDCP_STATUS_LC_MAX_ATTEMPTS		= 0x6015,
+> +
+> +	/* New status for HDCP 2.1 */
+> +	FW_HDCP_STATUS_MISMATCH_IN_M		= 0x6016,
+> +
+> +	/* New status code for HDCP 2.2 Rx */
+> +	FW_HDCP_STATUS_RX_PROV_NOT_ALLOWED	= 0x6017,
+> +	FW_HDCP_STATUS_RX_PROV_WRONG_SUBJECT	= 0x6018,
+> +	FW_HDCP_RX_NEEDS_PROVISIONING		= 0x6019,
+> +	FW_HDCP_BKSV_ICV_AUTH_FAILED		= 0x6020,
+> +	FW_HDCP_STATUS_INVALID_STREAM_ID	= 0x6021,
+> +	FW_HDCP_STATUS_CHAIN_NOT_INITIALIZED	= 0x6022,
+> +	FW_HDCP_FAIL_NOT_EXPECTED		= 0x6023,
+> +	FW_HDCP_FAIL_HDCP_OFF			= 0x6024,
+> +	FW_HDCP_FAIL_INVALID_PAVP_MEMORY_MODE	= 0x6025,
+> +	FW_HDCP_FAIL_AES_ECB_FAILURE		= 0x6026,
+> +	FW_HDCP_FEATURE_NOT_SUPPORTED		= 0x6027,
+> +	FW_HDCP_DMA_READ_ERROR			= 0x6028,
+> +	FW_HDCP_DMA_WRITE_ERROR			= 0x6029,
+> +	FW_HDCP_FAIL_INVALID_PACKET_SIZE	= 0x6030,
+> +	FW_HDCP_H264_PARSING_ERROR		= 0x6031,
+> +	FW_HDCP_HDCP2_ERRATA_VIDEO_VIOLATION	= 0x6032,
+> +	FW_HDCP_HDCP2_ERRATA_AUDIO_VIOLATION	= 0x6033,
+> +	FW_HDCP_TX_ACTIVE_ERROR			= 0x6034,
+> +	FW_HDCP_MODE_CHANGE_ERROR		= 0x6035,
+> +	FW_HDCP_STREAM_TYPE_ERROR		= 0x6036,
+> +	FW_HDCP_STREAM_MANAGE_NOT_POSSIBLE	= 0x6037,
+> +
+> +	FW_HDCP_STATUS_PORT_INVALID_COMMAND	= 0x6038,
+> +	FW_HDCP_STATUS_UNSUPPORTED_PROTOCOL	= 0x6039,
+> +	FW_HDCP_STATUS_INVALID_PORT_INDEX	= 0x603a,
+> +	FW_HDCP_STATUS_TX_AUTH_NEEDED		= 0x603b,
+> +	FW_HDCP_STATUS_NOT_INTEGRATED_PORT	= 0x603c,
+> +	FW_HDCP_STATUS_SESSION_MAX_REACHED	= 0x603d,
+> +
+> +	/* hdcp capable bit is not set in rx_caps(error is unique to DP) */
+> +	FW_HDCP_STATUS_NOT_HDCP_CAPABLE		= 0x6041,
+> +
+> +	FW_HDCP_STATUS_INVALID_STREAM_COUNT	= 0x6042,
+> +};
+> +
+> +#define HDCP_API_VERSION				0x00010000
+> +
+> +#define HDCP_M_LEN					16
+> +#define HDCP_KH_LEN					16
+> +
+> +/* Payload Buffer size(Excluding Header) for CMDs and corresponding response */
+> +/* Wired_Tx_AKE  */
+> +#define	WIRED_CMD_BUF_LEN_INITIATE_HDCP2_SESSION_IN	(4 + 1)
+> +#define	WIRED_CMD_BUF_LEN_INITIATE_HDCP2_SESSION_OUT	(4 + 8 + 3)
+> +
+> +#define	WIRED_CMD_BUF_LEN_VERIFY_RECEIVER_CERT_IN	(4 + 522 + 8 + 3)
+> +#define	WIRED_CMD_BUF_LEN_VERIFY_RECEIVER_CERT_MIN_OUT	(4 + 1 + 3 + 16 + 16)
+> +#define	WIRED_CMD_BUF_LEN_VERIFY_RECEIVER_CERT_MAX_OUT	(4 + 1 + 3 + 128)
+> +
+> +#define	WIRED_CMD_BUF_LEN_AKE_SEND_HPRIME_IN		(4 + 32)
+> +#define	WIRED_CMD_BUF_LEN_AKE_SEND_HPRIME_OUT		(4)
+> +
+> +#define	WIRED_CMD_BUF_LEN_SEND_PAIRING_INFO_IN		(4 + 16)
+> +#define	WIRED_CMD_BUF_LEN_SEND_PAIRING_INFO_OUT		(4)
+> +
+> +#define	WIRED_CMD_BUF_LEN_CLOSE_SESSION_IN		(4)
+> +#define	WIRED_CMD_BUF_LEN_CLOSE_SESSION_OUT		(4)
+> +
+> +/* Wired_Tx_LC */
+> +#define	WIRED_CMD_BUF_LEN_INIT_LOCALITY_CHECK_IN	(4)
+> +#define	WIRED_CMD_BUF_LEN_INIT_LOCALITY_CHECK_OUT	(4 + 8)
+> +
+> +#define	WIRED_CMD_BUF_LEN_VALIDATE_LOCALITY_IN		(4 + 32)
+> +#define	WIRED_CMD_BUF_LEN_VALIDATE_LOCALITY_OUT		(4)
+> +
+> +/* Wired_Tx_SKE */
+> +#define	WIRED_CMD_BUF_LEN_GET_SESSION_KEY_IN		(4)
+> +#define	WIRED_CMD_BUF_LEN_GET_SESSION_KEY_OUT		(4 + 16 + 8)
+> +
+> +/* Wired_Tx_SKE */
+> +#define	WIRED_CMD_BUF_LEN_ENABLE_AUTH_IN		(4 + 1)
+> +#define	WIRED_CMD_BUF_LEN_ENABLE_AUTH_OUT		(4)
+> +
+> +/* Wired_Tx_Repeater */
+> +#define	WIRED_CMD_BUF_LEN_VERIFY_REPEATER_IN		(4 + 2 + 3 + 16 + 155)
+> +#define	WIRED_CMD_BUF_LEN_VERIFY_REPEATER_OUT		(4 + 1 + 16)
+> +
+> +#define	WIRED_CMD_BUF_LEN_REPEATER_AUTH_STREAM_REQ_MIN_IN	(4 + 3 + \
+> +								32 + 2 + 2)
+> +
+> +#define	WIRED_CMD_BUF_LEN_REPEATER_AUTH_STREAM_REQ_OUT		(4)
+> +
+> +/* hdcp_command_id: Enumeration of all WIRED HDCP Command IDs */
+> +enum hdcp_command_id {
+> +	_WIDI_COMMAND_BASE		= 0x00030000,
+> +	WIDI_INITIATE_HDCP2_SESSION	= _WIDI_COMMAND_BASE,
+> +	HDCP_GET_SRM_STATUS,
+> +	HDCP_SEND_SRM_FRAGMENT,
+> +
+> +	/* The wired HDCP Tx commands */
+> +	_WIRED_COMMAND_BASE		= 0x00031000,
+> +	WIRED_INITIATE_HDCP2_SESSION	= _WIRED_COMMAND_BASE,
+> +	WIRED_VERIFY_RECEIVER_CERT,
+> +	WIRED_AKE_SEND_HPRIME,
+> +	WIRED_AKE_SEND_PAIRING_INFO,
+> +	WIRED_INIT_LOCALITY_CHECK,
+> +	WIRED_VALIDATE_LOCALITY,
+> +	WIRED_GET_SESSION_KEY,
+> +	WIRED_ENABLE_AUTH,
+> +	WIRED_VERIFY_REPEATER,
+> +	WIRED_REPEATER_AUTH_STREAM_REQ,
+> +	WIRED_CLOSE_SESSION,
+> +
+> +	_WIRED_COMMANDS_COUNT,
+> +};
+> +
+> +union encrypted_buff {
+> +	u8		e_kpub_km[HDCP_2_2_E_KPUB_KM_LEN];
+> +	u8		e_kh_km_m[HDCP_2_2_E_KH_KM_M_LEN];
+> +	struct {
+> +		u8	e_kh_km[HDCP_KH_LEN];
+> +		u8	m[HDCP_M_LEN];
+> +	} __packed;
+> +};
+> +
+> +/* HDCP HECI message header. All header values are little endian. */
+> +struct hdcp_cmd_header {
+> +	u32			api_version;
+> +	u32			command_id;
+> +	enum fw_hdcp_status	status;
+> +	/* Length of the HECI message (excluding the header) */
+> +	u32			buffer_len;
+> +} __packed;
+> +
+> +/* Empty command request or response. No data follows the header. */
+> +struct hdcp_cmd_no_data {
+> +	struct hdcp_cmd_header header;
+> +} __packed;
+> +
+> +/* Uniquely identifies the hdcp port being addressed for a given command. */
+> +struct hdcp_port_id {
+> +	u8	integrated_port_type;
+> +	/* physical_port is used until Gen11.5. Must be zero for Gen11.5+ */
+> +	u8	physical_port;
+> +	/* attached_transcoder is for Gen11.5+. Set to zero for <Gen11.5 */
+> +	u8	attached_transcoder;
+> +	u8	reserved;
+> +} __packed;
+> +
+> +/*
+> + * Data structures for integrated wired HDCP2 Tx in
+> + * support of the AKE protocol
+> + */
+> +/* HECI struct for integrated wired HDCP Tx session initiation. */
+> +struct wired_cmd_initiate_hdcp2_session_in {
+> +	struct hdcp_cmd_header	header;
+> +	struct hdcp_port_id	port;
+> +	u8			protocol; /* for HDMI vs DP */
+> +} __packed;
+> +
+> +struct wired_cmd_initiate_hdcp2_session_out {
+> +	struct hdcp_cmd_header	header;
+> +	struct hdcp_port_id	port;
+> +	u8			r_tx[HDCP_2_2_RTX_LEN];
+> +	struct hdcp2_tx_caps	tx_caps;
+> +} __packed;
+> +
+> +/* HECI struct for ending an integrated wired HDCP Tx session. */
+> +struct wired_cmd_close_session_in {
+> +	struct hdcp_cmd_header	header;
+> +	struct hdcp_port_id	port;
+> +} __packed;
+> +
+> +struct wired_cmd_close_session_out {
+> +	struct hdcp_cmd_header	header;
+> +	struct hdcp_port_id	port;
+> +} __packed;
+> +
+> +/* HECI struct for integrated wired HDCP Tx Rx Cert verification. */
+> +struct wired_cmd_verify_receiver_cert_in {
+> +	struct hdcp_cmd_header	header;
+> +	struct hdcp_port_id	port;
+> +	struct hdcp2_cert_rx	cert_rx;
+> +	u8			r_rx[HDCP_2_2_RRX_LEN];
+> +	u8			rx_caps[HDCP_2_2_RXCAPS_LEN];
+> +} __packed;
+> +
+> +struct wired_cmd_verify_receiver_cert_out {
+> +	struct hdcp_cmd_header	header;
+> +	struct hdcp_port_id	port;
+> +	u8			km_stored;
+> +	u8			reserved[3];
+> +	union encrypted_buff	ekm_buff;
+> +} __packed;
+> +
+> +/* HECI struct for verification of Rx's Hprime in a HDCP Tx session */
+> +struct wired_cmd_ake_send_hprime_in {
+> +	struct hdcp_cmd_header	header;
+> +	struct hdcp_port_id	port;
+> +	u8			h_prime[HDCP_2_2_H_PRIME_LEN];
+> +} __packed;
+> +
+> +struct wired_cmd_ake_send_hprime_out {
+> +	struct hdcp_cmd_header	header;
+> +	struct hdcp_port_id	port;
+> +} __packed;
+> +
+> +/*
+> + * HECI struct for sending in AKE pairing data generated by the Rx in an
+> + * integrated wired HDCP Tx session.
+> + */
+> +struct wired_cmd_ake_send_pairing_info_in {
+> +	struct hdcp_cmd_header	header;
+> +	struct hdcp_port_id	port;
+> +	u8			e_kh_km[HDCP_2_2_E_KH_KM_LEN];
+> +} __packed;
+> +
+> +struct wired_cmd_ake_send_pairing_info_out {
+> +	struct hdcp_cmd_header	header;
+> +	struct hdcp_port_id	port;
+> +} __packed;
+> +
+> +/* Data structures for integrated wired HDCP2 Tx in support of the LC protocol*/
+> +/*
+> + * HECI struct for initiating locality check with an
+> + * integrated wired HDCP Tx session.
+> + */
+> +struct wired_cmd_init_locality_check_in {
+> +	struct hdcp_cmd_header	header;
+> +	struct hdcp_port_id	port;
+> +} __packed;
+> +
+> +struct wired_cmd_init_locality_check_out {
+> +	struct hdcp_cmd_header	header;
+> +	struct hdcp_port_id	port;
+> +	u8			r_n[HDCP_2_2_RN_LEN];
+> +} __packed;
+> +
+> +/*
+> + * HECI struct for validating an Rx's LPrime value in an
+> + * integrated wired HDCP Tx session.
+> + */
+> +struct wired_cmd_validate_locality_in {
+> +	struct hdcp_cmd_header	header;
+> +	struct hdcp_port_id	port;
+> +	u8			l_prime[HDCP_2_2_L_PRIME_LEN];
+> +} __packed;
+> +
+> +struct wired_cmd_validate_locality_out {
+> +	struct hdcp_cmd_header	header;
+> +	struct hdcp_port_id	port;
+> +} __packed;
+> +
+> +/*
+> + * Data structures for integrated wired HDCP2 Tx in support of the
+> + * SKE protocol
+> + */
+> +/* HECI struct for creating session key */
+> +struct wired_cmd_get_session_key_in {
+> +	struct hdcp_cmd_header	header;
+> +	struct hdcp_port_id	port;
+> +} __packed;
+> +
+> +struct wired_cmd_get_session_key_out {
+> +	struct hdcp_cmd_header	header;
+> +	struct hdcp_port_id	port;
+> +	u8			e_dkey_ks[HDCP_2_2_E_DKEY_KS_LEN];
+> +	u8			r_iv[HDCP_2_2_RIV_LEN];
+> +} __packed;
+> +
+> +/* HECI struct for the Tx enable authentication command */
+> +struct wired_cmd_enable_auth_in {
+> +	struct hdcp_cmd_header	header;
+> +	struct hdcp_port_id	port;
+> +	u8			stream_type;
+> +} __packed;
+> +
+> +struct wired_cmd_enable_auth_out {
+> +	struct hdcp_cmd_header	header;
+> +	struct hdcp_port_id	port;
+> +} __packed;
+> +
+> +/*
+> + * Data structures for integrated wired HDCP2 Tx in support of
+> + * the repeater protocols
+> + */
+> +/*
+> + * HECI struct for verifying the downstream repeater's HDCP topology in an
+> + * integrated wired HDCP Tx session.
+> + */
+> +struct wired_cmd_verify_repeater_in {
+> +	struct hdcp_cmd_header	header;
+> +	struct hdcp_port_id	port;
+> +	u8			rx_info[HDCP_2_2_RXINFO_LEN];
+> +	u8			seq_num_v[HDCP_2_2_SEQ_NUM_LEN];
+> +	u8			v_prime[HDCP_2_2_V_PRIME_HALF_LEN];
+> +	u8			receiver_ids[HDCP_2_2_RECEIVER_IDS_MAX_LEN];
+> +} __packed;
+> +
+> +struct wired_cmd_verify_repeater_out {
+> +	struct hdcp_cmd_header	header;
+> +	struct hdcp_port_id	port;
+> +	u8			content_type_supported;
+> +	u8			v[HDCP_2_2_V_PRIME_HALF_LEN];
+> +} __packed;
+> +
+> +/*
+> + * HECI struct in support of stream management in an
+> + * integrated wired HDCP Tx session.
+> + */
+> +struct wired_cmd_repeater_auth_stream_req_in {
+> +	struct hdcp_cmd_header		header;
+> +	struct hdcp_port_id		port;
+> +	u8				seq_num_m[HDCP_2_2_SEQ_NUM_LEN];
+> +	u8				m_prime[HDCP_2_2_MPRIME_LEN];
+> +	__be16				k;
+> +	struct hdcp2_streamid_type	streams[];
+> +} __packed;
+> +
+> +struct wired_cmd_repeater_auth_stream_req_out {
+> +	struct hdcp_cmd_header	header;
+> +	struct hdcp_port_id	port;
+> +} __packed;
+> +
+>   #endif /* _I915_HDCP_INTERFACE_H_ */
