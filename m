@@ -2,59 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEF0B6795E7
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jan 2023 11:59:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AD47679622
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jan 2023 12:05:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27F4B10E059;
-	Tue, 24 Jan 2023 10:59:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1047B10E059;
+	Tue, 24 Jan 2023 11:05:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9943410E051;
- Tue, 24 Jan 2023 10:59:38 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5790F10E059
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Jan 2023 11:05:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674557978; x=1706093978;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=GkcwlpyITj6Vnmb2x04YswOB2c5oPNTjTKKoDdSn6DU=;
- b=nYZalKNXcABcaJZq2SKqFp8icTabnnCVQqX+BEVrj6PPCPTal0KBGpMs
- 1ZmHOiyTf+RAa77oDOGyo5A2AmLCtoV3GWIOVUYjIAvpvJ1TOJUpaNJnS
- XdSJWX0q+PpqVm207ygAPsjoXjjb5W3ChaWrlSS25yNKQITJ26Ng+THbv
- wv4qseCjVoeUVmGvFmjR5UweRSZXTvbKGhUlGHzXNYnmju/QHoUprrpaf
- j1V8czJ8wqv1GJQlWNNo23IgcP2n1av7ChwhyMgLlNSxY57iJBz83miYC
- Y8tPHXvxaD0ckSJv1rBvD7NOXJY860qBXvDQw4heKz19/gCK/TP1UUJEv A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="327527713"
-X-IronPort-AV: E=Sophos;i="5.97,242,1669104000"; d="scan'208";a="327527713"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2023 02:59:37 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="725427048"
-X-IronPort-AV: E=Sophos;i="5.97,242,1669104000"; d="scan'208";a="725427048"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmsmga008.fm.intel.com with ESMTP; 24 Jan 2023 02:59:35 -0800
-Received: from [10.249.147.192] (mwajdecz-MOBL.ger.corp.intel.com
- [10.249.147.192])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id CDC6C37858;
- Tue, 24 Jan 2023 10:59:34 +0000 (GMT)
-Message-ID: <bda5fcd9-f003-001a-4822-c269a59595cd@intel.com>
-Date: Tue, 24 Jan 2023 11:59:34 +0100
+ t=1674558329; x=1706094329;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=01nmx0aN6Pq8ZhZ5lUaLmOFDUSX/FTlPX6njN4OYpL8=;
+ b=A1+1VVw/Ave90OIbrbeE2uCyxen7WmPx9o7QEbD0t8KKGQnmNkaDQig5
+ VfNNHp++qF34ahkOsnCO2XYFAzzexhgI8yHucYy27G5/WpLuuR/+/+iyn
+ +QgSv+6EFzrLShU7QRLxCo/cWteu2+ShtHZiNTR5DPAIigGRyQd0YDlrY
+ TmoXQ4UQZ+H44UBwG2KTzjRHDEGeUZaLqURbMZWS11wmH9nwk4Ej31LbA
+ U+QX4ejDbBy5fk8dZ5OxD5bbrzH76f/ci+lDJnjU5NIRspPKL4TCSSS6b
+ C9idYXffn2mD+uS0AnEQeeZ+7VTeL9BAMLUpfO6zZ9h6dxyw9DL2g4Lcn g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="328359570"
+X-IronPort-AV: E=Sophos;i="5.97,242,1669104000"; d="scan'208";a="328359570"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2023 03:05:28 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="662101161"
+X-IronPort-AV: E=Sophos;i="5.97,242,1669104000"; d="scan'208";a="662101161"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.42.231])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2023 03:05:27 -0800
+From: Nirmoy Das <nirmoy.das@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 24 Jan 2023 12:05:15 +0100
+Message-Id: <20230124110515.17017-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.6.1
-To: John Harrison <john.c.harrison@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20230120164050.1765-1-michal.wajdeczko@intel.com>
- <20230120164050.1765-2-michal.wajdeczko@intel.com>
- <a2530bef-9c49-45cd-8849-50ea9f97b0f7@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <a2530bef-9c49-45cd-8849-50ea9f97b0f7@intel.com>
-Content-Type: text/plain; charset=UTF-8
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany,
+ Commercial Register: Amtsgericht Muenchen HRB 186928 
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 1/8] drm/i915/guc: Add GuC oriented print
- macros
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Clear wedged status upon suspend
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,95 +57,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Nirmoy Das <nirmoy.das@intel.com>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+From: Chris Wilson <chris.p.wilson@linux.intel.com>
 
+Currently we use set-wedged on suspend if the workload is not responding
+in order to allow a fast suspend (albeit at the cost of discarding the
+current userspace). This may leave the device wedged during suspend,
+where we may require the device available in order to swapout CPU
+inaccessible device memory. Clear any temporary wedged-status after
+flushing userspace off the device so we can use the blitter ourselves
+inside suspend.
 
-On 24.01.2023 00:27, John Harrison wrote:
-> On 1/20/2023 08:40, Michal Wajdeczko wrote:
->> While we do have GT oriented print macros, add few more GuC
->> specific to have common look and feel across all messages
->> related to the GuC and to avoid chasing the gt pointer.
->>
->> We will use these macros shortly in upcoming patches.
->>
->> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Cc: John Harrison <John.C.Harrison@Intel.com>
->> ---
->>   drivers/gpu/drm/i915/gt/uc/intel_guc_print.h | 48 ++++++++++++++++++++
->>   1 file changed, 48 insertions(+)
->>   create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_print.h
->>
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_print.h
->> b/drivers/gpu/drm/i915/gt/uc/intel_guc_print.h
->> new file mode 100644
->> index 000000000000..e75989d4ba06
->> --- /dev/null
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_print.h
->> @@ -0,0 +1,48 @@
->> +/* SPDX-License-Identifier: MIT */
->> +/*
->> + * Copyright © 2023 Intel Corporation
->> + */
->> +
->> +#ifndef __INTEL_GUC_PRINT__
->> +#define __INTEL_GUC_PRINT__
->> +
->> +#include "gt/intel_gt.h"
-> This necessary only for the guc_to_gt() accessor? Hmm. Maybe it is worth
-> moving that to intel_guc.h? I know Jani for one would like to see all of
-> that cleaned up. But maybe that's a follow up patch.
+Testcase: igt/gem_eio/in-flight-suspend
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Signed-off-by: Chris Wilson <chris.p.wilson@linux.intel.com>
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c | 10 ++++------
+ 1 file changed, 4 insertions(+), 6 deletions(-)
 
-we can't move it easily without creating new intel_guc_types.h file for
-all struct definitions, so definitely separate follow up series would be
-needed
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+index cef3d6f5c34e..74d1dd3793f9 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+@@ -317,19 +317,17 @@ int intel_gt_resume(struct intel_gt *gt)
+ 
+ static void wait_for_suspend(struct intel_gt *gt)
+ {
+-	if (!intel_gt_pm_is_awake(gt))
+-		return;
+-
+-	if (intel_gt_wait_for_idle(gt, I915_GT_SUSPEND_IDLE_TIMEOUT) == -ETIME) {
++	if (intel_gt_wait_for_idle(gt, I915_GT_SUSPEND_IDLE_TIMEOUT) == -ETIME)
+ 		/*
+ 		 * Forcibly cancel outstanding work and leave
+ 		 * the gpu quiet.
+ 		 */
+ 		intel_gt_set_wedged(gt);
+-		intel_gt_retire_requests(gt);
+-	}
+ 
+ 	intel_gt_pm_wait_for_idle(gt);
++
++	/* Make the GPU available again for swapout */
++	intel_gt_unset_wedged(gt);
+ }
+ 
+ void intel_gt_suspend_prepare(struct intel_gt *gt)
+-- 
+2.39.0
 
-Michal
-
-> 
-> John.
-> 
->> +#include "gt/intel_gt_print.h"
->> +
->> +#define guc_printk(_guc, _level, _fmt, ...) \
->> +    gt_##_level(guc_to_gt(_guc), "GUC: " _fmt, ##__VA_ARGS__)
->> +
->> +#define guc_err(_guc, _fmt, ...) \
->> +    guc_printk((_guc), err, _fmt, ##__VA_ARGS__)
->> +
->> +#define guc_warn(_guc, _fmt, ...) \
->> +    guc_printk((_guc), warn, _fmt, ##__VA_ARGS__)
->> +
->> +#define guc_notice(_guc, _fmt, ...) \
->> +    guc_printk((_guc), notice, _fmt, ##__VA_ARGS__)
->> +
->> +#define guc_info(_guc, _fmt, ...) \
->> +    guc_printk((_guc), info, _fmt, ##__VA_ARGS__)
->> +
->> +#define guc_dbg(_guc, _fmt, ...) \
->> +    guc_printk((_guc), dbg, _fmt, ##__VA_ARGS__)
->> +
->> +#define guc_err_ratelimited(_guc, _fmt, ...) \
->> +    guc_printk((_guc), err_ratelimited, _fmt, ##__VA_ARGS__)
->> +
->> +#define guc_probe_error(_guc, _fmt, ...) \
->> +    guc_printk((_guc), probe_error, _fmt, ##__VA_ARGS__)
->> +
->> +#define guc_WARN(_guc, _cond, _fmt, ...) \
->> +    gt_WARN(guc_to_gt(_guc), _cond, "GUC: " _fmt, ##__VA_ARGS__)
->> +
->> +#define guc_WARN_ONCE(_guc, _cond, _fmt, ...) \
->> +    gt_WARN_ONCE(guc_to_gt(_guc), _cond, "GUC: " _fmt, ##__VA_ARGS__)
->> +
->> +#define guc_WARN_ON(_guc, _cond) \
->> +    gt_WARN(guc_to_gt(_guc), _cond, "%s(%s)", "guc_WARN_ON",
->> __stringify(_cond))
->> +
->> +#define guc_WARN_ON_ONCE(_guc, _cond) \
->> +    gt_WARN_ONCE(guc_to_gt(_guc), _cond, "%s(%s)",
->> "guc_WARN_ON_ONCE", __stringify(_cond))
->> +
->> +#endif /* __INTEL_GUC_PRINT__ */
-> 
