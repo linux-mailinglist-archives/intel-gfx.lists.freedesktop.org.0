@@ -2,51 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00FCA679C5A
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jan 2023 15:47:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5050B679C5C
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jan 2023 15:47:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4865610E6A3;
-	Tue, 24 Jan 2023 14:47:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D246210E6A5;
+	Tue, 24 Jan 2023 14:47:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D42C10E6A3
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Jan 2023 14:47:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C650E10E692
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Jan 2023 14:47:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674571628; x=1706107628;
+ t=1674571635; x=1706107635;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=bjPJjq+cK/Rgm8o0SldQP8ldq5EXepigdss6dR5uwk4=;
- b=iv0+9JaKWinsdKHGNLhMfiMPWY5aSr1J7+ZmwGSyd+BjkO2ABY9qq2Zi
- 6px5AB9EDdHoNEeh6MWDvuP8lvHL1zF3Grf2tPsB0Nvtpax4+oaalCZcr
- hH875l4m7L2eACQsikp/2Y81Z1cT6h4mtDaNPhv+PQgUzRy/suS2/M1t6
- PDpSeddB92lK5XaExjHLeEnV0cylQ1PJ0ZMbiCvoTOQdzCA/l4Zp0M2Ma
- gbDKLvsdCjlmeeEQFZ/NxbftErpcwE1fiZrzAh1NjJzSzYRPQYmXqTZ6u
- rwKZq5tOnjiYEyZO/dPC3/tvNuY84tdFhnj4fycWm+nl4YFo4mokS0Z2O A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="412538925"
-X-IronPort-AV: E=Sophos;i="5.97,242,1669104000"; d="scan'208";a="412538925"
+ bh=KO2ytF2jJRqED3i1Iu/viAxWQmEZPL8sXPlTvlp5ROE=;
+ b=ccUq1qE8IGwngqdcXEr0AYSKGvo8hyV2U6pnPt3J7p7QEaauge8/s/dV
+ SbKxYs6VlgLcWqN5eiEbX04WB/uhDOAdrdrCTMOdYh2QgfHJ7ru9Tv4Ln
+ umyNfMz5nLQxXwu79VTzxQ3AHBIUrIme9Lss/dJWXJvD4hyO0p/yJEWVY
+ TfeYpDySWMYOGdScGWUelxfeCL3k5v9pPeIFtR/9ZYAmGUxaCydHGsbOF
+ 4jR1/eNlC9tTeT+mL3A3V2VMK+X4EfEEuOxsx5O8sabHayc/I57AAFXrZ
+ TZBdc3w3tq12yAd1YOwWNFQgq1+1Ohz/DITmAINPCLkClGlLkmC0Bq2pI g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="412538949"
+X-IronPort-AV: E=Sophos;i="5.97,242,1669104000"; d="scan'208";a="412538949"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2023 06:47:07 -0800
+ 24 Jan 2023 06:47:14 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="639602486"
-X-IronPort-AV: E=Sophos;i="5.97,242,1669104000"; d="scan'208";a="639602486"
+X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="639602610"
+X-IronPort-AV: E=Sophos;i="5.97,242,1669104000"; d="scan'208";a="639602610"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
- by orsmga006.jf.intel.com with SMTP; 24 Jan 2023 06:47:03 -0800
+ by orsmga006.jf.intel.com with SMTP; 24 Jan 2023 06:47:07 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 24 Jan 2023 16:47:02 +0200
+ Tue, 24 Jan 2023 16:47:06 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 24 Jan 2023 16:46:24 +0200
-Message-Id: <20230124144628.4649-10-ville.syrjala@linux.intel.com>
+Date: Tue, 24 Jan 2023 16:46:25 +0200
+Message-Id: <20230124144628.4649-11-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230124144628.4649-1-ville.syrjala@linux.intel.com>
 References: <20230124144628.4649-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 09/13] drm/i915/sdvo: Do ELD hardware readout
+Subject: [Intel-gfx] [PATCH v3 10/13] drm/i915/audio: Hook up ELD into the
+ state checker
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,72 +66,95 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Read out the ELD from the hw so the state checker can verify it.
-
-v2: Check the "ELD valid" bit separately
-v3: Fix ELD tx rate handling during readout
+Have the state checker validate the ELD. For now we'll
+just dump it out as a hex buffer on a mismatch, maybe
+someone will get inspired to decode it properly at some
+point...
 
 Cc: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 Cc: Takashi Iwai <tiwai@suse.de>
-Reviewed-by: Jani Nikula <jani.nikula@intel.com> #v1
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Reviewed-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_sdvo.c | 27 ++++++++++++++++++++++-
- 1 file changed, 26 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 43 ++++++++++++++++++++
+ 1 file changed, 43 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-index 68e5c7be2135..c469ec3e6042 100644
---- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-+++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-@@ -1069,7 +1069,8 @@ static ssize_t intel_sdvo_read_infoframe(struct intel_sdvo *intel_sdvo,
- 				  &tx_rate, 1))
- 		return -ENXIO;
- 
--	if (tx_rate == SDVO_HBUF_TX_DISABLED)
-+	/* TX_DISABLED doesn't mean disabled for ELD */
-+	if (if_index != SDVO_HBUF_INDEX_ELD && tx_rate == SDVO_HBUF_TX_DISABLED)
- 		return 0;
- 
- 	if (!intel_sdvo_get_hbuf_size(intel_sdvo, &hbuf_size))
-@@ -1186,6 +1187,28 @@ static void intel_sdvo_get_avi_infoframe(struct intel_sdvo *intel_sdvo,
- 			      frame->any.type, HDMI_INFOFRAME_TYPE_AVI);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index e37cca6b18c6..717ca3d7890d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -5383,6 +5383,12 @@ intel_compare_dp_vsc_sdp(const struct drm_dp_vsc_sdp *a,
+ 	return memcmp(a, b, sizeof(*a)) == 0;
  }
  
-+static void intel_sdvo_get_eld(struct intel_sdvo *intel_sdvo,
-+			       struct intel_crtc_state *crtc_state)
++static bool
++intel_compare_buffer(const u8 *a, const u8 *b, size_t len)
 +{
-+	struct drm_i915_private *i915 = to_i915(intel_sdvo->base.base.dev);
-+	ssize_t len;
-+	u8 val;
-+
-+	if (!crtc_state->has_audio)
-+		return;
-+
-+	if (!intel_sdvo_get_value(intel_sdvo, SDVO_CMD_GET_AUDIO_STAT, &val, 1))
-+		return;
-+
-+	if ((val & SDVO_AUDIO_ELD_VALID) == 0)
-+		return;
-+
-+	len = intel_sdvo_read_infoframe(intel_sdvo, SDVO_HBUF_INDEX_ELD,
-+					crtc_state->eld, sizeof(crtc_state->eld));
-+	if (len < 0)
-+		drm_dbg_kms(&i915->drm, "failed to read ELD\n");
++	return memcmp(a, b, len) == 0;
 +}
 +
- static bool intel_sdvo_set_tv_format(struct intel_sdvo *intel_sdvo,
- 				     const struct drm_connector_state *conn_state)
- {
-@@ -1743,6 +1766,8 @@ static void intel_sdvo_get_config(struct intel_encoder *encoder,
+ static void
+ pipe_config_infoframe_mismatch(struct drm_i915_private *dev_priv,
+ 			       bool fastset, const char *name,
+@@ -5433,6 +5439,30 @@ pipe_config_dp_vsc_sdp_mismatch(struct drm_i915_private *dev_priv,
  	}
- 
- 	intel_sdvo_get_avi_infoframe(intel_sdvo, pipe_config);
-+
-+	intel_sdvo_get_eld(intel_sdvo, pipe_config);
  }
  
- static void intel_sdvo_disable_audio(struct intel_sdvo *intel_sdvo)
++static void
++pipe_config_buffer_mismatch(struct drm_i915_private *dev_priv,
++			    bool fastset, const char *name,
++			    const u8 *a, const u8 *b, size_t len)
++{
++	if (fastset) {
++		if (!drm_debug_enabled(DRM_UT_KMS))
++			return;
++
++		drm_dbg_kms(&dev_priv->drm,
++			    "fastset mismatch in %s buffer\n", name);
++		print_hex_dump(KERN_DEBUG, "expected: ", DUMP_PREFIX_NONE,
++			       16, 0, a, len, false);
++		print_hex_dump(KERN_DEBUG, "found: ", DUMP_PREFIX_NONE,
++			       16, 0, b, len, false);
++	} else {
++		drm_err(&dev_priv->drm, "mismatch in %s buffer\n", name);
++		print_hex_dump(KERN_ERR, "expected: ", DUMP_PREFIX_NONE,
++			       16, 0, a, len, false);
++		print_hex_dump(KERN_ERR, "found: ", DUMP_PREFIX_NONE,
++			       16, 0, b, len, false);
++	}
++}
++
+ static void __printf(4, 5)
+ pipe_config_mismatch(bool fastset, const struct intel_crtc *crtc,
+ 		     const char *name, const char *format, ...)
+@@ -5631,6 +5661,18 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 	} \
+ } while (0)
+ 
++#define PIPE_CONF_CHECK_BUFFER(name, len) do { \
++	BUILD_BUG_ON(sizeof(current_config->name) != (len)); \
++	BUILD_BUG_ON(sizeof(pipe_config->name) != (len)); \
++	if (!intel_compare_buffer(current_config->name, pipe_config->name, (len))) { \
++		pipe_config_buffer_mismatch(dev_priv, fastset, __stringify(name), \
++					    current_config->name, \
++					    pipe_config->name, \
++					    (len)); \
++		ret = false; \
++	} \
++} while (0)
++
+ #define PIPE_CONF_CHECK_COLOR_LUT(lut, is_pre_csc_lut) do { \
+ 	if (current_config->gamma_mode == pipe_config->gamma_mode && \
+ 	    !intel_color_lut_equal(current_config, \
+@@ -5702,6 +5744,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 	PIPE_CONF_CHECK_BOOL(fec_enable);
+ 
+ 	PIPE_CONF_CHECK_BOOL_INCOMPLETE(has_audio);
++	PIPE_CONF_CHECK_BUFFER(eld, MAX_ELD_BYTES);
+ 
+ 	PIPE_CONF_CHECK_X(gmch_pfit.control);
+ 	/* pfit ratios are autocomputed by the hw on gen4+ */
 -- 
 2.39.1
 
