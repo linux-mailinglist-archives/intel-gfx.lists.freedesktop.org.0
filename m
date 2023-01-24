@@ -1,61 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D417679A8F
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jan 2023 14:51:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68678679AF5
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jan 2023 15:02:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F74110E675;
-	Tue, 24 Jan 2023 13:51:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF2AA10E68E;
+	Tue, 24 Jan 2023 14:02:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com
- [IPv6:2a00:1450:4864:20::12b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A482810E675;
- Tue, 24 Jan 2023 13:51:23 +0000 (UTC)
-Received: by mail-lf1-x12b.google.com with SMTP id j17so23545840lfr.3;
- Tue, 24 Jan 2023 05:51:23 -0800 (PST)
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com
+ [IPv6:2a00:1450:4864:20::135])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2B7610E68B;
+ Tue, 24 Jan 2023 14:02:21 +0000 (UTC)
+Received: by mail-lf1-x135.google.com with SMTP id cf42so23590073lfb.1;
+ Tue, 24 Jan 2023 06:02:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=SPGHNqfixBltMvZAN4InrLRY2Kd3P0pviwxzaKlvJp8=;
- b=XXIoV9CP66hfcWaCvDMwybrn6HfL7VTzu4/4vgJQwIGE1BscX9kvC+6lDEFg+iKkKJ
- TkEyGI4E2q3WXAZTdBtGkqqxfb6mF9StvWAuswzDWXAsbEjZ92cJIq0jOzhZtjmJUuNP
- 9yVuhCi8v8yXHmQ1UIigBZuMFPGS1DwKS/z/DFMxAuW5vml32TRbHKW+VfHZzfquIe+g
- PFjber+doiQYpmc3tTXX3iBVtLOqT/o7pSFlgCUUvQSZiRIVP7XMNfaBHfTgEtlP+QEH
- dUzOW/gDIr2NZ5ImJXucFyEASE5BFjOuRpEdf4iRxOdP0CI5PuWHKeEQ20OlJOfnseQK
- pXqg==
+ bh=JpmUW2uzBEebCsOWSMVc3QDBmaoUlSnuYaYqa8KE94c=;
+ b=BcZCdu1zd26n9h7SnmTlTpQQ+c0d8k47pgbf/Rva8EEu3dSHqACBADDC6N1omyE7G2
+ y+jMtIwZIG/c7eh5pObS6LHdJ2nQVA5jhyIBKQ/b2/Lo+gLjLr8P7mYy60nso3R/bUT2
+ p+vcq0P2APmjJsMHzbwJ3UaitEP7Mx9dAOD14wQJgnNHnPZGjk2hkS/ZkAqDaqvhRmle
+ mg2yjBvnBJJ+xQPFPQ3eFa0hdqZz1kDi4uP6pLwtKUkd3eVeC9fwpdgeq21vIh4PKRrC
+ obzBoL4o6kUUyGPkQjwM1Ey04D+mD1sKDgqP9yYFc8BaOkzmdb9iX41xZAPo2cbcKgyr
+ LR/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=SPGHNqfixBltMvZAN4InrLRY2Kd3P0pviwxzaKlvJp8=;
- b=wT/hNcQDfqZbBZ2efFUuYB91zeAwazE4ykUHlGeUcmIUewiQ37BzOHu28mwXvccCjP
- ZdvYOO9JLZG/m5CuohezgddtPc9CRrvLWWHyZsp0z6rz2PZfkJDRgKhwTVdBjTUCpT0b
- XAbHQIRwkFSnXiCeqLKt7gsZKH8X11UxYUf3707J9v96z3wDVS0E5eKrAkZdH4+E38rF
- EoLoKttWuiXqTlFwimyiBYQ0x32EoiMZiPhh0+9IVkxdpirVkOHUuBMObAxzVgQ63FMe
- n0OOBLpvqpzysCiUjQ7fXwwxHep7IJ8gwrwHSTt5Q9rn+DSs/AtogcYNWxBmSG2yq0tL
- nmOg==
-X-Gm-Message-State: AFqh2kpM6Ab7AXUJvqAAupnn/NnsI1tZp4KaZDwOOB7fRBkbxfwNMfud
- wJdYEuUCSLnoWiwcGQhAMwkt2QNrYks2g5HjWkE=
-X-Google-Smtp-Source: AMrXdXuinxcT0STEP2SU8kyZT4GXLBAc+uneH+vNt/I0nEdBnA1PJ7zha0kVcjgt5Z3FgLZqtSC6cUP1GUmQJXKJG7Y=
-X-Received: by 2002:a05:6512:1303:b0:4d2:8b26:e27 with SMTP id
- x3-20020a056512130300b004d28b260e27mr1373667lfu.185.1674568281826; Tue, 24
- Jan 2023 05:51:21 -0800 (PST)
+ bh=JpmUW2uzBEebCsOWSMVc3QDBmaoUlSnuYaYqa8KE94c=;
+ b=b49sx1FEqfJZn3bYfhvpvSk6O078oajVwsKBv5fdWHWlxp1rlSZTJiTQAhrnHmpGA3
+ LtKSSwz5K4iLJ1vJ+yAPJsD9cj0CvipQx01z0qin++JKohxVOdIOtPLcWcyFbHCCoA1D
+ InK2zVnItTJlQXb8+b48BuQJpUIjJeHc7MYHI7wIHXJNzOm1xCOvtIvapxm3gwCWRhA+
+ Ya7pNYAyYcqlNA3glgrHJCSfsNgZ0NcC7IT0MigIfI9f8c3GhqOsp5BXFBjao2PVoiHf
+ HACIYuaf5HLVtOZwtWEQgKXuLehVfozk+6F5/CX6/8fcDpP2LKWpRWLRI/Anid0NltSl
+ l94g==
+X-Gm-Message-State: AFqh2kom99h5KYg4Vf3/sKTt8M2mGNA0gs8vqow0Vwx+Sn9wXo4tfi5v
+ 4vMs5+hHgzRzewiz0MqhX0YbUR1J8OeBszp3TlescdVD06o=
+X-Google-Smtp-Source: AMrXdXsXThp92oYSPt3YksAHwf6ZVJDkeOZnK7/3qxxoICUQDFpwvP7iIXTWZgmMVRz+HSt/Xurcyy0hGKYWUSp2pok=
+X-Received: by 2002:a19:8c19:0:b0:4ca:f3c2:2670 with SMTP id
+ o25-20020a198c19000000b004caf3c22670mr2359202lfd.166.1674568939874; Tue, 24
+ Jan 2023 06:02:19 -0800 (PST)
 MIME-Version: 1.0
 References: <20230124125726.13323-1-christian.koenig@amd.com>
- <20230124125726.13323-3-christian.koenig@amd.com>
-In-Reply-To: <20230124125726.13323-3-christian.koenig@amd.com>
+ <20230124125726.13323-4-christian.koenig@amd.com>
+In-Reply-To: <20230124125726.13323-4-christian.koenig@amd.com>
 From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Tue, 24 Jan 2023 13:50:54 +0000
-Message-ID: <CAM0jSHOns_E0-QtUVBfOqsF8BRpdqCcMwcgDuiFT9L-ajmJEZA@mail.gmail.com>
+Date: Tue, 24 Jan 2023 14:01:52 +0000
+Message-ID: <CAM0jSHOVr0qfTfXTeuEh81joaAs2pE8+6Pbu7jY_xGZrTeJuxA@mail.gmail.com>
 To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 3/5] drm/ttm: stop allocating a dummy
- resource for pipelined gutting
+Subject: Re: [Intel-gfx] [PATCH 4/5] drm/ttm: prevent moving of pinned BOs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,8 +74,16 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Tue, 24 Jan 2023 at 12:57, Christian K=C3=B6nig
 <ckoenig.leichtzumerken@gmail.com> wrote:
 >
-> That should not be necessary any more when drivers should at least be
-> able to handle a move without a resource.
+> We have checks for this in the individual drivers move callback, but
+> it's probably better to generally forbit that on a higher level.
+
+forbid
+
+>
+> Also stops exporting ttm_resource_compat() since that's not necessary
+> any more after removing the extra checks in vmwgfx.
 >
 > Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+
+Idea seems reasonable to me,
 Reviewed-by: Matthew Auld <matthew.auld@intel.com>
