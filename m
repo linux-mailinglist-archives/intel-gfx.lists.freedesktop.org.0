@@ -2,68 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B213D679488
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jan 2023 10:51:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AEF1B679496
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jan 2023 10:54:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F40810E252;
-	Tue, 24 Jan 2023 09:51:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DC2310E63A;
+	Tue, 24 Jan 2023 09:54:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com
- [IPv6:2a00:1450:4864:20::32f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3D9F10E02E;
- Tue, 24 Jan 2023 09:51:32 +0000 (UTC)
-Received: by mail-wm1-x32f.google.com with SMTP id
- d4-20020a05600c3ac400b003db1de2aef0so10488687wms.2; 
- Tue, 24 Jan 2023 01:51:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=b/hZAUEENIOpitZBZnZD+E68i4562ispX1r1ycpeYpc=;
- b=oYIyZc6rzay73sgztLEhw6NNSmCaFr3RVeP/xaswdl2t9V+9hu+Z7ltoQ6Fo1kSeWY
- 3zVycVT63q4CBcnnXK70oDzJC4XdL+Hj8L1m3swGw5gx+fFvc+PEGi60tQJarRzaXgUH
- HT1MLbkhSdYz2SNViBtYpOE4/t3k14tJNe7Q7eg7wPbX4tE7KRwiczIDR+oS6Cfr2LaV
- TYuAnpDWN/I01uTPxUnftzHUlFlZQ52W79nKHexy/PJ4Z/NRnF4GTORg2SFSGPW3W9tx
- PWvMHJsXy2v2qHIzWbCnNDTXQ9Xq6piOOs8xxbbNka51ks1MpYsT7mcDTyaYaxhI4QFy
- Mbuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=b/hZAUEENIOpitZBZnZD+E68i4562ispX1r1ycpeYpc=;
- b=GnJkQFGLaySCkXuSwEzNi51zfJT69fjpCq2GY+yp04Gw2MNuneXSrS4iP5VLn4mD/V
- Igi8entGvzBMTcuUoU5vg7Kvi+B29fVTg2MkMucG5wZOMer1e+nWHkGZgFJWQi9TQPgD
- h5OTRNxlGei1ViTJtpuNxh358+sbaJdTDcWSGE6qZ2AuFj8y+xhLQ+sxW8xTeJ1cjV7q
- FnCyjYzQItLX9mqdsFAnuoOlO6uEKr/Ohp0pS7tBgjVhBZHNZgqnq3OTVQVPMQEpJoqk
- zWEsYWWfUN1Fy6zcl1blN/kobLA9naeN04o0wgLtCBfxnD6jbuaOUpK69b+Kums8wtre
- Abkg==
-X-Gm-Message-State: AFqh2krdiDhbALAUB5RpzQxZpIMEg72FkL/6HJkJiYnUITU/NNK+Wveq
- qyZB1yEmHpaVGG3UEwXJisFBiQF8Cqs=
-X-Google-Smtp-Source: AMrXdXsX6UoZqizK0I3nJ8+OplJorI77QJ9Uzb6BpjKqgUWPJYAv3y+ivePFN7Psy4MuPv2v4xbzAQ==
-X-Received: by 2002:a7b:ca4a:0:b0:3d9:e8b3:57fa with SMTP id
- m10-20020a7bca4a000000b003d9e8b357famr27307764wml.30.1674553891019; 
- Tue, 24 Jan 2023 01:51:31 -0800 (PST)
-Received: from [192.168.178.21] (p5b0ea2e7.dip0.t-ipconnect.de.
- [91.14.162.231]) by smtp.gmail.com with ESMTPSA id
- j25-20020a05600c1c1900b003c71358a42dsm18013558wms.18.2023.01.24.01.51.29
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 24 Jan 2023 01:51:30 -0800 (PST)
-Message-ID: <f25004e8-ec4e-d9d7-3b8c-6115cf6692a1@gmail.com>
-Date: Tue, 24 Jan 2023 10:51:29 +0100
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D64710E63A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Jan 2023 09:54:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1674554087; x=1706090087;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=62my9U23rpLU8SDzYa4ZidkTP8O+bF1h+YYtjF6yCXc=;
+ b=XiPYCq+J++4nY6cU5zc2mOupus42EaO/PVhgzDYqH6hJk3LGL7wc5FZ4
+ vaDKRi55WSkl4JKAVYAe1rdB5T9coZoAp+FEK8I3LGCGqdaCIAHW0Euic
+ zm9wdxSRIz9OYdRq3L5mMmUcYiYLon9w0440vLP+5Qk5SqPhEfirvUMPR
+ kwsMVMc5VEzUXVpimMY1ZEZSzyj3QclH3d7e2GvP90LdtRoxjMPds0UBD
+ tMS3s81LCSO8JPRHLBPwoIltqd4hvEVBUalnXG08ohSuEFbVq+PFzRWE1
+ I3VGytfE0M/X/1qQr0sQ+6+PRK2EtZvKhI/P2g59rg8VN5mZ8XnDHmQKX w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="324936053"
+X-IronPort-AV: E=Sophos;i="5.97,242,1669104000"; d="scan'208";a="324936053"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2023 01:54:47 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="730622120"
+X-IronPort-AV: E=Sophos;i="5.97,242,1669104000"; d="scan'208";a="730622120"
+Received: from ecarran-mobl1.amr.corp.intel.com (HELO [10.212.41.53])
+ ([10.212.41.53])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2023 01:54:46 -0800
+Message-ID: <5753dc7c-635e-3f5f-359a-0cca97550d6c@linux.intel.com>
+Date: Tue, 24 Jan 2023 09:54:45 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
+ Thunderbird/102.6.1
 Content-Language: en-US
-To: Matthew Auld <matthew.william.auld@gmail.com>
-References: <20230111114256.72669-1-christian.koenig@amd.com>
- <CAM0jSHP7bRn05sWrwHriLeaQifNuqO77UPFsWg0MrW5dCeZphQ@mail.gmail.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <CAM0jSHP7bRn05sWrwHriLeaQifNuqO77UPFsWg0MrW5dCeZphQ@mail.gmail.com>
+To: Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20230123185629.1593320-1-jonathan.cavitt@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20230123185629.1593320-1-jonathan.cavitt@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/ttm: prevent moving of pinned BOs
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Use uabi engines for the default
+ engine map
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,175 +63,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 11.01.23 um 14:17 schrieb Matthew Auld:
-> On Wed, 11 Jan 2023 at 11:43, Christian König
-> <ckoenig.leichtzumerken@gmail.com> wrote:
->> We have checks for this in the individual drivers move callback, but
->> it's probably better to generally forbit that on a higher level.
->>
->> Also stops exporting ttm_resource_compat() since that's not necessary
->> any more after removing the extra checks in vmwgfx.
->>
->> Signed-off-by: Christian König <christian.koenig@amd.com>
->> ---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c |  4 ----
->>   drivers/gpu/drm/nouveau/nouveau_bo.c    |  3 ---
->>   drivers/gpu/drm/radeon/radeon_ttm.c     |  4 ----
->>   drivers/gpu/drm/ttm/ttm_bo.c            | 20 ++++++++++++--------
->>   drivers/gpu/drm/ttm/ttm_resource.c      |  1 -
->>   drivers/gpu/drm/vmwgfx/vmwgfx_bo.c      | 19 ++-----------------
->>   6 files changed, 14 insertions(+), 37 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
->> index 068c2d8495fd..677cd7d91687 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
->> @@ -466,11 +466,7 @@ static int amdgpu_bo_move(struct ttm_buffer_object *bo, bool evict,
->>                          return r;
->>          }
->>
->> -       /* Can't move a pinned BO */
->>          abo = ttm_to_amdgpu_bo(bo);
->> -       if (WARN_ON_ONCE(abo->tbo.pin_count > 0))
->> -               return -EINVAL;
->> -
->>          adev = amdgpu_ttm_adev(bo->bdev);
->>
->>          if (!old_mem || (old_mem->mem_type == TTM_PL_SYSTEM &&
->> diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
->> index 288eebc70a67..c2ec91cc845d 100644
->> --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
->> +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
->> @@ -1015,9 +1015,6 @@ nouveau_bo_move(struct ttm_buffer_object *bo, bool evict,
->>          if (ret)
->>                  goto out_ntfy;
->>
->> -       if (nvbo->bo.pin_count)
->> -               NV_WARN(drm, "Moving pinned object %p!\n", nvbo);
->> -
->>          if (drm->client.device.info.family < NV_DEVICE_INFO_V0_TESLA) {
->>                  ret = nouveau_bo_vm_bind(bo, new_reg, &new_tile);
->>                  if (ret)
->> diff --git a/drivers/gpu/drm/radeon/radeon_ttm.c b/drivers/gpu/drm/radeon/radeon_ttm.c
->> index 1e8e287e113c..67075c85f847 100644
->> --- a/drivers/gpu/drm/radeon/radeon_ttm.c
->> +++ b/drivers/gpu/drm/radeon/radeon_ttm.c
->> @@ -211,11 +211,7 @@ static int radeon_bo_move(struct ttm_buffer_object *bo, bool evict,
->>          if (r)
->>                  return r;
->>
->> -       /* Can't move a pinned BO */
->>          rbo = container_of(bo, struct radeon_bo, tbo);
->> -       if (WARN_ON_ONCE(rbo->tbo.pin_count > 0))
->> -               return -EINVAL;
->> -
->>          rdev = radeon_get_rdev(bo->bdev);
->>          if (old_mem->mem_type == TTM_PL_SYSTEM && bo->ttm == NULL) {
->>                  ttm_bo_move_null(bo, new_mem);
->> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
->> index 326a3d13a829..9baccb2f6e99 100644
->> --- a/drivers/gpu/drm/ttm/ttm_bo.c
->> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
->> @@ -894,14 +894,18 @@ int ttm_bo_validate(struct ttm_buffer_object *bo,
->>          if (!placement->num_placement && !placement->num_busy_placement)
->>                  return ttm_bo_pipeline_gutting(bo);
->>
->> -       /*
->> -        * Check whether we need to move buffer.
->> -        */
->> -       if (!bo->resource || !ttm_resource_compat(bo->resource, placement)) {
->> -               ret = ttm_bo_move_buffer(bo, placement, ctx);
->> -               if (ret)
->> -                       return ret;
->> -       }
->> +       /* Check whether we need to move buffer. */
->> +       if (bo->resource && ttm_resource_compat(bo->resource, placement))
->> +               return 0;
-> Note this now skips the tt create below (intentional?). I think i915
-> needed that, since it creates a dummy system resource initially for
-> all objects, and then relies on ZERO_ALLOC being set for certain
-> objects to know if the memory needs to be cleared or not when later
-> doing the dummy -> vram. Thoughts?
 
-That's unproblematic. On initial allocation bo->resource is NULL so we 
-never branch out here.
+On 23/01/2023 18:56, Jonathan Cavitt wrote:
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> 
+> Default engine map is exactly about uabi engines so no excuse not to use
+> the appropriate iterator to populate it.
+> 
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> Reveiwed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 
-Christian.
+Fixed the r-b spelling and pushed - thanks for the review and sending 
+the patch over!
 
->
->> +
->> +       /* Moving of pinned BOs is forbidden */
->> +       if (bo->pin_count)
->> +               return -EINVAL;
->> +
->> +       ret = ttm_bo_move_buffer(bo, placement, ctx);
->> +       if (ret)
->> +               return ret;
->> +
->>          /*
->>           * We might need to add a TTM.
->>           */
->> diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
->> index b8a826a24fb2..7333f7a87a2f 100644
->> --- a/drivers/gpu/drm/ttm/ttm_resource.c
->> +++ b/drivers/gpu/drm/ttm/ttm_resource.c
->> @@ -361,7 +361,6 @@ bool ttm_resource_compat(struct ttm_resource *res,
->>
->>          return false;
->>   }
->> -EXPORT_SYMBOL(ttm_resource_compat);
->>
->>   void ttm_resource_set_bo(struct ttm_resource *res,
->>                           struct ttm_buffer_object *bo)
->> diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_bo.c b/drivers/gpu/drm/vmwgfx/vmwgfx_bo.c
->> index 321c551784a1..dbcef460c452 100644
->> --- a/drivers/gpu/drm/vmwgfx/vmwgfx_bo.c
->> +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_bo.c
->> @@ -87,12 +87,7 @@ int vmw_bo_pin_in_placement(struct vmw_private *dev_priv,
->>          if (unlikely(ret != 0))
->>                  goto err;
->>
->> -       if (buf->base.pin_count > 0)
->> -               ret = ttm_resource_compat(bo->resource, placement)
->> -                       ? 0 : -EINVAL;
->> -       else
->> -               ret = ttm_bo_validate(bo, placement, &ctx);
->> -
->> +       ret = ttm_bo_validate(bo, placement, &ctx);
->>          if (!ret)
->>                  vmw_bo_pin_reserved(buf, true);
->>
->> @@ -128,12 +123,6 @@ int vmw_bo_pin_in_vram_or_gmr(struct vmw_private *dev_priv,
->>          if (unlikely(ret != 0))
->>                  goto err;
->>
->> -       if (buf->base.pin_count > 0) {
->> -               ret = ttm_resource_compat(bo->resource, &vmw_vram_gmr_placement)
->> -                       ? 0 : -EINVAL;
->> -               goto out_unreserve;
->> -       }
->> -
->>          ret = ttm_bo_validate(bo, &vmw_vram_gmr_placement, &ctx);
->>          if (likely(ret == 0) || ret == -ERESTARTSYS)
->>                  goto out_unreserve;
->> @@ -218,11 +207,7 @@ int vmw_bo_pin_in_start_of_vram(struct vmw_private *dev_priv,
->>                  (void) ttm_bo_validate(bo, &vmw_sys_placement, &ctx);
->>          }
->>
->> -       if (buf->base.pin_count > 0)
->> -               ret = ttm_resource_compat(bo->resource, &placement)
->> -                       ? 0 : -EINVAL;
->> -       else
->> -               ret = ttm_bo_validate(bo, &placement, &ctx);
->> +       ret = ttm_bo_validate(bo, &placement, &ctx);
->>
->>          /* For some reason we didn't end up at the start of vram */
->>          WARN_ON(ret == 0 && bo->resource->start != 0);
->> --
->> 2.34.1
->>
+Regards,
 
+Tvrtko
+
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_context.c | 9 ++++-----
+>   1 file changed, 4 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> index 454e73a433c8..42a39e103d7c 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> @@ -1096,16 +1096,15 @@ static struct i915_gem_engines *alloc_engines(unsigned int count)
+>   static struct i915_gem_engines *default_engines(struct i915_gem_context *ctx,
+>   						struct intel_sseu rcs_sseu)
+>   {
+> -	const struct intel_gt *gt = to_gt(ctx->i915);
+> +	const unsigned int max = I915_NUM_ENGINES;
+>   	struct intel_engine_cs *engine;
+>   	struct i915_gem_engines *e, *err;
+> -	enum intel_engine_id id;
+>   
+> -	e = alloc_engines(I915_NUM_ENGINES);
+> +	e = alloc_engines(max);
+>   	if (!e)
+>   		return ERR_PTR(-ENOMEM);
+>   
+> -	for_each_engine(engine, gt, id) {
+> +	for_each_uabi_engine(engine, ctx->i915) {
+>   		struct intel_context *ce;
+>   		struct intel_sseu sseu = {};
+>   		int ret;
+> @@ -1113,7 +1112,7 @@ static struct i915_gem_engines *default_engines(struct i915_gem_context *ctx,
+>   		if (engine->legacy_idx == INVALID_ENGINE)
+>   			continue;
+>   
+> -		GEM_BUG_ON(engine->legacy_idx >= I915_NUM_ENGINES);
+> +		GEM_BUG_ON(engine->legacy_idx >= max);
+>   		GEM_BUG_ON(e->engines[engine->legacy_idx]);
+>   
+>   		ce = intel_context_create(engine);
