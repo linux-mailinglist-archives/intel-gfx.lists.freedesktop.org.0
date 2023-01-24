@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBCD8679B79
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jan 2023 15:17:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAB28679BA2
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jan 2023 15:22:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1445A10E68B;
-	Tue, 24 Jan 2023 14:17:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E1A410E68B;
+	Tue, 24 Jan 2023 14:22:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 416D110E68B
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Jan 2023 14:17:49 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74BAE10E68B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Jan 2023 14:22:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674569869; x=1706105869;
+ t=1674570146; x=1706106146;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=S4ju1uXYedWdw+kNuDAWt6R6Z+FOpwODu2KS7vV7iQ4=;
- b=HesT2rrBB4hK1ZgxmEihuniZr3Net2aoxnLxyVXu8xcCW6g5RpR8gGdg
- h89aJ32nLD7qYi5R3l++pP51ujHfk4dy5rrAuBNZhqIlWwJL7/61mdHj9
- QGozDQfEXPhoYGaZ9zPrlra/FEpAnwIpxvUCJjvn+ApXKnmwwXzwUH8qA
- 4kGaCPbsduKSjrYwU9HOr0Mur9Iq+7pCthv8+DruhaBW05zURSFbScSWn
- cRRhRPRAqWlioI4k0Dh+v9C8XRf/0AADKEfYWpbQhRd1Ji4dkWFTJPAVK
- VTY7fO6g/AjdxRdIiotIMHXB+PWgkJTlKHKY5GRQFP8Dgljj7ggDfi5uD g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="309875222"
-X-IronPort-AV: E=Sophos;i="5.97,242,1669104000"; d="scan'208";a="309875222"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2023 06:17:48 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="725487221"
-X-IronPort-AV: E=Sophos;i="5.97,242,1669104000"; d="scan'208";a="725487221"
+ bh=gYI6cwGq147BlTc4MBP++o/G/PrhqYqGZbdIjTdnDhI=;
+ b=CVVb+GJYDvecTwmdZq98xewrCGxJGMlkjqEh1/pejwcYfuIgrrKdhiYR
+ gjf0e/wXuSlU0SC6s+d106xhy6WSUaWRlVNZoS0nJAoH3o01f7vZByHjj
+ 2+2a0ug3kSE9WTMuZ/cd5El4La4ysmuQoqxV++9uhfJryJIqdaGGmMrwW
+ mqmXjtKQ15uA7ZPF9IYMcTYYs1iDXcYl94c29MJjRb8r2sMf9d+/55wKW
+ EKVXxbNmJw9oIkoTfoNDSbM0WNvNwYjxdPAHaPOritvb5DbYtpSBdxf6X
+ Ihev0I8Obr5xI+xC2RctDRo5cjNSI8Pl1d11R9PfkQb05oAFGMYa2N9wc w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="328390346"
+X-IronPort-AV: E=Sophos;i="5.97,242,1669104000"; d="scan'208";a="328390346"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2023 06:22:25 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="907509766"
+X-IronPort-AV: E=Sophos;i="5.97,242,1669104000"; d="scan'208";a="907509766"
 Received: from nirmoyda-desk.igk.intel.com ([10.102.42.231])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2023 06:17:46 -0800
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2023 06:22:23 -0800
 From: Nirmoy Das <nirmoy.das@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 24 Jan 2023 15:17:40 +0100
-Message-Id: <20230124141740.17601-1-nirmoy.das@intel.com>
+Date: Tue, 24 Jan 2023 15:22:12 +0100
+Message-Id: <20230124142212.18498-1-nirmoy.das@intel.com>
 X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
 Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
  85579 Neubiberg, Germany,
  Commercial Register: Amtsgericht Muenchen HRB 186928 
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/display: Pass drm_i915_private as
- param to i915 funcs
+Subject: [Intel-gfx] [PATCH] drm/i915/xehpsdv/selftests: Flush all tiles on
+ test exit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,119 +58,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>, chris.p.wilson@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For i915 functions pass struct drm_i915_private directly instead of
-struct drm_device.
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Suggested-by: Jani Nikula <jani.nikula@linux.intel.com>
+We want to idle all tiles when exiting selftests.
+
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 2 +-
- drivers/gpu/drm/i915/display/intel_fbdev.c   | 8 ++++----
- drivers/gpu/drm/i915/display/intel_fbdev.h   | 8 ++++----
- drivers/gpu/drm/i915/i915_driver.c           | 4 +++-
- 4 files changed, 12 insertions(+), 10 deletions(-)
+ .../gpu/drm/i915/selftests/igt_flush_test.c   | 28 +++++++++++--------
+ 1 file changed, 17 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index e37cca6b18c6..b014d8626ef7 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -9004,7 +9004,7 @@ void intel_display_driver_register(struct drm_i915_private *i915)
- 	 * enabled. We do it last so that the async config cannot run
- 	 * before the connectors are registered.
- 	 */
--	intel_fbdev_initial_config_async(&i915->drm);
-+	intel_fbdev_initial_config_async(i915);
+diff --git a/drivers/gpu/drm/i915/selftests/igt_flush_test.c b/drivers/gpu/drm/i915/selftests/igt_flush_test.c
+index b484e12df417..29110abb4fe0 100644
+--- a/drivers/gpu/drm/i915/selftests/igt_flush_test.c
++++ b/drivers/gpu/drm/i915/selftests/igt_flush_test.c
+@@ -14,21 +14,27 @@
  
- 	/*
- 	 * We need to coordinate the hotplugs with the asynchronous
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index 19f3b5d92a55..c2c52f8e5887 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -547,9 +547,9 @@ static void intel_fbdev_initial_config(void *data, async_cookie_t cookie)
- 		intel_fbdev_unregister(to_i915(ifbdev->helper.dev));
- }
- 
--void intel_fbdev_initial_config_async(struct drm_device *dev)
-+void intel_fbdev_initial_config_async(struct drm_i915_private *dev_priv)
+ int igt_flush_test(struct drm_i915_private *i915)
  {
--	struct intel_fbdev *ifbdev = to_i915(dev)->display.fbdev.fbdev;
-+	struct intel_fbdev *ifbdev = dev_priv->display.fbdev.fbdev;
+-	struct intel_gt *gt = to_gt(i915);
+-	int ret = intel_gt_is_wedged(gt) ? -EIO : 0;
++	struct intel_gt *gt;
++	unsigned int i;
++	int ret = 0;
  
- 	if (!ifbdev)
- 		return;
-@@ -686,9 +686,9 @@ void intel_fbdev_output_poll_changed(struct drm_device *dev)
- 		drm_fb_helper_hotplug_event(&ifbdev->helper);
- }
+-	cond_resched();
++	for_each_gt(gt, i915, i) {
++		if (intel_gt_is_wedged(gt))
++			ret = -EIO;
  
--void intel_fbdev_restore_mode(struct drm_device *dev)
-+void intel_fbdev_restore_mode(struct drm_i915_private *dev_priv)
- {
--	struct intel_fbdev *ifbdev = to_i915(dev)->display.fbdev.fbdev;
-+	struct intel_fbdev *ifbdev = dev_priv->display.fbdev.fbdev;
+-	if (intel_gt_wait_for_idle(gt, HZ * 3) == -ETIME) {
+-		pr_err("%pS timed out, cancelling all further testing.\n",
+-		       __builtin_return_address(0));
++		cond_resched();
  
- 	if (!ifbdev)
- 		return;
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.h b/drivers/gpu/drm/i915/display/intel_fbdev.h
-index 0e95e9472fa3..04fd523a5023 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.h
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.h
-@@ -15,12 +15,12 @@ struct intel_framebuffer;
+-		GEM_TRACE("%pS timed out.\n",
+-			  __builtin_return_address(0));
+-		GEM_TRACE_DUMP();
++		if (intel_gt_wait_for_idle(gt, HZ * 3) == -ETIME) {
++			pr_err("%pS timed out, cancelling all further testing.\n",
++			       __builtin_return_address(0));
  
- #ifdef CONFIG_DRM_FBDEV_EMULATION
- int intel_fbdev_init(struct drm_device *dev);
--void intel_fbdev_initial_config_async(struct drm_device *dev);
-+void intel_fbdev_initial_config_async(struct drm_i915_private *dev_priv);
- void intel_fbdev_unregister(struct drm_i915_private *dev_priv);
- void intel_fbdev_fini(struct drm_i915_private *dev_priv);
- void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous);
- void intel_fbdev_output_poll_changed(struct drm_device *dev);
--void intel_fbdev_restore_mode(struct drm_device *dev);
-+void intel_fbdev_restore_mode(struct drm_i915_private *dev_priv);
- struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev);
- #else
- static inline int intel_fbdev_init(struct drm_device *dev)
-@@ -28,7 +28,7 @@ static inline int intel_fbdev_init(struct drm_device *dev)
- 	return 0;
- }
- 
--static inline void intel_fbdev_initial_config_async(struct drm_device *dev)
-+static inline void intel_fbdev_initial_config_async(struct drm_i915_private *dev_priv)
- {
- }
- 
-@@ -48,7 +48,7 @@ static inline void intel_fbdev_output_poll_changed(struct drm_device *dev)
- {
- }
- 
--static inline void intel_fbdev_restore_mode(struct drm_device *dev)
-+static inline void intel_fbdev_restore_mode(struct drm_i915_private *i915)
- {
- }
- static inline struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 6469c7c1e154..cd6069c1762d 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -1071,7 +1071,9 @@ static int i915_driver_open(struct drm_device *dev, struct drm_file *file)
-  */
- static void i915_driver_lastclose(struct drm_device *dev)
- {
--	intel_fbdev_restore_mode(dev);
-+	struct drm_i915_private *i915 = to_i915(dev);
+-		intel_gt_set_wedged(gt);
+-		ret = -EIO;
++			GEM_TRACE("%pS timed out.\n",
++				  __builtin_return_address(0));
++			GEM_TRACE_DUMP();
 +
-+	intel_fbdev_restore_mode(i915);
++			intel_gt_set_wedged(gt);
++			ret = -EIO;
++		}
+ 	}
  
- 	vga_switcheroo_process_delayed_switch();
- }
+ 	return ret;
 -- 
 2.39.0
 
