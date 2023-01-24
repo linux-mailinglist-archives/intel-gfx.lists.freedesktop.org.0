@@ -1,148 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C2FA67923B
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jan 2023 08:45:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8890B67938A
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jan 2023 09:55:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C64AE10E615;
-	Tue, 24 Jan 2023 07:45:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BE3410E639;
+	Tue, 24 Jan 2023 08:55:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3344410E615;
- Tue, 24 Jan 2023 07:45:33 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8174010E630;
+ Tue, 24 Jan 2023 08:55:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674546333; x=1706082333;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=XRb7ZUYs4fN4YelNCuJChlIF4OaMCX8rRH1HVgjLRG4=;
- b=DlNrprcIzHx7IcLgDj17VC7RzDU73h+MSP1/UyZcHVtQUXHjRyDBpnC6
- wKH8oOwc/uzBW41WZHk1eE0nuKSUBs0pMP7YFjazePi9v+9ypkqaeqSng
- i3/vm+085lQHUsuPQfQidpP2s1Bx41459/ufdqnpDod5+F8REUo6Ey22i
- ck6uYFUz/9E76EMKcJ9QgiyB53ABd1+XKAEcqjJRhshO0n3GBb6purHYU
- QsrBHgBMixxL7ulpd5lLKkF5HrqfWFtujgUzLggMD2OvtACX5d2lJYhwA
- 1s7CU2Os1uRjkBmUNSWuPmvNXzVj3WVyPEsijhYywI+7BQo65+I7e9v38 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="305907098"
-X-IronPort-AV: E=Sophos;i="5.97,241,1669104000"; d="scan'208";a="305907098"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2023 23:45:31 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="907393856"
-X-IronPort-AV: E=Sophos;i="5.97,241,1669104000"; d="scan'208";a="907393856"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga006.fm.intel.com with ESMTP; 23 Jan 2023 23:45:30 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Mon, 23 Jan 2023 23:45:30 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Mon, 23 Jan 2023 23:45:30 -0800
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Mon, 23 Jan 2023 23:45:30 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mXVM5zsmF9VLG2zevv7d3SPmbrBHkBvjQW21vaXSN9Rprzs3EAfBPI5UkQRHBYqQu0srl0t1+bZ+n/G8WE4jOZvwn1NpyDHAruKyDDiMtuWBOH5kKvQ9w6jQdqJaObkEfk/QoffsDvAbFwNz0LARi8AtPQTzX3lymDcJe+cXGYqnKAm2duwaP6IufLFpHQrv/hf4y4vIcv30q9OZwBUruYZArzXljHpchy8BC/9Ql7aP3/3vxQlX5qD3RsimB4N98OywH//gzLES8+5kJ0ZoYttQWa9onJP9KAvC2XKzdI/YZS16TjtbzAsKY4UImAt9vowPiCYOLfJBLDoh/XHKFQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hQXSZBp3sx+3lRfm5nJtwJFHj6ZRuNxEfYitxbCUCqs=;
- b=ii5B7THdUqz5Z8WRv6Ny4GBzeiW7M7krX8W3dLW0/MQ1jz65hVw9s5/nrtpxLT401FnYkeQimuZmt8gJg4H4eGMicAAWxey5LYk1W7G2wI9KJz7qllxwWUZ0dWz4zBZvXDKUQbedtsy8TBpl5RIwMEL7hBVte/Z+brjpqkrmeNRNBnzX0pb+YgwbSKKkH08zDeMVwVwkcGfJWmQ85Tj9AJE5fzN11MRU3M/fYfvshWnJBcUQ6jG0JZMny8eVDpr5c6IDmoIwiWhGEAIJRsD1TWXcDTF2rHlKta34hIMhhwsYjJVFoLSrw6w1VyGTa4uX6Agoa70Ui5fPbrX4b5PoZg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by MW4PR11MB6862.namprd11.prod.outlook.com (2603:10b6:303:220::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Tue, 24 Jan
- 2023 07:45:28 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::593:877e:dd33:5b7a]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::593:877e:dd33:5b7a%7]) with mapi id 15.20.6002.033; Tue, 24 Jan 2023
- 07:45:28 +0000
-Date: Mon, 23 Jan 2023 23:45:25 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <20230124074525.xqprvxdtvkodcgdj@ldmartin-desk2.lan>
-X-Patchwork-Hint: comment
-References: <20230120193457.3295977-1-lucas.demarchi@intel.com>
- <20230120193457.3295977-2-lucas.demarchi@intel.com>
- <87lelt8riz.fsf@intel.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87lelt8riz.fsf@intel.com>
-X-ClientProxiedBy: MW4PR03CA0049.namprd03.prod.outlook.com
- (2603:10b6:303:8e::24) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+ t=1674550519; x=1706086519;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=SYvybLfrGK2fw35ORWZhEgLKKSptkdp3/FLobAKi6xY=;
+ b=BqUKFPjque29ytyapb/CmSn8sSSu6iN6XOnrf6d5yvgBfqK+/75YfpH/
+ dGKKLo0ou4lvGgmfejFfWuiLU/mE21MdLFES+ymb+KUqW7LMogr3alrds
+ 56Y6QdgUrxX+9FKbCZEm5NAi2L+tq+WvfXhdCdsadsKDbnf7jbMZ0VvXH
+ vgabA/BXiZ3LfP/qcI2mT2WjhCiVkM4yfIAhaIl1H6nWWOwIC8ilszFSk
+ WYY/j/b1qQyy+ONfBysX5gSmhoIfsuM8EzRA7t819tO9ILl8vX2s+y07X
+ A6KogbDTvj8oQDGIzMHJHwhNivIClIX5V9YBH2YUZjxwtYyU8Y3oWIY2F Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="412483452"
+X-IronPort-AV: E=Sophos;i="5.97,242,1669104000"; d="scan'208";a="412483452"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2023 00:55:18 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="750756504"
+X-IronPort-AV: E=Sophos;i="5.97,241,1669104000"; d="scan'208";a="750756504"
+Received: from pesir-mobl.ger.corp.intel.com (HELO localhost) ([10.252.57.197])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2023 00:55:15 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>
+In-Reply-To: <20230117233905.1662645-1-dmitry.baryshkov@linaro.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230117233905.1662645-1-dmitry.baryshkov@linaro.org>
+Date: Tue, 24 Jan 2023 10:55:12 +0200
+Message-ID: <87v8kw71n3.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|MW4PR11MB6862:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5e7f1493-d248-42e6-4f31-08dafddef623
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: oDJjof4jk2HYL/7JQBzNdTn1slv5ozY5ytv2zUCgrNOuzlPCkEAF1vB77M5mfc4znDwZx45gVCI+VJo8MHvWZDi36Ia7a+bWp4zpzwkf/WWTdeGTct2HcEYSjSyIXgD6aca00MdBnum2yAFCNVnuqo6FmDxXhojrw0bihuDI3p1bD/JB9fBQ1TBiHpHLlsqH05cEiyOMTBWmRTNoO+pgX06V80Yt+LNVQZPaVsTAedjkFNBsQf65jBy0DPU7Kigg/KnQxdMf3hl7wIiWPRSKnoWUSINCt3R5OiZgAVTNukNUtjmqq3rPLdIxuKhiRNf6s2htez8GE0qtIdkyomYdI19IQrCAV1l9LWed57h5dGAnQHgGzM3EjE1Z4UHGDRo66AG7aU6fQtpWxsNsGDKWdMLGzobGfFleFFGYiyTY2kyqN6BmtB2k2G+MIgrcLooJ7w+xykkGx6/3gM49m4NhP72kitDVsn5S14DsT5j1aHWR4Fr5ogLNkruaF6pAyS4yTQDLZlRd0k3jO9VL533XKnyJlxh8bUHhAStKP3LEiZOPSFRWaL+KX9RY6g3l0gY3Ov3u3pejw91wUItn8Lhfj8giWzsgb2MAYB13CZMXRHp+4zl0cREUOxLOfDzT6UuO6kxEaNW4loREzJkdPOgpBw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(39860400002)(366004)(396003)(136003)(346002)(376002)(451199015)(82960400001)(36756003)(5660300002)(38100700002)(2906002)(86362001)(8936002)(4326008)(8676002)(6916009)(41300700001)(66556008)(66946007)(3716004)(66476007)(83380400001)(1076003)(6506007)(186003)(6666004)(9686003)(316002)(6486002)(478600001)(6512007)(26005);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MmJZZHV2UXZZMDIzQ3VMS2t3TGNSMDJNMHRPTmVOQmVKcHJRUFFpNVBuZkQ4?=
- =?utf-8?B?dmZEQ00rV3ppUTM2NHcxVTZnanlLNzh1bUZTUWcvbFdrQUp2QVRXZjJKVldu?=
- =?utf-8?B?aERoYTY5Q01VcHZVeGYyRC90bW16UHh3VGVkTFJkQnFGQkVNc3l4NXo3b3Q1?=
- =?utf-8?B?QzlpZFkzZmtOQ016eGdXTHJEbi9IUHJwR3hBd1RCeDRKQ05qamY2SlpQdTZw?=
- =?utf-8?B?V29BQWxQYkJUVHduKzBJMG1WQzIybG83ZGloVWRud3h2b3JQQnJENWVzZThB?=
- =?utf-8?B?b0d5ajRMcXFoc1h3TERUeUkvNmZBOUZuYngrd2JqaVlBeGFKaXFDbGpsRHBx?=
- =?utf-8?B?MDRDTStlRkd4Yy9Ta0JjOUJNWHlQWU5xc3hDcS9JL2lzQ2VjenFFeUlabTlq?=
- =?utf-8?B?dnMvN0tDZUJibXIvOEpDNHhNc0gyNUVSWnQ5YXY2QXBhSlJCZGdEQ1Y0aENZ?=
- =?utf-8?B?RGlIbHBMaGtXWmMrK0liQXJUTlcrdWJYaFpzQkVsb0RCU1hFU1VlTHlFSENW?=
- =?utf-8?B?eDNwbXgvY1BnMVZ0TFpzdVRzMERyWlRsMndKU0ttMTg0SlQxZlF5azJkbHZX?=
- =?utf-8?B?aXFPNHFQcEFOYlFsN2szQW42dkdDbWZnbjBxS0hyS3VuN3dIN1ArdG5FNGZV?=
- =?utf-8?B?STM5TzltK1JhZWhCc2RpSjgwREhPa0RwcEZMbkpnUXc0dHNmMTYxVk4vTjh4?=
- =?utf-8?B?YTYrRFBNRVFlSzYwc0NPOHJlNEZnSzliRzQxV2pKR1Fma0MrRmxrM0g3SlpZ?=
- =?utf-8?B?WGR0NzQyQy90VkEzdGZxM0tORmx6ZG42cWt0ZHJoUHd3NGlZc3I5R1VtZTRU?=
- =?utf-8?B?SFllMkNPOTI2VEdRdXRHRDQ1VEtpOTNtVHpSajI1aUswYVloSmNOLzlNOTBi?=
- =?utf-8?B?K2dZK1lFcDhZMkIvU3ZTc2MvamlVeEhQYUNJY0pPaUpQNHdWRXM4S1FFQ09u?=
- =?utf-8?B?eGl0bFZMU0Mra3h3NGZPM1JWM2VPQXoweVdTVFJHQ0RwQUQ1SlRNRm9ET2ZK?=
- =?utf-8?B?L0FMK0xUUlBjR0VsTDZreXYyalByNUJyYUlEemZuU21jMFdIZlpDVGhBY2dZ?=
- =?utf-8?B?b1RmdXY0WlJtTit3Zm53S1JtaUNoRlJ0WjVqd0MwOGkwN1NNdTV1V25veTFT?=
- =?utf-8?B?Z3hjYndrQVhSMDJkUWU5SkZ0d05mVlVJeldacVVZb1VXUnp4TjczY2EyL3Bs?=
- =?utf-8?B?SC9ZYzFzZjRaWG1yUGZMM0J1eS9PbnRDSjJLZm1hV2NuNkxPelJGWFRMdHpw?=
- =?utf-8?B?Tmk4ZngxcnlMNzI4YjBwNVZPTHhmemMyM0JLL2p0NDIwVTRBV0g0Z1dpR2Vo?=
- =?utf-8?B?RjUrMC9WUERqY1ZRSVFhRlZTeXlPTzB6T2pQYmtKYStzL0JUU2taM09CYTA0?=
- =?utf-8?B?LzNsdmRrR0o3RVlwZXVhODNMOXpLVTkzU3NuMk1UUDd5NXREWkNGUWlORjJy?=
- =?utf-8?B?U25KWHdaZWlzTUlHV1hCM0NGUnl1S3JRdW1WV2cwaWI0bHNCSVYxQ2pyR1hO?=
- =?utf-8?B?MGw2bjlKaVUwSVRnd05kQ05CWjArZHN6dzZQaUNUTjJ0dEhjUTFGK3FpUXIw?=
- =?utf-8?B?N1ovTnJTMGRSQmZzeDNxRURTSDRjQU9hS3J0NHBMUEpENXJ4UytpbUZsMFVn?=
- =?utf-8?B?TWEzRCsxTVk1T0xkenprVmRwTXczMmNGbkN1Sk8vOFp5U3dDTUx6RnJTYWls?=
- =?utf-8?B?b09RUTVkZTEyakdOT1VPeWZDY3N3Z1BqcmhJVkFJQ080S2RxU3JjOE1CRXZk?=
- =?utf-8?B?VXpDcnhUeURDaUpFTE0vSDZvTzRaVG9TcUlaOEQySGhrYm4xU0JsQnZXSEVi?=
- =?utf-8?B?VWdVengwQVVxTWtjaE8yT1NpUE11TWlNUTNkckFMWDVvM0Y3cWpFcUhXbFZV?=
- =?utf-8?B?TEpybW90WnZFakl4Tm5yaWVHNjViTUc2dUorUmozV3pXTTNDOVVSYTNhZm1q?=
- =?utf-8?B?QlMwYkJ0bkhHVGp6Qlp1NHdtakw2bTk5czNsNThTNzFJT21HSWtoRHdFZ3NJ?=
- =?utf-8?B?WXhYVnJmYks4MHFZQ2JjVmVLSWFWMmY3azlNVE1LdjUrWFVzRWRVMWxZWmRD?=
- =?utf-8?B?VklIVnhKcHNyMy80RWJML012Wk93UTlvMjNYaUNQQlhzZkcvNHJvWTBNM0ZK?=
- =?utf-8?B?SVdSUEZNcmZTUWVIc3FZdTh1WngyS1dDY1ljVERJdm9CM0lVZGhLNlJiVjJS?=
- =?utf-8?B?aEE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5e7f1493-d248-42e6-4f31-08dafddef623
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jan 2023 07:45:28.2467 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: yw4bs+FSYCQEc73FhVbxYeh0uUPm6eUdd3AFsVGP4f3Qk3/0JVIrjXOf9QNCU8n09p2iMcguY2jbAA538u8UTrIgmb85+PFhj9Ijov1/h+4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6862
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v2 1/8] drm/i915: Add _PICK_EVEN_2RANGES()
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v2] drm/probe_helper: sort out poll_running
+ vs poll_enabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,126 +60,272 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, intel-gfx@lists.freedesktop.org,
+ Chen-Yu Tsai <wenst@chromium.org>, dri-devel@lists.freedesktop.org,
+ Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>, freedreno@lists.freedesktop.org,
+ Marek Szyprowski <m.szyprowski@samsung.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-(I missed this review you did before I had sent a v2.1, I will incorporate
-what is missing in the next version)
-
-On Mon, Jan 23, 2023 at 12:38:28PM +0200, Jani Nikula wrote:
->On Fri, 20 Jan 2023, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->> It's a constant pattern in the driver to need to use 2 ranges of MMIOs
->> based on port, phy, pll, etc. When that happens, instead of using
->> _PICK_EVEN(), _PICK() needs to be used.  Using _PICK() is discouraged
->> due to some reasons like:
->>
->> 1) It increases the code size since the array is declared
->>    in each call site
+On Wed, 18 Jan 2023, Dmitry Baryshkov <dmitry.baryshkov@linaro.org> wrote:
+> There are two flags attemting to guard connector polling:
+> poll_enabled and poll_running. While poll_enabled semantics is clearly
+> defined and fully adhered (mark that drm_kms_helper_poll_init() was
+> called and not finalized by the _fini() call), the poll_running flag
+> doesn't have such clearliness.
 >
->Would be interesting to see what this does, and whether the compiler has
->the smarts to combine these within each file:
+> This flag is used only in drm_helper_probe_single_connector_modes() to
+> guard calling of drm_kms_helper_poll_enable, it doesn't guard the
+> drm_kms_helper_poll_fini(), etc. Change it to only be set if the polling
+> is actually running. Tie HPD enablement to this flag.
 >
->-#define _PICK(__index, ...) (((const u32 []){ __VA_ARGS__ })[__index])
->+#define _PICK(__index, ...) (((static const u32 []){ __VA_ARGS__ })[__index])
-
-if the compiler is smart, it would be at least 1 per compilation unit.
-gcc doesn't seem smart enough to even compile it though:
-
-../drivers/gpu/drm/i915/i915_reg_defs.h:155:52: error: expected ‘)’ before ‘{’ token                                                                                                                               
-   155 | #define _PICK(__index, ...) (((static const u32 []){ __VA_ARGS__ })[__index])                                                                                                                              
-       |                              ~                     ^    
-
-What I'm thinking for the remaining uses of _PICK() is to be explicit
-and statically define them in a good .c depending on the use.
-Then use that in the macro.
-
+> This fixes the following warning reported after merging the HPD series:
 >
->> 2) Developers need to be careful not to incur an
->>    out-of-bounds array access
->> 3) Developers need to be careful that the indexes match the
->>    table. For that it may be that the table needs to contain
->>    holes, making (1) even worse.
->>
->> Add a variant of _PICK_EVEN() that works with 2 ranges and selects which
->> one to use depending on the index value.
->>
->> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->> ---
->>  drivers/gpu/drm/i915/i915_reg_defs.h | 28 ++++++++++++++++++++++++++++
->>  1 file changed, 28 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/i915_reg_defs.h b/drivers/gpu/drm/i915/i915_reg_defs.h
->> index be43580a6979..b7ec87464d69 100644
->> --- a/drivers/gpu/drm/i915/i915_reg_defs.h
->> +++ b/drivers/gpu/drm/i915/i915_reg_defs.h
->> @@ -119,6 +119,34 @@
->>   */
->>  #define _PICK_EVEN(__index, __a, __b) ((__a) + (__index) * ((__b) - (__a)))
->>
->> +/*
->> + * Like _PICK_EVEN(), but supports 2 ranges of evenly spaced address offsets.
->> + * The first range is used for indexes below @__c_index, and the second
->> + * range is used for anything above it. Example::
+> Hot plug detection already enabled
+> WARNING: CPU: 2 PID: 9 at drivers/gpu/drm/drm_bridge.c:1257 drm_bridge_hpd_enable+0x94/0x9c [drm]
+> Modules linked in: videobuf2_memops snd_soc_simple_card snd_soc_simple_card_utils fsl_imx8_ddr_perf videobuf2_common snd_soc_imx_spdif adv7511 etnaviv imx8m_ddrc imx_dcss mc cec nwl_dsi gov
+> CPU: 2 PID: 9 Comm: kworker/u8:0 Not tainted 6.2.0-rc2-15208-g25b283acd578 #6
+> Hardware name: NXP i.MX8MQ EVK (DT)
+> Workqueue: events_unbound deferred_probe_work_func
+> pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+> pc : drm_bridge_hpd_enable+0x94/0x9c [drm]
+> lr : drm_bridge_hpd_enable+0x94/0x9c [drm]
+> sp : ffff800009ef3740
+> x29: ffff800009ef3740 x28: ffff000009331f00 x27: 0000000000001000
+> x26: 0000000000000020 x25: ffff800001148ed8 x24: ffff00000a8fe000
+> x23: 00000000fffffffd x22: ffff000005086348 x21: ffff800001133ee0
+> x20: ffff00000550d800 x19: ffff000005086288 x18: 0000000000000006
+> x17: 0000000000000000 x16: ffff8000096ef008 x15: 97ffff2891004260
+> x14: 2a1403e194000000 x13: 97ffff2891004260 x12: 2a1403e194000000
+> x11: 7100385f29400801 x10: 0000000000000aa0 x9 : ffff800008112744
+> x8 : ffff000000250b00 x7 : 0000000000000003 x6 : 0000000000000011
+> x5 : 0000000000000000 x4 : ffff0000bd986a48 x3 : 0000000000000001
+> x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffff000000250000
+> Call trace:
+>  drm_bridge_hpd_enable+0x94/0x9c [drm]
+>  drm_bridge_connector_enable_hpd+0x2c/0x3c [drm_kms_helper]
+>  drm_kms_helper_poll_enable+0x94/0x10c [drm_kms_helper]
+>  drm_helper_probe_single_connector_modes+0x1a8/0x510 [drm_kms_helper]
+>  drm_client_modeset_probe+0x204/0x1190 [drm]
+>  __drm_fb_helper_initial_config_and_unlock+0x5c/0x4a4 [drm_kms_helper]
+>  drm_fb_helper_initial_config+0x54/0x6c [drm_kms_helper]
+>  drm_fbdev_client_hotplug+0xd0/0x140 [drm_kms_helper]
+>  drm_fbdev_generic_setup+0x90/0x154 [drm_kms_helper]
+>  dcss_kms_attach+0x1c8/0x254 [imx_dcss]
+>  dcss_drv_platform_probe+0x90/0xfc [imx_dcss]
+>  platform_probe+0x70/0xcc
+>  really_probe+0xc4/0x2e0
+>  __driver_probe_device+0x80/0xf0
+>  driver_probe_device+0xe0/0x164
+>  __device_attach_driver+0xc0/0x13c
+>  bus_for_each_drv+0x84/0xe0
+>  __device_attach+0xa4/0x1a0
+>  device_initial_probe+0x1c/0x30
+>  bus_probe_device+0xa4/0xb0
+>  deferred_probe_work_func+0x90/0xd0
+>  process_one_work+0x200/0x474
+>  worker_thread+0x74/0x43c
+>  kthread+0xfc/0x110
+>  ret_from_fork+0x10/0x20
+> ---[ end trace 0000000000000000 ]---
 >
->I'd like this to be clear about which range is used for index ==
->__c_index, instead of saying "below" and "above".
+> Reported-by: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+> Fixes: c8268795c9a9 ("drm/probe-helper: enable and disable HPD on connectors")
+> Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
+> Tested-by: Chen-Yu Tsai <wenst@chromium.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
 >
->No need for the double colon :: because this isn't a kernel-doc comment.
-
-ok, what about this?
-
-  * Like _PICK_EVEN(), but supports 2 ranges of evenly spaced address offsets.
-  * @__c_index corresponds to the index in which the second range starts
-  * to be used. Using math interval notation, the first range is used
-  * for indexes [ 0, @__c_index), while the second range is used for
-  * [ @__c_index, ... ). Example:
-
-
+> Changes since v1:
+> - Fixed drm_kms_helper_enable_hpd() to call enable_hpd() instead of
+>   disable_hpd().
 >
->> + *
->> + * #define _FOO_A			0xf000
->> + * #define _FOO_B			0xf004
->> + * #define _FOO_C			0xf008
->> + * #define _SUPER_FOO_A			0xa000
->> + * #define _SUPER_FOO_B			0xa100
->> + * #define FOO(x)			_MMIO(_PICK_EVEN_RANGES(x, 3,		\
+> ---
+>  drivers/gpu/drm/drm_probe_helper.c | 110 +++++++++++++++++------------
+>  1 file changed, 63 insertions(+), 47 deletions(-)
 >
->The example uses a different name for the macro.
+> diff --git a/drivers/gpu/drm/drm_probe_helper.c b/drivers/gpu/drm/drm_probe_helper.c
+> index 7973f2589ced..04754bb7b131 100644
+> --- a/drivers/gpu/drm/drm_probe_helper.c
+> +++ b/drivers/gpu/drm/drm_probe_helper.c
+> @@ -222,6 +222,45 @@ drm_connector_mode_valid(struct drm_connector *connector,
+>  	return ret;
+>  }
+>  
+> +static void drm_kms_helper_disable_hpd(struct drm_device *dev)
+> +{
+> +	struct drm_connector *connector;
+> +	struct drm_connector_list_iter conn_iter;
+> +
+> +	drm_connector_list_iter_begin(dev, &conn_iter);
+> +	drm_for_each_connector_iter(connector, &conn_iter) {
+> +		const struct drm_connector_helper_funcs *funcs =
+> +			connector->helper_private;
+> +
+> +		if (funcs && funcs->disable_hpd)
+> +			funcs->disable_hpd(connector);
+> +	}
+> +	drm_connector_list_iter_end(&conn_iter);
+> +}
+> +
+> +static bool drm_kms_helper_enable_hpd(struct drm_device *dev)
+> +{
+> +	bool poll = false;
+> +	struct drm_connector *connector;
+> +	struct drm_connector_list_iter conn_iter;
+> +
+> +	drm_connector_list_iter_begin(dev, &conn_iter);
+> +	drm_for_each_connector_iter(connector, &conn_iter) {
+> +		const struct drm_connector_helper_funcs *funcs =
+> +			connector->helper_private;
+> +
+> +		if (funcs && funcs->enable_hpd)
+> +			funcs->enable_hpd(connector);
+> +
+> +		if (connector->polled & (DRM_CONNECTOR_POLL_CONNECT |
+> +					 DRM_CONNECTOR_POLL_DISCONNECT))
+> +			poll = true;
+> +	}
+> +	drm_connector_list_iter_end(&conn_iter);
+> +
+> +	return poll;
+> +}
+> +
+>  #define DRM_OUTPUT_POLL_PERIOD (10*HZ)
+>  /**
+>   * drm_kms_helper_poll_enable - re-enable output polling.
+> @@ -241,26 +280,14 @@ drm_connector_mode_valid(struct drm_connector *connector,
+>  void drm_kms_helper_poll_enable(struct drm_device *dev)
+>  {
+>  	bool poll = false;
+> -	struct drm_connector *connector;
+> -	struct drm_connector_list_iter conn_iter;
+>  	unsigned long delay = DRM_OUTPUT_POLL_PERIOD;
+>  
+> -	if (!dev->mode_config.poll_enabled || !drm_kms_helper_poll)
+> +	if (!dev->mode_config.poll_enabled ||
+> +	    !drm_kms_helper_poll ||
+> +	    dev->mode_config.poll_running)
+>  		return;
+>  
+> -	drm_connector_list_iter_begin(dev, &conn_iter);
+> -	drm_for_each_connector_iter(connector, &conn_iter) {
+> -		const struct drm_connector_helper_funcs *funcs =
+> -			connector->helper_private;
+> -
+> -		if (funcs && funcs->enable_hpd)
+> -			funcs->enable_hpd(connector);
+> -
+> -		if (connector->polled & (DRM_CONNECTOR_POLL_CONNECT |
+> -					 DRM_CONNECTOR_POLL_DISCONNECT))
+> -			poll = true;
+> -	}
+> -	drm_connector_list_iter_end(&conn_iter);
+> +	poll = drm_kms_helper_enable_hpd(dev);
 
-yeah, that was the previous name I was using... good catch, will fix.
+I'd really like to see these non-functional abstractions to functions
+separated from the actual functional fix. There's too much going on in
+the same patch here.
 
->
->> + *					      _FOO_A, _FOO_B,			\
->> + *					      _SUPER_FOO_A, _SUPER_FOO_B))
->> + *
->> + * This expands to:
->> + *	0: 0xf000,
->> + *	1: 0xf004,
->> + *	2: 0xf008,
->> + *	3: 0xa100,
->
->With the above definitions, this would be 3: 0xa000.
+BR,
+Jani.
 
-fixed
+>  
+>  	if (dev->mode_config.delayed_event) {
+>  		/*
+> @@ -279,6 +306,8 @@ void drm_kms_helper_poll_enable(struct drm_device *dev)
+>  
+>  	if (poll)
+>  		schedule_delayed_work(&dev->mode_config.output_poll_work, delay);
+> +
+> +	dev->mode_config.poll_running = true;
+>  }
+>  EXPORT_SYMBOL(drm_kms_helper_poll_enable);
+>  
+> @@ -567,10 +596,7 @@ int drm_helper_probe_single_connector_modes(struct drm_connector *connector,
+>  	}
+>  
+>  	/* Re-enable polling in case the global poll config changed. */
+> -	if (drm_kms_helper_poll != dev->mode_config.poll_running)
+> -		drm_kms_helper_poll_enable(dev);
+> -
+> -	dev->mode_config.poll_running = drm_kms_helper_poll;
+> +	drm_kms_helper_poll_enable(dev);
+>  
+>  	if (connector->status == connector_status_disconnected) {
+>  		DRM_DEBUG_KMS("[CONNECTOR:%d:%s] disconnected\n",
+> @@ -710,8 +736,12 @@ static void output_poll_execute(struct work_struct *work)
+>  	changed = dev->mode_config.delayed_event;
+>  	dev->mode_config.delayed_event = false;
+>  
+> -	if (!drm_kms_helper_poll)
+> +	if (!drm_kms_helper_poll &&
+> +	    dev->mode_config.poll_running) {
+> +		drm_kms_helper_disable_hpd(dev);
+> +		dev->mode_config.poll_running = false;
+>  		goto out;
+> +	}
+>  
+>  	if (!mutex_trylock(&dev->mode_config.mutex)) {
+>  		repoll = true;
+> @@ -808,30 +838,6 @@ bool drm_kms_helper_is_poll_worker(void)
+>  }
+>  EXPORT_SYMBOL(drm_kms_helper_is_poll_worker);
+>  
+> -static void drm_kms_helper_poll_disable_fini(struct drm_device *dev, bool fini)
+> -{
+> -	struct drm_connector *connector;
+> -	struct drm_connector_list_iter conn_iter;
+> -
+> -	if (!dev->mode_config.poll_enabled)
+> -		return;
+> -
+> -	if (fini)
+> -		dev->mode_config.poll_enabled = false;
+> -
+> -	drm_connector_list_iter_begin(dev, &conn_iter);
+> -	drm_for_each_connector_iter(connector, &conn_iter) {
+> -		const struct drm_connector_helper_funcs *funcs =
+> -			connector->helper_private;
+> -
+> -		if (funcs && funcs->disable_hpd)
+> -			funcs->disable_hpd(connector);
+> -	}
+> -	drm_connector_list_iter_end(&conn_iter);
+> -
+> -	cancel_delayed_work_sync(&dev->mode_config.output_poll_work);
+> -}
+> -
+>  /**
+>   * drm_kms_helper_poll_disable - disable output polling
+>   * @dev: drm_device
+> @@ -848,7 +854,12 @@ static void drm_kms_helper_poll_disable_fini(struct drm_device *dev, bool fini)
+>   */
+>  void drm_kms_helper_poll_disable(struct drm_device *dev)
+>  {
+> -	drm_kms_helper_poll_disable_fini(dev, false);
+> +	if (dev->mode_config.poll_running)
+> +		drm_kms_helper_disable_hpd(dev);
+> +
+> +	cancel_delayed_work_sync(&dev->mode_config.output_poll_work);
+> +
+> +	dev->mode_config.poll_running = false;
+>  }
+>  EXPORT_SYMBOL(drm_kms_helper_poll_disable);
+>  
+> @@ -886,7 +897,12 @@ EXPORT_SYMBOL(drm_kms_helper_poll_init);
+>   */
+>  void drm_kms_helper_poll_fini(struct drm_device *dev)
+>  {
+> -	drm_kms_helper_poll_disable_fini(dev, true);
+> +	if (!dev->mode_config.poll_enabled)
+> +		return;
+> +
+> +	drm_kms_helper_poll_disable(dev);
+> +
+> +	dev->mode_config.poll_enabled = false;
+>  }
+>  EXPORT_SYMBOL(drm_kms_helper_poll_fini);
 
-
-thanks
-Lucas De Marchi
-
->
->> + *	4: 0xa200,
->> + *	5: 0xa300,
->> + *	...
->> + */
->> +#define _PICK_EVEN_2RANGES(__index, __c_index, __a, __b, __c, __d)		\
->> +	(BUILD_BUG_ON_ZERO(!__is_constexpr(__c_index)) +			\
->> +	 ((__index) < (__c_index) ? _PICK_EVEN(__index, __a, __b) :		\
->> +				   _PICK_EVEN((__index) - (__c_index), __c, __d)))
->> +
->>  /*
->>   * Given the arbitrary numbers in varargs, pick the 0-based __index'th number.
->>   *
->
->-- 
->Jani Nikula, Intel Open Source Graphics Center
+-- 
+Jani Nikula, Intel Open Source Graphics Center
