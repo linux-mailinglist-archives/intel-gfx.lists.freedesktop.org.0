@@ -2,55 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98A2A67B34E
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jan 2023 14:30:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40E4E67B3D6
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jan 2023 15:04:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C833310E00B;
-	Wed, 25 Jan 2023 13:30:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1E5310E7C0;
+	Wed, 25 Jan 2023 14:04:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC62410E00B
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Jan 2023 13:30:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674653405; x=1706189405;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=LoAv6G8qmebcw0d1X4v7zPyGp+QX0okBk/vP9q94zFw=;
- b=BxQ7isX1bwzqbCkAVGWg+yuplr9pswA+N2oUGChFLW2BFffbNDpxLsqF
- GXU0rQcdZA2K9CxFvq3LlfMNZFnyxUWC7CiPym1STmS7kR83ysTstEif9
- KNudRTERDV8xPAs28atdlzVoIA/uoF5LxD1wd071ITkNfa7B8tdm0nWwz
- SRkV0nTWAFTjlN5L8WguLEM6tcxgOQPYeW3mGwFnyb4weSITNIYhPuN9N
- qvY4p1D3puJx1janicEEpBYeJ+ADyvIIABwKedpTNVUSE0bG4HBeJL8Q8
- q86ho3k+BIMxokrCXDyi5C20YdSheVIi5Mo0cP0uvYq95w9pOE7V2tUzX Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10600"; a="314455576"
-X-IronPort-AV: E=Sophos;i="5.97,245,1669104000"; d="scan'208";a="314455576"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2023 05:29:05 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10600"; a="836343835"
-X-IronPort-AV: E=Sophos;i="5.97,245,1669104000"; d="scan'208";a="836343835"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.46.223])
- ([10.252.46.223])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2023 05:28:25 -0800
-Message-ID: <592aad9f-fb3b-4369-4683-aef49628786a@linux.intel.com>
-Date: Wed, 25 Jan 2023 14:28:23 +0100
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B99D10E7BA;
+ Wed, 25 Jan 2023 14:04:24 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id BDE651F45F;
+ Wed, 25 Jan 2023 14:04:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1674655462; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=vbSq8QpP5gKFCj9wRXhX+c2qWCGlcx8AVtCmLzhws7g=;
+ b=b2N+klmsqa/8s7L7etOh/GF+KIr8CQWsepzhB1TUN5s20dtITMD++MlMECauuBzrBXx3CW
+ xMPVajzZIlHkXfGwwKINj30SVh0/g8eMigw60zwNOOpQxD24TMT9EuUiHw1bOxB9vYKpR5
+ NTal+rKexrC80op7nYH3MRVITk+O1YQ=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1674655462;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=vbSq8QpP5gKFCj9wRXhX+c2qWCGlcx8AVtCmLzhws7g=;
+ b=XGawAPjoinARPFUEoLCQUzQiiQqB0pZ8GlJmmHy1nHYEw49D5DKIKU3kLzbJzjTxGAV8f8
+ ZS0TKSus8Ju06gDw==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 779B11358F;
+ Wed, 25 Jan 2023 14:04:22 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id EC48HOY20WMrPwAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Wed, 25 Jan 2023 14:04:22 +0000
+Message-ID: <54303476-8e1d-2a6e-0d8f-8d5c7b75f64c@suse.de>
+Date: Wed, 25 Jan 2023 15:04:21 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
+To: Javier Martinez Canillas <javierm@redhat.com>, airlied@gmail.com,
+ daniel@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org
+References: <20230124134010.30263-1-tzimmermann@suse.de>
+ <20230124134010.30263-2-tzimmermann@suse.de>
+ <296bcff0-9d75-3d6b-e101-dddb26edadf1@redhat.com>
 Content-Language: en-US
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20230124110515.17017-1-nirmoy.das@intel.com>
- <d8a7783d-29fc-342d-c9ed-3f3b16455b4d@linux.intel.com>
- <Y9Aw3sCGt+s+qGIO@intel.com>
-From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
-In-Reply-To: <Y9Aw3sCGt+s+qGIO@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Clear wedged status upon
- suspend
+From: Thomas Zimmermann <tzimmermann@suse.de>
+In-Reply-To: <296bcff0-9d75-3d6b-e101-dddb26edadf1@redhat.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------9Ic1E1tNJRTSvnT3QXPtHIyk"
+Subject: Re: [Intel-gfx] [PATCH v2 01/10] drm/client: Test for connectors
+ before sending hotplug event
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,94 +73,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+ freedreno@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Rodrigo,
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------9Ic1E1tNJRTSvnT3QXPtHIyk
+Content-Type: multipart/mixed; boundary="------------m6sBL7sIhfc4J6AgPtm5C4Gn";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Javier Martinez Canillas <javierm@redhat.com>, airlied@gmail.com,
+ daniel@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org
+Cc: linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+ freedreno@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org
+Message-ID: <54303476-8e1d-2a6e-0d8f-8d5c7b75f64c@suse.de>
+Subject: Re: [PATCH v2 01/10] drm/client: Test for connectors before sending
+ hotplug event
+References: <20230124134010.30263-1-tzimmermann@suse.de>
+ <20230124134010.30263-2-tzimmermann@suse.de>
+ <296bcff0-9d75-3d6b-e101-dddb26edadf1@redhat.com>
+In-Reply-To: <296bcff0-9d75-3d6b-e101-dddb26edadf1@redhat.com>
 
-On 1/24/2023 8:26 PM, Rodrigo Vivi wrote:
-> On Tue, Jan 24, 2023 at 12:07:19PM +0100, Das, Nirmoy wrote:
->> Forgot to add the drm issue a reference.
->>
->> On 1/24/2023 12:05 PM, Nirmoy Das wrote:
->>> From: Chris Wilson <chris.p.wilson@linux.intel.com>
->>>
->>> Currently we use set-wedged on suspend if the workload is not responding
->>> in order to allow a fast suspend (albeit at the cost of discarding the
->>> current userspace). This may leave the device wedged during suspend,
->>> where we may require the device available in order to swapout CPU
->>> inaccessible device memory. Clear any temporary wedged-status after
->>> flushing userspace off the device so we can use the blitter ourselves
->>> inside suspend.
-> This seems a very good move. But this explain they unset_wedged part,
-> not the removal of the retire_requests. Why don't we need to retire them
-> anymore?
+--------------m6sBL7sIhfc4J6AgPtm5C4Gn
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
+
+SGkNCg0KQW0gMjUuMDEuMjMgdW0gMDk6MzAgc2NocmllYiBKYXZpZXIgTWFydGluZXogQ2Fu
+aWxsYXM6DQo+IEhlbGxvIFRob21hcywNCj4gDQo+IE9uIDEvMjQvMjMgMTQ6NDAsIFRob21h
+cyBaaW1tZXJtYW5uIHdyb3RlOg0KPj4gVGVzdCBmb3IgY29ubmVjdG9ycyBpbiB0aGUgY2xp
+ZW50IGNvZGUgYW5kIHJlbW92ZSBhIHNpbWlsYXIgdGVzdA0KPj4gZnJvbSB0aGUgZ2VuZXJp
+YyBmYmRldiBlbXVsYXRpb24uIERvIG5vdGhpbmcgaWYgdGhlIHRlc3QgZmFpbHMuDQo+PiBO
+b3QgaGF2aW5nIGNvbm5lY3RvcnMgaW5kaWNhdGVzIGEgZHJpdmVyIGJ1Zy4NCj4+DQo+PiBT
+aWduZWQtb2ZmLWJ5OiBUaG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5Ac3VzZS5kZT4N
+Cj4+IC0tLQ0KPiANCj4gUmV2aWV3ZWQtYnk6IEphdmllciBNYXJ0aW5leiBDYW5pbGxhcyA8
+amF2aWVybUByZWRoYXQuY29tPg0KPiANCj4gYnV0IEkndmUgYSBxdWVzdGlvbiBiZWxvdy4N
+Cj4gDQo+PiAgIGRyaXZlcnMvZ3B1L2RybS9kcm1fY2xpZW50LmMgICAgICAgIHwgNSArKysr
+Kw0KPj4gICBkcml2ZXJzL2dwdS9kcm0vZHJtX2ZiZGV2X2dlbmVyaWMuYyB8IDUgLS0tLS0N
+Cj4+ICAgMiBmaWxlcyBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKyksIDUgZGVsZXRpb25zKC0p
+DQo+IA0KPiBbLi4uXQ0KPiANCj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fZmJkZXZf
+Z2VuZXJpYy5jDQo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2ZiZGV2X2dlbmVyaWMu
+Yw0KPj4gQEAgLTM4OSwxMSArMzg5LDYgQEAgc3RhdGljIGludCBkcm1fZmJkZXZfY2xpZW50
+X2hvdHBsdWcoc3RydWN0IGRybV9jbGllbnRfZGV2ICpjbGllbnQpDQo+PiAgIAlpZiAoZGV2
+LT5mYl9oZWxwZXIpDQo+PiAgIAkJcmV0dXJuIGRybV9mYl9oZWxwZXJfaG90cGx1Z19ldmVu
+dChkZXYtPmZiX2hlbHBlcik7DQo+PiAgIA0KPj4gLQlpZiAoIWRldi0+bW9kZV9jb25maWcu
+bnVtX2Nvbm5lY3Rvcikgew0KPj4gLQkJZHJtX2RiZ19rbXMoZGV2LCAiTm8gY29ubmVjdG9y
+cyBmb3VuZCwgd2lsbCBub3QgY3JlYXRlIGZyYW1lYnVmZmVyIVxuIik7DQo+PiAtCQlyZXR1
+cm4gMDsNCj4+IC0JfQ0KPj4gLQ0KPiANCj4gV2hhdCBhYm91dCB0aGUgZm9sbG93aW5nIGNv
+ZGUgc25pcHBldDoNCj4gDQo+IAlpZiAoIWRybV9kcnZfdXNlc19hdG9taWNfbW9kZXNldChk
+ZXYpKQ0KPiAJCWRybV9oZWxwZXJfZGlzYWJsZV91bnVzZWRfZnVuY3Rpb25zKGRldik7DQo+
+IA0KPiB0aGF0IHNlZW1zIHRvIGJlIHNvbWV0aGluZyB0aGF0IHNob3VsZCBiZSBpbiB0aGUg
+Y29yZSBjbGllbnQgZGV2IGhvdHBsdWcNCj4gYXMgd2VsbCwgc2luY2UgaXQgaXNuJ3Qgc3Bl
+Y2lmaWMgdG8gdGhlIGZiZGV2IGVtdWxhdGlvbiBjbGllbnQgPw0KDQpUaGF0J3MgaW4gdGhl
+IG1pZGRsZSBvZiB0aGUgaW5pdGlhbCBwcm9iaW5nIGNvZGUgYW5kIGRpc2FibGVzIHBpcGVs
+aW5lIA0KZWxlbWVudHMgaW4gbm9uLWF0b21pYyBtb2Rlc2V0dGluZy4gVEJIIEkgZG9uJ3Qg
+ZGFyZSB0byBtb3ZlIGl0IGFyb3VuZC4gDQpJZiB3ZSBldmVyIGhhdmUgb3RoZXIgY2xpZW50
+cywgd2UgY2FuIGF0dGVtcHQgdGhlIHB1dCBpdCBpbnRvIHRoZSBjbGllbnQuDQoNCkJlc3Qg
+cmVnYXJkcw0KVGhvbWFzDQoNCg0KPiANCg0KLS0gDQpUaG9tYXMgWmltbWVybWFubg0KR3Jh
+cGhpY3MgRHJpdmVyIERldmVsb3Blcg0KU1VTRSBTb2Z0d2FyZSBTb2x1dGlvbnMgR2VybWFu
+eSBHbWJIDQpNYXhmZWxkc3RyLiA1LCA5MDQwOSBOw7xybmJlcmcsIEdlcm1hbnkNCihIUkIg
+MzY4MDksIEFHIE7DvHJuYmVyZykNCkdlc2Now6RmdHNmw7xocmVyOiBJdm8gVG90ZXYNCg==
 
 
-Thanks for noticing that. This on me, I missed another patch which moved 
-the intel_gt_retire_requests()
+--------------m6sBL7sIhfc4J6AgPtm5C4Gn--
 
-inside of intel_gt_set_wedged().
+--------------9Ic1E1tNJRTSvnT3QXPtHIyk
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
 
->
-> Also, what are the chances of races here? I mean, we are marking
-> the gpu as not wedged anymore. Do we have any warranty at this point
-> that no further request will arrive?
+-----BEGIN PGP SIGNATURE-----
 
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmPRNuUFAwAAAAAACgkQlh/E3EQov+Dv
+9w//aauyhE9l7KTLTcYoGNHO0YopaFilxVY2jcD0liyFEF6TPeIi6PVYVUYKmVpwk5NI64DBN1jG
+f9ZWmdrLE5dWsztIskHxKTdu6ccDxnCIvEhSLBAVp3PTVBb4otMtuuvqx6z+USCjAv0Vl8qaDMpF
+T9yJ13yTSuqdo6IayPYJ8YiTkiHoru/m467tFleYKs269nPR21wvh4psCd/zO5RN7P4HHeIdyoE4
+rRHEHDUw8plharM840CZonOdB/3cNyPZWPEafLpPSmC5d3t55bvEtm4tbMcajKz8FTLjBMXBk6of
+S6SNT0CNVKxOBhbEtGHZkISEjjgPgh8t0CI4+y6vcbISvACFDgKK0jJwSmY4nb9jmYGSx+RYOgE1
+yn+C7K5ml33IHxx1NhYBnyEvebEL2hDHjRaMM4+cv+LOYIYg2Wn04KZtFCSzot66UW/mZOciXCtB
+rk0RkUvFV0zv0gBQnQ+ePbTidtPpnDo9SuAdZNU1mSABffukZ5UtvfasXTxvrf4sGcltpmmHCsOh
+4Bco5tm3NJPZyFu829nGrRh4mTZ00PMAdD3gjdX6/PNYPmV0RlsAv4pv4DM3kz4Udtyg0wqOUids
+V2ajZqe2CSsBs5eXWLZL1WUgE49MboIaMpoF4IiBYnM3tOF/A+MyTyot1kf32sE/YPPDKKXH0JiL
+T9Y=
+=5HPw
+-----END PGP SIGNATURE-----
 
-The assumption was: this is  in single threaded suspend "context" so we 
-should be fine but
-
-we just realized that  this is getting called at pm prepare time. Thanks 
-for raising this it seem
-
-I need to refactor i915_gem_backup_suspend() as well which should be 
-called much later on.
-
-
-Regards,
-
-Nirmoy
-
->
-> Shouldn't we have a way to differentiate between the totally wedged
-> and blocked for user submission?
->
->>> Testcase: igt/gem_eio/in-flight-suspend
->> References: https://gitlab.freedesktop.org/drm/intel/-/issues/7896
->>> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
->>> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>> Signed-off-by: Chris Wilson <chris.p.wilson@linux.intel.com>
->>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
->>> ---
->>>    drivers/gpu/drm/i915/gt/intel_gt_pm.c | 10 ++++------
->>>    1 file changed, 4 insertions(+), 6 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
->>> index cef3d6f5c34e..74d1dd3793f9 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
->>> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
->>> @@ -317,19 +317,17 @@ int intel_gt_resume(struct intel_gt *gt)
->>>    static void wait_for_suspend(struct intel_gt *gt)
->>>    {
->>> -	if (!intel_gt_pm_is_awake(gt))
->>> -		return;
->>> -
->>> -	if (intel_gt_wait_for_idle(gt, I915_GT_SUSPEND_IDLE_TIMEOUT) == -ETIME) {
->>> +	if (intel_gt_wait_for_idle(gt, I915_GT_SUSPEND_IDLE_TIMEOUT) == -ETIME)
->>>    		/*
->>>    		 * Forcibly cancel outstanding work and leave
->>>    		 * the gpu quiet.
->>>    		 */
->>>    		intel_gt_set_wedged(gt);
->>> -		intel_gt_retire_requests(gt);
->>> -	}
->>>    	intel_gt_pm_wait_for_idle(gt);
->>> +
->>> +	/* Make the GPU available again for swapout */
->>> +	intel_gt_unset_wedged(gt);
->>>    }
->>>    void intel_gt_suspend_prepare(struct intel_gt *gt)
+--------------9Ic1E1tNJRTSvnT3QXPtHIyk--
