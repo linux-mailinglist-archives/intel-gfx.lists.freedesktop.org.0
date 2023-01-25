@@ -2,93 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2522A67B5C4
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jan 2023 16:21:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A399767B617
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jan 2023 16:41:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 424AF10E7EC;
-	Wed, 25 Jan 2023 15:20:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3173C10E0F4;
+	Wed, 25 Jan 2023 15:41:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2057.outbound.protection.outlook.com [40.107.220.57])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39B6410E7EC;
- Wed, 25 Jan 2023 15:20:50 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Sd1zK3fRNukvKhCIvpunGpCcCxDPcLFSkxgsYXAnUEPsV250v/MRc2C7/3hs9Uga37YXqM8GPC7JFfYuKb8qXfa/tYBTWS2zq4Heq7vL8Y80h2Ld7kiJerbDDInKyv2vmf4N1eeM1+WSPFy7U3JYPqzdOJkmwawvNj1j2OfHFXAu7sXIr8sPdHRxM867VfxHZZWSD8qIBBG05XAzFli4FhbzozIbzWQgx+MFjbDsXXQIIwnAxPVmHfJkDAOzSJbJDFOOOyUokjNaMlF1QQeZ9BKsYpHNzQY3vwwGpJQiz/zx94dkGS0w9gIZyyTbq4mYXvw62HkKsJy0qRNwcZnfbA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=05J3q0WXmpYhxvTVSC6vWNR6/2MNLFEf+37jBYHmAnU=;
- b=PfLLJUsbNoHDF7qoYt9GhNzvhyCB1ZMGNj4dQZMR9779X+AAd74hBLBFJZj4kMbMMy5IYeLnJ8LLQF/e/Lo1uE9kdo6jd+lEI+h471y1lvgdBX6hI1Kbxf9ybMiMLqxWBN1x7dRgXbzrKq6mc5o6IxC7aNHcmiJeXTcvnqeDIWOSwPUgao+GqmTq0KbbKxDWdUlibkaKpyNFn4nZv+MOed5qdSSpHvwPbtkpDW4sKORP68Yn+usFRVwsJeaO8Na/ZdtKFRP0GfG8+60RGFwjcfmWJ9a5ANAlPyRBmgHef/8OsR2Imn0OXL4wzdKe1fYRuatTTRH5+cr+fkTkbDC54w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=05J3q0WXmpYhxvTVSC6vWNR6/2MNLFEf+37jBYHmAnU=;
- b=x8AIAEbxLipcR8YkjRb1B04k/DuKKSgyOvZrY06n61YXTxFqRP0QCDUX0aiN1+CiTGDbjoKofFFtX4zQdHaO5Tjz8u0AdplMYZ0Wvqi2RDcENsOnixt79okT5UmpWQyvArNsiDnIIb5Uci1DpZGnF7OFXkRf0lAw2h4ROnAoekE=
-Received: from BN9PR03CA0487.namprd03.prod.outlook.com (2603:10b6:408:130::12)
- by IA1PR12MB6091.namprd12.prod.outlook.com (2603:10b6:208:3ed::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Wed, 25 Jan
- 2023 15:20:48 +0000
-Received: from BN8NAM11FT112.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:130:cafe::8b) by BN9PR03CA0487.outlook.office365.com
- (2603:10b6:408:130::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.21 via Frontend
- Transport; Wed, 25 Jan 2023 15:20:48 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT112.mail.protection.outlook.com (10.13.176.210) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6043.17 via Frontend Transport; Wed, 25 Jan 2023 15:20:47 +0000
-Received: from amar-X570-AORUS-ELITE.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.34; Wed, 25 Jan 2023 09:20:44 -0600
-From: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
-To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>
-Date: Wed, 25 Jan 2023 20:50:06 +0530
-Message-ID: <20230125152006.3945-4-Amaranath.Somalapuram@amd.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20230125152006.3945-1-Amaranath.Somalapuram@amd.com>
-References: <20230125152006.3945-1-Amaranath.Somalapuram@amd.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9969610E0F4
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Jan 2023 15:41:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1674661269; x=1706197269;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ohJi9aAihbTgaHiPUilgiHvlEJJ2UDGkMgmjAIT/0Pc=;
+ b=Onat+e7/PV5hnhi8ihnxCtr8xFxUmpUpk1fWtj6rLTkqs9nfSErOCk/y
+ Vab4LDQs65uB2N96PqN5EQ4LXZOvEsjp2BrwqOt6+idA5OgLHIK+Ez5xj
+ AXMIpUzyRdQqEjy1arNRzao3SxoC8fyxC/fYFZcbWzoWlsTiwIaaY6/aM
+ YFHHuMlee7DNVXqX2nv3wUIobd+yL1da/k0WAvGfTiZ1p/B9G+5xJP4ec
+ NLMUOR0RP/K6EmZjSFlJFNRZQNPXi0iBWZfsTvJq6UjkxOLf34gK49E1i
+ nq5WsQ+WqZ+9htSXTALz8a0t4mlu63RyTNLr44O/VQ5dRqXoN4bXnSnV+ A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10601"; a="324286781"
+X-IronPort-AV: E=Sophos;i="5.97,245,1669104000"; d="scan'208";a="324286781"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2023 07:41:09 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10601"; a="664495159"
+X-IronPort-AV: E=Sophos;i="5.97,245,1669104000"; d="scan'208";a="664495159"
+Received: from lab-ah.igk.intel.com ([10.102.42.211])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2023 07:41:07 -0800
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 25 Jan 2023 16:40:17 +0100
+Message-Id: <20230125154017.1118784-1-andrzej.hajda@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT112:EE_|IA1PR12MB6091:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2ea57d9a-13e7-4e6f-145b-08dafee7bc80
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: jQUVFvCv2P/4eKpcdcEZeySUuYjIJjrTweGUwzjfXiADAofh6v5A/P+Ox8nXgz6R6MPgGtGJo8c+trOSeoPAY49zSNoTXdfHlIHA/PjyPsd+sxRdLw119N+aXzjyLoEdHMSrHJx+CwGO29dm/oNMTjHrsAMBoBaE0WvPg2QPgjRE9lJESBgciamhjr4ZRWvWU6LrHiynta7BkW9aTQ6oxbjhfiK5voGi7DdGl3WR1odORiaCa5saRK20PMbs86TKtoUiKPu5xQ8uk+VibSghrz8Ej/cLvk+pOMpvaINRr0qSjNpfb4UR8w5n8xCENYcIWI4jfuQ3re7LpEp5Wro/QvnEeiCdOWU3CvRJ6NjFWReoh7ddSpnN0Sybx+ZkG76fMsQP3uOtemyO5nOH0Gl4cGiA8vuHFQWV87kN6cy/ogz1SEBLPHCt8hVLxdqN1opL3TUFO1x62jg/ZdVtXW0/t4OrGkEpXp+cQyhYvjTamNX2zV+Cmvn69p7xPm4F9jAeweLUmF6QBFRINYzQaKTYdWfohSNizMw1p3tEMrpycwa7ZTPlZGWV89j3oMC2Q4qKgVkBxRyrlvQgPARmtQOZzjThFwTyNLsg+97goh79MIocX6cnavHgAh6srtobFLFWgWrkJusjv2osmfEB7GkQh8P8gq3lxKZ8JVC5hylr2bmpV4z+bH0K22L/wH8IMr1NuayPi/uG8IyFbHuN5UEuJDw7R1dvjtrq7oEzom0WywM=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230025)(4636009)(376002)(39860400002)(396003)(136003)(346002)(451199018)(40470700004)(36840700001)(46966006)(8936002)(4326008)(36860700001)(110136005)(83380400001)(70586007)(70206006)(86362001)(450100002)(8676002)(26005)(316002)(478600001)(36756003)(6666004)(40480700001)(186003)(16526019)(7696005)(54906003)(356005)(81166007)(2616005)(336012)(1076003)(4744005)(5660300002)(82310400005)(82740400003)(426003)(40460700003)(47076005)(41300700001)(2906002)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2023 15:20:47.9288 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2ea57d9a-13e7-4e6f-145b-08dafee7bc80
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT112.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6091
-Subject: [Intel-gfx] [PATCH v4 4/4] drm/amdgpu: Cleanup PAGE_SHIFT operation
+Subject: [Intel-gfx] [PATCH v2] drm/i915/gt: Add selftests for TLB
+ invalidation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,32 +58,481 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: arunpravin.paneerselvam@amd.com,
- Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, arvind.yadav@amd.com,
- alexander.deucher@amd.com, christian.koenig@amd.com
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Cleaning up page shift operations.
+From: Chris Wilson <chris@chris-wilson.co.uk>
 
-Signed-off-by: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+Check that we invalidate the TLB cache, the updated physical addresses
+are immediately visible to the HW, and there is no retention of the old
+physical address for concurrent HW access.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+[ahajda: adjust to upstream driver, v2]
+Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+v2:
+    - addressed comments (Tvrtko),
+    - changed pin/sample address calculation,
+    - removed checks for platforms older than 8,
+    - use low ints in MI_DO_COMPARE to be more clear,
+    - continue test if physical addresses have the same uppper 32 bits,
+    - consolidate two calls to pte_tlbinv into one
+---
+ drivers/gpu/drm/i915/gt/intel_gpu_commands.h  |   1 +
+ drivers/gpu/drm/i915/gt/intel_gt.c            |   4 +
+ drivers/gpu/drm/i915/gt/selftest_tlb.c        | 402 ++++++++++++++++++
+ .../drm/i915/selftests/i915_live_selftests.h  |   1 +
+ 4 files changed, 408 insertions(+)
+ create mode 100644 drivers/gpu/drm/i915/gt/selftest_tlb.c
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-index a97e8236bde9..ffe6a1ab7f9a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -930,7 +930,7 @@ int amdgpu_ttm_alloc_gart(struct ttm_buffer_object *bo)
+diff --git a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+index 2af1ae3831df98..e10507fa71ce63 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
++++ b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+@@ -394,6 +394,7 @@
+ #define MI_LOAD_URB_MEM         MI_INSTR(0x2C, 0)
+ #define MI_STORE_URB_MEM        MI_INSTR(0x2D, 0)
+ #define MI_CONDITIONAL_BATCH_BUFFER_END MI_INSTR(0x36, 0)
++#define  MI_DO_COMPARE		REG_BIT(21)
  
- 	addr = amdgpu_gmc_agp_addr(bo);
- 	if (addr != AMDGPU_BO_INVALID_OFFSET) {
--		bo->resource->start = addr >> PAGE_SHIFT;
-+		bo->resource->start = addr;
- 		return 0;
+ #define STATE_BASE_ADDRESS \
+ 	((0x3 << 29) | (0x0 << 27) | (0x1 << 24) | (0x1 << 16))
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+index f0dbfc434e0773..001a7ec5b86182 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+@@ -1205,3 +1205,7 @@ void intel_gt_invalidate_tlb(struct intel_gt *gt, u32 seqno)
+ 		mutex_unlock(&gt->tlb.invalidate_lock);
  	}
- 
+ }
++
++#if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
++#include "selftest_tlb.c"
++#endif
+diff --git a/drivers/gpu/drm/i915/gt/selftest_tlb.c b/drivers/gpu/drm/i915/gt/selftest_tlb.c
+new file mode 100644
+index 00000000000000..5fd20fd0879c0e
+--- /dev/null
++++ b/drivers/gpu/drm/i915/gt/selftest_tlb.c
+@@ -0,0 +1,402 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2022 Intel Corporation
++ */
++
++#include "i915_selftest.h"
++
++#include "gem/i915_gem_internal.h"
++#include "gem/i915_gem_region.h"
++
++#include "gen8_engine_cs.h"
++#include "i915_gem_ww.h"
++#include "intel_engine_regs.h"
++#include "intel_gpu_commands.h"
++#include "intel_context.h"
++#include "intel_gt.h"
++#include "intel_ring.h"
++
++#include "selftests/igt_flush_test.h"
++#include "selftests/i915_random.h"
++
++static void clear_dw(struct i915_vma *vma, u64 addr, u32 val)
++{
++	GEM_BUG_ON(addr < i915_vma_offset(vma));
++	GEM_BUG_ON(addr >= i915_vma_offset(vma) + i915_vma_size(vma));
++	memset32(page_mask_bits(vma->obj->mm.mapping) +
++		 (addr - i915_vma_offset(vma)), val, 1);
++}
++
++static int
++pte_tlbinv(struct intel_context *ce,
++	   struct i915_vma *va,
++	   struct i915_vma *vb,
++	   u64 align,
++	   void (*tlbinv)(struct i915_address_space *vm, u64 addr, u64 length),
++	   u64 length,
++	   struct rnd_state *prng)
++{
++	const int use_64b = GRAPHICS_VER(ce->vm->i915) >= 8;
++	struct drm_i915_gem_object *batch;
++	struct i915_request *rq;
++	struct i915_vma *vma;
++	int retries;
++	u64 addr;
++	int err;
++	u32 *cs;
++
++	batch = i915_gem_object_create_internal(ce->vm->i915, 4096);
++	if (IS_ERR(batch))
++		return PTR_ERR(batch);
++
++	vma = i915_vma_instance(batch, ce->vm, NULL);
++	if (IS_ERR(vma)) {
++		err = PTR_ERR(vma);
++		goto out;
++	}
++
++	err = i915_vma_pin(vma, 0, 0, PIN_USER);
++	if (err)
++		goto out;
++
++	retries = 5;
++	do {
++		addr = igt_random_offset(prng,
++					 i915_vma_offset(vma),
++					 /* upper limit for MI_BB_START */
++					 min(ce->vm->total, BIT_ULL(48)),
++					 va->size, 4);
++
++		err = i915_vma_pin(va,  0, 0, (addr & -align) | PIN_OFFSET_FIXED | PIN_USER);
++	} while (err == -ENOSPC && --retries);
++	if (err) {
++		err = 0;
++		goto out;
++	}
++	GEM_BUG_ON(i915_vma_offset(va) != (addr & -align));
++	vb->node = va->node; /* overwrites the _same_ PTE  */
++
++	if (align == SZ_64K) {
++		u64 end = addr + va->size;
++
++		/*
++		 * SZ_64K pages on dg1 require that the whole PT be marked
++		 * containing 64KiB entries. So we make sure that our vma
++		 * covers the whole PT, despite being randomly aligned to 64KiB
++		 * and restrict our sampling to the 2MiB PT within where
++		 * we know that we will be using 64KiB pages.
++		 */
++		addr = round_up(addr & -align, SZ_2M);
++		addr |=	igt_random_offset(prng, 0, end - addr, 4, 4);
++	}
++
++	if (addr - i915_vma_offset(va) >= i915_vma_size(va))
++		addr = igt_random_offset(prng,
++					 i915_vma_offset(va),
++					 i915_vma_offset(va) + i915_vma_size(va),
++					 4, 4);
++
++	pr_info("%s(%s): Sampling %llx, with alignment %llx, using PTE size %x (phys %x, sg %x), invalidate:%llx+%llx\n",
++		ce->engine->name, va->obj->mm.region->name ?: "smem",
++		addr, align, va->resource->page_sizes_gtt, va->page_sizes.phys, va->page_sizes.sg,
++		addr & -length, length);
++
++	cs = i915_gem_object_pin_map_unlocked(batch, I915_MAP_WC);
++	*cs++ = MI_NOOP; /* for later termination */
++
++	/* Sample the target to see if we spot an incorrect page */
++	*cs++ = MI_CONDITIONAL_BATCH_BUFFER_END | MI_DO_COMPARE | (1 + use_64b);
++	*cs++ = -2; /* break if *addr < -1 */
++	*cs++ = lower_32_bits(addr);
++	*cs++ = upper_32_bits(addr);
++	clear_dw(va, addr, -1);
++	clear_dw(vb, addr, 0);
++
++	/* Keep sampling until we get bored */
++	*cs++ = MI_BATCH_BUFFER_START | BIT(8) | use_64b;
++	*cs++ = lower_32_bits(i915_vma_offset(vma));
++	*cs++ = upper_32_bits(i915_vma_offset(vma));
++
++	i915_gem_object_flush_map(batch);
++
++	rq = i915_request_create(ce);
++	if (IS_ERR(rq)) {
++		err = PTR_ERR(rq);
++		goto out_va;
++	}
++
++	err = rq->engine->emit_bb_start(rq, i915_vma_offset(vma), 0, 0);
++	if (err) {
++		i915_request_add(rq);
++		goto out_va;
++	}
++
++	i915_request_get(rq);
++	i915_request_add(rq);
++
++	/* Short sleep to sanitycheck the batch is spinning before we begin */
++	msleep(10);
++	if (va == vb) {
++		if (!i915_request_completed(rq)) {
++			pr_err("Semaphore sanitycheck failed\n");
++			err = -EIO;
++		}
++	} else if (!i915_request_completed(rq)) {
++		unsigned int pte_flags = 0;
++
++		/* Flip the PTE between A and B */
++		if (i915_gem_object_is_lmem(vb->obj))
++			pte_flags |= PTE_LM;
++		ce->vm->insert_entries(ce->vm, vb->resource, 0, pte_flags);
++
++		/* Flush the PTE update to concurrent HW */
++		tlbinv(ce->vm, addr & -length, length);
++
++		if (wait_for(i915_request_completed(rq), HZ / 2)) {
++			pr_err("%s: Request did not complete; the COND_BBE did not read the updated PTE\n",
++			       ce->engine->name);
++			err = -EINVAL;
++		}
++	} else {
++		pr_err("Spinner sanitycheck failed\n");
++		err = -EIO;
++	}
++	i915_request_put(rq);
++
++	cs = page_mask_bits(batch->mm.mapping);
++	*cs = MI_BATCH_BUFFER_END;
++	wmb();
++
++out_va:
++	if (vb != va)
++		memset(&vb->node, 0, sizeof(vb->node));
++	i915_vma_unpin(va);
++	if (i915_vma_unbind(va))
++		err = -EIO;
++out:
++	i915_gem_object_put(batch);
++	return err;
++}
++
++static struct drm_i915_gem_object *create_lmem(struct intel_gt *gt)
++{
++	return i915_gem_object_create_lmem(gt->i915, SZ_1G, I915_BO_ALLOC_CONTIGUOUS);
++}
++
++static struct drm_i915_gem_object *create_smem(struct intel_gt *gt)
++{
++	/*
++	 * SZ_64K pages require covering the whole 2M PT (gen8 to tgl/dg1).
++	 * While that does not require the whole 2M block to be contiguous
++	 * it is easier to make it so, since we need that for SZ_2M pagees.
++	 * Since we randomly offset the start of the vma, we need a 4M object
++	 * so that there is a 2M range within it is suitable for SZ_64K PTE.
++	 */
++	return i915_gem_object_create_internal(gt->i915, SZ_4M);
++}
++
++static int
++mem_tlbinv(struct intel_gt *gt,
++	   struct drm_i915_gem_object *(*create_fn)(struct intel_gt *),
++	   void (*tlbinv)(struct i915_address_space *vm, u64 addr, u64 length))
++{
++	struct intel_engine_cs *engine;
++	struct drm_i915_gem_object *A, *B;
++	struct i915_ppgtt *ppgtt;
++	struct i915_vma *va, *vb;
++	enum intel_engine_id id;
++	I915_RND_STATE(prng);
++	LIST_HEAD(discard);
++	void *vaddr;
++	int err;
++
++	if (GRAPHICS_VER(gt->i915) < 6) /* MI_CONDITIONAL_BB_END & bcs */
++		return 0;
++
++	/*
++	 * Check that the TLB invalidate is able to revoke an active
++	 * page. We load a page into a spinning COND_BBE loop and then
++	 * remap that page to a new physical address. The old address, and
++	 * so the loop keeps spinning, is retained in the TLB cache until
++	 * we issue an invalidate.
++	 */
++
++	A = create_fn(gt);
++	if (IS_ERR(A))
++		return PTR_ERR(A);
++
++	vaddr = i915_gem_object_pin_map_unlocked(A, I915_MAP_WC);
++	if (IS_ERR(vaddr)) {
++		err = PTR_ERR(vaddr);
++		goto out_a;
++	}
++
++	/* Allocate a second physical address significantly different from A */
++	do {
++		B = create_fn(gt);
++		if (IS_ERR(B)) {
++			err = PTR_ERR(B);
++			goto out_a;
++		}
++
++		err = i915_gem_object_pin_pages_unlocked(B);
++		if (err)
++			goto out_b;
++
++		if (upper_32_bits(i915_gem_object_get_dma_address(A, 0)) !=
++		    upper_32_bits(i915_gem_object_get_dma_address(B, 0)))
++			break;
++
++		list_add(&B->st_link, &discard);
++	} while (1);
++
++	vaddr = i915_gem_object_pin_map_unlocked(B, I915_MAP_WC);
++	if (IS_ERR(vaddr)) {
++		err = PTR_ERR(vaddr);
++		goto out_b;
++	}
++
++	GEM_BUG_ON(A->base.size != B->base.size);
++	if ((A->mm.page_sizes.phys | B->mm.page_sizes.phys) & (A->base.size - 1))
++		pr_warn("Failed to allocate contiguous pages for size %zx\n",
++			A->base.size);
++
++	ppgtt = i915_ppgtt_create(gt, 0);
++	if (IS_ERR(ppgtt)) {
++		err = PTR_ERR(ppgtt);
++		goto out_b;
++	}
++
++	va = i915_vma_instance(A, &ppgtt->vm, NULL);
++	if (IS_ERR(va)) {
++		err = PTR_ERR(va);
++		goto out_vm;
++	}
++
++	vb = i915_vma_instance(B, &ppgtt->vm, NULL);
++	if (IS_ERR(vb)) {
++		err = PTR_ERR(vb);
++		goto out_vm;
++	}
++	/* manual prep as we overwrite va's GTT range with vb later */
++	vb->pages = vb->obj->mm.pages;
++	vb->page_sizes = vb->obj->mm.page_sizes;
++
++	err = 0;
++	for_each_engine(engine, gt, id) {
++		struct i915_gem_ww_ctx ww;
++		struct intel_context *ce;
++		int bit;
++
++		ce = intel_context_create(engine);
++		if (IS_ERR(ce)) {
++			err = PTR_ERR(ce);
++			break;
++		}
++
++		i915_vm_put(ce->vm);
++		ce->vm = i915_vm_get(&ppgtt->vm);
++
++		for_i915_gem_ww(&ww, err, true)
++			err = intel_context_pin_ww(ce, &ww);
++		if (err == 0) {
++			for_each_set_bit(bit,
++					 (unsigned long *)&RUNTIME_INFO(gt->i915)->page_sizes,
++					 BITS_PER_TYPE(RUNTIME_INFO(gt->i915)->page_sizes)) {
++				int len;
++
++				/* sanitycheck the semaphore wake up */
++				err = pte_tlbinv(ce, va, va,
++						 BIT_ULL(bit),
++						 NULL, SZ_4K,
++						 &prng);
++				if (err)
++					goto err_unpin;
++
++				for (len = 2; len <= RUNTIME_INFO(gt->i915)->ppgtt_size; len *= 2) {
++					err = pte_tlbinv(ce, va, vb,
++							BIT_ULL(bit),
++							tlbinv,
++							BIT_ULL(len),
++							&prng);
++					if (err)
++						goto err_unpin;
++				}
++
++				if (len != RUNTIME_INFO(gt->i915)->ppgtt_size) {
++					len = RUNTIME_INFO(gt->i915)->ppgtt_size;
++					err = pte_tlbinv(ce, va, vb,
++							BIT_ULL(bit),
++							tlbinv,
++							BIT_ULL(len),
++							&prng);
++					if (err)
++						goto err_unpin;
++				}
++			}
++err_unpin:
++			intel_context_unpin(ce);
++		}
++
++		intel_context_put(ce);
++		if (err)
++			break;
++	}
++
++	if (igt_flush_test(gt->i915))
++		err = -EIO;
++
++out_vm:
++	i915_vm_put(&ppgtt->vm);
++out_b:
++	i915_gem_object_put(B);
++out_a:
++	i915_gem_object_put(A);
++	list_for_each_entry_safe(A, B, &discard, st_link)
++		i915_gem_object_put(A);
++	return err;
++}
++
++static void tlbinv_full(struct i915_address_space *vm, u64 addr, u64 length)
++{
++	intel_gt_invalidate_tlb(vm->gt, intel_gt_tlb_seqno(vm->gt) | 1);
++}
++
++static int invalidate_full(void *arg)
++{
++	struct intel_gt *gt = arg;
++	int err;
++
++	if (GRAPHICS_VER(gt->i915) < 8)
++		return 0; /* TLB invalidate not implemented */
++
++	err = mem_tlbinv(gt, create_smem, tlbinv_full);
++	if (err == 0)
++		err = mem_tlbinv(gt, create_lmem, tlbinv_full);
++	if (err == -ENODEV || err == -ENXIO)
++		err = 0;
++
++	return err;
++}
++
++int intel_tlb_live_selftests(struct drm_i915_private *i915)
++{
++	static const struct i915_subtest tests[] = {
++		SUBTEST(invalidate_full),
++	};
++	struct intel_gt *gt;
++	unsigned int i;
++
++	for_each_gt(gt, i915, i) {
++		int err;
++
++		if (intel_gt_is_wedged(gt))
++			continue;
++
++		err = intel_gt_live_subtests(tests, gt);
++		if (err)
++			return err;
++	}
++
++	return 0;
++}
+diff --git a/drivers/gpu/drm/i915/selftests/i915_live_selftests.h b/drivers/gpu/drm/i915/selftests/i915_live_selftests.h
+index aaf8a380e5c789..5aee6c9a8295ce 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_live_selftests.h
++++ b/drivers/gpu/drm/i915/selftests/i915_live_selftests.h
+@@ -25,6 +25,7 @@ selftest(gt_lrc, intel_lrc_live_selftests)
+ selftest(gt_mocs, intel_mocs_live_selftests)
+ selftest(gt_pm, intel_gt_pm_live_selftests)
+ selftest(gt_heartbeat, intel_heartbeat_live_selftests)
++selftest(gt_tlb, intel_tlb_live_selftests)
+ selftest(requests, i915_request_live_selftests)
+ selftest(migrate, intel_migrate_live_selftests)
+ selftest(active, i915_active_live_selftests)
 -- 
-2.32.0
+2.34.1
 
