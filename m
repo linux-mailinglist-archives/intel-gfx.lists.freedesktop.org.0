@@ -1,56 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C62D267AB38
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jan 2023 08:50:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7CBC67AB4F
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jan 2023 09:07:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E50610E73A;
-	Wed, 25 Jan 2023 07:50:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E93D310E743;
+	Wed, 25 Jan 2023 08:06:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B35110E73A
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Jan 2023 07:50:18 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB59210E044;
+ Wed, 25 Jan 2023 08:06:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674633018; x=1706169018;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=KqkdoSTN6GHRXc53UQi10HjLnbC3DNQgIIxI2To3wFE=;
- b=ltJ0jB90X1wfRxiW36LqtaFXIdW+zvSbEbe+vG/UcAcGBY1wcwo44grn
- FDIhObuJD2ZRkElzUl0tYkPREpqxcyD4uKRB3TNObZTFAMUlJExXldhu8
- X+BySHtc6KzSuhio9TOo/P/EkZIiVUwqK8Sc5JJY3nHJGtKfY28S/SdAt
- nVqIYmR42VNa7IX4UyPZ+Ao4FF4iIzhOK0ts07v4j19URsw+V3IVRxe7W
- 8cPz1PZijP6GeUfEjRdZIx3WSbE3D6EMUbtXf5zl4XMdfJv3hBJjuqYN3
- 7oEcphTbhyuhiP2+PDLt/lrG9lNWvYkMc7oYwn6adBgBHkiiEFHr+cAz9 w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10600"; a="326532382"
-X-IronPort-AV: E=Sophos;i="5.97,244,1669104000"; d="scan'208";a="326532382"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2023 23:50:18 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10600"; a="804915411"
-X-IronPort-AV: E=Sophos;i="5.97,244,1669104000"; d="scan'208";a="804915411"
-Received: from mglinsk-mobl1.ger.corp.intel.com (HELO [10.213.31.78])
- ([10.213.31.78])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2023 23:50:16 -0800
-Message-ID: <f1440b52-55bf-42e1-0015-7c831b945694@intel.com>
-Date: Wed, 25 Jan 2023 08:50:14 +0100
+ t=1674634014; x=1706170014;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=j2jnhj85dAYI/PGSZB/1S24SAn8CudUYh/yP/tw1xYQ=;
+ b=Vytcrs7NSiPyGBcddtuHwSkYIBC92MpByU1RtaWREr2iEgz56+UnNz4T
+ 99YO7YuY9dJ9/t2J3bChsqyowJz6b8FB56JR3d2ginJJQZyiZeFr4YX4w
+ 2jf9TObIV0wM4LIfZD8a8OiNdi5NGvimSlHyaIb3M7MyeVdQ2FG61t1zY
+ RPY4PPk9NZWWb6tcVaoQac/VxsSMSOnkUP0PrhG/oyG7Qw7DKXzX/CUwy
+ PNPK+v/+HfW//bWA/T3Y1OJou/y9cfyyG2W0LBydOw745J9GR8I2E4h9N
+ lqjCxFE63aTOCXoAnLeDWRn5KPYr7UYNZwsEM4gOCzCXH4/yWvDTQvl3q A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10600"; a="310079361"
+X-IronPort-AV: E=Sophos;i="5.97,244,1669104000"; d="scan'208";a="310079361"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2023 00:06:54 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10600"; a="991180670"
+X-IronPort-AV: E=Sophos;i="5.97,244,1669104000"; d="scan'208";a="991180670"
+Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
+ by fmsmga005.fm.intel.com with ESMTP; 25 Jan 2023 00:06:53 -0800
+From: Alan Previn <alan.previn.teres.alexis@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 25 Jan 2023 00:06:43 -0800
+Message-Id: <20230125080651.100223-1-alan.previn.teres.alexis@intel.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.6.1
-Content-Language: en-US
-To: Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20230124141740.17601-1-nirmoy.das@intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20230124141740.17601-1-nirmoy.das@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Pass drm_i915_private as
- param to i915 funcs
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3 0/8] drm/i915/pxp: Add MTL PXP Support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,125 +54,109 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: dri-devel@lists.freedesktop.org,
+ Alan Previn <alan.previn.teres.alexis@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 24.01.2023 15:17, Nirmoy Das wrote:
-> For i915 functions pass struct drm_i915_private directly instead of
-> struct drm_device.
-> 
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Suggested-by: Jani Nikula <jani.nikula@linux.intel.com>
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-> ---
->   drivers/gpu/drm/i915/display/intel_display.c | 2 +-
->   drivers/gpu/drm/i915/display/intel_fbdev.c   | 8 ++++----
->   drivers/gpu/drm/i915/display/intel_fbdev.h   | 8 ++++----
->   drivers/gpu/drm/i915/i915_driver.c           | 4 +++-
->   4 files changed, 12 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index e37cca6b18c6..b014d8626ef7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -9004,7 +9004,7 @@ void intel_display_driver_register(struct drm_i915_private *i915)
->   	 * enabled. We do it last so that the async config cannot run
->   	 * before the connectors are registered.
->   	 */
-> -	intel_fbdev_initial_config_async(&i915->drm);
-> +	intel_fbdev_initial_config_async(i915);
->   
->   	/*
->   	 * We need to coordinate the hotplugs with the asynchronous
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-> index 19f3b5d92a55..c2c52f8e5887 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-> @@ -547,9 +547,9 @@ static void intel_fbdev_initial_config(void *data, async_cookie_t cookie)
->   		intel_fbdev_unregister(to_i915(ifbdev->helper.dev));
->   }
->   
-> -void intel_fbdev_initial_config_async(struct drm_device *dev)
-> +void intel_fbdev_initial_config_async(struct drm_i915_private *dev_priv)
->   {
-> -	struct intel_fbdev *ifbdev = to_i915(dev)->display.fbdev.fbdev;
-> +	struct intel_fbdev *ifbdev = dev_priv->display.fbdev.fbdev;
->   
->   	if (!ifbdev)
->   		return;
-> @@ -686,9 +686,9 @@ void intel_fbdev_output_poll_changed(struct drm_device *dev)
->   		drm_fb_helper_hotplug_event(&ifbdev->helper);
->   }
->   
-> -void intel_fbdev_restore_mode(struct drm_device *dev)
-> +void intel_fbdev_restore_mode(struct drm_i915_private *dev_priv)
->   {
-> -	struct intel_fbdev *ifbdev = to_i915(dev)->display.fbdev.fbdev;
-> +	struct intel_fbdev *ifbdev = dev_priv->display.fbdev.fbdev;
->   
->   	if (!ifbdev)
->   		return;
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.h b/drivers/gpu/drm/i915/display/intel_fbdev.h
-> index 0e95e9472fa3..04fd523a5023 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbdev.h
-> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.h
-> @@ -15,12 +15,12 @@ struct intel_framebuffer;
->   
->   #ifdef CONFIG_DRM_FBDEV_EMULATION
->   int intel_fbdev_init(struct drm_device *dev);
-> -void intel_fbdev_initial_config_async(struct drm_device *dev);
-> +void intel_fbdev_initial_config_async(struct drm_i915_private *dev_priv);
->   void intel_fbdev_unregister(struct drm_i915_private *dev_priv);
->   void intel_fbdev_fini(struct drm_i915_private *dev_priv);
->   void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous);
->   void intel_fbdev_output_poll_changed(struct drm_device *dev);
-> -void intel_fbdev_restore_mode(struct drm_device *dev);
-> +void intel_fbdev_restore_mode(struct drm_i915_private *dev_priv);
->   struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev);
->   #else
->   static inline int intel_fbdev_init(struct drm_device *dev)
-> @@ -28,7 +28,7 @@ static inline int intel_fbdev_init(struct drm_device *dev)
->   	return 0;
->   }
->   
-> -static inline void intel_fbdev_initial_config_async(struct drm_device *dev)
-> +static inline void intel_fbdev_initial_config_async(struct drm_i915_private *dev_priv)
->   {
->   }
->   
-> @@ -48,7 +48,7 @@ static inline void intel_fbdev_output_poll_changed(struct drm_device *dev)
->   {
->   }
->   
-> -static inline void intel_fbdev_restore_mode(struct drm_device *dev)
-> +static inline void intel_fbdev_restore_mode(struct drm_i915_private *i915)
->   {
->   }
->   static inline struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index 6469c7c1e154..cd6069c1762d 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -1071,7 +1071,9 @@ static int i915_driver_open(struct drm_device *dev, struct drm_file *file)
->    */
->   static void i915_driver_lastclose(struct drm_device *dev)
->   {
-> -	intel_fbdev_restore_mode(dev);
-> +	struct drm_i915_private *i915 = to_i915(dev);
-> +
-> +	intel_fbdev_restore_mode(i915);
+This series enables PXP on MTL. On ADL/TGL platforms, we rely on
+the mei driver via the i915-mei PXP component interface to establish
+a connection to the security firmware via the HECI device interface.
+That interface is used to create and teardown the PXP ARB session.
+PXP ARB session is created when protected contexts are created.
 
-You could use to_i915(dev) without alias.
+In this series, the front end behaviors and interfaces (uapi) remain
+the same. We add backend support for MTL but with MTL we directly use
+the GSC-CS engine on the MTL GPU device to send messages to the PXP
+(a.k.a. GSC a.k.a graphics-security) firmware. With MTL, the format
+of the message is slightly different with a 2-layer packetization
+that is explained in detail in Patch #3. Also, the second layer
+which is the actual PXP firmware packet is now rev'd to version 4.3
+for MTL that is defined in Patch #5.
 
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+Take note that Patch #4 adds the buffer allocation and gsccs-send-
+message without actually being called by the arb-creation code
+which gets added in Patch #5. Additionally, a seperate series being
+reviewed is introducing a change for session teardown (in pxp front-
+end layer that will need backend support by both legacy and gsccs).
+If we squash all of these together (buffer-alloc, send-message,
+arb-creation and, in future, session-termination), the single patch
+will be rather large. That said, we are keeping Patch #4 and #5
+separate for now, but at merge time, we can squash them together
+if maintainer requires it.
 
-Regards
-Andrzej
+Changes from prior revs:
+   v1 : - fixed when building with CONFIG_PXP disabled.
+        - more alignment with gsc_mtl_header structure from the HDCP
+   v2 : - (all following changes as per reviews from Daniele)
+        - squashed Patch #1 from v1 into the next one.
+        - replaced unnecessary "uses_gsccs" boolean in the pxp
+          with "HAS_ENGINE(pxp->ctrl_gt, GSC0)".
+        - moved the stashing of gsccs resources from a dynamically
+          allocated opaque handle to an explicit sub-struct in
+          'struct intel_pxp'.
+        - moved the buffer object allocations from Patch #1 of this
+          series to Patch #5 (but keep the context allocation in
+          Patch #1).
+        - used the kernel default ppgtt for the gsccs context.
+        - optimized the buffer allocation and deallocation code
+          and drop the need to stash the drm_i915_gem_object.
+        - use a macro with the right mmio reg base (depending
+          on root-tile vs media-tile) along with common relative
+          offset to access all KCR registers thus minimizing
+          changes to the KCR register access codes.
+        - fixed bugs in the heci packet request submission code
+          in Patch #3 (of this series)
+        - add comments in the mtl-gsc-heci-header regarding the
+          host-session-handle.
+        - re-use tee-mutex instead of introducing a gsccs specific
+          cmd mutex.
+        - minor cosmetic improvements in Patch #5.
+	- before creating arb session, ensure intel_pxp_start
+          first ensures the GSC FW is up and running.
+        - use 2 second timeout for the pending-bit scenario when
+          sending command to GSC-FW as per specs.
+        - simplify intel_pxp_get_irq_gt with addition comments
+        - redo Patch #7 to minimize the changes without introducing
+          a common  abstraction helper for suspend/resume/init/fini
+          codes that have to change the kcr power state.
 
->   
->   	vga_switcheroo_process_delayed_switch();
->   }
+Alan Previn (8):
+  drm/i915/pxp: Add GSC-CS back-end resource init and cleanup
+  drm/i915/pxp: Add MTL hw-plumbing enabling for KCR operation
+  drm/i915/pxp: Add MTL helpers to submit Heci-Cmd-Packet to GSC
+  drm/i915/pxp: Add GSC-CS backend to send GSC fw messages
+  drm/i915/pxp: Add ARB session creation with new PXP API Ver4.3
+  drm/i915/pxp: MTL-KCR interrupt ctrl's are in GT-0
+  drm/i915/pxp: On MTL, KCR enabling doesn't wait on tee component
+  drm/i915/pxp: Enable PXP with MTL-GSC-CS
+
+ drivers/gpu/drm/i915/Makefile                 |   2 +
+ drivers/gpu/drm/i915/gt/intel_gpu_commands.h  |   2 +
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c        |   3 +-
+ .../i915/gt/uc/intel_gsc_uc_heci_cmd_submit.c | 110 +++++++
+ .../i915/gt/uc/intel_gsc_uc_heci_cmd_submit.h |  76 +++++
+ drivers/gpu/drm/i915/i915_pci.c               |   1 +
+ drivers/gpu/drm/i915/pxp/intel_pxp.c          |  69 +++--
+ .../drm/i915/pxp/intel_pxp_cmd_interface_43.h |  25 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c  |   2 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c    | 287 ++++++++++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h    |  31 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_irq.c      |  24 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp_irq.h      |   8 +
+ drivers/gpu/drm/i915/pxp/intel_pxp_pm.c       |   3 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp_regs.h     |  27 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_session.c  |  20 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp_types.h    |  20 ++
+ 17 files changed, 675 insertions(+), 35 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_heci_cmd_submit.c
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_heci_cmd_submit.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_regs.h
+
+
+base-commit: 6bcfacd291ed6ff1ff50a295f970c98d54eabe05
+-- 
+2.39.0
 
