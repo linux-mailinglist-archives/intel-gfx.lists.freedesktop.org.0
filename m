@@ -1,51 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0458767B217
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jan 2023 12:57:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C825D67B26D
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jan 2023 13:13:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67E7110E799;
-	Wed, 25 Jan 2023 11:57:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62FEF10E7B6;
+	Wed, 25 Jan 2023 12:13:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B219810E799
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Jan 2023 11:57:17 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9818210E7B4;
+ Wed, 25 Jan 2023 12:13:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674647837; x=1706183837;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=IZ6SAJ6DNisJRPH2rrelrxnrljVsfV+69TJYJDUE18s=;
- b=bfScVF03zJIQlrAMDaabU/9EvwM1i+gJzchgKIwM/pFKIc9D5TKDCw8+
- MyFZwgN6XGWMwFqP2feyauzIs6YSO5iXR3YLARkTNsTZUqonkCqDliyzZ
- TdZHJLsHOiuoHGrKlF75/H1Cp5APufgB2O6E40swGgPyJUXmzwmggWZn7
- UWk74I0yxhyv6UobUfk06BdhG6e5zY8u8Ek/To13gv+659GosZk6Km0IR
- of5sBy8WM0EFaIeBC3PKul9bXZd4m8jC100DA6Yni2v9yZG9h/dL/0Xd0
- SM8zTah8stoGFOffqF53GINo9TnbTlPGonBwgvFLV5zUxMEIcho85MrfS Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10600"; a="324236443"
-X-IronPort-AV: E=Sophos;i="5.97,245,1669104000"; d="scan'208";a="324236443"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2023 03:57:16 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10600"; a="612395108"
-X-IronPort-AV: E=Sophos;i="5.97,245,1669104000"; d="scan'208";a="612395108"
-Received: from ericnguy-mobl.amr.corp.intel.com (HELO localhost)
- ([10.252.46.123])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2023 03:57:14 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-In-Reply-To: <Y8bJTQ4mVUGSvct3@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1673958757.git.jani.nikula@intel.com>
- <Y8bJTQ4mVUGSvct3@intel.com>
-Date: Wed, 25 Jan 2023 13:57:12 +0200
-Message-ID: <87pmb26d47.fsf@intel.com>
+ t=1674648782; x=1706184782;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=BlYL5ZWxfpIGJfWCOvZGguBgymIDRUM5a8fZph+HpbU=;
+ b=IVms/xwalWAAxbxSySt4IZtjNoJfVX+X4bN6bFWWFIeJC4tNGsBhus6Y
+ Bv+2jVbRe75jnV0o+m4bmtbRLZcaGpu/aKmB9ifJLs/MYpqRiAXS82j6v
+ 2yGtPPHHqWH9vcaEY/JhBdH5KyxGqlswSO9FK7ctcEtjVDUz6MWGAF0lQ
+ TMABESVcDhXcoGhriDVw8iG32Uw5qchAasm6RGwVX0HbF1GTJHd9fz//v
+ ZOxLM86mF/3lzcLlB2y4KYCTNUTt8IVaSEWRKWGYQYruBM80FzwSi4qP+
+ XFh5tmLm9GpeV9g4CS6GoAJU9FXKhubop6iSwOf+7AXcMA4ljDyq4sGG1 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10600"; a="391044963"
+X-IronPort-AV: E=Sophos;i="5.97,245,1669104000"; d="scan'208";a="391044963"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2023 04:13:02 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10600"; a="725833858"
+X-IronPort-AV: E=Sophos;i="5.97,245,1669104000"; d="scan'208";a="725833858"
+Received: from lkp-server01.sh.intel.com (HELO 5646d64e7320) ([10.239.97.150])
+ by fmsmga008.fm.intel.com with ESMTP; 25 Jan 2023 04:12:57 -0800
+Received: from kbuild by 5646d64e7320 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1pKee9-0007He-0L;
+ Wed, 25 Jan 2023 12:12:57 +0000
+Date: Wed, 25 Jan 2023 20:12:30 +0800
+From: kernel test robot <lkp@intel.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>, airlied@gmail.com,
+ daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, javierm@redhat.com
+Message-ID: <202301252016.vm7ksFra-lkp@intel.com>
+References: <20230124134010.30263-7-tzimmermann@suse.de>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 0/4] drm/i915: GMCH refactoring
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230124134010.30263-7-tzimmermann@suse.de>
+Subject: Re: [Intel-gfx] [PATCH v2 06/10] drm/fb-helper: Initialize
+ fb-helper's preferred BPP in prepare function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,56 +62,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, llvm@lists.linux.dev,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, oe-kbuild-all@lists.linux.dev,
+ linux-tegra@vger.kernel.org, freedreno@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 17 Jan 2023, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Tue, Jan 17, 2023 at 02:33:05PM +0200, Jani Nikula wrote:
->> Let's see if this sticks.
->
-> Suddenly all of these 'bridge_dev' makes some sense to me.
->
-> I believe we could enjoy the refactor here and add some documentation
-> about this... at least the name Graphics Memory Controller Hub name...
->
-> I also wonder if we should make this a child device now that it is
-> really organized...
->
-> But anyway, everything can be a follow up, the current refactor
-> is already a very good clean up step, so for the series:
->
->
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Hi Thomas,
 
-Thanks for the reviews, pushed to drm-intel-next with Ville's IRC ack.
+I love your patch! Yet something to improve:
 
-BR,
-Jani.
+[auto build test ERROR on 7d3e7f64a42d66ba8da6e7b66a8d85457ef84570]
 
->
->
->> 
->> Jani Nikula (4):
->>   drm/i915: add gmch substruct to struct drm_i915_private
->>   drm/i915/gmch: split out soc/intel_gmch
->>   drm/i915/gmch: mass rename dev_priv to i915
->>   drm/i915/gmch: move VGA set state to GMCH code
->> 
->>  drivers/gpu/drm/i915/Makefile             |   1 +
->>  drivers/gpu/drm/i915/display/intel_vga.c  |  32 +---
->>  drivers/gpu/drm/i915/gt/intel_ggtt_gmch.c |   2 +-
->>  drivers/gpu/drm/i915/i915_driver.c        | 145 +-----------------
->>  drivers/gpu/drm/i915/i915_drv.h           |  10 +-
->>  drivers/gpu/drm/i915/soc/intel_gmch.c     | 171 ++++++++++++++++++++++
->>  drivers/gpu/drm/i915/soc/intel_gmch.h     |  18 +++
->>  7 files changed, 204 insertions(+), 175 deletions(-)
->>  create mode 100644 drivers/gpu/drm/i915/soc/intel_gmch.c
->>  create mode 100644 drivers/gpu/drm/i915/soc/intel_gmch.h
->> 
->> -- 
->> 2.34.1
->> 
+url:    https://github.com/intel-lab-lkp/linux/commits/Thomas-Zimmermann/drm-client-Test-for-connectors-before-sending-hotplug-event/20230124-214220
+base:   7d3e7f64a42d66ba8da6e7b66a8d85457ef84570
+patch link:    https://lore.kernel.org/r/20230124134010.30263-7-tzimmermann%40suse.de
+patch subject: [Intel-gfx] [PATCH v2 06/10] drm/fb-helper: Initialize fb-helper's preferred BPP in prepare function
+config: x86_64-randconfig-a014-20230123 (https://download.01.org/0day-ci/archive/20230125/202301252016.vm7ksFra-lkp@intel.com/config)
+compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/70e38534e74e4d12bb02b3b352bba2aed417f541
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Thomas-Zimmermann/drm-client-Test-for-connectors-before-sending-hotplug-event/20230124-214220
+        git checkout 70e38534e74e4d12bb02b3b352bba2aed417f541
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/drm/gma500/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+>> drivers/gpu/drm/gma500/framebuffer.c:412:44: error: too many arguments to function call, expected 3, have 4
+           drm_fb_helper_prepare(dev, fb_helper, 32, &psb_fb_helper_funcs);
+           ~~~~~~~~~~~~~~~~~~~~~                     ^~~~~~~~~~~~~~~~~~~~
+   include/drm/drm_fb_helper.h:295:20: note: 'drm_fb_helper_prepare' declared here
+   static inline void drm_fb_helper_prepare(struct drm_device *dev,
+                      ^
+>> drivers/gpu/drm/gma500/framebuffer.c:421:46: error: too few arguments to function call, expected 2, have 1
+           ret = drm_fb_helper_initial_config(fb_helper);
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~          ^
+   include/drm/drm_fb_helper.h:459:19: note: 'drm_fb_helper_initial_config' declared here
+   static inline int drm_fb_helper_initial_config(struct drm_fb_helper *fb_helper,
+                     ^
+   2 errors generated.
+
+
+vim +412 drivers/gpu/drm/gma500/framebuffer.c
+
+   397	
+   398	int psb_fbdev_init(struct drm_device *dev)
+   399	{
+   400		struct drm_fb_helper *fb_helper;
+   401		struct drm_psb_private *dev_priv = to_drm_psb_private(dev);
+   402		int ret;
+   403	
+   404		fb_helper = kzalloc(sizeof(*fb_helper), GFP_KERNEL);
+   405		if (!fb_helper) {
+   406			dev_err(dev->dev, "no memory\n");
+   407			return -ENOMEM;
+   408		}
+   409	
+   410		dev_priv->fb_helper = fb_helper;
+   411	
+ > 412		drm_fb_helper_prepare(dev, fb_helper, 32, &psb_fb_helper_funcs);
+   413	
+   414		ret = drm_fb_helper_init(dev, fb_helper);
+   415		if (ret)
+   416			goto free;
+   417	
+   418		/* disable all the possible outputs/crtcs before entering KMS mode */
+   419		drm_helper_disable_unused_functions(dev);
+   420	
+ > 421		ret = drm_fb_helper_initial_config(fb_helper);
+   422		if (ret)
+   423			goto fini;
+   424	
+   425		return 0;
+   426	
+   427	fini:
+   428		drm_fb_helper_fini(fb_helper);
+   429	free:
+   430		kfree(fb_helper);
+   431		return ret;
+   432	}
+   433	
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
