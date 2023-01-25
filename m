@@ -2,62 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E72367AF89
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jan 2023 11:22:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E53D867AFEE
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jan 2023 11:45:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B2B410E371;
-	Wed, 25 Jan 2023 10:22:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30CAC10E0DF;
+	Wed, 25 Jan 2023 10:45:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com
- [IPv6:2a00:1450:4864:20::233])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD7D510E371;
- Wed, 25 Jan 2023 10:22:20 +0000 (UTC)
-Received: by mail-lj1-x233.google.com with SMTP id h17so1136355ljq.4;
- Wed, 25 Jan 2023 02:22:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=4Quk0baERnW1z1T9/MrVTs5oKP9HCv5XTC0taNPw0ew=;
- b=Cd6KvbrWjXbHjo2ulAX0yHjihbqmcZxj5cDIrlrHYBVRFTSgxnT8Xd+SlWViY1NH/U
- iPiFAInebwm9785OUBBlVp3ldzu4DiN+kf1OOGYtX5+VXeg7q0ddHaoUdlU1d9PAg6Zd
- Sd5RFEFJWkkdZKTEitbreYtWW/F2BGWNTchAgkxpqCLsHKIA7msuhTVHfa35jcXtKqZZ
- yjuxjDaFYwwAvbNk0uyxnl31zxksm12736EhB5rcUQr+1QDwxFZl91/howijxu65jDTI
- 4wXSBVq9G2r7El58A3AzETfvc9lY32r41OEmUjfrCpCW3hVjU1GA2x+YelJw6gRpfDAl
- 9moQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=4Quk0baERnW1z1T9/MrVTs5oKP9HCv5XTC0taNPw0ew=;
- b=CXkgAzI7ma482HqqZ5XigvQASNei+dojESoIXUhQxrFAveWINWVRdM3VmvUBPG9S2o
- m6TfK/HPivmJmZs1L6fGhcHq638Ct0UIHw0H6XOkSP17P+CVs1EohW7SRCp2JPOKvAlw
- 5DLklydVmC/aA+F7Y0tpbNxWbKyWVOnce6bBfRG9eYdPjjb6AFCk+jJgcvpmUiqboL1I
- oW8z9IJrpj7+4VfF9R2c9sSTaVwoT8LXPdcf5PtUUZ4fbq08V4m9xyIR27oEYFeQ4AMY
- K0V/wdFn9L4xDquSzBginknerzZECe72EaZZA7TUWzUsmgORh9mik55WQ97Cn6mypP9a
- q2PQ==
-X-Gm-Message-State: AFqh2kolLCDWaQZ8lcvBnWAoggO9QG0h/gZ1bQG3nz2lK2KMX+lv4r2J
- MfAlG8QPx02xCiErnhooEQhqccJAk6PGsVP+V+uSjIetmN91aA==
-X-Google-Smtp-Source: AMrXdXte+ogv3BWeMiY7cESZX2GCRgSeVOJxKVPPzC7C7F0VVycaWG7ymuE+eoXAAEvn7O+ne1XItDQhzh8XPikbrpw=
-X-Received: by 2002:a2e:82cf:0:b0:28b:bde3:7871 with SMTP id
- n15-20020a2e82cf000000b0028bbde37871mr1030127ljh.269.1674642139038; Wed, 25
- Jan 2023 02:22:19 -0800 (PST)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E3F510E0DF
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Jan 2023 10:45:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1674643500; x=1706179500;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Ufy9M6FXGO5EJsWDnwbcfqSoF4pYOWf+Y/vDZBDbo6s=;
+ b=gsRs33mAHNgUP8lZ928gzyZiRr4VfqmJEkbP1xf81cX5bR7t62701WdD
+ SmqDyMckk+9wUnTFO8/ITSysL7BciBZWa6BKh/+cw3jY6nK4QR2f/NShH
+ 56kdTwWrAm/kO9u083nI16N8t3/V42yj4gWjHFI/cxtd4V+DK4wFq++Et
+ tLqk21FX8luqxPCZy2Bwd+CeulFcjs1jM2NmdsTJK+RY5jpBRP+Ttxy4k
+ bBr0dtpq6JDlJS4su/htmOFkTRpHjDONQdSx/ulYJ5vEWDqiJ3VU7RmVh
+ 9JTtJ2VxAUKGxEF7V5xDSya+CWXo3zijANlfeCU/DV71cz3GR50QEM25U w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10600"; a="412759305"
+X-IronPort-AV: E=Sophos;i="5.97,245,1669104000"; d="scan'208";a="412759305"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2023 02:44:59 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10600"; a="655758341"
+X-IronPort-AV: E=Sophos;i="5.97,245,1669104000"; d="scan'208";a="655758341"
+Received: from cbackhau-mobl.ger.corp.intel.com (HELO
+ jhogande-mobl1.ger.corp.intel.com) ([10.252.58.97])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2023 02:44:56 -0800
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 25 Jan 2023 12:44:39 +0200
+Message-Id: <20230125104439.1662832-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20230124125726.13323-1-christian.koenig@amd.com>
- <CAM0jSHNmv-naGqB=R8DZc-3QhTPzzo4pUU2-NxhtiEhXMcAN5A@mail.gmail.com>
- <CAM0jSHMgep0q9=C=fHw+Y8SqpNeN3Gz47u_UvwgJuGG3_0qgBQ@mail.gmail.com>
- <CAM0jSHNKkAS1+dYJdHk23+Uyoz02G1VPFLpKLxX2HqRe7L2HCA@mail.gmail.com>
- <418a6bca-7a61-86d8-7f6a-229d1e12c0fd@gmail.com>
-In-Reply-To: <418a6bca-7a61-86d8-7f6a-229d1e12c0fd@gmail.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Wed, 25 Jan 2023 10:21:51 +0000
-Message-ID: <CAM0jSHMrtTWPpExT-M3=qGKyFPSjN=WbsDnLZTaADneyXxOjZQ@mail.gmail.com>
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915: audit bo->resource usage v3
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/psr: Split sel fetch plane
+ configuration into arm and noarm
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,96 +58,141 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 25 Jan 2023 at 10:07, Christian K=C3=B6nig
-<ckoenig.leichtzumerken@gmail.com> wrote:
->
->
->
-> Am 25.01.23 um 10:56 schrieb Matthew Auld:
-> > On Tue, 24 Jan 2023 at 17:15, Matthew Auld
-> > <matthew.william.auld@gmail.com> wrote:
-> >> On Tue, 24 Jan 2023 at 13:48, Matthew Auld
-> >> <matthew.william.auld@gmail.com> wrote:
-> >>> On Tue, 24 Jan 2023 at 12:57, Christian K=C3=B6nig
-> >>> <ckoenig.leichtzumerken@gmail.com> wrote:
-> >>>> From: Christian K=C3=B6nig <ckoenig.leichtzumerken@gmail.com>
-> >>>>
-> >>>> Make sure we can at least move and alloc TT objects without backing =
-store.
-> >>>>
-> >>>> v2: clear the tt object even when no resource is allocated.
-> >>>> v3: add Matthews changes for i915 as well.
-> >>>>
-> >>>> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> >>> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-> >> Ofc that assumes intel-gfx CI is now happy with the series.
-> > There are still some nasty failures it seems (in the extended test
-> > list). But it looks like the series is already merged. Can we quickly
-> > revert and try again?
->
-> Ah, crap. I thought everything would be fine after the CI gave it's go.
->
-> Which patch is causing the fallout?
+SEL_FETCH_CTL registers are armed immediately when plane is disabled.
+SEL_FETCH_* instances of plane configuration are used when doing
+selective update and normal plane register instances for full updates.
+Currently all SEL_FETCH_* registers are written as a part of noarm
+plane configuration. If noarm and arm plane configuration are not
+happening within same vblank we may end up having plane as a part of
+selective update before it's PLANE_SURF register is written.
 
-I'm not sure. I think all of the patches kind of interact with each
-other, but for sure there is an issue with the first patch. There is
-one splat like:
+Fix this by splitting plane selective fetch configuration into arm and
+noarm versions and call them accordingly. Write SEL_FETCH_CTL in arm
+version.
 
-<1>[  109.735148] BUG: kernel NULL pointer dereference, address:
-0000000000000010
-<1>[  109.735151] #PF: supervisor read access in kernel mode
-<1>[  109.735152] #PF: error_code(0x0000) - not-present page
-<6>[  109.735153] PGD 0 P4D 0
-<4>[  109.735155] Oops: 0000 [#1] PREEMPT SMP NOPTI
-<4>[  109.735157] CPU: 1 PID: 92 Comm: kworker/u12:6 Not tainted
-6.2.0-rc5-Patchwork_113269v1-gc4d436608c4e+ #1
-<4>[  109.735159] Hardware name: Gigabyte Technology Co., Ltd. GB-Z390
-Garuda/GB-Z390 Garuda-CF, BIOS IG1c 11/19/2019
-<4>[  109.735160] Workqueue: events_unbound async_run_entry_fn
-<4>[  109.735163] RIP: 0010:i915_ttm_resource_mappable+0x4/0x30 [i915]
-<4>[  109.735286] Code: b8 f9 ff ff ff eb c2 e8 aa 5e 52 e1 e9 4f 0f
-18 00 0f 1f 44 00 00 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90
-66 0f 1f 00 <8b> 57 10 b8 01 00 00 00 85 d2 74 15 48 8b 47 08 48 05 ff
-0f 00 00
-<4>[  109.735288] RSP: 0018:ffffc90000f339a8 EFLAGS: 00010246
-<4>[  109.735289] RAX: 0000000000000000 RBX: 0000000000000000 RCX:
-ffff88810cea3a00
-<4>[  109.735290] RDX: 0000000000000000 RSI: ffffc90000f33af0 RDI:
-0000000000000000
-<4>[  109.735292] RBP: ffff88811645d7c0 R08: 0000000000000000 R09:
-ffff888123afa940
-<4>[  109.735292] R10: 0000000000000001 R11: ffff888104b70040 R12:
-0000000000000000
-<4>[  109.735293] R13: 0000000000000000 R14: ffffc90000f33b08 R15:
-ffffc90000f33af0
-<4>[  109.735294] FS:  0000000000000000(0000)
-GS:ffff8884ad680000(0000) knlGS:0000000000000000
-<4>[  109.735295] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-<4>[  109.735296] CR2: 0000000000000010 CR3: 000000011f9c6003 CR4:
-00000000003706e0
-<4>[  109.735297] DR0: 0000000000000000 DR1: 0000000000000000 DR2:
-0000000000000000
-<4>[  109.735298] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7:
-0000000000000400
-<4>[  109.735299] Call Trace:
-<4>[  109.735300]  <TASK>
-<4>[  109.735301]  __i915_ttm_move+0x128/0x940 [i915]
-<4>[  109.735408]  ? dma_resv_iter_next+0x91/0xb0
-<4>[  109.735412]  ? dma_resv_iter_first+0x42/0xb0
-<4>[  109.735414]  ? i915_deps_add_resv+0x4c/0xc0 [i915]
-<4>[  109.735520]  i915_gem_obj_copy_ttm+0x12f/0x250 [i915]
-<4>[  109.735625]  i915_ttm_restore+0x167/0x250 [i915]
-<4>[  109.735759]  i915_gem_process_region+0x27a/0x3b0 [i915]
-<4>[  109.735881]  i915_ttm_restore_region+0x4b/0x70 [i915]
-<4>[  109.735999]  lmem_restore+0x3a/0x60 [i915]
-<4>[  109.736101]  i915_gem_resume+0x4c/0x100 [i915]
-<4>[  109.736202]  i915_drm_resume+0xc2/0x170 [i915]
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: José Roberto de Souza <jose.souza@intel.com>
+Cc: Mika Kahola <mika.kahola@intel.com>
+Cc: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cursor.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      | 29 ++++++++++++++-----
+ drivers/gpu/drm/i915/display/intel_psr.h      |  6 +++-
+ .../drm/i915/display/skl_universal_plane.c    |  4 ++-
+ 4 files changed, 30 insertions(+), 11 deletions(-)
 
-Plus some other less obvious issue(s) with some tests failing.
+diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+index d190fa0d393b..50232cec48e0 100644
+--- a/drivers/gpu/drm/i915/display/intel_cursor.c
++++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+@@ -532,7 +532,7 @@ static void i9xx_cursor_update_arm(struct intel_plane *plane,
+ 		skl_write_cursor_wm(plane, crtc_state);
+ 
+ 	if (plane_state)
+-		intel_psr2_program_plane_sel_fetch(plane, crtc_state, plane_state, 0);
++		intel_psr2_program_plane_sel_fetch_arm(plane, crtc_state, plane_state, 0);
+ 	else
+ 		intel_psr2_disable_plane_sel_fetch(plane, crtc_state);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 7d4a15a283a0..63b79c611932 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -1559,7 +1559,26 @@ void intel_psr2_disable_plane_sel_fetch(struct intel_plane *plane,
+ 	intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_CTL(pipe, plane->id), 0);
+ }
+ 
+-void intel_psr2_program_plane_sel_fetch(struct intel_plane *plane,
++void intel_psr2_program_plane_sel_fetch_arm(struct intel_plane *plane,
++					const struct intel_crtc_state *crtc_state,
++					const struct intel_plane_state *plane_state,
++					int color_plane)
++{
++	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
++	enum pipe pipe = plane->pipe;
++
++	if (!crtc_state->enable_psr2_sel_fetch)
++		return;
++
++	if (plane->id == PLANE_CURSOR)
++		intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_CTL(pipe, plane->id),
++				  plane_state->ctl);
++	else
++		intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_CTL(pipe, plane->id),
++				  PLANE_SEL_FETCH_CTL_ENABLE);
++}
++
++void intel_psr2_program_plane_sel_fetch_noarm(struct intel_plane *plane,
+ 					const struct intel_crtc_state *crtc_state,
+ 					const struct intel_plane_state *plane_state,
+ 					int color_plane)
+@@ -1573,11 +1592,8 @@ void intel_psr2_program_plane_sel_fetch(struct intel_plane *plane,
+ 	if (!crtc_state->enable_psr2_sel_fetch)
+ 		return;
+ 
+-	if (plane->id == PLANE_CURSOR) {
+-		intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_CTL(pipe, plane->id),
+-				  plane_state->ctl);
++	if (plane->id == PLANE_CURSOR)
+ 		return;
+-	}
+ 
+ 	clip = &plane_state->psr2_sel_fetch_area;
+ 
+@@ -1605,9 +1621,6 @@ void intel_psr2_program_plane_sel_fetch(struct intel_plane *plane,
+ 	val = (drm_rect_height(clip) - 1) << 16;
+ 	val |= (drm_rect_width(&plane_state->uapi.src) >> 16) - 1;
+ 	intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_SIZE(pipe, plane->id), val);
+-
+-	intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_CTL(pipe, plane->id),
+-			  PLANE_SEL_FETCH_CTL_ENABLE);
+ }
+ 
+ void intel_psr2_program_trans_man_trk_ctl(const struct intel_crtc_state *crtc_state)
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
+index 2ac3a46cccc5..49cd5beacf98 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.h
++++ b/drivers/gpu/drm/i915/display/intel_psr.h
+@@ -46,7 +46,11 @@ bool intel_psr_enabled(struct intel_dp *intel_dp);
+ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
+ 				struct intel_crtc *crtc);
+ void intel_psr2_program_trans_man_trk_ctl(const struct intel_crtc_state *crtc_state);
+-void intel_psr2_program_plane_sel_fetch(struct intel_plane *plane,
++void intel_psr2_program_plane_sel_fetch_noarm(struct intel_plane *plane,
++					const struct intel_crtc_state *crtc_state,
++					const struct intel_plane_state *plane_state,
++					int color_plane);
++void intel_psr2_program_plane_sel_fetch_arm(struct intel_plane *plane,
+ 					const struct intel_crtc_state *crtc_state,
+ 					const struct intel_plane_state *plane_state,
+ 					int color_plane);
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 9b172a1e90de..5a309a3e2812 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -1260,7 +1260,7 @@ icl_plane_update_noarm(struct intel_plane *plane,
+ 	if (plane_state->force_black)
+ 		icl_plane_csc_load_black(plane);
+ 
+-	intel_psr2_program_plane_sel_fetch(plane, crtc_state, plane_state, color_plane);
++	intel_psr2_program_plane_sel_fetch_noarm(plane, crtc_state, plane_state, color_plane);
+ }
+ 
+ static void
+@@ -1287,6 +1287,8 @@ icl_plane_update_arm(struct intel_plane *plane,
+ 	if (plane_state->scaler_id >= 0)
+ 		skl_program_plane_scaler(plane, crtc_state, plane_state);
+ 
++	intel_psr2_program_plane_sel_fetch_arm(plane, crtc_state, plane_state, color_plane);
++
+ 	/*
+ 	 * The control register self-arms if the plane was previously
+ 	 * disabled. Try to make the plane enable atomic by writing
+-- 
+2.34.1
 
->
-> Christian.
