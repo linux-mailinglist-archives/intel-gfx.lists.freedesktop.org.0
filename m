@@ -1,53 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3AC6687FFC
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 15:25:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03115688009
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 15:25:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67DB010E577;
-	Thu,  2 Feb 2023 14:24:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DEC110E517;
+	Thu,  2 Feb 2023 14:25:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40E5410E102;
- Wed, 25 Jan 2023 17:08:09 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id C11031FD87;
- Wed, 25 Jan 2023 17:08:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
- t=1674666487; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=FNzsO8QkHd4bwcFXjgFFOOBC/xElVC4T91KIaFtN0Io=;
- b=D/br1xSsxQfk6apBfZHBB6RWB236iiiYqtOZ2eZ95J8WjWhuYAEVV+tXTEh0QKRmA1b4xH
- QN55Gxk1acvIRqe6qMTQwSbVuwI9C24RIc9UEoj8Q4rbZSCTfRh25I8IC+VWb1YjIErqcg
- 9b1EbAjGibksBO3NPm+wpmCzLKQPsIY=
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 7757F1358F;
- Wed, 25 Jan 2023 17:08:07 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id T+qcHPdh0WP1JAAAMHmgww
- (envelope-from <mhocko@suse.com>); Wed, 25 Jan 2023 17:08:07 +0000
-Date: Wed, 25 Jan 2023 18:08:06 +0100
-From: Michal Hocko <mhocko@suse.com>
-To: Suren Baghdasaryan <surenb@google.com>
-Message-ID: <Y9Fh9joU3vTCwYbX@dhcp22.suse.cz>
+Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com
+ [IPv6:2607:f8b0:4864:20::b35])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6480E10E7F8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Jan 2023 17:22:36 +0000 (UTC)
+Received: by mail-yb1-xb35.google.com with SMTP id x4so22155777ybp.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Jan 2023 09:22:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=IqJXv+IInDU1mKTOWecSjx46uIp9RhIiEah7PjvPLrg=;
+ b=QlZyecSvRJAlH7daZiVbTmdMCDJawwIkjqybbPcYd50INvCOOFwycJjGFsDCENBvPF
+ JeBM9yeOQDknmaZC6LT0p7wlzLAJo3QYgAn7K1xQNCTJjPrh6oinOxgRNGwGedAqUfeH
+ 4EF6oknHwKU0N6BIZOc0CJi1hrgM4W0zxm3gicvvOuEGF7JC9HCNICDdMPEAz6Lz/B5y
+ FN2dpyuojKkpe3r7ipsFxRIyHaJ4nJmkiiUGkQy6aOsuBhBZ3WzwUsGkq0uXDlGTKFEH
+ iRh4N/trPN148wcbBUC1DmqB3ErHQLF9n9pkmMXooLK6oXyXf0aS41iIJv2buhnN7zSu
+ X8Bw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=IqJXv+IInDU1mKTOWecSjx46uIp9RhIiEah7PjvPLrg=;
+ b=mNwBZtryV1GCg3JQRckG36fonexnVCDV5SgKgU5GsKn9Q3I/SPTnPNRo8sRtgtURkA
+ WkWiLTrTspbYM5+f49L4G41hWPVb5nB4Hfvf6duB2L2mxP60OnlbiwR0uFh0hYG/Kvhr
+ sp59QGHAtHVYPQgWK0zVqsm//yd7jCfEqKvblEhFyCdbvXQhMTPGhNm/rWA1PJXkUFyu
+ GUvT82hjTJYgFNx4rhLcbN4B8/I9tCVRHmaZaEXS/Kc3IxI8M7brGgu91fXfR+EmGbxg
+ OzzIvx5R69Wb+Hm1d3dPBXssNSwlcMi26msU9O5aLvTPtmch73nKKoJKqHqEliYrY0OA
+ eBTg==
+X-Gm-Message-State: AFqh2kr6+IgDv8lzm6/vqEH9thCT+yaTHJkljywpNRjoTTRgVd+EkT8r
+ HQjnoRExqY7IGeTRtkAVyti29TbKPslUOv8rMUPVRw==
+X-Google-Smtp-Source: AMrXdXv634nY3BrnZ3PlTUGlyUi8i7L3YenO2gMgxW5qJ4tF6Xha6yZp+2FFeWeU8OQrXrCFeHpomo5nr++haHZW7UI=
+X-Received: by 2002:a25:a408:0:b0:800:28d4:6936 with SMTP id
+ f8-20020a25a408000000b0080028d46936mr2303639ybi.431.1674667354997; Wed, 25
+ Jan 2023 09:22:34 -0800 (PST)
+MIME-Version: 1.0
 References: <20230125083851.27759-1-surenb@google.com>
  <20230125083851.27759-5-surenb@google.com>
  <Y9D4rWEsajV/WfNx@dhcp22.suse.cz>
  <CAJuCfpGd2eG0RSMte9OVgsRVWPo+Sj7+t8EOo8o_iKzZoh1MXA@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAJuCfpGd2eG0RSMte9OVgsRVWPo+Sj7+t8EOo8o_iKzZoh1MXA@mail.gmail.com>
-X-Mailman-Approved-At: Thu, 02 Feb 2023 14:24:10 +0000
+ <Y9Fh9joU3vTCwYbX@dhcp22.suse.cz>
+In-Reply-To: <Y9Fh9joU3vTCwYbX@dhcp22.suse.cz>
+From: Suren Baghdasaryan <surenb@google.com>
+Date: Wed, 25 Jan 2023 09:22:23 -0800
+Message-ID: <CAJuCfpEJ1U2UHBNhLx4gggN3PLZKP5RejiZL_U5ZLxU_wdviVg@mail.gmail.com>
+To: Michal Hocko <mhocko@suse.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailman-Approved-At: Thu, 02 Feb 2023 14:24:11 +0000
 Subject: Re: [Intel-gfx] [PATCH v2 4/6] mm: replace vma->vm_flags indirect
  modification in ksm_madvise
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -120,25 +128,31 @@ Cc: michel@lespinasse.org, nvdimm@lists.linux.dev, heiko@sntech.de,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed 25-01-23 08:57:48, Suren Baghdasaryan wrote:
-> On Wed, Jan 25, 2023 at 1:38 AM 'Michal Hocko' via kernel-team
-> <kernel-team@android.com> wrote:
+On Wed, Jan 25, 2023 at 9:08 AM Michal Hocko <mhocko@suse.com> wrote:
+>
+> On Wed 25-01-23 08:57:48, Suren Baghdasaryan wrote:
+> > On Wed, Jan 25, 2023 at 1:38 AM 'Michal Hocko' via kernel-team
+> > <kernel-team@android.com> wrote:
+> > >
+> > > On Wed 25-01-23 00:38:49, Suren Baghdasaryan wrote:
+> > > > Replace indirect modifications to vma->vm_flags with calls to modifier
+> > > > functions to be able to track flag changes and to keep vma locking
+> > > > correctness. Add a BUG_ON check in ksm_madvise() to catch indirect
+> > > > vm_flags modification attempts.
+> > >
+> > > Those BUG_ONs scream to much IMHO. KSM is an MM internal code so I
+> > > gueess we should be willing to trust it.
 > >
-> > On Wed 25-01-23 00:38:49, Suren Baghdasaryan wrote:
-> > > Replace indirect modifications to vma->vm_flags with calls to modifier
-> > > functions to be able to track flag changes and to keep vma locking
-> > > correctness. Add a BUG_ON check in ksm_madvise() to catch indirect
-> > > vm_flags modification attempts.
-> >
-> > Those BUG_ONs scream to much IMHO. KSM is an MM internal code so I
-> > gueess we should be willing to trust it.
-> 
-> Yes, but I really want to prevent an indirect misuse since it was not
-> easy to find these. If you feel strongly about it I will remove them
-> or if you have a better suggestion I'm all for it.
+> > Yes, but I really want to prevent an indirect misuse since it was not
+> > easy to find these. If you feel strongly about it I will remove them
+> > or if you have a better suggestion I'm all for it.
+>
+> You can avoid that by making flags inaccesible directly, right?
 
-You can avoid that by making flags inaccesible directly, right?
+Ah, you mean Peter's suggestion of using __private? I guess that would
+cover it. I'll drop these BUG_ONs in the next version. Thanks!
 
--- 
-Michal Hocko
-SUSE Labs
+>
+> --
+> Michal Hocko
+> SUSE Labs
