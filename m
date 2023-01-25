@@ -2,53 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDF6267B14C
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jan 2023 12:32:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D187667B177
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jan 2023 12:35:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D70E10E78C;
-	Wed, 25 Jan 2023 11:32:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23BBF10E78C;
+	Wed, 25 Jan 2023 11:35:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9376F10E77F;
- Wed, 25 Jan 2023 11:31:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674646319; x=1706182319;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=5tiFxHorRsdi6tIY75oJsZOHykFx4JPsLHkuUSRto9Y=;
- b=i1eTcYLhJgD2tEhliLHkK89S7R3EBjkiTGb7Qj4F+Er9lpgpuAO86u+D
- woZBhwEnEZ7GkFSo7TvI9r75yDFkNHugdDg33+iapgPXNDSbiYFpA+brp
- D5XBoRpQPRIGTLsZuXZnBeMiyZfARtQdNbA+SswUv5CGmw+MTS0jb5FHg
- j1oHFTshwUSva7fWvmN/7RRbgRrZRUBXef1y+jv7yyMc9seTU8BSIi0W9
- StjzjTVd9AeXpVctQ9U+VBXPI+JEQVZMLW4tVCKasL9UOIAQN2HNsm7kp
- OZhaEV+0k3Y0zBBCKz5pVwib4F6yDbrtVF7rfNaS9nE5S5A0LxloBq+UZ A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10600"; a="412766919"
-X-IronPort-AV: E=Sophos;i="5.97,245,1669104000"; d="scan'208";a="412766919"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2023 03:31:59 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10600"; a="662477057"
-X-IronPort-AV: E=Sophos;i="5.97,245,1669104000"; d="scan'208";a="662477057"
-Received: from lkp-server01.sh.intel.com (HELO 5646d64e7320) ([10.239.97.150])
- by orsmga002.jf.intel.com with ESMTP; 25 Jan 2023 03:31:55 -0800
-Received: from kbuild by 5646d64e7320 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1pKe0S-0007Gm-0t;
- Wed, 25 Jan 2023 11:31:56 +0000
-Date: Wed, 25 Jan 2023 19:31:47 +0800
-From: kernel test robot <lkp@intel.com>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Message-ID: <202301251900.qqxH4BLi-lkp@intel.com>
-References: <20230124125726.13323-5-christian.koenig@amd.com>
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com
+ [IPv6:2a00:1450:4864:20::634])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7DB0310E78C;
+ Wed, 25 Jan 2023 11:35:42 +0000 (UTC)
+Received: by mail-ej1-x634.google.com with SMTP id tz11so46897121ejc.0;
+ Wed, 25 Jan 2023 03:35:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=+C2JTrysbC6rWyL/QiL86fQj0GUC2xR+2yDFBTKfq0w=;
+ b=U33uZw8fVYjdLEsD/7ALPHD5aaXY2b8QnYRdMKBfqmRb1a6HXnClLC19yi5tl0EWI7
+ 1l3ND+BUR7LffymXbCDIPvkmQ4aLTqugNXb8QvxXwgxqUmPEZo8crmpbNQVp4SkZK7KS
+ /+jnwnyIcW/661BGSLOgJ+WFd7ECwtaX/yJqK9YtnznqBgxgiKeI5pdM1TbSaNDQnqJd
+ ZB1miJDiQ3pcM0sVAujpaWBA75ryn59WjMIQUIrD2VOl/30AWVXiMdC5QS483vsDg2fI
+ 33crF9Q45rvS2X2aCqeJbf/2m8ti1/5HHbGqrxIPBmJ7sbiOC8YVZTvbd32+F7ptHqyf
+ fM8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=+C2JTrysbC6rWyL/QiL86fQj0GUC2xR+2yDFBTKfq0w=;
+ b=nGkoWeQttHueq1I0S5aiNd0/yvQ4TPPOrNrQXPxMYe4L1DHDn5c79VNeD7irDbZkGf
+ e9F1dK5C0JnpcVpnT2qVhWP0cCtBNtyX1gQ0yUPgtJKB6hTfOH+XiJ8MJNypvbG6G7q/
+ GfkiwDLRYRR4+JTGbMokfEaHKT3H+vvzUwP10lZ9zRMiS88WH26davseLcrI+7JYXeeV
+ 4n8ZPi58gBu9QtWdxZYQdNMqvSz1L36No2O2BOUHm0G+GEeWYUSd7nC5HoO3PHTZk9YT
+ UmXrxmtI/cWrRh2QQ0nBopq2pJNYhJo74lYtojZs4RsUQ5yckov2vDW46Pu9+l2/6Zep
+ Mu7Q==
+X-Gm-Message-State: AFqh2koU3wjg9niWmyeBlUJEQv5M6ylHRrEYXR+f4t/AEIdmeKdn8yxE
+ QxAFuFQpyBm51bVU9+pRNWc=
+X-Google-Smtp-Source: AMrXdXuoxdxMSdb/cb6wVWENpIo5NF81qOd8xsJaFf1ttq9YGnLK14Ff0ypwNzAw+VsZ+s2NORreMA==
+X-Received: by 2002:a17:906:1316:b0:862:1709:a06a with SMTP id
+ w22-20020a170906131600b008621709a06amr34205747ejb.72.1674646540836; 
+ Wed, 25 Jan 2023 03:35:40 -0800 (PST)
+Received: from ?IPV6:2a02:908:1256:79a0:180c:8737:8e57:6be7?
+ ([2a02:908:1256:79a0:180c:8737:8e57:6be7])
+ by smtp.gmail.com with ESMTPSA id
+ h11-20020a1709062dcb00b007c14ae38a80sm2198322eji.122.2023.01.25.03.35.39
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 25 Jan 2023 03:35:40 -0800 (PST)
+Message-ID: <d1da49dd-5d7e-e488-e584-6f07613dcb16@gmail.com>
+Date: Wed, 25 Jan 2023 12:35:39 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230124125726.13323-5-christian.koenig@amd.com>
-Subject: Re: [Intel-gfx] [PATCH 5/5] drm/ttm: replace busy placement with
- flags v2
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Content-Language: en-US
+To: Matthew Auld <matthew.william.auld@gmail.com>
+References: <20230124125726.13323-1-christian.koenig@amd.com>
+ <CAM0jSHNmv-naGqB=R8DZc-3QhTPzzo4pUU2-NxhtiEhXMcAN5A@mail.gmail.com>
+ <CAM0jSHMgep0q9=C=fHw+Y8SqpNeN3Gz47u_UvwgJuGG3_0qgBQ@mail.gmail.com>
+ <CAM0jSHNKkAS1+dYJdHk23+Uyoz02G1VPFLpKLxX2HqRe7L2HCA@mail.gmail.com>
+ <418a6bca-7a61-86d8-7f6a-229d1e12c0fd@gmail.com>
+ <CAM0jSHMrtTWPpExT-M3=qGKyFPSjN=WbsDnLZTaADneyXxOjZQ@mail.gmail.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <CAM0jSHMrtTWPpExT-M3=qGKyFPSjN=WbsDnLZTaADneyXxOjZQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915: audit bo->resource usage v3
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,79 +80,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: oe-kbuild-all@lists.linux.dev
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Christian,
+Am 25.01.23 um 11:21 schrieb Matthew Auld:
+> On Wed, 25 Jan 2023 at 10:07, Christian König
+> <ckoenig.leichtzumerken@gmail.com> wrote:
+>> Am 25.01.23 um 10:56 schrieb Matthew Auld:
+>>> On Tue, 24 Jan 2023 at 17:15, Matthew Auld
+>>> <matthew.william.auld@gmail.com> wrote:
+>>>> On Tue, 24 Jan 2023 at 13:48, Matthew Auld
+>>>> <matthew.william.auld@gmail.com> wrote:
+>>>>> On Tue, 24 Jan 2023 at 12:57, Christian König
+>>>>> <ckoenig.leichtzumerken@gmail.com> wrote:
+>>>>>> From: Christian König <ckoenig.leichtzumerken@gmail.com>
+>>>>>>
+>>>>>> Make sure we can at least move and alloc TT objects without backing store.
+>>>>>>
+>>>>>> v2: clear the tt object even when no resource is allocated.
+>>>>>> v3: add Matthews changes for i915 as well.
+>>>>>>
+>>>>>> Signed-off-by: Christian König <christian.koenig@amd.com>
+>>>>> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+>>>> Ofc that assumes intel-gfx CI is now happy with the series.
+>>> There are still some nasty failures it seems (in the extended test
+>>> list). But it looks like the series is already merged. Can we quickly
+>>> revert and try again?
+>> Ah, crap. I thought everything would be fine after the CI gave it's go.
+>>
+>> Which patch is causing the fallout?
+> I'm not sure. I think all of the patches kind of interact with each
+> other, but for sure there is an issue with the first patch. There is
+> one splat like:
 
-I love your patch! Yet something to improve:
+Well I would rather like to revert as less as possible.
 
-[auto build test ERROR on drm-tip/drm-tip]
+Are you sure that this isn't only on some i915 specific branch with not 
+yet upstream changes?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Christian-K-nig/drm-ttm-stop-allocating-dummy-resources-during-BO-creation/20230124-205939
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-patch link:    https://lore.kernel.org/r/20230124125726.13323-5-christian.koenig%40amd.com
-patch subject: [Intel-gfx] [PATCH 5/5] drm/ttm: replace busy placement with flags v2
-config: i386-defconfig (https://download.01.org/0day-ci/archive/20230125/202301251900.qqxH4BLi-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.3.0-8) 11.3.0
-reproduce (this is a W=1 build):
-        # https://github.com/intel-lab-lkp/linux/commit/1b5a737f3331c8493708ed779338243cd70dde6a
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Christian-K-nig/drm-ttm-stop-allocating-dummy-resources-during-BO-creation/20230124-205939
-        git checkout 1b5a737f3331c8493708ed779338243cd70dde6a
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        make W=1 O=build_dir ARCH=i386 olddefconfig
-        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash
+I can't even find the i915_gem_obj_copy_ttm function in drm-misc-next 
+nor drm-next.
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
+Regards,
+Christian.
 
-All errors (new ones prefixed by >>):
+>
+> <1>[  109.735148] BUG: kernel NULL pointer dereference, address:
+> 0000000000000010
+> <1>[  109.735151] #PF: supervisor read access in kernel mode
+> <1>[  109.735152] #PF: error_code(0x0000) - not-present page
+> <6>[  109.735153] PGD 0 P4D 0
+> <4>[  109.735155] Oops: 0000 [#1] PREEMPT SMP NOPTI
+> <4>[  109.735157] CPU: 1 PID: 92 Comm: kworker/u12:6 Not tainted
+> 6.2.0-rc5-Patchwork_113269v1-gc4d436608c4e+ #1
+> <4>[  109.735159] Hardware name: Gigabyte Technology Co., Ltd. GB-Z390
+> Garuda/GB-Z390 Garuda-CF, BIOS IG1c 11/19/2019
+> <4>[  109.735160] Workqueue: events_unbound async_run_entry_fn
+> <4>[  109.735163] RIP: 0010:i915_ttm_resource_mappable+0x4/0x30 [i915]
+> <4>[  109.735286] Code: b8 f9 ff ff ff eb c2 e8 aa 5e 52 e1 e9 4f 0f
+> 18 00 0f 1f 44 00 00 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90
+> 66 0f 1f 00 <8b> 57 10 b8 01 00 00 00 85 d2 74 15 48 8b 47 08 48 05 ff
+> 0f 00 00
+> <4>[  109.735288] RSP: 0018:ffffc90000f339a8 EFLAGS: 00010246
+> <4>[  109.735289] RAX: 0000000000000000 RBX: 0000000000000000 RCX:
+> ffff88810cea3a00
+> <4>[  109.735290] RDX: 0000000000000000 RSI: ffffc90000f33af0 RDI:
+> 0000000000000000
+> <4>[  109.735292] RBP: ffff88811645d7c0 R08: 0000000000000000 R09:
+> ffff888123afa940
+> <4>[  109.735292] R10: 0000000000000001 R11: ffff888104b70040 R12:
+> 0000000000000000
+> <4>[  109.735293] R13: 0000000000000000 R14: ffffc90000f33b08 R15:
+> ffffc90000f33af0
+> <4>[  109.735294] FS:  0000000000000000(0000)
+> GS:ffff8884ad680000(0000) knlGS:0000000000000000
+> <4>[  109.735295] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> <4>[  109.735296] CR2: 0000000000000010 CR3: 000000011f9c6003 CR4:
+> 00000000003706e0
+> <4>[  109.735297] DR0: 0000000000000000 DR1: 0000000000000000 DR2:
+> 0000000000000000
+> <4>[  109.735298] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7:
+> 0000000000000400
+> <4>[  109.735299] Call Trace:
+> <4>[  109.735300]  <TASK>
+> <4>[  109.735301]  __i915_ttm_move+0x128/0x940 [i915]
+> <4>[  109.735408]  ? dma_resv_iter_next+0x91/0xb0
+> <4>[  109.735412]  ? dma_resv_iter_first+0x42/0xb0
+> <4>[  109.735414]  ? i915_deps_add_resv+0x4c/0xc0 [i915]
+> <4>[  109.735520]  i915_gem_obj_copy_ttm+0x12f/0x250 [i915]
+> <4>[  109.735625]  i915_ttm_restore+0x167/0x250 [i915]
+> <4>[  109.735759]  i915_gem_process_region+0x27a/0x3b0 [i915]
+> <4>[  109.735881]  i915_ttm_restore_region+0x4b/0x70 [i915]
+> <4>[  109.735999]  lmem_restore+0x3a/0x60 [i915]
+> <4>[  109.736101]  i915_gem_resume+0x4c/0x100 [i915]
+> <4>[  109.736202]  i915_drm_resume+0xc2/0x170 [i915]
+>
+> Plus some other less obvious issue(s) with some tests failing.
+>
+>> Christian.
 
-   In function 'i915_ttm_placement_from_obj',
-       inlined from 'i915_ttm_get_pages' at drivers/gpu/drm/i915/gem/i915_gem_ttm.c:841:2:
->> drivers/gpu/drm/i915/gem/i915_gem_ttm.c:165:25: error: 'places[0].flags' is used uninitialized [-Werror=uninitialized]
-     165 |         places[0].flags |= TTM_PL_FLAG_IDLE;
-         |                         ^~
-   drivers/gpu/drm/i915/gem/i915_gem_ttm.c: In function 'i915_ttm_get_pages':
-   drivers/gpu/drm/i915/gem/i915_gem_ttm.c:831:26: note: 'places' declared here
-     831 |         struct ttm_place places[I915_TTM_MAX_PLACEMENTS + 1];
-         |                          ^~~~~~
-   cc1: all warnings being treated as errors
-
-
-vim +165 drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-
-   155	
-   156	static void
-   157	i915_ttm_placement_from_obj(const struct drm_i915_gem_object *obj,
-   158				    struct ttm_place *places,
-   159				    struct ttm_placement *placement)
-   160	{
-   161		unsigned int num_allowed = obj->mm.n_placements;
-   162		unsigned int flags = obj->flags;
-   163		unsigned int i;
-   164	
- > 165		places[0].flags |= TTM_PL_FLAG_IDLE;
-   166		i915_ttm_place_from_region(num_allowed ? obj->mm.placements[0] :
-   167					   obj->mm.region, &places[0], obj->bo_offset,
-   168					   obj->base.size, flags);
-   169	
-   170		/* Cache this on object? */
-   171		for (i = 0; i < num_allowed; ++i) {
-   172			i915_ttm_place_from_region(obj->mm.placements[i],
-   173						   &places[i + 1], obj->bo_offset,
-   174						   obj->base.size, flags);
-   175			places[i + 1].flags |= TTM_PL_FLAG_BUSY;
-   176		}
-   177	
-   178		placement->num_placement = num_allowed + 1;
-   179		placement->placement = places;
-   180	}
-   181	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
