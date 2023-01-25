@@ -1,137 +1,155 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C223E67B88A
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jan 2023 18:29:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0C3467B8F2
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jan 2023 19:00:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6734D10E0FD;
-	Wed, 25 Jan 2023 17:29:01 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA5AF10E0FD;
- Wed, 25 Jan 2023 17:28:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1FE210E13E;
+	Wed, 25 Jan 2023 18:00:47 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8C1A10E13E;
+ Wed, 25 Jan 2023 18:00:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674667738; x=1706203738;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=fG6Qa4Y/ugyzbeKhZ90+MDKmDvgwxYg31QbW924pWPI=;
- b=Yfb3PE/Zki/ajv9X2EWcnqB2shJWBNL2N+PlkGKu1bwLNk+tCoTC+w1+
- ZulF92MckXfAlGADhyZ9JY9JsrnWSkYLBviVk+BY4qrV68SstVft/Z6ck
- U2r8cZrmylx5Lmz04oqurzfPfQgxrmuPHWk8rHh29eOk+FHE8PWJO3wCF
- NZX7nJrw4jawBjuOULP6XnlQGP1MbMNfGuFbmvxjEg5nkz0fVEbRMZRpG
- 6/PpjD1YBHTYU+/QlS7ms0hu+PRXZE7/CYBf/ughXZLZRXrDstJv3PA2A
- lLc/jlSMWIp1X97yKOGnY/pxF2YEE3+UqtNM3P3kQRWP6eL430/PWNUur Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10601"; a="328704254"
-X-IronPort-AV: E=Sophos;i="5.97,246,1669104000"; d="scan'208";a="328704254"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2023 09:28:44 -0800
+ t=1674669646; x=1706205646;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=dhMtq3B7KoKHuZnzLw0mZEIQJhrceadQiSWsifNY6z4=;
+ b=UBThPoXTn7Y/0Zmls7lazvM637wFRpdKFxf5jOAYcs3yozsDO+OyBWiA
+ 84XKNBsRp4SAUCYP8NQ/73mNSZ9rq1obpZIjjCxhAUcWeLbZK4qQom1Js
+ gq2Ld4971PwfxWMpNJvuqQTJqfEK9452YL9nlHwJytTJasKB7/yrgPysx
+ DDlsa20fguLhStroPjzM4a3K07uN3st4593PHIX9jjJ8Be+3xcthpBNar
+ JJuhmlQYAwXfoz9A6sDXtwWJoj1fdhzt6dF8aK5nfug234PNV0JKA+xa0
+ bAI6LV3GVQgd3S2dmgnK3BWVXWnSGfMSlXdzt6SGbMr31leKs8m3gwpd+ A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10601"; a="326655990"
+X-IronPort-AV: E=Sophos;i="5.97,246,1669104000"; d="scan'208";a="326655990"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2023 10:00:42 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10601"; a="640014338"
-X-IronPort-AV: E=Sophos;i="5.97,246,1669104000"; d="scan'208";a="640014338"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga006.jf.intel.com with ESMTP; 25 Jan 2023 09:28:43 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6500,9779,10601"; a="664541397"
+X-IronPort-AV: E=Sophos;i="5.97,246,1669104000"; d="scan'208";a="664541397"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmsmga007.fm.intel.com with ESMTP; 25 Jan 2023 10:00:34 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Wed, 25 Jan 2023 09:28:43 -0800
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ 15.1.2507.16; Wed, 25 Jan 2023 10:00:34 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Wed, 25 Jan 2023 10:00:33 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Wed, 25 Jan 2023 09:28:42 -0800
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.42) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.16 via Frontend Transport; Wed, 25 Jan 2023 10:00:33 -0800
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Wed, 25 Jan 2023 09:28:39 -0800
+ 15.1.2507.16; Wed, 25 Jan 2023 10:00:33 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=I7u/qWcMAJdgT9ysWDfrH2ypJ4YOLHIp7PFsOOyLGY54iKIvlYSLR6grx1I4XqEWy0EERdtxFIe8KBh2Tv96B/UbCN3pq5TV7U3QFmM8q8fPFVMD0JWJlfZ0UcxJtk6aVY8CdlPCaU8s1OkzqrH6GJ9hG41uB/QpMDb8vKubtknkmNxmfD2ItvIyrIBv0j9xecs7vcQWyns5jeVFgKxaXb1R6BehEQHXo3kOOQVMBBU9bDr/LS+USbAZTUgpN7NmvfkPaVi6ejF1afRVDjDm6LpHO092KtIVTIr18UnqyZGLP74r6OuEH6QZWXo/9egJtn916qnRdRALoQ+opkG6hQ==
+ b=U9xvWcyZk3Skz8FaPdvBi/sgdgKnlfvXG/sGCQAVpCd6Tiyu66t1JGrCGq+ruhsKerP3BNfwumSE2AbB3QObaODA2u9zu9PGWrwaiVKfqZKMRj+ImlqsqCNx2CfcNXd5h//uUThacpRB65Am9EraJQQf+xD5pQKiolVePMsnryzdnYRzhk3nd9zmgnlUvGsSHHl3rKte+SEdX3SFdR12g+eJ3LXm2NK9Adr3O7GF6THNGIU5AGFzSfLxtZ9AOLysuoMsjgOgy1YIK+ZB5q2iYdNcNNzG8k9z12+2SY1XnlO7qD1dcSx+S6Kqq5SSTCFCIjeszAw2mLwhDHA4G28egg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=v5k8cHrwENENrSd8fdYjZDiywUJf3VbGFl3p49j0mTI=;
- b=jc+Hk/wyRnsm4qQ/NgMygL76AVt/YAw5lfS9timSGy6jVOYwYZEvMK/ddJxUC8kuVhV+JUiwN8CBC/0fA53BaTXNdzYnWG7OF8DlIQaY56V3FDMkCCJUYhIpwSAqsr5ULlhH0bLtMT2PlN1x5YedMcImLUcD+GBkpSgfvqw6pug/SvcdvNdSWNXtq7ZPbS68wd+Z/VtKE2Rb7o7J/MNSOkOKvKqIXmjVgwbES1SrVh6oRKxFO0Fn150mNejCOSG5cgcSzj3G0SLqZNUq4N/280GxCrQaEG3eONbAz7y5EyL+ZGsWEe1BULKlO3aYiniri9FoJbDB2i07y8SXublnvA==
+ bh=8BeFTJ9xDQYFC/MLsXTGhZfg/XLvTM+oAqrepy5NjVY=;
+ b=IfqBBQyOmxI1ztgNczlpsBbiiHoHbwc0OODOqASfjan8aVJ2TZ3BsHdZ/pmDwneqDgTlqS/aSUu8JmyO950lHqnrY6G8b6R6Qmf1Ri4rIDPEtDsFV7d7OANTWH3SLW6f1DIY/Z336PRecX95T/cicPzOx+frHGJORp/ggY5jwO0d1WNHKfCKWk52xRl/BD1eGKwJPCnv+GI+mPbQJ+k1ovHNSrIWmWy5RlwRT81sd7GU+Dz4NHONhR5fHvdn/Hb30Dg+f5DAAcW84jvRtdQFouXVE10Tk3wHhu80KnlSfRwJz11/E8xBWPLiia4M6HWnw3OY933aGAbTYABMvvHSnQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by SJ0PR11MB5214.namprd11.prod.outlook.com (2603:10b6:a03:2df::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.21; Wed, 25 Jan
- 2023 17:28:35 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::1818:e39d:454d:a930]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::1818:e39d:454d:a930%4]) with mapi id 15.20.6002.033; Wed, 25 Jan 2023
- 17:28:35 +0000
-Date: Wed, 25 Jan 2023 12:28:29 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Alan Previn <alan.previn.teres.alexis@intel.com>
-Message-ID: <Y9FmvUujJeijwZXi@intel.com>
-References: <20230125082637.118970-1-alan.previn.teres.alexis@intel.com>
- <20230125082637.118970-4-alan.previn.teres.alexis@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230125082637.118970-4-alan.previn.teres.alexis@intel.com>
-X-ClientProxiedBy: PH0P220CA0011.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:510:d3::16) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+Received: from BY5PR11MB3911.namprd11.prod.outlook.com (2603:10b6:a03:18d::29)
+ by DM4PR11MB5501.namprd11.prod.outlook.com (2603:10b6:5:388::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Wed, 25 Jan
+ 2023 18:00:30 +0000
+Received: from BY5PR11MB3911.namprd11.prod.outlook.com
+ ([fe80::81f2:9a76:638:28eb]) by BY5PR11MB3911.namprd11.prod.outlook.com
+ ([fe80::81f2:9a76:638:28eb%2]) with mapi id 15.20.6002.033; Wed, 25 Jan 2023
+ 18:00:30 +0000
+Message-ID: <a92d23df-d749-68ba-b707-69b5ddf5899e@intel.com>
+Date: Wed, 25 Jan 2023 10:00:27 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.6.1
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ <Intel-GFX@Lists.FreeDesktop.Org>
+References: <20230120232831.28177-1-John.C.Harrison@Intel.com>
+ <20230120232831.28177-3-John.C.Harrison@Intel.com>
+ <f2aa8185-216a-2cb8-45be-7b7179de83ba@linux.intel.com>
+Content-Language: en-GB
+From: John Harrison <john.c.harrison@intel.com>
+In-Reply-To: <f2aa8185-216a-2cb8-45be-7b7179de83ba@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MW2PR16CA0022.namprd16.prod.outlook.com (2603:10b6:907::35)
+ To BY5PR11MB3911.namprd11.prod.outlook.com
+ (2603:10b6:a03:18d::29)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|SJ0PR11MB5214:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2e863620-e9d8-4671-f780-08dafef996ab
+X-MS-TrafficTypeDiagnostic: BY5PR11MB3911:EE_|DM4PR11MB5501:EE_
+X-MS-Office365-Filtering-Correlation-Id: 22820a5a-519f-43b0-63f9-08dafefe0c29
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: psRcBqr2Fhdf/gDQXZC67tu/WwqlWGk9qnPY7OMMqfSTuEv9ZpGuLJGSsQ46GiQIonaHK5zI7vcI0Ai1aOCEcxjSayfSBL92vgE369PddlhEMVWqB+4JItQNbasseKBTxDvBYMQCC+ds/UZQ2G3EVCKARFEfEHUGKCFuwGiXw1g79y8a9H0zLh9ZTU8BptR5ECaO2b7B3MBD6H+y3AXm6cLWHBAcYoVSbibw9iJmwYa8DJgZPkNiJ6TQnevWs71gtMzDI74YADRsHOWoOquXY9JxCTaQgFtO8Nr8qyoKAM/xpg9/l6+hNllkcJVLdeCG9geTpmYkBuz4QwMCldgX6A+LER8agCgxijnWDqtJr0XGxAaJWGU8vxz1ivcbmfI3uOGEZh78u7ONwFkF7iJJyMHRnlm7puVzqdXfodONkxpKQBS2sZGUl+C17p4RKGjrgxVo2LxnAkrg5SPnjtzJ+SKPCiQdz4Hpn9CHuQeNw1tqh0Tq2FBhG6ZSZ2agB0HTvTmfer6qLUA/mBOzzTbg+jFRkZ5cnbS2w47qHYQEXFoeZzgWE/amH8owTEgIUG0tFlRIk5y0UE87nuk7TfhBuF6Qo6CucU5WAjSytsqyAhwTApQ3YeCjtVU6RTD/VHPrgFpmNHKjwPLXjBzOTUUL6g==
+X-Microsoft-Antispam-Message-Info: zKxvcqLXQ7m5pcTFx2INJkHVe1RKt4RC0s67rPGvuFBx/5DEWWJp6rtHnTrdhAqAGNtjuk/gKmaoVlpTJJZukXBlj3xYoKaKLDEdtboAYJGO+8g4x0IyRczTHA9uxGq1t5Nswfg26vhIo9UKoyUWF5dxXUDJ2IUaGQEFrgmpmsN+Zq6a8bvg0D/F+CP32h1FBGUOoRSxwsrJ0c2yjY0Ea198d5goVbO+VgTBj9AtzR+EAGMQHlTFwVVBCSj7+gcA/P6LmzMnnbzeSmO+BDk+qzzY7CiM1Ws3NXhknTebRL618/gmFTPxajkScVc9vMkzZp1TlW0RbqPuREaZr55uAQr9tjaycETw8nflLGt3C5V+fpFmcdohwfUoyr0yjzkajGUE7UNokpInzt9LcefgKW7onkwBeHMdjYlP2PXgKkQvy4afrXKMuNoMxRIPmWnT0HlWyNb8dVyxoHduhGxoOyOFOnF/KdEFNins75EGaS07eICC6f1AfMe2wB441NRhjre7TGI7ZcQwPp7pInUBoHToquIN3FCIqWOBT43OgYfVwDpDD23X5TQuel0o06mabj2FC5nCIMVqaDVtXPSMjUxlYLTsZ1ZKcpcQc1f+6zfV/peMGvkyF6iiv+aaQSJXDRnE/yYC8Agay4gtLyx4pamMXAyxeQT/k0v5rClku9RUKzbQ03QHwbzMZTIbZONfna8wVInwA3Q1Jjf6GpVlUz5e6K9vqo8cWpvvgo+NLCI=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(366004)(346002)(376002)(136003)(396003)(39860400002)(451199018)(36756003)(6636002)(8676002)(37006003)(316002)(6506007)(6486002)(5660300002)(107886003)(6666004)(44832011)(478600001)(2906002)(6862004)(66476007)(66556008)(41300700001)(4326008)(8936002)(66946007)(82960400001)(38100700002)(54906003)(83380400001)(26005)(86362001)(6512007)(2616005)(186003);
+ IPV:NLI; SFV:NSPM; H:BY5PR11MB3911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(346002)(396003)(39860400002)(136003)(376002)(366004)(451199018)(83380400001)(38100700002)(26005)(82960400001)(5660300002)(30864003)(2906002)(41300700001)(86362001)(4326008)(8936002)(316002)(6512007)(6666004)(6506007)(186003)(8676002)(66476007)(66556008)(2616005)(53546011)(478600001)(66946007)(36756003)(31696002)(6486002)(31686004)(43740500002)(45980500001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?o9udH9udV4FVGekl1obCf9iFTNqCw0eQEoJWSN/gSbHsINRNlprja+l178IZ?=
- =?us-ascii?Q?cZeTKxzC+fQHBIuNSKAv9gAmtT+Lo0A+7BU+LmgYwbkj8ozaPeJqFlju3eBk?=
- =?us-ascii?Q?zm+qEYxyobymv+Ly7Rjcneh7MpXu67z61NoDw0VnnGOnrBPNnue0lQD2yM/+?=
- =?us-ascii?Q?Z6qgD+cXvaky+A00hKRwFjMbibPscj0j28j0jY/ENFEgY3oKW+RtNYwUKUaM?=
- =?us-ascii?Q?eKIWy6vgFsNIATBmNWOhs2eVi910B2DDkHTrFz7Dx/t/2r00V3swDuEvaGsa?=
- =?us-ascii?Q?pXwtTq6eaXeK9TADI9aBET6khBk86BJE67YbazYRZACGtA0JCOEeu2KmyQPI?=
- =?us-ascii?Q?tpaPl5hfynEv9gC/tz/CQCdDBOt7LlGGT3o/0z5gc04iiHw7AOMOFJldw4Os?=
- =?us-ascii?Q?S0BrFzcZMsP2nb5iiNdK4CEp6mfAR88WaQy8CYFQjz4V+daoG3HSk2ju5aFw?=
- =?us-ascii?Q?wo3ih3OK+YLCN6HINp7u5muS9LWtSN9FZj2wlafVNFSXtJkxrdqwNLECXPUR?=
- =?us-ascii?Q?mBywmCFBhQfuAksxvxxGo4WIr4MbJ+gGXjQytSnuJFdiazhM9/d/xwM2TZk4?=
- =?us-ascii?Q?ttxzEBJ+VwNMSCY9UTwrviVfMaEoB6ToDWppzjbtr068kGQhyWjNxmn/pYRb?=
- =?us-ascii?Q?z3jhDZo8q1YjHif7z5vwRu3NSrS52VlLd3ey5WA9CsQ+EQHjfqzwliwQQkkt?=
- =?us-ascii?Q?wf7krx1yfGeY7nwcGLJoi9iCTaHggwVpTnn3QwmewtGt/uzFzS4xhCaZNDKp?=
- =?us-ascii?Q?JJCPczex9OLAhcE/7Ee57y+PHyRDG/knUDKLIjMKyOB7Wh3naLl76/+Ua/Dj?=
- =?us-ascii?Q?eTCmjMqVbhbr0yE1oddQOHDeNq5NgjPwimdJPxFsq87s5XUyCBnBXEGohi9W?=
- =?us-ascii?Q?RLc0zgEa9JFvwOG1cbCfNVK8qBp534AYJvm23ELWuK6JGJGWkY970xQti7xL?=
- =?us-ascii?Q?2nplvLp6P59oPI7H9cPVJeoDALtRY9QpTTzDUJ2HGj8v2qVs/HVzPZ4MPybW?=
- =?us-ascii?Q?G3EVTHzUwgo7tdwE6kyKSUXtqTRNWK3H2Cdau/qQACl7+EBpopp6+Bs54L94?=
- =?us-ascii?Q?HIO70t2OVShlPHCGGBV6PUK0C4NE55dYaa0/wBEveHDEH33jqgquve9fmJId?=
- =?us-ascii?Q?f/0tSC25+TqRBwZQ0P6bxWhsNdfHNmjW5jch1XEGXQrOlyNwXFLgY8KHKJ8h?=
- =?us-ascii?Q?qNFsWS/pTgWHZKCfZ90VgH5h3Vj3KqPFHUHorNWUhqd9BDsdYDkCX5pyF68X?=
- =?us-ascii?Q?zkFKZE41nIk3rfdPOfCkvh6sAF5ls8xbBX7sri5uo0ZAnDjcT3wx2ka+nTWN?=
- =?us-ascii?Q?+M0A5uj9bHJp89QR6CNuYmloCxQCB4gplH78VQzFQ6t9ZwbZGQso93Act12Q?=
- =?us-ascii?Q?yhC85ht6QWPQVK7ffQv6YsbgrK3YV/8qrbgAjomI2KMixToYMTXlUYZhjo0S?=
- =?us-ascii?Q?Td5pBsM2d6mSypLWIx9KDn4GOuJes7kuoPNgYaNiL+LSec1h2lYrI1M/ruNG?=
- =?us-ascii?Q?8KD36KWoSKvowlCpPjfgpFBwHoe/O2FTbsqaV8YwoU72Bnq4nSzanw8pD5JV?=
- =?us-ascii?Q?0RirIIimz4KwqDscN/4NrPy7wf4n/iiCSRADufc4FHy4Rd0pfsSo9DsUJIQ1?=
- =?us-ascii?Q?4A=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2e863620-e9d8-4671-f780-08dafef996ab
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UmpZL09SaFArcUN5OC83S1dSLzJvZ293RGJlVGlsNEkzUkgrc2R6M1JEVzdU?=
+ =?utf-8?B?eTY4TnB4R3lRQTVCRW5ESTZpSjRNa0pvbWVFMUJQbXVWbnJRRTM0Zys2TmdN?=
+ =?utf-8?B?UWVlWmNUZU10QkpPKzczc0dVMnR5ZkZnTzhxZlN3dGZkK3dKWnBJUXFENWJn?=
+ =?utf-8?B?aGJSdjJjVTBFb0IvTFBxY0xISWFWdTd6azdlNkRieFExNmVpWnU2bXNQbHhO?=
+ =?utf-8?B?UER2VnZOQXRPUEtJQ1ZSRUo1cUtnU1RIQXd3bU9PUk9HY29lSGFvRFg0NXBD?=
+ =?utf-8?B?cUFHMy8xOUwwa0dCUmlOMVJ6cVlzMW0yN0hUaStCZDF3djAwU3FOT0pPTzJH?=
+ =?utf-8?B?eWlZWDB1M3FURE9uWGxISFdzTEhveUNMSHdZdGx3SWZXV2VRSzZ6N0VkWmxp?=
+ =?utf-8?B?N0UxNFIxOUMxZlorZmpiYzVoeTVUYU11aFlQL2h3ZDNqVXFaZjBPbDJzLzVD?=
+ =?utf-8?B?eGZGU2VmWndOd0xHQnFDQWdaTCtUSmdUSDF0Q2tMeHZHWkM2YnlRQmx6RW5Q?=
+ =?utf-8?B?S1k0c0Z2ZTArTmhOYU4rcDFjaWwrT0twRHZZK25GSXhTQnNmZmh3NXdib3NJ?=
+ =?utf-8?B?NWtSMS91R3R1OGVqakppQm5sT1ZUa1JDZDNxbjYxVXpYTHVVYVZLUHNzTjJF?=
+ =?utf-8?B?S3hIdFFpRE5QYlFDby9abFo0aUdnSlArbkFPb1BvblI1Q0s3anBxOUZ2QUV1?=
+ =?utf-8?B?am1zRzR5SC9xSnpzZG5kS0dlWngxamRlRno5NWF3RXhZNC9yOFBHMEVPRlh1?=
+ =?utf-8?B?ZTNzSVV0dmhMQVVLTkdUZTE3VEh6RHBXQjdyUkdJOStkWWpvbERCS1p2b0lu?=
+ =?utf-8?B?TW9ieE9lMXE5b2c2cVBkQnhYQmI2bWFyYmM5T0E1TkJncUZFcnJuVTVUOTRl?=
+ =?utf-8?B?RGE5VCt3R2VucVR2bHZHRlVaRDRPMmxZMUpud1FjRGVHY0VsYU81cWkwS2Rt?=
+ =?utf-8?B?NGUzbXUvOGNXWTUwMi9SMWVqRVpycnBuQjdKOTloK01LUFh0ZEliRm9yWjl0?=
+ =?utf-8?B?dE1MQ0w5SFQ1bWx5dWZNRGRzMGVPWnVHZGhMZmZGcW5tTE42M3pDSHNtZjJT?=
+ =?utf-8?B?emJDNEZNOVlLYVpWdGpkalJudFRQNlo1ak1kZlUrNklsb0FjdWlHdytQTFY4?=
+ =?utf-8?B?OWUwbitLQTAxZDlVODlPTnR6UzFNUWtDdGY0QXEvRGplRjk4NXdHZmNTRVVO?=
+ =?utf-8?B?d1pFN0xRNnBYWWwxdWx1NitNbWVKQ1BMNFdSbXlDSWRwZlFVMHlpamZxOUhB?=
+ =?utf-8?B?V3ByYU84YmNrU0VJUzgvc0pnR2Qzb1ByaVFTVmlEQm81UlA2ckxnOVFMQTZh?=
+ =?utf-8?B?ZDJ6L3o3aXlrdkZ4QmZodE1DeG9QL1pVK0tYUS9GZ0ZyWkppRS8zSDh0bFdw?=
+ =?utf-8?B?ZFlUa2hIcno2WjJzeWwrWllNQ3hOdjlrTGs5MUc5TnQ1UHVVSWxBWHgvT0NZ?=
+ =?utf-8?B?THYyd0xMZUJjTzhuQVRmZ25FNEphcHhKdmt3LzQ4RlpKQ0tvR29GYlEreUNJ?=
+ =?utf-8?B?SGtjbzhZaWJIdDh4bVRMUmJtSW1LN3dPSWRqaExvemR3MlVZYkpWVjVsUnRi?=
+ =?utf-8?B?bVEwY1VJSHM2eDhoOFFtcWdJU2VrSldtKzJNZzExRDVrOFJ4bWI0dlF2b1d3?=
+ =?utf-8?B?UVl6bVVzaiszTm5GQ2Fya05YdkJQdkdsQlJiVkE0aFEwR2sxa2VqM05tajJB?=
+ =?utf-8?B?b2pITi9Kc2o5djZpTFExc29aSkJDWUdkNUtneUxrdThtNnNPaE9JUkhmRGsw?=
+ =?utf-8?B?bDNyd1N6QWhTc29ZZTY0bjVYOWtVUGt1cmVFVUdxZGs1dXV6Mk5Jd1UwY3Bp?=
+ =?utf-8?B?MEo4V3pIN2RyRzZQTFJVVi9GRkRuUVp0TE5hY2JyYXFHN2lyWks4NGUzMmJN?=
+ =?utf-8?B?bFB5bVdDVFZmSFFCVTBIaUFrYlN0SUFpQVV0V0VMbUtLRHVxYnVEMERlTmZU?=
+ =?utf-8?B?YWhwT1pQZVU3VmNVeGRma3JJOWJaWEp5NUgzeVVDaUVWUTMxTE5SWFV1cEhQ?=
+ =?utf-8?B?ZEs2elFvb2VmRFRxazhUK3N2LzZlYUl1aUwxNTBPTDRjL1dYNVB4NTFtbzhI?=
+ =?utf-8?B?MlE4K3A4VHhlUkkveDQ1em9QU3dWOXVteEl1NkorZmwzbFZXUXhpbUxjcEc2?=
+ =?utf-8?B?SEtHUDJZUmRMUmE2a2Z3WE5BZDc1eHZ3bDdjQ1RyOXpBMGpQeUx0TnNaNTg3?=
+ =?utf-8?B?c0E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 22820a5a-519f-43b0-63f9-08dafefe0c29
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3911.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2023 17:28:35.7635 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2023 18:00:30.6940 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: N91i2OXsHmpHYz7iBKvenYHZ+Mll19bRb1IkQfnwnLjpC4C1k7bkz6FuMF2ynHsq3RujfuW+ZIPzZ8K9ERIy2g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5214
+X-MS-Exchange-CrossTenant-UserPrincipalName: leP9AGtYQp8JoKTuCmAvd44q77TIc7JFBDhzpLqFAzcyIIf9EuezoCXobTSgS9HFKrNXIfpmLrZLcXnJv6IGWx1hHKiP42lIZfXaR9+WhzQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5501
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v7 3/6] mei: clean pending read with vtag on
- bus
+Subject: Re: [Intel-gfx] [PATCH v4 2/7] drm/i915: Fix up locking around
+ dumping requests lists
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,47 +162,344 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, intel-gfx@lists.freedesktop.org,
- Alexander Usyskin <alexander.usyskin@intel.com>,
- dri-devel@lists.freedesktop.org, Vivi@freedesktop.org,
- Tomas Winkler <tomas.winkler@intel.com>
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On 1/24/2023 06:40, Tvrtko Ursulin wrote:
+> On 20/01/2023 23:28, John.C.Harrison@Intel.com wrote:
+>> From: John Harrison <John.C.Harrison@Intel.com>
+>>
+>> The debugfs dump of requests was confused about what state requires
+>> the execlist lock versus the GuC lock. There was also a bunch of
+>> duplicated messy code between it and the error capture code.
+>>
+>> So refactor the hung request search into a re-usable function. And
+>> reduce the span of the execlist state lock to only the execlist
+>> specific code paths. In order to do that, also move the report of hold
+>> count (which is an execlist only concept) from the top level dump
+>> function to the lower level execlist specific function. Also, move the
+>> execlist specific code into the execlist source file.
+>>
+>> v2: Rename some functions and move to more appropriate files (Daniele).
+>
+> Continuing from yesterday where you pointed out 2/7 exists, after I 
+> declared capitulation on 1/7.. I think this refactor makes sense and 
+> definitely improves things a lot.
+>
+> On the high level I am only unsure if the patch split could be 
+> improved. There seem to be three separate things, correct me if I 
+> missed something:
+>
+> 1) Locking fix in intel_guc_find_hung_context
+This is the change already it's own patch - #1/7. Can't really split 
+that one up any further. Changing the internal GuC code requires 
+changing the external common code to match.
 
-Greg, ack on getting these 3 mei patches merged through intel-gfx?
+> 2) Ref counting change throughout
+> 3) Locking refactor / helper consolidation
+These two being the changes in this patch - #2/7, yes?
 
-On Wed, Jan 25, 2023 at 12:26:34AM -0800, Alan Previn wrote:
-> From: Alexander Usyskin <alexander.usyskin@intel.com>
-> 
-> Client on bus have only one vtag map slot and should disregard the vtag
-> value when cleaning pending read flag.
-> Fixes read flow control message unexpectedly generated when
-> clent on bus send messages with different vtags.
-> 
-> Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
-> Reviewed-by: Tomas Winkler <tomas.winkler@intel.com>
-> Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
-> ---
->  drivers/misc/mei/client.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/misc/mei/client.c b/drivers/misc/mei/client.c
-> index 9ddb854b8155..5c19097266fe 100644
-> --- a/drivers/misc/mei/client.c
-> +++ b/drivers/misc/mei/client.c
-> @@ -1343,7 +1343,9 @@ static void mei_cl_reset_read_by_vtag(const struct mei_cl *cl, u8 vtag)
->  	struct mei_cl_vtag *vtag_l;
->  
->  	list_for_each_entry(vtag_l, &cl->vtag_map, list) {
-> -		if (vtag_l->vtag == vtag) {
-> +		/* The client on bus has one fixed vtag map */
-> +		if ((cl->cldev && mei_cldev_enabled(cl->cldev)) ||
-> +		    vtag_l->vtag == vtag) {
->  			vtag_l->pending_read = false;
->  			break;
->  		}
-> -- 
-> 2.39.0
-> 
+The problem is that the reference counting fixes can only be done once 
+the code has been refactored/reordered. And the refactor/reorder can 
+only be done if the reference counting is fixed. I guess there would be 
+some way to do the re-order first but it would require making even more 
+of a mess of the spinlock activity to keep it all correct around that 
+intermediate stage. So I don't think it would noticeably simplify the patch.
+
+>
+> (Or 2 and 3 swapped around, not sure.)
+>
+> That IMO might be a bit easier to read because first patch wouldn't 
+> have two logical changes in it. Maybe easier to backport too if it 
+> comes to that?
+I'm not seeing 'two logical changes' in the first patch. Patch #1 fixes 
+the reference counting of finding the hung request. That involves adding 
+a reference count internally within the spinlock on the GuC side and 
+moving the external reference count to within the spinlock on the 
+execlist side and then doing a put in all cases. That really is a single 
+change. It can't be split without either a) introducing a get/put 
+mis-match bug or b) making the code really ugly as an intermediate 
+(while still leaving one or other side broken).
+
+John.
+
+>
+> On the low level it all looks fine to me - hopefully Daniele can do a 
+> detailed pass.
+>
+> Regards,
+>
+> Tvrtko
+>
+> P.S. Only that intel_context_find_active_request_get hurts my eyes, 
+> and inflates the diff. I wouldn't rename it but if you guys insist okay.
+>
+>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/gt/intel_engine.h        |  4 +-
+>>   drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 74 +++++++++----------
+>>   .../drm/i915/gt/intel_execlists_submission.c  | 27 +++++++
+>>   .../drm/i915/gt/intel_execlists_submission.h  |  4 +
+>>   drivers/gpu/drm/i915/i915_gpu_error.c         | 26 +------
+>>   5 files changed, 73 insertions(+), 62 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h 
+>> b/drivers/gpu/drm/i915/gt/intel_engine.h
+>> index 0e24af5efee9c..b58c30ac8ef02 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
+>> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+>> @@ -250,8 +250,8 @@ void intel_engine_dump_active_requests(struct 
+>> list_head *requests,
+>>   ktime_t intel_engine_get_busy_time(struct intel_engine_cs *engine,
+>>                      ktime_t *now);
+>>   -struct i915_request *
+>> -intel_engine_execlist_find_hung_request(struct intel_engine_cs 
+>> *engine);
+>> +void intel_engine_get_hung_entity(struct intel_engine_cs *engine,
+>> +                  struct intel_context **ce, struct i915_request **rq);
+>>     u32 intel_engine_context_size(struct intel_gt *gt, u8 class);
+>>   struct intel_context *
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c 
+>> b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+>> index fbc0a81617e89..1d77e27801bce 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+>> @@ -2114,17 +2114,6 @@ static void print_request_ring(struct 
+>> drm_printer *m, struct i915_request *rq)
+>>       }
+>>   }
+>>   -static unsigned long list_count(struct list_head *list)
+>> -{
+>> -    struct list_head *pos;
+>> -    unsigned long count = 0;
+>> -
+>> -    list_for_each(pos, list)
+>> -        count++;
+>> -
+>> -    return count;
+>> -}
+>> -
+>>   static unsigned long read_ul(void *p, size_t x)
+>>   {
+>>       return *(unsigned long *)(p + x);
+>> @@ -2216,11 +2205,11 @@ void intel_engine_dump_active_requests(struct 
+>> list_head *requests,
+>>       }
+>>   }
+>>   -static void engine_dump_active_requests(struct intel_engine_cs 
+>> *engine, struct drm_printer *m)
+>> +static void engine_dump_active_requests(struct intel_engine_cs *engine,
+>> +                    struct drm_printer *m)
+>>   {
+>> +    struct intel_context *hung_ce = NULL;
+>>       struct i915_request *hung_rq = NULL;
+>> -    struct intel_context *ce;
+>> -    bool guc;
+>>         /*
+>>        * No need for an engine->irq_seqno_barrier() before the seqno 
+>> reads.
+>> @@ -2229,29 +2218,20 @@ static void 
+>> engine_dump_active_requests(struct intel_engine_cs *engine, struct d
+>>        * But the intention here is just to report an instantaneous 
+>> snapshot
+>>        * so that's fine.
+>>        */
+>> -    lockdep_assert_held(&engine->sched_engine->lock);
+>> +    intel_engine_get_hung_entity(engine, &hung_ce, &hung_rq);
+>>         drm_printf(m, "\tRequests:\n");
+>>   -    guc = intel_uc_uses_guc_submission(&engine->gt->uc);
+>> -    if (guc) {
+>> -        ce = intel_engine_get_hung_context(engine);
+>> -        if (ce)
+>> -            hung_rq = intel_context_find_active_request_get(ce);
+>> -    } else {
+>> -        hung_rq = intel_engine_execlist_find_hung_request(engine);
+>> -        if (hung_rq)
+>> -            hung_rq = i915_request_get_rcu(hung_rq);
+>> -    }
+>> -
+>>       if (hung_rq)
+>>           engine_dump_request(hung_rq, m, "\t\thung");
+>> +    else if (hung_ce)
+>> +        drm_printf(m, "\t\tGot hung ce but no hung rq!\n");
+>>   -    if (guc)
+>> +    if (intel_uc_uses_guc_submission(&engine->gt->uc))
+>>           intel_guc_dump_active_requests(engine, hung_rq, m);
+>>       else
+>> - intel_engine_dump_active_requests(&engine->sched_engine->requests,
+>> -                          hung_rq, m);
+>> +        intel_execlist_dump_active_requests(engine, hung_rq, m);
+>> +
+>>       if (hung_rq)
+>>           i915_request_put(hung_rq);
+>>   }
+>> @@ -2263,7 +2243,6 @@ void intel_engine_dump(struct intel_engine_cs 
+>> *engine,
+>>       struct i915_gpu_error * const error = &engine->i915->gpu_error;
+>>       struct i915_request *rq;
+>>       intel_wakeref_t wakeref;
+>> -    unsigned long flags;
+>>       ktime_t dummy;
+>>         if (header) {
+>> @@ -2300,13 +2279,8 @@ void intel_engine_dump(struct intel_engine_cs 
+>> *engine,
+>>              i915_reset_count(error));
+>>       print_properties(engine, m);
+>>   -    spin_lock_irqsave(&engine->sched_engine->lock, flags);
+>>       engine_dump_active_requests(engine, m);
+>>   -    drm_printf(m, "\tOn hold?: %lu\n",
+>> -           list_count(&engine->sched_engine->hold));
+>> - spin_unlock_irqrestore(&engine->sched_engine->lock, flags);
+>> -
+>>       drm_printf(m, "\tMMIO base:  0x%08x\n", engine->mmio_base);
+>>       wakeref = intel_runtime_pm_get_if_in_use(engine->uncore->rpm);
+>>       if (wakeref) {
+>> @@ -2352,8 +2326,7 @@ intel_engine_create_virtual(struct 
+>> intel_engine_cs **siblings,
+>>       return siblings[0]->cops->create_virtual(siblings, count, flags);
+>>   }
+>>   -struct i915_request *
+>> -intel_engine_execlist_find_hung_request(struct intel_engine_cs *engine)
+>> +static struct i915_request *engine_execlist_find_hung_request(struct 
+>> intel_engine_cs *engine)
+>>   {
+>>       struct i915_request *request, *active = NULL;
+>>   @@ -2405,6 +2378,33 @@ 
+>> intel_engine_execlist_find_hung_request(struct intel_engine_cs *engine)
+>>       return active;
+>>   }
+>>   +void intel_engine_get_hung_entity(struct intel_engine_cs *engine,
+>> +                  struct intel_context **ce, struct i915_request **rq)
+>> +{
+>> +    unsigned long flags;
+>> +
+>> +    *ce = intel_engine_get_hung_context(engine);
+>> +    if (*ce) {
+>> +        intel_engine_clear_hung_context(engine);
+>> +
+>> +        *rq = intel_context_find_active_request_get(*ce);
+>> +        return;
+>> +    }
+>> +
+>> +    /*
+>> +     * Getting here with GuC enabled means it is a forced error capture
+>> +     * with no actual hang. So, no need to attempt the execlist search.
+>> +     */
+>> +    if (intel_uc_uses_guc_submission(&engine->gt->uc))
+>> +        return;
+>> +
+>> +    spin_lock_irqsave(&engine->sched_engine->lock, flags);
+>> +    *rq = engine_execlist_find_hung_request(engine);
+>> +    if (*rq)
+>> +        *rq = i915_request_get_rcu(*rq);
+>> + spin_unlock_irqrestore(&engine->sched_engine->lock, flags);
+>> +}
+>> +
+>>   void xehp_enable_ccs_engines(struct intel_engine_cs *engine)
+>>   {
+>>       /*
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c 
+>> b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+>> index 18ffe55282e59..05995c8577bef 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+>> @@ -4150,6 +4150,33 @@ void intel_execlists_show_requests(struct 
+>> intel_engine_cs *engine,
+>>       spin_unlock_irqrestore(&sched_engine->lock, flags);
+>>   }
+>>   +static unsigned long list_count(struct list_head *list)
+>> +{
+>> +    struct list_head *pos;
+>> +    unsigned long count = 0;
+>> +
+>> +    list_for_each(pos, list)
+>> +        count++;
+>> +
+>> +    return count;
+>> +}
+>> +
+>> +void intel_execlist_dump_active_requests(struct intel_engine_cs 
+>> *engine,
+>> +                     struct i915_request *hung_rq,
+>> +                     struct drm_printer *m)
+>> +{
+>> +    unsigned long flags;
+>> +
+>> +    spin_lock_irqsave(&engine->sched_engine->lock, flags);
+>> +
+>> + intel_engine_dump_active_requests(&engine->sched_engine->requests, 
+>> hung_rq, m);
+>> +
+>> +    drm_printf(m, "\tOn hold?: %lu\n",
+>> +           list_count(&engine->sched_engine->hold));
+>> +
+>> + spin_unlock_irqrestore(&engine->sched_engine->lock, flags);
+>> +}
+>> +
+>>   #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+>>   #include "selftest_execlists.c"
+>>   #endif
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.h 
+>> b/drivers/gpu/drm/i915/gt/intel_execlists_submission.h
+>> index a1aa92c983a51..cb07488a03764 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.h
+>> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.h
+>> @@ -32,6 +32,10 @@ void intel_execlists_show_requests(struct 
+>> intel_engine_cs *engine,
+>>                               int indent),
+>>                      unsigned int max);
+>>   +void intel_execlist_dump_active_requests(struct intel_engine_cs 
+>> *engine,
+>> +                     struct i915_request *hung_rq,
+>> +                     struct drm_printer *m);
+>> +
+>>   bool
+>>   intel_engine_in_execlists_submission_mode(const struct 
+>> intel_engine_cs *engine);
+>>   diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c 
+>> b/drivers/gpu/drm/i915/i915_gpu_error.c
+>> index 5c73dfa2fb3f6..b20bd6365615b 100644
+>> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+>> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+>> @@ -1596,35 +1596,15 @@ capture_engine(struct intel_engine_cs *engine,
+>>   {
+>>       struct intel_engine_capture_vma *capture = NULL;
+>>       struct intel_engine_coredump *ee;
+>> -    struct intel_context *ce;
+>> +    struct intel_context *ce = NULL;
+>>       struct i915_request *rq = NULL;
+>> -    unsigned long flags;
+>>         ee = intel_engine_coredump_alloc(engine, ALLOW_FAIL, 
+>> dump_flags);
+>>       if (!ee)
+>>           return NULL;
+>>   -    ce = intel_engine_get_hung_context(engine);
+>> -    if (ce) {
+>> -        intel_engine_clear_hung_context(engine);
+>> -        rq = intel_context_find_active_request_get(ce);
+>> -        if (!rq || !i915_request_started(rq))
+>> -            goto no_request_capture;
+>> -    } else {
+>> -        /*
+>> -         * Getting here with GuC enabled means it is a forced error 
+>> capture
+>> -         * with no actual hang. So, no need to attempt the execlist 
+>> search.
+>> -         */
+>> -        if (!intel_uc_uses_guc_submission(&engine->gt->uc)) {
+>> - spin_lock_irqsave(&engine->sched_engine->lock, flags);
+>> -            rq = intel_engine_execlist_find_hung_request(engine);
+>> -            if (rq)
+>> -                rq = i915_request_get_rcu(rq);
+>> - spin_unlock_irqrestore(&engine->sched_engine->lock,
+>> -                           flags);
+>> -        }
+>> -    }
+>> -    if (!rq)
+>> +    intel_engine_get_hung_entity(engine, &ce, &rq);
+>> +    if (!rq || !i915_request_started(rq))
+>>           goto no_request_capture;
+>>         capture = intel_engine_coredump_add_request(ee, rq, 
+>> ATOMIC_MAYFAIL);
+
