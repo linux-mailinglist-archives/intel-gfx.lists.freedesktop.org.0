@@ -2,66 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 112F0688015
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 15:27:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 661C3687FE2
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 15:24:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18E0110E54E;
-	Thu,  2 Feb 2023 14:27:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17E9C10E110;
+	Thu,  2 Feb 2023 14:24:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com
- [IPv6:2a00:1450:4864:20::636])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D6B710E608;
- Tue, 24 Jan 2023 05:49:37 +0000 (UTC)
-Received: by mail-ej1-x636.google.com with SMTP id tz11so36268107ejc.0;
- Mon, 23 Jan 2023 21:49:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:content-disposition:mime-version
- :message-id:subject:cc:to:from:date:sender:from:to:cc:subject:date
- :message-id:reply-to;
- bh=uhJwRm9AKY3Nh8HZfpL/HR1cmEvlo8eF444A2EWsj7Q=;
- b=cTEBHYiglClAcEfFNHuXU4rMI8+Vjx8i47QKY5knZpahYQALZ/m/7HF89etAoT6m5P
- V7H9kbF4WXjXUc0ftE0xfOvElupkZVkB/PwjYhGjdApysPwJ9qHuRO8zeBDFlOH6VJ5B
- b2fKQ00+RJvsBHB0O4uPWXOnjfj3X8s2sBI28TujwaCNZ+9Q2xwN4KGLNnANysqubvQ6
- zNM5UDGpbQzG04gfaKMEO+3nEKCrEgnTbpJ+THDUAcAOYx65KLeZC7SkPTqeQkHaNlW1
- t1E6bbf3FT77lZm1gFuagh/5GSMMtS9wCZyjN7qe4PhLrD+/6bgJdE3NN6bSJNQWGF2l
- ZhzQ==
+Received: from mail-yb1-xb4a.google.com (mail-yb1-xb4a.google.com
+ [IPv6:2607:f8b0:4864:20::b4a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A21010E756
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Jan 2023 08:38:57 +0000 (UTC)
+Received: by mail-yb1-xb4a.google.com with SMTP id
+ n8-20020a258d08000000b007facaf67acfso19125699ybl.0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Jan 2023 00:38:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
+ h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=gBh0+9Ej4fdZiBcL1FEtjjBddEyxpct0JkyXcSRf3Wg=;
+ b=lB4btchvNlTfCRHflexrgCXbRXFvyy8g1gFK/OMeKiIJNh1tqeN9E/OUXMnf2U4uji
+ YYT9ZG6Uz9BNIXcJPuB6IBGSNwEdssClBGTD7I8F8xN9feCnsNR77DeUemH49gSW7JIZ
+ i8Fyk+8dX7xmZBgb/4LlxS50DWuY+p/ZAvE5rke3AXUvgG50Y7E3pTP3J2Z3NRLwRPG+
+ tuCoTtjvQeclLyeusopPtZIO8LUuu13+9dnLJ2g+6d0g96WjPTO8eD8l7HbwyilzSGVH
+ oGzLOV4is7gwgAYTgd7llD5IZe+pWMCF81FsE6KNSAjCT9NY1E+DcM18ZvHUvuruVpcX
+ WOLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=content-transfer-encoding:content-disposition:mime-version
- :message-id:subject:cc:to:from:date:sender:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=uhJwRm9AKY3Nh8HZfpL/HR1cmEvlo8eF444A2EWsj7Q=;
- b=mmdqvXMFvgFWc9Y6zUuQ6DuFermnujrM7CSwCRs++EoAviam+z98Y6WBiPtkOepwMV
- WcHjtuoTqXAi79yVAWTKn0oPmVRwP9XlIJPLib1ZqQzlJKxH/Jp/nVGKpNtTqv5byZ2G
- 4P72057wKVXKqvZAS5dOCNlS1Q51ZXhr1fZczQ9zthDFCTyyR4rT6h6YxqffCSzyS2Ge
- CnrpfCgPKssjc/5c1NWDq9h6Ud4/PJTfKepmS1fUQrJ07cTTLtq2xr1HCiFmJwmtr4gl
- Il5xmDNbQ+Sb8Mh6BbmMTDmLpeV91JoHChAcPCHBnncs244zLSX/eLO0Hlyog5SvEL4m
- lDRg==
-X-Gm-Message-State: AFqh2krk3DziOOdVBsbXqMZYB+lQiW3ggK9oQjBT7IT5BLCjeGWzgGmO
- qnb+sASoi3JThpcxOV4NypY=
-X-Google-Smtp-Source: AMrXdXunS5/LxnUeuIKnB82SPjD6RKgguWToG2ra0FCgegRYGRtaHAi4iYIebGj5LX8JB6FYkWSNqw==
-X-Received: by 2002:a17:907:2a8c:b0:870:8e22:1433 with SMTP id
- fl12-20020a1709072a8c00b008708e221433mr20744744ejc.16.1674539375532; 
- Mon, 23 Jan 2023 21:49:35 -0800 (PST)
-Received: from eldamar.lan (c-82-192-242-114.customer.ggaweb.ch.
- [82.192.242.114]) by smtp.gmail.com with ESMTPSA id
- w1-20020a170906480100b0080c433a9eeesm391060ejq.182.2023.01.23.21.49.34
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 23 Jan 2023 21:49:34 -0800 (PST)
-Received: by eldamar.lan (Postfix, from userid 1000)
- id 7038BBE2DE0; Tue, 24 Jan 2023 06:49:33 +0100 (CET)
-Date: Tue, 24 Jan 2023 06:49:33 +0100
-From: Salvatore Bonaccorso <carnil@debian.org>
-To: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
-Message-ID: <Y89xbXITTRFpjm5B@eldamar.lan>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+ h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=gBh0+9Ej4fdZiBcL1FEtjjBddEyxpct0JkyXcSRf3Wg=;
+ b=RiC8RhWbOfqzj5nDiOqfZ3alkZSdpdLRylQ9F3bpTvWUoyll9B83ddfzJVqaM0fLDB
+ Bd+5c0VYQAUJqN3cN9MGleYg0sl7721UShdY0C7hMz8ZdVdALBh5ED5IpZJumX90EgBZ
+ A70tBp9zoLVvwJaH7GFjWxOnE40XEoemK57Rdl2fpcOZk6VMx74jpWyxvLK8kB7rQYLY
+ ONL1RTGPIwDzHOe64psNyh92GvKtOXuHBx8a2MGJnuSkdk83Y3sb0M/Pr+HQqhyUByto
+ gvAjisRseWglJqA6v3nSsRvGPe/Q8af9Y+OWBTOxomkbFeUXNcIuq8LxnMutJKXUNPOf
+ Phww==
+X-Gm-Message-State: AFqh2kp+cPhvPnVBJ5rfDSm4x/3GAqPkpsdsofGatuyY1vTqQjTWiPdM
+ bSbcr2jCDzlBSt1LrlgyV0RksYW9Inc=
+X-Google-Smtp-Source: AMrXdXtLI+TT5dUaC9pRI2aKjkmKt7tjdC79b+se6AwZUh4jJJgCSUqcAubWc2ByjewYclrfSPgwiLKmrmw=
+X-Received: from surenb-desktop.mtv.corp.google.com
+ ([2620:15c:211:200:f7b0:20e8:ce66:f98])
+ (user=surenb job=sendgmr) by 2002:a05:6902:34f:b0:6f9:7bf9:8fc7 with SMTP id
+ e15-20020a056902034f00b006f97bf98fc7mr3373858ybs.279.1674635936246; Wed, 25
+ Jan 2023 00:38:56 -0800 (PST)
+Date: Wed, 25 Jan 2023 00:38:45 -0800
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.39.1.405.gd4c25cc71f-goog
+Message-ID: <20230125083851.27759-1-surenb@google.com>
+From: Suren Baghdasaryan <surenb@google.com>
+To: akpm@linux-foundation.org
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Thu, 02 Feb 2023 14:24:11 +0000
-Subject: [Intel-gfx] Assertion failure in i915
- intel_display.c#assert_plane() after resume from hibernation
+Subject: [Intel-gfx] [PATCH v2 0/6] introduce vm_flags modifier functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,284 +66,221 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, nabijaczleweli@nabijaczleweli.xyz
+Cc: michel@lespinasse.org, nvdimm@lists.linux.dev, heiko@sntech.de,
+ leewalsh@google.com, dri-devel@lists.freedesktop.org, perex@perex.cz,
+ jglisse@google.com, arjunroy@google.com, m.szyprowski@samsung.com,
+ linux-arch@vger.kernel.org, qianweili@huawei.com,
+ linux-samsung-soc@vger.kernel.org, aneesh.kumar@linux.ibm.com,
+ chenhuacai@kernel.org, kasan-dev@googlegroups.com, linux-acpi@vger.kernel.org,
+ rientjes@google.com, xen-devel@lists.xenproject.org, devel@lists.orangefs.org,
+ minchan@google.com, robert.jarzmik@free.fr, linux-um@lists.infradead.org,
+ etnaviv@lists.freedesktop.org, npiggin@gmail.com, viro@zeniv.linux.org.uk,
+ luto@kernel.org, gthelen@google.com, tglx@linutronix.de, ldufour@linux.ibm.com,
+ surenb@google.com, linux-sgx@vger.kernel.org, martin.petersen@oracle.com,
+ linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-perf-users@vger.kernel.org, linux-crypto@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org, linux-media@vger.kernel.org,
+ freedreno@lists.freedesktop.org, joelaf@google.com, linux-aio@kvack.org,
+ linux-fbdev@vger.kernel.org, linux-ia64@vger.kernel.org, david@redhat.com,
+ dave.hansen@linux.intel.com, virtualization@lists.linux-foundation.org,
+ edumazet@google.com, target-devel@vger.kernel.org, punit.agrawal@bytedance.com,
+ linux-s390@vger.kernel.org, dave@stgolabs.net, deller@gmx.de, hughd@google.com,
+ andrii@kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-rockchip@lists.infradead.org, linux-graphics-maintainer@vmware.com,
+ kernel-team@android.com, jayalk@intworks.biz, soheil@google.com,
+ selinux@vger.kernel.org, linux-arm-msm@vger.kernel.org, mripard@kernel.org,
+ shakeelb@google.com, haojian.zhuang@gmail.com, loongarch@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, tytso@mit.edu, nico@fluxnic.net,
+ muchun.song@linux.dev, hjc@rock-chips.com, mcoquelin.stm32@gmail.com,
+ tatashin@google.com, mike.kravetz@oracle.com, songliubraving@fb.com,
+ jasowang@redhat.com, alsa-devel@alsa-project.org, peterx@redhat.com,
+ linux-tegra@vger.kernel.org, kraxel@redhat.com, will@kernel.org,
+ dmaengine@vger.kernel.org, bhe@redhat.com, miklos@szeredi.hu,
+ linux-rdma@vger.kernel.org, linux-staging@lists.linux.dev, willy@infradead.org,
+ gurua@google.com, dgilbert@interlog.com, xiang@kernel.org, pabeni@redhat.com,
+ jejb@linux.ibm.com, quic_abhinavk@quicinc.com, bp@alien8.de,
+ mchehab@kernel.org, linux-ext4@vger.kernel.org, tomba@kernel.org,
+ hughlynch@google.com, sre@kernel.org, tfiga@chromium.org,
+ linux-xfs@vger.kernel.org, zhangfei.gao@linaro.org, wangzhou1@hisilicon.com,
+ netdev@vger.kernel.org, bpf@vger.kernel.org, linux-erofs@lists.ozlabs.org,
+ davem@davemloft.net, mhocko@suse.com, kvm@vger.kernel.org, mst@redhat.com,
+ peterz@infradead.org, bigeasy@linutronix.de, alexandre.torgue@foss.st.com,
+ dhowells@redhat.com, linux-mm@kvack.org, ray.huang@amd.com,
+ adilger.kernel@dilger.ca, kuba@kernel.org, sparclinux@vger.kernel.org,
+ airlied@gmail.com, anton.ivanov@cambridgegreys.com,
+ herbert@gondor.apana.org.au, linux-scsi@vger.kernel.org, richard@nod.at,
+ x86@kernel.org, vkoul@kernel.org, mingo@redhat.com, axelrasmussen@google.com,
+ intel-gfx@lists.freedesktop.org, daniel@ffwll.ch, paulmck@kernel.org,
+ jannh@google.com, chao@kernel.org, liam.howlett@oracle.com,
+ hdegoede@redhat.com, linux-mediatek@lists.infradead.org,
+ matthias.bgg@gmail.com, vbabka@suse.cz, dimitri.sivanich@hpe.com,
+ amd-gfx@lists.freedesktop.org, posk@google.com, lstoakes@gmail.com,
+ peterjung1337@gmail.com, yoshfuji@linux-ipv6.org,
+ linuxppc-dev@lists.ozlabs.org, dsahern@kernel.org, kent.overstreet@linux.dev,
+ kexec@lists.infradead.org, tiwai@suse.com, krzysztof.kozlowski@linaro.org,
+ tzimmermann@suse.de, hannes@cmpxchg.org, dmitry.baryshkov@linaro.org,
+ johannes@sipsolutions.net, mgorman@techsingularity.net,
+ linux-accelerators@lists.ozlabs.org, l.stach@pengutronix.de
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi
+This patchset was originally published as a part of per-VMA locking [1] and
+was split after suggestion that it's viable on its own and to facilitate
+the review process. It is now a preprequisite for the next version of per-VMA
+lock patchset, which reuses vm_flags modifier functions to lock the VMA when
+vm_flags are being updated.
 
-A user in Debian, cc'ed reporte the following issue when resuming from
-hibernation, tested as well on recent 6.1.7 kernel, context see
-https://bugs.debian.org/971068
+VMA vm_flags modifications are usually done under exclusive mmap_lock
+protection because this attrubute affects other decisions like VMA merging
+or splitting and races should be prevented. Introduce vm_flags modifier
+functions to enforce correct locking.
 
-> Can repro on the sid kernel, uname -a of
->   Linux nabtop 6.1.0-2-686-pae #1 SMP PREEMPT_DYNAMIC Debian 6.1.7-1 (202=
-3-01-18) i686 GNU/Linux
->=20
-> Log below. Backtrace is only trivially different.
->=20
-> Best,
-> =D0=BD=D0=B0=D0=B1
->=20
-> -- >8 --
-> Jan 22 14:06:46 nabtop kernel: OOM killer disabled.
-> Jan 22 14:06:46 nabtop kernel: PM: hibernation: Marking nosave pages: [me=
-m 0x00000000-0x00000fff]
-> Jan 22 14:06:46 nabtop kernel: PM: hibernation: Marking nosave pages: [me=
-m 0x0009f000-0x000fffff]
-> Jan 22 14:06:46 nabtop kernel: PM: hibernation: Marking nosave pages: [me=
-m 0xb5aa1000-0xb5aa6fff]
-> Jan 22 14:06:46 nabtop kernel: PM: hibernation: Marking nosave pages: [me=
-m 0xb5bba000-0xb5c0efff]
-> Jan 22 14:06:46 nabtop kernel: PM: hibernation: Marking nosave pages: [me=
-m 0xb5d08000-0xb5f0efff]
-> Jan 22 14:06:46 nabtop kernel: PM: hibernation: Marking nosave pages: [me=
-m 0xb5f18000-0xb5f1efff]
-> Jan 22 14:06:46 nabtop kernel: PM: hibernation: Marking nosave pages: [me=
-m 0xb5f65000-0xb5f9efff]
-> Jan 22 14:06:46 nabtop kernel: PM: hibernation: Marking nosave pages: [me=
-m 0xb5fe1000-0xb5ffefff]
-> Jan 22 14:06:46 nabtop kernel: PM: hibernation: Marking nosave pages: [me=
-m 0xb6000000-0xffffffff]
-> Jan 22 14:06:46 nabtop kernel: PM: hibernation: Basic memory bitmaps crea=
-ted
-> Jan 22 14:06:46 nabtop kernel: PM: hibernation: Preallocating image memory
-> Jan 22 14:06:46 nabtop kernel: PM: hibernation: Allocated 183519 pages fo=
-r snapshot
-> Jan 22 14:06:46 nabtop kernel: PM: hibernation: Allocated 734076 kbytes i=
-n 0.70 seconds (1048.68 MB/s)
-> Jan 22 14:06:46 nabtop kernel: Freezing remaining freezable tasks ... (el=
-apsed 0.001 seconds) done.
-> Jan 22 14:06:46 nabtop kernel: wifi1: deauthenticating from de:0d:17:ad:8=
-0:55 by local choice (Reason: 3=3DDEAUTH_LEAVING)
-> Jan 22 14:06:46 nabtop kernel: ACPI: EC: interrupt blocked
-> Jan 22 14:06:46 nabtop kernel: ACPI: PM: Preparing to enter system sleep =
-state S4
-> Jan 22 14:06:46 nabtop kernel: ACPI: EC: event blocked
-> Jan 22 14:06:46 nabtop kernel: ACPI: EC: EC stopped
-> Jan 22 14:06:46 nabtop kernel: ACPI: PM: Saving platform NVS memory
-> Jan 22 14:06:46 nabtop kernel: Disabling non-boot CPUs ...
-> Jan 22 14:06:46 nabtop kernel: smpboot: CPU 1 is now offline
-> Jan 22 14:06:46 nabtop kernel: PM: hibernation: Creating image:
-> Jan 22 14:06:46 nabtop kernel: PM: hibernation: Need to copy 175700 pages
-> Jan 22 14:06:46 nabtop kernel: PM: hibernation: Normal pages needed: 5776=
-5 + 1024, available pages: 167322
-> Jan 22 14:06:46 nabtop kernel: ACPI: PM: Restoring platform NVS memory
-> Jan 22 14:06:46 nabtop kernel: ACPI: EC: EC started
-> Jan 22 14:06:46 nabtop kernel: Enabling non-boot CPUs ...
-> Jan 22 14:06:46 nabtop kernel: x86: Booting SMP configuration:
-> Jan 22 14:06:46 nabtop kernel: smpboot: Booting Node 0 Processor 1 APIC 0=
-x1
-> Jan 22 14:06:46 nabtop kernel: CPU1 is up
-> Jan 22 14:06:46 nabtop kernel: ACPI: PM: Waking up from system sleep stat=
-e S4
-> Jan 22 14:06:46 nabtop kernel: ACPI: EC: interrupt unblocked
-> Jan 22 14:06:46 nabtop kernel: ACPI: EC: event unblocked
-> Jan 22 14:06:46 nabtop kernel: usb usb1: root hub lost power or was reset
-> Jan 22 14:06:46 nabtop kernel: usb usb2: root hub lost power or was reset
-> Jan 22 14:06:46 nabtop kernel: usb usb4: root hub lost power or was reset
-> Jan 22 14:06:46 nabtop kernel: usb usb3: root hub lost power or was reset
-> Jan 22 14:06:46 nabtop kernel: usb usb6: root hub lost power or was reset
-> Jan 22 14:06:46 nabtop kernel: usb usb7: root hub lost power or was reset
-> Jan 22 14:06:46 nabtop kernel: usb usb8: root hub lost power or was reset
-> Jan 22 14:06:46 nabtop kernel: usb usb5: root hub lost power or was reset
-> Jan 22 14:06:46 nabtop kernel: sd 0:0:0:0: [sda] Starting disk
-> Jan 22 14:06:46 nabtop kernel: iwlwifi 0000:08:00.0: Radio type=3D0x1-0x2=
--0x0
-> Jan 22 14:06:46 nabtop kernel: iwlwifi 0000:08:00.0: Radio type=3D0x1-0x2=
--0x0
-> Jan 22 14:06:46 nabtop kernel: ------------[ cut here ]------------
-> Jan 22 14:06:46 nabtop kernel: primary B assertion failure (expected off,=
- current on)
-> Jan 22 14:06:46 nabtop kernel: WARNING: CPU: 0 PID: 1038 at drivers/gpu/d=
-rm/i915/display/intel_display.c:476 assert_plane+0x9f/0xb0 [i915]
-> Jan 22 14:06:46 nabtop kernel: Modules linked in: ghash_generic gf128mul =
-gcm ccm algif_aead des_generic libdes ecb algif_skcipher bnep cmac md4 algi=
-f_hash af_alg binfmt_misc btusb btrtl btbcm btintel btmtk bluetooth jittere=
-ntropy_rng sha512_generic ctr drbg joydev ansi_cprng ecdh_generic ecc iwldv=
-m mac80211 libarc4 iTCO_wdt intel_pmc_bxt snd_hda_codec_conexant iTCO_vendo=
-r_support uvcvideo watchdog snd_hda_codec_generic ledtrig_audio videobuf2_v=
-malloc videobuf2_memops i915 videobuf2_v4l2 nls_ascii snd_hda_intel iwlwifi=
- videobuf2_common snd_intel_dspcfg drm_buddy snd_intel_sdw_acpi nls_cp437 v=
-ideodev drm_display_helper snd_hda_codec snd_hda_core i2c_i801 cec vfat mc =
-psmouse evdev wmi_bmof i2c_smbus snd_hwdep rc_core pcspkr cfg80211 sg ttm f=
-at lpc_ich snd_pcm drm_kms_helper toshiba_acpi snd_timer industrialio snd s=
-parse_keymap toshiba_bluetooth sky2 soundcore rfkill i2c_algo_bit toshiba_h=
-aps ac button acpi_cpufreq nf_log_syslog nft_log nft_limit nft_ct nf_conntr=
-ack nf_defrag_ipv6 nf_defrag_ipv4 nf_tables
-> Jan 22 14:06:46 nabtop kernel:  libcrc32c nfnetlink drm ip_tables x_table=
-s ext4 crc16 mbcache jbd2 crc32c_generic sd_mod t10_pi crc64_rocksoft crc64=
- crc_t10dif sr_mod crct10dif_generic cdrom crct10dif_common sdhci_pci cqhci=
- ehci_pci uhci_hcd ehci_hcd ahci libahci sdhci libata mmc_core serio_raw fi=
-rewire_ohci usbcore battery usb_common video wmi pkcs8_key_parser coretemp =
-firewire_sbp2 firewire_core crc_itu_t scsi_mod scsi_common parport_pc ppdev=
- lp parport autofs4
-> Jan 22 14:06:46 nabtop kernel: CPU: 0 PID: 1038 Comm: kworker/u4:20 Not t=
-ainted 6.1.0-2-686-pae #1  Debian 6.1.7-1
-> Jan 22 14:06:46 nabtop kernel: Hardware name: TOSHIBA Satellite Pro U400/=
-Satellite Pro U400, BIOS V5.00    10/26/2010
-> Jan 22 14:06:46 nabtop kernel: Workqueue: events_unbound async_run_entry_=
-fn
-> Jan 22 14:06:46 nabtop kernel: EIP: assert_plane+0x9f/0xb0 [i915]
-> Jan 22 14:06:46 nabtop kernel: Code: ff 73 0c 68 30 da b7 f8 e8 0e c7 3a =
-ff 83 c4 10 eb b3 8d b4 26 00 00 00 00 66 90 57 52 ff 73 0c 68 30 da b7 f8 =
-e8 75 eb e3 dc <0f> 0b 83 c4 10 eb 94 e8 65 9c e7 dc 8d 74 26 00 90 3e 8d 7=
-4 26 00
-> Jan 22 14:06:46 nabtop kernel: EAX: 00000036 EBX: c1238c00 ECX: 00000001 =
-EDX: 80000001
-> Jan 22 14:06:46 nabtop kernel: ESI: 00000000 EDI: f8ba1548 EBP: c63f7cdc =
-ESP: c63f7cb8
-> Jan 22 14:06:46 nabtop kernel: DS: 007b ES: 007b FS: 00d8 GS: 0000 SS: 00=
-68 EFLAGS: 00010292
-> Jan 22 14:06:46 nabtop kernel: CR0: 80050033 CR2: 01e6fc26 CR3: 15e2c000 =
-CR4: 000006f0
-> Jan 22 14:06:46 nabtop kernel: Call Trace:
-> Jan 22 14:06:46 nabtop kernel:  intel_disable_transcoder+0x71/0x2a0 [i915]
-> Jan 22 14:06:46 nabtop kernel:  ? drm_vblank_get+0x65/0xd0 [drm]
-> Jan 22 14:06:46 nabtop kernel:  ? drm_crtc_vblank_get+0x12/0x20 [drm]
-> Jan 22 14:06:46 nabtop kernel:  ? assert_vblank_disabled+0x10/0x70 [i915]
-> Jan 22 14:06:46 nabtop kernel:  i9xx_crtc_disable+0x56/0x260 [i915]
-> Jan 22 14:06:46 nabtop kernel:  ? intel_synchronize_irq+0x16/0x20 [i915]
-> Jan 22 14:06:46 nabtop kernel:  ? intel_crtc_disable_pipe_crc+0xa4/0xb0 [=
-i915]
-> Jan 22 14:06:46 nabtop kernel:  intel_old_crtc_state_disables+0x35/0x90 [=
-i915]
-> Jan 22 14:06:46 nabtop kernel:  intel_atomic_commit_tail+0x409/0xe30 [i91=
-5]
-> Jan 22 14:06:46 nabtop kernel:  ? sugov_start+0x150/0x150
-> Jan 22 14:06:46 nabtop kernel:  ? sugov_start+0x150/0x150
-> Jan 22 14:06:46 nabtop kernel:  intel_atomic_commit+0x30b/0x350 [i915]
-> Jan 22 14:06:46 nabtop kernel:  ? intel_atomic_commit_tail+0xe30/0xe30 [i=
-915]
-> Jan 22 14:06:46 nabtop kernel:  drm_atomic_commit+0x6b/0xe0 [drm]
-> Jan 22 14:06:46 nabtop kernel:  ? drm_plane_get_damage_clips.cold+0x1b/0x=
-1b [drm]
-> Jan 22 14:06:46 nabtop kernel:  drm_atomic_helper_commit_duplicated_state=
-+0xb6/0xd0 [drm_kms_helper]
-> Jan 22 14:06:46 nabtop kernel:  __intel_display_resume+0x6c/0xd0 [i915]
-> Jan 22 14:06:46 nabtop kernel:  intel_display_resume+0xb4/0x120 [i915]
-> Jan 22 14:06:46 nabtop kernel:  i915_drm_resume+0xc6/0x130 [i915]
-> Jan 22 14:06:46 nabtop kernel:  i915_pm_resume+0x34/0x50 [i915]
-> Jan 22 14:06:46 nabtop kernel:  i915_pm_restore+0x1f/0x30 [i915]
-> Jan 22 14:06:46 nabtop kernel:  pci_pm_restore+0x5a/0xe0
-> Jan 22 14:06:46 nabtop kernel:  ? pci_pm_poweroff_noirq+0x100/0x100
-> Jan 22 14:06:46 nabtop kernel:  dpm_run_callback+0x4f/0x130
-> Jan 22 14:06:46 nabtop kernel:  device_resume+0x70/0x150
-> Jan 22 14:06:46 nabtop kernel:  ? device_resume+0x150/0x150
-> Jan 22 14:06:46 nabtop kernel:  async_resume+0x1b/0x30
-> Jan 22 14:06:46 nabtop kernel:  async_run_entry_fn+0x34/0x130
-> Jan 22 14:06:46 nabtop kernel:  process_one_work+0x182/0x310
-> Jan 22 14:06:46 nabtop kernel:  worker_thread+0x13e/0x380
-> Jan 22 14:06:46 nabtop kernel:  kthread+0xda/0x100
-> Jan 22 14:06:46 nabtop kernel:  ? rescuer_thread+0x340/0x340
-> Jan 22 14:06:46 nabtop kernel:  ? kthread_complete_and_exit+0x20/0x20
-> Jan 22 14:06:46 nabtop kernel:  ret_from_fork+0x1c/0x28
-> Jan 22 14:06:46 nabtop kernel: ---[ end trace 0000000000000000 ]---
-> Jan 22 14:06:46 nabtop kernel: ata1: SATA link up 3.0 Gbps (SStatus 123 S=
-Control 300)
-> Jan 22 14:06:46 nabtop kernel: ata2: SATA link up 1.5 Gbps (SStatus 113 S=
-Control 300)
-> Jan 22 14:06:46 nabtop kernel: ata6: SATA link down (SStatus 0 SControl 3=
-00)
-> Jan 22 14:06:46 nabtop kernel: ata5: SATA link down (SStatus 0 SControl 3=
-00)
-> Jan 22 14:06:46 nabtop kernel: ata1.00: unexpected _GTF length (8)
-> Jan 22 14:06:46 nabtop kernel: ata1.00: unexpected _GTF length (8)
-> Jan 22 14:06:46 nabtop kernel: ata1.00: configured for UDMA/100
-> Jan 22 14:06:46 nabtop kernel: ata2.00: configured for UDMA/33
-> Jan 22 14:06:46 nabtop kernel: usb 5-4: reset high-speed USB device numbe=
-r 4 using ehci-pci
-> Jan 22 14:06:46 nabtop kernel: usb 6-2: reset full-speed USB device numbe=
-r 2 using uhci_hcd
-> Jan 22 14:06:46 nabtop kernel: firewire_core 0000:0a:01.0: rediscovered d=
-evice fw0
-> Jan 22 14:06:46 nabtop kernel: ------------[ cut here ]------------
-> Jan 22 14:06:46 nabtop kernel: primary B assertion failure (expected off,=
- current on)
-> Jan 22 14:06:46 nabtop kernel: WARNING: CPU: 0 PID: 1038 at drivers/gpu/d=
-rm/i915/display/intel_display.c:476 assert_plane+0x9f/0xb0 [i915]
-> Jan 22 14:06:46 nabtop kernel: Modules linked in: ghash_generic gf128mul =
-gcm ccm algif_aead des_generic libdes ecb algif_skcipher bnep cmac md4 algi=
-f_hash af_alg binfmt_misc btusb btrtl btbcm btintel btmtk bluetooth jittere=
-ntropy_rng sha512_generic ctr drbg joydev ansi_cprng ecdh_generic ecc iwldv=
-m mac80211 libarc4 iTCO_wdt intel_pmc_bxt snd_hda_codec_conexant iTCO_vendo=
-r_support uvcvideo watchdog snd_hda_codec_generic ledtrig_audio videobuf2_v=
-malloc videobuf2_memops i915 videobuf2_v4l2 nls_ascii snd_hda_intel iwlwifi=
- videobuf2_common snd_intel_dspcfg drm_buddy snd_intel_sdw_acpi nls_cp437 v=
-ideodev drm_display_helper snd_hda_codec snd_hda_core i2c_i801 cec vfat mc =
-psmouse evdev wmi_bmof i2c_smbus snd_hwdep rc_core pcspkr cfg80211 sg ttm f=
-at lpc_ich snd_pcm drm_kms_helper toshiba_acpi snd_timer industrialio snd s=
-parse_keymap toshiba_bluetooth sky2 soundcore rfkill i2c_algo_bit toshiba_h=
-aps ac button acpi_cpufreq nf_log_syslog nft_log nft_limit nft_ct nf_conntr=
-ack nf_defrag_ipv6 nf_defrag_ipv4 nf_tables
-> Jan 22 14:06:46 nabtop kernel:  libcrc32c nfnetlink drm ip_tables x_table=
-s ext4 crc16 mbcache jbd2 crc32c_generic sd_mod t10_pi crc64_rocksoft crc64=
- crc_t10dif sr_mod crct10dif_generic cdrom crct10dif_common sdhci_pci cqhci=
- ehci_pci uhci_hcd ehci_hcd ahci libahci sdhci libata mmc_core serio_raw fi=
-rewire_ohci usbcore battery usb_common video wmi pkcs8_key_parser coretemp =
-firewire_sbp2 firewire_core crc_itu_t scsi_mod scsi_common parport_pc ppdev=
- lp parport autofs4
-> Jan 22 14:06:46 nabtop kernel: CPU: 0 PID: 1038 Comm: kworker/u4:20 Taint=
-ed: G        W          6.1.0-2-686-pae #1  Debian 6.1.7-1
-> Jan 22 14:06:46 nabtop kernel: Hardware name: TOSHIBA Satellite Pro U400/=
-Satellite Pro U400, BIOS V5.00    10/26/2010
-> Jan 22 14:06:46 nabtop kernel: Workqueue: events_unbound async_run_entry_=
-fn
-> Jan 22 14:06:46 nabtop kernel: EIP: assert_plane+0x9f/0xb0 [i915]
-> Jan 22 14:06:46 nabtop kernel: Code: ff 73 0c 68 30 da b7 f8 e8 0e c7 3a =
-ff 83 c4 10 eb b3 8d b4 26 00 00 00 00 66 90 57 52 ff 73 0c 68 30 da b7 f8 =
-e8 75 eb e3 dc <0f> 0b 83 c4 10 eb 94 e8 65 9c e7 dc 8d 74 26 00 90 3e 8d 7=
-4 26 00
-> Jan 22 14:06:46 nabtop kernel: EAX: 00000036 EBX: c1238c00 ECX: 00000001 =
-EDX: 80000001
-> Jan 22 14:06:46 nabtop kernel: ESI: 00000000 EDI: f8ba1548 EBP: c63f7d60 =
-ESP: c63f7d3c
-> Jan 22 14:06:46 nabtop kernel: DS: 007b ES: 007b FS: 00d8 GS: 0000 SS: 00=
-68 EFLAGS: 00010292
-> Jan 22 14:06:46 nabtop kernel: CR0: 80050033 CR2: 01e6fc26 CR3: 15e2c000 =
-CR4: 000006f0
-> Jan 22 14:06:46 nabtop kernel: Call Trace:
-> Jan 22 14:06:46 nabtop kernel:  intel_atomic_commit_tail+0xdbb/0xe30 [i91=
-5]
-> Jan 22 14:06:46 nabtop kernel:  ? sugov_start+0x150/0x150
-> Jan 22 14:06:46 nabtop kernel:  ? sugov_start+0x150/0x150
-> Jan 22 14:06:46 nabtop kernel:  intel_atomic_commit+0x30b/0x350 [i915]
-> Jan 22 14:06:46 nabtop kernel:  ? intel_atomic_commit_tail+0xe30/0xe30 [i=
-915]
-> Jan 22 14:06:46 nabtop kernel:  drm_atomic_commit+0x6b/0xe0 [drm]
-> Jan 22 14:06:46 nabtop kernel:  ? drm_plane_get_damage_clips.cold+0x1b/0x=
-1b [drm]
-> Jan 22 14:06:46 nabtop kernel:  drm_atomic_helper_commit_duplicated_state=
-+0xb6/0xd0 [drm_kms_helper]
-> Jan 22 14:06:46 nabtop kernel:  __intel_display_resume+0x6c/0xd0 [i915]
-> Jan 22 14:06:46 nabtop kernel:  intel_display_resume+0xb4/0x120 [i915]
-> Jan 22 14:06:46 nabtop kernel:  i915_drm_resume+0xc6/0x130 [i915]
-> Jan 22 14:06:46 nabtop kernel:  i915_pm_resume+0x34/0x50 [i915]
-> Jan 22 14:06:46 nabtop kernel:  i915_pm_restore+0x1f/0x30 [i915]
-> Jan 22 14:06:46 nabtop kernel:  pci_pm_restore+0x5a/0xe0
-> Jan 22 14:06:46 nabtop kernel:  ? pci_pm_poweroff_noirq+0x100/0x100
-> Jan 22 14:06:46 nabtop kernel:  dpm_run_callback+0x4f/0x130
-> Jan 22 14:06:46 nabtop kernel:  device_resume+0x70/0x150
-> Jan 22 14:06:46 nabtop kernel:  ? device_resume+0x150/0x150
-> Jan 22 14:06:46 nabtop kernel:  async_resume+0x1b/0x30
-> Jan 22 14:06:46 nabtop kernel:  async_run_entry_fn+0x34/0x130
-> Jan 22 14:06:46 nabtop kernel:  process_one_work+0x182/0x310
-> Jan 22 14:06:46 nabtop kernel:  worker_thread+0x13e/0x380
-> Jan 22 14:06:46 nabtop kernel:  kthread+0xda/0x100
-> Jan 22 14:06:46 nabtop kernel:  ? rescuer_thread+0x340/0x340
-> Jan 22 14:06:46 nabtop kernel:  ? kthread_complete_and_exit+0x20/0x20
-> Jan 22 14:06:46 nabtop kernel:  ret_from_fork+0x1c/0x28
-> Jan 22 14:06:46 nabtop kernel: ---[ end trace 0000000000000000 ]---
-> Jan 22 14:06:46 nabtop kernel: PM: hibernation: Basic memory bitmaps freed
-> Jan 22 14:06:46 nabtop kernel: OOM killer enabled.
-> Jan 22 14:06:46 nabtop kernel: Restarting tasks ... done.
-> Jan 22 14:06:46 nabtop kernel: usb 7-1: USB disconnect, device number 2
-> Jan 22 14:06:46 nabtop iwd[648]: Received Deauthentication event, reason:=
- 3, from_ap: false
-> Jan 22 14:06:46 nabtop systemd-networkd[435]: wifi1: Lost carrier
+[1] https://lore.kernel.org/all/20230109205336.3665937-1-surenb@google.com/
 
-Anything could help pin-pointing the issue?
+The patchset applies cleanly over mm-unstable branch of mm tree.
 
-Regards,
-Salvatore
+My apologies for an extremely large distribution list. The patch touches
+lots of files and many are in arch/ and drivers/.
+
+Suren Baghdasaryan (6):
+  mm: introduce vma->vm_flags modifier functions
+  mm: replace VM_LOCKED_CLEAR_MASK with VM_LOCKED_MASK
+  mm: replace vma->vm_flags direct modifications with modifier calls
+  mm: replace vma->vm_flags indirect modification in ksm_madvise
+  mm: introduce mod_vm_flags_nolock and use it in untrack_pfn
+  mm: export dump_mm()
+
+ arch/arm/kernel/process.c                     |  2 +-
+ arch/ia64/mm/init.c                           |  8 +--
+ arch/loongarch/include/asm/tlb.h              |  2 +-
+ arch/powerpc/kvm/book3s_hv_uvmem.c            |  5 +-
+ arch/powerpc/kvm/book3s_xive_native.c         |  2 +-
+ arch/powerpc/mm/book3s64/subpage_prot.c       |  2 +-
+ arch/powerpc/platforms/book3s/vas-api.c       |  2 +-
+ arch/powerpc/platforms/cell/spufs/file.c      | 14 ++---
+ arch/s390/mm/gmap.c                           |  8 +--
+ arch/x86/entry/vsyscall/vsyscall_64.c         |  2 +-
+ arch/x86/kernel/cpu/sgx/driver.c              |  2 +-
+ arch/x86/kernel/cpu/sgx/virt.c                |  2 +-
+ arch/x86/mm/pat/memtype.c                     | 14 +++--
+ arch/x86/um/mem_32.c                          |  2 +-
+ drivers/acpi/pfr_telemetry.c                  |  2 +-
+ drivers/android/binder.c                      |  3 +-
+ drivers/char/mspec.c                          |  2 +-
+ drivers/crypto/hisilicon/qm.c                 |  2 +-
+ drivers/dax/device.c                          |  2 +-
+ drivers/dma/idxd/cdev.c                       |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c       |  2 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_chardev.c      |  4 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_doorbell.c     |  4 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_events.c       |  4 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c      |  4 +-
+ drivers/gpu/drm/drm_gem.c                     |  2 +-
+ drivers/gpu/drm/drm_gem_dma_helper.c          |  3 +-
+ drivers/gpu/drm/drm_gem_shmem_helper.c        |  2 +-
+ drivers/gpu/drm/drm_vm.c                      |  8 +--
+ drivers/gpu/drm/etnaviv/etnaviv_gem.c         |  2 +-
+ drivers/gpu/drm/exynos/exynos_drm_gem.c       |  4 +-
+ drivers/gpu/drm/gma500/framebuffer.c          |  2 +-
+ drivers/gpu/drm/i810/i810_dma.c               |  2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c      |  4 +-
+ drivers/gpu/drm/mediatek/mtk_drm_gem.c        |  2 +-
+ drivers/gpu/drm/msm/msm_gem.c                 |  2 +-
+ drivers/gpu/drm/omapdrm/omap_gem.c            |  3 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_gem.c   |  3 +-
+ drivers/gpu/drm/tegra/gem.c                   |  5 +-
+ drivers/gpu/drm/ttm/ttm_bo_vm.c               |  3 +-
+ drivers/gpu/drm/virtio/virtgpu_vram.c         |  2 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_ttm_glue.c      |  2 +-
+ drivers/gpu/drm/xen/xen_drm_front_gem.c       |  3 +-
+ drivers/hsi/clients/cmt_speech.c              |  2 +-
+ drivers/hwtracing/intel_th/msu.c              |  2 +-
+ drivers/hwtracing/stm/core.c                  |  2 +-
+ drivers/infiniband/hw/hfi1/file_ops.c         |  4 +-
+ drivers/infiniband/hw/mlx5/main.c             |  4 +-
+ drivers/infiniband/hw/qib/qib_file_ops.c      | 13 +++--
+ drivers/infiniband/hw/usnic/usnic_ib_verbs.c  |  2 +-
+ .../infiniband/hw/vmw_pvrdma/pvrdma_verbs.c   |  2 +-
+ .../common/videobuf2/videobuf2-dma-contig.c   |  2 +-
+ .../common/videobuf2/videobuf2-vmalloc.c      |  2 +-
+ drivers/media/v4l2-core/videobuf-dma-contig.c |  2 +-
+ drivers/media/v4l2-core/videobuf-dma-sg.c     |  4 +-
+ drivers/media/v4l2-core/videobuf-vmalloc.c    |  2 +-
+ drivers/misc/cxl/context.c                    |  2 +-
+ drivers/misc/habanalabs/common/memory.c       |  2 +-
+ drivers/misc/habanalabs/gaudi/gaudi.c         |  4 +-
+ drivers/misc/habanalabs/gaudi2/gaudi2.c       |  8 +--
+ drivers/misc/habanalabs/goya/goya.c           |  4 +-
+ drivers/misc/ocxl/context.c                   |  4 +-
+ drivers/misc/ocxl/sysfs.c                     |  2 +-
+ drivers/misc/open-dice.c                      |  4 +-
+ drivers/misc/sgi-gru/grufile.c                |  4 +-
+ drivers/misc/uacce/uacce.c                    |  2 +-
+ drivers/sbus/char/oradax.c                    |  2 +-
+ drivers/scsi/cxlflash/ocxl_hw.c               |  2 +-
+ drivers/scsi/sg.c                             |  2 +-
+ .../staging/media/atomisp/pci/hmm/hmm_bo.c    |  2 +-
+ drivers/staging/media/deprecated/meye/meye.c  |  4 +-
+ .../media/deprecated/stkwebcam/stk-webcam.c   |  2 +-
+ drivers/target/target_core_user.c             |  2 +-
+ drivers/uio/uio.c                             |  2 +-
+ drivers/usb/core/devio.c                      |  3 +-
+ drivers/usb/mon/mon_bin.c                     |  3 +-
+ drivers/vdpa/vdpa_user/iova_domain.c          |  2 +-
+ drivers/vfio/pci/vfio_pci_core.c              |  2 +-
+ drivers/vhost/vdpa.c                          |  2 +-
+ drivers/video/fbdev/68328fb.c                 |  2 +-
+ drivers/video/fbdev/core/fb_defio.c           |  4 +-
+ drivers/xen/gntalloc.c                        |  2 +-
+ drivers/xen/gntdev.c                          |  4 +-
+ drivers/xen/privcmd-buf.c                     |  2 +-
+ drivers/xen/privcmd.c                         |  4 +-
+ fs/aio.c                                      |  2 +-
+ fs/cramfs/inode.c                             |  2 +-
+ fs/erofs/data.c                               |  2 +-
+ fs/exec.c                                     |  4 +-
+ fs/ext4/file.c                                |  2 +-
+ fs/fuse/dax.c                                 |  2 +-
+ fs/hugetlbfs/inode.c                          |  4 +-
+ fs/orangefs/file.c                            |  3 +-
+ fs/proc/task_mmu.c                            |  2 +-
+ fs/proc/vmcore.c                              |  3 +-
+ fs/userfaultfd.c                              |  2 +-
+ fs/xfs/xfs_file.c                             |  2 +-
+ include/linux/mm.h                            | 51 +++++++++++++++++--
+ include/linux/mm_types.h                      |  8 ++-
+ include/linux/pgtable.h                       |  5 +-
+ kernel/bpf/ringbuf.c                          |  4 +-
+ kernel/bpf/syscall.c                          |  4 +-
+ kernel/events/core.c                          |  2 +-
+ kernel/fork.c                                 |  2 +-
+ kernel/kcov.c                                 |  2 +-
+ kernel/relay.c                                |  2 +-
+ mm/debug.c                                    |  1 +
+ mm/hugetlb.c                                  |  4 +-
+ mm/khugepaged.c                               |  2 +
+ mm/ksm.c                                      |  2 +
+ mm/madvise.c                                  |  2 +-
+ mm/memory.c                                   | 19 +++----
+ mm/memremap.c                                 |  4 +-
+ mm/mlock.c                                    | 12 ++---
+ mm/mmap.c                                     | 32 +++++++-----
+ mm/mprotect.c                                 |  2 +-
+ mm/mremap.c                                   |  8 +--
+ mm/nommu.c                                    | 11 ++--
+ mm/secretmem.c                                |  2 +-
+ mm/shmem.c                                    |  2 +-
+ mm/vmalloc.c                                  |  2 +-
+ net/ipv4/tcp.c                                |  4 +-
+ security/selinux/selinuxfs.c                  |  6 +--
+ sound/core/oss/pcm_oss.c                      |  2 +-
+ sound/core/pcm_native.c                       |  9 ++--
+ sound/soc/pxa/mmp-sspa.c                      |  2 +-
+ sound/usb/usx2y/us122l.c                      |  4 +-
+ sound/usb/usx2y/usX2Yhwdep.c                  |  2 +-
+ sound/usb/usx2y/usx2yhwdeppcm.c               |  2 +-
+ 129 files changed, 292 insertions(+), 233 deletions(-)
+
+-- 
+2.39.1
+
