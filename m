@@ -2,54 +2,155 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 143D067A9C0
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jan 2023 05:52:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B1A8467A9D0
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jan 2023 06:02:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F290810E710;
-	Wed, 25 Jan 2023 04:51:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6F4810E715;
+	Wed, 25 Jan 2023 05:02:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8434E10E65A;
- Wed, 25 Jan 2023 04:51:48 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FDF410E710;
+ Wed, 25 Jan 2023 05:02:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674622308; x=1706158308;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=KD4JMgqxwED5gr4VrmwBvzAy0O3wbRpFXRdRP7EMoe0=;
- b=FEmgoNLWyBgjAyPlTsiv+aLs/9XXJtHbBIyAFsk7d5g6QpLykFjpZxcx
- V6TTlOqHrNaexg/SOq8jWsuSm1Fbe98PN6DWJCEB0ls7/hs86/vvI1cfK
- 37ObPlwEAIn0rm09S3wOBmNAyaFfwTeYjBUPsV/KtWxgsdymxrTWHsfEb
- S1Zqp7Yi/1Cy2FzwUmFAC21ogl5YCYndkVWcF1xMSCgVtGbRjnRkrpdc2
- bGL+JEjUQUbrwtoWoRKAwL5iG4BSQpIS6VlYP1O7Ecz1BWYNvbLSSI1C0
- 3XWsnwwaJwDzkLnKFK2Zsp5ojFdDDodt58TqAHds9+LVwPpkZjCD+jT/2 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10600"; a="310057101"
-X-IronPort-AV: E=Sophos;i="5.97,244,1669104000"; d="scan'208";a="310057101"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2023 20:51:47 -0800
+ t=1674622948; x=1706158948;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=WkmRsKw9E1FsJeF0ISRcRQKoEf3oy3CUS+RosQ+RQ14=;
+ b=DmrI9a98sKlnWa7KLaQBnHGO700O5GTR042TW8AOAtdYp1nRncxTWwRg
+ 222bdnh8BbHY/73owiw8nIhMJnfsyncAQsVKpm9DzhliifWdjMaLLSnt5
+ 9Pl2v7pPW1bo0+e6BwfGxoaJFfH7G2cg/hY2YedJq8txcuTK7TTJtRxp4
+ XO0lz1Po0PUTM9A6PtqHbeAd6kEoVD0aPl8VP+KUGEuxNDldwTDpkf6Xy
+ sXFw7OYQuiF9mt7Z10x5WGUnngkXGFUaRhZfIrFvON0aUVxdAh4PUSg2J
+ /6JJ2egpIWH/FGOmUuuHQf3IqSsJBpd1A/m3grC7nJIoa188A4A+hPjNI Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10600"; a="314384978"
+X-IronPort-AV: E=Sophos;i="5.97,244,1669104000"; d="scan'208";a="314384978"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2023 21:02:27 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10600"; a="725743677"
-X-IronPort-AV: E=Sophos;i="5.97,244,1669104000"; d="scan'208";a="725743677"
-Received: from lkp-server01.sh.intel.com (HELO 5646d64e7320) ([10.239.97.150])
- by fmsmga008.fm.intel.com with ESMTP; 24 Jan 2023 20:51:42 -0800
-Received: from kbuild by 5646d64e7320 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1pKXl7-00072i-39;
- Wed, 25 Jan 2023 04:51:41 +0000
-Date: Wed, 25 Jan 2023 12:51:20 +0800
-From: kernel test robot <lkp@intel.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>, airlied@gmail.com,
- daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, javierm@redhat.com
-Message-ID: <202301251250.eyIn4zjn-lkp@intel.com>
-References: <20230124134010.30263-7-tzimmermann@suse.de>
+X-IronPort-AV: E=McAfee;i="6500,9779,10600"; a="612297861"
+X-IronPort-AV: E=Sophos;i="5.97,244,1669104000"; d="scan'208";a="612297861"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga003.jf.intel.com with ESMTP; 24 Jan 2023 21:02:27 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Tue, 24 Jan 2023 21:02:26 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Tue, 24 Jan 2023 21:02:26 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Tue, 24 Jan 2023 21:02:26 -0800
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.177)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Tue, 24 Jan 2023 21:02:26 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cql3IriO9bK54Dyzk6bfqqRe+dCAOnrKQwqKXGq0KaDPclDsgEQJmfHCHZuKfbyua8G3rl4JJyOCIZurQK/skYU6oWRu+6zqGXwA1+jRjssDI/Udh6LRaRzOre1DWtDB9eKC+JEBZLV9J7inR8RgvbEwhC636nERqreubEKWbfHK5GDRSyNVwYae3aOHJnbt9wr1ekwz9lD7TtlaaP6ntY9sz9YmVtXUfRwZ3egtk13WhWZY299o6Xg4pL2GxZVk6XfuHC1Y0ihiQXNXatX9WFDSchOAMTy75ypSB8np8QDX+HNPqGJEYEEuixxoRV8DR0rVpbIqjpUli0rugdXa/Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=muchiH7VuVZKj6RmEoGfVsGfEriMJ99IaxGfku3PhVA=;
+ b=PCHRy1uwQZl6ysQXxvvrcuZnFqzrdIFLu6eN2DDFyiTdrmCu67/ZwIT8Q3NwQZO0s/7ZTx+PQhlBIGfWB3JC8Ka3cdZOz26doVmngOYyZq0J6hPrfrjpbIs7Iq3GZXcMftGfKYjH3f/0oKK3XFnnt+GvqXN+23VQIq1FVKzUNVhIzcv/NuLDSUGDqXUHM7raWirhRSOJWmdeFCTN7G2WV3zDVEttswlz9AY+ebckNOU+JdumOu65XWsoDmZ9a6YAIyZGymYhn6u+vv73uMpY9q7QJazEDwMnEQY18Wf/Tw29ae453wSQATMaam67oAQENqroArdBfyhkpjUVvY83fA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by CO1PR11MB4804.namprd11.prod.outlook.com (2603:10b6:303:6f::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.21; Wed, 25 Jan
+ 2023 05:02:24 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::3998:4e46:9501:2786]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::3998:4e46:9501:2786%9]) with mapi id 15.20.6002.033; Wed, 25 Jan 2023
+ 05:02:24 +0000
+Message-ID: <f3ec1334-7449-c75f-2c63-f832188cddb2@intel.com>
+Date: Wed, 25 Jan 2023 10:32:13 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Content-Language: en-US
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ <dri-devel@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>
+References: <20230120043844.3761895-1-ankit.k.nautiyal@intel.com>
+ <20230120043844.3761895-3-ankit.k.nautiyal@intel.com>
+ <87357z7vgn.fsf@intel.com>
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <87357z7vgn.fsf@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PN2PR01CA0124.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:6::9) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230124134010.30263-7-tzimmermann@suse.de>
-Subject: Re: [Intel-gfx] [PATCH v2 06/10] drm/fb-helper: Initialize
- fb-helper's preferred BPP in prepare function
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|CO1PR11MB4804:EE_
+X-MS-Office365-Filtering-Correlation-Id: 85b7e6b1-ada5-4428-f51c-08dafe91586e
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: GwNC+OY9LPkGnqOBoK15V0u3w35rLEefgbyf9d3jhvY7Qeg4cEZGSlqgB3udR7nrQNB2o7VKUW7jiFMncHkpJ9wWyEpO6Tjh0LywlgZ3gAyBcEZbkUcpbpR3+DWOe69RJX/Z/fqFhfKLxV9aIM5Bju3b0/o3IorZb45zywMXrlQNtrZGT/p1sL0oJPypIbt/P8k0tcjGY99XtLtC0q++uuDV7RNpxmxdBbNi242x2Uh8fuG+ShoQAm6oXmSJRuBvsCG8llMmEvLAlm38HGk7moB4qT5KNG7XmfGko3TP/GDGPq/CA2yD9IzS1LZP9JHPN20RmeZx0wRvwLg4MTbcJf5dv1EsTox2FFTuRuaQ3R5P1XWVvMGKkyonPRXwG62+D7Sbi0bSq/zX8r1IALkLI/xZsk1Ed2ffuR9Vzc8RSweSN1Lek9pIQsPTWIxrhLXkqy2DqcgsjEHHT18REr4QQdAAX5oxAWmUQaoB2u3HSQ2Q5pblFBKG61i9EfNcsAkH0sqDpu5030pQhmfjX0GHdPJmpaQWB6lRC2p51mn5fE160kHqwzjHRxFiqovlJZT0/zI97VOYf040odRfs6jM9gsRV81cYxwaTyyEIxTE6JTz/HnBR66kxBx0vajdeOv12w1U5GBXHzNAT6YFLkLx2gZRH7W9P1DiIbKfs4iIkmFnWHIhJFNcHw69SsjXa9ILYVpXWpH6KB1Kjv7ofb5+SDU4ZbmCbUUvyhHPlxGHID0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(346002)(136003)(396003)(39860400002)(366004)(376002)(451199018)(38100700002)(86362001)(31696002)(36756003)(82960400001)(316002)(2906002)(31686004)(41300700001)(66556008)(4326008)(66476007)(66946007)(8676002)(8936002)(5660300002)(53546011)(55236004)(26005)(186003)(6512007)(6506007)(83380400001)(2616005)(6486002)(478600001)(6666004)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YUptMDNSc1J5VjlyUllrZ1czSlp3SEIzcEVDaW1DWjE4UkRwZXlnMjVLVzY3?=
+ =?utf-8?B?Mm1mdlR6d2JTWHNueUJRNXVYOUh2bndrbzBqMkEzSDFubTRYQTM4emtCRzE2?=
+ =?utf-8?B?V0owWGt0OGt5Vk80QlhIUU5sNUhjK1RyVVZvTXNDUDRrMGRNeXdCd1AxMmIw?=
+ =?utf-8?B?b09LYk1ORm9ydWhLWW0ySjA2elRzRGFoMjFwdnNhSGptZ1NsU2FjUzhaY2Q0?=
+ =?utf-8?B?WUg1VDJEcjlhL1laRkNFWW1XT3pHNlZxNjdJNlR4b1JTbnNmMkNQT3ZFSjFx?=
+ =?utf-8?B?Ni90cEE1NWJxYVpqWm5Zcyt6R3FwMW1uU1dJVDBubUc3MWxRVlBXbHhLMllK?=
+ =?utf-8?B?NGo0YWU1RExhRjVYZ0swazRoY2NraFZER2xuckhHWGF3MWFFaDlpNGtJcENW?=
+ =?utf-8?B?aG4zYml2dVRWV1F6VlNDL1dBSzI0dU9FN0VVaVBqNzJwQTFsQjdpVXJNODhZ?=
+ =?utf-8?B?K0VuQjhRRXNRVFlkWE9WbmlaTW9vc3hQTENUMlg4Q2F3SGp6S2hDVTJhR09E?=
+ =?utf-8?B?ZkhlSkVLdU41VFdDQm5JMUdQV2V1TWwzR3I0NGt0cWZOWFEwZU81Z0NRRGRI?=
+ =?utf-8?B?WU5Sd1Bjem9reVVzOG4zUitCR3l6d3hzR3ZQNzlxTWxkZFFCMWgvdWxZOSsy?=
+ =?utf-8?B?c3NVdFZpOFRXVTBydzJxQ2sxTEVVNmR3R2xDd1BueXRUa0xaelZhOW11WS9N?=
+ =?utf-8?B?RzhRdlkvQ0lvUU12dXVNSVAxVWxnN21kczhRVnExMWo5V1J1VjJqZlZOOE9L?=
+ =?utf-8?B?MkNIQ1pGazdadTVhZDg2QzV6SlV5MFdKVUtpV3lJaUhhMTM0b2hKMkR6MzE1?=
+ =?utf-8?B?UHVMOXV3U1RkMnFYWFdqalAzNFcxMnJnMTVFc1NWWDZrL1hGa2g5V1d2UktN?=
+ =?utf-8?B?T3NicUQyODZ4SUx5UmcvNC9hVnkvN2I5NWd5R1dqU21tTWx0L1ZDNXlEMnB4?=
+ =?utf-8?B?bW9FSC9oYlh0d1ZwTG9udHBqSWhtRE8vNVg3U3ZBRHhLWVpBeXIrM2U3Y0la?=
+ =?utf-8?B?VDVHODBKc1ZIME51N2dxVEZzS29YbEU1bkxiMkNSUHNiaE03NjEwL2RRcjNv?=
+ =?utf-8?B?NnRxM1VUVDh0d055czAveVFQWS91cE1ZZGVnUlkrN3o5aVVGZ0hsNDZoUmZG?=
+ =?utf-8?B?dUlGL241ZXhKeVJ4bGtVdkdqQ3NWdjNJZVFmb0piM1BXN3kyZzVJZG5VUjBx?=
+ =?utf-8?B?dFVEaVRGMUFqR1I4QXZjUDJvSXBnbWFLdEp1WEdzR0E3WkVCOWg0bEtjZE8r?=
+ =?utf-8?B?TUVUelgvOVZpc1NxODRYRjJrZ0lmUm9zQWtUMnNveHhtM3pPQ0s3WjZPc0Q2?=
+ =?utf-8?B?em1FR1l1ZC90aFZROWZSWG95MXF6S0FJamtjMUx1KzhaTWVmdFRhTVlXcHFT?=
+ =?utf-8?B?L1I5SS9rOVIyYUp0bUtta1VRRTFhUkRWc09aNitnbkt4c25FYS9OZFV6amFu?=
+ =?utf-8?B?NUNUU2h4eEt1NU92KytpaHZPbnpmQkdySVR1VGJPcWJmUkp4VzRYRUd1WlJP?=
+ =?utf-8?B?enRFNy84N1l4RnlPMVBWTWVndEo2QXUxakZQRlFDZm03R2RCYUdQQndnZmRt?=
+ =?utf-8?B?N1F1UTlveUUwYkJmSmc1NXA1bWVieEhyeFZwbm5TckxsbVhHakpqRldBRGw0?=
+ =?utf-8?B?aUlDQVN5Z2QwM05sYVlQaklROHUrdnBNY0t5by85M0oxSDJQUUUyZ1BuNHVY?=
+ =?utf-8?B?anN2STdld09yV05jaDgwdWtwdDdSUEhkV3hUcTcvbkxmeU1jMFVFSHdocW9C?=
+ =?utf-8?B?Y05lNmtLdzhjYzBpQTZJTU84VEJBa0MxaDlMMTBVU2JqaXhUemY5V3M1bGYx?=
+ =?utf-8?B?QW83WUdEb2NESlZkcTJDSjFoL3dSZm9PSDFvQU16RnBTWkthYzNhWW1OdHdp?=
+ =?utf-8?B?OTNBWjZvM3pxN05SY0N3YW1VZW1DdkhmazdoWS9hRGh4YUl6NkZ5UGJINjFF?=
+ =?utf-8?B?Skc5aEV3THJ3Ti9QN0gxN1pYWkZkclN3N3RZQkJhT01mVzNPUXBENGhiRmQ4?=
+ =?utf-8?B?b2RJcEtEUU93Rm1KUE5Xcm50R09BbW5MM2xUSWNaQTJqU055N21xWnFjZUo5?=
+ =?utf-8?B?OGxZcEdmY3hNQXlUUDY1UWpuUFdkcUlZL2RxMmk0RnRtZ3pIVSszdzROY2Yv?=
+ =?utf-8?B?cnc3cUFkb0hzY294aEVCeTlEbmpEZkY5d05QM0QyTzRhUlRadElFVmxBRFNU?=
+ =?utf-8?B?ZFE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 85b7e6b1-ada5-4428-f51c-08dafe91586e
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2023 05:02:23.7787 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: wikwhgcfmtq5x+zMg5Nz0LqUJmXWv4O7oFI7GVZKDG6yhRk8KhRgz5CDo5TMiJIoHE5vqC0KK06jUVWnsExjQQyDtaRwbbPPRZDlgCc6Thg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4804
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 02/16] drm/i915/dp: Avoid forcing DSC BPC
+ for MST case
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,112 +163,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, llvm@lists.linux.dev,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>, oe-kbuild-all@lists.linux.dev,
- linux-tegra@vger.kernel.org, freedreno@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Thomas,
 
-I love your patch! Yet something to improve:
+On 1/24/2023 9:53 PM, Jani Nikula wrote:
+> On Fri, 20 Jan 2023, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+>> For MST the bpc is hardcoded to 8, and pipe bpp to 24.
+>> So avoid forcing DSC bpc for MST case.
+> It's likely better to warn and ignore the debug flag than to bail out.
 
-[auto build test ERROR on 7d3e7f64a42d66ba8da6e7b66a8d85457ef84570]
+Hmm..but then the test using this flag will not come to know that bpc it 
+wanted to force, was indeed used.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Thomas-Zimmermann/drm-client-Test-for-connectors-before-sending-hotplug-event/20230124-214220
-base:   7d3e7f64a42d66ba8da6e7b66a8d85457ef84570
-patch link:    https://lore.kernel.org/r/20230124134010.30263-7-tzimmermann%40suse.de
-patch subject: [Intel-gfx] [PATCH v2 06/10] drm/fb-helper: Initialize fb-helper's preferred BPP in prepare function
-config: riscv-randconfig-r042-20230123 (https://download.01.org/0day-ci/archive/20230125/202301251250.eyIn4zjn-lkp@intel.com/config)
-compiler: clang version 16.0.0 (https://github.com/llvm/llvm-project 4196ca3278f78c6e19246e54ab0ecb364e37d66a)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install riscv cross compiling tool for clang build
-        # apt-get install binutils-riscv64-linux-gnu
-        # https://github.com/intel-lab-lkp/linux/commit/70e38534e74e4d12bb02b3b352bba2aed417f541
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Thomas-Zimmermann/drm-client-Test-for-connectors-before-sending-hotplug-event/20230124-214220
-        git checkout 70e38534e74e4d12bb02b3b352bba2aed417f541
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=riscv olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=riscv SHELL=/bin/bash drivers/gpu/drm/radeon/
+Currently there is no way to read the bpc that was selected by the 
+driver, and so the test can try to force DSC, and the bpc and rely on 
+whether the ioctl passes or fails.
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
+Regards,
 
-All errors (new ones prefixed by >>):
+Ankit
 
->> drivers/gpu/drm/radeon/radeon_fb.c:352:10: error: too many arguments to function call, expected 3, have 4
-                                 &radeon_fb_helper_funcs);
-                                 ^~~~~~~~~~~~~~~~~~~~~~~
-   include/drm/drm_fb_helper.h:295:20: note: 'drm_fb_helper_prepare' declared here
-   static inline void drm_fb_helper_prepare(struct drm_device *dev,
-                      ^
->> drivers/gpu/drm/radeon/radeon_fb.c:361:52: error: too few arguments to function call, expected 2, have 1
-           ret = drm_fb_helper_initial_config(&rfbdev->helper);
-                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~                ^
-   include/drm/drm_fb_helper.h:459:19: note: 'drm_fb_helper_initial_config' declared here
-   static inline int drm_fb_helper_initial_config(struct drm_fb_helper *fb_helper,
-                     ^
-   2 errors generated.
-
-
-vim +352 drivers/gpu/drm/radeon/radeon_fb.c
-
-386516744ba45d Dave Airlie       2010-03-30  326  
-386516744ba45d Dave Airlie       2010-03-30  327  int radeon_fbdev_init(struct radeon_device *rdev)
-386516744ba45d Dave Airlie       2010-03-30  328  {
-8be48d924c307e Dave Airlie       2010-03-30  329  	struct radeon_fbdev *rfbdev;
-4abe35204af82a Dave Airlie       2010-03-30  330  	int bpp_sel = 32;
-5a79395b2791cc Chris Wilson      2010-06-06  331  	int ret;
-4abe35204af82a Dave Airlie       2010-03-30  332  
-e5f243bd2edd95 Alex Deucher      2016-03-10  333  	/* don't enable fbdev if no connectors */
-e5f243bd2edd95 Alex Deucher      2016-03-10  334  	if (list_empty(&rdev->ddev->mode_config.connector_list))
-e5f243bd2edd95 Alex Deucher      2016-03-10  335  		return 0;
-e5f243bd2edd95 Alex Deucher      2016-03-10  336  
-7b8bd6bb4298ac Egbert Eich       2017-07-18  337  	/* select 8 bpp console on 8MB cards, or 16 bpp on RN50 or 32MB */
-7b8bd6bb4298ac Egbert Eich       2017-07-18  338  	if (rdev->mc.real_vram_size <= (8*1024*1024))
-4abe35204af82a Dave Airlie       2010-03-30  339  		bpp_sel = 8;
-7b8bd6bb4298ac Egbert Eich       2017-07-18  340  	else if (ASIC_IS_RN50(rdev) ||
-7b8bd6bb4298ac Egbert Eich       2017-07-18  341  		 rdev->mc.real_vram_size <= (32*1024*1024))
-7b8bd6bb4298ac Egbert Eich       2017-07-18  342  		bpp_sel = 16;
-8be48d924c307e Dave Airlie       2010-03-30  343  
-8be48d924c307e Dave Airlie       2010-03-30  344  	rfbdev = kzalloc(sizeof(struct radeon_fbdev), GFP_KERNEL);
-8be48d924c307e Dave Airlie       2010-03-30  345  	if (!rfbdev)
-8be48d924c307e Dave Airlie       2010-03-30  346  		return -ENOMEM;
-771fe6b912fca5 Jerome Glisse     2009-06-05  347  
-8be48d924c307e Dave Airlie       2010-03-30  348  	rfbdev->rdev = rdev;
-8be48d924c307e Dave Airlie       2010-03-30  349  	rdev->mode_info.rfbdev = rfbdev;
-10a231026574f9 Thierry Reding    2014-06-27  350  
-70e38534e74e4d Thomas Zimmermann 2023-01-24  351  	drm_fb_helper_prepare(rdev->ddev, &rfbdev->helper, bpp_sel,
-10a231026574f9 Thierry Reding    2014-06-27 @352  			      &radeon_fb_helper_funcs);
-785b93ef8c3097 Dave Airlie       2009-08-28  353  
-2dea2d1182179e Pankaj Bharadiya  2020-03-05  354  	ret = drm_fb_helper_init(rdev->ddev, &rfbdev->helper);
-01934c2a691882 Thierry Reding    2014-12-19  355  	if (ret)
-01934c2a691882 Thierry Reding    2014-12-19  356  		goto free;
-5a79395b2791cc Chris Wilson      2010-06-06  357  
-76a39dbfb2d1bc Daniel Vetter     2013-01-20  358  	/* disable all the possible outputs/crtcs before entering KMS mode */
-76a39dbfb2d1bc Daniel Vetter     2013-01-20  359  	drm_helper_disable_unused_functions(rdev->ddev);
-76a39dbfb2d1bc Daniel Vetter     2013-01-20  360  
-70e38534e74e4d Thomas Zimmermann 2023-01-24 @361  	ret = drm_fb_helper_initial_config(&rfbdev->helper);
-01934c2a691882 Thierry Reding    2014-12-19  362  	if (ret)
-01934c2a691882 Thierry Reding    2014-12-19  363  		goto fini;
-01934c2a691882 Thierry Reding    2014-12-19  364  
-771fe6b912fca5 Jerome Glisse     2009-06-05  365  	return 0;
-01934c2a691882 Thierry Reding    2014-12-19  366  
-01934c2a691882 Thierry Reding    2014-12-19  367  fini:
-01934c2a691882 Thierry Reding    2014-12-19  368  	drm_fb_helper_fini(&rfbdev->helper);
-01934c2a691882 Thierry Reding    2014-12-19  369  free:
-01934c2a691882 Thierry Reding    2014-12-19  370  	kfree(rfbdev);
-01934c2a691882 Thierry Reding    2014-12-19  371  	return ret;
-386516744ba45d Dave Airlie       2010-03-30  372  }
-386516744ba45d Dave Airlie       2010-03-30  373  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+>
+>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_dp.c     | 11 +++++------
+>>   drivers/gpu/drm/i915/display/intel_dp_mst.c |  8 ++++++++
+>>   2 files changed, 13 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+>> index 93aebd3683a4..3d828ea0894d 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>> @@ -1500,14 +1500,13 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+>>   	if (!intel_dp_supports_dsc(intel_dp, pipe_config))
+>>   		return -EINVAL;
+>>   
+>> -	if (compute_pipe_bpp)
+>> +	if (intel_dp->force_dsc_bpc && compute_pipe_bpp) {
+>> +		pipe_bpp = intel_dp->force_dsc_bpc * 3;
+>> +		drm_dbg_kms(&dev_priv->drm, "Input DSC BPP forced to %d\n", pipe_bpp);
+>> +	} else if (compute_pipe_bpp) {
+>>   		pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp, conn_state->max_requested_bpc);
+>> -	else
+>> +	} else {
+>>   		pipe_bpp = pipe_config->pipe_bpp;
+>> -
+>> -	if (intel_dp->force_dsc_bpc) {
+>> -		pipe_bpp = intel_dp->force_dsc_bpc * 3;
+>> -		drm_dbg_kms(&dev_priv->drm, "Input DSC BPP forced to %d", pipe_bpp);
+>>   	}
+>>   
+>>   	/* Min Input BPC for ICL+ is 8 */
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+>> index 8b0e4defa3f1..9be04c60cced 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+>> @@ -325,6 +325,14 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
+>>   	/* enable compression if the mode doesn't fit available BW */
+>>   	drm_dbg_kms(&dev_priv->drm, "Force DSC en = %d\n", intel_dp->force_dsc_en);
+>>   	if (ret || intel_dp->force_dsc_en) {
+>> +		if (intel_dp->force_dsc_bpc) {
+>> +			/*
+>> +			 * FIXME: As bpc is hardcoed to 8 bpc as mentioned above,
+>> +			 * Avoid force BPC for now.
+>> +			 */
+>> +			drm_dbg_kms(&dev_priv->drm, "Cannot Force BPC for MST\n");
+>> +			return -EINVAL;
+>> +		}
+>>   		/*
+>>   		 * Try to get at least some timeslots and then see, if
+>>   		 * we can fit there with DSC.
