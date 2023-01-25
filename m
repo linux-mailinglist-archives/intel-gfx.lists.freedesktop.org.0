@@ -2,50 +2,92 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E53D867AFEE
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jan 2023 11:45:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 392EF67B03C
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jan 2023 11:49:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30CAC10E0DF;
-	Wed, 25 Jan 2023 10:45:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4951C10E770;
+	Wed, 25 Jan 2023 10:49:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E3F510E0DF
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Jan 2023 10:45:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674643500; x=1706179500;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Ufy9M6FXGO5EJsWDnwbcfqSoF4pYOWf+Y/vDZBDbo6s=;
- b=gsRs33mAHNgUP8lZ928gzyZiRr4VfqmJEkbP1xf81cX5bR7t62701WdD
- SmqDyMckk+9wUnTFO8/ITSysL7BciBZWa6BKh/+cw3jY6nK4QR2f/NShH
- 56kdTwWrAm/kO9u083nI16N8t3/V42yj4gWjHFI/cxtd4V+DK4wFq++Et
- tLqk21FX8luqxPCZy2Bwd+CeulFcjs1jM2NmdsTJK+RY5jpBRP+Ttxy4k
- bBr0dtpq6JDlJS4su/htmOFkTRpHjDONQdSx/ulYJ5vEWDqiJ3VU7RmVh
- 9JTtJ2VxAUKGxEF7V5xDSya+CWXo3zijANlfeCU/DV71cz3GR50QEM25U w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10600"; a="412759305"
-X-IronPort-AV: E=Sophos;i="5.97,245,1669104000"; d="scan'208";a="412759305"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2023 02:44:59 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10600"; a="655758341"
-X-IronPort-AV: E=Sophos;i="5.97,245,1669104000"; d="scan'208";a="655758341"
-Received: from cbackhau-mobl.ger.corp.intel.com (HELO
- jhogande-mobl1.ger.corp.intel.com) ([10.252.58.97])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2023 02:44:56 -0800
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 25 Jan 2023 12:44:39 +0200
-Message-Id: <20230125104439.1662832-1-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2087.outbound.protection.outlook.com [40.107.243.87])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 755CE10E0DF;
+ Wed, 25 Jan 2023 10:49:10 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LIJi41hnpNmD6RX4OthrobqCTPbCqKUNF5BiQmNqjErRzgjCjzHGJCnIVApdiyMxUqqAoEP34vm7BiOBdT2AEicLGuMyYpjXx0mHnZlVTY/oIcUWYHXTSW8RojkGw0KdVkOEJlYYjjLuuBM/UkghLatpThuSUPJ+qhHHX7NW39vLu4eK+agZMXxtuvQuNXbr5iY6FXhL1hgEKGgU5cuNgnDbC4G/qIZ22Jmvo124UybaX9RueWqc3nCpdRxGxcwoRsF8TNJb+hHt40NVpGDFoIgMfatGWm5zkDJhjgSB/6uPvhPP+nuz4j633JhpCaO7MeyRNRgXEIkP/6BP7w7f2A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZJ2fQbMWY5HOM+P7DIXaa/fkQ1qgJsLmwkOa3tbp16o=;
+ b=a33nt9vuynt/JQjUjCsWiO4Qs2QOxaD5MZF9OHwESc8eJcCWDp+/VgBI62AzIaBmQu9lktRDR4ZwiPeEUUBh+CSpsxZ76xuYbDU6lVUpOxJcdSej2ceQdl5n0C9iSLOz0AZ259trFa6iMR6Zdk7umtmsyTEz4wXQbOtAtVkeLJrjdZ04MY5gXsVeSEWeY4ut2+Xkbkm4SHHXCMQqsDUEFNvRbuuDFHrd7163zTpLp/ko1ZdtQilKOlDxxrmat+9qR8bZxTWvVfCPbn70nF3y1SB7dgVYIVYhuVFRZaTruY6YPzaixD5KQ1+m/PZVwjcChrrfAEwBkH9f86Xk3ETAYw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZJ2fQbMWY5HOM+P7DIXaa/fkQ1qgJsLmwkOa3tbp16o=;
+ b=wH0cKWBwf9ntf0EelCd+wutgPVafY0yi91WpFHgsATwjikrkKDX7kBuBhrfbioyNyUUB97QLgk2d16TRdDC6bYcKZI6CM5BPSA4J98gvmpNw2IlOSsQWQhoVc8cHROJ9XAk4nTlrV1EMN2upBpvZEPcZPtnpNXDeq+e4k8vtTNw=
+Received: from BN8PR04CA0053.namprd04.prod.outlook.com (2603:10b6:408:d4::27)
+ by IA1PR12MB6116.namprd12.prod.outlook.com (2603:10b6:208:3e8::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.31; Wed, 25 Jan
+ 2023 10:49:07 +0000
+Received: from BN8NAM11FT022.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:d4:cafe::d8) by BN8PR04CA0053.outlook.office365.com
+ (2603:10b6:408:d4::27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33 via Frontend
+ Transport; Wed, 25 Jan 2023 10:49:06 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT022.mail.protection.outlook.com (10.13.176.112) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6043.17 via Frontend Transport; Wed, 25 Jan 2023 10:49:06 +0000
+Received: from amar-X570-AORUS-ELITE.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.34; Wed, 25 Jan 2023 04:49:02 -0600
+From: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>
+Date: Wed, 25 Jan 2023 16:18:35 +0530
+Message-ID: <20230125104838.23596-1-Amaranath.Somalapuram@amd.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/psr: Split sel fetch plane
- configuration into arm and noarm
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT022:EE_|IA1PR12MB6116:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5427f07c-bb72-4150-391c-08dafec1c80e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: SzlgAJJALNihXWGsRTQr/UTuguShNDt62ETFUJn23NZKfuZcOPLkb/X1vHdHjAQwRMWcY3GagE8RJq9ABWaX9DHCD5O8aGydlr6xPOkz1ZJNmAmc/MaeE1WW1w9U6ljXCzNnmXruaIrljqZGc69PdVUORjxxiA9FxlYziekAinHhfTsjlCWEBshy41cCn+uKXHczuCGty5pc/xy9SxGApdqI0XoLredKNk8GkGnV7trPSfl8qYT4WaJISO8J6eGREc9c3uAwZXuWAb9JensI+XYxEPhZ2l5ZdFDjnJ+K8utEsbp2PSSNCut/vmUFfxlBBwBLEIDAEsJJJvyvyH56ttYxD6nYJAvtq8Mq2GAVBcAzsZT0zh79XMIsnvGz0ndx89WD/COuh3eFewbIPi+kK5yr6erFSc65Zavme16Ehe/3zV67rMfWP2l00nQcaPOuX2lPPoAH7rc3sbYvCqyw4+HMxz5bm4bRIEAhYJgAzZCbolJ1ydz6iWXVneokRKjWWjzEXfZRQRmgzHKNNODLCinDkkfQuq2WAVXYLufClzV45HO2EogyRSOC+qtY0tYyfU9D4VFuFOsqc0Ki9Ta7alkv8Nj0BNEt7IFwG47aO/YMrApRuFJXKvHIPjEOhZY8Ha0LWKnRHEj/QvjP0bffQ36ZC9DQz66OXUkBJJn+7/awMMNwDwXLklbHAm62S1WZaW8roSplsaKHG/fB0lR4puRlG1J5cr9JeQc1RNwI72M=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230025)(4636009)(39860400002)(346002)(136003)(376002)(396003)(451199018)(46966006)(40470700004)(36840700001)(186003)(5660300002)(82740400003)(36756003)(450100002)(41300700001)(70206006)(4326008)(8676002)(70586007)(16526019)(83380400001)(47076005)(336012)(426003)(81166007)(6666004)(2616005)(356005)(7696005)(478600001)(86362001)(36860700001)(40480700001)(82310400005)(316002)(26005)(110136005)(1076003)(8936002)(2906002)(40460700003)(54906003)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2023 10:49:06.4396 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5427f07c-bb72-4150-391c-08dafec1c80e
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT022.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6116
+Subject: [Intel-gfx] [PATCH v2 1/4] drm/amdgpu: Use cursor start instead of
+ ttm resource start
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,141 +100,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: arunpravin.paneerselvam@amd.com,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, arvind.yadav@amd.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SEL_FETCH_CTL registers are armed immediately when plane is disabled.
-SEL_FETCH_* instances of plane configuration are used when doing
-selective update and normal plane register instances for full updates.
-Currently all SEL_FETCH_* registers are written as a part of noarm
-plane configuration. If noarm and arm plane configuration are not
-happening within same vblank we may end up having plane as a part of
-selective update before it's PLANE_SURF register is written.
+cleanup PAGE_SHIFT operation and replacing
+ttm_resource resource->start with cursor start
+using amdgpu_res_first API.
+v1 -> v2: reorder patch sequence
 
-Fix this by splitting plane selective fetch configuration into arm and
-noarm versions and call them accordingly. Write SEL_FETCH_CTL in arm
-version.
-
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Cc: Mika Kahola <mika.kahola@intel.com>
-Cc: Vinod Govindapillai <vinod.govindapillai@intel.com>
-Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+Signed-off-by: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
 ---
- drivers/gpu/drm/i915/display/intel_cursor.c   |  2 +-
- drivers/gpu/drm/i915/display/intel_psr.c      | 29 ++++++++++++++-----
- drivers/gpu/drm/i915/display/intel_psr.h      |  6 +++-
- .../drm/i915/display/skl_universal_plane.c    |  4 ++-
- 4 files changed, 30 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 11 ++++++++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c    | 10 +++++++---
+ 2 files changed, 15 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index d190fa0d393b..50232cec48e0 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -532,7 +532,7 @@ static void i9xx_cursor_update_arm(struct intel_plane *plane,
- 		skl_write_cursor_wm(plane, crtc_state);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+index 25a68d8888e0..2ab67ab204df 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+@@ -1346,6 +1346,7 @@ vm_fault_t amdgpu_bo_fault_reserve_notify(struct ttm_buffer_object *bo)
+ 	struct amdgpu_device *adev = amdgpu_ttm_adev(bo->bdev);
+ 	struct ttm_operation_ctx ctx = { false, false };
+ 	struct amdgpu_bo *abo = ttm_to_amdgpu_bo(bo);
++	struct amdgpu_res_cursor cursor;
+ 	unsigned long offset;
+ 	int r;
  
- 	if (plane_state)
--		intel_psr2_program_plane_sel_fetch(plane, crtc_state, plane_state, 0);
-+		intel_psr2_program_plane_sel_fetch_arm(plane, crtc_state, plane_state, 0);
- 	else
- 		intel_psr2_disable_plane_sel_fetch(plane, crtc_state);
+@@ -1355,7 +1356,8 @@ vm_fault_t amdgpu_bo_fault_reserve_notify(struct ttm_buffer_object *bo)
+ 	if (bo->resource->mem_type != TTM_PL_VRAM)
+ 		return 0;
  
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 7d4a15a283a0..63b79c611932 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1559,7 +1559,26 @@ void intel_psr2_disable_plane_sel_fetch(struct intel_plane *plane,
- 	intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_CTL(pipe, plane->id), 0);
- }
+-	offset = bo->resource->start << PAGE_SHIFT;
++	amdgpu_res_first(bo->resource, 0, bo->resource->size, &cursor);
++	offset = cursor.start;
+ 	if ((offset + bo->base.size) <= adev->gmc.visible_vram_size)
+ 		return 0;
  
--void intel_psr2_program_plane_sel_fetch(struct intel_plane *plane,
-+void intel_psr2_program_plane_sel_fetch_arm(struct intel_plane *plane,
-+					const struct intel_crtc_state *crtc_state,
-+					const struct intel_plane_state *plane_state,
-+					int color_plane)
-+{
-+	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
-+	enum pipe pipe = plane->pipe;
-+
-+	if (!crtc_state->enable_psr2_sel_fetch)
-+		return;
-+
-+	if (plane->id == PLANE_CURSOR)
-+		intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_CTL(pipe, plane->id),
-+				  plane_state->ctl);
-+	else
-+		intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_CTL(pipe, plane->id),
-+				  PLANE_SEL_FETCH_CTL_ENABLE);
-+}
-+
-+void intel_psr2_program_plane_sel_fetch_noarm(struct intel_plane *plane,
- 					const struct intel_crtc_state *crtc_state,
- 					const struct intel_plane_state *plane_state,
- 					int color_plane)
-@@ -1573,11 +1592,8 @@ void intel_psr2_program_plane_sel_fetch(struct intel_plane *plane,
- 	if (!crtc_state->enable_psr2_sel_fetch)
- 		return;
+@@ -1378,7 +1380,8 @@ vm_fault_t amdgpu_bo_fault_reserve_notify(struct ttm_buffer_object *bo)
+ 	else if (unlikely(r))
+ 		return VM_FAULT_SIGBUS;
  
--	if (plane->id == PLANE_CURSOR) {
--		intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_CTL(pipe, plane->id),
--				  plane_state->ctl);
-+	if (plane->id == PLANE_CURSOR)
- 		return;
--	}
+-	offset = bo->resource->start << PAGE_SHIFT;
++	amdgpu_res_first(bo->resource, 0, bo->resource->size, &cursor);
++	offset = cursor.start;
+ 	/* this should never happen */
+ 	if (bo->resource->mem_type == TTM_PL_VRAM &&
+ 	    (offset + bo->base.size) > adev->gmc.visible_vram_size)
+@@ -1491,9 +1494,11 @@ u64 amdgpu_bo_gpu_offset(struct amdgpu_bo *bo)
+ u64 amdgpu_bo_gpu_offset_no_check(struct amdgpu_bo *bo)
+ {
+ 	struct amdgpu_device *adev = amdgpu_ttm_adev(bo->tbo.bdev);
++	struct amdgpu_res_cursor cursor;
+ 	uint64_t offset;
  
- 	clip = &plane_state->psr2_sel_fetch_area;
+-	offset = (bo->tbo.resource->start << PAGE_SHIFT) +
++	amdgpu_res_first(bo->tbo.resource, 0, bo->tbo.resource->size, &cursor);
++	offset = cursor.start +
+ 		 amdgpu_ttm_domain_start(adev, bo->tbo.resource->mem_type);
  
-@@ -1605,9 +1621,6 @@ void intel_psr2_program_plane_sel_fetch(struct intel_plane *plane,
- 	val = (drm_rect_height(clip) - 1) << 16;
- 	val |= (drm_rect_width(&plane_state->uapi.src) >> 16) - 1;
- 	intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_SIZE(pipe, plane->id), val);
--
--	intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_CTL(pipe, plane->id),
--			  PLANE_SEL_FETCH_CTL_ENABLE);
- }
+ 	return amdgpu_gmc_sign_extend(offset);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+index c5ef7f7bdc15..ffe6a1ab7f9a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+@@ -849,6 +849,7 @@ static int amdgpu_ttm_backend_bind(struct ttm_device *bdev,
+ {
+ 	struct amdgpu_device *adev = amdgpu_ttm_adev(bdev);
+ 	struct amdgpu_ttm_tt *gtt = ttm_to_amdgpu_ttm_tt(ttm);
++	struct amdgpu_res_cursor cursor;
+ 	uint64_t flags;
+ 	int r;
  
- void intel_psr2_program_trans_man_trk_ctl(const struct intel_crtc_state *crtc_state)
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
-index 2ac3a46cccc5..49cd5beacf98 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr.h
-@@ -46,7 +46,11 @@ bool intel_psr_enabled(struct intel_dp *intel_dp);
- int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 				struct intel_crtc *crtc);
- void intel_psr2_program_trans_man_trk_ctl(const struct intel_crtc_state *crtc_state);
--void intel_psr2_program_plane_sel_fetch(struct intel_plane *plane,
-+void intel_psr2_program_plane_sel_fetch_noarm(struct intel_plane *plane,
-+					const struct intel_crtc_state *crtc_state,
-+					const struct intel_plane_state *plane_state,
-+					int color_plane);
-+void intel_psr2_program_plane_sel_fetch_arm(struct intel_plane *plane,
- 					const struct intel_crtc_state *crtc_state,
- 					const struct intel_plane_state *plane_state,
- 					int color_plane);
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 9b172a1e90de..5a309a3e2812 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -1260,7 +1260,7 @@ icl_plane_update_noarm(struct intel_plane *plane,
- 	if (plane_state->force_black)
- 		icl_plane_csc_load_black(plane);
+@@ -896,7 +897,8 @@ static int amdgpu_ttm_backend_bind(struct ttm_device *bdev,
+ 	flags = amdgpu_ttm_tt_pte_flags(adev, ttm, bo_mem);
  
--	intel_psr2_program_plane_sel_fetch(plane, crtc_state, plane_state, color_plane);
-+	intel_psr2_program_plane_sel_fetch_noarm(plane, crtc_state, plane_state, color_plane);
- }
+ 	/* bind pages into GART page tables */
+-	gtt->offset = (u64)bo_mem->start << PAGE_SHIFT;
++	amdgpu_res_first(bo_mem, 0, bo_mem->size, &cursor);
++	gtt->offset = cursor.start;
+ 	amdgpu_gart_bind(adev, gtt->offset, ttm->num_pages,
+ 			 gtt->ttm.dma_address, flags);
+ 	gtt->bound = true;
+@@ -916,6 +918,7 @@ int amdgpu_ttm_alloc_gart(struct ttm_buffer_object *bo)
+ 	struct amdgpu_device *adev = amdgpu_ttm_adev(bo->bdev);
+ 	struct ttm_operation_ctx ctx = { false, false };
+ 	struct amdgpu_ttm_tt *gtt = ttm_to_amdgpu_ttm_tt(bo->ttm);
++	struct amdgpu_res_cursor cursor;
+ 	struct ttm_placement placement;
+ 	struct ttm_place placements;
+ 	struct ttm_resource *tmp;
+@@ -927,7 +930,7 @@ int amdgpu_ttm_alloc_gart(struct ttm_buffer_object *bo)
  
- static void
-@@ -1287,6 +1287,8 @@ icl_plane_update_arm(struct intel_plane *plane,
- 	if (plane_state->scaler_id >= 0)
- 		skl_program_plane_scaler(plane, crtc_state, plane_state);
+ 	addr = amdgpu_gmc_agp_addr(bo);
+ 	if (addr != AMDGPU_BO_INVALID_OFFSET) {
+-		bo->resource->start = addr >> PAGE_SHIFT;
++		bo->resource->start = addr;
+ 		return 0;
+ 	}
  
-+	intel_psr2_program_plane_sel_fetch_arm(plane, crtc_state, plane_state, color_plane);
-+
- 	/*
- 	 * The control register self-arms if the plane was previously
- 	 * disabled. Try to make the plane enable atomic by writing
+@@ -949,7 +952,8 @@ int amdgpu_ttm_alloc_gart(struct ttm_buffer_object *bo)
+ 	flags = amdgpu_ttm_tt_pte_flags(adev, bo->ttm, tmp);
+ 
+ 	/* Bind pages */
+-	gtt->offset = (u64)tmp->start << PAGE_SHIFT;
++	amdgpu_res_first(tmp, 0, tmp->size, &cursor);
++	gtt->offset = cursor.start;
+ 	amdgpu_ttm_gart_bind(adev, bo, flags);
+ 	amdgpu_gart_invalidate_tlb(adev);
+ 	ttm_resource_free(bo, &bo->resource);
 -- 
-2.34.1
+2.32.0
 
