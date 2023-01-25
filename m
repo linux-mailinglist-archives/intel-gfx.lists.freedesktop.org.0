@@ -2,94 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02AC867AF27
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jan 2023 11:01:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1534367AF2B
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jan 2023 11:01:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34D7810E773;
-	Wed, 25 Jan 2023 10:01:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62F5710E782;
+	Wed, 25 Jan 2023 10:01:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2071.outbound.protection.outlook.com [40.107.101.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 08D9E10E771;
- Wed, 25 Jan 2023 10:01:31 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gFJ2HPoAocIUye+rU/0tBkuzPag6KHPNL65SZ4t/o+O6xM+BS2AIPD9dhwNNNVMVfoeZ3pNypDeRVADBemyHM0hn2YIsWexgYo2ghAgfG2ZAfT8ROhu+2A/JILn/etjZZx6nPCQ2H8f1INaKFVRp1P//2e/Vu9pDEyE0L208KlyChdZ3v0COn4uFZ5QKzdw8gxWkh61NigiiPX8xvBcTU4XCmwlAlpUu5WorBNHPpby4iLdsj+8qCwYWDoAzzboc/H6H48ndaZhqbeRcIdAQ4fgZ1yKi4FgDU0YEKzKTomoKRspW+FCw9X1cuuUBzI4uHquqk9VxA8sEfo16TlBTzA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fdM5azWUXjuKT9fP7MRubgyOV8sNVh9SC65JtkC0wcQ=;
- b=YGKQV9u/j3HGoSPGFuCHhm+PS3HsDlq1/ZDPFILKBU6z9mKNJcBfRf8KUyH1tT7JtF48pAUeU9nIO8TC1Iub5zM4kTl8c/Tg/+87LRh10zxaqki4BgaWOkq1uMQNdmsiTjE7wEScUTcK7laPGj5wJnWl+DFLen80GVJjo6NkTU9DCEOTHjcKpbRs/Fw3Dfo1yEFmC3/Dlso68xSxpsz3ia5T3pZAdpJxdJ7oTbr51HyLrpGFJz6QXrohgRN4Ssa2vuxtJ8Ctuqx8a9Cyqd7v1irBXORQTVdRlCqy1xFGgWqAEVCVmUyXtYQFsReY4j6kIOU/S6Oi5/FV4FJneuHC6g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fdM5azWUXjuKT9fP7MRubgyOV8sNVh9SC65JtkC0wcQ=;
- b=SFUGQ+qlie7eEsQGF17RzIJtK7Ji6CQSKGByZSOUDZ8aAHp5FlKfAj7EdCRu11EFKPK8lx4UjYf2tsDAqfPUwDWsTHUacYBorXtD+Clh7sWXfxtZZaiPxeHDOlQANeNKiT8y7NngrRKfRZg0Z/Hmoupjp4Zuih8rWY8o14Ms7ug=
-Received: from MW2PR2101CA0002.namprd21.prod.outlook.com (2603:10b6:302:1::15)
- by CH0PR12MB5092.namprd12.prod.outlook.com (2603:10b6:610:bf::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Wed, 25 Jan
- 2023 10:01:29 +0000
-Received: from CO1NAM11FT020.eop-nam11.prod.protection.outlook.com
- (2603:10b6:302:1:cafe::37) by MW2PR2101CA0002.outlook.office365.com
- (2603:10b6:302:1::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6023.6 via Frontend
- Transport; Wed, 25 Jan 2023 10:01:29 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT020.mail.protection.outlook.com (10.13.174.149) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6043.21 via Frontend Transport; Wed, 25 Jan 2023 10:01:28 +0000
-Received: from amar-X570-AORUS-ELITE.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.34; Wed, 25 Jan 2023 04:01:23 -0600
-From: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
-To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>
-Date: Wed, 25 Jan 2023 15:30:26 +0530
-Message-ID: <20230125100026.5086-4-Amaranath.Somalapuram@amd.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20230125100026.5086-1-Amaranath.Somalapuram@amd.com>
-References: <20230125100026.5086-1-Amaranath.Somalapuram@amd.com>
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0BE510E787
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Jan 2023 10:01:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1674640911; x=1706176911;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=4KcMRUseVMXM+z6v09d9ofbEstkFoDNzn9picOO+oXo=;
+ b=CnXzxAIANlgrsxVeTXy2/K2oPE5VFtgX0ch//pI3KaZLTeYfH6pNMs4P
+ ChewSask68cJM0vbexKgZD6t4p2SxeLazJOoQloYtq9r0r3p1ELhVdF4c
+ nc/4W6tFbIzINwliARtavb+bQZPEl6drz5MRhrZhjehNUnLL5EhWVrWOv
+ 6VLB0T8WPo7cQwcYMGsA4p53bJt8rMbai/a+CYF43Wudc8P9a2w9hK5KJ
+ V5KOXznC+D86HrmYH0PrH0CDaGQ92Z43mvr3y2MHgRqOdkXjZOzW+tTfw
+ GqnyR/2wOTsJZ8PKugUD2zsHLMjWaldPuBBVvCViEOD3/AJj9c7pfP5xt A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10600"; a="388867632"
+X-IronPort-AV: E=Sophos;i="5.97,245,1669104000"; d="scan'208";a="388867632"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2023 02:01:51 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10600"; a="730988312"
+X-IronPort-AV: E=Sophos;i="5.97,245,1669104000"; d="scan'208";a="730988312"
+Received: from dlyakhov-mobl1.ccr.corp.intel.com (HELO [10.252.46.223])
+ ([10.252.46.223])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2023 02:01:49 -0800
+Message-ID: <5fe279e6-0b3a-c399-b027-53be9bf7e3e4@linux.intel.com>
+Date: Wed, 25 Jan 2023 11:01:47 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT020:EE_|CH0PR12MB5092:EE_
-X-MS-Office365-Filtering-Correlation-Id: b3c52533-32ce-4573-56c8-08dafebb20b0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: WbiA3wNt27Fi46N4yBz817NmoR9oVEMzY831QXXHvXMATds3liaD2cgturMV0knRVP3AZx+3sJVfLRUOek/ll2zWaT3DVc5MpxcFwDA2dpn+ffNNQt8YaRnJ17HoC4ubQvumSxK9+VdM7hZDPIwNfKFFUd2OVLTyRWkdJzMt6KDTlR5BDdGYYMAzo4zKorr7l2zEhNxDs7nXIRFt+4AubUoA4jL6TpMRXW+tSVyZRy94eWyqj4mj2WQBRYJxlo8HnziQo29JKdOV0oePh9oZdDkPp0yVjNqRMkKXIkf+iHWM9xuvjoQoD4tmS9g2/WFewgIcHpPw4Bp1DRb5beVMbo8StRi90bv34rg/jZkgP6zDSa9q38Rm7a7FCRoCbx5HuIY1OSDUvwahGoMkOaetlCE5DlZrGLmw/DYfgMKqrx1EV7QGDNgzvy5Dqh7sH2wavRKKl+xhmNeCrp1Np6xajDiRM6BgRPsewkmC9xoQJZqpknSfgVV4AUU6+b3j1IJ3VbBh22EXNNZ9ASDlufIe2tOB8PJTmYP80l6aSZbuR2j+EGxqaFw/bwkHwfKUmp3s4j0Tn0LaTZ/fe8Cc216oPU5ncua8WpiQXLQ6rMntyDykK0LQcrXfqfpJWwzWURm9lGp2WI7En5YFnyaCOENfb4nZ2MH00ZdJ8DIGQRYFK/xvZVgdIh0YRVP76f4adctycBrrwCewwoP7s37NA8HjjI32dn1GUm4KzmzuoDYCPQ8=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230025)(4636009)(376002)(39860400002)(136003)(346002)(396003)(451199018)(40470700004)(36840700001)(46966006)(83380400001)(36860700001)(426003)(336012)(54906003)(47076005)(2616005)(478600001)(8676002)(186003)(450100002)(36756003)(1076003)(70206006)(70586007)(110136005)(7696005)(356005)(2906002)(86362001)(82740400003)(41300700001)(26005)(81166007)(5660300002)(16526019)(316002)(40480700001)(40460700003)(4326008)(82310400005)(8936002)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2023 10:01:28.5394 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b3c52533-32ce-4573-56c8-08dafebb20b0
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT020.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5092
-Subject: [Intel-gfx] [PATCH 4/4] drm/amdkfd: Use cursor start instead of ttm
- resource start
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Content-Language: en-US
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20230125095603.17845-1-nirmoy.das@intel.com>
+ <87wn5b540y.fsf@intel.com>
+From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
+In-Reply-To: <87wn5b540y.fsf@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/display: Pass drm_i915_private
+ as param to i915 funcs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,38 +63,133 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: arunpravin.paneerselvam@amd.com,
- Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, arvind.yadav@amd.com,
- alexander.deucher@amd.com, christian.koenig@amd.com
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-cleanup PAGE_SHIFT operation and replacing
-ttm_resource resource->start with cursor start
-using amdgpu_res_first API
 
-Signed-off-by: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+On 1/25/2023 10:58 AM, Jani Nikula wrote:
+> On Wed, 25 Jan 2023, Nirmoy Das <nirmoy.das@intel.com> wrote:
+>> For i915 functions pass struct drm_i915_private directly instead of
+>> struct drm_device.
+>>
+>> v2: Use to_i915(dev) directly without alias(Andrzej).
+>>
+>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Suggested-by: Jani Nikula <jani.nikula@linux.intel.com>
+>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+>> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+>> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_display.c | 2 +-
+>>   drivers/gpu/drm/i915/display/intel_fbdev.c   | 8 ++++----
+>>   drivers/gpu/drm/i915/display/intel_fbdev.h   | 8 ++++----
+>>   drivers/gpu/drm/i915/i915_driver.c           | 2 +-
+>>   4 files changed, 10 insertions(+), 10 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+>> index e37cca6b18c6..b014d8626ef7 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>> @@ -9004,7 +9004,7 @@ void intel_display_driver_register(struct drm_i915_private *i915)
+>>   	 * enabled. We do it last so that the async config cannot run
+>>   	 * before the connectors are registered.
+>>   	 */
+>> -	intel_fbdev_initial_config_async(&i915->drm);
+>> +	intel_fbdev_initial_config_async(i915);
+>>   
+>>   	/*
+>>   	 * We need to coordinate the hotplugs with the asynchronous
+>> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+>> index 19f3b5d92a55..c2c52f8e5887 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+>> @@ -547,9 +547,9 @@ static void intel_fbdev_initial_config(void *data, async_cookie_t cookie)
+>>   		intel_fbdev_unregister(to_i915(ifbdev->helper.dev));
+>>   }
+>>   
+>> -void intel_fbdev_initial_config_async(struct drm_device *dev)
+>> +void intel_fbdev_initial_config_async(struct drm_i915_private *dev_priv)
+>>   {
+>> -	struct intel_fbdev *ifbdev = to_i915(dev)->display.fbdev.fbdev;
+>> +	struct intel_fbdev *ifbdev = dev_priv->display.fbdev.fbdev;
+> In follow-up, rename those dev_privs to i915. ;)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-index c06ada0844ba..f87ce4f1cb93 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-@@ -200,8 +200,11 @@ static int add_queue_mes(struct device_queue_manager *dqm, struct queue *q,
- 	queue_input.wptr_addr = (uint64_t)q->properties.write_ptr;
- 
- 	if (q->wptr_bo) {
-+		struct amdgpu_res_cursor cursor;
- 		wptr_addr_off = (uint64_t)q->properties.write_ptr & (PAGE_SIZE - 1);
--		queue_input.wptr_mc_addr = ((uint64_t)q->wptr_bo->tbo.resource->start << PAGE_SHIFT) + wptr_addr_off;
-+		amdgpu_res_first(q->wptr_bo->tbo.resource, 0,
-+				 q->wptr_bo->tbo.resource->size, &cursor);
-+		queue_input.wptr_mc_addr = cursor.start + wptr_addr_off;
- 	}
- 
- 	queue_input.is_kfd_process = 1;
--- 
-2.32.0
 
+Challenge accepted :)
+
+
+Thanks,
+
+Nirmoy
+
+>
+> BR,
+> Jani.
+>
+>>   
+>>   	if (!ifbdev)
+>>   		return;
+>> @@ -686,9 +686,9 @@ void intel_fbdev_output_poll_changed(struct drm_device *dev)
+>>   		drm_fb_helper_hotplug_event(&ifbdev->helper);
+>>   }
+>>   
+>> -void intel_fbdev_restore_mode(struct drm_device *dev)
+>> +void intel_fbdev_restore_mode(struct drm_i915_private *dev_priv)
+>>   {
+>> -	struct intel_fbdev *ifbdev = to_i915(dev)->display.fbdev.fbdev;
+>> +	struct intel_fbdev *ifbdev = dev_priv->display.fbdev.fbdev;
+>>   
+>>   	if (!ifbdev)
+>>   		return;
+>> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.h b/drivers/gpu/drm/i915/display/intel_fbdev.h
+>> index 0e95e9472fa3..04fd523a5023 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_fbdev.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.h
+>> @@ -15,12 +15,12 @@ struct intel_framebuffer;
+>>   
+>>   #ifdef CONFIG_DRM_FBDEV_EMULATION
+>>   int intel_fbdev_init(struct drm_device *dev);
+>> -void intel_fbdev_initial_config_async(struct drm_device *dev);
+>> +void intel_fbdev_initial_config_async(struct drm_i915_private *dev_priv);
+>>   void intel_fbdev_unregister(struct drm_i915_private *dev_priv);
+>>   void intel_fbdev_fini(struct drm_i915_private *dev_priv);
+>>   void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous);
+>>   void intel_fbdev_output_poll_changed(struct drm_device *dev);
+>> -void intel_fbdev_restore_mode(struct drm_device *dev);
+>> +void intel_fbdev_restore_mode(struct drm_i915_private *dev_priv);
+>>   struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev);
+>>   #else
+>>   static inline int intel_fbdev_init(struct drm_device *dev)
+>> @@ -28,7 +28,7 @@ static inline int intel_fbdev_init(struct drm_device *dev)
+>>   	return 0;
+>>   }
+>>   
+>> -static inline void intel_fbdev_initial_config_async(struct drm_device *dev)
+>> +static inline void intel_fbdev_initial_config_async(struct drm_i915_private *dev_priv)
+>>   {
+>>   }
+>>   
+>> @@ -48,7 +48,7 @@ static inline void intel_fbdev_output_poll_changed(struct drm_device *dev)
+>>   {
+>>   }
+>>   
+>> -static inline void intel_fbdev_restore_mode(struct drm_device *dev)
+>> +static inline void intel_fbdev_restore_mode(struct drm_i915_private *i915)
+>>   {
+>>   }
+>>   static inline struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
+>> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+>> index 6469c7c1e154..0dd165a34dcd 100644
+>> --- a/drivers/gpu/drm/i915/i915_driver.c
+>> +++ b/drivers/gpu/drm/i915/i915_driver.c
+>> @@ -1071,7 +1071,7 @@ static int i915_driver_open(struct drm_device *dev, struct drm_file *file)
+>>    */
+>>   static void i915_driver_lastclose(struct drm_device *dev)
+>>   {
+>> -	intel_fbdev_restore_mode(dev);
+>> +	intel_fbdev_restore_mode(to_i915(dev));
+>>   
+>>   	vga_switcheroo_process_delayed_switch();
+>>   }
