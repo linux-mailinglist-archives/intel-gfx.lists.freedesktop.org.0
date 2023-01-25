@@ -2,60 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FEAF688016
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 15:27:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 285BB687FE8
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 15:24:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A85F10E54F;
-	Thu,  2 Feb 2023 14:27:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13BE810E559;
+	Thu,  2 Feb 2023 14:24:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com
- [IPv6:2607:f8b0:4864:20::b49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0A4110E760
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Jan 2023 08:39:10 +0000 (UTC)
-Received: by mail-yb1-xb49.google.com with SMTP id
- a4-20020a5b0004000000b006fdc6aaec4fso19370023ybp.20
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Jan 2023 00:39:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:from:to:cc:subject:date:message-id:reply-to;
- bh=J7ancMifNNyjJiTof8bzSGdh+LvtuOAZ/yhUxoIZ6EY=;
- b=l/hcCYqvcIly8bHSP154OLa3geKFmW7WOJHtqW6QP0WOiQCkjUgO6NFBclTznfTfXd
- q/KZ4uqcFfz6e/A7WhMCPvMZlY7cpI5ZXPygAYrMACNGYIbdZdn2/wrvbiLbPFMi0EJU
- e2xhTpttA9V49soY/4kK5pbOiY/jtu7/UBbsL9M2oZElpThGo5ueYxij1daBdATn/U6J
- lFgz4QPoUTVqu2tO2Jv29c+EKfKlUr82uf6j5jrJG0K4kH7t4tXslYBl2iUfCiGyJg2L
- sa2ZzT9fi8Nbfwma/h4EwurZmwhJrp5hy3f2wiTWrdCgSBqaWH+IxEwCQ2mYpS41PmTz
- ZJ5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=J7ancMifNNyjJiTof8bzSGdh+LvtuOAZ/yhUxoIZ6EY=;
- b=rOW30zAv9iloZXjhFsh9aqVGsABj20FKMX6rsPmGWd0g7e4eTXeT1c6b5ccVTKmAKU
- ed/5J5AW7iU9vYTywkLBDNbydN0VBQ/goYdjFr6pEABGv3wHT8W9Ox0AhLuQElFgKB7V
- Cvmwz5vP8x3jtq7UD6/3sL8ALtc2vZA6zH2A0f5woF18H6/p0vocYeXV2uVY8KLbWIeO
- +XODgQuuXc2ZJ+gNgvgzn7MEfT9NJNiGMHUEE/a/dLUoeq9gZsD3FdIEk4vscX8p2hJ4
- AKhPMmPCB99z1ACjhn/fDUpe0TwdcBId2gzHtWEavJ9PHnVANZWHEr/crmpj3kYqmwAr
- 3NaQ==
-X-Gm-Message-State: AFqh2kqxF/yiZ9FGLQr0zCYFD6ZL8JqVEugLNWNpCdmQtgaja1yXVOTx
- XG11Fx7eRvWvKQ671mac8LAaNefBgwg=
-X-Google-Smtp-Source: AMrXdXslOvF1txeQ7QJk1q8MehIUDQnhzGgaj+Ckxm4gdtDkml40uAzU8COPOn8c5wwtHui85E8JZje3JZk=
-X-Received: from surenb-desktop.mtv.corp.google.com
- ([2620:15c:211:200:f7b0:20e8:ce66:f98])
- (user=surenb job=sendgmr) by 2002:a0d:ca88:0:b0:501:80db:3eca with SMTP id
- m130-20020a0dca88000000b0050180db3ecamr2010555ywd.100.1674635950405; Wed, 25
- Jan 2023 00:39:10 -0800 (PST)
-Date: Wed, 25 Jan 2023 00:38:51 -0800
-In-Reply-To: <20230125083851.27759-1-surenb@google.com>
-Mime-Version: 1.0
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BD3D10E759;
+ Wed, 25 Jan 2023 08:56:24 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 0B83B1FEC6;
+ Wed, 25 Jan 2023 08:56:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+ t=1674636983; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=HlfVezvAjFmKLztHMOaZ+yji8Nsqp9vLwu4LVliFLNo=;
+ b=sP3k2vbL/TMjnnanRjZuUO51OPKL7NCAE7wor1COt2s99RKg6YGTByegVuny2bFzwE3+s6
+ UutXKdgKZ+JCm3/zcJc6jOoDAopdP55BVOpdwrjI4e178jvtCsfm11DvfUjHyJJs6l60Lo
+ ZwU2a8676f0/M9W0HO3obY7BVSmDGjU=
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id B78841339E;
+ Wed, 25 Jan 2023 08:56:22 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id ZJ2WLLbu0GN/CQAAMHmgww
+ (envelope-from <mhocko@suse.com>); Wed, 25 Jan 2023 08:56:22 +0000
+Date: Wed, 25 Jan 2023 09:56:22 +0100
+From: Michal Hocko <mhocko@suse.com>
+To: Suren Baghdasaryan <surenb@google.com>
+Message-ID: <Y9DuttqjdKSRCVYh@dhcp22.suse.cz>
 References: <20230125083851.27759-1-surenb@google.com>
-X-Mailer: git-send-email 2.39.1.405.gd4c25cc71f-goog
-Message-ID: <20230125083851.27759-7-surenb@google.com>
-From: Suren Baghdasaryan <surenb@google.com>
-To: akpm@linux-foundation.org
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Thu, 02 Feb 2023 14:24:11 +0000
-Subject: [Intel-gfx] [PATCH v2 6/6] mm: export dump_mm()
+ <20230125083851.27759-2-surenb@google.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230125083851.27759-2-surenb@google.com>
+X-Mailman-Approved-At: Thu, 02 Feb 2023 14:24:10 +0000
+Subject: Re: [Intel-gfx] [PATCH v2 1/6] mm: introduce vma->vm_flags modifier
+ functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,14 +70,15 @@ Cc: michel@lespinasse.org, nvdimm@lists.linux.dev, heiko@sntech.de,
  minchan@google.com, robert.jarzmik@free.fr, linux-um@lists.infradead.org,
  etnaviv@lists.freedesktop.org, npiggin@gmail.com, viro@zeniv.linux.org.uk,
  luto@kernel.org, gthelen@google.com, tglx@linutronix.de, ldufour@linux.ibm.com,
- surenb@google.com, linux-sgx@vger.kernel.org, martin.petersen@oracle.com,
+ linux-sgx@vger.kernel.org, martin.petersen@oracle.com,
  linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-perf-users@vger.kernel.org, linux-crypto@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, linux-media@vger.kernel.org,
- freedreno@lists.freedesktop.org, joelaf@google.com, linux-aio@kvack.org,
- linux-fbdev@vger.kernel.org, linux-ia64@vger.kernel.org, david@redhat.com,
- dave.hansen@linux.intel.com, virtualization@lists.linux-foundation.org,
- edumazet@google.com, target-devel@vger.kernel.org, punit.agrawal@bytedance.com,
+ linux-fsdevel@vger.kernel.org, akpm@linux-foundation.org,
+ linux-media@vger.kernel.org, freedreno@lists.freedesktop.org,
+ joelaf@google.com, linux-aio@kvack.org, linux-fbdev@vger.kernel.org,
+ linux-ia64@vger.kernel.org, david@redhat.com, dave.hansen@linux.intel.com,
+ virtualization@lists.linux-foundation.org, edumazet@google.com,
+ target-devel@vger.kernel.org, punit.agrawal@bytedance.com,
  linux-s390@vger.kernel.org, dave@stgolabs.net, deller@gmx.de, hughd@google.com,
  andrii@kernel.org, linux-stm32@st-md-mailman.stormreply.com,
  linux-rockchip@lists.infradead.org, linux-graphics-maintainer@vmware.com,
@@ -105,19 +98,18 @@ Cc: michel@lespinasse.org, nvdimm@lists.linux.dev, heiko@sntech.de,
  hughlynch@google.com, sre@kernel.org, tfiga@chromium.org,
  linux-xfs@vger.kernel.org, zhangfei.gao@linaro.org, wangzhou1@hisilicon.com,
  netdev@vger.kernel.org, bpf@vger.kernel.org, linux-erofs@lists.ozlabs.org,
- davem@davemloft.net, mhocko@suse.com, kvm@vger.kernel.org, mst@redhat.com,
- peterz@infradead.org, bigeasy@linutronix.de, alexandre.torgue@foss.st.com,
- dhowells@redhat.com, linux-mm@kvack.org, ray.huang@amd.com,
- adilger.kernel@dilger.ca, kuba@kernel.org, sparclinux@vger.kernel.org,
- airlied@gmail.com, anton.ivanov@cambridgegreys.com,
- herbert@gondor.apana.org.au, linux-scsi@vger.kernel.org, richard@nod.at,
- x86@kernel.org, vkoul@kernel.org, mingo@redhat.com, axelrasmussen@google.com,
- intel-gfx@lists.freedesktop.org, daniel@ffwll.ch, paulmck@kernel.org,
- jannh@google.com, chao@kernel.org, liam.howlett@oracle.com,
- hdegoede@redhat.com, linux-mediatek@lists.infradead.org,
- matthias.bgg@gmail.com, vbabka@suse.cz, dimitri.sivanich@hpe.com,
- amd-gfx@lists.freedesktop.org, posk@google.com, lstoakes@gmail.com,
- peterjung1337@gmail.com, yoshfuji@linux-ipv6.org,
+ davem@davemloft.net, kvm@vger.kernel.org, mst@redhat.com, peterz@infradead.org,
+ bigeasy@linutronix.de, alexandre.torgue@foss.st.com, dhowells@redhat.com,
+ linux-mm@kvack.org, ray.huang@amd.com, adilger.kernel@dilger.ca,
+ kuba@kernel.org, sparclinux@vger.kernel.org, airlied@gmail.com,
+ anton.ivanov@cambridgegreys.com, herbert@gondor.apana.org.au,
+ linux-scsi@vger.kernel.org, richard@nod.at, x86@kernel.org, vkoul@kernel.org,
+ mingo@redhat.com, axelrasmussen@google.com, intel-gfx@lists.freedesktop.org,
+ daniel@ffwll.ch, paulmck@kernel.org, jannh@google.com, chao@kernel.org,
+ liam.howlett@oracle.com, hdegoede@redhat.com,
+ linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com, vbabka@suse.cz,
+ dimitri.sivanich@hpe.com, amd-gfx@lists.freedesktop.org, posk@google.com,
+ lstoakes@gmail.com, peterjung1337@gmail.com, yoshfuji@linux-ipv6.org,
  linuxppc-dev@lists.ozlabs.org, dsahern@kernel.org, kent.overstreet@linux.dev,
  kexec@lists.infradead.org, tiwai@suse.com, krzysztof.kozlowski@linaro.org,
  tzimmermann@suse.de, hannes@cmpxchg.org, dmitry.baryshkov@linaro.org,
@@ -126,28 +118,93 @@ Cc: michel@lespinasse.org, nvdimm@lists.linux.dev, heiko@sntech.de,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-mmap_assert_write_locked() is used in vm_flags modifiers. Because
-mmap_assert_write_locked() uses dump_mm() and vm_flags are sometimes
-modified from from inside a module, it's necessary to export
-dump_mm() function.
+On Wed 25-01-23 00:38:46, Suren Baghdasaryan wrote:
+> vm_flags are among VMA attributes which affect decisions like VMA merging
+> and splitting. Therefore all vm_flags modifications are performed after
+> taking exclusive mmap_lock to prevent vm_flags updates racing with such
+> operations. Introduce modifier functions for vm_flags to be used whenever
+> flags are updated. This way we can better check and control correct
+> locking behavior during these updates.
+> 
+> Signed-off-by: Suren Baghdasaryan <surenb@google.com>
 
-Signed-off-by: Suren Baghdasaryan <surenb@google.com>
----
- mm/debug.c | 1 +
- 1 file changed, 1 insertion(+)
+Acked-by: Michal Hocko <mhocko@suse.com>
 
-diff --git a/mm/debug.c b/mm/debug.c
-index 9d3d893dc7f4..96d594e16292 100644
---- a/mm/debug.c
-+++ b/mm/debug.c
-@@ -215,6 +215,7 @@ void dump_mm(const struct mm_struct *mm)
- 		mm->def_flags, &mm->def_flags
- 	);
- }
-+EXPORT_SYMBOL(dump_mm);
- 
- static bool page_init_poisoning __read_mostly = true;
- 
+> ---
+>  include/linux/mm.h       | 37 +++++++++++++++++++++++++++++++++++++
+>  include/linux/mm_types.h |  8 +++++++-
+>  2 files changed, 44 insertions(+), 1 deletion(-)
+> 
+> diff --git a/include/linux/mm.h b/include/linux/mm.h
+> index c2f62bdce134..b71f2809caac 100644
+> --- a/include/linux/mm.h
+> +++ b/include/linux/mm.h
+> @@ -627,6 +627,43 @@ static inline void vma_init(struct vm_area_struct *vma, struct mm_struct *mm)
+>  	INIT_LIST_HEAD(&vma->anon_vma_chain);
+>  }
+>  
+> +/* Use when VMA is not part of the VMA tree and needs no locking */
+> +static inline void init_vm_flags(struct vm_area_struct *vma,
+> +				 unsigned long flags)
+> +{
+> +	vma->vm_flags = flags;
+> +}
+> +
+> +/* Use when VMA is part of the VMA tree and modifications need coordination */
+> +static inline void reset_vm_flags(struct vm_area_struct *vma,
+> +				  unsigned long flags)
+> +{
+> +	mmap_assert_write_locked(vma->vm_mm);
+> +	init_vm_flags(vma, flags);
+> +}
+> +
+> +static inline void set_vm_flags(struct vm_area_struct *vma,
+> +				unsigned long flags)
+> +{
+> +	mmap_assert_write_locked(vma->vm_mm);
+> +	vma->vm_flags |= flags;
+> +}
+> +
+> +static inline void clear_vm_flags(struct vm_area_struct *vma,
+> +				  unsigned long flags)
+> +{
+> +	mmap_assert_write_locked(vma->vm_mm);
+> +	vma->vm_flags &= ~flags;
+> +}
+> +
+> +static inline void mod_vm_flags(struct vm_area_struct *vma,
+> +				unsigned long set, unsigned long clear)
+> +{
+> +	mmap_assert_write_locked(vma->vm_mm);
+> +	vma->vm_flags |= set;
+> +	vma->vm_flags &= ~clear;
+> +}
+> +
+>  static inline void vma_set_anonymous(struct vm_area_struct *vma)
+>  {
+>  	vma->vm_ops = NULL;
+> diff --git a/include/linux/mm_types.h b/include/linux/mm_types.h
+> index 2d6d790d9bed..6c7c70bf50dd 100644
+> --- a/include/linux/mm_types.h
+> +++ b/include/linux/mm_types.h
+> @@ -491,7 +491,13 @@ struct vm_area_struct {
+>  	 * See vmf_insert_mixed_prot() for discussion.
+>  	 */
+>  	pgprot_t vm_page_prot;
+> -	unsigned long vm_flags;		/* Flags, see mm.h. */
+> +
+> +	/*
+> +	 * Flags, see mm.h.
+> +	 * WARNING! Do not modify directly.
+> +	 * Use {init|reset|set|clear|mod}_vm_flags() functions instead.
+> +	 */
+> +	unsigned long vm_flags;
+>  
+>  	/*
+>  	 * For areas with an address space and backing store,
+> -- 
+> 2.39.1
+
 -- 
-2.39.1
-
+Michal Hocko
+SUSE Labs
