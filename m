@@ -1,81 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 101D767ADFD
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jan 2023 10:31:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0503467AE3A
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jan 2023 10:40:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 041D210E74F;
-	Wed, 25 Jan 2023 09:31:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE49B10E0DB;
+	Wed, 25 Jan 2023 09:40:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 026FA10E0DA
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Jan 2023 09:31:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1674639070;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=e/WkTUKbzuIyITLmeh/5Sbr5wRBScMiQq+Y/7HiPtGw=;
- b=d+zH8qUgX6rL7h9v6iS7Rth5k846BgCuMAA/BpSgdP2T0Yvbdh8CzP5G8n2/Allc2cs2oT
- d3G+a+bSi9bvvtYg6YBjKmeRjNerclb5K6tjF1mzh1fetz+R0gK//+VnvO/6wmHDP/iYXd
- aNdN3G6T117/IOgJsqeZyAd8HiY+MYE=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-624-GmaJLzukMguTOkVkc5lusA-1; Wed, 25 Jan 2023 04:31:08 -0500
-X-MC-Unique: GmaJLzukMguTOkVkc5lusA-1
-Received: by mail-wm1-f72.google.com with SMTP id
- bi18-20020a05600c3d9200b003d991844dbcso798505wmb.4
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Jan 2023 01:31:08 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=e/WkTUKbzuIyITLmeh/5Sbr5wRBScMiQq+Y/7HiPtGw=;
- b=y+9UfUwLy9U5k3q5Kjfq1eZQeuyg1h7xHq7fVJK4A9Pw3KVTAqT/i9pY2vrORFcvLu
- 8cXCly8BqtVWyVOG72NmkbM/J7v9JhnxvrvAJsw3ESCFrtlcSbVNl7RCrplru4GMwQEN
- GAlYBzK2Uc+/rWm8lREsPAG/kLR8+lnPL/u5FTLTciLvQ25evLbqwAolbCKZudtO735L
- 3Qkeq88oEtsCtA/8U9+gbHm1nhNKqZY8Z88x+rpcYz+33K9ijkZ/wF29KYssG7ZzP5yI
- kHTr8PbH/wB8Uhz0QDcObTxvB2fCpgrJTkWv22NOORFOcvgW7j6oPMpdBGxvftfrDV8Y
- ddEA==
-X-Gm-Message-State: AFqh2krx0KtJ8RbtYeLTrwvIqP33dpwQIfKNyktmW8R/v7WbeV4wnhJb
- uwCV2jjle/k/U2tMWCuFRtfEPE6HnlEWl+yZAo89Us07CtJkOxHPcz4HMuC34lqVCL9Be1IoNDR
- ptGQruKokW5sI7pF5kmt8/ZrvTd87
-X-Received: by 2002:a05:600c:c10:b0:3da:f5e6:a320 with SMTP id
- fm16-20020a05600c0c1000b003daf5e6a320mr35822715wmb.22.1674639066889; 
- Wed, 25 Jan 2023 01:31:06 -0800 (PST)
-X-Google-Smtp-Source: AMrXdXtFX/Kp2mSluNmLe5a+pgmO0l5es7cQOLhWqEKWjvp22TqYJWLpxeu0OJ4sOlzZNMpRvS8iog==
-X-Received: by 2002:a05:600c:c10:b0:3da:f5e6:a320 with SMTP id
- fm16-20020a05600c0c1000b003daf5e6a320mr35822702wmb.22.1674639066649; 
- Wed, 25 Jan 2023 01:31:06 -0800 (PST)
-Received: from [192.168.1.130] (205.pool92-176-231.dynamic.orange.es.
- [92.176.231.205]) by smtp.gmail.com with ESMTPSA id
- t20-20020adfa2d4000000b002bdcce37d31sm4573358wra.99.2023.01.25.01.31.05
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 25 Jan 2023 01:31:06 -0800 (PST)
-Message-ID: <6bb09a17-2f13-4920-b156-3be80e507f48@redhat.com>
-Date: Wed, 25 Jan 2023 10:31:05 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7D60C10E0DB;
+ Wed, 25 Jan 2023 09:40:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 749A6A00CC;
+ Wed, 25 Jan 2023 09:40:08 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6111336874511642199=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-To: Thomas Zimmermann <tzimmermann@suse.de>, airlied@gmail.com,
- daniel@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org
-References: <20230124134010.30263-1-tzimmermann@suse.de>
- <20230124134010.30263-6-tzimmermann@suse.de>
-From: Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <20230124134010.30263-6-tzimmermann@suse.de>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2 05/10] drm/fb-helper: Remove
- preferred_bpp parameter from fbdev internals
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Alan Previn" <alan.previn.teres.alexis@intel.com>
+Date: Wed, 25 Jan 2023 09:40:08 -0000
+Message-ID: <167463960843.5512.4148204152283089300@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230125082637.118970-1-alan.previn.teres.alexis@intel.com>
+In-Reply-To: <20230125082637.118970-1-alan.previn.teres.alexis@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/pxp=3A_Add_missing_cleanup_steps_for_PXP_global-teardown?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,34 +40,233 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-tegra@vger.kernel.org,
- freedreno@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 1/24/23 14:40, Thomas Zimmermann wrote:
-> Store the console's preferred BPP value in struct drm_fb_helper
-> and remove the respective function parameters from the internal
-> fbdev code.
-> 
-> The BPP value is only required as a fallback and will now always
-> be available in the fb-helper instance.
-> 
-> No functional changes.
-> 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> ---
+--===============6111336874511642199==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-That's much better indeed.
+== Series Details ==
 
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+Series: drm/i915/pxp: Add missing cleanup steps for PXP global-teardown
+URL   : https://patchwork.freedesktop.org/series/113307/
+State : success
 
--- 
-Best regards,
+== Summary ==
 
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+CI Bug Log - changes from CI_DRM_12631 -> Patchwork_113307v1
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113307v1/index.html
+
+Participating hosts (39 -> 38)
+------------------------------
+
+  Missing    (1): fi-bsw-kefka 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_113307v1:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_selftest@live@hangcheck:
+    - {bat-dg2-11}:       [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12631/bat-dg2-11/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113307v1/bat-dg2-11/igt@i915_selftest@live@hangcheck.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_113307v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-kbl-soraka:      [PASS][3] -> [INCOMPLETE][4] ([i915#7156])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12631/fi-kbl-soraka/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113307v1/fi-kbl-soraka/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-kbl-soraka:      [PASS][5] -> [DMESG-FAIL][6] ([i915#5334] / [i915#7872])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12631/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113307v1/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+
+  
+#### Possible fixes ####
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-kbl-soraka:      [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12631/fi-kbl-soraka/igt@debugfs_test@read_all_entries.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113307v1/fi-kbl-soraka/igt@debugfs_test@read_all_entries.html
+
+  * igt@gem_exec_gttfill@basic:
+    - fi-pnv-d510:        [FAIL][9] ([i915#7229]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12631/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113307v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#7077]: https://gitlab.freedesktop.org/drm/intel/issues/7077
+  [i915#7156]: https://gitlab.freedesktop.org/drm/intel/issues/7156
+  [i915#7229]: https://gitlab.freedesktop.org/drm/intel/issues/7229
+  [i915#7359]: https://gitlab.freedesktop.org/drm/intel/issues/7359
+  [i915#7625]: https://gitlab.freedesktop.org/drm/intel/issues/7625
+  [i915#7852]: https://gitlab.freedesktop.org/drm/intel/issues/7852
+  [i915#7872]: https://gitlab.freedesktop.org/drm/intel/issues/7872
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12631 -> Patchwork_113307v1
+
+  CI-20190529: 20190529
+  CI_DRM_12631: 6bcfacd291ed6ff1ff50a295f970c98d54eabe05 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7136: 31b6af91747ad8c705399c9006cdb81cb1864146 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_113307v1: 6bcfacd291ed6ff1ff50a295f970c98d54eabe05 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+a259f16897e5 drm/i915/pxp: Pxp hw init should be in resume_complete
+74910a99f6e6 drm/i915/pxp: Trigger the global teardown for before suspending
+e5620c32f8eb drm/i915/pxp: Invalidate all PXP fw sessions during teardown
+f42de747c091 mei: clean pending read with vtag on bus
+05cbd443c390 drm/i915/pxp: add device link between i915 and mei_pxp
+5ba50836c244 mei: mei-me: resume device in prepare
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113307v1/index.html
+
+--===============6111336874511642199==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/pxp: Add missing cleanup steps for PXP global-teardown</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/113307/">https://patchwork.freedesktop.org/series/113307/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113307v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113307v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12631 -&gt; Patchwork_113307v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113307v1/index.html</p>
+<h2>Participating hosts (39 -&gt; 38)</h2>
+<p>Missing    (1): fi-bsw-kefka </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_113307v1:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>{bat-dg2-11}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12631/bat-dg2-11/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113307v1/bat-dg2-11/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_113307v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12631/fi-kbl-soraka/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113307v1/fi-kbl-soraka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7156">i915#7156</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12631/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113307v1/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7872">i915#7872</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@debugfs_test@read_all_entries:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12631/fi-kbl-soraka/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113307v1/fi-kbl-soraka/igt@debugfs_test@read_all_entries.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_gttfill@basic:</p>
+<ul>
+<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12631/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7229">i915#7229</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113307v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12631 -&gt; Patchwork_113307v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12631: 6bcfacd291ed6ff1ff50a295f970c98d54eabe05 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7136: 31b6af91747ad8c705399c9006cdb81cb1864146 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_113307v1: 6bcfacd291ed6ff1ff50a295f970c98d54eabe05 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>a259f16897e5 drm/i915/pxp: Pxp hw init should be in resume_complete<br />
+74910a99f6e6 drm/i915/pxp: Trigger the global teardown for before suspending<br />
+e5620c32f8eb drm/i915/pxp: Invalidate all PXP fw sessions during teardown<br />
+f42de747c091 mei: clean pending read with vtag on bus<br />
+05cbd443c390 drm/i915/pxp: add device link between i915 and mei_pxp<br />
+5ba50836c244 mei: mei-me: resume device in prepare</p>
+
+</body>
+</html>
+
+--===============6111336874511642199==--
