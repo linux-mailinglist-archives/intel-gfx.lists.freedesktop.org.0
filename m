@@ -2,32 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F4AF67D36E
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Jan 2023 18:42:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DBED67D3A5
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Jan 2023 18:57:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E11C110E962;
-	Thu, 26 Jan 2023 17:42:51 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id CB07310E962;
- Thu, 26 Jan 2023 17:42:50 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C3C64AADE1;
- Thu, 26 Jan 2023 17:42:50 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3353630067600926420=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3D9810E968;
+	Thu, 26 Jan 2023 17:57:34 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39FF710E967;
+ Thu, 26 Jan 2023 17:57:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1674755852; x=1706291852;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=BQUEAqzlE148mAgRStfAJ82IWpXoVVw/1OpuqObioe4=;
+ b=TAQN5QeOL7/ZrO05zNWqOixYV7twfDzKM6tBjrsCqkfbtCkbVEEr2NBs
+ +Z+4xwOmynU+A5d9tvUJzNRTFUoWINk6s/qINffm9M6brLmnS588mzLav
+ C569M4HYY8MO/KyUvqc/7w92gBkYgYK/W342uDgVJBPmEhOX4J48KTIRB
+ Sl/nwKss+xTkyRo8PHFGXQjzCDUdbmPA7Tx5/BLLKJB+t2eKPe08cyusB
+ EMJVxZalzEXGl5l2OyEW6E6PgzlSQJ+aNXbLl+UsNsGmpRMbDeVZpcgxw
+ 6XKt4UxWv2Ua+MvqxdaUEaAN0mQlS09orIZiqiCXH67rFg08eCrjpoha3 g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="326917869"
+X-IronPort-AV: E=Sophos;i="5.97,249,1669104000"; d="scan'208";a="326917869"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2023 09:57:31 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="695203757"
+X-IronPort-AV: E=Sophos;i="5.97,249,1669104000"; d="scan'208";a="695203757"
+Received: from kbrennan-mobl.ger.corp.intel.com (HELO [10.213.233.58])
+ ([10.213.233.58])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2023 09:57:26 -0800
+Message-ID: <b8a0872c-fe86-b174-ca3b-0fc04a98e224@linux.intel.com>
+Date: Thu, 26 Jan 2023 17:57:24 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andrzej Hajda" <andrzej.hajda@intel.com>
-Date: Thu, 26 Jan 2023 17:42:50 -0000
-Message-ID: <167475497076.539.17527797772843960578@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230126170801.3954784-1-andrzej.hajda@intel.com>
-In-Reply-To: <20230126170801.3954784-1-andrzej.hajda@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Add_selftests_for_TLB_invalidation_=28rev4=29?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Content-Language: en-US
+To: Tejun Heo <tj@kernel.org>, =?UTF-8?Q?Michal_Koutn=c3=bd?=
+ <mkoutny@suse.com>
+References: <20230112165609.1083270-1-tvrtko.ursulin@linux.intel.com>
+ <20230123154239.GA24348@blackbody.suse.cz>
+ <371f3ce5-3468-b91d-d688-7e89499ff347@linux.intel.com>
+ <20230126130050.GA22442@blackbody.suse.cz> <Y9KyiCPYj2Mzym3Z@slm.duckdns.org>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <Y9KyiCPYj2Mzym3Z@slm.duckdns.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [RFC v3 00/12] DRM scheduling cgroup controller
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,247 +65,141 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Rob Clark <robdclark@chromium.org>, Kenny.Ho@amd.com,
+ Dave Airlie <airlied@redhat.com>,
+ =?UTF-8?Q?St=c3=a9phane_Marchesin?= <marcheu@chromium.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, Intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>,
+ cgroups@vger.kernel.org, "T . J . Mercier" <tjmercier@google.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3353630067600926420==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+Hi,
 
-Series: drm/i915/gt: Add selftests for TLB invalidation (rev4)
-URL   : https://patchwork.freedesktop.org/series/112894/
-State : success
+(Two replies in one, hope you will manage to navigate it.)
 
-== Summary ==
+On 26/01/2023 17:04, Tejun Heo wrote:
+> Hello,
+> 
+> On Thu, Jan 26, 2023 at 02:00:50PM +0100, Michal Koutný wrote:
+>> On Wed, Jan 25, 2023 at 06:11:35PM +0000, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
+>>> I don't immediately see how you envisage the half-userspace implementation
+>>> would look like in terms of what functionality/new APIs would be provided by
+>>> the kernel?
+>>
+>> Output:
+>> 	drm.stat (with consumed time(s))
+>>
+>> Input:
+>> 	drm.throttle (alternatives)
+>> 	- a) writing 0,1 (in rough analogy to your proposed
+>> 	     notifications)
+>> 	- b) writing duration (in loose analogy to memory.reclaim)
+>> 	     - for how long GPU work should be backed off
+>>
+>> An userspace agent sitting between these two and it'd do the measurement
+>> and calculation depending on given policies (weighting, throttling) and
+>> apply respective controls.
 
-CI Bug Log - changes from CI_DRM_12647 -> Patchwork_112894v4
-====================================================
+Right, I wouldn't recommend drm.throttle as ABI since my idea is to 
+enable drivers to do as good job as they individually can. Eg. some may 
+be able to be much smarter than simple throttling, or some may start of 
+simpler and later gain a better implementation. Some may even have 
+differing capability or granularity depending on the GPU model they are 
+driving, like in the case of i915.
 
-Summary
--------
+So even if the RFC shows just a simple i915 implementation, the 
+controller itself shouldn't prevent a smarter approach (via exposed 
+ABI). And neither this simple i915 implementation works equally well for 
+all supported GPU generations! This will be a theme common for many DRM 
+drivers.
 
-  **SUCCESS**
+Secondly, doing this in userspace would require the ability to get some 
+sort of an atomic snapshot of the whole tree hierarchy to account for 
+changes in layout of the tree and task migrations. Or some retry logic 
+with some added ABI fields to enable it.
 
-  No regressions found.
+Even then I think the only thing we would be able to move to userspace 
+is the tree-walking logic and that sounds like not that much kernel code 
+saved to trade for increased inefficiency.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v4/index.html
+>> (In resemblance of e.g. https://denji.github.io/cpulimit/)
+> 
+> Yeah, things like this can be done from userspace but if we're gonna build
+> the infrastructure to allow that in gpu drivers and so on, I don't see why
+> we wouldn't add a generic in-kernel control layer if we can implement a
+> proper weight based control. We can of course also expose .max style
+> interface to allow userspace to do whatever they wanna do with it.
 
-Participating hosts (26 -> 22)
-------------------------------
+Yes agreed, and to re-stress out, the ABI as proposed does not preclude 
+changing from scanning to charging or whatever. The idea was for it to 
+be compatible in concept with the CPU controller and also avoid baking 
+in the controlling method to individual drivers.
 
-  Missing    (4): fi-kbl-soraka bat-rpls-2 bat-atsm-1 fi-snb-2520m 
+>>> Problem there is to find a suitable point to charge at. If for a moment we
+>>> limit the discussion to i915, out of the box we could having charging
+>>> happening at several thousand times per second to effectively never. This is
+>>> to illustrate the GPU context execution dynamics which range from many small
+>>> packets of work to multi-minute, or longer. For the latter to be accounted
+>>> for we'd still need some periodic scanning, which would then perhaps go per
+>>> driver. For the former we'd have thousands of needless updates per second.
+>>>
+>>> Hence my thinking was to pay both the cost of accounting and collecting the
+>>> usage data once per actionable event, where the latter is controlled by some
+>>> reasonable scanning period/frequency.
+>>>
+>>> In addition to that, a few DRM drivers already support GPU usage querying
+>>> via fdinfo, so that being externally triggered, it is next to trivial to
+>>> wire all those DRM drivers into such common DRM cgroup controller framework.
+>>> All that every driver needs to implement on top is the "over budget"
+>>> callback.
+>>
+>> I'd also like show comparison with CPU accounting and controller.
+>> There is tick-based (~sampling) measurement of various components of CPU
+>> time (task_group_account_field()). But the actual schedulling (weights)
+>> or throttling is based on precise accounting (update_curr()).
+>>
+>> So, if the goal is to have precise and guaranteed limits, it shouldn't
+>> (cannot) be based on sampling. OTOH, if it must be sampling based due to
+>> variability of the device landscape, it could be advisory mechanism with
+>> the userspace component.
 
-Possible new issues
--------------------
+I don't think precise and guaranteed limits are feasible given the 
+heterogeneous nature of DRM driver capabilities, but I also don't think 
+sticking an userspace component in the middle is the way to go.
 
-  Here are the unknown changes that may have been introduced in Patchwork_112894v4:
+> As for the specific control mechanism, yeah, charge based interface would be
+> more conventional and my suspicion is that transposing the current
+> implementation that way likely isn't too difficult. It just pushes "am I
+> over the limit?" decisions to the specific drivers with the core layer
+> telling them how much under/over budget they are. I'm curious what other 
 
-### IGT changes ###
+As I have tried to explain in my previous reply, I don't think real time 
+charging is feasible. Because frequency of charging events can both be 
+too high and too low. Too high that it doesn't bring value apart from 
+increased processing times, where it is not useful to send out 
+notification at the same rate, and too low in the sense that some sort 
+of periodic query would then be needed in every driver implementation to 
+enable all classes of GPU clients to be properly handled.
 
-#### Possible regressions ####
+I just don't see any positives to the charging approach in the DRM 
+landscape, but for sure see some negatives. (If we ignore the positive 
+of it being a more typical approach, but then I think that is not enough 
+to outweigh the negatives.)
 
-  * {igt@i915_selftest@live@gt_tlb} (NEW):
-    - fi-bsw-nick:        NOTRUN -> [DMESG-FAIL][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v4/fi-bsw-nick/igt@i915_selftest@live@gt_tlb.html
-    - fi-bsw-n3050:       NOTRUN -> [DMESG-FAIL][2]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v4/fi-bsw-n3050/igt@i915_selftest@live@gt_tlb.html
+gpu
+> driver folks think about the current RFC tho. Is at least AMD on board with
+> the approach?
 
-  
-New tests
----------
+Yes I am keenly awaiting comments from the DRM colleagues as well.
 
-  New tests have been introduced between CI_DRM_12647 and Patchwork_112894v4:
+Regards,
 
-### New IGT tests (1) ###
+Tvrtko
 
-  * igt@i915_selftest@live@gt_tlb:
-    - Statuses : 2 dmesg-fail(s) 19 pass(s)
-    - Exec time: [0.0] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_112894v4 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
-    - fi-bsw-n3050:       [PASS][3] -> [FAIL][4] ([i915#6298])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12647/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v4/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@mman:
-    - {bat-rpls-1}:       [TIMEOUT][5] ([i915#6794]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12647/bat-rpls-1/igt@i915_selftest@live@mman.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v4/bat-rpls-1/igt@i915_selftest@live@mman.html
-
-  * igt@i915_selftest@live@workarounds:
-    - {bat-adlm-1}:       [INCOMPLETE][7] ([i915#4983]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12647/bat-adlm-1/igt@i915_selftest@live@workarounds.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v4/bat-adlm-1/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_pipe_crc_basic@read-crc@pipe-c-dp-1:
-    - {bat-adlp-9}:       [FAIL][9] ([i915#4137]) -> [PASS][10] +3 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12647/bat-adlp-9/igt@kms_pipe_crc_basic@read-crc@pipe-c-dp-1.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v4/bat-adlp-9/igt@kms_pipe_crc_basic@read-crc@pipe-c-dp-1.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#4137]: https://gitlab.freedesktop.org/drm/intel/issues/4137
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6794]: https://gitlab.freedesktop.org/drm/intel/issues/6794
-  [i915#7077]: https://gitlab.freedesktop.org/drm/intel/issues/7077
-  [i915#7359]: https://gitlab.freedesktop.org/drm/intel/issues/7359
-  [i915#7625]: https://gitlab.freedesktop.org/drm/intel/issues/7625
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12647 -> Patchwork_112894v4
-
-  CI-20190529: 20190529
-  CI_DRM_12647: ab288692acfb4c176e1411107686368c121462dc @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7137: 5f7ea985ac0828bec5e1bbc101b7931bd7fb62e3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_112894v4: ab288692acfb4c176e1411107686368c121462dc @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-1635ae6c0100 drm/i915/gt: Add selftests for TLB invalidation
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v4/index.html
-
---===============3353630067600926420==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gt: Add selftests for TLB invalidation (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/112894/">https://patchwork.freedesktop.org/series/112894/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12647 -&gt; Patchwork_112894v4</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v4/index.html</p>
-<h2>Participating hosts (26 -&gt; 22)</h2>
-<p>Missing    (4): fi-kbl-soraka bat-rpls-2 bat-atsm-1 fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_112894v4:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>{igt@i915_selftest@live@gt_tlb} (NEW):</p>
-<ul>
-<li>
-<p>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v4/fi-bsw-nick/igt@i915_selftest@live@gt_tlb.html">DMESG-FAIL</a></p>
-</li>
-<li>
-<p>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v4/fi-bsw-n3050/igt@i915_selftest@live@gt_tlb.html">DMESG-FAIL</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_12647 and Patchwork_112894v4:</p>
-<h3>New IGT tests (1)</h3>
-<ul>
-<li>igt@i915_selftest@live@gt_tlb:<ul>
-<li>Statuses : 2 dmesg-fail(s) 19 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_112894v4 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12647/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v4/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@mman:</p>
-<ul>
-<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12647/bat-rpls-1/igt@i915_selftest@live@mman.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6794">i915#6794</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v4/bat-rpls-1/igt@i915_selftest@live@mman.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>{bat-adlm-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12647/bat-adlm-1/igt@i915_selftest@live@workarounds.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v4/bat-adlm-1/igt@i915_selftest@live@workarounds.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc@pipe-c-dp-1:</p>
-<ul>
-<li>{bat-adlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12647/bat-adlp-9/igt@kms_pipe_crc_basic@read-crc@pipe-c-dp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4137">i915#4137</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v4/bat-adlp-9/igt@kms_pipe_crc_basic@read-crc@pipe-c-dp-1.html">PASS</a> +3 similar issues</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12647 -&gt; Patchwork_112894v4</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12647: ab288692acfb4c176e1411107686368c121462dc @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7137: 5f7ea985ac0828bec5e1bbc101b7931bd7fb62e3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_112894v4: ab288692acfb4c176e1411107686368c121462dc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>1635ae6c0100 drm/i915/gt: Add selftests for TLB invalidation</p>
-
-</body>
-</html>
-
---===============3353630067600926420==--
+P.S. Note that Michal's idea to simplify client tracking is on my TODO 
+list. If that works out some patches, the series itself actually, would 
+become even simpler.
