@@ -1,70 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13B5B67C570
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Jan 2023 09:04:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77FEF67C596
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Jan 2023 09:15:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2301C10E0F2;
-	Thu, 26 Jan 2023 08:04:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0455D10E147;
+	Thu, 26 Jan 2023 08:15:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com
- [IPv6:2a00:1450:4864:20::334])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 177AB10E04A
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Jan 2023 08:04:11 +0000 (UTC)
-Received: by mail-wm1-x334.google.com with SMTP id
- f12-20020a7bc8cc000000b003daf6b2f9b9so2716448wml.3
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Jan 2023 00:04:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=content-transfer-encoding:mime-version:date:message-id:subject
- :references:in-reply-to:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=ji4UTQQpkaAaZP+qzWQ/1r3qUElt3jvEA4W3T+OpYO0=;
- b=gPR+gspI2MU/0UF2Z3HOxYkp5nU9ZXepeVHhkbdy7Z+JPWkMm9jjyJQ0zU6IGppXc2
- kAgPuZ8bEyvi+VQJYGcQyTXmIrXH5i+ko4JH7+hBI4T2Wbs2cW8i5nV9RZwEgMrQd4O7
- HsBjNHcfzDvkmnvadrbPHFsUWR8329DYzpIUz/I8qrw8J2WMBklmTHLLjFohzkkBo8zo
- f/kFfiEd0+5jLmsc0AaJZ5nJK7VxiZXqztHhUzBAyhyOTVk7+pSQRhvLawZHkcTAXF8J
- cAFetoGhpcNHgNtjyuSig6wEi4RXTemE9nAWHhwoLYJYyOjTySWh3KmNUQrCgPVo0MOT
- uCgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:date:message-id:subject
- :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=ji4UTQQpkaAaZP+qzWQ/1r3qUElt3jvEA4W3T+OpYO0=;
- b=nSH6okCpxJfhb8sG+tRXq10DMcp1LyOgwJJOAhnAkZGfHtbKwck7dSQMuNyZWXBm1r
- rMH5wI8Pf1oEQUe/G0R3/07kvmfciD8oENRtri2bTL5pjORzNoiz5lesMg9CB2lvdrqw
- pHVB7rRUbBHL/cDBiJj01jd5aK62ypSj8JC41eNcmjmmEjL5JkcSlL90nrZiuX3cidHL
- bETaqV/w+kbCVIFm8sxKyNdjf31I8urJsxr6ZgeLdRQsp6hOCd1nHNaGkll5hF9zoJFc
- VlM1Q95Qw7mXrRs4iDdACmqAzCslWtUbm6K85UXINfYnXD0KIWmw8m3SXB77MYEnFPxf
- 4LeQ==
-X-Gm-Message-State: AFqh2kpsOt9y9MV/QZ6JOn1tBmg62RZt9JDhcOd2DmorsODfmIZP9i/F
- xQ2HIAoR4Sv67UaIUCxzZEsXHg==
-X-Google-Smtp-Source: AMrXdXuJNrn3BzkCdTgrYpCfTq6/eSP+lbun1Vj0Xqd9mftWK2fG9+wLcQ1KGgBamIEV6xrufa2tsQ==
-X-Received: by 2002:a05:600c:1e08:b0:3da:f443:9f0f with SMTP id
- ay8-20020a05600c1e0800b003daf4439f0fmr35166987wmb.18.1674720249603; 
- Thu, 26 Jan 2023 00:04:09 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
- by smtp.gmail.com with ESMTPSA id
- c3-20020a1c3503000000b003dc1d668866sm3685427wma.10.2023.01.26.00.04.08
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 26 Jan 2023 00:04:09 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230124104548.3234554-1-dmitry.baryshkov@linaro.org>
-References: <20230124104548.3234554-1-dmitry.baryshkov@linaro.org>
-Message-Id: <167472024866.416690.8614815459013912607.b4-ty@linaro.org>
-Date: Thu, 26 Jan 2023 09:04:08 +0100
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82DA910E0F2;
+ Thu, 26 Jan 2023 08:15:27 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 276F221FE9;
+ Thu, 26 Jan 2023 08:15:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1674720926; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=gXOV+pEf7vPtWXkJeBQxfCU5ok8+pSVM4xDu5xwy2gQ=;
+ b=W2E9BvM5DiZC3dlHa/2mEYHiZajXs/QovGSiitYzWaleioV50h/5Fbh9QZPmqNnZjMMbuf
+ 5ab8lARG/cGzYtIf2OeMuD5CHtW6fvDyFWIy4uJ5Eb1CTsvotZjtO1Aa/eCWZ5R7+kF3Hz
+ ScV67xgh7zmpDE1PUvmWpXMPIdNYxQ0=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1674720926;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=gXOV+pEf7vPtWXkJeBQxfCU5ok8+pSVM4xDu5xwy2gQ=;
+ b=mq4q7PDMQtOfhvL4sad0taPk6U8z6/Yo+pb7wsk7zEPr7OA1WgG6wDr+zm8fl3xhplbGYP
+ FIHp6+kTWXsXpIAw==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id D222713A09;
+ Thu, 26 Jan 2023 08:15:25 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id NftkMp020mNZMAAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Thu, 26 Jan 2023 08:15:25 +0000
+Date: Thu, 26 Jan 2023 09:15:24 +0100
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <Y9I2nOzHxTxPeTjg@linux-uq9g>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.0
-Subject: Re: [Intel-gfx] [PATCH v3 1/2] drm/probe_helper: extract two helper
- functions
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PULL] drm-misc-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,28 +64,134 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Chen-Yu Tsai <wenst@chromium.org>,
- dri-devel@lists.freedesktop.org, Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
- freedreno@lists.freedesktop.org, Marek Szyprowski <m.szyprowski@samsung.com>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Hi Dave and Daniel,
 
-On Tue, 24 Jan 2023 12:45:47 +0200, Dmitry Baryshkov wrote:
-> Extract drm_kms_helper_enable_hpd() and drm_kms_helper_disable_hpd(),
-> two helpers that enable and disable HPD handling on all device's
-> connectors.
-> 
-> 
+after the PR earlier this week, here's drm-misc-next's final PR
+before -rc6. The committed TTM changes all seem to be reverted.
 
-Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
+Best regards
+Thomas
 
-[1/2] drm/probe_helper: extract two helper functions
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=cbf143b282c64e59559cc8351c0b5b1ab4bbdcbe
-[2/2] drm/probe_helper: sort out poll_running vs poll_enabled
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=d33a54e3991dfce88b4fc6d9c3360951c2c5660d
+drm-misc-next-2023-01-26:
+drm-misc-next for v6.3:
+
+UAPI Changes:
+
+Cross-subsystem Changes:
+
+Core Changes:
+
+ * fbdev-helper: Streamline code in generic fbdev and its helpers
+
+ * TTM: Fixes plus their reverts
+
+Driver Changes:
+
+ * accel/ivpu: Typo fixes
+
+ * i915: TTM-related fixes
+
+ * nouveau: Remove unused return value from disable helper
+The following changes since commit 68de345e101ce9a24e5c8849e69dd0dba2e8c9b2:
+
+  Merge tag 'drm-misc-next-2023-01-24' of git://anongit.freedesktop.org/drm/drm-misc into drm-next (2023-01-25 12:14:08 +1000)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2023-01-26
+
+for you to fetch changes up to 6ca80b9e5cc0120c37e2e7dd367b08e3e0eb8289:
+
+  drm/fbdev-generic: Rename struct fb_info 'fbi' to 'info' (2023-01-26 08:52:36 +0100)
+
+----------------------------------------------------------------
+drm-misc-next for v6.3:
+
+UAPI Changes:
+
+Cross-subsystem Changes:
+
+Core Changes:
+
+ * fbdev-helper: Streamline code in generic fbdev and its helpers
+
+ * TTM: Fixes plus their reverts
+
+Driver Changes:
+
+ * accel/ivpu: Typo fixes
+
+ * i915: TTM-related fixes
+
+ * nouveau: Remove unused return value from disable helper
+
+----------------------------------------------------------------
+Christian König (7):
+      drm/i915: audit bo->resource usage v3
+      drm/ttm: stop allocating dummy resources during BO creation
+      drm/ttm: stop allocating a dummy resource for pipelined gutting
+      drm/ttm: prevent moving of pinned BOs
+      drm/ttm: revert "prevent moving of pinned BOs"
+      drm/ttm: revert "stop allocating a dummy resource for pipelined gutting"
+      drm/ttm: revert "stop allocating dummy resources during BO creation"
+
+Colin Ian King (1):
+      accel/ivpu: Fix spelling mistake "tansition" -> "transition"
+
+Deepak R Varma (1):
+      drm/nouveau/devinit: Convert function disable() to be void
+
+Thomas Zimmermann (11):
+      Merge drm/drm-next into drm-misc-next
+      drm/client: Test for connectors before sending hotplug event
+      drm/client: Add hotplug_failed flag
+      drm/fb-helper: Introduce drm_fb_helper_unprepare()
+      drm/fbdev-generic: Initialize fb-helper structure in generic setup
+      drm/fb-helper: Remove preferred_bpp parameter from fbdev internals
+      drm/fb-helper: Initialize fb-helper's preferred BPP in prepare function
+      drm/fbdev-generic: Minimize hotplug error handling
+      drm/fbdev-generic: Minimize client unregistering
+      drm/fbdev-generic: Inline clean-up helpers into drm_fbdev_fb_destroy()
+      drm/fbdev-generic: Rename struct fb_info 'fbi' to 'info'
+
+ drivers/accel/ivpu/ivpu_hw_mtl.c                   |   4 +-
+ drivers/gpu/drm/armada/armada_fbdev.c              |   4 +-
+ drivers/gpu/drm/drm_client.c                       |  10 ++
+ drivers/gpu/drm/drm_fb_helper.c                    |  58 ++++++---
+ drivers/gpu/drm/drm_fbdev_generic.c                | 131 ++++++++-------------
+ drivers/gpu/drm/exynos/exynos_drm_fbdev.c          |   4 +-
+ drivers/gpu/drm/gma500/framebuffer.c               |   4 +-
+ drivers/gpu/drm/i915/display/intel_fbdev.c         |  11 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c            |  27 ++++-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c       |  56 +++++++--
+ drivers/gpu/drm/msm/msm_fbdev.c                    |   4 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/devinit/base.c |   3 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/devinit/g84.c  |   5 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/devinit/g98.c  |   4 +-
+ .../gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c    |   4 +-
+ .../gpu/drm/nouveau/nvkm/subdev/devinit/gm107.c    |   4 +-
+ .../gpu/drm/nouveau/nvkm/subdev/devinit/gt215.c    |   4 +-
+ .../gpu/drm/nouveau/nvkm/subdev/devinit/mcp89.c    |   4 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv50.c |   5 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv50.h |   2 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/devinit/priv.h |   2 +-
+ drivers/gpu/drm/omapdrm/omap_fbdev.c               |   4 +-
+ drivers/gpu/drm/radeon/radeon_fb.c                 |   4 +-
+ drivers/gpu/drm/tegra/fb.c                         |   7 +-
+ include/drm/drm_client.h                           |   8 ++
+ include/drm/drm_fb_helper.h                        |  16 ++-
+ 26 files changed, 222 insertions(+), 167 deletions(-)
 
 -- 
-Neil
-
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 Nürnberg, Germany
+(HRB 36809, AG Nürnberg)
+Geschäftsführer: Felix Imendörffer
