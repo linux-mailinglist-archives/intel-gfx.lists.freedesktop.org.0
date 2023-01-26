@@ -2,137 +2,142 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2151167D0B0
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Jan 2023 16:55:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA06867D0BB
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Jan 2023 16:59:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE96610E2A5;
-	Thu, 26 Jan 2023 15:55:41 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72B1410E138
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Jan 2023 15:55:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38E2F10E18E;
+	Thu, 26 Jan 2023 15:59:17 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6AE710E18E;
+ Thu, 26 Jan 2023 15:59:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674748539; x=1706284539;
- h=date:from:to:subject:message-id:references:in-reply-to:
- mime-version; bh=HySX7+U+/RV/wsKXsUx9tzgl4kOdbVE1UygDlwUGAaA=;
- b=QwfeT0W0lnjFFupldoYJrCXj4pb9vi85OTyJHHRt5EksFC5eDx1jZSei
- rkzT6vtQMHPsqvrKlC+7ebKulHB5z+RullytBUU75+axne17sD1PAyz+q
- KwnGW0EZ7ruwdc6RGwI7ey/AIrYSwjPZo72pZLaBYEpL6J7G2NpQ/rRc1
- ASjUtBaDatJUTLp/mNndUTWoggyB5lf6LcXrB362cFnNKIXKG9V/EhgAF
- ACKhJ24dhS7wRniE+XlEV1zdzM2xkR3iNOApJdGqBkAfcHzkzm5JqVVPC
- 35R6zkfth7B+UgnGXHTW+YVOCFFh5LBMrE+mYc6PjLwXaGvj2wbRTkG9k w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="391376377"
-X-IronPort-AV: E=Sophos;i="5.97,248,1669104000"; d="scan'208";a="391376377"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2023 07:55:38 -0800
+ t=1674748755; x=1706284755;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=FqXiwRDrl80nzG12u3pBoSnImCiYiQ+FxFKICP2C5lA=;
+ b=Ed5Dyo+0uGy+EXM7wC6moX4+Px3MOai1iNRzzXC/Rn+JptKGriEtD/Ok
+ 8ev1Vu64OOpYy8d5mTgF1JW00k37/rBpN8eaZbBpdMTGbbmoJUpkoNn7X
+ ebujCrbpAZaHwKuJ46MfJGpderh9LGrpsgifXXEbnQnzaxWaqr/qaj0HA
+ 8CJfxuEDnj55ji4qxn4/iFCkWz0k2Mqjyv8ENaiz255Gzqte9py9UaODM
+ gU4gKebkfN+Qieug3svEXeRLlB8xVfc3bdWLUfRgXYfEppan+TwEvOwuP
+ rY44ezINIor7pon3nkKPcB3127+MEtajT0Sys/xeO4TZCqg7Se0y3iYYf g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="328951530"
+X-IronPort-AV: E=Sophos;i="5.97,248,1669104000"; d="scan'208";a="328951530"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2023 07:59:15 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="640370842"
-X-IronPort-AV: E=Sophos;i="5.97,248,1669104000"; d="scan'208";a="640370842"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga006.jf.intel.com with ESMTP; 26 Jan 2023 07:55:38 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="662908147"
+X-IronPort-AV: E=Sophos;i="5.97,248,1669104000"; d="scan'208";a="662908147"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga002.jf.intel.com with ESMTP; 26 Jan 2023 07:59:14 -0800
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Thu, 26 Jan 2023 07:55:38 -0800
+ 15.1.2507.16; Thu, 26 Jan 2023 07:59:14 -0800
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Thu, 26 Jan 2023 07:59:14 -0800
 Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Thu, 26 Jan 2023 07:55:38 -0800
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
+ 15.1.2507.16 via Frontend Transport; Thu, 26 Jan 2023 07:59:14 -0800
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.102)
  by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Thu, 26 Jan 2023 07:55:38 -0800
+ 15.1.2507.16; Thu, 26 Jan 2023 07:59:13 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BkRC8DlAWT32mYh42dYh0JqRhTWZI3rmRaQFmJlkTUlAKFfIaBDV6kuqzbjk6wEIYiZgyuKA0DiudLBIGn48KfkmbsWIOuDRQdk+I64q12Tb4dlEHDNe17OeYkVcB/wWsMo0nOgrTbXXhSigBar6MEaF7fSB8gVTvqiHQbe1KkE3k4aiu1u/eJy0fyZNbKc6rioThEIuxO9cZ58ECajXnJSl/w7JH2jaBh/38vvq2rnzTOKuUxugF8kj8JNY1Mk+BQ+uB+0TqqXZ/sbcuiysxS/wSycrf+i1ek5ust8RdSSyQ4BQ0ph9DqxbGPvSkdBXyWksZ6E+UI6rysUcBQzCLQ==
+ b=bu/A00GLHkCmxOB/T1BzVDTzRmx6BAuM3BlZjnwlVYYY0QYMHROUbQOeL3q62mt8omsraH4fBB6ReUxDDHYiOQWrb97FQNHoZVU6TDUZ/Ha0xI+HD4Pj8n3dlomJDJ2+B7J5jeeLBklv8po2Mts3mHjAWSlZk0R6dUSjXYuV/sfa6P4TWhaeU4xxVjCN1+G+TY50NBhLp28Qvy4cp7+LiyS7jWtqxMo9pFgGpfVmFrTRshV7LznaFLGKI6pim4/9XB4kVCYw4M/msjk/eKLWJ4xb7n8BZx979PNfSDmy9jkwKlGT2gVULjTnaSeKl5/gk16djG/aGwFToG8tgLraeg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YObuSqEpKfP7BnwD3TSncnfcPtD6KLug+Yi5sckK8b0=;
- b=Wi0yvt8hxnCD2SSZZS4fVYuljp1Y5+uycJA/lvY0rvr7BoFyV6ZDKONtNQBBKSG+2cShZdNBcPq8qDWWD+Rek2BDsckRYcZ3mawDaqcUFG1SL4oR0aSeHt+E+BkMIm4/TfsFyG2VFdG+ncXDmdEoho10DDOpx8JmYq5lZeFIw2nYwFa9/aO6/+auHAp8nQLR2P284dL/G2yQrGsgZxpdPD8hIco56n4sbdeA0kksXiev6j4H40MPoWEuyWSgtD/EjRdNRwNo5RG4OVqcegjzCeC24rvDye86mujCWmoAtMcWBaqALY7kaFOulmx6AxBRvF8oxzZIkhKZOhM09u60sg==
+ bh=zpA+MuWau1S+inBOh4oibCh4dydh9oJMIcbo+Q2zF0I=;
+ b=VMPgepcLSJa8AsxA1NTXVrr1NbdcmXBfdTzbpeXkR/KTT8cUYV/BUd6tCpQbHeVwKCvep4Z6QMNhnWwa3DCwlJ/MQWWDkUPyt90iFlppRgzCKok6H3nDfwrm8mX1+tMMxjjqCaWCKDNWFxbhN/rLXKLpFDEJQa6KLNsALtKBrjMdF2btgOfPX/I9wBF6ePb0NPwapZcq15jwH6Md8w3priaKvYJTxWV2GHyd7u4RAgwp7vE+ITpxhxTn87bv07/RKNHqQ96aSR82gRE5hIV3GzZts/NJBx1CnL0cJ70xbGV07o6livjQE0Ee7dXEi2lZFojx+hxM6Ba/rTkF86JGOw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
- SA2PR11MB5162.namprd11.prod.outlook.com (2603:10b6:806:114::22) with
+ BN9PR11MB5560.namprd11.prod.outlook.com (2603:10b6:408:105::18) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.22; Thu, 26 Jan
- 2023 15:55:27 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Thu, 26 Jan
+ 2023 15:59:11 +0000
 Received: from DS7PR11MB7859.namprd11.prod.outlook.com
  ([fe80::68d0:f8e0:eaf3:982e]) by DS7PR11MB7859.namprd11.prod.outlook.com
  ([fe80::68d0:f8e0:eaf3:982e%4]) with mapi id 15.20.6043.022; Thu, 26 Jan 2023
- 15:55:27 +0000
-Date: Thu, 26 Jan 2023 07:55:24 -0800
+ 15:59:11 +0000
+Date: Thu, 26 Jan 2023 07:59:08 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
-To: <intel-gfx@lists.freedesktop.org>
-Message-ID: <Y9KibBOTZ9euS8b2@mdroper-desk1.amr.corp.intel.com>
-References: <20230125234159.3015385-1-matthew.d.roper@intel.com>
- <167474471095.538.2968550746551007164@emeril.freedesktop.org>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <Y9KjTDr+xJ1TkS6c@mdroper-desk1.amr.corp.intel.com>
+References: <20230124205426.1444686-1-John.C.Harrison@Intel.com>
+ <7d0cdcb1-9ee4-c69b-4499-bf3cefb7a43c@linux.intel.com>
+ <Y9F9RrdJnDhacze+@mdroper-desk1.amr.corp.intel.com>
+ <eb4713e0-736c-4e95-f8fb-0692d2e53a8c@linux.intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <167474471095.538.2968550746551007164@emeril.freedesktop.org>
-X-ClientProxiedBy: BY5PR03CA0024.namprd03.prod.outlook.com
- (2603:10b6:a03:1e0::34) To DS7PR11MB7859.namprd11.prod.outlook.com
+In-Reply-To: <eb4713e0-736c-4e95-f8fb-0692d2e53a8c@linux.intel.com>
+X-ClientProxiedBy: SJ0PR03CA0069.namprd03.prod.outlook.com
+ (2603:10b6:a03:331::14) To DS7PR11MB7859.namprd11.prod.outlook.com
  (2603:10b6:8:da::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|SA2PR11MB5162:EE_
-X-MS-Office365-Filtering-Correlation-Id: 31b52647-932d-4b56-d9ee-08daffb5be5b
+X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|BN9PR11MB5560:EE_
+X-MS-Office365-Filtering-Correlation-Id: 04b5ea3e-3f9b-4b31-bee3-08daffb643e4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 5nSN34R3V6DDryrKQ1ZmT0evLdGzgwe/xH224SP0IwEVPyJUQANikqJPD1p3J8tuAGwkdBZnQQuzp/dJXEI5RjSgy8iCtce3yBWysfC79lmg2zMggRibNiX9Kx/zOSbIFhE2IAc0b1I1CcHI6A+MwgvZ5Qa967+GqZ0oQb3fEVGNkP/jpI3v6GE+Fso+e5jJcMYcxHDtGGQUJPchAXVWXNrxGQkmmOH4ABotNYopFz5A7OrPT6AMKMJth1QzJBp9xawkB7qadkSva0oEB+1zhHmO143Uhmwvhvl5whAQ0x9zkkCRPW7yAiXf5m1gMxHC2+SYThNpUQq20jpQSVX9aTSk0Q6d57qVgDrqSLt3daQaS6CjZigU6eTEwi8BTxStrrrIBl3ecS/J3wnLz6k+v4iIoWRq8Ti/5cN+9Xo99z62dagjsLpvrAkFiHjYcGrM1odjgGWUWy457aRoa2L/3hK3YXbzUHZ07HOId8bv4az85je47yVXhp5WWz2840qXZYY9hyIZ2/UWZBlkOOkNLrUSbs2n6TXn4l+/8s3UxBNBuWq5UJ74IOpnao82DTrf+TvbYz3wlGLYPC/de0t8IRqQrS57J82PyARjTSEhenwPOZIo6A/8wx5E7X0C0feNddwYQaqQkOAui/CTWiIT70dDIpABBF0M3yX/bpn/nbZqNUhuxWRBR2AWeKopWKS4
+X-Microsoft-Antispam-Message-Info: 1t/9TMIUjruVyFl4+VPKNS5CfVSVt3h3NiREAvoyE7gUalgyLC0jjCe1m13VTu7B0S6G2olN40e8Y+pT/mlMFOU1BUjD49cav1A8KVaGO//z8QwfgdSWPkw2ep7coHnfTmBMKTNxUIJzDLsYIIakYJYNZV+uYuywOe2EjCInbJjk2TwW7cWYg5V9gyKbovjMbyVIiO/blQospuWG6m4l8FPRys3LYCdByIMznY/fyeca0SpLXgv4qVo0R1+CxWujQxe2PncYDS3Dj1vRzFerjsq4fEQ/yMp+JySYyo7cUxkkcF8q7fr1xqzb27V68+HAUl9v7FVPcBw5ZRMCS/Gyz+3d2HapAeKmBAlR3WHQBxyIqMgDoyZqvgC9rUCEIWEbgYYBM7dJyhPkOva79btNWpp6HjJyMXVksE0YdbVFDEBumu3/4s6VqCRnkvNAy7HNXiQob+TaySrdqqyztrSba7a1Kl/O2GIm+5s89z7loGNlz2DIFntXbClTcsHCOU1p5bGV6ptcgW6M/gKbtMRstdHqVRkVnU3ITZhTmiOg2rO8SQ0ZYoZPLkVsw+eAeJRJGR+7Sa4hO820U1rCkpLUcdJXOt0vSPhiDa+m3MCjLp1tCC9TbHPnQF/oiMjhaPoHI7rwx9QM27ux/9CZzutXPZzDu1YJkQmLxuJAvZDcgiSYIHbzpAbQQkkDlyA5oXwT
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(39860400002)(376002)(136003)(366004)(346002)(396003)(451199018)(83380400001)(316002)(6666004)(6506007)(6486002)(478600001)(30864003)(5660300002)(2906002)(66556008)(66476007)(66946007)(41300700001)(6916009)(8936002)(966005)(82960400001)(86362001)(38100700002)(26005)(6512007)(186003);
+ SFS:(13230025)(39860400002)(136003)(376002)(366004)(346002)(396003)(451199018)(66556008)(66476007)(86362001)(83380400001)(6916009)(66946007)(8676002)(316002)(53546011)(6512007)(4326008)(6486002)(6506007)(186003)(6666004)(478600001)(26005)(8936002)(5660300002)(15650500001)(38100700002)(41300700001)(82960400001)(2906002)(30864003)(67856001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?MfF2jgYKuX2CzRvOyC3thIalJ+LHqV5M/F/VAW6YhGgn2kPOgvijOfaa3A5q?=
- =?us-ascii?Q?EcC0Q7GJeTqvfJ0YTi9CHEuA8LrxDJhiYG+uSa2VR1TXY3UOUNceApNS51L+?=
- =?us-ascii?Q?qOIT4yZXeCRfsCMWwTLMd7oRFuuSb1L+f6+Tqyvl0sTtTlnoO/khH4x8mmur?=
- =?us-ascii?Q?mzsS5zUBK4PdoVf6uzlakKHbrZalIJ7f2kyGZ5of9pvfa8A57yRLazQKk2Ly?=
- =?us-ascii?Q?yW0wSwprHwGPX5JauR3wkIaJSgZL56C09cHR/wuaGUIe4YebacYgHTwu/oXG?=
- =?us-ascii?Q?nltfTX5YEydondlTUTdPJ876SbrTMrhudNQw9uuNup0EFscesWAiuE1KSwYQ?=
- =?us-ascii?Q?2h2tYZ7J43TU0vdqHoq0pjMihePP3r4X6oqxv9jsz1EWotOO7b8B4wYQ5Nqp?=
- =?us-ascii?Q?Cd2SN5J9XRNuFlgupY+QdHY4Qchoap31FXsHxzXmmTkMwgNdVrLOP5D8H6ID?=
- =?us-ascii?Q?x93BIcE9zvBGZFS23aV3NxUcmXQY2RJxFv+kGV2Bf0AuaIkMcCq+qgRshhLe?=
- =?us-ascii?Q?+lOmRA8pbu4TCBUAXS4atFJs36XOUDra/+fFcDxqzB0ISSEDLFcQA6ACKjL8?=
- =?us-ascii?Q?f0ddmIzgbywGuI9dMHd3TXKIK86ejxEM0ejjf6+MJ4kaHWyMbCsCRtcF0FmJ?=
- =?us-ascii?Q?L4lYkYSgTSH0W24Q4Sryfay80IM06WrhIFWoVIv+iOkr4TsJJaJbYy2dc+OP?=
- =?us-ascii?Q?Vn84mSIx4XN/sQW9ecSNEmOUlIzZLp4IQx6RD2cQxxAq5edR1Ook1RZKS4HL?=
- =?us-ascii?Q?eT8QVgjwrRNnFqp1gwuQsFRwyJhHTFhmJeVa86tgcpn0HOT/89GwTcvaT+PD?=
- =?us-ascii?Q?lVCXcjV0oZmxPyGmib/IFtF1bsOUYe5fdd8f/8gytyjLW03uasZ2pIb0ulke?=
- =?us-ascii?Q?qJrdcnW+Y5RZPYCqyRNr46LaEN/cbpqJKPsyT5R4ZB/jHCj6E66DJnbySQQP?=
- =?us-ascii?Q?YZA5/ZIvntgUiM9m8Gytd8koO2EexwAbPbaYp4qa659z/hlyVrzE8ICO63WC?=
- =?us-ascii?Q?r4pqq2YW35tJdmGi/SF6/jefJ5NnsXUsHst2DxRBQ89nPHvxYrHflwVziXfH?=
- =?us-ascii?Q?xhvXmtdPqdkzt1xXaSM257RYCrYOs8xTF5OQRBCxnFUJAaPZFWZ44PRbSVQ5?=
- =?us-ascii?Q?Y3sWWBaHa4QCHJOgzhpDVrhGpp3abZ2amPFc5rgs8Hfv0FgHQpXHMn42T2c+?=
- =?us-ascii?Q?ARZaFTooBKQaGF01HD5DZ8bydH8yAT4ePfWLbe2zRbGx/sq30JexmaqVoV85?=
- =?us-ascii?Q?lSWC5hWK2LE1tTbW/si19iO/Qb6Mqj1T9rxb0f2aQAQ3ksVC/C5P5e+XM52F?=
- =?us-ascii?Q?fcs3bVcpJbsyYXlRZdNa/Pg35D61b3GbHCHji5knCXiagBHBRJGYoji/+Vtx?=
- =?us-ascii?Q?2MCwBwIHDV28o9XZEzA4pzxEAAAbUnp62rqPTpzn0BYtxURutNFCtSkvIqT8?=
- =?us-ascii?Q?bs1W3QxKbQ8OeKKKpJTjl6AXpzfk4kAP7COEjd1QQY01/DjSasSBBdSQAgwz?=
- =?us-ascii?Q?6M2sT18EwKQAC1DuaI7ETALCWnfAXyHtkOpirou5XIq2Muuk26g+PAu1CoIN?=
- =?us-ascii?Q?u5Bvo4IxEX/pI1D/VbBxeK+X2h7Cwt3IO6/+MAJFSHW89F4HKFfwxU5yc7wq?=
- =?us-ascii?Q?5g=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 31b52647-932d-4b56-d9ee-08daffb5be5b
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?LtaRCJ976+TglIUps5xCgMoGBuRf9aLwcT7j9MCgvjqXjDzRwQDNFUSfWocb?=
+ =?us-ascii?Q?JxlntUBhgc3V1KdN9UxkM+3+dEz1DxmT2WcURf6ld2d+admGMHImvU++vRG9?=
+ =?us-ascii?Q?yBUx8f/k8oZUclAiixMbIs+5T7L2roOQ/lgH2zMBmy4hvsnIcAsD30q7LyQh?=
+ =?us-ascii?Q?vAQ3Pu/x2U4bnLwKMrAnqtnjoPyXAQDY2NpXYG83oLv7kjSbaP5s3wj6dx0T?=
+ =?us-ascii?Q?XoHKcTurZkT9YcqqQ7EjpSCEGVeVv2jbXS4NAQW6eSA49BTEWDF7LJV62sRa?=
+ =?us-ascii?Q?ctrqSmZyPS0M9wrUn3RDEPIlPD17qtt9J5BVHpq3Wkbx0nNEfxMpc+kzu0e2?=
+ =?us-ascii?Q?sW8kyFPFyli9afc+xaWlqlVxH4feAjVuJJ9hB6QmdQ8rvToReog2TFYbYAGL?=
+ =?us-ascii?Q?7beDsZ6lgEurK/mu4/K2Bs2tt0eGtaZk3dNrsLY33cqHT8cRIxT/Nr2+jNA5?=
+ =?us-ascii?Q?iPKvo7EqnskCAf+54xGvmoje9s/9rarIw6zQghD8nvCahX2DbT7wIN13MCmh?=
+ =?us-ascii?Q?jazE//6QZ5yCZzO1g6PiL22UMr99MnQPorGum5CSQ7SkxCEf1Xv7d241imrl?=
+ =?us-ascii?Q?XAWfYLkJMFrk+mcq5c70jQVhNKYaJrb0xNnQZGPG1wjTvNf0Uj+Bt9D0SR3/?=
+ =?us-ascii?Q?EQiqm6c4Gecm1KhprhLkLiC52JfjWOb9GRbn9T3QCt4osjVAz9QKL+pxeedk?=
+ =?us-ascii?Q?3cXqA/aPH4BkHgPKwALtcMrlYOKP2qZzsGjqClsYDH1gmNJ5uysmAIoLA6bW?=
+ =?us-ascii?Q?PafyyRdZbDuuztfMEv58vK0IrP0GHzp399Xv0jbXnSgNlhjSz+vWmzrrlGfX?=
+ =?us-ascii?Q?4jCfWymGCZADoZp7WYwvt7Lw9ao+ej4OSpEwWsX2s37N9FOvQBnFvR3dCaLN?=
+ =?us-ascii?Q?YCTFA8nEDVdw9zu4Z4eQx3htSlbrHEe7sr9Pn6nQtTop0SZSW4gabkVDz57H?=
+ =?us-ascii?Q?bvxPww7+qw/mbbXUbpXo9mahlUHqokowf15if0Zg8ZnJpGK5YZnyJTbXiYIF?=
+ =?us-ascii?Q?50O5rrl2gvxf84wzWQKlkzz572sYqFMosAHnDywKBHAfooCNab+nfUV9Uym9?=
+ =?us-ascii?Q?7w6g+JB/Qo2eUceDPojeD07CORV1CLeaI+eW6twYLd3JYVXYaBDtN6ATiMQt?=
+ =?us-ascii?Q?QMbtgo651nMxjZT6NVe7Qjx8+YEfpt358fkoswn33fK1AOAYscI7eWNqOL+h?=
+ =?us-ascii?Q?R8sElZhQP75QoV8BP1KPD1zUMi5TKKFCj8bEbf8sE1E8UJ8EmJ2dCxDm+0vC?=
+ =?us-ascii?Q?lsmAT/eeObcsLq+JoBaXhZYWCjPK+/Wb/zsgCROUr21PqSgd7rQ8YfViSaJv?=
+ =?us-ascii?Q?2cZw9UAyqwkK80ebeuMg4zGqIF0N7EkbGuWxBK5nEQ1zWzWiKpGKlvbdmtqv?=
+ =?us-ascii?Q?AX+2X7UCnTJJXqzZ7eoRqKsvQy5GCbgdmqAoMf09WiOJyeAAoOwd/yUvAXNO?=
+ =?us-ascii?Q?5Oxgk4uw/TB4+ftVbNTSdr4WWFr+5mdKpufMNxS2kBLhB2b1vMnOFyuP9wpn?=
+ =?us-ascii?Q?7+Fx8YjEclQDHZPfJIwnrhZqEIN43KeCisxDVd8EfUw9WWy+29XrqLroKyr7?=
+ =?us-ascii?Q?9FSOhDPaPjyue9/3F6EqCt96+loqbYM1HcZZCzDx1z4llSwroW6RD0eYbA1t?=
+ =?us-ascii?Q?mw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 04b5ea3e-3f9b-4b31-bee3-08daffb643e4
 X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2023 15:55:27.6231 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2023 15:59:11.6586 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: JZzKOr66zgNs3dDetrgRJF1JbY6sym0GF0ToZNmLXJ7eXm/Nhhp1YS7Mamqnm8NEWT3c3FQfinHGuQSL8xmqib83cTKzcTyny5ROKl9MtZY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5162
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0A3og1SYzRNN/NPQLjhPQFbxLR4kJlFNG2vjd3FdqO8TJ2NmllGHhwUu+FxecF0+ZeXlriZmF0yf/hoB9m3Y/pxU0vAiVypxQa0yBA1Boz4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR11MB5560
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv2=2C1/3=5D_drm/i915/xehp=3A_GAM_registers?=
- =?utf-8?q?_don=27t_need_to_be_re-applied_on_engine_resets?=
+Subject: Re: [Intel-gfx] [PATCH v4] drm/i915/uncore: Use GT message helpers
+ in uncore
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -145,311 +150,402 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Intel-GFX@lists.freedesktop.org, DRI-Devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 26, 2023 at 02:51:50PM +0000, Patchwork wrote:
-> == Series Details ==
+On Thu, Jan 26, 2023 at 10:46:01AM +0000, Tvrtko Ursulin wrote:
 > 
-> Series: series starting with [v2,1/3] drm/i915/xehp: GAM registers don't need to be re-applied on engine resets
-> URL   : https://patchwork.freedesktop.org/series/113370/
-> State : success
+> On 25/01/2023 19:04, Matt Roper wrote:
+> > On Wed, Jan 25, 2023 at 10:51:53AM +0000, Tvrtko Ursulin wrote:
+> > > 
+> > > On 24/01/2023 20:54, John.C.Harrison@Intel.com wrote:
+> > > > From: John Harrison <John.C.Harrison@Intel.com>
+> > > > 
+> > > > Uncore is really part of the GT. So use the GT specific debug/error
+> > 
+> > That's not really true; uncore should be outside the GT since it's used
+> > for all kinds of non-GT stuff as well (sgunit, display, etc.).  I
+> > believe "uncore" is just an old-fashioned name for what modern docs
+> > refer to as "system agent" these days.
+> > 
+> > Granted, our i915 design does stretch the truth quite a bit today by
+> > rolling some of the GT-specific concepts into the uncore code (GT
+> > forcewake/shadowing, GSI offset, etc.).  Having two intel_uncore
+> > structures on a platform like MTL doesn't really match the hardware
+> > reality at the lowest levels, but allows us to update the software for
+> > these new platforms without major, intrusive changes for all platforms.
+> > 
+> > I feel like including 'gt' information in log messages unrelated to GT
+> > might be confusing.  For display stuff it's probably obvious that the GT
+> > information is bogus, but when stuff is related to the sgunit it won't
+> > always be so obvious.
 > 
-> == Summary ==
-> 
-> CI Bug Log - changes from CI_DRM_12640_full -> Patchwork_113370v1_full
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **SUCCESS**
-> 
->   No regressions found.
-> 
->   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113370v1/index.html
+> Level of confusing vs absence of debugability and a suggested way forward?
+> Just do nothing and accept any forcewake related errors will not include the
+> originating GT?
 
-Applied to drm-intel-gt-next.  Thanks Gustavo for the reviews.
+I guess it's probably fine to keep it on all messages; people will just
+learn to ignore the bogus GT stuff on things that aren't actually
+related to the GT.
+
+It would still be good to change the commit message though so that
+people doing git archaeology in the future don't get an incorrect
+understanding of the relationship.
 
 
 Matt
 
 > 
-> Participating hosts (12 -> 10)
-> ------------------------------
+> Regards,
 > 
->   Missing    (2): pig-skl-6260u pig-kbl-iris 
+> Tvrtko
 > 
-> Possible new issues
-> -------------------
-> 
->   Here are the unknown changes that may have been introduced in Patchwork_113370v1_full:
-> 
-> ### IGT changes ###
-> 
-> #### Suppressed ####
-> 
->   The following results come from untrusted machines, tests, or statuses.
->   They do not affect the overall result.
-> 
->   * igt@kms_rotation_crc@sprite-rotation-90:
->     - {shard-rkl}:        [SKIP][1] ([i915#1845] / [i915#4098]) -> [INCOMPLETE][2]
->    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12640/shard-rkl-1/igt@kms_rotation_crc@sprite-rotation-90.html
->    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113370v1/shard-rkl-6/igt@kms_rotation_crc@sprite-rotation-90.html
-> 
->   
-> Known issues
-> ------------
-> 
->   Here are the changes found in Patchwork_113370v1_full that come from known issues:
-> 
-> ### IGT changes ###
-> 
-> #### Issues hit ####
-> 
->   * igt@gem_exec_fair@basic-pace-share@rcs0:
->     - shard-glk:          [PASS][3] -> [FAIL][4] ([i915#2842])
->    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12640/shard-glk8/igt@gem_exec_fair@basic-pace-share@rcs0.html
->    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113370v1/shard-glk1/igt@gem_exec_fair@basic-pace-share@rcs0.html
-> 
->   * igt@kms_cursor_legacy@flip-vs-cursor@atomic-transitions:
->     - shard-glk:          [PASS][5] -> [FAIL][6] ([i915#2346])
->    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12640/shard-glk8/igt@kms_cursor_legacy@flip-vs-cursor@atomic-transitions.html
->    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113370v1/shard-glk1/igt@kms_cursor_legacy@flip-vs-cursor@atomic-transitions.html
-> 
->   
-> #### Possible fixes ####
-> 
->   * igt@gem_ctx_exec@basic-nohangcheck:
->     - {shard-rkl}:        [FAIL][7] ([i915#6268]) -> [PASS][8]
->    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12640/shard-rkl-2/igt@gem_ctx_exec@basic-nohangcheck.html
->    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113370v1/shard-rkl-1/igt@gem_ctx_exec@basic-nohangcheck.html
-> 
->   * igt@gem_eio@kms:
->     - {shard-dg1}:        [FAIL][9] ([i915#5784]) -> [PASS][10]
->    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12640/shard-dg1-14/igt@gem_eio@kms.html
->    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113370v1/shard-dg1-15/igt@gem_eio@kms.html
-> 
->   * igt@gem_eio@suspend:
->     - {shard-rkl}:        [FAIL][11] ([i915#7052]) -> [PASS][12]
->    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12640/shard-rkl-3/igt@gem_eio@suspend.html
->    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113370v1/shard-rkl-5/igt@gem_eio@suspend.html
-> 
->   * igt@gem_exec_fair@basic-deadline:
->     - {shard-rkl}:        [FAIL][13] ([i915#2846]) -> [PASS][14]
->    [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12640/shard-rkl-1/igt@gem_exec_fair@basic-deadline.html
->    [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113370v1/shard-rkl-5/igt@gem_exec_fair@basic-deadline.html
-> 
->   * igt@gem_exec_fair@basic-none-share@rcs0:
->     - shard-glk:          [FAIL][15] ([i915#2842]) -> [PASS][16]
->    [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12640/shard-glk3/igt@gem_exec_fair@basic-none-share@rcs0.html
->    [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113370v1/shard-glk6/igt@gem_exec_fair@basic-none-share@rcs0.html
-> 
->   * igt@gem_exec_fair@basic-pace-share@rcs0:
->     - {shard-tglu}:       [FAIL][17] ([i915#2842]) -> [PASS][18]
->    [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12640/shard-tglu-3/igt@gem_exec_fair@basic-pace-share@rcs0.html
->    [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113370v1/shard-tglu-1/igt@gem_exec_fair@basic-pace-share@rcs0.html
-> 
->   * igt@gem_exec_reloc@basic-gtt-read-noreloc:
->     - {shard-rkl}:        [SKIP][19] ([i915#3281]) -> [PASS][20] +1 similar issue
->    [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12640/shard-rkl-3/igt@gem_exec_reloc@basic-gtt-read-noreloc.html
->    [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113370v1/shard-rkl-5/igt@gem_exec_reloc@basic-gtt-read-noreloc.html
-> 
->   * igt@gem_partial_pwrite_pread@writes-after-reads-display:
->     - {shard-rkl}:        [SKIP][21] ([i915#3282]) -> [PASS][22] +1 similar issue
->    [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12640/shard-rkl-3/igt@gem_partial_pwrite_pread@writes-after-reads-display.html
->    [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113370v1/shard-rkl-5/igt@gem_partial_pwrite_pread@writes-after-reads-display.html
-> 
->   * igt@gen9_exec_parse@valid-registers:
->     - {shard-rkl}:        [SKIP][23] ([i915#2527]) -> [PASS][24] +1 similar issue
->    [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12640/shard-rkl-3/igt@gen9_exec_parse@valid-registers.html
->    [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113370v1/shard-rkl-5/igt@gen9_exec_parse@valid-registers.html
-> 
->   * igt@i915_hangman@gt-engine-error@bcs0:
->     - {shard-rkl}:        [SKIP][25] ([i915#6258]) -> [PASS][26]
->    [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12640/shard-rkl-5/igt@i915_hangman@gt-engine-error@bcs0.html
->    [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113370v1/shard-rkl-3/igt@i915_hangman@gt-engine-error@bcs0.html
-> 
->   * igt@kms_big_fb@x-tiled-max-hw-stride-32bpp-rotate-180-async-flip:
->     - {shard-rkl}:        [SKIP][27] ([i915#1845] / [i915#4098]) -> [PASS][28] +9 similar issues
->    [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12640/shard-rkl-3/igt@kms_big_fb@x-tiled-max-hw-stride-32bpp-rotate-180-async-flip.html
->    [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113370v1/shard-rkl-6/igt@kms_big_fb@x-tiled-max-hw-stride-32bpp-rotate-180-async-flip.html
-> 
->   * igt@kms_fbcon_fbt@psr-suspend:
->     - {shard-rkl}:        [SKIP][29] ([i915#3955]) -> [PASS][30]
->    [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12640/shard-rkl-3/igt@kms_fbcon_fbt@psr-suspend.html
->    [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113370v1/shard-rkl-6/igt@kms_fbcon_fbt@psr-suspend.html
-> 
->   * igt@kms_frontbuffer_tracking@fbc-1p-primscrn-spr-indfb-draw-mmap-gtt:
->     - {shard-rkl}:        [SKIP][31] ([i915#1849] / [i915#4098]) -> [PASS][32] +6 similar issues
->    [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12640/shard-rkl-3/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-spr-indfb-draw-mmap-gtt.html
->    [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113370v1/shard-rkl-6/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-spr-indfb-draw-mmap-gtt.html
-> 
->   * igt@kms_psr@basic:
->     - {shard-rkl}:        [SKIP][33] ([i915#1072]) -> [PASS][34]
->    [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12640/shard-rkl-3/igt@kms_psr@basic.html
->    [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113370v1/shard-rkl-6/igt@kms_psr@basic.html
-> 
->   * igt@perf_pmu@idle@rcs0:
->     - {shard-rkl}:        [FAIL][35] ([i915#4349]) -> [PASS][36]
->    [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12640/shard-rkl-6/igt@perf_pmu@idle@rcs0.html
->    [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113370v1/shard-rkl-3/igt@perf_pmu@idle@rcs0.html
-> 
->   
->   {name}: This element is suppressed. This means it is ignored when computing
->           the status of the difference (SUCCESS, WARNING, or FAILURE).
-> 
->   [fdo#109274]: https://bugs.freedesktop.org/show_bug.cgi?id=109274
->   [fdo#109280]: https://bugs.freedesktop.org/show_bug.cgi?id=109280
->   [fdo#109283]: https://bugs.freedesktop.org/show_bug.cgi?id=109283
->   [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
->   [fdo#109289]: https://bugs.freedesktop.org/show_bug.cgi?id=109289
->   [fdo#109291]: https://bugs.freedesktop.org/show_bug.cgi?id=109291
->   [fdo#109302]: https://bugs.freedesktop.org/show_bug.cgi?id=109302
->   [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
->   [fdo#109506]: https://bugs.freedesktop.org/show_bug.cgi?id=109506
->   [fdo#109642]: https://bugs.freedesktop.org/show_bug.cgi?id=109642
->   [fdo#110189]: https://bugs.freedesktop.org/show_bug.cgi?id=110189
->   [fdo#110723]: https://bugs.freedesktop.org/show_bug.cgi?id=110723
->   [fdo#111068]: https://bugs.freedesktop.org/show_bug.cgi?id=111068
->   [fdo#111614]: https://bugs.freedesktop.org/show_bug.cgi?id=111614
->   [fdo#111615]: https://bugs.freedesktop.org/show_bug.cgi?id=111615
->   [fdo#111644]: https://bugs.freedesktop.org/show_bug.cgi?id=111644
->   [fdo#111825]: https://bugs.freedesktop.org/show_bug.cgi?id=111825
->   [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
->   [fdo#112054]: https://bugs.freedesktop.org/show_bug.cgi?id=112054
->   [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
->   [i915#1257]: https://gitlab.freedesktop.org/drm/intel/issues/1257
->   [i915#132]: https://gitlab.freedesktop.org/drm/intel/issues/132
->   [i915#1397]: https://gitlab.freedesktop.org/drm/intel/issues/1397
->   [i915#1755]: https://gitlab.freedesktop.org/drm/intel/issues/1755
->   [i915#1825]: https://gitlab.freedesktop.org/drm/intel/issues/1825
->   [i915#1839]: https://gitlab.freedesktop.org/drm/intel/issues/1839
->   [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
->   [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
->   [i915#1850]: https://gitlab.freedesktop.org/drm/intel/issues/1850
->   [i915#2346]: https://gitlab.freedesktop.org/drm/intel/issues/2346
->   [i915#2433]: https://gitlab.freedesktop.org/drm/intel/issues/2433
->   [i915#2437]: https://gitlab.freedesktop.org/drm/intel/issues/2437
->   [i915#2527]: https://gitlab.freedesktop.org/drm/intel/issues/2527
->   [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
->   [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
->   [i915#2587]: https://gitlab.freedesktop.org/drm/intel/issues/2587
->   [i915#2672]: https://gitlab.freedesktop.org/drm/intel/issues/2672
->   [i915#2705]: https://gitlab.freedesktop.org/drm/intel/issues/2705
->   [i915#284]: https://gitlab.freedesktop.org/drm/intel/issues/284
->   [i915#2842]: https://gitlab.freedesktop.org/drm/intel/issues/2842
->   [i915#2846]: https://gitlab.freedesktop.org/drm/intel/issues/2846
->   [i915#2856]: https://gitlab.freedesktop.org/drm/intel/issues/2856
->   [i915#2920]: https://gitlab.freedesktop.org/drm/intel/issues/2920
->   [i915#315]: https://gitlab.freedesktop.org/drm/intel/issues/315
->   [i915#3281]: https://gitlab.freedesktop.org/drm/intel/issues/3281
->   [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
->   [i915#3297]: https://gitlab.freedesktop.org/drm/intel/issues/3297
->   [i915#3299]: https://gitlab.freedesktop.org/drm/intel/issues/3299
->   [i915#3359]: https://gitlab.freedesktop.org/drm/intel/issues/3359
->   [i915#3458]: https://gitlab.freedesktop.org/drm/intel/issues/3458
->   [i915#3469]: https://gitlab.freedesktop.org/drm/intel/issues/3469
->   [i915#3528]: https://gitlab.freedesktop.org/drm/intel/issues/3528
->   [i915#3539]: https://gitlab.freedesktop.org/drm/intel/issues/3539
->   [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
->   [i915#3547]: https://gitlab.freedesktop.org/drm/intel/issues/3547
->   [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
->   [i915#3558]: https://gitlab.freedesktop.org/drm/intel/issues/3558
->   [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
->   [i915#3638]: https://gitlab.freedesktop.org/drm/intel/issues/3638
->   [i915#3689]: https://gitlab.freedesktop.org/drm/intel/issues/3689
->   [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
->   [i915#3734]: https://gitlab.freedesktop.org/drm/intel/issues/3734
->   [i915#3742]: https://gitlab.freedesktop.org/drm/intel/issues/3742
->   [i915#3840]: https://gitlab.freedesktop.org/drm/intel/issues/3840
->   [i915#3886]: https://gitlab.freedesktop.org/drm/intel/issues/3886
->   [i915#3955]: https://gitlab.freedesktop.org/drm/intel/issues/3955
->   [i915#404]: https://gitlab.freedesktop.org/drm/intel/issues/404
->   [i915#4070]: https://gitlab.freedesktop.org/drm/intel/issues/4070
->   [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
->   [i915#4078]: https://gitlab.freedesktop.org/drm/intel/issues/4078
->   [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
->   [i915#4098]: https://gitlab.freedesktop.org/drm/intel/issues/4098
->   [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
->   [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
->   [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
->   [i915#4270]: https://gitlab.freedesktop.org/drm/intel/issues/4270
->   [i915#4281]: https://gitlab.freedesktop.org/drm/intel/issues/4281
->   [i915#4349]: https://gitlab.freedesktop.org/drm/intel/issues/4349
->   [i915#4387]: https://gitlab.freedesktop.org/drm/intel/issues/4387
->   [i915#4538]: https://gitlab.freedesktop.org/drm/intel/issues/4538
->   [i915#4565]: https://gitlab.freedesktop.org/drm/intel/issues/4565
->   [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
->   [i915#4771]: https://gitlab.freedesktop.org/drm/intel/issues/4771
->   [i915#4812]: https://gitlab.freedesktop.org/drm/intel/issues/4812
->   [i915#4833]: https://gitlab.freedesktop.org/drm/intel/issues/4833
->   [i915#4852]: https://gitlab.freedesktop.org/drm/intel/issues/4852
->   [i915#4859]: https://gitlab.freedesktop.org/drm/intel/issues/4859
->   [i915#4860]: https://gitlab.freedesktop.org/drm/intel/issues/4860
->   [i915#4881]: https://gitlab.freedesktop.org/drm/intel/issues/4881
->   [i915#5176]: https://gitlab.freedesktop.org/drm/intel/issues/5176
->   [i915#5235]: https://gitlab.freedesktop.org/drm/intel/issues/5235
->   [i915#5286]: https://gitlab.freedesktop.org/drm/intel/issues/5286
->   [i915#5288]: https://gitlab.freedesktop.org/drm/intel/issues/5288
->   [i915#5289]: https://gitlab.freedesktop.org/drm/intel/issues/5289
->   [i915#5325]: https://gitlab.freedesktop.org/drm/intel/issues/5325
->   [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
->   [i915#5439]: https://gitlab.freedesktop.org/drm/intel/issues/5439
->   [i915#5563]: https://gitlab.freedesktop.org/drm/intel/issues/5563
->   [i915#5784]: https://gitlab.freedesktop.org/drm/intel/issues/5784
->   [i915#6016]: https://gitlab.freedesktop.org/drm/intel/issues/6016
->   [i915#6095]: https://gitlab.freedesktop.org/drm/intel/issues/6095
->   [i915#6117]: https://gitlab.freedesktop.org/drm/intel/issues/6117
->   [i915#6230]: https://gitlab.freedesktop.org/drm/intel/issues/6230
->   [i915#6248]: https://gitlab.freedesktop.org/drm/intel/issues/6248
->   [i915#6258]: https://gitlab.freedesktop.org/drm/intel/issues/6258
->   [i915#6268]: https://gitlab.freedesktop.org/drm/intel/issues/6268
->   [i915#6301]: https://gitlab.freedesktop.org/drm/intel/issues/6301
->   [i915#6334]: https://gitlab.freedesktop.org/drm/intel/issues/6334
->   [i915#6335]: https://gitlab.freedesktop.org/drm/intel/issues/6335
->   [i915#6433]: https://gitlab.freedesktop.org/drm/intel/issues/6433
->   [i915#6497]: https://gitlab.freedesktop.org/drm/intel/issues/6497
->   [i915#6524]: https://gitlab.freedesktop.org/drm/intel/issues/6524
->   [i915#658]: https://gitlab.freedesktop.org/drm/intel/issues/658
->   [i915#6590]: https://gitlab.freedesktop.org/drm/intel/issues/6590
->   [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
->   [i915#6768]: https://gitlab.freedesktop.org/drm/intel/issues/6768
->   [i915#6944]: https://gitlab.freedesktop.org/drm/intel/issues/6944
->   [i915#6946]: https://gitlab.freedesktop.org/drm/intel/issues/6946
->   [i915#7037]: https://gitlab.freedesktop.org/drm/intel/issues/7037
->   [i915#7052]: https://gitlab.freedesktop.org/drm/intel/issues/7052
->   [i915#7116]: https://gitlab.freedesktop.org/drm/intel/issues/7116
->   [i915#7118]: https://gitlab.freedesktop.org/drm/intel/issues/7118
->   [i915#7128]: https://gitlab.freedesktop.org/drm/intel/issues/7128
->   [i915#7294]: https://gitlab.freedesktop.org/drm/intel/issues/7294
->   [i915#7443]: https://gitlab.freedesktop.org/drm/intel/issues/7443
->   [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
->   [i915#7651]: https://gitlab.freedesktop.org/drm/intel/issues/7651
->   [i915#7697]: https://gitlab.freedesktop.org/drm/intel/issues/7697
->   [i915#7701]: https://gitlab.freedesktop.org/drm/intel/issues/7701
->   [i915#7707]: https://gitlab.freedesktop.org/drm/intel/issues/7707
->   [i915#7711]: https://gitlab.freedesktop.org/drm/intel/issues/7711
->   [i915#7742]: https://gitlab.freedesktop.org/drm/intel/issues/7742
->   [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
->   [i915#7949]: https://gitlab.freedesktop.org/drm/intel/issues/7949
-> 
-> 
-> Build changes
-> -------------
-> 
->   * Linux: CI_DRM_12640 -> Patchwork_113370v1
->   * Piglit: piglit_4509 -> None
-> 
->   CI-20190529: 20190529
->   CI_DRM_12640: cc7783f223ac644092bb8788f0750fc5c68aa00e @ git://anongit.freedesktop.org/gfx-ci/linux
->   IGT_7136: 31b6af91747ad8c705399c9006cdb81cb1864146 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
->   Patchwork_113370v1: cc7783f223ac644092bb8788f0750fc5c68aa00e @ git://anongit.freedesktop.org/gfx-ci/linux
->   piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-> 
-> == Logs ==
-> 
-> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113370v1/index.html
+> > 
+> > 
+> > Matt
+> > 
+> > > > message helpers so as to get the GT index in the prints.
+> > > 
+> > > Conversion looks good to me and on balance it's better to include the origin
+> > > in logs even for messages which strictly are not GT related, than not to
+> > > have the origin at all (intel_de_... helpers, I *think*).
+> > > 
+> > > Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > > 
+> > > I'll just add Jani and Matt in case they have a different opinion.
+> > > 
+> > > Regards,
+> > > 
+> > > Tvrtko
+> > > 
+> > > > Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> > > > ---
+> > > >    drivers/gpu/drm/i915/intel_uncore.c | 133 +++++++++++++---------------
+> > > >    1 file changed, 63 insertions(+), 70 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
+> > > > index 8dee9e62a73ee..4e357477c6592 100644
+> > > > --- a/drivers/gpu/drm/i915/intel_uncore.c
+> > > > +++ b/drivers/gpu/drm/i915/intel_uncore.c
+> > > > @@ -25,6 +25,7 @@
+> > > >    #include <linux/pm_runtime.h>
+> > > >    #include "gt/intel_engine_regs.h"
+> > > > +#include "gt/intel_gt_print.h"
+> > > >    #include "gt/intel_gt_regs.h"
+> > > >    #include "i915_drv.h"
+> > > > @@ -83,8 +84,7 @@ static void mmio_debug_resume(struct intel_uncore *uncore)
+> > > >    		uncore->debug->unclaimed_mmio_check = uncore->debug->saved_mmio_check;
+> > > >    	if (check_for_unclaimed_mmio(uncore))
+> > > > -		drm_info(&uncore->i915->drm,
+> > > > -			 "Invalid mmio detected during user access\n");
+> > > > +		gt_info(uncore->gt, "Invalid mmio detected during user access\n");
+> > > >    	spin_unlock(&uncore->debug->lock);
+> > > >    }
+> > > > @@ -179,9 +179,9 @@ static inline void
+> > > >    fw_domain_wait_ack_clear(const struct intel_uncore_forcewake_domain *d)
+> > > >    {
+> > > >    	if (wait_ack_clear(d, FORCEWAKE_KERNEL)) {
+> > > > -		drm_err(&d->uncore->i915->drm,
+> > > > -			"%s: timed out waiting for forcewake ack to clear.\n",
+> > > > -			intel_uncore_forcewake_domain_to_str(d->id));
+> > > > +		gt_err(d->uncore->gt,
+> > > > +		       "%s: timed out waiting for forcewake ack to clear.\n",
+> > > > +		       intel_uncore_forcewake_domain_to_str(d->id));
+> > > >    		add_taint_for_CI(d->uncore->i915, TAINT_WARN); /* CI now unreliable */
+> > > >    	}
+> > > >    }
+> > > > @@ -228,12 +228,11 @@ fw_domain_wait_ack_with_fallback(const struct intel_uncore_forcewake_domain *d,
+> > > >    		fw_clear(d, FORCEWAKE_KERNEL_FALLBACK);
+> > > >    	} while (!ack_detected && pass++ < 10);
+> > > > -	drm_dbg(&d->uncore->i915->drm,
+> > > > -		"%s had to use fallback to %s ack, 0x%x (passes %u)\n",
+> > > > -		intel_uncore_forcewake_domain_to_str(d->id),
+> > > > -		type == ACK_SET ? "set" : "clear",
+> > > > -		fw_ack(d),
+> > > > -		pass);
+> > > > +	gt_dbg(d->uncore->gt, "%s had to use fallback to %s ack, 0x%x (passes %u)\n",
+> > > > +	       intel_uncore_forcewake_domain_to_str(d->id),
+> > > > +	       type == ACK_SET ? "set" : "clear",
+> > > > +	       fw_ack(d),
+> > > > +	       pass);
+> > > >    	return ack_detected ? 0 : -ETIMEDOUT;
+> > > >    }
+> > > > @@ -258,9 +257,8 @@ static inline void
+> > > >    fw_domain_wait_ack_set(const struct intel_uncore_forcewake_domain *d)
+> > > >    {
+> > > >    	if (wait_ack_set(d, FORCEWAKE_KERNEL)) {
+> > > > -		drm_err(&d->uncore->i915->drm,
+> > > > -			"%s: timed out waiting for forcewake ack request.\n",
+> > > > -			intel_uncore_forcewake_domain_to_str(d->id));
+> > > > +		gt_err(d->uncore->gt, "%s: timed out waiting for forcewake ack request.\n",
+> > > > +		       intel_uncore_forcewake_domain_to_str(d->id));
+> > > >    		add_taint_for_CI(d->uncore->i915, TAINT_WARN); /* CI now unreliable */
+> > > >    	}
+> > > >    }
+> > > > @@ -366,9 +364,9 @@ static void __gen6_gt_wait_for_thread_c0(struct intel_uncore *uncore)
+> > > >    	 * w/a for a sporadic read returning 0 by waiting for the GT
+> > > >    	 * thread to wake up.
+> > > >    	 */
+> > > > -	drm_WARN_ONCE(&uncore->i915->drm,
+> > > > -		      wait_for_atomic_us(gt_thread_status(uncore) == 0, 5000),
+> > > > -		      "GT thread status wait timed out\n");
+> > > > +	gt_WARN_ONCE(uncore->gt,
+> > > > +		     wait_for_atomic_us(gt_thread_status(uncore) == 0, 5000),
+> > > > +		     "GT thread status wait timed out\n");
+> > > >    }
+> > > >    static void fw_domains_get_with_thread_status(struct intel_uncore *uncore,
+> > > > @@ -402,8 +400,7 @@ static void __gen6_gt_wait_for_fifo(struct intel_uncore *uncore)
+> > > >    		if (wait_for_atomic((n = fifo_free_entries(uncore)) >
+> > > >    				    GT_FIFO_NUM_RESERVED_ENTRIES,
+> > > >    				    GT_FIFO_TIMEOUT_MS)) {
+> > > > -			drm_dbg(&uncore->i915->drm,
+> > > > -				"GT_FIFO timeout, entries: %u\n", n);
+> > > > +			gt_dbg(uncore->gt, "GT_FIFO timeout, entries: %u\n", n);
+> > > >    			return;
+> > > >    		}
+> > > >    	}
+> > > > @@ -476,7 +473,7 @@ intel_uncore_forcewake_reset(struct intel_uncore *uncore)
+> > > >    			break;
+> > > >    		if (--retry_count == 0) {
+> > > > -			drm_err(&uncore->i915->drm, "Timed out waiting for forcewake timers to finish\n");
+> > > > +			gt_err(uncore->gt, "Timed out waiting for forcewake timers to finish\n");
+> > > >    			break;
+> > > >    		}
+> > > > @@ -484,7 +481,7 @@ intel_uncore_forcewake_reset(struct intel_uncore *uncore)
+> > > >    		cond_resched();
+> > > >    	}
+> > > > -	drm_WARN_ON(&uncore->i915->drm, active_domains);
+> > > > +	gt_WARN_ON(uncore->gt, active_domains);
+> > > >    	fw = uncore->fw_domains_active;
+> > > >    	if (fw)
+> > > > @@ -520,8 +517,7 @@ fpga_check_for_unclaimed_mmio(struct intel_uncore *uncore)
+> > > >    	 * to recognize when MMIO accesses are just busted.
+> > > >    	 */
+> > > >    	if (unlikely(dbg == ~0))
+> > > > -		drm_err(&uncore->i915->drm,
+> > > > -			"Lost access to MMIO BAR; all registers now read back as 0xFFFFFFFF!\n");
+> > > > +		gt_err(uncore->gt, "Lost access to MMIO BAR; all registers now read back as 0xFFFFFFFF!\n");
+> > > >    	__raw_uncore_write32(uncore, FPGA_DBG, FPGA_DBG_RM_NOCLAIM);
+> > > > @@ -550,7 +546,7 @@ gen6_check_for_fifo_debug(struct intel_uncore *uncore)
+> > > >    	fifodbg = __raw_uncore_read32(uncore, GTFIFODBG);
+> > > >    	if (unlikely(fifodbg)) {
+> > > > -		drm_dbg(&uncore->i915->drm, "GTFIFODBG = 0x08%x\n", fifodbg);
+> > > > +		gt_dbg(uncore->gt, "GTFIFODBG = 0x08%x\n", fifodbg);
+> > > >    		__raw_uncore_write32(uncore, GTFIFODBG, fifodbg);
+> > > >    	}
+> > > > @@ -622,7 +618,7 @@ void intel_uncore_resume_early(struct intel_uncore *uncore)
+> > > >    	unsigned int restore_forcewake;
+> > > >    	if (intel_uncore_unclaimed_mmio(uncore))
+> > > > -		drm_dbg(&uncore->i915->drm, "unclaimed mmio detected on resume, clearing\n");
+> > > > +		gt_dbg(uncore->gt, "unclaimed mmio detected on resume, clearing\n");
+> > > >    	if (!intel_uncore_has_forcewake(uncore))
+> > > >    		return;
+> > > > @@ -847,9 +843,9 @@ void assert_forcewakes_inactive(struct intel_uncore *uncore)
+> > > >    	if (!uncore->fw_get_funcs)
+> > > >    		return;
+> > > > -	drm_WARN(&uncore->i915->drm, uncore->fw_domains_active,
+> > > > -		 "Expected all fw_domains to be inactive, but %08x are still on\n",
+> > > > -		 uncore->fw_domains_active);
+> > > > +	gt_WARN(uncore->gt, uncore->fw_domains_active,
+> > > > +		"Expected all fw_domains to be inactive, but %08x are still on\n",
+> > > > +		uncore->fw_domains_active);
+> > > >    }
+> > > >    void assert_forcewakes_active(struct intel_uncore *uncore,
+> > > > @@ -869,9 +865,9 @@ void assert_forcewakes_active(struct intel_uncore *uncore,
+> > > >    	assert_rpm_wakelock_held(uncore->rpm);
+> > > >    	fw_domains &= uncore->fw_domains;
+> > > > -	drm_WARN(&uncore->i915->drm, fw_domains & ~uncore->fw_domains_active,
+> > > > -		 "Expected %08x fw_domains to be active, but %08x are off\n",
+> > > > -		 fw_domains, fw_domains & ~uncore->fw_domains_active);
+> > > > +	gt_WARN(uncore->gt, fw_domains & ~uncore->fw_domains_active,
+> > > > +		"Expected %08x fw_domains to be active, but %08x are off\n",
+> > > > +		fw_domains, fw_domains & ~uncore->fw_domains_active);
+> > > >    	/*
+> > > >    	 * Check that the caller has an explicit wakeref and we don't mistake
+> > > > @@ -884,9 +880,9 @@ void assert_forcewakes_active(struct intel_uncore *uncore,
+> > > >    		if (uncore->fw_domains_timer & domain->mask)
+> > > >    			expect++; /* pending automatic release */
+> > > > -		if (drm_WARN(&uncore->i915->drm, actual < expect,
+> > > > -			     "Expected domain %d to be held awake by caller, count=%d\n",
+> > > > -			     domain->id, actual))
+> > > > +		if (gt_WARN(uncore->gt, actual < expect,
+> > > > +			    "Expected domain %d to be held awake by caller, count=%d\n",
+> > > > +			    domain->id, actual))
+> > > >    			break;
+> > > >    	}
+> > > > @@ -955,9 +951,9 @@ find_fw_domain(struct intel_uncore *uncore, u32 offset)
+> > > >    	if (entry->domains == FORCEWAKE_ALL)
+> > > >    		return uncore->fw_domains;
+> > > > -	drm_WARN(&uncore->i915->drm, entry->domains & ~uncore->fw_domains,
+> > > > -		 "Uninitialized forcewake domain(s) 0x%x accessed at 0x%x\n",
+> > > > -		 entry->domains & ~uncore->fw_domains, offset);
+> > > > +	gt_WARN(uncore->gt, entry->domains & ~uncore->fw_domains,
+> > > > +		"Uninitialized forcewake domain(s) 0x%x accessed at 0x%x\n",
+> > > > +		entry->domains & ~uncore->fw_domains, offset);
+> > > >    	return entry->domains;
+> > > >    }
+> > > > @@ -1190,7 +1186,7 @@ static int mmio_range_cmp(u32 key, const struct i915_range *range)
+> > > >    static bool is_shadowed(struct intel_uncore *uncore, u32 offset)
+> > > >    {
+> > > > -	if (drm_WARN_ON(&uncore->i915->drm, !uncore->shadowed_reg_table))
+> > > > +	if (gt_WARN_ON(uncore->gt, !uncore->shadowed_reg_table))
+> > > >    		return false;
+> > > >    	if (IS_GSI_REG(offset))
+> > > > @@ -1898,11 +1894,11 @@ __unclaimed_reg_debug(struct intel_uncore *uncore,
+> > > >    		      const i915_reg_t reg,
+> > > >    		      const bool read)
+> > > >    {
+> > > > -	if (drm_WARN(&uncore->i915->drm,
+> > > > -		     check_for_unclaimed_mmio(uncore),
+> > > > -		     "Unclaimed %s register 0x%x\n",
+> > > > -		     read ? "read from" : "write to",
+> > > > -		     i915_mmio_reg_offset(reg)))
+> > > > +	if (gt_WARN(uncore->gt,
+> > > > +		    check_for_unclaimed_mmio(uncore),
+> > > > +		    "Unclaimed %s register 0x%x\n",
+> > > > +		    read ? "read from" : "write to",
+> > > > +		    i915_mmio_reg_offset(reg)))
+> > > >    		/* Only report the first N failures */
+> > > >    		uncore->i915->params.mmio_debug--;
+> > > >    }
+> > > > @@ -1913,10 +1909,10 @@ __unclaimed_previous_reg_debug(struct intel_uncore *uncore,
+> > > >    			       const bool read)
+> > > >    {
+> > > >    	if (check_for_unclaimed_mmio(uncore))
+> > > > -		drm_dbg(&uncore->i915->drm,
+> > > > -			"Unclaimed access detected before %s register 0x%x\n",
+> > > > -			read ? "read from" : "write to",
+> > > > -			i915_mmio_reg_offset(reg));
+> > > > +		gt_dbg(uncore->gt,
+> > > > +		       "Unclaimed access detected before %s register 0x%x\n",
+> > > > +		       read ? "read from" : "write to",
+> > > > +		       i915_mmio_reg_offset(reg));
+> > > >    }
+> > > >    static inline void
+> > > > @@ -2201,8 +2197,8 @@ static int __fw_domain_init(struct intel_uncore *uncore,
+> > > >    	if (!d)
+> > > >    		return -ENOMEM;
+> > > > -	drm_WARN_ON(&uncore->i915->drm, !i915_mmio_reg_valid(reg_set));
+> > > > -	drm_WARN_ON(&uncore->i915->drm, !i915_mmio_reg_valid(reg_ack));
+> > > > +	gt_WARN_ON(uncore->gt, !i915_mmio_reg_valid(reg_set));
+> > > > +	gt_WARN_ON(uncore->gt, !i915_mmio_reg_valid(reg_ack));
+> > > >    	d->uncore = uncore;
+> > > >    	d->wake_count = 0;
+> > > > @@ -2254,8 +2250,8 @@ static void fw_domain_fini(struct intel_uncore *uncore,
+> > > >    		return;
+> > > >    	uncore->fw_domains &= ~BIT(domain_id);
+> > > > -	drm_WARN_ON(&uncore->i915->drm, d->wake_count);
+> > > > -	drm_WARN_ON(&uncore->i915->drm, hrtimer_cancel(&d->timer));
+> > > > +	gt_WARN_ON(uncore->gt, d->wake_count);
+> > > > +	gt_WARN_ON(uncore->gt, hrtimer_cancel(&d->timer));
+> > > >    	kfree(d);
+> > > >    }
+> > > > @@ -2388,8 +2384,8 @@ static int intel_uncore_fw_domains_init(struct intel_uncore *uncore)
+> > > >    		spin_unlock_irq(&uncore->lock);
+> > > >    		if (!(ecobus & FORCEWAKE_MT_ENABLE)) {
+> > > > -			drm_info(&i915->drm, "No MT forcewake available on Ivybridge, this can result in issues\n");
+> > > > -			drm_info(&i915->drm, "when using vblank-synced partial screen updates.\n");
+> > > > +			gt_info(uncore->gt, "No MT forcewake available on Ivybridge, this can result in issues\n");
+> > > > +			gt_info(uncore->gt, "when using vblank-synced partial screen updates.\n");
+> > > >    			fw_domain_fini(uncore, FW_DOMAIN_ID_RENDER);
+> > > >    			fw_domain_init(uncore, FW_DOMAIN_ID_RENDER,
+> > > >    				       FORCEWAKE, FORCEWAKE_ACK);
+> > > > @@ -2403,7 +2399,7 @@ static int intel_uncore_fw_domains_init(struct intel_uncore *uncore)
+> > > >    #undef fw_domain_init
+> > > >    	/* All future platforms are expected to require complex power gating */
+> > > > -	drm_WARN_ON(&i915->drm, !ret && uncore->fw_domains == 0);
+> > > > +	gt_WARN_ON(uncore->gt, !ret && uncore->fw_domains == 0);
+> > > >    out:
+> > > >    	if (ret)
+> > > > @@ -2487,7 +2483,7 @@ int intel_uncore_setup_mmio(struct intel_uncore *uncore, phys_addr_t phys_addr)
+> > > >    	uncore->regs = ioremap(phys_addr, mmio_size);
+> > > >    	if (uncore->regs == NULL) {
+> > > > -		drm_err(&i915->drm, "failed to map registers\n");
+> > > > +		gt_err(uncore->gt, "failed to map registers\n");
+> > > >    		return -EIO;
+> > > >    	}
+> > > > @@ -2615,7 +2611,7 @@ int intel_uncore_init_mmio(struct intel_uncore *uncore)
+> > > >    	 */
+> > > >    	if (IS_DGFX(i915) &&
+> > > >    	    !(__raw_uncore_read32(uncore, GU_CNTL) & LMEM_INIT)) {
+> > > > -		drm_err(&i915->drm, "LMEM not initialized by firmware\n");
+> > > > +		gt_err(uncore->gt, "LMEM not initialized by firmware\n");
+> > > >    		return -ENODEV;
+> > > >    	}
+> > > > @@ -2646,7 +2642,7 @@ int intel_uncore_init_mmio(struct intel_uncore *uncore)
+> > > >    	/* clear out unclaimed reg detection bit */
+> > > >    	if (intel_uncore_unclaimed_mmio(uncore))
+> > > > -		drm_dbg(&i915->drm, "unclaimed mmio detected on uncore init, clearing\n");
+> > > > +		gt_dbg(uncore->gt, "unclaimed mmio detected on uncore init, clearing\n");
+> > > >    	return 0;
+> > > >    }
+> > > > @@ -2721,11 +2717,10 @@ void intel_uncore_prune_engine_fw_domains(struct intel_uncore *uncore,
+> > > >     */
+> > > >    static void driver_initiated_flr(struct intel_uncore *uncore)
+> > > >    {
+> > > > -	struct drm_i915_private *i915 = uncore->i915;
+> > > >    	const unsigned int flr_timeout_ms = 3000; /* specs recommend a 3s wait */
+> > > >    	int ret;
+> > > > -	drm_dbg(&i915->drm, "Triggering Driver-FLR\n");
+> > > > +	gt_dbg(uncore->gt, "Triggering Driver-FLR\n");
+> > > >    	/*
+> > > >    	 * Make sure any pending FLR requests have cleared by waiting for the
+> > > > @@ -2738,9 +2733,7 @@ static void driver_initiated_flr(struct intel_uncore *uncore)
+> > > >    	 */
+> > > >    	ret = intel_wait_for_register_fw(uncore, GU_CNTL, DRIVERFLR, 0, flr_timeout_ms);
+> > > >    	if (ret) {
+> > > > -		drm_err(&i915->drm,
+> > > > -			"Failed to wait for Driver-FLR bit to clear! %d\n",
+> > > > -			ret);
+> > > > +		gt_err(uncore->gt, "Failed to wait for Driver-FLR bit to clear! %d\n", ret);
+> > > >    		return;
+> > > >    	}
+> > > >    	intel_uncore_write_fw(uncore, GU_DEBUG, DRIVERFLR_STATUS);
+> > > > @@ -2752,7 +2745,7 @@ static void driver_initiated_flr(struct intel_uncore *uncore)
+> > > >    					 DRIVERFLR_STATUS, DRIVERFLR_STATUS,
+> > > >    					 flr_timeout_ms);
+> > > >    	if (ret) {
+> > > > -		drm_err(&i915->drm, "wait for Driver-FLR completion failed! %d\n", ret);
+> > > > +		gt_err(uncore->gt, "wait for Driver-FLR completion failed! %d\n", ret);
+> > > >    		return;
+> > > >    	}
+> > > > @@ -2911,7 +2904,7 @@ intel_uncore_arm_unclaimed_mmio_detection(struct intel_uncore *uncore)
+> > > >    {
+> > > >    	bool ret = false;
+> > > > -	if (drm_WARN_ON(&uncore->i915->drm, !uncore->debug))
+> > > > +	if (gt_WARN_ON(uncore->gt, !uncore->debug))
+> > > >    		return false;
+> > > >    	spin_lock_irq(&uncore->debug->lock);
+> > > > @@ -2921,10 +2914,10 @@ intel_uncore_arm_unclaimed_mmio_detection(struct intel_uncore *uncore)
+> > > >    	if (unlikely(check_for_unclaimed_mmio(uncore))) {
+> > > >    		if (!uncore->i915->params.mmio_debug) {
+> > > > -			drm_dbg(&uncore->i915->drm,
+> > > > -				"Unclaimed register detected, "
+> > > > -				"enabling oneshot unclaimed register reporting. "
+> > > > -				"Please use i915.mmio_debug=N for more information.\n");
+> > > > +			gt_dbg(uncore->gt,
+> > > > +			       "Unclaimed register detected, "
+> > > > +			       "enabling oneshot unclaimed register reporting. "
+> > > > +			       "Please use i915.mmio_debug=N for more information.\n");
+> > > >    			uncore->i915->params.mmio_debug++;
+> > > >    		}
+> > > >    		uncore->debug->unclaimed_mmio_check--;
+> > > > @@ -2957,7 +2950,7 @@ intel_uncore_forcewake_for_reg(struct intel_uncore *uncore,
+> > > >    {
+> > > >    	enum forcewake_domains fw_domains = 0;
+> > > > -	drm_WARN_ON(&uncore->i915->drm, !op);
+> > > > +	gt_WARN_ON(uncore->gt, !op);
+> > > >    	if (!intel_uncore_has_forcewake(uncore))
+> > > >    		return 0;
+> > > > @@ -2968,7 +2961,7 @@ intel_uncore_forcewake_for_reg(struct intel_uncore *uncore,
+> > > >    	if (op & FW_REG_WRITE)
+> > > >    		fw_domains |= uncore->funcs.write_fw_domains(uncore, reg);
+> > > > -	drm_WARN_ON(&uncore->i915->drm, fw_domains & ~uncore->fw_domains);
+> > > > +	gt_WARN_ON(uncore->gt, fw_domains & ~uncore->fw_domains);
+> > > >    	return fw_domains;
+> > > >    }
+> > 
 
 -- 
 Matt Roper
