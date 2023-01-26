@@ -2,58 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F071E67D0F7
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Jan 2023 17:10:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5008C67D0FE
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Jan 2023 17:10:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDFE110E2A9;
-	Thu, 26 Jan 2023 16:10:14 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id B24F710E2AA;
+	Thu, 26 Jan 2023 16:10:54 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78F2810E2A9;
- Thu, 26 Jan 2023 16:10:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A716D10E2AA;
+ Thu, 26 Jan 2023 16:10:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674749412; x=1706285412;
+ t=1674749453; x=1706285453;
  h=message-id:date:mime-version:subject:to:references:from:
  in-reply-to:content-transfer-encoding;
- bh=ymvl7XgNxLur99uc1LCBR08n+wpKzSOZwd35jY0IRe4=;
- b=CrmcsHNI9AyuSlG7RYfWnTcKah2MRAlEsx7d9L9fMs8wJx5Mba/2+upP
- EzYXBQIEIXYZnrBV+ZjLSuiQVELastYCeyndXq33Pz+ItCYK9tFSbEhy6
- /l8ooe4XlR6T10ESPLteSEAnzF9zEI0AturcE9IWimJ6S5RsFAsFhSDlO
- tNnG2Hep2VS2opggyGbPUIq41eNQuc9oC9KRvwD7ny9zWqcyl5pohnI6q
- EsN//9KxGJnsg4LIJPYUOnRvV6LyJwgFkbZtP3VNMJ1x8a/Q9sLbKN7XO
- 2JlRdG8QqBT5i5rxRXkQajuI077fA5F4cWhgoMW3ET6+Bk3ZovKeUUMAl g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="328955940"
-X-IronPort-AV: E=Sophos;i="5.97,248,1669104000"; d="scan'208";a="328955940"
+ bh=0gmP2385FKSh9N9MDwTZ2zw+jKcDMB81kY1Oc8aquGM=;
+ b=kG7mxLOWLla/nuTk9geOPW/0rHzBFSpVIAL9IL/0Oxj6WLX0Cj7pmjlM
+ TA+nuGuhf2ZCALdkVl7DCHm9ZxyNu76CDu1rDMpqA1To9JF7KCewKGo0L
+ 8WDczFckXBJ9Oi90LRxJd3xb50M5QiyfWvir5w5KSU6UyeZDHNIi8TriL
+ 2/Jh33lCTGCAQOVUCYIUwWgHCbamPJQ5XC2im98P1fjMTnWbSD+xWWIwR
+ wIE/EmlZ60M4Csrrl2MBAmBNjwFYtcr3Yjg41SaIIVauvWbnpMi+4UCeJ
+ V23xXtz1wyHDX3+YwG6c7VF4yYTLXVVLDc3jqkYMhoOLdCU4ivoaJPG+4 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="328956400"
+X-IronPort-AV: E=Sophos;i="5.97,248,1669104000"; d="scan'208";a="328956400"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2023 08:09:33 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="662910677"
-X-IronPort-AV: E=Sophos;i="5.97,248,1669104000"; d="scan'208";a="662910677"
+ 26 Jan 2023 08:10:40 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="662910918"
+X-IronPort-AV: E=Sophos;i="5.97,248,1669104000"; d="scan'208";a="662910918"
 Received: from kbrennan-mobl.ger.corp.intel.com (HELO [10.213.233.58])
  ([10.213.233.58])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2023 08:09:32 -0800
-Message-ID: <e3b0efd8-7e4a-9bdf-4725-128c4637e806@linux.intel.com>
-Date: Thu, 26 Jan 2023 16:09:29 +0000
+ 26 Jan 2023 08:10:39 -0800
+Message-ID: <ec09497f-f3fb-a34b-d6a4-c9763a7ba385@linux.intel.com>
+Date: Thu, 26 Jan 2023 16:10:37 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
 Content-Language: en-US
 To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- igt-dev@lists.freedesktop.org, Intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+ igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
+ Eero Tamminen <eero.t.tamminen@intel.com>
 References: <20230112174730.1101192-1-tvrtko.ursulin@linux.intel.com>
- <20230112174730.1101192-2-tvrtko.ursulin@linux.intel.com>
- <20230126153938.3iotcb52eawnwbcl@kamilkon-desk1>
+ <20230112174730.1101192-3-tvrtko.ursulin@linux.intel.com>
+ <20230126154124.hlcokp3b62d3ncvv@kamilkon-desk1>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <20230126153938.3iotcb52eawnwbcl@kamilkon-desk1>
+In-Reply-To: <20230126154124.hlcokp3b62d3ncvv@kamilkon-desk1>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 1/4] intel_gpu_top: Fix man
- page formatting
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 2/4] intel_gpu_top:
+ Automatically enclose JSON output into brackets
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,58 +71,71 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 26/01/2023 15:39, Kamil Konieczny wrote:
-> On 2023-01-12 at 17:47:27 +0000, Tvrtko Ursulin wrote:
+On 26/01/2023 15:41, Kamil Konieczny wrote:
+> On 2023-01-12 at 17:47:28 +0000, Tvrtko Ursulin wrote:
 >> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 >>
->> New lines are not respected when rst2man generates the page so try to work
->> around that by followin advice from the Internet.
+>> Parsers need the whole output enclosed into square brackets so every
+>> period sample becomes an array element.
+>>
+>> So far we have been suggesting this in the man page but we can trivially
+>> make the tool output that itself.
 >>
 >> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>> Cc: Eero Tamminen <eero.t.tamminen@intel.com>
 > 
 > Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
 
-Thanks! Later I noticed there is one more thing which currently renders 
-badly, this line:
-
-   -o <file path | ->
-
-Are you okay with re-review if I can fix that one too and respin?
+Disclaimer with this one is that I am not really sure if it is a good 
+idea. How people might use the JSON output and if this helps or harms 
+them I mean, I have no idea.
 
 Regards,
 
 Tvrtko
 
 >> ---
->>   man/intel_gpu_top.rst | 15 ++++++++-------
->>   1 file changed, 8 insertions(+), 7 deletions(-)
+>>   man/intel_gpu_top.rst | 2 +-
+>>   tools/intel_gpu_top.c | 6 ++++++
+>>   2 files changed, 7 insertions(+), 1 deletion(-)
 >>
 >> diff --git a/man/intel_gpu_top.rst b/man/intel_gpu_top.rst
->> index 748c7740c800..b0c95446a011 100644
+>> index b0c95446a011..3317e04816b4 100644
 >> --- a/man/intel_gpu_top.rst
 >> +++ b/man/intel_gpu_top.rst
->> @@ -53,13 +53,14 @@ RUNTIME CONTROL
+>> @@ -85,7 +85,7 @@ Filter types: ::
+>>   JSON OUTPUT
+>>   ===========
 >>   
->>   Supported keys:
+>> -To parse the JSON as output by the tool the consumer should wrap its entirety into square brackets ([ ]). This will make each sample point a JSON array element and will avoid "Multiple root elements" JSON validation error.
+>> +JSON output will be correctly terminated when the tool cleanly exits, otherwise one square bracket needs to be added before parsing.
 >>   
->> -    'q'    Exit from the tool.
->> -    'h'    Show interactive help.
->> -    '1'    Toggle between aggregated engine class and physical engine mode.
->> -    'n'    Toggle display of numeric client busyness overlay.
->> -    's'    Toggle between sort modes (runtime, total runtime, pid, client id).
->> -    'i'    Toggle display of clients which used no GPU time.
->> -    'H'    Toggle between per PID aggregation and individual clients.
->> +|
->> +|    'q'    Exit from the tool.
->> +|    'h'    Show interactive help.
->> +|    '1'    Toggle between aggregated engine class and physical engine mode.
->> +|    'n'    Toggle display of numeric client busyness overlay.
->> +|    's'    Toggle between sort modes (runtime, total runtime, pid, client id).
->> +|    'i'    Toggle display of clients which used no GPU time.
->> +|    'H'    Toggle between per PID aggregation and individual clients.
+>>   LIMITATIONS
+>>   ===========
+>> diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
+>> index 6de8a164fcff..c4d98de4fe31 100644
+>> --- a/tools/intel_gpu_top.c
+>> +++ b/tools/intel_gpu_top.c
+>> @@ -2597,6 +2597,9 @@ int main(int argc, char **argv)
+>>   	scan_clients(clients, false);
+>>   	codename = igt_device_get_pretty_name(&card, false);
 >>   
->>   DEVICE SELECTION
->>   ================
+>> +	if (output_mode == JSON)
+>> +		printf("[\n");
+>> +
+>>   	while (!stop_top) {
+>>   		struct clients *disp_clients;
+>>   		bool consumed = false;
+>> @@ -2683,6 +2686,9 @@ int main(int argc, char **argv)
+>>   			usleep(period_us);
+>>   	}
+>>   
+>> +	if (output_mode == JSON)
+>> +		printf("]\n");
+>> +
+>>   	if (clients)
+>>   		free_clients(clients);
+>>   
 >> -- 
 >> 2.34.1
 >>
