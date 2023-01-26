@@ -2,67 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30F6367D280
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Jan 2023 18:04:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A166F67D2B5
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Jan 2023 18:09:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2836810E949;
-	Thu, 26 Jan 2023 17:04:14 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com
- [IPv6:2607:f8b0:4864:20::52b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C608A10E2A5;
- Thu, 26 Jan 2023 17:04:11 +0000 (UTC)
-Received: by mail-pg1-x52b.google.com with SMTP id 78so1454971pgb.8;
- Thu, 26 Jan 2023 09:04:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:sender
- :from:to:cc:subject:date:message-id:reply-to;
- bh=2N5z7vm8wkipXchVo2DX0B/FIOfj1plPYH1BFui3jhE=;
- b=mT9+Y3uCrH/JgDR2rhlOog9/pF0Z2rxmXzu5MO7j8fBMR2bN/n7cXByNjpiUUFc1W1
- RaH0re/D97GeOb/sT4rwsrokz5YzDD9hsZ7BFTiV5qiXH4ar/yWa44IV3MUhMWaKO9XB
- zZZnOEPSzPTEK24UoQVOtdr/6MgDHTK6wQFKG1pwV/ZDiyBiQlUxjLoYsJ8Xw69DKkid
- ZjEq7NBwnlX5WnA9fSdQVXmdjrqXmab4/ksW01BSZWaczVBkAZTTeitU/kChCxObBz3T
- BSdl3jxXAtOoL4WoLqPjve1xQ+aPDBbn1ePQFmrJAFbI8mo37z/GXSdb4FtKAOHiUFc3
- lXYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:sender
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=2N5z7vm8wkipXchVo2DX0B/FIOfj1plPYH1BFui3jhE=;
- b=vo6DhAl9KeGm+/7QyuG82+N+GL4zVxj/ze+ygfktKHJ34q8AyOsKrcJRA/Cct47GHM
- cRa4VyBe0sZpsHd2jgNU7tceucMuuX2wgeNaybWm6OSGkA01UP+aqGsGUPbOeKfHpcTq
- ox05m+NxDrD3KhP6w8P94GbPPBxMrPGKlOCGdDbCpL+VtaOBSy9bkFUqyaMPKfB9/NQw
- D40xCxXvirKdtUCIOvWDhRWiihfwkS8hroAJiDfT4NG71PVmMs3wvweOZxQgx7rKRyMP
- wX9fI49NOAqPgMuHdcGzseoXx4qGPKEisDLkL9kFOuoo97RB0AnStn0L3qRbhAh84CzZ
- YihA==
-X-Gm-Message-State: AO0yUKVjyrtPvUCPGG8HBRCedc6xOE/qdr9fNQA4fo4NCL4OwVdIgWpk
- M+2tN9mGub+H5z0BqWj3+Pg=
-X-Google-Smtp-Source: AK7set+OW19QX5gTvgZenLJimvmTD3xOJbHM7+LP8ZqA5b+N+DbMNuh7Ccw2hBkQZN9Qq61TVLNzYw==
-X-Received: by 2002:aa7:9564:0:b0:590:72de:db46 with SMTP id
- x4-20020aa79564000000b0059072dedb46mr4171243pfq.13.1674752650779; 
- Thu, 26 Jan 2023 09:04:10 -0800 (PST)
-Received: from localhost ([2600:380:777f:b8fa:53b6:287e:1c75:589c])
- by smtp.gmail.com with ESMTPSA id
- cw19-20020a056a00451300b0058e23ca0de3sm1081441pfb.82.2023.01.26.09.04.09
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 26 Jan 2023 09:04:10 -0800 (PST)
-Date: Thu, 26 Jan 2023 07:04:08 -1000
-From: Tejun Heo <tj@kernel.org>
-To: Michal =?iso-8859-1?Q?Koutn=FD?= <mkoutny@suse.com>
-Message-ID: <Y9KyiCPYj2Mzym3Z@slm.duckdns.org>
-References: <20230112165609.1083270-1-tvrtko.ursulin@linux.intel.com>
- <20230123154239.GA24348@blackbody.suse.cz>
- <371f3ce5-3468-b91d-d688-7e89499ff347@linux.intel.com>
- <20230126130050.GA22442@blackbody.suse.cz>
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF49010E94A;
+	Thu, 26 Jan 2023 17:09:12 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8888810E949
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Jan 2023 17:09:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1674752950; x=1706288950;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ycXB6gq93NYGW2VMFhOcwHZiCyrzqYHV7jaPpYSZAkw=;
+ b=GhEqp/FjEEKbCPpqcupXhGehJoPe+XmyY0X54+8NF+Vd7hO/QU2Gr8Pf
+ f9o+6cyABI+gphqLQfvTf8nNGQx84uUKGSAgx7UBwJwVrbiJPpJE0nc3C
+ T0E+0FRrsw/ukgNCfFQ8EX7D0fbgBwTSawyLn1nuArrJ5g5Sp+Le/h7KQ
+ IE0GHY4hmvAt22sRJFcZ/Ku28jfpOF9rBYjNbyGr8vFV8nx/839TDql0X
+ +4cv2o2wF+4JgXyremqv1QNh3BMzi6oGqcQaZdNZA48y0hQDC7CFjB9sY
+ rhIfsoVqHFJHnVl4LDbHco3E6S0ZcS8ayBe6IjZl89PRGkM/smAR8C4Az Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="325547357"
+X-IronPort-AV: E=Sophos;i="5.97,249,1669104000"; d="scan'208";a="325547357"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2023 09:08:15 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="751642446"
+X-IronPort-AV: E=Sophos;i="5.97,249,1669104000"; d="scan'208";a="751642446"
+Received: from lab-ah.igk.intel.com ([10.102.42.211])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2023 09:08:13 -0800
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 26 Jan 2023 18:08:01 +0100
+Message-Id: <20230126170801.3954784-1-andrzej.hajda@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230126130050.GA22442@blackbody.suse.cz>
-Subject: Re: [Intel-gfx] [RFC v3 00/12] DRM scheduling cgroup controller
+Subject: [Intel-gfx] [PATCH v3] drm/i915/gt: Add selftests for TLB
+ invalidation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,84 +58,464 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>, Kenny.Ho@amd.com,
- Dave Airlie <airlied@redhat.com>,
- =?iso-8859-1?Q?St=E9phane?= Marchesin <marcheu@chromium.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, Intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>,
- cgroups@vger.kernel.org, "T . J . Mercier" <tjmercier@google.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello,
+From: Chris Wilson <chris@chris-wilson.co.uk>
 
-On Thu, Jan 26, 2023 at 02:00:50PM +0100, Michal Koutný wrote:
-> On Wed, Jan 25, 2023 at 06:11:35PM +0000, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
-> > I don't immediately see how you envisage the half-userspace implementation
-> > would look like in terms of what functionality/new APIs would be provided by
-> > the kernel?
-> 
-> Output:
-> 	drm.stat (with consumed time(s))
-> 
-> Input:
-> 	drm.throttle (alternatives)
-> 	- a) writing 0,1 (in rough analogy to your proposed
-> 	     notifications)
-> 	- b) writing duration (in loose analogy to memory.reclaim)
-> 	     - for how long GPU work should be backed off
-> 
-> An userspace agent sitting between these two and it'd do the measurement
-> and calculation depending on given policies (weighting, throttling) and
-> apply respective controls.
-> 
-> (In resemblance of e.g. https://denji.github.io/cpulimit/)
+Check that we invalidate the TLB cache, the updated physical addresses
+are immediately visible to the HW, and there is no retention of the old
+physical address for concurrent HW access.
 
-Yeah, things like this can be done from userspace but if we're gonna build
-the infrastructure to allow that in gpu drivers and so on, I don't see why
-we wouldn't add a generic in-kernel control layer if we can implement a
-proper weight based control. We can of course also expose .max style
-interface to allow userspace to do whatever they wanna do with it.
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+[ahajda: adjust to upstream driver, v2+]
+Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+---
+v2:
+    - addressed comments (Tvrtko),
+    - changed pin/sample address calculation,
+    - removed checks for platforms older than 8,
+    - use low ints in MI_DO_COMPARE to be more clear,
+    - continue test if physical addresses have the same uppper 32 bits,
+    - consolidate two calls to pte_tlbinv into one
+v3:
+    - skip pages not supported by vm (CI reported EINVAL),
+    - fix dw size in MI_CONDITIONAL_BATCH_BUFFER_END for gen8 (CI reported EIO),
+    - remove aggressive allocation to get different upper halves of physical
+      address (CI reported OOM).
+---
+ drivers/gpu/drm/i915/gt/intel_gpu_commands.h  |   1 +
+ drivers/gpu/drm/i915/gt/intel_gt.c            |   4 +
+ drivers/gpu/drm/i915/gt/selftest_tlb.c        | 380 ++++++++++++++++++
+ .../drm/i915/selftests/i915_live_selftests.h  |   1 +
+ 4 files changed, 386 insertions(+)
+ create mode 100644 drivers/gpu/drm/i915/gt/selftest_tlb.c
 
-> > Problem there is to find a suitable point to charge at. If for a moment we
-> > limit the discussion to i915, out of the box we could having charging
-> > happening at several thousand times per second to effectively never. This is
-> > to illustrate the GPU context execution dynamics which range from many small
-> > packets of work to multi-minute, or longer. For the latter to be accounted
-> > for we'd still need some periodic scanning, which would then perhaps go per
-> > driver. For the former we'd have thousands of needless updates per second.
-> > 
-> > Hence my thinking was to pay both the cost of accounting and collecting the
-> > usage data once per actionable event, where the latter is controlled by some
-> > reasonable scanning period/frequency.
-> > 
-> > In addition to that, a few DRM drivers already support GPU usage querying
-> > via fdinfo, so that being externally triggered, it is next to trivial to
-> > wire all those DRM drivers into such common DRM cgroup controller framework.
-> > All that every driver needs to implement on top is the "over budget"
-> > callback.
-> 
-> I'd also like show comparison with CPU accounting and controller.
-> There is tick-based (~sampling) measurement of various components of CPU
-> time (task_group_account_field()). But the actual schedulling (weights)
-> or throttling is based on precise accounting (update_curr()).
-> 
-> So, if the goal is to have precise and guaranteed limits, it shouldn't
-> (cannot) be based on sampling. OTOH, if it must be sampling based due to
-> variability of the device landscape, it could be advisory mechanism with
-> the userspace component.
-
-As for the specific control mechanism, yeah, charge based interface would be
-more conventional and my suspicion is that transposing the current
-implementation that way likely isn't too difficult. It just pushes "am I
-over the limit?" decisions to the specific drivers with the core layer
-telling them how much under/over budget they are. I'm curious what other gpu
-driver folks think about the current RFC tho. Is at least AMD on board with
-the approach?
-
-Thanks.
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+index 2af1ae3831df98..e10507fa71ce63 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
++++ b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+@@ -394,6 +394,7 @@
+ #define MI_LOAD_URB_MEM         MI_INSTR(0x2C, 0)
+ #define MI_STORE_URB_MEM        MI_INSTR(0x2D, 0)
+ #define MI_CONDITIONAL_BATCH_BUFFER_END MI_INSTR(0x36, 0)
++#define  MI_DO_COMPARE		REG_BIT(21)
+ 
+ #define STATE_BASE_ADDRESS \
+ 	((0x3 << 29) | (0x0 << 27) | (0x1 << 24) | (0x1 << 16))
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+index f0dbfc434e0773..001a7ec5b86182 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+@@ -1205,3 +1205,7 @@ void intel_gt_invalidate_tlb(struct intel_gt *gt, u32 seqno)
+ 		mutex_unlock(&gt->tlb.invalidate_lock);
+ 	}
+ }
++
++#if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
++#include "selftest_tlb.c"
++#endif
+diff --git a/drivers/gpu/drm/i915/gt/selftest_tlb.c b/drivers/gpu/drm/i915/gt/selftest_tlb.c
+new file mode 100644
+index 00000000000000..c93c384a69e79a
+--- /dev/null
++++ b/drivers/gpu/drm/i915/gt/selftest_tlb.c
+@@ -0,0 +1,380 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright Â© 2022 Intel Corporation
++ */
++
++#include "i915_selftest.h"
++
++#include "gem/i915_gem_internal.h"
++#include "gem/i915_gem_region.h"
++
++#include "gen8_engine_cs.h"
++#include "i915_gem_ww.h"
++#include "intel_engine_regs.h"
++#include "intel_gpu_commands.h"
++#include "intel_context.h"
++#include "intel_gt.h"
++#include "intel_ring.h"
++
++#include "selftests/igt_flush_test.h"
++#include "selftests/i915_random.h"
++
++static void clear_dw(struct i915_vma *vma, u64 addr, u32 val)
++{
++	GEM_BUG_ON(addr < i915_vma_offset(vma));
++	GEM_BUG_ON(addr >= i915_vma_offset(vma) + i915_vma_size(vma));
++	memset32(page_mask_bits(vma->obj->mm.mapping) +
++		 (addr - i915_vma_offset(vma)), val, 1);
++}
++
++static int
++pte_tlbinv(struct intel_context *ce,
++	   struct i915_vma *va,
++	   struct i915_vma *vb,
++	   u64 align,
++	   void (*tlbinv)(struct i915_address_space *vm, u64 addr, u64 length),
++	   u64 length,
++	   struct rnd_state *prng)
++{
++	struct drm_i915_gem_object *batch;
++	struct i915_request *rq;
++	struct i915_vma *vma;
++	u32 dw_len;
++	u64 addr;
++	int err;
++	u32 *cs;
++
++	batch = i915_gem_object_create_internal(ce->vm->i915, 4096);
++	if (IS_ERR(batch))
++		return PTR_ERR(batch);
++
++	vma = i915_vma_instance(batch, ce->vm, NULL);
++	if (IS_ERR(vma)) {
++		err = PTR_ERR(vma);
++		goto out;
++	}
++
++	err = i915_vma_pin(vma, 0, 0, PIN_USER);
++	if (err)
++		goto out;
++
++	/* Pin va at random but aligned offset after vma */
++	addr = round_up(vma->node.start + vma->node.size, align);
++	/* MI_CONDITIONAL_BATCH_BUFFER_END limits address to 48b */
++	addr = igt_random_offset(prng, addr, min(ce->vm->total, BIT_ULL(48)),
++				 va->size, align);
++	err = i915_vma_pin(va,  0, 0, addr | PIN_OFFSET_FIXED | PIN_USER);
++	if (err) {
++		pr_err("Cannot pin at %llx+%llx\n", addr, va->size);
++		goto out;
++	}
++	GEM_BUG_ON(i915_vma_offset(va) != addr);
++	vb->node = va->node; /* overwrites the _same_ PTE  */
++
++	/*
++	 * Now choose random dword at the 1st pinned page.
++	 *
++	 * SZ_64K pages on dg1 require that the whole PT be marked
++	 * containing 64KiB entries. So we make sure that vma
++	 * covers the whole PT, despite being randomly aligned to 64KiB
++	 * and restrict our sampling to the 2MiB PT within where
++	 * we know that we will be using 64KiB pages.
++	 */
++	if (align == SZ_64K)
++		addr = round_up(addr, SZ_2M) + igt_random_offset(prng, 0, SZ_2M, 4, 4);
++	else
++		addr += igt_random_offset(prng, 0, align, 4, 4);
++
++	pr_info("%s(%s): Sampling %llx, with alignment %llx, using PTE size %x (phys %x, sg %x), invalidate:%llx+%llx\n",
++		ce->engine->name, va->obj->mm.region->name ?: "smem",
++		addr, align, va->resource->page_sizes_gtt, va->page_sizes.phys,
++		va->page_sizes.sg, addr & -length, length);
++
++	cs = i915_gem_object_pin_map_unlocked(batch, I915_MAP_WC);
++	*cs++ = MI_NOOP; /* for later termination */
++	if (GRAPHICS_VER(ce->vm->i915) == 8 &&
++	    (ce->engine->class == VIDEO_DECODE_CLASS ||
++	     ce->engine->class == VIDEO_ENHANCEMENT_CLASS))
++		dw_len = 1;
++	else
++		dw_len = 2;
++	/* Sample the target to see if we spot an incorrect page */
++	*cs++ = MI_CONDITIONAL_BATCH_BUFFER_END | MI_DO_COMPARE | dw_len;
++	*cs++ = 1; /* break if *addr <= 1 */
++	*cs++ = lower_32_bits(addr);
++	*cs++ = upper_32_bits(addr);
++	clear_dw(va, addr, 2);
++	clear_dw(vb, addr, 1);
++
++	/* Keep sampling until we get bored */
++	*cs++ = MI_BATCH_BUFFER_START | BIT(8) | 1;
++	*cs++ = lower_32_bits(i915_vma_offset(vma));
++	*cs++ = upper_32_bits(i915_vma_offset(vma));
++
++	i915_gem_object_flush_map(batch);
++
++	rq = i915_request_create(ce);
++	if (IS_ERR(rq)) {
++		err = PTR_ERR(rq);
++		goto out_va;
++	}
++
++	err = rq->engine->emit_bb_start(rq, i915_vma_offset(vma), 0, 0);
++	if (err) {
++		i915_request_add(rq);
++		goto out_va;
++	}
++
++	i915_request_get(rq);
++	i915_request_add(rq);
++
++	/* Short sleep to sanitycheck the batch is spinning before we begin */
++	msleep(10);
++	if (va == vb) {
++		if (!i915_request_completed(rq)) {
++			pr_err("Semaphore sanitycheck failed\n");
++			err = -EIO;
++		}
++	} else if (!i915_request_completed(rq)) {
++		struct i915_vma_resource vb_res = {
++			.bi.pages = vb->obj->mm.pages,
++			.bi.page_sizes = vb->obj->mm.page_sizes,
++			.start = i915_vma_offset(vb),
++			.vma_size = i915_vma_size(vb)
++		};
++		unsigned int pte_flags = 0;
++
++		/* Flip the PTE between A and B */
++		if (i915_gem_object_is_lmem(vb->obj))
++			pte_flags |= PTE_LM;
++		ce->vm->insert_entries(ce->vm, &vb_res, 0, pte_flags);
++
++		/* Flush the PTE update to concurrent HW */
++		tlbinv(ce->vm, addr & -length, length);
++
++		if (wait_for(i915_request_completed(rq), HZ / 2)) {
++			pr_err("%s: Request did not complete; the COND_BBE did not read the updated PTE\n",
++			       ce->engine->name);
++			err = -EINVAL;
++		}
++	} else {
++		pr_err("Spinner ended unexpectedly\n");
++		err = -EIO;
++	}
++	i915_request_put(rq);
++
++	cs = page_mask_bits(batch->mm.mapping);
++	*cs = MI_BATCH_BUFFER_END;
++	wmb();
++
++out_va:
++	if (vb != va)
++		memset(&vb->node, 0, sizeof(vb->node));
++	i915_vma_unpin(va);
++	if (i915_vma_unbind_unlocked(va))
++		err = -EIO;
++out:
++	i915_gem_object_put(batch);
++	return err;
++}
++
++static struct drm_i915_gem_object *create_lmem(struct intel_gt *gt)
++{
++	/*
++	 * Allocation of largest possible page size allows to test all types
++	 * of pages.
++	 */
++	return i915_gem_object_create_lmem(gt->i915, SZ_1G, I915_BO_ALLOC_CONTIGUOUS);
++}
++
++static struct drm_i915_gem_object *create_smem(struct intel_gt *gt)
++{
++	/*
++	 * SZ_64K pages require covering the whole 2M PT (gen8 to tgl/dg1).
++	 * While that does not require the whole 2M block to be contiguous
++	 * it is easier to make it so, since we need that for SZ_2M pagees.
++	 * Since we randomly offset the start of the vma, we need a 4M object
++	 * so that there is a 2M range within it is suitable for SZ_64K PTE.
++	 */
++	return i915_gem_object_create_internal(gt->i915, SZ_4M);
++}
++
++static int
++mem_tlbinv(struct intel_gt *gt,
++	   struct drm_i915_gem_object *(*create_fn)(struct intel_gt *),
++	   void (*tlbinv)(struct i915_address_space *vm, u64 addr, u64 length))
++{
++	unsigned int ppgtt_size = RUNTIME_INFO(gt->i915)->ppgtt_size;
++	struct intel_engine_cs *engine;
++	struct drm_i915_gem_object *A, *B;
++	struct i915_ppgtt *ppgtt;
++	struct i915_vma *va, *vb;
++	enum intel_engine_id id;
++	I915_RND_STATE(prng);
++	void *vaddr;
++	int err;
++
++	/*
++	 * Check that the TLB invalidate is able to revoke an active
++	 * page. We load a page into a spinning COND_BBE loop and then
++	 * remap that page to a new physical address. The old address, and
++	 * so the loop keeps spinning, is retained in the TLB cache until
++	 * we issue an invalidate.
++	 */
++
++	A = create_fn(gt);
++	if (IS_ERR(A))
++		return PTR_ERR(A);
++
++	vaddr = i915_gem_object_pin_map_unlocked(A, I915_MAP_WC);
++	if (IS_ERR(vaddr)) {
++		err = PTR_ERR(vaddr);
++		goto out_a;
++	}
++
++	B = create_fn(gt);
++	if (IS_ERR(B)) {
++		err = PTR_ERR(B);
++		goto out_a;
++	}
++
++	vaddr = i915_gem_object_pin_map_unlocked(B, I915_MAP_WC);
++	if (IS_ERR(vaddr)) {
++		err = PTR_ERR(vaddr);
++		goto out_b;
++	}
++
++	GEM_BUG_ON(A->base.size != B->base.size);
++	if ((A->mm.page_sizes.phys | B->mm.page_sizes.phys) & (A->base.size - 1))
++		pr_warn("Failed to allocate contiguous pages for size %zx\n",
++			A->base.size);
++
++	ppgtt = i915_ppgtt_create(gt, 0);
++	if (IS_ERR(ppgtt)) {
++		err = PTR_ERR(ppgtt);
++		goto out_b;
++	}
++
++	va = i915_vma_instance(A, &ppgtt->vm, NULL);
++	if (IS_ERR(va)) {
++		err = PTR_ERR(va);
++		goto out_vm;
++	}
++
++	vb = i915_vma_instance(B, &ppgtt->vm, NULL);
++	if (IS_ERR(vb)) {
++		err = PTR_ERR(vb);
++		goto out_vm;
++	}
++
++	err = 0;
++	for_each_engine(engine, gt, id) {
++		struct i915_gem_ww_ctx ww;
++		struct intel_context *ce;
++		int bit;
++
++		ce = intel_context_create(engine);
++		if (IS_ERR(ce)) {
++			err = PTR_ERR(ce);
++			break;
++		}
++
++		i915_vm_put(ce->vm);
++		ce->vm = i915_vm_get(&ppgtt->vm);
++
++		for_i915_gem_ww(&ww, err, true)
++			err = intel_context_pin_ww(ce, &ww);
++		if (err)
++			goto err_put;
++
++		for_each_set_bit(bit,
++				 (unsigned long *)&RUNTIME_INFO(gt->i915)->page_sizes,
++				 BITS_PER_TYPE(RUNTIME_INFO(gt->i915)->page_sizes)) {
++			unsigned int len;
++
++			if (BIT_ULL(bit) < i915_vm_obj_min_alignment(va->vm, va->obj))
++				continue;
++
++			/* sanitycheck the semaphore wake up */
++			err = pte_tlbinv(ce, va, va,
++					 BIT_ULL(bit),
++					 NULL, SZ_4K,
++					 &prng);
++			if (err)
++				goto err_unpin;
++
++			for (len = 2; len <= ppgtt_size; len = min(2 * len, ppgtt_size)) {
++				err = pte_tlbinv(ce, va, vb,
++						BIT_ULL(bit),
++						tlbinv,
++						BIT_ULL(len),
++						&prng);
++				if (err)
++					goto err_unpin;
++				if (len == ppgtt_size)
++					break;
++			}
++		}
++err_unpin:
++		intel_context_unpin(ce);
++err_put:
++		intel_context_put(ce);
++		if (err)
++			break;
++	}
++
++	if (igt_flush_test(gt->i915))
++		err = -EIO;
++
++out_vm:
++	i915_vm_put(&ppgtt->vm);
++out_b:
++	i915_gem_object_put(B);
++out_a:
++	i915_gem_object_put(A);
++	return err;
++}
++
++static void tlbinv_full(struct i915_address_space *vm, u64 addr, u64 length)
++{
++	intel_gt_invalidate_tlb(vm->gt, intel_gt_tlb_seqno(vm->gt) | 1);
++}
++
++static int invalidate_full(void *arg)
++{
++	struct intel_gt *gt = arg;
++	int err;
++
++	if (GRAPHICS_VER(gt->i915) < 8)
++		return 0; /* TLB invalidate not implemented */
++
++	err = mem_tlbinv(gt, create_smem, tlbinv_full);
++	if (err == 0)
++		err = mem_tlbinv(gt, create_lmem, tlbinv_full);
++	if (err == -ENODEV || err == -ENXIO)
++		err = 0;
++
++	return err;
++}
++
++int intel_tlb_live_selftests(struct drm_i915_private *i915)
++{
++	static const struct i915_subtest tests[] = {
++		SUBTEST(invalidate_full),
++	};
++	struct intel_gt *gt;
++	unsigned int i;
++
++	for_each_gt(gt, i915, i) {
++		int err;
++
++		if (intel_gt_is_wedged(gt))
++			continue;
++
++		err = intel_gt_live_subtests(tests, gt);
++		if (err)
++			return err;
++	}
++
++	return 0;
++}
+diff --git a/drivers/gpu/drm/i915/selftests/i915_live_selftests.h b/drivers/gpu/drm/i915/selftests/i915_live_selftests.h
+index aaf8a380e5c789..5aee6c9a8295ce 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_live_selftests.h
++++ b/drivers/gpu/drm/i915/selftests/i915_live_selftests.h
+@@ -25,6 +25,7 @@ selftest(gt_lrc, intel_lrc_live_selftests)
+ selftest(gt_mocs, intel_mocs_live_selftests)
+ selftest(gt_pm, intel_gt_pm_live_selftests)
+ selftest(gt_heartbeat, intel_heartbeat_live_selftests)
++selftest(gt_tlb, intel_tlb_live_selftests)
+ selftest(requests, i915_request_live_selftests)
+ selftest(migrate, intel_migrate_live_selftests)
+ selftest(active, i915_active_live_selftests)
 -- 
-tejun
+2.34.1
+
