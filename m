@@ -2,57 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A05F667E63C
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Jan 2023 14:11:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 526E567E6C5
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Jan 2023 14:32:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CAA010E16A;
-	Fri, 27 Jan 2023 13:11:30 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com
- [IPv6:2a00:1450:4864:20::132])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F78B10E16A;
- Fri, 27 Jan 2023 13:11:28 +0000 (UTC)
-Received: by mail-lf1-x132.google.com with SMTP id o20so8084745lfk.5;
- Fri, 27 Jan 2023 05:11:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=xa8fuIDat2gXfa/H2VJD3Xaca5PQBmunWwwCG+6vIA4=;
- b=Yiko1U5ABCg8a1qwW6xUgSmLkn8OAeGyY4KbnAkD3oAMCaqy/jhILlg25Uh0Exvb87
- Z2TG9enPYTyWLnFmy4aV1uq68JwfblrrK4Pk6r9nQjfhkXizneT83l0m7mwtkzx+lVfM
- 3RsfHiSxONe/UGRJaZSxTHTFyc0NbDAUqXj+BVX9r96DDSclg1UbUqVnCIGCoM12i8F5
- BosGt2yL7A5HtHwwOZFFngi+32p9jVut2xk6ZIJrwdlHSiMEzKfC2atqVnbVtyBD3VI/
- Zq7LOZpZQOPFrymURjJTemIlH58NiZe19NwivVFYVRSgQu7p0i2DQnP+tHzhadt9XDIm
- U/UQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=xa8fuIDat2gXfa/H2VJD3Xaca5PQBmunWwwCG+6vIA4=;
- b=O/ZnKPFf8GWgOhD3PgHUS3pYhl/jJsglwycd/Wm43sBFlr5K2lJjH5Z8MgpLG6K3fe
- fil2BiT6WwpEZHmHhD5nraP8MvcwcdghTEuCdxQaYVIK1ralClUdRVied6P+/zrnZhEb
- FQY6ZaMgz0BrofAOiEVoymlj4dZCMDKa/t4U+q61pG6Qa9ovexzeN/NHBC37QwYCF6tG
- ZyoH+PYC2zd/0m1pIBw60J+iGw//xcS4h0GtLxnqHl1WtDEAO9kiDDp+YyUJmjrHxwpA
- Z4iesxGfjvuYh01fZpr64S/Iuyx9t4Mp8x4286IMa/MrMi6vQONofcmpETKGFySQB9rR
- NNzA==
-X-Gm-Message-State: AFqh2kpldja2kl0g9WZ8+2TI3auhLHrGWCqJJMcRMftq3zZ5jXLhAAbk
- 1m+tiAPLa17lA4M+qC1wYQQjJSyENJlpd0ALERQ=
-X-Google-Smtp-Source: AMrXdXtBLJ23YU3AFovspc/v9x+h1nvPD/GqsPvtPPeFUEz2/QzyQ1iLpRUf5Ql53URMbj9KoireY6ZIC3lJBSw1C4Q=
-X-Received: by 2002:a05:6512:3450:b0:4b5:7dcb:161b with SMTP id
- j16-20020a056512345000b004b57dcb161bmr3385999lfr.74.1674825086317; Fri, 27
- Jan 2023 05:11:26 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A772C10E966;
+	Fri, 27 Jan 2023 13:32:03 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3257410E481;
+ Fri, 27 Jan 2023 13:32:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1674826321; x=1706362321;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=7mC15fOVSE6NegzxHk/BX7UWkKB1AkE7p5o74pyZvt0=;
+ b=gCVQ7KtkV3cgj2UdNi5Trtke8zPxH9t4eNE2Id2QCigoX6xLmwwpmQTN
+ DhHnw7Y5MTBOYZzn7j8M5zj22tcIoWOlr6zqQ7J8Y+CI0kzC1lUKo9KpP
+ rSYx92Qz8rkYXa6DGALky3/LAkrOwkJP7WHIsOTRUq1CC1YMo1Zl1kPVJ
+ 5XgsD3cmq3T6Y0QtK7Kel9bkyihr6O6fZx/1nIoGwsySUvDvgMlL/W/OV
+ nHOEgfYl/FE/ZimJANa+GS2FKS6SkqPyLkfUSN9lvj+OKy1QdJ31sGN7a
+ Yfh1hR/rcW/qHOIOeZkXSu9xYQvhrVSdkdQYHJcMypqzFISMXgwVaHCSa w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="325757619"
+X-IronPort-AV: E=Sophos;i="5.97,251,1669104000"; d="scan'208";a="325757619"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2023 05:32:00 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="731836563"
+X-IronPort-AV: E=Sophos;i="5.97,251,1669104000"; d="scan'208";a="731836563"
+Received: from jgeary-mobl1.ger.corp.intel.com (HELO [10.213.233.162])
+ ([10.213.233.162])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2023 05:31:56 -0800
+Message-ID: <a96e6b5c-b538-f7e7-d603-cabb29137de7@linux.intel.com>
+Date: Fri, 27 Jan 2023 13:31:54 +0000
 MIME-Version: 1.0
-References: <20230119173321.2825472-1-robdclark@gmail.com>
- <f24be4ca-edde-819a-5bcc-070e0d2e23d1@linux.intel.com>
-In-Reply-To: <f24be4ca-edde-819a-5bcc-070e0d2e23d1@linux.intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Fri, 27 Jan 2023 13:10:58 +0000
-Message-ID: <CAM0jSHMwbUHu4kH-Y7F956+Us=TiQLJm_7y+1JbGNDaD-2J8pA@mail.gmail.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Avoid potential vm use-after-free
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Content-Language: en-US
+To: =?UTF-8?Q?Michal_Koutn=c3=bd?= <mkoutny@suse.com>
+References: <20230112165609.1083270-1-tvrtko.ursulin@linux.intel.com>
+ <20230112165609.1083270-11-tvrtko.ursulin@linux.intel.com>
+ <20230127130134.GA15846@blackbody.suse.cz>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20230127130134.GA15846@blackbody.suse.cz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [RFC 10/12] cgroup/drm: Introduce weight based drm
+ cgroup control
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,82 +64,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- katrinzhou <katrinzhou@tencent.com>, intel-gfx@lists.freedesktop.org,
- open list <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>, Matthew Auld <matthew.auld@intel.com>,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>
+Cc: Rob Clark <robdclark@chromium.org>, Kenny.Ho@amd.com,
+ Dave Airlie <airlied@redhat.com>,
+ =?UTF-8?Q?St=c3=a9phane_Marchesin?= <marcheu@chromium.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, Intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>,
+ Tejun Heo <tj@kernel.org>, cgroups@vger.kernel.org,
+ "T . J . Mercier" <tjmercier@google.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 23 Jan 2023 at 16:57, Tvrtko Ursulin
-<tvrtko.ursulin@linux.intel.com> wrote:
->
->
-> + some more people based on e1a7ab4fca0c
->
-> On 19/01/2023 17:32, Rob Clark wrote:
-> > From: Rob Clark <robdclark@chromium.org>
-> >
-> > Adding the vm to the vm_xa table makes it visible to userspace, which
-> > could try to race with us to close the vm.  So we need to take our extra
-> > reference before putting it in the table.
-> >
-> > Signed-off-by: Rob Clark <robdclark@chromium.org>
-> > ---
-> > Note, you could list commit e1a7ab4fca0c ("drm/i915: Remove the vm open
-> > count") as the "fixed" commit, but really the issue seems to go back
-> > much further (with the fix needing some backporting in the process).
->
-> It would probably be rather essential to identify the correct Fixes: tag.
->
-> Since Thomas, Matt and Niranjana you were directly involved in the patch
-> which changed significantly how this works, perhaps there is something
-> still somewhat easily retrievable from your memory lanes to help with this?
 
-Sorry for the delay. Fix looks good to me,
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+On 27/01/2023 13:01, Michal Koutný wrote:
+> On Thu, Jan 12, 2023 at 04:56:07PM +0000, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
+>> +static int drmcs_can_attach(struct cgroup_taskset *tset)
+>> +{
+>> +	int ret;
+>> +
+>> +	/*
+>> +	 * As processes are getting moved between groups we need to ensure
+>> +	 * both that the old group does not see a sudden downward jump in the
+>> +	 * GPU utilisation, and that the new group does not see a sudden jump
+>> +	 * up with all the GPU time clients belonging to the migrated process
+>> +	 * have accumulated.
+>> +	 *
+>> +	 * To achieve that we suspend the scanner until the migration is
+>> +	 * completed where the resume at the end ensures both groups start
+>> +	 * observing GPU utilisation from a reset state.
+>> +	 */
+>> +
+>> +	ret = mutex_lock_interruptible(&drmcg_mutex);
+>> +	if (ret)
+>> +		return ret;
+>> +	start_suspend_scanning();
+>> +	mutex_unlock(&drmcg_mutex);
+>> +
+>> +	finish_suspend_scanning();
+> 
+> Here's scanning suspension, communicated via
+> 
+> 	root_drmcs.scanning_suspended = true;
+> 	root_drmcs.suspended_period_us = root_drmcs.period_us;
+> 	root_drmcs.period_us = 0;
+> 
+> but I don't see those used in scan_worker() and the scanning traversal
+> can apparently run concurrently with a task migration.
 
-Looking at the git history, the fixes tag I think needs to be:
+I think you missed the finish_suspend_scanning() part:
 
-Fixes: 9ec8795e7d91 ("drm/i915: Drop __rcu from gem_context->vm")
-Cc: <stable@vger.kernel.org> # v5.16+
+	if (root_drmcs.suspended_period_us)
+		cancel_delayed_work_sync(&root_drmcs.scan_work);
 
->
-> Regards,
->
-> Tvrtko
->
-> >
-> >   drivers/gpu/drm/i915/gem/i915_gem_context.c | 14 +++++++++++---
-> >   1 file changed, 11 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > index 6250de9b9196..e4b78ab4773b 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > @@ -1861,11 +1861,19 @@ static int get_ppgtt(struct drm_i915_file_private *file_priv,
-> >       vm = ctx->vm;
-> >       GEM_BUG_ON(!vm);
-> >
-> > +     /*
-> > +      * Get a reference for the allocated handle.  Once the handle is
-> > +      * visible in the vm_xa table, userspace could try to close it
-> > +      * from under our feet, so we need to hold the extra reference
-> > +      * first.
-> > +      */
-> > +     i915_vm_get(vm);
-> > +
-> >       err = xa_alloc(&file_priv->vm_xa, &id, vm, xa_limit_32b, GFP_KERNEL);
-> > -     if (err)
-> > +     if (err) {
-> > +             i915_vm_put(vm);
-> >               return err;
-> > -
-> > -     i915_vm_get(vm);
-> > +     }
-> >
-> >       GEM_BUG_ON(id == 0); /* reserved for invalid/unassigned ppgtt */
-> >       args->value = id;
+So if scanning was in progress migration will wait until it finishes. 
+And re-start only when migration is done (drmcs_attach), or it failed 
+(drmcs_cancel_attach).
+
+Not claiming I did not miss something because I was totally new with 
+cgroup internals when I started working on this. So it is definitely 
+useful to have more eyes looking.
+
+>> [...]
+>> +static bool
+>> +__start_scanning(struct drm_cgroup_state *root, unsigned int period_us)
+>> [...]
+>> +	css_for_each_descendant_post(node, &root->css) {
+>> [...]
+>> +		active = drmcs_get_active_time_us(drmcs);
+>> +		if (period_us && active > drmcs->prev_active_us)
+>> +			drmcs->active_us += active - drmcs->prev_active_us;
+>> +		drmcs->prev_active_us = active;
+> 
+> drmcs_get_active_time_us() could count a task's contribution here,
+> the task would migrate to a different drmcs,
+> and it'd be counted 2nd time.
+
+Lets see.. __start_scanning() can be called from the worker, so max one 
+instance at a time, no issue.
+
+Then from resume scanning, so it is guaranteed worker is not running and 
+can't restart since mutex guards the re-start.
+
+Finally from drmcs_write_period_us() - yes there __start_scanning() can 
+race with it being invoked by the worker - oops! However.. this is just 
+a debugging aid as the cover letter explains. This file is not intended 
+to be present in the final version, rather as per earlier discussion 
+with Tejun the idea is to only have boot time option to control the 
+functionality (enable/disable or period).
+
+I will nevertheless try to fix this race up for the next posting to 
+avoid further confusion!
+
+Regards,
+
+Tvrtko
