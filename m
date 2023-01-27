@@ -2,42 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41C9D687FF5
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 15:25:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC222688007
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 15:25:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 002B510E56D;
-	Thu,  2 Feb 2023 14:24:55 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-41104.protonmail.ch (mail-41104.protonmail.ch
- [185.70.41.104])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7408D10E98C
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Jan 2023 19:04:13 +0000 (UTC)
-Date: Thu, 26 Jan 2023 19:03:54 +0000
-Authentication-Results: mail-41104.protonmail.ch;
- dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com
- header.b="Cmzh5Mqw"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
- s=protonmail3; t=1674759847; x=1675019047;
- bh=zjTIE2oPy22V3XGKgrjTv72oEHVy+8aT7MHpLGiQuVU=;
- h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
- Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
- b=Cmzh5MqwvcEeLT+CRbw2yGhcOMhVV901gpkQPDJQaq41KqtGSKP0BKC4lAu+BuUe3
- q32DR4zJezSPb6sfTVWp9hqHJ4VTrtxYnwdnmsBY29I6pS77wSpJTkS+USaSY0UfvZ
- 1tXuFsOxHyevUqoMSb2E8yyggv3zTyfsa7BHXivSnPQbI6SLFssFt/orTRtKGBodxF
- 2PCXq/Q/CUNamGGsPJq+VFn9YmE3oYjcHYlcqSz9gXhKuaRKQ83Id7zHdNegwqqFuZ
- BF+iKVKb6CR7Oxaq53LSc93Sxchi/NmvoInMEy1Jo8bZY+XKOsQBX9okH/iRtDfGRB
- L058nJS9j9kKQ==
-To: intel-gfx@lists.freedesktop.org
-From: Mavroudis Chatzilaridis <mavchatz@protonmail.com>
-Message-ID: <20230126190330.131264-1-mavchatz@protonmail.com>
-Feedback-ID: 20039310:user:proton
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1519310E539;
+	Thu,  2 Feb 2023 14:25:35 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F009B10E2B8;
+ Fri, 27 Jan 2023 10:04:31 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id F0D7E201D2;
+ Fri, 27 Jan 2023 10:04:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+ t=1674813870; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=J2Yj6ff8IbmYEbxojhB+2vw+NfQJD3sa9mrK8gYDrlU=;
+ b=oSpjoRiphsPb9FjCgcMhy4VMAxtwPO7mmwnC1JnlR3dGohGzYh9aJWGao+j9UryNeC7RbJ
+ Q4Z9uPAqEzLwsc6JPhlq/lTGl9xZ1KiDkNWdbyrhh8DlJ2boPQYc6NV25oxAH15r7EcWn6
+ D3mX/jmvrHxA40e5tWuM6ITw4MR6uEA=
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id A2ADB138E3;
+ Fri, 27 Jan 2023 10:04:29 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id DBZ7Jq2h02NsLwAAMHmgww
+ (envelope-from <mkoutny@suse.com>); Fri, 27 Jan 2023 10:04:29 +0000
+Date: Fri, 27 Jan 2023 11:04:28 +0100
+From: Michal =?iso-8859-1?Q?Koutn=FD?= <mkoutny@suse.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <20230127100428.GA3527@blackbody.suse.cz>
+References: <20230112165609.1083270-1-tvrtko.ursulin@linux.intel.com>
+ <20230123154239.GA24348@blackbody.suse.cz>
+ <371f3ce5-3468-b91d-d688-7e89499ff347@linux.intel.com>
+ <20230126130050.GA22442@blackbody.suse.cz>
+ <Y9KyiCPYj2Mzym3Z@slm.duckdns.org>
+ <b8a0872c-fe86-b174-ca3b-0fc04a98e224@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Thu, 02 Feb 2023 14:24:10 +0000
-Subject: [Intel-gfx] [PATCH] drm/i915/quirks: Add inverted backlight quirk
- for HP 14-r206nv
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature"; boundary="ReaqsoxgOBHFXBhH"
+Content-Disposition: inline
+In-Reply-To: <b8a0872c-fe86-b174-ca3b-0fc04a98e224@linux.intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Mailman-Approved-At: Thu, 02 Feb 2023 14:24:11 +0000
+Subject: Re: [Intel-gfx] [RFC v3 00/12] DRM scheduling cgroup controller
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,33 +65,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Rob Clark <robdclark@chromium.org>, Kenny.Ho@amd.com,
+ Dave Airlie <airlied@redhat.com>,
+ =?iso-8859-1?Q?St=E9phane?= Marchesin <marcheu@chromium.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, Intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>,
+ Tejun Heo <tj@kernel.org>, cgroups@vger.kernel.org,
+ "T . J . Mercier" <tjmercier@google.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This laptop uses inverted backlight PWM. Thus, without this quirk,
-backlight brightness decreases as the brightness value increases and
-vice versa.
 
-Signed-off-by: Mavroudis Chatzilaridis <mavchatz@protonmail.com>
----
- drivers/gpu/drm/i915/display/intel_quirks.c | 2 ++
- 1 file changed, 2 insertions(+)
+--ReaqsoxgOBHFXBhH
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/=
-i915/display/intel_quirks.c
-index 6e48d3bcdfec..a280448df771 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.c
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.c
-@@ -199,6 +199,8 @@ static struct intel_quirk intel_quirks[] =3D {
- =09/* ECS Liva Q2 */
- =09{ 0x3185, 0x1019, 0xa94d, quirk_increase_ddi_disabled_time },
- =09{ 0x3184, 0x1019, 0xa94d, quirk_increase_ddi_disabled_time },
-+=09/* HP Notebook - 14-r206nv */
-+=09{ 0x0f31, 0x103c, 0x220f, quirk_invert_brightness },
- };
+On Thu, Jan 26, 2023 at 05:57:24PM +0000, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
+> So even if the RFC shows just a simple i915 implementation, the controller
+> itself shouldn't prevent a smarter approach (via exposed ABI).
 
- void intel_init_quirks(struct drm_i915_private *i915)
---
-2.34.1
+scan/query + over budget notification is IMO limited in guarantees.
 
+> [...]
+> Yes agreed, and to re-stress out, the ABI as proposed does not preclude
+> changing from scanning to charging or whatever. The idea was for it to be
+> compatible in concept with the CPU controller and also avoid baking in the
+> controlling method to individual drivers.
+> [...]
 
+But I submit to your point of rather not exposing this via cgroup API
+for possible future refinements.
+
+> Secondly, doing this in userspace would require the ability to get some sort
+> of an atomic snapshot of the whole tree hierarchy to account for changes in
+> layout of the tree and task migrations. Or some retry logic with some added
+> ABI fields to enable it.
+
+Note, that the proposed implementation is succeptible to miscount due to
+concurrent tree modifications and task migrations too (scanning may not
+converge under frequent cgroup layout modifications, and migrating tasks
+may be summed 0 or >1 times). While in-kernel implementation may assure
+the snapshot view, it'd come at cost. (Read: since the mechanism isn't
+precise anyway, I don't suggest a fully synchronized scanning.)
+
+Regards,
+Michal
+
+--ReaqsoxgOBHFXBhH
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYIAB0WIQTrXXag4J0QvXXBmkMkDQmsBEOquQUCY9OhlwAKCRAkDQmsBEOq
+ufYHAQCnD9btPT6J56fYnI1rsJHumK+TajFM5kqwWR6eIphScQD+NCFpWhvbh6n2
+F2dtfltgBBeFK/0OaFCJuhoi7uIPUQA=
+=ZjfL
+-----END PGP SIGNATURE-----
+
+--ReaqsoxgOBHFXBhH--
