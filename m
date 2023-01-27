@@ -2,58 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B4EB67EAA3
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Jan 2023 17:17:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3ECB067EAD1
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Jan 2023 17:24:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FF8210E9AB;
-	Fri, 27 Jan 2023 16:17:44 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D081F10E9AB;
- Fri, 27 Jan 2023 16:17:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674836262; x=1706372262;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=zlqIdmh5xbRVO9d9F4oxQ1Lc7X1l63kOrFw3REPZHgA=;
- b=ZhxM53jwMhN1BuH3FqTYkySFp+0QkUJAnLReGsvrsVOkc/rJ4Ho/+J7O
- HQxyPcYGhSO+dVfWACoPe1aaTrhKdabQWf7N7qBSTrLI535ff9dSYTf+Q
- oiFR3zJaGhE/67MT3MDvQEjdjaTm1H0d3bXdGhZbos6KO+/AOnj4AYPjK
- lgMmVGQtBWOsX/Y4iSci6ioRyoU6ybF2zXIhl9bh2CpKUbAoSUBC+g9lm
- 8kOodielG9sS6R1hPDqpOjiMgoo9tBqS3/xQxZTJ8ke2ZYvEmfq/C9GNh
- mwK6xp3lBaRva/vZCqg9i0sz7Cvb38a68QXpFFOwHcqF5vD75C0KHszC2 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10603"; a="325790411"
-X-IronPort-AV: E=Sophos;i="5.97,251,1669104000"; d="scan'208";a="325790411"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2023 08:17:28 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10603"; a="752033979"
-X-IronPort-AV: E=Sophos;i="5.97,251,1669104000"; d="scan'208";a="752033979"
-Received: from kwierzbi-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.213.2.161])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2023 08:17:26 -0800
-Date: Fri, 27 Jan 2023 17:17:27 +0100
-From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Message-ID: <20230127161727.oeyjjbt32jn27zgj@kamilkon-desk1>
-Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- igt-dev@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
- Petri Latvala <petri.latvala@intel.com>,
- Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>,
- Intel-gfx@lists.freedesktop.org
-References: <20230127111241.3624629-1-tvrtko.ursulin@linux.intel.com>
- <20230127111241.3624629-7-tvrtko.ursulin@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id AEEA810E18D;
+	Fri, 27 Jan 2023 16:24:39 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 54E0310E18D;
+ Fri, 27 Jan 2023 16:24:38 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4CC65AADE1;
+ Fri, 27 Jan 2023 16:24:38 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4268662555181449652=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230127111241.3624629-7-tvrtko.ursulin@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH i-g-t 6/6] lib/igt_device_scan: Improve
- Intel discrete GPU selection
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andrzej Hajda" <andrzej.hajda@intel.com>
+Date: Fri, 27 Jan 2023 16:24:38 -0000
+Message-ID: <167483667830.18993.14246446831614130587@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230127153003.2225111-1-andrzej.hajda@intel.com>
+In-Reply-To: <20230127153003.2225111-1-andrzej.hajda@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_implement_async=5Fflip_mode_per_plane_tracking_=28rev5?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,84 +41,207 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Tvrtko,
+--===============4268662555181449652==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 2023-01-27 at 11:12:41 +0000, Tvrtko Ursulin wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> Now that DRM subsystem can contain PCI cards with the vendor set to Intel
-> but they are not Intel GPUs, we need a better selection logic than looking
-> at the vendor. Use the driver name instead.
-> 
-> Caveat that the driver key was on a blacklist so far, and although I can't
-> imagine it can be slow to probe, this is something to double check.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-> Cc: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
+== Series Details ==
 
-Please send this as separate patch, not in this series.
+Series: drm/i915: implement async_flip mode per plane tracking (rev5)
+URL   : https://patchwork.freedesktop.org/series/108371/
+State : success
 
-> ---
->  lib/igt_device_scan.c | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
-> 
-> diff --git a/lib/igt_device_scan.c b/lib/igt_device_scan.c
-> index ed128d24dd10..8b767eed202d 100644
-> --- a/lib/igt_device_scan.c
-> +++ b/lib/igt_device_scan.c
-> @@ -237,6 +237,7 @@ struct igt_device {
->  	char *vendor;
->  	char *device;
->  	char *pci_slot_name;
-> +	char *driver;
->  	int gpu_index; /* For more than one GPU with same vendor and device. */
->  
->  	char *codename; /* For grouping by codename */
-> @@ -440,7 +441,6 @@ static bool is_on_blacklist(const char *what)
->  				      "resource3", "resource4", "resource5",
->  				      "resource0_wc", "resource1_wc", "resource2_wc",
->  				      "resource3_wc", "resource4_wc", "resource5_wc",
-> -				      "driver",
->  				      "uevent", NULL};
->  	const char *key;
->  	int i = 0;
-> @@ -662,6 +662,8 @@ static struct igt_device *igt_device_new_from_udev(struct udev_device *dev)
->  		get_pci_vendor_device(idev, &vendor, &device);
->  		idev->codename = __pci_codename(vendor, device);
->  		idev->dev_type = __pci_devtype(vendor, device, idev->pci_slot_name);
-> +		idev->driver = strdup_nullsafe(get_attr(idev, "driver"));
-> +		igt_assert(idev->driver);
->  	}
->  
->  	return idev;
-> @@ -776,7 +778,7 @@ static bool __find_first_i915_card(struct igt_device_card *card, bool discrete)
->  
->  	igt_list_for_each_entry(dev, &igt_devs.all, link) {
->  
-> -		if (!is_pci_subsystem(dev) || !is_vendor_matched(dev, "intel"))
-> +		if (!is_pci_subsystem(dev) || strcmp(dev->driver, "i915"))
+== Summary ==
 
-Put the comment here why it can be problematic to relay on driver name.
+CI Bug Log - changes from CI_DRM_12655 -> Patchwork_108371v5
+====================================================
 
-Regards,
-Kamil
+Summary
+-------
 
->  			continue;
->  
->  		cmp = strncmp(dev->pci_slot_name, INTEGRATED_I915_GPU_PCI_ID,
-> @@ -1023,6 +1025,7 @@ static void igt_device_free(struct igt_device *dev)
->  	free(dev->drm_render);
->  	free(dev->vendor);
->  	free(dev->device);
-> +	free(dev->driver);
->  	free(dev->pci_slot_name);
->  	g_hash_table_destroy(dev->attrs_ht);
->  	g_hash_table_destroy(dev->props_ht);
-> -- 
-> 2.34.1
-> 
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108371v5/index.html
+
+Participating hosts (25 -> 24)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_108371v5:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@gem_exec_suspend@basic-s0@smem:
+    - {bat-rpls-1}:       NOTRUN -> [ABORT][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108371v5/bat-rpls-1/igt@gem_exec_suspend@basic-s0@smem.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_108371v5 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-cfl-8109u:       [DMESG-FAIL][2] ([i915#5334]) -> [PASS][3]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12655/fi-cfl-8109u/igt@i915_selftest@live@gt_heartbeat.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108371v5/fi-cfl-8109u/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@requests:
+    - {bat-rpls-1}:       [ABORT][4] -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12655/bat-rpls-1/igt@i915_selftest@live@requests.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108371v5/bat-rpls-1/igt@i915_selftest@live@requests.html
+    - {bat-adlp-6}:       [ABORT][6] -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12655/bat-adlp-6/igt@i915_selftest@live@requests.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108371v5/bat-adlp-6/igt@i915_selftest@live@requests.html
+
+  * igt@i915_selftest@live@workarounds:
+    - {bat-rplp-1}:       [INCOMPLETE][8] -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12655/bat-rplp-1/igt@i915_selftest@live@workarounds.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108371v5/bat-rplp-1/igt@i915_selftest@live@workarounds.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#4258]: https://gitlab.freedesktop.org/drm/intel/issues/4258
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+  [i915#7852]: https://gitlab.freedesktop.org/drm/intel/issues/7852
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12655 -> Patchwork_108371v5
+
+  CI-20190529: 20190529
+  CI_DRM_12655: d9b0bc4a0e9edfcbf171e09d3743b7186cd801f7 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7139: 1e2fdea2a5547aba6d8595b7ac1c5e4543e90f2f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_108371v5: d9b0bc4a0e9edfcbf171e09d3743b7186cd801f7 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+367b64475e60 drm/i915: implement async_flip mode per plane tracking
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108371v5/index.html
+
+--===============4268662555181449652==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: implement async_flip mode per plane tracking (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/108371/">https://patchwork.freedesktop.org/series/108371/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108371v5/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108371v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12655 -&gt; Patchwork_108371v5</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108371v5/index.html</p>
+<h2>Participating hosts (25 -&gt; 24)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_108371v5:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@gem_exec_suspend@basic-s0@smem:<ul>
+<li>{bat-rpls-1}:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108371v5/bat-rpls-1/igt@gem_exec_suspend@basic-s0@smem.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_108371v5 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12655/fi-cfl-8109u/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108371v5/fi-cfl-8109u/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>
+<p>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12655/bat-rpls-1/igt@i915_selftest@live@requests.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108371v5/bat-rpls-1/igt@i915_selftest@live@requests.html">PASS</a></p>
+</li>
+<li>
+<p>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12655/bat-adlp-6/igt@i915_selftest@live@requests.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108371v5/bat-adlp-6/igt@i915_selftest@live@requests.html">PASS</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>{bat-rplp-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12655/bat-rplp-1/igt@i915_selftest@live@workarounds.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108371v5/bat-rplp-1/igt@i915_selftest@live@workarounds.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12655 -&gt; Patchwork_108371v5</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12655: d9b0bc4a0e9edfcbf171e09d3743b7186cd801f7 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7139: 1e2fdea2a5547aba6d8595b7ac1c5e4543e90f2f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_108371v5: d9b0bc4a0e9edfcbf171e09d3743b7186cd801f7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>367b64475e60 drm/i915: implement async_flip mode per plane tracking</p>
+
+</body>
+</html>
+
+--===============4268662555181449652==--
