@@ -1,53 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C18167EC82
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Jan 2023 18:33:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE8B167EC93
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Jan 2023 18:36:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEF1910E9B9;
-	Fri, 27 Jan 2023 17:33:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F4AD10E9BC;
+	Fri, 27 Jan 2023 17:36:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mailrelay1-1.pub.mailoutpod2-cph3.one.com
- (mailrelay1-1.pub.mailoutpod2-cph3.one.com [IPv6:2a02:2350:5:400::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C576910E9BA
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Jan 2023 17:33:10 +0000 (UTC)
+X-Greylist: delayed 160983 seconds by postgrey-1.36 at gabe;
+ Fri, 27 Jan 2023 17:36:23 UTC
+Received: from mailrelay3-1.pub.mailoutpod2-cph3.one.com
+ (mailrelay3-1.pub.mailoutpod2-cph3.one.com [46.30.211.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92CE210E9C0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Jan 2023 17:36:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ravnborg.org; s=rsa2;
  h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
  from:date:from;
- bh=3c3PSAeAVS44hPgNdwEqNOZLOf+JgUO0UlF9QWeiCn4=;
- b=WHqgcCH9V8CvGGVIxavfbPOdwm4QA3894vFUnPXY0TgxjZEFhcCS8VaXg2QAheoD7PrkTs1rSFWrU
- VNM4VF5Z6bHirvHCRcm3WqcSupGUyNBXo2NgbbFArKIcLI8xy8sWocSF+uN4OC5mal3FuEm300Hqyo
- kZ1SoniLLq2yK6QoIlwzFXv0lJAZApX1rKRHJ9VS7wQpvCetzC88nT1hyG5NQbL/Ih6CMcFgVY53tx
- rr/hCiDMvxgrf8M9rE/Ud81NjzCdzOMXs3Nwf4fjxyE8aMD9szbV2EGenW6M5LY4PbCu2P+bAUsxNB
- RmG+6pzao5Eb9qQO8UVJR2w3OMy3pbg==
+ bh=i9smwgZ7QZWn/IBtIaTJqJ3XRqH7o8+yRAurisL8C9A=;
+ b=P07C0vgcDG92khVYk9jtiKE0IIpLQj9lIiBWtlLJbnu/6sh/dNdAwITMEd/MwsFkKW3cq6RR1waIY
+ Qc1ngU5SrwcFDbL6h3RxMIz2ROyQmOIDHfU7F49l/tr8VkWXbe3yIR8C33XW9YnyZCXRgNdHlzJ8oH
+ KMWj8xR59Mr/D2pI9r+kG92u6z2C7uuQMSf+9z1B4LIeNmqCs0kugVz0IQ3JG/iS7B88NWVFkUUG5h
+ Rjsmeso1yfS/osUuKgh8ihgs0OnOC4WK/Ran+S+SRGuaviRpu+zlakswp/Y2NBAdmqgmChVWd/dl3U
+ kPyKiQNuRtFmytjgm0P9bJYZSe6ASmw==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
  d=ravnborg.org; s=ed2;
  h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
  from:date:from;
- bh=3c3PSAeAVS44hPgNdwEqNOZLOf+JgUO0UlF9QWeiCn4=;
- b=E465coUFu3DysWYGV/GEsYK/S36FRsGdBEysns+r/qoNqP9g5mz7ipRH5TuyIE0713LQkX+EbBd2l
- QQYV3RaCg==
-X-HalOne-ID: a9381d42-9e68-11ed-8608-11abd97b9443
+ bh=i9smwgZ7QZWn/IBtIaTJqJ3XRqH7o8+yRAurisL8C9A=;
+ b=kt18WNrpG2VYHgiNLoWLqD1hg1p5d9MWum5IK2pQ0cW+Q9quvYCUIxZz7cYbvs5MEc2MIkcUQk66k
+ byJBQ7mAw==
+X-HalOne-ID: f73f9831-9e68-11ed-bd0e-ede074c87fad
 Received: from ravnborg.org (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
- by mailrelay1 (Halon) with ESMTPSA
- id a9381d42-9e68-11ed-8608-11abd97b9443;
- Fri, 27 Jan 2023 17:33:08 +0000 (UTC)
-Date: Fri, 27 Jan 2023 18:33:07 +0100
+ by mailrelay3 (Halon) with ESMTPSA
+ id f73f9831-9e68-11ed-bd0e-ede074c87fad;
+ Fri, 27 Jan 2023 17:35:19 +0000 (UTC)
+Date: Fri, 27 Jan 2023 18:35:18 +0100
 From: Sam Ravnborg <sam@ravnborg.org>
 To: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <Y9QK09hRM8tR1Du+@ravnborg.org>
+Message-ID: <Y9QLVmyRvSVxQywz@ravnborg.org>
 References: <20230125200415.14123-1-tzimmermann@suse.de>
- <20230125200415.14123-2-tzimmermann@suse.de>
- <Y9GWfi4EiCDPa6BJ@ravnborg.org>
- <bf1aa950-3b58-3e33-4849-2ee7fbefcfcc@suse.de>
+ <20230125200415.14123-5-tzimmermann@suse.de>
+ <Y9GZJcRKbaK0cYGo@ravnborg.org>
+ <441188d8-01a6-2a48-ce46-e32d7006aafa@suse.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <bf1aa950-3b58-3e33-4849-2ee7fbefcfcc@suse.de>
-Subject: Re: [Intel-gfx] [PATCH v3 01/10] drm/client: Test for connectors
- before sending hotplug event
+In-Reply-To: <441188d8-01a6-2a48-ce46-e32d7006aafa@suse.de>
+Subject: Re: [Intel-gfx] [PATCH v3 04/10] drm/fbdev-generic: Initialize
+ fb-helper structure in generic setup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,49 +62,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, javierm@redhat.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, freedreno@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org
+Cc: freedreno@lists.freedesktop.org, linux-samsung-soc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, javierm@redhat.com, mripard@kernel.org,
+ dri-devel@lists.freedesktop.org, daniel@ffwll.ch, linux-tegra@vger.kernel.org,
+ airlied@gmail.com, linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 27, 2023 at 03:13:50PM +0100, Thomas Zimmermann wrote:
+On Fri, Jan 27, 2023 at 03:21:30PM +0100, Thomas Zimmermann wrote:
 > Hi
 > 
-> Am 25.01.23 um 21:52 schrieb Sam Ravnborg:
+> Am 25.01.23 um 22:03 schrieb Sam Ravnborg:
 > > Hi Thomas,
 > > 
-> > On Wed, Jan 25, 2023 at 09:04:06PM +0100, Thomas Zimmermann wrote:
-> > > Test for connectors in the client code and remove a similar test
-> > > from the generic fbdev emulation. Do nothing if the test fails.
-> > > Not having connectors indicates a driver bug.
+> > On Wed, Jan 25, 2023 at 09:04:09PM +0100, Thomas Zimmermann wrote:
+> > > Initialize the fb-helper structure immediately after its allocation
+> > > in drm_fbdev_generic_setup(). That will make it easier to fill it with
+> > > driver-specific values, such as the preferred BPP.
 > > > 
 > > > Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 > > > Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
 > > > ---
-> > >   drivers/gpu/drm/drm_client.c        | 5 +++++
-> > >   drivers/gpu/drm/drm_fbdev_generic.c | 5 -----
-> > >   2 files changed, 5 insertions(+), 5 deletions(-)
+> > >   drivers/gpu/drm/drm_fbdev_generic.c | 13 +++++++++----
+> > >   1 file changed, 9 insertions(+), 4 deletions(-)
 > > > 
-> > > diff --git a/drivers/gpu/drm/drm_client.c b/drivers/gpu/drm/drm_client.c
-> > > index 262ec64d4397..09ac191c202d 100644
-> > > --- a/drivers/gpu/drm/drm_client.c
-> > > +++ b/drivers/gpu/drm/drm_client.c
-> > > @@ -198,6 +198,11 @@ void drm_client_dev_hotplug(struct drm_device *dev)
-> > >   	if (!drm_core_check_feature(dev, DRIVER_MODESET))
-> > >   		return;
-> > > +	if (!dev->mode_config.num_connector) {
-> > > +		drm_dbg_kms(dev, "No connectors found, will not send hotplug events!\n");
-> > > +		return;
-> > This deserves a more visible logging - if a driver fails here it would
-> > be good to spot it in the normal kernel log.
-> > drm_info or drm_notice?
+> > > diff --git a/drivers/gpu/drm/drm_fbdev_generic.c b/drivers/gpu/drm/drm_fbdev_generic.c
+> > > index 135d58b8007b..63f66325a8a5 100644
+> > > --- a/drivers/gpu/drm/drm_fbdev_generic.c
+> > > +++ b/drivers/gpu/drm/drm_fbdev_generic.c
+> > > @@ -385,8 +385,6 @@ static int drm_fbdev_client_hotplug(struct drm_client_dev *client)
+> > >   	if (dev->fb_helper)
+> > >   		return drm_fb_helper_hotplug_event(dev->fb_helper);
+> > > -	drm_fb_helper_prepare(dev, fb_helper, &drm_fb_helper_generic_funcs);
+> > > -
+> > >   	ret = drm_fb_helper_init(dev, fb_helper);
+> > >   	if (ret)
+> > >   		goto err;
+> > 
+> >  From the documentation:
+> > The drm_fb_helper_prepare()
+> > helper must be called first to initialize the minimum required to make
+> > hotplug detection work.
+> > ...
+> > To finish up the fbdev helper initialization, the
+> > drm_fb_helper_init() function is called.
+> > 
+> > So this change do not follow the documentation as drm_fb_helper_init()
+> > is now called before drm_fb_helper_prepare()
 > 
-> But is that really noteworthy? AFAIK, this situation can legally happen. So
-> if it's expected, why should we print a message about it?
-I was reading it as a driver error - as that's not the case current code
-is fine.
+> No, we now call drm_fb_helper_prepare() from within
+> drm_fbdev_generic_setup(), right after allocating the fb_helper.
+> drm_fb_helper_init() will only be called after the client received a
+> hot-plug event.
+> 
+> > 
+> > I did not follow all the code - but my gut feeling is that the
+> > documentation is right.
+> 
+> The docs are of low quality. The _prepare() helper is the actual init
+> function and _init() only sets the fb_helper in the device instance.
+OK, thanks for the follow-up.
+
 
 	Sam
