@@ -2,58 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90E6867E6F2
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Jan 2023 14:41:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 65D5E67E6FA
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Jan 2023 14:44:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FB2210E477;
-	Fri, 27 Jan 2023 13:41:26 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74A5010E475;
- Fri, 27 Jan 2023 13:41:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD5A610E47A;
+	Fri, 27 Jan 2023 13:44:40 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50BC010E47A;
+ Fri, 27 Jan 2023 13:44:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674826884; x=1706362884;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=ec/zdMs+lq059I/1DvHD/pmxoCe6pEb7LeM0Li+YWEE=;
- b=DOKEmGlbj4Y+9gz87sxldFhysm3XMCeWyCrun6hmD6DxdPwObFHTCU4R
- nWe7z2ZR05XkUSjp6fc1YVmDLN1wFqWVt55Jo035pDPtLs/ynYECd0VD1
- 2/C5NlrIgFCsWApcRIE+jcNoOnn/IGutBF/Q1KYslpffrvlLzoBREMECU
- nts2OxioVNBjTB9zVjRTXIEga9cuIy9Fb2TATPVGCQK5smU7b3hZ8/wFm
- pUREWjmaZvYYu8sy51ke3NMfAocCnTggDY6ozeGMwkPxHDylROg0rKDrX
- 4idEpAhIvRbI813H+1xo6iLXpmM7+qf6oUDHxg4Mn+9QBU9KDdDa/j0xK Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="413310719"
-X-IronPort-AV: E=Sophos;i="5.97,251,1669104000"; d="scan'208";a="413310719"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2023 05:41:23 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="726688371"
-X-IronPort-AV: E=Sophos;i="5.97,251,1669104000"; d="scan'208";a="726688371"
-Received: from jgeary-mobl1.ger.corp.intel.com (HELO [10.213.233.162])
- ([10.213.233.162])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2023 05:41:22 -0800
-Message-ID: <10880dfa-f53b-0224-c339-fd3d9c867ecd@linux.intel.com>
-Date: Fri, 27 Jan 2023 13:41:20 +0000
+ t=1674827078; x=1706363078;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=gMJC40WFs+8Ds20HVPGVVL0tOtFR3VmK1xBzsgXt/0A=;
+ b=elP37QVgIDxw0z+knyC/bjLQ/23V/6V+rMH2uL4A8zsnkqYhdLmepezG
+ U+0Jq6s/8l86l+ZW906eWLb1gWc5Bk14XC5gCyGpqNs/EI4oUK70TIUjO
+ 2Ioupodt83IVyNzXQ4WPrS8MD6kWMJ0lUVLi5SshK1yEZNpRjYdit5hiC
+ 7IEHkFcnXwMbayqA6CTFb9kIpKvQOw4TCPoaWFJJkGGkPd5e1N4YKdIvv
+ Kp3Jhk8Q/X2uC6CJcy653T8J9EKBLgurNKf/XMLUEMQJs5lW18JJDML25
+ +Tv/DFGMz2Ey6107awKVhVVaoFy7v85rt8pCoSlZ5LmwLOELfVIdfTmBN g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="324778771"
+X-IronPort-AV: E=Sophos;i="5.97,251,1669104000"; d="scan'208";a="324778771"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2023 05:44:37 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="771587772"
+X-IronPort-AV: E=Sophos;i="5.97,251,1669104000"; d="scan'208";a="771587772"
+Received: from thrakatuluk.fi.intel.com (HELO
+ platvala-desk.ger.corp.intel.com) ([10.237.72.90])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2023 05:44:36 -0800
+Date: Fri, 27 Jan 2023 15:41:34 +0200
+From: Petri Latvala <petri.latvala@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <Y9PUjiliUyZSGZfH@platvala-desk.ger.corp.intel.com>
+References: <20230127111241.3624629-1-tvrtko.ursulin@linux.intel.com>
+ <20230127111241.3624629-7-tvrtko.ursulin@linux.intel.com>
+ <Y9O3+wLrQNr/pyNf@platvala-desk.ger.corp.intel.com>
+ <c66a95c2-374b-e6d6-b828-8c9147f98a0b@linux.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Content-Language: en-US
-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
- Petri Latvala <petri.latvala@intel.com>,
- =?UTF-8?Q?Zbigniew_Kempczy=c5=84ski?= <zbigniew.kempczynski@intel.com>
-References: <20221111155844.3290531-1-tvrtko.ursulin@linux.intel.com>
- <20230126170209.5a5dqpqktal6jrjc@kamilkon-desk1>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20230126170209.5a5dqpqktal6jrjc@kamilkon-desk1>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 0/8] Vendor agnostic gputop
+In-Reply-To: <c66a95c2-374b-e6d6-b828-8c9147f98a0b@linux.intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 6/6] lib/igt_device_scan:
+ Improve Intel discrete GPU selection
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,114 +63,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: igt-dev@lists.freedesktop.org, Intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 26/01/2023 17:02, Kamil Konieczny wrote:
-> Hi,
+On Fri, Jan 27, 2023 at 11:53:38AM +0000, Tvrtko Ursulin wrote:
 > 
-> please rebase and resend, also please change commit subject to start
-> with lib: or lib/[name of lib changed]: rest od commit description
-
-Series should still apply as is so I don't think there is need to 
-re-send. It will only conflict if I get to merge the "Assorted 
-intel_gpu_top improvements" series first, in which case I can resend.
-
-> For example, in 3/8 instead of
-> libdrmclients: Record client drm minor
-> write:
-> lib/igt_drm_clients: Record client drm minor
+> On 27/01/2023 11:39, Petri Latvala wrote:
+> > On Fri, Jan 27, 2023 at 11:12:41AM +0000, Tvrtko Ursulin wrote:
+> > > From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > > 
+> > > Now that DRM subsystem can contain PCI cards with the vendor set to Intel
+> > > but they are not Intel GPUs, we need a better selection logic than looking
+> > > at the vendor. Use the driver name instead.
+> > > 
+> > > Caveat that the driver key was on a blacklist so far, and although I can't
+> > > imagine it can be slow to probe, this is something to double check.
+> > > 
+> > > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > > Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+> > > Cc: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
+> > > ---
+> > >   lib/igt_device_scan.c | 7 +++++--
+> > >   1 file changed, 5 insertions(+), 2 deletions(-)
+> > > 
+> > > diff --git a/lib/igt_device_scan.c b/lib/igt_device_scan.c
+> > > index ed128d24dd10..8b767eed202d 100644
+> > > --- a/lib/igt_device_scan.c
+> > > +++ b/lib/igt_device_scan.c
+> > > @@ -237,6 +237,7 @@ struct igt_device {
+> > >   	char *vendor;
+> > >   	char *device;
+> > >   	char *pci_slot_name;
+> > > +	char *driver;
+> > >   	int gpu_index; /* For more than one GPU with same vendor and device. */
+> > >   	char *codename; /* For grouping by codename */
+> > > @@ -440,7 +441,6 @@ static bool is_on_blacklist(const char *what)
+> > >   				      "resource3", "resource4", "resource5",
+> > >   				      "resource0_wc", "resource1_wc", "resource2_wc",
+> > >   				      "resource3_wc", "resource4_wc", "resource5_wc",
+> > > -				      "driver",
+> > >   				      "uevent", NULL};
+> > >   	const char *key;
+> > >   	int i = 0;
+> > > @@ -662,6 +662,8 @@ static struct igt_device *igt_device_new_from_udev(struct udev_device *dev)
+> > >   		get_pci_vendor_device(idev, &vendor, &device);
+> > >   		idev->codename = __pci_codename(vendor, device);
+> > >   		idev->dev_type = __pci_devtype(vendor, device, idev->pci_slot_name);
+> > > +		idev->driver = strdup_nullsafe(get_attr(idev, "driver"));
+> > > +		igt_assert(idev->driver);
+> > >   	}
+> > >   	return idev;
+> > > @@ -776,7 +778,7 @@ static bool __find_first_i915_card(struct igt_device_card *card, bool discrete)
+> > >   	igt_list_for_each_entry(dev, &igt_devs.all, link) {
+> > > -		if (!is_pci_subsystem(dev) || !is_vendor_matched(dev, "intel"))
+> > > +		if (!is_pci_subsystem(dev) || strcmp(dev->driver, "i915"))
+> > 
+> > Is this the time to prepare for that other driver as well?
 > 
-> If there are more lib changes, use "lib: " alone, for example
-> in your 2/8 patch,
-> libdrmfdinfo: Allow specifying custom engine map
-> write:
-> lib: Allow specifying custom engine map
+> Ha, didn't think of that TBH, but AFAICT this patch will work for that case
+> too, no?
 
-Again, if you agree there is no need to spam the list with a re-send 
-yet, review can continue against this version, and I will note to change 
-the above patch prefixes while doing the other changes the review is 
-bound to trigger.
+Ah, now that I read the surrounding code...
 
-Regards,
+Indeed the function is for finding i915 devices in particular, used by
+gem_wsim and intel_gpu_top. Having that function find devices driven
+by xe might lead to incompatibilities that need to be resolved or at
+least compatibility fully understood, which is not the case for either
+at this time I assume. In other words, out of scope for this patch.
 
-Tvrtko
 
-> 
-> +Cc Petri and Zbyszek
-> 
-> Regards,
-> Kamil
-> 
-> On 2022-11-11 at 15:58:36 +0000, Tvrtko Ursulin wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> This is a pile of patches which implements a rudimentary vendor agnostic gputop
->> tool based of the new DRM spec as documented in
->> Documentation/gpu/drm-usage-stats.rst.
->>
->> First part of the series is code refactoring which should be reasonably stable.
->> I've tested it all while working on it both against intel_gpu_top and gputop.
->>
->> Last patch is the actual tool itself. It works but it is rather rudimentary
->> which is hopefully good enough for a start.
->>
->> Fundamental difference between intel_gpu_top and gputop is that the former is
->> centered around a single card and only shows processes belonging to it. Gputop
->> on the other hand has an idea to show all processes with DRM file descriptors
->> open and sort them into groups per card. It also makes no effort to provide
->> sorting modes, well any interactivity, or any pretty names for GPUs or engines.
->>
->> It looks like this:
->> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> DRM minor 0
->>      PID               NAME    render       copy       video
->>      3816          kwin_x11 |███▎      ||          ||          ||          |
->>      3523              Xorg |▊         ||          ||          ||          |
->>   1120449               mpv |          ||          ||▋         ||          |
->>   1120529          glxgears |▋         ||          ||          ||          |
->>   1120449               mpv |▍         ||          ||          ||          |
->>      3860       plasmashell |▏         ||          ||          ||          |
->>      4764           krunner |          ||          ||          ||          |
->>    575206            chrome |          ||          ||          ||          |
->>    833481           firefox |          ||          ||          ||          |
->>    892924       thunderbird |          ||          ||          ||          |
->> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->>
->> I did test it as well with two cards and confirmed that too works.
->>
->> Rob Clark also tested it with a patch which exports the respective data from the
->> msm driver and confirmed it works fine. Christian König tested it with in
->> progress patches for amdgpu and that worked as well.
->>
->> v2:
->>   * Fixed SPDX headers and added a bunch of code comments/docs throughout.
->>
->> Tvrtko Ursulin (8):
->>    lib: Extract igt_drm_clients from intel_gpu_top
->>    libdrmfdinfo: Allow specifying custom engine map
->>    libdrmclients: Record client drm minor
->>    libdrmclient: Support multiple DRM cards
->>    libdrmfdinfo: Track largest engine index
->>    libdrmclient/intel_gpu_top: Decouple hardcoded engine assumptions
->>    libdrmclient: Enforce client status sort order in the library
->>    gputop: Basic vendor agnostic GPU top tool
->>
->>   lib/igt_drm_clients.c   | 503 +++++++++++++++++++++++++++++
->>   lib/igt_drm_clients.h   |  87 ++++++
->>   lib/igt_drm_fdinfo.c    |  50 ++-
->>   lib/igt_drm_fdinfo.h    |  16 +-
->>   lib/meson.build         |   8 +
->>   tests/i915/drm_fdinfo.c |  19 +-
->>   tools/gputop.c          | 260 +++++++++++++++
->>   tools/intel_gpu_top.c   | 677 +++++++++++-----------------------------
->>   tools/meson.build       |   7 +-
->>   9 files changed, 1113 insertions(+), 514 deletions(-)
->>   create mode 100644 lib/igt_drm_clients.c
->>   create mode 100644 lib/igt_drm_clients.h
->>   create mode 100644 tools/gputop.c
->>
->> -- 
->> 2.34.1
->>
+-- 
+Petri Latvala
