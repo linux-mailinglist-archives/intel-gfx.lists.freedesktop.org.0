@@ -2,58 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 202FE67E1C5
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Jan 2023 11:37:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 368F367E2C4
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Jan 2023 12:11:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8103210E442;
-	Fri, 27 Jan 2023 10:37:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0A4010E452;
+	Fri, 27 Jan 2023 11:11:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 909CC10E444
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Jan 2023 10:37:17 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 327A410E452;
+ Fri, 27 Jan 2023 11:11:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674815837; x=1706351837;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=BZtHYk7/WsLMSue7jEjnQGQmmkF5V+lsmGRyvqv5/KQ=;
- b=X3IZ8Ljzq7QzbVrXYpb5rCvkcUHBI3xcRn6CNjfWMCl/ckqdCcFqMj6p
- k0wuQs/iem8Ovk8hq48MfXQvy+mR5jcUH5ZxB9hpuLIy2H0aSU70bLmKZ
- os39n7NnzQf0x3FiUR9clX2PUI8C4pQF3d75AiM2Gtu6x7xYKRvk0k9CR
- teB6EHBHXJeDI3rXvc6m7COiouXCOXuiGNT4lPsYqOjpx+oKdf3wDTjKl
- gijbHV+nyehL2Q1hAc7cWo/pjmNerNKpJLuBeClcbNiRkK5LBB9a6CjpN
- EqNLBK0EzJVdKUvaa2rBoBhdoWiSTqTp5yexO2tOthjoRoze2+SLACHKE Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="328347313"
-X-IronPort-AV: E=Sophos;i="5.97,250,1669104000"; d="scan'208";a="328347313"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2023 02:37:17 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="695473898"
-X-IronPort-AV: E=Sophos;i="5.97,250,1669104000"; d="scan'208";a="695473898"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.31.252])
- ([10.213.31.252])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2023 02:37:16 -0800
-Message-ID: <27d0a92e-d295-4dd9-f0cb-7073c0efc76c@intel.com>
-Date: Fri, 27 Jan 2023 11:37:14 +0100
+ t=1674817896; x=1706353896;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=J9LJG1vPuwOCpJvCcQ0+2UdV92yhQ1m4dA1H633pX1I=;
+ b=VNtpQJX+hhfBIy7h9UbI0ssZTPrUAUiRAeXmYCbe0gh1H17XbrBvnCVV
+ aToKkUTQm/Vf/zt/sY1Y2k9oECj3ql37Dl3mTgMyKX5uO0r/m6E+FSQZB
+ OatJVpBbD4/WnVlklxSwd2PGgTLyI53MGSGYs/zREcgA4j0z6f+n8bLSF
+ hsBhFHZcRR8hdyeQBE4IZrSGrpuQvdllNs2Vw4ppc1jhRAKzMDk+yEOQ9
+ tiEm1yjm1j7CO2fJvBbScFNGvvlR+rjPlNs8FhZuyUrSgPGUK968ptAZw
+ qPdsWadx2C1YJLJNf5MtdLJ1FsI44R/3wIhFYOt89cbSpae7BxceUlzHN Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="306715260"
+X-IronPort-AV: E=Sophos;i="5.97,250,1669104000"; d="scan'208";a="306715260"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2023 03:11:35 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="663237504"
+X-IronPort-AV: E=Sophos;i="5.97,250,1669104000"; d="scan'208";a="663237504"
+Received: from kagner-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.46.38])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2023 03:11:31 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Date: Fri, 27 Jan 2023 13:11:28 +0200
+Message-ID: <87tu0c44gv.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.6.1
-Content-Language: en-US
-To: intel-gfx@lists.freedesktop.org,
- Patchwork <patchwork@emeril.freedesktop.org>
-References: <20230126170801.3954784-1-andrzej.hajda@intel.com>
- <167475497076.539.17527797772843960578@emeril.freedesktop.org>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <167475497076.539.17527797772843960578@emeril.freedesktop.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Add_selftests_for_TLB_invalidation_=28rev4=29?=
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: [Intel-gfx] [PULL] drm-intel-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,154 +56,295 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 26.01.2023 18:42, Patchwork wrote:
-> *Patch Details*
-> *Series:*	drm/i915/gt: Add selftests for TLB invalidation (rev4)
-> *URL:*	https://patchwork.freedesktop.org/series/112894/ 
-> <https://patchwork.freedesktop.org/series/112894/>
-> *State:*	success
-> *Details:* 
-> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v4/index.html 
-> <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v4/index.html>
-> 
-> 
->   CI Bug Log - changes from CI_DRM_12647 -> Patchwork_112894v4
-> 
-> 
->     Summary
-> 
-> *SUCCESS*
-> 
-> No regressions found.
-> 
-> External URL: 
-> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v4/index.html
-> 
-> 
->     Participating hosts (26 -> 22)
-> 
-> Missing (4): fi-kbl-soraka bat-rpls-2 bat-atsm-1 fi-snb-2520m
-> 
-> 
->     Possible new issues
-> 
-> Here are the unknown changes that may have been introduced in 
-> Patchwork_112894v4:
-> 
-> 
->       IGT changes
-> 
-> 
->         Possible regressions
-> 
->   *
-> 
->     {igt@i915_selftest@live@gt_tlb} (NEW):
-> 
->       o
-> 
->         fi-bsw-nick: NOTRUN -> DMESG-FAIL
->         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v4/fi-bsw-nick/igt@i915_selftest@live@gt_tlb.html>
-> 
->       o
-> 
->         fi-bsw-n3050: NOTRUN -> DMESG-FAIL
->         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v4/fi-bsw-n3050/igt@i915_selftest@live@gt_tlb.html>
 
+Hi Dave & Daniel -
 
-It seems on Gen8/VCS MI_CONDITIONAL_BATCH_BUFFER_END has exceptional 
-syntax[1]:
-"Compare Address
-Qword address to fetch compare Mask (DW0) and Data Dword(DW1) from
-memory.
-HW will do AND operation on Mask(DW0) with Data Dword(DW1) and then 
-compare the
-result against Semaphore Data Dword
-"
+drm-intel-next-2023-01-27:
+drm/i915 feature pull #2 v6.3:
 
-Moreover address is aligned to qword on all platforms.
-I will implement changes, I hope it will solve the issue.
-Unfortunately I have no access to BSW/CHERRYVIEW platforms, so unless I 
-find one I need to rely on CI.
+Features and functionality:
+- Enable HF-EEODB by switching HDMI, DP and LVDS to use struct drm_edid (Ja=
+ni)
+- Start using unversioned DMC firmware paths for new platforms (Gustavo)
 
-[1]: https://gfxspecs.intel.com/Predator/Home/Index/6971
+Refactoring and cleanups:
+- ELD refactor: Stop using hardware buffer, precompute ELD, and wire up ELD=
+ in
+  the state checker (Ville)
+- Use generics for debugfs device parameters (Jani)
+- DSB refactoring and fixes (Ville)
+- Header refactoring, add new intel_display_limits.h (Jani)
+- Split out GMCH code to a new file (Jani)
+- Split out vblank code to a new file (Jani)
+- i915_drv.h and struct drm_i915_private cleanups (Jani)
+- Simplify FBC and DRRS debug attributes (Deepak R Varma)
+- Remove some single-use macros (Rodrigo)
 
-Regards
-Andrzej
+Fixes:
+- Fix scaler limits for display versions 12 and 13 (Luca)
+- Fix plane source size check for zero height (Drew Davenport)
+- Implement PSR2 selective fetch workaround (Jouni)
+- Expand a PSR workaound to more platforms and pipes (Jouni)
+- Expand an HDMI infoframe workaround to all MTL steppings (Jouni)
+- Enable PIPEDMC whenever its corresponding pipe is enabled (Imre)
 
-> 
-> 
->     New tests
-> 
-> New tests have been introduced between CI_DRM_12647 and Patchwork_112894v4:
-> 
-> 
->       New IGT tests (1)
-> 
->   * igt@i915_selftest@live@gt_tlb:
->       o Statuses : 2 dmesg-fail(s) 19 pass(s)
->       o Exec time: [0.0] s
-> 
-> 
->     Known issues
-> 
-> Here are the changes found in Patchwork_112894v4 that come from known 
-> issues:
-> 
-> 
->       IGT changes
-> 
-> 
->         Issues hit
-> 
->   * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
->       o fi-bsw-n3050: PASS
->         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12647/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html> -> FAIL <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v4/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html> (i915#6298 <https://gitlab.freedesktop.org/drm/intel/issues/6298>)
-> 
-> 
->         Possible fixes
-> 
->   *
-> 
->     igt@i915_selftest@live@mman:
-> 
->       o {bat-rpls-1}: TIMEOUT
->         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12647/bat-rpls-1/igt@i915_selftest@live@mman.html> (i915#6794 <https://gitlab.freedesktop.org/drm/intel/issues/6794>) -> PASS <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v4/bat-rpls-1/igt@i915_selftest@live@mman.html>
->   *
-> 
->     igt@i915_selftest@live@workarounds:
-> 
->       o {bat-adlm-1}: INCOMPLETE
->         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12647/bat-adlm-1/igt@i915_selftest@live@workarounds.html> (i915#4983 <https://gitlab.freedesktop.org/drm/intel/issues/4983>) -> PASS <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v4/bat-adlm-1/igt@i915_selftest@live@workarounds.html>
->   *
-> 
->     igt@kms_pipe_crc_basic@read-crc@pipe-c-dp-1:
-> 
->       o {bat-adlp-9}: FAIL
->         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12647/bat-adlp-9/igt@kms_pipe_crc_basic@read-crc@pipe-c-dp-1.html> (i915#4137 <https://gitlab.freedesktop.org/drm/intel/issues/4137>) -> PASS <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v4/bat-adlp-9/igt@kms_pipe_crc_basic@read-crc@pipe-c-dp-1.html> +3 similar issues
-> 
-> {name}: This element is suppressed. This means it is ignored when computing
-> the status of the difference (SUCCESS, WARNING, or FAILURE).
-> 
-> 
->     Build changes
-> 
->   * Linux: CI_DRM_12647 -> Patchwork_112894v4
-> 
-> CI-20190529: 20190529
-> CI_DRM_12647: ab288692acfb4c176e1411107686368c121462dc @ 
-> git://anongit.freedesktop.org/gfx-ci/linux
-> IGT_7137: 5f7ea985ac0828bec5e1bbc101b7931bd7fb62e3 @ 
-> https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-> Patchwork_112894v4: ab288692acfb4c176e1411107686368c121462dc @ 
-> git://anongit.freedesktop.org/gfx-ci/linux
-> 
-> 
->       Linux commits
-> 
-> 1635ae6c0100 drm/i915/gt: Add selftests for TLB invalidation
-> 
+Merges:
+- Backmerge drm-next (Jani)
 
+BR,
+Jani.
+
+The following changes since commit 68de345e101ce9a24e5c8849e69dd0dba2e8c9b2:
+
+  Merge tag 'drm-misc-next-2023-01-24' of git://anongit.freedesktop.org/drm=
+/drm-misc into drm-next (2023-01-25 12:14:08 +1000)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-next-2023-01-27
+
+for you to fetch changes up to d3eb347da1148fdb1c2462ae83090a4553d3f46f:
+
+  drm/i915/mtl: Apply Wa_14013475917 for all MTL steppings (2023-01-26 13:5=
+4:05 +0200)
+
+----------------------------------------------------------------
+drm/i915 feature pull #2 v6.3:
+
+Features and functionality:
+- Enable HF-EEODB by switching HDMI, DP and LVDS to use struct drm_edid (Ja=
+ni)
+- Start using unversioned DMC firmware paths for new platforms (Gustavo)
+
+Refactoring and cleanups:
+- ELD refactor: Stop using hardware buffer, precompute ELD, and wire up ELD=
+ in
+  the state checker (Ville)
+- Use generics for debugfs device parameters (Jani)
+- DSB refactoring and fixes (Ville)
+- Header refactoring, add new intel_display_limits.h (Jani)
+- Split out GMCH code to a new file (Jani)
+- Split out vblank code to a new file (Jani)
+- i915_drv.h and struct drm_i915_private cleanups (Jani)
+- Simplify FBC and DRRS debug attributes (Deepak R Varma)
+- Remove some single-use macros (Rodrigo)
+
+Fixes:
+- Fix scaler limits for display versions 12 and 13 (Luca)
+- Fix plane source size check for zero height (Drew Davenport)
+- Implement PSR2 selective fetch workaround (Jouni)
+- Expand a PSR workaound to more platforms and pipes (Jouni)
+- Expand an HDMI infoframe workaround to all MTL steppings (Jouni)
+- Enable PIPEDMC whenever its corresponding pipe is enabled (Imre)
+
+Merges:
+- Backmerge drm-next (Jani)
+
+----------------------------------------------------------------
+Deepak R Varma (3):
+      drm/i915/display: Avoid full proxy f_ops for DRRS debug attributes
+      drm/i915/fbc: Avoid full proxy f_ops for FBC debug attributes
+      drm/i915/display: Convert i9xx_pipe_crc_auto_source to void
+
+Drew Davenport (1):
+      drm/i915/display: Check source height is > 0
+
+Gustavo Sousa (2):
+      drm/i915/dmc: Prepare to use unversioned paths
+      drm/i915/dmc: Use unversioned path for ADLP
+
+Imre Deak (1):
+      drm/i915: Enable a PIPEDMC whenever its corresponding pipe is enabled
+
+Jani Nikula (32):
+      drm/i915/display: drop redundant display/ from #includes
+      drm/i915/irq: split out vblank/scanline code to intel_vblank.[ch]
+      drm/i915/display: move more scanline functions to intel_vblank.[ch]
+      drm/i915/display: use common function for checking scanline is moving
+      drm/i915/vblank: use intel_de_read()
+      drm/i915/vblank: add and use intel_de_read64_2x32() to read vblank co=
+unter
+      drm/i915: add struct i915_dsm to wrap dsm members together
+      drm/i915: drop cast from DEFINE_RES_MEM() usage
+      drm/i915: move snps_phy_failed_calibration to display sub-struct unde=
+r snps
+      drm/i915: move pch_ssc_use to display sub-struct under dpll
+      drm/i915: move chv_dpll_md and bxt_phy_grc to display sub-struct unde=
+r state
+      drm/i915: add i915_config.h and move relevant declarations there
+      drm/i915: move I915_IDLE_ENGINES_TIMEOUT next to its only user
+      drm/i915: drop a number of unnecessary forward declarations
+      drm/i915: move a few HAS_ macros closer to their place
+      drm/i915: move I915_GEM_GPU_DOMAINS to i915_gem.h
+      drm/i915: move I915_COLOR_UNEVICTABLE to i915_gem_gtt.h
+      drm/i915: move GT_FREQUENCY_MULTIPLIER and GEN9_FREQ_SCALER to intel_=
+rps.h
+      Merge drm/drm-next into drm-intel-next
+      drm/i915: add gmch substruct to struct drm_i915_private
+      drm/i915/gmch: split out soc/intel_gmch
+      drm/i915/gmch: mass rename dev_priv to i915
+      drm/i915/gmch: move VGA set state to GMCH code
+      drm/i915/display: add intel_display_limits.h for key enums
+      drm/i915/params: use generics for parameter printing
+      drm/i915/params: use generics for parameter dup
+      drm/i915/params: use generics for parameter free
+      drm/i915/params: use generics for parameter debugfs file creation
+      drm/i915/edid: convert DP, HDMI and LVDS to drm_edid
+      drm/i915/bios: convert intel_bios_init_panel() to drm_edid
+      drm/i915/opregion: convert intel_opregion_get_edid() to struct drm_ed=
+id
+      drm/i915/panel: move panel fixed EDID to struct intel_panel
+
+Jouni H=C3=B6gander (3):
+      drm/i915/psr: Implement Wa_14015648006
+      drm/i915/psr: Implement Wa_14014971492
+      drm/i915/mtl: Apply Wa_14013475917 for all MTL steppings
+
+Luca Coelho (1):
+      drm/i915: update src and dst scaler limits for display ver 12 and 13
+
+Rodrigo Vivi (1):
+      drm/i915/debugfs: Get rid of single use macros.
+
+Ville Syrj=C3=A4l=C3=A4 (24):
+      drm/i915/dsb: Stop with the RMW
+      drm/i915/dsb: Inline DSB_CTRL writes into intel_dsb_commit()
+      drm/i915/dsb: Align DSB register writes to 8 bytes
+      drm/i915/dsb: Fix DSB command buffer size checks
+      drm/i915/dsb: Extract assert_dsb_has_room()
+      drm/i915/dsb: Extract intel_dsb_emit()
+      drm/i915/dsb: Improve the indexed reg write checks
+      drm/i915/dsb: Handle the indexed vs. not inside the DSB code
+      drm/i915/dsb: Introduce intel_dsb_align_tail()
+      drm/i915/dsb: Allow the caller to pass in the DSB buffer size
+      drm/i915/dsb: Add mode DSB opcodes
+      drm/i915/audio: Don't program the hardware ELD buffer on ilk+
+      drm/i915/audio: Don't program the hardware ELD buffer on hsw+
+      drm/i915/audio: Introduce a struct for the acomp audio state
+      drm/i915/audio: Precompute the ELD
+      drm/i915/audio: Don't enable audio with bogus ELD
+      drm/i915/audio: Hardware ELD readout
+      drm/i915/sdvo: Precompute the ELD
+      drm/i915/sdvo: Only use "presence detect" for has_audio readout
+      drm/i915/sdvo: Do ELD hardware readout
+      drm/i915/audio: Hook up ELD into the state checker
+      drm/i915/audio: Include ELD in the state dump
+      drm/i915/audio: s/ilk/ibx/
+      drm/i915/audio: Clean up the PCH type checks
+
+ drivers/gpu/drm/i915/Makefile                      |   2 +
+ drivers/gpu/drm/i915/display/g4x_dp.c              |   2 +
+ drivers/gpu/drm/i915/display/g4x_hdmi.c            |   2 +
+ drivers/gpu/drm/i915/display/icl_dsi.c             |   2 +-
+ drivers/gpu/drm/i915/display/intel_atomic_plane.c  |   1 +
+ drivers/gpu/drm/i915/display/intel_audio.c         | 317 ++++++++-------
+ drivers/gpu/drm/i915/display/intel_audio.h         |   7 +
+ drivers/gpu/drm/i915/display/intel_bios.c          |  32 +-
+ drivers/gpu/drm/i915/display/intel_bios.h          |   4 +-
+ drivers/gpu/drm/i915/display/intel_bw.h            |   2 +-
+ drivers/gpu/drm/i915/display/intel_cdclk.h         |   2 +-
+ drivers/gpu/drm/i915/display/intel_color.c         |  47 +--
+ drivers/gpu/drm/i915/display/intel_connector.c     |   5 +-
+ drivers/gpu/drm/i915/display/intel_crtc.c          |   1 +
+ .../gpu/drm/i915/display/intel_crtc_state_dump.c   |  17 +
+ drivers/gpu/drm/i915/display/intel_ddi.c           |   4 +-
+ drivers/gpu/drm/i915/display/intel_de.h            |   7 +
+ drivers/gpu/drm/i915/display/intel_display.c       | 155 ++++----
+ drivers/gpu/drm/i915/display/intel_display.h       | 115 +-----
+ drivers/gpu/drm/i915/display/intel_display_core.h  |  34 +-
+ .../gpu/drm/i915/display/intel_display_limits.h    | 124 ++++++
+ .../gpu/drm/i915/display/intel_display_power_map.c |   1 +
+ drivers/gpu/drm/i915/display/intel_display_trace.h |   1 +
+ drivers/gpu/drm/i915/display/intel_display_types.h |  13 +-
+ drivers/gpu/drm/i915/display/intel_dmc.c           |  90 ++++-
+ drivers/gpu/drm/i915/display/intel_dmc.h           |   4 +
+ drivers/gpu/drm/i915/display/intel_dmc_regs.h      |  10 +
+ drivers/gpu/drm/i915/display/intel_dp.c            |  95 +++--
+ drivers/gpu/drm/i915/display/intel_dpio_phy.c      |   9 +-
+ drivers/gpu/drm/i915/display/intel_dpll.c          |   2 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c      |   4 +-
+ drivers/gpu/drm/i915/display/intel_drrs.c          |   8 +-
+ drivers/gpu/drm/i915/display/intel_dsb.c           | 246 ++++++------
+ drivers/gpu/drm/i915/display/intel_dsb.h           |   5 +-
+ drivers/gpu/drm/i915/display/intel_dvo.c           |   2 +-
+ drivers/gpu/drm/i915/display/intel_dvo_dev.h       |   2 +-
+ drivers/gpu/drm/i915/display/intel_fbc.c           |  22 +-
+ drivers/gpu/drm/i915/display/intel_fbdev.c         |   2 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c          |  36 +-
+ drivers/gpu/drm/i915/display/intel_lvds.c          |  51 ++-
+ drivers/gpu/drm/i915/display/intel_modeset_setup.c |   4 +-
+ drivers/gpu/drm/i915/display/intel_opregion.c      |  29 +-
+ drivers/gpu/drm/i915/display/intel_opregion.h      |   4 +-
+ drivers/gpu/drm/i915/display/intel_panel.c         |  10 +-
+ drivers/gpu/drm/i915/display/intel_panel.h         |   4 +-
+ drivers/gpu/drm/i915/display/intel_pch_refclk.c    |  10 +-
+ drivers/gpu/drm/i915/display/intel_pipe_crc.c      |  23 +-
+ drivers/gpu/drm/i915/display/intel_plane_initial.c |   2 +-
+ drivers/gpu/drm/i915/display/intel_psr.c           |  57 ++-
+ drivers/gpu/drm/i915/display/intel_sdvo.c          |  45 ++-
+ drivers/gpu/drm/i915/display/intel_snps_phy.c      |   2 +-
+ drivers/gpu/drm/i915/display/intel_vblank.c        | 441 +++++++++++++++++=
+++++
+ drivers/gpu/drm/i915/display/intel_vblank.h        |  23 ++
+ drivers/gpu/drm/i915/display/intel_vga.c           |  32 +-
+ drivers/gpu/drm/i915/display/skl_scaler.c          |  11 +-
+ drivers/gpu/drm/i915/display/skl_universal_plane.c |   2 +-
+ drivers/gpu/drm/i915/display/skl_watermark.h       |   2 +-
+ drivers/gpu/drm/i915/display/vlv_dsi.c             |   2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_clflush.c        |   1 +
+ drivers/gpu/drm/i915/gem/i915_gem_create.c         |   1 +
+ drivers/gpu/drm/i915/gem/i915_gem_domain.c         |   1 +
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c         |  42 +-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c               |   5 +-
+ drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c       |   1 +
+ drivers/gpu/drm/i915/gt/intel_ggtt_gmch.c          |   5 +-
+ drivers/gpu/drm/i915/gt/intel_rc6.c                |  12 +-
+ drivers/gpu/drm/i915/gt/intel_rps.c                |   1 +
+ drivers/gpu/drm/i915/gt/intel_rps.h                |   3 +
+ drivers/gpu/drm/i915/gt/selftest_reset.c           |   2 +-
+ drivers/gpu/drm/i915/gvt/cmd_parser.c              |   1 +
+ drivers/gpu/drm/i915/gvt/display.c                 |   1 +
+ drivers/gpu/drm/i915/gvt/fb_decoder.h              |   2 +-
+ drivers/gpu/drm/i915/i915_config.c                 |   5 +-
+ drivers/gpu/drm/i915/i915_config.h                 |  23 ++
+ drivers/gpu/drm/i915/i915_debugfs.c                |   6 +-
+ drivers/gpu/drm/i915/i915_debugfs_params.c         |  33 +-
+ drivers/gpu/drm/i915/i915_driver.c                 | 145 +------
+ drivers/gpu/drm/i915/i915_drv.h                    | 119 ++----
+ drivers/gpu/drm/i915/i915_gem.h                    |   7 +
+ drivers/gpu/drm/i915/i915_gem_gtt.h                |   2 +
+ drivers/gpu/drm/i915/i915_irq.c                    | 408 -----------------=
+--
+ drivers/gpu/drm/i915/i915_irq.h                    |   6 -
+ drivers/gpu/drm/i915/i915_params.c                 |  86 ++--
+ drivers/gpu/drm/i915/i915_pci.c                    |   1 +
+ drivers/gpu/drm/i915/i915_reg.h                    |   3 +-
+ drivers/gpu/drm/i915/i915_request.c                |   1 +
+ drivers/gpu/drm/i915/i915_vma.c                    |   1 +
+ drivers/gpu/drm/i915/intel_device_info.c           |   1 +
+ drivers/gpu/drm/i915/intel_device_info.h           |   2 +-
+ drivers/gpu/drm/i915/intel_gvt_mmio_table.c        |   1 +
+ drivers/gpu/drm/i915/intel_memory_region.c         |   2 +-
+ drivers/gpu/drm/i915/intel_pm.c                    |   1 +
+ drivers/gpu/drm/i915/intel_pm_types.h              |   2 +-
+ drivers/gpu/drm/i915/selftests/i915_gem.c          |   4 +-
+ drivers/gpu/drm/i915/selftests/mock_gtt.c          |   2 +-
+ drivers/gpu/drm/i915/soc/intel_gmch.c              | 171 ++++++++
+ drivers/gpu/drm/i915/soc/intel_gmch.h              |  18 +
+ drivers/gpu/drm/i915/vlv_sideband.c                |   1 +
+ 98 files changed, 1819 insertions(+), 1498 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_display_limits.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_vblank.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_vblank.h
+ create mode 100644 drivers/gpu/drm/i915/i915_config.h
+ create mode 100644 drivers/gpu/drm/i915/soc/intel_gmch.c
+ create mode 100644 drivers/gpu/drm/i915/soc/intel_gmch.h
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
