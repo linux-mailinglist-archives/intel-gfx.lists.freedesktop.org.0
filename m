@@ -1,51 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44E0468800A
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 15:25:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7F07687FF9
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 15:25:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 995E310E570;
-	Thu,  2 Feb 2023 14:25:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A069010E575;
+	Thu,  2 Feb 2023 14:24:56 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCB2210E149;
- Fri, 27 Jan 2023 13:01:37 +0000 (UTC)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0285510E47F;
+ Fri, 27 Jan 2023 14:11:39 +0000 (UTC)
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
  (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 8941921EB1;
- Fri, 27 Jan 2023 13:01:36 +0000 (UTC)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id B04182004A;
+ Fri, 27 Jan 2023 14:11:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
- t=1674824496; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1674828698; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=xwqwimypfYhckyzFeaCO359/Wbd8QLK/UU3i+F4YZ9M=;
- b=kxTr+5nGawv5c+31CyMgEt3X4+S1+4evQh+J1Dg58MqKbnjUH9unrBer5bNpBAJ7R6Wd77
- VD8rwA1obRyuqw3M5hAh8MdMuDbuxNMJ6FF6ifulfEzRrlWc+ZEF0jMeIKKA5K1fu2uvGE
- 9d0zsWLGDEgFESRukKgMT7/bh9bYObU=
+ bh=mSncck0uCNO0XEG+dAMJPtpF70wyeN5+vS8xanKFqy0=;
+ b=C1YoRptlDUvtsZPxFNqni7kpmNoA5+rRt8/CIEw/LMiA/d9XXDsAxWTxbwAVOmi07VCulg
+ IipcUh7HGReprrPS0A3KwTN54ZPuwyAR9p56cSkttQ5A0UAnWgx2XnXBeLOO3PpGMWzzFu
+ +EaUCvzEhrzzuBA9tz3O87ZIe5AbYoU=
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
  (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 40B751336F;
- Fri, 27 Jan 2023 13:01:36 +0000 (UTC)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 5ECC1138E3;
+ Fri, 27 Jan 2023 14:11:38 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id hDftDjDL02PZEwAAMHmgww
- (envelope-from <mkoutny@suse.com>); Fri, 27 Jan 2023 13:01:36 +0000
-Date: Fri, 27 Jan 2023 14:01:34 +0100
+ by imap2.suse-dmz.suse.de with ESMTPSA id yltBFprb02MQOwAAMHmgww
+ (envelope-from <mkoutny@suse.com>); Fri, 27 Jan 2023 14:11:38 +0000
+Date: Fri, 27 Jan 2023 15:11:37 +0100
 From: Michal =?iso-8859-1?Q?Koutn=FD?= <mkoutny@suse.com>
 To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <20230127130134.GA15846@blackbody.suse.cz>
+Message-ID: <20230127141136.GG3527@blackbody.suse.cz>
 References: <20230112165609.1083270-1-tvrtko.ursulin@linux.intel.com>
  <20230112165609.1083270-11-tvrtko.ursulin@linux.intel.com>
+ <20230127130134.GA15846@blackbody.suse.cz>
+ <a96e6b5c-b538-f7e7-d603-cabb29137de7@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature"; boundary="/04w6evG8XlLl3ft"
+ protocol="application/pgp-signature"; boundary="xs+9IvWevLaxKUtW"
 Content-Disposition: inline
-In-Reply-To: <20230112165609.1083270-11-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <a96e6b5c-b538-f7e7-d603-cabb29137de7@linux.intel.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 X-Mailman-Approved-At: Thu, 02 Feb 2023 14:24:11 +0000
 Subject: Re: [Intel-gfx] [RFC 10/12] cgroup/drm: Introduce weight based drm
@@ -75,73 +77,53 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
---/04w6evG8XlLl3ft
+--xs+9IvWevLaxKUtW
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 12, 2023 at 04:56:07PM +0000, Tvrtko Ursulin <tvrtko.ursulin@li=
+On Fri, Jan 27, 2023 at 01:31:54PM +0000, Tvrtko Ursulin <tvrtko.ursulin@li=
 nux.intel.com> wrote:
-> +static int drmcs_can_attach(struct cgroup_taskset *tset)
-> +{
-> +	int ret;
-> +
-> +	/*
-> +	 * As processes are getting moved between groups we need to ensure
-> +	 * both that the old group does not see a sudden downward jump in the
-> +	 * GPU utilisation, and that the new group does not see a sudden jump
-> +	 * up with all the GPU time clients belonging to the migrated process
-> +	 * have accumulated.
-> +	 *
-> +	 * To achieve that we suspend the scanner until the migration is
-> +	 * completed where the resume at the end ensures both groups start
-> +	 * observing GPU utilisation from a reset state.
-> +	 */
-> +
-> +	ret =3D mutex_lock_interruptible(&drmcg_mutex);
-> +	if (ret)
-> +		return ret;
-> +	start_suspend_scanning();
-> +	mutex_unlock(&drmcg_mutex);
-> +
-> +	finish_suspend_scanning();
+> I think you missed the finish_suspend_scanning() part:
+>=20
+> 	if (root_drmcs.suspended_period_us)
+> 		cancel_delayed_work_sync(&root_drmcs.scan_work);
+>=20
+> So if scanning was in progress migration will wait until it finishes.
 
-Here's scanning suspension, communicated via=20
+Indeed, I've missed that. Thank you!
 
-	root_drmcs.scanning_suspended =3D true;
-	root_drmcs.suspended_period_us =3D root_drmcs.period_us;
-	root_drmcs.period_us =3D 0;
+> Not claiming I did not miss something because I was totally new with cgro=
+up
+> internals when I started working on this. So it is definitely useful to h=
+ave
+> more eyes looking.
 
-but I don't see those used in scan_worker() and the scanning traversal
-can apparently run concurrently with a task migration.
+The custom with (especially v2, especially horizontal) migrations
+is that they're treated leniently to avoid performance costs.
 
-> [...]
-> +static bool
-> +__start_scanning(struct drm_cgroup_state *root, unsigned int period_us)
-> [...]
-> +	css_for_each_descendant_post(node, &root->css) {
-> [...]
-> +		active =3D drmcs_get_active_time_us(drmcs);
-> +		if (period_us && active > drmcs->prev_active_us)
-> +			drmcs->active_us +=3D active - drmcs->prev_active_us;
-> +		drmcs->prev_active_us =3D active;
+I'm afraid waiting for scan in can_attach() can propagate globally (via
+cgroup_update_dfl_csses() and cgroup_attach_lock()) sometimes.
 
-drmcs_get_active_time_us() could count a task's contribution here,
-the task would migrate to a different drmcs,
-and it'd be counted 2nd time.
+OTOH, unless I misunderstood, you need to cover explicit (not task but
+resource, when sending client FD around) migration anyway?
+(I.e. my suggestion would be to mutualy exclude scanning and explicit
+migration but not scanning and task migration in order to avoid possible
+global propagation.)
 
+Thanks,
+Michal
 
-
---/04w6evG8XlLl3ft
+--xs+9IvWevLaxKUtW
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: Digital signature
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEARYIAB0WIQTrXXag4J0QvXXBmkMkDQmsBEOquQUCY9PLLAAKCRAkDQmsBEOq
-uR23AQDwt1E9t+jVuVU7H8uzqQ4NU955UNFhUY+uPnN1iQs1hwD+InLBJmA61dva
-zuO/RFocXhzfrqMboDPUdkJFDknEYAw=
-=+pK0
+iHUEARYIAB0WIQTrXXag4J0QvXXBmkMkDQmsBEOquQUCY9PblAAKCRAkDQmsBEOq
+ucw5AQC5ZB3HI12pF2NT0El6kZyt7tb80DxhDnscyavv+b0IdQEAiK5mjOqXAtP+
+SYfNfDKskxKUJ4WdJnbrY4PbeeQlLwk=
+=Rwoe
 -----END PGP SIGNATURE-----
 
---/04w6evG8XlLl3ft--
+--xs+9IvWevLaxKUtW--
