@@ -2,56 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 526E567E6C5
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Jan 2023 14:32:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 90E6867E6F2
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Jan 2023 14:41:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A772C10E966;
-	Fri, 27 Jan 2023 13:32:03 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3257410E481;
- Fri, 27 Jan 2023 13:32:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FB2210E477;
+	Fri, 27 Jan 2023 13:41:26 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74A5010E475;
+ Fri, 27 Jan 2023 13:41:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674826321; x=1706362321;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=7mC15fOVSE6NegzxHk/BX7UWkKB1AkE7p5o74pyZvt0=;
- b=gCVQ7KtkV3cgj2UdNi5Trtke8zPxH9t4eNE2Id2QCigoX6xLmwwpmQTN
- DhHnw7Y5MTBOYZzn7j8M5zj22tcIoWOlr6zqQ7J8Y+CI0kzC1lUKo9KpP
- rSYx92Qz8rkYXa6DGALky3/LAkrOwkJP7WHIsOTRUq1CC1YMo1Zl1kPVJ
- 5XgsD3cmq3T6Y0QtK7Kel9bkyihr6O6fZx/1nIoGwsySUvDvgMlL/W/OV
- nHOEgfYl/FE/ZimJANa+GS2FKS6SkqPyLkfUSN9lvj+OKy1QdJ31sGN7a
- Yfh1hR/rcW/qHOIOeZkXSu9xYQvhrVSdkdQYHJcMypqzFISMXgwVaHCSa w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="325757619"
-X-IronPort-AV: E=Sophos;i="5.97,251,1669104000"; d="scan'208";a="325757619"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2023 05:32:00 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="731836563"
-X-IronPort-AV: E=Sophos;i="5.97,251,1669104000"; d="scan'208";a="731836563"
+ t=1674826884; x=1706362884;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=ec/zdMs+lq059I/1DvHD/pmxoCe6pEb7LeM0Li+YWEE=;
+ b=DOKEmGlbj4Y+9gz87sxldFhysm3XMCeWyCrun6hmD6DxdPwObFHTCU4R
+ nWe7z2ZR05XkUSjp6fc1YVmDLN1wFqWVt55Jo035pDPtLs/ynYECd0VD1
+ 2/C5NlrIgFCsWApcRIE+jcNoOnn/IGutBF/Q1KYslpffrvlLzoBREMECU
+ nts2OxioVNBjTB9zVjRTXIEga9cuIy9Fb2TATPVGCQK5smU7b3hZ8/wFm
+ pUREWjmaZvYYu8sy51ke3NMfAocCnTggDY6ozeGMwkPxHDylROg0rKDrX
+ 4idEpAhIvRbI813H+1xo6iLXpmM7+qf6oUDHxg4Mn+9QBU9KDdDa/j0xK Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="413310719"
+X-IronPort-AV: E=Sophos;i="5.97,251,1669104000"; d="scan'208";a="413310719"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2023 05:41:23 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10602"; a="726688371"
+X-IronPort-AV: E=Sophos;i="5.97,251,1669104000"; d="scan'208";a="726688371"
 Received: from jgeary-mobl1.ger.corp.intel.com (HELO [10.213.233.162])
  ([10.213.233.162])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2023 05:31:56 -0800
-Message-ID: <a96e6b5c-b538-f7e7-d603-cabb29137de7@linux.intel.com>
-Date: Fri, 27 Jan 2023 13:31:54 +0000
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2023 05:41:22 -0800
+Message-ID: <10880dfa-f53b-0224-c339-fd3d9c867ecd@linux.intel.com>
+Date: Fri, 27 Jan 2023 13:41:20 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
 Content-Language: en-US
-To: =?UTF-8?Q?Michal_Koutn=c3=bd?= <mkoutny@suse.com>
-References: <20230112165609.1083270-1-tvrtko.ursulin@linux.intel.com>
- <20230112165609.1083270-11-tvrtko.ursulin@linux.intel.com>
- <20230127130134.GA15846@blackbody.suse.cz>
+To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
+ Petri Latvala <petri.latvala@intel.com>,
+ =?UTF-8?Q?Zbigniew_Kempczy=c5=84ski?= <zbigniew.kempczynski@intel.com>
+References: <20221111155844.3290531-1-tvrtko.ursulin@linux.intel.com>
+ <20230126170209.5a5dqpqktal6jrjc@kamilkon-desk1>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <20230127130134.GA15846@blackbody.suse.cz>
+In-Reply-To: <20230126170209.5a5dqpqktal6jrjc@kamilkon-desk1>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [RFC 10/12] cgroup/drm: Introduce weight based drm
- cgroup control
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 0/8] Vendor agnostic gputop
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,98 +66,114 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>, Kenny.Ho@amd.com,
- Dave Airlie <airlied@redhat.com>,
- =?UTF-8?Q?St=c3=a9phane_Marchesin?= <marcheu@chromium.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, Intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>,
- Tejun Heo <tj@kernel.org>, cgroups@vger.kernel.org,
- "T . J . Mercier" <tjmercier@google.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 27/01/2023 13:01, Michal Koutný wrote:
-> On Thu, Jan 12, 2023 at 04:56:07PM +0000, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
->> +static int drmcs_can_attach(struct cgroup_taskset *tset)
->> +{
->> +	int ret;
->> +
->> +	/*
->> +	 * As processes are getting moved between groups we need to ensure
->> +	 * both that the old group does not see a sudden downward jump in the
->> +	 * GPU utilisation, and that the new group does not see a sudden jump
->> +	 * up with all the GPU time clients belonging to the migrated process
->> +	 * have accumulated.
->> +	 *
->> +	 * To achieve that we suspend the scanner until the migration is
->> +	 * completed where the resume at the end ensures both groups start
->> +	 * observing GPU utilisation from a reset state.
->> +	 */
->> +
->> +	ret = mutex_lock_interruptible(&drmcg_mutex);
->> +	if (ret)
->> +		return ret;
->> +	start_suspend_scanning();
->> +	mutex_unlock(&drmcg_mutex);
->> +
->> +	finish_suspend_scanning();
+On 26/01/2023 17:02, Kamil Konieczny wrote:
+> Hi,
 > 
-> Here's scanning suspension, communicated via
+> please rebase and resend, also please change commit subject to start
+> with lib: or lib/[name of lib changed]: rest od commit description
+
+Series should still apply as is so I don't think there is need to 
+re-send. It will only conflict if I get to merge the "Assorted 
+intel_gpu_top improvements" series first, in which case I can resend.
+
+> For example, in 3/8 instead of
+> libdrmclients: Record client drm minor
+> write:
+> lib/igt_drm_clients: Record client drm minor
 > 
-> 	root_drmcs.scanning_suspended = true;
-> 	root_drmcs.suspended_period_us = root_drmcs.period_us;
-> 	root_drmcs.period_us = 0;
-> 
-> but I don't see those used in scan_worker() and the scanning traversal
-> can apparently run concurrently with a task migration.
+> If there are more lib changes, use "lib: " alone, for example
+> in your 2/8 patch,
+> libdrmfdinfo: Allow specifying custom engine map
+> write:
+> lib: Allow specifying custom engine map
 
-I think you missed the finish_suspend_scanning() part:
-
-	if (root_drmcs.suspended_period_us)
-		cancel_delayed_work_sync(&root_drmcs.scan_work);
-
-So if scanning was in progress migration will wait until it finishes. 
-And re-start only when migration is done (drmcs_attach), or it failed 
-(drmcs_cancel_attach).
-
-Not claiming I did not miss something because I was totally new with 
-cgroup internals when I started working on this. So it is definitely 
-useful to have more eyes looking.
-
->> [...]
->> +static bool
->> +__start_scanning(struct drm_cgroup_state *root, unsigned int period_us)
->> [...]
->> +	css_for_each_descendant_post(node, &root->css) {
->> [...]
->> +		active = drmcs_get_active_time_us(drmcs);
->> +		if (period_us && active > drmcs->prev_active_us)
->> +			drmcs->active_us += active - drmcs->prev_active_us;
->> +		drmcs->prev_active_us = active;
-> 
-> drmcs_get_active_time_us() could count a task's contribution here,
-> the task would migrate to a different drmcs,
-> and it'd be counted 2nd time.
-
-Lets see.. __start_scanning() can be called from the worker, so max one 
-instance at a time, no issue.
-
-Then from resume scanning, so it is guaranteed worker is not running and 
-can't restart since mutex guards the re-start.
-
-Finally from drmcs_write_period_us() - yes there __start_scanning() can 
-race with it being invoked by the worker - oops! However.. this is just 
-a debugging aid as the cover letter explains. This file is not intended 
-to be present in the final version, rather as per earlier discussion 
-with Tejun the idea is to only have boot time option to control the 
-functionality (enable/disable or period).
-
-I will nevertheless try to fix this race up for the next posting to 
-avoid further confusion!
+Again, if you agree there is no need to spam the list with a re-send 
+yet, review can continue against this version, and I will note to change 
+the above patch prefixes while doing the other changes the review is 
+bound to trigger.
 
 Regards,
 
 Tvrtko
+
+> 
+> +Cc Petri and Zbyszek
+> 
+> Regards,
+> Kamil
+> 
+> On 2022-11-11 at 15:58:36 +0000, Tvrtko Ursulin wrote:
+>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>
+>> This is a pile of patches which implements a rudimentary vendor agnostic gputop
+>> tool based of the new DRM spec as documented in
+>> Documentation/gpu/drm-usage-stats.rst.
+>>
+>> First part of the series is code refactoring which should be reasonably stable.
+>> I've tested it all while working on it both against intel_gpu_top and gputop.
+>>
+>> Last patch is the actual tool itself. It works but it is rather rudimentary
+>> which is hopefully good enough for a start.
+>>
+>> Fundamental difference between intel_gpu_top and gputop is that the former is
+>> centered around a single card and only shows processes belonging to it. Gputop
+>> on the other hand has an idea to show all processes with DRM file descriptors
+>> open and sort them into groups per card. It also makes no effort to provide
+>> sorting modes, well any interactivity, or any pretty names for GPUs or engines.
+>>
+>> It looks like this:
+>> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> DRM minor 0
+>>      PID               NAME    render       copy       video
+>>      3816          kwin_x11 |███▎      ||          ||          ||          |
+>>      3523              Xorg |▊         ||          ||          ||          |
+>>   1120449               mpv |          ||          ||▋         ||          |
+>>   1120529          glxgears |▋         ||          ||          ||          |
+>>   1120449               mpv |▍         ||          ||          ||          |
+>>      3860       plasmashell |▏         ||          ||          ||          |
+>>      4764           krunner |          ||          ||          ||          |
+>>    575206            chrome |          ||          ||          ||          |
+>>    833481           firefox |          ||          ||          ||          |
+>>    892924       thunderbird |          ||          ||          ||          |
+>> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>>
+>> I did test it as well with two cards and confirmed that too works.
+>>
+>> Rob Clark also tested it with a patch which exports the respective data from the
+>> msm driver and confirmed it works fine. Christian König tested it with in
+>> progress patches for amdgpu and that worked as well.
+>>
+>> v2:
+>>   * Fixed SPDX headers and added a bunch of code comments/docs throughout.
+>>
+>> Tvrtko Ursulin (8):
+>>    lib: Extract igt_drm_clients from intel_gpu_top
+>>    libdrmfdinfo: Allow specifying custom engine map
+>>    libdrmclients: Record client drm minor
+>>    libdrmclient: Support multiple DRM cards
+>>    libdrmfdinfo: Track largest engine index
+>>    libdrmclient/intel_gpu_top: Decouple hardcoded engine assumptions
+>>    libdrmclient: Enforce client status sort order in the library
+>>    gputop: Basic vendor agnostic GPU top tool
+>>
+>>   lib/igt_drm_clients.c   | 503 +++++++++++++++++++++++++++++
+>>   lib/igt_drm_clients.h   |  87 ++++++
+>>   lib/igt_drm_fdinfo.c    |  50 ++-
+>>   lib/igt_drm_fdinfo.h    |  16 +-
+>>   lib/meson.build         |   8 +
+>>   tests/i915/drm_fdinfo.c |  19 +-
+>>   tools/gputop.c          | 260 +++++++++++++++
+>>   tools/intel_gpu_top.c   | 677 +++++++++++-----------------------------
+>>   tools/meson.build       |   7 +-
+>>   9 files changed, 1113 insertions(+), 514 deletions(-)
+>>   create mode 100644 lib/igt_drm_clients.c
+>>   create mode 100644 lib/igt_drm_clients.h
+>>   create mode 100644 tools/gputop.c
+>>
+>> -- 
+>> 2.34.1
+>>
