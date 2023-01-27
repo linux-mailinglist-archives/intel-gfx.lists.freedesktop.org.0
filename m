@@ -1,54 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F41B67E85E
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Jan 2023 15:36:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 798DE67E865
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Jan 2023 15:37:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92B5E10E477;
-	Fri, 27 Jan 2023 14:36:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD14C10E477;
+	Fri, 27 Jan 2023 14:37:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A75810E477
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Jan 2023 14:36:47 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7A7010E477
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Jan 2023 14:37:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674830207; x=1706366207;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=5jj4fUGGk74Q2Xc8nFGWASV8O6UliO/I5FoPwRvnoZ0=;
- b=DIqONvUSrVCcxTOOFVlf3f9PCvW3u4q/oXuX9JHAuNi4id0ihR91wwxt
- 6+K8x6UJV8NUFVboDkgSG2brgQC7jHthbYD5SVqEu5tcJ88XB8wDqztYe
- bWpel4C6coANFo2Cr4eMlKMnhrQrV5QE+t+wfazq7wPlbQ15LPhCad+sa
- UkdG+kyP+y9f2taxt+EmABqxIRZxtRC0TKbHFVhmHjnbcyqoj4i5JcZnz
- EmTFuaBZI8RtXT+9sQbvsdJVSsOt4gZTyzNNCBeZU/JyjkKkqgtUERLbX
- 1ureuBdLYCnQhlMB/qzgOy7Dzog48vd3kPm0/UCYGHb/0Z1SHCZIuOOJF w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10603"; a="389473372"
-X-IronPort-AV: E=Sophos;i="5.97,251,1669104000"; d="scan'208";a="389473372"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2023 06:36:46 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10603"; a="640715641"
-X-IronPort-AV: E=Sophos;i="5.97,251,1669104000"; d="scan'208";a="640715641"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
- by orsmga006.jf.intel.com with SMTP; 27 Jan 2023 06:36:43 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 27 Jan 2023 16:36:42 +0200
-Date: Fri, 27 Jan 2023 16:36:42 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>
-Message-ID: <Y9PhenLaGgdgtFVp@intel.com>
-References: <20230127073403.1306050-1-andrzej.hajda@intel.com>
+ t=1674830256; x=1706366256;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=K7sV0gPe2NjfHfoiNzDVb5CbW7UD0DahiNmqK7s/1wE=;
+ b=ZTNRFtNV6JKEFfSda2zV8f1ridavcvnGwUfHzSyxrMdVvjL8nldKrMgB
+ jhz1v3xYpQUdI0SV+4EXzwZLqOVzuesqEUmS7NftRe80JL4BV5hJPDFnV
+ bGPuE2dLIebGKzaBX3CQWddda6lWBsZJ666cmRuiNwjIvpkvHGEkIv3he
+ 9m2TflCHssT/xCkYPj5D+yAalSdDL2Qzs7HZI+nttkb/Lk8GbC7D6Y2e/
+ 2oYRYa/XieUf/yH6E9i6bcxUToxQgPrzBU7TtYAeF2TTLT0cK6XgGFfk6
+ pWcuZqci5BEaCHRHUFAITVBQcO/xVJm0nzER7De4aw2GZYbp+CPXRoX3s g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10603"; a="310717954"
+X-IronPort-AV: E=Sophos;i="5.97,251,1669104000"; d="scan'208";a="310717954"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2023 06:37:28 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10603"; a="731861270"
+X-IronPort-AV: E=Sophos;i="5.97,251,1669104000"; d="scan'208";a="731861270"
+Received: from kagner-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.46.38])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2023 06:37:25 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, Luca Coelho
+ <luca@coelho.fi>, Jouni =?utf-8?Q?H=C3=B6gander?=
+ <jouni.hogander@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <7e60172d-2f8c-07a5-9901-c4b1b3379c7b@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230125104439.1662832-1-jouni.hogander@intel.com>
+ <5a3fd9d547723c726b0f170e894cf471e7eb8ae1.camel@coelho.fi>
+ <87bkml5wv4.fsf@intel.com>
+ <e0fb44004a740f0bb676cde16d8cc3a247ac106b.camel@coelho.fi>
+ <f90662ade27cf750704896eda0663502fd05c4c0.camel@coelho.fi>
+ <87357x5lir.fsf@intel.com>
+ <7e60172d-2f8c-07a5-9901-c4b1b3379c7b@linux.intel.com>
+Date: Fri, 27 Jan 2023 16:37:22 +0200
+Message-ID: <87o7qk3uxp.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230127073403.1306050-1-andrzej.hajda@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: implement async_flip mode per
- plane tracking
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/psr: Split sel fetch plane
+ configuration into arm and noarm
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,158 +67,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 27, 2023 at 08:34:03AM +0100, Andrzej Hajda wrote:
-> Current implementation of async flip w/a relies on assumption that
-> previous atomic commit contains valid information if async_flip is still
-> enabled on the plane. It is incorrect. If previous commit did not modify
-> the plane its state->uapi.async_flip can be false. As a result DMAR/PIPE
-> errors can be observed:
-> i915 0000:00:02.0: [drm] *ERROR* Fault errors on pipe A: 0x00000080
-> i915 0000:00:02.0: [drm] *ERROR* Fault errors on pipe A: 0x00000080
-> DMAR: DRHD: handling fault status reg 2
-> DMAR: [DMA Read NO_PASID] Request device [00:02.0] fault addr 0x0 [fault reason 0x06] PTE Read access is not set
-> 
-> v2: update async_flip_planes in more reliable places (Ville)
-> v3: reset async_flip_planes and do_async_flip in more scenarios (Ville)
-> 
-> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_atomic_plane.c  | 5 ++++-
->  drivers/gpu/drm/i915/display/intel_color.c         | 3 +++
->  drivers/gpu/drm/i915/display/intel_display.c       | 9 ++++++---
->  drivers/gpu/drm/i915/display/intel_display_types.h | 3 +++
->  drivers/gpu/drm/i915/display/skl_watermark.c       | 5 +++++
->  5 files changed, 21 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> index 1409bcfb6fd3d9..3bd8f7eb75a60b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> @@ -363,6 +363,7 @@ void intel_plane_set_invisible(struct intel_crtc_state *crtc_state,
->  	crtc_state->scaled_planes &= ~BIT(plane->id);
->  	crtc_state->nv12_planes &= ~BIT(plane->id);
->  	crtc_state->c8_planes &= ~BIT(plane->id);
-> +	crtc_state->async_flip_planes &= ~BIT(plane->id);
->  	crtc_state->data_rate[plane->id] = 0;
->  	crtc_state->data_rate_y[plane->id] = 0;
->  	crtc_state->rel_data_rate[plane->id] = 0;
-> @@ -582,8 +583,10 @@ static int intel_plane_atomic_calc_changes(const struct intel_crtc_state *old_cr
->  			 intel_plane_is_scaled(new_plane_state))))
->  		new_crtc_state->disable_lp_wm = true;
->  
-> -	if (intel_plane_do_async_flip(plane, old_crtc_state, new_crtc_state))
-> +	if (intel_plane_do_async_flip(plane, old_crtc_state, new_crtc_state)) {
->  		new_crtc_state->do_async_flip = true;
-> +		new_crtc_state->async_flip_planes |= BIT(plane->id);
-> +	}
->  
->  	return 0;
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-> index 8d97c299e6577b..5162b2b4ede080 100644
-> --- a/drivers/gpu/drm/i915/display/intel_color.c
-> +++ b/drivers/gpu/drm/i915/display/intel_color.c
-> @@ -1506,6 +1506,9 @@ intel_color_add_affected_planes(struct intel_crtc_state *new_crtc_state)
->  			new_crtc_state->disable_cxsr = true;
->  	}
->  
-> +	new_crtc_state->do_async_flip = false;
-> +	new_crtc_state->async_flip_planes = 0;
+On Fri, 27 Jan 2023, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
+> On 26/01/2023 16:05, Jani Nikula wrote:
+>> On Thu, 26 Jan 2023, Luca Coelho <luca@coelho.fi> wrote:
+>>> On Thu, 2023-01-26 at 14:11 +0200, Luca Coelho wrote:
+>>>> On Thu, 2023-01-26 at 14:00 +0200, Jani Nikula wrote:
+>>>>> On Thu, 26 Jan 2023, Luca Coelho <luca@coelho.fi> wrote:
+>>>>>> On Wed, 2023-01-25 at 12:44 +0200, Jouni H=C3=B6gander wrote:
+>>>>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gp=
+u/drm/i915/display/intel_psr.c
+>>>>>>>> index 7d4a15a283a0..63b79c611932 100644
+>>>>>>>> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+>>>>>>>> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+>>>>>>>> @@ -1559,7 +1559,26 @@ void intel_psr2_disable_plane_sel_fetch(str=
+uct intel_plane *plane,
+>>>>>>>>   	intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_CTL(pipe, plane->id=
+), 0);
+>>>>>>>>   }
+>>>>>>>>=20=20=20
+>>>>>>>> -void intel_psr2_program_plane_sel_fetch(struct intel_plane *plane,
+>>>>>>>> +void intel_psr2_program_plane_sel_fetch_arm(struct intel_plane *p=
+lane,
+>>>>>>>> +					const struct intel_crtc_state *crtc_state,
+>>>>>>>> +					const struct intel_plane_state *plane_state,
+>>>>>>>> +					int color_plane)
+>>>>>>>> +{
+>>>>>>>> +	struct drm_i915_private *dev_priv =3D to_i915(plane->base.dev);
+>>>>>>
+>>>>>> Should you use i915 instead of dev_priv? I've heard and read elsewhe=
+re
+>>>>>> that this is generally a desired change.  Much easier to use always =
+the
+>>>>>> same local name for this kind of thing.  Though this file is already
+>>>>>> interspersed with both versions...
+>>>>>
+>>>>> Basically the only reason to use dev_priv for new code is to deal with
+>>>>> some register macros that still have implicit dev_priv in
+>>>>> them. Otherwise, i915 should be used, and when convenient, dev_priv
+>>>>> should be converted to i915 while touching the code anyway (in a
+>>>>> separate patch, but while you're there).
+>>>>
+>>>> Thanks for the clarification! In this case we're not using any of the
+>>>> macros, AFAICT, so I guess it's better to go with i915 already? And I
+>>>> think it should even be in this same patch, since it's a new function
+>>>> anyway.
+>>>>
+>>>>
+>>>>> The implicit dev_priv dependencies in the register macros are a bit
+>>>>> annoying to fix, and it's been going slow. In retrospect maybe the ri=
+ght
+>>>>> thing would have been to just sed the parameter to all of them
+>>>>> everywhere and be done with it for good. Not too late now, I guess, a=
+nd
+>>>>> I'd take the patches in a heartbeat if someone were to step up and do
+>>>>> it.
+>>>>
+>>>> I see that there is a boatload of register macros using it... I won't
+>>>> promise, but I think it would be a good exercise for a n00b like me to
+>>>> make this patch, though I already foresee another boatload of conflicts
+>>>> with the internal trees and everything...
+>>>
+>>> There were actually 10 boatloads of places to change:
+>>>
+>>>   187 files changed, 12104 insertions(+), 12104 deletions(-)
+>>>
+>>> ...but it _does_ compile. =F0=9F=98=84
+>>>
+>>> Do you think this is fine? Lots of shuffle, but if you think it's okay,
+>>> I can send the patch out now.
+>>=20
+>> Heh, I said I'd take patchES, not everything together! ;)
+>>=20
+>> Rodrigo, Tvrtko, Joonas, thoughts?
+>
+> IMO if the elimination of implicit dev_priv is not included then I am=20
+> not sure the churn is worth the effort.
+>
+> I think one trap is that it is easy to assume solving those conflicts is=
+=20
+> easy because there is a script, somewhere, whatever, but one needs to be=
+=20
+> careful with assuming a random person hitting a merge conflict will=20
+> realize there is a script, know where to find it, and know how to use it=
+=20
+> against a state where conflict markers are sitting in their local tree.=20
+> That's a lot of assumed knowledge which my experience tells me is not=20
+> universally there.
+>
+> Having said all that, I looked at the occurrence histogram for the=20
+> proposed churn and gut feel says conflicts wouldn't even be that bad=20
+> since they seem heavily localized in a handful of files plus the display=
+=20
+> subdir.
+>
+> Plus it is upstream.. so we are allowed not to care too much about=20
+> backporting woes. I would still hope implicit dev_priv, albeit=20
+> orthogonal, would be coming somewhat together with the rename. For that=20
+> warm fuzzy feeling that the churn was really really worth it.
 
-These should be next to the update_plane bitmask change.
+I was mostly talking about the implicit dev_priv removal. It's somewhat
+easy, because you can always assume dev_priv is around when the macros
+in question are used.
 
-> +
->  	return 0;
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 717ca3d7890d34..8581b32c9cf0eb 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -1252,7 +1252,8 @@ static void intel_crtc_async_flip_disable_wa(struct intel_atomic_state *state,
->  		intel_atomic_get_old_crtc_state(state, crtc);
->  	const struct intel_crtc_state *new_crtc_state =
->  		intel_atomic_get_new_crtc_state(state, crtc);
-> -	u8 update_planes = new_crtc_state->update_planes;
-> +	u8 disable_async_flip_planes = old_crtc_state->async_flip_planes &
-> +				       ~new_crtc_state->async_flip_planes;
->  	const struct intel_plane_state *old_plane_state;
->  	struct intel_plane *plane;
->  	bool need_vbl_wait = false;
-> @@ -1261,7 +1262,7 @@ static void intel_crtc_async_flip_disable_wa(struct intel_atomic_state *state,
->  	for_each_old_intel_plane_in_state(state, plane, old_plane_state, i) {
->  		if (plane->need_async_flip_disable_wa &&
->  		    plane->pipe == crtc->pipe &&
-> -		    update_planes & BIT(plane->id)) {
-> +		    disable_async_flip_planes & BIT(plane->id)) {
->  			/*
->  			 * Apart from the async flip bit we want to
->  			 * preserve the old state for the plane.
-> @@ -1378,7 +1379,7 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
->  	 * WA for platforms where async address update enable bit
->  	 * is double buffered and only latched at start of vblank.
->  	 */
-> -	if (old_crtc_state->uapi.async_flip && !new_crtc_state->uapi.async_flip)
-> +	if (old_crtc_state->async_flip_planes & ~new_crtc_state->async_flip_planes)
->  		intel_crtc_async_flip_disable_wa(state, crtc);
->  }
->  
-> @@ -5939,6 +5940,8 @@ int intel_modeset_all_pipes(struct intel_atomic_state *state,
->  			return ret;
->  
->  		crtc_state->update_planes |= crtc_state->active_planes;
-> +		crtc_state->do_async_flip = false;
-> +		crtc_state->async_flip_planes = 0;
->  	}
->  
->  	return 0;
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 54c517ca9632fb..9ccae7a4602009 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1249,6 +1249,9 @@ struct intel_crtc_state {
->  	/* bitmask of planes that will be updated during the commit */
->  	u8 update_planes;
->  
-> +	/* bitmask of planes with async flip active */
-> +	u8 async_flip_planes;
-> +
->  	u8 framestart_delay; /* 1-4 */
->  	u8 msa_timing_delay; /* 0-3 */
->  
-> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-> index ae4e9e680c2e30..eb5e07647a348f 100644
-> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> @@ -2397,6 +2397,8 @@ skl_ddb_add_affected_planes(const struct intel_crtc_state *old_crtc_state,
->  			return PTR_ERR(plane_state);
->  
->  		new_crtc_state->update_planes |= BIT(plane_id);
-> +		new_crtc_state->do_async_flip = false;
-> +		new_crtc_state->async_flip_planes = 0;
->  	}
->  
->  	return 0;
-> @@ -2756,6 +2758,9 @@ static int skl_wm_add_affected_planes(struct intel_atomic_state *state,
->  		new_crtc_state->update_planes |= BIT(plane_id);
->  	}
->  
-> +	new_crtc_state->do_async_flip = false;
-> +	new_crtc_state->async_flip_planes = 0;
+The above is a dependency to any renames. I don't think the renames are
+as important as removing the implicit dev_priv, and the renames are
+easier to handle piecemeal, say a file at a time or something.
 
-ditto
+BR,
+Jani.
 
-> +
->  	return 0;
->  }
->  
-> -- 
-> 2.34.1
 
--- 
-Ville Syrjälä
-Intel
+--=20
+Jani Nikula, Intel Open Source Graphics Center
