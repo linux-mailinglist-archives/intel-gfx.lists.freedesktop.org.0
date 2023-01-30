@@ -1,51 +1,147 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DBDD680A8C
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Jan 2023 11:15:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04F1B680AAB
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Jan 2023 11:19:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7382310E0DB;
-	Mon, 30 Jan 2023 10:14:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5611910E214;
+	Mon, 30 Jan 2023 10:19:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6394010E0DA
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Jan 2023 10:14:55 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF0FD10E214
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Jan 2023 10:19:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675073695; x=1706609695;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=2i8D4ZIUSkHEkwR+Fve9uLAXkaoRy4VeCqSlVqkm8n4=;
- b=AHPrN9C0eLJ/CXmWHSaYuw6vhYyxnYBWnqQRkOIRux70+Irz6iv9jAqU
- RZNefkBbNjQpHkfhow07AUFv9rz/PoQOuCmY7XotbJiEBz2keCE+CHbYR
- rwYY/sLNHaUm6bS1CsdNyjlU42grkKud8DMXIN4sYVApaX43PjROSYF7L
- RA2z2D688Z+a+TqnG7mW3XylRgEJdg9Pb9zoO1F35I8aib5F3vInPei99
- tWOHTS+/TPDFJ/VqFBASLzWUZ4zxNYvRYqHfzwDyP/P36zySpBsFFKqHS
- p0IPU9VajBd1uY3OW+K9s6TrYPohMb7eocSfv9WR2tNK7n6NK6YlQpsck w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="307173901"
-X-IronPort-AV: E=Sophos;i="5.97,257,1669104000"; d="scan'208";a="307173901"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2023 02:14:54 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="787966273"
-X-IronPort-AV: E=Sophos;i="5.97,257,1669104000"; d="scan'208";a="787966273"
-Received: from lab-ah.igk.intel.com ([10.102.42.211])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2023 02:14:52 -0800
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 30 Jan 2023 11:14:36 +0100
-Message-Id: <20230130101436.924402-1-andrzej.hajda@intel.com>
-X-Mailer: git-send-email 2.34.1
+ t=1675073961; x=1706609961;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=toMz8NLtvy4N89s2MDEn/XcFsRhh1zyInPf6g2dKddY=;
+ b=Sd2/vPqEgEsJ2/wOTyegHrEpIdN1GTjpJ7Kl77CVS4XKwjs5HyHRzpoi
+ t53BynbtJwP3EbEPJlb4pPaSj6wemIS2sP+q4VBbppSFERYA1eO/viAfH
+ xvAt1CU721oaMcZt0z/lRZw4NkkB213d7sLP6jIhDcnObLkyw4WxacNn7
+ LfUIc23Izf1xZbqXnPJxu1u3Y6u44LnJB5NeUKSixD+vyu+MxuEcp33lg
+ jiakWEqGUH/paGlp2Bv+ZL8MaoXkgU8pJ/L3BgyOduypffXI/CKmqDNVG
+ jU3hS3pnTyewom/uBg/qy5MIWny55UQ9omdE3fDHnXIaLP/yp8ycPheg9 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="326190517"
+X-IronPort-AV: E=Sophos;i="5.97,257,1669104000"; d="scan'208";a="326190517"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2023 02:19:21 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="772442247"
+X-IronPort-AV: E=Sophos;i="5.97,257,1669104000"; d="scan'208";a="772442247"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga002.fm.intel.com with ESMTP; 30 Jan 2023 02:19:21 -0800
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Mon, 30 Jan 2023 02:19:20 -0800
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Mon, 30 Jan 2023 02:19:20 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Mon, 30 Jan 2023 02:19:20 -0800
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Mon, 30 Jan 2023 02:19:19 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZXDE58KZb760CiE1ImNsx+dh4WekjcnhA/GBnG3vWSLtFWgrjJyy6Bve+t/bWoYy728AFEWpQbjHwM4Qzr5fM6pGl9xtpXBgPxOkShkNSqRTlIffkolnjCrkQGDM1W7Ul1eSfKr7k+JHRdAM6sqOyyWEyyGgEH7066hajBiKqE/h2HNwV0reJrlhJPJFDANcXjSb0oj4LNaFi5Pc4OpmBBmEf8am2P8IrhT1XXhKJ28cLU8By2GbPfe2dLzo/FAXi/JgxwqHWPwtouz+2/JfpgJLoh3uKVYSH2ANezVkY2m4yQBZ+lm9cE8ayOxtQ1AUINHeGRiiWo5/GYiBPwNgLA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=79LU/CEuy+voJp29zsGP0NErOqrmDUucp0/49inlSPo=;
+ b=GGbdEHyFB/1kKqGwCn8U1iNVhIooJ9REKGFHhRZCwbaz8p4QsS2rnSKjzNsPF0dYreCsNE6p91mQdBbMoBHsuUG8KnwKTny+pdGnkAdWx6i1v6Q1LjUGtSAET5yx0tTEeDiOvVTHATSaIznEOAMVbxckUda9DIXKLGJ8WZyGSk3M9kCJPMJJ9dkmP/g1tNAff0YAJUVgcN2x1H5qOa11KW4le263Q9dr/ULjDxLZE0z6VRKe5f157/l2adNo6WyjQric8Gg3R5UWUMXiHVo4zRx77L/2Evx68ChhDZypgejJDcOttLWFK/I+ONrPqBlfaTjbkEOvNmaS0YFVABcZrQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from SJ1PR11MB6129.namprd11.prod.outlook.com (2603:10b6:a03:488::12)
+ by CY8PR11MB6889.namprd11.prod.outlook.com (2603:10b6:930:5e::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.33; Mon, 30 Jan
+ 2023 10:19:16 +0000
+Received: from SJ1PR11MB6129.namprd11.prod.outlook.com
+ ([fe80::7827:fa46:df42:5703]) by SJ1PR11MB6129.namprd11.prod.outlook.com
+ ([fe80::7827:fa46:df42:5703%8]) with mapi id 15.20.6043.033; Mon, 30 Jan 2023
+ 10:19:16 +0000
+From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+To: "Roper, Matthew D" <matthew.d.roper@intel.com>
+Thread-Topic: [RFC 1/2] drm/i915: Add RPL-U sub platform
+Thread-Index: AQHZKkc+IWUNOoOJx0mVhhuYEEYsP66trLGAgAQSSxCAAOAfgIAENLGg
+Date: Mon, 30 Jan 2023 10:19:15 +0000
+Message-ID: <SJ1PR11MB6129D9A7F2B9FE1D62361FD9B9D39@SJ1PR11MB6129.namprd11.prod.outlook.com>
+References: <20230117074211.952125-1-chaitanya.kumar.borah@intel.com>
+ <20230117074211.952125-2-chaitanya.kumar.borah@intel.com>
+ <87mt686m1o.fsf@intel.com>
+ <SJ1PR11MB612937723DC09B70E8A7F04FB9CC9@SJ1PR11MB6129.namprd11.prod.outlook.com>
+ <Y9QSO7SO+paPhXkc@mdroper-desk1.amr.corp.intel.com>
+In-Reply-To: <Y9QSO7SO+paPhXkc@mdroper-desk1.amr.corp.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ1PR11MB6129:EE_|CY8PR11MB6889:EE_
+x-ms-office365-filtering-correlation-id: 17c2a120-95e9-42c9-2cb8-08db02ab70b8
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: V+pKYmMrBxZNIa3q6l7e/FA7cZcFGRz3dAsGLXU+YpPA338xbKNi4q0uEiWw4uArlB5mcZWBGNatpqTVH4UCfMnD6LRs03SywjlbvS8et1vJzRkCaWUJaC01eGkqIxKwcj0FUavw3F+fRvf8tVoqAzwsxsfT/vZ4cEDvuHq9PQO0VAocpxc+R+0aM2sZkskUQx9uzL61b49H02wLtCBrhXVKKryfy5qhqKvn447a64kamD/RF6yj3QlraU5AjlqDGyFh2bhy82aUy4i/pZfu39slve+4jGrjKKFrrdJIeXhWCUhUlIt1kHm9R0mp+mUJfgUgBxVsREISLsZAagw8JaDVAn7d/TkhWMDxK92r8C+4fKDlIfDKa6cNMNoR3/vN7vYSg6l5ozwIJx/ZqdbWbyZybBDo55T5Uc+P2UkqtJYeEvEdNhpZ9PfY5PZbz6E2ps4mgDkIfLC6Vaea8KVEWAWPTLtyk7+nIZn7c+rf4nyZio/+f9l0TZZmM1dHIev6pxxqDbDy+si3N+UjmxpZF6wZWOILSX2Bg55TkutmgrDScw+vDkY9BhvjyYuzf1gLdguvaqPOeycumKK7UX0Xt9ZZXRAiroOOO23kbu1ItMi0EHaEN9dTYxa0gqAxb+x1KDyZfG2uXDRDJMn7JrZWNhnzegPEbzgZJc5UD69vvXndgk3O9y/h6fkGhMiI9gqLkM4i/D6jfUTlqBMJKgpTrw==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ1PR11MB6129.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(39860400002)(366004)(136003)(376002)(346002)(396003)(451199018)(5660300002)(8936002)(41300700001)(2906002)(76116006)(64756008)(66946007)(66556008)(66446008)(8676002)(4326008)(316002)(6636002)(66476007)(54906003)(71200400001)(7696005)(478600001)(55236004)(6506007)(53546011)(9686003)(186003)(26005)(83380400001)(33656002)(52536014)(6862004)(55016003)(82960400001)(86362001)(38100700002)(122000001)(38070700005);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?4fANZeIzxiA8xGS9X7uk/2qxuZ4czIfHc6Z7jZB5byjSyar5B39BMumrK5HM?=
+ =?us-ascii?Q?2ckEQG1nmlUKqG3SoQFFAzlSgziTAyyGcC19vM8ZcNHYc6hs1LEKw248MEol?=
+ =?us-ascii?Q?rvhsKg46ZyG3wYYMTsa4Kp/VFzeNp9E/0Vf/xT3s+Kzvy0uyShxUbTT3TWoh?=
+ =?us-ascii?Q?Tvu4ArnTu6pcEYjNSXRhuBy5ElU4Pf4XXS6p9DVE/EloTX8UnE8ZKMQGw910?=
+ =?us-ascii?Q?p8Qr5HbCQqUKRNg0hqm82f/7rVF2XQkWjQegukfzbOpEXD3rDoSWaJaaOS55?=
+ =?us-ascii?Q?gJan3rqA0scGhgmNLrGh1zZjlr7YzHuLMNUA7Ad5hSHLiI9NY6ruGTfImmSZ?=
+ =?us-ascii?Q?dmtnfxHt5TjzuPXr/aU31lSiKZaxEOUbXVm/AERELLwtwP4N76CZ9DngdZih?=
+ =?us-ascii?Q?dfBAzI3xgAOx/aRlmOhERxBIngykixW6KQm8cw6phtrPkc3UozGo72Gbwu4C?=
+ =?us-ascii?Q?nyIMz3jUG3dgKEZ/ZS1rDVaxhF0kH6QZoHFj1tn+FRklBmfTux+6xGQLVE/I?=
+ =?us-ascii?Q?RRpOvUPdqrlVqhReWiD+v5xY6GhnIrs19CKqJ2nHNTYwawoA1W6QtreT9OXH?=
+ =?us-ascii?Q?P5FQ+3X7iFOdWvuL5NcuNmSXZ2yrAiE2/V9gIwTKZ74s3xGL0QtWgKzTygkU?=
+ =?us-ascii?Q?EmqNvw/9o/kMA5lwdzhJeFd5wYG5WO2VNLljsWanIhZeCEF74ZLK6Svehobo?=
+ =?us-ascii?Q?q11+h33pmZSA57NG8jDNaPDlH7m3WoqM9GSaHsWvwUPsKNddJzKKoldOyCFK?=
+ =?us-ascii?Q?321VvTiJB3yvVG2vvzgXaLICkN06QNQkkGt791+sxBhRu6n6RK7H6E/+viAT?=
+ =?us-ascii?Q?XyUjSWuTKMl1zGUkagtAHXEr1AP+Fl12sa/Sd7gboCGS4oT3H2cSM22zHKUv?=
+ =?us-ascii?Q?UAgiDjjFAgwW1kfSAagN+3T5/8X+2FHvUOfGN7A37QJMbD5wMDFz+1GfCUG2?=
+ =?us-ascii?Q?A+Wn7KkVIXDm63KuKLb0whXWFK7rX7l/RJk/j2zMyoWR+9b7zufDTrhBrK2g?=
+ =?us-ascii?Q?EhbU+TGSkPzQYGTRhTVUxFt3VMjkv8QuPBd0/VyLb9zbqX2tfED0dW8wZMN5?=
+ =?us-ascii?Q?M7FcSJ5bBYAH/w5ify4HCDzsmb+k0Dkt0bbdFMewmSZHS9FJSybxIvD1ES56?=
+ =?us-ascii?Q?Y7fTFCCuqEZfB8qArlND6UF1zHDx1bX82brk5/F+xRRm170kPtYJ5NUwDWFR?=
+ =?us-ascii?Q?tbmU1ShfHVFlJxqwc6U3ToAmUtchAq0gUWLy0mJ2Z2p5E72h8uJ2/0yOB3/D?=
+ =?us-ascii?Q?9eG8FLXMao0BspM7vXSqPFnxCNR0P7MRHvidD5+Tep8SpHTM64XvY7JcV/ld?=
+ =?us-ascii?Q?beNwsBZ+MFGFkQJpE4i1bksRoS+6E+YRYiUKBr2c6+mXjzXHHwdAL1Rj3xGD?=
+ =?us-ascii?Q?Sme/tk0LK2pcPZVksz6Efa1XM3x37PLmdl8y+GMDcVJ63UIGe0UNH6C6jgU4?=
+ =?us-ascii?Q?CfNYYUzsAHhiQVC7cxwNuOpOW2LQvXjiyGEjYKa9n8tdQLqKYjmafJrPCY9v?=
+ =?us-ascii?Q?Igz/I9Xlswel/DCx/XMzFvYGdn2vB/XHXxYc7E3tOOUGjJZuQisRJnJTcCCz?=
+ =?us-ascii?Q?/+Zbh+zNLPCl6tbMrPGGTAcjABUMLitBeB3wOeUV6V7+8wNP/WZbivQuSU1N?=
+ =?us-ascii?Q?jQ=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v5] drm/i915/gt: Add selftests for TLB
- invalidation
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6129.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 17c2a120-95e9-42c9-2cb8-08db02ab70b8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jan 2023 10:19:15.6369 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: mwJYHoqCozxQ1ckqK7zPNoVDfCSX7J6+58/L6gB4LDrcdCFCVPGRR+UFglm0oF43s/RA0A4aaIn/IhGl+ndG0qN1tHnH0IWTfuGZO2WKvWk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6889
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [RFC 1/2] drm/i915: Add RPL-U sub platform
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,470 +154,257 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
+Cc: "Syrjala, Ville" <ville.syrjala@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Chris Wilson <chris@chris-wilson.co.uk>
+Hello,
 
-Check that we invalidate the TLB cache, the updated physical addresses
-are immediately visible to the HW, and there is no retention of the old
-physical address for concurrent HW access.
+> -----Original Message-----
+> From: Roper, Matthew D <matthew.d.roper@intel.com>
+> Sent: Friday, January 27, 2023 11:35 PM
+> To: Borah, Chaitanya Kumar <chaitanya.kumar.borah@intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>; Shankar, Uma
+> <uma.shankar@intel.com>; Syrjala, Ville <ville.syrjala@intel.com>; Srivat=
+sa,
+> Anusha <anusha.srivatsa@intel.com>; Atwood, Matthew S
+> <matthew.s.atwood@intel.com>; intel-gfx@lists.freedesktop.org
+> Subject: Re: [RFC 1/2] drm/i915: Add RPL-U sub platform
+>=20
+> On Fri, Jan 27, 2023 at 01:34:31AM -0800, Borah, Chaitanya Kumar wrote:
+> > Hello Jani and Matt,
+> >
+> > > -----Original Message-----
+> > > From: Jani Nikula <jani.nikula@linux.intel.com>
+> > > Sent: Tuesday, January 24, 2023 8:02 PM
+> > > To: Borah, Chaitanya Kumar <chaitanya.kumar.borah@intel.com>; intel-
+> > > gfx@lists.freedesktop.org
+> > > Cc: Shankar, Uma <uma.shankar@intel.com>; Syrjala, Ville
+> > > <ville.syrjala@intel.com>; Srivatsa, Anusha
+> > > <anusha.srivatsa@intel.com>; Roper, Matthew D
+> > > <matthew.d.roper@intel.com>; Atwood, Matthew S
+> > > <matthew.s.atwood@intel.com>; Borah, Chaitanya Kumar
+> > > <chaitanya.kumar.borah@intel.com>
+> > > Subject: Re: [RFC 1/2] drm/i915: Add RPL-U sub platform
+> > >
+> > > On Tue, 17 Jan 2023, Chaitanya Kumar Borah
+> > > <chaitanya.kumar.borah@intel.com> wrote:
+> > > > Separate out RPLU device ids and add them to both RPL and newly
+> > > > created RPL-U subplatforms.
+> > > >
+> > > > v2: (Matt)
+> > > >     - Sort PCI-IDs numerically
+> > > >     - Name the sub-platform to accurately depict what it is for
+> > > >     - Make RPL-U part of RPL subplatform
+> > > >
+> > > > v3: revert to RPL-U subplatform (Jani)
+> > > >
+> > > > Signed-off-by: Chaitanya Kumar Borah
+> > > <chaitanya.kumar.borah@intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/i915/i915_drv.h          |  2 ++
+> > > >  drivers/gpu/drm/i915/i915_pci.c          |  1 +
+> > > >  drivers/gpu/drm/i915/intel_device_info.c |  8 ++++++++
+> > > > drivers/gpu/drm/i915/intel_device_info.h |  2 ++
+> > > >  include/drm/i915_pciids.h                | 11 +++++++----
+> > > >  5 files changed, 20 insertions(+), 4 deletions(-)
+> > > >
+> > > > diff --git a/drivers/gpu/drm/i915/i915_drv.h
+> > > > b/drivers/gpu/drm/i915/i915_drv.h index 48fd82722f12..c88e514728a0
+> > > > 100644
+> > > > --- a/drivers/gpu/drm/i915/i915_drv.h
+> > > > +++ b/drivers/gpu/drm/i915/i915_drv.h
+> > > > @@ -619,6 +619,8 @@ IS_SUBPLATFORM(const struct
+> drm_i915_private
+> > > *i915,
+> > > >  	IS_SUBPLATFORM(dev_priv, INTEL_ALDERLAKE_P,
+> > > INTEL_SUBPLATFORM_N)
+> > > > #define IS_ADLP_RPLP(dev_priv) \
+> > > >  	IS_SUBPLATFORM(dev_priv, INTEL_ALDERLAKE_P,
+> > > INTEL_SUBPLATFORM_RPL)
+> > > > +#define IS_ADLP_RPLU(dev_priv) \
+> > > > +	IS_SUBPLATFORM(dev_priv, INTEL_ALDERLAKE_P,
+> > > INTEL_SUBPLATFORM_RPLU)
+> > > >  #define IS_HSW_EARLY_SDV(dev_priv) (IS_HASWELL(dev_priv) && \
+> > > >  				    (INTEL_DEVID(dev_priv) & 0xFF00) =3D=3D
+> > > 0x0C00)  #define
+> > > > IS_BDW_ULT(dev_priv) \ diff --git
+> > > > a/drivers/gpu/drm/i915/i915_pci.c
+> > > > b/drivers/gpu/drm/i915/i915_pci.c index 6cc65079b18d..e9f3b99b3e00
+> > > > 100644
+> > > > --- a/drivers/gpu/drm/i915/i915_pci.c
+> > > > +++ b/drivers/gpu/drm/i915/i915_pci.c
+> > > > @@ -1234,6 +1234,7 @@ static const struct pci_device_id pciidlist[]=
+ =3D {
+> > > >  	INTEL_DG1_IDS(&dg1_info),
+> > > >  	INTEL_RPLS_IDS(&adl_s_info),
+> > > >  	INTEL_RPLP_IDS(&adl_p_info),
+> > > > +	INTEL_RPLU_IDS(&adl_p_info),
+> > >
+> > > You may want to drop this change, see later comment on how and why.
+> > >
+> > > >  	INTEL_DG2_IDS(&dg2_info),
+> > > >  	INTEL_ATS_M_IDS(&ats_m_info),
+> > > >  	INTEL_MTL_IDS(&mtl_info),
+> > > > diff --git a/drivers/gpu/drm/i915/intel_device_info.c
+> > > > b/drivers/gpu/drm/i915/intel_device_info.c
+> > > > index 849baf6c3b3c..fec8bd116436 100644
+> > > > --- a/drivers/gpu/drm/i915/intel_device_info.c
+> > > > +++ b/drivers/gpu/drm/i915/intel_device_info.c
+> > > > @@ -199,6 +199,11 @@ static const u16 subplatform_n_ids[] =3D {
+> > > > static const u16 subplatform_rpl_ids[] =3D {
+> > > >  	INTEL_RPLS_IDS(0),
+> > > >  	INTEL_RPLP_IDS(0),
+> > > > +	INTEL_RPLU_IDS(0)
+> > >
+> > > Please always include the trailing , at the end to make future change=
+s
+> easier.
+> > > (However, you may want to drop this change altogether, see later
+> > > comment.)
+> > >
+> > > > +};
+> > > > +
+> > > > +static const u16 subplatform_rplu_ids[] =3D {
+> > > > +	INTEL_RPLU_IDS(0),
+> > > >  };
+> > > >
+> > > >  static const u16 subplatform_g10_ids[] =3D { @@ -268,6 +273,9 @@
+> > > > static void intel_device_info_subplatform_init(struct drm_i915_priv=
+ate
+> *i915)
+> > > >  	} else if (find_devid(devid, subplatform_rpl_ids,
+> > > >  			      ARRAY_SIZE(subplatform_rpl_ids))) {
+> > > >  		mask =3D BIT(INTEL_SUBPLATFORM_RPL);
+> > > > +		if (find_devid(devid, subplatform_rplu_ids,
+> > > > +			       ARRAY_SIZE(subplatform_rplu_ids)))
+> > > > +			mask |=3D BIT(INTEL_SUBPLATFORM_RPLU);
+> > > >  	} else if (find_devid(devid, subplatform_g10_ids,
+> > > >  			      ARRAY_SIZE(subplatform_g10_ids))) {
+> > > >  		mask =3D BIT(INTEL_SUBPLATFORM_G10); diff --git
+> > > > a/drivers/gpu/drm/i915/intel_device_info.h
+> > > > b/drivers/gpu/drm/i915/intel_device_info.h
+> > > > index d588e5fd2eea..4a5cd337e4b5 100644
+> > > > --- a/drivers/gpu/drm/i915/intel_device_info.h
+> > > > +++ b/drivers/gpu/drm/i915/intel_device_info.h
+> > > > @@ -127,6 +127,8 @@ enum intel_platform {
+> > > >   * bit set
+> > > >   */
+> > > >  #define INTEL_SUBPLATFORM_N    1
+> > > > +/* Sub Platform for RPL-U */
+> > >
+> > > This comment really adds nothing, it's exactly the same as the macro
+> name.
+> > >
+> >
+> > Ack.
+> >
+> > > > +#define INTEL_SUBPLATFORM_RPLU  2
+> > > >
+> > > >  /* MTL */
+> > > >  #define INTEL_SUBPLATFORM_M	0
+> > > > diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
+> > > > index 4a4c190f7698..758be5fb09a2 100644
+> > > > --- a/include/drm/i915_pciids.h
+> > > > +++ b/include/drm/i915_pciids.h
+> > > > @@ -684,14 +684,17 @@
+> > > >  	INTEL_VGA_DEVICE(0xA78A, info), \
+> > > >  	INTEL_VGA_DEVICE(0xA78B, info)
+> > > >
+> > > > +/* RPL-U */
+> > > > +#define INTEL_RPLU_IDS(info) \
+> > > > +	INTEL_VGA_DEVICE(0xA721, info), \
+> > > > +	INTEL_VGA_DEVICE(0xA7A1, info), \
+> > > > +	INTEL_VGA_DEVICE(0xA7A9, info)
+> > > > +
+> > > >  /* RPL-P */
+> > > >  #define INTEL_RPLP_IDS(info) \
+> > > >  	INTEL_VGA_DEVICE(0xA720, info), \
+> > > > -	INTEL_VGA_DEVICE(0xA721, info), \
+> > > >  	INTEL_VGA_DEVICE(0xA7A0, info), \
+> > > > -	INTEL_VGA_DEVICE(0xA7A1, info), \
+> > > > -	INTEL_VGA_DEVICE(0xA7A8, info), \
+> > > > -	INTEL_VGA_DEVICE(0xA7A9, info)
+> > > > +	INTEL_VGA_DEVICE(0xA7A8, info)
+> > >
+> > > Changing the INTEL_RPLP_IDS impacts arch/x86/kernel/early-quirks.c
+> > > too. As is, this drops the early quirks from RPL-U.
+> > >
+> >
+> > Yes I missed the early quirks part in this revision. Thank you Jani for
+> pointing out.
+> >
+> > > Your options are 1) modify early-quirks.c too, or 2) include RPL-U id=
+s in
+> RPL-P:
+> > >
+> > >   #define INTEL_RPLP_IDS(info) \
+> > > +	INTEL_RPLU_IDS(info), \
+> > > -	INTEL_VGA_DEVICE(0xA721, info), \
+> > >  	INTEL_VGA_DEVICE(0xA7A0, info), \
+> > > -	INTEL_VGA_DEVICE(0xA7A1, info), \
+> > > -	INTEL_VGA_DEVICE(0xA7A8, info), \
+> > > -	INTEL_VGA_DEVICE(0xA7A9, info)
+> > > +	INTEL_VGA_DEVICE(0xA7A8, info)
+> > >
+> > > With option 2, you also don't need to add INTEL_RPLU_IDS separately
+> > > to subplatform_rpl_ids[] or pciidlist[].
+> > >
+> > > I might lean towards option 2, but no strong opinions.
+> > >
+> >
+> > Thank you Jani for your suggestion. I am also inclined to the solution =
+of
+> adding RPLU IDs to RPLP platform.
+> >
+> > To summarize, we would add the INTEL_RPLU_IDS(info) into
+> > INTEL_RPLP_IDS(info).  As Jani pointed out, with this, there is no need=
+ to
+> add INTEL_RPLU_IDS separately to subplatform_rpl_ids[] or pciidlist[]. Th=
+is
+> also aligns with Bspec(55376) as RPL-U ids are listed under "RPL-P SKUs a=
+nd
+> Device IDs Info"
+> >
+> > @Matt: I remember, we had discussed a similar option in our
+> communications. Do you have any strong opinion against it?
+>=20
+> That sounds fine to me.
+>=20
+> Thanks.
+>=20
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-[ahajda: adjust to upstream driver, v2+]
-Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
----
-v2:
-    - addressed comments (Tvrtko),
-    - changed pin/sample address calculation,
-    - removed checks for platforms older than 8,
-    - use low ints in MI_DO_COMPARE to be more clear,
-    - continue test if physical addresses have the same uppper 32 bits,
-    - consolidate two calls to pte_tlbinv into one
-v3:
-    - skip pages not supported by vm (CI reported EINVAL),
-    - fix dw size in MI_CONDITIONAL_BATCH_BUFFER_END for gen8 (CI reported EIO),
-    - remove aggressive allocation to get different upper halves of physical
-      address (CI reported OOM).
-v4:
-    - align address in MI_CONDITIONAL_BATCH_BUFFER_END to 8b,
-    - set QWORD pointed by addr in above cmd, as required by Gen8/VCS.
-v5:
-    - set dw size again to 2 (CI reports EIO due to semaphore sanitycheck).
+Thank you Matt. I have floated a new series based on these comments.
 
-Sorry for spamming, but apparently CI is the only way to test Gen8.
----
- drivers/gpu/drm/i915/gt/intel_gpu_commands.h  |   1 +
- drivers/gpu/drm/i915/gt/intel_gt.c            |   4 +
- drivers/gpu/drm/i915/gt/selftest_tlb.c        | 379 ++++++++++++++++++
- .../drm/i915/selftests/i915_live_selftests.h  |   1 +
- 4 files changed, 385 insertions(+)
- create mode 100644 drivers/gpu/drm/i915/gt/selftest_tlb.c
+Regards
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-index 2af1ae3831df98..e10507fa71ce63 100644
---- a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-@@ -394,6 +394,7 @@
- #define MI_LOAD_URB_MEM         MI_INSTR(0x2C, 0)
- #define MI_STORE_URB_MEM        MI_INSTR(0x2D, 0)
- #define MI_CONDITIONAL_BATCH_BUFFER_END MI_INSTR(0x36, 0)
-+#define  MI_DO_COMPARE		REG_BIT(21)
- 
- #define STATE_BASE_ADDRESS \
- 	((0x3 << 29) | (0x0 << 27) | (0x1 << 24) | (0x1 << 16))
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index f0dbfc434e0773..001a7ec5b86182 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -1205,3 +1205,7 @@ void intel_gt_invalidate_tlb(struct intel_gt *gt, u32 seqno)
- 		mutex_unlock(&gt->tlb.invalidate_lock);
- 	}
- }
-+
-+#if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
-+#include "selftest_tlb.c"
-+#endif
-diff --git a/drivers/gpu/drm/i915/gt/selftest_tlb.c b/drivers/gpu/drm/i915/gt/selftest_tlb.c
-new file mode 100644
-index 00000000000000..166d18a614d51d
---- /dev/null
-+++ b/drivers/gpu/drm/i915/gt/selftest_tlb.c
-@@ -0,0 +1,379 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2022 Intel Corporation
-+ */
-+
-+#include "i915_selftest.h"
-+
-+#include "gem/i915_gem_internal.h"
-+#include "gem/i915_gem_region.h"
-+
-+#include "gen8_engine_cs.h"
-+#include "i915_gem_ww.h"
-+#include "intel_engine_regs.h"
-+#include "intel_gpu_commands.h"
-+#include "intel_context.h"
-+#include "intel_gt.h"
-+#include "intel_ring.h"
-+
-+#include "selftests/igt_flush_test.h"
-+#include "selftests/i915_random.h"
-+
-+static void vma_set_qw(struct i915_vma *vma, u64 addr, u64 val)
-+{
-+	GEM_BUG_ON(addr < i915_vma_offset(vma));
-+	GEM_BUG_ON(addr >= i915_vma_offset(vma) + i915_vma_size(vma) + sizeof(val));
-+	memset64(page_mask_bits(vma->obj->mm.mapping) +
-+		 (addr - i915_vma_offset(vma)), val, 1);
-+}
-+
-+static int
-+pte_tlbinv(struct intel_context *ce,
-+	   struct i915_vma *va,
-+	   struct i915_vma *vb,
-+	   u64 align,
-+	   void (*tlbinv)(struct i915_address_space *vm, u64 addr, u64 length),
-+	   u64 length,
-+	   struct rnd_state *prng)
-+{
-+	struct drm_i915_gem_object *batch;
-+	struct i915_request *rq;
-+	struct i915_vma *vma;
-+	u64 addr;
-+	int err;
-+	u32 *cs;
-+
-+	batch = i915_gem_object_create_internal(ce->vm->i915, 4096);
-+	if (IS_ERR(batch))
-+		return PTR_ERR(batch);
-+
-+	vma = i915_vma_instance(batch, ce->vm, NULL);
-+	if (IS_ERR(vma)) {
-+		err = PTR_ERR(vma);
-+		goto out;
-+	}
-+
-+	err = i915_vma_pin(vma, 0, 0, PIN_USER);
-+	if (err)
-+		goto out;
-+
-+	/* Pin va at random but aligned offset after vma */
-+	addr = round_up(vma->node.start + vma->node.size, align);
-+	/* MI_CONDITIONAL_BATCH_BUFFER_END limits address to 48b */
-+	addr = igt_random_offset(prng, addr, min(ce->vm->total, BIT_ULL(48)),
-+				 va->size, align);
-+	err = i915_vma_pin(va,  0, 0, addr | PIN_OFFSET_FIXED | PIN_USER);
-+	if (err) {
-+		pr_err("Cannot pin at %llx+%llx\n", addr, va->size);
-+		goto out;
-+	}
-+	GEM_BUG_ON(i915_vma_offset(va) != addr);
-+	vb->node = va->node; /* overwrites the _same_ PTE  */
-+
-+	/*
-+	 * Now choose random dword at the 1st pinned page.
-+	 *
-+	 * SZ_64K pages on dg1 require that the whole PT be marked
-+	 * containing 64KiB entries. So we make sure that vma
-+	 * covers the whole PT, despite being randomly aligned to 64KiB
-+	 * and restrict our sampling to the 2MiB PT within where
-+	 * we know that we will be using 64KiB pages.
-+	 */
-+	if (align == SZ_64K)
-+		addr = round_up(addr, SZ_2M);
-+	addr = igt_random_offset(prng, addr, addr + align, 8, 8);
-+
-+	pr_info("%s(%s): Sampling %llx, with alignment %llx, using PTE size %x (phys %x, sg %x), invalidate:%llx+%llx\n",
-+		ce->engine->name, va->obj->mm.region->name ?: "smem",
-+		addr, align, va->resource->page_sizes_gtt, va->page_sizes.phys,
-+		va->page_sizes.sg, addr & -length, length);
-+
-+	cs = i915_gem_object_pin_map_unlocked(batch, I915_MAP_WC);
-+	*cs++ = MI_NOOP; /* for later termination */
-+	/*
-+	 * Sample the target to see if we spot an incorrect page.
-+	 * Gen8 VCS compares immediate value with bitwise-and of two
-+	 * consecutive DWORDS pointed by addr, other gen/engines compare value
-+	 * with DWORD pointed by addr. Moreover we want to exercise DWORD size
-+	 * invalidations. To fulfill all these requirements below values
-+	 * has been chosen.
-+	 */
-+	*cs++ = MI_CONDITIONAL_BATCH_BUFFER_END | MI_DO_COMPARE | 2;
-+	*cs++ = 0; /* break if *addr == 0 */
-+	*cs++ = lower_32_bits(addr);
-+	*cs++ = upper_32_bits(addr);
-+	vma_set_qw(va, addr, -1);
-+	vma_set_qw(vb, addr, 0);
-+
-+	/* Keep sampling until we get bored */
-+	*cs++ = MI_BATCH_BUFFER_START | BIT(8) | 1;
-+	*cs++ = lower_32_bits(i915_vma_offset(vma));
-+	*cs++ = upper_32_bits(i915_vma_offset(vma));
-+
-+	i915_gem_object_flush_map(batch);
-+
-+	rq = i915_request_create(ce);
-+	if (IS_ERR(rq)) {
-+		err = PTR_ERR(rq);
-+		goto out_va;
-+	}
-+
-+	err = rq->engine->emit_bb_start(rq, i915_vma_offset(vma), 0, 0);
-+	if (err) {
-+		i915_request_add(rq);
-+		goto out_va;
-+	}
-+
-+	i915_request_get(rq);
-+	i915_request_add(rq);
-+
-+	/* Short sleep to sanitycheck the batch is spinning before we begin */
-+	msleep(10);
-+	if (va == vb) {
-+		if (!i915_request_completed(rq)) {
-+			pr_err("Semaphore sanitycheck failed\n");
-+			err = -EIO;
-+		}
-+	} else if (!i915_request_completed(rq)) {
-+		struct i915_vma_resource vb_res = {
-+			.bi.pages = vb->obj->mm.pages,
-+			.bi.page_sizes = vb->obj->mm.page_sizes,
-+			.start = i915_vma_offset(vb),
-+			.vma_size = i915_vma_size(vb)
-+		};
-+		unsigned int pte_flags = 0;
-+
-+		/* Flip the PTE between A and B */
-+		if (i915_gem_object_is_lmem(vb->obj))
-+			pte_flags |= PTE_LM;
-+		ce->vm->insert_entries(ce->vm, &vb_res, 0, pte_flags);
-+
-+		/* Flush the PTE update to concurrent HW */
-+		tlbinv(ce->vm, addr & -length, length);
-+
-+		if (wait_for(i915_request_completed(rq), HZ / 2)) {
-+			pr_err("%s: Request did not complete; the COND_BBE did not read the updated PTE\n",
-+			       ce->engine->name);
-+			err = -EINVAL;
-+		}
-+	} else {
-+		pr_err("Spinner ended unexpectedly\n");
-+		err = -EIO;
-+	}
-+	i915_request_put(rq);
-+
-+	cs = page_mask_bits(batch->mm.mapping);
-+	*cs = MI_BATCH_BUFFER_END;
-+	wmb();
-+
-+out_va:
-+	if (vb != va)
-+		memset(&vb->node, 0, sizeof(vb->node));
-+	i915_vma_unpin(va);
-+	if (i915_vma_unbind_unlocked(va))
-+		err = -EIO;
-+out:
-+	i915_gem_object_put(batch);
-+	return err;
-+}
-+
-+static struct drm_i915_gem_object *create_lmem(struct intel_gt *gt)
-+{
-+	/*
-+	 * Allocation of largest possible page size allows to test all types
-+	 * of pages.
-+	 */
-+	return i915_gem_object_create_lmem(gt->i915, SZ_1G, I915_BO_ALLOC_CONTIGUOUS);
-+}
-+
-+static struct drm_i915_gem_object *create_smem(struct intel_gt *gt)
-+{
-+	/*
-+	 * SZ_64K pages require covering the whole 2M PT (gen8 to tgl/dg1).
-+	 * While that does not require the whole 2M block to be contiguous
-+	 * it is easier to make it so, since we need that for SZ_2M pagees.
-+	 * Since we randomly offset the start of the vma, we need a 4M object
-+	 * so that there is a 2M range within it is suitable for SZ_64K PTE.
-+	 */
-+	return i915_gem_object_create_internal(gt->i915, SZ_4M);
-+}
-+
-+static int
-+mem_tlbinv(struct intel_gt *gt,
-+	   struct drm_i915_gem_object *(*create_fn)(struct intel_gt *),
-+	   void (*tlbinv)(struct i915_address_space *vm, u64 addr, u64 length))
-+{
-+	unsigned int ppgtt_size = RUNTIME_INFO(gt->i915)->ppgtt_size;
-+	struct intel_engine_cs *engine;
-+	struct drm_i915_gem_object *A, *B;
-+	struct i915_ppgtt *ppgtt;
-+	struct i915_vma *va, *vb;
-+	enum intel_engine_id id;
-+	I915_RND_STATE(prng);
-+	void *vaddr;
-+	int err;
-+
-+	/*
-+	 * Check that the TLB invalidate is able to revoke an active
-+	 * page. We load a page into a spinning COND_BBE loop and then
-+	 * remap that page to a new physical address. The old address, and
-+	 * so the loop keeps spinning, is retained in the TLB cache until
-+	 * we issue an invalidate.
-+	 */
-+
-+	A = create_fn(gt);
-+	if (IS_ERR(A))
-+		return PTR_ERR(A);
-+
-+	vaddr = i915_gem_object_pin_map_unlocked(A, I915_MAP_WC);
-+	if (IS_ERR(vaddr)) {
-+		err = PTR_ERR(vaddr);
-+		goto out_a;
-+	}
-+
-+	B = create_fn(gt);
-+	if (IS_ERR(B)) {
-+		err = PTR_ERR(B);
-+		goto out_a;
-+	}
-+
-+	vaddr = i915_gem_object_pin_map_unlocked(B, I915_MAP_WC);
-+	if (IS_ERR(vaddr)) {
-+		err = PTR_ERR(vaddr);
-+		goto out_b;
-+	}
-+
-+	GEM_BUG_ON(A->base.size != B->base.size);
-+	if ((A->mm.page_sizes.phys | B->mm.page_sizes.phys) & (A->base.size - 1))
-+		pr_warn("Failed to allocate contiguous pages for size %zx\n",
-+			A->base.size);
-+
-+	ppgtt = i915_ppgtt_create(gt, 0);
-+	if (IS_ERR(ppgtt)) {
-+		err = PTR_ERR(ppgtt);
-+		goto out_b;
-+	}
-+
-+	va = i915_vma_instance(A, &ppgtt->vm, NULL);
-+	if (IS_ERR(va)) {
-+		err = PTR_ERR(va);
-+		goto out_vm;
-+	}
-+
-+	vb = i915_vma_instance(B, &ppgtt->vm, NULL);
-+	if (IS_ERR(vb)) {
-+		err = PTR_ERR(vb);
-+		goto out_vm;
-+	}
-+
-+	err = 0;
-+	for_each_engine(engine, gt, id) {
-+		struct i915_gem_ww_ctx ww;
-+		struct intel_context *ce;
-+		int bit;
-+
-+		ce = intel_context_create(engine);
-+		if (IS_ERR(ce)) {
-+			err = PTR_ERR(ce);
-+			break;
-+		}
-+
-+		i915_vm_put(ce->vm);
-+		ce->vm = i915_vm_get(&ppgtt->vm);
-+
-+		for_i915_gem_ww(&ww, err, true)
-+			err = intel_context_pin_ww(ce, &ww);
-+		if (err)
-+			goto err_put;
-+
-+		for_each_set_bit(bit,
-+				 (unsigned long *)&RUNTIME_INFO(gt->i915)->page_sizes,
-+				 BITS_PER_TYPE(RUNTIME_INFO(gt->i915)->page_sizes)) {
-+			unsigned int len;
-+
-+			if (BIT_ULL(bit) < i915_vm_obj_min_alignment(va->vm, va->obj))
-+				continue;
-+
-+			/* sanitycheck the semaphore wake up */
-+			err = pte_tlbinv(ce, va, va,
-+					 BIT_ULL(bit),
-+					 NULL, SZ_4K,
-+					 &prng);
-+			if (err)
-+				goto err_unpin;
-+
-+			for (len = 2; len <= ppgtt_size; len = min(2 * len, ppgtt_size)) {
-+				err = pte_tlbinv(ce, va, vb,
-+						BIT_ULL(bit),
-+						tlbinv,
-+						BIT_ULL(len),
-+						&prng);
-+				if (err)
-+					goto err_unpin;
-+				if (len == ppgtt_size)
-+					break;
-+			}
-+		}
-+err_unpin:
-+		intel_context_unpin(ce);
-+err_put:
-+		intel_context_put(ce);
-+		if (err)
-+			break;
-+	}
-+
-+	if (igt_flush_test(gt->i915))
-+		err = -EIO;
-+
-+out_vm:
-+	i915_vm_put(&ppgtt->vm);
-+out_b:
-+	i915_gem_object_put(B);
-+out_a:
-+	i915_gem_object_put(A);
-+	return err;
-+}
-+
-+static void tlbinv_full(struct i915_address_space *vm, u64 addr, u64 length)
-+{
-+	intel_gt_invalidate_tlb(vm->gt, intel_gt_tlb_seqno(vm->gt) | 1);
-+}
-+
-+static int invalidate_full(void *arg)
-+{
-+	struct intel_gt *gt = arg;
-+	int err;
-+
-+	if (GRAPHICS_VER(gt->i915) < 8)
-+		return 0; /* TLB invalidate not implemented */
-+
-+	err = mem_tlbinv(gt, create_smem, tlbinv_full);
-+	if (err == 0)
-+		err = mem_tlbinv(gt, create_lmem, tlbinv_full);
-+	if (err == -ENODEV || err == -ENXIO)
-+		err = 0;
-+
-+	return err;
-+}
-+
-+int intel_tlb_live_selftests(struct drm_i915_private *i915)
-+{
-+	static const struct i915_subtest tests[] = {
-+		SUBTEST(invalidate_full),
-+	};
-+	struct intel_gt *gt;
-+	unsigned int i;
-+
-+	for_each_gt(gt, i915, i) {
-+		int err;
-+
-+		if (intel_gt_is_wedged(gt))
-+			continue;
-+
-+		err = intel_gt_live_subtests(tests, gt);
-+		if (err)
-+			return err;
-+	}
-+
-+	return 0;
-+}
-diff --git a/drivers/gpu/drm/i915/selftests/i915_live_selftests.h b/drivers/gpu/drm/i915/selftests/i915_live_selftests.h
-index aaf8a380e5c789..5aee6c9a8295ce 100644
---- a/drivers/gpu/drm/i915/selftests/i915_live_selftests.h
-+++ b/drivers/gpu/drm/i915/selftests/i915_live_selftests.h
-@@ -25,6 +25,7 @@ selftest(gt_lrc, intel_lrc_live_selftests)
- selftest(gt_mocs, intel_mocs_live_selftests)
- selftest(gt_pm, intel_gt_pm_live_selftests)
- selftest(gt_heartbeat, intel_heartbeat_live_selftests)
-+selftest(gt_tlb, intel_tlb_live_selftests)
- selftest(requests, i915_request_live_selftests)
- selftest(migrate, intel_migrate_live_selftests)
- selftest(active, i915_active_live_selftests)
--- 
-2.34.1
+Chaitanya
 
+>=20
+> Matt
+>=20
+> >
+> > If not I would go ahead with this implementation.
+> >
+> > Regards
+> >
+> > Chaitanya
+> >
+> > >
+> > > BR,
+> > > Jani.
+> > >
+> > >
+> > > >
+> > > >  /* DG2 */
+> > > >  #define INTEL_DG2_G10_IDS(info) \
+> > >
+> > > --
+> > > Jani Nikula, Intel Open Source Graphics Center
+>=20
+> --
+> Matt Roper
+> Graphics Software Engineer
+> Linux GPU Platform Enablement
+> Intel Corporation
