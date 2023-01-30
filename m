@@ -1,53 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECE65680D13
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Jan 2023 13:09:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB25F680D2A
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Jan 2023 13:10:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D00D810E21E;
-	Mon, 30 Jan 2023 12:09:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D71110E21E;
+	Mon, 30 Jan 2023 12:10:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA64D89E59;
- Mon, 30 Jan 2023 12:09:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675080589; x=1706616589;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=ncmP73RvttEpwA82RMnfOsInUnkDxnPA/E/sIzKWR7o=;
- b=kOHYxt0LF3Zga4v0Dt/UygYezMH1xL0qtP/uOj2NAn6WUvpMxRXXQuO1
- r2AAOhrOrLHQd0RFhSqUoUx7bUHZHWP9lT8VQmvSOgH4hSxrtB5ep7yFy
- Ge/jYgttqAnHqtLzrAW35497VVlqJtANWC0/JjX2QcI3V1qahQ2q+3zdb
- VHS9L7pEyhBeYpXfNphmDs+fl1cZ6EPeLMPkA1rFQXCeLHZyapclDZE3z
- friAVjFOBva5D1TtnPZck3IFHNtbQTUrDv/nY6sP6RsmHMNwkdhLfR/mO
- 8fxwENBq36V2u+Mbqug7c0SoRVVbGiL5+m0fwKxBPcaM2XxtQkkH1/z8x Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="389906000"
-X-IronPort-AV: E=Sophos;i="5.97,257,1669104000"; d="scan'208";a="389906000"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2023 04:09:49 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="806649733"
-X-IronPort-AV: E=Sophos;i="5.97,257,1669104000"; d="scan'208";a="806649733"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.251.209.222])
- ([10.251.209.222])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2023 04:09:47 -0800
-Message-ID: <47e6dfdd-caa4-53b2-5aa5-4b168ffdb7a7@linux.intel.com>
-Date: Mon, 30 Jan 2023 13:09:45 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5140510E21E;
+ Mon, 30 Jan 2023 12:10:41 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 49392AADD2;
+ Mon, 30 Jan 2023 12:10:41 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7155478580922896993=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Content-Language: en-US
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20230130120636.63765-1-matthew.auld@intel.com>
-From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
-In-Reply-To: <20230130120636.63765-1-matthew.auld@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v2 1/6] drm/i915/ttm: fix sparse warning
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andrzej Hajda" <andrzej.hajda@intel.com>
+Date: Mon, 30 Jan 2023 12:10:41 -0000
+Message-ID: <167508064129.3670.6390921472713182678@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230130101436.924402-1-andrzej.hajda@intel.com>
+In-Reply-To: <20230130101436.924402-1-andrzej.hajda@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Add_selftests_for_TLB_invalidation_=28rev6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,45 +40,213 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- dri-devel@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============7155478580922896993==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 1/30/2023 1:06 PM, Matthew Auld wrote:
-> Sparse complains with:
->
-> drivers/gpu/drm/i915/gem/i915_gem_ttm.c:1066:21: sparse:
-> 	expected restricted vm_fault_t [assigned] [usertype] ret
-> drivers/gpu/drm/i915/gem/i915_gem_ttm.c:1066:21: sparse: got int
->
-> Fixes: 516198d317d8 ("drm/i915: audit bo->resource usage v3")
-> Reported-by: kernel test robot <lkp@intel.com>
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Christian König <ckoenig.leichtzumerken@gmail.com>
-> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 5 +++--
->   1 file changed, 3 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> index 7420276827a5..4758f21c91e1 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> @@ -1067,11 +1067,12 @@ static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
->   			.interruptible = true,
->   			.no_wait_gpu = true, /* should be idle already */
->   		};
-> +		int err;
->   
->   		GEM_BUG_ON(!bo->ttm || !(bo->ttm->page_flags & TTM_TT_FLAG_SWAPPED));
->   
-> -		ret = ttm_bo_validate(bo, i915_ttm_sys_placement(), &ctx);
-> -		if (ret) {
-> +		err = ttm_bo_validate(bo, i915_ttm_sys_placement(), &ctx);
-> +		if (err) {
->   			dma_resv_unlock(bo->base.resv);
->   			return VM_FAULT_SIGBUS;
->   		}
+== Series Details ==
+
+Series: drm/i915/gt: Add selftests for TLB invalidation (rev6)
+URL   : https://patchwork.freedesktop.org/series/112894/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_12663 -> Patchwork_112894v6
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v6/index.html
+
+Participating hosts (24 -> 23)
+------------------------------
+
+  Additional (1): bat-rpls-2 
+  Missing    (2): fi-kbl-soraka fi-snb-2520m 
+
+New tests
+---------
+
+  New tests have been introduced between CI_DRM_12663 and Patchwork_112894v6:
+
+### New IGT tests (1) ###
+
+  * igt@i915_selftest@live@gt_tlb:
+    - Statuses : 22 pass(s)
+    - Exec time: [0.0] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_112894v6 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s0@smem:
+    - {bat-rpls-1}:       [ABORT][1] ([i915#7359]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12663/bat-rpls-1/igt@gem_exec_suspend@basic-s0@smem.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v6/bat-rpls-1/igt@gem_exec_suspend@basic-s0@smem.html
+
+  * igt@i915_selftest@live@migrate:
+    - {bat-dg2-11}:       [DMESG-WARN][3] ([i915#7699]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12663/bat-dg2-11/igt@i915_selftest@live@migrate.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v6/bat-dg2-11/igt@i915_selftest@live@migrate.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
+    - fi-bsw-n3050:       [FAIL][5] ([i915#6298]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12663/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v6/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
+  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#4258]: https://gitlab.freedesktop.org/drm/intel/issues/4258
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
+  [i915#7359]: https://gitlab.freedesktop.org/drm/intel/issues/7359
+  [i915#7456]: https://gitlab.freedesktop.org/drm/intel/issues/7456
+  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
+  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+  [i915#7977]: https://gitlab.freedesktop.org/drm/intel/issues/7977
+  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12663 -> Patchwork_112894v6
+
+  CI-20190529: 20190529
+  CI_DRM_12663: 515fcd5308bda45b7832e0ce12bec6830f64aa08 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7141: a978df7912acda18eada1b1d2ae4b438ed3e940b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_112894v6: 515fcd5308bda45b7832e0ce12bec6830f64aa08 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+56db98fbe859 drm/i915/gt: Add selftests for TLB invalidation
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v6/index.html
+
+--===============7155478580922896993==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gt: Add selftests for TLB invalidation (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/112894/">https://patchwork.freedesktop.org/series/112894/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v6/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v6/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12663 -&gt; Patchwork_112894v6</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v6/index.html</p>
+<h2>Participating hosts (24 -&gt; 23)</h2>
+<p>Additional (1): bat-rpls-2 <br />
+  Missing    (2): fi-kbl-soraka fi-snb-2520m </p>
+<h2>New tests</h2>
+<p>New tests have been introduced between CI_DRM_12663 and Patchwork_112894v6:</p>
+<h3>New IGT tests (1)</h3>
+<ul>
+<li>igt@i915_selftest@live@gt_tlb:<ul>
+<li>Statuses : 22 pass(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_112894v6 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s0@smem:</p>
+<ul>
+<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12663/bat-rpls-1/igt@gem_exec_suspend@basic-s0@smem.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7359">i915#7359</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v6/bat-rpls-1/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@migrate:</p>
+<ul>
+<li>{bat-dg2-11}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12663/bat-dg2-11/igt@i915_selftest@live@migrate.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v6/bat-dg2-11/igt@i915_selftest@live@migrate.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12663/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v6/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12663 -&gt; Patchwork_112894v6</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12663: 515fcd5308bda45b7832e0ce12bec6830f64aa08 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7141: a978df7912acda18eada1b1d2ae4b438ed3e940b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_112894v6: 515fcd5308bda45b7832e0ce12bec6830f64aa08 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>56db98fbe859 drm/i915/gt: Add selftests for TLB invalidation</p>
+
+</body>
+</html>
+
+--===============7155478580922896993==--
