@@ -2,32 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB25F680D2A
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Jan 2023 13:10:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BBC11680D46
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Jan 2023 13:12:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D71110E21E;
-	Mon, 30 Jan 2023 12:10:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE71110E21E;
+	Mon, 30 Jan 2023 12:12:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5140510E21E;
- Mon, 30 Jan 2023 12:10:41 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 49392AADD2;
- Mon, 30 Jan 2023 12:10:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7155478580922896993=="
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E42610E21E;
+ Mon, 30 Jan 2023 12:12:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1675080742; x=1706616742;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=zU/Gb+ZgVKSFYFAxNTVSuZQLQpFU8EKks93Uzs3uGP4=;
+ b=ajjhFrTegEdg3TvSQD7b97a0f+T1RFnkDwbjQBV2d6O+ezKVcDhkTE1B
+ xPWXb0l/aNedF5132HfXNshIm1zYezqwdhhS/+2iTCdlo+6czVc8b/6op
+ UOsxz9EtqtkWz7d5jTsS07HsRCBLGdljQhvczovgx+3zfDRifMZ+9KIgk
+ zssb2b7FwPogErxFUkg03f8zrNh9Z43sCrbjH57E96fjlYFepnQCaN1QT
+ EGKj+kaWInrR9F7wz0NK0mhPnLXUcIr2JAYqWaPq4KXQPKCL27nnOmeRe
+ kYSEHvB36dndcxoBuMYt4OUa+GpVbcvbQOPNQ0Z9H8J+4IQhp6VvT4UzB A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="392089513"
+X-IronPort-AV: E=Sophos;i="5.97,257,1669104000"; d="scan'208";a="392089513"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2023 04:12:21 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="694541115"
+X-IronPort-AV: E=Sophos;i="5.97,257,1669104000"; d="scan'208";a="694541115"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.251.209.222])
+ ([10.251.209.222])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2023 04:12:17 -0800
+Message-ID: <5693c957-5abd-8bec-cc53-961048eaeb27@linux.intel.com>
+Date: Mon, 30 Jan 2023 13:12:14 +0100
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andrzej Hajda" <andrzej.hajda@intel.com>
-Date: Mon, 30 Jan 2023 12:10:41 -0000
-Message-ID: <167508064129.3670.6390921472713182678@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230130101436.924402-1-andrzej.hajda@intel.com>
-In-Reply-To: <20230130101436.924402-1-andrzej.hajda@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Add_selftests_for_TLB_invalidation_=28rev6=29?=
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Content-Language: en-US
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20230130120636.63765-1-matthew.auld@intel.com>
+ <20230130120636.63765-2-matthew.auld@intel.com>
+From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
+In-Reply-To: <20230130120636.63765-2-matthew.auld@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v2 2/6] drm/i915/ttm: audit remaining
+ bo->resource
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,213 +62,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ dri-devel@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7155478580922896993==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
-
-Series: drm/i915/gt: Add selftests for TLB invalidation (rev6)
-URL   : https://patchwork.freedesktop.org/series/112894/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_12663 -> Patchwork_112894v6
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v6/index.html
-
-Participating hosts (24 -> 23)
-------------------------------
-
-  Additional (1): bat-rpls-2 
-  Missing    (2): fi-kbl-soraka fi-snb-2520m 
-
-New tests
----------
-
-  New tests have been introduced between CI_DRM_12663 and Patchwork_112894v6:
-
-### New IGT tests (1) ###
-
-  * igt@i915_selftest@live@gt_tlb:
-    - Statuses : 22 pass(s)
-    - Exec time: [0.0] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_112894v6 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - {bat-rpls-1}:       [ABORT][1] ([i915#7359]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12663/bat-rpls-1/igt@gem_exec_suspend@basic-s0@smem.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v6/bat-rpls-1/igt@gem_exec_suspend@basic-s0@smem.html
-
-  * igt@i915_selftest@live@migrate:
-    - {bat-dg2-11}:       [DMESG-WARN][3] ([i915#7699]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12663/bat-dg2-11/igt@i915_selftest@live@migrate.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v6/bat-dg2-11/igt@i915_selftest@live@migrate.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
-    - fi-bsw-n3050:       [FAIL][5] ([i915#6298]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12663/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v6/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4258]: https://gitlab.freedesktop.org/drm/intel/issues/4258
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
-  [i915#7359]: https://gitlab.freedesktop.org/drm/intel/issues/7359
-  [i915#7456]: https://gitlab.freedesktop.org/drm/intel/issues/7456
-  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
-  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-  [i915#7977]: https://gitlab.freedesktop.org/drm/intel/issues/7977
-  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
+On 1/30/2023 1:06 PM, Matthew Auld wrote:
+> In the near future TTM will have NULL bo->resource when the object is
+> initially created, plus after calling into pipeline-gutting. Try to
+> handle the remaining cases. In practice NULL bo->resource should be
+> taken to mean swapped-out or purged object.
+>
+> v2 (Andrzej):
+>    - Rather make i915_ttm_cpu_maps_iomem() return false with NULL
+>      resource.
+>
+> References: 516198d317d8 ("drm/i915: audit bo->resource usage v3")
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Christian König <ckoenig.leichtzumerken@gmail.com>
+> Cc: Nirmoy Das <nirmoy.das@intel.com>
+> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
 
-Build changes
--------------
+Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
 
-  * Linux: CI_DRM_12663 -> Patchwork_112894v6
-
-  CI-20190529: 20190529
-  CI_DRM_12663: 515fcd5308bda45b7832e0ce12bec6830f64aa08 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7141: a978df7912acda18eada1b1d2ae4b438ed3e940b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_112894v6: 515fcd5308bda45b7832e0ce12bec6830f64aa08 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-56db98fbe859 drm/i915/gt: Add selftests for TLB invalidation
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v6/index.html
-
---===============7155478580922896993==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gt: Add selftests for TLB invalidation (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/112894/">https://patchwork.freedesktop.org/series/112894/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v6/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12663 -&gt; Patchwork_112894v6</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v6/index.html</p>
-<h2>Participating hosts (24 -&gt; 23)</h2>
-<p>Additional (1): bat-rpls-2 <br />
-  Missing    (2): fi-kbl-soraka fi-snb-2520m </p>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_12663 and Patchwork_112894v6:</p>
-<h3>New IGT tests (1)</h3>
-<ul>
-<li>igt@i915_selftest@live@gt_tlb:<ul>
-<li>Statuses : 22 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_112894v6 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12663/bat-rpls-1/igt@gem_exec_suspend@basic-s0@smem.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7359">i915#7359</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v6/bat-rpls-1/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@migrate:</p>
-<ul>
-<li>{bat-dg2-11}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12663/bat-dg2-11/igt@i915_selftest@live@migrate.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v6/bat-dg2-11/igt@i915_selftest@live@migrate.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12663/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112894v6/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12663 -&gt; Patchwork_112894v6</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12663: 515fcd5308bda45b7832e0ce12bec6830f64aa08 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7141: a978df7912acda18eada1b1d2ae4b438ed3e940b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_112894v6: 515fcd5308bda45b7832e0ce12bec6830f64aa08 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>56db98fbe859 drm/i915/gt: Add selftests for TLB invalidation</p>
-
-</body>
-</html>
-
---===============7155478580922896993==--
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_ttm.c      | 10 ++++++++--
+>   drivers/gpu/drm/i915/gem/i915_gem_ttm.h      |  2 +-
+>   drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c |  4 ++++
+>   drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c   |  7 +++++--
+>   4 files changed, 18 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> index 4758f21c91e1..341b94672abc 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> @@ -472,7 +472,7 @@ static int i915_ttm_shrink(struct drm_i915_gem_object *obj, unsigned int flags)
+>   	struct ttm_placement place = {};
+>   	int ret;
+>   
+> -	if (!bo->ttm || bo->resource->mem_type != TTM_PL_SYSTEM)
+> +	if (!bo->ttm || i915_ttm_cpu_maps_iomem(bo->resource))
+>   		return 0;
+>   
+>   	GEM_BUG_ON(!i915_tt->is_shmem);
+> @@ -511,7 +511,13 @@ static void i915_ttm_delete_mem_notify(struct ttm_buffer_object *bo)
+>   {
+>   	struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
+>   
+> -	if (bo->resource && !i915_ttm_is_ghost_object(bo)) {
+> +	/*
+> +	 * This gets called twice by ttm, so long as we have a ttm resource or
+> +	 * ttm_tt then we can still safely call this. Due to pipeline-gutting,
+> +	 * we maybe have NULL bo->resource, but in that case we should always
+> +	 * have a ttm alive (like if the pages are swapped out).
+> +	 */
+> +	if ((bo->resource || bo->ttm) && !i915_ttm_is_ghost_object(bo)) {
+>   		__i915_gem_object_pages_fini(obj);
+>   		i915_ttm_free_cached_io_rsgt(obj);
+>   	}
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.h b/drivers/gpu/drm/i915/gem/i915_gem_ttm.h
+> index 2a94a99ef76b..f8f6bed1b297 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.h
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.h
+> @@ -98,7 +98,7 @@ static inline bool i915_ttm_gtt_binds_lmem(struct ttm_resource *mem)
+>   static inline bool i915_ttm_cpu_maps_iomem(struct ttm_resource *mem)
+>   {
+>   	/* Once / if we support GGTT, this is also false for cached ttm_tts */
+> -	return mem->mem_type != I915_PL_SYSTEM;
+> +	return mem && mem->mem_type != I915_PL_SYSTEM;
+>   }
+>   
+>   bool i915_ttm_resource_mappable(struct ttm_resource *res);
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
+> index 76dd9e5e1a8b..d030182ca176 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
+> @@ -711,6 +711,10 @@ int i915_gem_obj_copy_ttm(struct drm_i915_gem_object *dst,
+>   
+>   	assert_object_held(dst);
+>   	assert_object_held(src);
+> +
+> +	if (GEM_WARN_ON(!src_bo->resource || !dst_bo->resource))
+> +		return -EINVAL;
+> +
+>   	i915_deps_init(&deps, GFP_KERNEL | __GFP_NORETRY | __GFP_NOWARN);
+>   
+>   	ret = dma_resv_reserve_fences(src_bo->base.resv, 1);
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c
+> index 7e67742bc65e..dfe39c8e74d8 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c
+> @@ -53,7 +53,7 @@ static int i915_ttm_backup(struct i915_gem_apply_to_region *apply,
+>   	unsigned int flags;
+>   	int err = 0;
+>   
+> -	if (bo->resource->mem_type == I915_PL_SYSTEM || obj->ttm.backup)
+> +	if (!i915_ttm_cpu_maps_iomem(bo->resource) || obj->ttm.backup)
+>   		return 0;
+>   
+>   	if (pm_apply->allow_gpu && i915_gem_object_evictable(obj))
+> @@ -187,7 +187,10 @@ static int i915_ttm_restore(struct i915_gem_apply_to_region *apply,
+>   		return err;
+>   
+>   	/* Content may have been swapped. */
+> -	err = ttm_tt_populate(backup_bo->bdev, backup_bo->ttm, &ctx);
+> +	if (!backup_bo->resource)
+> +		err = ttm_bo_validate(backup_bo, i915_ttm_sys_placement(), &ctx);
+> +	if (!err)
+> +		err = ttm_tt_populate(backup_bo->bdev, backup_bo->ttm, &ctx);
+>   	if (!err) {
+>   		err = i915_gem_obj_copy_ttm(obj, backup, pm_apply->allow_gpu,
+>   					    false);
