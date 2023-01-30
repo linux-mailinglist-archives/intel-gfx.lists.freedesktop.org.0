@@ -1,58 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1869F6816F7
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Jan 2023 17:53:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 980D76816FA
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Jan 2023 17:54:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 885A210E0A2;
-	Mon, 30 Jan 2023 16:53:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5B2D10E0A2;
+	Mon, 30 Jan 2023 16:54:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B66810E0A2
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Jan 2023 16:53:19 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C01FA10E0A2;
+ Mon, 30 Jan 2023 16:54:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675097599; x=1706633599;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Wpi991Vk8NujPN/kP5qy2ye1hgymcZTfARZHP9BIUHs=;
- b=bB7YTt3xBzsQDslRazK+Wlj7VGTVW1qOdSIusQMgjEpPtrLd6KGJyW1+
- VenkaX6dKe122y/Ir7p5KgkdB2GhGODFwsu8JY/HEbFu5KDyzLVeua0WJ
- f0OB5O+5ylaBwNwDHSO4DuCkrOC4YDI73DJqHC2hW2rdjzfrD5F5eCSMU
- 1LHoJAyY7pfD7RMicPkEFNsx7d1B/j64M3hCQNVfI9GRWnrfQ0H4BwOpI
- TEuWTDgr1Fh+te4B1TXBAnPGXZlLMcxTg0WPa7G6ZhWl9JZPWqX3xmAMS
- gPpQIK9NvIUE2kn6AJIoteFXb0q33om66Zg7AKksUtJfRjFO6ItVIA5us w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="413830567"
-X-IronPort-AV: E=Sophos;i="5.97,258,1669104000"; d="scan'208";a="413830567"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2023 08:53:18 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="727557907"
-X-IronPort-AV: E=Sophos;i="5.97,258,1669104000"; d="scan'208";a="727557907"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.2.187])
- ([10.213.2.187])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2023 08:53:16 -0800
-Message-ID: <40eb7441-4830-47ab-7f79-dbb73d7b44d7@intel.com>
-Date: Mon, 30 Jan 2023 17:53:14 +0100
+ t=1675097672; x=1706633672;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=Cn/lwATg9DL2ZwbO+VvdubUQcQUc79lQRll5nf1Xzao=;
+ b=I8Uojy69cen16uYXFvatJmporHW1DbEjO5A73cgBdBldkaRNrIcy0ZHy
+ dpXy/lwj3z5InHb/13HEfSXoZDrv0ub/rJTQwk1JG9UcuBK0OjsCDOt1u
+ SbToltc1cTMp5nfLDh+TvMJJxcKOiQnym7esgXCkSraCGcWi+GVeMDNDk
+ GzN1yX2AGtaxaiEBjUOAY+8qDw9RXqf/EE3rTMPPnG0TmEJhGcDxaejXa
+ Fq1JxfT/u/RiFHlEGHqRFdEAfcJ7RZyyXjbiHxgKmWT0foH5qlQ+Aludn
+ AuZw5IXhdoODKcKOlvX/9bVoUY8yr8dRX4UV4AeC4Xocsfs3t69v4S7c4 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="326275422"
+X-IronPort-AV: E=Sophos;i="5.97,258,1669104000"; d="scan'208";a="326275422"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2023 08:54:31 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="806753536"
+X-IronPort-AV: E=Sophos;i="5.97,258,1669104000"; d="scan'208";a="806753536"
+Received: from abanka-mobl.ger.corp.intel.com (HELO localhost) ([10.213.3.236])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2023 08:54:30 -0800
+Date: Mon, 30 Jan 2023 17:54:28 +0100
+From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+To: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Message-ID: <20230130165428.ulsf7zc24bquu55x@kamilkon-desk1>
+Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
+References: <20230127111241.3624629-1-tvrtko.ursulin@linux.intel.com>
+ <20230127111241.3624629-6-tvrtko.ursulin@linux.intel.com>
+ <20230127161052.thz5q2sqxtge2cwn@kamilkon-desk1>
+ <facc58f1-ec41-67bc-3cb2-a15965b7a27d@linux.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.6.1
-Content-Language: en-US
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20230130101436.924402-1-andrzej.hajda@intel.com>
- <55fd92b0-a7fe-f618-2c6c-508df995e501@linux.intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <55fd92b0-a7fe-f618-2c6c-508df995e501@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v5] drm/i915/gt: Add selftests for TLB
- invalidation
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <facc58f1-ec41-67bc-3cb2-a15965b7a27d@linux.intel.com>
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 5/6] intel_gpu_top: Fix
+ cleanup on old kernels / unsupported GPU
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,525 +64,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 30.01.2023 13:35, Tvrtko Ursulin wrote:
-> 
-> On 30/01/2023 10:14, Andrzej Hajda wrote:
->> From: Chris Wilson <chris@chris-wilson.co.uk>
->>
->> Check that we invalidate the TLB cache, the updated physical addresses
->> are immediately visible to the HW, and there is no retention of the old
->> physical address for concurrent HW access.
->>
->> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
->> [ahajda: adjust to upstream driver, v2+]
->> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
->> ---
->> v2:
->>      - addressed comments (Tvrtko),
->>      - changed pin/sample address calculation,
->>      - removed checks for platforms older than 8,
->>      - use low ints in MI_DO_COMPARE to be more clear,
->>      - continue test if physical addresses have the same uppper 32 bits,
->>      - consolidate two calls to pte_tlbinv into one
->> v3:
->>      - skip pages not supported by vm (CI reported EINVAL),
->>      - fix dw size in MI_CONDITIONAL_BATCH_BUFFER_END for gen8 (CI 
->> reported EIO),
->>      - remove aggressive allocation to get different upper halves of 
->> physical
->>        address (CI reported OOM).
->> v4:
->>      - align address in MI_CONDITIONAL_BATCH_BUFFER_END to 8b,
->>      - set QWORD pointed by addr in above cmd, as required by Gen8/VCS.
->> v5:
->>      - set dw size again to 2 (CI reports EIO due to semaphore 
->> sanitycheck).
->>
->> Sorry for spamming, but apparently CI is the only way to test Gen8.
->> ---
->>   drivers/gpu/drm/i915/gt/intel_gpu_commands.h  |   1 +
->>   drivers/gpu/drm/i915/gt/intel_gt.c            |   4 +
->>   drivers/gpu/drm/i915/gt/selftest_tlb.c        | 379 ++++++++++++++++++
->>   .../drm/i915/selftests/i915_live_selftests.h  |   1 +
->>   4 files changed, 385 insertions(+)
->>   create mode 100644 drivers/gpu/drm/i915/gt/selftest_tlb.c
->>
->> diff --git a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h 
->> b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
->> index 2af1ae3831df98..e10507fa71ce63 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
->> +++ b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
->> @@ -394,6 +394,7 @@
->>   #define MI_LOAD_URB_MEM         MI_INSTR(0x2C, 0)
->>   #define MI_STORE_URB_MEM        MI_INSTR(0x2D, 0)
->>   #define MI_CONDITIONAL_BATCH_BUFFER_END MI_INSTR(0x36, 0)
->> +#define  MI_DO_COMPARE        REG_BIT(21)
->>   #define STATE_BASE_ADDRESS \
->>       ((0x3 << 29) | (0x0 << 27) | (0x1 << 24) | (0x1 << 16))
->> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c 
->> b/drivers/gpu/drm/i915/gt/intel_gt.c
->> index f0dbfc434e0773..001a7ec5b86182 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
->> @@ -1205,3 +1205,7 @@ void intel_gt_invalidate_tlb(struct intel_gt 
->> *gt, u32 seqno)
->>           mutex_unlock(&gt->tlb.invalidate_lock);
->>       }
->>   }
->> +
->> +#if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
->> +#include "selftest_tlb.c"
->> +#endif
->> diff --git a/drivers/gpu/drm/i915/gt/selftest_tlb.c 
->> b/drivers/gpu/drm/i915/gt/selftest_tlb.c
->> new file mode 100644
->> index 00000000000000..166d18a614d51d
->> --- /dev/null
->> +++ b/drivers/gpu/drm/i915/gt/selftest_tlb.c
->> @@ -0,0 +1,379 @@
->> +// SPDX-License-Identifier: MIT
->> +/*
->> + * Copyright © 2022 Intel Corporation
->> + */
->> +
->> +#include "i915_selftest.h"
->> +
->> +#include "gem/i915_gem_internal.h"
->> +#include "gem/i915_gem_region.h"
->> +
->> +#include "gen8_engine_cs.h"
->> +#include "i915_gem_ww.h"
->> +#include "intel_engine_regs.h"
->> +#include "intel_gpu_commands.h"
->> +#include "intel_context.h"
->> +#include "intel_gt.h"
->> +#include "intel_ring.h"
->> +
->> +#include "selftests/igt_flush_test.h"
->> +#include "selftests/i915_random.h"
->> +
->> +static void vma_set_qw(struct i915_vma *vma, u64 addr, u64 val)
->> +{
->> +    GEM_BUG_ON(addr < i915_vma_offset(vma));
->> +    GEM_BUG_ON(addr >= i915_vma_offset(vma) + i915_vma_size(vma) + 
->> sizeof(val));
->> +    memset64(page_mask_bits(vma->obj->mm.mapping) +
->> +         (addr - i915_vma_offset(vma)), val, 1);
->> +}
->> +
->> +static int
->> +pte_tlbinv(struct intel_context *ce,
->> +       struct i915_vma *va,
->> +       struct i915_vma *vb,
->> +       u64 align,
->> +       void (*tlbinv)(struct i915_address_space *vm, u64 addr, u64 
->> length),
->> +       u64 length,
->> +       struct rnd_state *prng)
->> +{
->> +    struct drm_i915_gem_object *batch;
->> +    struct i915_request *rq;
->> +    struct i915_vma *vma;
->> +    u64 addr;
->> +    int err;
->> +    u32 *cs;
->> +
->> +    batch = i915_gem_object_create_internal(ce->vm->i915, 4096);
->> +    if (IS_ERR(batch))
->> +        return PTR_ERR(batch);
->> +
->> +    vma = i915_vma_instance(batch, ce->vm, NULL);
->> +    if (IS_ERR(vma)) {
->> +        err = PTR_ERR(vma);
->> +        goto out;
->> +    }
->> +
->> +    err = i915_vma_pin(vma, 0, 0, PIN_USER);
->> +    if (err)
->> +        goto out;
->> +
->> +    /* Pin va at random but aligned offset after vma */
->> +    addr = round_up(vma->node.start + vma->node.size, align);
->> +    /* MI_CONDITIONAL_BATCH_BUFFER_END limits address to 48b */
->> +    addr = igt_random_offset(prng, addr, min(ce->vm->total, 
->> BIT_ULL(48)),
->> +                 va->size, align);
->> +    err = i915_vma_pin(va,  0, 0, addr | PIN_OFFSET_FIXED | PIN_USER);
->> +    if (err) {
->> +        pr_err("Cannot pin at %llx+%llx\n", addr, va->size);
->> +        goto out;
->> +    }
->> +    GEM_BUG_ON(i915_vma_offset(va) != addr);
->> +    vb->node = va->node; /* overwrites the _same_ PTE  */
->> +
->> +    /*
->> +     * Now choose random dword at the 1st pinned page.
->> +     *
->> +     * SZ_64K pages on dg1 require that the whole PT be marked
->> +     * containing 64KiB entries. So we make sure that vma
->> +     * covers the whole PT, despite being randomly aligned to 64KiB
->> +     * and restrict our sampling to the 2MiB PT within where
->> +     * we know that we will be using 64KiB pages.
->> +     */
->> +    if (align == SZ_64K)
->> +        addr = round_up(addr, SZ_2M);
->> +    addr = igt_random_offset(prng, addr, addr + align, 8, 8);
->> +
->> +    pr_info("%s(%s): Sampling %llx, with alignment %llx, using PTE 
->> size %x (phys %x, sg %x), invalidate:%llx+%llx\n",
->> +        ce->engine->name, va->obj->mm.region->name ?: "smem",
->> +        addr, align, va->resource->page_sizes_gtt, va->page_sizes.phys,
->> +        va->page_sizes.sg, addr & -length, length);
-> 
-> Worth skipping this log if va == vb? Or logging something different like 
-> "... Sanity checking ...".
-> 
->> +
->> +    cs = i915_gem_object_pin_map_unlocked(batch, I915_MAP_WC);
->> +    *cs++ = MI_NOOP; /* for later termination */
->> +    /*
->> +     * Sample the target to see if we spot an incorrect page.
-> 
-> s/incorrect page/updated backing store/? Or something like that.
-> 
->> +     * Gen8 VCS compares immediate value with bitwise-and of two
->> +     * consecutive DWORDS pointed by addr, other gen/engines compare 
->> value
->> +     * with DWORD pointed by addr. Moreover we want to exercise DWORD 
->> size
->> +     * invalidations. To fulfill all these requirements below values
->> +     * has been chosen.
-> 
-> s/has/have/
-> 
->> +     */
->> +    *cs++ = MI_CONDITIONAL_BATCH_BUFFER_END | MI_DO_COMPARE | 2;
->> +    *cs++ = 0; /* break if *addr == 0 */
->> +    *cs++ = lower_32_bits(addr);
->> +    *cs++ = upper_32_bits(addr);
->> +    vma_set_qw(va, addr, -1);
->> +    vma_set_qw(vb, addr, 0);
->> +
->> +    /* Keep sampling until we get bored */
->> +    *cs++ = MI_BATCH_BUFFER_START | BIT(8) | 1;
->> +    *cs++ = lower_32_bits(i915_vma_offset(vma));
->> +    *cs++ = upper_32_bits(i915_vma_offset(vma));
->> +
->> +    i915_gem_object_flush_map(batch);
->> +
->> +    rq = i915_request_create(ce);
->> +    if (IS_ERR(rq)) {
->> +        err = PTR_ERR(rq);
->> +        goto out_va;
->> +    }
->> +
->> +    err = rq->engine->emit_bb_start(rq, i915_vma_offset(vma), 0, 0);
->> +    if (err) {
->> +        i915_request_add(rq);
->> +        goto out_va;
->> +    }
->> +
->> +    i915_request_get(rq);
->> +    i915_request_add(rq);
->> +
->> +    /* Short sleep to sanitycheck the batch is spinning before we 
->> begin */
->> +    msleep(10);
->> +    if (va == vb) {
->> +        if (!i915_request_completed(rq)) {
->> +            pr_err("Semaphore sanitycheck failed\n");
->> +            err = -EIO;
->> +        }
->> +    } else if (!i915_request_completed(rq)) {
->> +        struct i915_vma_resource vb_res = {
->> +            .bi.pages = vb->obj->mm.pages,
->> +            .bi.page_sizes = vb->obj->mm.page_sizes,
->> +            .start = i915_vma_offset(vb),
->> +            .vma_size = i915_vma_size(vb)
->> +        };
->> +        unsigned int pte_flags = 0;
->> +
->> +        /* Flip the PTE between A and B */
->> +        if (i915_gem_object_is_lmem(vb->obj))
->> +            pte_flags |= PTE_LM;
->> +        ce->vm->insert_entries(ce->vm, &vb_res, 0, pte_flags);
->> +
->> +        /* Flush the PTE update to concurrent HW */
->> +        tlbinv(ce->vm, addr & -length, length);
->> +
->> +        if (wait_for(i915_request_completed(rq), HZ / 2)) {
->> +            pr_err("%s: Request did not complete; the COND_BBE did 
->> not read the updated PTE\n",
->> +                   ce->engine->name);
->> +            err = -EINVAL;
->> +        }
->> +    } else {
->> +        pr_err("Spinner ended unexpectedly\n");
->> +        err = -EIO;
->> +    }
->> +    i915_request_put(rq);
->> +
->> +    cs = page_mask_bits(batch->mm.mapping);
->> +    *cs = MI_BATCH_BUFFER_END;
->> +    wmb();
->> +
->> +out_va:
->> +    if (vb != va)
->> +        memset(&vb->node, 0, sizeof(vb->node));
-> 
-> This can maybe be a bit fragile. Store a local copy of vb->node and 
-> restore from that?
-> 
->> +    i915_vma_unpin(va);
->> +    if (i915_vma_unbind_unlocked(va))
->> +        err = -EIO;
->> +out:
->> +    i915_gem_object_put(batch);
->> +    return err;
->> +}
->> +
->> +static struct drm_i915_gem_object *create_lmem(struct intel_gt *gt)
->> +{
->> +    /*
->> +     * Allocation of largest possible page size allows to test all types
->> +     * of pages.
->> +     */
->> +    return i915_gem_object_create_lmem(gt->i915, SZ_1G, 
->> I915_BO_ALLOC_CONTIGUOUS);
->> +}
->> +
->> +static struct drm_i915_gem_object *create_smem(struct intel_gt *gt)
->> +{
->> +    /*
->> +     * SZ_64K pages require covering the whole 2M PT (gen8 to tgl/dg1).
->> +     * While that does not require the whole 2M block to be contiguous
->> +     * it is easier to make it so, since we need that for SZ_2M pagees.
->> +     * Since we randomly offset the start of the vma, we need a 4M 
->> object
->> +     * so that there is a 2M range within it is suitable for SZ_64K PTE.
->> +     */
->> +    return i915_gem_object_create_internal(gt->i915, SZ_4M);
->> +}
->> +
->> +static int
->> +mem_tlbinv(struct intel_gt *gt,
->> +       struct drm_i915_gem_object *(*create_fn)(struct intel_gt *),
->> +       void (*tlbinv)(struct i915_address_space *vm, u64 addr, u64 
->> length))
->> +{
->> +    unsigned int ppgtt_size = RUNTIME_INFO(gt->i915)->ppgtt_size;
->> +    struct intel_engine_cs *engine;
->> +    struct drm_i915_gem_object *A, *B;
->> +    struct i915_ppgtt *ppgtt;
->> +    struct i915_vma *va, *vb;
->> +    enum intel_engine_id id;
->> +    I915_RND_STATE(prng);
->> +    void *vaddr;
->> +    int err;
->> +
->> +    /*
->> +     * Check that the TLB invalidate is able to revoke an active
->> +     * page. We load a page into a spinning COND_BBE loop and then
->> +     * remap that page to a new physical address. The old address, and
->> +     * so the loop keeps spinning, is retained in the TLB cache until
->> +     * we issue an invalidate.
->> +     */
->> +
->> +    A = create_fn(gt);
->> +    if (IS_ERR(A))
->> +        return PTR_ERR(A);
->> +
->> +    vaddr = i915_gem_object_pin_map_unlocked(A, I915_MAP_WC);
->> +    if (IS_ERR(vaddr)) {
->> +        err = PTR_ERR(vaddr);
->> +        goto out_a;
->> +    }
->> +
->> +    B = create_fn(gt);
->> +    if (IS_ERR(B)) {
->> +        err = PTR_ERR(B);
->> +        goto out_a;
->> +    }
->> +
->> +    vaddr = i915_gem_object_pin_map_unlocked(B, I915_MAP_WC);
->> +    if (IS_ERR(vaddr)) {
->> +        err = PTR_ERR(vaddr);
->> +        goto out_b;
->> +    }
->> +
->> +    GEM_BUG_ON(A->base.size != B->base.size);
->> +    if ((A->mm.page_sizes.phys | B->mm.page_sizes.phys) & 
->> (A->base.size - 1))
->> +        pr_warn("Failed to allocate contiguous pages for size %zx\n",
->> +            A->base.size);
->> +
->> +    ppgtt = i915_ppgtt_create(gt, 0);
->> +    if (IS_ERR(ppgtt)) {
->> +        err = PTR_ERR(ppgtt);
->> +        goto out_b;
->> +    }
->> +
->> +    va = i915_vma_instance(A, &ppgtt->vm, NULL);
->> +    if (IS_ERR(va)) {
->> +        err = PTR_ERR(va);
->> +        goto out_vm;
->> +    }
->> +
->> +    vb = i915_vma_instance(B, &ppgtt->vm, NULL);
->> +    if (IS_ERR(vb)) {
->> +        err = PTR_ERR(vb);
->> +        goto out_vm;
->> +    }
->> +
->> +    err = 0;
->> +    for_each_engine(engine, gt, id) {
->> +        struct i915_gem_ww_ctx ww;
->> +        struct intel_context *ce;
->> +        int bit;
->> +
->> +        ce = intel_context_create(engine);
->> +        if (IS_ERR(ce)) {
->> +            err = PTR_ERR(ce);
->> +            break;
->> +        }
->> +
->> +        i915_vm_put(ce->vm);
->> +        ce->vm = i915_vm_get(&ppgtt->vm);
->> +
->> +        for_i915_gem_ww(&ww, err, true)
->> +            err = intel_context_pin_ww(ce, &ww);
->> +        if (err)
->> +            goto err_put;
->> +
->> +        for_each_set_bit(bit,
->> +                 (unsigned long *)&RUNTIME_INFO(gt->i915)->page_sizes,
->> +                 BITS_PER_TYPE(RUNTIME_INFO(gt->i915)->page_sizes)) {
->> +            unsigned int len;
->> +
->> +            if (BIT_ULL(bit) < i915_vm_obj_min_alignment(va->vm, 
->> va->obj))
->> +                continue;
->> +
->> +            /* sanitycheck the semaphore wake up */
->> +            err = pte_tlbinv(ce, va, va,
->> +                     BIT_ULL(bit),
->> +                     NULL, SZ_4K,
->> +                     &prng);
->> +            if (err)
->> +                goto err_unpin;
->> + +            for (len = 2; len <= ppgtt_size; len = min(2 * len, 
->> ppgtt_size)) {
->> +                err = pte_tlbinv(ce, va, vb,
->> +                        BIT_ULL(bit),
->> +                        tlbinv,
->> +                        BIT_ULL(len),
->> +                        &prng);
->> +                if (err)
->> +                    goto err_unpin;
->> +                if (len == ppgtt_size)
->> +                    break;
->> +            }
->> +        }
->> +err_unpin:
->> +        intel_context_unpin(ce);
->> +err_put:
->> +        intel_context_put(ce);
->> +        if (err)
->> +            break;
->> +    }
->> +
->> +    if (igt_flush_test(gt->i915))
->> +        err = -EIO;
->> +
->> +out_vm:
->> +    i915_vm_put(&ppgtt->vm);
->> +out_b:
->> +    i915_gem_object_put(B);
->> +out_a:
->> +    i915_gem_object_put(A);
->> +    return err;
->> +}
->> +
->> +static void tlbinv_full(struct i915_address_space *vm, u64 addr, u64 
->> length)
->> +{
->> +    intel_gt_invalidate_tlb(vm->gt, intel_gt_tlb_seqno(vm->gt) | 1);
->> +}
->> +
->> +static int invalidate_full(void *arg)
->> +{
->> +    struct intel_gt *gt = arg;
->> +    int err;
->> +
->> +    if (GRAPHICS_VER(gt->i915) < 8)
->> +        return 0; /* TLB invalidate not implemented */
->> +
->> +    err = mem_tlbinv(gt, create_smem, tlbinv_full);
->> +    if (err == 0)
->> +        err = mem_tlbinv(gt, create_lmem, tlbinv_full);
->> +    if (err == -ENODEV || err == -ENXIO)
->> +        err = 0;
->> +
->> +    return err;
->> +}
->> +
->> +int intel_tlb_live_selftests(struct drm_i915_private *i915)
->> +{
->> +    static const struct i915_subtest tests[] = {
->> +        SUBTEST(invalidate_full),
->> +    };
->> +    struct intel_gt *gt;
->> +    unsigned int i;
->> +
->> +    for_each_gt(gt, i915, i) {
->> +        int err;
->> +
->> +        if (intel_gt_is_wedged(gt))
->> +            continue;
->> +
->> +        err = intel_gt_live_subtests(tests, gt);
->> +        if (err)
->> +            return err;
->> +    }
->> +
->> +    return 0;
->> +}
->> diff --git a/drivers/gpu/drm/i915/selftests/i915_live_selftests.h 
->> b/drivers/gpu/drm/i915/selftests/i915_live_selftests.h
->> index aaf8a380e5c789..5aee6c9a8295ce 100644
->> --- a/drivers/gpu/drm/i915/selftests/i915_live_selftests.h
->> +++ b/drivers/gpu/drm/i915/selftests/i915_live_selftests.h
->> @@ -25,6 +25,7 @@ selftest(gt_lrc, intel_lrc_live_selftests)
->>   selftest(gt_mocs, intel_mocs_live_selftests)
->>   selftest(gt_pm, intel_gt_pm_live_selftests)
->>   selftest(gt_heartbeat, intel_heartbeat_live_selftests)
->> +selftest(gt_tlb, intel_tlb_live_selftests)
->>   selftest(requests, i915_request_live_selftests)
->>   selftest(migrate, intel_migrate_live_selftests)
->>   selftest(active, i915_active_live_selftests)
-> 
-> Okay I can follow it and it looks plausible to me. No obvious errors 
-> stick out and if CI says it's solid I'm happy.
+Hi,
 
-v6 sent with comments addresssed.
-
+On 2023-01-30 at 10:55:42 +0000, Tvrtko Ursulin wrote:
 > 
-> Have you tried to do a run or wo with TLB invalidation nerfed to see how 
-> the detection rate is looking?
-
-Yes, nerfing TLB_INV addresses works for every engine.
-
-Regards
-Andrzej
-
-
+> On 27/01/2023 16:10, Kamil Konieczny wrote:
+> > Hi Tvrtko,
+> > 
+> > On 2023-01-27 at 11:12:40 +0000, Tvrtko Ursulin wrote:
+> > > From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > > 
+> > > Avoid trying to dereference null engines on exit when there are either
+> > > none which are supported, or kernel does not have i915 PMU support.
+> > > 
+> > > Also fix a memory leak on the same failure path just so Valgrind runs are
+> > > quite.
+> > > 
+> > > v2:
+> > >   * Fix a memory leak in the same failure mode too.
+> > 
+> > Please rebase, patch do not apply.
+> 
+> Hm how, CI applied it fine. Maybe you mean as standalone? There is the same
+> patch here:
+> https://patchwork.freedesktop.org/patch/519751/?series=113096&rev=2
+> 
+> > > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > > Acked-by: Nirmoy Das <nirmoy.das@intel.com> # v1
+> > -------------------------------------------- ^^^^^
+> > Delete this.
+> 
+> I can do that only if Nirmoy agrees. ;)
 > 
 > Regards,
 > 
 > Tvrtko
 
+It is already too late, that was merged some time ago and got
+into git history so nothing can be done now.
+
+Regards,
+Kamil
+
+> 
+> > Rest looks good,
+> > 
+> > Regards,
+> > Kamil
+> > 
+> > > ---
+> > >   tools/intel_gpu_top.c | 21 ++++++++++++++-------
+> > >   1 file changed, 14 insertions(+), 7 deletions(-)
+> > > 
+> > > diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
+> > > index 7aa233570463..0a1de41b3374 100644
+> > > --- a/tools/intel_gpu_top.c
+> > > +++ b/tools/intel_gpu_top.c
+> > > @@ -340,7 +340,7 @@ static struct engines *discover_engines(char *device)
+> > >   	d = opendir(sysfs_root);
+> > >   	if (!d)
+> > > -		return NULL;
+> > > +		goto err;
+> > >   	while ((dent = readdir(d)) != NULL) {
+> > >   		const char *endswith = "-busy";
+> > > @@ -423,10 +423,8 @@ static struct engines *discover_engines(char *device)
+> > >   	}
+> > >   	if (ret) {
+> > > -		free(engines);
+> > >   		errno = ret;
+> > > -
+> > > -		return NULL;
+> > > +		goto err;
+> > >   	}
+> > >   	qsort(engine_ptr(engines, 0), engines->num_engines,
+> > > @@ -435,6 +433,11 @@ static struct engines *discover_engines(char *device)
+> > >   	engines->root = d;
+> > >   	return engines;
+> > > +
+> > > +err:
+> > > +	free(engines);
+> > > +
+> > > +	return NULL;
+> > >   }
+> > >   static void free_engines(struct engines *engines)
+> > > @@ -448,6 +451,9 @@ static void free_engines(struct engines *engines)
+> > >   	};
+> > >   	unsigned int i;
+> > > +	if (!engines)
+> > > +		return;
+> > > +
+> > >   	for (pmu = &free_list[0]; *pmu; pmu++) {
+> > >   		if ((*pmu)->present)
+> > >   			free((char *)(*pmu)->units);
+> > > @@ -2568,7 +2574,7 @@ int main(int argc, char **argv)
+> > >   			"Failed to detect engines! (%s)\n(Kernel 4.16 or newer is required for i915 PMU support.)\n",
+> > >   			strerror(errno));
+> > >   		ret = EXIT_FAILURE;
+> > > -		goto err;
+> > > +		goto err_engines;
+> > >   	}
+> > >   	ret = pmu_init(engines);
+> > > @@ -2585,7 +2591,7 @@ int main(int argc, char **argv)
+> > >   "More information can be found at 'Perf events and tool security' document:\n"
+> > >   "https://www.kernel.org/doc/html/latest/admin-guide/perf-security.html\n");
+> > >   		ret = EXIT_FAILURE;
+> > > -		goto err;
+> > > +		goto err_pmu;
+> > >   	}
+> > >   	ret = EXIT_SUCCESS;
+> > > @@ -2699,8 +2705,9 @@ int main(int argc, char **argv)
+> > >   		free_clients(clients);
+> > >   	free(codename);
+> > > -err:
+> > > +err_pmu:
+> > >   	free_engines(engines);
+> > > +err_engines:
+> > >   	free(pmu_device);
+> > >   exit:
+> > >   	igt_devices_free();
+> > > -- 
+> > > 2.34.1
+> > > 
