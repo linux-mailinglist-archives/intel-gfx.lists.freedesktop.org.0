@@ -2,50 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E518681BB0
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Jan 2023 21:43:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C84FC681C3D
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Jan 2023 22:04:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D219110E290;
-	Mon, 30 Jan 2023 20:43:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCDBE10E19F;
+	Mon, 30 Jan 2023 21:04:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F225910E29B
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Jan 2023 20:43:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675111389; x=1706647389;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=Xj+jn1+TUOKtoTFqF17eFxMhSs6iQz7zQ5PNqbXrtgc=;
- b=oInTLG2qkJ2XWasaqx7uMHrlAyJGkgsV/rn3eJWjVyT4TqUuWpI0nIBr
- 3ixgbiTlKggKZHgm7vK6GWkSgoQDDKgSeoJj/X2Kmlm158k2cfO/l9mD3
- Kv0xOEjgv7ppD6H7qxw596KGOoCXrZ/KyoAZJEqljL37GXiELb7FAiI8s
- eaZ6HEyk8QhzIEfA/0ckQk/6TEhKZk2f2D0Me4172kQ03UZxcBGq9kUxR
- NszityxOedPZ7BkYkrqP2JnaZt/12PPxkdzi6/aYy6nZfckL5+h7SXFtv
- s4h9aQ9U7cmpmrYStKHAh86G9l8ktfSVKVf6bDpnx4csmC89sHu9CP4Pa Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="315630979"
-X-IronPort-AV: E=Sophos;i="5.97,259,1669104000"; d="scan'208";a="315630979"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2023 12:43:08 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="727634500"
-X-IronPort-AV: E=Sophos;i="5.97,259,1669104000"; d="scan'208";a="727634500"
-Received: from mczerwo-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.252.58.44])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2023 12:43:06 -0800
-Date: Mon, 30 Jan 2023 21:43:04 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Nirmoy Das <nirmoy.das@intel.com>
-Message-ID: <Y9gr2CaE8OOWmAjk@ashyti-mobl2.lan>
-References: <20230130131358.16800-1-nirmoy.das@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D23FA89F41;
+ Mon, 30 Jan 2023 21:04:17 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C7EB5AADE8;
+ Mon, 30 Jan 2023 21:04:17 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1851786900356913746=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230130131358.16800-1-nirmoy.das@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Use sysfs_emit() and
- sysfs_emit_at()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Mon, 30 Jan 2023 21:04:17 -0000
+Message-ID: <167511265777.3670.1803266522455115502@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230130181701.29977-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230130181701.29977-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_Include_stepping_inform?=
+ =?utf-8?q?aiton_in_device_info_dump?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,173 +41,183 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Nirmoy,
+--===============1851786900356913746==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jan 30, 2023 at 02:13:58PM +0100, Nirmoy Das wrote:
-> Use sysfs_emit() and sysfs_emit_at() in show() callback
-> as recommended by Documentation/filesystems/sysfs.rst
-> 
-> Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+== Series Details ==
 
-I thought we didn't have anymore of those...
+Series: series starting with [1/2] drm/i915: Include stepping informaiton in device info dump
+URL   : https://patchwork.freedesktop.org/series/113504/
+State : failure
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+== Summary ==
 
-Thanks,
-Andi
+CI Bug Log - changes from CI_DRM_12667 -> Patchwork_113504v1
+====================================================
 
-> ---
->  drivers/gpu/drm/i915/gt/sysfs_engines.c | 34 ++++++++++++-------------
->  1 file changed, 16 insertions(+), 18 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/sysfs_engines.c b/drivers/gpu/drm/i915/gt/sysfs_engines.c
-> index f2d9858d827c..323cead181b8 100644
-> --- a/drivers/gpu/drm/i915/gt/sysfs_engines.c
-> +++ b/drivers/gpu/drm/i915/gt/sysfs_engines.c
-> @@ -24,7 +24,7 @@ static struct intel_engine_cs *kobj_to_engine(struct kobject *kobj)
->  static ssize_t
->  name_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->  {
-> -	return sprintf(buf, "%s\n", kobj_to_engine(kobj)->name);
-> +	return sysfs_emit(buf, "%s\n", kobj_to_engine(kobj)->name);
->  }
->  
->  static struct kobj_attribute name_attr =
-> @@ -33,7 +33,7 @@ __ATTR(name, 0444, name_show, NULL);
->  static ssize_t
->  class_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->  {
-> -	return sprintf(buf, "%d\n", kobj_to_engine(kobj)->uabi_class);
-> +	return sysfs_emit(buf, "%d\n", kobj_to_engine(kobj)->uabi_class);
->  }
->  
->  static struct kobj_attribute class_attr =
-> @@ -42,7 +42,7 @@ __ATTR(class, 0444, class_show, NULL);
->  static ssize_t
->  inst_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->  {
-> -	return sprintf(buf, "%d\n", kobj_to_engine(kobj)->uabi_instance);
-> +	return sysfs_emit(buf, "%d\n", kobj_to_engine(kobj)->uabi_instance);
->  }
->  
->  static struct kobj_attribute inst_attr =
-> @@ -51,7 +51,7 @@ __ATTR(instance, 0444, inst_show, NULL);
->  static ssize_t
->  mmio_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->  {
-> -	return sprintf(buf, "0x%x\n", kobj_to_engine(kobj)->mmio_base);
-> +	return sysfs_emit(buf, "0x%x\n", kobj_to_engine(kobj)->mmio_base);
->  }
->  
->  static struct kobj_attribute mmio_attr =
-> @@ -107,11 +107,9 @@ __caps_show(struct intel_engine_cs *engine,
->  	for_each_set_bit(n, &caps, show_unknown ? BITS_PER_LONG : count) {
->  		if (n >= count || !repr[n]) {
->  			if (GEM_WARN_ON(show_unknown))
-> -				len += snprintf(buf + len, PAGE_SIZE - len,
-> -						"[%x] ", n);
-> +				len += sysfs_emit_at(buf, len, "[%x] ", n);
->  		} else {
-> -			len += snprintf(buf + len, PAGE_SIZE - len,
-> -					"%s ", repr[n]);
-> +			len += sysfs_emit_at(buf, len, "%s ", repr[n]);
->  		}
->  		if (GEM_WARN_ON(len >= PAGE_SIZE))
->  			break;
-> @@ -182,7 +180,7 @@ max_spin_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->  {
->  	struct intel_engine_cs *engine = kobj_to_engine(kobj);
->  
-> -	return sprintf(buf, "%lu\n", engine->props.max_busywait_duration_ns);
-> +	return sysfs_emit(buf, "%lu\n", engine->props.max_busywait_duration_ns);
->  }
->  
->  static struct kobj_attribute max_spin_attr =
-> @@ -193,7 +191,7 @@ max_spin_default(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->  {
->  	struct intel_engine_cs *engine = kobj_to_engine(kobj);
->  
-> -	return sprintf(buf, "%lu\n", engine->defaults.max_busywait_duration_ns);
-> +	return sysfs_emit(buf, "%lu\n", engine->defaults.max_busywait_duration_ns);
->  }
->  
->  static struct kobj_attribute max_spin_def =
-> @@ -236,7 +234,7 @@ timeslice_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->  {
->  	struct intel_engine_cs *engine = kobj_to_engine(kobj);
->  
-> -	return sprintf(buf, "%lu\n", engine->props.timeslice_duration_ms);
-> +	return sysfs_emit(buf, "%lu\n", engine->props.timeslice_duration_ms);
->  }
->  
->  static struct kobj_attribute timeslice_duration_attr =
-> @@ -247,7 +245,7 @@ timeslice_default(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->  {
->  	struct intel_engine_cs *engine = kobj_to_engine(kobj);
->  
-> -	return sprintf(buf, "%lu\n", engine->defaults.timeslice_duration_ms);
-> +	return sysfs_emit(buf, "%lu\n", engine->defaults.timeslice_duration_ms);
->  }
->  
->  static struct kobj_attribute timeslice_duration_def =
-> @@ -287,7 +285,7 @@ stop_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->  {
->  	struct intel_engine_cs *engine = kobj_to_engine(kobj);
->  
-> -	return sprintf(buf, "%lu\n", engine->props.stop_timeout_ms);
-> +	return sysfs_emit(buf, "%lu\n", engine->props.stop_timeout_ms);
->  }
->  
->  static struct kobj_attribute stop_timeout_attr =
-> @@ -298,7 +296,7 @@ stop_default(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->  {
->  	struct intel_engine_cs *engine = kobj_to_engine(kobj);
->  
-> -	return sprintf(buf, "%lu\n", engine->defaults.stop_timeout_ms);
-> +	return sysfs_emit(buf, "%lu\n", engine->defaults.stop_timeout_ms);
->  }
->  
->  static struct kobj_attribute stop_timeout_def =
-> @@ -343,7 +341,7 @@ preempt_timeout_show(struct kobject *kobj, struct kobj_attribute *attr,
->  {
->  	struct intel_engine_cs *engine = kobj_to_engine(kobj);
->  
-> -	return sprintf(buf, "%lu\n", engine->props.preempt_timeout_ms);
-> +	return sysfs_emit(buf, "%lu\n", engine->props.preempt_timeout_ms);
->  }
->  
->  static struct kobj_attribute preempt_timeout_attr =
-> @@ -355,7 +353,7 @@ preempt_timeout_default(struct kobject *kobj, struct kobj_attribute *attr,
->  {
->  	struct intel_engine_cs *engine = kobj_to_engine(kobj);
->  
-> -	return sprintf(buf, "%lu\n", engine->defaults.preempt_timeout_ms);
-> +	return sysfs_emit(buf, "%lu\n", engine->defaults.preempt_timeout_ms);
->  }
->  
->  static struct kobj_attribute preempt_timeout_def =
-> @@ -399,7 +397,7 @@ heartbeat_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->  {
->  	struct intel_engine_cs *engine = kobj_to_engine(kobj);
->  
-> -	return sprintf(buf, "%lu\n", engine->props.heartbeat_interval_ms);
-> +	return sysfs_emit(buf, "%lu\n", engine->props.heartbeat_interval_ms);
->  }
->  
->  static struct kobj_attribute heartbeat_interval_attr =
-> @@ -410,7 +408,7 @@ heartbeat_default(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->  {
->  	struct intel_engine_cs *engine = kobj_to_engine(kobj);
->  
-> -	return sprintf(buf, "%lu\n", engine->defaults.heartbeat_interval_ms);
-> +	return sysfs_emit(buf, "%lu\n", engine->defaults.heartbeat_interval_ms);
->  }
->  
->  static struct kobj_attribute heartbeat_interval_def =
-> -- 
-> 2.39.0
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_113504v1 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_113504v1, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113504v1/index.html
+
+Participating hosts (26 -> 25)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_113504v1:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - fi-blb-e6850:       [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12667/fi-blb-e6850/igt@gem_exec_suspend@basic-s3@smem.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113504v1/fi-blb-e6850/igt@gem_exec_suspend@basic-s3@smem.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_113504v1 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-kbl-soraka:      [DMESG-FAIL][3] ([i915#5334] / [i915#7872]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12667/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113504v1/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
+  [i915#7872]: https://gitlab.freedesktop.org/drm/intel/issues/7872
+  [i915#7981]: https://gitlab.freedesktop.org/drm/intel/issues/7981
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12667 -> Patchwork_113504v1
+
+  CI-20190529: 20190529
+  CI_DRM_12667: c30c24a1b2ef039980198dcfd7c3328fd61f404d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7143: c7b12dcc460fc2348e1fa7f4dcb791bb82e29e44 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_113504v1: c30c24a1b2ef039980198dcfd7c3328fd61f404d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+0f4f1824b451 drm/i915: Prefix hex numbers with 0x
+b71d32ed566e drm/i915: Include stepping informaiton in device info dump
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113504v1/index.html
+
+--===============1851786900356913746==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915: Include stepping informaiton in device info dump</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/113504/">https://patchwork.freedesktop.org/series/113504/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113504v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113504v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12667 -&gt; Patchwork_113504v1</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_113504v1 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_113504v1, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113504v1/index.html</p>
+<h2>Participating hosts (26 -&gt; 25)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_113504v1:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@gem_exec_suspend@basic-s3@smem:<ul>
+<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12667/fi-blb-e6850/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113504v1/fi-blb-e6850/igt@gem_exec_suspend@basic-s3@smem.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_113504v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@gt_heartbeat:<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12667/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7872">i915#7872</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113504v1/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12667 -&gt; Patchwork_113504v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12667: c30c24a1b2ef039980198dcfd7c3328fd61f404d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7143: c7b12dcc460fc2348e1fa7f4dcb791bb82e29e44 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_113504v1: c30c24a1b2ef039980198dcfd7c3328fd61f404d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>0f4f1824b451 drm/i915: Prefix hex numbers with 0x<br />
+b71d32ed566e drm/i915: Include stepping informaiton in device info dump</p>
+
+</body>
+</html>
+
+--===============1851786900356913746==--
