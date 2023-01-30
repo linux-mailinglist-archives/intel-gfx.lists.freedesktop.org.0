@@ -1,146 +1,139 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 322AC681688
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Jan 2023 17:37:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90C986816BE
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Jan 2023 17:44:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 938D210E1E8;
-	Mon, 30 Jan 2023 16:37:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D70D10E0A2;
+	Mon, 30 Jan 2023 16:44:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7519510E0F8;
- Mon, 30 Jan 2023 16:37:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F4EF10E0A2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Jan 2023 16:44:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675096659; x=1706632659;
+ t=1675097073; x=1706633073;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=6zlj6RR9tjWDFgW5zHWje0/3QkzQz2FRU7f2O5RXuDE=;
- b=D4cad29UhCwhwAbz6xaiJeedMc59Elr0SzXyAb7QTlwf48TN+dNU618W
- Ph6bFxdQiXN0FoSaqHqKffRQfAAQ7SJYZcz6yOGjGTxTIUmS2YYVal0To
- dJJWEAF9JsjwwxczRVW6/uof2fu00aJM5tj8OH9VtJzjzc7zbMMCrNi8C
- y4Ze7dskVg9dK8TGIwmw98iTlpkTaVvPWOH4mt1WJfxOqvrGaFENZJ5qi
- 5+ZWQO9GOw7EDY2zg6Ia7xrF+8WrXoiacwu3UOR8CBeMPL1HMj8EFn8Fh
- ppnBeutvKuB8jl3eX5gDzq8YHEAfVFRBHpLTkbft5e9bZSCeHrS4iYBhw g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="328882224"
-X-IronPort-AV: E=Sophos;i="5.97,258,1669104000"; d="scan'208";a="328882224"
+ bh=cqB2bySWP4w0BElq+/bppfg9V9OWEshmrBpYdxqdgmo=;
+ b=Nu6jQPNqgxZeiQW57+o2Kb2uhMVD4eqyFcV6GZ5WrsNoxibU8EQVHfYF
+ hrZv8jlounzIi5ZPZQez9tay1VPzykKLSt52hcSPJyokB4Fqn+9h5icFe
+ +4WTmUNICznuV3YhROo/WN5CGNeea1KTIUmO8M6RZPAJTzbOi2zojD0gz
+ P/msBGqnT5LaEljmcE34u++5+G7eDxzjl5c5CQmdMO61LiIhcvPy4GmLe
+ KMWlg0k8hokt0wz90AVd/v3ShURVMgr78n95YX8Xd0wxtrGJ8i+XVFmkV
+ PZ06lFTW3AnoCjTVKtBrSd7JiR3/toKmyZofU7LymlV05jpn3r6MLzqWP w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="328884041"
+X-IronPort-AV: E=Sophos;i="5.97,258,1669104000"; d="scan'208";a="328884041"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2023 08:37:38 -0800
+ 30 Jan 2023 08:42:47 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="657523258"
-X-IronPort-AV: E=Sophos;i="5.97,258,1669104000"; d="scan'208";a="657523258"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orsmga007.jf.intel.com with ESMTP; 30 Jan 2023 08:37:38 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Mon, 30 Jan 2023 08:37:38 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="657525105"
+X-IronPort-AV: E=Sophos;i="5.97,258,1669104000"; d="scan'208";a="657525105"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orsmga007.jf.intel.com with ESMTP; 30 Jan 2023 08:42:47 -0800
 Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Mon, 30 Jan 2023 08:37:38 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ 15.1.2507.16; Mon, 30 Jan 2023 08:42:47 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
  orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Mon, 30 Jan 2023 08:37:38 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.109)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.16 via Frontend Transport; Mon, 30 Jan 2023 08:42:47 -0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.171)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Mon, 30 Jan 2023 08:37:36 -0800
+ 15.1.2507.16; Mon, 30 Jan 2023 08:42:47 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=m/ckMYXIXQVDXX3xsTnvEsStQDZE9gRaumSbkDoBwbVuwTArF9+/NkzEenajeAxycZKFeJSz6vxjOS3U7VPNEKfOzGIcr4iIZhGN4qkxWJ6DkulUuX9vFEqwVRQTWZOkcUOUW5GFckgL2kbyNhOsdIZ62b7RacbJnfbZ4ZgMMHf/le2cR9kDoVyxDwvam4e/quOuUH2rLcqLwhBbLIA9s+d7Q4Fo5RlpOrC7b92m+3O7dXywwbWXwiVmy5JhMX64Qh+BKFdNU349CeLan1D25m6b7Yfheo+YUTWFa3y701KciZ9setqaFQnnATXKVdiOZA1htYiD2A8j1nDcp7w2yg==
+ b=ZfFQn3AQjlp4N3wExQ1ihMjx948qCwXSXQ489PlOn413xR3UF4hWjImkqoDFHdUqpzoWUUi9Q4brd/VWyW6wu1TnvPA7d0V6flGOOvnb2vlm4HqwW2aCe/LLy5h6EGk/oljf06F+eY16uRX5BOxnlcHWhIdnFxrH5JeIsUhPbLs3fhFSB5FS5ou77WTiUb7mjvIHydpGmXprE44E1Ol2UxS3yw7rbaD3w4nTek4Xgx5FnS0YlVVEQeusUl20AsrMYeH95j07Y37P9jgJL+o8oEex9OinmIRAVNvBXeOtyOYFsJ+tIjgHhLTAsY6kRkt4NWMys4F8IRrcmGyHKtCCVg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=X+e2ypEnuWOcy7ZjvZ4EVp7zBYOC0gfdjEbKFX1i13c=;
- b=oWG3/f0yORtZ47Mc10EA3nv+iGmwyY3JV7sTgb+lPdP30GCdWGdkCMeupxIYfG9QIFl72NpxYUpWdk+XJX+S+MxJAmYx7xuCovZjfLAHRE3Llbmr9p3NAk86jxzmS90a3OXp5c+orrg/y5BUiRqyXcVN0qQtT8LhSmfnKZ+bMY5KggxqlP20/62OfoI5zd8D8MN4uuRtigFIFTWhf5OHjTTQ+Dzzmp2U4wwed/xVMCXWfTqTxrs6R630EeKplcsw1wBPfifjWUkXqbGeq6dr3ispe1She3VrI0eD0SgOUdFy1l2IQEJtJc8HvzE+QgNVS2wIQxQvgcVCN2eMfbvPzQ==
+ bh=kXSW7ASuJv7k7nzmpdy2Bn1XNXOTBGIrjxk4GumTtFw=;
+ b=Nko8zOwbQ823n3eSWnmL3uR53Gt2KC+/Bd2pSEQ9AXq9Nml6arhvG3GOkg3vncVDTe1Ahz6g6CO9vPXQiCHAP1zmf+VmqgvSjcvZ1+V7H3B/8rKDyP/OBLk2r/tJxdZDTGWa0+Xfa1FKOHOuHgnWVI9xuPsVAAyz0w/nJScKAKx0Odt1kDBfEcuvNv0Y7jtNwT++THjr9LrQvyaaJrEV/bqKSSXSiesDpIRbFmop+UFe6PEOXO83rcIFB/h5sIiQatZTLyZhHoEW4gBOUUtekLpXHrvrbIChXnCcp4VfFybHLVbrZbl81caDqJRG0VQ5zhvmH6rI2wk5bSFtNq0CXw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by DM6PR11MB4660.namprd11.prod.outlook.com (2603:10b6:5:2ad::16) with
- Microsoft SMTP Server (version=TLS1_2,
+ by PH7PR11MB6835.namprd11.prod.outlook.com (2603:10b6:510:1ee::9)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.36; Mon, 30 Jan
- 2023 16:37:34 +0000
+ 2023 16:42:45 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::1818:e39d:454d:a930]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::1818:e39d:454d:a930%4]) with mapi id 15.20.6043.036; Mon, 30 Jan 2023
- 16:37:34 +0000
-Date: Mon, 30 Jan 2023 11:37:29 -0500
+ 16:42:45 +0000
+Date: Mon, 30 Jan 2023 11:42:41 -0500
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Message-ID: <Y9fySWFQwTPC1VAM@intel.com>
-References: <20230111104447.338136-1-andi.shyti@linux.intel.com>
- <87a62pi501.fsf@intel.com> <Y77XmlzOCuOg8YVZ@ashyti-mobl2.lan>
- <b3d4b882-cb0b-a3c1-2609-6065f379ed15@intel.com>
- <Y9OSyhWHWu8iliP5@ashyti-mobl2.lan>
- <bfe11cf8-87a5-3768-92d5-3415145d8c8f@intel.com>
- <Y9eEX95t1i1YRVOk@ashyti-mobl2.lan> <Y9fXFrJp/N0cit18@intel.com>
- <Y9fsgJd7y6aEt/sT@ashyti-mobl2.lan>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <Y9fzgUmW3aWA36iX@intel.com>
+References: <20230127224313.4042331-1-matthew.d.roper@intel.com>
+ <20230127224313.4042331-2-matthew.d.roper@intel.com>
+ <Y9fmSL8b4+fzRGiJ@intel.com>
+ <Y9fnl5Q845+QTFjm@mdroper-desk1.amr.corp.intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <Y9fsgJd7y6aEt/sT@ashyti-mobl2.lan>
-X-ClientProxiedBy: SJ0PR03CA0164.namprd03.prod.outlook.com
- (2603:10b6:a03:338::19) To MN0PR11MB6059.namprd11.prod.outlook.com
+In-Reply-To: <Y9fnl5Q845+QTFjm@mdroper-desk1.amr.corp.intel.com>
+X-ClientProxiedBy: BYAPR06CA0068.namprd06.prod.outlook.com
+ (2603:10b6:a03:14b::45) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|DM6PR11MB4660:EE_
-X-MS-Office365-Filtering-Correlation-Id: d118bf3e-a1a6-4d0f-5bb0-08db02e049cb
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|PH7PR11MB6835:EE_
+X-MS-Office365-Filtering-Correlation-Id: eb8b78eb-9c80-40a2-3bc7-08db02e10330
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: M2rSRURKcChsypaTWTvwqCpmnwxUkuPbfpkbl4tU2hMXFoPIZKPZpELpIbOGszuxCyNCqe9KNNkiLsKT+rUo2MvuqIOclAGyYr5Jj3QnETumj+mhGgXa0y4jdx9K7zb1Pa/Ae7YvXRKBqMPy3obihMC24mRHjYy6gSAM04qLyRPv9svz15csMb+s0/yhBDAaeTfUYkcWXU5gwYCTQJ8yCyQYQML6GT/0YAvpxYg03X/+0KhCiNQL1SWWUb67fsj9OU2xmaoC25POytJAJHuLmOvtzIdOc42tqamLbaZbvVBdPvwENg+vqzDYyUMPAlDC/cKyRe5aOvIAa9P0eW3KxDuVK0irL7WiK73EtLRa0VDduJIGSRiv/Pt9AqrWdlwAx1AmcAwPzltcHsCyIO+d6e6GQRxWoUUCPh7wuOkfYGMglI8Xh+4pvfzbu0ruh4NssXCvVJkd/zMhBvULHe1j7iUdzjy/5N2p6y9XnZ+C3OqyGBfgQhDLWVA34KOhw/EpWElAXbBozHAN8WGcDQk/Vj3IPuhPGlENH3UvhPpOSROWH88hdZChMtafHDYpzW/VorGo+Bca5zmPcxEXpqIr/oXasW8EyL2LbP2q0aGjDteoM15klt7wE8Kw6zb7zdr1ZQgLJw+8hd6LmX8ykdFEIQvcpx6qiuSap7GfH28OWOa+pd30opu7cGi/K0o01AduZEmhQmVtiSd+e3/Pyyw8Ug==
+X-Microsoft-Antispam-Message-Info: 0Eds9HhAyWD4Ca7nJw3RsnWnhj8lfzHC2zHIvRIQzYXOLCfA2d0SCc47MyNliO20m0omIPjHOjvP/0Q3O93vvTsLpWR2qfBS92coarm65yBG9xE/pkz/vtZYyWbsLTLuTM6RqeNVdwWUKEY8Y6JgzWCfBK9Mm5Zfrr/1uBWa6LaFnGIHTc9QglDrZp5tUAzEXOEcgv0vxPiv56oFVFu/ycL8k6OYPIGpnzhaEFK5c5g5sZyVvBY71Kg02wcmysEz6An7PoQOZ8PJmVB2RRlIPlqsyQ2EmjjXskCcx7SfRBH50tI8HN1ONP8nkStuttxkDKTJSMueHjvZ7PpbK3NFc53pqZOaykAPtruHibcA1uEOGOxddxdE2S+tFyVnDJJOJXvC/ce+6NqB/dE3UwXvedkPC5gcBou7ffDou5xsihSpbM5qYJ7wv+myUBr5suTZdPPiSRNo0biacdidxNItD/ZfAZ5bewHRtTHd6Dqt44hG/3pFiQzCaunPMZ6GKY/Vc3CBferrSE7ePWKRMLQ0QU6WrPOLHcYWqTH1IE58nlEWl5jz3NfB+A2j4tT0WCEJV7fGfVNfuCSaj3MUUqQlFKpco6Q2T6F/ajp8GHAfcy2YgxhMkrfiMAlyklBpcQH2SPWf8t+fmR3TIRjX3FJCbQ==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(376002)(366004)(396003)(136003)(39860400002)(346002)(451199018)(86362001)(82960400001)(38100700002)(36756003)(8936002)(316002)(5660300002)(54906003)(66476007)(66946007)(4326008)(8676002)(66556008)(6916009)(2906002)(44832011)(83380400001)(2616005)(6486002)(478600001)(41300700001)(6506007)(6512007)(26005)(186003)(6666004)(226643001);
+ SFS:(13230025)(366004)(136003)(396003)(376002)(39860400002)(346002)(451199018)(2906002)(5660300002)(86362001)(44832011)(82960400001)(83380400001)(6862004)(8936002)(30864003)(41300700001)(36756003)(478600001)(6486002)(26005)(6666004)(6512007)(186003)(6506007)(2616005)(4326008)(66476007)(66946007)(38100700002)(8676002)(66556008)(6636002)(37006003)(316002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?5tK+YW7pEaRabmfV1hxPnYOGVhG5fID3PFWexSyy9LTR3nBUyPwcQqekYUXy?=
- =?us-ascii?Q?sG9qb7AWcn3AOfC2y9PPuCNlNqoLjb/qWLP6lVZXt982yTUwLBi1sRJpBqzT?=
- =?us-ascii?Q?SvfvvpkTcqOK5fHqmUW9UqlZpiqS9OVUws5umv14u+3r86MKMO5GYWOjxzQG?=
- =?us-ascii?Q?X5uArdceSxsbgLBI5w9UqjWWk4lEmz/mTTm9VisBLmVPWsE4likbWjxA9uFp?=
- =?us-ascii?Q?ka3qcQsem3x/EJSo2e/dzN/x5QVFVoKv2dfDMDoL1i97ptrLrcVgH0lD0OZx?=
- =?us-ascii?Q?5YfAcUxds4XR9BAmELU9SSb2yghIXVSFBQkuf3HdNB4v5WM8EzlhFWb0tlCT?=
- =?us-ascii?Q?MVXOazTWRG1W6tdVozcHk7CQUAkUanC+2UCRcCFytJmUXvESlYMA1APYa9dN?=
- =?us-ascii?Q?VeHDKKg/YGvhYm0nLKrk15zhyLQOvesKcoYHCS4y+jmWFwuJyrcg3/eSisqu?=
- =?us-ascii?Q?6rfHBevNRoQ0sgmjgjnTm0sqDzEbPKboObu1Q5ovY+j+PflwYk5ifjFOLd/4?=
- =?us-ascii?Q?j7z00I+wE/LMFhFEbDuvw7dG2aJvbYwK0TgYWBP7rkLZ/rr/nnEQoYpQFWtj?=
- =?us-ascii?Q?Ib5sTKv6YBxDZ0l42fU9YE8PTksli6dCSogKOtReRedAnEB6T5/svBxB5Rum?=
- =?us-ascii?Q?7pZsHTmO438gnMq3mKsavK3MjWJ+yD6BOwD8Lt1a2T5PnuQLTcNAii84lX1n?=
- =?us-ascii?Q?fvEE/OrkqAgSnZSxVQPoB6hDsHZgLgnof4jT9wyVxg23/nygZXEytJagpnvc?=
- =?us-ascii?Q?4bUTFiR80e/nPZhK1Vz8HXPQ+v+mnGeG+hMH85gBFLOK3YHTZRvuY+qcx6VK?=
- =?us-ascii?Q?i+hgxkB6qMegvRUmuVxhMmQRNEiGvUa5Af/ZOvQfvbD5a3GwCF8MyLBGKlH7?=
- =?us-ascii?Q?UaivY4Bw2oqYmEVTOEt+69VTHvL6d75Rr7ctBwgzc0tcx3MGv/Avx6wOmcck?=
- =?us-ascii?Q?KnXjDbPi/T4sNWvLr11eILE1pgeOzVNszs1FhCBa8kRyz/r3AHbWIr4ZCyOX?=
- =?us-ascii?Q?tnDnkCtdpO1HaY33sRCWoM1h3uOoHDs3sa9Ehptdb0exkKnoWKVR1hhZQcJC?=
- =?us-ascii?Q?asjNaxhPNnrE4JhS2CnkojCP5XEH4owy8FP8ZZXBExQxXkyFPc/9W/bnmXBA?=
- =?us-ascii?Q?ZPtg7sOmTSFWZui7UUxGo2WzjT+M+JQG1IfnuKdEBVlk5KRhuXkR/EdALweo?=
- =?us-ascii?Q?Hu5qJMp0ljZ84W13p+sLdYolaBFULx+Nu9s4vmw6hJ4fz6JwcKw1L/wizPtt?=
- =?us-ascii?Q?BHtMGJHsOgt4VwNHbX8RFsoX3U1OqFxJufAvVAXmK9G9JWy2jaZeXf2ysek3?=
- =?us-ascii?Q?Hnr19J8JVuiYl2uZVEQ1w7qXwMj0eNPPHeBuNXiYz8WUeYrYbMoq+0VINKea?=
- =?us-ascii?Q?dhVjd3PtnQHa5peb2NqXE6ewr9COGi1Y+CCwYps2ES2rfMC/d4GxOlVOd2O2?=
- =?us-ascii?Q?REvz2+vemhbudI0voqxLQpJaITDVAe8GIyNIqWKTYCejWw1n5JVRhAQKoYl+?=
- =?us-ascii?Q?XaAxECvZNgrEfbpUf5MAZV7sDyPna33Y/YdFtWvj2BgoNY69f06fGF4rfJuO?=
- =?us-ascii?Q?6VIVJRJK2rqvhQmXou8E2FnCfUtNFC3eZqe93E4VaCQl6kQskc5UML+eRJoy?=
- =?us-ascii?Q?dQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d118bf3e-a1a6-4d0f-5bb0-08db02e049cb
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?pG9RQn/08sw4iGiusFTOMshaTTHwK8v05bJ0I8PlUdGPZR28C2UlVUDM0e0C?=
+ =?us-ascii?Q?Acs+XUF1i2Xd36Vqfkjes383ByG5AAItrz1qWCblEYUKKC+cMBRBVBSt96xd?=
+ =?us-ascii?Q?GYu0XUFora03MzyViI5S8D54H7ZchNGwq3Ubzg+kr85tvt912Coh3IQcuQJu?=
+ =?us-ascii?Q?uaE3Vqz3mkL8yWyzSmvqnHUbBHYle8D+EPTpBotDXKwyxa2fVDLrGKMsfeVU?=
+ =?us-ascii?Q?Ce5G3r4OnUbXHhJttMGVLnzBvvRRNDtVmvNekF06vU7gXLVzXUbhg0ZZvwGP?=
+ =?us-ascii?Q?k8nhmNOit17FKYaE8uwI2rxGk20+6KO5CVFy7GUviDppeOWd2wdGg7qgeI7q?=
+ =?us-ascii?Q?8dYAWm8goyvR9UGvX4Q6zc7IcZy4P0hqTB0h7NuAexnmiG1lTg0uAMJrl6xe?=
+ =?us-ascii?Q?+CU16tMZyW6Er4twVc0FCDLUzp68khW2E8V2Etaqcm3zVdlwUEn+Y5NGOCP6?=
+ =?us-ascii?Q?SYM2p+kDdNtixKNeIJsFhkKL+cQDDJIyT+VeTA7hhekl6MR8aS4KAtG/d81K?=
+ =?us-ascii?Q?V9gETucshQUhJkvIif/NIQtamv1SKVQDnLZhPjuXrv5E+PAV/+lgFiEqHlCZ?=
+ =?us-ascii?Q?2chmBtYpl07Bc8ACdKkeLVu+HI5EAJbbGv/S1iGTcsdn5MvcLjl5rQMhydtT?=
+ =?us-ascii?Q?vl9YzOxdWl42BNWjU792ZmWPfVAVj9lZq201aYJ/9zmXqAAHcVei4lK5y1g0?=
+ =?us-ascii?Q?TkuJIJ4XzoJfBOTIRYKTRwd51KSW2DqU+c+iXkhhwCEmQSuFMpRg24Qfb88h?=
+ =?us-ascii?Q?iEdKb5Xu52ZBlCmG3kxVksBU2uN9vyzwP0R0GOb9VGwq4A+zMdGGtE4y0OWn?=
+ =?us-ascii?Q?+2FflMTqzOGHGCFToaLbkOv7GOjEYa+NsUlSmDXkoS3SocgzQeWmZOi4m7oK?=
+ =?us-ascii?Q?YjWBg0kw5EzmVMoMdoRarNk3wE2zp39TJrMr3ekeVnZrYU18noMRkuhYy5Dy?=
+ =?us-ascii?Q?Z2pIeIOlpEnMZzwepOzYiIdrTnHnoScj3d3PS3fB5tupPuHegL255HYSsb3l?=
+ =?us-ascii?Q?F1lti5tpH3wNK67IyaCAfp6w1IZdHtg/YarhXHskjrm4ifzlnye67P2Bj8mh?=
+ =?us-ascii?Q?bXengYTkSo6jaUk9Alx8GEULd1YSQ2g8QsMVCSTByGdGdSTp92Rg9QHv0Zzq?=
+ =?us-ascii?Q?BiddSm6PolLaKzEi4c0VOsAjIlMLERCmZpNEiiPAshBvkjo5PHbb6ontfPMX?=
+ =?us-ascii?Q?HD7FJR5ewfY2OfQiPv+tAN91s3PvIa91xD2d+TBI+psulhGuigLJy9aG7V2M?=
+ =?us-ascii?Q?L7QhObjCZgIiu0xetMJHhmL6OghqGURy+d8J85OvnkcWCn9icLXOFUJykwqy?=
+ =?us-ascii?Q?VLGEUWNrPnuesAiH0lwuU2ujLq3SC52pOuCLO5h/SXzKMTqz5M5TtdaB0sKb?=
+ =?us-ascii?Q?8K4sOqE+cjLNGAj/tl3EimxKlQqmJ4u72e08OrmJ5X6szL6YXqVV38uHwN6a?=
+ =?us-ascii?Q?mkawgnXSikFDvcsULtgmQFXa753Sa4MIxwuZ5M/9KK2vh7+SnizL44bbzeKo?=
+ =?us-ascii?Q?vegHunLcJGZah9mt9Ocu/zk5wGj3rVjMsabqOaNq508tXMiUc7rSqRQni/eB?=
+ =?us-ascii?Q?zLYhf1x3WkjCZqrRcm+1b3y2TFGK8Qpaw+gVcnB3jFi2Abj2DfZM7g0hwwqn?=
+ =?us-ascii?Q?Gw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: eb8b78eb-9c80-40a2-3bc7-08db02e10330
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2023 16:37:34.0487 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2023 16:42:45.3239 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LuI2jFhCnZ1Y7pMcGVgMt1a2Pw9eNdehXF0SM4kyITTqopSEFFmx+bwfRZyZuP3VlCpDgoFs1njMsJnwJ9gKqw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4660
+X-MS-Exchange-CrossTenant-UserPrincipalName: v4d5pInNQnSRuhdWxm+n8CLw1WwPrOCh1RvqG6KSQuvjc+dBjQ11lR6XxwsL/mJ+MlX+ii/VtAC10GYjGkzWQg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6835
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/pcode: Wait 10 seconds for pcode
- to settle
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/tgl: Drop support for
+ pre-production steppings
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,219 +146,265 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Chris Wilson <chris.p.wilson@linux.intel.com>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 30, 2023 at 05:12:48PM +0100, Andi Shyti wrote:
-> Hi Rodrigo,
-> 
-> > > > In the call flow invoked by intel_pcode_init(), I've added brief comments
-> > > > where further clarification is needed in this scenario, and a description of
-> > > > the suspicious scenario at the bottom.
-> > > > 
-> > > > -------------------------------------------------------------------------
-> > > > intel_pcode_init()
-> > > >  |
-> > > >  +-> skl_pcode_request(uncore, DG1_PCODE_STATUS,
-> > > >                        DG1_UNCORE_GET_INIT_STATUS,
-> > > >                        DG1_UNCORE_INIT_STATUS_COMPLETE,
-> > > >                        DG1_UNCORE_INIT_STATUS_COMPLETE, 180000);
-> > > >        |
-> > > >        +-> skl_pcode_try_request()
-> > > >              |
-> > > >              +->  *status = __snb_pcode_rw(uncore, mbox, &request, NULL,
-> > > >                                            500, 0, true);
-> > > > 
-> > > > -------------------------------------------------------------------------
-> > > > static int __snb_pcode_rw(struct intel_uncore *uncore, u32 mbox,
-> > > > 		          u32 *val, u32 *val1,
-> > > > 			  int fast_timeout_us, int slow_timeout_ms,
-> > > > 			  bool is_read)
-> > > > {
-> > > > ...
-> > > >         /* Before writing a value to the GEN6_PCODE_DATA register,
-> > > >            check if the bit in the GEN6_PCODE_MAILBOX register indicates
-> > > >            BUSY. */
-> > > > 	if (intel_uncore_read_fw(uncore, GEN6_PCODE_MAILBOX) & GEN6_PCODE_READY)
-> > > > 		return -EAGAIN;
+On Mon, Jan 30, 2023 at 07:51:51AM -0800, Matt Roper wrote:
+> On Mon, Jan 30, 2023 at 10:46:16AM -0500, Rodrigo Vivi wrote:
+> > On Fri, Jan 27, 2023 at 02:43:11PM -0800, Matt Roper wrote:
+> > > Several post-TGL platforms have been brought up now, so we're well past
+> > > the point where we usually drop the workarounds that are only applicable
+> > > to internal/pre-production hardware.
 > > > 
-> > > what if we fail here because the punit is still initializing and
-> > > will be ready, say, in 10 seconds?
+> > > Production TGL hardware always has display stepping C0 or later and GT
+> > > stepping B0 or later (this is true for both the original TGL and the U/Y
+> > > subplatform).
 > > > 
-> > > GG, without going any further, we fail here! The -EAGAIN we
-> > > receive from the test comes from this point. We don't fail with
-> > > -ETIMEDOUT, but with -EAGAIN and the reason is because the punit
-> > > is not ready to perform the very fist communication and we fail
-> > > the probing.
+> > > Bspec 44455
+> > > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> > > ---
+> > >  .../drm/i915/display/intel_display_power.c    |  5 +--
+> > >  drivers/gpu/drm/i915/display/intel_psr.c      | 26 -----------
+> > >  .../drm/i915/display/skl_universal_plane.c    |  2 +-
+> > >  drivers/gpu/drm/i915/gt/intel_workarounds.c   | 44 ++-----------------
+> > >  drivers/gpu/drm/i915/i915_driver.c            |  1 +
+> > >  drivers/gpu/drm/i915/i915_drv.h               |  8 ----
+> > >  drivers/gpu/drm/i915/intel_pm.c               |  4 --
+> > >  7 files changed, 7 insertions(+), 83 deletions(-)
 > > > 
-> > > It doesn't mean, though, that there is anything wrong, we just
-> > > need to wait a bit before "taking drastic decisions"!
-> > > 
-> > > This patch is suggesting to wait up to 10s for the punit to be
-> > > ready and eventually try to probe again... and, indeed, it works!
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > > index 1a23ecd4623a..1dc31f0f5e0a 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > > @@ -1581,9 +1581,8 @@ static void tgl_bw_buddy_init(struct drm_i915_private *dev_priv)
+> > >  
+> > >  	if (IS_ALDERLAKE_S(dev_priv) ||
+> > >  	    IS_DG1_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0) ||
+> > > -	    IS_RKL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0) ||
+> > > -	    IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_C0))
+> > > -		/* Wa_1409767108:tgl,dg1,adl-s */
+> > > +	    IS_RKL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
 > > 
-> > As GG, what I still don't understand is how this extra 10 seconds
-> > wait helps... have you tried to simple add the 10 to the 180 and
-> > make the code 190 sec instead?
+> > I believe we should go ahead and also remove the RKL ones like this.
+> > After all we have ADL and MTL and none needed this for instance.
 > 
-> maybe I haven't been able to explain the issue properly.
-> 
-> I can even set that timer to 2hrs and a half and nothing changes
-> because we fail before.
-> 
-> Here it's not a matter of how much do I wait but when do I check
-> the pcode readiness (i.e. signalled by the GEN6_PCODE_READY bit
-> in the GEN6_PCODE_MAILBOX register).
-> 
-> During a normal run we are always sure that communicating with
-> the punit works, because we made it sure during the previous
-> transaction.
-> 
-> During probe there is no previous transaction and we start
-> communicating with the punit without making sure that it is
-> ready. And indeed some times it is not, so that we suppress the
-> probing on purpose instead of giving it another chance.
-> 
-> I admit that the commit message is not written properly and
-> rather misleading, but here it's not at all a matter of how much
-> do I wait.
+> Do we know for sure that A0 RKL wasn't productized?  I can't find the
+> details about which stepping(s) were pre-prod-only in the bspec, so I've
+> left RKL and ADL workarounds alone for the time being.
 
-The commit message was initially confused because it looks like
-we are just adding a wait, without doing anything....
-
-But looking to the code we can see that it will wait until
-pcode is ready with a timeout of 10 seconds.
-
-But if pcode is ready in 10 seconds, why pcode is not ready
-in 190 seconds. We are doing absolutely nothing more that could
-make pcode ready in 10 seconds that won't be in 190.
-
-This is what we are missing here... The code as is doesn't make
-a lot of sense to us and it looks like it is solving the issue
-by the 10 extra seconds and not by some special status checking.
+Very good point. However this point may be against this patch,
+or at least part of it, since there are some TGL GT2 B0
+not marked as pre-production.
 
 > 
-> Thanks, Rodrigo!
-> Andi
 > 
+> Matt
+> 
+> > 
+> > > +		/* Wa_1409767108 */
+> > >  		table = wa_1409767108_buddy_page_masks;
+> > >  	else
+> > >  		table = tgl_buddy_page_masks;
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+> > > index 7d4a15a283a0..5dca58dd97a9 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> > > @@ -591,12 +591,6 @@ static void hsw_activate_psr2(struct intel_dp *intel_dp)
+> > >  	if (intel_dp->psr.psr2_sel_fetch_enabled) {
+> > >  		u32 tmp;
+> > >  
+> > > -		/* Wa_1408330847 */
+> > > -		if (IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
+> > > -			intel_de_rmw(dev_priv, CHICKEN_PAR1_1,
+> > > -				     DIS_RAM_BYPASS_PSR2_MAN_TRACK,
+> > > -				     DIS_RAM_BYPASS_PSR2_MAN_TRACK);
+> > > -
+> > >  		tmp = intel_de_read(dev_priv, PSR2_MAN_TRK_CTL(intel_dp->psr.transcoder));
+> > >  		drm_WARN_ON(&dev_priv->drm, !(tmp & PSR2_MAN_TRK_CTL_ENABLE));
+> > >  	} else if (HAS_PSR2_SEL_FETCH(dev_priv)) {
+> > > @@ -765,13 +759,6 @@ static bool intel_psr2_sel_fetch_config_valid(struct intel_dp *intel_dp,
+> > >  		return false;
+> > >  	}
+> > >  
+> > > -	/* Wa_14010254185 Wa_14010103792 */
+> > > -	if (IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_C0)) {
+> > > -		drm_dbg_kms(&dev_priv->drm,
+> > > -			    "PSR2 sel fetch not enabled, missing the implementation of WAs\n");
+> > > -		return false;
+> > > -	}
+> > > -
+> > >  	return crtc_state->enable_psr2_sel_fetch = true;
+> > >  }
+> > >  
+> > > @@ -945,13 +932,6 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
+> > >  		}
+> > >  	}
+> > >  
+> > > -	/* Wa_2209313811 */
+> > > -	if (!crtc_state->enable_psr2_sel_fetch &&
+> > > -	    IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_C0)) {
+> > > -		drm_dbg_kms(&dev_priv->drm, "PSR2 HW tracking is not supported this Display stepping\n");
+> > > -		goto unsupported;
+> > > -	}
+> > > -
+> > >  	if (!psr2_granularity_check(intel_dp, crtc_state)) {
+> > >  		drm_dbg_kms(&dev_priv->drm, "PSR2 not enabled, SU granularity not compatible\n");
+> > >  		goto unsupported;
+> > > @@ -1360,12 +1340,6 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
+> > >  	intel_psr_exit(intel_dp);
+> > >  	intel_psr_wait_exit_locked(intel_dp);
+> > >  
+> > > -	/* Wa_1408330847 */
+> > > -	if (intel_dp->psr.psr2_sel_fetch_enabled &&
+> > > -	    IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
+> > > -		intel_de_rmw(dev_priv, CHICKEN_PAR1_1,
+> > > -			     DIS_RAM_BYPASS_PSR2_MAN_TRACK, 0);
+> > > -
+> > >  	/*
+> > >  	 * Wa_16013835468
+> > >  	 * Wa_14015648006
+> > > diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> > > index 9b172a1e90de..e956edb87398 100644
+> > > --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> > > +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> > > @@ -2180,7 +2180,7 @@ static bool gen12_plane_has_mc_ccs(struct drm_i915_private *i915,
+> > >  	if (DISPLAY_VER(i915) < 12)
+> > >  		return false;
+> > >  
+> > > -	/* Wa_14010477008:tgl[a0..c0],rkl[all],dg1[all] */
+> > > +	/* Wa_14010477008 */
+> > >  	if (IS_DG1(i915) || IS_ROCKETLAKE(i915) ||
+> > >  	    IS_TGL_DISPLAY_STEP(i915, STEP_A0, STEP_D0))
+> > >  		return false;
+> > > diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> > > index 4efc1a532982..82a8f372bde6 100644
+> > > --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> > > +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> > > @@ -1456,31 +1456,6 @@ gen12_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+> > >  	wa_mcr_write_or(wal, GEN10_DFR_RATIO_EN_AND_CHICKEN, DFR_DISABLE);
+> > >  }
+> > >  
+> > > -static void
+> > > -tgl_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+> > > -{
+> > > -	struct drm_i915_private *i915 = gt->i915;
+> > > -
+> > > -	gen12_gt_workarounds_init(gt, wal);
+> > > -
+> > > -	/* Wa_1409420604:tgl */
+> > > -	if (IS_TGL_UY_GRAPHICS_STEP(i915, STEP_A0, STEP_B0))
+> > > -		wa_mcr_write_or(wal,
+> > > -				SUBSLICE_UNIT_LEVEL_CLKGATE2,
+> > > -				CPSSUNIT_CLKGATE_DIS);
+> > > -
+> > > -	/* Wa_1607087056:tgl also know as BUG:1409180338 */
+> > > -	if (IS_TGL_UY_GRAPHICS_STEP(i915, STEP_A0, STEP_B0))
+> > > -		wa_write_or(wal,
+> > > -			    GEN11_SLICE_UNIT_LEVEL_CLKGATE,
+> > > -			    L3_CLKGATE_DIS | L3_CR2X_CLKGATE_DIS);
+> > > -
+> > > -	/* Wa_1408615072:tgl[a0] */
+> > > -	if (IS_TGL_UY_GRAPHICS_STEP(i915, STEP_A0, STEP_B0))
+> > > -		wa_write_or(wal, UNSLICE_UNIT_LEVEL_CLKGATE2,
+> > > -			    VSUNIT_CLKGATE_DIS_TGL);
+> > > -}
+> > > -
+> > >  static void
+> > >  dg1_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+> > >  {
+> > > @@ -1716,8 +1691,6 @@ gt_init_workarounds(struct intel_gt *gt, struct i915_wa_list *wal)
+> > >  		xehpsdv_gt_workarounds_init(gt, wal);
+> > >  	else if (IS_DG1(i915))
+> > >  		dg1_gt_workarounds_init(gt, wal);
+> > > -	else if (IS_TIGERLAKE(i915))
+> > > -		tgl_gt_workarounds_init(gt, wal);
+> > >  	else if (GRAPHICS_VER(i915) == 12)
+> > >  		gen12_gt_workarounds_init(gt, wal);
+> > >  	else if (GRAPHICS_VER(i915) == 11)
+> > > @@ -2437,27 +2410,16 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+> > >  			   true);
+> > >  	}
+> > >  
+> > > -	if (IS_DG1_GRAPHICS_STEP(i915, STEP_A0, STEP_B0) ||
+> > > -	    IS_TGL_UY_GRAPHICS_STEP(i915, STEP_A0, STEP_B0)) {
+> > > +	if (IS_DG1_GRAPHICS_STEP(i915, STEP_A0, STEP_B0)) {
+> > >  		/*
+> > > -		 * Wa_1607138336:tgl[a0],dg1[a0]
+> > > -		 * Wa_1607063988:tgl[a0],dg1[a0]
+> > > +		 * Wa_1607138336
+> > > +		 * Wa_1607063988
+> > >  		 */
+> > >  		wa_write_or(wal,
+> > >  			    GEN9_CTX_PREEMPT_REG,
+> > >  			    GEN12_DISABLE_POSH_BUSY_FF_DOP_CG);
+> > >  	}
+> > >  
+> > > -	if (IS_TGL_UY_GRAPHICS_STEP(i915, STEP_A0, STEP_B0)) {
+> > > -		/*
+> > > -		 * Wa_1606679103:tgl
+> > > -		 * (see also Wa_1606682166:icl)
+> > > -		 */
+> > > -		wa_write_or(wal,
+> > > -			    GEN7_SARCHKMD,
+> > > -			    GEN7_DISABLE_SAMPLER_PREFETCH);
+> > > -	}
+> > > -
+> > >  	if (IS_ALDERLAKE_P(i915) || IS_ALDERLAKE_S(i915) || IS_DG1(i915) ||
+> > >  	    IS_ROCKETLAKE(i915) || IS_TIGERLAKE(i915)) {
+> > >  		/* Wa_1606931601:tgl,rkl,dg1,adl-s,adl-p */
+> > > diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> > > index cf1c0970ecb4..879ab4ed42af 100644
+> > > --- a/drivers/gpu/drm/i915/i915_driver.c
+> > > +++ b/drivers/gpu/drm/i915/i915_driver.c
+> > > @@ -167,6 +167,7 @@ static void intel_detect_preproduction_hw(struct drm_i915_private *dev_priv)
+> > >  	pre |= IS_KABYLAKE(dev_priv) && INTEL_REVID(dev_priv) < 0x1;
+> > >  	pre |= IS_GEMINILAKE(dev_priv) && INTEL_REVID(dev_priv) < 0x3;
+> > >  	pre |= IS_ICELAKE(dev_priv) && INTEL_REVID(dev_priv) < 0x7;
+> > > +	pre |= IS_TIGERLAKE(dev_priv) && INTEL_REVID(dev_priv) < 0x1;
+> > >  
+> > >  	if (pre) {
+> > >  		drm_err(&dev_priv->drm, "This is a pre-production stepping. "
+> > > diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> > > index 48c838b4ea62..62cc0f76c583 100644
+> > > --- a/drivers/gpu/drm/i915/i915_drv.h
+> > > +++ b/drivers/gpu/drm/i915/i915_drv.h
+> > > @@ -653,14 +653,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+> > >  	(IS_TIGERLAKE(__i915) && \
+> > >  	 IS_DISPLAY_STEP(__i915, since, until))
+> > >  
+> > > -#define IS_TGL_UY_GRAPHICS_STEP(__i915, since, until) \
+> > > -	(IS_TGL_UY(__i915) && \
+> > > -	 IS_GRAPHICS_STEP(__i915, since, until))
+> > > -
+> > > -#define IS_TGL_GRAPHICS_STEP(__i915, since, until) \
+> > > -	(IS_TIGERLAKE(__i915) && !IS_TGL_UY(__i915)) && \
+> > > -	 IS_GRAPHICS_STEP(__i915, since, until))
+> > > -
+> > >  #define IS_RKL_DISPLAY_STEP(p, since, until) \
+> > >  	(IS_ROCKETLAKE(p) && IS_DISPLAY_STEP(p, since, until))
+> > >  
+> > > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+> > > index 3fc65bd12cc1..c6676f1a9c6f 100644
+> > > --- a/drivers/gpu/drm/i915/intel_pm.c
+> > > +++ b/drivers/gpu/drm/i915/intel_pm.c
+> > > @@ -4336,10 +4336,6 @@ static void gen12lp_init_clock_gating(struct drm_i915_private *dev_priv)
+> > >  		intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A),
+> > >  				   DPFC_CHICKEN_COMP_DUMMY_PIXEL);
+> > >  
+> > > -	/* Wa_1409825376:tgl (pre-prod)*/
+> > > -	if (IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_C0))
+> > > -		intel_uncore_rmw(&dev_priv->uncore, GEN9_CLKGATE_DIS_3, 0, TGL_VRH_GATING_DIS);
+> > > -
+> > >  	/* Wa_14013723622:tgl,rkl,dg1,adl-s */
+> > >  	if (DISPLAY_VER(dev_priv) == 12)
+> > >  		intel_uncore_rmw(&dev_priv->uncore, CLKREQ_POLICY,
+> > > -- 
+> > > 2.39.1
 > > > 
-> > > Andi
-> > > 
-> > > > 
-> > > >         /* write value to GEN6_PCODE_DATA register */
-> > > > 	intel_uncore_write_fw(uncore, GEN6_PCODE_DATA, *val);
-> > > > 
-> > > > 	intel_uncore_write_fw(uncore, GEN6_PCODE_DATA1, val1 ? *val1 : 0);
-> > > > 
-> > > >         /* In this scenario, the value
-> > > >            "DG1_PCODE_STATUS | GEN6_PCODE_READY"
-> > > >            is written to the GEN6_PCODE_MAILBOX register,
-> > > >            so that the Busy status of the GEN6_PCODE_MAILBOX register
-> > > >            can be checked later.
-> > > >            (When the value of the GEN6_PCODE_READY bit of the
-> > > >             GEN6_PCODE_MAILBOX register changes to 0, the operation can
-> > > >             be considered completed.) */
-> > > > 	intel_uncore_write_fw(uncore,
-> > > > 			      GEN6_PCODE_MAILBOX, GEN6_PCODE_READY | mbox);
-> > > > 
-> > > >         /* In this scenario, verify that the BUSY status bit in the
-> > > >            GEN6_PCODE_MAILBOX register turns off for up to 500us. */
-> > > > 	if (__intel_wait_for_register_fw(uncore,
-> > > > 					 GEN6_PCODE_MAILBOX,
-> > > > 					 GEN6_PCODE_READY, 0,
-> > > > 					 fast_timeout_us,
-> > > > 					 slow_timeout_ms,
-> > > > 					 &mbox))
-> > > > 		return -ETIMEDOUT;
-> > > >         /* If there is a failure here, it may be considered that the
-> > > >            "DG1_PCODE_STATUS | GEN6_PCODE_READY" operation was not
-> > > >            completed within 500us */
-> > > > ...
-> > > > }
-> > > > 
-> > > > int skl_pcode_request(struct intel_uncore *uncore, u32 mbox, u32 request,
-> > > > 		      u32 reply_mask, u32 reply, int timeout_base_ms)
-> > > > {
-> > > > 	u32 status;
-> > > > 	int ret;
-> > > > 
-> > > > 	mutex_lock(&uncore->i915->sb_lock);
-> > > > 
-> > > > #define COND \
-> > > > 	skl_pcode_try_request(uncore, mbox, request, reply_mask, reply, &status)
-> > > > 
-> > > >         /* the first trial for skl_pcode_try_request() can return
-> > > >            -EAGAIN or -ETIMEDOUT. And the code did not check the error
-> > > >            code here, so we don't know how far the __snb_pcode_rw()
-> > > >            function went. It is not known whether the pcode_mailbox
-> > > >            status was busy before writing the value to the
-> > > >            GEN6_PCODE_DATA register or after.*/
-> > > > 	if (COND) {
-> > > > 		ret = 0;
-> > > > 		goto out;
-> > > > 	}
-> > > > 
-> > > >         /* In this scenario, skl_pcode_try_request() is invoked every
-> > > >            10us for 180 seconds. When skl_pcode_try_request() returns
-> > > >            -EAGAIN and -ETIMEDOUT by _wait_for(),
-> > > >            -ETIMEDOUT is returned to a variable ret. */
-> > > > 
-> > > > 	ret = _wait_for(COND, timeout_base_ms * 1000, 10, 10);
-> > > > 
-> > > > 	if (!ret)
-> > > > 		goto out;
-> > > > 
-> > > > 	/*
-> > > > 	 * The above can time out if the number of requests was low (2 in the
-> > > > 	 * worst case) _and_ PCODE was busy for some reason even after a
-> > > > 	 * (queued) request and @timeout_base_ms delay. As a workaround retry
-> > > > 	 * the poll with preemption disabled to maximize the number of
-> > > > 	 * requests. Increase the timeout from @timeout_base_ms to 50ms to
-> > > > 	 * account for interrupts that could reduce the number of these
-> > > > 	 * requests, and for any quirks of the PCODE firmware that delays
-> > > > 	 * the request completion.
-> > > > 	 */
-> > > > 	drm_dbg_kms(&uncore->i915->drm,
-> > > > 		    "PCODE timeout, retrying with preemption disabled\n");
-> > > > 	drm_WARN_ON_ONCE(&uncore->i915->drm, timeout_base_ms > 3);
-> > > > 	preempt_disable();
-> > > > 	ret = wait_for_atomic(COND, 50);
-> > > > 
-> > > > 	preempt_enable();
-> > > > 
-> > > > out:
-> > > > 	mutex_unlock(&uncore->i915->sb_lock);
-> > > > 	return status ? status : ret;
-> > > > #undef COND
-> > > > }
-> > > > 
-> > > > ---------------------------------------------------------
-> > > > 
-> > > > If you try skl_pcode_try_request() for 180 seconds in skl_pcode_request(),
-> > > > and the first "intel_uncore_read_fw(uncore, GEN6_PCODE_MAILBOX) &
-> > > > GEN6_PCODE_READY)" call in __snb_pcode_rw() that skl_pcode_try_request()
-> > > > invokes always fails. if then it does not make sense to me why this patch
-> > > > fixes it by just waiting 10 seconds.This is because if it was called with
-> > > > the flow described above, 180 seconds is longer than 10 seconds, so the
-> > > > scenario you mentioned is also covered in the existing code.
-> > > > 
-> > > > To describe in more detail the second scenario I previously commented on:
-> > > > skl_pcode_request() tries skl_pcode_try_request() for 180 seconds
-> > > >  1) In skl_pcode_try_request(), the GEN6_PCODE_MAILBOX register bit is not
-> > > > BUSY, so the value is written to the GEN6_PCODE_DATA1 register.
-> > > >  2) skl_pcode_try_request() returns -ETIMEDOUT value because the operation
-> > > > of 1) does not complete within 500us.
-> > > >  3) Scenario in which the GEN6_PCODE_MAILBOX register bit is checked as BUSY
-> > > > and returns -EAGAIN in the last call of skl_pcode_try_request() invoked by
-> > > > skl_pcode_request()
-> > > > 
-> > > > If the reason why this problem occurred is because of this scenario,
-> > > > shouldn't there be an attempt to increase fast_timeout_us used as an
-> > > > argument of __snb_pcode_rw() to 500us or more when skl_pcode_try_request()
-> > > > returns -ETIMEDOUT?
-> > > > 
-> > > > Br,
-> > > > G.G.
+> 
+> -- 
+> Matt Roper
+> Graphics Software Engineer
+> Linux GPU Platform Enablement
+> Intel Corporation
