@@ -2,52 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BB16680CAF
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Jan 2023 12:58:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D3B9680CEA
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Jan 2023 13:07:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDD4010E0EE;
-	Mon, 30 Jan 2023 11:58:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6870289E59;
+	Mon, 30 Jan 2023 12:07:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6267110E0EE
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Jan 2023 11:58:45 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E37C489E59;
+ Mon, 30 Jan 2023 12:07:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675079925; x=1706615925;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=MCRIDghS+PX/rPkE1A5t2bLCPQ8Nac5/uDpLhux9TJY=;
- b=gqogxdu3RK/F1CAhbCwuOjO7aWaxK37sWWIpm0QKX9L2J6Vtu+JTPYQ6
- q/ywZL0twpA7qysZWf6pj1YFH/V+TS3U+Gh+aeXDqbhIehwXNqODhEatK
- KIc/xe9Ulz6QXYIdIXvt2N9r7Cvx4taxN9JAS8LTHrmnrdvSJs0lGQ6B4
- q3Qxj/4tKBWVTg8iHdJGd05MJoPS0tXiEut+2Mhgeu4LVeIhLC/rq3Ns6
- LNWpg8VncIV5nTWcri1MG2hNWC0RPBkHA3F5eWafefbaRrrXGwfmpCuFF
- 9bU3qqEp+Cyb1Ewga+HGBzxE1mp0kF2Eg2zlgNaq/Xkypn1gnhr/N6rqG g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="311158887"
-X-IronPort-AV: E=Sophos;i="5.97,257,1669104000"; d="scan'208";a="311158887"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2023 03:58:44 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="787998177"
-X-IronPort-AV: E=Sophos;i="5.97,257,1669104000"; d="scan'208";a="787998177"
-Received: from jproschw-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.33.170])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2023 03:58:43 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>, Chaitanya Kumar Borah
- <chaitanya.kumar.borah@intel.com>
-In-Reply-To: <Y8BGF+6ygAV3vH3Z@mdroper-desk1.amr.corp.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230112094131.550252-1-chaitanya.kumar.borah@intel.com>
- <Y8BGF+6ygAV3vH3Z@mdroper-desk1.amr.corp.intel.com>
-Date: Mon, 30 Jan 2023 13:58:41 +0200
-Message-ID: <87h6w844jy.fsf@intel.com>
+ t=1675080430; x=1706616430;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ieIY/Z187O+CqRTOPOJBUNw85UdEtVBc31a4LKrxB/k=;
+ b=m8aShzcWYYZH28/8+Z1ooMgt2fY9SgctAeViojUWNAK69FB+e+BQUVla
+ hvlAEEm0Aqg7yrR8Fhs8Fo+7hUpfybPTQNTVDRsZ0MApmU3LcB+CjE8r4
+ Ob3XCOW9igK57Z75/F6usY6y+e/lcHY5ANIBIOhLQukAq9VgGP9BTLyPF
+ /RrH6JtPnaCrmqYYzAjGHLuwM4Jro4nwiNvlWDhiw80G/ADMJwgeG4EE4
+ ZsvBziXM6u0ou6XZ81efHCWybgOvXPVBHwbPWAiyxRxyjl1E2nOtLY/FD
+ 6wWe1WQ+0fYhHiUMzGPPh+50fyZ7FJ2TYgzei4RrfPTFgjN5bqEP11ErU g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="328816281"
+X-IronPort-AV: E=Sophos;i="5.97,257,1669104000"; d="scan'208";a="328816281"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2023 04:07:04 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="641521103"
+X-IronPort-AV: E=Sophos;i="5.97,257,1669104000"; d="scan'208";a="641521103"
+Received: from dscheepe-mobl2.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.252.1.159])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2023 04:07:03 -0800
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 30 Jan 2023 12:06:31 +0000
+Message-Id: <20230130120636.63765-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Fix typo for reference
- clock
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 1/6] drm/i915/ttm: fix sparse warning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,45 +56,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: =?UTF-8?q?Christian=20K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 12 Jan 2023, Matt Roper <matthew.d.roper@intel.com> wrote:
-> On Thu, Jan 12, 2023 at 03:11:31PM +0530, Chaitanya Kumar Borah wrote:
->> Fix typo for reference clock from 24400 to 24000
->> 
->> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
->
-> Fixes: 626426ff9ce4 ("drm/i915/adl_p: Add cdclk support for ADL-P")
-> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Sparse complains with:
 
-Pushed to drm-intel-next, thanks for the patch and review.
+drivers/gpu/drm/i915/gem/i915_gem_ttm.c:1066:21: sparse:
+	expected restricted vm_fault_t [assigned] [usertype] ret
+drivers/gpu/drm/i915/gem/i915_gem_ttm.c:1066:21: sparse: got int
 
-BR,
-Jani.
+Fixes: 516198d317d8 ("drm/i915: audit bo->resource usage v3")
+Reported-by: kernel test robot <lkp@intel.com>
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Christian König <ckoenig.leichtzumerken@gmail.com>
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
->
->> ---
->>  drivers/gpu/drm/i915/display/intel_cdclk.c | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
->> index 0c107a38f9d0..7e16b655c833 100644
->> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
->> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
->> @@ -1319,7 +1319,7 @@ static const struct intel_cdclk_vals adlp_cdclk_table[] = {
->>  	{ .refclk = 24000, .cdclk = 192000, .divider = 2, .ratio = 16 },
->>  	{ .refclk = 24000, .cdclk = 312000, .divider = 2, .ratio = 26 },
->>  	{ .refclk = 24000, .cdclk = 552000, .divider = 2, .ratio = 46 },
->> -	{ .refclk = 24400, .cdclk = 648000, .divider = 2, .ratio = 54 },
->> +	{ .refclk = 24000, .cdclk = 648000, .divider = 2, .ratio = 54 },
->>  
->>  	{ .refclk = 38400, .cdclk = 179200, .divider = 3, .ratio = 14 },
->>  	{ .refclk = 38400, .cdclk = 192000, .divider = 2, .ratio = 10 },
->> -- 
->> 2.25.1
->> 
-
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+index 7420276827a5..4758f21c91e1 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+@@ -1067,11 +1067,12 @@ static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
+ 			.interruptible = true,
+ 			.no_wait_gpu = true, /* should be idle already */
+ 		};
++		int err;
+ 
+ 		GEM_BUG_ON(!bo->ttm || !(bo->ttm->page_flags & TTM_TT_FLAG_SWAPPED));
+ 
+-		ret = ttm_bo_validate(bo, i915_ttm_sys_placement(), &ctx);
+-		if (ret) {
++		err = ttm_bo_validate(bo, i915_ttm_sys_placement(), &ctx);
++		if (err) {
+ 			dma_resv_unlock(bo->base.resv);
+ 			return VM_FAULT_SIGBUS;
+ 		}
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.39.1
+
