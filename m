@@ -2,51 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87D2F680E7A
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Jan 2023 14:06:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54CF8680E9B
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Jan 2023 14:14:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 044F910E248;
-	Mon, 30 Jan 2023 13:06:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A59E10E24E;
+	Mon, 30 Jan 2023 13:14:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07D0810E248
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Jan 2023 13:06:25 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E21910E24E
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Jan 2023 13:14:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675083986; x=1706619986;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=7uclosThntRdBthSQKndYoxjwQvx+bUiZjnJyZBDjxY=;
- b=jS0CNktSsZQn1TnH9n4XwnG/7IeEtvhnz9pINyuqUpJNVbhQH/fMKTlH
- OojbKlfTkACDn5reoohz29M2FLwkhI7bUmD1CvWDn5m4Wr3IGaYcK8GLp
- RjvUqsM+6wF6Nhj+BjT1iwygwlzZMeNxDxvReHaVHe+jQkokZiRgIdXzC
- /9ht8A7+GqvQoeH9m7N84MAakr3kYOAjhRC/tdu87Iq9+YttyUKCtIBUh
- fqVlvX5zSY/AHwXH7165Ztm1YV13TPU/F4Wt1YhFnoRfj1LX5DpDZtr9V
- 8E/BHV+56h1iT5VhVU+AcSD8aLkmx85j3shkDIZX+wNKH6/CL4+dF8658 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="326216653"
-X-IronPort-AV: E=Sophos;i="5.97,258,1669104000"; d="scan'208";a="326216653"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2023 05:06:25 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="837964543"
-X-IronPort-AV: E=Sophos;i="5.97,258,1669104000"; d="scan'208";a="837964543"
-Received: from jproschw-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.33.170])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2023 05:06:23 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <2b5c4053-59a0-6aef-0d99-193ee304a503@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221215125610.1161729-1-andrzej.hajda@intel.com>
- <2b5c4053-59a0-6aef-0d99-193ee304a503@intel.com>
-Date: Mon, 30 Jan 2023 15:06:20 +0200
-Message-ID: <875yco41f7.fsf@intel.com>
+ t=1675084447; x=1706620447;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=iuurBabedLpowLzrxJ2EjXzrAQs7DHHcCT8NNqxvbUQ=;
+ b=FZ2pn8xj303nI4zxAOUL4KYB+17TMwc0MXoAMikAt2cp2KhEe5lBT0Ux
+ zz4/p4PqceuZka/HvbdxiJAcH5YDQgslRfyrwEJs0QJMoTc76i0ftss3g
+ Ad/PJq1UcTvLCYM+A+dq5gw0Oez525nAMZH0xbc5w3FeapbuQZO3SfrH6
+ QO9OcOsQCdUm8dVr4Map40wi1P3I+Xewc5njgeDlGlmwLNrJVP3dkZczi
+ m1uxQNGmOojK+ZSTH0xNcqsphoqJkyb7YhwY3B4fmJF+utsF+VWBhupas
+ MdwYZ0MeQlsSyU8eWwb+1j9diswC9mu8JNuDxNChYHd3PGzVBh4nxvIOB g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="354866950"
+X-IronPort-AV: E=Sophos;i="5.97,258,1669104000"; d="scan'208";a="354866950"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2023 05:14:06 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="788025183"
+X-IronPort-AV: E=Sophos;i="5.97,258,1669104000"; d="scan'208";a="788025183"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.42.231])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2023 05:14:05 -0800
+From: Nirmoy Das <nirmoy.das@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 30 Jan 2023 14:13:58 +0100
+Message-Id: <20230130131358.16800-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/fdi: use intel_de_rmw if
- possible
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany,
+ Commercial Register: Amtsgericht Muenchen HRB 186928 
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Use sysfs_emit() and
+ sysfs_emit_at()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,310 +58,163 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 30 Jan 2023, Andrzej Hajda <andrzej.hajda@intel.com> wrote:
-> Hi all,
->
-> Gently ping on merging this and all other intel_de_rmw patches.
-> All patches reviewed.
-> drm/i915/display/fdi: use intel_de_rmw if possible
-> drm/i915/display/vlv: fix pixel overlap register update
-> drm/i915/display/vlv: use intel_de_rmw if possible
-> drm/i915/display/dsi: use intel_de_rmw if possible
+Use sysfs_emit() and sysfs_emit_at() in show() callback
+as recommended by Documentation/filesystems/sysfs.rst
 
-Pushed the above, sorry for the delay.
+Cc: Andi Shyti <andi.shyti@linux.intel.com>
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+---
+ drivers/gpu/drm/i915/gt/sysfs_engines.c | 34 ++++++++++++-------------
+ 1 file changed, 16 insertions(+), 18 deletions(-)
 
-The below are R-b by Rodrigo in [1], I'll let him deal with them.
-
-Andrzej, looks like you now meet the criteria for commit access
-[2]. Please check the documentation and apply for drm-intel commit
-access, so you can start pushing your own patches.
-
-
-Thanks,
-Jani.
-
-[1] https://patchwork.freedesktop.org/series/112438/
-[2] https://drm.pages.freedesktop.org/maintainer-tools/commit-access.html#drm-intel
-
-> drm/i915/display/core: use intel_de_rmw if possible
-> drm/i915/display/power: use intel_de_rmw if possible
-> drm/i915/display/dpll: use intel_de_rmw if possible
-> drm/i915/display/phys: use intel_de_rmw if possible
-> drm/i915/display/pch: use intel_de_rmw if possible
-> drm/i915/display/hdmi: use intel_de_rmw if possible
-> drm/i915/display/panel: use intel_de_rmw if possible in panel related code
-> drm/i915/display/interfaces: use intel_de_rmw if possible
-> drm/i915/display/misc: use intel_de_rmw if possible
->
-> Regards
-> Andrzej
->
-> On 15.12.2022 13:56, Andrzej Hajda wrote:
->> The helper makes the code more compact and readable.
->> 
->> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
->> ---
->>   drivers/gpu/drm/i915/display/intel_fdi.c | 148 +++++++----------------
->>   1 file changed, 44 insertions(+), 104 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
->> index 063f1da4f229cf..f62d9a9313498c 100644
->> --- a/drivers/gpu/drm/i915/display/intel_fdi.c
->> +++ b/drivers/gpu/drm/i915/display/intel_fdi.c
->> @@ -439,19 +439,11 @@ static void ilk_fdi_link_train(struct intel_crtc *crtc,
->>   		drm_err(&dev_priv->drm, "FDI train 1 fail!\n");
->>   
->>   	/* Train 2 */
->> -	reg = FDI_TX_CTL(pipe);
->> -	temp = intel_de_read(dev_priv, reg);
->> -	temp &= ~FDI_LINK_TRAIN_NONE;
->> -	temp |= FDI_LINK_TRAIN_PATTERN_2;
->> -	intel_de_write(dev_priv, reg, temp);
->> -
->> -	reg = FDI_RX_CTL(pipe);
->> -	temp = intel_de_read(dev_priv, reg);
->> -	temp &= ~FDI_LINK_TRAIN_NONE;
->> -	temp |= FDI_LINK_TRAIN_PATTERN_2;
->> -	intel_de_write(dev_priv, reg, temp);
->> -
->> -	intel_de_posting_read(dev_priv, reg);
->> +	intel_de_rmw(dev_priv, FDI_TX_CTL(pipe),
->> +		     FDI_LINK_TRAIN_NONE, FDI_LINK_TRAIN_PATTERN_2);
->> +	intel_de_rmw(dev_priv, FDI_RX_CTL(pipe),
->> +		     FDI_LINK_TRAIN_NONE, FDI_LINK_TRAIN_PATTERN_2);
->> +	intel_de_posting_read(dev_priv, FDI_RX_CTL(pipe));
->>   	udelay(150);
->>   
->>   	reg = FDI_RX_IIR(pipe);
->> @@ -538,13 +530,9 @@ static void gen6_fdi_link_train(struct intel_crtc *crtc,
->>   	udelay(150);
->>   
->>   	for (i = 0; i < 4; i++) {
->> -		reg = FDI_TX_CTL(pipe);
->> -		temp = intel_de_read(dev_priv, reg);
->> -		temp &= ~FDI_LINK_TRAIN_VOL_EMP_MASK;
->> -		temp |= snb_b_fdi_train_param[i];
->> -		intel_de_write(dev_priv, reg, temp);
->> -
->> -		intel_de_posting_read(dev_priv, reg);
->> +		intel_de_rmw(dev_priv, FDI_TX_CTL(pipe),
->> +			     FDI_LINK_TRAIN_VOL_EMP_MASK, snb_b_fdi_train_param[i]);
->> +		intel_de_posting_read(dev_priv, FDI_TX_CTL(pipe));
->>   		udelay(500);
->>   
->>   		for (retry = 0; retry < 5; retry++) {
->> @@ -593,13 +581,9 @@ static void gen6_fdi_link_train(struct intel_crtc *crtc,
->>   	udelay(150);
->>   
->>   	for (i = 0; i < 4; i++) {
->> -		reg = FDI_TX_CTL(pipe);
->> -		temp = intel_de_read(dev_priv, reg);
->> -		temp &= ~FDI_LINK_TRAIN_VOL_EMP_MASK;
->> -		temp |= snb_b_fdi_train_param[i];
->> -		intel_de_write(dev_priv, reg, temp);
->> -
->> -		intel_de_posting_read(dev_priv, reg);
->> +		intel_de_rmw(dev_priv, FDI_TX_CTL(pipe),
->> +			     FDI_LINK_TRAIN_VOL_EMP_MASK, snb_b_fdi_train_param[i]);
->> +		intel_de_posting_read(dev_priv, FDI_TX_CTL(pipe));
->>   		udelay(500);
->>   
->>   		for (retry = 0; retry < 5; retry++) {
->> @@ -719,19 +703,13 @@ static void ivb_manual_fdi_link_train(struct intel_crtc *crtc,
->>   		}
->>   
->>   		/* Train 2 */
->> -		reg = FDI_TX_CTL(pipe);
->> -		temp = intel_de_read(dev_priv, reg);
->> -		temp &= ~FDI_LINK_TRAIN_NONE_IVB;
->> -		temp |= FDI_LINK_TRAIN_PATTERN_2_IVB;
->> -		intel_de_write(dev_priv, reg, temp);
->> -
->> -		reg = FDI_RX_CTL(pipe);
->> -		temp = intel_de_read(dev_priv, reg);
->> -		temp &= ~FDI_LINK_TRAIN_PATTERN_MASK_CPT;
->> -		temp |= FDI_LINK_TRAIN_PATTERN_2_CPT;
->> -		intel_de_write(dev_priv, reg, temp);
->> -
->> -		intel_de_posting_read(dev_priv, reg);
->> +		intel_de_rmw(dev_priv, FDI_TX_CTL(pipe),
->> +			     FDI_LINK_TRAIN_NONE_IVB,
->> +			     FDI_LINK_TRAIN_PATTERN_2_IVB);
->> +		intel_de_rmw(dev_priv, FDI_RX_CTL(pipe),
->> +			     FDI_LINK_TRAIN_PATTERN_MASK_CPT,
->> +			     FDI_LINK_TRAIN_PATTERN_2_CPT);
->> +		intel_de_posting_read(dev_priv, FDI_RX_CTL(pipe));
->>   		udelay(2); /* should be 1.5us */
->>   
->>   		for (i = 0; i < 4; i++) {
->> @@ -837,9 +815,8 @@ void hsw_fdi_link_train(struct intel_encoder *encoder,
->>   		udelay(30);
->>   
->>   		/* Unset FDI_RX_MISC pwrdn lanes */
->> -		temp = intel_de_read(dev_priv, FDI_RX_MISC(PIPE_A));
->> -		temp &= ~(FDI_RX_PWRDN_LANE1_MASK | FDI_RX_PWRDN_LANE0_MASK);
->> -		intel_de_write(dev_priv, FDI_RX_MISC(PIPE_A), temp);
->> +		intel_de_rmw(dev_priv, FDI_RX_MISC(PIPE_A),
->> +			     FDI_RX_PWRDN_LANE1_MASK | FDI_RX_PWRDN_LANE0_MASK, 0);
->>   		intel_de_posting_read(dev_priv, FDI_RX_MISC(PIPE_A));
->>   
->>   		/* Wait for FDI auto training time */
->> @@ -865,25 +842,21 @@ void hsw_fdi_link_train(struct intel_encoder *encoder,
->>   		intel_de_write(dev_priv, FDI_RX_CTL(PIPE_A), rx_ctl_val);
->>   		intel_de_posting_read(dev_priv, FDI_RX_CTL(PIPE_A));
->>   
->> -		temp = intel_de_read(dev_priv, DDI_BUF_CTL(PORT_E));
->> -		temp &= ~DDI_BUF_CTL_ENABLE;
->> -		intel_de_write(dev_priv, DDI_BUF_CTL(PORT_E), temp);
->> +		intel_de_rmw(dev_priv, DDI_BUF_CTL(PORT_E), DDI_BUF_CTL_ENABLE, 0);
->>   		intel_de_posting_read(dev_priv, DDI_BUF_CTL(PORT_E));
->>   
->>   		/* Disable DP_TP_CTL and FDI_RX_CTL and retry */
->> -		temp = intel_de_read(dev_priv, DP_TP_CTL(PORT_E));
->> -		temp &= ~(DP_TP_CTL_ENABLE | DP_TP_CTL_LINK_TRAIN_MASK);
->> -		temp |= DP_TP_CTL_LINK_TRAIN_PAT1;
->> -		intel_de_write(dev_priv, DP_TP_CTL(PORT_E), temp);
->> +		intel_de_rmw(dev_priv, DP_TP_CTL(PORT_E),
->> +			     DP_TP_CTL_ENABLE | DP_TP_CTL_LINK_TRAIN_MASK,
->> +			     DP_TP_CTL_LINK_TRAIN_PAT1);
->>   		intel_de_posting_read(dev_priv, DP_TP_CTL(PORT_E));
->>   
->>   		intel_wait_ddi_buf_idle(dev_priv, PORT_E);
->>   
->>   		/* Reset FDI_RX_MISC pwrdn lanes */
->> -		temp = intel_de_read(dev_priv, FDI_RX_MISC(PIPE_A));
->> -		temp &= ~(FDI_RX_PWRDN_LANE1_MASK | FDI_RX_PWRDN_LANE0_MASK);
->> -		temp |= FDI_RX_PWRDN_LANE1_VAL(2) | FDI_RX_PWRDN_LANE0_VAL(2);
->> -		intel_de_write(dev_priv, FDI_RX_MISC(PIPE_A), temp);
->> +		intel_de_rmw(dev_priv, FDI_RX_MISC(PIPE_A),
->> +			     FDI_RX_PWRDN_LANE1_MASK | FDI_RX_PWRDN_LANE0_MASK,
->> +			     FDI_RX_PWRDN_LANE1_VAL(2) | FDI_RX_PWRDN_LANE0_VAL(2));
->>   		intel_de_posting_read(dev_priv, FDI_RX_MISC(PIPE_A));
->>   	}
->>   
->> @@ -898,7 +871,6 @@ void hsw_fdi_link_train(struct intel_encoder *encoder,
->>   void hsw_fdi_disable(struct intel_encoder *encoder)
->>   {
->>   	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->> -	u32 val;
->>   
->>   	/*
->>   	 * Bspec lists this as both step 13 (before DDI_BUF_CTL disable)
->> @@ -906,30 +878,15 @@ void hsw_fdi_disable(struct intel_encoder *encoder)
->>   	 * step 13 is the correct place for it. Step 18 is where it was
->>   	 * originally before the BUN.
->>   	 */
->> -	val = intel_de_read(dev_priv, FDI_RX_CTL(PIPE_A));
->> -	val &= ~FDI_RX_ENABLE;
->> -	intel_de_write(dev_priv, FDI_RX_CTL(PIPE_A), val);
->> -
->> -	val = intel_de_read(dev_priv, DDI_BUF_CTL(PORT_E));
->> -	val &= ~DDI_BUF_CTL_ENABLE;
->> -	intel_de_write(dev_priv, DDI_BUF_CTL(PORT_E), val);
->> -
->> +	intel_de_rmw(dev_priv, FDI_RX_CTL(PIPE_A), FDI_RX_ENABLE, 0);
->> +	intel_de_rmw(dev_priv, DDI_BUF_CTL(PORT_E), DDI_BUF_CTL_ENABLE, 0);
->>   	intel_wait_ddi_buf_idle(dev_priv, PORT_E);
->> -
->>   	intel_ddi_disable_clock(encoder);
->> -
->> -	val = intel_de_read(dev_priv, FDI_RX_MISC(PIPE_A));
->> -	val &= ~(FDI_RX_PWRDN_LANE1_MASK | FDI_RX_PWRDN_LANE0_MASK);
->> -	val |= FDI_RX_PWRDN_LANE1_VAL(2) | FDI_RX_PWRDN_LANE0_VAL(2);
->> -	intel_de_write(dev_priv, FDI_RX_MISC(PIPE_A), val);
->> -
->> -	val = intel_de_read(dev_priv, FDI_RX_CTL(PIPE_A));
->> -	val &= ~FDI_PCDCLK;
->> -	intel_de_write(dev_priv, FDI_RX_CTL(PIPE_A), val);
->> -
->> -	val = intel_de_read(dev_priv, FDI_RX_CTL(PIPE_A));
->> -	val &= ~FDI_RX_PLL_ENABLE;
->> -	intel_de_write(dev_priv, FDI_RX_CTL(PIPE_A), val);
->> +	intel_de_rmw(dev_priv, FDI_RX_MISC(PIPE_A),
->> +		     FDI_RX_PWRDN_LANE1_MASK | FDI_RX_PWRDN_LANE0_MASK,
->> +		     FDI_RX_PWRDN_LANE1_VAL(2) | FDI_RX_PWRDN_LANE0_VAL(2));
->> +	intel_de_rmw(dev_priv, FDI_RX_CTL(PIPE_A), FDI_PCDCLK, 0);
->> +	intel_de_rmw(dev_priv, FDI_RX_CTL(PIPE_A), FDI_RX_PLL_ENABLE, 0);
->>   }
->>   
->>   void ilk_fdi_pll_enable(const struct intel_crtc_state *crtc_state)
->> @@ -952,9 +909,7 @@ void ilk_fdi_pll_enable(const struct intel_crtc_state *crtc_state)
->>   	udelay(200);
->>   
->>   	/* Switch from Rawclk to PCDclk */
->> -	temp = intel_de_read(dev_priv, reg);
->> -	intel_de_write(dev_priv, reg, temp | FDI_PCDCLK);
->> -
->> +	intel_de_rmw(dev_priv, reg, 0, FDI_PCDCLK);
->>   	intel_de_posting_read(dev_priv, reg);
->>   	udelay(200);
->>   
->> @@ -974,28 +929,18 @@ void ilk_fdi_pll_disable(struct intel_crtc *crtc)
->>   	struct drm_device *dev = crtc->base.dev;
->>   	struct drm_i915_private *dev_priv = to_i915(dev);
->>   	enum pipe pipe = crtc->pipe;
->> -	i915_reg_t reg;
->> -	u32 temp;
->>   
->>   	/* Switch from PCDclk to Rawclk */
->> -	reg = FDI_RX_CTL(pipe);
->> -	temp = intel_de_read(dev_priv, reg);
->> -	intel_de_write(dev_priv, reg, temp & ~FDI_PCDCLK);
->> +	intel_de_rmw(dev_priv, FDI_RX_CTL(pipe), FDI_PCDCLK, 0);
->>   
->>   	/* Disable CPU FDI TX PLL */
->> -	reg = FDI_TX_CTL(pipe);
->> -	temp = intel_de_read(dev_priv, reg);
->> -	intel_de_write(dev_priv, reg, temp & ~FDI_TX_PLL_ENABLE);
->> -
->> -	intel_de_posting_read(dev_priv, reg);
->> +	intel_de_rmw(dev_priv, FDI_TX_CTL(pipe), FDI_TX_PLL_ENABLE, 0);
->> +	intel_de_posting_read(dev_priv, FDI_TX_CTL(pipe));
->>   	udelay(100);
->>   
->> -	reg = FDI_RX_CTL(pipe);
->> -	temp = intel_de_read(dev_priv, reg);
->> -	intel_de_write(dev_priv, reg, temp & ~FDI_RX_PLL_ENABLE);
->> -
->>   	/* Wait for the clocks to turn off. */
->> -	intel_de_posting_read(dev_priv, reg);
->> +	intel_de_rmw(dev_priv, FDI_RX_CTL(pipe), FDI_RX_PLL_ENABLE, 0);
->> +	intel_de_posting_read(dev_priv, FDI_RX_CTL(pipe));
->>   	udelay(100);
->>   }
->>   
->> @@ -1007,10 +952,8 @@ void ilk_fdi_disable(struct intel_crtc *crtc)
->>   	u32 temp;
->>   
->>   	/* disable CPU FDI tx and PCH FDI rx */
->> -	reg = FDI_TX_CTL(pipe);
->> -	temp = intel_de_read(dev_priv, reg);
->> -	intel_de_write(dev_priv, reg, temp & ~FDI_TX_ENABLE);
->> -	intel_de_posting_read(dev_priv, reg);
->> +	intel_de_rmw(dev_priv, FDI_TX_CTL(pipe), FDI_TX_ENABLE, 0);
->> +	intel_de_posting_read(dev_priv, FDI_TX_CTL(pipe));
->>   
->>   	reg = FDI_RX_CTL(pipe);
->>   	temp = intel_de_read(dev_priv, reg);
->> @@ -1027,11 +970,8 @@ void ilk_fdi_disable(struct intel_crtc *crtc)
->>   			       FDI_RX_PHASE_SYNC_POINTER_OVR);
->>   
->>   	/* still set train pattern 1 */
->> -	reg = FDI_TX_CTL(pipe);
->> -	temp = intel_de_read(dev_priv, reg);
->> -	temp &= ~FDI_LINK_TRAIN_NONE;
->> -	temp |= FDI_LINK_TRAIN_PATTERN_1;
->> -	intel_de_write(dev_priv, reg, temp);
->> +	intel_de_rmw(dev_priv, FDI_TX_CTL(pipe),
->> +		     FDI_LINK_TRAIN_NONE, FDI_LINK_TRAIN_PATTERN_1);
->>   
->>   	reg = FDI_RX_CTL(pipe);
->>   	temp = intel_de_read(dev_priv, reg);
->
-
+diff --git a/drivers/gpu/drm/i915/gt/sysfs_engines.c b/drivers/gpu/drm/i915/gt/sysfs_engines.c
+index f2d9858d827c..323cead181b8 100644
+--- a/drivers/gpu/drm/i915/gt/sysfs_engines.c
++++ b/drivers/gpu/drm/i915/gt/sysfs_engines.c
+@@ -24,7 +24,7 @@ static struct intel_engine_cs *kobj_to_engine(struct kobject *kobj)
+ static ssize_t
+ name_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
+ {
+-	return sprintf(buf, "%s\n", kobj_to_engine(kobj)->name);
++	return sysfs_emit(buf, "%s\n", kobj_to_engine(kobj)->name);
+ }
+ 
+ static struct kobj_attribute name_attr =
+@@ -33,7 +33,7 @@ __ATTR(name, 0444, name_show, NULL);
+ static ssize_t
+ class_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
+ {
+-	return sprintf(buf, "%d\n", kobj_to_engine(kobj)->uabi_class);
++	return sysfs_emit(buf, "%d\n", kobj_to_engine(kobj)->uabi_class);
+ }
+ 
+ static struct kobj_attribute class_attr =
+@@ -42,7 +42,7 @@ __ATTR(class, 0444, class_show, NULL);
+ static ssize_t
+ inst_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
+ {
+-	return sprintf(buf, "%d\n", kobj_to_engine(kobj)->uabi_instance);
++	return sysfs_emit(buf, "%d\n", kobj_to_engine(kobj)->uabi_instance);
+ }
+ 
+ static struct kobj_attribute inst_attr =
+@@ -51,7 +51,7 @@ __ATTR(instance, 0444, inst_show, NULL);
+ static ssize_t
+ mmio_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
+ {
+-	return sprintf(buf, "0x%x\n", kobj_to_engine(kobj)->mmio_base);
++	return sysfs_emit(buf, "0x%x\n", kobj_to_engine(kobj)->mmio_base);
+ }
+ 
+ static struct kobj_attribute mmio_attr =
+@@ -107,11 +107,9 @@ __caps_show(struct intel_engine_cs *engine,
+ 	for_each_set_bit(n, &caps, show_unknown ? BITS_PER_LONG : count) {
+ 		if (n >= count || !repr[n]) {
+ 			if (GEM_WARN_ON(show_unknown))
+-				len += snprintf(buf + len, PAGE_SIZE - len,
+-						"[%x] ", n);
++				len += sysfs_emit_at(buf, len, "[%x] ", n);
+ 		} else {
+-			len += snprintf(buf + len, PAGE_SIZE - len,
+-					"%s ", repr[n]);
++			len += sysfs_emit_at(buf, len, "%s ", repr[n]);
+ 		}
+ 		if (GEM_WARN_ON(len >= PAGE_SIZE))
+ 			break;
+@@ -182,7 +180,7 @@ max_spin_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
+ {
+ 	struct intel_engine_cs *engine = kobj_to_engine(kobj);
+ 
+-	return sprintf(buf, "%lu\n", engine->props.max_busywait_duration_ns);
++	return sysfs_emit(buf, "%lu\n", engine->props.max_busywait_duration_ns);
+ }
+ 
+ static struct kobj_attribute max_spin_attr =
+@@ -193,7 +191,7 @@ max_spin_default(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
+ {
+ 	struct intel_engine_cs *engine = kobj_to_engine(kobj);
+ 
+-	return sprintf(buf, "%lu\n", engine->defaults.max_busywait_duration_ns);
++	return sysfs_emit(buf, "%lu\n", engine->defaults.max_busywait_duration_ns);
+ }
+ 
+ static struct kobj_attribute max_spin_def =
+@@ -236,7 +234,7 @@ timeslice_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
+ {
+ 	struct intel_engine_cs *engine = kobj_to_engine(kobj);
+ 
+-	return sprintf(buf, "%lu\n", engine->props.timeslice_duration_ms);
++	return sysfs_emit(buf, "%lu\n", engine->props.timeslice_duration_ms);
+ }
+ 
+ static struct kobj_attribute timeslice_duration_attr =
+@@ -247,7 +245,7 @@ timeslice_default(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
+ {
+ 	struct intel_engine_cs *engine = kobj_to_engine(kobj);
+ 
+-	return sprintf(buf, "%lu\n", engine->defaults.timeslice_duration_ms);
++	return sysfs_emit(buf, "%lu\n", engine->defaults.timeslice_duration_ms);
+ }
+ 
+ static struct kobj_attribute timeslice_duration_def =
+@@ -287,7 +285,7 @@ stop_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
+ {
+ 	struct intel_engine_cs *engine = kobj_to_engine(kobj);
+ 
+-	return sprintf(buf, "%lu\n", engine->props.stop_timeout_ms);
++	return sysfs_emit(buf, "%lu\n", engine->props.stop_timeout_ms);
+ }
+ 
+ static struct kobj_attribute stop_timeout_attr =
+@@ -298,7 +296,7 @@ stop_default(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
+ {
+ 	struct intel_engine_cs *engine = kobj_to_engine(kobj);
+ 
+-	return sprintf(buf, "%lu\n", engine->defaults.stop_timeout_ms);
++	return sysfs_emit(buf, "%lu\n", engine->defaults.stop_timeout_ms);
+ }
+ 
+ static struct kobj_attribute stop_timeout_def =
+@@ -343,7 +341,7 @@ preempt_timeout_show(struct kobject *kobj, struct kobj_attribute *attr,
+ {
+ 	struct intel_engine_cs *engine = kobj_to_engine(kobj);
+ 
+-	return sprintf(buf, "%lu\n", engine->props.preempt_timeout_ms);
++	return sysfs_emit(buf, "%lu\n", engine->props.preempt_timeout_ms);
+ }
+ 
+ static struct kobj_attribute preempt_timeout_attr =
+@@ -355,7 +353,7 @@ preempt_timeout_default(struct kobject *kobj, struct kobj_attribute *attr,
+ {
+ 	struct intel_engine_cs *engine = kobj_to_engine(kobj);
+ 
+-	return sprintf(buf, "%lu\n", engine->defaults.preempt_timeout_ms);
++	return sysfs_emit(buf, "%lu\n", engine->defaults.preempt_timeout_ms);
+ }
+ 
+ static struct kobj_attribute preempt_timeout_def =
+@@ -399,7 +397,7 @@ heartbeat_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
+ {
+ 	struct intel_engine_cs *engine = kobj_to_engine(kobj);
+ 
+-	return sprintf(buf, "%lu\n", engine->props.heartbeat_interval_ms);
++	return sysfs_emit(buf, "%lu\n", engine->props.heartbeat_interval_ms);
+ }
+ 
+ static struct kobj_attribute heartbeat_interval_attr =
+@@ -410,7 +408,7 @@ heartbeat_default(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
+ {
+ 	struct intel_engine_cs *engine = kobj_to_engine(kobj);
+ 
+-	return sprintf(buf, "%lu\n", engine->defaults.heartbeat_interval_ms);
++	return sysfs_emit(buf, "%lu\n", engine->defaults.heartbeat_interval_ms);
+ }
+ 
+ static struct kobj_attribute heartbeat_interval_def =
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.39.0
+
