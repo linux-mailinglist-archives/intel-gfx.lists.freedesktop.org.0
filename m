@@ -1,146 +1,138 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50B35681798
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Jan 2023 18:30:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E22B6817B3
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Jan 2023 18:34:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7075F10E064;
-	Mon, 30 Jan 2023 17:30:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDEE210E012;
+	Mon, 30 Jan 2023 17:34:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD3D610E064;
- Mon, 30 Jan 2023 17:30:35 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E1B710E012
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Jan 2023 17:34:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675099835; x=1706635835;
+ t=1675100071; x=1706636071;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=HaAry7dFc9CkmQ4c/41JVR4ASck2+Uk7tGXCAeZHFqA=;
- b=LTWjtKv7rNrrPjSMqk6AFXJeWbeK/Vhk0jixRpb3NTok23Kuz8wMQu0h
- WGq/hZTbXF4Lbijo+eiPwfX3e0XAxvodeX6nKJJaN3/VKPR5jd0nJhxTO
- aj9d4ZIEYQUD0q4zC348gXN5A/YprlOxNT9F5Sb3db3Mo7iqZB1ATS1fc
- MHuTwRG2qpQWMvMHbNgJeFXay/MhN2kgOHcm0Eu8Is5ktsRNjZmo95CcT
- tX17dwhSAW+2+2Qn+j3ENZsls9ermmVRKDwOQPHyi0S13tNAsKGrwbP6g
- qQ3ZNn6O3SugJbWJtX7WA01lHzQMQOX8khL/cny2zglal7oLMuRjFF8H5 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="413840417"
-X-IronPort-AV: E=Sophos;i="5.97,258,1669104000"; d="scan'208";a="413840417"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2023 09:30:34 -0800
+ bh=lV7P7LJa92XQ4g20Jr0NhNSWP7pmnhRVrurCT+GDHvc=;
+ b=BWFakFjheQRIJD/i4NzZV6/BVUhQ7Bti8R/Dlipl+/aDk3e2j5e5uiAM
+ 51oL1WtlfR18ScEWVmdSK+dnf72crSJhMRYPwGMg2MIY8k+zigKe16A2j
+ 5AcMyueeVeQ2DaMOxrNZRIS3eoHbNNXBETJyOqtEJLvDkAhR7Zb7gZw/H
+ LGot7ToV15SwqvvvtmRiKggFki1IXrX31yulQSvCfMxFVzzRCSI3XWQeq
+ Rqxs8uOnhSiF/CcD7jxSS1R3EQUzBhppuxXV9N53NWW5phSEGJ8e0Di5E
+ dUkeXJji2/CYTltWj56kGfu8eimE5aDmPrHvHu94Xxex/MJ6/amjWigP1 g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="325317454"
+X-IronPort-AV: E=Sophos;i="5.97,258,1669104000"; d="scan'208";a="325317454"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2023 09:34:30 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="838036811"
-X-IronPort-AV: E=Sophos;i="5.97,258,1669104000"; d="scan'208";a="838036811"
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="732771853"
+X-IronPort-AV: E=Sophos;i="5.97,258,1669104000"; d="scan'208";a="732771853"
 Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orsmga005.jf.intel.com with ESMTP; 30 Jan 2023 09:30:34 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ by fmsmga004.fm.intel.com with ESMTP; 30 Jan 2023 09:34:29 -0800
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
  ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Mon, 30 Jan 2023 09:30:34 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.16; Mon, 30 Jan 2023 09:34:28 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Mon, 30 Jan 2023 09:30:33 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Mon, 30 Jan 2023 09:30:33 -0800
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.177)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.16 via Frontend Transport; Mon, 30 Jan 2023 09:34:28 -0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Mon, 30 Jan 2023 09:30:30 -0800
+ 15.1.2507.16; Mon, 30 Jan 2023 09:34:28 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KA8cr/WuVa2K9Rp1C3B2u9AGG2PCOi8Y1LhEy9cEAZe9me6/q3HCZdp9WTfDY2/pW8/n8VCfH1JXAp6hnY0zfy4EU9vahZ7TWYxOJ/YcW5dJ5ZOa+xyPZ/vplkXWYTuNCVcIPSEA3Mmc7Xdz7MfxR/Yg26IfssItZ3t5rNU+QM42VAx8d/5cBtDqMFVgRKo6W9Z9NZdOpQdHuYY5wIjWRW3NhxNCfUnWNzIFhmuaoJnjyzXWZ7U5+R4RcV3ZNK1JXjYTAQ89/aoxyT7jYLUUybq6ZGtCpTY5LusV8NCYbyEbIk3SAySQzZtyOxfEJyFmtD0VB2mzwbIDzu3XNaZvkQ==
+ b=YURoaUHhanqQxRbNLShmZe/All1I9cateJ34Owh4DK0B1rNz4JPvAE8Ttis9O0mFqd5Y6M3nhuxBe6MX+Dzcb7W6n5OGlzXf8UVVWfedXRKhFtfqqTVtJvmbJjyAZavOd8EZCai1QD8ErSVSwCUGXieVplh6lKXPWZk0sOusAp5sYo8m4Iy1pv2T6hAhaSrjmn+tf2h20J1013AoCSF/5gJkt8CVHz+wbewz8elSF8jsR//+LyO2gwj3Qi4qj5tb8DtR4UaAZ8ZA41WcznAXwaDJIjJsDzImc6e019MgSH4c9RbkZ3FnpGPMDrwjhdR5pq+kw52Yc0gtQaI9kBbINg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zifz3NFNsTPNR//vxWAwUrvzH2+LcHAuVAeSMYBHYzQ=;
- b=AIVO7k6+y69VjU4wD6mbomzBrhepCQA5C2LKuT+fh329/2J29B7VIhk8yeDbFNu7QgKLaQcBIY3LrzOuFi3P1Is+Fe7UL6GupyoJQf29yCa428cYf0qa+n4MS8X2EM6BRljxQb29Gq/7rVG+vDtZcYKMwSrnfGqH/ijBdmhgfNGU4Eq3lU6cvonMF/ftrRLLKUqlo2+qTBj+14SBZ4rTmNIK8HUQA08nFkgYH947IqSVcXy9XgU4B3UhW8liiJEQm5GetgnAx0Oit4OqXRzirnyZkEjkm4w989P/HseryncuAIblPqYv1bpZIOzBDisucyerzwOv7MQdaTuk6x197Q==
+ bh=ZnJdavBu9BUijTU1rESnabiwX8UwxpAVQm1T+vNeeYo=;
+ b=Af6ycTXZZyDMJAQpfZv2Ay8jhK4Sq/sFtpsIO1nmvc59+bfcb9Xjesc8zC95yC43SM+41OQDoHKS95TN2AiJZIx/msgsEPFtA0CZYRdnJmEg+3msGHN9+d6BG6mQSu4Rj4ofJu5oD9Tkz5KvSlVPZipPfS3W0RcqXafC/+tfwpQqp/PHt7F3JytIoUMPHvmT6I+JQyLEOO9+hnlVgNcBaQOLnvdwPQ08p/V21VxGfKYts0zRZ9zQa7EU/TXKSuuioaBwMbpllJlOAu58mEd/XqUnSYKWqZclYHGxLTJRsHxbvXs0czRS2Gl8Cu8qUMBqULNgl40c/IeiC6ojfUFNAg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by IA0PR11MB7695.namprd11.prod.outlook.com (2603:10b6:208:400::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.36; Mon, 30 Jan
- 2023 17:30:29 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::1818:e39d:454d:a930]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::1818:e39d:454d:a930%4]) with mapi id 15.20.6043.036; Mon, 30 Jan 2023
- 17:30:29 +0000
-Date: Mon, 30 Jan 2023 12:30:24 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Message-ID: <Y9f+sGkj2/rJpaMD@intel.com>
-References: <20230111104447.338136-1-andi.shyti@linux.intel.com>
- <87a62pi501.fsf@intel.com> <Y77XmlzOCuOg8YVZ@ashyti-mobl2.lan>
- <b3d4b882-cb0b-a3c1-2609-6065f379ed15@intel.com>
- <Y9OSyhWHWu8iliP5@ashyti-mobl2.lan>
- <bfe11cf8-87a5-3768-92d5-3415145d8c8f@intel.com>
- <Y9eEX95t1i1YRVOk@ashyti-mobl2.lan> <Y9fXFrJp/N0cit18@intel.com>
- <Y9fsgJd7y6aEt/sT@ashyti-mobl2.lan> <Y9fySWFQwTPC1VAM@intel.com>
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
+ PH8PR11MB8108.namprd11.prod.outlook.com (2603:10b6:510:257::6) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6043.22; Mon, 30 Jan 2023 17:34:26 +0000
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::68d0:f8e0:eaf3:982e]) by DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::68d0:f8e0:eaf3:982e%5]) with mapi id 15.20.6043.036; Mon, 30 Jan 2023
+ 17:34:26 +0000
+Date: Mon, 30 Jan 2023 09:34:22 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <Y9f/nvKPP2EFPDnA@mdroper-desk1.amr.corp.intel.com>
+References: <20230127224313.4042331-1-matthew.d.roper@intel.com>
+ <20230127224313.4042331-3-matthew.d.roper@intel.com>
+ <Y9f8NHy26q1Ga7SO@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <Y9fySWFQwTPC1VAM@intel.com>
-X-ClientProxiedBy: SJ0PR05CA0047.namprd05.prod.outlook.com
- (2603:10b6:a03:33f::22) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+In-Reply-To: <Y9f8NHy26q1Ga7SO@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0020.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c0::25) To DS7PR11MB7859.namprd11.prod.outlook.com
+ (2603:10b6:8:da::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|IA0PR11MB7695:EE_
-X-MS-Office365-Filtering-Correlation-Id: 816588f7-29d7-4e0f-de83-08db02e7ae1a
+X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|PH8PR11MB8108:EE_
+X-MS-Office365-Filtering-Correlation-Id: f3812f12-c565-435d-3940-08db02e83b5e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: FxeT4tFkJ9aJkF3e5vgQkR9XDJzcYuH3/VErQE7LQ4d+WiGMNBENz4yxabEGOz0kvo++Zx6K3EVqS9rzl5hBbVLf0HgI6c8JU3lPbtTC2gSoM5jlVthR2hbADKfaAjV7h33ZkS8toHMb1kOPI5bJqRi0bzY53dGhOiPHDeWOayfTkOW5WUWzfQzx6i8vy6hIyyjLLA2O+8wkUA4F/m5bMENhDExfBbp20Mca0qAxphl1igqjqoW9W9nQjKsYTTXL6/vDGTN7Q2rHoTGrfESZgsW0bpsU5bkAwKtpGdqPgOFm6+0F/GL6ykicKyHWtYeaJomGvhNvoQ/utie3GWIi6d1z9kHnpdbzUp6SpJvjCfCozAqbUzyhcdCdNHucB4oTwLnlhIAxDh8B06FWqwvhAtssmpxqqwGjkuh6tJKysctmWEUaDqo7l0zLj0Wwq4av+tOkcrtHMMsu+ya/tX468rIVfv4JIsoQFixErzGD4sek1H2TfoSmnzmQuhHDFsibxfHvjWXdY2MsIrfNf2CMmJ3k5CQjTCRX1fJittJhy7VpBhBFSGZiTsmX7F0PoE94ZlPhJsEnURt1cyYFVZ0BGrAlClxDkZlnUplTHR4wdYorDiWvKIbmxlaXvp1xyj0gKO+lwwzKmOiTOurzxPceYCeL/nhvqb6cUsKxO3ecZSdc2wCxzQfU0DheibvGRP1EJ/evlZLaTdR6I7wSoLcw2A==
+X-Microsoft-Antispam-Message-Info: A4Og+WfwolbxizHKVSxcCJnSnDIQXRwxZCPMxzph0FcPcW2eFCWlDP5PHUfRM4l4K2lqv9MsOL+EL/1OFuSPtr+Y6hz5s9p5PNUhS1iE2ANcPZLK18In3dF3ZgZoxLDjXg6cl9MYtYrE8FZlVKWKnEJE9s7cRYeq4FugLhSp3T04WCXGAOo0nuB0P6zYDz+8eJon6WN95PLZBUnXW/J6igz5QOUfKllKtxuFS9rjR4C9vpbli0h8Cncyei0cR1GabznwpzQONRiMEjW52Rg0wX5CIqUHvi8WkKpN2yf+I+IIuE1i6/nWjXOsfVbQcJbnTXRn8CXxi7qcWuzYLNvY5yaVmP3GdnOdpm+EvDQxBe8qFdPd0PlVFIRBBf13QylI7ecpGomNhvFWyYeLqIEK3tolw7kCm0zobB8294z/WDNNVyzi+niKUmRucxTjILed5CzJ89xx/0JZQwiajHXUkNNDEN5bWOsEOez5m1Tbk7CAZ6R4USB4yju0UnM4IrBK5MbSFlJ/xpktSQqMg8H70QwU1SkNQ9PwjPeC+l2WFveBtHG2cINjRUuDkJVh3Ro0kFJwvbe755UmRAej/7QyMoDa0lyIEwQuvox7kHA6Rn4wK96i0CH9hqY2LT9mSeaXsM9I04bkSE+el05OzZW7tg==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(366004)(136003)(39860400002)(376002)(346002)(396003)(451199018)(2906002)(5660300002)(86362001)(44832011)(82960400001)(83380400001)(8936002)(30864003)(41300700001)(36756003)(478600001)(6486002)(26005)(6512007)(6666004)(186003)(6506007)(2616005)(54906003)(4326008)(66476007)(38100700002)(66946007)(8676002)(66556008)(6916009)(316002)(226643001);
+ IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(39860400002)(136003)(396003)(346002)(366004)(376002)(451199018)(6636002)(316002)(83380400001)(38100700002)(82960400001)(186003)(6666004)(26005)(6512007)(478600001)(6486002)(86362001)(6506007)(2906002)(66556008)(66946007)(66476007)(4326008)(41300700001)(5660300002)(8676002)(6862004)(8936002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?h/oE1HW1bqgaRLDWB9+ILI3Yi6ck/4D1B5JraYeZVcshdXGJcWCrDbuGNcB+?=
- =?us-ascii?Q?ojoizE806Nv3zoCTrt2nGeol6Tu+dWzArVryjFn/um/guWgOE3MXtFRQRc69?=
- =?us-ascii?Q?jeVJxQWC5K4ak1fq1xz/cQ6n+H6Qatt0/izIQxi7O+caS/SubuBCmtqlLLjd?=
- =?us-ascii?Q?QpdVEIppS99ETOGEHKoDy4G9JOqJUgfyz/11gJbM4dXfe/WPQnuGSW1yI0or?=
- =?us-ascii?Q?McJVFatF97QUWJBv7uBVfR2A5hUSxR3O6PFQzy7q/l8Jf/MXxRVhYcQru8fQ?=
- =?us-ascii?Q?kiizycQMctgqHImCXcawwb+UuXzPSMRheqnroRAiyKIE2053YS4oGMdJRVpt?=
- =?us-ascii?Q?sQjVlJ3ijViz575RPh4j0kNdf9sLinx5N5guTTk5JlkuXXbrg6cMx+cavACQ?=
- =?us-ascii?Q?hwqUVoCurWrLZM6ootepORKpSut4yHzF5BANpfc5zADLdK4NHZb0omU0V++s?=
- =?us-ascii?Q?zuw2JQaQs/YjHBsyEhslro8hSrDNYmLnP8u5uUGaqIREpEcCvs1gqjYf25Y9?=
- =?us-ascii?Q?irJ/9kphgWEDOkLpSNG6+LEUlBuJuMVCoMajhpCCvcGd895/q9K/8d0zh8jG?=
- =?us-ascii?Q?fMdKIQKwj79ck0eAQQGvKrs74hur3NaX+EYLZCqQpqwnwd6hd6po0B0IvB4p?=
- =?us-ascii?Q?RSEhet+b/6Ly5Nv4Qwu8qePiI6v83aLWguZgJ3vqzkSfj+n11wznk7IL8g5E?=
- =?us-ascii?Q?wJjrAtWBqBwr4EIEJzaNPf5ABXaPx2BHCT2sW5m/NJ7t8MuecUE3pIcldTrM?=
- =?us-ascii?Q?ftceksXtR9XQ0Cohl5aVque970m4ic+rBvZVzfVzrryz/7AV/cS0AQHkzdZr?=
- =?us-ascii?Q?u9af5mCVF9f9NKUfivXV9ZiwstJXmxvqa1DEAO8lwdSoG/ROM0H3LloYP8ZQ?=
- =?us-ascii?Q?QjZ9aBUhSWiOmiQrNonNaYO1mN7ay8+hq1X4+iXImKVQoWzfXBGsx+lN02KZ?=
- =?us-ascii?Q?fFnqUIPQn1izi91fx8ZYfDUq5JqxD8Mq7D6WmUkfjxyrtq4pK/icyTXXZ0ob?=
- =?us-ascii?Q?OWmpi8k5JSgkbuzqo71QGHd0/uiI3My7FSQ6qoA3Q5G2tmvRzYjwpC+Dosdo?=
- =?us-ascii?Q?WvejnXzR/LPuZmjZPV5T71b5kB/Nb0w7nQpzOtMv5RlUvHEJ5a4Rx8ph02LW?=
- =?us-ascii?Q?XH1/nceJDmwwh7A+MrDwbbs0Zsi5SHTndJPYmX6MDmNbHm9HpxJrDncU+doh?=
- =?us-ascii?Q?yLypemHV6J4nX6IcmgFXj43rFkT8AyBt1sp0hxxd+rIGEidAunXjiYtv+4qD?=
- =?us-ascii?Q?WkBymbEekZM2OZbG14ObCcA2ikFN3EyxH/bDPiAoEtQHv6eosIrpxxl2Srun?=
- =?us-ascii?Q?0MRCqD3WWRr/iYjvQSnVQtUtoiKcDtQagSjG42wu0C0sC1zjfAPcaWR5vznQ?=
- =?us-ascii?Q?Sea27bCCm5REEijcSPrTDMDvKhH6pyIeszKmnx9p/CMEuh9ubV5vBni0UA4m?=
- =?us-ascii?Q?8uyAZJUyn27H3xXNcIHaE3bFMChFC8iS9Q0nN3OjbA/FovXbQe3QdPUD+DcP?=
- =?us-ascii?Q?BNQmovV+EjAPHpl2h10rIJdudar1tvzKaZQqJG6GVeA9j5Il0s04/xSG9wcp?=
- =?us-ascii?Q?EE8hKwtTMsswhp5HrlOBcx59e9vHiCQGdBZL5kWCSZHVGYqh4TOBelPJFjfV?=
- =?us-ascii?Q?vw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 816588f7-29d7-4e0f-de83-08db02e7ae1a
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?95bNlD31iORWN+SmSGtA7Fds5W/ywsYYZ7xx+9t6Uqr6qd8C2NIVf0nGeYSj?=
+ =?us-ascii?Q?f4MTXxbbhHACqUF8kx2OrscSSGuWMu0Xw5hG1LH1KVXTWQ+tXBJZiPz0Z9q4?=
+ =?us-ascii?Q?aha/HUYi5PAfQCDa9WMg8GTPMe9r5DqfzPHHWP3oYHKD2QY4A3WDUrMqr+ft?=
+ =?us-ascii?Q?sy4zMl9lD4LOd6t6SlnV9yYkMiehAEVMdaAprtE3WuKcmw2Gr6j9VGon+u8W?=
+ =?us-ascii?Q?quvgN3zftaFljCgx6CtuM+SvyTgonESKR23HJ07I8Zce4GwC/2QnbOE815KR?=
+ =?us-ascii?Q?AQnfB1mbp6N21eEDsISH6WlGPKFL967p8iuymfTwxZCdFPUhcP2zq7l3x+2S?=
+ =?us-ascii?Q?kUaIUvws/IOPbx7Ns3ZsOj0zuw7TZEsvamoTFdstoanRgbdMjdky/CUIP+tS?=
+ =?us-ascii?Q?H2zFJ/E7+lNYU1/E+g+FPs6c/N3vvx8iXdXKg3yGAFfksFo5YlYII9IOON+w?=
+ =?us-ascii?Q?YimkS6idnRB5g+ieS0pJ5P4VWvhMi2YBh3kPXSs3d63GGgOR8O+lODDbwZi5?=
+ =?us-ascii?Q?zRxHG2hZMhUGAwkID1y0cKpAPpTxkV34n0ADkxfwcECui/I6FWCKmO5SVtk0?=
+ =?us-ascii?Q?T9lqkfDMyh6bazFvIAl2RLdO+SLgV0TL+8b91xqSPW/pq1pDiJMyPKLYYQOg?=
+ =?us-ascii?Q?bKCYRXX/FybB/4Y5vQ7bNg5LOHCS7WybOuWpe2qIRScAHuZ0NW/6FaodTmpT?=
+ =?us-ascii?Q?RKa3FJCiDAuAMrkVQRvvdOHvlPyHqSSL5jq6emutEHNQZRc6ENe7bA+U298q?=
+ =?us-ascii?Q?OzpCCV2zLxIbN95aZtZ8+FEahPAkA6vWKKkKxhIt5HdZmeuNS/ZeIKqJGB9R?=
+ =?us-ascii?Q?ynL3eJg//2gbt4VETzo93QYP5Av1P/9Ie8dNXBqwXsg+x1d60SastiVdwwFB?=
+ =?us-ascii?Q?zsnP51gO6SRFrDZruSpapyX+JMsupXvoVbNK20cxc5fzYtz3P3sDho+WXICI?=
+ =?us-ascii?Q?VIRiwEjnkLS7JNPfjUsOTxs+TqCHOCWT6Z4fOk7eqf4SHuSQWLWQIzr+caLf?=
+ =?us-ascii?Q?7iigbd3zGpC5mhabURmrTrRikUs+6y6pMX2KUAz1D3Ke6Ijjmf5GAu6HCzj3?=
+ =?us-ascii?Q?TnMk9MfOqkeUDy2H1GFrp7Z+n6pi+FxzrneUfstrprXD21VhRat1zgWr9jvn?=
+ =?us-ascii?Q?YvAl0ZvU1/eziLALdMUJm8SQThJNwZk2/ubeJrMzxgk2RskYlEucflt9T1OX?=
+ =?us-ascii?Q?phLwuKvGCsyXEwYw1yO7o5/5Ajao31GuGtjxe9VclNZaXw3ovbjAIkD4b8oU?=
+ =?us-ascii?Q?nAVZ26IOxlAHFsqLkZ2Aef3BCoW8Dr+6UhS5GgGmtqUkOBo+Q/CEZKCBKsSw?=
+ =?us-ascii?Q?KJF8Vv909ZdNWCJUfBY/V1Hw2YKOre036NBgbjj0iamxQDBKosJAiZCoec3m?=
+ =?us-ascii?Q?8u5C+idb0dJQdGwmuuEtNF+w/gn431AtUYb8YZgSdzCkAvUv/Tckhv0iIsOu?=
+ =?us-ascii?Q?cFXnnVIYILhfmRmh1evyAci7E+NqtPVf6on2Rln5Ibylds83rjZPGcaoBAsf?=
+ =?us-ascii?Q?3ZovphYarS+BxT4sUAI65vVgVPvSyYaOBGnrRLOCGa2KXt7pouz7WPbFOLiF?=
+ =?us-ascii?Q?QD/8Vs1Ww/fKOVuH3mWzEmBfOeavjwppj813rcYHssp3gN5NTxAMHPMUJJOM?=
+ =?us-ascii?Q?mQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: f3812f12-c565-435d-3940-08db02e83b5e
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2023 17:30:28.8816 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2023 17:34:25.7268 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: C7hgAhHFDYvJKst9kckK5zj+f5PyYyeg2wc68T17H036rLCLHHEc7A7J1pEi6Mavk1LN6R+Bs6iJuCfP5PRUMQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7695
+X-MS-Exchange-CrossTenant-UserPrincipalName: SH3+Rv7L/IkW+Yx/0f4TWj80J1EvbIZDaMEL1cirAi0bEFQK/cMSEx99/i51ZFles9Fm7VuvAGi7mN6CKYCKsU3Gp3feW2CZ8qcn3HOmcRc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB8108
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/pcode: Wait 10 seconds for pcode
- to settle
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/dg1: Drop support for
+ pre-production steppings
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,262 +145,221 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Chris Wilson <chris.p.wilson@linux.intel.com>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 30, 2023 at 11:37:29AM -0500, Rodrigo Vivi wrote:
-> On Mon, Jan 30, 2023 at 05:12:48PM +0100, Andi Shyti wrote:
-> > Hi Rodrigo,
+On Mon, Jan 30, 2023 at 12:19:48PM -0500, Rodrigo Vivi wrote:
+> On Fri, Jan 27, 2023 at 02:43:12PM -0800, Matt Roper wrote:
+> > Several post-DG1 platforms have been brought up now, so we're well past
+> > the point where we usually drop the workarounds that are only applicable
+> > to internal/pre-production hardware.
 > > 
-> > > > > In the call flow invoked by intel_pcode_init(), I've added brief comments
-> > > > > where further clarification is needed in this scenario, and a description of
-> > > > > the suspicious scenario at the bottom.
-> > > > > 
-> > > > > -------------------------------------------------------------------------
-> > > > > intel_pcode_init()
-> > > > >  |
-> > > > >  +-> skl_pcode_request(uncore, DG1_PCODE_STATUS,
-> > > > >                        DG1_UNCORE_GET_INIT_STATUS,
-> > > > >                        DG1_UNCORE_INIT_STATUS_COMPLETE,
-> > > > >                        DG1_UNCORE_INIT_STATUS_COMPLETE, 180000);
-> > > > >        |
-> > > > >        +-> skl_pcode_try_request()
-> > > > >              |
-> > > > >              +->  *status = __snb_pcode_rw(uncore, mbox, &request, NULL,
-> > > > >                                            500, 0, true);
-> > > > > 
-> > > > > -------------------------------------------------------------------------
-> > > > > static int __snb_pcode_rw(struct intel_uncore *uncore, u32 mbox,
-> > > > > 		          u32 *val, u32 *val1,
-> > > > > 			  int fast_timeout_us, int slow_timeout_ms,
-> > > > > 			  bool is_read)
-> > > > > {
-> > > > > ...
-> > > > >         /* Before writing a value to the GEN6_PCODE_DATA register,
-> > > > >            check if the bit in the GEN6_PCODE_MAILBOX register indicates
-> > > > >            BUSY. */
-> > > > > 	if (intel_uncore_read_fw(uncore, GEN6_PCODE_MAILBOX) & GEN6_PCODE_READY)
-> > > > > 		return -EAGAIN;
-> > > > 
-> > > > what if we fail here because the punit is still initializing and
-> > > > will be ready, say, in 10 seconds?
-> > > > 
-> > > > GG, without going any further, we fail here! The -EAGAIN we
-> > > > receive from the test comes from this point. We don't fail with
-> > > > -ETIMEDOUT, but with -EAGAIN and the reason is because the punit
-> > > > is not ready to perform the very fist communication and we fail
-> > > > the probing.
-> > > > 
-> > > > It doesn't mean, though, that there is anything wrong, we just
-> > > > need to wait a bit before "taking drastic decisions"!
-> > > > 
-> > > > This patch is suggesting to wait up to 10s for the punit to be
-> > > > ready and eventually try to probe again... and, indeed, it works!
-> > > 
-> > > As GG, what I still don't understand is how this extra 10 seconds
-> > > wait helps... have you tried to simple add the 10 to the 180 and
-> > > make the code 190 sec instead?
+> > Production DG1 hardware always has a B0 stepping for both display and
+> > GT.
 > > 
-> > maybe I haven't been able to explain the issue properly.
+> > Bspec: 44463
+> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> > ---
+> >  .../drm/i915/display/intel_display_power.c    |  1 -
+> >  drivers/gpu/drm/i915/gt/intel_workarounds.c   | 48 ++-----------------
+> >  drivers/gpu/drm/i915/i915_driver.c            |  1 +
+> >  drivers/gpu/drm/i915/i915_drv.h               |  2 -
+> >  drivers/gpu/drm/i915/intel_pm.c               | 12 -----
+> >  5 files changed, 5 insertions(+), 59 deletions(-)
 > > 
-> > I can even set that timer to 2hrs and a half and nothing changes
-> > because we fail before.
-> > 
-> > Here it's not a matter of how much do I wait but when do I check
-> > the pcode readiness (i.e. signalled by the GEN6_PCODE_READY bit
-> > in the GEN6_PCODE_MAILBOX register).
-> > 
-> > During a normal run we are always sure that communicating with
-> > the punit works, because we made it sure during the previous
-> > transaction.
-> > 
-> > During probe there is no previous transaction and we start
-> > communicating with the punit without making sure that it is
-> > ready. And indeed some times it is not, so that we suppress the
-> > probing on purpose instead of giving it another chance.
-> > 
-> > I admit that the commit message is not written properly and
-> > rather misleading, but here it's not at all a matter of how much
-> > do I wait.
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > index 1dc31f0f5e0a..7222502a760c 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > @@ -1580,7 +1580,6 @@ static void tgl_bw_buddy_init(struct drm_i915_private *dev_priv)
+> >  		return;
+> >  
+> >  	if (IS_ALDERLAKE_S(dev_priv) ||
+> > -	    IS_DG1_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0) ||
+> >  	    IS_RKL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
+> >  		/* Wa_1409767108 */
+> >  		table = wa_1409767108_buddy_page_masks;
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> > index 82a8f372bde6..648fceba5bb6 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> > @@ -1463,12 +1463,6 @@ dg1_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+> >  
+> >  	gen12_gt_workarounds_init(gt, wal);
+> >  
+> > -	/* Wa_1607087056:dg1 */
+> > -	if (IS_DG1_GRAPHICS_STEP(i915, STEP_A0, STEP_B0))
+> > -		wa_write_or(wal,
+> > -			    GEN11_SLICE_UNIT_LEVEL_CLKGATE,
+> > -			    L3_CLKGATE_DIS | L3_CR2X_CLKGATE_DIS);
+> > -
+> >  	/* Wa_1409420604:dg1 */
+> >  	if (IS_DG1(i915))
+> >  		wa_mcr_write_or(wal,
+> > @@ -2103,20 +2097,6 @@ static void tgl_whitelist_build(struct intel_engine_cs *engine)
+> >  	}
+> >  }
+> >  
+> > -static void dg1_whitelist_build(struct intel_engine_cs *engine)
+> > -{
+> > -	struct i915_wa_list *w = &engine->whitelist;
+> > -
+> > -	tgl_whitelist_build(engine);
+> > -
+> > -	/* GEN:BUG:1409280441:dg1 */
+> > -	if (IS_DG1_GRAPHICS_STEP(engine->i915, STEP_A0, STEP_B0) &&
+> > -	    (engine->class == RENDER_CLASS ||
+> > -	     engine->class == COPY_ENGINE_CLASS))
+> > -		whitelist_reg_ext(w, RING_ID(engine->mmio_base),
+> > -				  RING_FORCE_TO_NONPRIV_ACCESS_RD);
+> > -}
+> > -
+> >  static void xehpsdv_whitelist_build(struct intel_engine_cs *engine)
+> >  {
+> >  	allow_read_ctx_timestamp(engine);
+> > @@ -2196,8 +2176,6 @@ void intel_engine_init_whitelist(struct intel_engine_cs *engine)
+> >  		dg2_whitelist_build(engine);
+> >  	else if (IS_XEHPSDV(i915))
+> >  		xehpsdv_whitelist_build(engine);
+> > -	else if (IS_DG1(i915))
+> > -		dg1_whitelist_build(engine);
+> >  	else if (GRAPHICS_VER(i915) == 12)
+> >  		tgl_whitelist_build(engine);
+> >  	else if (GRAPHICS_VER(i915) == 11)
+> > @@ -2410,16 +2388,6 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+> >  			   true);
+> >  	}
+> >  
+> > -	if (IS_DG1_GRAPHICS_STEP(i915, STEP_A0, STEP_B0)) {
+> > -		/*
+> > -		 * Wa_1607138336
+> > -		 * Wa_1607063988
+> > -		 */
+> > -		wa_write_or(wal,
+> > -			    GEN9_CTX_PREEMPT_REG,
+> > -			    GEN12_DISABLE_POSH_BUSY_FF_DOP_CG);
+> > -	}
+> > -
+> >  	if (IS_ALDERLAKE_P(i915) || IS_ALDERLAKE_S(i915) || IS_DG1(i915) ||
+> >  	    IS_ROCKETLAKE(i915) || IS_TIGERLAKE(i915)) {
+> >  		/* Wa_1606931601:tgl,rkl,dg1,adl-s,adl-p */
+> > @@ -2449,30 +2417,22 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+> >  	}
+> >  
+> >  	if (IS_ALDERLAKE_P(i915) || IS_ALDERLAKE_S(i915) ||
+> > -	    IS_DG1_GRAPHICS_STEP(i915, STEP_A0, STEP_B0) ||
+> >  	    IS_ROCKETLAKE(i915) || IS_TIGERLAKE(i915)) {
+> > -		/* Wa_1409804808:tgl,rkl,dg1[a0],adl-s,adl-p */
+> > +		/* Wa_1409804808 */
+> >  		wa_mcr_masked_en(wal, GEN8_ROW_CHICKEN2,
+> >  				 GEN12_PUSH_CONST_DEREF_HOLD_DIS);
+> >  
+> > -		/*
+> > -		 * Wa_1409085225:tgl
+> > -		 * Wa_14010229206:tgl,rkl,dg1[a0],adl-s,adl-p
+> > -		 */
+> > +		/* Wa_14010229206 */
+> >  		wa_mcr_masked_en(wal, GEN9_ROW_CHICKEN4, GEN12_DISABLE_TDL_PUSH);
+> >  	}
+> >  
+> > -	if (IS_DG1_GRAPHICS_STEP(i915, STEP_A0, STEP_B0) ||
+> > -	    IS_ROCKETLAKE(i915) || IS_TIGERLAKE(i915) || IS_ALDERLAKE_P(i915)) {
+> > +	if (IS_ROCKETLAKE(i915) || IS_TIGERLAKE(i915) || IS_ALDERLAKE_P(i915)) {
+> >  		/*
+> > -		 * Wa_1607030317:tgl
+> > -		 * Wa_1607186500:tgl
+> > -		 * Wa_1607297627:tgl,rkl,dg1[a0],adlp
+> > +		 * Wa_1607297627
+> >  		 *
+> >  		 * On TGL and RKL there are multiple entries for this WA in the
+> >  		 * BSpec; some indicate this is an A0-only WA, others indicate
+> >  		 * it applies to all steppings so we trust the "all steppings."
+> > -		 * For DG1 this only applies to A0.
+> >  		 */
+> >  		wa_masked_en(wal,
+> >  			     RING_PSMI_CTL(RENDER_RING_BASE),
+> > diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> > index 879ab4ed42af..397a2159fe12 100644
+> > --- a/drivers/gpu/drm/i915/i915_driver.c
+> > +++ b/drivers/gpu/drm/i915/i915_driver.c
+> > @@ -168,6 +168,7 @@ static void intel_detect_preproduction_hw(struct drm_i915_private *dev_priv)
+> >  	pre |= IS_GEMINILAKE(dev_priv) && INTEL_REVID(dev_priv) < 0x3;
+> >  	pre |= IS_ICELAKE(dev_priv) && INTEL_REVID(dev_priv) < 0x7;
+> >  	pre |= IS_TIGERLAKE(dev_priv) && INTEL_REVID(dev_priv) < 0x1;
+> > +	pre |= IS_DG1(dev_priv) && INTEL_REVID(dev_priv) < 0x1;
+> >  
+> >  	if (pre) {
+> >  		drm_err(&dev_priv->drm, "This is a pre-production stepping. "
+> > diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> > index 62cc0f76c583..57b84dbca084 100644
+> > --- a/drivers/gpu/drm/i915/i915_drv.h
+> > +++ b/drivers/gpu/drm/i915/i915_drv.h
+> > @@ -658,8 +658,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+> >  
+> >  #define IS_DG1_GRAPHICS_STEP(p, since, until) \
+> >  	(IS_DG1(p) && IS_GRAPHICS_STEP(p, since, until))
+> > -#define IS_DG1_DISPLAY_STEP(p, since, until) \
+> > -	(IS_DG1(p) && IS_DISPLAY_STEP(p, since, until))
+> >  
+> >  #define IS_ADLS_DISPLAY_STEP(__i915, since, until) \
+> >  	(IS_ALDERLAKE_S(__i915) && \
+> > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+> > index c6676f1a9c6f..e0364c4141b8 100644
+> > --- a/drivers/gpu/drm/i915/intel_pm.c
+> > +++ b/drivers/gpu/drm/i915/intel_pm.c
+> > @@ -4353,15 +4353,6 @@ static void adlp_init_clock_gating(struct drm_i915_private *dev_priv)
+> >  	intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1, DDI_CLOCK_REG_ACCESS, 0);
+> >  }
+> >  
+> > -static void dg1_init_clock_gating(struct drm_i915_private *dev_priv)
+> > -{
+> > -	gen12lp_init_clock_gating(dev_priv);
+> > -
+> > -	/* Wa_1409836686:dg1[a0] */
+> > -	if (IS_DG1_GRAPHICS_STEP(dev_priv, STEP_A0, STEP_B0))
+> > -		intel_uncore_rmw(&dev_priv->uncore, GEN9_CLKGATE_DIS_3, 0, DPT_GATING_DIS);
+> > -}
+> > -
+> >  static void xehpsdv_init_clock_gating(struct drm_i915_private *dev_priv)
+> >  {
+> >  	/* Wa_22010146351:xehpsdv */
+> > @@ -4781,7 +4772,6 @@ CG_FUNCS(pvc);
+> >  CG_FUNCS(dg2);
+> >  CG_FUNCS(xehpsdv);
+> >  CG_FUNCS(adlp);
+> > -CG_FUNCS(dg1);
+> >  CG_FUNCS(gen12lp);
+> >  CG_FUNCS(icl);
+> >  CG_FUNCS(cfl);
+> > @@ -4824,8 +4814,6 @@ void intel_init_clock_gating_hooks(struct drm_i915_private *dev_priv)
+> >  		dev_priv->clock_gating_funcs = &xehpsdv_clock_gating_funcs;
+> >  	else if (IS_ALDERLAKE_P(dev_priv))
+> >  		dev_priv->clock_gating_funcs = &adlp_clock_gating_funcs;
+> > -	else if (IS_DG1(dev_priv))
+> > -		dev_priv->clock_gating_funcs = &dg1_clock_gating_funcs;
 > 
-> The commit message was initially confused because it looks like
-> we are just adding a wait, without doing anything....
+> This will create warnings:
 > 
-> But looking to the code we can see that it will wait until
-> pcode is ready with a timeout of 10 seconds.
-> 
-> But if pcode is ready in 10 seconds, why pcode is not ready
-> in 190 seconds. We are doing absolutely nothing more that could
-> make pcode ready in 10 seconds that won't be in 190.
-> 
-> This is what we are missing here... The code as is doesn't make
-> a lot of sense to us and it looks like it is solving the issue
-> by the 10 extra seconds and not by some special status checking.
+> MISSING_CASE down below...
 
-Okay, after an offline talk I am convinced now that we need some
-check like this in some place.
+It shouldn't make it down that far since:
 
-But the commit message needs be be fully re-written.
+> >  	else if (GRAPHICS_VER(dev_priv) == 12)
 
-It needs to be clear that underneath, the pcode communication
-functions will do a check for ready without any wait, what will
-make desired timeout to never really wait for the pcode done
-and prematurely return.
+will now match for DG1.
 
-at __snb_pcode_rw():
 
- if (intel_uncore_read_fw(uncore, GEN6_PCODE_MAILBOX) & GEN6_PCODE_READY)
-                return -EAGAIN;
+Matt
 
-So, for this reason we need to ensure that pcode is really ready
-before we wait.
-
-Other options are to handle the EAGAIN return and then wait.
-Or even change the __snb_pcode_rw to ensure that it is ready...
-
-Something like:
-
--       if (intel_uncore_read_fw(uncore, GEN6_PCODE_MAILBOX) & GEN6_PCODE_READY)
--               return -EAGAIN;
-+       if (__intel_wait_for_register_fw(uncore, GEN6_PCODE_MAILBOX,
-+                                        GEN6_PCODE_READY, GEN6_PCODE_READY,
-+                                        fast_timeout_us,
-+                                        slow_timeout_ms,
-+                                        NULL))
-+               return -ETIMEDOUT;
-
-In the best regular case it will not change anything since the wait
-for will return 0 immediatelly... in the worst case we would double
-the timeout value, but this would be only in this insane case of
-180 seconds anyway and if it goes really really nasty...
-
-But anyway, now the motivation and the source of the issue is pretty
-clear, I can add my rv-b there, but I really want a better commit msg
-at least...
-
-> 
+> >  		dev_priv->clock_gating_funcs = &gen12lp_clock_gating_funcs;
+> >  	else if (GRAPHICS_VER(dev_priv) == 11)
+> > -- 
+> > 2.39.1
 > > 
-> > Thanks, Rodrigo!
-> > Andi
-> > 
-> > > > 
-> > > > Andi
-> > > > 
-> > > > > 
-> > > > >         /* write value to GEN6_PCODE_DATA register */
-> > > > > 	intel_uncore_write_fw(uncore, GEN6_PCODE_DATA, *val);
-> > > > > 
-> > > > > 	intel_uncore_write_fw(uncore, GEN6_PCODE_DATA1, val1 ? *val1 : 0);
-> > > > > 
-> > > > >         /* In this scenario, the value
-> > > > >            "DG1_PCODE_STATUS | GEN6_PCODE_READY"
-> > > > >            is written to the GEN6_PCODE_MAILBOX register,
-> > > > >            so that the Busy status of the GEN6_PCODE_MAILBOX register
-> > > > >            can be checked later.
-> > > > >            (When the value of the GEN6_PCODE_READY bit of the
-> > > > >             GEN6_PCODE_MAILBOX register changes to 0, the operation can
-> > > > >             be considered completed.) */
-> > > > > 	intel_uncore_write_fw(uncore,
-> > > > > 			      GEN6_PCODE_MAILBOX, GEN6_PCODE_READY | mbox);
-> > > > > 
-> > > > >         /* In this scenario, verify that the BUSY status bit in the
-> > > > >            GEN6_PCODE_MAILBOX register turns off for up to 500us. */
-> > > > > 	if (__intel_wait_for_register_fw(uncore,
-> > > > > 					 GEN6_PCODE_MAILBOX,
-> > > > > 					 GEN6_PCODE_READY, 0,
-> > > > > 					 fast_timeout_us,
-> > > > > 					 slow_timeout_ms,
-> > > > > 					 &mbox))
-> > > > > 		return -ETIMEDOUT;
-> > > > >         /* If there is a failure here, it may be considered that the
-> > > > >            "DG1_PCODE_STATUS | GEN6_PCODE_READY" operation was not
-> > > > >            completed within 500us */
-> > > > > ...
-> > > > > }
-> > > > > 
-> > > > > int skl_pcode_request(struct intel_uncore *uncore, u32 mbox, u32 request,
-> > > > > 		      u32 reply_mask, u32 reply, int timeout_base_ms)
-> > > > > {
-> > > > > 	u32 status;
-> > > > > 	int ret;
-> > > > > 
-> > > > > 	mutex_lock(&uncore->i915->sb_lock);
-> > > > > 
-> > > > > #define COND \
-> > > > > 	skl_pcode_try_request(uncore, mbox, request, reply_mask, reply, &status)
-> > > > > 
-> > > > >         /* the first trial for skl_pcode_try_request() can return
-> > > > >            -EAGAIN or -ETIMEDOUT. And the code did not check the error
-> > > > >            code here, so we don't know how far the __snb_pcode_rw()
-> > > > >            function went. It is not known whether the pcode_mailbox
-> > > > >            status was busy before writing the value to the
-> > > > >            GEN6_PCODE_DATA register or after.*/
-> > > > > 	if (COND) {
-> > > > > 		ret = 0;
-> > > > > 		goto out;
-> > > > > 	}
-> > > > > 
-> > > > >         /* In this scenario, skl_pcode_try_request() is invoked every
-> > > > >            10us for 180 seconds. When skl_pcode_try_request() returns
-> > > > >            -EAGAIN and -ETIMEDOUT by _wait_for(),
-> > > > >            -ETIMEDOUT is returned to a variable ret. */
-> > > > > 
-> > > > > 	ret = _wait_for(COND, timeout_base_ms * 1000, 10, 10);
-> > > > > 
-> > > > > 	if (!ret)
-> > > > > 		goto out;
-> > > > > 
-> > > > > 	/*
-> > > > > 	 * The above can time out if the number of requests was low (2 in the
-> > > > > 	 * worst case) _and_ PCODE was busy for some reason even after a
-> > > > > 	 * (queued) request and @timeout_base_ms delay. As a workaround retry
-> > > > > 	 * the poll with preemption disabled to maximize the number of
-> > > > > 	 * requests. Increase the timeout from @timeout_base_ms to 50ms to
-> > > > > 	 * account for interrupts that could reduce the number of these
-> > > > > 	 * requests, and for any quirks of the PCODE firmware that delays
-> > > > > 	 * the request completion.
-> > > > > 	 */
-> > > > > 	drm_dbg_kms(&uncore->i915->drm,
-> > > > > 		    "PCODE timeout, retrying with preemption disabled\n");
-> > > > > 	drm_WARN_ON_ONCE(&uncore->i915->drm, timeout_base_ms > 3);
-> > > > > 	preempt_disable();
-> > > > > 	ret = wait_for_atomic(COND, 50);
-> > > > > 
-> > > > > 	preempt_enable();
-> > > > > 
-> > > > > out:
-> > > > > 	mutex_unlock(&uncore->i915->sb_lock);
-> > > > > 	return status ? status : ret;
-> > > > > #undef COND
-> > > > > }
-> > > > > 
-> > > > > ---------------------------------------------------------
-> > > > > 
-> > > > > If you try skl_pcode_try_request() for 180 seconds in skl_pcode_request(),
-> > > > > and the first "intel_uncore_read_fw(uncore, GEN6_PCODE_MAILBOX) &
-> > > > > GEN6_PCODE_READY)" call in __snb_pcode_rw() that skl_pcode_try_request()
-> > > > > invokes always fails. if then it does not make sense to me why this patch
-> > > > > fixes it by just waiting 10 seconds.This is because if it was called with
-> > > > > the flow described above, 180 seconds is longer than 10 seconds, so the
-> > > > > scenario you mentioned is also covered in the existing code.
-> > > > > 
-> > > > > To describe in more detail the second scenario I previously commented on:
-> > > > > skl_pcode_request() tries skl_pcode_try_request() for 180 seconds
-> > > > >  1) In skl_pcode_try_request(), the GEN6_PCODE_MAILBOX register bit is not
-> > > > > BUSY, so the value is written to the GEN6_PCODE_DATA1 register.
-> > > > >  2) skl_pcode_try_request() returns -ETIMEDOUT value because the operation
-> > > > > of 1) does not complete within 500us.
-> > > > >  3) Scenario in which the GEN6_PCODE_MAILBOX register bit is checked as BUSY
-> > > > > and returns -EAGAIN in the last call of skl_pcode_try_request() invoked by
-> > > > > skl_pcode_request()
-> > > > > 
-> > > > > If the reason why this problem occurred is because of this scenario,
-> > > > > shouldn't there be an attempt to increase fast_timeout_us used as an
-> > > > > argument of __snb_pcode_rw() to 500us or more when skl_pcode_try_request()
-> > > > > returns -ETIMEDOUT?
-> > > > > 
-> > > > > Br,
-> > > > > G.G.
+
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
