@@ -1,34 +1,76 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28614681FFD
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 00:51:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4D2A681FFF
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 00:52:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7798C10E0F3;
-	Mon, 30 Jan 2023 23:51:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29B6510E31E;
+	Mon, 30 Jan 2023 23:52:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id F165D10E0F3;
- Mon, 30 Jan 2023 23:51:16 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E8B4CAADE8;
- Mon, 30 Jan 2023 23:51:16 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0415421110964772571=="
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC9B910E2F4
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Jan 2023 23:52:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1675122724;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=PAdTklmEDyAgRNbObsy/Ygo6Kv9vgqHE1ov2RCXdrFg=;
+ b=PO8Z4LNWuzHC87RiYru9OO29PjD8AwbUjphe0HrhAnFQPyvNTv7gpPhGAtEeETFfY+WmRi
+ D+QbAEcZdY9c9o6S6sogRkP2Tox7SayO89L5ahkcQYmiqXd+4VfFNWueZa8jBpY5Ze8e3H
+ x+S4JN9XCA4l9C4KnPB/XRKliILiOoQ=
+Received: from mail-io1-f71.google.com (mail-io1-f71.google.com
+ [209.85.166.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-267-F7FtFoNFNiC99LPAoK9PEA-1; Mon, 30 Jan 2023 18:52:00 -0500
+X-MC-Unique: F7FtFoNFNiC99LPAoK9PEA-1
+Received: by mail-io1-f71.google.com with SMTP id
+ z25-20020a6be019000000b00716eaf80c1dso3866605iog.3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Jan 2023 15:52:00 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=PAdTklmEDyAgRNbObsy/Ygo6Kv9vgqHE1ov2RCXdrFg=;
+ b=oeIZEcvsk5WTHtSVZ+WHZz0UjsboVYit5XKArsF+1aSbXIKrjO5J41+bAtGt2Z6Pc2
+ yC1a29pVPSfx1q3BizRGFc7H8M9nEbCWDh5LxJpqoI9bzyeGbuZxNWI2fjm5KtwppOve
+ Ho1G0Wocw02OOMV88cOW5YToK90bo2qeBXf2fJVz+B2xzgNFMPne5DbsWb5/13V1nWjB
+ trZ0u76joc0P3NcfjE9VDzoxgK6pv0m8YmrkGlkAEm+67TFKMdID7kzMlZxuJk30fgQg
+ a6Y+ebuPRmu3zpliovk4e2c6lDeNeWsAgEygk08gwcFQd+wkRIQFQ/2IrWaS1KKoa1RF
+ o7FA==
+X-Gm-Message-State: AO0yUKW7yQ7xrHaAV9uANEFEq9GPM4x5O/tCsEZZDav+ykuc42LJQ2UB
+ czBeF992U1KFAGhAbu5gr5VTYnt3cMHhd4lk8uFZE1gHc4TzdeDsgigbT2LD5i89qEN4FTIJfye
+ MYQ4Mu+83p6W8efFUDhrNtmYJ4rQe
+X-Received: by 2002:a05:6e02:190f:b0:310:eb55:3856 with SMTP id
+ w15-20020a056e02190f00b00310eb553856mr6886979ilu.9.1675122720180; 
+ Mon, 30 Jan 2023 15:52:00 -0800 (PST)
+X-Google-Smtp-Source: AK7set+Tjuh/QLV5ACoKjB78BPy3FHiMPojdoqjURp7yFxxmHnP5uajB9G0cNMY2hpBpgzJz6u+eCQ==
+X-Received: by 2002:a05:6e02:190f:b0:310:eb55:3856 with SMTP id
+ w15-20020a056e02190f00b00310eb553856mr6886951ilu.9.1675122719932; 
+ Mon, 30 Jan 2023 15:51:59 -0800 (PST)
+Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
+ w65-20020a025d44000000b0039deb26853csm5227538jaa.10.2023.01.30.15.51.58
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 30 Jan 2023 15:51:59 -0800 (PST)
+Date: Mon, 30 Jan 2023 16:51:58 -0700
+From: Alex Williamson <alex.williamson@redhat.com>
+To: Arnd Bergmann <arnd@kernel.org>
+Message-ID: <20230130165158.6993fc28.alex.williamson@redhat.com>
+In-Reply-To: <20230126211211.1762319-1-arnd@kernel.org>
+References: <20230126211211.1762319-1-arnd@kernel.org>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Mon, 30 Jan 2023 23:51:16 -0000
-Message-ID: <167512267691.3666.15526889002914215589@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230130181701.29977-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20230130181701.29977-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_Include_stepping_inform?=
- =?utf-8?q?aiton_in_device_info_dump_=28rev2=29?=
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] [v2] vfio-mdev: add back CONFIG_VFIO
+ dependency
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,130 +83,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Tony Krowiak <akrowiak@linux.ibm.com>, Arnd Bergmann <arnd@arndb.de>,
+ Vasily Gorbik <gor@linux.ibm.com>, linux-s390@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, Masami Hiramatsu <mhiramat@kernel.org>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Jason Gunthorpe <jgg@ziepe.ca>, Tomas Winkler <tomas.winkler@intel.com>,
+ "Steven Rostedt \(Google\)" <rostedt@goodmis.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Miguel Ojeda <ojeda@kernel.org>,
+ Alexander Gordeev <agordeev@linux.ibm.com>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ Heiko Carstens <hca@linux.ibm.com>, Sven Schnelle <svens@linux.ibm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0415421110964772571==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 26 Jan 2023 22:08:31 +0100
+Arnd Bergmann <arnd@kernel.org> wrote:
 
-== Series Details ==
+> From: Arnd Bergmann <arnd@arndb.de>
+> 
+> CONFIG_VFIO_MDEV cannot be selected when VFIO itself is
+> disabled, otherwise we get a link failure:
+> 
+> WARNING: unmet direct dependencies detected for VFIO_MDEV
+>   Depends on [n]: VFIO [=n]
+>   Selected by [y]:
+>   - SAMPLE_VFIO_MDEV_MTTY [=y] && SAMPLES [=y]
+>   - SAMPLE_VFIO_MDEV_MDPY [=y] && SAMPLES [=y]
+>   - SAMPLE_VFIO_MDEV_MBOCHS [=y] && SAMPLES [=y]
+> /home/arnd/cross/arm64/gcc-13.0.1-nolibc/x86_64-linux/bin/x86_64-linux-ld: samples/vfio-mdev/mdpy.o: in function `mdpy_remove':
+> mdpy.c:(.text+0x1e1): undefined reference to `vfio_unregister_group_dev'
+> /home/arnd/cross/arm64/gcc-13.0.1-nolibc/x86_64-linux/bin/x86_64-linux-ld: samples/vfio-mdev/mdpy.o: in function `mdpy_probe':
+> mdpy.c:(.text+0x149e): undefined reference to `_vfio_alloc_device'
+> 
+> Fixes: 8bf8c5ee1f38 ("vfio-mdev: turn VFIO_MDEV into a selectable symbol")
+> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+> ---
+> v2: fix the s390 and drm drivers as well, in addition to the
+> sample code.
+> ---
+>  arch/s390/Kconfig            | 4 +++-
+>  drivers/gpu/drm/i915/Kconfig | 1 +
+>  samples/Kconfig              | 3 +++
+>  3 files changed, 7 insertions(+), 1 deletion(-)
 
-Series: series starting with [1/2] drm/i915: Include stepping informaiton in device info dump (rev2)
-URL   : https://patchwork.freedesktop.org/series/113504/
-State : success
+Applied to vfio next branch for v6.3.  Thanks,
 
-== Summary ==
+Alex
 
-CI Bug Log - changes from CI_DRM_12668 -> Patchwork_113504v2
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113504v2/index.html
-
-Participating hosts (25 -> 24)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_113504v2 that come from known issues:
-
-### IGT changes ###
-
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#7981]: https://gitlab.freedesktop.org/drm/intel/issues/7981
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12668 -> Patchwork_113504v2
-
-  CI-20190529: 20190529
-  CI_DRM_12668: c43f5b8a56e821d415239c615237ae4f8b994fcb @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7143: c7b12dcc460fc2348e1fa7f4dcb791bb82e29e44 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_113504v2: c43f5b8a56e821d415239c615237ae4f8b994fcb @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-cbf6fa22448c drm/i915: Prefix hex numbers with 0x
-df5759fa3252 drm/i915: Include stepping informaiton in device info dump
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113504v2/index.html
-
---===============0415421110964772571==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915: Include stepping informaiton in device info dump (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/113504/">https://patchwork.freedesktop.org/series/113504/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113504v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113504v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12668 -&gt; Patchwork_113504v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113504v2/index.html</p>
-<h2>Participating hosts (25 -&gt; 24)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_113504v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12668 -&gt; Patchwork_113504v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12668: c43f5b8a56e821d415239c615237ae4f8b994fcb @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7143: c7b12dcc460fc2348e1fa7f4dcb791bb82e29e44 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_113504v2: c43f5b8a56e821d415239c615237ae4f8b994fcb @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>cbf6fa22448c drm/i915: Prefix hex numbers with 0x<br />
-df5759fa3252 drm/i915: Include stepping informaiton in device info dump</p>
-
-</body>
-</html>
-
---===============0415421110964772571==--
