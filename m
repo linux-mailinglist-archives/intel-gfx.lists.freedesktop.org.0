@@ -2,46 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E1E3680A6F
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Jan 2023 11:08:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DCA07680A76
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Jan 2023 11:08:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 523DB10E0DA;
-	Mon, 30 Jan 2023 10:08:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0565310E1E0;
+	Mon, 30 Jan 2023 10:08:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BE7810E0D7
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Jan 2023 10:08:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0670310E0D7
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Jan 2023 10:08:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675073315; x=1706609315;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=eTd5JS4fB8HPeFHc7Z2rNH4KR4NkAwOdhbFXn+8PIrE=;
- b=a+uA+8YSu35vCl+98pJuhLN5AAyTZd9Y30+vZL+sUerWgUgbNpwWav0c
- q3gAnECinx3u+3cCNuf3TEf8oWDSeVIkXneH7qfafiKAz4By9ti9Q3Fx0
- YqBt+4W6Hovy0pdWUZUeac6fk4q6z+1bIlMsML+7lrQ/FiNob+O/8Q++8
- dWSCuusl2rcReGcD0dXGmsZcFxo1FBzJiKCvGKou8r+z7Hjk69W5ntwhW
- pZp58abyfpOcqSpGBZQzUrVdStw2hmOYndssnqaXEt7GslstcIOHftUTO
- B7v37XIZ+oC4DVw6dcbevcaaQ7GgJORyKB0eBkXQCm+YDxrRmsGBJychP Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="413741217"
-X-IronPort-AV: E=Sophos;i="5.97,257,1669104000"; d="scan'208";a="413741217"
+ t=1675073317; x=1706609317;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=+gYWpEbzf5F6HMWpqCvJuC/PB4E6Kcyw6FtOz9BQunQ=;
+ b=QAIwN+QBhdv+AHpbZiZmW7wHf9amV+BGSyOzYDrwEQJZWwagEw3JaJEk
+ VL+hz2aaKPGXMhMd0p1nrEvUdMPeOj5AfbEYcgtl6DjLO0DeEgDBxfbnh
+ SrNXF0hyvQ25DAXkNAmf5c/TFFO7DPR3/JWMtnNOUA6M162zmERh/06Hs
+ aDC2wGd+PX9CfvDRLC3BBsbQ6HZ1aZjh6rsbjrXXc0XY0FeNHZwHKS2Kw
+ Q8a/dEST4UWCz92CwgQSvR1dQkZfNdqUtOBhfCOGPstYSNjr6gmoJp0XV
+ qWwi9rL0f1pgX78amIjQGSe9MU5zKK78Fv0YHPcllZBil/iNJXPXpF+Nq g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="413741235"
+X-IronPort-AV: E=Sophos;i="5.97,257,1669104000"; d="scan'208";a="413741235"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2023 02:08:27 -0800
+ 30 Jan 2023 02:08:30 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="657400619"
-X-IronPort-AV: E=Sophos;i="5.97,257,1669104000"; d="scan'208";a="657400619"
+X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="657400635"
+X-IronPort-AV: E=Sophos;i="5.97,257,1669104000"; d="scan'208";a="657400635"
 Received: from chaitanya.iind.intel.com ([10.190.239.113])
- by orsmga007.jf.intel.com with ESMTP; 30 Jan 2023 02:08:23 -0800
+ by orsmga007.jf.intel.com with ESMTP; 30 Jan 2023 02:08:27 -0800
 From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 30 Jan 2023 15:38:04 +0530
-Message-Id: <20230130100806.1373883-1-chaitanya.kumar.borah@intel.com>
+Date: Mon, 30 Jan 2023 15:38:05 +0530
+Message-Id: <20230130100806.1373883-2-chaitanya.kumar.borah@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230130100806.1373883-1-chaitanya.kumar.borah@intel.com>
+References: <20230130100806.1373883-1-chaitanya.kumar.borah@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC 0/2] Add new CDCLK step for RPL-U
+Subject: [Intel-gfx] [RFC v4 1/2] drm/i915: Add RPL-U sub platform
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,33 +60,105 @@ Cc: ville.syrjala@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-A new step of 480MHz has been added on SKUs that have an RPL-U
-device id. This particular step is to support 120Hz panels
-more efficiently.
+Separate out RPLU device ids and add them to both RPL and
+newly created RPL-U subplatforms.
 
-This patchset adds a new table to include this new CDCLK
-step. Details can be found in BSpec entry 55409.
+v2: (Matt)
+    - Sort PCI-IDs numerically
+    - Name the sub-platform to accurately depict what it is for
+    - Make RPL-U part of RPL subplatform
 
-Create a new sub-platform to identify RPL-U which will enable
-us to make the differentiation during CDCLK initialization.
+v3: revert to RPL-U subplatform (Jani)
 
-Furthermore, we need to make a distinction between ES (Engineering
-Sample) and QS (Quality Sample) parts as this change comes only
-to QS parts. This version of the patch does not include this change
-as we are yet to make a decision if this particular part needs
-to be upstreamed.(see comments on revision 2)
+v4: (Jani)
+    - Add RPL-U ids to RPL-P platform
+    - Remove redundant comment
 
-Chaitanya Kumar Borah (2):
-  drm/i915: Add RPL-U sub platform
-  drm/i915/display: Add 480 MHz CDCLK steps for RPL-U
+Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+---
+ drivers/gpu/drm/i915/i915_drv.h          |  2 ++
+ drivers/gpu/drm/i915/intel_device_info.c |  7 +++++++
+ drivers/gpu/drm/i915/intel_device_info.h |  1 +
+ include/drm/i915_pciids.h                | 12 ++++++++----
+ 4 files changed, 18 insertions(+), 4 deletions(-)
 
- drivers/gpu/drm/i915/display/intel_cdclk.c | 26 ++++++++++++++++++++++
- drivers/gpu/drm/i915/i915_drv.h            |  2 ++
- drivers/gpu/drm/i915/intel_device_info.c   |  7 ++++++
- drivers/gpu/drm/i915/intel_device_info.h   |  1 +
- include/drm/i915_pciids.h                  | 12 ++++++----
- 5 files changed, 44 insertions(+), 4 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 48fd82722f12..c88e514728a0 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -619,6 +619,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ 	IS_SUBPLATFORM(dev_priv, INTEL_ALDERLAKE_P, INTEL_SUBPLATFORM_N)
+ #define IS_ADLP_RPLP(dev_priv) \
+ 	IS_SUBPLATFORM(dev_priv, INTEL_ALDERLAKE_P, INTEL_SUBPLATFORM_RPL)
++#define IS_ADLP_RPLU(dev_priv) \
++	IS_SUBPLATFORM(dev_priv, INTEL_ALDERLAKE_P, INTEL_SUBPLATFORM_RPLU)
+ #define IS_HSW_EARLY_SDV(dev_priv) (IS_HASWELL(dev_priv) && \
+ 				    (INTEL_DEVID(dev_priv) & 0xFF00) == 0x0C00)
+ #define IS_BDW_ULT(dev_priv) \
+diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+index 849baf6c3b3c..322e1ef94c47 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.c
++++ b/drivers/gpu/drm/i915/intel_device_info.c
+@@ -201,6 +201,10 @@ static const u16 subplatform_rpl_ids[] = {
+ 	INTEL_RPLP_IDS(0),
+ };
+ 
++static const u16 subplatform_rplu_ids[] = {
++	INTEL_RPLU_IDS(0),
++};
++
+ static const u16 subplatform_g10_ids[] = {
+ 	INTEL_DG2_G10_IDS(0),
+ 	INTEL_ATS_M150_IDS(0),
+@@ -268,6 +272,9 @@ static void intel_device_info_subplatform_init(struct drm_i915_private *i915)
+ 	} else if (find_devid(devid, subplatform_rpl_ids,
+ 			      ARRAY_SIZE(subplatform_rpl_ids))) {
+ 		mask = BIT(INTEL_SUBPLATFORM_RPL);
++		if (find_devid(devid, subplatform_rplu_ids,
++			       ARRAY_SIZE(subplatform_rplu_ids)))
++			mask |= BIT(INTEL_SUBPLATFORM_RPLU);
+ 	} else if (find_devid(devid, subplatform_g10_ids,
+ 			      ARRAY_SIZE(subplatform_g10_ids))) {
+ 		mask = BIT(INTEL_SUBPLATFORM_G10);
+diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+index d588e5fd2eea..3e3ca5eb073f 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.h
++++ b/drivers/gpu/drm/i915/intel_device_info.h
+@@ -127,6 +127,7 @@ enum intel_platform {
+  * bit set
+  */
+ #define INTEL_SUBPLATFORM_N    1
++#define INTEL_SUBPLATFORM_RPLU  2
+ 
+ /* MTL */
+ #define INTEL_SUBPLATFORM_M	0
+diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
+index 4a4c190f7698..5824e1d7d162 100644
+--- a/include/drm/i915_pciids.h
++++ b/include/drm/i915_pciids.h
+@@ -684,14 +684,18 @@
+ 	INTEL_VGA_DEVICE(0xA78A, info), \
+ 	INTEL_VGA_DEVICE(0xA78B, info)
+ 
++/* RPL-U */
++#define INTEL_RPLU_IDS(info) \
++	INTEL_VGA_DEVICE(0xA721, info), \
++	INTEL_VGA_DEVICE(0xA7A1, info), \
++	INTEL_VGA_DEVICE(0xA7A9, info)
++
+ /* RPL-P */
+ #define INTEL_RPLP_IDS(info) \
++	INTEL_RPLU_IDS(info), \
+ 	INTEL_VGA_DEVICE(0xA720, info), \
+-	INTEL_VGA_DEVICE(0xA721, info), \
+ 	INTEL_VGA_DEVICE(0xA7A0, info), \
+-	INTEL_VGA_DEVICE(0xA7A1, info), \
+-	INTEL_VGA_DEVICE(0xA7A8, info), \
+-	INTEL_VGA_DEVICE(0xA7A9, info)
++	INTEL_VGA_DEVICE(0xA7A8, info)
+ 
+ /* DG2 */
+ #define INTEL_DG2_G10_IDS(info) \
 -- 
 2.25.1
 
