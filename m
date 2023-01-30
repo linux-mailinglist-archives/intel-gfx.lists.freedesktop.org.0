@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74755680E1A
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Jan 2023 13:56:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2FD0680E49
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Jan 2023 13:58:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FA3310E23F;
-	Mon, 30 Jan 2023 12:55:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FC7710E242;
+	Mon, 30 Jan 2023 12:58:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9011E10E23F
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Jan 2023 12:55:58 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44B5D10E241
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Jan 2023 12:58:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675083358; x=1706619358;
+ t=1675083511; x=1706619511;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=qz7FOvv7jxrb21KvUeDjMsrQf1r/MJhhkwxIIRDkOtk=;
- b=VzJK4p/sPiJ89IXI7rEXhoZz7vyE0zOlNhr+SEcp5ujrgs1746TuA0cm
- AzZ6nPPJSr0N/O4fj49GrjQ6xNEORWNNHDBmtekF4uHbj/uTA0OBIu6FM
- VUVnrpaMIww1gYJUKAUpCrzEQ/VoiNMnGTMk0qfkfaohBCpGGQT2HRQsj
- FFQF+aIe2FesFKbjZMKtmzo7kOymWEDhMnPMAUxv0EcNYJeit75u92rJ7
- zG8fVuV2wbGK5AKCNtBOIIBxUbN1E/tV7dzFgZrhxzrDKyBqPVcong5nR
- +hzRGvkYAaK02a7A7cbF5788yrD8p6YIicbWxZY7AGgRDVqlzF19Bcnjc g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="389913183"
-X-IronPort-AV: E=Sophos;i="5.97,258,1669104000"; d="scan'208";a="389913183"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2023 04:55:57 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="666064187"
-X-IronPort-AV: E=Sophos;i="5.97,258,1669104000"; d="scan'208";a="666064187"
+ bh=EJvFCY9RvJ1iyG5LYTYaNWmrrDFrgCKvP78XZUFMsJY=;
+ b=AhlNnIP2HRxZ6VsBaG/MBI0sxfH5kimHyfyZ/bcpHZK0syqFrddCLTeg
+ dZEZ1PL4Wl5d9kq/JYzBG1zojGPEIKTFTgjJ+vB6Euj1Fb+WrA6EPLwBh
+ ABC66TC1nwB1P1rPU24Lv/U3nGSChokvrLQWCIuY9dQH1F5lKTBkzL716
+ M57EXmnJwG9eAW8tRMCIzm32w2I1M1/HWxCS98W9DeMAPdZ6lB57mDcgK
+ AooPl4cDfReZ4Bi+8MCwM8GZg0XoNigk4bq4EFqNVnjY3g6kr7Lz9fFgK
+ UPP3OYe7Hx+90PWLe+eOr0OOeIiBU8UVXW8iB4upzprgugNVLCT1kexxn w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="354863093"
+X-IronPort-AV: E=Sophos;i="5.97,258,1669104000"; d="scan'208";a="354863093"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2023 04:58:22 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="772492185"
+X-IronPort-AV: E=Sophos;i="5.97,258,1669104000"; d="scan'208";a="772492185"
 Received: from jproschw-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.33.170])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2023 04:55:56 -0800
-From: Jani Nikula <jani.nikula@intel.com>
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2023 04:58:21 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Andrzej Hajda <andrzej.hajda@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <2b5c4053-59a0-6aef-0d99-193ee304a503@intel.com>
+In-Reply-To: <87wn6nu46j.fsf@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221215125610.1161729-1-andrzej.hajda@intel.com>
- <2b5c4053-59a0-6aef-0d99-193ee304a503@intel.com>
-Date: Mon, 30 Jan 2023 14:55:53 +0200
-Message-ID: <87edrc41wm.fsf@intel.com>
+References: <20221219092428.2515430-1-andrzej.hajda@intel.com>
+ <87wn6nu46j.fsf@intel.com>
+Date: Mon, 30 Jan 2023 14:58:18 +0200
+Message-ID: <87bkmg41sl.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/fdi: use intel_de_rmw if
- possible
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/display/vlv: fix pixel overlap
+ register update
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,301 +59,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 30 Jan 2023, Andrzej Hajda <andrzej.hajda@intel.com> wrote:
-> Hi all,
+On Mon, 19 Dec 2022, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> On Mon, 19 Dec 2022, Andrzej Hajda <andrzej.hajda@intel.com> wrote:
+>> To update properly bits in the register the mask should be used
+>> to clear old value and then the result should be or-ed with new
+>> value, for such updates there is separate helper intel_de_rmw.
+>>
+>> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
 >
-> Gently ping on merging this and all other intel_de_rmw patches.
+> Seems like the right thing to do.
+>
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Pushed this one to din, thanks for the patch.
+And pushed both to din, thanks for the patches.
 
 BR,
 Jani.
 
 
-> All patches reviewed.
-> drm/i915/display/fdi: use intel_de_rmw if possible
-> drm/i915/display/vlv: fix pixel overlap register update
-> drm/i915/display/vlv: use intel_de_rmw if possible
-> drm/i915/display/dsi: use intel_de_rmw if possible
-> drm/i915/display/core: use intel_de_rmw if possible
-> drm/i915/display/power: use intel_de_rmw if possible
-> drm/i915/display/dpll: use intel_de_rmw if possible
-> drm/i915/display/phys: use intel_de_rmw if possible
-> drm/i915/display/pch: use intel_de_rmw if possible
-> drm/i915/display/hdmi: use intel_de_rmw if possible
-> drm/i915/display/panel: use intel_de_rmw if possible in panel related code
-> drm/i915/display/interfaces: use intel_de_rmw if possible
-> drm/i915/display/misc: use intel_de_rmw if possible
 >
-> Regards
-> Andrzej
 >
-> On 15.12.2022 13:56, Andrzej Hajda wrote:
->> The helper makes the code more compact and readable.
->> 
->> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
 >> ---
->>   drivers/gpu/drm/i915/display/intel_fdi.c | 148 +++++++----------------
->>   1 file changed, 44 insertions(+), 104 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
->> index 063f1da4f229cf..f62d9a9313498c 100644
->> --- a/drivers/gpu/drm/i915/display/intel_fdi.c
->> +++ b/drivers/gpu/drm/i915/display/intel_fdi.c
->> @@ -439,19 +439,11 @@ static void ilk_fdi_link_train(struct intel_crtc *crtc,
->>   		drm_err(&dev_priv->drm, "FDI train 1 fail!\n");
->>   
->>   	/* Train 2 */
->> -	reg = FDI_TX_CTL(pipe);
->> -	temp = intel_de_read(dev_priv, reg);
->> -	temp &= ~FDI_LINK_TRAIN_NONE;
->> -	temp |= FDI_LINK_TRAIN_PATTERN_2;
->> -	intel_de_write(dev_priv, reg, temp);
->> -
->> -	reg = FDI_RX_CTL(pipe);
->> -	temp = intel_de_read(dev_priv, reg);
->> -	temp &= ~FDI_LINK_TRAIN_NONE;
->> -	temp |= FDI_LINK_TRAIN_PATTERN_2;
->> -	intel_de_write(dev_priv, reg, temp);
->> -
->> -	intel_de_posting_read(dev_priv, reg);
->> +	intel_de_rmw(dev_priv, FDI_TX_CTL(pipe),
->> +		     FDI_LINK_TRAIN_NONE, FDI_LINK_TRAIN_PATTERN_2);
->> +	intel_de_rmw(dev_priv, FDI_RX_CTL(pipe),
->> +		     FDI_LINK_TRAIN_NONE, FDI_LINK_TRAIN_PATTERN_2);
->> +	intel_de_posting_read(dev_priv, FDI_RX_CTL(pipe));
->>   	udelay(150);
->>   
->>   	reg = FDI_RX_IIR(pipe);
->> @@ -538,13 +530,9 @@ static void gen6_fdi_link_train(struct intel_crtc *crtc,
->>   	udelay(150);
->>   
->>   	for (i = 0; i < 4; i++) {
->> -		reg = FDI_TX_CTL(pipe);
->> -		temp = intel_de_read(dev_priv, reg);
->> -		temp &= ~FDI_LINK_TRAIN_VOL_EMP_MASK;
->> -		temp |= snb_b_fdi_train_param[i];
->> -		intel_de_write(dev_priv, reg, temp);
->> -
->> -		intel_de_posting_read(dev_priv, reg);
->> +		intel_de_rmw(dev_priv, FDI_TX_CTL(pipe),
->> +			     FDI_LINK_TRAIN_VOL_EMP_MASK, snb_b_fdi_train_param[i]);
->> +		intel_de_posting_read(dev_priv, FDI_TX_CTL(pipe));
->>   		udelay(500);
->>   
->>   		for (retry = 0; retry < 5; retry++) {
->> @@ -593,13 +581,9 @@ static void gen6_fdi_link_train(struct intel_crtc *crtc,
->>   	udelay(150);
->>   
->>   	for (i = 0; i < 4; i++) {
->> -		reg = FDI_TX_CTL(pipe);
->> -		temp = intel_de_read(dev_priv, reg);
->> -		temp &= ~FDI_LINK_TRAIN_VOL_EMP_MASK;
->> -		temp |= snb_b_fdi_train_param[i];
->> -		intel_de_write(dev_priv, reg, temp);
->> -
->> -		intel_de_posting_read(dev_priv, reg);
->> +		intel_de_rmw(dev_priv, FDI_TX_CTL(pipe),
->> +			     FDI_LINK_TRAIN_VOL_EMP_MASK, snb_b_fdi_train_param[i]);
->> +		intel_de_posting_read(dev_priv, FDI_TX_CTL(pipe));
->>   		udelay(500);
->>   
->>   		for (retry = 0; retry < 5; retry++) {
->> @@ -719,19 +703,13 @@ static void ivb_manual_fdi_link_train(struct intel_crtc *crtc,
->>   		}
->>   
->>   		/* Train 2 */
->> -		reg = FDI_TX_CTL(pipe);
->> -		temp = intel_de_read(dev_priv, reg);
->> -		temp &= ~FDI_LINK_TRAIN_NONE_IVB;
->> -		temp |= FDI_LINK_TRAIN_PATTERN_2_IVB;
->> -		intel_de_write(dev_priv, reg, temp);
->> -
->> -		reg = FDI_RX_CTL(pipe);
->> -		temp = intel_de_read(dev_priv, reg);
->> -		temp &= ~FDI_LINK_TRAIN_PATTERN_MASK_CPT;
->> -		temp |= FDI_LINK_TRAIN_PATTERN_2_CPT;
->> -		intel_de_write(dev_priv, reg, temp);
->> -
->> -		intel_de_posting_read(dev_priv, reg);
->> +		intel_de_rmw(dev_priv, FDI_TX_CTL(pipe),
->> +			     FDI_LINK_TRAIN_NONE_IVB,
->> +			     FDI_LINK_TRAIN_PATTERN_2_IVB);
->> +		intel_de_rmw(dev_priv, FDI_RX_CTL(pipe),
->> +			     FDI_LINK_TRAIN_PATTERN_MASK_CPT,
->> +			     FDI_LINK_TRAIN_PATTERN_2_CPT);
->> +		intel_de_posting_read(dev_priv, FDI_RX_CTL(pipe));
->>   		udelay(2); /* should be 1.5us */
->>   
->>   		for (i = 0; i < 4; i++) {
->> @@ -837,9 +815,8 @@ void hsw_fdi_link_train(struct intel_encoder *encoder,
->>   		udelay(30);
->>   
->>   		/* Unset FDI_RX_MISC pwrdn lanes */
->> -		temp = intel_de_read(dev_priv, FDI_RX_MISC(PIPE_A));
->> -		temp &= ~(FDI_RX_PWRDN_LANE1_MASK | FDI_RX_PWRDN_LANE0_MASK);
->> -		intel_de_write(dev_priv, FDI_RX_MISC(PIPE_A), temp);
->> +		intel_de_rmw(dev_priv, FDI_RX_MISC(PIPE_A),
->> +			     FDI_RX_PWRDN_LANE1_MASK | FDI_RX_PWRDN_LANE0_MASK, 0);
->>   		intel_de_posting_read(dev_priv, FDI_RX_MISC(PIPE_A));
->>   
->>   		/* Wait for FDI auto training time */
->> @@ -865,25 +842,21 @@ void hsw_fdi_link_train(struct intel_encoder *encoder,
->>   		intel_de_write(dev_priv, FDI_RX_CTL(PIPE_A), rx_ctl_val);
->>   		intel_de_posting_read(dev_priv, FDI_RX_CTL(PIPE_A));
->>   
->> -		temp = intel_de_read(dev_priv, DDI_BUF_CTL(PORT_E));
->> -		temp &= ~DDI_BUF_CTL_ENABLE;
->> -		intel_de_write(dev_priv, DDI_BUF_CTL(PORT_E), temp);
->> +		intel_de_rmw(dev_priv, DDI_BUF_CTL(PORT_E), DDI_BUF_CTL_ENABLE, 0);
->>   		intel_de_posting_read(dev_priv, DDI_BUF_CTL(PORT_E));
->>   
->>   		/* Disable DP_TP_CTL and FDI_RX_CTL and retry */
->> -		temp = intel_de_read(dev_priv, DP_TP_CTL(PORT_E));
->> -		temp &= ~(DP_TP_CTL_ENABLE | DP_TP_CTL_LINK_TRAIN_MASK);
->> -		temp |= DP_TP_CTL_LINK_TRAIN_PAT1;
->> -		intel_de_write(dev_priv, DP_TP_CTL(PORT_E), temp);
->> +		intel_de_rmw(dev_priv, DP_TP_CTL(PORT_E),
->> +			     DP_TP_CTL_ENABLE | DP_TP_CTL_LINK_TRAIN_MASK,
->> +			     DP_TP_CTL_LINK_TRAIN_PAT1);
->>   		intel_de_posting_read(dev_priv, DP_TP_CTL(PORT_E));
->>   
->>   		intel_wait_ddi_buf_idle(dev_priv, PORT_E);
->>   
->>   		/* Reset FDI_RX_MISC pwrdn lanes */
->> -		temp = intel_de_read(dev_priv, FDI_RX_MISC(PIPE_A));
->> -		temp &= ~(FDI_RX_PWRDN_LANE1_MASK | FDI_RX_PWRDN_LANE0_MASK);
->> -		temp |= FDI_RX_PWRDN_LANE1_VAL(2) | FDI_RX_PWRDN_LANE0_VAL(2);
->> -		intel_de_write(dev_priv, FDI_RX_MISC(PIPE_A), temp);
->> +		intel_de_rmw(dev_priv, FDI_RX_MISC(PIPE_A),
->> +			     FDI_RX_PWRDN_LANE1_MASK | FDI_RX_PWRDN_LANE0_MASK,
->> +			     FDI_RX_PWRDN_LANE1_VAL(2) | FDI_RX_PWRDN_LANE0_VAL(2));
->>   		intel_de_posting_read(dev_priv, FDI_RX_MISC(PIPE_A));
->>   	}
->>   
->> @@ -898,7 +871,6 @@ void hsw_fdi_link_train(struct intel_encoder *encoder,
->>   void hsw_fdi_disable(struct intel_encoder *encoder)
->>   {
->>   	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->> -	u32 val;
->>   
->>   	/*
->>   	 * Bspec lists this as both step 13 (before DDI_BUF_CTL disable)
->> @@ -906,30 +878,15 @@ void hsw_fdi_disable(struct intel_encoder *encoder)
->>   	 * step 13 is the correct place for it. Step 18 is where it was
->>   	 * originally before the BUN.
->>   	 */
->> -	val = intel_de_read(dev_priv, FDI_RX_CTL(PIPE_A));
->> -	val &= ~FDI_RX_ENABLE;
->> -	intel_de_write(dev_priv, FDI_RX_CTL(PIPE_A), val);
->> -
->> -	val = intel_de_read(dev_priv, DDI_BUF_CTL(PORT_E));
->> -	val &= ~DDI_BUF_CTL_ENABLE;
->> -	intel_de_write(dev_priv, DDI_BUF_CTL(PORT_E), val);
->> -
->> +	intel_de_rmw(dev_priv, FDI_RX_CTL(PIPE_A), FDI_RX_ENABLE, 0);
->> +	intel_de_rmw(dev_priv, DDI_BUF_CTL(PORT_E), DDI_BUF_CTL_ENABLE, 0);
->>   	intel_wait_ddi_buf_idle(dev_priv, PORT_E);
->> -
->>   	intel_ddi_disable_clock(encoder);
->> -
->> -	val = intel_de_read(dev_priv, FDI_RX_MISC(PIPE_A));
->> -	val &= ~(FDI_RX_PWRDN_LANE1_MASK | FDI_RX_PWRDN_LANE0_MASK);
->> -	val |= FDI_RX_PWRDN_LANE1_VAL(2) | FDI_RX_PWRDN_LANE0_VAL(2);
->> -	intel_de_write(dev_priv, FDI_RX_MISC(PIPE_A), val);
->> -
->> -	val = intel_de_read(dev_priv, FDI_RX_CTL(PIPE_A));
->> -	val &= ~FDI_PCDCLK;
->> -	intel_de_write(dev_priv, FDI_RX_CTL(PIPE_A), val);
->> -
->> -	val = intel_de_read(dev_priv, FDI_RX_CTL(PIPE_A));
->> -	val &= ~FDI_RX_PLL_ENABLE;
->> -	intel_de_write(dev_priv, FDI_RX_CTL(PIPE_A), val);
->> +	intel_de_rmw(dev_priv, FDI_RX_MISC(PIPE_A),
->> +		     FDI_RX_PWRDN_LANE1_MASK | FDI_RX_PWRDN_LANE0_MASK,
->> +		     FDI_RX_PWRDN_LANE1_VAL(2) | FDI_RX_PWRDN_LANE0_VAL(2));
->> +	intel_de_rmw(dev_priv, FDI_RX_CTL(PIPE_A), FDI_PCDCLK, 0);
->> +	intel_de_rmw(dev_priv, FDI_RX_CTL(PIPE_A), FDI_RX_PLL_ENABLE, 0);
->>   }
->>   
->>   void ilk_fdi_pll_enable(const struct intel_crtc_state *crtc_state)
->> @@ -952,9 +909,7 @@ void ilk_fdi_pll_enable(const struct intel_crtc_state *crtc_state)
->>   	udelay(200);
->>   
->>   	/* Switch from Rawclk to PCDclk */
->> -	temp = intel_de_read(dev_priv, reg);
->> -	intel_de_write(dev_priv, reg, temp | FDI_PCDCLK);
->> -
->> +	intel_de_rmw(dev_priv, reg, 0, FDI_PCDCLK);
->>   	intel_de_posting_read(dev_priv, reg);
->>   	udelay(200);
->>   
->> @@ -974,28 +929,18 @@ void ilk_fdi_pll_disable(struct intel_crtc *crtc)
->>   	struct drm_device *dev = crtc->base.dev;
->>   	struct drm_i915_private *dev_priv = to_i915(dev);
->>   	enum pipe pipe = crtc->pipe;
->> -	i915_reg_t reg;
->> -	u32 temp;
->>   
->>   	/* Switch from PCDclk to Rawclk */
->> -	reg = FDI_RX_CTL(pipe);
->> -	temp = intel_de_read(dev_priv, reg);
->> -	intel_de_write(dev_priv, reg, temp & ~FDI_PCDCLK);
->> +	intel_de_rmw(dev_priv, FDI_RX_CTL(pipe), FDI_PCDCLK, 0);
->>   
->>   	/* Disable CPU FDI TX PLL */
->> -	reg = FDI_TX_CTL(pipe);
->> -	temp = intel_de_read(dev_priv, reg);
->> -	intel_de_write(dev_priv, reg, temp & ~FDI_TX_PLL_ENABLE);
->> -
->> -	intel_de_posting_read(dev_priv, reg);
->> +	intel_de_rmw(dev_priv, FDI_TX_CTL(pipe), FDI_TX_PLL_ENABLE, 0);
->> +	intel_de_posting_read(dev_priv, FDI_TX_CTL(pipe));
->>   	udelay(100);
->>   
->> -	reg = FDI_RX_CTL(pipe);
->> -	temp = intel_de_read(dev_priv, reg);
->> -	intel_de_write(dev_priv, reg, temp & ~FDI_RX_PLL_ENABLE);
->> -
->>   	/* Wait for the clocks to turn off. */
->> -	intel_de_posting_read(dev_priv, reg);
->> +	intel_de_rmw(dev_priv, FDI_RX_CTL(pipe), FDI_RX_PLL_ENABLE, 0);
->> +	intel_de_posting_read(dev_priv, FDI_RX_CTL(pipe));
->>   	udelay(100);
->>   }
->>   
->> @@ -1007,10 +952,8 @@ void ilk_fdi_disable(struct intel_crtc *crtc)
->>   	u32 temp;
->>   
->>   	/* disable CPU FDI tx and PCH FDI rx */
->> -	reg = FDI_TX_CTL(pipe);
->> -	temp = intel_de_read(dev_priv, reg);
->> -	intel_de_write(dev_priv, reg, temp & ~FDI_TX_ENABLE);
->> -	intel_de_posting_read(dev_priv, reg);
->> +	intel_de_rmw(dev_priv, FDI_TX_CTL(pipe), FDI_TX_ENABLE, 0);
->> +	intel_de_posting_read(dev_priv, FDI_TX_CTL(pipe));
->>   
->>   	reg = FDI_RX_CTL(pipe);
->>   	temp = intel_de_read(dev_priv, reg);
->> @@ -1027,11 +970,8 @@ void ilk_fdi_disable(struct intel_crtc *crtc)
->>   			       FDI_RX_PHASE_SYNC_POINTER_OVR);
->>   
->>   	/* still set train pattern 1 */
->> -	reg = FDI_TX_CTL(pipe);
->> -	temp = intel_de_read(dev_priv, reg);
->> -	temp &= ~FDI_LINK_TRAIN_NONE;
->> -	temp |= FDI_LINK_TRAIN_PATTERN_1;
->> -	intel_de_write(dev_priv, reg, temp);
->> +	intel_de_rmw(dev_priv, FDI_TX_CTL(pipe),
->> +		     FDI_LINK_TRAIN_NONE, FDI_LINK_TRAIN_PATTERN_1);
->>   
->>   	reg = FDI_RX_CTL(pipe);
->>   	temp = intel_de_read(dev_priv, reg);
->
+>>  drivers/gpu/drm/i915/display/vlv_dsi.c | 24 +++++++++---------------
+>>  1 file changed, 9 insertions(+), 15 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+>> index 662bdb656aa304..f5268997a3e172 100644
+>> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
+>> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+>> @@ -649,23 +649,17 @@ static void intel_dsi_port_enable(struct intel_encoder *encoder,
+>>  	enum port port;
+>>  
+>>  	if (intel_dsi->dual_link == DSI_DUAL_LINK_FRONT_BACK) {
+>> -		u32 temp;
+>> +		u32 temp = intel_dsi->pixel_overlap;
+>> +
+>>  		if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv)) {
+>> -			for_each_dsi_port(port, intel_dsi->ports) {
+>> -				temp = intel_de_read(dev_priv,
+>> -						     MIPI_CTRL(port));
+>> -				temp &= ~BXT_PIXEL_OVERLAP_CNT_MASK |
+>> -					intel_dsi->pixel_overlap <<
+>> -					BXT_PIXEL_OVERLAP_CNT_SHIFT;
+>> -				intel_de_write(dev_priv, MIPI_CTRL(port),
+>> -					       temp);
+>> -			}
+>> +			for_each_dsi_port(port, intel_dsi->ports)
+>> +				intel_de_rmw(dev_priv, MIPI_CTRL(port),
+>> +					     BXT_PIXEL_OVERLAP_CNT_MASK,
+>> +					     temp << BXT_PIXEL_OVERLAP_CNT_SHIFT);
+>>  		} else {
+>> -			temp = intel_de_read(dev_priv, VLV_CHICKEN_3);
+>> -			temp &= ~PIXEL_OVERLAP_CNT_MASK |
+>> -					intel_dsi->pixel_overlap <<
+>> -					PIXEL_OVERLAP_CNT_SHIFT;
+>> -			intel_de_write(dev_priv, VLV_CHICKEN_3, temp);
+>> +			intel_de_rmw(dev_priv, VLV_CHICKEN_3,
+>> +				     PIXEL_OVERLAP_CNT_MASK,
+>> +				     temp << PIXEL_OVERLAP_CNT_SHIFT);
+>>  		}
+>>  	}
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
