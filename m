@@ -2,33 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BCFD6816CA
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Jan 2023 17:47:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15D9E6816E5
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Jan 2023 17:51:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A809C10E064;
-	Mon, 30 Jan 2023 16:46:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2289210E064;
+	Mon, 30 Jan 2023 16:51:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6BCAB10E064;
- Mon, 30 Jan 2023 16:46:58 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 63A9BAADE8;
- Mon, 30 Jan 2023 16:46:58 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8967842760587070491=="
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4227A10E064
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Jan 2023 16:51:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1675097474; x=1706633474;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=s8m0Xkoj6eNeLa0uaxx5qsMmwEx0xDxI7EP8jnhtiB0=;
+ b=jmsFjZGh+T16TKmqfgz0ZBgaZhANum01hoOgjEEoHMBAvskkbow1tNfP
+ atXmQENXd3Q9U03xfnzshpJbKXLbo9CKkm8i2bkDPTK4tN8Iiv6jU+0vE
+ x8GzoDy/3hmcJ6+2OEXq5pSa9VRG17FLCpVMYcSNI/6nxQer1Ah4V40s9
+ IzuJJ6TJyDRVstqTjChZb/J8nT1VhHrGWw34HWVSwV1z5K1hMtl2IMaQT
+ iooVSl0Yl3nRNGNiKdKf8MEucIlY8dvptcHcEnGUsBsPOLpfZBY/QHbuS
+ /h983+zgo0kNMxSsy1eb8EmoVlQXEM9aR6DS9V4OI9eUm1OXLA+ZQUAzI g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="328886231"
+X-IronPort-AV: E=Sophos;i="5.97,258,1669104000"; d="scan'208";a="328886231"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2023 08:51:13 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="696472654"
+X-IronPort-AV: E=Sophos;i="5.97,258,1669104000"; d="scan'208";a="696472654"
+Received: from lab-ah.igk.intel.com ([10.102.42.211])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2023 08:51:11 -0800
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 30 Jan 2023 17:50:58 +0100
+Message-Id: <20230130165058.1647414-1-andrzej.hajda@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Mon, 30 Jan 2023 16:46:58 -0000
-Message-ID: <167509721836.3667.11590696937765550391@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230130120636.63765-1-matthew.auld@intel.com>
-In-Reply-To: <20230130120636.63765-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv2=2C1/6=5D_drm/i915/ttm=3A_fix_sparse_war?=
- =?utf-8?q?ning?=
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v6] drm/i915/gt: Add selftests for TLB
+ invalidation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,171 +58,481 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8967842760587070491==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Chris Wilson <chris@chris-wilson.co.uk>
 
-== Series Details ==
+Check that we invalidate the TLB cache, the updated physical addresses
+are immediately visible to the HW, and there is no retention of the old
+physical address for concurrent HW access.
 
-Series: series starting with [v2,1/6] drm/i915/ttm: fix sparse warning
-URL   : https://patchwork.freedesktop.org/series/113484/
-State : success
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+[ahajda: adjust to upstream driver, v2+]
+Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+---
+v2:
+    - addressed comments (Tvrtko),
+    - changed pin/sample address calculation,
+    - removed checks for platforms older than 8,
+    - use low ints in MI_DO_COMPARE to be more clear,
+    - continue test if physical addresses have the same uppper 32 bits,
+    - consolidate two calls to pte_tlbinv into one
+v3:
+    - skip pages not supported by vm (CI reported EINVAL),
+    - fix dw size in MI_CONDITIONAL_BATCH_BUFFER_END for gen8 (CI reported EIO),
+    - remove aggressive allocation to get different upper halves of physical
+      address (CI reported OOM).
+v4:
+    - align address in MI_CONDITIONAL_BATCH_BUFFER_END to 8b,
+    - set QWORD pointed by addr in above cmd, as required by Gen8/VCS.
+v5:
+    - set dw size again to 2 (CI reports EIO due to semaphore sanitycheck).
+v6:
+    - restore original vb->node on exit (Tvrtko),
+    - print sanitycheck params only on error (Tvrtko),
+    - comment fixes (Tvrtko)
+---
+ drivers/gpu/drm/i915/gt/intel_gpu_commands.h  |   1 +
+ drivers/gpu/drm/i915/gt/intel_gt.c            |   4 +
+ drivers/gpu/drm/i915/gt/selftest_tlb.c        | 388 ++++++++++++++++++
+ .../drm/i915/selftests/i915_live_selftests.h  |   1 +
+ 4 files changed, 394 insertions(+)
+ create mode 100644 drivers/gpu/drm/i915/gt/selftest_tlb.c
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+index 2af1ae3831df98..e10507fa71ce63 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
++++ b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+@@ -394,6 +394,7 @@
+ #define MI_LOAD_URB_MEM         MI_INSTR(0x2C, 0)
+ #define MI_STORE_URB_MEM        MI_INSTR(0x2D, 0)
+ #define MI_CONDITIONAL_BATCH_BUFFER_END MI_INSTR(0x36, 0)
++#define  MI_DO_COMPARE		REG_BIT(21)
+ 
+ #define STATE_BASE_ADDRESS \
+ 	((0x3 << 29) | (0x0 << 27) | (0x1 << 24) | (0x1 << 16))
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+index f0dbfc434e0773..001a7ec5b86182 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+@@ -1205,3 +1205,7 @@ void intel_gt_invalidate_tlb(struct intel_gt *gt, u32 seqno)
+ 		mutex_unlock(&gt->tlb.invalidate_lock);
+ 	}
+ }
++
++#if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
++#include "selftest_tlb.c"
++#endif
+diff --git a/drivers/gpu/drm/i915/gt/selftest_tlb.c b/drivers/gpu/drm/i915/gt/selftest_tlb.c
+new file mode 100644
+index 00000000000000..355646c001762f
+--- /dev/null
++++ b/drivers/gpu/drm/i915/gt/selftest_tlb.c
+@@ -0,0 +1,388 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2022 Intel Corporation
++ */
++
++#include "i915_selftest.h"
++
++#include "gem/i915_gem_internal.h"
++#include "gem/i915_gem_region.h"
++
++#include "gen8_engine_cs.h"
++#include "i915_gem_ww.h"
++#include "intel_engine_regs.h"
++#include "intel_gpu_commands.h"
++#include "intel_context.h"
++#include "intel_gt.h"
++#include "intel_ring.h"
++
++#include "selftests/igt_flush_test.h"
++#include "selftests/i915_random.h"
++
++static void vma_set_qw(struct i915_vma *vma, u64 addr, u64 val)
++{
++	GEM_BUG_ON(addr < i915_vma_offset(vma));
++	GEM_BUG_ON(addr >= i915_vma_offset(vma) + i915_vma_size(vma) + sizeof(val));
++	memset64(page_mask_bits(vma->obj->mm.mapping) +
++		 (addr - i915_vma_offset(vma)), val, 1);
++}
++
++static int
++pte_tlbinv(struct intel_context *ce,
++	   struct i915_vma *va,
++	   struct i915_vma *vb,
++	   u64 align,
++	   void (*tlbinv)(struct i915_address_space *vm, u64 addr, u64 length),
++	   u64 length,
++	   struct rnd_state *prng)
++{
++	struct drm_i915_gem_object *batch;
++	struct drm_mm_node vb_node;
++	struct i915_request *rq;
++	struct i915_vma *vma;
++	u64 addr;
++	int err;
++	u32 *cs;
++
++	batch = i915_gem_object_create_internal(ce->vm->i915, 4096);
++	if (IS_ERR(batch))
++		return PTR_ERR(batch);
++
++	vma = i915_vma_instance(batch, ce->vm, NULL);
++	if (IS_ERR(vma)) {
++		err = PTR_ERR(vma);
++		goto out;
++	}
++
++	err = i915_vma_pin(vma, 0, 0, PIN_USER);
++	if (err)
++		goto out;
++
++	/* Pin va at random but aligned offset after vma */
++	addr = round_up(vma->node.start + vma->node.size, align);
++	/* MI_CONDITIONAL_BATCH_BUFFER_END limits address to 48b */
++	addr = igt_random_offset(prng, addr, min(ce->vm->total, BIT_ULL(48)),
++				 va->size, align);
++	err = i915_vma_pin(va,  0, 0, addr | PIN_OFFSET_FIXED | PIN_USER);
++	if (err) {
++		pr_err("Cannot pin at %llx+%llx\n", addr, va->size);
++		goto out;
++	}
++	GEM_BUG_ON(i915_vma_offset(va) != addr);
++	if (vb != va) {
++		vb_node = vb->node;
++		vb->node = va->node; /* overwrites the _same_ PTE  */
++	}
++
++	/*
++	 * Now choose random dword at the 1st pinned page.
++	 *
++	 * SZ_64K pages on dg1 require that the whole PT be marked
++	 * containing 64KiB entries. So we make sure that vma
++	 * covers the whole PT, despite being randomly aligned to 64KiB
++	 * and restrict our sampling to the 2MiB PT within where
++	 * we know that we will be using 64KiB pages.
++	 */
++	if (align == SZ_64K)
++		addr = round_up(addr, SZ_2M);
++	addr = igt_random_offset(prng, addr, addr + align, 8, 8);
++
++	if (va != vb)
++		pr_info("%s(%s): Sampling %llx, with alignment %llx, using PTE size %x (phys %x, sg %x), invalidate:%llx+%llx\n",
++			ce->engine->name, va->obj->mm.region->name ?: "smem",
++			addr, align, va->resource->page_sizes_gtt,
++			va->page_sizes.phys, va->page_sizes.sg,
++			addr & -length, length);
++
++	cs = i915_gem_object_pin_map_unlocked(batch, I915_MAP_WC);
++	*cs++ = MI_NOOP; /* for later termination */
++	/*
++	 * Sample the target to see if we spot the updated backing store.
++	 * Gen8 VCS compares immediate value with bitwise-and of two
++	 * consecutive DWORDS pointed by addr, other gen/engines compare value
++	 * with DWORD pointed by addr. Moreover we want to exercise DWORD size
++	 * invalidations. To fulfill all these requirements below values
++	 * have been chosen.
++	 */
++	*cs++ = MI_CONDITIONAL_BATCH_BUFFER_END | MI_DO_COMPARE | 2;
++	*cs++ = 0; /* break if *addr == 0 */
++	*cs++ = lower_32_bits(addr);
++	*cs++ = upper_32_bits(addr);
++	vma_set_qw(va, addr, -1);
++	vma_set_qw(vb, addr, 0);
++
++	/* Keep sampling until we get bored */
++	*cs++ = MI_BATCH_BUFFER_START | BIT(8) | 1;
++	*cs++ = lower_32_bits(i915_vma_offset(vma));
++	*cs++ = upper_32_bits(i915_vma_offset(vma));
++
++	i915_gem_object_flush_map(batch);
++
++	rq = i915_request_create(ce);
++	if (IS_ERR(rq)) {
++		err = PTR_ERR(rq);
++		goto out_va;
++	}
++
++	err = rq->engine->emit_bb_start(rq, i915_vma_offset(vma), 0, 0);
++	if (err) {
++		i915_request_add(rq);
++		goto out_va;
++	}
++
++	i915_request_get(rq);
++	i915_request_add(rq);
++
++	/* Short sleep to sanitycheck the batch is spinning before we begin */
++	msleep(10);
++	if (va == vb) {
++		if (!i915_request_completed(rq)) {
++			pr_err("%s(%s): Semaphore sanitycheck failed %llx, with alignment %llx, using PTE size %x (phys %x, sg %x)\n",
++			       ce->engine->name, va->obj->mm.region->name ?: "smem",
++			       addr, align, va->resource->page_sizes_gtt,
++			       va->page_sizes.phys, va->page_sizes.sg);
++			err = -EIO;
++		}
++	} else if (!i915_request_completed(rq)) {
++		struct i915_vma_resource vb_res = {
++			.bi.pages = vb->obj->mm.pages,
++			.bi.page_sizes = vb->obj->mm.page_sizes,
++			.start = i915_vma_offset(vb),
++			.vma_size = i915_vma_size(vb)
++		};
++		unsigned int pte_flags = 0;
++
++		/* Flip the PTE between A and B */
++		if (i915_gem_object_is_lmem(vb->obj))
++			pte_flags |= PTE_LM;
++		ce->vm->insert_entries(ce->vm, &vb_res, 0, pte_flags);
++
++		/* Flush the PTE update to concurrent HW */
++		tlbinv(ce->vm, addr & -length, length);
++
++		if (wait_for(i915_request_completed(rq), HZ / 2)) {
++			pr_err("%s: Request did not complete; the COND_BBE did not read the updated PTE\n",
++			       ce->engine->name);
++			err = -EINVAL;
++		}
++	} else {
++		pr_err("Spinner ended unexpectedly\n");
++		err = -EIO;
++	}
++	i915_request_put(rq);
++
++	cs = page_mask_bits(batch->mm.mapping);
++	*cs = MI_BATCH_BUFFER_END;
++	wmb();
++
++out_va:
++	if (vb != va)
++		vb->node = vb_node;
++	i915_vma_unpin(va);
++	if (i915_vma_unbind_unlocked(va))
++		err = -EIO;
++out:
++	i915_gem_object_put(batch);
++	return err;
++}
++
++static struct drm_i915_gem_object *create_lmem(struct intel_gt *gt)
++{
++	/*
++	 * Allocation of largest possible page size allows to test all types
++	 * of pages.
++	 */
++	return i915_gem_object_create_lmem(gt->i915, SZ_1G, I915_BO_ALLOC_CONTIGUOUS);
++}
++
++static struct drm_i915_gem_object *create_smem(struct intel_gt *gt)
++{
++	/*
++	 * SZ_64K pages require covering the whole 2M PT (gen8 to tgl/dg1).
++	 * While that does not require the whole 2M block to be contiguous
++	 * it is easier to make it so, since we need that for SZ_2M pagees.
++	 * Since we randomly offset the start of the vma, we need a 4M object
++	 * so that there is a 2M range within it is suitable for SZ_64K PTE.
++	 */
++	return i915_gem_object_create_internal(gt->i915, SZ_4M);
++}
++
++static int
++mem_tlbinv(struct intel_gt *gt,
++	   struct drm_i915_gem_object *(*create_fn)(struct intel_gt *),
++	   void (*tlbinv)(struct i915_address_space *vm, u64 addr, u64 length))
++{
++	unsigned int ppgtt_size = RUNTIME_INFO(gt->i915)->ppgtt_size;
++	struct intel_engine_cs *engine;
++	struct drm_i915_gem_object *A, *B;
++	struct i915_ppgtt *ppgtt;
++	struct i915_vma *va, *vb;
++	enum intel_engine_id id;
++	I915_RND_STATE(prng);
++	void *vaddr;
++	int err;
++
++	/*
++	 * Check that the TLB invalidate is able to revoke an active
++	 * page. We load a page into a spinning COND_BBE loop and then
++	 * remap that page to a new physical address. The old address, and
++	 * so the loop keeps spinning, is retained in the TLB cache until
++	 * we issue an invalidate.
++	 */
++
++	A = create_fn(gt);
++	if (IS_ERR(A))
++		return PTR_ERR(A);
++
++	vaddr = i915_gem_object_pin_map_unlocked(A, I915_MAP_WC);
++	if (IS_ERR(vaddr)) {
++		err = PTR_ERR(vaddr);
++		goto out_a;
++	}
++
++	B = create_fn(gt);
++	if (IS_ERR(B)) {
++		err = PTR_ERR(B);
++		goto out_a;
++	}
++
++	vaddr = i915_gem_object_pin_map_unlocked(B, I915_MAP_WC);
++	if (IS_ERR(vaddr)) {
++		err = PTR_ERR(vaddr);
++		goto out_b;
++	}
++
++	GEM_BUG_ON(A->base.size != B->base.size);
++	if ((A->mm.page_sizes.phys | B->mm.page_sizes.phys) & (A->base.size - 1))
++		pr_warn("Failed to allocate contiguous pages for size %zx\n",
++			A->base.size);
++
++	ppgtt = i915_ppgtt_create(gt, 0);
++	if (IS_ERR(ppgtt)) {
++		err = PTR_ERR(ppgtt);
++		goto out_b;
++	}
++
++	va = i915_vma_instance(A, &ppgtt->vm, NULL);
++	if (IS_ERR(va)) {
++		err = PTR_ERR(va);
++		goto out_vm;
++	}
++
++	vb = i915_vma_instance(B, &ppgtt->vm, NULL);
++	if (IS_ERR(vb)) {
++		err = PTR_ERR(vb);
++		goto out_vm;
++	}
++
++	err = 0;
++	for_each_engine(engine, gt, id) {
++		struct i915_gem_ww_ctx ww;
++		struct intel_context *ce;
++		int bit;
++
++		ce = intel_context_create(engine);
++		if (IS_ERR(ce)) {
++			err = PTR_ERR(ce);
++			break;
++		}
++
++		i915_vm_put(ce->vm);
++		ce->vm = i915_vm_get(&ppgtt->vm);
++
++		for_i915_gem_ww(&ww, err, true)
++			err = intel_context_pin_ww(ce, &ww);
++		if (err)
++			goto err_put;
++
++		for_each_set_bit(bit,
++				 (unsigned long *)&RUNTIME_INFO(gt->i915)->page_sizes,
++				 BITS_PER_TYPE(RUNTIME_INFO(gt->i915)->page_sizes)) {
++			unsigned int len;
++
++			if (BIT_ULL(bit) < i915_vm_obj_min_alignment(va->vm, va->obj))
++				continue;
++
++			/* sanitycheck the semaphore wake up */
++			err = pte_tlbinv(ce, va, va,
++					 BIT_ULL(bit),
++					 NULL, SZ_4K,
++					 &prng);
++			if (err)
++				goto err_unpin;
++
++			for (len = 2; len <= ppgtt_size; len = min(2 * len, ppgtt_size)) {
++				err = pte_tlbinv(ce, va, vb,
++						BIT_ULL(bit),
++						tlbinv,
++						BIT_ULL(len),
++						&prng);
++				if (err)
++					goto err_unpin;
++				if (len == ppgtt_size)
++					break;
++			}
++		}
++err_unpin:
++		intel_context_unpin(ce);
++err_put:
++		intel_context_put(ce);
++		if (err)
++			break;
++	}
++
++	if (igt_flush_test(gt->i915))
++		err = -EIO;
++
++out_vm:
++	i915_vm_put(&ppgtt->vm);
++out_b:
++	i915_gem_object_put(B);
++out_a:
++	i915_gem_object_put(A);
++	return err;
++}
++
++static void tlbinv_full(struct i915_address_space *vm, u64 addr, u64 length)
++{
++	intel_gt_invalidate_tlb(vm->gt, intel_gt_tlb_seqno(vm->gt) | 1);
++}
++
++static int invalidate_full(void *arg)
++{
++	struct intel_gt *gt = arg;
++	int err;
++
++	if (GRAPHICS_VER(gt->i915) < 8)
++		return 0; /* TLB invalidate not implemented */
++
++	err = mem_tlbinv(gt, create_smem, tlbinv_full);
++	if (err == 0)
++		err = mem_tlbinv(gt, create_lmem, tlbinv_full);
++	if (err == -ENODEV || err == -ENXIO)
++		err = 0;
++
++	return err;
++}
++
++int intel_tlb_live_selftests(struct drm_i915_private *i915)
++{
++	static const struct i915_subtest tests[] = {
++		SUBTEST(invalidate_full),
++	};
++	struct intel_gt *gt;
++	unsigned int i;
++
++	for_each_gt(gt, i915, i) {
++		int err;
++
++		if (intel_gt_is_wedged(gt))
++			continue;
++
++		err = intel_gt_live_subtests(tests, gt);
++		if (err)
++			return err;
++	}
++
++	return 0;
++}
+diff --git a/drivers/gpu/drm/i915/selftests/i915_live_selftests.h b/drivers/gpu/drm/i915/selftests/i915_live_selftests.h
+index aaf8a380e5c789..5aee6c9a8295ce 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_live_selftests.h
++++ b/drivers/gpu/drm/i915/selftests/i915_live_selftests.h
+@@ -25,6 +25,7 @@ selftest(gt_lrc, intel_lrc_live_selftests)
+ selftest(gt_mocs, intel_mocs_live_selftests)
+ selftest(gt_pm, intel_gt_pm_live_selftests)
+ selftest(gt_heartbeat, intel_heartbeat_live_selftests)
++selftest(gt_tlb, intel_tlb_live_selftests)
+ selftest(requests, i915_request_live_selftests)
+ selftest(migrate, intel_migrate_live_selftests)
+ selftest(active, i915_active_live_selftests)
+-- 
+2.34.1
 
-CI Bug Log - changes from CI_DRM_12666 -> Patchwork_113484v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113484v1/index.html
-
-Participating hosts (25 -> 24)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_113484v1 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [DMESG-FAIL][1] ([i915#5334]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12666/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113484v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@slpc:
-    - {bat-adlp-6}:       [DMESG-FAIL][3] ([i915#6367] / [i915#7913]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12666/bat-adlp-6/igt@i915_selftest@live@slpc.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113484v1/bat-adlp-6/igt@i915_selftest@live@slpc.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-  [i915#7981]: https://gitlab.freedesktop.org/drm/intel/issues/7981
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12666 -> Patchwork_113484v1
-
-  CI-20190529: 20190529
-  CI_DRM_12666: 908c84b836ee39b5565561a0b352c2dc18378215 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7142: adeeb8527422eeee155ff4039aed34a922da4a7d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_113484v1: 908c84b836ee39b5565561a0b352c2dc18378215 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-eb29c526bc38 drm/ttm: prevent moving of pinned BOs
-6f65d4b71375 drm/ttm: stop allocating a dummy resource for pipelined gutting
-4f490e93000d drm/ttm: stop allocating dummy resources during BO creation
-e46562673b6e drm/ttm: clear the ttm_tt when bo->resource is NULL
-a97096bdbf82 drm/i915/ttm: audit remaining bo->resource
-e5538d79c03c drm/i915/ttm: fix sparse warning
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113484v1/index.html
-
---===============8967842760587070491==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v2,1/6] drm/i915/ttm: fix sparse warning</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/113484/">https://patchwork.freedesktop.org/series/113484/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113484v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113484v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12666 -&gt; Patchwork_113484v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113484v1/index.html</p>
-<h2>Participating hosts (25 -&gt; 24)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_113484v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12666/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113484v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@slpc:</p>
-<ul>
-<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12666/bat-adlp-6/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113484v1/bat-adlp-6/igt@i915_selftest@live@slpc.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12666 -&gt; Patchwork_113484v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12666: 908c84b836ee39b5565561a0b352c2dc18378215 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7142: adeeb8527422eeee155ff4039aed34a922da4a7d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_113484v1: 908c84b836ee39b5565561a0b352c2dc18378215 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>eb29c526bc38 drm/ttm: prevent moving of pinned BOs<br />
-6f65d4b71375 drm/ttm: stop allocating a dummy resource for pipelined gutting<br />
-4f490e93000d drm/ttm: stop allocating dummy resources during BO creation<br />
-e46562673b6e drm/ttm: clear the ttm_tt when bo-&gt;resource is NULL<br />
-a97096bdbf82 drm/i915/ttm: audit remaining bo-&gt;resource<br />
-e5538d79c03c drm/i915/ttm: fix sparse warning</p>
-
-</body>
-</html>
-
---===============8967842760587070491==--
