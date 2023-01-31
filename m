@@ -1,33 +1,79 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B6296839DA
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 23:59:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1F25683A40
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Feb 2023 00:13:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42E9E10E3A0;
-	Tue, 31 Jan 2023 22:59:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA78410E04D;
+	Tue, 31 Jan 2023 23:13:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DBC1610E3A0;
- Tue, 31 Jan 2023 22:59:22 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D5FC6AA01E;
- Tue, 31 Jan 2023 22:59:22 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4261184086647971595=="
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1EF510E2BA
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Jan 2023 23:13:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1675206793;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=rtsjDP4dKZMDI4ZeFRDR5mr1YGHyi1B/+ezb84IEh6I=;
+ b=LqKRlucoG8zlovw7uDgC6eNfU8hVYsRI1C70wzT2Hxzum8qD8cPlxvsTzhSqNp0a+6TPPJ
+ IK9tCX3TNBtZm0qP+9+10j/O7y4AyyQDdjPwe1jRWQ54cB9weysAqyx/GEv0YMCzYAoNpa
+ HXH74GM0GkGVi3Yt5mFc5JlzLwn953w=
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
+ [209.85.160.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-617-Jy9oU_jVNlixFUOgOHnPOw-1; Tue, 31 Jan 2023 18:13:12 -0500
+X-MC-Unique: Jy9oU_jVNlixFUOgOHnPOw-1
+Received: by mail-qt1-f197.google.com with SMTP id
+ f2-20020ac80682000000b003b6364059d2so7343131qth.9
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Jan 2023 15:13:12 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=mime-version:user-agent:content-transfer-encoding:organization
+ :references:in-reply-to:date:cc:to:from:subject:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=GuPLxxwLlIMb4e5mC8mkW+RMdG9aD5bdoF2Q5DsUBtk=;
+ b=RLvPziuAsD4/v78JDYsYGd4EoRBNP/qQBYrHnoD0ysmPgCMtRHDzORb4NXp3mOD6qj
+ +LqbdC8HRVxezUuxtGKYlA+7qPHojxkokBcZjPav38bbdg1kIs5H0nvstY78vm2M8Odg
+ a2P6iJv4bKcGLJJREI1GEtCHeFjkaPDQZUguZgzULyjXpkewT5U/pwEjfIekqznkZ+LY
+ LKMJmahADZ21gfxSHG2u4FJALj+g4Y1Kp+dlbeJdYQq26ZfzU64r9wl/Z4DLjpvXh1wF
+ LAB407/MxfCCCRDMznQlWSJph/oM41Yb5XVtj+Lw1qbqJIZppcxiPdhunG8Q/tMSQGgV
+ j8Dg==
+X-Gm-Message-State: AO0yUKVLFndUnlHmjCQ27bVtT7bxobvI1rhPE9xji1vf2ArONs0jVvUM
+ /kBqNcznK1Q2D3QbiAt65rloUV2W97PvL4s0YDB9RM9rZgbI8+a7Kt/zNxnShb5ocsFjoHCMY5V
+ 3PV3HTjIPMibdTO1dBgiZQhbLxni1
+X-Received: by 2002:a0c:ee90:0:b0:531:91cd:59de with SMTP id
+ u16-20020a0cee90000000b0053191cd59demr16680081qvr.26.1675206791867; 
+ Tue, 31 Jan 2023 15:13:11 -0800 (PST)
+X-Google-Smtp-Source: AK7set+U8IFBJjnSngopEHdO6P381kRED55/VU9cShm+LNOPTG4WX6UdvtmgTYUVLk6QaAv2MzY6FA==
+X-Received: by 2002:a0c:ee90:0:b0:531:91cd:59de with SMTP id
+ u16-20020a0cee90000000b0053191cd59demr16680063qvr.26.1675206791634; 
+ Tue, 31 Jan 2023 15:13:11 -0800 (PST)
+Received: from ?IPv6:2600:4040:5c68:6800::feb? ([2600:4040:5c68:6800::feb])
+ by smtp.gmail.com with ESMTPSA id
+ o13-20020a05620a2a0d00b006ce580c2663sm11056795qkp.35.2023.01.31.15.13.10
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 31 Jan 2023 15:13:11 -0800 (PST)
+Message-ID: <ed8b73096a576f317979c3dd65392371d5b77612.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
+Date: Tue, 31 Jan 2023 18:13:10 -0500
+In-Reply-To: <20230131150548.1614458-3-imre.deak@intel.com>
+References: <20230131150548.1614458-1-imre.deak@intel.com>
+ <20230131150548.1614458-3-imre.deak@intel.com>
+Organization: Red Hat Inc.
+User-Agent: Evolution 3.44.4 (3.44.4-2.fc36)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Date: Tue, 31 Jan 2023 22:59:22 -0000
-Message-ID: <167520596284.5938.8646785366677516966@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230131222837.1921-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20230131222837.1921-1-michal.wajdeczko@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/huc=3A_Add_and_use_HuC_oriented_print_macros?=
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v2 02/17] drm/display/dp_mst: Handle old/new
+ payload states in drm_dp_remove_payload()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,159 +86,210 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Karol Herbst <kherbst@redhat.com>, dri-devel@lists.freedesktop.org,
+ stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>,
+ Wayne Lin <Wayne.Lin@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4261184086647971595==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 2023-01-31 at 17:05 +0200, Imre Deak wrote:
+> Atm, drm_dp_remove_payload() uses the same payload state to both get the
+> vc_start_slot required for the payload removal DPCD message and to
+> deduct time_slots from vc_start_slot of all payloads after the one being
+> removed.
+>=20
+> The above isn't always correct, as vc_start_slot must be the up-to-date
+> version contained in the new payload state, but time_slots must be the
+> one used when the payload was previously added, contained in the old
+> payload state. The new payload's time_slots can change vs. the old one
+> if the current atomic commit changes the corresponding mode.
+>=20
+> This patch let's drivers pass the old and new payload states to
+> drm_dp_remove_payload(), but keeps these the same for now in all drivers
+> not to change the behavior. A follow-up i915 patch will pass in that
+> driver the correct old and new states to the function.
 
-== Series Details ==
+Oh wow, this was definitely a mistake on my part, thanks for catching this!
+TBH, I think this behavior is correct so (now that I actually have a setup
+capable of testing amdgpu's MST fully thanks to gitlab issue 2171=E2=80=A6)=
+ if you'd
+like to change it on other drivers as well I can test it fully. Or feel fre=
+e
+to leave it to me, shouldn't be too difficult I think :).
 
-Series: drm/i915/huc: Add and use HuC oriented print macros
-URL   : https://patchwork.freedesktop.org/series/113542/
-State : success
+For 0-2:
 
-== Summary ==
+Reviewed-by: Lyude Paul <lyude@redhat.com>
 
-CI Bug Log - changes from CI_DRM_12675 -> Patchwork_113542v1
-====================================================
+>=20
+> Cc: Lyude Paul <lyude@redhat.com>
+> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Cc: Ben Skeggs <bskeggs@redhat.com>
+> Cc: Karol Herbst <kherbst@redhat.com>
+> Cc: Harry Wentland <harry.wentland@amd.com>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: Wayne Lin <Wayne.Lin@amd.com>
+> Cc: stable@vger.kernel.org # 6.1
+> Cc: dri-devel@lists.freedesktop.org
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |  2 +-
+>  drivers/gpu/drm/display/drm_dp_mst_topology.c | 26 ++++++++++---------
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c   |  4 ++-
+>  drivers/gpu/drm/nouveau/dispnv50/disp.c       |  2 +-
+>  include/drm/display/drm_dp_mst_helper.h       |  3 ++-
+>  5 files changed, 21 insertions(+), 16 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/=
+drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+> index a50319fc42b11..180d3893b68da 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+> @@ -208,7 +208,7 @@ bool dm_helpers_dp_mst_write_payload_allocation_table=
+(
+>  =09if (enable)
+>  =09=09drm_dp_add_payload_part1(mst_mgr, mst_state, payload);
+>  =09else
+> -=09=09drm_dp_remove_payload(mst_mgr, mst_state, payload);
+> +=09=09drm_dp_remove_payload(mst_mgr, mst_state, payload, payload);
+> =20
+>  =09/* mst_mgr->->payloads are VC payload notify MST branch using DPCD or
+>  =09 * AUX message. The sequence is slot 1-63 allocated sequence for each
+> diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/=
+drm/display/drm_dp_mst_topology.c
+> index 847c10aa2098c..1990ff5dc7ddd 100644
+> --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> @@ -3342,7 +3342,8 @@ EXPORT_SYMBOL(drm_dp_add_payload_part1);
+>   * drm_dp_remove_payload() - Remove an MST payload
+>   * @mgr: Manager to use.
+>   * @mst_state: The MST atomic state
+> - * @payload: The payload to write
+> + * @old_payload: The payload with its old state
+> + * @new_payload: The payload to write
+>   *
+>   * Removes a payload from an MST topology if it was successfully assigne=
+d a start slot. Also updates
+>   * the starting time slots of all other payloads which would have been s=
+hifted towards the start of
+> @@ -3350,36 +3351,37 @@ EXPORT_SYMBOL(drm_dp_add_payload_part1);
+>   */
+>  void drm_dp_remove_payload(struct drm_dp_mst_topology_mgr *mgr,
+>  =09=09=09   struct drm_dp_mst_topology_state *mst_state,
+> -=09=09=09   struct drm_dp_mst_atomic_payload *payload)
+> +=09=09=09   const struct drm_dp_mst_atomic_payload *old_payload,
+> +=09=09=09   struct drm_dp_mst_atomic_payload *new_payload)
+>  {
+>  =09struct drm_dp_mst_atomic_payload *pos;
+>  =09bool send_remove =3D false;
+> =20
+>  =09/* We failed to make the payload, so nothing to do */
+> -=09if (payload->vc_start_slot =3D=3D -1)
+> +=09if (new_payload->vc_start_slot =3D=3D -1)
+>  =09=09return;
+> =20
+>  =09mutex_lock(&mgr->lock);
+> -=09send_remove =3D drm_dp_mst_port_downstream_of_branch(payload->port, m=
+gr->mst_primary);
+> +=09send_remove =3D drm_dp_mst_port_downstream_of_branch(new_payload->por=
+t, mgr->mst_primary);
+>  =09mutex_unlock(&mgr->lock);
+> =20
+>  =09if (send_remove)
+> -=09=09drm_dp_destroy_payload_step1(mgr, mst_state, payload);
+> +=09=09drm_dp_destroy_payload_step1(mgr, mst_state, new_payload);
+>  =09else
+>  =09=09drm_dbg_kms(mgr->dev, "Payload for VCPI %d not in topology, not se=
+nding remove\n",
+> -=09=09=09    payload->vcpi);
+> +=09=09=09    new_payload->vcpi);
+> =20
+>  =09list_for_each_entry(pos, &mst_state->payloads, next) {
+> -=09=09if (pos !=3D payload && pos->vc_start_slot > payload->vc_start_slo=
+t)
+> -=09=09=09pos->vc_start_slot -=3D payload->time_slots;
+> +=09=09if (pos !=3D new_payload && pos->vc_start_slot > new_payload->vc_s=
+tart_slot)
+> +=09=09=09pos->vc_start_slot -=3D old_payload->time_slots;
+>  =09}
+> -=09payload->vc_start_slot =3D -1;
+> +=09new_payload->vc_start_slot =3D -1;
+> =20
+>  =09mgr->payload_count--;
+> -=09mgr->next_start_slot -=3D payload->time_slots;
+> +=09mgr->next_start_slot -=3D old_payload->time_slots;
+> =20
+> -=09if (payload->delete)
+> -=09=09drm_dp_mst_put_port_malloc(payload->port);
+> +=09if (new_payload->delete)
+> +=09=09drm_dp_mst_put_port_malloc(new_payload->port);
+>  }
+>  EXPORT_SYMBOL(drm_dp_remove_payload);
+> =20
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/dr=
+m/i915/display/intel_dp_mst.c
+> index f3cb12dcfe0a7..dc4e5ff1dbb31 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -526,6 +526,8 @@ static void intel_mst_disable_dp(struct intel_atomic_=
+state *state,
+>  =09=09to_intel_connector(old_conn_state->connector);
+>  =09struct drm_dp_mst_topology_state *mst_state =3D
+>  =09=09drm_atomic_get_mst_topology_state(&state->base, &intel_dp->mst_mgr=
+);
+> +=09struct drm_dp_mst_atomic_payload *payload =3D
+> +=09=09drm_atomic_get_mst_payload_state(mst_state, connector->port);
+>  =09struct drm_i915_private *i915 =3D to_i915(connector->base.dev);
+> =20
+>  =09drm_dbg_kms(&i915->drm, "active links %d\n",
+> @@ -534,7 +536,7 @@ static void intel_mst_disable_dp(struct intel_atomic_=
+state *state,
+>  =09intel_hdcp_disable(intel_mst->connector);
+> =20
+>  =09drm_dp_remove_payload(&intel_dp->mst_mgr, mst_state,
+> -=09=09=09      drm_atomic_get_mst_payload_state(mst_state, connector->po=
+rt));
+> +=09=09=09      payload, payload);
+> =20
+>  =09intel_audio_codec_disable(encoder, old_crtc_state, old_conn_state);
+>  }
+> diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/no=
+uveau/dispnv50/disp.c
+> index edcb2529b4025..ed9d374147b8d 100644
+> --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> @@ -885,7 +885,7 @@ nv50_msto_prepare(struct drm_atomic_state *state,
+> =20
+>  =09// TODO: Figure out if we want to do a better job of handling VCPI al=
+location failures here?
+>  =09if (msto->disabled) {
+> -=09=09drm_dp_remove_payload(mgr, mst_state, payload);
+> +=09=09drm_dp_remove_payload(mgr, mst_state, payload, payload);
+> =20
+>  =09=09nvif_outp_dp_mst_vcpi(&mstm->outp->outp, msto->head->base.index, 0=
+, 0, 0, 0);
+>  =09} else {
+> diff --git a/include/drm/display/drm_dp_mst_helper.h b/include/drm/displa=
+y/drm_dp_mst_helper.h
+> index 41fd8352ab656..f5eb9aa152b14 100644
+> --- a/include/drm/display/drm_dp_mst_helper.h
+> +++ b/include/drm/display/drm_dp_mst_helper.h
+> @@ -841,7 +841,8 @@ int drm_dp_add_payload_part2(struct drm_dp_mst_topolo=
+gy_mgr *mgr,
+>  =09=09=09     struct drm_dp_mst_atomic_payload *payload);
+>  void drm_dp_remove_payload(struct drm_dp_mst_topology_mgr *mgr,
+>  =09=09=09   struct drm_dp_mst_topology_state *mst_state,
+> -=09=09=09   struct drm_dp_mst_atomic_payload *payload);
+> +=09=09=09   const struct drm_dp_mst_atomic_payload *old_payload,
+> +=09=09=09   struct drm_dp_mst_atomic_payload *new_payload);
+> =20
+>  int drm_dp_check_act_status(struct drm_dp_mst_topology_mgr *mgr);
+> =20
 
-Summary
--------
+--=20
+Cheers,
+ Lyude Paul (she/her)
+ Software Engineer at Red Hat
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113542v1/index.html
-
-Participating hosts (26 -> 25)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_113542v1 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - {bat-rpls-1}:       [ABORT][1] ([i915#6311] / [i915#7359]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12675/bat-rpls-1/igt@gem_exec_suspend@basic-s0@smem.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113542v1/bat-rpls-1/igt@gem_exec_suspend@basic-s0@smem.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - {bat-adlm-1}:       [INCOMPLETE][3] ([i915#4983]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12675/bat-adlm-1/igt@i915_selftest@live@hangcheck.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113542v1/bat-adlm-1/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#6311]: https://gitlab.freedesktop.org/drm/intel/issues/6311
-  [i915#7359]: https://gitlab.freedesktop.org/drm/intel/issues/7359
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12675 -> Patchwork_113542v1
-
-  CI-20190529: 20190529
-  CI_DRM_12675: dcc649c15d884fe52a8336f2223fe5abfa3d5d0a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7143: c7b12dcc460fc2348e1fa7f4dcb791bb82e29e44 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_113542v1: dcc649c15d884fe52a8336f2223fe5abfa3d5d0a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-c4d67f7697b3 drm/i915/huc: Add and use HuC oriented print macros
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113542v1/index.html
-
---===============4261184086647971595==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/huc: Add and use HuC oriented print macros</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/113542/">https://patchwork.freedesktop.org/series/113542/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113542v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113542v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12675 -&gt; Patchwork_113542v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113542v1/index.html</p>
-<h2>Participating hosts (26 -&gt; 25)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_113542v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12675/bat-rpls-1/igt@gem_exec_suspend@basic-s0@smem.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6311">i915#6311</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7359">i915#7359</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113542v1/bat-rpls-1/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>{bat-adlm-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12675/bat-adlm-1/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113542v1/bat-adlm-1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12675 -&gt; Patchwork_113542v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12675: dcc649c15d884fe52a8336f2223fe5abfa3d5d0a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7143: c7b12dcc460fc2348e1fa7f4dcb791bb82e29e44 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_113542v1: dcc649c15d884fe52a8336f2223fe5abfa3d5d0a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>c4d67f7697b3 drm/i915/huc: Add and use HuC oriented print macros</p>
-
-</body>
-</html>
-
---===============4261184086647971595==--
