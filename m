@@ -2,33 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D40D68393A
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 23:21:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D85B6683957
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 23:28:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0343B10E2BA;
-	Tue, 31 Jan 2023 22:21:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66E6110E396;
+	Tue, 31 Jan 2023 22:28:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B378E10E2BA;
- Tue, 31 Jan 2023 22:21:09 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AA926AADE1;
- Tue, 31 Jan 2023 22:21:09 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0702384178055189372=="
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40B2410E396;
+ Tue, 31 Jan 2023 22:28:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1675204127; x=1706740127;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=lrak0xBccXTCpTCSt2RcPVBAxGd6Nu1VYPiiR1uyXWU=;
+ b=B58Ky5IWysAM/oOZ9DcTXAiZ8iASMqxdW8hw9XyBzeiH/5DDZJz93E6r
+ 77aPcRemRZEwqkEZGwSAL0xEqWFDllrmEZh0+Vmz3R/ENOCfOUBzWq2Zk
+ BvmeOQRhlZeObqJqsm+gJ0SGbdZ9r38/ALWXLWdlEQxsPOTIUh7zKQTap
+ JR4d1SLSBRcQnZXT/R+vYiClgebHMY4L8lRnaJCAY2Q0SF0tb3OSWUJVe
+ i85XrRvUwWnnEnK9KZ7xWqQiUpqNXL/mN/aje+HpyYxJWRnj0QWcPAPNx
+ ryhcQG8y5MXxnclX7QRpNP9Ux5LiM9/d2ByZESV9bGxgZWkiIgeUurPKi w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10607"; a="307634384"
+X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; d="scan'208";a="307634384"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2023 14:28:46 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10607"; a="910073537"
+X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; d="scan'208";a="910073537"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by fmsmga006.fm.intel.com with ESMTP; 31 Jan 2023 14:28:45 -0800
+Received: from mwajdecz-MOBL.ger.corp.intel.com
+ (mwajdecz-MOBL.ger.corp.intel.com [10.249.150.146])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 04EBC333E5;
+ Tue, 31 Jan 2023 22:28:43 +0000 (GMT)
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 31 Jan 2023 23:28:37 +0100
+Message-Id: <20230131222837.1921-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Date: Tue, 31 Jan 2023 22:21:09 -0000
-Message-ID: <167520366965.5939.4842417047070666359@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230131214413.1879-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20230131214413.1879-1-michal.wajdeczko@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/guc=3A_Improve_debug_message_on_context_reset_notificatio?=
- =?utf-8?q?n?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/huc: Add and use HuC oriented print
+ macros
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,203 +59,160 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0702384178055189372==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Like we did it for GuC, introduce some helper print macros for
+HuC to have unified format of messages that also include GT#.
 
-== Series Details ==
+While around improve some messages and use %pe if possible.
 
-Series: drm/i915/guc: Improve debug message on context reset notification
-URL   : https://patchwork.freedesktop.org/series/113537/
-State : success
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+---
+ drivers/gpu/drm/i915/gt/uc/intel_huc.c | 44 ++++++++++++++------------
+ 1 file changed, 23 insertions(+), 21 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+index 410905da8e97..834e3b5b8f4b 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+@@ -6,6 +6,7 @@
+ #include <linux/types.h>
+ 
+ #include "gt/intel_gt.h"
++#include "gt/intel_gt_print.h"
+ #include "intel_guc_reg.h"
+ #include "intel_huc.h"
+ #include "i915_drv.h"
+@@ -13,6 +14,15 @@
+ #include <linux/device/bus.h>
+ #include <linux/mei_aux.h>
+ 
++#define huc_printk(_huc, _level, _fmt, ...) \
++	gt_##_level(huc_to_gt(_huc), "HuC: " _fmt, ##__VA_ARGS__)
++#define huc_err(_huc, _fmt, ...)	huc_printk((_huc), err, _fmt, ##__VA_ARGS__)
++#define huc_warn(_huc, _fmt, ...)	huc_printk((_huc), warn, _fmt, ##__VA_ARGS__)
++#define huc_notice(_huc, _fmt, ...)	huc_printk((_huc), notice, _fmt, ##__VA_ARGS__)
++#define huc_info(_huc, _fmt, ...)	huc_printk((_huc), info, _fmt, ##__VA_ARGS__)
++#define huc_dbg(_huc, _fmt, ...)	huc_printk((_huc), dbg, _fmt, ##__VA_ARGS__)
++#define huc_probe_error(_huc, _fmt, ...) huc_printk((_huc), probe_error, _fmt, ##__VA_ARGS__)
++
+ /**
+  * DOC: HuC
+  *
+@@ -107,11 +117,9 @@ static enum hrtimer_restart huc_delayed_load_timer_callback(struct hrtimer *hrti
+ 
+ 	if (!intel_huc_is_authenticated(huc)) {
+ 		if (huc->delayed_load.status == INTEL_HUC_WAITING_ON_GSC)
+-			drm_notice(&huc_to_gt(huc)->i915->drm,
+-				   "timed out waiting for MEI GSC init to load HuC\n");
++			huc_notice(huc, "load timed out waiting for MEI GSC\n");
+ 		else if (huc->delayed_load.status == INTEL_HUC_WAITING_ON_PXP)
+-			drm_notice(&huc_to_gt(huc)->i915->drm,
+-				   "timed out waiting for MEI PXP init to load HuC\n");
++			huc_notice(huc, "load timed out waiting for MEI PXP\n");
+ 		else
+ 			MISSING_CASE(huc->delayed_load.status);
+ 
+@@ -174,8 +182,7 @@ static int gsc_notifier(struct notifier_block *nb, unsigned long action, void *d
+ 
+ 	case BUS_NOTIFY_DRIVER_NOT_BOUND: /* mei driver fails to be bound */
+ 	case BUS_NOTIFY_UNBIND_DRIVER: /* mei driver about to be unbound */
+-		drm_info(&huc_to_gt(huc)->i915->drm,
+-			 "mei driver not bound, disabling HuC load\n");
++		huc_info(huc, "MEI driver not bound, disabling load\n");
+ 		gsc_init_error(huc);
+ 		break;
+ 	}
+@@ -193,8 +200,7 @@ void intel_huc_register_gsc_notifier(struct intel_huc *huc, struct bus_type *bus
+ 	huc->delayed_load.nb.notifier_call = gsc_notifier;
+ 	ret = bus_register_notifier(bus, &huc->delayed_load.nb);
+ 	if (ret) {
+-		drm_err(&huc_to_gt(huc)->i915->drm,
+-			"failed to register GSC notifier\n");
++		huc_err(huc, "failed to register GSC notifier %pe\n", ERR_PTR(ret));
+ 		huc->delayed_load.nb.notifier_call = NULL;
+ 		gsc_init_error(huc);
+ 	}
+@@ -306,29 +312,25 @@ static int check_huc_loading_mode(struct intel_huc *huc)
+ 			      GSC_LOADS_HUC;
+ 
+ 	if (fw_needs_gsc != hw_uses_gsc) {
+-		drm_err(&gt->i915->drm,
+-			"mismatch between HuC FW (%s) and HW (%s) load modes\n",
+-			HUC_LOAD_MODE_STRING(fw_needs_gsc),
+-			HUC_LOAD_MODE_STRING(hw_uses_gsc));
++		huc_err(huc, "mismatch between FW (%s) and HW (%s) load modes\n",
++			HUC_LOAD_MODE_STRING(fw_needs_gsc), HUC_LOAD_MODE_STRING(hw_uses_gsc));
+ 		return -ENOEXEC;
+ 	}
+ 
+ 	/* make sure we can access the GSC via the mei driver if we need it */
+ 	if (!(IS_ENABLED(CONFIG_INTEL_MEI_PXP) && IS_ENABLED(CONFIG_INTEL_MEI_GSC)) &&
+ 	    fw_needs_gsc) {
+-		drm_info(&gt->i915->drm,
+-			 "Can't load HuC due to missing MEI modules\n");
++		huc_info(huc, "can't load due to missing MEI modules\n");
+ 		return -EIO;
+ 	}
+ 
+-	drm_dbg(&gt->i915->drm, "GSC loads huc=%s\n", str_yes_no(fw_needs_gsc));
++	huc_dbg(huc, "loaded by GSC = %s\n", str_yes_no(fw_needs_gsc));
+ 
+ 	return 0;
+ }
+ 
+ int intel_huc_init(struct intel_huc *huc)
+ {
+-	struct drm_i915_private *i915 = huc_to_gt(huc)->i915;
+ 	int err;
+ 
+ 	err = check_huc_loading_mode(huc);
+@@ -345,7 +347,7 @@ int intel_huc_init(struct intel_huc *huc)
+ 
+ out:
+ 	intel_uc_fw_change_status(&huc->fw, INTEL_UC_FIRMWARE_INIT_FAIL);
+-	drm_info(&i915->drm, "HuC init failed with %d\n", err);
++	huc_info(huc, "initialization failed %pe\n", ERR_PTR(err));
+ 	return err;
+ }
+ 
+@@ -389,13 +391,13 @@ int intel_huc_wait_for_auth_complete(struct intel_huc *huc)
+ 	delayed_huc_load_complete(huc);
+ 
+ 	if (ret) {
+-		drm_err(&gt->i915->drm, "HuC: Firmware not verified %d\n", ret);
++		huc_err(huc, "firmware not verified %pe\n", ERR_PTR(ret));
+ 		intel_uc_fw_change_status(&huc->fw, INTEL_UC_FIRMWARE_LOAD_FAIL);
+ 		return ret;
+ 	}
+ 
+ 	intel_uc_fw_change_status(&huc->fw, INTEL_UC_FIRMWARE_RUNNING);
+-	drm_info(&gt->i915->drm, "HuC authenticated\n");
++	huc_info(huc, "authenticated!\n");
+ 	return 0;
+ }
+ 
+@@ -430,7 +432,7 @@ int intel_huc_auth(struct intel_huc *huc)
+ 
+ 	ret = intel_guc_auth_huc(guc, intel_guc_ggtt_offset(guc, huc->fw.rsa_data));
+ 	if (ret) {
+-		DRM_ERROR("HuC: GuC did not ack Auth request %d\n", ret);
++		huc_err(huc, "authentication by GuC failed %pe\n", ERR_PTR(ret));
+ 		goto fail;
+ 	}
+ 
+@@ -442,7 +444,7 @@ int intel_huc_auth(struct intel_huc *huc)
+ 	return 0;
+ 
+ fail:
+-	i915_probe_error(gt->i915, "HuC: Authentication failed %d\n", ret);
++	huc_probe_error(huc, "authentication failed %pe\n", ERR_PTR(ret));
+ 	return ret;
+ }
+ 
+-- 
+2.25.1
 
-CI Bug Log - changes from CI_DRM_12675 -> Patchwork_113537v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113537v1/index.html
-
-Participating hosts (26 -> 25)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_113537v1:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_selftest@live@migrate:
-    - {bat-rpls-1}:       [PASS][1] -> [DMESG-FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12675/bat-rpls-1/igt@i915_selftest@live@migrate.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113537v1/bat-rpls-1/igt@i915_selftest@live@migrate.html
-
-  * igt@i915_selftest@live@slpc:
-    - {bat-rpls-2}:       [DMESG-FAIL][3] ([i915#6997]) -> [DMESG-FAIL][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12675/bat-rpls-2/igt@i915_selftest@live@slpc.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113537v1/bat-rpls-2/igt@i915_selftest@live@slpc.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_113537v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
-    - fi-bsw-n3050:       [PASS][5] -> [FAIL][6] ([i915#6298])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12675/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113537v1/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - {bat-adlm-1}:       [INCOMPLETE][7] ([i915#4983]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12675/bat-adlm-1/igt@i915_selftest@live@hangcheck.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113537v1/bat-adlm-1/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
-  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12675 -> Patchwork_113537v1
-
-  CI-20190529: 20190529
-  CI_DRM_12675: dcc649c15d884fe52a8336f2223fe5abfa3d5d0a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7143: c7b12dcc460fc2348e1fa7f4dcb791bb82e29e44 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_113537v1: dcc649c15d884fe52a8336f2223fe5abfa3d5d0a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-e190d726fe62 drm/i915/guc: Improve debug message on context reset notification
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113537v1/index.html
-
---===============0702384178055189372==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/guc: Improve debug message on context reset notification</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/113537/">https://patchwork.freedesktop.org/series/113537/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113537v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113537v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12675 -&gt; Patchwork_113537v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113537v1/index.html</p>
-<h2>Participating hosts (26 -&gt; 25)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_113537v1:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>
-<p>igt@i915_selftest@live@migrate:</p>
-<ul>
-<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12675/bat-rpls-1/igt@i915_selftest@live@migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113537v1/bat-rpls-1/igt@i915_selftest@live@migrate.html">DMESG-FAIL</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@slpc:</p>
-<ul>
-<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12675/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6997">i915#6997</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113537v1/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_113537v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12675/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113537v1/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>{bat-adlm-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12675/bat-adlm-1/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113537v1/bat-adlm-1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12675 -&gt; Patchwork_113537v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12675: dcc649c15d884fe52a8336f2223fe5abfa3d5d0a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7143: c7b12dcc460fc2348e1fa7f4dcb791bb82e29e44 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_113537v1: dcc649c15d884fe52a8336f2223fe5abfa3d5d0a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>e190d726fe62 drm/i915/guc: Improve debug message on context reset notification</p>
-
-</body>
-</html>
-
---===============0702384178055189372==--
