@@ -2,48 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9772D6830BA
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 16:05:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DB4E6830BB
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 16:05:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0000510E36B;
-	Tue, 31 Jan 2023 15:05:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74DB810E371;
+	Tue, 31 Jan 2023 15:05:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE36110E36B
- for <intel-gfx@lists.freedesktop.org>; Tue, 31 Jan 2023 15:05:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23F7C10E36B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Jan 2023 15:05:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675177551; x=1706713551;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=YAVmANrX/zUPBfZMW/rjyUumWmuFqDLClJ804NyvIpA=;
- b=bhF44brg1YAfEw7wwi09lGuskNmY938oM+bAcKMevfWPyKo7J6AfP+Bc
- a4N7bdQZV/HWKQowdMzDoFrhCiMVJ9uehUuIN8eSHEsU6f59T9tq2lmpF
- 0Q6tJ8IgSZGA+kQKxaKFMWgb0Ss8lWyunAytW+FzErqnOtH/1IF9EoW0u
- jrlSOpEFd7ooap6fmBJENw9wT8bNCaJJc2SiN9yxBMIPCdXFgvjir5UMZ
- ODa55aewGgsJDG3ACZiQSjMV4nhlBoTmX6KSQ4xJuK1ubXuPGlEqjafie
- wK9ZqOceuyfGDForLVkiVfW44hff5aeE/dOex6IVjwLkNhI/+rzpS4/JR Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="308205483"
-X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; d="scan'208";a="308205483"
+ t=1675177553; x=1706713553;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Fs3r3CMd3EsjJLav2ylySIdmlp7P1TFyxKDBPYrnZDU=;
+ b=d1c2yO3SdIDyqKSzZ8K/gDLeS3E+D7+2SO5Br8bZA77+Ih9WcnLvteYL
+ NXaesfTkAfGAoSR9IzR+oUVYc6bKx/MUyqKhzEcCOINhSwHSrWS+dW4MR
+ 2tc4EleYMZQwSWvJPvHimwzTpxf3HYbs3RR9WI0Sov1QlfRqIX6YNmcMA
+ Q8WHpJOdUy0jI/m8r84a9T+K/6dNKmlBf93fhVxWBnydLJkzqPk7itG+N
+ Af7p+i7/6fVdwScMUwo3zU6Imc42mUjiQvmP6nZC33W1p/xs9DKglytcn
+ ex7ftXCFh/9JIQLSGZ6ZMsMn7lEjoPhpYJBMIahFHXWJLIKciQe1OEutn g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="308205491"
+X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; d="scan'208";a="308205491"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2023 07:05:51 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="807155286"
-X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; d="scan'208";a="807155286"
+ 31 Jan 2023 07:05:52 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="807155288"
+X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; d="scan'208";a="807155288"
 Received: from ideak-desk.fi.intel.com ([10.237.72.58])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2023 07:05:50 -0800
+ 31 Jan 2023 07:05:51 -0800
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 31 Jan 2023 17:05:31 +0200
-Message-Id: <20230131150548.1614458-1-imre.deak@intel.com>
+Date: Tue, 31 Jan 2023 17:05:32 +0200
+Message-Id: <20230131150548.1614458-2-imre.deak@intel.com>
 X-Mailer: git-send-email 2.31.1.189.g2e36527f23
+In-Reply-To: <20230131150548.1614458-1-imre.deak@intel.com>
+References: <20230131150548.1614458-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 00/17] drm/i915: drm/i915/dp_mst: Fix MST
- payload removal during output disabling
+Subject: [Intel-gfx] [PATCH v2 01/17] drm/i915/dp_mst: Add the MST topology
+ state for modesetted CRTCs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,68 +58,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is v2 of [1], addressing the review comments from Ville. It also
-adds HW state verification for MST encoders and a workaround for a
-payload allocation problem in a DELL monitor's MST hub I noticed during
-testing.
+Add the MST topology for a CRTC to the atomic state if the driver
+needs to force a modeset on the CRTC after the encoder compute config
+functions are called.
 
-Tested on HSW, ICL, ADLP.
+Later the MST encoder's disable hook also adds the state, but that isn't
+guaranteed to work (since in that hook getting the state may fail, which
+can't be handled there). This should fix that, while a later patch fixes
+the use of the MST state in the disable hook.
 
-[1] https://lore.kernel.org/intel-gfx/20230125114852.748337-1-imre.deak@intel.com/
+v2: Add missing forward struct declartions, caught by hdrtest.
+v3: Factor out intel_dp_mst_add_topology_state_for_connector() used
+    later in the patchset.
 
+Cc: Lyude Paul <lyude@redhat.com>
 Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Lyude Paul <lyude@redhat.com> 
+Cc: stable@vger.kernel.org # 6.1
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com> # v2
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c |  4 ++
+ drivers/gpu/drm/i915/display/intel_dp_mst.c  | 61 ++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dp_mst.h  |  4 ++
+ 3 files changed, 69 insertions(+)
 
-Imre Deak (17):
-  drm/i915/dp_mst: Add the MST topology state for modesetted CRTCs
-  drm/display/dp_mst: Handle old/new payload states in
-    drm_dp_remove_payload()
-  drm/display/dp_mst: Add drm_atomic_get_old_mst_topology_state()
-  drm/i915/dp_mst: Fix payload removal during output disabling
-  drm/display/dp_mst: Fix the payload VCPI check in
-    drm_dp_mst_dump_topology()
-  drm/display/dp_mst: Sanitize payload iteration in
-    drm_dp_mst_dump_topology()
-  drm/i915: Factor out helpers for modesetting CRTCs and connectors
-  drm/i915/dp_mst: Move getting the MST topology state earlier to
-    connector check
-  drm/display/dp_mst: Add a helper to verify the MST payload state
-  drm/i915/dp_mst: Verify the MST state of modesetted outputs
-  drm/display/dp_mst: Add helpers to query for payload allocation errors
-  drm/display/dp_mst: Add helpers to query payload allocation properties
-  drm/display/dp_mst: Export the DP_PAYLOAD_TABLE_SIZE definition
-  drm/display/dp_mst: Factor out a helper to reset the payload table
-  drm/dp: Add a quirk for a DELL P2715Q MST payload allocation problem
-  drm/i915/dp_mst: Add workaround for a DELL P2715Q payload allocation
-    problem
-  drm/i915/dp_mst: Verify the HW state of MST encoders
-
- .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |   2 +-
- drivers/gpu/drm/display/drm_dp_helper.c       |   2 +
- drivers/gpu/drm/display/drm_dp_mst_topology.c | 354 ++++++++++++++++--
- drivers/gpu/drm/i915/display/intel_atomic.c   | 140 +++++++
- drivers/gpu/drm/i915/display/intel_atomic.h   |   8 +
- drivers/gpu/drm/i915/display/intel_cdclk.c    |   2 +-
- drivers/gpu/drm/i915/display/intel_ddi.c      |  91 ++++-
- drivers/gpu/drm/i915/display/intel_display.c  |  59 +--
- drivers/gpu/drm/i915/display/intel_display.h  |   2 -
- .../drm/i915/display/intel_display_types.h    |  19 +
- drivers/gpu/drm/i915/display/intel_dp.c       |  43 +--
- drivers/gpu/drm/i915/display/intel_dp.h       |   1 +
- drivers/gpu/drm/i915/display/intel_dp_mst.c   | 270 +++++++++++--
- drivers/gpu/drm/i915/display/intel_dp_mst.h   |   9 +
- .../drm/i915/display/intel_modeset_verify.c   |   2 +
- drivers/gpu/drm/i915/display/skl_watermark.c  |   2 +-
- drivers/gpu/drm/i915/i915_reg.h               |   6 +-
- drivers/gpu/drm/nouveau/dispnv50/disp.c       |   2 +-
- include/drm/display/drm_dp.h                  |   5 +
- include/drm/display/drm_dp_helper.h           |   8 +
- include/drm/display/drm_dp_mst_helper.h       |  34 +-
- 21 files changed, 878 insertions(+), 183 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 166662ade593c..38106cf63b3b9 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -5936,6 +5936,10 @@ int intel_modeset_all_pipes(struct intel_atomic_state *state,
+ 		if (ret)
+ 			return ret;
+ 
++		ret = intel_dp_mst_add_topology_state_for_crtc(state, crtc);
++		if (ret)
++			return ret;
++
+ 		ret = intel_atomic_add_affected_planes(state, crtc);
+ 		if (ret)
+ 			return ret;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index 8b0e4defa3f10..f3cb12dcfe0a7 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -1223,3 +1223,64 @@ bool intel_dp_mst_is_slave_trans(const struct intel_crtc_state *crtc_state)
+ 	return crtc_state->mst_master_transcoder != INVALID_TRANSCODER &&
+ 	       crtc_state->mst_master_transcoder != crtc_state->cpu_transcoder;
+ }
++
++/**
++ * intel_dp_mst_add_topology_state_for_connector - add MST topology state for a connector
++ * @state: atomic state
++ * @connector: connector to add the state for
++ * @crtc: the CRTC @connector is attached to
++ *
++ * Add the MST topology state for @connector to @state.
++ *
++ * Returns 0 on success, negative error code on failure.
++ */
++static int
++intel_dp_mst_add_topology_state_for_connector(struct intel_atomic_state *state,
++					      struct intel_connector *connector,
++					      struct intel_crtc *crtc)
++{
++	struct drm_dp_mst_topology_state *mst_state;
++
++	if (!connector->mst_port)
++		return 0;
++
++	mst_state = drm_atomic_get_mst_topology_state(&state->base,
++						      &connector->mst_port->mst_mgr);
++	if (IS_ERR(mst_state))
++		return PTR_ERR(mst_state);
++
++	mst_state->pending_crtc_mask |= drm_crtc_mask(&crtc->base);
++
++	return 0;
++}
++
++/**
++ * intel_dp_mst_add_topology_state_for_crtc - add MST topology state for a CRTC
++ * @state: atomic state
++ * @crtc: CRTC to add the state for
++ *
++ * Add the MST topology state for @crtc to @state.
++ *
++ * Returns 0 on success, negative error code on failure.
++ */
++int intel_dp_mst_add_topology_state_for_crtc(struct intel_atomic_state *state,
++					     struct intel_crtc *crtc)
++{
++	struct drm_connector *_connector;
++	struct drm_connector_state *conn_state;
++	int i;
++
++	for_each_new_connector_in_state(&state->base, _connector, conn_state, i) {
++		struct intel_connector *connector = to_intel_connector(_connector);
++		int ret;
++
++		if (conn_state->crtc != &crtc->base)
++			continue;
++
++		ret = intel_dp_mst_add_topology_state_for_connector(state, connector, crtc);
++		if (ret)
++			return ret;
++	}
++
++	return 0;
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.h b/drivers/gpu/drm/i915/display/intel_dp_mst.h
+index f7301de6cdfb3..f1815bb722672 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.h
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.h
+@@ -8,6 +8,8 @@
+ 
+ #include <linux/types.h>
+ 
++struct intel_atomic_state;
++struct intel_crtc;
+ struct intel_crtc_state;
+ struct intel_digital_port;
+ struct intel_dp;
+@@ -18,5 +20,7 @@ int intel_dp_mst_encoder_active_links(struct intel_digital_port *dig_port);
+ bool intel_dp_mst_is_master_trans(const struct intel_crtc_state *crtc_state);
+ bool intel_dp_mst_is_slave_trans(const struct intel_crtc_state *crtc_state);
+ bool intel_dp_mst_source_support(struct intel_dp *intel_dp);
++int intel_dp_mst_add_topology_state_for_crtc(struct intel_atomic_state *state,
++					     struct intel_crtc *crtc);
+ 
+ #endif /* __INTEL_DP_MST_H__ */
 -- 
 2.37.1
 
