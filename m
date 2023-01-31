@@ -2,50 +2,111 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 931286830D9
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 16:06:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 82F68683101
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 16:12:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD32010E371;
-	Tue, 31 Jan 2023 15:06:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4A7010E36B;
+	Tue, 31 Jan 2023 15:12:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A751E10E386
- for <intel-gfx@lists.freedesktop.org>; Tue, 31 Jan 2023 15:06:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675177579; x=1706713579;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ed7p60+YTpuj8kH25rI340ZA3CdP5bGFfBAS7lLSQ04=;
- b=SShvKpERsP/7IrQPPdp8Um+D+pUiMLsMmqu60Po0ehBlF02+pQ1cBY+j
- 5sxx+f5GoKmcBvwCUafPnLWDof+szl5a+oDxrXItMWCKJSRnkoFlxqGaj
- iP9w99jHBrvjnFTpMxiaED315AlGok41x3UdD7grRqd02B4cXcq/c/I++
- JOzTj5y7K3j64YTMFtrzMdXN1c2WpFIlRPYK99OFGaWE0UlD5Y/52pENy
- xlRQSWqtFVf6Gr8vYlCjmcmxtyFDOFOO+DMXTMXEB+K63Ho0oys9MKkBv
- kDv99RhSgS/fWZXnIttEcUS12nkC6FoB6r0kAVGNhBTfAB85jZLinsO+5 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="308205634"
-X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; d="scan'208";a="308205634"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2023 07:06:19 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="807155360"
-X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; d="scan'208";a="807155360"
-Received: from ideak-desk.fi.intel.com ([10.237.72.58])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2023 07:06:17 -0800
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 31 Jan 2023 17:05:48 +0200
-Message-Id: <20230131150548.1614458-18-imre.deak@intel.com>
-X-Mailer: git-send-email 2.31.1.189.g2e36527f23
-In-Reply-To: <20230131150548.1614458-1-imre.deak@intel.com>
-References: <20230131150548.1614458-1-imre.deak@intel.com>
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06DAC10E36B;
+ Tue, 31 Jan 2023 15:12:53 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=InNZKNRSHwaDRXcuzuOeKry//D0BGMct6fRYFvru6unM/sjO76J5JcEbHn72QfxO9pU/wn+x6scac66UbTdu53b2rGlUgtSezcU0GzceWb6V94kmcBUT5il0mskJXrcykWbX5pMOx05SWPoqeR9fM3mULUDUdEoDylk4W91cn4465r5xJvCiSwqaHz9GreGbQ+ASTkj1YZ3+3cLE8RBHG+HOQchO5Avssj0XjrbQ6Ky5lNlrwXpallL7tWg6T0pJP1uv8lVNCvwE2gEoSXyJrxGxDiwP7ps1rPx40HoA+MY0xjp5/KAbhU6APKf5H6zuvcZDJKSEVMN3iOCZuVub/w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=c1kn6M4f9dnAKyIwaIULQJ8eNVckQsFmAUZYdRlkEeA=;
+ b=GW3LfjhJ0gLfAshC09om4zhL4G4GHnZTu3Cv9HmdAa/+vQoLtm+Y0NamhQprQNQKRaDlLtAaHqJpjTb4tzWkpVUG4VWiMbFNpl6NAW1OQ/t3NFONI5WBfrw9BXJNJzba8+hm6uQGU6IxK3hOUEBitpI8z+AOQFg8DINg7Kd+cD1KyIq+b9bGLPGCVV6Hi43efAX10yiIc++GYW4CnuT8MzpYod17QXpZTToHIFxVeTk9yVPvcfLKqjrGk8KwhfwzEZ5o2iV4UZfXgYArBMdDaPcPfTmsRmrhzkIzTLVFfKGrckI82mnYQ7TLyH8gCBKeVIv/vzuGLPjOr2gqZO/AGQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=c1kn6M4f9dnAKyIwaIULQJ8eNVckQsFmAUZYdRlkEeA=;
+ b=HC+QaPo/QXVFdzG/YEvYH91kPCpqkPqLzqEJ4RzTSc/KBfuQW2K0MncEa9XY/WLHmrWx73e3f/dt2vnNvX2cVCjZzk49nlkpykEOUgZrhOWzvF6odEI08uyHvHZ2Jz/Ys8zqWB20PBG3rrxJdbkVjES171PnppkqqgbjnlzmOvspCifW5RFEOy4992BjjN+TrN3WtZGE/Ysepzol5vbdR5QXjKc9Widad1fqr//JTKi3vN0uLvmxRrIIr3R3NDzfppQnnS0rN6CudytPmabbLs3N/BmmCMaXiDgBjT+F5yXnhUgqP02Z5uX1eI9yog02OcPEG7O0U48YXHbELkNDmw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
+ by IA1PR12MB6089.namprd12.prod.outlook.com (2603:10b6:208:3ef::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.36; Tue, 31 Jan
+ 2023 15:12:51 +0000
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::3cb3:2fce:5c8f:82ee]) by LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::3cb3:2fce:5c8f:82ee%4]) with mapi id 15.20.6043.038; Tue, 31 Jan 2023
+ 15:12:50 +0000
+Date: Tue, 31 Jan 2023 11:12:47 -0400
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Matthew Rosato <mjrosato@linux.ibm.com>
+Message-ID: <Y9kv70l4rES+9mg+@nvidia.com>
+References: <20230120150528.471752-1-yi.l.liu@intel.com>
+ <67ec09bf-cb24-34e3-6ec4-1ae87b0738bd@linux.ibm.com>
+ <Y9km+xezgD4ovjDX@nvidia.com>
+ <b0ed98f6-3586-3151-47e7-9ec86d6c716d@linux.ibm.com>
+ <Y9kqNnJ5ayCQSW9z@nvidia.com>
+ <03ff0663-da37-8907-53ec-15234fd7dcad@linux.ibm.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <03ff0663-da37-8907-53ec-15234fd7dcad@linux.ibm.com>
+X-ClientProxiedBy: SJ0PR05CA0129.namprd05.prod.outlook.com
+ (2603:10b6:a03:33d::14) To LV2PR12MB5869.namprd12.prod.outlook.com
+ (2603:10b6:408:176::16)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 17/17] drm/i915/dp_mst: Verify the HW state
- of MST encoders
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|IA1PR12MB6089:EE_
+X-MS-Office365-Filtering-Correlation-Id: dac2cb6b-6b45-492a-167e-08db039d9e76
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: GbnFBdboj9N4xhgWUgI3x8gAXzoFog1dLElvPsrDXlVnRsCoIZnrp1baJhUEGufRQpOUK0cWX0O8Y6xvBmlBPhGYoOEmdScK29dGvUjGMqrwT91s9FtXsnWLbiYRNAKfQEFIT0vpUIChNaRP4H0MR2iSwc5CxpxMvIoQeYKuyZAMWezAubZUs0TTVxWlf3GuvTW26CEmOhLlv7nsPDNKbshO1KULkir4UX27qE30euwWjLopVE4SkCl8wc/qiTqnRKt9MSEMoQas9eB//+/QFuXFDKYSvfVDkPkdV94IkeIJaAptoUwynKwQCj/i7qybSVGv8MgsLngrS8MKOJuAunRAIc8sYOqwBIrSw12JEw3NrnOvI1vX5Xt7/2sicnnqniWq/HYwWwStS30Kp+mahHnBC+4aZCSqx1Xuf/Naavm8g6JologMmFKpXLCG5Lf2499r5Zro5kyyGQHnfAE7lB/hUZIOg0gQVGMXBYV7yTF3eDymgUXTOyC3gPaU9JDHPiblCSEmuO05a9TxAZXM5wiwp/8xWzTEL+zzyYwF6UY08qojMP/arhz7vGUrDuExkvL53zYYDVTADkzhfRWbMZLSsNwnrKIeH3H2OL2eBb/ylgQX2yo12pCuK5V36J+DbNJH6cZf4Gn9mgpL07YGeQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(4636009)(346002)(136003)(396003)(39860400002)(376002)(366004)(451199018)(2906002)(5660300002)(86362001)(7416002)(83380400001)(8936002)(41300700001)(36756003)(26005)(478600001)(6512007)(186003)(6666004)(53546011)(6506007)(6486002)(54906003)(2616005)(4326008)(66476007)(66946007)(6916009)(66556008)(316002)(38100700002)(8676002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?5OEEPUBoIV5KR/m/fSiLxtUio/VhAOajZSwtx8a+KpThLab5cvobm0fL+cd6?=
+ =?us-ascii?Q?p2BcUiESWNv6QKyCLpO89qfR5cx6CdmvBgo3M68GblvThxkuAiiKiOiYjF5h?=
+ =?us-ascii?Q?oLmA0SSOk1h7YoV6oSpGPn6/1kYapcGJImqVikfiEPg/eU8hXf29qFSHTAcT?=
+ =?us-ascii?Q?fg506myM5rMDG3zqwZoUOjXZLICvw84MOqDMpRMAvaHM3WKvcYpE2X1sDkTI?=
+ =?us-ascii?Q?cBccbF3Qu3YMVWtSkCPbNWf6MazLKutG1nu1rQgYAK1Xc9/nh409xXFuWMG1?=
+ =?us-ascii?Q?bM3TJb7fCAIPTtiZSAOd7/lFyv1ZKZlqFHtUOySblvGIx8HYe6UItzqGIVQc?=
+ =?us-ascii?Q?skg3cOgWmXHV75mZLPjmqtVeT6qG4u1BeGWIRSF9VM7vHO77c5SEk/rwvEoO?=
+ =?us-ascii?Q?3dQfxy+pAFR53iybsvdmrYVl91sq92s0iXFtd5X3yBMUz+fraPNiJIJ0ZEEn?=
+ =?us-ascii?Q?i9hXH0DMiiviyLCo5Roz9pgu0Ca4GjiXG9FekZxxTiJanxmNobWX3V8IKcTX?=
+ =?us-ascii?Q?PHw9d2KepxPBDP/x2jRe4OyA3UcZrjzRTUzW6BiymekDZ0E0fpG/sg+k/YT7?=
+ =?us-ascii?Q?qJgTzNCefHb+oEnOzgLjgY4kie1VyDcl3ctS24EP+ds2sLw8GnvrIm61h1yy?=
+ =?us-ascii?Q?6eMX6glYp2N3GhJaJwHxHD8haB0ljQ0iuGDAOCdTlfp9LtPFqIvqXnBcUxGH?=
+ =?us-ascii?Q?YB4U5VD3ooNaVsaIruEeJaHkvX8R4J+T4zQdWWY9EAEZTIt815RxhoPF8F8C?=
+ =?us-ascii?Q?fstp8F/fSwQSk5qqNuGbb1UO1TuHhOsEyeQO4ul7vZ5Hf99SQLuPwOQvDrbY?=
+ =?us-ascii?Q?EzbZxNTOpXulyWaAmyl/NGMnAGo3+3rSENRI1IRiZNIdDK9qei5ZwbkHRUi1?=
+ =?us-ascii?Q?p/rCkDDdJ2lZsZ4pDc2lrDdZPsShgsGshAXkUehFKQyACvgWFEfziFzH/LRp?=
+ =?us-ascii?Q?6KrujjbwOOjuYzsJ3V25DCC0ixvV6A5mvgJmMCPB4AdRnN4l8PEsN8Qi58Tm?=
+ =?us-ascii?Q?WLRi1Osn6WmNHj9DjeR+k3+W177Ft0CejBz0NhaN5ARBpWt6QLbh6qZ118+u?=
+ =?us-ascii?Q?tKZgALBp/2avHqOIySCTuN9tpA2XCkNM6cP7Pc6ejqs3xsYRidx4/gnWx1DW?=
+ =?us-ascii?Q?/G+n//XmNOrnBpMMfAZHBQoSzQH2MjjnMHiv6Sd6DygU6N6HqNKPw0iCyrgJ?=
+ =?us-ascii?Q?h1f47UtrEAskOpn8djBM6xYF5hRQKR2MJXn0tdxl+2C8QSmHL+gTOXyIGNDR?=
+ =?us-ascii?Q?y8frpdrNHLHu+7O6YPOHmYzbOIEaV0MPVYGkew6jCbaJppY21q3tfIbRPSre?=
+ =?us-ascii?Q?2MkPOhDJCZtttmpGGFu1+Li8A1X0t1v5cytFe0fbPZ8Mu6yMegGZDVhm6Q/i?=
+ =?us-ascii?Q?IfwO4mnwoBxTiDY3GUNzID9gNF0hr36F7PRO4GQWmHdroCmWR8k0BsKjN+1t?=
+ =?us-ascii?Q?go5LVZ8bQCHrse4rTxnM/RSus6MClN4JhtQRSuHJSeJtQ/hHoPqN5huF9uQk?=
+ =?us-ascii?Q?gdfuXSPdOuPjRk+kdZ8V/WJ8031RQRRbuKRwrzIBqvFcQVanCbmcWCPsUbol?=
+ =?us-ascii?Q?n4Se+hDBVgrugqmm7w4K8NYqsdYw/iLlOZqXktDB?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: dac2cb6b-6b45-492a-167e-08db039d9e76
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jan 2023 15:12:50.8219 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Q/D+IbDMlh6+AYJxwzbu1l9+r4UDzT+LiJhMVAdjtrgCwTkerS+VDi3NHYeMaujy
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6089
+Subject: Re: [Intel-gfx] [PATCH] kvm/vfio: Fix potential deadlock on vfio
+ group_lock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,360 +119,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: kvm@vger.kernel.org, david@redhat.com, farman@linux.ibm.com,
+ imbrenda@linux.ibm.com, linux-s390@vger.kernel.org,
+ Yi Liu <yi.l.liu@intel.com>, frankja@linux.ibm.com, pasic@linux.ibm.com,
+ borntraeger@linux.ibm.com, jjherne@linux.ibm.com,
+ intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
+ Anthony Krowiak <akrowiak@linux.ibm.com>, pmorel@linux.ibm.com,
+ seanjc@google.com, cohuck@redhat.com, linux-kernel@vger.kernel.org,
+ pbonzini@redhat.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Read out and verify an MST encoder's HW state after any of the
-MST connectors driven by the encoder is modeset.
+On Tue, Jan 31, 2023 at 10:00:14AM -0500, Matthew Rosato wrote:
+> On 1/31/23 9:48 AM, Jason Gunthorpe wrote:
+> > On Tue, Jan 31, 2023 at 09:46:18AM -0500, Anthony Krowiak wrote:
+> > 
+> >>> Maybe you should split that lock and have a dedicated apcb lock?
+> >>
+> >> I don't think that would suffice for taking the vCPUs out of SIE.
+> > 
+> > Then I think we have to keep this patch and also do Matthew's patch to
+> > keep kvm refs inside vfio as well.
+> > 
+> 
+> I don't think keeping kvm refs inside vfio solves this issue though
+> -- Even if we handle the kvm_put_kvm asynchronously within vfio as
+> previously proposed, kvm_vfio_release will eventually get called and
+> it gets called with the kvm->lock already held, then proceeds to
+> call vfio_file_set_kvm which gets the group->lock.  That order
+> conflicts with the hierarchy used by the driver during open_device
+> of vfio->group_lock ... kvm->lock.
 
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c      | 91 +++++++++++++++++--
- drivers/gpu/drm/i915/display/intel_display.c  |  2 +-
- .../drm/i915/display/intel_display_types.h    | 18 ++++
- drivers/gpu/drm/i915/display/intel_dp_mst.c   | 68 +++++++++++++-
- drivers/gpu/drm/i915/display/intel_dp_mst.h   |  2 +-
- .../drm/i915/display/intel_modeset_verify.c   |  2 +-
- drivers/gpu/drm/i915/i915_reg.h               |  6 +-
- 7 files changed, 173 insertions(+), 16 deletions(-)
+The group lock is held by vfio_file_set_kvm() only because we don't
+have a refcount and we have to hold it across the open call to keep
+the pointer alive.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 254559abedfba..6acda4d357af3 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -661,13 +661,23 @@ int intel_ddi_toggle_hdcp_bits(struct intel_encoder *intel_encoder,
- 	return ret;
- }
- 
-+static enum transcoder get_transcoder_for_pipe(const struct intel_encoder *encoder,
-+					       enum pipe pipe)
-+{
-+	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-+
-+	if (HAS_TRANSCODER(i915, TRANSCODER_EDP) && encoder->port == PORT_A)
-+		return TRANSCODER_EDP;
-+	else
-+		return (enum transcoder) pipe;
-+}
-+
- bool intel_ddi_connector_get_hw_state(struct intel_connector *intel_connector)
- {
- 	struct drm_device *dev = intel_connector->base.dev;
- 	struct drm_i915_private *dev_priv = to_i915(dev);
- 	struct intel_encoder *encoder = intel_attached_encoder(intel_connector);
- 	int type = intel_connector->base.connector_type;
--	enum port port = encoder->port;
- 	enum transcoder cpu_transcoder;
- 	intel_wakeref_t wakeref;
- 	enum pipe pipe = 0;
-@@ -684,10 +694,7 @@ bool intel_ddi_connector_get_hw_state(struct intel_connector *intel_connector)
- 		goto out;
- 	}
- 
--	if (HAS_TRANSCODER(dev_priv, TRANSCODER_EDP) && port == PORT_A)
--		cpu_transcoder = TRANSCODER_EDP;
--	else
--		cpu_transcoder = (enum transcoder) pipe;
-+	cpu_transcoder = get_transcoder_for_pipe(encoder, pipe);
- 
- 	tmp = intel_de_read(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder));
- 
-@@ -2155,17 +2162,29 @@ i915_reg_t dp_tp_ctl_reg(struct intel_encoder *encoder,
- 		return DP_TP_CTL(encoder->port);
- }
- 
--i915_reg_t dp_tp_status_reg(struct intel_encoder *encoder,
--			    const struct intel_crtc_state *crtc_state)
-+static i915_reg_t __dp_tp_status_reg(struct intel_encoder *encoder,
-+				     enum transcoder transcoder)
- {
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
- 
- 	if (DISPLAY_VER(dev_priv) >= 12)
--		return TGL_DP_TP_STATUS(tgl_dp_tp_transcoder(crtc_state));
-+		return TGL_DP_TP_STATUS(transcoder);
- 	else
- 		return DP_TP_STATUS(encoder->port);
- }
- 
-+i915_reg_t dp_tp_status_reg(struct intel_encoder *encoder,
-+			    const struct intel_crtc_state *crtc_state)
-+{
-+	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-+	enum transcoder transcoder = INVALID_TRANSCODER;
-+
-+	if (DISPLAY_VER(dev_priv) >= 12)
-+		transcoder = tgl_dp_tp_transcoder(crtc_state);
-+
-+	return __dp_tp_status_reg(encoder, transcoder);
-+}
-+
- static void intel_dp_sink_set_msa_timing_par_ignore_state(struct intel_dp *intel_dp,
- 							  const struct intel_crtc_state *crtc_state,
- 							  bool enable)
-@@ -3500,6 +3519,61 @@ static void intel_ddi_get_config(struct intel_encoder *encoder,
- 	intel_audio_codec_get_config(encoder, pipe_config);
- }
- 
-+static bool intel_ddi_get_hw_mst_state(struct intel_encoder *encoder,
-+				       struct intel_encoder_mst_state *state)
-+{
-+	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-+	enum transcoder transcoder;
-+	u8 vc_pipe_mask = 0;
-+	u8 pipe_mask;
-+	bool is_mst;
-+	u32 dp_status;
-+	bool in_mst_mode;
-+	int vc;
-+
-+	intel_ddi_get_encoder_pipes(encoder, &pipe_mask, &is_mst);
-+	if (!is_mst || !pipe_mask)
-+		return false;
-+
-+	transcoder = get_transcoder_for_pipe(encoder, ffs(pipe_mask) - 1);
-+	dp_status = intel_de_read(i915, __dp_tp_status_reg(encoder, transcoder));
-+
-+	in_mst_mode = REG_FIELD_GET(DP_TP_STATUS_MODE_STATUS_MST, dp_status);
-+	if (drm_WARN_ON(&i915->drm, !in_mst_mode))
-+		return false;
-+
-+	state->num_mst_streams = REG_FIELD_GET(DP_TP_STATUS_NUM_STREAMS_ENABLED, dp_status);
-+	drm_WARN_ON(&i915->drm, state->num_mst_streams == 0 ||
-+				state->num_mst_streams > ARRAY_SIZE(state->mst_stream));
-+
-+	for (vc = 0; vc < ARRAY_SIZE(state->mst_stream); vc++) {
-+		struct intel_crtc *crtc;
-+		struct intel_link_m_n m_n;
-+
-+		if (vc >= state->num_mst_streams) {
-+			state->mst_stream[vc].pipe = INVALID_PIPE;
-+			state->mst_stream[vc].tu = 0;
-+			continue;
-+		}
-+
-+		state->mst_stream[vc].pipe = (dp_status & DP_TP_STATUS_PAYLOAD_MAPPING_MASK(vc)) >>
-+					     DP_TP_STATUS_PAYLOAD_MAPPING_SHIFT(vc);
-+
-+		drm_WARN_ON(&i915->drm, vc_pipe_mask & BIT(state->mst_stream[vc].pipe));
-+		vc_pipe_mask |= BIT(state->mst_stream[vc].pipe);
-+
-+		transcoder = get_transcoder_for_pipe(encoder, state->mst_stream[vc].pipe);
-+		crtc = intel_crtc_for_pipe(i915, state->mst_stream[vc].pipe);
-+
-+		intel_cpu_transcoder_get_m1_n1(crtc, transcoder, &m_n);
-+		state->mst_stream[vc].tu = m_n.tu;
-+	}
-+
-+	drm_WARN_ON(&i915->drm, vc_pipe_mask != pipe_mask);
-+
-+	return true;
-+}
-+
- void intel_ddi_get_clock(struct intel_encoder *encoder,
- 			 struct intel_crtc_state *crtc_state,
- 			 struct intel_shared_dpll *pll)
-@@ -4384,6 +4458,7 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
- 	encoder->post_disable = intel_ddi_post_disable;
- 	encoder->update_pipe = intel_ddi_update_pipe;
- 	encoder->get_hw_state = intel_ddi_get_hw_state;
-+	encoder->get_hw_mst_state = intel_ddi_get_hw_mst_state;
- 	encoder->sync_state = intel_ddi_sync_state;
- 	encoder->initial_fastset_check = intel_ddi_initial_fastset_check;
- 	encoder->suspend = intel_ddi_encoder_suspend;
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 7976658771ab3..8b2b7a30b1b01 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7541,7 +7541,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 
- 	if (state->modeset) {
- 		intel_verify_planes(state);
--		intel_dp_mst_verify_state(state);
-+		intel_dp_mst_verify_state(state, true);
- 	}
- 
- 	intel_sagv_post_plane_update(state);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 06d51d2b5e0d6..066a1b956b0ba 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -151,6 +151,18 @@ enum intel_hotplug_state {
- 	INTEL_HOTPLUG_RETRY,
- };
- 
-+struct intel_encoder_mst_state {
-+	/**
-+	 *  TODO: move the encoder state from intel_crtc_state to here, and
-+	 *  make this a generic encoder state.
-+	 */
-+	u8 num_mst_streams;
-+	struct {
-+		u8 pipe;
-+		u8 tu;
-+	} mst_stream[I915_MAX_PIPES];
-+};
-+
- struct intel_encoder {
- 	struct drm_encoder base;
- 
-@@ -213,6 +225,12 @@ struct intel_encoder {
- 	 * be set correctly before calling this function. */
- 	void (*get_config)(struct intel_encoder *,
- 			   struct intel_crtc_state *pipe_config);
-+	/**
-+	 * Determine if the encoder is active in MST mode and if so
-+	 * read out the corresponding HW state.
-+	 */
-+	bool (*get_hw_mst_state)(struct intel_encoder *encoder,
-+				 struct intel_encoder_mst_state *mst_state);
- 
- 	/*
- 	 * Optional hook called during init/resume to sync any state
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index a9bb339e41987..5bc18450b09c6 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -1322,23 +1322,55 @@ int intel_dp_mst_add_topology_state_for_crtc(struct intel_atomic_state *state,
- /**
-  * intel_dp_mst_verify_state - Verify the MST state for all connectors in the atomic state
-  * @state: atomic state
-+ * @connectors_enabled: %true if called after the modeset's enabling
-+ *                      %false if called after the disabling sequence
-  *
-  * Verify the MST SW and sink state for all modesetted MST connectors in @state.
-  */
--void intel_dp_mst_verify_state(struct intel_atomic_state *state)
-+void intel_dp_mst_verify_state(struct intel_atomic_state *state, bool connectors_enabled)
- {
-+	struct drm_i915_private *i915 = to_i915(state->base.dev);
- 	struct drm_dp_mst_topology_state *mst_state;
- 	struct drm_dp_mst_topology_mgr *mgr;
- 	int i;
- 
- 	for_each_new_mst_mgr_in_state(&state->base, mgr, mst_state, i) {
- 		struct intel_dp *intel_dp = container_of(mgr, struct intel_dp, mst_mgr);
-+		struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-+		struct intel_encoder_mst_state hw_state;
- 		struct drm_connector *_connector;
- 		struct drm_connector_state *_conn_state;
- 		bool mst_needs_modeset = false;
-+		bool has_alloc_errors = drm_dp_mst_has_payload_alloc_errors(mst_state);
-+		int i;
-+
-+		if (!encoder->get_hw_mst_state(encoder, &hw_state)) {
-+			drm_WARN_ON(&i915->drm, drm_dp_mst_payload_count(mst_state));
-+			continue;
-+		}
-+
-+		/*
-+		 * The streams for which the payload allocation has failed got
-+		 * still enabled in the HW. In that case check only for an
-+		 * upper bound of mgr->payload_count here and skip the MST payload
-+		 * vs. HW state check later, since those will not match.
-+		 */
-+		if (!has_alloc_errors)
-+			drm_WARN_ON(&i915->drm, hw_state.num_mst_streams !=
-+						drm_dp_mst_payload_count(mst_state));
-+		else
-+			drm_WARN_ON(&i915->drm, hw_state.num_mst_streams <
-+						drm_dp_mst_payload_count(mst_state));
- 
- 		for_each_new_connector_in_state(&state->base, _connector, _conn_state, i) {
- 			struct intel_connector *connector = to_intel_connector(_connector);
-+			struct intel_digital_connector_state *conn_state;
-+			struct intel_crtc *crtc;
-+			struct intel_crtc_state *crtc_state = NULL;
-+			struct drm_dp_mst_atomic_payload *payload;
-+			enum pipe pipe;
-+			int sw_vc;
-+			int tu;
- 
- 			if (!connector->mst_port ||
- 			    !intel_connector_needs_modeset(state, &connector->base))
-@@ -1346,7 +1378,39 @@ void intel_dp_mst_verify_state(struct intel_atomic_state *state)
- 
- 			mst_needs_modeset = true;
- 
--			break;
-+			if (has_alloc_errors)
-+				break;
-+
-+			payload = drm_atomic_get_mst_payload_state(mst_state, connector->port);
-+			if (drm_WARN_ON(&i915->drm, !payload))
-+				continue;
-+
-+			conn_state = to_intel_digital_connector_state(_conn_state);
-+			crtc = conn_state->base.crtc ? to_intel_crtc(conn_state->base.crtc) : NULL;
-+			if (crtc)
-+				crtc_state = intel_atomic_get_new_crtc_state(state, crtc);
-+
-+			if (connectors_enabled && crtc_state && crtc_state->hw.active) {
-+				pipe = crtc->pipe;
-+				tu = drm_dp_mst_payload_time_slots(payload);
-+				drm_WARN_ON(&i915->drm, crtc_state->dp_m_n.tu != tu);
-+			} else {
-+				pipe = INVALID_PIPE;
-+				tu = 0;
-+			}
-+
-+			sw_vc = drm_dp_mst_payload_vchannel(mst_state, payload);
-+			if (sw_vc < 0) {
-+				drm_WARN_ON(&i915->drm, pipe != INVALID_PIPE);
-+				drm_WARN_ON(&i915->drm, tu != 0);
-+			} else {
-+				if (drm_WARN_ON(&i915->drm,
-+						sw_vc >= ARRAY_SIZE(hw_state.mst_stream)))
-+					continue;
-+
-+				drm_WARN_ON(&i915->drm, hw_state.mst_stream[sw_vc].pipe != pipe);
-+				drm_WARN_ON(&i915->drm, hw_state.mst_stream[sw_vc].tu != tu);
-+			}
- 		}
- 
- 		if (!mst_needs_modeset)
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.h b/drivers/gpu/drm/i915/display/intel_dp_mst.h
-index 74633390c280c..53367b6a1ba39 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.h
-@@ -26,6 +26,6 @@ int intel_dp_mst_add_topology_state_for_crtc(struct intel_atomic_state *state,
- int intel_dp_mst_add_topology_state_for_connector(struct intel_atomic_state *state,
- 						  struct intel_connector *connector,
- 						  struct intel_crtc *crtc);
--void intel_dp_mst_verify_state(struct intel_atomic_state *state);
-+void intel_dp_mst_verify_state(struct intel_atomic_state *state, bool connectors_enabled);
- 
- #endif /* __INTEL_DP_MST_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_verify.c b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-index 45f0d9789ef8e..caf541b562e54 100644
---- a/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-@@ -245,5 +245,5 @@ void intel_modeset_verify_disabled(struct drm_i915_private *dev_priv,
- 	verify_encoder_state(dev_priv, state);
- 	verify_connector_state(state, NULL);
- 	intel_shared_dpll_verify_disabled(dev_priv);
--	intel_dp_mst_verify_state(state);
-+	intel_dp_mst_verify_state(state, false);
- }
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 596efc940ee70..6a406c9daa042 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -6818,10 +6818,10 @@ enum skl_power_gate {
- #define  DP_TP_STATUS_IDLE_DONE			(1 << 25)
- #define  DP_TP_STATUS_ACT_SENT			(1 << 24)
- #define  DP_TP_STATUS_MODE_STATUS_MST		(1 << 23)
-+#define  DP_TP_STATUS_NUM_STREAMS_ENABLED	(7 << 16)
- #define  DP_TP_STATUS_AUTOTRAIN_DONE		(1 << 12)
--#define  DP_TP_STATUS_PAYLOAD_MAPPING_VC2	(3 << 8)
--#define  DP_TP_STATUS_PAYLOAD_MAPPING_VC1	(3 << 4)
--#define  DP_TP_STATUS_PAYLOAD_MAPPING_VC0	(3 << 0)
-+#define  DP_TP_STATUS_PAYLOAD_MAPPING_SHIFT(vc)	((vc) * 4)
-+#define  DP_TP_STATUS_PAYLOAD_MAPPING_MASK(vc)	(3 << DP_TP_STATUS_PAYLOAD_MAPPING_SHIFT(vc))
- 
- /* DDI Buffer Control */
- #define _DDI_BUF_CTL_A				0x64000
--- 
-2.37.1
+With proper refcounting you'd split this to a spinlock and hold it
+only while obtaining the get ref for the open thread.
 
+Jason
