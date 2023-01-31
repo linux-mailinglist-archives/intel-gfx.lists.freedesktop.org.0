@@ -1,47 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D058682580
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 08:23:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BFB4682471
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 07:34:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F03FD10E338;
-	Tue, 31 Jan 2023 07:23:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED07310E0E1;
+	Tue, 31 Jan 2023 06:34:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19AFF10E337
- for <intel-gfx@lists.freedesktop.org>; Tue, 31 Jan 2023 07:23:52 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B15810E0E1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Jan 2023 06:34:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675149832; x=1706685832;
+ t=1675146885; x=1706682885;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=X0hI0j+pewPJHwZzVEw9eaopVQCv9EhB2HTl/RDwmHE=;
- b=NesflRdNMywIV2EbWqNKnDt987zldUloE16FJbfd6LCPYbg2zKfC6TRk
- 7Lei6RWjBJO/4LWko4OZBXd+yOLkmIQVhqNyb8/LuWteH7prlUyUxDDvU
- 4RliqAoh2Zr8jXqubSO+N92hgnO8naU+omPqJIGmCMvGi1pgYYGpKSpnu
- Ii3FDGUmOkn624AwwU9eQ/qY32J7Q7SHfzIlNiZ9wA4ZDC+6Ry25YD7+V
- LYHYEBodmoFoNwxMeYO379Pq8z56hAMcNOlm+RDkhQmFbPQ0VHjwDuMKH
- VyKl/r4UicQ7RHC8UYCzpn50FvukEptHCtPVe/JzjhDyezofOTrzcw1pm g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="307428166"
-X-IronPort-AV: E=Sophos;i="5.97,259,1669104000"; d="scan'208";a="307428166"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2023 23:23:47 -0800
+ bh=g+XBqChQjL21X7t/qmvj8WzkPFxby3a78ykte+N6qIE=;
+ b=KkNBeTetUIbTbgvBiELpUZbh26o4yaJQlMBxMz2k0Kj/08Acsr9TZ19g
+ 8qMVXsO5owUwbp2O7lZfTZ3QkH9qI8NkeDZRDzTklgxEZiwButZiPsedP
+ 4itqdSNXY5gehM4pitFX33kpmx5CzVQ3N9OusHKccRVVTfQ4e6ET4JnJ7
+ YlPBZxNzDu0Yawsu8BSl+Z3k7jOF0EYQ7qsUk1GIhVHmoy8GmmlaPiawW
+ kvrRmC/pZhCH0gxHoB7SQwzH10dne4Bn1qPdqc+X9x6r/GIlSz1EMLVoY
+ IS3pzZVKCnSWRr9WaB9OoKMhZEERdT3Ndni/50hFykcvUuoX7+kXyBCQL g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="390126609"
+X-IronPort-AV: E=Sophos;i="5.97,259,1669104000"; d="scan'208";a="390126609"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2023 22:34:44 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="696724832"
-X-IronPort-AV: E=Sophos;i="5.97,259,1669104000"; d="scan'208";a="696724832"
-Received: from sujaritha-z170x-ud5.fm.intel.com ([10.1.27.182])
- by orsmga001.jf.intel.com with ESMTP; 30 Jan 2023 23:23:46 -0800
-From: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="838248007"
+X-IronPort-AV: E=Sophos;i="5.97,259,1669104000"; d="scan'208";a="838248007"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
+ by orsmga005.jf.intel.com with ESMTP; 30 Jan 2023 22:34:42 -0800
+From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 30 Jan 2023 22:25:50 -0800
-Message-Id: <20230131062550.11901-1-sujaritha.sundaresan@intel.com>
-X-Mailer: git-send-email 2.34.1
+Date: Tue, 31 Jan 2023 12:03:36 +0530
+Message-Id: <20230131063342.2811275-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] drm/i915/gt: Add sysfs RAPL PL1 interface
+Subject: [Intel-gfx] [PATCH v9 0/6] Enable HDCP2.x via GSC CS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,113 +57,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Adding sysfs attribute rapl_pl1_freq_mhz. This shows the RAPL PL1
-FREQUENCY LIMIT.
+These patches enable HDCP2.x on machines MTL and above.
+From MTL onwards CSME is spilt into GSC and CSC and now
+we use GSC CS instead of MEI to talk to firmware to start
+HDCP authentication
 
-Signed-off-by: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt_regs.h     |  4 ++++
- drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c | 15 +++++++++++++++
- drivers/gpu/drm/i915/gt/intel_rps.c         | 18 ++++++++++++++++++
- drivers/gpu/drm/i915/gt/intel_rps.h         |  1 +
- 4 files changed, 38 insertions(+)
+--v2
+-Fixing some checkpatch changes which I forgot before sending
+out the series
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-index 7fa18a3b3957..1c78fc89a37a 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-@@ -1656,6 +1656,10 @@
- #define GT0_PACKAGE_POWER_SKU_UNIT		_MMIO(0x250068)
- #define GT0_PLATFORM_ENERGY_STATUS		_MMIO(0x25006c)
- 
-+#define XEHPSDV_RAPL_PL1_FREQ_LIMIT		_MMIO(0x250070)
-+#define MTL_RAPL_PL1_FREQ_LIMIT		_MMIO(0x281070)
-+#define   RAPL_PL1_FREQ_LIMIT_MASK		REG_GENMASK(15, 0)
-+
- /*
-  * Standalone Media's non-engine GT registers are located at their regular GT
-  * offsets plus 0x380000.  This extra offset is stored inside the intel_uncore
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-index 28f27091cd3b..0b52962e2856 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-@@ -451,6 +451,16 @@ static ssize_t punit_req_freq_mhz_show(struct kobject *kobj,
- 	return sysfs_emit(buff, "%u\n", preq);
- }
- 
-+static ssize_t rapl_pl1_freq_mhz_show(struct kobject *kobj,
-+				      struct kobj_attribute *attr,
-+				      char *buff)
-+{
-+	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(kobj, attr->attr.name);
-+	u32 rapl_pl1 = intel_rps_read_rapl_pl1(&gt->rps);
-+
-+	return sysfs_emit(buff, "%u\n", rapl_pl1);
-+}
-+
- struct intel_gt_bool_throttle_attr {
- 	struct attribute attr;
- 	ssize_t (*show)(struct kobject *kobj, struct kobj_attribute *attr,
-@@ -480,6 +490,7 @@ struct intel_gt_bool_throttle_attr attr_##sysfs_func__ = { \
- }
- 
- INTEL_GT_ATTR_RO(punit_req_freq_mhz);
-+INTEL_GT_ATTR_RO(rapl_pl1_freq_mhz);
- static INTEL_GT_RPS_BOOL_ATTR_RO(throttle_reason_status, GT0_PERF_LIMIT_REASONS_MASK);
- static INTEL_GT_RPS_BOOL_ATTR_RO(throttle_reason_pl1, POWER_LIMIT_1_MASK);
- static INTEL_GT_RPS_BOOL_ATTR_RO(throttle_reason_pl2, POWER_LIMIT_2_MASK);
-@@ -744,6 +755,10 @@ void intel_gt_sysfs_pm_init(struct intel_gt *gt, struct kobject *kobj)
- 	if (ret)
- 		gt_warn(gt, "failed to create punit_req_freq_mhz sysfs (%pe)", ERR_PTR(ret));
- 
-+	ret = sysfs_create_file(kobj, &attr_rapl_pl1_freq_mhz.attr);
-+	if (ret)
-+		gt_warn(gt, "failed to create rapl_pl1_freq_mhz sysfs (%pe)", ERR_PTR(ret));
-+
- 	if (i915_mmio_reg_valid(intel_gt_perf_limit_reasons_reg(gt))) {
- 		ret = sysfs_create_files(kobj, throttle_reason_attrs);
- 		if (ret)
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-index f5d7b5126433..f66d6f47f2cf 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -2202,6 +2202,24 @@ u32 intel_rps_get_max_frequency(struct intel_rps *rps)
- 		return intel_gpu_freq(rps, rps->max_freq_softlimit);
- }
- 
-+u32 intel_rps_read_rapl_pl1(struct intel_rps *rps)
-+{
-+	struct drm_i915_private *i915 = rps_to_i915(rps);
-+	u32 rapl_pl1;
-+	u32 rapl;
-+
-+	if (IS_METEORLAKE(i915))
-+		rapl_pl1 = intel_uncore_read(rps_to_gt(rps)->uncore, MTL_RAPL_PL1_FREQ_LIMIT);
-+	else if (IS_XEHPSDV(i915))
-+		rapl_pl1  = intel_uncore_read(rps_to_gt(rps)->uncore, XEHPSDV_RAPL_PL1_FREQ_LIMIT);
-+
-+
-+	if (IS_METEORLAKE(i915) || IS_XEHPSDV(i915))
-+		rapl = REG_FIELD_GET(RAPL_PL1_FREQ_LIMIT_MASK, rapl_pl1);
-+
-+	return rapl;
-+}
-+
- /**
-  * intel_rps_get_max_raw_freq - returns the max frequency in some raw format.
-  * @rps: the intel_rps structure
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.h b/drivers/gpu/drm/i915/gt/intel_rps.h
-index c622962c6bef..c37d297c9d82 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.h
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.h
-@@ -51,6 +51,7 @@ u32 intel_rps_get_rp1_frequency(struct intel_rps *rps);
- u32 intel_rps_get_rpn_frequency(struct intel_rps *rps);
- u32 intel_rps_read_punit_req(struct intel_rps *rps);
- u32 intel_rps_read_punit_req_frequency(struct intel_rps *rps);
-+u32 intel_rps_read_rapl_pl1(struct intel_rps *rps);
- u32 intel_rps_read_rpstat(struct intel_rps *rps);
- u32 intel_rps_read_rpstat_fw(struct intel_rps *rps);
- void gen6_rps_get_freq_caps(struct intel_rps *rps, struct intel_rps_freq_caps *caps);
+--v3
+-Drop cp and fw to make naming more agnostic[Jani]
+-Sort header[Jani]
+-remove static inline function from i915_hdcp_interface[Jani]
+-abstract DISPLAY_VER check[Jani]
+
+--v4
+-Remove stale comment P2 [Jani]
+-Fix part where file rename looks like its removed in P2 and
+added in P3 [Jani]
+-Add bitmask definition for host session id[Alan]
+-Seprating gsc load and heci cmd submission into different funcs[Alan]
+-Create comman function to fill gsc_mtl_header[Alan]
+
+--v5
+-No need to make hdcp_message field null as we use kzalloc [Alan]
+-use i915->drm instead of gt->i915->drm [Alan]
+
+--v6
+-Make each patch build individually [Jani]
+-drop cp_fw stale commit subject [Jani]
+-fix the date on license [Jani]
+-revert back to orginal design where mei and gsc fill their own header
+
+--v7
+-remove RB by Ankit
+
+--v8
+-change design to allocate and deallocate hdcp_message only at
+enablement and disabling of hdcp [Alan]
+-fix few formatting issue [Ankit]
+-fix stale comments [Ankit]
+
+--v9
+-move allocation dealloc of hdcp messgae to init and teardown [Alan]
+-remove obj from hdcp message , use i915_vma_unpin_and_release [Alan]
+-remove return statement from intel_hdcp_gsc_fini [Ankit]
+
+Anshuman Gupta (1):
+  drm/i915/hdcp: Keep hdcp agonstic naming convention
+
+Suraj Kandpal (5):
+  drm/i915/gsc: Create GSC request submission mechanism
+  i915/hdcp: HDCP2.x Refactoring to agnostic hdcp
+  drm/i915/hdcp: Refactor HDCP API structures
+  drm/i915/mtl: Add function to send command to GSC CS
+  drm/i915/mtl: Add HDCP GSC interface
+
+ drivers/gpu/drm/i915/Makefile                 |   2 +
+ .../gpu/drm/i915/display/intel_display_core.h |   8 +-
+ .../drm/i915/display/intel_display_types.h    |   2 +-
+ drivers/gpu/drm/i915/display/intel_hdcp.c     | 109 ++-
+ drivers/gpu/drm/i915/display/intel_hdcp_gsc.c | 831 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_hdcp_gsc.h |  26 +
+ drivers/gpu/drm/i915/gt/intel_gpu_commands.h  |   2 +
+ drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.h     |   1 +
+ .../i915/gt/uc/intel_gsc_uc_heci_cmd_submit.c | 109 +++
+ .../i915/gt/uc/intel_gsc_uc_heci_cmd_submit.h |  61 ++
+ drivers/misc/mei/hdcp/mei_hdcp.c              | 105 ++-
+ drivers/misc/mei/hdcp/mei_hdcp.h              | 354 --------
+ include/drm/i915_hdcp_interface.h             | 539 ++++++++++++
+ include/drm/i915_mei_hdcp_interface.h         | 184 ----
+ 14 files changed, 1694 insertions(+), 639 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_heci_cmd_submit.c
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_heci_cmd_submit.h
+ create mode 100644 include/drm/i915_hdcp_interface.h
+ delete mode 100644 include/drm/i915_mei_hdcp_interface.h
+
 -- 
-2.34.1
+2.25.1
 
