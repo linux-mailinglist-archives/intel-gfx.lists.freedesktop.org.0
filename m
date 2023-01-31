@@ -2,69 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1F25683A40
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Feb 2023 00:13:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0275683A44
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Feb 2023 00:14:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA78410E04D;
-	Tue, 31 Jan 2023 23:13:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 392B010E04D;
+	Tue, 31 Jan 2023 23:14:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1EF510E2BA
- for <intel-gfx@lists.freedesktop.org>; Tue, 31 Jan 2023 23:13:14 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 752BA10E04D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Jan 2023 23:14:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1675206793;
+ s=mimecast20190719; t=1675206878;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=rtsjDP4dKZMDI4ZeFRDR5mr1YGHyi1B/+ezb84IEh6I=;
- b=LqKRlucoG8zlovw7uDgC6eNfU8hVYsRI1C70wzT2Hxzum8qD8cPlxvsTzhSqNp0a+6TPPJ
- IK9tCX3TNBtZm0qP+9+10j/O7y4AyyQDdjPwe1jRWQ54cB9weysAqyx/GEv0YMCzYAoNpa
- HXH74GM0GkGVi3Yt5mFc5JlzLwn953w=
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
- [209.85.160.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=zjes8mt+cA38QHo9OnFxpjtiCVQgvWd4AjwVweEsZfo=;
+ b=hEnSQuIRR+C7GzsYL59F84eHutTDxWDeM1YTcRo3Ub1jYyt7/ijzW1TdlaYj70livlU1GU
+ 5WICwlH/q6Z0PTiRco2XacnfJc9GUCp8yTdIFYNNjWFZ4p056WY9RHJEW7gQ+AGDYj9+Wc
+ 5KThM/HTvTf42jS1AI8gPklJJEFisLM=
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
+ [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-617-Jy9oU_jVNlixFUOgOHnPOw-1; Tue, 31 Jan 2023 18:13:12 -0500
-X-MC-Unique: Jy9oU_jVNlixFUOgOHnPOw-1
-Received: by mail-qt1-f197.google.com with SMTP id
- f2-20020ac80682000000b003b6364059d2so7343131qth.9
- for <intel-gfx@lists.freedesktop.org>; Tue, 31 Jan 2023 15:13:12 -0800 (PST)
+ us-mta-672-LwS51RsyNO-ha6qrTUWh7Q-1; Tue, 31 Jan 2023 18:14:37 -0500
+X-MC-Unique: LwS51RsyNO-ha6qrTUWh7Q-1
+Received: by mail-qv1-f71.google.com with SMTP id
+ gw11-20020a0562140f0b00b0053b81ec39dfso4932421qvb.14
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Jan 2023 15:14:37 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=mime-version:user-agent:content-transfer-encoding:organization
  :references:in-reply-to:date:cc:to:from:subject:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=GuPLxxwLlIMb4e5mC8mkW+RMdG9aD5bdoF2Q5DsUBtk=;
- b=RLvPziuAsD4/v78JDYsYGd4EoRBNP/qQBYrHnoD0ysmPgCMtRHDzORb4NXp3mOD6qj
- +LqbdC8HRVxezUuxtGKYlA+7qPHojxkokBcZjPav38bbdg1kIs5H0nvstY78vm2M8Odg
- a2P6iJv4bKcGLJJREI1GEtCHeFjkaPDQZUguZgzULyjXpkewT5U/pwEjfIekqznkZ+LY
- LKMJmahADZ21gfxSHG2u4FJALj+g4Y1Kp+dlbeJdYQq26ZfzU64r9wl/Z4DLjpvXh1wF
- LAB407/MxfCCCRDMznQlWSJph/oM41Yb5XVtj+Lw1qbqJIZppcxiPdhunG8Q/tMSQGgV
- j8Dg==
-X-Gm-Message-State: AO0yUKVLFndUnlHmjCQ27bVtT7bxobvI1rhPE9xji1vf2ArONs0jVvUM
- /kBqNcznK1Q2D3QbiAt65rloUV2W97PvL4s0YDB9RM9rZgbI8+a7Kt/zNxnShb5ocsFjoHCMY5V
- 3PV3HTjIPMibdTO1dBgiZQhbLxni1
-X-Received: by 2002:a0c:ee90:0:b0:531:91cd:59de with SMTP id
- u16-20020a0cee90000000b0053191cd59demr16680081qvr.26.1675206791867; 
- Tue, 31 Jan 2023 15:13:11 -0800 (PST)
-X-Google-Smtp-Source: AK7set+U8IFBJjnSngopEHdO6P381kRED55/VU9cShm+LNOPTG4WX6UdvtmgTYUVLk6QaAv2MzY6FA==
-X-Received: by 2002:a0c:ee90:0:b0:531:91cd:59de with SMTP id
- u16-20020a0cee90000000b0053191cd59demr16680063qvr.26.1675206791634; 
- Tue, 31 Jan 2023 15:13:11 -0800 (PST)
+ bh=FRtdjYIRmLspTw60fBmAPyuEzGmNE73BWrMAS8hfbw4=;
+ b=ZQ9ONR+vVmAXIIvfXo8pO2BkNqxH3xGCCi6tZckl/YSLJ2xUB2bfQrt4Z8vB+9i4q3
+ uG40a90e/HLl/RcgT9HqYAQC0snba9i43KW2wwpZQLetVJ6XfoyDHCQGuFzEI8MLbU6z
+ 3IBvELZPaMIupocFNt+zBa6JwpZ/kQxxIMn6Z4Ww54Irb4zW4vBH6kACZi9cSpMJwI8K
+ CsO2jTw/XcDQFN45B7Y0vDNa8T8kJRKIERB7vgO7XUTROGeC1oC1Gsjm6Md4LmBjqUl+
+ MZnIXa/zXr72+XEz/MWAaUKM+SPAxokMJY9L3IHbegcUr7MrABS71RUvkJFome0AhG6p
+ ej9w==
+X-Gm-Message-State: AO0yUKVEi+602qKFdgDqRCPE2vMV8iu9QoY8ktNG0FgSmUG8myuHBob0
+ fZQXbbDQlFKkjA2NCeMjZNeErJ+kg7z1Z11fFrkAUa3ibu06h2VPUmK6A+O7c7LsykVtDSyV3fR
+ GFWifsnBtHFy/LxUiyzrDK+x+2at2
+X-Received: by 2002:a0c:fe8a:0:b0:537:8125:b533 with SMTP id
+ d10-20020a0cfe8a000000b005378125b533mr1075819qvs.34.1675206876180; 
+ Tue, 31 Jan 2023 15:14:36 -0800 (PST)
+X-Google-Smtp-Source: AK7set812AVcYQItgDEOUUVmIwjOzqsTlUNL1toEziRpI8+xaK9MKG2VHimxDCuCyo2I7YbA6BYqWA==
+X-Received: by 2002:a0c:fe8a:0:b0:537:8125:b533 with SMTP id
+ d10-20020a0cfe8a000000b005378125b533mr1075801qvs.34.1675206875900; 
+ Tue, 31 Jan 2023 15:14:35 -0800 (PST)
 Received: from ?IPv6:2600:4040:5c68:6800::feb? ([2600:4040:5c68:6800::feb])
  by smtp.gmail.com with ESMTPSA id
- o13-20020a05620a2a0d00b006ce580c2663sm11056795qkp.35.2023.01.31.15.13.10
+ v1-20020ae9e301000000b007062139ecb3sm5331039qkf.95.2023.01.31.15.14.35
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 31 Jan 2023 15:13:11 -0800 (PST)
-Message-ID: <ed8b73096a576f317979c3dd65392371d5b77612.camel@redhat.com>
+ Tue, 31 Jan 2023 15:14:35 -0800 (PST)
+Message-ID: <54d5d6edbcade9c7e518fd1ea8ab757772c2c200.camel@redhat.com>
 From: Lyude Paul <lyude@redhat.com>
 To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
-Date: Tue, 31 Jan 2023 18:13:10 -0500
-In-Reply-To: <20230131150548.1614458-3-imre.deak@intel.com>
+Date: Tue, 31 Jan 2023 18:14:34 -0500
+In-Reply-To: <20230131150548.1614458-7-imre.deak@intel.com>
 References: <20230131150548.1614458-1-imre.deak@intel.com>
- <20230131150548.1614458-3-imre.deak@intel.com>
+ <20230131150548.1614458-7-imre.deak@intel.com>
 Organization: Red Hat Inc.
 User-Agent: Evolution 3.44.4 (3.44.4-2.fc36)
 MIME-Version: 1.0
@@ -72,8 +72,8 @@ X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v2 02/17] drm/display/dp_mst: Handle old/new
- payload states in drm_dp_remove_payload()
+Subject: Re: [Intel-gfx] [PATCH v2 06/17] drm/display/dp_mst: Sanitize
+ payload iteration in drm_dp_mst_dump_topology()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,207 +86,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Karol Herbst <kherbst@redhat.com>, dri-devel@lists.freedesktop.org,
- stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>,
- Wayne Lin <Wayne.Lin@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
- Harry Wentland <harry.wentland@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Tue, 2023-01-31 at 17:05 +0200, Imre Deak wrote:
-> Atm, drm_dp_remove_payload() uses the same payload state to both get the
-> vc_start_slot required for the payload removal DPCD message and to
-> deduct time_slots from vc_start_slot of all payloads after the one being
-> removed.
+> Simplify the loop iterating the payloads by using a helper to get a
+> payload by its VCPI (keeping the list VCPI sorted). This also removes
+> the assumption that the biggest VCPI matches the number of payloads
+> (even though this holds now).
 >=20
-> The above isn't always correct, as vc_start_slot must be the up-to-date
-> version contained in the new payload state, but time_slots must be the
-> one used when the payload was previously added, contained in the old
-> payload state. The new payload's time_slots can change vs. the old one
-> if the current atomic commit changes the corresponding mode.
->=20
-> This patch let's drivers pass the old and new payload states to
-> drm_dp_remove_payload(), but keeps these the same for now in all drivers
-> not to change the behavior. A follow-up i915 patch will pass in that
-> driver the correct old and new states to the function.
-
-Oh wow, this was definitely a mistake on my part, thanks for catching this!
-TBH, I think this behavior is correct so (now that I actually have a setup
-capable of testing amdgpu's MST fully thanks to gitlab issue 2171=E2=80=A6)=
- if you'd
-like to change it on other drivers as well I can test it fully. Or feel fre=
-e
-to leave it to me, shouldn't be too difficult I think :).
-
-For 0-2:
-
-Reviewed-by: Lyude Paul <lyude@redhat.com>
-
->=20
+> Suggested-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > Cc: Lyude Paul <lyude@redhat.com>
 > Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> Cc: Ben Skeggs <bskeggs@redhat.com>
-> Cc: Karol Herbst <kherbst@redhat.com>
-> Cc: Harry Wentland <harry.wentland@amd.com>
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: Wayne Lin <Wayne.Lin@amd.com>
-> Cc: stable@vger.kernel.org # 6.1
-> Cc: dri-devel@lists.freedesktop.org
-> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > Signed-off-by: Imre Deak <imre.deak@intel.com>
 > ---
->  .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |  2 +-
->  drivers/gpu/drm/display/drm_dp_mst_topology.c | 26 ++++++++++---------
->  drivers/gpu/drm/i915/display/intel_dp_mst.c   |  4 ++-
->  drivers/gpu/drm/nouveau/dispnv50/disp.c       |  2 +-
->  include/drm/display/drm_dp_mst_helper.h       |  3 ++-
->  5 files changed, 21 insertions(+), 16 deletions(-)
+>  drivers/gpu/drm/display/drm_dp_mst_topology.c | 45 ++++++++++++-------
+>  1 file changed, 28 insertions(+), 17 deletions(-)
 >=20
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/=
-drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-> index a50319fc42b11..180d3893b68da 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-> @@ -208,7 +208,7 @@ bool dm_helpers_dp_mst_write_payload_allocation_table=
-(
->  =09if (enable)
->  =09=09drm_dp_add_payload_part1(mst_mgr, mst_state, payload);
->  =09else
-> -=09=09drm_dp_remove_payload(mst_mgr, mst_state, payload);
-> +=09=09drm_dp_remove_payload(mst_mgr, mst_state, payload, payload);
-> =20
->  =09/* mst_mgr->->payloads are VC payload notify MST branch using DPCD or
->  =09 * AUX message. The sequence is slot 1-63 allocated sequence for each
 > diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/=
 drm/display/drm_dp_mst_topology.c
-> index 847c10aa2098c..1990ff5dc7ddd 100644
+> index 8787df19f428b..0c04b96ae614c 100644
 > --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
 > +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> @@ -3342,7 +3342,8 @@ EXPORT_SYMBOL(drm_dp_add_payload_part1);
->   * drm_dp_remove_payload() - Remove an MST payload
->   * @mgr: Manager to use.
->   * @mst_state: The MST atomic state
-> - * @payload: The payload to write
-> + * @old_payload: The payload with its old state
-> + * @new_payload: The payload to write
->   *
->   * Removes a payload from an MST topology if it was successfully assigne=
-d a start slot. Also updates
->   * the starting time slots of all other payloads which would have been s=
-hifted towards the start of
-> @@ -3350,36 +3351,37 @@ EXPORT_SYMBOL(drm_dp_add_payload_part1);
->   */
->  void drm_dp_remove_payload(struct drm_dp_mst_topology_mgr *mgr,
->  =09=09=09   struct drm_dp_mst_topology_state *mst_state,
-> -=09=09=09   struct drm_dp_mst_atomic_payload *payload)
-> +=09=09=09   const struct drm_dp_mst_atomic_payload *old_payload,
-> +=09=09=09   struct drm_dp_mst_atomic_payload *new_payload)
->  {
->  =09struct drm_dp_mst_atomic_payload *pos;
->  =09bool send_remove =3D false;
+> @@ -4737,6 +4737,18 @@ static void fetch_monitor_name(struct drm_dp_mst_t=
+opology_mgr *mgr,
+>  =09kfree(mst_edid);
+>  }
 > =20
->  =09/* We failed to make the payload, so nothing to do */
-> -=09if (payload->vc_start_slot =3D=3D -1)
-> +=09if (new_payload->vc_start_slot =3D=3D -1)
->  =09=09return;
+> +static struct drm_dp_mst_atomic_payload *
+> +get_payload_by_vcpi(struct drm_dp_mst_topology_state *mst_state, int vcp=
+i)
+> +{
+> +=09struct drm_dp_mst_atomic_payload *payload;
+> +
+> +=09list_for_each_entry(payload, &mst_state->payloads, next)
+> +=09=09if (payload->vcpi =3D=3D vcpi)
+> +=09=09=09return payload;
+> +
+> +=09return NULL;
+> +}
+> +
+>  /**
+>   * drm_dp_mst_dump_topology(): dump topology to seq file.
+>   * @m: seq_file to dump output to
+> @@ -4748,7 +4760,6 @@ void drm_dp_mst_dump_topology(struct seq_file *m,
+>  =09=09=09      struct drm_dp_mst_topology_mgr *mgr)
+>  {
+>  =09struct drm_dp_mst_topology_state *state;
+> -=09struct drm_dp_mst_atomic_payload *payload;
+>  =09int i, ret;
 > =20
 >  =09mutex_lock(&mgr->lock);
-> -=09send_remove =3D drm_dp_mst_port_downstream_of_branch(payload->port, m=
-gr->mst_primary);
-> +=09send_remove =3D drm_dp_mst_port_downstream_of_branch(new_payload->por=
-t, mgr->mst_primary);
->  =09mutex_unlock(&mgr->lock);
+> @@ -4768,24 +4779,24 @@ void drm_dp_mst_dump_topology(struct seq_file *m,
+>  =09=09   state->payload_mask, mgr->max_payloads, state->start_slot, stat=
+e->pbn_div);
 > =20
->  =09if (send_remove)
-> -=09=09drm_dp_destroy_payload_step1(mgr, mst_state, payload);
-> +=09=09drm_dp_destroy_payload_step1(mgr, mst_state, new_payload);
->  =09else
->  =09=09drm_dbg_kms(mgr->dev, "Payload for VCPI %d not in topology, not se=
-nding remove\n",
-> -=09=09=09    payload->vcpi);
-> +=09=09=09    new_payload->vcpi);
+>  =09seq_printf(m, "\n| idx | port | vcpi | slots | pbn | dsc |     sink n=
+ame     |\n");
+> -=09for (i =3D 0; i < mgr->max_payloads; i++) {
+> -=09=09list_for_each_entry(payload, &state->payloads, next) {
+> -=09=09=09char name[14];
+> +=09for_each_set_bit(i, (unsigned long *)&state->payload_mask,
+> +=09=09=09 BITS_PER_TYPE(state->payload_mask)) {
+
+Huh, TIL we have a for_each_set_bit() macro. neat.
+
+> +=09=09const struct drm_dp_mst_atomic_payload *payload =3D get_payload_by=
+_vcpi(state, i + 1);
+> +=09=09char name[14];
 > =20
->  =09list_for_each_entry(pos, &mst_state->payloads, next) {
-> -=09=09if (pos !=3D payload && pos->vc_start_slot > payload->vc_start_slo=
-t)
-> -=09=09=09pos->vc_start_slot -=3D payload->time_slots;
-> +=09=09if (pos !=3D new_payload && pos->vc_start_slot > new_payload->vc_s=
-tart_slot)
-> +=09=09=09pos->vc_start_slot -=3D old_payload->time_slots;
+> -=09=09=09if (payload->vcpi !=3D i + 1 || payload->delete)
+> -=09=09=09=09continue;
+> +=09=09if (payload->delete)
+> +=09=09=09continue;
+> =20
+> -=09=09=09fetch_monitor_name(mgr, payload->port, name, sizeof(name));
+> -=09=09=09seq_printf(m, " %5d %6d %6d %02d - %02d %5d %5s %19s\n",
+> -=09=09=09=09   i,
+> -=09=09=09=09   payload->port->port_num,
+> -=09=09=09=09   payload->vcpi,
+> -=09=09=09=09   payload->vc_start_slot,
+> -=09=09=09=09   payload->vc_start_slot + payload->time_slots - 1,
+> -=09=09=09=09   payload->pbn,
+> -=09=09=09=09   payload->dsc_enabled ? "Y" : "N",
+> -=09=09=09=09   (*name !=3D 0) ? name : "Unknown");
+> -=09=09}
+> +=09=09fetch_monitor_name(mgr, payload->port, name, sizeof(name));
+> +=09=09seq_printf(m, " %5d %6d %6d %02d - %02d %5d %5s %19s\n",
+> +=09=09=09   i,
+> +=09=09=09   payload->port->port_num,
+> +=09=09=09   payload->vcpi,
+> +=09=09=09   payload->vc_start_slot,
+> +=09=09=09   payload->vc_start_slot + payload->time_slots - 1,
+> +=09=09=09   payload->pbn,
+> +=09=09=09   payload->dsc_enabled ? "Y" : "N",
+> +=09=09=09   (*name !=3D 0) ? name : "Unknown");
 >  =09}
-> -=09payload->vc_start_slot =3D -1;
-> +=09new_payload->vc_start_slot =3D -1;
 > =20
->  =09mgr->payload_count--;
-> -=09mgr->next_start_slot -=3D payload->time_slots;
-> +=09mgr->next_start_slot -=3D old_payload->time_slots;
-> =20
-> -=09if (payload->delete)
-> -=09=09drm_dp_mst_put_port_malloc(payload->port);
-> +=09if (new_payload->delete)
-> +=09=09drm_dp_mst_put_port_malloc(new_payload->port);
->  }
->  EXPORT_SYMBOL(drm_dp_remove_payload);
-> =20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/dr=
-m/i915/display/intel_dp_mst.c
-> index f3cb12dcfe0a7..dc4e5ff1dbb31 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -526,6 +526,8 @@ static void intel_mst_disable_dp(struct intel_atomic_=
-state *state,
->  =09=09to_intel_connector(old_conn_state->connector);
->  =09struct drm_dp_mst_topology_state *mst_state =3D
->  =09=09drm_atomic_get_mst_topology_state(&state->base, &intel_dp->mst_mgr=
-);
-> +=09struct drm_dp_mst_atomic_payload *payload =3D
-> +=09=09drm_atomic_get_mst_payload_state(mst_state, connector->port);
->  =09struct drm_i915_private *i915 =3D to_i915(connector->base.dev);
-> =20
->  =09drm_dbg_kms(&i915->drm, "active links %d\n",
-> @@ -534,7 +536,7 @@ static void intel_mst_disable_dp(struct intel_atomic_=
-state *state,
->  =09intel_hdcp_disable(intel_mst->connector);
-> =20
->  =09drm_dp_remove_payload(&intel_dp->mst_mgr, mst_state,
-> -=09=09=09      drm_atomic_get_mst_payload_state(mst_state, connector->po=
-rt));
-> +=09=09=09      payload, payload);
-> =20
->  =09intel_audio_codec_disable(encoder, old_crtc_state, old_conn_state);
->  }
-> diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/no=
-uveau/dispnv50/disp.c
-> index edcb2529b4025..ed9d374147b8d 100644
-> --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> @@ -885,7 +885,7 @@ nv50_msto_prepare(struct drm_atomic_state *state,
-> =20
->  =09// TODO: Figure out if we want to do a better job of handling VCPI al=
-location failures here?
->  =09if (msto->disabled) {
-> -=09=09drm_dp_remove_payload(mgr, mst_state, payload);
-> +=09=09drm_dp_remove_payload(mgr, mst_state, payload, payload);
-> =20
->  =09=09nvif_outp_dp_mst_vcpi(&mstm->outp->outp, msto->head->base.index, 0=
-, 0, 0, 0);
->  =09} else {
-> diff --git a/include/drm/display/drm_dp_mst_helper.h b/include/drm/displa=
-y/drm_dp_mst_helper.h
-> index 41fd8352ab656..f5eb9aa152b14 100644
-> --- a/include/drm/display/drm_dp_mst_helper.h
-> +++ b/include/drm/display/drm_dp_mst_helper.h
-> @@ -841,7 +841,8 @@ int drm_dp_add_payload_part2(struct drm_dp_mst_topolo=
-gy_mgr *mgr,
->  =09=09=09     struct drm_dp_mst_atomic_payload *payload);
->  void drm_dp_remove_payload(struct drm_dp_mst_topology_mgr *mgr,
->  =09=09=09   struct drm_dp_mst_topology_state *mst_state,
-> -=09=09=09   struct drm_dp_mst_atomic_payload *payload);
-> +=09=09=09   const struct drm_dp_mst_atomic_payload *old_payload,
-> +=09=09=09   struct drm_dp_mst_atomic_payload *new_payload);
-> =20
->  int drm_dp_check_act_status(struct drm_dp_mst_topology_mgr *mgr);
-> =20
+>  =09seq_printf(m, "\n*** DPCD Info ***\n");
 
 --=20
 Cheers,
