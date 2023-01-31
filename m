@@ -1,50 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05DC468366C
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 20:23:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DB84683708
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 21:03:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A15B10E389;
-	Tue, 31 Jan 2023 19:23:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C782710E392;
+	Tue, 31 Jan 2023 20:03:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B322410E389
- for <intel-gfx@lists.freedesktop.org>; Tue, 31 Jan 2023 19:23:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675192990; x=1706728990;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=SuQ2mf4ChhHzLFuDXcd4UvESIt1p0Yz8Z9GrubkIxl8=;
- b=CJNuXYy30zHLydOyK3tBln6zIALLrPACOO4tVAG29zVOjObmuFIQh8L1
- kWIHQLDf4yXKqKrr0XNsJ9BY4CXGBVX+pIzDDrVknc5yangQ5rneVt7DX
- VvTeUE9xUK8T7VQxLabcoYfbz3+023P+2sPSGMVdFRKNKYrhDSHdIDKLZ
- uSH0Fgqa5HQnPxSFQt3TwCru2gmqYLH00Q2NvA3n1zx7r9I327lNvnswF
- WzUzs6n3y/QBacdgbfPB8l1eSINcOz2fEn5o4mcifVcAHadaAMOnFatlb
- TUKXi0B5YT27GJrGvR5kwmPxlCs/SiSLXMhgIMtnYrzLxUl84G+QB0jYx Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10607"; a="330039384"
-X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; d="scan'208";a="330039384"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2023 11:22:56 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10607"; a="773113404"
-X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; d="scan'208";a="773113404"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2023 11:22:56 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 31 Jan 2023 11:15:42 -0800
-Message-Id: <20230131191542.1695398-2-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230131191542.1695398-1-lucas.demarchi@intel.com>
-References: <20230131191542.1695398-1-lucas.demarchi@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id ED4FF10E392;
+ Tue, 31 Jan 2023 20:03:53 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E687BAA3D8;
+ Tue, 31 Jan 2023 20:03:53 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6340505116813504509=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Move common mmio base out of
- private macros
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Tue, 31 Jan 2023 20:03:53 -0000
+Message-ID: <167519543393.5940.3220068152154053903@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230131191542.1695398-1-lucas.demarchi@intel.com>
+In-Reply-To: <20230131191542.1695398-1-lucas.demarchi@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_Split_=5FMMIO=28=29_for?=
+ =?utf-8?b?IF9QT1JUMygpL19QSVBFMygp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,139 +41,244 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Instead of using the common DISPLAY_MMIO_BASE(dev_priv) in all single
-macros, only use them in the macros that are to be used outside the
-header. This reduces the use of the implicit dev_priv, making it easier
-to remove it later.
+--===============6340505116813504509==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/i915/i915_reg.h | 73 ++++++++++++++++++---------------
- 1 file changed, 39 insertions(+), 34 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 943db8ec63f8..1cde3bcb9c88 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1182,9 +1182,9 @@
- #define PM_VEBOX_CS_ERROR_INTERRUPT		(1 << 12) /* hsw+ */
- #define PM_VEBOX_USER_INTERRUPT			(1 << 10) /* hsw+ */
- 
--#define GT_PARITY_ERROR(dev_priv) \
-+#define GT_PARITY_ERROR(__i915) \
- 	(GT_RENDER_L3_PARITY_ERROR_INTERRUPT | \
--	 (IS_HASWELL(dev_priv) ? GT_RENDER_L3_PARITY_ERROR_INTERRUPT_S1 : 0))
-+	 (IS_HASWELL(__i915) ? GT_RENDER_L3_PARITY_ERROR_INTERRUPT_S1 : 0))
- 
- /* These are all the "old" interrupts */
- #define ILK_BSD_USER_INTERRUPT				(1 << 5)
-@@ -1403,10 +1403,11 @@
- /*
-  * Clock control & power management
-  */
--#define _DPLL_A (DISPLAY_MMIO_BASE(dev_priv) + 0x6014)
--#define _DPLL_B (DISPLAY_MMIO_BASE(dev_priv) + 0x6018)
--#define _CHV_DPLL_C (DISPLAY_MMIO_BASE(dev_priv) + 0x6030)
--#define DPLL(pipe) _MMIO_PIPE3((pipe), _DPLL_A, _DPLL_B, _CHV_DPLL_C)
-+#define _DPLL_A		0x6014
-+#define _DPLL_B		0x6018
-+#define _CHV_DPLL_C	0x6030
-+#define DPLL(pipe) _MMIO(DISPLAY_MMIO_BASE(dev_priv) + \
-+			 _PIPE3((pipe), _DPLL_A, _DPLL_B, _CHV_DPLL_C))
- 
- #define VGA0	_MMIO(0x6000)
- #define VGA1	_MMIO(0x6004)
-@@ -1502,10 +1503,11 @@
- #define   SDVO_MULTIPLIER_SHIFT_HIRES		4
- #define   SDVO_MULTIPLIER_SHIFT_VGA		0
- 
--#define _DPLL_A_MD (DISPLAY_MMIO_BASE(dev_priv) + 0x601c)
--#define _DPLL_B_MD (DISPLAY_MMIO_BASE(dev_priv) + 0x6020)
--#define _CHV_DPLL_C_MD (DISPLAY_MMIO_BASE(dev_priv) + 0x603c)
--#define DPLL_MD(pipe) _MMIO_PIPE3((pipe), _DPLL_A_MD, _DPLL_B_MD, _CHV_DPLL_C_MD)
-+#define _DPLL_A_MD				0x601c
-+#define _DPLL_B_MD				0x6020
-+#define _CHV_DPLL_C_MD				0x603c
-+#define DPLL_MD(pipe) _MMIO(DISPLAY_MMIO_BASE(dev_priv) + \
-+			    _PIPE3((pipe), _DPLL_A_MD, _DPLL_B_MD, _CHV_DPLL_C_MD))
- 
- /*
-  * UDI pixel divider, controlling how many pixels are stuffed into a packet.
-@@ -3323,42 +3325,45 @@
-  * is 20 bytes in each direction, hence the 5 fixed
-  * data registers
-  */
--#define _DPA_AUX_CH_CTL		(DISPLAY_MMIO_BASE(dev_priv) + 0x64010)
--#define _DPA_AUX_CH_DATA1	(DISPLAY_MMIO_BASE(dev_priv) + 0x64014)
--
--#define _DPB_AUX_CH_CTL		(DISPLAY_MMIO_BASE(dev_priv) + 0x64110)
--#define _DPB_AUX_CH_DATA1	(DISPLAY_MMIO_BASE(dev_priv) + 0x64114)
--
--#define DP_AUX_CH_CTL(aux_ch)	_MMIO_PORT(aux_ch, _DPA_AUX_CH_CTL, _DPB_AUX_CH_CTL)
--#define DP_AUX_CH_DATA(aux_ch, i)	_MMIO(_PORT(aux_ch, _DPA_AUX_CH_DATA1, _DPB_AUX_CH_DATA1) + (i) * 4) /* 5 registers */
-+#define _DPA_AUX_CH_CTL		0x64010
-+#define _DPA_AUX_CH_DATA1	0x64014
-+#define _DPB_AUX_CH_CTL		0x64110
-+#define _DPB_AUX_CH_DATA1	0x64114
-+#define DP_AUX_CH_CTL(aux_ch)	_MMIO(DISPLAY_MMIO_BASE(dev_priv) + \
-+				      _PORT(aux_ch, _DPA_AUX_CH_CTL, _DPB_AUX_CH_CTL))
-+#define DP_AUX_CH_DATA(aux_ch, i)		\
-+	_MMIO(DISPLAY_MMIO_BASE(dev_priv) +	\
-+	      _PORT(aux_ch, _DPA_AUX_CH_DATA1, _DPB_AUX_CH_DATA1) + (i) * 4) /* 5 registers */
- 
- #define _XELPDP_USBC1_AUX_CH_CTL	0x16F210
- #define _XELPDP_USBC2_AUX_CH_CTL	0x16F410
- #define _XELPDP_USBC3_AUX_CH_CTL	0x16F610
- #define _XELPDP_USBC4_AUX_CH_CTL	0x16F810
- 
--#define XELPDP_DP_AUX_CH_CTL(aux_ch)		_MMIO(_PICK(aux_ch, \
--						       _DPA_AUX_CH_CTL, \
--						       _DPB_AUX_CH_CTL, \
--						       0, /* port/aux_ch C is non-existent */ \
--						       _XELPDP_USBC1_AUX_CH_CTL, \
--						       _XELPDP_USBC2_AUX_CH_CTL, \
--						       _XELPDP_USBC3_AUX_CH_CTL, \
--						       _XELPDP_USBC4_AUX_CH_CTL))
-+#define XELPDP_DP_AUX_CH_CTL(aux_ch)		_MMIO(DISPLAY_MMIO_BASE(dev_priv) + \
-+						      _PICK(aux_ch, \
-+							    _DPA_AUX_CH_CTL, \
-+							    _DPB_AUX_CH_CTL, \
-+							    0, /* port/aux_ch C is non-existent */ \
-+							    _XELPDP_USBC1_AUX_CH_CTL, \
-+							    _XELPDP_USBC2_AUX_CH_CTL, \
-+							    _XELPDP_USBC3_AUX_CH_CTL, \
-+							    _XELPDP_USBC4_AUX_CH_CTL))
- 
- #define _XELPDP_USBC1_AUX_CH_DATA1      0x16F214
- #define _XELPDP_USBC2_AUX_CH_DATA1      0x16F414
- #define _XELPDP_USBC3_AUX_CH_DATA1      0x16F614
- #define _XELPDP_USBC4_AUX_CH_DATA1      0x16F814
- 
--#define XELPDP_DP_AUX_CH_DATA(aux_ch, i)	_MMIO(_PICK(aux_ch, \
--						       _DPA_AUX_CH_DATA1, \
--						       _DPB_AUX_CH_DATA1, \
--						       0, /* port/aux_ch C is non-existent */ \
--						       _XELPDP_USBC1_AUX_CH_DATA1, \
--						       _XELPDP_USBC2_AUX_CH_DATA1, \
--						       _XELPDP_USBC3_AUX_CH_DATA1, \
--						       _XELPDP_USBC4_AUX_CH_DATA1) + (i) * 4)
-+#define XELPDP_DP_AUX_CH_DATA(aux_ch, i)	_MMIO(DISPLAY_MMIO_BASE(dev_priv) + \
-+						      _PICK(aux_ch, \
-+							    _DPA_AUX_CH_DATA1, \
-+							    _DPB_AUX_CH_DATA1, \
-+							    0, /* port/aux_ch C is non-existent */ \
-+							    _XELPDP_USBC1_AUX_CH_DATA1, \
-+							    _XELPDP_USBC2_AUX_CH_DATA1, \
-+							    _XELPDP_USBC3_AUX_CH_DATA1, \
-+							    _XELPDP_USBC4_AUX_CH_DATA1) + (i) * 4)
- 
- #define   DP_AUX_CH_CTL_SEND_BUSY	    (1 << 31)
- #define   DP_AUX_CH_CTL_DONE		    (1 << 30)
--- 
-2.39.0
+Series: series starting with [1/2] drm/i915: Split _MMIO() for _PORT3()/_PIPE3()
+URL   : https://patchwork.freedesktop.org/series/113532/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_12674 -> Patchwork_113532v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113532v1/index.html
+
+Participating hosts (27 -> 25)
+------------------------------
+
+  Missing    (2): bat-atsm-1 fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_113532v1:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_selftest@live@slpc:
+    - {bat-rpls-2}:       [DMESG-FAIL][1] ([i915#6997]) -> [DMESG-FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12674/bat-rpls-2/igt@i915_selftest@live@slpc.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113532v1/bat-rpls-2/igt@i915_selftest@live@slpc.html
+    - {bat-rpls-1}:       NOTRUN -> [DMESG-FAIL][3]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113532v1/bat-rpls-1/igt@i915_selftest@live@slpc.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_113532v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@fbdev@write:
+    - fi-blb-e6850:       [PASS][4] -> [SKIP][5] ([fdo#109271]) +4 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12674/fi-blb-e6850/igt@fbdev@write.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113532v1/fi-blb-e6850/igt@fbdev@write.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-apl-guc:         [PASS][6] -> [DMESG-FAIL][7] ([i915#5334])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12674/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113532v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - {bat-dg2-11}:       [ABORT][8] ([i915#7913]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12674/bat-dg2-11/igt@i915_selftest@live@hangcheck.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113532v1/bat-dg2-11/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@requests:
+    - {bat-rpls-1}:       [ABORT][10] ([i915#4983] / [i915#7981]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12674/bat-rpls-1/igt@i915_selftest@live@requests.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113532v1/bat-rpls-1/igt@i915_selftest@live@requests.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
+    - fi-bsw-n3050:       [FAIL][12] ([i915#6298]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12674/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113532v1/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
+  [i915#6311]: https://gitlab.freedesktop.org/drm/intel/issues/6311
+  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
+  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+  [i915#7981]: https://gitlab.freedesktop.org/drm/intel/issues/7981
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12674 -> Patchwork_113532v1
+
+  CI-20190529: 20190529
+  CI_DRM_12674: abcd161e6541aaf1e5c23e16019d02905c0e50fd @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7143: c7b12dcc460fc2348e1fa7f4dcb791bb82e29e44 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_113532v1: abcd161e6541aaf1e5c23e16019d02905c0e50fd @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+8f412e0acb50 drm/i915: Move common mmio base out of private macros
+2f027a8d4688 drm/i915: Split _MMIO() for _PORT3()/_PIPE3()
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113532v1/index.html
+
+--===============6340505116813504509==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915: Split _MMIO() for _PORT3()/_PIPE3()</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/113532/">https://patchwork.freedesktop.org/series/113532/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113532v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113532v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12674 -&gt; Patchwork_113532v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113532v1/index.html</p>
+<h2>Participating hosts (27 -&gt; 25)</h2>
+<p>Missing    (2): bat-atsm-1 fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_113532v1:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>
+<p>igt@i915_selftest@live@slpc:</p>
+<ul>
+<li>
+<p>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12674/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6997">i915#6997</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113532v1/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a></p>
+</li>
+<li>
+<p>{bat-rpls-1}:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113532v1/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-FAIL</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_113532v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@fbdev@write:</p>
+<ul>
+<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12674/fi-blb-e6850/igt@fbdev@write.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113532v1/fi-blb-e6850/igt@fbdev@write.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12674/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113532v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>{bat-dg2-11}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12674/bat-dg2-11/igt@i915_selftest@live@hangcheck.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113532v1/bat-dg2-11/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12674/bat-rpls-1/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7981">i915#7981</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113532v1/bat-rpls-1/igt@i915_selftest@live@requests.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12674/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113532v1/fi-bsw-n3050/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12674 -&gt; Patchwork_113532v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12674: abcd161e6541aaf1e5c23e16019d02905c0e50fd @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7143: c7b12dcc460fc2348e1fa7f4dcb791bb82e29e44 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_113532v1: abcd161e6541aaf1e5c23e16019d02905c0e50fd @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>8f412e0acb50 drm/i915: Move common mmio base out of private macros<br />
+2f027a8d4688 drm/i915: Split _MMIO() for _PORT3()/_PIPE3()</p>
+
+</body>
+</html>
+
+--===============6340505116813504509==--
