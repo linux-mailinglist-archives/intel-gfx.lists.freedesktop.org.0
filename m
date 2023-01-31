@@ -1,34 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 753BD682127
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 01:57:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F4ED682149
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 02:10:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B081F10E124;
-	Tue, 31 Jan 2023 00:57:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7ECA10E124;
+	Tue, 31 Jan 2023 01:10:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9F87310E124;
- Tue, 31 Jan 2023 00:57:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6DB4B10E124;
+ Tue, 31 Jan 2023 01:10:28 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 97D57AADD2;
- Tue, 31 Jan 2023 00:57:38 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by emeril.freedesktop.org (Postfix) with ESMTP id 668D5A0099;
+ Tue, 31 Jan 2023 01:10:28 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0251162092666229172=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Tue, 31 Jan 2023 00:57:38 -0000
-Message-ID: <167512665858.5941.4727220234580950799@emeril.freedesktop.org>
+Date: Tue, 31 Jan 2023 01:10:28 -0000
+Message-ID: <167512742838.5939.7554323688580908960@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230131002127.29305-1-ville.syrjala@linux.intel.com>
 In-Reply-To: <20230131002127.29305-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5B1/4=5D_drm/i915=3A_Don=27t_do_the_WM0-?=
- =?utf-8?q?=3EWM1_copy_w/a_if_WM1_is_already_enabled?=
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/4=5D_drm/i915=3A_Don=27t_do_the_WM0-=3EW?=
+ =?utf-8?q?M1_copy_w/a_if_WM1_is_already_enabled?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,16 +46,159 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============0251162092666229172==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: series starting with [1/4] drm/i915: Don't do the WM0->WM1 copy w/a if WM1 is already enabled
 URL   : https://patchwork.freedesktop.org/series/113512/
-State : warning
+State : success
 
 == Summary ==
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+CI Bug Log - changes from CI_DRM_12669 -> Patchwork_113512v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113512v1/index.html
+
+Participating hosts (25 -> 24)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_113512v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-apl-guc:         [PASS][1] -> [DMESG-FAIL][2] ([i915#5334])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12669/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113512v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+
+  
+#### Possible fixes ####
+
+  * igt@fbdev@write:
+    - fi-blb-e6850:       [SKIP][3] ([fdo#109271]) -> [PASS][4] +4 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12669/fi-blb-e6850/igt@fbdev@write.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113512v1/fi-blb-e6850/igt@fbdev@write.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
 
 
+Build changes
+-------------
+
+  * Linux: CI_DRM_12669 -> Patchwork_113512v1
+
+  CI-20190529: 20190529
+  CI_DRM_12669: 0ba44f2494c482325e1a25982c2e0754cbee2a48 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7143: c7b12dcc460fc2348e1fa7f4dcb791bb82e29e44 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_113512v1: 0ba44f2494c482325e1a25982c2e0754cbee2a48 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+179db19c54be drm/i915: Expose SAGV state via debugfs
+7cae35ee1982 drm/i915: Keep sagv status updated on icl+
+40ec3cf76984 drm/i915: Introduce HAS_SAGV()
+a35224c55f64 drm/i915: Don't do the WM0->WM1 copy w/a if WM1 is already enabled
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113512v1/index.html
+
+--===============0251162092666229172==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/4] drm/i915: Don&#39;t do the WM0-&gt;WM1 copy w/a if WM1 is already enabled</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/113512/">https://patchwork.freedesktop.org/series/113512/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113512v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113512v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12669 -&gt; Patchwork_113512v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113512v1/index.html</p>
+<h2>Participating hosts (25 -&gt; 24)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_113512v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@gt_heartbeat:<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12669/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113512v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@fbdev@write:<ul>
+<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12669/fi-blb-e6850/igt@fbdev@write.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113512v1/fi-blb-e6850/igt@fbdev@write.html">PASS</a> +4 similar issues</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12669 -&gt; Patchwork_113512v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12669: 0ba44f2494c482325e1a25982c2e0754cbee2a48 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7143: c7b12dcc460fc2348e1fa7f4dcb791bb82e29e44 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_113512v1: 0ba44f2494c482325e1a25982c2e0754cbee2a48 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>179db19c54be drm/i915: Expose SAGV state via debugfs<br />
+7cae35ee1982 drm/i915: Keep sagv status updated on icl+<br />
+40ec3cf76984 drm/i915: Introduce HAS_SAGV()<br />
+a35224c55f64 drm/i915: Don't do the WM0-&gt;WM1 copy w/a if WM1 is already enabled</p>
+
+</body>
+</html>
+
+--===============0251162092666229172==--
