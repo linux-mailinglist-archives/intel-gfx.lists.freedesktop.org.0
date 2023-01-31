@@ -1,95 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DF3C683036
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 16:00:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56BA868303A
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 16:00:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58B7810E36B;
-	Tue, 31 Jan 2023 15:00:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A08AA10E369;
+	Tue, 31 Jan 2023 15:00:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
- [148.163.156.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8B6A10E367;
- Tue, 31 Jan 2023 15:00:31 +0000 (UTC)
-Received: from pps.filterd (m0098404.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
- 30VDFF6s021574; Tue, 31 Jan 2023 15:00:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
- h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=pp1;
- bh=GsZDePIKG25HyslADhmg9uJbyCtJB08Hd41ZfNmglic=;
- b=Kq/6JSJ3t1lUZCp1PnvAi/A2/Sk17IeVzSoPDjvRLDp5cLy3M5ENhyez4zbO96gVYRqW
- ahWwFlDCoacoMnb/I9tnSEbAhfBHkuUI+f+Ro0QohjYJcOsRPEF9D0XO3MNFtxRhCrEZ
- nXI9a7sEgOP6WnbTwozOndIdz5oi+QYKgis/HgxxJyIJZRwZ9W0zP5icctPbKkKEwY/w
- cjb7VZ80Gh45kTGqR57zexsmz/YNLO/H/gdMuhkIEEgL6ttGOdfqArL7iEJTQ9CUepmB
- lyg1OzwUjiTAZN3nmOT/rHSt19Ol0JGh5EdvjiGTMGUjbgk6A9otWvjKfdeEAtnwWGHn KQ== 
-Received: from pps.reinject (localhost [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3nf3q7tqbr-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 31 Jan 2023 15:00:21 +0000
-Received: from m0098404.ppops.net (m0098404.ppops.net [127.0.0.1])
- by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 30VECZ4R013224;
- Tue, 31 Jan 2023 15:00:20 GMT
-Received: from ppma03dal.us.ibm.com (b.bd.3ea9.ip4.static.sl-reverse.com
- [169.62.189.11])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3nf3q7tqaj-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 31 Jan 2023 15:00:20 +0000
-Received: from pps.filterd (ppma03dal.us.ibm.com [127.0.0.1])
- by ppma03dal.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 30VDkuJL025829;
- Tue, 31 Jan 2023 15:00:19 GMT
-Received: from smtprelay07.wdc07v.mail.ibm.com ([9.208.129.116])
- by ppma03dal.us.ibm.com (PPS) with ESMTPS id 3ncvtrmppa-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 31 Jan 2023 15:00:19 +0000
-Received: from smtpav03.wdc07v.mail.ibm.com (smtpav03.wdc07v.mail.ibm.com
- [10.39.53.230])
- by smtprelay07.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 30VF0H9Q43581870
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 31 Jan 2023 15:00:17 GMT
-Received: from smtpav03.wdc07v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 6985B58072;
- Tue, 31 Jan 2023 15:00:17 +0000 (GMT)
-Received: from smtpav03.wdc07v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id CC6D458066;
- Tue, 31 Jan 2023 15:00:14 +0000 (GMT)
-Received: from [9.160.16.25] (unknown [9.160.16.25])
- by smtpav03.wdc07v.mail.ibm.com (Postfix) with ESMTP;
- Tue, 31 Jan 2023 15:00:14 +0000 (GMT)
-Message-ID: <03ff0663-da37-8907-53ec-15234fd7dcad@linux.ibm.com>
-Date: Tue, 31 Jan 2023 10:00:14 -0500
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A10410E36A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Jan 2023 15:00:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1675177234; x=1706713234;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=2tTQrftNT7jCm+umoWQrEMz3vBGPKbAarJqZ8eh6YOU=;
+ b=ZsHQHOqWx2Ad+kCuYVEffqsjrcCuPFuuGJquPiWSv7FImWVdXvugOD+s
+ 9J7PbjzD/PDW2NVVI9AqD6NvEso0HLK17YbAs4B/V40mxhdAtA0oDtgqB
+ EKcPzvUFSRTNrTL/NrCx6C0fsWCVDrw/hgdjyxxlNjLjSl/NFhli+gmZl
+ Ctg44X3pXn3if78lsboAGdD/X9ng/R75uI+5Yzfj8ZkmOJu5iUxYGDk8F
+ mZvqUM5oYi/wC2nm+eEWZVi1ECQFcNcyiTtSMDieUenUi3ZQXU2M86dKJ
+ /wiO9zOtmW7+Hi413aMnUuIX5e2W3AHAcLegh24hrIaFpADgcvfl12G4W Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="390222568"
+X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; d="scan'208";a="390222568"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2023 07:00:33 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="666523262"
+X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; d="scan'208";a="666523262"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
+ by fmsmga007.fm.intel.com with SMTP; 31 Jan 2023 07:00:31 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 31 Jan 2023 17:00:30 +0200
+Date: Tue, 31 Jan 2023 17:00:30 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Message-ID: <Y9ktDuLR9olCgy79@intel.com>
+References: <20230116111937.875-1-stanislav.lisovskiy@intel.com>
+ <20230116111937.875-3-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Content-Language: en-US
-To: Jason Gunthorpe <jgg@nvidia.com>, Anthony Krowiak <akrowiak@linux.ibm.com>
-References: <20230120150528.471752-1-yi.l.liu@intel.com>
- <67ec09bf-cb24-34e3-6ec4-1ae87b0738bd@linux.ibm.com>
- <Y9km+xezgD4ovjDX@nvidia.com>
- <b0ed98f6-3586-3151-47e7-9ec86d6c716d@linux.ibm.com>
- <Y9kqNnJ5ayCQSW9z@nvidia.com>
-From: Matthew Rosato <mjrosato@linux.ibm.com>
-In-Reply-To: <Y9kqNnJ5ayCQSW9z@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: N94DBNAKcV5vawYjBA9qSwP_PVzvv0rW
-X-Proofpoint-GUID: 5jbvQzTAcO8Dvp6aKRtEUsfYLIS7D-H9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-31_08,2023-01-31_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 impostorscore=0
- mlxscore=0 malwarescore=0 lowpriorityscore=0 mlxlogscore=978 phishscore=0
- priorityscore=1501 suspectscore=0 clxscore=1015 bulkscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
- definitions=main-2301310131
-Subject: Re: [Intel-gfx] [PATCH] kvm/vfio: Fix potential deadlock on vfio
- group_lock
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230116111937.875-3-stanislav.lisovskiy@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Implement UHBR bandwidth check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,27 +61,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jjherne@linux.ibm.com, linux-s390@vger.kernel.org, farman@linux.ibm.com,
- Yi Liu <yi.l.liu@intel.com>, frankja@linux.ibm.com, pmorel@linux.ibm.com,
- david@redhat.com, imbrenda@linux.ibm.com, seanjc@google.com,
- intel-gfx@lists.freedesktop.org, cohuck@redhat.com,
- linux-kernel@vger.kernel.org, pasic@linux.ibm.com, kvm@vger.kernel.org,
- pbonzini@redhat.com, borntraeger@linux.ibm.com,
- intel-gvt-dev@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 1/31/23 9:48 AM, Jason Gunthorpe wrote:
-> On Tue, Jan 31, 2023 at 09:46:18AM -0500, Anthony Krowiak wrote:
+On Mon, Jan 16, 2023 at 01:19:37PM +0200, Stanislav Lisovskiy wrote:
+> According to spec, we should check if output_bpp * pixel_rate is less
+> than DDI clock * 72, if UHBR is used.
 > 
->>> Maybe you should split that lock and have a dedicated apcb lock?
->>
->> I don't think that would suffice for taking the vCPUs out of SIE.
+> HSDES: 1406899791
+> BSPEC: 49259
 > 
-> Then I think we have to keep this patch and also do Matthew's patch to
-> keep kvm refs inside vfio as well.
+> v2: - Removed wrong comment(Rodrigo Vivi)
+>     - Added HSDES to the commit msg(Rodrigo Vivi)
+>     - Moved UHBR check to the MST specific code
 > 
+> v3: - Changed commit subject(Rodrigo Vivi)
+>     - Fixed the error message if check fails(Rodrigo Vivi)
+> 
+> v4: - Move UHBR check to new helper function
+>     - Now both for non-DSC/DSC we use that new check as
+>       one of the constraints, when figuring out output bpp
+>       to be used(Ville Syrjälä)
+> 
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c | 13 ++++++++++++-
+>  1 file changed, 12 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index e3e7c305fece..b95051fed23d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -47,8 +47,19 @@
+>  
+>  static int intel_dp_mst_check_constraints(struct drm_i915_private *i915, int bpp,
+>  					  const struct drm_display_mode *adjusted_mode,
+> -					  struct intel_crtc_state *crtc_state)
+> +					  struct intel_crtc_state *pipe_config)
+>  {
+> +	if (intel_dp_is_uhbr(pipe_config)) {
+> +		int output_bpp = bpp;
+> +
+> +		if (output_bpp * adjusted_mode->crtc_clock >=
+> +		    pipe_config->port_clock * 72) {
 
-I don't think keeping kvm refs inside vfio solves this issue though -- Even if we handle the kvm_put_kvm asynchronously within vfio as previously proposed, kvm_vfio_release will eventually get called and it gets called with the kvm->lock already held, then proceeds to call vfio_file_set_kvm which gets the group->lock.  That order conflicts with the hierarchy used by the driver during open_device of vfio->group_lock ... kvm->lock. 
+This seems to be some DSC specific constraint, but this code appears to
+apply it also to uncompresed output.
+
+Also DDICLK != port_clock, so this looks to be off by quite a lot.
 
 
+> +			drm_dbg_kms(&i915->drm, "UHBR check failed(required bw %d available %d)\n",
+> +				    output_bpp * adjusted_mode->crtc_clock, pipe_config->port_clock * 72);
+> +			return -EINVAL;
+> +		}
+> +	}
+> +
+>  	return 0;
+>  }
+>  
+> -- 
+> 2.37.3
+
+-- 
+Ville Syrjälä
+Intel
