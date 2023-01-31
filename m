@@ -2,50 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53B70682889
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 10:18:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CD0A68289A
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 10:21:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6458C10E31A;
-	Tue, 31 Jan 2023 09:18:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B023610E14A;
+	Tue, 31 Jan 2023 09:21:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B703E10E32B;
- Tue, 31 Jan 2023 09:17:58 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4022C10E14A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Jan 2023 09:21:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675156678; x=1706692678;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=tzciVk8LP4p/TqsIOEeeJ/RvfEhNpsVE6QdphgFsalc=;
- b=a3diXOs9fxKOd+E6iqPVvfrnbI0d+WeIiNvtpUrL94iyRCa0UoVC35Oy
- Xn4+na9vfoxxYrikqvz28QcGrze8Rf8NDwTpRqXE/0Zjr+Cr73QBzrY1L
- ijwlIUU43Ltz//q5ZZcfMpDNMxqkdakIbmC2YtkFaNo5HMvo3DjbWfTbk
- Uzo0QByCkn0eJ7efbb6rVViVx6EyEm/4gmVbojs+sMGaYXfKcnAAwB1Ll
- plyRpTHhbe7hSPCkh4QqBsbzoKBKH6uj17N0oIDNHJDJc9wJd85cflH1o
- FgAQpxqYiPU1WbJK8hEbDJICi5c3Hg+6yPhkM2Y6gjlAjm/MZSBqIDjvD w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="390154169"
-X-IronPort-AV: E=Sophos;i="5.97,259,1669104000"; d="scan'208";a="390154169"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2023 01:17:58 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="909837963"
-X-IronPort-AV: E=Sophos;i="5.97,259,1669104000"; d="scan'208";a="909837963"
-Received: from khernet-mobl.ger.corp.intel.com (HELO
- jkrzyszt-mobl1.ger.corp.intel.com) ([10.213.18.238])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2023 01:17:55 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Petri Latvala <adrinael@adrinael.net>, Arkadiusz Hiler <arek@hiler.eu>,
- Kamil Konieczny <kamil.konieczny@linux.intel.com>
-Date: Tue, 31 Jan 2023 10:17:31 +0100
-Message-Id: <20230131091731.5892-3-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230131091731.5892-1-janusz.krzysztofik@linux.intel.com>
-References: <20230131091731.5892-1-janusz.krzysztofik@linux.intel.com>
+ t=1675156910; x=1706692910;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=opn69J4iM1+P9WhjabZqaC6A/nQZgyY/XD8pHDrsmp0=;
+ b=WewLkgh5IkP/4sOiXSHSY1sml3+ZCJsrQxj5DxABLwZFJe5NN4CYTJYw
+ dd8s1BmwvCGR+bLUtOdsbriHFmiUyEt1bQiDhXjorFzxzxc7y/BI/OQGq
+ I5tX7XUobdnDjHg0WjlKUF+4eS3KZI+vtUeVosrgFyn+amGRK+DyN5Z7N
+ BGxjO2QVadbdvD13Mt7e4gZ4g1k7xQTWp/O4v4xlx8KAXQ4nNJEQWpxni
+ 0cS4HWuIQ4MbyQyg4tI4bpFsw6R9hwLZv73t529/rnY+1fNI4iOj95OcI
+ MELF8WVZ6BbFB8P7qqPqqvaH4RBv8P8/GM3ZRAgSWJx6fT0dZRw6GqTsT g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="327809670"
+X-IronPort-AV: E=Sophos;i="5.97,259,1669104000"; d="scan'208";a="327809670"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2023 01:21:49 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="657807963"
+X-IronPort-AV: E=Sophos;i="5.97,259,1669104000"; d="scan'208";a="657807963"
+Received: from lkp-server01.sh.intel.com (HELO ffa7f14d1d0f) ([10.239.97.150])
+ by orsmga007.jf.intel.com with ESMTP; 31 Jan 2023 01:21:47 -0800
+Received: from kbuild by ffa7f14d1d0f with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1pMmpm-0004L0-2w;
+ Tue, 31 Jan 2023 09:21:46 +0000
+Date: Tue, 31 Jan 2023 17:21:15 +0800
+From: kernel test robot <lkp@intel.com>
+To: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <202301311720.VOyrcus2-lkp@intel.com>
+References: <20230131062550.11901-1-sujaritha.sundaresan@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t 2/2] tests/i915/perf: Exercise barrier race
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230131062550.11901-1-sujaritha.sundaresan@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gt: Add sysfs RAPL PL1 interface
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,96 +60,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Chris Wilson <chris.p.wilson@linux.intel.com>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add a new subtest focused on exercising interaction between perf open /
-close operations, which replace active barriers with perf requests, and
-concurrent barrier preallocate / acquire operations performed during
-context first pin / last unpin.
+Hi Sujaritha,
 
-References: https://gitlab.freedesktop.org/drm/intel/-/issues/6333
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
----
- tests/i915/perf.c | 41 +++++++++++++++++++++++++++++++++++++++--
- 1 file changed, 39 insertions(+), 2 deletions(-)
+Thank you for the patch! Perhaps something to improve:
 
-diff --git a/tests/i915/perf.c b/tests/i915/perf.c
-index e33cacc443..11a3ec21ab 100644
---- a/tests/i915/perf.c
-+++ b/tests/i915/perf.c
-@@ -39,6 +39,7 @@
- #include <math.h>
- 
- #include "i915/gem.h"
-+#include "i915/gem_create.h"
- #include "i915/perf.h"
- #include "igt.h"
- #include "igt_perf.h"
-@@ -4885,7 +4886,27 @@ test_whitelisted_registers_userspace_config(void)
- 	i915_perf_remove_config(drm_fd, config_id);
- }
- 
--static void test_open_race(const struct intel_execution_engine2 *e, int timeout)
-+static void gem_exec_nop(int i915, const struct intel_execution_engine2 *e)
-+{
-+	const uint32_t bbe = MI_BATCH_BUFFER_END;
-+	struct drm_i915_gem_exec_object2 obj = { };
-+	struct drm_i915_gem_execbuffer2 execbuf = {
-+		.buffers_ptr = to_user_pointer(&obj),
-+		.buffer_count = 1,
-+	};
-+
-+	obj.handle = gem_create(i915, 4096);
-+	gem_write(i915, obj.handle, 0, &bbe, sizeof(bbe));
-+
-+	execbuf.flags = e->flags;
-+	gem_execbuf(i915, &execbuf);
-+
-+	gem_sync(i915, obj.handle);
-+	gem_close(i915, obj.handle);
-+}
-+
-+static void test_open_race(const struct intel_execution_engine2 *e, int timeout,
-+			   bool use_spin)
- {
- 	int *done;
- 
-@@ -4926,6 +4947,12 @@ static void test_open_race(const struct intel_execution_engine2 *e, int timeout)
- 				ctx = gem_context_create_for_engine(i915, e->class, e->instance);
- 				gem_context_set_persistence(i915, ctx, persistence);
- 
-+				if (!use_spin) {
-+					gem_exec_nop(i915, e);
-+					gem_context_destroy(i915, ctx);
-+					continue;
-+				}
-+
- 				spin = __igt_spin_new(i915, ctx, .ahnd = ahnd);
- 				for (int i = random() % 7; i--; ) {
- 					if (random() & 1) {
-@@ -5330,7 +5357,17 @@ igt_main
- 		for_each_physical_engine(drm_fd, e)
- 			if (e->class == I915_ENGINE_CLASS_RENDER)
- 				igt_dynamic_f("%s", e->name)
--					test_open_race(e, 5);
-+					test_open_race(e, 5, true);
-+	}
-+
-+	igt_describe("Exercise perf open/close against intensive barrier preallocate/acquire");
-+	igt_subtest_with_dynamic("barrier-race") {
-+		const struct intel_execution_engine2 *e;
-+
-+		for_each_physical_engine(drm_fd, e)
-+			if (e->class == I915_ENGINE_CLASS_RENDER)
-+				igt_dynamic_f("%s", e->name)
-+					test_open_race(e, 5, false);
- 	}
- 
- 	igt_fixture {
+[auto build test WARNING on drm-tip/drm-tip]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Sujaritha-Sundaresan/drm-i915-gt-Add-sysfs-RAPL-PL1-interface/20230131-152446
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+patch link:    https://lore.kernel.org/r/20230131062550.11901-1-sujaritha.sundaresan%40intel.com
+patch subject: [Intel-gfx] [PATCH v2] drm/i915/gt: Add sysfs RAPL PL1 interface
+config: x86_64-rhel-8.3-rust (https://download.01.org/0day-ci/archive/20230131/202301311720.VOyrcus2-lkp@intel.com/config)
+compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/562c57549ee00ea298f9023380d44526d6d68921
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Sujaritha-Sundaresan/drm-i915-gt-Add-sysfs-RAPL-PL1-interface/20230131-152446
+        git checkout 562c57549ee00ea298f9023380d44526d6d68921
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/gpu/drm/i915/gt/intel_rps.c:2217:6: warning: variable 'rapl' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+           if (IS_METEORLAKE(i915) || IS_XEHPSDV(i915))
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/i915_drv.h:565:33: note: expanded from macro 'IS_METEORLAKE'
+   #define IS_METEORLAKE(dev_priv) IS_PLATFORM(dev_priv, INTEL_METEORLAKE)
+                                   ^
+   drivers/gpu/drm/i915/gt/intel_rps.c:2220:9: note: uninitialized use occurs here
+           return rapl;
+                  ^~~~
+   drivers/gpu/drm/i915/gt/intel_rps.c:2217:2: note: remove the 'if' if its condition is always true
+           if (IS_METEORLAKE(i915) || IS_XEHPSDV(i915))
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/gt/intel_rps.c:2209:10: note: initialize the variable 'rapl' to silence this warning
+           u32 rapl;
+                   ^
+                    = 0
+   1 warning generated.
+
+
+vim +2217 drivers/gpu/drm/i915/gt/intel_rps.c
+
+  2204	
+  2205	u32 intel_rps_read_rapl_pl1(struct intel_rps *rps)
+  2206	{
+  2207		struct drm_i915_private *i915 = rps_to_i915(rps);
+  2208		u32 rapl_pl1;
+  2209		u32 rapl;
+  2210	
+  2211		if (IS_METEORLAKE(i915))
+  2212			rapl_pl1 = intel_uncore_read(rps_to_gt(rps)->uncore, MTL_RAPL_PL1_FREQ_LIMIT);
+  2213		else if (IS_XEHPSDV(i915))
+  2214			rapl_pl1  = intel_uncore_read(rps_to_gt(rps)->uncore, XEHPSDV_RAPL_PL1_FREQ_LIMIT);
+  2215	
+  2216	
+> 2217		if (IS_METEORLAKE(i915) || IS_XEHPSDV(i915))
+  2218			rapl = REG_FIELD_GET(RAPL_PL1_FREQ_LIMIT_MASK, rapl_pl1);
+  2219	
+  2220		return rapl;
+  2221	}
+  2222	
+
 -- 
-2.25.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
