@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F03C16830D8
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B33176830D7
 	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 16:06:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13B2A10E390;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 051FB10E38D;
 	Tue, 31 Jan 2023 15:06:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB3BC10E387;
- Tue, 31 Jan 2023 15:06:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DB8F10E388
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Jan 2023 15:06:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675177579; x=1706713579;
+ t=1675177580; x=1706713580;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=RbhmnjYzjP8lLP96u1p49FbiVsEues3mWvBt3I/H+m0=;
- b=jh8ffzvQnha+h82qLwGA7PWhzsRk9HWknxv7fK9Bj/wUqVwzvrR8TTKb
- 7PTGZOGCev7NIVYUZh8E8mmGT5re6XIrqeiNuZ2dNLU0TSbmGVVhv/7x4
- xwpLX5Thzt59jF2/gduD8ZnOiWG8/nf4MyQmJaon+hU/u5DU86VeftMkT
- 4Avvbc1DeCW96kJTivOFEkDUXaeiqdPV+Hl4UI7jN/rBoPvO5IFvq9YMO
- fYVV9VOO6zlWBTWHBl9OMfFC8RwaUY3yNDsGk5sArAUcAATU7Vk01fNCQ
- rsci/SnsXWgWf9AZF7mNIilQ3oWK06dsjAVGs2WvzbVS/KRvXxHfBz7rv w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="308205639"
-X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; d="scan'208";a="308205639"
+ bh=2beI1Y/5R017YGTud/k8T4AT1EocWO5Q0EkpnCCMSTc=;
+ b=U3hrqjGoetPq+uXoeDjBUl8ut88JlI0ivgn/ANxA2FJY0e0Ynt9uZWQj
+ e8fzZI1p4gvtlJ/G9zThlrK2V4urOZbQt304w6YlwGkZAzbYWZt0+xX8X
+ 2DIvaiiOj2TmTmvG4JmvQcOx8FJcvmDQkYWZMTjF1DkosWNUJkjO9SvWm
+ pB0Xx6P8PvZfUfn6aTxmhwmjvPWsm3d8HIu4bjgtHKNRrBOsUWIoQ8sOJ
+ 04jAexG7IYoFe5DFZi1WSz5yrMsc7jY8sBW5n5OuXLyrJzcFHstn7+Vyx
+ SXAbXew5dFgmlD8WjfBCubKIItpksChJUZRVClFnBXDq4UjDIiwslB12z Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="308205640"
+X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; d="scan'208";a="308205640"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  31 Jan 2023 07:06:19 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="807155353"
-X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; d="scan'208";a="807155353"
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="807155358"
+X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; d="scan'208";a="807155358"
 Received: from ideak-desk.fi.intel.com ([10.237.72.58])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2023 07:06:14 -0800
+ 31 Jan 2023 07:06:15 -0800
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 31 Jan 2023 17:05:46 +0200
-Message-Id: <20230131150548.1614458-16-imre.deak@intel.com>
+Date: Tue, 31 Jan 2023 17:05:47 +0200
+Message-Id: <20230131150548.1614458-17-imre.deak@intel.com>
 X-Mailer: git-send-email 2.31.1.189.g2e36527f23
 In-Reply-To: <20230131150548.1614458-1-imre.deak@intel.com>
 References: <20230131150548.1614458-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 15/17] drm/dp: Add a quirk for a DELL P2715Q
- MST payload allocation problem
+Subject: [Intel-gfx] [PATCH v2 16/17] drm/i915/dp_mst: Add workaround for a
+ DELL P2715Q payload allocation problem
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,59 +58,236 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 The DELL P2715Q monitor's MST hub has a payload allocation problem,
 where the VCPI used to reserve the last two time slots (at position
 0x3e, 0x3f) in the hub's payload table, this VCPI can't be reused for
-later payload configurations. To work around the problem in a follow-up
-patch the driver needs to reset the payload table after all payloads
-have been freed; add a quirk the driver can use to detect the monitor
-and apply the WA if needed.
+later payload configurations.
 
-Cc: Lyude Paul <lyude@redhat.com>
+The problem results at least in streams reusing older VCPIs to stay
+blank on the screen and the payload table containing bogus VCPIs
+(repeating the one earlier used to reserve the 0x3e, 0x3f slots) after
+the last reservered slot.
+
+To work around the problem detect this monitor and the condition for the
+problem (when the last two slots get allocated in a commit), force a
+full modeset of the MST topology in the subsequent commit and reset the
+payload table during the latter commit after all payloads have been
+freed.
+
 Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: dri-devel@lists.freedesktop.org
+Cc: Lyude Paul <lyude@redhat.com>
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/display/drm_dp_helper.c | 2 ++
- include/drm/display/drm_dp_helper.h     | 8 ++++++++
- 2 files changed, 10 insertions(+)
+ drivers/gpu/drm/i915/display/intel_atomic.c   | 13 +++--
+ drivers/gpu/drm/i915/display/intel_atomic.h   |  3 +-
+ .../drm/i915/display/intel_display_types.h    |  1 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |  5 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   | 48 +++++++++++++++++--
+ 5 files changed, 61 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-index 16565a0a5da6d..e2cf4b4fe11ea 100644
---- a/drivers/gpu/drm/display/drm_dp_helper.c
-+++ b/drivers/gpu/drm/display/drm_dp_helper.c
-@@ -2244,6 +2244,8 @@ static const struct dpcd_quirk dpcd_quirk_list[] = {
- 	{ OUI(0x90, 0xCC, 0x24), DEVICE_ID_ANY, true, BIT(DP_DPCD_QUIRK_DSC_WITHOUT_VIRTUAL_DPCD) },
- 	/* Apple MacBookPro 2017 15 inch eDP Retina panel reports too low DP_MAX_LINK_RATE */
- 	{ OUI(0x00, 0x10, 0xfa), DEVICE_ID(101, 68, 21, 101, 98, 97), false, BIT(DP_DPCD_QUIRK_CAN_DO_MAX_LINK_RATE_3_24_GBPS) },
-+	/* DELL P2715Q MST payload table must be reset after the two last payload slots get allocated. */
-+	{ OUI(0x00, 0xe0, 0x4c), DEVICE_ID('D', 'p', '1', '.', '2', 0), true, BIT(DP_DPCD_QUIRK_MST_PAYLOAD_TABLE_RESET_WA) },
- };
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
+index 0f1c5b9c9a826..04e5f0e0fffa6 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic.c
+@@ -616,7 +616,8 @@ intel_atomic_get_crtc_state(struct drm_atomic_state *state,
+ }
  
- #undef OUI
-diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
-index ab55453f2d2cd..fcd445921ec9d 100644
---- a/include/drm/display/drm_dp_helper.h
-+++ b/include/drm/display/drm_dp_helper.h
-@@ -620,6 +620,14 @@ enum drm_dp_quirk {
- 	 * the DP_MAX_LINK_RATE register reporting a lower max multiplier.
- 	 */
- 	DP_DPCD_QUIRK_CAN_DO_MAX_LINK_RATE_3_24_GBPS,
-+	/**
-+	 * @DP_DPCD_QUIRK_MST_PAYLOAD_TABLE_RESET_WA:
-+	 *
-+	 * An bug in the MST branch device's payload allocation logic requires
-+	 * the payload table to be reset after its last two payload slots get
-+	 * allocated.
-+	 */
-+	DP_DPCD_QUIRK_MST_PAYLOAD_TABLE_RESET_WA,
- };
+ static int modeset_pipe(struct intel_atomic_state *state,
+-			struct intel_crtc *crtc, const char *reason)
++			struct intel_crtc *crtc, const char *reason,
++			bool allow_fastset)
+ {
+ 	struct drm_i915_private *i915 = to_i915(state->base.dev);
+ 	struct intel_crtc_state *crtc_state;
+@@ -629,6 +630,8 @@ static int modeset_pipe(struct intel_atomic_state *state,
+ 		return PTR_ERR(crtc_state);
+ 
+ 	crtc_state->uapi.mode_changed = true;
++	if (!allow_fastset)
++		crtc_state->uapi.connectors_changed = true;
+ 	crtc_state->update_pipe = false;
+ 
+ 	return intel_atomic_add_affected_planes(state, crtc);
+@@ -639,6 +642,7 @@ static int modeset_pipe(struct intel_atomic_state *state,
+  * @state: atomic state
+  * @connector: connector to add the state for
+  * @reason: the reason why the connector needs to be added
++ * @allow_fastset: allow a fastset
+  *
+  * Add the @connector to the atomic state with its CRTC state and force a modeset
+  * on the CRTC if any.
+@@ -648,7 +652,8 @@ static int modeset_pipe(struct intel_atomic_state *state,
+  * Returns 0 in case of success, a negative error code on failure.
+  */
+ int intel_atomic_modeset_connector(struct intel_atomic_state *state,
+-				   struct intel_connector *connector, const char *reason)
++				   struct intel_connector *connector, const char *reason,
++				   bool allow_fastset)
+ {
+ 	struct drm_i915_private *i915 = to_i915(state->base.dev);
+ 	struct drm_connector_state *conn_state;
+@@ -671,7 +676,7 @@ int intel_atomic_modeset_connector(struct intel_atomic_state *state,
+ 	if (ret)
+ 		return ret;
+ 
+-	return modeset_pipe(state, crtc, reason);
++	return modeset_pipe(state, crtc, reason, allow_fastset);
+ }
  
  /**
+@@ -700,7 +705,7 @@ int intel_atomic_modeset_pipe(struct intel_atomic_state *state,
+ 	if (ret)
+ 		return ret;
+ 
+-	return modeset_pipe(state, crtc, reason);
++	return modeset_pipe(state, crtc, reason, true);
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic.h b/drivers/gpu/drm/i915/display/intel_atomic.h
+index 84295d388e3cb..7778aea8a09fe 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic.h
++++ b/drivers/gpu/drm/i915/display/intel_atomic.h
+@@ -59,7 +59,8 @@ int intel_atomic_setup_scalers(struct drm_i915_private *dev_priv,
+ int intel_atomic_modeset_pipe(struct intel_atomic_state *state,
+ 			      struct intel_crtc *crtc, const char *reason);
+ int intel_atomic_modeset_connector(struct intel_atomic_state *state,
+-				   struct intel_connector *connector, const char *reason);
++				   struct intel_connector *connector, const char *reason,
++				   bool allow_fastset);
+ int intel_atomic_modeset_all_pipes(struct intel_atomic_state *state,
+ 				   const char *reason);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 9ccae7a460200..06d51d2b5e0d6 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1656,6 +1656,7 @@ struct intel_dp {
+ 	bool has_audio;
+ 	bool reset_link_params;
+ 	bool use_max_params;
++	bool mst_reset_payload_table;
+ 	u8 dpcd[DP_RECEIVER_CAP_SIZE];
+ 	u8 psr_dpcd[EDP_PSR_RECEIVER_CAP_SIZE];
+ 	u8 downstream_ports[DP_MAX_DOWNSTREAM_PORTS];
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index d6b0ef38f6563..c157bcd976103 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -4689,6 +4689,8 @@ intel_dp_detect(struct drm_connector *connector,
+ 		memset(&intel_dp->compliance, 0, sizeof(intel_dp->compliance));
+ 		memset(intel_dp->dsc_dpcd, 0, sizeof(intel_dp->dsc_dpcd));
+ 
++		intel_dp->mst_reset_payload_table = false;
++
+ 		if (intel_dp->is_mst) {
+ 			drm_dbg_kms(&dev_priv->drm,
+ 				    "MST device may have disappeared %d vs %d\n",
+@@ -4924,7 +4926,8 @@ static int intel_modeset_tile_group(struct intel_atomic_state *state,
+ 			continue;
+ 
+ 		ret = intel_atomic_modeset_connector(state, connector,
+-						     "connector tile group");
++						     "connector tile group",
++						     true);
+ 		if (ret)
+ 			break;
+ 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index 08222fc6c5ecd..a9bb339e41987 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -422,9 +422,10 @@ intel_dp_mst_atomic_master_trans_check(struct intel_connector *connector,
+ 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+ 	struct drm_connector_list_iter connector_list_iter;
+ 	struct intel_connector *connector_iter;
++	bool reset_payload_table = connector->mst_port->mst_reset_payload_table;
+ 	int ret = 0;
+ 
+-	if (DISPLAY_VER(dev_priv) < 12)
++	if (DISPLAY_VER(dev_priv) < 12 && !reset_payload_table)
+ 		return  0;
+ 
+ 	if (!intel_connector_needs_modeset(state, &connector->base))
+@@ -437,7 +438,8 @@ intel_dp_mst_atomic_master_trans_check(struct intel_connector *connector,
+ 			continue;
+ 
+ 		ret = intel_atomic_modeset_connector(state, connector_iter,
+-						     "MST master transcoder");
++						     "MST master transcoder",
++						     !reset_payload_table);
+ 		if (ret)
+ 			break;
+ 	}
+@@ -531,6 +533,41 @@ static void intel_mst_disable_dp(struct intel_atomic_state *state,
+ 	intel_audio_codec_disable(encoder, old_crtc_state, old_conn_state);
+ }
+ 
++static void detect_payload_allocation_bug(const struct drm_dp_mst_topology_state *mst_state,
++					  const struct intel_connector *connector,
++					  struct intel_dp *intel_dp)
++{
++	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
++
++	if (!drm_dp_has_quirk(&intel_dp->desc, DP_DPCD_QUIRK_MST_PAYLOAD_TABLE_RESET_WA))
++		return;
++
++	if (drm_dp_mst_allocated_time_slots(mst_state) < DP_PAYLOAD_TABLE_SIZE - 2)
++		return;
++
++	drm_dbg(&i915->drm,
++		"[CONNECTOR:%d:%s] Payload table allocation bug detected\n",
++		connector->base.base.id, connector->base.name);
++
++	intel_dp->mst_reset_payload_table = true;
++}
++
++static void payload_allocation_bug_wa(const struct intel_connector *connector,
++				      struct intel_dp *intel_dp)
++{
++	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
++
++	if (!intel_dp->mst_reset_payload_table)
++		return;
++
++	drm_dbg(&i915->drm,
++		"[CONNECTOR:%d:%s] Resetting payload table due to allocation bug\n",
++		connector->base.base.id, connector->base.name);
++
++	drm_dp_mst_reset_payload_table(&intel_dp->mst_mgr);
++	intel_dp->mst_reset_payload_table = false;
++}
++
+ static void intel_mst_post_disable_dp(struct intel_atomic_state *state,
+ 				      struct intel_encoder *encoder,
+ 				      const struct intel_crtc_state *old_crtc_state,
+@@ -594,10 +631,13 @@ static void intel_mst_post_disable_dp(struct intel_atomic_state *state,
+ 
+ 
+ 	intel_mst->connector = NULL;
+-	if (last_mst_stream)
++	if (last_mst_stream) {
+ 		dig_port->base.post_disable(state, &dig_port->base,
+ 						  old_crtc_state, NULL);
+ 
++		payload_allocation_bug_wa(connector, intel_dp);
++	}
++
+ 	drm_dbg_kms(&dev_priv->drm, "active links %d\n",
+ 		    intel_dp->active_mst_links);
+ }
+@@ -662,6 +702,8 @@ static void intel_mst_pre_enable_dp(struct intel_atomic_state *state,
+ 		drm_err(&dev_priv->drm, "Failed to create MST payload for %s: %d\n",
+ 			connector->base.name, ret);
+ 
++	detect_payload_allocation_bug(mst_state, connector, intel_dp);
++
+ 	/*
+ 	 * Before Gen 12 this is not done as part of
+ 	 * dig_port->base.pre_enable() and should be done here. For
 -- 
 2.37.1
 
