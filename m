@@ -2,53 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77F75682CD7
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 13:45:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B5FB5682D51
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 14:06:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43F5B10E330;
-	Tue, 31 Jan 2023 12:45:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95F0F10E075;
+	Tue, 31 Jan 2023 13:06:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40EDB10E32D;
- Tue, 31 Jan 2023 12:44:59 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21D7C10E075
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Jan 2023 13:06:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675169099; x=1706705099;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=/RwQqzhoI4pLDu/LgYP8NfjxFwOXtYObH6J5azZ9fcE=;
- b=WCWqomjSPzzN647NwnwJN8aMyAwE37oEnyLnortjwErUFIQ3hEUIj3c2
- EoRK4Y48qpKRVdtnfhriTC9s74Uhf0aJ+HVJU8mMXeBlVsfI1nev0IixR
- 45ULTPUvjNus7wdxQzagdReQ/4qBmTTZcc+7ysqS4hv2CXiqvKplDAWJm
- N/lU+Ai36dOc+XvBO/aYE04Aw9XgiQXI3qwAmbCIBMDYd4FgMA3BHYlAt
- 12G7jQyTh3PziusBCSly9y/kCVIz2Ts6GT1+MHcXxw060k52JuJdlE+k0
- aBq/wqbDLCEGJm9CWSpYCDzQIaPHDi536PpJf+7wDxapE33h66LzUkA/U w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="325525923"
-X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; d="scan'208";a="325525923"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2023 04:44:58 -0800
+ t=1675170411; x=1706706411;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=UZV2/KHHAzDeaJQ7LhCOsFbtmhbUNOXblXx+kH+Nguw=;
+ b=cSJEJQVarDe/1g591GT/sqHp8fHWhmBvM0zBFlLlvtDBbrsK155S+W4s
+ ilHYkMyD5nkYhSAosL8f1QD0UkufH0bfdYr8adPcV24eIaPH+uf/enkVq
+ pm35yUCTrJzUzFd+TcK/hX/tm1B6piZcGvtDOGWVTWF/CUho6y6Lz9O+M
+ En422KQlTHlr0rXql14VDpmnpevbKVVtr3/YMZAU8CRU1ThKssq3Ck7Cs
+ f+7RAixWWhQyq7LLAob1ai9Rs6KtP7pPCEyfE8y47/I4aUhQtufmkNlF2
+ mjv7kS0zEyCdioux+u7wNAmDH8Z0x5CX2fCCDyc8ZXqKTf63PH5C299hz w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="326494767"
+X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; d="scan'208";a="326494767"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2023 05:03:04 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="733097607"
-X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; d="scan'208";a="733097607"
-Received: from smile.fi.intel.com ([10.237.72.54])
- by fmsmga004.fm.intel.com with ESMTP; 31 Jan 2023 04:44:55 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1pMq0L-000Fg8-1n; Tue, 31 Jan 2023 14:44:53 +0200
-Date: Tue, 31 Jan 2023 14:44:53 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Stephen Rothwell <sfr@canb.auug.org.au>
-Message-ID: <Y9kNRVppj5Uxa9ub@smile.fi.intel.com>
-References: <20230131130305.019029ff@canb.auug.org.au>
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="641971578"
+X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; d="scan'208";a="641971578"
+Received: from linux.intel.com ([10.54.29.200])
+ by orsmga006.jf.intel.com with ESMTP; 31 Jan 2023 05:03:04 -0800
+Received: from linux.intel.com (maurocar-mobl2.ger.corp.intel.com
+ [10.252.29.225])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by linux.intel.com (Postfix) with ESMTPS id 0B9F3580B0E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Jan 2023 05:03:04 -0800 (PST)
+Received: from localhost ([127.0.0.1])
+ by linux.intel.com with esmtp (Exim 4.96)
+ (envelope-from <mauro.chehab@linux.intel.com>) id 1pMqHu-009dJL-06
+ for intel-gfx@lists.freedesktop.org; Tue, 31 Jan 2023 14:03:02 +0100
+Message-ID: <9d0f7ab2-d6a0-094d-56fa-7ded3592fb66@linux.intel.com>
+Date: Tue, 31 Jan 2023 14:03:01 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230131130305.019029ff@canb.auug.org.au>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: Re: [Intel-gfx] linux-next: manual merge of the usb tree with the
- drm-intel-fixes tree
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Content-Language: en-US
+To: intel-gfx@lists.freedesktop.org
+References: <20230121190853.18722-1-gustavo.sousa@intel.com>
+ <Y9A0Dz4TtLB4a4Wn@intel.com>
+From: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
+In-Reply-To: <Y9A0Dz4TtLB4a4Wn@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Fix sphinx warnings for
+ workarounds documentation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,49 +71,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Greg KH <greg@kroah.com>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 31, 2023 at 01:03:05PM +1100, Stephen Rothwell wrote:
-> Hi all,
-> 
-> Today's linux-next merge of the usb tree got a conflict in:
-> 
->   drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> 
-> between commit:
-> 
->   5bc4b43d5c6c ("drm/i915: Fix up locking around dumping requests lists")
-> 
-> from the drm-intel-fixes tree and commit:
-> 
->   4d70c74659d9 ("i915: Move list_count() to list.h as list_count_nodes() for broader use")
-> 
-> from the usb tree.
-> 
-> I fixed it up (the former removed the code changed by the latter)
 
-Hmm... Currently I see that 20230127002842.3169194-4-John.C.Harrison@Intel.com
-moves the code to the drivers/gpu/drm/i915/gt/intel_execlists_submission.c.
-
-Is there any new series beside the above mentioned that touches that file and
-actually _removes_ that code?
-
->	and
-> can carry the fix as necessary. This is now fixed as far as linux-next
-> is concerned, but any non trivial conflicts should be mentioned to your
-> upstream maintainer when your tree is submitted for merging.  You may
-> also want to consider cooperating with the maintainer of the conflicting
-> tree to minimise any particularly complex conflicts.
-
--- 
-With Best Regards,
-Andy Shevchenko
+On 1/24/23 20:39, Rodrigo Vivi wrote:
+> On Sat, Jan 21, 2023 at 04:08:53PM -0300, Gustavo Sousa wrote:
+>> The wildchar ("*") used in the function name patterns in the
+>> documentation was taken as a start of an "emphasis" inline markup. Wrap
+>> the patterns with the inline literal markup and, for consistency, do the
+>> same for the other function names mentioned.
+>>
+>> Fixes: 0c3064cf33fb ("drm/i915/doc: Document where to implement register workarounds")
+>> Reported-by: kernel test robot <lkp@intel.com>
+>> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+>
+> just in case he sees some better alternative for the escaping the '*'
+>
+> My fear is that this ``*_fn_name()`` could create invalid links in the doc...
 
 
+Seems OK to me. ``foo`` is literal inline. It won't try to generate 
+cross-references.
+
+
+Reviewed-by: Mauro Carvalho Chehab <mchehab@kernel.org>
+
+
+>
+>
+>> ---
+>>   drivers/gpu/drm/i915/gt/intel_workarounds.c | 20 ++++++++++----------
+>>   1 file changed, 10 insertions(+), 10 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> index 918a271447e2..e849035d8dc5 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> @@ -30,8 +30,8 @@
+>>    *   creation to have a "primed golden context", i.e. a context image that
+>>    *   already contains the changes needed to all the registers.
+>>    *
+>> - *   Context workarounds should be implemented in the *_ctx_workarounds_init()
+>> - *   variants respective to the targeted platforms.
+>> + *   Context workarounds should be implemented in the
+>> + *   ``*_ctx_workarounds_init()`` variants respective to the targeted platforms.
+>>    *
+>>    * - Engine workarounds: the list of these WAs is applied whenever the specific
+>>    *   engine is reset. It's also possible that a set of engine classes share a
+>> @@ -46,16 +46,16 @@
+>>    *   ``drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c`` for reference.
+>>    *
+>>    *   Workarounds for registers specific to RCS and CCS should be implemented in
+>> - *   rcs_engine_wa_init() and ccs_engine_wa_init(), respectively; those for
+>> - *   registers belonging to BCS, VCS or VECS should be implemented in
+>> - *   xcs_engine_wa_init(). Workarounds for registers not belonging to a specific
+>> - *   engine's MMIO range but that are part of of the common RCS/CCS reset domain
+>> - *   should be implemented in general_render_compute_wa_init().
+>> + *   ``rcs_engine_wa_init()`` and ``ccs_engine_wa_init()``, respectively; those
+>> + *   for registers belonging to BCS, VCS or VECS should be implemented in
+>> + *   ``xcs_engine_wa_init()``. Workarounds for registers not belonging to a
+>> + *   specific engine's MMIO range but that are part of of the common RCS/CCS
+>> + *   reset domain should be implemented in ``general_render_compute_wa_init()``.
+>>    *
+>>    * - GT workarounds: the list of these WAs is applied whenever these registers
+>>    *   revert to their default values: on GPU reset, suspend/resume [1]_, etc.
+>>    *
+>> - *   GT workarounds should be implemented in the *_gt_workarounds_init()
+>> + *   GT workarounds should be implemented in the ``*_gt_workarounds_init()``
+>>    *   variants respective to the targeted platforms.
+>>    *
+>>    * - Register whitelist: some workarounds need to be implemented in userspace,
+>> @@ -64,8 +64,8 @@
+>>    *   this is just a special case of a MMIO workaround (as we write the list of
+>>    *   these to/be-whitelisted registers to some special HW registers).
+>>    *
+>> - *   Register whitelisting should be done in the *_whitelist_build() variants
+>> - *   respective to the targeted platforms.
+>> + *   Register whitelisting should be done in the ``*_whitelist_build()``
+>> + *   variants respective to the targeted platforms.
+>>    *
+>>    * - Workaround batchbuffers: buffers that get executed automatically by the
+>>    *   hardware on every HW context restore. These buffers are created and
+>> -- 
+>> 2.39.0
+>>
