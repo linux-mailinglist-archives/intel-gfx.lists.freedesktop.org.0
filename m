@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 738D2682097
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 01:21:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29DE7682098
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 01:22:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1372210E2F4;
-	Tue, 31 Jan 2023 00:21:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E07AF10E2FE;
+	Tue, 31 Jan 2023 00:21:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C092010E2F4
- for <intel-gfx@lists.freedesktop.org>; Tue, 31 Jan 2023 00:21:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E15E010E297
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Jan 2023 00:21:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675124510; x=1706660510;
+ t=1675124512; x=1706660512;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=MTghumENvG34xjsAnDPD+QWRExPa+Mh8DkCFt4PyG9I=;
- b=Vx3ZnC5LhMzIK0PwMgY55UYEwb4wnu203tT2al/WXOmFdP0+P+qK8ri+
- K3l93hDOMgv8ikBDtNVKqldr6sQOp3t1B2NczCPeKycc7luIU8miz82nC
- ZhQxLE6Aq/oCk9SYRoDOtOI4hFcksgegXxhoNn/R/Mr9mnB8c9IAz5hTp
- hGTNCeXXdq+ujl1z7Aeypa1qmA7BUwhvr0VkO1ByS/rfjX2uEqT/zKOpJ
- OsfiMgjpn2Aem7ldrvfp6bBAlYyvtdMZ0hZgSEMzB+HNgwbq4h+b7vZFl
- 052zhY3kp445qTP0q0C1rutRlQfEDv863YzIdroaJ+yiXMIRTWGca43Gk w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="326376786"
-X-IronPort-AV: E=Sophos;i="5.97,259,1669104000"; d="scan'208";a="326376786"
+ bh=1qzo3aScuPne1/T6Rw+LsVpSMwDXy2LtMmHWyhfd36k=;
+ b=Y/Xz4OldNSAm+SyVbVpyFDJpH5LYzTcq/bUQYPv+ShglFvZnyfouCLC/
+ qpYx8GR/ZOlMFFv9XnYf2fWjz4Mad7+UkxjZG+SnexMU4eMx9fSi6N20G
+ GCcD67lMs2gl9AeS7vaVv8+z32SURebB/An2pvhOy1VfwWMNDDGsq4Duu
+ 0MnSujBMMqWBoEZx0f5hXxMzbBgwAoDiUMPbI8PrSaD/qukYoXNCDR1p+
+ VZoxgkJvYqRHfgMlpXT3CFUgPN4W/E2Zcg8gj89cBkxNWz7ckQo2ePl3u
+ 4rfmqXFRLY0GxwhMyj2AzhimPPGtUVVlHxCVvNv79BZ2rpdx+lbhHW8oi g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="326376800"
+X-IronPort-AV: E=Sophos;i="5.97,259,1669104000"; d="scan'208";a="326376800"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2023 16:21:33 -0800
+ 30 Jan 2023 16:21:36 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="657648763"
-X-IronPort-AV: E=Sophos;i="5.97,259,1669104000"; d="scan'208";a="657648763"
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="657648775"
+X-IronPort-AV: E=Sophos;i="5.97,259,1669104000"; d="scan'208";a="657648775"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
- by orsmga007.jf.intel.com with SMTP; 30 Jan 2023 16:21:31 -0800
+ by orsmga007.jf.intel.com with SMTP; 30 Jan 2023 16:21:34 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 31 Jan 2023 02:21:30 +0200
+ Tue, 31 Jan 2023 02:21:33 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 31 Jan 2023 02:21:25 +0200
-Message-Id: <20230131002127.29305-2-ville.syrjala@linux.intel.com>
+Date: Tue, 31 Jan 2023 02:21:26 +0200
+Message-Id: <20230131002127.29305-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230131002127.29305-1-ville.syrjala@linux.intel.com>
 References: <20230131002127.29305-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/4] drm/i915: Introduce HAS_SAGV()
+Subject: [Intel-gfx] [PATCH 3/4] drm/i915: Keep sagv status updated on icl+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,62 +64,91 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Introuce a HAS_SAGV() macro to answer the question whether
-the platform in general supports SAGV. intel_has_sagv() will
-keep on giving us the more specific answer whether the current
-device supports SAGV or not.
+On icl+ SAGV is controlled by masking of the QGV points.
+Reduce the QGV point mask to the same kind of enabled vs.
+disable information that we had on previous platforms.
+Will be useful in answering the question whether SAGV is
+actually enabled or not.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_watermark.c | 6 +++---
- drivers/gpu/drm/i915/i915_drv.h              | 3 ++-
- 2 files changed, 5 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bw.c | 49 +++++++++++++++----------
+ 1 file changed, 29 insertions(+), 20 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 0c605034356f..5916694f147c 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -64,7 +64,7 @@ static bool skl_needs_memory_bw_wa(struct drm_i915_private *i915)
- static bool
- intel_has_sagv(struct drm_i915_private *i915)
- {
--	return DISPLAY_VER(i915) >= 9 && !IS_LP(i915) &&
-+	return HAS_SAGV(i915) &&
- 		i915->display.sagv.status != I915_SAGV_NOT_CONTROLLED;
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index 1c236f02b380..202321ffbe2a 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -119,6 +119,32 @@ static int adls_pcode_read_psf_gv_point_info(struct drm_i915_private *dev_priv,
+ 	return 0;
  }
  
-@@ -92,7 +92,7 @@ intel_sagv_block_time(struct drm_i915_private *i915)
- 		return val;
- 	} else if (DISPLAY_VER(i915) == 11) {
- 		return 10;
--	} else if (DISPLAY_VER(i915) == 9 && !IS_LP(i915)) {
-+	} else if (HAS_SAGV(i915)) {
- 		return 30;
- 	} else {
- 		return 0;
-@@ -101,7 +101,7 @@ intel_sagv_block_time(struct drm_i915_private *i915)
- 
- static void intel_sagv_init(struct drm_i915_private *i915)
++static u16 icl_qgv_points_mask(struct drm_i915_private *i915)
++{
++	unsigned int num_psf_gv_points = i915->display.bw.max[0].num_psf_gv_points;
++	unsigned int num_qgv_points = i915->display.bw.max[0].num_qgv_points;
++	u16 qgv_points = 0, psf_points = 0;
++
++	/*
++	 * We can _not_ use the whole ADLS_QGV_PT_MASK here, as PCode rejects
++	 * it with failure if we try masking any unadvertised points.
++	 * So need to operate only with those returned from PCode.
++	 */
++	if (num_qgv_points > 0)
++		qgv_points = GENMASK(num_qgv_points - 1, 0);
++
++	if (num_psf_gv_points > 0)
++		psf_points = GENMASK(num_psf_gv_points - 1, 0);
++
++	return ICL_PCODE_REQ_QGV_PT(qgv_points) | ADLS_PCODE_REQ_PSF_PT(psf_points);
++}
++
++static bool is_sagv_enabled(struct drm_i915_private *i915, u16 points_mask)
++{
++	return !is_power_of_2(~points_mask & icl_qgv_points_mask(i915) &
++			      ICL_PCODE_REQ_QGV_PT_MASK);
++}
++
+ int icl_pcode_restrict_qgv_points(struct drm_i915_private *dev_priv,
+ 				  u32 points_mask)
  {
--	if (!intel_has_sagv(i915))
-+	if (!HAS_SAGV(i915))
- 		i915->display.sagv.status = I915_SAGV_NOT_CONTROLLED;
+@@ -136,6 +162,9 @@ int icl_pcode_restrict_qgv_points(struct drm_i915_private *dev_priv,
+ 		return ret;
+ 	}
  
- 	/*
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index a0dcf3352b66..0393273faa09 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -863,7 +863,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
-  */
- #define HAS_64K_PAGES(dev_priv) (INTEL_INFO(dev_priv)->has_64k_pages)
++	dev_priv->display.sagv.status = is_sagv_enabled(dev_priv, points_mask) ?
++		I915_SAGV_ENABLED : I915_SAGV_DISABLED;
++
+ 	return 0;
+ }
  
--#define HAS_IPC(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_ipc)
-+#define HAS_IPC(dev_priv)		(INTEL_INFO(dev_priv)->display.has_ipc)
-+#define HAS_SAGV(dev_priv)		(DISPLAY_VER(dev_priv) >= 9 && !IS_LP(dev_priv))
+@@ -965,26 +994,6 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
+ 	return 0;
+ }
  
- #define HAS_REGION(i915, i) (RUNTIME_INFO(i915)->memory_regions & (i))
- #define HAS_LMEM(i915) HAS_REGION(i915, REGION_LMEM)
+-static u16 icl_qgv_points_mask(struct drm_i915_private *i915)
+-{
+-	unsigned int num_psf_gv_points = i915->display.bw.max[0].num_psf_gv_points;
+-	unsigned int num_qgv_points = i915->display.bw.max[0].num_qgv_points;
+-	u16 qgv_points = 0, psf_points = 0;
+-
+-	/*
+-	 * We can _not_ use the whole ADLS_QGV_PT_MASK here, as PCode rejects
+-	 * it with failure if we try masking any unadvertised points.
+-	 * So need to operate only with those returned from PCode.
+-	 */
+-	if (num_qgv_points > 0)
+-		qgv_points = GENMASK(num_qgv_points - 1, 0);
+-
+-	if (num_psf_gv_points > 0)
+-		psf_points = GENMASK(num_psf_gv_points - 1, 0);
+-
+-	return ICL_PCODE_REQ_QGV_PT(qgv_points) | ADLS_PCODE_REQ_PSF_PT(psf_points);
+-}
+-
+ static int intel_bw_check_data_rate(struct intel_atomic_state *state, bool *changed)
+ {
+ 	struct drm_i915_private *i915 = to_i915(state->base.dev);
 -- 
 2.39.1
 
