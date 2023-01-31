@@ -1,48 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8509682564
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 08:11:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1157B682566
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 08:12:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A6A410E334;
-	Tue, 31 Jan 2023 07:11:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78BEE10E335;
+	Tue, 31 Jan 2023 07:12:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94B5F10E334
- for <intel-gfx@lists.freedesktop.org>; Tue, 31 Jan 2023 07:11:44 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E9D810E335
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Jan 2023 07:12:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675149104; x=1706685104;
+ t=1675149154; x=1706685154;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=Z8CsdPYnIajoNG3otFp5/mxXrc5q60iIHy0hI7Rey0A=;
- b=daDuF5wIj4hD3BpePUtIIoMweUhrjxzWBCjS7nj3SySnxWeCtyoy6dFL
- 4OTHGgE6jDlfCuS5cRQ5TohLsS/qxOK53TVVWzhz6UVcIslugPy9ixiHK
- oaMV4U8R6o7wKKziGzFnligtUVK0lsOrouuQa2y+DO6cw83tb4bmZc5MK
- TokBEDRbWFnKeo3Ch75ymkHQks4B8kR54C+jfOk+F0cf0Hz+Cl8kt5wtZ
- EIX+jaBeHNETmdEDro0GxvpRlvOulvNooPFPUg4HcJMbO9YlqWJ80rfW7
- jyKSFtsd3aJlz1j/Vw3COLcmVYTWUHmed5tKIC2Bn4jpsosCZDklw+khX g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="390132959"
-X-IronPort-AV: E=Sophos;i="5.97,259,1669104000"; d="scan'208";a="390132959"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2023 23:11:44 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="909801788"
-X-IronPort-AV: E=Sophos;i="5.97,259,1669104000"; d="scan'208";a="909801788"
+ bh=JmN/X/BV51/X8QdBb/V19RmhoaBIlxrUmeMYHklSMOg=;
+ b=O7QqxA11I7ATbmR0mASNhWDadoXis4oKAE7BpUVEubBBgduhmXL+vS64
+ tfacxnTR81W80N/Sf7Y0pcMxwiC61tFFhUorIOf/0G8rpFOfjFcWgc3GD
+ 4rJXUPAESo+BHa+lSdqL2fvUXpI2aU96E3plmi+DlfNdpmqx5MAMTdefN
+ cngaKW4TPEyYc9zsD2ucnqVrEjhTbFr/gSiPcXjjKhnJ3mAJL4hpQ0BjW
+ jWmYT/PvoZ50ogxkMDQpHP7IHhGLuftcvlKIvhSO/xQrmuxd+4KGtZQVo
+ eh4jxGg6l16RzU063WFef+5jnJEK9V4nG6aGIPB6L1wDsPacnjXMhs/yn w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="307426029"
+X-IronPort-AV: E=Sophos;i="5.97,259,1669104000"; d="scan'208";a="307426029"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2023 23:12:34 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="696722752"
+X-IronPort-AV: E=Sophos;i="5.97,259,1669104000"; d="scan'208";a="696722752"
 Received: from akryuko1-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.252.34.35])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2023 23:11:42 -0800
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2023 23:12:32 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230130181701.29977-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <87zg9z2n6b.fsf@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20230130181701.29977-1-ville.syrjala@linux.intel.com>
-Date: Tue, 31 Jan 2023 09:11:40 +0200
-Message-ID: <87zg9z2n6b.fsf@intel.com>
+ <87zg9z2n6b.fsf@intel.com>
+Date: Tue, 31 Jan 2023 09:12:29 +0200
+Message-ID: <87wn532n4y.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -63,42 +64,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 30 Jan 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+On Tue, 31 Jan 2023, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> On Mon, 30 Jan 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+>> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>>
+>> Dump the stepping information alongside all the other device
+>> info. Might avoid some guesswork when reading logs.
+>>
+>> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Dump the stepping information alongside all the other device
-> info. Might avoid some guesswork when reading logs.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+*information
 
-> ---
->  drivers/gpu/drm/i915/intel_device_info.c | 5 +++++
->  1 file changed, 5 insertions(+)
+in the subject line, can be fixed while applying.
+
 >
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i=
-915/intel_device_info.c
-> index 98769e5f2c3d..599c6d399de4 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.c
-> +++ b/drivers/gpu/drm/i915/intel_device_info.c
-> @@ -119,6 +119,11 @@ void intel_device_info_print(const struct intel_devi=
-ce_info *info,
->  		drm_printf(p, "display version: %u\n",
->  			   runtime->display.ip.ver);
->=20=20
-> +	drm_printf(p, "graphics stepping: %s\n", intel_step_name(runtime->step.=
-graphics_step));
-> +	drm_printf(p, "media stepping: %s\n", intel_step_name(runtime->step.med=
-ia_step));
-> +	drm_printf(p, "display stepping: %s\n", intel_step_name(runtime->step.d=
-isplay_step));
-> +	drm_printf(p, "base die stepping: %s\n", intel_step_name(runtime->step.=
-basedie_step));
-> +
->  	drm_printf(p, "gt: %d\n", info->gt);
->  	drm_printf(p, "memory-regions: %x\n", runtime->memory_regions);
->  	drm_printf(p, "page-sizes: %x\n", runtime->page_sizes);
+>> ---
+>>  drivers/gpu/drm/i915/intel_device_info.c | 5 +++++
+>>  1 file changed, 5 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/=
+i915/intel_device_info.c
+>> index 98769e5f2c3d..599c6d399de4 100644
+>> --- a/drivers/gpu/drm/i915/intel_device_info.c
+>> +++ b/drivers/gpu/drm/i915/intel_device_info.c
+>> @@ -119,6 +119,11 @@ void intel_device_info_print(const struct intel_dev=
+ice_info *info,
+>>  		drm_printf(p, "display version: %u\n",
+>>  			   runtime->display.ip.ver);
+>>=20=20
+>> +	drm_printf(p, "graphics stepping: %s\n", intel_step_name(runtime->step=
+.graphics_step));
+>> +	drm_printf(p, "media stepping: %s\n", intel_step_name(runtime->step.me=
+dia_step));
+>> +	drm_printf(p, "display stepping: %s\n", intel_step_name(runtime->step.=
+display_step));
+>> +	drm_printf(p, "base die stepping: %s\n", intel_step_name(runtime->step=
+.basedie_step));
+>> +
+>>  	drm_printf(p, "gt: %d\n", info->gt);
+>>  	drm_printf(p, "memory-regions: %x\n", runtime->memory_regions);
+>>  	drm_printf(p, "page-sizes: %x\n", runtime->page_sizes);
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
