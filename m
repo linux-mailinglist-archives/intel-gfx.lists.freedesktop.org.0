@@ -2,51 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83D6C682B89
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 12:33:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 76716682B8C
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 12:33:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA35310E34B;
-	Tue, 31 Jan 2023 11:33:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FB5D10E34D;
+	Tue, 31 Jan 2023 11:33:04 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37A3310E322;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76D9A10E32D;
  Tue, 31 Jan 2023 11:32:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1675164778; x=1706700778;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=NhQD4dilGNkAIIK5bNGHtecepu+wvvMh4Z9yYMXd0nQ=;
- b=fS5wYQEmbyXxhRCuBZrbTeS2+cdMQob6rVM9SEmMNxh9+e0Yq9ig5rnh
- M6scjrZ2uy30VqS6IyLEYEJvRQFkj3IjV/VnVe9X3B7voEwwm3Ymt3YTi
- 9CKsGFUT0zXiKrmZq5D5LnF6GtKF7ERH5bVCFM/mKS01/0t2VTRg4DHCD
- MITcdQ+YW9yo94uFKCykDfuAZB2xbZB716DtdhhaMS2N2NaEebfUzWaMZ
- GkmDnpOl5MHm9W8Y05T5tHPOQn0yGpypWvirAR/6BiNizuS5xARp8QYjl
- zNd3wt6a10Z6TYrdCBvrMQcZy7P2n9RlSn07Cs1Ey0JWrIL105semP8tM A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="308159830"
-X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; d="scan'208";a="308159830"
+ bh=vdJNYhh420Kb1pSoSOBhfN4nCjrcb1RISIdAea94MLU=;
+ b=GogNH2BNe1eO1YhyAaKEHYxhCk0VB1OLak0R9K0XOIkoYNQ57lgh2aBn
+ FlBFZ2BC2A4E2sEpEoGlYwzlRMT9arbhw4a6GAdlR4dEQlZk2Ogu6fv0O
+ F31dlCS7mGU+EYZeBAdojorDK3OxPjvOYd7rD7HlkmVmpzwn9oCs38gLE
+ YgS6W4VzZEO2ufAWWyp2W2WyQN8rVSZdjl7L5Gjfuy58WF51g9+ebCA3z
+ +wFwO/jA0vJhR5DP667vAutZQ2sdBYGrkEFbp1XHfqBwoW69BKshx9A1e
+ n4vkZVwLdspodU5DpbqpvEzg/R+AAnpArNcG0B8jHAOXr2aoEfgr3t2K4 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="308159832"
+X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; d="scan'208";a="308159832"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2023 03:32:56 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="993235740"
-X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; d="scan'208";a="993235740"
+ 31 Jan 2023 03:32:57 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="993235743"
+X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; d="scan'208";a="993235743"
 Received: from rdorchar-mobl.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.213.217.6])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2023 03:32:54 -0800
+ 31 Jan 2023 03:32:56 -0800
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 To: igt-dev@lists.freedesktop.org,
 	Intel-gfx@lists.freedesktop.org
-Date: Tue, 31 Jan 2023 11:32:36 +0000
-Message-Id: <20230131113237.3707217-8-tvrtko.ursulin@linux.intel.com>
+Date: Tue, 31 Jan 2023 11:32:37 +0000
+Message-Id: <20230131113237.3707217-9-tvrtko.ursulin@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230131113237.3707217-1-tvrtko.ursulin@linux.intel.com>
 References: <20230131113237.3707217-1-tvrtko.ursulin@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t 7/8] lib/igt_drm_clients: Enforce client
- status sort order in the library
+Subject: [Intel-gfx] [PATCH i-g-t 8/8] gputop: Basic vendor agnostic GPU top
+ tool
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,110 +60,208 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Rob Clark <robdclark@chromium.org>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Some libdrmclient operations require that inactive clients are last in the
-list. Rather than relying on callers of the library sort routine to
-implement their comparison callbacks correctly, enforce this order
-directly in the library and let callers comparison callbacks concern
-themselves only with ordering they are interested in.
+Rudimentary vendor agnostic example of how lib_igt_drm_clients can be used
+to display a sorted by card and usage list of processes using GPUs.
+
+Borrows a bit of code from intel_gpu_top but for now omits the fancy
+features like interactive functionality, card selection, client
+aggregation, sort modes, JSON output  and pretty engine names. Also no
+support for global GPU or system metrics.
+
+On the other hand it shows clients from all DRM cards which
+intel_gpu_top does not do.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Rob Clark <robdclark@chromium.org>
+Cc: Christian König <ckoenig.leichtzumerken@gmail.com>
+Acked-by: Christian König <christian.koenig@amd.com>
 ---
- lib/igt_drm_clients.c | 37 +++++++++++++++-----
- lib/igt_drm_clients.h |  2 +-
- tools/intel_gpu_top.c | 81 +++++++++++++++++++------------------------
- 3 files changed, 65 insertions(+), 55 deletions(-)
+ tools/gputop.c    | 260 ++++++++++++++++++++++++++++++++++++++++++++++
+ tools/meson.build |   5 +
+ 2 files changed, 265 insertions(+)
+ create mode 100644 tools/gputop.c
 
-diff --git a/lib/igt_drm_clients.c b/lib/igt_drm_clients.c
-index d507c07fec87..b3eda39cd226 100644
---- a/lib/igt_drm_clients.c
-+++ b/lib/igt_drm_clients.c
-@@ -191,22 +191,38 @@ void igt_drm_client_free(struct igt_drm_client *c, bool clear)
- 		memset(c, 0, sizeof(*c));
- }
- 
-+struct sort_context
-+{
-+	int (*user_cmp)(const void *, const void *, void *);
-+};
+diff --git a/tools/gputop.c b/tools/gputop.c
+new file mode 100644
+index 000000000000..d259cac1ab17
+--- /dev/null
++++ b/tools/gputop.c
+@@ -0,0 +1,260 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2022 Intel Corporation
++ */
 +
-+static int sort_cmp(const void *_a, const void *_b, void *_ctx)
-+{
-+	const struct sort_context *ctx = _ctx;
-+	const struct igt_drm_client *a = _a;
-+	const struct igt_drm_client *b = _b;
-+	int cmp = b->status - a->status;
++#include <assert.h>
++#include <ctype.h>
++#include <dirent.h>
++#include <errno.h>
++#include <fcntl.h>
++#include <inttypes.h>
++#include <limits.h>
++#include <locale.h>
++#include <math.h>
++#include <poll.h>
++#include <signal.h>
++#include <stdint.h>
++#include <stdio.h>
++#include <stdlib.h>
++#include <string.h>
++#include <sys/ioctl.h>
++#include <sys/stat.h>
++#include <sys/types.h>
++#include <unistd.h>
++#include <termios.h>
++#include <sys/sysmacros.h>
++#include <stdbool.h>
 +
-+	if (cmp == 0)
-+		return ctx->user_cmp(_a, _b, _ctx);
-+	else
-+		return cmp;
++#include "igt_drm_clients.h"
++#include "igt_drm_fdinfo.h"
++
++static const char *bars[] = { " ", "▏", "▎", "▍", "▌", "▋", "▊", "▉", "█" };
++
++static void n_spaces(const unsigned int n)
++{
++	unsigned int i;
++
++	for (i = 0; i < n; i++)
++		putchar(' ');
 +}
 +
- /**
-  * igt_drm_clients_sort:
-  * @clients: Previously initialised clients object
-  * @cmp: Client comparison callback
-  *
-  * Sort the clients array according to the passed in comparison callback which
-- * is compatible with the qsort(3) semantics.
-- *
-- * Caller has to ensure the callback is putting all active
-- * (IGT_DRM_CLIENT_ALIVE) clients in a single group at the head of the array
-- * before any other sorting criteria.
-+ * is compatible with the qsort(3) semantics, with the third void * argument
-+ * being unused.
-  */
- struct igt_drm_clients *
- igt_drm_clients_sort(struct igt_drm_clients *clients,
--		     int (*cmp)(const void *, const void *))
-+		     int (*cmp)(const void *, const void *, void *))
- {
-+	struct sort_context ctx = { .user_cmp = cmp };
- 	unsigned int active, free;
- 	struct igt_drm_client *c;
- 	int tmp;
-@@ -214,8 +230,13 @@ igt_drm_clients_sort(struct igt_drm_clients *clients,
- 	if (!clients)
- 		return clients;
- 
--	qsort(clients->client, clients->num_clients, sizeof(*clients->client),
--	      cmp);
-+	/*
-+	 * Enforce client->status ordering (active followed by free) by running
-+	 * the user provided comparison callback wrapped in the one internal
-+	 * to the library.
-+	 */
-+	qsort_r(clients->client, clients->num_clients, sizeof(*clients->client),
-+	      sort_cmp, &ctx);
- 
- 	/* Trim excessive array space. */
- 	active = 0;
-diff --git a/lib/igt_drm_clients.h b/lib/igt_drm_clients.h
-index 0a903b431eaa..df8022d42098 100644
---- a/lib/igt_drm_clients.h
-+++ b/lib/igt_drm_clients.h
-@@ -82,6 +82,6 @@ igt_drm_clients_scan(struct igt_drm_clients *clients,
- 
- struct igt_drm_clients *
- igt_drm_clients_sort(struct igt_drm_clients *clients,
--		     int (*cmp)(const void *, const void *));
-+		     int (*cmp)(const void *, const void *, void *));
- 
- #endif /* IGT_DRM_CLIENTS_H */
-diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
-index e64523df48e4..44f0ca0c28c0 100644
---- a/tools/intel_gpu_top.c
-+++ b/tools/intel_gpu_top.c
-@@ -680,85 +680,74 @@ static void pmu_sample(struct engines *engines)
- 	}
- }
- 
--static int client_last_cmp(const void *_a, const void *_b)
++static void print_percentage_bar(double percent, int max_len)
++{
++	int bar_len, i, len = max_len - 2;
++	const int w = 8;
++
++	assert(max_len > 0);
++
++	bar_len = ceil(w * percent * len / 100.0);
++	if (bar_len > w * len)
++		bar_len = w * len;
++
++	putchar('|');
++
++	for (i = bar_len; i >= w; i -= w)
++		printf("%s", bars[w]);
++	if (i)
++		printf("%s", bars[i]);
++
++	len -= (bar_len + (w - 1)) / w;
++	n_spaces(len);
++
++	putchar('|');
++}
++
++static int
++print_client_header(struct igt_drm_client *c, int lines, int con_w, int con_h,
++		    int *engine_w)
++{
++	const char *pidname = "    PID               NAME ";
++	int ret, len = strlen(pidname);
++
++	if (lines++ >= con_h || len >= con_w)
++		return lines;
++	printf("\033[7m");
++	ret = printf("DRM minor %u", c->drm_minor);
++	n_spaces(con_w - ret);
++
++	if (lines++ >= con_h)
++		return lines;
++	printf("\n%s", pidname);
++
++	if (c->engines->num_engines) {
++		unsigned int i;
++		int width;
++
++		*engine_w = width = (con_w - len) / c->engines->num_engines;
++
++		for (i = 0; i <= c->engines->max_engine_id; i++) {
++			const char *name = c->engines->names[i];
++			int name_len = strlen(name);
++			int pad = (width - name_len) / 2;
++			int spaces = width - pad - name_len;
++
++			if (!name)
++				continue;
++
++			if (pad < 0 || spaces < 0)
++				continue;
++
++			n_spaces(pad);
++			printf("%s", name);
++			n_spaces(spaces);
++			len += pad + name_len + spaces;
++		}
++	}
++
++	n_spaces(con_w - len);
++	printf("\033[0m\n");
++
++	return lines;
++}
++
++
++static bool
++newheader(const struct igt_drm_client *c, const struct igt_drm_client *pc)
++{
++	return !pc || c->drm_minor != pc->drm_minor;
++}
++
++static int
++print_client(struct igt_drm_client *c, struct igt_drm_client **prevc,
++	     double t, int lines, int con_w, int con_h,
++	     unsigned int period_us, int *engine_w)
++{
++	unsigned int i;
++
++	/* Filter out idle clients. */
++	if (!c->total_runtime || c->samples < 2)
++		return lines;
++
++	/* Print header when moving to a different DRM card. */
++	if (newheader(c, *prevc)) {
++		lines = print_client_header(c, lines, con_w, con_h, engine_w);
++		if (lines >= con_h)
++			return lines;
++	}
++
++	*prevc = c;
++
++	printf("%8u %17s ", c->pid, c->print_name);
++	lines++;
++
++	for (i = 0; c->samples > 1 && i <= c->engines->max_engine_id; i++) {
++		double pct;
++
++		if (!c->engines->capacity[i])
++			continue;
++
++		pct = (double)c->val[i] / period_us / 1e3 * 100 /
++		      c->engines->capacity[i];
++
++		/*
++		 * Guard against fluctuations between our scanning period and
++		 * GPU times as exported by the kernel in fdinfo.
++		 */
++		if (pct > 100.0)
++			pct = 100.0;
++
++		print_percentage_bar(pct, *engine_w);
++	}
++
++	putchar('\n');
++
++	return lines;
++}
++
 +static int
 +__client_id_cmp(const struct igt_drm_client *a,
 +		const struct igt_drm_client *b)
@@ -175,118 +274,103 @@ index e64523df48e4..44f0ca0c28c0 100644
 +		return 0;
 +}
 +
-+static int client_last_cmp(const void *_a, const void *_b, void *unused)
- {
- 	const struct igt_drm_client *a = _a;
- 	const struct igt_drm_client *b = _b;
--	long tot_a, tot_b;
-+	long val_a = a->last_runtime, val_b = b->last_runtime;
- 
- 	/*
- 	 * Sort clients in descending order of runtime in the previous sampling
--	 * period for active ones, followed by inactive. Tie-breaker is client
--	 * id.
-+	 * period. Tie-breaker is client id.
- 	 */
- 
--	tot_a = a->status == IGT_DRM_CLIENT_ALIVE ? a->last_runtime : -1;
--	tot_b = b->status == IGT_DRM_CLIENT_ALIVE ? b->last_runtime : -1;
--
--	tot_b -= tot_a;
--	if (tot_b > 0)
++static int client_cmp(const void *_a, const void *_b, void *unused)
++{
++	const struct igt_drm_client *a = _a;
++	const struct igt_drm_client *b = _b;
++	long val_a, val_b;
++
++	/* DRM cards into consecutive buckets first. */
++	val_a = a->drm_minor;
++	val_b = b->drm_minor;
++	if (val_a > val_b)
++		return 1;
++	else if (val_b > val_a)
++		return -1;
++
++	/*
++	 * Within buckets sort by last sampling period aggregated runtime, with
++	 * client id as a tie-breaker.
++	 */
++	val_a = a->last_runtime;
++	val_b = b->last_runtime;
 +	if (val_a == val_b)
 +		return __client_id_cmp(a, b);
 +	else if (val_b > val_a)
- 		return 1;
--	if (tot_b < 0)
++		return 1;
 +	else
- 		return -1;
--
--	return (int)b->id - a->id;
- }
++		return -1;
++
++}
++
++int main(int argc, char **argv)
++{
++	unsigned int period_us = 2e6;
++	struct igt_drm_clients *clients = NULL;
++	int con_w = -1, con_h = -1;
++
++	clients = igt_drm_clients_init(NULL);
++	if (!clients)
++		exit(1);
++
++	igt_drm_clients_scan(clients, NULL, NULL, 0);
++
++	for (;;) {
++		struct igt_drm_client *c, *prevc = NULL;
++		int i, engine_w = 0, lines = 0;
++		struct winsize ws;
++
++		if (ioctl(0, TIOCGWINSZ, &ws) != -1) {
++			con_w = ws.ws_col;
++			con_h = ws.ws_row;
++			if (con_w == 0 && con_h == 0) {
++				/* Serial console. */
++				con_w = 80;
++				con_h = 24;
++			}
++		}
++
++		igt_drm_clients_scan(clients, NULL, NULL, 0);
++		igt_drm_clients_sort(clients, client_cmp);
++
++		printf("\033[H\033[J");
++
++		igt_for_each_drm_client(clients, c, i) {
++			assert(c->status != IGT_DRM_CLIENT_PROBE);
++			if (c->status != IGT_DRM_CLIENT_ALIVE)
++				break; /* Active clients are first in the array. */
++
++			lines = print_client(c, &prevc, (double)period_us / 1e6,
++					     lines, con_w, con_h, period_us,
++					     &engine_w);
++			if (lines >= con_h)
++				break;
++		}
++
++		if (lines++ < con_h)
++			printf("\n");
++
++		usleep(period_us);
++	}
++
++	return 0;
++}
+diff --git a/tools/meson.build b/tools/meson.build
+index c6194fd15daa..0a3973dee90d 100644
+--- a/tools/meson.build
++++ b/tools/meson.build
+@@ -65,6 +65,11 @@ if libudev.found()
+ 		   install : true)
+ endif
  
--static int client_total_cmp(const void *_a, const void *_b)
-+static int client_total_cmp(const void *_a, const void *_b, void *unused)
- {
- 	const struct igt_drm_client *a = _a;
- 	const struct igt_drm_client *b = _b;
--	long tot_a, tot_b;
-+	long val_a = a->total_runtime, val_b = b->total_runtime;
- 
--	tot_a = a->status == IGT_DRM_CLIENT_ALIVE ? a->total_runtime : -1;
--	tot_b = b->status == IGT_DRM_CLIENT_ALIVE ? b->total_runtime : -1;
--
--	tot_b -= tot_a;
--	if (tot_b > 0)
-+	if (val_a == val_b)
-+		return __client_id_cmp(a, b);
-+	else if (val_b > val_a)
- 		return 1;
--	if (tot_b < 0)
-+	else
- 		return -1;
--
--	return (int)b->id - a->id;
- }
- 
--static int client_id_cmp(const void *_a, const void *_b)
-+static int client_id_cmp(const void *_a, const void *_b, void *unused)
- {
- 	const struct igt_drm_client *a = _a;
- 	const struct igt_drm_client *b = _b;
--	int id_a, id_b;
--
--	id_a = a->status == IGT_DRM_CLIENT_ALIVE ? a->id : -1;
--	id_b = b->status == IGT_DRM_CLIENT_ALIVE ? b->id : -1;
--
--	id_b -= id_a;
--	if (id_b > 0)
--		return 1;
--	if (id_b < 0)
--		return -1;
- 
--	return (int)b->id - a->id;
-+	return __client_id_cmp(a, b);
- }
- 
--static int client_pid_cmp(const void *_a, const void *_b)
-+static int client_pid_cmp(const void *_a, const void *_b, void *unused)
- {
- 	const struct igt_drm_client *a = _a;
- 	const struct igt_drm_client *b = _b;
--	int pid_a, pid_b;
--
--	pid_a = a->status == IGT_DRM_CLIENT_ALIVE ? a->pid : INT_MAX;
--	pid_b = b->status == IGT_DRM_CLIENT_ALIVE ? b->pid : INT_MAX;
-+	int val_a = a->pid, val_b = b->pid;
- 
--	pid_b -= pid_a;
--	if (pid_b > 0)
-+	if (val_a == val_b)
-+		return __client_id_cmp(a, b);
-+	else if (val_b > val_a)
- 		return -1;
--	if (pid_b < 0)
-+	else
- 		return 1;
--
--	return (int)a->id - b->id;
- }
- 
--static int (*client_cmp)(const void *, const void *) = client_last_cmp;
-+static int (*client_cmp)(const void *, const void *, void *) = client_last_cmp;
- 
- static bool aggregate_pids = true;
- 
-@@ -1952,7 +1941,7 @@ static void interactive_stdin(void)
- static void select_client_sort(void)
- {
- 	struct {
--		int (*cmp)(const void *, const void *);
-+		int (*cmp)(const void *, const void *, void *);
- 		const char *msg;
- 	} cmp[] = {
- 		{ client_last_cmp, "Sorting clients by current GPU usage." },
++executable('gputop', 'gputop.c',
++           install : true,
++           install_rpath : bindir_rpathdir,
++           dependencies : [lib_igt_drm_clients,lib_igt_drm_fdinfo,math])
++
+ intel_l3_parity_src = [ 'intel_l3_parity.c', 'intel_l3_udev_listener.c' ]
+ executable('intel_l3_parity', sources : intel_l3_parity_src,
+ 	   dependencies : tool_deps,
 -- 
 2.34.1
 
