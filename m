@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 037EF682586
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 08:27:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 707DF68258E
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 08:29:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F07010E33B;
-	Tue, 31 Jan 2023 07:27:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 735FD10E33D;
+	Tue, 31 Jan 2023 07:29:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D8EE10E33B
- for <intel-gfx@lists.freedesktop.org>; Tue, 31 Jan 2023 07:27:41 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E50510E33D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Jan 2023 07:29:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675150060; x=1706686060;
+ t=1675150180; x=1706686180;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=n/WxqLgKWXL2M7krLOu+XgEuKMjMvpZBFh7dT6Y4EGo=;
- b=Zo9LbwonYEXEiHtGeekGfuX+wyPCfvUlTe+TBeinAfp93WbLz90IDe9I
- Pog0+7v7PZB70TYkkaR3VabVpDDieBOTiEKzwnAWzmgkXLkmj1DvGmAu9
- swSmEXdAvXyH490U4l62tp9PodhbHzvWC9INjYPIwt9ZaDiyV/o3Jk8aV
- a0RS/sSZl9wYNJWvCki8JIm+YuqYu9hMiHfghpXieny7/hU3Xjib91dhQ
- oq7VBEJnXzq41qdJTTAL7BMTMrLxwkGTqfkKvnKRo3UqtSQhy67DuXkHw
- aDbuIhZYNyP+OjeeSW0icI/U3HtGSuTbqNW7HcBAl0hDbiAaTlW09lm6U g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="327791233"
-X-IronPort-AV: E=Sophos;i="5.97,259,1669104000"; d="scan'208";a="327791233"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2023 23:27:40 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="614340263"
-X-IronPort-AV: E=Sophos;i="5.97,259,1669104000"; d="scan'208";a="614340263"
+ bh=EMLGiIVeUb7HZLUEJgfW05q8Go7Cl5D+pQL/JWIh4K0=;
+ b=GotIRahBurlRn1GZ6wCaM1Y07ALpAGhC5diHYEK5U072yOgiz0i8yiDc
+ NFUSirwZWjkW6gK1q5sF2H7FIIbR8Dfx8C476zs0SgaEU1MTG6+N6eFhj
+ faraE2RYUmfdm38xJ2NmgRtgSZSc98dq0nLdBVKXoMP+5LUvVfAe0Ts+P
+ /aXyCdZEfTD+JnuwH9lzEwFs0m3vMyi4G3KpfZQjuv8S83TKlCkDXYeWS
+ mG5XWHI6/gY6vMUTw9EEQqRbKsReE2iZV76mcUAtUDE2SfLeBlpnBkprr
+ RmLSL2vM5lhIfRZvbbTYmyBuC1vkdYBYVTGbNci7cLKnc9qrw1kjt6emB Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="392321533"
+X-IronPort-AV: E=Sophos;i="5.97,259,1669104000"; d="scan'208";a="392321533"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2023 23:29:27 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="838262689"
+X-IronPort-AV: E=Sophos;i="5.97,259,1669104000"; d="scan'208";a="838262689"
 Received: from akryuko1-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.252.34.35])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2023 23:27:39 -0800
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2023 23:29:26 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230131002127.29305-2-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230131002127.29305-4-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20230131002127.29305-1-ville.syrjala@linux.intel.com>
- <20230131002127.29305-2-ville.syrjala@linux.intel.com>
-Date: Tue, 31 Jan 2023 09:27:36 +0200
-Message-ID: <87lelj2mfr.fsf@intel.com>
+ <20230131002127.29305-4-ville.syrjala@linux.intel.com>
+Date: Tue, 31 Jan 2023 09:29:24 +0200
+Message-ID: <87ilgn2mcr.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915: Introduce HAS_SAGV()
+Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915: Expose SAGV state via debugfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,69 +66,99 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Tue, 31 Jan 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Introuce a HAS_SAGV() macro to answer the question whether
-> the platform in general supports SAGV. intel_has_sagv() will
-> keep on giving us the more specific answer whether the current
-> device supports SAGV or not.
+> Since SAGV is controlled via unidirectional pcode commands
+> we have no way to query the current state. So instead let's
+> expose the last programmed state via debugfs. This way we
+> can at least know whether SAGV should be enabled or not
+> (which can be important to know when dealing with underruns/etc.).
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/skl_watermark.c | 6 +++---
->  drivers/gpu/drm/i915/i915_drv.h              | 3 ++-
->  2 files changed, 5 insertions(+), 4 deletions(-)
+>  .../drm/i915/display/intel_display_debugfs.c  |  2 +-
+>  drivers/gpu/drm/i915/display/skl_watermark.c  | 31 ++++++++++++++++---
+>  drivers/gpu/drm/i915/display/skl_watermark.h  |  2 +-
+>  3 files changed, 28 insertions(+), 7 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/d=
-rm/i915/display/skl_watermark.c
-> index 0c605034356f..5916694f147c 100644
-> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> @@ -64,7 +64,7 @@ static bool skl_needs_memory_bw_wa(struct drm_i915_priv=
-ate *i915)
->  static bool
->  intel_has_sagv(struct drm_i915_private *i915)
->  {
-> -	return DISPLAY_VER(i915) >=3D 9 && !IS_LP(i915) &&
-> +	return HAS_SAGV(i915) &&
->  		i915->display.sagv.status !=3D I915_SAGV_NOT_CONTROLLED;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drive=
+rs/gpu/drm/i915/display/intel_display_debugfs.c
+> index 7bcd90384a46..9e2fb8626c96 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -1622,7 +1622,7 @@ void intel_display_debugfs_register(struct drm_i915=
+_private *i915)
+>  	intel_dmc_debugfs_register(i915);
+>  	intel_fbc_debugfs_register(i915);
+>  	intel_hpd_debugfs_register(i915);
+> -	skl_watermark_ipc_debugfs_register(i915);
+> +	skl_watermark_debugfs_register(i915);
 >  }
 >=20=20
-> @@ -92,7 +92,7 @@ intel_sagv_block_time(struct drm_i915_private *i915)
->  		return val;
->  	} else if (DISPLAY_VER(i915) =3D=3D 11) {
->  		return 10;
-> -	} else if (DISPLAY_VER(i915) =3D=3D 9 && !IS_LP(i915)) {
-> +	} else if (HAS_SAGV(i915)) {
->  		return 30;
->  	} else {
->  		return 0;
-> @@ -101,7 +101,7 @@ intel_sagv_block_time(struct drm_i915_private *i915)
+>  static int i915_panel_show(struct seq_file *m, void *data)
+> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/d=
+rm/i915/display/skl_watermark.c
+> index 5916694f147c..022aed8dd440 100644
+> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+> @@ -3545,13 +3545,34 @@ static const struct file_operations skl_watermark=
+_ipc_status_fops =3D {
+>  	.write =3D skl_watermark_ipc_status_write
+>  };
 >=20=20
->  static void intel_sagv_init(struct drm_i915_private *i915)
+> -void skl_watermark_ipc_debugfs_register(struct drm_i915_private *i915)
+> +static int intel_sagv_status_show(struct seq_file *m, void *unused)
+> +{
+> +	struct drm_i915_private *i915 =3D m->private;
+> +	static const char * const sagv_status[] =3D {
+> +		[I915_SAGV_UNKNOWN] =3D "unknown",
+> +		[I915_SAGV_DISABLED] =3D "disabled",
+> +		[I915_SAGV_ENABLED] =3D "enabled",
+> +		[I915_SAGV_NOT_CONTROLLED] =3D "not controlled",
+> +	};
+> +
+> +	seq_printf(m, "SAGV available: %s\n", str_yes_no(intel_has_sagv(i915)));
+> +	seq_printf(m, "SAGV status: %s\n", sagv_status[i915->display.sagv.statu=
+s]);
+> +	seq_printf(m, "SAGV block time: %d usec\n", i915->display.sagv.block_ti=
+me_us);
+> +
+> +	return 0;
+> +}
+> +
+> +DEFINE_SHOW_ATTRIBUTE(intel_sagv_status);
+> +
+> +void skl_watermark_debugfs_register(struct drm_i915_private *i915)
 >  {
-> -	if (!intel_has_sagv(i915))
-> +	if (!HAS_SAGV(i915))
->  		i915->display.sagv.status =3D I915_SAGV_NOT_CONTROLLED;
+>  	struct drm_minor *minor =3D i915->drm.primary;
 >=20=20
->  	/*
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
-drv.h
-> index a0dcf3352b66..0393273faa09 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -863,7 +863,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
->   */
->  #define HAS_64K_PAGES(dev_priv) (INTEL_INFO(dev_priv)->has_64k_pages)
+> -	if (!HAS_IPC(i915))
+> -		return;
+> +	if (HAS_IPC(i915))
+> +		debugfs_create_file("i915_ipc_status", 0644, minor->debugfs_root, i915,
+> +				    &skl_watermark_ipc_status_fops);
 >=20=20
-> -#define HAS_IPC(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_ipc)
-> +#define HAS_IPC(dev_priv)		(INTEL_INFO(dev_priv)->display.has_ipc)
-> +#define HAS_SAGV(dev_priv)		(DISPLAY_VER(dev_priv) >=3D 9 && !IS_LP(dev_=
-priv))
+> -	debugfs_create_file("i915_ipc_status", 0644, minor->debugfs_root, i915,
+> -			    &skl_watermark_ipc_status_fops);
+> +	if (HAS_SAGV(i915))
+> +		debugfs_create_file("i915_sagv_status", 0444, minor->debugfs_root, i91=
+5,
+> +				    &intel_sagv_status_fops);
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.h b/drivers/gpu/d=
+rm/i915/display/skl_watermark.h
+> index 37954c472070..1f81e1a5a4a3 100644
+> --- a/drivers/gpu/drm/i915/display/skl_watermark.h
+> +++ b/drivers/gpu/drm/i915/display/skl_watermark.h
+> @@ -47,7 +47,7 @@ void intel_wm_state_verify(struct intel_crtc *crtc,
+>  void skl_watermark_ipc_init(struct drm_i915_private *i915);
+>  void skl_watermark_ipc_update(struct drm_i915_private *i915);
+>  bool skl_watermark_ipc_enabled(struct drm_i915_private *i915);
+> -void skl_watermark_ipc_debugfs_register(struct drm_i915_private *i915);
+> +void skl_watermark_debugfs_register(struct drm_i915_private *i915);
 >=20=20
->  #define HAS_REGION(i915, i) (RUNTIME_INFO(i915)->memory_regions & (i))
->  #define HAS_LMEM(i915) HAS_REGION(i915, REGION_LMEM)
+>  void skl_wm_init(struct drm_i915_private *i915);
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
