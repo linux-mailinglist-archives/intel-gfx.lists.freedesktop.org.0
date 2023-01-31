@@ -1,77 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B02E6824DA
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 07:51:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8509682564
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 08:11:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88BC910E32A;
-	Tue, 31 Jan 2023 06:50:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A6A410E334;
+	Tue, 31 Jan 2023 07:11:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 566 seconds by postgrey-1.36 at gabe;
- Tue, 31 Jan 2023 06:50:53 UTC
-Received: from wnew1-smtp.messagingengine.com (wnew1-smtp.messagingengine.com
- [64.147.123.26])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8AD510E089;
- Tue, 31 Jan 2023 06:50:53 +0000 (UTC)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
- by mailnew.west.internal (Postfix) with ESMTP id 0BA642B06E73;
- Tue, 31 Jan 2023 01:41:21 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute3.internal (MEProxy); Tue, 31 Jan 2023 01:41:23 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kroah.com; h=cc
- :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
- :message-id:mime-version:references:reply-to:sender:subject
- :subject:to:to; s=fm3; t=1675147281; x=1675154481; bh=E2p6V4zwNY
- VUZOciwM5akvaSzGFZounIOOlrcnF3u0Q=; b=QHe7btkFnAqF1vdLr2jl/yePBk
- BE/quHdWIzAM1xZZmWybN9UxhKl2/CE2DCzQpZWP4gX0I1Ojp5S2U/WBdQl57tBU
- YZlH2gvyTk6fhHe1hQA3xeuo8WwPE7o1YPylz1MJs1RH4RIv7zRu1RWbsnz9cXez
- KdWcm6MS4CPXtGAHacIATT7t+gTfFPaTrUa6QshTl/6//Qp2ICup4Vdi4vUYFW9F
- tsx/LQ57CQCmNpC5KRKmLdgheukqtR/b8aPp98DBhqlX8ekYi1qxFNT+XOg7zF4b
- 0YeFPs7BYQiw119xSNZckZpaGmAoykQj2HechPuuPsj7ODlsCF44cpdxdFmw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
- :feedback-id:from:from:in-reply-to:in-reply-to:message-id
- :mime-version:references:reply-to:sender:subject:subject:to:to
- :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm3; t=1675147281; x=1675154481; bh=E2p6V4zwNYVUZOciwM5akvaSzGFZ
- ounIOOlrcnF3u0Q=; b=pEuJZTZhlBr361KK4tZ0Ya5gjnPy1pRYM2WlX/SlzDCJ
- mnr6Hx4u27i6sZL/+p7AoYl33eiouSyUlbmqY2s8pIlA0NaszWmws0vLVxGIawIW
- D9Eq5kacPDBf0QVz89TuJ+RNaVHvsAuqtXvjVs423Ys9eY7xo2thryKhTEwiRxO6
- O9+3yhNN846ZZHx90dstOuBiVq2viG1ecsHstWvOgPTSFc8cNRZzeH0SV16PSNXs
- OsuEabPQ4CMHg405gKE52cOBuSKjeQyAOOgpD0XQKb18vUhtFsuII94n8X5d8EjW
- NhpcHM6kx7bB1Mc2T3qyvi0l87LD5cmTLWzy5lv2iA==
-X-ME-Sender: <xms:ELjYY5Ijs9u7o3_9vYZCcLlISiw2kZOGsZDUM2AGbGjAYKDKYlVN-Q>
- <xme:ELjYY1JtySviRcmaj1wbcc5PKdrrfXOY1QQkJnq5NVT9SJgKHM1vzyJLLlNHC55Bl
- SVonQwcnN4ULg>
-X-ME-Received: <xmr:ELjYYxuQ83d4Cz1fCMEuIB85tz0KPOX0gXjKk2O0BRTL2f7ZQQpweTagmZjsgUrf7VKtvbXgoeXcdp3lt8iytDFhTTPlMPowQ3rTjQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudeffedgleelucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvfevuffkfhggtggujgesthdtredttddtvdenucfhrhhomhepifhrvghg
- ucfmjfcuoehgrhgvgheskhhrohgrhhdrtghomheqnecuggftrfgrthhtvghrnhepheegvd
- evvdeljeeugfdtudduhfekledtiefhveejkeejuefhtdeufefhgfehkeetnecuvehluhhs
- thgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepghhrvghgsehkrhhorg
- hhrdgtohhm
-X-ME-Proxy: <xmx:ELjYY6YJ9G30PqObYIjkcCW6Qo-llOPF_QOYcMebmCzMmD_fu9V38w>
- <xmx:ELjYYwYE3yY2aHrw6gkFkuiDkzw3pogU7x7WWGCb0Wb6zQ3qUfVSiw>
- <xmx:ELjYY-C2AFX3xXmsmD5R6uH6hNgxAyv19GUl0Dg_cNq_zw9WYEAesw>
- <xmx:EbjYYyYcP_nJ31akDANKagefjYrG-7IrHOaBb5N4POUM4D_JRU26xxlSuKE>
-Feedback-ID: i787e41f1:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 31 Jan 2023 01:41:20 -0500 (EST)
-Date: Tue, 31 Jan 2023 07:41:17 +0100
-From: Greg KH <greg@kroah.com>
-To: Stephen Rothwell <sfr@canb.auug.org.au>
-Message-ID: <Y9i4Ddcz7PsAu8zZ@kroah.com>
-References: <20230131130305.019029ff@canb.auug.org.au>
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94B5F10E334
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Jan 2023 07:11:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1675149104; x=1706685104;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=Z8CsdPYnIajoNG3otFp5/mxXrc5q60iIHy0hI7Rey0A=;
+ b=daDuF5wIj4hD3BpePUtIIoMweUhrjxzWBCjS7nj3SySnxWeCtyoy6dFL
+ 4OTHGgE6jDlfCuS5cRQ5TohLsS/qxOK53TVVWzhz6UVcIslugPy9ixiHK
+ oaMV4U8R6o7wKKziGzFnligtUVK0lsOrouuQa2y+DO6cw83tb4bmZc5MK
+ TokBEDRbWFnKeo3Ch75ymkHQks4B8kR54C+jfOk+F0cf0Hz+Cl8kt5wtZ
+ EIX+jaBeHNETmdEDro0GxvpRlvOulvNooPFPUg4HcJMbO9YlqWJ80rfW7
+ jyKSFtsd3aJlz1j/Vw3COLcmVYTWUHmed5tKIC2Bn4jpsosCZDklw+khX g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="390132959"
+X-IronPort-AV: E=Sophos;i="5.97,259,1669104000"; d="scan'208";a="390132959"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2023 23:11:44 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="909801788"
+X-IronPort-AV: E=Sophos;i="5.97,259,1669104000"; d="scan'208";a="909801788"
+Received: from akryuko1-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.34.35])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2023 23:11:42 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230130181701.29977-1-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230130181701.29977-1-ville.syrjala@linux.intel.com>
+Date: Tue, 31 Jan 2023 09:11:40 +0200
+Message-ID: <87zg9z2n6b.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230131130305.019029ff@canb.auug.org.au>
-Subject: Re: [Intel-gfx] linux-next: manual merge of the usb tree with the
- drm-intel-fixes tree
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Include stepping informaiton
+ in device info dump
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,40 +60,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 31, 2023 at 01:03:05PM +1100, Stephen Rothwell wrote:
-> Hi all,
-> 
-> Today's linux-next merge of the usb tree got a conflict in:
-> 
->   drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> 
-> between commit:
-> 
->   5bc4b43d5c6c ("drm/i915: Fix up locking around dumping requests lists")
-> 
-> from the drm-intel-fixes tree and commit:
-> 
->   4d70c74659d9 ("i915: Move list_count() to list.h as list_count_nodes() for broader use")
-> 
-> from the usb tree.
-> 
-> I fixed it up (the former removed the code changed by the latter) and
-> can carry the fix as necessary. This is now fixed as far as linux-next
-> is concerned, but any non trivial conflicts should be mentioned to your
-> upstream maintainer when your tree is submitted for merging.  You may
-> also want to consider cooperating with the maintainer of the conflicting
-> tree to minimise any particularly complex conflicts.
+On Mon, 30 Jan 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Dump the stepping information alongside all the other device
+> info. Might avoid some guesswork when reading logs.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Thanks for the merge resolution.
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-greg k-h
+> ---
+>  drivers/gpu/drm/i915/intel_device_info.c | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i=
+915/intel_device_info.c
+> index 98769e5f2c3d..599c6d399de4 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.c
+> +++ b/drivers/gpu/drm/i915/intel_device_info.c
+> @@ -119,6 +119,11 @@ void intel_device_info_print(const struct intel_devi=
+ce_info *info,
+>  		drm_printf(p, "display version: %u\n",
+>  			   runtime->display.ip.ver);
+>=20=20
+> +	drm_printf(p, "graphics stepping: %s\n", intel_step_name(runtime->step.=
+graphics_step));
+> +	drm_printf(p, "media stepping: %s\n", intel_step_name(runtime->step.med=
+ia_step));
+> +	drm_printf(p, "display stepping: %s\n", intel_step_name(runtime->step.d=
+isplay_step));
+> +	drm_printf(p, "base die stepping: %s\n", intel_step_name(runtime->step.=
+basedie_step));
+> +
+>  	drm_printf(p, "gt: %d\n", info->gt);
+>  	drm_printf(p, "memory-regions: %x\n", runtime->memory_regions);
+>  	drm_printf(p, "page-sizes: %x\n", runtime->page_sizes);
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
