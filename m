@@ -2,52 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CD0A68289A
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 10:21:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3931D6828E7
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 10:33:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B023610E14A;
-	Tue, 31 Jan 2023 09:21:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDF2410E31A;
+	Tue, 31 Jan 2023 09:33:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4022C10E14A
- for <intel-gfx@lists.freedesktop.org>; Tue, 31 Jan 2023 09:21:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675156910; x=1706692910;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=opn69J4iM1+P9WhjabZqaC6A/nQZgyY/XD8pHDrsmp0=;
- b=WewLkgh5IkP/4sOiXSHSY1sml3+ZCJsrQxj5DxABLwZFJe5NN4CYTJYw
- dd8s1BmwvCGR+bLUtOdsbriHFmiUyEt1bQiDhXjorFzxzxc7y/BI/OQGq
- I5tX7XUobdnDjHg0WjlKUF+4eS3KZI+vtUeVosrgFyn+amGRK+DyN5Z7N
- BGxjO2QVadbdvD13Mt7e4gZ4g1k7xQTWp/O4v4xlx8KAXQ4nNJEQWpxni
- 0cS4HWuIQ4MbyQyg4tI4bpFsw6R9hwLZv73t529/rnY+1fNI4iOj95OcI
- MELF8WVZ6BbFB8P7qqPqqvaH4RBv8P8/GM3ZRAgSWJx6fT0dZRw6GqTsT g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="327809670"
-X-IronPort-AV: E=Sophos;i="5.97,259,1669104000"; d="scan'208";a="327809670"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2023 01:21:49 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="657807963"
-X-IronPort-AV: E=Sophos;i="5.97,259,1669104000"; d="scan'208";a="657807963"
-Received: from lkp-server01.sh.intel.com (HELO ffa7f14d1d0f) ([10.239.97.150])
- by orsmga007.jf.intel.com with ESMTP; 31 Jan 2023 01:21:47 -0800
-Received: from kbuild by ffa7f14d1d0f with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1pMmpm-0004L0-2w;
- Tue, 31 Jan 2023 09:21:46 +0000
-Date: Tue, 31 Jan 2023 17:21:15 +0800
-From: kernel test robot <lkp@intel.com>
-To: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <202301311720.VOyrcus2-lkp@intel.com>
-References: <20230131062550.11901-1-sujaritha.sundaresan@intel.com>
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com
+ [IPv6:2a00:1450:4864:20::22b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE28510E319;
+ Tue, 31 Jan 2023 09:33:10 +0000 (UTC)
+Received: by mail-lj1-x22b.google.com with SMTP id y19so15328300ljq.7;
+ Tue, 31 Jan 2023 01:33:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=a9ECooIcFbu5C1mGggvE7E2dQ8t0fyLVsQDAfjE5kEA=;
+ b=d2DQM+MT8LFpCtb4n85XbkX9wwpCioorNPtn29H1zyJ1icZU6FwhlKr5uO5R6AKseo
+ IFqcMPpHaJz+K8Lvns3ajauxGrPmmIxxzErCcfIO1SDUzwNQk+VYVk6MzbqSoECKyqOf
+ TkFA/izx2K25mK2ZF/4+Tr2KNWBQ4yuLzvyx/7F5AuNuOSs1LLnBQZ+Baa5fVGeP2iOt
+ 9Bv5lSjohhZykNV46anoCDoe+g1NDETB/6ZO5mNxvWtQTEq06aKEag1yHHUJZq4it7MT
+ ex62Vvc0MPUNoNtq+zJZSjdT93MgksM29ipSHtNKIBdc4D7oehXKXouSXq4PEGKEpQ26
+ 1Bpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=a9ECooIcFbu5C1mGggvE7E2dQ8t0fyLVsQDAfjE5kEA=;
+ b=VQiDjmkmV4Ml6N7v3fWBP/RaQATDL8CD0xtImXI0jg6phTXvNWlKhs678jfTIKLnwb
+ Mnt8u41YKMQfuX0g8Mzj3FOlNZt9/xw1j646gZdQQmAtMpa+du/K5r0ALwAHQdnOCjFA
+ gdsi6JxvB1gF+O0ZfYxauhV0L3eTVHhWK9FbDjwkNyeJgSRCGsHUfr6Hh8UScYI9zws8
+ KXpzoVUfRWn8UXrrxsyusbCHg9ckoCi0ZVeZhS1MMEP9NMq7jKcqCMYq1zN7y9XbCCGt
+ NUbZzqq5yKmjxVVKykafcZg2qbtuly0eZ0BKv8Flt3KDEl8P8VbiTcvFBS5u+sQfdWLL
+ YWMQ==
+X-Gm-Message-State: AO0yUKVqUqCi3zfbu2QMnZ4WIJoJkZSP5OxyceB7wgT0lJRrtnuQLXeb
+ iWL8aQtstbVVn9NwMkFDY8BCOdGTswYB1JUguR/bnxRVQ9VRjA==
+X-Google-Smtp-Source: AK7set8/COOTQHvjvlm8e2edTncISJaS3cRKlrSC5V6HWCNbzjL3Sx7ChZerq6/3305ODtArb2oCNtY/olpgaLK5EHc=
+X-Received: by 2002:a2e:8248:0:b0:28d:756a:5ade with SMTP id
+ j8-20020a2e8248000000b0028d756a5ademr2000341ljh.85.1675157589017; Tue, 31 Jan
+ 2023 01:33:09 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230131062550.11901-1-sujaritha.sundaresan@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gt: Add sysfs RAPL PL1 interface
+References: <20230125155023.105584-1-christian.koenig@amd.com>
+ <20230125155023.105584-2-christian.koenig@amd.com>
+ <CAM0jSHPoXqLVCkC77JDURw-zSY6=ryDwA43xH9Y+D7uMiZOJVg@mail.gmail.com>
+ <8e247c51-7ff0-fb2b-e62c-bc7071248fa9@amd.com>
+ <CAM0jSHP8KULMcfjuTGNS5qxtiAyeNTFjP6eVBUU+F9aaS2s0xQ@mail.gmail.com>
+In-Reply-To: <CAM0jSHP8KULMcfjuTGNS5qxtiAyeNTFjP6eVBUU+F9aaS2s0xQ@mail.gmail.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Tue, 31 Jan 2023 09:32:41 +0000
+Message-ID: <CAM0jSHMXe75dfD516sUkFK9ncwaxnSKLBo2tjDsoYzSjNkpyrg@mail.gmail.com>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/ttm: revert "stop allocating dummy
+ resources during BO creation"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,80 +71,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Sujaritha,
+On Wed, 25 Jan 2023 at 16:24, Matthew Auld
+<matthew.william.auld@gmail.com> wrote:
+>
+> On Wed, 25 Jan 2023 at 16:15, Christian K=C3=B6nig <christian.koenig@amd.=
+com> wrote:
+> >
+> > Am 25.01.23 um 17:13 schrieb Matthew Auld:
+> > > On Wed, 25 Jan 2023 at 15:50, Christian K=C3=B6nig
+> > > <ckoenig.leichtzumerken@gmail.com> wrote:
+> > >> This reverts commit 00984ad39599bb2a1e6ec5d4e9c75a749f7f45c9.
+> > >>
+> > >> It seems to still breka i915.
+> > > We also need to revert the third patch:
+> > >
+> > > b49323aa35d5 drm/ttm: prevent moving of pinned BOs
+> > >
+> > > It introduces the side effect of no longer calling tt_create(true) in
+> > > ttm_bo_validate(), and I'm 99% sure that will break object clearing.
+> > > We rely on having a ttm_tt for the initial dummy placement, with
+> > > FLAG_ZERO_ALLOC set if clear is needed. Also I'm not sure who even
+> > > creates the ttm_tt now, if ttm_bo_validate() doesn't, and we don't
+> > > have the dummy move, like with this patch.
+> >
+> > Oh, yes of course. Can I add your Acked-by to reverting all three?
+>
+> Yeah, feel free to add. I can then resend your series with the extra
+> stuff we need for i915.
 
-Thank you for the patch! Perhaps something to improve:
+https://patchwork.freedesktop.org/series/113484/
 
-[auto build test WARNING on drm-tip/drm-tip]
+CI appears to be happy now. Feel free to merge the series.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Sujaritha-Sundaresan/drm-i915-gt-Add-sysfs-RAPL-PL1-interface/20230131-152446
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-patch link:    https://lore.kernel.org/r/20230131062550.11901-1-sujaritha.sundaresan%40intel.com
-patch subject: [Intel-gfx] [PATCH v2] drm/i915/gt: Add sysfs RAPL PL1 interface
-config: x86_64-rhel-8.3-rust (https://download.01.org/0day-ci/archive/20230131/202301311720.VOyrcus2-lkp@intel.com/config)
-compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/562c57549ee00ea298f9023380d44526d6d68921
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Sujaritha-Sundaresan/drm-i915-gt-Add-sysfs-RAPL-PL1-interface/20230131-152446
-        git checkout 562c57549ee00ea298f9023380d44526d6d68921
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
->> drivers/gpu/drm/i915/gt/intel_rps.c:2217:6: warning: variable 'rapl' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
-           if (IS_METEORLAKE(i915) || IS_XEHPSDV(i915))
-               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/i915_drv.h:565:33: note: expanded from macro 'IS_METEORLAKE'
-   #define IS_METEORLAKE(dev_priv) IS_PLATFORM(dev_priv, INTEL_METEORLAKE)
-                                   ^
-   drivers/gpu/drm/i915/gt/intel_rps.c:2220:9: note: uninitialized use occurs here
-           return rapl;
-                  ^~~~
-   drivers/gpu/drm/i915/gt/intel_rps.c:2217:2: note: remove the 'if' if its condition is always true
-           if (IS_METEORLAKE(i915) || IS_XEHPSDV(i915))
-           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/gt/intel_rps.c:2209:10: note: initialize the variable 'rapl' to silence this warning
-           u32 rapl;
-                   ^
-                    = 0
-   1 warning generated.
-
-
-vim +2217 drivers/gpu/drm/i915/gt/intel_rps.c
-
-  2204	
-  2205	u32 intel_rps_read_rapl_pl1(struct intel_rps *rps)
-  2206	{
-  2207		struct drm_i915_private *i915 = rps_to_i915(rps);
-  2208		u32 rapl_pl1;
-  2209		u32 rapl;
-  2210	
-  2211		if (IS_METEORLAKE(i915))
-  2212			rapl_pl1 = intel_uncore_read(rps_to_gt(rps)->uncore, MTL_RAPL_PL1_FREQ_LIMIT);
-  2213		else if (IS_XEHPSDV(i915))
-  2214			rapl_pl1  = intel_uncore_read(rps_to_gt(rps)->uncore, XEHPSDV_RAPL_PL1_FREQ_LIMIT);
-  2215	
-  2216	
-> 2217		if (IS_METEORLAKE(i915) || IS_XEHPSDV(i915))
-  2218			rapl = REG_FIELD_GET(RAPL_PL1_FREQ_LIMIT_MASK, rapl_pl1);
-  2219	
-  2220		return rapl;
-  2221	}
-  2222	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+>
+> >
+> > Thanks,
+> > Christian.
+> >
+> > >
+> > >> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> > >> ---
+> > >>   drivers/gpu/drm/ttm/ttm_bo.c | 7 +++++++
+> > >>   1 file changed, 7 insertions(+)
+> > >>
+> > >> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_=
+bo.c
+> > >> index 33471e363ff4..9baccb2f6e99 100644
+> > >> --- a/drivers/gpu/drm/ttm/ttm_bo.c
+> > >> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
+> > >> @@ -957,6 +957,7 @@ int ttm_bo_init_reserved(struct ttm_device *bdev=
+, struct ttm_buffer_object *bo,
+> > >>                           struct sg_table *sg, struct dma_resv *resv=
+,
+> > >>                           void (*destroy) (struct ttm_buffer_object =
+*))
+> > >>   {
+> > >> +       static const struct ttm_place sys_mem =3D { .mem_type =3D TT=
+M_PL_SYSTEM };
+> > >>          int ret;
+> > >>
+> > >>          kref_init(&bo->kref);
+> > >> @@ -973,6 +974,12 @@ int ttm_bo_init_reserved(struct ttm_device *bde=
+v, struct ttm_buffer_object *bo,
+> > >>                  bo->base.resv =3D &bo->base._resv;
+> > >>          atomic_inc(&ttm_glob.bo_count);
+> > >>
+> > >> +       ret =3D ttm_resource_alloc(bo, &sys_mem, &bo->resource);
+> > >> +       if (unlikely(ret)) {
+> > >> +               ttm_bo_put(bo);
+> > >> +               return ret;
+> > >> +       }
+> > >> +
+> > >>          /*
+> > >>           * For ttm_bo_type_device buffers, allocate
+> > >>           * address space from the device.
+> > >> --
+> > >> 2.34.1
+> > >>
+> >
