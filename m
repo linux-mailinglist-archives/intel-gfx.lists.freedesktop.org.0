@@ -2,45 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B29E68326B
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 17:19:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B0B2F683314
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Jan 2023 17:56:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3264110E092;
-	Tue, 31 Jan 2023 16:19:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C58A310E138;
+	Tue, 31 Jan 2023 16:55:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19F4C10E06A;
- Tue, 31 Jan 2023 16:19:50 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 366C310E0B5;
+ Tue, 31 Jan 2023 16:55:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675181990; x=1706717990;
+ t=1675184155; x=1706720155;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=+wy3AS5Xpy6pW7yHM4qA2hfPXKf7XBiA3jIKYsVIMZQ=;
- b=V5PZlNFvhQo4g0Oz0/VBleaQLDBJl/2lQ+gX03bpS0QKwqfyVS6PVKjs
- 3eTB9VqgfP1tdZU/Fpa4jwJkj/1vgt5fQVQZYol3IJumnjEoJuKimu9eB
- PkVxO1TEW9xwHreQ1g+OsnIoOtO+37YacgRJwAIDg9YeMSCPPoeBpost1
- Y5aAdqCV5Gh2O8GsrRlxJbC9dGETWmHvqqEhZYP0OjblbO2JT9osJ3Flu
- MJj+nXO93PRPDc+dflaJZEVflr5gSm7mciI9SgcdbO9txTcTucslezFbQ
- ohHm9l2FtypUj8Zqm8+ElUngNRagL5C946x38j7MAiFcVOVkfiz9ANVyQ Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="329153182"
-X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; d="scan'208";a="329153182"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2023 08:19:49 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="993330779"
-X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; d="scan'208";a="993330779"
-Received: from tburnham-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ bh=MYHQbe6MaSc1L4/KbtH/3nAW+xLAjYfEiW27cSF/Ji0=;
+ b=WOpkEPRiTzPkmgcE/glWAA3FJSn0taRe67WEuLAzOJt196g8T6jY+cTK
+ imuQg4nD6C9CwysiSX7b6ckYX+jvAcryvrFkLHk3nfVC2appFy3O9xblb
+ XtXTjq8TX35PnimHUNR0UQfaxhQBrhwdOd0+3Yh8JHR8WFccyhag0N8m8
+ cuRpu/ztwQ9seH1Chy8V3qDMkwQ0/vRp5YbB53pe0A+Kmk6NbK9xxNdq0
+ A+BzGbvcGDm4hWONUG/YhTLzX7OoKXGmQmHBdFhCmTqkMoIBh92tcD003
+ vxdy4oRwbgX0FfGZp8zcRMg9PDbEjWGyHOrmi3oaF5jHdvrWKlRIDG2GR w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="355221017"
+X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; d="scan'208";a="355221017"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2023 08:55:54 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10606"; a="614523657"
+X-IronPort-AV: E=Sophos;i="5.97,261,1669104000"; d="scan'208";a="614523657"
+Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
  ([10.209.70.92])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2023 08:19:48 -0800
-Date: Tue, 31 Jan 2023 08:19:48 -0800
-Message-ID: <87a61yvfq3.wl-ashutosh.dixit@intel.com>
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2023 08:55:54 -0800
+Date: Tue, 31 Jan 2023 08:55:54 -0800
+Message-ID: <87a61y1w4l.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-In-Reply-To: <20230131091731.5892-1-janusz.krzysztofik@linux.intel.com>
-References: <20230131091731.5892-1-janusz.krzysztofik@linux.intel.com>
+In-Reply-To: <87a61yvfq3.wl-ashutosh.dixit@intel.com>
+References: <20230131091731.5892-1-janusz.krzysztofik@linux.intel.com>	<87a61yvfq3.wl-ashutosh.dixit@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/28.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -66,22 +66,33 @@ Cc: igt-dev@lists.freedesktop.org, Arkadiusz Hiler <arek@hiler.eu>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 31 Jan 2023 01:17:29 -0800, Janusz Krzysztofik wrote:
+On Tue, 31 Jan 2023 08:19:48 -0800, Dixit, Ashutosh wrote:
 >
+> On Tue, 31 Jan 2023 01:17:29 -0800, Janusz Krzysztofik wrote:
+> >
+>
+> Hi Janusz,
+>
+> > Users reported oopses on list corruptions when using i915 perf with a
+> > number of concurrently running graphics applications.  That indicates we
+> > are currently missing some important tests for such scenarios.  Cover
+> > that gap.
+>
+> Do these oops etc. have anything to do with perf itself or rather with
+> persistence or non-persistence not properly supported with GuC? We should
+> have seen such failures with persistence tests (with GuC) itself so I am
+> wondering if there's any point of dragging perf into these already muddy
+> waters? Such failures should be isolated first with other tests without
+> mixing perf into this IMO.
 
-Hi Janusz,
+Basically failures in these tests indicate defects in which subsystem? If
+the failures do not indicate defects in perf then these tests should not be
+added as perf tests. E.g. if failures indicate defects in GuC subsystem
+then they should be added as GuC tests.
 
-> Users reported oopses on list corruptions when using i915 perf with a
-> number of concurrently running graphics applications.  That indicates we
-> are currently missing some important tests for such scenarios.  Cover
-> that gap.
-
-Do these oops etc. have anything to do with perf itself or rather with
-persistence or non-persistence not properly supported with GuC? We should
-have seen such failures with persistence tests (with GuC) itself so I am
-wondering if there's any point of dragging perf into these already muddy
-waters? Such failures should be isolated first with other tests without
-mixing perf into this IMO.
+Otherwise it gets hard to dispostion bugs which are filed due to these
+failures. The bugs come to the wrong team and then have to be sent to the
+correct team etc.
 
 Thanks.
 --
