@@ -2,85 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E743686ECC
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Feb 2023 20:20:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E0F5686F17
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Feb 2023 20:44:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AC7210E19D;
-	Wed,  1 Feb 2023 19:20:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8188210E1A1;
+	Wed,  1 Feb 2023 19:44:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
- [148.163.156.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C72B10E18F;
- Wed,  1 Feb 2023 19:20:25 +0000 (UTC)
-Received: from pps.filterd (m0098404.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
- 311JEUT4024229; Wed, 1 Feb 2023 19:20:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
- h=from : to : cc : subject
- : date : message-id : mime-version : content-transfer-encoding; s=pp1;
- bh=YuB+XZFk1tj11n3e62TybXK00ZA/KR8cB3x9GN4pGc8=;
- b=IAAd60r/ln9sUTl16WvgJJP6qiVGK7uvqwk/7rSaDc50wYHmXDuRtYYvoh7vI6rjXRn6
- PlXKaSDmdz/FGh1rdF7p5DICvffs1OzQhVEcja1Lzz6argncReEpjl8YdBR95dgoyJFL
- ku0oG+p6ZnLNZ4OiQvrvU4yjMY4Bdv2+f9NG3l3EmL/jImjVLozw/nI8Hy9b+jViH0YF
- gNx1U0oXXMmnQV5zqhaORf6fCfFVRvcyqNY3dkLZfxNM2WfslyhpvLslHRFEBwkMHpqo
- 8nK5N4SHH3RSLRJiHo/M93NQsKf02UN8d+nnY47OMRLkYyZuN8XdNDoFa1+YCW+YIdPF tg== 
-Received: from pps.reinject (localhost [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3nfx14r7br-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 01 Feb 2023 19:20:23 +0000
-Received: from m0098404.ppops.net (m0098404.ppops.net [127.0.0.1])
- by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 311JEaBi025054;
- Wed, 1 Feb 2023 19:20:22 GMT
-Received: from ppma02dal.us.ibm.com (a.bd.3ea9.ip4.static.sl-reverse.com
- [169.62.189.10])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3nfx14r7b1-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 01 Feb 2023 19:20:22 +0000
-Received: from pps.filterd (ppma02dal.us.ibm.com [127.0.0.1])
- by ppma02dal.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 311J3ARZ019280;
- Wed, 1 Feb 2023 19:20:21 GMT
-Received: from smtprelay07.wdc07v.mail.ibm.com ([9.208.129.116])
- by ppma02dal.us.ibm.com (PPS) with ESMTPS id 3ncvuqw5gq-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 01 Feb 2023 19:20:21 +0000
-Received: from smtpav02.wdc07v.mail.ibm.com (smtpav02.wdc07v.mail.ibm.com
- [10.39.53.229])
- by smtprelay07.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 311JKJbQ6947558
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Wed, 1 Feb 2023 19:20:19 GMT
-Received: from smtpav02.wdc07v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 444D55805D;
- Wed,  1 Feb 2023 19:20:19 +0000 (GMT)
-Received: from smtpav02.wdc07v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 799955805C;
- Wed,  1 Feb 2023 19:20:16 +0000 (GMT)
-Received: from li-2311da4c-2e09-11b2-a85c-c003041e9174.ibm.com (unknown
- [9.65.253.123]) by smtpav02.wdc07v.mail.ibm.com (Postfix) with ESMTP;
- Wed,  1 Feb 2023 19:20:16 +0000 (GMT)
-From: Matthew Rosato <mjrosato@linux.ibm.com>
-To: alex.williamson@redhat.com, pbonzini@redhat.com, yi.l.liu@intel.com,
- jgg@nvidia.com
-Date: Wed,  1 Feb 2023 14:20:10 -0500
-Message-Id: <20230201192010.42748-1-mjrosato@linux.ibm.com>
-X-Mailer: git-send-email 2.39.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0DD0D10E19B;
+ Wed,  1 Feb 2023 19:44:46 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 03148A0099;
+ Wed,  1 Feb 2023 19:44:46 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6575375601885906444=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: 4AAuk-Wx7-2D4cHh7xNnIWNct1PDUoVa
-X-Proofpoint-GUID: XyO83ZUnXd5TGtsgaSZxVIM0ceERQwbX
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-02-01_04,2023-01-31_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxlogscore=999
- priorityscore=1501 lowpriorityscore=0 bulkscore=0 mlxscore=0 phishscore=0
- impostorscore=0 suspectscore=0 malwarescore=0 spamscore=0 adultscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2302010161
-Subject: [Intel-gfx] [PATCH v2] vfio: fix deadlock between group lock and
- kvm lock
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mavroudis Chatzilaridis" <mavchatz@protonmail.com>
+Date: Wed, 01 Feb 2023 19:44:46 -0000
+Message-ID: <167528068600.25550.3474105695867307987@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230201184947.8835-1-mavchatz@protonmail.com>
+In-Reply-To: <20230201184947.8835-1-mavchatz@protonmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/quirks=3A_Add_inverted_backlight_quirk_for_HP_14-r206nv?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,282 +40,253 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: akrowiak@linux.ibm.com, jjherne@linux.ibm.com, farman@linux.ibm.com,
- borntraeger@linux.ibm.com, frankja@linux.ibm.com, pmorel@linux.ibm.com,
- david@redhat.com, seanjc@google.com, intel-gfx@lists.freedesktop.org,
- cohuck@redhat.com, linux-kernel@vger.kernel.org, pasic@linux.ibm.com,
- kvm@vger.kernel.org, linux-s390@vger.kernel.org, imbrenda@linux.ibm.com,
- intel-gvt-dev@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-After 51cdc8bc120e, we have another deadlock scenario between the
-kvm->lock and the vfio group_lock with two different codepaths acquiring
-the locks in different order.  Specifically in vfio_open_device, vfio
-holds the vfio group_lock when issuing device->ops->open_device but some
-drivers (like vfio-ap) need to acquire kvm->lock during their open_device
-routine;  Meanwhile, kvm_vfio_release will acquire the kvm->lock first
-before calling vfio_file_set_kvm which will acquire the vfio group_lock.
+--===============6575375601885906444==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-To resolve this, let's remove the need for the vfio group_lock from the
-kvm_vfio_release codepath.  This is done by introducing a new spinlock to
-protect modifications to the vfio group kvm pointer, and acquiring a kvm
-ref from within vfio while holding this spinlock, with the reference held
-until the last close for the device in question.
+== Series Details ==
 
-Fixes: 51cdc8bc120e ("kvm/vfio: Fix potential deadlock on vfio group_lock")
-Reported-by: Anthony Krowiak <akrowiak@linux.ibm.com>
-Suggested-by: Jason Gunthorpe <jgg@nvidia.com>
-Signed-off-by: Matthew Rosato <mjrosato@linux.ibm.com>
----
-Changes from v1:
-* use spin_lock instead of spin_lock_irqsave (Jason)
-* clear device->kvm_put as part of vfio_kvm_put_kvm (Yi)
-* Re-arrange code to avoid referencing the group contents from within
-  vfio_main (Kevin) which meant moving most of the code in this patch 
-  to group.c along with getting/dropping of the dev_set lock
----
- drivers/vfio/group.c     | 90 +++++++++++++++++++++++++++++++++++++---
- drivers/vfio/vfio.h      |  1 +
- drivers/vfio/vfio_main.c | 11 ++---
- include/linux/vfio.h     |  2 +-
- 4 files changed, 91 insertions(+), 13 deletions(-)
+Series: drm/i915/quirks: Add inverted backlight quirk for HP 14-r206nv
+URL   : https://patchwork.freedesktop.org/series/113568/
+State : failure
 
-diff --git a/drivers/vfio/group.c b/drivers/vfio/group.c
-index bb24b2f0271e..52f434861294 100644
---- a/drivers/vfio/group.c
-+++ b/drivers/vfio/group.c
-@@ -13,6 +13,9 @@
- #include <linux/vfio.h>
- #include <linux/iommufd.h>
- #include <linux/anon_inodes.h>
-+#ifdef CONFIG_HAVE_KVM
-+#include <linux/kvm_host.h>
-+#endif
- #include "vfio.h"
- 
- static struct vfio {
-@@ -154,6 +157,55 @@ static int vfio_group_ioctl_set_container(struct vfio_group *group,
- 	return ret;
- }
- 
-+#ifdef CONFIG_HAVE_KVM
-+static bool vfio_kvm_get_kvm_safe(struct vfio_device *device, struct kvm *kvm)
-+{
-+	void (*pfn)(struct kvm *kvm);
-+	bool (*fn)(struct kvm *kvm);
-+	bool ret;
-+
-+	pfn = symbol_get(kvm_put_kvm);
-+	if (WARN_ON(!pfn))
-+		return false;
-+
-+	fn = symbol_get(kvm_get_kvm_safe);
-+	if (WARN_ON(!fn)) {
-+		symbol_put(kvm_put_kvm);
-+		return false;
-+	}
-+
-+	ret = fn(kvm);
-+	if (ret)
-+		device->put_kvm = pfn;
-+	else
-+		symbol_put(kvm_put_kvm);
-+
-+	symbol_put(kvm_get_kvm_safe);
-+
-+	return ret;
-+}
-+
-+static void vfio_kvm_put_kvm(struct vfio_device *device)
-+{
-+	if (WARN_ON(!device->kvm || !device->put_kvm))
-+		return;
-+
-+	device->put_kvm(device->kvm);
-+	device->put_kvm = NULL;
-+	symbol_put(kvm_put_kvm);
-+}
-+
-+#else
-+static bool vfio_kvm_get_kvm_safe(struct vfio_device *device, struct kvm *kvm)
-+{
-+	return false;
-+}
-+
-+static void vfio_kvm_put_kvm(struct vfio_device *device)
-+{
-+}
-+#endif
-+
- static int vfio_device_group_open(struct vfio_device *device)
- {
- 	int ret;
-@@ -164,14 +216,32 @@ static int vfio_device_group_open(struct vfio_device *device)
- 		goto out_unlock;
- 	}
- 
-+	mutex_lock(&device->dev_set->lock);
-+
- 	/*
--	 * Here we pass the KVM pointer with the group under the lock.  If the
--	 * device driver will use it, it must obtain a reference and release it
--	 * during close_device.
-+	 * Before the first device open, get the KVM pointer currently
-+	 * associated with the group (if there is one) and obtain a reference
-+	 * now that will be held until the open_count reaches 0 again.  Save
-+	 * the pointer in the device for use by drivers.
- 	 */
-+	if (device->open_count == 0) {
-+		spin_lock(&device->group->kvm_ref_lock);
-+		if (device->group->kvm &&
-+		    vfio_kvm_get_kvm_safe(device, device->group->kvm))
-+			device->kvm = device->group->kvm;
-+		spin_unlock(&device->group->kvm_ref_lock);
-+	}
-+
- 	ret = vfio_device_open(device, device->group->iommufd,
- 			       device->group->kvm);
- 
-+	if (ret && device->kvm && device->open_count == 0) {
-+		vfio_kvm_put_kvm(device);
-+		device->kvm = NULL;
-+	}
-+
-+	mutex_unlock(&device->dev_set->lock);
-+
- out_unlock:
- 	mutex_unlock(&device->group->group_lock);
- 	return ret;
-@@ -180,7 +250,16 @@ static int vfio_device_group_open(struct vfio_device *device)
- void vfio_device_group_close(struct vfio_device *device)
- {
- 	mutex_lock(&device->group->group_lock);
-+	mutex_lock(&device->dev_set->lock);
-+
- 	vfio_device_close(device, device->group->iommufd);
-+
-+	if (device->kvm && device->open_count == 0) {
-+		vfio_kvm_put_kvm(device);
-+		device->kvm = NULL;
-+	}
-+
-+	mutex_unlock(&device->dev_set->lock);
- 	mutex_unlock(&device->group->group_lock);
- }
- 
-@@ -450,6 +529,7 @@ static struct vfio_group *vfio_group_alloc(struct iommu_group *iommu_group,
- 
- 	refcount_set(&group->drivers, 1);
- 	mutex_init(&group->group_lock);
-+	spin_lock_init(&group->kvm_ref_lock);
- 	INIT_LIST_HEAD(&group->device_list);
- 	mutex_init(&group->device_lock);
- 	group->iommu_group = iommu_group;
-@@ -803,9 +883,9 @@ void vfio_file_set_kvm(struct file *file, struct kvm *kvm)
- 	if (!vfio_file_is_group(file))
- 		return;
- 
--	mutex_lock(&group->group_lock);
-+	spin_lock(&group->kvm_ref_lock);
- 	group->kvm = kvm;
--	mutex_unlock(&group->group_lock);
-+	spin_unlock(&group->kvm_ref_lock);
- }
- EXPORT_SYMBOL_GPL(vfio_file_set_kvm);
- 
-diff --git a/drivers/vfio/vfio.h b/drivers/vfio/vfio.h
-index f8219a438bfb..20c6bc249cb8 100644
---- a/drivers/vfio/vfio.h
-+++ b/drivers/vfio/vfio.h
-@@ -74,6 +74,7 @@ struct vfio_group {
- 	struct file			*opened_file;
- 	struct blocking_notifier_head	notifier;
- 	struct iommufd_ctx		*iommufd;
-+	spinlock_t			kvm_ref_lock;
- };
- 
- int vfio_device_set_group(struct vfio_device *device,
-diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
-index 5177bb061b17..14dbf781ea8c 100644
---- a/drivers/vfio/vfio_main.c
-+++ b/drivers/vfio/vfio_main.c
-@@ -361,7 +361,6 @@ static int vfio_device_first_open(struct vfio_device *device,
- 	if (ret)
- 		goto err_module_put;
- 
--	device->kvm = kvm;
- 	if (device->ops->open_device) {
- 		ret = device->ops->open_device(device);
- 		if (ret)
-@@ -370,7 +369,6 @@ static int vfio_device_first_open(struct vfio_device *device,
- 	return 0;
- 
- err_unuse_iommu:
--	device->kvm = NULL;
- 	if (iommufd)
- 		vfio_iommufd_unbind(device);
- 	else
-@@ -387,7 +385,6 @@ static void vfio_device_last_close(struct vfio_device *device,
- 
- 	if (device->ops->close_device)
- 		device->ops->close_device(device);
--	device->kvm = NULL;
- 	if (iommufd)
- 		vfio_iommufd_unbind(device);
- 	else
-@@ -400,14 +397,14 @@ int vfio_device_open(struct vfio_device *device,
- {
- 	int ret = 0;
- 
--	mutex_lock(&device->dev_set->lock);
-+	lockdep_assert_held(&device->dev_set->lock);
-+
- 	device->open_count++;
- 	if (device->open_count == 1) {
- 		ret = vfio_device_first_open(device, iommufd, kvm);
- 		if (ret)
- 			device->open_count--;
- 	}
--	mutex_unlock(&device->dev_set->lock);
- 
- 	return ret;
- }
-@@ -415,12 +412,12 @@ int vfio_device_open(struct vfio_device *device,
- void vfio_device_close(struct vfio_device *device,
- 		       struct iommufd_ctx *iommufd)
- {
--	mutex_lock(&device->dev_set->lock);
-+	lockdep_assert_held(&device->dev_set->lock);
-+
- 	vfio_assert_device_open(device);
- 	if (device->open_count == 1)
- 		vfio_device_last_close(device, iommufd);
- 	device->open_count--;
--	mutex_unlock(&device->dev_set->lock);
- }
- 
- /*
-diff --git a/include/linux/vfio.h b/include/linux/vfio.h
-index 35be78e9ae57..87ff862ff555 100644
---- a/include/linux/vfio.h
-+++ b/include/linux/vfio.h
-@@ -46,7 +46,6 @@ struct vfio_device {
- 	struct vfio_device_set *dev_set;
- 	struct list_head dev_set_list;
- 	unsigned int migration_flags;
--	/* Driver must reference the kvm during open_device or never touch it */
- 	struct kvm *kvm;
- 
- 	/* Members below here are private, not for driver use */
-@@ -58,6 +57,7 @@ struct vfio_device {
- 	struct list_head group_next;
- 	struct list_head iommu_entry;
- 	struct iommufd_access *iommufd_access;
-+	void (*put_kvm)(struct kvm *kvm);
- #if IS_ENABLED(CONFIG_IOMMUFD)
- 	struct iommufd_device *iommufd_device;
- 	struct iommufd_ctx *iommufd_ictx;
--- 
-2.39.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_12680 -> Patchwork_113568v1
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_113568v1 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_113568v1, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v1/index.html
+
+Participating hosts (26 -> 26)
+------------------------------
+
+  Additional (1): fi-kbl-soraka 
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_113568v1:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - fi-skl-6600u:       [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12680/fi-skl-6600u/igt@i915_suspend@basic-s3-without-i915.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v1/fi-skl-6600u/igt@i915_suspend@basic-s3-without-i915.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_113568v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#2190])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
+
+  * igt@i915_module_load@load:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-WARN][5] ([i915#1982])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v1/fi-kbl-soraka/igt@i915_module_load@load.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-kbl-soraka:      NOTRUN -> [INCOMPLETE][6] ([i915#7156])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v1/fi-kbl-soraka/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][7] ([i915#1886])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+
+  * igt@kms_chamelium_frames@hdmi-crc-fast:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][8] ([fdo#109271]) +15 similar issues
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v1/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@migrate:
+    - {bat-dg2-11}:       [DMESG-WARN][9] ([i915#7699]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12680/bat-dg2-11/igt@i915_selftest@live@migrate.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v1/bat-dg2-11/igt@i915_selftest@live@migrate.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#6311]: https://gitlab.freedesktop.org/drm/intel/issues/6311
+  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
+  [i915#7156]: https://gitlab.freedesktop.org/drm/intel/issues/7156
+  [i915#7359]: https://gitlab.freedesktop.org/drm/intel/issues/7359
+  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
+  [i915#7996]: https://gitlab.freedesktop.org/drm/intel/issues/7996
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12680 -> Patchwork_113568v1
+
+  CI-20190529: 20190529
+  CI_DRM_12680: 06086656e6f03cbcbb4b99273734a7943e923fc9 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7143: c7b12dcc460fc2348e1fa7f4dcb791bb82e29e44 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_113568v1: 06086656e6f03cbcbb4b99273734a7943e923fc9 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+5bfe004e71e2 drm/i915/quirks: Add inverted backlight quirk for HP 14-r206nv
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v1/index.html
+
+--===============6575375601885906444==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/quirks: Add inverted backlight quirk for HP 14-r206nv</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/113568/">https://patchwork.freedesktop.org/series/113568/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12680 -&gt; Patchwork_113568v1</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_113568v1 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_113568v1, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v1/index.html</p>
+<h2>Participating hosts (26 -&gt; 26)</h2>
+<p>Additional (1): fi-kbl-soraka <br />
+  Missing    (1): fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_113568v1:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_suspend@basic-s3-without-i915:<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12680/fi-skl-6600u/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v1/fi-skl-6600u/igt@i915_suspend@basic-s3-without-i915.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_113568v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@load:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v1/fi-kbl-soraka/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v1/fi-kbl-soraka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7156">i915#7156</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_frames@hdmi-crc-fast:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v1/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +15 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@migrate:<ul>
+<li>{bat-dg2-11}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12680/bat-dg2-11/igt@i915_selftest@live@migrate.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v1/bat-dg2-11/igt@i915_selftest@live@migrate.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12680 -&gt; Patchwork_113568v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12680: 06086656e6f03cbcbb4b99273734a7943e923fc9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7143: c7b12dcc460fc2348e1fa7f4dcb791bb82e29e44 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_113568v1: 06086656e6f03cbcbb4b99273734a7943e923fc9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>5bfe004e71e2 drm/i915/quirks: Add inverted backlight quirk for HP 14-r206nv</p>
+
+</body>
+</html>
+
+--===============6575375601885906444==--
