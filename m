@@ -1,33 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD6426867B7
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Feb 2023 14:58:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B61666867D3
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Feb 2023 15:00:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F72F10E149;
-	Wed,  1 Feb 2023 13:58:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3E8210E404;
+	Wed,  1 Feb 2023 14:00:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6910210E149;
- Wed,  1 Feb 2023 13:58:11 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 65474AADE1;
- Wed,  1 Feb 2023 13:58:11 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Luca Coelho" <luciano.coelho@intel.com>
-Date: Wed, 01 Feb 2023 13:58:11 -0000
-Message-ID: <167525989141.25549.11651590575983328193@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230201135329.514677-1-luciano.coelho@intel.com>
+Received: from farmhouse.coelho.fi (paleale.coelho.fi [176.9.41.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE07310E40C
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Feb 2023 14:00:33 +0000 (UTC)
+Received: from 91-155-255-60.elisa-laajakaista.fi ([91.155.255.60]
+ helo=[192.168.100.137])
+ by farmhouse.coelho.fi with esmtpsa (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
+ (envelope-from <luca@coelho.fi>) id 1pNDf2-0062Qb-CA;
+ Wed, 01 Feb 2023 16:00:30 +0200
+Message-ID: <ccd859f01f337a06cf37da6aa4e19e39d7346f6b.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 01 Feb 2023 16:00:27 +0200
 In-Reply-To: <20230201135329.514677-1-luciano.coelho@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915=3A_make_dev=5Fpriv_usage_explitic_in_some_macros?=
+References: <20230201135329.514677-1-luciano.coelho@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.3-1 
+MIME-Version: 1.0
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP autolearn=ham autolearn_force=no version=3.4.6
+Subject: Re: [Intel-gfx] [RFC] drm/i915: make dev_priv usage explitic in
+ some macros
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,45 +46,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: lucas.demarchi@intel.com, rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, 2023-02-01 at 15:53 +0200, Luca Coelho wrote:
+> There are a few macros (e.g. DPLL()) that implicitly use dev_priv, by
+> using other macros that implcitily use dev_priv.
+>=20
+> In an effort to align all definitions of struct drm_i915_private to be
+> declared as i915 instead of arbitrarily using either i915 or dev_priv,
+> we need to make these macros explicitly use dev_priv, so that we can
+> change them later to be defined as i915.
+>=20
+> In order to find and change all occurrences, the following semantic
+> patch rules were used:
+>=20
+> @macros_noargs@
+> identifier m;
+> expression e =3D~ "dev_priv";
+> @@
+>=20
+> @nested_macros@
+> identifier macros_noargs.m;
+> identifier nm;
+> identifier list il;
+> @@
+>=20
+> @@
+> identifier nested_macros.nm;
+> identifier dev_priv, f;
+> expression list el;
+> @@
+> f(...) {
+> 	...
+> 	struct drm_i915_private *dev_priv =3D ...;
+>=20
+> 	<+...
+> 	nm(
+> +	dev_priv,
+> 	el)
+> 	...+>
+> }
+>=20
+> @@
+> identifier nested_macros.nm;
+> identifier dev_priv, f;
+> expression list el;
+> @@
+> f(..., struct drm_i915_private *dev_priv, ...) {
+> 	<+...
+> 	nm(
+> +	dev_priv,
+> 	el)
+> 	...+>
+> }
+>=20
+> @@
+> identifier nested_macros.nm;
+> identifier list il;
+> expression e;
+> @@
+> -#define nm(il) e
+> +#define nm(dev_priv,il) e
+>=20
+> Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+> ---
 
-Series: drm/i915: make dev_priv usage explitic in some macros
-URL   : https://patchwork.freedesktop.org/series/113555/
-State : failure
+Running this rules require --recursive-includes as argument to cocci
+and takes a looong time, so I had to run some rules and files
+separately.  Additionally, I had to use the latest git head of cocci
+from github, where some bugs related to finding which files to include
+were fixed.
 
-== Summary ==
+This patch may still need some manual trimming.  But before I spend
+more time on this, I would like to know what you all thing about it, so
+comments are very welcome.
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/113555/revisions/1/mbox/ not applied
-Applying: drm/i915: make dev_priv usage explitic in some macros
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/display/intel_display.c
-M	drivers/gpu/drm/i915/display/intel_display_power.c
-M	drivers/gpu/drm/i915/display/intel_dvo.c
-M	drivers/gpu/drm/i915/display/intel_pps.c
-M	drivers/gpu/drm/i915/display/vlv_dsi.c
-M	drivers/gpu/drm/i915/display/vlv_dsi_pll.c
-M	drivers/gpu/drm/i915/i915_reg.h
-M	drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-Auto-merging drivers/gpu/drm/i915/i915_reg.h
-Auto-merging drivers/gpu/drm/i915/display/vlv_dsi_pll.c
-Auto-merging drivers/gpu/drm/i915/display/vlv_dsi.c
-CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/display/vlv_dsi.c
-Auto-merging drivers/gpu/drm/i915/display/intel_pps.c
-Auto-merging drivers/gpu/drm/i915/display/intel_dvo.c
-Auto-merging drivers/gpu/drm/i915/display/intel_display_power.c
-Auto-merging drivers/gpu/drm/i915/display/intel_display.c
-error: Failed to merge in the changes.
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 drm/i915: make dev_priv usage explitic in some macros
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+If this is the right way to go, I can create more rules to change the
+inner macros to also receive dev_priv as a parameter and, later, to
+change all dev_priv's to i915. :)
 
-
+--
+Cheers,
+Luca.
