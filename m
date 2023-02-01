@@ -1,93 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C7F1686898
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Feb 2023 15:43:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96013686986
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Feb 2023 16:04:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F3DF89FEA;
-	Wed,  1 Feb 2023 14:43:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7BB289D39;
+	Wed,  1 Feb 2023 15:04:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
- [148.163.158.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5414189FEA;
- Wed,  1 Feb 2023 14:42:59 +0000 (UTC)
-Received: from pps.filterd (m0098417.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
- 311EgoUn027702; Wed, 1 Feb 2023 14:42:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
- h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=pp1;
- bh=uRmV9H0IlKkoZw9pYEG5xkBsyGSu+nnUgHhSpuqI//4=;
- b=Jz5QG43urG3CzJMuNJWlJlMMDmofbZMKOAc6siINhvBfcQ9WnpPdjaSDzypLJRffOJdq
- vcKJahRe08FggT6+w1rqFBSedmaQ7epbBV7V9kA1dO89bSoDZhvhXaqbcKZuGsW6/D3U
- f6LxqOmzBC64L9shez2u3kUTyuWZhccC7bpYYYOkbRP3+VDkSILOB4aftneBgp7gjsy0
- cs4VdTSXUz/VMINomPR98eqjeg+6D25a9UYv2Uvm6KVT9//wOKKv67nLWBYQjWLwYuaX
- jSzuYcPpTPHLFie8d1eXkRfPRJJsHz/ZQushWbSu+GeE39WUJqSCWz4X5bKsBgh5+zpM BA== 
-Received: from pps.reinject (localhost [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3nfsp60kyk-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 01 Feb 2023 14:42:55 +0000
-Received: from m0098417.ppops.net (m0098417.ppops.net [127.0.0.1])
- by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 311Egsq2028141;
- Wed, 1 Feb 2023 14:42:54 GMT
-Received: from ppma03wdc.us.ibm.com (ba.79.3fa9.ip4.static.sl-reverse.com
- [169.63.121.186])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3nfsp60ky3-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 01 Feb 2023 14:42:54 +0000
-Received: from pps.filterd (ppma03wdc.us.ibm.com [127.0.0.1])
- by ppma03wdc.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 311DY22M007780;
- Wed, 1 Feb 2023 14:42:54 GMT
-Received: from smtprelay05.wdc07v.mail.ibm.com ([9.208.129.117])
- by ppma03wdc.us.ibm.com (PPS) with ESMTPS id 3ncvtex7tc-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 01 Feb 2023 14:42:53 +0000
-Received: from smtpav04.wdc07v.mail.ibm.com (smtpav04.wdc07v.mail.ibm.com
- [10.39.53.231])
- by smtprelay05.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 311Egq9265863984
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Wed, 1 Feb 2023 14:42:52 GMT
-Received: from smtpav04.wdc07v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 475A758045;
- Wed,  1 Feb 2023 14:42:52 +0000 (GMT)
-Received: from smtpav04.wdc07v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id C19CF58050;
- Wed,  1 Feb 2023 14:42:49 +0000 (GMT)
-Received: from [9.65.253.123] (unknown [9.65.253.123])
- by smtpav04.wdc07v.mail.ibm.com (Postfix) with ESMTP;
- Wed,  1 Feb 2023 14:42:49 +0000 (GMT)
-Message-ID: <3b52ffdb-c18c-f3d4-559d-9838419e2bc7@linux.ibm.com>
-Date: Wed, 1 Feb 2023 09:42:49 -0500
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A250989D39;
+ Wed,  1 Feb 2023 15:04:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1675263874; x=1706799874;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=BHxsIY/7jH6te6tixzX2E2VsdkFeeq5JFtBpD5bW1UE=;
+ b=NTH4iDnHbOy4+qTOUvc2VmLTrYO641kav0hULFe7FWdjWhMVR6UD3EJi
+ ntUWjgt8dzJf3PQycy80foeyv9pfUb8G0m2Ymj4oxR3f4vVIOuADG1hsC
+ F9VDyC9Vt79ckIWWZQ96fBOn1ABtB7MYt0DEEDyAf02ZLvJv9SKeoWtEt
+ Or2QI5s599UpzoiirDKi9c2++1uXwfRuStm+vz8eTmQFgRRpr8uI8MaMo
+ 8p+Cdi3RwvCuyDAeERFMawnV8+Bq3znLWRwQnrqqJWf6s9VL9GckUW0Hu
+ /hxxAe6zZCHXPdgD+sgqxYfuHxhmoXEE+XNxmVN8zBls8hcq8GV0q3d1Y A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="414373210"
+X-IronPort-AV: E=Sophos;i="5.97,263,1669104000"; d="scan'208";a="414373210"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2023 07:04:14 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="788919254"
+X-IronPort-AV: E=Sophos;i="5.97,263,1669104000"; d="scan'208";a="788919254"
+Received: from ideak-desk.fi.intel.com ([10.237.72.58])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2023 07:04:10 -0800
+Date: Wed, 1 Feb 2023 17:04:06 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Lyude Paul <lyude@redhat.com>
+Message-ID: <Y9p/ZqVVpW/YMdUy@ideak-desk.fi.intel.com>
+References: <20230131150548.1614458-1-imre.deak@intel.com>
+ <20230131150548.1614458-3-imre.deak@intel.com>
+ <ed8b73096a576f317979c3dd65392371d5b77612.camel@redhat.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Content-Language: en-US
-To: "Liu, Yi L" <yi.l.liu@intel.com>, Jason Gunthorpe <jgg@nvidia.com>
-References: <20230131200635.44227-1-mjrosato@linux.ibm.com>
- <Y9l5OmCRGYZM2nPy@nvidia.com>
- <DS0PR11MB7529D62614A5DFC56920EE96C3D19@DS0PR11MB7529.namprd11.prod.outlook.com>
-From: Matthew Rosato <mjrosato@linux.ibm.com>
-In-Reply-To: <DS0PR11MB7529D62614A5DFC56920EE96C3D19@DS0PR11MB7529.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: rhb6pu5ZmBvC2a_9wXw7DPV0FRJCly6d
-X-Proofpoint-ORIG-GUID: NZfy7QwErcrBf-5ZqhPHGIzECnA7emIn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-02-01_04,2023-01-31_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 bulkscore=0
- spamscore=0 clxscore=1015 adultscore=0 lowpriorityscore=0 mlxlogscore=999
- mlxscore=0 phishscore=0 suspectscore=0 priorityscore=1501 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
- definitions=main-2302010125
-Subject: Re: [Intel-gfx] [PATCH] vfio: fix deadlock between group lock and
- kvm lock
+In-Reply-To: <ed8b73096a576f317979c3dd65392371d5b77612.camel@redhat.com>
+Subject: Re: [Intel-gfx] [PATCH v2 02/17] drm/display/dp_mst: Handle old/new
+ payload states in drm_dp_remove_payload()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,52 +60,208 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "akrowiak@linux.ibm.com" <akrowiak@linux.ibm.com>,
- "jjherne@linux.ibm.com" <jjherne@linux.ibm.com>,
- "farman@linux.ibm.com" <farman@linux.ibm.com>,
- "imbrenda@linux.ibm.com" <imbrenda@linux.ibm.com>,
- "frankja@linux.ibm.com" <frankja@linux.ibm.com>,
- "pmorel@linux.ibm.com" <pmorel@linux.ibm.com>,
- "david@redhat.com" <david@redhat.com>, "Christopherson, ,
- Sean" <seanjc@google.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "pasic@linux.ibm.com" <pasic@linux.ibm.com>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "pbonzini@redhat.com" <pbonzini@redhat.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "borntraeger@linux.ibm.com" <borntraeger@linux.ibm.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>
+Reply-To: imre.deak@intel.com
+Cc: dri-devel@lists.freedesktop.org, Karol Herbst <kherbst@redhat.com>,
+ intel-gfx@lists.freedesktop.org, stable@vger.kernel.org,
+ Ben Skeggs <bskeggs@redhat.com>, Wayne Lin <Wayne.Lin@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2/1/23 7:43 AM, Liu, Yi L wrote:
->> From: Jason Gunthorpe <jgg@nvidia.com>
->> Sent: Wednesday, February 1, 2023 4:26 AM
->>
->> On Tue, Jan 31, 2023 at 03:06:35PM -0500, Matthew Rosato wrote:
->>> @@ -799,13 +794,14 @@
->> EXPORT_SYMBOL_GPL(vfio_file_enforced_coherent);
->>>  void vfio_file_set_kvm(struct file *file, struct kvm *kvm)
->>>  {
->>>  	struct vfio_group *group = file->private_data;
->>> +	unsigned long flags;
->>>
->>>  	if (!vfio_file_is_group(file))
->>>  		return;
->>>
->>> -	mutex_lock(&group->group_lock);
->>> +	spin_lock_irqsave(&group->kvm_ref_lock, flags);
->>>  	group->kvm = kvm;
->>> -	mutex_unlock(&group->group_lock);
->>> +	spin_unlock_irqrestore(&group->kvm_ref_lock, flags);
->>
->> We know we are in a sleeping context here so these are just
->> 'spin_lock()', same with the other one
+On Tue, Jan 31, 2023 at 06:13:10PM -0500, Lyude Paul wrote:
+> On Tue, 2023-01-31 at 17:05 +0200, Imre Deak wrote:
+> > Atm, drm_dp_remove_payload() uses the same payload state to both get the
+> > vc_start_slot required for the payload removal DPCD message and to
+> > deduct time_slots from vc_start_slot of all payloads after the one being
+> > removed.
+> > 
+> > The above isn't always correct, as vc_start_slot must be the up-to-date
+> > version contained in the new payload state, but time_slots must be the
+> > one used when the payload was previously added, contained in the old
+> > payload state. The new payload's time_slots can change vs. the old one
+> > if the current atomic commit changes the corresponding mode.
+> > 
+> > This patch let's drivers pass the old and new payload states to
+> > drm_dp_remove_payload(), but keeps these the same for now in all drivers
+> > not to change the behavior. A follow-up i915 patch will pass in that
+> > driver the correct old and new states to the function.
 > 
-> a dumb question. Why spinlock is required here? 😊
+> Oh wow, this was definitely a mistake on my part, thanks for catching this!
+> TBH, I think this behavior is correct so (now that I actually have a setup
+> capable of testing amdgpu's MST fully thanks to gitlab issue 2171…) if you'd
+> like to change it on other drivers as well I can test it fully.
+
+I only checked that the other drivers pass the new payload state to
+drm_dp_remove_payload(), so not sure how that works atm if the same
+commit has to both remove the payload (with the old time_slots value)
+and add it back (with a new time_slots value). Maybe that can't happen
+in those drivers, or time_slots get updated between remove and readd.
+
+> Or feel free to leave it to me, shouldn't be too difficult I think :).
+
+Yes, this patch should have no functional change, so please check what
+would apply to other drivers as well.
+
+Could you also check Ville's comment about storing start_slot elsewhere
+than the atomic state (leaving only time_slots there). I wonder if that
+would work, at least it would simplify things I think.
+
+> For 0-2:
 > 
+> Reviewed-by: Lyude Paul <lyude@redhat.com>
 
-You mean as opposed to another mutex?  I don't think it's required per se (we are replacing a mutex so we could have again used another mutex here), but all current users of this new lock hold it over a very short window (e.g. set a pointer as above, or refcount++ and copy the pointer as in the first device_open)
+Thanks.
 
+> 
+> > 
+> > Cc: Lyude Paul <lyude@redhat.com>
+> > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > Cc: Ben Skeggs <bskeggs@redhat.com>
+> > Cc: Karol Herbst <kherbst@redhat.com>
+> > Cc: Harry Wentland <harry.wentland@amd.com>
+> > Cc: Alex Deucher <alexander.deucher@amd.com>
+> > Cc: Wayne Lin <Wayne.Lin@amd.com>
+> > Cc: stable@vger.kernel.org # 6.1
+> > Cc: dri-devel@lists.freedesktop.org
+> > Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |  2 +-
+> >  drivers/gpu/drm/display/drm_dp_mst_topology.c | 26 ++++++++++---------
+> >  drivers/gpu/drm/i915/display/intel_dp_mst.c   |  4 ++-
+> >  drivers/gpu/drm/nouveau/dispnv50/disp.c       |  2 +-
+> >  include/drm/display/drm_dp_mst_helper.h       |  3 ++-
+> >  5 files changed, 21 insertions(+), 16 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+> > index a50319fc42b11..180d3893b68da 100644
+> > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+> > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+> > @@ -208,7 +208,7 @@ bool dm_helpers_dp_mst_write_payload_allocation_table(
+> >  	if (enable)
+> >  		drm_dp_add_payload_part1(mst_mgr, mst_state, payload);
+> >  	else
+> > -		drm_dp_remove_payload(mst_mgr, mst_state, payload);
+> > +		drm_dp_remove_payload(mst_mgr, mst_state, payload, payload);
+> >  
+> >  	/* mst_mgr->->payloads are VC payload notify MST branch using DPCD or
+> >  	 * AUX message. The sequence is slot 1-63 allocated sequence for each
+> > diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> > index 847c10aa2098c..1990ff5dc7ddd 100644
+> > --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> > +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> > @@ -3342,7 +3342,8 @@ EXPORT_SYMBOL(drm_dp_add_payload_part1);
+> >   * drm_dp_remove_payload() - Remove an MST payload
+> >   * @mgr: Manager to use.
+> >   * @mst_state: The MST atomic state
+> > - * @payload: The payload to write
+> > + * @old_payload: The payload with its old state
+> > + * @new_payload: The payload to write
+> >   *
+> >   * Removes a payload from an MST topology if it was successfully assigned a start slot. Also updates
+> >   * the starting time slots of all other payloads which would have been shifted towards the start of
+> > @@ -3350,36 +3351,37 @@ EXPORT_SYMBOL(drm_dp_add_payload_part1);
+> >   */
+> >  void drm_dp_remove_payload(struct drm_dp_mst_topology_mgr *mgr,
+> >  			   struct drm_dp_mst_topology_state *mst_state,
+> > -			   struct drm_dp_mst_atomic_payload *payload)
+> > +			   const struct drm_dp_mst_atomic_payload *old_payload,
+> > +			   struct drm_dp_mst_atomic_payload *new_payload)
+> >  {
+> >  	struct drm_dp_mst_atomic_payload *pos;
+> >  	bool send_remove = false;
+> >  
+> >  	/* We failed to make the payload, so nothing to do */
+> > -	if (payload->vc_start_slot == -1)
+> > +	if (new_payload->vc_start_slot == -1)
+> >  		return;
+> >  
+> >  	mutex_lock(&mgr->lock);
+> > -	send_remove = drm_dp_mst_port_downstream_of_branch(payload->port, mgr->mst_primary);
+> > +	send_remove = drm_dp_mst_port_downstream_of_branch(new_payload->port, mgr->mst_primary);
+> >  	mutex_unlock(&mgr->lock);
+> >  
+> >  	if (send_remove)
+> > -		drm_dp_destroy_payload_step1(mgr, mst_state, payload);
+> > +		drm_dp_destroy_payload_step1(mgr, mst_state, new_payload);
+> >  	else
+> >  		drm_dbg_kms(mgr->dev, "Payload for VCPI %d not in topology, not sending remove\n",
+> > -			    payload->vcpi);
+> > +			    new_payload->vcpi);
+> >  
+> >  	list_for_each_entry(pos, &mst_state->payloads, next) {
+> > -		if (pos != payload && pos->vc_start_slot > payload->vc_start_slot)
+> > -			pos->vc_start_slot -= payload->time_slots;
+> > +		if (pos != new_payload && pos->vc_start_slot > new_payload->vc_start_slot)
+> > +			pos->vc_start_slot -= old_payload->time_slots;
+> >  	}
+> > -	payload->vc_start_slot = -1;
+> > +	new_payload->vc_start_slot = -1;
+> >  
+> >  	mgr->payload_count--;
+> > -	mgr->next_start_slot -= payload->time_slots;
+> > +	mgr->next_start_slot -= old_payload->time_slots;
+> >  
+> > -	if (payload->delete)
+> > -		drm_dp_mst_put_port_malloc(payload->port);
+> > +	if (new_payload->delete)
+> > +		drm_dp_mst_put_port_malloc(new_payload->port);
+> >  }
+> >  EXPORT_SYMBOL(drm_dp_remove_payload);
+> >  
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > index f3cb12dcfe0a7..dc4e5ff1dbb31 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > @@ -526,6 +526,8 @@ static void intel_mst_disable_dp(struct intel_atomic_state *state,
+> >  		to_intel_connector(old_conn_state->connector);
+> >  	struct drm_dp_mst_topology_state *mst_state =
+> >  		drm_atomic_get_mst_topology_state(&state->base, &intel_dp->mst_mgr);
+> > +	struct drm_dp_mst_atomic_payload *payload =
+> > +		drm_atomic_get_mst_payload_state(mst_state, connector->port);
+> >  	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+> >  
+> >  	drm_dbg_kms(&i915->drm, "active links %d\n",
+> > @@ -534,7 +536,7 @@ static void intel_mst_disable_dp(struct intel_atomic_state *state,
+> >  	intel_hdcp_disable(intel_mst->connector);
+> >  
+> >  	drm_dp_remove_payload(&intel_dp->mst_mgr, mst_state,
+> > -			      drm_atomic_get_mst_payload_state(mst_state, connector->port));
+> > +			      payload, payload);
+> >  
+> >  	intel_audio_codec_disable(encoder, old_crtc_state, old_conn_state);
+> >  }
+> > diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> > index edcb2529b4025..ed9d374147b8d 100644
+> > --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> > +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> > @@ -885,7 +885,7 @@ nv50_msto_prepare(struct drm_atomic_state *state,
+> >  
+> >  	// TODO: Figure out if we want to do a better job of handling VCPI allocation failures here?
+> >  	if (msto->disabled) {
+> > -		drm_dp_remove_payload(mgr, mst_state, payload);
+> > +		drm_dp_remove_payload(mgr, mst_state, payload, payload);
+> >  
+> >  		nvif_outp_dp_mst_vcpi(&mstm->outp->outp, msto->head->base.index, 0, 0, 0, 0);
+> >  	} else {
+> > diff --git a/include/drm/display/drm_dp_mst_helper.h b/include/drm/display/drm_dp_mst_helper.h
+> > index 41fd8352ab656..f5eb9aa152b14 100644
+> > --- a/include/drm/display/drm_dp_mst_helper.h
+> > +++ b/include/drm/display/drm_dp_mst_helper.h
+> > @@ -841,7 +841,8 @@ int drm_dp_add_payload_part2(struct drm_dp_mst_topology_mgr *mgr,
+> >  			     struct drm_dp_mst_atomic_payload *payload);
+> >  void drm_dp_remove_payload(struct drm_dp_mst_topology_mgr *mgr,
+> >  			   struct drm_dp_mst_topology_state *mst_state,
+> > -			   struct drm_dp_mst_atomic_payload *payload);
+> > +			   const struct drm_dp_mst_atomic_payload *old_payload,
+> > +			   struct drm_dp_mst_atomic_payload *new_payload);
+> >  
+> >  int drm_dp_check_act_status(struct drm_dp_mst_topology_mgr *mgr);
+> >  
+> 
+> -- 
+> Cheers,
+>  Lyude Paul (she/her)
+>  Software Engineer at Red Hat
+> 
