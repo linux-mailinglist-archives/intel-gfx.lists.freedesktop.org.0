@@ -2,52 +2,92 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FF9F686890
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Feb 2023 15:42:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C7F1686898
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Feb 2023 15:43:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B16AC89FEA;
-	Wed,  1 Feb 2023 14:42:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F3DF89FEA;
+	Wed,  1 Feb 2023 14:43:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C80E89FEA
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Feb 2023 14:41:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675262520; x=1706798520;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=vgPAy1nbeSlofdeKLreGSoxbGBRHYcVyAl/GfC1zMa0=;
- b=kGw0s6+Zo0tFY+W3OmUlR2lboGrYpJgZ7bQ5t2VUaXEWmhNQKC2vBp+W
- yRiswdvs7DOpIrb2GB+12DfeN6/ZLZ4Bjc2QrX2w/9lbz8cmzaYGKhc3B
- YYz2cgRUAhvCiDw0ZpWlznVzFK55X0NL4IdiR8Z5N+CfIIqJpbetd9Ra7
- EJjaphikOZIhNBYO0ksYDG426Rdg8RQXK2rRy1shFeqWV3I7ykDwf78wv
- 9qJLZBvCllKriTw/mqiwJvfCZj25IPg9WHSob39IcjGIulz/3F7WeBWQH
- iKU8emCXUVbv9HgxuKBo4YqcpEmo7JO6gxCrqQROnm/n0JBjjbjhUDQxe Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="355492116"
-X-IronPort-AV: E=Sophos;i="5.97,263,1669104000"; d="scan'208";a="355492116"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2023 06:41:58 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="788904080"
-X-IronPort-AV: E=Sophos;i="5.97,263,1669104000"; d="scan'208";a="788904080"
-Received: from ideak-desk.fi.intel.com ([10.237.72.58])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2023 06:41:57 -0800
-Date: Wed, 1 Feb 2023 16:41:53 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Lyude Paul <lyude@redhat.com>
-Message-ID: <Y9p6MS6SQ3q7mtXe@ideak-desk.fi.intel.com>
-References: <20230131150548.1614458-1-imre.deak@intel.com>
- <20230131150548.1614458-17-imre.deak@intel.com>
- <4add821aebae4f796a808d9dfe9ad85e83cac128.camel@redhat.com>
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
+ [148.163.158.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5414189FEA;
+ Wed,  1 Feb 2023 14:42:59 +0000 (UTC)
+Received: from pps.filterd (m0098417.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
+ 311EgoUn027702; Wed, 1 Feb 2023 14:42:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
+ h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=pp1;
+ bh=uRmV9H0IlKkoZw9pYEG5xkBsyGSu+nnUgHhSpuqI//4=;
+ b=Jz5QG43urG3CzJMuNJWlJlMMDmofbZMKOAc6siINhvBfcQ9WnpPdjaSDzypLJRffOJdq
+ vcKJahRe08FggT6+w1rqFBSedmaQ7epbBV7V9kA1dO89bSoDZhvhXaqbcKZuGsW6/D3U
+ f6LxqOmzBC64L9shez2u3kUTyuWZhccC7bpYYYOkbRP3+VDkSILOB4aftneBgp7gjsy0
+ cs4VdTSXUz/VMINomPR98eqjeg+6D25a9UYv2Uvm6KVT9//wOKKv67nLWBYQjWLwYuaX
+ jSzuYcPpTPHLFie8d1eXkRfPRJJsHz/ZQushWbSu+GeE39WUJqSCWz4X5bKsBgh5+zpM BA== 
+Received: from pps.reinject (localhost [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3nfsp60kyk-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Wed, 01 Feb 2023 14:42:55 +0000
+Received: from m0098417.ppops.net (m0098417.ppops.net [127.0.0.1])
+ by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 311Egsq2028141;
+ Wed, 1 Feb 2023 14:42:54 GMT
+Received: from ppma03wdc.us.ibm.com (ba.79.3fa9.ip4.static.sl-reverse.com
+ [169.63.121.186])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3nfsp60ky3-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Wed, 01 Feb 2023 14:42:54 +0000
+Received: from pps.filterd (ppma03wdc.us.ibm.com [127.0.0.1])
+ by ppma03wdc.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 311DY22M007780;
+ Wed, 1 Feb 2023 14:42:54 GMT
+Received: from smtprelay05.wdc07v.mail.ibm.com ([9.208.129.117])
+ by ppma03wdc.us.ibm.com (PPS) with ESMTPS id 3ncvtex7tc-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Wed, 01 Feb 2023 14:42:53 +0000
+Received: from smtpav04.wdc07v.mail.ibm.com (smtpav04.wdc07v.mail.ibm.com
+ [10.39.53.231])
+ by smtprelay05.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 311Egq9265863984
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Wed, 1 Feb 2023 14:42:52 GMT
+Received: from smtpav04.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 475A758045;
+ Wed,  1 Feb 2023 14:42:52 +0000 (GMT)
+Received: from smtpav04.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id C19CF58050;
+ Wed,  1 Feb 2023 14:42:49 +0000 (GMT)
+Received: from [9.65.253.123] (unknown [9.65.253.123])
+ by smtpav04.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+ Wed,  1 Feb 2023 14:42:49 +0000 (GMT)
+Message-ID: <3b52ffdb-c18c-f3d4-559d-9838419e2bc7@linux.ibm.com>
+Date: Wed, 1 Feb 2023 09:42:49 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Content-Language: en-US
+To: "Liu, Yi L" <yi.l.liu@intel.com>, Jason Gunthorpe <jgg@nvidia.com>
+References: <20230131200635.44227-1-mjrosato@linux.ibm.com>
+ <Y9l5OmCRGYZM2nPy@nvidia.com>
+ <DS0PR11MB7529D62614A5DFC56920EE96C3D19@DS0PR11MB7529.namprd11.prod.outlook.com>
+From: Matthew Rosato <mjrosato@linux.ibm.com>
+In-Reply-To: <DS0PR11MB7529D62614A5DFC56920EE96C3D19@DS0PR11MB7529.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <4add821aebae4f796a808d9dfe9ad85e83cac128.camel@redhat.com>
-Subject: Re: [Intel-gfx] [PATCH v2 16/17] drm/i915/dp_mst: Add workaround
- for a DELL P2715Q payload allocation problem
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: rhb6pu5ZmBvC2a_9wXw7DPV0FRJCly6d
+X-Proofpoint-ORIG-GUID: NZfy7QwErcrBf-5ZqhPHGIzECnA7emIn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-02-01_04,2023-01-31_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 bulkscore=0
+ spamscore=0 clxscore=1015 adultscore=0 lowpriorityscore=0 mlxlogscore=999
+ mlxscore=0 phishscore=0 suspectscore=0 priorityscore=1501 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
+ definitions=main-2302010125
+Subject: Re: [Intel-gfx] [PATCH] vfio: fix deadlock between group lock and
+ kvm lock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,276 +100,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "akrowiak@linux.ibm.com" <akrowiak@linux.ibm.com>,
+ "jjherne@linux.ibm.com" <jjherne@linux.ibm.com>,
+ "farman@linux.ibm.com" <farman@linux.ibm.com>,
+ "imbrenda@linux.ibm.com" <imbrenda@linux.ibm.com>,
+ "frankja@linux.ibm.com" <frankja@linux.ibm.com>,
+ "pmorel@linux.ibm.com" <pmorel@linux.ibm.com>,
+ "david@redhat.com" <david@redhat.com>, "Christopherson, ,
+ Sean" <seanjc@google.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "pasic@linux.ibm.com" <pasic@linux.ibm.com>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "pbonzini@redhat.com" <pbonzini@redhat.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "borntraeger@linux.ibm.com" <borntraeger@linux.ibm.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 31, 2023 at 05:47:11PM -0500, Lyude Paul wrote:
-> On Tue, 2023-01-31 at 17:05 +0200, Imre Deak wrote:
-> > The DELL P2715Q monitor's MST hub has a payload allocation problem,
+On 2/1/23 7:43 AM, Liu, Yi L wrote:
+>> From: Jason Gunthorpe <jgg@nvidia.com>
+>> Sent: Wednesday, February 1, 2023 4:26 AM
+>>
+>> On Tue, Jan 31, 2023 at 03:06:35PM -0500, Matthew Rosato wrote:
+>>> @@ -799,13 +794,14 @@
+>> EXPORT_SYMBOL_GPL(vfio_file_enforced_coherent);
+>>>  void vfio_file_set_kvm(struct file *file, struct kvm *kvm)
+>>>  {
+>>>  	struct vfio_group *group = file->private_data;
+>>> +	unsigned long flags;
+>>>
+>>>  	if (!vfio_file_is_group(file))
+>>>  		return;
+>>>
+>>> -	mutex_lock(&group->group_lock);
+>>> +	spin_lock_irqsave(&group->kvm_ref_lock, flags);
+>>>  	group->kvm = kvm;
+>>> -	mutex_unlock(&group->group_lock);
+>>> +	spin_unlock_irqrestore(&group->kvm_ref_lock, flags);
+>>
+>> We know we are in a sleeping context here so these are just
+>> 'spin_lock()', same with the other one
 > 
-> LMAO hello yet again, Dell P2715Q. It's been a while.
+> a dumb question. Why spinlock is required here? ðŸ˜Š
 > 
-> > where the VCPI used to reserve the last two time slots (at position
-> > 0x3e, 0x3f) in the hub's payload table, this VCPI can't be reused for
-> > later payload configurations.
-> > 
-> > The problem results at least in streams reusing older VCPIs to stay
-> > blank on the screen and the payload table containing bogus VCPIs
-> > (repeating the one earlier used to reserve the 0x3e, 0x3f slots) after
-> > the last reservered slot.
-> 
-> WOW. you know I've been trying for ages to figure out what is up with this
-> exact monitor and I think I just gave up because it's the only monitor I've
-> ever seen do this.
-> 
-> (Also yes, I do have two of this exact monitor. I think we even have this
-> model mentioned in our testcases. I looked up a google photo of it just to
-> confirm. I think ours is the P2715Qb, but it looks identical and the problem
-> you're describing sounds identical as well).
-> 
-> This patch looks fine to me, we could probably also put this in the MST
-> helpers as well if you can think of a way to do that and I can handle testing
-> it on nouveau/amdgpu, but this is basically the only monitor I've ever seen do
-> this - so I don't think it's a big deal either way.
 
-Ok, it would be good if you could repro the same issue on your side.
+You mean as opposed to another mutex?  I don't think it's required per se (we are replacing a mutex so we could have again used another mutex here), but all current users of this new lock hold it over a very short window (e.g. set a pointer as above, or refcount++ and copy the pointer as in the first device_open)
 
-I think the driver specific part is to detect the issue and force a full
-modeset in the next commit. The MST core could then clear the payload
-table internally, maybe based on some flag the driver passed.
-
-Also the detection and forcing a full modeset as in this patch is probably
-better done during the connector check phase of the next commit, which
-could check the previous payload allocations, I'll check if that works.
-
-> either way:
-> 
-> Reviewed-by: Lyude Paul <lyude@redhat.com>
-
-Thanks.
-
-> > To work around the problem detect this monitor and the condition for the
-> > problem (when the last two slots get allocated in a commit), force a
-> > full modeset of the MST topology in the subsequent commit and reset the
-> > payload table during the latter commit after all payloads have been
-> > freed.
-> > 
-> > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > Cc: Lyude Paul <lyude@redhat.com>
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_atomic.c   | 13 +++--
-> >  drivers/gpu/drm/i915/display/intel_atomic.h   |  3 +-
-> >  .../drm/i915/display/intel_display_types.h    |  1 +
-> >  drivers/gpu/drm/i915/display/intel_dp.c       |  5 +-
-> >  drivers/gpu/drm/i915/display/intel_dp_mst.c   | 48 +++++++++++++++++--
-> >  5 files changed, 61 insertions(+), 9 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
-> > index 0f1c5b9c9a826..04e5f0e0fffa6 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_atomic.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
-> > @@ -616,7 +616,8 @@ intel_atomic_get_crtc_state(struct drm_atomic_state *state,
-> >  }
-> >  
-> >  static int modeset_pipe(struct intel_atomic_state *state,
-> > -			struct intel_crtc *crtc, const char *reason)
-> > +			struct intel_crtc *crtc, const char *reason,
-> > +			bool allow_fastset)
-> >  {
-> >  	struct drm_i915_private *i915 = to_i915(state->base.dev);
-> >  	struct intel_crtc_state *crtc_state;
-> > @@ -629,6 +630,8 @@ static int modeset_pipe(struct intel_atomic_state *state,
-> >  		return PTR_ERR(crtc_state);
-> >  
-> >  	crtc_state->uapi.mode_changed = true;
-> > +	if (!allow_fastset)
-> > +		crtc_state->uapi.connectors_changed = true;
-> >  	crtc_state->update_pipe = false;
-> >  
-> >  	return intel_atomic_add_affected_planes(state, crtc);
-> > @@ -639,6 +642,7 @@ static int modeset_pipe(struct intel_atomic_state *state,
-> >   * @state: atomic state
-> >   * @connector: connector to add the state for
-> >   * @reason: the reason why the connector needs to be added
-> > + * @allow_fastset: allow a fastset
-> >   *
-> >   * Add the @connector to the atomic state with its CRTC state and force a modeset
-> >   * on the CRTC if any.
-> > @@ -648,7 +652,8 @@ static int modeset_pipe(struct intel_atomic_state *state,
-> >   * Returns 0 in case of success, a negative error code on failure.
-> >   */
-> >  int intel_atomic_modeset_connector(struct intel_atomic_state *state,
-> > -				   struct intel_connector *connector, const char *reason)
-> > +				   struct intel_connector *connector, const char *reason,
-> > +				   bool allow_fastset)
-> >  {
-> >  	struct drm_i915_private *i915 = to_i915(state->base.dev);
-> >  	struct drm_connector_state *conn_state;
-> > @@ -671,7 +676,7 @@ int intel_atomic_modeset_connector(struct intel_atomic_state *state,
-> >  	if (ret)
-> >  		return ret;
-> >  
-> > -	return modeset_pipe(state, crtc, reason);
-> > +	return modeset_pipe(state, crtc, reason, allow_fastset);
-> >  }
-> >  
-> >  /**
-> > @@ -700,7 +705,7 @@ int intel_atomic_modeset_pipe(struct intel_atomic_state *state,
-> >  	if (ret)
-> >  		return ret;
-> >  
-> > -	return modeset_pipe(state, crtc, reason);
-> > +	return modeset_pipe(state, crtc, reason, true);
-> >  }
-> >  
-> >  /**
-> > diff --git a/drivers/gpu/drm/i915/display/intel_atomic.h b/drivers/gpu/drm/i915/display/intel_atomic.h
-> > index 84295d388e3cb..7778aea8a09fe 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_atomic.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_atomic.h
-> > @@ -59,7 +59,8 @@ int intel_atomic_setup_scalers(struct drm_i915_private *dev_priv,
-> >  int intel_atomic_modeset_pipe(struct intel_atomic_state *state,
-> >  			      struct intel_crtc *crtc, const char *reason);
-> >  int intel_atomic_modeset_connector(struct intel_atomic_state *state,
-> > -				   struct intel_connector *connector, const char *reason);
-> > +				   struct intel_connector *connector, const char *reason,
-> > +				   bool allow_fastset);
-> >  int intel_atomic_modeset_all_pipes(struct intel_atomic_state *state,
-> >  				   const char *reason);
-> >  
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > index 9ccae7a460200..06d51d2b5e0d6 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > @@ -1656,6 +1656,7 @@ struct intel_dp {
-> >  	bool has_audio;
-> >  	bool reset_link_params;
-> >  	bool use_max_params;
-> > +	bool mst_reset_payload_table;
-> >  	u8 dpcd[DP_RECEIVER_CAP_SIZE];
-> >  	u8 psr_dpcd[EDP_PSR_RECEIVER_CAP_SIZE];
-> >  	u8 downstream_ports[DP_MAX_DOWNSTREAM_PORTS];
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index d6b0ef38f6563..c157bcd976103 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -4689,6 +4689,8 @@ intel_dp_detect(struct drm_connector *connector,
-> >  		memset(&intel_dp->compliance, 0, sizeof(intel_dp->compliance));
-> >  		memset(intel_dp->dsc_dpcd, 0, sizeof(intel_dp->dsc_dpcd));
-> >  
-> > +		intel_dp->mst_reset_payload_table = false;
-> > +
-> >  		if (intel_dp->is_mst) {
-> >  			drm_dbg_kms(&dev_priv->drm,
-> >  				    "MST device may have disappeared %d vs %d\n",
-> > @@ -4924,7 +4926,8 @@ static int intel_modeset_tile_group(struct intel_atomic_state *state,
-> >  			continue;
-> >  
-> >  		ret = intel_atomic_modeset_connector(state, connector,
-> > -						     "connector tile group");
-> > +						     "connector tile group",
-> > +						     true);
-> >  		if (ret)
-> >  			break;
-> >  	}
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > index 08222fc6c5ecd..a9bb339e41987 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > @@ -422,9 +422,10 @@ intel_dp_mst_atomic_master_trans_check(struct intel_connector *connector,
-> >  	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> >  	struct drm_connector_list_iter connector_list_iter;
-> >  	struct intel_connector *connector_iter;
-> > +	bool reset_payload_table = connector->mst_port->mst_reset_payload_table;
-> >  	int ret = 0;
-> >  
-> > -	if (DISPLAY_VER(dev_priv) < 12)
-> > +	if (DISPLAY_VER(dev_priv) < 12 && !reset_payload_table)
-> >  		return  0;
-> >  
-> >  	if (!intel_connector_needs_modeset(state, &connector->base))
-> > @@ -437,7 +438,8 @@ intel_dp_mst_atomic_master_trans_check(struct intel_connector *connector,
-> >  			continue;
-> >  
-> >  		ret = intel_atomic_modeset_connector(state, connector_iter,
-> > -						     "MST master transcoder");
-> > +						     "MST master transcoder",
-> > +						     !reset_payload_table);
-> >  		if (ret)
-> >  			break;
-> >  	}
-> > @@ -531,6 +533,41 @@ static void intel_mst_disable_dp(struct intel_atomic_state *state,
-> >  	intel_audio_codec_disable(encoder, old_crtc_state, old_conn_state);
-> >  }
-> >  
-> > +static void detect_payload_allocation_bug(const struct drm_dp_mst_topology_state *mst_state,
-> > +					  const struct intel_connector *connector,
-> > +					  struct intel_dp *intel_dp)
-> > +{
-> > +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> > +
-> > +	if (!drm_dp_has_quirk(&intel_dp->desc, DP_DPCD_QUIRK_MST_PAYLOAD_TABLE_RESET_WA))
-> > +		return;
-> > +
-> > +	if (drm_dp_mst_allocated_time_slots(mst_state) < DP_PAYLOAD_TABLE_SIZE - 2)
-> > +		return;
-> > +
-> > +	drm_dbg(&i915->drm,
-> > +		"[CONNECTOR:%d:%s] Payload table allocation bug detected\n",
-> > +		connector->base.base.id, connector->base.name);
-> > +
-> > +	intel_dp->mst_reset_payload_table = true;
-> > +}
-> > +
-> > +static void payload_allocation_bug_wa(const struct intel_connector *connector,
-> > +				      struct intel_dp *intel_dp)
-> > +{
-> > +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> > +
-> > +	if (!intel_dp->mst_reset_payload_table)
-> > +		return;
-> > +
-> > +	drm_dbg(&i915->drm,
-> > +		"[CONNECTOR:%d:%s] Resetting payload table due to allocation bug\n",
-> > +		connector->base.base.id, connector->base.name);
-> > +
-> > +	drm_dp_mst_reset_payload_table(&intel_dp->mst_mgr);
-> > +	intel_dp->mst_reset_payload_table = false;
-> > +}
-> > +
-> >  static void intel_mst_post_disable_dp(struct intel_atomic_state *state,
-> >  				      struct intel_encoder *encoder,
-> >  				      const struct intel_crtc_state *old_crtc_state,
-> > @@ -594,10 +631,13 @@ static void intel_mst_post_disable_dp(struct intel_atomic_state *state,
-> >  
-> >  
-> >  	intel_mst->connector = NULL;
-> > -	if (last_mst_stream)
-> > +	if (last_mst_stream) {
-> >  		dig_port->base.post_disable(state, &dig_port->base,
-> >  						  old_crtc_state, NULL);
-> >  
-> > +		payload_allocation_bug_wa(connector, intel_dp);
-> > +	}
-> > +
-> >  	drm_dbg_kms(&dev_priv->drm, "active links %d\n",
-> >  		    intel_dp->active_mst_links);
-> >  }
-> > @@ -662,6 +702,8 @@ static void intel_mst_pre_enable_dp(struct intel_atomic_state *state,
-> >  		drm_err(&dev_priv->drm, "Failed to create MST payload for %s: %d\n",
-> >  			connector->base.name, ret);
-> >  
-> > +	detect_payload_allocation_bug(mst_state, connector, intel_dp);
-> > +
-> >  	/*
-> >  	 * Before Gen 12 this is not done as part of
-> >  	 * dig_port->base.pre_enable() and should be done here. For
-> 
-> -- 
-> Cheers,
->  Lyude Paul (she/her)
->  Software Engineer at Red Hat
-> 
