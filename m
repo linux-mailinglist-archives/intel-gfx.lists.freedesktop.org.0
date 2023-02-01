@@ -2,46 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E21F9686578
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Feb 2023 12:36:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2D146865BB
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Feb 2023 13:10:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8B5910E2C1;
-	Wed,  1 Feb 2023 11:36:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBE2A10E3FC;
+	Wed,  1 Feb 2023 12:10:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E65810E2C1;
- Wed,  1 Feb 2023 11:36:56 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A23A10E3FC
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Feb 2023 12:09:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675251416; x=1706787416;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=Qs4AFgD9CqQ4MZyD32jzjmRt16g3MWyCHCVafKrDiX0=;
- b=LrJB1Ao/W3+s4uZkPEbfPgJXob8M5oSkvRbvkhlzP3oaen2IbZRB6C8l
- 1taGcxoocI+7uRmcMgkVFAGgMuIjTDhXdPx4c635BBsEmQC9gZbHmXSxs
- Zt4HJro/eM4RoJDuNBsYC0+C11ih/rB8lpyKrwvu/QfwoEwPI7oO8BVrX
- xomzQm8Ax0EnwOP36o+8PWCSl6aiuXhuNOJh9V49MmrYFDpTnq3PeASVI
- j8TA+Wr5iROBVqat+cSVtPOl97zm02UMDsWVR9sDeeE069ZvG5foCpffj
- wRAmqbm4eIWMkH6UGGqbDWKT0fGtW4pRzxJ6VZOtVcjzhGLIkhxLfjw23 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10607"; a="355451580"
-X-IronPort-AV: E=Sophos;i="5.97,263,1669104000"; d="scan'208";a="355451580"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2023 03:36:56 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10607"; a="733528467"
-X-IronPort-AV: E=Sophos;i="5.97,263,1669104000"; d="scan'208";a="733528467"
-Received: from jazminsx-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.213.218.124])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2023 03:36:53 -0800
-Date: Wed, 1 Feb 2023 11:36:51 +0000
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <Y9pOsq7VKnq7rgnW@tursulin-desk>
+ t=1675253399; x=1706789399;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=N8hT4o/VhH++yDQ7gP8rMHqrKebPtujhbai7oMA50f0=;
+ b=lZE9Bg88mFkEIWYR2Mz2ME3McT9mn2q+5RKANp/ZiRMF/X9xH/Y64tBA
+ Sp+WciOAdzwPo10Q7Cb14QY90SNk5a/nqUMQ00gCzK4i+jjNRrSy2Mhrw
+ HO5SoN2Yfg7ECDKWJ9fHewRbzIIlNI0AKOavCXmi+4rqWw4RzVTogm/7q
+ WwNt18/HKbCJsw/NohveaK9rQJRStz2Bq8e0O8cVJlQcnIlzfi0yzBTND
+ 5+AEgRkPVlhbv+3gqNE4cWJCtDKHNVN/5yoJpw4qviILz7n92K0YtO9wh
+ HjSGEJ0vfeyZJuy0p2MA2qyNvQ5QBfiBcvgVShfdTEfdN2h9X0ocI1jVO Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10607"; a="307784131"
+X-IronPort-AV: E=Sophos;i="5.97,263,1669104000"; d="scan'208";a="307784131"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2023 04:09:58 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10607"; a="697230108"
+X-IronPort-AV: E=Sophos;i="5.97,263,1669104000"; d="scan'208";a="697230108"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
+ by orsmga001.jf.intel.com with SMTP; 01 Feb 2023 04:09:55 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 01 Feb 2023 14:09:54 +0200
+Date: Wed, 1 Feb 2023 14:09:54 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <Y9pWkvjdZUqre5Pk@intel.com>
+References: <20230131191542.1695398-1-lucas.demarchi@intel.com>
+ <20230131191542.1695398-2-lucas.demarchi@intel.com>
+ <878rhh3dvs.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-intel-gt-next
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <878rhh3dvs.fsf@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Move common mmio base out of
+ private macros
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,183 +63,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Daniel,
+On Wed, Feb 01, 2023 at 11:59:19AM +0200, Jani Nikula wrote:
+> On Tue, 31 Jan 2023, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> > Instead of using the common DISPLAY_MMIO_BASE(dev_priv) in all single
+> > macros, only use them in the macros that are to be used outside the
+> > header. This reduces the use of the implicit dev_priv, making it easier
+> > to remove it later.
+> >
+> > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/i915_reg.h | 73 ++++++++++++++++++---------------
+> >  1 file changed, 39 insertions(+), 34 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> > index 943db8ec63f8..1cde3bcb9c88 100644
+> > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > @@ -1182,9 +1182,9 @@
+> >  #define PM_VEBOX_CS_ERROR_INTERRUPT		(1 << 12) /* hsw+ */
+> >  #define PM_VEBOX_USER_INTERRUPT			(1 << 10) /* hsw+ */
+> >  
+> > -#define GT_PARITY_ERROR(dev_priv) \
+> > +#define GT_PARITY_ERROR(__i915) \
+> >  	(GT_RENDER_L3_PARITY_ERROR_INTERRUPT | \
+> > -	 (IS_HASWELL(dev_priv) ? GT_RENDER_L3_PARITY_ERROR_INTERRUPT_S1 : 0))
+> > +	 (IS_HASWELL(__i915) ? GT_RENDER_L3_PARITY_ERROR_INTERRUPT_S1 : 0))
+> 
+> Unrelated change.
+> 
+> >  
+> >  /* These are all the "old" interrupts */
+> >  #define ILK_BSD_USER_INTERRUPT				(1 << 5)
+> > @@ -1403,10 +1403,11 @@
+> >  /*
+> >   * Clock control & power management
+> >   */
+> > -#define _DPLL_A (DISPLAY_MMIO_BASE(dev_priv) + 0x6014)
+> > -#define _DPLL_B (DISPLAY_MMIO_BASE(dev_priv) + 0x6018)
+> > -#define _CHV_DPLL_C (DISPLAY_MMIO_BASE(dev_priv) + 0x6030)
+> > -#define DPLL(pipe) _MMIO_PIPE3((pipe), _DPLL_A, _DPLL_B, _CHV_DPLL_C)
+> > +#define _DPLL_A		0x6014
+> > +#define _DPLL_B		0x6018
+> > +#define _CHV_DPLL_C	0x6030
+> > +#define DPLL(pipe) _MMIO(DISPLAY_MMIO_BASE(dev_priv) + \
+> > +			 _PIPE3((pipe), _DPLL_A, _DPLL_B, _CHV_DPLL_C))
+> >  
+> >  #define VGA0	_MMIO(0x6000)
+> >  #define VGA1	_MMIO(0x6004)
+> > @@ -1502,10 +1503,11 @@
+> >  #define   SDVO_MULTIPLIER_SHIFT_HIRES		4
+> >  #define   SDVO_MULTIPLIER_SHIFT_VGA		0
+> >  
+> > -#define _DPLL_A_MD (DISPLAY_MMIO_BASE(dev_priv) + 0x601c)
+> > -#define _DPLL_B_MD (DISPLAY_MMIO_BASE(dev_priv) + 0x6020)
+> > -#define _CHV_DPLL_C_MD (DISPLAY_MMIO_BASE(dev_priv) + 0x603c)
+> > -#define DPLL_MD(pipe) _MMIO_PIPE3((pipe), _DPLL_A_MD, _DPLL_B_MD, _CHV_DPLL_C_MD)
+> > +#define _DPLL_A_MD				0x601c
+> > +#define _DPLL_B_MD				0x6020
+> > +#define _CHV_DPLL_C_MD				0x603c
+> > +#define DPLL_MD(pipe) _MMIO(DISPLAY_MMIO_BASE(dev_priv) + \
+> > +			    _PIPE3((pipe), _DPLL_A_MD, _DPLL_B_MD, _CHV_DPLL_C_MD))
+> >  
+> >  /*
+> >   * UDI pixel divider, controlling how many pixels are stuffed into a packet.
+> > @@ -3323,42 +3325,45 @@
+> >   * is 20 bytes in each direction, hence the 5 fixed
+> >   * data registers
+> >   */
+> > -#define _DPA_AUX_CH_CTL		(DISPLAY_MMIO_BASE(dev_priv) + 0x64010)
+> > -#define _DPA_AUX_CH_DATA1	(DISPLAY_MMIO_BASE(dev_priv) + 0x64014)
+> > -
+> > -#define _DPB_AUX_CH_CTL		(DISPLAY_MMIO_BASE(dev_priv) + 0x64110)
+> > -#define _DPB_AUX_CH_DATA1	(DISPLAY_MMIO_BASE(dev_priv) + 0x64114)
+> > -
+> > -#define DP_AUX_CH_CTL(aux_ch)	_MMIO_PORT(aux_ch, _DPA_AUX_CH_CTL, _DPB_AUX_CH_CTL)
+> > -#define DP_AUX_CH_DATA(aux_ch, i)	_MMIO(_PORT(aux_ch, _DPA_AUX_CH_DATA1, _DPB_AUX_CH_DATA1) + (i) * 4) /* 5 registers */
+> > +#define _DPA_AUX_CH_CTL		0x64010
+> > +#define _DPA_AUX_CH_DATA1	0x64014
+> > +#define _DPB_AUX_CH_CTL		0x64110
+> > +#define _DPB_AUX_CH_DATA1	0x64114
+> > +#define DP_AUX_CH_CTL(aux_ch)	_MMIO(DISPLAY_MMIO_BASE(dev_priv) + \
+> > +				      _PORT(aux_ch, _DPA_AUX_CH_CTL, _DPB_AUX_CH_CTL))
+> > +#define DP_AUX_CH_DATA(aux_ch, i)		\
+> > +	_MMIO(DISPLAY_MMIO_BASE(dev_priv) +	\
+> > +	      _PORT(aux_ch, _DPA_AUX_CH_DATA1, _DPB_AUX_CH_DATA1) + (i) * 4) /* 5 registers */
+> >  
+> >  #define _XELPDP_USBC1_AUX_CH_CTL	0x16F210
+> >  #define _XELPDP_USBC2_AUX_CH_CTL	0x16F410
+> >  #define _XELPDP_USBC3_AUX_CH_CTL	0x16F610
+> >  #define _XELPDP_USBC4_AUX_CH_CTL	0x16F810
+> >  
+> > -#define XELPDP_DP_AUX_CH_CTL(aux_ch)		_MMIO(_PICK(aux_ch, \
+> > -						       _DPA_AUX_CH_CTL, \
+> > -						       _DPB_AUX_CH_CTL, \
+> > -						       0, /* port/aux_ch C is non-existent */ \
+> > -						       _XELPDP_USBC1_AUX_CH_CTL, \
+> > -						       _XELPDP_USBC2_AUX_CH_CTL, \
+> > -						       _XELPDP_USBC3_AUX_CH_CTL, \
+> > -						       _XELPDP_USBC4_AUX_CH_CTL))
+> > +#define XELPDP_DP_AUX_CH_CTL(aux_ch)		_MMIO(DISPLAY_MMIO_BASE(dev_priv) + \
+> 
+> Note that only VLV and CHV have DISPLAY_MMIO_BASE() != 0.
+> 
+> This is an XELPDP specific macro. Just drop the DISPLAY_MMIO_BASE() part
+> altogether, and you've removed an implicit dev_priv. Yay.
+> 
+> This also makes me think we should probably add VLV/CHV specific
+> DP_AUX_CH_CTL and DP_AUX_CH_DATA macros that just add VLV_DISPLAY_BASE
+> directly, and use that to ditch the implicit dev_priv there too. This
+> approach doesn't work for everything, but the aux channel stuff is both
+> fairly limited use and already has if ladders to pick the
+> registers. Handling VLV/CHV separately is not a big deal.
+> 
+> (DPLL on the other hand seems much harder to deal that way.)
 
-Here goes the final pull request for 6.3.
+Most of the DPLL code should be have vlv/chv vs. rest specific
+codepaths. A quick scan says readout is perhaps the only exception.
 
-Aside a few fixes, the reset is split between refactoring of the
-workarounds code and correcting some workaround placement to correctly
-align for new platforms, and converting the GuC code to use dedicated
-logging macros, as was done for the whole of the GT in the previous pull.
-
-Some minor random future platform prep as well, and a back merge to fix
-a conflict between drm-intel-next and drm-intel-gt-next.
-
-Regards,
-
-Tvrtko
-
-drm-intel-gt-next-2023-02-01:
-Driver Changes:
-
-Fixes/improvements/new stuff:
-
-- Fix bcs default context on Meteorlake (Lucas De Marchi)
-- GAM registers don't need to be re-applied on engine resets (Matt Roper)
-- Correct implementation of Wa_18018781329 (Matt Roper)
-- Avoid potential vm use-after-free (Rob Clark)
-- GuC error capture fixes (John Harrison)
-- Fix potential bit_17 double-free (Rob Clark)
-- Don't complain about missing regs on MTL (John Harrison)
-
-Future platform enablement:
-
-- Convert PSS_MODE2 to multicast register (Gustavo Sousa)
-- Move/adjust register definitions related to Wa_22011450934 (Matt Roper)
-- Move LSC_CHICKEN_BIT* workarounds to correct function (Gustavo Sousa)
-- Document where to implement register workarounds (Gustavo Sousa)
-- Use uabi engines for the default engine map (Tvrtko Ursulin)
-- Flush all tiles on test exit (Tvrtko Ursulin)
-- Annotate a couple more workaround registers as MCR (Matt Roper)
-
-Driver refactors:
-
-- Add and use GuC oriented print macros (Michal Wajdeczko)
-
-Miscellaneous:
-
-- Fix intel_selftest_modify_policy argument types (Arnd Bergmann)
-
-Backmerges:
-
-Merge drm/drm-next into drm-intel-gt-next (for conflict resolution) (Tvrtko Ursulin)
-The following changes since commit 045e8d102f44ad75dca0b0ec9eede15ea89da673:
-
-  Merge tag 'drm-intel-gt-next-2023-01-18' of git://anongit.freedesktop.org/drm/drm-intel into drm-next (2023-01-24 16:20:43 +0100)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-gt-next-2023-02-01
-
-for you to fetch changes up to 003e11ed2ef4af01b808f0f193eaa5a32f32383b:
-
-  drm/i915/mtl: Wa_22011802037: don't complain about missing regs on MTL (2023-01-31 15:17:30 -0800)
-
-----------------------------------------------------------------
-Driver Changes:
-
-Fixes/improvements/new stuff:
-
-- Fix bcs default context on Meteorlake (Lucas De Marchi)
-- GAM registers don't need to be re-applied on engine resets (Matt Roper)
-- Correct implementation of Wa_18018781329 (Matt Roper)
-- Avoid potential vm use-after-free (Rob Clark)
-- GuC error capture fixes (John Harrison)
-- Fix potential bit_17 double-free (Rob Clark)
-- Don't complain about missing regs on MTL (John Harrison)
-
-Future platform enablement:
-
-- Convert PSS_MODE2 to multicast register (Gustavo Sousa)
-- Move/adjust register definitions related to Wa_22011450934 (Matt Roper)
-- Move LSC_CHICKEN_BIT* workarounds to correct function (Gustavo Sousa)
-- Document where to implement register workarounds (Gustavo Sousa)
-- Use uabi engines for the default engine map (Tvrtko Ursulin)
-- Flush all tiles on test exit (Tvrtko Ursulin)
-- Annotate a couple more workaround registers as MCR (Matt Roper)
-
-Driver refactors:
-
-- Add and use GuC oriented print macros (Michal Wajdeczko)
-
-Miscellaneous:
-
-- Fix intel_selftest_modify_policy argument types (Arnd Bergmann)
-
-Backmerges:
-
-Merge drm/drm-next into drm-intel-gt-next (for conflict resolution) (Tvrtko Ursulin)
-
-----------------------------------------------------------------
-Arnd Bergmann (1):
-      drm/i915/selftest: fix intel_selftest_modify_policy argument types
-
-Gustavo Sousa (3):
-      drm/i915/doc: Document where to implement register workarounds
-      drm/i915/gt: Move LSC_CHICKEN_BIT* workarounds to correct function
-      drm/i915/gt: Convert PSS_MODE2 to multicast register
-
-John Harrison (9):
-      drm/i915/guc: Fix locking when searching for a hung request
-      drm/i915: Fix request ref counting during error capture & debugfs dump
-      drm/i915: Fix up locking around dumping requests lists
-      drm/i915: Allow error capture without a request
-      drm/i915: Allow error capture of a pending request
-      drm/i915/guc: Look for a guilty context when an engine reset fails
-      drm/i915/guc: Add a debug print on GuC triggered reset
-      drm/i915/guc: Rename GuC register state capture node to be more obvious
-      drm/i915/mtl: Wa_22011802037: don't complain about missing regs on MTL
-
-Lucas De Marchi (1):
-      drm/i915/mtl: Fix bcs default context
-
-Matt Roper (4):
-      drm/i915: Move/adjust register definitions related to Wa_22011450934
-      drm/i915/xehp: GAM registers don't need to be re-applied on engine resets
-      drm/i915/mtl: Correct implementation of Wa_18018781329
-      drm/i915/xehp: Annotate a couple more workaround registers as MCR
-
-Michal Wajdeczko (8):
-      drm/i915/guc: Add GuC oriented print macros
-      drm/i915/guc: Update GuC messages in intel_guc.c
-      drm/i915/guc: Update GuC messages in intel_guc_ads.c
-      drm/i915/guc: Update GuC messages in intel_guc_ct.c
-      drm/i915/guc: Update GuC messages in intel_guc_fw.c
-      drm/i915/guc: Update GuC messages in intel_guc_log.c
-      drm/i915/guc: Update GuC messages in intel_guc_submission.c
-      drm/i915/guc: Update GT/GuC messages in intel_uc.c
-
-Rob Clark (2):
-      drm/i915: Avoid potential vm use-after-free
-      drm/i915: Fix potential bit_17 double-free
-
-Tvrtko Ursulin (3):
-      drm/i915: Use uabi engines for the default engine map
-      Merge drm/drm-next into drm-intel-gt-next
-      drm/i915/selftests: Flush all tiles on test exit
-
- drivers/gpu/drm/i915/gem/i915_gem_context.c        |  23 ++-
- drivers/gpu/drm/i915/gem/i915_gem_tiling.c         |   9 +-
- drivers/gpu/drm/i915/gt/intel_context.c            |   4 +-
- drivers/gpu/drm/i915/gt/intel_context.h            |   3 +-
- drivers/gpu/drm/i915/gt/intel_engine.h             |   4 +-
- drivers/gpu/drm/i915/gt/intel_engine_cs.c          |  79 +++++-----
- drivers/gpu/drm/i915/gt/intel_engine_regs.h        |   1 +
- .../gpu/drm/i915/gt/intel_execlists_submission.c   |  27 ++++
- .../gpu/drm/i915/gt/intel_execlists_submission.h   |   4 +
- drivers/gpu/drm/i915/gt/intel_gt_regs.h            |  17 +-
- drivers/gpu/drm/i915/gt/intel_lrc.c                |  43 +-----
- drivers/gpu/drm/i915/gt/intel_workarounds.c        | 172 +++++++++++++--------
- drivers/gpu/drm/i915/gt/uc/intel_guc.c             |  31 ++--
- drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c         |   8 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c     |   8 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c          |  23 +--
- drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c          |  17 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc_log.c         |  38 ++---
- drivers/gpu/drm/i915/gt/uc/intel_guc_print.h       |  48 ++++++
- drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c  |  96 +++++++-----
- drivers/gpu/drm/i915/gt/uc/intel_uc.c              |  80 +++++-----
- drivers/gpu/drm/i915/i915_drv.h                    |   4 +
- drivers/gpu/drm/i915/i915_gpu_error.c              |  92 +++++------
- drivers/gpu/drm/i915/i915_gpu_error.h              |   2 +-
- drivers/gpu/drm/i915/i915_reg.h                    |   4 -
- drivers/gpu/drm/i915/selftests/igt_flush_test.c    |  28 ++--
- .../drm/i915/selftests/intel_scheduler_helpers.c   |   3 +-
- 27 files changed, 491 insertions(+), 377 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_print.h
+-- 
+Ville Syrjälä
+Intel
