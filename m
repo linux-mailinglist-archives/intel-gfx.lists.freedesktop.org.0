@@ -2,32 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A42E5687F42
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 14:52:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE708687F85
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 15:05:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F084F10E1DD;
-	Thu,  2 Feb 2023 13:52:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA92C10E52B;
+	Thu,  2 Feb 2023 14:05:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id AA5EB10E1DD;
- Thu,  2 Feb 2023 13:52:37 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8F65C10E52B;
+ Thu,  2 Feb 2023 14:05:51 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9F27DAADD2;
- Thu,  2 Feb 2023 13:52:37 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5359623747075226344=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 86688AADD4;
+ Thu,  2 Feb 2023 14:05:51 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Date: Thu, 02 Feb 2023 13:52:37 -0000
-Message-ID: <167534595764.11114.14249115313422011512@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Thu, 02 Feb 2023 14:05:51 -0000
+Message-ID: <167534675150.11116.9810966811165617353@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230202114613.3177235-1-suraj.kandpal@intel.com>
-In-Reply-To: <20230202114613.3177235-1-suraj.kandpal@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRml4?=
- =?utf-8?q?_logic_to_get_slice=5Fheight_for_dp?=
+References: <cover.1675339447.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1675339447.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/dmc=3A_some_dmc_id_related_fixes_and_cleanups?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,123 +45,25 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5359623747075226344==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Fix logic to get slice_height for dp
-URL   : https://patchwork.freedesktop.org/series/113594/
-State : success
+Series: drm/i915/dmc: some dmc id related fixes and cleanups
+URL   : https://patchwork.freedesktop.org/series/113596/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_12683 -> Patchwork_113594v1
-====================================================
+Error: dim checkpatch failed
+20fa69323f49 drm/i915/dmc: add proper name to dmc id enum and use it
+b2de2d242648 drm/i915/dmc: add for_each_dmc_id() and use it
+-:18: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__dmc_id' - possible side-effects?
+#18: FILE: drivers/gpu/drm/i915/display/intel_dmc.c:252:
++#define for_each_dmc_id(__dmc_id) \
++	for ((__dmc_id) = DMC_FW_MAIN; (__dmc_id) < DMC_FW_MAX; (__dmc_id)++)
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113594v1/index.html
-
-Participating hosts (26 -> 25)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_113594v1 that come from known issues:
-
-### IGT changes ###
-
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
-  [i915#7102]: https://gitlab.freedesktop.org/drm/intel/issues/7102
+total: 0 errors, 0 warnings, 1 checks, 57 lines checked
+0fc5c95928a2 drm/i915/dmc: remove unnecessary dmc_id validity check
+4e42b93e1826 drm/i915/dmc: add is_valid_dmc_id() and use it
+a7f94ff438db drm/i915/dmc: check incoming dmc id validity
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_12683 -> Patchwork_113594v1
-
-  CI-20190529: 20190529
-  CI_DRM_12683: cbc540884f5894cb0e1c84a3822b80342e852b80 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7144: cda71bf809b981a646270963d6b1ccee4fd4643b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_113594v1: cbc540884f5894cb0e1c84a3822b80342e852b80 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-c75a21012e0e drm/i915/dp: Fix logic to fetch slice_height
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113594v1/index.html
-
---===============5359623747075226344==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Fix logic to get slice_height for dp</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/113594/">https://patchwork.freedesktop.org/series/113594/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113594v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113594v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12683 -&gt; Patchwork_113594v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113594v1/index.html</p>
-<h2>Participating hosts (26 -&gt; 25)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_113594v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12683 -&gt; Patchwork_113594v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12683: cbc540884f5894cb0e1c84a3822b80342e852b80 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7144: cda71bf809b981a646270963d6b1ccee4fd4643b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_113594v1: cbc540884f5894cb0e1c84a3822b80342e852b80 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>c75a21012e0e drm/i915/dp: Fix logic to fetch slice_height</p>
-
-</body>
-</html>
-
---===============5359623747075226344==--
