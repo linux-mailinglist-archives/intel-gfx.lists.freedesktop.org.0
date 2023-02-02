@@ -1,33 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE708687F85
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 15:05:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AE71687FA4
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 15:13:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA92C10E52B;
-	Thu,  2 Feb 2023 14:05:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 501EC10E517;
+	Thu,  2 Feb 2023 14:13:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8F65C10E52B;
- Thu,  2 Feb 2023 14:05:51 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 86688AADD4;
- Thu,  2 Feb 2023 14:05:51 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B79010E517;
+ Thu,  2 Feb 2023 14:13:25 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by sin.source.kernel.org (Postfix) with ESMTPS id 1C4F4CE2A97;
+ Thu,  2 Feb 2023 14:13:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF18AC433D2;
+ Thu,  2 Feb 2023 14:13:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1675347194;
+ bh=1pMG7Pa76jFEvorIxfR7GamBOmkilJdNM0nQDHmdpiA=;
+ h=From:To:Cc:Subject:Date:From;
+ b=QwVaovFY3zDMEMHDj2Y6qrtKovByOCCSkyPSUzLpi0+ijNdTtDrc+9N4l4EoE7Htx
+ NrI124W2PX4lWafSRbs+bd16YNbUChbB4X6IDMB4Fqn1AA+g825dXULjT2sWnwwg4Z
+ nhZ8UuN2nUjP1/EyqNDcD7Jd17jY0c90GtPqcoVM=
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Thu,  2 Feb 2023 15:13:09 +0100
+Message-Id: <20230202141309.2293834-1-gregkh@linuxfoundation.org>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Thu, 02 Feb 2023 14:05:51 -0000
-Message-ID: <167534675150.11116.9810966811165617353@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <cover.1675339447.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1675339447.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/dmc=3A_some_dmc_id_related_fixes_and_cleanups?=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1462;
+ i=gregkh@linuxfoundation.org; h=from:subject;
+ bh=1pMG7Pa76jFEvorIxfR7GamBOmkilJdNM0nQDHmdpiA=;
+ b=owGbwMvMwCRo6H6F97bub03G02pJDMm3j3zVNZ3sfIL/45+LPg9f+1bHb/XbsPY8L1s045Q+w2q3
+ rVJHO2JZGASZGGTFFFm+bOM5ur/ikKKXoe1pmDmsTCBDGLg4BWAi5mEM8/QfTqif/WPVbvUjEgJ6/j
+ /DVtx3Ps6wYN6dhy57F25M+vcydiaT/MRcM7398QA=
+X-Developer-Key: i=gregkh@linuxfoundation.org; a=openpgp;
+ fpr=F4B60CC5BF78C2214A313DCB3147D40DDB2DFB29
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] i915: fix memory leak with using
+ debugfs_lookup()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,30 +56,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gvt-dev@lists.freedesktop.org,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+When calling debugfs_lookup() the result must have dput() called on it,
+otherwise the memory will leak over time.  To make things simpler, just
+call debugfs_lookup_and_remove() instead which handles all of the logic
+at once.
 
-Series: drm/i915/dmc: some dmc id related fixes and cleanups
-URL   : https://patchwork.freedesktop.org/series/113596/
-State : warning
+Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: Zhi Wang <zhi.a.wang@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: intel-gvt-dev@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+---
+ drivers/gpu/drm/i915/gvt/kvmgt.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-== Summary ==
-
-Error: dim checkpatch failed
-20fa69323f49 drm/i915/dmc: add proper name to dmc id enum and use it
-b2de2d242648 drm/i915/dmc: add for_each_dmc_id() and use it
--:18: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__dmc_id' - possible side-effects?
-#18: FILE: drivers/gpu/drm/i915/display/intel_dmc.c:252:
-+#define for_each_dmc_id(__dmc_id) \
-+	for ((__dmc_id) = DMC_FW_MAIN; (__dmc_id) < DMC_FW_MAX; (__dmc_id)++)
-
-total: 0 errors, 0 warnings, 1 checks, 57 lines checked
-0fc5c95928a2 drm/i915/dmc: remove unnecessary dmc_id validity check
-4e42b93e1826 drm/i915/dmc: add is_valid_dmc_id() and use it
-a7f94ff438db drm/i915/dmc: check incoming dmc id validity
-
+diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
+index 8ae7039b3683..de675d799c7d 100644
+--- a/drivers/gpu/drm/i915/gvt/kvmgt.c
++++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
+@@ -699,7 +699,7 @@ static void intel_vgpu_close_device(struct vfio_device *vfio_dev)
+ 
+ 	clear_bit(INTEL_VGPU_STATUS_ATTACHED, vgpu->status);
+ 
+-	debugfs_remove(debugfs_lookup(KVMGT_DEBUGFS_FILENAME, vgpu->debugfs));
++	debugfs_lookup_and_remove(KVMGT_DEBUGFS_FILENAME, vgpu->debugfs);
+ 
+ 	kvm_page_track_unregister_notifier(vgpu->vfio_device.kvm,
+ 					   &vgpu->track_node);
+-- 
+2.39.1
 
