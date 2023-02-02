@@ -2,153 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC27D6881F3
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 16:26:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8197F6883A7
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 17:05:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C158310E1E1;
-	Thu,  2 Feb 2023 15:26:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3362310E1DC;
+	Thu,  2 Feb 2023 16:05:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8B3110E54F
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Feb 2023 15:26:34 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD53410E1DC;
+ Thu,  2 Feb 2023 16:05:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675351594; x=1706887594;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=UiyPP9SdR/8qjryXwZquVAokepZkFYe3dz1VjdbSoXo=;
- b=Uvcvtc1pYoXQWT0IBLrOFSq5+Gg3M3CayI4kCso8QPXf8NDgcG7aTu8M
- XnwcSdRy1CInMFkGoPp3rnBzB26lPCAawNgfn/B2V9tXBK8IodaCUV2JK
- W3Der7D1CNyh/FhtmhvSrVDKgto8n1YaybTaxAKCT2xsbxAFyxedwwu/g
- IVnRd0BvihmRINriCymttqAAJ3pagqdq1MSKLIvb0jNJYxqO8au0e3gi2
- futA2FWOLzpgekWW0RuqREpB/AUhaTFL1et6qoBtj0VBqYh1l3b4mRvWx
- vrncHn32WPwmuAuTjr7C0hMq8TcjfEhjJGaUdhpfMwlKYSz9RLxG3Dt12 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="355814600"
-X-IronPort-AV: E=Sophos;i="5.97,267,1669104000"; d="scan'208";a="355814600"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2023 07:26:33 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="665322668"
-X-IronPort-AV: E=Sophos;i="5.97,267,1669104000"; d="scan'208";a="665322668"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orsmga002.jf.intel.com with ESMTP; 02 Feb 2023 07:26:33 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Thu, 2 Feb 2023 07:26:33 -0800
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Thu, 2 Feb 2023 07:26:32 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Thu, 2 Feb 2023 07:26:32 -0800
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.108)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Thu, 2 Feb 2023 07:26:32 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ArDzJfZbI9ht8ddk89AdGc0mnboRp1hwJNfoaLVCvCq52qx8IgS49xkqrL1TGU9doWuJrIykgAnXxByZ3FVOHgXXg7sw6S7d3q+SsHbrLtTGAcqT90EjzNYT5ISId3RjPDmFbG28K14euTnRjNN9sCr0YDOvOuOmfTF3mW7HbxS4ZRoyxFFG5KMnZx+1iWEt7DJWY7uvZA2yQwdI0z6cdt/rhSruvRI6Kc2v6MhFsw1w3wJH9LvrOyuA5EuYKO+/2VQxciWQlDecdhlm5uDk4uMmF9A1YzEvw6wf3LrTbcViYhR38N94GHwullKABU4PGhYkSOkJibktzJPPrKOypA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UiyPP9SdR/8qjryXwZquVAokepZkFYe3dz1VjdbSoXo=;
- b=TNOpi5KbR7xCLlHrVwz4Rzdc0U4BFISFuo5qkPJd3wDPm3Crb3imVV8FMiLVVYE3W5b4ULRAydz9BI+8C0Y7vOpozXwwnvFiFtWbt/pvSU4LJyLYyrPEW4E/2mFOLpn21t4GA6kZh9hU7EbHa3obncUBrGmWkuIl6eqZUTNL7UO3rWPXdoKyXLFkl6rYA8yKuftHF1mQHoQ8pn29FtuqHjJiMkiDHX8XXsBssfR+U/nZSmdGYKCtcZK32fP5gksAc+ExcyGqmfYgciWCEguk86bTASSEpirSuHiHTCWynwc0JNGf0B8al5EX3zTJGINoQvIapkR5/nmcFkIzgMKRmw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from PH7PR11MB5981.namprd11.prod.outlook.com (2603:10b6:510:1e0::15)
- by PH0PR11MB7564.namprd11.prod.outlook.com (2603:10b6:510:288::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6064.27; Thu, 2 Feb
- 2023 15:26:31 +0000
-Received: from PH7PR11MB5981.namprd11.prod.outlook.com
- ([fe80::e470:7eba:a68a:78be]) by PH7PR11MB5981.namprd11.prod.outlook.com
- ([fe80::e470:7eba:a68a:78be%9]) with mapi id 15.20.6064.027; Thu, 2 Feb 2023
- 15:26:30 +0000
-From: "Manna, Animesh" <animesh.manna@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 04/13] drm/i915/dsb: Introduce
- intel_dsb_finish()
-Thread-Index: AQHZK1pN+cpSvZuhXkK0f5EViZzc0K673j9w
-Date: Thu, 2 Feb 2023 15:26:30 +0000
-Message-ID: <PH7PR11MB5981EA37B56C91A546EF1DA9F9D69@PH7PR11MB5981.namprd11.prod.outlook.com>
-References: <20230118163040.29808-1-ville.syrjala@linux.intel.com>
- <20230118163040.29808-5-ville.syrjala@linux.intel.com>
-In-Reply-To: <20230118163040.29808-5-ville.syrjala@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH7PR11MB5981:EE_|PH0PR11MB7564:EE_
-x-ms-office365-filtering-correlation-id: 42f987cf-b685-4480-d74d-08db0531dc2e
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 1oTIvTtlCgR2+r/n2/NwFYXhkxFzd+oZzG5iAyukw615YCFjglik6RlpDFPKeD4eaS2ZaMOZKr36ZJxT5YcT3Sar+FazzAau56prAxeNQFpAI4D7HHh8Px06VPyghsZdeczr/Rn6uMfUST21dHgNsUgTyTZuv7DZVz0MT4ECXg7hbYT7HZqAwlXlcwO/T+ZHi393vLTLvI2iidpQ0tRY4bd8vHskaGVFw/jUvI05Ktrybla8RuF/J3mQiLkUM/eEwOaXQJnkiRqotbHxzueswR0oyeWd4zhM+Hmq5dPFhUfu3PomScmIJX5qLHW8UrIPqW4U6xomWCRQiKg+DEteDMjS27P4RShahRyR5TZpFgRejP0OoWdTepA1+2HEJjjO5IxlDtzXnjoWI+oD0Ld/NMeXjvBcK0ycN39riFEgmxAts6uReyNj4Wzin4bUZSedAK5JZhNwbnzmQRo5otHcC6ZzFx4s6FAEPliGlAvS+eTL0FPF5xhaP8wSpXCazHe4Yc1uMja6OjCuW6NKL2eJobzBShq2Aoqcc7BZI1KQmtAoXSe810DNYVCTG2rAxUuv99qry72nCiUbl2ass8e//6AWuMP6qg2pZlN4Us2aBySW2Lr7hhsp7UR+/tNE3pTKi/k8FWMNunWUoTdTefgQNLTrnZ1fX8qsRyorG7YJBI+B6pSsCmyFZNMKLUKA1wShY4CS3fcgb7Ax4vz/CcNAGQ==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB5981.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(366004)(39860400002)(346002)(396003)(136003)(376002)(451199018)(2906002)(7696005)(76116006)(478600001)(33656002)(53546011)(6506007)(55236004)(26005)(186003)(9686003)(38070700005)(71200400001)(55016003)(8936002)(52536014)(86362001)(5660300002)(41300700001)(83380400001)(38100700002)(8676002)(66946007)(64756008)(66446008)(66476007)(82960400001)(66556008)(316002)(122000001)(110136005);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?NWlCcy9ZYU5QdDJCK0dGNkhLZ3IyVUh3ZFRna2pVQm55YldyKzZKUExNTzJj?=
- =?utf-8?B?WGQveko2UHpzU2IwWloxOXVuK09LaXplRHFrczFhb09yZFUzVjFHVG9JZXRh?=
- =?utf-8?B?NlhIRSthUVpyRFhaRnRVS29Jc0oza21HYUVDU1Z3VlJKUFhMaXBqUVZFYkVE?=
- =?utf-8?B?NzEwMnpZSi9vbDVnMlk0NVI2K3lhRGwzOGw1VEpwbzBjYkJSU2U1TTM1bEt5?=
- =?utf-8?B?SHFGdEZKT2FDdXNzNXJYYUVhY3dKVnRxUTVFUXpLRElEcXB6Y0IrdzBzS3lt?=
- =?utf-8?B?Y0hRbVJrKzh0REpkRThCNW9NYldmWnNKODladkUyV3dCcjhGSE5uRHcvdE96?=
- =?utf-8?B?aDB6RXliK0pKRDVuaENUR0VLRFFBTUZhRHprVXg0dkFiczRKNUQ0cGd6N1FZ?=
- =?utf-8?B?S0hmdzZsMmJMN2ozaE5mRjMyRWZ5bER0eHhzdUpBeTNWYWlSRlh3aDhMVFFZ?=
- =?utf-8?B?ekpxd0ZKVVJQKzdsWDNJdFlDc2k3alFmY1Mwc3NpbXBsZWtYaXR1dldldy92?=
- =?utf-8?B?QXVSemduUFcyVFdNRHV3RUw5ZERGZmYwb0NWc1BOMmJSU0dEQ0NOU3htZFBU?=
- =?utf-8?B?cHd5cmFsTERCbmpUa2FmWVJOU1BJT05ndlJOZGZsc2Y5MEhiYjdtM0ozLzZ4?=
- =?utf-8?B?THpmMEZ2RnlOeUFJZUMvM3VpM3I1aDF0OTBWejJjcExTNkFmaFpNODZsK3NZ?=
- =?utf-8?B?a0s0QTNoQUZ4OXpSTlUrZC9zbkZ0OWtVNFJhdmxGa1ZmYStJeURLNGY4elI0?=
- =?utf-8?B?RVBYZlpJMlY0RUNIY2dvQUkxWUpXVXFNYXBvRzJrNDJUaVFXU0F0dmxIMFZC?=
- =?utf-8?B?T2ZEMk5EWU5XMU1LS1ErcEQxVzFpUWdhblFXeE9WUGszOWM5Q0N2SzlIQkw4?=
- =?utf-8?B?bmttVEJGQW1uRkZrWlhRVkFiTG9yNEtzRnpYNDlKa1BxSXVSWHpKWXRKclc2?=
- =?utf-8?B?TUNxQTQ2ZnBLblFMcVFvcVZ0SlNrT2FkNStURFN6Ri9RaTVzZGlDL1hJUTdC?=
- =?utf-8?B?Njh3Qy8wL0cySGFqdjdlN1VRUytMcHlzckJZVlBjVmsxY05vYm5hTURVc2ZL?=
- =?utf-8?B?NWN1OXQ2enB4R2Znb2NNdkRWZlNOcDhzVDcwSUZHM3JCRGV6MlF5NlNzZ3Ba?=
- =?utf-8?B?bkZ5TVpUY1AydWljVUNpZWZSV1BsQkMvUTlCbXpKYjNEOXRLQy82QWw5bHE0?=
- =?utf-8?B?UnczOGxLcUd1U0kwZmxUMndqVFV6Nyt3M3RuRC9lSXFsZitVU0duRGJ1Nmpq?=
- =?utf-8?B?ZGxGZ2Yyd3dPWThraVZsZDRheHk3WkZqa25wcklaRTJTN3d3RXVMWjI2QWtN?=
- =?utf-8?B?NXIvdXczZG5VS0F5UFNPbUlkelJWTncxcitaemRGbGJuNm5JUmJWbkRnQXhq?=
- =?utf-8?B?WDhsamFQUG0ramhzSklFeGNPWUFOMXphTE83K0ExU0xHRXYzZVlFSkxWdFJo?=
- =?utf-8?B?eE9ibVRQSzlGbWNyencxaENWekFPdFlaQXg3S2tvaEVnK0pINkliSnNsZkhw?=
- =?utf-8?B?WHJna1U1aDJkVW9sRWtGSGJGR0Z1UzhJeStDMjdMM1RHQlp5WDFxYXZGU28r?=
- =?utf-8?B?YkkyZFpoeVZQRkwwOUhFZFdDelNLT1dhZU5wU1RkZGtUZGJ0bUdiRlY3SWsz?=
- =?utf-8?B?anpFMlU5OHRGZ05GSkk3ZWhxOWFlUDhmVk1yVWxBNzBJVkFXK0FjeW5QeWJG?=
- =?utf-8?B?SEhxaVBOZFB3YkErbmlMQ0JjRm5aSm9teDlSbjFNVlNscDBiSXVra2VZMGRt?=
- =?utf-8?B?NjVscFlMVkJGam9mcndMSHI5VlIzOWNQbjJlMnIwMlRUUFphZWJHNHRweW1L?=
- =?utf-8?B?dWhxWlhXbWt0Q202UnN2enlSRnNnSnpNSUdqRkxOQVVLR1QySThoYnhlMTIv?=
- =?utf-8?B?Wlk1RFdVTWdEU0NjZ0dtaFZVeXg5eU9EYmtzVDVzU3hKbWU5cjYrZjlvUjNC?=
- =?utf-8?B?NWtVemNMVTlyaHpGMERCd3N4U2ZjckJzS00rYXA1RnpPd1VmQVpmRk92aVJX?=
- =?utf-8?B?T2VOdEllTnZmZE1mRFRES1E3dG5vemFsSUZZZENZcXBBOUpjeTY1eFpXN2dP?=
- =?utf-8?B?dVB6cnhHQkRSY0JCN1hEaXVYR09NVE10SW9Cc055ODBXcjN5aUNVazBmTS9w?=
- =?utf-8?Q?rmKVvWOeD37s1ScXLfscvpAhe?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ t=1675353950; x=1706889950;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=XAgaZNx1eTlE/sCAgEQ4/PiRWrfQ/+8GRUTlFeg/DYI=;
+ b=Cv44xUa3sganp/2TP2ZDMdUHbzuC2kCOKAec5CzMrLQRLt8vs0BlLjA9
+ XzyK1bDZxFRlobb3/30ot5y8hjhsVzC7hgjWOfI0gJZLRa1Zr6pZdAzew
+ udOhYj0D0w37dtF4o8ewssuXJShz80JDigCAzzlu5IB7jn+KEzEJT5Gt+
+ M3N9KNluod46h4xdvH7sdeWJVkeX875ra1u8lRY2Pcfw5xDh4YSXP41Cx
+ 45eOBEs8DnMjobjbL+PGR+FTDfgu/LKv11K+AJQvNH+fj105x9/CTNofR
+ /795mymqnygWXyNIUI3T5r4XgfN+EWJSZsu9o9tKCFyRvTgH86vQAF28R Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10609"; a="390871068"
+X-IronPort-AV: E=Sophos;i="5.97,267,1669104000"; d="scan'208";a="390871068"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2023 08:04:57 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10609"; a="658779531"
+X-IronPort-AV: E=Sophos;i="5.97,267,1669104000"; d="scan'208";a="658779531"
+Received: from mrogowsx-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.249.35.12])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2023 08:04:53 -0800
+Date: Thu, 2 Feb 2023 17:04:50 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Message-ID: <Y9vfIlS1X/EYKFFm@ashyti-mobl2.lan>
+References: <20230118071609.17572-1-niranjana.vishwanathapura@intel.com>
+ <20230118071609.17572-13-niranjana.vishwanathapura@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB5981.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 42f987cf-b685-4480-d74d-08db0531dc2e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Feb 2023 15:26:30.8025 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: tYJXhH/aO4Lr+fP52ZonsQZPV20Fij1vt5+nnDkuyQPzJeD4RPc9UjhGQMeOLtYxwRw06Lo0L9AXEmVtAPXDIQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB7564
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 04/13] drm/i915/dsb: Introduce
- intel_dsb_finish()
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230118071609.17572-13-niranjana.vishwanathapura@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v10 12/23] drm/i915/vm_bind: Use common
+ execbuf functions in execbuf path
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,63 +59,721 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: paulo.r.zanoni@intel.com, jani.nikula@intel.com,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ thomas.hellstrom@intel.com, matthew.auld@intel.com, daniel.vetter@intel.com,
+ christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwtZ2Z4IDxpbnRl
-bC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBWaWxsZQ0K
-PiBTeXJqYWxhDQo+IFNlbnQ6IFdlZG5lc2RheSwgSmFudWFyeSAxOCwgMjAyMyAxMDowMSBQTQ0K
-PiBUbzogaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBTdWJqZWN0OiBbSW50ZWwt
-Z2Z4XSBbUEFUQ0ggMDQvMTNdIGRybS9pOTE1L2RzYjogSW50cm9kdWNlIGludGVsX2RzYl9maW5p
-c2goKQ0KPiANCj4gRnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4Lmlu
-dGVsLmNvbT4NCj4gDQo+IEludHJvZHVjZSBhIGZ1bmN0aW9uIHRvIGVtaXRzIHdoYXRldmVyIGNv
-bW1hbmRzIHdlIG5lZWQgYXQgdGhlIGVuZCBvZiB0aGUNCj4gRFNCIGNvbW1hbmQgYnVmZmVyLiBG
-b3IgdGhlIG1vbWVudCB3ZSBvbmx5IGRvIHRoZSB0YWlsIGNhY2hlbGluZQ0KPiBhbGlnbm1lbnQg
-dGhlcmUsIGJ1dCBldmVudHVhbGx5IHdlIG1pZ2h0IHdhbnQgZWcuIGVtaXQgYW4gaW50ZXJydXB0
-Lg0KPiANCj4gU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxp
-bnV4LmludGVsLmNvbT4NCg0KTEdUTS4NClJldmlld2VkLWJ5OiBBbmltZXNoIE1hbm5hIDxhbmlt
-ZXNoLm1hbm5hQGludGVsLmNvbT4NCg0KPiAtLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfY29sb3IuYyB8ICAxICsNCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfZHNiLmMgICB8IDExICsrKysrKystLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2RzYi5oICAgfCAgMSArDQo+ICAzIGZpbGVzIGNoYW5nZWQsIDkgaW5z
-ZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NvbG9yLmMNCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2NvbG9yLmMNCj4gaW5kZXggNWQ5OTkxMzQyOWI5Li42ZDZkMzAwZmEy
-ZGYgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY29s
-b3IuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NvbG9yLmMN
-Cj4gQEAgLTEyNTcsNiArMTI1Nyw3IEBAIHN0YXRpYyB2b2lkIGljbF9sb2FkX2x1dHMoY29uc3Qg
-c3RydWN0DQo+IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpDQo+ICAJfQ0KPiANCj4gIAlp
-ZiAoY3J0Y19zdGF0ZS0+ZHNiKSB7DQo+ICsJCWludGVsX2RzYl9maW5pc2goY3J0Y19zdGF0ZS0+
-ZHNiKTsNCj4gIAkJaW50ZWxfZHNiX2NvbW1pdChjcnRjX3N0YXRlLT5kc2IpOw0KPiAgCQlpbnRl
-bF9kc2Jfd2FpdChjcnRjX3N0YXRlLT5kc2IpOw0KPiAgCX0NCj4gZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHNiLmMNCj4gYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2RzYi5jDQo+IGluZGV4IDBiMmZhYTMzZjIwNC4uOWUyNWIxMzQ1
-OTI3IDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rz
-Yi5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHNiLmMNCj4g
-QEAgLTE5OSw3ICsxOTksNyBAQCB2b2lkIGludGVsX2RzYl9yZWdfd3JpdGUoc3RydWN0IGludGVs
-X2RzYiAqZHNiLA0KPiAgCX0NCj4gIH0NCj4gDQo+IC1zdGF0aWMgdTMyIGludGVsX2RzYl9hbGln
-bl90YWlsKHN0cnVjdCBpbnRlbF9kc2IgKmRzYikNCj4gK3N0YXRpYyB2b2lkIGludGVsX2RzYl9h
-bGlnbl90YWlsKHN0cnVjdCBpbnRlbF9kc2IgKmRzYikNCj4gIHsNCj4gIAl1MzIgYWxpZ25lZF90
-YWlsLCB0YWlsOw0KPiANCj4gQEAgLTIxMSw4ICsyMTEsMTEgQEAgc3RhdGljIHUzMiBpbnRlbF9k
-c2JfYWxpZ25fdGFpbChzdHJ1Y3QgaW50ZWxfZHNiICpkc2IpDQo+ICAJCSAgICAgICBhbGlnbmVk
-X3RhaWwgLSB0YWlsKTsNCj4gDQo+ICAJZHNiLT5mcmVlX3BvcyA9IGFsaWduZWRfdGFpbCAvIDQ7
-DQo+ICt9DQo+IA0KPiAtCXJldHVybiBhbGlnbmVkX3RhaWw7DQo+ICt2b2lkIGludGVsX2RzYl9m
-aW5pc2goc3RydWN0IGludGVsX2RzYiAqZHNiKSB7DQo+ICsJaW50ZWxfZHNiX2FsaWduX3RhaWwo
-ZHNiKTsNCj4gIH0NCj4gDQo+ICAvKioNCj4gQEAgLTIyOCw4ICsyMzEsOCBAQCB2b2lkIGludGVs
-X2RzYl9jb21taXQoc3RydWN0IGludGVsX2RzYiAqZHNiKQ0KPiAgCWVudW0gcGlwZSBwaXBlID0g
-Y3J0Yy0+cGlwZTsNCj4gIAl1MzIgdGFpbDsNCj4gDQo+IC0JdGFpbCA9IGludGVsX2RzYl9hbGln
-bl90YWlsKGRzYik7DQo+IC0JaWYgKHRhaWwgPT0gMCkNCj4gKwl0YWlsID0gZHNiLT5mcmVlX3Bv
-cyAqIDQ7DQo+ICsJaWYgKGRybV9XQVJOX09OKCZkZXZfcHJpdi0+ZHJtLCAhSVNfQUxJR05FRCh0
-YWlsLA0KPiBDQUNIRUxJTkVfQllURVMpKSkNCj4gIAkJcmV0dXJuOw0KPiANCj4gIAlpZiAoaXNf
-ZHNiX2J1c3koZGV2X3ByaXYsIHBpcGUsIGRzYi0+aWQpKSB7IGRpZmYgLS1naXQNCj4gYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RzYi5oDQo+IGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9kc2IuaA0KPiBpbmRleCA3OTk5MTk5YzI0NjQuLjZiMjI0OTll
-OGE1ZCAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
-c2IuaA0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RzYi5oDQo+
-IEBAIC0xNSw2ICsxNSw3IEBAIHN0cnVjdCBpbnRlbF9kc2I7DQo+IA0KPiAgc3RydWN0IGludGVs
-X2RzYiAqaW50ZWxfZHNiX3ByZXBhcmUoc3RydWN0IGludGVsX2NydGMgKmNydGMsDQo+ICAJCQkJ
-ICAgIHVuc2lnbmVkIGludCBtYXhfY21kcyk7DQo+ICt2b2lkIGludGVsX2RzYl9maW5pc2goc3Ry
-dWN0IGludGVsX2RzYiAqZHNiKTsNCj4gIHZvaWQgaW50ZWxfZHNiX2NsZWFudXAoc3RydWN0IGlu
-dGVsX2RzYiAqZHNiKTsgIHZvaWQNCj4gaW50ZWxfZHNiX3JlZ193cml0ZShzdHJ1Y3QgaW50ZWxf
-ZHNiICpkc2IsDQo+ICAJCQkgaTkxNV9yZWdfdCByZWcsIHUzMiB2YWwpOw0KPiAtLQ0KPiAyLjM4
-LjINCg0K
+Hi Niranjana,
+
+On Tue, Jan 17, 2023 at 11:15:58PM -0800, Niranjana Vishwanathapura wrote:
+> Update the execbuf path to use common execbuf functions to
+> reduce code duplication with the newer execbuf3 path.
+> 
+> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+
+Andi
+
+> ---
+>  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 513 ++----------------
+>  1 file changed, 39 insertions(+), 474 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> index 6a7f0227f65f..8b49543f3265 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -28,6 +28,7 @@
+>  #include "i915_file_private.h"
+>  #include "i915_gem_clflush.h"
+>  #include "i915_gem_context.h"
+> +#include "i915_gem_execbuffer_common.h"
+>  #include "i915_gem_evict.h"
+>  #include "i915_gem_ioctls.h"
+>  #include "i915_reg.h"
+> @@ -236,13 +237,6 @@ enum {
+>   * the batchbuffer in trusted mode, otherwise the ioctl is rejected.
+>   */
+>  
+> -struct eb_fence {
+> -	struct drm_syncobj *syncobj; /* Use with ptr_mask_bits() */
+> -	struct dma_fence *dma_fence;
+> -	u64 value;
+> -	struct dma_fence_chain *chain_fence;
+> -};
+> -
+>  struct i915_execbuffer {
+>  	struct drm_i915_private *i915; /** i915 backpointer */
+>  	struct drm_file *file; /** per-file lookup tables and limits */
+> @@ -2452,164 +2446,29 @@ static const enum intel_engine_id user_ring_map[] = {
+>  	[I915_EXEC_VEBOX]	= VECS0
+>  };
+>  
+> -static struct i915_request *eb_throttle(struct i915_execbuffer *eb, struct intel_context *ce)
+> -{
+> -	struct intel_ring *ring = ce->ring;
+> -	struct intel_timeline *tl = ce->timeline;
+> -	struct i915_request *rq;
+> -
+> -	/*
+> -	 * Completely unscientific finger-in-the-air estimates for suitable
+> -	 * maximum user request size (to avoid blocking) and then backoff.
+> -	 */
+> -	if (intel_ring_update_space(ring) >= PAGE_SIZE)
+> -		return NULL;
+> -
+> -	/*
+> -	 * Find a request that after waiting upon, there will be at least half
+> -	 * the ring available. The hysteresis allows us to compete for the
+> -	 * shared ring and should mean that we sleep less often prior to
+> -	 * claiming our resources, but not so long that the ring completely
+> -	 * drains before we can submit our next request.
+> -	 */
+> -	list_for_each_entry(rq, &tl->requests, link) {
+> -		if (rq->ring != ring)
+> -			continue;
+> -
+> -		if (__intel_ring_space(rq->postfix,
+> -				       ring->emit, ring->size) > ring->size / 2)
+> -			break;
+> -	}
+> -	if (&rq->link == &tl->requests)
+> -		return NULL; /* weird, we will check again later for real */
+> -
+> -	return i915_request_get(rq);
+> -}
+> -
+> -static int eb_pin_timeline(struct i915_execbuffer *eb, struct intel_context *ce,
+> -			   bool throttle)
+> -{
+> -	struct intel_timeline *tl;
+> -	struct i915_request *rq = NULL;
+> -
+> -	/*
+> -	 * Take a local wakeref for preparing to dispatch the execbuf as
+> -	 * we expect to access the hardware fairly frequently in the
+> -	 * process, and require the engine to be kept awake between accesses.
+> -	 * Upon dispatch, we acquire another prolonged wakeref that we hold
+> -	 * until the timeline is idle, which in turn releases the wakeref
+> -	 * taken on the engine, and the parent device.
+> -	 */
+> -	tl = intel_context_timeline_lock(ce);
+> -	if (IS_ERR(tl))
+> -		return PTR_ERR(tl);
+> -
+> -	intel_context_enter(ce);
+> -	if (throttle)
+> -		rq = eb_throttle(eb, ce);
+> -	intel_context_timeline_unlock(tl);
+> -
+> -	if (rq) {
+> -		bool nonblock = eb->file->filp->f_flags & O_NONBLOCK;
+> -		long timeout = nonblock ? 0 : MAX_SCHEDULE_TIMEOUT;
+> -
+> -		if (i915_request_wait(rq, I915_WAIT_INTERRUPTIBLE,
+> -				      timeout) < 0) {
+> -			i915_request_put(rq);
+> -
+> -			/*
+> -			 * Error path, cannot use intel_context_timeline_lock as
+> -			 * that is user interruptable and this clean up step
+> -			 * must be done.
+> -			 */
+> -			mutex_lock(&ce->timeline->mutex);
+> -			intel_context_exit(ce);
+> -			mutex_unlock(&ce->timeline->mutex);
+> -
+> -			if (nonblock)
+> -				return -EWOULDBLOCK;
+> -			else
+> -				return -EINTR;
+> -		}
+> -		i915_request_put(rq);
+> -	}
+> -
+> -	return 0;
+> -}
+> -
+>  static int eb_pin_engine(struct i915_execbuffer *eb, bool throttle)
+>  {
+> -	struct intel_context *ce = eb->context, *child;
+>  	int err;
+> -	int i = 0, j = 0;
+>  
+>  	GEM_BUG_ON(eb->args->flags & __EXEC_ENGINE_PINNED);
+>  
+> -	if (unlikely(intel_context_is_banned(ce)))
+> -		return -EIO;
+> -
+> -	/*
+> -	 * Pinning the contexts may generate requests in order to acquire
+> -	 * GGTT space, so do this first before we reserve a seqno for
+> -	 * ourselves.
+> -	 */
+> -	err = intel_context_pin_ww(ce, &eb->ww);
+> +	err = i915_eb_pin_engine(eb->context, &eb->ww, throttle,
+> +				 eb->file->filp->f_flags & O_NONBLOCK);
+>  	if (err)
+>  		return err;
+> -	for_each_child(ce, child) {
+> -		err = intel_context_pin_ww(child, &eb->ww);
+> -		GEM_BUG_ON(err);	/* perma-pinned should incr a counter */
+> -	}
+> -
+> -	for_each_child(ce, child) {
+> -		err = eb_pin_timeline(eb, child, throttle);
+> -		if (err)
+> -			goto unwind;
+> -		++i;
+> -	}
+> -	err = eb_pin_timeline(eb, ce, throttle);
+> -	if (err)
+> -		goto unwind;
+>  
+>  	eb->args->flags |= __EXEC_ENGINE_PINNED;
+>  	return 0;
+> -
+> -unwind:
+> -	for_each_child(ce, child) {
+> -		if (j++ < i) {
+> -			mutex_lock(&child->timeline->mutex);
+> -			intel_context_exit(child);
+> -			mutex_unlock(&child->timeline->mutex);
+> -		}
+> -	}
+> -	for_each_child(ce, child)
+> -		intel_context_unpin(child);
+> -	intel_context_unpin(ce);
+> -	return err;
+>  }
+>  
+>  static void eb_unpin_engine(struct i915_execbuffer *eb)
+>  {
+> -	struct intel_context *ce = eb->context, *child;
+> -
+>  	if (!(eb->args->flags & __EXEC_ENGINE_PINNED))
+>  		return;
+>  
+>  	eb->args->flags &= ~__EXEC_ENGINE_PINNED;
+>  
+> -	for_each_child(ce, child) {
+> -		mutex_lock(&child->timeline->mutex);
+> -		intel_context_exit(child);
+> -		mutex_unlock(&child->timeline->mutex);
+> -
+> -		intel_context_unpin(child);
+> -	}
+> -
+> -	mutex_lock(&ce->timeline->mutex);
+> -	intel_context_exit(ce);
+> -	mutex_unlock(&ce->timeline->mutex);
+> -
+> -	intel_context_unpin(ce);
+> +	i915_eb_unpin_engine(eb->context);
+>  }
+>  
+>  static unsigned int
+> @@ -2658,7 +2517,7 @@ eb_select_legacy_ring(struct i915_execbuffer *eb)
+>  static int
+>  eb_select_engine(struct i915_execbuffer *eb)
+>  {
+> -	struct intel_context *ce, *child;
+> +	struct intel_context *ce;
+>  	unsigned int idx;
+>  	int err;
+>  
+> @@ -2683,36 +2542,10 @@ eb_select_engine(struct i915_execbuffer *eb)
+>  	}
+>  	eb->num_batches = ce->parallel.number_children + 1;
+>  
+> -	for_each_child(ce, child)
+> -		intel_context_get(child);
+> -	intel_gt_pm_get(ce->engine->gt);
+> -
+> -	if (!test_bit(CONTEXT_ALLOC_BIT, &ce->flags)) {
+> -		err = intel_context_alloc_state(ce);
+> -		if (err)
+> -			goto err;
+> -	}
+> -	for_each_child(ce, child) {
+> -		if (!test_bit(CONTEXT_ALLOC_BIT, &child->flags)) {
+> -			err = intel_context_alloc_state(child);
+> -			if (err)
+> -				goto err;
+> -		}
+> -	}
+> -
+> -	/*
+> -	 * ABI: Before userspace accesses the GPU (e.g. execbuffer), report
+> -	 * EIO if the GPU is already wedged.
+> -	 */
+> -	err = intel_gt_terminally_wedged(ce->engine->gt);
+> +	err = i915_eb_select_engine(ce);
+>  	if (err)
+>  		goto err;
+>  
+> -	if (!i915_vm_tryget(ce->vm)) {
+> -		err = -ENOENT;
+> -		goto err;
+> -	}
+> -
+>  	eb->context = ce;
+>  	eb->gt = ce->engine->gt;
+>  
+> @@ -2721,12 +2554,9 @@ eb_select_engine(struct i915_execbuffer *eb)
+>  	 * during ww handling. The pool is destroyed when last pm reference
+>  	 * is dropped, which breaks our -EDEADLK handling.
+>  	 */
+> -	return err;
+> +	return 0;
+>  
+>  err:
+> -	intel_gt_pm_put(ce->engine->gt);
+> -	for_each_child(ce, child)
+> -		intel_context_put(child);
+>  	intel_context_put(ce);
+>  	return err;
+>  }
+> @@ -2734,24 +2564,7 @@ eb_select_engine(struct i915_execbuffer *eb)
+>  static void
+>  eb_put_engine(struct i915_execbuffer *eb)
+>  {
+> -	struct intel_context *child;
+> -
+> -	i915_vm_put(eb->context->vm);
+> -	intel_gt_pm_put(eb->gt);
+> -	for_each_child(eb->context, child)
+> -		intel_context_put(child);
+> -	intel_context_put(eb->context);
+> -}
+> -
+> -static void
+> -__free_fence_array(struct eb_fence *fences, unsigned int n)
+> -{
+> -	while (n--) {
+> -		drm_syncobj_put(ptr_mask_bits(fences[n].syncobj, 2));
+> -		dma_fence_put(fences[n].dma_fence);
+> -		dma_fence_chain_free(fences[n].chain_fence);
+> -	}
+> -	kvfree(fences);
+> +	i915_eb_put_engine(eb->context);
+>  }
+>  
+>  static int
+> @@ -2762,7 +2575,6 @@ add_timeline_fence_array(struct i915_execbuffer *eb,
+>  	u64 __user *user_values;
+>  	struct eb_fence *f;
+>  	u64 nfences;
+> -	int err = 0;
+>  
+>  	nfences = timeline_fences->fence_count;
+>  	if (!nfences)
+> @@ -2797,9 +2609,9 @@ add_timeline_fence_array(struct i915_execbuffer *eb,
+>  
+>  	while (nfences--) {
+>  		struct drm_i915_gem_exec_fence user_fence;
+> -		struct drm_syncobj *syncobj;
+> -		struct dma_fence *fence = NULL;
+> +		bool wait, signal;
+>  		u64 point;
+> +		int ret;
+>  
+>  		if (__copy_from_user(&user_fence,
+>  				     user_fences++,
+> @@ -2812,75 +2624,16 @@ add_timeline_fence_array(struct i915_execbuffer *eb,
+>  		if (__get_user(point, user_values++))
+>  			return -EFAULT;
+>  
+> -		syncobj = drm_syncobj_find(eb->file, user_fence.handle);
+> -		if (!syncobj) {
+> -			drm_dbg(&eb->i915->drm,
+> -				"Invalid syncobj handle provided\n");
+> -			return -ENOENT;
+> -		}
+> -
+> -		fence = drm_syncobj_fence_get(syncobj);
+> -
+> -		if (!fence && user_fence.flags &&
+> -		    !(user_fence.flags & I915_EXEC_FENCE_SIGNAL)) {
+> -			drm_dbg(&eb->i915->drm,
+> -				"Syncobj handle has no fence\n");
+> -			drm_syncobj_put(syncobj);
+> -			return -EINVAL;
+> -		}
+> -
+> -		if (fence)
+> -			err = dma_fence_chain_find_seqno(&fence, point);
+> -
+> -		if (err && !(user_fence.flags & I915_EXEC_FENCE_SIGNAL)) {
+> -			drm_dbg(&eb->i915->drm,
+> -				"Syncobj handle missing requested point %llu\n",
+> -				point);
+> -			dma_fence_put(fence);
+> -			drm_syncobj_put(syncobj);
+> -			return err;
+> -		}
+> -
+> -		/*
+> -		 * A point might have been signaled already and
+> -		 * garbage collected from the timeline. In this case
+> -		 * just ignore the point and carry on.
+> -		 */
+> -		if (!fence && !(user_fence.flags & I915_EXEC_FENCE_SIGNAL)) {
+> -			drm_syncobj_put(syncobj);
+> +		wait = user_fence.flags & I915_EXEC_FENCE_WAIT;
+> +		signal = user_fence.flags & I915_EXEC_FENCE_SIGNAL;
+> +		ret = i915_eb_add_timeline_fence(eb->i915, eb->file,
+> +						 user_fence.handle, point,
+> +						 f, wait, signal);
+> +		if (ret < 0)
+> +			return ret;
+> +		else if (!ret)
+>  			continue;
+> -		}
+> -
+> -		/*
+> -		 * For timeline syncobjs we need to preallocate chains for
+> -		 * later signaling.
+> -		 */
+> -		if (point != 0 && user_fence.flags & I915_EXEC_FENCE_SIGNAL) {
+> -			/*
+> -			 * Waiting and signaling the same point (when point !=
+> -			 * 0) would break the timeline.
+> -			 */
+> -			if (user_fence.flags & I915_EXEC_FENCE_WAIT) {
+> -				drm_dbg(&eb->i915->drm,
+> -					"Trying to wait & signal the same timeline point.\n");
+> -				dma_fence_put(fence);
+> -				drm_syncobj_put(syncobj);
+> -				return -EINVAL;
+> -			}
+> -
+> -			f->chain_fence = dma_fence_chain_alloc();
+> -			if (!f->chain_fence) {
+> -				drm_syncobj_put(syncobj);
+> -				dma_fence_put(fence);
+> -				return -ENOMEM;
+> -			}
+> -		} else {
+> -			f->chain_fence = NULL;
+> -		}
+>  
+> -		f->syncobj = ptr_pack_bits(syncobj, user_fence.flags, 2);
+> -		f->dma_fence = fence;
+> -		f->value = point;
+>  		f++;
+>  		eb->num_fences++;
+>  	}
+> @@ -2962,60 +2715,6 @@ static int add_fence_array(struct i915_execbuffer *eb)
+>  	return 0;
+>  }
+>  
+> -static void put_fence_array(struct eb_fence *fences, int num_fences)
+> -{
+> -	if (fences)
+> -		__free_fence_array(fences, num_fences);
+> -}
+> -
+> -static int
+> -await_fence_array(struct i915_execbuffer *eb,
+> -		  struct i915_request *rq)
+> -{
+> -	unsigned int n;
+> -	int err;
+> -
+> -	for (n = 0; n < eb->num_fences; n++) {
+> -		if (!eb->fences[n].dma_fence)
+> -			continue;
+> -
+> -		err = i915_request_await_dma_fence(rq, eb->fences[n].dma_fence);
+> -		if (err < 0)
+> -			return err;
+> -	}
+> -
+> -	return 0;
+> -}
+> -
+> -static void signal_fence_array(const struct i915_execbuffer *eb,
+> -			       struct dma_fence * const fence)
+> -{
+> -	unsigned int n;
+> -
+> -	for (n = 0; n < eb->num_fences; n++) {
+> -		struct drm_syncobj *syncobj;
+> -		unsigned int flags;
+> -
+> -		syncobj = ptr_unpack_bits(eb->fences[n].syncobj, &flags, 2);
+> -		if (!(flags & I915_EXEC_FENCE_SIGNAL))
+> -			continue;
+> -
+> -		if (eb->fences[n].chain_fence) {
+> -			drm_syncobj_add_point(syncobj,
+> -					      eb->fences[n].chain_fence,
+> -					      fence,
+> -					      eb->fences[n].value);
+> -			/*
+> -			 * The chain's ownership is transferred to the
+> -			 * timeline.
+> -			 */
+> -			eb->fences[n].chain_fence = NULL;
+> -		} else {
+> -			drm_syncobj_replace_fence(syncobj, fence);
+> -		}
+> -	}
+> -}
+> -
+>  static int
+>  parse_timeline_fences(struct i915_user_extension __user *ext, void *data)
+>  {
+> @@ -3028,80 +2727,6 @@ parse_timeline_fences(struct i915_user_extension __user *ext, void *data)
+>  	return add_timeline_fence_array(eb, &timeline_fences);
+>  }
+>  
+> -static void retire_requests(struct intel_timeline *tl, struct i915_request *end)
+> -{
+> -	struct i915_request *rq, *rn;
+> -
+> -	list_for_each_entry_safe(rq, rn, &tl->requests, link)
+> -		if (rq == end || !i915_request_retire(rq))
+> -			break;
+> -}
+> -
+> -static int eb_request_add(struct i915_execbuffer *eb, struct i915_request *rq,
+> -			  int err, bool last_parallel)
+> -{
+> -	struct intel_timeline * const tl = i915_request_timeline(rq);
+> -	struct i915_sched_attr attr = {};
+> -	struct i915_request *prev;
+> -
+> -	lockdep_assert_held(&tl->mutex);
+> -	lockdep_unpin_lock(&tl->mutex, rq->cookie);
+> -
+> -	trace_i915_request_add(rq);
+> -
+> -	prev = __i915_request_commit(rq);
+> -
+> -	/* Check that the context wasn't destroyed before submission */
+> -	if (likely(!intel_context_is_closed(eb->context))) {
+> -		attr = eb->gem_context->sched;
+> -	} else {
+> -		/* Serialise with context_close via the add_to_timeline */
+> -		i915_request_set_error_once(rq, -ENOENT);
+> -		__i915_request_skip(rq);
+> -		err = -ENOENT; /* override any transient errors */
+> -	}
+> -
+> -	if (intel_context_is_parallel(eb->context)) {
+> -		if (err) {
+> -			__i915_request_skip(rq);
+> -			set_bit(I915_FENCE_FLAG_SKIP_PARALLEL,
+> -				&rq->fence.flags);
+> -		}
+> -		if (last_parallel)
+> -			set_bit(I915_FENCE_FLAG_SUBMIT_PARALLEL,
+> -				&rq->fence.flags);
+> -	}
+> -
+> -	__i915_request_queue(rq, &attr);
+> -
+> -	/* Try to clean up the client's timeline after submitting the request */
+> -	if (prev)
+> -		retire_requests(tl, prev);
+> -
+> -	mutex_unlock(&tl->mutex);
+> -
+> -	return err;
+> -}
+> -
+> -static int eb_requests_add(struct i915_execbuffer *eb, int err)
+> -{
+> -	int i;
+> -
+> -	/*
+> -	 * We iterate in reverse order of creation to release timeline mutexes in
+> -	 * same order.
+> -	 */
+> -	for_each_batch_add_order(eb, i) {
+> -		struct i915_request *rq = eb->requests[i];
+> -
+> -		if (!rq)
+> -			continue;
+> -		err |= eb_request_add(eb, rq, err, i == 0);
+> -	}
+> -
+> -	return err;
+> -}
+> -
+>  static const i915_user_extension_fn execbuf_extensions[] = {
+>  	[DRM_I915_GEM_EXECBUFFER_EXT_TIMELINE_FENCES] = parse_timeline_fences,
+>  };
+> @@ -3128,73 +2753,26 @@ parse_execbuf2_extensions(struct drm_i915_gem_execbuffer2 *args,
+>  				    eb);
+>  }
+>  
+> -static void eb_requests_get(struct i915_execbuffer *eb)
+> -{
+> -	unsigned int i;
+> -
+> -	for_each_batch_create_order(eb, i) {
+> -		if (!eb->requests[i])
+> -			break;
+> -
+> -		i915_request_get(eb->requests[i]);
+> -	}
+> -}
+> -
+> -static void eb_requests_put(struct i915_execbuffer *eb)
+> -{
+> -	unsigned int i;
+> -
+> -	for_each_batch_create_order(eb, i) {
+> -		if (!eb->requests[i])
+> -			break;
+> -
+> -		i915_request_put(eb->requests[i]);
+> -	}
+> -}
+> -
+>  static struct sync_file *
+>  eb_composite_fence_create(struct i915_execbuffer *eb, int out_fence_fd)
+>  {
+>  	struct sync_file *out_fence = NULL;
+> -	struct dma_fence_array *fence_array;
+> -	struct dma_fence **fences;
+> -	unsigned int i;
+> -
+> -	GEM_BUG_ON(!intel_context_is_parent(eb->context));
+> +	struct dma_fence *fence;
+>  
+> -	fences = kmalloc_array(eb->num_batches, sizeof(*fences), GFP_KERNEL);
+> -	if (!fences)
+> -		return ERR_PTR(-ENOMEM);
+> -
+> -	for_each_batch_create_order(eb, i) {
+> -		fences[i] = &eb->requests[i]->fence;
+> -		__set_bit(I915_FENCE_FLAG_COMPOSITE,
+> -			  &eb->requests[i]->fence.flags);
+> -	}
+> -
+> -	fence_array = dma_fence_array_create(eb->num_batches,
+> -					     fences,
+> -					     eb->context->parallel.fence_context,
+> -					     eb->context->parallel.seqno++,
+> -					     false);
+> -	if (!fence_array) {
+> -		kfree(fences);
+> -		return ERR_PTR(-ENOMEM);
+> -	}
+> -
+> -	/* Move ownership to the dma_fence_array created above */
+> -	for_each_batch_create_order(eb, i)
+> -		dma_fence_get(fences[i]);
+> +	fence = i915_eb_composite_fence_create(eb->requests, eb->num_batches,
+> +					       eb->context);
+> +	if (IS_ERR(fence))
+> +		return ERR_CAST(fence);
+>  
+>  	if (out_fence_fd != -1) {
+> -		out_fence = sync_file_create(&fence_array->base);
+> +		out_fence = sync_file_create(fence);
+>  		/* sync_file now owns fence_arry, drop creation ref */
+> -		dma_fence_put(&fence_array->base);
+> +		dma_fence_put(fence);
+>  		if (!out_fence)
+>  			return ERR_PTR(-ENOMEM);
+>  	}
+>  
+> -	eb->composite_fence = &fence_array->base;
+> +	eb->composite_fence = fence;
+>  
+>  	return out_fence;
+>  }
+> @@ -3226,7 +2804,7 @@ eb_fences_add(struct i915_execbuffer *eb, struct i915_request *rq,
+>  	}
+>  
+>  	if (eb->fences) {
+> -		err = await_fence_array(eb, rq);
+> +		err = i915_eb_await_fence_array(eb->fences, eb->num_fences, rq);
+>  		if (err)
+>  			return ERR_PTR(err);
+>  	}
+> @@ -3244,23 +2822,6 @@ eb_fences_add(struct i915_execbuffer *eb, struct i915_request *rq,
+>  	return out_fence;
+>  }
+>  
+> -static struct intel_context *
+> -eb_find_context(struct i915_execbuffer *eb, unsigned int context_number)
+> -{
+> -	struct intel_context *child;
+> -
+> -	if (likely(context_number == 0))
+> -		return eb->context;
+> -
+> -	for_each_child(eb->context, child)
+> -		if (!--context_number)
+> -			return child;
+> -
+> -	GEM_BUG_ON("Context not found");
+> -
+> -	return NULL;
+> -}
+> -
+>  static struct sync_file *
+>  eb_requests_create(struct i915_execbuffer *eb, struct dma_fence *in_fence,
+>  		   int out_fence_fd)
+> @@ -3270,7 +2831,9 @@ eb_requests_create(struct i915_execbuffer *eb, struct dma_fence *in_fence,
+>  
+>  	for_each_batch_create_order(eb, i) {
+>  		/* Allocate a request for this batch buffer nice and early. */
+> -		eb->requests[i] = i915_request_create(eb_find_context(eb, i));
+> +		eb->requests[i] =
+> +			i915_request_create(i915_eb_find_context(eb->context,
+> +								 i));
+>  		if (IS_ERR(eb->requests[i])) {
+>  			out_fence = ERR_CAST(eb->requests[i]);
+>  			eb->requests[i] = NULL;
+> @@ -3450,13 +3013,15 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+>  	err = eb_submit(&eb);
+>  
+>  err_request:
+> -	eb_requests_get(&eb);
+> -	err = eb_requests_add(&eb, err);
+> +	i915_eb_requests_get(eb.requests, eb.num_batches);
+> +	err = i915_eb_requests_add(eb.requests, eb.num_batches, eb.context,
+> +				   eb.gem_context->sched, err);
+>  
+>  	if (eb.fences)
+> -		signal_fence_array(&eb, eb.composite_fence ?
+> -				   eb.composite_fence :
+> -				   &eb.requests[0]->fence);
+> +		i915_eb_signal_fence_array(eb.fences, eb.num_fences,
+> +					   eb.composite_fence ?
+> +					   eb.composite_fence :
+> +					   &eb.requests[0]->fence);
+>  
+>  	if (out_fence) {
+>  		if (err == 0) {
+> @@ -3479,7 +3044,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+>  	if (!out_fence && eb.composite_fence)
+>  		dma_fence_put(eb.composite_fence);
+>  
+> -	eb_requests_put(&eb);
+> +	i915_eb_requests_put(eb.requests, eb.num_batches);
+>  
+>  err_vma:
+>  	eb_release_vmas(&eb, true);
+> @@ -3500,7 +3065,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+>  err_in_fence:
+>  	dma_fence_put(in_fence);
+>  err_ext:
+> -	put_fence_array(eb.fences, eb.num_fences);
+> +	i915_eb_put_fence_array(eb.fences, eb.num_fences);
+>  	return err;
+>  }
+>  
+> -- 
+> 2.21.0.rc0.32.g243a4c7e27
