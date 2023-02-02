@@ -2,56 +2,147 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FA416876AE
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 08:44:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 200D16876D6
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 08:56:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7ED7010E469;
-	Thu,  2 Feb 2023 07:43:53 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A2DF10E03A;
+	Thu,  2 Feb 2023 07:56:31 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D640610E47D;
- Thu,  2 Feb 2023 07:43:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E3D710E03A
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Feb 2023 07:56:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675323829; x=1706859829;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=AdwxkFx7q8DAk8HaQMDGEQmLMFwHPr7PtGHjdfRHXKE=;
- b=QdTewjXBl/479B3OSDZv+9XZfTJ2w887DqIgrpF3Fqi630u5sVLSbi+u
- ncWMvkC4vJP4z8g8ny02+N0kPaD8tttdf0P/gaVLVnzV8TbABtoYLghoU
- /gt9KNgtYmgekZRKSIyKymlkZgWOvwjJqbYwn5By02JRUwacRymPorucH
- t20/j7AGIWJ6CltNE4nB/NfrEdpSpxMa1OwP3qp+qY1sI+dOwTewGdR6k
- +BRGayvBYUpAnQnc7259efb5xEZkCLQ3ZCZ5/m5Sgz8SkB7hEk71jXUAK
- P+kqOYELPREqul8ytGEJeCiGccuG0TV90dK7LDhuCgyGqtSBqHx+JpEtf Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="328395482"
-X-IronPort-AV: E=Sophos;i="5.97,266,1669104000"; d="scan'208";a="328395482"
+ t=1675324590; x=1706860590;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=fQHuVjqmt4LMnywZv0hh2b2r/GR+4RPA5tUzcKSRJDI=;
+ b=Fd1XW5PbM0Iqpn1FPP9KheHK+WX7amRiGb/4NfQ+fUCX68XUSka2RNiP
+ TnXHfdSDKB7D58ovzHDvbPuSSk5yYb5gZ8B2IXwTLX9EBe0sUIGRxWq/N
+ BEKxGiH9mFv5/Njcu7mDlBDXZGD12ey5/mahn7Jf3sT6uPxI4FxYMdPZt
+ hPKAYRHJ3JnDloZAgBDPjhPYHlV3x1VpFwtFRZvb5ZVp//Qk6wnuXIqoA
+ quP8ODAtKtOFHSQ6S0El8IP9oyYDIBHL2EI39lqHGCbaqximuCoEHwS+Y
+ PdD1XWAEnapk60QlL/+vc+Xb9pn+22VhL4haKjzWKk/drVOMPZKhDYFjF Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="328398279"
+X-IronPort-AV: E=Sophos;i="5.97,266,1669104000"; d="scan'208";a="328398279"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2023 23:43:48 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="697593269"
-X-IronPort-AV: E=Sophos;i="5.97,266,1669104000"; d="scan'208";a="697593269"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.4.221])
- ([10.213.4.221])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2023 23:43:46 -0800
-Message-ID: <f575e344-e915-c85f-49cd-28fa426bcfd6@intel.com>
-Date: Thu, 2 Feb 2023 08:43:43 +0100
+ 01 Feb 2023 23:56:05 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="697599163"
+X-IronPort-AV: E=Sophos;i="5.97,266,1669104000"; d="scan'208";a="697599163"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga001.jf.intel.com with ESMTP; 01 Feb 2023 23:55:50 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Wed, 1 Feb 2023 23:55:49 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Wed, 1 Feb 2023 23:55:49 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Wed, 1 Feb 2023 23:55:49 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.103)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Wed, 1 Feb 2023 23:55:49 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FlE8tKg7LZTisuxcQ9jNljkVshQc3l4aV5M7iRF8R4gYzU0Unvog52DN+U3kARBvj35jgGiMaxRIT5gqER+u4m+q0/VrizzXTRxDM2Gt3oLC+Cl4/RsFdOmPyFrZt5/HxZqNkdCuxihO4lfWQCX8iJNvqaisqlkziMyK9dq52NL7gHLTmrYbTTil3+eNz2jMJoAEB265JSOeEG1nZuVkAmxA0QaUK6WyhByqZxKKBbatRVqGsvW0OPgwcn8EfZZ/gyN0qcn62bJAvh04kkMrBM+7PZOiLW/IxhUjx//mjWZFAp3kOSjRekREzg1cSWidnA4wyQ6zaZ03lqwqEwpf7A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jpWLpHthOZYPeiDVSFyAGnZ7Ethy1NlTPPybiUPcFDo=;
+ b=hmdbSufk0Qd2XR6OQroNffNUC2FHoahXP5LWGDKlVLoGico3Z/Vth5ac1+1Cmq3W6yZ5Hlm8pv5XNb0DVjR5n2pKlqHQEzwMreOZdhrhSoypZGT4pYqc0KGArpLBUgyRFIz2r7ltZ23sQpIMk25gcgpOA5A2q5kHQVK91eukb2P5WKXrpdcqVm6PwTTmQVZEQRjQ5727Def6RjzUOJpU6yrh1Q2fWOnh4Ziy+9VsBEJoSZlmPUQ4TGhA3i2d3HLKUNR9egwYmkG1PDXqOPXoKyWYbm/PrkXvjP+Lc9B2uqokKHlN2B6szq23xpgvCgj4qubMkfJMjT+MmX1vwctvDg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6278.namprd11.prod.outlook.com (2603:10b6:208:3c2::8)
+ by SJ0PR11MB4943.namprd11.prod.outlook.com (2603:10b6:a03:2ad::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6064.28; Thu, 2 Feb
+ 2023 07:55:42 +0000
+Received: from MN0PR11MB6278.namprd11.prod.outlook.com
+ ([fe80::cbc8:47f3:a8c0:f974]) by MN0PR11MB6278.namprd11.prod.outlook.com
+ ([fe80::cbc8:47f3:a8c0:f974%2]) with mapi id 15.20.6043.038; Thu, 2 Feb 2023
+ 07:55:42 +0000
+Date: Wed, 1 Feb 2023 23:55:39 -0800
+From: Harish Chegondi <harish.chegondi@intel.com>
+To: Matt Atwood <matthew.s.atwood@intel.com>
+Message-ID: <Y9trfuArLcU/ySIg@intel.com>
+References: <20230201232801.123684-1-matthew.s.atwood@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <20230201232801.123684-1-matthew.s.atwood@intel.com>
+X-ClientProxiedBy: SJ0PR05CA0163.namprd05.prod.outlook.com
+ (2603:10b6:a03:339::18) To MN0PR11MB6278.namprd11.prod.outlook.com
+ (2603:10b6:208:3c2::8)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.6.1
-Content-Language: en-US
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20230201165146.4056691-1-tvrtko.ursulin@linux.intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20230201165146.4056691-1-tvrtko.ursulin@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: Consolidate TLB invalidation
- flow
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6278:EE_|SJ0PR11MB4943:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2fd82c91-6f21-48b1-15f8-08db04f2e1d3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: UkJf4tbVMuhb5TyJW1V5vHFcbA7t+VfUpyv//naXvLu0TOxVpoc03NgAjEzxVtWuzJOUs/qdlqJIC5tQ86UkRQ1uPzDuatwQlpjmiNzvwdHz3IgDmDU4Buf0TqizMeXBk7yCuDlf5/dfuzJ7kFcssX4xur5f4ZAQiQcwfkjj8CNvZKAmAUmC9CPdy/HeACrb5G0197LCony33D3coPYtIKDFMq8kEIOgHwgoUHb/USw5SAslWAQAsbltx09xCDNLhZuP40ZdZ9/twXQvtC3xqphrtylDma2AIYCbdcKqCT+a8eTaiIbqQ+V77ZyX9CdLZ2DHhmiC8YfZcQ4PtqkU82lM6/O5DoKjG5z1ooEsc6I3wkMEqaKvYKhBfrtI91mVULjdhAxjRXEZqBzZG/9HQHQWVPqrsTA+iaiCE7UjN9YzsaCW5pQPZ5Gbp4ddiutEVX4HdFPZp0J6ZPiP8Lypg2Uf1gwJVxm9mBU/nEEcOilnuXfF2L5kXaa4koVg6UhTKB26AnOxnqOFMugDICeYChZNn51sUvr/U4JhI+7WYtdmmchdRmcvxqaBcih/pPJH6h71iVzAFcXjHL+enGXg+5A6m8Am8yZdBnDXJRq5G0gaffOE46MdHSdjRzYRLQiKpMB+HrLIc9YX69MXMxZi3g==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6278.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(396003)(39860400002)(376002)(366004)(346002)(136003)(451199018)(66946007)(66476007)(66556008)(6486002)(4326008)(8676002)(38100700002)(86362001)(36756003)(6666004)(83380400001)(186003)(26005)(6512007)(6506007)(2616005)(41300700001)(8936002)(6862004)(5660300002)(6636002)(37006003)(316002)(82960400001)(2906002)(44832011)(478600001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eUVEMm5uTUhSQWNDS0JYamxtRTZpL3FYaVpwTHloSEFSTGFWb20yZ0ZzSk9G?=
+ =?utf-8?B?WGtkejhRbUFXdUdWd3I1Z1dpNzFJVEU0L29lQWJkT2NZdWRCVFdhaDUrZ00r?=
+ =?utf-8?B?VXFPTUtMclVwNGNWWHBwVXBqNGZZM21lNW9abW8vZFkraG14T3dlMGlsdGND?=
+ =?utf-8?B?eFNZZm9tMkFLTHNlNm5RSGI4aFdlU0RSSEVpQnRWYVJpVlUvdmZGWjRrR1ll?=
+ =?utf-8?B?Sms1MS9iRTAwYjREbHkzRjZHQzJUblFSbTZYT2pUY053WkR0Tzh3S25hZ0FM?=
+ =?utf-8?B?UHM5K0kxUG42QWFjQm1YNWFyZnV6WVovUEo0TUc1dG5remxFOHV5WmRVTC9a?=
+ =?utf-8?B?YVF4Y1J6WVpGTlJsR0U4OFlheCtnT3R4c2xHTy9LUXNjUEwzR0QvNGVXMStJ?=
+ =?utf-8?B?MUNVbmRnNC9iUVZ1cHdjN29CUzk3RVpUdXJmYWtyS1NjTUJWcFNZMXFKdWRM?=
+ =?utf-8?B?M2s0dHFnbmVyTkI1WFJrSE1NdXhpNDlSMFZNQmsyNm54cGlCTTYxS2hrNVZO?=
+ =?utf-8?B?d2F1RFBERmFaYzV4eGFVSkRRWEtSNmtDaUtjOHdpa0JZWWYzNy9SeUYxQnFl?=
+ =?utf-8?B?N3htQUQzWm1qekFpVlJTYWtUcWpxK1pHdFRWUk5YV2xaSWJBMkVTVDdJWWli?=
+ =?utf-8?B?Sk0yT0JwSG10WkxOeVgwTTMvU0R5T3h1K0NYYjVUN0JqSTFBMHpaekI4UDR5?=
+ =?utf-8?B?enQzbTcxcWtGNm1BTFlsSjQ3R2pWdUwxWWUwcTJ6YWh1cmlDWmRrTmVjaEsr?=
+ =?utf-8?B?T21nRzQxTTNEWlV5c3V6YXEzVnU4Snk3MlpnVExPRXlOd3N0Wi9ibjRRb0ox?=
+ =?utf-8?B?RTZubGJYT1J1czJGNjAvYmk0S1plS3ZlWStoMzVmODRBeit4eVpyZGFTalRk?=
+ =?utf-8?B?NkZZYnZSWjVhMlVScUdhc2ZSNmdwQjM1d1FqdkxkU0hSZXFnL2tyR2NUWHVS?=
+ =?utf-8?B?OGEyTC9yb2FySlJtMjkrZDlBWDFncWJzWDdkNllXZjBQYVBCMlhqZjNxQkJG?=
+ =?utf-8?B?Y0Evdko4OE8vQjNMbm1LdWkxL1NPWVhhS3JDTlBMOGtDbFl1OFBmZjB0NU9O?=
+ =?utf-8?B?OStEZVRJa0svYVozejJHMTRpMHVsV29yT29HL05xVkNobEwyWUg1dUZOTzM0?=
+ =?utf-8?B?STBJMnVLZlNYRWtJdzV5MWxLVGFxc3R6ZlFDRTIwd1Z6Lzg3VFIyRmVjUHRF?=
+ =?utf-8?B?WS9vMTRUVTl2T2w2U2VIUkQ2UXJKdUJsSUNsK1hoZWZSNnN4OUNTOVRESGor?=
+ =?utf-8?B?VFZ1eWgzYW5LSkRDOEo1ajN0anJnUUFBdW5YZXdJMTRDL01MOE5XM3cwSGJ0?=
+ =?utf-8?B?T1VSWGNRRFY3Q3BaOEZYQ0djamVkR3lpU2R2K2FESUdoOTc2UXc3R3pUNXk3?=
+ =?utf-8?B?YjVITVRlQVJHRHVJSjJ3MWR3UjBTU1NDb0g1Vnh5ZzYxd0R1VUJsaDcrdVpX?=
+ =?utf-8?B?UDJ2ZHVoKzF4TzlOeTdoUGNPOHI1NWhJRmwraVJmZEVFSS91WVlla29ON1ly?=
+ =?utf-8?B?OHVjOW1JU1RhVGRLdVh1anhtbktTWCtGZ0dabVZHUmNNZGkxS0JoTXJGWU5o?=
+ =?utf-8?B?anVYMUlBVHRQcDUxU28raWJib1lveTV3Tis3YUxVMy9taEU2Ym5JSXdhM3pC?=
+ =?utf-8?B?a09oY1kybTBENjJTeldiQ3dXSHBOOTZ0OGZMODM5aStCVm5FMjh0aTVJajVD?=
+ =?utf-8?B?Q2hlUnFjaDZONFA1Z1ZwSG9YbGxVSzV4VWtLZG5iSm9paVVPWXl4emJld0Ir?=
+ =?utf-8?B?ZVEzNzRiWTdObE04UzZqcGhheGNLUGJlYWlYYmg1ekpVNm40OFBzOFgyTDJR?=
+ =?utf-8?B?d3ZiVzZXL3RZOFRab0xJU0JKSWJXQkZPZmNXNjRjYkJvdS8zRTU1NHByTDRV?=
+ =?utf-8?B?LzQvaGoya2ZuZllIUXh4WDBobm9YOThnN1A3cmdJeW9ZS3p3cUlKSmFCcHdF?=
+ =?utf-8?B?WmhoWDdDeFVqQ1ZGeWJzUm5DYVhSbXVPd1ExY2ZHb200NHZGWGU1ZDFIeWdK?=
+ =?utf-8?B?bUZyTTdjdWpvVXAwQk54REl5aFFJaWl6TkdZYm9uSkN3RUxCdVVxall5UVg5?=
+ =?utf-8?B?TGV4UEFOZy9hZkVaMEdNWnd5SEx5eFJqWUFQR1RhdXliYkpLMVpoTFVsbmtM?=
+ =?utf-8?B?R3RjNFhUUXVsTDVTZkp2b0h0RmI0Nk5XN0E5aHdzdjVrRDNDbmlEeHBtaXpw?=
+ =?utf-8?B?Rnc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2fd82c91-6f21-48b1-15f8-08db04f2e1d3
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6278.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Feb 2023 07:55:42.2079 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: XB8K0ySA1A5CyhR7jM6rpww+X/Pi2cc8zpn8k2mkPB8CF7SLE16/6XaMHpQhBe9134pZq9uSAA7H26BurnfR2UPEwDOcC62UcNc56R3eRng=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4943
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix memory leaks in scatterlist
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,390 +155,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 01.02.2023 17:51, Tvrtko Ursulin wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+On Wed, Feb 01, 2023 at 03:28:01PM -0800, Matt Atwood wrote:
+> This patch fixes memory leaks on error escapes in i915_scatterlist.c
 > 
-> As the logic for selecting the register and corresponsing values grew, the
-> code become a bit unsightly. Consolidate by storing the required values at
-> engine init time in the engine itself, and by doing so minimise the amount
-> of invariant platform and engine checks during each and every TLB
-> invalidation.
-> 
-> v2:
->   * Fail engine probe if TLB invlidations registers are unknown.
-> 
-> v3:
->   * Rebase.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com> # v1
+> Fixes: c3bfba9a2225 ("drm/i915: Check for integer truncation on scatterlist creation")
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+Reviewed-by: Harish Chegondi <harish.chegondi@intel.com>
 > ---
->   drivers/gpu/drm/i915/gt/intel_engine_cs.c    |  96 +++++++++++++
->   drivers/gpu/drm/i915/gt/intel_engine_types.h |  15 ++
->   drivers/gpu/drm/i915/gt/intel_gt.c           | 138 +++----------------
->   3 files changed, 133 insertions(+), 116 deletions(-)
+>  drivers/gpu/drm/i915/i915_scatterlist.c | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> index d4e29da74612..e430945743ec 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> @@ -9,6 +9,7 @@
->   
->   #include "gem/i915_gem_context.h"
->   #include "gem/i915_gem_internal.h"
-> +#include "gt/intel_gt_print.h"
->   #include "gt/intel_gt_regs.h"
->   
->   #include "i915_cmd_parser.h"
-> @@ -1143,12 +1144,107 @@ static int init_status_page(struct intel_engine_cs *engine)
->   	return ret;
->   }
->   
-> +static int intel_engine_init_tlb_invalidation(struct intel_engine_cs *engine)
-> +{
-> +	static const union intel_engine_tlb_inv_reg gen8_regs[] = {
-> +		[RENDER_CLASS].reg		= GEN8_RTCR,
-> +		[VIDEO_DECODE_CLASS].reg	= GEN8_M1TCR, /* , GEN8_M2TCR */
-> +		[VIDEO_ENHANCEMENT_CLASS].reg	= GEN8_VTCR,
-> +		[COPY_ENGINE_CLASS].reg		= GEN8_BTCR,
-> +	};
-> +	static const union intel_engine_tlb_inv_reg gen12_regs[] = {
-> +		[RENDER_CLASS].reg		= GEN12_GFX_TLB_INV_CR,
-> +		[VIDEO_DECODE_CLASS].reg	= GEN12_VD_TLB_INV_CR,
-> +		[VIDEO_ENHANCEMENT_CLASS].reg	= GEN12_VE_TLB_INV_CR,
-> +		[COPY_ENGINE_CLASS].reg		= GEN12_BLT_TLB_INV_CR,
-> +		[COMPUTE_CLASS].reg		= GEN12_COMPCTX_TLB_INV_CR,
-> +	};
-> +	static const union intel_engine_tlb_inv_reg xehp_regs[] = {
-> +		[RENDER_CLASS].mcr_reg		  = XEHP_GFX_TLB_INV_CR,
-> +		[VIDEO_DECODE_CLASS].mcr_reg	  = XEHP_VD_TLB_INV_CR,
-> +		[VIDEO_ENHANCEMENT_CLASS].mcr_reg = XEHP_VE_TLB_INV_CR,
-> +		[COPY_ENGINE_CLASS].mcr_reg	  = XEHP_BLT_TLB_INV_CR,
-> +		[COMPUTE_CLASS].mcr_reg		  = XEHP_COMPCTX_TLB_INV_CR,
-> +	};
-> +	struct drm_i915_private *i915 = engine->i915;
-> +	const union intel_engine_tlb_inv_reg *regs;
-> +	union intel_engine_tlb_inv_reg reg;
-> +	unsigned int class = engine->class;
-> +	unsigned int num = 0;
-> +	u32 val;
-> +
-> +	/*
-> +	 * New platforms should not be added with catch-all-newer (>=)
-> +	 * condition so that any later platform added triggers the below warning
-> +	 * and in turn mandates a human cross-check of whether the invalidation
-> +	 * flows have compatible semantics.
-> +	 *
-> +	 * For instance with the 11.00 -> 12.00 transition three out of five
-> +	 * respective engine registers were moved to masked type. Then after the
-> +	 * 12.00 -> 12.50 transition multi cast handling is required too.
-> +	 */
-> +
-> +	if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 50) ||
-> +	    GRAPHICS_VER_FULL(i915) == IP_VER(12, 55)) {
-> +		regs = xehp_regs;
-> +		num = ARRAY_SIZE(xehp_regs);
-> +	} else if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 0) ||
-> +		   GRAPHICS_VER_FULL(i915) == IP_VER(12, 10)) {
-> +		regs = gen12_regs;
-> +		num = ARRAY_SIZE(gen12_regs);
-> +	} else if (GRAPHICS_VER(i915) >= 8 && GRAPHICS_VER(i915) <= 11) {
-> +		regs = gen8_regs;
-> +		num = ARRAY_SIZE(gen8_regs);
-> +	} else if (GRAPHICS_VER(i915) < 8) {
-> +		return 0;
+> diff --git a/drivers/gpu/drm/i915/i915_scatterlist.c b/drivers/gpu/drm/i915/i915_scatterlist.c
+> index 756289e43dff6..7c7a86921b1c7 100644
+> --- a/drivers/gpu/drm/i915/i915_scatterlist.c
+> +++ b/drivers/gpu/drm/i915/i915_scatterlist.c
+> @@ -98,8 +98,10 @@ struct i915_refct_sgt *i915_rsgt_from_mm_node(const struct drm_mm_node *node,
+>  	st = &rsgt->table;
+>  	/* restricted by sg_alloc_table */
+>  	if (WARN_ON(overflows_type(DIV_ROUND_UP_ULL(node->size, segment_pages),
+> -				   unsigned int)))
+> +				   unsigned int))) {
+> +		i915_refct_sgt_put(rsgt);
+>  		return ERR_PTR(-E2BIG);
 > +	}
-> +
-> +	if (gt_WARN_ONCE(engine->gt, !num,
-> +			 "Platform does not implement TLB invalidation!"))
-> +		return -ENODEV;
-> +
-> +	if (gt_WARN_ON_ONCE(engine->gt,
-> +			     class >= num ||
-> +			     (!regs[class].reg.reg &&
-> +			      !regs[class].mcr_reg.reg)))
-> +		return -ERANGE;
-> +
-> +	reg = regs[class];
-> +
-> +	if (GRAPHICS_VER(i915) == 8 && class == VIDEO_DECODE_CLASS) {
-
-As selftest pointed out it should cover also gen 9-11.
-Btw maybe it is worth to convert this pseudo array indexing to direct 
-assignment:
-if ((GRAPHICS_VER(i915) <= 11 && class == VIDEO_DECODE_CLASS && 
-engine->instance == 1) {
-	reg.reg = GEN8_M2TCR;
-	val = 0;
-}
-
-Regards
-Andrzej
-
-> +		reg.reg.reg += 4 * engine->instance; /* GEN8_M2TCR */
-> +		val = 0;
-> +	} else {
-> +		val = engine->instance;
+>  
+>  	if (sg_alloc_table(st, DIV_ROUND_UP_ULL(node->size, segment_pages),
+>  			   GFP_KERNEL)) {
+> @@ -183,8 +185,10 @@ struct i915_refct_sgt *i915_rsgt_from_buddy_resource(struct ttm_resource *res,
+>  	i915_refct_sgt_init(rsgt, size);
+>  	st = &rsgt->table;
+>  	/* restricted by sg_alloc_table */
+> -	if (WARN_ON(overflows_type(PFN_UP(res->size), unsigned int)))
+> +	if (WARN_ON(overflows_type(PFN_UP(res->size), unsigned int))) {
+> +		i915_refct_sgt_put(rsgt);
+>  		return ERR_PTR(-E2BIG);
 > +	}
-> +
-> +	val = BIT(val);
-> +
-> +	engine->tlb_inv.mcr = regs == xehp_regs;
-> +	engine->tlb_inv.reg = reg;
-> +	engine->tlb_inv.done = val;
-> +
-> +	if (GRAPHICS_VER(i915) >= 12 &&
-> +	    (engine->class == VIDEO_DECODE_CLASS ||
-> +	     engine->class == VIDEO_ENHANCEMENT_CLASS ||
-> +	     engine->class == COMPUTE_CLASS))
-> +		engine->tlb_inv.request = _MASKED_BIT_ENABLE(val);
-> +	else
-> +		engine->tlb_inv.request = val;
-> +
-> +	return 0;
-> +}
-> +
->   static int engine_setup_common(struct intel_engine_cs *engine)
->   {
->   	int err;
->   
->   	init_llist_head(&engine->barrier_tasks);
->   
-> +	err = intel_engine_init_tlb_invalidation(engine);
-> +	if (err)
-> +		return err;
-> +
->   	err = init_status_page(engine);
->   	if (err)
->   		return err;
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> index 4fd54fb8810f..8c661fe89314 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> @@ -341,6 +341,19 @@ struct intel_engine_guc_stats {
->   	u64 start_gt_clk;
->   };
->   
-> +union intel_engine_tlb_inv_reg {
-> +	i915_reg_t	reg;
-> +	i915_mcr_reg_t	mcr_reg;
-> +};
-> +
-> +struct intel_engine_tlb_inv
-> +{
-> +	bool mcr;
-> +	union intel_engine_tlb_inv_reg reg;
-> +	u32 request;
-> +	u32 done;
-> +};
-> +
->   struct intel_engine_cs {
->   	struct drm_i915_private *i915;
->   	struct intel_gt *gt;
-> @@ -372,6 +385,8 @@ struct intel_engine_cs {
->   	u32 context_size;
->   	u32 mmio_base;
->   
-> +	struct intel_engine_tlb_inv tlb_inv;
-> +
->   	/*
->   	 * Some w/a require forcewake to be held (which prevents RC6) while
->   	 * a particular engine is active. If so, we set fw_domain to which
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-> index 001a7ec5b861..f7f271708fc7 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-> @@ -982,35 +982,6 @@ void intel_gt_info_print(const struct intel_gt_info *info,
->   	intel_sseu_dump(&info->sseu, p);
->   }
->   
-> -struct reg_and_bit {
-> -	union {
-> -		i915_reg_t reg;
-> -		i915_mcr_reg_t mcr_reg;
-> -	};
-> -	u32 bit;
-> -};
-> -
-> -static struct reg_and_bit
-> -get_reg_and_bit(const struct intel_engine_cs *engine, const bool gen8,
-> -		const i915_reg_t *regs, const unsigned int num)
-> -{
-> -	const unsigned int class = engine->class;
-> -	struct reg_and_bit rb = { };
-> -
-> -	if (gt_WARN_ON_ONCE(engine->gt, class >= num || !regs[class].reg))
-> -		return rb;
-> -
-> -	rb.reg = regs[class];
-> -	if (gen8 && class == VIDEO_DECODE_CLASS)
-> -		rb.reg.reg += 4 * engine->instance; /* GEN8_M2TCR */
-> -	else
-> -		rb.bit = engine->instance;
-> -
-> -	rb.bit = BIT(rb.bit);
-> -
-> -	return rb;
-> -}
-> -
->   /*
->    * HW architecture suggest typical invalidation time at 40us,
->    * with pessimistic cases up to 100us and a recommendation to
-> @@ -1024,14 +995,20 @@ get_reg_and_bit(const struct intel_engine_cs *engine, const bool gen8,
->    * but are now considered MCR registers.  Since they exist within a GAM range,
->    * the primary instance of the register rolls up the status from each unit.
->    */
-> -static int wait_for_invalidate(struct intel_gt *gt, struct reg_and_bit rb)
-> +static int wait_for_invalidate(struct intel_engine_cs *engine)
->   {
-> -	if (GRAPHICS_VER_FULL(gt->i915) >= IP_VER(12, 50))
-> -		return intel_gt_mcr_wait_for_reg(gt, rb.mcr_reg, rb.bit, 0,
-> +	if (engine->tlb_inv.mcr)
-> +		return intel_gt_mcr_wait_for_reg(engine->gt,
-> +						 engine->tlb_inv.reg.mcr_reg,
-> +						 engine->tlb_inv.done,
-> +						 0,
->   						 TLB_INVAL_TIMEOUT_US,
->   						 TLB_INVAL_TIMEOUT_MS);
->   	else
-> -		return __intel_wait_for_register_fw(gt->uncore, rb.reg, rb.bit, 0,
-> +		return __intel_wait_for_register_fw(engine->gt->uncore,
-> +						    engine->tlb_inv.reg.reg,
-> +						    engine->tlb_inv.done,
-> +						    0,
->   						    TLB_INVAL_TIMEOUT_US,
->   						    TLB_INVAL_TIMEOUT_MS,
->   						    NULL);
-> @@ -1039,62 +1016,14 @@ static int wait_for_invalidate(struct intel_gt *gt, struct reg_and_bit rb)
->   
->   static void mmio_invalidate_full(struct intel_gt *gt)
->   {
-> -	static const i915_reg_t gen8_regs[] = {
-> -		[RENDER_CLASS]			= GEN8_RTCR,
-> -		[VIDEO_DECODE_CLASS]		= GEN8_M1TCR, /* , GEN8_M2TCR */
-> -		[VIDEO_ENHANCEMENT_CLASS]	= GEN8_VTCR,
-> -		[COPY_ENGINE_CLASS]		= GEN8_BTCR,
-> -	};
-> -	static const i915_reg_t gen12_regs[] = {
-> -		[RENDER_CLASS]			= GEN12_GFX_TLB_INV_CR,
-> -		[VIDEO_DECODE_CLASS]		= GEN12_VD_TLB_INV_CR,
-> -		[VIDEO_ENHANCEMENT_CLASS]	= GEN12_VE_TLB_INV_CR,
-> -		[COPY_ENGINE_CLASS]		= GEN12_BLT_TLB_INV_CR,
-> -		[COMPUTE_CLASS]			= GEN12_COMPCTX_TLB_INV_CR,
-> -	};
-> -	static const i915_mcr_reg_t xehp_regs[] = {
-> -		[RENDER_CLASS]			= XEHP_GFX_TLB_INV_CR,
-> -		[VIDEO_DECODE_CLASS]		= XEHP_VD_TLB_INV_CR,
-> -		[VIDEO_ENHANCEMENT_CLASS]	= XEHP_VE_TLB_INV_CR,
-> -		[COPY_ENGINE_CLASS]		= XEHP_BLT_TLB_INV_CR,
-> -		[COMPUTE_CLASS]			= XEHP_COMPCTX_TLB_INV_CR,
-> -	};
->   	struct drm_i915_private *i915 = gt->i915;
->   	struct intel_uncore *uncore = gt->uncore;
->   	struct intel_engine_cs *engine;
->   	intel_engine_mask_t awake, tmp;
->   	enum intel_engine_id id;
-> -	const i915_reg_t *regs;
-> -	unsigned int num = 0;
->   	unsigned long flags;
->   
-> -	/*
-> -	 * New platforms should not be added with catch-all-newer (>=)
-> -	 * condition so that any later platform added triggers the below warning
-> -	 * and in turn mandates a human cross-check of whether the invalidation
-> -	 * flows have compatible semantics.
-> -	 *
-> -	 * For instance with the 11.00 -> 12.00 transition three out of five
-> -	 * respective engine registers were moved to masked type. Then after the
-> -	 * 12.00 -> 12.50 transition multi cast handling is required too.
-> -	 */
-> -
-> -	if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 50) ||
-> -	    GRAPHICS_VER_FULL(i915) == IP_VER(12, 55)) {
-> -		regs = NULL;
-> -		num = ARRAY_SIZE(xehp_regs);
-> -	} else if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 0) ||
-> -		   GRAPHICS_VER_FULL(i915) == IP_VER(12, 10)) {
-> -		regs = gen12_regs;
-> -		num = ARRAY_SIZE(gen12_regs);
-> -	} else if (GRAPHICS_VER(i915) >= 8 && GRAPHICS_VER(i915) <= 11) {
-> -		regs = gen8_regs;
-> -		num = ARRAY_SIZE(gen8_regs);
-> -	} else if (GRAPHICS_VER(i915) < 8) {
-> -		return;
-> -	}
-> -
-> -	if (gt_WARN_ONCE(gt, !num, "Platform does not implement TLB invalidation!"))
-> +	if (GRAPHICS_VER(i915) < 8)
->   		return;
->   
->   	intel_uncore_forcewake_get(uncore, FORCEWAKE_ALL);
-> @@ -1104,33 +1033,18 @@ static void mmio_invalidate_full(struct intel_gt *gt)
->   
->   	awake = 0;
->   	for_each_engine(engine, gt, id) {
-> -		struct reg_and_bit rb;
-> -
->   		if (!intel_engine_pm_is_awake(engine))
->   			continue;
->   
-> -		if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
-> -			u32 val = BIT(engine->instance);
-> -
-> -			if (engine->class == VIDEO_DECODE_CLASS ||
-> -			    engine->class == VIDEO_ENHANCEMENT_CLASS ||
-> -			    engine->class == COMPUTE_CLASS)
-> -				val = _MASKED_BIT_ENABLE(val);
-> +		if (engine->tlb_inv.mcr)
->   			intel_gt_mcr_multicast_write_fw(gt,
-> -							xehp_regs[engine->class],
-> -							val);
-> -		} else {
-> -			rb = get_reg_and_bit(engine, regs == gen8_regs, regs, num);
-> -			if (!i915_mmio_reg_offset(rb.reg))
-> -				continue;
-> -
-> -			if (GRAPHICS_VER(i915) == 12 && (engine->class == VIDEO_DECODE_CLASS ||
-> -			    engine->class == VIDEO_ENHANCEMENT_CLASS ||
-> -			    engine->class == COMPUTE_CLASS))
-> -				rb.bit = _MASKED_BIT_ENABLE(rb.bit);
-> -
-> -			intel_uncore_write_fw(uncore, rb.reg, rb.bit);
-> -		}
-> +							engine->tlb_inv.reg.mcr_reg,
-> +							engine->tlb_inv.request);
-> +		else
-> +			intel_uncore_write_fw(uncore,
-> +					      engine->tlb_inv.reg.reg,
-> +					      engine->tlb_inv.request);
-> +
->   		awake |= engine->mask;
->   	}
->   
-> @@ -1149,17 +1063,9 @@ static void mmio_invalidate_full(struct intel_gt *gt)
->   	intel_gt_mcr_unlock(gt, flags);
->   
->   	for_each_engine_masked(engine, gt, awake, tmp) {
-> -		struct reg_and_bit rb;
-> -
-> -		if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
-> -			rb.mcr_reg = xehp_regs[engine->class];
-> -			rb.bit = BIT(engine->instance);
-> -		} else {
-> -			rb = get_reg_and_bit(engine, regs == gen8_regs, regs, num);
-> -		}
-> -
-> -		if (wait_for_invalidate(gt, rb))
-> -			gt_err_ratelimited(gt, "%s TLB invalidation did not complete in %ums!\n",
-> +		if (wait_for_invalidate(engine))
-> +			gt_err_ratelimited(gt,
-> +					   "%s TLB invalidation did not complete in %ums!\n",
->   					   engine->name, TLB_INVAL_TIMEOUT_MS);
->   	}
->   
-
+>  
+>  	if (sg_alloc_table(st, PFN_UP(res->size), GFP_KERNEL)) {
+>  		i915_refct_sgt_put(rsgt);
+> -- 
+> 2.39.1
+> 
