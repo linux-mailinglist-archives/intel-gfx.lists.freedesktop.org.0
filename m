@@ -2,93 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E2AB687DE7
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 13:52:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB683687E35
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 14:03:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0EF310E512;
-	Thu,  2 Feb 2023 12:52:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA95F10E15E;
+	Thu,  2 Feb 2023 13:02:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
- [148.163.156.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3F8510E512;
- Thu,  2 Feb 2023 12:52:53 +0000 (UTC)
-Received: from pps.filterd (m0098404.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
- 312C3gva028808; Thu, 2 Feb 2023 12:52:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
- h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=pp1;
- bh=fOUMm9vaY0LQvEz1no9qV2e22/3sAj99TdI12zctCso=;
- b=aau+3DPTkYLZrJ/MhHlt00lxqX2MoJ77BRl4qNyWYi07HHFJcvyTggz/FyKIWXnWdLTZ
- yNlhiyrBWIfQGLr71pnvFPY6m53gUd0CZIIeG9pdf7cGI7oHPDybVHN10ePkQRXxZZd4
- ocWQ0dVDv/387PU74Aa2PgXi5wuMaT53mjNya4R4QCMGEBZTn/jkK/OAx/5tAx8Lcg/K
- bMAX0ZCf0R6TWUOFaxQuh45FDCC5BP0so6OFSwwmMvEkiDO+81Y5T3Cn6jsKBwUXJMxH
- ZBQCqhQT72b9qi9Ke/NOruwJtuK+ZEpUqt7KHjOqRKTVQ3X5YqwH4r9uiG4vChFnVdWK oQ== 
-Received: from pps.reinject (localhost [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3ng78h1bqs-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Thu, 02 Feb 2023 12:52:51 +0000
-Received: from m0098404.ppops.net (m0098404.ppops.net [127.0.0.1])
- by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 312BJxOq019471;
- Thu, 2 Feb 2023 12:52:50 GMT
-Received: from ppma01dal.us.ibm.com (83.d6.3fa9.ip4.static.sl-reverse.com
- [169.63.214.131])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3ng78h1bq9-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Thu, 02 Feb 2023 12:52:50 +0000
-Received: from pps.filterd (ppma01dal.us.ibm.com [127.0.0.1])
- by ppma01dal.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 312A1TJN006508;
- Thu, 2 Feb 2023 12:52:49 GMT
-Received: from smtprelay03.wdc07v.mail.ibm.com ([9.208.129.113])
- by ppma01dal.us.ibm.com (PPS) with ESMTPS id 3ncvtmt8tf-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Thu, 02 Feb 2023 12:52:49 +0000
-Received: from smtpav05.wdc07v.mail.ibm.com (smtpav05.wdc07v.mail.ibm.com
- [10.39.53.232])
- by smtprelay03.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 312CqlVL12321518
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Thu, 2 Feb 2023 12:52:47 GMT
-Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 29E4B58053;
- Thu,  2 Feb 2023 12:52:47 +0000 (GMT)
-Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id C61315805D;
- Thu,  2 Feb 2023 12:52:44 +0000 (GMT)
-Received: from [9.65.253.123] (unknown [9.65.253.123])
- by smtpav05.wdc07v.mail.ibm.com (Postfix) with ESMTP;
- Thu,  2 Feb 2023 12:52:44 +0000 (GMT)
-Message-ID: <ee256360-b35b-55c1-d25b-b7abb065df3a@linux.ibm.com>
-Date: Thu, 2 Feb 2023 07:52:44 -0500
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 967B410E15E
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Feb 2023 13:02:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1675342977; x=1706878977;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=859V2ohSLvxMzsREYSprDffhYR63sHAFEd6HuYsJm2s=;
+ b=Cmdr2gqlg2dorynlhwiadsLpLJoOM3bAGC28SDi6OHm4A12oY5spRqMv
+ SFalwHFfJQgMUQCbZyEcwGfWOHOlD6W8T6LUZ34z84RkckhxR6FFJ7NjT
+ hr7xdSNBdLdiNukk3zKIBBbvHv/9gQ8HSIMEmo90S11FoCJeJA2zVKrb3
+ wKUxOTAaI99rrm+nSd4jaLkQp/3OP7yO0wmKnrTRpnaYKknq1TqgCvfUC
+ 5fFvFKekjT8CxBDO6DlDfe4qNnfBJkRlyCObSGU9IS5e3wH6msRBaPpHE
+ Z9yAq6jyjpa9GPs9jbVBBOX0bQGGsEJojQLoblbfIK9gJ17eXdN/R0ZCf Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="329727020"
+X-IronPort-AV: E=Sophos;i="5.97,267,1669104000"; d="scan'208";a="329727020"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2023 05:02:56 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="994096830"
+X-IronPort-AV: E=Sophos;i="5.97,267,1669104000"; d="scan'208";a="994096830"
+Received: from skopplex-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.34.132])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2023 05:02:55 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230202114613.3177235-2-suraj.kandpal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230202114613.3177235-1-suraj.kandpal@intel.com>
+ <20230202114613.3177235-2-suraj.kandpal@intel.com>
+Date: Thu, 02 Feb 2023 15:02:53 +0200
+Message-ID: <87fsbo1apu.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-To: "Tian, Kevin" <kevin.tian@intel.com>,
- Alex Williamson <alex.williamson@redhat.com>
-References: <20230201192010.42748-1-mjrosato@linux.ibm.com>
- <20230201162730.685b5332.alex.williamson@redhat.com>
- <BN9PR11MB5276B8F3F6735FF2616128868CD69@BN9PR11MB5276.namprd11.prod.outlook.com>
-Content-Language: en-US
-From: Matthew Rosato <mjrosato@linux.ibm.com>
-In-Reply-To: <BN9PR11MB5276B8F3F6735FF2616128868CD69@BN9PR11MB5276.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: XcjC1Kt46PxL2S8wVIGhF-mMiGdE2aU3
-X-Proofpoint-ORIG-GUID: o81pid3WShnfEElUozHn3d2Sh9_qJ-gl
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-02-02_04,2023-02-02_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0
- mlxlogscore=999 suspectscore=0 spamscore=0 priorityscore=1501
- impostorscore=0 mlxscore=0 adultscore=0 lowpriorityscore=0 bulkscore=0
- phishscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2302020112
-Subject: Re: [Intel-gfx] [PATCH v2] vfio: fix deadlock between group lock
- and kvm lock
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915/dp: Fix logic to fetch
+ slice_height
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,41 +58,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "akrowiak@linux.ibm.com" <akrowiak@linux.ibm.com>,
- "jjherne@linux.ibm.com" <jjherne@linux.ibm.com>,
- "farman@linux.ibm.com" <farman@linux.ibm.com>, "Liu,
- Yi L" <yi.l.liu@intel.com>, "frankja@linux.ibm.com" <frankja@linux.ibm.com>,
- "pmorel@linux.ibm.com" <pmorel@linux.ibm.com>,
- "david@redhat.com" <david@redhat.com>,
- "imbrenda@linux.ibm.com" <imbrenda@linux.ibm.com>, "Christopherson, ,
- Sean" <seanjc@google.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "pasic@linux.ibm.com" <pasic@linux.ibm.com>, "jgg@nvidia.com" <jgg@nvidia.com>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "pbonzini@redhat.com" <pbonzini@redhat.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "borntraeger@linux.ibm.com" <borntraeger@linux.ibm.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2/1/23 11:10 PM, Tian, Kevin wrote:
->> From: Alex Williamson <alex.williamson@redhat.com>
->> Sent: Thursday, February 2, 2023 7:28 AM
->>>
->>> +#ifdef CONFIG_HAVE_KVM
->>> +static bool vfio_kvm_get_kvm_safe(struct vfio_device *device, struct kvm
->> *kvm)
->>
->> I'm tempted to name these vfio_device_get_kvm_safe() and only pass the
->> vfio_device, where of course we can get the kvm pointer from the group
->> internally.
->>
-> 
-> I have a different thought. In the end the cdev series also need the similar
-> safe get/put logic then it's better to keep it in vfio_main.c called by
-> the group/cdev path individually.
+On Thu, 02 Feb 2023, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> According to Bpec: 49259 VDSC spec implies that 108 lines is an optimal
+> slice height, but any size can be used as long as vertical active
+> integer multiple and maximum vertical slice count requirements are met.
 
-Ah, I hadn't considered the cdev series - OK, I can move the functions back into vfio_main and externalize both via drivers/vfio/vfio.h so they can be called from group.c for this fix and then available to vfio_main.c already for cdev.
+The commit message and subject should really indicate that this
+increases the slice height considerably. It's a 13.5x increase at a
+minimum, could be much more. Seems misleading to call it "fix logic", as
+if there's a small issue somewhere.
+
+Bspec references should be here:
+
+Bspec: 49259
+> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Cc: Swati Sharma <swati2.sharma@intel.com>
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 62cbab7402e9..7bd2e56ef0fa 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -1415,6 +1415,22 @@ static int intel_dp_sink_dsc_version_minor(struct intel_dp *intel_dp)
+>  		DP_DSC_MINOR_SHIFT;
+>  }
+>  
+> +static int intel_dp_get_slice_height(int vactive)
+
+intel_dp_dsc_get_slice_height
+
+> +{
+> +	int slice_height;
+> +
+> +	/*
+> +	 * VDSC spec implies that 108 lines is an optimal slice height,
+
+Please be more specific with spec references than vague "VSDC
+spec". Spec version is required at a minimum. Section and section title
+are a nice bonus.
+
+> +	 * but any size can be used as long as vertical active integer
+> +	 * multiple and maximum vertical slice count requirements are met.
+> +	 */
+> +	for (slice_height = 108; slice_height <= vactive; slice_height += 2)
+
+Where does it say 108 is a minimum, and you should go up only...?
+
+> +		if (!(vactive % slice_height))
+
+Matter of taste, but please use (vactive % slice_height == 0) for
+clarity on computations like this.
+
+> +			return slice_height;
+> +
+> +	return 0;
+
+I guess it's unlikely we ever hit here, but you could have the old code
+as fallback and never return 0. Because you don't check for 0 in the
+caller anyway.
+
+Also makes me wonder why we have intel_hdmi_dsc_get_slice_height()
+separately, with almost identical implementation. Maybe we should
+consolidate.
+
+> +}
+> +
+>  static int intel_dp_dsc_compute_params(struct intel_encoder *encoder,
+>  				       struct intel_crtc_state *crtc_state)
+>  {
+> @@ -1433,17 +1449,7 @@ static int intel_dp_dsc_compute_params(struct intel_encoder *encoder,
+>  	vdsc_cfg->rc_model_size = DSC_RC_MODEL_SIZE_CONST;
+>  	vdsc_cfg->pic_height = crtc_state->hw.adjusted_mode.crtc_vdisplay;
+>  
+> -	/*
+> -	 * Slice Height of 8 works for all currently available panels. So start
+> -	 * with that if pic_height is an integral multiple of 8. Eventually add
+> -	 * logic to try multiple slice heights.
+> -	 */
+> -	if (vdsc_cfg->pic_height % 8 == 0)
+> -		vdsc_cfg->slice_height = 8;
+> -	else if (vdsc_cfg->pic_height % 4 == 0)
+> -		vdsc_cfg->slice_height = 4;
+> -	else
+> -		vdsc_cfg->slice_height = 2;
+> +	vdsc_cfg->slice_height = intel_dp_get_slice_height(vdsc_cfg->pic_height);
+>  
+>  	ret = intel_dsc_compute_params(crtc_state);
+>  	if (ret)
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
