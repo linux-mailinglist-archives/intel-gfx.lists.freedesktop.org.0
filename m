@@ -2,33 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD076687878
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 10:13:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 193D96878BA
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 10:24:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2968F10E136;
-	Thu,  2 Feb 2023 09:13:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C30B110E4AE;
+	Thu,  2 Feb 2023 09:24:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B3D4410E0AA;
- Thu,  2 Feb 2023 09:13:08 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A9E59A02F0;
- Thu,  2 Feb 2023 09:13:08 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5114605242602412770=="
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80E4F10E4AE
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Feb 2023 09:24:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1675329862; x=1706865862;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=T6aMLO0uwNJn8Qg+dsdBW9cEEEx9gfmXzgou+3zlWgA=;
+ b=Z9egJNXzvwUva/uuLNHmyq6SykAhvdDegDgxjzVR6fbaEqe3/96T8U4g
+ 8c1DB6igskvRaA3iI8IiJeDnRHQkJVydH4jdJlS74A0LDmMzco4oR/3Su
+ Rr3r0Jyowvth9sCF85SNjL+PaS/3F/vY39/VqUcUtLgwK3q/fbH4UUIsk
+ jeYtFqEfU8TydzXFI+EewGotQxM65scGf/o7WC+c494vmvuVR4VZxCnQE
+ 0EPJ7Bb4Qm0HYx9DZlhBMDSbZOFbp/qZJSrn4Qaw0hlZJ/gdWvMvP3hE2
+ xO8IOIv5E/Jb+a/mCD9ePGPskvgLPt10eZJDrEj7kZVEDdPP8pvWuHY5e g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="316397609"
+X-IronPort-AV: E=Sophos;i="5.97,267,1669104000"; d="scan'208";a="316397609"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2023 01:24:21 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="807906057"
+X-IronPort-AV: E=Sophos;i="5.97,267,1669104000"; d="scan'208";a="807906057"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
+ by fmsmga001.fm.intel.com with SMTP; 02 Feb 2023 01:24:19 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 02 Feb 2023 11:24:18 +0200
+Date: Thu, 2 Feb 2023 11:24:18 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+Message-ID: <Y9uBQoHTkp1HZTQa@intel.com>
+References: <DM6PR11MB31775117B7388776D2E6DFD2BA439@DM6PR11MB3177.namprd11.prod.outlook.com>
+ <DM6PR11MB3177451D1F3A10D00706461ABA469@DM6PR11MB3177.namprd11.prod.outlook.com>
+ <DM6PR11MB31771349661CE3E0C2CB28BABA4D9@DM6PR11MB3177.namprd11.prod.outlook.com>
+ <DM6PR11MB31777D09EBDFB4604D5E6631BA209@DM6PR11MB3177.namprd11.prod.outlook.com>
+ <DM6PR11MB3177CFCD0942A580C4E9FE5BBA329@DM6PR11MB3177.namprd11.prod.outlook.com>
+ <Y1t3J2vIoiaPhYuR@intel.com>
+ <DM6PR11MB3177F788C93767D65A8C7EBFBAC29@DM6PR11MB3177.namprd11.prod.outlook.com>
+ <DM6PR11MB3177F06B273DC0A701B6BB68BAC69@DM6PR11MB3177.namprd11.prod.outlook.com>
+ <DM6PR11MB31779DE7C32B77798771CD74BAC89@DM6PR11MB3177.namprd11.prod.outlook.com>
+ <DM6PR11MB31770BE42F08018A83ABF749BAD69@DM6PR11MB3177.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Alan Previn" <alan.previn.teres.alexis@intel.com>
-Date: Thu, 02 Feb 2023 09:13:08 -0000
-Message-ID: <167532918866.11114.16986702715587542347@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230202081312.404394-1-alan.previn.teres.alexis@intel.com>
-In-Reply-To: <20230202081312.404394-1-alan.previn.teres.alexis@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/pxp=3A_limit_drm-errors_or_warnings_on_firmware_API_failu?=
- =?utf-8?q?res?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <DM6PR11MB31770BE42F08018A83ABF749BAD69@DM6PR11MB3177.namprd11.prod.outlook.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCHv3] drm/i915: Support Async Flip on Linear
+ buffers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,278 +70,216 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Syrjala, Ville" <ville.syrjala@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5114605242602412770==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Feb 02, 2023 at 06:51:49AM +0000, Murthy, Arun R wrote:
+> Gentle Reminder!
+> The patch is pending since a long time.
 
-== Series Details ==
+Please review the igt changes here:
+https://patchwork.freedesktop.org/series/113525/
+then we can actually test this (and any other new 
+modifier in the future).
 
-Series: drm/i915/pxp: limit drm-errors or warnings on firmware API failures
-URL   : https://patchwork.freedesktop.org/series/113584/
-State : success
+> 
+> Thanks and Regards,
+> Arun R Murthy
+> -------------------
+> 
+> > -----Original Message-----
+> > From: Murthy, Arun R
+> > Sent: Monday, January 23, 2023 12:14 PM
+> > To: 'Ville Syrjälä' <ville.syrjala@linux.intel.com>
+> > Cc: 'intel-gfx@lists.freedesktop.org' <intel-gfx@lists.freedesktop.org>;
+> > Syrjala, Ville <ville.syrjala@intel.com>
+> > Subject: RE: [Intel-gfx] [PATCHv3] drm/i915: Support Async Flip on Linear
+> > buffers
+> > 
+> > Any review comments on this. Gentle Reminder!
+> > 
+> > Thanks and Regards,
+> > Arun R Murthy
+> > --------------------
+> > 
+> > > -----Original Message-----
+> > > From: Murthy, Arun R
+> > > Sent: Tuesday, January 17, 2023 2:09 PM
+> > > To: 'Ville Syrjälä' <ville.syrjala@linux.intel.com>
+> > > Cc: 'intel-gfx@lists.freedesktop.org'
+> > > <intel-gfx@lists.freedesktop.org>;
+> > > Syrjala, Ville <ville.syrjala@intel.com>
+> > > Subject: RE: [Intel-gfx] [PATCHv3] drm/i915: Support Async Flip on
+> > > Linear buffers
+> > >
+> > > Gentle Reminder!
+> > >
+> > > Thanks and Regards,
+> > > Arun R Murthy
+> > > -------------------
+> > >
+> > > > -----Original Message-----
+> > > > From: Murthy, Arun R
+> > > > Sent: Friday, January 13, 2023 12:57 PM
+> > > > To: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > > Cc: intel-gfx@lists.freedesktop.org; Syrjala, Ville
+> > > > <ville.syrjala@intel.com>
+> > > > Subject: RE: [Intel-gfx] [PATCHv3] drm/i915: Support Async Flip on
+> > > > Linear buffers
+> > > >
+> > > > > On Fri, Oct 28, 2022 at 03:23:02AM +0000, Murthy, Arun R wrote:
+> > > > > > Gentle Reminder!
+> > > > >
+> > > > > Is the igt stuff merged, and did this pass the test?
+> > > > >
+> > > > With IGT alone the tests will fail without the kernel patch.
+> > > > The
+> > > > tests(https://intel-gfx-ci.01.org/tree/drm-tip/Trybot_112722v2/shard
+> > > > s-
+> > > > all.html?testfilter=kms_async_flips) are passing with IGT and kernel
+> > patch.
+> > > >
+> > > > Thanks and Regards,
+> > > > Arun R Murthy
+> > > > --------------------
+> > > > > >
+> > > > > > > -----Original Message-----
+> > > > > > > From: Murthy, Arun R
+> > > > > > > Sent: Monday, October 10, 2022 1:24 PM
+> > > > > > > To: 'intel-gfx@lists.freedesktop.org'
+> > > > > > > <intel-gfx@lists.freedesktop.org>
+> > > > > > > Cc: Syrjala, Ville <ville.syrjala@intel.com>
+> > > > > > > Subject: RE: [PATCHv3] drm/i915: Support Async Flip on Linear
+> > > > > > > buffers
+> > > > > > >
+> > > > > > > Ville,
+> > > > > > > 	Gentle reminder!
+> > > > > > >
+> > > > > > > Thanks and Regards,
+> > > > > > > Arun R Murthy
+> > > > > > > --------------------
+> > > > > > >
+> > > > > > > > -----Original Message-----
+> > > > > > > > From: Murthy, Arun R
+> > > > > > > > Sent: Monday, September 19, 2022 10:38 AM
+> > > > > > > > To: 'intel-gfx@lists.freedesktop.org'
+> > > > > > > > <intel-gfx@lists.freedesktop.org>
+> > > > > > > > Cc: Syrjala, Ville <ville.syrjala@intel.com>
+> > > > > > > > Subject: RE: [PATCHv3] drm/i915: Support Async Flip on
+> > > > > > > > Linear buffers
+> > > > > > > >
+> > > > > > > > If no comments, can anyone merge the patch!
+> > > > > > > >
+> > > > > > > > Thanks and Regards,
+> > > > > > > > Arun R Murthy
+> > > > > > > > --------------------
+> > > > > > > >
+> > > > > > > > > -----Original Message-----
+> > > > > > > > > From: Murthy, Arun R
+> > > > > > > > > Sent: Wednesday, September 14, 2022 4:21 PM
+> > > > > > > > > To: Murthy, Arun R <arun.r.murthy@intel.com>; intel-
+> > > > > > > > > gfx@lists.freedesktop.org
+> > > > > > > > > Cc: Syrjala, Ville <ville.syrjala@intel.com>
+> > > > > > > > > Subject: RE: [PATCHv3] drm/i915: Support Async Flip on
+> > > > > > > > > Linear buffers
+> > > > > > > > >
+> > > > > > > > > Gentle Reminder!
+> > > > > > > > > Any comments?
+> > > > > > > > >
+> > > > > > > > > Thanks and Regards,
+> > > > > > > > > Arun R Murthy
+> > > > > > > > > --------------------
+> > > > > > > > >
+> > > > > > > > > > -----Original Message-----
+> > > > > > > > > > From: Intel-gfx
+> > > > > > > > > > <intel-gfx-bounces@lists.freedesktop.org>
+> > > > > > > > > > On Behalf Of Murthy, Arun R
+> > > > > > > > > > Sent: Friday, September 9, 2022 9:17 AM
+> > > > > > > > > > To: intel-gfx@lists.freedesktop.org
+> > > > > > > > > > Cc: Syrjala, Ville <ville.syrjala@intel.com>
+> > > > > > > > > > Subject: Re: [Intel-gfx] [PATCHv3] drm/i915: Support
+> > > > > > > > > > Async Flip on Linear buffers
+> > > > > > > > > >
+> > > > > > > > > > Gentle Reminder!
+> > > > > > > > > >
+> > > > > > > > > > > -----Original Message-----
+> > > > > > > > > > > From: Murthy, Arun R <arun.r.murthy@intel.com>
+> > > > > > > > > > > Sent: Tuesday, September 6, 2022 9:18 AM
+> > > > > > > > > > > To: intel-gfx@lists.freedesktop.org
+> > > > > > > > > > > Cc: ville.syrjala@linux.intel.com; Murthy, Arun R
+> > > > > > > > > > > <arun.r.murthy@intel.com>
+> > > > > > > > > > > Subject: [PATCHv3] drm/i915: Support Async Flip on
+> > > > > > > > > > > Linear buffers
+> > > > > > > > > > >
+> > > > > > > > > > > Starting from Gen12 Async Flip is supported on linear buffers.
+> > > > > > > > > > > This patch enables support for async on linear buffer.
+> > > > > > > > > > >
+> > > > > > > > > > > UseCase: In Hybrid graphics, for hardware unsupported
+> > > > > > > > > > > pixel formats it will be converted to linear memory
+> > > > > > > > > > > and then
+> > > > composed.
+> > > > > > > > > > >
+> > > > > > > > > > > v2: Added use case
+> > > > > > > > > > > v3: Added FIXME for ICL indicating the restrictions
+> > > > > > > > > > >
+> > > > > > > > > > > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> > > > > > > > > > > ---
+> > > > > > > > > > >  drivers/gpu/drm/i915/display/intel_display.c | 14
+> > > > > > > > > > > ++++++++++++++
+> > > > > > > > > > >  1 file changed, 14 insertions(+)
+> > > > > > > > > > >
+> > > > > > > > > > > diff --git
+> > > > > > > > > > > a/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > > > > > > > b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > > > > > > > index be7cff722196..1880cfe70a7d 100644
+> > > > > > > > > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > > > > > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > > > > > > > @@ -6610,6 +6610,20 @@ static int
+> > > > > > > > > > > intel_async_flip_check_hw(struct intel_atomic_state
+> > > > > > > > > > > *state, struct
+> > > > > in
+> > > > > > > > > > >  		 * this selectively if required.
+> > > > > > > > > > >  		 */
+> > > > > > > > > > >  		switch (new_plane_state->hw.fb->modifier) {
+> > > > > > > > > > > +		case DRM_FORMAT_MOD_LINEAR:
+> > > > > > > > > > > +			/*
+> > > > > > > > > > > +			 * FIXME: Async on Linear buffer is
+> > supported
+> > > > > > > on ICL
+> > > > > > > > > > > as
+> > > > > > > > > > > +			 * but with additional alignment and
+> > fbc
+> > > > > > > restrictions
+> > > > > > > > > > > +			 * need to be taken care of. These
+> > aren't
+> > > > > > > applicable
+> > > > > > > > > > > for
+> > > > > > > > > > > +			 * gen12+.
+> > > > > > > > > > > +			 */
+> > > > > > > > > > > +			if (DISPLAY_VER(i915) < 12) {
+> > > > > > > > > > > +				drm_dbg_kms(&i915->drm,
+> > > > > > > > > > > +					"[PLANE:%d:%s]
+> > Modifier
+> > > > > > > does not
+> > > > > > > > > > > support async flips\n",
+> > > > > > > > > > > +					plane->base.base.id,
+> > plane-
+> > > > > > > > > > > >base.name);
+> > > > > > > > > > > +				return -EINVAL;
+> > > > > > > > > > > +			}
+> > > > > > > > > > > +
+> > > > > > > > > > >  		case I915_FORMAT_MOD_X_TILED:
+> > > > > > > > > > >  		case I915_FORMAT_MOD_Y_TILED:
+> > > > > > > > > > >  		case I915_FORMAT_MOD_Yf_TILED:
+> > > > > > > > > > > --
+> > > > > > > > > > > 2.25.1
+> > > > >
+> > > > > --
+> > > > > Ville Syrjälä
+> > > > > Intel
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_12681 -> Patchwork_113584v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113584v1/index.html
-
-Participating hosts (25 -> 27)
-------------------------------
-
-  Additional (3): fi-kbl-soraka bat-atsm-1 fi-apl-guc 
-  Missing    (1): fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_113584v1:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_module_load@reload:
-    - {bat-jsl-3}:        [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12681/bat-jsl-3/igt@i915_module_load@reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113584v1/bat-jsl-3/igt@i915_module_load@reload.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_113584v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@fbdev@write:
-    - fi-blb-e6850:       [PASS][3] -> [SKIP][4] ([fdo#109271]) +4 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12681/fi-blb-e6850/igt@fbdev@write.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113584v1/fi-blb-e6850/igt@fbdev@write.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][5] ([fdo#109271] / [i915#2190])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113584v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-apl-guc:         NOTRUN -> [SKIP][6] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113584v1/fi-apl-guc/igt@gem_lmem_swapping@basic.html
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][7] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113584v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-kbl-soraka:      NOTRUN -> [INCOMPLETE][8] ([i915#7156])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113584v1/fi-kbl-soraka/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][9] ([i915#5334] / [i915#7872])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113584v1/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][10] ([i915#1886])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113584v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-
-  * igt@kms_chamelium_frames@hdmi-crc-fast:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][11] ([fdo#109271]) +15 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113584v1/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html
-
-  * igt@kms_chamelium_hpd@vga-hpd-fast:
-    - fi-apl-guc:         NOTRUN -> [SKIP][12] ([fdo#109271]) +21 similar issues
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113584v1/fi-apl-guc/igt@kms_chamelium_hpd@vga-hpd-fast.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1836]: https://gitlab.freedesktop.org/drm/intel/issues/1836
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#6077]: https://gitlab.freedesktop.org/drm/intel/issues/6077
-  [i915#6078]: https://gitlab.freedesktop.org/drm/intel/issues/6078
-  [i915#6093]: https://gitlab.freedesktop.org/drm/intel/issues/6093
-  [i915#6094]: https://gitlab.freedesktop.org/drm/intel/issues/6094
-  [i915#6166]: https://gitlab.freedesktop.org/drm/intel/issues/6166
-  [i915#6311]: https://gitlab.freedesktop.org/drm/intel/issues/6311
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
-  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
-  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
-  [i915#7156]: https://gitlab.freedesktop.org/drm/intel/issues/7156
-  [i915#7357]: https://gitlab.freedesktop.org/drm/intel/issues/7357
-  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
-  [i915#7872]: https://gitlab.freedesktop.org/drm/intel/issues/7872
-  [i915#7996]: https://gitlab.freedesktop.org/drm/intel/issues/7996
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12681 -> Patchwork_113584v1
-
-  CI-20190529: 20190529
-  CI_DRM_12681: 8ee2ec597aa4b8331124bf852432c2ca2fd7b8d1 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7143: c7b12dcc460fc2348e1fa7f4dcb791bb82e29e44 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_113584v1: 8ee2ec597aa4b8331124bf852432c2ca2fd7b8d1 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-d191cc4b8246 drm/i915/pxp: limit drm-errors or warnings on firmware API failures
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113584v1/index.html
-
---===============5114605242602412770==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/pxp: limit drm-errors or warnings on firmware API failures</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/113584/">https://patchwork.freedesktop.org/series/113584/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113584v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113584v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12681 -&gt; Patchwork_113584v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113584v1/index.html</p>
-<h2>Participating hosts (25 -&gt; 27)</h2>
-<p>Additional (3): fi-kbl-soraka bat-atsm-1 fi-apl-guc <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_113584v1:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@i915_module_load@reload:<ul>
-<li>{bat-jsl-3}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12681/bat-jsl-3/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113584v1/bat-jsl-3/igt@i915_module_load@reload.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_113584v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@write:</p>
-<ul>
-<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12681/fi-blb-e6850/igt@fbdev@write.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113584v1/fi-blb-e6850/igt@fbdev@write.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +4 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113584v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>
-<p>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113584v1/fi-apl-guc/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</p>
-</li>
-<li>
-<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113584v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113584v1/fi-kbl-soraka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7156">i915#7156</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113584v1/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7872">i915#7872</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113584v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_frames@hdmi-crc-fast:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113584v1/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +15 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_hpd@vga-hpd-fast:</p>
-<ul>
-<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113584v1/fi-apl-guc/igt@kms_chamelium_hpd@vga-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +21 similar issues</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12681 -&gt; Patchwork_113584v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12681: 8ee2ec597aa4b8331124bf852432c2ca2fd7b8d1 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7143: c7b12dcc460fc2348e1fa7f4dcb791bb82e29e44 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_113584v1: 8ee2ec597aa4b8331124bf852432c2ca2fd7b8d1 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>d191cc4b8246 drm/i915/pxp: limit drm-errors or warnings on firmware API failures</p>
-
-</body>
-</html>
-
---===============5114605242602412770==--
+-- 
+Ville Syrjälä
+Intel
