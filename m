@@ -2,33 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1072C688438
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 17:21:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DABD8688453
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 17:25:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6648810E2DE;
-	Thu,  2 Feb 2023 16:21:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D538310E599;
+	Thu,  2 Feb 2023 16:25:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id C4EBC10E1E4;
- Thu,  2 Feb 2023 16:21:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C0BDAAADD1;
- Thu,  2 Feb 2023 16:21:37 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5355266684479883415=="
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7671410E1E4;
+ Thu,  2 Feb 2023 16:25:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1675355120; x=1706891120;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=cGungUrcz2PhlwXrpK9gFAEmtzFfySoMU5pVgzRWcXc=;
+ b=XlNMybVpHXahBTmfetc/AalquHOjonbatEJRHfTaPCVZkf/ZHNzpKecd
+ Fe2KO1pwGZa++ClMMiV0H2HzPFaxu7wxxp4MKCijmojduoH9jQ3sZoFbM
+ wRSEeKx2x7EpuJhLfz2efQnFLQzmw2gOcNvR4jEWXUfJxU5esxn2CmP7O
+ Gsy1R1RXRxf0ty/heCJZOXxprMGxD1FfyM3XL6sVsOqCRw03oz0sWyn8a
+ Nnu4Fk4rOZYcG1cAvVrCU3BQkESQTd4K/dga3K8o8sOFL/4ZY24tL2T9U
+ ALs9bAr/27ZaCGEu2X6vAPIGfqSMGD4SOJealUWBpjnAjlnr4YlnZeqLv g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10609"; a="326184402"
+X-IronPort-AV: E=Sophos;i="5.97,267,1669104000"; d="scan'208";a="326184402"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2023 08:24:16 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10609"; a="615343100"
+X-IronPort-AV: E=Sophos;i="5.97,267,1669104000"; d="scan'208";a="615343100"
+Received: from orsosgc001.jf.intel.com ([10.165.21.138])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2023 08:24:16 -0800
+From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  2 Feb 2023 08:24:11 -0800
+Message-Id: <20230202162411.991040-1-ashutosh.dixit@intel.com>
+X-Mailer: git-send-email 2.38.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mavroudis Chatzilaridis" <mavchatz@protonmail.com>
-Date: Thu, 02 Feb 2023 16:21:37 -0000
-Message-ID: <167535489778.11113.13229065893720247271@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230126190330.131264-1-mavchatz@protonmail.com>
-In-Reply-To: <20230126190330.131264-1-mavchatz@protonmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/quirks=3A_Add_inverted_backlight_quirk_for_HP_14-r206nv_?=
- =?utf-8?b?KHJldjIp?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/hwmon: Enable PL1 power limit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,201 +54,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5355266684479883415==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Previous documentation suggested that PL1 power limit is always
+enabled. However we now find this not to be the case on some
+platforms (such as ATSM). Therefore enable PL1 power limit during hwmon
+initialization.
 
-== Series Details ==
+Bspec: 51864
 
-Series: drm/i915/quirks: Add inverted backlight quirk for HP 14-r206nv (rev2)
-URL   : https://patchwork.freedesktop.org/series/113568/
-State : success
+v2: Add Bspec reference (Gwan-gyeong)
 
-== Summary ==
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Reviewed-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+---
+ drivers/gpu/drm/i915/i915_hwmon.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-CI Bug Log - changes from CI_DRM_12684 -> Patchwork_113568v2
-====================================================
+diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
+index 1225bc432f0d5..4683a5b96eff1 100644
+--- a/drivers/gpu/drm/i915/i915_hwmon.c
++++ b/drivers/gpu/drm/i915/i915_hwmon.c
+@@ -687,6 +687,11 @@ hwm_get_preregistration_info(struct drm_i915_private *i915)
+ 		for_each_gt(gt, i915, i)
+ 			hwm_energy(&hwmon->ddat_gt[i], &energy);
+ 	}
++
++	/* Enable PL1 power limit */
++	if (i915_mmio_reg_valid(hwmon->rg.pkg_rapl_limit))
++		hwm_locked_with_pm_intel_uncore_rmw(ddat, hwmon->rg.pkg_rapl_limit,
++						    PKG_PWR_LIM_1_EN, PKG_PWR_LIM_1_EN);
+ }
+ 
+ void i915_hwmon_register(struct drm_i915_private *i915)
+-- 
+2.38.0
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v2/index.html
-
-Participating hosts (27 -> 25)
-------------------------------
-
-  Missing    (2): fi-kbl-soraka fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_113568v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [PASS][1] -> [DMESG-FAIL][2] ([i915#5334])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12684/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v2/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
-    - bat-dg1-6:          NOTRUN -> [SKIP][3] ([i915#7828])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v2/bat-dg1-6/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-
-  
-#### Possible fixes ####
-
-  * igt@fbdev@write:
-    - fi-blb-e6850:       [SKIP][4] ([fdo#109271]) -> [PASS][5] +4 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12684/fi-blb-e6850/igt@fbdev@write.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v2/fi-blb-e6850/igt@fbdev@write.html
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - {bat-rpls-1}:       [ABORT][6] ([i915#6311] / [i915#7359]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12684/bat-rpls-1/igt@gem_exec_suspend@basic-s0@smem.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v2/bat-rpls-1/igt@gem_exec_suspend@basic-s0@smem.html
-
-  * igt@i915_selftest@live@gt_lrc:
-    - bat-dg1-6:          [ABORT][8] ([i915#4983]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12684/bat-dg1-6/igt@i915_selftest@live@gt_lrc.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v2/bat-dg1-6/igt@i915_selftest@live@gt_lrc.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#6311]: https://gitlab.freedesktop.org/drm/intel/issues/6311
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#7359]: https://gitlab.freedesktop.org/drm/intel/issues/7359
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
-  [i915#7996]: https://gitlab.freedesktop.org/drm/intel/issues/7996
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12684 -> Patchwork_113568v2
-
-  CI-20190529: 20190529
-  CI_DRM_12684: 57eb8680d3ef1213de1d9c607b95e522035036e6 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7144: cda71bf809b981a646270963d6b1ccee4fd4643b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_113568v2: 57eb8680d3ef1213de1d9c607b95e522035036e6 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-b971a91df4f8 drm/i915/quirks: Add inverted backlight quirk for HP 14-r206nv
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v2/index.html
-
---===============5355266684479883415==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/quirks: Add inverted backlight quirk for HP 14-r206nv (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/113568/">https://patchwork.freedesktop.org/series/113568/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12684 -&gt; Patchwork_113568v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v2/index.html</p>
-<h2>Participating hosts (27 -&gt; 25)</h2>
-<p>Missing    (2): fi-kbl-soraka fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_113568v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12684/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v2/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
-<ul>
-<li>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v2/bat-dg1-6/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@fbdev@write:</p>
-<ul>
-<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12684/fi-blb-e6850/igt@fbdev@write.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v2/fi-blb-e6850/igt@fbdev@write.html">PASS</a> +4 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12684/bat-rpls-1/igt@gem_exec_suspend@basic-s0@smem.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6311">i915#6311</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7359">i915#7359</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v2/bat-rpls-1/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12684/bat-dg1-6/igt@i915_selftest@live@gt_lrc.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113568v2/bat-dg1-6/igt@i915_selftest@live@gt_lrc.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12684 -&gt; Patchwork_113568v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12684: 57eb8680d3ef1213de1d9c607b95e522035036e6 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7144: cda71bf809b981a646270963d6b1ccee4fd4643b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_113568v2: 57eb8680d3ef1213de1d9c607b95e522035036e6 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>b971a91df4f8 drm/i915/quirks: Add inverted backlight quirk for HP 14-r206nv</p>
-
-</body>
-</html>
-
---===============5355266684479883415==--
