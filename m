@@ -2,64 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F18E46879FA
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 11:20:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E7BA687A52
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 11:34:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FA8410E4D2;
-	Thu,  2 Feb 2023 10:20:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20AFD10E504;
+	Thu,  2 Feb 2023 10:34:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B36B010E4D2;
- Thu,  2 Feb 2023 10:20:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675333202; x=1706869202;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=IFFkXJX/j5ANzqJDBh/BF/nDo8wzUbHicaIbqavJTZs=;
- b=g+tZeWwQTUEzJwDzCvfGK1SIiYNAV8ugFlgoA/PafwUJdNpwNlyzMr77
- t2VYLlj/q5jrrvMmS7448shNfMS97p1yS5ZwCV8HF72LNgBMzmwp+FBib
- sZSGg0SfjO87ngKF8KyuHPxIVCBRoIbYofhDc2gnaSd9Z+bRTYkr9f4Sm
- 7kbGW5at3IQvUk0c7Ee6wRskgB1I3DYPexwfFImcgWHHCiGtc9mNdtseC
- 2jIC4kTO8FJ3ia78OKSlydh6aUKSHlLErKYT7IcyJ1grwsN5YuP1espX8
- bF0zvxEM4TbgCG/9nxt5wLfkib3/PEi2ni29qktxNTKS31NpgFtxhOoIl w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="414617043"
-X-IronPort-AV: E=Sophos;i="5.97,267,1669104000"; d="scan'208";a="414617043"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2023 02:20:02 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="697634948"
-X-IronPort-AV: E=Sophos;i="5.97,267,1669104000"; d="scan'208";a="697634948"
-Received: from dbhaktha-mobl.ger.corp.intel.com (HELO localhost)
- ([10.213.18.247])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2023 02:19:59 -0800
-Date: Thu, 2 Feb 2023 11:19:56 +0100
-From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Message-ID: <20230202101956.t5oyehyj6h4ylrga@kamilkon-desk1>
-Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- igt-dev@lists.freedesktop.org,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- Ashutosh Dixit <ashutosh.dixit@intel.com>,
- Petri Latvala <adrinael@adrinael.net>,
- Arkadiusz Hiler <arek@hiler.eu>, intel-gfx@lists.freedesktop.org,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- John Harrison <john.c.harrison@intel.com>,
- Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>
-References: <20230131091731.5892-1-janusz.krzysztofik@linux.intel.com>
- <20230131091731.5892-3-janusz.krzysztofik@linux.intel.com>
- <20230201182157.qpu6fyobvwwxdwwt@kamilkon-desk1>
- <1887805.taCxCBeP46@jkrzyszt-mobl1.ger.corp.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7FD7B10E4EB;
+ Thu,  2 Feb 2023 10:34:45 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 39027A03D2;
+ Thu,  2 Feb 2023 10:34:45 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1942193967949546830=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1887805.taCxCBeP46@jkrzyszt-mobl1.ger.corp.intel.com>
-Subject: Re: [Intel-gfx] [PATCH i-g-t 2/2] tests/i915/perf: Exercise barrier
- race
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Thu, 02 Feb 2023 10:34:45 -0000
+Message-ID: <167533408522.11114.9861542499862561302@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230202094726.6435-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20230202094726.6435-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgV2Ug?=
+ =?utf-8?q?need_to_have_additional_checks_for_DP_MST_UHBR_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,189 +40,182 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Arkadiusz Hiler <arek@hiler.eu>, intel-gfx@lists.freedesktop.org,
- Petri Latvala <adrinael@adrinael.net>,
- Chris Wilson <chris.p.wilson@linux.intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Janusz,
+--===============1942193967949546830==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 2023-02-01 at 20:16:11 +0100, Janusz Krzysztofik wrote:
-> Hi Kamil,
-> 
-> On Wednesday, 1 February 2023 19:21:57 CET Kamil Konieczny wrote:
-> > Hi Janusz,
-> > 
-> > please send patches to igt ML and add other addresses to cc:
-> > I have one nit, see below.
-> > 
-> > On 2023-01-31 at 10:17:31 +0100, Janusz Krzysztofik wrote:
-> > > Add a new subtest focused on exercising interaction between perf open /
-> > > close operations, which replace active barriers with perf requests, and
-> > > concurrent barrier preallocate / acquire operations performed during
-> > > context first pin / last unpin.
-> > > 
-> > > References: https://gitlab.freedesktop.org/drm/intel/-/issues/6333
-> > > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> > > Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
-> > > ---
-> > >  tests/i915/perf.c | 41 +++++++++++++++++++++++++++++++++++++++--
-> > >  1 file changed, 39 insertions(+), 2 deletions(-)
-> > > 
-> > > diff --git a/tests/i915/perf.c b/tests/i915/perf.c
-> > > index e33cacc443..11a3ec21ab 100644
-> > > --- a/tests/i915/perf.c
-> > > +++ b/tests/i915/perf.c
-> > > @@ -39,6 +39,7 @@
-> > >  #include <math.h>
-> > >  
-> > >  #include "i915/gem.h"
-> > > +#include "i915/gem_create.h"
-> > >  #include "i915/perf.h"
-> > >  #include "igt.h"
-> > >  #include "igt_perf.h"
-> > > @@ -4885,7 +4886,27 @@ test_whitelisted_registers_userspace_config(void)
-> > >  	i915_perf_remove_config(drm_fd, config_id);
-> > >  }
-> > >  
-> > > -static void test_open_race(const struct intel_execution_engine2 *e, int timeout)
-> > > +static void gem_exec_nop(int i915, const struct intel_execution_engine2 *e)
-> > > +{
-> > > +	const uint32_t bbe = MI_BATCH_BUFFER_END;
-> > > +	struct drm_i915_gem_exec_object2 obj = { };
-> > > +	struct drm_i915_gem_execbuffer2 execbuf = {
-> > > +		.buffers_ptr = to_user_pointer(&obj),
-> > > +		.buffer_count = 1,
-> > > +	};
-> > > +
-> > > +	obj.handle = gem_create(i915, 4096);
-> > > +	gem_write(i915, obj.handle, 0, &bbe, sizeof(bbe));
-> > > +
-> > > +	execbuf.flags = e->flags;
-> > > +	gem_execbuf(i915, &execbuf);
-> > > +
-> > > +	gem_sync(i915, obj.handle);
-> > > +	gem_close(i915, obj.handle);
-> > > +}
-> > > +
-> > > +static void test_open_race(const struct intel_execution_engine2 *e, int timeout,
-> > > +			   bool use_spin)
-> > -------------------------- ^
-> > This is not the best way to develop new code, it may be good
-> > for fast development but imho it is better to refactor existing
-> > code and avoiding to add bool logic into function.
-> 
-> I'm not sure what you mean.  By refactoring, do you mean moving the code 
-> common to both processing paths out to a separate helper, then call it from 
-> two distinct functions, each implementing only one scenario?  What's wrong 
-> with passing flags that select one of alternative processing paths within one 
-> function?  Or are you just not happy with bool type?
+== Series Details ==
 
-It is not wrong unless there is only one such var but even then
-readability of code is reduced.
+Series: We need to have additional checks for DP MST UHBR (rev2)
+URL   : https://patchwork.freedesktop.org/series/112876/
+State : success
 
-> 
-> > It can be done later as this is revealing the bug.
-> > 
-> > >  {
-> > >  	int *done;
-> > >  
-> > > @@ -4926,6 +4947,12 @@ static void test_open_race(const struct intel_execution_engine2 *e, int timeout)
-> > >  				ctx = gem_context_create_for_engine(i915, e->class, e->instance);
-> > >  				gem_context_set_persistence(i915, ctx, persistence);
-> > >  
-> > > +				if (!use_spin) {
-> > > +					gem_exec_nop(i915, e);
-> > > +					gem_context_destroy(i915, ctx);
-> > > +					continue;
-> > > +				}
-> > > +
-> > >  				spin = __igt_spin_new(i915, ctx, .ahnd = ahnd);
-> > >  				for (int i = random() % 7; i--; ) {
-> > >  					if (random() & 1) {
-> > > @@ -5330,7 +5357,17 @@ igt_main
-> > >  		for_each_physical_engine(drm_fd, e)
-> > >  			if (e->class == I915_ENGINE_CLASS_RENDER)
-> > >  				igt_dynamic_f("%s", e->name)
-> > > -					test_open_race(e, 5);
-> > > +					test_open_race(e, 5, true);
-> > > +	}
-> > > +
-> > 
-> > Please add here some TODO comments from discussions and a note
-> > which will help bug filling team to classify that.
-> 
-> TODO about moving the subtest to a different test -- OK.  But instructions for 
-> Bug Filling team?  Hmm, what if this subtest triggers a completely different 
-> bug in the future?  Are we going to update the comments then?  Do Bug Filling 
-> team members really read the sources while classifying bugs?
-> 
-> Please have another look at an example of expected dmesg from the currently 
-> triggered bug:
-> 
-> <4> [192.634015] list_del corruption. prev->next should be ffff8881479d34e0, but was ffff888108af4ce0. (prev=ffff888127335160)
-> <4> [192.634032] WARNING: CPU: 1 PID: 1286 at lib/list_debug.c:59 __list_del_entry_valid+0xb7/0xe0
+== Summary ==
 
-Ok, I see that it is kernel bug here. You are right,
-please add only TODO here.
+CI Bug Log - changes from CI_DRM_12681 -> Patchwork_112876v2
+====================================================
 
-Regards,
-Kamil
+Summary
+-------
 
-> <4> [192.634041] Modules linked in: vgem drm_shmem_helper fuse snd_hda_codec_hdmi snd_hda_codec_realtek snd_hda_codec_generic ledtrig_audio x86_pkg_temp_thermal coretemp i915 prime_numbers i2c_algo_bit kvm_intel ttm snd_hda_intel snd_intel_dspcfg kvm drm_buddy mei_pxp snd_hda_codec smsc75xx irqbypass mei_hdcp e1000e drm_display_helper usbnet snd_hwdep crct10dif_pclmul wmi_bmof mii crc32_pclmul ghash_clmulni_intel igc snd_hda_core drm_kms_helper ptp mei_me i2c_i801 syscopyarea snd_pcm pps_core sysfillrect i2c_smbus mei sysimgblt video intel_lpss_pci wmi
-> <4> [192.634156] CPU: 1 PID: 1286 Comm: perf Not tainted 6.2.0-rc6-CI_DRM_12672-gdf5c31e78609+ #1
-> <4> [192.634161] Hardware name: Intel Corporation Rocket Lake Client Platform/RocketLake S SODIMM RVP, BIOS RKLSFWI1.R00.1435.A00.2010232019 10/23/2020
-> <4> [192.634165] RIP: 0010:__list_del_entry_valid+0xb7/0xe0
-> <4> [192.634170] Code: cc cc cc 48 89 ca 48 c7 c7 78 00 46 82 e8 0d 7e 61 00 0f 0b 31 c0 c3 cc cc cc cc 4c 89 c2 48 c7 c7 b0 00 46 82 e8 f5 7d 61 00 <0f> 0b 31 c0 c3 cc cc cc cc 48 89 d1 4c 89 c6 4c 89 ca 48 c7 c7 f8
-> <4> [192.634174] RSP: 0018:ffffc90001f2fcb0 EFLAGS: 00010082
-> <4> [192.634180] RAX: 0000000000000000 RBX: ffff88812f8dec40 RCX: 0000000000000000
-> <4> [192.634184] RDX: 0000000000000003 RSI: ffffffff823d7c88 RDI: 00000000ffffffff
-> <4> [192.634187] RBP: ffff8881479d34d8 R08: 0000000000000000 R09: ffffc90001f2fb60
-> <4> [192.634191] R10: 0000000000000001 R11: 0000000000000001 R12: ffff88812f8df440
-> <4> [192.634194] R13: ffff88812f8df440 R14: ffff8881479d34e0 R15: 0000000000000246
-> <4> [192.634197] FS:  00007fa38f9514c0(0000) GS:ffff888450080000(0000) knlGS:0000000000000000
-> <4> [192.634201] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> <4> [192.634205] CR2: 00007fa392c76000 CR3: 000000010809e003 CR4: 0000000000770ee0
-> <4> [192.634208] PKRU: 55555554
-> <4> [192.634211] Call Trace:
-> <4> [192.634214]  <TASK>
-> <4> [192.634218]  __i915_active_fence_set+0x71/0xf0 [i915]
-> <4> [192.634412]  __i915_request_commit+0x2e1/0x5b0 [i915]
-> <4> [192.634597]  i915_request_add+0xa6/0x330 [i915]
-> <4> [192.634783]  gen8_modify_context+0xc2/0x220 [i915]
-> <4> [192.634958]  oa_configure_all_contexts.isra.0+0x183/0x400 [i915]
-> <4> [192.635137]  gen12_disable_metric_set+0x98/0x160 [i915]
-> <4> [192.635305]  i915_oa_stream_destroy+0x3c/0x330 [i915]
-> <4> [192.635480]  i915_perf_destroy_locked+0x22/0x80 [i915]
-> <4> [192.635646]  i915_perf_release+0x35/0x50 [i915]
-> <4> [192.635808]  __fput+0x95/0x260
-> 
-> Isn't such information from actual bug occurrence, contained in CI reports the 
-> Bug Filling team is working with, more meaningful than any comment added to 
-> the test source code?  How can a test know in advance what bugs it will ever 
-> trigger, and who exactly will be responsible for fixing them?
-> 
-> Thanks,
-> Janusz
-> 
-> > 
-> > Regards,
-> > Kamil
-> > 
-> > > +	igt_describe("Exercise perf open/close against intensive barrier preallocate/acquire");
-> > > +	igt_subtest_with_dynamic("barrier-race") {
-> > > +		const struct intel_execution_engine2 *e;
-> > > +
-> > > +		for_each_physical_engine(drm_fd, e)
-> > > +			if (e->class == I915_ENGINE_CLASS_RENDER)
-> > > +				igt_dynamic_f("%s", e->name)
-> > > +					test_open_race(e, 5, false);
-> > >  	}
-> > >  
-> > >  	igt_fixture {
-> > 
-> 
-> 
-> 
-> 
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v2/index.html
+
+Participating hosts (25 -> 24)
+------------------------------
+
+  Additional (1): fi-apl-guc 
+  Missing    (2): bat-rpls-2 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_112876v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@fbdev@write:
+    - fi-blb-e6850:       [PASS][1] -> [SKIP][2] ([fdo#109271]) +4 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12681/fi-blb-e6850/igt@fbdev@write.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v2/fi-blb-e6850/igt@fbdev@write.html
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-apl-guc:         NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v2/fi-apl-guc/igt@gem_lmem_swapping@basic.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-apl-guc:         NOTRUN -> [DMESG-FAIL][4] ([i915#5334])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v2/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@kms_chamelium_hpd@vga-hpd-fast:
+    - fi-apl-guc:         NOTRUN -> [SKIP][5] ([fdo#109271]) +21 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v2/fi-apl-guc/igt@kms_chamelium_hpd@vga-hpd-fast.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
+  [i915#7981]: https://gitlab.freedesktop.org/drm/intel/issues/7981
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12681 -> Patchwork_112876v2
+
+  CI-20190529: 20190529
+  CI_DRM_12681: 8ee2ec597aa4b8331124bf852432c2ca2fd7b8d1 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7143: c7b12dcc460fc2348e1fa7f4dcb791bb82e29e44 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_112876v2: 8ee2ec597aa4b8331124bf852432c2ca2fd7b8d1 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+3703d1bb3ac7 drm/i915: Implement UHBR bandwidth check
+94fd266334e2 drm/i915: Add generic constraint checker when determining DP MST DSC bpp
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v2/index.html
+
+--===============1942193967949546830==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>We need to have additional checks for DP MST UHBR (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/112876/">https://patchwork.freedesktop.org/series/112876/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12681 -&gt; Patchwork_112876v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v2/index.html</p>
+<h2>Participating hosts (25 -&gt; 24)</h2>
+<p>Additional (1): fi-apl-guc <br />
+  Missing    (2): bat-rpls-2 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_112876v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@fbdev@write:</p>
+<ul>
+<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12681/fi-blb-e6850/igt@fbdev@write.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v2/fi-blb-e6850/igt@fbdev@write.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v2/fi-apl-guc/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v2/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_hpd@vga-hpd-fast:</p>
+<ul>
+<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_112876v2/fi-apl-guc/igt@kms_chamelium_hpd@vga-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +21 similar issues</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12681 -&gt; Patchwork_112876v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12681: 8ee2ec597aa4b8331124bf852432c2ca2fd7b8d1 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7143: c7b12dcc460fc2348e1fa7f4dcb791bb82e29e44 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_112876v2: 8ee2ec597aa4b8331124bf852432c2ca2fd7b8d1 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>3703d1bb3ac7 drm/i915: Implement UHBR bandwidth check<br />
+94fd266334e2 drm/i915: Add generic constraint checker when determining DP MST DSC bpp</p>
+
+</body>
+</html>
+
+--===============1942193967949546830==--
