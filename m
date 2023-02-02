@@ -2,48 +2,93 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6D77687DE5
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 13:52:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E2AB687DE7
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 13:52:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5086D10E0A5;
-	Thu,  2 Feb 2023 12:52:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0EF310E512;
+	Thu,  2 Feb 2023 12:52:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE7D510E0A5
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Feb 2023 12:52:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675342349; x=1706878349;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=zsdeZIG9zk2JIB2Rp5qYI7d6TBA/UCBLiT5zDg3vO4U=;
- b=cxZWMUjqvWuI/MJZnBTg/io34efX22BoP3bLQ5R8se/uqvJWvDr7hgTp
- VImKMW4bh4LLOz6PllCnYmodBsmfSfV3Ikl+VqQgSibLWUQiauWdffWap
- oBvRaIXLPaB9u6AvnCaYD6GunAdYqJrQKI4Ci6hnw5g0kJStZwXsWBdAC
- oMsvx6059TQfmy6fFI3f1qyX5v97ebA2lBOAXFtBot5zVrjPjDk5Bcv3U
- ouLRoXSc2HPVzCSFcWoo+UgDnZtuSHctYYdiYE+fVapLfl46txvSAc5mU
- pmfd8QLPLMr2HGqLdQEg1z4bDRt5a/zmfOFA11B5cm741MPywoPFUTAyI Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="393017708"
-X-IronPort-AV: E=Sophos;i="5.97,267,1669104000"; d="scan'208";a="393017708"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2023 04:52:29 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="642882642"
-X-IronPort-AV: E=Sophos;i="5.97,267,1669104000"; d="scan'208";a="642882642"
-Received: from skopplex-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.34.132])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2023 04:52:27 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230202114613.3177235-1-suraj.kandpal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230202114613.3177235-1-suraj.kandpal@intel.com>
-Date: Thu, 02 Feb 2023 14:52:25 +0200
-Message-ID: <87ilgk1b7a.fsf@intel.com>
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
+ [148.163.156.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3F8510E512;
+ Thu,  2 Feb 2023 12:52:53 +0000 (UTC)
+Received: from pps.filterd (m0098404.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
+ 312C3gva028808; Thu, 2 Feb 2023 12:52:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
+ h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=pp1;
+ bh=fOUMm9vaY0LQvEz1no9qV2e22/3sAj99TdI12zctCso=;
+ b=aau+3DPTkYLZrJ/MhHlt00lxqX2MoJ77BRl4qNyWYi07HHFJcvyTggz/FyKIWXnWdLTZ
+ yNlhiyrBWIfQGLr71pnvFPY6m53gUd0CZIIeG9pdf7cGI7oHPDybVHN10ePkQRXxZZd4
+ ocWQ0dVDv/387PU74Aa2PgXi5wuMaT53mjNya4R4QCMGEBZTn/jkK/OAx/5tAx8Lcg/K
+ bMAX0ZCf0R6TWUOFaxQuh45FDCC5BP0so6OFSwwmMvEkiDO+81Y5T3Cn6jsKBwUXJMxH
+ ZBQCqhQT72b9qi9Ke/NOruwJtuK+ZEpUqt7KHjOqRKTVQ3X5YqwH4r9uiG4vChFnVdWK oQ== 
+Received: from pps.reinject (localhost [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3ng78h1bqs-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 02 Feb 2023 12:52:51 +0000
+Received: from m0098404.ppops.net (m0098404.ppops.net [127.0.0.1])
+ by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 312BJxOq019471;
+ Thu, 2 Feb 2023 12:52:50 GMT
+Received: from ppma01dal.us.ibm.com (83.d6.3fa9.ip4.static.sl-reverse.com
+ [169.63.214.131])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3ng78h1bq9-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 02 Feb 2023 12:52:50 +0000
+Received: from pps.filterd (ppma01dal.us.ibm.com [127.0.0.1])
+ by ppma01dal.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 312A1TJN006508;
+ Thu, 2 Feb 2023 12:52:49 GMT
+Received: from smtprelay03.wdc07v.mail.ibm.com ([9.208.129.113])
+ by ppma01dal.us.ibm.com (PPS) with ESMTPS id 3ncvtmt8tf-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 02 Feb 2023 12:52:49 +0000
+Received: from smtpav05.wdc07v.mail.ibm.com (smtpav05.wdc07v.mail.ibm.com
+ [10.39.53.232])
+ by smtprelay03.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 312CqlVL12321518
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Thu, 2 Feb 2023 12:52:47 GMT
+Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 29E4B58053;
+ Thu,  2 Feb 2023 12:52:47 +0000 (GMT)
+Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id C61315805D;
+ Thu,  2 Feb 2023 12:52:44 +0000 (GMT)
+Received: from [9.65.253.123] (unknown [9.65.253.123])
+ by smtpav05.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+ Thu,  2 Feb 2023 12:52:44 +0000 (GMT)
+Message-ID: <ee256360-b35b-55c1-d25b-b7abb065df3a@linux.ibm.com>
+Date: Thu, 2 Feb 2023 07:52:44 -0500
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 0/1] Fix logic to get slice_height for dp
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+To: "Tian, Kevin" <kevin.tian@intel.com>,
+ Alex Williamson <alex.williamson@redhat.com>
+References: <20230201192010.42748-1-mjrosato@linux.ibm.com>
+ <20230201162730.685b5332.alex.williamson@redhat.com>
+ <BN9PR11MB5276B8F3F6735FF2616128868CD69@BN9PR11MB5276.namprd11.prod.outlook.com>
+Content-Language: en-US
+From: Matthew Rosato <mjrosato@linux.ibm.com>
+In-Reply-To: <BN9PR11MB5276B8F3F6735FF2616128868CD69@BN9PR11MB5276.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: XcjC1Kt46PxL2S8wVIGhF-mMiGdE2aU3
+X-Proofpoint-ORIG-GUID: o81pid3WShnfEElUozHn3d2Sh9_qJ-gl
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-02-02_04,2023-02-02_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0
+ mlxlogscore=999 suspectscore=0 spamscore=0 priorityscore=1501
+ impostorscore=0 mlxscore=0 adultscore=0 lowpriorityscore=0 bulkscore=0
+ phishscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2302020112
+Subject: Re: [Intel-gfx] [PATCH v2] vfio: fix deadlock between group lock
+ and kvm lock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,24 +101,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "akrowiak@linux.ibm.com" <akrowiak@linux.ibm.com>,
+ "jjherne@linux.ibm.com" <jjherne@linux.ibm.com>,
+ "farman@linux.ibm.com" <farman@linux.ibm.com>, "Liu,
+ Yi L" <yi.l.liu@intel.com>, "frankja@linux.ibm.com" <frankja@linux.ibm.com>,
+ "pmorel@linux.ibm.com" <pmorel@linux.ibm.com>,
+ "david@redhat.com" <david@redhat.com>,
+ "imbrenda@linux.ibm.com" <imbrenda@linux.ibm.com>, "Christopherson, ,
+ Sean" <seanjc@google.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "pasic@linux.ibm.com" <pasic@linux.ibm.com>, "jgg@nvidia.com" <jgg@nvidia.com>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "pbonzini@redhat.com" <pbonzini@redhat.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "borntraeger@linux.ibm.com" <borntraeger@linux.ibm.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 02 Feb 2023, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> According to bspec :49259 VDSC spec implies that 108 lines is an optimal
-> slice height, but any size can be used as long as vertical active
-> integer multiple and maximum vertical slice count requirements are met.
-> Add a fix in this patch to go for most optimal lines and move ahead from
-> there instead of primitively using 8 lines.
+On 2/1/23 11:10 PM, Tian, Kevin wrote:
+>> From: Alex Williamson <alex.williamson@redhat.com>
+>> Sent: Thursday, February 2, 2023 7:28 AM
+>>>
+>>> +#ifdef CONFIG_HAVE_KVM
+>>> +static bool vfio_kvm_get_kvm_safe(struct vfio_device *device, struct kvm
+>> *kvm)
+>>
+>> I'm tempted to name these vfio_device_get_kvm_safe() and only pass the
+>> vfio_device, where of course we can get the kvm pointer from the group
+>> internally.
+>>
+> 
+> I have a different thought. In the end the cdev series also need the similar
+> safe get/put logic then it's better to keep it in vfio_main.c called by
+> the group/cdev path individually.
 
-There's no need for a cover letter if you're sending just one patch.
-
->
-> Suraj Kandpal (1):
->   drm/i915/dp: Fix logic to fetch slice_height
->
->  drivers/gpu/drm/i915/display/intel_dp.c | 28 +++++++++++++++----------
->  1 file changed, 17 insertions(+), 11 deletions(-)
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Ah, I hadn't considered the cdev series - OK, I can move the functions back into vfio_main and externalize both via drivers/vfio/vfio.h so they can be called from group.c for this fix and then available to vfio_main.c already for cdev.
