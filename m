@@ -1,70 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEDBB687DDA
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 13:50:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6D77687DE5
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 13:52:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C49E010E0A5;
-	Thu,  2 Feb 2023 12:50:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5086D10E0A5;
+	Thu,  2 Feb 2023 12:52:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com
- [IPv6:2a00:1450:4864:20::42f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E3C610E0A5;
- Thu,  2 Feb 2023 12:50:21 +0000 (UTC)
-Received: by mail-wr1-x42f.google.com with SMTP id t18so1623462wro.1;
- Thu, 02 Feb 2023 04:50:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=w5NS+1c8Tu2PGFvK4AFEdfQ0iYep75esswQI1225dSM=;
- b=S7yIohgxwKAADl61gLn3ethmknWpCDOxD611Nhp4wn7OpDjidJ+3j0AyxWK+QLhJb0
- A7x2wzR8uKW8dVcVhy6KMC+9JBXqQYXP3cCLe9bdFzgMyociIRYLMdf7sOKQAOERQkVZ
- TGHtUzYkbV3daP3VDzoLDiApjv6uDFHiUcdnZ58612cUZteYbEUBa+xkaIlMyYWLO/Gq
- 4x+QzKCbNdCNCVE2n4yEUAhbQGocwljziYZ20LaA1ibkMv0diz8W28XmCHtJB+KCru8w
- 86teva9QCv/IGpnfPvD0VeiR0dMWyPCc6RFJWeTygEACQ3211VfsZPHHOksyfSIrI1HC
- ANpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=w5NS+1c8Tu2PGFvK4AFEdfQ0iYep75esswQI1225dSM=;
- b=lQf+lUUlqDhS7jPK+d1IZUa3ahQf5WXSMoACD5r9ardnz8/gtBZNvMR9Tvt7Swpa8e
- YjxBtY20awiSWFMAmuIvbTaBAENpdOC1I/9xNnflf3ynWDOSe9BjS9t7WVqHuBchVhHf
- nOfMzDktcQBa3OLGu+w14O5K/SDBLB9FuucmoVhG6lzomCA4VFo8tCt1am9xew77BcbB
- q/wroPMUP1oiE6sg5CKkN5we3t1PD7UB/vFZZ24iBXSLIZIeGAKQCmUrXke2ev2AH9wc
- kj/wT3GFvihIMzOMzDlKm75FF8Yrv8Uv59o+LyhDdIIuIY58ejVyLqRb/M4oMQp3DwqE
- pe+w==
-X-Gm-Message-State: AO0yUKV4d+cj4ixbj3t+q6cQtsQ1IyJnz518YBO/D/2jB/MZUInu8Rtw
- vn01007X5i/s/XavDETjEIg=
-X-Google-Smtp-Source: AK7set9GirxZBqSwgFAsMboxKE8Izp95X1pyquunjVvuEGOfw96gDntzRpcsoOrreA5T5hjVvI/7Pw==
-X-Received: by 2002:a05:6000:1285:b0:2bf:ee0f:9f04 with SMTP id
- f5-20020a056000128500b002bfee0f9f04mr6115932wrx.45.1675342219853; 
- Thu, 02 Feb 2023 04:50:19 -0800 (PST)
-Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net.
- [80.193.200.194]) by smtp.gmail.com with ESMTPSA id
- d7-20020a056000114700b00241fab5a296sm19667773wrx.40.2023.02.02.04.50.19
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 02 Feb 2023 04:50:19 -0800 (PST)
-From: Colin Ian King <colin.i.king@gmail.com>
-To: Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.a.wang@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Date: Thu,  2 Feb 2023 12:50:18 +0000
-Message-Id: <20230202125018.285523-1-colin.i.king@gmail.com>
-X-Mailer: git-send-email 2.30.2
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE7D510E0A5
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Feb 2023 12:52:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1675342349; x=1706878349;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=zsdeZIG9zk2JIB2Rp5qYI7d6TBA/UCBLiT5zDg3vO4U=;
+ b=cxZWMUjqvWuI/MJZnBTg/io34efX22BoP3bLQ5R8se/uqvJWvDr7hgTp
+ VImKMW4bh4LLOz6PllCnYmodBsmfSfV3Ikl+VqQgSibLWUQiauWdffWap
+ oBvRaIXLPaB9u6AvnCaYD6GunAdYqJrQKI4Ci6hnw5g0kJStZwXsWBdAC
+ oMsvx6059TQfmy6fFI3f1qyX5v97ebA2lBOAXFtBot5zVrjPjDk5Bcv3U
+ ouLRoXSc2HPVzCSFcWoo+UgDnZtuSHctYYdiYE+fVapLfl46txvSAc5mU
+ pmfd8QLPLMr2HGqLdQEg1z4bDRt5a/zmfOFA11B5cm741MPywoPFUTAyI Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="393017708"
+X-IronPort-AV: E=Sophos;i="5.97,267,1669104000"; d="scan'208";a="393017708"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2023 04:52:29 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="642882642"
+X-IronPort-AV: E=Sophos;i="5.97,267,1669104000"; d="scan'208";a="642882642"
+Received: from skopplex-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.34.132])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2023 04:52:27 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230202114613.3177235-1-suraj.kandpal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230202114613.3177235-1-suraj.kandpal@intel.com>
+Date: Thu, 02 Feb 2023 14:52:25 +0200
+Message-ID: <87ilgk1b7a.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH][next] i915/gvt: Fix spelling mistake "vender"
- -> "vendor"
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 0/1] Fix logic to get slice_height for dp
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,30 +56,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There is a spelling mistake in a literal string. Fix it.
+On Thu, 02 Feb 2023, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> According to bspec :49259 VDSC spec implies that 108 lines is an optimal
+> slice height, but any size can be used as long as vertical active
+> integer multiple and maximum vertical slice count requirements are met.
+> Add a fix in this patch to go for most optimal lines and move ahead from
+> there instead of primitively using 8 lines.
 
-Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
----
- drivers/gpu/drm/i915/gvt/firmware.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+There's no need for a cover letter if you're sending just one patch.
 
-diff --git a/drivers/gpu/drm/i915/gvt/firmware.c b/drivers/gpu/drm/i915/gvt/firmware.c
-index dce93738e98a..4dd52ac2043e 100644
---- a/drivers/gpu/drm/i915/gvt/firmware.c
-+++ b/drivers/gpu/drm/i915/gvt/firmware.c
-@@ -171,7 +171,7 @@ static int verify_firmware(struct intel_gvt *gvt,
- 	mem = (fw->data + h->cfg_space_offset);
- 
- 	id = *(u16 *)(mem + PCI_VENDOR_ID);
--	VERIFY("vender id", id, pdev->vendor);
-+	VERIFY("vendor id", id, pdev->vendor);
- 
- 	id = *(u16 *)(mem + PCI_DEVICE_ID);
- 	VERIFY("device id", id, pdev->device);
+>
+> Suraj Kandpal (1):
+>   drm/i915/dp: Fix logic to fetch slice_height
+>
+>  drivers/gpu/drm/i915/display/intel_dp.c | 28 +++++++++++++++----------
+>  1 file changed, 17 insertions(+), 11 deletions(-)
+
 -- 
-2.30.2
-
+Jani Nikula, Intel Open Source Graphics Center
