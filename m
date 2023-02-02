@@ -1,151 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 366FA68760F
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 07:52:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FA416876AE
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 08:44:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BD5A10E1B7;
-	Thu,  2 Feb 2023 06:51:57 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5223A10E1B7
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Feb 2023 06:51:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7ED7010E469;
+	Thu,  2 Feb 2023 07:43:53 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D640610E47D;
+ Thu,  2 Feb 2023 07:43:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675320715; x=1706856715;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=IqKAiahp2qyeEUwNx/T8/WuRSYLZXTnVVum+Gw+ls5M=;
- b=iHKMSV88mUToQgFKh3vIv/Cj3PhmTsUs9C7eoRpcdSJJnfyRs47hkj1A
- X+PeKP/ufnD8QIykd1wIFMnzwcEBPuG3F4RBkqKvkZH8CIDUHGijymAI0
- 5zdpBbRI7xhORJmSqU2MQB+4oaBdWVPJ6gzdCIBxxigxi8TcZT5skWOQJ
- /zAL3pbsOx2x+ayQ4e9bUu03jUvVwCMCL2yoDIrZt9MRN9XjRHHTilH6F
- CRM2sS+0T6FdSBRI+rUY6w0laK4o7RkggSV1GYoz43fBbfu2Kcne+6bEZ
- 540io4johiKYN+WilKkJ5rIcmFHYHib1lhRfLw4QTJWtBdOVv0RqVcAEh w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="308023843"
-X-IronPort-AV: E=Sophos;i="5.97,266,1669104000"; d="scan'208";a="308023843"
+ t=1675323829; x=1706859829;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=AdwxkFx7q8DAk8HaQMDGEQmLMFwHPr7PtGHjdfRHXKE=;
+ b=QdTewjXBl/479B3OSDZv+9XZfTJ2w887DqIgrpF3Fqi630u5sVLSbi+u
+ ncWMvkC4vJP4z8g8ny02+N0kPaD8tttdf0P/gaVLVnzV8TbABtoYLghoU
+ /gt9KNgtYmgekZRKSIyKymlkZgWOvwjJqbYwn5By02JRUwacRymPorucH
+ t20/j7AGIWJ6CltNE4nB/NfrEdpSpxMa1OwP3qp+qY1sI+dOwTewGdR6k
+ +BRGayvBYUpAnQnc7259efb5xEZkCLQ3ZCZ5/m5Sgz8SkB7hEk71jXUAK
+ P+kqOYELPREqul8ytGEJeCiGccuG0TV90dK7LDhuCgyGqtSBqHx+JpEtf Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="328395482"
+X-IronPort-AV: E=Sophos;i="5.97,266,1669104000"; d="scan'208";a="328395482"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2023 22:51:54 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="697579498"
-X-IronPort-AV: E=Sophos;i="5.97,266,1669104000"; d="scan'208";a="697579498"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga001.jf.intel.com with ESMTP; 01 Feb 2023 22:51:54 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Wed, 1 Feb 2023 22:51:53 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Wed, 1 Feb 2023 22:51:53 -0800
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.46) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Wed, 1 Feb 2023 22:51:53 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mOBqMVTwWpqn+cmzlpH6bWYraHggWk2pcu7WSikwjRmricvG3+rUxoUTbuU5YzE1yMs70CgDuYS5gnCZIOmbPXqtMSjIIbpsEuewveHnfLMF7aLmikTFClNlZtTIAv7ZRqeH15qAgrvQOD/RJBK1/pte3Dh3Rd3wsLS/95/Ys5EWJpTO5aCLmZ2FsyW+ET+bZ+WnE5A0czF+iJ4nohVQT0+PAaFleDT+LkQG94oHq9iODmJ3m2t8txJ+nynMlCCYr8wJB5LX77NxhO2MkcOnugSLORoVrL1IyTzQ5cf9z27nz1asEXZi14ELkxrmXAlMVuP9W1aZyIoWi2MufwrHFw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wzMAfDQClDuKlE300OzJ21VYLsKXjrzuh1P/IuopKPY=;
- b=K8d+7nntCgV73O+ZxfVnx2ui76lrsWQek97WkqyMfRG+ExiBtOCeyNVUvpK1u6Kbz9EXaVa/jp1jhWdeLqOiAWIIkYiKOwzG2aEguPL0inb/QjPHZUAv5VIEPLTLOUT0jwnZF2NSjbMt1wFf7m+H3rKaZHh9btEkovlF56iQf0acHN9RoFMBdiyj/hX2+qAJY2txMtSa8P/odsiTP5hWJqtsXCfvRXO70YCg0a7h0l0QiFcV75vSlPIjyezqnqKhIqnRLODfHjaa641ZBzkwJ8xI6Sjak/CMCDx/Puu/iIQ0tjkHEKEBIp297b0Qc7dlIFoC65XiyQI1iDGmyqXhbQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM6PR11MB3177.namprd11.prod.outlook.com (2603:10b6:5:c::28) by
- IA1PR11MB7775.namprd11.prod.outlook.com (2603:10b6:208:3f3::9) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6064.24; Thu, 2 Feb 2023 06:51:50 +0000
-Received: from DM6PR11MB3177.namprd11.prod.outlook.com
- ([fe80::f1cb:21b7:f511:ea11]) by DM6PR11MB3177.namprd11.prod.outlook.com
- ([fe80::f1cb:21b7:f511:ea11%7]) with mapi id 15.20.6043.038; Thu, 2 Feb 2023
- 06:51:49 +0000
-From: "Murthy, Arun R" <arun.r.murthy@intel.com>
-To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Thread-Topic: [Intel-gfx] [PATCHv3] drm/i915: Support Async Flip on Linear
- buffers
-Thread-Index: AQHYwaOE/EXAADz+NkeUK0QgUHi7O63WeiyAgAhR7zCAB3v7gIAhL06wgBv+ZsCAADSigIB5ErxAgAZdxOCACU3HEIAPuYtw
-Date: Thu, 2 Feb 2023 06:51:49 +0000
-Message-ID: <DM6PR11MB31770BE42F08018A83ABF749BAD69@DM6PR11MB3177.namprd11.prod.outlook.com>
-References: <20220426120407.1334318-1-arun.r.murthy@intel.com>
- <20220906034803.4094252-1-arun.r.murthy@intel.com>
- <DM6PR11MB31775117B7388776D2E6DFD2BA439@DM6PR11MB3177.namprd11.prod.outlook.com>
- <DM6PR11MB3177451D1F3A10D00706461ABA469@DM6PR11MB3177.namprd11.prod.outlook.com>
- <DM6PR11MB31771349661CE3E0C2CB28BABA4D9@DM6PR11MB3177.namprd11.prod.outlook.com>
- <DM6PR11MB31777D09EBDFB4604D5E6631BA209@DM6PR11MB3177.namprd11.prod.outlook.com>
- <DM6PR11MB3177CFCD0942A580C4E9FE5BBA329@DM6PR11MB3177.namprd11.prod.outlook.com>
- <Y1t3J2vIoiaPhYuR@intel.com>
- <DM6PR11MB3177F788C93767D65A8C7EBFBAC29@DM6PR11MB3177.namprd11.prod.outlook.com>
- <DM6PR11MB3177F06B273DC0A701B6BB68BAC69@DM6PR11MB3177.namprd11.prod.outlook.com>
- <DM6PR11MB31779DE7C32B77798771CD74BAC89@DM6PR11MB3177.namprd11.prod.outlook.com>
-In-Reply-To: <DM6PR11MB31779DE7C32B77798771CD74BAC89@DM6PR11MB3177.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM6PR11MB3177:EE_|IA1PR11MB7775:EE_
-x-ms-office365-filtering-correlation-id: 62da1e93-3ba1-4479-431e-08db04e9f55a
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: +/cxmiKuqScV0Y1qIFJJUx1J0wNz1gJ75mYHvau0sLY+Bh5lwZZu8241y3qsuNXFn8Gkty3cetyaF4Z1q1ASvLKDVoey5B1lq18jGV8Ls/iPk+yYnqcYwPOrUcC60VnUP+UvHSkLEiouxb8L3zYh116NelNtmj8J8MIYAq6m/XF/cG9mLWQNRLhXK8lHowrgSOIIzxhi+89tPw7sLWC+64KonINdMExlJ2AQXWw85xl7UOgIgCmDvA1MIbAXgKkRdZMsEOL71xEhSFxPiAQNDaLzr+wNhGJXlQlhZpjNU524lPOrQgBU2z2RH1KIzrRaWKYl4FQtHA/zDWtxvfaJX13nPOkuXqbMY4465hP7ovEG3hqE/bN5XlsPikS9yqYBEDK0onMMfzvPjpAjYL9thCOrYdzTe5GN9X7siUUoyOrwKqbAKXvWEZIOSgoC7SQyIzoW9j9cK/1Qbjaa1k0jrFdksqYDVaEBs5ed8MdMsVogYrAuTdI+WmmNPmOfHHhS2qNp+EHJRpVSp77zAndf7SMuIeqrTNb2c3i4OlfipfHpzZ+4iePiTXu6GFLtWTbkShfCNxo8TTvZdPMXgJg+KXmhOtv+a0zzp0ojYCmPNKfZ+xnkj9+Nfdu5Kyex5o0IggE+G2HOHFK7O36sPetoM4JptfdVPShJJI46i2R5oaBScJmo1eW0BQvgC8feIvyICNp1O3WzgRnG8GwqWvy6bvmhoDDvSr4QPDNhmnR4uMM=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR11MB3177.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(346002)(376002)(366004)(396003)(39860400002)(136003)(451199018)(316002)(52536014)(122000001)(186003)(82960400001)(9686003)(38100700002)(26005)(38070700005)(83380400001)(66574015)(6506007)(54906003)(55236004)(53546011)(55016003)(5660300002)(2906002)(33656002)(478600001)(66556008)(86362001)(66946007)(66446008)(66476007)(71200400001)(64756008)(6916009)(8676002)(41300700001)(8936002)(7696005)(76116006)(4326008);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?Jz7rQZHhLwyoIp1kjT13+VNuxK3wTsNZlgmic2kW46H3kTBdWrAioRDKrb?=
- =?iso-8859-1?Q?8Gspp8baGQDqBhj12QFwO0XSxrh/HuG2YiPNtv3Jp6Vxe0e3tPVLSuB8C7?=
- =?iso-8859-1?Q?tKJuGDwpigUHxdzkT338LF45BqQI2snfpj/0KLWHluobXr2zwBxfvYsm0n?=
- =?iso-8859-1?Q?irJgrmwZCOq+Lok32hctze+bBDGc84ITliYDsTx9jKhmWQUJdIEMH7UO6V?=
- =?iso-8859-1?Q?XufL2zUjJe84xEBCK31YSzyYNAzj1G0gcwLby3pVfOp+jEFszhAApbAtY/?=
- =?iso-8859-1?Q?Qs+rsumdVM5Oz7HZkLz3q9LRMm9/mpdXWsMXuLTC8YtN0I43Zv/NZINkGe?=
- =?iso-8859-1?Q?mozUW6mljLxn2Y8Xd8027Ti7afUsxfsJwGV/tFa252sHgDP+c+YDUn++tT?=
- =?iso-8859-1?Q?TWD8gfeeSppOeV2a6pR0mmm9NWVcGbhwWJJTleCGa//qm1ZnMD/j3jhmDu?=
- =?iso-8859-1?Q?ldKBzdMx6O15EKkhg8zC64kWmodHHjDThA2sJrwIa7R3o8bMqkrH7cjNHz?=
- =?iso-8859-1?Q?+7pTGVUD7JZ+4twjqfo1DXulkoVvctQqmBerjIFkqm2naVNhI/qR78UbN7?=
- =?iso-8859-1?Q?lVrfpUXW1iXfISnjwc9yNNeqYGPcRK8GOUf326XVCPg8+TzL4eBrymBN/y?=
- =?iso-8859-1?Q?00TFEgAYZu4k6sghYKNhwFa/X0CnfgsQd35dLPAsHwXLbAm8j71IcVlNxK?=
- =?iso-8859-1?Q?rqaR2NlyBrvroHnn7BrdgHl1nK17eBdY3LR9KpRxDgLrzRm8K+u/xoKrnV?=
- =?iso-8859-1?Q?WwHOTwEKJR7V8kzsphMNRPN4jcahkOJ5kqN4K/XZSrDbeT4i1vs+G3Uaba?=
- =?iso-8859-1?Q?O6uMbK31l+wu/C+4wYYpF2hoWrjBPFUnaI/5FMO1CJf+3GP5cRnCo67+/4?=
- =?iso-8859-1?Q?+15iV2N0aJFocycNVjKnDp5JnWvociGEafSLqFt+v65ucfUBQV5CI1xGlO?=
- =?iso-8859-1?Q?t4j5qiInJB7+sKBryK0stHftLPytc88KuOjFYkgXZYzlSmq+n3NF6SIESd?=
- =?iso-8859-1?Q?IunO72OTi9/lANjy8LT3AmPN3KO9I+gSD6/8xV/tKZ7rawN6I/ad8dSitb?=
- =?iso-8859-1?Q?3em2qVCWGunJSuphZhqAKQ61IEsq18BABY1hIhhCDjUaaqlOgHpjkty/97?=
- =?iso-8859-1?Q?xkynCW27IdZs++C+Rx7gOxPza1A9Qw2hV92MGXUAtljIAr6sdmTCN8vgv4?=
- =?iso-8859-1?Q?oaZdHeKt64RVZs1ilJiSo0NzXmp6uH2H7nCsi4hp2GFfuFJOk0Bbnc6ekM?=
- =?iso-8859-1?Q?prDbJgIopjgtdQJUK52PWMvufcxAmtxBrxBKyvt02y2HlY63w8A+ASvloM?=
- =?iso-8859-1?Q?YJD/kOQA+gnAQNAd/38Tpf31lGHo/+AeVaDO04R1QOPLqmjwz2OaDhBl+a?=
- =?iso-8859-1?Q?ndOCXtW6XmTKSWZr0ba5h2GmyLJdDYqlHsd89FMmBnRdDvuCvHBzhWdQIM?=
- =?iso-8859-1?Q?N0oqG1MSKAI321xaWuu5kIPMsb6gWWopp2YKVBimL7U2nRlcNP3pEarnrj?=
- =?iso-8859-1?Q?AV++d9VZE/SqW40qZOZ6wKiL8ZmhTk3if9aghCpXz4f0fCP7cCMfzI+8cV?=
- =?iso-8859-1?Q?a4xG5JR0gy6WRHjAw8M22aMPsEJgwUIlu7w2rKCh/gFPOIn88BovxamnOb?=
- =?iso-8859-1?Q?0Mzio0SQgIn0FLNDzjAg9ZqV5YSPGXG9Ol?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2023 23:43:48 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="697593269"
+X-IronPort-AV: E=Sophos;i="5.97,266,1669104000"; d="scan'208";a="697593269"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.4.221])
+ ([10.213.4.221])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2023 23:43:46 -0800
+Message-ID: <f575e344-e915-c85f-49cd-28fa426bcfd6@intel.com>
+Date: Thu, 2 Feb 2023 08:43:43 +0100
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3177.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 62da1e93-3ba1-4479-431e-08db04e9f55a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Feb 2023 06:51:49.3125 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 5oWNmFvPSYqXKp4QNEz3rJDLXeqhZ6wGC8va1y6zAjAqFpIehjafgWviEHV0ybOfZCfyFOOet/wGkHHvdU0SYw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7775
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCHv3] drm/i915: Support Async Flip on Linear
- buffers
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.6.1
+Content-Language: en-US
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20230201165146.4056691-1-tvrtko.ursulin@linux.intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20230201165146.4056691-1-tvrtko.ursulin@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: Consolidate TLB invalidation
+ flow
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,207 +64,390 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Syrjala, Ville" <ville.syrjala@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Gentle Reminder!
-The patch is pending since a long time.
+On 01.02.2023 17:51, Tvrtko Ursulin wrote:
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> 
+> As the logic for selecting the register and corresponsing values grew, the
+> code become a bit unsightly. Consolidate by storing the required values at
+> engine init time in the engine itself, and by doing so minimise the amount
+> of invariant platform and engine checks during each and every TLB
+> invalidation.
+> 
+> v2:
+>   * Fail engine probe if TLB invlidations registers are unknown.
+> 
+> v3:
+>   * Rebase.
+> 
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com> # v1
+> ---
+>   drivers/gpu/drm/i915/gt/intel_engine_cs.c    |  96 +++++++++++++
+>   drivers/gpu/drm/i915/gt/intel_engine_types.h |  15 ++
+>   drivers/gpu/drm/i915/gt/intel_gt.c           | 138 +++----------------
+>   3 files changed, 133 insertions(+), 116 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> index d4e29da74612..e430945743ec 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> @@ -9,6 +9,7 @@
+>   
+>   #include "gem/i915_gem_context.h"
+>   #include "gem/i915_gem_internal.h"
+> +#include "gt/intel_gt_print.h"
+>   #include "gt/intel_gt_regs.h"
+>   
+>   #include "i915_cmd_parser.h"
+> @@ -1143,12 +1144,107 @@ static int init_status_page(struct intel_engine_cs *engine)
+>   	return ret;
+>   }
+>   
+> +static int intel_engine_init_tlb_invalidation(struct intel_engine_cs *engine)
+> +{
+> +	static const union intel_engine_tlb_inv_reg gen8_regs[] = {
+> +		[RENDER_CLASS].reg		= GEN8_RTCR,
+> +		[VIDEO_DECODE_CLASS].reg	= GEN8_M1TCR, /* , GEN8_M2TCR */
+> +		[VIDEO_ENHANCEMENT_CLASS].reg	= GEN8_VTCR,
+> +		[COPY_ENGINE_CLASS].reg		= GEN8_BTCR,
+> +	};
+> +	static const union intel_engine_tlb_inv_reg gen12_regs[] = {
+> +		[RENDER_CLASS].reg		= GEN12_GFX_TLB_INV_CR,
+> +		[VIDEO_DECODE_CLASS].reg	= GEN12_VD_TLB_INV_CR,
+> +		[VIDEO_ENHANCEMENT_CLASS].reg	= GEN12_VE_TLB_INV_CR,
+> +		[COPY_ENGINE_CLASS].reg		= GEN12_BLT_TLB_INV_CR,
+> +		[COMPUTE_CLASS].reg		= GEN12_COMPCTX_TLB_INV_CR,
+> +	};
+> +	static const union intel_engine_tlb_inv_reg xehp_regs[] = {
+> +		[RENDER_CLASS].mcr_reg		  = XEHP_GFX_TLB_INV_CR,
+> +		[VIDEO_DECODE_CLASS].mcr_reg	  = XEHP_VD_TLB_INV_CR,
+> +		[VIDEO_ENHANCEMENT_CLASS].mcr_reg = XEHP_VE_TLB_INV_CR,
+> +		[COPY_ENGINE_CLASS].mcr_reg	  = XEHP_BLT_TLB_INV_CR,
+> +		[COMPUTE_CLASS].mcr_reg		  = XEHP_COMPCTX_TLB_INV_CR,
+> +	};
+> +	struct drm_i915_private *i915 = engine->i915;
+> +	const union intel_engine_tlb_inv_reg *regs;
+> +	union intel_engine_tlb_inv_reg reg;
+> +	unsigned int class = engine->class;
+> +	unsigned int num = 0;
+> +	u32 val;
+> +
+> +	/*
+> +	 * New platforms should not be added with catch-all-newer (>=)
+> +	 * condition so that any later platform added triggers the below warning
+> +	 * and in turn mandates a human cross-check of whether the invalidation
+> +	 * flows have compatible semantics.
+> +	 *
+> +	 * For instance with the 11.00 -> 12.00 transition three out of five
+> +	 * respective engine registers were moved to masked type. Then after the
+> +	 * 12.00 -> 12.50 transition multi cast handling is required too.
+> +	 */
+> +
+> +	if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 50) ||
+> +	    GRAPHICS_VER_FULL(i915) == IP_VER(12, 55)) {
+> +		regs = xehp_regs;
+> +		num = ARRAY_SIZE(xehp_regs);
+> +	} else if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 0) ||
+> +		   GRAPHICS_VER_FULL(i915) == IP_VER(12, 10)) {
+> +		regs = gen12_regs;
+> +		num = ARRAY_SIZE(gen12_regs);
+> +	} else if (GRAPHICS_VER(i915) >= 8 && GRAPHICS_VER(i915) <= 11) {
+> +		regs = gen8_regs;
+> +		num = ARRAY_SIZE(gen8_regs);
+> +	} else if (GRAPHICS_VER(i915) < 8) {
+> +		return 0;
+> +	}
+> +
+> +	if (gt_WARN_ONCE(engine->gt, !num,
+> +			 "Platform does not implement TLB invalidation!"))
+> +		return -ENODEV;
+> +
+> +	if (gt_WARN_ON_ONCE(engine->gt,
+> +			     class >= num ||
+> +			     (!regs[class].reg.reg &&
+> +			      !regs[class].mcr_reg.reg)))
+> +		return -ERANGE;
+> +
+> +	reg = regs[class];
+> +
+> +	if (GRAPHICS_VER(i915) == 8 && class == VIDEO_DECODE_CLASS) {
 
-Thanks and Regards,
-Arun R Murthy
--------------------
+As selftest pointed out it should cover also gen 9-11.
+Btw maybe it is worth to convert this pseudo array indexing to direct 
+assignment:
+if ((GRAPHICS_VER(i915) <= 11 && class == VIDEO_DECODE_CLASS && 
+engine->instance == 1) {
+	reg.reg = GEN8_M2TCR;
+	val = 0;
+}
 
-> -----Original Message-----
-> From: Murthy, Arun R
-> Sent: Monday, January 23, 2023 12:14 PM
-> To: 'Ville Syrj=E4l=E4' <ville.syrjala@linux.intel.com>
-> Cc: 'intel-gfx@lists.freedesktop.org' <intel-gfx@lists.freedesktop.org>;
-> Syrjala, Ville <ville.syrjala@intel.com>
-> Subject: RE: [Intel-gfx] [PATCHv3] drm/i915: Support Async Flip on Linear
-> buffers
->=20
-> Any review comments on this. Gentle Reminder!
->=20
-> Thanks and Regards,
-> Arun R Murthy
-> --------------------
->=20
-> > -----Original Message-----
-> > From: Murthy, Arun R
-> > Sent: Tuesday, January 17, 2023 2:09 PM
-> > To: 'Ville Syrj=E4l=E4' <ville.syrjala@linux.intel.com>
-> > Cc: 'intel-gfx@lists.freedesktop.org'
-> > <intel-gfx@lists.freedesktop.org>;
-> > Syrjala, Ville <ville.syrjala@intel.com>
-> > Subject: RE: [Intel-gfx] [PATCHv3] drm/i915: Support Async Flip on
-> > Linear buffers
-> >
-> > Gentle Reminder!
-> >
-> > Thanks and Regards,
-> > Arun R Murthy
-> > -------------------
-> >
-> > > -----Original Message-----
-> > > From: Murthy, Arun R
-> > > Sent: Friday, January 13, 2023 12:57 PM
-> > > To: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > Cc: intel-gfx@lists.freedesktop.org; Syrjala, Ville
-> > > <ville.syrjala@intel.com>
-> > > Subject: RE: [Intel-gfx] [PATCHv3] drm/i915: Support Async Flip on
-> > > Linear buffers
-> > >
-> > > > On Fri, Oct 28, 2022 at 03:23:02AM +0000, Murthy, Arun R wrote:
-> > > > > Gentle Reminder!
-> > > >
-> > > > Is the igt stuff merged, and did this pass the test?
-> > > >
-> > > With IGT alone the tests will fail without the kernel patch.
-> > > The
-> > > tests(https://intel-gfx-ci.01.org/tree/drm-tip/Trybot_112722v2/shard
-> > > s-
-> > > all.html?testfilter=3Dkms_async_flips) are passing with IGT and kerne=
-l
-> patch.
-> > >
-> > > Thanks and Regards,
-> > > Arun R Murthy
-> > > --------------------
-> > > > >
-> > > > > > -----Original Message-----
-> > > > > > From: Murthy, Arun R
-> > > > > > Sent: Monday, October 10, 2022 1:24 PM
-> > > > > > To: 'intel-gfx@lists.freedesktop.org'
-> > > > > > <intel-gfx@lists.freedesktop.org>
-> > > > > > Cc: Syrjala, Ville <ville.syrjala@intel.com>
-> > > > > > Subject: RE: [PATCHv3] drm/i915: Support Async Flip on Linear
-> > > > > > buffers
-> > > > > >
-> > > > > > Ville,
-> > > > > > 	Gentle reminder!
-> > > > > >
-> > > > > > Thanks and Regards,
-> > > > > > Arun R Murthy
-> > > > > > --------------------
-> > > > > >
-> > > > > > > -----Original Message-----
-> > > > > > > From: Murthy, Arun R
-> > > > > > > Sent: Monday, September 19, 2022 10:38 AM
-> > > > > > > To: 'intel-gfx@lists.freedesktop.org'
-> > > > > > > <intel-gfx@lists.freedesktop.org>
-> > > > > > > Cc: Syrjala, Ville <ville.syrjala@intel.com>
-> > > > > > > Subject: RE: [PATCHv3] drm/i915: Support Async Flip on
-> > > > > > > Linear buffers
-> > > > > > >
-> > > > > > > If no comments, can anyone merge the patch!
-> > > > > > >
-> > > > > > > Thanks and Regards,
-> > > > > > > Arun R Murthy
-> > > > > > > --------------------
-> > > > > > >
-> > > > > > > > -----Original Message-----
-> > > > > > > > From: Murthy, Arun R
-> > > > > > > > Sent: Wednesday, September 14, 2022 4:21 PM
-> > > > > > > > To: Murthy, Arun R <arun.r.murthy@intel.com>; intel-
-> > > > > > > > gfx@lists.freedesktop.org
-> > > > > > > > Cc: Syrjala, Ville <ville.syrjala@intel.com>
-> > > > > > > > Subject: RE: [PATCHv3] drm/i915: Support Async Flip on
-> > > > > > > > Linear buffers
-> > > > > > > >
-> > > > > > > > Gentle Reminder!
-> > > > > > > > Any comments?
-> > > > > > > >
-> > > > > > > > Thanks and Regards,
-> > > > > > > > Arun R Murthy
-> > > > > > > > --------------------
-> > > > > > > >
-> > > > > > > > > -----Original Message-----
-> > > > > > > > > From: Intel-gfx
-> > > > > > > > > <intel-gfx-bounces@lists.freedesktop.org>
-> > > > > > > > > On Behalf Of Murthy, Arun R
-> > > > > > > > > Sent: Friday, September 9, 2022 9:17 AM
-> > > > > > > > > To: intel-gfx@lists.freedesktop.org
-> > > > > > > > > Cc: Syrjala, Ville <ville.syrjala@intel.com>
-> > > > > > > > > Subject: Re: [Intel-gfx] [PATCHv3] drm/i915: Support
-> > > > > > > > > Async Flip on Linear buffers
-> > > > > > > > >
-> > > > > > > > > Gentle Reminder!
-> > > > > > > > >
-> > > > > > > > > > -----Original Message-----
-> > > > > > > > > > From: Murthy, Arun R <arun.r.murthy@intel.com>
-> > > > > > > > > > Sent: Tuesday, September 6, 2022 9:18 AM
-> > > > > > > > > > To: intel-gfx@lists.freedesktop.org
-> > > > > > > > > > Cc: ville.syrjala@linux.intel.com; Murthy, Arun R
-> > > > > > > > > > <arun.r.murthy@intel.com>
-> > > > > > > > > > Subject: [PATCHv3] drm/i915: Support Async Flip on
-> > > > > > > > > > Linear buffers
-> > > > > > > > > >
-> > > > > > > > > > Starting from Gen12 Async Flip is supported on linear b=
-uffers.
-> > > > > > > > > > This patch enables support for async on linear buffer.
-> > > > > > > > > >
-> > > > > > > > > > UseCase: In Hybrid graphics, for hardware unsupported
-> > > > > > > > > > pixel formats it will be converted to linear memory
-> > > > > > > > > > and then
-> > > composed.
-> > > > > > > > > >
-> > > > > > > > > > v2: Added use case
-> > > > > > > > > > v3: Added FIXME for ICL indicating the restrictions
-> > > > > > > > > >
-> > > > > > > > > > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> > > > > > > > > > ---
-> > > > > > > > > >  drivers/gpu/drm/i915/display/intel_display.c | 14
-> > > > > > > > > > ++++++++++++++
-> > > > > > > > > >  1 file changed, 14 insertions(+)
-> > > > > > > > > >
-> > > > > > > > > > diff --git
-> > > > > > > > > > a/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > > > > > > b/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > > > > > > index be7cff722196..1880cfe70a7d 100644
-> > > > > > > > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > > > > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > > > > > > @@ -6610,6 +6610,20 @@ static int
-> > > > > > > > > > intel_async_flip_check_hw(struct intel_atomic_state
-> > > > > > > > > > *state, struct
-> > > > in
-> > > > > > > > > >  		 * this selectively if required.
-> > > > > > > > > >  		 */
-> > > > > > > > > >  		switch (new_plane_state->hw.fb->modifier) {
-> > > > > > > > > > +		case DRM_FORMAT_MOD_LINEAR:
-> > > > > > > > > > +			/*
-> > > > > > > > > > +			 * FIXME: Async on Linear buffer is
-> supported
-> > > > > > on ICL
-> > > > > > > > > > as
-> > > > > > > > > > +			 * but with additional alignment and
-> fbc
-> > > > > > restrictions
-> > > > > > > > > > +			 * need to be taken care of. These
-> aren't
-> > > > > > applicable
-> > > > > > > > > > for
-> > > > > > > > > > +			 * gen12+.
-> > > > > > > > > > +			 */
-> > > > > > > > > > +			if (DISPLAY_VER(i915) < 12) {
-> > > > > > > > > > +				drm_dbg_kms(&i915->drm,
-> > > > > > > > > > +					"[PLANE:%d:%s]
-> Modifier
-> > > > > > does not
-> > > > > > > > > > support async flips\n",
-> > > > > > > > > > +					plane->base.base.id,
-> plane-
-> > > > > > > > > > >base.name);
-> > > > > > > > > > +				return -EINVAL;
-> > > > > > > > > > +			}
-> > > > > > > > > > +
-> > > > > > > > > >  		case I915_FORMAT_MOD_X_TILED:
-> > > > > > > > > >  		case I915_FORMAT_MOD_Y_TILED:
-> > > > > > > > > >  		case I915_FORMAT_MOD_Yf_TILED:
-> > > > > > > > > > --
-> > > > > > > > > > 2.25.1
-> > > >
-> > > > --
-> > > > Ville Syrj=E4l=E4
-> > > > Intel
+Regards
+Andrzej
+
+> +		reg.reg.reg += 4 * engine->instance; /* GEN8_M2TCR */
+> +		val = 0;
+> +	} else {
+> +		val = engine->instance;
+> +	}
+> +
+> +	val = BIT(val);
+> +
+> +	engine->tlb_inv.mcr = regs == xehp_regs;
+> +	engine->tlb_inv.reg = reg;
+> +	engine->tlb_inv.done = val;
+> +
+> +	if (GRAPHICS_VER(i915) >= 12 &&
+> +	    (engine->class == VIDEO_DECODE_CLASS ||
+> +	     engine->class == VIDEO_ENHANCEMENT_CLASS ||
+> +	     engine->class == COMPUTE_CLASS))
+> +		engine->tlb_inv.request = _MASKED_BIT_ENABLE(val);
+> +	else
+> +		engine->tlb_inv.request = val;
+> +
+> +	return 0;
+> +}
+> +
+>   static int engine_setup_common(struct intel_engine_cs *engine)
+>   {
+>   	int err;
+>   
+>   	init_llist_head(&engine->barrier_tasks);
+>   
+> +	err = intel_engine_init_tlb_invalidation(engine);
+> +	if (err)
+> +		return err;
+> +
+>   	err = init_status_page(engine);
+>   	if (err)
+>   		return err;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> index 4fd54fb8810f..8c661fe89314 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> @@ -341,6 +341,19 @@ struct intel_engine_guc_stats {
+>   	u64 start_gt_clk;
+>   };
+>   
+> +union intel_engine_tlb_inv_reg {
+> +	i915_reg_t	reg;
+> +	i915_mcr_reg_t	mcr_reg;
+> +};
+> +
+> +struct intel_engine_tlb_inv
+> +{
+> +	bool mcr;
+> +	union intel_engine_tlb_inv_reg reg;
+> +	u32 request;
+> +	u32 done;
+> +};
+> +
+>   struct intel_engine_cs {
+>   	struct drm_i915_private *i915;
+>   	struct intel_gt *gt;
+> @@ -372,6 +385,8 @@ struct intel_engine_cs {
+>   	u32 context_size;
+>   	u32 mmio_base;
+>   
+> +	struct intel_engine_tlb_inv tlb_inv;
+> +
+>   	/*
+>   	 * Some w/a require forcewake to be held (which prevents RC6) while
+>   	 * a particular engine is active. If so, we set fw_domain to which
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+> index 001a7ec5b861..f7f271708fc7 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> @@ -982,35 +982,6 @@ void intel_gt_info_print(const struct intel_gt_info *info,
+>   	intel_sseu_dump(&info->sseu, p);
+>   }
+>   
+> -struct reg_and_bit {
+> -	union {
+> -		i915_reg_t reg;
+> -		i915_mcr_reg_t mcr_reg;
+> -	};
+> -	u32 bit;
+> -};
+> -
+> -static struct reg_and_bit
+> -get_reg_and_bit(const struct intel_engine_cs *engine, const bool gen8,
+> -		const i915_reg_t *regs, const unsigned int num)
+> -{
+> -	const unsigned int class = engine->class;
+> -	struct reg_and_bit rb = { };
+> -
+> -	if (gt_WARN_ON_ONCE(engine->gt, class >= num || !regs[class].reg))
+> -		return rb;
+> -
+> -	rb.reg = regs[class];
+> -	if (gen8 && class == VIDEO_DECODE_CLASS)
+> -		rb.reg.reg += 4 * engine->instance; /* GEN8_M2TCR */
+> -	else
+> -		rb.bit = engine->instance;
+> -
+> -	rb.bit = BIT(rb.bit);
+> -
+> -	return rb;
+> -}
+> -
+>   /*
+>    * HW architecture suggest typical invalidation time at 40us,
+>    * with pessimistic cases up to 100us and a recommendation to
+> @@ -1024,14 +995,20 @@ get_reg_and_bit(const struct intel_engine_cs *engine, const bool gen8,
+>    * but are now considered MCR registers.  Since they exist within a GAM range,
+>    * the primary instance of the register rolls up the status from each unit.
+>    */
+> -static int wait_for_invalidate(struct intel_gt *gt, struct reg_and_bit rb)
+> +static int wait_for_invalidate(struct intel_engine_cs *engine)
+>   {
+> -	if (GRAPHICS_VER_FULL(gt->i915) >= IP_VER(12, 50))
+> -		return intel_gt_mcr_wait_for_reg(gt, rb.mcr_reg, rb.bit, 0,
+> +	if (engine->tlb_inv.mcr)
+> +		return intel_gt_mcr_wait_for_reg(engine->gt,
+> +						 engine->tlb_inv.reg.mcr_reg,
+> +						 engine->tlb_inv.done,
+> +						 0,
+>   						 TLB_INVAL_TIMEOUT_US,
+>   						 TLB_INVAL_TIMEOUT_MS);
+>   	else
+> -		return __intel_wait_for_register_fw(gt->uncore, rb.reg, rb.bit, 0,
+> +		return __intel_wait_for_register_fw(engine->gt->uncore,
+> +						    engine->tlb_inv.reg.reg,
+> +						    engine->tlb_inv.done,
+> +						    0,
+>   						    TLB_INVAL_TIMEOUT_US,
+>   						    TLB_INVAL_TIMEOUT_MS,
+>   						    NULL);
+> @@ -1039,62 +1016,14 @@ static int wait_for_invalidate(struct intel_gt *gt, struct reg_and_bit rb)
+>   
+>   static void mmio_invalidate_full(struct intel_gt *gt)
+>   {
+> -	static const i915_reg_t gen8_regs[] = {
+> -		[RENDER_CLASS]			= GEN8_RTCR,
+> -		[VIDEO_DECODE_CLASS]		= GEN8_M1TCR, /* , GEN8_M2TCR */
+> -		[VIDEO_ENHANCEMENT_CLASS]	= GEN8_VTCR,
+> -		[COPY_ENGINE_CLASS]		= GEN8_BTCR,
+> -	};
+> -	static const i915_reg_t gen12_regs[] = {
+> -		[RENDER_CLASS]			= GEN12_GFX_TLB_INV_CR,
+> -		[VIDEO_DECODE_CLASS]		= GEN12_VD_TLB_INV_CR,
+> -		[VIDEO_ENHANCEMENT_CLASS]	= GEN12_VE_TLB_INV_CR,
+> -		[COPY_ENGINE_CLASS]		= GEN12_BLT_TLB_INV_CR,
+> -		[COMPUTE_CLASS]			= GEN12_COMPCTX_TLB_INV_CR,
+> -	};
+> -	static const i915_mcr_reg_t xehp_regs[] = {
+> -		[RENDER_CLASS]			= XEHP_GFX_TLB_INV_CR,
+> -		[VIDEO_DECODE_CLASS]		= XEHP_VD_TLB_INV_CR,
+> -		[VIDEO_ENHANCEMENT_CLASS]	= XEHP_VE_TLB_INV_CR,
+> -		[COPY_ENGINE_CLASS]		= XEHP_BLT_TLB_INV_CR,
+> -		[COMPUTE_CLASS]			= XEHP_COMPCTX_TLB_INV_CR,
+> -	};
+>   	struct drm_i915_private *i915 = gt->i915;
+>   	struct intel_uncore *uncore = gt->uncore;
+>   	struct intel_engine_cs *engine;
+>   	intel_engine_mask_t awake, tmp;
+>   	enum intel_engine_id id;
+> -	const i915_reg_t *regs;
+> -	unsigned int num = 0;
+>   	unsigned long flags;
+>   
+> -	/*
+> -	 * New platforms should not be added with catch-all-newer (>=)
+> -	 * condition so that any later platform added triggers the below warning
+> -	 * and in turn mandates a human cross-check of whether the invalidation
+> -	 * flows have compatible semantics.
+> -	 *
+> -	 * For instance with the 11.00 -> 12.00 transition three out of five
+> -	 * respective engine registers were moved to masked type. Then after the
+> -	 * 12.00 -> 12.50 transition multi cast handling is required too.
+> -	 */
+> -
+> -	if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 50) ||
+> -	    GRAPHICS_VER_FULL(i915) == IP_VER(12, 55)) {
+> -		regs = NULL;
+> -		num = ARRAY_SIZE(xehp_regs);
+> -	} else if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 0) ||
+> -		   GRAPHICS_VER_FULL(i915) == IP_VER(12, 10)) {
+> -		regs = gen12_regs;
+> -		num = ARRAY_SIZE(gen12_regs);
+> -	} else if (GRAPHICS_VER(i915) >= 8 && GRAPHICS_VER(i915) <= 11) {
+> -		regs = gen8_regs;
+> -		num = ARRAY_SIZE(gen8_regs);
+> -	} else if (GRAPHICS_VER(i915) < 8) {
+> -		return;
+> -	}
+> -
+> -	if (gt_WARN_ONCE(gt, !num, "Platform does not implement TLB invalidation!"))
+> +	if (GRAPHICS_VER(i915) < 8)
+>   		return;
+>   
+>   	intel_uncore_forcewake_get(uncore, FORCEWAKE_ALL);
+> @@ -1104,33 +1033,18 @@ static void mmio_invalidate_full(struct intel_gt *gt)
+>   
+>   	awake = 0;
+>   	for_each_engine(engine, gt, id) {
+> -		struct reg_and_bit rb;
+> -
+>   		if (!intel_engine_pm_is_awake(engine))
+>   			continue;
+>   
+> -		if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
+> -			u32 val = BIT(engine->instance);
+> -
+> -			if (engine->class == VIDEO_DECODE_CLASS ||
+> -			    engine->class == VIDEO_ENHANCEMENT_CLASS ||
+> -			    engine->class == COMPUTE_CLASS)
+> -				val = _MASKED_BIT_ENABLE(val);
+> +		if (engine->tlb_inv.mcr)
+>   			intel_gt_mcr_multicast_write_fw(gt,
+> -							xehp_regs[engine->class],
+> -							val);
+> -		} else {
+> -			rb = get_reg_and_bit(engine, regs == gen8_regs, regs, num);
+> -			if (!i915_mmio_reg_offset(rb.reg))
+> -				continue;
+> -
+> -			if (GRAPHICS_VER(i915) == 12 && (engine->class == VIDEO_DECODE_CLASS ||
+> -			    engine->class == VIDEO_ENHANCEMENT_CLASS ||
+> -			    engine->class == COMPUTE_CLASS))
+> -				rb.bit = _MASKED_BIT_ENABLE(rb.bit);
+> -
+> -			intel_uncore_write_fw(uncore, rb.reg, rb.bit);
+> -		}
+> +							engine->tlb_inv.reg.mcr_reg,
+> +							engine->tlb_inv.request);
+> +		else
+> +			intel_uncore_write_fw(uncore,
+> +					      engine->tlb_inv.reg.reg,
+> +					      engine->tlb_inv.request);
+> +
+>   		awake |= engine->mask;
+>   	}
+>   
+> @@ -1149,17 +1063,9 @@ static void mmio_invalidate_full(struct intel_gt *gt)
+>   	intel_gt_mcr_unlock(gt, flags);
+>   
+>   	for_each_engine_masked(engine, gt, awake, tmp) {
+> -		struct reg_and_bit rb;
+> -
+> -		if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
+> -			rb.mcr_reg = xehp_regs[engine->class];
+> -			rb.bit = BIT(engine->instance);
+> -		} else {
+> -			rb = get_reg_and_bit(engine, regs == gen8_regs, regs, num);
+> -		}
+> -
+> -		if (wait_for_invalidate(gt, rb))
+> -			gt_err_ratelimited(gt, "%s TLB invalidation did not complete in %ums!\n",
+> +		if (wait_for_invalidate(engine))
+> +			gt_err_ratelimited(gt,
+> +					   "%s TLB invalidation did not complete in %ums!\n",
+>   					   engine->name, TLB_INVAL_TIMEOUT_MS);
+>   	}
+>   
+
