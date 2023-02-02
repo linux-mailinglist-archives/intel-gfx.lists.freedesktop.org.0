@@ -2,48 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F450687CA2
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 12:47:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91150687CD1
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 13:05:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 682CA10E1DA;
-	Thu,  2 Feb 2023 11:47:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2E5910E4F1;
+	Thu,  2 Feb 2023 12:04:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81CBD10E17C
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Feb 2023 11:47:17 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 84E1E10E4F1
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Feb 2023 12:04:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675338437; x=1706874437;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=yCrJ6QOGw3Q2xKBkCzFoP7A2WQM8J5Ov8PoXsID5rrM=;
- b=Qy9KZVaYUh0POAUJsWwO0BzO0QkSFVOCsz0OdqokJ+X4xs1p227jlj3e
- UsP4YX32wDwvYxam8EqgPyJfjjVDLJGDr5QqScb3EuX1AV4DVGnYVZaaX
- ejqgB2BpeqTRso0ERfnDd48z8xVbhnA/iNcGplRDEQS7uuLc96Ztk42Ho
- kCm1f1MaHocJCIs/0Cy6BM9niaA9NuqgWEVrKVr4e5p3F8AnXBEFPNUhZ
- gK94PKe2STvDJRCkEgyTx9w2HP0dsoV2ipjnI7yLNs0J82r48T0csg201
- g3kPjZTsY9JI0+ytoT86JdgsySV0vI/hJEx1raL5JEt5IClYZf9pNINHf Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="316423248"
-X-IronPort-AV: E=Sophos;i="5.97,267,1669104000"; d="scan'208";a="316423248"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2023 03:47:17 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="839160578"
-X-IronPort-AV: E=Sophos;i="5.97,267,1669104000"; d="scan'208";a="839160578"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by orsmga005.jf.intel.com with ESMTP; 02 Feb 2023 03:47:16 -0800
-From: Suraj Kandpal <suraj.kandpal@intel.com>
+ t=1675339497; x=1706875497;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=MNFZyVMrWtJwAso5c6zwi/xJMlx8WN741ba3+M+Kcl8=;
+ b=NcRv8jUvMgUFYu+S9i+ubBBthwobD5H+tqYtlESSiHPSZ+lgxY/Q2D58
+ 24z2VDzvCA5GA/lIxQu9Ss2F7eMcEyDnGNtJu8t/Khck+dPkn6MSDDTMh
+ vpkPbXqwb98p2rlFOLa/GjTzlByFglOQfQbTo5kzYLuegzGweljvnmQan
+ CAShEE5daFcIqYGHTeBKL+welLNcmaTn2kvYGEFuaKN00g5OIgfAz1Kc+
+ PUMAvyWTlS6YOcFWVwJeOezmzbcKhvRHH6p6H6Bj/8wcMJ2gFEqbzKDH1
+ Wikp6B+3P3tlpQUvPuOyzbXoPiZ42JbEaNUlm1kKEZzRXaSxHw6OqX167 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="308767163"
+X-IronPort-AV: E=Sophos;i="5.97,267,1669104000"; d="scan'208";a="308767163"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2023 04:04:57 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="695756689"
+X-IronPort-AV: E=Sophos;i="5.97,267,1669104000"; d="scan'208";a="695756689"
+Received: from skopplex-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.34.132])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2023 04:04:55 -0800
+From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  2 Feb 2023 17:16:13 +0530
-Message-Id: <20230202114613.3177235-2-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230202114613.3177235-1-suraj.kandpal@intel.com>
-References: <20230202114613.3177235-1-suraj.kandpal@intel.com>
+Date: Thu,  2 Feb 2023 14:04:47 +0200
+Message-Id: <cover.1675339447.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/1] drm/i915/dp: Fix logic to fetch slice_height
+Subject: [Intel-gfx] [PATCH 0/5] drm/i915/dmc: some dmc id related fixes and
+ cleanups
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,63 +57,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-According to Bpec: 49259 VDSC spec implies that 108 lines is an optimal
-slice height, but any size can be used as long as vertical active
-integer multiple and maximum vertical slice count requirements are met.
+Address some static analyzer complaints around dmc id usage.
 
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: Swati Sharma <swati2.sharma@intel.com>
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Jani Nikula (5):
+  drm/i915/dmc: add proper name to dmc id enum and use it
+  drm/i915/dmc: add for_each_dmc_id() and use it
+  drm/i915/dmc: remove unnecessary dmc_id validity check
+  drm/i915/dmc: add is_valid_dmc_id() and use it
+  drm/i915/dmc: check incoming dmc id validity
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 62cbab7402e9..7bd2e56ef0fa 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1415,6 +1415,22 @@ static int intel_dp_sink_dsc_version_minor(struct intel_dp *intel_dp)
- 		DP_DSC_MINOR_SHIFT;
- }
- 
-+static int intel_dp_get_slice_height(int vactive)
-+{
-+	int slice_height;
-+
-+	/*
-+	 * VDSC spec implies that 108 lines is an optimal slice height,
-+	 * but any size can be used as long as vertical active integer
-+	 * multiple and maximum vertical slice count requirements are met.
-+	 */
-+	for (slice_height = 108; slice_height <= vactive; slice_height += 2)
-+		if (!(vactive % slice_height))
-+			return slice_height;
-+
-+	return 0;
-+}
-+
- static int intel_dp_dsc_compute_params(struct intel_encoder *encoder,
- 				       struct intel_crtc_state *crtc_state)
- {
-@@ -1433,17 +1449,7 @@ static int intel_dp_dsc_compute_params(struct intel_encoder *encoder,
- 	vdsc_cfg->rc_model_size = DSC_RC_MODEL_SIZE_CONST;
- 	vdsc_cfg->pic_height = crtc_state->hw.adjusted_mode.crtc_vdisplay;
- 
--	/*
--	 * Slice Height of 8 works for all currently available panels. So start
--	 * with that if pic_height is an integral multiple of 8. Eventually add
--	 * logic to try multiple slice heights.
--	 */
--	if (vdsc_cfg->pic_height % 8 == 0)
--		vdsc_cfg->slice_height = 8;
--	else if (vdsc_cfg->pic_height % 4 == 0)
--		vdsc_cfg->slice_height = 4;
--	else
--		vdsc_cfg->slice_height = 2;
-+	vdsc_cfg->slice_height = intel_dp_get_slice_height(vdsc_cfg->pic_height);
- 
- 	ret = intel_dsc_compute_params(crtc_state);
- 	if (ret)
+ drivers/gpu/drm/i915/display/intel_dmc.c | 100 ++++++++++++-----------
+ drivers/gpu/drm/i915/display/intel_dmc.h |   2 +-
+ 2 files changed, 54 insertions(+), 48 deletions(-)
+
 -- 
-2.25.1
+2.34.1
 
