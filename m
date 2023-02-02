@@ -2,56 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63F56687791
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 09:33:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92F746877BD
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 09:44:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C9DB10E074;
-	Thu,  2 Feb 2023 08:33:56 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86A9F89E69;
- Thu,  2 Feb 2023 08:33:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82D0C10E49A;
+	Thu,  2 Feb 2023 08:43:57 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBC2A10E497;
+ Thu,  2 Feb 2023 08:43:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675326833; x=1706862833;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=XGTDp8W7XRfYPuIJkD1Dz3Qfs9vsgyne6qOAFPTdulY=;
- b=Qh5W6yeARGREhz0N/rxEeoTl+hCfslN8NZ0OYq3gA203cVQwsOmuJbp3
- 1jZSqhAJI8VT4OlT9kP7mBmb0hFhm3xmSd6nKP2uGongf86wxnJaEqRku
- peofDlzisnpVFzF13nzBlZhPblHQzZsqMQ5Q/YVZBfOVoSkasqNyuHYR7
- aYaXJSDv738M+M2xU4xxythTOGDcksWdPcKG9OySbw2lD6z/BNtwYN56J
- LUcVWctb+pVuveQKeWTCKjntxOaq6Z3Lqt678byrwrp7fcObDIXc9VTV3
- m6cDZwuMo/80N/eYVC8tp3gLytKE5Hoc6ePHwNUC+VXVcGvC5qPTFtQkT Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="308731575"
-X-IronPort-AV: E=Sophos;i="5.97,266,1669104000"; d="scan'208";a="308731575"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2023 00:33:53 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="993996851"
-X-IronPort-AV: E=Sophos;i="5.97,266,1669104000"; d="scan'208";a="993996851"
+ t=1675327435; x=1706863435;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=Txsa97NaNNaiyM7B1pNTNe9dIn0/8TIyAWeUFtHkZ00=;
+ b=CvZO1AF8aupqNaExvDf27rWJNIqnMM2m8YU3iGDMavb3K99KzHoZjIW2
+ IJmo8x+5s6y2zsa2HWtJUtDZNSPoYQ30ETdNL6D2+Tow0c25VhAowpPxF
+ v7WP2rBr5L5FbD9V0WGImdIrM9tQrGM4jOLbUtyJrNRGfW/jTsY6qM2nO
+ Hs/Nr2IOHF2uERfqsNltERcFUjEGgHccRJ0p3qrlK6sMZOTwMaTB0nwkE
+ V3/k9/ijYFH1M4z8fVTcyl6Ksh/thkB+sJbOjPkBx93lnOtlYfuuyFzTh
+ c8QXDpOp5Ld9qRXtLkbcaD4RPAVbvRUNMVjIaIC2L8+OF9zcf3fIYaEkk Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="316390577"
+X-IronPort-AV: E=Sophos;i="5.97,266,1669104000"; d="scan'208";a="316390577"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2023 00:43:54 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="789199032"
+X-IronPort-AV: E=Sophos;i="5.97,266,1669104000"; d="scan'208";a="789199032"
 Received: from stirulak-mobl3.ger.corp.intel.com (HELO [10.213.219.106])
  ([10.213.219.106])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2023 00:33:52 -0800
-Message-ID: <117482b6-7baf-5b79-27ed-7c33630bd86d@linux.intel.com>
-Date: Thu, 2 Feb 2023 08:33:50 +0000
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2023 00:43:53 -0800
+Message-ID: <a459848d-00eb-fbe5-b729-5527a1da6e0f@linux.intel.com>
+Date: Thu, 2 Feb 2023 08:43:51 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
 Content-Language: en-US
-To: Andrzej Hajda <andrzej.hajda@intel.com>, Intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-References: <20230201165146.4056691-1-tvrtko.ursulin@linux.intel.com>
- <f575e344-e915-c85f-49cd-28fa426bcfd6@intel.com>
+To: Alan Previn <alan.previn.teres.alexis@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20230202081312.404394-1-alan.previn.teres.alexis@intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <f575e344-e915-c85f-49cd-28fa426bcfd6@intel.com>
+In-Reply-To: <20230202081312.404394-1-alan.previn.teres.alexis@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: Consolidate TLB invalidation
- flow
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/pxp: limit drm-errors or warnings
+ on firmware API failures
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,102 +63,142 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 02/02/2023 07:43, Andrzej Hajda wrote:
-> On 01.02.2023 17:51, Tvrtko Ursulin wrote:
-
-[snip]
-
->> +static int intel_engine_init_tlb_invalidation(struct intel_engine_cs 
->> *engine)
->> +{
->> +    static const union intel_engine_tlb_inv_reg gen8_regs[] = {
->> +        [RENDER_CLASS].reg        = GEN8_RTCR,
->> +        [VIDEO_DECODE_CLASS].reg    = GEN8_M1TCR, /* , GEN8_M2TCR */
->> +        [VIDEO_ENHANCEMENT_CLASS].reg    = GEN8_VTCR,
->> +        [COPY_ENGINE_CLASS].reg        = GEN8_BTCR,
->> +    };
->> +    static const union intel_engine_tlb_inv_reg gen12_regs[] = {
->> +        [RENDER_CLASS].reg        = GEN12_GFX_TLB_INV_CR,
->> +        [VIDEO_DECODE_CLASS].reg    = GEN12_VD_TLB_INV_CR,
->> +        [VIDEO_ENHANCEMENT_CLASS].reg    = GEN12_VE_TLB_INV_CR,
->> +        [COPY_ENGINE_CLASS].reg        = GEN12_BLT_TLB_INV_CR,
->> +        [COMPUTE_CLASS].reg        = GEN12_COMPCTX_TLB_INV_CR,
->> +    };
->> +    static const union intel_engine_tlb_inv_reg xehp_regs[] = {
->> +        [RENDER_CLASS].mcr_reg          = XEHP_GFX_TLB_INV_CR,
->> +        [VIDEO_DECODE_CLASS].mcr_reg      = XEHP_VD_TLB_INV_CR,
->> +        [VIDEO_ENHANCEMENT_CLASS].mcr_reg = XEHP_VE_TLB_INV_CR,
->> +        [COPY_ENGINE_CLASS].mcr_reg      = XEHP_BLT_TLB_INV_CR,
->> +        [COMPUTE_CLASS].mcr_reg          = XEHP_COMPCTX_TLB_INV_CR,
->> +    };
->> +    struct drm_i915_private *i915 = engine->i915;
->> +    const union intel_engine_tlb_inv_reg *regs;
->> +    union intel_engine_tlb_inv_reg reg;
->> +    unsigned int class = engine->class;
->> +    unsigned int num = 0;
->> +    u32 val;
->> +
->> +    /*
->> +     * New platforms should not be added with catch-all-newer (>=)
->> +     * condition so that any later platform added triggers the below 
->> warning
->> +     * and in turn mandates a human cross-check of whether the 
->> invalidation
->> +     * flows have compatible semantics.
->> +     *
->> +     * For instance with the 11.00 -> 12.00 transition three out of five
->> +     * respective engine registers were moved to masked type. Then 
->> after the
->> +     * 12.00 -> 12.50 transition multi cast handling is required too.
->> +     */
->> +
->> +    if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 50) ||
->> +        GRAPHICS_VER_FULL(i915) == IP_VER(12, 55)) {
->> +        regs = xehp_regs;
->> +        num = ARRAY_SIZE(xehp_regs);
->> +    } else if (GRAPHICS_VER_FULL(i915) == IP_VER(12, 0) ||
->> +           GRAPHICS_VER_FULL(i915) == IP_VER(12, 10)) {
->> +        regs = gen12_regs;
->> +        num = ARRAY_SIZE(gen12_regs);
->> +    } else if (GRAPHICS_VER(i915) >= 8 && GRAPHICS_VER(i915) <= 11) {
->> +        regs = gen8_regs;
->> +        num = ARRAY_SIZE(gen8_regs);
->> +    } else if (GRAPHICS_VER(i915) < 8) {
->> +        return 0;
->> +    }
->> +
->> +    if (gt_WARN_ONCE(engine->gt, !num,
->> +             "Platform does not implement TLB invalidation!"))
->> +        return -ENODEV;
->> +
->> +    if (gt_WARN_ON_ONCE(engine->gt,
->> +                 class >= num ||
->> +                 (!regs[class].reg.reg &&
->> +                  !regs[class].mcr_reg.reg)))
->> +        return -ERANGE;
->> +
->> +    reg = regs[class];
->> +
->> +    if (GRAPHICS_VER(i915) == 8 && class == VIDEO_DECODE_CLASS) {
+On 02/02/2023 08:13, Alan Previn wrote:
+> MESA driver is creating protected context on every driver handle
+> initialization to query caps bit for app. So when running CI tests,
+> they are observing hundreds of drm_errors when enabling PXP
+> in .config but using SOC or BIOS configuration that cannot support
+> PXP sessions.
 > 
-> As selftest pointed out it should cover also gen 9-11.
-> Btw maybe it is worth to convert this pseudo array indexing to direct 
-> assignment:
-> if ((GRAPHICS_VER(i915) <= 11 && class == VIDEO_DECODE_CLASS && 
-> engine->instance == 1) {
->      reg.reg = GEN8_M2TCR;
->      val = 0;
-> }
+> Update error handling codes to be more selective on which errors
+> are reported as drm_error vs drm_WARN_ONCE vs drm_debug.
+> Don't completely remove all FW error replies (at least keep them
+> but use drm_debug) or else cusomers that really needs to know that
+> content protection failed won't be aware of it when debugging.
+> 
+> Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
 
-Yes good call, v4 sent.
-
-Btw - do you have any idea why the test is suppressed already?! CI told 
-me BAT was a success...
+How does this relate to b762787bf767 ("drm/i915/pxp: Use drm_dbg if arb 
+session failed due to fw version") which I thought was already fixing 
+the drm_error spam caused by userspace probing?
 
 Regards,
 
 Tvrtko
+
+> ---
+>   .../i915/pxp/intel_pxp_cmd_interface_cmn.h    |  3 ++
+>   drivers/gpu/drm/i915/pxp/intel_pxp_session.c  |  2 +-
+>   drivers/gpu/drm/i915/pxp/intel_pxp_tee.c      | 52 ++++++++++++++-----
+>   3 files changed, 44 insertions(+), 13 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_cmn.h b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_cmn.h
+> index ae9b151b7cb7..6f6541d5e49a 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_cmn.h
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_cmn.h
+> @@ -18,6 +18,9 @@
+>   enum pxp_status {
+>   	PXP_STATUS_SUCCESS = 0x0,
+>   	PXP_STATUS_ERROR_API_VERSION = 0x1002,
+> +	PXP_STATUS_NOT_READY = 0x100e,
+> +	PXP_STATUS_PLATFCONFIG_KF1_NOVERIF = 0x101a,
+> +	PXP_STATUS_PLATFCONFIG_KF1_BAD = 0x101f,
+>   	PXP_STATUS_OP_NOT_PERMITTED = 0x4013
+>   };
+>   
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_session.c b/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
+> index 448cacb0465d..7de849cb6c47 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
+> @@ -74,7 +74,7 @@ static int pxp_create_arb_session(struct intel_pxp *pxp)
+>   
+>   	ret = pxp_wait_for_session_state(pxp, ARB_SESSION, true);
+>   	if (ret) {
+> -		drm_err(&gt->i915->drm, "arb session failed to go in play\n");
+> +		drm_dbg(&gt->i915->drm, "arb session failed to go in play\n");
+>   		return ret;
+>   	}
+>   	drm_dbg(&gt->i915->drm, "PXP ARB session is alive\n");
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+> index d9d248b48093..1c2e4a75a968 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+> @@ -19,6 +19,23 @@
+>   #include "intel_pxp_tee.h"
+>   #include "intel_pxp_types.h"
+>   
+> +static const char *
+> +pxp_fw_err_to_string(u32 type)
+> +{
+> +	switch (type) {
+> +	case PXP_STATUS_ERROR_API_VERSION:
+> +		return "ERR_API_VERSION";
+> +	case PXP_STATUS_NOT_READY:
+> +		return "ERR_NOT_READY";
+> +	case PXP_STATUS_PLATFCONFIG_KF1_NOVERIF:
+> +	case PXP_STATUS_PLATFCONFIG_KF1_BAD:
+> +		return "ERR_PLATFORM_CONFIG";
+> +	default:
+> +		break;
+> +	}
+> +	return NULL;
+> +}
+> +
+>   static int intel_pxp_tee_io_message(struct intel_pxp *pxp,
+>   				    void *msg_in, u32 msg_in_size,
+>   				    void *msg_out, u32 msg_out_max_size,
+> @@ -307,15 +324,19 @@ int intel_pxp_tee_cmd_create_arb_session(struct intel_pxp *pxp,
+>   				       &msg_out, sizeof(msg_out),
+>   				       NULL);
+>   
+> -	if (ret)
+> -		drm_err(&i915->drm, "Failed to send tee msg ret=[%d]\n", ret);
+> -	else if (msg_out.header.status == PXP_STATUS_ERROR_API_VERSION)
+> -		drm_dbg(&i915->drm, "PXP firmware version unsupported, requested: "
+> -			"CMD-ID-[0x%08x] on API-Ver-[0x%08x]\n",
+> +	if (ret) {
+> +		drm_err(&i915->drm, "Failed to send tee msg init arb session, ret=[%d]\n", ret);
+> +	} else if (msg_out.header.status != 0) {
+> +		if (msg_out.header.status == PXP_STATUS_PLATFCONFIG_KF1_NOVERIF ||
+> +		    msg_out.header.status == PXP_STATUS_PLATFCONFIG_KF1_BAD)
+> +			drm_WARN_ONCE(&i915->drm, true,
+> +				      "Platform BIOS or Fusing won't allow PXP arb creation\n");
+> +
+> +		drm_dbg(&i915->drm, "PXP init arb session failed 0x%08x:%s:"
+> +			"CMD-ID-[0x%08x]:API-Ver-[0x%08x]\n",
+> +			msg_out.header.status, pxp_fw_err_to_string(msg_out.header.status),
+>   			msg_in.header.command_id, msg_in.header.api_version);
+> -	else if (msg_out.header.status != 0x0)
+> -		drm_warn(&i915->drm, "PXP firmware failed arb session init request ret=[0x%08x]\n",
+> -			 msg_out.header.status);
+> +	}
+>   
+>   	return ret;
+>   }
+> @@ -347,10 +368,17 @@ void intel_pxp_tee_end_arb_fw_session(struct intel_pxp *pxp, u32 session_id)
+>   	if ((ret || msg_out.header.status != 0x0) && ++trials < 3)
+>   		goto try_again;
+>   
+> -	if (ret)
+> +	if (ret) {
+>   		drm_err(&i915->drm, "Failed to send tee msg for inv-stream-key-%d, ret=[%d]\n",
+>   			session_id, ret);
+> -	else if (msg_out.header.status != 0x0)
+> -		drm_warn(&i915->drm, "PXP firmware failed inv-stream-key-%d with status 0x%08x\n",
+> -			 session_id, msg_out.header.status);
+> +	} else if (msg_out.header.status != 0) {
+> +		if (msg_out.header.status == PXP_STATUS_PLATFCONFIG_KF1_NOVERIF ||
+> +		    msg_out.header.status == PXP_STATUS_PLATFCONFIG_KF1_BAD)
+> +			drm_WARN_ONCE(&i915->drm, true,
+> +				      "Platform BIOS or Fusing won't allow PXP arb creation\n");
+> +		drm_dbg(&i915->drm, "PXP inv-stream-key-%d failed 0x%08x:%st:\n"
+> +			"CMD-ID-[0x%08x]:API-Ver-[0x%08x]\n", (int)session_id,
+> +			msg_out.header.status, pxp_fw_err_to_string(msg_out.header.status),
+> +			msg_in.header.command_id, msg_in.header.api_version);
+> +	}
+>   }
