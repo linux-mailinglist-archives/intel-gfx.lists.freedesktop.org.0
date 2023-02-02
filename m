@@ -2,55 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92F746877BD
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 09:44:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33823687805
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Feb 2023 09:57:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82D0C10E49A;
-	Thu,  2 Feb 2023 08:43:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B8A810E13E;
+	Thu,  2 Feb 2023 08:57:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBC2A10E497;
- Thu,  2 Feb 2023 08:43:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675327435; x=1706863435;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Txsa97NaNNaiyM7B1pNTNe9dIn0/8TIyAWeUFtHkZ00=;
- b=CvZO1AF8aupqNaExvDf27rWJNIqnMM2m8YU3iGDMavb3K99KzHoZjIW2
- IJmo8x+5s6y2zsa2HWtJUtDZNSPoYQ30ETdNL6D2+Tow0c25VhAowpPxF
- v7WP2rBr5L5FbD9V0WGImdIrM9tQrGM4jOLbUtyJrNRGfW/jTsY6qM2nO
- Hs/Nr2IOHF2uERfqsNltERcFUjEGgHccRJ0p3qrlK6sMZOTwMaTB0nwkE
- V3/k9/ijYFH1M4z8fVTcyl6Ksh/thkB+sJbOjPkBx93lnOtlYfuuyFzTh
- c8QXDpOp5Ld9qRXtLkbcaD4RPAVbvRUNMVjIaIC2L8+OF9zcf3fIYaEkk Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="316390577"
-X-IronPort-AV: E=Sophos;i="5.97,266,1669104000"; d="scan'208";a="316390577"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2023 00:43:54 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10608"; a="789199032"
-X-IronPort-AV: E=Sophos;i="5.97,266,1669104000"; d="scan'208";a="789199032"
-Received: from stirulak-mobl3.ger.corp.intel.com (HELO [10.213.219.106])
- ([10.213.219.106])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2023 00:43:53 -0800
-Message-ID: <a459848d-00eb-fbe5-b729-5527a1da6e0f@linux.intel.com>
-Date: Thu, 2 Feb 2023 08:43:51 +0000
+Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com
+ [66.111.4.230])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65C2E10E136;
+ Thu,  2 Feb 2023 08:57:30 +0000 (UTC)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+ by mailnew.nyi.internal (Postfix) with ESMTP id EB60A581F79;
+ Thu,  2 Feb 2023 03:57:26 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute4.internal (MEProxy); Thu, 02 Feb 2023 03:57:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-type:date:date:from:from:in-reply-to:message-id
+ :mime-version:reply-to:sender:subject:subject:to:to; s=fm1; t=
+ 1675328246; x=1675335446; bh=0xSIn38+dG7IqykircxQUmTa7Nxdy4W9EG4
+ kCe/zWQ0=; b=Y8Fugx1ZYCunJ+l39mWyZTjOlM0lhrukh1vlkVfjkyEO76I0Mep
+ 8dTdGiUWWqlep+xzmeEKZHIPtTpEicFm3UGdqvCpdA8bs5rQmlNhf+ei/sxyAakY
+ Jmj63rtpKFN3dQ0q4GcynNQORiosJPEuqzSU+OVHumETohtm7ZZ+WNEfqwMCwogj
+ TQ9rvLiW9VrhYVr/EzkPJgvjz6UpbFwxCim5mz+ExggXaDxcqOqq0DDUQFDpsQ6Y
+ xY+i/64ra3J4fvGgcjvQDq8WDcERKrHsNfqo9LEdr4KwVs+QL5TC64pha+RgQauE
+ 93lnXgeLRfewRW8tN55/CWeJKzY5M+xC3bg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+ :feedback-id:from:from:in-reply-to:message-id:mime-version
+ :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1675328246; x=
+ 1675335446; bh=0xSIn38+dG7IqykircxQUmTa7Nxdy4W9EG4kCe/zWQ0=; b=n
+ Al3V6FHIyG+xRAXnwB3NwjlAshlhMOSI4aviSEVWRLscSeCdAq2QN4yM0Qh9U+lO
+ DA3vm7KugHm5CR+s0w06HI8vIC8Uv/eS3BeocdFnuQKah4fTbYfDbU7H7S4HCpyp
+ eMV6z91++qmpeTXQPBiDtSILegXYcAGccSjXJNrLMI91X+qZhmUC2ulsSvGfC3V8
+ /cMUX/dIGpsITAJVUh4CP355hMLPqHqs/bqDkV/KA7VIQQCe8bISbk+g9PtrU1ta
+ ugbdKVLSVX9tPSZ6dpjdQbJd9GzKBu1XXxX4dnlDp+SjqihSsrEy3RACTrnwn908
+ 6YDEHI9ftVoEG2UQpQ7fQ==
+X-ME-Sender: <xms:9nrbY98AEtMKfQu07AzbV6Ej-MKec0Uzck28Y9bRhi1tO7aUr4xung>
+ <xme:9nrbYxvV_IKKR-pKNvZaraH2Q0XHUoOtTTpQ-Kvue6ElcnnfLCyfvIuQ9oHdMdCFK
+ FfZ3KPTAW2eydBDNmk>
+X-ME-Received: <xmr:9nrbY7BWYcPHkRN8K4oXbWaN-euMGozgCi2MjHhb-DnAqqB3EAMWSw-pMbtOzJNzV287drPZ7IyR6llsMNygchsARTnTHDJxaQIZAELEwYYNGw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudefjedguddvlecutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+ enucfjughrpeffhffvvefukfggtggusehgtderredttddvnecuhfhrohhmpeforgigihhm
+ vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+ htvghrnhepueeiheejhfeivedtheduffdttefgtdeuvddvueegtefgveegvedugeffudev
+ jeeinecuffhomhgrihhnpehfrhgvvgguvghskhhtohhprdhorhhgnecuvehluhhsthgvrh
+ fuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhho
+ rdhtvggthh
+X-ME-Proxy: <xmx:9nrbYxd1d3OQ8enNCyz1sbq0Pg9Q_dhXrowBgwzSiFnQ_8mqCvpmmg>
+ <xmx:9nrbYyNJh5zqgwu1Ai-aKJVlSsWY0eY4TzmnJKkjffOjU9MKZGZQ8Q>
+ <xmx:9nrbYzkyengUhxOikW14xU-_zWkrWoI3msmXnbaaJkDPQ6AfvU03dg>
+ <xmx:9nrbY5_2ixTnTnE9_v0Rf9_3TBgZs5ujauWeeFPT0XCwVAohh5SYDA>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 2 Feb 2023 03:57:25 -0500 (EST)
+Date: Thu, 2 Feb 2023 09:57:24 +0100
+From: Maxime Ripard <maxime@cerno.tech>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20230202085724.pz22m7bmei3wyuzp@houat>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Content-Language: en-US
-To: Alan Previn <alan.previn.teres.alexis@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20230202081312.404394-1-alan.previn.teres.alexis@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20230202081312.404394-1-alan.previn.teres.alexis@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/pxp: limit drm-errors or warnings
- on firmware API failures
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="u6yvcuk7fm4vbvvr"
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,142 +81,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 02/02/2023 08:13, Alan Previn wrote:
-> MESA driver is creating protected context on every driver handle
-> initialization to query caps bit for app. So when running CI tests,
-> they are observing hundreds of drm_errors when enabling PXP
-> in .config but using SOC or BIOS configuration that cannot support
-> PXP sessions.
-> 
-> Update error handling codes to be more selective on which errors
-> are reported as drm_error vs drm_WARN_ONCE vs drm_debug.
-> Don't completely remove all FW error replies (at least keep them
-> but use drm_debug) or else cusomers that really needs to know that
-> content protection failed won't be aware of it when debugging.
-> 
-> Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+--u6yvcuk7fm4vbvvr
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-How does this relate to b762787bf767 ("drm/i915/pxp: Use drm_dbg if arb 
-session failed due to fw version") which I thought was already fixing 
-the drm_error spam caused by userspace probing?
+Hi,
 
-Regards,
+Here's this week drm-misc-fixes PR
 
-Tvrtko
+Maxime
 
-> ---
->   .../i915/pxp/intel_pxp_cmd_interface_cmn.h    |  3 ++
->   drivers/gpu/drm/i915/pxp/intel_pxp_session.c  |  2 +-
->   drivers/gpu/drm/i915/pxp/intel_pxp_tee.c      | 52 ++++++++++++++-----
->   3 files changed, 44 insertions(+), 13 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_cmn.h b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_cmn.h
-> index ae9b151b7cb7..6f6541d5e49a 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_cmn.h
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_cmn.h
-> @@ -18,6 +18,9 @@
->   enum pxp_status {
->   	PXP_STATUS_SUCCESS = 0x0,
->   	PXP_STATUS_ERROR_API_VERSION = 0x1002,
-> +	PXP_STATUS_NOT_READY = 0x100e,
-> +	PXP_STATUS_PLATFCONFIG_KF1_NOVERIF = 0x101a,
-> +	PXP_STATUS_PLATFCONFIG_KF1_BAD = 0x101f,
->   	PXP_STATUS_OP_NOT_PERMITTED = 0x4013
->   };
->   
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_session.c b/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
-> index 448cacb0465d..7de849cb6c47 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
-> @@ -74,7 +74,7 @@ static int pxp_create_arb_session(struct intel_pxp *pxp)
->   
->   	ret = pxp_wait_for_session_state(pxp, ARB_SESSION, true);
->   	if (ret) {
-> -		drm_err(&gt->i915->drm, "arb session failed to go in play\n");
-> +		drm_dbg(&gt->i915->drm, "arb session failed to go in play\n");
->   		return ret;
->   	}
->   	drm_dbg(&gt->i915->drm, "PXP ARB session is alive\n");
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> index d9d248b48093..1c2e4a75a968 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> @@ -19,6 +19,23 @@
->   #include "intel_pxp_tee.h"
->   #include "intel_pxp_types.h"
->   
-> +static const char *
-> +pxp_fw_err_to_string(u32 type)
-> +{
-> +	switch (type) {
-> +	case PXP_STATUS_ERROR_API_VERSION:
-> +		return "ERR_API_VERSION";
-> +	case PXP_STATUS_NOT_READY:
-> +		return "ERR_NOT_READY";
-> +	case PXP_STATUS_PLATFCONFIG_KF1_NOVERIF:
-> +	case PXP_STATUS_PLATFCONFIG_KF1_BAD:
-> +		return "ERR_PLATFORM_CONFIG";
-> +	default:
-> +		break;
-> +	}
-> +	return NULL;
-> +}
-> +
->   static int intel_pxp_tee_io_message(struct intel_pxp *pxp,
->   				    void *msg_in, u32 msg_in_size,
->   				    void *msg_out, u32 msg_out_max_size,
-> @@ -307,15 +324,19 @@ int intel_pxp_tee_cmd_create_arb_session(struct intel_pxp *pxp,
->   				       &msg_out, sizeof(msg_out),
->   				       NULL);
->   
-> -	if (ret)
-> -		drm_err(&i915->drm, "Failed to send tee msg ret=[%d]\n", ret);
-> -	else if (msg_out.header.status == PXP_STATUS_ERROR_API_VERSION)
-> -		drm_dbg(&i915->drm, "PXP firmware version unsupported, requested: "
-> -			"CMD-ID-[0x%08x] on API-Ver-[0x%08x]\n",
-> +	if (ret) {
-> +		drm_err(&i915->drm, "Failed to send tee msg init arb session, ret=[%d]\n", ret);
-> +	} else if (msg_out.header.status != 0) {
-> +		if (msg_out.header.status == PXP_STATUS_PLATFCONFIG_KF1_NOVERIF ||
-> +		    msg_out.header.status == PXP_STATUS_PLATFCONFIG_KF1_BAD)
-> +			drm_WARN_ONCE(&i915->drm, true,
-> +				      "Platform BIOS or Fusing won't allow PXP arb creation\n");
-> +
-> +		drm_dbg(&i915->drm, "PXP init arb session failed 0x%08x:%s:"
-> +			"CMD-ID-[0x%08x]:API-Ver-[0x%08x]\n",
-> +			msg_out.header.status, pxp_fw_err_to_string(msg_out.header.status),
->   			msg_in.header.command_id, msg_in.header.api_version);
-> -	else if (msg_out.header.status != 0x0)
-> -		drm_warn(&i915->drm, "PXP firmware failed arb session init request ret=[0x%08x]\n",
-> -			 msg_out.header.status);
-> +	}
->   
->   	return ret;
->   }
-> @@ -347,10 +368,17 @@ void intel_pxp_tee_end_arb_fw_session(struct intel_pxp *pxp, u32 session_id)
->   	if ((ret || msg_out.header.status != 0x0) && ++trials < 3)
->   		goto try_again;
->   
-> -	if (ret)
-> +	if (ret) {
->   		drm_err(&i915->drm, "Failed to send tee msg for inv-stream-key-%d, ret=[%d]\n",
->   			session_id, ret);
-> -	else if (msg_out.header.status != 0x0)
-> -		drm_warn(&i915->drm, "PXP firmware failed inv-stream-key-%d with status 0x%08x\n",
-> -			 session_id, msg_out.header.status);
-> +	} else if (msg_out.header.status != 0) {
-> +		if (msg_out.header.status == PXP_STATUS_PLATFCONFIG_KF1_NOVERIF ||
-> +		    msg_out.header.status == PXP_STATUS_PLATFCONFIG_KF1_BAD)
-> +			drm_WARN_ONCE(&i915->drm, true,
-> +				      "Platform BIOS or Fusing won't allow PXP arb creation\n");
-> +		drm_dbg(&i915->drm, "PXP inv-stream-key-%d failed 0x%08x:%st:\n"
-> +			"CMD-ID-[0x%08x]:API-Ver-[0x%08x]\n", (int)session_id,
-> +			msg_out.header.status, pxp_fw_err_to_string(msg_out.header.status),
-> +			msg_in.header.command_id, msg_in.header.api_version);
-> +	}
->   }
+drm-misc-fixes-2023-02-02:
+A fix for a non-unique CEC adapter name registration in vc4, a
+regression breaking the display in ssd130x, a signaling bit issue in
+dma-fence, a couple of fixes in nouveau for Turing and Ampere, and a
+disable fix for the boe-tv101wum-nl6 panel.
+The following changes since commit d6591da5f3ff284a376d56b5f7a48a34e9cb159d:
+
+  drm/fb-helper: Use a per-driver FB deferred I/O handler (2023-01-24 11:13:08 +0100)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2023-02-02
+
+for you to fetch changes up to a3ee9e0b57f8ecca02d1c16fad4941e09bfe2941:
+
+  drm/panel: boe-tv101wum-nl6: Ensure DSI writes succeed during disable (2023-02-01 11:41:15 +0100)
+
+----------------------------------------------------------------
+A fix for a non-unique CEC adapter name registration in vc4, a
+regression breaking the display in ssd130x, a signaling bit issue in
+dma-fence, a couple of fixes in nouveau for Turing and Ampere, and a
+disable fix for the boe-tv101wum-nl6 panel.
+
+----------------------------------------------------------------
+Ben Skeggs (3):
+      drm/nouveau/devinit/tu102-: wait for GFW_BOOT_PROGRESS == COMPLETED
+      drm/nouveau/fb/tu102-: fix register used to determine scrub status
+      drm/nouveau/acr/gm20b: regression fixes
+
+Danilo Krummrich (1):
+      dma-buf: actually set signaling bit for private stub fences
+
+Hans Verkuil (1):
+      drm/vc4: hdmi: make CEC adapter name unique
+
+Javier Martinez Canillas (1):
+      drm/ssd130x: Init display before the SSD130X_DISPLAY_ON command
+
+Stephen Boyd (1):
+      drm/panel: boe-tv101wum-nl6: Ensure DSI writes succeed during disable
+
+ drivers/dma-buf/dma-fence.c                        |  2 +-
+ drivers/gpu/drm/nouveau/include/nvkm/subdev/fb.h   |  1 +
+ drivers/gpu/drm/nouveau/nvkm/core/firmware.c       |  3 ++
+ drivers/gpu/drm/nouveau/nvkm/engine/device/base.c  | 10 ++--
+ drivers/gpu/drm/nouveau/nvkm/falcon/gm200.c        | 14 +++++-
+ .../gpu/drm/nouveau/nvkm/subdev/devinit/tu102.c    | 23 +++++++++
+ drivers/gpu/drm/nouveau/nvkm/subdev/fb/Kbuild      |  1 +
+ drivers/gpu/drm/nouveau/nvkm/subdev/fb/ga102.c     |  8 +---
+ drivers/gpu/drm/nouveau/nvkm/subdev/fb/gv100.c     |  5 --
+ drivers/gpu/drm/nouveau/nvkm/subdev/fb/priv.h      |  2 +
+ drivers/gpu/drm/nouveau/nvkm/subdev/fb/tu102.c     | 55 ++++++++++++++++++++++
+ drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gm20b.c    |  2 +-
+ drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c     | 16 +++++--
+ drivers/gpu/drm/solomon/ssd130x.c                  | 18 +++----
+ drivers/gpu/drm/vc4/vc4_hdmi.c                     |  3 +-
+ 15 files changed, 127 insertions(+), 36 deletions(-)
+ create mode 100644 drivers/gpu/drm/nouveau/nvkm/subdev/fb/tu102.c
+
+--u6yvcuk7fm4vbvvr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCY9t68wAKCRDj7w1vZxhR
+xT6sAQCR/irwZdLuFfX2iCS3LS7pnDdOxVYxFrRk1IvhthJvigEAkvWE5ZVJmYvu
+Q5hlPljFjnHpOFVKjyt51P7iCXlB4gM=
+=9BaS
+-----END PGP SIGNATURE-----
+
+--u6yvcuk7fm4vbvvr--
