@@ -2,45 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEDEE6897B2
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Feb 2023 12:28:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFE9D6897BF
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Feb 2023 12:30:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11A7810E76A;
-	Fri,  3 Feb 2023 11:28:07 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de
- [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE18110E76A
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Feb 2023 11:28:03 +0000 (UTC)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77]
- helo=[IPv6:::1]) by metis.ext.pengutronix.de with esmtps
- (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <l.stach@pengutronix.de>)
- id 1pNuEb-00079L-P7; Fri, 03 Feb 2023 12:28:01 +0100
-Message-ID: <99c4db33a1966bd1979817277facb4a42ba2333f.camel@pengutronix.de>
-From: Lucas Stach <l.stach@pengutronix.de>
-To: Bagas Sanjaya <bagasdotme@gmail.com>, Intel Graphics Development List
- <intel-gfx@lists.freedesktop.org>, DRI Development List
- <dri-devel@lists.freedesktop.org>, Linux Kernel Mailing List
- <linux-kernel@vger.kernel.org>, Linux Media Mailing List
- <linux-media@vger.kernel.org>, Linux Next Mailing List
- <linux-next@vger.kernel.org>
-Date: Fri, 03 Feb 2023 12:27:55 +0100
-In-Reply-To: <20230203100215.31852-3-bagasdotme@gmail.com>
-References: <20230203100215.31852-1-bagasdotme@gmail.com>
- <20230203100215.31852-3-bagasdotme@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.3 (3.46.3-1.fc37) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C9FA10E763;
+	Fri,  3 Feb 2023 11:30:15 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FA8A10E1FE;
+ Fri,  3 Feb 2023 11:30:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1675423813; x=1706959813;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=sro1LqT9dlk93r6lRTG/i4cfnTiL8lLj2r9wDZ7vU/E=;
+ b=MB0mz3cjJxbp+OUiSr1hV66pe3+L16xhvTn8q0d5hJY8cyNxqD2Tmoa6
+ K4Dyrp7X1CCUrK3ZJMze3vYQ+Wd228BA7+cfihemmSjdaOz4pmwkzWoeK
+ +LyJfBcoBh4Ks9sJ0qC7WslIPP90yCh7Z8oIHWRBUdYthriuq/1pS57e8
+ VEWROI9OFphYXxCcJbRQedkGvXsYDQxseie7oNeRL28gZtjBsd+ZtGtR3
+ a+8ln1F8ZWLjwVNXDe6Ctm0EiMnM03byywEYwNPUW4FiVhBQdBs8qVoeZ
+ kfUhNiMJLFgkCIrB+mInyq/vP1WwqeSnd6Nr7JwiZJj7xhxVnZpk2sbWv Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10609"; a="309060343"
+X-IronPort-AV: E=Sophos;i="5.97,270,1669104000"; d="scan'208";a="309060343"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2023 03:30:12 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10609"; a="615686554"
+X-IronPort-AV: E=Sophos;i="5.97,270,1669104000"; d="scan'208";a="615686554"
+Received: from lhime-mobl1.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.213.220.100])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2023 03:30:10 -0800
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: igt-dev@lists.freedesktop.org,
+	Intel-gfx@lists.freedesktop.org
+Date: Fri,  3 Feb 2023 11:30:05 +0000
+Message-Id: <20230203113005.4138939-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230203111636.4138202-4-tvrtko.ursulin@linux.intel.com>
+References: <20230203111636.4138202-4-tvrtko.ursulin@linux.intel.com>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
- SAEximRunCond expanded to false
-X-PTX-Original-Recipient: intel-gfx@lists.freedesktop.org
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/scheduler: Fix elapsed_ns
- kernel-doc error
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH i-g-t 3/3] intel_gpu_top: Add CSV output format
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,60 +58,183 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
- Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
- Srinivasan Shanmugam <srinivasan.s@intel.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Hans de Goede <hdegoede@redhat.com>, Luben Tuikov <luben.tuikov@amd.com>,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Stephen Rothwell <sfr@canb.auug.org.au>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, David Airlie <airlied@gmail.com>
+Cc: Caleb Callaway <caleb.callaway@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am Freitag, dem 03.02.2023 um 17:02 +0700 schrieb Bagas Sanjaya:
-> Stephen Rothwell reported htmldocs warnings:
->=20
-> include/drm/gpu_scheduler.h:232: warning: Incorrect use of kernel-doc for=
-mat:          * @elapsed_ns
-> include/drm/gpu_scheduler.h:238: warning: Function parameter or member 'e=
-lapsed_ns' not described in 'drm_sched_entity'
->=20
-> Fix the error by appending missing colon to @elapsed_ns name in its
-> kernel-doc comment.
->=20
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Thanks, I've added this to the etnaviv tree.
+Add CSV output mode.
 
-Since the commit is only in -next and not a non-rebase tree yet, I
-might be tempted to squash the fix into the offending commit. What
-would be the right way to credit you for the fix in that case?
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Caleb Callaway <caleb.callaway@intel.com>
+---
+ man/intel_gpu_top.rst |  3 ++
+ tools/intel_gpu_top.c | 78 +++++++++++++++++++++++++++++++++++++++++--
+ 2 files changed, 78 insertions(+), 3 deletions(-)
 
-Regards,
-Lucas
-
-> Link: https://lore.kernel.org/linux-next/20230203135027.1a4679d3@canb.auu=
-g.org.au/
-> Fixes: 248cd9b265fca6 ("drm/scheduler: track GPU active time per entity")
-> Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
-> Signed-off-by: Bagas Sanjaya <bagasdotme@gmail.com>
-> ---
->  include/drm/gpu_scheduler.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-> index 9a50365621ed8d..9db9e5e504eeb3 100644
-> --- a/include/drm/gpu_scheduler.h
-> +++ b/include/drm/gpu_scheduler.h
-> @@ -229,7 +229,7 @@ struct drm_sched_entity {
->  	struct rb_node			rb_tree_node;
-> =20
->  	/**
-> -	 * @elapsed_ns
-> +	 * @elapsed_ns:
->  	 *
->  	 * Records the amount of time where jobs from this entity were active
->  	 * on the GPU.
+diff --git a/man/intel_gpu_top.rst b/man/intel_gpu_top.rst
+index 69834756b81e..77228277b9bf 100644
+--- a/man/intel_gpu_top.rst
++++ b/man/intel_gpu_top.rst
+@@ -31,6 +31,9 @@ OPTIONS
+ -h
+     Show help text.
+ 
++-c
++    Output CVS formatted data.
++
+ -J
+     Output JSON formatted data.
+ 
+diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
+index a980cc7043dc..2e1365959d8b 100644
+--- a/tools/intel_gpu_top.c
++++ b/tools/intel_gpu_top.c
+@@ -1268,6 +1268,7 @@ usage(const char *appname)
+ 		"\n"
+ 		"\tThe following parameters are optional:\n\n"
+ 		"\t[-h]            Show this help text.\n"
++		"\t[-c]            Output CSV formatted data.\n"
+ 		"\t[-J]            Output JSON formatted data.\n"
+ 		"\t[-l]            List plain text data.\n"
+ 		"\t[-o <file|->]   Output to specified file or '-' for standard out.\n"
+@@ -1283,6 +1284,7 @@ usage(const char *appname)
+ static enum {
+ 	INTERACTIVE,
+ 	TEXT,
++	CSV,
+ 	JSON
+ } output_mode;
+ 
+@@ -1457,6 +1459,22 @@ text_add_member(const struct cnt_group *parent, struct cnt_item *item,
+ 	return len > 0 ? len : 0;
+ }
+ 
++static unsigned int
++csv_add_member(const struct cnt_group *parent, struct cnt_item *item,
++	       unsigned int headers)
++{
++	int len = 0;
++
++	if (headers)
++		fprintf(out, "%s %s", parent->display_name, item->unit);
++	else
++		len = fprintf(out, "%f",
++			      pmu_calc(&item->pmu->val, item->d, item->t,
++				       item->s));
++
++	return len > 0 ? len : 0;
++}
++
+ static void
+ term_open_struct(const char *name)
+ {
+@@ -1540,6 +1558,46 @@ print_group(struct cnt_group *grp, unsigned int headers)
+ 	return consumed;
+ }
+ 
++static unsigned int csv_count, prev_csv_count;
++
++static void csv_close_struct(void)
++{
++	assert(text_level > 0);
++	if (--text_level == 0) {
++		csv_count = prev_csv_count = 0;
++		text_lines++;
++		fputs("\n", out);
++		fflush(out);
++	}
++}
++
++static bool
++csv_print_group(struct cnt_group *grp, unsigned int headers)
++{
++	unsigned int consumed = 0;
++	struct cnt_item *item;
++
++	if (!present_in_group(grp))
++		return false;
++
++	text_open_struct(grp->name);
++
++	for (item = grp->items; item->name; item++) {
++		if (!item->pmu || !item->pmu->present)
++			continue;
++
++		if (csv_count != prev_csv_count)
++			fprintf(out, ",");
++		prev_csv_count = csv_count++;
++
++		consumed += csv_add_member(grp, item, headers);
++	}
++
++	csv_close_struct();
++
++	return consumed;
++}
++
+ static bool
+ term_print_group(struct cnt_group *grp, unsigned int headers)
+ {
+@@ -1570,6 +1628,13 @@ static const struct print_operations text_pops = {
+ 	.print_group = print_group,
+ };
+ 
++static const struct print_operations csv_pops = {
++	.open_struct = text_open_struct,
++	.close_struct = csv_close_struct,
++	.add_member = csv_add_member,
++	.print_group = csv_print_group,
++};
++
+ static const struct print_operations term_pops = {
+ 	.open_struct = term_open_struct,
+ 	.close_struct = term_close_struct,
+@@ -1582,11 +1647,12 @@ static bool print_groups(struct cnt_group **groups)
+ 	static bool headers_printed = false;
+ 	bool print_data = true;
+ 
+-	if (output_mode == TEXT &&
++	if ((output_mode == TEXT || output_mode == CSV) &&
+ 	    (text_header_repeat || !headers_printed)) {
++		const unsigned int header_lines = output_mode == TEXT ? 2 : 1;
+ 		unsigned int headers = text_lines % TEXT_HEADER_REPEAT + 1;
+ 
+-		if (headers == 1 || headers == 2)
++		if (headers > 0 && headers <= header_lines)
+ 			for (struct cnt_group **grp = groups; *grp; grp++)
+ 				print_data = pops->print_group(*grp, headers);
+ 
+@@ -2469,7 +2535,7 @@ int main(int argc, char **argv)
+ 	char *codename = NULL;
+ 
+ 	/* Parse options */
+-	while ((ch = getopt(argc, argv, "o:s:d:pJLlh")) != -1) {
++	while ((ch = getopt(argc, argv, "o:s:d:pcJLlh")) != -1) {
+ 		switch (ch) {
+ 		case 'o':
+ 			output_path = optarg;
+@@ -2483,6 +2549,9 @@ int main(int argc, char **argv)
+ 		case 'p':
+ 			physical_engines = true;
+ 			break;
++		case 'c':
++			output_mode = CSV;
++			break;
+ 		case 'J':
+ 			output_mode = JSON;
+ 			break;
+@@ -2532,6 +2601,9 @@ int main(int argc, char **argv)
+ 	case TEXT:
+ 		pops = &text_pops;
+ 		break;
++	case CSV:
++		pops = &csv_pops;
++		break;
+ 	case JSON:
+ 		pops = &json_pops;
+ 		break;
+-- 
+2.34.1
 
