@@ -2,44 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFE9D6897BF
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Feb 2023 12:30:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C5996897C2
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Feb 2023 12:31:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C9FA10E763;
-	Fri,  3 Feb 2023 11:30:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 446D510E76A;
+	Fri,  3 Feb 2023 11:31:31 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FA8A10E1FE;
- Fri,  3 Feb 2023 11:30:13 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D946810E763;
+ Fri,  3 Feb 2023 11:31:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675423813; x=1706959813;
+ t=1675423889; x=1706959889;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=sro1LqT9dlk93r6lRTG/i4cfnTiL8lLj2r9wDZ7vU/E=;
- b=MB0mz3cjJxbp+OUiSr1hV66pe3+L16xhvTn8q0d5hJY8cyNxqD2Tmoa6
- K4Dyrp7X1CCUrK3ZJMze3vYQ+Wd228BA7+cfihemmSjdaOz4pmwkzWoeK
- +LyJfBcoBh4Ks9sJ0qC7WslIPP90yCh7Z8oIHWRBUdYthriuq/1pS57e8
- VEWROI9OFphYXxCcJbRQedkGvXsYDQxseie7oNeRL28gZtjBsd+ZtGtR3
- a+8ln1F8ZWLjwVNXDe6Ctm0EiMnM03byywEYwNPUW4FiVhBQdBs8qVoeZ
- kfUhNiMJLFgkCIrB+mInyq/vP1WwqeSnd6Nr7JwiZJj7xhxVnZpk2sbWv Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10609"; a="309060343"
-X-IronPort-AV: E=Sophos;i="5.97,270,1669104000"; d="scan'208";a="309060343"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2023 03:30:12 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10609"; a="615686554"
-X-IronPort-AV: E=Sophos;i="5.97,270,1669104000"; d="scan'208";a="615686554"
+ bh=eeIBk3Ibs1Xg6u1Owpqsh8psPC8henZ6ul55lHyVxFA=;
+ b=lp++3mLuFh+Bm4K6LsZQmn/O7w7KHySNitAoTXrmKqrNZpi/FE/2KaU8
+ j/Go+TS3VfauTmZsSKOmvZaXuo3/VpqtoqerBzGW97mYYPcyTZlxnnOes
+ yuXV/LjSfeYv9uA6gqY54pvbzbJzG6QXeHXgX2GoDumDv+TbhxMQ2uaul
+ cUt/n+/6D0C/NoEuc2mVuqLFhdE2dAIv2+Epcv56En4vyZRrbTu2TsNGs
+ VJbl2XlcDdNw3AKVW4ZonuIuCCgU/w8ahJX+2fRFhTC4pnJBnUeb53S4Y
+ aBVx8OkTukxwWk+IjZ8tRkmvNmA4cBHsFWwxMds9VpUvLARHPjurUgSA6 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10609"; a="330856553"
+X-IronPort-AV: E=Sophos;i="5.97,270,1669104000"; d="scan'208";a="330856553"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2023 03:31:25 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10609"; a="665689840"
+X-IronPort-AV: E=Sophos;i="5.97,270,1669104000"; d="scan'208";a="665689840"
 Received: from lhime-mobl1.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.213.220.100])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2023 03:30:10 -0800
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2023 03:31:24 -0800
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 To: igt-dev@lists.freedesktop.org,
 	Intel-gfx@lists.freedesktop.org
-Date: Fri,  3 Feb 2023 11:30:05 +0000
-Message-Id: <20230203113005.4138939-1-tvrtko.ursulin@linux.intel.com>
+Date: Fri,  3 Feb 2023 11:31:19 +0000
+Message-Id: <20230203113119.4139041-1-tvrtko.ursulin@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230203111636.4138202-4-tvrtko.ursulin@linux.intel.com>
 References: <20230203111636.4138202-4-tvrtko.ursulin@linux.intel.com>
@@ -74,7 +74,7 @@ Cc: Caleb Callaway <caleb.callaway@intel.com>
  2 files changed, 78 insertions(+), 3 deletions(-)
 
 diff --git a/man/intel_gpu_top.rst b/man/intel_gpu_top.rst
-index 69834756b81e..77228277b9bf 100644
+index 69834756b81e..2d041457a95e 100644
 --- a/man/intel_gpu_top.rst
 +++ b/man/intel_gpu_top.rst
 @@ -31,6 +31,9 @@ OPTIONS
@@ -82,7 +82,7 @@ index 69834756b81e..77228277b9bf 100644
      Show help text.
  
 +-c
-+    Output CVS formatted data.
++    Output CSV formatted data.
 +
  -J
      Output JSON formatted data.
