@@ -2,52 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 395EA6893D8
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Feb 2023 10:34:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A50AD6893F7
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Feb 2023 10:39:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DCC3910E204;
-	Fri,  3 Feb 2023 09:34:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0939310E4DC;
+	Fri,  3 Feb 2023 09:39:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C7F0B10E204;
- Fri,  3 Feb 2023 09:34:10 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2C8510E4DC
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Feb 2023 09:39:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675416850; x=1706952850;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=lD7oSSRofIqXsWOTqg3W9n3eJ2CdBBqnJIZvkqZb5aQ=;
- b=aC65koGkUyQ2nzD0x3iaH8uELzJCMh/3po335LtJIc6OBRkzfN+umDod
- 7aHTJ9mzB5tc51JxoZrTqYhejRKPYEn+JJdFuvsVW7aS7C4I5u8nI11lD
- 7v7OikYhzkVFzA+0unLJmw1bbRHa8pEL5b6rTvh6jeRxIdg3YwtJcewdA
- BF1zx2pI3e8vJtcFVLRHK/r7JtEppBrC2iT1XDGePxEBVfinyT7gUEnil
- xEIrpW4pQzIu0ZpbokqKXKmBYPL80N5FMhSxFnC64MLEI16PLebZfrsst
- Qbb7Awjsvbf/X3XoNX2yTVkENAS3g9nS2DqTppY1mt7sWfjcnWxcgQQ42 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10609"; a="312359639"
-X-IronPort-AV: E=Sophos;i="5.97,270,1669104000"; d="scan'208";a="312359639"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2023 01:34:10 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10609"; a="729207325"
-X-IronPort-AV: E=Sophos;i="5.97,270,1669104000"; d="scan'208";a="729207325"
-Received: from cciobanu-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.35.96])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2023 01:34:05 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Jim Cromie <jim.cromie@gmail.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230125203743.564009-1-jim.cromie@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230125203743.564009-1-jim.cromie@gmail.com>
-Date: Fri, 03 Feb 2023 11:34:02 +0200
-Message-ID: <87a61v14ad.fsf@intel.com>
+ t=1675417151; x=1706953151;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=dt1Os9Zsvbjc8eg3TB3VLOLy8HEwMlFWj94VRq+71Pc=;
+ b=PIBex4ukg+42rirquoyvNW1fMmKhu7Ke7SZk9MsTh37XNh9m7+3RjHKs
+ 5zN4Bg/MbyzWCDeqOEH7pUaRft1BXE3QJ5Bpzxe3/Eqy6Hxo3Fod8tAb/
+ /SsheVunoayciVPCzWLIBa14h1+FeJZmiXhC0wk4Pyezm4b00orSaJ0EY
+ zkPNmbbZ1PjBUAUO3zbodAdTSAO/A0habe67H1tkU1xb8V+SMMTn4g6ym
+ PaVRRfmEUFA2DfgtlaKBkCO0A/f+hg5E+sd3gJYOKXzP7ujHRdIsdj8pB
+ zYifRpQu0VvwEL2yXX9isNaBYtMA8SJts3T4JtdiC9ky69znI816GcINr g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10609"; a="393295880"
+X-IronPort-AV: E=Sophos;i="5.97,270,1669104000"; d="scan'208";a="393295880"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2023 01:39:11 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10609"; a="665663302"
+X-IronPort-AV: E=Sophos;i="5.97,270,1669104000"; d="scan'208";a="665663302"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by orsmga002.jf.intel.com with ESMTP; 03 Feb 2023 01:39:07 -0800
+Received: from [10.249.139.149] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.249.139.149])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 2119D365DC
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Feb 2023 09:39:07 +0000 (GMT)
+Message-ID: <8115b355-53a1-6337-3984-ec638ebda674@intel.com>
+Date: Fri, 3 Feb 2023 10:39:06 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v3 00/19] fix DRM_USE_DYNAMIC_DEBUG
- regression
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.6.1
+To: intel-gfx@lists.freedesktop.org
+References: <20230203001143.3323433-1-John.C.Harrison@Intel.com>
+ <20230203001143.3323433-2-John.C.Harrison@Intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20230203001143.3323433-2-John.C.Harrison@Intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 1/6] drm/i915/guc: More debug print updates
+ - UC firmware
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,234 +65,338 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jim Cromie <jim.cromie@gmail.com>, daniel.vetter@ffwll.ch,
- Maxime Ripard <mripard@kernel.org>, seanpaul@chromium.org,
- Thomas Zimmermann <tzimmermann@suse.de>, Greg KH <gregkh@linuxfoundation.org>,
- Dave Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 25 Jan 2023, Jim Cromie <jim.cromie@gmail.com> wrote:
-> Hi everyone,
->
-> In v6.1 DRM_USE_DYNAMIC_DEBUG=y has a regression enabling drm.debug in
-> drivers at modprobe.
-
-I realize we haven't actually addressed the regression in any way yet,
-and any distro enabling DYNAMIC_DEBUG || DYNAMIC_DEBUG_CORE will have
-DRM_USE_DYNAMIC_DEBUG=y by default, and we're hitting the issue with
-trying to gather logs from users on v6.1 or later. It hampers debugging
-pretty badly.
-
-I appreciate the effort in fixing the problem properly here, but we'll
-need a fix that we can backport to stable kernels.
-
-Maybe just Ville's idea of
-
- config DRM_USE_DYNAMIC_DEBUG
-        bool "use dynamic debug to implement drm.debug"
--       default y
-+       default n
-+       depends on BROKEN
-        depends on DRM
-        depends on DYNAMIC_DEBUG || DYNAMIC_DEBUG_CORE
-
-but we'll need that as a patch and merged and backported ASAP.
-
-In the mean time, is there a workaround that the user could enable, say,
-on the kernel command line, to enable drm debugs on driver kernel
-modules, all the way from boot?
 
 
-BR,
-Jani.
+On 03.02.2023 01:11, John.C.Harrison@Intel.com wrote:
+> From: John Harrison <John.C.Harrison@Intel.com>
+> 
+> Update a bunch more debug prints to use the new GT based scheme.
+> 
+> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/uc/intel_uc.c    |  42 ++++----
+>  drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c | 116 +++++++++++------------
+>  2 files changed, 73 insertions(+), 85 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> index de7f987cf6111..6648691bd6450 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> @@ -83,15 +83,15 @@ static int __intel_uc_reset_hw(struct intel_uc *uc)
+>  
+>  static void __confirm_options(struct intel_uc *uc)
+>  {
+> -	struct drm_i915_private *i915 = uc_to_gt(uc)->i915;
+> +	struct intel_gt *gt = uc_to_gt(uc);
+> +	struct drm_i915_private *i915 = gt->i915;
+>  
+> -	drm_dbg(&i915->drm,
+> -		"enable_guc=%d (guc:%s submission:%s huc:%s slpc:%s)\n",
+> -		i915->params.enable_guc,
+> -		str_yes_no(intel_uc_wants_guc(uc)),
+> -		str_yes_no(intel_uc_wants_guc_submission(uc)),
+> -		str_yes_no(intel_uc_wants_huc(uc)),
+> -		str_yes_no(intel_uc_wants_guc_slpc(uc)));
+> +	gt_dbg(gt, "enable_guc=%d (guc:%s submission:%s huc:%s slpc:%s)\n",
+> +	       i915->params.enable_guc,
+> +	       str_yes_no(intel_uc_wants_guc(uc)),
+> +	       str_yes_no(intel_uc_wants_guc_submission(uc)),
+> +	       str_yes_no(intel_uc_wants_huc(uc)),
+> +	       str_yes_no(intel_uc_wants_guc_slpc(uc)));
+>  
+>  	if (i915->params.enable_guc == 0) {
+>  		GEM_BUG_ON(intel_uc_wants_guc(uc));
+> @@ -102,26 +102,22 @@ static void __confirm_options(struct intel_uc *uc)
+>  	}
+>  
+>  	if (!intel_uc_supports_guc(uc))
+> -		drm_info(&i915->drm,
+> -			 "Incompatible option enable_guc=%d - %s\n",
+> -			 i915->params.enable_guc, "GuC is not supported!");
+> +		gt_info(gt,  "Incompatible option enable_guc=%d - %s\n",
+> +			i915->params.enable_guc, "GuC is not supported!");
+>  
+>  	if (i915->params.enable_guc & ENABLE_GUC_LOAD_HUC &&
+>  	    !intel_uc_supports_huc(uc))
+> -		drm_info(&i915->drm,
+> -			 "Incompatible option enable_guc=%d - %s\n",
+> -			 i915->params.enable_guc, "HuC is not supported!");
+> +		gt_info(gt, "Incompatible option enable_guc=%d - %s\n",
+> +			i915->params.enable_guc, "HuC is not supported!");
+>  
+>  	if (i915->params.enable_guc & ENABLE_GUC_SUBMISSION &&
+>  	    !intel_uc_supports_guc_submission(uc))
+> -		drm_info(&i915->drm,
+> -			 "Incompatible option enable_guc=%d - %s\n",
+> -			 i915->params.enable_guc, "GuC submission is N/A");
+> +		gt_info(gt, "Incompatible option enable_guc=%d - %s\n",
+> +			i915->params.enable_guc, "GuC submission is N/A");
+>  
+>  	if (i915->params.enable_guc & ~ENABLE_GUC_MASK)
+> -		drm_info(&i915->drm,
+> -			 "Incompatible option enable_guc=%d - %s\n",
+> -			 i915->params.enable_guc, "undocumented flag");
+> +		gt_info(gt, "Incompatible option enable_guc=%d - %s\n",
+> +			i915->params.enable_guc, "undocumented flag");
 
+all these above messages are about i915->params so IMHO using drm_info()
+is still more applicable than gt_info() ...
 
+>  }
+>  
+>  void intel_uc_init_early(struct intel_uc *uc)
+> @@ -549,10 +545,8 @@ static int __uc_init_hw(struct intel_uc *uc)
+>  
+>  	intel_gsc_uc_load_start(&uc->gsc);
+>  
+> -	gt_info(gt, "GuC submission %s\n",
+> -		str_enabled_disabled(intel_uc_uses_guc_submission(uc)));
+> -	gt_info(gt, "GuC SLPC %s\n",
+> -		str_enabled_disabled(intel_uc_uses_guc_slpc(uc)));
+> +	guc_info(guc, "submission %s\n", str_enabled_disabled(intel_uc_uses_guc_submission(uc)));
+> +	guc_info(guc, "SLPC %s\n", str_enabled_disabled(intel_uc_uses_guc_slpc(uc)));
+>  
+>  	return 0;
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+> index 65672ff826054..7d2558d53e972 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+> @@ -11,6 +11,7 @@
+>  #include <drm/drm_print.h>
+>  
+>  #include "gem/i915_gem_lmem.h"
+> +#include "gt/intel_gt_print.h"
+>  #include "intel_uc_fw.h"
+>  #include "intel_uc_fw_abi.h"
+>  #include "i915_drv.h"
+> @@ -44,11 +45,10 @@ void intel_uc_fw_change_status(struct intel_uc_fw *uc_fw,
+>  			       enum intel_uc_fw_status status)
+>  {
+>  	uc_fw->__status =  status;
+> -	drm_dbg(&__uc_fw_to_gt(uc_fw)->i915->drm,
+> -		"%s firmware -> %s\n",
+> -		intel_uc_fw_type_repr(uc_fw->type),
+> -		status == INTEL_UC_FIRMWARE_SELECTED ?
+> -		uc_fw->file_selected.path : intel_uc_fw_status_repr(status));
+> +	gt_dbg(__uc_fw_to_gt(uc_fw), "%s firmware -> %s\n",
+> +	       intel_uc_fw_type_repr(uc_fw->type),
+> +	       status == INTEL_UC_FIRMWARE_SELECTED ?
+> +	       uc_fw->file_selected.path : intel_uc_fw_status_repr(status));
+>  }
+>  #endif
+>  
+> @@ -562,15 +562,14 @@ static int check_ccs_header(struct intel_gt *gt,
+>  			    const struct firmware *fw,
+>  			    struct intel_uc_fw *uc_fw)
+>  {
+> -	struct drm_i915_private *i915 = gt->i915;
+>  	struct uc_css_header *css;
+>  	size_t size;
+>  
+>  	/* Check the size of the blob before examining buffer contents */
+>  	if (unlikely(fw->size < sizeof(struct uc_css_header))) {
+> -		drm_warn(&i915->drm, "%s firmware %s: invalid size: %zu < %zu\n",
+> -			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
+> -			 fw->size, sizeof(struct uc_css_header));
+> +		gt_warn(gt, "%s firmware %s: invalid size: %zu < %zu\n",
+> +			intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
+> +			fw->size, sizeof(struct uc_css_header));
+>  		return -ENODATA;
+>  	}
+>  
+> @@ -580,10 +579,9 @@ static int check_ccs_header(struct intel_gt *gt,
+>  	size = (css->header_size_dw - css->key_size_dw - css->modulus_size_dw -
+>  		css->exponent_size_dw) * sizeof(u32);
+>  	if (unlikely(size != sizeof(struct uc_css_header))) {
+> -		drm_warn(&i915->drm,
+> -			 "%s firmware %s: unexpected header size: %zu != %zu\n",
+> -			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
+> -			 fw->size, sizeof(struct uc_css_header));
+> +		gt_warn(gt, "%s firmware %s: unexpected header size: %zu != %zu\n",
+> +			intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
+> +			fw->size, sizeof(struct uc_css_header));
+>  		return -EPROTO;
+>  	}
+>  
+> @@ -596,18 +594,18 @@ static int check_ccs_header(struct intel_gt *gt,
+>  	/* At least, it should have header, uCode and RSA. Size of all three. */
+>  	size = sizeof(struct uc_css_header) + uc_fw->ucode_size + uc_fw->rsa_size;
+>  	if (unlikely(fw->size < size)) {
+> -		drm_warn(&i915->drm, "%s firmware %s: invalid size: %zu < %zu\n",
+> -			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
+> -			 fw->size, size);
+> +		gt_warn(gt, "%s firmware %s: invalid size: %zu < %zu\n",
+> +			intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
+> +			fw->size, size);
+>  		return -ENOEXEC;
+>  	}
+>  
+>  	/* Sanity check whether this fw is not larger than whole WOPCM memory */
+>  	size = __intel_uc_fw_get_upload_size(uc_fw);
+>  	if (unlikely(size >= gt->wopcm.size)) {
+> -		drm_warn(&i915->drm, "%s firmware %s: invalid size: %zu > %zu\n",
+> -			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
+> -			 size, (size_t)gt->wopcm.size);
+> +		gt_warn(gt, "%s firmware %s: invalid size: %zu > %zu\n",
+> +			intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
+> +			size, (size_t)gt->wopcm.size);
+>  		return -E2BIG;
+>  	}
+>  
+> @@ -635,20 +633,20 @@ static bool guc_check_version_range(struct intel_uc_fw *uc_fw)
+>  	 */
+>
 
+this is GuC specific function, shouldn't we use guc_warn() instead ?
 
->
-> It is due to a chicken-egg problem loading modules; on `modprobe
-> i915`, drm is loaded 1st, and drm/parameters/debug is set.  When
-> drm_debug_enabled() tested __drm_debug at runtime, this just worked.
->
-> But with DRM_USE_DYNAMIC_DEBUG=y, the runtime test is replaced with a
-> static_key for each drm_dbg/dyndbg callsite, enabled by dyndbg's
-> kparam callback on __drm_debug.  So with drm.ko loaded and initialized
-> before the dependent modules, their debug callsites aren't yet present
-> to be enabled.
->
-> STATUS - v3
->
-> not quite ready.
-> rebased on -rc5, hopefully applies to patchwork head 
-> still has RFC patch -> CI_ONLY temporary, to avoid panics
-> boots on my amdgpu box, drm.debug=0x3ff works at boot-time
-> the "toggled" warning is repeatable with test_dynamic_debug*.ko
-> it also occurs on amdgpu, so not just artificial.
-> v2 is https://lore.kernel.org/lkml/20230113193016.749791-1-jim.cromie@gmail.com/
->
-> OVERVIEW
->
-> As Jani Nikula noted rather more gently, DECLARE_DYNDBG_CLASSMAP is
-> error-prone enough to call broken: sharing of a common classmap
-> required identical classmap definitions in all modules using DRM_UT_*,
-> which is inherently error-prone.  IOW, it muddled the K&R distinction
-> between a (single) definition, and multiple references.
->
-> So patches 10-13 split it into:
->
-> DYNDBG_CLASSMAP_DEFINE	used once per subsystem to define each classmap.
-> DYNDBG_CLASSMAP_USE	declare dependence on a DEFINEd classmap.
->
-> DYNDBG_CLASSMAP_DEFINE initializes the classmap, stores it into the
-> (existing) __dyndbg_classes section, and exports the struct var
-> (unlike DECLARE_DYNDBG_CLASSMAP).
->
-> DYNDBG_CLASSMAP_USE initializes a class-ref struct, containing the
-> user-module-name, and a ref to the exported classmap var.
->
-> The distinction allows separate treatment of classmaps and
-> classmap-refs, the latter getting additional behavior to propagate
-> parent's kparam settings to USEr. (forex: drm.debug to drm-drivers) 
->
-> . lookup the classmap defn being referenced, and its module
-> . find the module's kernel-params using the classmap
-> . propagate kparam vals into the prdgs in module being added.
->
-> It also makes the weird coordinated-changes-by-identical-classmaps
-> "feature" unnecessary.
->
-> Patch-10 splits the DECLARE macro into DEFINE & USE, and updates uses.
->
-> Patch-11 is the core of it; the separate treatment begins in
-> ddebug_add_module().  It calls ddebug_attach_module_classes(1) to
-> handle class-defns; this adds ddebug_attach_client_module_classes(2)
-> to handle class-refs, as they are found while modprobing drm
-> drivers. (2) calls ddebug_apply_parents_params(3) on each USEr's
-> referred classmap definition.
->
-> (3) scans kernel-params owned by the module DEFINEing the classmap,
-> either builtin or loadable, calls ddebug_match_apply_kparam(4) on each.
->
-> (4) looks for kparams which are wired to dyndbg's param-ops.  Those
-> params have a struct ddebug_class_param attached, which has a classmap
-> and a ref to a state-var (__drm_debug for DRM case).  If the kparam's
-> classmap is the same as from (2), then apply its state-var to the
-> client module by calling ddebug_apply_class_bitmap().
->
-> Patch-12 cleans up DYNDBG_CLASSMAP_USE, dropping now unneeded args.
->
-> Patch-13 improves DYNDBG_CLASSMAP_DEFINE, by accepting DRM_UT_*
-> symbols directly, not "DRM_UT_*" (their strings).  It adds new
-> include/linux/map.h to support this.
->
-> Patches 1-9 are prep, refactor, cleanup, tighten interfaces
->
-> Patches 15-18 extend test_dynamic_debug to recreate DRM's multi-module
-> regression; it builds both test_dynamic_debug.ko and _submod.ko, with
-> an ifdef to _DEFINE in the main module, and _USE in the submod.  This
-> gives both modules identical set of prdbgs, which is helpful for
-> comparing results.
->
-> here it is, working properly:
->
-> doing class DRM_UT_CORE -p
-> [ 9904.961750] dyndbg: read 21 bytes from userspace
-> [ 9904.962286] dyndbg: query 0: "class DRM_UT_CORE -p" mod:*
-> [ 9904.962848] dyndbg: split into words: "class" "DRM_UT_CORE" "-p"
-> [ 9904.963444] dyndbg: op='-' flags=0x0 maskp=0xfffffffe
-> [ 9904.963945] dyndbg: parsed: func="" file="" module="" format="" lineno=0-0 class=DRM_UT_CORE
-> [ 9904.964781] dyndbg: good-class: drm.DRM_UT_CORE  module:drm nd:302 nc:1 nu:0
-> [ 9904.966411] dyndbg: class-ref: drm_kms_helper.DRM_UT_CORE  module:drm_kms_helper nd:95 nc:0 nu:1
-> [ 9904.967265] dyndbg: class-ref: drm_display_helper.DRM_UT_CORE  module:drm_display_helper nd:150 nc:0 nu:1
-> [ 9904.968349] dyndbg: class-ref: i915.DRM_UT_CORE  module:i915 nd:1659 nc:0 nu:1
-> [ 9904.969801] dyndbg: class-ref: amdgpu.DRM_UT_CORE  module:amdgpu nd:4425 nc:0 nu:1
-> [ 9904.977079] dyndbg: class-ref: nouveau.DRM_UT_CORE  module:nouveau nd:103 nc:0 nu:1
-> [ 9904.977830] dyndbg: processed 1 queries, with 507 matches, 0 errs
-> doing class DRM_UT_DRIVER +p
-> [ 9906.151761] dyndbg: read 23 bytes from userspace
-> [ 9906.152241] dyndbg: query 0: "class DRM_UT_DRIVER +p" mod:*
-> [ 9906.152793] dyndbg: split into words: "class" "DRM_UT_DRIVER" "+p"
-> [ 9906.153388] dyndbg: op='+' flags=0x1 maskp=0xffffffff
-> [ 9906.153896] dyndbg: parsed: func="" file="" module="" format="" lineno=0-0 class=DRM_UT_DRIVER
-> [ 9906.154746] dyndbg: good-class: drm.DRM_UT_DRIVER  module:drm nd:302 nc:1 nu:0
-> [ 9906.155433] dyndbg: class-ref: drm_kms_helper.DRM_UT_DRIVER  module:drm_kms_helper nd:95 nc:0 nu:1
-> [ 9906.156267] dyndbg: class-ref: drm_display_helper.DRM_UT_DRIVER  module:drm_display_helper nd:150 nc:0 nu:1
-> [ 9906.157365] dyndbg: class-ref: i915.DRM_UT_DRIVER  module:i915 nd:1659 nc:0 nu:1
-> [ 9906.163848] dyndbg: class-ref: amdgpu.DRM_UT_DRIVER  module:amdgpu nd:4425 nc:0 nu:1
-> [ 9906.178963] dyndbg: class-ref: nouveau.DRM_UT_DRIVER  module:nouveau nd:103 nc:0 nu:1
-> [ 9906.179934] dyndbg: processed 1 queries, with 1286 matches, 0 errs
->
->
-> Patch-19 is a *workaround* for a panic: __jump_label_patch can "crash
-> the box" when the jump-entry is in the wrong state.  The current code
-> makes no distinction between a well-formed "toggled" state and an
-> "insane" state.  Not for keeps.
->
-> It fixes mis-initialization problems like this:
->
-> [ 1594.032504] dyndbg: query 0: "class D2_DRIVER -p" mod:*
-> [ 1594.032823] dyndbg: split into words: "class" "D2_DRIVER" "-p"
-> [ 1594.033183] dyndbg: op='-' flags=0x0 maskp=0xfffffffe
-> [ 1594.033507] dyndbg: parsed: func="" file="" module="" format="" lineno=0-0 class=D2_DRIVER
-> [ 1594.034014] dyndbg: good-class: test_dynamic_debug.D2_DRIVER  module:test_dynamic_debug nd:32 nc:4 nu:0
-> [ 1594.034695] dyndbg: changed lib/test_dynamic_debug.c:156 [test_dynamic_debug]do_cats p => _
-> [ 1594.035304] dyndbg: class-ref: test_dynamic_debug_submod.D2_DRIVER  module:test_dynamic_debug_submod nd:32 nc:0 nu:4
-> [ 1594.036052] jump_label: found toggled op at do_cats+0x16/0x180 [test_dynamic_debug_submod] [00000000ff2582ac] (0f 1f 44 00 00 != e9 e1 00 00 00)) size:5 type:0
-> [ 1594.037036] dyndbg: changed lib/test_dynamic_debug.c:156 [test_dynamic_debug_submod]do_cats p => _
-> [ 1594.037604] dyndbg: processed 1 queries, with 2 matches, 0 errs
-> [ 1594.037968] dyndbg: bit_1: 2 matches on class: D2_DRIVER -> 0x0
->
-> These errors are reliably reproduced by a shell-func which modprobes
-> (with the right args) the test mod & submod.ko (in the commit message).
->
-> So this isnt really ready for inclusion, but Id like to send the whole
-> set to the CI-gym for a workout.  The RFC/for-TESTING patch will
-> mitigate panics, and still be detectable.
->
-> Besides, Murphys law requires I publish some error before I can make progress.
->
->
-> Jim Cromie (19):
->   test-dyndbg: fixup CLASSMAP usage error
->   test-dyndbg: show that DEBUG enables prdbgs at compiletime
->   dyndbg: replace classmap list with a vector
->   dyndbg: make ddebug_apply_class_bitmap more selective
->   dyndbg: split param_set_dyndbg_classes to inner/outer fns
->   dyndbg: drop NUM_TYPE_ARRAY
->   dyndbg: reduce verbose/debug clutter
->   dyndbg: tighten ddebug_class_name() 1st arg
->   dyndbg: constify ddebug_apply_class_bitmap args
->   dyndbg-API: split DECLARE_(DYNDBG_CLASSMAP) to $1(_DEFINE|_USE)
->   dyndbg-API: specialize DYNDBG_CLASSMAP_(DEFINE|USE)
->   dyndbg-API: DYNDBG_CLASSMAP_USE drop extra args
->   dyndbg-API: DYNDBG_CLASSMAP_DEFINE() improvements
->   drm_print: fix stale macro-name in comment
->   test-dyndbg: build test_dynamic_debug_submod
->   test-dyndbg: rename DD_SYS_WRAP to DYNDBG_CLASSMAP_PARAM
->   test-dyndbg: disable WIP dyndbg-trace params
->   test-dyndbg: tune sub-module behavior
->   jump_label: RFC / temporary for CI - tolerate toggled state
->
->  arch/x86/kernel/jump_label.c            |  24 ++-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c |  14 +-
->  drivers/gpu/drm/display/drm_dp_helper.c |  14 +-
->  drivers/gpu/drm/drm_crtc_helper.c       |  14 +-
->  drivers/gpu/drm/drm_print.c             |  22 +-
->  drivers/gpu/drm/i915/i915_params.c      |  14 +-
->  drivers/gpu/drm/nouveau/nouveau_drm.c   |  14 +-
->  include/asm-generic/vmlinux.lds.h       |   1 +
->  include/drm/drm_print.h                 |   6 +-
->  include/linux/dynamic_debug.h           |  57 ++++--
->  include/linux/map.h                     |  55 +++++
->  kernel/module/main.c                    |   3 +
->  lib/Makefile                            |   3 +-
->  lib/dynamic_debug.c                     | 258 ++++++++++++++++++------
->  lib/test_dynamic_debug.c                | 118 +++++++----
->  lib/test_dynamic_debug_submod.c         |  10 +
->  16 files changed, 437 insertions(+), 190 deletions(-)
->  create mode 100644 include/linux/map.h
->  create mode 100644 lib/test_dynamic_debug_submod.c
+>  	if (!is_ver_8bit(&uc_fw->file_selected.ver)) {
+> -		drm_warn(&__uc_fw_to_gt(uc_fw)->i915->drm, "%s firmware: invalid file version: 0x%02X:%02X:%02X\n",
+> -			 intel_uc_fw_type_repr(uc_fw->type),
+> -			 uc_fw->file_selected.ver.major,
+> -			 uc_fw->file_selected.ver.minor,
+> -			 uc_fw->file_selected.ver.patch);
+> +		gt_warn(__uc_fw_to_gt(uc_fw), "%s firmware: invalid file version: 0x%02X:%02X:%02X\n",
+> +			intel_uc_fw_type_repr(uc_fw->type),
+> +			uc_fw->file_selected.ver.major,
+> +			uc_fw->file_selected.ver.minor,
+> +			uc_fw->file_selected.ver.patch);
+>  		return false;
+>  	}
+>  
+>  	if (!is_ver_8bit(&guc->submission_version)) {
+> -		drm_warn(&__uc_fw_to_gt(uc_fw)->i915->drm, "%s firmware: invalid submit version: 0x%02X:%02X:%02X\n",
+> -			 intel_uc_fw_type_repr(uc_fw->type),
+> -			 guc->submission_version.major,
+> -			 guc->submission_version.minor,
+> -			 guc->submission_version.patch);
+> +		gt_warn(__uc_fw_to_gt(uc_fw), "%s firmware: invalid submit version: 0x%02X:%02X:%02X\n",
+> +			intel_uc_fw_type_repr(uc_fw->type),
+> +			guc->submission_version.major,
+> +			guc->submission_version.minor,
+> +			guc->submission_version.patch);
+>  		return false;
+>  	}
+>  
+> @@ -687,10 +685,9 @@ static int try_firmware_load(struct intel_uc_fw *uc_fw, const struct firmware **
+>  		return err;
+>  
+>  	if ((*fw)->size > INTEL_UC_RSVD_GGTT_PER_FW) {
+> -		drm_err(&gt->i915->drm,
+> -			"%s firmware %s: size (%zuKB) exceeds max supported size (%uKB)\n",
+> -			intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
+> -			(*fw)->size / SZ_1K, INTEL_UC_RSVD_GGTT_PER_FW / SZ_1K);
+> +		gt_err(gt, "%s firmware %s: size (%zuKB) exceeds max supported size (%uKB)\n",
+> +		       intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
+> +		       (*fw)->size / SZ_1K, INTEL_UC_RSVD_GGTT_PER_FW / SZ_1K);
+>  
+>  		/* try to find another blob to load */
+>  		release_firmware(*fw);
+> @@ -768,10 +765,10 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
+>  	if (uc_fw->file_wanted.ver.major && uc_fw->file_selected.ver.major) {
+>  		/* Check the file's major version was as it claimed */
+>  		if (uc_fw->file_selected.ver.major != uc_fw->file_wanted.ver.major) {
+> -			drm_notice(&i915->drm, "%s firmware %s: unexpected version: %u.%u != %u.%u\n",
+> -				   intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
+> -				   uc_fw->file_selected.ver.major, uc_fw->file_selected.ver.minor,
+> -				   uc_fw->file_wanted.ver.major, uc_fw->file_wanted.ver.minor);
+> +			gt_notice(gt, "%s firmware %s: unexpected version: %u.%u != %u.%u\n",
+> +				  intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
+> +				  uc_fw->file_selected.ver.major, uc_fw->file_selected.ver.minor,
+> +				  uc_fw->file_wanted.ver.major, uc_fw->file_wanted.ver.minor);
+>  			if (!intel_uc_fw_is_overridden(uc_fw)) {
+>  				err = -ENOEXEC;
+>  				goto fail;
+> @@ -786,16 +783,14 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
+>  		/* Preserve the version that was really wanted */
+>  		memcpy(&uc_fw->file_wanted, &file_ideal, sizeof(uc_fw->file_wanted));
+>  
+> -		drm_notice(&i915->drm,
+> -			   "%s firmware %s (%d.%d) is recommended, but only %s (%d.%d) was found\n",
+> -			   intel_uc_fw_type_repr(uc_fw->type),
+> -			   uc_fw->file_wanted.path,
+> -			   uc_fw->file_wanted.ver.major, uc_fw->file_wanted.ver.minor,
+> -			   uc_fw->file_selected.path,
+> -			   uc_fw->file_selected.ver.major, uc_fw->file_selected.ver.minor);
+> -		drm_info(&i915->drm,
+> -			 "Consider updating your linux-firmware pkg or downloading from %s\n",
+> -			 INTEL_UC_FIRMWARE_URL);
+> +		gt_notice(gt, "%s firmware %s (%d.%d) is recommended, but only %s (%d.%d) was found\n",
+> +			  intel_uc_fw_type_repr(uc_fw->type),
+> +			  uc_fw->file_wanted.path,
+> +			  uc_fw->file_wanted.ver.major, uc_fw->file_wanted.ver.minor,
+> +			  uc_fw->file_selected.path,
+> +			  uc_fw->file_selected.ver.major, uc_fw->file_selected.ver.minor);
+> +		gt_info(gt, "Consider updating your linux-firmware pkg or downloading from %s\n",
+> +			INTEL_UC_FIRMWARE_URL);
+>  	}
+>  
+>  	if (HAS_LMEM(i915)) {
+> @@ -823,10 +818,10 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
+>  				  INTEL_UC_FIRMWARE_MISSING :
+>  				  INTEL_UC_FIRMWARE_ERROR);
+>  
+> -	i915_probe_error(i915, "%s firmware %s: fetch failed with error %d\n",
+> -			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path, err);
+> -	drm_info(&i915->drm, "%s firmware(s) can be downloaded from %s\n",
+> -		 intel_uc_fw_type_repr(uc_fw->type), INTEL_UC_FIRMWARE_URL);
+> +	gt_probe_error(gt, "%s firmware %s: fetch failed with error %d\n",
+> +		       intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path, err);
+> +	gt_info(gt, "%s firmware(s) can be downloaded from %s\n",
+> +		intel_uc_fw_type_repr(uc_fw->type), INTEL_UC_FIRMWARE_URL);
+>  
+>  	release_firmware(fw);		/* OK even if fw is NULL */
+>  	return err;
+> @@ -932,9 +927,9 @@ static int uc_fw_xfer(struct intel_uc_fw *uc_fw, u32 dst_offset, u32 dma_flags)
+>  	/* Wait for DMA to finish */
+>  	ret = intel_wait_for_register_fw(uncore, DMA_CTRL, START_DMA, 0, 100);
+>  	if (ret)
+> -		drm_err(&gt->i915->drm, "DMA for %s fw failed, DMA_CTRL=%u\n",
+> -			intel_uc_fw_type_repr(uc_fw->type),
+> -			intel_uncore_read_fw(uncore, DMA_CTRL));
+> +		gt_err(gt, "DMA for %s fw failed, DMA_CTRL=%u\n",
+> +		       intel_uc_fw_type_repr(uc_fw->type),
+> +		       intel_uncore_read_fw(uncore, DMA_CTRL));
+>  
+>  	/* Disable the bits once DMA is over */
+>  	intel_uncore_write_fw(uncore, DMA_CTRL, _MASKED_BIT_DISABLE(dma_flags));
+> @@ -950,9 +945,8 @@ int intel_uc_fw_mark_load_failed(struct intel_uc_fw *uc_fw, int err)
+>  
+>  	GEM_BUG_ON(!intel_uc_fw_is_loadable(uc_fw));
+>  
+> -	i915_probe_error(gt->i915, "Failed to load %s firmware %s (%d)\n",
+> -			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
+> -			 err);
+> +	gt_probe_error(gt, "Failed to load %s firmware %s (%d)\n",
+> +		       intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path, err);
+>  	intel_uc_fw_change_status(uc_fw, INTEL_UC_FIRMWARE_LOAD_FAIL);
+>  
+>  	return err;
+> @@ -1078,15 +1072,15 @@ int intel_uc_fw_init(struct intel_uc_fw *uc_fw)
+>  
+>  	err = i915_gem_object_pin_pages_unlocked(uc_fw->obj);
+>  	if (err) {
+> -		DRM_DEBUG_DRIVER("%s fw pin-pages err=%d\n",
+> -				 intel_uc_fw_type_repr(uc_fw->type), err);
+> +		gt_dbg(__uc_fw_to_gt(uc_fw), "%s fw pin-pages err=%d\n",
+> +		       intel_uc_fw_type_repr(uc_fw->type), err);
+>  		goto out;
+>  	}
+>  
+>  	err = uc_fw_rsa_data_create(uc_fw);
+>  	if (err) {
+> -		DRM_DEBUG_DRIVER("%s fw rsa data creation failed, err=%d\n",
+> -				 intel_uc_fw_type_repr(uc_fw->type), err);
+> +		gt_dbg(__uc_fw_to_gt(uc_fw), "%s fw rsa data creation failed, err=%d\n",
+> +		       intel_uc_fw_type_repr(uc_fw->type), err);
+>  		goto out_unpin;
+>  	}
+>  
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+rest of the patch LGTM except that since we are around and to be more
+friendly I would use %pe to show error codes
+
+Michal
