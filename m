@@ -1,43 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64AF968A305
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Feb 2023 20:30:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7CCA68A355
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Feb 2023 21:01:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7C4410E009;
-	Fri,  3 Feb 2023 19:30:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A1A910E0C9;
+	Fri,  3 Feb 2023 20:01:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from msg-4.mailo.com (msg-4.mailo.com [213.182.54.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 847B610E009;
- Fri,  3 Feb 2023 19:30:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailo.com; s=mailo;
- t=1675452635; bh=bkktwzcTrVERotqO7zXpzdBHdLDyij1klnN7HWoIRu0=;
- h=X-EA-Auth:Date:From:To:Cc:Subject:Message-ID:MIME-Version:
- Content-Type;
- b=ClxlJqIOzwlIRAUnCY67NIR/vPpRQkPIyBlu3fSnwYsSORbcB8Ex1Mtdx8fUybM73
- fyCk31gT44NQCkcOukeY3W0yMnJ407D+w+14BMTfJYmxs/XEZCZpeQLyydOpY5oive
- B4f+m4nbnskTPERLknxJHAC3mLgbK58g6Cxe8V7I=
-Received: by b-4.in.mailobj.net [192.168.90.14] with ESMTP
- via ip-206.mailobj.net [213.182.55.206]
- Fri,  3 Feb 2023 20:30:35 +0100 (CET)
-X-EA-Auth: LCVZG3qeAH/AKO5KQB9nnONmJiWgMjCPXypOWNIGmFbWyTfyMJMpBn+0scKaJ0et5iR3gOQyGEt2Mud03HTaMyL0S0UPAtI1
-Date: Sat, 4 Feb 2023 01:00:27 +0530
-From: Deepak R Varma <drv@mailo.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Message-ID: <Y91g081OauhQNxMe@ubun2204.myguest.virtualbox.org>
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15F6C10E0C9
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Feb 2023 20:00:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1675454460; x=1706990460;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=rS7S6qHRlDS/NNfriuubNyoZhyCZivPRkviwx6amnOE=;
+ b=fpXUMrfkjwX4mm3G4NsjoyGsakBiDJl9zvdBFgKliDBgc6KfR4SmT7YN
+ FQqJmmmTfutuWP0B+qVWbIidKvd+9VMytYW8VtCZsglRzVA3BCadlPbY0
+ GyWVJAm5O3pgsEY5hEVd3MQEQtvjZHC6n2Jvrih5PySSlq4dzmC/pidoR
+ 5+lkl9KrH+5rhywn7KnUMcbbmqjUDPsIkbnk92Kd0Z8/y6w2VLgNZg9l7
+ 8wZKHnIUMVk2MxE1EwfCofAp5GZ12U34YND+mjZs3DsTgKZBBy0+Rg7tm
+ IzthDpVun9M4Dln2NIN3HmJiZesAa39TQp1GLBiJnoGfBH0d+oQgUgsPk Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10610"; a="391233945"
+X-IronPort-AV: E=Sophos;i="5.97,271,1669104000"; d="scan'208";a="391233945"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2023 12:00:56 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10610"; a="911266034"
+X-IronPort-AV: E=Sophos;i="5.97,271,1669104000"; d="scan'208";a="911266034"
+Received: from ideak-desk.fi.intel.com ([10.237.72.58])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2023 12:00:55 -0800
+Date: Fri, 3 Feb 2023 22:00:52 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <Y91n9NfNyV9F0dWw@ideak-desk.fi.intel.com>
+References: <cover.1675370801.git.jani.nikula@intel.com>
+ <2bff992c6db17dabe4470d3babf1fc1144ad4d83.1675370801.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Avoid redundant pointer validity
- check
+In-Reply-To: <2bff992c6db17dabe4470d3babf1fc1144ad4d83.1675370801.git.jani.nikula@intel.com>
+Subject: Re: [Intel-gfx] [RFC 1/3] drm/i915/power: move dc state members to
+ struct i915_power_domains
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,48 +58,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Praveen Kumar <kumarpraveen@linux.microsoft.com>,
- Deepak R Varma <drv@mailo.com>, Saurabh Singh Sengar <ssengar@microsoft.com>
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The macro definition of gen6_for_all_pdes() expands to a for loop such
-that it breaks when the page table is null. Hence there is no need to
-again test validity of the page table entry pointers in the pde list.
-This change is identified using itnull.cocci semantic patch.
+On Thu, Feb 02, 2023 at 10:47:46PM +0200, Jani Nikula wrote:
+> There's only one reference to the struct intel_dmc members dc_state,
+> target_dc_state, and allowed_dc_mask within intel_dmc.c, begging the
+> question why they are under struct intel_dmc to begin with.
+> 
+> Moreover, the only references to i915->display.dmc outside of
+> intel_dmc.c are to these members.
+> 
+> They don't belong. Move them from struct intel_dmc to struct
+> i915_power_domains, which seems like a more suitable place.
+> 
+> Cc: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+> [...]
+>
+> @@ -481,7 +482,7 @@ void intel_dmc_load_program(struct drm_i915_private *dev_priv)
+>  		}
+>  	}
+>  
+> -	dev_priv->display.dmc.dc_state = 0;
+> +	power_domains->dc_state = 0;
 
-Signed-off-by: Deepak R Varma <drv@mailo.com>
----
-Please note: Proposed change is compile tested only.
+This could be dropped as well, as it's already inited by the time the
+function is called.
 
- drivers/gpu/drm/i915/gt/gen6_ppgtt.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+I agree with making struct intel_dmc internal to intel_dmc.c. Since DC
+state is a functionality provided by the firmware (except of DC9), an
+alternative would be to move/add get/set/assert etc. DC state functions
+to intel_dmc.c instead and call these from intel_display_power*.c.
 
-diff --git a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
-index 5aaacc53fa4c..787b9e6d9f59 100644
---- a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
-+++ b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
-@@ -258,8 +258,7 @@ static void gen6_ppgtt_free_pd(struct gen6_ppgtt *ppgtt)
- 	u32 pde;
- 
- 	gen6_for_all_pdes(pt, pd, pde)
--		if (pt)
--			free_pt(&ppgtt->base.vm, pt);
-+		free_pt(&ppgtt->base.vm, pt);
- }
- 
- static void gen6_ppgtt_cleanup(struct i915_address_space *vm)
-@@ -304,7 +303,7 @@ static void pd_vma_unbind(struct i915_address_space *vm,
- 
- 	/* Free all no longer used page tables */
- 	gen6_for_all_pdes(pt, ppgtt->base.pd, pde) {
--		if (!pt || atomic_read(&pt->used))
-+		if (atomic_read(&pt->used))
- 			continue;
- 
- 		free_pt(&ppgtt->base.vm, pt);
--- 
-2.34.1
-
-
-
+>  
+>  	gen9_set_dc_state_debugmask(dev_priv);
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.h b/drivers/gpu/drm/i915/display/intel_dmc.h
+> index 88eae74dbcf2..da8ba246013e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dmc.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dmc.h
+> @@ -40,9 +40,6 @@ struct intel_dmc {
+>  		bool present;
+>  	} dmc_info[DMC_FW_MAX];
+>  
+> -	u32 dc_state;
+> -	u32 target_dc_state;
+> -	u32 allowed_dc_mask;
+>  	intel_wakeref_t wakeref;
+>  };
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+> index 2954759e9d12..cf13580af34a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -702,6 +702,7 @@ tgl_dc3co_exitline_compute_config(struct intel_dp *intel_dp,
+>  {
+>  	const u32 crtc_vdisplay = crtc_state->uapi.adjusted_mode.crtc_vdisplay;
+>  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+> +	struct i915_power_domains *power_domains = &dev_priv->display.power.domains;
+>  	u32 exit_scanlines;
+>  
+>  	/*
+> @@ -718,7 +719,7 @@ tgl_dc3co_exitline_compute_config(struct intel_dp *intel_dp,
+>  	if (crtc_state->enable_psr2_sel_fetch)
+>  		return;
+>  
+> -	if (!(dev_priv->display.dmc.allowed_dc_mask & DC_STATE_EN_DC3CO))
+> +	if (!(power_domains->allowed_dc_mask & DC_STATE_EN_DC3CO))
+>  		return;
+>  
+>  	if (!dc3co_is_pipe_port_compatible(intel_dp, crtc_state))
+> -- 
+> 2.34.1
+> 
