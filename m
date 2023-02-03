@@ -2,52 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F361B6896C7
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Feb 2023 11:35:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6CBA689729
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Feb 2023 11:42:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CEDC10E754;
-	Fri,  3 Feb 2023 10:35:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E216D10E763;
+	Fri,  3 Feb 2023 10:42:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F42410E754
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Feb 2023 10:35:01 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6BD110E763
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Feb 2023 10:42:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675420501; x=1706956501;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=vDbAXmWaCcEkM8vzW8V9fDEN6EMZud6usOAP7/j7fTA=;
- b=Mu6eivDPyFKZbIQNmbu1raWr89QP+k9yV1PhRk3Y0Dzo859P34uPgP1C
- 374aB1WJKEILYpMotnot6tesLUKgdsReKzR4SRfNaSE4jhGHS0/6SS98K
- 13f6KBzbm0oYFqufpneOJwC2xFDB9I7x7O8n72v3KkRWbDf8KZuyuVX/H
- ORDRnSsWdLzDy/Uj16bdoDshmCNZFEAyU0+Olpp3Jt9I6clpW0N6eSEQe
- 3fNhr9A/cU2HIom9ps+RKEc2FITrxbb0ljaFR+rPtoIHRoqm8HsVQIX7g
- z0y4BJNQ2CHN4N7LCD0AtEu6vgUqUQW8GQgDhuu/59h1coIMZRPoGa//o A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10609"; a="330846570"
-X-IronPort-AV: E=Sophos;i="5.97,270,1669104000"; d="scan'208";a="330846570"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2023 02:35:00 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10609"; a="729218171"
-X-IronPort-AV: E=Sophos;i="5.97,270,1669104000"; d="scan'208";a="729218171"
-Received: from cciobanu-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.35.96])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2023 02:34:59 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: imre.deak@intel.com
-In-Reply-To: <Y9vTKDHR9Ojd7Yn9@ideak-desk.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1675339447.git.jani.nikula@intel.com>
- <6a349c3a2b2def5fc31a48c9844ebd72ee55a22b.1675339447.git.jani.nikula@intel.com>
- <Y9vTKDHR9Ojd7Yn9@ideak-desk.fi.intel.com>
-Date: Fri, 03 Feb 2023 12:34:56 +0200
-Message-ID: <87zg9vyr3j.fsf@intel.com>
+ t=1675420965; x=1706956965;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=hiX+lkzCKo+YC+vql+ilqo5tKD7qgdVUKem1e/xssJY=;
+ b=kKGvu4nxSn7qlHDB7G+cEAYXh8Bn0IEHDa98amvlk4qHEj9/nn7B8fBp
+ pBQP4ly2UQuvr9wF71K8jvuEZ9DskHG15WYEDEhal8FgV060o8F6E2rl2
+ dLo17MdiZjebsiuYx5pgxNyu85+aD2POVksU9vATsNy7poA0aSRxiHDq+
+ Gqdf6qNn+VH4/fc+i9QD4H03SV47IiVMz9UMMg4mP1+61+nziNj1JBgcz
+ A3w29xYeI9TT/jRKy3LSjIgEfg42vVnig6eTF87Iah/LkDxu7WzwLBjZI
+ 7XL3Dz/BYm/p3o7PNcW91Lt20GjsU2GBe9+iLA2va9BCPLAmI2d+p+fSY g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10609"; a="330002207"
+X-IronPort-AV: E=Sophos;i="5.97,270,1669104000"; d="scan'208";a="330002207"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2023 02:42:45 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10609"; a="911119784"
+X-IronPort-AV: E=Sophos;i="5.97,270,1669104000"; d="scan'208";a="911119784"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
+ by fmsmga006.fm.intel.com with SMTP; 03 Feb 2023 02:42:42 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 03 Feb 2023 12:42:41 +0200
+Date: Fri, 3 Feb 2023 12:42:41 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>
+Message-ID: <Y9zlIV3Yt6apP8o9@intel.com>
+References: <20230124091046.2500682-1-jouni.hogander@intel.com>
+ <7f8b8d4d-b122-bff7-a458-985061bf1b4c@suse.de>
+ <29978ffbbffd810a380c8d0606fffb31c8f007dd.camel@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 5/5] drm/i915/dmc: check incoming dmc id
- validity
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <29978ffbbffd810a380c8d0606fffb31c8f007dd.camel@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/fbdev: Implement wrappers for
+ callbacks used by fbcon
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,61 +63,152 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 02 Feb 2023, Imre Deak <imre.deak@intel.com> wrote:
-> On Thu, Feb 02, 2023 at 02:04:52PM +0200, Jani Nikula wrote:
->> Add validity checks for the dmc ids computed from pipe parameters in
->> intel_dmc_enable_pipe() and intel_dmc_disable_pipe(). It's slightly
->> difficult for humans and static analyzers alike to ensure the resulting
->> dmc ids are within bounds. Just check them and reject invalid ones.
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Patchset looks ok to me:
-> Reviewed-by: Imre Deak <imre.deak@intel.com>
+On Fri, Feb 03, 2023 at 07:21:27AM +0000, Hogander, Jouni wrote:
+> On Tue, 2023-01-24 at 13:27 +0100, Thomas Zimmermann wrote:
+> > Hi
+> > 
+> > Am 24.01.23 um 10:10 schrieb Jouni Högander:
+> > > After disconnecting damage worker from update logic our dirty
+> > > callback
+> > > is not called on fbcon events. This is causing problems to features
+> > > (PSR, FBC, DRRS) relying on dirty callback getting called and
+> > > breaking
+> > > fb console when these features are in use.
+> > > 
+> > > Implement wrappers for callbacks used by fbcon and call our dirty
+> > > callback in those.
+> > > 
+> > > Fixes: f231af498c29 ("drm/fb-helper: Disconnect damage worker from
+> > > update logic")
+> > > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> > > Cc: Jani Nikula <jani.nikula@intel.com>
+> > > Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+> > 
+> > This is the better solution wrt what fbdev wants.
+> 
+> There was a failure from testing robot. drivers/tty/vt/vt.c is using
+> spinlock and in our dirty callback we are taking mutex.
+> 
+> Do you have any suggestions? Shall we fallback to original fix which
+> was setting the dirty callback where call is made from workqueue?
 
-Thanks for the review, pushed to din.
+Please just fix the original regression as straightforwardly as
+possible.
 
-BR,
-Jani
-
->
->> ---
->>  drivers/gpu/drm/i915/display/intel_dmc.c | 8 ++++++--
->>  1 file changed, 6 insertions(+), 2 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
->> index ab0ad8e3e620..3b8e8193d042 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
->> @@ -415,7 +415,9 @@ static void pipedmc_clock_gating_wa(struct drm_i915_private *i915, bool enable)
->>  
->>  void intel_dmc_enable_pipe(struct drm_i915_private *i915, enum pipe pipe)
->>  {
->> -	if (!has_dmc_id_fw(i915, PIPE_TO_DMC_ID(pipe)))
->> +	enum intel_dmc_id dmc_id = PIPE_TO_DMC_ID(pipe);
->> +
->> +	if (!is_valid_dmc_id(dmc_id) || !has_dmc_id_fw(i915, dmc_id))
->>  		return;
->>  
->>  	if (DISPLAY_VER(i915) >= 14)
->> @@ -426,7 +428,9 @@ void intel_dmc_enable_pipe(struct drm_i915_private *i915, enum pipe pipe)
->>  
->>  void intel_dmc_disable_pipe(struct drm_i915_private *i915, enum pipe pipe)
->>  {
->> -	if (!has_dmc_id_fw(i915, PIPE_TO_DMC_ID(pipe)))
->> +	enum intel_dmc_id dmc_id = PIPE_TO_DMC_ID(pipe);
->> +
->> +	if (!is_valid_dmc_id(dmc_id) || !has_dmc_id_fw(i915, dmc_id))
->>  		return;
->>  
->>  	if (DISPLAY_VER(i915) >= 14)
->> -- 
->> 2.34.1
->> 
+> 
+> > 
+> > Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+> > 
+> > Best regards
+> > Thomas
+> > 
+> > > ---
+> > >   drivers/gpu/drm/i915/display/intel_fbdev.c | 53
+> > > ++++++++++++++++++++--
+> > >   1 file changed, 49 insertions(+), 4 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c
+> > > b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> > > index 19f3b5d92a55..b1653624552e 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> > > @@ -77,6 +77,18 @@ static void intel_fbdev_invalidate(struct
+> > > intel_fbdev *ifbdev)
+> > >         intel_frontbuffer_invalidate(to_frontbuffer(ifbdev),
+> > > ORIGIN_CPU);
+> > >   }
+> > >   
+> > > +static void intel_fbdev_dirty(struct fb_info *info)
+> > > +{
+> > > +       struct drm_fb_helper *helper = info->par;
+> > > +
+> > > +       /*
+> > > +        * Intel_fb dirty implementation doesn't use damage clips -
+> > > >
+> > > +        * no need to pass them here
+> > > +        */
+> > > +       if (helper->fb->funcs->dirty)
+> > > +               helper->fb->funcs->dirty(helper->fb, NULL, 0, 0,
+> > > NULL, 0);
+> > > +}
+> > > +
+> > >   static int intel_fbdev_set_par(struct fb_info *info)
+> > >   {
+> > >         struct drm_fb_helper *fb_helper = info->par;
+> > > @@ -91,6 +103,39 @@ static int intel_fbdev_set_par(struct fb_info
+> > > *info)
+> > >         return ret;
+> > >   }
+> > >   
+> > > +static ssize_t intel_fbdev_write(struct fb_info *info, const char
+> > > __user *buf,
+> > > +                                size_t count, loff_t *ppos)
+> > > +{
+> > > +       int ret;
+> > > +
+> > > +       ret = drm_fb_helper_cfb_write(info, buf, count, ppos);
+> > > +       if (ret > 0)
+> > > +               intel_fbdev_dirty(info);
+> > > +
+> > > +       return ret;
+> > > +}
+> > > +
+> > > +static void intel_fbdev_fillrect(struct fb_info *info,
+> > > +                                 const struct fb_fillrect *rect)
+> > > +{
+> > > +       drm_fb_helper_cfb_fillrect(info, rect);
+> > > +       intel_fbdev_dirty(info);
+> > > +}
+> > > +
+> > > +static void intel_fbdev_copyarea(struct fb_info *info,
+> > > +                                 const struct fb_copyarea *area)
+> > > +{
+> > > +       drm_fb_helper_cfb_copyarea(info, area);
+> > > +       intel_fbdev_dirty(info);
+> > > +}
+> > > +
+> > > +static void intel_fbdev_imageblit(struct fb_info *info,
+> > > +                                const struct fb_image *image)
+> > > +{
+> > > +       drm_fb_helper_cfb_imageblit(info, image);
+> > > +       intel_fbdev_dirty(info);
+> > > +}
+> > > +
+> > >   static int intel_fbdev_blank(int blank, struct fb_info *info)
+> > >   {
+> > >         struct drm_fb_helper *fb_helper = info->par;
+> > > @@ -125,10 +170,10 @@ static const struct fb_ops intelfb_ops = {
+> > >         DRM_FB_HELPER_DEFAULT_OPS,
+> > >         .fb_set_par = intel_fbdev_set_par,
+> > >         .fb_read = drm_fb_helper_cfb_read,
+> > > -       .fb_write = drm_fb_helper_cfb_write,
+> > > -       .fb_fillrect = drm_fb_helper_cfb_fillrect,
+> > > -       .fb_copyarea = drm_fb_helper_cfb_copyarea,
+> > > -       .fb_imageblit = drm_fb_helper_cfb_imageblit,
+> > > +       .fb_write = intel_fbdev_write,
+> > > +       .fb_fillrect = intel_fbdev_fillrect,
+> > > +       .fb_copyarea = intel_fbdev_copyarea,
+> > > +       .fb_imageblit = intel_fbdev_imageblit,
+> > >         .fb_pan_display = intel_fbdev_pan_display,
+> > >         .fb_blank = intel_fbdev_blank,
+> > >   };
+> > 
+> > -- 
+> > Thomas Zimmermann
+> > Graphics Driver Developer
+> > SUSE Software Solutions Germany GmbH
+> > Maxfeldstr. 5, 90409 Nürnberg, Germany
+> > (HRB 36809, AG Nürnberg)
+> > Geschäftsführer: Ivo Totev
+> 
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+Ville Syrjälä
+Intel
