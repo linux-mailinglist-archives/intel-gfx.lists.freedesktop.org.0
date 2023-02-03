@@ -1,33 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B28E68A12C
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Feb 2023 19:07:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 327A368A168
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Feb 2023 19:16:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87C4210E826;
-	Fri,  3 Feb 2023 18:07:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B196610E835;
+	Fri,  3 Feb 2023 18:16:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A4F9710E826;
- Fri,  3 Feb 2023 18:07:31 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9B123A00E8;
- Fri,  3 Feb 2023 18:07:31 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8348144471263470355=="
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com
+ [IPv6:2607:f8b0:4864:20::22b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38E5B10E833;
+ Fri,  3 Feb 2023 18:15:59 +0000 (UTC)
+Received: by mail-oi1-x22b.google.com with SMTP id dt8so4888958oib.0;
+ Fri, 03 Feb 2023 10:15:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=b3t3H+aA2KgB4EAc83s9ir4SliyMLQWPAeErskn177Q=;
+ b=oEu2PRhO+MVkx90VLgdYyS9aKsEXIZcUQajibKOHHouCYkjo8/w5jghE1UOfnH+Sem
+ hyCOjkNLKNz/q7UQDjUY1fIAWdGB6XXnlQQVwEq1JnKJOqLVeub/ZJi5piL33q9ActHZ
+ ppzwpetCs3HninK06SkZqIf165gB70O5HKXvU8Tb9+hdlpEgDxVUeWO+YhK7n7Spf7KG
+ ZkYI5QDBXzJdImFn6zrHtKwTXQpTvoyisIPpAJIyPfi8auKXFrAeXBvcCZxRY2rv+EmH
+ Jj3AFPQtaS/0CpQC6sl2WqW15gw4ObSo9RqA2DMl0TPnJxBzQh4dU0JqC3Eexy2BM4KW
+ iLiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=b3t3H+aA2KgB4EAc83s9ir4SliyMLQWPAeErskn177Q=;
+ b=zPO/tr05DZEn2+acsc6PI0BH+R7QTDar/jDB5rRQKWxglGgL//yEthaSJCNokyI7Mh
+ ZFWIgReMHsBFJrNSaCyr3YndkjFRdMl89dJuwrrXvH8NTP36Zq4vRpakxzlYjhrM/X0o
+ ET3gMzPrWdEKz1hMsv5L9N8bEERw8i1bv6pX1691GHCFYPZrTqfU1cCkVLqUZuVZeBIJ
+ 9htloM9Wfyc1mSqJT+47N24vj6+SitzVLEsJ4Lfzr4ugtbo7RXTF5ICMO/9aAirVYBSx
+ sg/EAElyiR9WZfciVxYSuxHmpA8UdT3hUROTVfvRRr5u38QGMfoImk5nS+NYFLcHMxir
+ IbVw==
+X-Gm-Message-State: AO0yUKVHByve6aQFBIgKZ5IMjDorzvP03znHm7DjTubZuvUIuPX+dXQX
+ B5WAAos1t3wFu3DJ28aEbUQX/cUwYgc5Jt4juin/sR8xP4Q=
+X-Google-Smtp-Source: AK7set9vjkE7o//vYuc1JhS77XzL5YZeTi+iclQY94ulHq8v4hgWcin4xF42ng4qxsn8v4qpvaGu0IC+ydiJ3PrDsw0=
+X-Received: by 2002:a05:6808:280e:b0:360:ffcc:3685 with SMTP id
+ et14-20020a056808280e00b00360ffcc3685mr385441oib.183.1675448158043; Fri, 03
+ Feb 2023 10:15:58 -0800 (PST)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
-Date: Fri, 03 Feb 2023 18:07:31 -0000
-Message-ID: <167544765160.8766.13430044507887730473@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230203155309.1042297-1-ashutosh.dixit@intel.com>
-In-Reply-To: <20230203155309.1042297-1-ashutosh.dixit@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/hwmon=3A_Enable_PL1_power_limit_=28rev4=29?=
+References: <20230203164937.4035503-1-robdclark@gmail.com>
+In-Reply-To: <20230203164937.4035503-1-robdclark@gmail.com>
+From: Rob Clark <robdclark@gmail.com>
+Date: Fri, 3 Feb 2023 10:15:56 -0800
+Message-ID: <CAF6AEGvanLri-+Z5KgmgSFX2ShB09T7X7wxcSQk_0JV7PKGRng@mail.gmail.com>
+To: dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Move fd_install after last use of
+ fence
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,170 +65,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Rob Clark <robdclark@chromium.org>, "Jason A. Donenfeld" <Jason@zx2c4.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, jason.ekstrand@collabora.com,
+ intel-gfx@lists.freedesktop.org, open list <linux-kernel@vger.kernel.org>,
+ Matthew Auld <matthew.auld@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8348144471263470355==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Feb 3, 2023 at 8:49 AM Rob Clark <robdclark@gmail.com> wrote:
+>
+> From: Rob Clark <robdclark@chromium.org>
+>
+> Because eb_composite_fence_create() drops the fence_array reference
+> after creation of the sync_file, only the sync_file holds a ref to the
+> fence.  But fd_install() makes that reference visable to userspace, so
+> it must be the last thing we do with the fence.
+>
 
-== Series Details ==
+Fixes: 00dae4d3d35d ("drm/i915: Implement SINGLE_TIMELINE with a syncobj (v4)")
 
-Series: drm/i915/hwmon: Enable PL1 power limit (rev4)
-URL   : https://patchwork.freedesktop.org/series/113578/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_12691 -> Patchwork_113578v4
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113578v4/index.html
-
-Participating hosts (28 -> 25)
-------------------------------
-
-  Missing    (3): fi-kbl-soraka bat-atsm-1 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_113578v4 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@fbdev@write:
-    - fi-blb-e6850:       [SKIP][1] ([fdo#109271]) -> [PASS][2] +4 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12691/fi-blb-e6850/igt@fbdev@write.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113578v4/fi-blb-e6850/igt@fbdev@write.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [DMESG-FAIL][3] ([i915#5334]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12691/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113578v4/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@migrate:
-    - {bat-adlp-9}:       [DMESG-FAIL][5] ([i915#7699]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12691/bat-adlp-9/igt@i915_selftest@live@migrate.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113578v4/bat-adlp-9/igt@i915_selftest@live@migrate.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
-  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
-  [i915#7996]: https://gitlab.freedesktop.org/drm/intel/issues/7996
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12691 -> Patchwork_113578v4
-
-  CI-20190529: 20190529
-  CI_DRM_12691: 2153bc2944d37403c6d5c4e1082d074a34d39ae9 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7148: ee8e31cf39c44d3fdbd04d8db239f8a815f86121 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_113578v4: 2153bc2944d37403c6d5c4e1082d074a34d39ae9 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-5fe62a9e5164 drm/i915/hwmon: Enable PL1 power limit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113578v4/index.html
-
---===============8348144471263470355==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/hwmon: Enable PL1 power limit (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/113578/">https://patchwork.freedesktop.org/series/113578/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113578v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113578v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12691 -&gt; Patchwork_113578v4</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113578v4/index.html</p>
-<h2>Participating hosts (28 -&gt; 25)</h2>
-<p>Missing    (3): fi-kbl-soraka bat-atsm-1 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_113578v4 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@fbdev@write:</p>
-<ul>
-<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12691/fi-blb-e6850/igt@fbdev@write.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113578v4/fi-blb-e6850/igt@fbdev@write.html">PASS</a> +4 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12691/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113578v4/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@migrate:</p>
-<ul>
-<li>{bat-adlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12691/bat-adlp-9/igt@i915_selftest@live@migrate.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_113578v4/bat-adlp-9/igt@i915_selftest@live@migrate.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12691 -&gt; Patchwork_113578v4</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12691: 2153bc2944d37403c6d5c4e1082d074a34d39ae9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7148: ee8e31cf39c44d3fdbd04d8db239f8a815f86121 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_113578v4: 2153bc2944d37403c6d5c4e1082d074a34d39ae9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>5fe62a9e5164 drm/i915/hwmon: Enable PL1 power limit</p>
-
-</body>
-</html>
-
---===============8348144471263470355==--
+> Signed-off-by: Rob Clark <robdclark@chromium.org>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 14 +++++++-------
+>  1 file changed, 7 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> index f266b68cf012..0f2e056c02dd 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -3476,38 +3476,38 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+>
+>  err_request:
+>         eb_requests_get(&eb);
+>         err = eb_requests_add(&eb, err);
+>
+>         if (eb.fences)
+>                 signal_fence_array(&eb, eb.composite_fence ?
+>                                    eb.composite_fence :
+>                                    &eb.requests[0]->fence);
+>
+> +       if (unlikely(eb.gem_context->syncobj)) {
+> +               drm_syncobj_replace_fence(eb.gem_context->syncobj,
+> +                                         eb.composite_fence ?
+> +                                         eb.composite_fence :
+> +                                         &eb.requests[0]->fence);
+> +       }
+> +
+>         if (out_fence) {
+>                 if (err == 0) {
+>                         fd_install(out_fence_fd, out_fence->file);
+>                         args->rsvd2 &= GENMASK_ULL(31, 0); /* keep in-fence */
+>                         args->rsvd2 |= (u64)out_fence_fd << 32;
+>                         out_fence_fd = -1;
+>                 } else {
+>                         fput(out_fence->file);
+>                 }
+>         }
+>
+> -       if (unlikely(eb.gem_context->syncobj)) {
+> -               drm_syncobj_replace_fence(eb.gem_context->syncobj,
+> -                                         eb.composite_fence ?
+> -                                         eb.composite_fence :
+> -                                         &eb.requests[0]->fence);
+> -       }
+> -
+>         if (!out_fence && eb.composite_fence)
+>                 dma_fence_put(eb.composite_fence);
+>
+>         eb_requests_put(&eb);
+>
+>  err_vma:
+>         eb_release_vmas(&eb, true);
+>         WARN_ON(err == -EDEADLK);
+>         i915_gem_ww_ctx_fini(&eb.ww);
+>
+> --
+> 2.38.1
+>
