@@ -2,150 +2,154 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A169D68A06C
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Feb 2023 18:35:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 966AD68A092
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Feb 2023 18:44:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 779A610E05C;
-	Fri,  3 Feb 2023 17:35:44 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2426210E05C
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Feb 2023 17:35:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 067F010E819;
+	Fri,  3 Feb 2023 17:43:54 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49E7010E7E5;
+ Fri,  3 Feb 2023 17:43:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675445742; x=1706981742;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=wvQgIcc8iEdf5BjL0d7Anvmb4mZh3pka7Sh8deOMsZ0=;
- b=K4hZnWt1Fe1IGxxLI4WfLhEKq8rarVcwgp4SXpKNII0Q6mgCDhForIhn
- 1m7vxYA44eeoBCYbDEBkgTnAwtEqjb6naWS9tqEUt6QqY1NBau0m94jD6
- p+/orKbGRcPOxUPAXyZ+G2RiUtn1RIZ40hn2R/GRXlBWKyE/g53v0mh7j
- WpnqLve9JCldqgSjU7YKONOIyl4t3W9goA2IXNkyOxcE1ShFbACbfsopo
- fleat56flXwJ5ULQJCxClU5TQa9t37kcNepUs2r4mQm/WlOoVy7RvwkWi
- vmidRxs1DBXu5ycjms+72E9xO+v7iRVz4C4ve1bAutXllTXgEkQ4x/nMF Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10610"; a="316803258"
-X-IronPort-AV: E=Sophos;i="5.97,271,1669104000"; d="scan'208";a="316803258"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2023 09:35:40 -0800
+ t=1675446231; x=1706982231;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=aIycYbsTLUlrdEf4F2elxcX8DCGuxHo8DSnp4E5SGfg=;
+ b=XniD0WSgwWSzZbVS/hXghCV56JU50irofWrk8AIFt51QmPNrKhbKm1Ko
+ oAyvTxF5ukAWQpYDT7+Mp+fpW/vSVoRLRG1C01P81vxdjKJsu2BPTekMY
+ NRQOHYtOwACDNRZj72gCLpodDF+sLQGZH0xvNitAbZbnQ0Qh5iKrz/+F5
+ wVUdzyGhIoQ9mMdBGFW2SMdNUcHeLWr7Tbxdsv0cYOHZgwtbH9hkAtP9l
+ oUm1M6+ujQdLZSNH+P7IjSLWT26pwtvQkEqybZldO7rLBFezSX0n5T42f
+ CtHGCge00Lw3oW6ckLqTWJZT32H5vOBi6u76e25SVPzaVLZcFf/tj0qCI Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10610"; a="312461386"
+X-IronPort-AV: E=Sophos;i="5.97,271,1669104000"; d="scan'208";a="312461386"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2023 09:43:50 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10610"; a="615783326"
-X-IronPort-AV: E=Sophos;i="5.97,271,1669104000"; d="scan'208";a="615783326"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga003.jf.intel.com with ESMTP; 03 Feb 2023 09:35:40 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6500,9779,10610"; a="643334498"
+X-IronPort-AV: E=Sophos;i="5.97,271,1669104000"; d="scan'208";a="643334498"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orsmga006.jf.intel.com with ESMTP; 03 Feb 2023 09:43:50 -0800
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Fri, 3 Feb 2023 09:35:40 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.16; Fri, 3 Feb 2023 09:43:50 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Fri, 3 Feb 2023 09:35:40 -0800
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.173)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.16; Fri, 3 Feb 2023 09:43:49 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Fri, 3 Feb 2023 09:43:49 -0800
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.40) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Fri, 3 Feb 2023 09:35:39 -0800
+ 15.1.2507.16; Fri, 3 Feb 2023 09:43:49 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TV8r1aRxzUfk5i3sRCjEO3ZZytgwklbyCwjKDluyo7dOummRbVmDARjlyWG0f13Jh7xWCEySqNVSMr5UrYrzMwg3IAuO/bK+DQDzAwAb+ob5yyC345q246H8DDoz84GESsMF+Q23n8iuaR6jYxT8Iopp6iY6X39LchoYdmBxBQC3+pa/hW3Hf5X5pyGie37LA5pUXoGPaJGozP6yAZdJfG4MXrnN/ooX9CipiTIvhj1mnjkl9u+vWMGrRRSLxfJW7DxaDLW3NCy4mvGC+QAsDgG2UO8kZgftLUGl10meb+ZB+O/ZdJ1y3TKduE4mU6piPmWhGj1hiappQdSOLF8o0w==
+ b=MhKn+CdJGsU6V5bBrsAibZm6IlFNl9cXbzAU8h9tXav8y56LgnxBXhV7MpCRZtmDsJ3IlrKbZAvxZFFn915eODij7AmaN22Kc40LYBU9JAhjsa9eWhi7EeJoQu1lT03jnQ0CTBjGFPM6ZLTN6i/LJadylxQsAmFaStRCMq/46z9VfV4ETlWI5V+HODwshTE+8ACIgopt77ogV8+f53Oo8lSPrbESUW6t9nTDOH9ryGzyAUR6teQ8dwt7CrG225F5nchXYJPCs9HgHyYReUzlUV6UvoFoFWu1+L1W1SmLZi1Rh+y9xTuai0YZz4sUq1cr891rZo19M6LlHLjSCjGlGw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UGXFOsDHE5OUuSYOmwB0fOM8R2wpBaBTOPKpXVZxqm8=;
- b=LrRrw8fWuNKCTjrE+q1TXZZNQ3dGPcbhZD41z0rNMsmUVQ3cIDa9DeqUwjhTWgAekRGFpV3uHOcm0+76lzuEFC/dByTkDTlCk05ayqVZvp9d45QGFN2FmC+S/8R9fJ2M7nxx5TuxPtTLBblQDFchiXW9qa6AvLYTYeH/R0XkSNugIY0dO51nFRKZLiHZ2Vob9YPGQ43Ld77WcMHQ8z+YBRg8rChNTcB1S9ZJn7uPCLSySTiFmj43e+FjDAhJsHPhD+zMbTJe6CoXp7BjYcuFY3+7StzargDvai+RNZj0shLstvrh0WUkEul/ZzwkqINEwP23O4p5RGW3DlVyoKSC8Q==
+ bh=Q2XR8IJDzv0+dDqh+/+7+/zObDxyD2EaW5nK5vhTxRE=;
+ b=I2OsUR3Z6asD2i7MxrYFgyOdV7Fxab4BvDcz9DQlflZ7T5LzmDzvemUMvUpxr01LtTG0nOkqXT/BQlixWicf4Cnh6svpfERPuad/wAFDVrAt4cTOymufUTpQKqHhbNURkemdY7tbBCnMweSGofhjonjOOJeflhzzdclITDfPx4PJdRMZXYqhTVuZJR3i8pYmhoDCZ1YFlzQ37EqmI2vWgCGmaO+8ODh3qMxOc5ZitThIPErNbdkjSwOoSB3pxu1bLFO15SDHJ1TL+i697RYnagQzNi7R3aDseN0r3ljxgfeG+g2YJFwjlXSgfbilvcLPbFNL+LvP2OsO6Fvnv4WUEw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from BY5PR11MB3911.namprd11.prod.outlook.com (2603:10b6:a03:18d::29)
- by CO6PR11MB5601.namprd11.prod.outlook.com (2603:10b6:303:13d::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.27; Fri, 3 Feb
- 2023 17:35:38 +0000
+ by DM4PR11MB6192.namprd11.prod.outlook.com (2603:10b6:8:a9::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6064.27; Fri, 3 Feb
+ 2023 17:43:44 +0000
 Received: from BY5PR11MB3911.namprd11.prod.outlook.com
  ([fe80::e1a3:6ad3:9f43:5f25]) by BY5PR11MB3911.namprd11.prod.outlook.com
  ([fe80::e1a3:6ad3:9f43:5f25%4]) with mapi id 15.20.6064.027; Fri, 3 Feb 2023
- 17:35:37 +0000
-Message-ID: <c9fc1ce1-15a0-0849-3c93-0c98a21220e3@intel.com>
-Date: Fri, 3 Feb 2023 09:35:35 -0800
+ 17:43:44 +0000
+Message-ID: <e3923a36-3bc7-848b-def6-c670cb0a7fb5@intel.com>
+Date: Fri, 3 Feb 2023 09:43:42 -0800
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Firefox/102.0 Thunderbird/102.6.1
 Content-Language: en-GB
 To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- <intel-gfx@lists.freedesktop.org>
+ <Intel-GFX@Lists.FreeDesktop.Org>
 References: <20230203001143.3323433-1-John.C.Harrison@Intel.com>
- <20230203001143.3323433-2-John.C.Harrison@Intel.com>
- <8115b355-53a1-6337-3984-ec638ebda674@intel.com>
+ <20230203001143.3323433-5-John.C.Harrison@Intel.com>
+ <2cca4c1d-39c6-7b3a-0207-4541abf5aff3@intel.com>
 From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <8115b355-53a1-6337-3984-ec638ebda674@intel.com>
+In-Reply-To: <2cca4c1d-39c6-7b3a-0207-4541abf5aff3@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0PR03CA0074.namprd03.prod.outlook.com
- (2603:10b6:a03:331::19) To BY5PR11MB3911.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SJ0PR03CA0387.namprd03.prod.outlook.com
+ (2603:10b6:a03:3a1::32) To BY5PR11MB3911.namprd11.prod.outlook.com
  (2603:10b6:a03:18d::29)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BY5PR11MB3911:EE_|CO6PR11MB5601:EE_
-X-MS-Office365-Filtering-Correlation-Id: d347b386-d7ed-4cf4-1e66-08db060d100f
+X-MS-TrafficTypeDiagnostic: BY5PR11MB3911:EE_|DM4PR11MB6192:EE_
+X-MS-Office365-Filtering-Correlation-Id: 63f29536-e296-4fb9-4212-08db060e31ce
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: lvpYscx6XA52TzUYbFAO7ruIFEHxUjHhQjmQgqPTlrsSSl7eQTNFeVjkpgRjAGUBxo0wfmCkvSrNwD26PYa7n10euSaHrEiRQ6KiX6Pnh1PGgpkedBmzXGMBTqEf4AFHOzGtDOjv/FYzYCcN4d1Jo9+jEYr+qnZcLc/mGaNbkIS7zkT/YDEGpSx1vqTD+WtwkaxVE0xsha/oYS1SCht6eBnFCDNCrP+7n+zWLcpffCwYJeGUZoFNpRqeZWji4dzxnNK0G3qlNFwUxlFYV+QyUCIpvB30mv3LC26bWHXXMlNwwxl7cLf9hxce9igTRRhoNZbwVNgqhQuPAmKrJDmMfMPOhkUZYerZP/ftZVFs1755UzKACWMo3kQ8XPcVpEQTQ8b9NTCxcTlvhCzo3WT8XwWcgIjLq6tGHlxZE+NNs1EmafyE9WTYEmFLwQLCcDBoP/uNdgkooCT5eJw3ffR64AQzFGtbvwkSu5tBTK6AHLC1nZ0jNQQeb5s+UCHjUrzM79jPIlJs+g/WATIXB6JmCjw6Oc2WMY2Jex19gvIglOra8BujQX2lkNIvA4pIEkQWs0vjcKcTNY1KHNPD2rW6yfSCoRHJRgaSZg1QM1Z5bQxM+eD4/vTsLdKosXwsOTzomkOLgWGCE0JBQ7FIrEHZUa5oiUNkLueUSwGTtPj5sWK87wIE9yijeafUy9Iojkd9S0qG4FRR3gh4jvX09Ap3ruru4xb+JLJDfK6cVrfo854=
+X-Microsoft-Antispam-Message-Info: dmj425yJFjHQ30w06FgR0WL17C/naxY1WV66rrK0stThhZKsnzO3FTofk7uPqXTIlU3Pgx79MYoCjnVc6M62wHdfBWl6yVFTdrzu/C6QjWgfPqUNIfQ4bL+locAkBE5n6XItcNW+Y/rEfyEM+FhqkqO4s9m7m/OTAt30tG6lwmp3pViFVSZYSkGjEc3Ahiztx/++GvDds7H4IXq8zHFehL3r55J9i3Yzp7nQC4nFtAKfGeozfU1vUd430gNzM50CuQrvpiNnyR1BWLyrc9tMDn94p3ITUY5cYmVa3ohxk8FJgJGW5+x3sfg0j4zZszfY/IG3I2iwVHWV5B2I+9jauCdLPNmUHod+nZd66chW8KM7wi+P3bahGddVDvZtskYuzsfZO3hxUgaWt/vfMf6wE0sqiVKs+KOZa4Nu5S5m/Uh27Buf07OXfszryGn1BQ6zv3KLOPJKI04YZ8WZ8VxvYfs9s9fxoMuTs/rYoL6U0e1CtIIF07Ex65R2xgC03q/w0bMLlnCA+Q5Nv/9xeqfYMrTPtB9VAwxzYWNUT7BwA4V1MxvPvt0KgieDkV67WhJYqTHMD30t7EeKEAISephtslt4FVB3peEl3p6Q3WuwFjaJi7q9CoGBjH7WoHPdTGtKYCpqPTaMBvO+ntz0hE5S/Cgul0GNml18LflBbssSmlC4wxCGyqrimFzVuG8kZHmIjJqkwDwXdNyrGdhmWn0uZ91QH2AO8vvD9KOElG7f4teoF9tjWjRNTFME3dPmWGL6
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BY5PR11MB3911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(376002)(396003)(346002)(39860400002)(136003)(366004)(451199018)(38100700002)(5660300002)(66556008)(15650500001)(8676002)(186003)(66476007)(31696002)(86362001)(26005)(36756003)(66946007)(41300700001)(6512007)(6506007)(53546011)(8936002)(316002)(82960400001)(478600001)(2616005)(66899018)(31686004)(2906002)(83380400001)(6486002)(30864003)(45980500001)(43740500002);
+ SFS:(13230025)(346002)(396003)(39860400002)(136003)(366004)(376002)(451199018)(86362001)(31696002)(38100700002)(66556008)(66946007)(66476007)(8676002)(36756003)(450100002)(6486002)(316002)(4326008)(41300700001)(5660300002)(2906002)(30864003)(15650500001)(186003)(82960400001)(8936002)(6512007)(6506007)(478600001)(53546011)(83380400001)(2616005)(26005)(31686004)(21314003)(45980500001)(43740500002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M05taGhjOHF6K0RmRXFkZERuUFRTOTd4ZDQ4M213SlNpZnZ2NzF0SXQyUTVL?=
- =?utf-8?B?SzhrOU5VU2JTMWRVRVFxUU8rb05JRWphakp2KzJtWS9Tc3JjVlUxYnkyQUs5?=
- =?utf-8?B?Z2llSlllZG80UlhaNjYwRjU0ZjhUNEM2LzRPYkNQWFd1U05kamh1Nk9qS1dZ?=
- =?utf-8?B?UUpMSGpSd1pza2ljZUNDbTNSOWUvQS9VbXB2T25KeStaaHJlWnNreWxRNFYv?=
- =?utf-8?B?UjVUTkRvNTBMeXhybDdwQlN6d2N4WG5BYTZ4dml2bERQRitIT0kwenNWdnlF?=
- =?utf-8?B?UUJ4bFNaSTRqUThXRDh6emoyVlFuU0R0eFVES3RiN0tKQzNkYzloZFdWLzdX?=
- =?utf-8?B?WFptNlhtbU1rOEdQV3o2Q2RWajdRVk95RXBEQ0xIR3FldGN3ZGQrdTBPdXJ3?=
- =?utf-8?B?N3lvdTU2ekJyUGNUUEwzV085N0pTYkQwTEJyOHlrQXorcllwTHFZS243VzJu?=
- =?utf-8?B?UGRSUU1ZVUNQRzI0Z0dCaFY4RVRjVEVROVFSMnFubHMyK09La05zeDA4T3hC?=
- =?utf-8?B?bTlNaHZkOTVqemRnM3p5eXdmTmhHTlhaVjBrd3lXRGo4bURKdnhMYTNibmF4?=
- =?utf-8?B?L2JXcjJmOHJmRkFlTS91dlNVQ1hneDFnektFaFZsVEJxOFhIZzkwOTR2aUdZ?=
- =?utf-8?B?OHZBUmJGK2JoL2NLMDNlZzRBMVZ3RE5hR0FZNHowOHZDQU5tOGxyUGxDVFdQ?=
- =?utf-8?B?THU2TXA5VWhNQnFoOFIweXVGQmpGTXBUNG5KREdvZ2poWDFQdlVXMWprenYy?=
- =?utf-8?B?azRZSm5xWEREbnVFY0lUUW8zTDRxaU5Dalo5TU8ya1AzemUyRko4cXZ4YjMy?=
- =?utf-8?B?MVFWOXpnZFhlRTRXZURydktQZ1k2aWR5cU5xOVc5aHY0UkNrQ0FqVklYeE9z?=
- =?utf-8?B?dGFLblNxc3hHUkI5ZWh1aWtiVDErN255b1V5Sm1RRG42aDhXeng5UVdkYjFr?=
- =?utf-8?B?ZFhMWE5KSktaS3cvcUE5dzhXZVNRc0k1TkR1QkhmNFcrVFFXZ2RzTGlsOUpV?=
- =?utf-8?B?WTBXRjlIZEdZVzZZQUFpWExGaW5iMkFNYUJ4aGtUV3hhQTV2aGlFVzlhWXU3?=
- =?utf-8?B?bzd3M0lBRmtvbC8yOXJrNjV1VmNWcCtNaStoMXBmcEhFWkVkdVNsV2oyYWVy?=
- =?utf-8?B?SXQ2Mmo2UWJsMTBzOERiZUNETU1PVWV3dzJNdmVtMm0wV0YvU0tFSEk5c2Ny?=
- =?utf-8?B?d05ZSjNTS3pxcEgrdko4aXBBM2I2Mm52aUcxYzdYYTJ1UGtRRDJ4OXZMbjN6?=
- =?utf-8?B?VFFTdTY5blNQYUxYS29MOHJseksxVUJreXMzSXhNMVJYajRQQnd3UzNCRXlt?=
- =?utf-8?B?V2ttSytvS2hPZ29nVHZWaW9rVkRlVGNSbGxoR0RvMTB4Q000VzNpUytuR1RW?=
- =?utf-8?B?aXhsUzFjMlJYS2M1TGg5bjJTNHd0d1ZEam1tejVDODROK1RBQ1NvWkd2anhE?=
- =?utf-8?B?bGJtaExFbkY2clRHTGpWbitNRGoybmI4RnNZZ21XeU1PckNWSnVjWXR1U2Yx?=
- =?utf-8?B?V0VXUGJzc3BkaS9jdUdSL0NWSzhoc3ZxZnNONmYvTFFUdG11bUE4cVNJcEhy?=
- =?utf-8?B?ZVdQTmRnbjJlY0x3N1dyc0QyYjlMMGFJbXhJSzBGNUJhVmQ4ak13bHc2VVFv?=
- =?utf-8?B?VVc3T3NUbmd5eW56bEZGeDV5T3RsWFhxQVQ3SkVFQmJMWEF0M3FVS2xOR3k4?=
- =?utf-8?B?a0Y3N1V0OHE3UTRkUnNkdHZwbTVIWksvRW9hV0UwU0RHVlI0QzFVRUpuQWcw?=
- =?utf-8?B?TXRCNkMvdGdyS2RFL1hFeFlybGlENzA4K2FheWxEclc4UUxtaUVrOTdpWDRp?=
- =?utf-8?B?b0lXOWZLMmZ3ZUZPSDZmVWlzZDhHSGhtQVhOTlp2VmVuOU5nc0ZDNENadUhz?=
- =?utf-8?B?Z0FXbW1Ib3ZocUFZVVlQbFNPZHFaamV0cXRsMzZlQTRDbEJMQ1V5WXozSEw3?=
- =?utf-8?B?QTljWE41UGNpYW56R1V6b05xRS9HY0oxZDMvRE5GamZSOU5nK0lDc2tiT3E4?=
- =?utf-8?B?YXRIVlAydHZaaUxKQW5wMEkwb0lycks4bzFaNzNsNm5OaWpERFU3ZmNGSHJy?=
- =?utf-8?B?T3hqRGxmdmZBbFBvRWlBY2p3UHFNaHNNV0svTjVwaS9XVlNqRmtGVHFFQmlK?=
- =?utf-8?B?VjBNaHMxbkM4TVFjZ0lLOFpOaFVuZXdLZTBDcU51WGpKUUhNOWZJbFo3SldB?=
- =?utf-8?B?cEE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d347b386-d7ed-4cf4-1e66-08db060d100f
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bnpwMlpWNVRRK0pzbE5qaW90eko2Y0x5Y2h3V09uL0lYcXNSVzFVWjg4aWVy?=
+ =?utf-8?B?NkVMWWNmekJzMHU4L2c1VDhjMmdQTDkxRGcwTDI2czd3TjZrR21QcjRvVmZU?=
+ =?utf-8?B?ZUU2enlLd0VYNDlSN3I2eFhjZEJmTUZLU05FL3NWbXc5SDJUblpJbDFmNnI4?=
+ =?utf-8?B?c2IwN0ZMSzF2cVJLV09ma1lvblE3TllMYlc4RThiS1QvS0ZzQ3NPdjdnVk16?=
+ =?utf-8?B?bFpsdjFpMXhhd2xIMmVwZElDZm1TSitWYWlVa2hoT0RlSXdyL2xTR245RHhX?=
+ =?utf-8?B?YmRyV3pYNDdVbExKS0dlTDNPSXBiK0YwSTg2UVFTc0g3NDd4NnZjMzMxdTZW?=
+ =?utf-8?B?U1F4c2RJME1MaFkwTVg4VHlaeTZkNlBjc1JtRTkxcmVrRTg3SklQNHZmMjdi?=
+ =?utf-8?B?TmMzYm5KWElsaTdnSDNna2hlVUliamJQUU1nZWxTckJDK0g4aU5wL0J4TkdV?=
+ =?utf-8?B?YnBIcHNQOFQwbXMxSi9qdXJuVnhxR3NjZlZUWE5ZM1U1TWZ1anJGMlpjZXFz?=
+ =?utf-8?B?RXRtVmphV0dkeTZvSUVWUmU4MDZGRHBCZXVDajFOQWtFZlM5NU83SHVQS1FC?=
+ =?utf-8?B?NWlNdnllSEhVRGpTS3M5cytUcndQTzlSa3BYc2xIT3grVllmSHRBODhpelAy?=
+ =?utf-8?B?OWVNNEtnTjJkWG5CZEkxVGxWeUl2N0VMYnQ5Wk1LVVphcytTczZsZG5URTNt?=
+ =?utf-8?B?aDlYTzB6eWJWTS9JR1dKZFIzQmt2Y1NnWFBlZXIzeUpRcGwzNmNKbm41WkFD?=
+ =?utf-8?B?akt4TDd4aFFhdFdvZ3VyYU5tT0puZFZYZjFtR1JjcU9JRVRjWGNDU0szMVFT?=
+ =?utf-8?B?Q0huVmVVc1NNaVJKczJBaW1ML3BnaDhsYWRuZDEvb2VVbTlRN3FTTGErWDZt?=
+ =?utf-8?B?N2dCSzdISUowVW9MaGFrOGlpWFZpWWFvUE9aQmxMdVZLRnZqZWwxWG9aMnVK?=
+ =?utf-8?B?d0prY2lNTi93T2FkbmhIeVJJaFhIWUlIazI1bll4WDdtbkVBa1pjUGNBMitQ?=
+ =?utf-8?B?cUlUSWdLbm9CK3V5a21QTmkzOFRMeEpjeERkTHJoVFhxUVVBVnZEWUJuWkwy?=
+ =?utf-8?B?NkNwTFVpd1laSlVRMDVkYTE3MWpQc2ZRNTZ0L2tlQWptVEluOUJrTTZ4YkYw?=
+ =?utf-8?B?aEFUMGZDMldwSW1jTStJN0x2cEVvczFqRGNSRVlsZkRaUjhDUTg3NHJ6alE5?=
+ =?utf-8?B?Wm4xTHAzTm5BTVRDaDZwVEhqblE2bW4wT1dTY0dmNVV3c2tHcjlKR1dxRHEv?=
+ =?utf-8?B?Zml5SEVNajl6U2tMZjRJN1JmME0vQ0hBbUhqNW8vTG1zMG54Z0R1aW1DL1dk?=
+ =?utf-8?B?SmNwMHYycjZNR3hTNks5TnRzQkhudmgrYzRqc1ZSdk9xdlBia0wzeURaQlhw?=
+ =?utf-8?B?OXNIdlV3UnZXNDJLeTByM1Y1dFNhSVdrQnZ4eFd1RHpMbnZsT0Jpa1JOc2VO?=
+ =?utf-8?B?Q3dVNWlaMUN2VFBYVC9zS2FOVkh3RGJhaTNQcTcwYUdnY0JFV2VsWWF0d3E1?=
+ =?utf-8?B?anRxV0d2aktCTDNBREp2aDl6US9td3JxTks3K0N3TCthQ3E5VVhiZVlXMTBR?=
+ =?utf-8?B?WWNFQk9nTS9xa1U5ZWtLTWZGNXZPeHVxbUpOeTR5QXFXcmJZaUJRWE1jM0tv?=
+ =?utf-8?B?elNHMWYrVU8wZlIyTG5mS081cTVSTzZBaERBWlJnWlpMOUVYdGthaVplK1Q4?=
+ =?utf-8?B?UUNOTmRFaGJIUDFSVFNGbVdsVEQ5QU5VMFZxQm9MV1A2ZGtHZURtMHhoMnNo?=
+ =?utf-8?B?Z0xvRTVDQS9ieUtGajQ5NXNiZzI2VVpXSzZtZWJvVGNJdmRtVWZncmpjazkx?=
+ =?utf-8?B?SzFUUUV1VlpTcEpDUnpueTlQeThPTS9rUExxODFPeU1LYWRIS0tmeWRzYlJU?=
+ =?utf-8?B?azVOZXRWTWlMODh6NjFkR3luMk8ycjR5dDkwY3RqTmlvQk1HeGJtU0hYYnl1?=
+ =?utf-8?B?SzNFYzZtdTk4Ym1ncHFkSXk4SXUzalhkZndybmRCcmJoeFNPdlhWZUxPci8r?=
+ =?utf-8?B?TUFmbVhQdE43YXdBeWJtQmE3aGhHRmRFYno3aTRxNnVXTnlsRXIyRVUyV3Rw?=
+ =?utf-8?B?Z1Jvcm1GTTQrYmVsdnJ2M01hbDZ5Q0RUUVlFTnJQQzBvSi9HOEwwZm9ONHZj?=
+ =?utf-8?B?TEtTY1RQMWxhOWtBa2t6eDViQU80bmtmdjJ2eUc0Nks0TmZoTjhZTTlCMFFX?=
+ =?utf-8?B?OEE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 63f29536-e296-4fb9-4212-08db060e31ce
 X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3911.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2023 17:35:37.8699 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2023 17:43:43.9529 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qnaJSmq2IUsJwhWk9dQybHQ2dk5bhDnjBCn/0doCilQK+nRg/8BxgUaLvy4oIAUxfas2ipKQvZi2uSBzIcIshIpslNHorvSNMz3EDDYDG/4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR11MB5601
+X-MS-Exchange-CrossTenant-UserPrincipalName: POtEtPXkbahB255GMH14mSZrgvFoakrdihmSb9LQo4iOfNTuNVNzg/EuNDgdFGKGnw4DFJCA21JcIwqCfg0HS2nx6RgEidoT29KfutvrF0c=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6192
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 1/6] drm/i915/guc: More debug print updates
- - UC firmware
+Subject: Re: [Intel-gfx] [PATCH 4/6] drm/i915/guc: More debug print updates
+ - GuC selftests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,10 +162,11 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2/3/2023 01:39, Michal Wajdeczko wrote:
+On 2/3/2023 01:54, Michal Wajdeczko wrote:
 > On 03.02.2023 01:11, John.C.Harrison@Intel.com wrote:
 >> From: John Harrison <John.C.Harrison@Intel.com>
 >>
@@ -169,341 +174,333 @@ On 2/3/2023 01:39, Michal Wajdeczko wrote:
 >>
 >> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 >> ---
->>   drivers/gpu/drm/i915/gt/uc/intel_uc.c    |  42 ++++----
->>   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c | 116 +++++++++++------------
->>   2 files changed, 73 insertions(+), 85 deletions(-)
+>>   drivers/gpu/drm/i915/gt/uc/selftest_guc.c     | 35 ++++++++++---------
+>>   .../drm/i915/gt/uc/selftest_guc_hangcheck.c   | 23 ++++++------
+>>   .../drm/i915/gt/uc/selftest_guc_multi_lrc.c   | 11 +++---
+>>   3 files changed, 36 insertions(+), 33 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
->> index de7f987cf6111..6648691bd6450 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
->> @@ -83,15 +83,15 @@ static int __intel_uc_reset_hw(struct intel_uc *uc)
+>> diff --git a/drivers/gpu/drm/i915/gt/uc/selftest_guc.c b/drivers/gpu/drm/i915/gt/uc/selftest_guc.c
+>> index e28518fe8b908..6cc1e9c7a47d6 100644
+>> --- a/drivers/gpu/drm/i915/gt/uc/selftest_guc.c
+>> +++ b/drivers/gpu/drm/i915/gt/uc/selftest_guc.c
+>> @@ -3,6 +3,7 @@
+>>    * Copyright �� 2021 Intel Corporation
+>>    */
 >>   
->>   static void __confirm_options(struct intel_uc *uc)
->>   {
->> -	struct drm_i915_private *i915 = uc_to_gt(uc)->i915;
->> +	struct intel_gt *gt = uc_to_gt(uc);
->> +	struct drm_i915_private *i915 = gt->i915;
->>   
->> -	drm_dbg(&i915->drm,
->> -		"enable_guc=%d (guc:%s submission:%s huc:%s slpc:%s)\n",
->> -		i915->params.enable_guc,
->> -		str_yes_no(intel_uc_wants_guc(uc)),
->> -		str_yes_no(intel_uc_wants_guc_submission(uc)),
->> -		str_yes_no(intel_uc_wants_huc(uc)),
->> -		str_yes_no(intel_uc_wants_guc_slpc(uc)));
->> +	gt_dbg(gt, "enable_guc=%d (guc:%s submission:%s huc:%s slpc:%s)\n",
->> +	       i915->params.enable_guc,
->> +	       str_yes_no(intel_uc_wants_guc(uc)),
->> +	       str_yes_no(intel_uc_wants_guc_submission(uc)),
->> +	       str_yes_no(intel_uc_wants_huc(uc)),
->> +	       str_yes_no(intel_uc_wants_guc_slpc(uc)));
->>   
->>   	if (i915->params.enable_guc == 0) {
->>   		GEM_BUG_ON(intel_uc_wants_guc(uc));
->> @@ -102,26 +102,22 @@ static void __confirm_options(struct intel_uc *uc)
->>   	}
->>   
->>   	if (!intel_uc_supports_guc(uc))
->> -		drm_info(&i915->drm,
->> -			 "Incompatible option enable_guc=%d - %s\n",
->> -			 i915->params.enable_guc, "GuC is not supported!");
->> +		gt_info(gt,  "Incompatible option enable_guc=%d - %s\n",
->> +			i915->params.enable_guc, "GuC is not supported!");
->>   
->>   	if (i915->params.enable_guc & ENABLE_GUC_LOAD_HUC &&
->>   	    !intel_uc_supports_huc(uc))
->> -		drm_info(&i915->drm,
->> -			 "Incompatible option enable_guc=%d - %s\n",
->> -			 i915->params.enable_guc, "HuC is not supported!");
->> +		gt_info(gt, "Incompatible option enable_guc=%d - %s\n",
->> +			i915->params.enable_guc, "HuC is not supported!");
->>   
->>   	if (i915->params.enable_guc & ENABLE_GUC_SUBMISSION &&
->>   	    !intel_uc_supports_guc_submission(uc))
->> -		drm_info(&i915->drm,
->> -			 "Incompatible option enable_guc=%d - %s\n",
->> -			 i915->params.enable_guc, "GuC submission is N/A");
->> +		gt_info(gt, "Incompatible option enable_guc=%d - %s\n",
->> +			i915->params.enable_guc, "GuC submission is N/A");
->>   
->>   	if (i915->params.enable_guc & ~ENABLE_GUC_MASK)
->> -		drm_info(&i915->drm,
->> -			 "Incompatible option enable_guc=%d - %s\n",
->> -			 i915->params.enable_guc, "undocumented flag");
->> +		gt_info(gt, "Incompatible option enable_guc=%d - %s\n",
->> +			i915->params.enable_guc, "undocumented flag");
-> all these above messages are about i915->params so IMHO using drm_info()
-> is still more applicable than gt_info() ...
-But they are explaining the path taken on a particular GT to reach the 
-final decision about what to load or run. That could be important. E.g. 
-on MTL render tile does not have HuC so the decisions will be different 
-even though the modparams are the same.
+>> +#include "intel_guc_print.h"
+> You've included right headers but then you mostly used gt_xxx() macros
+> instead of guc_xxx() ones which IMHO are way more appropriate as we are
+> in GuC selftests
+Yeah, forgot to go back and change the include.
 
->
->>   }
->>   
->>   void intel_uc_init_early(struct intel_uc *uc)
->> @@ -549,10 +545,8 @@ static int __uc_init_hw(struct intel_uc *uc)
->>   
->>   	intel_gsc_uc_load_start(&uc->gsc);
->>   
->> -	gt_info(gt, "GuC submission %s\n",
->> -		str_enabled_disabled(intel_uc_uses_guc_submission(uc)));
->> -	gt_info(gt, "GuC SLPC %s\n",
->> -		str_enabled_disabled(intel_uc_uses_guc_slpc(uc)));
->> +	guc_info(guc, "submission %s\n", str_enabled_disabled(intel_uc_uses_guc_submission(uc)));
->> +	guc_info(guc, "SLPC %s\n", str_enabled_disabled(intel_uc_uses_guc_slpc(uc)));
->>   
->>   	return 0;
->>   
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
->> index 65672ff826054..7d2558d53e972 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
->> @@ -11,6 +11,7 @@
->>   #include <drm/drm_print.h>
->>   
->>   #include "gem/i915_gem_lmem.h"
->> +#include "gt/intel_gt_print.h"
->>   #include "intel_uc_fw.h"
->>   #include "intel_uc_fw_abi.h"
->>   #include "i915_drv.h"
->> @@ -44,11 +45,10 @@ void intel_uc_fw_change_status(struct intel_uc_fw *uc_fw,
->>   			       enum intel_uc_fw_status status)
->>   {
->>   	uc_fw->__status =  status;
->> -	drm_dbg(&__uc_fw_to_gt(uc_fw)->i915->drm,
->> -		"%s firmware -> %s\n",
->> -		intel_uc_fw_type_repr(uc_fw->type),
->> -		status == INTEL_UC_FIRMWARE_SELECTED ?
->> -		uc_fw->file_selected.path : intel_uc_fw_status_repr(status));
->> +	gt_dbg(__uc_fw_to_gt(uc_fw), "%s firmware -> %s\n",
->> +	       intel_uc_fw_type_repr(uc_fw->type),
->> +	       status == INTEL_UC_FIRMWARE_SELECTED ?
->> +	       uc_fw->file_selected.path : intel_uc_fw_status_repr(status));
->>   }
->>   #endif
->>   
->> @@ -562,15 +562,14 @@ static int check_ccs_header(struct intel_gt *gt,
->>   			    const struct firmware *fw,
->>   			    struct intel_uc_fw *uc_fw)
->>   {
->> -	struct drm_i915_private *i915 = gt->i915;
->>   	struct uc_css_header *css;
->>   	size_t size;
->>   
->>   	/* Check the size of the blob before examining buffer contents */
->>   	if (unlikely(fw->size < sizeof(struct uc_css_header))) {
->> -		drm_warn(&i915->drm, "%s firmware %s: invalid size: %zu < %zu\n",
->> -			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
->> -			 fw->size, sizeof(struct uc_css_header));
->> +		gt_warn(gt, "%s firmware %s: invalid size: %zu < %zu\n",
->> +			intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
->> +			fw->size, sizeof(struct uc_css_header));
->>   		return -ENODATA;
->>   	}
->>   
->> @@ -580,10 +579,9 @@ static int check_ccs_header(struct intel_gt *gt,
->>   	size = (css->header_size_dw - css->key_size_dw - css->modulus_size_dw -
->>   		css->exponent_size_dw) * sizeof(u32);
->>   	if (unlikely(size != sizeof(struct uc_css_header))) {
->> -		drm_warn(&i915->drm,
->> -			 "%s firmware %s: unexpected header size: %zu != %zu\n",
->> -			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
->> -			 fw->size, sizeof(struct uc_css_header));
->> +		gt_warn(gt, "%s firmware %s: unexpected header size: %zu != %zu\n",
->> +			intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
->> +			fw->size, sizeof(struct uc_css_header));
->>   		return -EPROTO;
->>   	}
->>   
->> @@ -596,18 +594,18 @@ static int check_ccs_header(struct intel_gt *gt,
->>   	/* At least, it should have header, uCode and RSA. Size of all three. */
->>   	size = sizeof(struct uc_css_header) + uc_fw->ucode_size + uc_fw->rsa_size;
->>   	if (unlikely(fw->size < size)) {
->> -		drm_warn(&i915->drm, "%s firmware %s: invalid size: %zu < %zu\n",
->> -			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
->> -			 fw->size, size);
->> +		gt_warn(gt, "%s firmware %s: invalid size: %zu < %zu\n",
->> +			intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
->> +			fw->size, size);
->>   		return -ENOEXEC;
->>   	}
->>   
->>   	/* Sanity check whether this fw is not larger than whole WOPCM memory */
->>   	size = __intel_uc_fw_get_upload_size(uc_fw);
->>   	if (unlikely(size >= gt->wopcm.size)) {
->> -		drm_warn(&i915->drm, "%s firmware %s: invalid size: %zu > %zu\n",
->> -			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
->> -			 size, (size_t)gt->wopcm.size);
->> +		gt_warn(gt, "%s firmware %s: invalid size: %zu > %zu\n",
->> +			intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
->> +			size, (size_t)gt->wopcm.size);
->>   		return -E2BIG;
->>   	}
->>   
->> @@ -635,20 +633,20 @@ static bool guc_check_version_range(struct intel_uc_fw *uc_fw)
->>   	 */
->>
-> this is GuC specific function, shouldn't we use guc_warn() instead ?
-
-Much/some of this code is not actually GuC specific. Also, GuC can 
-sometimes mean Springboard. And there's always the potential for bugs to 
-cause the wrong code path to occur. So I would rather the keep the '%s 
-firmware' string rather than forcing it to be a fixed prefix. Which 
-means that switching to guc_warn will duplicate the GuC prefix.
-
-
->
->>   	if (!is_ver_8bit(&uc_fw->file_selected.ver)) {
->> -		drm_warn(&__uc_fw_to_gt(uc_fw)->i915->drm, "%s firmware: invalid file version: 0x%02X:%02X:%02X\n",
->> -			 intel_uc_fw_type_repr(uc_fw->type),
->> -			 uc_fw->file_selected.ver.major,
->> -			 uc_fw->file_selected.ver.minor,
->> -			 uc_fw->file_selected.ver.patch);
->> +		gt_warn(__uc_fw_to_gt(uc_fw), "%s firmware: invalid file version: 0x%02X:%02X:%02X\n",
->> +			intel_uc_fw_type_repr(uc_fw->type),
->> +			uc_fw->file_selected.ver.major,
->> +			uc_fw->file_selected.ver.minor,
->> +			uc_fw->file_selected.ver.patch);
->>   		return false;
->>   	}
->>   
->>   	if (!is_ver_8bit(&guc->submission_version)) {
->> -		drm_warn(&__uc_fw_to_gt(uc_fw)->i915->drm, "%s firmware: invalid submit version: 0x%02X:%02X:%02X\n",
->> -			 intel_uc_fw_type_repr(uc_fw->type),
->> -			 guc->submission_version.major,
->> -			 guc->submission_version.minor,
->> -			 guc->submission_version.patch);
->> +		gt_warn(__uc_fw_to_gt(uc_fw), "%s firmware: invalid submit version: 0x%02X:%02X:%02X\n",
->> +			intel_uc_fw_type_repr(uc_fw->type),
->> +			guc->submission_version.major,
->> +			guc->submission_version.minor,
->> +			guc->submission_version.patch);
->>   		return false;
->>   	}
->>   
->> @@ -687,10 +685,9 @@ static int try_firmware_load(struct intel_uc_fw *uc_fw, const struct firmware **
->>   		return err;
->>   
->>   	if ((*fw)->size > INTEL_UC_RSVD_GGTT_PER_FW) {
->> -		drm_err(&gt->i915->drm,
->> -			"%s firmware %s: size (%zuKB) exceeds max supported size (%uKB)\n",
->> -			intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
->> -			(*fw)->size / SZ_1K, INTEL_UC_RSVD_GGTT_PER_FW / SZ_1K);
->> +		gt_err(gt, "%s firmware %s: size (%zuKB) exceeds max supported size (%uKB)\n",
->> +		       intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
->> +		       (*fw)->size / SZ_1K, INTEL_UC_RSVD_GGTT_PER_FW / SZ_1K);
->>   
->>   		/* try to find another blob to load */
->>   		release_firmware(*fw);
->> @@ -768,10 +765,10 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
->>   	if (uc_fw->file_wanted.ver.major && uc_fw->file_selected.ver.major) {
->>   		/* Check the file's major version was as it claimed */
->>   		if (uc_fw->file_selected.ver.major != uc_fw->file_wanted.ver.major) {
->> -			drm_notice(&i915->drm, "%s firmware %s: unexpected version: %u.%u != %u.%u\n",
->> -				   intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
->> -				   uc_fw->file_selected.ver.major, uc_fw->file_selected.ver.minor,
->> -				   uc_fw->file_wanted.ver.major, uc_fw->file_wanted.ver.minor);
->> +			gt_notice(gt, "%s firmware %s: unexpected version: %u.%u != %u.%u\n",
->> +				  intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
->> +				  uc_fw->file_selected.ver.major, uc_fw->file_selected.ver.minor,
->> +				  uc_fw->file_wanted.ver.major, uc_fw->file_wanted.ver.minor);
->>   			if (!intel_uc_fw_is_overridden(uc_fw)) {
->>   				err = -ENOEXEC;
->>   				goto fail;
->> @@ -786,16 +783,14 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
->>   		/* Preserve the version that was really wanted */
->>   		memcpy(&uc_fw->file_wanted, &file_ideal, sizeof(uc_fw->file_wanted));
->>   
->> -		drm_notice(&i915->drm,
->> -			   "%s firmware %s (%d.%d) is recommended, but only %s (%d.%d) was found\n",
->> -			   intel_uc_fw_type_repr(uc_fw->type),
->> -			   uc_fw->file_wanted.path,
->> -			   uc_fw->file_wanted.ver.major, uc_fw->file_wanted.ver.minor,
->> -			   uc_fw->file_selected.path,
->> -			   uc_fw->file_selected.ver.major, uc_fw->file_selected.ver.minor);
->> -		drm_info(&i915->drm,
->> -			 "Consider updating your linux-firmware pkg or downloading from %s\n",
->> -			 INTEL_UC_FIRMWARE_URL);
->> +		gt_notice(gt, "%s firmware %s (%d.%d) is recommended, but only %s (%d.%d) was found\n",
->> +			  intel_uc_fw_type_repr(uc_fw->type),
->> +			  uc_fw->file_wanted.path,
->> +			  uc_fw->file_wanted.ver.major, uc_fw->file_wanted.ver.minor,
->> +			  uc_fw->file_selected.path,
->> +			  uc_fw->file_selected.ver.major, uc_fw->file_selected.ver.minor);
->> +		gt_info(gt, "Consider updating your linux-firmware pkg or downloading from %s\n",
->> +			INTEL_UC_FIRMWARE_URL);
->>   	}
->>   
->>   	if (HAS_LMEM(i915)) {
->> @@ -823,10 +818,10 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
->>   				  INTEL_UC_FIRMWARE_MISSING :
->>   				  INTEL_UC_FIRMWARE_ERROR);
->>   
->> -	i915_probe_error(i915, "%s firmware %s: fetch failed with error %d\n",
->> -			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path, err);
->> -	drm_info(&i915->drm, "%s firmware(s) can be downloaded from %s\n",
->> -		 intel_uc_fw_type_repr(uc_fw->type), INTEL_UC_FIRMWARE_URL);
->> +	gt_probe_error(gt, "%s firmware %s: fetch failed with error %d\n",
->> +		       intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path, err);
->> +	gt_info(gt, "%s firmware(s) can be downloaded from %s\n",
->> +		intel_uc_fw_type_repr(uc_fw->type), INTEL_UC_FIRMWARE_URL);
->>   
->>   	release_firmware(fw);		/* OK even if fw is NULL */
->>   	return err;
->> @@ -932,9 +927,9 @@ static int uc_fw_xfer(struct intel_uc_fw *uc_fw, u32 dst_offset, u32 dma_flags)
->>   	/* Wait for DMA to finish */
->>   	ret = intel_wait_for_register_fw(uncore, DMA_CTRL, START_DMA, 0, 100);
->>   	if (ret)
->> -		drm_err(&gt->i915->drm, "DMA for %s fw failed, DMA_CTRL=%u\n",
->> -			intel_uc_fw_type_repr(uc_fw->type),
->> -			intel_uncore_read_fw(uncore, DMA_CTRL));
->> +		gt_err(gt, "DMA for %s fw failed, DMA_CTRL=%u\n",
->> +		       intel_uc_fw_type_repr(uc_fw->type),
->> +		       intel_uncore_read_fw(uncore, DMA_CTRL));
->>   
->>   	/* Disable the bits once DMA is over */
->>   	intel_uncore_write_fw(uncore, DMA_CTRL, _MASKED_BIT_DISABLE(dma_flags));
->> @@ -950,9 +945,8 @@ int intel_uc_fw_mark_load_failed(struct intel_uc_fw *uc_fw, int err)
->>   
->>   	GEM_BUG_ON(!intel_uc_fw_is_loadable(uc_fw));
->>   
->> -	i915_probe_error(gt->i915, "Failed to load %s firmware %s (%d)\n",
->> -			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
->> -			 err);
->> +	gt_probe_error(gt, "Failed to load %s firmware %s (%d)\n",
->> +		       intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path, err);
->>   	intel_uc_fw_change_status(uc_fw, INTEL_UC_FIRMWARE_LOAD_FAIL);
->>   
->>   	return err;
->> @@ -1078,15 +1072,15 @@ int intel_uc_fw_init(struct intel_uc_fw *uc_fw)
->>   
->>   	err = i915_gem_object_pin_pages_unlocked(uc_fw->obj);
->>   	if (err) {
->> -		DRM_DEBUG_DRIVER("%s fw pin-pages err=%d\n",
->> -				 intel_uc_fw_type_repr(uc_fw->type), err);
->> +		gt_dbg(__uc_fw_to_gt(uc_fw), "%s fw pin-pages err=%d\n",
->> +		       intel_uc_fw_type_repr(uc_fw->type), err);
->>   		goto out;
->>   	}
->>   
->>   	err = uc_fw_rsa_data_create(uc_fw);
->>   	if (err) {
->> -		DRM_DEBUG_DRIVER("%s fw rsa data creation failed, err=%d\n",
->> -				 intel_uc_fw_type_repr(uc_fw->type), err);
->> +		gt_dbg(__uc_fw_to_gt(uc_fw), "%s fw rsa data creation failed, err=%d\n",
->> +		       intel_uc_fw_type_repr(uc_fw->type), err);
->>   		goto out_unpin;
->>   	}
->>   
-> rest of the patch LGTM except that since we are around and to be more
-> friendly I would use %pe to show error codes
-Yeah, missed those.
+I started with a blanked update to guc_ instead of drm_ but only then 
+realised that the tests do not actually do anything so low level as to 
+require access the guc object. Which means having to jump through hoops 
+to get to a guc object purely for the purpose of using the guc debug 
+functions. Yes, it is a GuC specific selftest but there is no GuC 
+specific code in the file and that is really the criteria used for the 
+debug print decision.
 
 John.
 
 >
 > Michal
+>
+>>   #include "selftests/igt_spinner.h"
+>>   #include "selftests/intel_scheduler_helpers.h"
+>>   
+>> @@ -65,7 +66,7 @@ static int intel_guc_scrub_ctbs(void *arg)
+>>   		ce = intel_context_create(engine);
+>>   		if (IS_ERR(ce)) {
+>>   			ret = PTR_ERR(ce);
+>> -			drm_err(&gt->i915->drm, "Failed to create context, %d: %d\n", i, ret);
+>> +			gt_err(gt, "Failed to create context, %d: %d\n", i, ret);
+>>   			goto err;
+>>   		}
+>>   
+>> @@ -86,7 +87,7 @@ static int intel_guc_scrub_ctbs(void *arg)
+>>   
+>>   		if (IS_ERR(rq)) {
+>>   			ret = PTR_ERR(rq);
+>> -			drm_err(&gt->i915->drm, "Failed to create request, %d: %d\n", i, ret);
+>> +			gt_err(gt, "Failed to create request, %d: %d\n", i, ret);
+>>   			goto err;
+>>   		}
+>>   
+>> @@ -96,7 +97,7 @@ static int intel_guc_scrub_ctbs(void *arg)
+>>   	for (i = 0; i < 3; ++i) {
+>>   		ret = i915_request_wait(last[i], 0, HZ);
+>>   		if (ret < 0) {
+>> -			drm_err(&gt->i915->drm, "Last request failed to complete: %d\n", ret);
+>> +			gt_err(gt, "Last request failed to complete: %d\n", ret);
+>>   			goto err;
+>>   		}
+>>   		i915_request_put(last[i]);
+>> @@ -113,7 +114,7 @@ static int intel_guc_scrub_ctbs(void *arg)
+>>   	/* GT will not idle if G2H are lost */
+>>   	ret = intel_gt_wait_for_idle(gt, HZ);
+>>   	if (ret < 0) {
+>> -		drm_err(&gt->i915->drm, "GT failed to idle: %d\n", ret);
+>> +		gt_err(gt, "GT failed to idle: %d\n", ret);
+>>   		goto err;
+>>   	}
+>>   
+>> @@ -153,7 +154,7 @@ static int intel_guc_steal_guc_ids(void *arg)
+>>   
+>>   	ce = kcalloc(GUC_MAX_CONTEXT_ID, sizeof(*ce), GFP_KERNEL);
+>>   	if (!ce) {
+>> -		drm_err(&gt->i915->drm, "Context array allocation failed\n");
+>> +		guc_err(guc, "Context array allocation failed\n");
+>>   		return -ENOMEM;
+>>   	}
+>>   
+>> @@ -167,24 +168,24 @@ static int intel_guc_steal_guc_ids(void *arg)
+>>   	if (IS_ERR(ce[context_index])) {
+>>   		ret = PTR_ERR(ce[context_index]);
+>>   		ce[context_index] = NULL;
+>> -		drm_err(&gt->i915->drm, "Failed to create context: %d\n", ret);
+>> +		guc_err(guc, "Failed to create context: %d\n", ret);
+>>   		goto err_wakeref;
+>>   	}
+>>   	ret = igt_spinner_init(&spin, engine->gt);
+>>   	if (ret) {
+>> -		drm_err(&gt->i915->drm, "Failed to create spinner: %d\n", ret);
+>> +		guc_err(guc, "Failed to create spinner: %d\n", ret);
+>>   		goto err_contexts;
+>>   	}
+>>   	spin_rq = igt_spinner_create_request(&spin, ce[context_index],
+>>   					     MI_ARB_CHECK);
+>>   	if (IS_ERR(spin_rq)) {
+>>   		ret = PTR_ERR(spin_rq);
+>> -		drm_err(&gt->i915->drm, "Failed to create spinner request: %d\n", ret);
+>> +		guc_err(guc, "Failed to create spinner request: %d\n", ret);
+>>   		goto err_contexts;
+>>   	}
+>>   	ret = request_add_spin(spin_rq, &spin);
+>>   	if (ret) {
+>> -		drm_err(&gt->i915->drm, "Failed to add Spinner request: %d\n", ret);
+>> +		guc_err(guc, "Failed to add Spinner request: %d\n", ret);
+>>   		goto err_spin_rq;
+>>   	}
+>>   
+>> @@ -194,7 +195,7 @@ static int intel_guc_steal_guc_ids(void *arg)
+>>   		if (IS_ERR(ce[context_index])) {
+>>   			ret = PTR_ERR(ce[context_index--]);
+>>   			ce[context_index] = NULL;
+>> -			drm_err(&gt->i915->drm, "Failed to create context: %d\n", ret);
+>> +			guc_err(guc, "Failed to create context: %d\n", ret);
+>>   			goto err_spin_rq;
+>>   		}
+>>   
+>> @@ -203,7 +204,7 @@ static int intel_guc_steal_guc_ids(void *arg)
+>>   			ret = PTR_ERR(rq);
+>>   			rq = NULL;
+>>   			if (ret != -EAGAIN) {
+>> -				drm_err(&gt->i915->drm, "Failed to create request, %d: %d\n",
+>> +				guc_err(guc, "Failed to create request, %d: %d\n",
+>>   					context_index, ret);
+>>   				goto err_spin_rq;
+>>   			}
+>> @@ -218,7 +219,7 @@ static int intel_guc_steal_guc_ids(void *arg)
+>>   	igt_spinner_end(&spin);
+>>   	ret = intel_selftest_wait_for_rq(spin_rq);
+>>   	if (ret) {
+>> -		drm_err(&gt->i915->drm, "Spin request failed to complete: %d\n", ret);
+>> +		guc_err(guc, "Spin request failed to complete: %d\n", ret);
+>>   		i915_request_put(last);
+>>   		goto err_spin_rq;
+>>   	}
+>> @@ -230,7 +231,7 @@ static int intel_guc_steal_guc_ids(void *arg)
+>>   	ret = i915_request_wait(last, 0, HZ * 30);
+>>   	i915_request_put(last);
+>>   	if (ret < 0) {
+>> -		drm_err(&gt->i915->drm, "Last request failed to complete: %d\n", ret);
+>> +		guc_err(guc, "Last request failed to complete: %d\n", ret);
+>>   		goto err_spin_rq;
+>>   	}
+>>   
+>> @@ -238,7 +239,7 @@ static int intel_guc_steal_guc_ids(void *arg)
+>>   	rq = nop_user_request(ce[context_index], NULL);
+>>   	if (IS_ERR(rq)) {
+>>   		ret = PTR_ERR(rq);
+>> -		drm_err(&gt->i915->drm, "Failed to steal guc_id, %d: %d\n", context_index, ret);
+>> +		guc_err(guc, "Failed to steal guc_id, %d: %d\n", context_index, ret);
+>>   		goto err_spin_rq;
+>>   	}
+>>   
+>> @@ -246,20 +247,20 @@ static int intel_guc_steal_guc_ids(void *arg)
+>>   	ret = i915_request_wait(rq, 0, HZ);
+>>   	i915_request_put(rq);
+>>   	if (ret < 0) {
+>> -		drm_err(&gt->i915->drm, "Request with stolen guc_id failed to complete: %d\n", ret);
+>> +		guc_err(guc, "Request with stolen guc_id failed to complete: %d\n", ret);
+>>   		goto err_spin_rq;
+>>   	}
+>>   
+>>   	/* Wait for idle */
+>>   	ret = intel_gt_wait_for_idle(gt, HZ * 30);
+>>   	if (ret < 0) {
+>> -		drm_err(&gt->i915->drm, "GT failed to idle: %d\n", ret);
+>> +		guc_err(guc, "GT failed to idle: %d\n", ret);
+>>   		goto err_spin_rq;
+>>   	}
+>>   
+>>   	/* Verify a guc_id was stolen */
+>>   	if (guc->number_guc_id_stolen == number_guc_id_stolen) {
+>> -		drm_err(&gt->i915->drm, "No guc_id was stolen");
+>> +		guc_err(guc, "No guc_id was stolen");
+>>   		ret = -EINVAL;
+>>   	} else {
+>>   		ret = 0;
+>> diff --git a/drivers/gpu/drm/i915/gt/uc/selftest_guc_hangcheck.c b/drivers/gpu/drm/i915/gt/uc/selftest_guc_hangcheck.c
+>> index d91b58f704039..fffe95ac15c4e 100644
+>> --- a/drivers/gpu/drm/i915/gt/uc/selftest_guc_hangcheck.c
+>> +++ b/drivers/gpu/drm/i915/gt/uc/selftest_guc_hangcheck.c
+>> @@ -3,6 +3,7 @@
+>>    * Copyright © 2022 Intel Corporation
+>>    */
+>>   
+>> +#include "intel_guc_print.h"
+>>   #include "selftests/igt_spinner.h"
+>>   #include "selftests/igt_reset.h"
+>>   #include "selftests/intel_scheduler_helpers.h"
+>> @@ -45,7 +46,7 @@ static int intel_hang_guc(void *arg)
+>>   
+>>   	ctx = kernel_context(gt->i915, NULL);
+>>   	if (IS_ERR(ctx)) {
+>> -		drm_err(&gt->i915->drm, "Failed get kernel context: %ld\n", PTR_ERR(ctx));
+>> +		gt_err(gt, "Failed get kernel context: %ld\n", PTR_ERR(ctx));
+>>   		return PTR_ERR(ctx);
+>>   	}
+>>   
+>> @@ -54,7 +55,7 @@ static int intel_hang_guc(void *arg)
+>>   	ce = intel_context_create(engine);
+>>   	if (IS_ERR(ce)) {
+>>   		ret = PTR_ERR(ce);
+>> -		drm_err(&gt->i915->drm, "Failed to create spinner request: %d\n", ret);
+>> +		gt_err(gt, "Failed to create spinner request: %d\n", ret);
+>>   		goto err;
+>>   	}
+>>   
+>> @@ -63,13 +64,13 @@ static int intel_hang_guc(void *arg)
+>>   	old_beat = engine->props.heartbeat_interval_ms;
+>>   	ret = intel_engine_set_heartbeat(engine, BEAT_INTERVAL);
+>>   	if (ret) {
+>> -		drm_err(&gt->i915->drm, "Failed to boost heatbeat interval: %d\n", ret);
+>> +		gt_err(gt, "Failed to boost heatbeat interval: %d\n", ret);
+>>   		goto err;
+>>   	}
+>>   
+>>   	ret = igt_spinner_init(&spin, engine->gt);
+>>   	if (ret) {
+>> -		drm_err(&gt->i915->drm, "Failed to create spinner: %d\n", ret);
+>> +		gt_err(gt, "Failed to create spinner: %d\n", ret);
+>>   		goto err;
+>>   	}
+>>   
+>> @@ -77,28 +78,28 @@ static int intel_hang_guc(void *arg)
+>>   	intel_context_put(ce);
+>>   	if (IS_ERR(rq)) {
+>>   		ret = PTR_ERR(rq);
+>> -		drm_err(&gt->i915->drm, "Failed to create spinner request: %d\n", ret);
+>> +		gt_err(gt, "Failed to create spinner request: %d\n", ret);
+>>   		goto err_spin;
+>>   	}
+>>   
+>>   	ret = request_add_spin(rq, &spin);
+>>   	if (ret) {
+>>   		i915_request_put(rq);
+>> -		drm_err(&gt->i915->drm, "Failed to add Spinner request: %d\n", ret);
+>> +		gt_err(gt, "Failed to add Spinner request: %d\n", ret);
+>>   		goto err_spin;
+>>   	}
+>>   
+>>   	ret = intel_reset_guc(gt);
+>>   	if (ret) {
+>>   		i915_request_put(rq);
+>> -		drm_err(&gt->i915->drm, "Failed to reset GuC, ret = %d\n", ret);
+>> +		gt_err(gt, "Failed to reset GuC, ret = %d\n", ret);
+>>   		goto err_spin;
+>>   	}
+>>   
+>>   	guc_status = intel_uncore_read(gt->uncore, GUC_STATUS);
+>>   	if (!(guc_status & GS_MIA_IN_RESET)) {
+>>   		i915_request_put(rq);
+>> -		drm_err(&gt->i915->drm, "GuC failed to reset: status = 0x%08X\n", guc_status);
+>> +		gt_err(gt, "Failed to reset GuC: status = 0x%08X\n", guc_status);
+>>   		ret = -EIO;
+>>   		goto err_spin;
+>>   	}
+>> @@ -107,12 +108,12 @@ static int intel_hang_guc(void *arg)
+>>   	ret = intel_selftest_wait_for_rq(rq);
+>>   	i915_request_put(rq);
+>>   	if (ret) {
+>> -		drm_err(&gt->i915->drm, "Request failed to complete: %d\n", ret);
+>> +		gt_err(gt, "Request failed to complete: %d\n", ret);
+>>   		goto err_spin;
+>>   	}
+>>   
+>>   	if (i915_reset_count(global) == reset_count) {
+>> -		drm_err(&gt->i915->drm, "Failed to record a GPU reset\n");
+>> +		gt_err(gt, "Failed to record a GPU reset\n");
+>>   		ret = -EINVAL;
+>>   		goto err_spin;
+>>   	}
+>> @@ -132,7 +133,7 @@ static int intel_hang_guc(void *arg)
+>>   		ret = intel_selftest_wait_for_rq(rq);
+>>   		i915_request_put(rq);
+>>   		if (ret) {
+>> -			drm_err(&gt->i915->drm, "No-op failed to complete: %d\n", ret);
+>> +			gt_err(gt, "No-op failed to complete: %d\n", ret);
+>>   			goto err;
+>>   		}
+>>   	}
+>> diff --git a/drivers/gpu/drm/i915/gt/uc/selftest_guc_multi_lrc.c b/drivers/gpu/drm/i915/gt/uc/selftest_guc_multi_lrc.c
+>> index d17982c36d256..0e64be0918ae5 100644
+>> --- a/drivers/gpu/drm/i915/gt/uc/selftest_guc_multi_lrc.c
+>> +++ b/drivers/gpu/drm/i915/gt/uc/selftest_guc_multi_lrc.c
+>> @@ -3,6 +3,7 @@
+>>    * Copyright �� 2019 Intel Corporation
+>>    */
+>>   
+>> +#include "intel_guc_print.h"
+>>   #include "selftests/igt_spinner.h"
+>>   #include "selftests/igt_reset.h"
+>>   #include "selftests/intel_scheduler_helpers.h"
+>> @@ -115,30 +116,30 @@ static int __intel_guc_multi_lrc_basic(struct intel_gt *gt, unsigned int class)
+>>   
+>>   	parent = multi_lrc_create_parent(gt, class, 0);
+>>   	if (IS_ERR(parent)) {
+>> -		drm_err(&gt->i915->drm, "Failed creating contexts: %ld", PTR_ERR(parent));
+>> +		gt_err(gt, "Failed creating contexts: %ld\n", PTR_ERR(parent));
+>>   		return PTR_ERR(parent);
+>>   	} else if (!parent) {
+>> -		drm_dbg(&gt->i915->drm, "Not enough engines in class: %d", class);
+>> +		gt_dbg(gt, "Not enough engines in class: %d\n", class);
+>>   		return 0;
+>>   	}
+>>   
+>>   	rq = multi_lrc_nop_request(parent);
+>>   	if (IS_ERR(rq)) {
+>>   		ret = PTR_ERR(rq);
+>> -		drm_err(&gt->i915->drm, "Failed creating requests: %d", ret);
+>> +		gt_err(gt, "Failed creating requests: %d\n", ret);
+>>   		goto out;
+>>   	}
+>>   
+>>   	ret = intel_selftest_wait_for_rq(rq);
+>>   	if (ret)
+>> -		drm_err(&gt->i915->drm, "Failed waiting on request: %d", ret);
+>> +		gt_err(gt, "Failed waiting on request: %d\n", ret);
+>>   
+>>   	i915_request_put(rq);
+>>   
+>>   	if (ret >= 0) {
+>>   		ret = intel_gt_wait_for_idle(gt, HZ * 5);
+>>   		if (ret < 0)
+>> -			drm_err(&gt->i915->drm, "GT failed to idle: %d\n", ret);
+>> +			gt_err(gt, "GT failed to idle: %d\n", ret);
+>>   	}
+>>   
+>>   out:
 
