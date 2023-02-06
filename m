@@ -1,61 +1,93 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEF6068BFE5
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Feb 2023 15:19:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E55A68C015
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Feb 2023 15:30:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C57010E030;
-	Mon,  6 Feb 2023 14:19:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 027C989C28;
+	Mon,  6 Feb 2023 14:30:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com
- [IPv6:2a00:1450:4864:20::32e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 077F110E06B
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Feb 2023 14:19:33 +0000 (UTC)
-Received: by mail-wm1-x32e.google.com with SMTP id
- j29-20020a05600c1c1d00b003dc52fed235so8942244wms.1
- for <intel-gfx@lists.freedesktop.org>; Mon, 06 Feb 2023 06:19:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=5KfmyPDXX2ChbSaZJFhKyLvpzg6Gm0qUJmAwanE0QWc=;
- b=dnMp9xIjS9X7XnF+ToU7uKUit3yridCt/f/vw4LiBrkiYryNK48GVNzcs13VpPbBCv
- FcnklU3wfwOEdAxvuapRatH0i/7A3DBBYwy1CH80bxO/E3iPYC/56O0WtZtJ2ZNDhGjd
- wZXBcVsuLa7t5npHmYZUOgmMGZRfrYzf1hi85ixE0aQF6rDTTMi5N4q3w2fi0OCkcjyS
- 1AmaILNsBRxXhkXD32iNDE/XJ4Kgo8wbhog2jumVhk0Od9r8kv4YNtl3/+WJ6h4nJWPX
- ajxOq0pXGNCK4KR2fqUuUM3KB/ErKhJf6RsV+d841Z6/u9zMapAWKXWGV4OxhTC4UQx2
- zNvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=5KfmyPDXX2ChbSaZJFhKyLvpzg6Gm0qUJmAwanE0QWc=;
- b=CFhhUmrO/C+LMWD2SnrLtn7JN1vrFoZuyo4AYSAmCTcz7MPGNYiDGdXt2pZoOXZ8fm
- hDwSXTCcId/fkwu9dbcHVEC2EFeNYU64ASTmu8X7tl9JsZjA/gkOEJ2xPLNWqZW4o7em
- 4wdaZA23ZtkT9zAzzYhQ56xaB+EGKyWldS0ULWPtjb6zb3KikdI1XTu/NLABDoqpn5w0
- FTjABvI2KYdQ6GwFCMiecOHDPohmmX5dgSPbReo1frWJRwIOlu8P9Goo5F7fQgZi0N/p
- UDiz3acXNUIEB407PETVwdurG2eBmWhAQCMjfnEyeKLjGLw2FCdqWYm14K6o76siqtMZ
- SPGA==
-X-Gm-Message-State: AO0yUKUjs2w15BBgOzqfF4guqgXwwSPW7Dlb0rcpDo2Wd+iCvURZ67NM
- +PKR/MNXfWRCiaFviBwdVBHWKtMGnOs=
-X-Google-Smtp-Source: AK7set+wpp1YwetYw1Fk+iQelbXH8XNLWFMxZheT/vbEjhkEe3wprm4WekjgKUZBMcA/2kAkBXXwPA==
-X-Received: by 2002:a05:600c:1e8d:b0:3df:7948:886b with SMTP id
- be13-20020a05600c1e8d00b003df7948886bmr16674882wmb.31.1675693171507; 
- Mon, 06 Feb 2023 06:19:31 -0800 (PST)
-Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
- c7-20020a05600c0ac700b003d1d5a83b2esm15848943wmr.35.2023.02.06.06.19.30
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 06 Feb 2023 06:19:31 -0800 (PST)
-Date: Mon, 6 Feb 2023 17:19:26 +0300
-From: Dan Carpenter <error27@gmail.com>
-To: chris@chris-wilson.co.uk
-Message-ID: <Y+EMbhwPiF6zjBVR@kili>
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
+ [148.163.156.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E993B10E3AA;
+ Mon,  6 Feb 2023 14:30:37 +0000 (UTC)
+Received: from pps.filterd (m0098399.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
+ 316Dqegl027235; Mon, 6 Feb 2023 14:30:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
+ h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=pp1;
+ bh=Xmlhwlv8rTLONN0h2XOQ+YzPsB8oOSdEijMjpmTq+IU=;
+ b=b/uAGfP226KnCYpZPQJjuRgy8l5SKoWy0DqYVC6UWJuxGIgpC2kBcFk5J3ehD8ewcN9I
+ cAaKSSgFUB0l5hTuwGkDU6kSpwcCsHueMTQY+yA+76seDX0Yfna7wJC0jIl6Ry1af5gf
+ yABh5dO+hyFz7pUR6x0S7Sgqb8Fg11kOW9W4DLhWtEGlm6xLXRAKu5z4jiy1TNY4qeHe
+ M9XdQVSEcdbANQKSfh+QflocP8A/b5ljxUAN0GnEhVSygt4uH1YUIsK3ajtpgNT/s6ze
+ UAw01HptdDPMYdUm9zuggEKQ2nMuU8b/hso4aZ9zD0MowarkEug0vD8GkrdA++XXexpK Qw== 
+Received: from pps.reinject (localhost [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3nk2tbhcsp-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Mon, 06 Feb 2023 14:30:24 +0000
+Received: from m0098399.ppops.net (m0098399.ppops.net [127.0.0.1])
+ by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 316EPxC2007225;
+ Mon, 6 Feb 2023 14:30:23 GMT
+Received: from ppma02wdc.us.ibm.com (aa.5b.37a9.ip4.static.sl-reverse.com
+ [169.55.91.170])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3nk2tbhcrm-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Mon, 06 Feb 2023 14:30:23 +0000
+Received: from pps.filterd (ppma02wdc.us.ibm.com [127.0.0.1])
+ by ppma02wdc.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 316C5AQJ027767;
+ Mon, 6 Feb 2023 14:30:22 GMT
+Received: from smtprelay01.wdc07v.mail.ibm.com ([9.208.129.119])
+ by ppma02wdc.us.ibm.com (PPS) with ESMTPS id 3nhf07k4hr-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Mon, 06 Feb 2023 14:30:22 +0000
+Received: from smtpav02.wdc07v.mail.ibm.com (smtpav02.wdc07v.mail.ibm.com
+ [10.39.53.229])
+ by smtprelay01.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 316EUK6631654544
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Mon, 6 Feb 2023 14:30:20 GMT
+Received: from smtpav02.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 8A7BB58059;
+ Mon,  6 Feb 2023 14:30:20 +0000 (GMT)
+Received: from smtpav02.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 261CC5805D;
+ Mon,  6 Feb 2023 14:30:18 +0000 (GMT)
+Received: from [9.65.214.209] (unknown [9.65.214.209])
+ by smtpav02.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+ Mon,  6 Feb 2023 14:30:18 +0000 (GMT)
+Message-ID: <c5e32a7c-707c-d646-db1e-c1f0124c05a3@linux.ibm.com>
+Date: Mon, 6 Feb 2023 09:30:17 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Subject: [Intel-gfx] [bug report] drm/i915: Allow compaction upto SWIOTLB
- max segment size
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Content-Language: en-US
+To: Matthew Rosato <mjrosato@linux.ibm.com>, alex.williamson@redhat.com,
+ pbonzini@redhat.com, yi.l.liu@intel.com, jgg@nvidia.com
+References: <20230203215027.151988-1-mjrosato@linux.ibm.com>
+ <20230203215027.151988-2-mjrosato@linux.ibm.com>
+From: Anthony Krowiak <akrowiak@linux.ibm.com>
+In-Reply-To: <20230203215027.151988-2-mjrosato@linux.ibm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: ovFxLcZ9j84kNjr3bREE05JEc3DIUxfB
+X-Proofpoint-GUID: iFuVjfRUGoERPpPhtA3RZ3j8FOmGGoHu
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-02-06_07,2023-02-06_03,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 impostorscore=0
+ mlxlogscore=999 lowpriorityscore=0 adultscore=0 malwarescore=0
+ suspectscore=0 mlxscore=0 priorityscore=1501 clxscore=1015 phishscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2302060121
+Subject: Re: [Intel-gfx] [PATCH v4 1/2] vfio: fix deadlock between group
+ lock and kvm lock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,175 +100,304 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jjherne@linux.ibm.com, linux-s390@vger.kernel.org, farman@linux.ibm.com,
+ borntraeger@linux.ibm.com, frankja@linux.ibm.com, pmorel@linux.ibm.com,
+ david@redhat.com, seanjc@google.com, intel-gfx@lists.freedesktop.org,
+ cohuck@redhat.com, linux-kernel@vger.kernel.org, pasic@linux.ibm.com,
+ kvm@vger.kernel.org, imbrenda@linux.ibm.com,
+ intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-[ Ancient code but the warning showed up again because the function was
-  renamed or something? - dan ]
+Tested-by: Tony Krowiak <akrowiak@linux.ibm.com>
 
-Hello Chris Wilson,
-
-The patch 871dfbd67d4e: "drm/i915: Allow compaction upto SWIOTLB max
-segment size" from Oct 11, 2016, leads to the following Smatch static
-checker warning:
-
-	drivers/gpu/drm/i915/gem/i915_gem_shmem.c:164 shmem_sg_alloc_table()
-	warn: variable dereferenced before check 'sg' (see line 155)
-
-drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-    58 int shmem_sg_alloc_table(struct drm_i915_private *i915, struct sg_table *st,
-    59                          size_t size, struct intel_memory_region *mr,
-    60                          struct address_space *mapping,
-    61                          unsigned int max_segment)
-    62 {
-    63         unsigned int page_count; /* restricted by sg_alloc_table */
-    64         unsigned long i;
-    65         struct scatterlist *sg;
-    66         struct page *page;
-    67         unsigned long last_pfn = 0;        /* suppress gcc warning */
-    68         gfp_t noreclaim;
-    69         int ret;
-    70 
-    71         if (overflows_type(size / PAGE_SIZE, page_count))
-    72                 return -E2BIG;
-    73 
-    74         page_count = size / PAGE_SIZE;
-    75         /*
-    76          * If there's no chance of allocating enough pages for the whole
-    77          * object, bail early.
-    78          */
-    79         if (size > resource_size(&mr->region))
-    80                 return -ENOMEM;
-    81 
-    82         if (sg_alloc_table(st, page_count, GFP_KERNEL | __GFP_NOWARN))
-    83                 return -ENOMEM;
-    84 
-    85         /*
-    86          * Get the list of pages out of our struct file.  They'll be pinned
-    87          * at this point until we release them.
-    88          *
-    89          * Fail silently without starting the shrinker
-    90          */
-    91         mapping_set_unevictable(mapping);
-    92         noreclaim = mapping_gfp_constraint(mapping, ~__GFP_RECLAIM);
-    93         noreclaim |= __GFP_NORETRY | __GFP_NOWARN;
-    94 
-    95         sg = st->sgl;
-               ^^^^^^^^^^^^
-"sg" set here.
-
-    96         st->nents = 0;
-    97         for (i = 0; i < page_count; i++) {
-    98                 const unsigned int shrink[] = {
-    99                         I915_SHRINK_BOUND | I915_SHRINK_UNBOUND,
-    100                         0,
-    101                 }, *s = shrink;
-    102                 gfp_t gfp = noreclaim;
-    103 
-    104                 do {
-    105                         cond_resched();
-    106                         page = shmem_read_mapping_page_gfp(mapping, i, gfp);
-    107                         if (!IS_ERR(page))
-    108                                 break;
-
-This should probably break out of the outer loop instead of the inner
-loop?
-
-    109 
-    110                         if (!*s) {
-    111                                 ret = PTR_ERR(page);
-    112                                 goto err_sg;
-    113                         }
-    114 
-    115                         i915_gem_shrink(NULL, i915, 2 * page_count, NULL, *s++);
-    116 
-    117                         /*
-    118                          * We've tried hard to allocate the memory by reaping
-    119                          * our own buffer, now let the real VM do its job and
-    120                          * go down in flames if truly OOM.
-    121                          *
-    122                          * However, since graphics tend to be disposable,
-    123                          * defer the oom here by reporting the ENOMEM back
-    124                          * to userspace.
-    125                          */
-    126                         if (!*s) {
-    127                                 /* reclaim and warn, but no oom */
-    128                                 gfp = mapping_gfp_mask(mapping);
-    129 
-    130                                 /*
-    131                                  * Our bo are always dirty and so we require
-    132                                  * kswapd to reclaim our pages (direct reclaim
-    133                                  * does not effectively begin pageout of our
-    134                                  * buffers on its own). However, direct reclaim
-    135                                  * only waits for kswapd when under allocation
-    136                                  * congestion. So as a result __GFP_RECLAIM is
-    137                                  * unreliable and fails to actually reclaim our
-    138                                  * dirty pages -- unless you try over and over
-    139                                  * again with !__GFP_NORETRY. However, we still
-    140                                  * want to fail this allocation rather than
-    141                                  * trigger the out-of-memory killer and for
-    142                                  * this we want __GFP_RETRY_MAYFAIL.
-    143                                  */
-    144                                 gfp |= __GFP_RETRY_MAYFAIL | __GFP_NOWARN;
-    145                         }
-    146                 } while (1);
-    147 
-    148                 if (!i ||
-    149                     sg->length >= max_segment ||
-    150                     page_to_pfn(page) != last_pfn + 1) {
-    151                         if (i)
-    152                                 sg = sg_next(sg);
-    153 
-    154                         st->nents++;
-    155                         sg_set_page(sg, page, PAGE_SIZE, 0);
-                                            ^^
-Dereferenced.
-
-    156                 } else {
-    157                         sg->length += PAGE_SIZE;
-                                ^^
-Here too.
-
-    158                 }
-    159                 last_pfn = page_to_pfn(page);
-    160 
-    161                 /* Check that the i965g/gm workaround works. */
-    162                 GEM_BUG_ON(gfp & __GFP_DMA32 && last_pfn >= 0x00100000UL);
-    163         }
---> 164         if (sg) /* loop terminated early; short sg table */
-
-If "sg" were NULL then we are already toasted.
-
-    165                 sg_mark_end(sg);
-    166 
-    167         /* Trim unused sg entries to avoid wasting memory. */
-    168         i915_sg_trim(st);
-    169 
-    170         return 0;
-    171 err_sg:
-    172         sg_mark_end(sg);
-    173         if (sg != st->sgl) {
-    174                 shmem_sg_free_table(st, mapping, false, false);
-    175         } else {
-    176                 mapping_clear_unevictable(mapping);
-    177                 sg_free_table(st);
-    178         }
-    179 
-    180         /*
-    181          * shmemfs first checks if there is enough memory to allocate the page
-    182          * and reports ENOSPC should there be insufficient, along with the usual
-    183          * ENOMEM for a genuine allocation failure.
-    184          *
-    185          * We use ENOSPC in our driver to mean that we have run out of aperture
-    186          * space and so want to translate the error from shmemfs back to our
-    187          * usual understanding of ENOMEM.
-    188          */
-    189         if (ret == -ENOSPC)
-    190                 ret = -ENOMEM;
-    191 
-    192         return ret;
-    193 }
-
-regards,
-dan carpenter
+On 2/3/23 4:50 PM, Matthew Rosato wrote:
+> After 51cdc8bc120e, we have another deadlock scenario between the
+> kvm->lock and the vfio group_lock with two different codepaths acquiring
+> the locks in different order.  Specifically in vfio_open_device, vfio
+> holds the vfio group_lock when issuing device->ops->open_device but some
+> drivers (like vfio-ap) need to acquire kvm->lock during their open_device
+> routine;  Meanwhile, kvm_vfio_release will acquire the kvm->lock first
+> before calling vfio_file_set_kvm which will acquire the vfio group_lock.
+>
+> To resolve this, let's remove the need for the vfio group_lock from the
+> kvm_vfio_release codepath.  This is done by introducing a new spinlock to
+> protect modifications to the vfio group kvm pointer, and acquiring a kvm
+> ref from within vfio while holding this spinlock, with the reference held
+> until the last close for the device in question.
+>
+> Fixes: 51cdc8bc120e ("kvm/vfio: Fix potential deadlock on vfio group_lock")
+> Reported-by: Anthony Krowiak <akrowiak@linux.ibm.com>
+> Suggested-by: Jason Gunthorpe <jgg@nvidia.com>
+> Signed-off-by: Matthew Rosato <mjrosato@linux.ibm.com>
+> ---
+>   drivers/vfio/group.c     | 44 +++++++++++++++++++++++-----
+>   drivers/vfio/vfio.h      | 15 ++++++++++
+>   drivers/vfio/vfio_main.c | 63 +++++++++++++++++++++++++++++++++++-----
+>   include/linux/vfio.h     |  2 +-
+>   4 files changed, 109 insertions(+), 15 deletions(-)
+>
+> diff --git a/drivers/vfio/group.c b/drivers/vfio/group.c
+> index bb24b2f0271e..98621ac082f0 100644
+> --- a/drivers/vfio/group.c
+> +++ b/drivers/vfio/group.c
+> @@ -154,6 +154,18 @@ static int vfio_group_ioctl_set_container(struct vfio_group *group,
+>   	return ret;
+>   }
+>   
+> +static void vfio_device_group_get_kvm_safe(struct vfio_device *device)
+> +{
+> +	spin_lock(&device->group->kvm_ref_lock);
+> +	if (!device->group->kvm)
+> +		goto unlock;
+> +
+> +	_vfio_device_get_kvm_safe(device, device->group->kvm);
+> +
+> +unlock:
+> +	spin_unlock(&device->group->kvm_ref_lock);
+> +}
+> +
+>   static int vfio_device_group_open(struct vfio_device *device)
+>   {
+>   	int ret;
+> @@ -164,13 +176,23 @@ static int vfio_device_group_open(struct vfio_device *device)
+>   		goto out_unlock;
+>   	}
+>   
+> +	mutex_lock(&device->dev_set->lock);
+> +
+>   	/*
+> -	 * Here we pass the KVM pointer with the group under the lock.  If the
+> -	 * device driver will use it, it must obtain a reference and release it
+> -	 * during close_device.
+> +	 * Before the first device open, get the KVM pointer currently
+> +	 * associated with the group (if there is one) and obtain a reference
+> +	 * now that will be held until the open_count reaches 0 again.  Save
+> +	 * the pointer in the device for use by drivers.
+>   	 */
+> -	ret = vfio_device_open(device, device->group->iommufd,
+> -			       device->group->kvm);
+> +	if (device->open_count == 0)
+> +		vfio_device_group_get_kvm_safe(device);
+> +
+> +	ret = vfio_device_open(device, device->group->iommufd, device->kvm);
+> +
+> +	if (device->open_count == 0)
+> +		vfio_device_put_kvm(device);
+> +
+> +	mutex_unlock(&device->dev_set->lock);
+>   
+>   out_unlock:
+>   	mutex_unlock(&device->group->group_lock);
+> @@ -180,7 +202,14 @@ static int vfio_device_group_open(struct vfio_device *device)
+>   void vfio_device_group_close(struct vfio_device *device)
+>   {
+>   	mutex_lock(&device->group->group_lock);
+> +	mutex_lock(&device->dev_set->lock);
+> +
+>   	vfio_device_close(device, device->group->iommufd);
+> +
+> +	if (device->open_count == 0)
+> +		vfio_device_put_kvm(device);
+> +
+> +	mutex_unlock(&device->dev_set->lock);
+>   	mutex_unlock(&device->group->group_lock);
+>   }
+>   
+> @@ -450,6 +479,7 @@ static struct vfio_group *vfio_group_alloc(struct iommu_group *iommu_group,
+>   
+>   	refcount_set(&group->drivers, 1);
+>   	mutex_init(&group->group_lock);
+> +	spin_lock_init(&group->kvm_ref_lock);
+>   	INIT_LIST_HEAD(&group->device_list);
+>   	mutex_init(&group->device_lock);
+>   	group->iommu_group = iommu_group;
+> @@ -803,9 +833,9 @@ void vfio_file_set_kvm(struct file *file, struct kvm *kvm)
+>   	if (!vfio_file_is_group(file))
+>   		return;
+>   
+> -	mutex_lock(&group->group_lock);
+> +	spin_lock(&group->kvm_ref_lock);
+>   	group->kvm = kvm;
+> -	mutex_unlock(&group->group_lock);
+> +	spin_unlock(&group->kvm_ref_lock);
+>   }
+>   EXPORT_SYMBOL_GPL(vfio_file_set_kvm);
+>   
+> diff --git a/drivers/vfio/vfio.h b/drivers/vfio/vfio.h
+> index f8219a438bfb..24d6cd285945 100644
+> --- a/drivers/vfio/vfio.h
+> +++ b/drivers/vfio/vfio.h
+> @@ -74,6 +74,7 @@ struct vfio_group {
+>   	struct file			*opened_file;
+>   	struct blocking_notifier_head	notifier;
+>   	struct iommufd_ctx		*iommufd;
+> +	spinlock_t			kvm_ref_lock;
+>   };
+>   
+>   int vfio_device_set_group(struct vfio_device *device,
+> @@ -251,4 +252,18 @@ extern bool vfio_noiommu __read_mostly;
+>   enum { vfio_noiommu = false };
+>   #endif
+>   
+> +#ifdef CONFIG_HAVE_KVM
+> +void _vfio_device_get_kvm_safe(struct vfio_device *device, struct kvm *kvm);
+> +void vfio_device_put_kvm(struct vfio_device *device);
+> +#else
+> +static inline void _vfio_device_get_kvm_safe(struct vfio_device *device,
+> +					     struct kvm *kvm)
+> +{
+> +}
+> +
+> +static inline void vfio_device_put_kvm(struct vfio_device *device)
+> +{
+> +}
+> +#endif
+> +
+>   #endif
+> diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
+> index 5177bb061b17..28c47cd6a6b5 100644
+> --- a/drivers/vfio/vfio_main.c
+> +++ b/drivers/vfio/vfio_main.c
+> @@ -16,6 +16,9 @@
+>   #include <linux/fs.h>
+>   #include <linux/idr.h>
+>   #include <linux/iommu.h>
+> +#ifdef CONFIG_HAVE_KVM
+> +#include <linux/kvm_host.h>
+> +#endif
+>   #include <linux/list.h>
+>   #include <linux/miscdevice.h>
+>   #include <linux/module.h>
+> @@ -338,6 +341,55 @@ void vfio_unregister_group_dev(struct vfio_device *device)
+>   }
+>   EXPORT_SYMBOL_GPL(vfio_unregister_group_dev);
+>   
+> +#ifdef CONFIG_HAVE_KVM
+> +void _vfio_device_get_kvm_safe(struct vfio_device *device, struct kvm *kvm)
+> +{
+> +	void (*pfn)(struct kvm *kvm);
+> +	bool (*fn)(struct kvm *kvm);
+> +	bool ret;
+> +
+> +	lockdep_assert_held(&device->dev_set->lock);
+> +
+> +	pfn = symbol_get(kvm_put_kvm);
+> +	if (WARN_ON(!pfn))
+> +		return;
+> +
+> +	fn = symbol_get(kvm_get_kvm_safe);
+> +	if (WARN_ON(!fn)) {
+> +		symbol_put(kvm_put_kvm);
+> +		return;
+> +	}
+> +
+> +	ret = fn(kvm);
+> +	symbol_put(kvm_get_kvm_safe);
+> +	if (!ret) {
+> +		symbol_put(kvm_put_kvm);
+> +		return;
+> +	}
+> +
+> +	device->put_kvm = pfn;
+> +	device->kvm = kvm;
+> +}
+> +
+> +void vfio_device_put_kvm(struct vfio_device *device)
+> +{
+> +	lockdep_assert_held(&device->dev_set->lock);
+> +
+> +	if (!device->kvm)
+> +		return;
+> +
+> +	if (WARN_ON(!device->put_kvm))
+> +		goto clear;
+> +
+> +	device->put_kvm(device->kvm);
+> +	device->put_kvm = NULL;
+> +	symbol_put(kvm_put_kvm);
+> +
+> +clear:
+> +	device->kvm = NULL;
+> +}
+> +#endif
+> +
+>   /* true if the vfio_device has open_device() called but not close_device() */
+>   static bool vfio_assert_device_open(struct vfio_device *device)
+>   {
+> @@ -361,7 +413,6 @@ static int vfio_device_first_open(struct vfio_device *device,
+>   	if (ret)
+>   		goto err_module_put;
+>   
+> -	device->kvm = kvm;
+>   	if (device->ops->open_device) {
+>   		ret = device->ops->open_device(device);
+>   		if (ret)
+> @@ -370,7 +421,6 @@ static int vfio_device_first_open(struct vfio_device *device,
+>   	return 0;
+>   
+>   err_unuse_iommu:
+> -	device->kvm = NULL;
+>   	if (iommufd)
+>   		vfio_iommufd_unbind(device);
+>   	else
+> @@ -387,7 +437,6 @@ static void vfio_device_last_close(struct vfio_device *device,
+>   
+>   	if (device->ops->close_device)
+>   		device->ops->close_device(device);
+> -	device->kvm = NULL;
+>   	if (iommufd)
+>   		vfio_iommufd_unbind(device);
+>   	else
+> @@ -400,14 +449,14 @@ int vfio_device_open(struct vfio_device *device,
+>   {
+>   	int ret = 0;
+>   
+> -	mutex_lock(&device->dev_set->lock);
+> +	lockdep_assert_held(&device->dev_set->lock);
+> +
+>   	device->open_count++;
+>   	if (device->open_count == 1) {
+>   		ret = vfio_device_first_open(device, iommufd, kvm);
+>   		if (ret)
+>   			device->open_count--;
+>   	}
+> -	mutex_unlock(&device->dev_set->lock);
+>   
+>   	return ret;
+>   }
+> @@ -415,12 +464,12 @@ int vfio_device_open(struct vfio_device *device,
+>   void vfio_device_close(struct vfio_device *device,
+>   		       struct iommufd_ctx *iommufd)
+>   {
+> -	mutex_lock(&device->dev_set->lock);
+> +	lockdep_assert_held(&device->dev_set->lock);
+> +
+>   	vfio_assert_device_open(device);
+>   	if (device->open_count == 1)
+>   		vfio_device_last_close(device, iommufd);
+>   	device->open_count--;
+> -	mutex_unlock(&device->dev_set->lock);
+>   }
+>   
+>   /*
+> diff --git a/include/linux/vfio.h b/include/linux/vfio.h
+> index 35be78e9ae57..87ff862ff555 100644
+> --- a/include/linux/vfio.h
+> +++ b/include/linux/vfio.h
+> @@ -46,7 +46,6 @@ struct vfio_device {
+>   	struct vfio_device_set *dev_set;
+>   	struct list_head dev_set_list;
+>   	unsigned int migration_flags;
+> -	/* Driver must reference the kvm during open_device or never touch it */
+>   	struct kvm *kvm;
+>   
+>   	/* Members below here are private, not for driver use */
+> @@ -58,6 +57,7 @@ struct vfio_device {
+>   	struct list_head group_next;
+>   	struct list_head iommu_entry;
+>   	struct iommufd_access *iommufd_access;
+> +	void (*put_kvm)(struct kvm *kvm);
+>   #if IS_ENABLED(CONFIG_IOMMUFD)
+>   	struct iommufd_device *iommufd_device;
+>   	struct iommufd_ctx *iommufd_ictx;
